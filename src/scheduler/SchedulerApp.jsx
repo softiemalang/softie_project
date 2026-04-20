@@ -53,9 +53,7 @@ function SchedulerTopbar({ title, rightAction }) {
         <h1>{title}</h1>
       </div>
       <div className="scheduler-topbar-actions">
-        <NavButton path="/" label="기존 앱" />
         <NavButton path="/scheduler" label="오늘" />
-        <NavButton path="/scheduler/rooms" label="룸 상태" />
         <NavButton path="/scheduler/new" label="새 예약" isPrimary />
         {rightAction}
       </div>
