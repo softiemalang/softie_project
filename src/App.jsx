@@ -148,6 +148,7 @@ export default function App() {
   const [room, setRoom] = useState(null)
   const [member, setMember] = useState(null)
   const [pendingRoomSession, setPendingRoomSession] = useState(null)
+  const [isReauthMode, setIsReauthMode] = useState(false)
   const [members, setMembers] = useState([])
   const [availabilityMap, setAvailabilityMap] = useState(emptyAvailabilityMap)
   const [savedAvailabilityMap, setSavedAvailabilityMap] = useState(emptyAvailabilityMap)
@@ -184,7 +185,7 @@ export default function App() {
     () => !mapsEqual(availabilityMap, savedAvailabilityMap),
     [availabilityMap, savedAvailabilityMap],
   )
-  const needsReauth = Boolean(room && !member)
+  const needsReauth = Boolean(isReauthMode && room && !member)
 
   useEffect(() => {
     const saved = localStorage.getItem(MEMBER_KEY)
@@ -199,9 +200,11 @@ export default function App() {
         setMember(parsed.member)
         setMemberDisplayName(parsed.member.display_name || '')
         setReauthName(parsed.member.display_name || '')
+        setIsReauthMode(false)
       } else if (parsed?.room) {
         setPendingRoomSession(parsed.room)
         setJoinCode(parsed.room.room_code || '')
+        setIsReauthMode(false)
       }
     } catch {
       localStorage.removeItem(MEMBER_KEY)
@@ -233,6 +236,7 @@ export default function App() {
     setRoom(null)
     setMember(null)
     setPendingRoomSession(null)
+    setIsReauthMode(false)
     setMembers([])
     setAllAvailabilities([])
     setAvailabilityMap(emptyAvailabilityMap())
@@ -251,6 +255,7 @@ export default function App() {
     setPendingRoomSession(null)
     setReauthName('')
     setReauthPin('')
+    setIsReauthMode(false)
     if (!room) {
       localStorage.removeItem(MEMBER_KEY)
       setJoinCode('')
@@ -263,6 +268,7 @@ export default function App() {
     setEditingRoomName(pendingRoomSession.name || '')
     setJoinCode(pendingRoomSession.room_code || '')
     setPendingRoomSession(null)
+    setIsReauthMode(true)
     setStatus('')
   }
 
@@ -339,6 +345,7 @@ export default function App() {
         setRoom(null)
         setMember(null)
         setPendingRoomSession(roomRow)
+        setIsReauthMode(false)
         setMembers([])
         setAllAvailabilities([])
         setEditingRoomName('')
@@ -387,6 +394,7 @@ export default function App() {
     clearPendingRoomSession()
     setRoom(null)
     setMember(null)
+    setIsReauthMode(false)
 
     const roomCode = makeRoomCode()
     const { data, error } = await supabase
@@ -452,6 +460,7 @@ export default function App() {
     clearPendingRoomSession()
     setRoom(null)
     setMember(null)
+    setIsReauthMode(false)
 
     let matchingMembers = []
     try {
@@ -490,6 +499,7 @@ export default function App() {
     setMember(memberInfo)
     setMemberDisplayName(memberInfo.display_name)
     setEditingRoomName(roomRow.name)
+    setIsReauthMode(false)
     persistSession(roomRow, memberInfo)
 
     await loadRoomState({ roomId: roomRow.id, memberId: memberRow.id, preserveDraft: false, silent: true })
@@ -533,6 +543,7 @@ export default function App() {
     setMember(memberInfo)
     setMemberDisplayName(memberInfo.display_name)
     setReauthPin('')
+    setIsReauthMode(false)
     persistSession(room, memberInfo)
     await loadRoomState({ roomId: room.id, memberId: memberRow.id, preserveDraft: false, silent: true })
     setIsBusy(false)
