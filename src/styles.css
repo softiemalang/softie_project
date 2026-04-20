@@ -544,13 +544,15 @@ textarea {
 
 .scheduler-preset-row {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(64px, 1fr));
+  grid-template-columns: repeat(6, minmax(0, 1fr));
   gap: var(--scheduler-gap-sm);
 }
 
 .scheduler-preset-row > button {
   width: 100%;
   min-height: var(--scheduler-control-min-h);
+  padding: 0.62rem var(--scheduler-control-pad-x);
+  border-radius: var(--scheduler-radius-md);
 }
 
 .scheduler-topbar-actions {
