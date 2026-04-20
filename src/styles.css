@@ -1,0 +1,194 @@
+:root {
+  color-scheme: light;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: #f4efe6;
+  color: #1f2937;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  background:
+    radial-gradient(circle at top, rgba(255, 255, 255, 0.95), rgba(244, 239, 230, 0.92)),
+    linear-gradient(180deg, #f8f4eb 0%, #efe4d0 100%);
+}
+
+button,
+input {
+  font: inherit;
+}
+
+button {
+  border: 0;
+  border-radius: 14px;
+  background: #1f6f5f;
+  color: white;
+  padding: 0.9rem 1rem;
+}
+
+button:disabled {
+  opacity: 0.5;
+}
+
+input {
+  width: 100%;
+  border: 1px solid #d6d3d1;
+  border-radius: 12px;
+  padding: 0.9rem 1rem;
+  background: rgba(255, 255, 255, 0.82);
+}
+
+.app-shell {
+  width: min(100%, 720px);
+  margin: 0 auto;
+  padding: max(1rem, env(safe-area-inset-top)) 1rem max(2rem, env(safe-area-inset-bottom));
+}
+
+.hero,
+.card {
+  border-radius: 24px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  background: rgba(255, 252, 247, 0.86);
+  box-shadow: 0 12px 40px rgba(92, 74, 43, 0.08);
+  backdrop-filter: blur(12px);
+}
+
+.hero h1,
+.card h2,
+.result-row strong {
+  margin: 0;
+}
+
+.hero h1 {
+  font-size: 2rem;
+  line-height: 1.05;
+  margin-top: 0.4rem;
+}
+
+.eyebrow {
+  margin: 0;
+  color: #9a3412;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.subtle,
+.result-row p {
+  color: #57534e;
+  margin: 0.35rem 0 0;
+}
+
+.field-grid,
+.results,
+.member-list {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.card button {
+  width: 100%;
+  margin-top: 0.9rem;
+}
+
+.status {
+  margin: 0 0 1rem;
+  padding: 0.9rem 1rem;
+  border-radius: 16px;
+  background: rgba(255, 248, 220, 0.95);
+  color: #92400e;
+}
+
+.room-card,
+.section-head,
+.result-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.pill,
+.member-pill {
+  border-radius: 999px;
+  padding: 0.5rem 0.8rem;
+  background: #e7f3ef;
+  color: #115e59;
+  font-size: 0.92rem;
+}
+
+.availability-grid {
+  margin-top: 1rem;
+  display: grid;
+  grid-template-columns: 64px repeat(7, minmax(38px, 1fr));
+  gap: 0.4rem;
+  overflow-x: auto;
+}
+
+.grid-top-left,
+.day-label,
+.time-label,
+.slot-button {
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+}
+
+.day-label,
+.time-label {
+  background: #f6efe4;
+  font-size: 0.8rem;
+  color: #57534e;
+}
+
+.slot-button {
+  min-width: 38px;
+  padding: 0;
+  margin: 0;
+  background: #efe7d8;
+  color: #1f2937;
+}
+
+.slot-button.active {
+  background: #1f6f5f;
+  color: #fff;
+}
+
+.results {
+  margin-top: 0.8rem;
+}
+
+.result-row {
+  padding: 0.9rem 0;
+  border-bottom: 1px solid #ece7de;
+  align-items: flex-start;
+}
+
+.result-row span {
+  text-align: right;
+  color: #44403c;
+  font-size: 0.92rem;
+}
+
+@media (min-width: 700px) {
+  .app-shell {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+
+  .field-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .card button {
+    width: auto;
+  }
+}
