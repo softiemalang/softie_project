@@ -124,6 +124,21 @@ function makeMemberInfo(memberRow) {
   }
 }
 
+async function findMembersByIdentity(roomId, displayName) {
+  const { data, error } = await supabase
+    .from('members')
+    .select('id, room_id, display_name, pin_hash, created_at')
+    .eq('room_id', roomId)
+    .eq('display_name', displayName)
+    .order('created_at', { ascending: true })
+
+  if (error) {
+    throw new Error(getFriendlyError(error.message))
+  }
+
+  return data || []
+}
+
 export default function App() {
   const [roomName, setRoomName] = useState('')
   const [joinCode, setJoinCode] = useState('')
@@ -398,7 +413,7 @@ export default function App() {
 
     const { data: roomRow, error: roomError } = await supabase
       .from('rooms')
-      .select('*')
+      .select('id, name, room_code, created_at')
       .eq('room_code', normalizedCode)
       .maybeSingle()
 
@@ -408,22 +423,19 @@ export default function App() {
       return
     }
 
-    const { data: existingMember, error: memberLookupError } = await supabase
-      .from('members')
-      .select('*')
-      .eq('room_id', roomRow.id)
-      .eq('display_name', normalizedName)
-      .maybeSingle()
-
-    if (memberLookupError) {
+    let matchingMembers = []
+    try {
+      matchingMembers = await findMembersByIdentity(roomRow.id, normalizedName)
+    } catch (error) {
       setIsBusy(false)
-      setStatus(getFriendlyError(memberLookupError.message))
+      setStatus(error.message)
       return
     }
 
-    let memberRow = existingMember
+    let memberRow =
+      matchingMembers.find((candidate) => candidate.pin_hash === pinHash) || null
 
-    if (!existingMember) {
+    if (!memberRow) {
       const { data: createdMember, error: createMemberError } = await supabase
         .from('members')
         .insert({
@@ -441,10 +453,6 @@ export default function App() {
       }
 
       memberRow = createdMember
-    } else if (existingMember.pin_hash !== pinHash) {
-      setIsBusy(false)
-      setStatus(`That name already exists in this room. Enter the matching 4-digit PIN for ${normalizedName}.`)
-      return
     }
 
     const memberInfo = makeMemberInfo(memberRow)
@@ -473,22 +481,21 @@ export default function App() {
     setIsBusy(true)
     setStatus('')
 
-    const { data: memberRow, error } = await supabase
-      .from('members')
-      .select('*')
-      .eq('room_id', room.id)
-      .eq('display_name', reauthName.trim())
-      .maybeSingle()
-
-    if (error || !memberRow) {
+    let matchingMembers = []
+    try {
+      matchingMembers = await findMembersByIdentity(room.id, reauthName.trim())
+    } catch (error) {
       setIsBusy(false)
-      setStatus('We could not match that member in this room. Please check the name and try again.')
+      setStatus(error.message)
       return
     }
 
-    if (memberRow.pin_hash !== simpleHash(reauthPin.trim())) {
+    const memberRow =
+      matchingMembers.find((candidate) => candidate.pin_hash === simpleHash(reauthPin.trim())) || null
+
+    if (!memberRow) {
       setIsBusy(false)
-      setStatus('That PIN did not match. Please try again.')
+      setStatus('We could not match that member and PIN in this room. Please try again.')
       return
     }
 
@@ -599,13 +606,6 @@ export default function App() {
     const trimmedName = memberDisplayName.trim()
 
     if (trimmedName !== member.display_name) {
-      const matchingMember = members.find(
-        (memberRow) => memberRow.display_name === trimmedName && memberRow.id !== member.id,
-      )
-      if (matchingMember) {
-        setStatus('That display name is already in use in this room. Please choose another one.')
-        return
-      }
       updates.display_name = trimmedName
     }
 
@@ -628,6 +628,7 @@ export default function App() {
         .from('members')
         .select('pin_hash')
         .eq('id', member.id)
+        .eq('room_id', room.id)
         .maybeSingle()
 
       if (error || !memberRow) {
@@ -655,6 +656,7 @@ export default function App() {
       .from('members')
       .update(updates)
       .eq('id', member.id)
+      .eq('room_id', room.id)
       .select('*')
       .single()
 
