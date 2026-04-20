@@ -86,12 +86,12 @@ function isMemberSubmitted(memberId, availabilities) {
 }
 
 function getFriendlyError(errorMessage) {
-  if (!errorMessage) return 'Something went wrong. Please try again.'
+  if (!errorMessage) return '문제가 발생했어요. 다시 시도해 주세요.'
   if (errorMessage.includes('JSON object requested')) {
-    return 'We could not find that room. Please check the room code and try again.'
+    return '방을 찾지 못했어요. 방 코드를 다시 확인해 주세요.'
   }
   if (errorMessage.includes('duplicate key')) {
-    return 'That name is already being used here. Please try another one.'
+    return '이미 사용 중인 값이 있어요. 다른 값으로 다시 시도해 주세요.'
   }
   return errorMessage
 }
@@ -272,6 +272,24 @@ export default function App() {
     setStatus('')
   }
 
+  function goHome() {
+    setRoom(null)
+    setMember(null)
+    setMembers([])
+    setAllAvailabilities([])
+    setAvailabilityMap(emptyAvailabilityMap())
+    setSavedAvailabilityMap(emptyAvailabilityMap())
+    setEditingRoomName('')
+    setDeleteRoomName('')
+    setMemberDisplayName('')
+    setCurrentPinInput('')
+    setNewPinInput('')
+    setReauthName('')
+    setReauthPin('')
+    setIsReauthMode(false)
+    setStatus('')
+  }
+
   function applyLoadedState({ roomRow, memberRows, availabilityRows, activeMember, preserveDraft }) {
     const nextMember = makeMemberInfo(activeMember)
     const nextSavedMap = getMemberAvailabilityMap(availabilityRows, nextMember?.id)
@@ -381,11 +399,11 @@ export default function App() {
 
   async function createRoom() {
     if (!supabase) {
-      setStatus('Supabase settings are missing. Please check your environment variables.')
+      setStatus('Supabase 설정이 없어요. 환경변수를 확인해 주세요.')
       return
     }
     if (!roomName.trim()) {
-      setStatus('Please enter a room name first.')
+      setStatus('방 이름을 먼저 입력해 주세요.')
       return
     }
 
@@ -417,24 +435,24 @@ export default function App() {
     setEditingRoomName(data.name)
     setJoinCode(data.room_code)
     persistSession(data, null)
-    setStatus(`Room created. Share code ${data.room_code} with your band.`)
+    setStatus(`방이 만들어졌어요. 밴드원에게 코드 ${data.room_code}를 공유해 주세요.`)
   }
 
   async function joinRoom() {
     if (!supabase) {
-      setStatus('Supabase settings are missing. Please check your environment variables.')
+      setStatus('Supabase 설정이 없어요. 환경변수를 확인해 주세요.')
       return
     }
     if (!joinCode.trim()) {
-      setStatus('Please enter a room code.')
+      setStatus('방 코드를 입력해 주세요.')
       return
     }
     if (!displayName.trim()) {
-      setStatus('Please enter your display name.')
+      setStatus('표시 이름을 입력해 주세요.')
       return
     }
     if (pin.trim().length !== 4) {
-      setStatus('Please enter a 4-digit PIN.')
+      setStatus('4자리 PIN을 입력해 주세요.')
       return
     }
 
@@ -453,7 +471,7 @@ export default function App() {
 
     if (roomError || !roomRow) {
       setIsBusy(false)
-      setStatus('We could not find a room with that code.')
+      setStatus('해당 코드의 방을 찾지 못했어요.')
       return
     }
 
@@ -504,17 +522,17 @@ export default function App() {
 
     await loadRoomState({ roomId: roomRow.id, memberId: memberRow.id, preserveDraft: false, silent: true })
     setIsBusy(false)
-    setStatus(`You joined ${roomRow.name}.`)
+    setStatus(`${roomRow.name} 방에 참여했어요.`)
   }
 
   async function reauthenticateMember() {
     if (!supabase || !room?.id) return
     if (!reauthName.trim()) {
-      setStatus('Please enter your display name to continue.')
+      setStatus('계속하려면 표시 이름을 입력해 주세요.')
       return
     }
     if (reauthPin.trim().length !== 4) {
-      setStatus('Please enter your 4-digit PIN to continue.')
+      setStatus('계속하려면 4자리 PIN을 입력해 주세요.')
       return
     }
 
@@ -535,7 +553,7 @@ export default function App() {
 
     if (!memberRow) {
       setIsBusy(false)
-      setStatus('We could not match that member and PIN in this room. Please try again.')
+      setStatus('이 방에서 일치하는 이름과 PIN을 찾지 못했어요. 다시 확인해 주세요.')
       return
     }
 
@@ -547,13 +565,13 @@ export default function App() {
     persistSession(room, memberInfo)
     await loadRoomState({ roomId: room.id, memberId: memberRow.id, preserveDraft: false, silent: true })
     setIsBusy(false)
-    setStatus(`Welcome back, ${memberRow.display_name}.`)
+    setStatus(`${memberRow.display_name}님, 다시 돌아왔어요.`)
   }
 
   async function saveAvailability() {
     if (!supabase || !room?.id || !member?.id) return
     if (!hasUnsavedChanges) {
-      setStatus('Your availability is already up to date.')
+      setStatus('이미 최신 가능 시간으로 저장되어 있어요.')
       return
     }
 
@@ -578,7 +596,7 @@ export default function App() {
 
     if (deleteError) {
       setIsBusy(false)
-      setStatus('We could not update your previous availability. Please try again.')
+      setStatus('기존 가능 시간 정보를 업데이트하지 못했어요. 다시 시도해 주세요.')
       return
     }
 
@@ -586,7 +604,7 @@ export default function App() {
 
     if (insertError) {
       setIsBusy(false)
-      setStatus('We could not save your availability. Please try again.')
+      setStatus('가능 시간을 저장하지 못했어요. 다시 시도해 주세요.')
       return
     }
 
@@ -599,17 +617,17 @@ export default function App() {
 
     setIsBusy(false)
     if (!loaded) return
-    setStatus('Availability saved for this week.')
+    setStatus('이번 주 가능 시간을 저장했어요.')
   }
 
   async function updateRoomName() {
     if (!supabase || !room?.id) return
     if (!editingRoomName.trim()) {
-      setStatus('Please enter a room name.')
+      setStatus('방 이름을 입력해 주세요.')
       return
     }
     if (editingRoomName.trim() === room.name) {
-      setStatus('Room name is already up to date.')
+      setStatus('방 이름이 이미 최신 상태예요.')
       return
     }
 
@@ -626,20 +644,20 @@ export default function App() {
     setIsBusy(false)
 
     if (error) {
-      setStatus('We could not update the room name. Please try again.')
+      setStatus('방 이름을 수정하지 못했어요. 다시 시도해 주세요.')
       return
     }
 
     setRoom(data)
     persistSession(data, member)
     setDeleteRoomName('')
-    setStatus('Room name updated.')
+    setStatus('방 이름을 수정했어요.')
   }
 
   async function updateMemberProfile() {
     if (!supabase || !room?.id || !member?.id) return
     if (!memberDisplayName.trim()) {
-      setStatus('Please enter a display name.')
+      setStatus('표시 이름을 입력해 주세요.')
       return
     }
 
@@ -653,15 +671,15 @@ export default function App() {
     const wantsPinChange = currentPinInput || newPinInput
     if (wantsPinChange) {
       if (currentPinInput.trim().length !== 4) {
-        setStatus('Please enter your current 4-digit PIN.')
+        setStatus('현재 4자리 PIN을 입력해 주세요.')
         return
       }
       if (newPinInput.trim().length !== 4) {
-        setStatus('Please enter a new 4-digit PIN.')
+        setStatus('새 4자리 PIN을 입력해 주세요.')
         return
       }
       if (currentPinInput === newPinInput) {
-        setStatus('Please choose a new PIN that is different from your current one.')
+        setStatus('현재 PIN과 다른 새 PIN을 입력해 주세요.')
         return
       }
 
@@ -673,12 +691,12 @@ export default function App() {
         .maybeSingle()
 
       if (error || !memberRow) {
-        setStatus('We could not verify your current PIN. Please try again.')
+        setStatus('현재 PIN을 확인하지 못했어요. 다시 시도해 주세요.')
         return
       }
 
       if (memberRow.pin_hash !== simpleHash(currentPinInput.trim())) {
-        setStatus('Your current PIN did not match. Please try again.')
+        setStatus('현재 PIN이 일치하지 않아요. 다시 확인해 주세요.')
         return
       }
 
@@ -686,7 +704,7 @@ export default function App() {
     }
 
     if (Object.keys(updates).length === 0) {
-      setStatus('Your member details are already up to date.')
+      setStatus('멤버 정보가 이미 최신 상태예요.')
       return
     }
 
@@ -704,7 +722,7 @@ export default function App() {
     setIsBusy(false)
 
     if (error) {
-      setStatus('We could not save your member details. Please try again.')
+      setStatus('멤버 정보를 저장하지 못했어요. 다시 시도해 주세요.')
       return
     }
 
@@ -715,7 +733,7 @@ export default function App() {
     setNewPinInput('')
     persistSession(room, memberInfo)
     await loadRoomState({ roomId: room.id, memberId: data.id, preserveDraft: true, silent: true })
-    setStatus('Your member details were updated.')
+    setStatus('멤버 정보를 수정했어요.')
   }
 
   async function deleteRoom() {
@@ -732,7 +750,7 @@ export default function App() {
 
     if (availabilityError) {
       setIsBusy(false)
-      setStatus('We could not remove this room. Please try again.')
+      setStatus('방을 삭제하지 못했어요. 다시 시도해 주세요.')
       return
     }
 
@@ -740,7 +758,7 @@ export default function App() {
 
     if (memberError) {
       setIsBusy(false)
-      setStatus('We could not remove this room. Please try again.')
+      setStatus('방을 삭제하지 못했어요. 다시 시도해 주세요.')
       return
     }
 
@@ -749,12 +767,12 @@ export default function App() {
     setIsBusy(false)
 
     if (roomError) {
-      setStatus('We could not remove this room. Please try again.')
+      setStatus('방을 삭제하지 못했어요. 다시 시도해 주세요.')
       return
     }
 
     clearLocalSession()
-    setStatus('Room deleted.')
+    setStatus('방을 삭제했어요.')
   }
 
   function toggleSlot(dayIndex, slotIndex) {
@@ -778,22 +796,22 @@ export default function App() {
   function resetMyAvailability() {
     if (!member) return
     const shouldReset = window.confirm(
-      'Reset only your availability for this room? This will not change anyone else in the room.',
+      '이 방에서 내 가능 시간만 초기화할까요? 다른 멤버 정보는 바뀌지 않아요.',
     )
     if (!shouldReset) return
 
     const clearedMap = emptyAvailabilityMap()
     setAvailabilityMap(clearedMap)
-    setStatus('Your availability has been cleared locally. Save to apply the reset.')
+    setStatus('내 가능 시간을 화면에서 초기화했어요. 저장하면 반영돼요.')
   }
 
   return (
     <div className="app-shell">
       <header className="hero">
-        <p className="eyebrow">Band Rehearsal Planner</p>
-        <h1>Set one room, collect availability, and find the cleanest overlap fast.</h1>
+        <p className="eyebrow">밴드 합주 일정 조율</p>
+        <h1>한 방에서 가능 시간을 모으고, 겹치는 합주 시간을 빠르게 찾아보세요.</h1>
         <p className="subtle">
-          Built for small bands that just need a simple weekly rehearsal decision.
+          작은 밴드가 주간 합주 시간을 간단하게 정할 수 있도록 만든 서비스예요.
         </p>
       </header>
 
@@ -802,16 +820,17 @@ export default function App() {
           <div className="card-header">
             <div>
               <p className="section-kicker">Start a room</p>
-              <h2>Create a room</h2>
+              <p className="section-kicker">새 방 만들기</p>
+              <h2>방 만들기</h2>
             </div>
           </div>
           <input
             value={roomName}
             onChange={(event) => setRoomName(event.target.value)}
-            placeholder="Band room name"
+            placeholder="밴드 방 이름"
           />
           <button disabled={isBusy} onClick={createRoom}>
-            {isBusy ? 'Creating...' : 'Create room'}
+            {isBusy ? '만드는 중...' : '방 만들기'}
           </button>
         </section>
       )}
@@ -820,19 +839,19 @@ export default function App() {
         <section className="card">
           <div className="card-header">
             <div>
-              <p className="section-kicker">Continue existing room</p>
+              <p className="section-kicker">이전 방 계속하기</p>
               <h2>{pendingRoomSession.name}</h2>
             </div>
           </div>
           <p className="subtle">
-            A previous room session was found. Continue only if you want to re-enter this room.
+            이전에 보던 방 정보가 남아 있어요. 이 방으로 다시 들어가려면 계속 진행해 주세요.
           </p>
           <div className="action-row">
             <button type="button" onClick={continueExistingRoom}>
-              Continue this room
+              이 방 계속하기
             </button>
             <button type="button" className="soft-button" onClick={clearPendingRoomSession}>
-              Start fresh
+              새로 시작하기
             </button>
           </div>
         </section>
@@ -841,34 +860,34 @@ export default function App() {
       <section className="card">
         <div className="card-header">
           <div>
-            <p className="section-kicker">{needsReauth ? 'Re-authenticate' : 'Join an existing room'}</p>
-            <h2>{needsReauth ? 'Continue as a member' : 'Join with code and PIN'}</h2>
+            <p className="section-kicker">{needsReauth ? '다시 확인하기' : '기존 방 참여하기'}</p>
+            <h2>{needsReauth ? '멤버로 다시 들어가기' : '코드와 PIN으로 참여하기'}</h2>
           </div>
-          {isLoadingRoom && room && <div className="save-state">Refreshing room...</div>}
+          {isLoadingRoom && room && <div className="save-state">방 정보 불러오는 중...</div>}
         </div>
 
         {needsReauth ? (
           <>
             <p className="subtle">
-              Your room is still here, but we need your member name and PIN again before you can continue.
+              방 정보는 남아 있어요. 계속하려면 멤버 이름과 PIN을 다시 입력해 주세요.
             </p>
             <div className="field-grid">
               <input value={room.room_code} readOnly />
               <input
                 value={reauthName}
                 onChange={(event) => setReauthName(event.target.value)}
-                placeholder="Display name"
+                placeholder="표시 이름"
               />
               <input
                 inputMode="numeric"
                 maxLength={4}
                 value={reauthPin}
                 onChange={(event) => setReauthPin(event.target.value.replace(/\D/g, '').slice(0, 4))}
-                placeholder="4-digit PIN"
+                placeholder="4자리 PIN"
               />
             </div>
             <button disabled={isBusy} onClick={reauthenticateMember}>
-              {isBusy ? 'Checking...' : 'Continue'}
+              {isBusy ? '확인 중...' : '계속하기'}
             </button>
           </>
         ) : (
@@ -877,23 +896,23 @@ export default function App() {
               <input
                 value={joinCode}
                 onChange={(event) => setJoinCode(event.target.value.toUpperCase())}
-                placeholder="Room code"
+                placeholder="방 코드"
               />
               <input
                 value={displayName}
                 onChange={(event) => setDisplayName(event.target.value)}
-                placeholder="Display name"
+                placeholder="표시 이름"
               />
               <input
                 inputMode="numeric"
                 maxLength={4}
                 value={pin}
                 onChange={(event) => setPin(event.target.value.replace(/\D/g, '').slice(0, 4))}
-                placeholder="4-digit PIN"
+                placeholder="4자리 PIN"
               />
             </div>
             <button disabled={isBusy} onClick={joinRoom}>
-              {isBusy ? 'Joining...' : 'Join room'}
+              {isBusy ? '참여 중...' : '방 참여하기'}
             </button>
           </>
         )}
@@ -904,22 +923,27 @@ export default function App() {
       {room && member && (
         <>
           <section className="card room-hero-card">
+            <div className="top-actions">
+              <button type="button" className="soft-button home-button" onClick={goHome}>
+                홈으로 돌아가기
+              </button>
+            </div>
             <div className="room-hero-top">
               <div>
-                <p className="section-kicker">Current room</p>
+                <p className="section-kicker">현재 방</p>
                 <h2 className="room-title">{room.name}</h2>
-                <p className="subtle">Room code {room.room_code}</p>
+                <p className="subtle">방 코드 {room.room_code}</p>
               </div>
-              <div className="pill">You joined as {member.display_name}</div>
+              <div className="pill">{member.display_name}으로 참여 중</div>
             </div>
 
             <div className="room-meta-grid">
               <div className="meta-card">
-                <span className="meta-label">Members</span>
+                <span className="meta-label">멤버</span>
                 <strong>{members.length}</strong>
               </div>
               <div className="meta-card">
-                <span className="meta-label">Submitted</span>
+                <span className="meta-label">제출 완료</span>
                 <strong>{submittedMembers.length}</strong>
               </div>
             </div>
@@ -934,23 +958,23 @@ export default function App() {
 
             <p className="summary-line">
               {missingMembers.length > 0
-                ? `Still not submitted: ${missingMembers.map((memberRow) => memberRow.display_name).join(', ')}`
-                : 'Everyone has submitted their availability.'}
+                ? `아직 제출하지 않음: ${missingMembers.map((memberRow) => memberRow.display_name).join(', ')}`
+                : '모든 멤버가 가능 시간을 제출했어요.'}
             </p>
           </section>
 
           <section className="card">
             <div className="card-header">
               <div>
-                <p className="section-kicker">Your member details</p>
-                <h2>Edit your name and PIN</h2>
+                <p className="section-kicker">내 멤버 정보</p>
+                <h2>이름과 PIN 수정</h2>
               </div>
             </div>
             <div className="stack-form">
               <input
                 value={memberDisplayName}
                 onChange={(event) => setMemberDisplayName(event.target.value)}
-                placeholder="Display name"
+                placeholder="표시 이름"
               />
               <div className="field-grid">
                 <input
@@ -958,18 +982,18 @@ export default function App() {
                   maxLength={4}
                   value={currentPinInput}
                   onChange={(event) => setCurrentPinInput(event.target.value.replace(/\D/g, '').slice(0, 4))}
-                  placeholder="Current PIN"
+                  placeholder="현재 PIN"
                 />
                 <input
                   inputMode="numeric"
                   maxLength={4}
                   value={newPinInput}
                   onChange={(event) => setNewPinInput(event.target.value.replace(/\D/g, '').slice(0, 4))}
-                  placeholder="New PIN"
+                  placeholder="새 PIN"
                 />
               </div>
               <button disabled={isBusy} onClick={updateMemberProfile}>
-                {isBusy ? 'Saving...' : 'Save member details'}
+                {isBusy ? '저장 중...' : '멤버 정보 저장'}
               </button>
             </div>
           </section>
@@ -977,18 +1001,18 @@ export default function App() {
           <section className="card">
             <div className="card-header">
               <div>
-                <p className="section-kicker">Room settings</p>
-                <h2>Edit room name</h2>
+                <p className="section-kicker">방 설정</p>
+                <h2>방 이름 수정</h2>
               </div>
             </div>
             <div className="inline-form">
               <input
                 value={editingRoomName}
                 onChange={(event) => setEditingRoomName(event.target.value)}
-                placeholder="Room name"
+                placeholder="방 이름"
               />
               <button disabled={isBusy} onClick={updateRoomName}>
-                {isBusy ? 'Saving...' : 'Save name'}
+                {isBusy ? '저장 중...' : '방 이름 저장'}
               </button>
             </div>
           </section>
@@ -996,14 +1020,14 @@ export default function App() {
           <section className="card">
             <div className="section-head">
               <div>
-                <p className="section-kicker">Weekly plan</p>
-                <h2>Weekly availability</h2>
+                <p className="section-kicker">주간 일정</p>
+                <h2>주간 가능 시간</h2>
                 <p className="subtle">
-                  Tap individual slots, or use the quick actions to fill a whole day.
+                  칸을 직접 눌러도 되고, 빠른 버튼으로 하루 전체를 한 번에 채워도 돼요.
                 </p>
               </div>
               <div className={`save-state ${hasUnsavedChanges ? 'unsaved' : ''}`}>
-                {isBusy ? 'Saving...' : hasUnsavedChanges ? 'You have unsaved changes.' : 'All changes are saved.'}
+                {isBusy ? '저장 중...' : hasUnsavedChanges ? '저장되지 않은 변경이 있어요.' : '모든 변경이 저장되었어요.'}
               </div>
             </div>
 
@@ -1016,10 +1040,10 @@ export default function App() {
                   <strong>{day}</strong>
                   <div className="mini-actions">
                     <button type="button" className="ghost-button" onClick={() => setDayAvailability(dayIndex, true)}>
-                      All
+                      전체 선택
                     </button>
                     <button type="button" className="ghost-button" onClick={() => setDayAvailability(dayIndex, false)}>
-                      Clear
+                      전체 해제
                     </button>
                   </div>
                 </div>
@@ -1027,8 +1051,8 @@ export default function App() {
             </div>
 
             <div className="weekday-weekend-guide">
-              <span>Mon-Fri</span>
-              <span>Sat-Sun</span>
+              <span>평일</span>
+              <span>주말</span>
             </div>
 
             <div className="availability-grid">
@@ -1055,10 +1079,10 @@ export default function App() {
 
             <div className="action-row">
               <button disabled={isBusy || !hasUnsavedChanges} onClick={saveAvailability}>
-                {isBusy ? 'Saving...' : 'Save'}
+                {isBusy ? '저장 중...' : '저장'}
               </button>
               <button type="button" className="soft-button" disabled={isBusy} onClick={resetMyAvailability}>
-                Reset my availability
+                내 가능 시간 초기화
               </button>
             </div>
           </section>
@@ -1066,26 +1090,26 @@ export default function App() {
           <section className="card">
             <div className="card-header">
               <div>
-                <p className="section-kicker">Recommendations</p>
-                <h2>Best rehearsal times</h2>
+                <p className="section-kicker">추천 결과</p>
+                <h2>합주 추천 시간</h2>
               </div>
             </div>
 
             <ResultSection
-              title="Everyone can make it"
-              emptyText="No fully matched times yet."
+              title="모두 가능한 시간"
+              emptyText="아직 모두가 가능한 시간이 없어요."
               items={fullyMatchedTimes}
               totalMembers={members.length}
             />
             <ResultSection
-              title="Only one member missing"
-              emptyText="No near-perfect matches yet."
+              title="한 명만 빠지는 시간"
+              emptyText="아직 거의 맞는 시간이 없어요."
               items={almostMatchedTimes}
               totalMembers={members.length}
             />
             <ResultSection
-              title="Overall ranking"
-              emptyText="No saved overlap data yet."
+              title="전체 추천 순서"
+              emptyText="아직 저장된 겹침 데이터가 없어요."
               items={recommendedTimes}
               totalMembers={members.length}
             />
@@ -1094,24 +1118,24 @@ export default function App() {
           <section className="card danger-card">
             <div className="card-header">
               <div>
-                <p className="section-kicker">Danger zone</p>
-                <h2>Delete room</h2>
+                <p className="section-kicker">주의</p>
+                <h2>방 삭제</h2>
               </div>
             </div>
             <p className="warning-copy">
-              Deleting this room will also remove all members and saved availability data.
+              이 방을 삭제하면 멤버 정보와 저장된 가능 시간도 함께 삭제돼요.
             </p>
             <input
               value={deleteRoomName}
               onChange={(event) => setDeleteRoomName(event.target.value)}
-              placeholder={`Type "${room.name}" to confirm`}
+              placeholder={`확인을 위해 "${room.name}" 입력`}
             />
             <button
               className="danger-button"
               disabled={isBusy || deleteRoomName !== room.name}
               onClick={deleteRoom}
             >
-              {isBusy ? 'Deleting...' : 'Delete room'}
+              {isBusy ? '삭제 중...' : '방 삭제'}
             </button>
           </section>
         </>
@@ -1135,7 +1159,7 @@ function AvailabilityRow({ slot, slotIndex, availabilityMap, onToggle }) {
             onClick={() => onToggle(dayIndex, slotIndex)}
             aria-pressed={isActive}
           >
-            {isActive ? 'Yes' : ''}
+            {isActive ? '가능' : ''}
           </button>
         )
       })}
@@ -1155,9 +1179,9 @@ function ResultSection({ title, emptyText, items, totalMembers }) {
             <div key={`${title}-${item.label}`} className="result-row">
               <div>
                 <strong>{item.label}</strong>
-                <p>{item.names.join(', ') || 'No member names yet'}</p>
+                <p>{item.names.join(', ') || '아직 멤버 정보가 없어요'}</p>
               </div>
-              <div className="result-count">{item.count}/{totalMembers || 0} available</div>
+              <div className="result-count">{item.count}/{totalMembers || 0}명 가능</div>
             </div>
           ))}
         </div>
