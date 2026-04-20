@@ -534,13 +534,23 @@ textarea {
 .scheduler-topbar-actions,
 .scheduler-filter-row,
 .scheduler-chip-row,
-.scheduler-preset-row,
 .scheduler-form-actions,
 .scheduler-event-meta,
 .scheduler-event-actions {
   display: flex;
   flex-wrap: wrap;
   gap: var(--scheduler-gap-md);
+}
+
+.scheduler-preset-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(64px, 1fr));
+  gap: var(--scheduler-gap-sm);
+}
+
+.scheduler-preset-row > button {
+  width: 100%;
+  min-height: var(--scheduler-control-min-h);
 }
 
 .scheduler-topbar-actions {

@@ -572,7 +572,7 @@ function ReservationEditorPage({ mode, reservationId }) {
             </div>
 
             <div className="scheduler-preset-row">
-              {[1, 2, 3, 4].map((hours) => (
+              {[1, 2, 3, 4, 5, 6].map((hours) => (
                 <button key={hours} type="button" className="soft-button" onClick={() => updateField('durationHours', hours)}>
                   {hours}h
                 </button>
