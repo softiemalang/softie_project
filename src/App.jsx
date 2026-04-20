@@ -1,12 +1,7 @@
 import { useEffect, useMemo, useState } from 'react'
-import { createClient } from '@supabase/supabase-js'
-
-const supabaseUrl = import.meta.env.VITE_SUPABASE_URL
-const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY
-const supabase =
-  supabaseUrl && supabaseAnonKey
-    ? createClient(supabaseUrl, supabaseAnonKey)
-    : null
+import { usePathname } from './lib/router'
+import { supabase } from './lib/supabase'
+import { SchedulerApp } from './scheduler/SchedulerApp'
 
 const DAYS = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
 const SLOTS = [
@@ -139,7 +134,7 @@ async function findMembersByIdentity(roomId, displayName) {
   return data || []
 }
 
-export default function App() {
+function BandRoomApp() {
   const [roomName, setRoomName] = useState('')
   const [joinCode, setJoinCode] = useState('')
   const [displayName, setDisplayName] = useState('')
@@ -1192,4 +1187,14 @@ function ResultSection({ title, emptyText, items, totalMembers }) {
       )}
     </div>
   )
+}
+
+export default function App() {
+  const pathname = usePathname()
+
+  if (pathname.startsWith('/scheduler')) {
+    return <SchedulerApp pathname={pathname} />
+  }
+
+  return <BandRoomApp />
 }

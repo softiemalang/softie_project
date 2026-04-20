@@ -27,7 +27,9 @@ body {
 }
 
 button,
-input {
+input,
+select,
+textarea {
   font: inherit;
 }
 
@@ -45,6 +47,16 @@ button:disabled {
 }
 
 input {
+  width: 100%;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 0.95rem 1rem;
+  background: rgba(255, 255, 255, 0.88);
+  color: var(--text);
+}
+
+select,
+textarea {
   width: 100%;
   border: 1px solid var(--line);
   border-radius: 14px;
@@ -464,5 +476,266 @@ input {
   .room-meta-grid,
   .field-grid {
     gap: 0.75rem;
+  }
+}
+
+.scheduler-shell {
+  width: min(100%, 860px);
+  margin: 0 auto;
+  padding:
+    max(1rem, calc(env(safe-area-inset-top) + 0.75rem))
+    0.9rem
+    max(5rem, calc(env(safe-area-inset-bottom) + 2rem));
+}
+
+.scheduler-topbar,
+.scheduler-panel,
+.scheduler-room-card {
+  border-radius: 26px;
+  background: rgba(255, 252, 248, 0.92);
+  border: 1px solid rgba(255, 255, 255, 0.75);
+  box-shadow: 0 18px 48px rgba(92, 74, 43, 0.08);
+  backdrop-filter: blur(14px);
+}
+
+.scheduler-topbar,
+.scheduler-panel {
+  padding: 1rem;
+  margin-bottom: 0.95rem;
+}
+
+.scheduler-topbar h1,
+.scheduler-panel h2,
+.scheduler-event-main strong {
+  margin: 0;
+}
+
+.scheduler-eyebrow,
+.scheduler-section-label {
+  margin: 0 0 0.3rem;
+  color: #8b5e1a;
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.scheduler-topbar-actions,
+.scheduler-filter-row,
+.scheduler-chip-row,
+.scheduler-preset-row,
+.scheduler-form-actions,
+.scheduler-event-meta,
+.scheduler-event-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+}
+
+.scheduler-topbar-actions {
+  margin-top: 0.95rem;
+}
+
+.scheduler-nav-button {
+  padding: 0.75rem 0.95rem;
+  border-radius: 14px;
+  background: #efe6d8;
+  color: #5b4a35;
+}
+
+.scheduler-nav-button.primary {
+  background: #1f6f5f;
+  color: #fff;
+}
+
+.scheduler-controls strong,
+.scheduler-event-time-block strong,
+.scheduler-event-main strong,
+.scheduler-room-card strong {
+  display: block;
+}
+
+.scheduler-date-row,
+.scheduler-section-head,
+.scheduler-event-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.8rem;
+}
+
+.scheduler-date-row {
+  margin-bottom: 0.85rem;
+}
+
+.scheduler-count-pill,
+.scheduler-status-badge,
+.scheduler-tag-badge,
+.scheduler-event-type {
+  border-radius: 999px;
+  padding: 0.38rem 0.7rem;
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+.scheduler-count-pill {
+  background: #ede3d4;
+  color: #6f5840;
+}
+
+.scheduler-status-badge {
+  background: #e7f3ef;
+  color: #115e59;
+}
+
+.status-done {
+  background: #e8f6ec;
+  color: #166534;
+}
+
+.status-pending {
+  background: #fff1dc;
+  color: #9a3412;
+}
+
+.scheduler-event-type.checkin {
+  background: #e2f2ef;
+  color: #115e59;
+}
+
+.scheduler-event-type.warning {
+  background: #fff1dc;
+  color: #9a3412;
+}
+
+.scheduler-event-type.checkout {
+  background: #fce7ef;
+  color: #9f1239;
+}
+
+.scheduler-tag-badge {
+  background: #f4ede3;
+  color: #5b4a35;
+}
+
+.scheduler-event-list,
+.scheduler-room-grid {
+  display: grid;
+  gap: 0.8rem;
+}
+
+.scheduler-event-card {
+  border-radius: 20px;
+  border: 1px solid #eadfce;
+  background: #fffdf9;
+  padding: 0.9rem;
+}
+
+.scheduler-event-card.overdue {
+  border-color: #d97706;
+  background: #fff7ed;
+}
+
+.scheduler-event-card.upcoming {
+  border-color: #2b6cb0;
+  background: #f8fbff;
+}
+
+.scheduler-event-card.done {
+  opacity: 0.72;
+}
+
+.scheduler-event-main p,
+.scheduler-room-subtitle,
+.scheduler-event-note {
+  margin: 0.3rem 0 0;
+  color: var(--muted);
+  line-height: 1.45;
+}
+
+.scheduler-event-time-block {
+  min-width: 88px;
+}
+
+.scheduler-event-urgency {
+  color: #8b5e1a;
+  font-size: 0.92rem;
+  font-weight: 700;
+}
+
+.scheduler-done-button,
+.scheduler-link-button {
+  background: #f2ede5;
+  color: #4b5563;
+}
+
+.scheduler-link-button {
+  padding: 0.7rem 0.9rem;
+}
+
+.scheduler-form {
+  display: grid;
+  gap: 0.9rem;
+}
+
+.scheduler-form label,
+.scheduler-field-label {
+  display: grid;
+  gap: 0.45rem;
+  font-weight: 600;
+  color: #4b5563;
+}
+
+.scheduler-two-up {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+
+.scheduler-chip {
+  background: #efe6d8;
+  color: #5b4a35;
+}
+
+.scheduler-chip.active {
+  background: #1f6f5f;
+  color: #fff;
+}
+
+.scheduler-room-card.in-use {
+  border-left: 6px solid #1f6f5f;
+}
+
+.scheduler-room-card.needs-checkout {
+  border-left: 6px solid #c2410c;
+}
+
+.scheduler-room-card.upcoming {
+  border-left: 6px solid #2563eb;
+}
+
+.scheduler-room-card.idle {
+  border-left: 6px solid #a8a29e;
+}
+
+@media (max-width: 720px) {
+  .scheduler-date-row,
+  .scheduler-section-head,
+  .scheduler-event-top,
+  .scheduler-two-up {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .scheduler-topbar-actions {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .scheduler-nav-button,
+  .scheduler-link-button,
+  .scheduler-done-button,
+  .scheduler-form-actions > button {
+    width: 100%;
   }
 }

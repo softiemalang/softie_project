@@ -1,0 +1,617 @@
+import { useEffect, useMemo, useState } from 'react'
+import { navigate } from '../lib/router'
+import { listTodayWorkEvents, getReservationById, saveReservation, deleteReservation, updateWorkEventStatus } from './api'
+import { SCHEDULER_TAGS, TODAY_HOURS } from './constants'
+import { buildReservationPayload, createReservationDraft, getRoomStatus, getTagMeta, groupTodayEvents, mapReservationToFormValues, validateReservationForm } from './helpers'
+import { formatDateLabel, toLocalDateInputValue } from './time'
+
+function parseSchedulerRoute(pathname) {
+  if (pathname === '/scheduler') return { name: 'today' }
+  if (pathname === '/scheduler/new') return { name: 'new' }
+  if (pathname === '/scheduler/rooms') return { name: 'rooms' }
+  const match = pathname.match(/^\/scheduler\/([^/]+)$/)
+  if (match) return { name: 'edit', reservationId: match[1] }
+  return { name: 'not-found' }
+}
+
+export function SchedulerApp({ pathname }) {
+  const route = useMemo(() => parseSchedulerRoute(pathname), [pathname])
+
+  if (route.name === 'today') {
+    return <TodaySchedulerPage />
+  }
+
+  if (route.name === 'new') {
+    return <ReservationEditorPage mode="create" />
+  }
+
+  if (route.name === 'edit') {
+    return <ReservationEditorPage mode="edit" reservationId={route.reservationId} />
+  }
+
+  if (route.name === 'rooms') {
+    return <RoomStatusPage />
+  }
+
+  return (
+    <div className="scheduler-shell">
+      <SchedulerTopbar title="스케줄러를 찾을 수 없어요" />
+      <section className="scheduler-panel">
+        <button type="button" className="soft-button" onClick={() => navigate('/scheduler')}>
+          오늘 화면으로 이동
+        </button>
+      </section>
+    </div>
+  )
+}
+
+function SchedulerTopbar({ title, rightAction }) {
+  return (
+    <header className="scheduler-topbar">
+      <div>
+        <p className="scheduler-eyebrow">Internal Scheduler</p>
+        <h1>{title}</h1>
+      </div>
+      <div className="scheduler-topbar-actions">
+        <NavButton path="/" label="기존 앱" />
+        <NavButton path="/scheduler" label="오늘" />
+        <NavButton path="/scheduler/rooms" label="룸 상태" />
+        <NavButton path="/scheduler/new" label="새 예약" isPrimary />
+        {rightAction}
+      </div>
+    </header>
+  )
+}
+
+function NavButton({ path, label, isPrimary = false }) {
+  return (
+    <button
+      type="button"
+      className={isPrimary ? 'scheduler-nav-button primary' : 'scheduler-nav-button'}
+      onClick={() => navigate(path)}
+    >
+      {label}
+    </button>
+  )
+}
+
+function TodaySchedulerPage() {
+  const [selectedDate, setSelectedDate] = useState(toLocalDateInputValue())
+  const [events, setEvents] = useState([])
+  const [filters, setFilters] = useState({ branch: 'all', room: 'all' })
+  const [status, setStatus] = useState('')
+  const [isLoading, setIsLoading] = useState(true)
+  const [pendingStatusId, setPendingStatusId] = useState('')
+
+  async function loadEvents() {
+    setIsLoading(true)
+    try {
+      const rows = await listTodayWorkEvents(selectedDate)
+      setEvents(rows)
+      setStatus('')
+    } catch (error) {
+      setStatus(error.message)
+    } finally {
+      setIsLoading(false)
+    }
+  }
+
+  useEffect(() => {
+    loadEvents()
+  }, [selectedDate])
+
+  const branches = Array.from(new Set(events.map((item) => item.reservation?.branch).filter(Boolean)))
+  const rooms = Array.from(
+    new Set(
+      events
+        .filter((item) => filters.branch === 'all' || item.reservation?.branch === filters.branch)
+        .map((item) => item.reservation?.room)
+        .filter(Boolean),
+    ),
+  )
+
+  const filteredEvents = events.filter((item) => {
+    if (filters.branch !== 'all' && item.reservation?.branch !== filters.branch) return false
+    if (filters.room !== 'all' && item.reservation?.room !== filters.room) return false
+    return true
+  })
+
+  const grouped = groupTodayEvents(filteredEvents)
+
+  async function handleToggleDone(eventRow) {
+    const nextStatus = eventRow.status === 'done' ? 'pending' : 'done'
+    setPendingStatusId(eventRow.id)
+    try {
+      await updateWorkEventStatus(eventRow.id, nextStatus)
+      setEvents((current) =>
+        current.map((item) => (item.id === eventRow.id ? { ...item, status: nextStatus } : item)),
+      )
+    } catch (error) {
+      setStatus(error.message)
+    } finally {
+      setPendingStatusId('')
+    }
+  }
+
+  return (
+    <div className="scheduler-shell">
+      <SchedulerTopbar title="오늘 운영 보드" />
+
+      <section className="scheduler-panel scheduler-controls">
+        <div className="scheduler-date-row">
+          <div>
+            <p className="scheduler-section-label">운영 시간</p>
+            <strong>{TODAY_HOURS.start}:00 - {TODAY_HOURS.end}:00</strong>
+            <p className="subtle">{formatDateLabel(selectedDate)}</p>
+          </div>
+          <input type="date" value={selectedDate} onChange={(event) => setSelectedDate(event.target.value)} />
+        </div>
+
+        <div className="scheduler-filter-row">
+          <select
+            value={filters.branch}
+            onChange={(event) => setFilters((current) => ({ ...current, branch: event.target.value, room: 'all' }))}
+          >
+            <option value="all">전체 지점</option>
+            {branches.map((branch) => (
+              <option key={branch} value={branch}>
+                {branch}
+              </option>
+            ))}
+          </select>
+
+          <select
+            value={filters.room}
+            onChange={(event) => setFilters((current) => ({ ...current, room: event.target.value }))}
+          >
+            <option value="all">전체 룸</option>
+            {rooms.map((room) => (
+              <option key={room} value={room}>
+                {room}
+              </option>
+            ))}
+          </select>
+
+          <button type="button" className="soft-button" onClick={loadEvents}>
+            새로고침
+          </button>
+        </div>
+      </section>
+
+      {status && <p className="status">{status}</p>}
+
+      <TodayEventSection
+        title="지금 처리할 일"
+        subtitle="지연된 작업과 곧 대응해야 하는 작업"
+        items={grouped.actionNow}
+        emptyText={isLoading ? '불러오는 중...' : '지금 바로 처리할 작업이 없어요.'}
+        pendingStatusId={pendingStatusId}
+        onToggleDone={handleToggleDone}
+      />
+
+      <TodayEventSection
+        title="곧 다가오는 일정"
+        subtitle="앞으로 1시간 안에 다가오는 작업"
+        items={grouped.upcomingSoon}
+        emptyText={isLoading ? '불러오는 중...' : '곧 다가오는 작업이 없어요.'}
+        pendingStatusId={pendingStatusId}
+        onToggleDone={handleToggleDone}
+      />
+
+      <TodayEventSection
+        title="오늘 전체"
+        subtitle="시간순 전체 작업"
+        items={grouped.allToday}
+        emptyText={isLoading ? '불러오는 중...' : '오늘 등록된 작업이 없어요.'}
+        pendingStatusId={pendingStatusId}
+        onToggleDone={handleToggleDone}
+      />
+    </div>
+  )
+}
+
+function TodayEventSection({ title, subtitle, items, emptyText, onToggleDone, pendingStatusId }) {
+  return (
+    <section className="scheduler-panel">
+      <div className="scheduler-section-head">
+        <div>
+          <p className="scheduler-section-label">{title}</p>
+          <h2>{subtitle}</h2>
+        </div>
+        <div className="scheduler-count-pill">{items.length}건</div>
+      </div>
+
+      {items.length === 0 ? (
+        <p className="subtle">{emptyText}</p>
+      ) : (
+        <div className="scheduler-event-list">
+          {items.map((item) => (
+            <EventCard
+              key={item.id}
+              item={item}
+              isSaving={pendingStatusId === item.id}
+              onToggleDone={onToggleDone}
+            />
+          ))}
+        </div>
+      )}
+    </section>
+  )
+}
+
+function EventCard({ item, onToggleDone, isSaving }) {
+  const reservation = item.reservation || {}
+  const cardClassName = [
+    'scheduler-event-card',
+    item.status === 'done' ? 'done' : '',
+    item.isOverdue ? 'overdue' : '',
+    item.isUpcomingSoon ? 'upcoming' : '',
+  ]
+    .filter(Boolean)
+    .join(' ')
+
+  return (
+    <article className={cardClassName}>
+      <div className="scheduler-event-top">
+        <div className="scheduler-event-time-block">
+          <strong>{item.timeLabel}</strong>
+          <span className={`scheduler-event-type ${item.meta?.tone || ''}`}>{item.meta?.label}</span>
+        </div>
+        <button
+          type="button"
+          className={item.status === 'done' ? 'soft-button' : 'scheduler-done-button'}
+          disabled={isSaving}
+          onClick={() => onToggleDone(item)}
+        >
+          {item.status === 'done' ? '완료 취소' : '완료'}
+        </button>
+      </div>
+
+      <div className="scheduler-event-main">
+        <strong>{reservation.branch} · {reservation.room}</strong>
+        <p>{reservation.customer_name}</p>
+      </div>
+
+      <div className="scheduler-event-meta">
+        <span className={`scheduler-status-badge status-${item.status}`}>{item.statusMeta?.label}</span>
+        {(item.tags_snapshot || []).map((tag) => (
+          <span key={tag} className="scheduler-tag-badge">
+            {getTagMeta(tag).shortLabel}
+          </span>
+        ))}
+      </div>
+
+      {item.memo_snapshot ? <p className="scheduler-event-note">{item.memo_snapshot}</p> : null}
+
+      <div className="scheduler-event-actions">
+        <span className="scheduler-event-urgency">
+          {item.isOverdue
+            ? `${Math.abs(item.minutesAway)}분 지남`
+            : item.minutesAway <= 60
+              ? `${item.minutesAway}분 후`
+              : '오늘 일정'}
+        </span>
+        <button type="button" className="scheduler-link-button" onClick={() => navigate(`/scheduler/${item.reservation_id}`)}>
+          예약 수정
+        </button>
+      </div>
+    </article>
+  )
+}
+
+function ReservationEditorPage({ mode, reservationId }) {
+  const [formValues, setFormValues] = useState(createReservationDraft())
+  const [status, setStatus] = useState('')
+  const [isLoading, setIsLoading] = useState(mode === 'edit')
+  const [isSaving, setIsSaving] = useState(false)
+
+  useEffect(() => {
+    if (mode !== 'edit' || !reservationId) return
+
+    async function loadReservation() {
+      setIsLoading(true)
+      try {
+        const row = await getReservationById(reservationId)
+        if (!row) {
+          setStatus('예약을 찾지 못했어요.')
+          return
+        }
+        setFormValues(mapReservationToFormValues(row))
+        setStatus('')
+      } catch (error) {
+        setStatus(error.message)
+      } finally {
+        setIsLoading(false)
+      }
+    }
+
+    loadReservation()
+  }, [mode, reservationId])
+
+  function updateField(field, value) {
+    setFormValues((current) => ({ ...current, [field]: value }))
+  }
+
+  async function handleSubmit(event) {
+    event.preventDefault()
+    const validationMessage = validateReservationForm(formValues)
+    if (validationMessage) {
+      setStatus(validationMessage)
+      return
+    }
+
+    setIsSaving(true)
+    try {
+      const saved = await saveReservation(buildReservationPayload(formValues), reservationId)
+      navigate(`/scheduler/${saved.id}`)
+      setStatus('저장했어요.')
+    } catch (error) {
+      setStatus(error.message)
+    } finally {
+      setIsSaving(false)
+    }
+  }
+
+  async function handleDelete() {
+    if (!reservationId) return
+    const shouldDelete = window.confirm('이 예약과 연결된 작업 3개를 함께 삭제할까요?')
+    if (!shouldDelete) return
+
+    setIsSaving(true)
+    try {
+      await deleteReservation(reservationId)
+      navigate('/scheduler')
+    } catch (error) {
+      setStatus(error.message)
+      setIsSaving(false)
+    }
+  }
+
+  return (
+    <div className="scheduler-shell">
+      <SchedulerTopbar title={mode === 'edit' ? '예약 수정' : '새 예약'} />
+
+      <section className="scheduler-panel">
+        <div className="scheduler-section-head">
+          <div>
+            <p className="scheduler-section-label">예약 정보</p>
+            <h2>짧고 빠르게 입력할 수 있게 유지</h2>
+          </div>
+        </div>
+
+        {status && <p className="status">{status}</p>}
+
+        {isLoading ? (
+          <p className="subtle">불러오는 중...</p>
+        ) : (
+          <form className="scheduler-form" onSubmit={handleSubmit}>
+            <label>
+              예약 날짜
+              <input
+                type="date"
+                value={formValues.reservationDate}
+                onChange={(event) => updateField('reservationDate', event.target.value)}
+              />
+            </label>
+
+            <div className="scheduler-two-up">
+              <label>
+                지점
+                <input value={formValues.branch} onChange={(event) => updateField('branch', event.target.value)} placeholder="예: 합정점" />
+              </label>
+
+              <label>
+                룸
+                <input value={formValues.room} onChange={(event) => updateField('room', event.target.value)} placeholder="예: A룸" />
+              </label>
+            </div>
+
+            <label>
+              예약자 이름
+              <input
+                value={formValues.customerName}
+                onChange={(event) => updateField('customerName', event.target.value)}
+                placeholder="예약자 또는 팀명"
+              />
+            </label>
+
+            <div className="scheduler-two-up">
+              <label>
+                시작 시간
+                <input
+                  type="time"
+                  value={formValues.startTime}
+                  onChange={(event) => updateField('startTime', event.target.value)}
+                />
+              </label>
+
+              <label>
+                이용 시간(분)
+                <input
+                  type="number"
+                  min="30"
+                  step="30"
+                  value={formValues.durationMinutes}
+                  onChange={(event) => updateField('durationMinutes', event.target.value)}
+                />
+              </label>
+            </div>
+
+            <div className="scheduler-preset-row">
+              {[60, 90, 120, 180].map((minutes) => (
+                <button key={minutes} type="button" className="soft-button" onClick={() => updateField('durationMinutes', minutes)}>
+                  {minutes}분
+                </button>
+              ))}
+            </div>
+
+            <label>
+              퇴실등(분 전)
+              <input
+                type="number"
+                min="0"
+                step="5"
+                value={formValues.warningOffsetMinutes}
+                onChange={(event) => updateField('warningOffsetMinutes', event.target.value)}
+              />
+            </label>
+
+            <div>
+              <span className="scheduler-field-label">특이 태그</span>
+              <div className="scheduler-chip-row">
+                {SCHEDULER_TAGS.map((tag) => {
+                  const isActive = formValues.tags.includes(tag.value)
+                  return (
+                    <button
+                      key={tag.value}
+                      type="button"
+                      className={`scheduler-chip ${isActive ? 'active' : ''}`}
+                      onClick={() =>
+                        updateField(
+                          'tags',
+                          isActive
+                            ? formValues.tags.filter((item) => item !== tag.value)
+                            : [...formValues.tags, tag.value],
+                        )
+                      }
+                    >
+                      {tag.shortLabel}
+                    </button>
+                  )
+                })}
+              </div>
+            </div>
+
+            <label>
+              메모
+              <textarea
+                rows="4"
+                value={formValues.notesText}
+                onChange={(event) => updateField('notesText', event.target.value)}
+                placeholder="예: 6명 / 인이어 2세트 / MTR 요청"
+              />
+            </label>
+
+            <div className="scheduler-form-actions">
+              <button type="submit" disabled={isSaving}>
+                {isSaving ? '저장 중...' : mode === 'edit' ? '수정 저장' : '예약 만들기'}
+              </button>
+              {mode === 'edit' ? (
+                <button type="button" className="danger-button" onClick={handleDelete} disabled={isSaving}>
+                  삭제
+                </button>
+              ) : null}
+            </div>
+          </form>
+        )}
+      </section>
+    </div>
+  )
+}
+
+function RoomStatusPage() {
+  const [selectedDate, setSelectedDate] = useState(toLocalDateInputValue())
+  const [events, setEvents] = useState([])
+  const [status, setStatus] = useState('')
+  const [isLoading, setIsLoading] = useState(true)
+
+  useEffect(() => {
+    async function loadEvents() {
+      setIsLoading(true)
+      try {
+        const rows = await listTodayWorkEvents(selectedDate)
+        setEvents(rows)
+        setStatus('')
+      } catch (error) {
+        setStatus(error.message)
+      } finally {
+        setIsLoading(false)
+      }
+    }
+
+    loadEvents()
+  }, [selectedDate])
+
+  const groupedRooms = Object.values(
+    events.reduce((accumulator, item) => {
+      const reservation = item.reservation || {}
+      const key = `${reservation.branch}__${reservation.room}`
+      if (!accumulator[key]) {
+        accumulator[key] = {
+          key,
+          branch: reservation.branch,
+          room: reservation.room,
+          events: [],
+        }
+      }
+      accumulator[key].events.push(item)
+      return accumulator
+    }, {}),
+  )
+
+  return (
+    <div className="scheduler-shell">
+      <SchedulerTopbar title="룸 상태" />
+
+      <section className="scheduler-panel scheduler-controls">
+        <div className="scheduler-date-row">
+          <div>
+            <p className="scheduler-section-label">기준 날짜</p>
+            <strong>{formatDateLabel(selectedDate)}</strong>
+          </div>
+          <input type="date" value={selectedDate} onChange={(event) => setSelectedDate(event.target.value)} />
+        </div>
+      </section>
+
+      {status && <p className="status">{status}</p>}
+
+      <section className="scheduler-room-grid">
+        {groupedRooms.length === 0 ? (
+          <div className="scheduler-panel">
+            <p className="subtle">{isLoading ? '불러오는 중...' : '오늘 표시할 룸 상태가 없어요.'}</p>
+          </div>
+        ) : (
+          groupedRooms.map((roomGroup) => {
+            const roomStatus = getRoomStatus(roomGroup.events)
+            const focusReservation = roomStatus.focusEvent?.reservation
+            return (
+              <article key={roomGroup.key} className={`scheduler-panel scheduler-room-card ${roomStatus.tone}`}>
+                <div className="scheduler-section-head">
+                  <div>
+                    <p className="scheduler-section-label">{roomGroup.branch}</p>
+                    <h2>{roomGroup.room}</h2>
+                  </div>
+                  <span className="scheduler-status-badge">{roomStatus.title}</span>
+                </div>
+
+                <p className="scheduler-room-subtitle">{roomStatus.subtitle}</p>
+
+                {focusReservation ? (
+                  <>
+                    <strong>{focusReservation.customer_name}</strong>
+                    <div className="scheduler-chip-row">
+                      {(roomStatus.focusEvent.tags_snapshot || []).map((tag) => (
+                        <span key={tag} className="scheduler-tag-badge">
+                          {getTagMeta(tag).shortLabel}
+                        </span>
+                      ))}
+                    </div>
+                    <button
+                      type="button"
+                      className="scheduler-link-button"
+                      onClick={() => navigate(`/scheduler/${focusReservation.id}`)}
+                    >
+                      예약 열기
+                    </button>
+                  </>
+                ) : (
+                  <p className="subtle">현재 확인할 예약이 없어요.</p>
+                )}
+              </article>
+            )
+          })
+        )}
+      </section>
+    </div>
+  )
+}
