@@ -604,8 +604,8 @@ textarea {
 }
 
 .scheduler-event-type.warning {
-  background: #d9dee6;
-  color: #485467;
+  background: #e8ebf0;
+  color: #525c69;
 }
 
 .scheduler-event-type.checkout {
@@ -639,9 +639,9 @@ textarea {
 }
 
 .scheduler-event-card.event-warning {
-  border-color: #cbd3df;
-  border-left-color: #6b7280;
-  background: linear-gradient(180deg, #fffdf9 0%, #f4f6fa 100%);
+  border-color: #d8dee7;
+  border-left-color: #98a2b3;
+  background: linear-gradient(180deg, #fffdf9 0%, #f7f8fb 100%);
 }
 
 .scheduler-event-card.event-checkout {
@@ -671,7 +671,7 @@ textarea {
 
 .scheduler-event-card.event-warning .scheduler-event-urgency,
 .scheduler-event-card.event-warning .scheduler-event-main strong {
-  color: #4b5563;
+  color: #5b6472;
 }
 
 .scheduler-event-card.event-checkout .scheduler-event-urgency,
