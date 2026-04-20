@@ -37,7 +37,7 @@ export function SchedulerApp({ pathname }) {
 
   return (
     <div className="scheduler-shell">
-      <SchedulerTopbar title="스케줄러를 찾을 수 없어요" />
+      <SchedulerTopbar />
       <section className="scheduler-panel">
         <button type="button" className="soft-button" onClick={() => navigate('/scheduler')}>
           오늘 화면으로 이동
@@ -192,7 +192,7 @@ function TodaySchedulerPage() {
 
       <section className="scheduler-panel scheduler-controls">
         <div className="scheduler-filter-summary-row">
-          <div>
+          <div className="scheduler-filter-summary-copy">
             <p className="scheduler-section-label">운영 시간</p>
             <strong>{TODAY_HOURS.start}:00 - {TODAY_HOURS.end}:00</strong>
             <p className="subtle">{filterSummary}</p>
@@ -279,7 +279,7 @@ function TodaySchedulerPage() {
       <TodayEventSection
         title="지금 처리할 일"
         items={grouped.actionNow}
-        emptyText={isLoading ? '불러오는 중...' : '지금 바로 처리할 작업이 없어요.'}
+        emptyText={isLoading ? '불러오는 중...' : '없음'}
         pendingStatusId={pendingStatusId}
         onToggleDone={handleToggleDone}
       />
@@ -287,7 +287,7 @@ function TodaySchedulerPage() {
       <TodayEventSection
         title="곧 다가오는 일정"
         items={grouped.upcomingSoon}
-        emptyText={isLoading ? '불러오는 중...' : '곧 다가오는 작업이 없어요.'}
+        emptyText={isLoading ? '불러오는 중...' : '없음'}
         pendingStatusId={pendingStatusId}
         onToggleDone={handleToggleDone}
       />
@@ -295,7 +295,7 @@ function TodaySchedulerPage() {
       <TodayEventSection
         title="오늘 전체"
         items={grouped.allToday}
-        emptyText={isLoading ? '불러오는 중...' : '오늘 등록된 작업이 없어요.'}
+        emptyText={isLoading ? '불러오는 중...' : '없음'}
         pendingStatusId={pendingStatusId}
         onToggleDone={handleToggleDone}
       />
@@ -382,7 +382,7 @@ function EventCard({ item, onToggleDone, isSaving }) {
             ? `${Math.abs(item.minutesAway)}분 지남`
             : item.minutesAway <= 60
               ? `${item.minutesAway}분 후`
-              : '오늘 일정'}
+              : ''}
         </span>
         <button type="button" className="scheduler-link-button" onClick={() => navigate(`/scheduler/${item.reservation_id}`)}>
           예약 수정
@@ -475,16 +475,9 @@ function ReservationEditorPage({ mode, reservationId }) {
 
   return (
     <div className="scheduler-shell">
-      <SchedulerTopbar title={mode === 'edit' ? '예약 수정' : '새 예약'} />
+      <SchedulerTopbar />
 
       <section className="scheduler-panel">
-        <div className="scheduler-section-head">
-          <div>
-            <p className="scheduler-section-label">예약 정보</p>
-            <h2>짧고 빠르게 입력할 수 있게 유지</h2>
-          </div>
-        </div>
-
         {status && <p className="status">{status}</p>}
 
         {isLoading ? (
