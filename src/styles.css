@@ -12,7 +12,6 @@
   --brand-soft: #e7f3ef;
   --accent: #9a3412;
   --danger: #9f1239;
-  --danger-soft: #fff1f2;
 }
 
 * {
@@ -105,7 +104,8 @@ input {
 .card-header,
 .section-head,
 .room-hero-top,
-.result-row {
+.result-row,
+.action-row {
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
@@ -115,7 +115,9 @@ input {
 .field-grid,
 .results,
 .member-list,
-.room-meta-grid {
+.room-meta-grid,
+.stack-form,
+.day-actions-grid {
   display: grid;
   gap: 0.75rem;
 }
@@ -142,7 +144,8 @@ input {
 
 .pill,
 .member-pill,
-.result-count {
+.result-count,
+.save-state {
   border-radius: 999px;
   padding: 0.5rem 0.8rem;
   font-size: 0.92rem;
@@ -152,6 +155,17 @@ input {
 .member-pill {
   background: var(--brand-soft);
   color: #115e59;
+}
+
+.save-state {
+  background: #f4ede3;
+  color: #5b4a35;
+  white-space: nowrap;
+}
+
+.save-state.unsaved {
+  background: #fff4db;
+  color: #9a3412;
 }
 
 .room-meta-grid {
@@ -198,8 +212,8 @@ input {
 .availability-grid {
   margin-top: 1rem;
   display: grid;
-  grid-template-columns: 64px repeat(7, minmax(40px, 1fr));
-  gap: 0.42rem;
+  grid-template-columns: 68px repeat(7, minmax(44px, 1fr));
+  gap: 0.45rem;
   overflow-x: auto;
 }
 
@@ -207,7 +221,7 @@ input {
 .day-label,
 .time-label,
 .slot-button {
-  min-height: 46px;
+  min-height: 50px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -221,8 +235,18 @@ input {
   font-size: 0.8rem;
 }
 
+.weekday-label,
+.weekday-slot {
+  box-shadow: inset -1px 0 0 rgba(231, 221, 208, 0.6);
+}
+
+.weekend-label,
+.weekend-slot {
+  background: #f4eadf;
+}
+
 .slot-button {
-  min-width: 40px;
+  min-width: 44px;
   padding: 0;
   margin: 0;
   background: #efe5d7;
@@ -232,6 +256,43 @@ input {
 .slot-button.active {
   background: var(--brand);
   color: #fff;
+}
+
+.day-actions-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin-top: 1rem;
+}
+
+.day-action-card {
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: 0.8rem;
+  background: var(--surface-strong);
+}
+
+.day-action-card.weekend {
+  background: #fbf2e9;
+}
+
+.mini-actions,
+.action-row {
+  display: flex;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+
+.ghost-button,
+.soft-button {
+  background: #f3ece2;
+  color: #5b4a35;
+}
+
+.weekday-weekend-guide {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 0.9rem;
+  color: var(--muted);
+  font-size: 0.82rem;
 }
 
 .result-group + .result-group {
@@ -287,6 +348,10 @@ input {
   .inline-form {
     grid-template-columns: 1fr auto;
     align-items: center;
+  }
+
+  .day-actions-grid {
+    grid-template-columns: repeat(7, minmax(0, 1fr));
   }
 
   .card > button,

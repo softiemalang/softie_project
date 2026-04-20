@@ -91,9 +91,26 @@ function getFriendlyError(errorMessage) {
     return 'We could not find that room. Please check the room code and try again.'
   }
   if (errorMessage.includes('duplicate key')) {
-    return 'That room code or name already exists. Please try again.'
+    return 'That name is already being used here. Please try another one.'
   }
   return errorMessage
+}
+
+function mapsEqual(left, right) {
+  const leftKeys = Object.keys(left)
+  const rightKeys = Object.keys(right)
+  if (leftKeys.length !== rightKeys.length) return false
+  return leftKeys.every((key) => left[key] === right[key])
+}
+
+function getMemberAvailabilityMap(availabilities, memberId) {
+  const nextMap = emptyAvailabilityMap()
+  availabilities.forEach((row) => {
+    if (row.member_id === memberId) {
+      nextMap[`${row.day_of_week}-${row.slot_index}`] = !!row.is_available
+    }
+  })
+  return nextMap
 }
 
 export default function App() {
@@ -106,10 +123,16 @@ export default function App() {
   const [member, setMember] = useState(null)
   const [members, setMembers] = useState([])
   const [availabilityMap, setAvailabilityMap] = useState(emptyAvailabilityMap)
+  const [savedAvailabilityMap, setSavedAvailabilityMap] = useState(emptyAvailabilityMap)
   const [allAvailabilities, setAllAvailabilities] = useState([])
   const [isBusy, setIsBusy] = useState(false)
   const [editingRoomName, setEditingRoomName] = useState('')
   const [deleteRoomName, setDeleteRoomName] = useState('')
+  const [memberDisplayName, setMemberDisplayName] = useState('')
+  const [currentPinInput, setCurrentPinInput] = useState('')
+  const [newPinInput, setNewPinInput] = useState('')
+  const [reauthName, setReauthName] = useState('')
+  const [reauthPin, setReauthPin] = useState('')
 
   const submittedMembers = useMemo(
     () => members.filter((memberRow) => isMemberSubmitted(memberRow.id, allAvailabilities)),
@@ -129,6 +152,11 @@ export default function App() {
     [bestTimes, members.length],
   )
   const recommendedTimes = useMemo(() => bestTimes.slice(0, 10), [bestTimes])
+  const hasUnsavedChanges = useMemo(
+    () => !mapsEqual(availabilityMap, savedAvailabilityMap),
+    [availabilityMap, savedAvailabilityMap],
+  )
+  const needsReauth = Boolean(room && !member)
 
   useEffect(() => {
     const saved = localStorage.getItem(MEMBER_KEY)
@@ -136,10 +164,14 @@ export default function App() {
 
     try {
       const parsed = JSON.parse(saved)
-      if (parsed?.room && parsed?.member) {
+      if (parsed?.room) {
         setRoom(parsed.room)
-        setMember(parsed.member)
         setEditingRoomName(parsed.room.name || '')
+        setReauthName(parsed.member?.display_name || '')
+      }
+      if (parsed?.member) {
+        setMember(parsed.member)
+        setMemberDisplayName(parsed.member.display_name || '')
       }
     } catch {
       localStorage.removeItem(MEMBER_KEY)
@@ -147,9 +179,9 @@ export default function App() {
   }, [])
 
   useEffect(() => {
-    if (!room?.id || !member?.id) return
+    if (!room?.id) return
     setEditingRoomName(room.name || '')
-    refreshRoomData(room.id, member.id)
+    refreshRoomData(room.id, member?.id)
   }, [room?.id, member?.id])
 
   async function refreshRoomData(roomId, memberId) {
@@ -163,7 +195,7 @@ export default function App() {
       supabase.from('rooms').select('*').eq('id', roomId).maybeSingle(),
       supabase
         .from('members')
-        .select('id, room_id, display_name, created_at')
+        .select('id, room_id, display_name, pin_hash, created_at')
         .eq('room_id', roomId)
         .order('created_at', { ascending: true }),
       supabase
@@ -178,12 +210,7 @@ export default function App() {
     }
 
     if (!roomRow) {
-      localStorage.removeItem(MEMBER_KEY)
-      setRoom(null)
-      setMember(null)
-      setMembers([])
-      setAllAvailabilities([])
-      setAvailabilityMap(emptyAvailabilityMap())
+      clearLocalSession()
       setStatus('This room no longer exists.')
       return
     }
@@ -191,23 +218,62 @@ export default function App() {
     setRoom(roomRow)
     setMembers(memberRows || [])
     setAllAvailabilities(availabilityRows || [])
-
-    const nextMap = emptyAvailabilityMap()
-    ;(availabilityRows || []).forEach((row) => {
-      if (row.member_id === memberId) {
-        nextMap[`${row.day_of_week}-${row.slot_index}`] = !!row.is_available
-      }
-    })
-    setAvailabilityMap(nextMap)
     setEditingRoomName(roomRow.name || '')
 
+    if (!memberId) {
+      return
+    }
+
+    const activeMember = (memberRows || []).find((memberRow) => memberRow.id === memberId)
+    if (!activeMember) {
+      localStorage.setItem(MEMBER_KEY, JSON.stringify({ room: roomRow }))
+      setMember(null)
+      setMemberDisplayName('')
+      setCurrentPinInput('')
+      setNewPinInput('')
+      setReauthName('')
+      setReauthPin('')
+      setSavedAvailabilityMap(emptyAvailabilityMap())
+      setAvailabilityMap(emptyAvailabilityMap())
+      setStatus('Your saved member session is no longer valid. Please re-enter your name and PIN.')
+      return
+    }
+
+    const memberInfo = {
+      id: activeMember.id,
+      room_id: activeMember.room_id,
+      display_name: activeMember.display_name,
+    }
+    const nextMap = getMemberAvailabilityMap(availabilityRows || [], memberId)
+
+    setMember(memberInfo)
+    setMemberDisplayName(activeMember.display_name || '')
+    setSavedAvailabilityMap(nextMap)
+    setAvailabilityMap(nextMap)
     localStorage.setItem(
       MEMBER_KEY,
       JSON.stringify({
         room: roomRow,
-        member,
+        member: memberInfo,
       }),
     )
+  }
+
+  function clearLocalSession() {
+    localStorage.removeItem(MEMBER_KEY)
+    setRoom(null)
+    setMember(null)
+    setMembers([])
+    setAllAvailabilities([])
+    setAvailabilityMap(emptyAvailabilityMap())
+    setSavedAvailabilityMap(emptyAvailabilityMap())
+    setDeleteRoomName('')
+    setEditingRoomName('')
+    setMemberDisplayName('')
+    setCurrentPinInput('')
+    setNewPinInput('')
+    setReauthName('')
+    setReauthPin('')
   }
 
   async function createRoom() {
@@ -330,6 +396,7 @@ export default function App() {
 
     setRoom(roomRow)
     setMember(memberInfo)
+    setMemberDisplayName(memberRow.display_name)
     setEditingRoomName(roomRow.name)
     localStorage.setItem(
       MEMBER_KEY,
@@ -342,6 +409,59 @@ export default function App() {
     await refreshRoomData(roomRow.id, memberRow.id)
     setIsBusy(false)
     setStatus(`You joined ${roomRow.name}.`)
+  }
+
+  async function reauthenticateMember() {
+    if (!supabase || !room?.id) return
+    if (!reauthName.trim()) {
+      setStatus('Please enter your display name to continue.')
+      return
+    }
+    if (reauthPin.trim().length !== 4) {
+      setStatus('Please enter your 4-digit PIN to continue.')
+      return
+    }
+
+    setIsBusy(true)
+    setStatus('')
+
+    const { data: memberRow, error } = await supabase
+      .from('members')
+      .select('*')
+      .eq('room_id', room.id)
+      .eq('display_name', reauthName.trim())
+      .maybeSingle()
+
+    if (error || !memberRow) {
+      setIsBusy(false)
+      setStatus('We could not match that member in this room. Please check the name and try again.')
+      return
+    }
+
+    if (memberRow.pin_hash !== simpleHash(reauthPin.trim())) {
+      setIsBusy(false)
+      setStatus('That PIN did not match. Please try again.')
+      return
+    }
+
+    const memberInfo = {
+      id: memberRow.id,
+      room_id: memberRow.room_id,
+      display_name: memberRow.display_name,
+    }
+    setMember(memberInfo)
+    setMemberDisplayName(memberRow.display_name)
+    setReauthPin('')
+    localStorage.setItem(
+      MEMBER_KEY,
+      JSON.stringify({
+        room,
+        member: memberInfo,
+      }),
+    )
+    await refreshRoomData(room.id, memberRow.id)
+    setIsBusy(false)
+    setStatus(`Welcome back, ${memberRow.display_name}.`)
   }
 
   async function saveAvailability() {
@@ -380,6 +500,7 @@ export default function App() {
       return
     }
 
+    setSavedAvailabilityMap(availabilityMap)
     await refreshRoomData(room.id, member.id)
     setIsBusy(false)
     setStatus('Availability saved for this week.')
@@ -425,6 +546,103 @@ export default function App() {
     setStatus('Room name updated.')
   }
 
+  async function updateMemberProfile() {
+    if (!supabase || !room?.id || !member?.id) return
+    if (!memberDisplayName.trim()) {
+      setStatus('Please enter a display name.')
+      return
+    }
+
+    const updates = {}
+    const trimmedName = memberDisplayName.trim()
+
+    if (trimmedName !== member.display_name) {
+      const matchingMember = members.find(
+        (memberRow) => memberRow.display_name === trimmedName && memberRow.id !== member.id,
+      )
+      if (matchingMember) {
+        setStatus('That display name is already in use in this room. Please choose another one.')
+        return
+      }
+      updates.display_name = trimmedName
+    }
+
+    const wantsPinChange = currentPinInput || newPinInput
+    if (wantsPinChange) {
+      if (currentPinInput.trim().length !== 4) {
+        setStatus('Please enter your current 4-digit PIN.')
+        return
+      }
+      if (newPinInput.trim().length !== 4) {
+        setStatus('Please enter a new 4-digit PIN.')
+        return
+      }
+      if (currentPinInput === newPinInput) {
+        setStatus('Please choose a new PIN that is different from your current one.')
+        return
+      }
+
+      const { data: memberRow, error } = await supabase
+        .from('members')
+        .select('pin_hash')
+        .eq('id', member.id)
+        .maybeSingle()
+
+      if (error || !memberRow) {
+        setStatus('We could not verify your current PIN. Please try again.')
+        return
+      }
+
+      if (memberRow.pin_hash !== simpleHash(currentPinInput.trim())) {
+        setStatus('Your current PIN did not match. Please try again.')
+        return
+      }
+
+      updates.pin_hash = simpleHash(newPinInput.trim())
+    }
+
+    if (Object.keys(updates).length === 0) {
+      setStatus('Your member details are already up to date.')
+      return
+    }
+
+    setIsBusy(true)
+    setStatus('')
+
+    const { data, error } = await supabase
+      .from('members')
+      .update(updates)
+      .eq('id', member.id)
+      .select('*')
+      .single()
+
+    setIsBusy(false)
+
+    if (error) {
+      setStatus('We could not save your member details. Please try again.')
+      return
+    }
+
+    const memberInfo = {
+      id: data.id,
+      room_id: data.room_id,
+      display_name: data.display_name,
+    }
+    setMember(memberInfo)
+    setMemberDisplayName(data.display_name)
+    setCurrentPinInput('')
+    setNewPinInput('')
+    localStorage.setItem(
+      MEMBER_KEY,
+      JSON.stringify({
+        room,
+        member: memberInfo,
+      }),
+    )
+    await refreshRoomData(room.id, data.id)
+    setStatus('Your member details were updated.')
+  }
+
   async function deleteRoom() {
     if (!supabase || !room?.id) return
     if (deleteRoomName !== room.name) return
@@ -460,14 +678,7 @@ export default function App() {
       return
     }
 
-    localStorage.removeItem(MEMBER_KEY)
-    setRoom(null)
-    setMember(null)
-    setMembers([])
-    setAllAvailabilities([])
-    setAvailabilityMap(emptyAvailabilityMap())
-    setDeleteRoomName('')
-    setEditingRoomName('')
+    clearLocalSession()
     setStatus('Room deleted.')
   }
 
@@ -477,6 +688,27 @@ export default function App() {
       ...current,
       [key]: !current[key],
     }))
+  }
+
+  function setDayAvailability(dayIndex, isAvailable) {
+    setAvailabilityMap((current) => {
+      const next = { ...current }
+      SLOTS.forEach((_, slotIndex) => {
+        next[`${dayIndex}-${slotIndex}`] = isAvailable
+      })
+      return next
+    })
+  }
+
+  function resetMyAvailability() {
+    if (!member) return
+    const shouldReset = window.confirm(
+      'Reset only your availability for this room? This will not change anyone else in the room.',
+    )
+    if (!shouldReset) return
+
+    setAvailabilityMap(emptyAvailabilityMap())
+    setStatus('Your availability has been cleared locally. Save to apply the reset.')
   }
 
   return (
@@ -511,32 +743,61 @@ export default function App() {
       <section className="card">
         <div className="card-header">
           <div>
-            <p className="section-kicker">Join an existing room</p>
-            <h2>Join with code and PIN</h2>
+            <p className="section-kicker">{needsReauth ? 'Re-authenticate' : 'Join an existing room'}</p>
+            <h2>{needsReauth ? 'Continue as a member' : 'Join with code and PIN'}</h2>
           </div>
         </div>
-        <div className="field-grid">
-          <input
-            value={joinCode}
-            onChange={(event) => setJoinCode(event.target.value.toUpperCase())}
-            placeholder="Room code"
-          />
-          <input
-            value={displayName}
-            onChange={(event) => setDisplayName(event.target.value)}
-            placeholder="Display name"
-          />
-          <input
-            inputMode="numeric"
-            maxLength={4}
-            value={pin}
-            onChange={(event) => setPin(event.target.value.replace(/\D/g, '').slice(0, 4))}
-            placeholder="4-digit PIN"
-          />
-        </div>
-        <button disabled={isBusy} onClick={joinRoom}>
-          Join room
-        </button>
+
+        {needsReauth ? (
+          <>
+            <p className="subtle">
+              Your room is still here, but we need your member name and PIN again before you can continue.
+            </p>
+            <div className="field-grid">
+              <input value={room.room_code} readOnly />
+              <input
+                value={reauthName}
+                onChange={(event) => setReauthName(event.target.value)}
+                placeholder="Display name"
+              />
+              <input
+                inputMode="numeric"
+                maxLength={4}
+                value={reauthPin}
+                onChange={(event) => setReauthPin(event.target.value.replace(/\D/g, '').slice(0, 4))}
+                placeholder="4-digit PIN"
+              />
+            </div>
+            <button disabled={isBusy} onClick={reauthenticateMember}>
+              Continue
+            </button>
+          </>
+        ) : (
+          <>
+            <div className="field-grid">
+              <input
+                value={joinCode}
+                onChange={(event) => setJoinCode(event.target.value.toUpperCase())}
+                placeholder="Room code"
+              />
+              <input
+                value={displayName}
+                onChange={(event) => setDisplayName(event.target.value)}
+                placeholder="Display name"
+              />
+              <input
+                inputMode="numeric"
+                maxLength={4}
+                value={pin}
+                onChange={(event) => setPin(event.target.value.replace(/\D/g, '').slice(0, 4))}
+                placeholder="4-digit PIN"
+              />
+            </div>
+            <button disabled={isBusy} onClick={joinRoom}>
+              Join room
+            </button>
+          </>
+        )}
       </section>
 
       {status && <p className="status">{status}</p>}
@@ -582,6 +843,41 @@ export default function App() {
           <section className="card">
             <div className="card-header">
               <div>
+                <p className="section-kicker">Your member details</p>
+                <h2>Edit your name and PIN</h2>
+              </div>
+            </div>
+            <div className="stack-form">
+              <input
+                value={memberDisplayName}
+                onChange={(event) => setMemberDisplayName(event.target.value)}
+                placeholder="Display name"
+              />
+              <div className="field-grid">
+                <input
+                  inputMode="numeric"
+                  maxLength={4}
+                  value={currentPinInput}
+                  onChange={(event) => setCurrentPinInput(event.target.value.replace(/\D/g, '').slice(0, 4))}
+                  placeholder="Current PIN"
+                />
+                <input
+                  inputMode="numeric"
+                  maxLength={4}
+                  value={newPinInput}
+                  onChange={(event) => setNewPinInput(event.target.value.replace(/\D/g, '').slice(0, 4))}
+                  placeholder="New PIN"
+                />
+              </div>
+              <button disabled={isBusy} onClick={updateMemberProfile}>
+                Save member details
+              </button>
+            </div>
+          </section>
+
+          <section className="card">
+            <div className="card-header">
+              <div>
                 <p className="section-kicker">Room settings</p>
                 <h2>Edit room name</h2>
               </div>
@@ -603,17 +899,46 @@ export default function App() {
               <div>
                 <p className="section-kicker">Weekly plan</p>
                 <h2>Weekly availability</h2>
-                <p className="subtle">Tap the evening slots you can make, then save once.</p>
+                <p className="subtle">
+                  Tap individual slots, or use the quick actions to fill a whole day.
+                </p>
               </div>
-              <button disabled={isBusy} onClick={saveAvailability}>
-                Save
-              </button>
+              <div className={`save-state ${hasUnsavedChanges ? 'unsaved' : ''}`}>
+                {hasUnsavedChanges ? 'You have unsaved changes.' : 'All changes are saved.'}
+              </div>
+            </div>
+
+            <div className="day-actions-grid">
+              {DAYS.map((day, dayIndex) => (
+                <div
+                  key={day}
+                  className={`day-action-card ${dayIndex >= 5 ? 'weekend' : 'weekday'}`}
+                >
+                  <strong>{day}</strong>
+                  <div className="mini-actions">
+                    <button type="button" className="ghost-button" onClick={() => setDayAvailability(dayIndex, true)}>
+                      All
+                    </button>
+                    <button type="button" className="ghost-button" onClick={() => setDayAvailability(dayIndex, false)}>
+                      Clear
+                    </button>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <div className="weekday-weekend-guide">
+              <span>Mon-Fri</span>
+              <span>Sat-Sun</span>
             </div>
 
             <div className="availability-grid">
               <div className="grid-top-left" />
-              {DAYS.map((day) => (
-                <div key={day} className="day-label">
+              {DAYS.map((day, dayIndex) => (
+                <div
+                  key={day}
+                  className={`day-label ${dayIndex >= 5 ? 'weekend-label' : 'weekday-label'}`}
+                >
                   {day}
                 </div>
               ))}
@@ -627,6 +952,15 @@ export default function App() {
                   onToggle={toggleSlot}
                 />
               ))}
+            </div>
+
+            <div className="action-row">
+              <button disabled={isBusy || !hasUnsavedChanges} onClick={saveAvailability}>
+                Save
+              </button>
+              <button type="button" className="soft-button" disabled={isBusy} onClick={resetMyAvailability}>
+                Reset my availability
+              </button>
             </div>
           </section>
 
@@ -698,7 +1032,7 @@ function AvailabilityRow({ slot, slotIndex, availabilityMap, onToggle }) {
           <button
             key={key}
             type="button"
-            className={`slot-button ${isActive ? 'active' : ''}`}
+            className={`slot-button ${isActive ? 'active' : ''} ${dayIndex >= 5 ? 'weekend-slot' : 'weekday-slot'}`}
             onClick={() => onToggle(dayIndex, slotIndex)}
             aria-pressed={isActive}
           >
