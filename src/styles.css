@@ -500,8 +500,8 @@ textarea {
 
 .scheduler-topbar,
 .scheduler-panel {
-  padding: 1rem;
-  margin-bottom: 0.95rem;
+  padding: 0.9rem;
+  margin-bottom: 0.85rem;
 }
 
 .scheduler-topbar h1,
@@ -533,11 +533,11 @@ textarea {
 }
 
 .scheduler-topbar-actions {
-  margin-top: 0.95rem;
+  margin-top: 0.8rem;
 }
 
 .scheduler-nav-button {
-  padding: 0.75rem 0.95rem;
+  padding: 0.68rem 0.9rem;
   border-radius: 14px;
   background: #efe6d8;
   color: #5b4a35;
@@ -565,7 +565,7 @@ textarea {
 }
 
 .scheduler-date-row {
-  margin-bottom: 0.85rem;
+  margin-bottom: 0.7rem;
 }
 
 .scheduler-count-pill,
@@ -629,7 +629,7 @@ textarea {
   border: 1px solid #eadfce;
   border-left: 5px solid #d6c8b6;
   background: #fffdf9;
-  padding: 0.9rem;
+  padding: 0.82rem;
 }
 
 .scheduler-event-card.event-checkin {
@@ -704,19 +704,19 @@ textarea {
 }
 
 .scheduler-link-button {
-  padding: 0.7rem 0.9rem;
+  padding: 0.62rem 0.85rem;
 }
 
 .scheduler-form {
   display: grid;
-  gap: 0.9rem;
+  gap: 0.78rem;
   min-width: 0;
 }
 
 .scheduler-form label,
 .scheduler-field-label {
   display: grid;
-  gap: 0.45rem;
+  gap: 0.35rem;
   font-weight: 600;
   color: #4b5563;
   min-width: 0;
@@ -725,7 +725,7 @@ textarea {
 .scheduler-two-up {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 0.75rem;
+  gap: 0.65rem;
 }
 
 .scheduler-form input,
@@ -768,6 +768,7 @@ textarea {
 }
 
 .scheduler-chip {
+  padding: 0.62rem 0.82rem;
   background: #efe6d8;
   color: #5b4a35;
 }
@@ -778,15 +779,15 @@ textarea {
 }
 
 .scheduler-room-picker {
-  min-height: 56px;
+  min-height: 50px;
 }
 
 .scheduler-room-picker-empty {
   display: flex;
   align-items: center;
   width: 100%;
-  min-height: 56px;
-  padding: 0.95rem 1rem;
+  min-height: 50px;
+  padding: 0.8rem 0.9rem;
   border: 1px solid var(--line);
   border-radius: 14px;
   background: rgba(255, 255, 255, 0.6);
@@ -796,14 +797,23 @@ textarea {
 .scheduler-room-option-row {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(56px, 1fr));
-  gap: 0.55rem;
+  gap: 0.45rem;
 }
 
 .scheduler-room-option {
-  min-height: 52px;
+  min-height: 48px;
+  padding: 0.62rem 0.7rem;
   border-radius: 14px;
   background: #efe6d8;
   color: #5b4a35;
+}
+
+.scheduler-form input,
+.scheduler-form select,
+.scheduler-form textarea,
+.scheduler-controls input,
+.scheduler-controls select {
+  padding: 0.82rem 0.9rem;
 }
 
 .scheduler-room-option.active {
