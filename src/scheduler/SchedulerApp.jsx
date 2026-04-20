@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from 'react'
 import { navigate } from '../lib/router'
 import { listTodayWorkEvents, getReservationById, saveReservation, deleteReservation, updateWorkEventStatus } from './api'
 import { SCHEDULER_BRANCHES, SCHEDULER_TAGS, TODAY_HOURS } from './constants'
-import { buildReservationPayload, createReservationDraft, getRoomStatus, getTagMeta, groupTodayEvents, mapReservationToFormValues, validateReservationForm } from './helpers'
+import { buildReservationPayload, createReservationDraft, getRoomStatus, getRoomsForBranch, getTagMeta, groupTodayEvents, mapReservationToFormValues, validateReservationForm } from './helpers'
 import { formatDateLabel, toLocalDateInputValue } from './time'
 
 const GO_TO_TODAY_EVENT = 'scheduler:go-today'
@@ -118,14 +118,7 @@ function TodaySchedulerPage() {
     return () => window.removeEventListener(GO_TO_TODAY_EVENT, handleGoToToday)
   }, [])
 
-  const rooms = Array.from(
-    new Set(
-      events
-        .filter((item) => filters.branch === 'all' || item.reservation?.branch === filters.branch)
-        .map((item) => item.reservation?.room)
-        .filter(Boolean),
-    ),
-  )
+  const rooms = filters.branch === 'all' ? [] : getRoomsForBranch(filters.branch)
 
   const filteredEvents = events.filter((item) => {
     if (filters.branch !== 'all' && item.reservation?.branch !== filters.branch) return false
@@ -185,8 +178,9 @@ function TodaySchedulerPage() {
           <select
             value={filters.room}
             onChange={(event) => setFilters((current) => ({ ...current, room: event.target.value }))}
+            disabled={filters.branch === 'all'}
           >
-            <option value="all">전체 룸</option>
+            <option value="all">{filters.branch === 'all' ? '지점을 먼저 선택' : '전체 룸'}</option>
             {rooms.map((room) => (
               <option key={room} value={room}>
                 {room}
@@ -352,8 +346,21 @@ function ReservationEditorPage({ mode, reservationId }) {
   }, [mode, reservationId])
 
   function updateField(field, value) {
-    setFormValues((current) => ({ ...current, [field]: value }))
+    setFormValues((current) => {
+      if (field === 'branch') {
+        const nextRooms = getRoomsForBranch(value)
+        return {
+          ...current,
+          branch: value,
+          room: nextRooms.includes(current.room) ? current.room : '',
+        }
+      }
+
+      return { ...current, [field]: value }
+    })
   }
+
+  const availableRooms = getRoomsForBranch(formValues.branch)
 
   async function handleSubmit(event) {
     event.preventDefault()
@@ -436,7 +443,18 @@ function ReservationEditorPage({ mode, reservationId }) {
 
               <label>
                 룸
-                <input value={formValues.room} onChange={(event) => updateField('room', event.target.value)} placeholder="예: A룸" />
+                <select
+                  value={formValues.room}
+                  onChange={(event) => updateField('room', event.target.value)}
+                  disabled={!formValues.branch}
+                >
+                  <option value="">{formValues.branch ? '룸 선택' : '지점을 먼저 선택'}</option>
+                  {availableRooms.map((room) => (
+                    <option key={room} value={room}>
+                      {room}
+                    </option>
+                  ))}
+                </select>
               </label>
             </div>
 

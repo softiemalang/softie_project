@@ -7,6 +7,13 @@ export const SCHEDULER_TAGS = [
 
 export const SCHEDULER_BRANCHES = ['신촌점', '연대점', '사당1호점', '사당2호점']
 
+export const SCHEDULER_BRANCH_ROOMS = {
+  신촌점: ['V', 'A', 'B', 'C'],
+  연대점: ['R', 'Q', 'F'],
+  사당1호점: ['V', 'S', 'Q', 'C', 'D'],
+  사당2호점: ['1', '2', '3', '4'],
+}
+
 export const WORK_EVENT_META = {
   checkin: { label: '입실', tone: 'checkin' },
   warning: { label: '퇴실등', tone: 'warning' },

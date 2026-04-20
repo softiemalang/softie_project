@@ -3,6 +3,7 @@ import {
   DEFAULT_WARNING_OFFSET,
   EVENT_STATUS_META,
   SCHEDULER_BRANCHES,
+  SCHEDULER_BRANCH_ROOMS,
   SCHEDULER_TAGS,
   TODAY_HOURS,
   WORK_EVENT_META,
@@ -11,6 +12,10 @@ import { addMinutes, combineLocalDateTime, formatTime, toIsoFromLocal, toLocalDa
 
 export function getTagMeta(tag) {
   return SCHEDULER_TAGS.find((item) => item.value === tag) || { value: tag, shortLabel: tag, fullLabel: tag }
+}
+
+export function getRoomsForBranch(branch) {
+  return SCHEDULER_BRANCH_ROOMS[branch] || []
 }
 
 export function createReservationDraft() {
@@ -33,10 +38,13 @@ export function createReservationDraft() {
 }
 
 export function mapReservationToFormValues(reservation) {
+  const branch = SCHEDULER_BRANCHES.includes(reservation.branch) ? reservation.branch : ''
+  const room = getRoomsForBranch(branch).includes(reservation.room) ? reservation.room : ''
+
   return {
     reservationDate: reservation.reservation_date,
-    branch: SCHEDULER_BRANCHES.includes(reservation.branch) ? reservation.branch : '',
-    room: reservation.room || '',
+    branch,
+    room,
     customerName: reservation.customer_name || '',
     startTime: toLocalTimeInputValue(reservation.start_at),
     durationHours: Math.max(1, Math.round((reservation.duration_minutes || DEFAULT_DURATION_MINUTES) / 60)),
@@ -74,6 +82,7 @@ export function validateReservationForm(formValues) {
   if (!formValues.reservationDate) return '예약 날짜를 입력해 주세요.'
   if (!formValues.branch.trim()) return '지점을 입력해 주세요.'
   if (!formValues.room.trim()) return '룸 이름을 입력해 주세요.'
+  if (!getRoomsForBranch(formValues.branch).includes(formValues.room)) return '선택한 지점에 맞는 룸을 선택해 주세요.'
   if (!formValues.customerName.trim()) return '예약자 이름을 입력해 주세요.'
   if (!formValues.startTime) return '시작 시간을 입력해 주세요.'
 
