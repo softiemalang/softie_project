@@ -733,13 +733,38 @@ textarea {
 .scheduler-form textarea,
 .scheduler-controls input,
 .scheduler-controls select {
+  width: 100%;
+  display: block;
   max-width: 100%;
   min-width: 0;
 }
 
 .scheduler-compact-input {
   width: 100%;
+  display: block;
+  inline-size: 100%;
+  max-inline-size: 100%;
   max-width: 100%;
+  min-width: 0;
+}
+
+.scheduler-form input[type='date'],
+.scheduler-form input[type='time'],
+.scheduler-controls input[type='date'],
+.scheduler-controls input[type='time'],
+.scheduler-form select,
+.scheduler-controls select {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+}
+
+.scheduler-date-row > input,
+.scheduler-two-up input,
+.scheduler-two-up select,
+.scheduler-form > label > input,
+.scheduler-form > label > select {
+  justify-self: stretch;
 }
 
 .scheduler-chip {
@@ -798,5 +823,16 @@ textarea {
   .scheduler-two-up > *,
   .scheduler-date-row > * {
     min-width: 0;
+  }
+
+  .scheduler-date-row > input,
+  .scheduler-form input[type='date'],
+  .scheduler-form input[type='time'],
+  .scheduler-controls input[type='date'],
+  .scheduler-controls input[type='time'],
+  .scheduler-form select,
+  .scheduler-controls select {
+    width: 100%;
+    max-width: 100%;
   }
 }

@@ -144,7 +144,12 @@ function TodaySchedulerPage() {
             <strong>{TODAY_HOURS.start}:00 - {TODAY_HOURS.end}:00</strong>
             <p className="subtle">{formatDateLabel(selectedDate)}</p>
           </div>
-          <input type="date" value={selectedDate} onChange={(event) => setSelectedDate(event.target.value)} />
+          <input
+            className="scheduler-compact-input"
+            type="date"
+            value={selectedDate}
+            onChange={(event) => setSelectedDate(event.target.value)}
+          />
         </div>
 
         <div className="scheduler-filter-row">
@@ -389,6 +394,7 @@ function ReservationEditorPage({ mode, reservationId }) {
             <label>
               예약 날짜
               <input
+                className="scheduler-compact-input"
                 type="date"
                 value={formValues.reservationDate}
                 onChange={(event) => updateField('reservationDate', event.target.value)}
@@ -564,7 +570,12 @@ function RoomStatusPage() {
             <p className="scheduler-section-label">기준 날짜</p>
             <strong>{formatDateLabel(selectedDate)}</strong>
           </div>
-          <input type="date" value={selectedDate} onChange={(event) => setSelectedDate(event.target.value)} />
+          <input
+            className="scheduler-compact-input"
+            type="date"
+            value={selectedDate}
+            onChange={(event) => setSelectedDate(event.target.value)}
+          />
         </div>
       </section>
 
