@@ -278,7 +278,6 @@ function TodaySchedulerPage() {
 
       <TodayEventSection
         title="지금 처리할 일"
-        subtitle="지연된 작업과 곧 대응해야 하는 작업"
         items={grouped.actionNow}
         emptyText={isLoading ? '불러오는 중...' : '지금 바로 처리할 작업이 없어요.'}
         pendingStatusId={pendingStatusId}
@@ -287,7 +286,6 @@ function TodaySchedulerPage() {
 
       <TodayEventSection
         title="곧 다가오는 일정"
-        subtitle="앞으로 1시간 안에 다가오는 작업"
         items={grouped.upcomingSoon}
         emptyText={isLoading ? '불러오는 중...' : '곧 다가오는 작업이 없어요.'}
         pendingStatusId={pendingStatusId}
@@ -296,7 +294,6 @@ function TodaySchedulerPage() {
 
       <TodayEventSection
         title="오늘 전체"
-        subtitle="시간순 전체 작업"
         items={grouped.allToday}
         emptyText={isLoading ? '불러오는 중...' : '오늘 등록된 작업이 없어요.'}
         pendingStatusId={pendingStatusId}
@@ -306,13 +303,12 @@ function TodaySchedulerPage() {
   )
 }
 
-function TodayEventSection({ title, subtitle, items, emptyText, onToggleDone, pendingStatusId }) {
+function TodayEventSection({ title, items, emptyText, onToggleDone, pendingStatusId }) {
   return (
     <section className="scheduler-panel">
       <div className="scheduler-section-head">
         <div>
           <p className="scheduler-section-label">{title}</p>
-          <h2>{subtitle}</h2>
         </div>
         <div className="scheduler-count-pill">{items.length}건</div>
       </div>
