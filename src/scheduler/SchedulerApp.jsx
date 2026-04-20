@@ -52,8 +52,8 @@ function SchedulerTopbar({ rightAction }) {
     <header className="scheduler-topbar">
       <p className="scheduler-eyebrow">Internal Scheduler</p>
       <div className="scheduler-topbar-actions">
-        <NavButton path="/scheduler" label="오늘" />
-        <NavButton path="/scheduler/new" label="새 예약" isPrimary />
+        <NavButton path="/scheduler" label="Today" />
+        <NavButton path="/scheduler/new" label="Add" isPrimary />
         {rightAction}
       </div>
     </header>
