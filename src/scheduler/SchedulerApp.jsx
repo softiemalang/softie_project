@@ -5,6 +5,8 @@ import { SCHEDULER_TAGS, TODAY_HOURS } from './constants'
 import { buildReservationPayload, createReservationDraft, getRoomStatus, getTagMeta, groupTodayEvents, mapReservationToFormValues, validateReservationForm } from './helpers'
 import { formatDateLabel, toLocalDateInputValue } from './time'
 
+const GO_TO_TODAY_EVENT = 'scheduler:go-today'
+
 function parseSchedulerRoute(pathname) {
   if (pathname === '/scheduler') return { name: 'today' }
   if (pathname === '/scheduler/new') return { name: 'new' }
@@ -62,11 +64,20 @@ function SchedulerTopbar({ title, rightAction }) {
 }
 
 function NavButton({ path, label, isPrimary = false }) {
+  function handleClick() {
+    if (path === '/scheduler' && window.location.pathname === '/scheduler') {
+      window.dispatchEvent(new CustomEvent(GO_TO_TODAY_EVENT))
+      return
+    }
+
+    navigate(path)
+  }
+
   return (
     <button
       type="button"
       className={isPrimary ? 'scheduler-nav-button primary' : 'scheduler-nav-button'}
-      onClick={() => navigate(path)}
+      onClick={handleClick}
     >
       {label}
     </button>
@@ -97,6 +108,15 @@ function TodaySchedulerPage() {
   useEffect(() => {
     loadEvents()
   }, [selectedDate])
+
+  useEffect(() => {
+    function handleGoToToday() {
+      setSelectedDate(toLocalDateInputValue())
+    }
+
+    window.addEventListener(GO_TO_TODAY_EVENT, handleGoToToday)
+    return () => window.removeEventListener(GO_TO_TODAY_EVENT, handleGoToToday)
+  }, [])
 
   const branches = Array.from(new Set(events.map((item) => item.reservation?.branch).filter(Boolean)))
   const rooms = Array.from(
