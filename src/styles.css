@@ -777,6 +777,40 @@ textarea {
   color: #fff;
 }
 
+.scheduler-room-picker {
+  min-height: 56px;
+}
+
+.scheduler-room-picker-empty {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  min-height: 56px;
+  padding: 0.95rem 1rem;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.6);
+  color: var(--muted);
+}
+
+.scheduler-room-option-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(56px, 1fr));
+  gap: 0.55rem;
+}
+
+.scheduler-room-option {
+  min-height: 52px;
+  border-radius: 14px;
+  background: #efe6d8;
+  color: #5b4a35;
+}
+
+.scheduler-room-option.active {
+  background: #1f6f5f;
+  color: #fff;
+}
+
 .scheduler-room-card.in-use {
   border-left: 6px solid #1f6f5f;
 }

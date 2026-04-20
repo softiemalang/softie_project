@@ -443,18 +443,28 @@ function ReservationEditorPage({ mode, reservationId }) {
 
               <label>
                 룸
-                <select
-                  value={formValues.room}
-                  onChange={(event) => updateField('room', event.target.value)}
-                  disabled={!formValues.branch}
-                >
-                  <option value="">{formValues.branch ? '룸 선택' : '지점을 먼저 선택'}</option>
-                  {availableRooms.map((room) => (
-                    <option key={room} value={room}>
-                      {room}
-                    </option>
-                  ))}
-                </select>
+                <div className="scheduler-room-picker" aria-disabled={!formValues.branch}>
+                  {!formValues.branch ? (
+                    <div className="scheduler-room-picker-empty">지점을 먼저 선택</div>
+                  ) : (
+                    <div className="scheduler-room-option-row" role="radiogroup" aria-label="룸 선택">
+                      {availableRooms.map((room) => {
+                        const isActive = formValues.room === room
+                        return (
+                          <button
+                            key={room}
+                            type="button"
+                            className={`scheduler-room-option ${isActive ? 'active' : ''}`}
+                            onClick={() => updateField('room', room)}
+                            aria-pressed={isActive}
+                          >
+                            {room}
+                          </button>
+                        )
+                      })}
+                    </div>
+                  )}
+                </div>
               </label>
             </div>
 
