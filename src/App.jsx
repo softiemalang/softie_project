@@ -816,14 +816,16 @@ export default function App() {
       </header>
 
       {!room && (
-        <section className="card">
+        <section className="card primary-home-card">
           <div className="card-header">
             <div>
-              <p className="section-kicker">Start a room</p>
               <p className="section-kicker">새 방 만들기</p>
               <h2>방 만들기</h2>
             </div>
           </div>
+          <p className="subtle">
+            새로운 합주 방을 만들고 코드를 공유해 멤버들을 초대해 보세요.
+          </p>
           <input
             value={roomName}
             onChange={(event) => setRoomName(event.target.value)}
@@ -836,7 +838,7 @@ export default function App() {
       )}
 
       {!room && pendingRoomSession && (
-        <section className="card">
+        <section className="card secondary-card">
           <div className="card-header">
             <div>
               <p className="section-kicker">이전 방 계속하기</p>
@@ -857,7 +859,7 @@ export default function App() {
         </section>
       )}
 
-      <section className="card">
+      <section className={`card ${!room ? 'secondary-card' : ''}`}>
         <div className="card-header">
           <div>
             <p className="section-kicker">{needsReauth ? '다시 확인하기' : '기존 방 참여하기'}</p>
@@ -1170,7 +1172,9 @@ function AvailabilityRow({ slot, slotIndex, availabilityMap, onToggle }) {
 function ResultSection({ title, emptyText, items, totalMembers }) {
   return (
     <div className="result-group">
-      <h3>{title}</h3>
+      <div className="result-group-head">
+        <h3>{title}</h3>
+      </div>
       {items.length === 0 ? (
         <p className="subtle">{emptyText}</p>
       ) : (

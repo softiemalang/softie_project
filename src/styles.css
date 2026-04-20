@@ -56,18 +56,28 @@ input {
 .app-shell {
   width: min(100%, 760px);
   margin: 0 auto;
-  padding: max(1rem, env(safe-area-inset-top)) 1rem max(2.25rem, env(safe-area-inset-bottom));
+  padding:
+    max(1.5rem, calc(env(safe-area-inset-top) + 1rem))
+    1rem
+    max(3.5rem, calc(env(safe-area-inset-bottom) + 2rem));
 }
 
 .hero,
 .card {
   border-radius: 28px;
-  padding: 1.15rem;
-  margin-bottom: 1.05rem;
+  padding: 1.2rem;
+  margin-bottom: 1.15rem;
   background: var(--surface);
   border: 1px solid rgba(255, 255, 255, 0.65);
   box-shadow: 0 18px 48px rgba(92, 74, 43, 0.08);
   backdrop-filter: blur(14px);
+}
+
+.hero {
+  padding-top: 1.45rem;
+  padding-bottom: 1.35rem;
+  margin-top: 0.25rem;
+  margin-bottom: 1.35rem;
 }
 
 .hero h1,
@@ -78,9 +88,9 @@ input {
 }
 
 .hero h1 {
-  margin-top: 0.45rem;
-  font-size: 2.2rem;
-  line-height: 1.02;
+  margin-top: 0.55rem;
+  font-size: 2.35rem;
+  line-height: 1;
   letter-spacing: -0.04em;
 }
 
@@ -92,6 +102,11 @@ input {
   font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
+}
+
+.card h2 {
+  font-size: 1.28rem;
+  line-height: 1.18;
 }
 
 .subtle,
@@ -123,10 +138,18 @@ input {
   gap: 0.85rem;
 }
 
+.card > * + * {
+  margin-top: 0.95rem;
+}
+
+.card > .card-header + * {
+  margin-top: 0.7rem;
+}
+
 .card > button,
 .danger-button {
   width: 100%;
-  margin-top: 0.95rem;
+  margin-top: 1rem;
 }
 
 .status {
@@ -164,6 +187,7 @@ input {
   color: #5b4a35;
   white-space: normal;
   text-align: right;
+  border: 1px solid #ece1d4;
 }
 
 .save-state.unsaved {
@@ -214,7 +238,6 @@ input {
 }
 
 .availability-grid {
-  margin-top: 1rem;
   display: grid;
   grid-template-columns: 68px repeat(7, minmax(44px, 1fr));
   gap: 0.45rem;
@@ -269,16 +292,21 @@ input {
 }
 
 .day-action-card {
-  border: 1px solid var(--line);
-  border-radius: 18px;
-  padding: 0.8rem;
-  background: var(--surface-strong);
+  border: 1px solid #efe5d9;
+  border-radius: 14px;
+  padding: 0.65rem 0.7rem;
+  background: rgba(255, 253, 249, 0.72);
+}
+
+.day-action-card strong {
+  font-size: 0.82rem;
+  color: #5e5347;
 }
 
 .top-actions {
   display: flex;
   justify-content: flex-end;
-  margin-bottom: 0.9rem;
+  margin-bottom: 0.55rem;
 }
 
 .home-button {
@@ -286,7 +314,7 @@ input {
 }
 
 .day-action-card.weekend {
-  background: #fbf2e9;
+  background: rgba(251, 242, 233, 0.86);
 }
 
 .mini-actions,
@@ -303,24 +331,33 @@ input {
 }
 
 .ghost-button {
-  padding: 0.75rem 0.8rem;
+  padding: 0.55rem 0.65rem;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  font-weight: 500;
 }
 
 .weekday-weekend-guide {
   display: flex;
   justify-content: space-between;
-  margin-top: 0.9rem;
+  margin-top: 0.55rem;
   color: var(--muted);
   font-size: 0.82rem;
 }
 
 .result-group + .result-group {
-  margin-top: 1.4rem;
+  margin-top: 1.55rem;
+}
+
+.result-group-head {
+  padding-bottom: 0.55rem;
+  margin-bottom: 0.8rem;
+  border-bottom: 1px solid #ece2d6;
 }
 
 .result-group h3 {
-  margin-bottom: 0.7rem;
   font-size: 1rem;
+  color: #3d342a;
 }
 
 .results {
@@ -328,7 +365,7 @@ input {
 }
 
 .result-row {
-  padding: 0.95rem;
+  padding: 1rem;
   border: 1px solid var(--line);
   border-radius: 18px;
   background: var(--surface-strong);
@@ -352,6 +389,20 @@ input {
 
 .danger-button {
   background: var(--danger);
+}
+
+.primary-home-card {
+  background: linear-gradient(180deg, rgba(255, 252, 248, 0.96), rgba(250, 244, 236, 0.96));
+  border-color: rgba(31, 111, 95, 0.14);
+}
+
+.primary-home-card button {
+  box-shadow: 0 10px 24px rgba(31, 111, 95, 0.18);
+}
+
+.secondary-card {
+  background: rgba(255, 251, 246, 0.72);
+  border-color: rgba(231, 221, 208, 0.95);
 }
 
 @media (min-width: 700px) {
@@ -380,6 +431,10 @@ input {
 }
 
 @media (max-width: 699px) {
+  .hero {
+    padding-top: 1.55rem;
+  }
+
   .card-header,
   .section-head,
   .room-hero-top,
@@ -404,5 +459,10 @@ input {
   .mini-actions {
     display: grid;
     grid-template-columns: 1fr 1fr;
+  }
+
+  .room-meta-grid,
+  .field-grid {
+    gap: 0.75rem;
   }
 }
