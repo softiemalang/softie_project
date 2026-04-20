@@ -1,8 +1,18 @@
 :root {
   color-scheme: light;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  background: #f4efe6;
+  background: #f5efe7;
   color: #1f2937;
+  --surface: rgba(255, 252, 248, 0.88);
+  --surface-strong: #fffdf9;
+  --line: #e7ddd0;
+  --muted: #6b6258;
+  --text: #1f2937;
+  --brand: #1f6f5f;
+  --brand-soft: #e7f3ef;
+  --accent: #9a3412;
+  --danger: #9f1239;
+  --danger-soft: #fff1f2;
 }
 
 * {
@@ -13,8 +23,8 @@ body {
   margin: 0;
   min-width: 320px;
   background:
-    radial-gradient(circle at top, rgba(255, 255, 255, 0.95), rgba(244, 239, 230, 0.92)),
-    linear-gradient(180deg, #f8f4eb 0%, #efe4d0 100%);
+    radial-gradient(circle at top, rgba(255, 255, 255, 0.96), rgba(245, 239, 231, 0.94)),
+    linear-gradient(180deg, #fbf7f0 0%, #efe4d4 100%);
 }
 
 button,
@@ -25,109 +35,171 @@ input {
 button {
   border: 0;
   border-radius: 14px;
-  background: #1f6f5f;
-  color: white;
-  padding: 0.9rem 1rem;
+  background: var(--brand);
+  color: #fff;
+  padding: 0.92rem 1rem;
+  font-weight: 600;
 }
 
 button:disabled {
-  opacity: 0.5;
+  opacity: 0.45;
 }
 
 input {
   width: 100%;
-  border: 1px solid #d6d3d1;
-  border-radius: 12px;
-  padding: 0.9rem 1rem;
-  background: rgba(255, 255, 255, 0.82);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 0.95rem 1rem;
+  background: rgba(255, 255, 255, 0.88);
+  color: var(--text);
 }
 
 .app-shell {
-  width: min(100%, 720px);
+  width: min(100%, 760px);
   margin: 0 auto;
   padding: max(1rem, env(safe-area-inset-top)) 1rem max(2rem, env(safe-area-inset-bottom));
 }
 
 .hero,
 .card {
-  border-radius: 24px;
-  padding: 1rem;
+  border-radius: 28px;
+  padding: 1.1rem;
   margin-bottom: 1rem;
-  background: rgba(255, 252, 247, 0.86);
-  box-shadow: 0 12px 40px rgba(92, 74, 43, 0.08);
-  backdrop-filter: blur(12px);
+  background: var(--surface);
+  border: 1px solid rgba(255, 255, 255, 0.65);
+  box-shadow: 0 18px 48px rgba(92, 74, 43, 0.08);
+  backdrop-filter: blur(14px);
 }
 
 .hero h1,
 .card h2,
-.result-row strong {
+.result-row strong,
+.result-group h3 {
   margin: 0;
 }
 
 .hero h1 {
-  font-size: 2rem;
-  line-height: 1.05;
-  margin-top: 0.4rem;
+  margin-top: 0.45rem;
+  font-size: 2.2rem;
+  line-height: 1.02;
+  letter-spacing: -0.04em;
 }
 
-.eyebrow {
+.eyebrow,
+.section-kicker {
   margin: 0;
-  color: #9a3412;
-  font-size: 0.8rem;
+  color: var(--accent);
+  font-size: 0.78rem;
   font-weight: 700;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
 }
 
 .subtle,
-.result-row p {
-  color: #57534e;
+.result-row p,
+.warning-copy {
+  color: var(--muted);
   margin: 0.35rem 0 0;
+}
+
+.card-header,
+.section-head,
+.room-hero-top,
+.result-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.9rem;
 }
 
 .field-grid,
 .results,
-.member-list {
+.member-list,
+.room-meta-grid {
   display: grid;
   gap: 0.75rem;
 }
 
-.card button {
+.card > button,
+.danger-button {
   width: 100%;
-  margin-top: 0.9rem;
+  margin-top: 0.95rem;
 }
 
 .status {
   margin: 0 0 1rem;
-  padding: 0.9rem 1rem;
-  border-radius: 16px;
+  padding: 0.95rem 1rem;
+  border-radius: 18px;
   background: rgba(255, 248, 220, 0.95);
+  border: 1px solid #f6d7a8;
   color: #92400e;
 }
 
-.room-card,
-.section-head,
-.result-row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 0.75rem;
+.room-title {
+  font-size: 1.8rem;
+  line-height: 1.05;
+}
+
+.pill,
+.member-pill,
+.result-count {
+  border-radius: 999px;
+  padding: 0.5rem 0.8rem;
+  font-size: 0.92rem;
 }
 
 .pill,
 .member-pill {
-  border-radius: 999px;
-  padding: 0.5rem 0.8rem;
-  background: #e7f3ef;
+  background: var(--brand-soft);
   color: #115e59;
-  font-size: 0.92rem;
+}
+
+.room-meta-grid {
+  grid-template-columns: repeat(2, 1fr);
+  margin-top: 1rem;
+}
+
+.meta-card {
+  padding: 0.95rem 1rem;
+  border-radius: 18px;
+  background: var(--surface-strong);
+  border: 1px solid var(--line);
+}
+
+.meta-card strong {
+  display: block;
+  margin-top: 0.3rem;
+  font-size: 1.5rem;
+}
+
+.meta-label {
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+.member-list {
+  grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+  margin-top: 1rem;
+}
+
+.summary-line {
+  margin: 1rem 0 0;
+  padding: 0.9rem 1rem;
+  border-radius: 16px;
+  background: #f8f1e7;
+  color: #5b4a35;
+}
+
+.inline-form {
+  display: grid;
+  gap: 0.75rem;
 }
 
 .availability-grid {
   margin-top: 1rem;
   display: grid;
-  grid-template-columns: 64px repeat(7, minmax(38px, 1fr));
-  gap: 0.4rem;
+  grid-template-columns: 64px repeat(7, minmax(40px, 1fr));
+  gap: 0.42rem;
   overflow-x: auto;
 }
 
@@ -135,7 +207,7 @@ input {
 .day-label,
 .time-label,
 .slot-button {
-  min-height: 44px;
+  min-height: 46px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -144,38 +216,62 @@ input {
 
 .day-label,
 .time-label {
-  background: #f6efe4;
+  background: #f7f0e6;
+  color: var(--muted);
   font-size: 0.8rem;
-  color: #57534e;
 }
 
 .slot-button {
-  min-width: 38px;
+  min-width: 40px;
   padding: 0;
   margin: 0;
-  background: #efe7d8;
-  color: #1f2937;
+  background: #efe5d7;
+  color: var(--text);
 }
 
 .slot-button.active {
-  background: #1f6f5f;
+  background: var(--brand);
   color: #fff;
 }
 
+.result-group + .result-group {
+  margin-top: 1.4rem;
+}
+
+.result-group h3 {
+  margin-bottom: 0.7rem;
+  font-size: 1rem;
+}
+
 .results {
-  margin-top: 0.8rem;
+  gap: 0.65rem;
 }
 
 .result-row {
-  padding: 0.9rem 0;
-  border-bottom: 1px solid #ece7de;
-  align-items: flex-start;
+  padding: 0.95rem;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: var(--surface-strong);
 }
 
-.result-row span {
-  text-align: right;
-  color: #44403c;
-  font-size: 0.92rem;
+.result-row p {
+  line-height: 1.35;
+}
+
+.result-count {
+  background: #edf7f4;
+  color: #115e59;
+  white-space: nowrap;
+  font-weight: 600;
+}
+
+.danger-card {
+  border: 1px solid #fecdd3;
+  background: linear-gradient(180deg, rgba(255, 250, 251, 0.98), rgba(255, 241, 242, 0.9));
+}
+
+.danger-button {
+  background: var(--danger);
 }
 
 @media (min-width: 700px) {
@@ -188,7 +284,13 @@ input {
     grid-template-columns: repeat(3, 1fr);
   }
 
-  .card button {
+  .inline-form {
+    grid-template-columns: 1fr auto;
+    align-items: center;
+  }
+
+  .card > button,
+  .danger-button {
     width: auto;
   }
 }

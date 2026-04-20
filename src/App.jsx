@@ -81,6 +81,21 @@ function toBestTimes(availabilities, members) {
     }))
 }
 
+function isMemberSubmitted(memberId, availabilities) {
+  return availabilities.some((row) => row.member_id === memberId)
+}
+
+function getFriendlyError(errorMessage) {
+  if (!errorMessage) return 'Something went wrong. Please try again.'
+  if (errorMessage.includes('JSON object requested')) {
+    return 'We could not find that room. Please check the room code and try again.'
+  }
+  if (errorMessage.includes('duplicate key')) {
+    return 'That room code or name already exists. Please try again.'
+  }
+  return errorMessage
+}
+
 export default function App() {
   const [roomName, setRoomName] = useState('')
   const [joinCode, setJoinCode] = useState('')
@@ -93,11 +108,27 @@ export default function App() {
   const [availabilityMap, setAvailabilityMap] = useState(emptyAvailabilityMap)
   const [allAvailabilities, setAllAvailabilities] = useState([])
   const [isBusy, setIsBusy] = useState(false)
+  const [editingRoomName, setEditingRoomName] = useState('')
+  const [deleteRoomName, setDeleteRoomName] = useState('')
 
-  const bestTimes = useMemo(
-    () => toBestTimes(allAvailabilities, members).slice(0, 8),
+  const submittedMembers = useMemo(
+    () => members.filter((memberRow) => isMemberSubmitted(memberRow.id, allAvailabilities)),
     [allAvailabilities, members],
   )
+  const missingMembers = useMemo(
+    () => members.filter((memberRow) => !isMemberSubmitted(memberRow.id, allAvailabilities)),
+    [allAvailabilities, members],
+  )
+  const bestTimes = useMemo(() => toBestTimes(allAvailabilities, members), [allAvailabilities, members])
+  const fullyMatchedTimes = useMemo(
+    () => bestTimes.filter((item) => members.length > 0 && item.count === members.length),
+    [bestTimes, members.length],
+  )
+  const almostMatchedTimes = useMemo(
+    () => bestTimes.filter((item) => members.length > 1 && item.count === members.length - 1),
+    [bestTimes, members.length],
+  )
+  const recommendedTimes = useMemo(() => bestTimes.slice(0, 10), [bestTimes])
 
   useEffect(() => {
     const saved = localStorage.getItem(MEMBER_KEY)
@@ -108,6 +139,7 @@ export default function App() {
       if (parsed?.room && parsed?.member) {
         setRoom(parsed.room)
         setMember(parsed.member)
+        setEditingRoomName(parsed.room.name || '')
       }
     } catch {
       localStorage.removeItem(MEMBER_KEY)
@@ -116,30 +148,47 @@ export default function App() {
 
   useEffect(() => {
     if (!room?.id || !member?.id) return
+    setEditingRoomName(room.name || '')
     refreshRoomData(room.id, member.id)
   }, [room?.id, member?.id])
 
   async function refreshRoomData(roomId, memberId) {
     if (!supabase) return
 
-    const [{ data: memberRows, error: membersError }, { data: availabilityRows, error: availabilityError }] =
-      await Promise.all([
-        supabase
-          .from('members')
-          .select('id, room_id, display_name, created_at')
-          .eq('room_id', roomId)
-          .order('created_at', { ascending: true }),
-        supabase
-          .from('availabilities')
-          .select('member_id, day_of_week, slot_index, is_available')
-          .eq('room_id', roomId),
-      ])
+    const [
+      { data: roomRow, error: roomError },
+      { data: memberRows, error: membersError },
+      { data: availabilityRows, error: availabilityError },
+    ] = await Promise.all([
+      supabase.from('rooms').select('*').eq('id', roomId).maybeSingle(),
+      supabase
+        .from('members')
+        .select('id, room_id, display_name, created_at')
+        .eq('room_id', roomId)
+        .order('created_at', { ascending: true }),
+      supabase
+        .from('availabilities')
+        .select('member_id, day_of_week, slot_index, is_available')
+        .eq('room_id', roomId),
+    ])
 
-    if (membersError || availabilityError) {
-      setStatus(membersError?.message || availabilityError?.message || 'Failed to load room')
+    if (roomError || membersError || availabilityError) {
+      setStatus(getFriendlyError(roomError?.message || membersError?.message || availabilityError?.message))
       return
     }
 
+    if (!roomRow) {
+      localStorage.removeItem(MEMBER_KEY)
+      setRoom(null)
+      setMember(null)
+      setMembers([])
+      setAllAvailabilities([])
+      setAvailabilityMap(emptyAvailabilityMap())
+      setStatus('This room no longer exists.')
+      return
+    }
+
+    setRoom(roomRow)
     setMembers(memberRows || [])
     setAllAvailabilities(availabilityRows || [])
 
@@ -150,15 +199,24 @@ export default function App() {
       }
     })
     setAvailabilityMap(nextMap)
+    setEditingRoomName(roomRow.name || '')
+
+    localStorage.setItem(
+      MEMBER_KEY,
+      JSON.stringify({
+        room: roomRow,
+        member,
+      }),
+    )
   }
 
   async function createRoom() {
     if (!supabase) {
-      setStatus('Missing Supabase environment variables.')
+      setStatus('Supabase settings are missing. Please check your environment variables.')
       return
     }
     if (!roomName.trim()) {
-      setStatus('Enter a room name.')
+      setStatus('Please enter a room name first.')
       return
     }
 
@@ -178,22 +236,31 @@ export default function App() {
     setIsBusy(false)
 
     if (error) {
-      setStatus(error.message)
+      setStatus(getFriendlyError(error.message))
       return
     }
 
     setRoom(data)
+    setEditingRoomName(data.name)
     setJoinCode(data.room_code)
-    setStatus(`Room created. Share code ${data.room_code}.`)
+    setStatus(`Room created. Share code ${data.room_code} with your band.`)
   }
 
   async function joinRoom() {
     if (!supabase) {
-      setStatus('Missing Supabase environment variables.')
+      setStatus('Supabase settings are missing. Please check your environment variables.')
       return
     }
-    if (!joinCode.trim() || !displayName.trim() || pin.trim().length !== 4) {
-      setStatus('Enter room code, display name, and a 4-digit PIN.')
+    if (!joinCode.trim()) {
+      setStatus('Please enter a room code.')
+      return
+    }
+    if (!displayName.trim()) {
+      setStatus('Please enter your display name.')
+      return
+    }
+    if (pin.trim().length !== 4) {
+      setStatus('Please enter a 4-digit PIN.')
       return
     }
 
@@ -208,11 +275,11 @@ export default function App() {
       .from('rooms')
       .select('*')
       .eq('room_code', normalizedCode)
-      .single()
+      .maybeSingle()
 
     if (roomError || !roomRow) {
       setIsBusy(false)
-      setStatus(roomError?.message || 'Room not found.')
+      setStatus('We could not find a room with that code.')
       return
     }
 
@@ -225,7 +292,7 @@ export default function App() {
 
     if (memberLookupError) {
       setIsBusy(false)
-      setStatus(memberLookupError.message)
+      setStatus(getFriendlyError(memberLookupError.message))
       return
     }
 
@@ -244,34 +311,37 @@ export default function App() {
 
       if (createMemberError) {
         setIsBusy(false)
-        setStatus(createMemberError.message)
+        setStatus(getFriendlyError(createMemberError.message))
         return
       }
 
       memberRow = createdMember
     } else if (existingMember.pin_hash !== pinHash) {
       setIsBusy(false)
-      setStatus('PIN does not match this member.')
+      setStatus(`That name already exists in this room. Enter the matching 4-digit PIN for ${normalizedName}.`)
       return
     }
 
+    const memberInfo = {
+      id: memberRow.id,
+      display_name: memberRow.display_name,
+      room_id: memberRow.room_id,
+    }
+
     setRoom(roomRow)
-    setMember(memberRow)
+    setMember(memberInfo)
+    setEditingRoomName(roomRow.name)
     localStorage.setItem(
       MEMBER_KEY,
       JSON.stringify({
         room: roomRow,
-        member: {
-          id: memberRow.id,
-          display_name: memberRow.display_name,
-          room_id: memberRow.room_id,
-        },
+        member: memberInfo,
       }),
     )
 
     await refreshRoomData(roomRow.id, memberRow.id)
     setIsBusy(false)
-    setStatus(`Joined ${roomRow.name}.`)
+    setStatus(`You joined ${roomRow.name}.`)
   }
 
   async function saveAvailability() {
@@ -298,23 +368,107 @@ export default function App() {
 
     if (deleteError) {
       setIsBusy(false)
-      setStatus(deleteError.message)
+      setStatus('We could not update your previous availability. Please try again.')
       return
     }
 
-    const { error: insertError } = await supabase
-      .from('availabilities')
-      .insert(rows)
+    const { error: insertError } = await supabase.from('availabilities').insert(rows)
 
     if (insertError) {
       setIsBusy(false)
-      setStatus(insertError.message)
+      setStatus('We could not save your availability. Please try again.')
       return
     }
 
     await refreshRoomData(room.id, member.id)
     setIsBusy(false)
-    setStatus('Availability saved.')
+    setStatus('Availability saved for this week.')
+  }
+
+  async function updateRoomName() {
+    if (!supabase || !room?.id) return
+    if (!editingRoomName.trim()) {
+      setStatus('Please enter a room name.')
+      return
+    }
+    if (editingRoomName.trim() === room.name) {
+      setStatus('Room name is already up to date.')
+      return
+    }
+
+    setIsBusy(true)
+    setStatus('')
+
+    const { data, error } = await supabase
+      .from('rooms')
+      .update({ name: editingRoomName.trim() })
+      .eq('id', room.id)
+      .select()
+      .single()
+
+    setIsBusy(false)
+
+    if (error) {
+      setStatus('We could not update the room name. Please try again.')
+      return
+    }
+
+    setRoom(data)
+    localStorage.setItem(
+      MEMBER_KEY,
+      JSON.stringify({
+        room: data,
+        member,
+      }),
+    )
+    setDeleteRoomName('')
+    setStatus('Room name updated.')
+  }
+
+  async function deleteRoom() {
+    if (!supabase || !room?.id) return
+    if (deleteRoomName !== room.name) return
+
+    setIsBusy(true)
+    setStatus('')
+
+    const { error: availabilityError } = await supabase
+      .from('availabilities')
+      .delete()
+      .eq('room_id', room.id)
+
+    if (availabilityError) {
+      setIsBusy(false)
+      setStatus('We could not remove this room. Please try again.')
+      return
+    }
+
+    const { error: memberError } = await supabase.from('members').delete().eq('room_id', room.id)
+
+    if (memberError) {
+      setIsBusy(false)
+      setStatus('We could not remove this room. Please try again.')
+      return
+    }
+
+    const { error: roomError } = await supabase.from('rooms').delete().eq('id', room.id)
+
+    setIsBusy(false)
+
+    if (roomError) {
+      setStatus('We could not remove this room. Please try again.')
+      return
+    }
+
+    localStorage.removeItem(MEMBER_KEY)
+    setRoom(null)
+    setMember(null)
+    setMembers([])
+    setAllAvailabilities([])
+    setAvailabilityMap(emptyAvailabilityMap())
+    setDeleteRoomName('')
+    setEditingRoomName('')
+    setStatus('Room deleted.')
   }
 
   function toggleSlot(dayIndex, slotIndex) {
@@ -328,16 +482,21 @@ export default function App() {
   return (
     <div className="app-shell">
       <header className="hero">
-        <p className="eyebrow">Band Rehearsal MVP</p>
-        <h1>Find rehearsal times that work for everyone.</h1>
+        <p className="eyebrow">Band Rehearsal Planner</p>
+        <h1>Set one room, collect availability, and find the cleanest overlap fast.</h1>
         <p className="subtle">
-          Create a room, join with a display name and 4-digit PIN, then mark evening availability.
+          Built for small bands that just need a simple weekly rehearsal decision.
         </p>
       </header>
 
       {!room && (
         <section className="card">
-          <h2>Create a room</h2>
+          <div className="card-header">
+            <div>
+              <p className="section-kicker">Start a room</p>
+              <h2>Create a room</h2>
+            </div>
+          </div>
           <input
             value={roomName}
             onChange={(event) => setRoomName(event.target.value)}
@@ -350,7 +509,12 @@ export default function App() {
       )}
 
       <section className="card">
-        <h2>Join a room</h2>
+        <div className="card-header">
+          <div>
+            <p className="section-kicker">Join an existing room</p>
+            <h2>Join with code and PIN</h2>
+          </div>
+        </div>
         <div className="field-grid">
           <input
             value={joinCode}
@@ -379,19 +543,67 @@ export default function App() {
 
       {room && member && (
         <>
-          <section className="card room-card">
-            <div>
-              <h2>{room.name}</h2>
-              <p className="subtle">Room code: {room.room_code}</p>
+          <section className="card room-hero-card">
+            <div className="room-hero-top">
+              <div>
+                <p className="section-kicker">Current room</p>
+                <h2 className="room-title">{room.name}</h2>
+                <p className="subtle">Room code {room.room_code}</p>
+              </div>
+              <div className="pill">You joined as {member.display_name}</div>
             </div>
-            <div className="pill">You are {member.display_name}</div>
+
+            <div className="room-meta-grid">
+              <div className="meta-card">
+                <span className="meta-label">Members</span>
+                <strong>{members.length}</strong>
+              </div>
+              <div className="meta-card">
+                <span className="meta-label">Submitted</span>
+                <strong>{submittedMembers.length}</strong>
+              </div>
+            </div>
+
+            <div className="member-list">
+              {members.map((memberRow) => (
+                <div key={memberRow.id} className="member-pill">
+                  {memberRow.display_name}
+                </div>
+              ))}
+            </div>
+
+            <p className="summary-line">
+              {missingMembers.length > 0
+                ? `Still not submitted: ${missingMembers.map((memberRow) => memberRow.display_name).join(', ')}`
+                : 'Everyone has submitted their availability.'}
+            </p>
+          </section>
+
+          <section className="card">
+            <div className="card-header">
+              <div>
+                <p className="section-kicker">Room settings</p>
+                <h2>Edit room name</h2>
+              </div>
+            </div>
+            <div className="inline-form">
+              <input
+                value={editingRoomName}
+                onChange={(event) => setEditingRoomName(event.target.value)}
+                placeholder="Room name"
+              />
+              <button disabled={isBusy} onClick={updateRoomName}>
+                Save name
+              </button>
+            </div>
           </section>
 
           <section className="card">
             <div className="section-head">
               <div>
+                <p className="section-kicker">Weekly plan</p>
                 <h2>Weekly availability</h2>
-                <p className="subtle">Tap slots you can make. Evening only for this MVP.</p>
+                <p className="subtle">Tap the evening slots you can make, then save once.</p>
               </div>
               <button disabled={isBusy} onClick={saveAvailability}>
                 Save
@@ -407,7 +619,7 @@ export default function App() {
               ))}
 
               {SLOTS.map((slot, slotIndex) => (
-                <FragmentRow
+                <AvailabilityRow
                   key={slot}
                   slot={slot}
                   slotIndex={slotIndex}
@@ -419,33 +631,55 @@ export default function App() {
           </section>
 
           <section className="card">
-            <h2>Best overlaps</h2>
-            {bestTimes.length === 0 ? (
-              <p className="subtle">No saved overlap data yet.</p>
-            ) : (
-              <div className="results">
-                {bestTimes.map((item) => (
-                  <div key={item.label} className="result-row">
-                    <div>
-                      <strong>{item.label}</strong>
-                      <p>{item.count} members available</p>
-                    </div>
-                    <span>{item.names.join(', ')}</span>
-                  </div>
-                ))}
+            <div className="card-header">
+              <div>
+                <p className="section-kicker">Recommendations</p>
+                <h2>Best rehearsal times</h2>
               </div>
-            )}
+            </div>
+
+            <ResultSection
+              title="Everyone can make it"
+              emptyText="No fully matched times yet."
+              items={fullyMatchedTimes}
+              totalMembers={members.length}
+            />
+            <ResultSection
+              title="Only one member missing"
+              emptyText="No near-perfect matches yet."
+              items={almostMatchedTimes}
+              totalMembers={members.length}
+            />
+            <ResultSection
+              title="Overall ranking"
+              emptyText="No saved overlap data yet."
+              items={recommendedTimes}
+              totalMembers={members.length}
+            />
           </section>
 
-          <section className="card">
-            <h2>Members</h2>
-            <div className="member-list">
-              {members.map((memberRow) => (
-                <div key={memberRow.id} className="member-pill">
-                  {memberRow.display_name}
-                </div>
-              ))}
+          <section className="card danger-card">
+            <div className="card-header">
+              <div>
+                <p className="section-kicker">Danger zone</p>
+                <h2>Delete room</h2>
+              </div>
             </div>
+            <p className="warning-copy">
+              Deleting this room will also remove all members and saved availability data.
+            </p>
+            <input
+              value={deleteRoomName}
+              onChange={(event) => setDeleteRoomName(event.target.value)}
+              placeholder={`Type "${room.name}" to confirm`}
+            />
+            <button
+              className="danger-button"
+              disabled={isBusy || deleteRoomName !== room.name}
+              onClick={deleteRoom}
+            >
+              Delete room
+            </button>
           </section>
         </>
       )}
@@ -453,7 +687,7 @@ export default function App() {
   )
 }
 
-function FragmentRow({ slot, slotIndex, availabilityMap, onToggle }) {
+function AvailabilityRow({ slot, slotIndex, availabilityMap, onToggle }) {
   return (
     <>
       <div className="time-label">{slot}</div>
@@ -473,5 +707,28 @@ function FragmentRow({ slot, slotIndex, availabilityMap, onToggle }) {
         )
       })}
     </>
+  )
+}
+
+function ResultSection({ title, emptyText, items, totalMembers }) {
+  return (
+    <div className="result-group">
+      <h3>{title}</h3>
+      {items.length === 0 ? (
+        <p className="subtle">{emptyText}</p>
+      ) : (
+        <div className="results">
+          {items.map((item) => (
+            <div key={`${title}-${item.label}`} className="result-row">
+              <div>
+                <strong>{item.label}</strong>
+                <p>{item.names.join(', ') || 'No member names yet'}</p>
+              </div>
+              <div className="result-count">{item.count}/{totalMembers || 0} available</div>
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
   )
 }
