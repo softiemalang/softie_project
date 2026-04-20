@@ -2,6 +2,7 @@ import {
   DEFAULT_DURATION_MINUTES,
   DEFAULT_WARNING_OFFSET,
   EVENT_STATUS_META,
+  SCHEDULER_BRANCHES,
   SCHEDULER_TAGS,
   TODAY_HOURS,
   WORK_EVENT_META,
@@ -34,7 +35,7 @@ export function createReservationDraft() {
 export function mapReservationToFormValues(reservation) {
   return {
     reservationDate: reservation.reservation_date,
-    branch: reservation.branch || '',
+    branch: SCHEDULER_BRANCHES.includes(reservation.branch) ? reservation.branch : '',
     room: reservation.room || '',
     customerName: reservation.customer_name || '',
     startTime: toLocalTimeInputValue(reservation.start_at),

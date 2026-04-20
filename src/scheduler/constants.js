@@ -5,6 +5,8 @@ export const SCHEDULER_TAGS = [
   { value: 'other', shortLabel: '기타', fullLabel: '기타' },
 ]
 
+export const SCHEDULER_BRANCHES = ['신촌점', '연대점', '사당1호점', '사당2호점']
+
 export const WORK_EVENT_META = {
   checkin: { label: '입실', tone: 'checkin' },
   warning: { label: '퇴실등', tone: 'warning' },

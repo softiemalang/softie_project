@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from 'react'
 import { navigate } from '../lib/router'
 import { listTodayWorkEvents, getReservationById, saveReservation, deleteReservation, updateWorkEventStatus } from './api'
-import { SCHEDULER_TAGS, TODAY_HOURS } from './constants'
+import { SCHEDULER_BRANCHES, SCHEDULER_TAGS, TODAY_HOURS } from './constants'
 import { buildReservationPayload, createReservationDraft, getRoomStatus, getTagMeta, groupTodayEvents, mapReservationToFormValues, validateReservationForm } from './helpers'
 import { formatDateLabel, toLocalDateInputValue } from './time'
 
@@ -118,7 +118,6 @@ function TodaySchedulerPage() {
     return () => window.removeEventListener(GO_TO_TODAY_EVENT, handleGoToToday)
   }, [])
 
-  const branches = Array.from(new Set(events.map((item) => item.reservation?.branch).filter(Boolean)))
   const rooms = Array.from(
     new Set(
       events
@@ -176,7 +175,7 @@ function TodaySchedulerPage() {
             onChange={(event) => setFilters((current) => ({ ...current, branch: event.target.value, room: 'all' }))}
           >
             <option value="all">전체 지점</option>
-            {branches.map((branch) => (
+            {SCHEDULER_BRANCHES.map((branch) => (
               <option key={branch} value={branch}>
                 {branch}
               </option>
@@ -422,7 +421,17 @@ function ReservationEditorPage({ mode, reservationId }) {
             <div className="scheduler-two-up">
               <label>
                 지점
-                <input value={formValues.branch} onChange={(event) => updateField('branch', event.target.value)} placeholder="예: 합정점" />
+                <select
+                  value={formValues.branch}
+                  onChange={(event) => updateField('branch', event.target.value)}
+                >
+                  <option value="">지점 선택</option>
+                  {SCHEDULER_BRANCHES.map((branch) => (
+                    <option key={branch} value={branch}>
+                      {branch}
+                    </option>
+                  ))}
+                </select>
               </label>
 
               <label>
