@@ -24,7 +24,7 @@ export function createReservationDraft() {
     room: '',
     customerName: '',
     startTime,
-    durationMinutes: DEFAULT_DURATION_MINUTES,
+    durationHours: DEFAULT_DURATION_MINUTES / 60,
     warningOffsetMinutes: DEFAULT_WARNING_OFFSET,
     tags: [],
     notesText: '',
@@ -38,8 +38,11 @@ export function mapReservationToFormValues(reservation) {
     room: reservation.room || '',
     customerName: reservation.customer_name || '',
     startTime: toLocalTimeInputValue(reservation.start_at),
-    durationMinutes: reservation.duration_minutes || DEFAULT_DURATION_MINUTES,
-    warningOffsetMinutes: reservation.warning_offset_minutes || DEFAULT_WARNING_OFFSET,
+    durationHours: Math.max(1, Math.round((reservation.duration_minutes || DEFAULT_DURATION_MINUTES) / 60)),
+    warningOffsetMinutes:
+      reservation.warning_offset_minutes === 15
+        ? 15
+        : DEFAULT_WARNING_OFFSET,
     tags: reservation.tags || [],
     notesText: reservation.notes_text || '',
   }
@@ -47,8 +50,9 @@ export function mapReservationToFormValues(reservation) {
 
 export function buildReservationPayload(formValues) {
   const startAt = combineLocalDateTime(formValues.reservationDate, formValues.startTime)
-  const durationMinutes = Number(formValues.durationMinutes) || DEFAULT_DURATION_MINUTES
-  const warningOffsetMinutes = Number(formValues.warningOffsetMinutes) || DEFAULT_WARNING_OFFSET
+  const durationHours = Number(formValues.durationHours) || DEFAULT_DURATION_MINUTES / 60
+  const durationMinutes = durationHours * 60
+  const warningOffsetMinutes = Number(formValues.warningOffsetMinutes) === 15 ? 15 : DEFAULT_WARNING_OFFSET
   const endAt = addMinutes(startAt, durationMinutes)
 
   return {
@@ -72,11 +76,12 @@ export function validateReservationForm(formValues) {
   if (!formValues.customerName.trim()) return '예약자 이름을 입력해 주세요.'
   if (!formValues.startTime) return '시작 시간을 입력해 주세요.'
 
-  const durationMinutes = Number(formValues.durationMinutes)
-  if (!durationMinutes || durationMinutes < 30) return '이용 시간은 30분 이상으로 입력해 주세요.'
+  const durationHours = Number(formValues.durationHours)
+  if (!durationHours || durationHours < 1) return '이용 시간은 1시간 이상으로 입력해 주세요.'
 
+  const durationMinutes = durationHours * 60
   const warningOffsetMinutes = Number(formValues.warningOffsetMinutes)
-  if (warningOffsetMinutes < 0) return '퇴실등 시간은 0분 이상이어야 해요.'
+  if (![10, 15].includes(warningOffsetMinutes)) return '퇴실등 시간은 10분 전 또는 15분 전만 선택할 수 있어요.'
   if (warningOffsetMinutes > durationMinutes) return '퇴실등 시간은 이용 시간보다 길 수 없어요.'
 
   return ''

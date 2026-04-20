@@ -243,6 +243,7 @@ function EventCard({ item, onToggleDone, isSaving }) {
   const reservation = item.reservation || {}
   const cardClassName = [
     'scheduler-event-card',
+    `event-${item.event_type}`,
     item.status === 'done' ? 'done' : '',
     item.isOverdue ? 'overdue' : '',
     item.isUpcomingSoon ? 'upcoming' : '',
@@ -419,6 +420,7 @@ function ReservationEditorPage({ mode, reservationId }) {
               <label>
                 시작 시간
                 <input
+                  className="scheduler-compact-input"
                   type="time"
                   value={formValues.startTime}
                   onChange={(event) => updateField('startTime', event.target.value)}
@@ -426,34 +428,37 @@ function ReservationEditorPage({ mode, reservationId }) {
               </label>
 
               <label>
-                이용 시간(분)
+                이용 시간(시간)
                 <input
+                  className="scheduler-compact-input"
                   type="number"
-                  min="30"
-                  step="30"
-                  value={formValues.durationMinutes}
-                  onChange={(event) => updateField('durationMinutes', event.target.value)}
+                  min="1"
+                  step="1"
+                  inputMode="numeric"
+                  value={formValues.durationHours}
+                  onChange={(event) => updateField('durationHours', event.target.value)}
                 />
               </label>
             </div>
 
             <div className="scheduler-preset-row">
-              {[60, 90, 120, 180].map((minutes) => (
-                <button key={minutes} type="button" className="soft-button" onClick={() => updateField('durationMinutes', minutes)}>
-                  {minutes}분
+              {[1, 2, 3, 4].map((hours) => (
+                <button key={hours} type="button" className="soft-button" onClick={() => updateField('durationHours', hours)}>
+                  {hours}h
                 </button>
               ))}
             </div>
 
             <label>
-              퇴실등(분 전)
-              <input
-                type="number"
-                min="0"
-                step="5"
+              퇴실등 시점
+              <select
+                className="scheduler-compact-input"
                 value={formValues.warningOffsetMinutes}
                 onChange={(event) => updateField('warningOffsetMinutes', event.target.value)}
-              />
+              >
+                <option value="10">10분 전</option>
+                <option value="15">15분 전</option>
+              </select>
             </label>
 
             <div>

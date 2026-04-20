@@ -604,13 +604,13 @@ textarea {
 }
 
 .scheduler-event-type.warning {
-  background: #fff1dc;
+  background: #ffe6b3;
   color: #9a3412;
 }
 
 .scheduler-event-type.checkout {
-  background: #fce7ef;
-  color: #9f1239;
+  background: #ffd6cf;
+  color: #b42318;
 }
 
 .scheduler-tag-badge {
@@ -627,8 +627,27 @@ textarea {
 .scheduler-event-card {
   border-radius: 20px;
   border: 1px solid #eadfce;
+  border-left: 5px solid #d6c8b6;
   background: #fffdf9;
   padding: 0.9rem;
+}
+
+.scheduler-event-card.event-checkin {
+  border-color: #cde8e2;
+  border-left-color: #1f8a78;
+  background: linear-gradient(180deg, #fffdf9 0%, #f4fcfa 100%);
+}
+
+.scheduler-event-card.event-warning {
+  border-color: #f0d7a7;
+  border-left-color: #d97706;
+  background: linear-gradient(180deg, #fffdf9 0%, #fff8eb 100%);
+}
+
+.scheduler-event-card.event-checkout {
+  border-color: #f3c2b8;
+  border-left-color: #e76f51;
+  background: linear-gradient(180deg, #fffdf9 0%, #fff1ee 100%);
 }
 
 .scheduler-event-card.overdue {
@@ -643,6 +662,21 @@ textarea {
 
 .scheduler-event-card.done {
   opacity: 0.72;
+}
+
+.scheduler-event-card.event-checkin .scheduler-event-urgency,
+.scheduler-event-card.event-checkin .scheduler-event-main strong {
+  color: #0f766e;
+}
+
+.scheduler-event-card.event-warning .scheduler-event-urgency,
+.scheduler-event-card.event-warning .scheduler-event-main strong {
+  color: #b45309;
+}
+
+.scheduler-event-card.event-checkout .scheduler-event-urgency,
+.scheduler-event-card.event-checkout .scheduler-event-main strong {
+  color: #c2410c;
 }
 
 .scheduler-event-main p,
@@ -676,6 +710,7 @@ textarea {
 .scheduler-form {
   display: grid;
   gap: 0.9rem;
+  min-width: 0;
 }
 
 .scheduler-form label,
@@ -684,12 +719,27 @@ textarea {
   gap: 0.45rem;
   font-weight: 600;
   color: #4b5563;
+  min-width: 0;
 }
 
 .scheduler-two-up {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 0.75rem;
+}
+
+.scheduler-form input,
+.scheduler-form select,
+.scheduler-form textarea,
+.scheduler-controls input,
+.scheduler-controls select {
+  max-width: 100%;
+  min-width: 0;
+}
+
+.scheduler-compact-input {
+  width: 100%;
+  max-width: 100%;
 }
 
 .scheduler-chip {
@@ -737,5 +787,16 @@ textarea {
   .scheduler-done-button,
   .scheduler-form-actions > button {
     width: 100%;
+  }
+
+  .scheduler-panel,
+  .scheduler-topbar {
+    overflow-x: clip;
+  }
+
+  .scheduler-form label,
+  .scheduler-two-up > *,
+  .scheduler-date-row > * {
+    min-width: 0;
   }
 }
