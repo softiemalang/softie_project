@@ -147,6 +147,7 @@ export default function App() {
   const [status, setStatus] = useState('')
   const [room, setRoom] = useState(null)
   const [member, setMember] = useState(null)
+  const [pendingRoomSession, setPendingRoomSession] = useState(null)
   const [members, setMembers] = useState([])
   const [availabilityMap, setAvailabilityMap] = useState(emptyAvailabilityMap)
   const [savedAvailabilityMap, setSavedAvailabilityMap] = useState(emptyAvailabilityMap)
@@ -191,15 +192,16 @@ export default function App() {
 
     try {
       const parsed = JSON.parse(saved)
-      if (parsed?.room) {
+      if (parsed?.room && parsed?.member) {
         setRoom(parsed.room)
         setEditingRoomName(parsed.room.name || '')
         setJoinCode(parsed.room.room_code || '')
-      }
-      if (parsed?.member) {
         setMember(parsed.member)
         setMemberDisplayName(parsed.member.display_name || '')
         setReauthName(parsed.member.display_name || '')
+      } else if (parsed?.room) {
+        setPendingRoomSession(parsed.room)
+        setJoinCode(parsed.room.room_code || '')
       }
     } catch {
       localStorage.removeItem(MEMBER_KEY)
@@ -230,6 +232,7 @@ export default function App() {
     localStorage.removeItem(MEMBER_KEY)
     setRoom(null)
     setMember(null)
+    setPendingRoomSession(null)
     setMembers([])
     setAllAvailabilities([])
     setAvailabilityMap(emptyAvailabilityMap())
@@ -242,6 +245,25 @@ export default function App() {
     setReauthName('')
     setReauthPin('')
     setJoinCode('')
+  }
+
+  function clearPendingRoomSession() {
+    setPendingRoomSession(null)
+    setReauthName('')
+    setReauthPin('')
+    if (!room) {
+      localStorage.removeItem(MEMBER_KEY)
+      setJoinCode('')
+    }
+  }
+
+  function continueExistingRoom() {
+    if (!pendingRoomSession) return
+    setRoom(pendingRoomSession)
+    setEditingRoomName(pendingRoomSession.name || '')
+    setJoinCode(pendingRoomSession.room_code || '')
+    setPendingRoomSession(null)
+    setStatus('')
   }
 
   function applyLoadedState({ roomRow, memberRows, availabilityRows, activeMember, preserveDraft }) {
@@ -314,12 +336,13 @@ export default function App() {
         : null
 
       if (memberId && !activeMember) {
-        setRoom(roomRow)
-        setMembers(memberRows)
-        setAllAvailabilities(availabilityRows)
-        setEditingRoomName(roomRow.name || '')
-        setJoinCode(roomRow.room_code || '')
+        setRoom(null)
         setMember(null)
+        setPendingRoomSession(roomRow)
+        setMembers([])
+        setAllAvailabilities([])
+        setEditingRoomName('')
+        setJoinCode(roomRow.room_code || '')
         setMemberDisplayName('')
         setCurrentPinInput('')
         setNewPinInput('')
@@ -361,6 +384,9 @@ export default function App() {
 
     setIsBusy(true)
     setStatus('')
+    clearPendingRoomSession()
+    setRoom(null)
+    setMember(null)
 
     const roomCode = makeRoomCode()
     const { data, error } = await supabase
@@ -422,6 +448,10 @@ export default function App() {
       setStatus('We could not find a room with that code.')
       return
     }
+
+    clearPendingRoomSession()
+    setRoom(null)
+    setMember(null)
 
     let matchingMembers = []
     try {
@@ -772,6 +802,28 @@ export default function App() {
           <button disabled={isBusy} onClick={createRoom}>
             {isBusy ? 'Creating...' : 'Create room'}
           </button>
+        </section>
+      )}
+
+      {!room && pendingRoomSession && (
+        <section className="card">
+          <div className="card-header">
+            <div>
+              <p className="section-kicker">Continue existing room</p>
+              <h2>{pendingRoomSession.name}</h2>
+            </div>
+          </div>
+          <p className="subtle">
+            A previous room session was found. Continue only if you want to re-enter this room.
+          </p>
+          <div className="action-row">
+            <button type="button" onClick={continueExistingRoom}>
+              Continue this room
+            </button>
+            <button type="button" className="soft-button" onClick={clearPendingRoomSession}>
+              Start fresh
+            </button>
+          </div>
         </section>
       )}
 
