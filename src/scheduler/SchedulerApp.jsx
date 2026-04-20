@@ -47,13 +47,10 @@ export function SchedulerApp({ pathname }) {
   )
 }
 
-function SchedulerTopbar({ title, rightAction }) {
+function SchedulerTopbar({ rightAction }) {
   return (
     <header className="scheduler-topbar">
-      <div>
-        <p className="scheduler-eyebrow">Internal Scheduler</p>
-        <h1>{title}</h1>
-      </div>
+      <p className="scheduler-eyebrow">Internal Scheduler</p>
       <div className="scheduler-topbar-actions">
         <NavButton path="/scheduler" label="오늘" />
         <NavButton path="/scheduler/new" label="새 예약" isPrimary />
@@ -88,6 +85,12 @@ function TodaySchedulerPage() {
   const [selectedDate, setSelectedDate] = useState(toLocalDateInputValue())
   const [events, setEvents] = useState([])
   const [filters, setFilters] = useState({ branch: 'all', room: 'all' })
+  const [draftFilters, setDraftFilters] = useState({
+    date: toLocalDateInputValue(),
+    branch: 'all',
+    room: 'all',
+  })
+  const [isFilterSheetOpen, setIsFilterSheetOpen] = useState(false)
   const [status, setStatus] = useState('')
   const [isLoading, setIsLoading] = useState(true)
   const [pendingStatusId, setPendingStatusId] = useState('')
@@ -119,6 +122,7 @@ function TodaySchedulerPage() {
   }, [])
 
   const rooms = filters.branch === 'all' ? [] : getRoomsForBranch(filters.branch)
+  const draftRooms = draftFilters.branch === 'all' ? [] : getRoomsForBranch(draftFilters.branch)
 
   const filteredEvents = events.filter((item) => {
     if (filters.branch !== 'all' && item.reservation?.branch !== filters.branch) return false
@@ -143,56 +147,132 @@ function TodaySchedulerPage() {
     }
   }
 
+  function openFilterSheet() {
+    setDraftFilters({
+      date: selectedDate,
+      branch: filters.branch,
+      room: filters.room,
+    })
+    setIsFilterSheetOpen(true)
+  }
+
+  function applyFilterChanges() {
+    setSelectedDate(draftFilters.date)
+    setFilters({
+      branch: draftFilters.branch,
+      room: draftFilters.room,
+    })
+    setIsFilterSheetOpen(false)
+  }
+
+  function updateDraftFilter(field, value) {
+    setDraftFilters((current) => {
+      if (field === 'branch') {
+        const nextRooms = value === 'all' ? [] : getRoomsForBranch(value)
+        return {
+          ...current,
+          branch: value,
+          room: nextRooms.includes(current.room) ? current.room : 'all',
+        }
+      }
+
+      return { ...current, [field]: value }
+    })
+  }
+
+  const filterSummary = [
+    formatDateLabel(selectedDate),
+    filters.branch === 'all' ? '전체 지점' : filters.branch,
+    filters.room === 'all' ? '전체 룸' : filters.room,
+  ].join(' · ')
+
   return (
     <div className="scheduler-shell">
       <SchedulerTopbar title="오늘 운영 보드" />
 
       <section className="scheduler-panel scheduler-controls">
-        <div className="scheduler-date-row">
+        <div className="scheduler-filter-summary-row">
           <div>
             <p className="scheduler-section-label">운영 시간</p>
             <strong>{TODAY_HOURS.start}:00 - {TODAY_HOURS.end}:00</strong>
-            <p className="subtle">{formatDateLabel(selectedDate)}</p>
+            <p className="subtle">{filterSummary}</p>
           </div>
-          <input
-            className="scheduler-compact-input"
-            type="date"
-            value={selectedDate}
-            onChange={(event) => setSelectedDate(event.target.value)}
-          />
-        </div>
-
-        <div className="scheduler-filter-row">
-          <select
-            value={filters.branch}
-            onChange={(event) => setFilters((current) => ({ ...current, branch: event.target.value, room: 'all' }))}
-          >
-            <option value="all">전체 지점</option>
-            {SCHEDULER_BRANCHES.map((branch) => (
-              <option key={branch} value={branch}>
-                {branch}
-              </option>
-            ))}
-          </select>
-
-          <select
-            value={filters.room}
-            onChange={(event) => setFilters((current) => ({ ...current, room: event.target.value }))}
-            disabled={filters.branch === 'all'}
-          >
-            <option value="all">{filters.branch === 'all' ? '지점을 먼저 선택' : '전체 룸'}</option>
-            {rooms.map((room) => (
-              <option key={room} value={room}>
-                {room}
-              </option>
-            ))}
-          </select>
-
-          <button type="button" className="soft-button" onClick={loadEvents}>
-            새로고침
+          <button type="button" className="soft-button" onClick={openFilterSheet}>
+            변경
           </button>
         </div>
       </section>
+
+      {isFilterSheetOpen ? (
+        <div className="scheduler-sheet-backdrop" onClick={() => setIsFilterSheetOpen(false)}>
+          <section
+            className="scheduler-sheet"
+            role="dialog"
+            aria-modal="true"
+            aria-label="필터 변경"
+            onClick={(event) => event.stopPropagation()}
+          >
+            <div className="scheduler-section-head">
+              <div>
+                <p className="scheduler-section-label">보기 변경</p>
+                <h2>날짜와 필터</h2>
+              </div>
+            </div>
+
+            <div className="scheduler-form">
+              <label>
+                날짜
+                <input
+                  className="scheduler-compact-input"
+                  type="date"
+                  value={draftFilters.date}
+                  onChange={(event) => updateDraftFilter('date', event.target.value)}
+                />
+              </label>
+
+              <label>
+                지점
+                <select
+                  value={draftFilters.branch}
+                  onChange={(event) => updateDraftFilter('branch', event.target.value)}
+                >
+                  <option value="all">전체 지점</option>
+                  {SCHEDULER_BRANCHES.map((branch) => (
+                    <option key={branch} value={branch}>
+                      {branch}
+                    </option>
+                  ))}
+                </select>
+              </label>
+
+              <label>
+                룸
+                <select
+                  value={draftFilters.room}
+                  onChange={(event) => updateDraftFilter('room', event.target.value)}
+                  disabled={draftFilters.branch === 'all'}
+                >
+                  <option value="all">{draftFilters.branch === 'all' ? '전체 룸' : '전체 룸'}</option>
+                  {draftRooms.map((room) => (
+                    <option key={room} value={room}>
+                      {room}
+                    </option>
+                  ))}
+                </select>
+              </label>
+            </div>
+
+            <div className="scheduler-form-actions">
+              <button type="button" className="soft-button" onClick={() => setIsFilterSheetOpen(false)}>
+                닫기
+              </button>
+              <button type="button" onClick={applyFilterChanges}>
+                적용
+              </button>
+            </div>
+          </section>
+        </div>
+      ) : null}
 
       {status && <p className="status">{status}</p>}
 
