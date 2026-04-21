@@ -719,12 +719,12 @@ textarea {
   border: 1px solid #eadfce;
   border-left: 5px solid #d6c8b6;
   background: #fffdf9;
-  padding: 0.28rem 0.5rem 0.44rem;
+  padding: 0.28rem 0.5rem 0.48rem;
 }
 
 .scheduler-event-card.has-note {
   gap: 0.14rem;
-  padding: 0.24rem 0.5rem 0.38rem;
+  padding: 0.24rem 0.5rem 0.42rem;
 }
 
 .scheduler-event-card.event-checkin {
