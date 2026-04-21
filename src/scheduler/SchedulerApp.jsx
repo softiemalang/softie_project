@@ -348,6 +348,7 @@ function EventCard({ item, onToggleDone, isSaving }) {
   const cardClassName = [
     'scheduler-event-card',
     `event-${item.event_type}`,
+    item.memo_snapshot ? 'has-note' : '',
     item.status === 'done' ? 'done' : '',
     item.isOverdue ? 'overdue' : '',
     item.isUpcomingSoon ? 'upcoming' : '',

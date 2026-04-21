@@ -714,12 +714,17 @@ textarea {
 
 .scheduler-event-card {
   display: grid;
-  gap: var(--scheduler-gap-sm);
+  gap: 0.18rem;
   border-radius: var(--scheduler-radius-lg);
   border: 1px solid #eadfce;
   border-left: 5px solid #d6c8b6;
   background: #fffdf9;
-  padding: 0.5rem;
+  padding: 0.28rem 0.5rem 0.44rem;
+}
+
+.scheduler-event-card.has-note {
+  gap: 0.14rem;
+  padding: 0.24rem 0.5rem 0.38rem;
 }
 
 .scheduler-event-card.event-checkin {
@@ -807,9 +812,9 @@ textarea {
   background: #f2ede5;
   color: #4b5563;
   min-height: 24px;
-  padding: 0.1rem 0.46rem;
+  padding: 0.1rem 0.4rem;
   border-radius: var(--scheduler-radius-md);
-  font-size: 0.72rem;
+  font-size: 0.68rem;
   font-weight: 600;
   line-height: 1;
 }
@@ -832,6 +837,7 @@ textarea {
   gap: 0.34rem;
   min-width: 0;
   padding-inline: var(--scheduler-content-inset);
+  margin-top: -0.06rem;
 }
 
 .scheduler-event-summary > * {
@@ -872,8 +878,8 @@ textarea {
 .scheduler-tag-badge,
 .scheduler-status-badge {
   min-height: 24px;
-  padding: 0.1rem 0.46rem;
-  font-size: 0.72rem;
+  padding: 0.1rem 0.42rem;
+  font-size: 0.68rem;
   display: inline-flex;
   align-items: center;
 }
@@ -887,22 +893,34 @@ textarea {
 }
 
 .scheduler-event-note {
-  font-size: 0.8rem;
+  font-size: 0.76rem;
+  padding-left: calc(var(--scheduler-content-inset) + 0.22rem);
+  padding-right: var(--scheduler-content-inset);
+  margin-top: -0.08rem;
+  margin-bottom: 0.06rem;
+  line-height: 1.2;
+}
+
+.scheduler-event-card.has-note .scheduler-event-note {
+  margin-top: -0.1rem;
+  margin-bottom: 0.18rem;
+  padding-left: calc(var(--scheduler-content-inset) + 0.12rem);
 }
 
 .scheduler-form {
   display: grid;
-  gap: var(--scheduler-gap-lg);
+  gap: 0.72rem;
   min-width: 0;
 }
 
 .scheduler-form label,
 .scheduler-field-label {
   display: grid;
-  gap: var(--scheduler-gap-xs);
+  gap: 0.34rem;
   font-weight: 600;
   color: #4b5563;
   min-width: 0;
+  line-height: 1.15;
 }
 
 .scheduler-two-up {
@@ -951,11 +969,11 @@ textarea {
 }
 
 .scheduler-chip {
-  min-height: var(--scheduler-control-min-h);
-  padding: 0.42rem 0.68rem;
+  min-height: 36px;
+  padding: 0.32rem 0.62rem;
   background: #efe6d8;
   color: #5b4a35;
-  font-size: 0.82rem;
+  font-size: 0.78rem;
 }
 
 .scheduler-chip.active {
@@ -964,14 +982,14 @@ textarea {
 }
 
 .scheduler-room-picker {
-  min-height: var(--scheduler-control-min-h);
+  min-height: 36px;
 }
 
 .scheduler-room-picker-empty {
   display: flex;
   align-items: center;
   width: 100%;
-  min-height: var(--scheduler-control-min-h);
+  min-height: 36px;
   padding: var(--scheduler-control-pad-y) var(--scheduler-control-pad-x);
   border: 1px solid var(--line);
   border-radius: var(--scheduler-radius-md);
@@ -986,12 +1004,12 @@ textarea {
 }
 
 .scheduler-room-option {
-  min-height: var(--scheduler-control-min-h);
-  padding: 0.42rem 0.62rem;
+  min-height: 36px;
+  padding: 0.32rem 0.56rem;
   border-radius: var(--scheduler-radius-md);
   background: #efe6d8;
   color: #5b4a35;
-  font-size: 0.82rem;
+  font-size: 0.78rem;
 }
 
 .scheduler-form input,
@@ -999,9 +1017,28 @@ textarea {
 .scheduler-form textarea,
 .scheduler-controls input,
 .scheduler-controls select {
-  min-height: var(--scheduler-control-min-h);
-  padding: var(--scheduler-control-pad-y) var(--scheduler-control-pad-x);
+  min-height: 42px;
+  padding: 0.58rem 0.82rem;
   border-radius: var(--scheduler-radius-md);
+}
+
+.scheduler-form textarea {
+  min-height: 132px;
+  padding-top: 0.72rem;
+  line-height: 1.35;
+}
+
+.scheduler-form .scheduler-chip-row {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--scheduler-gap-xs);
+}
+
+.scheduler-form .scheduler-chip-row > .scheduler-chip {
+  width: 100%;
+  justify-content: center;
+  min-width: 0;
+  white-space: nowrap;
 }
 
 .scheduler-room-option.active {
@@ -1071,7 +1108,11 @@ textarea {
   gap: var(--scheduler-gap-xs);
   align-items: center;
   padding-inline: var(--scheduler-content-inset);
-  margin-top: -0.14rem;
+  margin-top: -0.08rem;
+}
+
+.scheduler-event-card.has-note .scheduler-event-actions {
+  margin-top: 0;
 }
 
 .scheduler-event-actions .scheduler-event-meta {
