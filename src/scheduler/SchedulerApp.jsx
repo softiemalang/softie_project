@@ -197,7 +197,7 @@ function TodaySchedulerPage() {
             <strong>{TODAY_HOURS.start}:00 - {TODAY_HOURS.end}:00</strong>
             <p className="subtle">{filterSummary}</p>
           </div>
-          <button type="button" className="soft-button" onClick={openFilterSheet}>
+          <button type="button" className="soft-button scheduler-summary-button" onClick={openFilterSheet}>
             변경
           </button>
         </div>
@@ -304,8 +304,15 @@ function TodaySchedulerPage() {
 }
 
 function TodayEventSection({ title, items, emptyText, onToggleDone, pendingStatusId }) {
+  const normalizedEmptyText = (() => {
+    if (emptyText === '불러오는 중...') return emptyText
+    if (title === '지금 처리할 일') return '처리할 작업 없음'
+    if (title === '곧 다가오는 일정') return '다가오는 일정 없음'
+    return emptyText
+  })()
+
   return (
-    <section className="scheduler-panel">
+    <section className={`scheduler-panel ${items.length === 0 ? 'scheduler-panel-empty' : ''}`}>
       <div className="scheduler-section-head">
         <div>
           <p className="scheduler-section-label">{title}</p>
@@ -314,7 +321,7 @@ function TodayEventSection({ title, items, emptyText, onToggleDone, pendingStatu
       </div>
 
       {items.length === 0 ? (
-        <p className="subtle">{emptyText}</p>
+        <p className="subtle scheduler-empty-note">{normalizedEmptyText}</p>
       ) : (
         <div className="scheduler-event-list">
           {items.map((item) => (
@@ -333,6 +340,11 @@ function TodayEventSection({ title, items, emptyText, onToggleDone, pendingStatu
 
 function EventCard({ item, onToggleDone, isSaving }) {
   const reservation = item.reservation || {}
+  const urgencyText = item.isOverdue
+    ? `${Math.abs(item.minutesAway)}분 지남`
+    : item.minutesAway <= 60
+      ? `${item.minutesAway}분 후`
+      : ''
   const cardClassName = [
     'scheduler-event-card',
     `event-${item.event_type}`,
@@ -345,48 +357,44 @@ function EventCard({ item, onToggleDone, isSaving }) {
 
   return (
     <article className={cardClassName}>
-      <div className="scheduler-event-top">
+      <div className="scheduler-event-summary">
         <div className="scheduler-event-time-block">
           <strong>{item.timeLabel}</strong>
-          <span className={`scheduler-event-type ${item.meta?.tone || ''}`}>{item.meta?.label}</span>
         </div>
-        <button
-          type="button"
-          className={item.status === 'done' ? 'soft-button' : 'scheduler-done-button'}
-          disabled={isSaving}
-          onClick={() => onToggleDone(item)}
-        >
-          {item.status === 'done' ? '완료 취소' : '완료'}
-        </button>
-      </div>
-
-      <div className="scheduler-event-main">
-        <strong>{reservation.branch} · {reservation.room}</strong>
-        <p>{reservation.customer_name}</p>
-      </div>
-
-      <div className="scheduler-event-meta">
-        <span className={`scheduler-status-badge status-${item.status}`}>{item.statusMeta?.label}</span>
-        {(item.tags_snapshot || []).map((tag) => (
-          <span key={tag} className="scheduler-tag-badge">
-            {getTagMeta(tag).shortLabel}
-          </span>
-        ))}
+        <span className={`scheduler-event-type ${item.meta?.tone || ''}`}>{item.meta?.label}</span>
+        <strong className="scheduler-event-location">{reservation.branch} · {reservation.room}</strong>
+        <p className="scheduler-event-customer">{reservation.customer_name}</p>
+        {urgencyText ? <span className="scheduler-event-urgency scheduler-event-urgency-inline">{urgencyText}</span> : null}
       </div>
 
       {item.memo_snapshot ? <p className="scheduler-event-note">{item.memo_snapshot}</p> : null}
 
       <div className="scheduler-event-actions">
-        <span className="scheduler-event-urgency">
-          {item.isOverdue
-            ? `${Math.abs(item.minutesAway)}분 지남`
-            : item.minutesAway <= 60
-              ? `${item.minutesAway}분 후`
-              : ''}
-        </span>
-        <button type="button" className="scheduler-link-button" onClick={() => navigate(`/scheduler/${item.reservation_id}`)}>
-          예약 수정
-        </button>
+        <div className="scheduler-event-meta">
+          <span className={`scheduler-status-badge status-${item.status}`}>{item.statusMeta?.label}</span>
+          {(item.tags_snapshot || []).map((tag) => (
+            <span key={tag} className="scheduler-tag-badge">
+              {getTagMeta(tag).shortLabel}
+            </span>
+          ))}
+        </div>
+        <div className="scheduler-event-action-buttons">
+          <button
+            type="button"
+            className={item.status === 'done' ? 'scheduler-action-button secondary' : 'scheduler-action-button'}
+            disabled={isSaving}
+            onClick={() => onToggleDone(item)}
+          >
+            {item.status === 'done' ? '완료 취소' : '완료'}
+          </button>
+          <button
+            type="button"
+            className="scheduler-action-button secondary"
+            onClick={() => navigate(`/scheduler/${item.reservation_id}`)}
+          >
+            예약 수정
+          </button>
+        </div>
       </div>
     </article>
   )
