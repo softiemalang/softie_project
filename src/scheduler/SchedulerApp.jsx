@@ -3,7 +3,7 @@ import { navigate } from '../lib/router'
 import { listTodayWorkEvents, getReservationById, saveReservation, deleteReservation, updateWorkEventStatus } from './api'
 import { SCHEDULER_BRANCHES, SCHEDULER_TAGS, TODAY_HOURS } from './constants'
 import { buildReservationPayload, createReservationDraft, getRoomStatus, getRoomsForBranch, getTagMeta, groupTodayEvents, mapReservationToFormValues, validateReservationForm } from './helpers'
-import { formatDateLabel, formatSchedulerDate, formatSchedulerTime, openNativePicker, toLocalDateInputValue } from './time'
+import { formatDateLabel, formatSchedulerDate, formatSchedulerTime, toLocalDateInputValue } from './time'
 
 const GO_TO_TODAY_EVENT = 'scheduler:go-today'
 
@@ -81,31 +81,28 @@ function NavButton({ path, label, isPrimary = false }) {
 }
 
 function NativePickerField({
+  className = '',
   label,
   type,
   value,
   placeholder,
   onChange,
   formatter,
+  hideLabel = false,
 }) {
   const inputRef = useRef(null)
   const labelId = `${type}-picker-label`
   const displayValue = formatter(value) || placeholder
 
   return (
-    <label className="scheduler-primary-field">
-      <span id={labelId} className="scheduler-parent-label">
+    <label className={`scheduler-primary-field ${className}`.trim()}>
+      <span id={labelId} className={`scheduler-parent-label${hideLabel ? ' visually-hidden' : ''}`}>
         {label}
       </span>
       <div className="scheduler-native-picker-shell">
-        <button
-          type="button"
-          className={`scheduler-native-picker-display ${value ? '' : 'is-empty'}`}
-          onClick={() => openNativePicker(inputRef.current)}
-          aria-labelledby={labelId}
-        >
+        <div className={`scheduler-native-picker-display ${value ? '' : 'is-empty'}`} aria-hidden="true">
           {displayValue}
-        </button>
+        </div>
         <input
           ref={inputRef}
           className="scheduler-native-picker-input"
@@ -113,7 +110,6 @@ function NativePickerField({
           type={type}
           value={value}
           onChange={onChange}
-          tabIndex={-1}
         />
       </div>
     </label>
@@ -251,57 +247,82 @@ function TodaySchedulerPage() {
             aria-label="필터 변경"
             onClick={(event) => event.stopPropagation()}
           >
-            <div className="scheduler-section-head">
+            <div className="scheduler-section-head scheduler-filter-sheet-head">
               <div>
                 <p className="scheduler-section-label">보기 변경</p>
-                <h2>날짜와 필터</h2>
               </div>
             </div>
 
-            <div className="scheduler-form">
-              <label>
-                날짜
-                <input
-                  className="scheduler-compact-input"
-                  type="date"
-                  value={draftFilters.date}
-                  onChange={(event) => updateDraftFilter('date', event.target.value)}
-                />
-              </label>
+            <div className="scheduler-form scheduler-filter-form">
+              <NativePickerField
+                className="scheduler-filter-field"
+                label="날짜"
+                type="date"
+                value={draftFilters.date}
+                placeholder="날짜 선택"
+                formatter={formatSchedulerDate}
+                onChange={(event) => updateDraftFilter('date', event.target.value)}
+                hideLabel
+              />
 
-              <label>
-                지점
-                <select
-                  value={draftFilters.branch}
-                  onChange={(event) => updateDraftFilter('branch', event.target.value)}
-                >
-                  <option value="all">전체 지점</option>
-                  {SCHEDULER_BRANCHES.map((branch) => (
-                    <option key={branch} value={branch}>
-                      {branch}
-                    </option>
-                  ))}
-                </select>
-              </label>
+              <div className="scheduler-filter-field">
+                <div className="scheduler-branch-option-row scheduler-filter-branch-row" role="radiogroup" aria-label="지점 필터">
+                  <button
+                    type="button"
+                    className={`scheduler-chip ${draftFilters.branch === 'all' ? 'active' : ''}`}
+                    onClick={() => updateDraftFilter('branch', 'all')}
+                    aria-pressed={draftFilters.branch === 'all'}
+                  >
+                    전체 지점
+                  </button>
+                  {SCHEDULER_BRANCHES.map((branch) => {
+                    const isActive = draftFilters.branch === branch
+                    return (
+                      <button
+                        key={branch}
+                        type="button"
+                        className={`scheduler-chip ${isActive ? 'active' : ''}`}
+                        onClick={() => updateDraftFilter('branch', branch)}
+                        aria-pressed={isActive}
+                      >
+                        {branch}
+                      </button>
+                    )
+                  })}
+                </div>
+              </div>
 
-              <label>
-                룸
-                <select
-                  value={draftFilters.room}
-                  onChange={(event) => updateDraftFilter('room', event.target.value)}
-                  disabled={draftFilters.branch === 'all'}
-                >
-                  <option value="all">{draftFilters.branch === 'all' ? '전체 룸' : '전체 룸'}</option>
-                  {draftRooms.map((room) => (
-                    <option key={room} value={room}>
-                      {room}
-                    </option>
-                  ))}
-                </select>
-              </label>
+              <div className="scheduler-filter-field">
+                <div className="scheduler-room-picker">
+                  <div className="scheduler-room-option-row scheduler-filter-room-row" role="radiogroup" aria-label="룸 필터">
+                    <button
+                      type="button"
+                      className={`scheduler-room-option ${draftFilters.room === 'all' ? 'active' : ''}`}
+                      onClick={() => updateDraftFilter('room', 'all')}
+                      aria-pressed={draftFilters.room === 'all'}
+                    >
+                      전체 룸
+                    </button>
+                    {draftRooms.map((room) => {
+                      const isActive = draftFilters.room === room
+                      return (
+                        <button
+                          key={room}
+                          type="button"
+                          className={`scheduler-room-option ${isActive ? 'active' : ''}`}
+                          onClick={() => updateDraftFilter('room', room)}
+                          aria-pressed={isActive}
+                        >
+                          {room}
+                        </button>
+                      )
+                    })}
+                  </div>
+                </div>
+              </div>
             </div>
 
-            <div className="scheduler-form-actions">
+            <div className="scheduler-form-actions scheduler-filter-actions">
               <button type="button" className="soft-button" onClick={() => setIsFilterSheetOpen(false)}>
                 닫기
               </button>
@@ -497,7 +518,12 @@ function ReservationEditorPage({ mode, reservationId }) {
     setIsSaving(true)
     try {
       const saved = await saveReservation(buildReservationPayload(formValues), reservationId)
-      navigate(`/scheduler/${saved.id}`)
+      if (mode === 'edit') {
+        navigate(`/scheduler/${saved.id}`)
+      } else {
+        setFormValues(createReservationDraft())
+        window.scrollTo({ top: 0, behavior: 'smooth' })
+      }
       setStatus('저장했어요.')
     } catch (error) {
       setStatus(error.message)
@@ -639,7 +665,7 @@ function ReservationEditorPage({ mode, reservationId }) {
                   ['10', '10분 전'],
                   ['15', '15분 전'],
                 ].map(([value, label]) => {
-                  const isActive = formValues.warningOffsetMinutes === value
+                  const isActive = String(formValues.warningOffsetMinutes) === value
                   return (
                     <button
                       key={value}

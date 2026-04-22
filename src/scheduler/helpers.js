@@ -5,7 +5,6 @@ import {
   SCHEDULER_BRANCHES,
   SCHEDULER_BRANCH_ROOMS,
   SCHEDULER_TAGS,
-  TODAY_HOURS,
   WORK_EVENT_META,
 } from './constants'
 import { addMinutes, combineLocalDateTime, formatTime, toIsoFromLocal, toLocalDateInputValue, toLocalTimeInputValue } from './time'
@@ -127,12 +126,7 @@ export function decorateEvent(item, now = new Date()) {
 }
 
 export function groupTodayEvents(items) {
-  const decorated = sortEventsByTime(items)
-    .map((item) => decorateEvent(item))
-    .filter((item) => {
-      const hour = new Date(item.scheduled_at).getHours()
-      return hour >= TODAY_HOURS.start && hour < TODAY_HOURS.end
-    })
+  const decorated = sortEventsByTime(items).map((item) => decorateEvent(item))
 
   return {
     actionNow: decorated.filter((item) => item.isActionNow || item.isOverdue),
