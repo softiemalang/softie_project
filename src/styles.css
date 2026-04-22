@@ -11,7 +11,7 @@
   --brand: #1f6f5f;
   --brand-soft: #e7f3ef;
   --accent: #9a3412;
-  --danger: #9f1239;
+  --danger: #b01646;
 }
 
 * {
@@ -38,8 +38,8 @@ button {
   border-radius: 14px;
   background: var(--brand);
   color: #fff;
-  padding: 0.92rem 1rem;
-  font-weight: 600;
+  padding: 0.78rem 1rem;
+  font-weight: 550;
 }
 
 button:disabled {
@@ -164,14 +164,21 @@ textarea {
   margin-top: 1rem;
 }
 
+.scheduler-form-actions > button,
+.scheduler-form-actions > .danger-button {
+  margin-top: 0;
+}
+
 .status {
-  margin: 0 0 1rem;
-  padding: 0.95rem 1rem;
-  border-radius: 18px;
-  background: rgba(255, 248, 220, 0.95);
-  border: 1px solid #f6d7a8;
-  color: #92400e;
-  line-height: 1.5;
+  margin: 0 0 0.9rem;
+  padding: 0.82rem 0.92rem;
+  border-radius: 16px;
+  background: #f7f1e6;
+  border: 1px solid #eadfce;
+  color: #8b5e1a;
+  line-height: 1.35;
+  font-size: 0.9rem;
+  font-weight: 550;
 }
 
 .room-title {
@@ -525,7 +532,6 @@ textarea {
   margin: 0;
 }
 
-.scheduler-eyebrow,
 .scheduler-section-label {
   margin: 0 0 var(--scheduler-gap-xs);
   color: #8b5e1a;
@@ -535,19 +541,20 @@ textarea {
   text-transform: uppercase;
 }
 
-.scheduler-eyebrow {
-  padding-left: var(--scheduler-content-inset);
-}
-
 .scheduler-topbar-actions,
 .scheduler-filter-row,
 .scheduler-chip-row,
-.scheduler-form-actions,
 .scheduler-event-meta,
 .scheduler-event-actions {
   display: flex;
   flex-wrap: wrap;
   gap: var(--scheduler-gap-md);
+}
+
+.scheduler-form-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.58rem;
 }
 
 .scheduler-preset-row {
@@ -560,8 +567,8 @@ textarea {
   flex: 1 1 0;
   width: auto;
   min-width: 0;
-  min-height: var(--scheduler-control-min-h);
-  padding: 0.46rem 0.65rem;
+  min-height: 36px;
+  padding: 0.32rem 0.6rem;
   border-radius: var(--scheduler-radius-md);
   white-space: nowrap;
   font-size: 0.82rem;
@@ -908,19 +915,56 @@ textarea {
 }
 
 .scheduler-form {
+  --scheduler-form-block-gap: 1.22rem;
+  --scheduler-form-label-gap: 0.34rem;
+  --scheduler-form-supporting-gap: 0.3rem;
   display: grid;
-  gap: 0.72rem;
+  gap: var(--scheduler-form-block-gap);
   min-width: 0;
 }
 
 .scheduler-form label,
 .scheduler-field-label {
   display: grid;
-  gap: 0.34rem;
-  font-weight: 600;
+  gap: var(--scheduler-form-label-gap);
+  font-size: 0.86rem;
+  font-weight: 500;
   color: #4b5563;
   min-width: 0;
   line-height: 1.15;
+}
+
+.scheduler-parent-label {
+  display: block;
+  padding-left: 0.42rem;
+}
+
+.scheduler-form-section,
+.scheduler-primary-field,
+.scheduler-warning-offset-field {
+  display: grid;
+  gap: var(--scheduler-form-label-gap);
+  min-width: 0;
+}
+
+.scheduler-duration-field {
+  display: grid;
+  gap: var(--scheduler-form-supporting-gap);
+  min-width: 0;
+}
+
+.scheduler-primary-field > input,
+.scheduler-primary-field > select,
+.scheduler-primary-field .scheduler-room-picker,
+.scheduler-primary-field .scheduler-room-picker-empty,
+.scheduler-primary-field .scheduler-native-picker-shell {
+  min-height: 42px;
+}
+
+.scheduler-primary-field > input,
+.scheduler-primary-field > select,
+.scheduler-primary-field .scheduler-room-picker-empty {
+  padding-block: 0;
 }
 
 .scheduler-two-up {
@@ -960,6 +1004,13 @@ textarea {
   min-width: 0;
 }
 
+.scheduler-form input[type='date'],
+.scheduler-form input[type='time'],
+.scheduler-controls input[type='date'],
+.scheduler-controls input[type='time'] {
+  line-height: 1.2;
+}
+
 .scheduler-date-row > input,
 .scheduler-two-up input,
 .scheduler-two-up select,
@@ -968,9 +1019,65 @@ textarea {
   justify-self: stretch;
 }
 
+.scheduler-native-picker-shell {
+  position: relative;
+  width: 100%;
+}
+
+.scheduler-native-picker-display {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  min-height: 42px;
+  height: 42px;
+  padding: 0 var(--scheduler-control-pad-x);
+  border: 1px solid var(--line);
+  border-radius: var(--scheduler-radius-md);
+  background: rgba(255, 255, 255, 0.88);
+  color: #5b6471;
+  text-align: left;
+  font-size: 0.88rem;
+  font-weight: 450;
+  line-height: 1;
+}
+
+.scheduler-native-picker-display.is-empty {
+  color: var(--muted);
+  font-weight: 400;
+}
+
+.scheduler-native-picker-display:not(.is-empty) {
+  color: #5b6258;
+  font-weight: 500;
+}
+
+.scheduler-duration-field .scheduler-compact-input {
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: #5b6258;
+}
+
+.scheduler-native-picker-shell:focus-within .scheduler-native-picker-display {
+  outline: 2px solid rgba(59, 130, 246, 0.45);
+  outline-offset: 2px;
+}
+
+.scheduler-native-picker-input {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.01;
+  pointer-events: none;
+}
+
 .scheduler-chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   min-height: 36px;
-  padding: 0.32rem 0.62rem;
+  padding: 0.32rem 0.6rem;
   background: #efe6d8;
   color: #5b4a35;
   font-size: 0.78rem;
@@ -990,7 +1097,7 @@ textarea {
   align-items: center;
   width: 100%;
   min-height: 36px;
-  padding: var(--scheduler-control-pad-y) var(--scheduler-control-pad-x);
+  padding: 0 var(--scheduler-control-pad-x);
   border: 1px solid var(--line);
   border-radius: var(--scheduler-radius-md);
   background: rgba(255, 255, 255, 0.6);
@@ -1000,12 +1107,28 @@ textarea {
 .scheduler-room-option-row {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(56px, 1fr));
-  gap: var(--scheduler-gap-sm);
+  gap: var(--scheduler-gap-xs);
+}
+
+.scheduler-branch-option-row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--scheduler-gap-xs);
+}
+
+.scheduler-branch-option-row > .scheduler-chip {
+  width: 100%;
+  justify-content: center;
+  min-width: 0;
+  white-space: nowrap;
 }
 
 .scheduler-room-option {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   min-height: 36px;
-  padding: 0.32rem 0.56rem;
+  padding: 0.32rem 0.6rem;
   border-radius: var(--scheduler-radius-md);
   background: #efe6d8;
   color: #5b4a35;
@@ -1014,17 +1137,19 @@ textarea {
 
 .scheduler-form input,
 .scheduler-form select,
-.scheduler-form textarea,
 .scheduler-controls input,
 .scheduler-controls select {
   min-height: 42px;
-  padding: 0.58rem 0.82rem;
+  height: 42px;
+  padding: 0 0.82rem;
+  line-height: 40px;
   border-radius: var(--scheduler-radius-md);
 }
 
 .scheduler-form textarea {
+  height: auto;
   min-height: 132px;
-  padding-top: 0.72rem;
+  padding: 0.72rem 0.82rem;
   line-height: 1.35;
 }
 
@@ -1035,6 +1160,19 @@ textarea {
 }
 
 .scheduler-form .scheduler-chip-row > .scheduler-chip {
+  width: 100%;
+  justify-content: center;
+  min-width: 0;
+  white-space: nowrap;
+}
+
+.scheduler-warning-offset-row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--scheduler-gap-xs);
+}
+
+.scheduler-warning-offset-row > .scheduler-chip {
   width: 100%;
   justify-content: center;
   min-width: 0;
@@ -1135,8 +1273,12 @@ textarea {
 .scheduler-controls .soft-button,
 .scheduler-form-actions > button,
 .scheduler-link-button {
-  min-height: var(--scheduler-control-min-h);
+  min-height: 36px;
   border-radius: var(--scheduler-radius-md);
+  padding-top: 0.72rem;
+  padding-bottom: 0.72rem;
+  font-size: 0.94rem;
+  font-weight: 550;
 }
 
 .scheduler-panel-empty {
@@ -1207,6 +1349,10 @@ textarea {
   .scheduler-two-up > *,
   .scheduler-date-row > * {
     min-width: 0;
+  }
+
+  .scheduler-form .scheduler-two-up {
+    row-gap: var(--scheduler-form-block-gap);
   }
 
   .scheduler-date-row > input,

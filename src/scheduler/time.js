@@ -12,6 +12,36 @@ export function formatDateLabel(input) {
   return `${date.getMonth() + 1}월 ${date.getDate()}일`
 }
 
+export function formatSchedulerDate(value) {
+  if (!value) return ''
+  const [year, month, day] = value.split('-')
+  if (!year || !month || !day) return value
+  return `${year}. ${month}. ${day}.`
+}
+
+export function formatSchedulerTime(value) {
+  if (!value) return ''
+  const [rawHours, minutes] = value.split(':')
+  const hours = Number(rawHours)
+  if (Number.isNaN(hours) || !minutes) return value
+
+  const meridiem = hours < 12 ? '오전' : '오후'
+  const displayHours = hours % 12 === 0 ? 12 : hours % 12
+  return `${meridiem} ${padTime(displayHours)}:${minutes}`
+}
+
+export function openNativePicker(input) {
+  if (!input) return
+
+  if (typeof input.showPicker === 'function') {
+    input.showPicker()
+    return
+  }
+
+  input.focus()
+  input.click()
+}
+
 export function addMinutes(input, minutes) {
   return new Date(new Date(input).getTime() + minutes * 60 * 1000)
 }

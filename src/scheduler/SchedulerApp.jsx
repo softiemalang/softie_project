@@ -1,9 +1,9 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { navigate } from '../lib/router'
 import { listTodayWorkEvents, getReservationById, saveReservation, deleteReservation, updateWorkEventStatus } from './api'
 import { SCHEDULER_BRANCHES, SCHEDULER_TAGS, TODAY_HOURS } from './constants'
 import { buildReservationPayload, createReservationDraft, getRoomStatus, getRoomsForBranch, getTagMeta, groupTodayEvents, mapReservationToFormValues, validateReservationForm } from './helpers'
-import { formatDateLabel, toLocalDateInputValue } from './time'
+import { formatDateLabel, formatSchedulerDate, formatSchedulerTime, openNativePicker, toLocalDateInputValue } from './time'
 
 const GO_TO_TODAY_EVENT = 'scheduler:go-today'
 
@@ -50,7 +50,6 @@ export function SchedulerApp({ pathname }) {
 function SchedulerTopbar({ rightAction }) {
   return (
     <header className="scheduler-topbar">
-      <p className="scheduler-eyebrow">Internal Scheduler</p>
       <div className="scheduler-topbar-actions">
         <NavButton path="/scheduler" label="Today" />
         <NavButton path="/scheduler/new" label="Add" isPrimary />
@@ -78,6 +77,46 @@ function NavButton({ path, label, isPrimary = false }) {
     >
       {label}
     </button>
+  )
+}
+
+function NativePickerField({
+  label,
+  type,
+  value,
+  placeholder,
+  onChange,
+  formatter,
+}) {
+  const inputRef = useRef(null)
+  const labelId = `${type}-picker-label`
+  const displayValue = formatter(value) || placeholder
+
+  return (
+    <label className="scheduler-primary-field">
+      <span id={labelId} className="scheduler-parent-label">
+        {label}
+      </span>
+      <div className="scheduler-native-picker-shell">
+        <button
+          type="button"
+          className={`scheduler-native-picker-display ${value ? '' : 'is-empty'}`}
+          onClick={() => openNativePicker(inputRef.current)}
+          aria-labelledby={labelId}
+        >
+          {displayValue}
+        </button>
+        <input
+          ref={inputRef}
+          className="scheduler-native-picker-input"
+          aria-labelledby={labelId}
+          type={type}
+          value={value}
+          onChange={onChange}
+          tabIndex={-1}
+        />
+      </div>
+    </label>
   )
 }
 
@@ -188,7 +227,7 @@ function TodaySchedulerPage() {
 
   return (
     <div className="scheduler-shell">
-      <SchedulerTopbar title="오늘 운영 보드" />
+      <SchedulerTopbar />
 
       <section className="scheduler-panel scheduler-controls">
         <div className="scheduler-filter-summary-row">
@@ -493,34 +532,38 @@ function ReservationEditorPage({ mode, reservationId }) {
           <p className="subtle">불러오는 중...</p>
         ) : (
           <form className="scheduler-form" onSubmit={handleSubmit}>
-            <label>
-              예약 날짜
-              <input
-                className="scheduler-compact-input"
-                type="date"
-                value={formValues.reservationDate}
-                onChange={(event) => updateField('reservationDate', event.target.value)}
-              />
-            </label>
+            <NativePickerField
+              label="예약 날짜"
+              type="date"
+              value={formValues.reservationDate}
+              placeholder="날짜 선택"
+              formatter={formatSchedulerDate}
+              onChange={(event) => updateField('reservationDate', event.target.value)}
+            />
 
-            <div className="scheduler-two-up">
-              <label>
-                지점
-                <select
-                  value={formValues.branch}
-                  onChange={(event) => updateField('branch', event.target.value)}
-                >
-                  <option value="">지점 선택</option>
-                  {SCHEDULER_BRANCHES.map((branch) => (
-                    <option key={branch} value={branch}>
-                      {branch}
-                    </option>
-                  ))}
-                </select>
+            <div className="scheduler-two-up scheduler-primary-field-row">
+              <label className="scheduler-primary-field">
+                <span className="scheduler-parent-label">지점</span>
+                <div className="scheduler-branch-option-row" role="radiogroup" aria-label="지점 선택">
+                  {SCHEDULER_BRANCHES.map((branch) => {
+                    const isActive = formValues.branch === branch
+                    return (
+                      <button
+                        key={branch}
+                        type="button"
+                        className={`scheduler-chip ${isActive ? 'active' : ''}`}
+                        onClick={() => updateField('branch', branch)}
+                        aria-pressed={isActive}
+                      >
+                        {branch}
+                      </button>
+                    )
+                  })}
+                </div>
               </label>
 
-              <label>
-                룸
+              <label className="scheduler-primary-field">
+                <span className="scheduler-parent-label">룸</span>
                 <div className="scheduler-room-picker" aria-disabled={!formValues.branch}>
                   {!formValues.branch ? (
                     <div className="scheduler-room-picker-empty">지점을 먼저 선택</div>
@@ -546,8 +589,8 @@ function ReservationEditorPage({ mode, reservationId }) {
               </label>
             </div>
 
-            <label>
-              예약자 이름
+            <label className="scheduler-primary-field">
+              <span className="scheduler-parent-label">예약자 이름</span>
               <input
                 value={formValues.customerName}
                 onChange={(event) => updateField('customerName', event.target.value)}
@@ -555,53 +598,65 @@ function ReservationEditorPage({ mode, reservationId }) {
               />
             </label>
 
-            <div className="scheduler-two-up">
-              <label>
-                시작 시간
-                <input
-                  className="scheduler-compact-input"
-                  type="time"
-                  value={formValues.startTime}
-                  onChange={(event) => updateField('startTime', event.target.value)}
-                />
-              </label>
+            <div className="scheduler-two-up scheduler-primary-field-row">
+              <NativePickerField
+                label="시작 시간"
+                type="time"
+                value={formValues.startTime}
+                placeholder="시간 선택"
+                formatter={formatSchedulerTime}
+                onChange={(event) => updateField('startTime', event.target.value)}
+              />
 
-              <label>
-                이용 시간(시간)
-                <input
-                  className="scheduler-compact-input"
-                  type="number"
-                  min="1"
-                  step="1"
-                  inputMode="numeric"
-                  value={formValues.durationHours}
-                  onChange={(event) => updateField('durationHours', event.target.value)}
-                />
-              </label>
+              <div className="scheduler-duration-field">
+                <label className="scheduler-primary-field">
+                  <span className="scheduler-parent-label">이용 시간(시간)</span>
+                  <input
+                    className="scheduler-compact-input"
+                    type="number"
+                    min="1"
+                    step="1"
+                    inputMode="numeric"
+                    value={formValues.durationHours}
+                    onChange={(event) => updateField('durationHours', event.target.value)}
+                  />
+                </label>
+
+                <div className="scheduler-preset-row scheduler-supporting-row">
+                  {[1, 2, 3, 4, 5, 6].map((hours) => (
+                    <button key={hours} type="button" className="soft-button" onClick={() => updateField('durationHours', hours)}>
+                      {hours}h
+                    </button>
+                  ))}
+                </div>
+              </div>
             </div>
 
-            <div className="scheduler-preset-row">
-              {[1, 2, 3, 4, 5, 6].map((hours) => (
-                <button key={hours} type="button" className="soft-button" onClick={() => updateField('durationHours', hours)}>
-                  {hours}h
-                </button>
-              ))}
-            </div>
-
-            <label>
-              퇴실등 시점
-              <select
-                className="scheduler-compact-input"
-                value={formValues.warningOffsetMinutes}
-                onChange={(event) => updateField('warningOffsetMinutes', event.target.value)}
-              >
-                <option value="10">10분 전</option>
-                <option value="15">15분 전</option>
-              </select>
+            <label className="scheduler-warning-offset-field scheduler-form-section">
+              <span className="scheduler-parent-label">퇴실등 시점</span>
+              <div className="scheduler-warning-offset-row" role="radiogroup" aria-label="퇴실등 시점 선택">
+                {[
+                  ['10', '10분 전'],
+                  ['15', '15분 전'],
+                ].map(([value, label]) => {
+                  const isActive = formValues.warningOffsetMinutes === value
+                  return (
+                    <button
+                      key={value}
+                      type="button"
+                      className={`scheduler-chip ${isActive ? 'active' : ''}`}
+                      onClick={() => updateField('warningOffsetMinutes', value)}
+                      aria-pressed={isActive}
+                    >
+                      {label}
+                    </button>
+                  )
+                })}
+              </div>
             </label>
 
-            <div>
-              <span className="scheduler-field-label">특이 태그</span>
+            <div className="scheduler-form-section">
+              <span className="scheduler-field-label scheduler-parent-label">특이 태그</span>
               <div className="scheduler-chip-row">
                 {SCHEDULER_TAGS.map((tag) => {
                   const isActive = formValues.tags.includes(tag.value)
@@ -626,8 +681,8 @@ function ReservationEditorPage({ mode, reservationId }) {
               </div>
             </div>
 
-            <label>
-              메모
+            <label className="scheduler-form-section">
+              <span className="scheduler-parent-label">메모</span>
               <textarea
                 rows="4"
                 value={formValues.notesText}
@@ -695,7 +750,7 @@ function RoomStatusPage() {
 
   return (
     <div className="scheduler-shell">
-      <SchedulerTopbar title="룸 상태" />
+      <SchedulerTopbar />
 
       <section className="scheduler-panel scheduler-controls">
         <div className="scheduler-date-row">
