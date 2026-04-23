@@ -1,7 +1,9 @@
 import { corsHeaders } from '../_shared/cors.ts'
-import { buildPushPayload, createServiceRoleClient, sendWebPush } from '../_shared/push.ts'
+import { buildPushPayload, createServiceRoleClient, describePushError, sendWebPush } from '../_shared/push.ts'
 
 Deno.serve(async (request) => {
+  let failedStep = 'request'
+
   if (request.method === 'OPTIONS') {
     return new Response('ok', { headers: corsHeaders })
   }
@@ -14,13 +16,16 @@ Deno.serve(async (request) => {
   }
 
   try {
+    failedStep = 'parse_request'
     const { deviceId } = await request.json()
 
     if (!deviceId || typeof deviceId !== 'string') {
       throw new Error('deviceId가 필요합니다.')
     }
 
+    failedStep = 'create_service_client'
     const supabase = createServiceRoleClient()
+    failedStep = 'lookup_subscription'
     const { data, error } = await supabase
       .from('push_subscriptions')
       .select('id, device_id, endpoint_hash, subscription')
@@ -47,6 +52,7 @@ Deno.serve(async (request) => {
     })
 
     try {
+      failedStep = 'send_web_push'
       await sendWebPush(data.subscription as Record<string, unknown>, payload)
     } catch (error) {
       const statusCode = error && typeof error === 'object' ? Reflect.get(error, 'statusCode') : undefined
@@ -65,6 +71,7 @@ Deno.serve(async (request) => {
     }
 
     const now = new Date().toISOString()
+    failedStep = 'mark_test_sent'
     const { error: updateError } = await supabase
       .from('push_subscriptions')
       .update({
@@ -80,24 +87,27 @@ Deno.serve(async (request) => {
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },
     })
   } catch (error) {
-    const message = error instanceof Error ? error.message : 'Unknown error'
+    const { message, details: describedDetails } = describePushError(error)
     const statusCode = error && typeof error === 'object' ? Reflect.get(error, 'statusCode') : null
     const body = error && typeof error === 'object' ? Reflect.get(error, 'body') : null
-    const details =
+    const bodyDetails =
       typeof body === 'string'
         ? body
         : body && typeof body === 'object'
           ? JSON.stringify(body)
           : null
+    const details = describedDetails || bodyDetails
 
     console.error('send-test-push failed', {
+      step: failedStep,
       message,
       statusCode,
-      body,
+      details,
     })
 
     return new Response(JSON.stringify({
       error: message,
+      step: failedStep,
       statusCode,
       details,
     }), {

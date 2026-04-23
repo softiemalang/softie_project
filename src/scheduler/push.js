@@ -235,7 +235,10 @@ async function unwrapFunctionError(error) {
           : await response.json()
 
       if (payload && typeof payload.error === 'string' && payload.error.trim()) {
-        return new Error(payload.error)
+        const step = typeof payload.step === 'string' && payload.step.trim() ? payload.step.trim() : ''
+        const details = typeof payload.details === 'string' && payload.details.trim() ? payload.details.trim() : ''
+        const composed = [step ? `[${step}]` : '', payload.error, details].filter(Boolean).join(' ')
+        return new Error(composed)
       }
 
       if (payload && typeof payload.message === 'string' && payload.message.trim()) {

@@ -68,3 +68,50 @@ export async function sendWebPush(subscription: Record<string, unknown>, payload
   configureWebPush()
   return webpush.sendNotification(subscription as never, payload)
 }
+
+export function describePushError(error: unknown) {
+  if (error instanceof Error) {
+    return {
+      message: error.message || 'Unknown error',
+      details: null,
+    }
+  }
+
+  if (error && typeof error === 'object') {
+    const message = Reflect.get(error, 'message')
+    const details = Reflect.get(error, 'details')
+    const hint = Reflect.get(error, 'hint')
+    const code = Reflect.get(error, 'code')
+    const body = Reflect.get(error, 'body')
+
+    const resolvedMessage =
+      typeof message === 'string' && message.trim()
+        ? message
+        : typeof code === 'string' && code.trim()
+          ? code
+          : 'Unknown error'
+
+    const resolvedDetails = [details, hint, body]
+      .map((value) => {
+        if (!value) return null
+        if (typeof value === 'string') return value
+        try {
+          return JSON.stringify(value)
+        } catch {
+          return String(value)
+        }
+      })
+      .filter(Boolean)
+      .join(' | ')
+
+    return {
+      message: resolvedMessage,
+      details: resolvedDetails || null,
+    }
+  }
+
+  return {
+    message: 'Unknown error',
+    details: null,
+  }
+}
