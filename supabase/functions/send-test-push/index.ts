@@ -80,7 +80,27 @@ Deno.serve(async (request) => {
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },
     })
   } catch (error) {
-    return new Response(JSON.stringify({ error: error instanceof Error ? error.message : 'Unknown error' }), {
+    const message = error instanceof Error ? error.message : 'Unknown error'
+    const statusCode = error && typeof error === 'object' ? Reflect.get(error, 'statusCode') : null
+    const body = error && typeof error === 'object' ? Reflect.get(error, 'body') : null
+    const details =
+      typeof body === 'string'
+        ? body
+        : body && typeof body === 'object'
+          ? JSON.stringify(body)
+          : null
+
+    console.error('send-test-push failed', {
+      message,
+      statusCode,
+      body,
+    })
+
+    return new Response(JSON.stringify({
+      error: message,
+      statusCode,
+      details,
+    }), {
       status: 400,
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },
     })

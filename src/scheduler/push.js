@@ -214,19 +214,43 @@ async function unwrapFunctionError(error) {
     return new Error('알림 서버 요청 중 알 수 없는 오류가 발생했어요.')
   }
 
+  const explicitError =
+    Reflect.get(error, 'error')
+    || Reflect.get(error, 'message')
+    || Reflect.get(error, 'details')
+
+  if (typeof explicitError === 'string' && explicitError.trim() && explicitError !== 'FunctionsFetchError') {
+    return new Error(explicitError.trim())
+  }
+
   const response = Reflect.get(error, 'context')
-  if (response instanceof Response) {
+  const canReadJson = response && typeof response.json === 'function'
+  const canReadText = response && typeof response.text === 'function'
+
+  if (canReadJson || canReadText) {
     try {
-      const payload = await response.clone().json()
+      const payload =
+        typeof response.clone === 'function'
+          ? await response.clone().json()
+          : await response.json()
+
       if (payload && typeof payload.error === 'string' && payload.error.trim()) {
         return new Error(payload.error)
+      }
+
+      if (payload && typeof payload.message === 'string' && payload.message.trim()) {
+        return new Error(payload.message)
       }
     } catch {
       // Fall through to text parsing.
     }
 
     try {
-      const text = await response.clone().text()
+      const text =
+        typeof response.clone === 'function'
+          ? await response.clone().text()
+          : await response.text()
+
       if (typeof text === 'string' && text.trim()) {
         return new Error(text.trim())
       }
