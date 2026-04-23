@@ -3,6 +3,7 @@ import { navigate } from '../lib/router'
 import { listTodayWorkEvents, getReservationById, saveReservation, deleteReservation, updateWorkEventStatus } from './api'
 import { SCHEDULER_BRANCHES, SCHEDULER_TAGS, TODAY_HOURS } from './constants'
 import { buildReservationPayload, createReservationDraft, getRoomStatus, getRoomsForBranch, getTagMeta, groupTodayEvents, mapReservationToFormValues, validateReservationForm } from './helpers'
+import { getSchedulerPushState, sendSchedulerTestPush, subscribeSchedulerPush } from './push'
 import { formatDateLabel, formatSchedulerDate, formatSchedulerTime, toLocalDateInputValue } from './time'
 
 const GO_TO_TODAY_EVENT = 'scheduler:go-today'
@@ -129,6 +130,16 @@ function TodaySchedulerPage() {
   const [status, setStatus] = useState('')
   const [isLoading, setIsLoading] = useState(true)
   const [pendingStatusId, setPendingStatusId] = useState('')
+  const [pushState, setPushState] = useState({
+    supported: false,
+    platform: '',
+    standalone: false,
+    permission: 'default',
+    subscribed: false,
+    supportMessage: '',
+  })
+  const [pushStatus, setPushStatus] = useState('')
+  const [isPushBusy, setIsPushBusy] = useState(false)
 
   async function loadEvents() {
     setIsLoading(true)
@@ -143,9 +154,22 @@ function TodaySchedulerPage() {
     }
   }
 
+  async function loadPushState() {
+    try {
+      const nextState = await getSchedulerPushState()
+      setPushState(nextState)
+    } catch (error) {
+      setPushStatus(error instanceof Error ? error.message : '웹 알림 상태를 확인하지 못했어요.')
+    }
+  }
+
   useEffect(() => {
     loadEvents()
   }, [selectedDate])
+
+  useEffect(() => {
+    loadPushState()
+  }, [])
 
   useEffect(() => {
     function handleGoToToday() {
@@ -221,9 +245,118 @@ function TodaySchedulerPage() {
     filters.room === 'all' ? '전체 룸' : filters.room,
   ].join(' · ')
 
+  const pushSummary = (() => {
+    if (!pushState.supported) {
+      return pushState.supportMessage || '이 기기에서는 웹 알림을 사용할 수 없어요.'
+    }
+
+    if (pushState.permission === 'denied') {
+      return '알림 권한이 차단되어 있어요. 브라우저 설정에서 허용해 주세요.'
+    }
+
+    if (pushState.subscribed) {
+      if (pushState.platform === 'ios' && pushState.standalone) {
+        return '이 iPhone 홈 화면 앱은 웹 푸시를 받을 준비가 되어 있어요.'
+      }
+      return '이 브라우저는 웹 푸시를 받을 준비가 되어 있어요.'
+    }
+
+    if (pushState.permission === 'granted') {
+      if (pushState.platform === 'ios' && pushState.standalone) {
+        return '알림 권한은 허용됐지만 아직 이 홈 화면 앱을 푸시 대상으로 연결하지 않았어요.'
+      }
+      return '알림 권한은 허용됐지만 아직 이 브라우저를 연결하지 않았어요.'
+    }
+
+    if (pushState.platform === 'ios' && pushState.standalone) {
+      return '이 홈 화면 앱을 연결하면 테스트 알림과 일정 알림을 받을 수 있어요.'
+    }
+
+    return '이 브라우저를 연결하면 테스트 알림과 일정 알림을 받을 수 있어요.'
+  })()
+
+  const isPushConnected = pushState.supported && pushState.subscribed
+  const isPushDenied = pushState.permission === 'denied'
+  const requiresIosStandalone = pushState.platform === 'ios' && !pushState.standalone
+  const pushStatusLabel = (() => {
+    if (isPushConnected) return '연결됨'
+    if (requiresIosStandalone) return '홈 화면 필요'
+    if (!pushState.supported) return '지원 안 됨'
+    if (isPushDenied) return '권한 차단'
+    return '설정 전'
+  })()
+
+  async function handleEnablePush() {
+    setIsPushBusy(true)
+    try {
+      await subscribeSchedulerPush()
+      setPushStatus('이 브라우저를 알림 대상으로 연결했어요.')
+      await loadPushState()
+    } catch (error) {
+      setPushStatus(error instanceof Error ? error.message : '웹 알림 연결에 실패했어요.')
+    } finally {
+      setIsPushBusy(false)
+    }
+  }
+
+  async function handleSendTestPush() {
+    setIsPushBusy(true)
+    try {
+      await sendSchedulerTestPush()
+      setPushStatus('테스트 알림을 보냈어요. 기기에서 알림을 확인해 주세요.')
+      await loadPushState()
+    } catch (error) {
+      setPushStatus(error instanceof Error ? error.message : '테스트 알림 전송에 실패했어요.')
+    } finally {
+      setIsPushBusy(false)
+    }
+  }
+
   return (
     <div className="scheduler-shell">
       <SchedulerTopbar />
+
+      <section className={`scheduler-panel scheduler-push-panel ${isPushConnected ? 'is-connected' : 'is-setup'}`}>
+        <div className="scheduler-section-head">
+          <div>
+            <p className="scheduler-section-label">웹 알림</p>
+          </div>
+          <div className={`scheduler-count-pill ${isPushConnected ? 'is-ready' : ''}`}>
+            {pushStatusLabel}
+          </div>
+        </div>
+        {isPushConnected ? (
+          <div className="scheduler-push-connected">
+            <p className="subtle scheduler-push-summary">{pushSummary}</p>
+            <div className="scheduler-push-actions compact">
+              <button type="button" className="soft-button" onClick={handleSendTestPush} disabled={isPushBusy || !pushState.subscribed}>
+                테스트 알림
+              </button>
+              <button type="button" className="scheduler-text-button" onClick={handleEnablePush} disabled={isPushBusy}>
+                다시 연결
+              </button>
+            </div>
+          </div>
+        ) : (
+          <>
+            <p className="subtle scheduler-push-summary">{pushSummary}</p>
+            <div className="scheduler-push-actions">
+              <button
+                type="button"
+                className="soft-button"
+                onClick={handleEnablePush}
+                disabled={isPushBusy || !pushState.supported || pushState.permission === 'denied'}
+              >
+                알림 연결
+              </button>
+              <button type="button" onClick={handleSendTestPush} disabled={isPushBusy || !pushState.subscribed}>
+                테스트 알림
+              </button>
+            </div>
+          </>
+        )}
+        {pushStatus ? <p className="subtle scheduler-push-status">{pushStatus}</p> : null}
+      </section>
 
       <section className="scheduler-panel scheduler-controls">
         <div className="scheduler-filter-summary-row">

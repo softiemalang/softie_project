@@ -551,6 +551,69 @@ textarea {
   gap: var(--scheduler-gap-md);
 }
 
+.scheduler-push-panel .scheduler-section-head {
+  margin-bottom: 0.34rem;
+}
+
+.scheduler-push-summary,
+.scheduler-push-status {
+  margin: 0;
+}
+
+.scheduler-push-panel.is-connected .scheduler-section-head {
+  margin-bottom: 0.18rem;
+}
+
+.scheduler-push-connected {
+  display: grid;
+  gap: 0.42rem;
+}
+
+.scheduler-push-panel.is-connected .scheduler-push-summary {
+  font-size: 0.84rem;
+  line-height: 1.35;
+}
+
+.scheduler-push-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.68rem;
+  margin-top: 0.72rem;
+}
+
+.scheduler-push-actions.compact {
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.48rem;
+  margin-top: 0;
+}
+
+.scheduler-push-actions > button {
+  flex: 1 1 160px;
+}
+
+.scheduler-push-actions.compact > button.soft-button {
+  flex: 0 0 auto;
+}
+
+.scheduler-text-button {
+  background: transparent;
+  color: #6b6258;
+  padding: 0.22rem 0.1rem;
+  border-radius: 0;
+  font-size: 0.78rem;
+  font-weight: 600;
+  line-height: 1.1;
+}
+
+.scheduler-text-button:disabled {
+  opacity: 0.45;
+}
+
+.scheduler-count-pill.is-ready {
+  color: #1d6c5e;
+}
+
 .scheduler-form-actions {
   display: flex;
   flex-wrap: wrap;
