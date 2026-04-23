@@ -1,12 +1,23 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { navigate } from '../lib/router'
 import { listTodayWorkEvents, getReservationById, saveReservation, deleteReservation, updateWorkEventStatus } from './api'
-import { SCHEDULER_BRANCHES, SCHEDULER_TAGS, TODAY_HOURS } from './constants'
+import { SCHEDULER_BRANCHES, SCHEDULER_TAGS, TODAY_HOURS, WORK_EVENT_META } from './constants'
 import { buildReservationPayload, createReservationDraft, getRoomStatus, getRoomsForBranch, getTagMeta, groupTodayEvents, mapReservationToFormValues, validateReservationForm } from './helpers'
-import { getSchedulerPushState, sendSchedulerTestPush, subscribeSchedulerPush } from './push'
+import {
+  getSchedulerPushPreferences,
+  getSchedulerPushState,
+  sendSchedulerTestPush,
+  subscribeSchedulerPush,
+  updateSchedulerPushPreferences,
+} from './push'
 import { formatDateLabel, formatSchedulerDate, formatSchedulerTime, toLocalDateInputValue } from './time'
 
 const GO_TO_TODAY_EVENT = 'scheduler:go-today'
+const DEFAULT_PUSH_PREFERENCES = {
+  notificationsEnabled: true,
+  notificationTypes: ['checkin', 'warning', 'checkout'],
+}
+const PUSH_NOTIFICATION_OPTIONS = ['checkin', 'warning', 'checkout']
 
 function parseSchedulerRoute(pathname) {
   if (pathname === '/scheduler') return { name: 'today' }
@@ -140,6 +151,8 @@ function TodaySchedulerPage() {
   })
   const [pushStatus, setPushStatus] = useState('')
   const [isPushBusy, setIsPushBusy] = useState(false)
+  const [pushPreferences, setPushPreferences] = useState(DEFAULT_PUSH_PREFERENCES)
+  const [isPushPreferencesBusy, setIsPushPreferencesBusy] = useState(false)
 
   async function loadEvents() {
     setIsLoading(true)
@@ -170,6 +183,29 @@ function TodaySchedulerPage() {
   useEffect(() => {
     loadPushState()
   }, [])
+
+  useEffect(() => {
+    async function loadPushPreferences() {
+      if (!pushState.subscribed) {
+        setPushPreferences(DEFAULT_PUSH_PREFERENCES)
+        return
+      }
+
+      try {
+        const nextPreferences = await getSchedulerPushPreferences()
+        setPushPreferences({
+          notificationsEnabled: nextPreferences?.notificationsEnabled ?? true,
+          notificationTypes: Array.isArray(nextPreferences?.notificationTypes)
+            ? nextPreferences.notificationTypes
+            : DEFAULT_PUSH_PREFERENCES.notificationTypes,
+        })
+      } catch (error) {
+        setPushStatus(error instanceof Error ? error.message : '웹 알림 설정을 불러오지 못했어요.')
+      }
+    }
+
+    loadPushPreferences()
+  }, [pushState.subscribed])
 
   useEffect(() => {
     function handleGoToToday() {
@@ -299,6 +335,43 @@ function TodaySchedulerPage() {
     }
   }
 
+  async function handleUpdatePushPreferences(nextPreferences) {
+    setIsPushPreferencesBusy(true)
+    try {
+      const savedPreferences = await updateSchedulerPushPreferences(nextPreferences)
+      setPushPreferences({
+        notificationsEnabled: savedPreferences?.notificationsEnabled ?? nextPreferences.notificationsEnabled,
+        notificationTypes: Array.isArray(savedPreferences?.notificationTypes)
+          ? savedPreferences.notificationTypes
+          : nextPreferences.notificationTypes,
+      })
+      setPushStatus('자동 일정 알림 설정을 저장했어요.')
+    } catch (error) {
+      setPushStatus(error instanceof Error ? error.message : '웹 알림 설정 저장에 실패했어요.')
+    } finally {
+      setIsPushPreferencesBusy(false)
+    }
+  }
+
+  function handleToggleNotificationsEnabled() {
+    handleUpdatePushPreferences({
+      notificationsEnabled: !pushPreferences.notificationsEnabled,
+      notificationTypes: pushPreferences.notificationTypes,
+    })
+  }
+
+  function handleToggleNotificationType(type) {
+    const exists = pushPreferences.notificationTypes.includes(type)
+    const nextTypes = exists
+      ? pushPreferences.notificationTypes.filter((value) => value !== type)
+      : [...pushPreferences.notificationTypes, type]
+
+    handleUpdatePushPreferences({
+      notificationsEnabled: pushPreferences.notificationsEnabled,
+      notificationTypes: nextTypes,
+    })
+  }
+
   async function handleSendTestPush() {
     setIsPushBusy(true)
     try {
@@ -328,6 +401,34 @@ function TodaySchedulerPage() {
         {isPushConnected ? (
           <div className="scheduler-push-connected">
             <p className="subtle scheduler-push-summary">{pushSummary}</p>
+            <div className="scheduler-push-preferences">
+              <button
+                type="button"
+                className={`scheduler-chip ${pushPreferences.notificationsEnabled ? 'active' : ''}`}
+                onClick={handleToggleNotificationsEnabled}
+                disabled={isPushPreferencesBusy}
+                aria-pressed={pushPreferences.notificationsEnabled}
+              >
+                전체 알림
+              </button>
+              <div className="scheduler-chip-row scheduler-push-type-row" role="group" aria-label="알림 종류 설정">
+                {PUSH_NOTIFICATION_OPTIONS.map((type) => {
+                  const isActive = pushPreferences.notificationTypes.includes(type)
+                  return (
+                    <button
+                      key={type}
+                      type="button"
+                      className={`scheduler-chip ${isActive && pushPreferences.notificationsEnabled ? 'active' : ''}`}
+                      onClick={() => handleToggleNotificationType(type)}
+                      disabled={isPushPreferencesBusy || !pushPreferences.notificationsEnabled}
+                      aria-pressed={isActive && pushPreferences.notificationsEnabled}
+                    >
+                      {WORK_EVENT_META[type].label}
+                    </button>
+                  )
+                })}
+              </div>
+            </div>
             <div className="scheduler-push-actions compact">
               <button type="button" className="soft-button" onClick={handleSendTestPush} disabled={isPushBusy || !pushState.subscribed}>
                 테스트 알림

@@ -1,5 +1,11 @@
 import { corsHeaders } from '../_shared/cors.ts'
-import { createServiceRoleClient, describePushError, hashEndpoint, validatePushSubscriptionPayload } from '../_shared/push.ts'
+import {
+  createServiceRoleClient,
+  describePushError,
+  hashEndpoint,
+  SCHEDULER_NOTIFICATION_TYPES,
+  validatePushSubscriptionPayload,
+} from '../_shared/push.ts'
 
 Deno.serve(async (request) => {
   let failedStep = 'request'
@@ -29,6 +35,18 @@ Deno.serve(async (request) => {
 
     failedStep = 'create_service_client'
     const supabase = createServiceRoleClient()
+
+    failedStep = 'load_existing_preferences'
+    const { data: existingPreferences, error: existingPreferencesError } = await supabase
+      .from('push_subscriptions')
+      .select('notifications_enabled, notification_types')
+      .eq('device_id', deviceId)
+      .order('last_seen_at', { ascending: false })
+      .limit(1)
+      .maybeSingle()
+
+    if (existingPreferencesError) throw existingPreferencesError
+
     failedStep = 'hash_endpoint'
     const endpointHash = await hashEndpoint(validatedSubscription.endpoint)
     const now = new Date().toISOString()
@@ -54,6 +72,8 @@ Deno.serve(async (request) => {
           subscription: validatedSubscription,
           user_agent: userAgent,
           platform,
+          notifications_enabled: existingPreferences?.notifications_enabled ?? true,
+          notification_types: existingPreferences?.notification_types ?? SCHEDULER_NOTIFICATION_TYPES,
           active: true,
           last_seen_at: now,
         },

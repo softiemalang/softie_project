@@ -2,12 +2,27 @@ import { createClient } from 'npm:@supabase/supabase-js@2'
 import webpush from 'npm:web-push@3.6.7'
 
 export type NotificationCategory = 'test' | 'checkin' | 'warning' | 'checkout'
+export type SchedulerNotificationType = 'checkin' | 'warning' | 'checkout'
+
+export const SCHEDULER_NOTIFICATION_TYPES: SchedulerNotificationType[] = ['checkin', 'warning', 'checkout']
+export const SCHEDULER_NOTIFICATION_LABELS: Record<SchedulerNotificationType, string> = {
+  checkin: '입실',
+  warning: '퇴실등',
+  checkout: '퇴실',
+}
 
 export type PushSubscriptionRow = {
   id: string
   device_id: string
   endpoint_hash: string
   subscription: Record<string, unknown>
+  notifications_enabled?: boolean
+  notification_types?: SchedulerNotificationType[]
+}
+
+export type PushPreferencePayload = {
+  notificationsEnabled: boolean
+  notificationTypes: SchedulerNotificationType[]
 }
 
 export type PushSubscriptionPayload = {
@@ -72,9 +87,58 @@ export function buildPushPayload({
   })
 }
 
+export function isSchedulerNotificationType(value: unknown): value is SchedulerNotificationType {
+  return typeof value === 'string' && SCHEDULER_NOTIFICATION_TYPES.includes(value as SchedulerNotificationType)
+}
+
+export function validatePushPreferencePayload(
+  notificationsEnabled: unknown,
+  notificationTypes: unknown,
+): PushPreferencePayload {
+  if (typeof notificationsEnabled !== 'boolean') {
+    throw new Error('notificationsEnabled가 필요합니다.')
+  }
+
+  if (!Array.isArray(notificationTypes)) {
+    throw new Error('notificationTypes가 필요합니다.')
+  }
+
+  const uniqueTypes = Array.from(new Set(notificationTypes))
+  if (!uniqueTypes.every((value) => isSchedulerNotificationType(value))) {
+    throw new Error('notificationTypes에는 checkin, warning, checkout만 사용할 수 있어요.')
+  }
+
+  return {
+    notificationsEnabled,
+    notificationTypes: uniqueTypes as SchedulerNotificationType[],
+  }
+}
+
 export async function sendWebPush(subscription: Record<string, unknown>, payload: string) {
   configureWebPush()
   return webpush.sendNotification(subscription as never, payload)
+}
+
+export function formatReminderTitle({
+  notificationType,
+  branch,
+  room,
+  customerName,
+  time,
+}: {
+  notificationType: SchedulerNotificationType
+  branch: string
+  room: string
+  customerName: string
+  time: string
+}) {
+  return [
+    SCHEDULER_NOTIFICATION_LABELS[notificationType],
+    branch,
+    room,
+    customerName,
+    time,
+  ].join(' · ')
 }
 
 export function validatePushSubscriptionPayload(subscription: unknown): PushSubscriptionPayload {

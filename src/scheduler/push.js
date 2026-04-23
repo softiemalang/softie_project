@@ -209,6 +209,37 @@ export async function sendSchedulerTestPush() {
   return data
 }
 
+export async function getSchedulerPushPreferences() {
+  if (!supabase) {
+    throw new Error('Supabase 설정이 없어요. 환경변수를 확인해 주세요.')
+  }
+
+  const { data, error } = await supabase.functions.invoke('get-push-preferences', {
+    body: {
+      deviceId: getOrCreatePushDeviceId(),
+    },
+  })
+
+  if (error) throw await unwrapFunctionError(error)
+  return data
+}
+
+export async function updateSchedulerPushPreferences(preferences) {
+  if (!supabase) {
+    throw new Error('Supabase 설정이 없어요. 환경변수를 확인해 주세요.')
+  }
+
+  const { data, error } = await supabase.functions.invoke('update-push-preferences', {
+    body: {
+      deviceId: getOrCreatePushDeviceId(),
+      ...preferences,
+    },
+  })
+
+  if (error) throw await unwrapFunctionError(error)
+  return data
+}
+
 async function unwrapFunctionError(error) {
   if (!error || typeof error !== 'object') {
     return new Error('알림 서버 요청 중 알 수 없는 오류가 발생했어요.')
