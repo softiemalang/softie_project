@@ -14,19 +14,18 @@ type ReminderRow = {
   reservation_id: string
   notification_type: SchedulerNotificationType
   scheduled_for: string
-  status: 'pending' | 'sent' | 'failed' | 'skipped'
+  status: 'pending' | 'retry_pending' | 'sent' | 'failed' | 'skipped'
   attempt_count: number
   retry_after: string | null
-  reservations: {
-    branch: string
-    room: string
-    customer_name: string
-  } | null
-  work_events: Array<{
-    event_type: SchedulerNotificationType
-    scheduled_at: string
-  }>
+  branch: string
+  room: string
+  customer_name: string
+  event_scheduled_at: string
 }
+
+const ACTIVE_WINDOW_START_MINUTE = 44
+const ACTIVE_WINDOW_END_MINUTE = 56
+const CLAIM_LIMIT = 50
 
 function padTime(value: number) {
   return String(value).padStart(2, '0')
@@ -45,66 +44,75 @@ function addMinutes(input: Date, minutes: number) {
   return new Date(input.getTime() + minutes * 60 * 1000)
 }
 
-async function markExpiredPendingReminders(supabase: ReturnType<typeof createServiceRoleClient>, now: Date) {
-  const cutoff = toIso(addMinutes(now, -1))
-  const { data, error } = await supabase
-    .from('push_reminders')
-    .update({
-      status: 'skipped',
-      error_message: 'Reminder window passed before dispatch.',
-      updated_at: toIso(now),
-    })
-    .eq('status', 'pending')
-    .lt('scheduled_for', cutoff)
-    .select('id')
-
-  if (error) throw error
-  return data?.length ?? 0
+function getWindowStart(now: Date) {
+  const windowStart = new Date(now)
+  windowStart.setUTCMinutes(ACTIVE_WINDOW_START_MINUTE, 0, 0)
+  return windowStart
 }
 
-async function fetchDueReminders(
+function isActiveScanWindow(now: Date) {
+  const minute = now.getUTCMinutes()
+  return minute >= ACTIVE_WINDOW_START_MINUTE && minute <= ACTIVE_WINDOW_END_MINUTE
+}
+
+async function markStaleReminders(
   supabase: ReturnType<typeof createServiceRoleClient>,
   now: Date,
+  windowStart: Date,
 ) {
   const nowIso = toIso(now)
-  const windowStartIso = toIso(addMinutes(now, -1))
+  const windowStartIso = toIso(windowStart)
 
-  const baseSelect = `
-    id,
-    reservation_id,
-    notification_type,
-    scheduled_for,
-    status,
-    attempt_count,
-    retry_after,
-    reservations!inner(branch, room, customer_name),
-    work_events!inner(event_type, scheduled_at)
-  `
-
-  const [{ data: pendingRows, error: pendingError }, { data: retryRows, error: retryError }] =
+  const [{ data: stalePending, error: pendingError }, { data: staleRetry, error: retryError }] =
     await Promise.all([
       supabase
         .from('push_reminders')
-        .select(baseSelect)
+        .update({
+          status: 'skipped',
+          error_message: 'Reminder window passed before dispatch.',
+          claimed_at: null,
+          claim_token: null,
+          updated_at: nowIso,
+        })
         .eq('status', 'pending')
-        .lte('scheduled_for', nowIso)
-        .gte('scheduled_for', windowStartIso)
-        .order('scheduled_for', { ascending: true }),
+        .lt('scheduled_for', windowStartIso)
+        .select('id'),
       supabase
         .from('push_reminders')
-        .select(baseSelect)
-        .eq('status', 'failed')
-        .eq('attempt_count', 1)
+        .update({
+          status: 'skipped',
+          error_message: 'Retry window passed before dispatch.',
+          claimed_at: null,
+          claim_token: null,
+          updated_at: nowIso,
+        })
+        .eq('status', 'retry_pending')
         .not('retry_after', 'is', null)
-        .lte('retry_after', nowIso)
-        .gte('retry_after', windowStartIso)
-        .order('retry_after', { ascending: true }),
+        .lt('retry_after', windowStartIso)
+        .select('id'),
     ])
 
   if (pendingError) throw pendingError
   if (retryError) throw retryError
 
-  return [...(pendingRows ?? []), ...(retryRows ?? [])] as ReminderRow[]
+  return (stalePending?.length ?? 0) + (staleRetry?.length ?? 0)
+}
+
+async function claimDueReminders(
+  supabase: ReturnType<typeof createServiceRoleClient>,
+  now: Date,
+  windowStart: Date,
+  claimToken: string,
+) {
+  const { data, error } = await supabase.rpc('claim_due_push_reminders', {
+    p_now: toIso(now),
+    p_window_start: toIso(windowStart),
+    p_claim_token: claimToken,
+    p_limit: CLAIM_LIMIT,
+  })
+
+  if (error) throw error
+  return (data ?? []) as ReminderRow[]
 }
 
 async function fetchTargetSubscriptions(
@@ -149,6 +157,21 @@ async function clearSubscriptionError(
     .eq('id', subscriptionId)
 }
 
+async function updateReminderState(
+  supabase: ReturnType<typeof createServiceRoleClient>,
+  reminderId: string,
+  claimToken: string,
+  values: Record<string, unknown>,
+) {
+  const { error } = await supabase
+    .from('push_reminders')
+    .update(values)
+    .eq('id', reminderId)
+    .eq('claim_token', claimToken)
+
+  if (error) throw error
+}
+
 Deno.serve(async (request) => {
   let failedStep = 'request'
 
@@ -168,11 +191,25 @@ Deno.serve(async (request) => {
     const supabase = createServiceRoleClient()
     const now = new Date()
 
-    failedStep = 'mark_expired'
-    const skippedCount = await markExpiredPendingReminders(supabase, now)
+    if (!isActiveScanWindow(now)) {
+      return new Response(JSON.stringify({
+        ok: true,
+        idle: true,
+        reason: 'outside_active_window',
+        activeWindowMinutes: [ACTIVE_WINDOW_START_MINUTE, ACTIVE_WINDOW_END_MINUTE],
+      }), {
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+      })
+    }
 
-    failedStep = 'fetch_due_reminders'
-    const dueReminders = await fetchDueReminders(supabase, now)
+    const windowStart = getWindowStart(now)
+    const claimToken = crypto.randomUUID()
+
+    failedStep = 'skip_stale'
+    const skippedCount = await markStaleReminders(supabase, now, windowStart)
+
+    failedStep = 'claim_due_reminders'
+    const dueReminders = await claimDueReminders(supabase, now, windowStart, claimToken)
 
     if (dueReminders.length === 0) {
       return new Response(JSON.stringify({
@@ -181,6 +218,7 @@ Deno.serve(async (request) => {
         failed: 0,
         skipped: skippedCount,
         processed: 0,
+        activeWindowMinutes: [ACTIVE_WINDOW_START_MINUTE, ACTIVE_WINDOW_END_MINUTE],
       }), {
         headers: { ...corsHeaders, 'Content-Type': 'application/json' },
       })
@@ -195,21 +233,16 @@ Deno.serve(async (request) => {
 
     for (const reminder of dueReminders) {
       const attemptNumber = reminder.attempt_count + 1
-      const matchingWorkEvent = reminder.work_events.find((item) => item.event_type === reminder.notification_type)
 
-      if (!matchingWorkEvent || !reminder.reservations) {
-        await supabase
-          .from('push_reminders')
-          .update({
-            status: 'failed',
-            attempt_count: attemptNumber,
-            last_attempt_at: toIso(now),
-            retry_after: attemptNumber === 1 ? toIso(addMinutes(now, 1)) : null,
-            error_message: 'Reminder context is incomplete.',
-          })
-          .eq('id', reminder.id)
-
-        failedCount += 1
+      if (!reminder.branch || !reminder.room || !reminder.customer_name || !reminder.event_scheduled_at) {
+        await updateReminderState(supabase, reminder.id, claimToken, {
+          status: 'skipped',
+          error_message: 'Reminder context is incomplete.',
+          claimed_at: null,
+          claim_token: null,
+          updated_at: toIso(now),
+        })
+        totalSkipped += 1
         continue
       }
 
@@ -220,25 +253,23 @@ Deno.serve(async (request) => {
       )
 
       if (eligibleSubscriptions.length === 0) {
-        await supabase
-          .from('push_reminders')
-          .update({
-            status: 'skipped',
-            error_message: 'No active subscriptions are enabled for this reminder type.',
-            updated_at: toIso(now),
-          })
-          .eq('id', reminder.id)
-
+        await updateReminderState(supabase, reminder.id, claimToken, {
+          status: 'skipped',
+          error_message: 'No active subscriptions are enabled for this reminder type.',
+          claimed_at: null,
+          claim_token: null,
+          updated_at: toIso(now),
+        })
         totalSkipped += 1
         continue
       }
 
       const title = formatReminderTitle({
         notificationType: reminder.notification_type,
-        branch: reminder.reservations.branch,
-        room: reminder.reservations.room,
-        customerName: reminder.reservations.customer_name,
-        time: formatDisplayTime(matchingWorkEvent.scheduled_at),
+        branch: reminder.branch,
+        room: reminder.room,
+        customerName: reminder.customer_name,
+        time: formatDisplayTime(reminder.event_scheduled_at),
       })
 
       const payload = buildPushPayload({
@@ -270,32 +301,33 @@ Deno.serve(async (request) => {
       }
 
       if (deliveredCount > 0) {
-        await supabase
-          .from('push_reminders')
-          .update({
-            status: 'sent',
-            attempt_count: attemptNumber,
-            last_attempt_at: toIso(now),
-            retry_after: null,
-            sent_at: toIso(now),
-            error_message: failureMessages.length ? failureMessages.join('\n') : null,
-          })
-          .eq('id', reminder.id)
-
+        await updateReminderState(supabase, reminder.id, claimToken, {
+          status: 'sent',
+          attempt_count: attemptNumber,
+          last_attempt_at: toIso(now),
+          retry_after: null,
+          sent_at: toIso(now),
+          error_message: failureMessages.length ? failureMessages.join('\n') : null,
+          claimed_at: null,
+          claim_token: null,
+          updated_at: toIso(now),
+        })
         sentCount += 1
         continue
       }
 
-      await supabase
-        .from('push_reminders')
-        .update({
-          status: 'failed',
-          attempt_count: attemptNumber,
-          last_attempt_at: toIso(now),
-          retry_after: attemptNumber === 1 ? toIso(addMinutes(now, 1)) : null,
-          error_message: failureMessages.join('\n') || 'Reminder delivery failed.',
-        })
-        .eq('id', reminder.id)
+      const shouldRetry = attemptNumber === 1
+
+      await updateReminderState(supabase, reminder.id, claimToken, {
+        status: shouldRetry ? 'retry_pending' : 'failed',
+        attempt_count: attemptNumber,
+        last_attempt_at: toIso(now),
+        retry_after: shouldRetry ? toIso(addMinutes(now, 1)) : null,
+        error_message: failureMessages.join('\n') || 'Reminder delivery failed.',
+        claimed_at: null,
+        claim_token: null,
+        updated_at: toIso(now),
+      })
 
       failedCount += 1
     }
@@ -306,6 +338,7 @@ Deno.serve(async (request) => {
       failed: failedCount,
       skipped: totalSkipped,
       processed: dueReminders.length,
+      activeWindowMinutes: [ACTIVE_WINDOW_START_MINUTE, ACTIVE_WINDOW_END_MINUTE],
     }), {
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },
     })
