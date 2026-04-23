@@ -33,7 +33,7 @@ Deno.serve(async (request) => {
     failedStep = 'lookup_subscription'
     const { data, error } = await supabase
       .from('push_subscriptions')
-      .select('notifications_enabled, notification_types')
+      .select('notifications_enabled, notification_types, work_time_enabled, work_time_start_hour, work_time_end_hour')
       .eq('device_id', deviceId)
       .eq('active', true)
       .order('last_seen_at', { ascending: false })
@@ -45,6 +45,9 @@ Deno.serve(async (request) => {
     return new Response(JSON.stringify({
       notificationsEnabled: data?.notifications_enabled ?? true,
       notificationTypes: data?.notification_types ?? SCHEDULER_NOTIFICATION_TYPES,
+      workTimeEnabled: data?.work_time_enabled ?? false,
+      workTimeStartHour: data?.work_time_start_hour ?? null,
+      workTimeEndHour: data?.work_time_end_hour ?? null,
     }), {
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },
     })

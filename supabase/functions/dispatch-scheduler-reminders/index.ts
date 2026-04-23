@@ -4,6 +4,8 @@ import {
   createServiceRoleClient,
   describePushError,
   formatReminderTitle,
+  formatSchedulerLocalTime,
+  isWorkTimeEligible,
   sendWebPush,
   type PushSubscriptionRow,
   type SchedulerNotificationType,
@@ -26,15 +28,6 @@ type ReminderRow = {
 const ACTIVE_WINDOW_START_MINUTE = 44
 const ACTIVE_WINDOW_END_MINUTE = 56
 const CLAIM_LIMIT = 50
-
-function padTime(value: number) {
-  return String(value).padStart(2, '0')
-}
-
-function formatDisplayTime(input: string) {
-  const date = new Date(input)
-  return `${padTime(date.getHours())}:${padTime(date.getMinutes())}`
-}
 
 function toIso(input: Date) {
   return input.toISOString()
@@ -120,7 +113,7 @@ async function fetchTargetSubscriptions(
 ) {
   const { data, error } = await supabase
     .from('push_subscriptions')
-    .select('id, device_id, endpoint_hash, subscription, notifications_enabled, notification_types')
+    .select('id, device_id, endpoint_hash, subscription, notifications_enabled, notification_types, work_time_enabled, work_time_start_hour, work_time_end_hour')
     .eq('active', true)
     .eq('notifications_enabled', true)
 
@@ -250,6 +243,7 @@ Deno.serve(async (request) => {
         Array.isArray(subscription.notification_types)
           && subscription.notification_types.includes(reminder.notification_type)
           && subscription.notifications_enabled !== false
+          && isWorkTimeEligible(subscription, reminder.event_scheduled_at)
       )
 
       if (eligibleSubscriptions.length === 0) {
@@ -269,7 +263,7 @@ Deno.serve(async (request) => {
         branch: reminder.branch,
         room: reminder.room,
         customerName: reminder.customer_name,
-        time: formatDisplayTime(reminder.event_scheduled_at),
+        time: formatSchedulerLocalTime(reminder.event_scheduled_at),
       })
 
       const payload = buildPushPayload({

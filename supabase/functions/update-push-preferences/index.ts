@@ -21,14 +21,27 @@ Deno.serve(async (request) => {
 
   try {
     failedStep = 'parse_request'
-    const { deviceId, notificationsEnabled, notificationTypes } = await request.json()
+    const {
+      deviceId,
+      notificationsEnabled,
+      notificationTypes,
+      workTimeEnabled,
+      workTimeStartHour,
+      workTimeEndHour,
+    } = await request.json()
 
     if (!deviceId || typeof deviceId !== 'string') {
       throw new Error('deviceId가 필요합니다.')
     }
 
     failedStep = 'validate_preferences'
-    const validated = validatePushPreferencePayload(notificationsEnabled, notificationTypes)
+    const validated = validatePushPreferencePayload(
+      notificationsEnabled,
+      notificationTypes,
+      workTimeEnabled,
+      workTimeStartHour,
+      workTimeEndHour,
+    )
 
     failedStep = 'create_service_client'
     const supabase = createServiceRoleClient()
@@ -39,6 +52,9 @@ Deno.serve(async (request) => {
       .update({
         notifications_enabled: validated.notificationsEnabled,
         notification_types: validated.notificationTypes,
+        work_time_enabled: validated.workTimeEnabled,
+        work_time_start_hour: validated.workTimeStartHour,
+        work_time_end_hour: validated.workTimeEndHour,
       })
       .eq('device_id', deviceId)
       .eq('active', true)
@@ -56,6 +72,9 @@ Deno.serve(async (request) => {
       ok: true,
       notificationsEnabled: validated.notificationsEnabled,
       notificationTypes: validated.notificationTypes,
+      workTimeEnabled: validated.workTimeEnabled,
+      workTimeStartHour: validated.workTimeStartHour,
+      workTimeEndHour: validated.workTimeEndHour,
     }), {
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },
     })

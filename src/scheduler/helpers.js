@@ -5,8 +5,10 @@ import {
   SCHEDULER_BRANCHES,
   SCHEDULER_BRANCH_ROOMS,
   SCHEDULER_TAGS,
+  TODAY_HOURS,
   WORK_EVENT_META,
 } from './constants'
+import { sortSchedulerEvents } from './rules'
 import { addMinutes, combineLocalDateTime, formatTime, toIsoFromLocal, toLocalDateInputValue, toLocalTimeInputValue } from './time'
 
 export function getTagMeta(tag) {
@@ -97,11 +99,7 @@ export function validateReservationForm(formValues) {
 }
 
 export function sortEventsByTime(items) {
-  return [...items].sort((left, right) => {
-    const timeDiff = new Date(left.scheduled_at).getTime() - new Date(right.scheduled_at).getTime()
-    if (timeDiff !== 0) return timeDiff
-    return left.event_type.localeCompare(right.event_type)
-  })
+  return sortSchedulerEvents(items)
 }
 
 export function decorateEvent(item, now = new Date()) {

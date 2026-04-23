@@ -4,6 +4,13 @@ import { listTodayWorkEvents, getReservationById, saveReservation, deleteReserva
 import { SCHEDULER_BRANCHES, SCHEDULER_TAGS, TODAY_HOURS, WORK_EVENT_META } from './constants'
 import { buildReservationPayload, createReservationDraft, getRoomStatus, getRoomsForBranch, getTagMeta, groupTodayEvents, mapReservationToFormValues, validateReservationForm } from './helpers'
 import {
+  formatWorkTimeHour,
+  formatWorkTimeRange,
+  getDefaultWorkTimeFilter,
+  isSchedulerItemInWorkTimeRange,
+  normalizeWorkTimeFilter,
+} from './rules'
+import {
   getSchedulerPushPreferences,
   getSchedulerPushState,
   sendSchedulerTestPush,
@@ -13,11 +20,31 @@ import {
 import { formatDateLabel, formatSchedulerDate, formatSchedulerTime, toLocalDateInputValue } from './time'
 
 const GO_TO_TODAY_EVENT = 'scheduler:go-today'
+const WORK_TIME_FILTER_STORAGE_KEY = 'scheduler:work-time-filter'
 const DEFAULT_PUSH_PREFERENCES = {
   notificationsEnabled: true,
   notificationTypes: ['checkin', 'warning', 'checkout'],
+  ...getDefaultWorkTimeFilter(),
 }
 const PUSH_NOTIFICATION_OPTIONS = ['checkin', 'warning', 'checkout']
+const WORK_TIME_HOUR_OPTIONS = Array.from({ length: 24 }, (_, hour) => hour)
+
+function loadStoredWorkTimeFilter() {
+  if (typeof window === 'undefined') return getDefaultWorkTimeFilter()
+
+  try {
+    const rawValue = window.localStorage.getItem(WORK_TIME_FILTER_STORAGE_KEY)
+    if (!rawValue) return getDefaultWorkTimeFilter()
+    return normalizeWorkTimeFilter(JSON.parse(rawValue))
+  } catch {
+    return getDefaultWorkTimeFilter()
+  }
+}
+
+function persistWorkTimeFilter(filter) {
+  if (typeof window === 'undefined') return
+  window.localStorage.setItem(WORK_TIME_FILTER_STORAGE_KEY, JSON.stringify(normalizeWorkTimeFilter(filter)))
+}
 
 function parseSchedulerRoute(pathname) {
   if (pathname === '/scheduler') return { name: 'today' }
@@ -131,12 +158,17 @@ function NativePickerField({
 function TodaySchedulerPage() {
   const [selectedDate, setSelectedDate] = useState(toLocalDateInputValue())
   const [events, setEvents] = useState([])
-  const [filters, setFilters] = useState({ branch: 'all', room: 'all' })
-  const [draftFilters, setDraftFilters] = useState({
+  const [filters, setFilters] = useState(() => ({
+    branch: 'all',
+    room: 'all',
+    ...loadStoredWorkTimeFilter(),
+  }))
+  const [draftFilters, setDraftFilters] = useState(() => ({
     date: toLocalDateInputValue(),
     branch: 'all',
     room: 'all',
-  })
+    ...loadStoredWorkTimeFilter(),
+  }))
   const [isFilterSheetOpen, setIsFilterSheetOpen] = useState(false)
   const [status, setStatus] = useState('')
   const [isLoading, setIsLoading] = useState(true)
@@ -187,7 +219,10 @@ function TodaySchedulerPage() {
   useEffect(() => {
     async function loadPushPreferences() {
       if (!pushState.subscribed) {
-        setPushPreferences(DEFAULT_PUSH_PREFERENCES)
+        setPushPreferences({
+          ...DEFAULT_PUSH_PREFERENCES,
+          ...normalizedFilters,
+        })
         return
       }
 
@@ -198,6 +233,9 @@ function TodaySchedulerPage() {
           notificationTypes: Array.isArray(nextPreferences?.notificationTypes)
             ? nextPreferences.notificationTypes
             : DEFAULT_PUSH_PREFERENCES.notificationTypes,
+          workTimeEnabled: nextPreferences?.workTimeEnabled ?? normalizedFilters.workTimeEnabled,
+          workTimeStartHour: nextPreferences?.workTimeStartHour ?? normalizedFilters.workTimeStartHour,
+          workTimeEndHour: nextPreferences?.workTimeEndHour ?? normalizedFilters.workTimeEndHour,
         })
       } catch (error) {
         setPushStatus(error instanceof Error ? error.message : '웹 알림 설정을 불러오지 못했어요.')
@@ -205,7 +243,7 @@ function TodaySchedulerPage() {
     }
 
     loadPushPreferences()
-  }, [pushState.subscribed])
+  }, [pushState.subscribed, normalizedFilters.workTimeEnabled, normalizedFilters.workTimeEndHour, normalizedFilters.workTimeStartHour])
 
   useEffect(() => {
     function handleGoToToday() {
@@ -218,10 +256,24 @@ function TodaySchedulerPage() {
 
   const rooms = filters.branch === 'all' ? [] : getRoomsForBranch(filters.branch)
   const draftRooms = draftFilters.branch === 'all' ? [] : getRoomsForBranch(draftFilters.branch)
+  const normalizedFilters = normalizeWorkTimeFilter(filters)
+  const normalizedDraftWorkTime = normalizeWorkTimeFilter(draftFilters)
+
+  function buildPushPreferencePayload(preferences, workTimeFilter) {
+    const normalizedWorkTime = normalizeWorkTimeFilter(workTimeFilter)
+    return {
+      notificationsEnabled: preferences.notificationsEnabled,
+      notificationTypes: preferences.notificationTypes,
+      workTimeEnabled: normalizedWorkTime.workTimeEnabled,
+      workTimeStartHour: normalizedWorkTime.workTimeEnabled ? normalizedWorkTime.workTimeStartHour : null,
+      workTimeEndHour: normalizedWorkTime.workTimeEnabled ? normalizedWorkTime.workTimeEndHour : null,
+    }
+  }
 
   const filteredEvents = events.filter((item) => {
     if (filters.branch !== 'all' && item.reservation?.branch !== filters.branch) return false
     if (filters.room !== 'all' && item.reservation?.room !== filters.room) return false
+    if (!isSchedulerItemInWorkTimeRange(item, normalizedFilters)) return false
     return true
   })
 
@@ -247,17 +299,25 @@ function TodaySchedulerPage() {
       date: selectedDate,
       branch: filters.branch,
       room: filters.room,
+      ...normalizedFilters,
     })
     setIsFilterSheetOpen(true)
   }
 
-  function applyFilterChanges() {
+  async function applyFilterChanges() {
+    const nextWorkTimeFilter = normalizeWorkTimeFilter(draftFilters)
     setSelectedDate(draftFilters.date)
     setFilters({
       branch: draftFilters.branch,
       room: draftFilters.room,
+      ...nextWorkTimeFilter,
     })
+    persistWorkTimeFilter(nextWorkTimeFilter)
     setIsFilterSheetOpen(false)
+
+    if (pushState.subscribed) {
+      await handleUpdatePushPreferences(buildPushPreferencePayload(pushPreferences, nextWorkTimeFilter), { silent: true })
+    }
   }
 
   function updateDraftFilter(field, value) {
@@ -271,15 +331,44 @@ function TodaySchedulerPage() {
         }
       }
 
+      if (field === 'workTimeEnabled') {
+        return {
+          ...current,
+          workTimeEnabled: value,
+        }
+      }
+
+      if (field === 'workTimeStartHour') {
+        const nextStartHour = Number(value)
+        return {
+          ...current,
+          workTimeStartHour: nextStartHour,
+          workTimeEndHour: Math.max(nextStartHour, Number(current.workTimeEndHour)),
+        }
+      }
+
+      if (field === 'workTimeEndHour') {
+        const nextEndHour = Number(value)
+        return {
+          ...current,
+          workTimeEndHour: nextEndHour,
+          workTimeStartHour: Math.min(Number(current.workTimeStartHour), nextEndHour),
+        }
+      }
+
       return { ...current, [field]: value }
     })
   }
 
-  const filterSummary = [
+  const filterSummaryParts = [
     formatDateLabel(selectedDate),
     filters.branch === 'all' ? '전체 지점' : filters.branch,
     filters.room === 'all' ? '전체 룸' : filters.room,
-  ].join(' · ')
+  ]
+  if (normalizedFilters.workTimeEnabled) {
+    filterSummaryParts.unshift(formatWorkTimeRange(normalizedFilters))
+  }
+  const filterSummary = filterSummaryParts.join(' · ')
 
   const pushSummary = (() => {
     if (!pushState.supported) {
@@ -326,6 +415,18 @@ function TodaySchedulerPage() {
     setIsPushBusy(true)
     try {
       await subscribeSchedulerPush()
+      const syncedPreferences = await updateSchedulerPushPreferences(
+        buildPushPreferencePayload(pushPreferences, normalizedFilters),
+      )
+      setPushPreferences({
+        notificationsEnabled: syncedPreferences?.notificationsEnabled ?? pushPreferences.notificationsEnabled,
+        notificationTypes: Array.isArray(syncedPreferences?.notificationTypes)
+          ? syncedPreferences.notificationTypes
+          : pushPreferences.notificationTypes,
+        workTimeEnabled: syncedPreferences?.workTimeEnabled ?? normalizedFilters.workTimeEnabled,
+        workTimeStartHour: syncedPreferences?.workTimeStartHour ?? normalizedFilters.workTimeStartHour,
+        workTimeEndHour: syncedPreferences?.workTimeEndHour ?? normalizedFilters.workTimeEndHour,
+      })
       setPushStatus('이 브라우저를 알림 대상으로 연결했어요.')
       await loadPushState()
     } catch (error) {
@@ -335,7 +436,8 @@ function TodaySchedulerPage() {
     }
   }
 
-  async function handleUpdatePushPreferences(nextPreferences) {
+  async function handleUpdatePushPreferences(nextPreferences, options = {}) {
+    const { silent = false } = options
     setIsPushPreferencesBusy(true)
     try {
       const savedPreferences = await updateSchedulerPushPreferences(nextPreferences)
@@ -344,8 +446,13 @@ function TodaySchedulerPage() {
         notificationTypes: Array.isArray(savedPreferences?.notificationTypes)
           ? savedPreferences.notificationTypes
           : nextPreferences.notificationTypes,
+        workTimeEnabled: savedPreferences?.workTimeEnabled ?? nextPreferences.workTimeEnabled,
+        workTimeStartHour: savedPreferences?.workTimeStartHour ?? nextPreferences.workTimeStartHour,
+        workTimeEndHour: savedPreferences?.workTimeEndHour ?? nextPreferences.workTimeEndHour,
       })
-      setPushStatus('자동 일정 알림 설정을 저장했어요.')
+      if (!silent) {
+        setPushStatus('자동 일정 알림 설정을 저장했어요.')
+      }
     } catch (error) {
       setPushStatus(error instanceof Error ? error.message : '웹 알림 설정 저장에 실패했어요.')
     } finally {
@@ -354,10 +461,15 @@ function TodaySchedulerPage() {
   }
 
   function handleToggleNotificationsEnabled() {
-    handleUpdatePushPreferences({
-      notificationsEnabled: !pushPreferences.notificationsEnabled,
-      notificationTypes: pushPreferences.notificationTypes,
-    })
+    handleUpdatePushPreferences(
+      buildPushPreferencePayload(
+        {
+          ...pushPreferences,
+          notificationsEnabled: !pushPreferences.notificationsEnabled,
+        },
+        normalizedFilters,
+      ),
+    )
   }
 
   function handleToggleNotificationType(type) {
@@ -366,10 +478,15 @@ function TodaySchedulerPage() {
       ? pushPreferences.notificationTypes.filter((value) => value !== type)
       : [...pushPreferences.notificationTypes, type]
 
-    handleUpdatePushPreferences({
-      notificationsEnabled: pushPreferences.notificationsEnabled,
-      notificationTypes: nextTypes,
-    })
+    handleUpdatePushPreferences(
+      buildPushPreferencePayload(
+        {
+          ...pushPreferences,
+          notificationTypes: nextTypes,
+        },
+        normalizedFilters,
+      ),
+    )
   }
 
   async function handleSendTestPush() {
@@ -463,7 +580,7 @@ function TodaySchedulerPage() {
         <div className="scheduler-filter-summary-row">
           <div className="scheduler-filter-summary-copy">
             <p className="scheduler-section-label">운영 시간</p>
-            <strong>{TODAY_HOURS.start}:00 - {TODAY_HOURS.end}:00</strong>
+            <strong>{normalizedFilters.workTimeEnabled ? '근무 중' : `${TODAY_HOURS.start}:00 - ${TODAY_HOURS.end}:00`}</strong>
             <p className="subtle">{filterSummary}</p>
           </div>
           <button type="button" className="soft-button scheduler-summary-button" onClick={openFilterSheet}>
@@ -498,6 +615,58 @@ function TodaySchedulerPage() {
                 onChange={(event) => updateDraftFilter('date', event.target.value)}
                 hideLabel
               />
+
+              <div className="scheduler-filter-field">
+                <div className="scheduler-chip-row scheduler-filter-mode-row" role="radiogroup" aria-label="보기 범위">
+                  <button
+                    type="button"
+                    className={`scheduler-chip ${!draftFilters.workTimeEnabled ? 'active' : ''}`}
+                    onClick={() => updateDraftFilter('workTimeEnabled', false)}
+                    aria-pressed={!draftFilters.workTimeEnabled}
+                  >
+                    전체 보기
+                  </button>
+                  <button
+                    type="button"
+                    className={`scheduler-chip ${draftFilters.workTimeEnabled ? 'active' : ''}`}
+                    onClick={() => updateDraftFilter('workTimeEnabled', true)}
+                    aria-pressed={draftFilters.workTimeEnabled}
+                  >
+                    근무 중
+                  </button>
+                </div>
+              </div>
+
+              {draftFilters.workTimeEnabled ? (
+                <div className="scheduler-two-up scheduler-filter-time-row">
+                  <label className="scheduler-filter-field">
+                    <span className="scheduler-parent-label">시작</span>
+                    <select
+                      value={normalizedDraftWorkTime.workTimeStartHour}
+                      onChange={(event) => updateDraftFilter('workTimeStartHour', event.target.value)}
+                    >
+                      {WORK_TIME_HOUR_OPTIONS.map((hour) => (
+                        <option key={`start-${hour}`} value={hour}>
+                          {formatWorkTimeHour(hour)}
+                        </option>
+                      ))}
+                    </select>
+                  </label>
+                  <label className="scheduler-filter-field">
+                    <span className="scheduler-parent-label">종료</span>
+                    <select
+                      value={normalizedDraftWorkTime.workTimeEndHour}
+                      onChange={(event) => updateDraftFilter('workTimeEndHour', event.target.value)}
+                    >
+                      {WORK_TIME_HOUR_OPTIONS.map((hour) => (
+                        <option key={`end-${hour}`} value={hour}>
+                          {formatWorkTimeHour(hour)}
+                        </option>
+                      ))}
+                    </select>
+                  </label>
+                </div>
+              ) : null}
 
               <div className="scheduler-filter-field">
                 <div className="scheduler-branch-option-row scheduler-filter-branch-row" role="radiogroup" aria-label="지점 필터">

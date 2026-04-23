@@ -11,6 +11,8 @@ export const SCHEDULER_NOTIFICATION_LABELS: Record<SchedulerNotificationType, st
   checkout: '퇴실',
 }
 
+const SCHEDULER_TIMEZONE = 'Asia/Seoul'
+
 export type PushSubscriptionRow = {
   id: string
   device_id: string
@@ -18,11 +20,17 @@ export type PushSubscriptionRow = {
   subscription: Record<string, unknown>
   notifications_enabled?: boolean
   notification_types?: SchedulerNotificationType[]
+  work_time_enabled?: boolean
+  work_time_start_hour?: number | null
+  work_time_end_hour?: number | null
 }
 
 export type PushPreferencePayload = {
   notificationsEnabled: boolean
   notificationTypes: SchedulerNotificationType[]
+  workTimeEnabled: boolean
+  workTimeStartHour: number | null
+  workTimeEndHour: number | null
 }
 
 export type PushSubscriptionPayload = {
@@ -91,9 +99,21 @@ export function isSchedulerNotificationType(value: unknown): value is SchedulerN
   return typeof value === 'string' && SCHEDULER_NOTIFICATION_TYPES.includes(value as SchedulerNotificationType)
 }
 
+function toSafeHour(value: unknown) {
+  if (value === null || value === undefined || value === '') return null
+  const parsed = Number(value)
+  if (!Number.isInteger(parsed) || parsed < 0 || parsed > 23) {
+    throw new Error('근무 시간은 0시부터 23시 사이여야 해요.')
+  }
+  return parsed
+}
+
 export function validatePushPreferencePayload(
   notificationsEnabled: unknown,
   notificationTypes: unknown,
+  workTimeEnabled: unknown,
+  workTimeStartHour: unknown,
+  workTimeEndHour: unknown,
 ): PushPreferencePayload {
   if (typeof notificationsEnabled !== 'boolean') {
     throw new Error('notificationsEnabled가 필요합니다.')
@@ -108,9 +128,32 @@ export function validatePushPreferencePayload(
     throw new Error('notificationTypes에는 checkin, warning, checkout만 사용할 수 있어요.')
   }
 
+  if (typeof workTimeEnabled !== 'boolean') {
+    throw new Error('workTimeEnabled가 필요합니다.')
+  }
+
+  const normalizedStartHour = toSafeHour(workTimeStartHour)
+  const normalizedEndHour = toSafeHour(workTimeEndHour)
+
+  if (workTimeEnabled && (normalizedStartHour === null || normalizedEndHour === null)) {
+    throw new Error('근무 시간 시작/종료 시각이 필요합니다.')
+  }
+
+  if (
+    workTimeEnabled
+    && normalizedStartHour !== null
+    && normalizedEndHour !== null
+    && normalizedEndHour < normalizedStartHour
+  ) {
+    throw new Error('근무 시간 종료 시각은 시작 시각보다 빠를 수 없어요.')
+  }
+
   return {
     notificationsEnabled,
     notificationTypes: uniqueTypes as SchedulerNotificationType[],
+    workTimeEnabled,
+    workTimeStartHour: workTimeEnabled ? normalizedStartHour : null,
+    workTimeEndHour: workTimeEnabled ? normalizedEndHour : null,
   }
 }
 
@@ -139,6 +182,43 @@ export function formatReminderTitle({
     customerName,
     time,
   ].join(' · ')
+}
+
+export function getSchedulerLocalHour(input: string) {
+  const formatter = new Intl.DateTimeFormat('en-GB', {
+    timeZone: SCHEDULER_TIMEZONE,
+    hour: '2-digit',
+    hour12: false,
+  })
+
+  return Number(formatter.format(new Date(input)))
+}
+
+export function formatSchedulerLocalTime(input: string) {
+  const formatter = new Intl.DateTimeFormat('en-GB', {
+    timeZone: SCHEDULER_TIMEZONE,
+    hour: '2-digit',
+    minute: '2-digit',
+    hour12: false,
+  })
+
+  return formatter.format(new Date(input))
+}
+
+export function isWorkTimeEligible(
+  subscription: {
+    work_time_enabled?: boolean
+    work_time_start_hour?: number | null
+    work_time_end_hour?: number | null
+  },
+  eventScheduledAt: string,
+) {
+  if (!subscription.work_time_enabled) return true
+  if (subscription.work_time_start_hour === null || subscription.work_time_start_hour === undefined) return false
+  if (subscription.work_time_end_hour === null || subscription.work_time_end_hour === undefined) return false
+
+  const scheduledHour = getSchedulerLocalHour(eventScheduledAt)
+  return scheduledHour >= subscription.work_time_start_hour && scheduledHour <= subscription.work_time_end_hour
 }
 
 export function validatePushSubscriptionPayload(subscription: unknown): PushSubscriptionPayload {
