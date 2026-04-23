@@ -552,7 +552,6 @@ function TodaySchedulerPage() {
         </div>
         {isPushConnected ? (
           <div className="scheduler-push-connected">
-            <p className="subtle scheduler-push-summary">{pushSummary}</p>
             <div className="scheduler-push-secondary">
               <div className="scheduler-push-preferences" aria-label="웹 알림 설정">
                 <button
@@ -585,13 +584,18 @@ function TodaySchedulerPage() {
               <div className="scheduler-push-actions compact">
                 <button
                   type="button"
-                  className="soft-button scheduler-push-test-button"
+                  className="scheduler-push-mini-button"
                   onClick={handleSendTestPush}
                   disabled={isPushBusy || !pushState.subscribed}
                 >
                   테스트 알림
                 </button>
-                <button type="button" className="scheduler-text-button" onClick={handleEnablePush} disabled={isPushBusy}>
+                <button
+                  type="button"
+                  className="scheduler-push-mini-button secondary"
+                  onClick={handleEnablePush}
+                  disabled={isPushBusy}
+                >
                   다시 연결
                 </button>
               </div>

@@ -561,24 +561,19 @@ textarea {
 }
 
 .scheduler-push-panel.is-connected .scheduler-section-head {
-  margin-bottom: 0.14rem;
+  margin-bottom: 0.22rem;
 }
 
 .scheduler-push-connected,
 .scheduler-push-setup {
   display: grid;
-  gap: 0.44rem;
+  gap: 0.4rem;
   padding-inline: var(--scheduler-content-inset);
-}
-
-.scheduler-push-panel.is-connected .scheduler-push-summary {
-  font-size: 0.82rem;
-  line-height: 1.32;
 }
 
 .scheduler-push-secondary {
   display: grid;
-  gap: 0.36rem;
+  gap: 0.42rem;
 }
 
 .scheduler-push-preferences {
@@ -612,7 +607,7 @@ textarea {
 .scheduler-push-actions.compact {
   align-items: center;
   justify-content: flex-start;
-  gap: 0.58rem;
+  gap: 0.42rem;
   margin-top: 0;
 }
 
@@ -634,10 +629,6 @@ textarea {
   padding-inline: 1rem;
 }
 
-.scheduler-push-test-button {
-  min-width: 7.1rem;
-}
-
 .scheduler-push-mini-button {
   min-height: 32px;
   padding: 0.32rem 0.82rem;
@@ -650,8 +641,9 @@ textarea {
 }
 
 .scheduler-push-mini-button.secondary {
-  background: rgba(219, 236, 230, 0.9);
-  color: #53766f;
+  background: rgba(255, 255, 255, 0.78);
+  color: #7b7268;
+  border: 1px solid rgba(229, 219, 207, 0.92);
 }
 
 .scheduler-push-mini-button:disabled {
@@ -659,33 +651,20 @@ textarea {
   color: #bbb2a8;
 }
 
-.scheduler-text-button {
-  background: transparent;
-  color: #6b6258;
-  padding: 0.22rem 0.1rem;
-  border-radius: 0;
-  font-size: 0.78rem;
-  font-weight: 600;
-  line-height: 1.1;
-}
-
 .scheduler-push-status-note {
-  margin-top: 0.16rem;
-  font-size: 0.8rem;
+  margin-top: 0.08rem;
+  font-size: 0.76rem;
   line-height: 1.34;
   color: #8a8074;
+  text-align: center;
 }
 
 .scheduler-push-status-note.is-error {
-  color: #8c6c58;
+  color: #98877a;
 }
 
 .scheduler-push-status-note.is-success {
   color: #6c685d;
-}
-
-.scheduler-text-button:disabled {
-  opacity: 0.45;
 }
 
 .scheduler-count-pill.is-ready {
