@@ -10,6 +10,14 @@ export type PushSubscriptionRow = {
   subscription: Record<string, unknown>
 }
 
+export type PushSubscriptionPayload = {
+  endpoint: string
+  keys: {
+    auth: string
+    p256dh: string
+  }
+}
+
 export function createServiceRoleClient() {
   const supabaseUrl = Deno.env.get('SUPABASE_URL')
   const serviceRoleKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')
@@ -67,6 +75,40 @@ export function buildPushPayload({
 export async function sendWebPush(subscription: Record<string, unknown>, payload: string) {
   configureWebPush()
   return webpush.sendNotification(subscription as never, payload)
+}
+
+export function validatePushSubscriptionPayload(subscription: unknown): PushSubscriptionPayload {
+  if (!subscription || typeof subscription !== 'object') {
+    throw new Error('subscription payload가 필요합니다.')
+  }
+
+  const endpoint = Reflect.get(subscription, 'endpoint')
+  if (typeof endpoint !== 'string' || !endpoint.trim()) {
+    throw new Error('subscription.endpoint가 필요합니다.')
+  }
+
+  const keys = Reflect.get(subscription, 'keys')
+  if (!keys || typeof keys !== 'object') {
+    throw new Error('subscription.keys가 필요합니다.')
+  }
+
+  const auth = Reflect.get(keys, 'auth')
+  if (typeof auth !== 'string' || !auth.trim()) {
+    throw new Error('subscription.keys.auth가 필요합니다.')
+  }
+
+  const p256dh = Reflect.get(keys, 'p256dh')
+  if (typeof p256dh !== 'string' || !p256dh.trim()) {
+    throw new Error('subscription.keys.p256dh가 필요합니다.')
+  }
+
+  return {
+    endpoint: endpoint.trim(),
+    keys: {
+      auth: auth.trim(),
+      p256dh: p256dh.trim(),
+    },
+  }
 }
 
 export function describePushError(error: unknown) {

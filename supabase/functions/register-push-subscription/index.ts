@@ -1,7 +1,9 @@
 import { corsHeaders } from '../_shared/cors.ts'
-import { createServiceRoleClient, hashEndpoint } from '../_shared/push.ts'
+import { createServiceRoleClient, describePushError, hashEndpoint, validatePushSubscriptionPayload } from '../_shared/push.ts'
 
 Deno.serve(async (request) => {
+  let failedStep = 'request'
+
   if (request.method === 'OPTIONS') {
     return new Response('ok', { headers: corsHeaders })
   }
@@ -14,20 +16,24 @@ Deno.serve(async (request) => {
   }
 
   try {
+    failedStep = 'parse_request'
     const { deviceId, subscription, userAgent = '', platform = '' } = await request.json()
 
+    failedStep = 'validate_device_id'
     if (!deviceId || typeof deviceId !== 'string') {
       throw new Error('deviceId가 필요합니다.')
     }
 
-    if (!subscription || typeof subscription !== 'object' || typeof subscription.endpoint !== 'string') {
-      throw new Error('유효한 subscription payload가 필요합니다.')
-    }
+    failedStep = 'validate_subscription'
+    const validatedSubscription = validatePushSubscriptionPayload(subscription)
 
+    failedStep = 'create_service_client'
     const supabase = createServiceRoleClient()
-    const endpointHash = await hashEndpoint(subscription.endpoint)
+    failedStep = 'hash_endpoint'
+    const endpointHash = await hashEndpoint(validatedSubscription.endpoint)
     const now = new Date().toISOString()
 
+    failedStep = 'deactivate_previous_subscriptions'
     const { error: deactivateError } = await supabase
       .from('push_subscriptions')
       .update({ active: false, updated_at: now })
@@ -37,14 +43,15 @@ Deno.serve(async (request) => {
 
     if (deactivateError) throw deactivateError
 
+    failedStep = 'upsert_subscription'
     const { data, error } = await supabase
       .from('push_subscriptions')
       .upsert(
         {
           device_id: deviceId,
-          endpoint: subscription.endpoint,
+          endpoint: validatedSubscription.endpoint,
           endpoint_hash: endpointHash,
-          subscription,
+          subscription: validatedSubscription,
           user_agent: userAgent,
           platform,
           active: true,
@@ -61,7 +68,19 @@ Deno.serve(async (request) => {
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },
     })
   } catch (error) {
-    return new Response(JSON.stringify({ error: error instanceof Error ? error.message : 'Unknown error' }), {
+    const { message, details } = describePushError(error)
+
+    console.error('register-push-subscription failed', {
+      step: failedStep,
+      message,
+      details,
+    })
+
+    return new Response(JSON.stringify({
+      error: message,
+      step: failedStep,
+      details,
+    }), {
       status: 400,
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },
     })
