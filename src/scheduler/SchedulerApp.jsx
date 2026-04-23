@@ -185,6 +185,10 @@ function TodaySchedulerPage() {
   const [isPushBusy, setIsPushBusy] = useState(false)
   const [pushPreferences, setPushPreferences] = useState(DEFAULT_PUSH_PREFERENCES)
   const [isPushPreferencesBusy, setIsPushPreferencesBusy] = useState(false)
+  const rooms = filters.branch === 'all' ? [] : getRoomsForBranch(filters.branch)
+  const draftRooms = draftFilters.branch === 'all' ? [] : getRoomsForBranch(draftFilters.branch)
+  const normalizedFilters = normalizeWorkTimeFilter(filters)
+  const normalizedDraftWorkTime = normalizeWorkTimeFilter(draftFilters)
 
   async function loadEvents() {
     setIsLoading(true)
@@ -253,11 +257,6 @@ function TodaySchedulerPage() {
     window.addEventListener(GO_TO_TODAY_EVENT, handleGoToToday)
     return () => window.removeEventListener(GO_TO_TODAY_EVENT, handleGoToToday)
   }, [])
-
-  const rooms = filters.branch === 'all' ? [] : getRoomsForBranch(filters.branch)
-  const draftRooms = draftFilters.branch === 'all' ? [] : getRoomsForBranch(draftFilters.branch)
-  const normalizedFilters = normalizeWorkTimeFilter(filters)
-  const normalizedDraftWorkTime = normalizeWorkTimeFilter(draftFilters)
 
   function buildPushPreferencePayload(preferences, workTimeFilter) {
     const normalizedWorkTime = normalizeWorkTimeFilter(workTimeFilter)
@@ -410,6 +409,42 @@ function TodaySchedulerPage() {
     if (isPushDenied) return '권한 차단'
     return '설정 전'
   })()
+  const pushStatusMeta = (() => {
+    if (!pushStatus) return null
+
+    const normalized = pushStatus.trim()
+    const lower = normalized.toLowerCase()
+
+    if (
+      lower.includes('failed to send a request to the edge function') ||
+      lower.includes('edge function returned a non-2xx status code') ||
+      lower.includes('unknown error')
+    ) {
+      return {
+        tone: 'error',
+        text: '알림 처리 중 문제가 있었어요. 잠시 후 다시 시도해 주세요.',
+      }
+    }
+
+    if (normalized.includes('보냈어요') || normalized.includes('연결했어요') || normalized.includes('저장했어요')) {
+      return {
+        tone: 'success',
+        text: normalized,
+      }
+    }
+
+    if (normalized.includes('권한') || normalized.includes('실패') || lower.includes('error')) {
+      return {
+        tone: 'error',
+        text: normalized,
+      }
+    }
+
+    return {
+      tone: 'info',
+      text: normalized,
+    }
+  })()
 
   async function handleEnablePush() {
     setIsPushBusy(true)
@@ -518,62 +553,77 @@ function TodaySchedulerPage() {
         {isPushConnected ? (
           <div className="scheduler-push-connected">
             <p className="subtle scheduler-push-summary">{pushSummary}</p>
-            <div className="scheduler-push-preferences">
-              <button
-                type="button"
-                className={`scheduler-chip ${pushPreferences.notificationsEnabled ? 'active' : ''}`}
-                onClick={handleToggleNotificationsEnabled}
-                disabled={isPushPreferencesBusy}
-                aria-pressed={pushPreferences.notificationsEnabled}
-              >
-                전체 알림
-              </button>
-              <div className="scheduler-chip-row scheduler-push-type-row" role="group" aria-label="알림 종류 설정">
-                {PUSH_NOTIFICATION_OPTIONS.map((type) => {
-                  const isActive = pushPreferences.notificationTypes.includes(type)
-                  return (
-                    <button
-                      key={type}
-                      type="button"
-                      className={`scheduler-chip ${isActive && pushPreferences.notificationsEnabled ? 'active' : ''}`}
-                      onClick={() => handleToggleNotificationType(type)}
-                      disabled={isPushPreferencesBusy || !pushPreferences.notificationsEnabled}
-                      aria-pressed={isActive && pushPreferences.notificationsEnabled}
-                    >
-                      {WORK_EVENT_META[type].label}
-                    </button>
-                  )
-                })}
+            <div className="scheduler-push-secondary">
+              <div className="scheduler-push-preferences" aria-label="웹 알림 설정">
+                <button
+                  type="button"
+                  className={`scheduler-chip ${pushPreferences.notificationsEnabled ? 'active' : ''}`}
+                  onClick={handleToggleNotificationsEnabled}
+                  disabled={isPushPreferencesBusy}
+                  aria-pressed={pushPreferences.notificationsEnabled}
+                >
+                  전체 알림
+                </button>
+                <div className="scheduler-chip-row scheduler-push-type-row" role="group" aria-label="알림 종류 설정">
+                  {PUSH_NOTIFICATION_OPTIONS.map((type) => {
+                    const isActive = pushPreferences.notificationTypes.includes(type)
+                    return (
+                      <button
+                        key={type}
+                        type="button"
+                        className={`scheduler-chip ${isActive && pushPreferences.notificationsEnabled ? 'active' : ''}`}
+                        onClick={() => handleToggleNotificationType(type)}
+                        disabled={isPushPreferencesBusy || !pushPreferences.notificationsEnabled}
+                        aria-pressed={isActive && pushPreferences.notificationsEnabled}
+                      >
+                        {WORK_EVENT_META[type].label}
+                      </button>
+                    )
+                  })}
+                </div>
               </div>
-            </div>
-            <div className="scheduler-push-actions compact">
-              <button type="button" className="soft-button" onClick={handleSendTestPush} disabled={isPushBusy || !pushState.subscribed}>
-                테스트 알림
-              </button>
-              <button type="button" className="scheduler-text-button" onClick={handleEnablePush} disabled={isPushBusy}>
-                다시 연결
-              </button>
+              <div className="scheduler-push-actions compact">
+                <button
+                  type="button"
+                  className="soft-button scheduler-push-test-button"
+                  onClick={handleSendTestPush}
+                  disabled={isPushBusy || !pushState.subscribed}
+                >
+                  테스트 알림
+                </button>
+                <button type="button" className="scheduler-text-button" onClick={handleEnablePush} disabled={isPushBusy}>
+                  다시 연결
+                </button>
+              </div>
             </div>
           </div>
         ) : (
-          <>
-            <p className="subtle scheduler-push-summary">{pushSummary}</p>
+          <div className="scheduler-push-setup">
             <div className="scheduler-push-actions">
               <button
                 type="button"
-                className="soft-button"
+                className="scheduler-push-mini-button"
                 onClick={handleEnablePush}
                 disabled={isPushBusy || !pushState.supported || pushState.permission === 'denied'}
               >
                 알림 연결
               </button>
-              <button type="button" onClick={handleSendTestPush} disabled={isPushBusy || !pushState.subscribed}>
+              <button
+                type="button"
+                className="scheduler-push-mini-button secondary"
+                onClick={handleSendTestPush}
+                disabled={isPushBusy || !pushState.subscribed}
+              >
                 테스트 알림
               </button>
             </div>
-          </>
+          </div>
         )}
-        {pushStatus ? <p className="subtle scheduler-push-status">{pushStatus}</p> : null}
+        {pushStatusMeta ? (
+          <p className={`subtle scheduler-push-status scheduler-push-status-note is-${pushStatusMeta.tone}`}>
+            {pushStatusMeta.text}
+          </p>
+        ) : null}
       </section>
 
       <section className="scheduler-panel scheduler-controls">
