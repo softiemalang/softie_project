@@ -89,6 +89,11 @@ function urlBase64ToUint8Array(value) {
   return output
 }
 
+function getWebPushPublicKey() {
+  const rawValue = import.meta.env.VITE_WEB_PUSH_PUBLIC_KEY
+  return typeof rawValue === 'string' ? rawValue.trim() : ''
+}
+
 async function getServiceWorkerRegistration() {
   if (!isPushSupported()) return null
   const existing = await navigator.serviceWorker.getRegistration('/')
@@ -156,7 +161,7 @@ async function storePushSubscription(subscription) {
     },
   })
 
-  if (error) throw error
+  if (error) throw await unwrapFunctionError(error)
   return data
 }
 
@@ -165,7 +170,7 @@ export async function subscribeSchedulerPush() {
     throw new Error(getSchedulerPushSupportMessage())
   }
 
-  const vapidPublicKey = import.meta.env.VITE_WEB_PUSH_PUBLIC_KEY
+  const vapidPublicKey = getWebPushPublicKey()
   if (!vapidPublicKey) {
     throw new Error('VITE_WEB_PUSH_PUBLIC_KEY 설정이 필요해요.')
   }
@@ -200,6 +205,36 @@ export async function sendSchedulerTestPush() {
     },
   })
 
-  if (error) throw error
+  if (error) throw await unwrapFunctionError(error)
   return data
+}
+
+async function unwrapFunctionError(error) {
+  if (!error || typeof error !== 'object') {
+    return new Error('알림 서버 요청 중 알 수 없는 오류가 발생했어요.')
+  }
+
+  const response = Reflect.get(error, 'context')
+  if (response instanceof Response) {
+    try {
+      const payload = await response.clone().json()
+      if (payload && typeof payload.error === 'string' && payload.error.trim()) {
+        return new Error(payload.error)
+      }
+    } catch {
+      // Fall through to text parsing.
+    }
+
+    try {
+      const text = await response.clone().text()
+      if (typeof text === 'string' && text.trim()) {
+        return new Error(text.trim())
+      }
+    } catch {
+      // Fall through to generic fallback.
+    }
+  }
+
+  if (error instanceof Error) return error
+  return new Error('알림 서버 요청 중 오류가 발생했어요.')
 }
