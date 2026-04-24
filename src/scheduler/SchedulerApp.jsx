@@ -497,6 +497,7 @@ function TodaySchedulerPage() {
   async function handleUpdatePushPreferences(nextPreferences, options = {}) {
     const { silent = false } = options
     setIsPushPreferencesBusy(true)
+    setPushStatus('')
     try {
       const savedPreferences = await updateSchedulerPushPreferences(nextPreferences)
       setPushPreferences({
@@ -508,9 +509,7 @@ function TodaySchedulerPage() {
         workTimeStartHour: savedPreferences?.workTimeStartHour ?? nextPreferences.workTimeStartHour,
         workTimeEndHour: savedPreferences?.workTimeEndHour ?? nextPreferences.workTimeEndHour,
       })
-      if (!silent) {
-        setPushStatus('자동 일정 알림 설정을 저장했어요.')
-      }
+      if (!silent) setPushStatus('')
     } catch (error) {
       setPushStatus(error instanceof Error ? error.message : '웹 알림 설정 저장에 실패했어요.')
     } finally {
@@ -519,11 +518,12 @@ function TodaySchedulerPage() {
   }
 
   function handleToggleNotificationsEnabled() {
+    const nextNotificationsEnabled = !pushPreferences.notificationsEnabled
     handleUpdatePushPreferences(
       buildPushPreferencePayload(
         {
           ...pushPreferences,
-          notificationsEnabled: !pushPreferences.notificationsEnabled,
+          notificationsEnabled: nextNotificationsEnabled,
         },
         normalizedFilters,
       ),
