@@ -1,5 +1,4 @@
 import { createClient } from 'npm:@supabase/supabase-js@2'
-import webpush from 'npm:web-push@3.6.7'
 
 export type NotificationCategory = 'test' | 'checkin' | 'warning' | 'checkout'
 export type SchedulerNotificationType = 'checkin' | 'warning' | 'checkout'
@@ -63,7 +62,12 @@ export async function hashEndpoint(endpoint: string) {
   return bytes.map((byte) => byte.toString(16).padStart(2, '0')).join('')
 }
 
-export function configureWebPush() {
+async function loadWebPush() {
+  const module = await import('npm:web-push@3.6.7')
+  return module.default
+}
+
+export async function configureWebPush() {
   const subject = Deno.env.get('WEB_PUSH_SUBJECT')
   const publicKey = Deno.env.get('WEB_PUSH_PUBLIC_KEY')
   const privateKey = Deno.env.get('WEB_PUSH_PRIVATE_KEY')
@@ -72,7 +76,9 @@ export function configureWebPush() {
     throw new Error('WEB_PUSH_SUBJECT / WEB_PUSH_PUBLIC_KEY / WEB_PUSH_PRIVATE_KEY 설정이 필요합니다.')
   }
 
+  const webpush = await loadWebPush()
   webpush.setVapidDetails(subject, publicKey, privateKey)
+  return webpush
 }
 
 export function buildPushPayload({
@@ -171,7 +177,7 @@ export function validatePushPreferencePayload(
 }
 
 export async function sendWebPush(subscription: Record<string, unknown>, payload: string) {
-  configureWebPush()
+  const webpush = await configureWebPush()
   return webpush.sendNotification(subscription as never, payload)
 }
 
