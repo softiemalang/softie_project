@@ -275,7 +275,7 @@ function TodaySchedulerPage() {
   function buildPushPreferencePayload(preferences, workTimeFilter, workTimeDate = selectedDate) {
     const normalizedWorkTime = normalizeWorkTimeFilter(workTimeFilter)
     return {
-      notificationsEnabled: preferences.notificationsEnabled,
+      notificationsEnabled: true,
       notificationTypes: preferences.notificationTypes,
       workTimeEnabled: normalizedWorkTime.workTimeEnabled,
       workTimeStartHour: normalizedWorkTime.workTimeEnabled ? normalizedWorkTime.workTimeStartHour : null,
@@ -331,14 +331,18 @@ function TodaySchedulerPage() {
     setIsFilterSheetOpen(false)
 
     if (pushState.subscribed) {
-      await handleUpdatePushPreferences(
+      const success = await handleUpdatePushPreferences(
         buildPushPreferencePayload(
-          { ...pushPreferences, notificationsEnabled: true },
+          pushPreferences,
           nextWorkTimeFilter,
           nextDate,
         ),
         { silent: true },
       )
+
+      if (!success) {
+        setPushStatus('알림 조건 동기화에 실패했어요. 다시 연결을 눌러 주세요.')
+      }
     }
   }
 
@@ -474,10 +478,7 @@ function TodaySchedulerPage() {
     try {
       await subscribeSchedulerPush()
       const syncedPreferences = await updateSchedulerPushPreferences(
-        buildPushPreferencePayload(
-          { ...pushPreferences, notificationsEnabled: true },
-          normalizedFilters,
-        ),
+        buildPushPreferencePayload(pushPreferences, normalizedFilters),
       )
       setPushPreferences({
         notificationsEnabled: syncedPreferences?.notificationsEnabled ?? true,
@@ -515,12 +516,14 @@ function TodaySchedulerPage() {
         workTimeEndHour: savedPreferences?.workTimeEndHour ?? nextPreferences.workTimeEndHour,
       })
       if (!silent) setPushStatus('')
+      return true
     } catch (error) {
       if (!silent) {
         setPushStatus(error instanceof Error ? error.message : '웹 알림 설정 저장에 실패했어요.')
       } else {
         console.error('[push] silent preference save failed', error)
       }
+      return false
     } finally {
       setIsPushPreferencesBusy(false)
     }
@@ -559,6 +562,8 @@ function TodaySchedulerPage() {
                 <div
                   className={`scheduler-push-mini-button scheduler-push-global-toggle ${normalizedFilters.workTimeEnabled ? 'active' : 'secondary'}`}
                   aria-label={`알림 상태: ${normalizedFilters.workTimeEnabled ? 'On' : 'Off'}`}
+                  role="status"
+                  aria-live="polite"
                 >
                   {normalizedFilters.workTimeEnabled ? 'On' : 'Off'}
                 </div>
