@@ -29,21 +29,26 @@ const DEFAULT_PUSH_PREFERENCES = {
 const PUSH_NOTIFICATION_OPTIONS = ['checkin', 'warning', 'checkout']
 const WORK_TIME_HOUR_OPTIONS = Array.from({ length: 24 }, (_, hour) => hour)
 
-function loadStoredWorkTimeFilter() {
+function loadStoredWorkTimeFilter(selectedDate) {
   if (typeof window === 'undefined') return getDefaultWorkTimeFilter()
 
   try {
     const rawValue = window.localStorage.getItem(WORK_TIME_FILTER_STORAGE_KEY)
     if (!rawValue) return getDefaultWorkTimeFilter()
-    return normalizeWorkTimeFilter(JSON.parse(rawValue))
+    const parsedValue = JSON.parse(rawValue)
+    if (parsedValue?.selectedDate !== selectedDate) return getDefaultWorkTimeFilter()
+    return normalizeWorkTimeFilter(parsedValue)
   } catch {
     return getDefaultWorkTimeFilter()
   }
 }
 
-function persistWorkTimeFilter(filter) {
+function persistWorkTimeFilter(filter, selectedDate) {
   if (typeof window === 'undefined') return
-  window.localStorage.setItem(WORK_TIME_FILTER_STORAGE_KEY, JSON.stringify(normalizeWorkTimeFilter(filter)))
+  window.localStorage.setItem(WORK_TIME_FILTER_STORAGE_KEY, JSON.stringify({
+    ...normalizeWorkTimeFilter(filter),
+    selectedDate,
+  }))
 }
 
 function parseSchedulerRoute(pathname) {
@@ -156,18 +161,19 @@ function NativePickerField({
 }
 
 function TodaySchedulerPage() {
-  const [selectedDate, setSelectedDate] = useState(toLocalDateInputValue())
+  const initialSelectedDate = toLocalDateInputValue()
+  const [selectedDate, setSelectedDate] = useState(initialSelectedDate)
   const [events, setEvents] = useState([])
   const [filters, setFilters] = useState(() => ({
     branch: 'all',
     room: 'all',
-    ...loadStoredWorkTimeFilter(),
+    ...loadStoredWorkTimeFilter(initialSelectedDate),
   }))
   const [draftFilters, setDraftFilters] = useState(() => ({
-    date: toLocalDateInputValue(),
+    date: initialSelectedDate,
     branch: 'all',
     room: 'all',
-    ...loadStoredWorkTimeFilter(),
+    ...loadStoredWorkTimeFilter(initialSelectedDate),
   }))
   const [isFilterSheetOpen, setIsFilterSheetOpen] = useState(false)
   const [status, setStatus] = useState('')
@@ -232,33 +238,50 @@ function TodaySchedulerPage() {
 
       try {
         const nextPreferences = await getSchedulerPushPreferences()
-        setPushPreferences({
+        const nextNotificationPreferences = {
           notificationsEnabled: nextPreferences?.notificationsEnabled ?? true,
           notificationTypes: Array.isArray(nextPreferences?.notificationTypes)
             ? nextPreferences.notificationTypes
             : DEFAULT_PUSH_PREFERENCES.notificationTypes,
+        }
+        setPushPreferences({
+          ...nextNotificationPreferences,
           workTimeEnabled: nextPreferences?.workTimeEnabled ?? normalizedFilters.workTimeEnabled,
           workTimeStartHour: nextPreferences?.workTimeStartHour ?? normalizedFilters.workTimeStartHour,
           workTimeEndHour: nextPreferences?.workTimeEndHour ?? normalizedFilters.workTimeEndHour,
         })
+        if (
+          nextPreferences?.workTimeEnabled !== normalizedFilters.workTimeEnabled
+          || nextPreferences?.workTimeStartHour !== (normalizedFilters.workTimeEnabled ? normalizedFilters.workTimeStartHour : null)
+          || nextPreferences?.workTimeEndHour !== (normalizedFilters.workTimeEnabled ? normalizedFilters.workTimeEndHour : null)
+          || nextPreferences?.selectedDate !== (normalizedFilters.workTimeEnabled ? selectedDate : null)
+        ) {
+          await updateSchedulerPushPreferences(buildPushPreferencePayload(nextNotificationPreferences, normalizedFilters))
+        }
       } catch (error) {
         setPushStatus(error instanceof Error ? error.message : '웹 알림 설정을 불러오지 못했어요.')
       }
     }
 
     loadPushPreferences()
-  }, [pushState.subscribed, normalizedFilters.workTimeEnabled, normalizedFilters.workTimeEndHour, normalizedFilters.workTimeStartHour])
+  }, [pushState.subscribed, normalizedFilters.workTimeEnabled, normalizedFilters.workTimeEndHour, normalizedFilters.workTimeStartHour, selectedDate])
 
   useEffect(() => {
     function handleGoToToday() {
-      setSelectedDate(toLocalDateInputValue())
+      const today = toLocalDateInputValue()
+      const storedWorkTimeFilter = loadStoredWorkTimeFilter(today)
+      setSelectedDate(today)
+      setFilters((current) => ({
+        ...current,
+        ...storedWorkTimeFilter,
+      }))
     }
 
     window.addEventListener(GO_TO_TODAY_EVENT, handleGoToToday)
     return () => window.removeEventListener(GO_TO_TODAY_EVENT, handleGoToToday)
   }, [])
 
-  function buildPushPreferencePayload(preferences, workTimeFilter) {
+  function buildPushPreferencePayload(preferences, workTimeFilter, workTimeDate = selectedDate) {
     const normalizedWorkTime = normalizeWorkTimeFilter(workTimeFilter)
     return {
       notificationsEnabled: preferences.notificationsEnabled,
@@ -266,6 +289,7 @@ function TodaySchedulerPage() {
       workTimeEnabled: normalizedWorkTime.workTimeEnabled,
       workTimeStartHour: normalizedWorkTime.workTimeEnabled ? normalizedWorkTime.workTimeStartHour : null,
       workTimeEndHour: normalizedWorkTime.workTimeEnabled ? normalizedWorkTime.workTimeEndHour : null,
+      selectedDate: normalizedWorkTime.workTimeEnabled ? workTimeDate : null,
     }
   }
 
@@ -311,11 +335,11 @@ function TodaySchedulerPage() {
       room: draftFilters.room,
       ...nextWorkTimeFilter,
     })
-    persistWorkTimeFilter(nextWorkTimeFilter)
+    persistWorkTimeFilter(nextWorkTimeFilter, draftFilters.date)
     setIsFilterSheetOpen(false)
 
     if (pushState.subscribed) {
-      await handleUpdatePushPreferences(buildPushPreferencePayload(pushPreferences, nextWorkTimeFilter), { silent: true })
+      await handleUpdatePushPreferences(buildPushPreferencePayload(pushPreferences, nextWorkTimeFilter, draftFilters.date), { silent: true })
     }
   }
 

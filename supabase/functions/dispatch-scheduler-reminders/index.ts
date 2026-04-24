@@ -113,7 +113,7 @@ async function fetchTargetSubscriptions(
 ) {
   const { data, error } = await supabase
     .from('push_subscriptions')
-    .select('id, device_id, endpoint_hash, subscription, notifications_enabled, notification_types, work_time_enabled, work_time_start_hour, work_time_end_hour')
+    .select('id, device_id, endpoint_hash, subscription, notifications_enabled, notification_types, work_time_enabled, work_time_start_hour, work_time_end_hour, work_time_selected_date')
     .eq('active', true)
     .eq('notifications_enabled', true)
 

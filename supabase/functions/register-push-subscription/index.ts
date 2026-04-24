@@ -39,7 +39,7 @@ Deno.serve(async (request) => {
     failedStep = 'load_existing_preferences'
     const { data: existingPreferences, error: existingPreferencesError } = await supabase
       .from('push_subscriptions')
-      .select('notifications_enabled, notification_types, work_time_enabled, work_time_start_hour, work_time_end_hour')
+      .select('notifications_enabled, notification_types, work_time_enabled, work_time_start_hour, work_time_end_hour, work_time_selected_date')
       .eq('device_id', deviceId)
       .order('last_seen_at', { ascending: false })
       .limit(1)
@@ -77,6 +77,7 @@ Deno.serve(async (request) => {
           work_time_enabled: existingPreferences?.work_time_enabled ?? false,
           work_time_start_hour: existingPreferences?.work_time_start_hour ?? null,
           work_time_end_hour: existingPreferences?.work_time_end_hour ?? null,
+          work_time_selected_date: existingPreferences?.work_time_selected_date ?? null,
           active: true,
           last_seen_at: now,
         },

@@ -23,6 +23,7 @@ export type PushSubscriptionRow = {
   work_time_enabled?: boolean
   work_time_start_hour?: number | null
   work_time_end_hour?: number | null
+  work_time_selected_date?: string | null
 }
 
 export type PushPreferencePayload = {
@@ -31,6 +32,7 @@ export type PushPreferencePayload = {
   workTimeEnabled: boolean
   workTimeStartHour: number | null
   workTimeEndHour: number | null
+  selectedDate: string | null
 }
 
 export type PushSubscriptionPayload = {
@@ -108,12 +110,21 @@ function toSafeHour(value: unknown) {
   return parsed
 }
 
+function toSafeDate(value: unknown) {
+  if (value === null || value === undefined || value === '') return null
+  if (typeof value !== 'string' || !/^\d{4}-\d{2}-\d{2}$/.test(value)) {
+    throw new Error('selectedDate는 YYYY-MM-DD 형식이어야 합니다.')
+  }
+  return value
+}
+
 export function validatePushPreferencePayload(
   notificationsEnabled: unknown,
   notificationTypes: unknown,
   workTimeEnabled: unknown,
   workTimeStartHour: unknown,
   workTimeEndHour: unknown,
+  selectedDate: unknown = null,
 ): PushPreferencePayload {
   if (typeof notificationsEnabled !== 'boolean') {
     throw new Error('notificationsEnabled가 필요합니다.')
@@ -134,9 +145,10 @@ export function validatePushPreferencePayload(
 
   const normalizedStartHour = toSafeHour(workTimeStartHour)
   const normalizedEndHour = toSafeHour(workTimeEndHour)
+  const normalizedSelectedDate = toSafeDate(selectedDate)
 
-  if (workTimeEnabled && (normalizedStartHour === null || normalizedEndHour === null)) {
-    throw new Error('근무 시간 시작/종료 시각이 필요합니다.')
+  if (workTimeEnabled && (normalizedStartHour === null || normalizedEndHour === null || normalizedSelectedDate === null)) {
+    throw new Error('근무 시간 시작/종료 시각과 날짜가 필요합니다.')
   }
 
   if (
@@ -154,6 +166,7 @@ export function validatePushPreferencePayload(
     workTimeEnabled,
     workTimeStartHour: workTimeEnabled ? normalizedStartHour : null,
     workTimeEndHour: workTimeEnabled ? normalizedEndHour : null,
+    selectedDate: workTimeEnabled ? normalizedSelectedDate : null,
   }
 }
 
@@ -206,6 +219,17 @@ export function getSchedulerLocalMinutes(input: string) {
   return hour * 60 + minute
 }
 
+export function getSchedulerLocalDate(input: string) {
+  const formatter = new Intl.DateTimeFormat('en-CA', {
+    timeZone: SCHEDULER_TIMEZONE,
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+  })
+
+  return formatter.format(new Date(input))
+}
+
 export function formatSchedulerLocalTime(input: string) {
   const formatter = new Intl.DateTimeFormat('en-GB', {
     timeZone: SCHEDULER_TIMEZONE,
@@ -222,12 +246,15 @@ export function isWorkTimeEligible(
     work_time_enabled?: boolean
     work_time_start_hour?: number | null
     work_time_end_hour?: number | null
+    work_time_selected_date?: string | null
   },
   eventScheduledAt: string,
 ) {
-  if (!subscription.work_time_enabled) return true
+  if (!subscription.work_time_enabled) return false
   if (subscription.work_time_start_hour === null || subscription.work_time_start_hour === undefined) return false
   if (subscription.work_time_end_hour === null || subscription.work_time_end_hour === undefined) return false
+  if (!subscription.work_time_selected_date) return false
+  if (getSchedulerLocalDate(eventScheduledAt) !== subscription.work_time_selected_date) return false
 
   const scheduledMinutes = getSchedulerLocalMinutes(eventScheduledAt)
   const startMinutes = subscription.work_time_start_hour * 60

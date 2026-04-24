@@ -28,6 +28,7 @@ Deno.serve(async (request) => {
       workTimeEnabled,
       workTimeStartHour,
       workTimeEndHour,
+      selectedDate,
     } = await request.json()
 
     if (!deviceId || typeof deviceId !== 'string') {
@@ -41,6 +42,7 @@ Deno.serve(async (request) => {
       workTimeEnabled,
       workTimeStartHour,
       workTimeEndHour,
+      selectedDate,
     )
 
     failedStep = 'create_service_client'
@@ -55,6 +57,7 @@ Deno.serve(async (request) => {
         work_time_enabled: validated.workTimeEnabled,
         work_time_start_hour: validated.workTimeStartHour,
         work_time_end_hour: validated.workTimeEndHour,
+        work_time_selected_date: validated.selectedDate,
       })
       .eq('device_id', deviceId)
       .eq('active', true)
@@ -75,6 +78,7 @@ Deno.serve(async (request) => {
       workTimeEnabled: validated.workTimeEnabled,
       workTimeStartHour: validated.workTimeStartHour,
       workTimeEndHour: validated.workTimeEndHour,
+      selectedDate: validated.selectedDate,
     }), {
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },
     })
