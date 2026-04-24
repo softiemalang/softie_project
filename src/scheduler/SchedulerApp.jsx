@@ -328,10 +328,6 @@ function TodaySchedulerPage() {
     })
     persistWorkTimeFilter(nextWorkTimeFilter, draftFilters.date)
     setIsFilterSheetOpen(false)
-
-    if (pushState.subscribed) {
-      await handleUpdatePushPreferences(buildPushPreferencePayload(pushPreferences, nextWorkTimeFilter, draftFilters.date), { silent: true })
-    }
   }
 
   function updateDraftFilter(field, value) {
