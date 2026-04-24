@@ -584,6 +584,10 @@ textarea {
 }
 
 .scheduler-push-global-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
   flex: 0 0 auto;
   min-width: 62px;
   padding-inline: 0.72rem;
