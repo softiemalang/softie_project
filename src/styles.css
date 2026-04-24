@@ -576,25 +576,21 @@ textarea {
   gap: 0.42rem;
 }
 
-.scheduler-push-preferences {
+.scheduler-push-control-row {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   align-items: center;
-  gap: 0.38rem;
+  gap: 0.34rem;
 }
 
-.scheduler-push-preferences > .scheduler-chip,
-.scheduler-push-type-row > .scheduler-chip {
+.scheduler-push-global-toggle {
   flex: 0 0 auto;
   min-height: 30px;
-  padding: 0.42rem 0.72rem;
+  min-width: 62px;
+  padding: 0.34rem 0.76rem;
   border-radius: 14px;
   font-size: 0.8rem;
-  font-weight: 600;
-}
-
-.scheduler-push-type-row {
-  gap: 0.34rem;
+  font-weight: 700;
 }
 
 .scheduler-push-actions {
@@ -630,12 +626,12 @@ textarea {
 }
 
 .scheduler-push-mini-button {
-  min-height: 32px;
-  padding: 0.32rem 0.82rem;
-  border-radius: 16px;
+  min-height: 30px;
+  padding: 0.28rem 0.7rem;
+  border-radius: 14px;
   background: #efe6d8;
   color: #5f513f;
-  font-size: 0.82rem;
+  font-size: 0.78rem;
   font-weight: 600;
   line-height: 1.1;
 }
@@ -759,7 +755,7 @@ textarea {
   font-size: 0.84rem;
   font-weight: 450;
   line-height: 1.3;
-  color: #6b7280;
+  color: #626b79;
 }
 
 .scheduler-filter-summary-copy {
@@ -771,7 +767,7 @@ textarea {
   margin-top: 0.18rem;
   font-size: 1.04rem;
   font-weight: 700;
-  color: #36414b;
+  color: #313b46;
   line-height: 1.04;
 }
 
@@ -929,7 +925,7 @@ textarea {
 .scheduler-event-time-block strong {
   font-size: 0.88rem;
   line-height: 1;
-  color: #35404b;
+  color: #303a45;
 }
 
 .scheduler-event-urgency {
@@ -990,7 +986,7 @@ textarea {
   flex: 0 0 auto;
   display: inline-flex;
   align-items: center;
-  color: #404b58;
+  color: #384351;
 }
 
 .scheduler-event-customer {
@@ -1000,7 +996,7 @@ textarea {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  color: #6f746d;
+  color: #646c67;
   flex: 1 1 auto;
   display: flex;
   align-items: center;

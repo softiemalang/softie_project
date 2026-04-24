@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { navigate } from '../lib/router'
 import { listTodayWorkEvents, getReservationById, saveReservation, deleteReservation, updateWorkEventStatus } from './api'
-import { SCHEDULER_BRANCHES, SCHEDULER_TAGS, TODAY_HOURS, WORK_EVENT_META } from './constants'
+import { SCHEDULER_BRANCHES, SCHEDULER_TAGS, TODAY_HOURS } from './constants'
 import { buildReservationPayload, createReservationDraft, getRoomStatus, getRoomsForBranch, getTagMeta, groupTodayEvents, mapReservationToFormValues, validateReservationForm } from './helpers'
 import {
   formatWorkTimeHour,
@@ -26,7 +26,6 @@ const DEFAULT_PUSH_PREFERENCES = {
   notificationTypes: ['checkin', 'warning', 'checkout'],
   ...getDefaultWorkTimeFilter(),
 }
-const PUSH_NOTIFICATION_OPTIONS = ['checkin', 'warning', 'checkout']
 const WORK_TIME_HOUR_OPTIONS = Array.from({ length: 24 }, (_, hour) => hour)
 
 function loadStoredWorkTimeFilter(selectedDate) {
@@ -531,23 +530,6 @@ function TodaySchedulerPage() {
     )
   }
 
-  function handleToggleNotificationType(type) {
-    const exists = pushPreferences.notificationTypes.includes(type)
-    const nextTypes = exists
-      ? pushPreferences.notificationTypes.filter((value) => value !== type)
-      : [...pushPreferences.notificationTypes, type]
-
-    handleUpdatePushPreferences(
-      buildPushPreferencePayload(
-        {
-          ...pushPreferences,
-          notificationTypes: nextTypes,
-        },
-        normalizedFilters,
-      ),
-    )
-  }
-
   async function handleSendTestPush() {
     setIsPushBusy(true)
     try {
@@ -577,35 +559,16 @@ function TodaySchedulerPage() {
         {isPushConnected ? (
           <div className="scheduler-push-connected">
             <div className="scheduler-push-secondary">
-              <div className="scheduler-push-preferences" aria-label="웹 알림 설정">
+              <div className="scheduler-push-control-row" aria-label="웹 알림 설정">
                 <button
                   type="button"
-                  className={`scheduler-chip ${pushPreferences.notificationsEnabled ? 'active' : ''}`}
+                  className={`scheduler-chip scheduler-push-global-toggle ${pushPreferences.notificationsEnabled ? 'active' : ''}`}
                   onClick={handleToggleNotificationsEnabled}
                   disabled={isPushPreferencesBusy}
                   aria-pressed={pushPreferences.notificationsEnabled}
                 >
-                  전체 알림
+                  {pushPreferences.notificationsEnabled ? 'On' : 'Off'}
                 </button>
-                <div className="scheduler-chip-row scheduler-push-type-row" role="group" aria-label="알림 종류 설정">
-                  {PUSH_NOTIFICATION_OPTIONS.map((type) => {
-                    const isActive = pushPreferences.notificationTypes.includes(type)
-                    return (
-                      <button
-                        key={type}
-                        type="button"
-                        className={`scheduler-chip ${isActive && pushPreferences.notificationsEnabled ? 'active' : ''}`}
-                        onClick={() => handleToggleNotificationType(type)}
-                        disabled={isPushPreferencesBusy || !pushPreferences.notificationsEnabled}
-                        aria-pressed={isActive && pushPreferences.notificationsEnabled}
-                      >
-                        {WORK_EVENT_META[type].label}
-                      </button>
-                    )
-                  })}
-                </div>
-              </div>
-              <div className="scheduler-push-actions compact">
                 <button
                   type="button"
                   className="scheduler-push-mini-button"
