@@ -562,7 +562,7 @@ function TodaySchedulerPage() {
               <div className="scheduler-push-control-row" aria-label="웹 알림 설정">
                 <button
                   type="button"
-                  className={`scheduler-chip scheduler-push-global-toggle ${pushPreferences.notificationsEnabled ? 'active' : ''}`}
+                  className={`scheduler-push-mini-button scheduler-push-global-toggle ${pushPreferences.notificationsEnabled ? 'active' : 'secondary'}`}
                   onClick={handleToggleNotificationsEnabled}
                   disabled={isPushPreferencesBusy}
                   aria-pressed={pushPreferences.notificationsEnabled}

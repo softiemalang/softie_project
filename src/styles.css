@@ -585,12 +585,14 @@ textarea {
 
 .scheduler-push-global-toggle {
   flex: 0 0 auto;
-  min-height: 30px;
   min-width: 62px;
-  padding: 0.34rem 0.76rem;
-  border-radius: 14px;
-  font-size: 0.8rem;
-  font-weight: 700;
+  padding-inline: 0.72rem;
+  font-weight: 600;
+}
+
+.scheduler-push-global-toggle.active {
+  background: #1f6f5f;
+  color: #fff;
 }
 
 .scheduler-push-actions {
@@ -640,6 +642,11 @@ textarea {
   background: rgba(255, 255, 255, 0.78);
   color: #7b7268;
   border: 1px solid rgba(229, 219, 207, 0.92);
+}
+
+.scheduler-push-mini-button.active {
+  background: #1f6f5f;
+  color: #fff;
 }
 
 .scheduler-push-mini-button:disabled {
