@@ -213,7 +213,7 @@ function TodaySchedulerPage() {
       const nextState = await getSchedulerPushState()
       setPushState(nextState)
     } catch (error) {
-      setPushStatus(error instanceof Error ? error.message : '웹 알림 상태를 확인하지 못했어요.')
+      console.error('[push] loadPushState failed', error)
     }
   }
 
@@ -250,7 +250,7 @@ function TodaySchedulerPage() {
           workTimeEndHour: nextPreferences?.workTimeEndHour ?? normalizedFilters.workTimeEndHour,
         })
       } catch (error) {
-        setPushStatus(error instanceof Error ? error.message : '웹 알림 설정을 불러오지 못했어요.')
+        console.error('[push] loadPushPreferences failed', error)
       }
     }
 
@@ -489,7 +489,9 @@ function TodaySchedulerPage() {
   async function handleUpdatePushPreferences(nextPreferences, options = {}) {
     const { silent = false } = options
     setIsPushPreferencesBusy(true)
-    setPushStatus('')
+    if (!silent) {
+      setPushStatus('')
+    }
     try {
       const savedPreferences = await updateSchedulerPushPreferences(nextPreferences)
       setPushPreferences({
@@ -503,7 +505,11 @@ function TodaySchedulerPage() {
       })
       if (!silent) setPushStatus('')
     } catch (error) {
-      setPushStatus(error instanceof Error ? error.message : '웹 알림 설정 저장에 실패했어요.')
+      if (!silent) {
+        setPushStatus(error instanceof Error ? error.message : '웹 알림 설정 저장에 실패했어요.')
+      } else {
+        console.error('[push] silent preference save failed', error)
+      }
     } finally {
       setIsPushPreferencesBusy(false)
     }
