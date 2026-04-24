@@ -249,14 +249,6 @@ function TodaySchedulerPage() {
           workTimeStartHour: nextPreferences?.workTimeStartHour ?? normalizedFilters.workTimeStartHour,
           workTimeEndHour: nextPreferences?.workTimeEndHour ?? normalizedFilters.workTimeEndHour,
         })
-        if (
-          nextPreferences?.workTimeEnabled !== normalizedFilters.workTimeEnabled
-          || nextPreferences?.workTimeStartHour !== (normalizedFilters.workTimeEnabled ? normalizedFilters.workTimeStartHour : null)
-          || nextPreferences?.workTimeEndHour !== (normalizedFilters.workTimeEnabled ? normalizedFilters.workTimeEndHour : null)
-          || nextPreferences?.selectedDate !== (normalizedFilters.workTimeEnabled ? selectedDate : null)
-        ) {
-          await updateSchedulerPushPreferences(buildPushPreferencePayload(nextNotificationPreferences, normalizedFilters))
-        }
       } catch (error) {
         setPushStatus(error instanceof Error ? error.message : '웹 알림 설정을 불러오지 못했어요.')
       }
