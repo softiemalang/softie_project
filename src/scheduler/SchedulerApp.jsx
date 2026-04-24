@@ -17,7 +17,7 @@ import {
   subscribeSchedulerPush,
   updateSchedulerPushPreferences,
 } from './push'
-import { formatDateLabel, formatSchedulerDate, formatSchedulerTime, toLocalDateInputValue } from './time'
+import { formatDateLabel, formatSchedulerDate, formatSchedulerTime, normalizeHourTime, toLocalDateInputValue } from './time'
 
 const GO_TO_TODAY_EVENT = 'scheduler:go-today'
 const WORK_TIME_FILTER_STORAGE_KEY = 'scheduler:work-time-filter'
@@ -956,6 +956,10 @@ function ReservationEditorPage({ mode, reservationId }) {
           branch: value,
           room: nextRooms.includes(current.room) ? current.room : '',
         }
+      }
+
+      if (field === 'startTime') {
+        return { ...current, startTime: normalizeHourTime(value) }
       }
 
       return { ...current, [field]: value }

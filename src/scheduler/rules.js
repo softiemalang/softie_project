@@ -112,12 +112,27 @@ export function getScheduledHour(input) {
   return new Date(input).getHours()
 }
 
+export function isScheduledTimeInWorkTimeRange(input, filterInput) {
+  const filter = normalizeWorkTimeFilter(filterInput)
+  if (!filter.workTimeEnabled) return true
+
+  const scheduledAt = new Date(input)
+  const startAt = new Date(scheduledAt)
+  startAt.setHours(filter.workTimeStartHour, 0, 0, 0)
+
+  const endAt = new Date(scheduledAt)
+  endAt.setHours(filter.workTimeEndHour, 0, 0, 0)
+
+  const timestamp = scheduledAt.getTime()
+  return timestamp >= startAt.getTime() && timestamp <= endAt.getTime()
+}
+
 export function isSchedulerItemInWorkTimeRange(item, filterInput) {
-  return isHourInWorkTimeRange(getScheduledHour(item.scheduled_at), filterInput)
+  return isScheduledTimeInWorkTimeRange(item.scheduled_at, filterInput)
 }
 
 export function isReminderEventEligibleForWorkTime(eventScheduledAt, filterInput) {
-  return isHourInWorkTimeRange(getScheduledHour(eventScheduledAt), filterInput)
+  return isScheduledTimeInWorkTimeRange(eventScheduledAt, filterInput)
 }
 
 export function formatWorkTimeHour(hour) {

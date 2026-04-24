@@ -194,6 +194,18 @@ export function getSchedulerLocalHour(input: string) {
   return Number(formatter.format(new Date(input)))
 }
 
+export function getSchedulerLocalMinutes(input: string) {
+  const formatter = new Intl.DateTimeFormat('en-GB', {
+    timeZone: SCHEDULER_TIMEZONE,
+    hour: '2-digit',
+    minute: '2-digit',
+    hour12: false,
+  })
+
+  const [hour, minute] = formatter.format(new Date(input)).split(':').map(Number)
+  return hour * 60 + minute
+}
+
 export function formatSchedulerLocalTime(input: string) {
   const formatter = new Intl.DateTimeFormat('en-GB', {
     timeZone: SCHEDULER_TIMEZONE,
@@ -217,8 +229,11 @@ export function isWorkTimeEligible(
   if (subscription.work_time_start_hour === null || subscription.work_time_start_hour === undefined) return false
   if (subscription.work_time_end_hour === null || subscription.work_time_end_hour === undefined) return false
 
-  const scheduledHour = getSchedulerLocalHour(eventScheduledAt)
-  return scheduledHour >= subscription.work_time_start_hour && scheduledHour <= subscription.work_time_end_hour
+  const scheduledMinutes = getSchedulerLocalMinutes(eventScheduledAt)
+  const startMinutes = subscription.work_time_start_hour * 60
+  const endMinutes = subscription.work_time_end_hour * 60
+
+  return scheduledMinutes >= startMinutes && scheduledMinutes <= endMinutes
 }
 
 export function validatePushSubscriptionPayload(subscription: unknown): PushSubscriptionPayload {

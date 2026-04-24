@@ -9,7 +9,7 @@ import {
   WORK_EVENT_META,
 } from './constants'
 import { sortSchedulerEvents } from './rules'
-import { addMinutes, combineLocalDateTime, formatTime, toIsoFromLocal, toLocalDateInputValue, toLocalTimeInputValue } from './time'
+import { addMinutes, combineLocalDateTime, formatTime, normalizeHourTime, toIsoFromLocal, toLocalDateInputValue, toLocalTimeInputValue } from './time'
 
 export function getTagMeta(tag) {
   return SCHEDULER_TAGS.find((item) => item.value === tag) || { value: tag, shortLabel: tag, fullLabel: tag }
@@ -21,9 +21,8 @@ export function getRoomsForBranch(branch) {
 
 export function createReservationDraft() {
   const now = new Date()
-  const roundedMinutes = now.getMinutes() < 30 ? '00' : '30'
   const roundedHour = now.getMinutes() < 30 ? now.getHours() : now.getHours() + 1
-  const startTime = `${String(Math.min(roundedHour, 23)).padStart(2, '0')}:${roundedMinutes}`
+  const startTime = normalizeHourTime(`${String(Math.min(roundedHour, 23)).padStart(2, '0')}:00`)
 
   return {
     reservationDate: toLocalDateInputValue(now),
@@ -59,7 +58,8 @@ export function mapReservationToFormValues(reservation) {
 }
 
 export function buildReservationPayload(formValues) {
-  const startAt = combineLocalDateTime(formValues.reservationDate, formValues.startTime)
+  const normalizedStartTime = normalizeHourTime(formValues.startTime)
+  const startAt = combineLocalDateTime(formValues.reservationDate, normalizedStartTime)
   const durationHours = Number(formValues.durationHours) || DEFAULT_DURATION_MINUTES / 60
   const durationMinutes = durationHours * 60
   const warningOffsetMinutes = Number(formValues.warningOffsetMinutes) === 15 ? 15 : DEFAULT_WARNING_OFFSET
@@ -70,7 +70,7 @@ export function buildReservationPayload(formValues) {
     branch: formValues.branch.trim(),
     room: formValues.room.trim(),
     customer_name: formValues.customerName.trim(),
-    start_at: toIsoFromLocal(formValues.reservationDate, formValues.startTime),
+    start_at: toIsoFromLocal(formValues.reservationDate, normalizedStartTime),
     duration_minutes: durationMinutes,
     end_at: endAt.toISOString(),
     warning_offset_minutes: Math.min(durationMinutes, Math.max(0, warningOffsetMinutes)),

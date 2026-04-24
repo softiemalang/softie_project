@@ -53,15 +53,23 @@ export function toLocalDateInputValue(input = new Date()) {
 
 export function toLocalTimeInputValue(input = new Date()) {
   const date = new Date(input)
-  return `${padTime(date.getHours())}:${padTime(date.getMinutes())}`
+  return normalizeHourTime(`${padTime(date.getHours())}:${padTime(date.getMinutes())}`)
 }
 
 export function combineLocalDateTime(dateValue, timeValue) {
-  return new Date(`${dateValue}T${timeValue}:00`)
+  return new Date(`${dateValue}T${normalizeHourTime(timeValue)}:00`)
 }
 
 export function toIsoFromLocal(dateValue, timeValue) {
   return combineLocalDateTime(dateValue, timeValue).toISOString()
+}
+
+export function normalizeHourTime(value) {
+  if (!value) return ''
+  const [rawHours] = value.split(':')
+  const hours = Number(rawHours)
+  if (!Number.isInteger(hours) || hours < 0 || hours > 23) return value
+  return `${padTime(hours)}:00`
 }
 
 export function startOfDayIso(dateValue) {
