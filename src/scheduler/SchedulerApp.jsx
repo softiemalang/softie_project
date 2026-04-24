@@ -320,14 +320,26 @@ function TodaySchedulerPage() {
 
   async function applyFilterChanges() {
     const nextWorkTimeFilter = normalizeWorkTimeFilter(draftFilters)
-    setSelectedDate(draftFilters.date)
+    const nextDate = draftFilters.date
+    setSelectedDate(nextDate)
     setFilters({
       branch: draftFilters.branch,
       room: draftFilters.room,
       ...nextWorkTimeFilter,
     })
-    persistWorkTimeFilter(nextWorkTimeFilter, draftFilters.date)
+    persistWorkTimeFilter(nextWorkTimeFilter, nextDate)
     setIsFilterSheetOpen(false)
+
+    if (pushState.subscribed) {
+      await handleUpdatePushPreferences(
+        buildPushPreferencePayload(
+          { ...pushPreferences, notificationsEnabled: true },
+          nextWorkTimeFilter,
+          nextDate,
+        ),
+        { silent: true },
+      )
+    }
   }
 
   function updateDraftFilter(field, value) {
@@ -462,10 +474,13 @@ function TodaySchedulerPage() {
     try {
       await subscribeSchedulerPush()
       const syncedPreferences = await updateSchedulerPushPreferences(
-        buildPushPreferencePayload(pushPreferences, normalizedFilters),
+        buildPushPreferencePayload(
+          { ...pushPreferences, notificationsEnabled: true },
+          normalizedFilters,
+        ),
       )
       setPushPreferences({
-        notificationsEnabled: syncedPreferences?.notificationsEnabled ?? pushPreferences.notificationsEnabled,
+        notificationsEnabled: syncedPreferences?.notificationsEnabled ?? true,
         notificationTypes: Array.isArray(syncedPreferences?.notificationTypes)
           ? syncedPreferences.notificationTypes
           : pushPreferences.notificationTypes,
@@ -511,19 +526,6 @@ function TodaySchedulerPage() {
     }
   }
 
-  function handleToggleNotificationsEnabled() {
-    const nextNotificationsEnabled = !pushPreferences.notificationsEnabled
-    handleUpdatePushPreferences(
-      buildPushPreferencePayload(
-        {
-          ...pushPreferences,
-          notificationsEnabled: nextNotificationsEnabled,
-        },
-        normalizedFilters,
-      ),
-    )
-  }
-
   async function handleSendTestPush() {
     setIsPushBusy(true)
     try {
@@ -554,15 +556,12 @@ function TodaySchedulerPage() {
           <div className="scheduler-push-connected">
             <div className="scheduler-push-secondary">
               <div className="scheduler-push-control-row" aria-label="웹 알림 설정">
-                <button
-                  type="button"
-                  className={`scheduler-push-mini-button scheduler-push-global-toggle ${pushPreferences.notificationsEnabled ? 'active' : 'secondary'}`}
-                  onClick={handleToggleNotificationsEnabled}
-                  disabled={isPushPreferencesBusy}
-                  aria-pressed={pushPreferences.notificationsEnabled}
+                <div
+                  className={`scheduler-push-mini-button scheduler-push-global-toggle ${normalizedFilters.workTimeEnabled ? 'active' : 'secondary'}`}
+                  aria-label={`알림 상태: ${normalizedFilters.workTimeEnabled ? 'On' : 'Off'}`}
                 >
-                  {pushPreferences.notificationsEnabled ? 'On' : 'Off'}
-                </button>
+                  {normalizedFilters.workTimeEnabled ? 'On' : 'Off'}
+                </div>
                 <button
                   type="button"
                   className="scheduler-push-mini-button"
