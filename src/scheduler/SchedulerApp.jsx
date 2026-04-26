@@ -570,6 +570,16 @@ function TodaySchedulerPage() {
       <SchedulerTopbar />
 
       <section className={`scheduler-panel scheduler-push-panel ${isPushConnected ? 'is-connected' : 'is-setup'}`}>
+        {/* 임시 디버그 블록 */}
+        <div style={{ padding: '10px', marginBottom: '10px', fontSize: '11px', backgroundColor: '#f0f0f0', border: '1px solid #ccc', borderRadius: '4px', color: '#333', lineHeight: '1.4' }}>
+          <strong>Debug: 0e57af3</strong><br />
+          Busy: {isPushBusy ? 'Yes' : 'No'} | Supp: {pushState.supported ? 'Yes' : 'No'} | Perm: {pushState.permission}<br />
+          Subs: {pushState.subscribed ? 'Yes' : 'No'} | Plat: {pushState.platform} | Stand: {pushState.standalone ? 'Yes' : 'No'}<br />
+          Msg: {pushState.supportMessage || 'None'}<br />
+          BtnDisabled: {(isPushBusy || !pushState.supported || pushState.permission === 'denied') ? 'Yes' : 'No'} 
+          ({isPushBusy ? 'busy ' : ''}{!pushState.supported ? 'unsupp ' : ''}{pushState.permission === 'denied' ? 'denied ' : ''})
+        </div>
+
         <div className="scheduler-section-head">
           <div>
             <p className="scheduler-section-label">웹 알림</p>
