@@ -212,8 +212,10 @@ function TodaySchedulerPage() {
     try {
       const nextState = await getSchedulerPushState()
       setPushState(nextState)
+      return nextState
     } catch (error) {
       console.error('[push] loadPushState failed', error)
+      return pushState
     }
   }
 
@@ -225,35 +227,36 @@ function TodaySchedulerPage() {
     loadPushState()
   }, [])
 
-  useEffect(() => {
-    async function loadPushPreferences() {
-      if (!pushState.subscribed) {
-        setPushPreferences({
-          ...DEFAULT_PUSH_PREFERENCES,
-          ...normalizedFilters,
-        })
-        return
-      }
-
-      try {
-        const nextPreferences = await getSchedulerPushPreferences()
-        const nextNotificationPreferences = {
-          notificationsEnabled: nextPreferences?.notificationsEnabled ?? true,
-          notificationTypes: Array.isArray(nextPreferences?.notificationTypes)
-            ? nextPreferences.notificationTypes
-            : DEFAULT_PUSH_PREFERENCES.notificationTypes,
-        }
-        setPushPreferences({
-          ...nextNotificationPreferences,
-          workTimeEnabled: nextPreferences?.workTimeEnabled ?? normalizedFilters.workTimeEnabled,
-          workTimeStartHour: nextPreferences?.workTimeStartHour ?? normalizedFilters.workTimeStartHour,
-          workTimeEndHour: nextPreferences?.workTimeEndHour ?? normalizedFilters.workTimeEndHour,
-        })
-      } catch (error) {
-        console.error('[push] loadPushPreferences failed', error)
-      }
+  async function loadPushPreferences(stateOverride = null) {
+    const effectivePushState = stateOverride ?? pushState
+    if (!effectivePushState.supported || !effectivePushState.subscribed) {
+      setPushPreferences({
+        ...DEFAULT_PUSH_PREFERENCES,
+        ...normalizedFilters,
+      })
+      return
     }
 
+    try {
+      const nextPreferences = await getSchedulerPushPreferences()
+      const nextNotificationPreferences = {
+        notificationsEnabled: nextPreferences?.notificationsEnabled ?? true,
+        notificationTypes: Array.isArray(nextPreferences?.notificationTypes)
+          ? nextPreferences.notificationTypes
+          : DEFAULT_PUSH_PREFERENCES.notificationTypes,
+      }
+      setPushPreferences({
+        ...nextNotificationPreferences,
+        workTimeEnabled: nextPreferences?.workTimeEnabled ?? normalizedFilters.workTimeEnabled,
+        workTimeStartHour: nextPreferences?.workTimeStartHour ?? normalizedFilters.workTimeStartHour,
+        workTimeEndHour: nextPreferences?.workTimeEndHour ?? normalizedFilters.workTimeEndHour,
+      })
+    } catch (error) {
+      console.error('[push] loadPushPreferences failed', error)
+    }
+  }
+
+  useEffect(() => {
     loadPushPreferences()
   }, [pushState.subscribed, normalizedFilters.workTimeEnabled, normalizedFilters.workTimeEndHour, normalizedFilters.workTimeStartHour, selectedDate])
 
@@ -330,18 +333,23 @@ function TodaySchedulerPage() {
     persistWorkTimeFilter(nextWorkTimeFilter, nextDate)
     setIsFilterSheetOpen(false)
 
-    if (pushState.subscribed) {
+    // 구독 상태를 최신화하여 stale한 pushState.subscribed 방지
+    const currentPushState = await getSchedulerPushState()
+    setPushState(currentPushState)
+
+    if (currentPushState.subscribed) {
       const success = await handleUpdatePushPreferences(
         buildPushPreferencePayload(
           pushPreferences,
           nextWorkTimeFilter,
           nextDate,
         ),
-        { silent: true },
+        { silent: false },
       )
 
-      if (!success) {
-        setPushStatus('알림 조건 동기화에 실패했어요. 다시 연결을 눌러 주세요.')
+      if (success) {
+        // 성공 시 확정된 최신 상태를 넘겨서 설정을 다시 로드
+        await loadPushPreferences(currentPushState)
       }
     }
   }
@@ -477,20 +485,12 @@ function TodaySchedulerPage() {
     setIsPushBusy(true)
     try {
       await subscribeSchedulerPush()
-      const syncedPreferences = await updateSchedulerPushPreferences(
+      await updateSchedulerPushPreferences(
         buildPushPreferencePayload(pushPreferences, normalizedFilters),
       )
-      setPushPreferences({
-        notificationsEnabled: syncedPreferences?.notificationsEnabled ?? true,
-        notificationTypes: Array.isArray(syncedPreferences?.notificationTypes)
-          ? syncedPreferences.notificationTypes
-          : pushPreferences.notificationTypes,
-        workTimeEnabled: syncedPreferences?.workTimeEnabled ?? normalizedFilters.workTimeEnabled,
-        workTimeStartHour: syncedPreferences?.workTimeStartHour ?? normalizedFilters.workTimeStartHour,
-        workTimeEndHour: syncedPreferences?.workTimeEndHour ?? normalizedFilters.workTimeEndHour,
-      })
       setPushStatus('이 브라우저를 알림 대상으로 연결했어요.')
-      await loadPushState()
+      const nextPushState = await loadPushState()
+      await loadPushPreferences(nextPushState)
     } catch (error) {
       setPushStatus(error instanceof Error ? error.message : '웹 알림 연결에 실패했어요.')
     } finally {
@@ -515,7 +515,7 @@ function TodaySchedulerPage() {
         workTimeStartHour: savedPreferences?.workTimeStartHour ?? nextPreferences.workTimeStartHour,
         workTimeEndHour: savedPreferences?.workTimeEndHour ?? nextPreferences.workTimeEndHour,
       })
-      if (!silent) setPushStatus('')
+      if (!silent) setPushStatus('웹 알림 조건을 저장했어요.')
       return true
     } catch (error) {
       if (!silent) {
