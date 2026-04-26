@@ -1467,16 +1467,23 @@ function WorkLogSummaryCard({ currentWeekStart, logs, onOpen, onCopy, copyFeedba
 
   return (
     <section className="scheduler-panel scheduler-work-log-card">
-      <div className="scheduler-filter-summary-row">
-        <div className="scheduler-filter-summary-copy">
-          <div className="scheduler-inline-head">
-            <p className="scheduler-section-label">근무 일지</p>
-            <span className="scheduler-count-pill">{totalHours}시간</span>
-          </div>
-          <strong>{getWeekTitle(currentWeekStart)} · {getWeekRangeLabel(currentWeekStart)}</strong>
+      <div className="scheduler-section-head">
+        <div>
+          <p className="scheduler-section-label">근무 일지</p>
         </div>
+        <div className="scheduler-count-pill">{totalHours}시간</div>
+      </div>
+
+      <div className="scheduler-work-log-summary-row">
+        <p className="subtle">
+          {getWeekTitle(currentWeekStart)} · {getWeekRangeLabel(currentWeekStart)}
+        </p>
         <div className="scheduler-summary-actions">
-          <button type="button" className="soft-button scheduler-summary-button" onClick={() => onCopy(currentWeekStart)}>
+          <button
+            type="button"
+            className="soft-button scheduler-summary-button"
+            onClick={() => onCopy(currentWeekStart)}
+          >
             {copyFeedback || '복사'}
           </button>
           <button type="button" className="soft-button scheduler-summary-button" onClick={onOpen}>

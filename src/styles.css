@@ -1605,49 +1605,38 @@ textarea {
   }
 }
 
-/* 근무 일지 스타일 (Refined) */
+/* 근무 일지 스타일 (Integrated) */
+.scheduler-work-log-card {
+  /* Let it inherit standard .scheduler-panel styles */
+}
+
+.scheduler-work-log-summary-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--scheduler-gap-md);
+  padding-inline: var(--scheduler-content-inset);
+  margin-top: 0.12rem;
+}
+
+.scheduler-work-log-summary-row .subtle {
+  margin: 0;
+  font-size: 0.86rem;
+  font-weight: 500;
+  color: #626b79;
+}
+
 .scheduler-summary-actions {
   display: flex;
-  gap: 0.38rem;
-  justify-content: flex-end;
+  gap: 0.34rem;
   align-items: center;
-}
-
-.scheduler-inline-head {
-  display: flex;
-  align-items: center;
-  gap: 0.44rem;
-  margin-bottom: 0.08rem;
-}
-
-.scheduler-work-log-card {
-  margin-top: calc(var(--scheduler-gap-lg) * -0.6);
-  background: rgba(255, 252, 248, 0.72);
-  border-color: rgba(234, 223, 206, 0.5);
-  box-shadow: 0 8px 32px rgba(92, 74, 43, 0.04);
-  padding-block: 0.78rem;
-}
-
-.scheduler-work-log-card .scheduler-section-label {
-  color: #9a7b4f;
-  font-weight: 700;
-  font-size: 0.72rem;
-}
-
-.scheduler-work-log-card .scheduler-filter-summary-copy strong {
-  display: block;
-  margin-top: 0.12rem;
-  font-size: 0.94rem;
-  font-weight: 600;
-  color: #4b5563;
-  line-height: 1.2;
 }
 
 .scheduler-work-log-card .scheduler-summary-button {
   min-height: 28px;
   height: 28px;
-  padding: 0 0.58rem;
-  font-size: 0.72rem;
+  padding: 0 0.64rem;
+  font-size: 0.74rem;
   border-radius: 10px;
 }
 
