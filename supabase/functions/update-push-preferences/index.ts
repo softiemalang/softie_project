@@ -5,14 +5,17 @@ import {
   validatePushPreferencePayload,
 } from '../_shared/push.ts'
 
-Deno.serve(async (request) => {
-  let failedStep = 'request'
+Deno.serve(async (request: Request) => {
+  const { method } = request
 
-  if (request.method === 'OPTIONS') {
-    return new Response('ok', { headers: corsHeaders })
+  if (method === 'OPTIONS') {
+    return new Response('ok', { 
+      status: 200, 
+      headers: corsHeaders 
+    })
   }
 
-  if (request.method !== 'POST') {
+  if (method !== 'POST') {
     return new Response(JSON.stringify({ error: 'Method not allowed' }), {
       status: 405,
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },
@@ -20,7 +23,7 @@ Deno.serve(async (request) => {
   }
 
   try {
-    failedStep = 'parse_request'
+    const body = await request.json()
     const {
       deviceId,
       notificationsEnabled,
@@ -29,13 +32,12 @@ Deno.serve(async (request) => {
       workTimeStartHour,
       workTimeEndHour,
       selectedDate,
-    } = await request.json()
+    } = body
 
     if (!deviceId || typeof deviceId !== 'string') {
       throw new Error('deviceId가 필요합니다.')
     }
 
-    failedStep = 'validate_preferences'
     const validated = validatePushPreferencePayload(
       notificationsEnabled,
       notificationTypes,
@@ -45,10 +47,8 @@ Deno.serve(async (request) => {
       selectedDate,
     )
 
-    failedStep = 'create_service_client'
     const supabase = createServiceRoleClient()
 
-    failedStep = 'update_preferences'
     const { data, error } = await supabase
       .from('push_subscriptions')
       .update({
@@ -66,7 +66,7 @@ Deno.serve(async (request) => {
     if (error) throw error
     if (!data?.length) {
       return new Response(JSON.stringify({ 
-        error: `활성 구독을 찾지 못했어요. (deviceId: ${deviceId})` 
+        error: '활성 구독을 찾지 못했어요. 다시 연결해 주세요.' 
       }), {
         status: 404,
         headers: { ...corsHeaders, 'Content-Type': 'application/json' },
@@ -82,20 +82,19 @@ Deno.serve(async (request) => {
       workTimeEndHour: validated.workTimeEndHour,
       selectedDate: validated.selectedDate,
     }), {
+      status: 200,
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },
     })
   } catch (error) {
     const { message, details } = describePushError(error)
 
     console.error('update-push-preferences failed', {
-      step: failedStep,
       message,
       details,
     })
 
     return new Response(JSON.stringify({
       error: message,
-      step: failedStep,
       details,
     }), {
       status: 400,

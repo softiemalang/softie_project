@@ -342,7 +342,6 @@ function TodaySchedulerPage() {
     if (currentPushState.subscribed) {
       try {
         const deviceId = getOrCreatePushDeviceId()
-        setPushStatus(`[필터] 알림 조건 저장 중... (ID: ${deviceId.slice(0, 8)})`)
         const success = await handleUpdatePushPreferences(
           buildPushPreferencePayload(
             pushPreferences,
@@ -353,16 +352,15 @@ function TodaySchedulerPage() {
         )
 
         if (success) {
-          setPushStatus('필터와 알림 조건을 저장했어요.')
+          setPushStatus('알림 조건을 저장했어요.')
           await loadPushPreferences(currentPushState, deviceId)
         }
       } catch (error) {
-        console.error('[push-debug] applyFilterChanges failed:', error)
+        console.error('[push] applyFilterChanges failed:', error)
         setPushStatus('알림 설정 저장 중 오류가 발생했습니다.')
       }
     } else {
-      console.warn('[push-debug] skipping preference sync: not subscribed', currentPushState)
-      setPushStatus('브라우저 구독 상태를 찾지 못해 알림 조건 저장을 건너뛰었어요.')
+      console.warn('[push] skipping preference sync: not subscribed')
     }
   }
 
@@ -495,7 +493,7 @@ function TodaySchedulerPage() {
 
   async function handleEnablePush() {
     setIsPushBusy(true)
-    setPushStatus('[연결] 시작 중...')
+    setPushStatus('알림 연결 중...')
 
     const timeoutPromise = new Promise((_, reject) =>
       setTimeout(() => reject(new Error('알림 연결 시간이 초과됐어요. 앱을 완전히 종료한 뒤 다시 열어 주세요.')), 15000)
@@ -503,27 +501,26 @@ function TodaySchedulerPage() {
 
     try {
       const deviceId = getOrCreatePushDeviceId()
-      setPushStatus(`[연결] 기기 확인 완료 (ID: ${deviceId.slice(0, 8)})`)
 
       await Promise.race([
-        subscribeSchedulerPush(deviceId, (msg) => setPushStatus(`[연결] ${msg}`)),
+        subscribeSchedulerPush(deviceId),
         timeoutPromise
       ])
 
-      setPushStatus('[연결] 구독 완료, 설정 저장 중...')
+      setPushStatus('구독 완료, 설정 저장 중...')
 
       await updateSchedulerPushPreferences(
         buildPushPreferencePayload(pushPreferences, normalizedFilters),
         deviceId,
       )
-      setPushStatus('[연결] 모든 설정이 저장되었습니다.')
+      setPushStatus('이 브라우저를 알림 대상으로 연결했어요.')
 
       const nextPushState = await loadPushState()
       await loadPushPreferences(nextPushState, deviceId)
     } catch (error) {
-      const msg = error instanceof Error ? error.message : '알 수 없는 에러'
-      console.error('[push-debug] handleEnablePush failed:', error)
-      setPushStatus(`[실패] ${msg}`)
+      const msg = error instanceof Error ? error.message : '웹 알림 연결에 실패했어요.'
+      console.error('[push] handleEnablePush failed:', error)
+      setPushStatus(msg)
     } finally {
       setIsPushBusy(false)
     }
@@ -579,16 +576,6 @@ function TodaySchedulerPage() {
       <SchedulerTopbar />
 
       <section className={`scheduler-panel scheduler-push-panel ${isPushConnected ? 'is-connected' : 'is-setup'}`}>
-        {/* 임시 디버그 블록 */}
-        <div style={{ padding: '10px', marginBottom: '10px', fontSize: '11px', backgroundColor: '#f0f0f0', border: '1px solid #ccc', borderRadius: '4px', color: '#333', lineHeight: '1.4' }}>
-          <strong>Debug: c8f1e9a</strong><br />
-          Busy: {isPushBusy ? 'Yes' : 'No'} | Supp: {pushState.supported ? 'Yes' : 'No'} | Perm: {pushState.permission}<br />
-          Subs: {pushState.subscribed ? 'Yes' : 'No'} | Plat: {pushState.platform} | Stand: {pushState.standalone ? 'Yes' : 'No'}<br />
-          Msg: {pushState.supportMessage || 'None'}<br />
-          BtnDisabled: {(isPushBusy || !pushState.supported || pushState.permission === 'denied') ? 'Yes' : 'No'} 
-          ({isPushBusy ? 'busy ' : ''}{!pushState.supported ? 'unsupp ' : ''}{pushState.permission === 'denied' ? 'denied ' : ''})
-        </div>
-
         <div className="scheduler-section-head">
           <div>
             <p className="scheduler-section-label">웹 알림</p>

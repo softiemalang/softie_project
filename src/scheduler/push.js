@@ -110,15 +110,10 @@ function getWebPushPublicKey() {
   return typeof rawValue === 'string' ? rawValue.trim() : ''
 }
 
-async function getServiceWorkerRegistration(onDebug = null) {
+async function getServiceWorkerRegistration() {
   if (!isPushSupported()) return null
-  if (onDebug) onDebug('서비스 워커 레지스트레이션 확인 중...')
   const existing = await navigator.serviceWorker.getRegistration('/')
-  if (existing) {
-    if (onDebug) onDebug('기존 서비스 워커를 찾았어요.')
-    return existing
-  }
-  if (onDebug) onDebug('서비스 워커 등록 시도 중...')
+  if (existing) return existing
   return navigator.serviceWorker.register(SERVICE_WORKER_PATH, { scope: '/' })
 }
 
@@ -168,12 +163,11 @@ export async function requestSchedulerNotificationPermission() {
   return permission
 }
 
-async function storePushSubscription(subscription, deviceId = null, onDebug = null) {
+async function storePushSubscription(subscription, deviceId = null) {
   if (!supabase) {
     throw new Error('Supabase 설정이 없어요. 환경변수를 확인해 주세요.')
   }
 
-  if (onDebug) onDebug('Supabase에 구독 정보 저장 중...')
   const { data, error } = await supabase.functions.invoke('register-push-subscription', {
     body: {
       deviceId: deviceId || getOrCreatePushDeviceId(),
@@ -184,43 +178,35 @@ async function storePushSubscription(subscription, deviceId = null, onDebug = nu
   })
 
   if (error) throw await unwrapFunctionError(error)
-  if (onDebug) onDebug('Supabase 저장 완료.')
   return data
 }
 
-export async function subscribeSchedulerPush(deviceId = null, onDebug = null) {
-  if (onDebug) onDebug('지원 환경 체크 중...')
+export async function subscribeSchedulerPush(deviceId = null) {
   if (!isPushSupported()) {
     throw new Error(getSchedulerPushSupportMessage())
   }
 
-  if (onDebug) onDebug('VAPID 키 확인 중...')
   const vapidPublicKey = getWebPushPublicKey()
   if (!vapidPublicKey) {
     throw new Error('VITE_WEB_PUSH_PUBLIC_KEY 설정이 필요해요.')
   }
 
-  if (onDebug) onDebug('알림 권한 요청 중...')
   const permission = await requestSchedulerNotificationPermission()
-  if (onDebug) onDebug(`권한 결과: ${permission}`)
   if (permission !== 'granted') {
     throw new Error('알림 권한이 허용되지 않았어요.')
   }
 
-  if (onDebug) onDebug('서비스 워커 준비 중...')
-  const registration = await getServiceWorkerRegistration(onDebug)
-  if (onDebug) onDebug('기존 푸시 구독 확인 중...')
+  const registration = await getServiceWorkerRegistration()
   let subscription = await registration.pushManager.getSubscription()
 
   if (!subscription) {
-    if (onDebug) onDebug('새 푸시 구독 생성 중...')
     subscription = await registration.pushManager.subscribe({
       userVisibleOnly: true,
       applicationServerKey: urlBase64ToUint8Array(vapidPublicKey),
     })
   }
 
-  await storePushSubscription(subscription.toJSON(), deviceId, onDebug)
+  await storePushSubscription(subscription.toJSON(), deviceId)
   return subscription
 }
 
