@@ -44,9 +44,20 @@
 - Assumptions made
 - Anything intentionally left out
 
+## Supabase Edge Functions / Security
+- **JWT Verification**: All scheduler-related functions (e.g., `update-push-preferences`, `dispatch-scheduler-reminders`) have `verify_jwt = false` in `supabase/config.toml`.
+- **Reasoning**: 
+  - The PWA flow does not use Supabase Auth, requiring unauthenticated access for client-side preference sync.
+  - The `dispatch-scheduler-reminders` function is triggered by an external scheduler/cron without a Supabase Auth JWT, so verification must be disabled to avoid 401 errors.
+- **Security Strategy**: 
+  - Client-facing functions rely on `deviceId` and `active` subscription status validation.
+  - Internal dispatch logic uses Service Role client for DB access.
+  - If stronger security is needed later, implement custom request validation (e.g., custom headers) within the function code.
+
 ## Commands / verification
 - Install dependencies: `npm install`
 - Start local dev server: `npm run dev`
 - Production build: `npm run build`
 - Preview production build locally: `npm run preview`
+- Supabase function deploy: `supabase functions deploy <name>`
 - There is currently no lint or test script in `package.json`. Do not claim lint/test coverage unless those scripts are added.
