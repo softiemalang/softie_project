@@ -1625,11 +1625,30 @@ textarea {
   background: rgba(255, 252, 248, 0.72);
   border-color: rgba(234, 223, 206, 0.5);
   box-shadow: 0 8px 32px rgba(92, 74, 43, 0.04);
+  padding-block: 0.78rem;
 }
 
 .scheduler-work-log-card .scheduler-section-label {
   color: #9a7b4f;
   font-weight: 700;
+  font-size: 0.72rem;
+}
+
+.scheduler-work-log-card .scheduler-filter-summary-copy strong {
+  display: block;
+  margin-top: 0.12rem;
+  font-size: 0.94rem;
+  font-weight: 600;
+  color: #4b5563;
+  line-height: 1.2;
+}
+
+.scheduler-work-log-card .scheduler-summary-button {
+  min-height: 28px;
+  height: 28px;
+  padding: 0 0.58rem;
+  font-size: 0.72rem;
+  border-radius: 10px;
 }
 
 .scheduler-work-log-sheet {
