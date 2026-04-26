@@ -1,5 +1,14 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { navigate } from '../lib/router'
+import {
+  getSajuProfile,
+  upsertSajuProfile,
+  getNatalSnapshot,
+  createNatalSnapshot,
+  getDailySnapshot,
+  createDailySnapshot
+} from './api'
+import { generateNatalSnapshot, generateDailySnapshot } from './interpreter/preprocessor'
 
 export default function FortunePage() {
   const [profile, setProfile] = useState({
@@ -8,28 +17,88 @@ export default function FortunePage() {
     birthTime: '',
     gender: 'male'
   })
-  const [report, setReport] = useState(null)
-  const [isLoading, setIsLoading] = useState(false)
+  const [activeProfile, setActiveProfile] = useState(null)
+  const [dailySnapshot, setDailySnapshot] = useState(null)
+  const [isLoading, setIsLoading] = useState(true)
+  const [status, setStatus] = useState('')
 
-  function handleViewFortune() {
+  const todayStr = new Date().toISOString().split('T')[0]
+
+  useEffect(() => {
+    loadInitialData()
+  }, [])
+
+  async function loadInitialData() {
     setIsLoading(true)
-    // 실제 엔진 연동 및 LLM 호출 로직은 추후 보강
-    // 현재는 구조 확인을 위한 모크 데이터 사용
-    setTimeout(() => {
-      setReport({
-        summary: '오늘은 새로운 시작을 하기에 좋은 날입니다.',
-        scores: { work: 85, money: 70, relation: 90, health: 60, mind: 80 },
-        categories: {
-          work: '직장운이 상승하고 있어요. 중요한 결정을 내리기에 적합합니다.',
-          money: '큰 지출을 피하고 내실을 다지는 것이 좋습니다.',
-          relation: '주변 사람들과의 소통이 원활해지는 시기입니다.',
-          health: '규칙적인 휴식이 필요한 하루입니다.',
-          mind: '명상을 통해 마음의 평안을 얻으세요.'
-        },
-        tips: ['초록색 옷을 입어보세요.', '오전 회의에 집중하세요.']
-      })
+    try {
+      // MVP 단계에서는 단순화를 위해 첫 번째 프로필을 사용하거나 새로 생성 유도
+      // 실제 서비스에서는 userId 기반 조회 필요
+      const existingProfile = await getSajuProfile('anonymous-temp-user') // 예시용
+      if (existingProfile) {
+        setActiveProfile(existingProfile)
+        setProfile({
+          name: existingProfile.name,
+          birthDate: existingProfile.birth_date,
+          birthTime: existingProfile.birth_time || '',
+          gender: existingProfile.gender
+        })
+        await loadDailyFortune(existingProfile)
+      }
+    } catch (error) {
+      console.error('Failed to load saju data:', error)
+      setStatus('데이터를 불러오지 못했어요.')
+    } finally {
       setIsLoading(false)
-    }, 1500)
+    }
+  }
+
+  async function loadDailyFortune(targetProfile) {
+    try {
+      // 1. 오늘의 스냅샷이 이미 있는지 확인
+      let snapshot = await getDailySnapshot(targetProfile.id, todayStr)
+      
+      if (!snapshot) {
+        setStatus('오늘의 기운을 분석 중입니다...')
+        // 2. 없으면 원국 스냅샷 조회
+        let natal = await getNatalSnapshot(targetProfile.id)
+        if (!natal) {
+          // 원국 스냅샷도 없으면 생성
+          const newNatal = generateNatalSnapshot(targetProfile)
+          natal = await createNatalSnapshot({ ...newNatal, profile_id: targetProfile.id })
+        }
+
+        // 3. 일일 스냅샷 생성 및 저장
+        const newDaily = generateDailySnapshot(natal, todayStr)
+        snapshot = await createDailySnapshot({ ...newDaily, profile_id: targetProfile.id })
+      }
+      
+      setDailySnapshot(snapshot)
+      setStatus('')
+    } catch (error) {
+      console.error('Failed to generate daily fortune:', error)
+      setStatus('운세 분석 중 오류가 발생했습니다.')
+    }
+  }
+
+  async function handleSaveProfile() {
+    setIsLoading(true)
+    setStatus('프로필을 저장하고 운세를 분석하는 중...')
+    try {
+      const saved = await upsertSajuProfile({
+        user_id: 'anonymous-temp-user', // MVP 임시 ID
+        name: profile.name,
+        birth_date: profile.birthDate,
+        birth_time: profile.birthTime || null,
+        gender: profile.gender,
+        updated_at: new Date().toISOString()
+      })
+      setActiveProfile(saved)
+      await loadDailyFortune(saved)
+    } catch (error) {
+      setStatus('프로필 저장에 실패했습니다.')
+    } finally {
+      setIsLoading(false)
+    }
   }
 
   return (
@@ -74,35 +143,38 @@ export default function FortunePage() {
             <option value="male">남성</option>
             <option value="female">여성</option>
           </select>
-          <button onClick={handleViewFortune} disabled={isLoading || !profile.birthDate}>
-            {isLoading ? '운세 분석 중...' : '오늘의 운세 보기'}
+          <button onClick={handleSaveProfile} disabled={isLoading || !profile.birthDate}>
+            {isLoading ? '분석 중...' : activeProfile ? '정보 수정 및 다시 분석' : '오늘의 운세 보기'}
           </button>
         </div>
       </section>
 
-      {report && (
-        <>
+      {status && <p className="status" style={{ textAlign: 'center', color: '#8b5e1a' }}>{status}</p>}
+
+      {dailySnapshot && (
+        <div style={{ marginTop: '2rem' }}>
           <section className="card primary-home-card">
             <div className="card-header">
               <div>
-                <p className="section-kicker">오늘의 요약</p>
-                <h2>한 줄 총평</h2>
+                <p className="section-kicker">오늘의 기운 (Deterministic)</p>
+                <h2>{dailySnapshot.daily_stem}{dailySnapshot.daily_branch} 일진</h2>
               </div>
             </div>
-            <p className="summary-line" style={{ fontSize: '1.2rem', fontWeight: 'bold', color: '#1f6f5f' }}>
-              "{report.summary}"
-            </p>
+            <div style={{ fontSize: '1.1rem', lineHeight: '1.6' }}>
+              <p>오늘은 <strong>{dailySnapshot.computed_data.summary_hint}</strong>입니다.</p>
+              <p className="subtle">이 데이터는 엔진에 의해 계산된 결과이며, 곧 인공지능의 심층 해석이 추가될 예정입니다.</p>
+            </div>
           </section>
 
           <section className="card">
             <div className="card-header">
               <div>
-                <p className="section-kicker">분야별 운세 점수</p>
-                <h2>나의 운세 밸런스</h2>
+                <p className="section-kicker">에너지 밸런스</p>
+                <h2>분야별 기초 점수</h2>
               </div>
             </div>
             <div className="results">
-              {Object.entries(report.scores).map(([key, score]) => (
+              {Object.entries(dailySnapshot.computed_data.baseScores).map(([key, score]) => (
                 <div key={key} className="result-row">
                   <div>
                     <strong>{getCategoryLabel(key)}</strong>
@@ -113,37 +185,22 @@ export default function FortunePage() {
             </div>
           </section>
 
-          <section className="card">
+          <section className="card secondary-card">
             <div className="card-header">
               <div>
-                <p className="section-kicker">상세 리포트</p>
-                <h2>부문별 흐름</h2>
+                <p className="section-kicker">오늘의 신호</p>
+                <h2>주요 체크포인트</h2>
               </div>
             </div>
-            <div className="stack-form">
-              {Object.entries(report.categories).map(([key, text]) => (
-                <div key={key} style={{ marginBottom: '1.5rem', padding: '1rem', background: '#fdfaf5', borderRadius: '14px' }}>
-                  <strong style={{ display: 'block', marginBottom: '0.5rem', color: '#115e59' }}>{getCategoryLabel(key)}</strong>
-                  <p style={{ margin: 0, lineHeight: 1.6 }}>{text}</p>
+            <div className="member-list" style={{ marginTop: '1rem' }}>
+              {dailySnapshot.computed_data.signals.map((signal, idx) => (
+                <div key={idx} className="member-pill">
+                  {signal.tenGod} ({signal.element})
                 </div>
               ))}
             </div>
           </section>
-
-          <section className="card secondary-card">
-            <div className="card-header">
-              <div>
-                <p className="section-kicker">실천 팁</p>
-                <h2>오늘의 행동 가이드</h2>
-              </div>
-            </div>
-            <ul style={{ paddingLeft: '1.2rem', margin: 0 }}>
-              {report.tips.map((tip, idx) => (
-                <li key={idx} style={{ marginBottom: '0.5rem' }}>{tip}</li>
-              ))}
-            </ul>
-          </section>
-        </>
+        </div>
       )}
     </div>
   )
