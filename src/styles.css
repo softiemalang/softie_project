@@ -1605,6 +1605,12 @@ textarea {
   }
 }
 
+.scheduler-summary-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.34rem;
+}
+
 /* 근무 일지 스타일 (Integrated) */
 .scheduler-work-log-card {
   /* Inherits standard .scheduler-panel styles */
