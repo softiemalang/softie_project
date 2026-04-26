@@ -18,14 +18,59 @@ import {
   subscribeSchedulerPush,
   updateSchedulerPushPreferences,
 } from './push'
-import { formatDateLabel, formatSchedulerDate, formatSchedulerTime, normalizeHourTime, toLocalDateInputValue } from './time'
+import {
+  formatDateLabel,
+  formatSchedulerDate,
+  formatSchedulerTime,
+  getMonday,
+  getWeekRangeLabel,
+  getWeekStartDate,
+  getWeekTitle,
+  normalizeHourTime,
+  toLocalDateInputValue,
+} from './time'
 
 const GO_TO_TODAY_EVENT = 'scheduler:go-today'
 const WORK_TIME_FILTER_STORAGE_KEY = 'scheduler:work-time-filter'
+const WORK_LOGS_STORAGE_KEY = 'scheduler:work-logs'
+
 const DEFAULT_PUSH_PREFERENCES = {
   notificationsEnabled: true,
   notificationTypes: ['checkin', 'warning', 'checkout'],
   ...getDefaultWorkTimeFilter(),
+}
+
+function loadWorkLogs() {
+  if (typeof window === 'undefined') return []
+  try {
+    const raw = window.localStorage.getItem(WORK_LOGS_STORAGE_KEY)
+    return raw ? JSON.parse(raw) : []
+  } catch {
+    return []
+  }
+}
+
+function saveWorkLog(entry) {
+  if (typeof window === 'undefined') return
+  const logs = loadWorkLogs()
+  const syncKey = `${entry.date}__${entry.startTime}__${entry.endTime}`
+  
+  const existingIndex = logs.findIndex(log => log.syncKey === syncKey)
+  const newLogs = [...logs]
+  
+  const logEntry = {
+    ...entry,
+    syncKey,
+    syncedAt: new Date().toISOString()
+  }
+  
+  if (existingIndex >= 0) {
+    newLogs[existingIndex] = logEntry
+  } else {
+    newLogs.push(logEntry)
+  }
+  
+  window.localStorage.setItem(WORK_LOGS_STORAGE_KEY, JSON.stringify(newLogs))
 }
 const WORK_TIME_HOUR_OPTIONS = Array.from({ length: 24 }, (_, hour) => hour)
 
@@ -195,6 +240,66 @@ function TodaySchedulerPage() {
   const draftRooms = draftFilters.branch === 'all' ? [] : getRoomsForBranch(draftFilters.branch)
   const normalizedFilters = normalizeWorkTimeFilter(filters)
   const normalizedDraftWorkTime = normalizeWorkTimeFilter(draftFilters)
+
+  const [workLogs, setWorkLogs] = useState(() => loadWorkLogs())
+  const [isWorkLogOpen, setIsWorkLogOpen] = useState(false)
+  const [viewingWeekStart, setViewingWeekStart] = useState(() => getWeekStartDate(initialSelectedDate))
+  const [copyFeedback, setCopyFeedback] = useState('')
+
+  function handleSyncWorkLog() {
+    if (!normalizedFilters.workTimeEnabled) return
+    
+    const entry = {
+      weekStartDate: getWeekStartDate(selectedDate),
+      date: selectedDate,
+      startTime: formatWorkTimeHour(normalizedFilters.workTimeStartHour),
+      endTime: formatWorkTimeHour(normalizedFilters.workTimeEndHour),
+      durationMinutes: (normalizedFilters.workTimeEndHour - normalizedFilters.workTimeStartHour) * 60,
+      branch: filters.branch !== 'all' ? filters.branch : null,
+      room: filters.room !== 'all' ? filters.room : null,
+    }
+    
+    saveWorkLog(entry)
+    const nextLogs = loadWorkLogs()
+    setWorkLogs(nextLogs)
+    setPushStatus('근무 기록을 동기화했어요.')
+    setTimeout(() => setPushStatus(''), 2000)
+  }
+
+  function handleCopyWeekLog(weekStart) {
+    const targetLogs = workLogs.filter(log => log.weekStartDate === weekStart)
+    const sortedLogs = [...targetLogs].sort((a, b) => a.date.localeCompare(b.date))
+    
+    if (sortedLogs.length === 0) return
+
+    const title = getWeekTitle(weekStart)
+    const lines = [title, '']
+    
+    let totalMinutes = 0
+    sortedLogs.forEach(log => {
+      const dateObj = new Date(log.date)
+      const dateLabel = `${dateObj.getMonth() + 1}/${dateObj.getDate()}`
+      const durationHours = log.durationMinutes / 60
+      lines.push(`${dateLabel}\n${log.startTime}-${log.endTime} (${durationHours}h)`)
+      totalMinutes += log.durationMinutes
+    })
+    
+    lines.push('', `총 ${totalMinutes / 60}시간`)
+    
+    const text = lines.join('\n')
+    navigator.clipboard.writeText(text).then(() => {
+      setCopyFeedback('복사됨')
+      setTimeout(() => setCopyFeedback(''), 2000)
+    })
+  }
+
+  function handleNavigateWeek(direction) {
+    setViewingWeekStart(current => {
+      const date = new Date(current)
+      date.setDate(date.getDate() + (direction === 'next' ? 7 : -7))
+      return getWeekStartDate(date)
+    })
+  }
 
   async function loadEvents() {
     setIsLoading(true)
@@ -651,11 +756,32 @@ function TodaySchedulerPage() {
             <strong>{normalizedFilters.workTimeEnabled ? '근무 중' : `${TODAY_HOURS.start}:00 - ${TODAY_HOURS.end}:00`}</strong>
             <p className="subtle">{filterSummary}</p>
           </div>
-          <button type="button" className="soft-button scheduler-summary-button" onClick={openFilterSheet}>
-            변경
-          </button>
+          <div className="scheduler-summary-actions">
+            <button
+              type="button"
+              className="soft-button scheduler-summary-button"
+              onClick={handleSyncWorkLog}
+              disabled={!normalizedFilters.workTimeEnabled}
+            >
+              동기화
+            </button>
+            <button type="button" className="soft-button scheduler-summary-button" onClick={openFilterSheet}>
+              변경
+            </button>
+          </div>
         </div>
       </section>
+
+      <WorkLogSummaryCard
+        currentWeekStart={getWeekStartDate(selectedDate)}
+        logs={workLogs}
+        onOpen={() => {
+          setViewingWeekStart(getWeekStartDate(selectedDate))
+          setIsWorkLogOpen(true)
+        }}
+        onCopy={handleCopyWeekLog}
+        copyFeedback={copyFeedback}
+      />
 
       {isFilterSheetOpen ? (
         <div className="scheduler-sheet-backdrop" onClick={() => setIsFilterSheetOpen(false)}>
@@ -803,6 +929,17 @@ function TodaySchedulerPage() {
             </div>
           </section>
         </div>
+      ) : null}
+
+      {isWorkLogOpen ? (
+        <WorkLogDetailView
+          viewingWeekStart={viewingWeekStart}
+          logs={workLogs}
+          onClose={() => setIsWorkLogOpen(false)}
+          onNavigate={handleNavigateWeek}
+          onCopy={handleCopyWeekLog}
+          copyFeedback={copyFeedback}
+        />
       ) : null}
 
       {status && <p className="status">{status}</p>}
@@ -1318,6 +1455,93 @@ function RoomStatusPage() {
             )
           })
         )}
+      </section>
+    </div>
+  )
+}
+
+function WorkLogSummaryCard({ currentWeekStart, logs, onOpen, onCopy, copyFeedback }) {
+  const weekLogs = logs.filter(log => log.weekStartDate === currentWeekStart)
+  const totalMinutes = weekLogs.reduce((acc, log) => acc + log.durationMinutes, 0)
+  const totalHours = totalMinutes / 60
+
+  return (
+    <section className="scheduler-panel scheduler-work-log-card">
+      <div className="scheduler-filter-summary-row">
+        <div className="scheduler-filter-summary-copy">
+          <div className="scheduler-inline-head">
+            <p className="scheduler-section-label">근무 일지</p>
+            <span className="scheduler-count-pill">{totalHours}시간</span>
+          </div>
+          <strong>{getWeekTitle(currentWeekStart)} · {getWeekRangeLabel(currentWeekStart)}</strong>
+        </div>
+        <div className="scheduler-summary-actions">
+          <button type="button" className="soft-button scheduler-summary-button" onClick={() => onCopy(currentWeekStart)}>
+            {copyFeedback || '복사'}
+          </button>
+          <button type="button" className="soft-button scheduler-summary-button" onClick={onOpen}>
+            보기
+          </button>
+        </div>
+      </div>
+    </section>
+  )
+}
+
+function WorkLogDetailView({ viewingWeekStart, logs, onClose, onNavigate, onCopy, copyFeedback }) {
+  const weekLogs = logs.filter(log => log.weekStartDate === viewingWeekStart)
+  const sortedLogs = [...weekLogs].sort((a, b) => a.date.localeCompare(b.date))
+  const totalMinutes = weekLogs.reduce((acc, log) => acc + log.durationMinutes, 0)
+  const totalHours = totalMinutes / 60
+
+  return (
+    <div className="scheduler-sheet-backdrop" onClick={onClose}>
+      <section
+        className="scheduler-sheet scheduler-work-log-sheet"
+        role="dialog"
+        aria-modal="true"
+        aria-label="근무 일지 상세"
+        onClick={(event) => event.stopPropagation()}
+      >
+        <div className="scheduler-section-head">
+          <button type="button" className="soft-button" onClick={() => onNavigate('prev')}>이전 주</button>
+          <div className="scheduler-work-log-title">
+            <strong>{getWeekTitle(viewingWeekStart)}</strong>
+            <p className="subtle">{getWeekRangeLabel(viewingWeekStart)}</p>
+          </div>
+          <button type="button" className="soft-button" onClick={() => onNavigate('next')}>다음 주</button>
+        </div>
+
+        <div className="scheduler-work-log-content">
+          {sortedLogs.length === 0 ? (
+            <p className="subtle scheduler-empty-note">동기화된 근무 기록 없음</p>
+          ) : (
+            <div className="scheduler-work-log-list">
+              {sortedLogs.map((log) => {
+                const dateObj = new Date(log.date)
+                return (
+                  <div key={log.syncKey} className="scheduler-work-log-item">
+                    <strong>{dateObj.getMonth() + 1}/{dateObj.getDate()}</strong>
+                    <p>{log.startTime}-{log.endTime} ({log.durationMinutes / 60}h)</p>
+                  </div>
+                )
+              })}
+            </div>
+          )}
+          
+          <div className="scheduler-work-log-total">
+            <strong>총 {totalHours}시간</strong>
+          </div>
+        </div>
+
+        <div className="scheduler-form-actions">
+          <button type="button" className="soft-button" onClick={onClose}>
+            닫기
+          </button>
+          <button type="button" onClick={() => onCopy(viewingWeekStart)}>
+            {copyFeedback || '텍스트 복사'}
+          </button>
+        </div>
       </section>
     </div>
   )

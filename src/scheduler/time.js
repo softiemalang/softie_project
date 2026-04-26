@@ -83,3 +83,39 @@ export function endOfDayIso(dateValue) {
 export function isSameRoom(left, right) {
   return `${left.branch}__${left.room}` === `${right.branch}__${right.room}`
 }
+
+export function getMonday(input) {
+  const date = new Date(input)
+  const day = date.getDay() // 0 (Sun) to 6 (Sat)
+  const diff = date.getDate() - day + (day === 0 ? -6 : 1) // adjust when day is sunday
+  return new Date(date.setDate(diff))
+}
+
+export function getWeekStartDate(input) {
+  const monday = getMonday(input)
+  return toLocalDateInputValue(monday)
+}
+
+export function getWeekTitle(input) {
+  const date = new Date(input)
+  const month = date.getMonth() + 1
+  
+  // Calculate week of the month
+  const firstDayOfMonth = new Date(date.getFullYear(), date.getMonth(), 1)
+  const firstMonday = getMonday(firstDayOfMonth)
+  
+  // If first Monday is after the 1st, the days before it belong to the last week of previous month
+  // But per user request "4월 4주차", we'll use a simpler logic:
+  const dayOfMonth = date.getDate()
+  const weekNumber = Math.ceil((dayOfMonth + firstDayOfMonth.getDay() - 1) / 7)
+  
+  return `${month}월 ${weekNumber}주차`
+}
+
+export function getWeekRangeLabel(mondayInput) {
+  const monday = new Date(mondayInput)
+  const sunday = new Date(monday)
+  sunday.setDate(monday.getDate() + 6)
+  
+  return `${monday.getMonth() + 1}/${monday.getDate()} - ${sunday.getMonth() + 1}/${sunday.getDate()}`
+}
