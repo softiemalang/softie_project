@@ -1,7 +1,8 @@
 import { useEffect, useMemo, useState } from 'react'
-import { usePathname } from './lib/router'
+import { navigate, usePathname } from './lib/router'
 import { supabase } from './lib/supabase'
 import { SchedulerApp } from './scheduler/SchedulerApp'
+import FortunePage from './saju/FortunePage'
 
 const DAYS = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
 const SLOTS = [
@@ -805,7 +806,12 @@ function BandRoomApp() {
       <header className="hero">
         <p className="eyebrow">밴드 합주 일정 조율</p>
         <h1>한 방에서 가능 시간을 모으고, 겹치는 합주 시간을 빠르게 찾아보세요.</h1>
-        <p className="subtle">
+        <div style={{ marginTop: '1.2rem' }}>
+          <button type="button" className="soft-button" onClick={() => navigate('/fortune')}>
+            오늘의 운세 확인하기 🍀
+          </button>
+        </div>
+        <p className="subtle" style={{ marginTop: '1.5rem' }}>
           작은 밴드가 주간 합주 시간을 간단하게 정할 수 있도록 만든 서비스예요.
         </p>
       </header>
@@ -1194,6 +1200,10 @@ export default function App() {
 
   if (pathname.startsWith('/scheduler')) {
     return <SchedulerApp pathname={pathname} />
+  }
+
+  if (pathname.startsWith('/fortune')) {
+    return <FortunePage />
   }
 
   return <BandRoomApp />
