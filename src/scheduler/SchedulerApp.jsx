@@ -871,11 +871,13 @@ function TodayEventSection({ title, items, emptyText, onToggleDone, pendingStatu
 
 function EventCard({ item, onToggleDone, isSaving }) {
   const reservation = item.reservation || {}
-  const urgencyText = item.isOverdue
-    ? `${Math.abs(item.minutesAway)}분 지남`
-    : item.minutesAway <= 60
-      ? `${item.minutesAway}분 후`
-      : ''
+  const urgencyText = item.status === 'done'
+    ? ''
+    : item.isOverdue
+      ? `${Math.abs(item.minutesAway)}분 지남`
+      : item.minutesAway <= 60
+        ? `${item.minutesAway}분 후`
+        : ''
   const cardClassName = [
     'scheduler-event-card',
     `event-${item.event_type}`,
