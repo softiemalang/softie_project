@@ -65,7 +65,9 @@ Deno.serve(async (request) => {
 
     if (error) throw error
     if (!data?.length) {
-      return new Response(JSON.stringify({ error: '활성 구독을 찾지 못했어요.' }), {
+      return new Response(JSON.stringify({ 
+        error: `활성 구독을 찾지 못했어요. (deviceId: ${deviceId})` 
+      }), {
         status: 404,
         headers: { ...corsHeaders, 'Content-Type': 'application/json' },
       })

@@ -227,7 +227,7 @@ function TodaySchedulerPage() {
     loadPushState()
   }, [])
 
-  async function loadPushPreferences(stateOverride = null) {
+  async function loadPushPreferences(stateOverride = null, deviceId = null) {
     const effectivePushState = stateOverride ?? pushState
     if (!effectivePushState.supported || !effectivePushState.subscribed) {
       setPushPreferences({
@@ -238,7 +238,7 @@ function TodaySchedulerPage() {
     }
 
     try {
-      const nextPreferences = await getSchedulerPushPreferences()
+      const nextPreferences = await getSchedulerPushPreferences(deviceId)
       const nextNotificationPreferences = {
         notificationsEnabled: nextPreferences?.notificationsEnabled ?? true,
         notificationTypes: Array.isArray(nextPreferences?.notificationTypes)
@@ -338,18 +338,19 @@ function TodaySchedulerPage() {
     setPushState(currentPushState)
 
     if (currentPushState.subscribed) {
+      const deviceId = getOrCreatePushDeviceId()
       const success = await handleUpdatePushPreferences(
         buildPushPreferencePayload(
           pushPreferences,
           nextWorkTimeFilter,
           nextDate,
         ),
-        { silent: false },
+        { silent: false, deviceId },
       )
 
       if (success) {
         // 성공 시 확정된 최신 상태를 넘겨서 설정을 다시 로드
-        await loadPushPreferences(currentPushState)
+        await loadPushPreferences(currentPushState, deviceId)
       }
     }
   }
@@ -483,14 +484,16 @@ function TodaySchedulerPage() {
 
   async function handleEnablePush() {
     setIsPushBusy(true)
+    const deviceId = getOrCreatePushDeviceId()
     try {
-      await subscribeSchedulerPush()
+      await subscribeSchedulerPush(deviceId)
       await updateSchedulerPushPreferences(
         buildPushPreferencePayload(pushPreferences, normalizedFilters),
+        deviceId,
       )
       setPushStatus('이 브라우저를 알림 대상으로 연결했어요.')
       const nextPushState = await loadPushState()
-      await loadPushPreferences(nextPushState)
+      await loadPushPreferences(nextPushState, deviceId)
     } catch (error) {
       setPushStatus(error instanceof Error ? error.message : '웹 알림 연결에 실패했어요.')
     } finally {
@@ -499,13 +502,13 @@ function TodaySchedulerPage() {
   }
 
   async function handleUpdatePushPreferences(nextPreferences, options = {}) {
-    const { silent = false } = options
+    const { silent = false, deviceId = null } = options
     setIsPushPreferencesBusy(true)
     if (!silent) {
       setPushStatus('')
     }
     try {
-      const savedPreferences = await updateSchedulerPushPreferences(nextPreferences)
+      const savedPreferences = await updateSchedulerPushPreferences(nextPreferences, deviceId)
       setPushPreferences({
         notificationsEnabled: savedPreferences?.notificationsEnabled ?? nextPreferences.notificationsEnabled,
         notificationTypes: Array.isArray(savedPreferences?.notificationTypes)
@@ -531,8 +534,9 @@ function TodaySchedulerPage() {
 
   async function handleSendTestPush() {
     setIsPushBusy(true)
+    const deviceId = getOrCreatePushDeviceId()
     try {
-      await sendSchedulerTestPush()
+      await sendSchedulerTestPush(deviceId)
       setPushStatus('테스트 알림을 보냈어요. 기기에서 알림을 확인해 주세요.')
       await loadPushState()
     } catch (error) {

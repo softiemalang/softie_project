@@ -147,14 +147,14 @@ export async function requestSchedulerNotificationPermission() {
   return permission
 }
 
-async function storePushSubscription(subscription) {
+async function storePushSubscription(subscription, deviceId = null) {
   if (!supabase) {
     throw new Error('Supabase 설정이 없어요. 환경변수를 확인해 주세요.')
   }
 
   const { data, error } = await supabase.functions.invoke('register-push-subscription', {
     body: {
-      deviceId: getOrCreatePushDeviceId(),
+      deviceId: deviceId || getOrCreatePushDeviceId(),
       subscription,
       userAgent: navigator.userAgent || '',
       platform: getBrowserPlatform(),
@@ -165,7 +165,7 @@ async function storePushSubscription(subscription) {
   return data
 }
 
-export async function subscribeSchedulerPush() {
+export async function subscribeSchedulerPush(deviceId = null) {
   if (!isPushSupported()) {
     throw new Error(getSchedulerPushSupportMessage())
   }
@@ -190,18 +190,18 @@ export async function subscribeSchedulerPush() {
     })
   }
 
-  await storePushSubscription(subscription.toJSON())
+  await storePushSubscription(subscription.toJSON(), deviceId)
   return subscription
 }
 
-export async function sendSchedulerTestPush() {
+export async function sendSchedulerTestPush(deviceId = null) {
   if (!supabase) {
     throw new Error('Supabase 설정이 없어요. 환경변수를 확인해 주세요.')
   }
 
   const { data, error } = await supabase.functions.invoke('send-test-push', {
     body: {
-      deviceId: getOrCreatePushDeviceId(),
+      deviceId: deviceId || getOrCreatePushDeviceId(),
     },
   })
 
@@ -209,14 +209,14 @@ export async function sendSchedulerTestPush() {
   return data
 }
 
-export async function getSchedulerPushPreferences() {
+export async function getSchedulerPushPreferences(deviceId = null) {
   if (!supabase) {
     throw new Error('Supabase 설정이 없어요. 환경변수를 확인해 주세요.')
   }
 
   const { data, error } = await supabase.functions.invoke('get-push-preferences', {
     body: {
-      deviceId: getOrCreatePushDeviceId(),
+      deviceId: deviceId || getOrCreatePushDeviceId(),
     },
   })
 
@@ -224,14 +224,14 @@ export async function getSchedulerPushPreferences() {
   return data
 }
 
-export async function updateSchedulerPushPreferences(preferences) {
+export async function updateSchedulerPushPreferences(preferences, deviceId = null) {
   if (!supabase) {
     throw new Error('Supabase 설정이 없어요. 환경변수를 확인해 주세요.')
   }
 
   const { data, error } = await supabase.functions.invoke('update-push-preferences', {
     body: {
-      deviceId: getOrCreatePushDeviceId(),
+      deviceId: deviceId || getOrCreatePushDeviceId(),
       ...preferences,
     },
   })
