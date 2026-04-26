@@ -489,16 +489,25 @@ function TodaySchedulerPage() {
   async function handleEnablePush() {
     setIsPushBusy(true)
     const deviceId = getOrCreatePushDeviceId()
-    setPushStatus(`[1/3] 알림 연결 시도 중... (ID: ${deviceId.slice(0, 8)})`)
+    setPushStatus(`[연결] 시작 중... (ID: ${deviceId.slice(0, 8)})`)
+
+    const timeoutPromise = new Promise((_, reject) =>
+      setTimeout(() => reject(new Error('알림 연결 시간이 초과됐어요. 앱을 완전히 종료한 뒤 다시 열어 주세요.')), 15000)
+    )
+
     try {
-      await subscribeSchedulerPush(deviceId)
-      setPushStatus('[2/3] 구독 등록 완료, 설정 저장 중...')
+      await Promise.race([
+        subscribeSchedulerPush(deviceId, (msg) => setPushStatus(`[연결] ${msg}`)),
+        timeoutPromise
+      ])
+
+      setPushStatus('[연결] 구독 완료, 설정 저장 중...')
 
       await updateSchedulerPushPreferences(
         buildPushPreferencePayload(pushPreferences, normalizedFilters),
         deviceId,
       )
-      setPushStatus('[3/3] 모든 설정이 저장되었습니다.')
+      setPushStatus('[연결] 모든 설정이 저장되었습니다.')
 
       const nextPushState = await loadPushState()
       await loadPushPreferences(nextPushState, deviceId)
