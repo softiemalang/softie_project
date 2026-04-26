@@ -1504,17 +1504,19 @@ function WorkLogDetailView({ viewingWeekStart, logs, onClose, onNavigate, onCopy
         onClick={(event) => event.stopPropagation()}
       >
         <div className="scheduler-section-head">
-          <button type="button" className="soft-button" onClick={() => onNavigate('prev')}>이전 주</button>
+          <button type="button" className="soft-button scheduler-work-log-nav-btn" onClick={() => onNavigate('prev')}>이전 주</button>
           <div className="scheduler-work-log-title">
             <strong>{getWeekTitle(viewingWeekStart)}</strong>
             <p className="subtle">{getWeekRangeLabel(viewingWeekStart)}</p>
           </div>
-          <button type="button" className="soft-button" onClick={() => onNavigate('next')}>다음 주</button>
+          <button type="button" className="soft-button scheduler-work-log-nav-btn" onClick={() => onNavigate('next')}>다음 주</button>
         </div>
 
         <div className="scheduler-work-log-content">
           {sortedLogs.length === 0 ? (
-            <p className="subtle scheduler-empty-note">동기화된 근무 기록 없음</p>
+            <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              <p className="subtle scheduler-empty-note">동기화된 근무 기록 없음</p>
+            </div>
           ) : (
             <div className="scheduler-work-log-list">
               {sortedLogs.map((log) => {
@@ -1530,17 +1532,20 @@ function WorkLogDetailView({ viewingWeekStart, logs, onClose, onNavigate, onCopy
           )}
           
           <div className="scheduler-work-log-total">
-            <strong>총 {totalHours}시간</strong>
+            <span>주간 총계</span>
+            <strong>{totalHours}시간</strong>
           </div>
-        </div>
 
-        <div className="scheduler-form-actions">
-          <button type="button" className="soft-button" onClick={onClose}>
-            닫기
-          </button>
-          <button type="button" onClick={() => onCopy(viewingWeekStart)}>
-            {copyFeedback || '텍스트 복사'}
-          </button>
+          <div className="scheduler-work-log-footer">
+            <div className="scheduler-form-actions">
+              <button type="button" className="soft-button" onClick={onClose}>
+                닫기
+              </button>
+              <button type="button" className="primary" onClick={() => onCopy(viewingWeekStart)}>
+                {copyFeedback || '텍스트 복사'}
+              </button>
+            </div>
+          </div>
         </div>
       </section>
     </div>
