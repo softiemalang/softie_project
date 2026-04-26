@@ -1607,29 +1607,14 @@ textarea {
 
 /* 근무 일지 스타일 (Integrated) */
 .scheduler-work-log-card {
-  /* Let it inherit standard .scheduler-panel styles */
+  /* Inherits standard .scheduler-panel styles */
 }
 
-.scheduler-work-log-summary-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: var(--scheduler-gap-md);
-  padding-inline: var(--scheduler-content-inset);
-  margin-top: 0.12rem;
-}
-
-.scheduler-work-log-summary-row .subtle {
-  margin: 0;
-  font-size: 0.86rem;
+.scheduler-work-log-card .scheduler-filter-summary-copy .subtle {
+  margin-top: 0.14rem;
+  font-size: 0.84rem;
   font-weight: 500;
   color: #626b79;
-}
-
-.scheduler-summary-actions {
-  display: flex;
-  gap: 0.34rem;
-  align-items: center;
 }
 
 .scheduler-work-log-card .scheduler-summary-button {
