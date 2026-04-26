@@ -339,6 +339,7 @@ function TodaySchedulerPage() {
 
     if (currentPushState.subscribed) {
       const deviceId = getOrCreatePushDeviceId()
+      setPushStatus(`[필터] 알림 조건 저장 중... (ID: ${deviceId.slice(0, 8)})`)
       const success = await handleUpdatePushPreferences(
         buildPushPreferencePayload(
           pushPreferences,
@@ -349,9 +350,12 @@ function TodaySchedulerPage() {
       )
 
       if (success) {
-        // 성공 시 확정된 최신 상태를 넘겨서 설정을 다시 로드
+        setPushStatus('필터와 알림 조건을 저장했어요.')
         await loadPushPreferences(currentPushState, deviceId)
       }
+    } else {
+      console.warn('[push-debug] skipping preference sync: not subscribed', currentPushState)
+      setPushStatus('브라우저 구독 상태를 찾지 못해 알림 조건 저장을 건너뛰었어요.')
     }
   }
 
@@ -485,17 +489,23 @@ function TodaySchedulerPage() {
   async function handleEnablePush() {
     setIsPushBusy(true)
     const deviceId = getOrCreatePushDeviceId()
+    setPushStatus(`[1/3] 알림 연결 시도 중... (ID: ${deviceId.slice(0, 8)})`)
     try {
       await subscribeSchedulerPush(deviceId)
+      setPushStatus('[2/3] 구독 등록 완료, 설정 저장 중...')
+
       await updateSchedulerPushPreferences(
         buildPushPreferencePayload(pushPreferences, normalizedFilters),
         deviceId,
       )
-      setPushStatus('이 브라우저를 알림 대상으로 연결했어요.')
+      setPushStatus('[3/3] 모든 설정이 저장되었습니다.')
+
       const nextPushState = await loadPushState()
       await loadPushPreferences(nextPushState, deviceId)
     } catch (error) {
-      setPushStatus(error instanceof Error ? error.message : '웹 알림 연결에 실패했어요.')
+      const msg = error instanceof Error ? error.message : '알 수 없는 에러'
+      console.error('[push-debug] handleEnablePush failed:', error)
+      setPushStatus(`[실패] ${msg}`)
     } finally {
       setIsPushBusy(false)
     }
