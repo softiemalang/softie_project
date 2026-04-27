@@ -95,6 +95,7 @@
   color: #303a45;
   font-size: 16px;
   line-height: 1.2;
+  text-align: left;
   outline: none;
 }
 
@@ -112,6 +113,26 @@
 :where(.fortune-shell, .app-shell:has(> .hero > button.soft-button[style*="margin-top"])) input[type='time'] {
   -webkit-appearance: none;
   appearance: none;
+  text-align: left;
+}
+
+:where(.fortune-shell, .app-shell:has(> .hero > button.soft-button[style*="margin-top"])) input[type='date']::-webkit-date-and-time-value,
+:where(.fortune-shell, .app-shell:has(> .hero > button.soft-button[style*="margin-top"])) input[type='time']::-webkit-date-and-time-value {
+  width: 100%;
+  margin: 0;
+  text-align: left;
+}
+
+:where(.fortune-shell, .app-shell:has(> .hero > button.soft-button[style*="margin-top"])) input[type='date']::-webkit-datetime-edit,
+:where(.fortune-shell, .app-shell:has(> .hero > button.soft-button[style*="margin-top"])) input[type='time']::-webkit-datetime-edit {
+  width: 100%;
+  padding: 0;
+  text-align: left;
+}
+
+:where(.fortune-shell, .app-shell:has(> .hero > button.soft-button[style*="margin-top"])) input[type='date']::-webkit-calendar-picker-indicator,
+:where(.fortune-shell, .app-shell:has(> .hero > button.soft-button[style*="margin-top"])) input[type='time']::-webkit-calendar-picker-indicator {
+  margin-left: auto;
 }
 
 :where(.fortune-shell, .app-shell:has(> .hero > button.soft-button[style*="margin-top"])) button {
