@@ -1,61 +1,184 @@
--- 오늘의 운세 서비스를 위한 테이블 정의
+create extension if not exists pgcrypto;
 
--- 1. 사용자 사주 프로필
+create or replace function public.set_updated_at()
+returns trigger
+language plpgsql
+as $$
+begin
+  new.updated_at = timezone('utc', now());
+  return new;
+end;
+$$;
+
 create table if not exists public.saju_profiles (
   id uuid primary key default gen_random_uuid(),
-  user_id uuid references auth.users(id) on delete cascade,
-  name text not null,
-  gender text check (gender in ('male', 'female')),
-  birth_date date not null, -- 양력 기준
-  birth_time time, -- HH:MM:SS
-  is_lunar boolean default false,
-  is_leap_month boolean default false,
-  timezone text default 'Asia/Seoul',
-  created_at timestamptz default now(),
-  updated_at timestamptz default now()
+  local_key text not null,
+  name text not null default '',
+  birth_date date not null,
+  birth_time time,
+  gender text not null default 'male' check (gender in ('male', 'female')),
+  is_lunar boolean not null default false,
+  is_leap_month boolean not null default false,
+  timezone text not null default 'Asia/Seoul',
+  created_at timestamptz not null default timezone('utc', now()),
+  updated_at timestamptz not null default timezone('utc', now())
 );
 
--- 2. 원국 분석 스냅샷 (변하지 않는 데이터)
+alter table public.saju_profiles
+  add column if not exists local_key text,
+  add column if not exists name text not null default '',
+  add column if not exists birth_date date,
+  add column if not exists birth_time time,
+  add column if not exists gender text not null default 'male',
+  add column if not exists is_lunar boolean not null default false,
+  add column if not exists is_leap_month boolean not null default false,
+  add column if not exists timezone text not null default 'Asia/Seoul',
+  add column if not exists created_at timestamptz not null default timezone('utc', now()),
+  add column if not exists updated_at timestamptz not null default timezone('utc', now());
+
+update public.saju_profiles
+set local_key = 'legacy-' || id::text
+where local_key is null;
+
+alter table public.saju_profiles
+  alter column local_key set not null,
+  alter column gender set default 'male',
+  alter column gender set not null;
+
+create unique index if not exists saju_profiles_local_key_key
+  on public.saju_profiles (local_key);
+
 create table if not exists public.saju_natal_snapshots (
   id uuid primary key default gen_random_uuid(),
-  profile_id uuid references public.saju_profiles(id) on delete cascade,
-  year_stem text, year_branch text,
-  month_stem text, month_branch text,
-  day_stem text, day_branch text,
-  hour_stem text, hour_branch text,
-  day_master text, -- 일간
-  natal_data jsonb, -- 오행 분포, 십성 구성 등 상세 데이터
-  created_at timestamptz default now()
+  profile_id uuid not null references public.saju_profiles(id) on delete cascade,
+  year_stem text,
+  year_branch text,
+  month_stem text,
+  month_branch text,
+  day_stem text,
+  day_branch text,
+  hour_stem text,
+  hour_branch text,
+  day_master text,
+  natal_data jsonb not null default '{}'::jsonb,
+  created_at timestamptz not null default timezone('utc', now()),
+  updated_at timestamptz not null default timezone('utc', now())
 );
 
--- 3. 일일 운세 계산 스냅샷 (결정론적 계산 결과)
+alter table public.saju_natal_snapshots
+  add column if not exists profile_id uuid references public.saju_profiles(id) on delete cascade,
+  add column if not exists year_stem text,
+  add column if not exists year_branch text,
+  add column if not exists month_stem text,
+  add column if not exists month_branch text,
+  add column if not exists day_stem text,
+  add column if not exists day_branch text,
+  add column if not exists hour_stem text,
+  add column if not exists hour_branch text,
+  add column if not exists day_master text,
+  add column if not exists natal_data jsonb not null default '{}'::jsonb,
+  add column if not exists created_at timestamptz not null default timezone('utc', now()),
+  add column if not exists updated_at timestamptz not null default timezone('utc', now());
+
+create unique index if not exists saju_natal_snapshots_profile_id_key
+  on public.saju_natal_snapshots (profile_id);
+
 create table if not exists public.saju_daily_snapshots (
   id uuid primary key default gen_random_uuid(),
-  profile_id uuid references public.saju_profiles(id) on delete cascade,
+  profile_id uuid not null references public.saju_profiles(id) on delete cascade,
   target_date date not null,
-  daily_stem text, daily_branch text,
-  computed_data jsonb, -- 충, 합, 점수화된 신호들
-  created_at timestamptz default now(),
-  unique(profile_id, target_date)
+  daily_stem text,
+  daily_branch text,
+  computed_data jsonb not null default '{}'::jsonb,
+  created_at timestamptz not null default timezone('utc', now()),
+  updated_at timestamptz not null default timezone('utc', now())
 );
 
--- 4. 최종 운세 리포트 (LLM 결과물)
+alter table public.saju_daily_snapshots
+  add column if not exists profile_id uuid references public.saju_profiles(id) on delete cascade,
+  add column if not exists target_date date,
+  add column if not exists daily_stem text,
+  add column if not exists daily_branch text,
+  add column if not exists computed_data jsonb not null default '{}'::jsonb,
+  add column if not exists created_at timestamptz not null default timezone('utc', now()),
+  add column if not exists updated_at timestamptz not null default timezone('utc', now());
+
+create unique index if not exists saju_daily_snapshots_profile_date_key
+  on public.saju_daily_snapshots (profile_id, target_date);
+
 create table if not exists public.saju_fortune_reports (
   id uuid primary key default gen_random_uuid(),
-  daily_snapshot_id uuid references public.saju_daily_snapshots(id) on delete cascade,
-  report_content jsonb, -- 요약, 종합흐름, 분야별 텍스트
-  version text, -- LLM 모델 및 프롬프트 버전
-  created_at timestamptz default now()
+  profile_id uuid not null references public.saju_profiles(id) on delete cascade,
+  daily_snapshot_id uuid references public.saju_daily_snapshots(id) on delete set null,
+  report_date date not null,
+  report_version text not null default '1.0',
+  model_name text,
+  headline text,
+  summary text,
+  report_content jsonb not null default '{}'::jsonb,
+  generated_at timestamptz not null default timezone('utc', now()),
+  created_at timestamptz not null default timezone('utc', now()),
+  updated_at timestamptz not null default timezone('utc', now())
 );
 
--- RLS 설정 (개인 데이터 보호)
-alter table public.saju_profiles enable row level security;
-alter table public.saju_natal_snapshots enable row level security;
-alter table public.saju_daily_snapshots enable row level security;
-alter table public.saju_fortune_reports enable row level security;
+alter table public.saju_fortune_reports
+  add column if not exists profile_id uuid references public.saju_profiles(id) on delete cascade,
+  add column if not exists daily_snapshot_id uuid references public.saju_daily_snapshots(id) on delete set null,
+  add column if not exists report_date date,
+  add column if not exists report_version text not null default '1.0',
+  add column if not exists model_name text,
+  add column if not exists headline text,
+  add column if not exists summary text,
+  add column if not exists report_content jsonb not null default '{}'::jsonb,
+  add column if not exists generated_at timestamptz not null default timezone('utc', now()),
+  add column if not exists created_at timestamptz not null default timezone('utc', now()),
+  add column if not exists updated_at timestamptz not null default timezone('utc', now());
 
--- 권한 설정 (간단한 예시: 자신의 프로필만 접근 가능하도록 나중에 보강 가능)
--- 현재는 서비스 초기 MVP를 위해 public 권한 부여 후 점진적 제한 권장
+update public.saju_fortune_reports
+set report_version = coalesce(report_version, version, '1.0')
+where report_version is null;
+
+create unique index if not exists saju_fortune_reports_profile_date_version_key
+  on public.saju_fortune_reports (profile_id, report_date, report_version);
+
+create index if not exists saju_profiles_local_key_idx
+  on public.saju_profiles (local_key);
+
+create index if not exists saju_daily_snapshots_profile_date_idx
+  on public.saju_daily_snapshots (profile_id, target_date);
+
+create index if not exists saju_fortune_reports_profile_date_idx
+  on public.saju_fortune_reports (profile_id, report_date);
+
+drop trigger if exists saju_profiles_set_updated_at on public.saju_profiles;
+create trigger saju_profiles_set_updated_at
+before update on public.saju_profiles
+for each row
+execute function public.set_updated_at();
+
+drop trigger if exists saju_natal_snapshots_set_updated_at on public.saju_natal_snapshots;
+create trigger saju_natal_snapshots_set_updated_at
+before update on public.saju_natal_snapshots
+for each row
+execute function public.set_updated_at();
+
+drop trigger if exists saju_daily_snapshots_set_updated_at on public.saju_daily_snapshots;
+create trigger saju_daily_snapshots_set_updated_at
+before update on public.saju_daily_snapshots
+for each row
+execute function public.set_updated_at();
+
+drop trigger if exists saju_fortune_reports_set_updated_at on public.saju_fortune_reports;
+create trigger saju_fortune_reports_set_updated_at
+before update on public.saju_fortune_reports
+for each row
+execute function public.set_updated_at();
+
+alter table public.saju_profiles disable row level security;
+alter table public.saju_natal_snapshots disable row level security;
+alter table public.saju_daily_snapshots disable row level security;
+alter table public.saju_fortune_reports disable row level security;
+
 grant all on public.saju_profiles to anon, authenticated;
 grant all on public.saju_natal_snapshots to anon, authenticated;
 grant all on public.saju_daily_snapshots to anon, authenticated;
