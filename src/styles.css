@@ -1888,16 +1888,18 @@ textarea {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  gap: 0.15rem;
 }
 
 .service-info .section-kicker {
-  margin-bottom: 0.2rem;
+  margin: 0;
+  line-height: 1.2;
 }
 
 .service-info .subtle {
   margin: 0;
   font-size: 0.9rem;
-  line-height: 1.4;
+  line-height: 1.35;
 }
 
 .service-action {
@@ -1910,8 +1912,13 @@ textarea {
 .home-footer {
   margin-top: 3.5rem;
   text-align: center;
-  padding-bottom: 2rem;
+  padding-bottom: 2.5rem;
   width: 100%;
+}
+
+.home-footer .subtle {
+  font-size: 0.78rem;
+  opacity: 0.75;
 }
 
 @media (max-width: 600px) {
