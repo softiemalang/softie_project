@@ -120,14 +120,22 @@ export async function saveFortuneReport(reportData) {
  * Edge Function을 통한 LLM 리포트 생성 요청
  */
 export async function requestLlmReport(dailySnapshot) {
-  const { data, error } = await supabase.functions.invoke('generate-fortune-report', {
-    body: {
-      snapshotId: dailySnapshot.id,
-      computedData: dailySnapshot.computed_data,
-      targetDate: dailySnapshot.target_date
-    }
-  })
+  try {
+    const { data, error } = await supabase.functions.invoke('generate-fortune-report', {
+      body: {
+        snapshotId: dailySnapshot.id,
+        computedData: dailySnapshot.computed_data,
+        targetDate: dailySnapshot.target_date
+      }
+    })
 
-  if (error) throw error
-  return data
+    if (error) {
+      console.error('Supabase Edge Function invoke error detail:', error)
+      throw error
+    }
+    return data
+  } catch (err) {
+    console.error('Failed to request LLM report:', err)
+    throw err
+  }
 }
