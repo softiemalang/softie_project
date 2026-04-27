@@ -86,14 +86,20 @@ export default function FortunePage() {
   async function loadDailyFortune(targetProfile) {
     try {
       let snapshot = await getDailySnapshot(targetProfile.id, todayStr)
-      if (snapshot && snapshot.computed_data?.engine_version !== '1.1') {
+      
+      const computed = snapshot?.computed_data;
+      const isValidSnapshot = computed?.engine_version === '1.2' && 
+                              computed?.love && 
+                              computed?.interpretationProfile?.fieldNarratives?.love;
+
+      if (snapshot && !isValidSnapshot) {
         snapshot = null // Force recalculation for old engine data
       }
       
       if (!snapshot) {
         setStatus('오늘의 기운을 분석 중입니다...')
         let natal = await getNatalSnapshot(targetProfile.id)
-        if (natal && natal.natal_data?.engine_version !== '1.1') {
+        if (natal && natal.natal_data?.engine_version !== '1.2') {
           natal = null // Force recalculation for old engine data
         }
 

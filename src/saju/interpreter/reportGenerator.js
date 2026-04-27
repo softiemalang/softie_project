@@ -5,13 +5,17 @@ import { requestLlmReport, saveFortuneReport, getFortuneReport } from '../api'
  */
 export async function getOrGenerateReport(profileId, dailySnapshot) {
   const targetDate = dailySnapshot.target_date
-  const version = '1.1'
+  const version = '1.2'
 
   // 1. 기존 리포트 확인
   try {
     const existingReport = await getFortuneReport(profileId, targetDate, version)
     if (existingReport) {
-      return { ...existingReport, is_cached: true }
+      const sections = existingReport.report_content?.sections || {};
+      const hasAllSections = ['work', 'money', 'relationships', 'love', 'health', 'mind'].every(k => sections[k]);
+      if (hasAllSections) {
+        return { ...existingReport, is_cached: true }
+      }
     }
   } catch (error) {
     console.warn('Failed to fetch existing report, will try to generate new one:', error)
@@ -39,6 +43,8 @@ export async function getOrGenerateReport(profileId, dailySnapshot) {
     report_content: llmResult.content,
     generated_at: new Date().toISOString()
   }
+
+  console.log('✨ Fortune report generated using model:', llmResult.model)
 
   try {
     const savedReport = await saveFortuneReport(reportToSave)
