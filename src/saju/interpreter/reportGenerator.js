@@ -40,11 +40,14 @@ export async function getOrGenerateReport(profileId, dailySnapshot) {
     model_name: llmResult.model,
     headline: llmResult.content.headline,
     summary: llmResult.content.summary,
-    report_content: { ...llmResult.content, debug: llmResult.content.debug },
+    report_content: { ...llmResult.content },
     generated_at: new Date().toISOString()
   }
 
-  console.log('✨ Fortune report generated using model:', llmResult.model)
+  // Debug 정보가 있는 경우에만 포함 (fallback 시에만 존재)
+  if (llmResult.content.debug) {
+    reportToSave.report_content.debug = llmResult.content.debug
+  }
 
   try {
     const savedReport = await saveFortuneReport(reportToSave)

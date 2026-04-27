@@ -13,3 +13,7 @@ verify_jwt = false
 [functions.dispatch-scheduler-reminders]
 # 스케줄러(Cron)에 의해 자동 호출되므로 JWT 검증을 비활성화해야 401 에러를 방지할 수 있습니다.
 verify_jwt = false
+
+[functions.generate-fortune-report]
+# fortune 페이지는 public/local-key 기반이므로 JWT 검증을 비활성화합니다.
+verify_jwt = false

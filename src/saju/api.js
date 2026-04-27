@@ -121,9 +121,6 @@ export async function saveFortuneReport(reportData) {
  */
 export async function requestLlmReport(dailySnapshot) {
   try {
-    console.log('Invoking generate-fortune-report for snapshot:', dailySnapshot.id);
-    console.log('Payload keys:', Object.keys(dailySnapshot));
-    
     const { data, error } = await supabase.functions.invoke('generate-fortune-report', {
       body: {
         snapshotId: dailySnapshot.id,
@@ -132,16 +129,12 @@ export async function requestLlmReport(dailySnapshot) {
       }
     })
 
-    console.log('Invoke result - data:', data, 'error:', error);
-
     if (error) {
-      console.error('Supabase Edge Function invoke error:', error);
       const errMsg = error.message || JSON.stringify(error);
       throw new Error(`Edge Function error: ${errMsg}`);
     }
     
     if (!data || !data.model || !data.content) {
-      console.error('Invalid response shape:', data);
       throw new Error('Invalid response shape from Edge Function');
     }
     
