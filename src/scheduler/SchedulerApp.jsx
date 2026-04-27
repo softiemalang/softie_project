@@ -137,6 +137,7 @@ function SchedulerTopbar({ rightAction }) {
   return (
     <header className="scheduler-topbar">
       <div className="scheduler-topbar-actions">
+        <NavButton path="/" label="Home" />
         <NavButton path="/scheduler" label="Today" />
         <NavButton path="/scheduler/new" label="Add" isPrimary />
         {rightAction}

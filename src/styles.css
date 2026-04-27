@@ -1822,3 +1822,93 @@ textarea {
   margin-bottom: 1.5rem;
   padding-left: 0.2rem;
 }
+
+/* Home Page Styles */
+.home-shell .hero {
+  text-align: center;
+  padding: 3rem 1.5rem;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  backdrop-filter: none;
+}
+
+.home-hero-content h1 {
+  font-size: 3rem;
+  margin: 0.5rem 0 1rem;
+}
+
+.service-grid {
+  display: grid;
+  gap: 1.25rem;
+}
+
+.service-card {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  padding: 1.5rem;
+  margin-bottom: 0;
+}
+
+.service-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 24px 64px rgba(92, 74, 43, 0.12);
+}
+
+.service-icon {
+  font-size: 2.5rem;
+  flex-shrink: 0;
+  width: 64px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--brand-soft);
+  border-radius: 18px;
+}
+
+.service-info {
+  flex-grow: 1;
+}
+
+.service-info h2 {
+  font-size: 1.4rem;
+  margin: 0.2rem 0 0.4rem;
+}
+
+.service-info .subtle {
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
+
+.service-action {
+  color: var(--brand);
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.home-footer {
+  margin-top: 4rem;
+  text-align: center;
+  padding-bottom: 2rem;
+}
+
+@media (max-width: 600px) {
+  .service-card {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .service-action {
+    display: none;
+  }
+
+  .home-hero-content h1 {
+    font-size: 2.25rem;
+  }
+}
