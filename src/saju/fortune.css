@@ -26,12 +26,21 @@
 }
 
 :where(.fortune-shell, .app-shell:has(> .hero > button.soft-button[style*="margin-top"])) .hero {
-  padding: 1rem var(--fortune-card-pad);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--fortune-gap-md);
+  padding: 0.9rem var(--fortune-card-pad);
   margin-top: 0;
 }
 
 :where(.fortune-shell, .app-shell:has(> .hero > button.soft-button[style*="margin-top"])) .hero h1 {
   display: none;
+}
+
+:where(.fortune-shell, .app-shell:has(> .hero > button.soft-button[style*="margin-top"])) .hero .eyebrow {
+  margin: 0;
+  min-width: 0;
 }
 
 :where(.fortune-shell, .app-shell:has(> .hero > button.soft-button[style*="margin-top"])) .eyebrow,
@@ -94,6 +103,21 @@
   background: #efe6d8;
   color: #5b4a35;
   padding-inline: 1rem;
+}
+
+:where(.fortune-shell, .app-shell:has(> .hero > button.soft-button[style*="margin-top"])) .hero .soft-button {
+  flex: 0 0 auto;
+  min-height: 34px;
+  margin-top: 0 !important;
+  padding: 0.28rem 0.82rem;
+  font-size: 0;
+  line-height: 1;
+}
+
+:where(.fortune-shell, .app-shell:has(> .hero > button.soft-button[style*="margin-top"])) .hero .soft-button::after {
+  content: 'home';
+  font-size: 0.78rem;
+  line-height: 1;
 }
 
 :where(.fortune-shell, .app-shell:has(> .hero > button.soft-button[style*="margin-top"])) .stack-form > button {
