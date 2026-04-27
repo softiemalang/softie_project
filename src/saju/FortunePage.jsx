@@ -149,11 +149,13 @@ export default function FortunePage() {
   const reportData = report?.report_content
 
   return (
-    <div className="app-shell">
+    <div className="app-shell fortune-shell">
       <header className="hero">
-        <p className="eyebrow">사주 기반 오늘의 운세</p>
-        <h1>나의 일간과 오늘의 흐름을 정교하게 분석한 맞춤 리포트</h1>
-        <button type="button" className="soft-button" onClick={resetProfileForm} style={{ marginTop: '1rem' }}>
+        <div>
+          <p className="eyebrow">사주 기반 오늘의 운세</p>
+          <h1>나의 일간과 오늘의 흐름을 정교하게 분석한 맞춤 리포트</h1>
+        </div>
+        <button type="button" className="soft-button" onClick={resetProfileForm}>
           reset
         </button>
       </header>

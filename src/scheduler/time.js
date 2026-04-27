@@ -84,6 +84,20 @@ export function isSameRoom(left, right) {
   return `${left.branch}__${left.room}` === `${right.branch}__${right.room}`
 }
 
+export function parseHourInt(timeStr) {
+  if (!timeStr) return 0
+  return parseInt(timeStr.split(':')[0], 10)
+}
+
+export function isTimeRangeOverlapping(start1, end1, start2, end2) {
+  const s1 = typeof start1 === 'string' ? parseHourInt(start1) : start1
+  const e1 = typeof end1 === 'string' ? parseHourInt(end1) : end1
+  const s2 = typeof start2 === 'string' ? parseHourInt(start2) : start2
+  const e2 = typeof end2 === 'string' ? parseHourInt(end2) : end2
+
+  return Math.max(s1, s2) < Math.min(e1, e2)
+}
+
 export function getMonday(input) {
   const date = new Date(input)
   const day = date.getDay() // 0 (Sun) to 6 (Sat)
