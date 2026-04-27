@@ -49,7 +49,7 @@ export async function getNatalSnapshot(profileId) {
 export async function createNatalSnapshot(snapshot) {
   const { data, error } = await supabase
     .from('saju_natal_snapshots')
-    .insert(snapshot)
+    .upsert(snapshot, { onConflict: 'profile_id' })
     .select()
     .single()
 
@@ -78,7 +78,7 @@ export async function getDailySnapshot(profileId, targetDate) {
 export async function createDailySnapshot(snapshot) {
   const { data, error } = await supabase
     .from('saju_daily_snapshots')
-    .insert(snapshot)
+    .upsert(snapshot, { onConflict: 'profile_id, target_date' })
     .select()
     .single()
 

@@ -86,10 +86,17 @@ export default function FortunePage() {
   async function loadDailyFortune(targetProfile) {
     try {
       let snapshot = await getDailySnapshot(targetProfile.id, todayStr)
+      if (snapshot && snapshot.computed_data?.engine_version !== '1.1') {
+        snapshot = null // Force recalculation for old engine data
+      }
       
       if (!snapshot) {
         setStatus('오늘의 기운을 분석 중입니다...')
         let natal = await getNatalSnapshot(targetProfile.id)
+        if (natal && natal.natal_data?.engine_version !== '1.1') {
+          natal = null // Force recalculation for old engine data
+        }
+
         if (!natal) {
           const newNatal = generateNatalSnapshot(targetProfile)
           natal = await createNatalSnapshot({ ...newNatal, profile_id: targetProfile.id })

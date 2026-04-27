@@ -1,4 +1,5 @@
-import { ELEMENTS, RELATIONSHIPS, YIN_YANG, STEMS, BRANCHES } from './constants'
+import { ELEMENTS, RELATIONSHIPS, YIN_YANG, STEMS, BRANCHES } from './constants.js'
+import { calculateFourPillars } from './fourPillars.js'
 
 /**
  * 날짜와 시간을 기반으로 사주 8자(사주팔자) 기둥을 도출합니다.
@@ -6,14 +7,7 @@ import { ELEMENTS, RELATIONSHIPS, YIN_YANG, STEMS, BRANCHES } from './constants'
  * MVP 구조를 위해 기둥을 생성하는 인터페이스를 정의합니다.
  */
 export function derivePillars(birthDate, birthTime) {
-  // TODO: 정교한 만세력 변환 라이브러리(lunar-javascript 등) 연동 필요
-  // 현재는 아키텍처 흐름 확인을 위한 더미 기둥 반환
-  return {
-    year: { stem: '갑', branch: '진' },
-    month: { stem: '병', branch: '인' },
-    day: { stem: '정', branch: '해' }, // 정해일주 예시
-    hour: { stem: '경', branch: '자' }
-  }
+  return calculateFourPillars({ birthDate, birthTime, timezone: 'Asia/Seoul' })
 }
 
 /**

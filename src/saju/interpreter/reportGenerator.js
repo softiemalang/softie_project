@@ -5,7 +5,7 @@ import { requestLlmReport, saveFortuneReport, getFortuneReport } from '../api'
  */
 export async function getOrGenerateReport(profileId, dailySnapshot) {
   const targetDate = dailySnapshot.target_date
-  const version = '1.0'
+  const version = '1.1'
 
   // 1. 기존 리포트 확인
   try {
