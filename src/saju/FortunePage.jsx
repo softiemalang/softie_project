@@ -101,8 +101,9 @@ export default function FortunePage() {
       setActiveProfile(saved)
       await loadDailyFortune(saved)
     } catch (error) {
-      console.error('Save profile failed:', error)
-      setStatus('프로필 저장에 실패했습니다.')
+      console.error('Save profile failed details:', error)
+      const errorMsg = error?.message || (typeof error === 'string' ? error : '알 수 없는 오류')
+      setStatus(`프로필 저장에 실패했습니다: ${errorMsg}`)
     } finally {
       setIsLoading(false)
     }

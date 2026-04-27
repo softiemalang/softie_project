@@ -16,12 +16,12 @@ export async function getSajuProfile(localKey) {
 }
 
 /**
- * 프로필 저장 또는 업데이트
+ * 프로필 저장 또는 업데이트 (local_key 기준 충돌 처리)
  */
 export async function upsertSajuProfile(profileData) {
   const { data, error } = await supabase
     .from('saju_profiles')
-    .upsert(profileData)
+    .upsert(profileData, { onConflict: 'local_key' })
     .select()
     .single()
 
