@@ -10,6 +10,7 @@ import {
 } from './api'
 import { generateNatalSnapshot, generateDailySnapshot } from './interpreter/preprocessor'
 import { getOrGenerateReport } from './interpreter/reportGenerator'
+import { getKstDateString, getOrCreateLocalKey } from './utils'
 
 export default function FortunePage() {
   const [profile, setProfile] = useState({
@@ -24,7 +25,7 @@ export default function FortunePage() {
   const [isLoading, setIsLoading] = useState(true)
   const [status, setStatus] = useState('')
 
-  const todayStr = new Date().toISOString().split('T')[0]
+  const todayStr = getKstDateString()
 
   useEffect(() => {
     loadInitialData()
@@ -33,7 +34,8 @@ export default function FortunePage() {
   async function loadInitialData() {
     setIsLoading(true)
     try {
-      const existingProfile = await getSajuProfile('anonymous-temp-user')
+      const localKey = getOrCreateLocalKey()
+      const existingProfile = await getSajuProfile(localKey)
       if (existingProfile) {
         setActiveProfile(existingProfile)
         setProfile({
@@ -87,8 +89,9 @@ export default function FortunePage() {
     setDailySnapshot(null)
     setStatus('프로필을 저장하고 운세를 분석하는 중...')
     try {
+      const localKey = getOrCreateLocalKey()
       const saved = await upsertSajuProfile({
-        user_id: 'anonymous-temp-user',
+        local_key: localKey,
         name: profile.name,
         birth_date: profile.birthDate,
         birth_time: profile.birthTime || null,
@@ -98,6 +101,7 @@ export default function FortunePage() {
       setActiveProfile(saved)
       await loadDailyFortune(saved)
     } catch (error) {
+      console.error('Save profile failed:', error)
       setStatus('프로필 저장에 실패했습니다.')
     } finally {
       setIsLoading(false)

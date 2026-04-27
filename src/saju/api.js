@@ -1,14 +1,14 @@
 import { supabase } from '../lib/supabase'
 
 /**
- * 사용자 사주 프로필 조회
+ * 사용자 사주 프로필 조회 (local_key 기준)
  */
-export async function getSajuProfile(userId) {
-  if (!userId) return null
+export async function getSajuProfile(localKey) {
+  if (!localKey) return null
   const { data, error } = await supabase
     .from('saju_profiles')
     .select('*')
-    .eq('user_id', userId)
+    .eq('local_key', localKey)
     .maybeSingle()
 
   if (error) throw error

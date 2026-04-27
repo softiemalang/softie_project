@@ -83,8 +83,8 @@ export function analyzeNatalStructure(pillars) {
     dayMaster,
     elementsCount,
     tenGodsDistribution,
-    // 기초 강약 판정 (간략화된 예시)
-    strengthScore: (elementsCount[ELEMENTS[dayMaster]] * 10) + (elementsCount[RELATIONSHIPS.생[dayMaster]] * 5)
+    // 기초 강약 판정: 자신과 같은 오행 및 자신을 생하는 오행의 합산
+    strengthScore: (elementsCount[ELEMENTS[dayMaster]] * 10) + (elementsCount[Object.keys(RELATIONSHIPS.생).find(key => RELATIONSHIPS.생[key] === ELEMENTS[dayMaster])] * 5 || 0)
   }
 }
 
@@ -93,8 +93,8 @@ export function analyzeNatalStructure(pillars) {
  */
 export function analyzeDailyInteraction(natalAnalysis, dailyPillar) {
   const dayMaster = natalAnalysis.dayMaster
-  const stemTenGod = getTenGod(dayMaster, dailyPillar.stem)
-  const branchTenGod = getTenGod(dayMaster, dailyPillar.branch)
+  const stemTenGod = getTenGod(dayMaster, dailyPillar.stem) || '비견'
+  const branchTenGod = getTenGod(dayMaster, dailyPillar.branch) || '비견'
 
   return {
     dailyPillar,
@@ -106,7 +106,7 @@ export function analyzeDailyInteraction(natalAnalysis, dailyPillar) {
     baseScores: {
       work: 70 + (stemTenGod.includes('관') ? 10 : 0),
       money: 70 + (stemTenGod.includes('재') ? 10 : 0),
-      relation: 70 + (branchTenGod.includes('재') || branchTenGod.includes('관') ? 10 : 0),
+      relationships: 70 + (branchTenGod.includes('재') || branchTenGod.includes('관') ? 10 : 0),
       health: 80,
       mind: 75
     }
