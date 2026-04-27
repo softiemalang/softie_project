@@ -218,34 +218,31 @@ export default function FortunePage() {
       {status && <p className="status" style={{ textAlign: 'center', color: '#8b5e1a' }}>{status}</p>}
 
       {dailySnapshot && reportData && (
-        <div style={{ marginTop: '2rem' }}>
+        <div className="fortune-result-container">
           <section className="card primary-home-card">
             <div className="card-header">
               <div>
                 <p className="section-kicker">오늘의 총평</p>
-                <h2>{reportData.headline}</h2>
               </div>
-              {report.is_cached && <span className="scheduler-count-pill" style={{ fontSize: '0.65rem' }}>저장된 리포트</span>}
+              {report.is_cached && <span className="scheduler-count-pill">저장된 리포트</span>}
             </div>
-            <p style={{ fontSize: '1.1rem', lineHeight: '1.6', color: '#1f6f5f', fontWeight: '500' }}>
-              {reportData.summary}
-            </p>
+            <div className="fortune-summary-content">
+              <h3 className="fortune-headline">{reportData.headline}</h3>
+              <p className="fortune-summary-text">{reportData.summary}</p>
+            </div>
           </section>
 
           <section className="card">
             <div className="card-header">
-              <div>
-                <p className="section-kicker">분야별 운세</p>
-                <h2>부문별 흐름</h2>
-              </div>
+              <p className="section-kicker">분야별 운세</p>
             </div>
             <div className="stack-form">
               {Object.entries(reportData.sections).map(([key, text]) => (
-                <div key={key} style={{ marginBottom: '1.2rem', padding: '1rem', background: '#fdfaf5', borderRadius: '14px', border: '1px solid #efe6d8' }}>
-                  <strong style={{ display: 'block', marginBottom: '0.4rem', color: '#115e59', fontSize: '0.9rem' }}>
+                <div key={key} className="fortune-category-item">
+                  <strong className="fortune-category-label">
                     {getCategoryLabel(key)}
                   </strong>
-                  <p style={{ margin: 0, lineHeight: 1.6, fontSize: '0.94rem' }}>{text}</p>
+                  <p className="fortune-category-text">{text}</p>
                 </div>
               ))}
             </div>
@@ -253,26 +250,20 @@ export default function FortunePage() {
 
           <section className="card secondary-card">
             <div className="card-header">
-              <div>
-                <p className="section-kicker">오늘의 주의점</p>
-                <h2>체크포인트</h2>
-              </div>
+              <p className="section-kicker">오늘의 주의점</p>
             </div>
-            <ul style={{ paddingLeft: '1.2rem', margin: 0, lineHeight: 1.6 }}>
+            <ul className="fortune-list">
               {reportData.cautions.map((caution, idx) => (
-                <li key={idx} style={{ marginBottom: '0.4rem' }}>{caution}</li>
+                <li key={idx}>{caution}</li>
               ))}
             </ul>
           </section>
 
-          <section className="card" style={{ background: '#f0f9f6', borderColor: '#cde8e2' }}>
+          <section className="card fortune-action-card">
             <div className="card-header">
-              <div>
-                <p className="section-kicker">실천 팁</p>
-                <h2>오늘의 행동 가이드</h2>
-              </div>
+              <p className="section-kicker">실천 팁</p>
             </div>
-            <p style={{ margin: 0, fontWeight: '600', color: '#1f6f5f' }}>
+            <p className="fortune-action-tip">
               🍀 {reportData.action_tip}
             </p>
           </section>
