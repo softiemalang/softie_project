@@ -73,36 +73,172 @@ export function analyzeNatalStructure(pillars) {
     }
   })
 
+  // 구조 및 세력 분석
+  let supportScore = 0; // 비겁 + 인성
+  let outputScore = 0;  // 식상
+  let wealthScore = 0;  // 재성
+  let pressureScore = 0; // 관성
+
+  Object.entries(tenGodsDistribution).forEach(([god, count]) => {
+    if (god.includes('비') || god.includes('겁') || god.includes('인')) supportScore += count;
+    else if (god.includes('식') || god.includes('상')) outputScore += count;
+    else if (god.includes('재')) wealthScore += count;
+    else if (god.includes('관')) pressureScore += count;
+  });
+
+  const strongElements = Object.entries(elementsCount).filter(([el, cnt]) => cnt >= 3).map(([el]) => el);
+  const weakElements = Object.entries(elementsCount).filter(([el, cnt]) => cnt === 0).map(([el]) => el);
+
+  let dayMasterStrengthLevel = 'balanced';
+  if (supportScore >= 4) dayMasterStrengthLevel = 'strong';
+  else if (supportScore <= 2) dayMasterStrengthLevel = 'weak';
+
+  const imbalanceFlags = [];
+  if (strongElements.length > 0) imbalanceFlags.push('element_overload');
+  if (weakElements.length > 0) imbalanceFlags.push('element_missing');
+  if (pressureScore >= 3) imbalanceFlags.push('pressure_high');
+  if (supportScore <= 1) imbalanceFlags.push('support_low');
+  if (outputScore >= 3) imbalanceFlags.push('expression_high');
+  if (wealthScore >= 3 && pressureScore >= 2) imbalanceFlags.push('wealth_pressure');
+
   return {
     dayMaster,
     elementsCount,
     tenGodsDistribution,
+    strongElements,
+    weakElements,
+    supportScore,
+    outputScore,
+    wealthScore,
+    pressureScore,
+    dayMasterStrengthLevel,
+    imbalanceFlags,
     // 기초 강약 판정: 자신과 같은 오행 및 자신을 생하는 오행의 합산
     strengthScore: (elementsCount[ELEMENTS[dayMaster]] * 10) + (elementsCount[Object.keys(RELATIONSHIPS.생).find(key => RELATIONSHIPS.생[key] === ELEMENTS[dayMaster])] * 5 || 0)
   }
 }
 
+const CHUNG_RELATIONS = {
+  '자': '오', '오': '자', '축': '미', '미': '축', '인': '신', '신': '인',
+  '묘': '유', '유': '묘', '진': '술', '술': '진', '사': '해', '해': '사'
+};
+
+const HAP_RELATIONS = {
+  '자': '축', '축': '자', '인': '해', '해': '인', '묘': '술', '술': '묘',
+  '진': '유', '유': '진', '사': '신', '신': '사', '오': '미', '미': '오'
+};
+
 /**
  * 특정 일진(Daily Pillar)과의 상호작용 분석
  */
-export function analyzeDailyInteraction(natalAnalysis, dailyPillar) {
+export function analyzeDailyInteraction(natalAnalysis, dailyPillar, natalPillars) {
   const dayMaster = natalAnalysis.dayMaster
   const stemTenGod = getTenGod(dayMaster, dailyPillar.stem) || '비견'
   const branchTenGod = getTenGod(dayMaster, dailyPillar.branch) || '비견'
 
+  const dailyStemElement = ELEMENTS[dailyPillar.stem];
+  const dailyBranchElement = ELEMENTS[dailyPillar.branch];
+
+  // 관계 및 충/합 판별
+  const branchRelations = [];
+  if (natalPillars) {
+    ['day', 'month'].forEach(target => {
+      const targetBranch = natalPillars[target]?.branch;
+      if (targetBranch) {
+        if (CHUNG_RELATIONS[dailyPillar.branch] === targetBranch) {
+          branchRelations.push({ target: target + '_branch', relation: '충', meaning: 'emotional or relationship tension' });
+        }
+        if (HAP_RELATIONS[dailyPillar.branch] === targetBranch) {
+          branchRelations.push({ target: target + '_branch', relation: '육합', meaning: 'harmony and connection' });
+        }
+      }
+    });
+  }
+
+  const dailyElements = [dailyStemElement, dailyBranchElement];
+  const dailyTenGods = [stemTenGod, branchTenGod];
+
+  const supplements = dailyElements.filter(el => natalAnalysis.weakElements.includes(el));
+  const overloads = dailyElements.filter(el => natalAnalysis.strongElements.includes(el));
+  const amplifications = dailyTenGods.filter(tg => (natalAnalysis.tenGodsDistribution[tg] || 0) >= 2);
+  const opportunities = dailyTenGods.filter(tg => (natalAnalysis.tenGodsDistribution[tg] || 0) === 0);
+
+  // Field Impacts
+  const fieldImpacts = {
+    work: { score: 70, signals: [], risks: [], adviceType: 'neutral' },
+    money: { score: 70, signals: [], risks: [], adviceType: 'neutral' },
+    relationships: { score: 70, signals: [], risks: [], adviceType: 'neutral' },
+    love: { score: 70, signals: [], risks: [], adviceType: 'neutral' },
+    health: { score: 80, signals: [], risks: [], adviceType: 'neutral' },
+    mind: { score: 75, signals: [], risks: [], adviceType: 'neutral' }
+  };
+
+  // 관성 영향
+  if (dailyTenGods.some(tg => tg.includes('관'))) {
+    fieldImpacts.work.score += 10;
+    fieldImpacts.work.signals.push('관성');
+    if (natalAnalysis.pressureScore >= 3 || overloads.length > 0) {
+      fieldImpacts.work.risks.push('overload');
+      fieldImpacts.work.adviceType = 'pressure/caution';
+    } else {
+      fieldImpacts.work.adviceType = 'support/opportunity';
+    }
+  }
+
+  // 재성 영향
+  if (dailyTenGods.some(tg => tg.includes('재'))) {
+    fieldImpacts.money.score += 10;
+    fieldImpacts.money.signals.push('재성');
+    if (natalAnalysis.wealthScore >= 3 || overloads.length > 0) {
+      fieldImpacts.money.risks.push('overload');
+      fieldImpacts.money.adviceType = 'pressure/caution';
+    } else {
+      fieldImpacts.money.adviceType = 'support/opportunity';
+    }
+  }
+
+  // 식상 및 비겁, 인성 영향
+  if (dailyTenGods.some(tg => tg.includes('식') || tg.includes('상'))) {
+    fieldImpacts.work.score += 5;
+    fieldImpacts.relationships.score += 10;
+    fieldImpacts.relationships.signals.push('식상');
+  }
+
+  if (dailyTenGods.some(tg => tg.includes('인'))) {
+    fieldImpacts.mind.score += 10;
+    fieldImpacts.mind.signals.push('인성');
+  }
+
+  // 충합 영향
+  if (branchRelations.some(r => r.relation === '충')) {
+    fieldImpacts.mind.score -= 10;
+    fieldImpacts.relationships.score -= 10;
+    fieldImpacts.relationships.risks.push('충');
+    fieldImpacts.mind.adviceType = 'tension';
+  } else if (branchRelations.some(r => r.relation === '육합')) {
+    fieldImpacts.relationships.score += 15;
+    fieldImpacts.relationships.adviceType = 'harmony';
+  }
+
   return {
     dailyPillar,
     signals: [
-      { type: 'stem', tenGod: stemTenGod, element: ELEMENTS[dailyPillar.stem] },
-      { type: 'branch', tenGod: branchTenGod, element: ELEMENTS[dailyPillar.branch] }
+      { type: 'stem', tenGod: stemTenGod, element: dailyStemElement },
+      { type: 'branch', tenGod: branchTenGod, element: dailyBranchElement }
     ],
-    // 분야별 기초 점수 (알고리즘 기반)
+    supplements,
+    overloads,
+    amplifications,
+    opportunities,
+    branchRelations,
+    fieldImpacts,
+    // 분야별 기초 점수 (기존 호환 유지)
     baseScores: {
-      work: 70 + (stemTenGod.includes('관') ? 10 : 0),
-      money: 70 + (stemTenGod.includes('재') ? 10 : 0),
-      relationships: 70 + (branchTenGod.includes('재') || branchTenGod.includes('관') ? 10 : 0),
-      health: 80,
-      mind: 75
+      work: fieldImpacts.work.score,
+      money: fieldImpacts.money.score,
+      relationships: fieldImpacts.relationships.score,
+      health: fieldImpacts.health.score,
+      mind: fieldImpacts.mind.score
     }
   }
 }
