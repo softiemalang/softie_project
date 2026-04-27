@@ -1832,7 +1832,7 @@ textarea {
 
 .home-shell .hero {
   text-align: center;
-  padding: 3rem 1.5rem;
+  padding: 3.5rem 1.5rem 2.5rem;
   background: transparent;
   border: none;
   box-shadow: none;
@@ -1841,9 +1841,10 @@ textarea {
   max-width: 640px;
 }
 
-.home-hero-content h1 {
-  font-size: 3rem;
-  margin: 0.5rem 0 1rem;
+.home-hero-content .subtle {
+  margin-top: 0.75rem;
+  font-size: 1rem;
+  line-height: 1.6;
 }
 
 .service-grid {
@@ -1889,9 +1890,8 @@ textarea {
   justify-content: center;
 }
 
-.service-info h2 {
-  font-size: 1.25rem;
-  margin: 0.1rem 0 0.2rem;
+.service-info .section-kicker {
+  margin-bottom: 0.2rem;
 }
 
 .service-info .subtle {
@@ -1908,7 +1908,7 @@ textarea {
 }
 
 .home-footer {
-  margin-top: 3rem;
+  margin-top: 3.5rem;
   text-align: center;
   padding-bottom: 2rem;
   width: 100%;
@@ -1916,7 +1916,7 @@ textarea {
 
 @media (max-width: 600px) {
   .home-shell .hero {
-    padding: 2.5rem 1rem;
+    padding: 3rem 1rem 2rem;
   }
 
   .service-card {
@@ -1932,9 +1932,5 @@ textarea {
 
   .service-action {
     display: none;
-  }
-
-  .home-hero-content h1 {
-    font-size: 2.25rem;
   }
 }
