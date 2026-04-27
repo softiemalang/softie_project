@@ -169,18 +169,29 @@ export default function FortunePage() {
               type="text"
               inputMode="numeric"
               autoComplete="off"
-              placeholder="태어난 시간 HH:MM"
+              placeholder="태어난 시간 24시간제 HH:MM"
               value={profile.birthTime}
               onChange={e => setProfile({...profile, birthTime: formatBirthTimeInput(e.target.value)})}
             />
           </div>
-          <select 
-            value={profile.gender}
-            onChange={e => setProfile({...profile, gender: e.target.value})}
-          >
-            <option value="male">남성</option>
-            <option value="female">여성</option>
-          </select>
+          <div className="fortune-gender-options" role="group" aria-label="성별 선택">
+            <button
+              type="button"
+              className={`fortune-gender-button ${profile.gender === 'male' ? 'active' : ''}`}
+              aria-pressed={profile.gender === 'male'}
+              onClick={() => setProfile({...profile, gender: 'male'})}
+            >
+              남성
+            </button>
+            <button
+              type="button"
+              className={`fortune-gender-button ${profile.gender === 'female' ? 'active' : ''}`}
+              aria-pressed={profile.gender === 'female'}
+              onClick={() => setProfile({...profile, gender: 'female'})}
+            >
+              여성
+            </button>
+          </div>
           <button onClick={handleSaveProfile} disabled={isLoading || !canSubmitProfile}>
             {isLoading ? '분석 중...' : activeProfile ? '정보 수정 및 다시 분석' : '오늘의 운세 보기'}
           </button>
