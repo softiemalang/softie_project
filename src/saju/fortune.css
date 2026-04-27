@@ -215,7 +215,7 @@
 .fortune-action-tip {
   font-size: 0.96rem;
   font-weight: 700;
-  color: #8b5e1a;
+  color: #1f6f5f;
   margin: 0;
 }
 
@@ -229,8 +229,8 @@
 }
 
 .scheduler-count-pill {
-  background: #efe6d8;
-  color: #8b5e1a;
+  background: #e6f2ef;
+  color: #1f6f5f;
   font-size: 0.68rem;
   font-weight: 700;
   padding: 2px 8px;
