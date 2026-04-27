@@ -1901,10 +1901,16 @@ textarea {
 }
 
 .service-action {
-  color: var(--brand);
-  font-size: 1.25rem;
+  color: #d1c1af;
+  font-size: 1.1rem;
   font-weight: bold;
   margin-left: 0.5rem;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.service-card:hover .service-action {
+  transform: translateX(4px);
+  color: var(--brand);
 }
 
 .home-footer {
@@ -1928,9 +1934,5 @@ textarea {
     width: 48px;
     height: 48px;
     font-size: 1.75rem;
-  }
-
-  .service-action {
-    display: none;
   }
 }

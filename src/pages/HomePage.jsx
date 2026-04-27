@@ -3,19 +3,19 @@ import { navigate } from '../lib/router'
 export default function HomePage() {
   const services = [
     {
-      description: '밴드원들의 가능 시간을 모아서 최적의 합주 타임을 찾아보세요.',
+      description: '밴드원들의 가능 시간을 모아 합주 타임을 찾아보세요.',
       path: '/band',
       icon: '🎸',
       label: 'BAND',
     },
     {
-      description: '나의 일간과 오늘의 흐름을 분석한 맞춤형 AI 리포트를 확인하세요.',
+      description: '오늘의 흐름을 차분히 살펴보는 맞춤 리포트예요.',
       path: '/fortune',
       icon: '🍀',
       label: 'FORTUNE',
     },
     {
-      description: '근무 일정 관리와 실시간 푸시 알림으로 꼼꼼하게 관리하세요.',
+      description: '근무 일정과 알림을 가볍게 관리해요.',
       path: '/scheduler',
       icon: '⏰',
       label: 'SCHEDULER',
@@ -54,7 +54,7 @@ export default function HomePage() {
       </section>
 
       <footer className="home-footer">
-        <p className="subtle">© 2026 Softie Project. Built with care.</p>
+        <p className="subtle">천천히, 필요한 만큼만 채워가는 중이에요.</p>
       </footer>
     </div>
   )
