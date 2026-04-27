@@ -55,7 +55,22 @@ export async function getOrGenerateReport(profileId, dailySnapshot) {
  */
 function generateFallbackReport(dailySnapshot) {
   const data = dailySnapshot.computed_data
-  const stemTenGod = data.signals.find(s => s.type === 'stem')?.tenGod || '기운'
+  const profile = data.interpretationProfile
+
+  if (profile) {
+    return {
+      model: "local-fallback-engine",
+      content: {
+        headline: profile.primaryTheme,
+        summary: profile.recommendedNarrative,
+        sections: profile.fieldNarratives,
+        cautions: ["섣부른 판단은 삼가는 것이 좋습니다.", "중요한 결정 전 한 번 더 여유를 가지세요."],
+        action_tip: "오늘의 핵심 키워드는 '유연함'과 '안정'입니다."
+      }
+    }
+  }
+
+  const stemTenGod = data.signals?.find(s => s.type === 'stem')?.tenGod || '기운'
   
   return {
     model: "local-fallback-engine",

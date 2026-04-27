@@ -1,4 +1,5 @@
 import { derivePillars, analyzeNatalStructure, analyzeDailyInteraction } from '../engine/core.js'
+import { buildInterpretationProfile } from './interpretationRules.js'
 
 /**
  * 사용자 프로필을 바탕으로 원국 스냅샷 객체를 생성합니다.
@@ -31,7 +32,12 @@ export function generateDailySnapshot(natalSnapshot, targetDate) {
   const dailyPillar = { stem: targetPillars.day.stem, branch: targetPillars.day.branch }
   
   const natalAnalysis = natalSnapshot.natal_data
-  const interaction = analyzeDailyInteraction(natalAnalysis, dailyPillar)
+  const natalPillars = {
+    day: { branch: natalSnapshot.day_branch },
+    month: { branch: natalSnapshot.month_branch }
+  };
+
+  const interaction = analyzeDailyInteraction(natalAnalysis, dailyPillar, natalPillars)
   
   const gender = natalAnalysis.gender || 'male'
   const signals = interaction.signals.map(s => s.tenGod)
@@ -61,6 +67,12 @@ export function generateDailySnapshot(natalSnapshot, targetDate) {
     else { loveSignals.push('비겁'); loveTone = 'independent'; loveSummary = '연애보다는 자신의 일과 편안한 관계에 집중하기 좋은 날'; }
   }
 
+  const interpretationProfile = buildInterpretationProfile({
+    natalAnalysis,
+    dailyInteraction: interaction,
+    gender
+  });
+
   return {
     target_date: targetDate,
     daily_stem: dailyPillar.stem,
@@ -73,6 +85,7 @@ export function generateDailySnapshot(natalSnapshot, targetDate) {
         tone: loveTone,
         summary_hint: loveSummary
       },
+      interpretationProfile,
       priority_flags: ['focus_work', 'careful_spending'], // 예시 플래그
       summary_hint: `${natalAnalysis.dayMaster}일간에게 ${interaction.signals[0].tenGod}이 들어오는 날`,
       engine_version: '1.1'
