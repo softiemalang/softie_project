@@ -172,6 +172,27 @@
   text-align: center;
 }
 
+:where(.fortune-shell, .app-shell:has(> .hero > button.soft-button[style*="margin-top"])) .fortune-gender-options {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--fortune-gap-sm);
+}
+
+:where(.fortune-shell, .app-shell:has(> .hero > button.soft-button[style*="margin-top"])) .fortune-gender-button {
+  min-height: var(--fortune-control-min-h);
+  padding: 0 var(--fortune-control-pad-x);
+  border: 1px solid rgba(229, 219, 207, 0.95);
+  background: rgba(255, 255, 255, 0.62);
+  color: #5f513f;
+  box-shadow: none;
+}
+
+:where(.fortune-shell, .app-shell:has(> .hero > button.soft-button[style*="margin-top"])) .fortune-gender-button.active {
+  background: #efe6d8;
+  border-color: rgba(159, 139, 108, 0.35);
+  color: #4f4133;
+}
+
 :where(.fortune-shell, .app-shell:has(> .hero > button.soft-button[style*="margin-top"])) .stack-form > button {
   width: 100%;
   margin-top: 0.12rem;
