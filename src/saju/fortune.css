@@ -106,18 +106,25 @@
 }
 
 :where(.fortune-shell, .app-shell:has(> .hero > button.soft-button[style*="margin-top"])) .hero .soft-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   flex: 0 0 auto;
-  min-height: 34px;
+  min-width: 54px;
+  min-height: 30px;
   margin-top: 0 !important;
-  padding: 0.28rem 0.82rem;
+  padding: 0 0.62rem;
   font-size: 0;
   line-height: 1;
+  text-align: center;
 }
 
 :where(.fortune-shell, .app-shell:has(> .hero > button.soft-button[style*="margin-top"])) .hero .soft-button::after {
   content: 'home';
-  font-size: 0.78rem;
+  display: block;
+  font-size: 0.72rem;
   line-height: 1;
+  text-align: center;
 }
 
 :where(.fortune-shell, .app-shell:has(> .hero > button.soft-button[style*="margin-top"])) .stack-form > button {
