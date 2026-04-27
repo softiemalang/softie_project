@@ -12,6 +12,13 @@ import { generateNatalSnapshot, generateDailySnapshot } from './interpreter/prep
 import { getOrGenerateReport } from './interpreter/reportGenerator'
 import { getKstDateString, getOrCreateLocalKey } from './utils'
 
+const EMPTY_PROFILE = {
+  name: '',
+  birthDate: '',
+  birthTime: '',
+  gender: 'male'
+}
+
 function formatBirthDateInput(value) {
   const digits = value.replace(/\D/g, '').slice(0, 8)
   if (digits.length <= 4) return digits
@@ -34,12 +41,7 @@ function isCompleteBirthTime(value) {
 }
 
 export default function FortunePage() {
-  const [profile, setProfile] = useState({
-    name: '',
-    birthDate: '',
-    birthTime: '',
-    gender: 'male'
-  })
+  const [profile, setProfile] = useState(EMPTY_PROFILE)
   const [activeProfile, setActiveProfile] = useState(null)
   const [dailySnapshot, setDailySnapshot] = useState(null)
   const [report, setReport] = useState(null)
@@ -105,6 +107,14 @@ export default function FortunePage() {
     }
   }
 
+  function resetProfileForm() {
+    setProfile({ ...EMPTY_PROFILE })
+    setActiveProfile(null)
+    setDailySnapshot(null)
+    setReport(null)
+    setStatus('')
+  }
+
   async function handleSaveProfile() {
     setIsLoading(true)
     setReport(null)
@@ -138,8 +148,8 @@ export default function FortunePage() {
       <header className="hero">
         <p className="eyebrow">사주 기반 오늘의 운세</p>
         <h1>나의 일간과 오늘의 흐름을 정교하게 분석한 맞춤 리포트</h1>
-        <button type="button" className="soft-button" onClick={() => navigate('/')} style={{ marginTop: '1rem' }}>
-          홈으로 돌아가기
+        <button type="button" className="soft-button" onClick={resetProfileForm} style={{ marginTop: '1rem' }}>
+          새로고침
         </button>
       </header>
 
