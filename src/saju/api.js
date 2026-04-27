@@ -58,7 +58,7 @@ export async function createNatalSnapshot(snapshot) {
 }
 
 /**
- * 특정 날짜의 일일 운세 스냅샷 조회
+ * 일일 운세 스냅샷 조회
  */
 export async function getDailySnapshot(profileId, targetDate) {
   const { data, error } = await supabase
@@ -81,6 +81,52 @@ export async function createDailySnapshot(snapshot) {
     .insert(snapshot)
     .select()
     .single()
+
+  if (error) throw error
+  return data
+}
+
+/**
+ * 운세 리포트 저장
+ */
+export async function getFortuneReport(profileId, targetDate, version = '1.0') {
+  const { data, error } = await supabase
+    .from('saju_fortune_reports')
+    .select('*')
+    .eq('profile_id', profileId)
+    .eq('report_date', targetDate)
+    .eq('report_version', version)
+    .maybeSingle()
+
+  if (error) throw error
+  return data
+}
+
+/**
+ * 운세 리포트 저장
+ */
+export async function saveFortuneReport(reportData) {
+  const { data, error } = await supabase
+    .from('saju_fortune_reports')
+    .insert(reportData)
+    .select()
+    .single()
+
+  if (error) throw error
+  return data
+}
+
+/**
+ * Edge Function을 통한 LLM 리포트 생성 요청
+ */
+export async function requestLlmReport(dailySnapshot) {
+  const { data, error } = await supabase.functions.invoke('generate-fortune-report', {
+    body: {
+      snapshotId: dailySnapshot.id,
+      computedData: dailySnapshot.computed_data,
+      targetDate: dailySnapshot.target_date
+    }
+  })
 
   if (error) throw error
   return data

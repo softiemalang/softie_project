@@ -9,6 +9,7 @@ import {
   createDailySnapshot
 } from './api'
 import { generateNatalSnapshot, generateDailySnapshot } from './interpreter/preprocessor'
+import { getOrGenerateReport } from './interpreter/reportGenerator'
 
 export default function FortunePage() {
   const [profile, setProfile] = useState({
@@ -19,6 +20,7 @@ export default function FortunePage() {
   })
   const [activeProfile, setActiveProfile] = useState(null)
   const [dailySnapshot, setDailySnapshot] = useState(null)
+  const [report, setReport] = useState(null)
   const [isLoading, setIsLoading] = useState(true)
   const [status, setStatus] = useState('')
 
@@ -31,9 +33,7 @@ export default function FortunePage() {
   async function loadInitialData() {
     setIsLoading(true)
     try {
-      // MVP 단계에서는 단순화를 위해 첫 번째 프로필을 사용하거나 새로 생성 유도
-      // 실제 서비스에서는 userId 기반 조회 필요
-      const existingProfile = await getSajuProfile('anonymous-temp-user') // 예시용
+      const existingProfile = await getSajuProfile('anonymous-temp-user')
       if (existingProfile) {
         setActiveProfile(existingProfile)
         setProfile({
@@ -54,25 +54,26 @@ export default function FortunePage() {
 
   async function loadDailyFortune(targetProfile) {
     try {
-      // 1. 오늘의 스냅샷이 이미 있는지 확인
       let snapshot = await getDailySnapshot(targetProfile.id, todayStr)
       
       if (!snapshot) {
         setStatus('오늘의 기운을 분석 중입니다...')
-        // 2. 없으면 원국 스냅샷 조회
         let natal = await getNatalSnapshot(targetProfile.id)
         if (!natal) {
-          // 원국 스냅샷도 없으면 생성
           const newNatal = generateNatalSnapshot(targetProfile)
           natal = await createNatalSnapshot({ ...newNatal, profile_id: targetProfile.id })
         }
 
-        // 3. 일일 스냅샷 생성 및 저장
         const newDaily = generateDailySnapshot(natal, todayStr)
         snapshot = await createDailySnapshot({ ...newDaily, profile_id: targetProfile.id })
       }
       
       setDailySnapshot(snapshot)
+      
+      // 최종 리포트 (LLM 해석) 가져오기 또는 생성
+      setStatus('심층 운세 리포트를 작성하는 중입니다...')
+      const finalReport = await getOrGenerateReport(targetProfile.id, snapshot)
+      setReport(finalReport)
       setStatus('')
     } catch (error) {
       console.error('Failed to generate daily fortune:', error)
@@ -82,10 +83,12 @@ export default function FortunePage() {
 
   async function handleSaveProfile() {
     setIsLoading(true)
+    setReport(null)
+    setDailySnapshot(null)
     setStatus('프로필을 저장하고 운세를 분석하는 중...')
     try {
       const saved = await upsertSajuProfile({
-        user_id: 'anonymous-temp-user', // MVP 임시 ID
+        user_id: 'anonymous-temp-user',
         name: profile.name,
         birth_date: profile.birthDate,
         birth_time: profile.birthTime || null,
@@ -100,6 +103,8 @@ export default function FortunePage() {
       setIsLoading(false)
     }
   }
+
+  const reportData = report?.report_content
 
   return (
     <div className="app-shell">
@@ -151,35 +156,35 @@ export default function FortunePage() {
 
       {status && <p className="status" style={{ textAlign: 'center', color: '#8b5e1a' }}>{status}</p>}
 
-      {dailySnapshot && (
+      {dailySnapshot && reportData && (
         <div style={{ marginTop: '2rem' }}>
           <section className="card primary-home-card">
             <div className="card-header">
               <div>
-                <p className="section-kicker">오늘의 기운 (Deterministic)</p>
-                <h2>{dailySnapshot.daily_stem}{dailySnapshot.daily_branch} 일진</h2>
+                <p className="section-kicker">오늘의 총평</p>
+                <h2>{reportData.headline}</h2>
               </div>
+              {report.is_cached && <span className="scheduler-count-pill" style={{ fontSize: '0.65rem' }}>저장된 리포트</span>}
             </div>
-            <div style={{ fontSize: '1.1rem', lineHeight: '1.6' }}>
-              <p>오늘은 <strong>{dailySnapshot.computed_data.summary_hint}</strong>입니다.</p>
-              <p className="subtle">이 데이터는 엔진에 의해 계산된 결과이며, 곧 인공지능의 심층 해석이 추가될 예정입니다.</p>
-            </div>
+            <p style={{ fontSize: '1.1rem', lineHeight: '1.6', color: '#1f6f5f', fontWeight: '500' }}>
+              {reportData.summary}
+            </p>
           </section>
 
           <section className="card">
             <div className="card-header">
               <div>
-                <p className="section-kicker">에너지 밸런스</p>
-                <h2>분야별 기초 점수</h2>
+                <p className="section-kicker">분야별 운세</p>
+                <h2>부문별 흐름</h2>
               </div>
             </div>
-            <div className="results">
-              {Object.entries(dailySnapshot.computed_data.baseScores).map(([key, score]) => (
-                <div key={key} className="result-row">
-                  <div>
-                    <strong>{getCategoryLabel(key)}</strong>
-                  </div>
-                  <div className="result-count">{score}점</div>
+            <div className="stack-form">
+              {Object.entries(reportData.sections).map(([key, text]) => (
+                <div key={key} style={{ marginBottom: '1.2rem', padding: '1rem', background: '#fdfaf5', borderRadius: '14px', border: '1px solid #efe6d8' }}>
+                  <strong style={{ display: 'block', marginBottom: '0.4rem', color: '#115e59', fontSize: '0.9rem' }}>
+                    {getCategoryLabel(key)}
+                  </strong>
+                  <p style={{ margin: 0, lineHeight: 1.6, fontSize: '0.94rem' }}>{text}</p>
                 </div>
               ))}
             </div>
@@ -188,17 +193,27 @@ export default function FortunePage() {
           <section className="card secondary-card">
             <div className="card-header">
               <div>
-                <p className="section-kicker">오늘의 신호</p>
-                <h2>주요 체크포인트</h2>
+                <p className="section-kicker">오늘의 주의점</p>
+                <h2>체크포인트</h2>
               </div>
             </div>
-            <div className="member-list" style={{ marginTop: '1rem' }}>
-              {dailySnapshot.computed_data.signals.map((signal, idx) => (
-                <div key={idx} className="member-pill">
-                  {signal.tenGod} ({signal.element})
-                </div>
+            <ul style={{ paddingLeft: '1.2rem', margin: 0, lineHeight: 1.6 }}>
+              {reportData.cautions.map((caution, idx) => (
+                <li key={idx} style={{ marginBottom: '0.4rem' }}>{caution}</li>
               ))}
+            </ul>
+          </section>
+
+          <section className="card" style={{ background: '#f0f9f6', borderColor: '#cde8e2' }}>
+            <div className="card-header">
+              <div>
+                <p className="section-kicker">실천 팁</p>
+                <h2>오늘의 행동 가이드</h2>
+              </div>
             </div>
+            <p style={{ margin: 0, fontWeight: '600', color: '#1f6f5f' }}>
+              🍀 {reportData.action_tip}
+            </p>
           </section>
         </div>
       )}
@@ -207,6 +222,6 @@ export default function FortunePage() {
 }
 
 function getCategoryLabel(key) {
-  const labels = { work: '일 / 커리어', money: '금전운', relation: '인간관계', health: '건강', mind: '심리 상태' }
+  const labels = { work: '일 / 커리어', money: '금전운', relationships: '인간관계', health: '건강', mind: '심리 상태' }
   return labels[key] || key
 }
