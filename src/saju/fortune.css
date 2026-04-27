@@ -155,7 +155,7 @@
   align-items: center;
   justify-content: center;
   flex: 0 0 auto;
-  min-width: 54px;
+  min-width: 62px;
   min-height: 30px;
   margin-top: 0 !important;
   padding: 0 0.62rem;
@@ -165,7 +165,7 @@
 }
 
 :where(.fortune-shell, .app-shell:has(> .hero > button.soft-button[style*="margin-top"])) .hero .soft-button::after {
-  content: 'home';
+  content: '새로고침';
   display: block;
   font-size: 0.72rem;
   line-height: 1;
