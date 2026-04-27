@@ -12,13 +12,36 @@ import { generateNatalSnapshot, generateDailySnapshot } from './interpreter/prep
 import { getOrGenerateReport } from './interpreter/reportGenerator'
 import { getKstDateString, getOrCreateLocalKey } from './utils'
 
+const EMPTY_PROFILE = {
+  name: '',
+  birthDate: '',
+  birthTime: '',
+  gender: 'male'
+}
+
+function formatBirthDateInput(value) {
+  const digits = value.replace(/\D/g, '').slice(0, 8)
+  if (digits.length <= 4) return digits
+  if (digits.length <= 6) return `${digits.slice(0, 4)}-${digits.slice(4)}`
+  return `${digits.slice(0, 4)}-${digits.slice(4, 6)}-${digits.slice(6)}`
+}
+
+function formatBirthTimeInput(value) {
+  const digits = value.replace(/\D/g, '').slice(0, 4)
+  if (digits.length <= 2) return digits
+  return `${digits.slice(0, 2)}:${digits.slice(2)}`
+}
+
+function isCompleteBirthDate(value) {
+  return /^\d{4}-\d{2}-\d{2}$/.test(value)
+}
+
+function isCompleteBirthTime(value) {
+  return !value || /^\d{2}:\d{2}$/.test(value)
+}
+
 export default function FortunePage() {
-  const [profile, setProfile] = useState({
-    name: '',
-    birthDate: '',
-    birthTime: '',
-    gender: 'male'
-  })
+  const [profile, setProfile] = useState(EMPTY_PROFILE)
   const [activeProfile, setActiveProfile] = useState(null)
   const [dailySnapshot, setDailySnapshot] = useState(null)
   const [report, setReport] = useState(null)
@@ -26,6 +49,7 @@ export default function FortunePage() {
   const [status, setStatus] = useState('')
 
   const todayStr = getKstDateString()
+  const canSubmitProfile = isCompleteBirthDate(profile.birthDate) && isCompleteBirthTime(profile.birthTime)
 
   useEffect(() => {
     loadInitialData()
@@ -48,7 +72,12 @@ export default function FortunePage() {
       }
     } catch (error) {
       console.error('Failed to load saju data:', error)
-      setStatus('데이터를 불러오지 못했어요.')
+      const errorMessage = error?.message || ''
+      setStatus(
+        errorMessage.includes('saju_profiles') || errorMessage.includes('schema cache')
+          ? '사주 데이터 저장소가 아직 준비되지 않았어요. Supabase 테이블 적용이 필요해요.'
+          : '데이터를 불러오지 못했어요.',
+      )
     } finally {
       setIsLoading(false)
     }
@@ -83,6 +112,14 @@ export default function FortunePage() {
     }
   }
 
+  function resetProfileForm() {
+    setProfile({ ...EMPTY_PROFILE })
+    setActiveProfile(null)
+    setDailySnapshot(null)
+    setReport(null)
+    setStatus('')
+  }
+
   async function handleSaveProfile() {
     setIsLoading(true)
     setReport(null)
@@ -112,12 +149,14 @@ export default function FortunePage() {
   const reportData = report?.report_content
 
   return (
-    <div className="app-shell">
+    <div className="app-shell fortune-shell">
       <header className="hero">
-        <p className="eyebrow">사주 기반 오늘의 운세</p>
-        <h1>나의 일간과 오늘의 흐름을 정교하게 분석한 맞춤 리포트</h1>
-        <button type="button" className="soft-button" onClick={() => navigate('/')} style={{ marginTop: '1rem' }}>
-          홈으로 돌아가기
+        <div>
+          <p className="eyebrow">사주 기반 오늘의 운세</p>
+          <h1>나의 일간과 오늘의 흐름을 정교하게 분석한 맞춤 리포트</h1>
+        </div>
+        <button type="button" className="soft-button" onClick={resetProfileForm}>
+          reset
         </button>
       </header>
 
@@ -136,24 +175,41 @@ export default function FortunePage() {
           />
           <div className="field-grid">
             <input 
-              type="date" 
+              type="text"
+              inputMode="numeric"
+              autoComplete="bday"
+              placeholder="생년월일 YYYY-MM-DD"
               value={profile.birthDate}
-              onChange={e => setProfile({...profile, birthDate: e.target.value})}
+              onChange={e => setProfile({...profile, birthDate: formatBirthDateInput(e.target.value)})}
             />
             <input 
-              type="time" 
+              type="text"
+              inputMode="numeric"
+              autoComplete="off"
+              placeholder="태어난 시간 24시간제 HH:MM"
               value={profile.birthTime}
-              onChange={e => setProfile({...profile, birthTime: e.target.value})}
+              onChange={e => setProfile({...profile, birthTime: formatBirthTimeInput(e.target.value)})}
             />
           </div>
-          <select 
-            value={profile.gender}
-            onChange={e => setProfile({...profile, gender: e.target.value})}
-          >
-            <option value="male">남성</option>
-            <option value="female">여성</option>
-          </select>
-          <button onClick={handleSaveProfile} disabled={isLoading || !profile.birthDate}>
+          <div className="fortune-gender-options" role="group" aria-label="성별 선택">
+            <button
+              type="button"
+              className={`fortune-gender-button ${profile.gender === 'male' ? 'active' : ''}`}
+              aria-pressed={profile.gender === 'male'}
+              onClick={() => setProfile({...profile, gender: 'male'})}
+            >
+              남성
+            </button>
+            <button
+              type="button"
+              className={`fortune-gender-button ${profile.gender === 'female' ? 'active' : ''}`}
+              aria-pressed={profile.gender === 'female'}
+              onClick={() => setProfile({...profile, gender: 'female'})}
+            >
+              여성
+            </button>
+          </div>
+          <button onClick={handleSaveProfile} disabled={isLoading || !canSubmitProfile}>
             {isLoading ? '분석 중...' : activeProfile ? '정보 수정 및 다시 분석' : '오늘의 운세 보기'}
           </button>
         </div>

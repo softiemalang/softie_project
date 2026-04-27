@@ -1,0 +1,210 @@
+.fortune-shell {
+  --fortune-card-pad: 0.9rem;
+  --fortune-gap-sm: 0.46rem;
+  --fortune-gap-md: 0.62rem;
+  --fortune-gap-lg: 0.82rem;
+  --fortune-control-pad-x: 0.78rem;
+  --fortune-control-min-h: 42px;
+  --fortune-radius-md: 12px;
+  --fortune-radius-lg: 20px;
+  --fortune-radius-xl: 28px;
+  width: min(100%, 860px);
+  padding:
+    max(1rem, calc(env(safe-area-inset-top) + 0.75rem))
+    0.9rem
+    max(5rem, calc(env(safe-area-inset-bottom) + 2rem));
+}
+
+.fortune-shell .hero,
+.fortune-shell .card {
+  border-radius: var(--fortune-radius-xl);
+  background: rgba(255, 252, 248, 0.92);
+  border: 1px solid rgba(255, 255, 255, 0.75);
+  box-shadow: 0 18px 48px rgba(92, 74, 43, 0.08);
+  backdrop-filter: blur(14px);
+  padding: var(--fortune-card-pad);
+  margin-bottom: var(--fortune-gap-lg);
+  overflow: hidden;
+}
+
+.fortune-shell .hero {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--fortune-gap-md);
+  padding: 0.9rem var(--fortune-card-pad);
+  margin-top: 0;
+}
+
+.fortune-shell .hero h1 {
+  display: none;
+}
+
+.fortune-shell .hero .eyebrow {
+  margin: 0;
+  min-width: 0;
+}
+
+.fortune-shell .eyebrow,
+.fortune-shell .section-kicker {
+  color: #8b5e1a;
+  font-size: 0.74rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.fortune-shell .card h2 {
+  font-size: 1.18rem;
+  line-height: 1.08;
+  letter-spacing: -0.035em;
+  margin: 0.2rem 0 0 0;
+  color: #3d2b1f;
+}
+
+.fortune-shell > .card:first-of-type .card-header h2 {
+  display: none;
+}
+
+.fortune-shell > .card:first-of-type .card-header {
+  margin-bottom: -0.04rem;
+}
+
+.fortune-shell .stack-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--fortune-gap-sm);
+  min-width: 0;
+  overflow: hidden;
+}
+
+.fortune-shell .field-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--fortune-gap-sm);
+  min-width: 0;
+  overflow: hidden;
+}
+
+.fortune-shell input,
+.fortune-shell select {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  min-height: var(--fortune-control-min-h);
+  height: var(--fortune-control-min-h);
+  padding: 0 var(--fortune-control-pad-x);
+  border-radius: var(--fortune-radius-md);
+  background: rgba(255, 255, 255, 0.78);
+  border: 1px solid rgba(229, 219, 207, 0.95);
+  color: #303a45;
+  font-size: 16px;
+  line-height: 1.2;
+  text-align: left;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.fortune-shell input:focus,
+.fortune-shell select:focus {
+  border-color: rgba(159, 195, 185, 0.85);
+  box-shadow: inset 0 0 0 1px rgba(159, 195, 185, 0.52);
+}
+
+.fortune-shell input::placeholder {
+  color: #aaa29a;
+}
+
+.fortune-shell button {
+  min-height: var(--fortune-control-min-h);
+  border-radius: var(--fortune-radius-md);
+  font-size: 0.9rem;
+  font-weight: 700;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.fortune-shell .soft-button {
+  width: auto;
+  background: #efe6d8;
+  color: #5b4a35;
+  padding: 0 1rem;
+}
+
+.fortune-shell .hero .soft-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  min-width: 54px;
+  min-height: 30px;
+  height: 30px;
+  padding: 0 0.62rem;
+  font-size: 0.72rem;
+  line-height: 1;
+  text-align: center;
+}
+
+.fortune-shell .fortune-gender-options {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--fortune-gap-sm);
+}
+
+.fortune-shell .fortune-gender-button {
+  min-height: var(--fortune-control-min-h);
+  padding: 0 var(--fortune-control-pad-x);
+  border: 1px solid rgba(229, 219, 207, 0.95);
+  background: rgba(255, 255, 255, 0.62);
+  color: #5f513f;
+  box-shadow: none;
+}
+
+.fortune-shell .fortune-gender-button.active {
+  background: #efe6d8;
+  border-color: rgba(159, 139, 108, 0.35);
+  color: #4f4133;
+}
+
+.fortune-shell .stack-form > button {
+  width: 100%;
+  margin-top: 0.12rem;
+  background: #9fc3b9;
+  color: #fff;
+  box-shadow: none;
+}
+
+.fortune-shell .stack-form > button:disabled {
+  background: #d1e2dd;
+  cursor: not-allowed;
+}
+
+.fortune-shell .status {
+  margin: var(--fortune-gap-lg) 0;
+  padding: 0.82rem 0.92rem;
+  border-radius: var(--fortune-radius-lg);
+  background: rgba(247, 241, 230, 0.72);
+  border: 1px solid rgba(234, 223, 206, 0.9);
+  font-size: 0.86rem;
+  color: #8b5e1a;
+  text-align: center;
+}
+
+.fortune-shell .card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: var(--fortune-gap-md);
+}
+
+.fortune-shell .card > .card-header + * {
+  margin-top: var(--fortune-gap-md);
+}
+
+@media (max-width: 430px) {
+  .fortune-shell .field-grid {
+    grid-template-columns: 1fr;
+  }
+}
