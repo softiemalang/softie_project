@@ -28,7 +28,7 @@ export async function getOrGenerateReport(profileId, dailySnapshot) {
   } catch (error) {
     console.error('LLM Report generation failed, falling back to local analysis:', error)
     // Fallback: 로컬 분석 데이터를 기반으로 간단한 리포트 생성
-    llmResult = generateFallbackReport(dailySnapshot)
+    llmResult = generateFallbackReport(dailySnapshot, error)
   }
   
   // 3. 생성된 리포트 저장
@@ -40,7 +40,7 @@ export async function getOrGenerateReport(profileId, dailySnapshot) {
     model_name: llmResult.model,
     headline: llmResult.content.headline,
     summary: llmResult.content.summary,
-    report_content: llmResult.content,
+    report_content: { ...llmResult.content, debug: llmResult.content.debug },
     generated_at: new Date().toISOString()
   }
 
@@ -59,27 +59,34 @@ export async function getOrGenerateReport(profileId, dailySnapshot) {
 /**
  * LLM 호출 실패 시 로컬 데이터를 기반으로 생성하는 기본 리포트
  */
-function generateFallbackReport(dailySnapshot) {
+function generateFallbackReport(dailySnapshot, error = null) {
   const data = dailySnapshot.computed_data
   const profile = data.interpretationProfile
 
+  const debug = {
+    fallback_reason: error ? "frontend-requestLlmReport-error" : "no-data-fallback",
+    error_message: error?.message || String(error),
+    timestamp: new Date().toISOString()
+  }
+
   if (profile) {
     return {
-      model: "local-fallback-engine",
+      model: error ? "local-fallback-engine-request-error-v2" : "local-fallback-engine",
       content: {
         headline: profile.primaryTheme,
         summary: profile.recommendedNarrative,
         sections: profile.fieldNarratives,
         cautions: ["섣부른 판단은 삼가는 것이 좋습니다.", "중요한 결정 전 한 번 더 여유를 가지세요."],
-        action_tip: "오늘의 핵심 키워드는 '유연함'과 '안정'입니다."
+        action_tip: "오늘의 핵심 키워드는 '유연함'과 '안정'입니다.",
+        debug
       }
     }
   }
 
   const stemTenGod = data.signals?.find(s => s.type === 'stem')?.tenGod || '기운'
-  
+
   return {
-    model: "local-fallback-engine",
+    model: error ? "local-fallback-engine-request-error-v2" : "local-fallback-engine",
     content: {
       headline: "오늘의 흐름을 확인하세요",
       summary: `오늘은 ${stemTenGod}의 기운이 강하게 작용하는 날입니다. 외부 활동보다는 내면의 충실함을 기하기에 좋은 시기입니다.`,
@@ -92,7 +99,10 @@ function generateFallbackReport(dailySnapshot) {
         mind: "자신을 믿고 긍정적인 마음가짐을 유지하는 것이 중요합니다."
       },
       cautions: ["섣부른 판단은 삼가는 것이 좋습니다.", "중요한 계약은 한 번 더 검토하세요."],
-      action_tip: "오늘의 핵심 키워드는 '안정'과 '내실'입니다."
+      action_tip: "오늘의 핵심 키워드는 '안정'과 '내실'입니다.",
+      debug
     }
   }
 }
+
+
