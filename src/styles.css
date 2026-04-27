@@ -1744,3 +1744,81 @@ textarea {
   background: #1f6f5f;
   color: #fff;
 }
+
+/* 근무 일지 추가 정제 스타일 */
+.scheduler-work-log-item-info {
+  display: grid;
+  gap: 0.12rem;
+}
+
+.scheduler-log-delete-btn {
+  min-height: 24px;
+  padding: 0 0.5rem;
+  border-radius: 8px;
+  background: #f5f0e9;
+  color: #a39587;
+  font-size: 0.72rem;
+  font-weight: 600;
+}
+
+.scheduler-modal-backdrop {
+  z-index: 50;
+  align-items: center;
+}
+
+.scheduler-modal {
+  width: min(90%, 400px);
+  padding: 1.5rem;
+  background: #fff;
+  border-radius: var(--scheduler-radius-xl);
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+}
+
+.scheduler-modal-text {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #313b46;
+  margin: 0 0 1.25rem;
+}
+
+.scheduler-sync-diff {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+  padding: 1rem;
+  background: #fdfaf5;
+  border-radius: var(--scheduler-radius-md);
+  border: 1px solid #efe6d8;
+}
+
+.scheduler-sync-diff-side {
+  flex: 1;
+  display: grid;
+  gap: 0.2rem;
+}
+
+.scheduler-sync-diff-side span {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.scheduler-sync-diff-side strong {
+  font-size: 0.94rem;
+  color: #1f2937;
+}
+
+.scheduler-sync-diff-arrow {
+  color: #d1c1af;
+  font-weight: 800;
+}
+
+.scheduler-modal-hint {
+  font-size: 0.82rem;
+  line-height: 1.4;
+  margin-bottom: 1.5rem;
+  padding-left: 0.2rem;
+}

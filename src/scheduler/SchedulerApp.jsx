@@ -26,6 +26,7 @@ import {
   getWeekRangeLabel,
   getWeekStartDate,
   getWeekTitle,
+  isTimeRangeOverlapping,
   normalizeHourTime,
   toLocalDateInputValue,
 } from './time'
@@ -50,23 +51,19 @@ function loadWorkLogs() {
   }
 }
 
-function saveWorkLog(entry) {
+function saveWorkLog(entry, idsToRemove = []) {
   if (typeof window === 'undefined') return
   const logs = loadWorkLogs()
-  const syncKey = `${entry.date}__${entry.startTime}__${entry.endTime}`
   
-  const existingIndex = logs.findIndex(log => log.syncKey === syncKey)
-  const newLogs = [...logs]
+  // 겹치는 항목이나 삭제 요청된 항목 제외
+  let newLogs = logs.filter(log => !idsToRemove.includes(log.id))
   
-  const logEntry = {
-    ...entry,
-    syncKey,
-    syncedAt: new Date().toISOString()
-  }
-  
-  if (existingIndex >= 0) {
-    newLogs[existingIndex] = logEntry
-  } else {
+  if (entry) {
+    const logEntry = {
+      ...entry,
+      id: entry.id || `log-${Date.now()}-${Math.random().toString(36).slice(2, 9)}`,
+      syncedAt: new Date().toISOString()
+    }
     newLogs.push(logEntry)
   }
   
@@ -245,11 +242,12 @@ function TodaySchedulerPage() {
   const [isWorkLogOpen, setIsWorkLogOpen] = useState(false)
   const [viewingWeekStart, setViewingWeekStart] = useState(() => getWeekStartDate(initialSelectedDate))
   const [copyFeedback, setCopyFeedback] = useState('')
+  const [syncConfirmation, setSyncConfirmation] = useState(null)
 
   function handleSyncWorkLog() {
     if (!normalizedFilters.workTimeEnabled) return
     
-    const entry = {
+    const candidate = {
       weekStartDate: getWeekStartDate(selectedDate),
       date: selectedDate,
       startTime: formatWorkTimeHour(normalizedFilters.workTimeStartHour),
@@ -258,12 +256,44 @@ function TodaySchedulerPage() {
       branch: filters.branch !== 'all' ? filters.branch : null,
       room: filters.room !== 'all' ? filters.room : null,
     }
+
+    // 같은 날짜/지점/룸 내에서 겹치는 항목 찾기
+    const overlapping = workLogs.filter(log => 
+      log.date === candidate.date &&
+      log.branch === candidate.branch &&
+      log.room === candidate.room &&
+      isTimeRangeOverlapping(
+        candidate.startTime, candidate.endTime,
+        log.startTime, log.endTime
+      )
+    )
+
+    if (overlapping.length > 0) {
+      setSyncConfirmation({ candidate, overlapping })
+      return
+    }
     
-    saveWorkLog(entry)
+    saveWorkLog(candidate)
     const nextLogs = loadWorkLogs()
     setWorkLogs(nextLogs)
     setPushStatus('근무 기록을 동기화했어요.')
     setTimeout(() => setPushStatus(''), 2000)
+  }
+
+  function handleConfirmSync() {
+    if (!syncConfirmation) return
+    const { candidate, overlapping } = syncConfirmation
+    
+    saveWorkLog(candidate, overlapping.map(o => o.id))
+    setWorkLogs(loadWorkLogs())
+    setSyncConfirmation(null)
+    setPushStatus('근무 기록을 변경 적용했어요.')
+    setTimeout(() => setPushStatus(''), 2000)
+  }
+
+  function handleDeleteWorkLogEntry(id) {
+    saveWorkLog(null, [id])
+    setWorkLogs(loadWorkLogs())
   }
 
   function handleCopyWeekLog(weekStart) {
@@ -938,7 +968,16 @@ function TodaySchedulerPage() {
           onClose={() => setIsWorkLogOpen(false)}
           onNavigate={handleNavigateWeek}
           onCopy={handleCopyWeekLog}
+          onDelete={handleDeleteWorkLogEntry}
           copyFeedback={copyFeedback}
+        />
+      ) : null}
+
+      {syncConfirmation ? (
+        <SyncConfirmationModal
+          confirmation={syncConfirmation}
+          onCancel={() => setSyncConfirmation(null)}
+          onConfirm={handleConfirmSync}
         />
       ) : null}
 
@@ -1491,7 +1530,7 @@ function WorkLogSummaryCard({ currentWeekStart, logs, onOpen, onCopy, copyFeedba
   )
 }
 
-function WorkLogDetailView({ viewingWeekStart, logs, onClose, onNavigate, onCopy, copyFeedback }) {
+function WorkLogDetailView({ viewingWeekStart, logs, onClose, onNavigate, onCopy, onDelete, copyFeedback }) {
   const weekLogs = logs.filter(log => log.weekStartDate === viewingWeekStart)
   const sortedLogs = [...weekLogs].sort((a, b) => a.date.localeCompare(b.date))
   const totalMinutes = weekLogs.reduce((acc, log) => acc + log.durationMinutes, 0)
@@ -1525,9 +1564,19 @@ function WorkLogDetailView({ viewingWeekStart, logs, onClose, onNavigate, onCopy
               {sortedLogs.map((log) => {
                 const dateObj = new Date(log.date)
                 return (
-                  <div key={log.syncKey} className="scheduler-work-log-item">
-                    <strong>{dateObj.getMonth() + 1}/{dateObj.getDate()}</strong>
-                    <p>{log.startTime}-{log.endTime} ({log.durationMinutes / 60}h)</p>
+                  <div key={log.id || log.syncKey} className="scheduler-work-log-item">
+                    <div className="scheduler-work-log-item-info">
+                      <strong>{dateObj.getMonth() + 1}/{dateObj.getDate()}</strong>
+                      <p>{log.startTime}-{log.endTime} ({log.durationMinutes / 60}h)</p>
+                    </div>
+                    <button 
+                      type="button" 
+                      className="scheduler-log-delete-btn"
+                      onClick={() => onDelete(log.id)}
+                      aria-label="기록 삭제"
+                    >
+                      삭제
+                    </button>
                   </div>
                 )
               })}
@@ -1551,6 +1600,42 @@ function WorkLogDetailView({ viewingWeekStart, logs, onClose, onNavigate, onCopy
           </div>
         </div>
       </section>
+    </div>
+  )
+}
+
+function SyncConfirmationModal({ confirmation, onCancel, onConfirm }) {
+  const { candidate, overlapping } = confirmation
+  
+  return (
+    <div className="scheduler-sheet-backdrop scheduler-modal-backdrop" onClick={onCancel}>
+      <div className="scheduler-modal" onClick={e => e.stopPropagation()}>
+        <div className="scheduler-section-head">
+          <p className="scheduler-section-label">기록 확인</p>
+        </div>
+        <p className="scheduler-modal-text">기존 근무 기록과 시간이 겹쳐요.</p>
+        
+        <div className="scheduler-sync-diff">
+          <div className="scheduler-sync-diff-side">
+            <span className="subtle">기존 기록</span>
+            {overlapping.map(o => (
+              <strong key={o.id}>{o.startTime}-{o.endTime}</strong>
+            ))}
+          </div>
+          <div className="scheduler-sync-diff-arrow">→</div>
+          <div className="scheduler-sync-diff-side">
+            <span className="subtle">변경될 기록</span>
+            <strong>{candidate.startTime}-{candidate.endTime}</strong>
+          </div>
+        </div>
+
+        <p className="subtle scheduler-modal-hint">진행하면 기존 기록이 변경된 시간으로 적용됩니다.</p>
+
+        <div className="scheduler-form-actions">
+          <button type="button" className="soft-button" onClick={onCancel}>취소</button>
+          <button type="button" className="primary" onClick={onConfirm}>진행</button>
+        </div>
+      </div>
     </div>
   )
 }
