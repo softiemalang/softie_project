@@ -169,9 +169,6 @@ export default function FortunePage() {
           <h1>나의 일간과 오늘의 흐름을 정교하게 분석한 맞춤 리포트</h1>
         </div>
         <div className="action-row">
-          <button type="button" className="soft-button" onClick={() => navigate('/')}>
-            홈으로
-          </button>
           <button type="button" className="soft-button" onClick={resetProfileForm}>
             reset
           </button>

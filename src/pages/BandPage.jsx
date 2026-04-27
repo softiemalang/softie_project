@@ -266,10 +266,6 @@ export default function BandPage() {
     setStatus('')
   }
 
-  function goHome() {
-    navigate('/')
-  }
-
   function applyLoadedState({ roomRow, memberRows, availabilityRows, activeMember, preserveDraft }) {
     const nextMember = makeMemberInfo(activeMember)
     const nextSavedMap = getMemberAvailabilityMap(availabilityRows, nextMember?.id)
@@ -791,9 +787,6 @@ export default function BandPage() {
         <p className="eyebrow">밴드 합주 일정 조율</p>
         <h1>한 방에서 가능 시간을 모으고, 겹치는 합주 시간을 빠르게 찾아보세요.</h1>
         <div className="action-row" style={{ marginTop: '1.2rem' }}>
-          <button type="button" className="soft-button" onClick={goHome}>
-            홈으로
-          </button>
           <button type="button" className="soft-button" onClick={() => navigate('/fortune')}>
             운세 🍀
           </button>
@@ -910,11 +903,6 @@ export default function BandPage() {
       {room && member && (
         <>
           <section className="card room-hero-card">
-            <div className="top-actions">
-              <button type="button" className="soft-button home-button" onClick={goHome}>
-                홈으로 돌아가기
-              </button>
-            </div>
             <div className="room-hero-top">
               <div>
                 <p className="section-kicker">현재 방</p>
