@@ -48,6 +48,14 @@
   letter-spacing: -0.035em;
 }
 
+:where(.fortune-shell, .app-shell:has(> .hero > button.soft-button[style*="margin-top"])) > .card:first-of-type .card-header h2 {
+  display: none;
+}
+
+:where(.fortune-shell, .app-shell:has(> .hero > button.soft-button[style*="margin-top"])) > .card:first-of-type .card-header {
+  margin-bottom: -0.04rem;
+}
+
 :where(.fortune-shell, .app-shell:has(> .hero > button.soft-button[style*="margin-top"])) .stack-form {
   gap: var(--fortune-gap-md);
 }
