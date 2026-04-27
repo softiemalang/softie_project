@@ -72,7 +72,12 @@ export default function FortunePage() {
       }
     } catch (error) {
       console.error('Failed to load saju data:', error)
-      setStatus('데이터를 불러오지 못했어요.')
+      const errorMessage = error?.message || ''
+      setStatus(
+        errorMessage.includes('saju_profiles') || errorMessage.includes('schema cache')
+          ? '사주 데이터 저장소가 아직 준비되지 않았어요. Supabase 테이블 적용이 필요해요.'
+          : '데이터를 불러오지 못했어요.',
+      )
     } finally {
       setIsLoading(false)
     }
@@ -149,7 +154,7 @@ export default function FortunePage() {
         <p className="eyebrow">사주 기반 오늘의 운세</p>
         <h1>나의 일간과 오늘의 흐름을 정교하게 분석한 맞춤 리포트</h1>
         <button type="button" className="soft-button" onClick={resetProfileForm} style={{ marginTop: '1rem' }}>
-          새로고침
+          reset
         </button>
       </header>
 
