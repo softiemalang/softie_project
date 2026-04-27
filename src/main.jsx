@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client'
 import App from './App'
 import { registerSchedulerPushServiceWorker } from './scheduler/push'
 import './styles.css'
+import './saju/fortune.css'
 
 registerSchedulerPushServiceWorker()
 
