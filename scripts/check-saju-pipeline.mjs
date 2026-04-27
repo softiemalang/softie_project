@@ -43,6 +43,17 @@ assertEqual(dailySnapshot.daily_stem, expectedDailyPillars.day.stem, 'Daily Snap
 assertEqual(dailySnapshot.daily_branch, expectedDailyPillars.day.branch, 'Daily Snapshot Branch dynamically generated');
 console.log(`  [INFO] The daily pillar used for ${targetDateStr} is ${dailySnapshot.daily_stem}${dailySnapshot.daily_branch}. Dummy '무진' is no longer hardcoded.`);
 
+// 4. Verify love section in computed_data
+const hasLoveData = dailySnapshot.computed_data && dailySnapshot.computed_data.love !== undefined;
+assertEqual(hasLoveData, true, 'Daily Snapshot Computed Data includes love section');
+if (hasLoveData) {
+  const loveData = dailySnapshot.computed_data.love;
+  assertEqual(typeof loveData.score, 'number', 'Love section has score');
+  assertEqual(Array.isArray(loveData.keySignals), true, 'Love section has keySignals array');
+  assertEqual(typeof loveData.tone, 'string', 'Love section has tone');
+  assertEqual(typeof loveData.summary_hint, 'string', 'Love section has summary_hint');
+}
+
 console.log('------------------------------');
 console.log(`Total: ${passed + failed} | Passed: ${passed} | Failed: ${failed}`);
 

@@ -280,6 +280,6 @@ export default function FortunePage() {
 }
 
 function getCategoryLabel(key) {
-  const labels = { work: '일 / 커리어', money: '금전운', relationships: '인간관계', health: '건강', mind: '심리 상태' }
+  const labels = { work: '일 / 커리어', money: '금전운', relationships: '인간관계', love: '연애 / 애정운', health: '건강', mind: '심리 상태' }
   return labels[key] || key
 }

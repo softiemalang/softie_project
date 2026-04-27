@@ -17,7 +17,7 @@ export function generateNatalSnapshot(profile) {
     hour_stem: pillars.hour.stem,
     hour_branch: pillars.hour.branch,
     day_master: analysis.dayMaster,
-    natal_data: { ...analysis, engine_version: '1.1' }
+    natal_data: { ...analysis, gender: profile.gender, engine_version: '1.1' }
   }
 }
 
@@ -32,6 +32,34 @@ export function generateDailySnapshot(natalSnapshot, targetDate) {
   
   const natalAnalysis = natalSnapshot.natal_data
   const interaction = analyzeDailyInteraction(natalAnalysis, dailyPillar)
+  
+  const gender = natalAnalysis.gender || 'male'
+  const signals = interaction.signals.map(s => s.tenGod)
+  
+  let loveScore = 70
+  let loveSignals = []
+  let loveTone = 'neutral'
+  let loveSummary = ''
+
+  const hasJae = signals.some(s => s.includes('재'))
+  const hasGwan = signals.some(s => s.includes('관'))
+  const hasSik = signals.some(s => s.includes('식') || s.includes('상'))
+  const hasIn = signals.some(s => s.includes('인'))
+  const hasBi = signals.some(s => s.includes('비') || s.includes('겁'))
+
+  if (gender === 'male') {
+    if (hasJae) { loveScore += 15; loveSignals.push('재성'); loveTone = 'romantic'; loveSummary = '새로운 인연이나 관계의 진전이 기대되는 날'; }
+    else if (hasSik) { loveScore += 10; loveSignals.push('식상'); loveTone = 'expressive'; loveSummary = '자연스러운 매력과 표현력이 빛나는 날'; }
+    else if (hasGwan) { loveScore += 5; loveSignals.push('관성'); loveTone = 'stable'; loveSummary = '관계에 대한 책임감과 신뢰가 높아지는 날'; }
+    else if (hasIn) { loveScore -= 5; loveSignals.push('인성'); loveTone = 'cautious'; loveSummary = '생각이 많아지니 감정 표현에 신중해지는 날'; }
+    else { loveSignals.push('비겁'); loveTone = 'independent'; loveSummary = '연애보다는 자신의 일과 편안한 관계에 집중하기 좋은 날'; }
+  } else {
+    if (hasGwan) { loveScore += 15; loveSignals.push('관성'); loveTone = 'romantic'; loveSummary = '안정적이고 설레는 인연의 기운이 강한 날'; }
+    else if (hasJae) { loveScore += 10; loveSignals.push('재성'); loveTone = 'attractive'; loveSummary = '관계를 주도하거나 매력을 어필하기 좋은 날'; }
+    else if (hasSik) { loveScore += 5; loveSignals.push('식상'); loveTone = 'expressive'; loveSummary = '자신의 감정을 솔직하게 표현하기 좋은 날'; }
+    else if (hasIn) { loveScore -= 5; loveSignals.push('인성'); loveTone = 'cautious'; loveSummary = '생각이 많아지니 감정 표현에 신중해지는 날'; }
+    else { loveSignals.push('비겁'); loveTone = 'independent'; loveSummary = '연애보다는 자신의 일과 편안한 관계에 집중하기 좋은 날'; }
+  }
 
   return {
     target_date: targetDate,
@@ -39,6 +67,12 @@ export function generateDailySnapshot(natalSnapshot, targetDate) {
     daily_branch: dailyPillar.branch,
     computed_data: {
       ...interaction,
+      love: {
+        score: loveScore,
+        keySignals: loveSignals,
+        tone: loveTone,
+        summary_hint: loveSummary
+      },
       priority_flags: ['focus_work', 'careful_spending'], // 예시 플래그
       summary_hint: `${natalAnalysis.dayMaster}일간에게 ${interaction.signals[0].tenGod}이 들어오는 날`,
       engine_version: '1.1'
