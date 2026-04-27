@@ -12,6 +12,27 @@ import { generateNatalSnapshot, generateDailySnapshot } from './interpreter/prep
 import { getOrGenerateReport } from './interpreter/reportGenerator'
 import { getKstDateString, getOrCreateLocalKey } from './utils'
 
+function formatBirthDateInput(value) {
+  const digits = value.replace(/\D/g, '').slice(0, 8)
+  if (digits.length <= 4) return digits
+  if (digits.length <= 6) return `${digits.slice(0, 4)}-${digits.slice(4)}`
+  return `${digits.slice(0, 4)}-${digits.slice(4, 6)}-${digits.slice(6)}`
+}
+
+function formatBirthTimeInput(value) {
+  const digits = value.replace(/\D/g, '').slice(0, 4)
+  if (digits.length <= 2) return digits
+  return `${digits.slice(0, 2)}:${digits.slice(2)}`
+}
+
+function isCompleteBirthDate(value) {
+  return /^\d{4}-\d{2}-\d{2}$/.test(value)
+}
+
+function isCompleteBirthTime(value) {
+  return !value || /^\d{2}:\d{2}$/.test(value)
+}
+
 export default function FortunePage() {
   const [profile, setProfile] = useState({
     name: '',
@@ -26,6 +47,7 @@ export default function FortunePage() {
   const [status, setStatus] = useState('')
 
   const todayStr = getKstDateString()
+  const canSubmitProfile = isCompleteBirthDate(profile.birthDate) && isCompleteBirthTime(profile.birthTime)
 
   useEffect(() => {
     loadInitialData()
@@ -136,14 +158,20 @@ export default function FortunePage() {
           />
           <div className="field-grid">
             <input 
-              type="date" 
+              type="text"
+              inputMode="numeric"
+              autoComplete="bday"
+              placeholder="생년월일 YYYY-MM-DD"
               value={profile.birthDate}
-              onChange={e => setProfile({...profile, birthDate: e.target.value})}
+              onChange={e => setProfile({...profile, birthDate: formatBirthDateInput(e.target.value)})}
             />
             <input 
-              type="time" 
+              type="text"
+              inputMode="numeric"
+              autoComplete="off"
+              placeholder="태어난 시간 HH:MM"
               value={profile.birthTime}
-              onChange={e => setProfile({...profile, birthTime: e.target.value})}
+              onChange={e => setProfile({...profile, birthTime: formatBirthTimeInput(e.target.value)})}
             />
           </div>
           <select 
@@ -153,7 +181,7 @@ export default function FortunePage() {
             <option value="male">남성</option>
             <option value="female">여성</option>
           </select>
-          <button onClick={handleSaveProfile} disabled={isLoading || !profile.birthDate}>
+          <button onClick={handleSaveProfile} disabled={isLoading || !canSubmitProfile}>
             {isLoading ? '분석 중...' : activeProfile ? '정보 수정 및 다시 분석' : '오늘의 운세 보기'}
           </button>
         </div>
