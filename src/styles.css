@@ -1866,6 +1866,10 @@ textarea {
   text-align: left;
 }
 
+.service-card > * + * {
+  margin-top: 0;
+}
+
 .service-card:hover {
   transform: translateY(-4px);
   box-shadow: 0 24px 64px rgba(92, 74, 43, 0.12);
@@ -1888,7 +1892,8 @@ textarea {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 0.15rem;
+  gap: 0.12rem;
+  margin-top: 0;
 }
 
 .service-info .section-kicker {
