@@ -227,7 +227,6 @@ export default function FortunePage() {
               {report.is_cached && <span className="scheduler-count-pill">저장된 리포트</span>}
             </div>
             <div className="fortune-summary-content">
-              <h3 className="fortune-headline">{reportData.headline}</h3>
               <p className="fortune-summary-text">{reportData.summary}</p>
             </div>
           </section>
