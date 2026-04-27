@@ -1824,6 +1824,12 @@ textarea {
 }
 
 /* Home Page Styles */
+.home-shell {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .home-shell .hero {
   text-align: center;
   padding: 3rem 1.5rem;
@@ -1831,6 +1837,8 @@ textarea {
   border: none;
   box-shadow: none;
   backdrop-filter: none;
+  width: 100%;
+  max-width: 640px;
 }
 
 .home-hero-content h1 {
@@ -1841,16 +1849,20 @@ textarea {
 .service-grid {
   display: grid;
   gap: 1rem;
+  width: 100%;
+  max-width: 580px;
 }
 
 .service-card {
   display: flex;
   align-items: center;
+  justify-content: flex-start;
   gap: 1.25rem;
   cursor: pointer;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
-  padding: 1.1rem 1.25rem;
+  padding: 1.1rem 1.4rem;
   margin-bottom: 0;
+  text-align: left;
 }
 
 .service-card:hover {
@@ -1872,11 +1884,14 @@ textarea {
 
 .service-info {
   flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .service-info h2 {
   font-size: 1.25rem;
-  margin: 0.1rem 0 0.3rem;
+  margin: 0.1rem 0 0.2rem;
 }
 
 .service-info .subtle {
@@ -1889,21 +1904,23 @@ textarea {
   color: var(--brand);
   font-size: 1.25rem;
   font-weight: bold;
+  margin-left: 0.5rem;
 }
 
 .home-footer {
   margin-top: 3rem;
   text-align: center;
   padding-bottom: 2rem;
+  width: 100%;
 }
 
 @media (max-width: 600px) {
   .home-shell .hero {
-    padding: 2rem 1rem;
+    padding: 2.5rem 1rem;
   }
 
   .service-card {
-    padding: 1rem;
+    padding: 1rem 1.1rem;
     gap: 1rem;
   }
 
