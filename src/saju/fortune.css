@@ -1,5 +1,6 @@
 :where(.fortune-shell, .app-shell:has(> .hero > button.soft-button[style*="margin-top"])) {
   --fortune-card-pad: 0.9rem;
+  --fortune-gap-sm: 0.46rem;
   --fortune-gap-md: 0.62rem;
   --fortune-gap-lg: 0.82rem;
   --fortune-control-pad-x: 0.78rem;
@@ -23,6 +24,7 @@
   backdrop-filter: blur(14px);
   padding: var(--fortune-card-pad);
   margin-bottom: var(--fortune-gap-lg);
+  overflow: hidden;
 }
 
 :where(.fortune-shell, .app-shell:has(> .hero > button.soft-button[style*="margin-top"])) .hero {
@@ -66,17 +68,26 @@
 }
 
 :where(.fortune-shell, .app-shell:has(> .hero > button.soft-button[style*="margin-top"])) .stack-form {
-  gap: var(--fortune-gap-md);
+  gap: var(--fortune-gap-sm);
+  min-width: 0;
+  overflow: hidden;
 }
 
 :where(.fortune-shell, .app-shell:has(> .hero > button.soft-button[style*="margin-top"])) .field-grid {
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: var(--fortune-gap-md);
+  grid-template-columns: 1fr;
+  gap: var(--fortune-gap-sm);
+  min-width: 0;
+  overflow: hidden;
 }
 
 :where(.fortune-shell, .app-shell:has(> .hero > button.soft-button[style*="margin-top"])) input,
 :where(.fortune-shell, .app-shell:has(> .hero > button.soft-button[style*="margin-top"])) select {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
   min-height: var(--fortune-control-min-h);
+  height: var(--fortune-control-min-h);
   padding: 0 var(--fortune-control-pad-x);
   border-radius: var(--fortune-radius-md);
   background: rgba(255, 255, 255, 0.78);
@@ -88,6 +99,12 @@
 
 :where(.fortune-shell, .app-shell:has(> .hero > button.soft-button[style*="margin-top"])) input::placeholder {
   color: #aaa29a;
+}
+
+:where(.fortune-shell, .app-shell:has(> .hero > button.soft-button[style*="margin-top"])) input[type='date'],
+:where(.fortune-shell, .app-shell:has(> .hero > button.soft-button[style*="margin-top"])) input[type='time'] {
+  -webkit-appearance: none;
+  appearance: none;
 }
 
 :where(.fortune-shell, .app-shell:has(> .hero > button.soft-button[style*="margin-top"])) button {
@@ -129,7 +146,7 @@
 
 :where(.fortune-shell, .app-shell:has(> .hero > button.soft-button[style*="margin-top"])) .stack-form > button {
   width: 100%;
-  margin-top: 0.08rem;
+  margin-top: 0.12rem;
   background: #9fc3b9;
   color: #fff;
   box-shadow: none;
