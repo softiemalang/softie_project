@@ -7,18 +7,21 @@ export default function HomePage() {
       description: '밴드원들의 가능 시간을 모아서 최적의 합주 타임을 찾아보세요.',
       path: '/band',
       icon: '🎸',
+      label: 'BAND',
     },
     {
       title: '오늘의 사주 운세',
       description: '나의 일간과 오늘의 흐름을 분석한 맞춤형 AI 리포트를 확인하세요.',
       path: '/fortune',
       icon: '🍀',
+      label: 'FORTUNE',
     },
     {
       title: '근무 일정 관리',
       description: '근무 일정을 등록하고 실시간 푸시 알림으로 꼼꼼하게 관리하세요.',
       path: '/scheduler',
       icon: '⏰',
+      label: 'SCHEDULER',
     },
   ]
 
@@ -44,7 +47,7 @@ export default function HomePage() {
           >
             <div className="service-icon">{service.icon}</div>
             <div className="service-info">
-              <p className="section-kicker">Service</p>
+              <p className="section-kicker">{service.label}</p>
               <h2>{service.title}</h2>
               <p className="subtle">{service.description}</p>
             </div>
