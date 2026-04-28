@@ -31,6 +31,8 @@ import {
   toLocalDateInputValue,
 } from './time'
 
+import { connectGoogleCalendar, createGoogleCalendarEvent, isGoogleConnected, disconnectGoogleCalendar, triggerGoogleDriveBackup, appendGoogleSheetsLog } from './googleApi'
+
 const GO_TO_TODAY_EVENT = 'scheduler:go-today'
 const WORK_TIME_FILTER_STORAGE_KEY = 'scheduler:work-time-filter'
 const WORK_LOGS_STORAGE_KEY = 'scheduler:work-logs'
@@ -981,6 +983,89 @@ function TodaySchedulerPage() {
         />
       ) : null}
 
+      <section className="scheduler-panel scheduler-push-panel">
+        <div className="scheduler-section-head">
+          <div>
+            <p className="scheduler-section-label">Google 연동 (Calendar/Drive)</p>
+          </div>
+        </div>
+        <div className="scheduler-push-setup">
+          <div className="scheduler-push-actions">
+            <button
+              type="button"
+              className="scheduler-push-mini-button"
+              onClick={() => connectGoogleCalendar(getOrCreatePushDeviceId())}
+            >
+              Google 계정 연결
+            </button>
+            <button
+              type="button"
+              className="scheduler-push-mini-button secondary"
+              onClick={async () => {
+                if (!isGoogleConnected()) {
+                  setPushStatus('Google 계정을 먼저 연결해 주세요.')
+                  return
+                }
+                try {
+                  setPushStatus('Google Calendar 일정 생성 중...')
+                  const now = new Date()
+                  const end = new Date(now.getTime() + 60 * 60 * 1000)
+                  await createGoogleCalendarEvent(getOrCreatePushDeviceId(), {
+                    summary: '테스트 일정',
+                    location: '서울 지점',
+                    description: 'Gemini CLI를 통한 테스트 일정입니다.',
+                    startAt: now.toISOString(),
+                    endAt: end.toISOString(),
+                  })
+                  setPushStatus('일정을 생성했어요.')
+                } catch (error) {
+                  setPushStatus(`오류: ${error.message}`)
+                  if (error.message?.includes('not connected') || error.message?.includes('refresh token')) {
+                    disconnectGoogleCalendar()
+                  }
+                }
+              }}
+            >
+              테스트 일정 추가
+            </button>
+            <button
+              type="button"
+              className="scheduler-push-mini-button secondary"
+              onClick={async () => {
+                if (!isGoogleConnected()) {
+                  setPushStatus('Google 계정을 먼저 연결해 주세요.')
+                  return
+                }
+                try {
+                  setPushStatus('Google Drive에 백업 중...')
+                  const result = await triggerGoogleDriveBackup(getOrCreatePushDeviceId(), 'full')
+                  setPushStatus(`백업 완료: ${result.fileName}`)
+                  
+                  // Log to Google Sheets
+                  appendGoogleSheetsLog(getOrCreatePushDeviceId(), 'backup_logs', [
+                    new Date().toISOString(),
+                    'backup_completed',
+                    'full',
+                    result.fileName || '',
+                    result.fileId || '',
+                    'success',
+                    JSON.stringify(result.metadata?.counts || {}),
+                    ''
+                  ])
+                } catch (error) {
+                  setPushStatus(`오류: ${error.message}`)
+                  if (error.message?.includes('not connected') || error.message?.includes('refresh token')) {
+                    disconnectGoogleCalendar()
+                  }
+                }
+              }}
+            >
+              수동 백업 (Drive)
+            </button>
+          </div>
+        </div>
+      </section>
+
       {status && <p className="status">{status}</p>}
 
       <TodayEventSection
@@ -1171,6 +1256,39 @@ function ReservationEditorPage({ mode, reservationId }) {
     setIsSaving(true)
     try {
       const saved = await saveReservation(buildReservationPayload(formValues), reservationId)
+      
+      // MVP: 구글 캘린더 연동이 되어있다면 일정 생성 시도
+      if (isGoogleConnected()) {
+        createGoogleCalendarEvent(getOrCreatePushDeviceId(), {
+          reservationId: saved.id,
+          summary: `[${saved.branch}] ${saved.customer_name}`,
+          location: `${saved.branch} ${saved.room}`,
+          description: saved.notes_text,
+          startAt: saved.start_at,
+          endAt: saved.end_at,
+        }).catch(err => {
+          console.error('Google Calendar Sync Error:', err)
+          if (err.message?.includes('not connected') || err.message?.includes('refresh token')) {
+            disconnectGoogleCalendar()
+          }
+        })
+
+        // Log to Google Sheets (fire-and-forget)
+        appendGoogleSheetsLog(getOrCreatePushDeviceId(), 'scheduler_logs', [
+          new Date().toISOString(),
+          mode === 'edit' ? 'reservation_updated' : 'reservation_created',
+          saved.id,
+          saved.reservation_date,
+          saved.start_at,
+          saved.end_at,
+          saved.branch,
+          saved.room,
+          saved.customer_name,
+          saved.google_event_id || '',
+          saved.notes_text || ''
+        ])
+      }
+
       if (mode === 'edit') {
         navigate(`/scheduler/${saved.id}`)
       } else {
