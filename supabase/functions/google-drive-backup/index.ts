@@ -78,8 +78,19 @@ serve(async (req) => {
   }
 
   try {
+    let payload;
     try {
-      const { userId, backupType } = await req.json()
+      payload = await req.json()
+    } catch (parseError) {
+      console.error('[google-drive-backup] Request JSON Parse Error:', parseError)
+      return new Response(JSON.stringify({ error: 'Invalid JSON body in request.' }), {
+        status: 400,
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+      })
+    }
+
+    try {
+      const { userId, backupType } = payload
 
       if (!userId || !backupType) {
         throw new Error('Missing userId or backupType')
