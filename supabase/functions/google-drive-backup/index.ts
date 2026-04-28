@@ -78,106 +78,114 @@ serve(async (req) => {
   }
 
   try {
-    const { userId, backupType } = await req.json()
+    try {
+      const { userId, backupType } = await req.json()
 
-    if (!userId || !backupType) {
-      throw new Error('Missing userId or backupType')
-    }
+      if (!userId || !backupType) {
+        throw new Error('Missing userId or backupType')
+      }
 
-    const supabaseUrl = Deno.env.get('SUPABASE_URL')
-    const supabaseKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')
-    if (!supabaseUrl || !supabaseKey) throw new Error('Missing Supabase credentials')
+      const supabaseUrl = Deno.env.get('SUPABASE_URL')
+      const supabaseKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')
+      if (!supabaseUrl || !supabaseKey) throw new Error('Missing Supabase credentials')
 
-    const supabase = createClient(supabaseUrl, supabaseKey)
-    const accessToken = await getOrRefreshToken(supabase, userId)
+      const supabase = createClient(supabaseUrl, supabaseKey)
+      const accessToken = await getOrRefreshToken(supabase, userId)
 
-    // Collect data based on backupType
-    let exportData: Record<string, any> = {}
-    let tableCounts: Record<string, number> = {}
+      // Collect data based on backupType
+      let exportData: Record<string, any> = {}
+      let tableCounts: Record<string, number> = {}
 
-    // Helper to safely fetch table data
-    async function safeFetch(tableName: string) {
-      try {
-        const { data, error } = await supabase.from(tableName).select('*')
-        if (error) {
-          console.warn(`Failed to fetch ${tableName}:`, error.message)
+      // Helper to safely fetch table data
+      async function safeFetch(tableName: string) {
+        try {
+          const { data, error } = await supabase.from(tableName).select('*')
+          if (error) {
+            console.warn(`Failed to fetch ${tableName}:`, error.message)
+            return []
+          }
+          return data || []
+        } catch (e) {
+          console.warn(`Exception fetching ${tableName}:`, e)
           return []
         }
-        return data || []
-      } catch (e) {
-        console.warn(`Exception fetching ${tableName}:`, e)
-        return []
       }
+
+      if (backupType === 'scheduler' || backupType === 'full') {
+        const [res, we] = await Promise.all([
+          safeFetch('reservations'),
+          safeFetch('work_events')
+        ])
+        exportData.reservations = res
+        exportData.work_events = we
+        tableCounts.reservations = exportData.reservations.length
+        tableCounts.work_events = exportData.work_events.length
+      }
+
+      if (backupType === 'fortune' || backupType === 'full') {
+        const [prof, ns, ds, fr] = await Promise.all([
+          safeFetch('saju_profiles'),
+          safeFetch('saju_natal_snapshots'),
+          safeFetch('saju_daily_snapshots'),
+          safeFetch('saju_fortune_reports')
+        ])
+        exportData.saju_profiles = prof
+        exportData.saju_natal_snapshots = ns
+        exportData.saju_daily_snapshots = ds
+        exportData.saju_fortune_reports = fr
+        tableCounts.saju_profiles = exportData.saju_profiles.length
+        tableCounts.saju_natal_snapshots = exportData.saju_natal_snapshots.length
+        tableCounts.saju_daily_snapshots = exportData.saju_daily_snapshots.length
+        tableCounts.saju_fortune_reports = exportData.saju_fortune_reports.length
+      }
+
+      if (backupType === 'settings' || backupType === 'full') {
+        const subs = await safeFetch('push_subscriptions')
+        exportData.push_subscriptions = subs
+        tableCounts.push_subscriptions = exportData.push_subscriptions.length
+      }
+
+      // Build the final JSON structure
+      const now = new Date()
+      const finalJson = {
+        metadata: {
+          backup_type: backupType,
+          created_at: now.toISOString(),
+          app_name: 'softie_project',
+          schema_version: 1,
+          counts: tableCounts
+        },
+        data: exportData
+      }
+
+      // Date formatting: YYYY-MM-DD-HHmmss
+      const pad = (n: number) => n.toString().padStart(2, '0')
+      const dateStr = `${now.getFullYear()}-${pad(now.getMonth() + 1)}-${pad(now.getDate())}-${pad(now.getHours())}${pad(now.getMinutes())}${pad(now.getSeconds())}`
+      const fileName = `softie-backup-${backupType}-${dateStr}.json`
+
+      // Google Drive Folder Structure
+      // root -> softie_project -> backups -> {backupType}
+      const rootFolderId = await getOrCreateFolder(accessToken, 'softie_project')
+      const backupsFolderId = await getOrCreateFolder(accessToken, 'backups', rootFolderId)
+      const targetFolderId = await getOrCreateFolder(accessToken, backupType, backupsFolderId)
+
+      // Upload
+      const fileId = await uploadFile(accessToken, targetFolderId, fileName, JSON.stringify(finalJson, null, 2))
+
+      return new Response(JSON.stringify({ success: true, fileId, fileName, metadata: finalJson.metadata }), {
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+      })
+    } catch (innerError) {
+      console.error('[google-drive-backup] Expected Error:', innerError)
+      return new Response(JSON.stringify({ error: innerError.message || String(innerError) }), {
+        status: 400,
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+      })
     }
-
-    if (backupType === 'scheduler' || backupType === 'full') {
-      const [res, we] = await Promise.all([
-        safeFetch('reservations'),
-        safeFetch('work_events')
-      ])
-      exportData.reservations = res
-      exportData.work_events = we
-      tableCounts.reservations = exportData.reservations.length
-      tableCounts.work_events = exportData.work_events.length
-    }
-
-    if (backupType === 'fortune' || backupType === 'full') {
-      const [prof, ns, ds, fr] = await Promise.all([
-        safeFetch('saju_profiles'),
-        safeFetch('saju_natal_snapshots'),
-        safeFetch('saju_daily_snapshots'),
-        safeFetch('saju_fortune_reports')
-      ])
-      exportData.saju_profiles = prof
-      exportData.saju_natal_snapshots = ns
-      exportData.saju_daily_snapshots = ds
-      exportData.saju_fortune_reports = fr
-      tableCounts.saju_profiles = exportData.saju_profiles.length
-      tableCounts.saju_natal_snapshots = exportData.saju_natal_snapshots.length
-      tableCounts.saju_daily_snapshots = exportData.saju_daily_snapshots.length
-      tableCounts.saju_fortune_reports = exportData.saju_fortune_reports.length
-    }
-
-    if (backupType === 'settings' || backupType === 'full') {
-      const subs = await safeFetch('push_subscriptions')
-      exportData.push_subscriptions = subs
-      tableCounts.push_subscriptions = exportData.push_subscriptions.length
-    }
-
-    // Build the final JSON structure
-    const now = new Date()
-    const finalJson = {
-      metadata: {
-        backup_type: backupType,
-        created_at: now.toISOString(),
-        app_name: 'softie_project',
-        schema_version: 1,
-        counts: tableCounts
-      },
-      data: exportData
-    }
-
-    // Date formatting: YYYY-MM-DD-HHmmss
-    const pad = (n: number) => n.toString().padStart(2, '0')
-    const dateStr = `${now.getFullYear()}-${pad(now.getMonth() + 1)}-${pad(now.getDate())}-${pad(now.getHours())}${pad(now.getMinutes())}${pad(now.getSeconds())}`
-    const fileName = `softie-backup-${backupType}-${dateStr}.json`
-
-    // Google Drive Folder Structure
-    // root -> softie_project -> backups -> {backupType}
-    const rootFolderId = await getOrCreateFolder(accessToken, 'softie_project')
-    const backupsFolderId = await getOrCreateFolder(accessToken, 'backups', rootFolderId)
-    const targetFolderId = await getOrCreateFolder(accessToken, backupType, backupsFolderId)
-
-    // Upload
-    const fileId = await uploadFile(accessToken, targetFolderId, fileName, JSON.stringify(finalJson, null, 2))
-
-    return new Response(JSON.stringify({ success: true, fileId, fileName, metadata: finalJson.metadata }), {
-      headers: { ...corsHeaders, 'Content-Type': 'application/json' },
-    })
-  } catch (error) {
-    console.error('[google-drive-backup]', error)
-    return new Response(JSON.stringify({ error: error.message }), {
-      status: 400,
+  } catch (fatalError) {
+    console.error('[google-drive-backup] Fatal Crash:', fatalError)
+    return new Response(JSON.stringify({ error: 'A fatal server error occurred during backup. Please try again later.' }), {
+      status: 500,
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },
     })
   }
