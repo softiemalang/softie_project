@@ -14,17 +14,24 @@ This document outlines the current state of the Google Ecosystem integrations wi
 - **Backend Role:** All Google API calls are securely performed within Supabase Edge Functions.
 - **Token Management:** The `_shared/googleToken.ts` helper handles loading and refreshing Google access tokens.
 - **Security:** Google access tokens, refresh tokens, client secrets, and service role keys are **never** exposed to the frontend code.
+- **OAuth Flow:** 
+  - Frontend redirect starts at `https://accounts.google.com/o/oauth2/v2/auth?redirect_uri=...`
+  - The `redirect_uri` MUST be the URL of the deployed `google-oauth-callback` Edge Function.
+  - The Edge Function exchanges the code for a token, stores it, and redirects back to the `FRONTEND_URL`.
 
-## 3. Required Supabase Secrets
+## 3. Required Environment Variables & Secrets
 
-The following secrets must be set in the Supabase environment:
+**Frontend (Vercel / Vite env):**
+- `VITE_GOOGLE_CLIENT_ID`: Google OAuth Client ID.
+- `VITE_GOOGLE_REDIRECT_URI`: The exact URL to the deployed `google-oauth-callback` Edge Function.
 
-- `GOOGLE_CLIENT_ID`
-- `GOOGLE_CLIENT_SECRET`
-- `GOOGLE_REDIRECT_URI`
-- `SUPABASE_URL`
-- `SUPABASE_SERVICE_ROLE_KEY`
-- `GOOGLE_SHEETS_LOG_SPREADSHEET_ID` (Optional - if omitted, app auto-creates/reuses `softie_project_logs`)
+**Backend (Supabase Edge Functions):**
+- `GOOGLE_CLIENT_ID`: Google OAuth Client ID.
+- `GOOGLE_CLIENT_SECRET`: Google OAuth Client Secret.
+- `GOOGLE_REDIRECT_URI`: The exact URL to the deployed `google-oauth-callback` Edge Function (Must match the one provided by frontend).
+- `FRONTEND_URL`: The URL of the deployed frontend (e.g., `https://softie-project.vercel.app`). Used by the Edge Function to redirect back after success.
+- `SUPABASE_URL` / `SUPABASE_SERVICE_ROLE_KEY`: Supabase API keys.
+- `GOOGLE_SHEETS_LOG_SPREADSHEET_ID`: (Optional) If omitted, the app auto-creates/reuses a `softie_project_logs` spreadsheet.
 
 ## 4. Required OAuth Scopes
 
@@ -36,7 +43,7 @@ Users must consent to the following scopes during the OAuth flow:
 
 ## 5. Edge Functions
 
-- `google-oauth-callback`: Handles the OAuth redirect, exchanges the code for tokens, and stores them.
+- `google-oauth-callback`: Handles the OAuth redirect, exchanges the code for tokens, and redirects back to `FRONTEND_URL`.
 - `google-calendar-create-event`: Creates calendar events and prevents duplicates.
 - `google-drive-backup`: Generates JSON backups and uploads them to Google Drive.
 - `google-sheets-append-log`: Appends rows to specific tabs. Auto-creates `softie_project_logs` if `GOOGLE_SHEETS_LOG_SPREADSHEET_ID` is missing.
@@ -49,14 +56,20 @@ Users must consent to the following scopes during the OAuth flow:
 ## 7. Manual Deployment Checklist
 
 1. Push database changes: `supabase db push`
-2. Set all required secrets: `supabase secrets set GOOGLE_CLIENT_ID="..." ...`
-3. Deploy Edge Functions:
+2. Set all required secrets in Supabase:
+   ```bash
+   supabase secrets set GOOGLE_CLIENT_ID="..." GOOGLE_CLIENT_SECRET="..." GOOGLE_REDIRECT_URI="https://YOUR_PROJECT_REF.supabase.co/functions/v1/google-oauth-callback" FRONTEND_URL="https://softie-project.vercel.app"
+   ```
+3. Set Vercel Env Vars:
+   - `VITE_GOOGLE_CLIENT_ID`
+   - `VITE_GOOGLE_REDIRECT_URI` (Must match Supabase `GOOGLE_REDIRECT_URI`)
+4. Deploy Edge Functions:
    - `supabase functions deploy google-oauth-callback`
    - `supabase functions deploy google-calendar-create-event`
    - `supabase functions deploy google-drive-backup`
    - `supabase functions deploy google-sheets-append-log`
-4. Reconnect the Google account in the app (due to added scopes).
-5. Test Calendar, Drive, and Sheets features.
+5. Reconnect the Google account in the app.
+6. Test Calendar, Drive, and Sheets features.
 
 ## 8. Manual Test Checklist
 
@@ -67,17 +80,24 @@ Users must consent to the following scopes during the OAuth flow:
 - [ ] Verify the JSON backup file is created in Google Drive.
 - [ ] Verify new rows are appended to the `scheduler_logs` and `backup_logs` tabs in the configured Google Sheet.
 
-## 9. Known Limitations
+## 9. Troubleshooting Google OAuth (redirect_uri & bad_oauth_state)
+
+- **UNAUTHORIZED_NO_AUTH_HEADER:**
+  If the `google-oauth-callback` Edge Function returns a Missing authorization header error, it means `verify_jwt = false` is missing in `supabase/config.toml`. OAuth callback functions must allow unauthenticated Google redirects.
+- **Safari cannot connect to localhost / Redirects to localhost in production:** 
+  If you see the app attempting to redirect to `http://localhost:5173/scheduler` in production, it means the `FRONTEND_URL` secret is missing from Supabase Edge Functions. Set it using `supabase secrets set FRONTEND_URL="https://your-app.vercel.app"`.
+- **error=invalid_request & error_code=bad_oauth_state:** 
+  This happens when the `redirect_uri` doesn't match what's configured in Google Cloud Console. Ensure `VITE_GOOGLE_REDIRECT_URI` (Frontend) and `GOOGLE_REDIRECT_URI` (Backend) are exactly identical and point to the `google-oauth-callback` Edge Function URL. Both must be added to the Google Cloud Console "Authorized redirect URIs".
+
+## 10. Known Limitations
 
 - Calendar sync is one-way (creation only); updates and deletions are not synced to Google Calendar.
 - Drive restore functionality is not yet implemented.
 - Sheets logging is best-effort (fire-and-forget); failures will not block core application flows.
 - Fortune report logging is currently skipped due to identifier differences (uses `localKey` instead of `deviceId`).
-- Existing users must reconnect their Google accounts when new scopes are added to the application.
 
-## 10. Recommended Next Phases
+## 11. Recommended Next Phases
 
 - Implement a secure connection status check endpoint (to replace the current `localStorage` heuristic).
 - Add sync status fields (e.g., `google_sync_status`, `google_sync_error`) to relevant tables.
 - Implement a preview-only MVP for Drive restore (allowing users to see what will be restored before applying).
-- Integrate Vertex AI/Gemini for advanced fortune report generation.

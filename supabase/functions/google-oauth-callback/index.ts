@@ -57,8 +57,9 @@ serve(async (req) => {
     if (upsertError) throw upsertError
 
     // Redirect back to frontend
-    // Assuming the frontend handles a "connected" query param
-    const frontendUrl = new URL(redirectUri!)
+    // Use FRONTEND_URL (Vercel) or SITE_URL (Supabase default), fallback to localhost for dev
+    const siteUrl = Deno.env.get('FRONTEND_URL') || Deno.env.get('SITE_URL') || 'http://localhost:5173'
+    const frontendUrl = new URL(siteUrl)
     frontendUrl.pathname = '/scheduler'
     frontendUrl.searchParams.set('google_connected', 'true')
 

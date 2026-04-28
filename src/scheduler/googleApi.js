@@ -1,13 +1,18 @@
 import { supabase } from '../lib/supabase'
 
 const GOOGLE_CLIENT_ID = import.meta.env.VITE_GOOGLE_CLIENT_ID
-const GOOGLE_REDIRECT_URI = import.meta.env.VITE_GOOGLE_REDIRECT_URI || window.location.origin + '/scheduler'
+const GOOGLE_REDIRECT_URI = import.meta.env.VITE_GOOGLE_REDIRECT_URI
 
 /**
  * Starts the Google OAuth flow.
  * Redirects the user to Google's consent screen.
  */
 export function connectGoogleCalendar(userId) {
+  if (!GOOGLE_REDIRECT_URI) {
+    alert('VITE_GOOGLE_REDIRECT_URI 환경변수가 설정되지 않았습니다.')
+    return
+  }
+
   // Requesting scopes for Calendar (Priority 1), Drive (Priority 2), and Sheets (Priority 3)
   const scope = 'https://www.googleapis.com/auth/calendar.events https://www.googleapis.com/auth/drive.file https://www.googleapis.com/auth/spreadsheets'
   

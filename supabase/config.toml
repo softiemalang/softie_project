@@ -17,3 +17,7 @@ verify_jwt = false
 [functions.generate-fortune-report]
 # fortune 페이지는 public/local-key 기반이므로 JWT 검증을 비활성화합니다.
 verify_jwt = false
+
+[functions.google-oauth-callback]
+# Google OAuth redirect does not include a Supabase Authorization header
+verify_jwt = false
