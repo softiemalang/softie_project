@@ -95,28 +95,43 @@ serve(async (req) => {
     let exportData: Record<string, any> = {}
     let tableCounts: Record<string, number> = {}
 
+    // Helper to safely fetch table data
+    async function safeFetch(tableName: string) {
+      try {
+        const { data, error } = await supabase.from(tableName).select('*')
+        if (error) {
+          console.warn(`Failed to fetch ${tableName}:`, error.message)
+          return []
+        }
+        return data || []
+      } catch (e) {
+        console.warn(`Exception fetching ${tableName}:`, e)
+        return []
+      }
+    }
+
     if (backupType === 'scheduler' || backupType === 'full') {
-      const [{ data: res }, { data: we }] = await Promise.all([
-        supabase.from('reservations').select('*'),
-        supabase.from('work_events').select('*')
+      const [res, we] = await Promise.all([
+        safeFetch('reservations'),
+        safeFetch('work_events')
       ])
-      exportData.reservations = res || []
-      exportData.work_events = we || []
+      exportData.reservations = res
+      exportData.work_events = we
       tableCounts.reservations = exportData.reservations.length
       tableCounts.work_events = exportData.work_events.length
     }
 
     if (backupType === 'fortune' || backupType === 'full') {
-      const [{ data: prof }, { data: ns }, { data: ds }, { data: fr }] = await Promise.all([
-        supabase.from('saju_profiles').select('*'),
-        supabase.from('saju_natal_snapshots').select('*'),
-        supabase.from('saju_daily_snapshots').select('*'),
-        supabase.from('saju_fortune_reports').select('*')
+      const [prof, ns, ds, fr] = await Promise.all([
+        safeFetch('saju_profiles'),
+        safeFetch('saju_natal_snapshots'),
+        safeFetch('saju_daily_snapshots'),
+        safeFetch('saju_fortune_reports')
       ])
-      exportData.saju_profiles = prof || []
-      exportData.saju_natal_snapshots = ns || []
-      exportData.saju_daily_snapshots = ds || []
-      exportData.saju_fortune_reports = fr || []
+      exportData.saju_profiles = prof
+      exportData.saju_natal_snapshots = ns
+      exportData.saju_daily_snapshots = ds
+      exportData.saju_fortune_reports = fr
       tableCounts.saju_profiles = exportData.saju_profiles.length
       tableCounts.saju_natal_snapshots = exportData.saju_natal_snapshots.length
       tableCounts.saju_daily_snapshots = exportData.saju_daily_snapshots.length
@@ -124,8 +139,8 @@ serve(async (req) => {
     }
 
     if (backupType === 'settings' || backupType === 'full') {
-      const { data: subs } = await supabase.from('push_subscriptions').select('*')
-      exportData.push_subscriptions = subs || []
+      const subs = await safeFetch('push_subscriptions')
+      exportData.push_subscriptions = subs
       tableCounts.push_subscriptions = exportData.push_subscriptions.length
     }
 

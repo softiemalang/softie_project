@@ -42,11 +42,16 @@ async function unwrapInvokeError(data, error) {
           if (json.error) msg = json.error
         } else if (typeof error.context.text === 'function') {
           const text = await error.context.text()
-          try {
-            const json = JSON.parse(text)
-            if (json.error) msg = json.error
-          } catch {
-            msg = text
+          const lowerText = text.trim().toLowerCase()
+          if (lowerText.startsWith('<!doctype') || lowerText.startsWith('<html')) {
+            msg = 'Drive 백업 함수 응답이 JSON이 아니에요. 함수 배포 또는 호출 경로를 확인해 주세요.'
+          } else {
+            try {
+              const json = JSON.parse(text)
+              if (json.error) msg = json.error
+            } catch {
+              msg = text
+            }
           }
         } else if (error.context.error) {
           msg = error.context.error
@@ -54,6 +59,10 @@ async function unwrapInvokeError(data, error) {
       } catch (e) {
         // ignore extraction errors
       }
+    }
+    // Also catch cases where the error.message itself is a JSON.parse exception from Supabase client
+    if (msg.includes('Unexpected token') && msg.includes('is not valid JSON')) {
+      msg = '함수 응답이 JSON이 아닙니다. 서버 에러 또는 배포 상태를 확인해 주세요.'
     }
     throw new Error(msg)
   }

@@ -1953,21 +1953,6 @@ textarea {
 }
 
 /* Google Integration Status and Badges */
-.scheduler-google-badge {
-  font-size: 0.75rem;
-  padding: 0.2rem 0.5rem;
-  border-radius: 9999px;
-  margin-left: 0.5rem;
-  font-weight: 500;
-}
-.scheduler-google-badge.connected {
-  background-color: #d1fae5;
-  color: #065f46;
-}
-.scheduler-google-badge.disconnected {
-  background-color: #fee2e2;
-  color: #991b1b;
-}
 .scheduler-google-status {
   font-size: 0.85rem;
   margin-top: 0.5rem;

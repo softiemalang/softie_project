@@ -989,6 +989,9 @@ function TodaySchedulerPage() {
           <div>
             <p className="scheduler-section-label">Google 연동 (Calendar/Drive)</p>
           </div>
+          <div className={`scheduler-count-pill ${isGoogleConnected() ? 'is-ready' : ''}`}>
+            {isGoogleConnected() ? '연결됨' : '연결 필요'}
+          </div>
         </div>
         <div className="scheduler-push-setup">
           <div className="scheduler-push-actions">
@@ -1065,7 +1068,7 @@ function TodaySchedulerPage() {
             </button>
           </div>
           {googleStatus && (
-            <p className="scheduler-push-status" style={{ marginTop: '0.5rem', color: googleStatus.includes('오류') ? '#e53e3e' : '#4b5563' }}>
+            <p className={`scheduler-google-status ${googleStatus.includes('오류') ? 'error' : 'success'}`}>
               {googleStatus}
             </p>
           )}
