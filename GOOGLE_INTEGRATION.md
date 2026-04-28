@@ -8,16 +8,22 @@ This document outlines the current state of the Google Ecosystem integrations wi
 - **Google Drive (Manual Backup):** Exports important application data (scheduler, fortune, settings) as a JSON file and uploads it to a `softie_project/backups` folder in the user's Google Drive.
 - **Google Sheets (Append Logging):** Best-effort logging of reservation events and backup completions to a designated Google Spreadsheet.
 
-## 2. Architecture
+## 2. Architecture & Security
 
 - **Frontend Role:** The frontend only triggers actions via Supabase Edge Function invocations and displays the result status.
 - **Backend Role:** All Google API calls are securely performed within Supabase Edge Functions.
 - **Token Management:** The `_shared/googleToken.ts` helper handles loading and refreshing Google access tokens.
 - **Security:** Google access tokens, refresh tokens, client secrets, and service role keys are **never** exposed to the frontend code.
+- **Authentication & JWT Bypass:** 
+  - The application currently authenticates users via `deviceId` / `localKey` rather than full Supabase Auth sessions. 
+  - Therefore, the Google Edge Functions (`google-oauth-callback`, `google-calendar-create-event`, `google-drive-backup`, `google-sheets-append-log`) are deployed with `verify_jwt = false` in `supabase/config.toml`.
+  - `google-oauth-callback` MUST bypass JWT because it receives external redirects from Google that do not contain a Supabase Authorization header.
+  - **Safety Requirement:** Because JWT verification is disabled, each public Google function strictly validates the `userId`/`deviceId` parameter internally before performing any action.
 - **OAuth Flow:** 
   - Frontend redirect starts at `https://accounts.google.com/o/oauth2/v2/auth?redirect_uri=...`
   - The `redirect_uri` MUST be the URL of the deployed `google-oauth-callback` Edge Function.
   - The Edge Function exchanges the code for a token, stores it, and redirects back to the `FRONTEND_URL`.
+  - The frontend tracks its Google connection status using a separate `googleStatus` UI state, preventing conflicts with Web Push notification states.
 
 ## 3. Required Environment Variables & Secrets
 
@@ -83,7 +89,9 @@ Users must consent to the following scopes during the OAuth flow:
 ## 9. Troubleshooting Google OAuth (redirect_uri & bad_oauth_state)
 
 - **UNAUTHORIZED_NO_AUTH_HEADER:**
-  If the `google-oauth-callback` Edge Function returns a Missing authorization header error, it means `verify_jwt = false` is missing in `supabase/config.toml`. OAuth callback functions must allow unauthenticated Google redirects.
+  If an Edge Function returns a "Missing authorization header" error, it means `verify_jwt = false` is missing in `supabase/config.toml`, or the function was deployed without the `--no-verify-jwt` flag. OAuth callbacks must allow unauthenticated redirects from Google, and the current app design requires other Google functions to accept deviceId instead of Supabase Auth.
+- **Could not find the table 'public.google_calendar_tokens' in the schema cache:**
+  If the OAuth callback fails with this error, it means the database migrations have not been pushed to the production Supabase database. Run `supabase db push` to apply the migrations.
 - **Safari cannot connect to localhost / Redirects to localhost in production:** 
   If you see the app attempting to redirect to `http://localhost:5173/scheduler` in production, it means the `FRONTEND_URL` secret is missing from Supabase Edge Functions. Set it using `supabase secrets set FRONTEND_URL="https://your-app.vercel.app"`.
 - **error=invalid_request & error_code=bad_oauth_state:** 
