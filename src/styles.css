@@ -53,6 +53,7 @@ input {
   padding: 0.95rem 1rem;
   background: rgba(255, 255, 255, 0.88);
   color: var(--text);
+  font-size: 16px;
 }
 
 select,
@@ -63,6 +64,7 @@ textarea {
   padding: 0.95rem 1rem;
   background: rgba(255, 255, 255, 0.88);
   color: var(--text);
+  font-size: 16px;
 }
 
 .app-shell {
@@ -1177,7 +1179,7 @@ textarea {
   background: rgba(255, 255, 255, 0.88);
   color: #5b6471;
   text-align: left;
-  font-size: 0.88rem;
+  font-size: 16px;
   font-weight: 450;
   line-height: 1;
 }
@@ -1193,7 +1195,7 @@ textarea {
 }
 
 .scheduler-duration-field .scheduler-compact-input {
-  font-size: 0.88rem;
+  font-size: 16px;
   font-weight: 500;
   color: #5b6258;
 }
@@ -1447,7 +1449,7 @@ textarea {
 }
 
 .scheduler-filter-field .scheduler-native-picker-display {
-  font-size: 0.94rem;
+  font-size: 16px;
   font-weight: 500;
   color: #4b5563;
 }
@@ -1458,7 +1460,7 @@ textarea {
 }
 
 .scheduler-filter-field select {
-  font-size: 0.94rem;
+  font-size: 16px;
   font-weight: 500;
   color: #4b5563;
 }
