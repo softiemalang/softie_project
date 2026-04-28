@@ -65,11 +65,21 @@ async function uploadFile(accessToken: string, folderId: string, fileName: strin
     body: multipartRequestBody
   })
   
-  const result = await uploadRes.json()
-  if (result.error) {
-    throw new Error(`Google Drive API error: ${result.error.message}`)
+  if (!uploadRes.ok) {
+    const errorText = await uploadRes.text()
+    console.error('[uploadFile] Google Drive API Raw Error:', errorText)
+    throw new Error(`Google Drive API HTTP error: ${uploadRes.status} ${uploadRes.statusText}`)
   }
-  return result.id
+
+  try {
+    const result = await uploadRes.json()
+    if (result.error) {
+      throw new Error(`Google Drive API error: ${result.error.message}`)
+    }
+    return result.id
+  } catch (e) {
+    throw new Error(`Google Drive API returned non-JSON response. Ensure Drive API is enabled in Google Cloud Console.`)
+  }
 }
 
 serve(async (req) => {
