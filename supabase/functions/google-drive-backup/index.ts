@@ -56,7 +56,7 @@ async function uploadFile(accessToken: string, folderId: string, fileName: strin
     content +
     close_delim
 
-  const uploadRes = await fetch('https://upload.googleapis.com/upload/drive/v3/files?uploadType=multipart', {
+  const uploadRes = await fetch('https://www.googleapis.com/upload/drive/v3/files?uploadType=multipart', {
     method: 'POST',
     headers: {
       Authorization: `Bearer ${accessToken}`,
