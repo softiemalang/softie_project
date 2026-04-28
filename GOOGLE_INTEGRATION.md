@@ -92,6 +92,10 @@ Users must consent to the following scopes during the OAuth flow:
   If an Edge Function returns a "Missing authorization header" error, it means `verify_jwt = false` is missing in `supabase/config.toml`, or the function was deployed without the `--no-verify-jwt` flag. OAuth callbacks must allow unauthenticated redirects from Google, and the current app design requires other Google functions to accept deviceId instead of Supabase Auth.
 - **Could not find the table 'public.google_calendar_tokens' in the schema cache:**
   If the OAuth callback fails with this error, it means the database migrations have not been pushed to the production Supabase database. Run `supabase db push` to apply the migrations.
+- **Drive Backup returns HTML ("<!DOCTYPE") / "Function response is not JSON":**
+  If the Drive backup fails with a JSON parsing error on the frontend, check the Google Drive upload endpoint in the Edge Function.
+  - ✅ **Correct endpoint:** `https://www.googleapis.com/upload/drive/v3/files?uploadType=multipart`
+  - ❌ **Incorrect endpoint:** `https://upload.googleapis.com/upload/drive/v3/files` (returns a 404 HTML page)
 - **Safari cannot connect to localhost / Redirects to localhost in production:** 
   If you see the app attempting to redirect to `http://localhost:5173/scheduler` in production, it means the `FRONTEND_URL` secret is missing from Supabase Edge Functions. Set it using `supabase secrets set FRONTEND_URL="https://your-app.vercel.app"`.
 - **error=invalid_request & error_code=bad_oauth_state:** 
