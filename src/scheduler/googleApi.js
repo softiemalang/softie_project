@@ -30,6 +30,38 @@ export function connectGoogleCalendar(userId) {
 }
 
 /**
+ * Helper to unwrap generic Supabase FunctionsHttpError
+ */
+async function unwrapInvokeError(data, error) {
+  if (error) {
+    let msg = error.message
+    if (error.context) {
+      try {
+        if (typeof error.context.json === 'function') {
+          const json = await error.context.json()
+          if (json.error) msg = json.error
+        } else if (typeof error.context.text === 'function') {
+          const text = await error.context.text()
+          try {
+            const json = JSON.parse(text)
+            if (json.error) msg = json.error
+          } catch {
+            msg = text
+          }
+        } else if (error.context.error) {
+          msg = error.context.error
+        }
+      } catch (e) {
+        // ignore extraction errors
+      }
+    }
+    throw new Error(msg)
+  }
+  if (data && data.error) throw new Error(data.error)
+  return data
+}
+
+/**
  * Calls the Edge Function to create an event in Google Calendar.
  */
 export async function createGoogleCalendarEvent(userId, eventData) {
@@ -39,9 +71,7 @@ export async function createGoogleCalendarEvent(userId, eventData) {
     body: { userId, eventData }
   })
 
-  if (error) throw error
-  if (data && data.error) throw new Error(data.error)
-  return data
+  return unwrapInvokeError(data, error)
 }
 
 /**
@@ -54,9 +84,7 @@ export async function triggerGoogleDriveBackup(userId, backupType = 'full') {
     body: { userId, backupType }
   })
 
-  if (error) throw error
-  if (data && data.error) throw new Error(data.error)
-  return data
+  return unwrapInvokeError(data, error)
 }
 
 /**
@@ -71,11 +99,10 @@ export async function appendGoogleSheetsLog(userId, tabName, rowData) {
       body: { userId, tabName, rowData }
     })
 
-    if (error) throw error
-    if (data && data.error) throw new Error(data.error)
+    await unwrapInvokeError(data, error)
   } catch (err) {
     console.error(`Google Sheets Logging Error (${tabName}):`, err)
-    if (err.message?.includes('not connected') || err.message?.includes('refresh token')) {
+    if (err.message?.includes('not connected') || err.message?.includes('refresh token') || err.message?.includes('insufficient')) {
       disconnectGoogleCalendar()
     }
   }

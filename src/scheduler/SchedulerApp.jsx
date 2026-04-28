@@ -1021,7 +1021,7 @@ function TodaySchedulerPage() {
                   setGoogleStatus('일정을 생성했어요.')
                 } catch (error) {
                   setGoogleStatus(`오류: ${error.message}`)
-                  if (error.message?.includes('not connected') || error.message?.includes('refresh token')) {
+                  if (error.message?.includes('not connected') || error.message?.includes('refresh token') || error.message?.includes('insufficient')) {
                     disconnectGoogleCalendar()
                   }
                 }
@@ -1055,7 +1055,7 @@ function TodaySchedulerPage() {
                   ])
                 } catch (error) {
                   setGoogleStatus(`오류: ${error.message}`)
-                  if (error.message?.includes('not connected') || error.message?.includes('refresh token')) {
+                  if (error.message?.includes('not connected') || error.message?.includes('refresh token') || error.message?.includes('insufficient')) {
                     disconnectGoogleCalendar()
                   }
                 }
@@ -1274,7 +1274,7 @@ function ReservationEditorPage({ mode, reservationId }) {
           endAt: saved.end_at,
         }).catch(err => {
           console.error('Google Calendar Sync Error:', err)
-          if (err.message?.includes('not connected') || err.message?.includes('refresh token')) {
+          if (err.message?.includes('not connected') || err.message?.includes('refresh token') || err.message?.includes('insufficient')) {
             disconnectGoogleCalendar()
           }
         })
