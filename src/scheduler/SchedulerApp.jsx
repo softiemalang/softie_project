@@ -232,6 +232,7 @@ function TodaySchedulerPage() {
     supportMessage: '',
   })
   const [pushStatus, setPushStatus] = useState('')
+  const [googleStatus, setGoogleStatus] = useState('')
   const [isPushBusy, setIsPushBusy] = useState(false)
   const [pushPreferences, setPushPreferences] = useState(DEFAULT_PUSH_PREFERENCES)
   const [isPushPreferencesBusy, setIsPushPreferencesBusy] = useState(false)
@@ -1003,11 +1004,11 @@ function TodaySchedulerPage() {
               className="scheduler-push-mini-button secondary"
               onClick={async () => {
                 if (!isGoogleConnected()) {
-                  setPushStatus('Google 계정을 먼저 연결해 주세요.')
+                  setGoogleStatus('Google 계정을 먼저 연결해 주세요.')
                   return
                 }
                 try {
-                  setPushStatus('Google Calendar 일정 생성 중...')
+                  setGoogleStatus('Google Calendar 일정 생성 중...')
                   const now = new Date()
                   const end = new Date(now.getTime() + 60 * 60 * 1000)
                   await createGoogleCalendarEvent(getOrCreatePushDeviceId(), {
@@ -1017,9 +1018,9 @@ function TodaySchedulerPage() {
                     startAt: now.toISOString(),
                     endAt: end.toISOString(),
                   })
-                  setPushStatus('일정을 생성했어요.')
+                  setGoogleStatus('일정을 생성했어요.')
                 } catch (error) {
-                  setPushStatus(`오류: ${error.message}`)
+                  setGoogleStatus(`오류: ${error.message}`)
                   if (error.message?.includes('not connected') || error.message?.includes('refresh token')) {
                     disconnectGoogleCalendar()
                   }
@@ -1033,13 +1034,13 @@ function TodaySchedulerPage() {
               className="scheduler-push-mini-button secondary"
               onClick={async () => {
                 if (!isGoogleConnected()) {
-                  setPushStatus('Google 계정을 먼저 연결해 주세요.')
+                  setGoogleStatus('Google 계정을 먼저 연결해 주세요.')
                   return
                 }
                 try {
-                  setPushStatus('Google Drive에 백업 중...')
+                  setGoogleStatus('Google Drive에 백업 중...')
                   const result = await triggerGoogleDriveBackup(getOrCreatePushDeviceId(), 'full')
-                  setPushStatus(`백업 완료: ${result.fileName}`)
+                  setGoogleStatus(`백업 완료: ${result.fileName}`)
                   
                   // Log to Google Sheets
                   appendGoogleSheetsLog(getOrCreatePushDeviceId(), 'backup_logs', [
@@ -1053,7 +1054,7 @@ function TodaySchedulerPage() {
                     ''
                   ])
                 } catch (error) {
-                  setPushStatus(`오류: ${error.message}`)
+                  setGoogleStatus(`오류: ${error.message}`)
                   if (error.message?.includes('not connected') || error.message?.includes('refresh token')) {
                     disconnectGoogleCalendar()
                   }
@@ -1063,6 +1064,11 @@ function TodaySchedulerPage() {
               수동 백업 (Drive)
             </button>
           </div>
+          {googleStatus && (
+            <p className="scheduler-push-status" style={{ marginTop: '0.5rem', color: googleStatus.includes('오류') ? '#e53e3e' : '#4b5563' }}>
+              {googleStatus}
+            </p>
+          )}
         </div>
       </section>
 

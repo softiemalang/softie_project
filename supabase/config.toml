@@ -21,3 +21,15 @@ verify_jwt = false
 [functions.google-oauth-callback]
 # Google OAuth redirect does not include a Supabase Authorization header
 verify_jwt = false
+
+[functions.google-calendar-create-event]
+# Called from the app without Supabase Auth session, using deviceId instead.
+verify_jwt = false
+
+[functions.google-drive-backup]
+# Called from the app without Supabase Auth session, using deviceId instead.
+verify_jwt = false
+
+[functions.google-sheets-append-log]
+# Called from the app without Supabase Auth session, using deviceId instead.
+verify_jwt = false
