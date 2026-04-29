@@ -71,21 +71,18 @@
 
 .fortune-profile-summary-card {
   display: flex;
-  flex-direction: column;
-  gap: 0.35rem;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--fortune-gap-md);
   padding-block: 0.9rem;
 }
 
-.fortune-profile-summary-head {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--fortune-gap-sm);
+.fortune-profile-summary-content {
   min-width: 0;
 }
 
 .fortune-profile-summary {
-  margin: 0;
+  margin: 0.35rem 0 0;
   color: #4b5563;
   font-size: 0.94rem;
   font-weight: 600;
@@ -415,12 +412,9 @@
   }
 
   .fortune-profile-summary-card {
+    flex-wrap: wrap;
     gap: var(--fortune-gap-sm);
     padding: 0.9rem;
-  }
-
-  .fortune-profile-summary-head {
-    gap: var(--fortune-gap-sm);
   }
 
   .fortune-profile-summary {
@@ -428,6 +422,7 @@
   }
 
   .fortune-profile-summary-card .soft-button {
+    margin-left: auto;
     min-height: 30px;
     padding-inline: 0.6rem;
   }
