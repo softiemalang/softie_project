@@ -52,12 +52,46 @@ export default function FortunePage() {
   const [isBackingUp, setIsBackingUp] = useState(false)
   const [isBackedUp, setIsBackedUp] = useState(false)
 
-  const todayStr = getKstDateString()
   const canSubmitProfile = isCompleteBirthDate(profile.birthDate) && isCompleteBirthTime(profile.birthTime)
 
   useEffect(() => {
     loadInitialData()
   }, [])
+
+  useEffect(() => {
+    function handleVisibility() {
+      if (document.visibilityState === 'visible' && activeProfile && dailySnapshot) {
+        const currentToday = getKstDateString()
+        if (dailySnapshot.target_date && dailySnapshot.target_date !== currentToday) {
+          setDailySnapshot(null)
+          setReport(null)
+          setIsBackedUp(false)
+          loadDailyFortune(activeProfile)
+        }
+      }
+    }
+
+    const intervalId = setInterval(() => {
+      if (activeProfile && dailySnapshot) {
+        const currentToday = getKstDateString()
+        if (dailySnapshot.target_date && dailySnapshot.target_date !== currentToday) {
+          setDailySnapshot(null)
+          setReport(null)
+          setIsBackedUp(false)
+          loadDailyFortune(activeProfile)
+        }
+      }
+    }, 60000) // Check every minute
+
+    document.addEventListener('visibilitychange', handleVisibility)
+    window.addEventListener('focus', handleVisibility)
+    
+    return () => {
+      clearInterval(intervalId)
+      document.removeEventListener('visibilitychange', handleVisibility)
+      window.removeEventListener('focus', handleVisibility)
+    }
+  }, [activeProfile, dailySnapshot])
 
   async function loadInitialData() {
     setIsLoading(true)
@@ -88,8 +122,9 @@ export default function FortunePage() {
   }
 
   async function loadDailyFortune(targetProfile) {
+    const currentTodayStr = getKstDateString()
     try {
-      let snapshot = await getDailySnapshot(targetProfile.id, todayStr)
+      let snapshot = await getDailySnapshot(targetProfile.id, currentTodayStr)
       
       const computed = snapshot?.computed_data;
       const isValidSnapshot = computed?.engine_version === '1.2' && 
@@ -112,7 +147,7 @@ export default function FortunePage() {
           natal = await createNatalSnapshot({ ...newNatal, profile_id: targetProfile.id })
         }
 
-        const newDaily = generateDailySnapshot(natal, todayStr)
+        const newDaily = generateDailySnapshot(natal, currentTodayStr)
         snapshot = await createDailySnapshot({ ...newDaily, profile_id: targetProfile.id })
       }
       
@@ -287,7 +322,9 @@ export default function FortunePage() {
               <div>
                 <p className="section-kicker">오늘의 총평</p>
               </div>
-              {report.is_cached && <span className="scheduler-count-pill">저장된 리포트</span>}
+              {report.is_cached && dailySnapshot.target_date === getKstDateString() && (
+                <span className="scheduler-count-pill">저장된 리포트</span>
+              )}
             </div>
             <div className="fortune-summary-content">
               <p className="fortune-summary-text">{reportData.summary}</p>
