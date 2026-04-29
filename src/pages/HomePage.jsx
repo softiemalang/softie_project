@@ -9,6 +9,12 @@ export default function HomePage() {
       label: 'BAND',
     },
     {
+      description: '개인 합주 일정을 월 캘린더로 관리하고 구글 캘린더와 백업을 연결해요.',
+      path: '/rehearsals',
+      icon: '📅',
+      label: 'REHEARSALS',
+    },
+    {
       description: '나의 일간과 오늘의 흐름을 분석한 맞춤형 AI 리포트를 확인하세요.',
       path: '/fortune',
       icon: '🍀',
