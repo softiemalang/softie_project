@@ -728,9 +728,11 @@ function TodaySchedulerPage() {
             {pushStatusLabel}
           </div>
         </div>
-        <p className="scheduler-setting-subtitle">
-          {isPushConnected ? '이 브라우저를 알림 대상으로 연결했어요.' : '알림을 받으려면 연결이 필요해요.'}
-        </p>
+        {!isPushConnected && (
+          <p className="scheduler-setting-subtitle">
+            알림을 받으려면 연결이 필요해요.
+          </p>
+        )}
       </button>
 
       {isWebPushModalOpen && (
@@ -1013,9 +1015,11 @@ function TodaySchedulerPage() {
             {isGoogleConnected() ? '연결됨' : '연결 필요'}
           </div>
         </div>
-        <p className="scheduler-setting-subtitle">
-          {isGoogleConnected() ? 'Calendar, Drive, Sheets가 연결되어 있어요.' : '연결하면 일정 동기화와 백업을 사용할 수 있어요.'}
-        </p>
+        {!isGoogleConnected() && (
+          <p className="scheduler-setting-subtitle">
+            연결하면 일정 동기화와 백업을 사용할 수 있어요.
+          </p>
+        )}
       </button>
 
       {isGoogleModalOpen && (
