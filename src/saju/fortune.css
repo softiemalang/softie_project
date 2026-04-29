@@ -132,9 +132,9 @@
 }
 
 .fortune-shell input:focus {
-  border-color: #1f6f5f;
-  outline: 2px solid rgba(31, 111, 95, 0.25);
-  outline-offset: 1px;
+  border-color: rgba(31, 111, 95, 0.35);
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(31, 111, 95, 0.1);
 }
 
 .fortune-shell .fortune-gender-options {

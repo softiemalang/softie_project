@@ -27,7 +27,7 @@ function profileFromSaved(savedProfile) {
   return {
     name: savedProfile.name || '',
     birthDate: savedProfile.birth_date || '',
-    birthTime: savedProfile.birth_time || '',
+    birthTime: formatBirthTimeForDisplay(savedProfile.birth_time),
     gender: savedProfile.gender || 'male'
   }
 }
@@ -47,6 +47,13 @@ function formatBirthTimeInput(value) {
   const digits = value.replace(/\D/g, '').slice(0, 4)
   if (digits.length <= 2) return digits
   return `${digits.slice(0, 2)}:${digits.slice(2)}`
+}
+
+function formatBirthTimeForDisplay(value) {
+  if (!value) return ''
+  const [hour = '', minute = ''] = String(value).split(':')
+  if (!hour || !minute) return ''
+  return `${hour.padStart(2, '0').slice(-2)}:${minute.padStart(2, '0').slice(0, 2)}`
 }
 
 function isCompleteBirthDate(value) {
@@ -237,7 +244,7 @@ export default function FortunePage() {
         activeProfile.name || '',
         activeProfile.gender || '',
         activeProfile.birth_date || '',
-        activeProfile.birth_time || '',
+        formatBirthTimeForDisplay(activeProfile.birth_time),
         reportData.summary || '',
         reportData.sections?.love || '',
         reportData.sections?.mind || '',
@@ -302,7 +309,7 @@ export default function FortunePage() {
     ? [
         activeProfile.name,
         activeProfile.birth_date,
-        activeProfile.birth_time || '시간 미입력',
+        formatBirthTimeForDisplay(activeProfile.birth_time) || '시간 미입력',
         getGenderLabel(activeProfile.gender)
       ].filter(Boolean).join(' · ')
     : ''
