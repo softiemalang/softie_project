@@ -462,11 +462,6 @@ export default function FortunePage() {
             >
               {isBackingUp ? '기록 중...' : isBackedUp ? '기록 완료' : 'Google 시트에 기록하기'}
             </button>
-            {!isBackedUp && (
-              <p className="subtle">
-                오늘의 운세를 Google 시트에 한 줄로 저장해요.
-              </p>
-            )}
           </section>
         </div>
       )}
