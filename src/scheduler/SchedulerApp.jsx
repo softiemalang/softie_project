@@ -738,9 +738,9 @@ function TodaySchedulerPage() {
       {isWebPushModalOpen && (
         <div className="scheduler-sheet-backdrop scheduler-modal-backdrop" onClick={() => setIsWebPushModalOpen(false)}>
           <div className="scheduler-modal" onClick={e => e.stopPropagation()}>
-            <div className="scheduler-section-head" style={{ marginBottom: '1rem' }}>
-              <p className="scheduler-section-label" style={{ marginBottom: 0 }}>웹 알림</p>
-              <button type="button" className="soft-button" style={{ minHeight: '30px', padding: '0.4rem 0.8rem' }} onClick={() => setIsWebPushModalOpen(false)}>닫기</button>
+            <div className="scheduler-section-head">
+              <p className="scheduler-section-label">웹 알림</p>
+              <button type="button" className="scheduler-modal-close" onClick={() => setIsWebPushModalOpen(false)}>닫기</button>
             </div>
             
             {isPushConnected ? (
@@ -823,9 +823,9 @@ function TodaySchedulerPage() {
       {isGoogleModalOpen && (
         <div className="scheduler-sheet-backdrop scheduler-modal-backdrop" onClick={() => setIsGoogleModalOpen(false)}>
           <div className="scheduler-modal" onClick={e => e.stopPropagation()}>
-            <div className="scheduler-section-head" style={{ marginBottom: '1rem' }}>
-              <p className="scheduler-section-label" style={{ marginBottom: 0 }}>Google 연동</p>
-              <button type="button" className="soft-button" style={{ minHeight: '30px', padding: '0.4rem 0.8rem' }} onClick={() => setIsGoogleModalOpen(false)}>닫기</button>
+            <div className="scheduler-section-head">
+              <p className="scheduler-section-label">Google 연동</p>
+              <button type="button" className="scheduler-modal-close" onClick={() => setIsGoogleModalOpen(false)}>닫기</button>
             </div>
             
             <div className="scheduler-modal-actions stack">

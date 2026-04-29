@@ -1,0 +1,74 @@
+.scheduler-modal-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+.scheduler-modal-actions.stack {
+  flex-direction: column;
+  align-items: stretch;
+}
+.scheduler-modal-btn {
+  background: #f3ece2;
+  color: #5b4a35;
+  padding: 0 0.85rem;
+  border-radius: 10px;
+  font-size: 0.86rem;
+  font-weight: 600;
+  min-height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1 1 auto;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: opacity 0.2s, background-color 0.2s;
+}
+.scheduler-modal-btn:active {
+  background: rgba(229, 219, 207, 0.8);
+}
+.scheduler-modal-btn.secondary {
+  background: rgba(255, 255, 255, 0.8);
+  color: #6a5a48;
+  border-color: rgba(229, 219, 207, 0.9);
+}
+.scheduler-modal-btn.secondary:active {
+  background: rgba(240, 230, 216, 0.5);
+}
+.scheduler-modal-btn.active {
+  background: #1f6f5f;
+  color: #fff;
+}
+.scheduler-modal-btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.scheduler-modal .scheduler-section-head {
+  margin-bottom: 1rem;
+  align-items: center;
+}
+
+.scheduler-modal .scheduler-section-label {
+  margin-bottom: 0;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #4b3e2e;
+}
+
+.scheduler-modal-close {
+  background: transparent;
+  color: #8c7e6c;
+  padding: 0.3rem 0.6rem;
+  border-radius: 8px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  min-height: 30px;
+  cursor: pointer;
+  transition: background-color 0.15s, color 0.15s;
+}
+
+.scheduler-modal-close:active {
+  background: rgba(229, 219, 207, 0.4);
+  color: #5b4a35;
+}
