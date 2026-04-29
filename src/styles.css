@@ -1167,6 +1167,22 @@ textarea {
   padding-left: calc(var(--scheduler-content-inset) + 0.12rem);
 }
 
+.scheduler-back-button {
+  background: transparent;
+  color: var(--muted);
+  font-size: 0.84rem;
+  font-weight: 600;
+  padding: 0.4rem 0.75rem;
+  border-radius: 999px;
+  border: 1px solid rgba(231, 221, 208, 0.6);
+  transition: background-color 0.2s ease;
+  min-height: 34px;
+}
+
+.scheduler-back-button:active {
+  background: rgba(239, 230, 216, 0.4);
+}
+
 .scheduler-form {
   --scheduler-form-block-gap: 1.22rem;
   --scheduler-form-label-gap: 0.34rem;
@@ -1174,6 +1190,35 @@ textarea {
   display: grid;
   gap: var(--scheduler-form-block-gap);
   min-width: 0;
+}
+
+.scheduler-form input::placeholder,
+.scheduler-form textarea::placeholder {
+  color: #a39587;
+  font-weight: 450;
+}
+
+.scheduler-form input:focus,
+.scheduler-form textarea:focus,
+.scheduler-form select:focus,
+.scheduler-native-picker-shell:focus-within .scheduler-native-picker-display {
+  outline: 2px solid rgba(31, 111, 95, 0.25);
+  outline-offset: 1px;
+  border-color: var(--brand);
+}
+
+.scheduler-form .soft-button,
+.scheduler-room-option {
+  background: rgba(239, 230, 216, 0.4);
+  color: #5b4a35;
+  border: 1px solid transparent;
+  transition: all 0.15s ease;
+  font-weight: 550;
+}
+
+.scheduler-form .soft-button:active,
+.scheduler-room-option:active {
+  background: rgba(231, 221, 208, 0.8);
 }
 
 .scheduler-form label,
@@ -1314,8 +1359,7 @@ textarea {
 }
 
 .scheduler-native-picker-shell:focus-within .scheduler-native-picker-display {
-  outline: 2px solid rgba(59, 130, 246, 0.45);
-  outline-offset: 2px;
+  /* handled by common focus */
 }
 
 .scheduler-native-picker-input {

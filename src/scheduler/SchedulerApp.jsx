@@ -1312,7 +1312,7 @@ function ReservationEditorPage({ mode, reservationId }) {
           <div>
             <p className="scheduler-section-label">{mode === 'edit' ? '일정 수정' : '일정 추가'}</p>
           </div>
-          <button type="button" className="soft-button scheduler-summary-button" onClick={() => navigate('/scheduler')}>
+          <button type="button" className="scheduler-back-button" onClick={() => navigate('/scheduler')}>
             ← 돌아가기
           </button>
         </div>
