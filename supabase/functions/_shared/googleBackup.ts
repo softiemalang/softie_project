@@ -80,6 +80,25 @@ export async function uploadFile(accessToken: string, folderId: string, fileName
   }
 }
 
+export async function updateFile(accessToken: string, fileId: string, content: string) {
+  const uploadRes = await fetch(`https://www.googleapis.com/upload/drive/v3/files/${fileId}?uploadType=media`, {
+    method: 'PATCH',
+    headers: {
+      Authorization: `Bearer ${accessToken}`,
+      'Content-Type': 'application/json'
+    },
+    body: content
+  })
+  
+  if (!uploadRes.ok) {
+    const errorText = await uploadRes.text()
+    console.error('[updateFile] Google Drive API Raw Error:', errorText)
+    throw new Error(`Google Drive API HTTP error: ${uploadRes.status} ${uploadRes.statusText}`)
+  }
+
+  return fileId
+}
+
 export async function gatherBackupData(supabase: any, backupMode: 'scheduled' | 'manual', backupType: string = 'full') {
   let exportData: Record<string, any> = {}
   let tableCounts: Record<string, number> = {}

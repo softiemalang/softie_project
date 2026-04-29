@@ -34,6 +34,18 @@ serve(async (req) => {
           headers: { ...corsHeaders, 'Content-Type': 'application/json' },
         })
       }
+    } else if (eventData.rehearsalId) {
+      const { data: rehData, error: rehError } = await supabase
+        .from('rehearsal_events')
+        .select('google_calendar_event_id')
+        .eq('id', eventData.rehearsalId)
+        .single()
+
+      if (!rehError && rehData?.google_calendar_event_id) {
+        return new Response(JSON.stringify({ success: true, event: { id: rehData.google_calendar_event_id }, message: 'Already exists' }), {
+          headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+        })
+      }
     }
 
     const accessToken = await getOrRefreshToken(supabase, userId)
@@ -71,6 +83,15 @@ serve(async (req) => {
         .from('reservations')
         .update({ google_event_id: result.id })
         .eq('id', eventData.reservationId)
+    } else if (eventData.rehearsalId) {
+      await supabase
+        .from('rehearsal_events')
+        .update({ 
+          google_calendar_event_id: result.id,
+          google_calendar_sync_status: 'synced',
+          google_calendar_synced_at: new Date().toISOString()
+        })
+        .eq('id', eventData.rehearsalId)
     }
 
     return new Response(JSON.stringify({ success: true, event: result }), {

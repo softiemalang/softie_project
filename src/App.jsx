@@ -3,6 +3,7 @@ import { SchedulerApp } from './scheduler/SchedulerApp'
 import FortunePage from './saju/FortunePage'
 import HomePage from './pages/HomePage'
 import BandPage from './pages/BandPage'
+import RehearsalCalendarPage from './pages/RehearsalCalendarPage'
 
 function NotFoundPage() {
   return (
@@ -29,6 +30,10 @@ export default function App() {
 
   if (pathname.startsWith('/band')) {
     return <BandPage />
+  }
+
+  if (pathname.startsWith('/rehearsals')) {
+    return <RehearsalCalendarPage />
   }
 
   if (pathname.startsWith('/scheduler')) {

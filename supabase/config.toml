@@ -37,3 +37,7 @@ verify_jwt = false
 [functions.google-drive-scheduled-backup]
 # Automated backup endpoint protected by BACKUP_CRON_SECRET instead of Supabase Auth
 verify_jwt = false
+
+[functions.google-drive-rehearsal-backup]
+# Called from the app without Supabase Auth session, using deviceId instead.
+verify_jwt = false

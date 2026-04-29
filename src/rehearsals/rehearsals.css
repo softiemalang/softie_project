@@ -1,0 +1,299 @@
+.rehearsal-shell {
+  width: min(100%, 860px);
+  padding:
+    max(1rem, calc(env(safe-area-inset-top) + 0.75rem))
+    0.9rem
+    max(5rem, calc(env(safe-area-inset-bottom) + 2rem));
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  color: #313b46;
+}
+
+.rehearsal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.rehearsal-title {
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: #1f6f5f;
+}
+
+.rehearsal-actions {
+  display: flex;
+  gap: 0.4rem;
+}
+
+.rehearsal-month-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  background: rgba(255, 252, 248, 0.88);
+  border-radius: var(--radius-md, 14px);
+  padding: 0.5rem 1rem;
+  border: 1px solid #e7ddd0;
+}
+
+.rehearsal-month-nav button {
+  background: transparent;
+  border: none;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #5c4a2b;
+  cursor: pointer;
+  padding: 0.4rem;
+}
+
+.rehearsal-month-label {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #313b46;
+}
+
+.rehearsal-calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 4px;
+  background: rgba(255, 252, 248, 0.6);
+  border-radius: var(--radius-lg, 18px);
+  padding: 8px;
+  border: 1px solid #e7ddd0;
+}
+
+.rehearsal-weekday {
+  text-align: center;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #8c7e6c;
+  padding-bottom: 0.5rem;
+}
+
+.rehearsal-day {
+  background: #ffffff;
+  border-radius: 8px;
+  min-height: 60px;
+  padding: 4px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: all 0.15s ease;
+}
+
+.rehearsal-day.empty {
+  background: transparent;
+  cursor: default;
+}
+
+.rehearsal-day:active:not(.empty) {
+  background: #f5efe7;
+  border-color: #e7ddd0;
+}
+
+.rehearsal-day.today {
+  border-color: #1f6f5f;
+  background: #f0f7f5;
+}
+
+.rehearsal-date-num {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #4b5563;
+  margin-bottom: 2px;
+}
+
+.rehearsal-day.today .rehearsal-date-num {
+  color: #1f6f5f;
+  font-weight: 700;
+}
+
+.rehearsal-pill {
+  width: 100%;
+  box-sizing: border-box;
+  font-size: 0.65rem;
+  font-weight: 600;
+  padding: 2px 4px;
+  border-radius: 4px;
+  margin-bottom: 2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: center;
+}
+
+.rehearsal-more-pill {
+  font-size: 0.65rem;
+  color: #8c7e6c;
+  font-weight: 600;
+}
+
+/* Bottom Sheet */
+.rehearsal-bottom-sheet {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 80vh;
+  background: #fbf9f6;
+  border-radius: 24px 24px 0 0;
+  box-shadow: 0 -10px 40px rgba(0,0,0,0.1);
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  transform: translateY(100%);
+  animation: slideUp 0.3s forwards ease-out;
+}
+
+@keyframes slideUp {
+  to { transform: translateY(0); }
+}
+
+.rehearsal-sheet-header {
+  padding: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #e7ddd0;
+}
+
+.rehearsal-sheet-title {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #1f6f5f;
+}
+
+.rehearsal-sheet-content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 1rem;
+}
+
+.rehearsal-card {
+  background: #fff;
+  border-radius: 14px;
+  padding: 1rem;
+  margin-bottom: 0.8rem;
+  border: 1px solid #e7ddd0;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+}
+
+.rehearsal-card-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 0.5rem;
+}
+
+.rehearsal-card-title {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #313b46;
+}
+
+.rehearsal-card-team {
+  font-size: 0.75rem;
+  color: #8b5e1a;
+  font-weight: 700;
+  margin-bottom: 0.2rem;
+}
+
+.rehearsal-card-time {
+  font-size: 0.9rem;
+  color: #4b5563;
+  margin: 0 0 0.5rem 0;
+}
+
+.rehearsal-card-details {
+  background: #f9f7f4;
+  border-radius: 8px;
+  padding: 0.6rem;
+  font-size: 0.8rem;
+  color: #5c4a2b;
+}
+
+.rehearsal-card-details p {
+  margin: 0 0 0.3rem 0;
+}
+.rehearsal-card-details p:last-child {
+  margin: 0;
+}
+
+.rehearsal-card-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 0.8rem;
+}
+
+.rehearsal-delete-btn {
+  background: transparent;
+  color: #dc2626;
+  border: none;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0.4rem 0.8rem;
+}
+
+/* Form */
+.rehearsal-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.rehearsal-form label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #4b5563;
+  margin-bottom: 0.3rem;
+  display: block;
+}
+
+.rehearsal-form input {
+  width: 100%;
+  padding: 0.8rem;
+  border: 1px solid #e7ddd0;
+  border-radius: 10px;
+  font-size: 1rem;
+  background: #fff;
+  box-sizing: border-box;
+}
+
+.rehearsal-form-row {
+  display: flex;
+  gap: 0.8rem;
+}
+
+.rehearsal-form-row > div {
+  flex: 1;
+}
+
+.rehearsal-submit-btn {
+  background: #1f6f5f;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  padding: 1rem;
+  font-size: 1rem;
+  font-weight: 700;
+  margin-top: 1rem;
+  cursor: pointer;
+}
+
+.rehearsal-submit-btn:disabled {
+  opacity: 0.5;
+}
+
+/* Utils */
+.soft-button.small {
+  padding: 0.3rem 0.6rem;
+  font-size: 0.75rem;
+  min-height: 28px;
+}

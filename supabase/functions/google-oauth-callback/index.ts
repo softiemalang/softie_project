@@ -25,7 +25,7 @@ serve(async (req) => {
       userId = parts[0]
       const requestedPath = parts[1]
       
-      const whitelist = ['/scheduler', '/saju', '/']
+      const whitelist = ['/scheduler', '/saju', '/rehearsals', '/']
       if (whitelist.includes(requestedPath)) {
         targetPath = requestedPath
       }
