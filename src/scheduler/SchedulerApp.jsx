@@ -758,12 +758,12 @@ function TodaySchedulerPage() {
             {isPushConnected ? (
               <div className="scheduler-modal-actions" aria-label="웹 알림 설정">
                 <div
-                  className={`scheduler-modal-btn scheduler-push-global-toggle ${normalizedFilters.workTimeEnabled ? 'active' : 'secondary'}`}
+                  className={`scheduler-status-pill scheduler-push-global-toggle ${normalizedFilters.workTimeEnabled ? 'active' : ''}`}
                   aria-label={`알림 상태: ${normalizedFilters.workTimeEnabled ? 'On' : 'Off'}`}
                   role="status"
                   aria-live="polite"
                 >
-                  {normalizedFilters.workTimeEnabled ? 'On' : 'Off'}
+                  {normalizedFilters.workTimeEnabled ? '알림 On' : '알림 Off'}
                 </div>
                 <button
                   type="button"
@@ -771,7 +771,7 @@ function TodaySchedulerPage() {
                   onClick={handleSendTestPush}
                   disabled={isPushBusy || !pushState.subscribed}
                 >
-                  테스트 알림
+                  테스트 알림 보내기
                 </button>
                 <button
                   type="button"
@@ -779,7 +779,7 @@ function TodaySchedulerPage() {
                   onClick={handleEnablePush}
                   disabled={isPushBusy}
                 >
-                  다시 연결
+                  브라우저 다시 연결
                 </button>
               </div>
             ) : (
@@ -841,12 +841,15 @@ function TodaySchedulerPage() {
             </div>
             
             <div className="scheduler-modal-actions stack">
+              <p className="subtle" style={{ marginTop: 0, marginBottom: '0.5rem', fontSize: '0.86rem' }}>
+                Google 캘린더와 연동하면 일정이 자동으로 동기화되고, 안전한 데이터 백업이 가능합니다.
+              </p>
               <button
                 type="button"
                 className="scheduler-modal-btn"
                 onClick={() => connectGoogleCalendar(getOrCreatePushDeviceId())}
               >
-                {isGoogleConnected() ? 'Google 계정 다시 연결' : 'Google 계정 연결'}
+                {isGoogleConnected() ? '계정 다시 연결하기' : 'Google 계정 연결하기'}
               </button>
               <button
                 type="button"
@@ -1712,7 +1715,7 @@ function WorkLogDetailView({ viewingWeekStart, logs, onClose, onNavigate, onCopy
                 닫기
               </button>
               <button type="button" className="primary" onClick={() => onCopy(viewingWeekStart)}>
-                {copyFeedback || '텍스트 복사'}
+                {copyFeedback || '주간 기록 복사'}
               </button>
             </div>
           </div>

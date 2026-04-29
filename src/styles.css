@@ -1301,13 +1301,15 @@ textarea {
   justify-content: center;
   min-height: 36px;
   padding: 0.32rem 0.6rem;
-  background: #efe6d8;
-  color: #5b4a35;
+  background: rgba(239, 230, 216, 0.4);
+  color: #6b6258;
   font-size: 0.78rem;
+  border: 1px solid transparent;
+  transition: all 0.15s ease;
 }
 
 .scheduler-chip.active {
-  background: #1f6f5f;
+  background: var(--brand);
   color: #fff;
 }
 
@@ -1851,6 +1853,72 @@ textarea {
 .scheduler-modal-backdrop {
   z-index: 50;
   align-items: center;
+}
+
+.scheduler-modal .scheduler-section-head,
+.scheduler-sheet .scheduler-section-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.25rem;
+  padding-inline: 0;
+}
+
+.scheduler-modal .scheduler-section-label,
+.scheduler-sheet .scheduler-section-label {
+  font-size: 0.94rem;
+  color: var(--text);
+  font-weight: 700;
+}
+
+.scheduler-modal-close {
+  background: transparent;
+  color: var(--muted);
+  font-size: 0.82rem;
+  font-weight: 500;
+  padding: 0.4rem 0.6rem;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.scheduler-status-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 32px;
+  padding-inline: 0.85rem;
+  border-radius: 999px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  background: #f4ede3;
+  color: #5b4a35;
+  border: 1px solid rgba(231, 221, 208, 0.5);
+}
+
+.scheduler-status-pill.active {
+  background: var(--brand-soft);
+  color: var(--brand);
+  border-color: rgba(31, 111, 95, 0.15);
+}
+
+.scheduler-modal-btn {
+  min-height: 42px;
+  border-radius: 14px;
+  font-size: 0.94rem;
+  font-weight: 600;
+  background: var(--brand);
+  color: #fff;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-inline: 1rem;
+  cursor: pointer;
+}
+
+.scheduler-modal-btn.secondary {
+  background: #f5f0e9;
+  color: #5b4a35;
 }
 
 .scheduler-modal {
