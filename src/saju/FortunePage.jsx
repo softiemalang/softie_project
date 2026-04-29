@@ -65,6 +65,11 @@ function isCompleteBirthTime(value) {
   return !value || /^\d{2}:\d{2}$/.test(value)
 }
 
+function formatReportDateForDisplay(value) {
+  if (!value) return ''
+  return String(value).replace(/-/g, '.')
+}
+
 export default function FortunePage() {
   const [profile, setProfile] = useState(EMPTY_PROFILE)
   const [profileDraft, setProfileDraft] = useState(EMPTY_PROFILE)
@@ -490,6 +495,11 @@ export default function FortunePage() {
             >
               {isBackingUp ? '기록 중...' : isBackedUp ? '기록 완료' : 'Google 시트에 기록하기'}
             </button>
+            {dailySnapshot?.target_date && (
+              <p className="fortune-backup-date-label">
+                {formatReportDateForDisplay(dailySnapshot.target_date)} 운세 리포트
+              </p>
+            )}
           </section>
         </div>
       )}
