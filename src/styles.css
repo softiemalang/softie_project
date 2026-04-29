@@ -1191,7 +1191,7 @@ textarea {
 }
 
 .scheduler-form {
-  --scheduler-form-block-gap: 0.95rem;
+  --scheduler-form-block-gap: 0.85rem;
   --scheduler-form-label-gap: 0.24rem;
   --scheduler-form-supporting-gap: 0.24rem;
   display: grid;
@@ -1619,7 +1619,7 @@ textarea {
 }
 
 .scheduler-filter-form {
-  --scheduler-form-block-gap: 0.82rem;
+  --scheduler-form-block-gap: 0.75rem;
   --scheduler-form-label-gap: 0.28rem;
 }
 

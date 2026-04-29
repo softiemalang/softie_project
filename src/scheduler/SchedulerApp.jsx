@@ -1300,8 +1300,8 @@ function ReservationEditorPage({ mode, reservationId }) {
   return (
     <div className="scheduler-shell">
 
-      <section className="scheduler-panel">
-        <div className="scheduler-section-head" style={{ marginBottom: '0.75rem' }}>
+      <section className="scheduler-panel" style={{ paddingTop: '1rem' }}>
+        <div className="scheduler-section-head" style={{ marginBottom: '0.4rem' }}>
           <div />
           <button type="button" className="scheduler-back-button" onClick={() => navigate('/scheduler')}>
             ← 돌아가기
