@@ -157,11 +157,11 @@ export default function RehearsalCalendarPage() {
       </header>
 
       <div className="rehearsal-month-nav">
-        <button onClick={handlePrevMonth}>&lt;</button>
+        <button onClick={handlePrevMonth}>‹</button>
         <span className="rehearsal-month-label" onClick={handleToday} style={{ cursor: 'pointer' }}>
           {currentDate.getFullYear()}년 {currentDate.getMonth() + 1}월
         </span>
-        <button onClick={handleNextMonth}>&gt;</button>
+        <button onClick={handleNextMonth}>›</button>
       </div>
 
       <div className="rehearsal-calendar-grid">
@@ -174,11 +174,12 @@ export default function RehearsalCalendarPage() {
           const dateStr = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`
           const dayEvents = eventsByDate[dateStr] || []
           const isToday = new Date().toDateString() === date.toDateString()
+          const isSelected = selectedDate?.toDateString() === date.toDateString()
 
           return (
             <div 
               key={dateStr} 
-              className={`rehearsal-day ${isToday ? 'today' : ''}`}
+              className={`rehearsal-day ${isToday ? 'today' : ''} ${isSelected ? 'selected' : ''}`}
               onClick={() => setSelectedDate(date)}
             >
               <div className="rehearsal-date-num">{date.getDate()}</div>
@@ -201,8 +202,7 @@ export default function RehearsalCalendarPage() {
 
       <div style={{ marginTop: '1.5rem', textAlign: 'center' }}>
         <button 
-          className="soft-button" 
-          style={{ width: '100%', minHeight: '44px', fontSize: '1rem', fontWeight: 'bold' }}
+          className="soft-button rehearsal-add-button" 
           onClick={() => setIsAddModalOpen(true)}
         >
           + 새 일정 추가
