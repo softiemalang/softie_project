@@ -1336,6 +1336,7 @@ function ReservationEditorPage({ mode, reservationId }) {
                         className={`scheduler-chip ${isActive ? 'active' : ''}`}
                         onClick={() => updateField('branch', branch)}
                         aria-pressed={isActive}
+                        data-text={branch}
                       >
                         {branch}
                       </button>
@@ -1360,6 +1361,7 @@ function ReservationEditorPage({ mode, reservationId }) {
                             className={`scheduler-room-option ${isActive ? 'active' : ''}`}
                             onClick={() => updateField('room', room)}
                             aria-pressed={isActive}
+                            data-text={room}
                           >
                             {room}
                           </button>
@@ -1414,6 +1416,7 @@ function ReservationEditorPage({ mode, reservationId }) {
                         className={`scheduler-chip ${isActive ? 'active' : ''}`} 
                         onClick={() => updateField('durationHours', hours)}
                         aria-pressed={isActive}
+                        data-text={`${hours}h`}
                       >
                         {hours}h
                       </button>
@@ -1438,6 +1441,7 @@ function ReservationEditorPage({ mode, reservationId }) {
                       className={`scheduler-chip ${isActive ? 'active' : ''}`}
                       onClick={() => updateField('warningOffsetMinutes', value)}
                       aria-pressed={isActive}
+                      data-text={label}
                     >
                       {label}
                     </button>
@@ -1464,6 +1468,7 @@ function ReservationEditorPage({ mode, reservationId }) {
                             : [...formValues.tags, tag.value],
                         )
                       }
+                      data-text={tag.shortLabel}
                     >
                       {tag.shortLabel}
                     </button>
