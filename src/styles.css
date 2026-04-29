@@ -1491,11 +1491,6 @@ textarea {
   white-space: nowrap;
 }
 
-.scheduler-room-option.active {
-  background: #1f6f5f;
-  color: #fff;
-}
-
 .scheduler-room-card.in-use {
   border-left: 6px solid #1f6f5f;
 }

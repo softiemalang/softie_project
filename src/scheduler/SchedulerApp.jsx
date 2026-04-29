@@ -1305,8 +1305,7 @@ function ReservationEditorPage({ mode, reservationId }) {
     <div className="scheduler-shell">
 
       <section className="scheduler-panel">
-        <div className="scheduler-section-head">
-          <p className="scheduler-section-label">{mode === 'edit' ? '일정 수정' : '일정 추가'}</p>
+        <div className="scheduler-section-head" style={{ justifyContent: 'flex-end', marginBottom: '0.75rem' }}>
           <button type="button" className="scheduler-back-button" onClick={() => navigate('/scheduler')}>
             ← 돌아가기
           </button>
