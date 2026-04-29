@@ -572,11 +572,11 @@ export default function FortunePage() {
                 <div className="stack-form">
                   {historyList.map(item => (
                     <button key={item.id} type="button" className="fortune-history-item card" onClick={() => handleOpenHistoryDetail(item.id)}>
-                      <div style={{ marginBottom: '0.2rem' }}>
-                        <span className="scheduler-count-pill" style={{ marginRight: '0.5rem' }}>
+                      <div className="fortune-history-item-header">
+                        <span className="scheduler-count-pill">
                           {item.report_date}
                         </span>
-                        <strong style={{ fontSize: '0.94rem', color: '#1f6f5f' }}>
+                        <strong className="fortune-history-item-title">
                           {item.headline}
                         </strong>
                       </div>

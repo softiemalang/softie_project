@@ -79,6 +79,7 @@
 
 .fortune-profile-summary-content {
   min-width: 0;
+  flex: 1 1 auto;
 }
 
 .fortune-profile-summary {
@@ -102,13 +103,13 @@
 .fortune-shell .stack-form {
   display: flex;
   flex-direction: column;
-  gap: var(--fortune-gap-sm);
+  gap: var(--fortune-gap-md);
 }
 
 .fortune-shell .field-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: var(--fortune-gap-sm);
+  gap: var(--fortune-gap-md);
 }
 
 .fortune-shell input {
@@ -142,7 +143,7 @@
 .fortune-shell .fortune-gender-options {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: var(--fortune-gap-sm);
+  gap: var(--fortune-gap-md);
 }
 
 .fortune-shell .fortune-gender-button {
@@ -231,9 +232,6 @@
 /* Result Styles */
 .fortune-result-container {
   margin-top: 1.5rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
 }
 
 .fortune-shell .card-header {
@@ -414,7 +412,7 @@
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
-  gap: var(--fortune-gap-sm);
+  gap: var(--fortune-gap-md);
   margin-bottom: 0.85rem;
 }
 
@@ -434,7 +432,7 @@
   align-items: center;
   justify-content: flex-end;
   flex: 0 0 auto;
-  gap: 0.35rem;
+  gap: 0.5rem;
 }
 
 .fortune-history-detail-scroll {
@@ -446,7 +444,7 @@
 
 .fortune-history-detail-card {
   padding: 1rem;
-  margin-bottom: var(--fortune-gap-sm);
+  margin-bottom: var(--fortune-gap-md);
   border-radius: var(--fortune-radius-md);
   background: rgba(255, 252, 248, 0.72);
   border: 1px solid #e7ddd0;
@@ -461,13 +459,29 @@
   color: #7b7268;
   font-size: 0.68rem;
   font-weight: 700;
-  padding: 2px 8px;
-  border-radius: 6px;
+  padding: 0.25rem 0.65rem;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+
+.fortune-history-item-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.3rem;
+}
+
+.fortune-history-item-title {
+  font-size: 0.94rem;
+  color: #1f6f5f;
 }
 
 @media (max-width: 430px) {
   .fortune-shell .hero {
-    gap: var(--fortune-gap-sm);
+    gap: var(--fortune-gap-md);
   }
 
   .fortune-header-actions {
@@ -484,7 +498,7 @@
 
   .fortune-profile-summary-card {
     flex-wrap: wrap;
-    gap: var(--fortune-gap-sm);
+    gap: var(--fortune-gap-md);
     padding: 0.9rem;
   }
 
