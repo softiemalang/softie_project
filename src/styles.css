@@ -1353,24 +1353,24 @@ textarea {
   border-radius: var(--scheduler-radius-md);
   background: rgba(255, 255, 255, 0.88);
   text-align: left;
-  font-size: 0.94rem;
+  font-size: 16px;
   line-height: 1;
 }
 
 .scheduler-native-picker-display.is-empty {
   color: #b5aaa0;
-  font-weight: 450;
+  font-weight: 400;
 }
 
 .scheduler-native-picker-display:not(.is-empty) {
-  color: var(--text);
-  font-weight: 500;
+  color: #4b5563;
+  font-weight: 450;
 }
 
 .scheduler-duration-field .scheduler-compact-input {
   font-size: 16px;
-  font-weight: 500;
-  color: #5b6258;
+  font-weight: 450;
+  color: #4b5563;
   padding-block: 0.5rem;
   min-height: 38px;
 }
