@@ -750,21 +750,23 @@ function TodaySchedulerPage() {
       {isWebPushModalOpen && (
         <div className="scheduler-sheet-backdrop scheduler-modal-backdrop" onClick={() => setIsWebPushModalOpen(false)}>
           <div className="scheduler-modal" onClick={e => e.stopPropagation()}>
-            <div className="scheduler-section-head">
-              <p className="scheduler-section-label">웹 알림</p>
+            <div className="scheduler-section-head" style={{ marginBottom: '0.65rem' }}>
+              <div>
+                <p className="scheduler-section-label">
+                  {normalizedFilters.workTimeEnabled ? '알림 On' : '알림 Off'}
+                </p>
+              </div>
               <button type="button" className="scheduler-modal-close" onClick={() => setIsWebPushModalOpen(false)}>닫기</button>
             </div>
             
+            <p className="subtle" style={{ marginTop: 0, marginBottom: '1.25rem', fontSize: '0.86rem' }}>
+              {normalizedFilters.workTimeEnabled
+                ? '현재 브라우저 알림이 켜져 있어요.'
+                : '현재 브라우저 알림이 꺼져 있어요. 알림을 받으려면 다시 연결해 주세요.'}
+            </p>
+
             {isPushConnected ? (
-              <div className="scheduler-modal-actions" aria-label="웹 알림 설정">
-                <div
-                  className={`scheduler-status-pill scheduler-push-global-toggle ${normalizedFilters.workTimeEnabled ? 'active' : ''}`}
-                  aria-label={`알림 상태: ${normalizedFilters.workTimeEnabled ? 'On' : 'Off'}`}
-                  role="status"
-                  aria-live="polite"
-                >
-                  {normalizedFilters.workTimeEnabled ? '알림 On' : '알림 Off'}
-                </div>
+              <div className="scheduler-modal-actions stack" aria-label="웹 알림 설정">
                 <button
                   type="button"
                   className="scheduler-modal-btn secondary"
@@ -779,11 +781,11 @@ function TodaySchedulerPage() {
                   onClick={handleEnablePush}
                   disabled={isPushBusy}
                 >
-                  브라우저 다시 연결
+                  {normalizedFilters.workTimeEnabled ? '브라우저 다시 연결' : '알림 켜기 (다시 연결)'}
                 </button>
               </div>
             ) : (
-              <div className="scheduler-modal-actions">
+              <div className="scheduler-modal-actions stack">
                 <button
                   type="button"
                   className="scheduler-modal-btn"
