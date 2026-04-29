@@ -499,9 +499,9 @@ export default function FortunePage() {
           <div className="scheduler-modal" onClick={e => e.stopPropagation()}>
             {selectedHistoryReport ? (
               <div className="fortune-history-detail">
-                <div className="fortune-history-detail-head">
+                <div className="fortune-modal-head">
                   <div>
-                    <p className="scheduler-section-label">과거 리포트</p>
+                    <p className="section-kicker">과거 리포트</p>
                     <p className="fortune-history-detail-date">{selectedHistoryReport.report_date}</p>
                   </div>
                   <div className="fortune-modal-actions">
@@ -557,8 +557,8 @@ export default function FortunePage() {
               </div>
             ) : (
               <>
-                <div className="scheduler-section-head">
-                  <p className="scheduler-section-label">운세 히스토리</p>
+                <div className="fortune-modal-head">
+                  <p className="section-kicker">운세 히스토리</p>
                   <button type="button" className="scheduler-modal-close" onClick={handleCloseHistoryModal}>닫기</button>
                 </div>
 
@@ -596,8 +596,8 @@ export default function FortunePage() {
       {isProfileModalOpen && (
         <div className="scheduler-sheet-backdrop scheduler-modal-backdrop fortune-profile-backdrop" onClick={handleCloseProfileModal}>
           <div className="scheduler-modal fortune-profile-modal" onClick={e => e.stopPropagation()}>
-            <div className="scheduler-section-head">
-              <p className="scheduler-section-label">사용자 정보 수정</p>
+            <div className="fortune-modal-head">
+              <p className="section-kicker">사용자 정보 수정</p>
               <div className="fortune-modal-actions">
                 <button type="button" className="scheduler-modal-close" onClick={resetProfileForm}>초기화</button>
                 <button type="button" className="scheduler-modal-close" onClick={handleCloseProfileModal}>닫기</button>

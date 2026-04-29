@@ -359,10 +359,6 @@
   overflow: hidden;
 }
 
-.fortune-shell .scheduler-modal .scheduler-section-head {
-  margin-bottom: 0.85rem;
-}
-
 .fortune-shell .fortune-profile-modal {
   overflow-y: auto;
 }
@@ -429,12 +425,18 @@
   font-weight: 700;
 }
 
-.fortune-history-detail-actions,
-.fortune-modal-actions {
+.fortune-modal-head {
   display: flex;
   align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.85rem;
+}
+
+.fortune-modal-actions {
+  display: inline-flex;
+  flex-direction: row !important;
+  align-items: center;
   justify-content: flex-end;
-  flex: 0 0 auto;
   gap: 0.4rem;
   white-space: nowrap;
 }
