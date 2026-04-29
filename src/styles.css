@@ -53,6 +53,8 @@ button {
   padding: 0.78rem 1rem;
   font-weight: 550;
   transition: opacity 0.2s ease;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 button:disabled {
@@ -1229,9 +1231,11 @@ textarea {
   background: rgba(239, 230, 216, 0.4);
   color: var(--text-muted);
   border: 1px solid transparent;
-  transition: all 0.15s ease;
-  font-weight: 500;
-  font-size: 0.92rem;
+  transition: background-color 0.15s ease, color 0.15s ease;
+  font-weight: 500 !important;
+  font-size: 0.92rem !important;
+  transform: none !important;
+  letter-spacing: normal !important;
 }
 
 .scheduler-room-option:active,
@@ -1241,10 +1245,11 @@ textarea {
 
 .scheduler-room-option.active,
 .scheduler-chip.active {
-  background: var(--brand-soft);
-  color: var(--brand);
-  font-weight: 500;
-  font-size: 0.92rem;
+  background: var(--brand-soft) !important;
+  color: var(--brand) !important;
+  font-weight: 500 !important;
+  font-size: 0.92rem !important;
+  transform: none !important;
 }
 
 .scheduler-form label,
