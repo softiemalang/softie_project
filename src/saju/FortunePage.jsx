@@ -212,6 +212,7 @@ export default function FortunePage() {
               className={`fortune-gender-button ${profile.gender === 'male' ? 'active' : ''}`}
               aria-pressed={profile.gender === 'male'}
               onClick={() => setProfile({...profile, gender: 'male'})}
+              data-text="남성"
             >
               남성
             </button>
@@ -220,6 +221,7 @@ export default function FortunePage() {
               className={`fortune-gender-button ${profile.gender === 'female' ? 'active' : ''}`}
               aria-pressed={profile.gender === 'female'}
               onClick={() => setProfile({...profile, gender: 'female'})}
+              data-text="여성"
             >
               여성
             </button>
