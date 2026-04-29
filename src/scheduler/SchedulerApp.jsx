@@ -1023,11 +1023,8 @@ function TodaySchedulerPage() {
             </div>
 
             <div className="scheduler-modal-actions stack" style={{ marginTop: '1.5rem' }}>
-              <button type="button" className="scheduler-modal-btn" onClick={applyFilterChanges}>
+              <button type="button" className="scheduler-modal-btn primary" onClick={applyFilterChanges}>
                 적용
-              </button>
-              <button type="button" className="scheduler-modal-btn secondary" onClick={() => setIsFilterSheetOpen(false)}>
-                닫기
               </button>
             </div>
           </div>
@@ -1629,6 +1626,7 @@ function WorkLogSummaryCard({ currentWeekStart, logs, onOpen, onCopy, copyFeedba
             type="button"
             className="soft-button scheduler-summary-button"
             onClick={() => onCopy(currentWeekStart)}
+            disabled={weekLogs.length === 0}
           >
             {copyFeedback || '복사'}
           </button>
@@ -1708,11 +1706,13 @@ function WorkLogDetailView({ viewingWeekStart, logs, onClose, onNavigate, onCopy
         </div>
 
         <div className="scheduler-modal-actions stack" style={{ marginTop: '1.2rem' }}>
-          <button type="button" className="scheduler-modal-btn" onClick={() => onCopy(viewingWeekStart)}>
+          <button
+            type="button"
+            className="scheduler-modal-btn"
+            onClick={() => onCopy(viewingWeekStart)}
+            disabled={sortedLogs.length === 0}
+          >
             {copyFeedback || '주간 기록 복사'}
-          </button>
-          <button type="button" className="scheduler-modal-btn secondary" onClick={onClose}>
-            닫기
           </button>
         </div>
       </div>

@@ -1235,8 +1235,8 @@ textarea {
 
 .scheduler-room-option.active,
 .scheduler-chip.active {
-  background: var(--brand);
-  color: #fff;
+  background: var(--brand-soft);
+  color: var(--brand);
   font-weight: 600;
 }
 
@@ -2260,6 +2260,10 @@ textarea {
 }
 .scheduler-modal-btn.secondary:active {
   background: rgba(240, 230, 216, 0.5);
+}
+.scheduler-modal-btn.primary {
+  background: var(--brand);
+  color: #fff;
 }
 .scheduler-modal-btn.active {
   background: #1f6f5f;
