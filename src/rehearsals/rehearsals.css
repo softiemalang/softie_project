@@ -334,6 +334,14 @@
   display: block;
 }
 
+.rehearsal-form input:focus,
+.rehearsal-form input:focus-visible {
+  outline: none;
+  border-color: transparent;
+  box-shadow: inset 0 0 0 1.5px rgba(31, 111, 95, 0.35);
+  background: #fff;
+}
+
 .rehearsal-form input::placeholder {
   color: #a7a29b;
   opacity: 1;
