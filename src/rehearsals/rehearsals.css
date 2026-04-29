@@ -218,7 +218,7 @@
   flex: 1;
   overflow-y: auto;
   overflow-x: hidden;
-  padding: 1rem;
+  padding: 1rem 1.15rem calc(1.5rem + env(safe-area-inset-bottom));
   -webkit-overflow-scrolling: touch;
   overscroll-behavior-x: none;
   touch-action: pan-y;
@@ -300,7 +300,6 @@
   display: flex;
   flex-direction: column;
   gap: 0.68rem;
-  padding-bottom: env(safe-area-inset-bottom);
   box-sizing: border-box;
   width: 100%;
   max-width: 100%;
@@ -318,7 +317,9 @@
 .rehearsal-form input {
   width: 100%;
   max-width: 100%;
-  min-height: 52px;
+  height: 54px;
+  min-height: 54px;
+  max-height: 54px;
   padding: 0 0.9rem;
   line-height: 1.2;
   border: 1px solid #e7ddd0;
@@ -327,6 +328,7 @@
   background: #fff;
   color: #374151;
   box-sizing: border-box;
+  display: block;
 }
 
 .rehearsal-form input::placeholder {
@@ -345,6 +347,8 @@
 
 .rehearsal-form input[type="date"]::-webkit-date-and-time-value,
 .rehearsal-form input[type="time"]::-webkit-date-and-time-value {
+  height: 100%;
+  line-height: 54px;
   text-align: left;
   color: #3f4a45;
 }
@@ -394,6 +398,9 @@
   margin-top: 0.8rem;
   cursor: pointer;
   min-height: 54px;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 .rehearsal-submit-btn:disabled {
@@ -429,6 +436,14 @@
     align-items: stretch;
     gap: 0.65rem;
     margin-bottom: 1rem;
+  }
+
+  .rehearsal-bottom-sheet {
+    left: 0.75rem;
+    right: 0.75rem;
+    width: auto;
+    max-width: calc(100vw - 1.5rem);
+    border-radius: 24px 24px 0 0;
   }
 
   .rehearsal-actions {
@@ -477,10 +492,6 @@
   }
 
   .rehearsal-sheet-header {
-    padding: 1rem;
-  }
-
-  .rehearsal-sheet-content {
     padding: 1rem;
   }
 
