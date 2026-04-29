@@ -1701,7 +1701,9 @@ function WorkLogDetailView({ viewingWeekStart, logs, onClose, onNavigate, onCopy
           
           <div className="scheduler-work-log-total">
             <span>주간 총계</span>
-            <strong>{totalHours}시간</strong>
+            <strong className={totalHours > 0 ? 'active' : 'empty'}>
+              {totalHours}시간
+            </strong>
           </div>
         </div>
 

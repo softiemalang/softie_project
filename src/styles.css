@@ -1916,10 +1916,16 @@ textarea {
   color: #8b5e1a;
 }
 
-.scheduler-work-log-total strong {
+.scheduler-work-log-total strong.active {
   font-size: 1.08rem;
-  color: #1f6f5f;
+  color: var(--brand);
   font-weight: 800;
+}
+
+.scheduler-work-log-total strong.empty {
+  font-size: 1.08rem;
+  color: var(--text-muted);
+  font-weight: 600;
 }
 
 /* 근무 일지 추가 정제 스타일 */
