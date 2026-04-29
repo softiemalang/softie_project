@@ -163,7 +163,8 @@
   bottom: 0;
   left: 0;
   right: 0;
-  height: 80vh;
+  max-height: calc(100dvh - 96px);
+  height: max-content;
   background: #fbf9f6;
   border-radius: 24px 24px 0 0;
   box-shadow: 0 -10px 40px rgba(0,0,0,0.1);
@@ -172,6 +173,11 @@
   flex-direction: column;
   transform: translateY(100%);
   animation: slideUp 0.3s forwards ease-out;
+}
+
+.rehearsal-add-sheet {
+  height: min(82dvh, calc(100dvh - 84px));
+  max-height: calc(100dvh - env(safe-area-inset-top) - 72px);
 }
 
 @keyframes slideUp {
@@ -278,20 +284,23 @@
 .rehearsal-form {
   display: flex;
   flex-direction: column;
-  gap: 0.8rem;
+  gap: 0.68rem;
+  padding-bottom: env(safe-area-inset-bottom);
 }
 
 .rehearsal-form label {
   font-size: 0.85rem;
   font-weight: 600;
   color: #4b5563;
-  margin-bottom: 0.3rem;
+  margin-bottom: 0.28rem;
   display: block;
 }
 
 .rehearsal-form input {
   width: 100%;
-  padding: 0.8rem;
+  min-height: 52px;
+  padding: 0 0.9rem;
+  line-height: 1.2;
   border: 1px solid #e7ddd0;
   border-radius: 10px;
   font-size: 1rem;
@@ -308,6 +317,15 @@
 .rehearsal-form input[type="date"],
 .rehearsal-form input[type="time"],
 .rehearsal-form input[type="number"] {
+  color: #3f4a45;
+  -webkit-text-fill-color: #3f4a45;
+  opacity: 1;
+  color-scheme: light;
+}
+
+.rehearsal-form input[type="date"]::-webkit-date-and-time-value,
+.rehearsal-form input[type="time"]::-webkit-date-and-time-value {
+  text-align: left;
   color: #3f4a45;
 }
 
@@ -344,8 +362,9 @@
   padding: 1rem;
   font-size: 1rem;
   font-weight: 700;
-  margin-top: 1rem;
+  margin-top: 0.8rem;
   cursor: pointer;
+  min-height: 54px;
 }
 
 .rehearsal-submit-btn:disabled {

@@ -351,7 +351,7 @@ function AddRehearsalModal({ ownerKey, isGoogleReady, onClose, onSuccess }) {
   return (
     <>
       <div className="scheduler-sheet-backdrop" onClick={onClose} />
-      <div className="rehearsal-bottom-sheet" style={{ height: '85vh' }}>
+      <div className="rehearsal-bottom-sheet rehearsal-add-sheet">
         <div className="rehearsal-sheet-header">
           <h3 className="rehearsal-sheet-title">새 일정 추가</h3>
           <button className="scheduler-modal-close" onClick={onClose}>닫기</button>
