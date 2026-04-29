@@ -1972,7 +1972,6 @@ textarea {
   text-align: left;
   cursor: pointer;
   transition: transform 0.1s, background-color 0.2s;
-  padding: 1.25rem;
   font-family: inherit;
 }
 .scheduler-setting-card:active {
@@ -1985,6 +1984,7 @@ textarea {
   font-weight: 500;
   color: #a39587;
   line-height: 1.35;
+  padding-inline: var(--scheduler-content-inset);
 }
 .scheduler-modal-actions {
   display: flex;
