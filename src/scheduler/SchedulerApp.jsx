@@ -1405,11 +1405,20 @@ function ReservationEditorPage({ mode, reservationId }) {
                 </label>
 
                 <div className="scheduler-preset-row scheduler-supporting-row">
-                  {[1, 2, 3, 4, 5, 6].map((hours) => (
-                    <button key={hours} type="button" className="soft-button" onClick={() => updateField('durationHours', hours)}>
-                      {hours}h
-                    </button>
-                  ))}
+                  {[1, 2, 3, 4, 5, 6].map((hours) => {
+                    const isActive = String(formValues.durationHours) === String(hours)
+                    return (
+                      <button 
+                        key={hours} 
+                        type="button" 
+                        className={`scheduler-chip ${isActive ? 'active' : ''}`} 
+                        onClick={() => updateField('durationHours', hours)}
+                        aria-pressed={isActive}
+                      >
+                        {hours}h
+                      </button>
+                    )
+                  })}
                 </div>
               </div>
             </div>

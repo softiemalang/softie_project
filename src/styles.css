@@ -1224,7 +1224,6 @@ textarea {
   border-color: var(--brand);
 }
 
-.scheduler-form .soft-button,
 .scheduler-room-option,
 .scheduler-chip {
   background: rgba(239, 230, 216, 0.4);
@@ -1235,7 +1234,6 @@ textarea {
   font-size: 0.92rem;
 }
 
-.scheduler-form .soft-button:active,
 .scheduler-room-option:active,
 .scheduler-chip:active {
   background: rgba(231, 221, 208, 0.8);
@@ -1245,7 +1243,7 @@ textarea {
 .scheduler-chip.active {
   background: var(--brand-soft);
   color: var(--brand);
-  font-weight: 600;
+  font-weight: 500;
   font-size: 0.92rem;
 }
 
