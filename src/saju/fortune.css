@@ -375,7 +375,7 @@
   margin-right: -0.25rem;
 }
 
-.fortune-history-item.card {
+.fortune-shell .fortune-history-item.card {
   display: block;
   width: 100%;
   padding: 1rem;
@@ -384,14 +384,24 @@
   box-shadow: none;
   background: rgba(255, 252, 248, 0.88);
   border: 1px solid #e7ddd0;
+  color: #313b46;
   text-align: left;
   cursor: pointer;
   transition: background-color 0.15s ease, border-color 0.15s ease;
 }
 
-.fortune-history-item.card:active {
+.fortune-shell .fortune-history-item.card:hover {
+  background: rgba(255, 252, 248, 0.96);
+  border-color: rgba(31, 111, 95, 0.12);
+}
+
+.fortune-shell .fortune-history-item.card:active {
   background: rgba(245, 240, 233, 0.95);
   border-color: rgba(31, 111, 95, 0.18);
+}
+
+.fortune-shell .fortune-history-item.card .subtle {
+  color: #5f6670 !important;
 }
 
 .fortune-history-detail {
