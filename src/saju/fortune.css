@@ -69,6 +69,31 @@
   display: none; /* Hide large black result headings */
 }
 
+.fortune-profile-summary-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--fortune-gap-md);
+}
+
+.fortune-profile-summary-card > div {
+  min-width: 0;
+}
+
+.fortune-profile-summary {
+  margin: 0.35rem 0 0;
+  color: #4b5563;
+  font-size: 0.94rem;
+  font-weight: 600;
+  line-height: 1.45;
+  overflow-wrap: anywhere;
+}
+
+.fortune-profile-summary-card .soft-button {
+  min-height: 34px;
+  padding-inline: 0.85rem;
+}
+
 /* Form Styles */
 .fortune-shell .stack-form {
   display: flex;
@@ -339,6 +364,10 @@
   margin-bottom: 0.85rem;
 }
 
+.fortune-shell .fortune-profile-modal {
+  overflow-y: auto;
+}
+
 .fortune-history-list {
   max-height: 65vh;
   overflow-y: auto;
@@ -381,5 +410,32 @@
 
   .fortune-shell .field-grid {
     grid-template-columns: 1fr;
+  }
+
+  .fortune-profile-summary-card {
+    align-items: flex-start;
+    gap: var(--fortune-gap-sm);
+    padding: 0.9rem;
+  }
+
+  .fortune-profile-summary {
+    font-size: 0.88rem;
+  }
+
+  .fortune-profile-summary-card .soft-button {
+    min-height: 32px;
+    padding-inline: 0.68rem;
+  }
+
+  .fortune-profile-backdrop {
+    align-items: flex-end;
+    padding: 0.75rem;
+  }
+
+  .fortune-shell .fortune-profile-modal {
+    width: 100%;
+    max-height: min(86vh, 620px);
+    border-radius: var(--fortune-radius-xl) var(--fortune-radius-xl) 22px 22px;
+    padding: 1rem;
   }
 }

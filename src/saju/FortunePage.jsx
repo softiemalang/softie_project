@@ -22,6 +22,20 @@ const EMPTY_PROFILE = {
   gender: 'male'
 }
 
+function profileFromSaved(savedProfile) {
+  if (!savedProfile) return { ...EMPTY_PROFILE }
+  return {
+    name: savedProfile.name || '',
+    birthDate: savedProfile.birth_date || '',
+    birthTime: savedProfile.birth_time || '',
+    gender: savedProfile.gender || 'male'
+  }
+}
+
+function getGenderLabel(gender) {
+  return gender === 'female' ? '여성' : '남성'
+}
+
 function formatBirthDateInput(value) {
   const digits = value.replace(/\D/g, '').slice(0, 8)
   if (digits.length <= 4) return digits
@@ -45,6 +59,7 @@ function isCompleteBirthTime(value) {
 
 export default function FortunePage() {
   const [profile, setProfile] = useState(EMPTY_PROFILE)
+  const [profileDraft, setProfileDraft] = useState(EMPTY_PROFILE)
   const [activeProfile, setActiveProfile] = useState(null)
   const [dailySnapshot, setDailySnapshot] = useState(null)
   const [report, setReport] = useState(null)
@@ -52,11 +67,13 @@ export default function FortunePage() {
   const [status, setStatus] = useState('')
   const [isBackingUp, setIsBackingUp] = useState(false)
   const [isBackedUp, setIsBackedUp] = useState(false)
+  const [isProfileModalOpen, setIsProfileModalOpen] = useState(false)
   const [isHistoryModalOpen, setIsHistoryModalOpen] = useState(false)
   const [historyList, setHistoryList] = useState([])
   const [isHistoryLoading, setIsHistoryLoading] = useState(false)
 
   const canSubmitProfile = isCompleteBirthDate(profile.birthDate) && isCompleteBirthTime(profile.birthTime)
+  const canSubmitProfileDraft = isCompleteBirthDate(profileDraft.birthDate) && isCompleteBirthTime(profileDraft.birthTime)
 
   useEffect(() => {
     loadInitialData()
@@ -103,13 +120,10 @@ export default function FortunePage() {
       const localKey = getOrCreateLocalKey()
       const existingProfile = await getSajuProfile(localKey)
       if (existingProfile) {
+        const existingFormProfile = profileFromSaved(existingProfile)
         setActiveProfile(existingProfile)
-        setProfile({
-          name: existingProfile.name,
-          birthDate: existingProfile.birth_date,
-          birthTime: existingProfile.birth_time || '',
-          gender: existingProfile.gender
-        })
+        setProfile(existingFormProfile)
+        setProfileDraft(existingFormProfile)
         await loadDailyFortune(existingProfile)
       }
     } catch (error) {
@@ -170,14 +184,16 @@ export default function FortunePage() {
 
   function resetProfileForm() {
     setProfile({ ...EMPTY_PROFILE })
+    setProfileDraft({ ...EMPTY_PROFILE })
     setActiveProfile(null)
     setDailySnapshot(null)
     setReport(null)
     setStatus('')
     setIsBackedUp(false)
+    setIsProfileModalOpen(false)
   }
 
-  async function handleSaveProfile() {
+  async function handleSaveProfile(nextProfile = profile, shouldCloseProfileModal = false) {
     setIsLoading(true)
     setReport(null)
     setDailySnapshot(null)
@@ -187,14 +203,20 @@ export default function FortunePage() {
       const localKey = getOrCreateLocalKey()
       const saved = await upsertSajuProfile({
         local_key: localKey,
-        name: profile.name,
-        birth_date: profile.birthDate,
-        birth_time: profile.birthTime || null,
-        gender: profile.gender,
+        name: nextProfile.name,
+        birth_date: nextProfile.birthDate,
+        birth_time: nextProfile.birthTime || null,
+        gender: nextProfile.gender,
         updated_at: new Date().toISOString()
       })
+      const savedFormProfile = profileFromSaved(saved)
       setActiveProfile(saved)
+      setProfile(savedFormProfile)
+      setProfileDraft(savedFormProfile)
       await loadDailyFortune(saved)
+      if (shouldCloseProfileModal) {
+        setIsProfileModalOpen(false)
+      }
     } catch (error) {
       console.error('Save profile failed details:', error)
       const errorMsg = error?.message || (typeof error === 'string' ? error : '알 수 없는 오류')
@@ -246,6 +268,7 @@ export default function FortunePage() {
 
   async function handleOpenHistory() {
     if (!activeProfile) return
+    setIsProfileModalOpen(false)
     setIsHistoryModalOpen(true)
     setIsHistoryLoading(true)
     try {
@@ -258,7 +281,31 @@ export default function FortunePage() {
     }
   }
 
+  function handleOpenProfileModal() {
+    setProfileDraft(profileFromSaved(activeProfile) || profile)
+    setIsHistoryModalOpen(false)
+    setIsProfileModalOpen(true)
+  }
+
+  function handleCloseProfileModal() {
+    setProfileDraft(profileFromSaved(activeProfile) || profile)
+    setIsProfileModalOpen(false)
+  }
+
+  function handleSaveProfileDraft() {
+    if (!canSubmitProfileDraft || isLoading) return
+    handleSaveProfile(profileDraft, true)
+  }
+
   const reportData = report?.report_content
+  const profileSummary = activeProfile
+    ? [
+        activeProfile.name,
+        activeProfile.birth_date,
+        activeProfile.birth_time || '시간 미입력',
+        getGenderLabel(activeProfile.gender)
+      ].filter(Boolean).join(' · ')
+    : ''
 
   return (
     <div className="app-shell fortune-shell">
@@ -279,6 +326,17 @@ export default function FortunePage() {
         </div>
       </header>
 
+      {activeProfile ? (
+        <section className="card fortune-profile-summary-card">
+          <div>
+            <p className="section-kicker">사용자 정보</p>
+            <p className="fortune-profile-summary">{profileSummary}</p>
+          </div>
+          <button type="button" className="soft-button" onClick={handleOpenProfileModal}>
+            정보 수정
+          </button>
+        </section>
+      ) : (
       <section className="card">
         <div className="card-header">
           <div>
@@ -330,11 +388,12 @@ export default function FortunePage() {
               여성
             </button>
           </div>
-          <button onClick={handleSaveProfile} disabled={isLoading || !canSubmitProfile}>
+          <button onClick={() => handleSaveProfile()} disabled={isLoading || !canSubmitProfile}>
             {isLoading ? '분석 중...' : activeProfile ? '정보 수정 및 다시 분석' : '오늘의 운세 보기'}
           </button>
         </div>
       </section>
+      )}
 
       {status && <p className="status" style={{ textAlign: 'center', color: '#8b5e1a' }}>{status}</p>}
 
@@ -437,6 +496,66 @@ export default function FortunePage() {
                   ))}
                 </div>
               )}
+            </div>
+          </div>
+        </div>
+      )}
+
+      {isProfileModalOpen && (
+        <div className="scheduler-sheet-backdrop scheduler-modal-backdrop fortune-profile-backdrop" onClick={handleCloseProfileModal}>
+          <div className="scheduler-modal fortune-profile-modal" onClick={e => e.stopPropagation()}>
+            <div className="scheduler-section-head">
+              <p className="scheduler-section-label">사용자 정보 수정</p>
+              <button type="button" className="scheduler-modal-close" onClick={handleCloseProfileModal}>닫기</button>
+            </div>
+
+            <div className="stack-form">
+              <input
+                placeholder="이름"
+                value={profileDraft.name}
+                onChange={e => setProfileDraft({...profileDraft, name: e.target.value})}
+              />
+              <div className="field-grid">
+                <input
+                  type="text"
+                  inputMode="numeric"
+                  autoComplete="bday"
+                  placeholder="생년월일 YYYY-MM-DD"
+                  value={profileDraft.birthDate}
+                  onChange={e => setProfileDraft({...profileDraft, birthDate: formatBirthDateInput(e.target.value)})}
+                />
+                <input
+                  type="text"
+                  inputMode="numeric"
+                  autoComplete="off"
+                  placeholder="태어난 시간 24시간제 HH:MM"
+                  value={profileDraft.birthTime}
+                  onChange={e => setProfileDraft({...profileDraft, birthTime: formatBirthTimeInput(e.target.value)})}
+                />
+              </div>
+              <div className="fortune-gender-options" role="group" aria-label="성별 선택">
+                <button
+                  type="button"
+                  className={`fortune-gender-button ${profileDraft.gender === 'male' ? 'active' : ''}`}
+                  aria-pressed={profileDraft.gender === 'male'}
+                  onClick={() => setProfileDraft({...profileDraft, gender: 'male'})}
+                  data-text="남성"
+                >
+                  남성
+                </button>
+                <button
+                  type="button"
+                  className={`fortune-gender-button ${profileDraft.gender === 'female' ? 'active' : ''}`}
+                  aria-pressed={profileDraft.gender === 'female'}
+                  onClick={() => setProfileDraft({...profileDraft, gender: 'female'})}
+                  data-text="여성"
+                >
+                  여성
+                </button>
+              </div>
+              <button type="button" onClick={handleSaveProfileDraft} disabled={isLoading || !canSubmitProfileDraft}>
+                {isLoading ? '분석 중...' : '저장하고 다시 분석'}
+              </button>
             </div>
           </div>
         </div>
