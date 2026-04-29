@@ -708,9 +708,7 @@ function TodaySchedulerPage() {
         onClick={() => setIsWebPushModalOpen(true)}
       >
         <div className="scheduler-section-head">
-          <div>
-            <p className="scheduler-section-label">웹 알림</p>
-          </div>
+          <p className="scheduler-section-label">웹 알림</p>
           <div className={`scheduler-count-pill ${isPushConnected ? 'is-ready' : ''}`}>
             {pushStatusLabel}
           </div>
@@ -796,9 +794,7 @@ function TodaySchedulerPage() {
         onClick={() => setIsGoogleModalOpen(true)}
       >
         <div className="scheduler-section-head">
-          <div>
-            <p className="scheduler-section-label">Google 연동</p>
-          </div>
+          <p className="scheduler-section-label">Google 연동</p>
           <div className={`scheduler-count-pill ${isGoogleConnected() ? 'is-ready' : ''}`}>
             {isGoogleConnected() ? '연결됨' : '연결 필요'}
           </div>
