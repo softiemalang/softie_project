@@ -173,11 +173,16 @@
   flex-direction: column;
   transform: translateY(100%);
   animation: slideUp 0.3s forwards ease-out;
+  overflow-x: hidden;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 .rehearsal-add-sheet {
   height: min(82dvh, calc(100dvh - 84px));
   max-height: calc(100dvh - env(safe-area-inset-top) - 72px);
+  overflow-x: hidden;
+  width: 100%;
 }
 
 @keyframes slideUp {
@@ -190,6 +195,8 @@
   align-items: center;
   justify-content: space-between;
   border-bottom: 1px solid #e7ddd0;
+  box-sizing: border-box;
+  width: 100%;
 }
 
 .rehearsal-sheet-header .scheduler-modal-close {
@@ -210,7 +217,13 @@
 .rehearsal-sheet-content {
   flex: 1;
   overflow-y: auto;
+  overflow-x: hidden;
   padding: 1rem;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-x: none;
+  touch-action: pan-y;
+  box-sizing: border-box;
+  width: 100%;
 }
 
 .rehearsal-card {
@@ -220,6 +233,8 @@
   margin-bottom: 0.8rem;
   border: 1px solid #e7ddd0;
   box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+  box-sizing: border-box;
+  max-width: 100%;
 }
 
 .rehearsal-card-head {
@@ -286,6 +301,10 @@
   flex-direction: column;
   gap: 0.68rem;
   padding-bottom: env(safe-area-inset-bottom);
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
 }
 
 .rehearsal-form label {
@@ -298,6 +317,7 @@
 
 .rehearsal-form input {
   width: 100%;
+  max-width: 100%;
   min-height: 52px;
   padding: 0 0.9rem;
   line-height: 1.2;
@@ -348,10 +368,19 @@
 .rehearsal-form-row {
   display: flex;
   gap: 0.8rem;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 .rehearsal-form-row > div {
   flex: 1;
+  min-width: 0;
+}
+
+.rehearsal-form > div {
+  min-width: 0;
+  max-width: 100%;
 }
 
 .rehearsal-submit-btn {
