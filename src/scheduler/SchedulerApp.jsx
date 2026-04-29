@@ -1022,62 +1022,6 @@ function TodaySchedulerPage() {
                   </label>
                 </div>
               ) : null}
-
-              <div className="scheduler-filter-field">
-                <div className="scheduler-branch-option-row scheduler-filter-branch-row" role="radiogroup" aria-label="지점 필터">
-                  <button
-                    type="button"
-                    className={`scheduler-chip ${draftFilters.branch === 'all' ? 'active' : ''}`}
-                    onClick={() => updateDraftFilter('branch', 'all')}
-                    aria-pressed={draftFilters.branch === 'all'}
-                  >
-                    전체 지점
-                  </button>
-                  {SCHEDULER_BRANCHES.map((branch) => {
-                    const isActive = draftFilters.branch === branch
-                    return (
-                      <button
-                        key={branch}
-                        type="button"
-                        className={`scheduler-chip ${isActive ? 'active' : ''}`}
-                        onClick={() => updateDraftFilter('branch', branch)}
-                        aria-pressed={isActive}
-                      >
-                        {branch}
-                      </button>
-                    )
-                  })}
-                </div>
-              </div>
-
-              <div className="scheduler-filter-field">
-                <div className="scheduler-room-picker">
-                  <div className="scheduler-room-option-row scheduler-filter-room-row" role="radiogroup" aria-label="룸 필터">
-                    <button
-                      type="button"
-                      className={`scheduler-room-option ${draftFilters.room === 'all' ? 'active' : ''}`}
-                      onClick={() => updateDraftFilter('room', 'all')}
-                      aria-pressed={draftFilters.room === 'all'}
-                    >
-                      전체 룸
-                    </button>
-                    {draftRooms.map((room) => {
-                      const isActive = draftFilters.room === room
-                      return (
-                        <button
-                          key={room}
-                          type="button"
-                          className={`scheduler-room-option ${isActive ? 'active' : ''}`}
-                          onClick={() => updateDraftFilter('room', room)}
-                          aria-pressed={isActive}
-                        >
-                          {room}
-                        </button>
-                      )
-                    })}
-                  </div>
-                </div>
-              </div>
             </div>
 
             <div className="scheduler-form-actions scheduler-filter-actions">

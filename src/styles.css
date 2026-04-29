@@ -1470,13 +1470,17 @@ textarea {
 
 .scheduler-filter-actions {
   margin-top: calc(var(--scheduler-gap-md) + 0.22rem);
+  display: flex;
   gap: 0.68rem;
+  flex-wrap: nowrap;
 }
 
 .scheduler-filter-actions > button {
+  flex: 1 1 0;
   min-height: 38px;
   font-size: 0.9rem;
   font-weight: 600;
+  width: auto;
 }
 
 .scheduler-filter-branch-row {
@@ -1567,7 +1571,7 @@ textarea {
 
   .scheduler-nav-button,
   .scheduler-link-button,
-  .scheduler-form-actions > button {
+  .scheduler-form-actions:not(.scheduler-filter-actions):not(.scheduler-modal-actions) > button {
     width: 100%;
   }
 
