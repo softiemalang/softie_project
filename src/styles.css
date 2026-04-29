@@ -1256,9 +1256,9 @@ textarea {
 .scheduler-field-label,
 .scheduler-parent-label {
   display: block;
-  font-size: 0.84rem;
-  font-weight: 550;
-  color: #6b7280;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #5b4a35;
   min-width: 0;
   line-height: 1.15;
   margin-bottom: 0.24rem;
