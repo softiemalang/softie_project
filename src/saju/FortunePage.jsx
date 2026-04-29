@@ -86,12 +86,14 @@ export default function FortunePage() {
   const [isHistoryLoading, setIsHistoryLoading] = useState(false)
   const [selectedHistoryReport, setSelectedHistoryReport] = useState(null)
   const [isHistoryDetailLoading, setIsHistoryDetailLoading] = useState(false)
+  const [isGoogleReady, setIsGoogleReady] = useState(false)
 
   const canSubmitProfile = isCompleteBirthDate(profile.birthDate) && isCompleteBirthTime(profile.birthTime)
   const canSubmitProfileDraft = isCompleteBirthDate(profileDraft.birthDate) && isCompleteBirthTime(profileDraft.birthTime)
 
   useEffect(() => {
     loadInitialData()
+    setIsGoogleReady(isGoogleConnected())
   }, [])
 
   useEffect(() => {
@@ -335,6 +337,11 @@ export default function FortunePage() {
     handleSaveProfile(profileDraft, true)
   }
 
+  function handleConnectGoogle() {
+    const deviceId = getOrCreatePushDeviceId()
+    connectGoogleCalendar(deviceId)
+  }
+
   const reportData = report?.report_content
   const historyReportData = selectedHistoryReport?.report_content || {}
   const historySections = historyReportData.sections || {}
@@ -487,14 +494,24 @@ export default function FortunePage() {
           </section>
 
           <section className="fortune-backup-action">
-            <button
-              type="button"
-              className="soft-button"
-              onClick={handleBackupToSheets}
-              disabled={isBackingUp || isBackedUp}
-            >
-              {isBackingUp ? '기록 중...' : isBackedUp ? '기록 완료' : 'Google 시트에 기록하기'}
-            </button>
+            {isGoogleReady ? (
+              <button
+                type="button"
+                className="soft-button"
+                onClick={handleBackupToSheets}
+                disabled={isBackingUp || isBackedUp}
+              >
+                {isBackingUp ? '기록 중...' : isBackedUp ? '기록 완료' : 'Google 시트에 기록하기'}
+              </button>
+            ) : (
+              <button
+                type="button"
+                className="soft-button"
+                onClick={handleConnectGoogle}
+              >
+                Google 연동하기
+              </button>
+            )}
             {dailySnapshot?.target_date && (
               <p className="fortune-backup-date-label">
                 {formatReportDateForDisplay(dailySnapshot.target_date)} 운세 리포트
