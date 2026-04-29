@@ -240,7 +240,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 0.2rem;
+  margin-bottom: 0.45rem;
 }
 
 .fortune-headline {
@@ -458,6 +458,11 @@
   border-radius: var(--fortune-radius-md);
   background: rgba(255, 252, 248, 0.72);
   border: 1px solid #e7ddd0;
+}
+
+.fortune-history-detail-card > .section-kicker {
+  display: block;
+  margin-bottom: 0.4rem;
 }
 
 .fortune-history-detail-card:last-child {
