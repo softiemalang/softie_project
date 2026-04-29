@@ -15,6 +15,7 @@ import { getOrGenerateReport } from './interpreter/reportGenerator'
 import { getKstDateString, getOrCreateLocalKey } from './utils'
 import { getOrCreatePushDeviceId } from '../lib/device'
 import { appendGoogleSheetsLog } from '../lib/googleApi'
+import { connectGoogleCalendar, isGoogleConnected } from '../scheduler/googleApi'
 
 const EMPTY_PROFILE = {
   name: '',
