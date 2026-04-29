@@ -35,6 +35,16 @@ Gemini는 이 프로젝트에서 Codex 보조 작업자로 동작한다.
 ## 보고 형식
 작업 후 아래 순서로 보고한다.
 
+## Design System Rule
+
+Before editing any UI, read `DESIGN.md` first.
+
+Use `DESIGN.md` as the source of truth for colors, spacing, border radius, typography, button style, card style, modal style, and layout density.
+
+Do not invent new colors, shadows, border radius, or button styles unless the task explicitly asks for a design-system change.
+
+For screen-specific UI fixes, update only the relevant CSS or component files. Update `DESIGN.md` only when a reusable design rule changes.
+
 1. 변경한 파일
 2. 변경 요약
 3. 확인 필요
