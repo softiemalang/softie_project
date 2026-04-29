@@ -352,13 +352,15 @@ export default function FortunePage() {
         </div>
         <div className="fortune-header-actions">
           {activeProfile && (
-            <button type="button" className="soft-button" onClick={handleOpenHistory}>
-              히스토리
-            </button>
+            <>
+              <button type="button" className="soft-button" onClick={handleOpenHistory}>
+                히스토리
+              </button>
+              <button type="button" className="soft-button" onClick={handleOpenProfileModal}>
+                정보 수정
+              </button>
+            </>
           )}
-          <button type="button" className="soft-button" onClick={resetProfileForm}>
-            초기화
-          </button>
         </div>
       </header>
 
@@ -368,9 +370,6 @@ export default function FortunePage() {
             <p className="section-kicker">사용자 정보</p>
             <p className="fortune-profile-summary">{profileSummary}</p>
           </div>
-          <button type="button" className="soft-button" onClick={handleOpenProfileModal}>
-            정보 수정
-          </button>
         </section>
       ) : (
       <section className="card">
@@ -599,7 +598,10 @@ export default function FortunePage() {
           <div className="scheduler-modal fortune-profile-modal" onClick={e => e.stopPropagation()}>
             <div className="scheduler-section-head">
               <p className="scheduler-section-label">사용자 정보 수정</p>
-              <button type="button" className="scheduler-modal-close" onClick={handleCloseProfileModal}>닫기</button>
+              <div className="fortune-history-detail-actions">
+                <button type="button" className="scheduler-modal-close" onClick={resetProfileForm}>초기화</button>
+                <button type="button" className="scheduler-modal-close" onClick={handleCloseProfileModal}>닫기</button>
+              </div>
             </div>
 
             <div className="stack-form">
