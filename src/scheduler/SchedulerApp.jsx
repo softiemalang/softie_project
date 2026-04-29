@@ -762,7 +762,9 @@ function TodaySchedulerPage() {
             <p className="subtle" style={{ marginTop: 0, marginBottom: '1.25rem', fontSize: '0.86rem' }}>
               {normalizedFilters.workTimeEnabled
                 ? '현재 브라우저 알림이 켜져 있어요.'
-                : '현재 브라우저 알림이 꺼져 있어요. 알림을 받으려면 다시 연결해 주세요.'}
+                : isPushConnected 
+                  ? '알림 연결은 완료되어 있어요.\n근무 중 상태일 때만 알림이 전달됩니다.'
+                  : '현재 브라우저 알림이 꺼져 있어요. 알림을 받으려면 연결을 확인해 주세요.'}
             </p>
 
             {isPushConnected ? (
@@ -781,7 +783,7 @@ function TodaySchedulerPage() {
                   onClick={handleEnablePush}
                   disabled={isPushBusy}
                 >
-                  {normalizedFilters.workTimeEnabled ? '브라우저 다시 연결' : '알림 켜기 (다시 연결)'}
+                  {normalizedFilters.workTimeEnabled ? '브라우저 다시 연결' : '브라우저 연결 확인'}
                 </button>
               </div>
             ) : (
@@ -800,19 +802,18 @@ function TodaySchedulerPage() {
                   onClick={handleSendTestPush}
                   disabled={isPushBusy || !pushState.subscribed}
                 >
-                  테스트 알림
+                  테스트 알림 보내기
                 </button>
               </div>
             )}
-            
-            {pushStatusMeta ? (
-              <p className={`subtle scheduler-push-status scheduler-push-status-note is-${pushStatusMeta.tone}`} style={{ marginTop: '1rem', marginBottom: 0 }}>
-                {pushStatusMeta.text}
-              </p>
-            ) : null}
+
+            <p className="subtle" style={{ marginTop: '1rem', marginBottom: 0, fontSize: '0.8rem', textAlign: 'center' }}>
+              현재 알림 조건: 근무 중
+            </p>
           </div>
         </div>
       )}
+
 
       <button
         type="button"
