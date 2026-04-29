@@ -7,7 +7,8 @@ import {
   createNatalSnapshot,
   getDailySnapshot,
   createDailySnapshot,
-  getFortuneHistory
+  getFortuneHistory,
+  getFortuneReportById
 } from './api'
 import { generateNatalSnapshot, generateDailySnapshot } from './interpreter/preprocessor'
 import { getOrGenerateReport } from './interpreter/reportGenerator'
@@ -78,6 +79,8 @@ export default function FortunePage() {
   const [isHistoryModalOpen, setIsHistoryModalOpen] = useState(false)
   const [historyList, setHistoryList] = useState([])
   const [isHistoryLoading, setIsHistoryLoading] = useState(false)
+  const [selectedHistoryReport, setSelectedHistoryReport] = useState(null)
+  const [isHistoryDetailLoading, setIsHistoryDetailLoading] = useState(false)
 
   const canSubmitProfile = isCompleteBirthDate(profile.birthDate) && isCompleteBirthTime(profile.birthTime)
   const canSubmitProfileDraft = isCompleteBirthDate(profileDraft.birthDate) && isCompleteBirthTime(profileDraft.birthTime)
@@ -276,6 +279,7 @@ export default function FortunePage() {
   async function handleOpenHistory() {
     if (!activeProfile) return
     setIsProfileModalOpen(false)
+    setSelectedHistoryReport(null)
     setIsHistoryModalOpen(true)
     setIsHistoryLoading(true)
     try {
@@ -286,6 +290,28 @@ export default function FortunePage() {
     } finally {
       setIsHistoryLoading(false)
     }
+  }
+
+  async function handleOpenHistoryDetail(reportId) {
+    if (!reportId) return
+    setIsHistoryDetailLoading(true)
+    try {
+      const data = await getFortuneReportById(reportId)
+      setSelectedHistoryReport(data)
+    } catch (error) {
+      console.error('Failed to load history report detail:', error)
+    } finally {
+      setIsHistoryDetailLoading(false)
+    }
+  }
+
+  function handleBackToHistoryList() {
+    setSelectedHistoryReport(null)
+  }
+
+  function handleCloseHistoryModal() {
+    setSelectedHistoryReport(null)
+    setIsHistoryModalOpen(false)
   }
 
   function handleOpenProfileModal() {
@@ -305,6 +331,9 @@ export default function FortunePage() {
   }
 
   const reportData = report?.report_content
+  const historyReportData = selectedHistoryReport?.report_content || {}
+  const historySections = historyReportData.sections || {}
+  const historyCautions = Array.isArray(historyReportData.cautions) ? historyReportData.cautions : []
   const profileSummary = activeProfile
     ? [
         activeProfile.name,
@@ -467,22 +496,82 @@ export default function FortunePage() {
       )}
 
       {isHistoryModalOpen && (
-        <div className="scheduler-sheet-backdrop scheduler-modal-backdrop" onClick={() => setIsHistoryModalOpen(false)}>
+        <div className="scheduler-sheet-backdrop scheduler-modal-backdrop" onClick={handleCloseHistoryModal}>
           <div className="scheduler-modal" onClick={e => e.stopPropagation()}>
-            <div className="scheduler-section-head">
-              <p className="scheduler-section-label">운세 히스토리</p>
-              <button type="button" className="scheduler-modal-close" onClick={() => setIsHistoryModalOpen(false)}>닫기</button>
-            </div>
-            
-            <div className="fortune-history-list">
-              {isHistoryLoading ? (
+            {selectedHistoryReport ? (
+              <div className="fortune-history-detail">
+                <div className="fortune-history-detail-head">
+                  <div>
+                    <p className="scheduler-section-label">과거 리포트</p>
+                    <p className="fortune-history-detail-date">{selectedHistoryReport.report_date}</p>
+                  </div>
+                  <div className="fortune-history-detail-actions">
+                    <button type="button" className="scheduler-modal-close" onClick={handleBackToHistoryList}>목록으로</button>
+                    <button type="button" className="scheduler-modal-close" onClick={handleCloseHistoryModal}>닫기</button>
+                  </div>
+                </div>
+
+                <div className="fortune-history-detail-scroll">
+                  <section className="fortune-history-detail-card">
+                    <p className="section-kicker">오늘의 총평</p>
+                    <p className="fortune-summary-text">{historyReportData.summary || selectedHistoryReport.summary || '저장된 총평이 없습니다.'}</p>
+                  </section>
+
+                  <section className="fortune-history-detail-card">
+                    <p className="section-kicker">분야별 운세</p>
+                    <div className="stack-form">
+                      {Object.entries(historySections).length > 0 ? (
+                        Object.entries(historySections).map(([key, text]) => (
+                          <div key={key} className="fortune-category-item">
+                            <strong className="fortune-category-label">
+                              {getCategoryLabel(key)}
+                            </strong>
+                            <p className="fortune-category-text">{text}</p>
+                          </div>
+                        ))
+                      ) : (
+                        <p className="status" style={{ textAlign: 'center' }}>저장된 분야별 운세가 없습니다.</p>
+                      )}
+                    </div>
+                  </section>
+
+                  <section className="fortune-history-detail-card">
+                    <p className="section-kicker">오늘의 주의점</p>
+                    {historyCautions.length > 0 ? (
+                      <ul className="fortune-list">
+                        {historyCautions.map((caution, idx) => (
+                          <li key={idx}>{caution}</li>
+                        ))}
+                      </ul>
+                    ) : (
+                      <p className="status" style={{ textAlign: 'center' }}>저장된 주의점이 없습니다.</p>
+                    )}
+                  </section>
+
+                  <section className="fortune-history-detail-card fortune-action-card">
+                    <p className="section-kicker">실천 팁</p>
+                    <p className="fortune-action-tip">
+                      {historyReportData.action_tip || '저장된 실천 팁이 없습니다.'}
+                    </p>
+                  </section>
+                </div>
+              </div>
+            ) : (
+              <>
+                <div className="scheduler-section-head">
+                  <p className="scheduler-section-label">운세 히스토리</p>
+                  <button type="button" className="scheduler-modal-close" onClick={handleCloseHistoryModal}>닫기</button>
+                </div>
+
+                <div className="fortune-history-list">
+                  {isHistoryLoading || isHistoryDetailLoading ? (
                 <p className="status" style={{ textAlign: 'center' }}>과거 기록을 불러오는 중입니다...</p>
               ) : historyList.length === 0 ? (
                 <p className="status" style={{ textAlign: 'center' }}>저장된 운세 리포트가 없습니다.</p>
               ) : (
                 <div className="stack-form">
                   {historyList.map(item => (
-                    <div key={item.id} className="fortune-history-item card">
+                    <button key={item.id} type="button" className="fortune-history-item card" onClick={() => handleOpenHistoryDetail(item.id)}>
                       <div style={{ marginBottom: '0.2rem' }}>
                         <span className="scheduler-count-pill" style={{ marginRight: '0.5rem' }}>
                           {item.report_date}
@@ -494,11 +583,13 @@ export default function FortunePage() {
                       <p className="subtle" style={{ margin: 0, fontSize: '0.86rem', color: '#6b6258' }}>
                         {item.summary}
                       </p>
-                    </div>
+                    </button>
                   ))}
                 </div>
               )}
-            </div>
+                </div>
+              </>
+            )}
           </div>
         </div>
       )}

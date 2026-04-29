@@ -376,6 +376,8 @@
 }
 
 .fortune-history-item.card {
+  display: block;
+  width: 100%;
   padding: 1rem;
   margin-bottom: 0;
   border-radius: var(--fortune-radius-md);
@@ -383,6 +385,65 @@
   background: rgba(255, 252, 248, 0.88);
   border: 1px solid #e7ddd0;
   text-align: left;
+  cursor: pointer;
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+
+.fortune-history-item.card:active {
+  background: rgba(245, 240, 233, 0.95);
+  border-color: rgba(31, 111, 95, 0.18);
+}
+
+.fortune-history-detail {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.fortune-history-detail-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--fortune-gap-sm);
+  margin-bottom: 0.85rem;
+}
+
+.fortune-history-detail-head .scheduler-section-label {
+  margin: 0;
+}
+
+.fortune-history-detail-date {
+  margin: 0.25rem 0 0;
+  color: #8c7e6c;
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.fortune-history-detail-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex: 0 0 auto;
+  gap: 0.35rem;
+}
+
+.fortune-history-detail-scroll {
+  max-height: 65vh;
+  overflow-y: auto;
+  padding-right: 0.25rem;
+  margin-right: -0.25rem;
+}
+
+.fortune-history-detail-card {
+  padding: 1rem;
+  margin-bottom: var(--fortune-gap-sm);
+  border-radius: var(--fortune-radius-md);
+  background: rgba(255, 252, 248, 0.72);
+  border: 1px solid #e7ddd0;
+}
+
+.fortune-history-detail-card:last-child {
+  margin-bottom: 0;
 }
 
 .scheduler-count-pill {

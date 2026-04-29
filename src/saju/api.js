@@ -132,6 +132,21 @@ export async function getFortuneHistory(profileId, limit = 30) {
 }
 
 /**
+ * 운세 히스토리 상세 조회
+ */
+export async function getFortuneReportById(reportId) {
+  if (!reportId) return null
+  const { data, error } = await supabase
+    .from('saju_fortune_reports')
+    .select('id, report_date, headline, summary, report_content')
+    .eq('id', reportId)
+    .maybeSingle()
+
+  if (error) throw error
+  return data
+}
+
+/**
  * Edge Function을 통한 LLM 리포트 생성 요청
  */
 export async function requestLlmReport(dailySnapshot) {
