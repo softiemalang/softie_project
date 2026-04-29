@@ -107,31 +107,51 @@ function parseSchedulerRoute(pathname) {
 export function SchedulerApp({ pathname }) {
   const route = useMemo(() => parseSchedulerRoute(pathname), [pathname])
 
-  if (route.name === 'today') {
-    return <TodaySchedulerPage />
+  const renderContent = () => {
+    if (route.name === 'today') {
+      return <TodaySchedulerPage />
+    }
+
+    if (route.name === 'new') {
+      return <ReservationEditorPage mode="create" />
+    }
+
+    if (route.name === 'edit') {
+      return <ReservationEditorPage mode="edit" reservationId={route.reservationId} />
+    }
+
+    if (route.name === 'rooms') {
+      return <RoomStatusPage />
+    }
+
+    return (
+      <div className="scheduler-shell">
+        <section className="scheduler-panel">
+          <button type="button" className="soft-button" onClick={() => navigate('/scheduler')}>
+            오늘 화면으로 이동
+          </button>
+        </section>
+      </div>
+    )
   }
 
-  if (route.name === 'new') {
-    return <ReservationEditorPage mode="create" />
-  }
-
-  if (route.name === 'edit') {
-    return <ReservationEditorPage mode="edit" reservationId={route.reservationId} />
-  }
-
-  if (route.name === 'rooms') {
-    return <RoomStatusPage />
-  }
+  // 예약 에디터(생성/수정) 페이지가 아닐 때만 FAB를 표시합니다.
+  const showFab = route.name !== 'new' && route.name !== 'edit' && route.name !== 'not-found'
 
   return (
-    <div className="scheduler-shell">
-      <SchedulerTopbar />
-      <section className="scheduler-panel">
-        <button type="button" className="soft-button" onClick={() => navigate('/scheduler')}>
-          오늘 화면으로 이동
+    <>
+      {renderContent()}
+      {showFab && (
+        <button
+          type="button"
+          className="scheduler-fab-button"
+          onClick={() => navigate('/scheduler/new')}
+          aria-label="새 일정 추가"
+        >
+          + 일정 추가
         </button>
-      </section>
-    </div>
+      )}
+    </>
   )
 }
 
@@ -963,19 +983,24 @@ function TodaySchedulerPage() {
       />
 
       {isFilterSheetOpen ? (
-        <div className="scheduler-sheet-backdrop" onClick={() => setIsFilterSheetOpen(false)}>
-          <section
-            className="scheduler-sheet"
+        <div className="scheduler-sheet-backdrop scheduler-modal-backdrop" onClick={() => setIsFilterSheetOpen(false)}>
+          <div
+            className="scheduler-modal"
             role="dialog"
             aria-modal="true"
             aria-label="필터 변경"
             onClick={(event) => event.stopPropagation()}
           >
-            <div className="scheduler-section-head scheduler-filter-sheet-head">
+            <div className="scheduler-section-head" style={{ marginBottom: '0.65rem' }}>
               <div>
                 <p className="scheduler-section-label">보기 변경</p>
               </div>
+              <button type="button" className="scheduler-modal-close" onClick={() => setIsFilterSheetOpen(false)}>닫기</button>
             </div>
+            
+            <p className="subtle" style={{ marginTop: 0, marginBottom: '1.25rem', fontSize: '0.86rem' }}>
+              확인할 날짜와 표시 범위를 선택해요.
+            </p>
 
             <div className="scheduler-form scheduler-filter-form">
               <NativePickerField
@@ -1042,15 +1067,15 @@ function TodaySchedulerPage() {
               ) : null}
             </div>
 
-            <div className="scheduler-form-actions scheduler-filter-actions">
-              <button type="button" className="soft-button" onClick={() => setIsFilterSheetOpen(false)}>
-                닫기
-              </button>
-              <button type="button" onClick={applyFilterChanges}>
+            <div className="scheduler-modal-actions stack" style={{ marginTop: '1.5rem' }}>
+              <button type="button" className="scheduler-modal-btn" onClick={applyFilterChanges}>
                 적용
               </button>
+              <button type="button" className="scheduler-modal-btn secondary" onClick={() => setIsFilterSheetOpen(false)}>
+                닫기
+              </button>
             </div>
-          </section>
+          </div>
         </div>
       ) : null}
 
@@ -1326,9 +1351,17 @@ function ReservationEditorPage({ mode, reservationId }) {
 
   return (
     <div className="scheduler-shell">
-      <SchedulerTopbar />
 
       <section className="scheduler-panel">
+        <div className="scheduler-section-head" style={{ marginBottom: '1.25rem' }}>
+          <div>
+            <p className="scheduler-section-label">{mode === 'edit' ? '일정 수정' : '일정 추가'}</p>
+          </div>
+          <button type="button" className="soft-button scheduler-summary-button" onClick={() => navigate('/scheduler')}>
+            ← 돌아가기
+          </button>
+        </div>
+
         {status && <p className="status">{status}</p>}
 
         {isLoading ? (
@@ -1553,7 +1586,6 @@ function RoomStatusPage() {
 
   return (
     <div className="scheduler-shell">
-      <SchedulerTopbar />
 
       <section className="scheduler-panel scheduler-controls">
         <div className="scheduler-date-row">
@@ -1661,15 +1693,22 @@ function WorkLogDetailView({ viewingWeekStart, logs, onClose, onNavigate, onCopy
   const totalHours = totalMinutes / 60
 
   return (
-    <div className="scheduler-sheet-backdrop" onClick={onClose}>
-      <section
-        className="scheduler-sheet scheduler-work-log-sheet"
+    <div className="scheduler-sheet-backdrop scheduler-modal-backdrop" onClick={onClose}>
+      <div
+        className="scheduler-modal scheduler-work-log-modal"
         role="dialog"
         aria-modal="true"
         aria-label="근무 일지 상세"
         onClick={(event) => event.stopPropagation()}
       >
-        <div className="scheduler-section-head">
+        <div className="scheduler-section-head" style={{ marginBottom: '0.65rem' }}>
+          <div>
+            <p className="scheduler-section-label">근무 일지</p>
+          </div>
+          <button type="button" className="scheduler-modal-close" onClick={onClose}>닫기</button>
+        </div>
+
+        <div className="scheduler-work-log-nav">
           <button type="button" className="soft-button scheduler-work-log-nav-btn" onClick={() => onNavigate('prev')}>이전 주</button>
           <div className="scheduler-work-log-title">
             <strong>{getWeekTitle(viewingWeekStart)}</strong>
@@ -1680,8 +1719,8 @@ function WorkLogDetailView({ viewingWeekStart, logs, onClose, onNavigate, onCopy
 
         <div className="scheduler-work-log-content">
           {sortedLogs.length === 0 ? (
-            <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-              <p className="subtle scheduler-empty-note">동기화된 근무 기록 없음</p>
+            <div className="scheduler-work-log-empty">
+              <p className="subtle scheduler-empty-note">이번 주 근무 기록이 아직 없어요.</p>
             </div>
           ) : (
             <div className="scheduler-work-log-list">
@@ -1711,19 +1750,17 @@ function WorkLogDetailView({ viewingWeekStart, logs, onClose, onNavigate, onCopy
             <span>주간 총계</span>
             <strong>{totalHours}시간</strong>
           </div>
-
-          <div className="scheduler-work-log-footer">
-            <div className="scheduler-form-actions">
-              <button type="button" className="soft-button" onClick={onClose}>
-                닫기
-              </button>
-              <button type="button" className="primary" onClick={() => onCopy(viewingWeekStart)}>
-                {copyFeedback || '주간 기록 복사'}
-              </button>
-            </div>
-          </div>
         </div>
-      </section>
+
+        <div className="scheduler-modal-actions stack" style={{ marginTop: '1.2rem' }}>
+          <button type="button" className="scheduler-modal-btn" onClick={() => onCopy(viewingWeekStart)}>
+            {copyFeedback || '주간 기록 복사'}
+          </button>
+          <button type="button" className="scheduler-modal-btn secondary" onClick={onClose}>
+            닫기
+          </button>
+        </div>
+      </div>
     </div>
   )
 }
