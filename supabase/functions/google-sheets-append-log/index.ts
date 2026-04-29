@@ -2,7 +2,7 @@ import { serve } from 'https://deno.land/std@0.168.0/http/server.ts'
 import { createClient } from 'https://esm.sh/@supabase/supabase-js@2'
 import { corsHeaders } from '../_shared/cors.ts'
 import { getOrRefreshToken } from '../_shared/googleToken.ts'
-import { findOrCreateSpreadsheet, appendSheetRow } from '../_shared/googleSheets.ts'
+import { findOrCreateSpreadsheet, findOrCreateSajuSpreadsheet, appendSheetRow } from '../_shared/googleSheets.ts'
 
 serve(async (req) => {
   if (req.method === 'OPTIONS') {
@@ -20,7 +20,7 @@ serve(async (req) => {
     }
 
     try {
-      const { userId, tabName, rowData } = payload
+      const { userId, tabName, rowData, spreadsheetType } = payload
 
       if (!userId || !tabName || !Array.isArray(rowData)) {
         throw new Error('Missing userId, tabName, or invalid rowData array')
@@ -33,10 +33,21 @@ serve(async (req) => {
       const supabase = createClient(supabaseUrl, supabaseKey)
       const accessToken = await getOrRefreshToken(supabase, userId)
 
-      let spreadsheetId = Deno.env.get('GOOGLE_SHEETS_LOG_SPREADSHEET_ID')
-      if (!spreadsheetId) {
-        spreadsheetId = await findOrCreateSpreadsheet(accessToken)
+      let spreadsheetId: string | null = null
+
+      if (spreadsheetType === 'saju') {
+        spreadsheetId = Deno.env.get('GOOGLE_SAJU_SHEETS_LOG_SPREADSHEET_ID') || null
+        if (!spreadsheetId) {
+          spreadsheetId = await findOrCreateSajuSpreadsheet(accessToken)
+        }
+      } else {
+        spreadsheetId = Deno.env.get('GOOGLE_SHEETS_LOG_SPREADSHEET_ID') || null
+        if (!spreadsheetId) {
+          spreadsheetId = await findOrCreateSpreadsheet(accessToken)
+        }
       }
+
+      if (!spreadsheetId) throw new Error('Could not determine spreadsheet ID')
 
       const result = await appendSheetRow(accessToken, spreadsheetId, tabName, rowData)
 

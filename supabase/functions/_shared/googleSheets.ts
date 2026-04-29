@@ -38,6 +38,41 @@ export async function findOrCreateSpreadsheet(accessToken: string): Promise<stri
   return createData.spreadsheetId
 }
 
+export async function findOrCreateSajuSpreadsheet(accessToken: string): Promise<string> {
+  const sheetName = 'softie_saju_fortune_reports'
+  
+  const query = `mimeType='application/vnd.google-apps.spreadsheet' and name='${sheetName}' and trashed=false`
+  const searchRes = await fetch(`https://www.googleapis.com/drive/v3/files?q=${encodeURIComponent(query)}&spaces=drive`, {
+    headers: { Authorization: `Bearer ${accessToken}` }
+  })
+  
+  const searchData = await searchRes.json()
+  if (searchData.error) throw new Error(`Drive API search error: ${searchData.error.message}`)
+  
+  if (searchData.files && searchData.files.length > 0) {
+    return searchData.files[0].id
+  }
+  
+  const createRes = await fetch('https://sheets.googleapis.com/v4/spreadsheets', {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${accessToken}`,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      properties: { title: sheetName },
+      sheets: [
+        { properties: { title: 'fortune_report_logs' } }
+      ]
+    })
+  })
+  
+  const createData = await createRes.json()
+  if (createData.error) throw new Error(`Sheets API create error: ${createData.error.message}`)
+  
+  return createData.spreadsheetId
+}
+
 export async function appendSheetRow(accessToken: string, spreadsheetId: string, tabName: string, rowData: any[]) {
   const appendUrl = `https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/${encodeURIComponent(tabName)}!A1:append?valueInputOption=USER_ENTERED`
 

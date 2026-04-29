@@ -266,7 +266,7 @@ export default function FortunePage() {
         'gemini-engine-v1.2'
       ]
 
-      await appendGoogleSheetsLog(deviceId, 'fortune_report_logs', rowData)
+      await appendGoogleSheetsLog(deviceId, 'fortune_report_logs', rowData, { spreadsheetType: 'saju' })
       setIsBackedUp(true)
       setStatus('오늘의 운세를 Google 시트에 기록했어요.')
     } catch (error) {

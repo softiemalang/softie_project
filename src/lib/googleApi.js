@@ -49,12 +49,12 @@ async function unwrapInvokeError(data, error) {
 /**
  * Calls the Edge Function to append a row to Google Sheets.
  */
-export async function appendGoogleSheetsLog(userId, tabName, rowData) {
+export async function appendGoogleSheetsLog(userId, tabName, rowData, options = {}) {
   if (!supabase) return
 
   try {
     const { data, error } = await supabase.functions.invoke('google-sheets-append-log', {
-      body: { userId, tabName, rowData }
+      body: { userId, tabName, rowData, spreadsheetType: options.spreadsheetType }
     })
 
     await unwrapInvokeError(data, error)
