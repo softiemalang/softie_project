@@ -335,13 +335,13 @@ export default function FortunePage() {
 
       {activeProfile ? (
         <section className="card fortune-profile-summary-card">
-          <div>
+          <div className="fortune-profile-summary-head">
             <p className="section-kicker">사용자 정보</p>
-            <p className="fortune-profile-summary">{profileSummary}</p>
+            <button type="button" className="soft-button" onClick={handleOpenProfileModal}>
+              정보 수정
+            </button>
           </div>
-          <button type="button" className="soft-button" onClick={handleOpenProfileModal}>
-            정보 수정
-          </button>
+          <p className="fortune-profile-summary">{profileSummary}</p>
         </section>
       ) : (
       <section className="card">
