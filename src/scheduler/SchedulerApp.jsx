@@ -233,6 +233,8 @@ function TodaySchedulerPage() {
   })
   const [pushStatus, setPushStatus] = useState('')
   const [googleStatus, setGoogleStatus] = useState('')
+  const [isWebPushModalOpen, setIsWebPushModalOpen] = useState(false)
+  const [isGoogleModalOpen, setIsGoogleModalOpen] = useState(false)
   const [isPushBusy, setIsPushBusy] = useState(false)
   const [pushPreferences, setPushPreferences] = useState(DEFAULT_PUSH_PREFERENCES)
   const [isPushPreferencesBusy, setIsPushPreferencesBusy] = useState(false)
@@ -713,7 +715,11 @@ function TodaySchedulerPage() {
     <div className="scheduler-shell">
       <SchedulerTopbar />
 
-      <section className={`scheduler-panel scheduler-push-panel ${isPushConnected ? 'is-connected' : 'is-setup'}`}>
+      <button
+        type="button"
+        className={`scheduler-panel scheduler-push-panel scheduler-setting-card ${isPushConnected ? 'is-connected' : 'is-setup'}`}
+        onClick={() => setIsWebPushModalOpen(true)}
+      >
         <div className="scheduler-section-head">
           <div>
             <p className="scheduler-section-label">웹 알림</p>
@@ -722,65 +728,80 @@ function TodaySchedulerPage() {
             {pushStatusLabel}
           </div>
         </div>
-        {isPushConnected ? (
-          <div className="scheduler-push-connected">
-            <div className="scheduler-push-secondary">
-              <div className="scheduler-push-control-row" aria-label="웹 알림 설정">
-                <div
-                  className={`scheduler-push-mini-button scheduler-push-global-toggle ${normalizedFilters.workTimeEnabled ? 'active' : 'secondary'}`}
-                  aria-label={`알림 상태: ${normalizedFilters.workTimeEnabled ? 'On' : 'Off'}`}
-                  role="status"
-                  aria-live="polite"
-                >
-                  {normalizedFilters.workTimeEnabled ? 'On' : 'Off'}
+        <p className="scheduler-setting-subtitle">
+          {isPushConnected ? '이 브라우저를 알림 대상으로 연결했어요.' : '알림을 받으려면 연결이 필요해요.'}
+        </p>
+      </button>
+
+      {isWebPushModalOpen && (
+        <div className="scheduler-sheet-backdrop scheduler-modal-backdrop" onClick={() => setIsWebPushModalOpen(false)}>
+          <div className="scheduler-modal" onClick={e => e.stopPropagation()}>
+            <div className="scheduler-section-head" style={{ marginBottom: '1.25rem' }}>
+              <p className="scheduler-section-label" style={{ marginBottom: 0 }}>웹 알림 설정</p>
+              <button type="button" className="soft-button" onClick={() => setIsWebPushModalOpen(false)}>닫기</button>
+            </div>
+            
+            {isPushConnected ? (
+              <div className="scheduler-push-connected">
+                <div className="scheduler-push-secondary">
+                  <div className="scheduler-push-control-row" aria-label="웹 알림 설정">
+                    <div
+                      className={`scheduler-push-mini-button scheduler-push-global-toggle ${normalizedFilters.workTimeEnabled ? 'active' : 'secondary'}`}
+                      aria-label={`알림 상태: ${normalizedFilters.workTimeEnabled ? 'On' : 'Off'}`}
+                      role="status"
+                      aria-live="polite"
+                    >
+                      {normalizedFilters.workTimeEnabled ? 'On' : 'Off'}
+                    </div>
+                    <button
+                      type="button"
+                      className="scheduler-push-mini-button"
+                      onClick={handleSendTestPush}
+                      disabled={isPushBusy || !pushState.subscribed}
+                    >
+                      테스트 알림
+                    </button>
+                    <button
+                      type="button"
+                      className="scheduler-push-mini-button secondary"
+                      onClick={handleEnablePush}
+                      disabled={isPushBusy}
+                    >
+                      다시 연결
+                    </button>
+                  </div>
                 </div>
-                <button
-                  type="button"
-                  className="scheduler-push-mini-button"
-                  onClick={handleSendTestPush}
-                  disabled={isPushBusy || !pushState.subscribed}
-                >
-                  테스트 알림
-                </button>
-                <button
-                  type="button"
-                  className="scheduler-push-mini-button secondary"
-                  onClick={handleEnablePush}
-                  disabled={isPushBusy}
-                >
-                  다시 연결
-                </button>
               </div>
-            </div>
+            ) : (
+              <div className="scheduler-push-setup">
+                <div className="scheduler-push-actions">
+                  <button
+                    type="button"
+                    className="scheduler-push-mini-button"
+                    onClick={handleEnablePush}
+                    disabled={isPushBusy || !pushState.supported || pushState.permission === 'denied'}
+                  >
+                    알림 연결
+                  </button>
+                  <button
+                    type="button"
+                    className="scheduler-push-mini-button secondary"
+                    onClick={handleSendTestPush}
+                    disabled={isPushBusy || !pushState.subscribed}
+                  >
+                    테스트 알림
+                  </button>
+                </div>
+              </div>
+            )}
+            {pushStatusMeta ? (
+              <p className={`subtle scheduler-push-status scheduler-push-status-note is-${pushStatusMeta.tone}`}>
+                {pushStatusMeta.text}
+              </p>
+            ) : null}
           </div>
-        ) : (
-          <div className="scheduler-push-setup">
-            <div className="scheduler-push-actions">
-              <button
-                type="button"
-                className="scheduler-push-mini-button"
-                onClick={handleEnablePush}
-                disabled={isPushBusy || !pushState.supported || pushState.permission === 'denied'}
-              >
-                알림 연결
-              </button>
-              <button
-                type="button"
-                className="scheduler-push-mini-button secondary"
-                onClick={handleSendTestPush}
-                disabled={isPushBusy || !pushState.subscribed}
-              >
-                테스트 알림
-              </button>
-            </div>
-          </div>
-        )}
-        {pushStatusMeta ? (
-          <p className={`subtle scheduler-push-status scheduler-push-status-note is-${pushStatusMeta.tone}`}>
-            {pushStatusMeta.text}
-          </p>
-        ) : null}
-      </section>
+        </div>
+      )}
 
       <section className="scheduler-panel scheduler-controls">
         <div className="scheduler-filter-summary-row">
@@ -984,96 +1005,114 @@ function TodaySchedulerPage() {
         />
       ) : null}
 
-      <section className="scheduler-panel scheduler-push-panel">
+      <button
+        type="button"
+        className="scheduler-panel scheduler-push-panel scheduler-setting-card"
+        onClick={() => setIsGoogleModalOpen(true)}
+      >
         <div className="scheduler-section-head">
           <div>
-            <p className="scheduler-section-label">Google 연동 (Calendar/Drive)</p>
+            <p className="scheduler-section-label">Google 연동</p>
           </div>
           <div className={`scheduler-count-pill ${isGoogleConnected() ? 'is-ready' : ''}`}>
             {isGoogleConnected() ? '연결됨' : '연결 필요'}
           </div>
         </div>
-        <div className="scheduler-push-setup">
-          <div className="scheduler-push-actions">
-            <button
-              type="button"
-              className="scheduler-push-mini-button"
-              onClick={() => connectGoogleCalendar(getOrCreatePushDeviceId())}
-            >
-              Google 계정 연결
-            </button>
-            <button
-              type="button"
-              className="scheduler-push-mini-button secondary"
-              onClick={async () => {
-                if (!isGoogleConnected()) {
-                  setGoogleStatus('Google 계정을 먼저 연결해 주세요.')
-                  return
-                }
-                try {
-                  setGoogleStatus('Google Calendar 일정 생성 중...')
-                  const now = new Date()
-                  const end = new Date(now.getTime() + 60 * 60 * 1000)
-                  await createGoogleCalendarEvent(getOrCreatePushDeviceId(), {
-                    summary: '테스트 일정',
-                    location: '서울 지점',
-                    description: 'Gemini CLI를 통한 테스트 일정입니다.',
-                    startAt: now.toISOString(),
-                    endAt: end.toISOString(),
-                  })
-                  setGoogleStatus('일정을 생성했어요.')
-                } catch (error) {
-                  setGoogleStatus(`오류: ${error.message}`)
-                  if (error.message?.includes('not connected') || error.message?.includes('refresh token') || error.message?.includes('insufficient')) {
-                    disconnectGoogleCalendar()
-                  }
-                }
-              }}
-            >
-              테스트 일정 추가
-            </button>
-            <button
-              type="button"
-              className="scheduler-push-mini-button secondary"
-              onClick={async () => {
-                if (!isGoogleConnected()) {
-                  setGoogleStatus('Google 계정을 먼저 연결해 주세요.')
-                  return
-                }
-                try {
-                  setGoogleStatus('Google Drive에 백업 중...')
-                  const result = await triggerGoogleDriveBackup(getOrCreatePushDeviceId(), 'full')
-                  setGoogleStatus(`백업 완료: ${result.fileName}`)
-                  
-                  // Log to Google Sheets
-                  appendGoogleSheetsLog(getOrCreatePushDeviceId(), 'backup_logs', [
-                    new Date().toISOString(),
-                    'backup_completed',
-                    'full',
-                    result.fileName || '',
-                    result.fileId || '',
-                    'success',
-                    JSON.stringify(result.metadata?.counts || {}),
-                    ''
-                  ])
-                } catch (error) {
-                  setGoogleStatus(`오류: ${error.message}`)
-                  if (error.message?.includes('not connected') || error.message?.includes('refresh token') || error.message?.includes('insufficient')) {
-                    disconnectGoogleCalendar()
-                  }
-                }
-              }}
-            >
-              수동 백업 (Drive)
-            </button>
+        <p className="scheduler-setting-subtitle">
+          {isGoogleConnected() ? 'Calendar, Drive, Sheets가 연결되어 있어요.' : '연결하면 일정 동기화와 백업을 사용할 수 있어요.'}
+        </p>
+      </button>
+
+      {isGoogleModalOpen && (
+        <div className="scheduler-sheet-backdrop scheduler-modal-backdrop" onClick={() => setIsGoogleModalOpen(false)}>
+          <div className="scheduler-modal" onClick={e => e.stopPropagation()}>
+            <div className="scheduler-section-head" style={{ marginBottom: '1.25rem' }}>
+              <p className="scheduler-section-label" style={{ marginBottom: 0 }}>Google 연동 설정</p>
+              <button type="button" className="soft-button" onClick={() => setIsGoogleModalOpen(false)}>닫기</button>
+            </div>
+            <div className="scheduler-push-setup">
+              <div className="scheduler-push-actions" style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+                <button
+                  type="button"
+                  className="scheduler-push-mini-button"
+                  onClick={() => connectGoogleCalendar(getOrCreatePushDeviceId())}
+                >
+                  {isGoogleConnected() ? '다시 연결' : 'Google 계정 연결'}
+                </button>
+                <button
+                  type="button"
+                  className="scheduler-push-mini-button secondary"
+                  onClick={async () => {
+                    if (!isGoogleConnected()) {
+                      setGoogleStatus('Google 계정을 먼저 연결해 주세요.')
+                      return
+                    }
+                    try {
+                      setGoogleStatus('Google Calendar 일정 생성 중...')
+                      const now = new Date()
+                      const end = new Date(now.getTime() + 60 * 60 * 1000)
+                      await createGoogleCalendarEvent(getOrCreatePushDeviceId(), {
+                        summary: '테스트 일정',
+                        location: '서울 지점',
+                        description: 'Gemini CLI를 통한 테스트 일정입니다.',
+                        startAt: now.toISOString(),
+                        endAt: end.toISOString(),
+                      })
+                      setGoogleStatus('일정을 생성했어요.')
+                    } catch (error) {
+                      setGoogleStatus(`오류: ${error.message}`)
+                      if (error.message?.includes('not connected') || error.message?.includes('refresh token') || error.message?.includes('insufficient')) {
+                        disconnectGoogleCalendar()
+                      }
+                    }
+                  }}
+                >
+                  테스트 일정 추가
+                </button>
+                <button
+                  type="button"
+                  className="scheduler-push-mini-button secondary"
+                  onClick={async () => {
+                    if (!isGoogleConnected()) {
+                      setGoogleStatus('Google 계정을 먼저 연결해 주세요.')
+                      return
+                    }
+                    try {
+                      setGoogleStatus('Google Drive에 백업 중...')
+                      const result = await triggerGoogleDriveBackup(getOrCreatePushDeviceId(), 'full')
+                      setGoogleStatus(`백업 완료: ${result.fileName}`)
+                      
+                      // Log to Google Sheets
+                      appendGoogleSheetsLog(getOrCreatePushDeviceId(), 'backup_logs', [
+                        new Date().toISOString(),
+                        'backup_completed',
+                        'full',
+                        result.fileName || '',
+                        result.fileId || '',
+                        'success',
+                        JSON.stringify(result.metadata?.counts || {}),
+                        ''
+                      ])
+                    } catch (error) {
+                      setGoogleStatus(`오류: ${error.message}`)
+                      if (error.message?.includes('not connected') || error.message?.includes('refresh token') || error.message?.includes('insufficient')) {
+                        disconnectGoogleCalendar()
+                      }
+                    }
+                  }}
+                >
+                  수동 백업 (Drive)
+                </button>
+              </div>
+              {googleStatus && (
+                <p className={`scheduler-google-status ${googleStatus.includes('오류') ? 'error' : 'success'}`}>
+                  {googleStatus}
+                </p>
+              )}
+            </div>
           </div>
-          {googleStatus && (
-            <p className={`scheduler-google-status ${googleStatus.includes('오류') ? 'error' : 'success'}`}>
-              {googleStatus}
-            </p>
-          )}
         </div>
-      </section>
+      )}
 
       {status && <p className="status">{status}</p>}
 

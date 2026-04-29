@@ -1964,3 +1964,25 @@ textarea {
 .scheduler-google-status.error {
   color: #e53e3e;
 }
+
+/* Settings Cards */
+.scheduler-setting-card {
+  display: block;
+  width: 100%;
+  text-align: left;
+  background: #fff;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: opacity 0.2s, background-color 0.2s;
+  padding: 1.2rem;
+  font-family: inherit;
+}
+.scheduler-setting-card:active {
+  background-color: #f9fafa;
+}
+.scheduler-setting-subtitle {
+  margin-top: 0.5rem;
+  font-size: 0.85rem;
+  color: #6b7280;
+  line-height: 1.4;
+}
