@@ -71,15 +71,24 @@
 
 .fortune-profile-summary-card {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: space-between;
-  gap: var(--fortune-gap-md);
-  padding-block: 0.9rem;
+  justify-content: center;
+  gap: 0.55rem;
+  padding-block: 1rem;
+  text-align: center;
 }
 
 .fortune-profile-summary-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   min-width: 0;
-  flex: 1 1 auto;
+  width: 100%;
+}
+
+.fortune-profile-summary-content .section-kicker {
+  margin-bottom: 0;
 }
 
 .fortune-profile-summary {
@@ -95,7 +104,7 @@
 .fortune-profile-summary-card .soft-button {
   flex-shrink: 0;
   min-height: 29px;
-  padding-inline: 0.62rem;
+  padding-inline: 0.8rem;
   font-size: 0.74rem;
 }
 
@@ -238,7 +247,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 0.6rem;
+  margin-bottom: 0.2rem;
 }
 
 .fortune-headline {
@@ -250,7 +259,7 @@
 }
 
 .fortune-summary-content {
-  padding: 0.25rem 0.5rem 0.5rem;
+  padding: 0 0.5rem 0.5rem;
 }
 
 .fortune-summary-text {
@@ -369,7 +378,7 @@
   max-height: 65vh;
   overflow-y: auto;
   padding-right: 0.25rem;
-  padding-top: 0.5rem;
+  padding-top: 0.15rem;
   margin-right: -0.25rem;
 }
 
@@ -432,7 +441,7 @@
   align-items: center;
   justify-content: flex-end;
   flex: 0 0 auto;
-  gap: 0.5rem;
+  gap: 0.35rem;
 }
 
 .fortune-history-detail-scroll {
@@ -465,18 +474,23 @@
   align-items: center;
   justify-content: center;
   line-height: 1;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .fortune-history-item-header {
   display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  margin-bottom: 0.3rem;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.4rem;
+  margin-bottom: 0.45rem;
 }
 
 .fortune-history-item-title {
   font-size: 0.94rem;
   color: #1f6f5f;
+  line-height: 1.4;
+  word-break: keep-all;
 }
 
 @media (max-width: 430px) {
@@ -497,9 +511,7 @@
   }
 
   .fortune-profile-summary-card {
-    flex-wrap: wrap;
-    gap: var(--fortune-gap-md);
-    padding: 0.9rem;
+    padding: 1rem;
   }
 
   .fortune-profile-summary {
@@ -507,9 +519,8 @@
   }
 
   .fortune-profile-summary-card .soft-button {
-    margin-left: auto;
     min-height: 30px;
-    padding-inline: 0.6rem;
+    padding-inline: 0.8rem;
   }
 
   .fortune-profile-backdrop {
