@@ -11,22 +11,21 @@ serve(async (req) => {
   }
 
   try {
-    let payload;
     try {
-      payload = await req.json()
-    } catch (parseError) {
-      console.error('[google-drive-backup] Request JSON Parse Error:', parseError)
-      return new Response(JSON.stringify({ error: 'Invalid JSON body in request.' }), {
-        status: 400,
-        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
-      })
-    }
+      const cronSecret = Deno.env.get('BACKUP_CRON_SECRET')
+      if (cronSecret) {
+        const authHeader = req.headers.get('Authorization')
+        if (!authHeader || authHeader !== `Bearer ${cronSecret}`) {
+          return new Response(JSON.stringify({ error: 'Unauthorized: Invalid cron secret' }), {
+            status: 401,
+            headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+          })
+        }
+      }
 
-    try {
-      const { userId, backupType } = payload
-
-      if (!userId || !backupType) {
-        throw new Error('Missing userId or backupType')
+      const userId = Deno.env.get('GOOGLE_BACKUP_USER_ID')
+      if (!userId) {
+        throw new Error('GOOGLE_BACKUP_USER_ID is not configured in Supabase secrets')
       }
 
       const supabaseUrl = Deno.env.get('SUPABASE_URL')
@@ -36,23 +35,23 @@ serve(async (req) => {
       const supabase = createClient(supabaseUrl, supabaseKey)
       const accessToken = await getOrRefreshToken(supabase, userId)
 
-      const backupData = await gatherBackupData(supabase, 'manual', backupType)
-      const backupResult = await uploadToDriveIfNew(accessToken, backupData.finalJson, backupData.fileName, backupData.subFolder, backupData.year, false)
+      const backupData = await gatherBackupData(supabase, 'scheduled', 'full')
+      const backupResult = await uploadToDriveIfNew(accessToken, backupData.finalJson, backupData.fileName, backupData.subFolder, backupData.year, true)
 
       let spreadsheetId = Deno.env.get('GOOGLE_SHEETS_LOG_SPREADSHEET_ID')
       if (!spreadsheetId) {
         spreadsheetId = await findOrCreateSpreadsheet(accessToken)
       }
-      
+
       try {
         await updateBackupDashboardAndSnapshots(accessToken, spreadsheetId, backupData.finalJson, backupResult)
       } catch (sheetsError) {
-        console.error('[google-drive-backup] Sheets Error:', sheetsError)
-        // Non-fatal for backup completion
+        console.error('[google-drive-scheduled-backup] Sheets Error:', sheetsError)
       }
 
       return new Response(JSON.stringify({ 
         success: true, 
+        skipped: backupResult.skipped,
         fileId: backupResult.fileId, 
         fileName: backupData.fileName, 
         metadata: backupData.finalJson.metadata 
@@ -60,15 +59,15 @@ serve(async (req) => {
         headers: { ...corsHeaders, 'Content-Type': 'application/json' },
       })
     } catch (innerError) {
-      console.error('[google-drive-backup] Expected Error:', innerError)
+      console.error('[google-drive-scheduled-backup] Expected Error:', innerError)
       return new Response(JSON.stringify({ error: innerError.message || String(innerError) }), {
         status: 400,
         headers: { ...corsHeaders, 'Content-Type': 'application/json' },
       })
     }
   } catch (fatalError) {
-    console.error('[google-drive-backup] Fatal Crash:', fatalError)
-    return new Response(JSON.stringify({ error: 'A fatal server error occurred during backup. Please try again later.' }), {
+    console.error('[google-drive-scheduled-backup] Fatal Crash:', fatalError)
+    return new Response(JSON.stringify({ error: 'A fatal server error occurred during scheduled backup.' }), {
       status: 500,
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },
     })

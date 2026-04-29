@@ -5,7 +5,8 @@ This document outlines the current state of the Google Ecosystem integrations wi
 ## 1. Overview of Completed MVP Features
 
 - **Google Calendar (One-Way Creation):** Automatically creates a Google Calendar event when a reservation is saved or updated.
-- **Google Drive (Manual Backup):** Exports important application data (scheduler, fortune, settings) as a JSON file and uploads it to a `softie_project/backups` folder in the user's Google Drive.
+- **Google Drive (Manual Backup):** Exports important application data as a JSON file and uploads it to `softie_project/backups/manual/YYYY/` in the user's Google Drive.
+- **Google Drive (Scheduled Backup):** An automated Edge Function that runs daily to create a snapshot at `softie_project/backups/daily/YYYY/YYYY-MM-DD.json`. Skips if already exists.
 - **Google Sheets (Append Logging):** Best-effort logging of reservation events and backup completions to a designated Google Spreadsheet.
 
 ## 2. Architecture & Security
@@ -38,6 +39,8 @@ This document outlines the current state of the Google Ecosystem integrations wi
 - `FRONTEND_URL`: The URL of the deployed frontend (e.g., `https://softie-project.vercel.app`). Used by the Edge Function to redirect back after success.
 - `SUPABASE_URL` / `SUPABASE_SERVICE_ROLE_KEY`: Supabase API keys.
 - `GOOGLE_SHEETS_LOG_SPREADSHEET_ID`: (Optional) If omitted, the app auto-creates/reuses a `softie_project_logs` spreadsheet.
+- `GOOGLE_BACKUP_USER_ID`: The `user_id` (or `deviceId`) corresponding to the dedicated Google account in `google_calendar_tokens`. Used by the scheduled backup function to identify which token to use.
+- `BACKUP_CRON_SECRET`: (Optional but recommended) A secret key to protect the `google-drive-scheduled-backup` endpoint from unauthorized external invocation.
 
 ## 4. Required OAuth Scopes
 
@@ -51,7 +54,8 @@ Users must consent to the following scopes during the OAuth flow:
 
 - `google-oauth-callback`: Handles the OAuth redirect, exchanges the code for tokens, and redirects back to `FRONTEND_URL`.
 - `google-calendar-create-event`: Creates calendar events and prevents duplicates.
-- `google-drive-backup`: Generates JSON backups and uploads them to Google Drive.
+- `google-drive-backup`: Generates manual JSON backups and uploads them to Google Drive.
+- `google-drive-scheduled-backup`: Generates automated daily JSON backups and updates the Sheets dashboard/snapshots.
 - `google-sheets-append-log`: Appends rows to specific tabs. Auto-creates `softie_project_logs` if `GOOGLE_SHEETS_LOG_SPREADSHEET_ID` is missing.
 
 ## 6. Database Changes
@@ -74,6 +78,7 @@ Users must consent to the following scopes during the OAuth flow:
    - `supabase functions deploy google-calendar-create-event`
    - `supabase functions deploy google-drive-backup`
    - `supabase functions deploy google-sheets-append-log`
+   - `supabase functions deploy google-drive-scheduled-backup`
 5. Reconnect the Google account in the app.
 6. Test Calendar, Drive, and Sheets features.
 
@@ -113,3 +118,33 @@ Users must consent to the following scopes during the OAuth flow:
 - Implement a secure connection status check endpoint (to replace the current `localStorage` heuristic).
 - Add sync status fields (e.g., `google_sync_status`, `google_sync_error`) to relevant tables.
 - Implement a preview-only MVP for Drive restore (allowing users to see what will be restored before applying).
+
+## 12. Automated Backup Scheduling
+
+The automated backup uses the `google-drive-scheduled-backup` Edge Function. To set it up to run at 00:05 KST daily (which is 15:05 UTC):
+
+**1. Find your GOOGLE_BACKUP_USER_ID:**
+Check the `google_calendar_tokens` table in your Supabase Dashboard. Find the row for your dedicated Softie Gmail account and copy its `user_id`.
+`supabase secrets set GOOGLE_BACKUP_USER_ID="<that-user-id>"`
+
+**2. Set a CRON Secret (Optional but Recommended):**
+`supabase secrets set BACKUP_CRON_SECRET="your-secure-random-string"`
+
+**3. Schedule via pg_cron (Supabase Native):**
+Run the following SQL in your Supabase SQL Editor to schedule the backup using the `pg_net` extension:
+
+```sql
+-- Schedule to run at 15:05 UTC (00:05 KST) every day
+select cron.schedule(
+  'daily-softie-backup',
+  '5 15 * * *',
+  $$
+  select net.http_post(
+      url:='https://YOUR_PROJECT_REF.supabase.co/functions/v1/google-drive-scheduled-backup',
+      headers:='{"Content-Type": "application/json", "Authorization": "Bearer your-secure-random-string"}'::jsonb
+  );
+  $$
+);
+```
+
+Alternatively, you can trigger the Edge Function URL via an external service like GitHub Actions or cron-job.org, passing the `Authorization: Bearer your-secure-random-string` header.
