@@ -8,7 +8,7 @@ const GOOGLE_REDIRECT_URI = import.meta.env.VITE_GOOGLE_REDIRECT_URI
  * Starts the Google OAuth flow.
  * Redirects the user to Google's consent screen.
  */
-export function connectGoogleCalendar(userId) {
+export function connectGoogleCalendar(userId, options = {}) {
   if (!GOOGLE_REDIRECT_URI) {
     alert('VITE_GOOGLE_REDIRECT_URI 환경변수가 설정되지 않았습니다.')
     return
@@ -18,6 +18,9 @@ export function connectGoogleCalendar(userId) {
   const scope = 'https://www.googleapis.com/auth/calendar.events https://www.googleapis.com/auth/drive.file https://www.googleapis.com/auth/spreadsheets'
   
   // Use 'state' to pass the userId/deviceId so the callback can identify who it belongs to
+  // Optional: encode returnPath into state using '|' as separator
+  const state = options.returnPath ? `${userId}|${options.returnPath}` : userId
+
   const authUrl = new URL('https://accounts.google.com/o/oauth2/v2/auth')
   authUrl.searchParams.set('client_id', GOOGLE_CLIENT_ID)
   authUrl.searchParams.set('redirect_uri', GOOGLE_REDIRECT_URI)
@@ -25,7 +28,7 @@ export function connectGoogleCalendar(userId) {
   authUrl.searchParams.set('scope', scope)
   authUrl.searchParams.set('access_type', 'offline')
   authUrl.searchParams.set('prompt', 'consent') // Force consent to get refresh_token
-  authUrl.searchParams.set('state', userId)
+  authUrl.searchParams.set('state', state)
 
   window.location.href = authUrl.toString()
 }

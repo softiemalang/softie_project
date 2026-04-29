@@ -340,7 +340,7 @@ export default function FortunePage() {
 
   function handleConnectGoogle() {
     const deviceId = getOrCreatePushDeviceId()
-    connectGoogleCalendar(deviceId)
+    connectGoogleCalendar(deviceId, { returnPath: '/saju' })
   }
 
   const reportData = report?.report_content

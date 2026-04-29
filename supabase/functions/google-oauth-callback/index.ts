@@ -10,10 +10,25 @@ serve(async (req) => {
   try {
     const url = new URL(req.url)
     const code = url.searchParams.get('code')
-    const state = url.searchParams.get('state') // We'll use this for user_id/device_id
+    const state = url.searchParams.get('state') // userId or userId|returnPath
 
     if (!code || !state) {
       throw new Error('Missing code or state')
+    }
+
+    // Parse state: backward compatible with userId only
+    let userId = state
+    let targetPath = '/scheduler'
+
+    if (state.includes('|')) {
+      const parts = state.split('|')
+      userId = parts[0]
+      const requestedPath = parts[1]
+      
+      const whitelist = ['/scheduler', '/saju', '/']
+      if (whitelist.includes(requestedPath)) {
+        targetPath = requestedPath
+      }
     }
 
     const clientId = Deno.env.get('GOOGLE_CLIENT_ID')
@@ -47,7 +62,7 @@ serve(async (req) => {
     const { error: upsertError } = await supabase
       .from('google_calendar_tokens')
       .upsert({
-        user_id: state,
+        user_id: userId,
         access_token: tokens.access_token,
         refresh_token: tokens.refresh_token, // Only sent on first consent
         expires_at: new Date(Date.now() + tokens.expires_in * 1000).toISOString(),
@@ -60,7 +75,7 @@ serve(async (req) => {
     // Use FRONTEND_URL (Vercel) or SITE_URL (Supabase default), fallback to localhost for dev
     const siteUrl = Deno.env.get('FRONTEND_URL') || Deno.env.get('SITE_URL') || 'http://localhost:5173'
     const frontendUrl = new URL(siteUrl)
-    frontendUrl.pathname = '/scheduler'
+    frontendUrl.pathname = targetPath
     frontendUrl.searchParams.set('google_connected', 'true')
 
     return Response.redirect(frontendUrl.toString(), 303)
