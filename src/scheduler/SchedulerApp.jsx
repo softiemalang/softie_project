@@ -155,50 +155,6 @@ export function SchedulerApp({ pathname }) {
   )
 }
 
-function SchedulerTopbar({ rightAction }) {
-  const isToday = window.location.pathname === '/scheduler' || window.location.pathname === '/scheduler/'
-  
-  return (
-    <header className="scheduler-topbar">
-      <div className="scheduler-topbar-actions">
-        <div className="scheduler-nav-group">
-          <NavButton path="/scheduler" label="Today" isActive={isToday} />
-        </div>
-        <div className="scheduler-action-group">
-          <NavButton path="/scheduler/new" label="Add" isPrimaryAction />
-          {rightAction}
-        </div>
-      </div>
-    </header>
-  )
-}
-
-function NavButton({ path, label, isActive = false, isPrimaryAction = false }) {
-  function handleClick() {
-    if (path === '/scheduler' && window.location.pathname === '/scheduler') {
-      window.dispatchEvent(new CustomEvent(GO_TO_TODAY_EVENT))
-      return
-    }
-
-    navigate(path)
-  }
-
-  const className = [
-    'scheduler-nav-button',
-    isActive ? 'active' : '',
-    isPrimaryAction ? 'primary-action' : '',
-  ].filter(Boolean).join(' ')
-
-  return (
-    <button
-      type="button"
-      className={className}
-      onClick={handleClick}
-    >
-      {label}
-    </button>
-  )
-}
 
 function NativePickerField({
   className = '',
@@ -745,7 +701,6 @@ function TodaySchedulerPage() {
 
   return (
     <div className="scheduler-shell">
-      <SchedulerTopbar />
 
       <button
         type="button"
