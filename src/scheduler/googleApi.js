@@ -1,4 +1,5 @@
 import { supabase } from '../lib/supabase'
+import { appendGoogleSheetsLog as sharedAppendGoogleSheetsLog } from '../lib/googleApi'
 
 const GOOGLE_CLIENT_ID = import.meta.env.VITE_GOOGLE_CLIENT_ID
 const GOOGLE_REDIRECT_URI = import.meta.env.VITE_GOOGLE_REDIRECT_URI
@@ -107,16 +108,10 @@ export async function triggerGoogleDriveBackup(userId, backupType = 'full') {
  * Fire-and-forget style logging.
  */
 export async function appendGoogleSheetsLog(userId, tabName, rowData) {
-  if (!supabase || !isGoogleConnected()) return
-
+  if (!isGoogleConnected()) return
   try {
-    const { data, error } = await supabase.functions.invoke('google-sheets-append-log', {
-      body: { userId, tabName, rowData }
-    })
-
-    await unwrapInvokeError(data, error)
+    await sharedAppendGoogleSheetsLog(userId, tabName, rowData)
   } catch (err) {
-    console.error(`Google Sheets Logging Error (${tabName}):`, err)
     if (err.message?.includes('not connected') || err.message?.includes('refresh token') || err.message?.includes('insufficient')) {
       disconnectGoogleCalendar()
     }
