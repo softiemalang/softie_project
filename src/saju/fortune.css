@@ -293,6 +293,23 @@
   color: #8b5e1a;
 }
 
+.fortune-history-list {
+  max-height: 65vh;
+  overflow-y: auto;
+  padding-right: 0.2rem;
+  padding-top: 0.5rem;
+}
+
+.fortune-history-item.card {
+  padding: 1rem;
+  margin-bottom: 0;
+  border-radius: var(--fortune-radius-md);
+  box-shadow: none;
+  background: rgba(255, 252, 248, 0.88);
+  border: 1px solid #e7ddd0;
+  text-align: left;
+}
+
 .scheduler-count-pill {
   background: #f2ede5;
   color: #7b7268;

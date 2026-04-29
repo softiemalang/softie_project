@@ -6,7 +6,8 @@ import {
   getNatalSnapshot,
   createNatalSnapshot,
   getDailySnapshot,
-  createDailySnapshot
+  createDailySnapshot,
+  getFortuneHistory
 } from './api'
 import { generateNatalSnapshot, generateDailySnapshot } from './interpreter/preprocessor'
 import { getOrGenerateReport } from './interpreter/reportGenerator'
@@ -51,6 +52,9 @@ export default function FortunePage() {
   const [status, setStatus] = useState('')
   const [isBackingUp, setIsBackingUp] = useState(false)
   const [isBackedUp, setIsBackedUp] = useState(false)
+  const [isHistoryModalOpen, setIsHistoryModalOpen] = useState(false)
+  const [historyList, setHistoryList] = useState([])
+  const [isHistoryLoading, setIsHistoryLoading] = useState(false)
 
   const canSubmitProfile = isCompleteBirthDate(profile.birthDate) && isCompleteBirthTime(profile.birthTime)
 
@@ -240,6 +244,20 @@ export default function FortunePage() {
     }
   }
 
+  async function handleOpenHistory() {
+    if (!activeProfile) return
+    setIsHistoryModalOpen(true)
+    setIsHistoryLoading(true)
+    try {
+      const data = await getFortuneHistory(activeProfile.id, 30)
+      setHistoryList(data)
+    } catch (error) {
+      console.error('Failed to load history:', error)
+    } finally {
+      setIsHistoryLoading(false)
+    }
+  }
+
   const reportData = report?.report_content
 
   return (
@@ -249,7 +267,12 @@ export default function FortunePage() {
           <p className="eyebrow">사주 기반 오늘의 운세</p>
           <h1>나의 일간과 오늘의 흐름을 정교하게 분석한 맞춤 리포트</h1>
         </div>
-        <div className="action-row">
+        <div className="action-row" style={{ display: 'flex', gap: '0.5rem' }}>
+          {activeProfile && (
+            <button type="button" className="soft-button" onClick={handleOpenHistory}>
+              히스토리
+            </button>
+          )}
           <button type="button" className="soft-button" onClick={resetProfileForm}>
             reset
           </button>
@@ -383,6 +406,43 @@ export default function FortunePage() {
               </p>
             )}
           </section>
+        </div>
+      )}
+
+      {isHistoryModalOpen && (
+        <div className="scheduler-sheet-backdrop scheduler-modal-backdrop" onClick={() => setIsHistoryModalOpen(false)}>
+          <div className="scheduler-modal" onClick={e => e.stopPropagation()}>
+            <div className="scheduler-section-head">
+              <p className="scheduler-section-label">운세 히스토리</p>
+              <button type="button" className="scheduler-modal-close" onClick={() => setIsHistoryModalOpen(false)}>닫기</button>
+            </div>
+            
+            <div className="fortune-history-list">
+              {isHistoryLoading ? (
+                <p className="status" style={{ textAlign: 'center' }}>과거 기록을 불러오는 중입니다...</p>
+              ) : historyList.length === 0 ? (
+                <p className="status" style={{ textAlign: 'center' }}>저장된 운세 리포트가 없습니다.</p>
+              ) : (
+                <div className="stack-form">
+                  {historyList.map(item => (
+                    <div key={item.id} className="fortune-history-item card">
+                      <div style={{ marginBottom: '0.2rem' }}>
+                        <span className="scheduler-count-pill" style={{ marginRight: '0.5rem' }}>
+                          {item.report_date}
+                        </span>
+                        <strong style={{ fontSize: '0.94rem', color: '#1f6f5f' }}>
+                          {item.headline}
+                        </strong>
+                      </div>
+                      <p className="subtle" style={{ margin: 0, fontSize: '0.86rem', color: '#6b6258' }}>
+                        {item.summary}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+          </div>
         </div>
       )}
     </div>
