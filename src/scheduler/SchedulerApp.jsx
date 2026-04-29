@@ -1438,7 +1438,7 @@ function ReservationEditorPage({ mode, reservationId }) {
             </div>
 
             <div className="scheduler-form-section">
-              <span className="scheduler-field-label scheduler-parent-label">특이 태그</span>
+              <span className="scheduler-parent-label">특이 태그</span>
               <div className="scheduler-chip-row">
                 {SCHEDULER_TAGS.map((tag) => {
                   const isActive = formValues.tags.includes(tag.value)

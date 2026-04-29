@@ -1248,26 +1248,23 @@ textarea {
 }
 
 .scheduler-form label,
-.scheduler-field-label {
-  display: grid;
+.scheduler-field-label,
+.scheduler-parent-label {
+  display: block;
   gap: var(--scheduler-form-label-gap);
   font-size: 0.84rem;
   font-weight: 550;
   color: #6b7280;
   min-width: 0;
   line-height: 1.15;
-}
-
-.scheduler-parent-label {
-  display: block;
   padding-left: 0.18rem;
+  margin-bottom: 0.24rem;
 }
 
 .scheduler-form-section,
 .scheduler-primary-field,
 .scheduler-warning-offset-field {
   display: grid;
-  gap: var(--scheduler-form-label-gap);
   min-width: 0;
 }
 
