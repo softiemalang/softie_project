@@ -86,10 +86,12 @@
   font-size: 0.94rem;
   font-weight: 600;
   line-height: 1.45;
-  overflow-wrap: anywhere;
+  overflow-wrap: normal;
+  word-break: keep-all;
 }
 
 .fortune-profile-summary-card .soft-button {
+  flex-shrink: 0;
   min-height: 34px;
   padding-inline: 0.85rem;
 }
@@ -413,7 +415,8 @@
   }
 
   .fortune-profile-summary-card {
-    align-items: flex-start;
+    flex-direction: column;
+    align-items: stretch;
     gap: var(--fortune-gap-sm);
     padding: 0.9rem;
   }
@@ -423,6 +426,7 @@
   }
 
   .fortune-profile-summary-card .soft-button {
+    align-self: flex-end;
     min-height: 32px;
     padding-inline: 0.68rem;
   }
