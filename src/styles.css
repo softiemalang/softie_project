@@ -580,7 +580,7 @@ textarea {
 
 .scheduler-push-control-row {
   display: flex;
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
   align-items: center;
   gap: 0.34rem;
 }
@@ -688,7 +688,7 @@ textarea {
 
 .scheduler-preset-row {
   display: flex;
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
   gap: var(--scheduler-gap-xs);
 }
 
@@ -981,7 +981,7 @@ textarea {
 .scheduler-event-summary {
   display: flex;
   align-items: center;
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
   gap: 0.34rem;
   min-width: 0;
   padding-inline: var(--scheduler-content-inset);
@@ -1773,7 +1773,7 @@ textarea {
 
 .scheduler-modal {
   width: min(90%, 400px);
-  padding: 1.5rem;
+  padding: 1.25rem;
   background: #fff;
   border-radius: var(--scheduler-radius-xl);
   box-shadow: 0 24px 64px rgba(0, 0, 0, 0.12);
@@ -1970,19 +1970,56 @@ textarea {
   display: block;
   width: 100%;
   text-align: left;
-  background: #fff;
-  border: 1px solid transparent;
   cursor: pointer;
-  transition: opacity 0.2s, background-color 0.2s;
-  padding: 1.2rem;
+  transition: transform 0.1s, background-color 0.2s;
+  padding: 1.25rem;
   font-family: inherit;
 }
 .scheduler-setting-card:active {
-  background-color: #f9fafa;
+  transform: scale(0.98);
+  background-color: rgba(255, 252, 248, 0.98);
 }
 .scheduler-setting-subtitle {
+  margin: 0;
+  font-size: 0.84rem;
+  font-weight: 500;
+  color: #a39587;
+  line-height: 1.35;
+}
+.scheduler-modal-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
   margin-top: 0.5rem;
-  font-size: 0.85rem;
-  color: #6b7280;
-  line-height: 1.4;
+}
+.scheduler-modal-actions.stack {
+  flex-direction: column;
+  align-items: flex-start;
+}
+.scheduler-modal-btn {
+  background: #f0e6d8;
+  color: #5b4a35;
+  padding: 0 1rem;
+  border-radius: 12px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  min-height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 1 auto;
+  border: 1px solid transparent;
+}
+.scheduler-modal-btn.secondary {
+  background: rgba(255, 255, 255, 0.85);
+  color: #726454;
+  border-color: rgba(229, 219, 207, 0.95);
+}
+.scheduler-modal-btn.active {
+  background: #1f6f5f;
+  color: #fff;
+}
+.scheduler-modal-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
 }
