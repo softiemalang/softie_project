@@ -354,6 +354,22 @@ export default function FortunePage() {
             </div>
           </section>
 
+          <section className="fortune-backup-action">
+            <button
+              type="button"
+              className="soft-button"
+              onClick={handleBackupToSheets}
+              disabled={isBackingUp || isBackedUp}
+            >
+              {isBackingUp ? '기록 중...' : isBackedUp ? '기록 완료' : 'Google 시트에 기록하기'}
+            </button>
+            {!isBackedUp && (
+              <p className="subtle">
+                현재 리포트를 Google 시트에 저장해요.
+              </p>
+            )}
+          </section>
+
           <section className="card">
             <div className="card-header">
               <p className="section-kicker">분야별 운세</p>
@@ -388,23 +404,6 @@ export default function FortunePage() {
             <p className="fortune-action-tip">
               🍀 {reportData.action_tip}
             </p>
-          </section>
-
-          <section style={{ textAlign: 'center', marginTop: '0.75rem', marginBottom: '1.5rem' }}>
-            <button
-              type="button"
-              className="soft-button"
-              style={{ fontSize: '0.86rem', padding: '0.65rem 1.25rem', minHeight: '38px', borderRadius: '999px' }}
-              onClick={handleBackupToSheets}
-              disabled={isBackingUp || isBackedUp}
-            >
-              {isBackingUp ? '기록 중...' : isBackedUp ? '기록 완료' : 'Google 시트에 기록하기'}
-            </button>
-            {!isBackedUp && (
-              <p className="subtle" style={{ fontSize: '0.76rem', marginTop: '0.5rem', marginBottom: 0 }}>
-                오늘의 운세를 Google 시트에 한 줄로 저장해요.
-              </p>
-            )}
           </section>
         </div>
       )}
