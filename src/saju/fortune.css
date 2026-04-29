@@ -43,6 +43,14 @@
   padding-inline: 0.5rem;
 }
 
+.fortune-header-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex: 0 0 auto;
+  gap: 0.45rem;
+}
+
 .fortune-shell .hero h1 {
   display: none;
 }
@@ -169,15 +177,21 @@
 }
 
 .fortune-shell .soft-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
   background: rgba(239, 230, 216, 0.3);
   color: #6b6258;
   font-size: 0.78rem;
   font-weight: 500;
-  padding: 0.35rem 0.65rem;
+  line-height: 1;
+  white-space: nowrap;
+  padding: 0 0.72rem;
   border-radius: 999px;
   border: 1px solid transparent;
   transition: background-color 0.2s ease;
-  min-height: 28px;
+  min-height: 30px;
   cursor: pointer;
 }
 
@@ -320,6 +334,18 @@
 }
 
 @media (max-width: 430px) {
+  .fortune-shell .hero {
+    gap: var(--fortune-gap-sm);
+  }
+
+  .fortune-header-actions {
+    gap: 0.35rem;
+  }
+
+  .fortune-shell .soft-button {
+    padding-inline: 0.58rem;
+  }
+
   .fortune-shell .field-grid {
     grid-template-columns: 1fr;
   }
