@@ -11,6 +11,8 @@ import {
 import { generateNatalSnapshot, generateDailySnapshot } from './interpreter/preprocessor'
 import { getOrGenerateReport } from './interpreter/reportGenerator'
 import { getKstDateString, getOrCreateLocalKey } from './utils'
+import { getOrCreatePushDeviceId } from '../lib/device'
+import { appendGoogleSheetsLog } from '../lib/googleApi'
 
 const EMPTY_PROFILE = {
   name: '',
@@ -47,6 +49,8 @@ export default function FortunePage() {
   const [report, setReport] = useState(null)
   const [isLoading, setIsLoading] = useState(true)
   const [status, setStatus] = useState('')
+  const [isBackingUp, setIsBackingUp] = useState(false)
+  const [isBackedUp, setIsBackedUp] = useState(false)
 
   const todayStr = getKstDateString()
   const canSubmitProfile = isCompleteBirthDate(profile.birthDate) && isCompleteBirthTime(profile.birthTime)
@@ -131,12 +135,14 @@ export default function FortunePage() {
     setDailySnapshot(null)
     setReport(null)
     setStatus('')
+    setIsBackedUp(false)
   }
 
   async function handleSaveProfile() {
     setIsLoading(true)
     setReport(null)
     setDailySnapshot(null)
+    setIsBackedUp(false)
     setStatus('프로필을 저장하고 운세를 분석하는 중...')
     try {
       const localKey = getOrCreateLocalKey()
@@ -156,6 +162,46 @@ export default function FortunePage() {
       setStatus(`프로필 저장에 실패했습니다: ${errorMsg}`)
     } finally {
       setIsLoading(false)
+    }
+  }
+
+  async function handleBackupToSheets() {
+    if (!activeProfile || !dailySnapshot || !reportData || !report) return
+    setIsBackingUp(true)
+    try {
+      const deviceId = getOrCreatePushDeviceId()
+      const rowData = [
+        new Date().toISOString(),
+        dailySnapshot.target_date || '',
+        activeProfile.name || '',
+        activeProfile.gender || '',
+        activeProfile.birth_date || '',
+        activeProfile.birth_time || '',
+        reportData.summary || '',
+        reportData.sections?.love || '',
+        reportData.sections?.mind || '',
+        reportData.sections?.work || '',
+        reportData.sections?.money || '',
+        reportData.sections?.health || '',
+        reportData.sections?.relationships || '',
+        Array.isArray(reportData.cautions) ? reportData.cautions.join(' / ') : '',
+        reportData.action_tip || '',
+        report.id || '',
+        'gemini-engine-v1.2'
+      ]
+
+      await appendGoogleSheetsLog(deviceId, 'fortune_report_logs', rowData)
+      setIsBackedUp(true)
+      setStatus('오늘의 운세를 Google 시트에 기록했어요.')
+    } catch (error) {
+      console.error('Backup to sheets failed:', error)
+      if (error.message?.includes('connected') || error.message?.includes('token')) {
+        setStatus('Google 연동 후 다시 시도해 주세요.')
+      } else {
+        setStatus('Google 시트 기록에 실패했습니다.')
+      }
+    } finally {
+      setIsBackingUp(false)
     }
   }
 
@@ -282,6 +328,23 @@ export default function FortunePage() {
             <p className="fortune-action-tip">
               🍀 {reportData.action_tip}
             </p>
+          </section>
+
+          <section style={{ textAlign: 'center', marginTop: '0.75rem', marginBottom: '1.5rem' }}>
+            <button
+              type="button"
+              className="soft-button"
+              style={{ fontSize: '0.86rem', padding: '0.65rem 1.25rem', minHeight: '38px', borderRadius: '999px' }}
+              onClick={handleBackupToSheets}
+              disabled={isBackingUp || isBackedUp}
+            >
+              {isBackingUp ? '기록 중...' : isBackedUp ? '기록 완료' : 'Google 시트에 기록하기'}
+            </button>
+            {!isBackedUp && (
+              <p className="subtle" style={{ fontSize: '0.76rem', marginTop: '0.5rem', marginBottom: 0 }}>
+                오늘의 운세를 Google 시트에 한 줄로 저장해요.
+              </p>
+            )}
           </section>
         </div>
       )}
