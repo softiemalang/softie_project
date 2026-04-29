@@ -1305,7 +1305,8 @@ function ReservationEditorPage({ mode, reservationId }) {
     <div className="scheduler-shell">
 
       <section className="scheduler-panel">
-        <div className="scheduler-section-head" style={{ justifyContent: 'flex-end', marginBottom: '0.75rem' }}>
+        <div className="scheduler-section-head" style={{ marginBottom: '0.75rem' }}>
+          <div />
           <button type="button" className="scheduler-back-button" onClick={() => navigate('/scheduler')}>
             ← 돌아가기
           </button>
@@ -1327,7 +1328,7 @@ function ReservationEditorPage({ mode, reservationId }) {
             />
 
             <div className="scheduler-two-up scheduler-primary-field-row">
-              <label className="scheduler-primary-field">
+              <div className="scheduler-primary-field">
                 <span className="scheduler-parent-label">지점</span>
                 <div className="scheduler-branch-option-row" role="radiogroup" aria-label="지점 선택">
                   {SCHEDULER_BRANCHES.map((branch) => {
@@ -1345,9 +1346,9 @@ function ReservationEditorPage({ mode, reservationId }) {
                     )
                   })}
                 </div>
-              </label>
+              </div>
 
-              <label className="scheduler-primary-field">
+              <div className="scheduler-primary-field">
                 <span className="scheduler-parent-label">룸</span>
                 <div className="scheduler-room-picker" aria-disabled={!formValues.branch}>
                   {!formValues.branch ? (
@@ -1371,7 +1372,7 @@ function ReservationEditorPage({ mode, reservationId }) {
                     </div>
                   )}
                 </div>
-              </label>
+              </div>
             </div>
 
             <label className="scheduler-primary-field">
@@ -1417,7 +1418,7 @@ function ReservationEditorPage({ mode, reservationId }) {
               </div>
             </div>
 
-            <label className="scheduler-warning-offset-field scheduler-form-section">
+            <div className="scheduler-warning-offset-field scheduler-form-section">
               <span className="scheduler-parent-label">퇴실등 시점</span>
               <div className="scheduler-warning-offset-row" role="radiogroup" aria-label="퇴실등 시점 선택">
                 {[
@@ -1438,7 +1439,7 @@ function ReservationEditorPage({ mode, reservationId }) {
                   )
                 })}
               </div>
-            </label>
+            </div>
 
             <div className="scheduler-form-section">
               <span className="scheduler-field-label scheduler-parent-label">특이 태그</span>
