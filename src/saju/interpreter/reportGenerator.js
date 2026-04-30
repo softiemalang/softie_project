@@ -5,7 +5,7 @@ import { requestLlmReport, saveFortuneReport, getFortuneReport } from '../api'
  */
 export async function getOrGenerateReport(profileId, dailySnapshot) {
   const targetDate = dailySnapshot.target_date
-  const version = '1.2'
+  const version = '1.3'
 
   // 1. 기존 리포트 확인
   try {
@@ -77,6 +77,7 @@ function generateFallbackReport(dailySnapshot, error = null) {
       model: error ? "local-fallback-engine-request-error-v2" : "local-fallback-engine",
       content: {
         headline: profile.primaryTheme,
+        basis: profile.basisHint || `${profile.secondaryTheme} 흐름이 있어 서두르기보다 완급 조절이 중요합니다.`,
         summary: profile.recommendedNarrative,
         sections: profile.fieldNarratives,
         cautions: ["섣부른 판단은 삼가는 것이 좋습니다.", "중요한 결정 전 한 번 더 여유를 가지세요."],
@@ -92,6 +93,7 @@ function generateFallbackReport(dailySnapshot, error = null) {
     model: error ? "local-fallback-engine-request-error-v2" : "local-fallback-engine",
     content: {
       headline: "오늘의 흐름을 확인하세요",
+      basis: "오늘은 바깥으로 드러나는 흐름보다, 내 페이스를 지키며 정리하는 쪽에 무게가 실리기 쉬워요.",
       summary: `오늘은 ${stemTenGod}의 기운이 강하게 작용하는 날입니다. 외부 활동보다는 내면의 충실함을 기하기에 좋은 시기입니다.`,
       sections: {
         work: "기존 업무의 미비점을 점검하고 차분하게 마무리하는 것이 유리합니다.",
@@ -107,5 +109,4 @@ function generateFallbackReport(dailySnapshot, error = null) {
     }
   }
 }
-
 

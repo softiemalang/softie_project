@@ -96,6 +96,76 @@ export function buildInterpretationProfile({ natalAnalysis, dailyInteraction, ge
     '운세가 나쁘니 아무것도 하지 말라는 식의 극단적 조언'
   ];
 
+  const relationHints = branchRelations.map((relation) => {
+    if (relation.relation === '충') {
+      return relation.target === 'day_branch'
+        ? '내 컨디션과 가까운 관계에서 예민한 반응이 커질 수 있음'
+        : '주변 일정이나 관계 변수로 흐름이 흔들릴 수 있음';
+    }
+
+    if (relation.relation === '육합') {
+      return relation.target === 'day_branch'
+        ? '가까운 관계에서 말이 부드럽게 이어질 수 있음'
+        : '협력과 조율이 비교적 자연스럽게 풀릴 수 있음';
+    }
+
+    return `${relation.target} 흐름에 ${relation.relation} 반응이 있음`;
+  });
+
+  const dailyKeyPoints = [
+    supplements.length > 0 ? `부족한 요소를 보완하는 흐름: ${supplements.join(', ')}` : null,
+    overloads.length > 0 ? `과열되기 쉬운 요소: ${overloads.join(', ')}` : null,
+    dominantSignals.length > 0 ? `오늘 두드러지는 역할감: ${dominantSignals.join(', ')}` : null,
+    ...relationHints,
+  ].filter(Boolean);
+
+  const fieldReasonHints = {
+    work: [
+      fieldImpacts.work.signals.length > 0 ? `일 흐름 자극: ${fieldImpacts.work.signals.join(', ')}` : null,
+      fieldImpacts.work.risks.length > 0 ? `업무 리스크: ${fieldImpacts.work.risks.join(', ')}` : null,
+      hasGwan ? '책임이나 기준 의식이 강해지기 쉬움' : null,
+      hasSik ? '표현력이나 아이디어가 일에 섞이기 쉬움' : null,
+    ].filter(Boolean),
+    money: [
+      fieldImpacts.money.signals.length > 0 ? `금전 흐름 자극: ${fieldImpacts.money.signals.join(', ')}` : null,
+      fieldImpacts.money.risks.length > 0 ? `금전 리스크: ${fieldImpacts.money.risks.join(', ')}` : null,
+      hasJae ? '현실 감각과 손익 계산이 예민해지기 쉬움' : null,
+    ].filter(Boolean),
+    relationships: [
+      fieldImpacts.relationships.signals.length > 0 ? `관계 흐름 자극: ${fieldImpacts.relationships.signals.join(', ')}` : null,
+      fieldImpacts.relationships.risks.length > 0 ? `관계 리스크: ${fieldImpacts.relationships.risks.join(', ')}` : null,
+      ...relationHints,
+    ].filter(Boolean),
+    love: [
+      gender === 'male' && hasJae ? '감정 표현보다 호감의 진전 여부가 신경 쓰이기 쉬움' : null,
+      gender === 'female' && hasGwan ? '관계의 안정감이나 신뢰 여부가 더 중요하게 느껴질 수 있음' : null,
+      hasSik ? '말과 표현이 애정 흐름에 직접 영향을 주기 쉬움' : null,
+      hasIn ? '생각이 많아져 표현이 조심스러워질 수 있음' : null,
+    ].filter(Boolean),
+    health: [
+      overloads.length > 0 ? '에너지 과열로 피로 누적에 주의' : null,
+      hasChung ? '리듬이 흔들리면 컨디션 기복이 커질 수 있음' : null,
+    ].filter(Boolean),
+    mind: [
+      fieldImpacts.mind.signals.length > 0 ? `심리 흐름 자극: ${fieldImpacts.mind.signals.join(', ')}` : null,
+      fieldImpacts.mind.adviceType === 'tension' ? '생각이 많아지고 예민해질 수 있음' : null,
+      hasIn ? '정리와 성찰에는 좋지만 과몰입은 피하는 편이 좋음' : null,
+    ].filter(Boolean),
+  };
+
+  const basisHintParts = [
+    hasSik ? '표현과 소통의 흐름이 살아나기 쉽고' : null,
+    hasGwan ? '해야 할 일과 책임감이 또렷해지며' : null,
+    hasJae ? '현실 감각과 손익 계산이 예민해지고' : null,
+    hasIn ? '생각과 정리의 흐름이 강해지지만' : null,
+    hasBi ? '주관과 경쟁심이 함께 올라올 수 있고' : null,
+    hasChung ? '관계 반응이나 감정선은 예민해질 수 있어요.' : null,
+    !hasChung && hasHap ? '대화와 협력은 비교적 부드럽게 이어질 수 있어요.' : null,
+    !hasChung && !hasHap ? '큰 충돌보다는 내 리듬을 지키는 쪽이 더 중요해요.' : null,
+  ].filter(Boolean);
+
+  const basisHint = basisHintParts.join(' ');
+
   return {
     overallTone: 'warm, grounded, practical',
     primaryTheme,
@@ -106,7 +176,10 @@ export function buildInterpretationProfile({ natalAnalysis, dailyInteraction, ge
     mainPressures: overloads,
     topOpportunities: dailyInteraction.opportunities,
     topRisks: dailyInteraction.branchRelations.map(r => r.relation),
+    basisHint,
+    dailyKeyPoints,
     fieldNarratives,
+    fieldReasonHints,
     avoidNarratives,
     recommendedNarrative: `${primaryTheme}. ${secondaryTheme}.`
   };

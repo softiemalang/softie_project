@@ -470,7 +470,17 @@ export default function FortunePage() {
               </div>
             </div>
             <div className="fortune-summary-content">
+              {reportData.headline && (
+                <h2 style={{ margin: '0 0 0.5rem', fontSize: '1.2rem', lineHeight: 1.35, color: '#3f3426' }}>
+                  {reportData.headline}
+                </h2>
+              )}
               <p className="fortune-summary-text">{reportData.summary}</p>
+              {reportData.basis && (
+                <p className="subtle" style={{ margin: '0.65rem 0 0', fontSize: '0.88rem', lineHeight: 1.55, color: '#7a6c5a' }}>
+                  {reportData.basis}
+                </p>
+              )}
             </div>
           </section>
 
@@ -557,7 +567,17 @@ export default function FortunePage() {
                 <div className="fortune-history-detail-scroll">
                   <section className="fortune-history-detail-card">
                     <p className="section-kicker">오늘의 총평</p>
+                    {historyReportData.headline && (
+                      <h3 style={{ margin: '0 0 0.45rem', fontSize: '1.05rem', lineHeight: 1.35, color: '#3f3426' }}>
+                        {historyReportData.headline}
+                      </h3>
+                    )}
                     <p className="fortune-summary-text">{historyReportData.summary || selectedHistoryReport.summary || '저장된 총평이 없습니다.'}</p>
+                    {historyReportData.basis && (
+                      <p className="subtle" style={{ margin: '0.65rem 0 0', fontSize: '0.86rem', lineHeight: 1.55, color: '#7a6c5a' }}>
+                        {historyReportData.basis}
+                      </p>
+                    )}
                   </section>
 
                   <section className="fortune-history-detail-card">

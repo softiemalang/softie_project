@@ -1,14 +1,81 @@
-/* 
+/*
  * NOTE: 이 함수는 public/local_key 기반 운세 페이지에서 호출되므로 
  * Supabase Auth 도입 전까지 verify_jwt=false를 유지합니다. 
  * OPENAI_API_KEY는 Edge Function Secret으로 안전하게 관리됩니다.
  */
-import { createClient } from "https://esm.sh/@supabase/supabase-js@2"
-
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
   'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
   'Access-Control-Allow-Methods': 'POST, OPTIONS',
+}
+
+function compactComputedData(computedData: any = {}) {
+  const compactSignals = Array.isArray(computedData?.signals)
+    ? computedData.signals.map((signal: any) => ({
+        type: signal?.type,
+        tenGod: signal?.tenGod,
+        element: signal?.element,
+      }))
+    : []
+
+  const compactBranchRelations = Array.isArray(computedData?.branchRelations)
+    ? computedData.branchRelations.map((relation: any) => ({
+        target: relation?.target,
+        relation: relation?.relation,
+        meaning: relation?.meaning,
+      }))
+    : []
+
+  const fieldKeys = ['work', 'money', 'relationships', 'love', 'health', 'mind']
+  const compactFieldImpacts = Object.fromEntries(
+    fieldKeys.map((key) => [
+      key,
+      {
+        score: computedData?.fieldImpacts?.[key]?.score ?? null,
+        signals: computedData?.fieldImpacts?.[key]?.signals ?? [],
+        risks: computedData?.fieldImpacts?.[key]?.risks ?? [],
+        adviceType: computedData?.fieldImpacts?.[key]?.adviceType ?? null,
+      },
+    ]),
+  )
+
+  return {
+    targetDate: computedData?.targetDate ?? null,
+    summary_hint: computedData?.summary_hint ?? null,
+    dailyPillar: computedData?.dailyPillar
+      ? {
+          stem: computedData.dailyPillar.stem,
+          branch: computedData.dailyPillar.branch,
+        }
+      : null,
+    signals: compactSignals,
+    branchRelations: compactBranchRelations,
+    fieldImpacts: compactFieldImpacts,
+    love: computedData?.love
+      ? {
+          score: computedData.love.score,
+          keySignals: computedData.love.keySignals ?? [],
+          tone: computedData.love.tone,
+          summary_hint: computedData.love.summary_hint,
+        }
+      : null,
+    interpretationProfile: computedData?.interpretationProfile
+      ? {
+          primaryTheme: computedData.interpretationProfile.primaryTheme,
+          secondaryTheme: computedData.interpretationProfile.secondaryTheme,
+          intensity: computedData.interpretationProfile.intensity,
+          dominantSignals: computedData.interpretationProfile.dominantSignals ?? [],
+          topOpportunities: computedData.interpretationProfile.topOpportunities ?? [],
+          topRisks: computedData.interpretationProfile.topRisks ?? [],
+          recommendedNarrative: computedData.interpretationProfile.recommendedNarrative,
+          basisHint: computedData.interpretationProfile.basisHint ?? null,
+          dailyKeyPoints: computedData.interpretationProfile.dailyKeyPoints ?? [],
+          fieldNarratives: computedData.interpretationProfile.fieldNarratives ?? {},
+          fieldReasonHints: computedData.interpretationProfile.fieldReasonHints ?? {},
+          avoidNarratives: computedData.interpretationProfile.avoidNarratives ?? [],
+        }
+      : null,
+  }
 }
 
 Deno.serve(async (req) => {
@@ -17,28 +84,38 @@ Deno.serve(async (req) => {
   }
 
   try {
-    const { computedData } = await req.json()
+    const { computedData, targetDate } = await req.json()
 
     // 1. 프롬프트 구성 (콤팩트한 JSON 데이터 활용)
-    const systemPrompt = `당신은 사주 결과를 따뜻한 조언으로 다듬는 편집자입니다.
+    const systemPrompt = `당신은 사주 결과를 따뜻하고 구체적인 일일 리포트로 다듬는 편집자입니다.
 사주 용어, 신비주의, 확정적 예언, 로맨스/금전 확언은 금지합니다.
+사용자 화면에는 전문용어를 과하게 드러내지 않되, 입력으로 주어진 일진 흐름, 십성 신호, 충합, 분야별 영향, 관계/연애 힌트를 반드시 근거로 사용하세요.
 
 [작성 가이드]
-- 요약: 최대 2개의 짧은 문장. 차분하고 따뜻한 어조로 오늘의 전반적인 분위기를 설명하세요.
+- headline: 오늘만의 개성이 드러나는 짧은 제목 1문장. 18자 안팎, 담백하고 기억에 남게 작성하세요.
+- basis: 오늘 해석의 이유를 사주 전문용어 없이 설명하는 1문장. "왜 이런 흐름인지"가 느껴지게 쓰세요.
+- 요약(summary): 최대 2개의 짧은 문장. 차분하고 따뜻한 어조로 오늘의 전반적인 분위기를 설명하되, basis와 자연스럽게 이어지게 작성하세요.
 - 각 섹션: 1문장(흐름) + 1문장(실천/태도). 전체 섹션은 2문장씩으로 제한.
 - 길이 제한: 각 섹션과 문장은 가급적 70자 이내로 짧게 작성.
-- action_tip: 핵심 행동 하나만 50자 이내의 한 문장으로 제안.
+- action_tip: 오늘의 핵심 리스크를 완화하는 행동 하나만 50자 이내의 한 문장으로 제안.
 - 주의점(cautions): 2개의 짧은 bullet string.
+- cautions는 branchRelations, overloads 성격, fieldImpacts.risks를 우선 반영하세요.
+- 각 분야별 운세는 fieldImpacts와 branchRelations를 참고해 날짜별 결이 느껴지게 쓰세요. 너무 일반적인 격려문만 쓰지 마세요.
 - 금지 사항: REMOVE_EXTRA_CHAR, TODO, placeholder, undefined, null, schema, instruction 등의 제어 텍스트, 마크다운, 코드 블록 절대 포함 금지.
 
 [예시]
+- headline: "무리보다 리듬을 지키는 날"
+- basis: "오늘은 표현과 정리의 흐름이 함께 들어오지만, 관계 반응이 예민해질 수 있어 속도 조절이 중요해요."
 - 요약(summary): "오늘은 주변과 조화를 맞출수록 흐름이 편해지는 날이에요. 서두르기보다 차분히 준비한 만큼 실질적인 성과로 이어지기 쉽습니다."
 - 업무: "업무 우선순위가 명확해지며 성과를 내기 좋은 날이에요. 차분히 할 일을 정리하면 마음이 한결 가벼워집니다."
 - 금전: "돈의 흐름이 눈에 들어오며 지출을 점검하기 좋은 때예요. 작은 여유가 생기는 곳에 집중해보세요."`;
 
-    const userPrompt = JSON.stringify({
-      interpretationProfile: computedData?.interpretationProfile
-    });
+    const userPrompt = JSON.stringify(
+      compactComputedData({
+        ...computedData,
+        targetDate: targetDate ?? computedData?.targetDate ?? computedData?.target_date ?? null,
+      }),
+    );
 
     const openaiApiKey = Deno.env.get("OPENAI_API_KEY")
     let finalResponse;
@@ -58,6 +135,7 @@ Deno.serve(async (req) => {
         model: `edge-fallback-${reason}`,
         content: {
           headline: "오늘의 흐름을 차분히 살피는 하루",
+          basis: "오늘은 할 일과 관계 흐름이 함께 움직여서, 속도를 조금 늦추며 정리하는 편이 안정적이에요.",
           summary: "오늘은 관계와 선택에서 속도 조절이 필요한 흐름이에요.",
           sections: {
             work: "주어진 업무에 집중하며 내실을 다지는 것이 좋습니다.",
@@ -95,9 +173,10 @@ Deno.serve(async (req) => {
                 schema: {
                   type: "object",
                   additionalProperties: false,
-                  required: ["headline", "summary", "sections", "cautions", "action_tip"],
+                  required: ["headline", "basis", "summary", "sections", "cautions", "action_tip"],
                   properties: {
                     headline: { type: "string" },
+                    basis: { type: "string" },
                     summary: { type: "string" },
                     sections: {
                       type: "object",
