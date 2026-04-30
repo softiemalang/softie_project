@@ -38,10 +38,11 @@ export default function ProjectBrainPage() {
   if (!session) {
     return (
       <div className="brain-page">
-        <div className="brain-header">
+        <div className="brain-card brain-header brain-hero-card">
+          <div className="brain-eyebrow">PROJECT BRAIN</div>
           <h1>Project Brain</h1>
           <p>Please sign in to access the Project Brain.</p>
-          <button className="soft-button" onClick={signInWithGoogle}>Sign in with Google</button>
+          <button className="soft-button brain-signin" onClick={signInWithGoogle}>Sign in with Google</button>
         </div>
       </div>
     );
@@ -56,13 +57,21 @@ export default function ProjectBrainPage() {
       </header>
 
       <div className="suggestion-buttons">
-        {SUGGESTIONS.map(q => <button key={q} className="suggestion-btn" onClick={() => handleSend(q)}>{q}</button>)}
+        {SUGGESTIONS.map(q => (
+          <button key={q} className="suggestion-btn" onClick={() => handleSend(q)}>
+            <span className="suggestion-kicker">Prompt</span>
+            <span className="suggestion-text">{q}</span>
+          </button>
+        ))}
       </div>
 
       <div className="chat-container">
         {messages.length === 0 && (
-          <div className="message assistant">
-            Choose a question above or ask Project Brain what to check before editing.
+          <div className="brain-empty-state">
+            <div className="brain-empty-kicker">Ready when you are.</div>
+            <div className="message assistant brain-empty-message">
+              Choose a question above or ask Project Brain what to check before editing.
+            </div>
           </div>
         )}
         {messages.map((m, i) => (
@@ -77,13 +86,16 @@ export default function ProjectBrainPage() {
       </div>
 
       <div className="chat-input-area">
-        <input 
-          className="chat-input" 
-          value={input} 
-          onChange={e => setInput(e.target.value)} 
-          onKeyDown={e => e.key === 'Enter' && handleSend()}
-          placeholder="Ask a question..." 
-        />
+        <div className="chat-composer">
+          <input
+            className="chat-input"
+            value={input}
+            onChange={e => setInput(e.target.value)}
+            onKeyDown={e => e.key === 'Enter' && handleSend()}
+            placeholder="Ask a question..."
+          />
+          <button className="soft-button chat-send-button" onClick={() => handleSend()}>Send</button>
+        </div>
       </div>
     </div>
   );
