@@ -3,13 +3,6 @@ import { getCurrentSession, signInWithGoogle } from '../lib/auth';
 import { askProjectBrain } from '../projectBrain/api';
 import './../projectBrain/projectBrain.css';
 
-const SUGGESTIONS = [
-  "Google OAuth 수정 전에 조심할 파일을 확인해요.",
-  "Scheduler 웹 알림 수정 시 위험한 부분을 살펴봐요.",
-  "Rehearsals ownerKey 동기화 흐름을 정리해요.",
-  "Fortune 리포트 생성 흐름을 단계별로 살펴봐요."
-];
-
 function parseInlineSegments(text, keyPrefix) {
   const segments = [];
   const pattern = /(\*\*[^*]+\*\*|`[^`]+`)/g;
@@ -149,23 +142,12 @@ export default function ProjectBrainPage() {
         <p>프로젝트 설계도와 작업 원칙을 바탕으로, 수정 전에 조심할 부분을 함께 확인해요.</p>
       </header>
 
-      <section className="suggestion-section">
-        <div className="suggestion-section-label">질문 예시</div>
-        <div className="suggestion-buttons">
-          {SUGGESTIONS.map(q => (
-            <button key={q} className="suggestion-btn" onClick={() => handleSend(q)}>
-              <span className="suggestion-text">{q}</span>
-            </button>
-          ))}
-        </div>
-      </section>
-
       <div className="chat-container">
         {messages.length === 0 && (
           <div className="brain-empty-state">
-            <div className="brain-empty-kicker">준비되면 바로 물어봐도 좋아.</div>
+            <div className="brain-empty-kicker">준비되면 바로 적어보세요.</div>
             <div className="message assistant brain-empty-message">
-              위 질문을 선택하거나, 수정 전에 확인할 내용을 Project Brain에게 물어보세요.
+              수정하려는 기능, 파일명, 걱정되는 부분을 편하게 적어보세요. Project Brain이 먼저 확인할 지점을 정리해줄게요.
             </div>
           </div>
         )}
