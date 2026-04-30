@@ -4,10 +4,10 @@ import { askProjectBrain } from '../projectBrain/api';
 import './../projectBrain/projectBrain.css';
 
 const SUGGESTIONS = [
-  "Which files should I be careful with before modifying Google OAuth?",
-  "What are the risky areas when changing Scheduler web notifications?",
-  "Explain the Rehearsals ownerKey synchronization flow.",
-  "Explain the Fortune report generation flow step by step."
+  "Google OAuth 수정 전에 조심해야 할 파일 알려줘.",
+  "Scheduler 웹 알림을 수정할 때 위험한 부분 알려줘.",
+  "Rehearsals ownerKey 동기화 흐름 설명해줘.",
+  "Fortune 리포트 생성 흐름을 단계별로 설명해줘."
 ];
 
 export default function ProjectBrainPage() {
@@ -39,10 +39,10 @@ export default function ProjectBrainPage() {
     return (
       <div className="brain-page">
         <div className="brain-card brain-header brain-hero-card">
-          <div className="brain-eyebrow">PROJECT BRAIN</div>
+          <div className="brain-eyebrow">프로젝트 브레인</div>
           <h1>Project Brain</h1>
-          <p>Please sign in to access the Project Brain.</p>
-          <button className="soft-button brain-signin" onClick={signInWithGoogle}>Sign in with Google</button>
+          <p>Project Brain을 사용하려면 Google 로그인이 필요해요.</p>
+          <button className="soft-button brain-signin" onClick={signInWithGoogle}>Google로 로그인</button>
         </div>
       </div>
     );
@@ -51,15 +51,15 @@ export default function ProjectBrainPage() {
   return (
     <div className="brain-page">
       <header className="brain-header">
-        <div className="brain-eyebrow">PROJECT BRAIN</div>
-        <h1>softie_project pre-work check room</h1>
-        <p>Ask questions based on the project building map and working principles. <em>Ask before touching risky files.</em></p>
+        <div className="brain-eyebrow">프로젝트 브레인</div>
+        <h1>softie_project 작업 전 확인실</h1>
+        <p>프로젝트 설계도와 작업 원칙을 바탕으로, 수정 전에 조심할 부분을 함께 확인해요.</p>
       </header>
 
       <div className="suggestion-buttons">
         {SUGGESTIONS.map(q => (
           <button key={q} className="suggestion-btn" onClick={() => handleSend(q)}>
-            <span className="suggestion-kicker">Prompt</span>
+            <span className="suggestion-kicker">질문 예시</span>
             <span className="suggestion-text">{q}</span>
           </button>
         ))}
@@ -68,9 +68,9 @@ export default function ProjectBrainPage() {
       <div className="chat-container">
         {messages.length === 0 && (
           <div className="brain-empty-state">
-            <div className="brain-empty-kicker">Ready when you are.</div>
+            <div className="brain-empty-kicker">준비되면 바로 물어봐도 좋아.</div>
             <div className="message assistant brain-empty-message">
-              Choose a question above or ask Project Brain what to check before editing.
+              위 질문을 선택하거나, 수정 전에 확인할 내용을 Project Brain에게 물어보세요.
             </div>
           </div>
         )}
@@ -78,11 +78,11 @@ export default function ProjectBrainPage() {
           <div key={i} className={`message ${m.role}`}>
             {m.content}
             {m.role === 'assistant' && (
-              <div className="notice">This answer is based on the softie_project knowledge documents. Before making actual changes, check the current GitHub files again.</div>
+              <div className="notice">이 답변은 softie_project 지식 문서를 기준으로 생성됐어요. 실제 수정 전에는 GitHub의 현재 파일을 다시 확인해 주세요.</div>
             )}
           </div>
         ))}
-        {loading && <div className="message assistant">Project Brain is checking the map...</div>}
+        {loading && <div className="message assistant">Project Brain이 설계도를 확인하는 중이에요...</div>}
       </div>
 
       <div className="chat-input-area">
@@ -92,9 +92,9 @@ export default function ProjectBrainPage() {
             value={input}
             onChange={e => setInput(e.target.value)}
             onKeyDown={e => e.key === 'Enter' && handleSend()}
-            placeholder="Ask a question..."
+            placeholder="질문을 입력해 주세요..."
           />
-          <button className="soft-button chat-send-button" onClick={() => handleSend()}>Send</button>
+          <button className="soft-button chat-send-button" onClick={() => handleSend()}>보내기</button>
         </div>
       </div>
     </div>
