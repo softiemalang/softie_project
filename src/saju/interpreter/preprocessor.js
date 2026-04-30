@@ -18,7 +18,7 @@ export function generateNatalSnapshot(profile) {
     hour_stem: pillars.hour.stem,
     hour_branch: pillars.hour.branch,
     day_master: analysis.dayMaster,
-    natal_data: { ...analysis, gender: profile.gender, engine_version: '1.2' }
+    natal_data: { ...analysis, gender: profile.gender, engine_version: '1.3' }
   }
 }
 
@@ -88,7 +88,7 @@ export function generateDailySnapshot(natalSnapshot, targetDate) {
       interpretationProfile,
       priority_flags: ['focus_work', 'careful_spending'], // 예시 플래그
       summary_hint: `${natalAnalysis.dayMaster}일간에게 ${interaction.signals[0].tenGod}이 들어오는 날`,
-      engine_version: '1.2'
+      engine_version: '1.3'
     }
   }
 }
