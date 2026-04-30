@@ -107,18 +107,43 @@ function parseSchedulerRoute(pathname) {
 
 export function SchedulerApp({ pathname }) {
   const route = useMemo(() => parseSchedulerRoute(pathname), [pathname])
+  const [effectiveOwnerKey, setEffectiveOwnerKey] = useState(null)
+  const [isInitializing, setIsInitializing] = useState(true)
+
+  useEffect(() => {
+    async function init() {
+      const session = await getCurrentSession()
+      const ownerKey = session?.user?.id || getOrCreatePushDeviceId()
+      
+      if (session?.user?.id) {
+        import('./api').then(m => m.linkUnownedReservationsToOwner(session.user.id))
+      }
+      
+      setEffectiveOwnerKey(ownerKey)
+      setIsInitializing(false)
+    }
+    init()
+  }, [])
+
+  if (isInitializing) {
+    return (
+      <div className="app-shell scheduler-shell">
+        <p className="status" style={{ textAlign: 'center', marginTop: '4rem' }}>앱 설정 중...</p>
+      </div>
+    )
+  }
 
   const renderContent = () => {
     if (route.name === 'today') {
-      return <TodaySchedulerPage />
+      return <TodaySchedulerPage effectiveOwnerKey={effectiveOwnerKey} />
     }
 
     if (route.name === 'new') {
-      return <ReservationEditorPage mode="create" />
+      return <ReservationEditorPage mode="create" effectiveOwnerKey={effectiveOwnerKey} />
     }
 
     if (route.name === 'edit') {
-      return <ReservationEditorPage mode="edit" reservationId={route.reservationId} />
+      return <ReservationEditorPage mode="edit" reservationId={route.reservationId} effectiveOwnerKey={effectiveOwnerKey} />
     }
 
     if (route.name === 'rooms') {
@@ -193,7 +218,7 @@ function NativePickerField({
   )
 }
 
-function TodaySchedulerPage() {
+function TodaySchedulerPage({ effectiveOwnerKey }) {
   const initialSelectedDate = toLocalDateInputValue()
   const [selectedDate, setSelectedDate] = useState(initialSelectedDate)
   const [events, setEvents] = useState([])
@@ -328,7 +353,7 @@ function TodaySchedulerPage() {
   async function loadEvents() {
     setIsLoading(true)
     try {
-      const rows = await listTodayWorkEvents(selectedDate)
+      const rows = await listTodayWorkEvents(selectedDate, effectiveOwnerKey)
       setEvents(rows)
       setStatus('')
     } catch (error) {
@@ -431,7 +456,7 @@ function TodaySchedulerPage() {
     const nextStatus = eventRow.status === 'done' ? 'pending' : 'done'
     setPendingStatusId(eventRow.id)
     try {
-      await updateWorkEventStatus(eventRow.id, nextStatus)
+      await updateWorkEventStatus(eventRow.id, nextStatus, effectiveOwnerKey)
       setEvents((current) =>
         current.map((item) => (item.id === eventRow.id ? { ...item, status: nextStatus } : item)),
       )
@@ -1185,7 +1210,7 @@ function EventCard({ item, onToggleDone, isSaving }) {
   )
 }
 
-function ReservationEditorPage({ mode, reservationId }) {
+function ReservationEditorPage({ mode, reservationId, effectiveOwnerKey }) {
   const [formValues, setFormValues] = useState(createReservationDraft())
   const [status, setStatus] = useState('')
   const [isLoading, setIsLoading] = useState(mode === 'edit')
@@ -1197,7 +1222,7 @@ function ReservationEditorPage({ mode, reservationId }) {
     async function loadReservation() {
       setIsLoading(true)
       try {
-        const row = await getReservationById(reservationId)
+        const row = await getReservationById(reservationId, effectiveOwnerKey)
         if (!row) {
           setStatus('예약을 찾지 못했어요.')
           return
@@ -1245,7 +1270,7 @@ function ReservationEditorPage({ mode, reservationId }) {
 
     setIsSaving(true)
     try {
-      const saved = await saveReservation(buildReservationPayload(formValues), reservationId)
+      const saved = await saveReservation(buildReservationPayload(formValues), reservationId, effectiveOwnerKey)
       
       // MVP: 구글 캘린더 연동이 되어있다면 일정 생성 시도
       if (isGoogleConnected()) {
@@ -1303,7 +1328,7 @@ function ReservationEditorPage({ mode, reservationId }) {
 
     setIsSaving(true)
     try {
-      await deleteReservation(reservationId)
+      await deleteReservation(reservationId, effectiveOwnerKey)
       navigate('/scheduler')
     } catch (error) {
       setStatus(error.message)
