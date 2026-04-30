@@ -23,7 +23,7 @@ export default function HomePage() {
 
   const services = [
     {
-      description: 'Ask questions and organize work based on the softie_project building map and working principles.',
+      description: 'softie_project 설계도와 작업 원칙을 바탕으로, 수정 전에 확인할 내용을 정리해요.',
       path: '/brain',
       icon: '🧠',
       label: 'BRAIN',
