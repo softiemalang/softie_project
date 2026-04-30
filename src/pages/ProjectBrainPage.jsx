@@ -4,10 +4,10 @@ import { askProjectBrain } from '../projectBrain/api';
 import './../projectBrain/projectBrain.css';
 
 const SUGGESTIONS = [
-  "Google OAuth 수정 전에 조심해야 할 파일 알려줘.",
-  "Scheduler 웹 알림을 수정할 때 위험한 부분 알려줘.",
-  "Rehearsals ownerKey 동기화 흐름 설명해줘.",
-  "Fortune 리포트 생성 흐름을 단계별로 설명해줘."
+  "Google OAuth 수정 전에 조심할 파일을 확인해요.",
+  "Scheduler 웹 알림 수정 시 위험한 부분을 살펴봐요.",
+  "Rehearsals ownerKey 동기화 흐름을 정리해요.",
+  "Fortune 리포트 생성 흐름을 단계별로 살펴봐요."
 ];
 
 export default function ProjectBrainPage() {
@@ -52,18 +52,20 @@ export default function ProjectBrainPage() {
     <div className="brain-page">
       <header className="brain-header">
         <div className="brain-eyebrow">프로젝트 브레인</div>
-        <h1>softie_project 작업 전 확인실</h1>
+        <h1>작업 전 확인실</h1>
         <p>프로젝트 설계도와 작업 원칙을 바탕으로, 수정 전에 조심할 부분을 함께 확인해요.</p>
       </header>
 
-      <div className="suggestion-buttons">
-        {SUGGESTIONS.map(q => (
-          <button key={q} className="suggestion-btn" onClick={() => handleSend(q)}>
-            <span className="suggestion-kicker">질문 예시</span>
-            <span className="suggestion-text">{q}</span>
-          </button>
-        ))}
-      </div>
+      <section className="suggestion-section">
+        <div className="suggestion-section-label">질문 예시</div>
+        <div className="suggestion-buttons">
+          {SUGGESTIONS.map(q => (
+            <button key={q} className="suggestion-btn" onClick={() => handleSend(q)}>
+              <span className="suggestion-text">{q}</span>
+            </button>
+          ))}
+        </div>
+      </section>
 
       <div className="chat-container">
         {messages.length === 0 && (
