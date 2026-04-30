@@ -13,6 +13,7 @@ export async function askProjectBrain({ question, threadId = null }) {
   return {
     answer: data.answer || 'No answer received.',
     citations: data.citations || [],
-    threadId: data.threadId || null
+    threadId: data.threadId || null,
+    warning: data.warning || null,
   };
 }

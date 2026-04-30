@@ -38,9 +38,11 @@ export default function ProjectBrainPage() {
   if (!session) {
     return (
       <div className="brain-page">
-        <h2>Project Brain</h2>
-        <p>Please sign in to access the Project Brain.</p>
-        <button className="soft-button" onClick={signInWithGoogle}>Sign in with Google</button>
+        <div className="brain-header">
+          <h1>Project Brain</h1>
+          <p>Please sign in to access the Project Brain.</p>
+          <button className="soft-button" onClick={signInWithGoogle}>Sign in with Google</button>
+        </div>
       </div>
     );
   }
@@ -50,7 +52,7 @@ export default function ProjectBrainPage() {
       <header className="brain-header">
         <div className="brain-eyebrow">PROJECT BRAIN</div>
         <h1>softie_project pre-work check room</h1>
-        <p>Ask questions based on the project building map and working principles.</p>
+        <p>Ask questions based on the project building map and working principles. <em>Ask before touching risky files.</em></p>
       </header>
 
       <div className="suggestion-buttons">
@@ -58,6 +60,11 @@ export default function ProjectBrainPage() {
       </div>
 
       <div className="chat-container">
+        {messages.length === 0 && (
+          <div className="message assistant">
+            Choose a question above or ask Project Brain what to check before editing.
+          </div>
+        )}
         {messages.map((m, i) => (
           <div key={i} className={`message ${m.role}`}>
             {m.content}
@@ -66,12 +73,17 @@ export default function ProjectBrainPage() {
             )}
           </div>
         ))}
-        {loading && <div className="message assistant">Thinking...</div>}
+        {loading && <div className="message assistant">Project Brain is checking the map...</div>}
       </div>
 
       <div className="chat-input-area">
-        <input className="chat-input" value={input} onChange={e => setInput(e.target.value)} placeholder="Ask a question..." />
-        <button className="soft-button" onClick={() => handleSend()}>Send</button>
+        <input 
+          className="chat-input" 
+          value={input} 
+          onChange={e => setInput(e.target.value)} 
+          onKeyDown={e => e.key === 'Enter' && handleSend()}
+          placeholder="Ask a question..." 
+        />
       </div>
     </div>
   );
