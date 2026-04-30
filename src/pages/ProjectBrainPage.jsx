@@ -10,6 +10,99 @@ const SUGGESTIONS = [
   "Fortune 리포트 생성 흐름을 단계별로 살펴봐요."
 ];
 
+function parseInlineSegments(text, keyPrefix) {
+  const segments = [];
+  const pattern = /(\*\*[^*]+\*\*|`[^`]+`)/g;
+  let lastIndex = 0;
+  let match;
+
+  while ((match = pattern.exec(text)) !== null) {
+    if (match.index > lastIndex) {
+      segments.push(text.slice(lastIndex, match.index));
+    }
+
+    const token = match[0];
+    if (token.startsWith('**')) {
+      const content = token.slice(2, -2).trim();
+      segments.push(<strong key={`${keyPrefix}-strong-${match.index}`}>{content}</strong>);
+    } else if (token.startsWith('`')) {
+      const content = token.slice(1, -1).trim();
+      segments.push(<code key={`${keyPrefix}-code-${match.index}`}>{content}</code>);
+    }
+
+    lastIndex = match.index + token.length;
+  }
+
+  if (lastIndex < text.length) {
+    segments.push(text.slice(lastIndex));
+  }
+
+  return segments;
+}
+
+function renderAssistantAnswer(text) {
+  if (!text) return null;
+
+  const lines = text.replace(/\r\n/g, '\n').split('\n');
+  const nodes = [];
+  let paragraph = [];
+  let bulletItems = [];
+
+  const flushParagraph = () => {
+    if (!paragraph.length) return;
+    nodes.push(
+      <p key={`brain-answer-p-${nodes.length}`} className="brain-answer-paragraph">
+        {paragraph.map((line, index) => (
+          <React.Fragment key={`brain-answer-fragment-${nodes.length}-${index}`}>
+            {index > 0 ? ' ' : null}
+            {parseInlineSegments(line, `p-${nodes.length}-${index}`)}
+          </React.Fragment>
+        ))}
+      </p>
+    );
+    paragraph = [];
+  };
+
+  const flushBullets = () => {
+    if (!bulletItems.length) return;
+    nodes.push(
+      <ul key={`brain-answer-ul-${nodes.length}`} className="brain-answer-list">
+        {bulletItems.map((item, index) => (
+          <li key={`brain-answer-li-${nodes.length}-${index}`}>
+            {parseInlineSegments(item, `li-${nodes.length}-${index}`)}
+          </li>
+        ))}
+      </ul>
+    );
+    bulletItems = [];
+  };
+
+  lines.forEach((rawLine) => {
+    const line = rawLine.trim();
+
+    if (!line) {
+      flushParagraph();
+      flushBullets();
+      return;
+    }
+
+    const bulletMatch = line.match(/^[-*]\s+(.*)$/);
+    if (bulletMatch) {
+      flushParagraph();
+      bulletItems.push(bulletMatch[1]);
+      return;
+    }
+
+    flushBullets();
+    paragraph.push(rawLine);
+  });
+
+  flushParagraph();
+  flushBullets();
+
+  return nodes.length ? nodes : text;
+}
+
 export default function ProjectBrainPage() {
   const [session, setSession] = useState(null);
   const [messages, setMessages] = useState([]);
@@ -78,9 +171,15 @@ export default function ProjectBrainPage() {
         )}
         {messages.map((m, i) => (
           <div key={i} className={`message ${m.role}`}>
-            {m.content}
-            {m.role === 'assistant' && (
-              <div className="notice">이 답변은 softie_project 지식 문서를 기준으로 생성됐어요. 실제 수정 전에는 GitHub의 현재 파일을 다시 확인해 주세요.</div>
+            {m.role === 'assistant' ? (
+              <>
+                <div className="brain-answer">
+                  {renderAssistantAnswer(m.content)}
+                </div>
+                <div className="notice">이 답변은 softie_project 지식 문서를 기준으로 생성됐어요. 실제 수정 전에는 GitHub의 현재 파일을 다시 확인해 주세요.</div>
+              </>
+            ) : (
+              m.content
             )}
           </div>
         ))}

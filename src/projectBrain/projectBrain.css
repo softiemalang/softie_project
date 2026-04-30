@@ -22,6 +22,11 @@
   backdrop-filter: blur(var(--blur-standard));
 }
 
+.suggestion-section,
+.chat-container {
+  padding-inline: 1.35rem;
+}
+
 .brain-eyebrow {
   color: var(--accent);
   font-size: 0.74rem;
@@ -64,7 +69,7 @@
   display: flex;
   flex-direction: column;
   gap: 0.9rem;
-  padding: 0.1rem 0 clamp(7rem, 16vw, 9rem);
+  padding-block: 0.1rem clamp(7rem, 16vw, 9rem);
 }
 
 .message {
@@ -90,6 +95,47 @@
   max-width: 95%;
   border-radius: var(--radius-item);
   border-top-left-radius: 4px;
+}
+
+.brain-answer {
+  display: flex;
+  flex-direction: column;
+  gap: 0.72rem;
+}
+
+.brain-answer-paragraph {
+  margin: 0;
+}
+
+.brain-answer-list {
+  margin: 0;
+  padding-left: 1.15rem;
+  display: grid;
+  gap: 0.45rem;
+}
+
+.brain-answer-list li {
+  line-height: 1.5;
+}
+
+.brain-answer code {
+  display: inline-block;
+  max-width: 100%;
+  padding: 0.1rem 0.36rem;
+  border-radius: 0.38rem;
+  border: 1px solid rgba(231, 221, 208, 0.95);
+  background: rgba(255, 252, 248, 0.95);
+  color: #5b4a35;
+  font-size: 0.88em;
+  line-height: 1.35;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  vertical-align: baseline;
+}
+
+.brain-answer strong {
+  font-weight: 700;
+  color: var(--text);
 }
 
 .suggestion-buttons {
@@ -149,8 +195,8 @@
 .notice {
   font-size: 0.75rem;
   color: var(--text-muted);
-  margin-top: 1rem;
-  padding-top: 0.75rem;
+  margin-top: 0.95rem;
+  padding-top: 0.7rem;
   border-top: 1px solid var(--line);
   font-style: italic;
   line-height: 1.4;
@@ -221,6 +267,11 @@
   .brain-header {
     padding: 1.5rem;
   }
+
+  .suggestion-section,
+  .chat-container {
+    padding-inline: 1.5rem;
+  }
 }
 
 @media (max-width: 699px) {
@@ -231,6 +282,11 @@
 
   .brain-header {
     padding: 1.2rem;
+  }
+
+  .suggestion-section,
+  .chat-container {
+    padding-inline: 1.15rem;
   }
 
   .brain-header h1 {
