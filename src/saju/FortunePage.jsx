@@ -284,7 +284,7 @@ export default function FortunePage() {
         Array.isArray(reportData.cautions) ? reportData.cautions.join(' / ') : '',
         reportData.action_tip || '',
         report.id || '',
-        'gemini-engine-v1.2'
+        report?.report_version || dailySnapshot?.computed_data?.engine_version || 'fortune-report-v1.3'
       ]
 
       await appendGoogleSheetsLog(targetId, 'fortune_report_logs', rowData, { spreadsheetType: 'saju' })
