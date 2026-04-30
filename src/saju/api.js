@@ -1,32 +1,93 @@
 import { supabase } from '../lib/supabase'
 
 /**
- * 사용자 사주 프로필 조회 (local_key 기준)
+ * 사용자 사주 프로필 조회 (userId 우선, local_key 백업)
  */
-export async function getSajuProfile(localKey) {
-  if (!localKey) return null
-  const { data, error } = await supabase
-    .from('saju_profiles')
-    .select('*')
-    .eq('local_key', localKey)
-    .maybeSingle()
+export async function getSajuProfile({ userId, localKey }) {
+  if (!supabase) return null
 
-  if (error) throw error
-  return data
+  if (userId) {
+    const { data, error } = await supabase
+      .from('saju_profiles')
+      .select('*')
+      .eq('user_id', userId)
+      .maybeSingle()
+    if (!error && data) return data
+  }
+
+  if (localKey) {
+    const { data, error } = await supabase
+      .from('saju_profiles')
+      .select('*')
+      .eq('local_key', localKey)
+      .maybeSingle()
+    if (!error && data) return data
+  }
+
+  return null
 }
 
 /**
- * 프로필 저장 또는 업데이트 (local_key 기준 충돌 처리)
+ * 기존 local_key 프로필을 user_id에 연결
  */
-export async function upsertSajuProfile(profileData) {
-  const { data, error } = await supabase
-    .from('saju_profiles')
-    .upsert(profileData, { onConflict: 'local_key' })
-    .select()
-    .single()
+export async function linkLocalSajuProfileToUser({ localKey, userId }) {
+  if (!supabase || !localKey || !userId) return
 
-  if (error) throw error
-  return data
+  const { data: userProfile } = await supabase
+    .from('saju_profiles')
+    .select('id')
+    .eq('user_id', userId)
+    .maybeSingle()
+    
+  if (userProfile) return // user_id profile already exists
+
+  await supabase
+    .from('saju_profiles')
+    .update({ user_id: userId })
+    .eq('local_key', localKey)
+    .is('user_id', null)
+}
+
+/**
+ * 프로필 저장 또는 업데이트 (userId 최우선)
+ */
+export async function upsertSajuProfile(profileData, { userId, localKey }) {
+  if (!supabase) return null
+
+  const payload = { ...profileData }
+  if (userId) payload.user_id = userId
+  if (localKey) payload.local_key = localKey
+
+  let matchQueryId = null
+
+  if (userId) {
+    const { data } = await supabase.from('saju_profiles').select('id').eq('user_id', userId).maybeSingle()
+    if (data) matchQueryId = data.id
+  }
+  
+  if (!matchQueryId && localKey) {
+    const { data } = await supabase.from('saju_profiles').select('id').eq('local_key', localKey).maybeSingle()
+    if (data) matchQueryId = data.id
+  }
+
+  if (matchQueryId) {
+    const { data, error } = await supabase
+      .from('saju_profiles')
+      .update(payload)
+      .eq('id', matchQueryId)
+      .select()
+      .single()
+    if (error) throw error
+    return data
+  } else {
+    const { data, error } = await supabase
+      .from('saju_profiles')
+      .insert(payload)
+      .select()
+      .single()
+    if (error) throw error
+    return data
+  }
 }
 
 /**

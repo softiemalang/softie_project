@@ -126,13 +126,13 @@ export function disconnectGoogleCalendar() {
 }
 
 /**
- * Check if the user is connected (persists via localStorage for MVP)
+ * Check if the user is connected (persists via localStorage for MVP).
+ * Note: MVP uses localStorage to avoid blocking renders.
  */
 export function isGoogleConnected() {
   const params = new URLSearchParams(window.location.search)
   if (params.get('google_connected') === 'true') {
     localStorage.setItem('scheduler:google_connected', 'true')
-    // Optionally clean up URL here, but keeping it simple for MVP
   }
   return localStorage.getItem('scheduler:google_connected') === 'true'
 }

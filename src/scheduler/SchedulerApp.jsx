@@ -32,6 +32,7 @@ import {
 } from './time'
 
 import { connectGoogleCalendar, createGoogleCalendarEvent, isGoogleConnected, disconnectGoogleCalendar, triggerGoogleDriveBackup, appendGoogleSheetsLog } from './googleApi'
+import { getCurrentSession } from '../lib/auth'
 
 const GO_TO_TODAY_EVENT = 'scheduler:go-today'
 const WORK_TIME_FILTER_STORAGE_KEY = 'scheduler:work-time-filter'
@@ -821,7 +822,11 @@ function TodaySchedulerPage() {
               <button
                 type="button"
                 className="scheduler-modal-btn"
-                onClick={() => connectGoogleCalendar(getOrCreatePushDeviceId())}
+                onClick={async () => {
+                  const session = await getCurrentSession()
+                  const targetId = session?.user?.id || getOrCreatePushDeviceId()
+                  connectGoogleCalendar(targetId, { returnPath: '/scheduler' })
+                }}
               >
                 {isGoogleConnected() ? '계정 다시 연결하기' : 'Google 계정 연결하기'}
               </button>
@@ -837,7 +842,10 @@ function TodaySchedulerPage() {
                     setGoogleStatus('Google Calendar 일정 생성 중...')
                     const now = new Date()
                     const end = new Date(now.getTime() + 60 * 60 * 1000)
-                    await createGoogleCalendarEvent(getOrCreatePushDeviceId(), {
+                    const session = await getCurrentSession()
+                    const targetId = session?.user?.id || getOrCreatePushDeviceId()
+
+                    await createGoogleCalendarEvent(targetId, {
                       summary: '테스트 일정',
                       location: '서울 지점',
                       description: 'Gemini CLI를 통한 테스트 일정입니다.',
@@ -865,11 +873,14 @@ function TodaySchedulerPage() {
                   }
                   try {
                     setGoogleStatus('Google Drive에 백업 중...')
-                    const result = await triggerGoogleDriveBackup(getOrCreatePushDeviceId(), 'full')
+                    const session = await getCurrentSession()
+                    const targetId = session?.user?.id || getOrCreatePushDeviceId()
+
+                    const result = await triggerGoogleDriveBackup(targetId, 'full')
                     setGoogleStatus(`백업 완료: ${result.fileName}`)
                     
                     // Log to Google Sheets
-                    appendGoogleSheetsLog(getOrCreatePushDeviceId(), 'backup_logs', [
+                    appendGoogleSheetsLog(targetId, 'backup_logs', [
                       new Date().toISOString(),
                       'backup_completed',
                       'full',
@@ -1238,7 +1249,10 @@ function ReservationEditorPage({ mode, reservationId }) {
       
       // MVP: 구글 캘린더 연동이 되어있다면 일정 생성 시도
       if (isGoogleConnected()) {
-        createGoogleCalendarEvent(getOrCreatePushDeviceId(), {
+        const session = await getCurrentSession()
+        const targetId = session?.user?.id || getOrCreatePushDeviceId()
+
+        createGoogleCalendarEvent(targetId, {
           reservationId: saved.id,
           summary: `[${saved.branch}] ${saved.customer_name}`,
           location: `${saved.branch} ${saved.room}`,
@@ -1253,7 +1267,7 @@ function ReservationEditorPage({ mode, reservationId }) {
         })
 
         // Log to Google Sheets (fire-and-forget)
-        appendGoogleSheetsLog(getOrCreatePushDeviceId(), 'scheduler_logs', [
+        appendGoogleSheetsLog(targetId, 'scheduler_logs', [
           new Date().toISOString(),
           mode === 'edit' ? 'reservation_updated' : 'reservation_created',
           saved.id,

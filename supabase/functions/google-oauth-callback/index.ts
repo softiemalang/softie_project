@@ -23,9 +23,14 @@ serve(async (req) => {
     if (state.includes('|')) {
       const parts = state.split('|')
       userId = parts[0]
-      const requestedPath = parts[1]
+      let requestedPath = parts[1]
       
-      const whitelist = ['/scheduler', '/saju', '/rehearsals', '/']
+      // Backward compatibility for old saju return path
+      if (requestedPath === '/saju') {
+        requestedPath = '/fortune'
+      }
+      
+      const whitelist = ['/scheduler', '/fortune', '/rehearsals', '/']
       if (whitelist.includes(requestedPath)) {
         targetPath = requestedPath
       }

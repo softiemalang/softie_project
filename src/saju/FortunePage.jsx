@@ -16,6 +16,7 @@ import { getKstDateString, getOrCreateLocalKey } from './utils'
 import { getOrCreatePushDeviceId } from '../lib/device'
 import { appendGoogleSheetsLog } from '../lib/googleApi'
 import { connectGoogleCalendar, isGoogleConnected } from '../scheduler/googleApi'
+import { getCurrentSession } from '../lib/auth'
 
 const EMPTY_PROFILE = {
   name: '',
@@ -136,7 +137,15 @@ export default function FortunePage() {
     setIsLoading(true)
     try {
       const localKey = getOrCreateLocalKey()
-      const existingProfile = await getSajuProfile(localKey)
+      const session = await getCurrentSession()
+      const userId = session?.user?.id
+
+      if (userId && localKey) {
+        const { linkLocalSajuProfileToUser } = await import('./api')
+        await linkLocalSajuProfileToUser({ localKey, userId })
+      }
+
+      const existingProfile = await getSajuProfile({ userId, localKey })
       if (existingProfile) {
         const existingFormProfile = profileFromSaved(existingProfile)
         setActiveProfile(existingProfile)
@@ -219,14 +228,16 @@ export default function FortunePage() {
     setStatus('프로필을 저장하고 운세를 분석하는 중...')
     try {
       const localKey = getOrCreateLocalKey()
+      const session = await getCurrentSession()
+      const userId = session?.user?.id
+
       const saved = await upsertSajuProfile({
-        local_key: localKey,
         name: nextProfile.name,
         birth_date: nextProfile.birthDate,
         birth_time: nextProfile.birthTime || null,
         gender: nextProfile.gender,
         updated_at: new Date().toISOString()
-      })
+      }, { userId, localKey })
       const savedFormProfile = profileFromSaved(saved)
       setActiveProfile(saved)
       setProfile(savedFormProfile)
@@ -248,7 +259,10 @@ export default function FortunePage() {
     if (!activeProfile || !dailySnapshot || !reportData || !report) return
     setIsBackingUp(true)
     try {
+      const session = await getCurrentSession()
       const deviceId = getOrCreatePushDeviceId()
+      const targetId = session?.user?.id || deviceId
+
       const rowData = [
         new Date().toISOString(),
         dailySnapshot.target_date || '',
@@ -269,7 +283,7 @@ export default function FortunePage() {
         'gemini-engine-v1.2'
       ]
 
-      await appendGoogleSheetsLog(deviceId, 'fortune_report_logs', rowData, { spreadsheetType: 'saju' })
+      await appendGoogleSheetsLog(targetId, 'fortune_report_logs', rowData, { spreadsheetType: 'saju' })
       setIsBackedUp(true)
       setStatus('오늘의 운세를 Google 시트에 기록했어요.')
     } catch (error) {
@@ -338,9 +352,11 @@ export default function FortunePage() {
     handleSaveProfile(profileDraft, true)
   }
 
-  function handleConnectGoogle() {
+  async function handleConnectGoogle() {
+    const session = await getCurrentSession()
     const deviceId = getOrCreatePushDeviceId()
-    connectGoogleCalendar(deviceId, { returnPath: '/saju' })
+    const targetId = session?.user?.id || deviceId
+    connectGoogleCalendar(targetId, { returnPath: '/fortune' })
   }
 
   const reportData = report?.report_content
