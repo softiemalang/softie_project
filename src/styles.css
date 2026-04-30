@@ -2110,6 +2110,51 @@ textarea {
   max-width: 640px;
 }
 
+.home-hero {
+  display: grid;
+  gap: 1rem;
+  padding-bottom: 1.5rem;
+}
+
+.home-auth-area {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.home-auth-button {
+  min-height: 38px;
+  padding: 0.48rem 1rem;
+  border-radius: var(--radius-pill);
+  font-size: 0.86rem;
+  white-space: nowrap;
+}
+
+.home-auth-status {
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+.home-auth-signed-in {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  max-width: 100%;
+  flex-wrap: wrap;
+}
+
+.home-auth-email {
+  max-width: min(100%, 280px);
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.82rem;
+  line-height: 1.2;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 .home-hero-content .subtle {
   margin-top: 0.75rem;
   font-size: 1rem;

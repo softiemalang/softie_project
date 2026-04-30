@@ -50,27 +50,29 @@ export default function HomePage() {
 
   return (
     <div className="app-shell home-shell">
-      <header className="hero" style={{ paddingBottom: '1.5rem' }}>
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '1rem', width: '100%' }}>
-          <div className="home-hero-content" style={{ flex: 1, minWidth: '200px' }}>
-            <p className="eyebrow">말랑이의 작업실</p>
-            <p className="subtle">
-              일상의 작은 불편을 해결하기 위해 만든 개인용 도구와 서비스들을 모아둔 공간입니다.
-              차분하고 따뜻한 마음으로 하나씩 채워가고 있어요.
-            </p>
-          </div>
-          <div>
-            {isLoadingAuth ? (
-              <span className="subtle" style={{ fontSize: '0.85rem' }}>확인 중...</span>
-            ) : session ? (
-              <div style={{ textAlign: 'right' }}>
-                <p style={{ margin: '0 0 0.4rem 0', fontSize: '0.85rem', color: '#6b6258' }}>{session.user.email}</p>
-                <button className="soft-button" style={{ padding: '0.4rem 0.8rem', fontSize: '0.8rem', minHeight: '32px' }} onClick={() => signOut()}>로그아웃</button>
-              </div>
-            ) : (
-              <button className="soft-button" style={{ padding: '0.4rem 0.8rem', fontSize: '0.8rem', minHeight: '32px' }} onClick={() => signInWithGoogle(window.location.origin)}>Google로 로그인</button>
-            )}
-          </div>
+      <header className="hero home-hero">
+        <div className="home-hero-content">
+          <p className="eyebrow">말랑이의 작업실</p>
+          <p className="subtle">
+            일상의 작은 불편을 해결하기 위해 만든 개인용 도구와 서비스들을 모아둔 공간입니다.
+            차분하고 따뜻한 마음으로 하나씩 채워가고 있어요.
+          </p>
+        </div>
+        <div className="home-auth-area">
+          {isLoadingAuth ? (
+            <span className="home-auth-status">확인 중...</span>
+          ) : session ? (
+            <div className="home-auth-signed-in">
+              <p className="home-auth-email">{session.user.email}</p>
+              <button className="soft-button home-auth-button" onClick={() => signOut()}>
+                로그아웃
+              </button>
+            </div>
+          ) : (
+            <button className="soft-button home-auth-button" onClick={() => signInWithGoogle(window.location.origin)}>
+              Google로 로그인
+            </button>
+          )}
         </div>
       </header>
 
