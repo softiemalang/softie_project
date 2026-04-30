@@ -1,12 +1,19 @@
 import React, { useState, useEffect, useMemo, useRef } from 'react'
 import { navigate } from '../lib/router'
 import { getOrCreatePushDeviceId } from '../lib/device'
-import { connectGoogleCalendar, isGoogleConnected, createGoogleCalendarEvent } from '../scheduler/googleApi'
+import { getCurrentSession } from '../lib/auth'
+import {
+  connectGoogleCalendar,
+  isGoogleConnected,
+  createGoogleCalendarEvent,
+  disconnectGoogleCalendar
+} from '../scheduler/googleApi'
 import {
   getRehearsalEvents,
   createRehearsalEvent,
   deleteRehearsalEvent,
-  triggerRehearsalDriveBackup
+  triggerRehearsalDriveBackup,
+  linkLocalRehearsalEventsToUser
 } from '../rehearsals/api'
 import '../rehearsals/rehearsals.css'
 
@@ -106,18 +113,36 @@ export default function RehearsalCalendarPage() {
   const [isAddModalOpen, setIsAddModalOpen] = useState(false)
   const [isGoogleReady, setIsGoogleReady] = useState(false)
   const [isBackingUp, setIsBackingUp] = useState(false)
+  const [effectiveOwnerKey, setEffectiveOwnerKey] = useState(null)
 
-  const ownerKey = useMemo(() => getOrCreatePushDeviceId(), [])
+  useEffect(() => {
+    async function initOwner() {
+      const session = await getCurrentSession()
+      const deviceId = getOrCreatePushDeviceId()
+      const userId = session?.user?.id
+      
+      if (userId) {
+        await linkLocalRehearsalEventsToUser(deviceId, userId)
+        setEffectiveOwnerKey(userId)
+      } else {
+        setEffectiveOwnerKey(deviceId)
+      }
+    }
+    initOwner()
+  }, [])
 
   useEffect(() => {
     setIsGoogleReady(isGoogleConnected())
-    loadEvents()
-  }, [currentDate])
+    if (effectiveOwnerKey) {
+      loadEvents()
+    }
+  }, [currentDate, effectiveOwnerKey])
 
   async function loadEvents() {
+    if (!effectiveOwnerKey) return
     setIsLoading(true)
     try {
-      const data = await getRehearsalEvents(ownerKey)
+      const data = await getRehearsalEvents(effectiveOwnerKey)
       setEvents(data || [])
     } catch (e) {
       console.error(e)
@@ -139,20 +164,35 @@ export default function RehearsalCalendarPage() {
   }
 
   async function handleBackup() {
+    if (!effectiveOwnerKey) return
+
     if (!isGoogleReady) {
-      connectGoogleCalendar(ownerKey, { returnPath: '/rehearsals' })
+      connectGoogleCalendar(effectiveOwnerKey, { returnPath: '/rehearsals' })
       return
     }
     
     setIsBackingUp(true)
     try {
       const yearMonth = `${currentDate.getFullYear()}-${String(currentDate.getMonth() + 1).padStart(2, '0')}`
-      await triggerRehearsalDriveBackup(ownerKey, yearMonth)
+      await triggerRehearsalDriveBackup(effectiveOwnerKey, yearMonth)
       alert('이번 달 합주 일정이 Google Drive에 안전하게 백업되었습니다.')
       loadEvents() // refresh to show updated backup status
     } catch (e) {
       console.error(e)
-      alert(`백업 실패: ${e.message}`)
+      const msg = e.message || ''
+      if (
+        msg.includes('not connected') || 
+        msg.includes('Missing token') || 
+        msg.includes('refresh token') || 
+        msg.includes('reconnect') ||
+        msg.includes('invalid_grant')
+      ) {
+        alert('Google 계정을 다시 연결해 주세요.')
+        disconnectGoogleCalendar()
+        setIsGoogleReady(false)
+      } else {
+        alert(`백업 실패: ${msg}`)
+      }
     } finally {
       setIsBackingUp(false)
     }
@@ -178,11 +218,11 @@ export default function RehearsalCalendarPage() {
       <header className="rehearsal-header">
         <h1 className="rehearsal-title">합주 일정</h1>
         <div className="rehearsal-actions">
-          <button type="button" className="soft-button small" onClick={handleBackup} disabled={isBackingUp}>
+          <button type="button" className="soft-button small" onClick={handleBackup} disabled={isBackingUp || !effectiveOwnerKey}>
             {isBackingUp ? '백업 중...' : '이번 달 Drive 백업'}
           </button>
           {!isGoogleReady && (
-            <button type="button" className="soft-button small" onClick={() => connectGoogleCalendar(ownerKey, { returnPath: '/rehearsals' })}>
+            <button type="button" className="soft-button small" onClick={() => effectiveOwnerKey && connectGoogleCalendar(effectiveOwnerKey, { returnPath: '/rehearsals' })}>
               Google 연동
             </button>
           )}
@@ -277,7 +317,7 @@ export default function RehearsalCalendarPage() {
 
       {isAddModalOpen && (
         <AddRehearsalModal 
-          ownerKey={ownerKey}
+          ownerKey={effectiveOwnerKey}
           isGoogleReady={isGoogleReady}
           onClose={() => setIsAddModalOpen(false)} 
           onSuccess={() => {

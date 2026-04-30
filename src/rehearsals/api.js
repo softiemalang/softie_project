@@ -44,12 +44,58 @@ export async function deleteRehearsalEvent(id) {
   }
 }
 
+export async function linkUnownedRehearsalsToOwner(ownerKey) {
+  if (!supabase || !ownerKey) return
+  const { error } = await supabase
+    .from('rehearsal_events')
+    .update({ owner_key: ownerKey })
+    .is('owner_key', null)
+  
+  if (error) {
+    console.error('Failed to link unowned rehearsals:', error)
+  }
+}
+
+export async function linkLocalRehearsalEventsToUser(localOwnerKey, userId) {
+  if (!supabase || !localOwnerKey || !userId || localOwnerKey === userId) return
+  
+  const { error } = await supabase
+    .from('rehearsal_events')
+    .update({ owner_key: userId })
+    .eq('owner_key', localOwnerKey)
+  
+  if (error) {
+    console.error('Failed to link local rehearsal events to user:', error)
+  }
+}
+
 export async function triggerRehearsalDriveBackup(userId, yearMonth) {
   if (!supabase) throw new Error('Supabase client not initialized')
   const { data, error } = await supabase.functions.invoke('google-drive-rehearsal-backup', {
     body: { userId, yearMonth }
   })
-  if (error) throw error
+  
+  if (error) {
+    let msg = error.message
+    if (error.context && typeof error.context.json === 'function') {
+      try {
+        const json = await error.context.json()
+        if (json.error) msg = json.error
+      } catch {}
+    } else if (error.context && typeof error.context.text === 'function') {
+      try {
+        const text = await error.context.text()
+        try {
+          const json = JSON.parse(text)
+          if (json.error) msg = json.error
+        } catch {
+          msg = text
+        }
+      } catch {}
+    }
+    throw new Error(msg)
+  }
+  
   if (data && data.error) throw new Error(data.error)
   return data
 }

@@ -27,13 +27,20 @@ serve(async (req) => {
     const supabase = createClient(supabaseUrl, supabaseKey)
 
     // Find rehearsals for the given month (e.g. '2026-05')
+    const [year, month] = yearMonth.split('-').map(Number)
     const startDate = `${yearMonth}-01`
+    
+    // Calculate first day of next month
+    const nextMonth = month === 12 ? 1 : month + 1
+    const nextYear = month === 12 ? year + 1 : year
+    const nextMonthStart = `${nextYear}-${String(nextMonth).padStart(2, '0')}-01`
+
     const { data: events, error: fetchError } = await supabase
       .from('rehearsal_events')
       .select('*')
       .eq('owner_key', userId)
       .gte('event_date', startDate)
-      .lt('event_date', `${yearMonth}-31`) // Simple but safe enough for this MVP string filtering
+      .lt('event_date', nextMonthStart)
       .order('event_date', { ascending: true })
 
     if (fetchError) throw new Error(`DB Error: ${fetchError.message}`)
