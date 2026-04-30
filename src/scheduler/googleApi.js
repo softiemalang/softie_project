@@ -8,29 +8,35 @@ const GOOGLE_REDIRECT_URI = import.meta.env.VITE_GOOGLE_REDIRECT_URI
  * Starts the Google OAuth flow.
  * Redirects the user to Google's consent screen.
  */
-export function connectGoogleCalendar(userId, options = {}) {
-  if (!GOOGLE_REDIRECT_URI) {
-    alert('VITE_GOOGLE_REDIRECT_URI 환경변수가 설정되지 않았습니다.')
+export async function connectGoogleCalendar(userId, options = {}) {
+  if (!supabase) {
+    alert('Supabase client not initialized')
     return
   }
 
-  // Requesting scopes for Calendar (Priority 1), Drive (Priority 2), and Sheets (Priority 3)
-  const scope = 'https://www.googleapis.com/auth/calendar.events https://www.googleapis.com/auth/drive.file https://www.googleapis.com/auth/spreadsheets'
-  
-  // Use 'state' to pass the userId/deviceId so the callback can identify who it belongs to
-  // Optional: encode returnPath into state using '|' as separator
-  const state = options.returnPath ? `${userId}|${options.returnPath}` : userId
+  if (!GOOGLE_CLIENT_ID || !GOOGLE_REDIRECT_URI) {
+    alert('Google OAuth 환경변수가 설정되지 않았습니다.')
+    return
+  }
 
-  const authUrl = new URL('https://accounts.google.com/o/oauth2/v2/auth')
-  authUrl.searchParams.set('client_id', GOOGLE_CLIENT_ID)
-  authUrl.searchParams.set('redirect_uri', GOOGLE_REDIRECT_URI)
-  authUrl.searchParams.set('response_type', 'code')
-  authUrl.searchParams.set('scope', scope)
-  authUrl.searchParams.set('access_type', 'offline')
-  authUrl.searchParams.set('prompt', 'consent') // Force consent to get refresh_token
-  authUrl.searchParams.set('state', state)
+  try {
+    const { data, error } = await supabase.functions.invoke('google-oauth-start', {
+      body: {
+        userId,
+        returnPath: options.returnPath,
+      }
+    })
 
-  window.location.href = authUrl.toString()
+    const result = await unwrapInvokeError(data, error)
+    if (!result?.authUrl) {
+      throw new Error('Google OAuth URL을 생성하지 못했습니다.')
+    }
+
+    window.location.href = result.authUrl
+  } catch (error) {
+    console.error('[connectGoogleCalendar]', error)
+    alert(error.message || 'Google 계정 연결을 시작하지 못했습니다.')
+  }
 }
 
 /**
