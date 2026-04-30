@@ -7,21 +7,18 @@ serve(async (req) => {
   }
 
   try {
-    const { question, threadId } = await req.json();
-
-    // Placeholder for Vertex AI Search Integration
-    // TODO: Implement actual call to Google Cloud Vertex AI Search API
-    // Ensure all credentials are retrieved via Deno.env.get('...')
+    const body = await req.json();
+    const question = body.question || 'No question provided.';
+    const threadId = body.threadId || null;
 
     const projectId = Deno.env.get('GOOGLE_CLOUD_PROJECT_ID');
 
     if (!projectId) {
-      // Fallback/Mock behavior
       return new Response(
         JSON.stringify({
-          answer: `[Mock Answer] I received your question: "${question}". The Vertex AI Search integration is not fully configured yet. Please check the project's documentation.`,
+          answer: `[Mock Answer] I received your question: "${question}". The Vertex AI Search integration is not fully configured yet.`,
           citations: [],
-          threadId: threadId || crypto.randomUUID(),
+          threadId: threadId,
         }),
         { headers: { ...corsHeaders, "Content-Type": "application/json" } }
       );
