@@ -1,5 +1,11 @@
 import { supabase } from './supabase'
 
+const configuredRedirectUrl = import.meta.env.VITE_AUTH_REDIRECT_URL
+
+function getAuthRedirectUrl() {
+  return configuredRedirectUrl || window.location.origin
+}
+
 export async function getCurrentSession() {
   if (!supabase) return null
   const { data: { session }, error } = await supabase.auth.getSession()
@@ -12,7 +18,7 @@ export async function getCurrentUser() {
   return session?.user || null
 }
 
-export async function signInWithGoogle(returnUrl = window.location.origin) {
+export async function signInWithGoogle(returnUrl = getAuthRedirectUrl()) {
   if (!supabase) return
 
   await supabase.auth.signInWithOAuth({

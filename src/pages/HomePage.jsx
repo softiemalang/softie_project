@@ -69,7 +69,7 @@ export default function HomePage() {
               </button>
             </div>
           ) : (
-            <button className="soft-button home-auth-button" onClick={() => signInWithGoogle(window.location.origin)}>
+            <button className="soft-button home-auth-button" onClick={() => signInWithGoogle()}>
               Google로 로그인
             </button>
           )}
