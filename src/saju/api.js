@@ -61,12 +61,32 @@ export async function upsertSajuProfile(profileData, { userId, localKey }) {
   let matchQueryId = null
 
   if (userId) {
-    const { data } = await supabase.from('saju_profiles').select('id').eq('user_id', userId).maybeSingle()
+    const { data, error } = await supabase
+      .from('saju_profiles')
+      .select('id')
+      .eq('user_id', userId)
+      .maybeSingle()
+
+    if (error) {
+      console.warn('[upsertSajuProfile] user_id lookup failed:', error)
+      throw error
+    }
+
     if (data) matchQueryId = data.id
   }
   
   if (!matchQueryId && localKey) {
-    const { data } = await supabase.from('saju_profiles').select('id').eq('local_key', localKey).maybeSingle()
+    const { data, error } = await supabase
+      .from('saju_profiles')
+      .select('id')
+      .eq('local_key', localKey)
+      .maybeSingle()
+
+    if (error) {
+      console.warn('[upsertSajuProfile] local_key lookup failed:', error)
+      throw error
+    }
+
     if (data) matchQueryId = data.id
   }
 
@@ -79,15 +99,25 @@ export async function upsertSajuProfile(profileData, { userId, localKey }) {
       .single()
     if (error) throw error
     return data
-  } else {
+  }
+
+  if (localKey) {
     const { data, error } = await supabase
       .from('saju_profiles')
-      .insert(payload)
+      .upsert(payload, { onConflict: 'local_key' })
       .select()
       .single()
     if (error) throw error
     return data
   }
+
+  const { data, error } = await supabase
+    .from('saju_profiles')
+    .insert(payload)
+    .select()
+    .single()
+  if (error) throw error
+  return data
 }
 
 /**
