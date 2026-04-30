@@ -23,6 +23,12 @@ export default function HomePage() {
 
   const services = [
     {
+      description: 'Ask questions and organize work based on the softie_project building map and working principles.',
+      path: '/brain',
+      icon: '🧠',
+      label: 'BRAIN',
+    },
+    {
       description: '밴드원들의 가능 시간을 모아서 최적의 합주 타임을 찾아보세요.',
       path: '/band',
       icon: '🎸',

@@ -1,6 +1,7 @@
 import { navigate, usePathname } from './lib/router'
 import { SchedulerApp } from './scheduler/SchedulerApp'
 import FortunePage from './saju/FortunePage'
+import ProjectBrainPage from './pages/ProjectBrainPage'
 import HomePage from './pages/HomePage'
 import BandPage from './pages/BandPage'
 import RehearsalCalendarPage from './pages/RehearsalCalendarPage'
@@ -42,6 +43,10 @@ export default function App() {
 
   if (pathname.startsWith('/fortune')) {
     return <FortunePage />
+  }
+
+  if (pathname.startsWith('/brain')) {
+    return <ProjectBrainPage />
   }
 
   return <NotFoundPage />
