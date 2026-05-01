@@ -65,6 +65,116 @@ function takeUniqueHints(hints, max = 3) {
   return [...new Set(hints.filter(Boolean))].slice(0, max)
 }
 
+function buildSupportiveElements(natalAnalysis) {
+  const selfElement = ELEMENTS[natalAnalysis.dayMaster]
+  const resourceElement = getElementThatGenerates(selfElement)
+  const outputElement = RELATIONSHIPS.생[selfElement] || null
+  const wealthElement = RELATIONSHIPS.극[selfElement] || null
+  const pressureElement = getElementThatControls(selfElement)
+  const weightedElements = natalAnalysis.weightedElementsCount || {}
+  const strongElements = natalAnalysis.strongElements || []
+  const weakElements = natalAnalysis.weakElements || []
+  const refinedFlags = natalAnalysis.refinedImbalanceFlags || []
+  const seasonalElement = natalAnalysis.seasonalContext?.seasonElement || null
+  const topWeightedEntry = Object.entries(weightedElements).sort((a, b) => b[1] - a[1])[0] || null
+  const topWeightedElement = topWeightedEntry?.[0] || null
+  const topWeightedValue = topWeightedEntry?.[1] || 0
+  const adjustedLevel = natalAnalysis.adjustedDayMasterStrengthLevel
+
+  const likelyHelpful = []
+  const likelyOverloading = []
+
+  if (adjustedLevel === 'weak') {
+    if (selfElement) likelyHelpful.push(selfElement)
+    if (resourceElement) likelyHelpful.push(resourceElement)
+  } else if (adjustedLevel === 'strong') {
+    if (outputElement) likelyHelpful.push(outputElement)
+    if (wealthElement) likelyHelpful.push(wealthElement)
+  } else {
+    if (resourceElement && weakElements.includes(resourceElement)) likelyHelpful.push(resourceElement)
+    if (selfElement && weakElements.includes(selfElement)) likelyHelpful.push(selfElement)
+  }
+
+  strongElements.forEach((element) => likelyOverloading.push(element))
+
+  if (refinedFlags.includes('weighted_element_overload') && topWeightedElement) {
+    likelyOverloading.push(topWeightedElement)
+  } else if (topWeightedElement && topWeightedValue >= 4.4) {
+    likelyOverloading.push(topWeightedElement)
+  }
+
+  if (natalAnalysis.pressureScore >= 3 && pressureElement) {
+    likelyOverloading.push(pressureElement)
+  }
+
+  if (
+    natalAnalysis.wealthScore >= 3 &&
+    wealthElement &&
+    (refinedFlags.includes('wealth_pressure') || refinedFlags.includes('hidden_wealth_pressure'))
+  ) {
+    likelyOverloading.push(wealthElement)
+  }
+
+  if (seasonalElement && likelyOverloading.includes(seasonalElement)) {
+    likelyOverloading.push(seasonalElement)
+  }
+
+  const normalizedHelpful = [...new Set(likelyHelpful)].slice(0, 2)
+  const normalizedOverloading = [...new Set(likelyOverloading)].filter(
+    (element) => !normalizedHelpful.includes(element),
+  ).slice(0, 2)
+  const likelyNeutral = ['목', '화', '토', '금', '수']
+    .filter((element) => !normalizedHelpful.includes(element) && !normalizedOverloading.includes(element))
+    .slice(0, 3)
+
+  let confidence = 'low'
+  if (
+    ['weak', 'strong'].includes(adjustedLevel) &&
+    (refinedFlags.includes('weighted_element_overload') || refinedFlags.includes('weighted_element_missing'))
+  ) {
+    confidence = 'high'
+  } else if (
+    refinedFlags.length >= 2 ||
+    natalAnalysis.pressureScore >= 3 ||
+    natalAnalysis.wealthScore >= 3 ||
+    strongElements.length > 0 ||
+    weakElements.length > 0
+  ) {
+    confidence = 'medium'
+  }
+
+  const reasonHints = takeUniqueHints([
+    adjustedLevel === 'weak' ? '기본 리듬을 회복하려면 자신을 받쳐주는 흐름이 도움이 되기 쉬움' : null,
+    resourceElement && normalizedHelpful.includes(resourceElement)
+      ? '생각을 정리하고 속도를 낮추는 흐름이 안정에 도움이 됨'
+      : null,
+    outputElement && adjustedLevel === 'strong'
+      ? '표현이나 결과로 풀어낼 때 막힌 기운이 덜 답답해질 수 있음'
+      : null,
+    normalizedOverloading.length > 0
+      ? '이미 강한 흐름은 더해질수록 책임감이나 몸의 무게감으로 느껴질 수 있음'
+      : null,
+    seasonalElement && normalizedOverloading.includes(seasonalElement)
+      ? '계절 흐름이 이미 강한 결을 더 밀어줄 수 있어 완급 조절이 중요함'
+      : null,
+  ])
+
+  const cautionHints = takeUniqueHints([
+    '도움이 되는 흐름도 과해지면 고집이나 과몰입으로 흐를 수 있음',
+    '부담이 되는 흐름은 나쁘다는 뜻이 아니라 속도 조절이 필요하다는 신호로 해석할 것',
+    '보완 흐름은 확정적 판단이 아니라 오늘 흐름과 함께 부드럽게 참고할 것',
+  ])
+
+  return {
+    likelyHelpful: normalizedHelpful,
+    likelyOverloading: normalizedOverloading,
+    likelyNeutral,
+    confidence,
+    reasonHints,
+    cautionHints,
+  }
+}
+
 export function buildNatalProfile(natalAnalysis) {
   const dayMasterElement = ELEMENTS[natalAnalysis.dayMaster]
   const supportElement = getElementThatGenerates(dayMasterElement)
@@ -324,7 +434,7 @@ export function analyzeNatalStructure(pillars) {
     ...(maxWeightedValue >= 4 ? ['weighted_element_overload'] : []),
     ...(hasWeightedMissing ? ['weighted_element_missing'] : []),
   ])]
-  const natalProfile = buildNatalProfile({
+  const baseAnalysis = {
     dayMaster,
     elementsCount,
     tenGodsDistribution,
@@ -345,11 +455,13 @@ export function analyzeNatalStructure(pillars) {
     wealthScore,
     pressureScore,
     dayMasterStrengthLevel,
+    imbalanceFlags,
     adjustedStrengthScore,
     adjustedDayMasterStrengthLevel,
     refinedImbalanceFlags,
-    imbalanceFlags
-  })
+  }
+  const supportiveElements = buildSupportiveElements(baseAnalysis)
+  const natalProfile = buildNatalProfile(baseAnalysis)
 
   return {
     dayMaster,
@@ -376,6 +488,7 @@ export function analyzeNatalStructure(pillars) {
     adjustedStrengthScore,
     adjustedDayMasterStrengthLevel,
     refinedImbalanceFlags,
+    supportiveElements,
     natalProfile,
     // 기초 강약 판정: 자신과 같은 오행 및 자신을 생하는 오행의 합산
     strengthScore
