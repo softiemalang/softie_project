@@ -25,7 +25,7 @@ export function generateNatalSnapshot(profile) {
     hour_stem: pillars.hour.stem,
     hour_branch: pillars.hour.branch,
     day_master: analysis.dayMaster,
-    natal_data: { ...analysis, gender: profile.gender, engine_version: '2.0' }
+    natal_data: { ...analysis, gender: profile.gender, engine_version: '2.1' }
   }
 }
 
@@ -137,6 +137,75 @@ export function generateDailySnapshot(natalSnapshot, targetDate) {
     dailyInteraction: interactionWithPeriodContext,
     gender
   });
+  const debugSummary = {
+    engineVersion: '2.1',
+    generatedAt: new Date().toISOString(),
+    dayType: {
+      type: dayType?.type || null,
+      label: dayType?.label || null,
+      confidence: dayType?.confidence || null,
+      reasons: dayType?.reasons?.slice(0, 3) || []
+    },
+    sectionPriority: {
+      primary: sectionPriority?.primary || [],
+      secondary: sectionPriority?.secondary || [],
+      low: sectionPriority?.low || []
+    },
+    longerCycle: {
+      todayPosition: longerCycleContext?.todayPosition || null,
+      recoveryNeed: longerCycleContext?.recoveryNeed || null,
+      rhythmFlags: longerCycleContext?.rhythmFlags?.slice(0, 6) || [],
+      compactHints: longerCycleContext?.compactHints?.slice(0, 3) || []
+    },
+    supportiveElements: {
+      confidence: natalAnalysis.supportiveElements?.confidence || null,
+      likelyHelpful: natalAnalysis.supportiveElements?.likelyHelpful || [],
+      likelyOverloading: natalAnalysis.supportiveElements?.likelyOverloading || [],
+      reasonHints: natalAnalysis.supportiveElements?.reasonHints?.slice(0, 3) || []
+    },
+    natalProfile: {
+      baselineTemperament: natalAnalysis.natalProfile?.baselineTemperament?.slice(0, 2) || [],
+      stressTriggers: natalAnalysis.natalProfile?.stressTriggers?.slice(0, 2) || [],
+      recoveryKeys: natalAnalysis.natalProfile?.recoveryKeys?.slice(0, 2) || []
+    },
+    periodContext: {
+      year: periodContext?.year?.roleHints?.slice(0, 2) || [],
+      month: periodContext?.month?.roleHints?.slice(0, 2) || [],
+      day: periodContext?.day?.roleHints?.slice(0, 2) || []
+    },
+    topSignals: {
+      tenGods: signals.slice(0, 5),
+      branchRelations: interactionWithPeriodContext.branchRelations
+        ?.map((relation) => `${relation.target}:${relation.relation}`)
+        ?.slice(0, 5) || [],
+      supplements: interactionWithPeriodContext.supplements?.slice(0, 5) || [],
+      overloads: interactionWithPeriodContext.overloads?.slice(0, 5) || []
+    }
+  }
+  const interpretationTrace = {
+    primaryNarrative: {
+      dayTypeLabel: dayType?.label || null,
+      todayFlowPosition: interpretationProfile?.todayFlowPositionHint || null,
+      basisHintPreview: interpretationProfile?.basisHint?.slice(0, 180) || ''
+    },
+    sectionDrivers: {
+      work: interpretationProfile?.fieldReasonHints?.work?.slice(0, 3) || [],
+      money: interpretationProfile?.fieldReasonHints?.money?.slice(0, 3) || [],
+      relationships: interpretationProfile?.fieldReasonHints?.relationships?.slice(0, 3) || [],
+      love: interpretationProfile?.fieldReasonHints?.love?.slice(0, 3) || [],
+      health: interpretationProfile?.fieldReasonHints?.health?.slice(0, 3) || [],
+      mind: interpretationProfile?.fieldReasonHints?.mind?.slice(0, 3) || []
+    },
+    cautionDrivers: [
+      dayType?.cautionHint || null,
+      longerCycleContext?.cautionHint || null,
+      natalAnalysis.supportiveElements?.cautionHints?.[0] || null
+    ].filter(Boolean).slice(0, 3),
+    actionDrivers: [
+      dayType?.actionHint || null,
+      longerCycleContext?.actionHint || null
+    ].filter(Boolean).slice(0, 3)
+  }
 
   return {
     target_date: targetDate,
@@ -151,6 +220,8 @@ export function generateDailySnapshot(natalSnapshot, targetDate) {
         summary_hint: loveSummary
       },
       interpretationProfile,
+      debugSummary,
+      interpretationTrace,
       priority_flags: ['focus_work', 'careful_spending'], // 예시 플래그
       periodPillars,
       periodContext,
@@ -158,7 +229,7 @@ export function generateDailySnapshot(natalSnapshot, targetDate) {
       sectionPriority,
       longerCycleContext,
       summary_hint: `${natalAnalysis.dayMaster}일간에게 올해/이번 달/오늘의 흐름이 겹쳐 들어오는 날`,
-      engine_version: '2.0'
+      engine_version: '2.1'
     }
   }
 }
