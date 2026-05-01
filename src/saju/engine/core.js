@@ -1,4 +1,4 @@
-import { ELEMENTS, RELATIONSHIPS, YIN_YANG, STEMS, BRANCHES } from './constants.js'
+import { ELEMENTS, RELATIONSHIPS, YIN_YANG, STEMS, BRANCHES, HIDDEN_STEMS, SEASONAL_ELEMENT_WEIGHTS } from './constants.js'
 import { calculateFourPillars } from './fourPillars.js'
 
 /**
@@ -49,14 +49,34 @@ export function getTenGod(dayMasterStem, targetStemOrBranch) {
   return null
 }
 
+function roundToTwo(value) {
+  return Math.round((value + Number.EPSILON) * 100) / 100
+}
+
+function getElementThatGenerates(targetElement) {
+  return Object.keys(RELATIONSHIPS.생).find((element) => RELATIONSHIPS.생[element] === targetElement) || null
+}
+
+function getElementThatControls(targetElement) {
+  return Object.keys(RELATIONSHIPS.극).find((element) => RELATIONSHIPS.극[element] === targetElement) || null
+}
+
 /**
  * 원국(Natal Chart)의 오행 분포 및 주요 구조 분석
  */
 export function analyzeNatalStructure(pillars) {
   const elementsCount = { '목': 0, '화': 0, '토': 0, '금': 0, '수': 0 }
   const tenGodsDistribution = {}
+  const hiddenStemsDistribution = {}
+  const hiddenTenGodsDistribution = {}
+  const weightedElementsCount = { ...elementsCount }
 
   const dayMaster = pillars.day.stem
+  const dayMasterElement = ELEMENTS[dayMaster]
+  const supportElement = getElementThatGenerates(dayMasterElement)
+  const pressureElement = getElementThatControls(dayMasterElement)
+  const monthBranch = pillars.month?.branch || null
+  const seasonalInfo = monthBranch ? SEASONAL_ELEMENT_WEIGHTS[monthBranch] || null : null
 
   Object.entries(pillars).forEach(([key, pillar]) => {
     // 오행 카운트
@@ -71,6 +91,35 @@ export function analyzeNatalStructure(pillars) {
       if (stemTenGod) tenGodsDistribution[stemTenGod] = (tenGodsDistribution[stemTenGod] || 0) + 1
       if (branchTenGod) tenGodsDistribution[branchTenGod] = (tenGodsDistribution[branchTenGod] || 0) + 1
     }
+  })
+
+  Object.entries(pillars).forEach(([, pillar]) => {
+    const branch = pillar?.branch
+    if (!branch) return
+
+    const hiddenEntries = HIDDEN_STEMS[branch] || []
+    hiddenEntries.forEach(({ stem, weight }) => {
+      const element = ELEMENTS[stem]
+      if (!element) return
+
+      hiddenStemsDistribution[stem] = roundToTwo((hiddenStemsDistribution[stem] || 0) + weight)
+      weightedElementsCount[element] = roundToTwo((weightedElementsCount[element] || 0) + weight)
+
+      const hiddenTenGod = getTenGod(dayMaster, stem)
+      if (hiddenTenGod) {
+        hiddenTenGodsDistribution[hiddenTenGod] = roundToTwo((hiddenTenGodsDistribution[hiddenTenGod] || 0) + weight)
+      }
+    })
+  })
+
+  if (seasonalInfo?.weights) {
+    Object.entries(seasonalInfo.weights).forEach(([element, weight]) => {
+      weightedElementsCount[element] = roundToTwo((weightedElementsCount[element] || 0) + weight)
+    })
+  }
+
+  Object.keys(weightedElementsCount).forEach((element) => {
+    weightedElementsCount[element] = roundToTwo(weightedElementsCount[element] || 0)
   })
 
   // 구조 및 세력 분석
@@ -101,10 +150,76 @@ export function analyzeNatalStructure(pillars) {
   if (outputScore >= 3) imbalanceFlags.push('expression_high');
   if (wealthScore >= 3 && pressureScore >= 2) imbalanceFlags.push('wealth_pressure');
 
+  const strengthScore = (elementsCount[ELEMENTS[dayMaster]] * 10) + (elementsCount[Object.keys(RELATIONSHIPS.생).find(key => RELATIONSHIPS.생[key] === ELEMENTS[dayMaster])] * 5 || 0)
+
+  const hiddenSupportScore = ['비견', '겁재', '편인', '정인']
+    .reduce((sum, god) => sum + (hiddenTenGodsDistribution[god] || 0), 0)
+  const hiddenPressureScore = ['편관', '정관']
+    .reduce((sum, god) => sum + (hiddenTenGodsDistribution[god] || 0), 0)
+  const hiddenResourceScore = ['편인', '정인']
+    .reduce((sum, god) => sum + (hiddenTenGodsDistribution[god] || 0), 0)
+  const hiddenWealthScore = ['편재', '정재']
+    .reduce((sum, god) => sum + (hiddenTenGodsDistribution[god] || 0), 0)
+
+  const seasonalWeights = seasonalInfo?.weights || {}
+  const seasonalSupportScore = roundToTwo(
+    (seasonalInfo?.seasonElement === dayMasterElement ? 2.2 : 0) +
+    (seasonalInfo?.seasonElement === supportElement ? 1.4 : 0) +
+    (seasonalWeights[dayMasterElement] || 0) * 0.8 +
+    (supportElement ? (seasonalWeights[supportElement] || 0) * 0.5 : 0)
+  )
+  const seasonalPressureScore = roundToTwo(
+    (seasonalInfo?.seasonElement === pressureElement ? 1.8 : 0) +
+    (pressureElement ? (seasonalWeights[pressureElement] || 0) * 0.7 : 0)
+  )
+
+  const adjustedStrengthScore = roundToTwo(
+    strengthScore +
+    (weightedElementsCount[dayMasterElement] || 0) * 1.3 +
+    (supportElement ? (weightedElementsCount[supportElement] || 0) * 0.8 : 0) -
+    (pressureElement ? (weightedElementsCount[pressureElement] || 0) * 0.9 : 0) +
+    seasonalSupportScore -
+    seasonalPressureScore +
+    hiddenSupportScore * 0.4 -
+    hiddenPressureScore * 0.5
+  )
+
+  let adjustedDayMasterStrengthLevel = 'balanced'
+  if (adjustedStrengthScore >= 34) adjustedDayMasterStrengthLevel = 'strong'
+  else if (adjustedStrengthScore <= 18) adjustedDayMasterStrengthLevel = 'weak'
+
+  const weightedValues = Object.values(weightedElementsCount)
+  const maxWeightedValue = weightedValues.length > 0 ? Math.max(...weightedValues) : 0
+  const hasWeightedMissing = weightedValues.some((value) => value === 0)
+
+  const refinedImbalanceFlags = [...new Set([
+    ...imbalanceFlags,
+    ...(hiddenSupportScore > 0 ? ['hidden_support_present'] : []),
+    ...(hiddenPressureScore > 0 ? ['hidden_pressure_present'] : []),
+    ...(hiddenResourceScore > 0 ? ['hidden_resource_support'] : []),
+    ...(hiddenWealthScore > 0 && pressureScore >= 2 ? ['hidden_wealth_pressure'] : []),
+    ...(seasonalSupportScore > seasonalPressureScore ? ['seasonal_support'] : []),
+    ...(seasonalPressureScore > seasonalSupportScore ? ['seasonal_pressure'] : []),
+    ...(adjustedDayMasterStrengthLevel === 'strong' ? ['adjusted_strong'] : []),
+    ...(adjustedDayMasterStrengthLevel === 'weak' ? ['adjusted_weak'] : []),
+    ...(maxWeightedValue >= 4 ? ['weighted_element_overload'] : []),
+    ...(hasWeightedMissing ? ['weighted_element_missing'] : []),
+  ])]
+
   return {
     dayMaster,
     elementsCount,
     tenGodsDistribution,
+    hiddenStemsDistribution,
+    hiddenTenGodsDistribution,
+    weightedElementsCount,
+    seasonalContext: {
+      monthBranch,
+      seasonElement: seasonalInfo?.seasonElement || null,
+      weights: seasonalInfo?.weights ? { ...seasonalInfo.weights } : {},
+      earthSupport: ['진', '술', '축', '미'].includes(monthBranch),
+      notes: seasonalInfo?.notes ? [...seasonalInfo.notes] : []
+    },
     strongElements,
     weakElements,
     supportScore,
@@ -113,8 +228,11 @@ export function analyzeNatalStructure(pillars) {
     pressureScore,
     dayMasterStrengthLevel,
     imbalanceFlags,
+    adjustedStrengthScore,
+    adjustedDayMasterStrengthLevel,
+    refinedImbalanceFlags,
     // 기초 강약 판정: 자신과 같은 오행 및 자신을 생하는 오행의 합산
-    strengthScore: (elementsCount[ELEMENTS[dayMaster]] * 10) + (elementsCount[Object.keys(RELATIONSHIPS.생).find(key => RELATIONSHIPS.생[key] === ELEMENTS[dayMaster])] * 5 || 0)
+    strengthScore
   }
 }
 

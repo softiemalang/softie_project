@@ -3,6 +3,36 @@
 export const STEMS = ['갑', '을', '병', '정', '무', '기', '경', '신', '임', '계']
 export const BRANCHES = ['자', '축', '인', '묘', '진', '사', '오', '미', '신', '유', '술', '해']
 
+export const HIDDEN_STEMS = {
+  '자': [{ stem: '계', weight: 1.0 }],
+  '축': [{ stem: '기', weight: 0.6 }, { stem: '계', weight: 0.3 }, { stem: '신', weight: 0.1 }],
+  '인': [{ stem: '갑', weight: 0.6 }, { stem: '병', weight: 0.3 }, { stem: '무', weight: 0.1 }],
+  '묘': [{ stem: '을', weight: 1.0 }],
+  '진': [{ stem: '무', weight: 0.6 }, { stem: '을', weight: 0.3 }, { stem: '계', weight: 0.1 }],
+  '사': [{ stem: '병', weight: 0.6 }, { stem: '경', weight: 0.3 }, { stem: '무', weight: 0.1 }],
+  '오': [{ stem: '정', weight: 0.7 }, { stem: '기', weight: 0.3 }],
+  '미': [{ stem: '기', weight: 0.6 }, { stem: '정', weight: 0.3 }, { stem: '을', weight: 0.1 }],
+  '신': [{ stem: '경', weight: 0.6 }, { stem: '임', weight: 0.3 }, { stem: '무', weight: 0.1 }],
+  '유': [{ stem: '신', weight: 1.0 }],
+  '술': [{ stem: '무', weight: 0.6 }, { stem: '신', weight: 0.3 }, { stem: '정', weight: 0.1 }],
+  '해': [{ stem: '임', weight: 0.7 }, { stem: '갑', weight: 0.3 }]
+}
+
+export const SEASONAL_ELEMENT_WEIGHTS = {
+  '인': { seasonElement: '목', weights: { 목: 1.2, 화: 0.4, 토: 0.1 }, notes: ['봄의 시작', '목의 성장 기운'] },
+  '묘': { seasonElement: '목', weights: { 목: 1.4, 화: 0.3 }, notes: ['봄의 중심', '목의 확장 기운'] },
+  '진': { seasonElement: '목', weights: { 목: 0.8, 토: 0.6, 수: 0.2 }, notes: ['봄의 끝자락', '토의 정리 기운'] },
+  '사': { seasonElement: '화', weights: { 화: 1.2, 토: 0.3, 금: 0.1 }, notes: ['여름의 시작', '화의 상승 기운'] },
+  '오': { seasonElement: '화', weights: { 화: 1.4, 토: 0.3 }, notes: ['여름의 중심', '화의 발산 기운'] },
+  '미': { seasonElement: '화', weights: { 화: 0.8, 토: 0.7, 목: 0.1 }, notes: ['여름의 끝자락', '토의 완충 기운'] },
+  '신': { seasonElement: '금', weights: { 금: 1.2, 수: 0.3, 토: 0.1 }, notes: ['가을의 시작', '금의 정리 기운'] },
+  '유': { seasonElement: '금', weights: { 금: 1.4 }, notes: ['가을의 중심', '금의 응축 기운'] },
+  '술': { seasonElement: '금', weights: { 금: 0.8, 토: 0.7, 화: 0.1 }, notes: ['가을의 끝자락', '토의 저장 기운'] },
+  '해': { seasonElement: '수', weights: { 수: 1.2, 목: 0.3 }, notes: ['겨울의 시작', '수의 저장 기운'] },
+  '자': { seasonElement: '수', weights: { 수: 1.4 }, notes: ['겨울의 중심', '수의 응축 기운'] },
+  '축': { seasonElement: '수', weights: { 수: 0.8, 토: 0.7, 금: 0.1 }, notes: ['겨울의 끝자락', '토의 보관 기운'] }
+}
+
 export const ELEMENTS = {
   '갑': '목', '을': '목',
   '병': '화', '정': '화',
