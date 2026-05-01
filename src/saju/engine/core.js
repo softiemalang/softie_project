@@ -236,6 +236,74 @@ export function analyzeNatalStructure(pillars) {
   }
 }
 
+const PERIOD_ROLE_HINTS = {
+  '비견': '내 생각과 주관이 또렷해지기 쉬움',
+  '겁재': '내 생각과 주관이 또렷해지기 쉬움',
+  '식신': '표현과 아이디어가 살아나기 쉬움',
+  '상관': '표현과 아이디어가 살아나기 쉬움',
+  '편재': '현실적인 선택과 손익 감각이 올라오기 쉬움',
+  '정재': '현실적인 선택과 손익 감각이 올라오기 쉬움',
+  '편관': '책임감과 기준 의식이 또렷해지기 쉬움',
+  '정관': '책임감과 기준 의식이 또렷해지기 쉬움',
+  '편인': '생각을 정리하고 배울 것을 흡수하기 쉬움',
+  '정인': '생각을 정리하고 배울 것을 흡수하기 쉬움'
+}
+
+export function analyzePeriodPillar(natalAnalysis, periodPillar, label) {
+  const pillar = {
+    stem: periodPillar?.stem || null,
+    branch: periodPillar?.branch || null
+  }
+  const signals = []
+  const elements = []
+  const dominantTenGods = []
+
+  const stemTenGod = pillar.stem ? getTenGod(natalAnalysis.dayMaster, pillar.stem) : null
+  const stemElement = pillar.stem ? ELEMENTS[pillar.stem] || null : null
+  const branchTenGod = pillar.branch ? getTenGod(natalAnalysis.dayMaster, pillar.branch) : null
+  const branchElement = pillar.branch ? ELEMENTS[pillar.branch] || null : null
+
+  if (stemTenGod) {
+    signals.push({ type: 'stem', tenGod: stemTenGod, element: stemElement })
+    dominantTenGods.push(stemTenGod)
+  }
+  if (branchTenGod) {
+    signals.push({ type: 'branch', tenGod: branchTenGod, element: branchElement })
+    dominantTenGods.push(branchTenGod)
+  }
+  if (stemElement) elements.push(stemElement)
+  if (branchElement) elements.push(branchElement)
+
+  const supportsWeakElement = elements.some((element) => natalAnalysis.weakElements?.includes(element))
+  const addsToOverloadedElement = elements.some((element) => natalAnalysis.strongElements?.includes(element))
+
+  const roleHints = []
+  dominantTenGods.forEach((tenGod) => {
+    const hint = PERIOD_ROLE_HINTS[tenGod]
+    if (hint && !roleHints.includes(hint)) {
+      roleHints.push(hint)
+    }
+  })
+
+  if (supportsWeakElement) {
+    roleHints.push('부족했던 흐름을 보완하는 역할이 있음')
+  }
+  if (addsToOverloadedElement) {
+    roleHints.push('이미 강한 흐름을 더 자극할 수 있음')
+  }
+
+  return {
+    label,
+    pillar,
+    signals,
+    elements,
+    dominantTenGods,
+    supportsWeakElement,
+    addsToOverloadedElement,
+    roleHints: roleHints.slice(0, 3)
+  }
+}
+
 const CHUNG_RELATIONS = {
   '자': '오', '오': '자', '축': '미', '미': '축', '인': '신', '신': '인',
   '묘': '유', '유': '묘', '진': '술', '술': '진', '사': '해', '해': '사'

@@ -1,4 +1,4 @@
-import { derivePillars, analyzeNatalStructure, analyzeDailyInteraction } from '../engine/core.js'
+import { derivePillars, analyzeNatalStructure, analyzeDailyInteraction, analyzePeriodPillar } from '../engine/core.js'
 import { buildInterpretationProfile } from './interpretationRules.js'
 
 /**
@@ -18,7 +18,7 @@ export function generateNatalSnapshot(profile) {
     hour_stem: pillars.hour.stem,
     hour_branch: pillars.hour.branch,
     day_master: analysis.dayMaster,
-    natal_data: { ...analysis, gender: profile.gender, engine_version: '1.4' }
+    natal_data: { ...analysis, gender: profile.gender, engine_version: '1.5' }
   }
 }
 
@@ -29,7 +29,12 @@ export function generateDailySnapshot(natalSnapshot, targetDate) {
   // targetDate에 대한 실제 일진(Daily Pillar) 도출
   // 하루 전체를 대표하는 일진을 구하기 위해 정오(12:00)를 기준으로 계산합니다.
   const targetPillars = derivePillars(targetDate, '12:00')
-  const dailyPillar = { stem: targetPillars.day.stem, branch: targetPillars.day.branch }
+  const periodPillars = {
+    year: { stem: targetPillars.year.stem, branch: targetPillars.year.branch },
+    month: { stem: targetPillars.month.stem, branch: targetPillars.month.branch },
+    day: { stem: targetPillars.day.stem, branch: targetPillars.day.branch }
+  }
+  const dailyPillar = periodPillars.day
   
   const natalAnalysis = natalSnapshot.natal_data
   const natalPillars = {
@@ -38,9 +43,18 @@ export function generateDailySnapshot(natalSnapshot, targetDate) {
   };
 
   const interaction = analyzeDailyInteraction(natalAnalysis, dailyPillar, natalPillars)
+  const periodContext = {
+    year: analyzePeriodPillar(natalAnalysis, periodPillars.year, 'year'),
+    month: analyzePeriodPillar(natalAnalysis, periodPillars.month, 'month'),
+    day: analyzePeriodPillar(natalAnalysis, periodPillars.day, 'day')
+  }
+  const interactionWithPeriodContext = {
+    ...interaction,
+    periodContext
+  }
   
   const gender = natalAnalysis.gender || 'male'
-  const signals = interaction.signals.map(s => s.tenGod)
+  const signals = interactionWithPeriodContext.signals.map(s => s.tenGod)
   
   let loveScore = 70
   let loveSignals = []
@@ -69,7 +83,7 @@ export function generateDailySnapshot(natalSnapshot, targetDate) {
 
   const interpretationProfile = buildInterpretationProfile({
     natalAnalysis,
-    dailyInteraction: interaction,
+    dailyInteraction: interactionWithPeriodContext,
     gender
   });
 
@@ -78,7 +92,7 @@ export function generateDailySnapshot(natalSnapshot, targetDate) {
     daily_stem: dailyPillar.stem,
     daily_branch: dailyPillar.branch,
     computed_data: {
-      ...interaction,
+      ...interactionWithPeriodContext,
       love: {
         score: loveScore,
         keySignals: loveSignals,
@@ -87,8 +101,10 @@ export function generateDailySnapshot(natalSnapshot, targetDate) {
       },
       interpretationProfile,
       priority_flags: ['focus_work', 'careful_spending'], // 예시 플래그
-      summary_hint: `${natalAnalysis.dayMaster}일간에게 ${interaction.signals[0].tenGod}이 들어오는 날`,
-      engine_version: '1.4'
+      periodPillars,
+      periodContext,
+      summary_hint: `${natalAnalysis.dayMaster}일간에게 올해/이번 달/오늘의 흐름이 겹쳐 들어오는 날`,
+      engine_version: '1.5'
     }
   }
 }
