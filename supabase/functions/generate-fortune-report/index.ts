@@ -105,6 +105,7 @@ headline와 summary는 서로 역할이 겹치지 않게 쓰세요. headline은 
 - cautions는 branchRelations, overloads 성격, fieldImpacts.risks를 우선 반영하세요.
 - 각 분야별 운세는 fieldImpacts와 branchRelations를 참고해 날짜별 결이 느껴지게 쓰세요. 너무 일반적인 격려문만 쓰지 마세요.
 - summary와 각 섹션은 signals, branchRelations, fieldImpacts, fieldReasonHints 중 적어도 하나의 의미를 자연스럽게 반영하세요. 단, 전문용어를 화면에 직접 쓰지 말고 일상 언어로 풀어 쓰세요.
+- 섹션 문장을 단독 자기관리 조언으로 끝내지 말고, 오늘 흐름과 연결된 이유나 감각을 한 번 더 붙이세요.
 - 경쟁심, 주관, 감정의 파고, 현상 유지 같은 표현은 그대로 쓰지 말고 일상에서 느낄 말로 풀어 쓰세요.
 - 예를 들어 경쟁심은 "내 생각을 지키고 싶은 마음", "괜히 비교하고 싶어지는 마음", "반응이 빨라지는 상태"처럼 바꿔 쓰세요.
 - 현상 유지는 "무리한 변화는 줄이기", "지금의 흐름을 안정적으로 지키기"처럼 풀어 쓰세요.
