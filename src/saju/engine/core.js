@@ -61,6 +61,112 @@ function getElementThatControls(targetElement) {
   return Object.keys(RELATIONSHIPS.극).find((element) => RELATIONSHIPS.극[element] === targetElement) || null
 }
 
+function takeUniqueHints(hints, max = 3) {
+  return [...new Set(hints.filter(Boolean))].slice(0, max)
+}
+
+export function buildNatalProfile(natalAnalysis) {
+  const dayMasterElement = ELEMENTS[natalAnalysis.dayMaster]
+  const supportElement = getElementThatGenerates(dayMasterElement)
+  const pressureElement = getElementThatControls(dayMasterElement)
+  const seasonalNotes = Array.isArray(natalAnalysis.seasonalContext?.notes) ? natalAnalysis.seasonalContext.notes : []
+  const weightedElements = natalAnalysis.weightedElementsCount || {}
+  const dominantWeightedElement = Object.entries(weightedElements).sort((a, b) => b[1] - a[1])[0]?.[0] || null
+  const hasHiddenSupport = (natalAnalysis.refinedImbalanceFlags || []).includes('hidden_support_present')
+  const hasHiddenPressure = (natalAnalysis.refinedImbalanceFlags || []).includes('hidden_pressure_present')
+  const hasHiddenResource = (natalAnalysis.refinedImbalanceFlags || []).includes('hidden_resource_support')
+  const hasHiddenWealthPressure = (natalAnalysis.refinedImbalanceFlags || []).includes('hidden_wealth_pressure')
+  const hasSeasonalSupport = (natalAnalysis.refinedImbalanceFlags || []).includes('seasonal_support')
+  const isAdjustedWeak = natalAnalysis.adjustedDayMasterStrengthLevel === 'weak'
+  const isAdjustedStrong = natalAnalysis.adjustedDayMasterStrengthLevel === 'strong'
+  const supportScore = natalAnalysis.supportScore || 0
+  const outputScore = natalAnalysis.outputScore || 0
+  const wealthScore = natalAnalysis.wealthScore || 0
+  const pressureScore = natalAnalysis.pressureScore || 0
+  const strongElements = natalAnalysis.strongElements || []
+  const weakElements = natalAnalysis.weakElements || []
+
+  const baselineTemperament = takeUniqueHints([
+    dayMasterElement === '수' ? '생각과 감정을 안쪽에서 오래 정리하는 편' : null,
+    dayMasterElement === '목' ? '성장과 확장을 자연스럽게 추구하는 편' : null,
+    dayMasterElement === '화' ? '표현과 반응이 비교적 빠르게 드러나는 편' : null,
+    dayMasterElement === '토' ? '안정과 책임을 중요하게 보는 편' : null,
+    dayMasterElement === '금' ? '기준과 정리를 중요하게 여기는 편' : null,
+    isAdjustedWeak ? '겉으로 움직일 수 있어도 에너지와 마음의 여유를 아껴 쓰는 편이 좋음' : null,
+    isAdjustedStrong ? '밀고 나가는 힘은 있으나 속도 조절이 함께 필요함' : null,
+    hasHiddenSupport ? '겉으로는 조용해 보여도 안쪽에서 버티는 힘이 함께 작용함' : null,
+    hasHiddenPressure ? '겉으로 드러나지 않는 부담을 안쪽에 쌓아두기 쉬움' : null,
+  ])
+
+  const stressTriggers = takeUniqueHints([
+    natalAnalysis.pressureScore >= 3 || hasHiddenPressure ? '과도한 책임이나 기준을 요구받는 상황' : null,
+    natalAnalysis.imbalanceFlags?.includes('element_overload') || natalAnalysis.refinedImbalanceFlags?.includes('weighted_element_overload') ? '한 가지 흐름이 과하게 몰리는 상황' : null,
+    natalAnalysis.supportScore <= 1 || isAdjustedWeak ? '충분히 회복하기 전에 계속 움직여야 하는 상황' : null,
+    natalAnalysis.outputScore >= 3 ? '말이나 표현이 많아져 에너지가 흩어지는 상황' : null,
+    natalAnalysis.wealthScore >= 3 || hasHiddenWealthPressure ? '현실적인 선택과 부담을 동시에 처리해야 하는 상황' : null,
+  ])
+
+  const recoveryKeys = takeUniqueHints([
+    hasHiddenResource ? '혼자 조용히 생각을 정리하는 시간' : null,
+    hasSeasonalSupport ? '하루 리듬을 무리하게 바꾸지 않는 작은 루틴' : null,
+    isAdjustedWeak ? '짧은 휴식과 몸의 긴장을 낮추는 행동' : null,
+    ['수', '금'].includes(dayMasterElement) ? '기록하거나 정리하며 마음을 가라앉히는 방식' : null,
+    ['목', '화'].includes(dayMasterElement) ? '가벼운 움직임이나 표현으로 답답함을 풀어내는 방식' : null,
+  ])
+
+  const expressionStyle = takeUniqueHints([
+    outputScore >= 3 ? '표현이 살아날 때 아이디어와 말이 빠르게 흐르는 편' : null,
+    outputScore === 0 ? '표현하기 전에 충분히 정리할 시간이 필요한 편' : null,
+    hasHiddenSupport ? '직접 크게 드러내지 않아도 진심이 천천히 전해지는 편' : null,
+  ])
+
+  const relationshipStyle = takeUniqueHints([
+    supportScore >= 4 ? '가까운 관계에서 자기 리듬과 기준을 지키려는 마음이 있음' : null,
+    outputScore >= 3 ? '대화와 표현을 통해 관계가 풀리기 쉬움' : null,
+    pressureScore >= 3 ? '관계 안에서 책임감이나 조심스러움이 커지기 쉬움' : null,
+    hasHiddenPressure ? '겉으로 괜찮아 보여도 관계의 작은 반응을 오래 곱씹을 수 있음' : null,
+  ])
+
+  const workStyle = takeUniqueHints([
+    pressureScore >= 3 ? '책임과 기준이 분명한 일에서 긴장과 집중이 함께 올라오기 쉬움' : null,
+    outputScore >= 3 ? '아이디어를 말이나 결과물로 풀어낼 때 힘이 살아남' : null,
+    wealthScore >= 3 ? '성과와 현실적인 효율을 함께 고려하려는 편' : null,
+    isAdjustedWeak ? '무리하게 오래 밀기보다 우선순위를 나누는 방식이 유리함' : null,
+  ])
+
+  const moneyStyle = takeUniqueHints([
+    wealthScore >= 3 ? '손익과 현실적인 선택을 민감하게 살피는 편' : null,
+    hasHiddenWealthPressure ? '지출보다 그 뒤의 책임까지 함께 생각하기 쉬움' : null,
+    weakElements.includes('토') || (dominantWeightedElement === '토' && strongElements.includes('토')) ? '안정감을 위해 필요 이상으로 부담을 끌어안을 수 있음' : null,
+    wealthScore <= 1 ? '큰 변화보다 작은 계획과 점검이 더 안정적일 수 있음' : null,
+  ])
+
+  const healthCareKeys = takeUniqueHints([
+    isAdjustedWeak ? '무리한 일정 전에 먼저 회복 시간을 확보하는 것' : null,
+    pressureScore >= 3 || hasHiddenPressure ? '몸의 긴장을 의식적으로 풀어주는 짧은 루틴' : null,
+    natalAnalysis.seasonalContext?.earthSupport ? '소화와 몸의 무게감을 가볍게 관리하는 것' : null,
+    outputScore >= 3 ? '말과 생각이 많아질 때 호흡을 늦추는 것' : null,
+  ])
+
+  const interpretationWarnings = takeUniqueHints([
+    '확정적인 성격 판단으로 쓰지 말 것',
+    '부담과 취약점은 불안 조장이 아니라 조절 포인트로 표현할 것',
+    '강한 신호가 있어도 오늘의 일진과 함께 부드럽게 조율해 해석할 것',
+  ], 3)
+
+  return {
+    baselineTemperament,
+    stressTriggers,
+    recoveryKeys,
+    expressionStyle,
+    relationshipStyle,
+    workStyle,
+    moneyStyle,
+    healthCareKeys,
+    interpretationWarnings
+  }
+}
+
 function normalizeBranchPair(a, b) {
   return [a, b].sort().join('-')
 }
@@ -218,6 +324,32 @@ export function analyzeNatalStructure(pillars) {
     ...(maxWeightedValue >= 4 ? ['weighted_element_overload'] : []),
     ...(hasWeightedMissing ? ['weighted_element_missing'] : []),
   ])]
+  const natalProfile = buildNatalProfile({
+    dayMaster,
+    elementsCount,
+    tenGodsDistribution,
+    hiddenStemsDistribution,
+    hiddenTenGodsDistribution,
+    weightedElementsCount,
+    seasonalContext: {
+      monthBranch,
+      seasonElement: seasonalInfo?.seasonElement || null,
+      weights: seasonalInfo?.weights ? { ...seasonalInfo.weights } : {},
+      earthSupport: ['진', '술', '축', '미'].includes(monthBranch),
+      notes: seasonalInfo?.notes ? [...seasonalInfo.notes] : []
+    },
+    strongElements,
+    weakElements,
+    supportScore,
+    outputScore,
+    wealthScore,
+    pressureScore,
+    dayMasterStrengthLevel,
+    adjustedStrengthScore,
+    adjustedDayMasterStrengthLevel,
+    refinedImbalanceFlags,
+    imbalanceFlags
+  })
 
   return {
     dayMaster,
@@ -244,6 +376,7 @@ export function analyzeNatalStructure(pillars) {
     adjustedStrengthScore,
     adjustedDayMasterStrengthLevel,
     refinedImbalanceFlags,
+    natalProfile,
     // 기초 강약 판정: 자신과 같은 오행 및 자신을 생하는 오행의 합산
     strengthScore
   }

@@ -11,6 +11,7 @@ export function buildInterpretationProfile({ natalAnalysis, dailyInteraction, ge
     refinedImbalanceFlags = []
   } = natalAnalysis;
   const { supplements, overloads, branchRelations, signals, fieldImpacts, periodContext } = dailyInteraction;
+  const natalProfile = natalAnalysis.natalProfile || null;
 
   // Primary Theme & Intensity
   let intensity = 'low';
@@ -71,6 +72,13 @@ export function buildInterpretationProfile({ natalAnalysis, dailyInteraction, ge
     periodContext?.year?.roleHints?.[0] ? `올해 흐름은 ${periodContext.year.roleHints[0]}` : null,
     periodContext?.month?.roleHints?.[0] ? `이번 달 흐름은 ${periodContext.month.roleHints[0]}` : null,
     periodContext?.day?.roleHints?.[0] ? `오늘은 ${periodContext.day.roleHints[0]}` : null,
+  ].filter(Boolean)
+  const personalContextHints = [
+    natalProfile?.baselineTemperament?.[0] || null,
+    natalProfile?.stressTriggers?.[0] || null,
+    natalProfile?.recoveryKeys?.[0] || null,
+    natalProfile?.relationshipStyle?.[0] || null,
+    natalProfile?.workStyle?.[0] || null,
   ].filter(Boolean)
 
   // Field Narratives
@@ -169,6 +177,7 @@ export function buildInterpretationProfile({ natalAnalysis, dailyInteraction, ge
     hiddenPressureScore > 0 ? '눈에 잘 안 보이는 부담이 함께 쌓일 수 있음' : null,
     hiddenTopStem ? `안쪽에서 더 두드러지는 재료는 ${hiddenTopStem} 쪽 흐름임` : null,
     ...periodContextHints,
+    personalContextHints[0] ? `내 기본 리듬은 ${personalContextHints[0]}` : null,
     seasonalNotes[0] || null,
     seasonElement ? `계절 흐름의 중심은 ${seasonElement} 쪽으로 기울어 있음` : null,
     weightedTopElement ? `전체 무게감은 ${weightedTopElement} 쪽에 조금 더 실려 있음` : null,
@@ -184,6 +193,7 @@ export function buildInterpretationProfile({ natalAnalysis, dailyInteraction, ge
       fieldImpacts.work.risks.length > 0 ? `업무 리스크: ${fieldImpacts.work.risks.join(', ')}` : null,
       hasGwan ? '책임이나 기준 의식이 강해지기 쉬움' : null,
       hasSik ? '표현력이나 아이디어가 일에 섞이기 쉬움' : null,
+      natalProfile?.workStyle?.[0] ? natalProfile.workStyle[0] : null,
       periodContext?.year?.roleHints?.[0] ? `올해 흐름은 ${periodContext.year.roleHints[0]}` : null,
       periodContext?.month?.roleHints?.[0] ? `이번 달 흐름은 ${periodContext.month.roleHints[0]}` : null,
       refinedImbalanceFlags.includes('hidden_support_present') ? '겉보다 준비력과 버티는 힘이 함께 작동함' : null,
@@ -194,6 +204,7 @@ export function buildInterpretationProfile({ natalAnalysis, dailyInteraction, ge
       fieldImpacts.money.risks.length > 0 ? `금전 리스크: ${fieldImpacts.money.risks.join(', ')}` : null,
       hasJae ? '현실 감각과 손익 계산이 예민해지기 쉬움' : null,
       hiddenWealthScore > 0 ? '보이지 않는 지출 감각이나 현실 판단이 함께 올라올 수 있음' : null,
+      natalProfile?.moneyStyle?.[0] ? natalProfile.moneyStyle[0] : null,
       refinedImbalanceFlags.includes('seasonal_pressure') ? '시기 흐름상 지출은 한 번 더 살피는 편이 좋음' : null,
     ].filter(Boolean),
     relationships: [
@@ -202,6 +213,7 @@ export function buildInterpretationProfile({ natalAnalysis, dailyInteraction, ge
       ...relationHints,
       hiddenSupportScore > 0 ? '사람을 대하는 태도는 겉보다 부드럽게 드러나기 쉬움' : null,
       hiddenPressureScore > 0 ? '말보다 반응이 먼저 나와 관계가 살짝 민감해질 수 있음' : null,
+      natalProfile?.relationshipStyle?.[0] ? natalProfile.relationshipStyle[0] : null,
     ].filter(Boolean),
     love: [
       gender === 'male' && hasJae ? '감정 표현보다 호감의 진전 여부가 신경 쓰이기 쉬움' : null,
@@ -215,6 +227,7 @@ export function buildInterpretationProfile({ natalAnalysis, dailyInteraction, ge
       hasChung ? '리듬이 흔들리면 컨디션 기복이 커질 수 있음' : null,
       seasonalContext.earthSupport ? '몸의 긴장을 조금 풀어주면 균형이 살아나기 쉬움' : null,
       adjustedDayMasterStrengthLevel === 'strong' ? '움직일 힘은 있지만 너무 몰아붙이면 금방 지칠 수 있음' : null,
+      natalProfile?.healthCareKeys?.[0] ? natalProfile.healthCareKeys[0] : null,
     ].filter(Boolean),
     mind: [
       fieldImpacts.mind.signals.length > 0 ? `심리 흐름 자극: ${fieldImpacts.mind.signals.join(', ')}` : null,
@@ -222,6 +235,7 @@ export function buildInterpretationProfile({ natalAnalysis, dailyInteraction, ge
       hasIn ? '정리와 성찰에는 좋지만 과몰입은 피하는 편이 좋음' : null,
       periodContext?.day?.roleHints?.[0] ? `오늘 흐름은 ${periodContext.day.roleHints[0]}` : null,
       hiddenResourceScore > 0 ? '겉으로는 조용해 보여도 안쪽에서 생각을 정리할 힘이 있음' : null,
+      natalProfile?.baselineTemperament?.[0] ? natalProfile.baselineTemperament[0] : null,
     ].filter(Boolean),
   };
 
@@ -254,6 +268,8 @@ export function buildInterpretationProfile({ natalAnalysis, dailyInteraction, ge
     topRisks: dailyInteraction.branchRelations.map(r => r.relation),
     basisHint,
     periodContextHints,
+    natalProfileSummary: natalProfile,
+    personalContextHints,
     dailyKeyPoints,
     fieldNarratives,
     fieldReasonHints,
