@@ -187,16 +187,21 @@ export default function FortunePage() {
         snapshot = await getDailySnapshot(targetProfile.id, currentTodayStr)
 
         const computed = snapshot?.computed_data
-        const isValidSnapshot = computed?.engine_version === '2.1' &&
+        const isValidSnapshot = computed?.engine_version === '2.2' &&
           computed?.love &&
           computed?.periodContext?.year &&
           computed?.periodContext?.month &&
           computed?.periodContext?.day &&
           computed?.dayType?.type &&
+          computed?.dailyBalance?.orientation &&
           Array.isArray(computed?.sectionPriority?.primary) &&
           computed?.longerCycleContext?.todayPosition &&
-          computed?.debugSummary?.engineVersion === '2.1' &&
+          computed?.debugSummary?.engineVersion === '2.2' &&
           computed?.interpretationTrace?.primaryNarrative &&
+          (
+            Boolean(computed?.interpretationProfile?.dailyBalanceHint) ||
+            Boolean(computed?.interpretationProfile?.dailyBalanceActionHint)
+          ) &&
           (
             Boolean(computed?.interpretationProfile?.natalProfileSummary) ||
             (Array.isArray(computed?.interpretationProfile?.personalContextHints) &&
@@ -227,7 +232,7 @@ export default function FortunePage() {
       if (!snapshot) {
         setStatus(force ? '오늘의 기운을 다시 작성하는 중입니다...' : '오늘의 기운을 분석 중입니다...')
         let natal = await getNatalSnapshot(targetProfile.id)
-        if (natal && natal.natal_data?.engine_version !== '2.1') {
+        if (natal && natal.natal_data?.engine_version !== '2.2') {
           natal = null // Force recalculation for old engine data
         }
 

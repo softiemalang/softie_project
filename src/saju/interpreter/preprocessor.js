@@ -1,4 +1,4 @@
-import { derivePillars, analyzeNatalStructure, analyzeDailyInteraction, analyzePeriodPillar, buildDayType, buildSectionPriority, buildLongerCycleContext } from '../engine/core.js'
+import { derivePillars, analyzeNatalStructure, analyzeDailyInteraction, analyzePeriodPillar, buildDayType, buildSectionPriority, buildLongerCycleContext, buildDailyBalance } from '../engine/core.js'
 import { buildInterpretationProfile } from './interpretationRules.js'
 
 function addDaysToDateString(dateString, offset) {
@@ -25,7 +25,7 @@ export function generateNatalSnapshot(profile) {
     hour_stem: pillars.hour.stem,
     hour_branch: pillars.hour.branch,
     day_master: analysis.dayMaster,
-    natal_data: { ...analysis, gender: profile.gender, engine_version: '2.1' }
+    natal_data: { ...analysis, gender: profile.gender, engine_version: '2.2' }
   }
 }
 
@@ -103,6 +103,11 @@ export function generateDailySnapshot(natalSnapshot, targetDate) {
     sectionPriority,
     longerCycleContext
   }
+  const dailyBalance = buildDailyBalance(natalAnalysis, interactionWithPeriodContext)
+  const interactionWithAllContext = {
+    ...interactionWithPeriodContext,
+    dailyBalance
+  }
   
   const gender = natalAnalysis.gender || 'male'
   const signals = interactionWithPeriodContext.signals.map(s => s.tenGod)
@@ -134,11 +139,11 @@ export function generateDailySnapshot(natalSnapshot, targetDate) {
 
   const interpretationProfile = buildInterpretationProfile({
     natalAnalysis,
-    dailyInteraction: interactionWithPeriodContext,
+    dailyInteraction: interactionWithAllContext,
     gender
   });
   const debugSummary = {
-    engineVersion: '2.1',
+    engineVersion: '2.2',
     generatedAt: new Date().toISOString(),
     dayType: {
       type: dayType?.type || null,
@@ -156,6 +161,14 @@ export function generateDailySnapshot(natalSnapshot, targetDate) {
       recoveryNeed: longerCycleContext?.recoveryNeed || null,
       rhythmFlags: longerCycleContext?.rhythmFlags?.slice(0, 6) || [],
       compactHints: longerCycleContext?.compactHints?.slice(0, 3) || []
+    },
+    dailyBalance: {
+      orientation: dailyBalance?.orientation || null,
+      opportunityLevel: dailyBalance?.opportunityLevel || null,
+      cautionLevel: dailyBalance?.cautionLevel || null,
+      recoveryLevel: dailyBalance?.recoveryLevel || null,
+      balanceHint: dailyBalance?.balanceHint || null,
+      actionFocus: dailyBalance?.actionFocus || null
     },
     supportiveElements: {
       confidence: natalAnalysis.supportiveElements?.confidence || null,
@@ -186,7 +199,14 @@ export function generateDailySnapshot(natalSnapshot, targetDate) {
     primaryNarrative: {
       dayTypeLabel: dayType?.label || null,
       todayFlowPosition: interpretationProfile?.todayFlowPositionHint || null,
-      basisHintPreview: interpretationProfile?.basisHint?.slice(0, 180) || ''
+      basisHintPreview: interpretationProfile?.basisHint?.slice(0, 180) || '',
+      dailyBalance: {
+        orientation: dailyBalance?.orientation || null,
+        mainOpportunity: dailyBalance?.mainOpportunity || null,
+        mainCaution: dailyBalance?.mainCaution || null,
+        mainRecovery: dailyBalance?.mainRecovery || null,
+        balanceHint: dailyBalance?.balanceHint || null
+      }
     },
     sectionDrivers: {
       work: interpretationProfile?.fieldReasonHints?.work?.slice(0, 3) || [],
@@ -197,11 +217,13 @@ export function generateDailySnapshot(natalSnapshot, targetDate) {
       mind: interpretationProfile?.fieldReasonHints?.mind?.slice(0, 3) || []
     },
     cautionDrivers: [
+      dailyBalance?.mainCaution || null,
       dayType?.cautionHint || null,
       longerCycleContext?.cautionHint || null,
       natalAnalysis.supportiveElements?.cautionHints?.[0] || null
     ].filter(Boolean).slice(0, 3),
     actionDrivers: [
+      dailyBalance?.actionFocus || null,
       dayType?.actionHint || null,
       longerCycleContext?.actionHint || null
     ].filter(Boolean).slice(0, 3)
@@ -212,7 +234,7 @@ export function generateDailySnapshot(natalSnapshot, targetDate) {
     daily_stem: dailyPillar.stem,
     daily_branch: dailyPillar.branch,
     computed_data: {
-      ...interactionWithPeriodContext,
+      ...interactionWithAllContext,
       love: {
         score: loveScore,
         keySignals: loveSignals,
@@ -228,8 +250,9 @@ export function generateDailySnapshot(natalSnapshot, targetDate) {
       dayType,
       sectionPriority,
       longerCycleContext,
+      dailyBalance,
       summary_hint: `${natalAnalysis.dayMaster}일간에게 올해/이번 달/오늘의 흐름이 겹쳐 들어오는 날`,
-      engine_version: '2.1'
+      engine_version: '2.2'
     }
   }
 }

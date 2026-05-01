@@ -699,6 +699,152 @@ export function buildLongerCycleContext(natalAnalysis, cycleDays, todayIndex = 3
   }
 }
 
+function scoreToLevel(score) {
+  if (score >= 6) return 'high'
+  if (score >= 4) return 'medium-high'
+  if (score >= 2) return 'medium'
+  return 'low'
+}
+
+export function buildDailyBalance(natalAnalysis, dailyInteraction) {
+  const { signals = [], supplements = [], overloads = [], branchRelations = [], fieldImpacts = {}, dayType, sectionPriority, longerCycleContext } = dailyInteraction
+  const tenGods = signals.map((signal) => signal.tenGod).filter(Boolean)
+  const supportiveElements = natalAnalysis.supportiveElements || {}
+  const natalProfile = natalAnalysis.natalProfile || {}
+
+  let opportunityScore = 0
+  let cautionScore = 0
+  let recoveryScore = 0
+
+  opportunityScore += (dailyInteraction.opportunities?.length || 0) > 0 ? 2 : 0
+  opportunityScore += ['expression_flow', 'expression_with_sensitivity', 'relationship_alignment', 'quiet_progress', 'responsibility_focus'].includes(dayType?.type) ? 2 : 0
+  opportunityScore += (sectionPriority?.primary || []).filter((section) => ['work', 'relationships', 'love', 'money'].includes(section)).length
+  opportunityScore += (fieldImpacts.work?.score || 0) >= 78 ? 1 : 0
+  opportunityScore += (fieldImpacts.relationships?.score || 0) >= 78 ? 1 : 0
+  opportunityScore += (fieldImpacts.love?.score || 0) >= 78 ? 1 : 0
+  opportunityScore += (longerCycleContext?.rhythmFlags || []).some((flag) => ['expression_streak', 'relationship_streak', 'money_review_streak'].includes(flag)) ? 1 : 0
+  opportunityScore += tenGods.some((tenGod) => ['식신', '상관', '정재', '편재', '정관', '정인'].includes(tenGod)) ? 1 : 0
+
+  cautionScore += overloads.length > 0 ? 2 : 0
+  cautionScore += branchRelations.some((relation) => ['충', '형', '파', '해'].includes(relation.relation)) ? 2 : 0
+  cautionScore += (fieldImpacts.relationships?.risks?.length || 0) > 0 ? 1 : 0
+  cautionScore += (fieldImpacts.money?.risks?.length || 0) > 0 ? 1 : 0
+  cautionScore += (fieldImpacts.work?.risks?.length || 0) > 0 ? 1 : 0
+  cautionScore += ['expression_with_sensitivity', 'overload_control', 'change_with_caution', 'money_review', 'responsibility_focus'].includes(dayType?.type) ? 2 : 0
+  cautionScore += (longerCycleContext?.rhythmFlags || []).some((flag) => ['overload_streak', 'responsibility_streak'].includes(flag)) ? 1 : 0
+  cautionScore += (supportiveElements?.likelyOverloading?.length || 0) > 0 ? 1 : 0
+
+  recoveryScore += (fieldImpacts.health?.risks?.length || 0) > 0 ? 1 : 0
+  recoveryScore += (fieldImpacts.mind?.risks?.length || 0) > 0 ? 1 : 0
+  recoveryScore += ['steady_recovery', 'inner_sorting', 'overload_control'].includes(dayType?.type) ? 2 : 0
+  recoveryScore += ['medium', 'high'].includes(longerCycleContext?.recoveryNeed) ? 1 : 0
+  recoveryScore += (longerCycleContext?.rhythmFlags || []).some((flag) => ['inner_sorting_streak', 'recovery_streak', 'overload_streak'].includes(flag)) ? 1 : 0
+  recoveryScore += (natalProfile?.recoveryKeys?.length || 0) > 0 ? 1 : 0
+  recoveryScore += natalAnalysis.adjustedDayMasterStrengthLevel === 'weak' ? 1 : 0
+  recoveryScore += (supportiveElements?.reasonHints || []).some((hint) => ['회복', '리듬', '속도', '정리'].some((keyword) => hint.includes(keyword))) ? 1 : 0
+
+  const levels = {
+    opportunityLevel: scoreToLevel(opportunityScore),
+    cautionLevel: scoreToLevel(cautionScore),
+    recoveryLevel: scoreToLevel(recoveryScore),
+  }
+
+  let orientation = 'balanced'
+  if (cautionScore >= opportunityScore + 2 && cautionScore >= recoveryScore + 2) orientation = 'caution'
+  else if (recoveryScore >= opportunityScore + 2 && recoveryScore >= cautionScore + 2) orientation = 'recovery'
+  else if (opportunityScore >= cautionScore + 2 && opportunityScore >= recoveryScore + 2) orientation = 'opportunity'
+
+  let mainOpportunity = ''
+  if (['expression_flow', 'expression_with_sensitivity'].includes(dayType?.type)) {
+    mainOpportunity = '생각과 아이디어를 말이나 결과물로 정리하기'
+  } else if (dayType?.type === 'relationship_alignment') {
+    mainOpportunity = '대화와 표현을 통해 관계의 온도를 부드럽게 맞추기'
+  } else if (dayType?.type === 'responsibility_focus') {
+    mainOpportunity = '책임과 기준을 정리해 해야 할 일을 선명하게 나누기'
+  } else if (dayType?.type === 'money_review') {
+    mainOpportunity = '현실 판단을 바탕으로 지출과 선택을 점검하기'
+  } else {
+    mainOpportunity = '이어지던 흐름을 작은 결과물로 옮기기'
+  }
+
+  let mainCaution = ''
+  if (branchRelations.some((relation) => ['충', '형', '파', '해'].includes(relation.relation))) {
+    mainCaution = '가까운 관계에서 반응 속도를 늦추기'
+  } else if (dayType?.type === 'money_review') {
+    mainCaution = '계획 없는 지출은 선택 뒤의 책임까지 확인하기'
+  } else if (dayType?.type === 'responsibility_focus') {
+    mainCaution = '해야 할 일을 혼자 끌어안지 않기'
+  } else if (dayType?.type === 'expression_with_sensitivity') {
+    mainCaution = '말이 잘 풀릴수록 표현의 온도를 낮추기'
+  } else {
+    mainCaution = '과한 흐름은 밀어붙이기보다 작게 나누기'
+  }
+
+  let mainRecovery = ''
+  if (fieldImpacts.health?.risks?.length || fieldImpacts.mind?.risks?.length) {
+    mainRecovery = '중간에 숨 돌릴 시간을 남겨 몸의 긴장을 낮추기'
+  } else if (dayType?.type === 'inner_sorting') {
+    mainRecovery = '떠오른 생각을 밖으로 꺼내 마음의 압력을 낮추기'
+  } else if (dayType?.type === 'responsibility_focus' || (longerCycleContext?.rhythmFlags || []).includes('responsibility_streak')) {
+    mainRecovery = '책임감이 몸의 무게로 남지 않게 속도를 조절하기'
+  } else {
+    mainRecovery = '오늘의 리듬을 무리하게 늘리지 않고 회복 여지를 남기기'
+  }
+
+  let balanceHint = ''
+  if (orientation === 'opportunity') {
+    balanceHint = '기회는 표현과 정리에서 오고, 안정은 반응 속도 조절에서 생김'
+  } else if (orientation === 'caution') {
+    balanceHint = '오늘은 성과보다 속도 조절이 흐름을 안정시키는 열쇠가 됨'
+  } else if (orientation === 'recovery') {
+    balanceHint = '오늘은 회복 여지를 남겨야 표현과 판단도 부드럽게 살아남'
+  } else {
+    balanceHint = '기회와 주의가 함께 있으니 작게 표현하고 천천히 확인하는 흐름이 좋음'
+  }
+
+  let actionFocus = ''
+  if (dayType?.type === 'expression_with_sensitivity' || (longerCycleContext?.rhythmFlags || []).includes('relationship_streak')) {
+    actionFocus = '보내기 전 문장을 다시 읽고 온도를 낮추기'
+  } else if (dayType?.type === 'responsibility_focus' || (longerCycleContext?.rhythmFlags || []).includes('responsibility_streak')) {
+    actionFocus = '오늘 할 일을 작게 나누고 하나만 먼저 끝내기'
+  } else if (dayType?.type === 'money_review') {
+    actionFocus = '결제 전 필요와 책임을 한 번 더 확인하기'
+  } else if (dayType?.type === 'inner_sorting') {
+    actionFocus = '떠오른 생각을 한 줄로 적어 밖으로 꺼내기'
+  } else {
+    actionFocus = '중간에 숨 돌릴 시간을 먼저 남겨두기'
+  }
+
+  const reasonHints = takeUniqueHints([
+    opportunityScore >= cautionScore && tenGods.some((tenGod) => tenGod?.includes('식') || tenGod?.includes('상'))
+      ? '표현과 아이디어 신호가 기회로 작동함'
+      : null,
+    branchRelations.some((relation) => ['충', '형', '파', '해'].includes(relation.relation))
+      ? '관계 반응 속도 조절이 오늘의 안정 포인트임'
+      : null,
+    (longerCycleContext?.rhythmFlags || []).includes('responsibility_streak')
+      ? '이어지는 책임 흐름은 회복 여지를 함께 요구함'
+      : null,
+    dayType?.type === 'money_review'
+      ? '현실 판단은 살아나지만 지출 뒤 책임 확인이 필요함'
+      : null,
+    longerCycleContext?.weekHint
+      ? '최근 며칠 흐름이 오늘의 선택을 조금 더 선명하게 만듦'
+      : null,
+  ], 4)
+
+  return {
+    orientation,
+    ...levels,
+    mainOpportunity,
+    mainCaution,
+    mainRecovery,
+    balanceHint,
+    actionFocus,
+    reasonHints,
+  }
+}
+
 export function buildNatalProfile(natalAnalysis) {
   const dayMasterElement = ELEMENTS[natalAnalysis.dayMaster]
   const supportElement = getElementThatGenerates(dayMasterElement)
