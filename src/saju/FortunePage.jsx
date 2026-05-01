@@ -513,11 +513,6 @@ export default function FortunePage() {
                 </h2>
               )}
               <p className="fortune-summary-text">{reportData.summary}</p>
-              {reportData.basis && (
-                <p className="subtle" style={{ margin: '0.65rem 0 0', fontSize: '0.88rem', lineHeight: 1.55, color: '#7a6c5a' }}>
-                  {reportData.basis}
-                </p>
-              )}
             </div>
           </section>
 
@@ -610,11 +605,6 @@ export default function FortunePage() {
                       </h3>
                     )}
                     <p className="fortune-summary-text">{historyReportData.summary || selectedHistoryReport.summary || '저장된 총평이 없습니다.'}</p>
-                    {historyReportData.basis && (
-                      <p className="subtle" style={{ margin: '0.65rem 0 0', fontSize: '0.86rem', lineHeight: 1.55, color: '#7a6c5a' }}>
-                        {historyReportData.basis}
-                      </p>
-                    )}
                   </section>
 
                   <section className="fortune-history-detail-card">
