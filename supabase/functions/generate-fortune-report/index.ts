@@ -173,6 +173,7 @@ Deno.serve(async (req) => {
     );
 
     const openaiApiKey = Deno.env.get("OPENAI_API_KEY")
+    const modelName = Deno.env.get("OPENAI_FORTUNE_MODEL") || "gpt-5-mini"
     let finalResponse;
 
     const getFallback = (reason, error = null, status = null, body_preview = null) => {
@@ -216,7 +217,7 @@ Deno.serve(async (req) => {
             'Content-Type': 'application/json'
           },
           body: JSON.stringify({
-            model: "gpt-5-mini",
+              model: modelName,
             input: [
               { role: "system", content: systemPrompt },
               { role: "user", content: userPrompt }
@@ -291,7 +292,7 @@ Deno.serve(async (req) => {
             };
 
             if (content && content.sections && validate(content)) {
-              finalResponse = { model: "gpt-5-mini", content };
+              finalResponse = { model: modelName, content };
             } else {
               throw new Error("Validation failed");
             }
