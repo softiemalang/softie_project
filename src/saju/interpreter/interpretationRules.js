@@ -138,6 +138,26 @@ export function buildInterpretationProfile({ natalAnalysis, dailyInteraction, ge
         : '협력과 조율이 비교적 자연스럽게 풀릴 수 있음';
     }
 
+    if (relation.relation === '형') {
+      return relation.target === 'day_branch'
+        ? '가까운 관계나 내면 반응에서 살짝 긴장이 생길 수 있음'
+        : '일정이나 주변 흐름에서 작은 압박이 생길 수 있음';
+    }
+
+    if (relation.relation === '파') {
+      return '작은 어긋남이나 계획 변경에 유연하게 대응할 필요가 있음';
+    }
+
+    if (relation.relation === '해') {
+      return '겉으로는 괜찮아 보여도 미묘한 불편감이 쌓이지 않게 살피는 편이 좋음';
+    }
+
+    if (relation.relation === '삼합계열') {
+      return relation.element
+        ? '비슷한 방향의 흐름이 맞아 대화나 협력이 자연스럽게 이어질 수 있음'
+        : '비슷한 방향으로 흐름이 맞아 자연스럽게 이어질 수 있음';
+    }
+
     return `${relation.target} 흐름에 ${relation.relation} 반응이 있음`;
   });
 
@@ -152,6 +172,9 @@ export function buildInterpretationProfile({ natalAnalysis, dailyInteraction, ge
     seasonalNotes[0] || null,
     seasonElement ? `계절 흐름의 중심은 ${seasonElement} 쪽으로 기울어 있음` : null,
     weightedTopElement ? `전체 무게감은 ${weightedTopElement} 쪽에 조금 더 실려 있음` : null,
+    branchRelations.some((relation) => ['형', '파', '해'].includes(relation.relation))
+      ? '작은 어긋남은 있을 수 있으나 바로 반응하기보다 한 박자 쉬는 편이 좋아요'
+      : null,
     ...relationHints,
   ].filter(Boolean);
 

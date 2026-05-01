@@ -18,7 +18,7 @@ export function generateNatalSnapshot(profile) {
     hour_stem: pillars.hour.stem,
     hour_branch: pillars.hour.branch,
     day_master: analysis.dayMaster,
-    natal_data: { ...analysis, gender: profile.gender, engine_version: '1.5' }
+    natal_data: { ...analysis, gender: profile.gender, engine_version: '1.6' }
   }
 }
 
@@ -104,7 +104,7 @@ export function generateDailySnapshot(natalSnapshot, targetDate) {
       periodPillars,
       periodContext,
       summary_hint: `${natalAnalysis.dayMaster}일간에게 올해/이번 달/오늘의 흐름이 겹쳐 들어오는 날`,
-      engine_version: '1.5'
+      engine_version: '1.6'
     }
   }
 }

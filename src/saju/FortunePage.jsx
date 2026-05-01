@@ -187,7 +187,7 @@ export default function FortunePage() {
         snapshot = await getDailySnapshot(targetProfile.id, currentTodayStr)
 
         const computed = snapshot?.computed_data
-        const isValidSnapshot = computed?.engine_version === '1.5' &&
+        const isValidSnapshot = computed?.engine_version === '1.6' &&
           computed?.love &&
           computed?.periodContext?.year &&
           computed?.periodContext?.month &&
@@ -206,7 +206,7 @@ export default function FortunePage() {
       if (!snapshot) {
         setStatus(force ? '오늘의 기운을 다시 작성하는 중입니다...' : '오늘의 기운을 분석 중입니다...')
         let natal = await getNatalSnapshot(targetProfile.id)
-        if (natal && natal.natal_data?.engine_version !== '1.5') {
+        if (natal && natal.natal_data?.engine_version !== '1.6') {
           natal = null // Force recalculation for old engine data
         }
 

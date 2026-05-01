@@ -1,4 +1,4 @@
-import { ELEMENTS, RELATIONSHIPS, YIN_YANG, STEMS, BRANCHES, HIDDEN_STEMS, SEASONAL_ELEMENT_WEIGHTS } from './constants.js'
+import { ELEMENTS, RELATIONSHIPS, YIN_YANG, STEMS, BRANCHES, HIDDEN_STEMS, SEASONAL_ELEMENT_WEIGHTS, TRINE_GROUPS, BRANCH_RELATION_PAIRS } from './constants.js'
 import { calculateFourPillars } from './fourPillars.js'
 
 /**
@@ -59,6 +59,19 @@ function getElementThatGenerates(targetElement) {
 
 function getElementThatControls(targetElement) {
   return Object.keys(RELATIONSHIPS.극).find((element) => RELATIONSHIPS.극[element] === targetElement) || null
+}
+
+function normalizeBranchPair(a, b) {
+  return [a, b].sort().join('-')
+}
+
+function pairMatches(branchA, branchB, pairs) {
+  const pairKey = normalizeBranchPair(branchA, branchB)
+  return pairs.some(([left, right]) => normalizeBranchPair(left, right) === pairKey)
+}
+
+function getTrineGroup(branch) {
+  return TRINE_GROUPS.find((group) => group.branches.includes(branch)) || null
 }
 
 /**
@@ -341,6 +354,58 @@ export function analyzeDailyInteraction(natalAnalysis, dailyPillar, natalPillars
     });
   }
 
+  if (natalPillars) {
+    ['day', 'month'].forEach(target => {
+      const targetBranch = natalPillars[target]?.branch;
+      if (!targetBranch) return
+      const hasStrongRelationForTarget = branchRelations.some((relation) =>
+        relation.target === `${target}_branch` && (relation.relation === '충' || relation.relation === '육합')
+      )
+      if (hasStrongRelationForTarget) return
+
+      let supplementalRelation = null
+
+      if (pairMatches(dailyPillar.branch, targetBranch, BRANCH_RELATION_PAIRS.hyung)) {
+        supplementalRelation = {
+          target: `${target}_branch`,
+          relation: '형',
+          meaning: 'inner friction or pressure',
+          severity: 'low'
+        }
+      } else if (pairMatches(dailyPillar.branch, targetBranch, BRANCH_RELATION_PAIRS.pa)) {
+        supplementalRelation = {
+          target: `${target}_branch`,
+          relation: '파',
+          meaning: 'small mismatch or disruption',
+          severity: 'low'
+        }
+      } else if (pairMatches(dailyPillar.branch, targetBranch, BRANCH_RELATION_PAIRS.he)) {
+        supplementalRelation = {
+          target: `${target}_branch`,
+          relation: '해',
+          meaning: 'subtle discomfort or delayed friction',
+          severity: 'low'
+        }
+      } else {
+        const targetGroup = getTrineGroup(targetBranch)
+        const dailyGroup = getTrineGroup(dailyPillar.branch)
+        if (targetGroup && dailyGroup && targetGroup.element === dailyGroup.element) {
+          supplementalRelation = {
+            target: `${target}_branch`,
+            relation: '삼합계열',
+            meaning: 'shared direction or smoother flow',
+            severity: 'low',
+            element: targetGroup.element
+          }
+        }
+      }
+
+      if (supplementalRelation) {
+        branchRelations.push(supplementalRelation)
+      }
+    })
+  }
+
   const dailyElements = [dailyStemElement, dailyBranchElement];
   const dailyTenGods = [stemTenGod, branchTenGod];
 
@@ -404,6 +469,32 @@ export function analyzeDailyInteraction(natalAnalysis, dailyPillar, natalPillars
   } else if (branchRelations.some(r => r.relation === '육합')) {
     fieldImpacts.relationships.score += 15;
     fieldImpacts.relationships.adviceType = 'harmony';
+  }
+
+  if (branchRelations.some(r => r.relation === '형' || r.relation === '파' || r.relation === '해')) {
+    fieldImpacts.relationships.score -= 3;
+    fieldImpacts.mind.score -= 2;
+    ['형', '파', '해'].forEach((relation) => {
+      if (branchRelations.some(r => r.relation === relation)) {
+        fieldImpacts.relationships.risks.push(relation);
+        fieldImpacts.mind.risks.push(relation);
+      }
+    });
+    if (fieldImpacts.relationships.adviceType === 'neutral') {
+      fieldImpacts.relationships.adviceType = 'subtle_tension';
+    }
+    if (fieldImpacts.mind.adviceType === 'neutral') {
+      fieldImpacts.mind.adviceType = 'subtle_tension';
+    }
+  }
+
+  if (branchRelations.some(r => r.relation === '삼합계열')) {
+    fieldImpacts.relationships.score += 3;
+    fieldImpacts.relationships.signals.push('삼합계열');
+    if (fieldImpacts.relationships.adviceType === 'neutral' &&
+      !branchRelations.some(r => r.relation === '형' || r.relation === '파' || r.relation === '해')) {
+      fieldImpacts.relationships.adviceType = 'smooth_flow';
+    }
   }
 
   return {
