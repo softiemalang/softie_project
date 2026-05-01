@@ -33,13 +33,31 @@ export async function getSajuProfile({ userId, localKey }) {
 export async function linkLocalSajuProfileToUser({ localKey, userId }) {
   if (!supabase || !localKey || !userId) return
 
-  const { data: userProfile } = await supabase
+  const { data: userProfile, error: userError } = await supabase
     .from('saju_profiles')
     .select('id')
     .eq('user_id', userId)
     .maybeSingle()
-    
+
+  if (userError) {
+    console.warn('[linkLocalSajuProfileToUser] user_id lookup failed:', userError)
+    throw userError
+  }
+
+  const { data: localProfile, error: localError } = await supabase
+    .from('saju_profiles')
+    .select('id')
+    .eq('local_key', localKey)
+    .maybeSingle()
+
+  if (localError) {
+    console.warn('[linkLocalSajuProfileToUser] local_key lookup failed:', localError)
+    throw localError
+  }
+
+  if (userProfile && localProfile && userProfile.id !== localProfile.id) return
   if (userProfile) return // user_id profile already exists
+  if (!localProfile) return
 
   await supabase
     .from('saju_profiles')
@@ -58,12 +76,12 @@ export async function upsertSajuProfile(profileData, { userId, localKey }) {
   if (userId) payload.user_id = userId
   if (localKey) payload.local_key = localKey
 
-  let matchQueryId = null
-
+  let userProfile = null
+  let localProfile = null
   if (userId) {
     const { data, error } = await supabase
       .from('saju_profiles')
-      .select('id')
+      .select('id, local_key')
       .eq('user_id', userId)
       .maybeSingle()
 
@@ -72,13 +90,13 @@ export async function upsertSajuProfile(profileData, { userId, localKey }) {
       throw error
     }
 
-    if (data) matchQueryId = data.id
+    if (data) userProfile = data
   }
-  
-  if (!matchQueryId && localKey) {
+
+  if (localKey) {
     const { data, error } = await supabase
       .from('saju_profiles')
-      .select('id')
+      .select('id, user_id')
       .eq('local_key', localKey)
       .maybeSingle()
 
@@ -87,14 +105,39 @@ export async function upsertSajuProfile(profileData, { userId, localKey }) {
       throw error
     }
 
-    if (data) matchQueryId = data.id
+    if (data) localProfile = data
   }
 
-  if (matchQueryId) {
+  if (userProfile && localProfile && userProfile.id !== localProfile.id) {
+    const safePayload = { ...payload }
+    delete safePayload.local_key
+
+    const { data, error } = await supabase
+      .from('saju_profiles')
+      .update(safePayload)
+      .eq('id', userProfile.id)
+      .select()
+      .single()
+    if (error) throw error
+    return data
+  }
+
+  if (userProfile) {
     const { data, error } = await supabase
       .from('saju_profiles')
       .update(payload)
-      .eq('id', matchQueryId)
+      .eq('id', userProfile.id)
+      .select()
+      .single()
+    if (error) throw error
+    return data
+  }
+
+  if (localProfile) {
+    const { data, error } = await supabase
+      .from('saju_profiles')
+      .update(payload)
+      .eq('id', localProfile.id)
       .select()
       .single()
     if (error) throw error
