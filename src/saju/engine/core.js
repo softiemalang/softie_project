@@ -65,6 +65,10 @@ function takeUniqueHints(hints, max = 3) {
   return [...new Set(hints.filter(Boolean))].slice(0, max)
 }
 
+function takeUniqueElements(values, max) {
+  return [...new Set(values.filter(Boolean))].slice(0, max)
+}
+
 function buildSupportiveElements(natalAnalysis) {
   const selfElement = ELEMENTS[natalAnalysis.dayMaster]
   const resourceElement = getElementThatGenerates(selfElement)
@@ -172,6 +176,352 @@ function buildSupportiveElements(natalAnalysis) {
     confidence,
     reasonHints,
     cautionHints,
+  }
+}
+
+const DAY_TYPE_PRIORITY = [
+  'expression_with_sensitivity',
+  'overload_control',
+  'responsibility_focus',
+  'money_review',
+  'relationship_alignment',
+  'expression_flow',
+  'inner_sorting',
+  'steady_recovery',
+  'quiet_progress',
+  'change_with_caution',
+]
+
+const DAY_TYPE_META = {
+  steady_recovery: {
+    label: '흐름을 안정적으로 지키며 회복을 챙길 날',
+    cautionHint: '무리하게 판을 키우기보다 회복 리듬을 먼저 지키는 편이 좋음',
+    actionHint: '잠깐 호흡을 고르며 오늘 속도를 한 단계만 낮추기',
+  },
+  expression_flow: {
+    label: '표현과 아이디어가 자연스럽게 살아나는 날',
+    cautionHint: '말이 잘 풀려도 핵심만 남기며 흐름을 정리하는 편이 좋음',
+    actionHint: '떠오른 생각 하나를 바로 메모하거나 짧게 전해보기',
+  },
+  expression_with_sensitivity: {
+    label: '표현은 살아나지만 반응 속도는 조절할 날',
+    cautionHint: '말이 잘 풀려도 반응은 한 박자 늦추는 편이 좋음',
+    actionHint: '보내기 전 문장을 한 번 더 읽고 부드럽게 고치기',
+  },
+  responsibility_focus: {
+    label: '책임과 기준을 차분히 정리할 날',
+    cautionHint: '해야 할 일을 한 번에 끌어안기보다 기준부터 나누는 편이 좋음',
+    actionHint: '오늘 꼭 지킬 기준 한 가지를 먼저 적어두기',
+  },
+  money_review: {
+    label: '현실 판단과 지출 흐름을 점검할 날',
+    cautionHint: '당장의 필요보다 뒤따를 부담까지 함께 살피는 편이 좋음',
+    actionHint: '결제 전 필요와 책임을 한 번 더 확인하기',
+  },
+  relationship_alignment: {
+    label: '관계의 온도와 속도를 맞추기 좋은 날',
+    cautionHint: '분위기가 부드러워도 상대의 속도를 함께 살피는 편이 좋음',
+    actionHint: '중요한 말은 상대의 반응을 보며 천천히 이어가기',
+  },
+  inner_sorting: {
+    label: '생각을 안쪽에서 정리하기 좋은 날',
+    cautionHint: '생각이 길어지기 전에 핵심만 밖으로 꺼내 보는 편이 좋음',
+    actionHint: '떠오른 생각을 한 줄로 적어 밖으로 꺼내기',
+  },
+  overload_control: {
+    label: '과한 흐름을 덜어내며 속도를 조절할 날',
+    cautionHint: '과한 흐름은 밀어붙이기보다 나누어 덜어내는 편이 좋음',
+    actionHint: '지금 가장 무거운 일 하나를 더 작은 단계로 나누기',
+  },
+  quiet_progress: {
+    label: '조용히 정리하며 작은 진전을 만들 날',
+    cautionHint: '크게 벌리기보다 지금 잡은 흐름을 가볍게 이어가는 편이 좋음',
+    actionHint: '미뤄둔 작은 일 하나만 먼저 끝내기',
+  },
+  change_with_caution: {
+    label: '변화의 흐름은 있으나 속도를 낮출 날',
+    cautionHint: '변화가 보여도 바로 결론내리기보다 한 템포 늦추는 편이 좋음',
+    actionHint: '변화가 느껴지는 부분을 한 줄로 적고 바로 결정은 미루기',
+  },
+}
+
+function getDayTypeSignals(dailyInteraction) {
+  const tenGods = dailyInteraction.signals.map((signal) => signal.tenGod)
+  return {
+    tenGods,
+    hasExpression: tenGods.some((tenGod) => tenGod?.includes('식') || tenGod?.includes('상')),
+    hasPressure: tenGods.some((tenGod) => tenGod?.includes('관')),
+    hasMoney: tenGods.some((tenGod) => tenGod?.includes('재')),
+    hasResource: tenGods.some((tenGod) => tenGod?.includes('인')),
+    hasConflict: dailyInteraction.branchRelations.some((relation) => relation.relation === '충'),
+    hasSoftTension: dailyInteraction.branchRelations.some((relation) => ['형', '파', '해'].includes(relation.relation)),
+    hasHarmony: dailyInteraction.branchRelations.some((relation) => ['육합', '삼합계열'].includes(relation.relation)),
+  }
+}
+
+export function buildDayType(natalAnalysis, dailyInteraction) {
+  const { fieldImpacts = {}, supplements = [], overloads = [], branchRelations = [] } = dailyInteraction
+  const natalProfile = natalAnalysis.natalProfile || null
+  const supportiveElements = natalAnalysis.supportiveElements || null
+  const signalState = getDayTypeSignals(dailyInteraction)
+  const relationshipRiskCount = fieldImpacts.relationships?.risks?.length || 0
+  const mindRiskCount = fieldImpacts.mind?.risks?.length || 0
+  const lowConflict = !signalState.hasConflict && !signalState.hasSoftTension
+  const pressureHeavy =
+    natalAnalysis.pressureScore >= 3 ||
+    natalAnalysis.refinedImbalanceFlags?.includes('pressure_high') ||
+    natalAnalysis.refinedImbalanceFlags?.includes('hidden_pressure_present')
+
+  const candidates = {
+    steady_recovery: {
+      score:
+        (lowConflict ? 1 : 0) +
+        ((fieldImpacts.health?.score || 0) >= 80 ? 1 : 0) +
+        ((fieldImpacts.mind?.score || 0) >= 82 ? 1 : 0) +
+        (supportiveElements?.reasonHints?.some((hint) => hint.includes('회복') || hint.includes('속도')) ? 1 : 0) +
+        (pressureHeavy ? 0 : 1),
+      reasons: takeUniqueHints([
+        '몸과 마음의 리듬을 안정적으로 지키는 편이 유리함',
+        supportiveElements?.reasonHints?.find((hint) => hint.includes('회복') || hint.includes('정리')) || null,
+        natalProfile?.recoveryKeys?.[0] || null,
+      ]),
+    },
+    expression_flow: {
+      score:
+        (signalState.hasExpression ? 2 : 0) +
+        ((fieldImpacts.work?.signals || []).includes('식상') ? 1 : 0) +
+        ((fieldImpacts.relationships?.signals || []).includes('식상') ? 1 : 0) +
+        ((relationshipRiskCount + mindRiskCount) === 0 ? 1 : 0),
+      reasons: takeUniqueHints([
+        signalState.hasExpression ? '표현과 아이디어 신호가 함께 올라옴' : null,
+        (fieldImpacts.work?.signals || []).includes('식상') ? '일과 결과물에서 표현 흐름이 살아나기 쉬움' : null,
+        (fieldImpacts.relationships?.signals || []).includes('식상') ? '대화와 전달이 자연스럽게 이어질 수 있음' : null,
+      ]),
+    },
+    expression_with_sensitivity: {
+      score:
+        (signalState.hasExpression ? 2 : 0) +
+        ((signalState.hasConflict || signalState.hasSoftTension) ? 1 : 0) +
+        (relationshipRiskCount > 0 ? 1 : 0) +
+        (mindRiskCount > 0 ? 1 : 0),
+      reasons: takeUniqueHints([
+        signalState.hasExpression ? '표현과 아이디어 신호가 함께 올라옴' : null,
+        signalState.hasConflict || signalState.hasSoftTension ? '가까운 관계나 반응 속도에서 조절이 필요함' : null,
+        relationshipRiskCount > 0 ? '말보다 반응이 먼저 나가기 쉬운 흐름이 있음' : null,
+      ]),
+    },
+    responsibility_focus: {
+      score:
+        (signalState.hasPressure ? 2 : 0) +
+        ((fieldImpacts.work?.risks?.length || 0) > 0 ? 1 : 0) +
+        (pressureHeavy ? 1 : 0) +
+        ((fieldImpacts.work?.score || 0) >= 78 ? 1 : 0),
+      reasons: takeUniqueHints([
+        signalState.hasPressure ? '책임과 기준 의식이 또렷해지기 쉬움' : null,
+        pressureHeavy ? '안쪽 부담이나 기준 의식이 함께 올라올 수 있음' : null,
+        (fieldImpacts.work?.risks?.length || 0) > 0 ? '일의 완급 조절이 중요해질 수 있음' : null,
+      ]),
+    },
+    money_review: {
+      score:
+        (signalState.hasMoney ? 2 : 0) +
+        ((fieldImpacts.money?.score || 0) >= 78 ? 1 : 0) +
+        ((fieldImpacts.money?.risks?.length || 0) > 0 ? 1 : 0) +
+        (supportiveElements?.likelyOverloading?.length && natalAnalysis.wealthScore >= 3 ? 1 : 0),
+      reasons: takeUniqueHints([
+        signalState.hasMoney ? '현실 판단과 지출 점검 흐름이 함께 있음' : null,
+        (fieldImpacts.money?.risks?.length || 0) > 0 ? '금전 선택은 한 번 더 확인하는 편이 좋음' : null,
+        natalProfile?.moneyStyle?.[0] || null,
+      ]),
+    },
+    relationship_alignment: {
+      score:
+        (signalState.hasHarmony ? 2 : 0) +
+        ((fieldImpacts.relationships?.score || 0) >= 78 ? 1 : 0) +
+        ((fieldImpacts.relationships?.signals || []).length > 0 ? 1 : 0) +
+        (relationshipRiskCount === 0 ? 1 : 0),
+      reasons: takeUniqueHints([
+        signalState.hasHarmony ? '관계의 흐름이 부드럽게 이어지기 쉬움' : null,
+        (fieldImpacts.relationships?.signals || []).length > 0 ? '대화와 협력이 자연스럽게 맞물릴 수 있음' : null,
+        natalProfile?.relationshipStyle?.[0] || null,
+      ]),
+    },
+    inner_sorting: {
+      score:
+        (signalState.hasResource ? 2 : 0) +
+        ((fieldImpacts.mind?.signals || []).includes('인성') ? 1 : 0) +
+        (natalProfile?.recoveryKeys?.length ? 1 : 0) +
+        (supportiveElements?.reasonHints?.some((hint) => hint.includes('정리') || hint.includes('속도')) ? 1 : 0),
+      reasons: takeUniqueHints([
+        signalState.hasResource ? '안쪽에서 생각을 정리하는 힘이 살아남' : null,
+        natalProfile?.baselineTemperament?.[0] || null,
+        natalProfile?.recoveryKeys?.[0] || null,
+      ]),
+    },
+    overload_control: {
+      score:
+        (overloads.length > 0 ? 2 : 0) +
+        (supportiveElements?.likelyOverloading?.length ? 1 : 0) +
+        (((fieldImpacts.health?.risks?.length || 0) + (fieldImpacts.mind?.risks?.length || 0) + (fieldImpacts.work?.risks?.length || 0)) > 0 ? 1 : 0) +
+        (natalAnalysis.refinedImbalanceFlags?.includes('weighted_element_overload') ? 1 : 0),
+      reasons: takeUniqueHints([
+        overloads.length > 0 ? '이미 강한 흐름이 더해져 속도 조절이 중요함' : null,
+        supportiveElements?.reasonHints?.find((hint) => hint.includes('무게감') || hint.includes('책임감')) || null,
+        supportiveElements?.cautionHints?.[0] || null,
+      ]),
+    },
+    quiet_progress: {
+      score:
+        ((fieldImpacts.work?.score || 0) >= 74 ? 1 : 0) +
+        ((fieldImpacts.mind?.score || 0) >= 76 ? 1 : 0) +
+        ((fieldImpacts.money?.score || 0) >= 74 ? 1 : 0) +
+        (lowConflict ? 1 : 0) +
+        (supplements.length > 0 ? 1 : 0),
+      reasons: takeUniqueHints([
+        '작게 정리하며 흐름을 이어가기 좋은 편',
+        lowConflict ? '큰 충돌보다 리듬 유지가 더 중요한 날' : null,
+        supplements.length > 0 ? '부족한 흐름이 보완되어 작은 진전을 만들기 쉬움' : null,
+      ]),
+    },
+    change_with_caution: {
+      score:
+        (signalState.hasConflict ? 2 : 0) +
+        (supplements.length > 0 || dailyInteraction.opportunities?.length ? 1 : 0) +
+        ((relationshipRiskCount + mindRiskCount) > 0 ? 1 : 0),
+      reasons: takeUniqueHints([
+        signalState.hasConflict ? '변화의 신호가 있어 리듬 조절이 필요함' : null,
+        supplements.length > 0 ? '보완 흐름이 함께 있어 방향을 다듬기 좋음' : null,
+        (dailyInteraction.opportunities?.length || 0) > 0 ? '조심스럽게 움직이면 새 흐름을 살릴 여지가 있음' : null,
+      ]),
+    },
+  }
+
+  const topEntry = Object.entries(candidates).sort((left, right) => {
+    if (right[1].score !== left[1].score) return right[1].score - left[1].score
+    return DAY_TYPE_PRIORITY.indexOf(left[0]) - DAY_TYPE_PRIORITY.indexOf(right[0])
+  })[0]
+
+  const selectedType = topEntry?.[1]?.score > 0 ? topEntry[0] : 'quiet_progress'
+  const selectedScore = topEntry?.[1]?.score ?? 0
+  const meta = DAY_TYPE_META[selectedType]
+
+  let confidence = 'low'
+  if (selectedScore >= 4) confidence = 'high'
+  else if (selectedScore >= 2) confidence = 'medium'
+
+  return {
+    type: selectedType,
+    label: meta.label,
+    confidence,
+    reasons: candidates[selectedType]?.reasons?.slice(0, 3) || [],
+    cautionHint: meta.cautionHint,
+    actionHint: meta.actionHint,
+  }
+}
+
+const SECTION_LABELS = {
+  work: '일과 커리어',
+  money: '금전',
+  relationships: '인간관계',
+  love: '연애와 애정',
+  health: '건강',
+  mind: '마음과 생각',
+}
+
+const DAY_TYPE_SECTION_MAP = {
+  expression_flow: { primary: ['work', 'relationships'], secondary: ['love', 'mind'] },
+  expression_with_sensitivity: { primary: ['relationships', 'work'], secondary: ['mind', 'love'] },
+  responsibility_focus: { primary: ['work', 'mind'], secondary: ['health', 'money'] },
+  money_review: { primary: ['money', 'work'], secondary: ['mind', 'health'] },
+  relationship_alignment: { primary: ['relationships', 'love'], secondary: ['mind', 'work'] },
+  inner_sorting: { primary: ['mind'], secondary: ['work', 'health', 'relationships'] },
+  overload_control: { primary: ['health', 'mind'], secondary: ['work', 'relationships', 'money'] },
+  steady_recovery: { primary: ['health', 'mind'], secondary: ['work', 'relationships'] },
+  quiet_progress: { primary: ['work', 'mind'], secondary: ['money', 'relationships'] },
+  change_with_caution: { primary: ['mind', 'relationships'], secondary: ['work', 'health'] },
+}
+
+export function buildSectionPriority(natalAnalysis, dailyInteraction, dayType) {
+  const sections = ['work', 'money', 'relationships', 'love', 'health', 'mind']
+  const scores = Object.fromEntries(sections.map((section) => [section, 0]))
+  const reasonHints = Object.fromEntries(sections.map((section) => [section, []]))
+  const supportiveElements = natalAnalysis.supportiveElements || null
+  const map = DAY_TYPE_SECTION_MAP[dayType?.type] || DAY_TYPE_SECTION_MAP.quiet_progress
+
+  sections.forEach((section) => {
+    const field = dailyInteraction.fieldImpacts?.[section] || {}
+    scores[section] += Math.round((field.score || 70) / 10)
+    scores[section] += (field.risks?.length || 0) * 2
+    scores[section] += (field.signals?.length || 0)
+  })
+
+  map.primary.forEach((section) => {
+    scores[section] += 5
+  })
+  map.secondary.forEach((section) => {
+    scores[section] += 2
+  })
+
+  if (dailyInteraction.branchRelations.some((relation) => ['충', '형', '파', '해'].includes(relation.relation))) {
+    scores.relationships += 2
+    scores.mind += 2
+  }
+  if (dailyInteraction.branchRelations.some((relation) => ['육합', '삼합계열'].includes(relation.relation))) {
+    scores.relationships += 2
+    scores.love += 1
+  }
+  if (supportiveElements?.likelyOverloading?.length) {
+    scores.health += 2
+    scores.mind += 1
+  }
+  if (supportiveElements?.likelyHelpful?.length) {
+    scores.mind += 1
+    scores.work += 1
+  }
+
+  reasonHints.work = takeUniqueHints([
+    map.primary.includes('work') || map.secondary.includes('work') ? '오늘은 표현과 결과를 일로 정리하기 쉬움' : null,
+    dailyInteraction.fieldImpacts?.work?.risks?.length ? '일의 완급을 나누면 부담이 덜 커짐' : null,
+  ], 2)
+  reasonHints.money = takeUniqueHints([
+    dayType?.type === 'money_review' ? '현실 판단은 올라오지만 지출 뒤의 부담까지 살피는 편이 좋음' : null,
+    dailyInteraction.fieldImpacts?.money?.risks?.length ? '돈의 흐름은 한 번 더 확인할수록 안정적임' : null,
+  ], 2)
+  reasonHints.relationships = takeUniqueHints([
+    ['expression_with_sensitivity', 'relationship_alignment', 'change_with_caution'].includes(dayType?.type)
+      ? '가까운 관계에서는 반응 속도 조절이 중요함'
+      : null,
+    dailyInteraction.branchRelations.some((relation) => ['육합', '삼합계열'].includes(relation.relation))
+      ? '관계의 온도와 호흡을 맞추기 쉬운 흐름이 있음'
+      : null,
+  ], 2)
+  reasonHints.love = takeUniqueHints([
+    ['relationship_alignment', 'expression_with_sensitivity'].includes(dayType?.type)
+      ? '호감과 신뢰는 자연스럽게 쌓이되 속도 조절이 필요함'
+      : null,
+    dailyInteraction.fieldImpacts?.love?.score >= 75 ? '감정 표현은 부드럽게 이어갈수록 편안함이 커질 수 있음' : null,
+  ], 2)
+  reasonHints.health = takeUniqueHints([
+    supportiveElements?.likelyOverloading?.length ? '책임감이나 긴장이 몸의 무게감으로 이어질 수 있음' : null,
+    ['steady_recovery', 'overload_control'].includes(dayType?.type) ? '몸의 속도를 조금 낮추면 전체 흐름이 안정되기 쉬움' : null,
+  ], 2)
+  reasonHints.mind = takeUniqueHints([
+    ['inner_sorting', 'steady_recovery', 'change_with_caution'].includes(dayType?.type)
+      ? '생각을 밖으로 꺼내 정리하면 흐름이 가벼워짐'
+      : null,
+    supportiveElements?.reasonHints?.find((hint) => hint.includes('정리') || hint.includes('속도')) || null,
+  ], 2)
+
+  const ranked = [...sections].sort((left, right) => scores[right] - scores[left])
+  const primary = ranked.slice(0, 2)
+  const secondary = ranked.filter((section) => !primary.includes(section)).slice(0, 3)
+  const low = ranked.filter((section) => !primary.includes(section) && !secondary.includes(section))
+
+  return {
+    primary,
+    secondary,
+    low,
+    reasonHints,
   }
 }
 

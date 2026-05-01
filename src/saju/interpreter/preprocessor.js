@@ -1,4 +1,4 @@
-import { derivePillars, analyzeNatalStructure, analyzeDailyInteraction, analyzePeriodPillar } from '../engine/core.js'
+import { derivePillars, analyzeNatalStructure, analyzeDailyInteraction, analyzePeriodPillar, buildDayType, buildSectionPriority } from '../engine/core.js'
 import { buildInterpretationProfile } from './interpretationRules.js'
 
 /**
@@ -18,7 +18,7 @@ export function generateNatalSnapshot(profile) {
     hour_stem: pillars.hour.stem,
     hour_branch: pillars.hour.branch,
     day_master: analysis.dayMaster,
-    natal_data: { ...analysis, gender: profile.gender, engine_version: '1.8' }
+    natal_data: { ...analysis, gender: profile.gender, engine_version: '1.9' }
   }
 }
 
@@ -43,6 +43,8 @@ export function generateDailySnapshot(natalSnapshot, targetDate) {
   };
 
   const interaction = analyzeDailyInteraction(natalAnalysis, dailyPillar, natalPillars)
+  const dayType = buildDayType(natalAnalysis, interaction)
+  const sectionPriority = buildSectionPriority(natalAnalysis, interaction, dayType)
   const periodContext = {
     year: analyzePeriodPillar(natalAnalysis, periodPillars.year, 'year'),
     month: analyzePeriodPillar(natalAnalysis, periodPillars.month, 'month'),
@@ -50,7 +52,9 @@ export function generateDailySnapshot(natalSnapshot, targetDate) {
   }
   const interactionWithPeriodContext = {
     ...interaction,
-    periodContext
+    periodContext,
+    dayType,
+    sectionPriority
   }
   
   const gender = natalAnalysis.gender || 'male'
@@ -103,8 +107,10 @@ export function generateDailySnapshot(natalSnapshot, targetDate) {
       priority_flags: ['focus_work', 'careful_spending'], // 예시 플래그
       periodPillars,
       periodContext,
+      dayType,
+      sectionPriority,
       summary_hint: `${natalAnalysis.dayMaster}일간에게 올해/이번 달/오늘의 흐름이 겹쳐 들어오는 날`,
-      engine_version: '1.8'
+      engine_version: '1.9'
     }
   }
 }

@@ -10,9 +10,17 @@ export function buildInterpretationProfile({ natalAnalysis, dailyInteraction, ge
     adjustedDayMasterStrengthLevel = 'balanced',
     refinedImbalanceFlags = []
   } = natalAnalysis;
-  const { supplements, overloads, branchRelations, signals, fieldImpacts, periodContext } = dailyInteraction;
+  const { supplements, overloads, branchRelations, signals, fieldImpacts, periodContext, dayType, sectionPriority } = dailyInteraction;
   const natalProfile = natalAnalysis.natalProfile || null;
   const supportiveElements = natalAnalysis.supportiveElements || null;
+  const sectionLabels = {
+    work: '일과 커리어',
+    money: '금전',
+    relationships: '인간관계',
+    love: '연애와 애정',
+    health: '건강',
+    mind: '마음과 생각'
+  }
 
   // Primary Theme & Intensity
   let intensity = 'low';
@@ -86,6 +94,15 @@ export function buildInterpretationProfile({ natalAnalysis, dailyInteraction, ge
     supportiveElements?.likelyHelpful?.length ? '안정감을 되찾는 데 도움이 되는 흐름이 함께 있음' : null,
     supportiveElements?.likelyOverloading?.length ? '이미 강한 흐름은 책임감이나 몸의 무게감으로 느껴질 수 있음' : null,
     supportiveElements?.cautionHints?.[0] || null,
+  ].filter(Boolean)
+  const dayTypeHint = dayType?.label || null
+  const sectionPriorityHints = [
+    sectionPriority?.primary?.length
+      ? `오늘은 ${sectionPriority.primary.map((section) => sectionLabels[section]).join(', ')} 흐름을 우선해서 살피는 편이 좋음`
+      : null,
+    sectionPriority?.secondary?.length
+      ? `보조적으로 ${sectionPriority.secondary.map((section) => sectionLabels[section]).join(', ')} 흐름을 점검하면 충분함`
+      : null,
   ].filter(Boolean)
 
   // Field Narratives
@@ -187,6 +204,9 @@ export function buildInterpretationProfile({ natalAnalysis, dailyInteraction, ge
     personalContextHints[0] ? `내 기본 리듬은 ${personalContextHints[0]}` : null,
     supportiveElementHints[0] || null,
     balancingContextHints[0] || null,
+    dayTypeHint ? `오늘의 성격은 ${dayTypeHint}` : null,
+    ...(dayType?.reasons || []),
+    ...sectionPriorityHints,
     seasonalNotes[0] || null,
     seasonElement ? `계절 흐름의 중심은 ${seasonElement} 쪽으로 기울어 있음` : null,
     weightedTopElement ? `전체 무게감은 ${weightedTopElement} 쪽에 조금 더 실려 있음` : null,
@@ -209,6 +229,7 @@ export function buildInterpretationProfile({ natalAnalysis, dailyInteraction, ge
       refinedImbalanceFlags.includes('hidden_support_present') ? '겉보다 준비력과 버티는 힘이 함께 작동함' : null,
       adjustedDayMasterStrengthLevel === 'weak' ? '무리하게 밀기보다 리듬을 지키는 편이 유리함' : null,
       supportiveElements?.likelyHelpful?.length ? '표현과 결과로 풀어낼 때 흐름이 정리되기 쉬움' : null,
+      ...(sectionPriority?.reasonHints?.work || []),
     ].filter(Boolean),
     money: [
       fieldImpacts.money.signals.length > 0 ? `금전 흐름 자극: ${fieldImpacts.money.signals.join(', ')}` : null,
@@ -218,6 +239,7 @@ export function buildInterpretationProfile({ natalAnalysis, dailyInteraction, ge
       natalProfile?.moneyStyle?.[0] ? natalProfile.moneyStyle[0] : null,
       refinedImbalanceFlags.includes('seasonal_pressure') ? '시기 흐름상 지출은 한 번 더 살피는 편이 좋음' : null,
       supportiveElements?.likelyOverloading?.length ? '현실 판단은 올라오지만 책임까지 함께 살피는 편이 좋음' : null,
+      ...(sectionPriority?.reasonHints?.money || []),
     ].filter(Boolean),
     relationships: [
       fieldImpacts.relationships.signals.length > 0 ? `관계 흐름 자극: ${fieldImpacts.relationships.signals.join(', ')}` : null,
@@ -226,6 +248,7 @@ export function buildInterpretationProfile({ natalAnalysis, dailyInteraction, ge
       hiddenSupportScore > 0 ? '사람을 대하는 태도는 겉보다 부드럽게 드러나기 쉬움' : null,
       hiddenPressureScore > 0 ? '말보다 반응이 먼저 나와 관계가 살짝 민감해질 수 있음' : null,
       natalProfile?.relationshipStyle?.[0] ? natalProfile.relationshipStyle[0] : null,
+      ...(sectionPriority?.reasonHints?.relationships || []),
     ].filter(Boolean),
     love: [
       gender === 'male' && hasJae ? '감정 표현보다 호감의 진전 여부가 신경 쓰이기 쉬움' : null,
@@ -233,6 +256,7 @@ export function buildInterpretationProfile({ natalAnalysis, dailyInteraction, ge
       hasSik ? '말과 표현이 애정 흐름에 직접 영향을 주기 쉬움' : null,
       hasIn ? '생각이 많아져 표현이 조심스러워질 수 있음' : null,
       seasonElement ? '분위기는 부드럽지만 반응 속도는 조금 예민할 수 있음' : null,
+      ...(sectionPriority?.reasonHints?.love || []),
     ].filter(Boolean),
     health: [
       overloads.length > 0 ? '에너지 과열로 피로 누적에 주의' : null,
@@ -242,6 +266,7 @@ export function buildInterpretationProfile({ natalAnalysis, dailyInteraction, ge
       natalProfile?.healthCareKeys?.[0] ? natalProfile.healthCareKeys[0] : null,
       balancingContextHints[1] || null,
       supportiveElements?.cautionHints?.[1] || null,
+      ...(sectionPriority?.reasonHints?.health || []),
     ].filter(Boolean),
     mind: [
       fieldImpacts.mind.signals.length > 0 ? `심리 흐름 자극: ${fieldImpacts.mind.signals.join(', ')}` : null,
@@ -252,6 +277,7 @@ export function buildInterpretationProfile({ natalAnalysis, dailyInteraction, ge
       natalProfile?.baselineTemperament?.[0] ? natalProfile.baselineTemperament[0] : null,
       supportiveElementHints.find((hint) => hint.includes('회복') || hint.includes('정리') || hint.includes('속도')) || null,
       balancingContextHints[2] || null,
+      ...(sectionPriority?.reasonHints?.mind || []),
     ].filter(Boolean),
   };
 
@@ -265,6 +291,8 @@ export function buildInterpretationProfile({ natalAnalysis, dailyInteraction, ge
     hasIn ? '생각과 정리의 흐름이 강해지지만' : null,
     hasBi ? '내 생각을 지키고 싶은 마음이 함께 올라올 수 있고' : null,
     periodContext?.day?.roleHints?.[0] ? `오늘은 ${periodContext.day.roleHints[0]}` : null,
+    dayTypeHint ? `${dayTypeHint}이라는 결이 바탕에 깔려 있고` : null,
+    dayType?.reasons?.[0] || null,
     supportiveElementHints[0] || null,
     balancingContextHints[1] || null,
     hasChung ? '가까운 관계나 반응 속도는 조금 예민해질 수 있어요.' : null,
@@ -290,6 +318,8 @@ export function buildInterpretationProfile({ natalAnalysis, dailyInteraction, ge
     personalContextHints,
     supportiveElementHints,
     balancingContextHints,
+    dayTypeHint,
+    sectionPriorityHints,
     dailyKeyPoints,
     fieldNarratives,
     fieldReasonHints,
