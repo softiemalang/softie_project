@@ -72,6 +72,16 @@ function formatReportDateForDisplay(value) {
   return String(value).replace(/-/g, '.')
 }
 
+function isSameProfileDraft(currentDraft, currentProfile) {
+  if (!currentDraft || !currentProfile) return false
+  return (
+    (currentDraft.name || '') === (currentProfile.name || '') &&
+    (currentDraft.birthDate || '') === (currentProfile.birthDate || '') &&
+    (currentDraft.birthTime || '') === (currentProfile.birthTime || '') &&
+    (currentDraft.gender || 'male') === (currentProfile.gender || 'male')
+  )
+}
+
 export default function FortunePage() {
   const [profile, setProfile] = useState(EMPTY_PROFILE)
   const [profileDraft, setProfileDraft] = useState(EMPTY_PROFILE)
@@ -89,6 +99,7 @@ export default function FortunePage() {
   const [selectedHistoryReport, setSelectedHistoryReport] = useState(null)
   const [isHistoryDetailLoading, setIsHistoryDetailLoading] = useState(false)
   const [isGoogleReady, setIsGoogleReady] = useState(false)
+  const [isForceRefreshing, setIsForceRefreshing] = useState(false)
 
   const canSubmitProfile = isCompleteBirthDate(profile.birthDate) && isCompleteBirthTime(profile.birthTime)
   const canSubmitProfileDraft = isCompleteBirthDate(profileDraft.birthDate) && isCompleteBirthTime(profileDraft.birthTime)
@@ -166,26 +177,31 @@ export default function FortunePage() {
     }
   }
 
-  async function loadDailyFortune(targetProfile) {
+  async function loadDailyFortune(targetProfile, options = {}) {
     const currentTodayStr = getKstDateString()
+    const force = options.force === true
     try {
-      let snapshot = await getDailySnapshot(targetProfile.id, currentTodayStr)
-      
-      const computed = snapshot?.computed_data;
-      const isValidSnapshot = computed?.engine_version === '1.3' && 
-                              computed?.love && 
-                              computed?.interpretationProfile?.fieldNarratives?.love &&
-                              (
-                                Boolean(String(computed?.interpretationProfile?.basisHint || '').trim()) ||
-                                Object.keys(computed?.interpretationProfile?.fieldReasonHints || {}).length > 0
-                              );
+      let snapshot = null
 
-      if (snapshot && !isValidSnapshot) {
-        snapshot = null // Force recalculation for old engine data
+      if (!force) {
+        snapshot = await getDailySnapshot(targetProfile.id, currentTodayStr)
+
+        const computed = snapshot?.computed_data
+        const isValidSnapshot = computed?.engine_version === '1.3' &&
+          computed?.love &&
+          computed?.interpretationProfile?.fieldNarratives?.love &&
+          (
+            Boolean(String(computed?.interpretationProfile?.basisHint || '').trim()) ||
+            Object.keys(computed?.interpretationProfile?.fieldReasonHints || {}).length > 0
+          )
+
+        if (snapshot && !isValidSnapshot) {
+          snapshot = null // Force recalculation for old engine data
+        }
       }
-      
+
       if (!snapshot) {
-        setStatus('오늘의 기운을 분석 중입니다...')
+        setStatus(force ? '오늘의 기운을 다시 작성하는 중입니다...' : '오늘의 기운을 분석 중입니다...')
         let natal = await getNatalSnapshot(targetProfile.id)
         if (natal && natal.natal_data?.engine_version !== '1.3') {
           natal = null // Force recalculation for old engine data
@@ -199,12 +215,12 @@ export default function FortunePage() {
         const newDaily = generateDailySnapshot(natal, currentTodayStr)
         snapshot = await createDailySnapshot({ ...newDaily, profile_id: targetProfile.id })
       }
-      
+
       setDailySnapshot(snapshot)
-      
+
       // 최종 리포트 (LLM 해석) 가져오기 또는 생성
       setStatus('심층 운세 리포트를 작성하는 중입니다...')
-      const finalReport = await getOrGenerateReport(targetProfile.id, snapshot)
+      const finalReport = await getOrGenerateReport(targetProfile.id, snapshot, { force })
       setReport(finalReport)
       setStatus('')
     } catch (error) {
@@ -221,10 +237,13 @@ export default function FortunePage() {
     setReport(null)
     setStatus('')
     setIsBackedUp(false)
+    setIsForceRefreshing(false)
     setIsProfileModalOpen(false)
   }
 
-  async function handleSaveProfile(nextProfile = profile, shouldCloseProfileModal = false) {
+  async function handleSaveProfile(nextProfile = profile, shouldCloseProfileModal = false, options = {}) {
+    const forceRefresh = options.forceRefresh === true
+    setIsForceRefreshing(forceRefresh)
     setIsLoading(true)
     setReport(null)
     setDailySnapshot(null)
@@ -246,7 +265,7 @@ export default function FortunePage() {
       setActiveProfile(saved)
       setProfile(savedFormProfile)
       setProfileDraft(savedFormProfile)
-      await loadDailyFortune(saved)
+      await loadDailyFortune(saved, { force: forceRefresh })
       if (shouldCloseProfileModal) {
         setIsProfileModalOpen(false)
       }
@@ -256,6 +275,7 @@ export default function FortunePage() {
       setStatus(`프로필 저장에 실패했습니다: ${errorMsg}`)
     } finally {
       setIsLoading(false)
+      setIsForceRefreshing(false)
     }
   }
 
@@ -353,7 +373,20 @@ export default function FortunePage() {
 
   function handleSaveProfileDraft() {
     if (!canSubmitProfileDraft || isLoading) return
-    handleSaveProfile(profileDraft, true)
+    const hasTodayReport = Boolean(
+      activeProfile &&
+      report &&
+      dailySnapshot &&
+      dailySnapshot.target_date === getKstDateString() &&
+      report?.report_version === '1.3'
+    )
+
+    if (isSameProfileDraft(profileDraft, profile) && hasTodayReport) {
+      const confirmed = window.confirm('오늘 리포트가 이미 있어요. 최신 해석 기준으로 다시 생성할까요?\n기존 오늘 리포트는 새 결과로 대체될 수 있어요.')
+      if (!confirmed) return
+    }
+
+    handleSaveProfile(profileDraft, true, { forceRefresh: true })
   }
 
   async function handleConnectGoogle() {
@@ -717,7 +750,7 @@ export default function FortunePage() {
                 </button>
               </div>
               <button type="button" onClick={handleSaveProfileDraft} disabled={isLoading || !canSubmitProfileDraft}>
-                {isLoading ? '분석 중...' : '저장하고 다시 분석'}
+                {isLoading ? (isForceRefreshing ? '다시 작성 중...' : '분석 중...') : '저장하고 다시 분석'}
               </button>
             </div>
           </div>

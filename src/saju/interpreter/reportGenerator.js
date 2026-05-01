@@ -1,24 +1,27 @@
-import { requestLlmReport, saveFortuneReport, getFortuneReport } from '../api'
+import { requestLlmReport, saveFortuneReport, getFortuneReport, upsertFortuneReport } from '../api'
 
 /**
  * 오늘의 운세 리포트를 가져오거나 새로 생성합니다.
  */
-export async function getOrGenerateReport(profileId, dailySnapshot) {
+export async function getOrGenerateReport(profileId, dailySnapshot, options = {}) {
   const targetDate = dailySnapshot.target_date
   const version = '1.3'
+  const force = options.force === true
 
   // 1. 기존 리포트 확인
-  try {
-    const existingReport = await getFortuneReport(profileId, targetDate, version)
-    if (existingReport) {
-      const sections = existingReport.report_content?.sections || {};
-      const hasAllSections = ['work', 'money', 'relationships', 'love', 'health', 'mind'].every(k => sections[k]);
-      if (hasAllSections) {
-        return { ...existingReport, is_cached: true }
+  if (!force) {
+    try {
+      const existingReport = await getFortuneReport(profileId, targetDate, version)
+      if (existingReport) {
+        const sections = existingReport.report_content?.sections || {};
+        const hasAllSections = ['work', 'money', 'relationships', 'love', 'health', 'mind'].every(k => sections[k]);
+        if (hasAllSections) {
+          return { ...existingReport, is_cached: true }
+        }
       }
+    } catch (error) {
+      console.warn('Failed to fetch existing report, will try to generate new one:', error)
     }
-  } catch (error) {
-    console.warn('Failed to fetch existing report, will try to generate new one:', error)
   }
 
   // 2. LLM에게 리포트 생성 요청 (Edge Function 호출)
@@ -50,7 +53,9 @@ export async function getOrGenerateReport(profileId, dailySnapshot) {
   }
 
   try {
-    const savedReport = await saveFortuneReport(reportToSave)
+    const savedReport = force
+      ? await upsertFortuneReport(reportToSave)
+      : await saveFortuneReport(reportToSave)
     return { ...savedReport, is_cached: false }
   } catch (error) {
     console.error('Failed to save generated report:', error)
@@ -109,4 +114,3 @@ function generateFallbackReport(dailySnapshot, error = null) {
     }
   }
 }
-

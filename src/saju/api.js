@@ -208,6 +208,20 @@ export async function saveFortuneReport(reportData) {
 }
 
 /**
+ * 운세 리포트 저장 또는 덮어쓰기
+ */
+export async function upsertFortuneReport(reportData) {
+  const { data, error } = await supabase
+    .from('saju_fortune_reports')
+    .upsert(reportData, { onConflict: 'profile_id,report_date,report_version' })
+    .select()
+    .single()
+
+  if (error) throw error
+  return data
+}
+
+/**
  * 운세 히스토리 조회
  */
 export async function getFortuneHistory(profileId, limit = 30) {
