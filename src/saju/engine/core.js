@@ -69,6 +69,19 @@ function takeUniqueElements(values, max) {
   return [...new Set(values.filter(Boolean))].slice(0, max)
 }
 
+function countTopValues(values, max = 2, minimum = 2) {
+  const counts = new Map()
+  values.filter(Boolean).forEach((value) => {
+    counts.set(value, (counts.get(value) || 0) + 1)
+  })
+
+  return [...counts.entries()]
+    .filter(([, count]) => count >= minimum)
+    .sort((left, right) => right[1] - left[1])
+    .slice(0, max)
+    .map(([value]) => value)
+}
+
 function buildSupportiveElements(natalAnalysis) {
   const selfElement = ELEMENTS[natalAnalysis.dayMaster]
   const resourceElement = getElementThatGenerates(selfElement)
@@ -522,6 +535,167 @@ export function buildSectionPriority(natalAnalysis, dailyInteraction, dayType) {
     secondary,
     low,
     reasonHints,
+  }
+}
+
+export function buildLongerCycleContext(natalAnalysis, cycleDays, todayIndex = 3) {
+  const today = cycleDays[todayIndex] || null
+  const yesterday = cycleDays[todayIndex - 1] || null
+  const tomorrow = cycleDays[todayIndex + 1] || null
+  const dayTypes = cycleDays.map((day) => day.dayType?.type).filter(Boolean)
+  const dominantTenGods = countTopValues(cycleDays.flatMap((day) => day.dominantTenGods || []), 2, 2)
+  const repeatedElements = countTopValues(cycleDays.flatMap((day) => day.elements || []), 2, 2)
+  const repeatedDayTypes = countTopValues(dayTypes, 2, 2)
+  const repeatedRelations = countTopValues(
+    cycleDays.flatMap((day) => (day.branchRelations || []).map((relation) => relation.relation)),
+    2,
+    2,
+  )
+
+  const expressionStreak =
+    dayTypes.filter((type) => ['expression_flow', 'expression_with_sensitivity'].includes(type)).length >= 2 ||
+    cycleDays.flatMap((day) => day.dominantTenGods || []).filter((tenGod) => tenGod?.includes('식') || tenGod?.includes('상')).length >= 2
+  const responsibilityStreak =
+    dayTypes.filter((type) => type === 'responsibility_focus').length >= 2 ||
+    cycleDays.flatMap((day) => day.dominantTenGods || []).filter((tenGod) => tenGod?.includes('관')).length >= 2
+  const moneyReviewStreak =
+    dayTypes.filter((type) => type === 'money_review').length >= 2 ||
+    cycleDays.flatMap((day) => day.dominantTenGods || []).filter((tenGod) => tenGod?.includes('재')).length >= 2
+  const relationshipStreak =
+    dayTypes.filter((type) => ['relationship_alignment', 'expression_with_sensitivity'].includes(type)).length >= 2
+  const innerSortingStreak =
+    dayTypes.filter((type) => type === 'inner_sorting').length >= 2 ||
+    cycleDays.flatMap((day) => day.dominantTenGods || []).filter((tenGod) => tenGod?.includes('인')).length >= 2
+  const overloadStreak =
+    dayTypes.filter((type) => type === 'overload_control').length >= 2 ||
+    cycleDays.filter((day) => (day.fieldSignals?.health?.length || 0) > 0 || (day.fieldSignals?.mind?.length || 0) > 0).length >= 3
+  const recoveryStreak = dayTypes.filter((type) => type === 'steady_recovery').length >= 2
+  const transitionSignal = Boolean(
+    today?.dayType?.type &&
+    yesterday?.dayType?.type &&
+    tomorrow?.dayType?.type &&
+    today.dayType.type !== yesterday.dayType.type &&
+    today.dayType.type !== tomorrow.dayType.type,
+  )
+  const peakSignal = Boolean(
+    today?.dayType?.confidence === 'high' &&
+    today?.dayType?.type &&
+    repeatedDayTypes[0] === today.dayType.type,
+  )
+  const hadEarlierTension = cycleDays.slice(0, todayIndex).some((day) =>
+    (day.branchRelations || []).some((relation) => ['충', '형', '파', '해'].includes(relation.relation)) ||
+    day.dayType?.type === 'overload_control',
+  )
+  const todayIsQuieter = ['steady_recovery', 'quiet_progress'].includes(today?.dayType?.type) ||
+    !(today?.branchRelations || []).some((relation) => ['충', '형', '파', '해'].includes(relation.relation))
+  const settlingSignal = hadEarlierTension && todayIsQuieter
+
+  const rhythmFlags = [
+    expressionStreak ? 'expression_streak' : null,
+    responsibilityStreak ? 'responsibility_streak' : null,
+    moneyReviewStreak ? 'money_review_streak' : null,
+    relationshipStreak ? 'relationship_streak' : null,
+    innerSortingStreak ? 'inner_sorting_streak' : null,
+    overloadStreak ? 'overload_streak' : null,
+    recoveryStreak ? 'recovery_streak' : null,
+    transitionSignal ? 'transition_signal' : null,
+    peakSignal ? 'peak_signal' : null,
+    settlingSignal ? 'settling_signal' : null,
+  ].filter(Boolean)
+
+  let todayPosition = 'standalone'
+  if (
+    today?.dayType?.type &&
+    tomorrow?.dayType?.type === today.dayType.type &&
+    cycleDays[todayIndex + 2]?.dayType?.type === today.dayType.type &&
+    yesterday?.dayType?.type !== today.dayType.type &&
+    cycleDays[todayIndex - 2]?.dayType?.type !== today.dayType.type
+  ) {
+    todayPosition = 'opening'
+  } else if (
+    today?.dayType?.type &&
+    yesterday?.dayType?.type === today.dayType.type &&
+    tomorrow?.dayType?.type === today.dayType.type
+  ) {
+    todayPosition = 'middle'
+  } else if (peakSignal) {
+    todayPosition = 'peak'
+  } else if (transitionSignal) {
+    todayPosition = 'turning_point'
+  } else if (settlingSignal) {
+    todayPosition = 'settling'
+  }
+
+  let recoveryNeed = 'low'
+  if (
+    overloadStreak ||
+    repeatedRelations.some((relation) => ['충', '형', '파', '해'].includes(relation)) ||
+    cycleDays.filter((day) => (day.fieldSignals?.health?.length || 0) > 0 || (day.fieldSignals?.mind?.length || 0) > 0).length >= 3
+  ) {
+    recoveryNeed = 'high'
+  } else if (responsibilityStreak || innerSortingStreak || relationshipStreak) {
+    recoveryNeed = 'medium'
+  }
+
+  let weekHint = ''
+  if (expressionStreak) {
+    weekHint = todayPosition === 'middle'
+      ? '최근 며칠 표현과 정리의 흐름이 이어져 말과 생각을 밖으로 꺼내기 쉬움'
+      : '최근 며칠 표현 흐름이 이어져 오늘도 말과 아이디어를 정리하기 쉬움'
+  } else if (responsibilityStreak) {
+    weekHint = '요 며칠 책임과 기준 의식이 이어져 해야 할 일을 정리하는 흐름이 강함'
+  } else if (moneyReviewStreak) {
+    weekHint = '최근 며칠 현실 판단과 지출 점검 흐름이 이어져 선택을 더 세심히 보게 됨'
+  } else if (innerSortingStreak) {
+    weekHint = '요 며칠 생각을 안쪽에서 정리하는 흐름이 이어져 오늘도 마음을 가볍게 다듬기 좋음'
+  } else if (todayPosition === 'turning_point') {
+    weekHint = '오늘은 앞뒤 흐름 사이에서 방향을 조절하는 전환점에 가까움'
+  } else if (todayPosition === 'settling') {
+    weekHint = '오늘은 이어지던 긴장을 조금 정리하며 속도를 가라앉히기 좋은 편임'
+  } else if (todayPosition === 'middle') {
+    weekHint = '오늘은 이어지던 흐름의 중간에서 리듬을 살리는 날에 가까움'
+  }
+
+  let cautionHint = ''
+  if (overloadStreak) {
+    cautionHint = '비슷한 반응이 반복되면 피로도 함께 쌓일 수 있어 속도 조절이 필요함'
+  } else if (responsibilityStreak) {
+    cautionHint = '이어지는 책임감은 혼자 끌어안기보다 작게 나누는 편이 좋음'
+  } else if (expressionStreak || relationshipStreak) {
+    cautionHint = '표현 흐름이 이어질수록 말의 온도를 낮추는 편이 관계를 편안하게 함'
+  } else if (repeatedRelations.some((relation) => ['충', '형', '파', '해'].includes(relation))) {
+    cautionHint = '반복되는 작은 어긋남은 바로 반응하기보다 한 박자 쉬며 다루는 편이 좋음'
+  }
+
+  let actionHint = ''
+  if (innerSortingStreak) {
+    actionHint = '최근 이어진 생각 중 하나만 골라 오늘 문장으로 정리하기'
+  } else if (overloadStreak || responsibilityStreak) {
+    actionHint = '반복되는 부담은 오늘 한 가지씩 나누어 처리하기'
+  } else if (expressionStreak || relationshipStreak) {
+    actionHint = '답장이나 결정은 한 박자 늦추고 다시 확인하기'
+  } else if (moneyReviewStreak) {
+    actionHint = '오늘 지출 하나만 골라 필요와 부담을 함께 살펴보기'
+  }
+
+  const compactHints = takeUniqueHints([weekHint, cautionHint, actionHint], 3)
+
+  return {
+    window: {
+      daysBefore: 3,
+      daysAfter: 3,
+    },
+    dominantTenGods,
+    repeatedElements,
+    repeatedDayTypes,
+    repeatedRelations,
+    rhythmFlags,
+    todayPosition,
+    recoveryNeed,
+    weekHint,
+    cautionHint,
+    actionHint,
+    compactHints,
   }
 }
 

@@ -1,5 +1,12 @@
-import { derivePillars, analyzeNatalStructure, analyzeDailyInteraction, analyzePeriodPillar, buildDayType, buildSectionPriority } from '../engine/core.js'
+import { derivePillars, analyzeNatalStructure, analyzeDailyInteraction, analyzePeriodPillar, buildDayType, buildSectionPriority, buildLongerCycleContext } from '../engine/core.js'
 import { buildInterpretationProfile } from './interpretationRules.js'
+
+function addDaysToDateString(dateString, offset) {
+  const [year, month, day] = String(dateString).split('-').map(Number)
+  const utcDate = new Date(Date.UTC(year, (month || 1) - 1, day || 1))
+  utcDate.setUTCDate(utcDate.getUTCDate() + offset)
+  return utcDate.toISOString().slice(0, 10)
+}
 
 /**
  * 사용자 프로필을 바탕으로 원국 스냅샷 객체를 생성합니다.
@@ -18,7 +25,7 @@ export function generateNatalSnapshot(profile) {
     hour_stem: pillars.hour.stem,
     hour_branch: pillars.hour.branch,
     day_master: analysis.dayMaster,
-    natal_data: { ...analysis, gender: profile.gender, engine_version: '1.9' }
+    natal_data: { ...analysis, gender: profile.gender, engine_version: '2.0' }
   }
 }
 
@@ -50,11 +57,51 @@ export function generateDailySnapshot(natalSnapshot, targetDate) {
     month: analyzePeriodPillar(natalAnalysis, periodPillars.month, 'month'),
     day: analyzePeriodPillar(natalAnalysis, periodPillars.day, 'day')
   }
+  const cycleDays = Array.from({ length: 7 }, (_, index) => {
+    const offset = index - 3
+    const cycleDate = addDaysToDateString(targetDate, offset)
+    const cyclePillars = derivePillars(cycleDate, '12:00')
+    const cycleDailyPillar = {
+      stem: cyclePillars.day.stem,
+      branch: cyclePillars.day.branch,
+    }
+    const cycleInteraction = analyzeDailyInteraction(natalAnalysis, cycleDailyPillar, natalPillars)
+    const cycleDayType = buildDayType(natalAnalysis, cycleInteraction)
+
+    return {
+      offset,
+      date: cycleDate,
+      dailyPillar: cycleDailyPillar,
+      dominantTenGods: cycleInteraction.signals.map((signal) => signal.tenGod).filter(Boolean).slice(0, 3),
+      elements: cycleInteraction.signals.map((signal) => signal.element).filter(Boolean).slice(0, 3),
+      dayType: {
+        type: cycleDayType.type,
+        label: cycleDayType.label,
+        confidence: cycleDayType.confidence,
+      },
+      branchRelations: cycleInteraction.branchRelations.map((relation) => ({
+        target: relation.target,
+        relation: relation.relation,
+        severity: relation.severity,
+      })).slice(0, 3),
+      fieldSignals: {
+        work: cycleInteraction.fieldImpacts.work.signals.slice(0, 2),
+        money: cycleInteraction.fieldImpacts.money.signals.slice(0, 2),
+        relationships: cycleInteraction.fieldImpacts.relationships.signals.slice(0, 2),
+        love: cycleInteraction.fieldImpacts.love?.signals?.slice(0, 2) ?? [],
+        health: cycleInteraction.fieldImpacts.health?.signals?.slice(0, 2) ?? [],
+        mind: cycleInteraction.fieldImpacts.mind.signals.slice(0, 2),
+      },
+    }
+  })
+  const longerCycleContext = buildLongerCycleContext(natalAnalysis, cycleDays, 3)
+
   const interactionWithPeriodContext = {
     ...interaction,
     periodContext,
     dayType,
-    sectionPriority
+    sectionPriority,
+    longerCycleContext
   }
   
   const gender = natalAnalysis.gender || 'male'
@@ -109,8 +156,9 @@ export function generateDailySnapshot(natalSnapshot, targetDate) {
       periodContext,
       dayType,
       sectionPriority,
+      longerCycleContext,
       summary_hint: `${natalAnalysis.dayMaster}일간에게 올해/이번 달/오늘의 흐름이 겹쳐 들어오는 날`,
-      engine_version: '1.9'
+      engine_version: '2.0'
     }
   }
 }
