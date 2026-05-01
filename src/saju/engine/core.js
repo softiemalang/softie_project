@@ -228,7 +228,7 @@ const DAY_TYPE_META = {
   },
   money_review: {
     label: '현실 판단과 지출 흐름을 점검할 날',
-    cautionHint: '당장의 필요보다 뒤따를 부담까지 함께 살피는 편이 좋음',
+    cautionHint: '당장의 필요보다 선택 뒤에 이어질 책임까지 함께 살피는 편이 좋음',
     actionHint: '결제 전 필요와 책임을 한 번 더 확인하기',
   },
   relationship_alignment: {
@@ -320,7 +320,7 @@ export function buildDayType(natalAnalysis, dailyInteraction) {
       reasons: takeUniqueHints([
         signalState.hasExpression ? '표현과 아이디어 신호가 함께 올라옴' : null,
         signalState.hasConflict || signalState.hasSoftTension ? '가까운 관계나 반응 속도에서 조절이 필요함' : null,
-        relationshipRiskCount > 0 ? '말보다 반응이 먼저 나가기 쉬운 흐름이 있음' : null,
+        relationshipRiskCount > 0 ? '대답보다 반응이 먼저 올라오기 쉬운 흐름이 있음' : null,
       ]),
     },
     responsibility_focus: {
@@ -515,7 +515,7 @@ export function buildSectionPriority(natalAnalysis, dailyInteraction, dayType) {
     dailyInteraction.fieldImpacts?.love?.score >= 75 ? '감정 표현은 부드럽게 이어갈수록 편안함이 커질 수 있음' : null,
   ], 2)
   reasonHints.health = takeUniqueHints([
-    supportiveElements?.likelyOverloading?.length ? '책임감이나 긴장이 몸의 무게감으로 이어질 수 있음' : null,
+    supportiveElements?.likelyOverloading?.length ? '기준과 책임이 오래 이어지면 몸의 긴장으로 남기 쉬움' : null,
     ['steady_recovery', 'overload_control'].includes(dayType?.type) ? '몸의 속도를 조금 낮추면 전체 흐름이 안정되기 쉬움' : null,
   ], 2)
   reasonHints.mind = takeUniqueHints([

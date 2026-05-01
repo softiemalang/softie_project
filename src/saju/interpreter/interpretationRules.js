@@ -120,7 +120,7 @@ export function buildInterpretationProfile({ natalAnalysis, dailyInteraction, ge
     money: '계획적인 지출과 현상 유지가 유리한 하루입니다.',
     relationships: '원만한 대인관계를 유지하며 경청하는 자세가 필요합니다.',
     love: '자연스러운 대화 속에서 신뢰와 호감을 쌓아가는 흐름입니다.',
-    health: '규칙적인 식사와 가벼운 스트레칭으로 컨디션을 관리하세요.',
+    health: '몸과 마음의 리듬을 살피며 긴장을 가볍게 낮추는 것이 좋습니다.',
     mind: '감정의 동요 없이 평온한 마음가짐을 유지하는 것이 중요합니다.'
   };
 
@@ -260,7 +260,7 @@ export function buildInterpretationProfile({ natalAnalysis, dailyInteraction, ge
       fieldImpacts.relationships.risks.length > 0 ? `관계 리스크: ${fieldImpacts.relationships.risks.join(', ')}` : null,
       ...relationHints,
       hiddenSupportScore > 0 ? '사람을 대하는 태도는 겉보다 부드럽게 드러나기 쉬움' : null,
-      hiddenPressureScore > 0 ? '말보다 반응이 먼저 나와 관계가 살짝 민감해질 수 있음' : null,
+      hiddenPressureScore > 0 ? '대답보다 반응이 먼저 올라와 관계가 살짝 민감해질 수 있음' : null,
       natalProfile?.relationshipStyle?.[0] ? natalProfile.relationshipStyle[0] : null,
       ...(sectionPriority?.reasonHints?.relationships || []),
       longerCycleContext?.rhythmFlags?.includes('expression_streak') ? '말과 반응의 흐름이 이어져 속도 조절이 중요함' : null,
