@@ -131,6 +131,8 @@ export default function SajuEvaluationPage() {
     }
   }, [evaluations])
 
+  const hasEvaluations = evaluations.length > 0
+
   function toggleExpanded(id) {
     setExpandedMap(current => ({ ...current, [id]: !current[id] }))
   }
@@ -164,167 +166,197 @@ export default function SajuEvaluationPage() {
           매일 자동 평가된 사주 리포트 품질을 확인하고, 개선 포인트를 정리하기 위한 관리자용 조회 화면입니다.
         </p>
         <div className="saju-evaluation-hero-actions">
-          <button type="button" className="soft-button" onClick={() => navigate('/')}>
-            홈으로 돌아가기
-          </button>
-          <button type="button" className="soft-button" onClick={() => navigate('/fortune')}>
-            운세 페이지
-          </button>
-          <button type="button" className="soft-button" onClick={handleCopySummary} disabled={isLoading || evaluations.length === 0}>
-            최근 평가 요약 복사
-          </button>
+          <div className="saju-evaluation-hero-nav">
+            <button type="button" className="soft-button" onClick={() => navigate('/')}>
+              홈으로 돌아가기
+            </button>
+            <button type="button" className="soft-button" onClick={() => navigate('/fortune')}>
+              운세 페이지
+            </button>
+          </div>
+          {hasEvaluations ? (
+            <button type="button" className="soft-button saju-evaluation-copy-button" onClick={handleCopySummary} disabled={isLoading}>
+              최근 평가 요약 복사
+            </button>
+          ) : null}
         </div>
         {copyStatus ? <p className="subtle saju-evaluation-copy-status">{copyStatus}</p> : null}
       </header>
 
-      <section className="saju-evaluation-summary-grid">
-        <article className="card saju-evaluation-stat-card">
-          <p className="section-kicker">최근 평가</p>
-          <strong>{summary.total}건</strong>
-          <p className="subtle">현재 화면에 로드된 최신 평가 수입니다.</p>
-        </article>
-        <article className="card saju-evaluation-stat-card">
-          <p className="section-kicker">등급 분포</p>
-          <strong>{summary.pass} / {summary.watch} / {summary.fix}</strong>
-          <p className="subtle">PASS / WATCH / FIX 순서로 집계했습니다.</p>
-        </article>
-        <article className="card saju-evaluation-stat-card">
-          <p className="section-kicker">주요 이슈</p>
-          <strong>{summary.topIssueType}</strong>
-          <p className="subtle">최근 로그에서 가장 자주 나온 issue type입니다.</p>
-        </article>
-      </section>
-
       {errorMessage ? <p className="status">{errorMessage}</p> : null}
 
-      <section className="saju-evaluation-list" aria-live="polite">
-        {isLoading ? (
+      {isLoading ? (
+        <section className="saju-evaluation-list" aria-live="polite">
           <article className="card saju-evaluation-item">
             <p className="subtle">평가 로그를 불러오는 중입니다...</p>
           </article>
-        ) : evaluations.length === 0 ? (
-          <article className="card saju-evaluation-item">
-            <p className="subtle">표시할 평가 로그가 아직 없어요.</p>
+        </section>
+      ) : null}
+
+      {!isLoading && !errorMessage && !hasEvaluations ? (
+        <section className="saju-evaluation-list" aria-live="polite">
+          <article className="card saju-evaluation-empty-card">
+            <p className="section-kicker">Empty State</p>
+            <h2>아직 평가 로그가 없어요.</h2>
+            <p className="subtle">
+              매일 00:05에 전날 생성된 신규 리포트가 있으면 이곳에 평가 결과가 쌓여요.
+            </p>
+            <p className="subtle">
+              리포트가 이미 평가된 경우에는 중복 평가하지 않아요.
+            </p>
+            <button type="button" className="soft-button saju-evaluation-empty-button" onClick={() => navigate('/fortune')}>
+              운세 페이지로 이동
+            </button>
           </article>
-        ) : (
-          evaluations.map((evaluation) => {
-            const issues = Array.isArray(evaluation.issues) ? evaluation.issues : []
-            const issueTypes = collectIssueTypes(issues)
-            const sections = collectSections(issues)
-            const isExpanded = !!expandedMap[evaluation.id]
+        </section>
+      ) : null}
 
-            return (
-              <article key={evaluation.id} className="card saju-evaluation-item">
-                <div className="saju-evaluation-item-head">
-                  <div className="saju-evaluation-item-main">
-                    <div className="saju-evaluation-item-topline">
-                      <p className="section-kicker">{evaluation.report_date || '-'}</p>
-                      <span className={`saju-evaluation-grade ${evaluation.overall_grade || ''}`}>
-                        {getGradeLabel(evaluation.overall_grade)}
-                      </span>
-                    </div>
-                    <div className="saju-evaluation-meta-grid">
-                      <div>
-                        <span className="saju-evaluation-meta-label">issue_count</span>
-                        <strong>{issues.length}</strong>
-                      </div>
-                      <div>
-                        <span className="saju-evaluation-meta-label">evaluated_at</span>
-                        <strong>{formatDateTime(evaluation.evaluated_at)}</strong>
-                      </div>
-                      <div>
-                        <span className="saju-evaluation-meta-label">model</span>
-                        <strong>{evaluation.model_name || '-'}</strong>
-                      </div>
-                    </div>
-                    <div className="saju-evaluation-chip-row">
-                      {issueTypes.length > 0 ? issueTypes.map(type => (
-                        <span key={type} className="saju-evaluation-chip">{type}</span>
-                      )) : (
-                        <span className="saju-evaluation-chip">issue 없음</span>
-                      )}
-                    </div>
-                    <div className="saju-evaluation-chip-row">
-                      {sections.length > 0 ? sections.map(section => (
-                        <span key={section} className="saju-evaluation-chip soft">{section}</span>
-                      )) : (
-                        <span className="saju-evaluation-chip soft">section 없음</span>
-                      )}
-                    </div>
-                  </div>
-                  <button type="button" className="soft-button" onClick={() => toggleExpanded(evaluation.id)}>
-                    {isExpanded ? '상세 접기' : '상세 보기'}
-                  </button>
-                </div>
+      {!isLoading && hasEvaluations ? (
+        <>
+          <section className="card saju-evaluation-summary-card">
+            <div className="saju-evaluation-summary-header">
+              <div>
+                <p className="section-kicker">Recent Overview</p>
+                <h2>최근 평가 요약</h2>
+              </div>
+              <p className="subtle">최신 20개 평가 기준</p>
+            </div>
+            <div className="saju-evaluation-summary-grid">
+              <div className="saju-evaluation-stat-card">
+                <span className="saju-evaluation-meta-label">최근 평가</span>
+                <strong>{summary.total}건</strong>
+              </div>
+              <div className="saju-evaluation-stat-card">
+                <span className="saju-evaluation-meta-label">등급 분포</span>
+                <strong>{summary.pass} / {summary.watch} / {summary.fix}</strong>
+              </div>
+              <div className="saju-evaluation-stat-card">
+                <span className="saju-evaluation-meta-label">주요 이슈</span>
+                <strong>{summary.topIssueType}</strong>
+              </div>
+            </div>
+          </section>
 
-                {isExpanded ? (
-                  <div className="saju-evaluation-detail">
-                    <section>
-                      <div className="card-header">
+          <section className="saju-evaluation-list" aria-live="polite">
+            {evaluations.map((evaluation) => {
+              const issues = Array.isArray(evaluation.issues) ? evaluation.issues : []
+              const issueTypes = collectIssueTypes(issues)
+              const sections = collectSections(issues)
+              const isExpanded = !!expandedMap[evaluation.id]
+
+              return (
+                <article key={evaluation.id} className="card saju-evaluation-item">
+                  <div className="saju-evaluation-item-head">
+                    <div className="saju-evaluation-item-main">
+                      <div className="saju-evaluation-item-topline">
+                        <p className="section-kicker">{evaluation.report_date || '-'}</p>
+                        <span className={`saju-evaluation-grade ${evaluation.overall_grade || ''}`}>
+                          {getGradeLabel(evaluation.overall_grade)}
+                        </span>
+                      </div>
+                      <div className="saju-evaluation-meta-grid">
                         <div>
-                          <p className="section-kicker">Issues</p>
-                          <h2>이슈 상세</h2>
+                          <span className="saju-evaluation-meta-label">issue_count</span>
+                          <strong>{issues.length}</strong>
+                        </div>
+                        <div>
+                          <span className="saju-evaluation-meta-label">evaluated_at</span>
+                          <strong>{formatDateTime(evaluation.evaluated_at)}</strong>
+                        </div>
+                        <div>
+                          <span className="saju-evaluation-meta-label">model</span>
+                          <strong>{evaluation.model_name || '-'}</strong>
                         </div>
                       </div>
-                      {issues.length > 0 ? (
-                        <div className="saju-evaluation-issue-list">
-                          {issues.map((issue, index) => (
-                            <article key={`${evaluation.id}-issue-${index}`} className="saju-evaluation-issue">
-                              <div className="saju-evaluation-issue-tags">
-                                {issue?.type ? <span className="saju-evaluation-chip">{issue.type}</span> : null}
-                                {issue?.section ? <span className="saju-evaluation-chip soft">{issue.section}</span> : null}
-                                {issue?.severity ? <span className="saju-evaluation-chip soft">{issue.severity}</span> : null}
-                              </div>
-                              <p><strong>problem</strong> {issue?.problem || '-'}</p>
-                              <p><strong>evidence</strong> {issue?.evidence || '-'}</p>
-                              <p><strong>suggestion</strong> {issue?.suggestion || '-'}</p>
-                            </article>
-                          ))}
-                        </div>
-                      ) : (
-                        <p className="subtle">등록된 이슈가 없습니다.</p>
-                      )}
-                    </section>
-
-                    <section>
-                      <p className="section-kicker">Repeat Axis</p>
-                      <div className="saju-evaluation-repeat-grid">
-                        {Object.entries(evaluation.repeat_axis || {}).length > 0 ? (
-                          Object.entries(evaluation.repeat_axis || {}).map(([key, value]) => (
-                            <div key={key} className="saju-evaluation-repeat-card">
-                              <span className="saju-evaluation-meta-label">{key}</span>
-                              <strong>{String(value)}</strong>
-                            </div>
-                          ))
-                        ) : (
-                          <p className="subtle">repeat_axis 데이터가 없습니다.</p>
+                      <div className="saju-evaluation-chip-row">
+                        {issueTypes.length > 0 ? issueTypes.map(type => (
+                          <span key={type} className="saju-evaluation-chip">{type}</span>
+                        )) : (
+                          <span className="saju-evaluation-chip">issue 없음</span>
                         )}
                       </div>
-                    </section>
-
-                    <section className="saju-evaluation-copy-block">
-                      <p className="section-kicker">Codex Prompt</p>
-                      <pre>{evaluation.codex_prompt || '-'}</pre>
-                    </section>
-
-                    {evaluation.warning ? (
-                      <section className="saju-evaluation-copy-block">
-                        <p className="section-kicker">Warning</p>
-                        <pre>{evaluation.warning}</pre>
-                      </section>
-                    ) : null}
-
-                    <details className="saju-evaluation-copy-block">
-                      <summary>retrieved_chunks 보기</summary>
-                      <pre>{JSON.stringify(evaluation.retrieved_chunks || [], null, 2)}</pre>
-                    </details>
+                      <div className="saju-evaluation-chip-row">
+                        {sections.length > 0 ? sections.map(section => (
+                          <span key={section} className="saju-evaluation-chip soft">{section}</span>
+                        )) : (
+                          <span className="saju-evaluation-chip soft">section 없음</span>
+                        )}
+                      </div>
+                    </div>
+                    <button type="button" className="soft-button" onClick={() => toggleExpanded(evaluation.id)}>
+                      {isExpanded ? '상세 접기' : '상세 보기'}
+                    </button>
                   </div>
-                ) : null}
-              </article>
-            )
-          })
-        )}
-      </section>
+
+                  {isExpanded ? (
+                    <div className="saju-evaluation-detail">
+                      <section>
+                        <div className="card-header">
+                          <div>
+                            <p className="section-kicker">Issues</p>
+                            <h2>이슈 상세</h2>
+                          </div>
+                        </div>
+                        {issues.length > 0 ? (
+                          <div className="saju-evaluation-issue-list">
+                            {issues.map((issue, index) => (
+                              <article key={`${evaluation.id}-issue-${index}`} className="saju-evaluation-issue">
+                                <div className="saju-evaluation-issue-tags">
+                                  {issue?.type ? <span className="saju-evaluation-chip">{issue.type}</span> : null}
+                                  {issue?.section ? <span className="saju-evaluation-chip soft">{issue.section}</span> : null}
+                                  {issue?.severity ? <span className="saju-evaluation-chip soft">{issue.severity}</span> : null}
+                                </div>
+                                <p><strong>problem</strong> {issue?.problem || '-'}</p>
+                                <p><strong>evidence</strong> {issue?.evidence || '-'}</p>
+                                <p><strong>suggestion</strong> {issue?.suggestion || '-'}</p>
+                              </article>
+                            ))}
+                          </div>
+                        ) : (
+                          <p className="subtle">등록된 이슈가 없습니다.</p>
+                        )}
+                      </section>
+
+                      <section>
+                        <p className="section-kicker">Repeat Axis</p>
+                        <div className="saju-evaluation-repeat-grid">
+                          {Object.entries(evaluation.repeat_axis || {}).length > 0 ? (
+                            Object.entries(evaluation.repeat_axis || {}).map(([key, value]) => (
+                              <div key={key} className="saju-evaluation-repeat-card">
+                                <span className="saju-evaluation-meta-label">{key}</span>
+                                <strong>{String(value)}</strong>
+                              </div>
+                            ))
+                          ) : (
+                            <p className="subtle">repeat_axis 데이터가 없습니다.</p>
+                          )}
+                        </div>
+                      </section>
+
+                      <section className="saju-evaluation-copy-block">
+                        <p className="section-kicker">Codex Prompt</p>
+                        <pre>{evaluation.codex_prompt || '-'}</pre>
+                      </section>
+
+                      {evaluation.warning ? (
+                        <section className="saju-evaluation-copy-block">
+                          <p className="section-kicker">Warning</p>
+                          <pre>{evaluation.warning}</pre>
+                        </section>
+                      ) : null}
+
+                      <details className="saju-evaluation-copy-block">
+                        <summary>retrieved_chunks 보기</summary>
+                        <pre>{JSON.stringify(evaluation.retrieved_chunks || [], null, 2)}</pre>
+                      </details>
+                    </div>
+                  ) : null}
+                </article>
+              )
+            })}
+          </section>
+        </>
+      ) : null}
     </div>
   )
 }
