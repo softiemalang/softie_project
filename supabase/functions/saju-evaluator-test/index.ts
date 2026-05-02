@@ -34,7 +34,7 @@ serve(async (req) => {
     let warning: string | null = null;
 
     try {
-      retrievedChunks = await searchEvaluatorSnippets(queries);
+      retrievedChunks = await searchEvaluatorSnippets(queries, runId);
       console.log(`[SajuEvaluator] Retrieved chunks=${retrievedChunks.length}`);
     } catch (err: any) {
       console.error(`[SajuEvaluator] Search failed:`, err.message);

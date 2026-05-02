@@ -93,10 +93,10 @@ async function createGoogleAccessToken(serviceAccountEmail: string, privateKey: 
   return tokenData.access_token as string;
 }
 
-export async function searchEvaluatorSnippets(queries: string[]): Promise<any[]> {
+export async function searchEvaluatorSnippets(queries: string[], runId?: string): Promise<any[]> {
   const isEnabled = Deno.env.get('SAJU_EVALUATOR_ENABLED') !== 'false';
   if (!isEnabled) {
-    console.log('[SajuEvaluator] Search skipped due to SAJU_EVALUATOR_ENABLED=false');
+    console.log(`[SajuEvaluator][${runId || 'N/A'}] Search skipped due to SAJU_EVALUATOR_ENABLED=false`);
     return [];
   }
 
@@ -108,16 +108,18 @@ export async function searchEvaluatorSnippets(queries: string[]): Promise<any[]>
   const privateKey = Deno.env.get('GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY')?.replace(/\\n/g, '\n');
 
   if (!serviceAccountEmail || !privateKey) {
-    console.warn('[SajuEvaluator] Google credentials not configured. Search skipped.');
+    console.warn(`[SajuEvaluator][${runId || 'N/A'}] Google credentials not configured. Search skipped.`);
     return [];
   }
+
+  console.log(`[SajuEvaluator][${runId || 'N/A'}] Starting search with ${queries.length} queries`);
 
   try {
     const accessToken = await createGoogleAccessToken(serviceAccountEmail, privateKey);
     const endpoint = `https://discoveryengine.googleapis.com/v1/projects/${projectNumber}/locations/${location}/collections/default_collection/dataStores/${dataStoreId}/servingConfigs/${servingConfig}:search`;
 
     const allChunks: any[] = [];
-    const seenTitles = new Set<string>();
+    const seenUris = new Set<string>();
 
     const searchPromises = queries.map(async (query) => {
       try {
@@ -135,36 +137,61 @@ export async function searchEvaluatorSnippets(queries: string[]): Promise<any[]>
 
         if (!response.ok) {
           const preview = (await response.text()).slice(0, 500);
-          console.error(`[SajuEvaluator] Search failed for query "${query}"`, { status: response.status, preview });
+          console.error(`[SajuEvaluator][${runId || 'N/A'}] Search failed for query "${query}"`, { status: response.status, preview });
           return [];
         }
 
         const data = await response.json();
         const results = data.results || [];
+        console.log(`[SajuEvaluator][${runId || 'N/A'}] Query "${query}" returned ${results.length} results`);
+        
         const extracted = [];
 
         for (const res of results) {
-          const document = res.document || {};
-          const structData = document.structData || {};
-          const derivedStructData = document.derivedStructData || {};
-          const title = document.name || structData.title || derivedStructData.title || 'Untitled';
-          const uri = structData.uri || derivedStructData.link || '';
+          const doc = res.document || {};
+          const structData = doc.structData || {};
+          const derivedStructData = doc.derivedStructData || {};
           
+          // 1. Extract Title
+          let title = derivedStructData.title || structData.title;
+          if (!title && doc.name) {
+            // Extract last part of resource name as fallback
+            const parts = doc.name.split('/');
+            title = parts[parts.length - 1];
+          }
+          title = title || 'Untitled Evaluator Rule';
+
+          // 2. Extract URI
+          const uri = structData.uri || derivedStructData.link || doc.content?.uri || '';
+          
+          // 3. Extract Snippet
           let snippet = '';
           if (derivedStructData.snippets && derivedStructData.snippets.length > 0) {
-            snippet = derivedStructData.snippets[0].snippet;
-          } else if (document.content) {
-            snippet = document.content.slice(0, 500);
+            snippet = derivedStructData.snippets[0].snippet || derivedStructData.snippets[0].htmlSnippet || '';
+          }
+          
+          if (!snippet && doc.content?.textContent) {
+            snippet = doc.content.textContent.slice(0, 1000);
+          }
+          
+          if (!snippet && structData.content) {
+            snippet = typeof structData.content === 'string' ? structData.content.slice(0, 1000) : JSON.stringify(structData.content).slice(0, 1000);
           }
 
-          if (snippet && !seenTitles.has(title)) {
-            seenTitles.add(title);
+          if (!snippet) {
+            snippet = '(No snippet available)';
+          }
+
+          // Use URI or Title as uniqueness key
+          const uniqueKey = uri || title;
+          if (!seenUris.has(uniqueKey)) {
+            seenUris.add(uniqueKey);
             extracted.push({ source: 'search', title, uri, snippet });
           }
         }
         return extracted;
       } catch (err) {
-        console.error(`[SajuEvaluator] Search error for query "${query}":`, err.message);
+        console.error(`[SajuEvaluator][${runId || 'N/A'}] Search error for query "${query}":`, err.message);
         return [];
       }
     });
@@ -174,9 +201,11 @@ export async function searchEvaluatorSnippets(queries: string[]): Promise<any[]>
       allChunks.push(...arr);
     }
 
-    return allChunks.slice(0, 10);
+    const finalChunks = allChunks.slice(0, 15);
+    console.log(`[SajuEvaluator][${runId || 'N/A'}] Final retrievedChunks count: ${finalChunks.length}`);
+    return finalChunks;
   } catch (error) {
-    console.error('[SajuEvaluator] Failed to execute Discovery Engine search:', error.message);
+    console.error(`[SajuEvaluator][${runId || 'N/A'}] Failed to execute Discovery Engine search:`, error.message);
     return [];
   }
 }
