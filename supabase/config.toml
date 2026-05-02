@@ -45,3 +45,7 @@ verify_jwt = false
 [functions.google-drive-rehearsal-backup]
 # Called from the app without Supabase Auth session, using deviceId instead.
 verify_jwt = false
+
+[functions.saju-knowledge-test]
+# Internal experimental endpoint for manual RAG testing; protect this before adding any public UI.
+verify_jwt = false

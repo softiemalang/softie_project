@@ -1,0 +1,153 @@
+Title:
+오늘 운세 전체 해석 정책
+
+Tags:
+사주, 오늘의 운세, 일일 운세, 해석 정책, 문체 기준, 안전 원칙, 확정 예언 금지, 실천 조언, 따뜻한 조언, 현실적 조언
+
+When to use:
+- 모든 오늘 운세 리포트 생성 전 공통 기준으로 사용한다.
+- work, money, relationships, love, health, mind 섹션을 작성할 때 기본 문체와 안전 기준으로 사용한다.
+- 사주 계산 결과를 해석할 때 과장, 공포, 확정 표현을 방지해야 할 때 사용한다.
+- Vertex AI Search 또는 LLM이 사주 용어를 직접 노출하거나 과하게 단정하려 할 때 제어 기준으로 사용한다.
+
+Signals:
+- computedData.interpretationProfile.primaryTheme
+- computedData.interpretationProfile.secondaryTheme
+- computedData.interpretationProfile.dailyKeyPoints
+- computedData.interpretationProfile.fieldReasonHints
+- computedData.interpretationProfile.personalContextHints
+- computedData.interpretationProfile.periodContextHints
+- computedData.fieldImpacts
+- computedData.branchRelations
+- computedData.love
+- dailyPillar
+- signals
+- extractedTags
+
+Interpretation rule:
+1. 계산은 기존 사주 엔진의 snapshot과 computedData를 기준으로 한다.
+2. 지식 문서는 계산 결과를 대체하지 않는다. 지식 문서는 계산된 신호를 해석하는 기준으로만 사용한다.
+3. 운세 리포트는 확정적 예언이 아니라, 오늘의 흐름을 바탕으로 한 생활 조언이어야 한다.
+4. 모든 문장은 입력된 신호, 태그, fieldReasonHints, dailyKeyPoints, personalContextHints, periodContextHints 중 하나 이상의 근거와 연결되어야 한다.
+5. 근거가 약한 영역은 강하게 단정하지 말고, “이런 쪽을 살펴보면 좋아요”처럼 조심스럽고 실천적인 표현으로 작성한다.
+6. 오늘의 흐름이 좋게 나오더라도 “무조건 성공”, “돈이 들어온다”, “연애가 성사된다”처럼 결과를 보장하지 않는다.
+7. 오늘의 흐름이 불안정하게 나오더라도 공포를 키우지 않는다. 위험을 말할 때는 반드시 조절 방법과 회복 행동을 함께 제시한다.
+8. 사주 전문용어는 내부 판단 기준으로만 사용하고, 사용자에게는 가능한 한 생활 언어로 풀어 쓴다.
+9. 리포트는 사용자가 오늘 실제로 행동할 수 있는 작은 조언으로 끝나야 한다.
+10. 문체는 따뜻하지만 흐리멍덩하지 않아야 한다. 위로만 하지 말고, 무엇을 조심하고 무엇을 줄이면 좋은지 구체적으로 말한다.
+
+Priority:
+- 1순위: computedData.interpretationProfile.basisHint
+- 2순위: dailyKeyPoints
+- 3순위: fieldReasonHints
+- 4순위: personalContextHints
+- 5순위: periodContextHints
+- 6순위: fieldImpacts
+- 7순위: branchRelations
+- 8순위: love.summary_hint
+- 9순위: 일반 사주 지식 문서
+- 10순위: 문체/표현 정책
+
+Output usage:
+- headline
+- basis
+- summary
+- sections.work
+- sections.money
+- sections.relationships
+- sections.love
+- sections.health
+- sections.mind
+- cautions
+- action_tip
+
+Section policy:
+- headline:
+  - 오늘의 핵심 분위기를 짧게 잡는다.
+  - summary를 그대로 반복하지 않는다.
+  - 사주 용어를 직접 넣지 않는다.
+  - 예: “속도를 낮추고 흐름을 정리하는 하루”
+
+- basis:
+  - 내부 근거를 한 문장으로 정리한다.
+  - 사용자가 읽어도 부담 없는 생활 언어로 쓴다.
+  - 예: “오늘은 책임과 관계 흐름이 함께 움직여서, 바로 밀어붙이기보다 정리와 조율이 중요해요.”
+
+- summary:
+  - 최대 2문장.
+  - 1문장은 오늘의 핵심 흐름, 2문장은 조심할 점과 태도.
+  - 예: “오늘은 해야 할 일과 사람 사이의 흐름이 함께 움직이는 날이에요. 바로 반응하기보다 한 번 정리하고 움직이면 실수와 피로를 줄일 수 있습니다.”
+
+- sections:
+  - work, money, relationships, love, health, mind 모두 작성한다.
+  - 각 섹션은 가능하면 2문장.
+  - 첫 문장은 흐름과 이유, 두 번째 문장은 실천 태도.
+  - 너무 추상적인 위로보다 오늘 할 수 있는 행동을 포함한다.
+
+- cautions:
+  - 정확히 2개.
+  - 반드시 행동형 문장.
+  - “~할 수 있어요”, “~에 주의”, “~이 생길 수 있음”으로 끝내지 않는다.
+  - 예: “민감한 말은 바로 보내지 말고 한 번 더 읽어보세요.”
+
+- action_tip:
+  - 1~3분 안에 실행 가능한 행동 1개.
+  - 오늘의 가장 강한 흐름에 맞춘다.
+  - 예: “오늘 할 일을 세 가지로 줄여 우선순위를 정하세요.”
+
+Avoid:
+- “반드시”
+- “무조건”
+- “큰돈이 들어온다”
+- “운명의 상대를 만난다”
+- “승진한다”
+- “실패한다”
+- “사고가 난다”
+- “나쁜 일이 생긴다”
+- “망한다”
+- “대박”
+- “최악”
+- “인생이 바뀐다”
+- 공포를 유도하는 표현
+- 과장된 로맨스/금전 확언
+- 신비주의를 강하게 자극하는 표현
+- 사용자가 통제할 수 없는 결과를 단정하는 표현
+- 사주 용어를 해석 없이 나열하는 표현
+- 건강을 의학적 진단처럼 말하는 표현
+- “규칙적 식사”, “가벼운 스트레칭”을 기본값처럼 반복하는 건강 조언
+- “긍정적인 마음가짐”처럼 너무 일반적인 말만 남기는 문장
+- “A은 통해”, “A는 통해”, “매력과 소통이 통합니다”처럼 어색한 조사와 연결 표현
+
+Recommended tone:
+- 따뜻하고 현실적인 조언.
+- 생활감 있는 문장.
+- 너무 길지 않지만 이유가 느껴지는 문장.
+- 부드럽지만 판단 기준은 분명한 문장.
+- 감정을 다독이되, 오늘의 행동을 작게 정리해주는 문장.
+- “오늘은 속도를 내기보다 흐름을 고르는 날에 가까워요.”
+- “바로 결정하기보다 한 번 정리해보면 불필요한 피로를 줄일 수 있어요.”
+- “조금 천천히 움직이는 편이 오히려 안정적인 결과로 이어질 수 있어요.”
+- “말을 꺼내기 전 한 번 숨을 고르면 관계의 온도가 덜 흔들려요.”
+
+Bad examples:
+- “오늘은 재물운이 좋아 큰돈이 들어올 수 있습니다.”
+- “연애운이 강해 운명의 상대를 만날 수 있습니다.”
+- “관성이 강하니 직장에서 큰 성공이 옵니다.”
+- “건강에 문제가 생길 수 있으니 주의하세요.”
+- “긍정적인 마음으로 하루를 보내세요.”
+- “규칙적인 식사와 가벼운 스트레칭을 하세요.”
+- “망신살이 있어 실수할 수 있습니다.”
+- “오늘은 최악의 흐름이므로 조심해야 합니다.”
+
+Good examples:
+- “오늘은 책임이 조금 무겁게 느껴질 수 있어요. 일을 넓히기보다 이미 맡은 것을 정리하면 마음의 부담이 줄어듭니다.”
+- “돈의 흐름은 크게 벌리기보다 새는 곳을 확인하는 데 더 잘 맞아요. 결제 전 한 번 더 살펴보는 것만으로도 불필요한 지출을 줄일 수 있습니다.”
+- “관계에서는 말의 속도가 중요해요. 바로 답하기보다 문장을 한 번 고르면 불필요한 오해를 줄일 수 있습니다.”
+- “마음이 바쁘게 앞서기 쉬운 날이에요. 오늘은 감정을 해결하려 하기보다 먼저 이름 붙여 적어보는 편이 도움이 됩니다.”
+- “몸은 큰 이상보다 피로가 쌓인 신호를 먼저 보낼 수 있어요. 자극을 줄이고 회복 시간을 확보하는 쪽이 더 안정적입니다.”
+
+Search keywords:
+사주 해석 정책, 오늘 운세 문체, 확정 예언 금지, 따뜻한 운세, 현실적 조언, 사주 리포트 안전 기준, 금전 확언 금지, 연애 확언 금지, 건강 조언 기준, 행동형 주의문, action_tip 기준, 사주 용어 생활 언어화
+
+Version:
+saju-knowledge-policy-v0.1
