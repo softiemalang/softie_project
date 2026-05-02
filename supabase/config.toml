@@ -52,3 +52,7 @@ verify_jwt = false
 
 [functions.saju-evaluator-test]
 verify_jwt = false
+
+[functions.run-saju-evaluation-daily]
+# Automated daily evaluation endpoint protected by SAJU_EVALUATION_CRON_SECRET instead of Supabase Auth
+verify_jwt = false
