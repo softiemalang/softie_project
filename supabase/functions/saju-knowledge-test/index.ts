@@ -681,27 +681,135 @@ function hasWorkActionPhrase(text: string) {
   return /(확인|우선순위|표시|정리해보세요|줄여|보내기 전|숫자|이름)/.test(normalizeWhitespace(text));
 }
 
+function hasMoneyActionPhrase(text: string) {
+  return /(결제|금액|기간|지출|돈의 흐름|확인해보세요|예정된 돈|새 지출)/.test(normalizeWhitespace(text));
+}
+
+function hasRelationshipsActionPhrase(text: string) {
+  return /(바로 답하기보다|문장을 한 번 고르면|다시 읽어보세요|확인 질문|건네보세요|답장은 바로 보내지 말고)/.test(normalizeWhitespace(text));
+}
+
+function hasLoveActionPhrase(text: string) {
+  return /(짧은 안부|가벼운 표현|확답을 서두르기보다|분위기를 살펴보세요|메시지는 바로 보내지 말고|부담 없이 닿을 수 있습니다)/.test(normalizeWhitespace(text));
+}
+
+function hasHealthActionPhrase(text: string) {
+  return /(자극을 조금 줄이고|회복 시간을 먼저 남겨두면|컨디션을 지키는 데 도움이 됩니다|속도를 조금 낮추는 편이 좋아요)/.test(normalizeWhitespace(text));
+}
+
+function hasMindActionPhrase(text: string) {
+  return /(이름 붙여 적어보면|감정을 바로 해결하려 하기보다|생각의 무게가 조금 가벼워질 수 있습니다)/.test(normalizeWhitespace(text));
+}
+
+function isFinalMindBadExampleSentence(text: string) {
+  const normalized = normalizeWhitespace(text);
+  return /나쁜 감정이 올라옵니다/.test(normalized)
+    || /마음이 불안해질 수 있습니다/.test(normalized)
+    || /멘탈이 흔들립니다/.test(normalized)
+    || /우울해질 수 있습니다/.test(normalized)
+    || /마음이 힘든 하루입니다/.test(normalized)
+    || /불안해질 수 있으니 주의하세요/.test(normalized)
+    || /긍정적으로 생각하면 괜찮습니다/.test(normalized)
+    || /다 잘될 것입니다/.test(normalized);
+}
+
+function cleanFinalExampleArtifacts(text: string) {
+  return normalizeWhitespace(text)
+    .replace(/\b(?:예시|예|Example)\s*:\s*/gi, '')
+    .replace(/\b(?:Good|Bad)\s+[^."]*examples?\b:?/gi, '')
+    .replace(/\bAction tip examples?\b:?/gi, '')
+    .replace(/\bRecommended tone\b:?/gi, '')
+    .replace(/\bOutput usage\b:?/gi, '')
+    .replace(/["“”]+/g, '')
+    .replace(/\s{2,}/g, ' ')
+    .trim();
+}
+
+function isFinalCriteriaLeakSentence(text: string) {
+  const normalized = normalizeWhitespace(text);
+  return /(인성|비겁|관성|식상|재성)\s*신호가/.test(normalized)
+    || /(신약|화 과다|금 과다|수 과다|토 과다|목 과다)\s*태그가/.test(normalized)
+    || /\bscore\s*(high|medium|low)\b/i.test(normalized)
+    || /Score guide|Risk interpretation/i.test(normalized)
+    || /(을|를)\s*설명한다/.test(normalized)
+    || /단정하지 않는다|우선한다|제안한다|사용한다|작성한다|참조한다|피한다/.test(normalized)
+    || /^연애운은\s*/.test(normalized)
+    || /오늘 감정을 표현하고/.test(normalized)
+    || /방식의 적합성|결과 확언|상대방의 마음을 직접 단정/.test(normalized)
+    || /When to use|Signals/i.test(normalized);
+}
+
+function repairFinalSentenceBoundaries(text: string) {
+  return normalizeWhitespace(text)
+    .replace(/(좋아요|흐름이에요|편이 좋아요)\s+(결제 전|중요한|오늘은|바로|새\s)/g, '$1. $2')
+    .replace(/(좋아요|흐름이에요|편이 좋아요)\s+(결제|중요한|오늘|바로|새 일을|새 지출)/g, '$1. $2')
+    .replace(/(쉬워요|좋아요|흐름이에요|편이 좋아요)\s+(인성|바로|중요한|상대|오늘)/g, '$1. $2')
+    .replace(/(좋아요|흐름이에요|편이 좋아요|날이에요)\s+(책임감이|자극을|회복|오늘)/g, '$1. $2')
+    .replace(/(좋아요|흐름이에요|편이 좋아요)\s+(나쁜|마음이 불안|멘탈이|우울해질 수|다 잘될)/g, '$1. $2')
+    .replace(/\.\s*\./g, '. ')
+    .replace(/\s{2,}/g, ' ')
+    .trim();
+}
+
 function finalizeDraftForReturn(section: DraftSection | null, answer: string) {
   const polished = polishDraftAnswer(section, answer);
-  if (section !== 'work') {
-    return polished;
+  const cleanedPolished = repairFinalSentenceBoundaries(cleanFinalExampleArtifacts(
+    polished
+      .replace(/(좋아요|흐름이에요|편이 좋아요)\s+(?:예시|예|Example)\s*:/g, '$1. ')
+  ));
+  const cleanedSentences = splitSentences(cleanedPolished)
+    .map((sentence) => repairFinalSentenceBoundaries(cleanFinalExampleArtifacts(sentence)))
+    .map((sentence) => stripTerminalPunctuation(sentence))
+    .filter((sentence) => !isFinalCriteriaLeakSentence(sentence))
+    .filter((sentence) => !(section === 'mind' && isFinalMindBadExampleSentence(sentence)))
+    .filter(Boolean);
+
+  if (section === 'health' && cleanedSentences.length >= 2) {
+    const [first, second] = cleanedSentences;
+    if (sentenceSimilarity(first, second) >= 0.55 || (
+      /책임감/.test(first) && /책임감/.test(second)
+      && /몸/.test(first) && /몸/.test(second)
+      && /무게/.test(first) && /무게/.test(second)
+      && /이어지기/.test(first) && /이어지기/.test(second)
+    )) {
+      cleanedSentences.splice(1, 1);
+    }
   }
 
-  const sentences = splitSentences(polished);
-  if (sentences.length !== 1) {
-    return polished;
+  if (section === 'work' && cleanedSentences.length === 1 && !hasWorkActionPhrase(cleanedSentences[0])) {
+    cleanedSentences.push('중요한 전달이나 숫자는 한 번 더 확인하면 불필요한 피로를 줄일 수 있습니다');
   }
 
-  if (hasWorkActionPhrase(sentences[0])) {
-    return polished;
+  if (section === 'money' && cleanedSentences.length === 1 && !hasMoneyActionPhrase(cleanedSentences[0])) {
+    cleanedSentences.push('결제 전 금액과 기간을 한 번 더 확인해보세요');
   }
 
-  const finalSentences = [
-    stripTerminalPunctuation(sentences[0]),
-    '중요한 전달이나 숫자는 한 번 더 확인하면 불필요한 피로를 줄일 수 있습니다',
-  ].filter(Boolean);
+  if (section === 'relationships' && cleanedSentences.length === 1 && !hasRelationshipsActionPhrase(cleanedSentences[0])) {
+    cleanedSentences.push('바로 답하기보다 문장을 한 번 고르면 불필요한 오해를 줄일 수 있습니다');
+  }
 
-  return `${finalSentences.slice(0, 2).join('. ')}.`;
+  if (section === 'love' && cleanedSentences.length === 1 && !hasLoveActionPhrase(cleanedSentences[0])) {
+    cleanedSentences.push('짧은 안부나 가벼운 표현이 부담 없이 닿을 수 있습니다');
+  }
+
+  if (section === 'health' && (cleanedSentences.length === 1 || !hasHealthActionPhrase(cleanedSentences[cleanedSentences.length - 1]))) {
+    if (!cleanedSentences.some((sentence) => /자극을 조금 줄이고|회복 시간을 먼저 남겨두면/.test(sentence))) {
+      cleanedSentences.splice(1, 1, '자극을 조금 줄이고 회복 시간을 먼저 남겨두면 컨디션을 지키는 데 도움이 됩니다');
+    }
+  }
+
+  if (section === 'mind' && (cleanedSentences.length === 1 || !hasMindActionPhrase(cleanedSentences[cleanedSentences.length - 1]))) {
+    if (!cleanedSentences.some((sentence) => /이름 붙여 적어보면|감정을 바로 해결하려 하기보다/.test(sentence))) {
+      cleanedSentences.splice(1, 1, '감정을 바로 해결하려 하기보다 먼저 이름 붙여 적어보면 생각의 무게가 조금 가벼워질 수 있습니다');
+    }
+  }
+
+  const finalSentences = cleanedSentences.slice(0, 2);
+  if (finalSentences.length === 0) {
+    return '';
+  }
+
+  return `${finalSentences.join('. ')}.`;
 }
 
 function cleanDraftSentence(sentence: string) {
