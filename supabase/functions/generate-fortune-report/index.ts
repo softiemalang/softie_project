@@ -11,6 +11,64 @@ const corsHeaders = {
   'Access-Control-Allow-Methods': 'POST, OPTIONS',
 }
 
+const SECTION_KEYS = ['work', 'money', 'relationships', 'love', 'health', 'mind'] as const
+
+const REPEAT_AXIS_PATTERNS: Record<string, string[]> = {
+  organize: ['정리', '다시 잡', '우선순위', '줄여'],
+  confirm: ['확인', '다시 읽', '살펴', '점검'],
+  slowDown: ['속도', '천천히', '한 박자', '바로'],
+  recovery: ['회복', '쉬', '덜어', '자극'],
+  boundaryRole: ['경계', '역할', '몫', '도움 범위'],
+  emotionExpectation: ['호감', '기대', '확답', '감정 속도', '안부'],
+  bodySense: ['몸', '긴장', '호흡', '리듬', '무게감'],
+  innerOrganizing: ['생각', '이름', '기준', '내면', '적어'],
+}
+
+function sanitizePreview(value: unknown, maxLength = 80) {
+  if (typeof value !== 'string') return null
+  return value.replace(/\s+/g, ' ').trim().slice(0, maxLength)
+}
+
+function shortenErrorMessage(value: unknown, maxLength = 120) {
+  const text = typeof value === 'string'
+    ? value
+    : value instanceof Error
+      ? value.message
+      : String(value ?? 'Unknown error')
+  return text.replace(/\s+/g, ' ').trim().slice(0, maxLength)
+}
+
+function analyzeRepeatAxes(sections: Record<string, unknown> | null | undefined) {
+  if (!sections || typeof sections !== 'object') return {}
+
+  const summary = Object.fromEntries(
+    Object.keys(REPEAT_AXIS_PATTERNS).map((axis) => [axis, { count: 0, sections: [] as string[] }]),
+  ) as Record<string, { count: number; sections: string[] }>
+
+  for (const section of SECTION_KEYS) {
+    const text = typeof sections[section] === 'string' ? sections[section] : ''
+    if (!text) continue
+
+    for (const [axis, patterns] of Object.entries(REPEAT_AXIS_PATTERNS)) {
+      if (patterns.some((pattern) => text.includes(pattern))) {
+        summary[axis].count += 1
+        summary[axis].sections.push(section)
+      }
+    }
+  }
+
+  return Object.fromEntries(
+    Object.entries(summary).filter(([, value]) => value.count > 0),
+  )
+}
+
+function formatRepeatAxisLog(summary: Record<string, { count: number; sections: string[] }>) {
+  const parts = Object.entries(summary).map(
+    ([axis, value]) => `${axis}=${value.count}(${value.sections.join(',')})`,
+  )
+  return parts.join(', ')
+}
+
 function compactComputedData(computedData: any = {}) {
   const compactSignals = Array.isArray(computedData?.signals)
     ? computedData.signals.map((signal: any) => ({
@@ -111,12 +169,30 @@ Deno.serve(async (req) => {
 
     // 0. Saju Knowledge RAG 초안 생성 (활성화 시)
     const ragEnabled = Deno.env.get("SAJU_KNOWLEDGE_RAG_ENABLED") === "true";
+    const ragObservation: {
+      enabled: boolean;
+      successCount: number;
+      failedCount: number;
+      durationMs: number;
+      sections: string[];
+      failedSections: string[];
+      draftPreviews: Record<string, string>;
+      failedMessages: Record<string, string>;
+    } = {
+      enabled: ragEnabled,
+      successCount: 0,
+      failedCount: 0,
+      durationMs: 0,
+      sections: [],
+      failedSections: [],
+      draftPreviews: {},
+      failedMessages: {},
+    }
     let ragDraftsText = "";
 
     if (ragEnabled) {
-      console.log(`[RAG] Draft generation started. profileId: ${profileId || 'anonymous'}`);
       const ragStartTime = Date.now();
-      const sections = ['work', 'money', 'relationships', 'love', 'health', 'mind'];
+      const sections = [...SECTION_KEYS];
       
       const draftPromises = sections.map(section => 
         createSajuKnowledgeDraft({
@@ -134,24 +210,37 @@ Deno.serve(async (req) => {
 
       const draftResults = await Promise.allSettled(draftPromises);
       const successfulDrafts: string[] = [];
-      const failedSections: string[] = [];
 
       draftResults.forEach((res, index) => {
         const section = sections[index];
         if (res.status === 'fulfilled' && res.value && !('error' in res.value) && res.value.answer) {
           successfulDrafts.push(`[${section}] ${res.value.answer}`);
+          ragObservation.sections.push(section);
+          const preview = sanitizePreview(res.value.answer);
+          if (preview) {
+            ragObservation.draftPreviews[section] = preview;
+          }
         } else {
           const errMsg = res.status === 'fulfilled' && res.value && 'error' in res.value 
             ? res.value.error 
             : (res.status === 'rejected' ? res.reason : 'Unknown error');
-          failedSections.push(`${section}(${errMsg})`);
+          ragObservation.failedSections.push(section);
+          ragObservation.failedMessages[section] = shortenErrorMessage(errMsg);
         }
       });
 
       const ragEndTime = Date.now();
-      console.log(`[RAG] Finished. Success: ${successfulDrafts.length}, Failed: ${failedSections.length}, Time: ${ragEndTime - ragStartTime}ms`);
-      if (failedSections.length > 0) {
-        console.warn(`[RAG] Failed sections: ${failedSections.join(', ')}`);
+      ragObservation.successCount = successfulDrafts.length;
+      ragObservation.failedCount = ragObservation.failedSections.length;
+      ragObservation.durationMs = ragEndTime - ragStartTime;
+      console.log(
+        `[RAG] Enabled=${ragObservation.enabled} Success=${ragObservation.successCount} Failed=${ragObservation.failedCount} Time=${ragObservation.durationMs}ms Sections=${ragObservation.sections.join(',') || 'none'}`,
+      );
+      if (ragObservation.failedSections.length > 0) {
+        const failedSummary = ragObservation.failedSections
+          .map((section) => `${section}:${ragObservation.failedMessages[section]}`)
+          .join(', ');
+        console.warn(`[RAG] FailedSections=${failedSummary}`);
       }
 
       if (successfulDrafts.length > 0) {
@@ -366,6 +455,37 @@ Deno.serve(async (req) => {
       }
     } else {
       finalResponse = getFallback('missing-key');
+    }
+
+    try {
+      const repeatAxisSummary = analyzeRepeatAxes(finalResponse?.content?.sections);
+      if (Object.keys(repeatAxisSummary).length > 0) {
+        console.log(`[RepeatAxis] ${formatRepeatAxisLog(repeatAxisSummary)}`);
+      } else {
+        console.log('[RepeatAxis] none');
+      }
+
+      const debug = {
+        ...(finalResponse?.content?.debug && typeof finalResponse.content.debug === 'object'
+          ? finalResponse.content.debug
+          : {}),
+        rag: {
+          enabled: ragObservation.enabled,
+          successCount: ragObservation.successCount,
+          failedCount: ragObservation.failedCount,
+          durationMs: ragObservation.durationMs,
+          sections: ragObservation.sections,
+          failedSections: ragObservation.failedSections,
+          draftPreviews: ragObservation.draftPreviews,
+        },
+        repeatAxisSummary,
+      };
+
+      if (finalResponse?.content && typeof finalResponse.content === 'object') {
+        finalResponse.content.debug = debug;
+      }
+    } catch (observabilityError) {
+      console.warn(`[Observability] Failed: ${shortenErrorMessage(observabilityError)}`);
     }
 
     return new Response(JSON.stringify(finalResponse), {
