@@ -523,6 +523,13 @@ const DRAFT_BANNED_LABEL_PATTERNS = [
   /(연애운|호감|감정 표현)\s*,\s*(안부|고백|연락)?/,
   /(건강운|컨디션|피로)\s*,\s*(몸의 무게감|회복)?/,
   /(마음운|멘탈|감정|불안)\s*,\s*(생각|회복|자기정리)?/,
+  /\bGood\b/i,
+  /\bBad\b/i,
+  /\bAvoid\b/i,
+  /\bRecommended\b/i,
+  /조언:/,
+  /예시:/,
+  /예:/,
 ];
 
 const SECTION_KEYWORDS: Record<DraftSection, { positive: RegExp[]; negative: RegExp[] }> = {
@@ -574,6 +581,7 @@ function normalizeWhitespace(text: unknown) {
 
 function splitSentences(text: string) {
   return normalizeWhitespace(text)
+    .replace(/(좋아요|쉬워요|흐름이에요|날이에요)\s+(오늘은|바로|대화의|머릿속|감정|감정이|상대|도와주기|걱정|답장|연락)/g, '$1. $2')
     .replace(/(좋아요|해요|입니다|습니다|세요|괜찮아요|좋습니다|괜찮습니다|추천해요|추천합니다)\s+(오늘은|오늘|지금|이번에는)/g, '$1. $2')
     .replace(/(좋아요|해요|입니다|습니다|세요|괜찮아요|좋습니다|괜찮습니다|추천해요|추천합니다)\s+(천천히|짧게|먼저|한 번|가볍게|중요한|보내기 전|새 일을|할 일을)/g, '$1. $2')
     .replace(/(?<![.!?])\s+(오늘은|오늘|지금|이번에는)\s+/g, '. $1 ')
@@ -732,9 +740,44 @@ function cleanFinalExampleArtifacts(text: string) {
     .replace(/\bAction tip examples?\b:?/gi, '')
     .replace(/\bRecommended tone\b:?/gi, '')
     .replace(/\bOutput usage\b:?/gi, '')
+    .replace(/\bSearch keywords?\b:?/gi, '')
+    .replace(/\bWhen to use\b:?/gi, '')
+    .replace(/\bSignals\b:?/gi, '')
+    .replace(/\bScore guide\b:?/gi, '')
+    .replace(/\bRisk interpretation\b:?/gi, '')
+    .replace(/\bAvoid\b:?/gi, '')
+    .replace(/조언:/g, '')
+    .replace(/예시:/g, '')
+    .replace(/예:/g, '')
+    .replace(/\b(?:Title|Tags|Version)\s*:\s*/gi, '')
     .replace(/["“”]+/g, '')
     .replace(/\s{2,}/g, ' ')
     .trim();
+}
+
+function isInstructionalMetaSentence(text: string) {
+  const normalized = normalizeWhitespace(text);
+  if (!normalized) {
+    return false;
+  }
+
+  const hasMetaLabel = /Avoid|Recommended|Output usage|Search keywords|When to use|Signals|Score guide|Risk interpretation|Action tip examples|Good .* examples|Bad .* examples|Title:|Tags:|Version:|조언:|예:|예시:/i.test(normalized);
+  const hasMetaPhrase = /직접 강하게 권하는 표현|공포를 유도하는|확언|중심축으로|문장 금지|표현 금지|금지한다|포함한다|사용한다|작성한다|제안한다|우선한다|참조한다|피한다|불안을 예언|감정을 병리화|기존처럼 금지|금지하고|풀어 쓴다|조절 가능한 해석과 행동|사용자용 문장|기준서|규칙문/.test(normalized);
+  const looksLikeRuleSentence = /(을|를)\s*설명한다/.test(normalized)
+    || /단정하지 않는다/.test(normalized)
+    || /오늘 감정을 표현하고/.test(normalized)
+    || /방식의 적합성|결과 확언|상대방의 마음을 직접 단정/.test(normalized)
+    || /마음의 흐름은 조절 가능한 해석과 행동으로 풀어 쓴다/.test(normalized);
+
+  if (hasMetaLabel) {
+    return true;
+  }
+
+  if ((hasMetaPhrase || looksLikeRuleSentence) && !hasAdviceLikeEnding(normalized) && !isConcreteActionSentence(normalized)) {
+    return true;
+  }
+
+  return false;
 }
 
 function isFinalCriteriaLeakSentence(text: string) {
@@ -748,19 +791,137 @@ function isFinalCriteriaLeakSentence(text: string) {
     || /^연애운은\s*/.test(normalized)
     || /오늘 감정을 표현하고/.test(normalized)
     || /방식의 적합성|결과 확언|상대방의 마음을 직접 단정/.test(normalized)
-    || /When to use|Signals/i.test(normalized);
+    || /When to use|Signals/i.test(normalized)
+    || isInstructionalMetaSentence(normalized);
 }
 
 function repairFinalSentenceBoundaries(text: string) {
   return normalizeWhitespace(text)
+    .replace(/(좋아요|쉬워요|흐름이에요|날이에요)\s+(오늘은|바로|대화의|머릿속|감정|감정이|상대|도와주기|걱정|답장|연락)/g, '$1. $2')
     .replace(/(좋아요|흐름이에요|편이 좋아요)\s+(결제 전|중요한|오늘은|바로|새\s)/g, '$1. $2')
     .replace(/(좋아요|흐름이에요|편이 좋아요)\s+(결제|중요한|오늘|바로|새 일을|새 지출)/g, '$1. $2')
-    .replace(/(쉬워요|좋아요|흐름이에요|편이 좋아요)\s+(인성|바로|중요한|상대|오늘)/g, '$1. $2')
+    .replace(/(쉬워요|좋아요|흐름이에요|편이 좋아요)\s+(인성|바로|중요한|상대|오늘|감정이|불안을)/g, '$1. $2')
     .replace(/(좋아요|흐름이에요|편이 좋아요|날이에요)\s+(책임감이|자극을|회복|오늘)/g, '$1. $2')
     .replace(/(좋아요|흐름이에요|편이 좋아요)\s+(나쁜|마음이 불안|멘탈이|우울해질 수|다 잘될)/g, '$1. $2')
     .replace(/\.\s*\./g, '. ')
     .replace(/\s{2,}/g, ' ')
     .trim();
+}
+
+const RELATIONSHIPS_PRIORITY_ACTION_SENTENCES = [
+  '바로 답하기보다 문장을 한 번 고르면 불필요한 오해를 줄일 수 있습니다.',
+  '중요한 답장은 바로 보내지 말고 한 번 다시 읽어보세요.',
+  '도와주기 전에 내가 맡을 수 있는 범위를 한 문장으로 정하세요.',
+  '상대 마음을 짐작하기보다 짧게 확인하는 질문을 남겨보세요.',
+  '오늘은 어디까지 도울지 먼저 정해보세요.',
+];
+
+function extractPriorityRelationshipsAction(text: string) {
+  const normalized = repairFinalSentenceBoundaries(cleanFinalExampleArtifacts(text));
+
+  for (const sentence of RELATIONSHIPS_PRIORITY_ACTION_SENTENCES) {
+    const normalizedSentence = stripTerminalPunctuation(sentence);
+    if (normalized.includes(normalizedSentence)) {
+      return normalizedSentence;
+    }
+  }
+
+  const fallbackPatterns = [
+    /바로 답하기보다 문장을 한 번 고르면 불필요한 오해를 줄일 수 있습니다/,
+    /중요한 답장은 바로 보내지 말고 한 번 다시 읽어보세요/,
+    /도와주기 전에 내가 맡을 수 있는 범위를 한 문장으로 정하세요/,
+    /상대 마음을 짐작하기보다 짧게 확인하는 질문을 남겨보세요/,
+    /오늘은 어디까지 도울지 먼저 정해보세요/,
+  ];
+
+  const matched = fallbackPatterns
+    .map((pattern) => normalized.match(pattern)?.[0] || null)
+    .find(Boolean);
+
+  return matched ? stripTerminalPunctuation(matched) : null;
+}
+
+function selectFinalDraftSentences(section: DraftSection | null, sentences: string[]) {
+  if (sentences.length <= 2) {
+    return sentences;
+  }
+
+  const lead = sentences[0];
+  const rest = sentences.slice(1);
+
+  const preferredSentencePatterns: Partial<Record<DraftSection, RegExp[]>> = {
+    relationships: [
+      /바로 답하기보다 문장을 한 번 고르면/,
+      /불필요한 오해를 줄일 수 있습니다/,
+    ],
+    mind: [
+      /감정을 바로 해결하려 하기보다/,
+      /이름 붙여 적어보면 생각의 무게가 조금 가벼워질 수 있습니다/,
+    ],
+  };
+
+  const sectionActionMatcher = (() => {
+    switch (section) {
+      case 'work':
+        return hasWorkActionPhrase;
+      case 'money':
+        return hasMoneyActionPhrase;
+      case 'relationships':
+        return hasRelationshipsActionPhrase;
+      case 'love':
+        return hasLoveActionPhrase;
+      case 'health':
+        return hasHealthActionPhrase;
+      case 'mind':
+        return hasMindActionPhrase;
+      default:
+        return isConcreteActionSentence;
+    }
+  })();
+
+  const prioritizedBySection = section && preferredSentencePatterns[section]
+    ? rest.find((sentence) => preferredSentencePatterns[section]!.some((pattern) => pattern.test(sentence)))
+    : null;
+
+  if (section === 'relationships') {
+    const scoreRelationshipAction = (sentence: string) => {
+      const normalized = normalizeWhitespace(sentence);
+      let score = 0;
+
+      if (/바로 답하기보다 문장을 한 번 고르면/.test(normalized)) score += 10;
+      if (/불필요한 오해를 줄일 수 있습니다/.test(normalized)) score += 10;
+      if (/중요한 답장은 바로 보내지 말고/.test(normalized)) score += 8;
+      if (/한 번 다시 읽어보세요/.test(normalized)) score += 7;
+      if (/내가 맡을 수 있는 범위/.test(normalized)) score += 6;
+      if (/어디까지 도울지/.test(normalized)) score += 6;
+      if (/짧게 확인하는 질문/.test(normalized)) score += 6;
+
+      if (/대화의 문은 열리기 쉬운/.test(normalized)) score -= 6;
+      if (/더 편안하게 이어질 수 있어요/.test(normalized)) score -= 5;
+      if (/관계의 온도/.test(normalized)) score -= 3;
+      if (/좋은 대화의 가능성/.test(normalized)) score -= 4;
+
+      if (hasRelationshipsActionPhrase(normalized)) score += 3;
+      if (isConcreteActionSentence(normalized)) score += 2;
+
+      return score;
+    };
+
+    const scored = rest
+      .map((sentence) => ({ sentence, score: scoreRelationshipAction(sentence) }))
+      .sort((left, right) => right.score - left.score);
+
+    if (scored.length > 0 && scored[0].score > 0) {
+      return [lead, scored[0].sentence];
+    }
+  }
+
+  const preferredAction = prioritizedBySection
+    || rest.find((sentence) => sectionActionMatcher(sentence))
+    || rest.find((sentence) => isConcreteActionSentence(sentence))
+    || rest[0];
+
+  return preferredAction ? [lead, preferredAction] : [lead];
 }
 
 function finalizeDraftForReturn(section: DraftSection | null, answer: string) {
@@ -773,6 +934,7 @@ function finalizeDraftForReturn(section: DraftSection | null, answer: string) {
     .map((sentence) => repairFinalSentenceBoundaries(cleanFinalExampleArtifacts(sentence)))
     .map((sentence) => stripTerminalPunctuation(sentence))
     .filter((sentence) => !isFinalCriteriaLeakSentence(sentence))
+    .filter((sentence) => !isInstructionalMetaSentence(sentence))
     .filter((sentence) => !(section === 'mind' && isFinalMindBadExampleSentence(sentence)))
     .filter(Boolean);
 
@@ -802,6 +964,22 @@ function finalizeDraftForReturn(section: DraftSection | null, answer: string) {
     cleanedSentences.push('바로 답하기보다 문장을 한 번 고르면 불필요한 오해를 줄일 수 있습니다');
   }
 
+  if (section === 'relationships') {
+    const priorityAction = extractPriorityRelationshipsAction(cleanedPolished);
+    if (priorityAction) {
+      if (cleanedSentences.length === 0) {
+        cleanedSentences.push(SECTION_FALLBACKS.relationships.split('. ')[0].replace(/[.]$/g, ''));
+      }
+      if (cleanedSentences.length === 1) {
+        cleanedSentences.push(priorityAction);
+      } else {
+        cleanedSentences[1] = priorityAction;
+      }
+    } else if (cleanedSentences[1] && /대화의 문은 열리기 쉬운|더 편안하게 이어질 수 있어요|좋은 대화의 가능성/.test(cleanedSentences[1])) {
+      cleanedSentences[1] = '바로 답하기보다 문장을 한 번 고르면 불필요한 오해를 줄일 수 있습니다';
+    }
+  }
+
   if (section === 'love' && cleanedSentences.length === 1 && !hasLoveActionPhrase(cleanedSentences[0])) {
     cleanedSentences.push('짧은 안부나 가벼운 표현이 부담 없이 닿을 수 있습니다');
   }
@@ -818,7 +996,7 @@ function finalizeDraftForReturn(section: DraftSection | null, answer: string) {
     }
   }
 
-  const finalSentences = cleanedSentences.slice(0, 2);
+  const finalSentences = selectFinalDraftSentences(section, cleanedSentences).slice(0, 2);
   if (finalSentences.length === 0) {
     return '';
   }
@@ -837,6 +1015,11 @@ function cleanDraftSentence(sentence: string) {
     .replace(/^["'“”‘’]+|["'“”‘’]+$/g, '')
     .replace(/기준은 다음과 같습니다/g, '')
     .replace(/사용자님/g, '')
+    .replace(/\b(?:Title|Tags|Version)\s*:\s*/gi, '')
+    .replace(/\b(?:When to use|Signals|Score guide|Risk interpretation|Output usage|Search keywords)\b:?/gi, '')
+    .replace(/조언:/g, '')
+    .replace(/예시:/g, '')
+    .replace(/예:/g, '')
     .replace(/[:.]\s*["']?\s*$/g, '')
     .replace(/["']?\s*[:.]\s*$/g, '')
     .replace(/\\+"/g, '')
@@ -873,6 +1056,10 @@ function sectionLabel(section: DraftSection | null) {
 function isAcceptableDraftAnswer(text: string) {
   const normalized = normalizeWhitespace(text);
   if (!normalized || hasDisallowedDraftPattern(normalized) || isMetadataLikeSentence(normalized)) {
+    return false;
+  }
+
+  if (isInstructionalMetaSentence(normalized)) {
     return false;
   }
 
@@ -997,6 +1184,7 @@ function extractCandidateSentences(section: DraftSection, answer: string | null,
         && !hasDisallowedDraftPattern(cleaned)
         && !hasBannedDraftLabel(cleaned)
         && !isMetadataLikeSentence(cleaned)
+        && !isInstructionalMetaSentence(cleaned)
         && !isVagueWarningSentence(cleaned)
         && isSectionCompatible(section, cleaned)
       ) {
@@ -1072,6 +1260,10 @@ function sanitizeActionSentence(section: DraftSection, sentence: string) {
     return null;
   }
 
+  if (isInstructionalMetaSentence(cleaned)) {
+    return null;
+  }
+
   if (isVagueWarningSentence(cleaned)) {
     return null;
   }
@@ -1103,6 +1295,10 @@ function validateDraftAnswer(section: DraftSection, answer: string) {
   }
 
   if (sentences.some((sentence) => isMetadataLikeSentence(sentence))) {
+    return false;
+  }
+
+  if (sentences.some((sentence) => isInstructionalMetaSentence(sentence))) {
     return false;
   }
 
