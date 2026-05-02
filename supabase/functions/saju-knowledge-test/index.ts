@@ -100,17 +100,138 @@ function uniqueStrings(values: unknown[], limit = 20) {
     .slice(0, limit);
 }
 
+function normalizeTagForDraft(tag: unknown) {
+  if (typeof tag !== 'string') {
+    return null;
+  }
+
+  const cleaned = normalizeWhitespace(tag)
+    .replace(/[.。!?！？]+$/g, '')
+    .replace(/\s+/g, ' ')
+    .trim();
+
+  if (!cleaned) {
+    return null;
+  }
+
+  const koreanChars = (cleaned.match(/[가-힣]/g) || []).length;
+  if (koreanChars > 18 || cleaned.length > 30) {
+    return null;
+  }
+
+  if (/[.。!?！？].+/.test(cleaned)) {
+    return null;
+  }
+
+  return cleaned;
+}
+
+function isStableDraftKeyword(tag: string) {
+  return /^(신약|신강|재성|관성|인성|식상|비겁|편재|정재|편관|정관|편인|정인|상관|식신|비견|겁재|토 과다|수 부족|화 강|금 강|목 강|균형|압박|책임|정리|확인|조절|속도|흐름|무게|대화|안부|오해|피로|컨디션|회복|정산|지출|결제|문장|표현|마음|감정|업무운|금전운|관계운|연애운|건강운|마음운|책임감 피로|마감 압박|정확도 우선|재정리 필요|전달 실수|우선순위 정리)$/.test(tag);
+}
+
+function hasSectionMismatchHint(section: DraftSection | null, tag: string) {
+  if (!section) {
+    return false;
+  }
+
+  const sectionKeywords: Record<DraftSection, RegExp> = {
+    work: /금전|연애|관계|건강|마음|감정|안부|호감|회복|피로/,
+    money: /업무|일|마감|보고|관계|연애|건강|마음|감정|안부/,
+    relationships: /업무|일|마감|보고|금전|연애|건강|회복|피로/,
+    love: /업무|일|마감|보고|금전|건강|회복|피로/,
+    health: /업무|일|마감|보고|금전|관계|연애|안부|고백|호감|마음|감정/,
+    mind: /업무|일|마감|보고|금전|연애|관계|건강|회복|피로/,
+  };
+
+  return sectionKeywords[section].test(tag);
+}
+
+function selectDraftComputedTags(computedTags: string[], section: DraftSection | null, limit = 6) {
+  const selected: string[] = [];
+
+  for (const tag of computedTags) {
+    const normalized = normalizeTagForDraft(tag);
+    if (!normalized) {
+      continue;
+    }
+
+    if (!isStableDraftKeyword(normalized)) {
+      continue;
+    }
+
+    if (hasSectionMismatchHint(section, normalized)) {
+      continue;
+    }
+
+    if (selected.some((existing) => sentenceSimilarity(existing, normalized) >= 0.9)) {
+      continue;
+    }
+
+    selected.push(normalized);
+    if (selected.length >= limit) {
+      break;
+    }
+  }
+
+  return selected;
+}
+
+function extractCompactWorkSignals(computedData: any = {}) {
+  const interpretationProfile = computedData?.interpretationProfile || {};
+  const workImpact = computedData?.fieldImpacts?.work || {};
+  const workHints = Array.isArray(interpretationProfile?.fieldReasonHints?.work)
+    ? interpretationProfile.fieldReasonHints.work
+    : [];
+  const dailyKeyPoints = Array.isArray(interpretationProfile?.dailyKeyPoints)
+    ? interpretationProfile.dailyKeyPoints
+    : [];
+  const workSignals = Array.isArray(workImpact?.signals) ? workImpact.signals : [];
+  const workRisks = Array.isArray(workImpact?.risks) ? workImpact.risks : [];
+  const rawValues = [
+    ...workSignals,
+    ...workRisks,
+    ...workHints,
+    ...dailyKeyPoints,
+  ].filter((value) => typeof value === 'string' && value.trim());
+
+  const compactSignals: string[] = [];
+
+  for (const rawValue of rawValues) {
+    const value = normalizeWhitespace(String(rawValue));
+    const candidates = [
+      /책임감 피로/.test(value) ? '책임감 피로' : null,
+      /마감 압박/.test(value) ? '마감 압박' : null,
+      /(정확도 우선|정확도가 중요)/.test(value) ? '정확도 우선' : null,
+      /(재정리 필요|재정리|정리 필요)/.test(value) ? '재정리 필요' : null,
+      /(전달 실수|전달 누락|작은 전달 실수|보고와 전달 과정)/.test(value) ? '전달 실수' : null,
+      /(우선순위 정리|우선순위 재정리|우선순위를 다시)/.test(value) ? '우선순위 정리' : null,
+    ].filter(Boolean) as string[];
+
+    for (const candidate of candidates) {
+      if (!compactSignals.includes(candidate)) {
+        compactSignals.push(candidate);
+      }
+      if (compactSignals.length >= 3) {
+        return compactSignals;
+      }
+    }
+  }
+
+  return compactSignals;
+}
+
 function collectFieldSignals(fieldImpacts: any = {}) {
   const keys = ['work', 'money', 'relationships', 'love', 'health', 'mind'];
   return keys.flatMap((key) => Array.isArray(fieldImpacts?.[key]?.signals) ? fieldImpacts[key].signals : []);
 }
 
-function deriveTagsFromComputedData(computedData: any = {}) {
+function deriveTagsFromComputedData(computedData: any = {}, section: DraftSection | null = null) {
   const interpretationProfile = computedData?.interpretationProfile || {};
   const love = computedData?.love || {};
   const fieldImpacts = computedData?.fieldImpacts || {};
 
-  return uniqueStrings([
+  const rawComputedTags = uniqueStrings([
     interpretationProfile?.primaryTheme,
     interpretationProfile?.secondaryTheme,
     ...(interpretationProfile?.dominantSignals || []),
@@ -119,6 +240,16 @@ function deriveTagsFromComputedData(computedData: any = {}) {
     ...(love?.keySignals || []),
     ...collectFieldSignals(fieldImpacts),
   ]);
+
+  const selectedTags = selectDraftComputedTags(rawComputedTags, section, 6);
+  if (section === 'work') {
+    return uniqueStrings([
+      ...selectedTags,
+      ...extractCompactWorkSignals(computedData),
+    ], 6);
+  }
+
+  return selectedTags;
 }
 
 function normalizeMode(value: unknown): ResponseMode {
@@ -140,16 +271,16 @@ function buildRetrievalQuery(
 ) {
   if (mode === 'draft') {
     const normalizedQuestion = question || (section ? `오늘 ${section} 섹션 초안을 작성해줘` : '오늘 섹션 초안을 작성해줘');
-    return [
-      section ? `[section:${section}]` : '[section:general]',
+    const draftParts = [
+      section ? `section:${section}` : 'section:general',
       normalizedQuestion,
-      '섹션 초안 작성 기준',
       section ? `sections.${section}` : null,
-      section ? `오늘 ${section} 운세 문단` : null,
       targetDate ? `targetDate:${targetDate}` : null,
-      extractedTags.join(' '),
-      '사주 해석 기준 Recommended tone Action tip examples',
-    ].filter(Boolean).join(' ');
+      ...extractedTags.slice(0, 5),
+      '사주 해석 초안 문장 조언 정리',
+    ].filter(Boolean);
+    const query = draftParts.join(' ').replace(/\s+/g, ' ').trim();
+    return query.length > 420 ? query.slice(0, 420).trim() : query;
   }
 
   return [question, targetDate ? `targetDate:${targetDate}` : null, extractedTags.join(' ')].filter(Boolean).join(' | ');
@@ -395,7 +526,7 @@ const DRAFT_BANNED_LABEL_PATTERNS = [
 const SECTION_KEYWORDS: Record<DraftSection, { positive: RegExp[]; negative: RegExp[] }> = {
   work: {
     positive: [/업무운/, /일운/, /업무/, /마감/, /보고/, /책임/, /sections\.work/i],
-    negative: [/금전운/, /지출/, /결제/, /관계운/, /연애운/, /건강운/, /컨디션/, /피로/, /몸의 무게감/, /마음운/, /멘탈/, /sections\.(money|relationships|love|health|mind)/i],
+    negative: [/금전운/, /지출/, /결제/, /관계운/, /연애운/, /건강운/, /컨디션/, /몸의 무게감/, /마음운/, /멘탈/, /sections\.(money|relationships|love|health|mind)/i],
   },
   money: {
     positive: [/금전운/, /돈/, /지출/, /결제/, /계약/, /정산/, /sections\.money/i],
@@ -431,6 +562,9 @@ function normalizeWhitespace(text: string) {
 
 function splitSentences(text: string) {
   return normalizeWhitespace(text)
+    .replace(/(좋아요|해요|입니다|습니다|세요|괜찮아요|좋습니다|괜찮습니다|추천해요|추천합니다)\s+(오늘은|오늘|지금|이번에는)/g, '$1. $2')
+    .replace(/(좋아요|해요|입니다|습니다|세요|괜찮아요|좋습니다|괜찮습니다|추천해요|추천합니다)\s+(천천히|짧게|먼저|한 번|가볍게|중요한|보내기 전|새 일을|할 일을)/g, '$1. $2')
+    .replace(/(?<![.!?])\s+(오늘은|오늘|지금|이번에는)\s+/g, '. $1 ')
     .split(/(?<=[.!?]|[가-힣][요다]\.)\s+/)
     .map((sentence) => sentence.trim())
     .filter(Boolean);
@@ -443,6 +577,10 @@ function stripTerminalPunctuation(text: string) {
 function normalizeSentenceForComparison(sentence: string) {
   return stripTerminalPunctuation(sentence)
     .replace(/[“”"'‘’]/g, '')
+    .replace(/할 일을 넓히기보다/g, '일을 넓히기보다')
+    .replace(/손에 들어온 일을/g, '이미 맡은 것을')
+    .replace(/가볍게 정리/g, '차분히 정리')
+    .replace(/마무리할 일을 먼저 표시/g, '중요한 전달이나 숫자는 한 번 더 확인')
     .replace(/[^\p{L}\p{N}\s가-힣]/gu, ' ')
     .replace(/\s+/g, ' ')
     .trim()
@@ -496,16 +634,32 @@ function pickWorkActionSentence(existing: string[]) {
     || WORK_ACTION_SENTENCES[0];
 }
 
-function polishDraftAnswer(section: DraftSection | null, answer: string) {
-  const rawSentences = splitSentences(answer);
-  const sentences = dedupeSimilarSentences(rawSentences);
+function mergeDraftSentences(section: DraftSection | null, sentences: string[]) {
+  const deduped = dedupeSimilarSentences(sentences);
 
-  if (section === 'work' && sentences.length === 1 && !isConcreteActionSentence(sentences[0])) {
-    sentences.push(pickWorkActionSentence(sentences));
+  if (deduped.length === 0) {
+    return [];
   }
 
+  if (section === 'work' && deduped.length === 1 && !isConcreteActionSentence(deduped[0])) {
+    deduped.push(pickWorkActionSentence(deduped));
+  }
+
+  if (deduped.length >= 2) {
+    const [first, second] = deduped;
+    if (sentenceSimilarity(first, second) >= 0.62 || first.includes(second) || second.includes(first)) {
+      deduped.splice(1, 1);
+    }
+  }
+
+  return deduped.slice(0, 2);
+}
+
+function polishDraftAnswer(section: DraftSection | null, answer: string) {
+  const rawSentences = splitSentences(answer).flatMap((sentence) => splitSentences(cleanDraftSentence(sentence) || sentence));
+  const sentences = mergeDraftSentences(section, rawSentences);
+
   const polished = sentences
-    .slice(0, 2)
     .map((sentence) => stripTerminalPunctuation(sentence))
     .filter(Boolean)
     .join(' ');
@@ -514,7 +668,40 @@ function polishDraftAnswer(section: DraftSection | null, answer: string) {
     return polished;
   }
 
-  return `${polished.replace(/[.!?]+$/g, '').trim()}.`;
+  const normalizedPolished = polished
+    .replace(/\s*오늘은\s+오늘은\s+/g, ' 오늘은 ')
+    .replace(/^오늘은\s+오늘은\s+/g, '오늘은 ')
+    .replace(/\s{2,}/g, ' ')
+    .trim();
+
+  return `${normalizedPolished.replace(/[.!?]+$/g, '').trim()}.`;
+}
+
+function hasWorkActionPhrase(text: string) {
+  return /(확인|우선순위|표시|정리해보세요|줄여|보내기 전|숫자|이름)/.test(normalizeWhitespace(text));
+}
+
+function finalizeDraftForReturn(section: DraftSection | null, answer: string) {
+  const polished = polishDraftAnswer(section, answer);
+  if (section !== 'work') {
+    return polished;
+  }
+
+  const sentences = splitSentences(polished);
+  if (sentences.length !== 1) {
+    return polished;
+  }
+
+  if (hasWorkActionPhrase(sentences[0])) {
+    return polished;
+  }
+
+  const finalSentences = [
+    stripTerminalPunctuation(sentences[0]),
+    '중요한 전달이나 숫자는 한 번 더 확인하면 불필요한 피로를 줄일 수 있습니다',
+  ].filter(Boolean);
+
+  return `${finalSentences.slice(0, 2).join('. ')}.`;
 }
 
 function cleanDraftSentence(sentence: string) {
@@ -533,7 +720,13 @@ function cleanDraftSentence(sentence: string) {
     .replace(/\\+"/g, '')
     .replace(/\s{2,}/g, ' ');
 
-  return normalizeWhitespace(cleaned);
+  cleaned = normalizeWhitespace(cleaned)
+    .replace(/([가-힣0-9])(좋아요|괜찮아요|좋습니다|괜찮습니다|추천해요|추천합니다)\s+(오늘은|오늘|지금|이번에는)/g, '$1$2. $3')
+    .replace(/([가-힣0-9])(좋아요|괜찮아요|좋습니다|괜찮습니다|추천해요|추천합니다)\s+(천천히|짧게|먼저|한 번|가볍게)/g, '$1$2. $3')
+    .replace(/\s{2,}/g, ' ')
+    .trim();
+
+  return cleaned;
 }
 
 function sectionLabel(section: DraftSection | null) {
@@ -720,7 +913,7 @@ function buildSectionLead(section: DraftSection, tags: string[]) {
   switch (section) {
     case 'work':
       if (hasWeakEnergyTag) {
-        return '오늘은 일을 넓히기보다 이미 맡은 것을 가볍게 정리하는 편이 좋아요.';
+        return '오늘은 일을 넓히기보다 이미 맡은 것을 차분히 정리하는 편이 좋아요.';
       }
       return hasPressureTag
         ? '오늘은 책임을 한꺼번에 끌어안기보다 흐름을 나누어 보는 편이 좋아요.'
@@ -828,7 +1021,7 @@ function createDraftAnswer(section: DraftSection | null, tags: string[], vertexA
   }
 
   if (vertexAnswer && isAcceptableDraftAnswer(vertexAnswer)) {
-    const directAnswer = polishDraftAnswer(section, vertexAnswer);
+    const directAnswer = finalizeDraftForReturn(section, vertexAnswer);
     if (validateDraftAnswer(section, directAnswer)) {
       return directAnswer;
     }
@@ -842,12 +1035,12 @@ function createDraftAnswer(section: DraftSection | null, tags: string[], vertexA
     const lead = buildSectionLead(section, tags);
     const leadSentences = splitSentences(lead);
     const actionSentences = splitSentences(sanitizedAction);
-    const draft = polishDraftAnswer(section, [...leadSentences.slice(0, 1), ...actionSentences.slice(0, 1)].join(' '));
+    const draft = finalizeDraftForReturn(section, [...leadSentences.slice(0, 1), ...actionSentences.slice(0, 1)].join(' '));
     if (validateDraftAnswer(section, draft)) {
       return draft;
     }
 
-    const leadOnly = polishDraftAnswer(section, leadSentences.slice(0, 1).join(' '));
+    const leadOnly = finalizeDraftForReturn(section, leadSentences.slice(0, 1).join(' '));
     if (validateDraftAnswer(section, leadOnly)) {
       return leadOnly;
     }
@@ -855,13 +1048,13 @@ function createDraftAnswer(section: DraftSection | null, tags: string[], vertexA
 
   if (section === 'relationships') {
     const relationshipsFallback = buildRelationshipsFallback(tags);
-    const polishedRelationshipsFallback = polishDraftAnswer(section, relationshipsFallback);
+    const polishedRelationshipsFallback = finalizeDraftForReturn(section, relationshipsFallback);
     if (validateDraftAnswer(section, polishedRelationshipsFallback)) {
       return polishedRelationshipsFallback;
     }
   }
 
-  return polishDraftAnswer(section, SECTION_FALLBACKS[section]);
+  return finalizeDraftForReturn(section, SECTION_FALLBACKS[section]);
 }
 
 async function callVertexAiSearchAnswer(query: string) {
@@ -949,10 +1142,11 @@ serve(async (req) => {
         ? `오늘 ${sectionLabel(section)} 섹션 초안을 작성해줘`
         : '사주 해석 기준을 찾아줘';
 
+    const computedTags = deriveTagsFromComputedData(computedData || {}, mode === 'draft' ? section : null);
     const extractedTags = uniqueStrings([
       ...providedTags,
-      ...deriveTagsFromComputedData(computedData || {}),
-    ]);
+      ...computedTags,
+    ], mode === 'draft' ? 8 : 20);
     const retrievalQuery = buildRetrievalQuery(question, extractedTags, targetDate, mode, section);
     const retrievalQueries = retrievalQuery ? [retrievalQuery] : [];
 

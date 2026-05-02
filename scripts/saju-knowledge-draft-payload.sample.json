@@ -1,0 +1,148 @@
+{
+  "mode": "draft",
+  "section": "work",
+  "profileId": null,
+  "targetDate": "2026-05-01",
+  "tags": [
+    "신약",
+    "토 과다",
+    "업무운",
+    "책임감 피로"
+  ],
+  "question": "오늘 업무운 섹션 초안을 작성해줘",
+  "computedData": {
+    "interpretationProfile": {
+      "primaryTheme": "책임이 몰릴수록 속도를 줄여 균형을 잡는 날",
+      "secondaryTheme": "확장보다 정리와 확인이 우선되는 흐름",
+      "dailyKeyPoints": [
+        "할 일을 넓히기보다 이미 맡은 일을 정리하는 편이 유리함",
+        "보고와 전달 과정에서 작은 누락이 피로로 이어질 수 있음",
+        "한 번에 많이 처리하려는 마음보다 우선순위 재정리가 더 도움이 됨"
+      ],
+      "fieldReasonHints": {
+        "work": [
+          "책임과 마감 압박이 겹치면 속도보다 정확도가 중요해짐",
+          "새 일을 늘리기보다 현재 진행 중인 일을 마무리하는 편이 안정적임"
+        ],
+        "money": [
+          "예정된 지출과 고정 비용을 다시 점검하는 태도가 유리함"
+        ],
+        "relationships": [
+          "답변 속도와 표현 강도가 관계의 온도에 영향을 줄 수 있음"
+        ],
+        "love": [
+          "마음을 크게 확인하려 하기보다 부담 없는 안부가 더 자연스러움"
+        ],
+        "health": [
+          "책임감이 쌓이면 몸의 무게감과 피로감으로 이어질 수 있음"
+        ],
+        "mind": [
+          "생각이 앞서 달리면 감정 피로가 커질 수 있어 정리가 필요함"
+        ]
+      },
+      "topRisks": [
+        "책임을 한꺼번에 끌어안으려는 과부하",
+        "작은 전달 실수로 인한 불필요한 재작업",
+        "정리 없이 일을 덧붙이며 피로가 커지는 흐름"
+      ],
+      "topOpportunities": [
+        "우선순위를 다시 나누며 마무리 효율을 높일 기회",
+        "중요한 전달을 한 번 더 확인해 신뢰를 지키는 흐름",
+        "작은 정리만으로 부담을 줄이는 회복 여지"
+      ],
+      "natalProfileSummary": {
+        "stressTriggers": [
+          "역할 경계가 흐려질 때",
+          "한 번에 많은 책임을 떠안을 때",
+          "확인되지 않은 상태로 빠르게 전달해야 할 때"
+        ],
+        "recoveryKeys": [
+          "할 일을 세 가지 이내로 줄여보기",
+          "전달 전 숫자와 이름을 다시 확인하기",
+          "끝낼 일과 미룰 일을 분리해서 적어두기"
+        ]
+      }
+    },
+    "fieldImpacts": {
+      "work": {
+        "score": -0.18,
+        "signals": [
+          "책임감 피로",
+          "마감 압박",
+          "정확도 우선",
+          "재정리 필요"
+        ],
+        "risks": [
+          "과한 확장",
+          "전달 누락",
+          "재작업"
+        ],
+        "adviceType": "prioritize_and_verify"
+      },
+      "money": {
+        "score": -0.05,
+        "signals": [
+          "예정된 지출 점검",
+          "조건 재확인"
+        ],
+        "risks": [
+          "성급한 결제"
+        ],
+        "adviceType": "review_conditions"
+      },
+      "relationships": {
+        "score": -0.08,
+        "signals": [
+          "표현 강도 조절",
+          "답변 속도 관리"
+        ],
+        "risks": [
+          "짧은 말이 차갑게 들릴 수 있음"
+        ],
+        "adviceType": "soften_language"
+      },
+      "love": {
+        "score": 0.04,
+        "signals": [
+          "가벼운 안부",
+          "부담 없는 표현"
+        ],
+        "risks": [
+          "확답을 서두르기"
+        ],
+        "adviceType": "gentle_contact"
+      },
+      "health": {
+        "score": -0.14,
+        "signals": [
+          "몸의 무게감",
+          "회복 필요"
+        ],
+        "risks": [
+          "과속",
+          "피로 누적"
+        ],
+        "adviceType": "lower_stimulation"
+      },
+      "mind": {
+        "score": -0.11,
+        "signals": [
+          "생각 과열",
+          "감정 정리 필요"
+        ],
+        "risks": [
+          "내적 압박"
+        ],
+        "adviceType": "name_and_sort"
+      }
+    },
+    "love": {
+      "summary_hint": "확인보다 온도 조절이 중요한 날",
+      "keySignals": [
+        "부담 없는 안부",
+        "짧은 표현",
+        "확답을 서두르지 않기"
+      ]
+    }
+  }
+}
