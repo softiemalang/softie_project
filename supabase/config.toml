@@ -49,3 +49,6 @@ verify_jwt = false
 [functions.saju-knowledge-test]
 # Internal experimental endpoint for manual RAG testing; protect this before adding any public UI.
 verify_jwt = false
+
+[functions.saju-evaluator-test]
+verify_jwt = false

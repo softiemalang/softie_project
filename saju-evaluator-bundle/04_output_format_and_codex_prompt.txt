@@ -1,0 +1,64 @@
+Title:
+Evaluator 출력 형식 및 Codex 프롬프트 생성 기준
+
+Purpose:
+평가 결과(JSON)의 구조를 정의하고, 문제 발견 시 AI(Codex)에게 수정을 지시하거나 시스템을 업데이트할 때 사용할 프롬프트 생성 규칙을 규정한다.
+
+When to use:
+- 평가 모델이 리포트를 분석한 후 최종 평가 결과를 반환할 때 이 JSON 스키마를 준수해야 한다.
+- issue에 따른 적절한 수정 제안(codexPrompt)을 만들 때 참조한다.
+
+Output Format (JSON Schema):
+```json
+{
+  "overallGrade": "pass | watch | fix",
+  "summary": "짧은 총평",
+  "issues": [
+    {
+      "type": "meta_leak | section_boundary | repetition | forbidden_expression | vague_advice | tone | schema",
+      "section": "headline | basis | summary | work | money | relationships | love | health | mind | cautions | action_tip | overall",
+      "severity": "low | medium | high",
+      "problem": "문제 설명",
+      "evidence": "문제가 된 실제 문장 또는 표현",
+      "suggestion": "수정 방향"
+    }
+  ],
+  "repeatAxis": {
+    "organize": 0,
+    "confirm": 0,
+    "slowDown": 0,
+    "recovery": 0,
+    "boundaryRole": 0,
+    "emotionExpectation": 0,
+    "bodySense": 0,
+    "innerOrganizing": 0
+  },
+  "codexPrompt": "필요할 경우 바로 붙여넣을 수 있는 수정 프롬프트"
+}
+```
+
+Codex Prompt Generation Criteria:
+평가 결과에 따라 시스템을 개선하기 위한 프롬프트를 생성할 때 다음 기준을 따른다.
+
+1. 타겟 파일 제안 최소화:
+   - 수정 대상 파일을 임의로 확정하지 말고, 문제 유형에 따라 "가능한 후보"만 제안한다.
+   - 코드 확인 없이 강제로 변경을 확정하지 않는다.
+
+2. 문제 유형별 파일 후보 매핑:
+   - 기준서 내용 수정/보강이 필요한 경우: `saju-knowledge-bundle/*.txt` 후보를 제안한다.
+   - 데이터 정제(cleanup) 로직이나 포맷 후처리 수정이 필요한 경우: `supabase/functions/_shared/saju-knowledge-logic.ts` 후보를 제안한다.
+   - 최종 리포트 프롬프트 템플릿 수정이 필요한 경우: `supabase/functions/generate-fortune-report/index.ts` 후보를 제안한다.
+
+3. 안전성 원칙:
+   - "작은 변경을 우선한다."
+   - "기존 안정화된 로직을 과하게 바꾸지 않는다."
+
+Pass examples (Codex Prompt Example):
+"현재 리포트에서 relationships와 love 섹션 모두 '속도를 늦추고 조심하세요'가 반복됩니다. 프롬프트를 수정하려면 `supabase/functions/generate-fortune-report/index.ts`에서 각 섹션의 고유 행동축이 강조되도록 템플릿을 확인해주세요. 가이드가 부족하다면 `saju-knowledge-bundle/` 내 기준서를 검토하여 중복 방지 규칙을 강화해주세요."
+
+Watch/Fix examples (Bad Prompt Generation):
+- (Fix) "모든 파일을 뒤져서 중복되는 로직을 찾아 삭제하고 새로 짜세요." (과도하고 위험한 변경 요구)
+- (Fix) "saju-knowledge-logic.ts의 함수를 반드시 이렇게 변경하세요." (확정적 지시)
+
+Suggested action:
+- `issues` 배열을 바탕으로 안전하고 점진적으로 시스템을 개선할 수 있는 방향을 `codexPrompt` 필드에 작성하여 반환한다.
