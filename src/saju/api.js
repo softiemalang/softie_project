@@ -295,6 +295,24 @@ export async function getFortuneReportById(reportId) {
 }
 
 /**
+ * 사주 리포트 평가 로그 조회
+ */
+export async function getSajuReportEvaluations(limit = 20) {
+  if (!supabase) return []
+
+  const { data, error } = await supabase
+    .from('saju_report_evaluations')
+    .select(
+      'id, report_id, report_date, overall_grade, issues, repeat_axis, codex_prompt, retrieved_chunks, warning, model_name, evaluated_at, created_at'
+    )
+    .order('evaluated_at', { ascending: false })
+    .limit(limit)
+
+  if (error) throw error
+  return data || []
+}
+
+/**
  * Edge Function을 통한 LLM 리포트 생성 요청
  */
 export async function requestLlmReport(dailySnapshot) {

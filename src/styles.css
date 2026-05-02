@@ -2373,3 +2373,204 @@ textarea {
   background: rgba(229, 219, 207, 0.4);
   color: #5b4a35;
 }
+
+.saju-evaluation-hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+  margin-top: 1rem;
+}
+
+.saju-evaluation-copy-status {
+  margin-top: 0.75rem;
+}
+
+.saju-evaluation-summary-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 0.85rem;
+  margin-bottom: 1rem;
+}
+
+.saju-evaluation-stat-card strong,
+.saju-evaluation-meta-grid strong,
+.saju-evaluation-repeat-card strong {
+  display: block;
+  margin-top: 0.3rem;
+}
+
+.saju-evaluation-list {
+  display: grid;
+  gap: 0.9rem;
+}
+
+.saju-evaluation-item {
+  overflow: hidden;
+}
+
+.saju-evaluation-item-head,
+.saju-evaluation-item-topline {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.85rem;
+}
+
+.saju-evaluation-item-head {
+  flex-wrap: wrap;
+}
+
+.saju-evaluation-item-main {
+  flex: 1;
+  min-width: 0;
+}
+
+.saju-evaluation-grade {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 32px;
+  padding: 0.35rem 0.8rem;
+  border-radius: var(--radius-pill);
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+
+.saju-evaluation-grade.pass {
+  background: #e4f3ea;
+  color: var(--success);
+}
+
+.saju-evaluation-grade.watch {
+  background: #f7ead9;
+  color: #9a5a17;
+}
+
+.saju-evaluation-grade.fix {
+  background: rgba(176, 22, 70, 0.12);
+  color: #9f2348;
+}
+
+.saju-evaluation-meta-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 0.75rem;
+  margin-top: 0.9rem;
+}
+
+.saju-evaluation-meta-label {
+  display: block;
+  color: var(--muted);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.saju-evaluation-chip-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin-top: 0.75rem;
+}
+
+.saju-evaluation-chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.36rem 0.7rem;
+  border-radius: var(--radius-pill);
+  background: rgba(31, 111, 95, 0.12);
+  color: var(--brand);
+  font-size: 0.84rem;
+  font-weight: 600;
+}
+
+.saju-evaluation-chip.soft {
+  background: #f2e9de;
+  color: #6a5845;
+}
+
+.saju-evaluation-detail {
+  display: grid;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.saju-evaluation-issue-list {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.saju-evaluation-issue {
+  padding: 0.95rem 1rem;
+  border-radius: var(--radius-item);
+  background: var(--surface-strong);
+  border: 1px solid var(--line);
+}
+
+.saju-evaluation-issue-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin-bottom: 0.6rem;
+}
+
+.saju-evaluation-issue p {
+  margin: 0.38rem 0 0;
+  line-height: 1.55;
+}
+
+.saju-evaluation-repeat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 0.7rem;
+}
+
+.saju-evaluation-repeat-card {
+  padding: 0.85rem 0.9rem;
+  border-radius: var(--radius-item);
+  background: #fcf8f2;
+  border: 1px solid var(--line);
+}
+
+.saju-evaluation-copy-block {
+  padding: 0.95rem 1rem;
+  border-radius: var(--radius-item);
+  background: rgba(255, 253, 249, 0.92);
+  border: 1px solid var(--line);
+}
+
+.saju-evaluation-copy-block summary {
+  cursor: pointer;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.saju-evaluation-copy-block pre {
+  margin: 0.7rem 0 0;
+  white-space: pre-wrap;
+  word-break: break-word;
+  overflow-x: auto;
+  font-size: 0.92rem;
+  line-height: 1.5;
+  color: #43362a;
+}
+
+@media (max-width: 640px) {
+  .saju-evaluation-item-head,
+  .saju-evaluation-item-topline {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .saju-evaluation-item-head > button,
+  .saju-evaluation-hero-actions > button {
+    width: 100%;
+  }
+
+  .saju-evaluation-summary-grid,
+  .saju-evaluation-meta-grid,
+  .saju-evaluation-repeat-grid {
+    grid-template-columns: 1fr;
+  }
+}

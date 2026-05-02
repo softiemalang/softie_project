@@ -47,6 +47,12 @@ export default function HomePage() {
       label: 'FORTUNE',
     },
     {
+      description: '자동 평가된 사주 리포트 품질 로그를 확인하고 개선 포인트를 정리해요.',
+      path: '/saju-evaluations',
+      icon: '🧾',
+      label: 'SAJU QA',
+    },
+    {
       description: '근무 일정 관리와 실시간 푸시 알림으로 꼼꼼하게 관리하세요.',
       path: '/scheduler',
       icon: '⏰',
