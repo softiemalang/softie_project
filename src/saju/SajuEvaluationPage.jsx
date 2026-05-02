@@ -196,13 +196,15 @@ export default function SajuEvaluationPage() {
         <section className="saju-evaluation-list" aria-live="polite">
           <article className="card saju-evaluation-empty-card">
             <p className="subtle">
-              매일 00:05에 전날 생성된 신규 리포트가 있으면 이곳에 결과가 쌓여요.
+              전날 생성된 신규 리포트가 있으면
+              <br />
+              매일 00:05에 평가 결과가 쌓여요.
             </p>
             <p className="subtle">
               이미 평가된 리포트는 중복 평가하지 않아요.
             </p>
             <button type="button" className="soft-button saju-evaluation-empty-button" onClick={() => navigate('/fortune')}>
-              운세 페이지로 이동
+              운세 페이지 열기
             </button>
           </article>
         </section>
