@@ -2441,13 +2441,13 @@ textarea {
   padding: 1.05rem 1.05rem;
 }
 
-.saju-evaluation-empty-card h2 {
-  margin: 0.35rem 0 0;
-  font-size: 1.25rem;
+.saju-evaluation-empty-card .subtle {
+  margin-top: 0;
+  line-height: 1.55;
 }
 
-.saju-evaluation-empty-card .subtle {
-  line-height: 1.55;
+.saju-evaluation-empty-card .subtle + .subtle {
+  margin-top: 0.45rem;
 }
 
 .saju-evaluation-empty-button {

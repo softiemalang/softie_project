@@ -161,7 +161,6 @@ export default function SajuEvaluationPage() {
     <div className="app-shell">
       <header className="hero">
         <p className="eyebrow">SAJU EVALUATOR</p>
-        <h1>평가 로그</h1>
         <p className="subtle">
           매일 자동 평가된 사주 리포트 품질을 확인하고, 개선 포인트를 정리해요.
         </p>
@@ -196,7 +195,6 @@ export default function SajuEvaluationPage() {
       {!isLoading && !errorMessage && !hasEvaluations ? (
         <section className="saju-evaluation-list" aria-live="polite">
           <article className="card saju-evaluation-empty-card">
-            <h2>아직 쌓인 평가가 없어요.</h2>
             <p className="subtle">
               매일 00:05에 전날 생성된 신규 리포트가 있으면 이곳에 결과가 쌓여요.
             </p>
