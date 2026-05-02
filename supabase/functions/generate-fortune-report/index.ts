@@ -1,3 +1,5 @@
+import { createSajuKnowledgeDraft } from "../_shared/saju-knowledge-logic.ts";
+
 /*
  * NOTE: 이 함수는 public/local_key 기반 운세 페이지에서 호출되므로 
  * Supabase Auth 도입 전까지 verify_jwt=false를 유지합니다. 
@@ -104,7 +106,44 @@ Deno.serve(async (req) => {
   }
 
   try {
-    const { computedData, targetDate } = await req.json()
+    const { computedData, targetDate, profileId } = await req.json()
+
+    // 0. Saju Knowledge RAG 초안 생성 (활성화 시)
+    const ragEnabled = Deno.env.get("SAJU_KNOWLEDGE_RAG_ENABLED") === "true";
+    let ragDraftsText = "";
+
+    if (ragEnabled) {
+      const sections = ['work', 'money', 'relationships', 'love', 'health', 'mind'];
+      const draftPromises = sections.map(section => 
+        createSajuKnowledgeDraft({
+          mode: "draft",
+          section: section as any,
+          profileId: profileId || computedData?.profileId,
+          targetDate: targetDate ?? computedData?.targetDate ?? computedData?.target_date ?? null,
+          computedData,
+          tags: [],
+          question: `오늘 ${section} 섹션 초안을 작성해줘`
+        }).catch(err => {
+          console.warn(`RAG draft generation failed for ${section}:`, err);
+          return null;
+        })
+      );
+
+      const draftResults = await Promise.allSettled(draftPromises);
+      const successfulDrafts = draftResults
+        .map((res, index) => {
+          if (res.status === 'fulfilled' && res.value && res.value.answer) {
+            return `[${sections[index]}] ${res.value.answer}`;
+          }
+          return null;
+        })
+        .filter(Boolean);
+
+      if (successfulDrafts.length > 0) {
+        ragDraftsText = "\n\n[Saju Knowledge RAG 참고 초안]\n" + successfulDrafts.join("\n");
+        console.log(`RAG drafts: ${successfulDrafts.length} sections generated.`);
+      }
+    }
 
     // 1. 프롬프트 구성 (콤팩트한 JSON 데이터 활용)
     const systemPrompt = `당신은 사주 엔진 신호를 따뜻하고 생활감 있는 오늘의 리포트로 다듬는 편집자입니다.
@@ -121,6 +160,11 @@ Deno.serve(async (req) => {
 7. branchRelations
 8. love.summary_hint
 입력 힌트가 있으면 일반적인 위로나 건강 앱 문장으로 흐리지 마세요.
+
+[RAG 참고 자료 활용 규칙]
+- 제공된 "Saju Knowledge RAG 참고 초안"은 지식 베이스에서 추출된 좋은 표현들입니다.
+- RAG 초안은 참고용입니다. 그대로 복사하지 말고, 위의 [우선 근거] 데이터와 결합하여 자연스럽게 다듬으세요.
+- 만약 RAG 초안의 내용이 interpretationProfile이나 fieldImpacts의 신호(score, risks 등)와 충돌한다면, 반드시 엔진 신호를 우선하세요.
 
 [출력 규칙]
 - headline: 짧은 한국어 제목 1문장. summary를 반복하지 마세요.
@@ -170,7 +214,7 @@ Deno.serve(async (req) => {
         ...computedData,
         targetDate: targetDate ?? computedData?.targetDate ?? computedData?.target_date ?? null,
       }),
-    );
+    ) + ragDraftsText;
 
     const openaiApiKey = Deno.env.get("OPENAI_API_KEY")
     const modelName = Deno.env.get("OPENAI_FORTUNE_MODEL") || "gpt-5-mini"
