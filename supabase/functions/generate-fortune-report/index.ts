@@ -105,6 +105,7 @@ Deno.serve(async (req) => {
     return new Response('ok', { headers: corsHeaders })
   }
 
+  const startTime = Date.now();
   try {
     const { computedData, targetDate, profileId } = await req.json()
 
@@ -113,7 +114,10 @@ Deno.serve(async (req) => {
     let ragDraftsText = "";
 
     if (ragEnabled) {
+      console.log(`[RAG] Draft generation started. profileId: ${profileId || 'anonymous'}`);
+      const ragStartTime = Date.now();
       const sections = ['work', 'money', 'relationships', 'love', 'health', 'mind'];
+      
       const draftPromises = sections.map(section => 
         createSajuKnowledgeDraft({
           mode: "draft",
@@ -124,25 +128,37 @@ Deno.serve(async (req) => {
           tags: [],
           question: `오늘 ${section} 섹션 초안을 작성해줘`
         }).catch(err => {
-          console.warn(`RAG draft generation failed for ${section}:`, err);
-          return null;
+          return { error: err.message || String(err), section };
         })
       );
 
       const draftResults = await Promise.allSettled(draftPromises);
-      const successfulDrafts = draftResults
-        .map((res, index) => {
-          if (res.status === 'fulfilled' && res.value && res.value.answer) {
-            return `[${sections[index]}] ${res.value.answer}`;
-          }
-          return null;
-        })
-        .filter(Boolean);
+      const successfulDrafts: string[] = [];
+      const failedSections: string[] = [];
+
+      draftResults.forEach((res, index) => {
+        const section = sections[index];
+        if (res.status === 'fulfilled' && res.value && !('error' in res.value) && res.value.answer) {
+          successfulDrafts.push(`[${section}] ${res.value.answer}`);
+        } else {
+          const errMsg = res.status === 'fulfilled' && res.value && 'error' in res.value 
+            ? res.value.error 
+            : (res.status === 'rejected' ? res.reason : 'Unknown error');
+          failedSections.push(`${section}(${errMsg})`);
+        }
+      });
+
+      const ragEndTime = Date.now();
+      console.log(`[RAG] Finished. Success: ${successfulDrafts.length}, Failed: ${failedSections.length}, Time: ${ragEndTime - ragStartTime}ms`);
+      if (failedSections.length > 0) {
+        console.warn(`[RAG] Failed sections: ${failedSections.join(', ')}`);
+      }
 
       if (successfulDrafts.length > 0) {
         ragDraftsText = "\n\n[Saju Knowledge RAG 참고 초안]\n" + successfulDrafts.join("\n");
-        console.log(`RAG drafts: ${successfulDrafts.length} sections generated.`);
       }
+    } else {
+      console.log("[RAG] Disabled.");
     }
 
     // 1. 프롬프트 구성 (콤팩트한 JSON 데이터 활용)
@@ -357,9 +373,12 @@ Deno.serve(async (req) => {
     })
 
   } catch (error) {
+    console.error(`[Error] Execution failed. profileId: ${profileId || 'unknown'}, Time: ${Date.now() - startTime}ms. Error:`, error.message);
     return new Response(JSON.stringify({ error: error.message }), {
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },
       status: 400,
     })
+  } finally {
+    console.log(`[Total] Fortune report generation finished. Time: ${Date.now() - startTime}ms`);
   }
 })
