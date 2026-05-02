@@ -130,9 +130,6 @@ serve(async (req) => {
       warnings.push(`Snippet retrieval failed: ${e.message.slice(0, 100)}`);
     }
 
-    const evaluationIds: string[] = [];
-    const reportIds: string[] = [];
-
     // Evaluate each report
     for (const report of pendingReports) {
       try {
@@ -145,7 +142,7 @@ serve(async (req) => {
         // Save to saju_report_evaluations
         const modelName = Deno.env.get("OPENAI_FORTUNE_MODEL") || "gpt-5-mini";
         
-        const { data: savedData, error: saveError } = await supabase
+        const { error: saveError } = await supabase
           .from("saju_report_evaluations")
           .upsert({
             report_id: report.id,
@@ -158,19 +155,13 @@ serve(async (req) => {
             warning: null,
             model_name: modelName,
             evaluated_at: new Date().toISOString()
-          }, { onConflict: "report_id" })
-          .select("id")
-          .single();
+          }, { onConflict: "report_id" });
 
         if (saveError) {
           console.error(`[RunSajuEvaluationDaily] DB Save failed for report_id=${report.id}`, saveError.message);
           warnings.push(`DB Save failed for report_id=${report.id}: ${saveError.message}`);
         } else {
           savedEvaluations++;
-          if (savedData) {
-             evaluationIds.push(savedData.id);
-             reportIds.push(report.id);
-          }
         }
       } catch (err: any) {
         console.error(`[RunSajuEvaluationDaily] Evaluation failed for report_id=${report.id}`, err.message);
@@ -181,104 +172,6 @@ serve(async (req) => {
     let batchCreated = false;
     let batchId = null;
     let summaryData: any = {};
-
-    // Analyze top 5 recent evaluations
-    if (savedEvaluations > 0) {
-      const { data: recentEvals, error: recentError } = await supabase
-        .from("saju_report_evaluations")
-        .select("overall_grade, issues, repeat_axis")
-        .order("evaluated_at", { ascending: false })
-        .limit(5);
-
-      if (recentError) {
-        warnings.push(`Failed to fetch recent evaluations for batch summary: ${recentError.message}`);
-      } else if (recentEvals && recentEvals.length > 0) {
-        const overallGrades = { pass: 0, watch: 0, fix: 0 };
-        const issueTypeCount: Record<string, number> = {};
-        const sectionCount: Record<string, number> = {};
-        const repeatAxisTotals: Record<string, number> = {
-          organize: 0, confirm: 0, slowDown: 0, recovery: 0, boundaryRole: 0, emotionExpectation: 0, bodySense: 0, innerOrganizing: 0
-        };
-
-        for (const ev of recentEvals) {
-          if (ev.overall_grade in overallGrades) {
-            overallGrades[ev.overall_grade as keyof typeof overallGrades] += 1;
-          }
-          
-          if (Array.isArray(ev.issues)) {
-            for (const issue of ev.issues) {
-              if (issue.type) issueTypeCount[issue.type] = (issueTypeCount[issue.type] || 0) + 1;
-              if (issue.section) sectionCount[issue.section] = (sectionCount[issue.section] || 0) + 1;
-            }
-          }
-
-          if (ev.repeat_axis) {
-            for (const [k, v] of Object.entries(ev.repeat_axis)) {
-              if (typeof v === "number" && k in repeatAxisTotals) {
-                 repeatAxisTotals[k] += v;
-              }
-            }
-          }
-        }
-
-        const topIssueTypes = Object.entries(issueTypeCount)
-          .map(([type, count]) => ({ type, count }))
-          .sort((a, b) => b.count - a.count);
-
-        const topSections = Object.entries(sectionCount)
-          .map(([section, count]) => ({ section, count }))
-          .sort((a, b) => b.count - a.count);
-
-        let summaryText = "";
-        let recommendedNextAction = "";
-
-        const mostCommonIssue = topIssueTypes[0]?.type;
-        if (mostCommonIssue) {
-           summaryText = `최근 5개 리포트에서 ${mostCommonIssue} 문제가 가장 많이 발생했습니다.`;
-           if (mostCommonIssue === "vague_advice") {
-             recommendedNextAction = "cautions와 action_tip 생성 규칙을 먼저 점검하세요.";
-           } else if (mostCommonIssue === "repetition") {
-             recommendedNextAction = "반복 행동축 분산을 권장합니다.";
-           } else if (mostCommonIssue === "section_boundary") {
-             recommendedNextAction = "saju-knowledge-bundle 섹션 기준서 보강을 권장합니다.";
-           } else if (mostCommonIssue === "forbidden_expression" || mostCommonIssue === "meta_leak") {
-             recommendedNextAction = "금지 표현 필터 및 프롬프트 강화가 필요합니다.";
-           } else {
-             recommendedNextAction = "해당 이슈 유형에 대한 세부 분석이 필요합니다.";
-           }
-        } else {
-           summaryText = "최근 5개 리포트에서 주요 이슈가 발견되지 않았습니다.";
-           recommendedNextAction = "현재 상태를 유지하세요.";
-        }
-
-        summaryData = {
-          overallGrades,
-          topIssueTypes,
-          topSections,
-          repeatAxisTotals,
-          summaryText,
-          recommendedNextAction
-        };
-
-        const { data: batchData, error: batchError } = await supabase
-          .from("saju_evaluation_batches")
-          .insert({
-            batch_date: targetDate,
-            report_ids: reportIds,
-            evaluation_ids: evaluationIds,
-            summary: summaryData
-          })
-          .select("id")
-          .single();
-
-        if (batchError) {
-           warnings.push(`Batch creation failed: ${batchError.message}`);
-        } else {
-           batchCreated = true;
-           if (batchData) batchId = batchData.id;
-        }
-      }
-    }
 
     return new Response(JSON.stringify({
       runId,
