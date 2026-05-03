@@ -12,6 +12,8 @@ const corsHeaders = {
 }
 
 const SECTION_KEYS = ['work', 'money', 'relationships', 'love', 'health', 'mind'] as const
+const GOOGLE_OAUTH_SCOPE = 'https://www.googleapis.com/auth/cloud-platform';
+const GOOGLE_TOKEN_ENDPOINT = 'https://oauth2.googleapis.com/token';
 
 const REPEAT_AXIS_PATTERNS: Record<string, string[]> = {
   organize: ['정리', '다시 잡', '우선순위', '줄여'],
@@ -27,6 +29,88 @@ const REPEAT_AXIS_PATTERNS: Record<string, string[]> = {
 function sanitizePreview(value: unknown, maxLength = 80) {
   if (typeof value !== 'string') return null
   return value.replace(/\s+/g, ' ').trim().slice(0, maxLength)
+}
+
+function base64UrlEncode(bytes: Uint8Array) {
+  let binary = '';
+  for (const byte of bytes) {
+    binary += String.fromCharCode(byte);
+  }
+  return btoa(binary).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/g, '');
+}
+
+function pemToArrayBuffer(pem: string) {
+  const base64 = pem
+    .replace(/-----BEGIN PRIVATE KEY-----/g, '')
+    .replace(/-----END PRIVATE KEY-----/g, '')
+    .replace(/\s+/g, '');
+
+  const binary = atob(base64);
+  const bytes = new Uint8Array(binary.length);
+  for (let i = 0; i < binary.length; i += 1) {
+    bytes[i] = binary.charCodeAt(i);
+  }
+  return bytes.buffer;
+}
+
+async function createGoogleAccessToken(serviceAccountEmail: string, privateKey: string) {
+  const now = Math.floor(Date.now() / 1000);
+  const encoder = new TextEncoder();
+  const header = { alg: 'RS256', typ: 'JWT' };
+  const payload = {
+    iss: serviceAccountEmail,
+    scope: GOOGLE_OAUTH_SCOPE,
+    aud: GOOGLE_TOKEN_ENDPOINT,
+    exp: now + 3600,
+    iat: now,
+  };
+
+  const encodedHeader = base64UrlEncode(encoder.encode(JSON.stringify(header)));
+  const encodedPayload = base64UrlEncode(encoder.encode(JSON.stringify(payload)));
+  const unsignedJwt = `${encodedHeader}.${encodedPayload}`;
+
+  const cryptoKey = await crypto.subtle.importKey(
+    'pkcs8',
+    pemToArrayBuffer(privateKey),
+    {
+      name: 'RSASSA-PKCS1-v1_5',
+      hash: 'SHA-256',
+    },
+    false,
+    ['sign']
+  );
+
+  const signature = await crypto.subtle.sign(
+    'RSASSA-PKCS1-v1_5',
+    cryptoKey,
+    encoder.encode(unsignedJwt)
+  );
+  const signedJwt = `${unsignedJwt}.${base64UrlEncode(new Uint8Array(signature))}`;
+
+  const tokenResponse = await fetch(GOOGLE_TOKEN_ENDPOINT, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    body: new URLSearchParams({
+      grant_type: 'urn:ietf:params:oauth:grant-type:jwt-bearer',
+      assertion: signedJwt,
+    }),
+  });
+
+  if (!tokenResponse.ok) {
+    const preview = (await tokenResponse.text()).slice(0, 500);
+    console.error('Google OAuth token request failed', {
+      status: tokenResponse.status,
+      preview,
+    });
+    throw new Error('Failed to create Google OAuth token.');
+  }
+
+  const tokenData = await tokenResponse.json();
+  if (!tokenData.access_token) {
+    throw new Error('Google OAuth token response did not include an access token.');
+  }
+
+  return tokenData.access_token as string;
 }
 
 function shortenErrorMessage(value: unknown, maxLength = 120) {
@@ -196,6 +280,231 @@ function compactPersonalContext(personalContext: any = null) {
   }
 }
 
+function normalizeText(value: unknown, maxLength = 140) {
+  if (typeof value !== 'string') return null
+  const normalized = value
+    .replace(/\s+/g, ' ')
+    .replace(/[•▪◦●·]+/g, ' ')
+    .trim()
+    .slice(0, maxLength)
+  return normalized || null
+}
+
+function containsBirthDetail(text: string) {
+  return (
+    /\b(19|20)\d{2}[-./년]\s?\d{1,2}[-./월]\s?\d{1,2}/.test(text) ||
+    /\b\d{1,2}:\d{2}\b/.test(text) ||
+    /(생년월일|출생|태어난 시간|birth|birthday|birth date|birth time)/i.test(text)
+  )
+}
+
+function similarityKey(text: string) {
+  return text
+    .toLowerCase()
+    .replace(/[^\p{L}\p{N}\s]/gu, ' ')
+    .replace(/\s+/g, ' ')
+    .trim()
+}
+
+function dedupePersonalReferenceLines(lines: string[]) {
+  const seen = new Set<string>()
+  const deduped: string[] = []
+
+  for (const line of lines) {
+    const key = similarityKey(line)
+    if (!key || seen.has(key)) continue
+    seen.add(key)
+    deduped.push(line)
+  }
+
+  return deduped
+}
+
+function compactRetrievedPersonalChunks(rawValues: unknown[]) {
+  const compacted = rawValues
+    .map((value) => normalizeText(value, 140))
+    .filter((value): value is string => Boolean(value))
+    .filter((value) => !containsBirthDetail(value))
+
+  return dedupePersonalReferenceLines(compacted).slice(0, 5)
+}
+
+function buildSoftiePersonalQueries(computedData: any = {}, personalContext: any = null) {
+  const primarySections = Array.isArray(computedData?.sectionPriority?.primary)
+    ? computedData.sectionPriority.primary
+    : []
+  const recoveryLevel = String(computedData?.dailyBalance?.recoveryLevel || '').toLowerCase()
+  const queries = ['오늘의 운세 작성 기준 softie fortune']
+
+  if (primarySections.includes('relationships') || primarySections.includes('love')) {
+    queries.push('관계 기준 말의 온도 안정감 부담감')
+  }
+  if (primarySections.includes('money')) {
+    queries.push('돈 기반감 숨통 남는 부담')
+  }
+  if (primarySections.includes('work')) {
+    queries.push('FOH 직업운 환경 적합도 재량 조율')
+  }
+  if (primarySections.includes('health') || recoveryLevel === 'high') {
+    queries.push('건강 회복 루틴 몸의 무게감 긴장 회복 시간')
+  }
+  if (queries.length === 1) {
+    queries.push('원국 고정축 압 체감형 계수 금수 보완')
+  }
+
+  const fallbackHint = typeof personalContext?.compactHints?.[0] === 'string'
+    ? normalizeText(personalContext.compactHints[0], 100)
+    : null
+  if (queries.length < 3 && fallbackHint) {
+    queries.push(`softie 개인 해석 기준 ${fallbackHint}`)
+  }
+
+  return dedupePersonalReferenceLines(queries.map((query) => normalizeText(query, 120)).filter((value): value is string => Boolean(value))).slice(0, 4)
+}
+
+function extractPersonalReferenceSnippets(payload: any) {
+  const candidates: unknown[] = [
+    ...(Array.isArray(payload?.answer?.citations) ? payload.answer.citations.flatMap((citation: any) => [
+      citation?.source?.content,
+      citation?.source?.snippet,
+      citation?.source?.title,
+    ]) : []),
+    ...(Array.isArray(payload?.searchResults) ? payload.searchResults.flatMap((result: any) => [
+      result?.document?.derivedStructData?.snippets?.join(' '),
+      result?.document?.derivedStructData?.extractive_answers?.map((item: any) => item?.content)?.join(' '),
+      result?.document?.derivedStructData?.extractive_segments?.map((item: any) => item?.content)?.join(' '),
+      result?.document?.derivedStructData?.link,
+      result?.document?.structData?.content,
+      result?.document?.content,
+      result?.snippet,
+      result?.chunk?.content,
+      result?.chunkInfo?.content,
+    ]) : []),
+    payload?.answer?.answerText,
+    payload?.answerText,
+  ]
+
+  return compactRetrievedPersonalChunks(candidates)
+}
+
+async function callSoftiePersonalSearch(query: string) {
+  const projectId = Deno.env.get('GOOGLE_CLOUD_PROJECT_ID')
+  const location = Deno.env.get('GOOGLE_CLOUD_LOCATION') || 'global'
+  const appId = Deno.env.get('SOFTIE_PERSONAL_SEARCH_APP_ID')
+  const servingConfig = 'default_search'
+  const serviceAccountEmail = Deno.env.get('GOOGLE_SERVICE_ACCOUNT_EMAIL')
+  const privateKey = Deno.env.get('GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY')?.replace(/\\n/g, '\n')
+
+  if (!projectId || !appId || !serviceAccountEmail || !privateKey) {
+    throw new Error('missing-config')
+  }
+
+  const accessToken = await createGoogleAccessToken(serviceAccountEmail, privateKey)
+  const endpoint = `https://discoveryengine.googleapis.com/v1/projects/${projectId}/locations/${location}/collections/default_collection/engines/${appId}/servingConfigs/${servingConfig}:answer`
+
+  const response = await fetch(endpoint, {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${accessToken}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      query: {
+        text: query,
+      },
+      answerGenerationSpec: {
+        includeCitations: true,
+      },
+    }),
+  })
+
+  if (!response.ok) {
+    const preview = (await response.text()).slice(0, 1000)
+    console.warn('Softie personal Vertex request failed', {
+      status: response.status,
+      preview,
+    })
+    throw new Error(`request-failed:${response.status}`)
+  }
+
+  return await response.json()
+}
+
+async function createSoftiePersonalReferenceDraft(args: {
+  computedData?: any;
+  targetDate?: string | null;
+  personalContext?: any;
+}) {
+  const ragEnabled = Deno.env.get('SOFTIE_PERSONAL_RAG_ENABLED') === 'true'
+  const searchAppId = Deno.env.get('SOFTIE_PERSONAL_SEARCH_APP_ID')
+  const searchDatastoreId = Deno.env.get('SOFTIE_PERSONAL_SEARCH_DATASTORE_ID')
+
+  if (!ragEnabled) {
+    console.log('[SoftiePersonalRAG] disabled: feature flag off')
+    return { enabled: false, success: false, reason: 'disabled', queryCount: 0, snippets: [] }
+  }
+
+  if (args.personalContext?.mode !== 'softie-fortune') {
+    return { enabled: false, success: false, reason: 'not-softie-mode', queryCount: 0, snippets: [] }
+  }
+
+  if (!Deno.env.get('GOOGLE_CLOUD_PROJECT_ID') || !searchAppId) {
+    console.log('[SoftiePersonalRAG] disabled: missing config', {
+      hasProjectId: Boolean(Deno.env.get('GOOGLE_CLOUD_PROJECT_ID')),
+      hasSearchAppId: Boolean(searchAppId),
+      hasSearchDatastoreId: Boolean(searchDatastoreId),
+    })
+    return { enabled: false, success: false, reason: 'missing-config', queryCount: 0, snippets: [] }
+  }
+
+  const queries = buildSoftiePersonalQueries(args.computedData || {}, args.personalContext)
+  if (queries.length === 0) {
+    return { enabled: true, success: false, reason: 'no-queries', queryCount: 0, snippets: [] }
+  }
+
+  try {
+    const payloads = await Promise.all(
+      queries.map((query) => callSoftiePersonalSearch(query).catch((error) => ({ __error: error, query })))
+    )
+
+    const snippets = compactRetrievedPersonalChunks(
+      payloads.flatMap((payload: any) => {
+        if (payload?.__error) return []
+        return extractPersonalReferenceSnippets(payload)
+      })
+    )
+
+    const hadErrors = payloads.some((payload: any) => payload?.__error)
+    if (snippets.length === 0) {
+      return {
+        enabled: true,
+        success: false,
+        reason: hadErrors ? 'request-failed' : 'no-snippets',
+        queryCount: queries.length,
+        snippets: [],
+      }
+    }
+
+    return {
+      enabled: true,
+      success: true,
+      reason: hadErrors ? 'partial-success' : null,
+      queryCount: queries.length,
+      snippets: snippets.slice(0, 5),
+    }
+  } catch (error) {
+    const reason = error instanceof Error ? error.message : 'unknown-error'
+    console.warn(`[SoftiePersonalRAG] failed: ${reason}`)
+    return {
+      enabled: true,
+      success: false,
+      reason,
+      queryCount: queries.length,
+      snippets: [],
+    }
+  }
+}
+
 Deno.serve(async (req) => {
   if (req.method === 'OPTIONS') {
     return new Response('ok', { headers: corsHeaders })
@@ -290,6 +599,12 @@ Deno.serve(async (req) => {
       console.log("[RAG] Disabled.");
     }
 
+    const softiePersonalRagDraft = await createSoftiePersonalReferenceDraft({
+      computedData,
+      targetDate: targetDate ?? computedData?.targetDate ?? computedData?.target_date ?? null,
+      personalContext,
+    })
+
     // 1. 프롬프트 구성 (콤팩트한 JSON 데이터 활용)
     const compactPayload = compactComputedData({
       ...computedData,
@@ -322,6 +637,12 @@ Deno.serve(async (req) => {
 - 이 힌트는 엔진 신호를 덮어쓰지 말고, 생활 번역과 문체를 더 정확하게 맞추는 데만 사용하세요.
 - compactHints는 오늘 흐름과 맞는 것만 자연스럽게 반영하고, 모든 힌트를 억지로 쓰지 마세요.
 - 매일 같은 표현이 반복되지 않게, 같은 뜻이라도 오늘의 dayType, dailyBalance, fieldReasonHints에 맞춰 변주하세요.
+
+[Softie 개인 기준서 RAG 활용 규칙]
+- softiePersonalRag.snippets가 있으면 /softie-fortune 전용 검색 참고 자료입니다.
+- 검색 결과는 그대로 복사하지 말고, 오늘의 엔진 신호와 맞는 내용만 1~3개 정도 자연스럽게 반영하세요.
+- compact personalContext와 내용이 겹치면 중복하지 말고 한 번만 반영하세요.
+- 관계, 돈, 건강, 직업 문장은 검색 자료보다 오늘의 dailyBalance와 sectionPriority를 우선하세요.
 
 [출력 규칙]
 - headline: 짧은 한국어 제목 1문장. summary를 반복하지 마세요.
@@ -369,7 +690,10 @@ Deno.serve(async (req) => {
     const userPrompt = JSON.stringify(
       {
         ...compactPayload,
-        softiePersonalContext: compactPersonal
+        softiePersonalContext: compactPersonal,
+        softiePersonalRag: {
+          snippets: softiePersonalRagDraft?.snippets || []
+        }
       },
     ) + ragDraftsText;
 
@@ -534,6 +858,13 @@ Deno.serve(async (req) => {
           provided: Boolean(compactPersonal),
           source: compactPersonal?.source ?? null,
           hintCount: compactPersonal?.compactHints?.length ?? 0,
+        },
+        softiePersonalRag: {
+          enabled: Boolean(softiePersonalRagDraft?.enabled),
+          success: Boolean(softiePersonalRagDraft?.success),
+          queryCount: softiePersonalRagDraft?.queryCount ?? 0,
+          snippetCount: softiePersonalRagDraft?.snippets?.length ?? 0,
+          reason: softiePersonalRagDraft?.reason ?? null,
         },
         repeatAxisSummary,
       };
