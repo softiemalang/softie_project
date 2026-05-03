@@ -358,7 +358,7 @@ export default function SoftieFortunePage() {
               <h2>전용 프로필을 불러오는 중입니다...</h2>
             </div>
           </div>
-          <p className="subtle" style={{ margin: 0 }}>
+          <p className="subtle" style={{ margin: 0, textAlign: 'center' }}>
             오늘의 흐름을 조용히 불러오고 있어요.
           </p>
         </section>
