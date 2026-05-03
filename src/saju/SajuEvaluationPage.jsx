@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from 'react'
 import { navigate } from '../lib/router'
+import { getCurrentSession } from '../lib/auth'
 import { getSajuReportEvaluations } from './api'
 
 function formatDateTime(value) {
@@ -83,13 +84,24 @@ export default function SajuEvaluationPage() {
       setErrorMessage('')
 
       try {
+        const session = await getCurrentSession()
+        if (!isMounted) return
+
+        if (!session) {
+          setEvaluations([])
+          setErrorMessage('평가 로그는 로그인 후 확인할 수 있어요.')
+          return
+        }
+
         const data = await getSajuReportEvaluations(20)
         if (!isMounted) return
         setEvaluations(data)
       } catch (error) {
         console.error('Failed to load saju evaluations:', error)
         if (!isMounted) return
-        setErrorMessage('사주 리포트 평가 로그를 불러오지 못했어요. 잠시 후 다시 확인해 주세요.')
+        const detail = String(error?.message || '').slice(0, 140)
+        const suffix = detail ? ` (${detail})` : ''
+        setErrorMessage(`평가 로그를 불러오지 못했어요. Supabase RLS 정책 또는 조회 권한을 확인해 주세요.${suffix}`)
       } finally {
         if (isMounted) setIsLoading(false)
       }
@@ -203,9 +215,6 @@ export default function SajuEvaluationPage() {
             <p className="subtle">
               이미 평가된 리포트는 중복 평가하지 않아요.
             </p>
-            <button type="button" className="soft-button saju-evaluation-empty-button" onClick={() => navigate('/fortune')}>
-              운세 페이지 열기
-            </button>
           </article>
         </section>
       ) : null}
