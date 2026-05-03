@@ -109,6 +109,7 @@ export default function SoftieFortunePage() {
 
   async function loadInitialData() {
     setIsLoading(true)
+    setStatus('')
     try {
       const existingProfile = await getSoftieSajuProfile()
       if (existingProfile) {
@@ -120,9 +121,6 @@ export default function SoftieFortunePage() {
       }
     } catch (error) {
       console.error('Failed to load saju data:', error)
-      setStatus(
-        '전용 프로필을 불러오지 못했어요.',
-      )
     } finally {
       setIsLoading(false)
     }
@@ -352,7 +350,19 @@ export default function SoftieFortunePage() {
         </div>
       </header>
 
-      {activeProfile ? (
+      {isLoading && !activeProfile ? (
+        <section className="card">
+          <div className="card-header">
+            <div>
+              <p className="section-kicker">전용 프로필</p>
+              <h2>전용 프로필을 불러오는 중입니다...</h2>
+            </div>
+          </div>
+          <p className="subtle" style={{ margin: 0 }}>
+            잠시만 기다려 주세요.
+          </p>
+        </section>
+      ) : activeProfile ? (
         <section className="card fortune-profile-summary-card">
           <div className="fortune-profile-summary-content">
             <p className="section-kicker">저장된 프로필</p>
@@ -368,7 +378,7 @@ export default function SoftieFortunePage() {
             </div>
           </div>
           <p className="subtle" style={{ margin: 0 }}>
-            잠시 후 다시 시도해 주세요.
+            잠시 후 다시 시도하거나 SOFTIE_SAJU_PROFILE_ID 설정을 확인해 주세요.
           </p>
         </section>
       )}
