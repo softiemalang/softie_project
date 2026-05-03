@@ -158,14 +158,54 @@ function compactComputedData(computedData: any = {}) {
   }
 }
 
+function compactPersonalContext(personalContext: any = null) {
+  if (!personalContext || typeof personalContext !== 'object') return null
+
+  return {
+    source: typeof personalContext.source === 'string' ? personalContext.source.slice(0, 80) : null,
+    mode: typeof personalContext.mode === 'string' ? personalContext.mode.slice(0, 40) : null,
+    usageRule: typeof personalContext.usageRule === 'string' ? personalContext.usageRule.slice(0, 180) : null,
+    compactHints: Array.isArray(personalContext.compactHints)
+      ? personalContext.compactHints
+          .filter((hint: unknown) => typeof hint === 'string')
+          .map((hint: string) => hint.replace(/\s+/g, ' ').trim().slice(0, 140))
+          .filter(Boolean)
+          .slice(0, 6)
+      : [],
+    toneHints: Array.isArray(personalContext.toneHints)
+      ? personalContext.toneHints
+          .filter((hint: unknown) => typeof hint === 'string')
+          .map((hint: string) => hint.replace(/\s+/g, ' ').trim().slice(0, 90))
+          .filter(Boolean)
+          .slice(0, 3)
+      : [],
+    avoidTone: Array.isArray(personalContext.avoidTone)
+      ? personalContext.avoidTone
+          .filter((hint: unknown) => typeof hint === 'string')
+          .map((hint: string) => hint.replace(/\s+/g, ' ').trim().slice(0, 90))
+          .filter(Boolean)
+          .slice(0, 4)
+      : [],
+    dailyReportRules: Array.isArray(personalContext.dailyReportRules)
+      ? personalContext.dailyReportRules
+          .filter((hint: unknown) => typeof hint === 'string')
+          .map((hint: string) => hint.replace(/\s+/g, ' ').trim().slice(0, 120))
+          .filter(Boolean)
+          .slice(0, 4)
+      : []
+  }
+}
+
 Deno.serve(async (req) => {
   if (req.method === 'OPTIONS') {
     return new Response('ok', { headers: corsHeaders })
   }
 
   const startTime = Date.now();
+  let profileId = 'unknown';
   try {
-    const { computedData, targetDate, profileId } = await req.json()
+    const { computedData, targetDate, profileId: requestProfileId, personalContext } = await req.json()
+    profileId = requestProfileId || computedData?.profileId || 'unknown'
 
     // 0. Saju Knowledge RAG 초안 생성 (활성화 시)
     const ragEnabled = Deno.env.get("SAJU_KNOWLEDGE_RAG_ENABLED") === "true";
@@ -198,7 +238,7 @@ Deno.serve(async (req) => {
         createSajuKnowledgeDraft({
           mode: "draft",
           section: section as any,
-          profileId: profileId || computedData?.profileId,
+          profileId,
           targetDate: targetDate ?? computedData?.targetDate ?? computedData?.target_date ?? null,
           computedData,
           tags: [],
@@ -251,6 +291,12 @@ Deno.serve(async (req) => {
     }
 
     // 1. 프롬프트 구성 (콤팩트한 JSON 데이터 활용)
+    const compactPayload = compactComputedData({
+      ...computedData,
+      targetDate: targetDate ?? computedData?.targetDate ?? computedData?.target_date ?? null,
+    })
+    const compactPersonal = compactPersonalContext(personalContext)
+
     const systemPrompt = `당신은 사주 엔진 신호를 따뜻하고 생활감 있는 오늘의 리포트로 다듬는 편집자입니다.
 사주 전문용어, 신비주의, 확정적 예언, 로맨스/금전 확언, 공포를 유도하는 표현은 쓰지 마세요.
 
@@ -270,6 +316,12 @@ Deno.serve(async (req) => {
 - 제공된 "Saju Knowledge RAG 참고 초안"은 지식 베이스에서 추출된 좋은 표현들입니다.
 - RAG 초안은 참고용입니다. 그대로 복사하지 말고, 위의 [우선 근거] 데이터와 결합하여 자연스럽게 다듬으세요.
 - 만약 RAG 초안의 내용이 interpretationProfile이나 fieldImpacts의 신호(score, risks 등)와 충돌한다면, 반드시 엔진 신호를 우선하세요.
+
+[Softie 전용 개인화 힌트 활용 규칙]
+- softiePersonalContext가 있으면 /softie-fortune 전용 보조 힌트입니다.
+- 이 힌트는 엔진 신호를 덮어쓰지 말고, 생활 번역과 문체를 더 정확하게 맞추는 데만 사용하세요.
+- compactHints는 오늘 흐름과 맞는 것만 자연스럽게 반영하고, 모든 힌트를 억지로 쓰지 마세요.
+- 매일 같은 표현이 반복되지 않게, 같은 뜻이라도 오늘의 dayType, dailyBalance, fieldReasonHints에 맞춰 변주하세요.
 
 [출력 규칙]
 - headline: 짧은 한국어 제목 1문장. summary를 반복하지 마세요.
@@ -315,10 +367,10 @@ Deno.serve(async (req) => {
 - 마크다운, 코드블록, 제어 텍스트는 절대 넣지 마세요.`;
 
     const userPrompt = JSON.stringify(
-      compactComputedData({
-        ...computedData,
-        targetDate: targetDate ?? computedData?.targetDate ?? computedData?.target_date ?? null,
-      }),
+      {
+        ...compactPayload,
+        softiePersonalContext: compactPersonal
+      },
     ) + ragDraftsText;
 
     const openaiApiKey = Deno.env.get("OPENAI_API_KEY")
@@ -477,6 +529,11 @@ Deno.serve(async (req) => {
           sections: ragObservation.sections,
           failedSections: ragObservation.failedSections,
           draftPreviews: ragObservation.draftPreviews,
+        },
+        personalContext: {
+          provided: Boolean(compactPersonal),
+          source: compactPersonal?.source ?? null,
+          hintCount: compactPersonal?.compactHints?.length ?? 0,
         },
         repeatAxisSummary,
       };

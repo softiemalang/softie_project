@@ -27,7 +27,9 @@ export async function getOrGenerateReport(profileId, dailySnapshot, options = {}
   // 2. LLM에게 리포트 생성 요청 (Edge Function 호출)
   let llmResult
   try {
-    llmResult = await requestLlmReport(dailySnapshot)
+    llmResult = await requestLlmReport(dailySnapshot, {
+      personalContext: options.personalContext || null
+    })
   } catch (error) {
     console.error('LLM Report generation failed, falling back to local analysis:', error)
     // Fallback: 로컬 분석 데이터를 기반으로 간단한 리포트 생성

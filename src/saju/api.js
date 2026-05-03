@@ -340,14 +340,20 @@ export async function getSajuReportEvaluations(limit = 20) {
 /**
  * Edge Function을 통한 LLM 리포트 생성 요청
  */
-export async function requestLlmReport(dailySnapshot) {
+export async function requestLlmReport(dailySnapshot, options = {}) {
   try {
+    const body = {
+      snapshotId: dailySnapshot.id,
+      computedData: dailySnapshot.computed_data,
+      targetDate: dailySnapshot.target_date
+    }
+
+    if (options.personalContext) {
+      body.personalContext = options.personalContext
+    }
+
     const { data, error } = await supabase.functions.invoke('generate-fortune-report', {
-      body: {
-        snapshotId: dailySnapshot.id,
-        computedData: dailySnapshot.computed_data,
-        targetDate: dailySnapshot.target_date
-      }
+      body
     })
 
     if (error) {
