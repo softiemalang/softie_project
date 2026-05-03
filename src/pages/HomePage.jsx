@@ -47,6 +47,12 @@ export default function HomePage() {
       label: 'FORTUNE',
     },
     {
+      description: '저장된 나의 사주 프로필을 바탕으로 오늘의 흐름을 더 조용하고 깊게 살펴요.',
+      path: '/softie-fortune',
+      icon: '🌿',
+      label: 'SOFTIE FORTUNE',
+    },
+    {
       description: '자동 평가된 사주 리포트 품질 로그를 확인하고 개선 포인트를 정리해요.',
       path: '/saju-evaluations',
       icon: '🧾',
