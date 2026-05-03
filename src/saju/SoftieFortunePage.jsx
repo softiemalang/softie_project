@@ -359,7 +359,7 @@ export default function SoftieFortunePage() {
             </div>
           </div>
           <p className="subtle" style={{ margin: 0 }}>
-            잠시만 기다려 주세요.
+            오늘의 흐름을 조용히 불러오고 있어요.
           </p>
         </section>
       ) : activeProfile ? (
