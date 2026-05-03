@@ -288,33 +288,81 @@ function compactRetrievedPersonalChunks(rawValues: unknown[]) {
     .filter((value): value is string => Boolean(value))
     .filter((value) => !containsBirthDetail(value))
 
-  return dedupePersonalReferenceLines(compacted).slice(0, 5)
+  return dedupePersonalReferenceLines(compacted).slice(0, 8)
 }
 
 function buildSoftiePersonalQueries(computedData: any = {}) {
   const primarySections = Array.isArray(computedData?.sectionPriority?.primary)
     ? computedData.sectionPriority.primary
     : []
+  const secondarySections = Array.isArray(computedData?.sectionPriority?.secondary)
+    ? computedData.sectionPriority.secondary
+    : []
+  const sectionSet = new Set([...primarySections, ...secondarySections])
+  const orientation = String(computedData?.dailyBalance?.orientation || '').toLowerCase()
+  const opportunityLevel = String(computedData?.dailyBalance?.opportunityLevel || '').toLowerCase()
+  const cautionLevel = String(computedData?.dailyBalance?.cautionLevel || '').toLowerCase()
   const recoveryLevel = String(computedData?.dailyBalance?.recoveryLevel || '').toLowerCase()
-  const queries = ['오늘의 운세 작성 기준 softie fortune']
+  const dayType = normalizeText(
+    computedData?.dayType?.type || computedData?.dayType?.label || '',
+    40,
+  )
+  const queries = ['리포트 톤 반복 조절 좋은 문장 피해야 할 문장 softie fortune']
 
-  if (primarySections.includes('relationships') || primarySections.includes('love')) {
-    queries.push('관계 기준 말의 온도 안정감 부담감')
-  }
-  if (primarySections.includes('money')) {
-    queries.push('돈 기반감 숨통 남는 부담')
-  }
-  if (primarySections.includes('work')) {
-    queries.push('FOH 직업운 환경 적합도 재량 조율')
-  }
-  if (primarySections.includes('health') || recoveryLevel === 'high') {
-    queries.push('건강 회복 루틴 몸의 무게감 긴장 회복 시간')
-  }
-  if (queries.length === 1) {
-    queries.push('원국 고정축 압 체감형 계수 금수 보완')
+  const addQuery = (query: string | null) => {
+    const normalized = normalizeText(query, 120)
+    if (!normalized) return
+    queries.push(normalized)
   }
 
-  return dedupePersonalReferenceLines(queries.map((query) => normalizeText(query, 120)).filter((value): value is string => Boolean(value))).slice(0, 4)
+  if (orientation === 'caution') {
+    if (sectionSet.has('relationships') || sectionSet.has('love')) {
+      addQuery('관계 반응 속도 말의 온도 작은 어긋남 메시지 다시 읽기')
+    }
+    if (sectionSet.has('work')) {
+      addQuery('일 기준 마감 우선순위 부담 조절 결과물 정리')
+    }
+    if (sectionSet.has('money')) {
+      addQuery('돈 기반감 남는 부담 결제 조건 지출 뒤 책임')
+    }
+    if (sectionSet.has('health') || recoveryLevel === 'medium-high' || recoveryLevel === 'high') {
+      addQuery('건강 회복 루틴 몸의 무게감 어깨 긴장 자극 줄이기')
+    }
+  } else if (orientation === 'recovery') {
+    addQuery('건강 회복 루틴 숨 돌릴 시간 자극 줄이기 몸의 속도')
+    addQuery('마음 정리 한 줄 기록 생각 과열 회복 시간')
+    if (sectionSet.has('relationships') || sectionSet.has('love')) {
+      addQuery('관계 편안한 대화 말의 압력 낮추기 거리감')
+    }
+  } else if (orientation === 'opportunity') {
+    if (sectionSet.has('work')) {
+      addQuery('일 아이디어 결과물 정리 재량 조율 사운드 현장')
+    }
+    if (sectionSet.has('relationships') || sectionSet.has('love')) {
+      addQuery('관계 호감 신뢰 편안한 대화 표현의 결')
+    }
+    if (sectionSet.has('money')) {
+      addQuery('돈 숨통 기반감 선택지 정산 현실 판단')
+    }
+  } else {
+    addQuery('오늘의 운세 작성 기준 dailyBalance sectionPriority')
+    if (sectionSet.has('work')) addQuery('일 우선순위 결과물 정리 재량 조율')
+    else if (sectionSet.has('relationships') || sectionSet.has('love')) addQuery('관계 반응 속도 말의 온도 안정감 거리감')
+    else if (sectionSet.has('money')) addQuery('돈 기반감 숨통 정산 현실 판단')
+    else if (sectionSet.has('health')) addQuery('건강 회복 시간 몸의 무게감 긴장 완화')
+    else if (sectionSet.has('mind')) addQuery('마음 정리 한 줄 기록 생각 과열 속도 조절')
+  }
+
+  if (queries.length < 4 && (opportunityLevel === 'high' || cautionLevel === 'high' || recoveryLevel === 'high')) {
+    addQuery(`오늘의 흐름 ${orientation || 'balanced'} ${dayType || '일간 리듬'} 생활 번역`)
+  }
+  if (queries.length < 4) {
+    addQuery('원국 고정축 압 체감형 계수 금수 보완 생활 번역')
+  }
+
+  return dedupePersonalReferenceLines(
+    queries.map((query) => normalizeText(query, 120)).filter((value): value is string => Boolean(value))
+  ).slice(0, 4)
 }
 
 function extractPersonalReferenceSnippets(payload: any) {
@@ -340,6 +388,130 @@ function extractPersonalReferenceSnippets(payload: any) {
   ]
 
   return compactRetrievedPersonalChunks(candidates)
+}
+
+const SECTION_KEYWORD_MAP: Record<string, string[]> = {
+  relationships: ['관계', '호감', '말의 온도', '반응', '거리감', '메시지', '대화', '안정감', '부담감'],
+  love: ['관계', '호감', '말의 온도', '반응', '거리감', '메시지', '대화', '안정감', '부담감'],
+  work: ['일', '커리어', '마감', '우선순위', '결과물', '재량', '조율', 'FOH', '사운드', '현장'],
+  money: ['돈', '금전', '지출', '결제', '정산', '기반감', '숨통', '남는 부담'],
+  health: ['건강', '몸', '어깨', '턱', '긴장', '회복 시간', '자극', '호흡', '무게감'],
+  mind: ['마음', '생각', '한 줄', '정리', '자기검열', '과열'],
+}
+
+const STYLE_KEYWORDS = ['좋은 문장', '피해야 할 문장', '반복', '문체', '말맛', '실천 팁', '출력 스타일']
+const ORIENTATION_KEYWORDS: Record<string, string[]> = {
+  caution: ['주의', '확인', '조건', '속도', '반응', '남는 부담', '문장 온도'],
+  recovery: ['회복', '숨 돌릴', '자극 줄이기', '몸의 속도', '조용한 틈'],
+  opportunity: ['기회', '아이디어', '표현', '결과물', '신뢰', '선택지', '재량'],
+}
+const REPETITIVE_TERMS = ['책임', '부담', '기준', '한 박자', '회복']
+const RESTRICTED_AXIS_TERMS = ['책임', '부담', '기준', '마감', '확인']
+
+function countKeywordMatches(text: string, keywords: string[]) {
+  return keywords.reduce((count, keyword) => count + (text.includes(keyword) ? 1 : 0), 0)
+}
+
+function isStyleSnippet(text: string) {
+  return countKeywordMatches(text, STYLE_KEYWORDS) > 0
+}
+
+function isTooSimilarSnippet(candidate: string, selected: string[]) {
+  const candidateKey = similarityKey(candidate)
+  return selected.some((item) => {
+    const selectedKey = similarityKey(item)
+    if (!candidateKey || !selectedKey) return false
+    return candidateKey === selectedKey || candidateKey.includes(selectedKey) || selectedKey.includes(candidateKey)
+  })
+}
+
+function scoreSoftiePersonalSnippet(
+  snippet: string,
+  context: {
+    primarySections: string[];
+    secondarySections: string[];
+    orientation: string;
+  },
+  selectedSnippets: string[],
+  hasSelectedStyleSnippet: boolean,
+) {
+  let score = 0
+  const primaryMatches = context.primarySections.reduce(
+    (sum, section) => sum + countKeywordMatches(snippet, SECTION_KEYWORD_MAP[section] || []),
+    0,
+  )
+  const secondaryMatches = context.secondarySections.reduce(
+    (sum, section) => sum + countKeywordMatches(snippet, SECTION_KEYWORD_MAP[section] || []),
+    0,
+  )
+  const orientationMatches = countKeywordMatches(snippet, ORIENTATION_KEYWORDS[context.orientation] || [])
+  const styleMatches = countKeywordMatches(snippet, STYLE_KEYWORDS)
+  const repeatedTermMatches = countKeywordMatches(snippet, REPETITIVE_TERMS)
+
+  if (primaryMatches > 0) score += 3
+  if (secondaryMatches > 0) score += 2
+  if (orientationMatches > 0) score += 2
+  if (styleMatches > 0 && !hasSelectedStyleSnippet) score += 1
+  if (repeatedTermMatches >= 2) score -= 2
+  if (containsBirthDetail(snippet)) score -= 3
+  if (isTooSimilarSnippet(snippet, selectedSnippets)) score -= 3
+
+  const selectedText = selectedSnippets.join(' ')
+  const overusedRepeats = REPETITIVE_TERMS.filter((term) => selectedText.includes(term) && snippet.includes(term)).length
+  if (overusedRepeats > 0) score -= 2
+
+  return score
+}
+
+function rerankSoftiePersonalSnippets(snippets: string[], computedData: any = {}) {
+  const primarySections = Array.isArray(computedData?.sectionPriority?.primary)
+    ? computedData.sectionPriority.primary
+    : []
+  const secondarySections = Array.isArray(computedData?.sectionPriority?.secondary)
+    ? computedData.sectionPriority.secondary
+    : []
+  const orientation = String(computedData?.dailyBalance?.orientation || '').toLowerCase()
+  const context = { primarySections, secondarySections, orientation }
+  const scored = snippets.map((snippet) => ({
+    snippet,
+    score: scoreSoftiePersonalSnippet(snippet, context, [], false),
+    isStyle: isStyleSnippet(snippet),
+    restrictedAxisTermCount: countKeywordMatches(snippet, RESTRICTED_AXIS_TERMS),
+  }))
+
+  scored.sort((a, b) => b.score - a.score)
+
+  const selected: { snippet: string; score: number; isStyle: boolean }[] = []
+  let styleCount = 0
+  let restrictedAxisCount = 0
+
+  for (const item of scored) {
+    if (selected.length >= 4) break
+    if (item.isStyle && styleCount >= 1) continue
+    if (item.restrictedAxisTermCount > 0 && restrictedAxisCount >= 2) continue
+    if (containsBirthDetail(item.snippet)) continue
+    if (isTooSimilarSnippet(item.snippet, selected.map((entry) => entry.snippet))) continue
+
+    const rescored = scoreSoftiePersonalSnippet(
+      item.snippet,
+      context,
+      selected.map((entry) => entry.snippet),
+      styleCount >= 1,
+    )
+    if (rescored < 0) continue
+
+    selected.push({ snippet: item.snippet, score: rescored, isStyle: item.isStyle })
+    if (item.isStyle) styleCount += 1
+    if (item.restrictedAxisTermCount > 0) restrictedAxisCount += 1
+  }
+
+  return {
+    snippets: selected.map((item) => item.snippet),
+    retrievedSnippetCount: snippets.length,
+    selectedSnippetCount: selected.length,
+    topSnippetScore: selected[0]?.score ?? null,
+    selectedStyleSnippetCount: styleCount,
+  }
 }
 
 async function callSoftiePersonalSearch(query: string) {
@@ -422,21 +594,26 @@ async function createSoftiePersonalReferenceDraft(args: {
       queries.map((query) => callSoftiePersonalSearch(query).catch((error) => ({ __error: error, query })))
     )
 
-    const snippets = compactRetrievedPersonalChunks(
+    const compactSnippets = compactRetrievedPersonalChunks(
       payloads.flatMap((payload: any) => {
         if (payload?.__error) return []
         return extractPersonalReferenceSnippets(payload)
       })
     )
+    const reranked = rerankSoftiePersonalSnippets(compactSnippets, args.computedData || {})
 
     const hadErrors = payloads.some((payload: any) => payload?.__error)
-    if (snippets.length === 0) {
+    if (reranked.snippets.length === 0) {
       return {
         enabled: true,
         success: false,
         reason: hadErrors ? 'request-failed' : 'no-snippets',
         queryCount: queries.length,
         snippets: [],
+        retrievedSnippetCount: reranked.retrievedSnippetCount,
+        selectedSnippetCount: reranked.selectedSnippetCount,
+        topSnippetScore: reranked.topSnippetScore,
+        selectedStyleSnippetCount: reranked.selectedStyleSnippetCount,
       }
     }
 
@@ -445,7 +622,11 @@ async function createSoftiePersonalReferenceDraft(args: {
       success: true,
       reason: hadErrors ? 'partial-success' : null,
       queryCount: queries.length,
-      snippets: snippets.slice(0, 5),
+      snippets: reranked.snippets.slice(0, 4),
+      retrievedSnippetCount: reranked.retrievedSnippetCount,
+      selectedSnippetCount: reranked.selectedSnippetCount,
+      topSnippetScore: reranked.topSnippetScore,
+      selectedStyleSnippetCount: reranked.selectedStyleSnippetCount,
     }
   } catch (error) {
     const reason = error instanceof Error ? error.message : 'unknown-error'
@@ -456,6 +637,10 @@ async function createSoftiePersonalReferenceDraft(args: {
       reason,
       queryCount: queries.length,
       snippets: [],
+      retrievedSnippetCount: 0,
+      selectedSnippetCount: 0,
+      topSnippetScore: null,
+      selectedStyleSnippetCount: 0,
     }
   }
 }
@@ -590,6 +775,7 @@ Deno.serve(async (req) => {
 - softiePersonalRag.snippets가 있으면 /softie-fortune 전용 검색 참고 자료입니다.
 - 검색 결과는 그대로 복사하지 말고, 오늘의 엔진 신호와 맞는 내용만 1~3개 정도 자연스럽게 반영하세요.
 - 관계, 돈, 건강, 직업 문장은 검색 자료보다 오늘의 dailyBalance와 sectionPriority를 우선하세요.
+- softiePersonalRag.snippets는 중복 없이 최대 3개 축만 반영하고, 같은 단어를 여러 섹션에서 반복하지 마세요.
 
 [출력 규칙]
 - headline: 짧은 한국어 제목 1문장. summary를 반복하지 마세요.
@@ -804,7 +990,11 @@ Deno.serve(async (req) => {
           enabled: Boolean(softiePersonalRagDraft?.enabled),
           success: Boolean(softiePersonalRagDraft?.success),
           queryCount: softiePersonalRagDraft?.queryCount ?? 0,
+          retrievedSnippetCount: softiePersonalRagDraft?.retrievedSnippetCount ?? 0,
+          selectedSnippetCount: softiePersonalRagDraft?.selectedSnippetCount ?? 0,
           snippetCount: softiePersonalRagDraft?.snippets?.length ?? 0,
+          topSnippetScore: softiePersonalRagDraft?.topSnippetScore ?? null,
+          selectedStyleSnippetCount: softiePersonalRagDraft?.selectedStyleSnippetCount ?? 0,
           reason: softiePersonalRagDraft?.reason ?? null,
         },
         repeatAxisSummary,
