@@ -242,44 +242,6 @@ function compactComputedData(computedData: any = {}) {
   }
 }
 
-function compactPersonalContext(personalContext: any = null) {
-  if (!personalContext || typeof personalContext !== 'object') return null
-
-  return {
-    source: typeof personalContext.source === 'string' ? personalContext.source.slice(0, 80) : null,
-    mode: typeof personalContext.mode === 'string' ? personalContext.mode.slice(0, 40) : null,
-    usageRule: typeof personalContext.usageRule === 'string' ? personalContext.usageRule.slice(0, 180) : null,
-    compactHints: Array.isArray(personalContext.compactHints)
-      ? personalContext.compactHints
-          .filter((hint: unknown) => typeof hint === 'string')
-          .map((hint: string) => hint.replace(/\s+/g, ' ').trim().slice(0, 140))
-          .filter(Boolean)
-          .slice(0, 6)
-      : [],
-    toneHints: Array.isArray(personalContext.toneHints)
-      ? personalContext.toneHints
-          .filter((hint: unknown) => typeof hint === 'string')
-          .map((hint: string) => hint.replace(/\s+/g, ' ').trim().slice(0, 90))
-          .filter(Boolean)
-          .slice(0, 3)
-      : [],
-    avoidTone: Array.isArray(personalContext.avoidTone)
-      ? personalContext.avoidTone
-          .filter((hint: unknown) => typeof hint === 'string')
-          .map((hint: string) => hint.replace(/\s+/g, ' ').trim().slice(0, 90))
-          .filter(Boolean)
-          .slice(0, 4)
-      : [],
-    dailyReportRules: Array.isArray(personalContext.dailyReportRules)
-      ? personalContext.dailyReportRules
-          .filter((hint: unknown) => typeof hint === 'string')
-          .map((hint: string) => hint.replace(/\s+/g, ' ').trim().slice(0, 120))
-          .filter(Boolean)
-          .slice(0, 4)
-      : []
-  }
-}
-
 function normalizeText(value: unknown, maxLength = 140) {
   if (typeof value !== 'string') return null
   const normalized = value
@@ -329,7 +291,7 @@ function compactRetrievedPersonalChunks(rawValues: unknown[]) {
   return dedupePersonalReferenceLines(compacted).slice(0, 5)
 }
 
-function buildSoftiePersonalQueries(computedData: any = {}, personalContext: any = null) {
+function buildSoftiePersonalQueries(computedData: any = {}) {
   const primarySections = Array.isArray(computedData?.sectionPriority?.primary)
     ? computedData.sectionPriority.primary
     : []
@@ -350,13 +312,6 @@ function buildSoftiePersonalQueries(computedData: any = {}, personalContext: any
   }
   if (queries.length === 1) {
     queries.push('원국 고정축 압 체감형 계수 금수 보완')
-  }
-
-  const fallbackHint = typeof personalContext?.compactHints?.[0] === 'string'
-    ? normalizeText(personalContext.compactHints[0], 100)
-    : null
-  if (queries.length < 3 && fallbackHint) {
-    queries.push(`softie 개인 해석 기준 ${fallbackHint}`)
   }
 
   return dedupePersonalReferenceLines(queries.map((query) => normalizeText(query, 120)).filter((value): value is string => Boolean(value))).slice(0, 4)
@@ -433,7 +388,7 @@ async function callSoftiePersonalSearch(query: string) {
 async function createSoftiePersonalReferenceDraft(args: {
   computedData?: any;
   targetDate?: string | null;
-  personalContext?: any;
+  softiePersonalRag?: boolean;
 }) {
   const ragEnabled = Deno.env.get('SOFTIE_PERSONAL_RAG_ENABLED') === 'true'
   const searchAppId = Deno.env.get('SOFTIE_PERSONAL_SEARCH_APP_ID')
@@ -444,8 +399,8 @@ async function createSoftiePersonalReferenceDraft(args: {
     return { enabled: false, success: false, reason: 'disabled', queryCount: 0, snippets: [] }
   }
 
-  if (args.personalContext?.mode !== 'softie-fortune') {
-    return { enabled: false, success: false, reason: 'not-softie-mode', queryCount: 0, snippets: [] }
+  if (args.softiePersonalRag !== true) {
+    return { enabled: false, success: false, reason: 'not-requested', queryCount: 0, snippets: [] }
   }
 
   if (!Deno.env.get('GOOGLE_CLOUD_PROJECT_ID') || !searchAppId) {
@@ -457,7 +412,7 @@ async function createSoftiePersonalReferenceDraft(args: {
     return { enabled: false, success: false, reason: 'missing-config', queryCount: 0, snippets: [] }
   }
 
-  const queries = buildSoftiePersonalQueries(args.computedData || {}, args.personalContext)
+  const queries = buildSoftiePersonalQueries(args.computedData || {})
   if (queries.length === 0) {
     return { enabled: true, success: false, reason: 'no-queries', queryCount: 0, snippets: [] }
   }
@@ -513,7 +468,7 @@ Deno.serve(async (req) => {
   const startTime = Date.now();
   let profileId = 'unknown';
   try {
-    const { computedData, targetDate, profileId: requestProfileId, personalContext } = await req.json()
+    const { computedData, targetDate, profileId: requestProfileId, softiePersonalRag } = await req.json()
     profileId = requestProfileId || computedData?.profileId || 'unknown'
 
     // 0. Saju Knowledge RAG 초안 생성 (활성화 시)
@@ -602,7 +557,7 @@ Deno.serve(async (req) => {
     const softiePersonalRagDraft = await createSoftiePersonalReferenceDraft({
       computedData,
       targetDate: targetDate ?? computedData?.targetDate ?? computedData?.target_date ?? null,
-      personalContext,
+      softiePersonalRag,
     })
 
     // 1. 프롬프트 구성 (콤팩트한 JSON 데이터 활용)
@@ -610,7 +565,6 @@ Deno.serve(async (req) => {
       ...computedData,
       targetDate: targetDate ?? computedData?.targetDate ?? computedData?.target_date ?? null,
     })
-    const compactPersonal = compactPersonalContext(personalContext)
 
     const systemPrompt = `당신은 사주 엔진 신호를 따뜻하고 생활감 있는 오늘의 리포트로 다듬는 편집자입니다.
 사주 전문용어, 신비주의, 확정적 예언, 로맨스/금전 확언, 공포를 유도하는 표현은 쓰지 마세요.
@@ -632,16 +586,9 @@ Deno.serve(async (req) => {
 - RAG 초안은 참고용입니다. 그대로 복사하지 말고, 위의 [우선 근거] 데이터와 결합하여 자연스럽게 다듬으세요.
 - 만약 RAG 초안의 내용이 interpretationProfile이나 fieldImpacts의 신호(score, risks 등)와 충돌한다면, 반드시 엔진 신호를 우선하세요.
 
-[Softie 전용 개인화 힌트 활용 규칙]
-- softiePersonalContext가 있으면 /softie-fortune 전용 보조 힌트입니다.
-- 이 힌트는 엔진 신호를 덮어쓰지 말고, 생활 번역과 문체를 더 정확하게 맞추는 데만 사용하세요.
-- compactHints는 오늘 흐름과 맞는 것만 자연스럽게 반영하고, 모든 힌트를 억지로 쓰지 마세요.
-- 매일 같은 표현이 반복되지 않게, 같은 뜻이라도 오늘의 dayType, dailyBalance, fieldReasonHints에 맞춰 변주하세요.
-
 [Softie 개인 기준서 RAG 활용 규칙]
 - softiePersonalRag.snippets가 있으면 /softie-fortune 전용 검색 참고 자료입니다.
 - 검색 결과는 그대로 복사하지 말고, 오늘의 엔진 신호와 맞는 내용만 1~3개 정도 자연스럽게 반영하세요.
-- compact personalContext와 내용이 겹치면 중복하지 말고 한 번만 반영하세요.
 - 관계, 돈, 건강, 직업 문장은 검색 자료보다 오늘의 dailyBalance와 sectionPriority를 우선하세요.
 
 [출력 규칙]
@@ -690,7 +637,6 @@ Deno.serve(async (req) => {
     const userPrompt = JSON.stringify(
       {
         ...compactPayload,
-        softiePersonalContext: compactPersonal,
         softiePersonalRag: {
           snippets: softiePersonalRagDraft?.snippets || []
         }
@@ -853,11 +799,6 @@ Deno.serve(async (req) => {
           sections: ragObservation.sections,
           failedSections: ragObservation.failedSections,
           draftPreviews: ragObservation.draftPreviews,
-        },
-        personalContext: {
-          provided: Boolean(compactPersonal),
-          source: compactPersonal?.source ?? null,
-          hintCount: compactPersonal?.compactHints?.length ?? 0,
         },
         softiePersonalRag: {
           enabled: Boolean(softiePersonalRagDraft?.enabled),

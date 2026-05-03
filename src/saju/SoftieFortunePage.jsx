@@ -10,7 +10,6 @@ import {
 } from './api'
 import { generateNatalSnapshot, generateDailySnapshot } from './interpreter/preprocessor'
 import { getOrGenerateReport } from './interpreter/reportGenerator'
-import { SOFTIE_PERSONAL_REFERENCE } from './personal/softiePersonalReference'
 import { getKstDateString } from './utils'
 import { getOrCreatePushDeviceId } from '../lib/device'
 import { appendGoogleSheetsLog } from '../lib/googleApi'
@@ -48,21 +47,6 @@ function formatBirthTimeForDisplay(value) {
 function formatReportDateForDisplay(value) {
   if (!value) return ''
   return String(value).replace(/-/g, '.')
-}
-
-function getSoftieReportPersonalContext() {
-  const hints = SOFTIE_PERSONAL_REFERENCE.compactHintsForDailyReport || []
-
-  return {
-    source: SOFTIE_PERSONAL_REFERENCE.version,
-    mode: 'softie-fortune',
-    usageRule:
-      'Use these hints only as a soft personalization layer. Do not override the daily saju engine signals.',
-    compactHints: hints.slice(0, 6),
-    toneHints: SOFTIE_PERSONAL_REFERENCE.reportToneProfile?.preferredTone?.slice(0, 3) || [],
-    avoidTone: SOFTIE_PERSONAL_REFERENCE.reportToneProfile?.avoidTone?.slice(0, 4) || [],
-    dailyReportRules: SOFTIE_PERSONAL_REFERENCE.interpretationProcess?.dailyReportRules?.slice(0, 4) || []
-  }
 }
 
 export default function SoftieFortunePage() {
@@ -215,7 +199,7 @@ export default function SoftieFortunePage() {
       setStatus('심층 운세 리포트를 작성하는 중입니다...')
       const finalReport = await getOrGenerateReport(targetProfile.id, snapshot, {
         force,
-        personalContext: getSoftieReportPersonalContext()
+        softiePersonalRag: true
       })
       setReport(finalReport)
       setStatus('')

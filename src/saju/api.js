@@ -348,8 +348,8 @@ export async function requestLlmReport(dailySnapshot, options = {}) {
       targetDate: dailySnapshot.target_date
     }
 
-    if (options.personalContext) {
-      body.personalContext = options.personalContext
+    if (options.softiePersonalRag === true) {
+      body.softiePersonalRag = true
     }
 
     const { data, error } = await supabase.functions.invoke('generate-fortune-report', {
