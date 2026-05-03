@@ -28,6 +28,31 @@ export async function getSajuProfile({ userId, localKey }) {
 }
 
 /**
+ * Softie 전용 사주 프로필 조회
+ */
+export async function getSoftieSajuProfile() {
+  if (!supabase) return null
+
+  try {
+    const { data, error } = await supabase.functions.invoke('get-softie-saju-profile')
+
+    if (error) {
+      const errMsg = error.message || JSON.stringify(error)
+      throw new Error(errMsg)
+    }
+
+    if (!data?.profile) {
+      throw new Error(data?.error || 'Missing profile payload')
+    }
+
+    return data.profile
+  } catch (err) {
+    console.error('Failed to load Softie saju profile:', err)
+    throw err
+  }
+}
+
+/**
  * 기존 local_key 프로필을 user_id에 연결
  */
 export async function linkLocalSajuProfileToUser({ localKey, userId }) {

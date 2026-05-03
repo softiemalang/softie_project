@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react'
-import { navigate } from '../lib/router'
 import {
-  getSajuProfile,
+  getSoftieSajuProfile,
   getNatalSnapshot,
   createNatalSnapshot,
   getDailySnapshot,
@@ -11,7 +10,7 @@ import {
 } from './api'
 import { generateNatalSnapshot, generateDailySnapshot } from './interpreter/preprocessor'
 import { getOrGenerateReport } from './interpreter/reportGenerator'
-import { getKstDateString, getOrCreateLocalKey } from './utils'
+import { getKstDateString } from './utils'
 import { getOrCreatePushDeviceId } from '../lib/device'
 import { appendGoogleSheetsLog } from '../lib/googleApi'
 import { connectGoogleCalendar, isGoogleConnected } from '../scheduler/googleApi'
@@ -111,16 +110,7 @@ export default function SoftieFortunePage() {
   async function loadInitialData() {
     setIsLoading(true)
     try {
-      const localKey = getOrCreateLocalKey()
-      const session = await getCurrentSession()
-      const userId = session?.user?.id
-
-      if (userId && localKey) {
-        const { linkLocalSajuProfileToUser } = await import('./api')
-        await linkLocalSajuProfileToUser({ localKey, userId })
-      }
-
-      const existingProfile = await getSajuProfile({ userId, localKey })
+      const existingProfile = await getSoftieSajuProfile()
       if (existingProfile) {
         const existingFormProfile = profileFromSaved(existingProfile)
         setActiveProfile(existingProfile)
@@ -130,11 +120,8 @@ export default function SoftieFortunePage() {
       }
     } catch (error) {
       console.error('Failed to load saju data:', error)
-      const errorMessage = error?.message || ''
       setStatus(
-        errorMessage.includes('saju_profiles') || errorMessage.includes('schema cache')
-          ? '사주 데이터 저장소가 아직 준비되지 않았어요. Supabase 테이블 적용이 필요해요.'
-          : '데이터를 불러오지 못했어요.',
+        '전용 프로필을 불러오지 못했어요.',
       )
     } finally {
       setIsLoading(false)
@@ -376,18 +363,13 @@ export default function SoftieFortunePage() {
         <section className="card">
           <div className="card-header">
             <div>
-              <p className="section-kicker">안내</p>
-              <h2>아직 저장된 사주 프로필이 없어요.</h2>
+              <p className="section-kicker">전용 프로필</p>
+              <h2>전용 프로필을 불러오지 못했어요.</h2>
             </div>
           </div>
-          <div className="stack-form">
-            <p className="subtle" style={{ margin: 0 }}>
-              먼저 기본 운세 페이지에서 프로필을 한 번 저장하면, 이 전용 페이지에서 자동으로 불러올게요.
-            </p>
-            <button type="button" className="soft-button" onClick={() => navigate('/fortune')}>
-              기본 운세 페이지로 이동
-            </button>
-          </div>
+          <p className="subtle" style={{ margin: 0 }}>
+            잠시 후 다시 시도해 주세요.
+          </p>
         </section>
       )}
 
