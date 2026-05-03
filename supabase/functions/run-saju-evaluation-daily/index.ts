@@ -40,7 +40,6 @@ serve(async (req) => {
       }
     }
     const force = !!body.force;
-    const limit = Number(body.limit) || 100;
     let targetDate = body.targetDate;
 
     if (!targetDate) {
@@ -53,7 +52,8 @@ serve(async (req) => {
       targetDate = kstDate.toISOString().split("T")[0]; // YYYY-MM-DD
     }
 
-    console.log(`[RunSajuEvaluationDaily] targetDate=${targetDate}, force=${force}, limit=${limit}`);
+    const softieProfileId = Deno.env.get("SOFTIE_SAJU_PROFILE_ID") || null;
+    console.log(`[RunSajuEvaluationDaily] targetDate=${targetDate}, force=${force}, softieProfileConfigured=${Boolean(softieProfileId)}`);
 
     // Init Supabase Service Role client
     const supabaseUrl = Deno.env.get("SUPABASE_URL");
@@ -63,52 +63,138 @@ serve(async (req) => {
     }
     const supabase = createClient(supabaseUrl, supabaseKey);
 
-    // Query eligible reports
-    const query = supabase
+    // Query the single most recent candidate report for the target date.
+    let reportQuery = supabase
       .from("saju_fortune_reports")
-      .select("id, report_date, report_content")
+      .select("id, profile_id, report_date, report_content, generated_at, created_at, updated_at")
       .eq("report_date", targetDate)
       .not("report_content", "is", null);
 
-    const { data: allReports, error: fetchError } = await query;
+    if (softieProfileId) {
+      reportQuery = reportQuery.eq("profile_id", softieProfileId);
+    } else {
+      console.warn(`[RunSajuEvaluationDaily] SOFTIE_SAJU_PROFILE_ID is missing. Falling back to the latest previous-day report.`);
+    }
+
+    const { data: selectedReports, error: fetchError } = await reportQuery
+      .order("generated_at", { ascending: false })
+      .order("created_at", { ascending: false })
+      .order("updated_at", { ascending: false })
+      .limit(1);
+
     if (fetchError) {
       throw new Error(`Failed to fetch reports: ${fetchError.message}`);
     }
 
-    const foundReports = allReports?.length || 0;
-    
-    // Filter eligible reports
-    const eligibleReports = (allReports || []).filter(r => {
+    const selectedReport = selectedReports?.[0] || null;
+    const selectedTimestamp = selectedReport?.generated_at || selectedReport?.created_at || selectedReport?.updated_at || null;
+
+    if (!selectedReport) {
+      console.log(`[RunSajuEvaluationDaily] No report found for targetDate=${targetDate}. softieProfileUsed=${Boolean(softieProfileId)}`);
+      return new Response(JSON.stringify({
+        runId,
+        targetDate,
+        softieProfileUsed: Boolean(softieProfileId),
+        selectedReportId: null,
+        selectedProfileId: softieProfileId,
+        selectedReportTimestamp: null,
+        foundReports: 0,
+        eligibleReports: 0,
+        skippedAlreadyEvaluated: 0,
+        evaluatedReports: 0,
+        savedEvaluations: 0,
+        batchCreated: false,
+        batchId: null,
+        summary: {},
+        warnings: []
+      }), {
+        status: 200,
+        headers: { ...corsHeaders, "Content-Type": "application/json" }
+      });
+    }
+
+    console.log(
+      `[RunSajuEvaluationDaily] selectedReportId=${selectedReport.id}, selectedProfileId=${selectedReport.profile_id}, selectedReportTimestamp=${selectedTimestamp}, softieProfileUsed=${Boolean(softieProfileId)}`
+    );
+
+    const isEligibleReport = (() => {
+      const r = selectedReport;
       const c = r.report_content;
       if (!c || typeof c !== "object") return false;
       if (!c.sections) return false;
       if (!c.headline && !c.summary && !c.action_tip) return false;
       return true;
-    });
+    })();
 
-    console.log(`[RunSajuEvaluationDaily] foundReports=${foundReports}, eligibleReports=${eligibleReports.length}`);
+    if (!isEligibleReport) {
+      console.log(
+        `[RunSajuEvaluationDaily] Selected report is not eligible. reportId=${selectedReport.id}, profileId=${selectedReport.profile_id}`
+      );
+      return new Response(JSON.stringify({
+        runId,
+        targetDate,
+        softieProfileUsed: Boolean(softieProfileId),
+        selectedReportId: selectedReport.id,
+        selectedProfileId: selectedReport.profile_id,
+        selectedReportTimestamp: selectedTimestamp,
+        foundReports: 1,
+        eligibleReports: 0,
+        skippedAlreadyEvaluated: 0,
+        evaluatedReports: 0,
+        savedEvaluations: 0,
+        batchCreated: false,
+        batchId: null,
+        summary: {},
+        warnings: []
+      }), {
+        status: 200,
+        headers: { ...corsHeaders, "Content-Type": "application/json" }
+      });
+    }
 
-    // If not force, filter out already evaluated ones
-    let pendingReports = eligibleReports;
+    console.log(`[RunSajuEvaluationDaily] foundReports=1, eligibleReports=1`);
+
     let skippedAlreadyEvaluated = 0;
-
-    if (!force && eligibleReports.length > 0) {
-      const eligibleIds = eligibleReports.map(r => r.id);
-      const { data: existingEvals, error: evalCheckError } = await supabase
+    if (!force) {
+      const { data: existingEval, error: evalCheckError } = await supabase
         .from("saju_report_evaluations")
         .select("report_id")
-        .in("report_id", eligibleIds);
-      
-      if (!evalCheckError && existingEvals) {
-        const evaluatedIds = new Set(existingEvals.map(e => e.report_id));
-        pendingReports = eligibleReports.filter(r => !evaluatedIds.has(r.id));
-        skippedAlreadyEvaluated = eligibleReports.length - pendingReports.length;
+        .eq("report_id", selectedReport.id)
+        .maybeSingle();
+
+      if (evalCheckError) {
+        throw new Error(`Failed to check existing evaluation: ${evalCheckError.message}`);
+      }
+
+      if (existingEval) {
+        skippedAlreadyEvaluated = 1;
+        console.log(
+          `[RunSajuEvaluationDaily] Skipped already evaluated report. reportId=${selectedReport.id}, profileId=${selectedReport.profile_id}`
+        );
+        return new Response(JSON.stringify({
+          runId,
+          targetDate,
+          softieProfileUsed: Boolean(softieProfileId),
+          selectedReportId: selectedReport.id,
+          selectedProfileId: selectedReport.profile_id,
+          selectedReportTimestamp: selectedTimestamp,
+          foundReports: 1,
+          eligibleReports: 1,
+          skippedAlreadyEvaluated,
+          evaluatedReports: 0,
+          savedEvaluations: 0,
+          batchCreated: false,
+          batchId: null,
+          summary: {},
+          warnings: []
+        }), {
+          status: 200,
+          headers: { ...corsHeaders, "Content-Type": "application/json" }
+        });
       }
     }
 
-    pendingReports = pendingReports.slice(0, limit);
-
-    console.log(`[RunSajuEvaluationDaily] Pending for evaluation: ${pendingReports.length}, skipped: ${skippedAlreadyEvaluated}`);
+    console.log(`[RunSajuEvaluationDaily] Pending for evaluation: 1, skipped: ${skippedAlreadyEvaluated}`);
 
     const warnings: string[] = [];
     let evaluatedReports = 0;
@@ -130,43 +216,40 @@ serve(async (req) => {
       warnings.push(`Snippet retrieval failed: ${e.message.slice(0, 100)}`);
     }
 
-    // Evaluate each report
-    for (const report of pendingReports) {
-      try {
-        // Sanitize report content: remove debug object (internal observability) to avoid meta_leak in evaluator
-        const { debug, ...sanitizedReportContent } = report.report_content ?? {};
-        
-        const evaluation = await evaluateReportWithGPT(sanitizedReportContent, retrievedChunks);
-        evaluatedReports++;
+    try {
+      // Sanitize report content: remove debug object (internal observability) to avoid meta_leak in evaluator
+      const { debug, ...sanitizedReportContent } = selectedReport.report_content ?? {};
 
-        // Save to saju_report_evaluations
-        const modelName = Deno.env.get("OPENAI_FORTUNE_MODEL") || "gpt-5-mini";
-        
-        const { error: saveError } = await supabase
-          .from("saju_report_evaluations")
-          .upsert({
-            report_id: report.id,
-            report_date: targetDate,
-            overall_grade: evaluation.overallGrade,
-            issues: evaluation.issues || [],
-            repeat_axis: evaluation.repeatAxis || {},
-            codex_prompt: evaluation.codexPrompt || null,
-            retrieved_chunks: retrievedChunks,
-            warning: null,
-            model_name: modelName,
-            evaluated_at: new Date().toISOString()
-          }, { onConflict: "report_id" });
+      const evaluation = await evaluateReportWithGPT(sanitizedReportContent, retrievedChunks);
+      evaluatedReports++;
 
-        if (saveError) {
-          console.error(`[RunSajuEvaluationDaily] DB Save failed for report_id=${report.id}`, saveError.message);
-          warnings.push(`DB Save failed for report_id=${report.id}: ${saveError.message}`);
-        } else {
-          savedEvaluations++;
-        }
-      } catch (err: any) {
-        console.error(`[RunSajuEvaluationDaily] Evaluation failed for report_id=${report.id}`, err.message);
-        warnings.push(`Eval fail for report_id=${report.id}: ${err.message.slice(0, 100)}`);
+      // Save to saju_report_evaluations
+      const modelName = Deno.env.get("OPENAI_FORTUNE_MODEL") || "gpt-5-mini";
+
+      const { error: saveError } = await supabase
+        .from("saju_report_evaluations")
+        .upsert({
+          report_id: selectedReport.id,
+          report_date: targetDate,
+          overall_grade: evaluation.overallGrade,
+          issues: evaluation.issues || [],
+          repeat_axis: evaluation.repeatAxis || {},
+          codex_prompt: evaluation.codexPrompt || null,
+          retrieved_chunks: retrievedChunks,
+          warning: null,
+          model_name: modelName,
+          evaluated_at: new Date().toISOString()
+        }, { onConflict: "report_id" });
+
+      if (saveError) {
+        console.error(`[RunSajuEvaluationDaily] DB Save failed for report_id=${selectedReport.id}`, saveError.message);
+        warnings.push(`DB Save failed for report_id=${selectedReport.id}: ${saveError.message}`);
+      } else {
+        savedEvaluations++;
       }
+    } catch (err: any) {
+      console.error(`[RunSajuEvaluationDaily] Evaluation failed for report_id=${selectedReport.id}`, err.message);
+      warnings.push(`Eval fail for report_id=${selectedReport.id}: ${err.message.slice(0, 100)}`);
     }
 
     let batchCreated = false;
@@ -176,8 +259,12 @@ serve(async (req) => {
     return new Response(JSON.stringify({
       runId,
       targetDate,
-      foundReports,
-      eligibleReports: eligibleReports.length,
+      softieProfileUsed: Boolean(softieProfileId),
+      selectedReportId: selectedReport.id,
+      selectedProfileId: selectedReport.profile_id,
+      selectedReportTimestamp: selectedTimestamp,
+      foundReports: 1,
+      eligibleReports: 1,
       skippedAlreadyEvaluated,
       evaluatedReports,
       savedEvaluations,
