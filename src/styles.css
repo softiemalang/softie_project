@@ -849,19 +849,22 @@ textarea {
 
 .music-save-button {
   flex: 0 0 auto;
-  width: 32px;
-  height: 32px;
+  width: 28px;
+  height: 28px;
+  min-height: 28px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   line-height: 1;
+  padding: 0;
   margin: 0;
   background: transparent;
   border: none;
-  border-radius: 50%;
-  font-size: 1.3rem;
+  border-radius: 999px;
+  font-size: 1.05rem;
   color: #c9c0b5;
   cursor: pointer;
+  transform: translateY(1px);
   transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
@@ -872,7 +875,7 @@ textarea {
 
 .music-save-button.is-saved {
   color: #e66465;
-  transform: scale(1.1);
+  transform: translateY(1px);
 }
 
 .music-save-button:disabled {
