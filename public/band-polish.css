@@ -16,6 +16,22 @@
     display: none;
   }
 
+  .app-shell:has(input[placeholder="밴드 방 이름"]) input {
+    border-color: #d9d0c4;
+    background: rgba(255, 255, 255, 0.82);
+    outline: none;
+    box-shadow: none;
+    -webkit-appearance: none;
+    appearance: none;
+  }
+
+  .app-shell:has(input[placeholder="밴드 방 이름"]) input:focus,
+  .app-shell:has(input[placeholder="밴드 방 이름"]) input:focus-visible {
+    border-color: #8aa89b;
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(138, 168, 155, 0.22);
+  }
+
   @media (max-width: 699px) {
     .app-shell:has(input[placeholder="밴드 방 이름"]) {
       padding-top: max(0.62rem, calc(env(safe-area-inset-top) + 0.28rem));
