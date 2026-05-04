@@ -199,6 +199,37 @@ function buildSpotifyRequest(action: SpotifyAction, payload: Record<string, unkn
         context_uri: payload.contextUri,
       })
       break
+    case 'checkSavedTrack':
+      if (!payload.trackId) throw new Error('Missing trackId for checkSavedTrack')
+      method = 'GET'
+      endpoint.pathname = '/v1/me/tracks/contains'
+      endpoint.searchParams.set('ids', String(payload.trackId))
+      break
+    case 'saveTrack':
+      if (!payload.trackId) throw new Error('Missing trackId for saveTrack')
+      method = 'PUT'
+      endpoint.pathname = '/v1/me/tracks'
+      body = JSON.stringify({
+        ids: [payload.trackId],
+      })
+      break
+    case 'removeTrack':
+      if (!payload.trackId) throw new Error('Missing trackId for removeTrack')
+      method = 'DELETE'
+      endpoint.pathname = '/v1/me/tracks'
+      body = JSON.stringify({
+        ids: [payload.trackId],
+      })
+      break
+    case 'setVolume':
+      if (typeof payload.volumePercent !== 'number') throw new Error('Missing or invalid volumePercent for setVolume')
+      method = 'PUT'
+      endpoint.pathname = '/v1/me/player/volume'
+      endpoint.searchParams.set('volume_percent', String(Math.max(0, Math.min(100, payload.volumePercent))))
+      if (payload.deviceId) {
+        endpoint.searchParams.set('device_id', String(payload.deviceId))
+      }
+      break
     default:
       throw new Error('Unsupported Spotify action')
   }
