@@ -3,7 +3,7 @@
 
 @supports selector(:has(*)) {
   .app-shell:has(input[placeholder="밴드 방 이름"]) {
-    --band-landing-gap: 0.82rem;
+    --band-landing-gap: 0.74rem;
   }
 
   .app-shell:has(input[placeholder="밴드 방 이름"]) .hero,
@@ -18,49 +18,58 @@
 
   @media (max-width: 699px) {
     .app-shell:has(input[placeholder="밴드 방 이름"]) {
-      padding-top: max(0.65rem, calc(env(safe-area-inset-top) + 0.3rem));
+      padding-top: max(0.62rem, calc(env(safe-area-inset-top) + 0.28rem));
       padding-inline: 0.86rem;
     }
 
     .app-shell:has(input[placeholder="밴드 방 이름"]) .hero .eyebrow,
     .app-shell:has(input[placeholder="밴드 방 이름"]) .section-kicker {
-      font-size: 0.72rem;
+      font-size: 0.7rem;
       letter-spacing: 0.08em;
     }
 
     .app-shell:has(input[placeholder="밴드 방 이름"]) .card {
-      padding: 0.96rem 1.02rem 1.02rem;
+      padding: 0.88rem 0.9rem 0.94rem;
       margin-bottom: var(--band-landing-gap);
-      border-radius: 24px;
+      border-radius: 22px;
     }
 
     .app-shell:has(input[placeholder="밴드 방 이름"]) .card > * + * {
-      margin-top: 0.74rem;
+      margin-top: 0.62rem;
     }
 
     .app-shell:has(input[placeholder="밴드 방 이름"]) .card > .card-header + * {
-      margin-top: 0.42rem;
+      margin-top: 0.36rem;
     }
 
     .app-shell:has(input[placeholder="밴드 방 이름"]) .field-grid {
-      gap: 0.66rem;
+      gap: 0.56rem;
     }
 
     .app-shell:has(input[placeholder="밴드 방 이름"]) input {
-      min-height: 50px;
-      padding: 0.74rem 0.92rem;
-      border-radius: 16px;
+      min-height: 44px;
+      padding: 0.64rem 0.82rem;
+      border-radius: 14px;
+      font-size: 16px;
+      line-height: 1.2;
+    }
+
+    .app-shell:has(input[placeholder="밴드 방 이름"]) input::placeholder {
+      font-size: 16px;
     }
 
     .app-shell:has(input[placeholder="밴드 방 이름"]) .card > button {
-      min-height: 50px;
-      margin-top: 0.78rem;
-      border-radius: 16px;
-      font-weight: 700;
+      min-height: 44px;
+      margin-top: 0.64rem;
+      padding: 0.64rem 0.86rem;
+      border-radius: 14px;
+      font-size: 0.96rem;
+      font-weight: 650;
+      line-height: 1.15;
     }
 
     .app-shell:has(input[placeholder="밴드 방 이름"]) .primary-home-card button {
-      box-shadow: 0 8px 18px rgba(31, 111, 95, 0.16);
+      box-shadow: 0 7px 16px rgba(31, 111, 95, 0.14);
     }
   }
 }
