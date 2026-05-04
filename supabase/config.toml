@@ -76,3 +76,7 @@ verify_jwt = false
 [functions.google-drive-rehearsal-scheduled-backup]
 # Automated backup endpoint protected by BACKUP_CRON_SECRET instead of Supabase Auth
 verify_jwt = false
+
+[functions.google-drive-saju-daily-report-backup]
+# Automated Saju daily archive backup protected by BACKUP_CRON_SECRET instead of Supabase Auth
+verify_jwt = false
