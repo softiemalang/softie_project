@@ -7,6 +7,7 @@ import {
   isGoogleConnected,
   createGoogleCalendarEvent,
   updateGoogleCalendarEvent,
+  deleteGoogleCalendarEvent,
   disconnectGoogleCalendar
 } from '../scheduler/googleApi'
 import {
@@ -303,6 +304,16 @@ export default function RehearsalCalendarPage() {
                     }}
                     onDelete={async () => {
                       if (confirm('이 일정을 삭제하시겠습니까?')) {
+                        if (isGoogleReady && ev.google_calendar_event_id) {
+                          try {
+                            await deleteGoogleCalendarEvent(effectiveOwnerKey, ev.id)
+                          } catch (calErr) {
+                            console.error('Failed to sync google calendar deletion', calErr)
+                            // We alert the user but continue with DB deletion for 404/already deleted scenarios 
+                            // though the Edge Function already handles 404 as success.
+                            // If it's a real error (like 401/403), we might want to warn.
+                          }
+                        }
                         await deleteRehearsalEvent(ev.id)
                         loadEvents()
                         // if last event on this date is deleted, close the sheet

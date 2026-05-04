@@ -3,6 +3,8 @@ import { getOrRefreshToken } from './googleToken.ts'
 import { getOrCreateFolder, uploadFile, updateFile } from './googleBackup.ts'
 
 export async function backupUserRehearsalEvents(supabase: any, userId: string, yearMonth: string) {
+  console.log(`[backupUserRehearsalEvents] Starting backup for user: ${userId}, month: ${yearMonth}`)
+  
   // Find rehearsals for the given month (e.g. '2026-05')
   const [year, month] = yearMonth.split('-').map(Number)
   const startDate = `${yearMonth}-01`
@@ -12,6 +14,7 @@ export async function backupUserRehearsalEvents(supabase: any, userId: string, y
   const nextYear = month === 12 ? year + 1 : year
   const nextMonthStart = `${nextYear}-${String(nextMonth).padStart(2, '0')}-01`
 
+  console.log(`[backupUserRehearsalEvents] Fetching events from ${startDate} to ${nextMonthStart}`)
   const { data: events, error: fetchError } = await supabase
     .from('rehearsal_events')
     .select('*')
@@ -20,7 +23,13 @@ export async function backupUserRehearsalEvents(supabase: any, userId: string, y
     .lt('event_date', nextMonthStart)
     .order('event_date', { ascending: true })
 
-  if (fetchError) throw new Error(`DB Error: ${fetchError.message}`)
+  if (fetchError) {
+    console.error(`[backupUserRehearsalEvents] DB Fetch Error: ${fetchError.message}`)
+    throw new Error(`DB Error: ${fetchError.message}`)
+  }
+
+  const eventCount = events?.length || 0
+  console.log(`[backupUserRehearsalEvents] Found ${eventCount} events`)
 
   const now = new Date()
   const finalJson = {
@@ -44,40 +53,65 @@ export async function backupUserRehearsalEvents(supabase: any, userId: string, y
   const fileName = `rehearsal-events-${yearMonth}.json`
   const content = JSON.stringify(finalJson, null, 2)
 
-  const accessToken = await getOrRefreshToken(supabase, userId)
+  try {
+    console.log(`[backupUserRehearsalEvents] Refreshing Google token for user: ${userId}`)
+    const accessToken = await getOrRefreshToken(supabase, userId)
+    console.log(`[backupUserRehearsalEvents] Token refreshed successfully`)
 
-  // Upload to Drive: Softie Backups -> rehearsals
-  const rootFolderId = await getOrCreateFolder(accessToken, 'Softie Backups')
-  const rehearsalsFolderId = await getOrCreateFolder(accessToken, 'rehearsals', rootFolderId)
+    // Upload to Drive: Softie Backups -> rehearsals
+    console.log(`[backupUserRehearsalEvents] Getting/Creating folder: 'Softie Backups'`)
+    const rootFolderId = await getOrCreateFolder(accessToken, 'Softie Backups')
+    
+    console.log(`[backupUserRehearsalEvents] Getting/Creating sub-folder: 'rehearsals' in ${rootFolderId}`)
+    const rehearsalsFolderId = await getOrCreateFolder(accessToken, 'rehearsals', rootFolderId)
 
-  // Check if the file already exists in the folder to update it instead of duplicating
-  const query = `mimeType='application/json' and name='${fileName}' and '${rehearsalsFolderId}' in parents and trashed=false`
-  const searchRes = await fetch(`https://www.googleapis.com/drive/v3/files?q=${encodeURIComponent(query)}&spaces=drive`, {
-    headers: { Authorization: `Bearer ${accessToken}` }
-  })
-  const searchData = await searchRes.json()
+    // Check if the file already exists in the folder to update it instead of duplicating
+    console.log(`[backupUserRehearsalEvents] Checking for existing file: ${fileName}`)
+    const query = `mimeType='application/json' and name='${fileName}' and '${rehearsalsFolderId}' in parents and trashed=false`
+    const searchRes = await fetch(`https://www.googleapis.com/drive/v3/files?q=${encodeURIComponent(query)}&spaces=drive`, {
+      headers: { Authorization: `Bearer ${accessToken}` }
+    })
+    
+    if (!searchRes.ok) {
+      const errText = await searchRes.text()
+      console.error(`[backupUserRehearsalEvents] Google Drive Search Failed: ${searchRes.status}`, errText)
+      throw new Error(`Google Drive Search Failed: ${searchRes.status}`)
+    }
 
-  let fileId;
-  if (searchData.files && searchData.files.length > 0) {
-    fileId = searchData.files[0].id
-    await updateFile(accessToken, fileId, content)
-  } else {
-    fileId = await uploadFile(accessToken, rehearsalsFolderId, fileName, content)
+    const searchData = await searchRes.json()
+    let fileId;
+    if (searchData.files && searchData.files.length > 0) {
+      fileId = searchData.files[0].id
+      console.log(`[backupUserRehearsalEvents] Updating existing file: ${fileId}`)
+      await updateFile(accessToken, fileId, content)
+    } else {
+      console.log(`[backupUserRehearsalEvents] Uploading new file: ${fileName}`)
+      fileId = await uploadFile(accessToken, rehearsalsFolderId, fileName, content)
+    }
+
+    // Update the db records to mark them backed up
+    if (events && events.length > 0) {
+      console.log(`[backupUserRehearsalEvents] Marking ${events.length} records as backed up in DB`)
+      const eventIds = events.map((e: any) => e.id)
+      const { error: updateError } = await supabase
+        .from('rehearsal_events')
+        .update({
+          drive_backup_status: 'success',
+          drive_backup_file_id: fileId,
+          drive_backup_file_name: fileName,
+          drive_backed_up_at: now.toISOString()
+        })
+        .in('id', eventIds)
+      
+      if (updateError) {
+        console.error(`[backupUserRehearsalEvents] DB Update Error: ${updateError.message}`)
+      }
+    }
+
+    console.log(`[backupUserRehearsalEvents] Backup completed successfully. File ID: ${fileId}`)
+    return { success: true, fileId, fileName }
+  } catch (err) {
+    console.error(`[backupUserRehearsalEvents] Critical Error:`, err)
+    throw err
   }
-
-  // Update the db records to mark them backed up
-  if (events && events.length > 0) {
-    const eventIds = events.map((e: any) => e.id)
-    await supabase
-      .from('rehearsal_events')
-      .update({
-        drive_backup_status: 'success',
-        drive_backup_file_id: fileId,
-        drive_backup_file_name: fileName,
-        drive_backed_up_at: now.toISOString()
-      })
-      .in('id', eventIds)
-  }
-
-  return { success: true, fileId, fileName }
 }

@@ -65,6 +65,10 @@ verify_jwt = false
 # Called from the app without Supabase Auth session, using deviceId instead.
 verify_jwt = false
 
+[functions.google-calendar-delete-event]
+# Called from the app without Supabase Auth session, using deviceId instead.
+verify_jwt = false
+
 [functions.google-drive-rehearsal-scheduled-backup]
 # Automated backup endpoint protected by BACKUP_CRON_SECRET instead of Supabase Auth
 verify_jwt = false
