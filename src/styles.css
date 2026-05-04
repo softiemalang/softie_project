@@ -956,21 +956,22 @@ textarea {
 }
 
 .music-control-button {
-  min-height: 44px;
-  padding: 0.5rem 0.45rem;
-  border-radius: 14px;
+  min-height: 38px;
+  padding: 0.42rem 0.5rem;
+  border-radius: 12px;
   background: #efe7db;
   color: #5d4f3f;
   font-weight: 600;
   font-size: 0.86rem;
   border: none;
   cursor: pointer;
+  line-height: 1;
 }
 
 .music-control-button-primary {
   background: var(--brand);
   color: #fff;
-  box-shadow: 0 8px 20px rgba(31, 111, 95, 0.15);
+  box-shadow: 0 6px 16px rgba(31, 111, 95, 0.12);
 }
 
 .music-connection-pill {
@@ -987,7 +988,7 @@ textarea {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0.62rem 0.95rem;
+  padding: 0.6rem 0.95rem;
   border-radius: 18px;
   gap: 0.75rem;
   min-height: 42px;
@@ -1000,7 +1001,8 @@ textarea {
   text-decoration: none;
   display: inline-flex;
   align-items: center;
-  line-height: 1;
+  margin: 0;
+  line-height: 1.2;
   transition: opacity 0.2s;
 }
 
@@ -1011,14 +1013,16 @@ textarea {
 .music-ready-pill {
   flex: 0 0 auto;
   white-space: nowrap;
-  padding: 0.28rem 0.58rem;
+  padding: 0 0.58rem;
+  height: 24px;
   font-size: 0.74rem;
-  line-height: 1;
+  line-height: 24px;
   border-radius: 10px;
   font-weight: 600;
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  margin: 0;
 }
 
 .music-ready-pill.active {
@@ -1155,8 +1159,8 @@ textarea {
   }
 
   .music-control-button {
-    font-size: 0.9rem;
-    min-height: 46px;
+    font-size: 0.88rem;
+    min-height: 40px;
   }
 
   .music-device-card {
