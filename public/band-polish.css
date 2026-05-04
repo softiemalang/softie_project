@@ -6,6 +6,15 @@
     --band-landing-gap: 0.82rem;
   }
 
+  .app-shell:has(input[placeholder="밴드 방 이름"]) .hero .action-row {
+    display: none;
+  }
+
+  .app-shell:has(input[placeholder="밴드 방 이름"]) .primary-home-card .subtle,
+  .app-shell:has(input[placeholder="밴드 방 이름"]) .secondary-card > .subtle {
+    display: none;
+  }
+
   @media (max-width: 699px) {
     .app-shell:has(input[placeholder="밴드 방 이름"]) {
       padding-top: max(0.85rem, calc(env(safe-area-inset-top) + 0.45rem));
@@ -32,21 +41,6 @@
       letter-spacing: 0.08em;
     }
 
-    .app-shell:has(input[placeholder="밴드 방 이름"]) .hero .action-row {
-      margin-top: 0.82rem !important;
-    }
-
-    .app-shell:has(input[placeholder="밴드 방 이름"]) .hero .soft-button {
-      min-height: 38px;
-      padding: 0.54rem 0.82rem;
-      border-radius: 14px;
-      background: #f1e9dd;
-      color: #5b4a35;
-      box-shadow: none;
-      font-size: 0.9rem;
-      font-weight: 650;
-    }
-
     .app-shell:has(input[placeholder="밴드 방 이름"]) .card {
       padding: 1.02rem;
       margin-bottom: var(--band-landing-gap);
@@ -58,18 +52,12 @@
       line-height: 1.2;
     }
 
-    .app-shell:has(input[placeholder="밴드 방 이름"]) .subtle {
-      margin-top: 0.34rem;
-      font-size: 0.94rem;
-      line-height: 1.45;
-    }
-
     .app-shell:has(input[placeholder="밴드 방 이름"]) .card > * + * {
       margin-top: 0.76rem;
     }
 
     .app-shell:has(input[placeholder="밴드 방 이름"]) .card > .card-header + * {
-      margin-top: 0.58rem;
+      margin-top: 0.72rem;
     }
 
     .app-shell:has(input[placeholder="밴드 방 이름"]) .field-grid {
