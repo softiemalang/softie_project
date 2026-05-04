@@ -19,7 +19,39 @@ import {
   saveSpotifyTrack,
   removeSpotifyTrack,
   setSpotifyVolume,
+  resolveSpotifyDisplayMetadata,
 } from '../music/spotifyApi'
+
+const METADATA_CACHE_KEY = 'music:spotify_display_metadata_cache'
+const CACHE_TTL = 7 * 24 * 60 * 60 * 1000 // 7 days
+
+function getMetadataCache() {
+  try {
+    const cached = localStorage.getItem(METADATA_CACHE_KEY)
+    return cached ? JSON.parse(cached) : {}
+  } catch {
+    return {}
+  }
+}
+
+function setMetadataCache(trackId, data) {
+  try {
+    const cache = getMetadataCache()
+    cache[trackId] = { ...data, cachedAt: Date.now() }
+    
+    // Cleanup old cache entries (keep only 100 latest)
+    const keys = Object.keys(cache)
+    if (keys.length > 100) {
+      const sortedKeys = keys.sort((a, b) => cache[b].cachedAt - cache[a].cachedAt)
+      const toDelete = sortedKeys.slice(100)
+      toDelete.forEach(k => delete cache[k])
+    }
+    
+    localStorage.setItem(METADATA_CACHE_KEY, JSON.stringify(cache))
+  } catch (e) {
+    console.error('[SpotifyMusicPage.setMetadataCache]', e)
+  }
+}
 
 function formatDuration(ms) {
   if (!Number.isFinite(ms) || ms < 0) return '0:00'
@@ -79,6 +111,10 @@ export default function SpotifyMusicPage() {
   const [devices, setDevices] = useState([])
   const [progressMs, setProgressMs] = useState(0)
 
+  // Display Metadata State
+  const [displayMetadata, setDisplayMetadata] = useState(null)
+  const [isResolvingMetadata, setIsResolvingMetadata] = useState(false)
+
   // Track Save State
   const [isTrackSaved, setIsTrackSaved] = useState(false)
   const [isCheckingSaved, setIsCheckingSaved] = useState(false)
@@ -130,6 +166,46 @@ export default function SpotifyMusicPage() {
       mounted = false
     }
   }, [])
+
+  useEffect(() => {
+    if (!userId || !isConnected || !trackId) {
+      setDisplayMetadata(null)
+      return
+    }
+
+    async function resolveMetadata() {
+      // 1. Check local cache
+      const cache = getMetadataCache()
+      const cached = cache[trackId]
+      if (cached && Date.now() - cached.cachedAt < CACHE_TTL) {
+        setDisplayMetadata(cached)
+        return
+      }
+
+      // 2. Resolve via API
+      setIsResolvingMetadata(true)
+      try {
+        const payload = {
+          trackId,
+          trackName: track.name,
+          artistName: getTrackArtists(track),
+          albumName: track.album?.name || '',
+          durationMs: track.duration_ms || durationMs,
+        }
+        const result = await resolveSpotifyDisplayMetadata(userId, payload)
+        if (result?.ok && result.data) {
+          setDisplayMetadata(result.data)
+          setMetadataCache(trackId, result.data)
+        }
+      } catch (error) {
+        console.error('[SpotifyMusicPage.resolveMetadata]', error)
+      } finally {
+        setIsResolvingMetadata(false)
+      }
+    }
+
+    resolveMetadata()
+  }, [userId, isConnected, trackId, track?.name])
 
   useEffect(() => {
     if (!userId || !isConnected || !trackId) {
@@ -396,10 +472,10 @@ export default function SpotifyMusicPage() {
 
         <div className="music-now-layout">
           <div className="music-now-copy">
-            {track && <h2>{track.name}</h2>}
+            {track && <h2>{displayMetadata?.title || track.name}</h2>}
             {track && (
               <p className="subtle music-track-meta">
-                {`${getTrackArtists(track)} · ${track.album?.name || '앨범 정보 없음'}`}
+                {`${displayMetadata?.artist || getTrackArtists(track)} · ${displayMetadata?.album || track.album?.name || '앨범 정보 없음'}`}
               </p>
             )}
           </div>

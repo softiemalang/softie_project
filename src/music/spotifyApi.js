@@ -199,3 +199,16 @@ export async function setSpotifyVolume(userId, volumePercent, deviceId) {
     softieClient: 'music-dashboard',
   })
 }
+
+export async function resolveSpotifyDisplayMetadata(userId, payload) {
+  return invokeSpotifyControl({
+    userId,
+    action: 'resolveDisplayMetadata',
+    trackId: payload.trackId,
+    trackName: payload.trackName,
+    artistName: payload.artistName,
+    albumName: payload.albumName,
+    durationMs: payload.durationMs,
+    softieClient: 'music-dashboard',
+  })
+}

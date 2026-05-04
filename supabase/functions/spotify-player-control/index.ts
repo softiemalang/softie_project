@@ -25,6 +25,89 @@ type SpotifyAction =
   | 'saveTrack'
   | 'removeTrack'
   | 'setVolume'
+  | 'resolveDisplayMetadata'
+
+function containsHangul(text: string) {
+  return /[ㄱ-ㅎㅏ-ㅣ가-힣]/.test(text)
+}
+
+async function resolveDisplayMetadata(
+  supabase: ReturnType<typeof createClient>,
+  tokenRow: SpotifyTokenRow,
+  payload: any
+) {
+  const { trackId, trackName, artistName, albumName, durationMs } = payload
+  let activeToken = await ensureFreshSpotifyAccessToken(supabase, tokenRow)
+  
+  // 1. Try direct track fetch with market=KR
+  const trackUrl = `https://api.spotify.com/v1/tracks/${trackId}?market=KR`
+  const trackResp = await fetch(trackUrl, {
+    headers: { Authorization: `Bearer ${activeToken.access_token}` },
+  })
+  
+  let candidate = null
+  if (trackResp.ok) {
+    const data = await trackResp.json()
+    candidate = {
+      title: data.name,
+      artist: data.artists?.map((a: any) => a.name).join(', '),
+      album: data.album?.name,
+      source: 'track-kr',
+      matchedTrackId: data.id,
+    }
+    
+    if (containsHangul(candidate.title) || containsHangul(candidate.artist)) {
+      return { tokenRow: activeToken, data: candidate }
+    }
+  }
+
+  // 2. Search for KR localized candidate
+  const query = encodeURIComponent(`${trackName} ${artistName}`)
+  const searchUrl = `https://api.spotify.com/v1/search?q=${query}&type=track&market=KR&limit=5`
+  const searchResp = await fetch(searchUrl, {
+    headers: { Authorization: `Bearer ${activeToken.access_token}` },
+  })
+
+  if (searchResp.ok) {
+    const searchData = await searchResp.json()
+    const items = searchData.tracks?.items || []
+    
+    for (const item of items) {
+      const itemArtist = item.artists?.[0]?.name || ''
+      const durDiff = Math.abs(item.duration_ms - (durationMs || 0))
+      
+      // Matching criteria: duration within 4s AND (artist match or linked id)
+      const isDurationMatch = durDiff <= 4000
+      const isArtistMatch = 
+        itemArtist.toLowerCase().includes(artistName.toLowerCase()) || 
+        artistName.toLowerCase().includes(itemArtist.toLowerCase())
+      const isLinked = item.id === trackId || item.linked_from?.id === trackId
+
+      if (isDurationMatch && (isArtistMatch || isLinked)) {
+        const found = {
+          title: item.name,
+          artist: item.artists?.map((a: any) => a.name).join(', '),
+          album: item.album?.name,
+          source: 'search-kr',
+          matchedTrackId: item.id,
+        }
+        
+        if (containsHangul(found.title) || containsHangul(found.artist)) {
+          return { tokenRow: activeToken, data: found }
+        }
+        
+        if (!candidate || !containsHangul(candidate.title)) {
+          candidate = found
+        }
+      }
+    }
+  }
+
+  return { 
+    tokenRow: activeToken, 
+    data: candidate || { title: trackName, artist: artistName, album: albumName, source: 'original' } 
+  }
+}
 
 function jsonResponse(body: Record<string, unknown>, status = 200) {
   return new Response(JSON.stringify(body), {
@@ -402,6 +485,15 @@ serve(async (req) => {
         },
         404
       )
+    }
+
+    if (action === 'resolveDisplayMetadata') {
+      const result = await resolveDisplayMetadata(supabase, tokenRow, body)
+      return jsonResponse({
+        ok: true,
+        action: 'resolveDisplayMetadata',
+        data: result.data,
+      })
     }
 
     const result = await executeSpotifyAction(supabase, tokenRow, action, body)
