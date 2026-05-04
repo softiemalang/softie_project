@@ -395,6 +395,22 @@ export default function SpotifyMusicPage() {
     }
   }
 
+  async function handlePrimaryPlayButton() {
+    if (!userId || isControlling || isRefreshing) return
+
+    const shouldRefreshOnly = !track || !hasActiveDevice || !device
+
+    if (shouldRefreshOnly) {
+      setStatusMessage('재생 정보를 다시 확인하고 있어요.')
+      await refreshDashboard({ userId, silent: false })
+      return
+    }
+
+    await runControl(isPlaying ? 'pause' : 'play', () =>
+      isPlaying ? pauseSpotify(userId) : playSpotify(userId)
+    )
+  }
+
   const deviceCards = useMemo(() => {
     if (!devices.length) return []
 
@@ -525,12 +541,8 @@ export default function SpotifyMusicPage() {
             <button
               type="button"
               className="music-control-button music-control-button-primary"
-              disabled={!isConnected || isControlling}
-              onClick={() =>
-                runControl(isPlaying ? 'pause' : 'play', () =>
-                  isPlaying ? pauseSpotify(userId) : playSpotify(userId)
-                )
-              }
+              disabled={!isConnected || isControlling || isRefreshing}
+              onClick={handlePrimaryPlayButton}
             >
               {isPlaying ? '일시정지' : '재생'}
             </button>
