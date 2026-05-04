@@ -1094,7 +1094,7 @@ textarea {
   opacity: 0.7;
 }
 
-.music-playlist-modal {
+.scheduler-modal.music-playlist-modal {
   max-width: 480px;
   max-height: 80vh;
   display: flex;

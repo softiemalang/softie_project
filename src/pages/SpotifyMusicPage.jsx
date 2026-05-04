@@ -758,7 +758,7 @@ export default function SpotifyMusicPage() {
                         onClick={() => handlePlayPlaylist(pl.uri)}
                         disabled={isStartingPlaylist}
                       >
-                        재생
+                        Play
                       </button>
                     </article>
                   ))}
