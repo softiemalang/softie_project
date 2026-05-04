@@ -145,7 +145,7 @@ async function ensureFreshSpotifyAccessToken(
   return refreshSpotifyAccessToken(supabase, tokenRow)
 }
 
-const SPOTIFY_MARKET = 'from_token'
+const SPOTIFY_MARKET = 'KR'
 
 function buildSpotifyRequest(action: SpotifyAction, payload: Record<string, unknown>) {
   const endpoint = new URL('https://api.spotify.com/v1/me/player')
