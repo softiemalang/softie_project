@@ -136,7 +136,7 @@ export default function SpotifyMusicPage() {
       setProgressMs(nextProgress)
 
       if (!playbackResult?.playback && !currentlyPlayingResult?.playback) {
-        setStatusMessage('재생 정보를 기다리는 중이에요. Spotify 앱을 열어두면 이 화면이 더 빠르게 채워져요.')
+        setStatusMessage('재생 정보를 기다리는 중이에요.')
       }
     } catch (error) {
       console.error('[SpotifyMusicPage.refreshDashboard]', error)
@@ -264,12 +264,12 @@ export default function SpotifyMusicPage() {
 
         <div className="music-now-layout">
           <div className="music-now-copy">
-            <h2>{track?.name || '재생 정보를 기다리는 중이에요'}</h2>
-            <p className="subtle music-track-meta">
-              {track
-                ? `${getTrackArtists(track)} · ${track.album?.name || '앨범 정보 없음'}`
-                : 'Spotify 앱에서 재생을 시작하면 이곳에 표시돼요.'}
-            </p>
+            {track && <h2>{track.name}</h2>}
+            {track && (
+              <p className="subtle music-track-meta">
+                {`${getTrackArtists(track)} · ${track.album?.name || '앨범 정보 없음'}`}
+              </p>
+            )}
           </div>
 
           {albumImage ? (
