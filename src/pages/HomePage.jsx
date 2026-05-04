@@ -23,28 +23,10 @@ export default function HomePage() {
 
   const services = [
     {
-      description: 'softie_project 설계도와 작업 원칙을 바탕으로, 수정 전에 확인할 내용을 정리해요.',
-      path: '/brain',
-      icon: '🧠',
-      label: 'BRAIN',
-    },
-    {
-      description: '밴드원들의 가능 시간을 모아서 최적의 합주 타임을 찾아보세요.',
-      path: '/band',
-      icon: '🎸',
-      label: 'BAND',
-    },
-    {
-      description: '개인 합주 일정을 월 캘린더로 관리하고 구글 캘린더와 백업을 연결해요.',
-      path: '/rehearsals',
-      icon: '📅',
-      label: 'REHEARSALS',
-    },
-    {
-      description: '나의 일간과 오늘의 흐름을 분석한 맞춤형 AI 리포트를 확인하세요.',
-      path: '/fortune',
-      icon: '🍀',
-      label: 'FORTUNE',
+      description: '근무 일정 관리와 실시간 푸시 알림으로 꼼꼼하게 관리하세요.',
+      path: '/scheduler',
+      icon: '⏰',
+      label: 'SCHEDULER',
     },
     {
       description: '저장된 나의 사주 프로필을 바탕으로 오늘의 흐름을 더 조용하고 깊게 살펴요.',
@@ -53,16 +35,34 @@ export default function HomePage() {
       label: 'SOFTIE FORTUNE',
     },
     {
+      description: '개인 합주 일정을 월 캘린더로 관리하고 구글 캘린더와 백업을 연결해요.',
+      path: '/rehearsals',
+      icon: '📅',
+      label: 'REHEARSALS',
+    },
+    {
+      description: '밴드원들의 가능 시간을 모아서 최적의 합주 타임을 찾아보세요.',
+      path: '/band',
+      icon: '🎸',
+      label: 'BAND',
+    },
+    {
+      description: '나의 일간과 오늘의 흐름을 분석한 맞춤형 AI 리포트를 확인하세요.',
+      path: '/fortune',
+      icon: '🍀',
+      label: 'FORTUNE',
+    },
+    {
       description: '자동 평가된 사주 리포트 품질 로그를 확인하고 개선 포인트를 정리해요.',
       path: '/saju-evaluations',
       icon: '🧾',
       label: 'SAJU QA',
     },
     {
-      description: '근무 일정 관리와 실시간 푸시 알림으로 꼼꼼하게 관리하세요.',
-      path: '/scheduler',
-      icon: '⏰',
-      label: 'SCHEDULER',
+      description: 'softie_project 설계도와 작업 원칙을 바탕으로, 수정 전에 확인할 내용을 정리해요.',
+      path: '/brain',
+      icon: '🧠',
+      label: 'BRAIN',
     },
   ]
 
