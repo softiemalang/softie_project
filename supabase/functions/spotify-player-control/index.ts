@@ -145,6 +145,8 @@ async function ensureFreshSpotifyAccessToken(
   return refreshSpotifyAccessToken(supabase, tokenRow)
 }
 
+const SPOTIFY_MARKET = 'from_token'
+
 function buildSpotifyRequest(action: SpotifyAction, payload: Record<string, unknown>) {
   const endpoint = new URL('https://api.spotify.com/v1/me/player')
   let method = 'GET'
@@ -152,9 +154,11 @@ function buildSpotifyRequest(action: SpotifyAction, payload: Record<string, unkn
 
   switch (action) {
     case 'getPlaybackState':
+      endpoint.searchParams.set('market', SPOTIFY_MARKET)
       break
     case 'getCurrentlyPlaying':
       endpoint.pathname = '/v1/me/player/currently-playing'
+      endpoint.searchParams.set('market', SPOTIFY_MARKET)
       break
     case 'getDevices':
       endpoint.pathname = '/v1/me/player/devices'
