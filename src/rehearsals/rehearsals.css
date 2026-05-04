@@ -274,26 +274,85 @@
 }
 
 .rehearsal-card-details p {
-  margin: 0 0 0.3rem 0;
+  margin: 0 0 0.38rem 0;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.4rem;
 }
 .rehearsal-card-details p:last-child {
   margin: 0;
 }
 
+.rehearsal-status-group {
+  margin-top: 0.65rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
+.rehearsal-status-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.18rem 0.5rem;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  border: 1px solid transparent;
+}
+
+.rehearsal-status-badge.success {
+  background: #e7f3ef;
+  color: #115e59;
+  border-color: rgba(31, 111, 95, 0.15);
+}
+
+.rehearsal-status-badge.muted {
+  background: #f1ede8;
+  color: #8c7e6c;
+  border-color: #e7ddd0;
+}
+
 .rehearsal-card-actions {
   display: flex;
   justify-content: flex-end;
-  margin-top: 0.8rem;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.85rem;
 }
 
-.rehearsal-delete-btn {
-  background: transparent;
-  color: #dc2626;
-  border: none;
+.rehearsal-action-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 32px;
+  padding: 0.35rem 0.85rem;
+  border-radius: 12px;
   font-size: 0.8rem;
   font-weight: 600;
   cursor: pointer;
-  padding: 0.4rem 0.8rem;
+  transition: all 0.2s ease;
+  border: 1px solid transparent;
+}
+
+.rehearsal-action-btn.edit {
+  background: rgba(239, 230, 216, 0.45);
+  color: #5b4a35;
+  border-color: #e7ddd0;
+}
+
+.rehearsal-action-btn.edit:active {
+  background: #e7ddd0;
+}
+
+.rehearsal-action-btn.delete {
+  background: rgba(254, 242, 242, 0.8);
+  color: #b91c1c;
+  border-color: #fecaca;
+}
+
+.rehearsal-action-btn.delete:active {
+  background: #fee2e2;
 }
 
 /* Form */

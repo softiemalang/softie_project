@@ -31,6 +31,22 @@ export async function createRehearsalEvent(eventData) {
   return data
 }
 
+export async function updateRehearsalEvent(id, eventData) {
+  if (!supabase) throw new Error('Supabase client not initialized')
+  const { data, error } = await supabase
+    .from('rehearsal_events')
+    .update(eventData)
+    .eq('id', id)
+    .select()
+    .single()
+
+  if (error) {
+    console.error('Failed to update rehearsal event', error)
+    throw error
+  }
+  return data
+}
+
 export async function deleteRehearsalEvent(id) {
   if (!supabase) return
   const { error } = await supabase

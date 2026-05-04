@@ -11,6 +11,7 @@ import {
 import {
   getRehearsalEvents,
   createRehearsalEvent,
+  updateRehearsalEvent,
   deleteRehearsalEvent,
   triggerRehearsalDriveBackup,
   linkLocalRehearsalEventsToUser
@@ -102,6 +103,7 @@ export default function RehearsalCalendarPage() {
   const [isLoading, setIsLoading] = useState(true)
   const [selectedDate, setSelectedDate] = useState(null)
   const [isAddModalOpen, setIsAddModalOpen] = useState(false)
+  const [editingEvent, setEditingEvent] = useState(null)
   const [isGoogleReady, setIsGoogleReady] = useState(false)
   const [isBackingUp, setIsBackingUp] = useState(false)
   const [effectiveOwnerKey, setEffectiveOwnerKey] = useState(null)
@@ -267,7 +269,10 @@ export default function RehearsalCalendarPage() {
       <div style={{ marginTop: '1.5rem', textAlign: 'center' }}>
         <button 
           className="soft-button rehearsal-add-button" 
-          onClick={() => setIsAddModalOpen(true)}
+          onClick={() => {
+            setEditingEvent(null)
+            setIsAddModalOpen(true)
+          }}
         >
           + 새 일정 추가
         </button>
@@ -291,11 +296,18 @@ export default function RehearsalCalendarPage() {
                   <RehearsalCard 
                     key={ev.id} 
                     event={ev} 
+                    onEdit={() => {
+                      setEditingEvent(ev)
+                      setIsAddModalOpen(true)
+                    }}
                     onDelete={async () => {
                       if (confirm('이 일정을 삭제하시겠습니까?')) {
                         await deleteRehearsalEvent(ev.id)
-                        setSelectedDate(null)
                         loadEvents()
+                        // if last event on this date is deleted, close the sheet
+                        if (selectedEvents.length === 1) {
+                          setSelectedDate(null)
+                        }
                       }
                     }} 
                   />
@@ -310,9 +322,14 @@ export default function RehearsalCalendarPage() {
         <AddRehearsalModal 
           ownerKey={effectiveOwnerKey}
           isGoogleReady={isGoogleReady}
-          onClose={() => setIsAddModalOpen(false)} 
+          initialEvent={editingEvent}
+          onClose={() => {
+            setIsAddModalOpen(false)
+            setEditingEvent(null)
+          }} 
           onSuccess={() => {
             setIsAddModalOpen(false)
+            setEditingEvent(null)
             loadEvents()
           }} 
         />
@@ -321,9 +338,8 @@ export default function RehearsalCalendarPage() {
   )
 }
 
-function RehearsalCard({ event, onDelete }) {
+function RehearsalCard({ event, onEdit, onDelete }) {
   const displayTitle = event.title
-  const teamLabel = event.team_name ? `[${event.team_name}] ` : ''
   const start = event.start_time.slice(0, 5)
   const end = event.end_time.slice(0, 5)
   const depTime = calcDepartureTime(event.start_time, event.travel_minutes)
@@ -344,35 +360,46 @@ function RehearsalCard({ event, onDelete }) {
         {event.travel_minutes > 0 && (
           <p><strong>출발 권장:</strong> {depTime}</p>
         )}
-        <p style={{ marginTop: '0.5rem', fontSize: '0.7rem', color: '#8c7e6c' }}>
-          캘린더 연동: {event.google_calendar_sync_status === 'synced' ? '✅' : '❌'} | 
-          Drive 백업: {event.drive_backup_status === 'success' ? '✅' : '❌'}
-        </p>
+        
+        <div className="rehearsal-status-group">
+          {event.google_calendar_sync_status === 'synced' ? (
+            <span className="rehearsal-status-badge success">캘린더 연동됨</span>
+          ) : (
+            <span className="rehearsal-status-badge muted">캘린더 미연동</span>
+          )}
+          
+          {event.drive_backup_status === 'success' ? (
+            <span className="rehearsal-status-badge success">Drive 백업됨</span>
+          ) : (
+            <span className="rehearsal-status-badge muted">Drive 미백업</span>
+          )}
+        </div>
       </div>
 
       <div className="rehearsal-card-actions">
-        <button className="rehearsal-delete-btn" onClick={onDelete}>삭제</button>
+        <button className="rehearsal-action-btn edit" onClick={onEdit}>편집</button>
+        <button className="rehearsal-action-btn delete" onClick={onDelete}>삭제</button>
       </div>
     </div>
   )
 }
 
-function AddRehearsalModal({ ownerKey, isGoogleReady, onClose, onSuccess }) {
+function AddRehearsalModal({ ownerKey, isGoogleReady, initialEvent, onClose, onSuccess }) {
+  const isEditing = !!initialEvent
   const [form, setForm] = useState({
-    title: '',
-    team_name: '',
-    event_date: '',
-    start_time: '',
-    end_time: '',
-    studio_name: '',
-    travel_minutes: ''
+    title: initialEvent?.title || '',
+    team_name: initialEvent?.team_name || '',
+    event_date: initialEvent?.event_date || '',
+    start_time: initialEvent?.start_time || '',
+    end_time: initialEvent?.end_time || '',
+    studio_name: initialEvent?.studio_name || '',
+    travel_minutes: initialEvent?.travel_minutes || ''
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
 
   async function handleSubmit(e) {
     e.preventDefault()
 
-    // Minimal manual validation since native inputs are hidden
     if (!form.event_date || !form.start_time || !form.end_time || !form.title) {
       alert('필수 정보를 모두 입력해 주세요.')
       return
@@ -380,7 +407,7 @@ function AddRehearsalModal({ ownerKey, isGoogleReady, onClose, onSuccess }) {
 
     setIsSubmitting(true)
     try {
-      const newEvent = await createRehearsalEvent({
+      const payload = {
         owner_key: ownerKey,
         title: form.title || '합주',
         team_name: form.team_name,
@@ -389,15 +416,24 @@ function AddRehearsalModal({ ownerKey, isGoogleReady, onClose, onSuccess }) {
         end_time: form.end_time,
         studio_name: form.studio_name,
         travel_minutes: parseInt(form.travel_minutes) || 0
-      })
+      }
 
-      if (isGoogleReady) {
+      let eventResult
+      if (isEditing) {
+        eventResult = await updateRehearsalEvent(initialEvent.id, payload)
+      } else {
+        eventResult = await createRehearsalEvent(payload)
+      }
+
+      // Sync with Google Calendar if enabled (only for new events or if you want to update existing)
+      // For now, we only handle new event creation sync to match existing behavior
+      if (isGoogleReady && !isEditing) {
         try {
           const summary = form.team_name ? `[${form.team_name}] ${form.title}` : form.title
           const desc = `이동시간 ${form.travel_minutes || 0}분 / 출발 권장 ${calcDepartureTime(form.start_time, form.travel_minutes)}`
           
           await createGoogleCalendarEvent(ownerKey, {
-            rehearsalId: newEvent.id,
+            rehearsalId: eventResult.id,
             summary: summary,
             location: form.studio_name,
             description: desc,
@@ -406,7 +442,6 @@ function AddRehearsalModal({ ownerKey, isGoogleReady, onClose, onSuccess }) {
           })
         } catch (calErr) {
           console.error('Failed to create google calendar event', calErr)
-          // We don't block the UI, status is handled by edge function or remains 'not_synced'
         }
       }
       
@@ -424,7 +459,7 @@ function AddRehearsalModal({ ownerKey, isGoogleReady, onClose, onSuccess }) {
       <div className="scheduler-sheet-backdrop" onClick={onClose} />
       <div className="rehearsal-modal rehearsal-add-modal-sheet">
         <div className="rehearsal-sheet-header">
-          <h3 className="rehearsal-sheet-title">새 일정 추가</h3>
+          <h3 className="rehearsal-sheet-title">{isEditing ? '일정 수정' : '새 일정 추가'}</h3>
           <button className="scheduler-modal-close" onClick={onClose}>닫기</button>
         </div>
         <div className="rehearsal-sheet-content">
@@ -500,7 +535,7 @@ function AddRehearsalModal({ ownerKey, isGoogleReady, onClose, onSuccess }) {
             </div>
 
             <button type="submit" className="rehearsal-submit-btn" disabled={isSubmitting}>
-              {isSubmitting ? '저장 중...' : '일정 추가하기'}
+              {isSubmitting ? '저장 중...' : (isEditing ? '수정 완료' : '일정 추가하기')}
             </button>
           </form>
         </div>
