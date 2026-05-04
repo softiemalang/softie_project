@@ -293,11 +293,15 @@ export default function SpotifyMusicPage() {
           <div className="music-meta-grid">
             <div className="music-meta-card">
               <span className="meta-label">재생 상태</span>
-              <strong>{isPlaying ? '재생 중' : '대기 중'}</strong>
+              <strong className={isPlaying ? '' : 'is-muted'}>
+                {isPlaying ? '재생 중' : '대기 중'}
+              </strong>
             </div>
             <div className="music-meta-card">
               <span className="meta-label">현재 기기</span>
-              <strong>{device?.name || '활성 기기 없음'}</strong>
+              <strong className={device?.name ? '' : 'is-muted'}>
+                {device?.name || '활성 기기 없음'}
+              </strong>
             </div>
           </div>
 
@@ -345,15 +349,11 @@ export default function SpotifyMusicPage() {
 
       <section className="card">
         <header className="card-header">
-          <div>
-            <span className="section-kicker">Devices</span>
-            <h2>재생 기기</h2>
-            <p className="subtle">지금 켜진 기기만 빠르게 전환할 수 있어요.</p>
-          </div>
+          <span className="section-kicker">Devices</span>
         </header>
 
         {deviceCards.length ? (
-          <div className="music-device-list" style={{ marginTop: '0.85rem' }}>
+          <div className="music-device-list" style={{ marginTop: '0.65rem' }}>
             {deviceCards.map((item) => (
               <article key={item.id} className={`music-device-card ${item.is_active ? 'active' : ''}`}>
                 <div className="music-device-copy">
