@@ -367,11 +367,12 @@
 }
 
 .rehearsal-form label {
-  font-size: 0.85rem;
-  font-weight: 600;
-  color: #4b5563;
-  margin-bottom: 0.28rem;
+  font-size: 0.82rem;
+  font-weight: 650;
+  color: #5c4a2b;
+  margin-bottom: 0.35rem;
   display: block;
+  letter-spacing: -0.01em;
 }
 
 .rehearsal-form input {
@@ -386,12 +387,14 @@
   padding: 0 0.9rem;
   line-height: 1.2;
   border: 1px solid #e7ddd0;
-  border-radius: 10px;
-  font-size: 1rem;
+  border-radius: 14px;
+  font-size: 0.98rem;
+  font-weight: 500;
   background: #fff;
-  color: #374151;
+  color: #5a534b;
   box-sizing: border-box;
   display: block;
+  transition: all 0.2s ease;
 }
 
 .rehearsal-form input:focus,
@@ -405,7 +408,8 @@
 }
 
 .rehearsal-form input::placeholder {
-  color: #a7a29b;
+  color: #b5aaa0;
+  font-weight: 400;
   opacity: 1;
 }
 
@@ -415,10 +419,11 @@
   min-width: 0;
   height: 54px;
   min-height: 54px;
-  border-radius: 10px;
+  border-radius: 14px;
   background: #fff;
-  color: #374151;
-  font-size: 1rem;
+  color: #5a534b;
+  font-size: 0.98rem;
+  font-weight: 500;
   font-family: inherit;
   text-align: left;
   display: flex;
@@ -431,14 +436,16 @@
 }
 
 .rehearsal-picker-field.is-empty {
-  color: #a7a29b;
+  color: #b5aaa0;
+  font-weight: 400;
 }
 
 .rehearsal-form input[type="date"],
 .rehearsal-form input[type="time"],
 .rehearsal-form input[type="number"] {
-  color: #3f4a45;
-  -webkit-text-fill-color: #3f4a45;
+  /* Keep base input color for values */
+  color: #5a534b;
+  -webkit-text-fill-color: #5a534b;
   opacity: 1;
   color-scheme: light;
   -webkit-appearance: none;
@@ -448,6 +455,11 @@
   max-inline-size: 100%;
   height: 54px;
   box-sizing: border-box;
+}
+
+/* Ensure placeholder is not affected by text-fill-color on these specific types */
+.rehearsal-form input[type="number"]::placeholder {
+  -webkit-text-fill-color: #b5aaa0;
 }
 
 .rehearsal-form input[type="date"]::-webkit-date-and-time-value,
