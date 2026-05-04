@@ -75,6 +75,10 @@ function getTrackImage(track) {
   )
 }
 
+function canControlVolume(device) {
+  return device?.supports_volume === true && device?.is_restricted !== true
+}
+
 function getFriendlyError(error) {
   const message = error?.message || 'Spotify 정보를 불러오지 못했어요.'
 
@@ -324,13 +328,17 @@ export default function SpotifyMusicPage() {
       await setSpotifyVolume(userId, nextVolume, selectedVolumeDevice.id)
     } catch (error) {
       console.error('[SpotifyMusicPage.handleVolumeStep]', error)
-      setVolumeError('볼륨 조절에 실패했습니다.')
+      setVolumeError('이 기기는 Spotify Web API 볼륨 조절을 지원하지 않아요.')
     } finally {
       setIsChangingVolume(false)
     }
   }
 
   function openVolumeModal(targetDevice) {
+    if (!canControlVolume(targetDevice)) {
+      setStatusMessage('이 기기는 볼륨 조절을 지원하지 않아요.')
+      return
+    }
     setSelectedVolumeDevice(targetDevice)
     setVolumeDraft(typeof targetDevice.volume_percent === 'number' ? targetDevice.volume_percent : 50)
     setIsVolumeModalOpen(true)
@@ -597,7 +605,7 @@ export default function SpotifyMusicPage() {
                       전환
                     </button>
                   )}
-                  {typeof item.volume_percent === 'number' && (
+                  {typeof item.volume_percent === 'number' && canControlVolume(item) && (
                     <button
                       type="button"
                       className="ghost-button music-device-button music-volume-button"
