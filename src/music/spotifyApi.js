@@ -212,3 +212,12 @@ export async function resolveSpotifyDisplayMetadata(userId, payload) {
     softieClient: 'music-dashboard',
   })
 }
+
+export async function getSpotifyPlaylists(userId) {
+  return invokeSpotifyControl({
+    userId,
+    action: 'getPlaylists',
+    softieClient: 'music-dashboard',
+  })
+}
+

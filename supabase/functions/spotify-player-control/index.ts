@@ -26,6 +26,7 @@ type SpotifyAction =
   | 'removeTrack'
   | 'setVolume'
   | 'resolveDisplayMetadata'
+  | 'getPlaylists'
 
 function containsHangul(text: string) {
   return /[ㄱ-ㅎㅏ-ㅣ가-힣]/.test(text)
@@ -345,6 +346,11 @@ function buildSpotifyRequest(action: SpotifyAction, payload: Record<string, unkn
         endpoint.searchParams.set('device_id', String(payload.deviceId))
       }
       break
+    case 'getPlaylists':
+      method = 'GET'
+      endpoint.pathname = '/v1/me/playlists'
+      endpoint.searchParams.set('limit', '50')
+      break
     default:
       throw new Error('Unsupported Spotify action')
   }
@@ -464,6 +470,15 @@ function shapeSpotifySuccess(action: SpotifyAction, status: number, data: any) {
       action,
       status,
       devices: Array.isArray(data?.devices) ? data.devices : [],
+    }
+  }
+
+  if (action === 'getPlaylists') {
+    return {
+      ok: true,
+      action,
+      status,
+      playlists: Array.isArray(data?.items) ? data.items : [],
     }
   }
 

@@ -1071,6 +1071,136 @@ textarea {
   transition: opacity 0.2s;
 }
 
+.music-playlist-trigger {
+  background: transparent;
+  border: none;
+  padding: 0;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #5d4f3f;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  line-height: 1.2;
+  transition: opacity 0.2s;
+}
+
+.music-playlist-trigger:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+.music-playlist-trigger:hover:not(:disabled) {
+  opacity: 0.7;
+}
+
+.music-playlist-modal {
+  max-width: 480px;
+  max-height: 80vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.music-playlist-content {
+  flex: 1;
+  overflow-y: auto;
+  margin: 0.8rem 0;
+  padding-right: 4px;
+}
+
+.music-playlist-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.music-playlist-item {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  padding: 0.6rem;
+  background: #fdfaf5;
+  border: 1px solid #efe7db;
+  border-radius: 12px;
+}
+
+.music-playlist-thumb {
+  width: 44px;
+  height: 44px;
+  border-radius: 6px;
+  overflow: hidden;
+  background: #efe7db;
+  flex-shrink: 0;
+}
+
+.music-playlist-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.music-playlist-thumb-placeholder {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #efe7db 0%, #e5dbcd 100%);
+}
+
+.music-playlist-copy {
+  flex: 1;
+  min-width: 0;
+}
+
+.music-playlist-copy h3 {
+  margin: 0;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #5d4f3f;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.music-playlist-copy .subtle {
+  margin: 0.1rem 0 0;
+  font-size: 0.76rem;
+}
+
+.music-playlist-play-button {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--brand);
+  color: #fff;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  cursor: pointer;
+  transition: transform 0.2s;
+  flex-shrink: 0;
+  padding-left: 2px;
+}
+
+.music-playlist-play-button:hover:not(:disabled) {
+  transform: scale(1.05);
+}
+
+.music-playlist-play-button:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+.music-playlist-app-link {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--brand);
+  text-decoration: none;
+  padding: 0.5rem 0.8rem;
+  background: rgba(231, 243, 239, 0.95);
+  border-radius: 10px;
+}
+
 .music-app-link:hover {
   opacity: 0.8;
 }

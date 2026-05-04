@@ -20,6 +20,8 @@ import {
   removeSpotifyTrack,
   setSpotifyVolume,
   resolveSpotifyDisplayMetadata,
+  getSpotifyPlaylists,
+  playSpotifyPlaylist,
 } from '../music/spotifyApi'
 
 const METADATA_CACHE_KEY = 'music:spotify_display_metadata_cache'
@@ -130,6 +132,13 @@ export default function SpotifyMusicPage() {
   const [isVolumeModalOpen, setIsVolumeModalOpen] = useState(false)
   const [isChangingVolume, setIsChangingVolume] = useState(false)
   const [volumeError, setVolumeError] = useState('')
+
+  // Playlist State
+  const [isPlaylistModalOpen, setIsPlaylistModalOpen] = useState(false)
+  const [playlists, setPlaylists] = useState([])
+  const [isLoadingPlaylists, setIsLoadingPlaylists] = useState(false)
+  const [playlistError, setPlaylistError] = useState('')
+  const [isStartingPlaylist, setIsStartingPlaylist] = useState(false)
 
   const track = playbackState?.item || currentlyPlaying?.item || null
   const trackId = track?.id || ''
@@ -419,6 +428,46 @@ export default function SpotifyMusicPage() {
     )
   }
 
+  async function openPlaylistModal() {
+    setIsPlaylistModalOpen(true)
+    if (playlists.length === 0) {
+      await fetchPlaylists()
+    }
+  }
+
+  async function fetchPlaylists() {
+    if (!userId || !isConnected) return
+    setIsLoadingPlaylists(true)
+    setPlaylistError('')
+    try {
+      const result = await getSpotifyPlaylists(userId)
+      if (result?.ok) {
+        setPlaylists(result.playlists || [])
+      }
+    } catch (error) {
+      console.error('[SpotifyMusicPage.fetchPlaylists]', error)
+      setPlaylistError('플레이리스트를 불러오지 못했습니다.')
+    } finally {
+      setIsLoadingPlaylists(false)
+    }
+  }
+
+  async function handlePlayPlaylist(uri) {
+    if (!userId || isStartingPlaylist) return
+    setIsStartingPlaylist(true)
+    setPlaylistError('')
+    try {
+      await playSpotifyPlaylist(userId, uri)
+      setIsPlaylistModalOpen(false)
+      await refreshDashboard({ userId, silent: true })
+    } catch (error) {
+      console.error('[SpotifyMusicPage.handlePlayPlaylist]', error)
+      setPlaylistError(getFriendlyError(error))
+    } finally {
+      setIsStartingPlaylist(false)
+    }
+  }
+
   const deviceCards = useMemo(() => {
     if (!devices.length) return []
 
@@ -567,9 +616,9 @@ export default function SpotifyMusicPage() {
       </section>
 
       <section className="card music-ready-card">
-        <a className="music-app-link" href={getSpotifyAppUrl()} target="_blank" rel="noreferrer">
-          Spotify 앱으로 열기
-        </a>
+        <button type="button" className="music-playlist-trigger" onClick={openPlaylistModal} disabled={!isConnected}>
+          Playlist
+        </button>
         <span className={`pill music-ready-pill ${hasActiveDevice ? 'active' : 'inactive'}`}>
           {hasActiveDevice ? '활성' : '비활성'}
         </span>
@@ -667,6 +716,69 @@ export default function SpotifyMusicPage() {
             <div className="scheduler-modal-actions" style={{ marginTop: '1.2rem' }}>
               <button type="button" className="scheduler-modal-btn primary" onClick={() => setIsVolumeModalOpen(false)}>
                 확인
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {isPlaylistModalOpen && (
+        <div className="scheduler-sheet-backdrop scheduler-modal-backdrop" onClick={() => setIsPlaylistModalOpen(false)}>
+          <div className="scheduler-modal music-playlist-modal" onClick={e => e.stopPropagation()}>
+            <div className="scheduler-section-head">
+              <div>
+                <p className="scheduler-section-label">Playlist</p>
+              </div>
+              <button type="button" className="scheduler-modal-close" onClick={() => setIsPlaylistModalOpen(false)}>닫기</button>
+            </div>
+
+            <div className="music-playlist-content">
+              {isLoadingPlaylists ? (
+                <p className="subtle" style={{ textAlign: 'center', padding: '2rem 0' }}>플레이리스트를 불러오는 중...</p>
+              ) : playlistError ? (
+                <p className="status" style={{ margin: '1rem 0' }}>{playlistError}</p>
+              ) : playlists.length > 0 ? (
+                <div className="music-playlist-list">
+                  {playlists.map((pl) => (
+                    <article key={pl.id} className="music-playlist-item">
+                      <div className="music-playlist-thumb">
+                        {pl.images?.[0]?.url ? (
+                          <img src={pl.images[0].url} alt={pl.name} />
+                        ) : (
+                          <div className="music-playlist-thumb-placeholder" />
+                        )}
+                      </div>
+                      <div className="music-playlist-copy">
+                        <h3>{pl.name}</h3>
+                        <p className="subtle">{pl.tracks?.total || 0}곡</p>
+                      </div>
+                      <button 
+                        type="button" 
+                        className="music-playlist-play-button"
+                        onClick={() => handlePlayPlaylist(pl.uri)}
+                        disabled={isStartingPlaylist}
+                      >
+                        ▶
+                      </button>
+                    </article>
+                  ))}
+                </div>
+              ) : (
+                <p className="subtle" style={{ textAlign: 'center', padding: '2rem 0' }}>플레이리스트가 없습니다.</p>
+              )}
+            </div>
+
+            <div className="scheduler-modal-actions" style={{ marginTop: '1rem', borderTop: '1px solid #efe7db', paddingTop: '1rem' }}>
+              <a 
+                href={getSpotifyAppUrl()} 
+                className="music-playlist-app-link" 
+                target="_blank" 
+                rel="noreferrer"
+              >
+                Spotify 앱으로 열기
+              </a>
+              <button type="button" className="scheduler-modal-btn" onClick={() => setIsPlaylistModalOpen(false)}>
+                닫기
               </button>
             </div>
           </div>
