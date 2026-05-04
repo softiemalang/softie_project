@@ -9,10 +9,10 @@ serve(async (req) => {
   }
 
   try {
-    const { userId, rehearsalId } = await req.json()
+    const { userId, rehearsalId, reservationId } = await req.json()
 
-    if (!userId || !rehearsalId) {
-      throw new Error('Missing userId or rehearsalId')
+    if (!userId || (!rehearsalId && !reservationId)) {
+      throw new Error('Missing userId, rehearsalId, or reservationId')
     }
 
     const supabase = createClient(
@@ -20,25 +20,33 @@ serve(async (req) => {
       Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!
     )
 
-    // Lookup the rehearsal to get the google_calendar_event_id
-    const { data: rehData, error: rehError } = await supabase
-      .from('rehearsal_events')
-      .select('google_calendar_event_id')
-      .eq('id', rehearsalId)
-      .single()
-
-    if (rehError) {
-      throw new Error(`DB Error: ${rehError.message}`)
+    // Lookup the rehearsal or reservation to get the google_calendar_event_id
+    let googleEventId: string | null = null
+    if (rehearsalId) {
+      const { data, error } = await supabase
+        .from('rehearsal_events')
+        .select('google_calendar_event_id')
+        .eq('id', rehearsalId)
+        .single()
+      if (error) throw new Error(`DB Error: ${error.message}`)
+      googleEventId = data?.google_calendar_event_id
+    } else if (reservationId) {
+      const { data, error } = await supabase
+        .from('reservations')
+        .select('google_event_id')
+        .eq('id', reservationId)
+        .single()
+      if (error) throw new Error(`DB Error: ${error.message}`)
+      googleEventId = data?.google_event_id
     }
 
-    // If no google_calendar_event_id, we consider it "already deleted" or "not synced"
-    if (!rehData?.google_calendar_event_id) {
+    // If no googleEventId, we consider it "already deleted" or "not synced"
+    if (!googleEventId) {
       return new Response(JSON.stringify({ success: true, message: 'No linked event found' }), {
         headers: { ...corsHeaders, 'Content-Type': 'application/json' },
       })
     }
 
-    const googleEventId = rehData.google_calendar_event_id
     const accessToken = await getOrRefreshToken(supabase, userId)
 
     // Delete event in Google Calendar

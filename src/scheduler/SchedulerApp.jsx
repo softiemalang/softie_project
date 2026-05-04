@@ -31,7 +31,16 @@ import {
   toLocalDateInputValue,
 } from './time'
 
-import { connectGoogleCalendar, createGoogleCalendarEvent, isGoogleConnected, disconnectGoogleCalendar, triggerGoogleDriveBackup, appendGoogleSheetsLog } from './googleApi'
+import {
+  connectGoogleCalendar,
+  createGoogleCalendarEvent,
+  updateGoogleCalendarEvent,
+  deleteGoogleCalendarEvent,
+  isGoogleConnected,
+  disconnectGoogleCalendar,
+  triggerGoogleDriveBackup,
+  appendGoogleSheetsLog
+} from './googleApi'
 import { getCurrentSession } from '../lib/auth'
 
 const GO_TO_TODAY_EVENT = 'scheduler:go-today'
@@ -1272,24 +1281,35 @@ function ReservationEditorPage({ mode, reservationId, effectiveOwnerKey }) {
     try {
       const saved = await saveReservation(buildReservationPayload(formValues), reservationId, effectiveOwnerKey)
       
-      // MVP: 구글 캘린더 연동이 되어있다면 일정 생성 시도
+      // MVP: 구글 캘린더 연동이 되어있다면 일정 생성/수정 시도
       if (isGoogleConnected()) {
         const session = await getCurrentSession()
         const targetId = session?.user?.id || getOrCreatePushDeviceId()
 
-        createGoogleCalendarEvent(targetId, {
+        const syncPayload = {
           reservationId: saved.id,
           summary: `[${saved.branch}] ${saved.customer_name}`,
           location: `${saved.branch} ${saved.room}`,
           description: saved.notes_text,
           startAt: saved.start_at,
           endAt: saved.end_at,
-        }).catch(err => {
-          console.error('Google Calendar Sync Error:', err)
-          if (err.message?.includes('not connected') || err.message?.includes('refresh token') || err.message?.includes('insufficient')) {
-            disconnectGoogleCalendar()
-          }
-        })
+        }
+
+        if (mode === 'edit' && saved.google_event_id) {
+          updateGoogleCalendarEvent(targetId, syncPayload).catch(err => {
+            console.error('Google Calendar Update Sync Error:', err)
+            if (err.message?.includes('not connected') || err.message?.includes('refresh token') || err.message?.includes('insufficient')) {
+              disconnectGoogleCalendar()
+            }
+          })
+        } else if (mode === 'create' || (mode === 'edit' && !saved.google_event_id)) {
+          createGoogleCalendarEvent(targetId, syncPayload).catch(err => {
+            console.error('Google Calendar Create Sync Error:', err)
+            if (err.message?.includes('not connected') || err.message?.includes('refresh token') || err.message?.includes('insufficient')) {
+              disconnectGoogleCalendar()
+            }
+          })
+        }
 
         // Log to Google Sheets (fire-and-forget)
         appendGoogleSheetsLog(targetId, 'scheduler_logs', [
@@ -1328,6 +1348,16 @@ function ReservationEditorPage({ mode, reservationId, effectiveOwnerKey }) {
 
     setIsSaving(true)
     try {
+      if (isGoogleConnected() && reservationId) {
+        try {
+          const session = await getCurrentSession()
+          const targetId = session?.user?.id || getOrCreatePushDeviceId()
+          await deleteGoogleCalendarEvent(targetId, reservationId)
+        } catch (calErr) {
+          console.error('Google Calendar Delete Sync Error:', calErr)
+        }
+      }
+
       await deleteReservation(reservationId, effectiveOwnerKey)
       navigate('/scheduler')
     } catch (error) {
