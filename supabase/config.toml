@@ -60,3 +60,11 @@ verify_jwt = false
 [functions.get-softie-saju-profile]
 # Softie 전용 읽기 전용 프로필 조회. 서버 비밀값으로 profile id를 결정합니다.
 verify_jwt = false
+
+[functions.google-calendar-update-event]
+# Called from the app without Supabase Auth session, using deviceId instead.
+verify_jwt = false
+
+[functions.google-drive-rehearsal-scheduled-backup]
+# Automated backup endpoint protected by BACKUP_CRON_SECRET instead of Supabase Auth
+verify_jwt = false

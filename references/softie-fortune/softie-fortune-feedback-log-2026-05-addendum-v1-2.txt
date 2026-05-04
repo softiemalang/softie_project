@@ -1,0 +1,33 @@
+Softie Fortune Feedback Log 2026-05 Addendum v1.2
+
+## 2026-05-04 추가 업그레이드 메모
+
+관찰 요약:
+- v1.1 적용 후 연애/애정운과 인간관계의 역할 분리가 개선되었다.
+- 건강과 금전운은 개인 기준서 방향을 안정적으로 반영하고 있다.
+- 일/커리어는 책임/기준에서 결과물/우선순위 쪽으로 조금 이동했다.
+- 다만 caution 성향의 날에는 여전히 전체 톤이 무거워질 가능성이 있다.
+
+추가 개선 방향:
+1. caution 편향 보정
+- caution을 지우지 않고, 작은 기회와 숨통 문장을 함께 둔다.
+- opportunityLevel이 medium 이상이면 총평 또는 일/커리어에 작은 결과물 문장을 섞는다.
+- recoveryLevel이 medium 이상이면 건강 또는 심리에 회복 여지 문장을 섞는다.
+
+2. dayType별 문장 팔레트
+- expression_with_sensitivity: 표현은 살아나지만 문장 온도 조절
+- work_priority: 책임보다 마감/결과물/우선순위
+- recovery_needed: 회복 시간/자극 줄이기/할 일 덜기
+- relationship_sensitive: 반응 속도/거리감/작은 어긋남
+- money_check: 결제/정산/남는 부담/숨통
+- mind_overload: 생각 과열/한 줄 기록
+- balanced_flow: 작은 선택/균형/부드러운 대화
+
+기준서 반영:
+- softie-report-style-reference-v1.2에 반영 완료 예정
+
+다음 관찰 포인트:
+- caution 날에도 리포트가 너무 무겁지 않은지
+- dayType별 문장 다양성이 실제로 생기는지
+- 책임/부담/기준 반복이 추가로 줄어드는지
+- 실천 팁이 주의점과 중복되지 않는지

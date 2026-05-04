@@ -6,6 +6,7 @@ import {
   connectGoogleCalendar,
   isGoogleConnected,
   createGoogleCalendarEvent,
+  updateGoogleCalendarEvent,
   disconnectGoogleCalendar
 } from '../scheduler/googleApi'
 import {
@@ -425,23 +426,32 @@ function AddRehearsalModal({ ownerKey, isGoogleReady, initialEvent, onClose, onS
         eventResult = await createRehearsalEvent(payload)
       }
 
-      // Sync with Google Calendar if enabled (only for new events or if you want to update existing)
-      // For now, we only handle new event creation sync to match existing behavior
-      if (isGoogleReady && !isEditing) {
+      if (isGoogleReady) {
         try {
           const summary = form.team_name ? `[${form.team_name}] ${form.title}` : form.title
           const desc = `이동시간 ${form.travel_minutes || 0}분 / 출발 권장 ${calcDepartureTime(form.start_time, form.travel_minutes)}`
-          
-          await createGoogleCalendarEvent(ownerKey, {
+          const syncPayload = {
             rehearsalId: eventResult.id,
             summary: summary,
             location: form.studio_name,
             description: desc,
             startAt: `${form.event_date}T${form.start_time}:00+09:00`,
             endAt: `${form.event_date}T${form.end_time}:00+09:00`
-          })
+          }
+
+          if (isEditing) {
+            // Only update if it was already synced
+            if (initialEvent.google_calendar_event_id) {
+              await updateGoogleCalendarEvent(ownerKey, syncPayload)
+            }
+          } else {
+            await createGoogleCalendarEvent(ownerKey, syncPayload)
+          }
         } catch (calErr) {
-          console.error('Failed to create google calendar event', calErr)
+          console.error('Failed to sync google calendar event', calErr)
+          if (isEditing) {
+            alert('합주 일정은 수정되었으나, Google Calendar 연동 업데이트에 실패했습니다.')
+          }
         }
       }
       

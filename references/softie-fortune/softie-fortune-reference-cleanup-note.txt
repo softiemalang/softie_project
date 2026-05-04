@@ -1,0 +1,18 @@
+Softie Fortune Reference Cleanup Note
+
+목적
+기존 softie-report-style-reference-v1, v1-1, v1-2의 핵심을 softie-report-style-reference-current.txt로 통합했다.
+Google RAG 운영에서는 current 파일을 우선 사용하고, 이전 버전 파일은 로컬 백업으로 보관하는 것이 좋다.
+
+권장 데이터 스토어 운영
+- 유지: softie-personal-fortune-reference-v1.txt
+- 유지: softie-report-style-reference-current.txt
+- 유지: softie-fortune-feedback-log-2026-05.txt 또는 월별 최신 피드백 로그
+- 선택 삭제/제외: softie-report-style-reference-v1.txt
+- 선택 삭제/제외: softie-report-style-reference-v1-1.txt
+- 선택 삭제/제외: softie-report-style-reference-v1-2.txt
+- 선택 삭제/제외: 일회성 addendum 파일들
+
+이유
+스타일 기준서가 여러 버전으로 동시에 검색되면 오래된 기준과 최신 기준이 함께 잡혀 문체가 흔들릴 수 있다.
+운영 단계에서는 current 파일 하나로 통합하는 편이 안정적이다.

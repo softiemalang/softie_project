@@ -100,6 +100,19 @@ export async function createGoogleCalendarEvent(userId, eventData) {
 }
 
 /**
+ * Calls the Edge Function to update an existing event in Google Calendar.
+ */
+export async function updateGoogleCalendarEvent(userId, eventData) {
+  if (!supabase) throw new Error('Supabase client not initialized')
+
+  const { data, error } = await supabase.functions.invoke('google-calendar-update-event', {
+    body: { userId, eventData }
+  })
+
+  return unwrapInvokeError(data, error)
+}
+
+/**
  * Calls the Edge Function to trigger a Google Drive Backup MVP.
  */
 export async function triggerGoogleDriveBackup(userId, backupType = 'full') {
