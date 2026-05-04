@@ -334,20 +334,14 @@ export default function SpotifyMusicPage() {
         </div>
       </section>
 
-      {!hasActiveDevice && (
-        <section className="card">
-          <header className="card-header">
-            <span className="section-kicker">Ready</span>
-          </header>
-          <h2>활성 Spotify 기기가 없어요.</h2>
-          <p className="subtle">
-            Spotify 앱을 한 번 열어두면 이 페이지에서 리모컨처럼 조작할 수 있어요.
-          </p>
-          <a className="soft-button music-link-button" href={getSpotifyAppUrl()} target="_blank" rel="noreferrer" style={{ marginTop: '0.8rem' }}>
-            Spotify 앱으로 열기
-          </a>
-        </section>
-      )}
+      <section className="card music-ready-card">
+        <a className="music-app-link" href={getSpotifyAppUrl()} target="_blank" rel="noreferrer">
+          Spotify 앱으로 열기
+        </a>
+        <span className={`pill music-ready-pill ${hasActiveDevice ? 'active' : 'inactive'}`}>
+          {hasActiveDevice ? '활성' : '비활성'}
+        </span>
+      </section>
 
       <section className="card">
         <header className="card-header">

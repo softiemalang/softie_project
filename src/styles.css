@@ -976,6 +976,49 @@ textarea {
   font-weight: 600;
 }
 
+.music-ready-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.68rem 0.95rem;
+  border-radius: 18px;
+  gap: 0.75rem;
+}
+
+.music-app-link {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #5d4f3f;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  transition: opacity 0.2s;
+}
+
+.music-app-link:hover {
+  opacity: 0.8;
+}
+
+.music-ready-pill {
+  flex: 0 0 auto;
+  white-space: nowrap;
+  padding: 0.28rem 0.58rem;
+  font-size: 0.74rem;
+  line-height: 1;
+  border-radius: 10px;
+  font-weight: 600;
+}
+
+.music-ready-pill.active {
+  background: rgba(231, 243, 239, 0.95);
+  color: var(--brand);
+}
+
+.music-ready-pill.inactive {
+  background: #f4f0e8;
+  color: #8c8071;
+}
+
 .music-refresh-button {
   white-space: nowrap;
 }
