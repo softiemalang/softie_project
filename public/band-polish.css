@@ -6,8 +6,7 @@
     --band-landing-gap: 0.82rem;
   }
 
-  .app-shell:has(input[placeholder="밴드 방 이름"]) .hero .action-row,
-  .app-shell:has(input[placeholder="밴드 방 이름"]) .hero h1,
+  .app-shell:has(input[placeholder="밴드 방 이름"]) .hero,
   .app-shell:has(input[placeholder="밴드 방 이름"]) .card h2 {
     display: none;
   }
@@ -19,15 +18,8 @@
 
   @media (max-width: 699px) {
     .app-shell:has(input[placeholder="밴드 방 이름"]) {
-      padding-top: max(0.85rem, calc(env(safe-area-inset-top) + 0.45rem));
+      padding-top: max(0.65rem, calc(env(safe-area-inset-top) + 0.3rem));
       padding-inline: 0.86rem;
-    }
-
-    .app-shell:has(input[placeholder="밴드 방 이름"]) .hero {
-      padding: 1rem 1.05rem 0.9rem;
-      margin-top: 0;
-      margin-bottom: var(--band-landing-gap);
-      border-radius: 26px;
     }
 
     .app-shell:has(input[placeholder="밴드 방 이름"]) .hero .eyebrow,
@@ -69,12 +61,6 @@
 
     .app-shell:has(input[placeholder="밴드 방 이름"]) .primary-home-card button {
       box-shadow: 0 8px 18px rgba(31, 111, 95, 0.16);
-    }
-  }
-
-  @media (min-width: 700px) {
-    .app-shell:has(input[placeholder="밴드 방 이름"]) .hero {
-      padding-block: 1.05rem;
     }
   }
 }
