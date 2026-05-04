@@ -222,43 +222,36 @@ export default function SpotifyMusicPage() {
 
   return (
     <div className="app-shell music-shell">
-      <header className="hero music-hero">
-        <div className="top-actions music-top-actions">
-          <button type="button" className="ghost-button music-home-button" onClick={() => navigate('/')}>
-            홈으로 돌아가기
-          </button>
+      <section className="card music-status-card">
+        <div className="card-header music-status-header">
+          <div>
+            <p className="section-kicker">Spotify</p>
+            {!isConnected && (
+              <p className="subtle music-status-copy">
+                Spotify 계정을 연결하면 현재 재생 중인 음악을 확인하고 Connect 기기를 조작할 수 있어요.
+              </p>
+            )}
+          </div>
+          <div className="music-status-actions">
+            {isConnected ? (
+              <span className="pill music-connection-pill">연결됨</span>
+            ) : (
+              <button type="button" className="soft-button music-connect-button" onClick={handleConnect} disabled={!userId}>
+                Spotify 연결
+              </button>
+            )}
+            <button type="button" className="ghost-button music-home-button" onClick={() => navigate('/')}>
+              홈
+            </button>
+          </div>
         </div>
-        <p className="eyebrow">Softie Music</p>
-        <h1>Spotify Connect 리모컨</h1>
-        <p className="subtle">지금 흐름을 한눈에 보고 조용히 조작하는 작은 음악 조종석이에요.</p>
-        {!session && (
+        {!session && !isConnected && (
           <p className="subtle music-login-hint">
             지금은 기기 ID로도 연결할 수 있지만, 개인용 토큰 관리를 위해 로그인 상태에서 쓰는 편이 더
             안정적이에요.
           </p>
         )}
-        <div className="mini-actions music-hero-actions">
-          <button type="button" className="soft-button" onClick={handleConnect} disabled={!userId}>
-            {isConnected ? 'Spotify 다시 연결' : 'Spotify 연결'}
-          </button>
-          <button
-            type="button"
-            className="soft-button"
-            onClick={() => refreshDashboard({ userId })}
-            disabled={!userId || !isConnected || isRefreshing}
-          >
-            {isRefreshing ? '새로고침 중...' : '새로고침'}
-          </button>
-          <a
-            className="soft-button music-link-button"
-            href={getSpotifyAppUrl()}
-            target="_blank"
-            rel="noreferrer"
-          >
-            Spotify 앱으로 열기
-          </a>
-        </div>
-      </header>
+      </section>
 
       {isLoading ? (
         <section className="card">
@@ -273,9 +266,16 @@ export default function SpotifyMusicPage() {
       <section className="card music-now-card">
         <div className="card-header">
           <p className="section-kicker">Now Playing</p>
-          <span className="pill music-connection-pill">
-            {isConnected ? '연결됨' : '연결 전'}
-          </span>
+          {isConnected && (
+            <button
+              type="button"
+              className="ghost-button music-refresh-button"
+              onClick={() => refreshDashboard({ userId })}
+              disabled={!userId || isRefreshing}
+            >
+              {isRefreshing ? '갱신 중' : '새로고침'}
+            </button>
+          )}
         </div>
 
         <div className="music-now-layout">

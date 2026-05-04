@@ -767,37 +767,32 @@ textarea {
   margin-bottom: 0.85rem;
 }
 
-.music-hero {
-  padding: 0.9rem 0.95rem 0.95rem;
-  background:
-    linear-gradient(160deg, rgba(255, 252, 248, 0.96), rgba(248, 243, 236, 0.92)),
-    radial-gradient(circle at top right, rgba(31, 111, 95, 0.08), transparent 45%);
+.music-status-card {
+  padding: 0.82rem 0.9rem;
 }
 
-.music-hero h1 {
-  margin-top: 0.35rem;
-  font-size: 1.95rem;
-  line-height: 0.96;
+.music-status-header {
+  align-items: center;
 }
 
-.music-top-actions {
-  justify-content: flex-start;
-  margin-bottom: 0.4rem;
+.music-status-copy {
+  margin-top: 0.2rem;
+}
+
+.music-status-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  flex-wrap: wrap;
+  justify-content: flex-end;
 }
 
 .music-home-button {
   min-height: 32px;
-  padding: 0.3rem 0.65rem;
+  padding: 0.3rem 0.58rem;
   border-radius: 12px;
   font-size: 0.8rem;
   background: rgba(255, 255, 255, 0.45);
-}
-
-.music-hero-actions {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 0.5rem;
-  align-items: stretch;
 }
 
 .music-link-button {
@@ -807,12 +802,15 @@ textarea {
   text-decoration: none;
 }
 
-.music-hero .subtle {
-  margin-top: 0.45rem;
+.music-connect-button,
+.music-refresh-button {
+  min-height: 34px;
+  padding: 0.35rem 0.72rem;
+  font-size: 0.82rem;
 }
 
 .music-login-hint {
-  margin-top: 0.35rem;
+  margin-top: 0.3rem;
   font-size: 0.9rem;
 }
 
@@ -930,6 +928,10 @@ textarea {
   color: var(--brand);
 }
 
+.music-refresh-button {
+  white-space: nowrap;
+}
+
 .music-device-list {
   grid-template-columns: 1fr;
   gap: 0.6rem;
@@ -983,20 +985,8 @@ textarea {
       max(2.4rem, calc(env(safe-area-inset-bottom) + 1.5rem));
   }
 
-  .music-hero {
-    padding: 0.82rem 0.88rem 0.88rem;
-  }
-
-  .music-hero h1 {
-    font-size: 1.72rem;
-  }
-
-  .music-hero-actions {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .music-hero-actions > .music-link-button {
-    grid-column: 1 / -1;
+  .music-status-card {
+    padding: 0.72rem 0.82rem;
   }
 
   .music-now-card {
@@ -1015,6 +1005,16 @@ textarea {
 
   .music-cover {
     border-radius: 22px;
+  }
+
+  .music-status-actions {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .music-connect-button {
+    flex: 1 1 auto;
+    justify-content: center;
   }
 
   .music-meta-grid {
