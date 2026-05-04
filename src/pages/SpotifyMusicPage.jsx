@@ -223,17 +223,14 @@ export default function SpotifyMusicPage() {
   return (
     <div className="app-shell music-shell">
       <header className="hero music-hero">
-        <div className="top-actions">
-          <button type="button" className="soft-button home-button" onClick={() => navigate('/')}>
+        <div className="top-actions music-top-actions">
+          <button type="button" className="ghost-button music-home-button" onClick={() => navigate('/')}>
             홈으로 돌아가기
           </button>
         </div>
         <p className="eyebrow">Softie Music</p>
         <h1>Spotify Connect 리모컨</h1>
-        <p className="subtle">
-          실제 재생은 Spotify 앱이나 Connect 기기가 맡고, 이 페이지는 지금 흐름을 한눈에 보고 조용히
-          조작하는 화면이에요.
-        </p>
+        <p className="subtle">지금 흐름을 한눈에 보고 조용히 조작하는 작은 음악 조종석이에요.</p>
         {!session && (
           <p className="subtle music-login-hint">
             지금은 기기 ID로도 연결할 수 있지만, 개인용 토큰 관리를 위해 로그인 상태에서 쓰는 편이 더
@@ -275,19 +272,22 @@ export default function SpotifyMusicPage() {
 
       <section className="card music-now-card">
         <div className="card-header">
-          <div>
-            <p className="section-kicker">Now Playing</p>
-            <h2>{track?.name || '재생 중인 곡을 기다리는 중이에요'}</h2>
-            <p className="subtle music-track-meta">
-              {track ? `${getTrackArtists(track)} · ${track.album?.name || '앨범 정보 없음'}` : 'Spotify 앱을 열고 재생을 시작하면 이 카드가 채워져요.'}
-            </p>
-          </div>
+          <p className="section-kicker">Now Playing</p>
           <span className="pill music-connection-pill">
             {isConnected ? '연결됨' : '연결 전'}
           </span>
         </div>
 
         <div className="music-now-layout">
+          <div className="music-now-copy">
+            <h2>{track?.name || '재생 중인 곡을 기다리는 중이에요'}</h2>
+            <p className="subtle music-track-meta">
+              {track
+                ? `${getTrackArtists(track)} · ${track.album?.name || '앨범 정보 없음'}`
+                : 'Spotify 앱을 열고 재생을 시작하면 이 카드가 채워져요.'}
+            </p>
+          </div>
+
           {albumImage ? (
             <img className="music-cover" src={albumImage} alt={track?.name || 'album cover'} />
           ) : (
@@ -296,58 +296,56 @@ export default function SpotifyMusicPage() {
             </div>
           )}
 
-          <div className="music-now-copy">
-            <div className="music-meta-grid">
-              <div className="meta-card music-meta-card">
-                <span className="meta-label">재생 상태</span>
-                <strong>{isPlaying ? '재생 중' : '대기 중'}</strong>
-              </div>
-              <div className="meta-card music-meta-card">
-                <span className="meta-label">현재 기기</span>
-                <strong>{device?.name || '활성 기기 없음'}</strong>
-              </div>
+          <div className="music-progress-wrap">
+            <div className="music-progress">
+              <div className="music-progress-fill" style={{ width: `${progressRatio * 100}%` }} />
             </div>
+            <div className="music-progress-time">
+              <span>{formatDuration(progressMs)}</span>
+              <span>{formatDuration(durationMs)}</span>
+            </div>
+          </div>
 
-            <div className="music-progress-wrap">
-              <div className="music-progress">
-                <div className="music-progress-fill" style={{ width: `${progressRatio * 100}%` }} />
-              </div>
-              <div className="music-progress-time">
-                <span>{formatDuration(progressMs)}</span>
-                <span>{formatDuration(durationMs)}</span>
-              </div>
+          <div className="music-meta-grid">
+            <div className="music-meta-card">
+              <span className="meta-label">재생 상태</span>
+              <strong>{isPlaying ? '재생 중' : '대기 중'}</strong>
             </div>
+            <div className="music-meta-card">
+              <span className="meta-label">현재 기기</span>
+              <strong>{device?.name || '활성 기기 없음'}</strong>
+            </div>
+          </div>
 
-            <div className="music-control-row">
-              <button
-                type="button"
-                className="music-control-button"
-                disabled={!isConnected || isControlling}
-                onClick={() => runControl('previous', () => previousSpotify(userId))}
-              >
-                이전곡
-              </button>
-              <button
-                type="button"
-                className="music-control-button music-control-button-primary"
-                disabled={!isConnected || isControlling}
-                onClick={() =>
-                  runControl(isPlaying ? 'pause' : 'play', () =>
-                    isPlaying ? pauseSpotify(userId) : playSpotify(userId)
-                  )
-                }
-              >
-                {isPlaying ? '일시정지' : '재생'}
-              </button>
-              <button
-                type="button"
-                className="music-control-button"
-                disabled={!isConnected || isControlling}
-                onClick={() => runControl('next', () => nextSpotify(userId))}
-              >
-                다음곡
-              </button>
-            </div>
+          <div className="music-control-row">
+            <button
+              type="button"
+              className="music-control-button"
+              disabled={!isConnected || isControlling}
+              onClick={() => runControl('previous', () => previousSpotify(userId))}
+            >
+              이전곡
+            </button>
+            <button
+              type="button"
+              className="music-control-button music-control-button-primary"
+              disabled={!isConnected || isControlling}
+              onClick={() =>
+                runControl(isPlaying ? 'pause' : 'play', () =>
+                  isPlaying ? pauseSpotify(userId) : playSpotify(userId)
+                )
+              }
+            >
+              {isPlaying ? '일시정지' : '재생'}
+            </button>
+            <button
+              type="button"
+              className="music-control-button"
+              disabled={!isConnected || isControlling}
+              onClick={() => runControl('next', () => nextSpotify(userId))}
+            >
+              다음곡
+            </button>
           </div>
         </div>
       </section>
@@ -370,7 +368,7 @@ export default function SpotifyMusicPage() {
           <div>
             <p className="section-kicker">Devices</p>
             <h2>재생 기기</h2>
-            <p className="subtle">지금 켜져 있는 Spotify Connect 기기 사이를 부드럽게 전환할 수 있어요.</p>
+            <p className="subtle">지금 켜진 기기만 빠르게 전환할 수 있어요.</p>
           </div>
         </div>
 
@@ -378,24 +376,28 @@ export default function SpotifyMusicPage() {
           <div className="music-device-list">
             {deviceCards.map((item) => (
               <article key={item.id} className={`music-device-card ${item.is_active ? 'active' : ''}`}>
-                <div>
-                  <p className="section-kicker">{item.kind}</p>
+                <div className="music-device-copy">
+                  <p className="section-kicker music-device-kind">{item.kind}</p>
                   <h3>{item.name}</h3>
-                  <p className="subtle">
+                  <p className="subtle music-device-status">
                     {item.label}
                     {typeof item.volume_percent === 'number' ? ` · 볼륨 ${item.volume_percent}%` : ''}
                   </p>
                 </div>
-                <button
-                  type="button"
-                  className="soft-button"
-                  disabled={item.is_active || isControlling}
-                  onClick={() =>
-                    runControl('transferPlayback', () => transferSpotifyPlayback(userId, item.id))
-                  }
-                >
-                  {item.is_active ? '현재 기기' : '이 기기로 전환'}
-                </button>
+                {item.is_active ? (
+                  <span className="pill music-device-badge">현재 기기</span>
+                ) : (
+                  <button
+                    type="button"
+                    className="ghost-button music-device-button"
+                    disabled={isControlling}
+                    onClick={() =>
+                      runControl('transferPlayback', () => transferSpotifyPlayback(userId, item.id))
+                    }
+                  >
+                    전환
+                  </button>
+                )}
               </article>
             ))}
           </div>

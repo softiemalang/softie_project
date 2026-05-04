@@ -762,13 +762,41 @@ textarea {
   width: min(100%, 820px);
 }
 
+.music-shell .hero,
+.music-shell .card {
+  margin-bottom: 0.85rem;
+}
+
 .music-hero {
+  padding: 0.9rem 0.95rem 0.95rem;
   background:
     linear-gradient(160deg, rgba(255, 252, 248, 0.96), rgba(248, 243, 236, 0.92)),
     radial-gradient(circle at top right, rgba(31, 111, 95, 0.08), transparent 45%);
 }
 
+.music-hero h1 {
+  margin-top: 0.35rem;
+  font-size: 1.95rem;
+  line-height: 0.96;
+}
+
+.music-top-actions {
+  justify-content: flex-start;
+  margin-bottom: 0.4rem;
+}
+
+.music-home-button {
+  min-height: 32px;
+  padding: 0.3rem 0.65rem;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  background: rgba(255, 255, 255, 0.45);
+}
+
 .music-hero-actions {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.5rem;
   align-items: stretch;
 }
 
@@ -779,8 +807,13 @@ textarea {
   text-decoration: none;
 }
 
+.music-hero .subtle {
+  margin-top: 0.45rem;
+}
+
 .music-login-hint {
-  margin-top: 0.75rem;
+  margin-top: 0.35rem;
+  font-size: 0.9rem;
 }
 
 .music-now-card h2,
@@ -792,20 +825,20 @@ textarea {
 .music-now-copy,
 .music-device-list {
   display: grid;
-  gap: 1rem;
+  gap: 0.75rem;
 }
 
 .music-now-layout {
-  grid-template-columns: minmax(0, 220px) minmax(0, 1fr);
-  align-items: stretch;
+  grid-template-columns: 1fr;
 }
 
 .music-cover {
   width: 100%;
   aspect-ratio: 1;
+  max-height: min(72vw, 320px);
   object-fit: cover;
   border-radius: 26px;
-  box-shadow: 0 16px 32px rgba(72, 59, 38, 0.12);
+  box-shadow: 0 10px 24px rgba(72, 59, 38, 0.1);
   background: #efe5d7;
 }
 
@@ -823,17 +856,21 @@ textarea {
 }
 
 .music-track-meta {
-  margin-top: 0.55rem;
+  margin-top: 0.28rem;
 }
 
 .music-meta-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 0.75rem;
+  gap: 0.55rem;
 }
 
 .music-meta-card {
-  min-height: 102px;
+  min-height: 72px;
+  padding: 0.72rem 0.8rem;
+  border-radius: 18px;
+  border: 1px solid var(--line);
+  background: rgba(255, 253, 249, 0.9);
 }
 
 .music-meta-card strong {
@@ -843,11 +880,11 @@ textarea {
 
 .music-progress-wrap {
   display: grid;
-  gap: 0.45rem;
+  gap: 0.28rem;
 }
 
 .music-progress {
-  height: 12px;
+  height: 10px;
   border-radius: 999px;
   background: rgba(222, 213, 201, 0.9);
   overflow: hidden;
@@ -864,18 +901,19 @@ textarea {
   display: flex;
   justify-content: space-between;
   color: var(--muted);
-  font-size: 0.88rem;
+  font-size: 0.82rem;
 }
 
 .music-control-row {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 0.7rem;
+  gap: 0.5rem;
 }
 
 .music-control-button {
-  min-height: 52px;
-  border-radius: 18px;
+  min-height: 48px;
+  padding: 0.6rem 0.45rem;
+  border-radius: 16px;
   background: #efe7db;
   color: #5d4f3f;
   font-weight: 600;
@@ -894,15 +932,16 @@ textarea {
 
 .music-device-list {
   grid-template-columns: 1fr;
+  gap: 0.6rem;
 }
 
 .music-device-card {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 0.9rem;
-  padding: 1rem;
-  border-radius: 22px;
+  gap: 0.7rem;
+  padding: 0.78rem 0.88rem;
+  border-radius: 18px;
   border: 1px solid var(--line);
   background: rgba(255, 253, 249, 0.9);
 }
@@ -912,19 +951,86 @@ textarea {
   background: rgba(233, 244, 239, 0.72);
 }
 
+.music-device-copy {
+  min-width: 0;
+}
+
+.music-device-kind {
+  font-size: 0.72rem;
+}
+
+.music-device-status {
+  margin-top: 0.18rem;
+}
+
+.music-device-badge {
+  padding: 0.44rem 0.68rem;
+  white-space: nowrap;
+}
+
+.music-device-button {
+  min-height: 34px;
+  min-width: 56px;
+  padding: 0.35rem 0.75rem;
+  white-space: nowrap;
+}
+
 @media (max-width: 699px) {
-  .music-now-layout,
-  .music-meta-grid {
-    grid-template-columns: 1fr;
+  .music-shell {
+    padding:
+      max(1rem, calc(env(safe-area-inset-top) + 0.75rem))
+      0.85rem
+      max(2.4rem, calc(env(safe-area-inset-bottom) + 1.5rem));
   }
 
-  .music-control-row {
-    grid-template-columns: 1fr;
+  .music-hero {
+    padding: 0.82rem 0.88rem 0.88rem;
+  }
+
+  .music-hero h1 {
+    font-size: 1.72rem;
+  }
+
+  .music-hero-actions {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .music-hero-actions > .music-link-button {
+    grid-column: 1 / -1;
+  }
+
+  .music-now-card {
+    padding: 0.95rem;
+  }
+
+  .music-now-card h2 {
+    font-size: 1.1rem;
+    line-height: 1.15;
+  }
+
+  .music-device-card h3 {
+    font-size: 1rem;
+    line-height: 1.15;
+  }
+
+  .music-cover {
+    border-radius: 22px;
+  }
+
+  .music-meta-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .music-control-button {
+    font-size: 0.92rem;
   }
 
   .music-device-card {
-    flex-direction: column;
-    align-items: stretch;
+    align-items: center;
+  }
+
+  .music-device-status {
+    font-size: 0.88rem;
   }
 }
 
