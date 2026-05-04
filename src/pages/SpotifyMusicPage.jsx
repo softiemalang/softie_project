@@ -224,27 +224,20 @@ export default function SpotifyMusicPage() {
     <div className="app-shell music-shell">
       <section className="card music-status-card">
         <div className="card-header music-status-header">
-          <div>
-            <p className="section-kicker">Spotify</p>
-            {!isConnected && (
-              <p className="subtle music-status-copy">
-                Spotify 계정을 연결하면 현재 재생 중인 음악을 확인하고 Connect 기기를 조작할 수 있어요.
-              </p>
-            )}
-          </div>
-          <div className="music-status-actions">
-            {isConnected ? (
-              <span className="pill music-connection-pill">연결됨</span>
-            ) : (
-              <button type="button" className="soft-button music-connect-button" onClick={handleConnect} disabled={!userId}>
-                Spotify 연결
-              </button>
-            )}
-            <button type="button" className="ghost-button music-home-button" onClick={() => navigate('/')}>
-              홈
+          <p className="section-kicker">Spotify</p>
+          {isConnected ? (
+            <span className="pill music-connection-pill">연결됨</span>
+          ) : (
+            <button type="button" className="soft-button music-connect-button" onClick={handleConnect} disabled={!userId}>
+              Spotify 연결
             </button>
-          </div>
+          )}
         </div>
+        {!isConnected && (
+          <p className="subtle music-status-copy">
+            Spotify 계정을 연결하면 현재 재생 중인 음악을 확인하고 Connect 기기를 조작할 수 있어요.
+          </p>
+        )}
         {!session && !isConnected && (
           <p className="subtle music-login-hint">
             지금은 기기 ID로도 연결할 수 있지만, 개인용 토큰 관리를 위해 로그인 상태에서 쓰는 편이 더
@@ -266,16 +259,6 @@ export default function SpotifyMusicPage() {
       <section className="card music-now-card">
         <div className="card-header">
           <p className="section-kicker">Now Playing</p>
-          {isConnected && (
-            <button
-              type="button"
-              className="ghost-button music-refresh-button"
-              onClick={() => refreshDashboard({ userId })}
-              disabled={!userId || isRefreshing}
-            >
-              {isRefreshing ? '갱신 중' : '새로고침'}
-            </button>
-          )}
         </div>
 
         <div className="music-now-layout">

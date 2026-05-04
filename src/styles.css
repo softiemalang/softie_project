@@ -768,31 +768,17 @@ textarea {
 }
 
 .music-status-card {
-  padding: 0.82rem 0.9rem;
+  padding: 0.62rem 0.88rem;
 }
 
 .music-status-header {
+  display: flex;
   align-items: center;
+  justify-content: space-between;
 }
 
 .music-status-copy {
-  margin-top: 0.2rem;
-}
-
-.music-status-actions {
-  display: flex;
-  align-items: center;
-  gap: 0.45rem;
-  flex-wrap: wrap;
-  justify-content: flex-end;
-}
-
-.music-home-button {
-  min-height: 32px;
-  padding: 0.3rem 0.58rem;
-  border-radius: 12px;
-  font-size: 0.8rem;
-  background: rgba(255, 255, 255, 0.45);
+  margin-top: 0.35rem;
 }
 
 .music-link-button {
@@ -819,15 +805,24 @@ textarea {
   margin: 0;
 }
 
+.music-shell .card > .card-header + * {
+  margin-top: 0.5rem;
+}
+
 .music-now-layout,
-.music-now-copy,
 .music-device-list {
   display: grid;
   gap: 0.75rem;
 }
 
+.music-now-copy {
+  display: grid;
+  gap: 0.3rem;
+}
+
 .music-now-layout {
   grid-template-columns: 1fr;
+  gap: 0.65rem;
 }
 
 .music-cover {
@@ -986,7 +981,7 @@ textarea {
   }
 
   .music-status-card {
-    padding: 0.72rem 0.82rem;
+    padding: 0.65rem 0.8rem;
   }
 
   .music-now-card {
@@ -1007,14 +1002,9 @@ textarea {
     border-radius: 22px;
   }
 
-  .music-status-actions {
-    width: 100%;
-    justify-content: space-between;
-  }
-
   .music-connect-button {
-    flex: 1 1 auto;
-    justify-content: center;
+    min-height: 38px;
+    padding: 0.5rem 1rem;
   }
 
   .music-meta-grid {
