@@ -70,15 +70,6 @@ function formatTimeDisplay(value) {
   }
 }
 
-function openNativePicker(inputRef) {
-  if (!inputRef.current) return
-  if (typeof inputRef.current.showPicker === 'function') {
-    inputRef.current.showPicker()
-  } else {
-    inputRef.current.click()
-  }
-}
-
 function getDaysInMonth(year, month) {
   const date = new Date(year, month, 1)
   const days = []
@@ -378,10 +369,6 @@ function AddRehearsalModal({ ownerKey, isGoogleReady, onClose, onSuccess }) {
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
 
-  const dateInputRef = useRef(null)
-  const startTimeInputRef = useRef(null)
-  const endTimeInputRef = useRef(null)
-
   async function handleSubmit(e) {
     e.preventDefault()
 
@@ -455,53 +442,50 @@ function AddRehearsalModal({ ownerKey, isGoogleReady, onClose, onSuccess }) {
             
             <div>
               <label>날짜 *</label>
-              <button type="button" className={`rehearsal-picker-field ${!form.event_date ? 'is-empty' : ''}`} onClick={() => openNativePicker(dateInputRef)}>
-                {formatDateDisplay(form.event_date)}
-              </button>
-              <input
-                ref={dateInputRef}
-                className="rehearsal-native-picker-input"
-                type="date"
-                required
-                tabIndex={-1}
-                aria-hidden="true"
-                value={form.event_date}
-                onChange={e => setForm({...form, event_date: e.target.value})}
-              />
+              <div className="rehearsal-native-picker-shell">
+                <div className={`rehearsal-picker-field ${!form.event_date ? 'is-empty' : ''}`}>
+                  {formatDateDisplay(form.event_date)}
+                </div>
+                <input
+                  className="rehearsal-native-picker-input"
+                  type="date"
+                  required
+                  value={form.event_date}
+                  onChange={e => setForm({...form, event_date: e.target.value})}
+                />
+              </div>
             </div>
 
             <div className="rehearsal-form-row">
               <div>
                 <label>시작 시간 *</label>
-                <button type="button" className={`rehearsal-picker-field ${!form.start_time ? 'is-empty' : ''}`} onClick={() => openNativePicker(startTimeInputRef)}>
-                  {formatTimeDisplay(form.start_time)}
-                </button>
-                <input
-                  ref={startTimeInputRef}
-                  className="rehearsal-native-picker-input"
-                  type="time"
-                  required
-                  tabIndex={-1}
-                  aria-hidden="true"
-                  value={form.start_time}
-                  onChange={e => setForm({...form, start_time: e.target.value})}
-                />
+                <div className="rehearsal-native-picker-shell">
+                  <div className={`rehearsal-picker-field ${!form.start_time ? 'is-empty' : ''}`}>
+                    {formatTimeDisplay(form.start_time)}
+                  </div>
+                  <input
+                    className="rehearsal-native-picker-input"
+                    type="time"
+                    required
+                    value={form.start_time}
+                    onChange={e => setForm({...form, start_time: e.target.value})}
+                  />
+                </div>
               </div>
               <div>
                 <label>종료 시간 *</label>
-                <button type="button" className={`rehearsal-picker-field ${!form.end_time ? 'is-empty' : ''}`} onClick={() => openNativePicker(endTimeInputRef)}>
-                  {formatTimeDisplay(form.end_time)}
-                </button>
-                <input
-                  ref={endTimeInputRef}
-                  className="rehearsal-native-picker-input"
-                  type="time"
-                  required
-                  tabIndex={-1}
-                  aria-hidden="true"
-                  value={form.end_time}
-                  onChange={e => setForm({...form, end_time: e.target.value})}
-                />
+                <div className="rehearsal-native-picker-shell">
+                  <div className={`rehearsal-picker-field ${!form.end_time ? 'is-empty' : ''}`}>
+                    {formatTimeDisplay(form.end_time)}
+                  </div>
+                  <input
+                    className="rehearsal-native-picker-input"
+                    type="time"
+                    required
+                    value={form.end_time}
+                    onChange={e => setForm({...form, end_time: e.target.value})}
+                  />
+                </div>
               </div>
             </div>
 
