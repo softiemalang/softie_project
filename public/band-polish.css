@@ -1,22 +1,28 @@
-/* Scoped mobile polish for the /band landing screen.
+/* Scoped mobile polish for the /band landing and pre-member join screens.
    This file intentionally avoids touching BandPage logic. */
 
 @supports selector(:has(*)) {
-  .app-shell:has(input[placeholder="밴드 방 이름"]) {
+  .app-shell:has(input[placeholder="밴드 방 이름"]),
+  .app-shell:has(input[placeholder="4자리 PIN"]) {
     --band-landing-gap: 0.74rem;
   }
 
   .app-shell:has(input[placeholder="밴드 방 이름"]) .hero,
-  .app-shell:has(input[placeholder="밴드 방 이름"]) .card h2 {
+  .app-shell:has(input[placeholder="4자리 PIN"]) .hero,
+  .app-shell:has(input[placeholder="밴드 방 이름"]) .card h2,
+  .app-shell:has(input[placeholder="4자리 PIN"]) .card h2 {
     display: none;
   }
 
   .app-shell:has(input[placeholder="밴드 방 이름"]) .primary-home-card .subtle,
-  .app-shell:has(input[placeholder="밴드 방 이름"]) .secondary-card > .subtle {
+  .app-shell:has(input[placeholder="밴드 방 이름"]) .secondary-card > .subtle,
+  .app-shell:has(input[placeholder="4자리 PIN"]) .primary-home-card .subtle,
+  .app-shell:has(input[placeholder="4자리 PIN"]) .secondary-card > .subtle {
     display: none;
   }
 
-  .app-shell:has(input[placeholder="밴드 방 이름"]) input {
+  .app-shell:has(input[placeholder="밴드 방 이름"]) input,
+  .app-shell:has(input[placeholder="4자리 PIN"]) input {
     border-color: #d9d0c4;
     background: rgba(255, 255, 255, 0.82);
     outline: none;
@@ -26,43 +32,53 @@
   }
 
   .app-shell:has(input[placeholder="밴드 방 이름"]) input:focus,
-  .app-shell:has(input[placeholder="밴드 방 이름"]) input:focus-visible {
+  .app-shell:has(input[placeholder="밴드 방 이름"]) input:focus-visible,
+  .app-shell:has(input[placeholder="4자리 PIN"]) input:focus,
+  .app-shell:has(input[placeholder="4자리 PIN"]) input:focus-visible {
     border-color: #8aa89b;
     outline: none;
     box-shadow: 0 0 0 2px rgba(138, 168, 155, 0.22);
   }
 
   @media (max-width: 699px) {
-    .app-shell:has(input[placeholder="밴드 방 이름"]) {
+    .app-shell:has(input[placeholder="밴드 방 이름"]),
+    .app-shell:has(input[placeholder="4자리 PIN"]) {
       padding-top: max(0.62rem, calc(env(safe-area-inset-top) + 0.28rem));
       padding-inline: 0.86rem;
     }
 
     .app-shell:has(input[placeholder="밴드 방 이름"]) .hero .eyebrow,
-    .app-shell:has(input[placeholder="밴드 방 이름"]) .section-kicker {
+    .app-shell:has(input[placeholder="밴드 방 이름"]) .section-kicker,
+    .app-shell:has(input[placeholder="4자리 PIN"]) .hero .eyebrow,
+    .app-shell:has(input[placeholder="4자리 PIN"]) .section-kicker {
       font-size: 0.7rem;
       letter-spacing: 0.08em;
     }
 
-    .app-shell:has(input[placeholder="밴드 방 이름"]) .card {
+    .app-shell:has(input[placeholder="밴드 방 이름"]) .card,
+    .app-shell:has(input[placeholder="4자리 PIN"]) .card {
       padding: 0.88rem 0.9rem 0.94rem;
       margin-bottom: var(--band-landing-gap);
       border-radius: 22px;
     }
 
-    .app-shell:has(input[placeholder="밴드 방 이름"]) .card > * + * {
+    .app-shell:has(input[placeholder="밴드 방 이름"]) .card > * + *,
+    .app-shell:has(input[placeholder="4자리 PIN"]) .card > * + * {
       margin-top: 0.62rem;
     }
 
-    .app-shell:has(input[placeholder="밴드 방 이름"]) .card > .card-header + * {
+    .app-shell:has(input[placeholder="밴드 방 이름"]) .card > .card-header + *,
+    .app-shell:has(input[placeholder="4자리 PIN"]) .card > .card-header + * {
       margin-top: 0.36rem;
     }
 
-    .app-shell:has(input[placeholder="밴드 방 이름"]) .field-grid {
+    .app-shell:has(input[placeholder="밴드 방 이름"]) .field-grid,
+    .app-shell:has(input[placeholder="4자리 PIN"]) .field-grid {
       gap: 0.56rem;
     }
 
-    .app-shell:has(input[placeholder="밴드 방 이름"]) input {
+    .app-shell:has(input[placeholder="밴드 방 이름"]) input,
+    .app-shell:has(input[placeholder="4자리 PIN"]) input {
       min-height: 44px;
       padding: 0.64rem 0.82rem;
       border-radius: 14px;
@@ -70,11 +86,13 @@
       line-height: 1.2;
     }
 
-    .app-shell:has(input[placeholder="밴드 방 이름"]) input::placeholder {
+    .app-shell:has(input[placeholder="밴드 방 이름"]) input::placeholder,
+    .app-shell:has(input[placeholder="4자리 PIN"]) input::placeholder {
       font-size: 16px;
     }
 
-    .app-shell:has(input[placeholder="밴드 방 이름"]) .card > button {
+    .app-shell:has(input[placeholder="밴드 방 이름"]) .card > button,
+    .app-shell:has(input[placeholder="4자리 PIN"]) .card > button {
       min-height: 44px;
       margin-top: 0.64rem;
       padding: 0.64rem 0.86rem;
@@ -84,7 +102,8 @@
       line-height: 1.15;
     }
 
-    .app-shell:has(input[placeholder="밴드 방 이름"]) .primary-home-card button {
+    .app-shell:has(input[placeholder="밴드 방 이름"]) .primary-home-card button,
+    .app-shell:has(input[placeholder="4자리 PIN"]) .primary-home-card button {
       box-shadow: 0 7px 16px rgba(31, 111, 95, 0.14);
     }
   }
