@@ -837,16 +837,25 @@ textarea {
 
 .music-now-header {
   display: flex;
+  flex-direction: row;
   align-items: center;
   justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.music-now-header .section-kicker {
+  margin: 0;
 }
 
 .music-save-button {
+  flex: 0 0 auto;
   width: 32px;
   height: 32px;
-  display: flex;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
+  line-height: 1;
+  margin: 0;
   background: transparent;
   border: none;
   border-radius: 50%;
@@ -1241,6 +1250,12 @@ textarea {
 
   .music-status-header .section-kicker {
     margin: 0;
+  }
+
+  .music-now-header {
+    flex-direction: row !important;
+    align-items: center;
+    justify-content: space-between;
   }
 
   .music-now-card {
