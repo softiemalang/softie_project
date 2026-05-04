@@ -264,6 +264,13 @@ function normalizeSpotifyApiError(status: number, payload: any, action: SpotifyA
   }
 
   if (status === 403) {
+    // Library actions requiring specific scopes
+    if (['checkSavedTrack', 'saveTrack', 'removeTrack'].includes(action)) {
+      return {
+        code: 'SPOTIFY_LIBRARY_PERMISSION_DENIED',
+        message: 'Spotify 저장 권한이 필요해요. Spotify를 다시 연결해 주세요.',
+      }
+    }
     return { code: 'PREMIUM_REQUIRED', message: 'Spotify Premium이 필요하거나 이 작업이 허용되지 않았어요.' }
   }
 

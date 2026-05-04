@@ -50,6 +50,10 @@ function getFriendlyError(error) {
     return '아직 Spotify 연결이 없어요. 먼저 연결을 완료해 주세요.'
   }
 
+  if (message.includes('SPOTIFY_LIBRARY_PERMISSION_DENIED') || message.includes('insufficient scope') || message.includes('user-library')) {
+    return '곡 저장 권한이 부족해요. 상단의 재설정 버튼을 눌러 다시 연결해 주세요.'
+  }
+
   if (message.includes('NO_ACTIVE_DEVICE')) {
     return '활성 Spotify 기기가 아직 없어요. 앱을 한 번 열어두면 이 페이지에서 바로 조작할 수 있어요.'
   }
@@ -65,6 +69,7 @@ export default function SpotifyMusicPage() {
   const [userId, setUserId] = useState('')
   const [session, setSession] = useState(null)
   const [isConnected, setIsConnected] = useState(false)
+  const [needsReconnect, setNeedsReconnect] = useState(false)
   const [isLoading, setIsLoading] = useState(true)
   const [isRefreshing, setIsRefreshing] = useState(false)
   const [isControlling, setIsControlling] = useState(false)
@@ -141,6 +146,14 @@ export default function SpotifyMusicPage() {
         }
       } catch (error) {
         console.error('[SpotifyMusicPage.checkSaved]', error)
+        if (
+          error?.message?.includes('SPOTIFY_LIBRARY_PERMISSION_DENIED') ||
+          error?.message?.includes('insufficient scope') ||
+          error?.message?.includes('user-library') ||
+          error?.message?.includes('저장 권한')
+        ) {
+          setNeedsReconnect(true)
+        }
       } finally {
         setIsCheckingSaved(false)
       }
@@ -207,6 +220,14 @@ export default function SpotifyMusicPage() {
       }
     } catch (error) {
       console.error('[SpotifyMusicPage.handleToggleSave]', error)
+      if (
+        error?.message?.includes('SPOTIFY_LIBRARY_PERMISSION_DENIED') ||
+        error?.message?.includes('insufficient scope') ||
+        error?.message?.includes('user-library') ||
+        error?.message?.includes('저장 권한')
+      ) {
+        setNeedsReconnect(true)
+      }
       setStatusMessage(getFriendlyError(error))
     } finally {
       setIsSavingTrack(false)
@@ -314,7 +335,13 @@ export default function SpotifyMusicPage() {
         <header className="music-status-header">
           <span className="section-kicker">SPOTIFY</span>
           {isConnected ? (
-            <span className="pill music-connection-pill">연결됨</span>
+            needsReconnect ? (
+              <button type="button" className="soft-button music-reset-button" onClick={handleConnect}>
+                재설정
+              </button>
+            ) : (
+              <span className="pill music-connection-pill">연결됨</span>
+            )
           ) : (
             <button type="button" className="soft-button music-connect-button" onClick={handleConnect} disabled={!userId}>
               Spotify 연결
@@ -324,6 +351,11 @@ export default function SpotifyMusicPage() {
         {!isConnected && (
           <p className="subtle music-status-copy">
             계정을 연결하면 재생 중인 곡을 확인하고 Connect 기기를 조작할 수 있어요.
+          </p>
+        )}
+        {isConnected && needsReconnect && (
+          <p className="subtle music-status-copy">
+            곡 저장 기능을 사용하려면 추가 권한이 필요해요.
           </p>
         )}
         {!session && !isConnected && (

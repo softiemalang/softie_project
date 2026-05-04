@@ -1032,6 +1032,23 @@ textarea {
   font-weight: 600;
 }
 
+.music-reset-button {
+  padding: 0.28rem 0.65rem;
+  font-size: 0.74rem;
+  line-height: 1;
+  background: #efe7db;
+  color: #5d4f3f;
+  border-radius: 10px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.music-reset-button:hover {
+  background: #e5dbcd;
+}
+
 .music-ready-card {
   display: flex;
   align-items: center;
