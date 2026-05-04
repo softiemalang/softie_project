@@ -42,7 +42,10 @@ async function resolveDisplayMetadata(
   // 1. Try direct track fetch with market=KR
   const trackUrl = `https://api.spotify.com/v1/tracks/${trackId}?market=KR`
   const trackResp = await fetch(trackUrl, {
-    headers: { Authorization: `Bearer ${activeToken.access_token}` },
+    headers: { 
+      Authorization: `Bearer ${activeToken.access_token}`,
+      'Accept-Language': SPOTIFY_ACCEPT_LANGUAGE,
+    },
   })
   
   let candidate = null
@@ -65,7 +68,10 @@ async function resolveDisplayMetadata(
   const query = encodeURIComponent(`${trackName} ${artistName}`)
   const searchUrl = `https://api.spotify.com/v1/search?q=${query}&type=track&market=KR&limit=5`
   const searchResp = await fetch(searchUrl, {
-    headers: { Authorization: `Bearer ${activeToken.access_token}` },
+    headers: { 
+      Authorization: `Bearer ${activeToken.access_token}`,
+      'Accept-Language': SPOTIFY_ACCEPT_LANGUAGE,
+    },
   })
 
   if (searchResp.ok) {
@@ -229,6 +235,7 @@ async function ensureFreshSpotifyAccessToken(
 }
 
 const SPOTIFY_MARKET = 'KR'
+const SPOTIFY_ACCEPT_LANGUAGE = 'ko-KR,ko;q=0.9,en;q=0.6'
 
 function buildSpotifyRequest(action: SpotifyAction, payload: Record<string, unknown>) {
   const endpoint = new URL('https://api.spotify.com/v1/me/player')
@@ -383,6 +390,7 @@ async function callSpotifyApi(
     headers: {
       Authorization: `Bearer ${accessToken}`,
       'Content-Type': 'application/json',
+      'Accept-Language': SPOTIFY_ACCEPT_LANGUAGE,
     },
     body: request.body,
   })
