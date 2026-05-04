@@ -758,7 +758,7 @@ export default function SpotifyMusicPage() {
                         onClick={() => handlePlayPlaylist(pl.uri)}
                         disabled={isStartingPlaylist}
                       >
-                        ▶
+                        재생
                       </button>
                     </article>
                   ))}
@@ -768,7 +768,7 @@ export default function SpotifyMusicPage() {
               )}
             </div>
 
-            <div className="scheduler-modal-actions" style={{ marginTop: '1rem', borderTop: '1px solid #efe7db', paddingTop: '1rem' }}>
+            <div className="scheduler-modal-actions" style={{ marginTop: '1rem', borderTop: '1px solid #efe7db', paddingTop: '1rem', justifyContent: 'center' }}>
               <a 
                 href={getSpotifyAppUrl()} 
                 className="music-playlist-app-link" 
@@ -777,9 +777,6 @@ export default function SpotifyMusicPage() {
               >
                 Spotify 앱으로 열기
               </a>
-              <button type="button" className="scheduler-modal-btn" onClick={() => setIsPlaylistModalOpen(false)}>
-                닫기
-              </button>
             </div>
           </div>
         </div>

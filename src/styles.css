@@ -1168,24 +1168,25 @@ textarea {
 }
 
 .music-playlist-play-button {
-  width: 32px;
   height: 32px;
-  border-radius: 50%;
+  padding: 0 0.8rem;
+  border-radius: 12px;
   background: var(--brand);
   color: #fff;
   border: none;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 0.75rem;
+  font-size: 0.78rem;
+  font-weight: 600;
   cursor: pointer;
-  transition: transform 0.2s;
+  transition: transform 0.2s, opacity 0.2s;
   flex-shrink: 0;
-  padding-left: 2px;
 }
 
 .music-playlist-play-button:hover:not(:disabled) {
-  transform: scale(1.05);
+  opacity: 0.9;
+  transform: translateY(-1px);
 }
 
 .music-playlist-play-button:disabled {
@@ -1194,13 +1195,21 @@ textarea {
 }
 
 .music-playlist-app-link {
-  font-size: 0.82rem;
+  font-size: 0.84rem;
   font-weight: 600;
-  color: var(--brand);
+  color: #5d4f3f;
   text-decoration: none;
-  padding: 0.5rem 0.8rem;
-  background: rgba(231, 243, 239, 0.95);
-  border-radius: 10px;
+  padding: 0.55rem 1.2rem;
+  background: #efe7db;
+  border-radius: 12px;
+  transition: all 0.2s;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.music-playlist-app-link:hover {
+  background: #e5dbcd;
 }
 
 .music-app-link:hover {
