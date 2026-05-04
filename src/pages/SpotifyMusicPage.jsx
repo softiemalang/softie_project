@@ -223,7 +223,7 @@ export default function SpotifyMusicPage() {
   return (
     <div className="app-shell music-shell">
       <section className="card music-status-card">
-        <div className="card-header music-status-header">
+        <header className="music-status-header">
           <span className="section-kicker">SPOTIFY</span>
           {isConnected ? (
             <span className="pill music-connection-pill">연결됨</span>
@@ -232,42 +232,43 @@ export default function SpotifyMusicPage() {
               Spotify 연결
             </button>
           )}
-        </div>
+        </header>
         {!isConnected && (
           <p className="subtle music-status-copy">
-            Spotify 계정을 연결하면 현재 재생 중인 음악을 확인하고 Connect 기기를 조작할 수 있어요.
+            계정을 연결하면 재생 중인 곡을 확인하고 Connect 기기를 조작할 수 있어요.
           </p>
         )}
         {!session && !isConnected && (
           <p className="subtle music-login-hint">
-            지금은 기기 ID로도 연결할 수 있지만, 개인용 토큰 관리를 위해 로그인 상태에서 쓰는 편이 더
-            안정적이에요.
+            개인용 토큰 관리를 위해 로그인 상태에서 쓰는 편이 더 안정적이에요.
           </p>
         )}
       </section>
 
       {isLoading ? (
         <section className="card">
-          <p className="section-kicker">Music</p>
-          <h2>Spotify 리모컨을 준비하고 있어요.</h2>
-          <p className="subtle">기기와 연결 상태를 차분히 확인하는 중입니다.</p>
+          <header className="card-header">
+            <span className="section-kicker">MUSIC</span>
+          </header>
+          <h2>Spotify 리모컨을 준비 중이에요.</h2>
+          <p className="subtle">기기와 연결 상태를 확인하고 있습니다.</p>
         </section>
       ) : null}
 
       {statusMessage ? <p className="status">{statusMessage}</p> : null}
 
       <section className="card music-now-card">
-        <div className="card-header">
-          <p className="section-kicker">Now Playing</p>
-        </div>
+        <header className="card-header">
+          <span className="section-kicker">Now Playing</span>
+        </header>
 
         <div className="music-now-layout">
           <div className="music-now-copy">
-            <h2>{track?.name || '재생 중인 곡을 기다리는 중이에요'}</h2>
+            <h2>{track?.name || '재생 정보를 기다리는 중이에요'}</h2>
             <p className="subtle music-track-meta">
               {track
                 ? `${getTrackArtists(track)} · ${track.album?.name || '앨범 정보 없음'}`
-                : 'Spotify 앱을 열고 재생을 시작하면 이 카드가 채워져요.'}
+                : 'Spotify 앱에서 재생을 시작하면 이곳에 표시돼요.'}
             </p>
           </div>
 
@@ -275,7 +276,7 @@ export default function SpotifyMusicPage() {
             <img className="music-cover" src={albumImage} alt={track?.name || 'album cover'} />
           ) : (
             <div className="music-cover music-cover-placeholder">
-              <span>Album</span>
+              <span>Album Cover</span>
             </div>
           )}
 
@@ -335,28 +336,30 @@ export default function SpotifyMusicPage() {
 
       {!hasActiveDevice && (
         <section className="card">
-          <p className="section-kicker">Ready</p>
-          <h2>아직 활성 Spotify 기기가 없어요.</h2>
+          <header className="card-header">
+            <span className="section-kicker">Ready</span>
+          </header>
+          <h2>활성 Spotify 기기가 없어요.</h2>
           <p className="subtle">
             Spotify 앱을 한 번 열어두면 이 페이지에서 리모컨처럼 조작할 수 있어요.
           </p>
-          <a className="soft-button music-link-button" href={getSpotifyAppUrl()} target="_blank" rel="noreferrer">
+          <a className="soft-button music-link-button" href={getSpotifyAppUrl()} target="_blank" rel="noreferrer" style={{ marginTop: '0.8rem' }}>
             Spotify 앱으로 열기
           </a>
         </section>
       )}
 
       <section className="card">
-        <div className="card-header">
+        <header className="card-header">
           <div>
-            <p className="section-kicker">Devices</p>
+            <span className="section-kicker">Devices</span>
             <h2>재생 기기</h2>
             <p className="subtle">지금 켜진 기기만 빠르게 전환할 수 있어요.</p>
           </div>
-        </div>
+        </header>
 
         {deviceCards.length ? (
-          <div className="music-device-list">
+          <div className="music-device-list" style={{ marginTop: '0.85rem' }}>
             {deviceCards.map((item) => (
               <article key={item.id} className={`music-device-card ${item.is_active ? 'active' : ''}`}>
                 <div className="music-device-copy">
@@ -368,7 +371,7 @@ export default function SpotifyMusicPage() {
                   </p>
                 </div>
                 {item.is_active ? (
-                  <span className="pill music-device-badge">현재 기기</span>
+                  <span className="pill music-device-badge">사용 중</span>
                 ) : (
                   <button
                     type="button"
@@ -385,7 +388,7 @@ export default function SpotifyMusicPage() {
             ))}
           </div>
         ) : (
-          <p className="subtle">현재 보이는 Spotify Connect 기기가 아직 없어요.</p>
+          <p className="subtle" style={{ marginTop: '0.8rem' }}>현재 보이는 Spotify Connect 기기가 아직 없어요.</p>
         )}
       </section>
     </div>
