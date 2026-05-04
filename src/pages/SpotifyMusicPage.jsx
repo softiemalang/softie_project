@@ -224,7 +224,7 @@ export default function SpotifyMusicPage() {
     <div className="app-shell music-shell">
       <section className="card music-status-card">
         <div className="card-header music-status-header">
-          <p className="section-kicker">Spotify</p>
+          <span className="section-kicker">SPOTIFY</span>
           {isConnected ? (
             <span className="pill music-connection-pill">연결됨</span>
           ) : (

@@ -984,6 +984,17 @@ textarea {
     padding: 0.65rem 0.8rem;
   }
 
+  .music-status-header {
+    flex-direction: row !important;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+  }
+
+  .music-status-header .section-kicker {
+    margin: 0;
+  }
+
   .music-now-card {
     padding: 0.95rem;
   }
