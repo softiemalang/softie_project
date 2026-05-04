@@ -1066,8 +1066,10 @@ textarea {
   text-decoration: none;
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   margin: 0;
-  line-height: 1.2;
+  padding: 0;
+  line-height: 1;
   transition: opacity 0.2s;
 }
 
@@ -1075,13 +1077,15 @@ textarea {
   background: transparent;
   border: none;
   padding: 0;
+  margin: 0;
   font-size: 0.88rem;
   font-weight: 600;
   color: #5d4f3f;
   cursor: pointer;
   display: inline-flex;
   align-items: center;
-  line-height: 1.2;
+  justify-content: center;
+  line-height: 1;
   transition: opacity 0.2s;
 }
 
@@ -1222,7 +1226,7 @@ textarea {
   padding: 0 0.58rem;
   height: 24px;
   font-size: 0.74rem;
-  line-height: 24px;
+  line-height: 1;
   border-radius: 10px;
   font-weight: 600;
   display: inline-flex;
