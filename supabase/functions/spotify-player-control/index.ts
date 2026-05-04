@@ -31,6 +31,14 @@ function containsHangul(text: string) {
   return /[ㄱ-ㅎㅏ-ㅣ가-힣]/.test(text)
 }
 
+function normalizeText(text: string) {
+  return (text || '')
+    .toLowerCase()
+    .replace(/[^\w\sㄱ-ㅎㅏ-ㅣ가-힣]/gi, '')
+    .replace(/\s+/g, '')
+    .trim()
+}
+
 async function resolveDisplayMetadata(
   supabase: ReturnType<typeof createClient>,
   tokenRow: SpotifyTokenRow,
@@ -39,6 +47,9 @@ async function resolveDisplayMetadata(
   const { trackId, trackName, artistName, albumName, durationMs } = payload
   let activeToken = await ensureFreshSpotifyAccessToken(supabase, tokenRow)
   
+  const normTrackName = normalizeText(trackName)
+  const normArtistName = normalizeText(artistName)
+
   // 1. Try direct track fetch with market=KR
   const trackUrl = `https://api.spotify.com/v1/tracks/${trackId}?market=KR`
   const trackResp = await fetch(trackUrl, {
@@ -51,17 +62,19 @@ async function resolveDisplayMetadata(
   let candidate = null
   if (trackResp.ok) {
     const data = await trackResp.json()
-    candidate = {
+    const result = {
       title: data.name,
       artist: data.artists?.map((a: any) => a.name).join(', '),
       album: data.album?.name,
       source: 'track-kr',
       matchedTrackId: data.id,
+      confidence: 0.8,
     }
     
-    if (containsHangul(candidate.title) || containsHangul(candidate.artist)) {
-      return { tokenRow: activeToken, data: candidate }
+    if (containsHangul(result.title) || containsHangul(result.artist)) {
+      return { tokenRow: activeToken, data: { ...result, confidence: 1.0 } }
     }
+    candidate = result
   }
 
   // 2. Search for KR localized candidate
@@ -79,31 +92,39 @@ async function resolveDisplayMetadata(
     const items = searchData.tracks?.items || []
     
     for (const item of items) {
+      const itemTitle = item.name
       const itemArtist = item.artists?.[0]?.name || ''
+      const itemAlbum = item.album?.name || ''
       const durDiff = Math.abs(item.duration_ms - (durationMs || 0))
       
-      // Matching criteria: duration within 4s AND (artist match or linked id)
-      const isDurationMatch = durDiff <= 4000
-      const isArtistMatch = 
-        itemArtist.toLowerCase().includes(artistName.toLowerCase()) || 
-        artistName.toLowerCase().includes(itemArtist.toLowerCase())
+      const normItemTitle = normalizeText(itemTitle)
+      const normItemArtist = normalizeText(itemArtist)
+      
+      // Matching criteria
+      const isDurationMatch = durDiff <= 3000 // 3 seconds
+      const isTitleMatch = normItemTitle.includes(normTrackName) || normTrackName.includes(normItemTitle)
+      const isArtistMatch = normItemArtist.includes(normArtistName) || normArtistName.includes(normItemArtist)
       const isLinked = item.id === trackId || item.linked_from?.id === trackId
 
       if (isDurationMatch && (isArtistMatch || isLinked)) {
-        const found = {
-          title: item.name,
-          artist: item.artists?.map((a: any) => a.name).join(', '),
-          album: item.album?.name,
-          source: 'search-kr',
-          matchedTrackId: item.id,
-        }
-        
-        if (containsHangul(found.title) || containsHangul(found.artist)) {
-          return { tokenRow: activeToken, data: found }
-        }
-        
-        if (!candidate || !containsHangul(candidate.title)) {
-          candidate = found
+        let confidence = 0.5
+        if (isDurationMatch) confidence += 0.2
+        if (isArtistMatch) confidence += 0.2
+        if (isLinked) confidence += 0.3
+        if (containsHangul(itemTitle) || containsHangul(itemArtist)) confidence += 0.3
+
+        if (confidence >= 0.8) {
+          return {
+            tokenRow: activeToken,
+            data: {
+              title: itemTitle,
+              artist: item.artists?.map((a: any) => a.name).join(', '),
+              album: itemAlbum,
+              source: 'search-kr',
+              matchedTrackId: item.id,
+              confidence: Math.min(confidence, 1.0),
+            }
+          }
         }
       }
     }
@@ -111,7 +132,7 @@ async function resolveDisplayMetadata(
 
   return { 
     tokenRow: activeToken, 
-    data: candidate || { title: trackName, artist: artistName, album: albumName, source: 'original' } 
+    data: candidate || { title: trackName, artist: artistName, album: albumName, source: 'original', confidence: 0 } 
   }
 }
 
