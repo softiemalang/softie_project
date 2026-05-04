@@ -7,6 +7,7 @@ import ProjectBrainPage from './pages/ProjectBrainPage'
 import HomePage from './pages/HomePage'
 import BandPage from './pages/BandPage'
 import RehearsalCalendarPage from './pages/RehearsalCalendarPage'
+import SpotifyMusicPage from './pages/SpotifyMusicPage'
 
 function NotFoundPage() {
   return (
@@ -41,6 +42,10 @@ export default function App() {
 
   if (pathname.startsWith('/scheduler')) {
     return <SchedulerApp pathname={pathname} />
+  }
+
+  if (pathname.startsWith('/music')) {
+    return <SpotifyMusicPage />
   }
 
   if (pathname.startsWith('/softie-fortune')) {

@@ -26,6 +26,18 @@ verify_jwt = false
 # Google OAuth state is issued before redirecting to Google, including anon/deviceId flows.
 verify_jwt = false
 
+[functions.spotify-oauth-start]
+# Spotify OAuth state is issued before redirecting to Spotify, including anon/deviceId flows.
+verify_jwt = false
+
+[functions.spotify-oauth-callback]
+# Spotify OAuth redirect does not include a Supabase Authorization header.
+verify_jwt = false
+
+[functions.spotify-player-control]
+# Spotify Connect remote control is driven from the app and may use deviceId-based identity for this MVP.
+verify_jwt = false
+
 [functions.google-calendar-create-event]
 # Called from the app without Supabase Auth session, using deviceId instead.
 verify_jwt = false

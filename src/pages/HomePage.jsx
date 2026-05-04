@@ -35,6 +35,12 @@ export default function HomePage() {
       label: 'SOFTIE FORTUNE',
     },
     {
+      description: 'Spotify Connect 기기를 예쁜 리모컨처럼 조작하고 현재 재생 중인 음악을 확인해요.',
+      path: '/music',
+      icon: '🎧',
+      label: 'SOFTIE MUSIC',
+    },
+    {
       description: '개인 합주 일정을 월 캘린더로 관리하고 구글 캘린더와 백업을 연결해요.',
       path: '/rehearsals',
       icon: '📅',

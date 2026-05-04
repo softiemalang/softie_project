@@ -758,6 +758,176 @@ textarea {
   color: #bbb2a8;
 }
 
+.music-shell {
+  width: min(100%, 820px);
+}
+
+.music-hero {
+  background:
+    linear-gradient(160deg, rgba(255, 252, 248, 0.96), rgba(248, 243, 236, 0.92)),
+    radial-gradient(circle at top right, rgba(31, 111, 95, 0.08), transparent 45%);
+}
+
+.music-hero-actions {
+  align-items: stretch;
+}
+
+.music-link-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
+
+.music-login-hint {
+  margin-top: 0.75rem;
+}
+
+.music-now-card h2,
+.music-device-card h3 {
+  margin: 0;
+}
+
+.music-now-layout,
+.music-now-copy,
+.music-device-list {
+  display: grid;
+  gap: 1rem;
+}
+
+.music-now-layout {
+  grid-template-columns: minmax(0, 220px) minmax(0, 1fr);
+  align-items: stretch;
+}
+
+.music-cover {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: 26px;
+  box-shadow: 0 16px 32px rgba(72, 59, 38, 0.12);
+  background: #efe5d7;
+}
+
+.music-cover-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background:
+    linear-gradient(180deg, rgba(249, 241, 232, 0.98), rgba(240, 230, 216, 0.98));
+  color: #8c7b68;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.music-track-meta {
+  margin-top: 0.55rem;
+}
+
+.music-meta-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+
+.music-meta-card {
+  min-height: 102px;
+}
+
+.music-meta-card strong {
+  font-size: 1.1rem;
+  line-height: 1.25;
+}
+
+.music-progress-wrap {
+  display: grid;
+  gap: 0.45rem;
+}
+
+.music-progress {
+  height: 12px;
+  border-radius: 999px;
+  background: rgba(222, 213, 201, 0.9);
+  overflow: hidden;
+}
+
+.music-progress-fill {
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #1f6f5f 0%, #6ca793 100%);
+  transition: width 0.25s ease;
+}
+
+.music-progress-time {
+  display: flex;
+  justify-content: space-between;
+  color: var(--muted);
+  font-size: 0.88rem;
+}
+
+.music-control-row {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.7rem;
+}
+
+.music-control-button {
+  min-height: 52px;
+  border-radius: 18px;
+  background: #efe7db;
+  color: #5d4f3f;
+  font-weight: 600;
+}
+
+.music-control-button-primary {
+  background: var(--brand);
+  color: #fff;
+  box-shadow: 0 12px 24px rgba(31, 111, 95, 0.2);
+}
+
+.music-connection-pill {
+  background: rgba(231, 243, 239, 0.92);
+  color: var(--brand);
+}
+
+.music-device-list {
+  grid-template-columns: 1fr;
+}
+
+.music-device-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.9rem;
+  padding: 1rem;
+  border-radius: 22px;
+  border: 1px solid var(--line);
+  background: rgba(255, 253, 249, 0.9);
+}
+
+.music-device-card.active {
+  border-color: rgba(31, 111, 95, 0.24);
+  background: rgba(233, 244, 239, 0.72);
+}
+
+@media (max-width: 699px) {
+  .music-now-layout,
+  .music-meta-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .music-control-row {
+    grid-template-columns: 1fr;
+  }
+
+  .music-device-card {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+
 .scheduler-push-status-note {
   margin-top: 0.08rem;
   font-size: 0.76rem;
