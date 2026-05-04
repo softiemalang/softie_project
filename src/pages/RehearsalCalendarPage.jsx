@@ -276,7 +276,7 @@ export default function RehearsalCalendarPage() {
       {selectedDate && (
         <>
           <div className="scheduler-sheet-backdrop" onClick={() => setSelectedDate(null)} />
-          <div className="rehearsal-bottom-sheet">
+          <div className="rehearsal-modal">
             <div className="rehearsal-sheet-header">
               <h3 className="rehearsal-sheet-title">
                 {selectedDate.getMonth() + 1}월 {selectedDate.getDate()}일 일정
@@ -422,7 +422,7 @@ function AddRehearsalModal({ ownerKey, isGoogleReady, onClose, onSuccess }) {
   return (
     <>
       <div className="scheduler-sheet-backdrop" onClick={onClose} />
-      <div className="rehearsal-bottom-sheet rehearsal-add-sheet">
+      <div className="rehearsal-modal rehearsal-add-modal-sheet">
         <div className="rehearsal-sheet-header">
           <h3 className="rehearsal-sheet-title">새 일정 추가</h3>
           <button className="scheduler-modal-close" onClick={onClose}>닫기</button>
