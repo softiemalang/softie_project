@@ -1,3 +1,11 @@
+# Rehearsal Backup Cron Setup
+
+이 문서는 수동으로 등록된 리허설 백업 크론 작업에 대한 정보를 담고 있습니다. 
+마이그레이션 파일(`20260504100000_add_rehearsal_backup_cron.sql`)에 포함되어 있던 내용을 백업 및 가이드 용도로 보관합니다.
+
+## SQL reference (Manual Setup)
+
+```sql
 -- Enable pg_cron and pg_net if not already enabled
 create extension if not exists pg_cron;
 create extension if not exists pg_net;
@@ -28,7 +36,7 @@ begin
 end;
 $$;
 
--- IMPORTANT: Manual setup recommended for the Cron Job URL and Secret
+-- Manual setup recommended for the Cron Job URL and Secret
 -- to avoid committing sensitive info to the repository.
 
 /*
@@ -45,3 +53,8 @@ select cron.schedule(
   $$
 );
 */
+```
+
+## Status
+- `rehearsal-daily-backup` 크론 작업은 Supabase SQL Editor에서 수동으로 등록되어 활성 상태입니다.
+- 마이그레이션 파일을 통한 자동 적용은 제외되었습니다.

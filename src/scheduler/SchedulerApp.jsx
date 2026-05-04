@@ -1,6 +1,16 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { navigate } from '../lib/router'
-import { listTodayWorkEvents, getReservationById, saveReservation, deleteReservation, updateWorkEventStatus } from './api'
+import { 
+  listTodayWorkEvents, 
+  getReservationById, 
+  saveReservation, 
+  deleteReservation, 
+  updateWorkEventStatus,
+  listSchedulerWorkLogs,
+  upsertSchedulerWorkLog,
+  deleteSchedulerWorkLogs,
+  migrateLocalWorkLogsToSupabase
+} from './api'
 import { SCHEDULER_BRANCHES, SCHEDULER_TAGS, TODAY_HOURS } from './constants'
 import { buildReservationPayload, createReservationDraft, getRoomStatus, getRoomsForBranch, getTagMeta, groupTodayEvents, mapReservationToFormValues, validateReservationForm } from './helpers'
 import {
@@ -61,25 +71,6 @@ function loadWorkLogs() {
   } catch {
     return []
   }
-}
-
-function saveWorkLog(entry, idsToRemove = []) {
-  if (typeof window === 'undefined') return
-  const logs = loadWorkLogs()
-  
-  // 겹치는 항목이나 삭제 요청된 항목 제외
-  let newLogs = logs.filter(log => !idsToRemove.includes(log.id))
-  
-  if (entry) {
-    const logEntry = {
-      ...entry,
-      id: entry.id || `log-${Date.now()}-${Math.random().toString(36).slice(2, 9)}`,
-      syncedAt: new Date().toISOString()
-    }
-    newLogs.push(logEntry)
-  }
-  
-  window.localStorage.setItem(WORK_LOGS_STORAGE_KEY, JSON.stringify(newLogs))
 }
 const WORK_TIME_HOUR_OPTIONS = Array.from({ length: 24 }, (_, hour) => hour)
 
@@ -266,16 +257,44 @@ function TodaySchedulerPage({ effectiveOwnerKey }) {
   const normalizedFilters = normalizeWorkTimeFilter(filters)
   const normalizedDraftWorkTime = normalizeWorkTimeFilter(draftFilters)
 
-  const [workLogs, setWorkLogs] = useState(() => loadWorkLogs())
+  const [workLogs, setWorkLogs] = useState([])
   const [isWorkLogOpen, setIsWorkLogOpen] = useState(false)
   const [viewingWeekStart, setViewingWeekStart] = useState(() => getWeekStartDate(initialSelectedDate))
   const [copyFeedback, setCopyFeedback] = useState('')
   const [syncConfirmation, setSyncConfirmation] = useState(null)
 
-  function handleSyncWorkLog() {
+  useEffect(() => {
+    if (!effectiveOwnerKey) return
+
+    async function loadLogs() {
+      try {
+        const logs = await listSchedulerWorkLogs(effectiveOwnerKey)
+        setWorkLogs(logs)
+
+        // One-time migration from localStorage
+        const MIGRATION_KEY = `scheduler:migration-work-logs:${effectiveOwnerKey}`
+        if (!window.localStorage.getItem(MIGRATION_KEY)) {
+          const localLogs = loadWorkLogs()
+          if (localLogs.length > 0) {
+            console.log(`[scheduler] Migrating ${localLogs.length} work logs to Supabase...`)
+            await migrateLocalWorkLogsToSupabase(effectiveOwnerKey, localLogs)
+            const syncedLogs = await listSchedulerWorkLogs(effectiveOwnerKey)
+            setWorkLogs(syncedLogs)
+          }
+          window.localStorage.setItem(MIGRATION_KEY, 'done')
+        }
+      } catch (err) {
+        console.error('[scheduler] Failed to load or migrate work logs:', err)
+      }
+    }
+    loadLogs()
+  }, [effectiveOwnerKey])
+
+  async function handleSyncWorkLog() {
     if (!normalizedFilters.workTimeEnabled) return
     
     const candidate = {
+      id: `log-${Date.now()}-${Math.random().toString(36).slice(2, 9)}`,
       weekStartDate: getWeekStartDate(selectedDate),
       date: selectedDate,
       startTime: formatWorkTimeHour(normalizedFilters.workTimeStartHour),
@@ -301,27 +320,48 @@ function TodaySchedulerPage({ effectiveOwnerKey }) {
       return
     }
     
-    saveWorkLog(candidate)
-    const nextLogs = loadWorkLogs()
-    setWorkLogs(nextLogs)
-    setPushStatus('근무 기록을 동기화했어요.')
-    setTimeout(() => setPushStatus(''), 2000)
+    try {
+      const saved = await upsertSchedulerWorkLog(effectiveOwnerKey, candidate)
+      setWorkLogs(prev => [...prev, saved])
+      setPushStatus('근무 기록을 동기화했어요.')
+      setTimeout(() => setPushStatus(''), 2000)
+    } catch (err) {
+      setPushStatus('기록 저장 중 오류가 발생했습니다.')
+      console.error(err)
+    }
   }
 
-  function handleConfirmSync() {
+  async function handleConfirmSync() {
     if (!syncConfirmation) return
     const { candidate, overlapping } = syncConfirmation
     
-    saveWorkLog(candidate, overlapping.map(o => o.id))
-    setWorkLogs(loadWorkLogs())
-    setSyncConfirmation(null)
-    setPushStatus('근무 기록을 변경 적용했어요.')
-    setTimeout(() => setPushStatus(''), 2000)
+    try {
+      const idsToRemove = overlapping.map(o => o.id)
+      await deleteSchedulerWorkLogs(effectiveOwnerKey, idsToRemove)
+      const saved = await upsertSchedulerWorkLog(effectiveOwnerKey, candidate)
+      
+      setWorkLogs(prev => [
+        ...prev.filter(log => !idsToRemove.includes(log.id)),
+        saved
+      ])
+      
+      setSyncConfirmation(null)
+      setPushStatus('근무 기록을 변경 적용했어요.')
+      setTimeout(() => setPushStatus(''), 2000)
+    } catch (err) {
+      setPushStatus('기록 변경 중 오류가 발생했습니다.')
+      console.error(err)
+    }
   }
 
-  function handleDeleteWorkLogEntry(id) {
-    saveWorkLog(null, [id])
-    setWorkLogs(loadWorkLogs())
+  async function handleDeleteWorkLogEntry(id) {
+    try {
+      await deleteSchedulerWorkLogs(effectiveOwnerKey, [id])
+      setWorkLogs(prev => prev.filter(log => log.id !== id))
+    } catch (err) {
+      console.error('[scheduler] Failed to delete work log:', err)
+      alert('기록 삭제 중 오류가 발생했습니다.')
+    }
   }
 
   function handleCopyWeekLog(weekStart) {

@@ -161,3 +161,98 @@ export async function updateWorkEventStatus(eventId, status, ownerKey) {
   if (error) throw new Error(error.message)
   return data
 }
+
+export async function listSchedulerWorkLogs(ownerKey) {
+  ensureSupabase()
+  if (!ownerKey) return []
+
+  const { data, error } = await supabase
+    .from('scheduler_work_logs')
+    .select('*')
+    .eq('owner_key', ownerKey)
+    .order('date', { ascending: true })
+
+  if (error) throw new Error(error.message)
+  
+  // Transform camelCase for consistency with existing UI usage
+  return (data || []).map(row => ({
+    ...row,
+    weekStartDate: row.week_start_date,
+    startTime: row.start_time,
+    endTime: row.end_time,
+    durationMinutes: row.duration_minutes,
+    syncedAt: row.synced_at
+  }))
+}
+
+export async function upsertSchedulerWorkLog(ownerKey, logEntry) {
+  ensureSupabase()
+  if (!ownerKey) throw new Error('ownerKey is required')
+
+  const payload = {
+    id: logEntry.id,
+    owner_key: ownerKey,
+    week_start_date: logEntry.weekStartDate,
+    date: logEntry.date,
+    start_time: logEntry.startTime,
+    end_time: logEntry.endTime,
+    duration_minutes: logEntry.durationMinutes,
+    branch: logEntry.branch,
+    room: logEntry.room,
+    synced_at: new Date().toISOString()
+  }
+
+  const { data, error } = await supabase
+    .from('scheduler_work_logs')
+    .upsert(payload)
+    .select('*')
+    .single()
+
+  if (error) throw new Error(error.message)
+  
+  return {
+    ...data,
+    weekStartDate: data.week_start_date,
+    startTime: data.start_time,
+    endTime: data.end_time,
+    durationMinutes: data.duration_minutes,
+    syncedAt: data.synced_at
+  }
+}
+
+export async function deleteSchedulerWorkLogs(ownerKey, ids) {
+  ensureSupabase()
+  if (!ownerKey || !ids || ids.length === 0) return
+
+  const { error } = await supabase
+    .from('scheduler_work_logs')
+    .delete()
+    .eq('owner_key', ownerKey)
+    .in('id', ids)
+
+  if (error) throw new Error(error.message)
+}
+
+export async function migrateLocalWorkLogsToSupabase(ownerKey, localLogs) {
+  ensureSupabase()
+  if (!ownerKey || !localLogs || localLogs.length === 0) return
+
+  const payloads = localLogs.map(log => ({
+    id: log.id,
+    owner_key: ownerKey,
+    week_start_date: log.weekStartDate || log.week_start_date,
+    date: log.date,
+    start_time: log.startTime || log.start_time,
+    end_time: log.endTime || log.end_time,
+    duration_minutes: log.durationMinutes || log.duration_minutes,
+    branch: log.branch,
+    room: log.room,
+    synced_at: new Date().toISOString()
+  }))
+
+  const { error } = await supabase
+    .from('scheduler_work_logs')
+    .upsert(payloads)
+
+  if (error) throw new Error(error.message)
+}

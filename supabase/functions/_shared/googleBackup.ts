@@ -121,7 +121,7 @@ export async function gatherBackupData(supabase: any, backupMode: 'scheduled' | 
   }
 
   const expectedTables = [
-    'reservations', 'work_events', 
+    'reservations', 'work_events', 'scheduler_work_logs',
     'saju_profiles', 'saju_natal_snapshots', 'saju_daily_snapshots', 'saju_fortune_reports', 
     'push_subscriptions'
   ]
