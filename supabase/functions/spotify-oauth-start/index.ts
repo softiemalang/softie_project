@@ -9,6 +9,8 @@ const SPOTIFY_SCOPES = [
   'user-read-currently-playing',
   'playlist-read-private',
   'playlist-read-collaborative',
+  'user-library-read',
+  'user-library-modify',
 ].join(' ')
 
 serve(async (req) => {

@@ -162,3 +162,40 @@ export async function playSpotifyPlaylist(userId, contextUri) {
     softieClient: 'music-dashboard',
   })
 }
+
+export async function checkSpotifySavedTrack(userId, trackId) {
+  return invokeSpotifyControl({
+    userId,
+    action: 'checkSavedTrack',
+    trackId,
+    softieClient: 'music-dashboard',
+  })
+}
+
+export async function saveSpotifyTrack(userId, trackId) {
+  return invokeSpotifyControl({
+    userId,
+    action: 'saveTrack',
+    trackId,
+    softieClient: 'music-dashboard',
+  })
+}
+
+export async function removeSpotifyTrack(userId, trackId) {
+  return invokeSpotifyControl({
+    userId,
+    action: 'removeTrack',
+    trackId,
+    softieClient: 'music-dashboard',
+  })
+}
+
+export async function setSpotifyVolume(userId, volumePercent, deviceId) {
+  return invokeSpotifyControl({
+    userId,
+    action: 'setVolume',
+    volumePercent,
+    deviceId,
+    softieClient: 'music-dashboard',
+  })
+}

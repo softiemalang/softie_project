@@ -15,6 +15,10 @@ import {
   playSpotify,
   previousSpotify,
   transferSpotifyPlayback,
+  checkSpotifySavedTrack,
+  saveSpotifyTrack,
+  removeSpotifyTrack,
+  setSpotifyVolume,
 } from '../music/spotifyApi'
 
 function formatDuration(ms) {
@@ -70,7 +74,20 @@ export default function SpotifyMusicPage() {
   const [devices, setDevices] = useState([])
   const [progressMs, setProgressMs] = useState(0)
 
+  // Track Save State
+  const [isTrackSaved, setIsTrackSaved] = useState(false)
+  const [isCheckingSaved, setIsCheckingSaved] = useState(false)
+  const [isSavingTrack, setIsSavingTrack] = useState(false)
+
+  // Volume State
+  const [selectedVolumeDevice, setSelectedVolumeDevice] = useState(null)
+  const [volumeDraft, setVolumeDraft] = useState(0)
+  const [isVolumeModalOpen, setIsVolumeModalOpen] = useState(false)
+  const [isChangingVolume, setIsChangingVolume] = useState(false)
+  const [volumeError, setVolumeError] = useState('')
+
   const track = playbackState?.item || currentlyPlaying?.item || null
+  const trackId = track?.id || ''
   const isPlaying = Boolean(playbackState?.is_playing ?? currentlyPlaying?.is_playing)
   const device = playbackState?.device || currentlyPlaying?.device || devices.find((item) => item.is_active) || null
   const hasActiveDevice = devices.some((item) => item.is_active) || Boolean(device)
@@ -108,6 +125,29 @@ export default function SpotifyMusicPage() {
       mounted = false
     }
   }, [])
+
+  useEffect(() => {
+    if (!userId || !isConnected || !trackId) {
+      setIsTrackSaved(false)
+      return
+    }
+
+    async function checkSaved() {
+      setIsCheckingSaved(true)
+      try {
+        const result = await checkSpotifySavedTrack(userId, trackId)
+        if (Array.isArray(result?.data)) {
+          setIsTrackSaved(Boolean(result.data[0]))
+        }
+      } catch (error) {
+        console.error('[SpotifyMusicPage.checkSaved]', error)
+      } finally {
+        setIsCheckingSaved(false)
+      }
+    }
+
+    checkSaved()
+  }, [userId, isConnected, trackId])
 
   async function refreshDashboard(options = {}) {
     const targetUserId = options.userId || userId
@@ -150,6 +190,54 @@ export default function SpotifyMusicPage() {
     } finally {
       setIsRefreshing(false)
     }
+  }
+
+  async function handleToggleSave() {
+    if (!userId || !trackId || isSavingTrack || isCheckingSaved) return
+
+    setIsSavingTrack(true)
+    const originalState = isTrackSaved
+    try {
+      if (originalState) {
+        await removeSpotifyTrack(userId, trackId)
+        setIsTrackSaved(false)
+      } else {
+        await saveSpotifyTrack(userId, trackId)
+        setIsTrackSaved(true)
+      }
+    } catch (error) {
+      console.error('[SpotifyMusicPage.handleToggleSave]', error)
+      setStatusMessage(getFriendlyError(error))
+    } finally {
+      setIsSavingTrack(false)
+    }
+  }
+
+  async function handleVolumeStep(direction) {
+    if (!userId || !selectedVolumeDevice || isChangingVolume) return
+
+    const step = direction === 'up' ? 10 : -10
+    const nextVolume = Math.max(0, Math.min(100, volumeDraft + step))
+    
+    setVolumeDraft(nextVolume)
+    setIsChangingVolume(true)
+    setVolumeError('')
+
+    try {
+      await setSpotifyVolume(userId, nextVolume, selectedVolumeDevice.id)
+    } catch (error) {
+      console.error('[SpotifyMusicPage.handleVolumeStep]', error)
+      setVolumeError('볼륨 조절에 실패했습니다.')
+    } finally {
+      setIsChangingVolume(false)
+    }
+  }
+
+  function openVolumeModal(targetDevice) {
+    setSelectedVolumeDevice(targetDevice)
+    setVolumeDraft(typeof targetDevice.volume_percent === 'number' ? targetDevice.volume_percent : 50)
+    setIsVolumeModalOpen(true)
+    setVolumeError('')
   }
 
   useEffect(() => {
@@ -258,8 +346,20 @@ export default function SpotifyMusicPage() {
       {statusMessage ? <p className="status">{statusMessage}</p> : null}
 
       <section className="card music-now-card">
-        <header className="card-header">
+        <header className="card-header music-now-header">
           <span className="section-kicker">Now Playing</span>
+          {trackId && (
+            <button
+              type="button"
+              className={`music-save-button ${isTrackSaved ? 'is-saved' : ''}`}
+              onClick={handleToggleSave}
+              disabled={isSavingTrack || isCheckingSaved}
+              aria-label={isTrackSaved ? '좋아요 취소' : '좋아요'}
+              title={isTrackSaved ? '좋아요 취소' : '좋아요'}
+            >
+              {isTrackSaved ? '♥' : '♡'}
+            </button>
+          )}
         </header>
 
         <div className="music-now-layout">
@@ -364,20 +464,32 @@ export default function SpotifyMusicPage() {
                     {typeof item.volume_percent === 'number' ? ` · 볼륨 ${item.volume_percent}%` : ''}
                   </p>
                 </div>
-                {item.is_active ? (
-                  <span className="pill music-device-badge">사용 중</span>
-                ) : (
-                  <button
-                    type="button"
-                    className="ghost-button music-device-button"
-                    disabled={isControlling}
-                    onClick={() =>
-                      runControl('transferPlayback', () => transferSpotifyPlayback(userId, item.id))
-                    }
-                  >
-                    전환
-                  </button>
-                )}
+                <div className="music-device-actions">
+                  {!item.is_active && (
+                    <button
+                      type="button"
+                      className="ghost-button music-device-button"
+                      disabled={isControlling}
+                      onClick={() =>
+                        runControl('transferPlayback', () => transferSpotifyPlayback(userId, item.id))
+                      }
+                    >
+                      전환
+                    </button>
+                  )}
+                  {typeof item.volume_percent === 'number' && (
+                    <button
+                      type="button"
+                      className="ghost-button music-device-button music-volume-button"
+                      onClick={() => openVolumeModal(item)}
+                    >
+                      볼륨
+                    </button>
+                  )}
+                  {item.is_active && typeof item.volume_percent !== 'number' && (
+                    <span className="pill music-device-badge">사용 중</span>
+                  )}
+                </div>
               </article>
             ))}
           </div>
@@ -385,6 +497,53 @@ export default function SpotifyMusicPage() {
           <p className="subtle" style={{ marginTop: '0.8rem' }}>현재 보이는 Spotify Connect 기기가 아직 없어요.</p>
         )}
       </section>
+
+      {isVolumeModalOpen && selectedVolumeDevice && (
+        <div className="scheduler-sheet-backdrop scheduler-modal-backdrop" onClick={() => setIsVolumeModalOpen(false)}>
+          <div className="scheduler-modal music-volume-modal" onClick={e => e.stopPropagation()}>
+            <div className="scheduler-section-head" style={{ marginBottom: '0.65rem' }}>
+              <div>
+                <p className="scheduler-section-label">볼륨 조절</p>
+              </div>
+              <button type="button" className="scheduler-modal-close" onClick={() => setIsVolumeModalOpen(false)}>닫기</button>
+            </div>
+
+            <div className="music-volume-content">
+              <p className="subtle music-volume-device-name">{selectedVolumeDevice.name}</p>
+              
+              <div className="music-volume-control">
+                <button 
+                  type="button" 
+                  className="music-volume-step-btn" 
+                  onClick={() => handleVolumeStep('down')}
+                  disabled={isChangingVolume || volumeDraft <= 0}
+                >
+                  −
+                </button>
+                <div className="music-volume-display">
+                  <strong>{volumeDraft}%</strong>
+                </div>
+                <button 
+                  type="button" 
+                  className="music-volume-step-btn" 
+                  onClick={() => handleVolumeStep('up')}
+                  disabled={isChangingVolume || volumeDraft >= 100}
+                >
+                  +
+                </button>
+              </div>
+
+              {volumeError && <p className="music-volume-error">{volumeError}</p>}
+            </div>
+
+            <div className="scheduler-modal-actions" style={{ marginTop: '1.2rem' }}>
+              <button type="button" className="scheduler-modal-btn primary" onClick={() => setIsVolumeModalOpen(false)}>
+                확인
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   )
 }
