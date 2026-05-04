@@ -1,110 +1,150 @@
-/* Scoped mobile polish for the /band landing and pre-member join screens.
-   This file intentionally avoids touching BandPage logic. */
+/* Scoped polish for the Google-auth based /band room flow. */
 
-@supports selector(:has(*)) {
-  .app-shell:has(input[placeholder="밴드 방 이름"]),
-  .app-shell:has(input[placeholder="4자리 PIN"]) {
-    --band-landing-gap: 0.74rem;
+.band-google-shell {
+  padding-top: max(0.9rem, calc(env(safe-area-inset-top) + 0.55rem));
+}
+
+.band-google-shell .hero {
+  display: none;
+}
+
+.band-google-shell input {
+  border-color: #d9d0c4;
+  background: rgba(255, 255, 255, 0.84);
+  outline: none;
+  box-shadow: none;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.band-google-shell input:focus,
+.band-google-shell input:focus-visible {
+  border-color: #8aa89b;
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(138, 168, 155, 0.22);
+}
+
+.band-account-card .card-header {
+  align-items: center;
+}
+
+.band-room-list {
+  display: grid;
+  gap: 0.62rem;
+}
+
+.band-room-item {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.78rem 0.82rem;
+  border: 1px solid rgba(231, 221, 208, 0.88);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.52);
+}
+
+.band-room-item strong {
+  display: block;
+  color: #3d342a;
+  font-size: 0.98rem;
+}
+
+.band-room-item p {
+  margin: 0.2rem 0 0;
+  color: var(--muted);
+  font-size: 0.84rem;
+  line-height: 1.35;
+}
+
+.band-room-item button {
+  width: auto;
+  min-height: 38px;
+  padding: 0.48rem 0.78rem;
+  border-radius: 13px;
+  font-size: 0.86rem;
+}
+
+.band-room-actions {
+  margin-top: 0.9rem;
+}
+
+.band-room-actions button {
+  flex: 1 1 0;
+}
+
+.band-google-shell .time-row-fragment {
+  display: contents;
+}
+
+@media (max-width: 699px) {
+  .band-google-shell {
+    padding-inline: 0.86rem;
+    padding-bottom: max(3.8rem, calc(env(safe-area-inset-bottom) + 2.2rem));
   }
 
-  .app-shell:has(input[placeholder="밴드 방 이름"]) .hero,
-  .app-shell:has(input[placeholder="4자리 PIN"]) .hero,
-  .app-shell:has(input[placeholder="밴드 방 이름"]) .card h2,
-  .app-shell:has(input[placeholder="4자리 PIN"]) .card h2 {
-    display: none;
+  .band-google-shell .card {
+    padding: 0.94rem 0.92rem 1rem;
+    margin-bottom: 0.78rem;
+    border-radius: 22px;
   }
 
-  .app-shell:has(input[placeholder="밴드 방 이름"]) .primary-home-card .subtle,
-  .app-shell:has(input[placeholder="밴드 방 이름"]) .secondary-card > .subtle,
-  .app-shell:has(input[placeholder="4자리 PIN"]) .primary-home-card .subtle,
-  .app-shell:has(input[placeholder="4자리 PIN"]) .secondary-card > .subtle {
-    display: none;
+  .band-google-shell .card > * + * {
+    margin-top: 0.68rem;
   }
 
-  .app-shell:has(input[placeholder="밴드 방 이름"]) input,
-  .app-shell:has(input[placeholder="4자리 PIN"]) input {
-    border-color: #d9d0c4;
-    background: rgba(255, 255, 255, 0.82);
-    outline: none;
-    box-shadow: none;
-    -webkit-appearance: none;
-    appearance: none;
+  .band-google-shell .card > .card-header + * {
+    margin-top: 0.52rem;
   }
 
-  .app-shell:has(input[placeholder="밴드 방 이름"]) input:focus,
-  .app-shell:has(input[placeholder="밴드 방 이름"]) input:focus-visible,
-  .app-shell:has(input[placeholder="4자리 PIN"]) input:focus,
-  .app-shell:has(input[placeholder="4자리 PIN"]) input:focus-visible {
-    border-color: #8aa89b;
-    outline: none;
-    box-shadow: 0 0 0 2px rgba(138, 168, 155, 0.22);
+  .band-google-shell .section-kicker {
+    font-size: 0.7rem;
+    letter-spacing: 0.08em;
   }
 
-  @media (max-width: 699px) {
-    .app-shell:has(input[placeholder="밴드 방 이름"]),
-    .app-shell:has(input[placeholder="4자리 PIN"]) {
-      padding-top: max(0.62rem, calc(env(safe-area-inset-top) + 0.28rem));
-      padding-inline: 0.86rem;
-    }
+  .band-google-shell .card h2 {
+    font-size: 1.08rem;
+  }
 
-    .app-shell:has(input[placeholder="밴드 방 이름"]) .hero .eyebrow,
-    .app-shell:has(input[placeholder="밴드 방 이름"]) .section-kicker,
-    .app-shell:has(input[placeholder="4자리 PIN"]) .hero .eyebrow,
-    .app-shell:has(input[placeholder="4자리 PIN"]) .section-kicker {
-      font-size: 0.7rem;
-      letter-spacing: 0.08em;
-    }
+  .band-google-shell input {
+    min-height: 44px;
+    padding: 0.64rem 0.82rem;
+    border-radius: 14px;
+    font-size: 16px;
+    line-height: 1.2;
+  }
 
-    .app-shell:has(input[placeholder="밴드 방 이름"]) .card,
-    .app-shell:has(input[placeholder="4자리 PIN"]) .card {
-      padding: 0.88rem 0.9rem 0.94rem;
-      margin-bottom: var(--band-landing-gap);
-      border-radius: 22px;
-    }
+  .band-google-shell input::placeholder {
+    font-size: 16px;
+  }
 
-    .app-shell:has(input[placeholder="밴드 방 이름"]) .card > * + *,
-    .app-shell:has(input[placeholder="4자리 PIN"]) .card > * + * {
-      margin-top: 0.62rem;
-    }
+  .band-google-shell .card > button,
+  .band-google-shell .inline-form button {
+    min-height: 44px;
+    padding: 0.64rem 0.86rem;
+    border-radius: 14px;
+    font-size: 0.96rem;
+    font-weight: 650;
+    line-height: 1.15;
+  }
 
-    .app-shell:has(input[placeholder="밴드 방 이름"]) .card > .card-header + *,
-    .app-shell:has(input[placeholder="4자리 PIN"]) .card > .card-header + * {
-      margin-top: 0.36rem;
-    }
+  .band-google-shell .field-grid {
+    gap: 0.56rem;
+  }
 
-    .app-shell:has(input[placeholder="밴드 방 이름"]) .field-grid,
-    .app-shell:has(input[placeholder="4자리 PIN"]) .field-grid {
-      gap: 0.56rem;
-    }
+  .band-two-field-grid {
+    grid-template-columns: 1fr;
+  }
 
-    .app-shell:has(input[placeholder="밴드 방 이름"]) input,
-    .app-shell:has(input[placeholder="4자리 PIN"]) input {
-      min-height: 44px;
-      padding: 0.64rem 0.82rem;
-      border-radius: 14px;
-      font-size: 16px;
-      line-height: 1.2;
-    }
+  .band-room-item {
+    grid-template-columns: 1fr;
+  }
 
-    .app-shell:has(input[placeholder="밴드 방 이름"]) input::placeholder,
-    .app-shell:has(input[placeholder="4자리 PIN"]) input::placeholder {
-      font-size: 16px;
-    }
+  .band-room-item button {
+    width: 100%;
+  }
 
-    .app-shell:has(input[placeholder="밴드 방 이름"]) .card > button,
-    .app-shell:has(input[placeholder="4자리 PIN"]) .card > button {
-      min-height: 44px;
-      margin-top: 0.64rem;
-      padding: 0.64rem 0.86rem;
-      border-radius: 14px;
-      font-size: 0.96rem;
-      font-weight: 650;
-      line-height: 1.15;
-    }
-
-    .app-shell:has(input[placeholder="밴드 방 이름"]) .primary-home-card button,
-    .app-shell:has(input[placeholder="4자리 PIN"]) .primary-home-card button {
-      box-shadow: 0 7px 16px rgba(31, 111, 95, 0.14);
-    }
+  .band-account-card .card-header {
+    align-items: stretch;
   }
 }
