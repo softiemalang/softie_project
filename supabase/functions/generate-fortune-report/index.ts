@@ -407,6 +407,12 @@ const ORIENTATION_KEYWORDS: Record<string, string[]> = {
 }
 const REPETITIVE_TERMS = ['책임', '부담', '기준', '한 박자', '회복']
 const RESTRICTED_AXIS_TERMS = ['책임', '부담', '기준', '마감', '확인']
+const HEALTH_BOILERPLATE_PATTERNS = [
+  '책임감이 오래 이어지',
+  '몸의 무게감이나 어깨',
+  '어깨 쪽 긴장',
+  '책임감과 긴장',
+]
 
 function countKeywordMatches(text: string, keywords: string[]) {
   return keywords.reduce((count, keyword) => count + (text.includes(keyword) ? 1 : 0), 0)
@@ -447,12 +453,16 @@ function scoreSoftiePersonalSnippet(
   const orientationMatches = countKeywordMatches(snippet, ORIENTATION_KEYWORDS[context.orientation] || [])
   const styleMatches = countKeywordMatches(snippet, STYLE_KEYWORDS)
   const repeatedTermMatches = countKeywordMatches(snippet, REPETITIVE_TERMS)
+  const healthBoilerplateMatches = countKeywordMatches(snippet, HEALTH_BOILERPLATE_PATTERNS)
+  const healthKeywordMatches = countKeywordMatches(snippet, SECTION_KEYWORD_MAP.health || [])
 
   if (primaryMatches > 0) score += 3
   if (secondaryMatches > 0) score += 2
   if (orientationMatches > 0) score += 2
   if (styleMatches > 0 && !hasSelectedStyleSnippet) score += 1
   if (repeatedTermMatches >= 2) score -= 2
+  if (healthBoilerplateMatches > 0) score -= 3
+  if (healthBoilerplateMatches > 0 && healthKeywordMatches > 0) score -= 1
   if (containsBirthDetail(snippet)) score -= 3
   if (isTooSimilarSnippet(snippet, selectedSnippets)) score -= 3
 
@@ -511,6 +521,7 @@ function rerankSoftiePersonalSnippets(snippets: string[], computedData: any = {}
     selectedSnippetCount: selected.length,
     topSnippetScore: selected[0]?.score ?? null,
     selectedStyleSnippetCount: styleCount,
+    selectedHealthBoilerplateCount: selected.filter((item) => countKeywordMatches(item.snippet, HEALTH_BOILERPLATE_PATTERNS) > 0).length,
   }
 }
 
@@ -614,6 +625,7 @@ async function createSoftiePersonalReferenceDraft(args: {
         selectedSnippetCount: reranked.selectedSnippetCount,
         topSnippetScore: reranked.topSnippetScore,
         selectedStyleSnippetCount: reranked.selectedStyleSnippetCount,
+        selectedHealthBoilerplateCount: reranked.selectedHealthBoilerplateCount,
       }
     }
 
@@ -627,6 +639,7 @@ async function createSoftiePersonalReferenceDraft(args: {
       selectedSnippetCount: reranked.selectedSnippetCount,
       topSnippetScore: reranked.topSnippetScore,
       selectedStyleSnippetCount: reranked.selectedStyleSnippetCount,
+      selectedHealthBoilerplateCount: reranked.selectedHealthBoilerplateCount,
     }
   } catch (error) {
     const reason = error instanceof Error ? error.message : 'unknown-error'
@@ -641,6 +654,7 @@ async function createSoftiePersonalReferenceDraft(args: {
       selectedSnippetCount: 0,
       topSnippetScore: null,
       selectedStyleSnippetCount: 0,
+      selectedHealthBoilerplateCount: 0,
     }
   }
 }
@@ -776,6 +790,7 @@ Deno.serve(async (req) => {
 - 검색 결과는 그대로 복사하지 말고, 오늘의 엔진 신호와 맞는 내용만 1~3개 정도 자연스럽게 반영하세요.
 - 관계, 돈, 건강, 직업 문장은 검색 자료보다 오늘의 dailyBalance와 sectionPriority를 우선하세요.
 - softiePersonalRag.snippets는 중복 없이 최대 3개 축만 반영하고, 같은 단어를 여러 섹션에서 반복하지 마세요.
+- 건강 섹션에서는 “책임감이 오래 이어지면/이어지며” 같은 반복 표현을 피하고, 몸에 남은 긴장·오래 붙잡은 일의 무게·조용한 틈·자극 줄이기 같은 표현으로 바꿔 쓰세요.
 
 [출력 규칙]
 - headline: 짧은 한국어 제목 1문장. summary를 반복하지 마세요.
@@ -995,8 +1010,15 @@ Deno.serve(async (req) => {
           snippetCount: softiePersonalRagDraft?.snippets?.length ?? 0,
           topSnippetScore: softiePersonalRagDraft?.topSnippetScore ?? null,
           selectedStyleSnippetCount: softiePersonalRagDraft?.selectedStyleSnippetCount ?? 0,
+          selectedHealthBoilerplateCount: softiePersonalRagDraft?.selectedHealthBoilerplateCount ?? 0,
           reason: softiePersonalRagDraft?.reason ?? null,
         },
+        healthBoilerplateDetected: Boolean(
+          countKeywordMatches(
+            normalizeText(finalResponse?.content?.sections?.health || '', 240) || '',
+            ['책임감이 오래 이어지', '몸의 무게감이나 어깨', '어깨 쪽 긴장'],
+          ) > 0
+        ),
         repeatAxisSummary,
       };
 
