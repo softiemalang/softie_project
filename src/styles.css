@@ -1042,12 +1042,12 @@ textarea {
   .music-shell {
     padding:
       max(1rem, calc(env(safe-area-inset-top) + 0.75rem))
-      0.85rem
+      1.15rem
       max(2.4rem, calc(env(safe-area-inset-bottom) + 1.5rem));
   }
 
   .music-status-card {
-    padding: 0.65rem 0.8rem;
+    padding: 0.65rem 0.95rem;
   }
 
   .music-status-header {
@@ -1062,7 +1062,7 @@ textarea {
   }
 
   .music-now-card {
-    padding: 0.95rem;
+    padding: 1rem 1.05rem 1.1rem;
   }
 
   .music-now-card h2 {
@@ -1077,7 +1077,8 @@ textarea {
 
   .music-cover {
     border-radius: 20px;
-    max-height: 260px;
+    max-height: 250px;
+    width: 98%;
   }
 
   .music-connect-button {
@@ -1087,6 +1088,7 @@ textarea {
 
   .music-meta-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.5rem;
   }
 
   .music-control-button {
@@ -1096,7 +1098,7 @@ textarea {
 
   .music-device-card {
     align-items: center;
-    padding: 0.65rem 0.75rem;
+    padding: 0.7rem 0.95rem;
   }
 
   .music-device-status {
