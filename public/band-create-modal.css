@@ -1,0 +1,78 @@
+/* Compact layouts for the band hub action bottom sheets. */
+
+.band-modal-sheet[aria-label="새 방 만들기"],
+.band-modal-sheet[aria-label="방 코드로 참여하기"] {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 0.58rem;
+}
+
+.band-modal-sheet[aria-label="새 방 만들기"] .band-modal-handle,
+.band-modal-sheet[aria-label="방 코드로 참여하기"] .band-modal-handle {
+  grid-column: 1 / -1;
+  justify-self: center;
+  margin-bottom: 0.26rem;
+}
+
+.band-modal-sheet[aria-label="새 방 만들기"] .band-modal-head,
+.band-modal-sheet[aria-label="방 코드로 참여하기"] .band-modal-head {
+  display: contents;
+}
+
+.band-modal-sheet[aria-label="새 방 만들기"] .band-modal-head > div,
+.band-modal-sheet[aria-label="방 코드로 참여하기"] .band-modal-head > div {
+  display: none;
+}
+
+.band-modal-sheet[aria-label="새 방 만들기"] .stack-form,
+.band-modal-sheet[aria-label="방 코드로 참여하기"] .stack-form {
+  display: contents;
+}
+
+.band-modal-sheet[aria-label="새 방 만들기"] .stack-form input,
+.band-modal-sheet[aria-label="방 코드로 참여하기"] .stack-form input {
+  grid-column: 1 / -1;
+  width: 100%;
+  margin: 0;
+}
+
+.band-modal-sheet[aria-label="새 방 만들기"] .stack-form input:nth-of-type(1),
+.band-modal-sheet[aria-label="방 코드로 참여하기"] .stack-form input:nth-of-type(1) {
+  order: 1;
+}
+
+.band-modal-sheet[aria-label="새 방 만들기"] .stack-form input:nth-of-type(2),
+.band-modal-sheet[aria-label="방 코드로 참여하기"] .stack-form input:nth-of-type(2) {
+  order: 2;
+}
+
+.band-modal-sheet[aria-label="새 방 만들기"] .band-modal-close,
+.band-modal-sheet[aria-label="새 방 만들기"] .stack-form button,
+.band-modal-sheet[aria-label="방 코드로 참여하기"] .band-modal-close,
+.band-modal-sheet[aria-label="방 코드로 참여하기"] .stack-form button {
+  width: 100%;
+  min-width: 0;
+  min-height: 44px;
+  height: 44px;
+  margin: 0;
+  border-radius: 14px;
+  font-size: 0.96rem;
+  font-weight: 700;
+  line-height: 1.1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.band-modal-sheet[aria-label="새 방 만들기"] .band-modal-close,
+.band-modal-sheet[aria-label="방 코드로 참여하기"] .band-modal-close {
+  grid-column: 1;
+  order: 3;
+}
+
+.band-modal-sheet[aria-label="새 방 만들기"] .stack-form button,
+.band-modal-sheet[aria-label="방 코드로 참여하기"] .stack-form button {
+  grid-column: 2;
+  order: 3;
+}

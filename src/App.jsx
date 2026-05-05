@@ -5,7 +5,7 @@ import SoftieFortunePage from './saju/SoftieFortunePage'
 import SajuEvaluationPage from './saju/SajuEvaluationPage'
 import ProjectBrainPage from './pages/ProjectBrainPage'
 import HomePage from './pages/HomePage'
-import BandPage from './pages/BandPage'
+import BandGoogleCompactPage from './pages/BandGoogleCompactPage'
 import RehearsalCalendarPage from './pages/RehearsalCalendarPage'
 import SpotifyMusicPage from './pages/SpotifyMusicPage'
 
@@ -33,7 +33,7 @@ export default function App() {
   }
 
   if (pathname.startsWith('/band')) {
-    return <BandPage />
+    return <BandGoogleCompactPage />
   }
 
   if (pathname.startsWith('/rehearsals')) {

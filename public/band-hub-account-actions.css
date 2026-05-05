@@ -1,0 +1,172 @@
+/* Final hub layout overrides: use account card as the action bar. */
+
+.band-hub-shell .compact-account-card {
+  grid-row: 1;
+  grid-column: 1;
+}
+
+.band-hub-shell .compact-account-card .card-header {
+  grid-template-columns: minmax(0, 1fr);
+  padding-right: 9.9rem;
+  min-height: 30px;
+}
+
+.band-hub-shell .compact-account-card .home-button {
+  display: none;
+}
+
+.band-account-email-trigger {
+  display: block;
+  max-width: 100%;
+  color: #6b6258;
+  cursor: pointer;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  user-select: none;
+}
+
+.band-account-email-trigger:active {
+  opacity: 0.72;
+}
+
+.band-hub-actions {
+  grid-row: 1 !important;
+  grid-column: 1 !important;
+  justify-self: end !important;
+  align-self: start !important;
+  margin: 0.7rem 0.88rem 0 0 !important;
+  z-index: 4;
+}
+
+.band-hub-actions button {
+  min-height: 30px !important;
+  padding: 0.34rem 0.56rem !important;
+  font-size: 0.7rem !important;
+  border-radius: 999px !important;
+}
+
+.band-hub-shell .band-room-list-card {
+  grid-row: 2;
+  margin-top: 0;
+}
+
+.band-account-logout-sheet {
+  padding-top: 0.95rem;
+}
+
+.band-logout-actions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.42rem;
+  width: 100%;
+  margin: 0.72rem auto 0;
+}
+
+.band-logout-actions button,
+.band-logout-actions .soft-button,
+.band-logout-actions .danger-button {
+  flex: 0 0 7.2rem;
+  width: 7.2rem;
+  min-width: 7.2rem;
+  max-width: 7.2rem;
+  height: 36px;
+  min-height: 36px;
+  max-height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  vertical-align: middle;
+  border: 0;
+  border-radius: 12px;
+  font-size: 0.88rem;
+  font-weight: 700;
+  line-height: 1.2;
+  padding: 0;
+  margin: 0;
+  box-shadow: none;
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+.band-logout-actions .soft-button {
+  background: #eadfe5;
+  color: #7a5866;
+}
+
+.band-logout-actions .soft-button:hover,
+.band-logout-actions .soft-button:active {
+  background: #eadfe5;
+  color: #7a5866;
+}
+
+.band-logout-actions .danger-button {
+  background: #c4144e;
+  color: #fff;
+}
+
+.band-logout-actions .danger-button:hover,
+.band-logout-actions .danger-button:active {
+  background: #c4144e;
+  color: #fff;
+}
+
+.band-account-logout-copy {
+  margin: 0;
+  font-size: 0.96rem;
+  line-height: 1.42;
+  color: #5f554d;
+  text-align: center;
+  word-break: keep-all;
+}
+
+@media (max-width: 699px) {
+  .band-hub-shell .compact-account-card {
+    padding-block: 0.5rem !important;
+  }
+
+  .band-hub-shell .compact-account-card .card-header {
+    padding-right: 9.7rem;
+  }
+
+  .band-hub-actions {
+    margin-top: 0.58rem !important;
+    margin-right: 0.82rem !important;
+  }
+
+  .band-account-logout-sheet {
+    padding: 0.88rem 0.88rem max(0.88rem, env(safe-area-inset-bottom));
+  }
+
+  .band-logout-actions {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.4rem;
+    width: 100%;
+    margin-top: 0.68rem;
+  }
+
+  .band-logout-actions button,
+  .band-logout-actions .soft-button,
+  .band-logout-actions .danger-button {
+    flex: 1 1 0;
+    width: auto;
+    min-width: 0;
+    max-width: none;
+    height: 36px;
+    min-height: 36px;
+    max-height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    line-height: 1.2;
+    font-size: 0.87rem;
+    padding: 0;
+    margin: 0;
+    border-radius: 12px;
+  }
+}
