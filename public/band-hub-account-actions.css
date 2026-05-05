@@ -51,11 +51,15 @@
   margin-top: 0;
 }
 
+.band-account-logout-sheet {
+  padding-top: 1.05rem;
+}
+
 .band-logout-actions {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 0.56rem;
-  margin-top: 1rem;
+  margin-top: 0.9rem;
 }
 
 .band-logout-actions button {
@@ -64,7 +68,10 @@
 }
 
 .band-account-logout-copy {
-  margin-top: 0.2rem;
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.45;
+  color: #5f554d;
 }
 
 @media (max-width: 699px) {
@@ -79,5 +86,9 @@
   .band-hub-actions {
     margin-top: 0.58rem !important;
     margin-right: 0.82rem !important;
+  }
+
+  .band-account-logout-sheet {
+    padding: 1rem 0.92rem max(0.92rem, env(safe-area-inset-bottom));
   }
 }
