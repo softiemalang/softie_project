@@ -15,3 +15,23 @@
 .band-room-shell .band-panel-card .band-week-picker-label {
   display: none;
 }
+
+.band-room-shell .band-panel-card {
+  padding-top: 0.78rem;
+}
+
+.band-room-shell .band-panel-card .band-compact-section-head {
+  margin-bottom: 0;
+}
+
+.band-room-shell .band-panel-card .band-compact-section-head > div:first-child {
+  display: none;
+}
+
+.band-room-shell .band-panel-card .band-availability-toolbar {
+  display: block;
+}
+
+.band-room-shell .band-panel-card .band-availability-toolbar-actions {
+  justify-content: flex-start;
+}
