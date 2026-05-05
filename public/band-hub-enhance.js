@@ -9,6 +9,12 @@
     document.getElementById(MODAL_ID)?.remove()
   }
 
+  function escapeHtml(value) {
+    const div = document.createElement('div')
+    div.textContent = value || ''
+    return div.innerHTML
+  }
+
   function openLogoutModal(logoutButton, email) {
     closeModal()
 
@@ -17,17 +23,11 @@
     backdrop.className = 'band-modal-backdrop band-account-logout-backdrop'
     backdrop.setAttribute('role', 'presentation')
 
+    const safeEmail = escapeHtml(email || '현재 계정')
+
     backdrop.innerHTML = `
       <section class="band-modal-sheet band-account-logout-sheet" role="dialog" aria-modal="true" aria-label="로그아웃 확인">
-        <div class="band-modal-handle"></div>
-        <div class="band-modal-head">
-          <div>
-            <p class="section-kicker">계정</p>
-            <h2>로그아웃할까요?</h2>
-          </div>
-          <button type="button" class="soft-button band-modal-close" data-band-close-logout>닫기</button>
-        </div>
-        <p class="subtle band-account-logout-copy">${email || '현재 계정'}에서 로그아웃해요.</p>
+        <p class="subtle band-account-logout-copy">${safeEmail}에서 로그아웃해요.</p>
         <div class="band-logout-actions">
           <button type="button" class="soft-button" data-band-close-logout>취소</button>
           <button type="button" class="danger-button" data-band-confirm-logout>로그아웃</button>
