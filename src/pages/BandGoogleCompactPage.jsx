@@ -10,25 +10,25 @@ const DAY_GROUPS = [
 ]
 const DEFAULT_VISIBLE_HOUR_START = 10
 
-function toDateInputValue(date) {
-  const year = date.getFullYear()
-  const month = String(date.getMonth() + 1).padStart(2, '0')
-  const day = String(date.getDate()).padStart(2, '0')
-  return `${year}-${month}-${day}`
-}
-
-function parseDateInputValue(value) {
-  if (!value) return new Date()
-  const [year, month, day] = value.split('-').map(Number)
-  if (!year || !month || !day) return new Date()
-  return new Date(year, month - 1, day, 12)
-}
-
 function getMondayStart(date) {
   const next = new Date(date.getFullYear(), date.getMonth(), date.getDate(), 12)
   const day = next.getDay()
   const offset = day === 0 ? -6 : 1 - day
   next.setDate(next.getDate() + offset)
+  return next
+}
+
+function getFirstMondayOfMonth(year, monthIndex) {
+  const firstDay = new Date(year, monthIndex, 1, 12)
+  const day = firstDay.getDay()
+  const offset = day === 0 ? 1 : day === 1 ? 0 : 8 - day
+  firstDay.setDate(firstDay.getDate() + offset)
+  return firstDay
+}
+
+function addDays(date, amount) {
+  const next = new Date(date)
+  next.setDate(next.getDate() + amount)
   return next
 }
 
@@ -41,6 +41,10 @@ function formatWeekRangeDate(date) {
 
 function formatDayHeaderDate(date) {
   return `${date.getMonth() + 1}/${date.getDate()}`
+}
+
+function formatMonthLabel(monthIndex) {
+  return `${monthIndex + 1}월`
 }
 
 function makeRoomCode() {
@@ -215,7 +219,7 @@ export default function BandGoogleCompactPage() {
   const [activePanel, setActivePanel] = useState('availability')
   const [showAllHours, setShowAllHours] = useState(false)
   const [activeDayGroup, setActiveDayGroup] = useState('weekday')
-  const [selectedWeekDate, setSelectedWeekDate] = useState(() => toDateInputValue(new Date()))
+  const [weekStartDate, setWeekStartDate] = useState(() => getMondayStart(new Date()))
 
   const user = session?.user || null
   const isOwner = Boolean(user?.id && room?.owner_user_id === user.id)
@@ -254,23 +258,35 @@ export default function BandGoogleCompactPage() {
     () => DAY_GROUPS.find((group) => group.key === activeDayGroup) || DAY_GROUPS[0],
     [activeDayGroup],
   )
+  const selectedYear = weekStartDate.getFullYear()
+  const selectedMonthIndex = weekStartDate.getMonth()
+  const selectableYears = useMemo(
+    () => Array.from({ length: 7 }, (_, index) => selectedYear - 2 + index),
+    [selectedYear],
+  )
   const weekDates = useMemo(() => {
-    const start = getMondayStart(parseDateInputValue(selectedWeekDate))
     return DAYS.map((_, index) => {
-      const date = new Date(start)
-      date.setDate(start.getDate() + index)
+      const date = addDays(weekStartDate, index)
       return {
         date,
         headerLabel: `${DAYS[index]} ${formatDayHeaderDate(date)}`,
       }
     })
-  }, [selectedWeekDate])
+  }, [weekStartDate])
   const weekRangeLabel = useMemo(() => {
     const first = weekDates[0]?.date
     const last = weekDates[weekDates.length - 1]?.date
     if (!first || !last) return ''
     return `${formatWeekRangeDate(first)} - ${formatWeekRangeDate(last)}`
   }, [weekDates])
+
+  function moveWeek(offset) {
+    setWeekStartDate((current) => addDays(current, offset * 7))
+  }
+
+  function updateWeekFromMonth(year, monthIndex) {
+    setWeekStartDate(getFirstMondayOfMonth(year, monthIndex))
+  }
 
   useEffect(() => {
     if (!supabase) {
@@ -815,12 +831,37 @@ export default function BandGoogleCompactPage() {
             <label className="band-week-picker">
               <span className="band-week-picker-label">합주 후보 주간</span>
               <div className="band-week-picker-controls">
-                <input
-                  type="date"
-                  value={selectedWeekDate}
-                  onChange={(event) => setSelectedWeekDate(event.target.value)}
-                />
-                <span className="band-week-range">{weekRangeLabel}</span>
+                <div className="band-week-selects" aria-label="년도와 월 선택">
+                  <select
+                    value={selectedYear}
+                    onChange={(event) => updateWeekFromMonth(Number(event.target.value), selectedMonthIndex)}
+                  >
+                    {selectableYears.map((year) => (
+                      <option key={year} value={year}>
+                        {year}년
+                      </option>
+                    ))}
+                  </select>
+                  <select
+                    value={selectedMonthIndex}
+                    onChange={(event) => updateWeekFromMonth(selectedYear, Number(event.target.value))}
+                  >
+                    {Array.from({ length: 12 }, (_, monthIndex) => (
+                      <option key={monthIndex} value={monthIndex}>
+                        {formatMonthLabel(monthIndex)}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+                <div className="band-week-nav" aria-label="주간 이동">
+                  <button type="button" className="soft-button band-week-nav-button" onClick={() => moveWeek(-1)} aria-label="이전 주">
+                    ‹
+                  </button>
+                  <span className="band-week-range">{weekRangeLabel}</span>
+                  <button type="button" className="soft-button band-week-nav-button" onClick={() => moveWeek(1)} aria-label="다음 주">
+                    ›
+                  </button>
+                </div>
               </div>
             </label>
           </div>
