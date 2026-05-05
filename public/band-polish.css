@@ -28,6 +28,11 @@
   align-items: center;
 }
 
+.band-hub-shell {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
 .band-hub-shell .compact-account-card .card-header {
   display: grid;
   grid-template-columns: 1fr auto;
@@ -56,8 +61,16 @@
   white-space: nowrap;
 }
 
+.band-hub-shell .band-room-list-card {
+  grid-row: 2;
+  grid-column: 1;
+  padding-top: 0.94rem;
+}
+
 .band-hub-shell .band-room-list-card .card-header {
-  margin-bottom: 0.48rem;
+  min-height: 32px;
+  margin-bottom: 0.58rem;
+  padding-right: 9.4rem;
 }
 
 .compact-account-card,
@@ -98,21 +111,40 @@
 
 .band-room-item button {
   width: auto;
-  min-height: 38px;
-  padding: 0.48rem 0.78rem;
-  border-radius: 13px;
-  font-size: 0.86rem;
+  min-width: auto;
+  min-height: 34px;
+  padding: 0.42rem 0.78rem;
+  border-radius: 999px;
+  font-size: 0.82rem;
+  white-space: nowrap;
 }
 
 .band-hub-actions {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 0.58rem;
-  margin-bottom: 0.78rem;
+  grid-row: 2;
+  grid-column: 1;
+  z-index: 3;
+  justify-self: end;
+  align-self: start;
+  display: flex;
+  gap: 0.34rem;
+  width: auto;
+  margin: 0.78rem 0.92rem 0 0;
+}
+
+.band-hub-actions button {
+  width: auto;
+  min-width: auto;
+  min-height: 30px;
+  padding: 0.34rem 0.58rem;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  line-height: 1.05;
+  white-space: nowrap;
 }
 
 .band-hub-actions button:last-child {
-  grid-column: 1 / -1;
+  display: none;
 }
 
 .band-room-actions,
@@ -397,12 +429,17 @@
     grid-template-columns: 1fr;
   }
 
-  .band-room-item {
-    grid-template-columns: 1fr;
+  .band-hub-shell .band-room-item {
+    grid-template-columns: minmax(0, 1fr) auto;
   }
 
-  .band-room-item button {
-    width: 100%;
+  .band-hub-shell .band-room-item button {
+    width: auto;
+    justify-self: end;
+    min-height: 34px;
+    padding: 0.42rem 0.78rem;
+    border-radius: 999px;
+    font-size: 0.82rem;
   }
 
   .band-account-card .card-header,
