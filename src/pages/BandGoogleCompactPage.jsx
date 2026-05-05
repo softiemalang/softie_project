@@ -3,18 +3,12 @@ import { navigate } from '../lib/router'
 import { supabase } from '../lib/supabase'
 
 const DAYS = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
-const SLOTS = [
-  '18:00',
-  '18:30',
-  '19:00',
-  '19:30',
-  '20:00',
-  '20:30',
-  '21:00',
-  '21:30',
-  '22:00',
-  '22:30',
+const SLOTS = Array.from({ length: 24 }, (_, hour) => `${String(hour).padStart(2, '0')}:00`)
+const DAY_GROUPS = [
+  { title: '평일', days: [0, 1, 2, 3, 4] },
+  { title: '주말', days: [5, 6] },
 ]
+const DEFAULT_VISIBLE_HOUR_START = 10
 
 function makeRoomCode() {
   return Math.random().toString(36).slice(2, 8).toUpperCase()
@@ -186,6 +180,7 @@ export default function BandGoogleCompactPage() {
   const [deleteRoomName, setDeleteRoomName] = useState('')
   const [activeModal, setActiveModal] = useState(null)
   const [activePanel, setActivePanel] = useState('availability')
+  const [showAllHours, setShowAllHours] = useState(false)
 
   const user = session?.user || null
   const isOwner = Boolean(user?.id && room?.owner_user_id === user.id)
@@ -212,6 +207,13 @@ export default function BandGoogleCompactPage() {
   const hasUnsavedChanges = useMemo(
     () => !mapsEqual(availabilityMap, savedAvailabilityMap),
     [availabilityMap, savedAvailabilityMap],
+  )
+  const visibleSlotIndexes = useMemo(
+    () =>
+      SLOTS.map((_, slotIndex) => slotIndex).filter(
+        (slotIndex) => showAllHours || slotIndex >= DEFAULT_VISIBLE_HOUR_START,
+      ),
+    [showAllHours],
   )
 
   useEffect(() => {
@@ -714,6 +716,7 @@ export default function BandGoogleCompactPage() {
     setDeleteRoomName('')
     setStatus('')
     setActivePanel('availability')
+    setShowAllHours(false)
     if (user?.id) loadMyRooms(user.id)
   }
 
@@ -725,47 +728,67 @@ export default function BandGoogleCompactPage() {
   function renderAvailabilityPanel() {
     return (
       <section className="card band-panel-card">
-        <div className="section-head band-compact-section-head">
+        <div className="section-head band-compact-section-head band-availability-toolbar">
           <div>
             <p className="section-kicker">내 가능 시간</p>
             <h2>가능한 시간을 눌러 표시해 주세요.</h2>
           </div>
-          <div className={`save-state ${hasUnsavedChanges ? 'unsaved' : ''}`}>
-            {isLoadingRoom ? '동기화 중...' : hasUnsavedChanges ? '저장 필요' : '저장됨'}
+          <div className="band-availability-toolbar-actions">
+            <div className={`save-state ${hasUnsavedChanges ? 'unsaved' : ''}`}>
+              {isLoadingRoom ? '동기화 중...' : hasUnsavedChanges ? '저장 필요' : '저장됨'}
+            </div>
+            <button type="button" className="soft-button band-hours-toggle" onClick={() => setShowAllHours((current) => !current)}>
+              {showAllHours ? '기본 시간보기' : '전체 시간보기'}
+            </button>
           </div>
         </div>
 
-        <div className="availability-grid band-availability-grid">
-          <div className="grid-top-left" />
-          {DAYS.map((day, dayIndex) => (
-            <div className={`day-label ${dayIndex >= 5 ? 'weekend-label' : 'weekday-label'}`} key={day}>
-              {day}
-            </div>
+        <div className="band-availability-groups">
+          {DAY_GROUPS.map((group) => (
+            <section
+              key={group.title}
+              className={`band-availability-group ${group.days.length === 5 ? 'is-weekday-group' : 'is-weekend-group'}`}
+            >
+              <div className="band-availability-group-head">
+                <h3>{group.title}</h3>
+                <p className="subtle">
+                  {showAllHours ? '00:00부터 23:00까지 보여요.' : '10:00부터 23:00까지만 보여요.'}
+                </p>
+              </div>
+              <div className="band-availability-grid-wrap">
+                <div className="availability-grid band-availability-grid">
+                  <div className="grid-top-left">시간</div>
+                  {group.days.map((dayIndex) => (
+                    <div
+                      className={`day-label ${dayIndex >= 5 ? 'weekend-label' : 'weekday-label'}`}
+                      key={`${group.title}-${DAYS[dayIndex]}`}
+                    >
+                      {DAYS[dayIndex]}
+                    </div>
+                  ))}
+                  {visibleSlotIndexes.map((slotIndex) => (
+                    <div key={`${group.title}-${SLOTS[slotIndex]}`} className="time-row-fragment">
+                      <div className="time-label">{SLOTS[slotIndex]}</div>
+                      {group.days.map((dayIndex) => {
+                        const key = `${dayIndex}-${slotIndex}`
+                        return (
+                          <button
+                            type="button"
+                            key={key}
+                            className={`slot-button ${availabilityMap[key] ? 'active' : ''} ${dayIndex >= 5 ? 'weekend-slot' : 'weekday-slot'}`}
+                            onClick={() => toggleSlot(dayIndex, slotIndex)}
+                            aria-label={`${DAYS[dayIndex]} ${SLOTS[slotIndex]}`}
+                          >
+                            {availabilityMap[key] ? '✓' : ''}
+                          </button>
+                        )
+                      })}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </section>
           ))}
-          {SLOTS.map((slot, slotIndex) => (
-            <div key={slot} className="time-row-fragment">
-              <div className="time-label">{slot}</div>
-              {DAYS.map((_, dayIndex) => {
-                const key = `${dayIndex}-${slotIndex}`
-                return (
-                  <button
-                    type="button"
-                    key={key}
-                    className={`slot-button ${availabilityMap[key] ? 'active' : ''} ${dayIndex >= 5 ? 'weekend-slot' : 'weekday-slot'}`}
-                    onClick={() => toggleSlot(dayIndex, slotIndex)}
-                    aria-label={`${DAYS[dayIndex]} ${slot}`}
-                  >
-                    {availabilityMap[key] ? '✓' : ''}
-                  </button>
-                )
-              })}
-            </div>
-          ))}
-        </div>
-
-        <div className="weekday-weekend-guide">
-          <span>평일</span>
-          <span>주말</span>
         </div>
 
         <div className="band-panel-actions">

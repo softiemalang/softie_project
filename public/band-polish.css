@@ -230,17 +230,105 @@
   align-items: center;
 }
 
+.band-availability-toolbar {
+  align-items: flex-start;
+  gap: 0.7rem;
+}
+
+.band-availability-toolbar-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.band-hours-toggle {
+  min-height: 38px;
+  padding: 0.42rem 0.78rem;
+  border-radius: 999px;
+  font-size: 0.82rem;
+  white-space: nowrap;
+}
+
+.band-availability-groups {
+  display: grid;
+  gap: 0.9rem;
+}
+
+.band-availability-group {
+  display: grid;
+  gap: 0.58rem;
+}
+
+.band-availability-group-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.35rem 0.7rem;
+}
+
+.band-availability-group-head h3,
+.band-availability-group-head .subtle {
+  margin: 0;
+}
+
+.band-availability-group-head h3 {
+  font-size: 0.92rem;
+  color: #5b4a35;
+}
+
+.band-availability-grid-wrap {
+  overflow-x: auto;
+  padding-bottom: 0.16rem;
+}
+
 .band-availability-grid {
-  grid-template-columns: 58px repeat(7, minmax(38px, 1fr));
   gap: 0.36rem;
+  min-width: max-content;
 }
 
 .band-availability-grid .grid-top-left,
 .band-availability-grid .day-label,
 .band-availability-grid .time-label,
 .band-availability-grid .slot-button {
-  min-height: 42px;
+  min-height: 40px;
   border-radius: 12px;
+}
+
+.band-availability-group.is-weekday-group .band-availability-grid {
+  grid-template-columns: 52px repeat(5, minmax(44px, 1fr));
+  width: 100%;
+  min-width: 0;
+}
+
+.band-availability-group.is-weekend-group .band-availability-grid {
+  grid-template-columns: 52px repeat(2, minmax(72px, 88px));
+  width: fit-content;
+}
+
+.band-availability-grid .grid-top-left {
+  min-width: 52px;
+  background: #f7f0e6;
+  color: #7b6f63;
+  font-size: 0.76rem;
+  font-weight: 700;
+}
+
+.band-availability-grid .time-label {
+  min-width: 52px;
+  font-size: 0.74rem;
+}
+
+.band-availability-grid .day-label {
+  font-size: 0.76rem;
+}
+
+.band-availability-grid .slot-button {
+  min-width: 44px;
+  font-size: 0.95rem;
+  font-weight: 700;
 }
 
 .band-panel-actions {
@@ -474,7 +562,30 @@
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
-  .band-availability-grid {
+  .band-availability-toolbar-actions {
+    justify-content: flex-start;
+  }
+
+  .band-availability-grid-wrap {
     margin-inline: -0.2rem;
+  }
+
+  .band-availability-group.is-weekday-group .band-availability-grid {
+    grid-template-columns: 48px repeat(5, minmax(40px, 1fr));
+  }
+
+  .band-availability-group.is-weekend-group .band-availability-grid {
+    grid-template-columns: 48px repeat(2, minmax(68px, 82px));
+  }
+
+  .band-availability-grid .grid-top-left,
+  .band-availability-grid .time-label {
+    min-width: 48px;
+    font-size: 0.7rem;
+  }
+
+  .band-availability-grid .day-label,
+  .band-availability-grid .slot-button {
+    min-height: 38px;
   }
 }
