@@ -9,3 +9,9 @@
 .band-room-shell .band-panel-card .band-compact-section-head h2 {
   margin-top: 0;
 }
+
+/* The availability controls already explain the flow, so keep this panel compact. */
+.band-room-shell .band-panel-card .band-compact-section-head h2,
+.band-room-shell .band-panel-card .band-week-picker-label {
+  display: none;
+}
