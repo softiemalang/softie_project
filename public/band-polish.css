@@ -28,6 +28,13 @@
   align-items: center;
 }
 
+.compact-account-card,
+.band-room-list-card,
+.compact-room-hero-card,
+.band-panel-card {
+  box-shadow: 0 10px 26px rgba(92, 74, 43, 0.06);
+}
+
 .band-room-list {
   display: grid;
   gap: 0.62rem;
@@ -65,16 +72,232 @@
   font-size: 0.86rem;
 }
 
-.band-room-actions {
-  margin-top: 0.9rem;
+.band-hub-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.58rem;
+  margin-bottom: 0.78rem;
 }
 
-.band-room-actions button {
-  flex: 1 1 0;
+.band-hub-actions button:last-child {
+  grid-column: 1 / -1;
+}
+
+.band-room-actions,
+.compact-room-actions {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.55rem;
+  margin-top: 0.8rem;
+}
+
+.band-room-actions button,
+.compact-room-actions button {
+  width: 100%;
+  min-height: 38px;
+  padding: 0.48rem 0.55rem;
+  border-radius: 13px;
+  font-size: 0.86rem;
+}
+
+.compact-room-top {
+  align-items: center;
+}
+
+.compact-room-top .pill {
+  align-self: flex-start;
+}
+
+.compact-room-meta-grid {
+  margin-top: 0.72rem;
+}
+
+.compact-room-meta-grid .meta-card {
+  padding: 0.72rem 0.82rem;
+  border-radius: 16px;
+}
+
+.compact-room-meta-grid .meta-card strong {
+  font-size: 1.24rem;
+}
+
+.band-tabbar {
+  position: sticky;
+  top: 0.35rem;
+  z-index: 15;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.35rem;
+  padding: 0.34rem;
+  margin-bottom: 0.72rem;
+  border: 1px solid rgba(231, 221, 208, 0.86);
+  border-radius: 18px;
+  background: rgba(249, 243, 235, 0.92);
+  backdrop-filter: blur(14px);
+}
+
+.band-tab-button {
+  min-height: 38px;
+  padding: 0.48rem 0.3rem;
+  border-radius: 14px;
+  background: transparent;
+  color: #6b6258;
+  font-size: 0.86rem;
+  font-weight: 650;
+}
+
+.band-tab-button.active {
+  background: #1f6f5f;
+  color: #fff;
+  box-shadow: 0 6px 14px rgba(31, 111, 95, 0.14);
 }
 
 .band-google-shell .time-row-fragment {
   display: contents;
+}
+
+.band-compact-section-head {
+  align-items: center;
+}
+
+.band-availability-grid {
+  grid-template-columns: 58px repeat(7, minmax(38px, 1fr));
+  gap: 0.36rem;
+}
+
+.band-availability-grid .grid-top-left,
+.band-availability-grid .day-label,
+.band-availability-grid .time-label,
+.band-availability-grid .slot-button {
+  min-height: 42px;
+  border-radius: 12px;
+}
+
+.band-panel-actions {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 0.6rem;
+  margin-top: 0.85rem;
+}
+
+.band-panel-actions button {
+  min-height: 42px;
+  margin-top: 0;
+}
+
+.band-day-actions-detail {
+  margin-top: 0.8rem;
+  border: 1px solid rgba(231, 221, 208, 0.86);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.44);
+  overflow: hidden;
+}
+
+.band-day-actions-detail summary {
+  padding: 0.78rem 0.84rem;
+  color: #5b4a35;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.compact-day-actions-grid {
+  padding: 0 0.72rem 0.78rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.compact-day-actions-grid .day-action-card {
+  padding: 0.6rem;
+}
+
+.compact-day-actions-grid .mini-actions {
+  grid-template-columns: 1fr 1fr;
+}
+
+.compact-day-actions-grid .ghost-button {
+  min-height: 34px;
+  padding: 0.35rem 0.45rem;
+}
+
+.compact-result-group + .compact-result-group {
+  margin-top: 1.05rem;
+}
+
+.compact-member-list {
+  grid-template-columns: 1fr;
+}
+
+.band-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 80;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding: 1rem;
+  background: rgba(31, 24, 17, 0.28);
+  backdrop-filter: blur(10px);
+}
+
+.band-modal-sheet {
+  width: min(100%, 560px);
+  max-height: min(82vh, 720px);
+  overflow-y: auto;
+  padding: 0.8rem 0.9rem max(1rem, env(safe-area-inset-bottom));
+  border-radius: 28px 28px 20px 20px;
+  background: rgba(255, 252, 248, 0.97);
+  border: 1px solid rgba(255, 255, 255, 0.72);
+  box-shadow: 0 22px 70px rgba(55, 39, 24, 0.2);
+}
+
+.band-modal-handle {
+  width: 44px;
+  height: 4px;
+  margin: 0.1rem auto 0.78rem;
+  border-radius: 999px;
+  background: #d5c9ba;
+}
+
+.band-modal-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.8rem;
+  margin-bottom: 0.85rem;
+}
+
+.band-modal-head h2 {
+  margin: 0.24rem 0 0;
+  font-size: 1.16rem;
+  line-height: 1.2;
+}
+
+.band-modal-close {
+  width: auto;
+  min-height: 34px;
+  padding: 0.42rem 0.7rem;
+  border-radius: 12px;
+  font-size: 0.82rem;
+}
+
+.band-manage-stack,
+.band-modal-section {
+  display: grid;
+  gap: 0.74rem;
+}
+
+.band-modal-section {
+  padding: 0.8rem;
+  border: 1px solid rgba(231, 221, 208, 0.9);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.46);
+}
+
+.compact-danger-block {
+  padding: 0.8rem;
+}
+
+.compact-danger-block .danger-button {
+  margin-top: 0.1rem;
 }
 
 @media (max-width: 699px) {
@@ -119,7 +342,8 @@
   }
 
   .band-google-shell .card > button,
-  .band-google-shell .inline-form button {
+  .band-google-shell .inline-form button,
+  .band-google-shell .stack-form button {
     min-height: 44px;
     padding: 0.64rem 0.86rem;
     border-radius: 14px;
@@ -146,5 +370,21 @@
 
   .band-account-card .card-header {
     align-items: stretch;
+  }
+
+  .band-room-shell {
+    padding-top: max(0.7rem, calc(env(safe-area-inset-top) + 0.35rem));
+  }
+
+  .compact-room-top {
+    gap: 0.6rem;
+  }
+
+  .compact-room-actions {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .band-availability-grid {
+    margin-inline: -0.2rem;
   }
 }
