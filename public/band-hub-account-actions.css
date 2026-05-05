@@ -61,19 +61,26 @@
   justify-content: center;
   align-items: center;
   gap: 0.42rem;
-  margin-top: 0.72rem;
+  width: fit-content;
+  margin: 0.72rem auto 0;
 }
 
-.band-logout-actions button {
+.band-logout-actions button,
+.band-logout-actions .soft-button,
+.band-logout-actions .danger-button {
   width: 7.2rem;
   min-width: 7.2rem;
   max-width: 7.2rem;
   height: 36px;
   min-height: 36px;
+  max-height: 36px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  border: 0;
   border-radius: 12px;
+  background: #c4144e;
+  color: #fff;
   font-size: 0.88rem;
   font-weight: 700;
   line-height: 1;
@@ -83,14 +90,12 @@
   -webkit-appearance: none;
 }
 
-.band-logout-actions .soft-button {
-  background: #c4144e;
-  color: #fff;
-  border-color: transparent;
-}
-
+.band-logout-actions button:hover,
+.band-logout-actions button:active,
 .band-logout-actions .soft-button:hover,
-.band-logout-actions .soft-button:active {
+.band-logout-actions .soft-button:active,
+.band-logout-actions .danger-button:hover,
+.band-logout-actions .danger-button:active {
   background: #c4144e;
   color: #fff;
 }
@@ -124,16 +129,20 @@
 
   .band-logout-actions {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+    width: 100%;
     gap: 0.4rem;
     margin-top: 0.68rem;
   }
 
-  .band-logout-actions button {
+  .band-logout-actions button,
+  .band-logout-actions .soft-button,
+  .band-logout-actions .danger-button {
     width: 100%;
     min-width: 0;
     max-width: none;
     height: 36px;
     min-height: 36px;
+    max-height: 36px;
     font-size: 0.87rem;
     padding: 0;
     border-radius: 12px;
