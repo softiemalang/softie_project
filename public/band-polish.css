@@ -28,6 +28,13 @@
   align-items: center;
 }
 
+.band-hub-shell .compact-account-card .card-header {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 0.7rem;
+}
+
 .band-hub-shell .compact-account-card h2,
 .band-hub-shell .band-room-list-card .card-header h2 {
   display: none;
@@ -35,6 +42,18 @@
 
 .band-hub-shell .compact-account-card .subtle {
   margin-top: 0.24rem;
+  overflow-wrap: anywhere;
+}
+
+.band-hub-shell .compact-account-card .home-button {
+  width: auto;
+  min-width: auto;
+  min-height: 34px;
+  padding: 0.42rem 0.68rem;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 650;
+  white-space: nowrap;
 }
 
 .band-hub-shell .band-room-list-card .card-header {
@@ -386,8 +405,13 @@
     width: 100%;
   }
 
-  .band-account-card .card-header {
-    align-items: stretch;
+  .band-account-card .card-header,
+  .band-hub-shell .compact-account-card .card-header {
+    align-items: center;
+  }
+
+  .band-hub-shell .compact-account-card .home-button {
+    justify-self: end;
   }
 
   .band-room-shell {
