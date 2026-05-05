@@ -28,6 +28,19 @@
   align-items: center;
 }
 
+.band-hub-shell .compact-account-card h2,
+.band-hub-shell .band-room-list-card .card-header h2 {
+  display: none;
+}
+
+.band-hub-shell .compact-account-card .subtle {
+  margin-top: 0.24rem;
+}
+
+.band-hub-shell .band-room-list-card .card-header {
+  margin-bottom: 0.48rem;
+}
+
 .compact-account-card,
 .band-room-list-card,
 .compact-room-hero-card,
@@ -310,6 +323,11 @@
     padding: 0.94rem 0.92rem 1rem;
     margin-bottom: 0.78rem;
     border-radius: 22px;
+  }
+
+  .band-hub-shell .compact-account-card,
+  .band-hub-shell .band-room-list-card {
+    padding-block: 0.86rem;
   }
 
   .band-google-shell .card > * + * {
