@@ -8,6 +8,14 @@
   display: none;
 }
 
+.band-google-shell:not(.band-hub-shell):not(.band-room-shell) .primary-home-card h2 {
+  display: none;
+}
+
+.band-google-shell:not(.band-hub-shell):not(.band-room-shell) .primary-home-card .subtle {
+  margin-top: 0.46rem;
+}
+
 .band-google-shell input {
   border-color: #d9d0c4;
   background: rgba(255, 255, 255, 0.84);
