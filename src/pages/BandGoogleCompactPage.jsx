@@ -269,7 +269,7 @@ export default function BandGoogleCompactPage() {
       const date = addDays(weekStartDate, index)
       return {
         date,
-        headerLabel: `${DAYS[index]} ${formatDayHeaderDate(date)}`,
+        headerLabel: DAYS[index],
       }
     })
   }, [weekStartDate])
