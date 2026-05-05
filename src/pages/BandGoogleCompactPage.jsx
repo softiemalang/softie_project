@@ -810,27 +810,9 @@ export default function BandGoogleCompactPage() {
             <div className={`save-state ${hasUnsavedChanges ? 'unsaved' : ''}`}>
               {isLoadingRoom ? '동기화 중...' : hasUnsavedChanges ? '저장 필요' : '저장됨'}
             </div>
-            <div className="band-availability-toggle-row">
-              <button type="button" className="soft-button band-hours-toggle" onClick={() => setShowAllHours((current) => !current)}>
-                {showAllHours ? '기본 시간보기' : '전체 시간보기'}
-              </button>
-              <div className="band-day-group-switch" role="tablist" aria-label="시간표 그룹 선택">
-                {DAY_GROUPS.map((group) => (
-                  <button
-                    type="button"
-                    key={group.key}
-                    className={`band-day-group-button ${activeDayGroup === group.key ? 'active' : ''}`}
-                    onClick={() => setActiveDayGroup(group.key)}
-                    aria-pressed={activeDayGroup === group.key}
-                  >
-                    {group.title}
-                  </button>
-                ))}
-              </div>
-            </div>
-            <label className="band-week-picker">
-              <span className="band-week-picker-label">합주 후보 주간</span>
-              <div className="band-week-picker-controls">
+            
+            <div className="band-toolbar-controls">
+              <div className="band-toolbar-row">
                 <div className="band-week-selects" aria-label="년도와 월 선택">
                   <select
                     value={selectedYear}
@@ -853,17 +835,40 @@ export default function BandGoogleCompactPage() {
                     ))}
                   </select>
                 </div>
-                <div className="band-week-nav" aria-label="주간 이동">
-                  <button type="button" className="soft-button band-week-nav-button" onClick={() => moveWeek(-1)} aria-label="이전 주">
+                <div className="band-day-group-switch" role="tablist" aria-label="시간표 그룹 선택">
+                  {DAY_GROUPS.map((group) => (
+                    <button
+                      type="button"
+                      key={group.key}
+                      className={`band-day-group-button ${activeDayGroup === group.key ? 'active' : ''}`}
+                      onClick={() => setActiveDayGroup(group.key)}
+                      aria-pressed={activeDayGroup === group.key}
+                    >
+                      {group.title}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              <div className="band-toolbar-row">
+                <div className="band-week-nav-pill" aria-label="주간 이동">
+                  <button type="button" className="band-week-nav-button" onClick={() => moveWeek(-1)} aria-label="이전 주">
                     ‹
                   </button>
                   <span className="band-week-range">{weekRangeLabel}</span>
-                  <button type="button" className="soft-button band-week-nav-button" onClick={() => moveWeek(1)} aria-label="다음 주">
+                  <button type="button" className="band-week-nav-button" onClick={() => moveWeek(1)} aria-label="다음 주">
                     ›
                   </button>
                 </div>
+                <button
+                  type="button"
+                  className={`band-hours-toggle ${showAllHours ? 'active' : ''}`}
+                  onClick={() => setShowAllHours((current) => !current)}
+                >
+                  {showAllHours ? '기본 시간보기' : '전체 시간보기'}
+                </button>
               </div>
-            </label>
+            </div>
           </div>
         </div>
 
