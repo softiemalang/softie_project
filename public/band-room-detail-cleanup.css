@@ -35,3 +35,7 @@
 .band-room-shell .band-panel-card .band-availability-toolbar-actions {
   justify-content: flex-start;
 }
+
+.band-room-shell .band-panel-card .band-availability-group-head .subtle {
+  display: none;
+}
