@@ -16,7 +16,8 @@
   margin-top: 0.46rem;
 }
 
-.band-google-shell input {
+.band-google-shell input,
+.band-google-shell select {
   border-color: #d9d0c4;
   background: rgba(255, 255, 255, 0.84);
   outline: none;
@@ -26,7 +27,9 @@
 }
 
 .band-google-shell input:focus,
-.band-google-shell input:focus-visible {
+.band-google-shell input:focus-visible,
+.band-google-shell select:focus,
+.band-google-shell select:focus-visible {
   border-color: #8aa89b;
   outline: none;
   box-shadow: 0 0 0 2px rgba(138, 168, 155, 0.22);
@@ -262,20 +265,33 @@
 }
 
 .band-week-selects {
-  display: inline-flex;
-  flex-wrap: wrap;
-  justify-content: flex-end;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 0.82fr);
+  align-items: center;
   gap: 0.42rem;
+  width: min(100%, 248px);
 }
 
 .band-week-selects select {
-  min-height: 38px;
-  padding: 0.42rem 0.72rem;
+  width: 100%;
+  min-height: 34px;
+  padding: 0.36rem 1.72rem 0.36rem 0.72rem;
   border: 1px solid rgba(223, 211, 197, 0.96);
-  border-radius: 14px;
-  background: rgba(255, 255, 255, 0.88);
-  color: #4f4337;
+  border-radius: 999px;
+  background-color: #f4ede3;
+  background-image:
+    linear-gradient(45deg, transparent 50%, #8b7a66 50%),
+    linear-gradient(135deg, #8b7a66 50%, transparent 50%);
+  background-position:
+    calc(100% - 13px) 50%,
+    calc(100% - 8px) 50%;
+  background-size: 5px 5px, 5px 5px;
+  background-repeat: no-repeat;
+  color: #5f5144;
   font: inherit;
+  font-size: 0.78rem;
+  font-weight: 700;
+  line-height: 1.15;
 }
 
 .band-week-nav {
@@ -673,7 +689,17 @@
     justify-items: start;
   }
 
-  .band-week-selects,
+  .band-week-selects {
+    grid-template-columns: minmax(0, 1.12fr) minmax(0, 0.88fr);
+    width: min(100%, 214px);
+  }
+
+  .band-week-selects select {
+    min-height: 32px;
+    padding: 0.32rem 1.52rem 0.32rem 0.62rem;
+    font-size: 0.72rem;
+  }
+
   .band-week-nav {
     justify-content: flex-start;
   }
