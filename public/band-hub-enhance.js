@@ -29,7 +29,7 @@
       <section class="band-modal-sheet band-account-logout-sheet" role="dialog" aria-modal="true" aria-label="로그아웃 확인">
         <p class="subtle band-account-logout-copy">${safeEmail}에서 로그아웃해요.</p>
         <div class="band-logout-actions">
-          <button type="button" class="soft-button" data-band-close-logout>취소</button>
+          <button type="button" class="soft-button" data-band-close-logout>닫기</button>
           <button type="button" class="danger-button" data-band-confirm-logout>로그아웃</button>
         </div>
       </section>
