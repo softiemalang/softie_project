@@ -57,19 +57,30 @@
 
 .band-logout-actions {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(2, 7.2rem);
+  justify-content: center;
+  align-items: center;
   gap: 0.42rem;
   margin-top: 0.72rem;
 }
 
 .band-logout-actions button {
+  width: 7.2rem;
+  min-width: 7.2rem;
+  max-width: 7.2rem;
+  height: 36px;
   min-height: 36px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   border-radius: 12px;
   font-size: 0.88rem;
   font-weight: 700;
-  line-height: 1.1;
-  padding: 0.5rem 0.72rem;
+  line-height: 1;
+  padding: 0;
   box-shadow: none;
+  appearance: none;
+  -webkit-appearance: none;
 }
 
 .band-logout-actions .soft-button {
@@ -112,14 +123,19 @@
   }
 
   .band-logout-actions {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 0.4rem;
     margin-top: 0.68rem;
   }
 
   .band-logout-actions button {
+    width: 100%;
+    min-width: 0;
+    max-width: none;
+    height: 36px;
     min-height: 36px;
     font-size: 0.87rem;
-    padding: 0.48rem 0.68rem;
+    padding: 0;
     border-radius: 12px;
   }
 }
