@@ -295,25 +295,37 @@
 }
 
 .band-week-nav {
-  display: inline-flex;
-  flex-wrap: wrap;
-  justify-content: flex-end;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto auto;
   align-items: center;
-  gap: 0.42rem;
+  gap: 0.36rem;
+  width: min(100%, 248px);
+}
+
+.band-week-nav .band-week-range {
+  order: 1;
+}
+
+.band-week-nav .band-week-nav-button:first-child {
+  order: 2;
+}
+
+.band-week-nav .band-week-nav-button:last-child {
+  order: 3;
 }
 
 .band-week-nav-button {
-  min-width: 38px;
-  min-height: 38px;
-  padding: 0.34rem 0.58rem;
+  min-width: 30px;
+  min-height: 30px;
+  padding: 0.26rem 0.46rem;
   border-radius: 999px;
-  font-size: 1rem;
+  font-size: 0.9rem;
   line-height: 1;
 }
 
 .band-week-range {
   color: #7b6f63;
-  font-size: 0.8rem;
+  font-size: 0.76rem;
   font-weight: 700;
   white-space: nowrap;
 }
@@ -701,7 +713,18 @@
   }
 
   .band-week-nav {
-    justify-content: flex-start;
+    width: min(100%, 214px);
+  }
+
+  .band-week-nav-button {
+    min-width: 28px;
+    min-height: 28px;
+    padding: 0.22rem 0.42rem;
+    font-size: 0.82rem;
+  }
+
+  .band-week-range {
+    font-size: 0.72rem;
   }
 
   .band-availability-grid-wrap {
