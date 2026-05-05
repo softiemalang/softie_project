@@ -65,6 +65,23 @@
 .band-logout-actions button {
   min-height: 42px;
   border-radius: 14px;
+  font-size: 0.96rem;
+  font-weight: 750;
+  line-height: 1.1;
+  padding: 0.72rem 0.82rem;
+  box-shadow: none;
+}
+
+.band-logout-actions .soft-button {
+  background: #c4144e;
+  color: #fff;
+  border-color: transparent;
+}
+
+.band-logout-actions .soft-button:hover,
+.band-logout-actions .soft-button:active {
+  background: #c4144e;
+  color: #fff;
 }
 
 .band-account-logout-copy {
@@ -72,6 +89,8 @@
   font-size: 1rem;
   line-height: 1.45;
   color: #5f554d;
+  text-align: center;
+  word-break: keep-all;
 }
 
 @media (max-width: 699px) {
