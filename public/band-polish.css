@@ -260,6 +260,10 @@
   gap: 0.45rem;
 }
 
+.band-toolbar-row.top-row {
+  flex-wrap: nowrap;
+}
+
 .band-week-selects {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 0.82fr);
@@ -694,18 +698,38 @@
 
   .band-toolbar-row {
     justify-content: flex-start;
+    gap: 0.35rem;
   }
 
   .band-week-selects {
-    grid-template-columns: minmax(0, 1.12fr) minmax(0, 0.88fr);
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
     justify-content: flex-start;
-    width: min(100%, 214px);
+    width: min(100%, 180px);
+    gap: 0.3rem;
   }
 
   .band-week-selects select {
     min-height: 32px;
-    padding: 0.32rem 1.52rem 0.32rem 0.62rem;
-    font-size: 0.72rem;
+    padding: 0.28rem 1.4rem 0.28rem 0.52rem;
+    font-size: 0.7rem;
+    letter-spacing: -0.01em;
+  }
+
+  .band-day-group-switch {
+    gap: 0.25rem;
+    flex-wrap: nowrap;
+  }
+
+  .band-day-group-button {
+    min-height: 32px;
+    padding: 0.32rem 0.58rem;
+    font-size: 0.74rem;
+  }
+
+  .band-hours-toggle {
+    min-height: 32px;
+    padding: 0.32rem 0.68rem;
+    font-size: 0.74rem;
   }
 
   .band-week-nav-pill {

@@ -812,7 +812,7 @@ export default function BandGoogleCompactPage() {
             </div>
             
             <div className="band-toolbar-controls">
-              <div className="band-toolbar-row">
+              <div className="band-toolbar-row top-row">
                 <div className="band-week-selects" aria-label="년도와 월 선택">
                   <select
                     value={selectedYear}
@@ -850,7 +850,7 @@ export default function BandGoogleCompactPage() {
                 </div>
               </div>
 
-              <div className="band-toolbar-row">
+              <div className="band-toolbar-row bottom-row">
                 <div className="band-week-nav-pill" aria-label="주간 이동">
                   <button type="button" className="band-week-nav-button" onClick={() => moveWeek(-1)} aria-label="이전 주">
                     ‹
