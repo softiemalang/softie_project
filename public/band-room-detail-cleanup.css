@@ -36,6 +36,10 @@
   justify-content: flex-start;
 }
 
-.band-room-shell .band-panel-card .band-availability-group-head .subtle {
+.band-room-shell .band-panel-card .band-availability-group-head {
   display: none;
+}
+
+.band-room-shell .band-panel-card .band-availability-groups {
+  margin-top: 0.52rem;
 }
