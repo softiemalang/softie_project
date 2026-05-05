@@ -1,0 +1,11 @@
+/* Remove redundant labels on the compact band room detail screen. */
+
+.band-room-shell .compact-room-hero-card .room-hero-top .section-kicker,
+.band-room-shell .band-panel-card .band-compact-section-head .section-kicker {
+  display: none;
+}
+
+.band-room-shell .compact-room-hero-card .room-title,
+.band-room-shell .band-panel-card .band-compact-section-head h2 {
+  margin-top: 0;
+}
