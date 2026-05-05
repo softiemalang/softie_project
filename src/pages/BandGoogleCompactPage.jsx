@@ -5,8 +5,8 @@ import { supabase } from '../lib/supabase'
 const DAYS = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
 const SLOTS = Array.from({ length: 24 }, (_, hour) => `${String(hour).padStart(2, '0')}:00`)
 const DAY_GROUPS = [
-  { title: '평일', days: [0, 1, 2, 3, 4] },
-  { title: '주말', days: [5, 6] },
+  { key: 'weekday', title: '평일', days: [0, 1, 2, 3, 4] },
+  { key: 'weekend', title: '주말', days: [5, 6] },
 ]
 const DEFAULT_VISIBLE_HOUR_START = 10
 
@@ -181,6 +181,7 @@ export default function BandGoogleCompactPage() {
   const [activeModal, setActiveModal] = useState(null)
   const [activePanel, setActivePanel] = useState('availability')
   const [showAllHours, setShowAllHours] = useState(false)
+  const [activeDayGroup, setActiveDayGroup] = useState('weekday')
 
   const user = session?.user || null
   const isOwner = Boolean(user?.id && room?.owner_user_id === user.id)
@@ -214,6 +215,10 @@ export default function BandGoogleCompactPage() {
         (slotIndex) => showAllHours || slotIndex >= DEFAULT_VISIBLE_HOUR_START,
       ),
     [showAllHours],
+  )
+  const activeGroup = useMemo(
+    () => DAY_GROUPS.find((group) => group.key === activeDayGroup) || DAY_GROUPS[0],
+    [activeDayGroup],
   )
 
   useEffect(() => {
@@ -717,6 +722,7 @@ export default function BandGoogleCompactPage() {
     setStatus('')
     setActivePanel('availability')
     setShowAllHours(false)
+    setActiveDayGroup('weekday')
     if (user?.id) loadMyRooms(user.id)
   }
 
@@ -737,58 +743,70 @@ export default function BandGoogleCompactPage() {
             <div className={`save-state ${hasUnsavedChanges ? 'unsaved' : ''}`}>
               {isLoadingRoom ? '동기화 중...' : hasUnsavedChanges ? '저장 필요' : '저장됨'}
             </div>
-            <button type="button" className="soft-button band-hours-toggle" onClick={() => setShowAllHours((current) => !current)}>
-              {showAllHours ? '기본 시간보기' : '전체 시간보기'}
-            </button>
+            <div className="band-availability-toggle-row">
+              <button type="button" className="soft-button band-hours-toggle" onClick={() => setShowAllHours((current) => !current)}>
+                {showAllHours ? '기본 시간보기' : '전체 시간보기'}
+              </button>
+              <div className="band-day-group-switch" role="tablist" aria-label="시간표 그룹 선택">
+                {DAY_GROUPS.map((group) => (
+                  <button
+                    type="button"
+                    key={group.key}
+                    className={`band-day-group-button ${activeDayGroup === group.key ? 'active' : ''}`}
+                    onClick={() => setActiveDayGroup(group.key)}
+                    aria-pressed={activeDayGroup === group.key}
+                  >
+                    {group.title}
+                  </button>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
 
         <div className="band-availability-groups">
-          {DAY_GROUPS.map((group) => (
-            <section
-              key={group.title}
-              className={`band-availability-group ${group.days.length === 5 ? 'is-weekday-group' : 'is-weekend-group'}`}
-            >
-              <div className="band-availability-group-head">
-                <h3>{group.title}</h3>
-                <p className="subtle">
-                  {showAllHours ? '00:00부터 23:00까지 보여요.' : '10:00부터 23:00까지만 보여요.'}
-                </p>
+          <section
+            className={`band-availability-group ${activeGroup.days.length === 5 ? 'is-weekday-group' : 'is-weekend-group'}`}
+          >
+            <div className="band-availability-group-head">
+              <h3>{activeGroup.title}</h3>
+              <p className="subtle">
+                {showAllHours ? '00:00부터 23:00까지 보여요.' : '10:00부터 23:00까지만 보여요.'}
+              </p>
+            </div>
+            <div className="band-availability-grid-wrap">
+              <div className="availability-grid band-availability-grid">
+                <div className="grid-top-left">시간</div>
+                {activeGroup.days.map((dayIndex) => (
+                  <div
+                    className={`day-label ${dayIndex >= 5 ? 'weekend-label' : 'weekday-label'}`}
+                    key={`${activeGroup.key}-${DAYS[dayIndex]}`}
+                  >
+                    {DAYS[dayIndex]}
+                  </div>
+                ))}
+                {visibleSlotIndexes.map((slotIndex) => (
+                  <div key={`${activeGroup.key}-${SLOTS[slotIndex]}`} className="time-row-fragment">
+                    <div className="time-label">{SLOTS[slotIndex]}</div>
+                    {activeGroup.days.map((dayIndex) => {
+                      const key = `${dayIndex}-${slotIndex}`
+                      return (
+                        <button
+                          type="button"
+                          key={key}
+                          className={`slot-button ${availabilityMap[key] ? 'active' : ''} ${dayIndex >= 5 ? 'weekend-slot' : 'weekday-slot'}`}
+                          onClick={() => toggleSlot(dayIndex, slotIndex)}
+                          aria-label={`${DAYS[dayIndex]} ${SLOTS[slotIndex]}`}
+                        >
+                          {availabilityMap[key] ? '✓' : ''}
+                        </button>
+                      )
+                    })}
+                  </div>
+                ))}
               </div>
-              <div className="band-availability-grid-wrap">
-                <div className="availability-grid band-availability-grid">
-                  <div className="grid-top-left">시간</div>
-                  {group.days.map((dayIndex) => (
-                    <div
-                      className={`day-label ${dayIndex >= 5 ? 'weekend-label' : 'weekday-label'}`}
-                      key={`${group.title}-${DAYS[dayIndex]}`}
-                    >
-                      {DAYS[dayIndex]}
-                    </div>
-                  ))}
-                  {visibleSlotIndexes.map((slotIndex) => (
-                    <div key={`${group.title}-${SLOTS[slotIndex]}`} className="time-row-fragment">
-                      <div className="time-label">{SLOTS[slotIndex]}</div>
-                      {group.days.map((dayIndex) => {
-                        const key = `${dayIndex}-${slotIndex}`
-                        return (
-                          <button
-                            type="button"
-                            key={key}
-                            className={`slot-button ${availabilityMap[key] ? 'active' : ''} ${dayIndex >= 5 ? 'weekend-slot' : 'weekday-slot'}`}
-                            onClick={() => toggleSlot(dayIndex, slotIndex)}
-                            aria-label={`${DAYS[dayIndex]} ${SLOTS[slotIndex]}`}
-                          >
-                            {availabilityMap[key] ? '✓' : ''}
-                          </button>
-                        )
-                      })}
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </section>
-          ))}
+            </div>
+          </section>
         </div>
 
         <div className="band-panel-actions">

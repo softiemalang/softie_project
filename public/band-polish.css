@@ -243,12 +243,46 @@
   gap: 0.45rem;
 }
 
+.band-availability-toggle-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 0.45rem;
+}
+
 .band-hours-toggle {
   min-height: 38px;
   padding: 0.42rem 0.78rem;
   border-radius: 999px;
   font-size: 0.82rem;
   white-space: nowrap;
+}
+
+.band-day-group-switch {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 0.36rem;
+}
+
+.band-day-group-button {
+  min-height: 38px;
+  padding: 0.42rem 0.82rem;
+  border: 1px solid rgba(223, 211, 197, 0.96);
+  border-radius: 999px;
+  background: #f4ede3;
+  color: #6b5c4c;
+  font-size: 0.82rem;
+  font-weight: 700;
+  line-height: 1.1;
+  white-space: nowrap;
+}
+
+.band-day-group-button.active {
+  background: #1f6f5f;
+  border-color: #1f6f5f;
+  color: #fff;
+  box-shadow: 0 6px 14px rgba(31, 111, 95, 0.14);
 }
 
 .band-availability-groups {
@@ -563,6 +597,10 @@
   }
 
   .band-availability-toolbar-actions {
+    justify-content: flex-start;
+  }
+
+  .band-availability-toggle-row {
     justify-content: flex-start;
   }
 
