@@ -693,11 +693,15 @@
   }
 
   .band-availability-toolbar-actions {
-    align-items: flex-start;
+    align-items: stretch;
+  }
+
+  .band-availability-toolbar-actions .save-state {
+    align-self: flex-start;
   }
 
   .band-toolbar-row {
-    justify-content: flex-start;
+    justify-content: space-between;
     gap: 0.35rem;
   }
 
