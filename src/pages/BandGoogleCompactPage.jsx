@@ -10,6 +10,39 @@ const DAY_GROUPS = [
 ]
 const DEFAULT_VISIBLE_HOUR_START = 10
 
+function toDateInputValue(date) {
+  const year = date.getFullYear()
+  const month = String(date.getMonth() + 1).padStart(2, '0')
+  const day = String(date.getDate()).padStart(2, '0')
+  return `${year}-${month}-${day}`
+}
+
+function parseDateInputValue(value) {
+  if (!value) return new Date()
+  const [year, month, day] = value.split('-').map(Number)
+  if (!year || !month || !day) return new Date()
+  return new Date(year, month - 1, day, 12)
+}
+
+function getMondayStart(date) {
+  const next = new Date(date.getFullYear(), date.getMonth(), date.getDate(), 12)
+  const day = next.getDay()
+  const offset = day === 0 ? -6 : 1 - day
+  next.setDate(next.getDate() + offset)
+  return next
+}
+
+function formatWeekRangeDate(date) {
+  const year = date.getFullYear()
+  const month = String(date.getMonth() + 1).padStart(2, '0')
+  const day = String(date.getDate()).padStart(2, '0')
+  return `${year}.${month}.${day}`
+}
+
+function formatDayHeaderDate(date) {
+  return `${date.getMonth() + 1}/${date.getDate()}`
+}
+
 function makeRoomCode() {
   return Math.random().toString(36).slice(2, 8).toUpperCase()
 }
@@ -182,6 +215,7 @@ export default function BandGoogleCompactPage() {
   const [activePanel, setActivePanel] = useState('availability')
   const [showAllHours, setShowAllHours] = useState(false)
   const [activeDayGroup, setActiveDayGroup] = useState('weekday')
+  const [selectedWeekDate, setSelectedWeekDate] = useState(() => toDateInputValue(new Date()))
 
   const user = session?.user || null
   const isOwner = Boolean(user?.id && room?.owner_user_id === user.id)
@@ -220,6 +254,23 @@ export default function BandGoogleCompactPage() {
     () => DAY_GROUPS.find((group) => group.key === activeDayGroup) || DAY_GROUPS[0],
     [activeDayGroup],
   )
+  const weekDates = useMemo(() => {
+    const start = getMondayStart(parseDateInputValue(selectedWeekDate))
+    return DAYS.map((_, index) => {
+      const date = new Date(start)
+      date.setDate(start.getDate() + index)
+      return {
+        date,
+        headerLabel: `${DAYS[index]} ${formatDayHeaderDate(date)}`,
+      }
+    })
+  }, [selectedWeekDate])
+  const weekRangeLabel = useMemo(() => {
+    const first = weekDates[0]?.date
+    const last = weekDates[weekDates.length - 1]?.date
+    if (!first || !last) return ''
+    return `${formatWeekRangeDate(first)} - ${formatWeekRangeDate(last)}`
+  }, [weekDates])
 
   useEffect(() => {
     if (!supabase) {
@@ -761,6 +812,17 @@ export default function BandGoogleCompactPage() {
                 ))}
               </div>
             </div>
+            <label className="band-week-picker">
+              <span className="band-week-picker-label">합주 후보 주간</span>
+              <div className="band-week-picker-controls">
+                <input
+                  type="date"
+                  value={selectedWeekDate}
+                  onChange={(event) => setSelectedWeekDate(event.target.value)}
+                />
+                <span className="band-week-range">{weekRangeLabel}</span>
+              </div>
+            </label>
           </div>
         </div>
 
@@ -782,7 +844,7 @@ export default function BandGoogleCompactPage() {
                     className={`day-label ${dayIndex >= 5 ? 'weekend-label' : 'weekday-label'}`}
                     key={`${activeGroup.key}-${DAYS[dayIndex]}`}
                   >
-                    {DAYS[dayIndex]}
+                    {weekDates[dayIndex]?.headerLabel || DAYS[dayIndex]}
                   </div>
                 ))}
                 {visibleSlotIndexes.map((slotIndex) => (

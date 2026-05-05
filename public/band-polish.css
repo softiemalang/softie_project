@@ -243,6 +243,43 @@
   gap: 0.45rem;
 }
 
+.band-week-picker {
+  display: grid;
+  gap: 0.28rem;
+  justify-items: end;
+}
+
+.band-week-picker-label {
+  color: #7b6f63;
+  font-size: 0.74rem;
+  font-weight: 700;
+}
+
+.band-week-picker-controls {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 0.45rem 0.6rem;
+}
+
+.band-week-picker input[type='date'] {
+  min-height: 38px;
+  padding: 0.42rem 0.72rem;
+  border: 1px solid rgba(223, 211, 197, 0.96);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.88);
+  color: #4f4337;
+  font: inherit;
+}
+
+.band-week-range {
+  color: #7b6f63;
+  font-size: 0.76rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
 .band-availability-toggle-row {
   display: flex;
   flex-wrap: wrap;
@@ -357,6 +394,8 @@
 
 .band-availability-grid .day-label {
   font-size: 0.76rem;
+  line-height: 1.2;
+  text-align: center;
 }
 
 .band-availability-grid .slot-button {
@@ -601,6 +640,14 @@
   }
 
   .band-availability-toggle-row {
+    justify-content: flex-start;
+  }
+
+  .band-week-picker {
+    justify-items: start;
+  }
+
+  .band-week-picker-controls {
     justify-content: flex-start;
   }
 
