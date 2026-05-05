@@ -1,0 +1,83 @@
+/* Final hub layout overrides: use account card as the action bar. */
+
+.band-hub-shell .compact-account-card {
+  grid-row: 1;
+  grid-column: 1;
+}
+
+.band-hub-shell .compact-account-card .card-header {
+  grid-template-columns: minmax(0, 1fr);
+  padding-right: 9.9rem;
+  min-height: 30px;
+}
+
+.band-hub-shell .compact-account-card .home-button {
+  display: none;
+}
+
+.band-account-email-trigger {
+  display: block;
+  max-width: 100%;
+  color: #6b6258;
+  cursor: pointer;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  user-select: none;
+}
+
+.band-account-email-trigger:active {
+  opacity: 0.72;
+}
+
+.band-hub-actions {
+  grid-row: 1 !important;
+  grid-column: 1 !important;
+  justify-self: end !important;
+  align-self: start !important;
+  margin: 0.7rem 0.88rem 0 0 !important;
+  z-index: 4;
+}
+
+.band-hub-actions button {
+  min-height: 30px !important;
+  padding: 0.34rem 0.56rem !important;
+  font-size: 0.7rem !important;
+  border-radius: 999px !important;
+}
+
+.band-hub-shell .band-room-list-card {
+  grid-row: 2;
+  margin-top: 0;
+}
+
+.band-logout-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.56rem;
+  margin-top: 1rem;
+}
+
+.band-logout-actions button {
+  min-height: 42px;
+  border-radius: 14px;
+}
+
+.band-account-logout-copy {
+  margin-top: 0.2rem;
+}
+
+@media (max-width: 699px) {
+  .band-hub-shell .compact-account-card {
+    padding-block: 0.5rem !important;
+  }
+
+  .band-hub-shell .compact-account-card .card-header {
+    padding-right: 9.7rem;
+  }
+
+  .band-hub-actions {
+    margin-top: 0.58rem !important;
+    margin-right: 0.82rem !important;
+  }
+}
