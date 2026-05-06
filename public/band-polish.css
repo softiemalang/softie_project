@@ -705,6 +705,10 @@
     gap: 0.35rem;
   }
 
+  .band-toolbar-row.top-row {
+    justify-content: flex-start;
+  }
+
   .band-week-selects {
     grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
     justify-content: flex-start;
