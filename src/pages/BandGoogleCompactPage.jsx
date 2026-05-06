@@ -118,45 +118,58 @@ function toBestTimes(availabilities, members) {
     })
     .map((item) => ({
       ...item,
-      label: `${DAYS[item.day]} ${SLOTS[item.slot]}`,
-      names: members
+      label: `${DAYS[item.day] || ''} ${SLOTS[item.slot] || ''}`.trim(),
+      names: (members || [])
         .filter((member) => item.memberIds.includes(member.id))
-        .map((member) => member.display_name),
+        .map((member) => member.display_name)
+        .filter(Boolean),
     }))
 }
 
 function mergeConsecutiveTimes(times, weekDates) {
-  if (!times || times.length === 0) return []
+  if (!Array.isArray(times) || times.length === 0) return []
 
   const merged = []
-  let current = { ...times[0], startSlot: times[0].slot, endSlot: times[0].slot }
+  let current = { ...times[0], startSlot: times[0]?.slot ?? 0, endSlot: times[0]?.slot ?? 0 }
 
   for (let i = 1; i < times.length; i++) {
     const item = times[i]
+    if (!item) continue
+    
+    const itemNames = Array.isArray(item.names) ? item.names : []
+    const currentNames = Array.isArray(current.names) ? current.names : []
+
     if (
       item.count === current.count &&
       item.day === current.day &&
       item.slot === current.endSlot + 1 &&
-      item.names.join(',') === current.names.join(',')
+      itemNames.join(',') === currentNames.join(',')
     ) {
       current.endSlot = item.slot
     } else {
       merged.push(current)
-      current = { ...item, startSlot: item.slot, endSlot: item.slot }
+      current = { ...item, startSlot: item.slot ?? 0, endSlot: item.slot ?? 0 }
     }
   }
-  merged.push(current)
+  if (current) merged.push(current)
 
   return merged.map((item) => {
-    const endHour = String(item.endSlot + 1).padStart(2, '0') + ':00'
-    const targetDate = weekDates && weekDates[item.day] ? weekDates[item.day].date : null
+    if (!item) return null
+    const endSlot = item.endSlot ?? 0
+    const startSlot = item.startSlot ?? 0
+    const day = item.day ?? 0
+
+    const endHour = String(endSlot + 1).padStart(2, '0') + ':00'
+    const targetDate = Array.isArray(weekDates) && weekDates[day] ? weekDates[day].date : null
     const dateStr = targetDate ? formatWeekRangeDate(targetDate) : ''
     return {
       ...item,
-      label: `${DAYS[item.day]} ${SLOTS[item.startSlot]} - ${endHour}`,
+      label: `${DAYS[day] || '요일 미정'} ${SLOTS[startSlot] || '시간 미정'} - ${endHour}`,
       dateLabel: dateStr,
+      names: Array.isArray(item.names) ? item.names.filter(Boolean) : [],
+      count: Number.isFinite(item.count) ? item.count : 0,
     }
-  })
+  }).filter(Boolean)
 }
 
 function makeMemberInfo(memberRow) {
@@ -178,6 +191,7 @@ function getFriendlyError(errorMessage) {
 }
 
 function ResultGroup({ title, items, emptyText }) {
+  const safeItems = Array.isArray(items) ? items.filter(Boolean) : []
   return (
     <div className="result-group compact-result-group">
       {title && (
@@ -185,20 +199,27 @@ function ResultGroup({ title, items, emptyText }) {
           <h3>{title}</h3>
         </div>
       )}
-      {items.length === 0 ? (
+      {safeItems.length === 0 ? (
         <p className="subtle">{emptyText}</p>
       ) : (
         <div className="results">
-          {items.map((item) => (
-            <div className="result-row" key={`${title}-${item.day}-${item.slot}`}>
-              <div>
-                <strong>{item.label}</strong>
-                {item.dateLabel && <p className="result-date-label">{item.dateLabel}</p>}
-                <p>{item.names.join(', ')}</p>
+          {safeItems.map((item, index) => {
+            const key = `${title || 'result'}-${item.day ?? 'day'}-${item.slot ?? item.startSlot ?? 'slot'}-${index}`
+            const names = Array.isArray(item.names) ? item.names : []
+            const label = typeof item.label === 'string' && item.label.trim() ? item.label : '알 수 없는 시간'
+            const dateLabel = typeof item.dateLabel === 'string' && item.dateLabel.trim() ? item.dateLabel : ''
+            const count = Number.isFinite(item.count) ? item.count : 0
+            return (
+              <div className="result-row" key={key}>
+                <div>
+                  <strong>{label}</strong>
+                  {dateLabel ? <p className="result-date-label">{dateLabel}</p> : null}
+                  <p>{names.length > 0 ? names.join(', ') : '이름 정보 없음'}</p>
+                </div>
+                <span className="result-count">{count}명</span>
               </div>
-              <span className="result-count">{item.count}명</span>
-            </div>
-          ))}
+            )
+          })}
         </div>
       )}
     </div>
@@ -272,19 +293,28 @@ export default function BandGoogleCompactPage() {
     () => members.filter((memberRow) => !isMemberSubmitted(memberRow.id, allAvailabilities)),
     [allAvailabilities, members],
   )
+  const weekDates = useMemo(() => {
+    return DAYS.map((_, index) => {
+      const date = addDays(weekStartDate, index)
+      return {
+        date,
+        headerLabel: DAYS[index],
+      }
+    })
+  }, [weekStartDate])
   const bestTimes = useMemo(
     () => mergeConsecutiveTimes(toBestTimes(allAvailabilities, members), weekDates),
-    [allAvailabilities, members, weekDates]
+    [allAvailabilities, members, weekDates],
   )
   const fullyMatchedTimes = useMemo(
-    () => bestTimes.filter((item) => members.length > 0 && item.count === members.length),
+    () => bestTimes.filter((item) => members.length > 0 && item && item.count === members.length),
     [bestTimes, members.length],
   )
   const almostMatchedTimes = useMemo(
-    () => bestTimes.filter((item) => members.length > 1 && item.count === members.length - 1),
+    () => bestTimes.filter((item) => members.length > 1 && item && item.count === members.length - 1),
     [bestTimes, members.length],
   )
-  const recommendedTimes = useMemo(() => bestTimes.slice(0, 10), [bestTimes])
+  const recommendedTimes = useMemo(() => (Array.isArray(bestTimes) ? bestTimes.slice(0, 10) : []), [bestTimes])
   const hasUnsavedChanges = useMemo(
     () => !mapsEqual(availabilityMap, savedAvailabilityMap),
     [availabilityMap, savedAvailabilityMap],
@@ -306,15 +336,6 @@ export default function BandGoogleCompactPage() {
     () => Array.from({ length: 7 }, (_, index) => selectedYear - 2 + index),
     [selectedYear],
   )
-  const weekDates = useMemo(() => {
-    return DAYS.map((_, index) => {
-      const date = addDays(weekStartDate, index)
-      return {
-        date,
-        headerLabel: DAYS[index],
-      }
-    })
-  }, [weekStartDate])
   const weekRangeLabel = useMemo(() => {
     const first = weekDates[0]?.date
     const last = weekDates[weekDates.length - 1]?.date
