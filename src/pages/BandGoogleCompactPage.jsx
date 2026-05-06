@@ -124,6 +124,37 @@ function toBestTimes(availabilities, members) {
     }))
 }
 
+function mergeConsecutiveTimes(times) {
+  if (!times || times.length === 0) return []
+
+  const merged = []
+  let current = { ...times[0], startSlot: times[0].slot, endSlot: times[0].slot }
+
+  for (let i = 1; i < times.length; i++) {
+    const item = times[i]
+    if (
+      item.count === current.count &&
+      item.day === current.day &&
+      item.slot === current.endSlot + 1 &&
+      item.names.join(',') === current.names.join(',')
+    ) {
+      current.endSlot = item.slot
+    } else {
+      merged.push(current)
+      current = { ...item, startSlot: item.slot, endSlot: item.slot }
+    }
+  }
+  merged.push(current)
+
+  return merged.map((item) => {
+    const endHour = String(item.endSlot + 1).padStart(2, '0') + ':00'
+    return {
+      ...item,
+      label: `${DAYS[item.day]} ${SLOTS[item.startSlot]} - ${endHour}`,
+    }
+  })
+}
+
 function makeMemberInfo(memberRow) {
   if (!memberRow) return null
   return {
@@ -236,7 +267,10 @@ export default function BandGoogleCompactPage() {
     () => members.filter((memberRow) => !isMemberSubmitted(memberRow.id, allAvailabilities)),
     [allAvailabilities, members],
   )
-  const bestTimes = useMemo(() => toBestTimes(allAvailabilities, members), [allAvailabilities, members])
+  const bestTimes = useMemo(
+    () => mergeConsecutiveTimes(toBestTimes(allAvailabilities, members)),
+    [allAvailabilities, members]
+  )
   const fullyMatchedTimes = useMemo(
     () => bestTimes.filter((item) => members.length > 0 && item.count === members.length),
     [bestTimes, members.length],
