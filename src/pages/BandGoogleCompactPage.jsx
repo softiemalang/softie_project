@@ -210,13 +210,13 @@ function ResultGroup({ title, items, emptyText }) {
             const dateLabel = typeof item.dateLabel === 'string' && item.dateLabel.trim() ? item.dateLabel : ''
             const count = Number.isFinite(item.count) ? item.count : 0
             return (
-              <div className="result-row" key={key}>
-                <div>
+              <div className="result-row compact-result-row" key={key}>
+                <div className="compact-result-info">
                   <strong>{label}</strong>
                   {dateLabel ? <p className="result-date-label">{dateLabel}</p> : null}
-                  <p>{names.length > 0 ? names.join(', ') : '이름 정보 없음'}</p>
+                  <p className="result-names">{names.length > 0 ? names.join(', ') : '이름 정보 없음'}</p>
                 </div>
-                <span className="result-count">{count}명</span>
+                <span className="result-count compact-result-count">{count}명</span>
               </div>
             )
           })}

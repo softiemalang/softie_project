@@ -517,6 +517,33 @@
   line-height: 1.2;
 }
 
+.compact-result-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.6rem;
+  padding: 0.76rem 0.82rem;
+}
+
+.compact-result-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.compact-result-row .result-names {
+  margin-top: 0.15rem;
+  font-size: 0.82rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.compact-result-count {
+  flex-shrink: 0;
+  margin-top: 0 !important;
+}
+
 .recommendation-kicker + .compact-result-group,
 .recommendation-kicker + .compact-member-list {
   margin-top: 0.7rem;
@@ -795,5 +822,10 @@
   .band-availability-grid .day-label,
   .band-availability-grid .slot-button {
     min-height: 38px;
+  }
+
+  .compact-result-row {
+    flex-direction: row !important;
+    align-items: center !important;
   }
 }
