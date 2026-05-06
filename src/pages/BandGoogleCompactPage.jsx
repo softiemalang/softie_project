@@ -145,9 +145,11 @@ function getFriendlyError(errorMessage) {
 function ResultGroup({ title, items, emptyText }) {
   return (
     <div className="result-group compact-result-group">
-      <div className="result-group-head">
-        <h3>{title}</h3>
-      </div>
+      {title && (
+        <div className="result-group-head">
+          <h3>{title}</h3>
+        </div>
+      )}
       {items.length === 0 ? (
         <p className="subtle">{emptyText}</p>
       ) : (
@@ -220,6 +222,7 @@ export default function BandGoogleCompactPage() {
   const [showAllHours, setShowAllHours] = useState(false)
   const [activeDayGroup, setActiveDayGroup] = useState('weekday')
   const [weekStartDate, setWeekStartDate] = useState(() => getMondayStart(new Date()))
+  const [isRecommendationExpanded, setIsRecommendationExpanded] = useState(false)
 
   const user = session?.user || null
   const isOwner = Boolean(user?.id && room?.owner_user_id === user.id)
@@ -952,10 +955,22 @@ export default function BandGoogleCompactPage() {
     return (
       <section className="card band-panel-card">
         <p className="section-kicker">추천 시간</p>
-        <h2>겹치는 합주 시간</h2>
         <ResultGroup title="모두 가능한 시간" items={fullyMatchedTimes} emptyText="아직 모두 가능한 시간이 없어요." />
-        <ResultGroup title="한 명만 조정하면 되는 시간" items={almostMatchedTimes} emptyText="아직 거의 맞는 시간이 없어요." />
-        <ResultGroup title="가능 인원 기준 추천" items={recommendedTimes} emptyText="멤버들이 가능 시간을 저장하면 추천 시간이 보여요." />
+        
+        <div className="recommendation-toggle-container">
+          <button 
+            type="button" 
+            className="ghost-button recommendation-toggle-button" 
+            onClick={() => setIsRecommendationExpanded(!isRecommendationExpanded)}
+          >
+            가능 인원 기준 추천 {isRecommendationExpanded ? '▲' : '▼'}
+          </button>
+          {isRecommendationExpanded && (
+            <div className="recommendation-expanded-content">
+              <ResultGroup items={recommendedTimes} emptyText="아직 추천할 시간이 없어요." />
+            </div>
+          )}
+        </div>
       </section>
     )
   }
