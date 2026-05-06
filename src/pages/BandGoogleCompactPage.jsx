@@ -33,6 +33,7 @@ function addDays(date, amount) {
 }
 
 function formatWeekRangeDate(date) {
+  if (!date) return ''
   const year = date.getFullYear()
   const month = String(date.getMonth() + 1).padStart(2, '0')
   const day = String(date.getDate()).padStart(2, '0')
@@ -148,7 +149,8 @@ function mergeConsecutiveTimes(times, weekDates) {
 
   return merged.map((item) => {
     const endHour = String(item.endSlot + 1).padStart(2, '0') + ':00'
-    const dateStr = weekDates ? formatWeekRangeDate(weekDates[item.day].date) : ''
+    const targetDate = weekDates && weekDates[item.day] ? weekDates[item.day].date : null
+    const dateStr = targetDate ? formatWeekRangeDate(targetDate) : ''
     return {
       ...item,
       label: `${DAYS[item.day]} ${SLOTS[item.startSlot]} - ${endHour}`,
