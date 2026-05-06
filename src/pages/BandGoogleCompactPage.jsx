@@ -978,8 +978,7 @@ export default function BandGoogleCompactPage() {
   function renderMembersPanel() {
     return (
       <section className="card band-panel-card">
-        <p className="section-kicker">멤버 현황</p>
-        <h2>제출 상태</h2>
+        <p className="section-kicker recommendation-kicker">제출 상태</p>
         <div className="member-list compact-member-list">
           {members.map((memberRow) => (
             <div className="member-pill" key={memberRow.id}>
