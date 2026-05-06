@@ -510,6 +510,14 @@
   margin-top: 1.05rem;
 }
 
+.recommendation-toggle-container {
+  margin-top: 1.05rem;
+}
+
+.recommendation-expanded-content {
+  margin-top: 0.6rem;
+}
+
 .compact-member-list {
   grid-template-columns: 1fr;
 }
