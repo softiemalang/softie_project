@@ -954,8 +954,8 @@ export default function BandGoogleCompactPage() {
   function renderRecommendPanel() {
     return (
       <section className="card band-panel-card">
-        <p className="section-kicker">추천 시간</p>
-        <ResultGroup title="모두 가능한 시간" items={fullyMatchedTimes} emptyText="아직 모두 가능한 시간이 없어요." />
+        <p className="section-kicker recommendation-kicker">모두 가능한 시간</p>
+        <ResultGroup items={fullyMatchedTimes} emptyText="아직 모두 가능한 시간이 없어요." />
         
         <div className="recommendation-toggle-container">
           <button 

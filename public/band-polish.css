@@ -510,6 +510,10 @@
   margin-top: 1.05rem;
 }
 
+.recommendation-kicker + .compact-result-group {
+  margin-top: 0.7rem;
+}
+
 .recommendation-toggle-container {
   margin-top: 1.05rem;
 }
