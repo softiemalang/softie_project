@@ -510,6 +510,13 @@
   margin-top: 1.05rem;
 }
 
+.result-date-label {
+  font-size: 11.5px;
+  color: rgba(60, 50, 40, 0.55);
+  margin: 1px 0 4px !important;
+  line-height: 1.2;
+}
+
 .recommendation-kicker + .compact-result-group,
 .recommendation-kicker + .compact-member-list {
   margin-top: 0.7rem;

@@ -124,7 +124,7 @@ function toBestTimes(availabilities, members) {
     }))
 }
 
-function mergeConsecutiveTimes(times) {
+function mergeConsecutiveTimes(times, weekDates) {
   if (!times || times.length === 0) return []
 
   const merged = []
@@ -148,9 +148,11 @@ function mergeConsecutiveTimes(times) {
 
   return merged.map((item) => {
     const endHour = String(item.endSlot + 1).padStart(2, '0') + ':00'
+    const dateStr = weekDates ? formatWeekRangeDate(weekDates[item.day].date) : ''
     return {
       ...item,
       label: `${DAYS[item.day]} ${SLOTS[item.startSlot]} - ${endHour}`,
+      dateLabel: dateStr,
     }
   })
 }
@@ -189,6 +191,7 @@ function ResultGroup({ title, items, emptyText }) {
             <div className="result-row" key={`${title}-${item.day}-${item.slot}`}>
               <div>
                 <strong>{item.label}</strong>
+                {item.dateLabel && <p className="result-date-label">{item.dateLabel}</p>}
                 <p>{item.names.join(', ')}</p>
               </div>
               <span className="result-count">{item.count}명</span>
@@ -268,8 +271,8 @@ export default function BandGoogleCompactPage() {
     [allAvailabilities, members],
   )
   const bestTimes = useMemo(
-    () => mergeConsecutiveTimes(toBestTimes(allAvailabilities, members)),
-    [allAvailabilities, members]
+    () => mergeConsecutiveTimes(toBestTimes(allAvailabilities, members), weekDates),
+    [allAvailabilities, members, weekDates]
   )
   const fullyMatchedTimes = useMemo(
     () => bestTimes.filter((item) => members.length > 0 && item.count === members.length),
