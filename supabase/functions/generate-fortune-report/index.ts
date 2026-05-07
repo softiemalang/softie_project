@@ -855,7 +855,7 @@ ${ragGuidanceText}
     ) + ragDraftsText;
 
     const openaiApiKey = Deno.env.get("OPENAI_API_KEY")
-    const modelName = Deno.env.get("OPENAI_FORTUNE_MODEL") || "gpt-5-mini"
+    const modelName = Deno.env.get("OPENAI_FORTUNE_MODEL") || "gpt-5.5"
     let finalResponse;
 
     const getFallback = (reason, error = null, status = null, body_preview = null) => {
