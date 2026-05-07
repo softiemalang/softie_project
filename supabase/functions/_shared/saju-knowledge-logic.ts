@@ -1460,6 +1460,20 @@ export async function createSajuKnowledgeDraft(options: {
   const retrievalQuery = buildRetrievalQuery(question, extractedTags, options.targetDate || null, mode, section);
   const retrievalQueries = retrievalQuery ? [retrievalQuery] : [];
 
+  if (Deno.env.get('SAJU_KNOWLEDGE_RAG_ENABLED') !== 'true') {
+    return {
+      answer: '',
+      extractedTags,
+      retrievalQueries,
+      retrievedChunks: [],
+      warning: 'Saju Knowledge RAG is disabled.',
+      modelName: null,
+      status: 'disabled',
+      mode,
+      section
+    };
+  }
+
   let answer = '';
   let retrievedChunks: any[] = [];
   let warning: string | null = null;

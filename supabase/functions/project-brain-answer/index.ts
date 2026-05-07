@@ -9,9 +9,10 @@ const supabaseAdmin = createClient(
 
 const GOOGLE_OAUTH_SCOPE = 'https://www.googleapis.com/auth/cloud-platform';
 const GOOGLE_TOKEN_ENDPOINT = 'https://oauth2.googleapis.com/token';
+const PROJECT_BRAIN_DISABLED_WARNING = 'Project Brain RAG is disabled.';
 
 function createFallbackAnswer(question: string) {
-  return `[Mock Answer] I received your question: "${question}". The Vertex AI Search integration is not fully configured yet.`;
+  return `Project Brain is currently disabled. I received your question: "${question}".`;
 }
 
 function base64UrlEncode(bytes: Uint8Array) {
@@ -197,18 +198,22 @@ serve(async (req) => {
       .from('project_brain_messages')
       .insert([{ thread_id: threadId, role: 'user', content: question }]);
 
-    // 3. Generate answer with Vertex AI Search when configured; otherwise keep fallback behavior.
+    // 3. Generate answer with Vertex AI Search only when explicitly enabled.
     let answer = createFallbackAnswer(question);
     let citations: unknown[] = [];
     let warning: string | null = null;
 
-    try {
-      const vertexResult = await callVertexAiSearchAnswer(question);
-      answer = vertexResult.answer || answer;
-      citations = vertexResult.citations;
-      warning = vertexResult.warning;
-    } catch (_err) {
-      warning = 'Vertex AI Search request failed.';
+    if (Deno.env.get('PROJECT_BRAIN_RAG_ENABLED') === 'true') {
+      try {
+        const vertexResult = await callVertexAiSearchAnswer(question);
+        answer = vertexResult.answer || answer;
+        citations = vertexResult.citations;
+        warning = vertexResult.warning;
+      } catch (_err) {
+        warning = 'Vertex AI Search request failed.';
+      }
+    } else {
+      warning = PROJECT_BRAIN_DISABLED_WARNING;
     }
 
     // 4. Save assistant message

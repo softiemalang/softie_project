@@ -765,6 +765,25 @@ Deno.serve(async (req) => {
       targetDate: targetDate ?? computedData?.targetDate ?? computedData?.target_date ?? null,
     })
 
+    const ragGuidanceSections: string[] = [];
+    if (ragDraftsText) {
+      ragGuidanceSections.push(`[Saju Knowledge RAG 참고 자료 활용 규칙]
+- 제공된 "Saju Knowledge RAG 참고 초안"은 지식 베이스에서 추출된 좋은 표현들입니다.
+- RAG 초안은 참고용입니다. 그대로 복사하지 말고, 위의 [우선 근거] 데이터와 결합하여 자연스럽게 다듬으세요.
+- 만약 RAG 초안의 내용이 interpretationProfile이나 fieldImpacts의 신호(score, risks 등)와 충돌한다면, 반드시 엔진 신호를 우선하세요.`);
+    }
+    if ((softiePersonalRagDraft?.snippets || []).length > 0) {
+      ragGuidanceSections.push(`[Softie 개인 기준서 RAG 활용 규칙]
+- softiePersonalRag.snippets는 /softie-fortune 전용 검색 참고 자료입니다.
+- 검색 결과는 그대로 복사하지 말고, 오늘의 엔진 신호와 맞는 내용만 1~3개 정도 자연스럽게 반영하세요.
+- 관계, 돈, 건강, 직업 문장은 검색 자료보다 오늘의 dailyBalance와 sectionPriority를 우선하세요.
+- softiePersonalRag.snippets는 중복 없이 최대 3개 축만 반영하고, 같은 단어를 여러 섹션에서 반복하지 마세요.
+- 건강 섹션에서는 “책임감이 오래 이어지면/이어지며” 같은 반복 표현을 피하고, 몸에 남은 긴장·오래 붙잡은 일의 무게·조용한 틈·자극 줄이기 같은 표현으로 바꿔 쓰세요.`);
+    }
+    const ragGuidanceText = ragGuidanceSections.length > 0
+      ? `\n\n${ragGuidanceSections.join('\n\n')}`
+      : '';
+
     const systemPrompt = `당신은 사주 엔진 신호를 따뜻하고 생활감 있는 오늘의 리포트로 다듬는 편집자입니다.
 사주 전문용어, 신비주의, 확정적 예언, 로맨스/금전 확언, 공포를 유도하는 표현은 쓰지 마세요.
 
@@ -779,18 +798,7 @@ Deno.serve(async (req) => {
 7. branchRelations
 8. love.summary_hint
 입력 힌트가 있으면 일반적인 위로나 건강 앱 문장으로 흐리지 마세요.
-
-[RAG 참고 자료 활용 규칙]
-- 제공된 "Saju Knowledge RAG 참고 초안"은 지식 베이스에서 추출된 좋은 표현들입니다.
-- RAG 초안은 참고용입니다. 그대로 복사하지 말고, 위의 [우선 근거] 데이터와 결합하여 자연스럽게 다듬으세요.
-- 만약 RAG 초안의 내용이 interpretationProfile이나 fieldImpacts의 신호(score, risks 등)와 충돌한다면, 반드시 엔진 신호를 우선하세요.
-
-[Softie 개인 기준서 RAG 활용 규칙]
-- softiePersonalRag.snippets가 있으면 /softie-fortune 전용 검색 참고 자료입니다.
-- 검색 결과는 그대로 복사하지 말고, 오늘의 엔진 신호와 맞는 내용만 1~3개 정도 자연스럽게 반영하세요.
-- 관계, 돈, 건강, 직업 문장은 검색 자료보다 오늘의 dailyBalance와 sectionPriority를 우선하세요.
-- softiePersonalRag.snippets는 중복 없이 최대 3개 축만 반영하고, 같은 단어를 여러 섹션에서 반복하지 마세요.
-- 건강 섹션에서는 “책임감이 오래 이어지면/이어지며” 같은 반복 표현을 피하고, 몸에 남은 긴장·오래 붙잡은 일의 무게·조용한 틈·자극 줄이기 같은 표현으로 바꿔 쓰세요.
+${ragGuidanceText}
 
 [출력 규칙]
 - headline: 짧은 한국어 제목 1문장. summary를 반복하지 마세요.
@@ -835,13 +843,15 @@ Deno.serve(async (req) => {
 - 전체 문장은 짧고 자연스럽게 유지하세요.
 - 마크다운, 코드블록, 제어 텍스트는 절대 넣지 마세요.`;
 
+    const userPayload: Record<string, unknown> = { ...compactPayload };
+    if ((softiePersonalRagDraft?.snippets || []).length > 0) {
+      userPayload.softiePersonalRag = {
+        snippets: softiePersonalRagDraft.snippets
+      };
+    }
+
     const userPrompt = JSON.stringify(
-      {
-        ...compactPayload,
-        softiePersonalRag: {
-          snippets: softiePersonalRagDraft?.snippets || []
-        }
-      },
+      userPayload,
     ) + ragDraftsText;
 
     const openaiApiKey = Deno.env.get("OPENAI_API_KEY")

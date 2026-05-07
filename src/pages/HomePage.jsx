@@ -52,24 +52,6 @@ export default function HomePage() {
       icon: '🎸',
       label: 'BAND',
     },
-    {
-      description: '나의 일간과 오늘의 흐름을 분석한 맞춤형 AI 리포트를 확인하세요.',
-      path: '/fortune',
-      icon: '🍀',
-      label: 'FORTUNE',
-    },
-    {
-      description: '자동 평가된 사주 리포트 품질 로그를 확인하고 개선 포인트를 정리해요.',
-      path: '/saju-evaluations',
-      icon: '🧾',
-      label: 'SAJU QA',
-    },
-    {
-      description: 'softie_project 설계도와 작업 원칙을 바탕으로, 수정 전에 확인할 내용을 정리해요.',
-      path: '/brain',
-      icon: '🧠',
-      label: 'BRAIN',
-    },
   ]
 
   return (
