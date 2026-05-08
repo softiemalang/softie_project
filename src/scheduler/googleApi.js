@@ -3,6 +3,8 @@ import { appendGoogleSheetsLog as sharedAppendGoogleSheetsLog } from '../lib/goo
 
 const GOOGLE_CLIENT_ID = import.meta.env.VITE_GOOGLE_CLIENT_ID
 const GOOGLE_REDIRECT_URI = import.meta.env.VITE_GOOGLE_REDIRECT_URI
+const GOOGLE_CONNECTED_STORAGE_KEY = 'scheduler:google_connected'
+const GOOGLE_RECONNECT_REQUIRED = 'GOOGLE_RECONNECT_REQUIRED'
 
 /**
  * Starts the Google OAuth flow.
@@ -39,6 +41,11 @@ export async function connectGoogleCalendar(userId, options = {}) {
   }
 }
 
+function attachErrorCode(error, errorCode) {
+  if (errorCode) error.errorCode = errorCode
+  return error
+}
+
 /**
  * Helper to unwrap generic Supabase FunctionsHttpError
  */
@@ -50,11 +57,14 @@ async function unwrapInvokeError(data, error) {
     }
     
     let msg = error.message
+    let errorCode = null
+
     if (error.context) {
       try {
         if (typeof error.context.json === 'function') {
           const json = await error.context.json()
           if (json.error) msg = json.error
+          if (json.errorCode) errorCode = json.errorCode
         } else if (typeof error.context.text === 'function') {
           const text = await error.context.text()
           console.error('[unwrapInvokeError] Raw Text Response:', text)
@@ -65,6 +75,7 @@ async function unwrapInvokeError(data, error) {
             try {
               const json = JSON.parse(text)
               if (json.error) msg = json.error
+              if (json.errorCode) errorCode = json.errorCode
             } catch {
               msg = text
             }
@@ -80,9 +91,9 @@ async function unwrapInvokeError(data, error) {
     if (msg.includes('Unexpected token') && msg.includes('is not valid JSON')) {
       msg = `함수 응답이 JSON이 아닙니다. 서버 에러 또는 배포 상태를 확인해 주세요. (Raw: ${error.message})`
     }
-    throw new Error(msg)
+    throw attachErrorCode(new Error(msg), errorCode)
   }
-  if (data && data.error) throw new Error(data.error)
+  if (data && data.error) throw attachErrorCode(new Error(data.error), data.errorCode || null)
   return data
 }
 
@@ -147,14 +158,14 @@ export async function appendGoogleSheetsLog(userId, tabName, rowData) {
   try {
     await sharedAppendGoogleSheetsLog(userId, tabName, rowData)
   } catch (err) {
-    if (err.message?.includes('not connected') || err.message?.includes('refresh token') || err.message?.includes('insufficient')) {
+    if (err.errorCode === GOOGLE_RECONNECT_REQUIRED) {
       disconnectGoogleCalendar()
     }
   }
 }
 
 export function disconnectGoogleCalendar() {
-  localStorage.removeItem('scheduler:google_connected')
+  localStorage.removeItem(GOOGLE_CONNECTED_STORAGE_KEY)
 }
 
 /**
@@ -164,7 +175,7 @@ export function disconnectGoogleCalendar() {
 export function isGoogleConnected() {
   const params = new URLSearchParams(window.location.search)
   if (params.get('google_connected') === 'true') {
-    localStorage.setItem('scheduler:google_connected', 'true')
+    localStorage.setItem(GOOGLE_CONNECTED_STORAGE_KEY, 'true')
   }
-  return localStorage.getItem('scheduler:google_connected') === 'true'
+  return localStorage.getItem(GOOGLE_CONNECTED_STORAGE_KEY) === 'true'
 }
