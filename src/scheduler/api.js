@@ -1,10 +1,18 @@
 import { supabase } from '../lib/supabase'
+import { getOrCreatePushDeviceId } from '../lib/device'
 import { endOfDayIso, startOfDayIso } from './time'
 
 function ensureSupabase() {
   if (!supabase) {
     throw new Error('Supabase 설정이 없어요. 환경변수를 확인해 주세요.')
   }
+}
+
+function getOwnerKeys(ownerKey) {
+  const keys = [ownerKey].filter(Boolean)
+  const deviceId = getOrCreatePushDeviceId()
+  if (deviceId && deviceId !== ownerKey) keys.push(deviceId)
+  return [...new Set(keys)]
 }
 
 function normalizeReservationRow(row) {
@@ -27,21 +35,42 @@ export async function linkUnownedReservationsToOwner(ownerKey) {
   ensureSupabase()
   if (!ownerKey) return
 
-  // Update existing reservations where owner_key is null
-  const { error } = await supabase
+  const deviceId = getOrCreatePushDeviceId()
+
+  const { error: nullOwnerError } = await supabase
     .from('reservations')
     .update({ owner_key: ownerKey })
     .is('owner_key', null)
 
-  if (error) {
-    console.error('Failed to link unowned reservations:', error)
-    // Don't throw, just log. This is a progressive enhancement for existing users.
+  if (nullOwnerError) {
+    console.error('Failed to link unowned reservations:', nullOwnerError)
+  }
+
+  if (deviceId && deviceId !== ownerKey) {
+    const { error: reservationError } = await supabase
+      .from('reservations')
+      .update({ owner_key: ownerKey })
+      .eq('owner_key', deviceId)
+
+    if (reservationError) {
+      console.error('Failed to link device reservations:', reservationError)
+    }
+
+    const { error: workLogError } = await supabase
+      .from('scheduler_work_logs')
+      .update({ owner_key: ownerKey })
+      .eq('owner_key', deviceId)
+
+    if (workLogError) {
+      console.error('Failed to link device work logs:', workLogError)
+    }
   }
 }
 
 export async function listTodayWorkEvents(dateValue, ownerKey) {
   ensureSupabase()
-  if (!ownerKey) return []
+  const ownerKeys = getOwnerKeys(ownerKey)
+  if (ownerKeys.length === 0) return []
 
   const { data, error } = await supabase
     .from('work_events')
@@ -68,7 +97,7 @@ export async function listTodayWorkEvents(dateValue, ownerKey) {
         owner_key
       )
     `)
-    .eq('reservations.owner_key', ownerKey)
+    .in('reservations.owner_key', ownerKeys)
     .gte('scheduled_at', startOfDayIso(dateValue))
     .lte('scheduled_at', endOfDayIso(dateValue))
     .order('scheduled_at', { ascending: true })
@@ -79,13 +108,14 @@ export async function listTodayWorkEvents(dateValue, ownerKey) {
 
 export async function getReservationById(id, ownerKey) {
   ensureSupabase()
-  if (!ownerKey) return null
+  const ownerKeys = getOwnerKeys(ownerKey)
+  if (ownerKeys.length === 0) return null
 
   const { data, error } = await supabase
     .from('reservations')
     .select('*')
     .eq('id', id)
-    .eq('owner_key', ownerKey)
+    .in('owner_key', ownerKeys)
     .maybeSingle()
 
   if (error) throw new Error(error.message)
@@ -96,15 +126,15 @@ export async function saveReservation(payload, reservationId, ownerKey) {
   ensureSupabase()
   if (!ownerKey) throw new Error('ownerKey is required to save a reservation')
 
-  // Force effective ownerKey on the payload
   const safePayload = { ...payload, owner_key: ownerKey }
+  const ownerKeys = getOwnerKeys(ownerKey)
 
   if (reservationId) {
     const { data, error } = await supabase
       .from('reservations')
       .update(safePayload)
       .eq('id', reservationId)
-      .eq('owner_key', ownerKey)
+      .in('owner_key', ownerKeys)
       .select('*')
       .single()
 
@@ -124,27 +154,28 @@ export async function saveReservation(payload, reservationId, ownerKey) {
 
 export async function deleteReservation(reservationId, ownerKey) {
   ensureSupabase()
-  if (!ownerKey) return
+  const ownerKeys = getOwnerKeys(ownerKey)
+  if (ownerKeys.length === 0) return
 
   const { error } = await supabase
     .from('reservations')
     .delete()
     .eq('id', reservationId)
-    .eq('owner_key', ownerKey)
+    .in('owner_key', ownerKeys)
 
   if (error) throw new Error(error.message)
 }
 
 export async function updateWorkEventStatus(eventId, status, ownerKey) {
   ensureSupabase()
-  if (!ownerKey) throw new Error('ownerKey is required to update status')
+  const ownerKeys = getOwnerKeys(ownerKey)
+  if (ownerKeys.length === 0) throw new Error('ownerKey is required to update status')
 
-  // First verify ownership of the parent reservation
   const { data: eventVerify, error: verifyError } = await supabase
     .from('work_events')
     .select('id, reservations!inner(owner_key)')
     .eq('id', eventId)
-    .eq('reservations.owner_key', ownerKey)
+    .in('reservations.owner_key', ownerKeys)
     .maybeSingle()
 
   if (verifyError || !eventVerify) {
@@ -164,17 +195,17 @@ export async function updateWorkEventStatus(eventId, status, ownerKey) {
 
 export async function listSchedulerWorkLogs(ownerKey) {
   ensureSupabase()
-  if (!ownerKey) return []
+  const ownerKeys = getOwnerKeys(ownerKey)
+  if (ownerKeys.length === 0) return []
 
   const { data, error } = await supabase
     .from('scheduler_work_logs')
     .select('*')
-    .eq('owner_key', ownerKey)
+    .in('owner_key', ownerKeys)
     .order('date', { ascending: true })
 
   if (error) throw new Error(error.message)
   
-  // Transform camelCase for consistency with existing UI usage
   return (data || []).map(row => ({
     ...row,
     weekStartDate: row.week_start_date,
@@ -222,12 +253,13 @@ export async function upsertSchedulerWorkLog(ownerKey, logEntry) {
 
 export async function deleteSchedulerWorkLogs(ownerKey, ids) {
   ensureSupabase()
-  if (!ownerKey || !ids || ids.length === 0) return
+  const ownerKeys = getOwnerKeys(ownerKey)
+  if (ownerKeys.length === 0 || !ids || ids.length === 0) return
 
   const { error } = await supabase
     .from('scheduler_work_logs')
     .delete()
-    .eq('owner_key', ownerKey)
+    .in('owner_key', ownerKeys)
     .in('id', ids)
 
   if (error) throw new Error(error.message)
