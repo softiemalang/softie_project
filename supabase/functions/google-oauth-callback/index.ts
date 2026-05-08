@@ -78,16 +78,23 @@ serve(async (req) => {
       throw new Error(`Token exchange failed: ${tokens.error_description || tokens.error}`)
     }
 
+    const tokenPayload: Record<string, string> = {
+      user_id: userId,
+      access_token: tokens.access_token,
+      expires_at: new Date(Date.now() + tokens.expires_in * 1000).toISOString(),
+      scope: tokens.scope,
+    }
+
+    // Google usually sends refresh_token only on first consent.
+    // Keep the existing refresh token when reconnecting without a new one.
+    if (tokens.refresh_token) {
+      tokenPayload.refresh_token = tokens.refresh_token
+    }
+
     // Store tokens
     const { error: upsertError } = await supabase
       .from('google_calendar_tokens')
-      .upsert({
-        user_id: userId,
-        access_token: tokens.access_token,
-        refresh_token: tokens.refresh_token, // Only sent on first consent
-        expires_at: new Date(Date.now() + tokens.expires_in * 1000).toISOString(),
-        scope: tokens.scope,
-      }, { onConflict: 'user_id' })
+      .upsert(tokenPayload, { onConflict: 'user_id' })
 
     if (upsertError) throw upsertError
 
@@ -101,7 +108,7 @@ serve(async (req) => {
     return Response.redirect(frontendUrl.toString(), 303)
   } catch (error) {
     console.error('[google-oauth-callback]', error)
-    return new Response(JSON.stringify({ error: error.message }), {
+    return new Response(JSON.stringify({ error: error.message, errorCode: 'GOOGLE_OAUTH_CALLBACK_ERROR' }), {
       status: 400,
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },
     })
