@@ -1,7 +1,7 @@
 import { serve } from 'https://deno.land/std@0.168.0/http/server.ts'
 import { createClient } from 'https://esm.sh/@supabase/supabase-js@2'
 import { corsHeaders } from '../_shared/cors.ts'
-import { getOrRefreshToken } from '../_shared/googleToken.ts'
+import { getGoogleErrorCode, getGoogleErrorMessage, getOrRefreshToken } from '../_shared/googleToken.ts'
 
 serve(async (req) => {
   if (req.method === 'OPTIONS') {
@@ -74,7 +74,10 @@ serve(async (req) => {
 
     const result = await googleResponse.json()
     if (result.error) {
-      throw new Error(`Google Calendar API error: ${result.error.message}`)
+      return new Response(JSON.stringify({ error: `Google Calendar API error: ${result.error.message}`, errorCode: 'GOOGLE_CALENDAR_API_ERROR' }), {
+        status: 400,
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+      })
     }
 
     // Save google_event_id if reservationId is provided
@@ -98,8 +101,10 @@ serve(async (req) => {
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },
     })
   } catch (error) {
+    const errorMessage = getGoogleErrorMessage(error)
+    const errorCode = getGoogleErrorCode(error)
     console.error('[google-calendar-create-event]', error)
-    return new Response(JSON.stringify({ error: error.message }), {
+    return new Response(JSON.stringify({ error: errorMessage, errorCode }), {
       status: 400,
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },
     })
