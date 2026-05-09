@@ -1,7 +1,10 @@
 import { serve } from 'https://deno.land/std@0.168.0/http/server.ts'
 import { createClient } from 'https://esm.sh/@supabase/supabase-js@2'
 import { corsHeaders } from '../_shared/cors.ts'
-import { normalizeGoogleReturnPath } from '../_shared/googleOAuth.ts'
+import {
+  normalizeGoogleReturnOrigin,
+  normalizeGoogleReturnPath,
+} from '../_shared/googleOAuth.ts'
 
 serve(async (req) => {
   if (req.method === 'OPTIONS') {
@@ -27,7 +30,7 @@ serve(async (req) => {
 
     const { data: oauthState, error: stateError } = await supabase
       .from('google_oauth_states')
-      .select('state_token, user_id, return_path, expires_at, used_at')
+      .select('state_token, user_id, return_path, return_origin, expires_at, used_at')
       .eq('state_token', state)
       .maybeSingle()
 
@@ -49,7 +52,7 @@ serve(async (req) => {
       .update({ used_at: new Date().toISOString() })
       .eq('state_token', state)
       .is('used_at', null)
-      .select('user_id, return_path')
+      .select('user_id, return_path, return_origin')
 
     if (claimError) throw claimError
     if (!claimedStates?.length) {
@@ -59,6 +62,7 @@ serve(async (req) => {
     const claimedState = claimedStates[0]
     const userId = claimedState.user_id
     const targetPath = normalizeGoogleReturnPath(claimedState.return_path)
+    const targetOrigin = normalizeGoogleReturnOrigin(claimedState.return_origin)
 
     // Exchange code for tokens
     const tokenResponse = await fetch('https://oauth2.googleapis.com/token', {
@@ -91,9 +95,9 @@ serve(async (req) => {
 
     if (upsertError) throw upsertError
 
-    // Redirect back to frontend
-    // Use FRONTEND_URL (Vercel) or SITE_URL (Supabase default), fallback to localhost for dev
-    const siteUrl = Deno.env.get('FRONTEND_URL') || Deno.env.get('SITE_URL') || 'http://localhost:5173'
+    // Redirect back to the origin that started OAuth when it is allowlisted.
+    // Fall back to FRONTEND_URL/SITE_URL for older OAuth states.
+    const siteUrl = targetOrigin || Deno.env.get('FRONTEND_URL') || Deno.env.get('SITE_URL') || 'http://localhost:5173'
     const frontendUrl = new URL(siteUrl)
     frontendUrl.pathname = targetPath
     frontendUrl.searchParams.set('google_connected', 'true')
