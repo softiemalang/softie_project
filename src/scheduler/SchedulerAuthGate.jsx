@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { navigate } from '../lib/router'
 import { getCurrentSession, signInWithGoogle, signOut, subscribeAuthChanges } from '../lib/auth'
-import { isGoogleConnected } from './googleApi'
+import { connectGoogleCalendar, isGoogleConnected } from './googleApi'
 import { SchedulerApp } from './SchedulerApp'
 
 function SchedulerLoginPage({ isSigningIn, onSignIn }) {
@@ -51,6 +51,7 @@ export function SchedulerAuthGate({ pathname }) {
   const [session, setSession] = useState(null)
   const [isLoading, setIsLoading] = useState(true)
   const [isSigningIn, setIsSigningIn] = useState(false)
+  const [isGooglePanelOpen, setIsGooglePanelOpen] = useState(false)
   const googleConnected = isGoogleConnected()
 
   useEffect(() => {
@@ -84,6 +85,11 @@ export function SchedulerAuthGate({ pathname }) {
     setSession(null)
   }
 
+  async function handleGoogleConnect() {
+    if (!session?.user?.id) return
+    await connectGoogleCalendar(session.user.id, { returnPath: '/scheduler' })
+  }
+
   if (isLoading) {
     return (
       <div className="app-shell scheduler-shell">
@@ -109,6 +115,10 @@ export function SchedulerAuthGate({ pathname }) {
 
         .scheduler-auth-gated .scheduler-auth-card {
           margin-bottom: 0.35rem;
+        }
+
+        .scheduler-auth-gated > .scheduler-shell + .scheduler-shell > button.scheduler-setting-card:nth-of-type(2) {
+          display: none;
         }
       `}</style>
       <div className="scheduler-shell" style={{ paddingBottom: 0 }}>
@@ -145,13 +155,38 @@ export function SchedulerAuthGate({ pathname }) {
               >
                 로그아웃
               </button>
-              <div className={`scheduler-count-pill ${googleConnected ? 'is-ready' : ''}`}>
-                {googleConnected ? 'Google 연동됨' : 'Google 연결 필요'}
-              </div>
+              <button
+                type="button"
+                className={`scheduler-count-pill ${googleConnected ? 'is-ready' : ''}`}
+                onClick={() => setIsGooglePanelOpen(true)}
+                style={{ border: 0, cursor: 'pointer' }}
+              >
+                {googleConnected ? 'Google 연동됨' : 'Google 연결'}
+              </button>
             </div>
           </div>
         </section>
       </div>
+
+      {isGooglePanelOpen && (
+        <div className="scheduler-sheet-backdrop scheduler-modal-backdrop" onClick={() => setIsGooglePanelOpen(false)}>
+          <div className="scheduler-modal" onClick={(event) => event.stopPropagation()}>
+            <div className="scheduler-section-head" style={{ marginBottom: '0.65rem' }}>
+              <p className="scheduler-section-label">Google 연동</p>
+              <button type="button" className="scheduler-modal-close" onClick={() => setIsGooglePanelOpen(false)}>닫기</button>
+            </div>
+            <p className="subtle" style={{ marginTop: 0, marginBottom: '1.25rem', fontSize: '0.86rem' }}>
+              캘린더 동기화와 Drive 백업에 사용하는 연결이에요.
+            </p>
+            <div className="scheduler-modal-actions stack">
+              <button type="button" className="scheduler-modal-btn" onClick={handleGoogleConnect}>
+                {googleConnected ? 'Google 다시 연결' : 'Google 연결'}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
       <SchedulerApp pathname={pathname} />
     </div>
   )
