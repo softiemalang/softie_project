@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { navigate, usePathname } from './lib/router'
-import { SchedulerApp } from './scheduler/SchedulerApp'
+import { SchedulerAuthGate } from './scheduler/SchedulerAuthGate'
 import SoftieFortunePage from './saju/SoftieFortunePage'
 import ProjectBrainPage from './pages/ProjectBrainPage'
 import HomePage from './pages/HomePage'
@@ -160,7 +160,7 @@ export default function App() {
   }
 
   if (pathname.startsWith('/scheduler')) {
-    return <SchedulerApp pathname={pathname} />
+    return <SchedulerAuthGate pathname={pathname} />
   }
 
   if (pathname.startsWith('/music')) {
