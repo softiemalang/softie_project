@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { navigate } from '../lib/router'
 import { getCurrentSession, signInWithGoogle, signOut, subscribeAuthChanges } from '../lib/auth'
-import { connectGoogleCalendar, isGoogleConnected } from './googleApi'
+import { connectGoogleCalendar, isGoogleConnected, triggerGoogleDriveBackup } from './googleApi'
 import { SchedulerApp } from './SchedulerApp'
 
 function SchedulerLoginPage({ isSigningIn, onSignIn }) {
@@ -52,6 +52,8 @@ export function SchedulerAuthGate({ pathname }) {
   const [isLoading, setIsLoading] = useState(true)
   const [isSigningIn, setIsSigningIn] = useState(false)
   const [isGooglePanelOpen, setIsGooglePanelOpen] = useState(false)
+  const [isDriveBackupBusy, setIsDriveBackupBusy] = useState(false)
+  const [driveBackupStatus, setDriveBackupStatus] = useState('')
   const googleConnected = isGoogleConnected()
 
   useEffect(() => {
@@ -88,6 +90,23 @@ export function SchedulerAuthGate({ pathname }) {
   async function handleGoogleConnect() {
     if (!session?.user?.id) return
     await connectGoogleCalendar(session.user.id, { returnPath: '/scheduler' })
+  }
+
+  async function handleDriveBackup() {
+    if (!session?.user?.id) return
+
+    setIsDriveBackupBusy(true)
+    setDriveBackupStatus('백업 중...')
+
+    try {
+      await triggerGoogleDriveBackup(session.user.id, 'full')
+      setDriveBackupStatus('Drive 백업을 완료했어요.')
+    } catch (error) {
+      console.error('[scheduler] Drive backup failed:', error)
+      setDriveBackupStatus(error instanceof Error ? error.message : 'Drive 백업에 실패했어요.')
+    } finally {
+      setIsDriveBackupBusy(false)
+    }
   }
 
   if (isLoading) {
@@ -197,10 +216,23 @@ export function SchedulerAuthGate({ pathname }) {
               캘린더 동기화와 Drive 백업에 사용하는 연결이에요.
             </p>
             <div className="scheduler-modal-actions stack">
-              <button type="button" className="scheduler-modal-btn" onClick={handleGoogleConnect}>
+              <button
+                type="button"
+                className="scheduler-modal-btn"
+                onClick={handleDriveBackup}
+                disabled={isDriveBackupBusy || !googleConnected}
+              >
+                {isDriveBackupBusy ? 'Drive 백업 중...' : 'Drive 백업 실행'}
+              </button>
+              <button type="button" className="scheduler-modal-btn secondary" onClick={handleGoogleConnect}>
                 {googleConnected ? 'Google 다시 연결' : 'Google 연결'}
               </button>
             </div>
+            {driveBackupStatus && (
+              <p className="subtle" style={{ marginTop: '0.9rem', marginBottom: 0, fontSize: '0.82rem', textAlign: 'center' }}>
+                {driveBackupStatus}
+              </p>
+            )}
           </div>
         </div>
       )}
