@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { navigate } from '../lib/router'
+import { shareKakaoText } from '../lib/kakaoShare'
 import { 
   listTodayWorkEvents, 
   getReservationById, 
@@ -94,6 +95,45 @@ function persistWorkTimeFilter(filter, selectedDate) {
     ...normalizeWorkTimeFilter(filter),
     selectedDate,
   }))
+}
+
+function buildWeekWorkLogText(weekStart, logs) {
+  const targetLogs = logs.filter(log => log.weekStartDate === weekStart)
+  const sortedLogs = [...targetLogs].sort((a, b) => a.date.localeCompare(b.date))
+
+  if (sortedLogs.length === 0) return null
+
+  const lines = [getWeekTitle(weekStart), '']
+  let totalMinutes = 0
+
+  sortedLogs.forEach(log => {
+    const dateObj = new Date(log.date)
+    const dateLabel = `${dateObj.getMonth() + 1}/${dateObj.getDate()}`
+    const durationHours = log.durationMinutes / 60
+    lines.push(`${dateLabel}\n${log.startTime}-${log.endTime} (${durationHours}h)`)
+    totalMinutes += log.durationMinutes
+  })
+
+  lines.push('', `총 ${totalMinutes / 60}시간`)
+
+  return lines.join('\n')
+}
+
+function buildWeekWorkLogShareText(weekStart, logs, url) {
+  const copiedText = buildWeekWorkLogText(weekStart, logs)
+  if (copiedText) {
+    return [copiedText, '', `자세히 보기: ${url}`].join('\n')
+  }
+
+  return [
+    '근무 일지',
+    `${getWeekTitle(weekStart)} · ${getWeekRangeLabel(weekStart)}`,
+    '',
+    '주간 총계: 0시간',
+    '이번 주 근무 기록이 아직 없어요.',
+    '',
+    `자세히 보기: ${url}`,
+  ].join('\n')
 }
 
 function parseSchedulerRoute(pathname) {
@@ -373,30 +413,26 @@ function TodaySchedulerPage({ effectiveOwnerKey }) {
   }
 
   function handleCopyWeekLog(weekStart) {
-    const targetLogs = workLogs.filter(log => log.weekStartDate === weekStart)
-    const sortedLogs = [...targetLogs].sort((a, b) => a.date.localeCompare(b.date))
-    
-    if (sortedLogs.length === 0) return
+    const text = buildWeekWorkLogText(weekStart, workLogs)
+    if (!text) return
 
-    const title = getWeekTitle(weekStart)
-    const lines = [title, '']
-    
-    let totalMinutes = 0
-    sortedLogs.forEach(log => {
-      const dateObj = new Date(log.date)
-      const dateLabel = `${dateObj.getMonth() + 1}/${dateObj.getDate()}`
-      const durationHours = log.durationMinutes / 60
-      lines.push(`${dateLabel}\n${log.startTime}-${log.endTime} (${durationHours}h)`)
-      totalMinutes += log.durationMinutes
-    })
-    
-    lines.push('', `총 ${totalMinutes / 60}시간`)
-    
-    const text = lines.join('\n')
     navigator.clipboard.writeText(text).then(() => {
       setCopyFeedback('복사됨')
       setTimeout(() => setCopyFeedback(''), 2000)
     })
+  }
+
+  function handleShareWeekLog(weekStart) {
+    const url = window.location.href
+    const text = buildWeekWorkLogShareText(weekStart, workLogs, url)
+    const shared = shareKakaoText({
+      text,
+      url,
+    })
+
+    if (!shared) {
+      alert('카카오 공유 설정이 아직 없어요.')
+    }
   }
 
   function handleNavigateWeek(direction) {
@@ -1022,8 +1058,7 @@ function TodaySchedulerPage({ effectiveOwnerKey }) {
           setViewingWeekStart(getWeekStartDate(selectedDate))
           setIsWorkLogOpen(true)
         }}
-        onCopy={handleCopyWeekLog}
-        copyFeedback={copyFeedback}
+        onShare={handleShareWeekLog}
       />
 
       {isFilterSheetOpen ? (
@@ -1732,11 +1767,7 @@ function RoomStatusPage() {
   )
 }
 
-function WorkLogSummaryCard({ currentWeekStart, logs, onOpen, onCopy, copyFeedback }) {
-  const weekLogs = logs.filter(log => log.weekStartDate === currentWeekStart)
-  const totalMinutes = weekLogs.reduce((acc, log) => acc + log.durationMinutes, 0)
-  const totalHours = totalMinutes / 60
-
+function WorkLogSummaryCard({ currentWeekStart, logs, onOpen, onShare }) {
   return (
     <section className="scheduler-panel scheduler-work-log-card">
       <div className="scheduler-filter-summary-row">
@@ -1750,10 +1781,9 @@ function WorkLogSummaryCard({ currentWeekStart, logs, onOpen, onCopy, copyFeedba
           <button
             type="button"
             className="soft-button scheduler-summary-button"
-            onClick={() => onCopy(currentWeekStart)}
-            disabled={weekLogs.length === 0}
+            onClick={() => onShare(currentWeekStart)}
           >
-            {copyFeedback || '복사'}
+            공유
           </button>
           <button type="button" className="soft-button scheduler-summary-button" onClick={onOpen}>
             보기
