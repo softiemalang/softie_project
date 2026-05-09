@@ -7,3 +7,4 @@ dist/
 .vscode/
 .vercel
 supabase/.temp/
+.codex/
