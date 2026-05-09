@@ -237,7 +237,7 @@ export function SchedulerAuthGate({ pathname }) {
         </div>
       )}
 
-      <SchedulerApp pathname={pathname} />
+      <SchedulerApp pathname={pathname} session={session} />
     </div>
   )
 }

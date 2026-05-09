@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useMemo, useRef } from 'react'
 import { navigate } from '../lib/router'
 import { getOrCreatePushDeviceId } from '../lib/device'
-import { getCurrentSession } from '../lib/auth'
+import { getCurrentSession, subscribeAuthChanges } from '../lib/auth'
 import {
   connectGoogleCalendar,
   isGoogleConnected,
@@ -109,21 +109,46 @@ export default function RehearsalCalendarPage() {
   const [isGoogleReady, setIsGoogleReady] = useState(false)
   const [isBackingUp, setIsBackingUp] = useState(false)
   const [effectiveOwnerKey, setEffectiveOwnerKey] = useState(null)
+  const localOwnerKeyRef = useRef(null)
+  const ownerChangeSeqRef = useRef(0)
 
   useEffect(() => {
-    async function initOwner() {
-      const session = await getCurrentSession()
-      const deviceId = getOrCreatePushDeviceId()
+    let mounted = true
+
+    function getLocalOwnerKey() {
+      if (!localOwnerKeyRef.current) {
+        localOwnerKeyRef.current = getOrCreatePushDeviceId()
+      }
+      return localOwnerKeyRef.current
+    }
+
+    async function applySessionOwner(session) {
+      const seq = ownerChangeSeqRef.current + 1
+      ownerChangeSeqRef.current = seq
+
+      const localOwnerKey = getLocalOwnerKey()
       const userId = session?.user?.id
       
       if (userId) {
-        await linkLocalRehearsalEventsToUser(deviceId, userId)
+        await linkLocalRehearsalEventsToUser(localOwnerKey, userId)
+        if (!mounted || ownerChangeSeqRef.current !== seq) return
         setEffectiveOwnerKey(userId)
       } else {
-        setEffectiveOwnerKey(deviceId)
+        if (!mounted || ownerChangeSeqRef.current !== seq) return
+        setEffectiveOwnerKey(localOwnerKey)
       }
     }
-    initOwner()
+
+    getCurrentSession().then(applySessionOwner)
+
+    const subscription = subscribeAuthChanges((nextSession) => {
+      applySessionOwner(nextSession)
+    })
+
+    return () => {
+      mounted = false
+      subscription.unsubscribe()
+    }
   }, [])
 
   useEffect(() => {

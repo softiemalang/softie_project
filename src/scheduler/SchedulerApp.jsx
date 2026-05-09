@@ -105,25 +105,33 @@ function parseSchedulerRoute(pathname) {
   return { name: 'not-found' }
 }
 
-export function SchedulerApp({ pathname }) {
+export function SchedulerApp({ pathname, session }) {
   const route = useMemo(() => parseSchedulerRoute(pathname), [pathname])
   const [effectiveOwnerKey, setEffectiveOwnerKey] = useState(null)
   const [isInitializing, setIsInitializing] = useState(true)
 
   useEffect(() => {
+    let mounted = true
+
     async function init() {
-      const session = await getCurrentSession()
-      const ownerKey = session?.user?.id || getOrCreatePushDeviceId()
+      const userId = session?.user?.id
+      const ownerKey = userId || getOrCreatePushDeviceId()
       
-      if (session?.user?.id) {
-        import('./api').then(m => m.linkUnownedReservationsToOwner(session.user.id))
+      if (userId) {
+        import('./api').then(m => m.linkUnownedReservationsToOwner(userId))
       }
       
+      if (!mounted) return
       setEffectiveOwnerKey(ownerKey)
       setIsInitializing(false)
     }
+
     init()
-  }, [])
+
+    return () => {
+      mounted = false
+    }
+  }, [session?.user?.id])
 
   if (isInitializing) {
     return (
