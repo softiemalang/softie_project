@@ -5,6 +5,7 @@ import {
   createNatalSnapshot,
   getDailySnapshot,
   createDailySnapshot,
+  getFortuneReport,
   getFortuneHistory,
   getFortuneReportById
 } from './api'
@@ -22,6 +23,8 @@ const EMPTY_PROFILE = {
   birthTime: '',
   gender: 'male'
 }
+
+const FORTUNE_REPORT_VERSION = '1.3'
 
 function profileFromSaved(savedProfile) {
   if (!savedProfile) return { ...EMPTY_PROFILE }
@@ -47,6 +50,51 @@ function formatBirthTimeForDisplay(value) {
 function formatReportDateForDisplay(value) {
   if (!value) return ''
   return String(value).replace(/-/g, '.')
+}
+
+function isValidDailySnapshot(snapshot) {
+  const computed = snapshot?.computed_data
+  return computed?.engine_version === '2.2' &&
+    computed?.love &&
+    computed?.periodContext?.year &&
+    computed?.periodContext?.month &&
+    computed?.periodContext?.day &&
+    computed?.dayType?.type &&
+    computed?.dailyBalance?.orientation &&
+    Array.isArray(computed?.sectionPriority?.primary) &&
+    computed?.longerCycleContext?.todayPosition &&
+    computed?.debugSummary?.engineVersion === '2.2' &&
+    computed?.interpretationTrace?.primaryNarrative &&
+    (
+      Boolean(computed?.interpretationProfile?.dailyBalanceHint) ||
+      Boolean(computed?.interpretationProfile?.dailyBalanceActionHint)
+    ) &&
+    (
+      Boolean(computed?.interpretationProfile?.natalProfileSummary) ||
+      (Array.isArray(computed?.interpretationProfile?.personalContextHints) &&
+        computed.interpretationProfile.personalContextHints.length > 0)
+    ) &&
+    (
+      (Array.isArray(computed?.interpretationProfile?.longerCycleHints) &&
+        computed.interpretationProfile.longerCycleHints.length > 0) ||
+      Boolean(computed?.interpretationProfile?.todayFlowPositionHint)
+    ) &&
+    (
+      (Array.isArray(computed?.interpretationProfile?.supportiveElementHints) &&
+        computed.interpretationProfile.supportiveElementHints.length > 0) ||
+      (Array.isArray(computed?.interpretationProfile?.balancingContextHints) &&
+        computed.interpretationProfile.balancingContextHints.length > 0)
+    ) &&
+    computed?.interpretationProfile?.fieldNarratives?.love &&
+    (
+      Boolean(String(computed?.interpretationProfile?.basisHint || '').trim()) ||
+      Object.keys(computed?.interpretationProfile?.fieldReasonHints || {}).length > 0
+    )
+}
+
+function hasCompleteFortuneReport(report) {
+  const sections = report?.report_content?.sections || {}
+  return ['work', 'money', 'relationships', 'love', 'health', 'mind'].every(key => sections[key])
 }
 
 export default function SoftieFortunePage() {
@@ -80,7 +128,7 @@ export default function SoftieFortunePage() {
           setDailySnapshot(null)
           setReport(null)
           setIsBackedUp(false)
-          loadDailyFortune(activeProfile)
+          loadExistingDailyFortune(activeProfile)
         }
       }
     }
@@ -92,7 +140,7 @@ export default function SoftieFortunePage() {
           setDailySnapshot(null)
           setReport(null)
           setIsBackedUp(false)
-          loadDailyFortune(activeProfile)
+          loadExistingDailyFortune(activeProfile)
         }
       }
     }, 60000)
@@ -117,7 +165,7 @@ export default function SoftieFortunePage() {
         setActiveProfile(existingProfile)
         setProfile(existingFormProfile)
         setProfileDraft(existingFormProfile)
-        await loadDailyFortune(existingProfile)
+        await loadExistingDailyFortune(existingProfile)
       }
     } catch (error) {
       console.error('Failed to load saju data:', error)
@@ -126,7 +174,26 @@ export default function SoftieFortunePage() {
     }
   }
 
-  async function loadDailyFortune(targetProfile, options = {}) {
+  async function loadExistingDailyFortune(targetProfile) {
+    const currentTodayStr = getKstDateString()
+    try {
+      const [snapshot, existingReport] = await Promise.all([
+        getDailySnapshot(targetProfile.id, currentTodayStr),
+        getFortuneReport(targetProfile.id, currentTodayStr, FORTUNE_REPORT_VERSION)
+      ])
+
+      setDailySnapshot(snapshot || null)
+      setReport(hasCompleteFortuneReport(existingReport) ? { ...existingReport, is_cached: true } : null)
+      setStatus('')
+    } catch (error) {
+      console.error('Failed to load existing daily fortune:', error)
+      setDailySnapshot(null)
+      setReport(null)
+      setStatus('저장된 오늘 리포트를 불러오지 못했습니다.')
+    }
+  }
+
+  async function generateTodayReport(targetProfile, options = {}) {
     const currentTodayStr = getKstDateString()
     const force = options.force === true
     try {
@@ -135,45 +202,7 @@ export default function SoftieFortunePage() {
       if (!force) {
         snapshot = await getDailySnapshot(targetProfile.id, currentTodayStr)
 
-        const computed = snapshot?.computed_data
-        const isValidSnapshot = computed?.engine_version === '2.2' &&
-          computed?.love &&
-          computed?.periodContext?.year &&
-          computed?.periodContext?.month &&
-          computed?.periodContext?.day &&
-          computed?.dayType?.type &&
-          computed?.dailyBalance?.orientation &&
-          Array.isArray(computed?.sectionPriority?.primary) &&
-          computed?.longerCycleContext?.todayPosition &&
-          computed?.debugSummary?.engineVersion === '2.2' &&
-          computed?.interpretationTrace?.primaryNarrative &&
-          (
-            Boolean(computed?.interpretationProfile?.dailyBalanceHint) ||
-            Boolean(computed?.interpretationProfile?.dailyBalanceActionHint)
-          ) &&
-          (
-            Boolean(computed?.interpretationProfile?.natalProfileSummary) ||
-            (Array.isArray(computed?.interpretationProfile?.personalContextHints) &&
-              computed.interpretationProfile.personalContextHints.length > 0)
-          ) &&
-          (
-            (Array.isArray(computed?.interpretationProfile?.longerCycleHints) &&
-              computed.interpretationProfile.longerCycleHints.length > 0) ||
-            Boolean(computed?.interpretationProfile?.todayFlowPositionHint)
-          ) &&
-          (
-            (Array.isArray(computed?.interpretationProfile?.supportiveElementHints) &&
-              computed.interpretationProfile.supportiveElementHints.length > 0) ||
-            (Array.isArray(computed?.interpretationProfile?.balancingContextHints) &&
-              computed.interpretationProfile.balancingContextHints.length > 0)
-          ) &&
-          computed?.interpretationProfile?.fieldNarratives?.love &&
-          (
-            Boolean(String(computed?.interpretationProfile?.basisHint || '').trim()) ||
-            Object.keys(computed?.interpretationProfile?.fieldReasonHints || {}).length > 0
-          )
-
-        if (snapshot && !isValidSnapshot) {
+        if (snapshot && !isValidDailySnapshot(snapshot)) {
           snapshot = null
         }
       }
@@ -211,17 +240,21 @@ export default function SoftieFortunePage() {
 
   async function handleRefreshTodayReport() {
     if (!activeProfile || isLoading) return
-    const confirmed = window.confirm('오늘 리포트를 최신 기준으로 다시 작성할까요?')
-    if (!confirmed) return
+    const hasReport = Boolean(report?.id && reportData)
+    const force = hasReport
+    if (hasReport) {
+      const confirmed = window.confirm('오늘 리포트를 최신 기준으로 다시 작성할까요?')
+      if (!confirmed) return
+    }
 
     setIsForceRefreshing(true)
     setReport(null)
     setDailySnapshot(null)
     setIsBackedUp(false)
-    setStatus('오늘 리포트를 다시 준비하는 중입니다...')
+    setStatus(hasReport ? '오늘 리포트를 다시 준비하는 중입니다...' : '오늘 리포트를 준비하는 중입니다...')
 
     try {
-      await loadDailyFortune(activeProfile, { force: true })
+      await generateTodayReport(activeProfile, { force })
     } finally {
       setIsForceRefreshing(false)
     }
@@ -346,7 +379,9 @@ export default function SoftieFortunePage() {
                 onClick={handleRefreshTodayReport}
                 disabled={isLoading || isForceRefreshing}
               >
-                {isForceRefreshing ? '다시 작성 중...' : '오늘 리포트 다시 작성'}
+                {isForceRefreshing
+                  ? (reportData ? '다시 작성 중...' : '작성 중...')
+                  : (reportData ? '오늘 리포트 다시 작성' : '오늘 리포트 작성')}
               </button>
             </>
           )}
@@ -388,7 +423,31 @@ export default function SoftieFortunePage() {
 
       {status && <p className="status" style={{ textAlign: 'center', color: '#8b5e1a' }}>{status}</p>}
 
-      {dailySnapshot && reportData && (
+      {activeProfile && !isLoading && !reportData && !status && (
+        <section className="card">
+          <div className="card-header">
+            <div>
+              <p className="section-kicker">오늘의 리포트</p>
+              <h2>아직 오늘 리포트가 없어요.</h2>
+            </div>
+          </div>
+          <p className="subtle" style={{ margin: 0 }}>
+            작성 버튼을 누르면 오늘의 운세를 생성합니다.
+          </p>
+          <div className="fortune-backup-action">
+            <button
+              type="button"
+              className="soft-button"
+              onClick={handleRefreshTodayReport}
+              disabled={isForceRefreshing}
+            >
+              {isForceRefreshing ? '작성 중...' : '오늘 리포트 작성'}
+            </button>
+          </div>
+        </section>
+      )}
+
+      {reportData && (
         <div className="fortune-result-container">
           <section className="card primary-home-card">
             <div className="card-header">
@@ -461,9 +520,9 @@ export default function SoftieFortunePage() {
                 Google 연동하기
               </button>
             )}
-            {dailySnapshot?.target_date && (
+            {(dailySnapshot?.target_date || report?.report_date) && (
               <p className="fortune-backup-date-label">
-                {formatReportDateForDisplay(dailySnapshot.target_date)} 운세 리포트
+                {formatReportDateForDisplay(dailySnapshot?.target_date || report?.report_date)} 운세 리포트
               </p>
             )}
           </section>
