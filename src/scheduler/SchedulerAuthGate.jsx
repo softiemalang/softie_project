@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { navigate } from '../lib/router'
 import { getCurrentSession, signInWithGoogle, signOut, subscribeAuthChanges } from '../lib/auth'
+import { isGoogleConnected } from './googleApi'
 import { SchedulerApp } from './SchedulerApp'
 
 function SchedulerLoginPage({ isSigningIn, onSignIn }) {
@@ -50,6 +51,7 @@ export function SchedulerAuthGate({ pathname }) {
   const [session, setSession] = useState(null)
   const [isLoading, setIsLoading] = useState(true)
   const [isSigningIn, setIsSigningIn] = useState(false)
+  const googleConnected = isGoogleConnected()
 
   useEffect(() => {
     let mounted = true
@@ -143,7 +145,9 @@ export function SchedulerAuthGate({ pathname }) {
               >
                 로그아웃
               </button>
-              <div className="scheduler-count-pill is-ready">로그인됨</div>
+              <div className={`scheduler-count-pill ${googleConnected ? 'is-ready' : ''}`}>
+                {googleConnected ? 'Google 연동됨' : 'Google 연결 필요'}
+              </div>
             </div>
           </div>
         </section>
