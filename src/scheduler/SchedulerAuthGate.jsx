@@ -95,10 +95,23 @@ export function SchedulerAuthGate({ pathname }) {
   }
 
   return (
-    <div>
+    <div className="scheduler-auth-gated">
+      <style>{`
+        .scheduler-auth-gated > .scheduler-shell:first-of-type {
+          padding-bottom: 0 !important;
+        }
+
+        .scheduler-auth-gated > .scheduler-shell + .scheduler-shell {
+          padding-top: 0.35rem !important;
+        }
+
+        .scheduler-auth-gated .scheduler-auth-card {
+          margin-bottom: 0.35rem;
+        }
+      `}</style>
       <div className="scheduler-shell" style={{ paddingBottom: 0 }}>
         <section
-          className="scheduler-panel scheduler-setting-card is-connected"
+          className="scheduler-panel scheduler-setting-card is-connected scheduler-auth-card"
           style={{ padding: '0.95rem 1.05rem' }}
         >
           <div className="scheduler-section-head" style={{ alignItems: 'center', gap: '0.75rem' }}>
