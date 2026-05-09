@@ -135,7 +135,6 @@ export function SchedulerAuthGate({ pathname }) {
                 gap: '0.45rem',
               }}
             >
-              <div className="scheduler-count-pill is-ready">로그인됨</div>
               <button
                 type="button"
                 className="scheduler-count-pill"
@@ -144,6 +143,7 @@ export function SchedulerAuthGate({ pathname }) {
               >
                 로그아웃
               </button>
+              <div className="scheduler-count-pill is-ready">로그인됨</div>
             </div>
           </div>
         </section>
