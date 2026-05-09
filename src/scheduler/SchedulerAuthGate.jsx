@@ -198,7 +198,7 @@ export function SchedulerAuthGate({ pathname }) {
                 onClick={() => setIsGooglePanelOpen(true)}
                 style={{ border: 0, cursor: 'pointer' }}
               >
-                {googleConnected ? 'Google 연동됨' : 'Google 연결'}
+                {googleConnected ? '연동됨' : '연결'}
               </button>
             </div>
           </div>
