@@ -120,6 +120,14 @@ export function SchedulerAuthGate({ pathname }) {
         .scheduler-auth-gated > .scheduler-shell + .scheduler-shell > button.scheduler-setting-card:nth-of-type(2) {
           display: none;
         }
+
+        .scheduler-auth-gated .scheduler-google-modal {
+          border: 1px solid rgba(190, 176, 160, 0.22);
+          border-radius: 28px;
+          box-shadow: 0 24px 60px rgba(44, 33, 20, 0.16);
+          overflow: hidden;
+          padding: 1.8rem 1.35rem 1.45rem;
+        }
       `}</style>
       <div className="scheduler-shell" style={{ paddingBottom: 0 }}>
         <section
@@ -180,7 +188,7 @@ export function SchedulerAuthGate({ pathname }) {
 
       {isGooglePanelOpen && (
         <div className="scheduler-sheet-backdrop scheduler-modal-backdrop" onClick={() => setIsGooglePanelOpen(false)}>
-          <div className="scheduler-modal" onClick={(event) => event.stopPropagation()}>
+          <div className="scheduler-modal scheduler-google-modal" onClick={(event) => event.stopPropagation()}>
             <div className="scheduler-section-head" style={{ marginBottom: '0.65rem' }}>
               <p className="scheduler-section-label">Google 연동</p>
               <button type="button" className="scheduler-modal-close" onClick={() => setIsGooglePanelOpen(false)}>닫기</button>
