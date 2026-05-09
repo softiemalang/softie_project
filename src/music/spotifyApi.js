@@ -69,9 +69,16 @@ export async function connectSpotify(userId, options = {}) {
 }
 
 export function isSpotifyConnected() {
+  if (typeof window === 'undefined') return false
+
   const params = new URLSearchParams(window.location.search)
   if (params.get('spotify_connected') === 'true') {
     localStorage.setItem(SPOTIFY_CONNECTED_KEY, 'true')
+    params.delete('spotify_connected')
+
+    const nextSearch = params.toString()
+    const nextUrl = `${window.location.pathname}${nextSearch ? `?${nextSearch}` : ''}${window.location.hash}`
+    window.history.replaceState(window.history.state, '', nextUrl)
   }
 
   return localStorage.getItem(SPOTIFY_CONNECTED_KEY) === 'true'
@@ -220,4 +227,3 @@ export async function getSpotifyPlaylists(userId) {
     softieClient: 'music-dashboard',
   })
 }
-

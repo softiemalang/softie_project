@@ -103,6 +103,18 @@ function getFriendlyError(error) {
   return message
 }
 
+function removeQueryParam(name) {
+  if (typeof window === 'undefined') return
+
+  const params = new URLSearchParams(window.location.search)
+  if (!params.has(name)) return
+
+  params.delete(name)
+  const nextSearch = params.toString()
+  const nextUrl = `${window.location.pathname}${nextSearch ? `?${nextSearch}` : ''}${window.location.hash}`
+  window.history.replaceState(window.history.state, '', nextUrl)
+}
+
 export default function SpotifyMusicPage() {
   const [userId, setUserId] = useState('')
   const [session, setSession] = useState(null)
@@ -165,7 +177,8 @@ export default function SpotifyMusicPage() {
         const params = new URLSearchParams(window.location.search)
         const spotifyError = params.get('spotify_error')
         if (spotifyError) {
-          setStatusMessage(decodeURIComponent(spotifyError))
+          setStatusMessage(spotifyError)
+          removeQueryParam('spotify_error')
         }
       } finally {
         if (mounted) {
