@@ -97,18 +97,43 @@ export function SchedulerAuthGate({ pathname }) {
   return (
     <div>
       <div className="scheduler-shell" style={{ paddingBottom: 0 }}>
-        <section className="scheduler-panel scheduler-setting-card is-connected">
-          <div className="scheduler-section-head">
-            <p className="scheduler-section-label">계정 로그인</p>
-            <div className="scheduler-count-pill is-ready">로그인됨</div>
-          </div>
-          <p className="scheduler-setting-subtitle">
-            {session.user.email || 'Google 계정'} 기준으로 예약과 근무 기록을 불러오고 있어요.
-          </p>
-          <div className="scheduler-modal-actions" style={{ marginTop: '0.85rem' }}>
-            <button type="button" className="scheduler-modal-btn secondary" onClick={handleSignOut}>
-              로그아웃
-            </button>
+        <section
+          className="scheduler-panel scheduler-setting-card is-connected"
+          style={{ padding: '0.95rem 1.05rem' }}
+        >
+          <div className="scheduler-section-head" style={{ alignItems: 'center', gap: '0.75rem' }}>
+            <div style={{ minWidth: 0 }}>
+              <p className="scheduler-section-label">계정 로그인</p>
+              <p
+                className="scheduler-setting-subtitle"
+                style={{
+                  marginTop: '0.25rem',
+                  overflow: 'hidden',
+                  textOverflow: 'ellipsis',
+                  whiteSpace: 'nowrap',
+                }}
+              >
+                {session.user.email || 'Google 계정'}
+              </p>
+            </div>
+            <div
+              style={{
+                alignItems: 'center',
+                display: 'flex',
+                flexShrink: 0,
+                gap: '0.45rem',
+              }}
+            >
+              <div className="scheduler-count-pill is-ready">로그인됨</div>
+              <button
+                type="button"
+                className="scheduler-count-pill"
+                onClick={handleSignOut}
+                style={{ border: 0, cursor: 'pointer' }}
+              >
+                로그아웃
+              </button>
+            </div>
           </div>
         </section>
       </div>
