@@ -1,7 +1,11 @@
 import { serve } from 'https://deno.land/std@0.168.0/http/server.ts'
 import { createClient } from 'https://esm.sh/@supabase/supabase-js@2'
 import { corsHeaders } from '../_shared/cors.ts'
-import { createGoogleOauthStateToken, normalizeGoogleReturnPath } from '../_shared/googleOAuth.ts'
+import {
+  createGoogleOauthStateToken,
+  normalizeGoogleReturnOrigin,
+  normalizeGoogleReturnPath,
+} from '../_shared/googleOAuth.ts'
 
 const GOOGLE_SCOPES = [
   'https://www.googleapis.com/auth/calendar.events',
@@ -22,7 +26,7 @@ serve(async (req) => {
   }
 
   try {
-    const { userId, returnPath } = await req.json()
+    const { userId, returnPath, returnOrigin } = await req.json()
 
     if (typeof userId !== 'string' || !userId.trim()) {
       throw new Error('Missing userId')
@@ -30,6 +34,7 @@ serve(async (req) => {
 
     const normalizedUserId = userId.trim()
     const normalizedReturnPath = normalizeGoogleReturnPath(returnPath)
+    const normalizedReturnOrigin = normalizeGoogleReturnOrigin(returnOrigin)
     const clientId = Deno.env.get('GOOGLE_CLIENT_ID')
     const redirectUri = Deno.env.get('GOOGLE_REDIRECT_URI')
     const supabaseUrl = Deno.env.get('SUPABASE_URL')!
@@ -71,6 +76,7 @@ serve(async (req) => {
         state_token: stateToken,
         user_id: normalizedUserId,
         return_path: normalizedReturnPath,
+        return_origin: normalizedReturnOrigin,
         expires_at: expiresAt,
       })
 
