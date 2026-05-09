@@ -3,7 +3,11 @@ import { supabase } from './supabase'
 const configuredRedirectUrl = import.meta.env.VITE_AUTH_REDIRECT_URL
 
 function getAuthRedirectUrl() {
-  return configuredRedirectUrl || window.location.origin
+  if (typeof window !== 'undefined') {
+    return window.location.href || window.location.origin
+  }
+
+  return configuredRedirectUrl || 'http://localhost:5173'
 }
 
 export async function getCurrentSession() {
