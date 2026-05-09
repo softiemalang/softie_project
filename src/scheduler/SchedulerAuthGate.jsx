@@ -130,7 +130,17 @@ export function SchedulerAuthGate({ pathname }) {
             <div style={{ minWidth: 0 }}>
               <p
                 className="scheduler-section-label"
+                role="button"
+                tabIndex={0}
+                onClick={() => setIsGooglePanelOpen(true)}
+                onKeyDown={(event) => {
+                  if (event.key === 'Enter' || event.key === ' ') {
+                    event.preventDefault()
+                    setIsGooglePanelOpen(true)
+                  }
+                }}
                 style={{
+                  cursor: 'pointer',
                   overflow: 'hidden',
                   textOverflow: 'ellipsis',
                   whiteSpace: 'nowrap',
