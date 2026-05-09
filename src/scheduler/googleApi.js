@@ -24,6 +24,7 @@ export async function connectGoogleCalendar(userId, options = {}) {
       body: {
         userId,
         returnPath: options.returnPath,
+        returnOrigin: window.location.origin,
       }
     })
 
