@@ -103,11 +103,9 @@ export function SchedulerAuthGate({ pathname }) {
         >
           <div className="scheduler-section-head" style={{ alignItems: 'center', gap: '0.75rem' }}>
             <div style={{ minWidth: 0 }}>
-              <p className="scheduler-section-label">계정 로그인</p>
               <p
-                className="scheduler-setting-subtitle"
+                className="scheduler-section-label"
                 style={{
-                  marginTop: '0.25rem',
                   overflow: 'hidden',
                   textOverflow: 'ellipsis',
                   whiteSpace: 'nowrap',
