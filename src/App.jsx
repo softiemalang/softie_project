@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import { navigate, usePathname } from './lib/router'
 import { SchedulerApp } from './scheduler/SchedulerApp'
 import SoftieFortunePage from './saju/SoftieFortunePage'
@@ -6,6 +7,95 @@ import HomePage from './pages/HomePage'
 import BandGoogleCompactPage from './pages/BandGoogleCompactPage'
 import RehearsalCalendarPage from './pages/RehearsalCalendarPage'
 import SpotifyMusicPage from './pages/SpotifyMusicPage'
+
+const DEFAULT_APP_NAME = 'Softie Project'
+
+function upsertMetaContent(selector, createAttributes, content) {
+  if (typeof document === 'undefined') return
+
+  let meta = document.head.querySelector(selector)
+  if (!meta) {
+    meta = document.createElement('meta')
+    Object.entries(createAttributes).forEach(([key, value]) => {
+      meta.setAttribute(key, value)
+    })
+    document.head.appendChild(meta)
+  }
+
+  meta.setAttribute('content', content)
+}
+
+function getRouteMetadata(pathname) {
+  if (pathname.startsWith('/scheduler')) {
+    return {
+      title: 'Work Scheduler | Softie Project',
+      appTitle: 'Work Scheduler',
+      ogTitle: 'Work Scheduler | Softie Project',
+    }
+  }
+
+  if (pathname.startsWith('/band')) {
+    return {
+      title: 'Band Rehearsal Scheduler | Softie Project',
+      appTitle: 'Band Scheduler',
+      ogTitle: 'Band Rehearsal Scheduler | Softie Project',
+    }
+  }
+
+  if (pathname.startsWith('/rehearsals')) {
+    return {
+      title: 'Rehearsals | Softie Project',
+      appTitle: 'Rehearsals',
+      ogTitle: 'Rehearsals | Softie Project',
+    }
+  }
+
+  if (pathname.startsWith('/music')) {
+    return {
+      title: 'Softie Music | Softie Project',
+      appTitle: 'Softie Music',
+      ogTitle: 'Softie Music | Softie Project',
+    }
+  }
+
+  if (pathname.startsWith('/softie-fortune') || pathname.startsWith('/fortune')) {
+    return {
+      title: 'Softie Fortune | Softie Project',
+      appTitle: 'Softie Fortune',
+      ogTitle: 'Softie Fortune | Softie Project',
+    }
+  }
+
+  if (pathname.startsWith('/brain')) {
+    return {
+      title: 'Project Brain | Softie Project',
+      appTitle: 'Project Brain',
+      ogTitle: 'Project Brain | Softie Project',
+    }
+  }
+
+  if (pathname.startsWith('/saju-evaluations')) {
+    return {
+      title: 'Saju QA | Softie Project',
+      appTitle: 'Saju QA',
+      ogTitle: 'Saju QA | Softie Project',
+    }
+  }
+
+  if (pathname === '/') {
+    return {
+      title: DEFAULT_APP_NAME,
+      appTitle: DEFAULT_APP_NAME,
+      ogTitle: DEFAULT_APP_NAME,
+    }
+  }
+
+  return {
+    title: `404 | ${DEFAULT_APP_NAME}`,
+    appTitle: DEFAULT_APP_NAME,
+    ogTitle: DEFAULT_APP_NAME,
+  }
+}
 
 function NotFoundPage() {
   return (
@@ -42,6 +132,20 @@ function DisabledEntryPage({ eyebrow, title, description, buttonLabel, buttonPat
 
 export default function App() {
   const pathname = usePathname()
+
+  useEffect(() => {
+    const metadata = getRouteMetadata(pathname)
+
+    document.title = metadata.title
+    upsertMetaContent('meta[name="application-name"]', { name: 'application-name' }, metadata.appTitle)
+    upsertMetaContent(
+      'meta[name="apple-mobile-web-app-title"]',
+      { name: 'apple-mobile-web-app-title' },
+      metadata.appTitle,
+    )
+    upsertMetaContent('meta[property="og:title"]', { property: 'og:title' }, metadata.ogTitle)
+    upsertMetaContent('meta[property="og:site_name"]', { property: 'og:site_name' }, DEFAULT_APP_NAME)
+  }, [pathname])
 
   if (pathname === '/') {
     return <HomePage />
