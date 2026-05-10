@@ -1,12 +1,14 @@
 import { useEffect } from 'react'
 import { navigate, usePathname } from './lib/router'
 import { SchedulerAuthGate } from './scheduler/SchedulerAuthGate'
+import SchedulerKakaoMemoInjector from './scheduler/SchedulerKakaoMemoInjector'
 import SoftieFortunePage from './saju/SoftieFortunePage'
 import ProjectBrainPage from './pages/ProjectBrainPage'
 import HomePage from './pages/HomePage'
 import BandGoogleCompactPage from './pages/BandGoogleCompactPage'
 import RehearsalCalendarPage from './pages/RehearsalCalendarPage'
 import SpotifyMusicPage from './pages/SpotifyMusicPage'
+import KakaoCallbackPage from './pages/KakaoCallbackPage'
 
 const DEFAULT_APP_NAME = 'Softie Project'
 
@@ -26,6 +28,14 @@ function upsertMetaContent(selector, createAttributes, content) {
 }
 
 function getRouteMetadata(pathname) {
+  if (pathname.startsWith('/kakao/callback')) {
+    return {
+      title: 'Kakao Connect | Softie Project',
+      appTitle: 'Kakao Connect',
+      ogTitle: 'Kakao Connect | Softie Project',
+    }
+  }
+
   if (pathname.startsWith('/scheduler')) {
     return {
       title: 'Work Scheduler | Softie Project',
@@ -151,6 +161,10 @@ export default function App() {
     return <HomePage />
   }
 
+  if (pathname.startsWith('/kakao/callback')) {
+    return <KakaoCallbackPage />
+  }
+
   if (pathname.startsWith('/band')) {
     return <BandGoogleCompactPage />
   }
@@ -160,7 +174,12 @@ export default function App() {
   }
 
   if (pathname.startsWith('/scheduler')) {
-    return <SchedulerAuthGate pathname={pathname} />
+    return (
+      <>
+        <SchedulerAuthGate pathname={pathname} />
+        <SchedulerKakaoMemoInjector pathname={pathname} />
+      </>
+    )
   }
 
   if (pathname.startsWith('/music')) {

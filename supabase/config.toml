@@ -26,6 +26,10 @@ verify_jwt = false
 # Google OAuth state is issued before redirecting to Google, including anon/deviceId flows.
 verify_jwt = false
 
+[functions.kakao-oauth-token]
+# Kakao OAuth token exchange is called from the public OAuth callback without a Supabase Authorization header.
+verify_jwt = false
+
 [functions.spotify-oauth-start]
 # Spotify OAuth state is issued before redirecting to Spotify, including anon/deviceId flows.
 verify_jwt = false
