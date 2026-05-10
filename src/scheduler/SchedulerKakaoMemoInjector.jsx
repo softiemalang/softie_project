@@ -186,9 +186,9 @@ function layoutWorkLogButtons(modal, copyButton, memoButton) {
   }
 
   const summaryCard = findSummaryCard(modal)
-  if (summaryCard) {
+  if (summaryCard && row.previousElementSibling !== summaryCard) {
     summaryCard.insertAdjacentElement('afterend', row)
-  } else if (row.parentNode !== copyButton.parentNode) {
+  } else if (!summaryCard && row.parentNode !== copyButton.parentNode) {
     copyButton.parentNode.insertBefore(row, copyButton)
   }
 
