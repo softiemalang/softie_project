@@ -10,54 +10,53 @@ function normalizeLines(text) {
     .filter(Boolean)
 }
 
+function isDateLine(line) {
+  return /^\d{1,2}\/\d{1,2}$/.test(line)
+}
+
+function isTimeRangeLine(line) {
+  return /^\d{1,2}:\d{2}-\d{1,2}:\d{2}\s*\([^)]+\)$/.test(line)
+}
+
+function extractWorkLogEntries(rawLines) {
+  const entries = []
+
+  for (let index = 0; index < rawLines.length - 1; index += 1) {
+    const current = rawLines[index]
+    const next = rawLines[index + 1]
+
+    if (isDateLine(current) && isTimeRangeLine(next)) {
+      entries.push(current, next)
+      index += 1
+    }
+  }
+
+  return entries
+}
+
+function extractTotalText(rawLines) {
+  const inlineTotal = rawLines.find(line => /^주간 총계\s*\d+(?:\.\d+)?시간$/.test(line))
+  if (inlineTotal) {
+    return inlineTotal.replace(/^주간 총계\s*/, '총 ')
+  }
+
+  const explicitTotal = rawLines.find(line => /^총\s*\d+(?:\.\d+)?시간$/.test(line))
+  if (explicitTotal) return explicitTotal
+
+  const totalValue = [...rawLines].reverse().find(line => /^\d+(?:\.\d+)?시간$/.test(line))
+  return totalValue ? `총 ${totalValue}` : ''
+}
+
 function buildMemoTextFromModal(modal) {
   const rawLines = normalizeLines(modal?.innerText || modal?.textContent || '')
-  const blockedLabels = new Set([
-    '근무 일지',
-    '닫기',
-    '이전 주',
-    '다음 주',
-    '주간 기록 복사',
-    '복사됨',
-    '나에게 보내기',
-    '전송 중...',
-    '보냈어요',
-  ])
+  const entries = extractWorkLogEntries(rawLines)
+  const totalText = extractTotalText(rawLines) || '총 0시간'
 
-  const cleanedLines = rawLines.filter(line => {
-    if (blockedLabels.has(line)) return false
-    if (/^\d+건$/.test(line)) return false
-    return true
-  })
-
-  const weekTitle = rawLines.find(line => /\d+월\s+\d+주차/.test(line)) || '근무 일지'
-  const weekRange = rawLines.find(line => /^\d{1,2}\/\d{1,2}\s*-\s*\d{1,2}\/\d{1,2}$/.test(line))
-  const totalLine = rawLines.find(line => line.startsWith('주간 총계'))
-  const emptyLine = rawLines.find(line => line.includes('근무 기록이 아직 없어요'))
-
-  if (emptyLine) {
-    return [
-      '근무 일지',
-      weekRange ? `${weekTitle} · ${weekRange}` : weekTitle,
-      '',
-      '총 0시간',
-      emptyLine,
-    ].join('\n')
+  if (entries.length === 0) {
+    return ['이번 주 근무 기록이 아직 없어요.', '', totalText].join('\n')
   }
 
-  const bodyLines = cleanedLines
-    .filter(line => line !== weekTitle && line !== weekRange && line !== totalLine)
-    .filter(line => !line.includes('이번 주 근무 기록이 아직 없어요'))
-
-  const lines = [weekTitle]
-  if (weekRange) lines.push(weekRange)
-  lines.push('')
-  lines.push(...bodyLines)
-  if (totalLine) {
-    lines.push('', totalLine.replace(/^주간 총계\s*/, '총 '))
-  }
-
-  return lines.join('\n').slice(0, 900)
+  return [...entries, '', totalText].join('\n').slice(0, 900)
 }
 
 function findWorkLogModal() {
@@ -83,7 +82,7 @@ function showButtonFeedback(button, label) {
 
 async function handleMemoButtonClick(button, modal) {
   const url = `${window.location.origin}/scheduler`
-  const text = [buildMemoTextFromModal(modal), '', `자세히 보기: ${url}`].join('\n')
+  const text = buildMemoTextFromModal(modal)
 
   button.disabled = true
   button.textContent = '전송 중...'
