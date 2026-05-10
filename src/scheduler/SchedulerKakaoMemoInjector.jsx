@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import { sendKakaoMemoText, startKakaoMemoLogin } from '../lib/kakaoMessage'
 
 const BUTTON_ATTR = 'data-softie-kakao-memo-button'
+const COPY_OVERRIDE_ATTR = 'data-softie-worklog-copy-override'
 const ROW_ATTR = 'data-softie-worklog-action-row'
 const DUPLICATE_SEND_COOLDOWN_MS = 3000
 
@@ -70,6 +71,10 @@ function buildMemoTextFromModal(modal) {
   return [...entries, '', totalText].join('\n').slice(0, 900)
 }
 
+function buildCopyTextFromModal(modal) {
+  return ['이번주 근무시간입니다!', '', buildMemoTextFromModal(modal)].join('\n')
+}
+
 function findWorkLogModal() {
   const modals = Array.from(document.querySelectorAll('.scheduler-modal, [role="dialog"], .scheduler-sheet'))
   return modals.find(modal => {
@@ -115,6 +120,37 @@ function temporarilyDisableButton(button, label, durationMs = DUPLICATE_SEND_COO
     button.textContent = original
     delete button.dataset.cooldownUntil
   }, durationMs)
+}
+
+function showCopyFeedback(button) {
+  const original = button.dataset.copyOriginalLabel || '주간 기록 복사'
+  button.textContent = '복사됨'
+
+  window.setTimeout(() => {
+    if (button.isConnected) button.textContent = original
+  }, 1600)
+}
+
+async function handleCopyButtonClick(event, button, modal) {
+  event.preventDefault()
+  event.stopPropagation()
+  event.stopImmediatePropagation()
+
+  try {
+    await navigator.clipboard.writeText(buildCopyTextFromModal(modal))
+    showCopyFeedback(button)
+  } catch (error) {
+    console.error('[SchedulerKakaoMemoInjector] Failed to copy work log.', error)
+    window.alert('근무 시간을 복사하지 못했어요. 잠시 후 다시 시도해 주세요.')
+  }
+}
+
+function setupCopyButtonOverride(copyButton, modal) {
+  if (copyButton.dataset.softieCopyOverride === 'true') return
+
+  copyButton.dataset.softieCopyOverride = 'true'
+  copyButton.dataset.copyOriginalLabel = getText(copyButton) || '주간 기록 복사'
+  copyButton.addEventListener('click', event => handleCopyButtonClick(event, copyButton, modal), true)
 }
 
 async function handleMemoButtonClick(button, modal) {
@@ -212,6 +248,8 @@ function injectMemoButton() {
 
   const copyButton = findCopyButton(modal)
   if (!copyButton) return
+
+  setupCopyButtonOverride(copyButton, modal)
 
   let button = modal.querySelector(`button[${BUTTON_ATTR}]`)
   if (!button) {
