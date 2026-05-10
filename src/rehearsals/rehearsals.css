@@ -284,6 +284,11 @@
   margin: 0;
 }
 
+.rehearsal-card-details .rehearsal-card-description {
+  align-items: flex-start;
+  white-space: pre-wrap;
+}
+
 .rehearsal-status-group {
   margin-top: 0.65rem;
   display: flex;
@@ -375,7 +380,8 @@
   letter-spacing: -0.01em;
 }
 
-.rehearsal-form input {
+.rehearsal-form input,
+.rehearsal-form textarea {
   width: 100%;
   max-width: 100%;
   min-width: 0;
@@ -397,8 +403,19 @@
   transition: all 0.2s ease;
 }
 
+.rehearsal-form textarea {
+  height: auto;
+  min-height: 92px;
+  max-height: none;
+  padding: 0.85rem 0.9rem;
+  line-height: 1.45;
+  resize: vertical;
+}
+
 .rehearsal-form input:focus,
 .rehearsal-form input:focus-visible,
+.rehearsal-form textarea:focus,
+.rehearsal-form textarea:focus-visible,
 .rehearsal-picker-field:focus,
 .rehearsal-picker-field:focus-visible {
   outline: none;
@@ -407,7 +424,8 @@
   background: #fff;
 }
 
-.rehearsal-form input::placeholder {
+.rehearsal-form input::placeholder,
+.rehearsal-form textarea::placeholder {
   color: #b5aaa0;
   font-weight: 400;
   opacity: 1;

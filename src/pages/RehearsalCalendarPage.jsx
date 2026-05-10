@@ -49,6 +49,18 @@ function calcDepartureTime(startTimeStr, travelMinutes) {
   return `${hh}:${mm}`
 }
 
+function buildRehearsalDescription(form) {
+  const travelMinutes = parseInt(form.travel_minutes, 10) || 0
+  return [
+    `장소: ${form.studio_name || '미정'}`,
+    `시간: ${form.start_time}-${form.end_time}`,
+    `이동 시간: ${travelMinutes > 0 ? `${travelMinutes}분` : '없음'}`,
+    '',
+    '메모:',
+    form.description || ''
+  ].join('\n')
+}
+
 function formatDateDisplay(value) {
   if (!value) return '날짜 선택'
   try {
@@ -277,7 +289,7 @@ export default function RehearsalCalendarPage() {
             >
               <div className="rehearsal-date-num">{date.getDate()}</div>
               {dayEvents.slice(0, 2).map((ev, idx) => {
-                const displayTitle = ev.team_name || ev.title
+                const displayTitle = ev.title || ev.team_name || '합주'
                 const color = getColorForText(displayTitle)
                 return (
                   <div key={idx} className="rehearsal-pill" style={{ backgroundColor: color.bg, color: color.text }}>
@@ -376,7 +388,7 @@ export default function RehearsalCalendarPage() {
 }
 
 function RehearsalCard({ event, onEdit, onDelete }) {
-  const displayTitle = event.title
+  const displayTitle = event.title || event.team_name || '합주'
   const start = event.start_time.slice(0, 5)
   const end = event.end_time.slice(0, 5)
   const depTime = calcDepartureTime(event.start_time, event.travel_minutes)
@@ -385,7 +397,6 @@ function RehearsalCard({ event, onEdit, onDelete }) {
     <div className="rehearsal-card">
       <div className="rehearsal-card-head">
         <div>
-          {event.team_name && <div className="rehearsal-card-team">{event.team_name}</div>}
           <h4 className="rehearsal-card-title">{displayTitle}</h4>
         </div>
       </div>
@@ -396,6 +407,9 @@ function RehearsalCard({ event, onEdit, onDelete }) {
         <p><strong>이동 시간:</strong> {event.travel_minutes ? `${event.travel_minutes}분` : '없음'}</p>
         {event.travel_minutes > 0 && (
           <p><strong>출발 권장:</strong> {depTime}</p>
+        )}
+        {event.description && (
+          <p className="rehearsal-card-description"><strong>설명:</strong> {event.description}</p>
         )}
         
         <div className="rehearsal-status-group">
@@ -424,13 +438,13 @@ function RehearsalCard({ event, onEdit, onDelete }) {
 function AddRehearsalModal({ ownerKey, isGoogleReady, initialEvent, onClose, onSuccess }) {
   const isEditing = !!initialEvent
   const [form, setForm] = useState({
-    title: initialEvent?.title || '',
-    team_name: initialEvent?.team_name || '',
+    title: initialEvent?.title || initialEvent?.team_name || '',
     event_date: initialEvent?.event_date || '',
     start_time: initialEvent?.start_time || '',
     end_time: initialEvent?.end_time || '',
     studio_name: initialEvent?.studio_name || '',
-    travel_minutes: initialEvent?.travel_minutes || ''
+    travel_minutes: initialEvent?.travel_minutes || '',
+    description: initialEvent?.description || ''
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
 
@@ -447,12 +461,13 @@ function AddRehearsalModal({ ownerKey, isGoogleReady, initialEvent, onClose, onS
       const payload = {
         owner_key: ownerKey,
         title: form.title || '합주',
-        team_name: form.team_name,
+        team_name: isEditing ? (initialEvent?.team_name || null) : null,
         event_date: form.event_date,
         start_time: form.start_time,
         end_time: form.end_time,
         studio_name: form.studio_name,
-        travel_minutes: parseInt(form.travel_minutes) || 0
+        travel_minutes: parseInt(form.travel_minutes) || 0,
+        description: form.description
       }
 
       let eventResult
@@ -464,8 +479,8 @@ function AddRehearsalModal({ ownerKey, isGoogleReady, initialEvent, onClose, onS
 
       if (isGoogleReady) {
         try {
-          const summary = form.team_name ? `[${form.team_name}] ${form.title}` : form.title
-          const desc = `이동시간 ${form.travel_minutes || 0}분 / 출발 권장 ${calcDepartureTime(form.start_time, form.travel_minutes)}`
+          const summary = form.title
+          const desc = buildRehearsalDescription(form)
           const syncPayload = {
             rehearsalId: eventResult.id,
             summary: summary,
@@ -510,15 +525,9 @@ function AddRehearsalModal({ ownerKey, isGoogleReady, initialEvent, onClose, onS
         </div>
         <div className="rehearsal-sheet-content">
           <form className="rehearsal-form" onSubmit={handleSubmit}>
-            <div className="rehearsal-form-row">
-              <div>
-                <label>팀명 (선택)</label>
-                <input type="text" placeholder="예: 말랑밴드" value={form.team_name} onChange={e => setForm({...form, team_name: e.target.value})} />
-              </div>
-              <div>
-                <label>합주명 *</label>
-                <input type="text" required placeholder="예: 정기 합주" value={form.title} onChange={e => setForm({...form, title: e.target.value})} />
-              </div>
+            <div>
+              <label>합주명 *</label>
+              <input type="text" required placeholder="예: LFO 5월 공연" value={form.title} onChange={e => setForm({...form, title: e.target.value})} />
             </div>
             
             <div>
@@ -572,12 +581,22 @@ function AddRehearsalModal({ ownerKey, isGoogleReady, initialEvent, onClose, onS
 
             <div>
               <label>장소 (선택)</label>
-              <input type="text" placeholder="예: 사당역 합주실 A룸" value={form.studio_name} onChange={e => setForm({...form, studio_name: e.target.value})} />
+              <input type="text" placeholder="예: 이수 문화주실" value={form.studio_name} onChange={e => setForm({...form, studio_name: e.target.value})} />
             </div>
 
             <div>
               <label>이동 시간 (분)</label>
               <input type="number" placeholder="예: 40" value={form.travel_minutes} onChange={e => setForm({...form, travel_minutes: e.target.value})} />
+            </div>
+
+            <div>
+              <label>설명 (선택)</label>
+              <textarea
+                rows={3}
+                placeholder="예: 공연 전 최종 리허설 / 드럼 세팅 먼저"
+                value={form.description}
+                onChange={e => setForm({...form, description: e.target.value})}
+              />
             </div>
 
             <button type="submit" className="rehearsal-submit-btn" disabled={isSubmitting}>
