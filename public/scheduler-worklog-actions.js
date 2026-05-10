@@ -47,7 +47,8 @@
     row.style.alignItems = 'stretch'
     row.style.gap = '0.75rem'
     row.style.width = '100%'
-    row.style.marginTop = '0.85rem'
+    row.style.marginTop = '0.65rem'
+    row.style.marginBottom = '0.55rem'
 
     styleActionButton(copyButton)
     styleActionButton(memoButton)
