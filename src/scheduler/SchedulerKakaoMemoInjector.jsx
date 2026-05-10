@@ -2,6 +2,12 @@ import { useEffect } from 'react'
 import { sendKakaoMemoText, startKakaoMemoLogin } from '../lib/kakaoMessage'
 
 const BUTTON_ATTR = 'data-softie-kakao-memo-button'
+const DUPLICATE_SEND_COOLDOWN_MS = 3000
+
+let lastSentMemo = {
+  text: '',
+  sentAt: 0,
+}
 
 function normalizeLines(text) {
   return String(text || '')
@@ -72,17 +78,48 @@ function findCopyButton(modal) {
   return buttons.find(button => (button.innerText || button.textContent || '').trim().includes('주간 기록 복사')) || null
 }
 
+function getDuplicateCooldownRemaining(text) {
+  if (lastSentMemo.text !== text) return 0
+  return Math.max(0, DUPLICATE_SEND_COOLDOWN_MS - (Date.now() - lastSentMemo.sentAt))
+}
+
+function temporarilyDisableButton(button, label, durationMs = DUPLICATE_SEND_COOLDOWN_MS) {
+  const original = button.dataset.originalLabel || '나에게 보내기'
+  const cooldownUntil = Date.now() + durationMs
+
+  button.dataset.cooldownUntil = String(cooldownUntil)
+  button.disabled = true
+  button.textContent = label
+
+  window.setTimeout(() => {
+    if (!button.isConnected) return
+    if (Number(button.dataset.cooldownUntil || 0) > Date.now()) return
+
+    button.disabled = false
+    button.textContent = original
+    delete button.dataset.cooldownUntil
+  }, durationMs)
+}
+
 function showButtonFeedback(button, label) {
   const original = button.dataset.originalLabel || '나에게 보내기'
   button.textContent = label
   window.setTimeout(() => {
-    if (button.isConnected) button.textContent = original
+    if (button.isConnected && Number(button.dataset.cooldownUntil || 0) <= Date.now()) {
+      button.textContent = original
+    }
   }, 1800)
 }
 
 async function handleMemoButtonClick(button, modal) {
   const url = `${window.location.origin}/scheduler`
   const text = buildMemoTextFromModal(modal)
+  const duplicateCooldownRemaining = getDuplicateCooldownRemaining(text)
+
+  if (duplicateCooldownRemaining > 0) {
+    temporarilyDisableButton(button, '잠시만요', duplicateCooldownRemaining)
+    return
+  }
 
   button.disabled = true
   button.textContent = '전송 중...'
@@ -91,7 +128,11 @@ async function handleMemoButtonClick(button, modal) {
     const result = await sendKakaoMemoText({ text, url })
 
     if (result.ok) {
-      showButtonFeedback(button, '보냈어요')
+      lastSentMemo = {
+        text,
+        sentAt: Date.now(),
+      }
+      temporarilyDisableButton(button, '보냈어요')
       return
     }
 
@@ -112,7 +153,7 @@ async function handleMemoButtonClick(button, modal) {
     console.error('[SchedulerKakaoMemoInjector] Failed to send memo.', error)
     window.alert('카카오톡 나에게 보내기 중 오류가 발생했어요.')
   } finally {
-    if (button.isConnected) {
+    if (button.isConnected && Number(button.dataset.cooldownUntil || 0) <= Date.now()) {
       button.disabled = false
       if (button.textContent === '전송 중...') button.textContent = button.dataset.originalLabel || '나에게 보내기'
     }
