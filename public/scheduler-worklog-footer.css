@@ -1,0 +1,12 @@
+.scheduler-modal [data-softie-worklog-action-row] {
+  margin-top: 0.48rem !important;
+  margin-bottom: 0.05rem !important;
+}
+
+.scheduler-modal *:has(+ [data-softie-worklog-action-row]) {
+  margin-bottom: 0 !important;
+}
+
+.scheduler-modal [data-softie-worklog-action-row] button {
+  min-height: 3.1rem;
+}
