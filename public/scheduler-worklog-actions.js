@@ -14,6 +14,21 @@
     })
   }
 
+  function findSummaryCard(modal) {
+    const candidates = Array.from(modal.querySelectorAll('*'))
+      .filter((element) => {
+        const text = (element.innerText || element.textContent || '').trim()
+        return text.includes('주간 총계') && /\d+(?:\.\d+)?시간/.test(text) && text.length <= 80
+      })
+      .sort((a, b) => {
+        const aText = (a.innerText || a.textContent || '').trim()
+        const bText = (b.innerText || b.textContent || '').trim()
+        return aText.length - bText.length
+      })
+
+    return candidates[0] || null
+  }
+
   function styleActionButton(button) {
     button.style.flex = '1 1 0'
     button.style.width = '100%'
@@ -40,6 +55,12 @@
     if (!row) {
       row = document.createElement('div')
       row.setAttribute(ROW_ATTR, 'true')
+    }
+
+    const summaryCard = findSummaryCard(modal)
+    if (summaryCard && row.previousElementSibling !== summaryCard) {
+      summaryCard.insertAdjacentElement('afterend', row)
+    } else if (!summaryCard && row.parentNode !== copyButton.parentNode) {
       copyButton.parentNode.insertBefore(row, copyButton)
     }
 
@@ -47,7 +68,7 @@
     row.style.alignItems = 'stretch'
     row.style.gap = '0.75rem'
     row.style.width = '100%'
-    row.style.marginTop = '0'
+    row.style.marginTop = '0.75rem'
     row.style.marginBottom = '0'
 
     styleActionButton(copyButton)
