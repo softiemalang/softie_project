@@ -1,6 +1,6 @@
 import { initKakao } from './kakaoShare'
+import { getCurrentSession } from './auth'
 
-const KAKAO_ACCESS_TOKEN_STORAGE_KEY = 'softie:kakao:access-token'
 const KAKAO_PENDING_MEMO_STORAGE_KEY = 'softie:kakao:pending-memo'
 const KAKAO_LOGIN_STATE_STORAGE_KEY = 'softie:kakao:login-state'
 
@@ -51,41 +51,7 @@ function storePendingMemo(memo) {
   }))
 }
 
-function getStoredKakaoAccessToken() {
-  if (typeof window === 'undefined') return ''
-  return window.sessionStorage.getItem(KAKAO_ACCESS_TOKEN_STORAGE_KEY) || ''
-}
-
-function storeKakaoAccessToken(accessToken) {
-  if (typeof window === 'undefined' || !accessToken) return
-  window.sessionStorage.setItem(KAKAO_ACCESS_TOKEN_STORAGE_KEY, accessToken)
-}
-
-function clearKakaoAccessToken() {
-  if (typeof window === 'undefined') return
-  window.sessionStorage.removeItem(KAKAO_ACCESS_TOKEN_STORAGE_KEY)
-}
-
-function getCurrentKakaoAccessToken() {
-  if (typeof window === 'undefined' || !window.Kakao?.Auth) return ''
-  return window.Kakao.Auth.getAccessToken?.() || getStoredKakaoAccessToken()
-}
-
-function applyStoredKakaoAccessToken() {
-  if (!initKakao()) return ''
-
-  const accessToken = getStoredKakaoAccessToken()
-  if (accessToken) {
-    window.Kakao.Auth.setAccessToken(accessToken)
-  }
-  return getCurrentKakaoAccessToken()
-}
-
-async function exchangeKakaoCodeForToken({ code, redirectUri }) {
-  if (!SUPABASE_URL) {
-    throw new Error('Supabase URL이 설정되어 있지 않아요.')
-  }
-
+async function getFunctionHeaders() {
   const headers = {
     'Content-Type': 'application/json',
   }
@@ -94,19 +60,43 @@ async function exchangeKakaoCodeForToken({ code, redirectUri }) {
     headers.apikey = SUPABASE_ANON_KEY
   }
 
-  const response = await fetch(`${SUPABASE_URL}/functions/v1/kakao-oauth-token`, {
+  const session = await getCurrentSession()
+  if (session?.access_token) {
+    headers.Authorization = `Bearer ${session.access_token}`
+  }
+
+  return headers
+}
+
+async function callSupabaseFunction(functionName, body) {
+  if (!SUPABASE_URL) {
+    throw new Error('Supabase URL이 설정되어 있지 않아요.')
+  }
+
+  const response = await fetch(`${SUPABASE_URL}/functions/v1/${functionName}`, {
     method: 'POST',
-    headers,
-    body: JSON.stringify({ code, redirectUri }),
+    headers: await getFunctionHeaders(),
+    body: JSON.stringify(body),
   })
 
   const payload = await response.json().catch(() => null)
 
-  if (!response.ok || !payload?.access_token) {
-    throw new Error(payload?.error || '카카오 토큰 발급에 실패했어요.')
+  if (!response.ok) {
+    const error = new Error(payload?.error || '카카오 요청에 실패했어요.')
+    error.status = response.status
+    error.payload = payload
+    throw error
   }
 
   return payload
+}
+
+async function exchangeKakaoCodeForToken({ code, redirectUri }) {
+  return callSupabaseFunction('kakao-oauth-token', { code, redirectUri })
+}
+
+async function sendKakaoMemoThroughBackend({ text, url }) {
+  return callSupabaseFunction('send-kakao-memo', { text, url })
 }
 
 export function startKakaoMemoLogin({ returnPath = '/scheduler', pendingMemo = null } = {}) {
@@ -166,14 +156,7 @@ export async function completeKakaoMemoLoginFromCallback() {
   }
 
   const redirectUri = getKakaoRedirectUri()
-  const tokenPayload = await exchangeKakaoCodeForToken({ code, redirectUri })
-
-  if (!initKakao()) {
-    return { ok: false, reason: 'sdk_not_ready', returnPath }
-  }
-
-  window.Kakao.Auth.setAccessToken(tokenPayload.access_token)
-  storeKakaoAccessToken(tokenPayload.access_token)
+  await exchangeKakaoCodeForToken({ code, redirectUri })
   window.sessionStorage.removeItem(KAKAO_LOGIN_STATE_STORAGE_KEY)
 
   const pendingMemo = readPendingMemo()
@@ -196,37 +179,18 @@ export async function completeKakaoMemoLoginFromCallback() {
 
 export async function sendKakaoMemoText({ text, url }) {
   if (!text) return { ok: false, reason: 'empty_text' }
-  if (!initKakao()) return { ok: false, reason: 'sdk_not_ready' }
-
-  const accessToken = applyStoredKakaoAccessToken()
-  if (!accessToken) {
-    return { ok: false, reason: 'needs_login' }
-  }
-
-  const targetUrl = url || `${window.location.origin}/scheduler`
 
   try {
-    await window.Kakao.API.request({
-      url: '/v2/api/talk/memo/default/send',
-      data: {
-        template_object: {
-          object_type: 'text',
-          text,
-          link: {
-            web_url: targetUrl,
-            mobile_web_url: targetUrl,
-          },
-        },
-      },
+    await sendKakaoMemoThroughBackend({
+      text,
+      url: url || `${window.location.origin}/scheduler`,
     })
 
     return { ok: true }
   } catch (error) {
     console.error('[kakaoMessage] Failed to send memo.', error)
 
-    const status = error?.status || error?.code
-    if (status === -401 || status === 401) {
-      clearKakaoAccessToken()
+    if (error?.status === 401 || error?.payload?.error === 'needs_kakao_login') {
       return { ok: false, reason: 'needs_login', error }
     }
 
