@@ -2,11 +2,16 @@ import { useEffect } from 'react'
 import { sendKakaoMemoText, startKakaoMemoLogin } from '../lib/kakaoMessage'
 
 const BUTTON_ATTR = 'data-softie-kakao-memo-button'
+const ROW_ATTR = 'data-softie-worklog-action-row'
 const DUPLICATE_SEND_COOLDOWN_MS = 3000
 
 let lastSentMemo = {
   text: '',
   sentAt: 0,
+}
+
+function getText(element) {
+  return (element?.innerText || element?.textContent || '').trim()
 }
 
 function normalizeLines(text) {
@@ -68,14 +73,25 @@ function buildMemoTextFromModal(modal) {
 function findWorkLogModal() {
   const modals = Array.from(document.querySelectorAll('.scheduler-modal, [role="dialog"], .scheduler-sheet'))
   return modals.find(modal => {
-    const text = modal.innerText || modal.textContent || ''
+    const text = getText(modal)
     return text.includes('근무 일지') && text.includes('주간')
   }) || null
 }
 
 function findCopyButton(modal) {
   const buttons = Array.from(modal.querySelectorAll('button'))
-  return buttons.find(button => (button.innerText || button.textContent || '').trim().includes('주간 기록 복사')) || null
+  return buttons.find(button => getText(button).includes('주간 기록 복사')) || null
+}
+
+function findSummaryCard(modal) {
+  const candidates = Array.from(modal.querySelectorAll('*'))
+    .filter(element => {
+      const text = getText(element)
+      return text.includes('주간 총계') && /\d+(?:\.\d+)?시간/.test(text) && text.length <= 80
+    })
+    .sort((a, b) => getText(a).length - getText(b).length)
+
+  return candidates[0] || null
 }
 
 function getDuplicateCooldownRemaining(text) {
@@ -99,16 +115,6 @@ function temporarilyDisableButton(button, label, durationMs = DUPLICATE_SEND_COO
     button.textContent = original
     delete button.dataset.cooldownUntil
   }, durationMs)
-}
-
-function showButtonFeedback(button, label) {
-  const original = button.dataset.originalLabel || '나에게 보내기'
-  button.textContent = label
-  window.setTimeout(() => {
-    if (button.isConnected && Number(button.dataset.cooldownUntil || 0) <= Date.now()) {
-      button.textContent = original
-    }
-  }, 1800)
 }
 
 async function handleMemoButtonClick(button, modal) {
@@ -160,40 +166,80 @@ async function handleMemoButtonClick(button, modal) {
   }
 }
 
+function styleActionButton(button) {
+  button.style.flex = '1 1 0'
+  button.style.width = '100%'
+  button.style.minWidth = '0'
+  button.style.margin = '0'
+  button.style.display = 'inline-flex'
+  button.style.alignItems = 'center'
+  button.style.justifyContent = 'center'
+  button.style.whiteSpace = 'nowrap'
+  button.style.boxSizing = 'border-box'
+}
+
+function layoutWorkLogButtons(modal, copyButton, memoButton) {
+  let row = modal.querySelector(`div[${ROW_ATTR}]`)
+  if (!row) {
+    row = document.createElement('div')
+    row.setAttribute(ROW_ATTR, 'true')
+  }
+
+  const summaryCard = findSummaryCard(modal)
+  if (summaryCard) {
+    summaryCard.insertAdjacentElement('afterend', row)
+  } else if (row.parentNode !== copyButton.parentNode) {
+    copyButton.parentNode.insertBefore(row, copyButton)
+  }
+
+  row.style.display = 'flex'
+  row.style.alignItems = 'stretch'
+  row.style.gap = '0.75rem'
+  row.style.width = '100%'
+  row.style.marginTop = '0.75rem'
+  row.style.marginBottom = '0'
+
+  styleActionButton(copyButton)
+  styleActionButton(memoButton)
+
+  if (copyButton.parentNode !== row) row.appendChild(copyButton)
+  if (memoButton.parentNode !== row) row.appendChild(memoButton)
+}
+
 function injectMemoButton() {
   const modal = findWorkLogModal()
-  if (!modal || modal.querySelector(`[${BUTTON_ATTR}]`)) return
+  if (!modal) return
 
   const copyButton = findCopyButton(modal)
   if (!copyButton) return
 
-  const button = document.createElement('button')
-  button.type = 'button'
-  button.setAttribute(BUTTON_ATTR, 'true')
-  button.dataset.originalLabel = '나에게 보내기'
-  button.textContent = '나에게 보내기'
-  button.className = copyButton.className || 'soft-button'
-  button.style.marginTop = '0.55rem'
-  button.addEventListener('click', () => handleMemoButtonClick(button, modal))
+  let button = modal.querySelector(`button[${BUTTON_ATTR}]`)
+  if (!button) {
+    button = document.createElement('button')
+    button.type = 'button'
+    button.setAttribute(BUTTON_ATTR, 'true')
+    button.dataset.originalLabel = '나에게 보내기'
+    button.textContent = '나에게 보내기'
+    button.className = copyButton.className || 'soft-button'
+    button.addEventListener('click', () => handleMemoButtonClick(button, modal))
+  }
 
-  copyButton.insertAdjacentElement('afterend', button)
+  layoutWorkLogButtons(modal, copyButton, button)
 }
 
 function hideWorkLogSummaryShareButton() {
   const buttons = Array.from(document.querySelectorAll('button'))
 
   buttons.forEach(button => {
-    const buttonText = (button.innerText || button.textContent || '').trim()
+    const buttonText = getText(button)
     if (buttonText !== '공유') return
 
     const card = button.closest('.scheduler-panel, .scheduler-setting-card')
     if (!card) return
 
-    const cardText = card.innerText || card.textContent || ''
+    const cardText = getText(card)
     const hasWorkLogTitle = cardText.includes('근무 일지')
-    const hasViewButton = Array.from(card.querySelectorAll('button')).some(candidate => (
-      (candidate.innerText || candidate.textContent || '').trim() === '보기'
-    ))
+    const hasViewButton = Array.from(card.querySelectorAll('button')).some(candidate => getText(candidate) === '보기')
 
     if (hasWorkLogTitle && hasViewButton) {
       button.style.display = 'none'
