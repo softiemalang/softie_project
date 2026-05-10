@@ -179,13 +179,42 @@ function injectMemoButton() {
   copyButton.insertAdjacentElement('afterend', button)
 }
 
+function hideWorkLogSummaryShareButton() {
+  const buttons = Array.from(document.querySelectorAll('button'))
+
+  buttons.forEach(button => {
+    const buttonText = (button.innerText || button.textContent || '').trim()
+    if (buttonText !== '공유') return
+
+    const card = button.closest('.scheduler-panel, .scheduler-setting-card')
+    if (!card) return
+
+    const cardText = card.innerText || card.textContent || ''
+    const hasWorkLogTitle = cardText.includes('근무 일지')
+    const hasViewButton = Array.from(card.querySelectorAll('button')).some(candidate => (
+      (candidate.innerText || candidate.textContent || '').trim() === '보기'
+    ))
+
+    if (hasWorkLogTitle && hasViewButton) {
+      button.style.display = 'none'
+      button.setAttribute('aria-hidden', 'true')
+      button.tabIndex = -1
+    }
+  })
+}
+
+function applySchedulerDomEnhancements() {
+  injectMemoButton()
+  hideWorkLogSummaryShareButton()
+}
+
 export default function SchedulerKakaoMemoInjector({ pathname }) {
   useEffect(() => {
     if (!pathname?.startsWith('/scheduler')) return undefined
 
-    injectMemoButton()
+    applySchedulerDomEnhancements()
 
-    const observer = new MutationObserver(() => injectMemoButton())
+    const observer = new MutationObserver(() => applySchedulerDomEnhancements())
     observer.observe(document.body, {
       childList: true,
       subtree: true,
