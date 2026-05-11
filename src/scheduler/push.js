@@ -152,7 +152,7 @@ async function storePushSubscription(subscription, deviceId = null) {
   return data
 }
 
-export async function subscribeSchedulerPush(deviceId = null) {
+export async function subscribeSchedulerPush(deviceId = null, options = {}) {
   if (!isPushSupported()) {
     throw new Error(getSchedulerPushSupportMessage())
   }
@@ -169,6 +169,11 @@ export async function subscribeSchedulerPush(deviceId = null) {
 
   const registration = await getServiceWorkerRegistration()
   let subscription = await registration.pushManager.getSubscription()
+
+  if (subscription && options.forceRefresh === true) {
+    await subscription.unsubscribe()
+    subscription = null
+  }
 
   if (!subscription) {
     subscription = await registration.pushManager.subscribe({

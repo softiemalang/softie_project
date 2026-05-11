@@ -738,9 +738,10 @@ function TodaySchedulerPage({ effectiveOwnerKey }) {
     }
   })()
 
-  async function handleEnablePush() {
+  async function handleEnablePush(options = {}) {
+    const { forceRefresh = false } = options
     setIsPushBusy(true)
-    setPushStatus('알림 연결 중...')
+    setPushStatus(forceRefresh ? '브라우저 알림을 다시 연결하는 중...' : '알림 연결 중...')
 
     const timeoutPromise = new Promise((_, reject) =>
       setTimeout(() => reject(new Error('알림 연결 시간이 초과됐어요. 앱을 완전히 종료한 뒤 다시 열어 주세요.')), 15000)
@@ -750,7 +751,7 @@ function TodaySchedulerPage({ effectiveOwnerKey }) {
       const deviceId = getOrCreatePushDeviceId()
 
       await Promise.race([
-        subscribeSchedulerPush(deviceId),
+        subscribeSchedulerPush(deviceId, { forceRefresh }),
         timeoutPromise
       ])
 
@@ -872,7 +873,7 @@ function TodaySchedulerPage({ effectiveOwnerKey }) {
                 <button
                   type="button"
                   className="scheduler-modal-btn"
-                  onClick={handleEnablePush}
+                  onClick={() => handleEnablePush({ forceRefresh: true })}
                   disabled={isPushBusy}
                 >
                   {normalizedFilters.workTimeEnabled ? '브라우저 다시 연결' : '브라우저 연결 확인'}
@@ -883,7 +884,7 @@ function TodaySchedulerPage({ effectiveOwnerKey }) {
                 <button
                   type="button"
                   className="scheduler-modal-btn"
-                  onClick={handleEnablePush}
+                  onClick={() => handleEnablePush()}
                   disabled={isPushBusy || !pushState.supported || pushState.permission === 'denied'}
                 >
                   알림 연결
