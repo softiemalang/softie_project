@@ -222,6 +222,13 @@ export default function RehearsalCalendarPage() {
   }
 
   function handleReconnectKakao() {
+    if (isKakaoConnected) {
+      const shouldReconnect = window.confirm(
+        '카카오를 다시 연결할까요?\n\n톡캘린더 권한을 다시 받기 위해 카카오 인증 화면으로 이동합니다.'
+      )
+      if (!shouldReconnect) return
+    }
+
     const result = startKakaoMemoLogin({ returnPath: '/rehearsals' })
     if (!result.ok) {
       alert('카카오 연결 설정이 아직 준비되지 않았어요.')
