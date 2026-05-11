@@ -322,6 +322,7 @@
   display: flex;
   justify-content: flex-end;
   align-items: center;
+  flex-wrap: wrap;
   gap: 0.5rem;
   margin-top: 0.85rem;
 }
@@ -338,6 +339,21 @@
   cursor: pointer;
   transition: all 0.2s ease;
   border: 1px solid transparent;
+}
+
+.rehearsal-action-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.rehearsal-action-btn.kakao {
+  background: #e7f3ef;
+  color: #115e59;
+  border-color: rgba(31, 111, 95, 0.18);
+}
+
+.rehearsal-action-btn.kakao:active {
+  background: #d5ebe5;
 }
 
 .rehearsal-action-btn.edit {

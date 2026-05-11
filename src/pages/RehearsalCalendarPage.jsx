@@ -16,6 +16,7 @@ import {
   updateRehearsalEvent,
   deleteRehearsalEvent,
   triggerRehearsalDriveBackup,
+  createKakaoCalendarEvent,
   linkLocalRehearsalEventsToUser
 } from '../rehearsals/api'
 import '../rehearsals/rehearsals.css'
@@ -142,6 +143,7 @@ export default function RehearsalCalendarPage() {
   const [editingEvent, setEditingEvent] = useState(null)
   const [isGoogleReady, setIsGoogleReady] = useState(false)
   const [isBackingUp, setIsBackingUp] = useState(false)
+  const [pendingKakaoEventId, setPendingKakaoEventId] = useState('')
   const [effectiveOwnerKey, setEffectiveOwnerKey] = useState(null)
   const localOwnerKeyRef = useRef(null)
   const ownerChangeSeqRef = useRef(0)
@@ -252,6 +254,43 @@ export default function RehearsalCalendarPage() {
     }
   }
 
+  async function handleAddKakaoCalendarEvent(event) {
+    if (!event?.id || pendingKakaoEventId) return
+
+    setPendingKakaoEventId(event.id)
+    try {
+      await createKakaoCalendarEvent({
+        rehearsalId: event.id,
+        ownerKey: effectiveOwnerKey,
+        title: event.title || event.team_name || '합주',
+        eventDate: event.event_date,
+        startTime: event.start_time,
+        endTime: event.end_time,
+        location: event.studio_name || '',
+        travelMinutes: event.travel_minutes || 0,
+        description: event.description || ''
+      })
+      await loadEvents()
+    } catch (e) {
+      console.error('Failed to add kakao calendar event', e)
+      const msg = e?.message || '톡캘린더 추가에 실패했어요.'
+      const needsReconnect =
+        msg.includes('needs_kakao_login') ||
+        msg.includes('authorization') ||
+        msg.includes('kakao_token') ||
+        msg.includes('scope') ||
+        msg.includes('permission') ||
+        msg.includes('403') ||
+        msg.includes('401')
+
+      alert(needsReconnect
+        ? `카카오를 다시 연결한 뒤 시도해 주세요. (${msg})`
+        : `톡캘린더 추가 실패: ${msg}`)
+    } finally {
+      setPendingKakaoEventId('')
+    }
+  }
+
   const days = useMemo(() => getDaysInMonth(currentDate.getFullYear(), currentDate.getMonth()), [currentDate])
   
   const eventsByDate = useMemo(() => {
@@ -357,6 +396,8 @@ export default function RehearsalCalendarPage() {
                   <RehearsalCard 
                     key={ev.id} 
                     event={ev} 
+                    isAddingKakao={pendingKakaoEventId === ev.id}
+                    onAddKakaoCalendar={() => handleAddKakaoCalendarEvent(ev)}
                     onEdit={() => {
                       setEditingEvent(ev)
                       setIsAddModalOpen(true)
@@ -409,11 +450,12 @@ export default function RehearsalCalendarPage() {
   )
 }
 
-function RehearsalCard({ event, onEdit, onDelete }) {
+function RehearsalCard({ event, isAddingKakao, onAddKakaoCalendar, onEdit, onDelete }) {
   const displayTitle = event.title || event.team_name || '합주'
   const start = event.start_time.slice(0, 5)
   const end = event.end_time.slice(0, 5)
   const depTime = calcDepartureTime(event.start_time, event.travel_minutes)
+  const isKakaoSynced = event.kakao_calendar_sync_status === 'synced' || Boolean(event.kakao_calendar_event_id)
   
   return (
     <div className="rehearsal-card">
@@ -436,9 +478,15 @@ function RehearsalCard({ event, onEdit, onDelete }) {
         
         <div className="rehearsal-status-group">
           {event.google_calendar_sync_status === 'synced' ? (
-            <span className="rehearsal-status-badge success">캘린더 연동됨</span>
+            <span className="rehearsal-status-badge success">Google 연동됨</span>
           ) : (
-            <span className="rehearsal-status-badge muted">캘린더 미연동</span>
+            <span className="rehearsal-status-badge muted">Google 미연동</span>
+          )}
+
+          {isKakaoSynced ? (
+            <span className="rehearsal-status-badge success">톡캘린더 연동됨</span>
+          ) : (
+            <span className="rehearsal-status-badge muted">톡캘린더 미연동</span>
           )}
           
           {event.drive_backup_status === 'success' ? (
@@ -450,6 +498,15 @@ function RehearsalCard({ event, onEdit, onDelete }) {
       </div>
 
       <div className="rehearsal-card-actions">
+        {!isKakaoSynced && (
+          <button
+            className="rehearsal-action-btn kakao"
+            onClick={onAddKakaoCalendar}
+            disabled={isAddingKakao}
+          >
+            {isAddingKakao ? '추가 중...' : '톡캘린더 추가'}
+          </button>
+        )}
         <button className="rehearsal-action-btn edit" onClick={onEdit}>편집</button>
         <button className="rehearsal-action-btn delete" onClick={onDelete}>삭제</button>
       </div>
