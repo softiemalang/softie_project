@@ -30,6 +30,11 @@
   gap: 0.4rem;
 }
 
+.rehearsal-kakao-connect {
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
 .rehearsal-month-nav {
   display: flex;
   align-items: center;

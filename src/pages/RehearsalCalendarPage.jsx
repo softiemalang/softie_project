@@ -2,6 +2,7 @@ import React, { useState, useEffect, useMemo, useRef } from 'react'
 import { navigate } from '../lib/router'
 import { getOrCreatePushDeviceId } from '../lib/device'
 import { getCurrentSession, subscribeAuthChanges } from '../lib/auth'
+import { startKakaoMemoLogin } from '../lib/kakaoMessage'
 import {
   connectGoogleCalendar,
   isGoogleConnected,
@@ -219,6 +220,13 @@ export default function RehearsalCalendarPage() {
     setCurrentDate(new Date())
   }
 
+  function handleReconnectKakao() {
+    const result = startKakaoMemoLogin({ returnPath: '/rehearsals' })
+    if (!result.ok) {
+      alert('카카오 연결 설정이 아직 준비되지 않았어요.')
+    }
+  }
+
   async function handleBackup() {
     if (!effectiveOwnerKey) return
 
@@ -309,7 +317,9 @@ export default function RehearsalCalendarPage() {
   return (
     <div className="app-shell rehearsal-shell">
       <header className="rehearsal-header">
-        <h1 className="rehearsal-title">합주 일정</h1>
+        <button type="button" className="soft-button small rehearsal-kakao-connect" onClick={handleReconnectKakao}>
+          카카오 다시 연결
+        </button>
         <div className="rehearsal-actions">
           <button type="button" className="soft-button small" onClick={handleBackup} disabled={isBackingUp || !effectiveOwnerKey}>
             {isBackingUp ? '백업 중...' : '이번 달 Drive 백업'}
