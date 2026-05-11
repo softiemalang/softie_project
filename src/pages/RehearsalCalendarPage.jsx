@@ -18,6 +18,8 @@ import {
   deleteRehearsalEvent,
   triggerRehearsalDriveBackup,
   createKakaoCalendarEvent,
+  updateKakaoCalendarEvent,
+  deleteKakaoCalendarEvent,
   linkLocalRehearsalEventsToUser
 } from '../rehearsals/api'
 import '../rehearsals/rehearsals.css'
@@ -438,7 +440,23 @@ export default function RehearsalCalendarPage() {
                             // If it's a real error (like 401/403), we might want to warn.
                           }
                         }
+                        let kakaoDeleteFailed = false
+                        if (ev.kakao_calendar_event_id) {
+                          try {
+                            await deleteKakaoCalendarEvent({
+                              rehearsalId: ev.id,
+                              ownerKey: effectiveOwnerKey,
+                              kakaoCalendarEventId: ev.kakao_calendar_event_id
+                            })
+                          } catch (kakaoErr) {
+                            console.error('Failed to sync kakao calendar deletion', kakaoErr)
+                            kakaoDeleteFailed = true
+                          }
+                        }
                         await deleteRehearsalEvent(ev.id)
+                        if (kakaoDeleteFailed) {
+                          alert('리허설 일정은 삭제됐지만 톡캘린더 일정 삭제에 실패했을 수 있어요.')
+                        }
                         loadEvents()
                         // if last event on this date is deleted, close the sheet
                         if (selectedEvents.length === 1) {
@@ -651,6 +669,26 @@ function AddRehearsalModal({ ownerKey, isGoogleReady, initialEvent, onClose, onK
         } catch (kakaoErr) {
           console.error('Failed to auto sync kakao calendar event', kakaoErr)
           alert('일정은 저장됐지만 톡캘린더 자동 추가에 실패했어요. 카드에서 다시 추가할 수 있어요.')
+        }
+      } else if (initialEvent?.kakao_calendar_event_id) {
+        try {
+          await updateKakaoCalendarEvent({
+            rehearsalId: eventResult.id,
+            ownerKey,
+            kakaoCalendarEventId: initialEvent.kakao_calendar_event_id,
+            title: eventResult.title || eventResult.team_name || '합주',
+            eventDate: eventResult.event_date,
+            startTime: eventResult.start_time,
+            endTime: eventResult.end_time,
+            location: eventResult.studio_name || '',
+            travelMinutes: eventResult.travel_minutes || 0,
+            description: eventResult.description || ''
+          })
+          markKakaoCalendarConnected()
+          onKakaoConnected?.()
+        } catch (kakaoErr) {
+          console.error('Failed to sync kakao calendar event update', kakaoErr)
+          alert('일정은 수정됐지만 톡캘린더 동기화에 실패했어요.')
         }
       }
       
