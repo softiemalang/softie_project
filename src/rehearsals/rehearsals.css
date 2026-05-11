@@ -614,23 +614,42 @@ button.rehearsal-picker-field {
 
 .rehearsal-time-period-toggle button,
 .rehearsal-time-hour-grid button {
+  appearance: none;
+  -webkit-appearance: none;
   border: 0;
   border-radius: 13px;
+  box-shadow: none;
+  box-sizing: border-box;
   min-height: 44px;
   background: transparent;
   color: #6b5d50;
   font: inherit;
   font-size: 0.94rem;
   font-weight: 700;
+  line-height: 1;
+  outline: none;
+  overflow: hidden;
+  position: relative;
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
+}
+
+.rehearsal-time-period-toggle button:focus,
+.rehearsal-time-period-toggle button:focus-visible,
+.rehearsal-time-period-toggle button:active,
+.rehearsal-time-hour-grid button:focus,
+.rehearsal-time-hour-grid button:focus-visible,
+.rehearsal-time-hour-grid button:active {
+  outline: none;
+  box-shadow: none;
 }
 
 .rehearsal-time-period-toggle button.is-selected,
 .rehearsal-time-hour-grid button.is-selected {
   background: #1f6f5f;
+  border-color: #1f6f5f;
   color: #fff;
-  box-shadow: 0 8px 18px rgba(31, 111, 95, 0.18);
+  box-shadow: none;
 }
 
 .rehearsal-time-hour-grid {
