@@ -29,6 +29,8 @@ const COLORS = [
   { bg: '#ffedd5', text: '#9a3412' }  // soft brown
 ]
 
+const HOUR_OPTIONS = Array.from({ length: 12 }, (_, index) => index + 1)
+
 function getColorForText(text) {
   if (!text) return COLORS[0]
   let hash = 0
@@ -83,6 +85,26 @@ function formatTimeDisplay(value) {
   } catch {
     return value
   }
+}
+
+function parseTimePickerValue(value) {
+  const [hStr = '9'] = String(value || '09:00').split(':')
+  const hour24 = Number.parseInt(hStr, 10)
+  const safeHour = Number.isFinite(hour24) ? hour24 : 9
+  return {
+    period: safeHour >= 12 ? 'pm' : 'am',
+    hour: safeHour % 12 || 12
+  }
+}
+
+function buildHourValue(period, hour) {
+  let hour24 = Number(hour)
+  if (period === 'am') {
+    hour24 = hour24 === 12 ? 0 : hour24
+  } else {
+    hour24 = hour24 === 12 ? 12 : hour24 + 12
+  }
+  return `${String(hour24).padStart(2, '0')}:00`
 }
 
 function getDaysInMonth(year, month) {
@@ -447,6 +469,29 @@ function AddRehearsalModal({ ownerKey, isGoogleReady, initialEvent, onClose, onS
     description: initialEvent?.description || ''
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const [timePicker, setTimePicker] = useState(null)
+
+  function openTimePicker(field) {
+    const parsed = parseTimePickerValue(form[field])
+    setTimePicker({
+      field,
+      period: parsed.period,
+      hour: parsed.hour
+    })
+  }
+
+  function updateTimePicker(patch) {
+    setTimePicker(current => current ? { ...current, ...patch } : current)
+  }
+
+  function applyTimePicker() {
+    if (!timePicker) return
+    setForm(current => ({
+      ...current,
+      [timePicker.field]: buildHourValue(timePicker.period, timePicker.hour)
+    }))
+    setTimePicker(null)
+  }
 
   async function handleSubmit(e) {
     e.preventDefault()
@@ -549,33 +594,23 @@ function AddRehearsalModal({ ownerKey, isGoogleReady, initialEvent, onClose, onS
             <div className="rehearsal-form-row">
               <div>
                 <label>시작 시간 *</label>
-                <div className="rehearsal-native-picker-shell">
-                  <div className={`rehearsal-picker-field ${!form.start_time ? 'is-empty' : ''}`}>
-                    {formatTimeDisplay(form.start_time)}
-                  </div>
-                  <input
-                    className="rehearsal-native-picker-input"
-                    type="time"
-                    required
-                    value={form.start_time}
-                    onChange={e => setForm({...form, start_time: e.target.value})}
-                  />
-                </div>
+                <button
+                  type="button"
+                  className={`rehearsal-picker-field ${!form.start_time ? 'is-empty' : ''}`}
+                  onClick={() => openTimePicker('start_time')}
+                >
+                  {formatTimeDisplay(form.start_time)}
+                </button>
               </div>
               <div>
                 <label>종료 시간 *</label>
-                <div className="rehearsal-native-picker-shell">
-                  <div className={`rehearsal-picker-field ${!form.end_time ? 'is-empty' : ''}`}>
-                    {formatTimeDisplay(form.end_time)}
-                  </div>
-                  <input
-                    className="rehearsal-native-picker-input"
-                    type="time"
-                    required
-                    value={form.end_time}
-                    onChange={e => setForm({...form, end_time: e.target.value})}
-                  />
-                </div>
+                <button
+                  type="button"
+                  className={`rehearsal-picker-field ${!form.end_time ? 'is-empty' : ''}`}
+                  onClick={() => openTimePicker('end_time')}
+                >
+                  {formatTimeDisplay(form.end_time)}
+                </button>
               </div>
             </div>
 
@@ -604,7 +639,66 @@ function AddRehearsalModal({ ownerKey, isGoogleReady, initialEvent, onClose, onS
             </button>
           </form>
         </div>
+
+        {timePicker && (
+          <TimePickerSheet
+            title={timePicker.field === 'start_time' ? '시작 시간 선택' : '종료 시간 선택'}
+            period={timePicker.period}
+            hour={timePicker.hour}
+            onChange={updateTimePicker}
+            onApply={applyTimePicker}
+            onClose={() => setTimePicker(null)}
+          />
+        )}
       </div>
     </>
+  )
+}
+
+function TimePickerSheet({ title, period, hour, onChange, onApply, onClose }) {
+  return (
+    <div className="rehearsal-time-picker-backdrop" onClick={onClose}>
+      <div className="rehearsal-time-picker-sheet" onClick={event => event.stopPropagation()}>
+        <div className="rehearsal-sheet-header">
+          <h3 className="rehearsal-sheet-title">{title}</h3>
+          <button type="button" className="scheduler-modal-close" onClick={onClose}>닫기</button>
+        </div>
+
+        <div className="rehearsal-time-period-toggle" role="group" aria-label="오전 오후 선택">
+          <button
+            type="button"
+            className={period === 'am' ? 'is-selected' : ''}
+            onClick={() => onChange({ period: 'am' })}
+          >
+            오전
+          </button>
+          <button
+            type="button"
+            className={period === 'pm' ? 'is-selected' : ''}
+            onClick={() => onChange({ period: 'pm' })}
+          >
+            오후
+          </button>
+        </div>
+
+        <div className="rehearsal-time-hour-grid" aria-label="시간 선택">
+          {HOUR_OPTIONS.map(option => (
+            <button
+              key={option}
+              type="button"
+              className={hour === option ? 'is-selected' : ''}
+              onClick={() => onChange({ hour: option })}
+            >
+              {option}시
+            </button>
+          ))}
+        </div>
+
+        <div className="rehearsal-time-picker-actions">
+          <button type="button" className="scheduler-modal-close" onClick={onClose}>취소</button>
+          <button type="button" className="rehearsal-time-apply-btn" onClick={onApply}>적용</button>
+        </div>
+      </div>
+    </div>
   )
 }

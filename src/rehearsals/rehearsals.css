@@ -453,6 +453,10 @@
   -webkit-tap-highlight-color: transparent;
 }
 
+button.rehearsal-picker-field {
+  border: 1px solid #e7ddd0;
+}
+
 .rehearsal-picker-field.is-empty {
   color: #b5aaa0;
   font-weight: 400;
@@ -572,6 +576,97 @@
 
 .rehearsal-submit-btn:disabled {
   opacity: 0.5;
+}
+
+.rehearsal-time-picker-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 120;
+  background: rgba(30, 24, 18, 0.22);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding: 1rem;
+  box-sizing: border-box;
+}
+
+.rehearsal-time-picker-sheet {
+  width: min(420px, 100%);
+  max-height: min(78vh, 620px);
+  overflow-y: auto;
+  background: #fffaf3;
+  border: 1px solid rgba(190, 176, 160, 0.36);
+  border-radius: 24px 24px 18px 18px;
+  box-shadow: 0 22px 60px rgba(44, 33, 20, 0.22);
+  padding: 1.05rem;
+  box-sizing: border-box;
+}
+
+.rehearsal-time-period-toggle {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.45rem;
+  margin: 0.85rem 0;
+  padding: 0.25rem;
+  border-radius: 16px;
+  background: #f1ebe2;
+}
+
+.rehearsal-time-period-toggle button,
+.rehearsal-time-hour-grid button {
+  border: 0;
+  border-radius: 13px;
+  min-height: 44px;
+  background: transparent;
+  color: #6b5d50;
+  font: inherit;
+  font-size: 0.94rem;
+  font-weight: 700;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.rehearsal-time-period-toggle button.is-selected,
+.rehearsal-time-hour-grid button.is-selected {
+  background: #1f6f5f;
+  color: #fff;
+  box-shadow: 0 8px 18px rgba(31, 111, 95, 0.18);
+}
+
+.rehearsal-time-hour-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.45rem;
+  margin-top: 0.65rem;
+}
+
+.rehearsal-time-hour-grid button {
+  background: #fff;
+  border: 1px solid #eadfce;
+}
+
+.rehearsal-time-picker-actions {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.55rem;
+  margin-top: 1rem;
+}
+
+.rehearsal-time-picker-actions .scheduler-modal-close,
+.rehearsal-time-apply-btn {
+  width: 100%;
+  min-height: 48px;
+  justify-content: center;
+}
+
+.rehearsal-time-apply-btn {
+  border: 0;
+  border-radius: 999px;
+  background: #1f6f5f;
+  color: #fff;
+  font: inherit;
+  font-weight: 800;
+  cursor: pointer;
 }
 
 .rehearsal-add-button {
