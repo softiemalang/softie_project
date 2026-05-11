@@ -6,9 +6,6 @@ import { isKakaoCalendarConnected, markKakaoCalendarConnected, startKakaoMemoLog
 import {
   connectGoogleCalendar,
   isGoogleConnected,
-  createGoogleCalendarEvent,
-  updateGoogleCalendarEvent,
-  deleteGoogleCalendarEvent,
   disconnectGoogleCalendar
 } from '../scheduler/googleApi'
 import {
@@ -53,18 +50,6 @@ function calcDepartureTime(startTimeStr, travelMinutes) {
   const hh = String(d.getHours()).padStart(2, '0')
   const mm = String(d.getMinutes()).padStart(2, '0')
   return `${hh}:${mm}`
-}
-
-function buildRehearsalDescription(form) {
-  const travelMinutes = parseInt(form.travel_minutes, 10) || 0
-  return [
-    `장소: ${form.studio_name || '미정'}`,
-    `시간: ${form.start_time}-${form.end_time}`,
-    `이동 시간: ${travelMinutes > 0 ? `${travelMinutes}분` : '없음'}`,
-    '',
-    '메모:',
-    form.description || ''
-  ].join('\n')
 }
 
 function formatDateDisplay(value) {
@@ -342,7 +327,7 @@ export default function RehearsalCalendarPage() {
           </button>
           {!isGoogleReady && (
             <button type="button" className="soft-button small" onClick={() => effectiveOwnerKey && connectGoogleCalendar(effectiveOwnerKey, { returnPath: '/rehearsals' })}>
-              Google 연동
+              Drive 연동
             </button>
           )}
         </div>
@@ -430,16 +415,6 @@ export default function RehearsalCalendarPage() {
                     }}
                     onDelete={async () => {
                       if (confirm('이 일정을 삭제하시겠습니까?')) {
-                        if (isGoogleReady && ev.google_calendar_event_id) {
-                          try {
-                            await deleteGoogleCalendarEvent(effectiveOwnerKey, ev.id)
-                          } catch (calErr) {
-                            console.error('Failed to sync google calendar deletion', calErr)
-                            // We alert the user but continue with DB deletion for 404/already deleted scenarios 
-                            // though the Edge Function already handles 404 as success.
-                            // If it's a real error (like 401/403), we might want to warn.
-                          }
-                        }
                         let kakaoDeleteFailed = false
                         if (ev.kakao_calendar_event_id) {
                           try {
@@ -475,7 +450,6 @@ export default function RehearsalCalendarPage() {
       {isAddModalOpen && (
         <AddRehearsalModal 
           ownerKey={effectiveOwnerKey}
-          isGoogleReady={isGoogleReady}
           initialEvent={editingEvent}
           onClose={() => {
             setIsAddModalOpen(false)
@@ -520,12 +494,6 @@ function RehearsalCard({ event, isAddingKakao, onAddKakaoCalendar, onEdit, onDel
         )}
         
         <div className="rehearsal-status-group">
-          {event.google_calendar_sync_status === 'synced' ? (
-            <span className="rehearsal-status-badge success">Google 연동됨</span>
-          ) : (
-            <span className="rehearsal-status-badge muted">Google 미연동</span>
-          )}
-
           {isKakaoSynced ? (
             <span className="rehearsal-status-badge success">톡캘린더 연동됨</span>
           ) : (
@@ -557,7 +525,7 @@ function RehearsalCard({ event, isAddingKakao, onAddKakaoCalendar, onEdit, onDel
   )
 }
 
-function AddRehearsalModal({ ownerKey, isGoogleReady, initialEvent, onClose, onKakaoConnected, onSuccess }) {
+function AddRehearsalModal({ ownerKey, initialEvent, onClose, onKakaoConnected, onSuccess }) {
   const isEditing = !!initialEvent
   const [form, setForm] = useState({
     title: initialEvent?.title || initialEvent?.team_name || '',
@@ -620,35 +588,6 @@ function AddRehearsalModal({ ownerKey, isGoogleReady, initialEvent, onClose, onK
         eventResult = await updateRehearsalEvent(initialEvent.id, payload)
       } else {
         eventResult = await createRehearsalEvent(payload)
-      }
-
-      if (isGoogleReady) {
-        try {
-          const summary = form.title
-          const desc = buildRehearsalDescription(form)
-          const syncPayload = {
-            rehearsalId: eventResult.id,
-            summary: summary,
-            location: form.studio_name,
-            description: desc,
-            startAt: `${form.event_date}T${form.start_time}:00+09:00`,
-            endAt: `${form.event_date}T${form.end_time}:00+09:00`
-          }
-
-          if (isEditing) {
-            // Only update if it was already synced
-            if (initialEvent.google_calendar_event_id) {
-              await updateGoogleCalendarEvent(ownerKey, syncPayload)
-            }
-          } else {
-            await createGoogleCalendarEvent(ownerKey, syncPayload)
-          }
-        } catch (calErr) {
-          console.error('Failed to sync google calendar event', calErr)
-          if (isEditing) {
-            alert('합주 일정은 수정되었으나, Google Calendar 연동 업데이트에 실패했습니다.')
-          }
-        }
       }
 
       if (!isEditing) {
