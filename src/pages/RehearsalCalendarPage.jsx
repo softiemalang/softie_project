@@ -463,6 +463,7 @@ export default function RehearsalCalendarPage() {
             setIsAddModalOpen(false)
             setEditingEvent(null)
           }} 
+          onKakaoConnected={() => setIsKakaoConnected(true)}
           onSuccess={() => {
             setIsAddModalOpen(false)
             setEditingEvent(null)
@@ -538,7 +539,7 @@ function RehearsalCard({ event, isAddingKakao, onAddKakaoCalendar, onEdit, onDel
   )
 }
 
-function AddRehearsalModal({ ownerKey, isGoogleReady, initialEvent, onClose, onSuccess }) {
+function AddRehearsalModal({ ownerKey, isGoogleReady, initialEvent, onClose, onKakaoConnected, onSuccess }) {
   const isEditing = !!initialEvent
   const [form, setForm] = useState({
     title: initialEvent?.title || initialEvent?.team_name || '',
@@ -629,6 +630,27 @@ function AddRehearsalModal({ ownerKey, isGoogleReady, initialEvent, onClose, onS
           if (isEditing) {
             alert('합주 일정은 수정되었으나, Google Calendar 연동 업데이트에 실패했습니다.')
           }
+        }
+      }
+
+      if (!isEditing) {
+        try {
+          await createKakaoCalendarEvent({
+            rehearsalId: eventResult.id,
+            ownerKey,
+            title: eventResult.title || eventResult.team_name || '합주',
+            eventDate: eventResult.event_date,
+            startTime: eventResult.start_time,
+            endTime: eventResult.end_time,
+            location: eventResult.studio_name || '',
+            travelMinutes: eventResult.travel_minutes || 0,
+            description: eventResult.description || ''
+          })
+          markKakaoCalendarConnected()
+          onKakaoConnected?.()
+        } catch (kakaoErr) {
+          console.error('Failed to auto sync kakao calendar event', kakaoErr)
+          alert('일정은 저장됐지만 톡캘린더 자동 추가에 실패했어요. 카드에서 다시 추가할 수 있어요.')
         }
       }
       
