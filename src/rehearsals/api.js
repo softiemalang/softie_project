@@ -115,3 +115,34 @@ export async function triggerRehearsalDriveBackup(userId, yearMonth) {
   if (data && data.error) throw new Error(data.error)
   return data
 }
+
+export async function createKakaoCalendarEvent(payload) {
+  if (!supabase) throw new Error('Supabase client not initialized')
+  const { data, error } = await supabase.functions.invoke('kakao-calendar-create-event', {
+    body: payload
+  })
+
+  if (error) {
+    let msg = error.message
+    if (error.context && typeof error.context.json === 'function') {
+      try {
+        const json = await error.context.json()
+        if (json.error) msg = json.error
+      } catch {}
+    } else if (error.context && typeof error.context.text === 'function') {
+      try {
+        const text = await error.context.text()
+        try {
+          const json = JSON.parse(text)
+          if (json.error) msg = json.error
+        } catch {
+          msg = text
+        }
+      } catch {}
+    }
+    throw new Error(msg)
+  }
+
+  if (data && data.error) throw new Error(data.error)
+  return data
+}

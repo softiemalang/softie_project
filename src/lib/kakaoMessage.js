@@ -6,6 +6,7 @@ const KAKAO_LOGIN_STATE_STORAGE_KEY = 'softie:kakao:login-state'
 
 const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL
 const SUPABASE_ANON_KEY = import.meta.env.VITE_SUPABASE_ANON_KEY
+const KAKAO_MEMO_SCOPES = ['talk_message', 'talk_calendar']
 
 function getKakaoRedirectUri() {
   if (typeof window === 'undefined') return ''
@@ -118,7 +119,7 @@ export function startKakaoMemoLogin({ returnPath = '/scheduler', pendingMemo = n
 
   window.Kakao.Auth.authorize({
     redirectUri: getKakaoRedirectUri(),
-    scope: 'talk_message',
+    scope: KAKAO_MEMO_SCOPES.join(','),
     state: encodeState(statePayload),
   })
 
