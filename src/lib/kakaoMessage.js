@@ -3,6 +3,7 @@ import { getCurrentSession } from './auth'
 
 const KAKAO_PENDING_MEMO_STORAGE_KEY = 'softie:kakao:pending-memo'
 const KAKAO_LOGIN_STATE_STORAGE_KEY = 'softie:kakao:login-state'
+const KAKAO_CALENDAR_CONNECTED_STORAGE_KEY = 'softie:kakaoCalendarConnected'
 
 const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL
 const SUPABASE_ANON_KEY = import.meta.env.VITE_SUPABASE_ANON_KEY
@@ -100,6 +101,16 @@ async function sendKakaoMemoThroughBackend({ text, url }) {
   return callSupabaseFunction('send-kakao-memo', { text, url })
 }
 
+export function isKakaoCalendarConnected() {
+  if (typeof window === 'undefined') return false
+  return window.localStorage.getItem(KAKAO_CALENDAR_CONNECTED_STORAGE_KEY) === 'true'
+}
+
+export function markKakaoCalendarConnected() {
+  if (typeof window === 'undefined') return
+  window.localStorage.setItem(KAKAO_CALENDAR_CONNECTED_STORAGE_KEY, 'true')
+}
+
 export function startKakaoMemoLogin({ returnPath = '/scheduler', pendingMemo = null } = {}) {
   if (!initKakao()) {
     return { ok: false, reason: 'sdk_not_ready' }
@@ -159,6 +170,10 @@ export async function completeKakaoMemoLoginFromCallback() {
   const redirectUri = getKakaoRedirectUri()
   await exchangeKakaoCodeForToken({ code, redirectUri })
   window.sessionStorage.removeItem(KAKAO_LOGIN_STATE_STORAGE_KEY)
+
+  if (returnPath.startsWith('/rehearsals')) {
+    markKakaoCalendarConnected()
+  }
 
   const pendingMemo = readPendingMemo()
   if (pendingMemo?.text) {

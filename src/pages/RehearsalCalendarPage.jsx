@@ -2,7 +2,7 @@ import React, { useState, useEffect, useMemo, useRef } from 'react'
 import { navigate } from '../lib/router'
 import { getOrCreatePushDeviceId } from '../lib/device'
 import { getCurrentSession, subscribeAuthChanges } from '../lib/auth'
-import { startKakaoMemoLogin } from '../lib/kakaoMessage'
+import { isKakaoCalendarConnected, markKakaoCalendarConnected, startKakaoMemoLogin } from '../lib/kakaoMessage'
 import {
   connectGoogleCalendar,
   isGoogleConnected,
@@ -144,6 +144,7 @@ export default function RehearsalCalendarPage() {
   const [editingEvent, setEditingEvent] = useState(null)
   const [isGoogleReady, setIsGoogleReady] = useState(false)
   const [isBackingUp, setIsBackingUp] = useState(false)
+  const [isKakaoConnected, setIsKakaoConnected] = useState(() => isKakaoCalendarConnected())
   const [pendingKakaoEventId, setPendingKakaoEventId] = useState('')
   const [effectiveOwnerKey, setEffectiveOwnerKey] = useState(null)
   const localOwnerKeyRef = useRef(null)
@@ -278,6 +279,8 @@ export default function RehearsalCalendarPage() {
         travelMinutes: event.travel_minutes || 0,
         description: event.description || ''
       })
+      markKakaoCalendarConnected()
+      setIsKakaoConnected(true)
       await loadEvents()
     } catch (e) {
       console.error('Failed to add kakao calendar event', e)
@@ -317,8 +320,12 @@ export default function RehearsalCalendarPage() {
   return (
     <div className="app-shell rehearsal-shell">
       <header className="rehearsal-header">
-        <button type="button" className="soft-button small rehearsal-kakao-connect" onClick={handleReconnectKakao}>
-          카카오 다시 연결
+        <button
+          type="button"
+          className={`soft-button small rehearsal-kakao-connect ${isKakaoConnected ? 'is-connected' : ''}`}
+          onClick={handleReconnectKakao}
+        >
+          {isKakaoConnected ? '카카오 연결됨' : '카카오 다시 연결'}
         </button>
         <div className="rehearsal-actions">
           <button type="button" className="soft-button small" onClick={handleBackup} disabled={isBackingUp || !effectiveOwnerKey}>

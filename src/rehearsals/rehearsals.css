@@ -35,6 +35,12 @@
   white-space: nowrap;
 }
 
+.rehearsal-kakao-connect.is-connected {
+  background: #eef7f4;
+  color: #1f6f5f;
+  border-color: rgba(31, 111, 95, 0.18);
+}
+
 .rehearsal-month-nav {
   display: flex;
   align-items: center;
