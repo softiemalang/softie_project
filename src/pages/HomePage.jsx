@@ -158,25 +158,6 @@ export default function HomePage() {
 
   return (
     <div className="app-shell home-shell">
-      <header className="hero home-hero">
-        <div className="home-auth-area">
-          {isLoadingAuth ? (
-            <span className="home-auth-status">확인 중...</span>
-          ) : session ? (
-            <div className="home-auth-signed-in home-account-bar">
-              <p className="home-auth-email">{session.user.email}</p>
-              <button className="soft-button home-auth-button" onClick={() => signOut()}>
-                로그아웃
-              </button>
-            </div>
-          ) : (
-            <button className="soft-button home-auth-button" onClick={() => signInWithGoogle()}>
-              Google로 로그인
-            </button>
-          )}
-        </div>
-      </header>
-
       <section className="service-grid">
         {services.map((service) => (
           <article
@@ -192,6 +173,23 @@ export default function HomePage() {
           </article>
         ))}
       </section>
+
+      <div className="home-auth-area">
+        {isLoadingAuth ? (
+          <span className="home-auth-status">확인 중...</span>
+        ) : session ? (
+          <div className="home-auth-signed-in home-account-bar">
+            <p className="home-auth-email">{session.user.email}</p>
+            <button className="soft-button home-auth-button" onClick={() => signOut()}>
+              로그아웃
+            </button>
+          </div>
+        ) : (
+          <button className="soft-button home-auth-button" onClick={() => signInWithGoogle()}>
+            Google로 로그인
+          </button>
+        )}
+      </div>
 
       {isMemoOpen && (
         <div className="home-memo-backdrop" onClick={closeMemoModal}>
