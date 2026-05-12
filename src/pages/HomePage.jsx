@@ -161,10 +161,6 @@ export default function HomePage() {
       <header className="hero home-hero">
         <div className="home-hero-content">
           <p className="eyebrow">말랑이의 작업실</p>
-          <p className="subtle">
-            일상의 작은 불편을 해결하기 위해 만든 개인용 도구와 서비스들을 모아둔 공간입니다.
-            차분하고 따뜻한 마음으로 하나씩 채워가고 있어요.
-          </p>
         </div>
         <div className="home-auth-area">
           {isLoadingAuth ? (
@@ -241,6 +237,10 @@ export default function HomePage() {
       )}
 
       <footer className="home-footer">
+        <p className="home-footer-intro">
+          일상의 작은 불편을 해결하기 위해 만든 개인용 도구와 서비스들을 모아둔 공간입니다.
+          차분하고 따뜻한 마음으로 하나씩 채워가고 있어요.
+        </p>
         <p className="subtle">© 2026 Softie Project. Built with care.</p>
       </footer>
     </div>
