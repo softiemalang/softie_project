@@ -2960,7 +2960,7 @@ textarea {
 
 .home-memo-sheet {
   width: min(100%, 460px);
-  padding: 1rem;
+  padding: 0.9rem 1rem 1rem;
   border-radius: 24px;
   border: 1px solid rgba(255, 255, 255, 0.72);
   background: rgba(255, 252, 248, 0.96);
@@ -2969,34 +2969,22 @@ textarea {
 
 .home-memo-header {
   display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 1rem;
-  margin-bottom: 0.95rem;
-}
-
-.home-memo-header h2 {
-  margin: 0.2rem 0 0;
-  font-size: 1.22rem;
-  line-height: 1.2;
-}
-
-.home-memo-title-row {
-  display: flex;
   align-items: center;
-  flex-wrap: wrap;
-  gap: 0.45rem;
+  justify-content: space-between;
+  gap: 0.55rem;
+  margin-bottom: 0.7rem;
 }
 
 .home-memo-kakao-badge {
   display: inline-flex;
   align-items: center;
-  padding: 0.18rem 0.5rem;
+  padding: 0.16rem 0.48rem;
   border-radius: var(--radius-pill);
   border: 1px solid transparent;
-  font-size: 0.72rem;
+  font-size: 0.7rem;
   font-weight: 600;
   line-height: 1.2;
+  white-space: nowrap;
 }
 
 .home-memo-kakao-badge.success {

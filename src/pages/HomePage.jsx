@@ -204,15 +204,9 @@ export default function HomePage() {
         <div className="home-memo-backdrop" onClick={closeMemoModal}>
           <section className="home-memo-sheet" role="dialog" aria-modal="true" aria-label="SOFTIE MEMO" onClick={(event) => event.stopPropagation()}>
             <div className="home-memo-header">
-              <div>
-                <div className="home-memo-title-row">
-                  <p className="section-kicker">SOFTIE MEMO</p>
-                  <span className={`home-memo-kakao-badge ${isKakaoMemoReady ? 'success' : 'muted'}`}>
-                    {isKakaoMemoReady ? '카카오 연결됨' : '카카오 재연결 필요'}
-                  </span>
-                </div>
-                <h2>빠른 메모</h2>
-              </div>
+              <span className={`home-memo-kakao-badge ${isKakaoMemoReady ? 'success' : 'muted'}`}>
+                {isKakaoMemoReady ? '카카오 연결됨' : '카카오 재연결 필요'}
+              </span>
               <button type="button" className="home-memo-close" onClick={closeMemoModal}>닫기</button>
             </div>
             <textarea
