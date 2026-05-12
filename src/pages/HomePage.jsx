@@ -237,10 +237,19 @@ export default function HomePage() {
       )}
 
       <footer className="home-footer">
-        <p className="home-footer-intro">
-          일상의 작은 불편을 해결하기 위해 만든 개인용 도구와 서비스들을 모아둔 공간입니다.
-          차분하고 따뜻한 마음으로 하나씩 채워가고 있어요.
-        </p>
+        <p className="home-footer-label">SOFTIE PROJECT</p>
+        <div className="home-footer-intro">
+          <p>
+            일상의 작은 불편을 해결하기 위해 만든
+            <br />
+            개인용 도구와 서비스들을 모아둔 공간입니다.
+          </p>
+          <p>
+            차분하고 따뜻한 마음으로
+            <br />
+            하나씩 채워가고 있어요.
+          </p>
+        </div>
         <p className="subtle">© 2026 Softie Project. Built with care.</p>
       </footer>
     </div>

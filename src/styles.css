@@ -3097,21 +3097,38 @@ textarea {
 .home-footer {
   margin-top: 2rem;
   text-align: center;
-  padding: 0 1rem 2.5rem;
+  padding: 1.2rem 1rem 2.5rem;
   width: 100%;
   max-width: 520px;
+  border-top: 1px solid rgba(151, 118, 91, 0.16);
+}
+
+.home-footer-label {
+  margin: 0 0 0.6rem;
+  color: #9a4b32;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  line-height: 1.2;
 }
 
 .home-footer-intro {
-  margin: 0 auto 0.7rem;
+  display: grid;
+  gap: 0.55rem;
+  margin: 0 auto 0.85rem;
   color: var(--muted);
   font-size: 0.8rem;
-  line-height: 1.6;
+  line-height: 1.7;
+}
+
+.home-footer-intro p {
+  margin: 0;
 }
 
 .home-footer .subtle {
-  font-size: 0.78rem;
-  opacity: 0.75;
+  margin: 0;
+  font-size: 0.72rem;
+  opacity: 0.62;
 }
 
 @media (max-width: 600px) {
