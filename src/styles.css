@@ -2963,7 +2963,7 @@ textarea {
 }
 
 .home-memo-sheet {
-  width: min(100%, 430px);
+  width: min(92vw, 430px);
   max-height: min(82dvh, 430px);
   overflow-y: auto;
   padding: 0.82rem 0.9rem 0.9rem;
@@ -3133,7 +3133,7 @@ textarea {
   }
 
   .home-memo-sheet {
-    width: min(100%, 390px);
+    width: min(90vw, 390px);
     max-height: min(78dvh, 390px);
     padding: 0.78rem 0.82rem 0.86rem;
     border-radius: 20px;
