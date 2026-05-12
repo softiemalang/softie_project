@@ -2867,6 +2867,8 @@ textarea {
   gap: 1rem;
   width: 100%;
   max-width: 580px;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(151, 118, 91, 0.14);
 }
 
 .service-card {
