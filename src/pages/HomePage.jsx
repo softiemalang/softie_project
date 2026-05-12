@@ -159,9 +159,6 @@ export default function HomePage() {
   return (
     <div className="app-shell home-shell">
       <header className="hero home-hero">
-        <div className="home-hero-content">
-          <p className="eyebrow">말랑이의 작업실</p>
-        </div>
         <div className="home-auth-area">
           {isLoadingAuth ? (
             <span className="home-auth-status">확인 중...</span>
@@ -238,6 +235,7 @@ export default function HomePage() {
 
       <footer className="home-footer">
         <p className="home-footer-label">SOFTIE PROJECT</p>
+        <p className="home-footer-title">말랑이의 작업실</p>
         <div className="home-footer-intro">
           <p>
             일상의 작은 불편을 해결하기 위해 만든

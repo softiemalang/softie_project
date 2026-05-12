@@ -2815,7 +2815,7 @@ textarea {
 
 .home-shell .hero {
   text-align: center;
-  padding: 2.1rem 1.5rem 1.2rem;
+  padding: 1.45rem 1.5rem 0.85rem;
   background: transparent;
   border: none;
   box-shadow: none;
@@ -2826,8 +2826,8 @@ textarea {
 
 .home-hero {
   display: grid;
-  gap: 0.7rem;
-  padding-bottom: 1rem;
+  gap: 0;
+  padding-bottom: 0.65rem;
 }
 
 .home-auth-area {
@@ -3104,12 +3104,20 @@ textarea {
 }
 
 .home-footer-label {
-  margin: 0 0 0.6rem;
+  margin: 0 0 0.35rem;
   color: #9a4b32;
   font-size: 0.68rem;
   font-weight: 700;
   letter-spacing: 0.08em;
   line-height: 1.2;
+}
+
+.home-footer-title {
+  margin: 0 0 0.85rem;
+  color: #7c3f2c;
+  font-size: 0.95rem;
+  font-weight: 700;
+  line-height: 1.35;
 }
 
 .home-footer-intro {
@@ -3133,7 +3141,7 @@ textarea {
 
 @media (max-width: 600px) {
   .home-shell .hero {
-    padding: 1.45rem 1rem 1rem;
+    padding: 0.9rem 1rem 0.7rem;
   }
 
   .service-card {
