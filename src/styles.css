@@ -2837,10 +2837,10 @@ textarea {
 }
 
 .home-auth-button {
-  min-height: 38px;
-  padding: 0.48rem 1rem;
+  min-height: 32px;
+  padding: 0.36rem 0.72rem;
   border-radius: var(--radius-pill);
-  font-size: 0.86rem;
+  font-size: 0.75rem;
   white-space: nowrap;
 }
 
@@ -2853,16 +2853,25 @@ textarea {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 0.55rem;
+  gap: 0.5rem;
   max-width: 100%;
-  flex-wrap: wrap;
+  min-width: 0;
+}
+
+.home-account-bar {
+  max-width: min(100%, 360px);
+  padding: 0.36rem 0.42rem 0.36rem 0.7rem;
+  border: 1px solid rgba(151, 118, 91, 0.12);
+  border-radius: var(--radius-pill);
+  background: rgba(255, 252, 248, 0.74);
 }
 
 .home-auth-email {
-  max-width: min(100%, 280px);
+  max-width: min(48vw, 220px);
   margin: 0;
   color: var(--muted);
-  font-size: 0.82rem;
+  font-size: 0.75rem;
+  font-weight: 500;
   line-height: 1.2;
   overflow: hidden;
   text-overflow: ellipsis;

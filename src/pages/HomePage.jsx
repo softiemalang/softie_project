@@ -163,7 +163,7 @@ export default function HomePage() {
           {isLoadingAuth ? (
             <span className="home-auth-status">확인 중...</span>
           ) : session ? (
-            <div className="home-auth-signed-in">
+            <div className="home-auth-signed-in home-account-bar">
               <p className="home-auth-email">{session.user.email}</p>
               <button className="soft-button home-auth-button" onClick={() => signOut()}>
                 로그아웃
