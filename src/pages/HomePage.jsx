@@ -1,10 +1,16 @@
 import { useEffect, useState } from 'react'
 import { navigate } from '../lib/router'
 import { getCurrentSession, signInWithGoogle, signOut, subscribeAuthChanges } from '../lib/auth'
+import { sendKakaoMemoText, startKakaoMemoLogin } from '../lib/kakaoMessage'
 
 export default function HomePage() {
   const [session, setSession] = useState(null)
   const [isLoadingAuth, setIsLoadingAuth] = useState(true)
+  const [isMemoOpen, setIsMemoOpen] = useState(false)
+  const [memoText, setMemoText] = useState('')
+  const [memoStatus, setMemoStatus] = useState('')
+  const [memoError, setMemoError] = useState('')
+  const [isSendingMemo, setIsSendingMemo] = useState(false)
 
   useEffect(() => {
     getCurrentSession().then(s => {
@@ -35,6 +41,12 @@ export default function HomePage() {
       label: 'SOFTIE FORTUNE',
     },
     {
+      description: '떠오른 생각을 잊기 전에 카카오톡 나에게 보내기로 빠르게 남겨요.',
+      action: 'memo',
+      icon: '📝',
+      label: 'SOFTIE MEMO',
+    },
+    {
       description: 'Spotify Connect 기기를 예쁜 리모컨처럼 조작하고 현재 재생 중인 음악을 확인해요.',
       path: '/music',
       icon: '🎧',
@@ -53,6 +65,94 @@ export default function HomePage() {
       label: 'BAND',
     },
   ]
+
+  function openMemoModal() {
+    setMemoStatus('')
+    setMemoError('')
+    setIsMemoOpen(true)
+  }
+
+  function closeMemoModal() {
+    if (isSendingMemo) return
+    setIsMemoOpen(false)
+    setMemoStatus('')
+    setMemoError('')
+  }
+
+  async function handleSendMemo() {
+    const text = memoText.trim()
+    if (!text || isSendingMemo) return
+
+    if (!session) {
+      setMemoStatus('')
+      setMemoError('Google 로그인 후 카카오 연결을 진행해 주세요.')
+      return
+    }
+
+    setIsSendingMemo(true)
+    setMemoStatus('')
+    setMemoError('')
+
+    try {
+      const result = await sendKakaoMemoText({
+        text,
+        url: `${window.location.origin}/`,
+      })
+
+      if (result.ok) {
+        setMemoStatus('카카오톡으로 보냈어')
+        setMemoText('')
+        return
+      }
+
+      const errorStatus = result.error?.status
+      const errorCode = result.error?.payload?.error || ''
+      const needsReconnect = result.reason === 'needs_login' ||
+        errorStatus === 401 ||
+        errorStatus === 403 ||
+        errorCode.includes('needs_kakao_login') ||
+        errorCode.includes('kakao_token')
+
+      if (needsReconnect) {
+        const reconnectMessage = errorStatus === 403
+          ? '카카오 권한을 다시 받아야 해요.'
+          : '카카오 재연결이 필요해요.'
+        const shouldReconnect = window.confirm(`${reconnectMessage}\n카카오 인증 화면으로 이동할까요?`)
+
+        if (shouldReconnect) {
+          const started = startKakaoMemoLogin({
+            returnPath: '/',
+            pendingMemo: { text, url: `${window.location.origin}/` },
+          })
+          if (started.ok) return
+          setMemoError('카카오 연결 설정이 아직 준비되지 않았어요. 메모를 복사해 둘 수 있어요.')
+        } else {
+          setMemoError(`${reconnectMessage} 메모를 복사해 둘 수 있어요.`)
+        }
+      } else {
+        setMemoError('카카오톡 전송에 실패했어요. 메모를 복사해 둘 수 있어요.')
+      }
+    } catch (error) {
+      console.error('[HomePage] Failed to send softie memo.', error)
+      setMemoError('카카오톡 전송에 실패했어요. 메모를 복사해 둘 수 있어요.')
+    } finally {
+      setIsSendingMemo(false)
+    }
+  }
+
+  async function handleCopyMemo() {
+    const text = memoText.trim()
+    if (!text || !navigator.clipboard) return
+
+    try {
+      await navigator.clipboard.writeText(text)
+      setMemoStatus('메모를 복사했어')
+      setMemoError('')
+    } catch (error) {
+      console.error('[HomePage] Failed to copy softie memo.', error)
+      setMemoError('복사에 실패했어요. 메모 내용을 직접 선택해서 복사해 주세요.')
+    }
+  }
 
   return (
     <div className="app-shell home-shell">
@@ -85,9 +185,9 @@ export default function HomePage() {
       <section className="service-grid">
         {services.map((service) => (
           <article
-            key={service.path}
+            key={service.path || service.label}
             className="card service-card"
-            onClick={() => navigate(service.path)}
+            onClick={() => service.action === 'memo' ? openMemoModal() : navigate(service.path)}
           >
             <div className="service-icon">{service.icon}</div>
             <div className="service-info">
@@ -97,6 +197,46 @@ export default function HomePage() {
           </article>
         ))}
       </section>
+
+      {isMemoOpen && (
+        <div className="home-memo-backdrop" onClick={closeMemoModal}>
+          <section className="home-memo-sheet" role="dialog" aria-modal="true" aria-label="SOFTIE MEMO" onClick={(event) => event.stopPropagation()}>
+            <div className="home-memo-header">
+              <div>
+                <p className="section-kicker">SOFTIE MEMO</p>
+                <h2>빠른 메모</h2>
+              </div>
+              <button type="button" className="home-memo-close" onClick={closeMemoModal}>닫기</button>
+            </div>
+            <textarea
+              className="home-memo-textarea"
+              value={memoText}
+              onChange={(event) => {
+                setMemoText(event.target.value)
+                setMemoStatus('')
+                setMemoError('')
+              }}
+              placeholder="잊기 전에 남길 메모를 적어줘"
+              rows={5}
+            />
+            {memoStatus && <p className="home-memo-status success">{memoStatus}</p>}
+            {memoError && <p className="home-memo-status error">{memoError}</p>}
+            <div className="home-memo-actions">
+              <button type="button" className="home-memo-secondary" onClick={closeMemoModal} disabled={isSendingMemo}>
+                닫기
+              </button>
+              {memoError && memoText.trim() && (
+                <button type="button" className="home-memo-secondary" onClick={handleCopyMemo}>
+                  복사
+                </button>
+              )}
+              <button type="button" className="home-memo-primary" onClick={handleSendMemo} disabled={isSendingMemo || !memoText.trim()}>
+                {isSendingMemo ? '보내는 중...' : '나에게 보내기'}
+              </button>
+            </div>
+          </section>
+        </div>
+      )}
 
       <footer className="home-footer">
         <p className="subtle">© 2026 Softie Project. Built with care.</p>

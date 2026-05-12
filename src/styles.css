@@ -2942,6 +2942,106 @@ textarea {
   margin-left: 0.5rem;
 }
 
+.home-memo-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 120;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding:
+    1rem
+    1rem
+    max(1rem, calc(env(safe-area-inset-bottom) + 0.75rem));
+  background: rgba(31, 41, 55, 0.28);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.home-memo-sheet {
+  width: min(100%, 460px);
+  padding: 1rem;
+  border-radius: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.72);
+  background: rgba(255, 252, 248, 0.96);
+  box-shadow: 0 24px 70px rgba(92, 74, 43, 0.18);
+}
+
+.home-memo-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 0.95rem;
+}
+
+.home-memo-header h2 {
+  margin: 0.2rem 0 0;
+  font-size: 1.22rem;
+  line-height: 1.2;
+}
+
+.home-memo-close,
+.home-memo-secondary {
+  background: rgba(245, 240, 233, 0.9);
+  color: #6b6258;
+  border: 1px solid rgba(231, 221, 208, 0.85);
+}
+
+.home-memo-close {
+  min-height: 34px;
+  padding: 0.42rem 0.78rem;
+  border-radius: var(--radius-pill);
+  font-size: 0.82rem;
+  white-space: nowrap;
+}
+
+.home-memo-textarea {
+  width: 100%;
+  min-height: 140px;
+  resize: vertical;
+  background: rgba(255, 255, 255, 0.9);
+  line-height: 1.5;
+}
+
+.home-memo-status {
+  margin: 0.75rem 0 0;
+  padding: 0.7rem 0.78rem;
+  border-radius: 16px;
+  font-size: 0.86rem;
+  line-height: 1.4;
+}
+
+.home-memo-status.success {
+  background: var(--brand-soft);
+  color: #115e59;
+}
+
+.home-memo-status.error {
+  background: #fff7ed;
+  color: #9a3412;
+  border: 1px solid #fed7aa;
+}
+
+.home-memo-actions {
+  display: flex;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.home-memo-actions button {
+  min-height: 42px;
+  border-radius: var(--radius-pill);
+  padding: 0.68rem 1rem;
+}
+
+.home-memo-primary {
+  background: var(--brand);
+  color: #fff;
+}
+
 .home-footer {
   margin-top: 3.5rem;
   text-align: center;
@@ -2972,6 +3072,20 @@ textarea {
 
   .service-action {
     display: none;
+  }
+
+  .home-memo-sheet {
+    padding: 0.95rem;
+    border-radius: 22px;
+  }
+
+  .home-memo-actions {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .home-memo-primary {
+    grid-column: 1 / -1;
   }
 }
 
