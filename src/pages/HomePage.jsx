@@ -235,7 +235,6 @@ export default function HomePage() {
 
       <footer className="home-footer">
         <p className="home-footer-label">SOFTIE PROJECT</p>
-        <p className="home-footer-title">말랑이의 작업실</p>
         <div className="home-footer-intro">
           <p>
             일상의 작은 불편을 해결하기 위해 만든
@@ -248,6 +247,7 @@ export default function HomePage() {
             하나씩 채워가고 있어요.
           </p>
         </div>
+        <p className="home-footer-mark">말랑이의 작업실</p>
         <p className="subtle">© 2026 Softie Project. Built with care.</p>
       </footer>
     </div>

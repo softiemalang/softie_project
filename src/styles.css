@@ -3112,18 +3112,10 @@ textarea {
   line-height: 1.2;
 }
 
-.home-footer-title {
-  margin: 0 0 0.85rem;
-  color: #7c3f2c;
-  font-size: 0.95rem;
-  font-weight: 700;
-  line-height: 1.35;
-}
-
 .home-footer-intro {
   display: grid;
   gap: 0.55rem;
-  margin: 0 auto 0.85rem;
+  margin: 0 auto 0.7rem;
   color: var(--muted);
   font-size: 0.8rem;
   line-height: 1.7;
@@ -3131,6 +3123,14 @@ textarea {
 
 .home-footer-intro p {
   margin: 0;
+}
+
+.home-footer-mark {
+  margin: 0 0 0.72rem;
+  color: #8c7e6c;
+  font-size: 0.78rem;
+  font-weight: 500;
+  line-height: 1.5;
 }
 
 .home-footer .subtle {
