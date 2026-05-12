@@ -434,7 +434,7 @@ export default function SoftieFortunePage() {
               <h2>아직 오늘 리포트가 없어요.</h2>
             </div>
           </div>
-          <p className="subtle" style={{ margin: 0 }}>
+          <p className="subtle" style={{ margin: 0, textAlign: 'center', lineHeight: 1.6 }}>
             작성 버튼을 누르면 오늘의 운세를 생성합니다.
           </p>
         </section>
