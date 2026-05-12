@@ -245,6 +245,9 @@ export default function SoftieFortunePage() {
     if (hasReport) {
       const confirmed = window.confirm('오늘 리포트를 최신 기준으로 다시 작성할까요?')
       if (!confirmed) return
+    } else {
+      const confirmed = window.confirm('오늘의 리포트를 작성할까요?')
+      if (!confirmed) return
     }
 
     setIsForceRefreshing(true)
@@ -434,16 +437,6 @@ export default function SoftieFortunePage() {
           <p className="subtle" style={{ margin: 0 }}>
             작성 버튼을 누르면 오늘의 운세를 생성합니다.
           </p>
-          <div className="fortune-backup-action">
-            <button
-              type="button"
-              className="soft-button"
-              onClick={handleRefreshTodayReport}
-              disabled={isForceRefreshing}
-            >
-              {isForceRefreshing ? '작성 중...' : '오늘 리포트 작성'}
-            </button>
-          </div>
         </section>
       )}
 
