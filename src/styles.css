@@ -2981,6 +2981,36 @@ textarea {
   line-height: 1.2;
 }
 
+.home-memo-title-row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+
+.home-memo-kakao-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.18rem 0.5rem;
+  border-radius: var(--radius-pill);
+  border: 1px solid transparent;
+  font-size: 0.72rem;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.home-memo-kakao-badge.success {
+  background: #e7f3ef;
+  color: #115e59;
+  border-color: rgba(31, 111, 95, 0.15);
+}
+
+.home-memo-kakao-badge.muted {
+  background: #f1ede8;
+  color: #8c7e6c;
+  border-color: #e7ddd0;
+}
+
 .home-memo-close,
 .home-memo-secondary {
   background: rgba(245, 240, 233, 0.9);
@@ -3002,14 +3032,19 @@ textarea {
   resize: vertical;
   background: rgba(255, 255, 255, 0.9);
   line-height: 1.5;
+  margin-bottom: 0.1rem;
 }
 
 .home-memo-status {
-  margin: 0.75rem 0 0;
-  padding: 0.7rem 0.78rem;
-  border-radius: 16px;
-  font-size: 0.86rem;
+  margin: 0.65rem 0 0;
+  padding: 0.42rem 0.58rem;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 600;
   line-height: 1.4;
+  display: inline-flex;
+  align-items: center;
+  max-width: 100%;
 }
 
 .home-memo-status.success {
@@ -3023,12 +3058,27 @@ textarea {
   border: 1px solid #fed7aa;
 }
 
+.home-memo-error-row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+
+.home-memo-copy {
+  margin-top: 0.65rem;
+  min-height: 30px;
+  padding: 0.32rem 0.62rem;
+  border-radius: var(--radius-pill);
+  font-size: 0.78rem;
+}
+
 .home-memo-actions {
   display: flex;
   justify-content: flex-end;
   flex-wrap: wrap;
   gap: 0.5rem;
-  margin-top: 1rem;
+  margin-top: 0.9rem;
 }
 
 .home-memo-actions button {
@@ -3040,6 +3090,7 @@ textarea {
 .home-memo-primary {
   background: var(--brand);
   color: #fff;
+  min-width: 150px;
 }
 
 .home-footer {
@@ -3080,12 +3131,13 @@ textarea {
   }
 
   .home-memo-actions {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    display: flex;
+    justify-content: stretch;
   }
 
+  .home-memo-actions button,
   .home-memo-primary {
-    grid-column: 1 / -1;
+    width: 100%;
   }
 }
 

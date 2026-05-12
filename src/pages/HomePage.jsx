@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { navigate } from '../lib/router'
 import { getCurrentSession, signInWithGoogle, signOut, subscribeAuthChanges } from '../lib/auth'
-import { sendKakaoMemoText, startKakaoMemoLogin } from '../lib/kakaoMessage'
+import { isKakaoMemoConnected, sendKakaoMemoText, startKakaoMemoLogin } from '../lib/kakaoMessage'
 
 export default function HomePage() {
   const [session, setSession] = useState(null)
@@ -11,6 +11,7 @@ export default function HomePage() {
   const [memoStatus, setMemoStatus] = useState('')
   const [memoError, setMemoError] = useState('')
   const [isSendingMemo, setIsSendingMemo] = useState(false)
+  const [isKakaoMemoReady, setIsKakaoMemoReady] = useState(() => isKakaoMemoConnected())
 
   useEffect(() => {
     getCurrentSession().then(s => {
@@ -100,6 +101,7 @@ export default function HomePage() {
       })
 
       if (result.ok) {
+        setIsKakaoMemoReady(true)
         setMemoStatus('카카오톡으로 보냈어')
         setMemoText('')
         return
@@ -203,7 +205,12 @@ export default function HomePage() {
           <section className="home-memo-sheet" role="dialog" aria-modal="true" aria-label="SOFTIE MEMO" onClick={(event) => event.stopPropagation()}>
             <div className="home-memo-header">
               <div>
-                <p className="section-kicker">SOFTIE MEMO</p>
+                <div className="home-memo-title-row">
+                  <p className="section-kicker">SOFTIE MEMO</p>
+                  <span className={`home-memo-kakao-badge ${isKakaoMemoReady ? 'success' : 'muted'}`}>
+                    {isKakaoMemoReady ? '카카오 연결됨' : '카카오 재연결 필요'}
+                  </span>
+                </div>
                 <h2>빠른 메모</h2>
               </div>
               <button type="button" className="home-memo-close" onClick={closeMemoModal}>닫기</button>
@@ -220,16 +227,17 @@ export default function HomePage() {
               rows={5}
             />
             {memoStatus && <p className="home-memo-status success">{memoStatus}</p>}
-            {memoError && <p className="home-memo-status error">{memoError}</p>}
+            {memoError && (
+              <div className="home-memo-error-row">
+                <p className="home-memo-status error">{memoError}</p>
+                {memoText.trim() && (
+                  <button type="button" className="home-memo-secondary home-memo-copy" onClick={handleCopyMemo}>
+                    복사
+                  </button>
+                )}
+              </div>
+            )}
             <div className="home-memo-actions">
-              <button type="button" className="home-memo-secondary" onClick={closeMemoModal} disabled={isSendingMemo}>
-                닫기
-              </button>
-              {memoError && memoText.trim() && (
-                <button type="button" className="home-memo-secondary" onClick={handleCopyMemo}>
-                  복사
-                </button>
-              )}
               <button type="button" className="home-memo-primary" onClick={handleSendMemo} disabled={isSendingMemo || !memoText.trim()}>
                 {isSendingMemo ? '보내는 중...' : '나에게 보내기'}
               </button>
