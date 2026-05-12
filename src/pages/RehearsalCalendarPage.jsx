@@ -225,6 +225,9 @@ export default function RehearsalCalendarPage() {
   async function handleBackup() {
     if (!effectiveOwnerKey) return
 
+    const shouldBackup = window.confirm('이번 달 합주 일정을 Google Drive에 백업할까요?')
+    if (!shouldBackup) return
+
     if (!isGoogleReady) {
       connectGoogleCalendar(effectiveOwnerKey, { returnPath: '/rehearsals' })
       return
