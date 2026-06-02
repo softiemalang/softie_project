@@ -14,6 +14,11 @@ export async function connectGoogleCalendar(userId, options = {}) {
     return
   }
 
+  if (!userId) {
+    alert('Google 연동은 로그인이 필요합니다.')
+    return
+  }
+
   if (!GOOGLE_CLIENT_ID || !GOOGLE_REDIRECT_URI) {
     alert('Google OAuth 환경변수가 설정되지 않았습니다.')
     return
@@ -92,6 +97,7 @@ async function unwrapInvokeError(data, error) {
  */
 export async function createGoogleCalendarEvent(userId, eventData) {
   if (!supabase) throw new Error('Supabase client not initialized')
+  if (!userId) throw new Error('로그인이 필요합니다.')
 
   const { data, error } = await supabase.functions.invoke('google-calendar-create-event', {
     body: { userId, eventData }
@@ -105,6 +111,7 @@ export async function createGoogleCalendarEvent(userId, eventData) {
  */
 export async function updateGoogleCalendarEvent(userId, eventData) {
   if (!supabase) throw new Error('Supabase client not initialized')
+  if (!userId) throw new Error('로그인이 필요합니다.')
 
   const { data, error } = await supabase.functions.invoke('google-calendar-update-event', {
     body: { userId, eventData }
@@ -116,11 +123,12 @@ export async function updateGoogleCalendarEvent(userId, eventData) {
 /**
  * Calls the Edge Function to delete an existing event from Google Calendar.
  */
-export async function deleteGoogleCalendarEvent(userId, rehearsalId) {
+export async function deleteGoogleCalendarEvent(userId, reservationId) {
   if (!supabase) throw new Error('Supabase client not initialized')
+  if (!userId) throw new Error('로그인이 필요합니다.')
 
   const { data, error } = await supabase.functions.invoke('google-calendar-delete-event', {
-    body: { userId, rehearsalId }
+    body: { userId, reservationId }
   })
 
   return unwrapInvokeError(data, error)
@@ -131,6 +139,7 @@ export async function deleteGoogleCalendarEvent(userId, rehearsalId) {
  */
 export async function triggerGoogleDriveBackup(userId, backupType = 'full') {
   if (!supabase) throw new Error('Supabase client not initialized')
+  if (!userId) throw new Error('로그인이 필요합니다.')
 
   const { data, error } = await supabase.functions.invoke('google-drive-backup', {
     body: { userId, backupType }

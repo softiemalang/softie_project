@@ -1073,7 +1073,11 @@ function TodaySchedulerPage({ effectiveOwnerKey, initialViewState, onViewStateCh
                 className="scheduler-modal-btn"
                 onClick={async () => {
                   const session = await getCurrentSession()
-                  const targetId = session?.user?.id || getOrCreatePushDeviceId()
+                  const targetId = session?.user?.id
+                  if (!targetId) {
+                    setGoogleStatus('Google 연동은 로그인이 필요합니다.')
+                    return
+                  }
                   connectGoogleCalendar(targetId, { returnPath: '/scheduler' })
                 }}
               >
@@ -1092,7 +1096,11 @@ function TodaySchedulerPage({ effectiveOwnerKey, initialViewState, onViewStateCh
                     const now = new Date()
                     const end = new Date(now.getTime() + 60 * 60 * 1000)
                     const session = await getCurrentSession()
-                    const targetId = session?.user?.id || getOrCreatePushDeviceId()
+                    const targetId = session?.user?.id
+                    if (!targetId) {
+                      setGoogleStatus('Google 연동은 로그인이 필요합니다.')
+                      return
+                    }
 
                     await createGoogleCalendarEvent(targetId, {
                       summary: '테스트 일정',
@@ -1123,7 +1131,11 @@ function TodaySchedulerPage({ effectiveOwnerKey, initialViewState, onViewStateCh
                   try {
                     setGoogleStatus('Google Drive에 백업 중...')
                     const session = await getCurrentSession()
-                    const targetId = session?.user?.id || getOrCreatePushDeviceId()
+                    const targetId = session?.user?.id
+                    if (!targetId) {
+                      setGoogleStatus('Google 연동은 로그인이 필요합니다.')
+                      return
+                    }
 
                     const result = await triggerGoogleDriveBackup(targetId, 'full')
                     setGoogleStatus(`백업 완료: ${result.fileName}`)
@@ -1498,47 +1510,49 @@ function ReservationEditorPage({ mode, reservationId, effectiveOwnerKey, initial
       // MVP: 구글 캘린더 연동이 되어있다면 일정 생성/수정 시도
       if (isGoogleConnected()) {
         const session = await getCurrentSession()
-        const targetId = session?.user?.id || getOrCreatePushDeviceId()
+        const targetId = session?.user?.id
 
-        const syncPayload = {
-          reservationId: saved.id,
-          summary: `[${saved.branch}] ${saved.customer_name}`,
-          location: `${saved.branch} ${saved.room}`,
-          description: saved.notes_text,
-          startAt: saved.start_at,
-          endAt: saved.end_at,
+        if (targetId) {
+          const syncPayload = {
+            reservationId: saved.id,
+            summary: `[${saved.branch}] ${saved.customer_name}`,
+            location: `${saved.branch} ${saved.room}`,
+            description: saved.notes_text,
+            startAt: saved.start_at,
+            endAt: saved.end_at,
+          }
+
+          if (mode === 'edit' && saved.google_event_id) {
+            updateGoogleCalendarEvent(targetId, syncPayload).catch(err => {
+              console.error('Google Calendar Update Sync Error:', err)
+              if (err.message?.includes('not connected') || err.message?.includes('refresh token') || err.message?.includes('insufficient')) {
+                disconnectGoogleCalendar()
+              }
+            })
+          } else if (mode === 'create' || (mode === 'edit' && !saved.google_event_id)) {
+            createGoogleCalendarEvent(targetId, syncPayload).catch(err => {
+              console.error('Google Calendar Create Sync Error:', err)
+              if (err.message?.includes('not connected') || err.message?.includes('refresh token') || err.message?.includes('insufficient')) {
+                disconnectGoogleCalendar()
+              }
+            })
+          }
+
+          // Log to Google Sheets (fire-and-forget)
+          appendGoogleSheetsLog(targetId, 'scheduler_logs', [
+            new Date().toISOString(),
+            mode === 'edit' ? 'reservation_updated' : 'reservation_created',
+            saved.id,
+            saved.reservation_date,
+            saved.start_at,
+            saved.end_at,
+            saved.branch,
+            saved.room,
+            saved.customer_name,
+            saved.google_event_id || '',
+            saved.notes_text || ''
+          ])
         }
-
-        if (mode === 'edit' && saved.google_event_id) {
-          updateGoogleCalendarEvent(targetId, syncPayload).catch(err => {
-            console.error('Google Calendar Update Sync Error:', err)
-            if (err.message?.includes('not connected') || err.message?.includes('refresh token') || err.message?.includes('insufficient')) {
-              disconnectGoogleCalendar()
-            }
-          })
-        } else if (mode === 'create' || (mode === 'edit' && !saved.google_event_id)) {
-          createGoogleCalendarEvent(targetId, syncPayload).catch(err => {
-            console.error('Google Calendar Create Sync Error:', err)
-            if (err.message?.includes('not connected') || err.message?.includes('refresh token') || err.message?.includes('insufficient')) {
-              disconnectGoogleCalendar()
-            }
-          })
-        }
-
-        // Log to Google Sheets (fire-and-forget)
-        appendGoogleSheetsLog(targetId, 'scheduler_logs', [
-          new Date().toISOString(),
-          mode === 'edit' ? 'reservation_updated' : 'reservation_created',
-          saved.id,
-          saved.reservation_date,
-          saved.start_at,
-          saved.end_at,
-          saved.branch,
-          saved.room,
-          saved.customer_name,
-          saved.google_event_id || '',
-          saved.notes_text || ''
-        ])
       }
 
       if (mode === 'edit') {
@@ -1565,8 +1579,10 @@ function ReservationEditorPage({ mode, reservationId, effectiveOwnerKey, initial
       if (isGoogleConnected() && reservationId) {
         try {
           const session = await getCurrentSession()
-          const targetId = session?.user?.id || getOrCreatePushDeviceId()
-          await deleteGoogleCalendarEvent(targetId, reservationId)
+          const targetId = session?.user?.id
+          if (targetId) {
+            await deleteGoogleCalendarEvent(targetId, reservationId)
+          }
         } catch (calErr) {
           console.error('Google Calendar Delete Sync Error:', calErr)
         }

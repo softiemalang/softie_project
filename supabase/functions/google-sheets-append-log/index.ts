@@ -3,6 +3,7 @@ import { createClient } from 'https://esm.sh/@supabase/supabase-js@2'
 import { corsHeaders } from '../_shared/cors.ts'
 import { getOrRefreshToken } from '../_shared/googleToken.ts'
 import { findOrCreateSpreadsheet, findOrCreateSajuSpreadsheet, appendSheetRow } from '../_shared/googleSheets.ts'
+import { AuthError, authErrorResponse, requireGoogleManualUser } from '../_shared/googleManualAuth.ts'
 
 serve(async (req) => {
   if (req.method === 'OPTIONS') {
@@ -20,10 +21,11 @@ serve(async (req) => {
     }
 
     try {
-      const { userId, tabName, rowData, spreadsheetType } = payload
+      const { userId: bodyUserId, tabName, rowData, spreadsheetType } = payload
+      const userId = await requireGoogleManualUser(req, bodyUserId)
 
-      if (!userId || !tabName || !Array.isArray(rowData)) {
-        throw new Error('Missing userId, tabName, or invalid rowData array')
+      if (!tabName || !Array.isArray(rowData)) {
+        throw new Error('Missing tabName or invalid rowData array')
       }
 
       const supabaseUrl = Deno.env.get('SUPABASE_URL')
@@ -55,6 +57,9 @@ serve(async (req) => {
         headers: { ...corsHeaders, 'Content-Type': 'application/json' },
       })
     } catch (innerError) {
+      if (innerError instanceof AuthError) {
+        return authErrorResponse(innerError, corsHeaders)
+      }
       console.error('[google-sheets-append-log] Expected Error:', innerError)
       return new Response(JSON.stringify({ error: innerError.message || String(innerError) }), {
         status: 400,

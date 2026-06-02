@@ -51,6 +51,7 @@ async function unwrapInvokeError(data, error) {
  */
 export async function appendGoogleSheetsLog(userId, tabName, rowData, options = {}) {
   if (!supabase) return
+  if (!userId) throw new Error('로그인이 필요합니다.')
 
   try {
     const { data, error } = await supabase.functions.invoke('google-sheets-append-log', {

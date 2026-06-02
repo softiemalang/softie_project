@@ -2,6 +2,7 @@ import { serve } from 'https://deno.land/std@0.168.0/http/server.ts'
 import { createClient } from 'https://esm.sh/@supabase/supabase-js@2'
 import { corsHeaders } from '../_shared/cors.ts'
 import { getOrRefreshToken } from '../_shared/googleToken.ts'
+import { AuthError, authErrorResponse, requireGoogleManualUser } from '../_shared/googleManualAuth.ts'
 
 serve(async (req) => {
   if (req.method === 'OPTIONS') {
@@ -9,10 +10,11 @@ serve(async (req) => {
   }
 
   try {
-    const { userId, rehearsalId, reservationId } = await req.json()
+    const { userId: bodyUserId, rehearsalId, reservationId } = await req.json()
+    const userId = await requireGoogleManualUser(req, bodyUserId)
 
-    if (!userId || (!rehearsalId && !reservationId)) {
-      throw new Error('Missing userId, rehearsalId, or reservationId')
+    if (!rehearsalId && !reservationId) {
+      throw new Error('Missing rehearsalId or reservationId')
     }
 
     const supabase = createClient(
@@ -27,6 +29,7 @@ serve(async (req) => {
         .from('rehearsal_events')
         .select('google_calendar_event_id')
         .eq('id', rehearsalId)
+        .eq('owner_key', userId)
         .single()
       if (error) throw new Error(`DB Error: ${error.message}`)
       googleEventId = data?.google_calendar_event_id
@@ -35,6 +38,7 @@ serve(async (req) => {
         .from('reservations')
         .select('google_event_id')
         .eq('id', reservationId)
+        .eq('owner_key', userId)
         .single()
       if (error) throw new Error(`DB Error: ${error.message}`)
       googleEventId = data?.google_event_id
@@ -81,6 +85,9 @@ serve(async (req) => {
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },
     })
   } catch (error) {
+    if (error instanceof AuthError) {
+      return authErrorResponse(error, corsHeaders)
+    }
     console.error('[google-calendar-delete-event]', error)
     return new Response(JSON.stringify({ error: error.message }), {
       status: 400,

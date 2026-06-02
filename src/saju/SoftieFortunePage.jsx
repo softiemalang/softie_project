@@ -12,7 +12,6 @@ import {
 import { generateNatalSnapshot, generateDailySnapshot } from './interpreter/preprocessor'
 import { getOrGenerateReport } from './interpreter/reportGenerator'
 import { getKstDateString } from './utils'
-import { getOrCreatePushDeviceId } from '../lib/device'
 import { appendGoogleSheetsLog } from '../lib/googleApi'
 import { connectGoogleCalendar, isGoogleConnected } from '../scheduler/googleApi'
 import { getCurrentSession } from '../lib/auth'
@@ -268,8 +267,11 @@ export default function SoftieFortunePage() {
     setIsBackingUp(true)
     try {
       const session = await getCurrentSession()
-      const deviceId = getOrCreatePushDeviceId()
-      const targetId = session?.user?.id || deviceId
+      const targetId = session?.user?.id
+      if (!targetId) {
+        setStatus('Google 연동은 로그인이 필요합니다.')
+        return
+      }
 
       const rowData = [
         new Date().toISOString(),
@@ -345,8 +347,11 @@ export default function SoftieFortunePage() {
 
   async function handleConnectGoogle() {
     const session = await getCurrentSession()
-    const deviceId = getOrCreatePushDeviceId()
-    const targetId = session?.user?.id || deviceId
+    const targetId = session?.user?.id
+    if (!targetId) {
+      setStatus('Google 연동은 로그인이 필요합니다.')
+      return
+    }
     connectGoogleCalendar(targetId, { returnPath: '/softie-fortune' })
   }
 

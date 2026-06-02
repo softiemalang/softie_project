@@ -4,6 +4,7 @@ import { corsHeaders } from '../_shared/cors.ts'
 import { getOrRefreshToken } from '../_shared/googleToken.ts'
 import { gatherBackupData, uploadToDriveIfNew } from '../_shared/googleBackup.ts'
 import { findOrCreateSpreadsheet, updateBackupDashboardAndSnapshots } from '../_shared/googleSheets.ts'
+import { AuthError, authErrorResponse, requireGoogleManualUser } from '../_shared/googleManualAuth.ts'
 
 serve(async (req) => {
   if (req.method === 'OPTIONS') {
@@ -23,10 +24,11 @@ serve(async (req) => {
     }
 
     try {
-      const { userId, backupType } = payload
+      const { userId: bodyUserId, backupType } = payload
+      const userId = await requireGoogleManualUser(req, bodyUserId)
 
-      if (!userId || !backupType) {
-        throw new Error('Missing userId or backupType')
+      if (!backupType) {
+        throw new Error('Missing backupType')
       }
 
       const supabaseUrl = Deno.env.get('SUPABASE_URL')
@@ -60,6 +62,9 @@ serve(async (req) => {
         headers: { ...corsHeaders, 'Content-Type': 'application/json' },
       })
     } catch (innerError) {
+      if (innerError instanceof AuthError) {
+        return authErrorResponse(innerError, corsHeaders)
+      }
       console.error('[google-drive-backup] Expected Error:', innerError)
       return new Response(JSON.stringify({ error: innerError.message || String(innerError) }), {
         status: 400,

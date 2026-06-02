@@ -2,6 +2,7 @@ import { serve } from 'https://deno.land/std@0.168.0/http/server.ts'
 import { createClient } from 'https://esm.sh/@supabase/supabase-js@2'
 import { corsHeaders } from '../_shared/cors.ts'
 import { backupUserRehearsalEvents } from '../_shared/rehearsalBackup.ts'
+import { AuthError, authErrorResponse, requireGoogleManualUser } from '../_shared/googleManualAuth.ts'
 
 serve(async (req) => {
   if (req.method === 'OPTIONS') {
@@ -16,9 +17,10 @@ serve(async (req) => {
       return new Response(JSON.stringify({ error: 'Invalid JSON body' }), { status: 400, headers: corsHeaders })
     }
 
-    const { userId, yearMonth } = payload
-    if (!userId || !yearMonth) {
-      throw new Error('Missing userId or yearMonth')
+    const { userId: bodyUserId, yearMonth } = payload
+    const userId = await requireGoogleManualUser(req, bodyUserId)
+    if (!yearMonth) {
+      throw new Error('Missing yearMonth')
     }
 
     const supabaseUrl = Deno.env.get('SUPABASE_URL')!
@@ -32,6 +34,9 @@ serve(async (req) => {
     })
 
   } catch (error) {
+    if (error instanceof AuthError) {
+      return authErrorResponse(error, corsHeaders)
+    }
     console.error('[google-drive-rehearsal-backup]', error)
     return new Response(JSON.stringify({ error: error.message }), {
       status: 400,

@@ -2,6 +2,7 @@ import { serve } from 'https://deno.land/std@0.168.0/http/server.ts'
 import { createClient } from 'https://esm.sh/@supabase/supabase-js@2'
 import { corsHeaders } from '../_shared/cors.ts'
 import { getOrRefreshToken } from '../_shared/googleToken.ts'
+import { AuthError, authErrorResponse, requireGoogleManualUser } from '../_shared/googleManualAuth.ts'
 
 serve(async (req) => {
   if (req.method === 'OPTIONS') {
@@ -9,10 +10,11 @@ serve(async (req) => {
   }
 
   try {
-    const { userId, eventData } = await req.json()
+    const { userId: bodyUserId, eventData } = await req.json()
+    const userId = await requireGoogleManualUser(req, bodyUserId)
 
-    if (!userId || !eventData) {
-      throw new Error('Missing userId or eventData')
+    if (!eventData) {
+      throw new Error('Missing eventData')
     }
 
     const supabase = createClient(
@@ -26,6 +28,7 @@ serve(async (req) => {
         .from('reservations')
         .select('google_event_id')
         .eq('id', eventData.reservationId)
+        .eq('owner_key', userId)
         .single()
 
       if (!resError && resData?.google_event_id) {
@@ -39,6 +42,7 @@ serve(async (req) => {
         .from('rehearsal_events')
         .select('google_calendar_event_id')
         .eq('id', eventData.rehearsalId)
+        .eq('owner_key', userId)
         .single()
 
       if (!rehError && rehData?.google_calendar_event_id) {
@@ -83,6 +87,7 @@ serve(async (req) => {
         .from('reservations')
         .update({ google_event_id: result.id })
         .eq('id', eventData.reservationId)
+        .eq('owner_key', userId)
     } else if (eventData.rehearsalId) {
       await supabase
         .from('rehearsal_events')
@@ -92,12 +97,16 @@ serve(async (req) => {
           google_calendar_synced_at: new Date().toISOString()
         })
         .eq('id', eventData.rehearsalId)
+        .eq('owner_key', userId)
     }
 
     return new Response(JSON.stringify({ success: true, event: result }), {
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },
     })
   } catch (error) {
+    if (error instanceof AuthError) {
+      return authErrorResponse(error, corsHeaders)
+    }
     console.error('[google-calendar-create-event]', error)
     return new Response(JSON.stringify({ error: error.message }), {
       status: 400,

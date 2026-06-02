@@ -229,14 +229,26 @@ export default function RehearsalCalendarPage() {
     if (!shouldBackup) return
 
     if (!isGoogleReady) {
-      connectGoogleCalendar(effectiveOwnerKey, { returnPath: '/rehearsals' })
+      const session = await getCurrentSession()
+      const userId = session?.user?.id
+      if (!userId) {
+        alert('Google 연동은 로그인이 필요합니다.')
+        return
+      }
+      connectGoogleCalendar(userId, { returnPath: '/rehearsals' })
       return
     }
     
     setIsBackingUp(true)
     try {
+      const session = await getCurrentSession()
+      const userId = session?.user?.id
+      if (!userId) {
+        alert('Google 연동은 로그인이 필요합니다.')
+        return
+      }
       const yearMonth = `${currentDate.getFullYear()}-${String(currentDate.getMonth() + 1).padStart(2, '0')}`
-      await triggerRehearsalDriveBackup(effectiveOwnerKey, yearMonth)
+      await triggerRehearsalDriveBackup(userId, yearMonth)
       alert('이번 달 합주 일정이 Google Drive에 안전하게 백업되었습니다.')
       loadEvents() // refresh to show updated backup status
     } catch (e) {
@@ -329,7 +341,15 @@ export default function RehearsalCalendarPage() {
             {isBackingUp ? '백업 중...' : '이번 달 Drive 백업'}
           </button>
           {!isGoogleReady && (
-            <button type="button" className="soft-button small" onClick={() => effectiveOwnerKey && connectGoogleCalendar(effectiveOwnerKey, { returnPath: '/rehearsals' })}>
+            <button type="button" className="soft-button small" onClick={async () => {
+              const session = await getCurrentSession()
+              const userId = session?.user?.id
+              if (!userId) {
+                alert('Google 연동은 로그인이 필요합니다.')
+                return
+              }
+              connectGoogleCalendar(userId, { returnPath: '/rehearsals' })
+            }}>
               Drive 연동
             </button>
           )}
