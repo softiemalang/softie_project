@@ -155,9 +155,86 @@ function getReservationDateParam() {
   return toLocalDateInputValue(parsed) === value ? value : null
 }
 
+function getValidSchedulerDate(value) {
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(value || '')) return null
+
+  const parsed = new Date(`${value}T00:00:00`)
+  return toLocalDateInputValue(parsed) === value ? value : null
+}
+
+function getSchedulerViewStateFromUrl() {
+  const fallbackDate = toLocalDateInputValue()
+  if (typeof window === 'undefined') {
+    return {
+      date: fallbackDate,
+      filters: {
+        branch: 'all',
+        room: 'all',
+        ...getDefaultWorkTimeFilter(),
+      },
+    }
+  }
+
+  const params = new URLSearchParams(window.location.search)
+  const date = getValidSchedulerDate(params.get('date')) || fallbackDate
+  const branchParam = params.get('branch')
+  const branch = SCHEDULER_BRANCHES.includes(branchParam) ? branchParam : 'all'
+  const roomParam = params.get('room')
+  const room = branch !== 'all' && getRoomsForBranch(branch).includes(roomParam) ? roomParam : 'all'
+  const defaultWorkTimeFilter = getDefaultWorkTimeFilter()
+  const startHour = Number(params.get('start'))
+  const endHour = Number(params.get('end'))
+
+  return {
+    date,
+    filters: {
+      branch,
+      room,
+      ...defaultWorkTimeFilter,
+      workTimeEnabled: params.get('scope') === 'working',
+      workTimeStartHour: Number.isInteger(startHour) && startHour >= 0 && startHour <= 23
+        ? startHour
+        : defaultWorkTimeFilter.workTimeStartHour,
+      workTimeEndHour: Number.isInteger(endHour) && endHour >= 0 && endHour <= 23
+        ? endHour
+        : defaultWorkTimeFilter.workTimeEndHour,
+    },
+  }
+}
+
+function buildSchedulerViewPath(date, filters) {
+  const normalizedFilters = normalizeWorkTimeFilter(filters)
+  const params = new URLSearchParams()
+  params.set('date', getValidSchedulerDate(date) || toLocalDateInputValue())
+
+  if (normalizedFilters.workTimeEnabled) {
+    params.set('scope', 'working')
+    params.set('start', String(normalizedFilters.workTimeStartHour))
+    params.set('end', String(normalizedFilters.workTimeEndHour))
+  }
+
+  if (filters.branch && filters.branch !== 'all') {
+    params.set('branch', filters.branch)
+  }
+
+  if (filters.room && filters.room !== 'all') {
+    params.set('room', filters.room)
+  }
+
+  return `/scheduler?${params.toString()}`
+}
+
+function replaceSchedulerViewUrl(date, filters) {
+  if (typeof window === 'undefined') return
+
+  const path = buildSchedulerViewPath(date, filters)
+  if (`${window.location.pathname}${window.location.search}` === path) return
+  window.history.replaceState({}, '', path)
+}
+
 export function SchedulerApp({ pathname, session }) {
   const route = useMemo(() => parseSchedulerRoute(pathname), [pathname])
-  const [selectedSchedulerDate, setSelectedSchedulerDate] = useState(() => toLocalDateInputValue())
+  const [schedulerViewState, setSchedulerViewState] = useState(() => getSchedulerViewStateFromUrl())
   const [effectiveOwnerKey, setEffectiveOwnerKey] = useState(null)
   const [isInitializing, setIsInitializing] = useState(true)
 
@@ -194,15 +271,15 @@ export function SchedulerApp({ pathname, session }) {
 
   const renderContent = () => {
     if (route.name === 'today') {
-      return <TodaySchedulerPage effectiveOwnerKey={effectiveOwnerKey} onSelectedDateChange={setSelectedSchedulerDate} />
+      return <TodaySchedulerPage effectiveOwnerKey={effectiveOwnerKey} initialViewState={schedulerViewState} onViewStateChange={setSchedulerViewState} />
     }
 
     if (route.name === 'new') {
-      return <ReservationEditorPage mode="create" effectiveOwnerKey={effectiveOwnerKey} initialReservationDate={getReservationDateParam()} />
+      return <ReservationEditorPage mode="create" effectiveOwnerKey={effectiveOwnerKey} initialReservationDate={getReservationDateParam()} backPath={buildSchedulerViewPath(schedulerViewState.date, schedulerViewState.filters)} />
     }
 
     if (route.name === 'edit') {
-      return <ReservationEditorPage mode="edit" reservationId={route.reservationId} effectiveOwnerKey={effectiveOwnerKey} />
+      return <ReservationEditorPage mode="edit" reservationId={route.reservationId} effectiveOwnerKey={effectiveOwnerKey} backPath={buildSchedulerViewPath(schedulerViewState.date, schedulerViewState.filters)} />
     }
 
     if (route.name === 'rooms') {
@@ -230,7 +307,7 @@ export function SchedulerApp({ pathname, session }) {
         <button
           type="button"
           className="scheduler-fab-button"
-          onClick={() => navigate(`/scheduler/new?date=${encodeURIComponent(selectedSchedulerDate || toLocalDateInputValue())}`)}
+          onClick={() => navigate(`/scheduler/new?date=${encodeURIComponent(schedulerViewState.date || toLocalDateInputValue())}`)}
           aria-label="새 일정 추가"
         >
           + 일정 추가
@@ -277,20 +354,22 @@ function NativePickerField({
   )
 }
 
-function TodaySchedulerPage({ effectiveOwnerKey, onSelectedDateChange }) {
-  const initialSelectedDate = toLocalDateInputValue()
+function TodaySchedulerPage({ effectiveOwnerKey, initialViewState, onViewStateChange }) {
+  const initialSelectedDate = initialViewState?.date || toLocalDateInputValue()
   const [selectedDate, setSelectedDate] = useState(initialSelectedDate)
   const [events, setEvents] = useState([])
-  const [filters, setFilters] = useState(() => ({
+  const [filters, setFilters] = useState(() => initialViewState?.filters || {
     branch: 'all',
     room: 'all',
-    ...loadStoredWorkTimeFilter(initialSelectedDate),
-  }))
+    ...getDefaultWorkTimeFilter(),
+  })
   const [draftFilters, setDraftFilters] = useState(() => ({
     date: initialSelectedDate,
-    branch: 'all',
-    room: 'all',
-    ...loadStoredWorkTimeFilter(initialSelectedDate),
+    ...(initialViewState?.filters || {
+      branch: 'all',
+      room: 'all',
+      ...getDefaultWorkTimeFilter(),
+    }),
   }))
   const [isFilterSheetOpen, setIsFilterSheetOpen] = useState(false)
   const [status, setStatus] = useState('')
@@ -483,8 +562,9 @@ function TodaySchedulerPage({ effectiveOwnerKey, onSelectedDateChange }) {
   }, [selectedDate])
 
   useEffect(() => {
-    onSelectedDateChange?.(selectedDate)
-  }, [selectedDate, onSelectedDateChange])
+    onViewStateChange?.({ date: selectedDate, filters })
+    replaceSchedulerViewUrl(selectedDate, filters)
+  }, [selectedDate, filters, onViewStateChange])
 
   useEffect(() => {
     loadPushState()
@@ -527,12 +607,12 @@ function TodaySchedulerPage({ effectiveOwnerKey, onSelectedDateChange }) {
   useEffect(() => {
     function handleGoToToday() {
       const today = toLocalDateInputValue()
-      const storedWorkTimeFilter = loadStoredWorkTimeFilter(today)
       setSelectedDate(today)
-      setFilters((current) => ({
-        ...current,
-        ...storedWorkTimeFilter,
-      }))
+      setFilters({
+        branch: 'all',
+        room: 'all',
+        ...getDefaultWorkTimeFilter(),
+      })
     }
 
     window.addEventListener(GO_TO_TODAY_EVENT, handleGoToToday)
@@ -1318,7 +1398,7 @@ function EventCard({ item, onToggleDone, isSaving }) {
   )
 }
 
-function ReservationEditorPage({ mode, reservationId, effectiveOwnerKey, initialReservationDate = null }) {
+function ReservationEditorPage({ mode, reservationId, effectiveOwnerKey, initialReservationDate = null, backPath = '/scheduler' }) {
   const [formValues, setFormValues] = useState(() => createReservationDraft(initialReservationDate))
   const [status, setStatus] = useState('')
   const [isLoading, setIsLoading] = useState(mode === 'edit')
@@ -1471,7 +1551,7 @@ function ReservationEditorPage({ mode, reservationId, effectiveOwnerKey, initial
       <section className="scheduler-panel" style={{ paddingTop: '1rem' }}>
         <div className="scheduler-section-head" style={{ marginBottom: '0.4rem' }}>
           <div />
-          <button type="button" className="scheduler-back-button" onClick={() => navigate('/scheduler')}>
+          <button type="button" className="scheduler-back-button" onClick={() => navigate(backPath)}>
             ← 돌아가기
           </button>
         </div>
