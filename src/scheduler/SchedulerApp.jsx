@@ -145,8 +145,19 @@ function parseSchedulerRoute(pathname) {
   return { name: 'not-found' }
 }
 
+function getReservationDateParam() {
+  if (typeof window === 'undefined') return null
+
+  const value = new URLSearchParams(window.location.search).get('date')
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(value || '')) return null
+
+  const parsed = new Date(`${value}T00:00:00`)
+  return toLocalDateInputValue(parsed) === value ? value : null
+}
+
 export function SchedulerApp({ pathname, session }) {
   const route = useMemo(() => parseSchedulerRoute(pathname), [pathname])
+  const [selectedSchedulerDate, setSelectedSchedulerDate] = useState(() => toLocalDateInputValue())
   const [effectiveOwnerKey, setEffectiveOwnerKey] = useState(null)
   const [isInitializing, setIsInitializing] = useState(true)
 
@@ -183,11 +194,11 @@ export function SchedulerApp({ pathname, session }) {
 
   const renderContent = () => {
     if (route.name === 'today') {
-      return <TodaySchedulerPage effectiveOwnerKey={effectiveOwnerKey} />
+      return <TodaySchedulerPage effectiveOwnerKey={effectiveOwnerKey} onSelectedDateChange={setSelectedSchedulerDate} />
     }
 
     if (route.name === 'new') {
-      return <ReservationEditorPage mode="create" effectiveOwnerKey={effectiveOwnerKey} />
+      return <ReservationEditorPage mode="create" effectiveOwnerKey={effectiveOwnerKey} initialReservationDate={getReservationDateParam()} />
     }
 
     if (route.name === 'edit') {
@@ -219,7 +230,7 @@ export function SchedulerApp({ pathname, session }) {
         <button
           type="button"
           className="scheduler-fab-button"
-          onClick={() => navigate('/scheduler/new')}
+          onClick={() => navigate(`/scheduler/new?date=${encodeURIComponent(selectedSchedulerDate || toLocalDateInputValue())}`)}
           aria-label="새 일정 추가"
         >
           + 일정 추가
@@ -266,7 +277,7 @@ function NativePickerField({
   )
 }
 
-function TodaySchedulerPage({ effectiveOwnerKey }) {
+function TodaySchedulerPage({ effectiveOwnerKey, onSelectedDateChange }) {
   const initialSelectedDate = toLocalDateInputValue()
   const [selectedDate, setSelectedDate] = useState(initialSelectedDate)
   const [events, setEvents] = useState([])
@@ -470,6 +481,10 @@ function TodaySchedulerPage({ effectiveOwnerKey }) {
   useEffect(() => {
     loadEvents()
   }, [selectedDate])
+
+  useEffect(() => {
+    onSelectedDateChange?.(selectedDate)
+  }, [selectedDate, onSelectedDateChange])
 
   useEffect(() => {
     loadPushState()
@@ -1303,8 +1318,8 @@ function EventCard({ item, onToggleDone, isSaving }) {
   )
 }
 
-function ReservationEditorPage({ mode, reservationId, effectiveOwnerKey }) {
-  const [formValues, setFormValues] = useState(createReservationDraft())
+function ReservationEditorPage({ mode, reservationId, effectiveOwnerKey, initialReservationDate = null }) {
+  const [formValues, setFormValues] = useState(() => createReservationDraft(initialReservationDate))
   const [status, setStatus] = useState('')
   const [isLoading, setIsLoading] = useState(mode === 'edit')
   const [isSaving, setIsSaving] = useState(false)

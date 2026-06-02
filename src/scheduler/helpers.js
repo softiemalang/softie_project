@@ -19,13 +19,13 @@ export function getRoomsForBranch(branch) {
   return SCHEDULER_BRANCH_ROOMS[branch] || []
 }
 
-export function createReservationDraft() {
+export function createReservationDraft(initialReservationDate = null) {
   const now = new Date()
   const roundedHour = now.getMinutes() < 30 ? now.getHours() : now.getHours() + 1
   const startTime = normalizeHourTime(`${String(Math.min(roundedHour, 23)).padStart(2, '0')}:00`)
 
   return {
-    reservationDate: toLocalDateInputValue(now),
+    reservationDate: initialReservationDate || toLocalDateInputValue(now),
     branch: '',
     room: '',
     customerName: '',
