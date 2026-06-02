@@ -1509,7 +1509,7 @@ function ReservationEditorPage({ mode, reservationId, effectiveOwnerKey, initial
       if (mode === 'edit') {
         navigate(`/scheduler/${saved.id}`)
       } else {
-        setFormValues(createReservationDraft())
+        setFormValues(createReservationDraft(formValues.reservationDate))
         window.scrollTo({ top: 0, behavior: 'smooth' })
       }
       setStatus('저장했어요.')
