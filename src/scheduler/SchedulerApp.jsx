@@ -10,7 +10,8 @@ import {
   listSchedulerWorkLogs,
   upsertSchedulerWorkLog,
   deleteSchedulerWorkLogs,
-  migrateLocalWorkLogsToSupabase
+  migrateLocalWorkLogsToSupabase,
+  linkUnownedReservationsToOwner
 } from './api'
 import { SCHEDULER_BRANCHES, SCHEDULER_TAGS, TODAY_HOURS } from './constants'
 import { buildReservationPayload, createReservationDraft, getRoomStatus, getRoomsForBranch, getTagMeta, groupTodayEvents, mapReservationToFormValues, validateReservationForm } from './helpers'
@@ -279,7 +280,7 @@ export function SchedulerApp({ pathname, session }) {
       const ownerKey = userId || getOrCreatePushDeviceId()
       
       if (userId) {
-        import('./api').then(m => m.linkUnownedReservationsToOwner(userId))
+        linkUnownedReservationsToOwner(userId)
       }
       
       if (!mounted) return
