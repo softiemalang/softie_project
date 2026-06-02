@@ -1507,6 +1507,8 @@ function ReservationEditorPage({ mode, reservationId, effectiveOwnerKey, initial
     try {
       const saved = await saveReservation(buildReservationPayload(formValues), reservationId, effectiveOwnerKey)
       
+      let googleSyncError = false
+
       // MVP: 구글 캘린더 연동이 되어있다면 일정 생성/수정 시도
       if (isGoogleConnected()) {
         const session = await getCurrentSession()
@@ -1522,20 +1524,18 @@ function ReservationEditorPage({ mode, reservationId, effectiveOwnerKey, initial
             endAt: saved.end_at,
           }
 
-          if (mode === 'edit' && saved.google_event_id) {
-            updateGoogleCalendarEvent(targetId, syncPayload).catch(err => {
-              console.error('Google Calendar Update Sync Error:', err)
-              if (err.message?.includes('not connected') || err.message?.includes('refresh token') || err.message?.includes('insufficient')) {
-                disconnectGoogleCalendar()
-              }
-            })
-          } else if (mode === 'create' || (mode === 'edit' && !saved.google_event_id)) {
-            createGoogleCalendarEvent(targetId, syncPayload).catch(err => {
-              console.error('Google Calendar Create Sync Error:', err)
-              if (err.message?.includes('not connected') || err.message?.includes('refresh token') || err.message?.includes('insufficient')) {
-                disconnectGoogleCalendar()
-              }
-            })
+          try {
+            if (mode === 'edit' && saved.google_event_id) {
+              await updateGoogleCalendarEvent(targetId, syncPayload)
+            } else if (mode === 'create' || (mode === 'edit' && !saved.google_event_id)) {
+              await createGoogleCalendarEvent(targetId, syncPayload)
+            }
+          } catch (err) {
+            googleSyncError = true
+            console.error('Google Calendar Sync Error:', err)
+            if (err.message?.includes('not connected') || err.message?.includes('refresh token') || err.message?.includes('insufficient')) {
+              disconnectGoogleCalendar()
+            }
           }
 
           // Log to Google Sheets (fire-and-forget)
@@ -1555,13 +1555,17 @@ function ReservationEditorPage({ mode, reservationId, effectiveOwnerKey, initial
         }
       }
 
-      if (mode === 'edit') {
-        navigate(`/scheduler/${saved.id}`)
+      if (googleSyncError) {
+        setStatus('예약은 저장되었으나, Google 캘린더 동기화에 실패했습니다.')
       } else {
-        setFormValues(createReservationDraft(formValues.reservationDate))
-        window.scrollTo({ top: 0, behavior: 'smooth' })
+        if (mode === 'edit') {
+          navigate(`/scheduler/${saved.id}`)
+        } else {
+          setFormValues(createReservationDraft(formValues.reservationDate))
+          window.scrollTo({ top: 0, behavior: 'smooth' })
+        }
+        setStatus('저장했어요.')
       }
-      setStatus('저장했어요.')
     } catch (error) {
       setStatus(error.message)
     } finally {
@@ -1575,6 +1579,8 @@ function ReservationEditorPage({ mode, reservationId, effectiveOwnerKey, initial
     if (!shouldDelete) return
 
     setIsSaving(true)
+    let googleDeleteError = false
+
     try {
       if (isGoogleConnected() && reservationId) {
         try {
@@ -1584,12 +1590,19 @@ function ReservationEditorPage({ mode, reservationId, effectiveOwnerKey, initial
             await deleteGoogleCalendarEvent(targetId, reservationId)
           }
         } catch (calErr) {
+          googleDeleteError = true
           console.error('Google Calendar Delete Sync Error:', calErr)
         }
       }
 
       await deleteReservation(reservationId, effectiveOwnerKey)
-      navigate('/scheduler')
+
+      if (googleDeleteError) {
+        setStatus('예약은 삭제되었으나, Google 캘린더 일정 삭제에 실패했습니다.')
+        setIsSaving(false)
+      } else {
+        navigate('/scheduler')
+      }
     } catch (error) {
       setStatus(error.message)
       setIsSaving(false)
