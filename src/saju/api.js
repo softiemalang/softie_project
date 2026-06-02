@@ -307,12 +307,13 @@ export async function getFortuneHistory(profileId, limit = 30) {
 /**
  * 운세 히스토리 상세 조회
  */
-export async function getFortuneReportById(reportId) {
-  if (!reportId) return null
+export async function getFortuneReportById(reportId, profileId) {
+  if (!reportId || !profileId) return null
   const { data, error } = await supabase
     .from('saju_fortune_reports')
     .select('id, report_date, headline, summary, report_content')
     .eq('id', reportId)
+    .eq('profile_id', profileId)
     .maybeSingle()
 
   if (error) throw error

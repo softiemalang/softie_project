@@ -322,10 +322,10 @@ export default function SoftieFortunePage() {
   }
 
   async function handleOpenHistoryDetail(reportId) {
-    if (!reportId) return
+    if (!reportId || !activeProfile?.id) return
     setIsHistoryDetailLoading(true)
     try {
-      const data = await getFortuneReportById(reportId)
+      const data = await getFortuneReportById(reportId, activeProfile.id)
       setSelectedHistoryReport(data)
     } catch (error) {
       console.error('Failed to load history report detail:', error)

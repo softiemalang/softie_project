@@ -179,6 +179,15 @@ Deno.serve(async (request) => {
     })
   }
 
+  const cronSecret = Deno.env.get('SCHEDULER_CRON_SECRET')
+  const authorization = request.headers.get('Authorization') || ''
+  if (!cronSecret || authorization !== `Bearer ${cronSecret}`) {
+    return new Response(JSON.stringify({ error: 'Unauthorized scheduler dispatch request' }), {
+      status: 401,
+      headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+    })
+  }
+
   try {
     failedStep = 'create_service_client'
     const supabase = createServiceRoleClient()
