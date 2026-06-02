@@ -56,6 +56,7 @@ import { getCurrentSession } from '../lib/auth'
 
 const GO_TO_TODAY_EVENT = 'scheduler:go-today'
 const WORK_TIME_FILTER_STORAGE_KEY = 'scheduler:work-time-filter'
+const SCHEDULER_MAIN_VIEW_STORAGE_KEY = 'scheduler:main-view-state'
 const WORK_LOGS_STORAGE_KEY = 'scheduler:work-logs'
 
 const DEFAULT_PUSH_PREFERENCES = {
@@ -162,44 +163,76 @@ function getValidSchedulerDate(value) {
   return toLocalDateInputValue(parsed) === value ? value : null
 }
 
-function getSchedulerViewStateFromUrl() {
-  const fallbackDate = toLocalDateInputValue()
-  if (typeof window === 'undefined') {
-    return {
-      date: fallbackDate,
-      filters: {
-        branch: 'all',
-        room: 'all',
-        ...getDefaultWorkTimeFilter(),
-      },
-    }
+function getDefaultSchedulerViewState() {
+  return {
+    date: toLocalDateInputValue(),
+    filters: {
+      branch: 'all',
+      room: 'all',
+      ...getDefaultWorkTimeFilter(),
+    },
   }
+}
 
-  const params = new URLSearchParams(window.location.search)
-  const date = getValidSchedulerDate(params.get('date')) || fallbackDate
-  const branchParam = params.get('branch')
+function normalizeSchedulerViewState(candidate) {
+  const fallback = getDefaultSchedulerViewState()
+  const date = getValidSchedulerDate(candidate?.date) || fallback.date
+  const branchParam = candidate?.filters?.branch
   const branch = SCHEDULER_BRANCHES.includes(branchParam) ? branchParam : 'all'
-  const roomParam = params.get('room')
+  const roomParam = candidate?.filters?.room
   const room = branch !== 'all' && getRoomsForBranch(branch).includes(roomParam) ? roomParam : 'all'
-  const defaultWorkTimeFilter = getDefaultWorkTimeFilter()
-  const startHour = Number(params.get('start'))
-  const endHour = Number(params.get('end'))
+  const normalizedWorkTimeFilter = normalizeWorkTimeFilter(candidate?.filters || {})
 
   return {
     date,
     filters: {
       branch,
       room,
-      ...defaultWorkTimeFilter,
-      workTimeEnabled: params.get('scope') === 'working',
-      workTimeStartHour: Number.isInteger(startHour) && startHour >= 0 && startHour <= 23
-        ? startHour
-        : defaultWorkTimeFilter.workTimeStartHour,
-      workTimeEndHour: Number.isInteger(endHour) && endHour >= 0 && endHour <= 23
-        ? endHour
-        : defaultWorkTimeFilter.workTimeEndHour,
+      ...normalizedWorkTimeFilter,
     },
   }
+}
+
+function getSchedulerViewStateFromSearch(search) {
+  const params = new URLSearchParams(search)
+  const defaultWorkTimeFilter = getDefaultWorkTimeFilter()
+
+  return normalizeSchedulerViewState({
+    date: params.get('date'),
+    filters: {
+      branch: params.get('branch'),
+      room: params.get('room'),
+      ...defaultWorkTimeFilter,
+      workTimeEnabled: params.get('scope') === 'working',
+      workTimeStartHour: params.has('start') ? Number(params.get('start')) : defaultWorkTimeFilter.workTimeStartHour,
+      workTimeEndHour: params.has('end') ? Number(params.get('end')) : defaultWorkTimeFilter.workTimeEndHour,
+    },
+  })
+}
+
+function loadStoredSchedulerViewState() {
+  if (typeof window === 'undefined') return getDefaultSchedulerViewState()
+
+  try {
+    const rawValue = window.localStorage.getItem(SCHEDULER_MAIN_VIEW_STORAGE_KEY)
+    if (!rawValue) return getDefaultSchedulerViewState()
+    return normalizeSchedulerViewState(JSON.parse(rawValue))
+  } catch {
+    return getDefaultSchedulerViewState()
+  }
+}
+
+function persistSchedulerViewState(date, filters) {
+  if (typeof window === 'undefined') return
+
+  const viewState = normalizeSchedulerViewState({ date, filters })
+  window.localStorage.setItem(SCHEDULER_MAIN_VIEW_STORAGE_KEY, JSON.stringify(viewState))
+}
+
+function getSchedulerViewStateFromUrl() {
+  if (typeof window === 'undefined') return getDefaultSchedulerViewState()
+  if (!window.location.search) return loadStoredSchedulerViewState()
+  return getSchedulerViewStateFromSearch(window.location.search)
 }
 
 function buildSchedulerViewPath(date, filters) {
@@ -563,6 +596,7 @@ function TodaySchedulerPage({ effectiveOwnerKey, initialViewState, onViewStateCh
 
   useEffect(() => {
     onViewStateChange?.({ date: selectedDate, filters })
+    persistSchedulerViewState(selectedDate, filters)
     replaceSchedulerViewUrl(selectedDate, filters)
   }, [selectedDate, filters, onViewStateChange])
 
