@@ -39,9 +39,51 @@ G - C - D - Em
 C - D - G (끝)`
 
 export default function LeadSheetPage() {
-  // LocalStorage에서 초기값 불러오기
+  // 1. 다중 곡 목록 상태 및 기존 단일 데이터 마이그레이션 처리
+  const [songs, setSongs] = useState(() => {
+    const savedSongs = localStorage.getItem('leadSheetSongs')
+    if (savedSongs) {
+      return JSON.parse(savedSongs)
+    }
+
+    // 기존 단일 데이터 key인 'lead-sheet-text' 확인 및 마이그레이션
+    const legacyText = localStorage.getItem('lead-sheet-text')
+    if (legacyText && legacyText.trim()) {
+      const title = legacyText.split('\n')[0]?.replace(/[\[\]]/g, '').trim() || '제목 없음'
+      const legacySong = {
+        id: 'song-legacy',
+        title,
+        content: legacyText,
+        updatedAt: Date.now()
+      }
+      const list = [legacySong]
+      localStorage.setItem('leadSheetSongs', JSON.stringify(list))
+      localStorage.setItem('leadSheetActiveSongId', 'song-legacy')
+      return list
+    }
+
+    // 기존 데이터도 없는 경우: 완전히 비어있는 상태로 시작
+    const initialSong = {
+      id: 'song-initial',
+      title: '제목 없음',
+      content: '',
+      updatedAt: Date.now()
+    }
+    const list = [initialSong]
+    localStorage.setItem('leadSheetSongs', JSON.stringify(list))
+    localStorage.setItem('leadSheetActiveSongId', 'song-initial')
+    return list
+  })
+
+  // 2. 활성화된 곡 ID 상태
+  const [activeSongId, setActiveSongId] = useState(() => {
+    return localStorage.getItem('leadSheetActiveSongId') || (songs[0]?.id || '')
+  })
+
+  // 3. 현재 텍스트 및 조절 설정
   const [inputText, setInputText] = useState(() => {
-    return localStorage.getItem('lead-sheet-text') ?? DEFAULT_LEAD_SHEET
+    const activeSong = songs.find(s => s.id === activeSongId)
+    return activeSong ? activeSong.content : ''
   })
   
   const [currentPage, setCurrentPage] = useState(() => {
@@ -57,6 +99,7 @@ export default function LeadSheetPage() {
   const [isViewMode, setIsViewMode] = useState(true)
   const [isFullscreen, setIsFullscreen] = useState(false)
   const [isFocusMode, setIsFocusMode] = useState(false)
+  const [isListOpen, setIsListOpen] = useState(false) // 서랍 패널 노출 여부
   
   const containerRef = useRef(null)
 
@@ -72,16 +115,20 @@ export default function LeadSheetPage() {
 
   // LocalStorage 저장 동기화
   useEffect(() => {
-    localStorage.setItem('lead-sheet-text', inputText)
-  }, [inputText])
-
-  useEffect(() => {
     localStorage.setItem('lead-sheet-page', activePage.toString())
   }, [activePage])
 
   useEffect(() => {
     localStorage.setItem('lead-sheet-font-size', fontSize.toString())
   }, [fontSize])
+
+  // activeSongId에 맞춰 텍스트 변경
+  useEffect(() => {
+    const activeSong = songs.find(s => s.id === activeSongId)
+    if (activeSong) {
+      setInputText(activeSong.content)
+    }
+  }, [activeSongId, songs])
 
   // Fullscreen 상태 모니터링 (크로스 브라우저 & iOS Safari 대응)
   useEffect(() => {
@@ -223,7 +270,6 @@ export default function LeadSheetPage() {
       const line = lines[i]
       const trimmed = line.trim()
       
-      // 대괄호로 감싸진 라인을 섹션 헤더로 판단
       const isSectionHeader = /^\[.+\]$/.test(trimmed)
 
       if (isSectionHeader) {
@@ -261,9 +307,8 @@ export default function LeadSheetPage() {
 
     for (let i = 0; i < sections.length; i++) {
       const sec = sections[i]
-      const secLength = 1 + sec.lines.length // 타이틀 줄 + 내용 줄
+      const secLength = 1 + sec.lines.length
 
-      // 현재 담겨 있는 줄 수 + 추가할 섹션 줄 수가 16을 초과하면 페이지 분할
       if (currentPageLines.length > 0 && currentPageLines.length + secLength > 16) {
         pageGroups.push(currentPageLines.join('\n'))
         currentPageLines = []
@@ -300,6 +345,111 @@ export default function LeadSheetPage() {
     })
   }
 
+  // --- 추가 곡 관리 기능 ---
+  
+  // 1. 현재 곡 저장
+  const handleSaveSong = () => {
+    const title = inputText.split('\n')[0]?.trim() || '제목 없음'
+    const updated = songs.map(song => {
+      if (song.id === activeSongId) {
+        return {
+          ...song,
+          title,
+          content: inputText,
+          updatedAt: Date.now()
+        }
+      }
+      return song
+    })
+    setSongs(updated)
+    localStorage.setItem('leadSheetSongs', JSON.stringify(updated))
+    alert('곡 저장 완료: ' + title)
+  }
+
+  // 2. 새 곡 생성
+  const handleNewSong = () => {
+    if (window.confirm('현재 편집 중인 내용을 저장하지 않았다면 유실될 수 있습니다. 새 곡을 생성할까요?')) {
+      const newId = 'song-' + Date.now()
+      const newSong = {
+        id: newId,
+        title: '제목 없음',
+        content: '',
+        updatedAt: Date.now()
+      }
+      const updated = [...songs, newSong]
+      setSongs(updated)
+      localStorage.setItem('leadSheetSongs', JSON.stringify(updated))
+      setActiveSongId(newId)
+      localStorage.setItem('leadSheetActiveSongId', newId)
+      setInputText('')
+      setCurrentPage(0)
+      setIsViewMode(false) // 즉시 타이핑하도록 편집 모드로 전환
+    }
+  }
+
+  // 3. 곡 삭제
+  const handleDeleteSong = () => {
+    if (songs.length <= 1) {
+      if (window.confirm('마지막 곡입니다. 삭제하고 빈 곡으로 초기화할까요?')) {
+        const resetId = 'song-' + Date.now()
+        const emptySong = {
+          id: resetId,
+          title: '제목 없음',
+          content: '',
+          updatedAt: Date.now()
+        }
+        const list = [emptySong]
+        setSongs(list)
+        localStorage.setItem('leadSheetSongs', JSON.stringify(list))
+        setActiveSongId(resetId)
+        localStorage.setItem('leadSheetActiveSongId', resetId)
+        setInputText('')
+        setCurrentPage(0)
+      }
+      return
+    }
+
+    if (window.confirm('현재 보고 있는 곡을 목록에서 정말 삭제하시겠습니까?')) {
+      const filtered = songs.filter(s => s.id !== activeSongId)
+      setSongs(filtered)
+      localStorage.setItem('leadSheetSongs', JSON.stringify(filtered))
+      
+      const nextActiveId = filtered[0].id
+      setActiveSongId(nextActiveId)
+      localStorage.setItem('leadSheetActiveSongId', nextActiveId)
+      
+      setInputText(filtered[0].content)
+      setCurrentPage(0)
+    }
+  }
+
+  // 4. 곡 순서 변경
+  const handleMoveSong = (index, direction, event) => {
+    event.stopPropagation() // 아이템 탭에 의한 곡 로드 차단
+    const targetIdx = index + direction
+    if (targetIdx < 0 || targetIdx >= songs.length) return
+
+    const updated = [...songs]
+    const temp = updated[index]
+    updated[index] = updated[targetIdx]
+    updated[targetIdx] = temp
+
+    setSongs(updated)
+    localStorage.setItem('leadSheetSongs', JSON.stringify(updated))
+  }
+
+  // 5. 곡 선택 로드
+  const handleSelectSong = (songId) => {
+    const selected = songs.find(s => s.id === songId)
+    if (!selected) return
+
+    setActiveSongId(songId)
+    localStorage.setItem('leadSheetActiveSongId', songId)
+    setInputText(selected.content)
+    setCurrentPage(0)
+    setIsListOpen(false) // 서랍 닫기
+  }
+
   const showFocusMode = isFocusMode || isFullscreen
 
   return (
@@ -309,6 +459,16 @@ export default function LeadSheetPage() {
         <header className="lead-sheet-header">
           <h1 className="lead-sheet-title">LEAD SHEET</h1>
           <div className="lead-sheet-controls">
+            {/* 곡 목록 서랍 열기 버튼 */}
+            <button 
+              type="button" 
+              className="lead-sheet-btn"
+              onClick={() => setIsListOpen(true)}
+              title="곡 목록 열기"
+            >
+              목록
+            </button>
+            
             <button 
               type="button" 
               className="lead-sheet-btn"
@@ -404,7 +564,7 @@ export default function LeadSheetPage() {
             </div>
           </>
         ) : (
-          /* 편집 모드: 입력 텍스트아레아 */
+          /* 편집 모드: 입력 텍스트아레아 + 하단 조작기 */
           <div className="lead-sheet-editor-container">
             <textarea
               className="lead-sheet-textarea"
@@ -413,20 +573,46 @@ export default function LeadSheetPage() {
                 setInputText(e.target.value)
                 setCurrentPage(0)
               }}
-              placeholder="가사와 코드를 입력하세요.&#10;--- 구분선을 넣으면 페이지가 분할됩니다.&#10;&#10;예시:&#10;[Verse 1]&#10;C    G    Am&#10;하늘을 나는 기분&#10;---&#10;[Chorus]&#10;F    G    C&#10;너와 함께 있을 때"
+              placeholder="여기에 가사와 코드를 입력하세요. 첫 줄은 곡 제목이 됩니다.&#10;--- 구분선을 넣으면 페이지가 분할됩니다."
             />
             <div className="lead-sheet-editor-actions" onClick={(e) => e.stopPropagation()}>
               <p className="lead-sheet-editor-help">
-                💡 한글자 또는 빈 줄 단위로 가사/코드 분량을 조절해보세요. 한 페이지로 나타낼 영역 중간에 <strong>---</strong>를 작성하면 페이지가 분할됩니다.
+                💡 첫 줄은 곡 제목이 됩니다. <strong>---</strong> 구분선으로 페이지를 나눕니다.
               </p>
-              <button 
-                type="button" 
-                className="lead-sheet-btn lead-sheet-btn-primary lead-sheet-group-btn"
-                onClick={groupSections}
-                title="대괄호 섹션들을 16줄 기준으로 페이지 자동 분할"
-              >
-                섹션 묶기
-              </button>
+              <div className="lead-sheet-editor-buttons">
+                <button 
+                  type="button" 
+                  className="lead-sheet-btn lead-sheet-group-btn"
+                  onClick={groupSections}
+                  title="섹션들을 16줄 기준으로 자동 묶기"
+                >
+                  묶기
+                </button>
+                <button 
+                  type="button" 
+                  className="lead-sheet-btn lead-sheet-btn-primary lead-sheet-group-btn"
+                  onClick={handleSaveSong}
+                  title="현재 변경 내용 저장"
+                >
+                  저장
+                </button>
+                <button 
+                  type="button" 
+                  className="lead-sheet-btn lead-sheet-group-btn"
+                  onClick={handleNewSong}
+                  title="새로운 빈 곡 생성"
+                >
+                  새곡
+                </button>
+                <button 
+                  type="button" 
+                  className="lead-sheet-btn lead-sheet-btn-danger lead-sheet-group-btn"
+                  onClick={handleDeleteSong}
+                  title="현재 곡 삭제"
+                >
+                  삭제
+                </button>
+              </div>
             </div>
           </div>
         )}
@@ -438,6 +624,60 @@ export default function LeadSheetPage() {
           PAGE {totalPages > 0 ? activePage + 1 : 0} / {totalPages} · {fontSize}px
         </span>
       </footer>
+
+      {/* 곡 목록 서랍 패널 (Drawer) */}
+      {isListOpen && (
+        <div className="lead-sheet-drawer-backdrop" onClick={() => setIsListOpen(false)}>
+          <aside className="lead-sheet-drawer" onClick={(e) => e.stopPropagation()}>
+            <header className="lead-sheet-drawer-header">
+              <h2 className="lead-sheet-drawer-title">곡 목록</h2>
+              <button 
+                type="button" 
+                className="lead-sheet-btn" 
+                onClick={() => setIsListOpen(false)}
+              >
+                닫기
+              </button>
+            </header>
+            
+            <div className="lead-sheet-drawer-body">
+              <ul className="lead-sheet-song-list">
+                {songs.map((song, idx) => (
+                  <li 
+                    key={song.id} 
+                    className={`lead-sheet-song-item ${song.id === activeSongId ? 'is-active' : ''}`}
+                    onClick={() => handleSelectSong(song.id)}
+                  >
+                    <span className="lead-sheet-song-title">
+                      {song.title || '제목 없음'}
+                    </span>
+                    <div className="lead-sheet-song-item-controls">
+                      <button 
+                        type="button"
+                        className="lead-sheet-btn lead-sheet-song-move-btn"
+                        onClick={(e) => handleMoveSong(idx, -1, e)}
+                        disabled={idx === 0}
+                        title="위로 이동"
+                      >
+                        ▲
+                      </button>
+                      <button 
+                        type="button"
+                        className="lead-sheet-btn lead-sheet-song-move-btn"
+                        onClick={(e) => handleMoveSong(idx, 1, e)}
+                        disabled={idx === songs.length - 1}
+                        title="아래로 이동"
+                      >
+                        ▼
+                      </button>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </aside>
+        </div>
+      )}
     </div>
   )
 }

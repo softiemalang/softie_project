@@ -3860,3 +3860,139 @@ textarea {
   }
 }
 
+/* 곡 목록 서랍(Drawer) 오버레이 */
+.lead-sheet-drawer-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 100;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.lead-sheet-drawer {
+  width: min(100%, 300px);
+  height: 100%;
+  background-color: #17191c;
+  border-left: 1px solid rgba(255, 255, 255, 0.06);
+  display: flex;
+  flex-direction: column;
+  box-shadow: -10px 0 30px rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  padding-bottom: env(safe-area-inset-bottom);
+  padding-top: env(safe-area-inset-top);
+  box-sizing: border-box;
+}
+
+.lead-sheet-drawer-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.8rem 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.lead-sheet-drawer-title {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #a39587;
+  margin: 0;
+  letter-spacing: 0.02em;
+}
+
+.lead-sheet-drawer-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 0.6rem;
+  -webkit-overflow-scrolling: touch;
+}
+
+.lead-sheet-song-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.lead-sheet-song-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.65rem 0.8rem;
+  background-color: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.2s, border-color 0.2s;
+  box-sizing: border-box;
+}
+
+.lead-sheet-song-item:active {
+  background-color: rgba(255, 255, 255, 0.08);
+}
+
+.lead-sheet-song-item.is-active {
+  background-color: rgba(31, 111, 95, 0.15);
+  border-color: var(--brand);
+}
+
+.lead-sheet-song-title {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #c5b9ad;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 160px;
+  text-align: left;
+}
+
+.lead-sheet-song-item.is-active .lead-sheet-song-title {
+  color: #ffffff;
+}
+
+.lead-sheet-song-item-controls {
+  display: flex;
+  gap: 0.2rem;
+  flex-shrink: 0;
+}
+
+.lead-sheet-song-move-btn {
+  padding: 0.2rem 0.35rem;
+  font-size: 0.6rem;
+  min-height: auto;
+  height: auto;
+  border-radius: 6px;
+  background-color: rgba(255, 255, 255, 0.04);
+  color: #c5b9ad;
+}
+
+.lead-sheet-song-move-btn:disabled {
+  opacity: 0.25;
+}
+
+/* 에디터 관리 영역 버튼들 */
+.lead-sheet-editor-buttons {
+  display: flex;
+  gap: 0.3rem;
+  flex-shrink: 0;
+  flex-wrap: wrap;
+}
+
+.lead-sheet-btn-danger {
+  background-color: var(--danger);
+  border-color: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+}
+
+.lead-sheet-btn-danger:active {
+  background-color: #8e1239;
+}
+
+
