@@ -3585,25 +3585,27 @@ textarea {
 }
 
 .lead-sheet-title {
-  font-size: 0.85rem;
+  font-size: 0.75rem;
   font-weight: 700;
   color: #94a3b8;
   margin: 0;
   letter-spacing: 0.05em;
   text-transform: uppercase;
+  flex-shrink: 0;
 }
 
 .lead-sheet-controls {
   display: flex;
-  gap: 0.4rem;
+  gap: 0.25rem;
   align-items: center;
+  flex-shrink: 0;
 }
 
 .lead-sheet-btn {
   background-color: #252930;
   color: #e2e8f0;
   border: 1px solid #3b4252;
-  padding: 0.35rem 0.65rem;
+  padding: 0.35rem 0.5rem;
   font-size: 0.75rem;
   border-radius: 8px;
   cursor: pointer;
@@ -3613,6 +3615,7 @@ textarea {
   touch-action: manipulation;
   font-weight: 550;
   transition: background-color 0.15s, border-color 0.15s;
+  white-space: nowrap;
 }
 
 .lead-sheet-btn:active {

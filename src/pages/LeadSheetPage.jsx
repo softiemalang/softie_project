@@ -215,14 +215,14 @@ export default function LeadSheetPage() {
       {/* 상단 헤더 바 - 집중 모드(전체화면)에서는 숨김 또는 최소화 처리 */}
       {!showFocusMode && (
         <header className="lead-sheet-header">
-          <h1 className="lead-sheet-title">Lead Sheet Page</h1>
+          <h1 className="lead-sheet-title">LEAD SHEET</h1>
           <div className="lead-sheet-controls">
             <button 
               type="button" 
               className="lead-sheet-btn"
               onClick={() => navigate('/')}
             >
-              홈으로
+              홈
             </button>
             
             <button 
@@ -250,7 +250,7 @@ export default function LeadSheetPage() {
               onClick={toggleFullscreen}
               title="전체화면 토글"
             >
-              전체화면
+              전체
             </button>
 
             <button 
@@ -258,7 +258,7 @@ export default function LeadSheetPage() {
               className={`lead-sheet-btn ${isViewMode ? 'lead-sheet-btn-primary' : ''}`}
               onClick={() => setIsViewMode(!isViewMode)}
             >
-              {isViewMode ? '편집하기' : '완료'}
+              {isViewMode ? '편집' : '완료'}
             </button>
           </div>
         </header>
