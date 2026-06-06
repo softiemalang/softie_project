@@ -9,6 +9,7 @@ import BandGoogleCompactPage from './pages/BandGoogleCompactPage'
 import RehearsalCalendarPage from './pages/RehearsalCalendarPage'
 import SpotifyMusicPage from './pages/SpotifyMusicPage'
 import KakaoCallbackPage from './pages/KakaoCallbackPage'
+import LeadSheetPage from './pages/LeadSheetPage'
 
 const DEFAULT_APP_NAME = 'Softie Project'
 
@@ -89,6 +90,14 @@ function getRouteMetadata(pathname) {
       title: 'Saju QA | Softie Project',
       appTitle: 'Saju QA',
       ogTitle: 'Saju QA | Softie Project',
+    }
+  }
+
+  if (pathname.startsWith('/lead-sheet')) {
+    return {
+      title: 'Lead Sheet | Softie Project',
+      appTitle: 'Lead Sheet',
+      ogTitle: 'Lead Sheet | Softie Project',
     }
   }
 
@@ -216,6 +225,10 @@ export default function App() {
 
   if (pathname.startsWith('/brain')) {
     return <ProjectBrainPage />
+  }
+
+  if (pathname.startsWith('/lead-sheet')) {
+    return <LeadSheetPage />
   }
 
   return <NotFoundPage />

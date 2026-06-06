@@ -65,6 +65,12 @@ export default function HomePage() {
       icon: '🎸',
       label: 'BAND',
     },
+    {
+      description: '공연 중 가사와 코드를 모바일 화면에서 한 페이지씩 편하게 확인해요.',
+      path: '/lead-sheet',
+      icon: '📄',
+      label: 'LEAD SHEET',
+    },
   ]
 
   function openMemoModal() {
