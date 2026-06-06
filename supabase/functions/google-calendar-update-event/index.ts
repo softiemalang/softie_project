@@ -13,8 +13,8 @@ serve(async (req) => {
     const { userId: bodyUserId, eventData } = await req.json()
     const userId = await requireGoogleManualUser(req, bodyUserId)
 
-    if (!eventData || !eventData.rehearsalId) {
-      throw new Error('Missing eventData or rehearsalId')
+    if (!eventData || (!eventData.rehearsalId && !eventData.reservationId)) {
+      throw new Error('Missing eventData, rehearsalId, or reservationId')
     }
 
     const supabase = createClient(
