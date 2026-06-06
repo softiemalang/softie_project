@@ -3558,14 +3558,14 @@ textarea {
 }
 
 /* ==========================================
-   Lead Sheet Page (공연용 리드시트) Styles
+   Lead Sheet Page (공연용 리드시트) Styles - Scheduler Dark-Warm Theme
    ========================================== */
 .lead-sheet-container {
   display: flex;
   flex-direction: column;
   height: 100vh;
   height: 100dvh;
-  background-color: #0c0d0e;
+  background-color: #131518; /* 스케줄러 웜그레이 테마를 다크화한 Slate-Dark 배경색 */
   color: #e2e8f0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   position: relative;
@@ -3579,15 +3579,17 @@ textarea {
   justify-content: space-between;
   align-items: center;
   padding: 0.6rem 0.8rem;
-  background-color: #17191c;
-  border-bottom: 1px solid #2d3139;
+  background-color: rgba(23, 26, 31, 0.85); /* 스케줄러의 투명 카드 컨셉 이식 */
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06); /* 얇은 다크 보더 */
   z-index: 10;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
 }
 
 .lead-sheet-title {
-  font-size: 0.75rem;
+  font-size: 0.78rem;
   font-weight: 700;
-  color: #94a3b8;
+  color: #a39587; /* 스케줄러의 중성 웜그레이 텍스트 톤 */
   margin: 0;
   letter-spacing: 0.05em;
   text-transform: uppercase;
@@ -3602,34 +3604,40 @@ textarea {
 }
 
 .lead-sheet-btn {
-  background-color: #252930;
-  color: #e2e8f0;
-  border: 1px solid #3b4252;
+  background-color: rgba(255, 255, 255, 0.06); /* 다크 세컨더리 버튼 */
+  color: #c5b9ad; /* 스케줄러 톤에 맞춘 소프트 브라운 그레이 */
+  border: 1px solid rgba(255, 255, 255, 0.08);
   padding: 0.35rem 0.5rem;
   font-size: 0.75rem;
-  border-radius: 8px;
+  border-radius: 10px; /* 스케줄러 버튼 곡률 10px 적용 */
   cursor: pointer;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   touch-action: manipulation;
-  font-weight: 550;
-  transition: background-color 0.15s, border-color 0.15s;
+  font-weight: 600; /* 세미볼드 */
+  transition: opacity 0.2s, background-color 0.2s, border-color 0.2s;
   white-space: nowrap;
 }
 
 .lead-sheet-btn:active {
-  background-color: #3b4252;
+  background-color: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.15);
 }
 
 .lead-sheet-btn-primary {
-  background-color: #1f6f5f;
-  border-color: #24826f;
+  background-color: var(--brand); /* 스케줄러의 브랜드 시그니처 그린(#1f6f5f) */
+  border-color: rgba(255, 255, 255, 0.1);
   color: #ffffff;
 }
 
 .lead-sheet-btn-primary:active {
-  background-color: #175347;
+  background-color: #165045;
+}
+
+.lead-sheet-btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
 }
 
 .lead-sheet-content-area {
@@ -3661,11 +3669,10 @@ textarea {
   z-index: 1;
   padding: 0.5rem;
   box-sizing: border-box;
-  /* 부드러운 스크롤 */
   -webkit-overflow-scrolling: touch;
 }
 
-/* 터치 제스처 영역 분할 (텍스트 레이어 위에 떠서 탭 이벤트를 가로챔) */
+/* 터치 제스처 영역 분할 */
 .lead-sheet-touch-container {
   position: absolute;
   top: 0;
@@ -3680,7 +3687,6 @@ textarea {
   flex: 1;
   height: 100%;
   cursor: pointer;
-  /* 모바일 터치 하이라이트 투명화 */
   -webkit-tap-highlight-color: transparent;
 }
 
@@ -3700,10 +3706,10 @@ textarea {
 .lead-sheet-textarea {
   width: 100%;
   flex: 1;
-  background-color: #17191c;
+  background-color: rgba(15, 17, 20, 0.95); /* 어두운 밀폐 스케줄러 인풋 톤 */
   color: #e2e8f0;
-  border: 1px solid #2d3139;
-  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px; /* 스케줄러 인풋 곡률 12px 적용 */
   padding: 1rem;
   font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
   font-size: 0.95rem;
@@ -3712,11 +3718,12 @@ textarea {
   box-sizing: border-box;
   user-select: text;
   -webkit-user-select: text;
+  transition: border-color 0.2s;
 }
 
 .lead-sheet-textarea:focus {
   outline: none;
-  border-color: #1f6f5f;
+  border-color: var(--brand); /* 포커스 시 그린 하이라이트 */
 }
 
 .lead-sheet-editor-help {
@@ -3731,16 +3738,22 @@ textarea {
   justify-content: center;
   align-items: center;
   padding: 0.6rem 1rem calc(env(safe-area-inset-bottom) + 0.6rem);
-  background-color: #17191c;
-  border-top: 1px solid #2d3139;
+  background-color: rgba(23, 26, 31, 0.85); /* 헤더와 대칭되는 풋터 블러 카드 */
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
   z-index: 10;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
 }
 
 .lead-sheet-page-indicator {
-  font-size: 0.8rem;
-  color: #94a3b8;
-  font-weight: 700;
+  font-size: 0.78rem;
+  color: #a39587; /* 스케줄러 레이블 톤 */
+  font-weight: 600;
   font-variant-numeric: tabular-nums;
+  background-color: rgba(255, 255, 255, 0.04); /* 알약 배지 톤 */
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  padding: 0.25rem 0.7rem;
+  border-radius: 10px; /* 스케줄러 버튼과 통일된 둥근 모서리 배지 */
 }
 
 /* 집중 모드(전체화면) 스타일 대응 */
@@ -3755,14 +3768,15 @@ textarea {
   top: 1rem;
   right: 1rem;
   display: flex;
-  gap: 0.4rem;
+  gap: 0.25rem;
   z-index: 15;
-  background-color: rgba(23, 25, 28, 0.85);
-  padding: 0.4rem;
+  background-color: rgba(23, 26, 31, 0.85);
+  padding: 0.35rem;
   border-radius: 12px;
-  border: 1px solid #2d3139;
+  border: 1px solid rgba(255, 255, 255, 0.06);
   backdrop-filter: blur(8px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  -webkit-backdrop-filter: blur(8px);
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.4);
   opacity: 0.5;
   transition: opacity 0.2s ease;
 }
@@ -3782,14 +3796,17 @@ textarea {
   right: 0;
   pointer-events: none;
   justify-content: center;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
 }
 
 .lead-sheet-container.is-focus-mode .lead-sheet-page-indicator {
-  background-color: rgba(23, 25, 28, 0.85);
+  background-color: rgba(23, 26, 31, 0.85);
   padding: 0.3rem 0.7rem;
-  border-radius: 999px;
-  border: 1px solid #2d3139;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
   backdrop-filter: blur(8px);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  -webkit-backdrop-filter: blur(8px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
 }
 
