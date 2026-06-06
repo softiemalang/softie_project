@@ -3728,9 +3728,9 @@ textarea {
 
 .lead-sheet-footer {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-  padding: 0.6rem 1rem;
+  padding: 0.6rem 1rem calc(env(safe-area-inset-bottom) + 0.6rem);
   background-color: #17191c;
   border-top: 1px solid #2d3139;
   z-index: 10;
@@ -3777,12 +3777,11 @@ textarea {
   background: transparent;
   border-top: none;
   position: absolute;
-  bottom: 0.6rem;
+  bottom: calc(env(safe-area-inset-bottom) + 0.6rem);
   left: 0;
   right: 0;
   pointer-events: none;
   justify-content: center;
-  gap: 1.5rem;
 }
 
 .lead-sheet-container.is-focus-mode .lead-sheet-page-indicator {

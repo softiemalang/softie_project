@@ -342,10 +342,7 @@ export default function LeadSheetPage() {
       {/* 하단 푸터 바 */}
       <footer className="lead-sheet-footer">
         <span className="lead-sheet-page-indicator">
-          PAGE {totalPages > 0 ? activePage + 1 : 0} / {totalPages}
-        </span>
-        <span className="lead-sheet-page-indicator" style={{ fontWeight: 'normal', color: '#64748b' }}>
-          크기: {fontSize}px
+          PAGE {totalPages > 0 ? activePage + 1 : 0} / {totalPages} · {fontSize}px
         </span>
       </footer>
     </div>
