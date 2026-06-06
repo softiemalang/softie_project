@@ -3854,6 +3854,12 @@ textarea {
 }
 
 @media (min-width: 700px) {
+  .lead-sheet-header {
+    padding-left: calc(max(1.2rem, (100% - 780px) / 2) + env(safe-area-inset-left));
+    padding-right: calc(max(1.2rem, (100% - 780px) / 2) + env(safe-area-inset-right));
+    gap: 2rem;
+  }
+
   .lead-sheet-viewer.two-columns {
     column-count: 2;
     column-gap: 1.8rem;
