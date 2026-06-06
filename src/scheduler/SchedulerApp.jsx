@@ -1248,7 +1248,7 @@ function TodaySchedulerPage({ effectiveOwnerKey, initialViewState, onViewStateCh
               />
 
               <div className="scheduler-filter-field">
-                <div className="scheduler-chip-row scheduler-filter-mode-row" role="radiogroup" aria-label="보기 범위">
+                <div className="scheduler-chip-row scheduler-filter-mode-row" aria-label="보기 설정">
                   <button
                     type="button"
                     className={`scheduler-chip ${!draftFilters.workTimeEnabled ? 'active' : ''}`}
@@ -1264,6 +1264,14 @@ function TodaySchedulerPage({ effectiveOwnerKey, initialViewState, onViewStateCh
                     aria-pressed={draftFilters.workTimeEnabled}
                   >
                     근무 중
+                  </button>
+                  <button
+                    type="button"
+                    className={`scheduler-chip ${draftFilters.date === toLocalDateInputValue() ? 'active' : ''}`}
+                    onClick={() => updateDraftFilter('date', toLocalDateInputValue())}
+                    aria-pressed={draftFilters.date === toLocalDateInputValue()}
+                  >
+                    오늘
                   </button>
                 </div>
               </div>
