@@ -1577,6 +1577,10 @@ function ReservationEditorPage({ mode, reservationId, effectiveOwnerKey, initial
       }
 
       if (googleSyncError) {
+        if (mode === 'create') {
+          setFormValues(createReservationDraft(formValues.reservationDate))
+          window.scrollTo({ top: 0, behavior: 'smooth' })
+        }
         setStatus('예약은 저장되었으나, Google 캘린더 동기화에 실패했습니다.')
       } else {
         if (mode === 'edit') {
