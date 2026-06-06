@@ -702,7 +702,7 @@ function TodaySchedulerPage({ effectiveOwnerKey, initialViewState, onViewStateCh
 
   async function applyFilterChanges() {
     const nextWorkTimeFilter = normalizeWorkTimeFilter(draftFilters)
-    const nextDate = draftFilters.date
+    const nextDate = draftFilters.date || toLocalDateInputValue()
     setSelectedDate(nextDate)
     setFilters({
       branch: draftFilters.branch,
@@ -1232,7 +1232,7 @@ function TodaySchedulerPage({ effectiveOwnerKey, initialViewState, onViewStateCh
                 value={draftFilters.date}
                 placeholder="날짜 선택"
                 formatter={formatSchedulerDate}
-                onChange={(event) => updateDraftFilter('date', event.target.value)}
+                onChange={(event) => updateDraftFilter('date', event.target.value || toLocalDateInputValue())}
                 hideLabel
               />
 
