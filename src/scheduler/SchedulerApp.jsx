@@ -359,6 +359,7 @@ function NativePickerField({
   value,
   placeholder,
   onChange,
+  onInput,
   formatter,
   hideLabel = false,
 }) {
@@ -381,6 +382,7 @@ function NativePickerField({
           aria-labelledby={labelId}
           type={type}
           value={value}
+          onInput={onInput}
           onChange={onChange}
         />
       </div>
@@ -779,6 +781,14 @@ function TodaySchedulerPage({ effectiveOwnerKey, initialViewState, onViewStateCh
 
       return { ...current, [field]: value }
     })
+  }
+
+  function handleDraftDateInput(event) {
+    const nextDate = event.currentTarget.value || toLocalDateInputValue()
+    if (!event.currentTarget.value) {
+      event.currentTarget.value = nextDate
+    }
+    updateDraftFilter('date', nextDate)
   }
 
   const filterSummaryParts = [
@@ -1232,7 +1242,8 @@ function TodaySchedulerPage({ effectiveOwnerKey, initialViewState, onViewStateCh
                 value={draftFilters.date}
                 placeholder="날짜 선택"
                 formatter={formatSchedulerDate}
-                onChange={(event) => updateDraftFilter('date', event.target.value || toLocalDateInputValue())}
+                onInput={handleDraftDateInput}
+                onChange={handleDraftDateInput}
                 hideLabel
               />
 
