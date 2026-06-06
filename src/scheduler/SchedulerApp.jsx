@@ -431,6 +431,7 @@ function TodaySchedulerPage({ effectiveOwnerKey, initialViewState, onViewStateCh
   const [viewingWeekStart, setViewingWeekStart] = useState(() => getWeekStartDate(initialSelectedDate))
   const [copyFeedback, setCopyFeedback] = useState('')
   const [syncConfirmation, setSyncConfirmation] = useState(null)
+  const eventsRequestSequenceRef = useRef(0)
 
   useEffect(() => {
     if (!effectiveOwnerKey) return
@@ -565,15 +566,21 @@ function TodaySchedulerPage({ effectiveOwnerKey, initialViewState, onViewStateCh
   }
 
   async function loadEvents() {
+    const requestSequence = eventsRequestSequenceRef.current + 1
+    eventsRequestSequenceRef.current = requestSequence
     setIsLoading(true)
     try {
       const rows = await listTodayWorkEvents(selectedDate, effectiveOwnerKey)
+      if (eventsRequestSequenceRef.current !== requestSequence) return
       setEvents(rows)
       setStatus('')
     } catch (error) {
+      if (eventsRequestSequenceRef.current !== requestSequence) return
       setStatus(error.message)
     } finally {
-      setIsLoading(false)
+      if (eventsRequestSequenceRef.current === requestSequence) {
+        setIsLoading(false)
+      }
     }
   }
 
@@ -590,7 +597,7 @@ function TodaySchedulerPage({ effectiveOwnerKey, initialViewState, onViewStateCh
 
   useEffect(() => {
     loadEvents()
-  }, [selectedDate])
+  }, [selectedDate, effectiveOwnerKey])
 
   useEffect(() => {
     onViewStateChange?.({ date: selectedDate, filters })
