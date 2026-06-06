@@ -3811,24 +3811,7 @@ textarea {
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
 }
 
-/* 2단 보기 및 모바일 툴바/에디터 개선 */
-.lead-sheet-footer-content {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  max-width: 540px;
-}
-
-.lead-sheet-footer-toggle-btn {
-  margin: 0;
-  padding: 0.25rem 0.5rem;
-  font-size: 0.72rem;
-  height: auto;
-  min-height: auto;
-  border-radius: 6px;
-}
-
+/* 모바일 에디터 개선 */
 .lead-sheet-editor-actions {
   display: flex;
   justify-content: space-between;
@@ -3860,7 +3843,7 @@ textarea {
     gap: 2rem;
   }
 
-  .lead-sheet-viewer.two-columns {
+  .lead-sheet-viewer {
     column-count: 2;
     column-gap: 1.8rem;
     column-rule: 1px dashed rgba(255, 255, 255, 0.08);
@@ -3871,7 +3854,7 @@ textarea {
     margin: 0 auto;
   }
   
-  .lead-sheet-viewer.two-columns .lead-sheet-section-header-line {
+  .lead-sheet-viewer .lead-sheet-section-header-line {
     break-after: avoid;
     page-break-after: avoid;
   }

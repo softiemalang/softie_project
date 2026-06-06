@@ -54,10 +54,6 @@ export default function LeadSheetPage() {
     return savedSize ? parseInt(savedSize, 10) : 24
   })
 
-  const [columnsCount, setColumnsCount] = useState(() => {
-    return localStorage.getItem('lead-sheet-columns') === '2' ? 2 : 1
-  })
-
   const [isViewMode, setIsViewMode] = useState(true)
   const [isFullscreen, setIsFullscreen] = useState(false)
   const [isFocusMode, setIsFocusMode] = useState(false)
@@ -86,10 +82,6 @@ export default function LeadSheetPage() {
   useEffect(() => {
     localStorage.setItem('lead-sheet-font-size', fontSize.toString())
   }, [fontSize])
-
-  useEffect(() => {
-    localStorage.setItem('lead-sheet-columns', columnsCount.toString())
-  }, [columnsCount])
 
   // Fullscreen 상태 모니터링 (크로스 브라우저 & iOS Safari 대응)
   useEffect(() => {
@@ -320,14 +312,6 @@ export default function LeadSheetPage() {
             <button 
               type="button" 
               className="lead-sheet-btn"
-              onClick={() => navigate('/')}
-            >
-              홈
-            </button>
-            
-            <button 
-              type="button" 
-              className="lead-sheet-btn"
               onClick={zoomOut}
               disabled={fontSize <= 14}
               title="글자 크기 축소"
@@ -385,13 +369,6 @@ export default function LeadSheetPage() {
           </button>
           <button 
             type="button" 
-            className="lead-sheet-btn"
-            onClick={() => setColumnsCount(prev => prev === 2 ? 1 : 2)}
-          >
-            {columnsCount === 2 ? '1단' : '2단'}
-          </button>
-          <button 
-            type="button" 
             className="lead-sheet-btn lead-sheet-btn-primary"
             onClick={toggleFullscreen}
           >
@@ -406,7 +383,7 @@ export default function LeadSheetPage() {
           <>
             {/* 보기 모드: 텍스트 렌더링 및 클릭 오버레이 */}
             <div 
-              className={`lead-sheet-viewer ${columnsCount === 2 ? 'two-columns' : ''}`}
+              className="lead-sheet-viewer"
               style={{ fontSize: `${fontSize}px` }}
             >
               {renderRichText(pages[activePage])}
@@ -457,21 +434,9 @@ export default function LeadSheetPage() {
 
       {/* 하단 푸터 바 */}
       <footer className="lead-sheet-footer">
-        <div className="lead-sheet-footer-content" onClick={(e) => e.stopPropagation()}>
-          <span className="lead-sheet-page-indicator">
-            PAGE {totalPages > 0 ? activePage + 1 : 0} / {totalPages} · {fontSize}px
-          </span>
-          {isViewMode && (
-            <button 
-              type="button" 
-              className="lead-sheet-btn lead-sheet-footer-toggle-btn"
-              onClick={() => setColumnsCount(prev => prev === 2 ? 1 : 2)}
-              title="1단/2단 보기 전환"
-            >
-              {columnsCount === 2 ? '1단' : '2단'}
-            </button>
-          )}
-        </div>
+        <span className="lead-sheet-page-indicator">
+          PAGE {totalPages > 0 ? activePage + 1 : 0} / {totalPages} · {fontSize}px
+        </span>
       </footer>
     </div>
   )
