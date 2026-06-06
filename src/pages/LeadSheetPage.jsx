@@ -56,6 +56,7 @@ export default function LeadSheetPage() {
 
   const [isViewMode, setIsViewMode] = useState(true)
   const [isFullscreen, setIsFullscreen] = useState(false)
+  const [isFocusMode, setIsFocusMode] = useState(false)
   
   const containerRef = useRef(null)
 
@@ -82,14 +83,33 @@ export default function LeadSheetPage() {
     localStorage.setItem('lead-sheet-font-size', fontSize.toString())
   }, [fontSize])
 
-  // Fullscreen 상태 모니터링
+  // Fullscreen 상태 모니터링 (크로스 브라우저 & iOS Safari 대응)
   useEffect(() => {
     function handleFullscreenChange() {
-      setIsFullscreen(!!document.fullscreenElement)
+      const isCurrentlyFS = !!(
+        document.fullscreenElement || 
+        document.webkitFullscreenElement || 
+        document.mozFullScreenElement || 
+        document.msFullscreenElement
+      )
+      setIsFullscreen(isCurrentlyFS)
+      if (isCurrentlyFS) {
+        setIsFocusMode(true)
+      } else {
+        setIsFocusMode(false)
+      }
     }
+    
     document.addEventListener('fullscreenchange', handleFullscreenChange)
+    document.addEventListener('webkitfullscreenchange', handleFullscreenChange)
+    document.addEventListener('mozfullscreenchange', handleFullscreenChange)
+    document.addEventListener('MSFullscreenChange', handleFullscreenChange)
+    
     return () => {
       document.removeEventListener('fullscreenchange', handleFullscreenChange)
+      document.removeEventListener('webkitfullscreenchange', handleFullscreenChange)
+      document.removeEventListener('mozfullscreenchange', handleFullscreenChange)
+      document.removeEventListener('MSFullscreenChange', handleFullscreenChange)
     }
   }, [])
 
@@ -136,35 +156,122 @@ export default function LeadSheetPage() {
   const toggleFullscreen = () => {
     if (!containerRef.current) return
 
-    if (!document.fullscreenElement) {
-      containerRef.current.requestFullscreen().catch(err => {
-        console.error('전체화면 진입 중 오류 발생:', err)
-      })
+    const doc = document
+    const container = containerRef.current
+
+    // 브라우저 벤더별 Fullscreen API 확인
+    const requestFS = 
+      container.requestFullscreen || 
+      container.webkitRequestFullscreen || 
+      container.mozRequestFullScreen || 
+      container.msRequestFullscreen
+
+    const exitFS = 
+      doc.exitFullscreen || 
+      doc.webkitExitFullscreen || 
+      doc.mozCancelFullScreen || 
+      doc.msExitFullscreen
+
+    const activeFS = 
+      doc.fullscreenElement || 
+      doc.webkitFullscreenElement || 
+      doc.mozFullScreenElement || 
+      doc.msFullscreenElement
+
+    if (requestFS && exitFS) {
+      // API가 지원되는 브라우저 (데스크톱, Android, 일부 최신 iOS Safari 등)
+      if (!activeFS) {
+        requestFS.call(container)
+          .then(() => {
+            setIsFullscreen(true)
+            setIsFocusMode(true)
+          })
+          .catch(err => {
+            console.warn('전체화면 API 실패, 내부 전체화면(집중 모드)으로 폴백합니다:', err)
+            setIsFocusMode(prev => !prev)
+          })
+      } else {
+        exitFS.call(doc)
+          .then(() => {
+            setIsFullscreen(false)
+            setIsFocusMode(false)
+          })
+          .catch(err => {
+            console.error('전체화면 종료 중 에러:', err)
+            setIsFocusMode(false)
+          })
+      }
     } else {
-      document.exitFullscreen()
+      // Fullscreen API 미지원 브라우저 (일반적인 iPhone Safari) -> 앱 내부 전체화면(집중 모드) 토글
+      setIsFocusMode(prev => !prev)
     }
   }
 
+  // 실제 전체화면 API 혹은 폴백 집중 모드가 켜진 경우
+  const showFocusMode = isFocusMode || isFullscreen
+
   return (
-    <div ref={containerRef} className="lead-sheet-container">
-      {/* 상단 헤더 바 */}
-      <header className="lead-sheet-header">
-        <h1 className="lead-sheet-title">Lead Sheet Page</h1>
-        <div className="lead-sheet-controls">
-          <button 
-            type="button" 
-            className="lead-sheet-btn"
-            onClick={() => navigate('/')}
-          >
-            홈으로
-          </button>
-          
+    <div ref={containerRef} className={`lead-sheet-container ${showFocusMode ? 'is-focus-mode' : ''}`}>
+      {/* 상단 헤더 바 - 집중 모드(전체화면)에서는 숨김 또는 최소화 처리 */}
+      {!showFocusMode && (
+        <header className="lead-sheet-header">
+          <h1 className="lead-sheet-title">Lead Sheet Page</h1>
+          <div className="lead-sheet-controls">
+            <button 
+              type="button" 
+              className="lead-sheet-btn"
+              onClick={() => navigate('/')}
+            >
+              홈으로
+            </button>
+            
+            <button 
+              type="button" 
+              className="lead-sheet-btn"
+              onClick={zoomOut}
+              disabled={fontSize <= 14}
+              title="글자 크기 축소"
+            >
+              A-
+            </button>
+            <button 
+              type="button" 
+              className="lead-sheet-btn"
+              onClick={zoomIn}
+              disabled={fontSize >= 48}
+              title="글자 크기 확대"
+            >
+              A+
+            </button>
+            
+            <button 
+              type="button" 
+              className="lead-sheet-btn"
+              onClick={toggleFullscreen}
+              title="전체화면 토글"
+            >
+              전체화면
+            </button>
+
+            <button 
+              type="button" 
+              className={`lead-sheet-btn ${isViewMode ? 'lead-sheet-btn-primary' : ''}`}
+              onClick={() => setIsViewMode(!isViewMode)}
+            >
+              {isViewMode ? '편집하기' : '완료'}
+            </button>
+          </div>
+        </header>
+      )}
+
+      {/* 집중 모드(전체화면) 시에 띄워줄 플로팅 컨트롤 */}
+      {showFocusMode && isViewMode && (
+        <div className="lead-sheet-focus-controls" onClick={(e) => e.stopPropagation()}>
           <button 
             type="button" 
             className="lead-sheet-btn"
             onClick={zoomOut}
             disabled={fontSize <= 14}
-            title="글자 크기 축소"
           >
             A-
           </button>
@@ -173,29 +280,18 @@ export default function LeadSheetPage() {
             className="lead-sheet-btn"
             onClick={zoomIn}
             disabled={fontSize >= 48}
-            title="글자 크기 확대"
           >
             A+
           </button>
-          
           <button 
             type="button" 
-            className="lead-sheet-btn"
+            className="lead-sheet-btn lead-sheet-btn-primary"
             onClick={toggleFullscreen}
-            title="전체화면 토글"
           >
-            {isFullscreen ? '화면축소' : '전체화면'}
-          </button>
-
-          <button 
-            type="button" 
-            className={`lead-sheet-btn ${isViewMode ? 'lead-sheet-btn-primary' : ''}`}
-            onClick={() => setIsViewMode(!isViewMode)}
-          >
-            {isViewMode ? '편집하기' : '완료'}
+            해제
           </button>
         </div>
-      </header>
+      )}
 
       {/* 메인 텍스트 영역 */}
       <main className="lead-sheet-content-area">
