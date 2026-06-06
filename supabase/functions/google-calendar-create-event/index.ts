@@ -29,9 +29,13 @@ serve(async (req) => {
         .select('google_event_id')
         .eq('id', eventData.reservationId)
         .eq('owner_key', userId)
-        .single()
+        .maybeSingle()
 
-      if (!resError && resData?.google_event_id) {
+      if (resError || !resData) {
+        throw new Error('Reservation not found or access denied')
+      }
+
+      if (resData.google_event_id) {
         // Already created, return success to prevent duplicate
         return new Response(JSON.stringify({ success: true, event: { id: resData.google_event_id }, message: 'Already exists' }), {
           headers: { ...corsHeaders, 'Content-Type': 'application/json' },
@@ -43,9 +47,13 @@ serve(async (req) => {
         .select('google_calendar_event_id')
         .eq('id', eventData.rehearsalId)
         .eq('owner_key', userId)
-        .single()
+        .maybeSingle()
 
-      if (!rehError && rehData?.google_calendar_event_id) {
+      if (rehError || !rehData) {
+        throw new Error('Rehearsal not found or access denied')
+      }
+
+      if (rehData.google_calendar_event_id) {
         return new Response(JSON.stringify({ success: true, event: { id: rehData.google_calendar_event_id }, message: 'Already exists' }), {
           headers: { ...corsHeaders, 'Content-Type': 'application/json' },
         })

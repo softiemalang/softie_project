@@ -23,22 +23,6 @@ function normalizeEventRow(row) {
   }
 }
 
-export async function linkUnownedReservationsToOwner(ownerKey) {
-  ensureSupabase()
-  if (!ownerKey) return
-
-  // Update existing reservations where owner_key is null
-  const { error } = await supabase
-    .from('reservations')
-    .update({ owner_key: ownerKey })
-    .is('owner_key', null)
-
-  if (error) {
-    console.error('Failed to link unowned reservations:', error)
-    // Don't throw, just log. This is a progressive enhancement for existing users.
-  }
-}
-
 export async function listTodayWorkEvents(dateValue, ownerKey) {
   ensureSupabase()
   if (!ownerKey) return []

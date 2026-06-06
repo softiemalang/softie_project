@@ -10,8 +10,7 @@ import {
   listSchedulerWorkLogs,
   upsertSchedulerWorkLog,
   deleteSchedulerWorkLogs,
-  migrateLocalWorkLogsToSupabase,
-  linkUnownedReservationsToOwner
+  migrateLocalWorkLogsToSupabase
 } from './api'
 import { SCHEDULER_BRANCHES, SCHEDULER_TAGS, TODAY_HOURS } from './constants'
 import { buildReservationPayload, createReservationDraft, getRoomStatus, getRoomsForBranch, getTagMeta, groupTodayEvents, mapReservationToFormValues, validateReservationForm } from './helpers'
@@ -278,10 +277,6 @@ export function SchedulerApp({ pathname, session }) {
     async function init() {
       const userId = session?.user?.id
       const ownerKey = userId || getOrCreatePushDeviceId()
-      
-      if (userId) {
-        linkUnownedReservationsToOwner(userId)
-      }
       
       if (!mounted) return
       setEffectiveOwnerKey(ownerKey)
@@ -1617,11 +1612,9 @@ function ReservationEditorPage({ mode, reservationId, effectiveOwnerKey, initial
       await deleteReservation(reservationId, effectiveOwnerKey)
 
       if (googleDeleteError) {
-        setStatus('예약은 삭제되었으나, Google 캘린더 일정 삭제에 실패했습니다.')
-        setIsSaving(false)
-      } else {
-        navigate('/scheduler')
+        window.alert('예약은 삭제되었으나, Google 캘린더 일정 삭제에 실패했습니다.')
       }
+      navigate(backPath)
     } catch (error) {
       setStatus(error.message)
       setIsSaving(false)
