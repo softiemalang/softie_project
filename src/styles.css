@@ -3810,3 +3810,62 @@ textarea {
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
 }
 
+/* 2단 보기 및 모바일 툴바/에디터 개선 */
+.lead-sheet-footer-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 680px;
+}
+
+.lead-sheet-footer-toggle-btn {
+  margin: 0;
+  padding: 0.25rem 0.5rem;
+  font-size: 0.72rem;
+  height: auto;
+  min-height: auto;
+  border-radius: 6px;
+}
+
+.lead-sheet-editor-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+  margin-top: 0.35rem;
+}
+
+.lead-sheet-group-btn {
+  padding: 0.45rem 0.75rem;
+  font-size: 0.75rem;
+  border-radius: 8px;
+  flex-shrink: 0;
+}
+
+.lead-sheet-section-header-line {
+  color: var(--brand);
+  font-weight: 700;
+  margin-top: 0.7rem;
+  margin-bottom: 0.2rem;
+  letter-spacing: 0.02em;
+}
+
+@media (min-width: 700px) {
+  .lead-sheet-viewer.two-columns {
+    column-count: 2;
+    column-gap: 2.5rem;
+    column-rule: 1px dashed rgba(255, 255, 255, 0.08);
+    display: block;
+    text-align: left;
+    max-width: 860px;
+    padding: 0 1rem;
+  }
+  
+  .lead-sheet-viewer.two-columns .lead-sheet-section-header-line {
+    break-after: avoid;
+    page-break-after: avoid;
+  }
+}
+

@@ -54,6 +54,10 @@ export default function LeadSheetPage() {
     return savedSize ? parseInt(savedSize, 10) : 24
   })
 
+  const [columnsCount, setColumnsCount] = useState(() => {
+    return localStorage.getItem('lead-sheet-columns') === '2' ? 2 : 1
+  })
+
   const [isViewMode, setIsViewMode] = useState(true)
   const [isFullscreen, setIsFullscreen] = useState(false)
   const [isFocusMode, setIsFocusMode] = useState(false)
@@ -82,6 +86,10 @@ export default function LeadSheetPage() {
   useEffect(() => {
     localStorage.setItem('lead-sheet-font-size', fontSize.toString())
   }, [fontSize])
+
+  useEffect(() => {
+    localStorage.setItem('lead-sheet-columns', columnsCount.toString())
+  }, [columnsCount])
 
   // Fullscreen 상태 모니터링 (크로스 브라우저 & iOS Safari 대응)
   useEffect(() => {
@@ -159,7 +167,6 @@ export default function LeadSheetPage() {
     const doc = document
     const container = containerRef.current
 
-    // 브라우저 벤더별 Fullscreen API 확인
     const requestFS = 
       container.requestFullscreen || 
       container.webkitRequestFullscreen || 
@@ -179,7 +186,6 @@ export default function LeadSheetPage() {
       doc.msFullscreenElement
 
     if (requestFS && exitFS) {
-      // API가 지원되는 브라우저 (데스크톱, Android, 일부 최신 iOS Safari 등)
       if (!activeFS) {
         requestFS.call(container)
           .then(() => {
@@ -202,17 +208,111 @@ export default function LeadSheetPage() {
           })
       }
     } else {
-      // Fullscreen API 미지원 브라우저 (일반적인 iPhone Safari) -> 앱 내부 전체화면(집중 모드) 토글
       setIsFocusMode(prev => !prev)
     }
   }
 
-  // 실제 전체화면 API 혹은 폴백 집중 모드가 켜진 경우
+  // 섹션 묶기 로직 구현
+  const groupSections = () => {
+    // 1. 기존 --- 구분자 제거
+    const cleanedText = inputText
+      .split(/\n?---\n?/)
+      .map(p => p.trim())
+      .filter(Boolean)
+      .join('\n\n')
+
+    const lines = cleanedText.split('\n')
+    const headerLines = []
+    const sections = []
+    let currentSection = null
+    let hasFirstSectionStarted = false
+
+    for (let i = 0; i < lines.length; i++) {
+      const line = lines[i]
+      const trimmed = line.trim()
+      
+      // 대괄호로 감싸진 라인을 섹션 헤더로 판단
+      const isSectionHeader = /^\[.+\]$/.test(trimmed)
+
+      if (isSectionHeader) {
+        hasFirstSectionStarted = true
+        if (currentSection) {
+          sections.push(currentSection)
+        }
+        currentSection = {
+          title: line,
+          lines: []
+        }
+      } else {
+        if (!hasFirstSectionStarted) {
+          headerLines.push(line)
+        } else {
+          if (currentSection) {
+            currentSection.lines.push(line)
+          }
+        }
+      }
+    }
+    
+    if (currentSection) {
+      sections.push(currentSection)
+    }
+
+    if (sections.length === 0) {
+      alert('대괄호로 묶인 섹션 타이틀(예: [Intro])이 존재하지 않아 섹션을 묶을 수 없습니다.')
+      return
+    }
+
+    // 16줄씩 묶어 페이지 나누기
+    const pageGroups = []
+    let currentPageLines = [...headerLines]
+
+    for (let i = 0; i < sections.length; i++) {
+      const sec = sections[i]
+      const secLength = 1 + sec.lines.length // 타이틀 줄 + 내용 줄
+
+      // 현재 담겨 있는 줄 수 + 추가할 섹션 줄 수가 16을 초과하면 페이지 분할
+      if (currentPageLines.length > 0 && currentPageLines.length + secLength > 16) {
+        pageGroups.push(currentPageLines.join('\n'))
+        currentPageLines = []
+      }
+
+      currentPageLines.push(sec.title)
+      currentPageLines.push(...sec.lines)
+    }
+
+    if (currentPageLines.length > 0) {
+      pageGroups.push(currentPageLines.join('\n'))
+    }
+
+    const resultText = pageGroups.join('\n---\n')
+    setInputText(resultText)
+    setCurrentPage(0) // 첫 페이지로 이동
+  }
+
+  // 섹션 제목 하이라이트하여 보기 모드 렌더링
+  const renderRichText = (text) => {
+    if (!text) return '내용이 없습니다. 편집 버튼을 눌러 입력해주세요.'
+    const lines = text.split('\n')
+    return lines.map((line, idx) => {
+      const trimmed = line.trim()
+      const isSectionHeader = /^\[.+\]$/.test(trimmed)
+      if (isSectionHeader) {
+        return (
+          <div key={idx} className="lead-sheet-section-header-line">
+            {line}
+          </div>
+        )
+      }
+      return <div key={idx}>{line}</div>
+    })
+  }
+
   const showFocusMode = isFocusMode || isFullscreen
 
   return (
     <div ref={containerRef} className={`lead-sheet-container ${showFocusMode ? 'is-focus-mode' : ''}`}>
-      {/* 상단 헤더 바 - 집중 모드(전체화면)에서는 숨김 또는 최소화 처리 */}
+      {/* 상단 헤더 바 - 집중 모드(전체화면)에서는 숨김 */}
       {!showFocusMode && (
         <header className="lead-sheet-header">
           <h1 className="lead-sheet-title">LEAD SHEET</h1>
@@ -264,7 +364,7 @@ export default function LeadSheetPage() {
         </header>
       )}
 
-      {/* 집중 모드(전체화면) 시에 띄워줄 플로팅 컨트롤 */}
+      {/* 집중 모드(전체화면) 시 우측 상단 플로팅 컨트롤 */}
       {showFocusMode && isViewMode && (
         <div className="lead-sheet-focus-controls" onClick={(e) => e.stopPropagation()}>
           <button 
@@ -285,6 +385,13 @@ export default function LeadSheetPage() {
           </button>
           <button 
             type="button" 
+            className="lead-sheet-btn"
+            onClick={() => setColumnsCount(prev => prev === 2 ? 1 : 2)}
+          >
+            {columnsCount === 2 ? '1단' : '2단'}
+          </button>
+          <button 
+            type="button" 
             className="lead-sheet-btn lead-sheet-btn-primary"
             onClick={toggleFullscreen}
           >
@@ -293,16 +400,16 @@ export default function LeadSheetPage() {
         </div>
       )}
 
-      {/* 메인 텍스트 영역 */}
+      {/* 메인 콘텐츠 영역 */}
       <main className="lead-sheet-content-area">
         {isViewMode ? (
           <>
             {/* 보기 모드: 텍스트 렌더링 및 클릭 오버레이 */}
             <div 
-              className="lead-sheet-viewer"
+              className={`lead-sheet-viewer ${columnsCount === 2 ? 'two-columns' : ''}`}
               style={{ fontSize: `${fontSize}px` }}
             >
-              {pages[activePage] || '내용이 없습니다. 편집 버튼을 눌러 입력해주세요.'}
+              {renderRichText(pages[activePage])}
             </div>
 
             {/* 좌우 절반 터치 네비게이션 레이어 */}
@@ -327,23 +434,44 @@ export default function LeadSheetPage() {
               value={inputText}
               onChange={(e) => {
                 setInputText(e.target.value)
-                // 내용 수정 시 페이지 번호 바운드 초과 방지를 위해 0페이지로 임시 리셋 처리
                 setCurrentPage(0)
               }}
               placeholder="가사와 코드를 입력하세요.&#10;--- 구분선을 넣으면 페이지가 분할됩니다.&#10;&#10;예시:&#10;[Verse 1]&#10;C    G    Am&#10;하늘을 나는 기분&#10;---&#10;[Chorus]&#10;F    G    C&#10;너와 함께 있을 때"
             />
-            <p className="lead-sheet-editor-help">
-              💡 한글자 또는 빈 줄 단위로 가사/코드 분량을 조절해보세요. 한 페이지로 나타낼 영역 중간에 <strong>---</strong>를 작성하면 페이지가 분할됩니다.
-            </p>
+            <div className="lead-sheet-editor-actions" onClick={(e) => e.stopPropagation()}>
+              <p className="lead-sheet-editor-help">
+                💡 한글자 또는 빈 줄 단위로 가사/코드 분량을 조절해보세요. 한 페이지로 나타낼 영역 중간에 <strong>---</strong>를 작성하면 페이지가 분할됩니다.
+              </p>
+              <button 
+                type="button" 
+                className="lead-sheet-btn lead-sheet-btn-primary lead-sheet-group-btn"
+                onClick={groupSections}
+                title="대괄호 섹션들을 16줄 기준으로 페이지 자동 분할"
+              >
+                섹션 묶기
+              </button>
+            </div>
           </div>
         )}
       </main>
 
       {/* 하단 푸터 바 */}
       <footer className="lead-sheet-footer">
-        <span className="lead-sheet-page-indicator">
-          PAGE {totalPages > 0 ? activePage + 1 : 0} / {totalPages} · {fontSize}px
-        </span>
+        <div className="lead-sheet-footer-content" onClick={(e) => e.stopPropagation()}>
+          <span className="lead-sheet-page-indicator">
+            PAGE {totalPages > 0 ? activePage + 1 : 0} / {totalPages} · {fontSize}px
+          </span>
+          {isViewMode && (
+            <button 
+              type="button" 
+              className="lead-sheet-btn lead-sheet-footer-toggle-btn"
+              onClick={() => setColumnsCount(prev => prev === 2 ? 1 : 2)}
+              title="1단/2단 보기 전환"
+            >
+              {columnsCount === 2 ? '1단' : '2단'}
+            </button>
+          )}
+        </div>
       </footer>
     </div>
   )
