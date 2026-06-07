@@ -4057,5 +4057,86 @@ textarea {
   justify-content: center;
 }
 
+/* 클라우드 백업 관리 영역 */
+.lead-sheet-cloud-section {
+  padding: 0.8rem 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  background-color: rgba(255, 255, 255, 0.01);
+}
+
+.lead-sheet-cloud-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.lead-sheet-cloud-user {
+  font-size: 0.75rem;
+  color: #94a3b8;
+  word-break: break-all;
+}
+
+.lead-sheet-cloud-actions {
+  display: flex;
+  gap: 0.3rem;
+}
+
+.lead-sheet-cloud-actions .lead-sheet-btn {
+  flex: 1;
+  padding: 0.25rem 0.5rem;
+  height: 32px;
+  font-size: 0.75rem;
+  border-radius: 8px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.lead-sheet-cloud-info.is-logged-out {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.lead-sheet-cloud-guest-msg {
+  font-size: 0.72rem;
+  color: #64748b;
+}
+
+.lead-sheet-cloud-login-btn {
+  padding: 0.25rem 0.6rem !important;
+  height: 30px !important;
+  font-size: 0.72rem !important;
+  border-radius: 6px !important;
+  min-height: auto !important;
+}
+
+.lead-sheet-cloud-undo-section {
+  margin-top: 0.4rem;
+}
+
+.lead-sheet-undo-btn {
+  width: 100%;
+  padding: 0.25rem 0.5rem;
+  height: 32px;
+  font-size: 0.75rem;
+  border-radius: 8px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #d97706; /* 앰버/골드 계열 */
+  color: #ffffff;
+}
+
+.lead-sheet-undo-btn:hover {
+  background-color: #b45309;
+}
+
+
 
 

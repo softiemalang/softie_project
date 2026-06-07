@@ -1,5 +1,8 @@
 import { useState, useEffect, useRef } from 'react'
 import { navigate } from '../lib/router'
+import { supabase } from '../lib/supabase'
+import { signInWithGoogle, signOut, getCurrentUser, subscribeAuthChanges } from '../lib/auth'
+
 
 export default function LeadSheetPage() {
   // 1. 다중 세트리스트 그룹 상태 및 기존 단일 리스트 데이터 마이그레이션 처리
@@ -94,7 +97,28 @@ export default function LeadSheetPage() {
   const [isFocusMode, setIsFocusMode] = useState(false)
   const [isListOpen, setIsListOpen] = useState(false) // 목록 서랍 오픈 상태
   
+  // 백업 관련 상태
+  const [user, setUser] = useState(null)
+  const [hasLocalBackup, setHasLocalBackup] = useState(() => {
+    return !!localStorage.getItem('leadSheetGroupsBackupBeforeRestore')
+  })
+  
   const containerRef = useRef(null)
+
+  // Auth 상태 변경 구독 및 로그인 확인
+  useEffect(() => {
+    getCurrentUser().then(setUser)
+
+    const subscription = subscribeAuthChanges((session) => {
+      setUser(session?.user || null)
+    })
+
+    return () => {
+      if (subscription && typeof subscription.unsubscribe === 'function') {
+        subscription.unsubscribe()
+      }
+    }
+  }, [])
 
   // 텍스트를 --- 구분자로 파싱하여 페이지 리스트 생성
   const pages = inputText
@@ -661,6 +685,168 @@ export default function LeadSheetPage() {
     }
   }
 
+  // --- 클라우드 백업 및 불러오기 (OAuth 구글 계정 기준) ---
+
+  const handleSignIn = async () => {
+    try {
+      await signInWithGoogle()
+    } catch (err) {
+      console.error('로그인 에러:', err)
+      alert('구글 로그인 중 에러가 발생했습니다.')
+    }
+  }
+
+  const handleSignOut = async () => {
+    if (window.confirm('로그아웃 하시겠습니까?')) {
+      try {
+        await signOut()
+        setUser(null)
+        alert('로그아웃 되었습니다.')
+      } catch (err) {
+        console.error('로그아웃 에러:', err)
+        alert('로그아웃 중 에러가 발생했습니다.')
+      }
+    }
+  }
+
+  const handleBackupToCloud = async () => {
+    if (!user) {
+      alert('로그인이 필요한 서비스입니다.')
+      return
+    }
+
+    // 미저장 변경사항 보호 체크
+    const currentGroups = checkUnsavedAndConfirm(groups, '클라우드 백업')
+
+    try {
+      const { error } = await supabase
+        .from('lead_sheet_backups')
+        .upsert(
+          {
+            user_id: user.id,
+            data: currentGroups,
+            updated_at: new Date().toISOString()
+          },
+          { onConflict: 'user_id' }
+        )
+
+      if (error) throw error
+
+      alert('성공적으로 클라우드 백업을 완료했습니다!')
+    } catch (err) {
+      console.error('백업 실패:', err)
+      alert('클라우드 백업 중 오류가 발생했습니다: ' + (err.message || err))
+    }
+  }
+
+  const handleRestoreFromCloud = async () => {
+    if (!user) {
+      alert('로그인이 필요한 서비스입니다.')
+      return
+    }
+
+    try {
+      // 1. 서버 백업 존재 여부 및 데이터 획득
+      const { data, error } = await supabase
+        .from('lead_sheet_backups')
+        .select('data, updated_at')
+        .eq('user_id', user.id)
+        .maybeSingle()
+
+      if (error) throw error
+
+      if (!data) {
+        alert('클라우드에 저장된 백업 데이터가 없습니다.')
+        return
+      }
+
+      const backupData = data.data
+      const backupDate = new Date(data.updated_at).toLocaleString()
+
+      if (!Array.isArray(backupData) || backupData.length === 0) {
+        alert('백업 데이터 형식이 올바르지 않습니다.')
+        return
+      }
+
+      const backupSongCount = backupData.reduce((acc, g) => acc + (g.songs?.length || 0), 0)
+      const currentSongCount = groups.reduce((acc, g) => acc + (g.songs?.length || 0), 0)
+
+      const confirmMessage = `현재 기기 데이터를 클라우드 백업으로 교체할까요?\n최근 데이터는 복구용으로 임시 저장됩니다.\n\n` +
+        `• 현재 기기: 곡 ${currentSongCount}개\n` +
+        `• 클라우드 백업: 곡 ${backupSongCount}개 (백업 시간: ${backupDate})`
+
+      if (window.confirm(confirmMessage)) {
+        // 2. 현재 로컬 데이터를 임시 백업으로 저장
+        localStorage.setItem('leadSheetGroupsBackupBeforeRestore', JSON.stringify(groups))
+        setHasLocalBackup(true)
+
+        // 3. 불러온 데이터 반영
+        setGroups(backupData)
+        localStorage.setItem('leadSheetGroups', JSON.stringify(backupData))
+
+        // 첫 번째 그룹의 첫 번째 곡으로 활성화
+        const firstGroup = backupData[0]
+        if (firstGroup) {
+          setActiveGroupId(firstGroup.id)
+          localStorage.setItem('leadSheetActiveGroupId', firstGroup.id)
+          
+          const firstSongId = firstGroup.songs[0]?.id || ''
+          setActiveSongId(firstSongId)
+          localStorage.setItem('leadSheetActiveSongId', firstSongId)
+          setInputText(firstGroup.songs[0]?.content || '')
+        }
+        setCurrentPage(0)
+
+        alert('클라우드 백업 데이터를 성공적으로 불러왔습니다!')
+      }
+    } catch (err) {
+      console.error('복원 실패:', err)
+      alert('클라우드 데이터를 불러오는 중 오류가 발생했습니다: ' + (err.message || err))
+    }
+  }
+
+  const handleUndoRestore = () => {
+    const backupStr = localStorage.getItem('leadSheetGroupsBackupBeforeRestore')
+    if (!backupStr) {
+      alert('되돌릴 로컬 백업 데이터가 없습니다.')
+      return
+    }
+
+    if (window.confirm('클라우드 데이터를 불러오기 직전의 로컬 데이터로 되돌리시겠습니까?')) {
+      try {
+        const backupData = JSON.parse(backupStr)
+        if (!Array.isArray(backupData) || backupData.length === 0) {
+          throw new Error('올바르지 않은 백업 형식입니다.')
+        }
+
+        // 복구 롤백 반영
+        setGroups(backupData)
+        localStorage.setItem('leadSheetGroups', JSON.stringify(backupData))
+
+        const firstGroup = backupData[0]
+        if (firstGroup) {
+          setActiveGroupId(firstGroup.id)
+          localStorage.setItem('leadSheetActiveGroupId', firstGroup.id)
+          
+          const firstSongId = firstGroup.songs[0]?.id || ''
+          setActiveSongId(firstSongId)
+          localStorage.setItem('leadSheetActiveSongId', firstSongId)
+          setInputText(firstGroup.songs[0]?.content || '')
+        }
+        setCurrentPage(0)
+
+        // 로컬 백업 지우기
+        localStorage.removeItem('leadSheetGroupsBackupBeforeRestore')
+        setHasLocalBackup(false)
+
+        alert('이전 로컬 데이터로 성공적으로 되돌렸습니다!')
+      } catch (err) {
+        console.error('롤백 실패:', err)
+        alert('이전 데이터 복원 중 오류가 발생했습니다: ' + err.message)
+      }
+    }
+  }
+
   const showFocusMode = isFocusMode || isFullscreen
 
   return (
@@ -892,6 +1078,66 @@ export default function LeadSheetPage() {
                   </button>
                 </div>
               </div>
+            </div>
+
+            {/* 클라우드 백업 관리 영역 */}
+            <div className="lead-sheet-cloud-section" onClick={(e) => e.stopPropagation()}>
+              <span className="lead-sheet-group-label">클라우드 백업</span>
+              {user ? (
+                <div className="lead-sheet-cloud-info">
+                  <span className="lead-sheet-cloud-user">{user.email}</span>
+                  <div className="lead-sheet-cloud-actions">
+                    <button
+                      type="button"
+                      className="lead-sheet-btn lead-sheet-btn-primary"
+                      onClick={handleBackupToCloud}
+                      title="클라우드에 세트리스트 백업"
+                    >
+                      백업
+                    </button>
+                    <button
+                      type="button"
+                      className="lead-sheet-btn"
+                      onClick={handleRestoreFromCloud}
+                      title="클라우드에서 세트리스트 복원"
+                    >
+                      불러오기
+                    </button>
+                    <button
+                      type="button"
+                      className="lead-sheet-btn lead-sheet-btn-danger"
+                      onClick={handleSignOut}
+                      title="구글 로그아웃"
+                    >
+                      로그아웃
+                    </button>
+                  </div>
+                </div>
+              ) : (
+                <div className="lead-sheet-cloud-info is-logged-out">
+                  <span className="lead-sheet-cloud-guest-msg">구글 로그인 후 백업 가능</span>
+                  <button
+                    type="button"
+                    className="lead-sheet-btn lead-sheet-btn-primary lead-sheet-cloud-login-btn"
+                    onClick={handleSignIn}
+                    title="구글 계정으로 로그인"
+                  >
+                    구글 로그인
+                  </button>
+                </div>
+              )}
+              {hasLocalBackup && (
+                <div className="lead-sheet-cloud-undo-section">
+                  <button
+                    type="button"
+                    className="lead-sheet-btn lead-sheet-btn-warning lead-sheet-undo-btn"
+                    onClick={handleUndoRestore}
+                    title="덮어쓰기 이전 로컬 데이터로 복구"
+                  >
+                    🔄 복원 취소 (로컬 복구)
+                  </button>
+                </div>
+              )}
             </div>
             
             <div className="lead-sheet-drawer-body">
