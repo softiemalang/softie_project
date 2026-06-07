@@ -1,88 +1,81 @@
 import { useState, useEffect, useRef } from 'react'
 import { navigate } from '../lib/router'
 
-const DEFAULT_LEAD_SHEET = `[곡명] 봄이 피어나다 (예시)
-키: G | 템포: 92
-
-[Intro]
-G - C - D - Em
-G - C - D - G
-
----
-[A Part]
-G        C        D        G
-바람끝에 실려온 너의 그 목소리가
-G        C        D        Em
-차가웠던 내 맘을 조용히 두드리네
-
----
-[B Part]
-G        C        D        G
-흩날리는 벚꽃이 길을 밝혀줄 때에
-G        C        D        G
-기다렸던 봄날의 이야기가 피어나
-
----
-[Chorus]
-C        D        Bm       Em
-피어나, 우리 둘의 하모니가
-C        D        G        G7
-이 계절의 중심에 울려 퍼질 때
-C        D        B        Em
-눈부신 햇살이 우리를 비추고
-C        D        G
-따뜻한 봄이 피어나
-
----
-[Outro]
-G - C - D - Em
-C - D - G (끝)`
-
 export default function LeadSheetPage() {
-  // 1. 다중 곡 목록 상태 및 기존 단일 데이터 마이그레이션 처리
-  const [songs, setSongs] = useState(() => {
-    const savedSongs = localStorage.getItem('leadSheetSongs')
-    if (savedSongs) {
-      return JSON.parse(savedSongs)
+  // 1. 다중 세트리스트 그룹 상태 및 기존 단일 리스트 데이터 마이그레이션 처리
+  // [데이터 구조 변경 주석]:
+  // 기존 leadSheetSongs (단일 곡 목록) 구조에서 leadSheetGroups (세트리스트 그룹 목록) 구조로 확장합니다.
+  // 각 그룹은 { id, name, songs: [ { id, title, content, updatedAt }, ... ], updatedAt } 구조를 가집니다.
+  const [groups, setGroups] = useState(() => {
+    const savedGroups = localStorage.getItem('leadSheetGroups')
+    if (savedGroups) {
+      return JSON.parse(savedGroups)
     }
 
-    // 기존 단일 데이터 key인 'lead-sheet-text' 확인 및 마이그레이션
-    const legacyText = localStorage.getItem('lead-sheet-text')
-    if (legacyText && legacyText.trim()) {
-      const title = legacyText.split('\n')[0]?.replace(/[\[\]]/g, '').trim() || '제목 없음'
-      const legacySong = {
-        id: 'song-legacy',
-        title,
-        content: legacyText,
-        updatedAt: Date.now()
+    const defaultGroupId = 'group-default'
+    const legacySongs = localStorage.getItem('leadSheetSongs')
+    
+    // 기존에 여러 곡 목록이 이미 들어있었다면 "기본 세트리스트" 그룹으로 마이그레이션
+    if (legacySongs) {
+      try {
+        const parsedSongs = JSON.parse(legacySongs)
+        if (Array.isArray(parsedSongs) && parsedSongs.length > 0) {
+          const defaultGroup = {
+            id: defaultGroupId,
+            name: '기본 세트리스트',
+            songs: parsedSongs,
+            updatedAt: Date.now()
+          }
+          const initialList = [defaultGroup]
+          localStorage.setItem('leadSheetGroups', JSON.stringify(initialList))
+          localStorage.setItem('leadSheetActiveGroupId', defaultGroupId)
+          return initialList
+        }
+      } catch (e) {
+        console.error('기존 단일 곡 목록 데이터 마이그레이션 오류:', e)
       }
-      const list = [legacySong]
-      localStorage.setItem('leadSheetSongs', JSON.stringify(list))
-      localStorage.setItem('leadSheetActiveSongId', 'song-legacy')
-      return list
     }
 
-    // 기존 데이터도 없는 경우: 완전히 비어있는 상태로 시작
-    const initialSong = {
-      id: 'song-initial',
-      title: '제목 없음',
-      content: '',
+    // 기존 데이터가 아예 없는 경우: 기본 세트리스트에 빈 곡 하나를 넣어 초기 설정
+    const defaultGroup = {
+      id: defaultGroupId,
+      name: '기본 세트리스트',
+      songs: [
+        {
+          id: 'song-initial',
+          title: '제목 없음',
+          content: '',
+          updatedAt: Date.now()
+        }
+      ],
       updatedAt: Date.now()
     }
-    const list = [initialSong]
-    localStorage.setItem('leadSheetSongs', JSON.stringify(list))
-    localStorage.setItem('leadSheetActiveSongId', 'song-initial')
-    return list
+    const initialList = [defaultGroup]
+    localStorage.setItem('leadSheetGroups', JSON.stringify(initialList))
+    localStorage.setItem('leadSheetActiveGroupId', defaultGroupId)
+    return initialList
   })
 
-  // 2. 활성화된 곡 ID 상태
+  // 2. 활성화된 세트리스트 그룹 ID 상태
+  const [activeGroupId, setActiveGroupId] = useState(() => {
+    return localStorage.getItem('leadSheetActiveGroupId') || 'group-default'
+  })
+
+  // 현재 활성화된 그룹 객체 정보 추출
+  const activeGroup = groups.find(g => g.id === activeGroupId) || groups[0]
+
+  // 3. 활성화된 곡 ID 상태 (현재 그룹 내의 곡들 중에서 검증)
   const [activeSongId, setActiveSongId] = useState(() => {
-    return localStorage.getItem('leadSheetActiveSongId') || (songs[0]?.id || '')
+    const savedActiveSongId = localStorage.getItem('leadSheetActiveSongId')
+    const hasSong = activeGroup.songs.some(s => s.id === savedActiveSongId)
+    return hasSong ? savedActiveSongId : (activeGroup.songs[0]?.id || '')
   })
 
-  // 3. 현재 텍스트 및 조절 설정
+  // 현재 활성화된 곡 정보 추출
+  const activeSong = activeGroup.songs.find(s => s.id === activeSongId) || activeGroup.songs[0]
+
+  // 4. 현재 에디터/뷰어 텍스트 상태
   const [inputText, setInputText] = useState(() => {
-    const activeSong = songs.find(s => s.id === activeSongId)
     return activeSong ? activeSong.content : ''
   })
   
@@ -99,7 +92,7 @@ export default function LeadSheetPage() {
   const [isViewMode, setIsViewMode] = useState(true)
   const [isFullscreen, setIsFullscreen] = useState(false)
   const [isFocusMode, setIsFocusMode] = useState(false)
-  const [isListOpen, setIsListOpen] = useState(false) // 서랍 패널 노출 여부
+  const [isListOpen, setIsListOpen] = useState(false) // 목록 서랍 오픈 상태
   
   const containerRef = useRef(null)
 
@@ -113,7 +106,7 @@ export default function LeadSheetPage() {
   const totalPages = pages.length || 1
   const activePage = Math.min(currentPage, totalPages - 1)
 
-  // LocalStorage 저장 동기화
+  // LocalStorage 조절 동기화
   useEffect(() => {
     localStorage.setItem('lead-sheet-page', activePage.toString())
   }, [activePage])
@@ -122,15 +115,37 @@ export default function LeadSheetPage() {
     localStorage.setItem('lead-sheet-font-size', fontSize.toString())
   }, [fontSize])
 
-  // activeSongId에 맞춰 텍스트 변경
-  useEffect(() => {
-    const activeSong = songs.find(s => s.id === activeSongId)
-    if (activeSong) {
-      setInputText(activeSong.content)
-    }
-  }, [activeSongId, songs])
+  // 활성 곡 ID나 활성 그룹 ID가 실제로 변경되었을 때만 텍스트를 불러오도록 useRef로 관리 (순서 변경 등으로 groups가 갱신될 때 덮어쓰기 방지)
+  const prevActiveSongIdRef = useRef(null)
+  const prevActiveGroupIdRef = useRef(null)
 
-  // Fullscreen 상태 모니터링 (크로스 브라우저 & iOS Safari 대응)
+  useEffect(() => {
+    const isSongChanged = prevActiveSongIdRef.current !== activeSongId
+    const isGroupChanged = prevActiveGroupIdRef.current !== activeGroupId
+
+    prevActiveSongIdRef.current = activeSongId
+    prevActiveGroupIdRef.current = activeGroupId
+
+    // 첫 로드(Ref가 null인 상태)이거나 activeSongId, activeGroupId가 변경되었을 때만 텍스트 갱신
+    if (isSongChanged || isGroupChanged) {
+      const currentSong = activeGroup.songs.find(s => s.id === activeSongId)
+      if (currentSong) {
+        setInputText(currentSong.content)
+      } else {
+        // 그룹이 바뀌면서 곡 ID 매핑이 끊긴 경우 첫 곡으로 복구
+        const firstSong = activeGroup.songs[0]
+        if (firstSong) {
+          setActiveSongId(firstSong.id)
+          localStorage.setItem('leadSheetActiveSongId', firstSong.id)
+          setInputText(firstSong.content)
+        } else {
+          setInputText('')
+        }
+      }
+    }
+  }, [activeSongId, activeGroupId, groups, activeGroup])
+
+  // Fullscreen 상태 모니터링
   useEffect(() => {
     function handleFullscreenChange() {
       const isCurrentlyFS = !!(
@@ -253,7 +268,6 @@ export default function LeadSheetPage() {
 
   // 섹션 묶기 로직 구현
   const groupSections = () => {
-    // 1. 기존 --- 구분자 제거
     const cleanedText = inputText
       .split(/\n?---\n?/)
       .map(p => p.trim())
@@ -345,51 +359,70 @@ export default function LeadSheetPage() {
     })
   }
 
-  // --- 추가 곡 관리 기능 ---
-  
-  // 헬퍼: 첫 번째 라인에서 공백 제외 제목 추출
+  // --- 비즈니스 로직 헬퍼 ---
+
+  // 1. 첫 번째 줄에서 공백 제외 제목 추출
   const getSongTitle = (content) => {
     const firstLine = content.split('\n')[0]?.trim()
     return firstLine ? firstLine : '제목 없음'
   }
 
-  // 1. 현재 곡 저장 데이터 동기화 로직
-  const saveActiveSongData = (songsList, textContent) => {
+  // 2. 동기식 곡 저장 처리 로직
+  const saveActiveSongContent = (groupsList, textContent) => {
     const title = getSongTitle(textContent)
-    const updated = songsList.map(song => {
-      if (song.id === activeSongId) {
+    const updated = groupsList.map(g => {
+      if (g.id === activeGroupId) {
+        const updatedSongs = g.songs.map(song => {
+          if (song.id === activeSongId) {
+            return {
+              ...song,
+              title,
+              content: textContent,
+              updatedAt: Date.now()
+            }
+          }
+          return song
+        })
         return {
-          ...song,
-          title,
-          content: textContent,
+          ...g,
+          songs: updatedSongs,
           updatedAt: Date.now()
         }
       }
-      return song
+      return g
     })
-    setSongs(updated)
-    localStorage.setItem('leadSheetSongs', JSON.stringify(updated))
+    setGroups(updated)
+    localStorage.setItem('leadSheetGroups', JSON.stringify(updated))
     return updated
   }
 
-  // 현재 곡 저장 (저장 버튼 클릭용)
+  // 3. 미저장 변경 검출 및 저장 여부 확인 (confirm 활용)
+  const checkUnsavedAndConfirm = (groupsList, actionName) => {
+    const currentGroup = groupsList.find(g => g.id === activeGroupId) || activeGroup
+    const activeSong = currentGroup.songs.find(s => s.id === activeSongId)
+    let finalGroupsList = groupsList
+    
+    if (activeSong && inputText !== activeSong.content) {
+      const title = getSongTitle(inputText)
+      if (window.confirm(`"${title}" 곡의 변경 사항이 저장되지 않았습니다.\n${actionName} 전에 저장하시겠습니까?\n(취소를 누르면 변경 사항이 폐기됩니다.)`)) {
+        finalGroupsList = saveActiveSongContent(groupsList, inputText)
+      }
+    }
+    return finalGroupsList
+  }
+
+  // --- 곡 관련 조작 ---
+
+  // 곡 저장 (저장 버튼 클릭용)
   const handleSaveSong = () => {
     const title = getSongTitle(inputText)
-    saveActiveSongData(songs, inputText)
+    saveActiveSongContent(groups, inputText)
     alert('곡 저장 완료: ' + title)
   }
 
-  // 2. 새 곡 생성
+  // 새 곡 생성
   const handleNewSong = () => {
-    // 저장되지 않은 데이터 유실 방지 점검
-    const activeSong = songs.find(s => s.id === activeSongId)
-    let currentSongsList = songs
-    if (activeSong && inputText !== activeSong.content) {
-      const title = getSongTitle(inputText)
-      if (window.confirm(`"${title}" 곡의 변경 사항이 저장되지 않았습니다.\n이동하기 전에 저장하시겠습니까?\n(취소를 누르면 변경 사항이 폐기됩니다.)`)) {
-        currentSongsList = saveActiveSongData(songs, inputText)
-      }
-    }
+    const currentGroups = checkUnsavedAndConfirm(groups, '새 곡 생성')
 
     if (window.confirm('새 곡을 생성할까요?')) {
       const newId = 'song-' + Date.now()
@@ -399,24 +432,34 @@ export default function LeadSheetPage() {
         content: '',
         updatedAt: Date.now()
       }
-      const updated = [...currentSongsList, newSong]
-      setSongs(updated)
-      localStorage.setItem('leadSheetSongs', JSON.stringify(updated))
+      
+      const updated = currentGroups.map(g => {
+        if (g.id === activeGroupId) {
+          return {
+            ...g,
+            songs: [...g.songs, newSong],
+            updatedAt: Date.now()
+          }
+        }
+        return g
+      })
+      setGroups(updated)
+      localStorage.setItem('leadSheetGroups', JSON.stringify(updated))
       setActiveSongId(newId)
       localStorage.setItem('leadSheetActiveSongId', newId)
       setInputText('')
       setCurrentPage(0)
-      setIsViewMode(false) // 즉시 편집 가능하도록 전환
+      setIsViewMode(false)
     }
   }
 
-  // 3. 곡 삭제
+  // 곡 삭제
   const handleDeleteSong = () => {
-    const activeSong = songs.find(s => s.id === activeSongId)
+    const activeSong = activeGroup.songs.find(s => s.id === activeSongId)
     const songTitle = activeSong ? (activeSong.title || '제목 없음') : '현재 곡'
 
-    if (songs.length <= 1) {
-      if (window.confirm(`"${songTitle}" 곡은 마지막 곡입니다. 정말 삭제하고 빈 곡으로 초기화할까요?`)) {
+    if (activeGroup.songs.length <= 1) {
+      if (window.confirm(`"${songTitle}" 곡은 현재 그룹의 마지막 곡입니다. 정말 삭제하고 빈 곡으로 초기화할까요?`)) {
         const resetId = 'song-' + Date.now()
         const emptySong = {
           id: resetId,
@@ -424,72 +467,198 @@ export default function LeadSheetPage() {
           content: '',
           updatedAt: Date.now()
         }
-        const list = [emptySong]
-        setSongs(list)
-        localStorage.setItem('leadSheetSongs', JSON.stringify(list))
+        const updated = groups.map(g => {
+          if (g.id === activeGroupId) {
+            return {
+              ...g,
+              songs: [emptySong],
+              updatedAt: Date.now()
+            }
+          }
+          return g
+        })
+        setGroups(updated)
+        localStorage.setItem('leadSheetGroups', JSON.stringify(updated))
         setActiveSongId(resetId)
         localStorage.setItem('leadSheetActiveSongId', resetId)
         setInputText('')
         setCurrentPage(0)
-        setIsViewMode(false) // 편집창이 비었으므로 에디터 모드로 강제 진입시켜 사용성 유지
+        setIsViewMode(false) // 즉시 텍스트를 채우도록 에디터 전환
       }
       return
     }
 
     if (window.confirm(`"${songTitle}" 곡을 정말 목록에서 삭제하시겠습니까?`)) {
-      const filtered = songs.filter(s => s.id !== activeSongId)
-      setSongs(filtered)
-      localStorage.setItem('leadSheetSongs', JSON.stringify(filtered))
+      const filteredSongs = activeGroup.songs.filter(s => s.id !== activeSongId)
+      const updated = groups.map(g => {
+        if (g.id === activeGroupId) {
+          return {
+            ...g,
+            songs: filteredSongs,
+            updatedAt: Date.now()
+          }
+        }
+        return g
+      })
+      setGroups(updated)
+      localStorage.setItem('leadSheetGroups', JSON.stringify(updated))
       
-      const nextActiveId = filtered[0].id
+      const nextActiveId = filteredSongs[0].id
       setActiveSongId(nextActiveId)
       localStorage.setItem('leadSheetActiveSongId', nextActiveId)
-      
-      setInputText(filtered[0].content)
+      setInputText(filteredSongs[0].content)
       setCurrentPage(0)
     }
   }
 
-  // 4. 곡 순서 변경 (▲/▼ 버튼 클릭)
+  // 곡 순서 변경
   const handleMoveSong = (index, direction, event) => {
-    event.stopPropagation() // 아이템 탭에 의한 곡 선택 로드 차단
+    event.stopPropagation() // 아이템 탭에 의한 곡 선택 오작동 차단
     const targetIdx = index + direction
-    if (targetIdx < 0 || targetIdx >= songs.length) return
+    if (targetIdx < 0 || targetIdx >= activeGroup.songs.length) return
 
-    const updated = [...songs]
-    const temp = updated[index]
-    updated[index] = updated[targetIdx]
-    updated[targetIdx] = temp
+    const updatedSongs = [...activeGroup.songs]
+    const temp = updatedSongs[index]
+    updatedSongs[index] = updatedSongs[targetIdx]
+    updatedSongs[targetIdx] = temp
 
-    setSongs(updated)
-    localStorage.setItem('leadSheetSongs', JSON.stringify(updated))
+    const updated = groups.map(g => {
+      if (g.id === activeGroupId) {
+        return {
+          ...g,
+          songs: updatedSongs,
+          updatedAt: Date.now()
+        }
+      }
+      return g
+    })
+    setGroups(updated)
+    localStorage.setItem('leadSheetGroups', JSON.stringify(updated))
   }
 
-  // 5. 곡 선택 로드
+  // 곡 선택 로드
   const handleSelectSong = (songId) => {
     if (songId === activeSongId) {
       setIsListOpen(false)
       return
     }
 
-    // 저장되지 않은 데이터 유실 방지 점검
-    const activeSong = songs.find(s => s.id === activeSongId)
-    let currentSongsList = songs
-    if (activeSong && inputText !== activeSong.content) {
-      const title = getSongTitle(inputText)
-      if (window.confirm(`"${title}" 곡의 변경 사항이 저장되지 않았습니다.\n이동하기 전에 저장하시겠습니까?\n(취소를 누르면 변경 사항이 폐기됩니다.)`)) {
-        currentSongsList = saveActiveSongData(songs, inputText)
-      }
-    }
-
-    const selected = currentSongsList.find(s => s.id === songId)
+    const currentGroups = checkUnsavedAndConfirm(groups, '곡 이동')
+    const currentActiveGroup = currentGroups.find(g => g.id === activeGroupId) || activeGroup
+    const selected = currentActiveGroup.songs.find(s => s.id === songId)
     if (!selected) return
 
     setActiveSongId(songId)
     localStorage.setItem('leadSheetActiveSongId', songId)
     setInputText(selected.content)
     setCurrentPage(0)
-    setIsListOpen(false) // 서랍 닫기
+    setIsListOpen(false)
+  }
+
+  // --- 세트리스트 그룹 관련 조작 ---
+
+  // 1. 그룹 선택 전환
+  const handleSelectGroup = (groupId) => {
+    if (groupId === activeGroupId) return
+
+    const currentGroups = checkUnsavedAndConfirm(groups, '그룹 전환')
+    const targetGroup = currentGroups.find(g => g.id === groupId)
+    if (!targetGroup) return
+
+    setActiveGroupId(groupId)
+    localStorage.setItem('leadSheetActiveGroupId', groupId)
+
+    // 전환된 그룹의 첫 번째 곡으로 활성 곡을 로드
+    const firstSongId = targetGroup.songs[0]?.id || ''
+    setActiveSongId(firstSongId)
+    localStorage.setItem('leadSheetActiveSongId', firstSongId)
+    setCurrentPage(0)
+  }
+
+  // 2. 새 그룹 생성
+  const handleAddGroup = () => {
+    const groupName = window.prompt('새 세트리스트 그룹 이름을 입력하세요:')
+    if (!groupName || !groupName.trim()) return
+
+    const currentGroups = checkUnsavedAndConfirm(groups, '그룹 생성')
+
+    const newGroupId = 'group-' + Date.now()
+    const newGroup = {
+      id: newGroupId,
+      name: groupName.trim(),
+      songs: [
+        {
+          id: 'song-' + Date.now(),
+          title: '제목 없음',
+          content: '',
+          updatedAt: Date.now()
+        }
+      ],
+      updatedAt: Date.now()
+    }
+
+    const updated = [...currentGroups, newGroup]
+    setGroups(updated)
+    localStorage.setItem('leadSheetGroups', JSON.stringify(updated))
+
+    setActiveGroupId(newGroupId)
+    localStorage.setItem('leadSheetActiveGroupId', newGroupId)
+    
+    const newSongId = newGroup.songs[0].id
+    setActiveSongId(newSongId)
+    localStorage.setItem('leadSheetActiveSongId', newSongId)
+    
+    setInputText('')
+    setCurrentPage(0)
+    setIsViewMode(false) // 즉시 타이핑하도록 에디터 모드로 전환
+  }
+
+  // 3. 그룹 이름 변경
+  const handleRenameGroup = () => {
+    const currentName = activeGroup.name
+    const newName = window.prompt('변경할 세트리스트 그룹 이름을 입력하세요:', currentName)
+    if (!newName || !newName.trim() || newName.trim() === currentName) return
+
+    const updated = groups.map(g => {
+      if (g.id === activeGroupId) {
+        return {
+          ...g,
+          name: newName.trim(),
+          updatedAt: Date.now()
+        }
+      }
+      return g
+    })
+    setGroups(updated)
+    localStorage.setItem('leadSheetGroups', JSON.stringify(updated))
+  }
+
+  // 4. 그룹 삭제
+  const handleDeleteGroup = () => {
+    if (groups.length <= 1) {
+      alert('마지막 남은 세트리스트 그룹은 삭제할 수 없습니다.')
+      return
+    }
+
+    const name = activeGroup.name
+    const songCount = activeGroup.songs.length
+
+    if (window.confirm(`"${name}" 세트리스트 그룹을 정말 삭제하시겠습니까?\n이 그룹을 삭제하면 그룹 내의 ${songCount}개 곡도 모두 삭제됩니다.`)) {
+      const filtered = groups.filter(g => g.id !== activeGroupId)
+      setGroups(filtered)
+      localStorage.setItem('leadSheetGroups', JSON.stringify(filtered))
+
+      // 첫 번째 남은 그룹으로 포커스
+      const nextGroup = filtered[0]
+      setActiveGroupId(nextGroup.id)
+      localStorage.setItem('leadSheetActiveGroupId', nextGroup.id)
+
+      const nextSongId = nextGroup.songs[0]?.id || ''
+      setActiveSongId(nextSongId)
+      localStorage.setItem('leadSheetActiveSongId', nextSongId)
+      setInputText(nextGroup.songs[0]?.content || '')
+      setCurrentPage(0)
+    }
   }
 
   const showFocusMode = isFocusMode || isFullscreen
@@ -682,9 +851,52 @@ export default function LeadSheetPage() {
               </button>
             </header>
             
+            {/* 세트리스트 그룹 관리 영역 */}
+            <div className="lead-sheet-group-selector-section" onClick={(e) => e.stopPropagation()}>
+              <span className="lead-sheet-group-label">세트리스트 그룹</span>
+              <div className="lead-sheet-group-controls">
+                <select 
+                  className="lead-sheet-group-select"
+                  value={activeGroupId}
+                  onChange={(e) => handleSelectGroup(e.target.value)}
+                >
+                  {groups.map(g => (
+                    <option key={g.id} value={g.id}>{g.name}</option>
+                  ))}
+                </select>
+                <div className="lead-sheet-group-btn-group">
+                  <button 
+                    type="button" 
+                    className="lead-sheet-btn lead-sheet-group-action-btn"
+                    onClick={handleAddGroup}
+                    title="새 그룹 추가"
+                  >
+                    +
+                  </button>
+                  <button 
+                    type="button" 
+                    className="lead-sheet-btn lead-sheet-group-action-btn"
+                    onClick={handleRenameGroup}
+                    title="그룹 이름 변경"
+                  >
+                    ✏️
+                  </button>
+                  <button 
+                    type="button" 
+                    className="lead-sheet-btn lead-sheet-group-action-btn lead-sheet-btn-danger"
+                    onClick={handleDeleteGroup}
+                    disabled={groups.length <= 1}
+                    title="그룹 삭제"
+                  >
+                    🗑️
+                  </button>
+                </div>
+              </div>
+            </div>
+            
             <div className="lead-sheet-drawer-body">
               <ul className="lead-sheet-song-list">
-                {songs.map((song, idx) => (
+                {activeGroup.songs.map((song, idx) => (
                   <li 
                     key={song.id} 
                     className={`lead-sheet-song-item ${song.id === activeSongId ? 'is-active' : ''}`}
@@ -709,7 +921,7 @@ export default function LeadSheetPage() {
                         type="button"
                         className="lead-sheet-btn lead-sheet-song-move-btn"
                         onClick={(e) => handleMoveSong(idx, 1, e)}
-                        disabled={idx === songs.length - 1}
+                        disabled={idx === activeGroup.songs.length - 1}
                         title="아래로 이동"
                       >
                         ▼

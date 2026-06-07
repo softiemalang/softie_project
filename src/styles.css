@@ -3998,4 +3998,64 @@ textarea {
   background-color: #8e1239;
 }
 
+/* 세트리스트 그룹 관리 영역 */
+.lead-sheet-group-selector-section {
+  padding: 0.8rem 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  background-color: rgba(255, 255, 255, 0.01);
+}
+
+.lead-sheet-group-label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #a39587;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.lead-sheet-group-controls {
+  display: flex;
+  gap: 0.3rem;
+  width: 100%;
+}
+
+.lead-sheet-group-select {
+  flex: 1;
+  background-color: rgba(15, 17, 20, 0.95);
+  color: #e2e8f0;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  padding: 0.25rem 0.5rem;
+  font-size: 0.8rem;
+  height: 32px;
+  box-sizing: border-box;
+}
+
+.lead-sheet-group-select:focus {
+  outline: none;
+  border-color: var(--brand);
+}
+
+.lead-sheet-group-btn-group {
+  display: flex;
+  gap: 0.2rem;
+  flex-shrink: 0;
+}
+
+.lead-sheet-group-action-btn {
+  padding: 0;
+  width: 32px;
+  height: 32px;
+  min-height: auto;
+  font-size: 0.8rem;
+  border-radius: 8px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
 
