@@ -347,15 +347,21 @@ export default function LeadSheetPage() {
 
   // --- 추가 곡 관리 기능 ---
   
-  // 1. 현재 곡 저장
-  const handleSaveSong = () => {
-    const title = inputText.split('\n')[0]?.trim() || '제목 없음'
-    const updated = songs.map(song => {
+  // 헬퍼: 첫 번째 라인에서 공백 제외 제목 추출
+  const getSongTitle = (content) => {
+    const firstLine = content.split('\n')[0]?.trim()
+    return firstLine ? firstLine : '제목 없음'
+  }
+
+  // 1. 현재 곡 저장 데이터 동기화 로직
+  const saveActiveSongData = (songsList, textContent) => {
+    const title = getSongTitle(textContent)
+    const updated = songsList.map(song => {
       if (song.id === activeSongId) {
         return {
           ...song,
           title,
-          content: inputText,
+          content: textContent,
           updatedAt: Date.now()
         }
       }
@@ -363,12 +369,29 @@ export default function LeadSheetPage() {
     })
     setSongs(updated)
     localStorage.setItem('leadSheetSongs', JSON.stringify(updated))
+    return updated
+  }
+
+  // 현재 곡 저장 (저장 버튼 클릭용)
+  const handleSaveSong = () => {
+    const title = getSongTitle(inputText)
+    saveActiveSongData(songs, inputText)
     alert('곡 저장 완료: ' + title)
   }
 
   // 2. 새 곡 생성
   const handleNewSong = () => {
-    if (window.confirm('현재 편집 중인 내용을 저장하지 않았다면 유실될 수 있습니다. 새 곡을 생성할까요?')) {
+    // 저장되지 않은 데이터 유실 방지 점검
+    const activeSong = songs.find(s => s.id === activeSongId)
+    let currentSongsList = songs
+    if (activeSong && inputText !== activeSong.content) {
+      const title = getSongTitle(inputText)
+      if (window.confirm(`"${title}" 곡의 변경 사항이 저장되지 않았습니다.\n이동하기 전에 저장하시겠습니까?\n(취소를 누르면 변경 사항이 폐기됩니다.)`)) {
+        currentSongsList = saveActiveSongData(songs, inputText)
+      }
+    }
+
+    if (window.confirm('새 곡을 생성할까요?')) {
       const newId = 'song-' + Date.now()
       const newSong = {
         id: newId,
@@ -376,21 +399,24 @@ export default function LeadSheetPage() {
         content: '',
         updatedAt: Date.now()
       }
-      const updated = [...songs, newSong]
+      const updated = [...currentSongsList, newSong]
       setSongs(updated)
       localStorage.setItem('leadSheetSongs', JSON.stringify(updated))
       setActiveSongId(newId)
       localStorage.setItem('leadSheetActiveSongId', newId)
       setInputText('')
       setCurrentPage(0)
-      setIsViewMode(false) // 즉시 타이핑하도록 편집 모드로 전환
+      setIsViewMode(false) // 즉시 편집 가능하도록 전환
     }
   }
 
   // 3. 곡 삭제
   const handleDeleteSong = () => {
+    const activeSong = songs.find(s => s.id === activeSongId)
+    const songTitle = activeSong ? (activeSong.title || '제목 없음') : '현재 곡'
+
     if (songs.length <= 1) {
-      if (window.confirm('마지막 곡입니다. 삭제하고 빈 곡으로 초기화할까요?')) {
+      if (window.confirm(`"${songTitle}" 곡은 마지막 곡입니다. 정말 삭제하고 빈 곡으로 초기화할까요?`)) {
         const resetId = 'song-' + Date.now()
         const emptySong = {
           id: resetId,
@@ -405,11 +431,12 @@ export default function LeadSheetPage() {
         localStorage.setItem('leadSheetActiveSongId', resetId)
         setInputText('')
         setCurrentPage(0)
+        setIsViewMode(false) // 편집창이 비었으므로 에디터 모드로 강제 진입시켜 사용성 유지
       }
       return
     }
 
-    if (window.confirm('현재 보고 있는 곡을 목록에서 정말 삭제하시겠습니까?')) {
+    if (window.confirm(`"${songTitle}" 곡을 정말 목록에서 삭제하시겠습니까?`)) {
       const filtered = songs.filter(s => s.id !== activeSongId)
       setSongs(filtered)
       localStorage.setItem('leadSheetSongs', JSON.stringify(filtered))
@@ -423,9 +450,9 @@ export default function LeadSheetPage() {
     }
   }
 
-  // 4. 곡 순서 변경
+  // 4. 곡 순서 변경 (▲/▼ 버튼 클릭)
   const handleMoveSong = (index, direction, event) => {
-    event.stopPropagation() // 아이템 탭에 의한 곡 로드 차단
+    event.stopPropagation() // 아이템 탭에 의한 곡 선택 로드 차단
     const targetIdx = index + direction
     if (targetIdx < 0 || targetIdx >= songs.length) return
 
@@ -440,7 +467,22 @@ export default function LeadSheetPage() {
 
   // 5. 곡 선택 로드
   const handleSelectSong = (songId) => {
-    const selected = songs.find(s => s.id === songId)
+    if (songId === activeSongId) {
+      setIsListOpen(false)
+      return
+    }
+
+    // 저장되지 않은 데이터 유실 방지 점검
+    const activeSong = songs.find(s => s.id === activeSongId)
+    let currentSongsList = songs
+    if (activeSong && inputText !== activeSong.content) {
+      const title = getSongTitle(inputText)
+      if (window.confirm(`"${title}" 곡의 변경 사항이 저장되지 않았습니다.\n이동하기 전에 저장하시겠습니까?\n(취소를 누르면 변경 사항이 폐기됩니다.)`)) {
+        currentSongsList = saveActiveSongData(songs, inputText)
+      }
+    }
+
+    const selected = currentSongsList.find(s => s.id === songId)
     if (!selected) return
 
     setActiveSongId(songId)
@@ -646,9 +688,11 @@ export default function LeadSheetPage() {
                   <li 
                     key={song.id} 
                     className={`lead-sheet-song-item ${song.id === activeSongId ? 'is-active' : ''}`}
-                    onClick={() => handleSelectSong(song.id)}
                   >
-                    <span className="lead-sheet-song-title">
+                    <span 
+                      className="lead-sheet-song-title"
+                      onClick={() => handleSelectSong(song.id)}
+                    >
                       {song.title || '제목 없음'}
                     </span>
                     <div className="lead-sheet-song-item-controls">
