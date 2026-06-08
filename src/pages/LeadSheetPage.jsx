@@ -4,7 +4,7 @@ import { supabase } from '../lib/supabase'
 import { signInWithGoogle, signOut, getCurrentUser, subscribeAuthChanges } from '../lib/auth'
 
 // 자동 페이지 분할(섹션 묶기) 시 한 페이지당 최대 허용 가사/코드 줄 수 기준
-const AUTO_PAGE_MAX_LINES = 20
+const AUTO_PAGE_MAX_LINES = 28
 
 export default function LeadSheetPage() {
   // 1. 다중 세트리스트 그룹 상태 및 기존 단일 리스트 데이터 마이그레이션 처리
