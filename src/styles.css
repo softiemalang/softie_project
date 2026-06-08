@@ -3761,22 +3761,23 @@ textarea {
 /* 집중 모드(전체화면) 스타일 대응 */
 .lead-sheet-container.is-focus-mode .lead-sheet-content-area {
   padding-top: clamp(52px, 7vh, 84px);
-  padding-bottom: max(40px, calc(env(safe-area-inset-bottom) + 1.8rem));
+  padding-bottom: max(24px, calc(env(safe-area-inset-bottom) + 16px));
 }
 
 @media (min-width: 700px) {
   .lead-sheet-container.is-focus-mode .lead-sheet-content-area {
     padding-top: clamp(72px, 10vh, 110px);
-    padding-bottom: max(56px, calc(env(safe-area-inset-bottom) + 40px));
+    padding-bottom: max(32px, calc(env(safe-area-inset-bottom) + 24px));
   }
 }
 
 /* 집중 모드 플로팅 컨트롤 */
 .lead-sheet-focus-controls {
   position: absolute;
-  top: 1rem;
-  right: 1rem;
+  top: max(1rem, calc(env(safe-area-inset-top) + 0.5rem));
+  right: max(1rem, calc(env(safe-area-inset-right) + 0.5rem));
   display: flex;
+  align-items: center;
   gap: 0.25rem;
   z-index: 15;
   background-color: rgba(23, 26, 31, 0.85);
@@ -3793,6 +3794,15 @@ textarea {
 .lead-sheet-focus-controls:hover,
 .lead-sheet-focus-controls:active {
   opacity: 1;
+}
+
+.lead-sheet-compact-indicator {
+  font-size: 0.8rem;
+  color: #a39587;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  padding: 0 0.4rem;
+  letter-spacing: 0.02em;
 }
 
 /* 집중 모드 시 하단 푸터도 본문 뒤에 absolute 투명 배치하여 뷰 훼손 최소화 */

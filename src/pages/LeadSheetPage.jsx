@@ -934,22 +934,9 @@ export default function LeadSheetPage() {
       {/* 집중 모드(전체화면) 시 우측 상단 플로팅 컨트롤 */}
       {showFocusMode && isViewMode && (
         <div className="lead-sheet-focus-controls" onClick={(e) => e.stopPropagation()}>
-          <button 
-            type="button" 
-            className="lead-sheet-btn"
-            onClick={zoomOut}
-            disabled={fontSize <= 14}
-          >
-            A-
-          </button>
-          <button 
-            type="button" 
-            className="lead-sheet-btn"
-            onClick={zoomIn}
-            disabled={fontSize >= 48}
-          >
-            A+
-          </button>
+          <span className="lead-sheet-compact-indicator">
+            {totalPages > 0 ? activePage + 1 : 0}/{totalPages}
+          </span>
           <button 
             type="button" 
             className="lead-sheet-btn lead-sheet-btn-primary"
@@ -1042,11 +1029,13 @@ export default function LeadSheetPage() {
       </main>
 
       {/* 하단 푸터 바 */}
-      <footer className="lead-sheet-footer">
-        <span className="lead-sheet-page-indicator">
-          PAGE {totalPages > 0 ? activePage + 1 : 0} / {totalPages} · {fontSize}px
-        </span>
-      </footer>
+      {!showFocusMode && (
+        <footer className="lead-sheet-footer">
+          <span className="lead-sheet-page-indicator">
+            PAGE {totalPages > 0 ? activePage + 1 : 0} / {totalPages} · {fontSize}px
+          </span>
+        </footer>
+      )}
 
       {/* 곡 목록 서랍 패널 (Drawer) */}
       {isListOpen && (
