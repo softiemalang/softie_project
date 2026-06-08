@@ -3765,14 +3765,14 @@ textarea {
 
 /* 집중 모드(전체화면) 스타일 대응 */
 .lead-sheet-container.is-focus-mode .lead-sheet-content-area {
-  padding-top: clamp(52px, 7vh, 84px);
-  padding-bottom: max(24px, calc(env(safe-area-inset-bottom) + 16px));
+  padding-top: clamp(48px, 6vh, 68px);
+  padding-bottom: max(16px, calc(env(safe-area-inset-bottom) + 10px));
 }
 
 @media (min-width: 700px) {
   .lead-sheet-container.is-focus-mode .lead-sheet-content-area {
-    padding-top: clamp(72px, 10vh, 110px);
-    padding-bottom: max(32px, calc(env(safe-area-inset-bottom) + 24px));
+    padding-top: clamp(56px, 7vh, 80px);
+    padding-bottom: max(20px, calc(env(safe-area-inset-bottom) + 12px));
     justify-content: flex-start;
   }
 }
