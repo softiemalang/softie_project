@@ -3,6 +3,8 @@ import { navigate } from '../lib/router'
 import { supabase } from '../lib/supabase'
 import { signInWithGoogle, signOut, getCurrentUser, subscribeAuthChanges } from '../lib/auth'
 
+// 자동 페이지 분할(섹션 묶기) 시 한 페이지당 최대 허용 가사/코드 줄 수 기준
+const AUTO_PAGE_MAX_LINES = 20
 
 export default function LeadSheetPage() {
   // 1. 다중 세트리스트 그룹 상태 및 기존 단일 리스트 데이터 마이그레이션 처리
@@ -348,7 +350,7 @@ export default function LeadSheetPage() {
       return
     }
 
-    // 16줄씩 묶어 페이지 나누기
+    // 설정된 기준 줄 수(AUTO_PAGE_MAX_LINES) 단위로 묶어 페이지 나누기
     const pageGroups = []
     let currentPageLines = [...headerLines]
 
@@ -356,7 +358,7 @@ export default function LeadSheetPage() {
       const sec = sections[i]
       const secLength = 1 + sec.lines.length
 
-      if (currentPageLines.length > 0 && currentPageLines.length + secLength > 16) {
+      if (currentPageLines.length > 0 && currentPageLines.length + secLength > AUTO_PAGE_MAX_LINES) {
         pageGroups.push(currentPageLines.join('\n'))
         currentPageLines = []
       }
