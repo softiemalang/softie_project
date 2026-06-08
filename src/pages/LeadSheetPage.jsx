@@ -10,12 +10,33 @@ export default function LeadSheetPage() {
   // 기존 leadSheetSongs (단일 곡 목록) 구조에서 leadSheetGroups (세트리스트 그룹 목록) 구조로 확장합니다.
   // 각 그룹은 { id, name, songs: [ { id, title, content, updatedAt }, ... ], updatedAt } 구조를 가집니다.
   const [groups, setGroups] = useState(() => {
+    const defaultGroupId = 'group-default'
+    const createDefaultGroup = () => ({
+      id: defaultGroupId,
+      name: '기본 세트리스트',
+      songs: [
+        {
+          id: 'song-initial',
+          title: '제목 없음',
+          content: '',
+          updatedAt: Date.now()
+        }
+      ],
+      updatedAt: Date.now()
+    })
+
     const savedGroups = localStorage.getItem('leadSheetGroups')
     if (savedGroups) {
-      return JSON.parse(savedGroups)
+      try {
+        const parsed = JSON.parse(savedGroups)
+        if (Array.isArray(parsed) && parsed.length > 0) {
+          return parsed
+        }
+      } catch (e) {
+        console.error('leadSheetGroups 로딩 및 파싱 오류:', e)
+      }
     }
 
-    const defaultGroupId = 'group-default'
     const legacySongs = localStorage.getItem('leadSheetSongs')
     
     // 기존에 여러 곡 목록이 이미 들어있었다면 "기본 세트리스트" 그룹으로 마이그레이션
@@ -39,20 +60,8 @@ export default function LeadSheetPage() {
       }
     }
 
-    // 기존 데이터가 아예 없는 경우: 기본 세트리스트에 빈 곡 하나를 넣어 초기 설정
-    const defaultGroup = {
-      id: defaultGroupId,
-      name: '기본 세트리스트',
-      songs: [
-        {
-          id: 'song-initial',
-          title: '제목 없음',
-          content: '',
-          updatedAt: Date.now()
-        }
-      ],
-      updatedAt: Date.now()
-    }
+    // 기존 데이터가 아예 없거나 손상된 경우 초기화
+    const defaultGroup = createDefaultGroup()
     const initialList = [defaultGroup]
     localStorage.setItem('leadSheetGroups', JSON.stringify(initialList))
     localStorage.setItem('leadSheetActiveGroupId', defaultGroupId)
@@ -420,19 +429,23 @@ export default function LeadSheetPage() {
     return updated
   }
 
-  // 3. 미저장 변경 검출 및 저장 여부 확인 (confirm 활용)
+  // 3. 미저장 변경 검출 및 저장 여부 확인 (confirm 활용, 취소 시 전체 작업 중단)
+  // 반환 값: { groupsList: 최종그룹리스트, aborted: 진행 중단 여부 }
   const checkUnsavedAndConfirm = (groupsList, actionName) => {
     const currentGroup = groupsList.find(g => g.id === activeGroupId) || activeGroup
     const activeSong = currentGroup.songs.find(s => s.id === activeSongId)
-    let finalGroupsList = groupsList
     
     if (activeSong && inputText !== activeSong.content) {
       const title = getSongTitle(inputText)
-      if (window.confirm(`"${title}" 곡의 변경 사항이 저장되지 않았습니다.\n${actionName} 전에 저장하시겠습니까?\n(취소를 누르면 변경 사항이 폐기됩니다.)`)) {
-        finalGroupsList = saveActiveSongContent(groupsList, inputText)
+      if (window.confirm(`"${title}" 곡의 변경 사항이 저장되지 않았습니다.\n${actionName} 전에 저장하고 진행하시겠습니까?\n(취소를 누르면 해당 작업이 완전히 취소됩니다.)`)) {
+        const updatedGroups = saveActiveSongContent(groupsList, inputText)
+        return { groupsList: updatedGroups, aborted: false }
+      } else {
+        // 취소를 누르면 다음 진행 자체를 중단하도록 지시
+        return { groupsList: null, aborted: true }
       }
     }
-    return finalGroupsList
+    return { groupsList, aborted: false }
   }
 
   // --- 곡 관련 조작 ---
@@ -446,7 +459,8 @@ export default function LeadSheetPage() {
 
   // 새 곡 생성
   const handleNewSong = () => {
-    const currentGroups = checkUnsavedAndConfirm(groups, '새 곡 생성')
+    const { groupsList: currentGroups, aborted } = checkUnsavedAndConfirm(groups, '새 곡 생성')
+    if (aborted) return
 
     if (window.confirm('새 곡을 생성할까요?')) {
       const newId = 'song-' + Date.now()
@@ -567,7 +581,9 @@ export default function LeadSheetPage() {
       return
     }
 
-    const currentGroups = checkUnsavedAndConfirm(groups, '곡 이동')
+    const { groupsList: currentGroups, aborted } = checkUnsavedAndConfirm(groups, '곡 이동')
+    if (aborted) return
+
     const currentActiveGroup = currentGroups.find(g => g.id === activeGroupId) || activeGroup
     const selected = currentActiveGroup.songs.find(s => s.id === songId)
     if (!selected) return
@@ -585,7 +601,9 @@ export default function LeadSheetPage() {
   const handleSelectGroup = (groupId) => {
     if (groupId === activeGroupId) return
 
-    const currentGroups = checkUnsavedAndConfirm(groups, '그룹 전환')
+    const { groupsList: currentGroups, aborted } = checkUnsavedAndConfirm(groups, '그룹 전환')
+    if (aborted) return
+
     const targetGroup = currentGroups.find(g => g.id === groupId)
     if (!targetGroup) return
 
@@ -601,10 +619,11 @@ export default function LeadSheetPage() {
 
   // 2. 새 그룹 생성
   const handleAddGroup = () => {
+    const { groupsList: currentGroups, aborted } = checkUnsavedAndConfirm(groups, '그룹 생성')
+    if (aborted) return
+
     const groupName = window.prompt('새 세트리스트 그룹 이름을 입력하세요:')
     if (!groupName || !groupName.trim()) return
-
-    const currentGroups = checkUnsavedAndConfirm(groups, '그룹 생성')
 
     const newGroupId = 'group-' + Date.now()
     const newGroup = {
@@ -688,6 +707,9 @@ export default function LeadSheetPage() {
   // --- 클라우드 백업 및 불러오기 (OAuth 구글 계정 기준) ---
 
   const handleSignIn = async () => {
+    const { aborted } = checkUnsavedAndConfirm(groups, '구글 로그인')
+    if (aborted) return
+
     try {
       await signInWithGoogle()
     } catch (err) {
@@ -715,8 +737,8 @@ export default function LeadSheetPage() {
       return
     }
 
-    // 미저장 변경사항 보호 체크
-    const currentGroups = checkUnsavedAndConfirm(groups, '클라우드 백업')
+    const { groupsList: currentGroups, aborted } = checkUnsavedAndConfirm(groups, '클라우드 백업')
+    if (aborted) return
 
     try {
       const { error } = await supabase
@@ -745,6 +767,10 @@ export default function LeadSheetPage() {
       return
     }
 
+    // 불러오기 전에 현재 미저장 데이터가 있는 경우, 사용자 승인 하에 저장하거나 전체 작업을 취소할 수 있도록 유도
+    const { groupsList: currentGroups, aborted } = checkUnsavedAndConfirm(groups, '클라우드 불러오기')
+    if (aborted) return
+
     try {
       // 1. 서버 백업 존재 여부 및 데이터 획득
       const { data, error } = await supabase
@@ -769,15 +795,15 @@ export default function LeadSheetPage() {
       }
 
       const backupSongCount = backupData.reduce((acc, g) => acc + (g.songs?.length || 0), 0)
-      const currentSongCount = groups.reduce((acc, g) => acc + (g.songs?.length || 0), 0)
+      const currentSongCount = currentGroups.reduce((acc, g) => acc + (g.songs?.length || 0), 0)
 
       const confirmMessage = `현재 기기 데이터를 클라우드 백업으로 교체할까요?\n최근 데이터는 복구용으로 임시 저장됩니다.\n\n` +
         `• 현재 기기: 곡 ${currentSongCount}개\n` +
         `• 클라우드 백업: 곡 ${backupSongCount}개 (백업 시간: ${backupDate})`
 
       if (window.confirm(confirmMessage)) {
-        // 2. 현재 로컬 데이터를 임시 백업으로 저장
-        localStorage.setItem('leadSheetGroupsBackupBeforeRestore', JSON.stringify(groups))
+        // 2. 현재 최신 데이터를 임시 백업으로 저장 (이미 저장 완료된 currentGroups를 저장함으로서 타이핑 중이던 내용까지 함께 백업됨!)
+        localStorage.setItem('leadSheetGroupsBackupBeforeRestore', JSON.stringify(currentGroups))
         setHasLocalBackup(true)
 
         // 3. 불러온 데이터 반영
