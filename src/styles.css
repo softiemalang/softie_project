@@ -3760,8 +3760,15 @@ textarea {
 
 /* 집중 모드(전체화면) 스타일 대응 */
 .lead-sheet-container.is-focus-mode .lead-sheet-content-area {
-  padding-top: 1rem;
-  padding-bottom: 1rem;
+  padding-top: clamp(52px, 7vh, 84px);
+  padding-bottom: clamp(1.5rem, 4vh, 3rem);
+}
+
+@media (min-width: 700px) {
+  .lead-sheet-container.is-focus-mode .lead-sheet-content-area {
+    padding-top: clamp(72px, 10vh, 110px);
+    padding-bottom: clamp(1.5rem, 5vh, 3.5rem);
+  }
 }
 
 /* 집중 모드 플로팅 컨트롤 */
