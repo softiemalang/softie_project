@@ -932,11 +932,13 @@ export default function LeadSheetPage() {
       )}
 
       {/* 집중 모드(전체화면) 시 우측 상단 플로팅 컨트롤 */}
-      {showFocusMode && isViewMode && (
+      {showFocusMode && (
         <div className="lead-sheet-focus-controls" onClick={(e) => e.stopPropagation()}>
-          <span className="lead-sheet-compact-indicator">
-            {totalPages > 0 ? activePage + 1 : 0}/{totalPages}
-          </span>
+          {isViewMode && (
+            <span className="lead-sheet-compact-indicator">
+              {totalPages > 0 ? activePage + 1 : 0}/{totalPages}
+            </span>
+          )}
           <button 
             type="button" 
             className="lead-sheet-btn lead-sheet-btn-primary"
