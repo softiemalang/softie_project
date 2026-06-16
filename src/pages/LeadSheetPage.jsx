@@ -107,6 +107,7 @@ export default function LeadSheetPage() {
   const [isFullscreen, setIsFullscreen] = useState(false)
   const [isFocusMode, setIsFocusMode] = useState(false)
   const [isListOpen, setIsListOpen] = useState(false) // 목록 서랍 오픈 상태
+  const [isLocked, setIsLocked] = useState(false)
   
   // 백업 관련 상태
   const [user, setUser] = useState(null)
@@ -922,6 +923,16 @@ export default function LeadSheetPage() {
               전체
             </button>
 
+            {isViewMode && (
+              <button 
+                type="button" 
+                className={`lead-sheet-btn ${isLocked ? 'lead-sheet-btn-danger' : ''}`}
+                onClick={() => setIsLocked(!isLocked)}
+                title={isLocked ? '터치 잠금 해제' : '터치 잠금 (공연 모드)'}
+              >
+                {isLocked ? '🔒 잠금' : '🔓 잠금'}
+              </button>
+            )}
             <button 
               type="button" 
               className={`lead-sheet-btn ${isViewMode ? 'lead-sheet-btn-primary' : ''}`}
@@ -937,9 +948,20 @@ export default function LeadSheetPage() {
       {showFocusMode && (
         <div className="lead-sheet-focus-controls" onClick={(e) => e.stopPropagation()}>
           {isViewMode && (
-            <span className="lead-sheet-compact-indicator">
-              {totalPages > 0 ? activePage + 1 : 0}/{totalPages}
-            </span>
+            <>
+              <span className="lead-sheet-compact-indicator">
+                {totalPages > 0 ? activePage + 1 : 0}/{totalPages}
+              </span>
+              <button 
+                type="button" 
+                className={`lead-sheet-btn ${isLocked ? 'lead-sheet-btn-danger' : ''}`}
+                onClick={() => setIsLocked(!isLocked)}
+                style={{ marginRight: '0.5rem' }}
+                title={isLocked ? '터치 잠금 해제' : '터치 잠금 (공연 모드)'}
+              >
+                {isLocked ? '🔒 잠김' : '🔓 풀림'}
+              </button>
+            </>
           )}
           <button 
             type="button" 
@@ -964,7 +986,13 @@ export default function LeadSheetPage() {
             </div>
 
             {/* 좌우 절반 터치 네비게이션 레이어 */}
-            <div className="lead-sheet-touch-container">
+            <div 
+              className={`lead-sheet-touch-container ${isLocked ? 'is-locked' : ''}`}
+              style={{ 
+                touchAction: 'manipulation', 
+                pointerEvents: isLocked ? 'none' : 'auto' 
+              }}
+            >
               <div 
                 className="lead-sheet-touch-zone" 
                 onClick={handlePrevPage}
