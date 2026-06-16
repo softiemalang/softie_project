@@ -10,7 +10,7 @@ serve(async (req) => {
   }
 
   try {
-    const { userId: bodyUserId, rehearsalId, reservationId } = await req.json()
+    const { userId: bodyUserId, rehearsalId, reservationId, googleEventId: bodyGoogleEventId } = await req.json()
     const userId = await requireGoogleManualUser(req, bodyUserId)
 
     if (!rehearsalId && !reservationId) {
@@ -23,29 +23,35 @@ serve(async (req) => {
     )
 
     // Lookup the rehearsal or reservation to get the google_calendar_event_id
-    let googleEventId: string | null = null
-    if (rehearsalId) {
-      const { data, error } = await supabase
-        .from('rehearsal_events')
-        .select('google_calendar_event_id')
-        .eq('id', rehearsalId)
-        .eq('owner_key', userId)
-        .single()
-      if (error) throw new Error(`DB Error: ${error.message}`)
-      googleEventId = data?.google_calendar_event_id
-    } else if (reservationId) {
-      const { data, error } = await supabase
-        .from('reservations')
-        .select('google_event_id')
-        .eq('id', reservationId)
-        .eq('owner_key', userId)
-        .single()
-      if (error) throw new Error(`DB Error: ${error.message}`)
-      googleEventId = data?.google_event_id
+    let googleEventId: string | null = bodyGoogleEventId || null
+
+    if (!googleEventId) {
+      if (rehearsalId) {
+        const { data, error } = await supabase
+          .from('rehearsal_events')
+          .select('google_calendar_event_id')
+          .eq('id', rehearsalId)
+          .eq('owner_key', userId)
+          .single()
+        if (error) throw new Error(`DB Error: ${error.message}`)
+        googleEventId = data?.google_calendar_event_id
+      } else if (reservationId) {
+        const { data, error } = await supabase
+          .from('reservations')
+          .select('google_event_id')
+          .eq('id', reservationId)
+          .eq('owner_key', userId)
+          .single()
+        if (error) throw new Error(`DB Error: ${error.message}`)
+        googleEventId = data?.google_event_id
+      }
     }
 
     // If no googleEventId, we consider it "already deleted" or "not synced"
     if (!googleEventId) {
+      if (reservationId) {
+        throw new Error(`Google Calendar Event ID not found for reservation ${reservationId}`)
+      }
       return new Response(JSON.stringify({ success: true, message: 'No linked event found' }), {
         headers: { ...corsHeaders, 'Content-Type': 'application/json' },
       })

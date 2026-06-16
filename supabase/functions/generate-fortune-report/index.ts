@@ -1,4 +1,11 @@
 import { createSajuKnowledgeDraft } from "../_shared/saju-knowledge-logic.ts";
+import { createClient } from 'https://esm.sh/@supabase/supabase-js@2'
+
+const supabaseUrl = Deno.env.get('SUPABASE_URL') ?? '';
+const supabaseServiceRoleKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY') ?? '';
+const supabaseAdmin = supabaseUrl && supabaseServiceRoleKey
+  ? createClient(supabaseUrl, supabaseServiceRoleKey)
+  : null;
 
 /*
  * NOTE: 이 함수는 public/local_key 기반 운세 페이지에서 호출되므로 
@@ -10,6 +17,7 @@ const corsHeaders = {
   'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
   'Access-Control-Allow-Methods': 'POST, OPTIONS',
 }
+
 
 const SECTION_KEYS = ['work', 'money', 'relationships', 'love', 'health', 'mind'] as const
 const GOOGLE_OAUTH_SCOPE = 'https://www.googleapis.com/auth/cloud-platform';
@@ -667,8 +675,37 @@ Deno.serve(async (req) => {
   const startTime = Date.now();
   let profileId = 'unknown';
   try {
-    const { computedData, targetDate, profileId: requestProfileId, softiePersonalRag } = await req.json()
+    const { computedData, targetDate, profileId: requestProfileId, softiePersonalRag, snapshotId, forceGenerate } = await req.json()
     profileId = requestProfileId || computedData?.profileId || 'unknown'
+    const softieProfileId = Deno.env.get('SOFTIE_SAJU_PROFILE_ID') || '';
+    const isSoftiePublic = softieProfileId && profileId === softieProfileId;
+    const effectiveTargetDate = targetDate ?? computedData?.targetDate ?? computedData?.target_date ?? null;
+    const reportVersion = '1.3';
+
+    // 0. 중복 보호: 공용 사주 프로필이고 강제 생성이 아닐 때 이미 같은 날짜의 리포트가 있는지 확인
+    if (isSoftiePublic && supabaseAdmin && effectiveTargetDate && !forceGenerate) {
+      const { data: existingReport, error: lookupError } = await supabaseAdmin
+        .from('saju_fortune_reports')
+        .select('*')
+        .eq('profile_id', profileId)
+        .eq('report_date', effectiveTargetDate)
+        .eq('report_version', reportVersion)
+        .maybeSingle()
+
+      if (!lookupError && existingReport) {
+        console.log(`[Duplicate Protection] Found existing report for profileId: ${profileId}, date: ${effectiveTargetDate}. Skipping LLM call.`);
+        const cachedResponse = {
+          model: existingReport.model_name,
+          content: existingReport.report_content,
+          savedRecord: existingReport,
+          is_cached: true
+        };
+        return new Response(JSON.stringify(cachedResponse), {
+          headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+        });
+      }
+    }
+
 
     // 0. Saju Knowledge RAG 초안 생성 (활성화 시)
     const ragEnabled = Deno.env.get("SAJU_KNOWLEDGE_RAG_ENABLED") === "true";
@@ -1058,9 +1095,43 @@ ${ragGuidanceText}
       console.warn(`[Observability] Failed: ${shortenErrorMessage(observabilityError)}`);
     }
 
+    // 만약 공용 프로필이고 supabaseAdmin이 초기화되어 있다면 DB에 직접 저장
+    if (isSoftiePublic && supabaseAdmin && finalResponse?.content) {
+      try {
+        const reportToSave = {
+          profile_id: profileId,
+          daily_snapshot_id: snapshotId || computedData?.id || null,
+          report_date: effectiveTargetDate,
+          report_version: reportVersion,
+          model_name: finalResponse.model,
+          headline: finalResponse.content.headline,
+          summary: finalResponse.content.summary,
+          report_content: finalResponse.content,
+          generated_at: new Date().toISOString()
+        }
+
+        const { data: savedReport, error: saveError } = await supabaseAdmin
+          .from('saju_fortune_reports')
+          .upsert(reportToSave, { onConflict: 'profile_id,report_date,report_version' })
+          .select()
+          .single()
+
+        if (saveError) {
+          console.error('[Database Save Error] Failed to save generated report in Edge Function:', saveError);
+        } else if (savedReport) {
+          console.log('[Database Save Success] Saved generated report in Edge Function:', savedReport.id);
+          finalResponse.savedRecord = savedReport;
+          finalResponse.is_cached = false;
+        }
+      } catch (saveException) {
+        console.error('[Database Save Exception] Exception while saving report in Edge Function:', saveException);
+      }
+    }
+
     return new Response(JSON.stringify(finalResponse), {
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },
     })
+
 
   } catch (error) {
     console.error(`[Error] Execution failed. profileId: ${profileId || 'unknown'}, Time: ${Date.now() - startTime}ms. Error:`, error.message);

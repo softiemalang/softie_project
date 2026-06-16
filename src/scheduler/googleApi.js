@@ -123,12 +123,12 @@ export async function updateGoogleCalendarEvent(userId, eventData) {
 /**
  * Calls the Edge Function to delete an existing event from Google Calendar.
  */
-export async function deleteGoogleCalendarEvent(userId, reservationId) {
+export async function deleteGoogleCalendarEvent(userId, reservationId, googleEventId = null) {
   if (!supabase) throw new Error('Supabase client not initialized')
   if (!userId) throw new Error('로그인이 필요합니다.')
 
   const { data, error } = await supabase.functions.invoke('google-calendar-delete-event', {
-    body: { userId, reservationId }
+    body: { userId, reservationId, googleEventId }
   })
 
   return unwrapInvokeError(data, error)

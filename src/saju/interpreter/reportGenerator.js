@@ -54,6 +54,13 @@ export async function getOrGenerateReport(profileId, dailySnapshot, options = {}
     reportToSave.report_content.debug = llmResult.content.debug
   }
 
+  // Edge Function 내부에서 이미 service_role을 사용하여 저장한 DB 레코드가 포함되어 있다면,
+  // 클라이언트 직접 쓰기를 전면 생략하고 해당 데이터를 즉시 반환하여 캐싱합니다.
+  if (llmResult?.savedRecord) {
+    console.log('[reportGenerator] Report was already saved in DB by Edge Function:', llmResult.savedRecord.id)
+    return { ...llmResult.savedRecord, is_cached: llmResult.is_cached === true }
+  }
+
   try {
     const savedReport = force
       ? await upsertFortuneReport(reportToSave)
@@ -64,6 +71,7 @@ export async function getOrGenerateReport(profileId, dailySnapshot, options = {}
     // 저장에 실패하더라도 사용자에게는 생성된 결과를 보여줌
     return { ...reportToSave, id: 'temp-id', is_cached: false }
   }
+
 }
 
 /**

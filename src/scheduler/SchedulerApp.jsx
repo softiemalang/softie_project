@@ -1471,6 +1471,7 @@ function ReservationEditorPage({ mode, reservationId, effectiveOwnerKey, initial
   const [status, setStatus] = useState('')
   const [isLoading, setIsLoading] = useState(mode === 'edit')
   const [isSaving, setIsSaving] = useState(false)
+  const [loadedReservation, setLoadedReservation] = useState(null)
 
   useEffect(() => {
     if (mode !== 'edit' || !reservationId) return
@@ -1483,6 +1484,7 @@ function ReservationEditorPage({ mode, reservationId, effectiveOwnerKey, initial
           setStatus('예약을 찾지 못했어요.')
           return
         }
+        setLoadedReservation(row)
         setFormValues(mapReservationToFormValues(row))
         setStatus('')
       } catch (error) {
@@ -1604,30 +1606,24 @@ function ReservationEditorPage({ mode, reservationId, effectiveOwnerKey, initial
     if (!shouldDelete) return
 
     setIsSaving(true)
-    let googleDeleteError = false
 
     try {
-      if (isGoogleConnected() && reservationId) {
-        try {
-          const session = await getCurrentSession()
-          const targetId = session?.user?.id
-          if (targetId) {
-            await deleteGoogleCalendarEvent(targetId, reservationId)
-          }
-        } catch (calErr) {
-          googleDeleteError = true
-          console.error('Google Calendar Delete Sync Error:', calErr)
+      if (isGoogleConnected() && loadedReservation?.google_event_id) {
+        const session = await getCurrentSession()
+        const targetId = session?.user?.id
+        if (targetId) {
+          console.log('[handleDelete] Initiating Google Calendar deletion for event:', loadedReservation.google_event_id)
+          await deleteGoogleCalendarEvent(targetId, reservationId, loadedReservation.google_event_id)
+        } else {
+          throw new Error('Google 계정 세션을 찾을 수 없습니다.')
         }
       }
 
       await deleteReservation(reservationId, effectiveOwnerKey)
-
-      if (googleDeleteError) {
-        window.alert('예약은 삭제되었으나, Google 캘린더 일정 삭제에 실패했습니다.')
-      }
       navigate(backPath)
     } catch (error) {
-      setStatus(error.message)
+      console.error('[handleDelete] Delete flow failed:', error)
+      setStatus(error.message || '예약 삭제 중 오류가 발생했습니다.')
       setIsSaving(false)
     }
   }
