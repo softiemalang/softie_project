@@ -121,6 +121,75 @@ export default function LeadSheetPage() {
   const [hasLocalBackup, setHasLocalBackup] = useState(() => {
     return !!localStorage.getItem('leadSheetGroupsBackupBeforeRestore')
   })
+
+  const [lastBackupMetadata, setLastBackupMetadata] = useState(() => {
+    const saved = localStorage.getItem('leadSheetLastBackupMetadata')
+    if (saved) {
+      try {
+        return JSON.parse(saved)
+      } catch (e) {
+        console.error('백업 메타데이터 로드 실패:', e)
+      }
+    }
+    return null
+  })
+
+  const [isBackupModalOpen, setIsBackupModalOpen] = useState(false)
+
+  const getBackupStatus = () => {
+    const reasons = []
+    
+    // 계산할 현재 로컬 시그니처
+    let maxUpdatedAt = 0
+    let currentSongCount = 0
+    groups.forEach(g => {
+      if (g.updatedAt > maxUpdatedAt) maxUpdatedAt = g.updatedAt
+      currentSongCount += g.songs?.length || 0
+      g.songs?.forEach(s => {
+        if (s.updatedAt > maxUpdatedAt) maxUpdatedAt = s.updatedAt
+      })
+    })
+
+    const currentGroupCount = groups.length
+
+    if (!lastBackupMetadata) {
+      reasons.push('최근 클라우드 백업 이력이 로컬에 기재되어 있지 않습니다.')
+      return {
+        isRecommended: true,
+        reasons,
+        current: { songCount: currentSongCount, groupCount: currentGroupCount, maxUpdatedAt },
+        last: null
+      }
+    }
+
+    // 노래 수나 그룹 수 변경 여부
+    if (lastBackupMetadata.songCount !== currentSongCount) {
+      reasons.push(`곡 개수가 변경되었습니다. (백업 시점: ${lastBackupMetadata.songCount}개 ➔ 현재: ${currentSongCount}개)`)
+    }
+    if (lastBackupMetadata.groupCount !== currentGroupCount) {
+      reasons.push(`세트리스트 그룹 개수가 변경되었습니다. (백업 시점: ${lastBackupMetadata.groupCount}개 ➔ 현재: ${currentGroupCount}개)`)
+    }
+
+    // 마지막 백업 이후 수정 여부
+    if (maxUpdatedAt > lastBackupMetadata.timestamp) {
+      reasons.push('마지막 백업 이후 가사, 코드 또는 세트리스트 구성에 새로운 수정 사항이 있습니다.')
+    }
+
+    // 마지막 백업이 7일 이상 경과했는지 여부
+    const sevenDaysMs = 7 * 24 * 60 * 60 * 1000
+    if (Date.now() - lastBackupMetadata.timestamp > sevenDaysMs) {
+      reasons.push('최종 클라우드 백업을 완료한 지 7일이 경과하였습니다.')
+    }
+
+    return {
+      isRecommended: reasons.length > 0,
+      reasons,
+      current: { songCount: currentSongCount, groupCount: currentGroupCount, maxUpdatedAt },
+      last: lastBackupMetadata
+    }
+  }
+
+  const { isRecommended: isBackupRecommended, reasons: backupReasons, current: currentBackupStats, last: lastBackupStats } = getBackupStatus()
   
   const containerRef = useRef(null)
 
@@ -809,6 +878,10 @@ export default function LeadSheetPage() {
     const { groupsList: currentGroups, aborted } = checkUnsavedAndConfirm(groups, '클라우드 백업')
     if (aborted) return
 
+    if (!window.confirm('기존에 보관되어 있던 클라우드 백업을 현재 기기 데이터로 덮어쓰시겠습니까?')) {
+      return
+    }
+
     try {
       const { error } = await supabase
         .from('lead_sheet_backups')
@@ -822,6 +895,26 @@ export default function LeadSheetPage() {
         )
 
       if (error) throw error
+
+      // 백업 성공 후 로컬 메타데이터 기록
+      let maxUpdatedAt = 0
+      let currentSongCount = 0
+      currentGroups.forEach(g => {
+        if (g.updatedAt > maxUpdatedAt) maxUpdatedAt = g.updatedAt
+        currentSongCount += g.songs?.length || 0
+        g.songs?.forEach(s => {
+          if (s.updatedAt > maxUpdatedAt) maxUpdatedAt = s.updatedAt
+        })
+      })
+
+      const meta = {
+        timestamp: Date.now(),
+        songCount: currentSongCount,
+        groupCount: currentGroups.length,
+        maxUpdatedAt
+      }
+      localStorage.setItem('leadSheetLastBackupMetadata', JSON.stringify(meta))
+      setLastBackupMetadata(meta)
 
       alert('성공적으로 클라우드 백업을 완료했습니다!')
     } catch (err) {
@@ -891,6 +984,17 @@ export default function LeadSheetPage() {
           setInputText(firstGroup.songs[0]?.content || '')
         }
         setCurrentPage(0)
+
+        // 불러오기 성공 후 로컬 메타데이터 기록
+        const backupTime = new Date(data.updated_at).getTime()
+        const meta = {
+          timestamp: backupTime,
+          songCount: backupSongCount,
+          groupCount: backupData.length,
+          maxUpdatedAt: backupTime
+        }
+        localStorage.setItem('leadSheetLastBackupMetadata', JSON.stringify(meta))
+        setLastBackupMetadata(meta)
 
         alert('클라우드 백업 데이터를 성공적으로 불러왔습니다!')
       }
@@ -1198,7 +1302,31 @@ export default function LeadSheetPage() {
 
             {/* 클라우드 백업 관리 영역 */}
             <div className="lead-sheet-cloud-section" onClick={(e) => e.stopPropagation()}>
-              <span className="lead-sheet-group-label">클라우드 백업</span>
+              <span className="lead-sheet-group-label" style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap' }}>
+                클라우드 백업
+                {isBackupRecommended && (
+                  <span 
+                    className="lead-sheet-backup-badge" 
+                    onClick={() => setIsBackupModalOpen(true)}
+                    style={{
+                      marginLeft: '0.5rem',
+                      fontSize: '0.65rem',
+                      backgroundColor: '#eab308', // Amber / Yellow
+                      color: '#000000',
+                      padding: '0.1rem 0.4rem',
+                      borderRadius: '4px',
+                      fontWeight: 'bold',
+                      cursor: 'pointer',
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      gap: '0.15rem'
+                    }}
+                    title="백업 권장 설명 안내 보기"
+                  >
+                    ⚠️ 백업 권장
+                  </span>
+                )}
+              </span>
               {user ? (
                 <div className="lead-sheet-cloud-info">
                   <span className="lead-sheet-cloud-user">{user.email}</span>
@@ -1294,6 +1422,114 @@ export default function LeadSheetPage() {
               </ul>
             </div>
           </aside>
+        </div>
+      )}
+
+      {/* 백업 권장 안내 모달 */}
+      {isBackupModalOpen && (
+        <div 
+          className="lead-sheet-modal-overlay"
+          onClick={() => setIsBackupModalOpen(false)}
+          style={{
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            backgroundColor: 'rgba(15, 23, 42, 0.75)', // Slate 900 with opacity
+            backdropFilter: 'blur(4px)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            zIndex: 9999,
+            padding: '1rem'
+          }}
+        >
+          <div 
+            className="lead-sheet-modal-container"
+            onClick={(e) => e.stopPropagation()}
+            style={{
+              backgroundColor: '#1e293b', // Slate 800
+              border: '1px solid rgba(255, 255, 255, 0.1)',
+              borderRadius: '12px',
+              padding: '1.5rem',
+              maxWidth: '480px',
+              width: '100%',
+              boxShadow: '0 20px 25px -5px rgba(0, 0, 0, 0.5), 0 10px 10px -5px rgba(0, 0, 0, 0.5)',
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '1rem',
+              color: '#f8fafc' // Slate 50
+            }}
+          >
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', borderBottom: '1px solid rgba(255, 255, 255, 0.08)', paddingBottom: '0.75rem' }}>
+              <span style={{ fontSize: '1.25rem' }}>⚠️</span>
+              <h3 style={{ margin: 0, fontSize: '1.1rem', fontWeight: 'bold', color: '#f59e0b' }}>클라우드 백업 권장 안내</h3>
+            </div>
+            
+            <p style={{ margin: 0, fontSize: '0.85rem', color: '#cbd5e1', lineHeight: '1.5' }}>
+              현재 기기의 로컬 데이터 변경사항을 클라우드 백업으로 보호하는 것을 권장합니다. 수동 백업은 의도치 않은 삭제나 덮어쓰기 오동작으로부터 데이터를 스스로 제어할 수 있어 가장 안전합니다.
+            </p>
+
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+              <span style={{ fontSize: '0.8rem', fontWeight: 'bold', color: '#94a3b8' }}>권장 사유:</span>
+              <ul style={{ margin: 0, paddingLeft: '1.2rem', fontSize: '0.8rem', color: '#f1f5f9', display: 'flex', flexDirection: 'column', gap: '0.35rem' }}>
+                {backupReasons.map((reason, idx) => (
+                  <li key={idx} style={{ lineHeight: '1.4' }}>{reason}</li>
+                ))}
+              </ul>
+            </div>
+
+            <div style={{ 
+              display: 'grid', 
+              gridTemplateColumns: '1fr 1fr', 
+              gap: '0.75rem', 
+              backgroundColor: 'rgba(0, 0, 0, 0.2)', 
+              padding: '0.75rem', 
+              borderRadius: '8px',
+              fontSize: '0.75rem'
+            }}>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.25rem' }}>
+                <span style={{ color: '#94a3b8', fontWeight: 'bold' }}>마지막 백업 상태:</span>
+                {lastBackupStats ? (
+                  <>
+                    <span style={{ color: '#e2e8f0' }}>📅 {new Date(lastBackupStats.timestamp).toLocaleDateString()}</span>
+                    <span style={{ color: '#e2e8f0' }}>📂 그룹 {lastBackupStats.groupCount}개 / 🎵 곡 {lastBackupStats.songCount}개</span>
+                  </>
+                ) : (
+                  <span style={{ color: '#ef4444' }}>백업 이력 없음</span>
+                )}
+              </div>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.25rem', borderLeft: '1px solid rgba(255, 255, 255, 0.08)', paddingLeft: '0.75rem' }}>
+                <span style={{ color: '#94a3b8', fontWeight: 'bold' }}>현재 기기 상태:</span>
+                <span style={{ color: '#38bdf8' }}>📅 {currentBackupStats.maxUpdatedAt > 0 ? new Date(currentBackupStats.maxUpdatedAt).toLocaleDateString() : '최근 수정 없음'}</span>
+                <span style={{ color: '#38bdf8' }}>📂 그룹 {currentBackupStats.groupCount}개 / 🎵 곡 {currentBackupStats.songCount}개</span>
+              </div>
+            </div>
+
+            <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '0.5rem', marginTop: '0.5rem' }}>
+              <button
+                type="button"
+                className="lead-sheet-btn"
+                onClick={() => setIsBackupModalOpen(false)}
+                style={{ padding: '0.4rem 1rem' }}
+              >
+                닫기
+              </button>
+              <button
+                type="button"
+                className="lead-sheet-btn lead-sheet-btn-primary"
+                onClick={() => {
+                  setIsBackupModalOpen(false)
+                  handleBackupToCloud()
+                }}
+                disabled={!user}
+                style={{ padding: '0.4rem 1rem' }}
+              >
+                지금 백업하기
+              </button>
+            </div>
+          </div>
         </div>
       )}
     </div>
