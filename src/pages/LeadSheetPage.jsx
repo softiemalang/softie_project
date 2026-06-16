@@ -108,6 +108,13 @@ export default function LeadSheetPage() {
   const [isFocusMode, setIsFocusMode] = useState(false)
   const [isListOpen, setIsListOpen] = useState(false) // 목록 서랍 오픈 상태
   const [isLocked, setIsLocked] = useState(false)
+
+  // Fullscreen 또는 Focus Mode 해제 시 자동으로 터치 잠금(isLocked)을 해제하여 숨겨진 잠금 오동작을 원천 방지
+  useEffect(() => {
+    if (!isFullscreen && !isFocusMode) {
+      setIsLocked(false)
+    }
+  }, [isFullscreen, isFocusMode])
   
   // 백업 관련 상태
   const [user, setUser] = useState(null)
@@ -923,16 +930,6 @@ export default function LeadSheetPage() {
               전체
             </button>
 
-            {isViewMode && (
-              <button 
-                type="button" 
-                className={`lead-sheet-btn ${isLocked ? 'lead-sheet-btn-danger' : ''}`}
-                onClick={() => setIsLocked(!isLocked)}
-                title={isLocked ? '터치 잠금 해제' : '터치 잠금 (공연 모드)'}
-              >
-                {isLocked ? '🔒 잠금' : '🔓 잠금'}
-              </button>
-            )}
             <button 
               type="button" 
               className={`lead-sheet-btn ${isViewMode ? 'lead-sheet-btn-primary' : ''}`}
