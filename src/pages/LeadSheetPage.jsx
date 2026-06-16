@@ -173,14 +173,58 @@ export default function LeadSheetPage() {
     if (isSongChanged || isGroupChanged) {
       const currentSong = activeGroup.songs.find(s => s.id === activeSongId)
       if (currentSong) {
-        setInputText(currentSong.content)
+        // 미저장 초안(draft) 확인 및 복구 확인
+        const draftStr = localStorage.getItem('leadSheetActiveDraft')
+        let finalContent = currentSong.content
+        if (draftStr) {
+          try {
+            const draft = JSON.parse(draftStr)
+            if (
+              draft.groupId === activeGroupId &&
+              draft.songId === activeSongId &&
+              draft.text &&
+              draft.text !== currentSong.content
+            ) {
+              if (window.confirm('이 곡에 저장되지 않은 편집 초안이 있습니다. 복구하시겠습니까?')) {
+                finalContent = draft.text
+              } else {
+                localStorage.removeItem('leadSheetActiveDraft')
+              }
+            }
+          } catch (e) {
+            console.error('로컬 초안 파싱 실패:', e)
+          }
+        }
+        setInputText(finalContent)
       } else {
         // 그룹이 바뀌면서 곡 ID 매핑이 끊긴 경우 첫 곡으로 복구
         const firstSong = activeGroup.songs[0]
         if (firstSong) {
           setActiveSongId(firstSong.id)
           localStorage.setItem('leadSheetActiveSongId', firstSong.id)
-          setInputText(firstSong.content)
+          
+          const draftStr = localStorage.getItem('leadSheetActiveDraft')
+          let finalContent = firstSong.content
+          if (draftStr) {
+            try {
+              const draft = JSON.parse(draftStr)
+              if (
+                draft.groupId === activeGroupId &&
+                draft.songId === firstSong.id &&
+                draft.text &&
+                draft.text !== firstSong.content
+              ) {
+                if (window.confirm('이 곡에 저장되지 않은 편집 초안이 있습니다. 복구하시겠습니까?')) {
+                  finalContent = draft.text
+                } else {
+                  localStorage.removeItem('leadSheetActiveDraft')
+                }
+              }
+            } catch (e) {
+              console.error('로컬 초안 파싱 실패:', e)
+            }
+          }
+          setInputText(finalContent)
         } else {
           setInputText('')
         }
@@ -412,6 +456,9 @@ export default function LeadSheetPage() {
 
   // 2. 동기식 곡 저장 처리 로직
   const saveActiveSongContent = (groupsList, textContent) => {
+    // 저장 성공 시 미저장 로컬 초안(draft) 삭제
+    localStorage.removeItem('leadSheetActiveDraft')
+
     const title = getSongTitle(textContent)
     const updated = groupsList.map(g => {
       if (g.id === activeGroupId) {
@@ -508,6 +555,10 @@ export default function LeadSheetPage() {
 
     if (activeGroup.songs.length <= 1) {
       if (window.confirm(`"${songTitle}" 곡은 현재 그룹의 마지막 곡입니다. 정말 삭제하고 빈 곡으로 초기화할까요?`)) {
+        // 삭제 직전 로컬 복구 버퍼 백업
+        localStorage.setItem('leadSheetGroupsBackupBeforeRestore', JSON.stringify(groups))
+        setHasLocalBackup(true)
+
         const resetId = 'song-' + Date.now()
         const emptySong = {
           id: resetId,
@@ -537,6 +588,10 @@ export default function LeadSheetPage() {
     }
 
     if (window.confirm(`"${songTitle}" 곡을 정말 목록에서 삭제하시겠습니까?`)) {
+      // 삭제 직전 로컬 복구 버퍼 백업
+      localStorage.setItem('leadSheetGroupsBackupBeforeRestore', JSON.stringify(groups))
+      setHasLocalBackup(true)
+
       const filteredSongs = activeGroup.songs.filter(s => s.id !== activeSongId)
       const updated = groups.map(g => {
         if (g.id === activeGroupId) {
@@ -697,6 +752,10 @@ export default function LeadSheetPage() {
     const songCount = activeGroup.songs.length
 
     if (window.confirm(`"${name}" 세트리스트 그룹을 정말 삭제하시겠습니까?\n이 그룹을 삭제하면 그룹 내의 ${songCount}개 곡도 모두 삭제됩니다.`)) {
+      // 삭제 직전 로컬 복구 버퍼 백업
+      localStorage.setItem('leadSheetGroupsBackupBeforeRestore', JSON.stringify(groups))
+      setHasLocalBackup(true)
+
       const filtered = groups.filter(g => g.id !== activeGroupId)
       setGroups(filtered)
       localStorage.setItem('leadSheetGroups', JSON.stringify(filtered))
@@ -848,7 +907,7 @@ export default function LeadSheetPage() {
       return
     }
 
-    if (window.confirm('클라우드 데이터를 불러오기 직전의 로컬 데이터로 되돌리시겠습니까?')) {
+    if (window.confirm('덮어쓰기 또는 삭제 직전의 로컬 데이터로 되돌리시겠습니까?')) {
       try {
         const backupData = JSON.parse(backupStr)
         if (!Array.isArray(backupData) || backupData.length === 0) {
@@ -1009,8 +1068,21 @@ export default function LeadSheetPage() {
               className="lead-sheet-textarea"
               value={inputText}
               onChange={(e) => {
-                setInputText(e.target.value)
+                const val = e.target.value
+                setInputText(val)
                 setCurrentPage(0)
+                // 타이핑할 때마다 초안(draft) 상태 저장
+                try {
+                  const draft = {
+                    groupId: activeGroupId,
+                    songId: activeSongId,
+                    text: val,
+                    updatedAt: Date.now()
+                  }
+                  localStorage.setItem('leadSheetActiveDraft', JSON.stringify(draft))
+                } catch (err) {
+                  console.error('초안 로컬 저장 실패:', err)
+                }
               }}
               placeholder="여기에 가사와 코드를 입력하세요. 첫 줄은 곡 제목이 됩니다.&#10;--- 구분선을 넣으면 페이지가 분할됩니다."
             />
@@ -1176,9 +1248,9 @@ export default function LeadSheetPage() {
                     type="button"
                     className="lead-sheet-btn lead-sheet-btn-warning lead-sheet-undo-btn"
                     onClick={handleUndoRestore}
-                    title="덮어쓰기 이전 로컬 데이터로 복구"
+                    title="덮어쓰기 또는 삭제 이전 로컬 데이터로 복구"
                   >
-                    🔄 복원 취소 (로컬 복구)
+                    🔄 실행 취소 (이전 상태 복구)
                   </button>
                 </div>
               )}
