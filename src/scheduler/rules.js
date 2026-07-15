@@ -1,4 +1,4 @@
-import { TODAY_HOURS } from './constants'
+import { TODAY_HOURS } from './constants.js'
 
 const SAME_TIME_EVENT_PRIORITY = {
   checkout: 0,

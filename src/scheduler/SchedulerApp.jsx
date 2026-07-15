@@ -44,14 +44,16 @@ import {
 } from './time'
 
 import {
-  connectGoogleCalendar,
   createGoogleCalendarEvent,
   updateGoogleCalendarEvent,
   deleteGoogleCalendarEvent,
-  triggerGoogleDriveBackup,
   appendGoogleSheetsLog
 } from './googleApi'
 import { getCurrentSession } from '../lib/auth'
+import { SchedulerGoogleSettings } from './SchedulerGoogleSettings'
+import { SyncConfirmationModal } from './SyncConfirmationModal'
+import { WorkLogDetailView } from './WorkLogDetailView'
+import { WorkLogSummaryCard } from './WorkLogSummaryCard'
 
 const GO_TO_TODAY_EVENT = 'scheduler:go-today'
 const WORK_TIME_FILTER_STORAGE_KEY = 'scheduler:work-time-filter'
@@ -436,9 +438,7 @@ function TodaySchedulerPage({
     supportMessage: '',
   })
   const [pushStatus, setPushStatus] = useState('')
-  const [googleStatus, setGoogleStatus] = useState('')
   const [isWebPushModalOpen, setIsWebPushModalOpen] = useState(false)
-  const [isGoogleModalOpen, setIsGoogleModalOpen] = useState(false)
   const [isPushBusy, setIsPushBusy] = useState(false)
   const [pushPreferences, setPushPreferences] = useState(DEFAULT_PUSH_PREFERENCES)
   const [isPushPreferencesBusy, setIsPushPreferencesBusy] = useState(false)
@@ -1070,144 +1070,11 @@ function TodaySchedulerPage({
       )}
 
 
-      <button
-        type="button"
-        className="scheduler-panel scheduler-push-panel scheduler-setting-card"
-        onClick={() => setIsGoogleModalOpen(true)}
-      >
-        <div className="scheduler-section-head">
-          <p className="scheduler-section-label">Google 연동</p>
-          <div className={`scheduler-count-pill ${googleConnected ? 'is-ready' : ''}`}>
-            {googleConnectionState === 'checking'
-              ? '확인 중'
-              : googleConnectionState === 'error'
-                ? '확인 실패'
-                : googleConnected
-                  ? '연결됨'
-                  : '연결 필요'}
-          </div>
-        </div>
-        {!googleConnected && (
-          <p className="scheduler-setting-subtitle">
-            연결하면 일정 동기화와 백업을 사용할 수 있어요.
-          </p>
-        )}
-      </button>
-
-      {isGoogleModalOpen && (
-        <div className="scheduler-sheet-backdrop scheduler-modal-backdrop" onClick={() => setIsGoogleModalOpen(false)}>
-          <div className="scheduler-modal" onClick={e => e.stopPropagation()}>
-            <div className="scheduler-section-head">
-              <p className="scheduler-section-label">Google 연동</p>
-              <button type="button" className="scheduler-modal-close" onClick={() => setIsGoogleModalOpen(false)}>닫기</button>
-            </div>
-            
-            <div className="scheduler-modal-actions stack">
-              <p className="subtle" style={{ marginTop: 0, marginBottom: '0.5rem', fontSize: '0.86rem' }}>
-                Google 캘린더와 연동하면 일정이 자동으로 동기화되고, 안전한 데이터 백업이 가능합니다.
-              </p>
-              <button
-                type="button"
-                className="scheduler-modal-btn"
-                onClick={async () => {
-                  const session = await getCurrentSession()
-                  const targetId = session?.user?.id
-                  if (!targetId) {
-                    setGoogleStatus('Google 연동은 로그인이 필요합니다.')
-                    return
-                  }
-                  connectGoogleCalendar(targetId, { returnPath: '/scheduler' })
-                }}
-              >
-                {googleConnected ? '계정 다시 연결하기' : 'Google 계정 연결하기'}
-              </button>
-              <button
-                type="button"
-                className="scheduler-modal-btn secondary"
-                onClick={async () => {
-                  if (!googleConnected) {
-                    setGoogleStatus('Google 계정을 먼저 연결해 주세요.')
-                    return
-                  }
-                  try {
-                    setGoogleStatus('Google Calendar 일정 생성 중...')
-                    const now = new Date()
-                    const end = new Date(now.getTime() + 60 * 60 * 1000)
-                    const session = await getCurrentSession()
-                    const targetId = session?.user?.id
-                    if (!targetId) {
-                      setGoogleStatus('Google 연동은 로그인이 필요합니다.')
-                      return
-                    }
-
-                    await createGoogleCalendarEvent(targetId, {
-                      summary: '테스트 일정',
-                      location: '서울 지점',
-                      description: 'Gemini CLI를 통한 테스트 일정입니다.',
-                      startAt: now.toISOString(),
-                      endAt: end.toISOString(),
-                    })
-                    setGoogleStatus('일정을 생성했어요.')
-                  } catch (error) {
-                    setGoogleStatus(`오류: ${error.message}`)
-                    if (error.message?.includes('not connected') || error.message?.includes('refresh token') || error.message?.includes('insufficient')) {
-                      onGoogleDisconnected()
-                    }
-                  }
-                }}
-              >
-                테스트 일정 추가
-              </button>
-              <button
-                type="button"
-                className="scheduler-modal-btn secondary"
-                onClick={async () => {
-                  if (!googleConnected) {
-                    setGoogleStatus('Google 계정을 먼저 연결해 주세요.')
-                    return
-                  }
-                  try {
-                    setGoogleStatus('Google Drive에 백업 중...')
-                    const session = await getCurrentSession()
-                    const targetId = session?.user?.id
-                    if (!targetId) {
-                      setGoogleStatus('Google 연동은 로그인이 필요합니다.')
-                      return
-                    }
-
-                    const result = await triggerGoogleDriveBackup(targetId, 'full')
-                    setGoogleStatus(`백업 완료: ${result.fileName}`)
-                    
-                    // Log to Google Sheets
-                    appendGoogleSheetsLog(targetId, 'backup_logs', [
-                      new Date().toISOString(),
-                      'backup_completed',
-                      'full',
-                      result.fileName || '',
-                      result.fileId || '',
-                      'success',
-                      JSON.stringify(result.metadata?.counts || {}),
-                      ''
-                    ])
-                  } catch (error) {
-                    setGoogleStatus(`오류: ${error.message}`)
-                    if (error.message?.includes('not connected') || error.message?.includes('refresh token') || error.message?.includes('insufficient')) {
-                      onGoogleDisconnected()
-                    }
-                  }
-                }}
-              >
-                수동 백업 (Drive)
-              </button>
-            </div>
-            {googleStatus && (
-              <p className={`scheduler-google-status ${googleStatus.includes('오류') ? 'error' : 'success'}`} style={{ marginTop: '1rem', marginBottom: 0 }}>
-                {googleStatus}
-              </p>
-            )}
-          </div>
-        </div>
-      )}
+      <SchedulerGoogleSettings
+        googleConnected={googleConnected}
+        googleConnectionState={googleConnectionState}
+        onGoogleDisconnected={onGoogleDisconnected}
+      />
 
       <section className="scheduler-panel scheduler-controls">
         <div className="scheduler-filter-summary-row">
@@ -1234,7 +1101,6 @@ function TodaySchedulerPage({
 
       <WorkLogSummaryCard
         currentWeekStart={getWeekStartDate(selectedDate)}
-        logs={workLogs}
         onOpen={() => {
           setViewingWeekStart(getWeekStartDate(selectedDate))
           setIsWorkLogOpen(true)
@@ -1976,152 +1842,6 @@ function RoomStatusPage() {
           })
         )}
       </section>
-    </div>
-  )
-}
-
-function WorkLogSummaryCard({ currentWeekStart, logs, onOpen, onShare }) {
-  return (
-    <section className="scheduler-panel scheduler-work-log-card">
-      <div className="scheduler-filter-summary-row">
-        <div className="scheduler-filter-summary-copy">
-          <p className="scheduler-section-label">근무 일지</p>
-          <p className="subtle">
-            {getWeekTitle(currentWeekStart)} · {getWeekRangeLabel(currentWeekStart)}
-          </p>
-        </div>
-        <div className="scheduler-summary-actions">
-          <button
-            type="button"
-            className="soft-button scheduler-summary-button"
-            onClick={() => onShare(currentWeekStart)}
-          >
-            공유
-          </button>
-          <button type="button" className="soft-button scheduler-summary-button" onClick={onOpen}>
-            보기
-          </button>
-        </div>
-      </div>
-    </section>
-  )
-}
-
-function WorkLogDetailView({ viewingWeekStart, logs, onClose, onNavigate, onCopy, onDelete, copyFeedback }) {
-  const weekLogs = logs.filter(log => log.weekStartDate === viewingWeekStart)
-  const sortedLogs = [...weekLogs].sort((a, b) => a.date.localeCompare(b.date))
-  const totalMinutes = weekLogs.reduce((acc, log) => acc + log.durationMinutes, 0)
-  const totalHours = totalMinutes / 60
-
-  return (
-    <div className="scheduler-sheet-backdrop scheduler-modal-backdrop" onClick={onClose}>
-      <div
-        className="scheduler-modal scheduler-work-log-modal"
-        role="dialog"
-        aria-modal="true"
-        aria-label="근무 일지 상세"
-        onClick={(event) => event.stopPropagation()}
-      >
-        <div className="scheduler-section-head" style={{ marginBottom: '0.65rem' }}>
-          <div>
-            <p className="scheduler-section-label">근무 일지</p>
-          </div>
-          <button type="button" className="scheduler-modal-close" onClick={onClose}>닫기</button>
-        </div>
-
-        <div className="scheduler-work-log-nav">
-          <button type="button" className="soft-button scheduler-work-log-nav-btn" onClick={() => onNavigate('prev')}>이전 주</button>
-          <div className="scheduler-work-log-title">
-            <strong>{getWeekTitle(viewingWeekStart)}</strong>
-            <p className="subtle">{getWeekRangeLabel(viewingWeekStart)}</p>
-          </div>
-          <button type="button" className="soft-button scheduler-work-log-nav-btn" onClick={() => onNavigate('next')}>다음 주</button>
-        </div>
-
-        <div className="scheduler-work-log-content">
-          {sortedLogs.length === 0 ? (
-            <div className="scheduler-work-log-empty">
-              <p className="subtle scheduler-empty-note">이번 주 근무 기록이 아직 없어요.</p>
-            </div>
-          ) : (
-            <div className="scheduler-work-log-list">
-              {sortedLogs.map((log) => {
-                const dateObj = new Date(log.date)
-                return (
-                  <div key={log.id || log.syncKey} className="scheduler-work-log-item">
-                    <div className="scheduler-work-log-item-info">
-                      <strong>{dateObj.getMonth() + 1}/{dateObj.getDate()}</strong>
-                      <p>{log.startTime}-{log.endTime} ({log.durationMinutes / 60}h)</p>
-                    </div>
-                    <button 
-                      type="button" 
-                      className="scheduler-log-delete-btn"
-                      onClick={() => onDelete(log.id)}
-                      aria-label="기록 삭제"
-                    >
-                      삭제
-                    </button>
-                  </div>
-                )
-              })}
-            </div>
-          )}
-          
-          <div className="scheduler-work-log-total">
-            <span>주간 총계</span>
-            <strong className={totalHours > 0 ? 'active' : 'empty'}>
-              {totalHours}시간
-            </strong>
-          </div>
-        </div>
-
-        <div className="scheduler-modal-actions stack" style={{ marginTop: '1.2rem' }}>
-          <button
-            type="button"
-            className="scheduler-modal-btn"
-            onClick={() => onCopy(viewingWeekStart)}
-            disabled={sortedLogs.length === 0}
-          >
-            {copyFeedback || '주간 기록 복사'}
-          </button>
-        </div>
-      </div>
-    </div>
-  )
-}
-
-function SyncConfirmationModal({ confirmation, onCancel, onConfirm }) {
-  const { candidate, overlapping } = confirmation
-  
-  return (
-    <div className="scheduler-sheet-backdrop scheduler-modal-backdrop" onClick={onCancel}>
-      <div className="scheduler-modal" onClick={e => e.stopPropagation()}>
-        <div className="scheduler-section-head">
-          <p className="scheduler-section-label">기록 확인</p>
-        </div>
-        <p className="scheduler-modal-text">기존 근무 기록과 시간이 겹쳐요.</p>
-        
-        <div className="scheduler-sync-diff">
-          <div className="scheduler-sync-diff-side">
-            <span className="subtle">기존 기록</span>
-            {overlapping.map(o => (
-              <strong key={o.id}>{o.startTime}-{o.endTime}</strong>
-            ))}
-          </div>
-          <div className="scheduler-sync-diff-arrow">→</div>
-          <div className="scheduler-sync-diff-side">
-            <span className="subtle">변경될 기록</span>
-            <strong>{candidate.startTime}-{candidate.endTime}</strong>
-          </div>
-        </div>
-
-        <p className="subtle scheduler-modal-hint">진행하면 기존 기록이 변경된 시간으로 적용됩니다.</p>
-
-        <div className="scheduler-form-actions">
-          <button type="button" className="soft-button" onClick={onCancel}>취소</button>
-          <button type="button" className="primary" onClick={onConfirm}>진행</button>
-        </div>
-      </div>
     </div>
   )
 }

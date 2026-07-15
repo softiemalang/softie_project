@@ -3,11 +3,8 @@ import { navigate } from '../lib/router'
 import { getOrCreatePushDeviceId } from '../lib/device'
 import { getCurrentSession, subscribeAuthChanges } from '../lib/auth'
 import { isKakaoCalendarConnected, markKakaoCalendarConnected, startKakaoMemoLogin } from '../lib/kakaoMessage'
-import {
-  connectGoogleCalendar,
-  isGoogleConnected,
-  disconnectGoogleCalendar
-} from '../scheduler/googleApi'
+import { connectGoogleCalendar } from '../scheduler/googleApi'
+import { useGoogleConnection } from '../scheduler/useGoogleConnection'
 import {
   getRehearsalEvents,
   createRehearsalEvent,
@@ -129,13 +126,17 @@ export default function RehearsalCalendarPage() {
   const [selectedDate, setSelectedDate] = useState(null)
   const [isAddModalOpen, setIsAddModalOpen] = useState(false)
   const [editingEvent, setEditingEvent] = useState(null)
-  const [isGoogleReady, setIsGoogleReady] = useState(false)
   const [isBackingUp, setIsBackingUp] = useState(false)
   const [isKakaoConnected, setIsKakaoConnected] = useState(() => isKakaoCalendarConnected())
   const [pendingKakaoEventId, setPendingKakaoEventId] = useState('')
   const [effectiveOwnerKey, setEffectiveOwnerKey] = useState(null)
+  const [authUserId, setAuthUserId] = useState(null)
   const localOwnerKeyRef = useRef(null)
   const ownerChangeSeqRef = useRef(0)
+  const {
+    googleConnected: isGoogleReady,
+    markGoogleDisconnected,
+  } = useGoogleConnection(authUserId)
 
   useEffect(() => {
     let mounted = true
@@ -157,9 +158,11 @@ export default function RehearsalCalendarPage() {
       if (userId) {
         await linkLocalRehearsalEventsToUser(localOwnerKey, userId)
         if (!mounted || ownerChangeSeqRef.current !== seq) return
+        setAuthUserId(userId)
         setEffectiveOwnerKey(userId)
       } else {
         if (!mounted || ownerChangeSeqRef.current !== seq) return
+        setAuthUserId(null)
         setEffectiveOwnerKey(localOwnerKey)
       }
     }
@@ -177,7 +180,6 @@ export default function RehearsalCalendarPage() {
   }, [])
 
   useEffect(() => {
-    setIsGoogleReady(isGoogleConnected())
     if (effectiveOwnerKey) {
       loadEvents()
     }
@@ -262,8 +264,7 @@ export default function RehearsalCalendarPage() {
         msg.includes('invalid_grant')
       ) {
         alert('Google 계정을 다시 연결해 주세요.')
-        disconnectGoogleCalendar()
-        setIsGoogleReady(false)
+        markGoogleDisconnected()
       } else {
         alert(`백업 실패: ${msg}`)
       }

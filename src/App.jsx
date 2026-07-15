@@ -1,15 +1,19 @@
-import { useEffect } from 'react'
+import { lazy, useEffect } from 'react'
 import { navigate, usePathname } from './lib/router'
-import { SchedulerAuthGate } from './scheduler/SchedulerAuthGate'
-import SchedulerKakaoMemoInjector from './scheduler/SchedulerKakaoMemoInjector'
-import SoftieFortunePage from './saju/SoftieFortunePage'
-import ProjectBrainPage from './pages/ProjectBrainPage'
 import HomePage from './pages/HomePage'
-import BandGoogleCompactPage from './pages/BandGoogleCompactPage'
-import RehearsalCalendarPage from './pages/RehearsalCalendarPage'
-import SpotifyMusicPage from './pages/SpotifyMusicPage'
-import KakaoCallbackPage from './pages/KakaoCallbackPage'
-import LeadSheetPage from './pages/LeadSheetPage'
+import { LazyRoute } from './components/LazyRoute'
+
+const SchedulerAuthGate = lazy(() => import('./scheduler/SchedulerAuthGate').then((module) => ({
+  default: module.SchedulerAuthGate,
+})))
+const SchedulerKakaoMemoInjector = lazy(() => import('./scheduler/SchedulerKakaoMemoInjector'))
+const SoftieFortunePage = lazy(() => import('./saju/SoftieFortunePage'))
+const ProjectBrainPage = lazy(() => import('./pages/ProjectBrainPage'))
+const BandGoogleCompactPage = lazy(() => import('./pages/BandGoogleCompactPage'))
+const RehearsalCalendarPage = lazy(() => import('./pages/RehearsalCalendarPage'))
+const SpotifyMusicPage = lazy(() => import('./pages/SpotifyMusicPage'))
+const KakaoCallbackPage = lazy(() => import('./pages/KakaoCallbackPage'))
+const LeadSheetPage = lazy(() => import('./pages/LeadSheetPage'))
 
 const DEFAULT_APP_NAME = 'Softie Project'
 
@@ -171,32 +175,32 @@ export default function App() {
   }
 
   if (pathname.startsWith('/kakao/callback')) {
-    return <KakaoCallbackPage />
+    return <LazyRoute><KakaoCallbackPage /></LazyRoute>
   }
 
   if (pathname.startsWith('/band')) {
-    return <BandGoogleCompactPage />
+    return <LazyRoute><BandGoogleCompactPage /></LazyRoute>
   }
 
   if (pathname.startsWith('/rehearsals')) {
-    return <RehearsalCalendarPage />
+    return <LazyRoute><RehearsalCalendarPage /></LazyRoute>
   }
 
   if (pathname.startsWith('/scheduler')) {
     return (
-      <>
+      <LazyRoute>
         <SchedulerAuthGate pathname={pathname} />
         <SchedulerKakaoMemoInjector pathname={pathname} />
-      </>
+      </LazyRoute>
     )
   }
 
   if (pathname.startsWith('/music')) {
-    return <SpotifyMusicPage />
+    return <LazyRoute><SpotifyMusicPage /></LazyRoute>
   }
 
   if (pathname.startsWith('/softie-fortune')) {
-    return <SoftieFortunePage />
+    return <LazyRoute><SoftieFortunePage /></LazyRoute>
   }
 
   if (pathname.startsWith('/fortune')) {
@@ -224,11 +228,11 @@ export default function App() {
   }
 
   if (pathname.startsWith('/brain')) {
-    return <ProjectBrainPage />
+    return <LazyRoute><ProjectBrainPage /></LazyRoute>
   }
 
   if (pathname.startsWith('/lead-sheet')) {
-    return <LeadSheetPage />
+    return <LazyRoute><LeadSheetPage /></LazyRoute>
   }
 
   return <NotFoundPage />

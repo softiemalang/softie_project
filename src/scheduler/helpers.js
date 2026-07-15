@@ -7,9 +7,9 @@ import {
   SCHEDULER_TAGS,
   TODAY_HOURS,
   WORK_EVENT_META,
-} from './constants'
-import { sortSchedulerEvents } from './rules'
-import { addMinutes, combineLocalDateTime, formatTime, normalizeHourTime, toIsoFromLocal, toLocalDateInputValue, toLocalTimeInputValue } from './time'
+} from './constants.js'
+import { sortSchedulerEvents } from './rules.js'
+import { addMinutes, combineLocalDateTime, formatTime, normalizeHourTime, toIsoFromLocal, toLocalDateInputValue, toLocalTimeInputValue } from './time.js'
 
 export function getTagMeta(tag) {
   return SCHEDULER_TAGS.find((item) => item.value === tag) || { value: tag, shortLabel: tag, fullLabel: tag }
@@ -123,8 +123,8 @@ export function decorateEvent(item, now = new Date()) {
   }
 }
 
-export function groupTodayEvents(items) {
-  const decorated = sortEventsByTime(items).map((item) => decorateEvent(item))
+export function groupTodayEvents(items, now = new Date()) {
+  const decorated = sortEventsByTime(items).map((item) => decorateEvent(item, now))
 
   return {
     actionNow: decorated.filter((item) => item.isActionNow || item.isOverdue),

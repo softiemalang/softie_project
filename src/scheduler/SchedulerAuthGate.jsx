@@ -1,14 +1,9 @@
 import { useEffect, useState } from 'react'
 import { navigate } from '../lib/router'
 import { getCurrentSession, signInWithGoogle, signOut, subscribeAuthChanges } from '../lib/auth'
-import {
-  connectGoogleCalendar,
-  disconnectGoogleCalendar,
-  isGoogleConnected,
-  triggerGoogleDriveBackup,
-  verifyGoogleConnection,
-} from './googleApi'
+import { connectGoogleCalendar, triggerGoogleDriveBackup } from './googleApi'
 import { SchedulerApp } from './SchedulerApp'
+import { useGoogleConnection } from './useGoogleConnection'
 
 function SchedulerLoginPage({ isSigningIn, onSignIn }) {
   return (
@@ -60,8 +55,11 @@ export function SchedulerAuthGate({ pathname }) {
   const [isGooglePanelOpen, setIsGooglePanelOpen] = useState(false)
   const [isDriveBackupBusy, setIsDriveBackupBusy] = useState(false)
   const [driveBackupStatus, setDriveBackupStatus] = useState('')
-  const [googleConnected, setGoogleConnected] = useState(() => isGoogleConnected())
-  const [googleConnectionState, setGoogleConnectionState] = useState('checking')
+  const {
+    googleConnected,
+    googleConnectionState,
+    markGoogleDisconnected,
+  } = useGoogleConnection(session?.user?.id)
 
   useEffect(() => {
     let mounted = true
@@ -84,39 +82,6 @@ export function SchedulerAuthGate({ pathname }) {
     }
   }, [])
 
-  useEffect(() => {
-    let mounted = true
-    const userId = session?.user?.id
-
-    if (!userId) {
-      disconnectGoogleCalendar()
-      setGoogleConnected(false)
-      setGoogleConnectionState('disconnected')
-      return () => {
-        mounted = false
-      }
-    }
-
-    setGoogleConnected(false)
-    setGoogleConnectionState('checking')
-    verifyGoogleConnection(userId)
-      .then((status) => {
-        if (!mounted) return
-        setGoogleConnected(status.connected)
-        setGoogleConnectionState(status.connected ? 'connected' : 'disconnected')
-      })
-      .catch((error) => {
-        if (!mounted) return
-        console.error('[scheduler] Google connection verification failed:', error)
-        setGoogleConnected(false)
-        setGoogleConnectionState('error')
-      })
-
-    return () => {
-      mounted = false
-    }
-  }, [session?.user?.id])
-
   async function handleSignIn() {
     setIsSigningIn(true)
     await signInWithGoogle(window.location.href)
@@ -124,16 +89,12 @@ export function SchedulerAuthGate({ pathname }) {
 
   async function handleSignOut() {
     await signOut()
-    disconnectGoogleCalendar()
-    setGoogleConnected(false)
-    setGoogleConnectionState('disconnected')
+    markGoogleDisconnected()
     setSession(null)
   }
 
   function handleGoogleDisconnected() {
-    disconnectGoogleCalendar()
-    setGoogleConnected(false)
-    setGoogleConnectionState('disconnected')
+    markGoogleDisconnected()
   }
 
   async function handleGoogleConnect() {

@@ -13,8 +13,9 @@ import { generateNatalSnapshot, generateDailySnapshot } from './interpreter/prep
 import { getOrGenerateReport } from './interpreter/reportGenerator'
 import { getKstDateString } from './utils'
 import { appendGoogleSheetsLog } from '../lib/googleApi'
-import { connectGoogleCalendar, isGoogleConnected } from '../scheduler/googleApi'
-import { getCurrentSession } from '../lib/auth'
+import { connectGoogleCalendar } from '../scheduler/googleApi'
+import { useGoogleConnection } from '../scheduler/useGoogleConnection'
+import { getCurrentSession, subscribeAuthChanges } from '../lib/auth'
 
 const EMPTY_PROFILE = {
   name: '',
@@ -111,12 +112,31 @@ export default function SoftieFortunePage() {
   const [isHistoryLoading, setIsHistoryLoading] = useState(false)
   const [selectedHistoryReport, setSelectedHistoryReport] = useState(null)
   const [isHistoryDetailLoading, setIsHistoryDetailLoading] = useState(false)
-  const [isGoogleReady, setIsGoogleReady] = useState(false)
+  const [authUserId, setAuthUserId] = useState(null)
   const [isForceRefreshing, setIsForceRefreshing] = useState(false)
+  const {
+    googleConnected: isGoogleReady,
+    markGoogleDisconnected,
+  } = useGoogleConnection(authUserId)
 
   useEffect(() => {
     loadInitialData()
-    setIsGoogleReady(isGoogleConnected())
+  }, [])
+
+  useEffect(() => {
+    let mounted = true
+
+    getCurrentSession().then((session) => {
+      if (mounted) setAuthUserId(session?.user?.id || null)
+    })
+    const subscription = subscribeAuthChanges((session) => {
+      setAuthUserId(session?.user?.id || null)
+    })
+
+    return () => {
+      mounted = false
+      subscription.unsubscribe()
+    }
   }, [])
 
   useEffect(() => {
@@ -299,6 +319,7 @@ export default function SoftieFortunePage() {
     } catch (error) {
       console.error('Backup to sheets failed:', error)
       if (error.message?.includes('connected') || error.message?.includes('token')) {
+        markGoogleDisconnected()
         setStatus('Google 연동 후 다시 시도해 주세요.')
       } else {
         setStatus('Google 시트 기록에 실패했습니다.')
