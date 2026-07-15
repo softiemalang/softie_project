@@ -26,6 +26,10 @@ verify_jwt = false
 # Google OAuth state may only be issued for the authenticated Supabase user.
 verify_jwt = true
 
+[functions.google-connection-status]
+# Connection status is private to the authenticated Supabase user.
+verify_jwt = true
+
 [functions.kakao-oauth-token]
 # Kakao OAuth token exchange is called from the public OAuth callback without a Supabase Authorization header.
 verify_jwt = false

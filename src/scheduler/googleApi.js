@@ -1,5 +1,11 @@
 import { supabase } from '../lib/supabase'
 import { appendGoogleSheetsLog as sharedAppendGoogleSheetsLog } from '../lib/googleApi'
+import {
+  cacheGoogleConnection,
+  consumeGoogleConnectedCallback,
+  readCachedGoogleConnection,
+  verifyGoogleConnectionWith,
+} from './googleConnectionState'
 
 const GOOGLE_CLIENT_ID = import.meta.env.VITE_GOOGLE_CLIENT_ID
 const GOOGLE_REDIRECT_URI = import.meta.env.VITE_GOOGLE_REDIRECT_URI
@@ -148,6 +154,20 @@ export async function triggerGoogleDriveBackup(userId, backupType = 'full') {
   return unwrapInvokeError(data, error)
 }
 
+export async function verifyGoogleConnection(userId) {
+  if (!supabase) throw new Error('Supabase client not initialized')
+
+  return verifyGoogleConnectionWith({
+    userId,
+    requestStatus: async (verifiedUserId) => {
+      const { data, error } = await supabase.functions.invoke('google-connection-status', {
+        body: { userId: verifiedUserId },
+      })
+      return unwrapInvokeError(data, error)
+    },
+  })
+}
+
 /**
  * Calls the Edge Function to append a row to Google Sheets.
  * Fire-and-forget style logging.
@@ -164,24 +184,20 @@ export async function appendGoogleSheetsLog(userId, tabName, rowData) {
 }
 
 export function disconnectGoogleCalendar() {
-  localStorage.removeItem('scheduler:google_connected')
+  cacheGoogleConnection(false)
 }
 
 /**
- * Check if the user is connected (persists via localStorage for MVP).
- * Note: MVP uses localStorage to avoid blocking renders.
+ * Returns the last server-verified connection state cached in this browser.
+ * SchedulerAuthGate refreshes this value from the server after authentication.
  */
 export function isGoogleConnected() {
   if (typeof window === 'undefined') return false
 
-  const params = new URLSearchParams(window.location.search)
-  if (params.get('google_connected') === 'true') {
-    localStorage.setItem('scheduler:google_connected', 'true')
-    params.delete('google_connected')
-
-    const nextSearch = params.toString()
-    const nextUrl = `${window.location.pathname}${nextSearch ? `?${nextSearch}` : ''}${window.location.hash}`
-    window.history.replaceState(window.history.state, '', nextUrl)
+  // Keep the OAuth callback hint for legacy non-scheduler screens.
+  // SchedulerAuthGate does not trust this value and verifies it with the server.
+  if (consumeGoogleConnectedCallback()) {
+    cacheGoogleConnection(true)
   }
-  return localStorage.getItem('scheduler:google_connected') === 'true'
+  return readCachedGoogleConnection()
 }

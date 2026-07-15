@@ -1,7 +1,13 @@
 import { useEffect, useState } from 'react'
 import { navigate } from '../lib/router'
 import { getCurrentSession, signInWithGoogle, signOut, subscribeAuthChanges } from '../lib/auth'
-import { connectGoogleCalendar, isGoogleConnected, triggerGoogleDriveBackup } from './googleApi'
+import {
+  connectGoogleCalendar,
+  disconnectGoogleCalendar,
+  isGoogleConnected,
+  triggerGoogleDriveBackup,
+  verifyGoogleConnection,
+} from './googleApi'
 import { SchedulerApp } from './SchedulerApp'
 
 function SchedulerLoginPage({ isSigningIn, onSignIn }) {
@@ -54,7 +60,8 @@ export function SchedulerAuthGate({ pathname }) {
   const [isGooglePanelOpen, setIsGooglePanelOpen] = useState(false)
   const [isDriveBackupBusy, setIsDriveBackupBusy] = useState(false)
   const [driveBackupStatus, setDriveBackupStatus] = useState('')
-  const googleConnected = isGoogleConnected()
+  const [googleConnected, setGoogleConnected] = useState(() => isGoogleConnected())
+  const [googleConnectionState, setGoogleConnectionState] = useState('checking')
 
   useEffect(() => {
     let mounted = true
@@ -77,6 +84,39 @@ export function SchedulerAuthGate({ pathname }) {
     }
   }, [])
 
+  useEffect(() => {
+    let mounted = true
+    const userId = session?.user?.id
+
+    if (!userId) {
+      disconnectGoogleCalendar()
+      setGoogleConnected(false)
+      setGoogleConnectionState('disconnected')
+      return () => {
+        mounted = false
+      }
+    }
+
+    setGoogleConnected(false)
+    setGoogleConnectionState('checking')
+    verifyGoogleConnection(userId)
+      .then((status) => {
+        if (!mounted) return
+        setGoogleConnected(status.connected)
+        setGoogleConnectionState(status.connected ? 'connected' : 'disconnected')
+      })
+      .catch((error) => {
+        if (!mounted) return
+        console.error('[scheduler] Google connection verification failed:', error)
+        setGoogleConnected(false)
+        setGoogleConnectionState('error')
+      })
+
+    return () => {
+      mounted = false
+    }
+  }, [session?.user?.id])
+
   async function handleSignIn() {
     setIsSigningIn(true)
     await signInWithGoogle(window.location.href)
@@ -84,7 +124,16 @@ export function SchedulerAuthGate({ pathname }) {
 
   async function handleSignOut() {
     await signOut()
+    disconnectGoogleCalendar()
+    setGoogleConnected(false)
+    setGoogleConnectionState('disconnected')
     setSession(null)
+  }
+
+  function handleGoogleDisconnected() {
+    disconnectGoogleCalendar()
+    setGoogleConnected(false)
+    setGoogleConnectionState('disconnected')
   }
 
   async function handleGoogleConnect() {
@@ -198,7 +247,13 @@ export function SchedulerAuthGate({ pathname }) {
                 onClick={() => setIsGooglePanelOpen(true)}
                 style={{ border: 0, cursor: 'pointer' }}
               >
-                {googleConnected ? '연동됨' : '연결'}
+                {googleConnectionState === 'checking'
+                  ? '확인 중'
+                  : googleConnectionState === 'error'
+                    ? '확인 실패'
+                    : googleConnected
+                      ? '연동됨'
+                      : '연결'}
               </button>
             </div>
           </div>
@@ -237,7 +292,13 @@ export function SchedulerAuthGate({ pathname }) {
         </div>
       )}
 
-      <SchedulerApp pathname={pathname} session={session} />
+      <SchedulerApp
+        pathname={pathname}
+        session={session}
+        googleConnected={googleConnected}
+        googleConnectionState={googleConnectionState}
+        onGoogleDisconnected={handleGoogleDisconnected}
+      />
     </div>
   )
 }

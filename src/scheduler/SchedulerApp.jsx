@@ -48,8 +48,6 @@ import {
   createGoogleCalendarEvent,
   updateGoogleCalendarEvent,
   deleteGoogleCalendarEvent,
-  isGoogleConnected,
-  disconnectGoogleCalendar,
   triggerGoogleDriveBackup,
   appendGoogleSheetsLog
 } from './googleApi'
@@ -266,7 +264,13 @@ function replaceSchedulerViewUrl(date, filters) {
   window.history.replaceState({}, '', path)
 }
 
-export function SchedulerApp({ pathname, session }) {
+export function SchedulerApp({
+  pathname,
+  session,
+  googleConnected = false,
+  googleConnectionState = 'disconnected',
+  onGoogleDisconnected = () => {},
+}) {
   const route = useMemo(() => parseSchedulerRoute(pathname), [pathname])
   const [schedulerViewState, setSchedulerViewState] = useState(() => getSchedulerViewStateFromUrl())
   const [effectiveOwnerKey, setEffectiveOwnerKey] = useState(null)
@@ -301,15 +305,24 @@ export function SchedulerApp({ pathname, session }) {
 
   const renderContent = () => {
     if (route.name === 'today') {
-      return <TodaySchedulerPage effectiveOwnerKey={effectiveOwnerKey} initialViewState={schedulerViewState} onViewStateChange={setSchedulerViewState} />
+      return (
+        <TodaySchedulerPage
+          effectiveOwnerKey={effectiveOwnerKey}
+          googleConnected={googleConnected}
+          googleConnectionState={googleConnectionState}
+          initialViewState={schedulerViewState}
+          onGoogleDisconnected={onGoogleDisconnected}
+          onViewStateChange={setSchedulerViewState}
+        />
+      )
     }
 
     if (route.name === 'new') {
-      return <ReservationEditorPage mode="create" effectiveOwnerKey={effectiveOwnerKey} initialReservationDate={getReservationDateParam()} backPath={buildSchedulerViewPath(schedulerViewState.date, schedulerViewState.filters)} />
+      return <ReservationEditorPage mode="create" effectiveOwnerKey={effectiveOwnerKey} googleConnected={googleConnected} onGoogleDisconnected={onGoogleDisconnected} initialReservationDate={getReservationDateParam()} backPath={buildSchedulerViewPath(schedulerViewState.date, schedulerViewState.filters)} />
     }
 
     if (route.name === 'edit') {
-      return <ReservationEditorPage mode="edit" reservationId={route.reservationId} effectiveOwnerKey={effectiveOwnerKey} backPath={buildSchedulerViewPath(schedulerViewState.date, schedulerViewState.filters)} />
+      return <ReservationEditorPage mode="edit" reservationId={route.reservationId} effectiveOwnerKey={effectiveOwnerKey} googleConnected={googleConnected} onGoogleDisconnected={onGoogleDisconnected} backPath={buildSchedulerViewPath(schedulerViewState.date, schedulerViewState.filters)} />
     }
 
     if (route.name === 'rooms') {
@@ -386,7 +399,14 @@ function NativePickerField({
   )
 }
 
-function TodaySchedulerPage({ effectiveOwnerKey, initialViewState, onViewStateChange }) {
+function TodaySchedulerPage({
+  effectiveOwnerKey,
+  googleConnected,
+  googleConnectionState,
+  initialViewState,
+  onGoogleDisconnected,
+  onViewStateChange,
+}) {
   const initialSelectedDate = initialViewState?.date || toLocalDateInputValue()
   const [selectedDate, setSelectedDate] = useState(initialSelectedDate)
   const [events, setEvents] = useState([])
@@ -1057,11 +1077,17 @@ function TodaySchedulerPage({ effectiveOwnerKey, initialViewState, onViewStateCh
       >
         <div className="scheduler-section-head">
           <p className="scheduler-section-label">Google 연동</p>
-          <div className={`scheduler-count-pill ${isGoogleConnected() ? 'is-ready' : ''}`}>
-            {isGoogleConnected() ? '연결됨' : '연결 필요'}
+          <div className={`scheduler-count-pill ${googleConnected ? 'is-ready' : ''}`}>
+            {googleConnectionState === 'checking'
+              ? '확인 중'
+              : googleConnectionState === 'error'
+                ? '확인 실패'
+                : googleConnected
+                  ? '연결됨'
+                  : '연결 필요'}
           </div>
         </div>
-        {!isGoogleConnected() && (
+        {!googleConnected && (
           <p className="scheduler-setting-subtitle">
             연결하면 일정 동기화와 백업을 사용할 수 있어요.
           </p>
@@ -1093,13 +1119,13 @@ function TodaySchedulerPage({ effectiveOwnerKey, initialViewState, onViewStateCh
                   connectGoogleCalendar(targetId, { returnPath: '/scheduler' })
                 }}
               >
-                {isGoogleConnected() ? '계정 다시 연결하기' : 'Google 계정 연결하기'}
+                {googleConnected ? '계정 다시 연결하기' : 'Google 계정 연결하기'}
               </button>
               <button
                 type="button"
                 className="scheduler-modal-btn secondary"
                 onClick={async () => {
-                  if (!isGoogleConnected()) {
+                  if (!googleConnected) {
                     setGoogleStatus('Google 계정을 먼저 연결해 주세요.')
                     return
                   }
@@ -1125,7 +1151,7 @@ function TodaySchedulerPage({ effectiveOwnerKey, initialViewState, onViewStateCh
                   } catch (error) {
                     setGoogleStatus(`오류: ${error.message}`)
                     if (error.message?.includes('not connected') || error.message?.includes('refresh token') || error.message?.includes('insufficient')) {
-                      disconnectGoogleCalendar()
+                      onGoogleDisconnected()
                     }
                   }
                 }}
@@ -1136,7 +1162,7 @@ function TodaySchedulerPage({ effectiveOwnerKey, initialViewState, onViewStateCh
                 type="button"
                 className="scheduler-modal-btn secondary"
                 onClick={async () => {
-                  if (!isGoogleConnected()) {
+                  if (!googleConnected) {
                     setGoogleStatus('Google 계정을 먼저 연결해 주세요.')
                     return
                   }
@@ -1166,7 +1192,7 @@ function TodaySchedulerPage({ effectiveOwnerKey, initialViewState, onViewStateCh
                   } catch (error) {
                     setGoogleStatus(`오류: ${error.message}`)
                     if (error.message?.includes('not connected') || error.message?.includes('refresh token') || error.message?.includes('insufficient')) {
-                      disconnectGoogleCalendar()
+                      onGoogleDisconnected()
                     }
                   }
                 }}
@@ -1466,7 +1492,15 @@ function EventCard({ item, onToggleDone, isSaving }) {
   )
 }
 
-function ReservationEditorPage({ mode, reservationId, effectiveOwnerKey, initialReservationDate = null, backPath = '/scheduler' }) {
+function ReservationEditorPage({
+  mode,
+  reservationId,
+  effectiveOwnerKey,
+  googleConnected,
+  onGoogleDisconnected,
+  initialReservationDate = null,
+  backPath = '/scheduler',
+}) {
   const [formValues, setFormValues] = useState(() => createReservationDraft(initialReservationDate))
   const [status, setStatus] = useState('')
   const [isLoading, setIsLoading] = useState(mode === 'edit')
@@ -1533,7 +1567,7 @@ function ReservationEditorPage({ mode, reservationId, effectiveOwnerKey, initial
       let googleSyncError = false
 
       // MVP: 구글 캘린더 연동이 되어있다면 일정 생성/수정 시도
-      if (isGoogleConnected()) {
+      if (googleConnected) {
         const session = await getCurrentSession()
         const targetId = session?.user?.id
 
@@ -1557,7 +1591,7 @@ function ReservationEditorPage({ mode, reservationId, effectiveOwnerKey, initial
             googleSyncError = true
             console.error('Google Calendar Sync Error:', err)
             if (err.message?.includes('not connected') || err.message?.includes('refresh token') || err.message?.includes('insufficient')) {
-              disconnectGoogleCalendar()
+              onGoogleDisconnected()
             }
           }
 
@@ -1608,7 +1642,7 @@ function ReservationEditorPage({ mode, reservationId, effectiveOwnerKey, initial
     setIsSaving(true)
 
     try {
-      if (isGoogleConnected() && loadedReservation?.google_event_id) {
+      if (googleConnected && loadedReservation?.google_event_id) {
         const session = await getCurrentSession()
         const targetId = session?.user?.id
         if (targetId) {
