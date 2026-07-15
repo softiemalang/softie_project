@@ -40,6 +40,7 @@ import {
 } from './schedulerViewState'
 import { SyncConfirmationModal } from './SyncConfirmationModal'
 import {
+  formatDateLabel,
   formatSchedulerDate,
   getMonday,
   getWeekStartDate,
