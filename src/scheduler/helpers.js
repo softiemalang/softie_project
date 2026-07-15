@@ -79,6 +79,11 @@ export function buildReservationPayload(formValues) {
   }
 }
 
+export function buildOwnedReservationPayload(payload, ownerKey) {
+  if (!ownerKey) throw new Error('ownerKey is required to save a reservation')
+  return { ...payload, owner_key: ownerKey }
+}
+
 export function validateReservationForm(formValues) {
   if (!formValues.reservationDate) return '예약 날짜를 입력해 주세요.'
   if (!formValues.branch.trim()) return '지점을 입력해 주세요.'
@@ -131,6 +136,25 @@ export function groupTodayEvents(items, now = new Date()) {
     upcomingSoon: decorated.filter((item) => item.isUpcomingSoon),
     allToday: decorated,
   }
+}
+
+export function groupEventsByRoom(items) {
+  return Object.values(
+    items.reduce((groups, item) => {
+      const reservation = item.reservation || {}
+      const key = `${reservation.branch}__${reservation.room}`
+      if (!groups[key]) {
+        groups[key] = {
+          key,
+          branch: reservation.branch,
+          room: reservation.room,
+          events: [],
+        }
+      }
+      groups[key].events.push(item)
+      return groups
+    }, {}),
+  )
 }
 
 export function getRoomStatus(events, now = new Date()) {

@@ -2,7 +2,9 @@ import assert from 'node:assert/strict'
 import test from 'node:test'
 import {
   buildReservationPayload,
+  buildOwnedReservationPayload,
   decorateEvent,
+  groupEventsByRoom,
   getRoomStatus,
   groupTodayEvents,
   validateReservationForm,
@@ -17,6 +19,11 @@ import {
   isTimeRangeOverlapping,
   normalizeHourTime,
 } from './time.js'
+import {
+  buildSchedulerViewPath,
+  normalizeSchedulerViewState,
+  parseSchedulerRoute,
+} from './schedulerViewState.js'
 
 const BASE_FORM = {
   reservationDate: '2026-07-16',
@@ -97,6 +104,13 @@ test('reservation payload normalizes hour input, trims text, and preserves durat
   assert.equal(normalizeHourTime(BASE_FORM.startTime), '14:00')
 })
 
+test('reservation ownership always uses the authenticated owner key', () => {
+  const payload = buildOwnedReservationPayload({ customer_name: '테스트', owner_key: 'spoofed-user' }, 'signed-in-user')
+
+  assert.equal(payload.owner_key, 'signed-in-user')
+  assert.throws(() => buildOwnedReservationPayload({}, ''), /ownerKey is required/)
+})
+
 test('event decoration and grouping use the supplied clock deterministically', () => {
   const now = new Date(Date.UTC(2026, 6, 16, 3, 0))
   const overdue = event({ id: 'overdue', minutes: -5 })
@@ -123,6 +137,50 @@ test('room status prioritizes checkout action over active check-in', () => {
   assert.equal(status.focusEvent.id, 'warning')
 })
 
+test('room events stay separated by branch and room', () => {
+  const grouped = groupEventsByRoom([
+    event({ id: 'sinchon-a', minutes: 0, branch: '신촌점', room: 'A' }),
+    event({ id: 'sinchon-a-2', minutes: 10, branch: '신촌점', room: 'A' }),
+    event({ id: 'hapjeong-a', minutes: 20, branch: '합정점', room: 'A' }),
+  ])
+
+  assert.deepEqual(grouped.map((group) => [group.key, group.events.length]), [
+    ['신촌점__A', 2],
+    ['합정점__A', 1],
+  ])
+})
+
 test('week starts on Monday including Sunday input', () => {
   assert.equal(getWeekStartDate(new Date(2026, 6, 19, 12, 0, 0)), '2026-07-13')
+})
+
+test('scheduler routes distinguish today, create, room, and reservation pages', () => {
+  assert.deepEqual(parseSchedulerRoute('/scheduler'), { name: 'today' })
+  assert.deepEqual(parseSchedulerRoute('/scheduler/new'), { name: 'new' })
+  assert.deepEqual(parseSchedulerRoute('/scheduler/rooms'), { name: 'rooms' })
+  assert.deepEqual(parseSchedulerRoute('/scheduler/reservation-1'), { name: 'edit', reservationId: 'reservation-1' })
+})
+
+test('scheduler view state rejects a room that does not belong to the branch', () => {
+  const normalized = normalizeSchedulerViewState({
+    date: '2026-07-16',
+    filters: { branch: '신촌점', room: 'R', workTimeEnabled: true, workTimeStartHour: 9, workTimeEndHour: 18 },
+  })
+
+  assert.equal(normalized.date, '2026-07-16')
+  assert.equal(normalized.filters.branch, '신촌점')
+  assert.equal(normalized.filters.room, 'all')
+})
+
+test('scheduler view path preserves owner-visible filters', () => {
+  assert.equal(
+    buildSchedulerViewPath('2026-07-16', {
+      branch: '신촌점',
+      room: 'A',
+      workTimeEnabled: true,
+      workTimeStartHour: 9,
+      workTimeEndHour: 18,
+    }),
+    '/scheduler?date=2026-07-16&scope=working&start=9&end=18&branch=%EC%8B%A0%EC%B4%8C%EC%A0%90&room=A',
+  )
 })

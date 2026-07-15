@@ -1,4 +1,5 @@
 import { supabase } from '../lib/supabase'
+import { buildOwnedReservationPayload } from './helpers.js'
 import { endOfDayIso, startOfDayIso } from './time'
 
 function ensureSupabase() {
@@ -78,10 +79,7 @@ export async function getReservationById(id, ownerKey) {
 
 export async function saveReservation(payload, reservationId, ownerKey) {
   ensureSupabase()
-  if (!ownerKey) throw new Error('ownerKey is required to save a reservation')
-
-  // Force effective ownerKey on the payload
-  const safePayload = { ...payload, owner_key: ownerKey }
+  const safePayload = buildOwnedReservationPayload(payload, ownerKey)
 
   if (reservationId) {
     const { data, error } = await supabase
