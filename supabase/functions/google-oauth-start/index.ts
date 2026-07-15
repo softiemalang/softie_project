@@ -6,6 +6,7 @@ import {
   normalizeGoogleReturnOrigin,
   normalizeGoogleReturnPath,
 } from '../_shared/googleOAuth.ts'
+import { AuthError, authErrorResponse, requireGoogleManualUser } from '../_shared/googleManualAuth.ts'
 
 const GOOGLE_SCOPES = [
   'https://www.googleapis.com/auth/calendar.events',
@@ -32,37 +33,16 @@ serve(async (req) => {
       throw new Error('Missing userId')
     }
 
-    const normalizedUserId = userId.trim()
+    const normalizedUserId = await requireGoogleManualUser(req, userId.trim())
     const normalizedReturnPath = normalizeGoogleReturnPath(returnPath)
     const normalizedReturnOrigin = normalizeGoogleReturnOrigin(returnOrigin)
     const clientId = Deno.env.get('GOOGLE_CLIENT_ID')
     const redirectUri = Deno.env.get('GOOGLE_REDIRECT_URI')
-    const supabaseUrl = Deno.env.get('SUPABASE_URL')!
-    const serviceRoleKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!
-    const anonKey = Deno.env.get('SUPABASE_ANON_KEY')
+    const supabaseUrl = Deno.env.get('SUPABASE_URL')
+    const serviceRoleKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')
 
-    if (!clientId || !redirectUri) {
+    if (!clientId || !redirectUri || !supabaseUrl || !serviceRoleKey) {
       throw new Error('Google OAuth is not configured')
-    }
-
-    const authHeader = req.headers.get('Authorization')
-    const bearerToken = authHeader?.replace(/^Bearer\s+/i, '').trim()
-
-    if (bearerToken && anonKey && bearerToken !== anonKey) {
-      const authClient = createClient(supabaseUrl, anonKey, {
-        global: {
-          headers: { Authorization: `Bearer ${bearerToken}` },
-        },
-      })
-      const { data: { user }, error: authError } = await authClient.auth.getUser()
-
-      if (authError || !user) {
-        throw new Error('Invalid auth session for Google OAuth')
-      }
-
-      if (user.id !== normalizedUserId) {
-        throw new Error('Authenticated user does not match Google OAuth target')
-      }
     }
 
     const supabase = createClient(supabaseUrl, serviceRoleKey)
@@ -96,6 +76,9 @@ serve(async (req) => {
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },
     })
   } catch (error) {
+    if (error instanceof AuthError) {
+      return authErrorResponse(error, corsHeaders)
+    }
     console.error('[google-oauth-start]', error)
     return new Response(JSON.stringify({ error: error.message || 'Failed to start Google OAuth' }), {
       status: 400,

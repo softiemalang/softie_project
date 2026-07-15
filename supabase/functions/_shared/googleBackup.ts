@@ -1,5 +1,3 @@
-import { createClient } from 'https://esm.sh/@supabase/supabase-js@2'
-
 // Google Drive API helper
 export async function getOrCreateFolder(accessToken: string, folderName: string, parentId?: string) {
   let query = `mimeType='application/vnd.google-apps.folder' and name='${folderName}' and trashed=false`
@@ -99,14 +97,24 @@ export async function updateFile(accessToken: string, fileId: string, content: s
   return fileId
 }
 
-export async function gatherBackupData(supabase: any, backupMode: 'scheduled' | 'manual', backupType: string = 'full') {
+type BackupScope = {
+  ownerKey?: string
+}
+
+export async function gatherBackupData(
+  supabase: any,
+  backupMode: 'scheduled' | 'manual',
+  backupType: string = 'full',
+  scope: BackupScope = {},
+) {
   let exportData: Record<string, any> = {}
   let tableCounts: Record<string, number> = {}
   let skippedTables: string[] = []
 
-  async function safeFetch(tableName: string) {
+  async function safeFetch(tableName: string, applyFilter: (query: any) => any = (query) => query) {
     try {
-      const { data, error } = await supabase.from(tableName).select('*')
+      const query = supabase.from(tableName).select('*')
+      const { data, error } = await applyFilter(query)
       if (error) {
         console.warn(`Failed to fetch ${tableName}:`, error.message)
         skippedTables.push(`${tableName} (${error.message})`)
@@ -120,17 +128,47 @@ export async function gatherBackupData(supabase: any, backupMode: 'scheduled' | 
     }
   }
 
-  const expectedTables = [
-    'reservations', 'work_events', 'scheduler_work_logs',
-    'saju_profiles', 'saju_natal_snapshots', 'saju_daily_snapshots', 'saju_fortune_reports', 
-    'push_subscriptions'
-  ]
-
-  for (const table of expectedTables) {
-    const data = await safeFetch(table)
+  function storeTable(table: string, data: any[] | null) {
     if (data !== null) {
       exportData[table] = data
       tableCounts[table] = data.length
+    }
+  }
+
+  if (scope.ownerKey) {
+    const reservations = await safeFetch('reservations', (query) => query.eq('owner_key', scope.ownerKey))
+    storeTable('reservations', reservations)
+
+    const reservationIds = (reservations || []).map((row: any) => row.id)
+    const workEvents = reservationIds.length > 0
+      ? await safeFetch('work_events', (query) => query.in('reservation_id', reservationIds))
+      : []
+    storeTable('work_events', workEvents)
+
+    storeTable(
+      'scheduler_work_logs',
+      await safeFetch('scheduler_work_logs', (query) => query.eq('owner_key', scope.ownerKey)),
+    )
+
+    const profiles = await safeFetch('saju_profiles', (query) => query.eq('user_id', scope.ownerKey))
+    storeTable('saju_profiles', profiles)
+
+    const profileIds = (profiles || []).map((row: any) => row.id)
+    for (const table of ['saju_natal_snapshots', 'saju_daily_snapshots', 'saju_fortune_reports']) {
+      const data = profileIds.length > 0
+        ? await safeFetch(table, (query) => query.in('profile_id', profileIds))
+        : []
+      storeTable(table, data)
+    }
+  } else {
+    const expectedTables = [
+      'reservations', 'work_events', 'scheduler_work_logs',
+      'saju_profiles', 'saju_natal_snapshots', 'saju_daily_snapshots', 'saju_fortune_reports',
+      'push_subscriptions',
+    ]
+
+    for (const table of expectedTables) {
+      storeTable(table, await safeFetch(table))
     }
   }
 
@@ -165,6 +203,7 @@ export async function gatherBackupData(supabase: any, backupMode: 'scheduled' | 
       app_name: 'softie_project',
       backup_type: backupType,
       backup_mode: backupMode,
+      backup_scope: scope.ownerKey ? 'user' : 'project',
       schema_version: 1,
       timezone: 'Asia/Seoul',
       backup_date: dateStr,

@@ -23,8 +23,8 @@ verify_jwt = false
 verify_jwt = false
 
 [functions.google-oauth-start]
-# Google OAuth state is issued before redirecting to Google, including anon/deviceId flows.
-verify_jwt = false
+# Google OAuth state may only be issued for the authenticated Supabase user.
+verify_jwt = true
 
 [functions.kakao-oauth-token]
 # Kakao OAuth token exchange is called from the public OAuth callback without a Supabase Authorization header.
@@ -47,8 +47,8 @@ verify_jwt = false
 verify_jwt = false
 
 [functions.google-drive-backup]
-# Called from the app without Supabase Auth session, using deviceId instead.
-verify_jwt = false
+# Manual Drive backup is initiated by an authenticated user.
+verify_jwt = true
 
 [functions.google-sheets-append-log]
 # Called from the app without Supabase Auth session, using deviceId instead.

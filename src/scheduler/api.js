@@ -204,6 +204,36 @@ export async function upsertSchedulerWorkLog(ownerKey, logEntry) {
   }
 }
 
+export async function replaceSchedulerWorkLogs(ownerKey, idsToRemove, logEntry) {
+  ensureSupabase()
+  if (!ownerKey) throw new Error('ownerKey is required')
+
+  const { data, error } = await supabase
+    .rpc('replace_scheduler_work_logs', {
+      p_id: logEntry.id,
+      p_week_start_date: logEntry.weekStartDate,
+      p_date: logEntry.date,
+      p_start_time: logEntry.startTime,
+      p_end_time: logEntry.endTime,
+      p_duration_minutes: logEntry.durationMinutes,
+      p_branch: logEntry.branch,
+      p_room: logEntry.room,
+      p_remove_ids: idsToRemove || [],
+    })
+    .single()
+
+  if (error) throw new Error(error.message)
+
+  return {
+    ...data,
+    weekStartDate: data.week_start_date,
+    startTime: data.start_time,
+    endTime: data.end_time,
+    durationMinutes: data.duration_minutes,
+    syncedAt: data.synced_at,
+  }
+}
+
 export async function deleteSchedulerWorkLogs(ownerKey, ids) {
   ensureSupabase()
   if (!ownerKey || !ids || ids.length === 0) return

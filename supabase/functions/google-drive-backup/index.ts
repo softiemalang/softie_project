@@ -38,7 +38,7 @@ serve(async (req) => {
       const supabase = createClient(supabaseUrl, supabaseKey)
       const accessToken = await getOrRefreshToken(supabase, userId)
 
-      const backupData = await gatherBackupData(supabase, 'manual', backupType)
+      const backupData = await gatherBackupData(supabase, 'manual', backupType, { ownerKey: userId })
       const backupResult = await uploadToDriveIfNew(accessToken, backupData.finalJson, backupData.fileName, backupData.subFolder, backupData.year, false)
 
       let spreadsheetId = Deno.env.get('GOOGLE_SHEETS_LOG_SPREADSHEET_ID')

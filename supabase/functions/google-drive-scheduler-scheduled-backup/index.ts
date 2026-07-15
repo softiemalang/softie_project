@@ -40,7 +40,12 @@ serve(async (req) => {
     const accessToken = await getOrRefreshToken(supabase, ownerKey)
     console.log('[scheduler-scheduled-backup] Token refreshed')
 
-    const { finalJson, fileName, subFolder, year } = await gatherBackupData(supabase, 'scheduled', 'full')
+    const { finalJson, fileName, subFolder, year } = await gatherBackupData(
+      supabase,
+      'scheduled',
+      'full',
+      { ownerKey },
+    )
     console.log(`[scheduler-scheduled-backup] Backup data gathered: ${fileName}`)
 
     const result = await uploadToDriveIfNew(accessToken, finalJson, fileName, subFolder, year, true)

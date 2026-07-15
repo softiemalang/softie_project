@@ -9,6 +9,7 @@ import {
   updateWorkEventStatus,
   listSchedulerWorkLogs,
   upsertSchedulerWorkLog,
+  replaceSchedulerWorkLogs,
   deleteSchedulerWorkLogs,
   migrateLocalWorkLogsToSupabase
 } from './api'
@@ -507,8 +508,7 @@ function TodaySchedulerPage({ effectiveOwnerKey, initialViewState, onViewStateCh
     
     try {
       const idsToRemove = overlapping.map(o => o.id)
-      await deleteSchedulerWorkLogs(effectiveOwnerKey, idsToRemove)
-      const saved = await upsertSchedulerWorkLog(effectiveOwnerKey, candidate)
+      const saved = await replaceSchedulerWorkLogs(effectiveOwnerKey, idsToRemove, candidate)
       
       setWorkLogs(prev => [
         ...prev.filter(log => !idsToRemove.includes(log.id)),
