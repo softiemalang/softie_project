@@ -68,6 +68,7 @@ serve(async (req) => {
     authUrl.searchParams.set('response_type', 'code')
     authUrl.searchParams.set('scope', GOOGLE_SCOPES)
     authUrl.searchParams.set('access_type', 'offline')
+    authUrl.searchParams.set('include_granted_scopes', 'true')
     authUrl.searchParams.set('prompt', 'consent')
     authUrl.searchParams.set('state', stateToken)
 

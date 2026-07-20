@@ -8,13 +8,15 @@ import {
 export function useGoogleConnection(userId) {
   const [googleConnected, setGoogleConnected] = useState(() => isGoogleConnected())
   const [googleConnectionState, setGoogleConnectionState] = useState('checking')
+  const [googleConnectionReason, setGoogleConnectionReason] = useState(null)
   const verificationSequenceRef = useRef(0)
 
-  const markGoogleDisconnected = useCallback(() => {
+  const markGoogleDisconnected = useCallback((reason = 'reconnect_required') => {
     verificationSequenceRef.current += 1
     disconnectGoogleCalendar()
     setGoogleConnected(false)
     setGoogleConnectionState('disconnected')
+    setGoogleConnectionReason(reason)
   }, [])
 
   const refreshGoogleConnection = useCallback(async () => {
@@ -25,6 +27,7 @@ export function useGoogleConnection(userId) {
       disconnectGoogleCalendar()
       setGoogleConnected(false)
       setGoogleConnectionState('disconnected')
+      setGoogleConnectionReason('signed_out')
       return { connected: false, reason: 'signed_out' }
     }
 
@@ -37,12 +40,14 @@ export function useGoogleConnection(userId) {
 
       setGoogleConnected(status.connected)
       setGoogleConnectionState(status.connected ? 'connected' : 'disconnected')
+      setGoogleConnectionReason(status.connected ? null : status.reason)
       return status
     } catch (error) {
       if (verificationSequenceRef.current === sequence) {
         console.error('[google] Connection verification failed:', error)
         setGoogleConnected(false)
         setGoogleConnectionState('error')
+        setGoogleConnectionReason('verification_failed')
       }
       throw error
     }
@@ -58,6 +63,7 @@ export function useGoogleConnection(userId) {
   return {
     googleConnected,
     googleConnectionState,
+    googleConnectionReason,
     markGoogleDisconnected,
     refreshGoogleConnection,
   }

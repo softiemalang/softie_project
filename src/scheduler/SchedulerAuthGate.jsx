@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { navigate } from '../lib/router'
 import { getCurrentSession, signInWithGoogle, signOut, subscribeAuthChanges } from '../lib/auth'
 import { connectGoogleCalendar, triggerGoogleDriveBackup } from './googleApi'
+import { getGoogleConnectionMessage, inferGoogleDisconnectReason } from './googleConnectionState'
 import { SchedulerApp } from './SchedulerApp'
 import { useGoogleConnection } from './useGoogleConnection'
 
@@ -57,6 +58,7 @@ export function SchedulerAuthGate({ pathname }) {
   const [driveBackupStatus, setDriveBackupStatus] = useState('')
   const {
     googleConnected,
+    googleConnectionReason,
     googleConnectionState,
     markGoogleDisconnected,
   } = useGoogleConnection(session?.user?.id)
@@ -93,8 +95,8 @@ export function SchedulerAuthGate({ pathname }) {
     setSession(null)
   }
 
-  function handleGoogleDisconnected() {
-    markGoogleDisconnected()
+  function handleGoogleDisconnected(reason) {
+    markGoogleDisconnected(reason)
   }
 
   async function handleGoogleConnect() {
@@ -114,6 +116,8 @@ export function SchedulerAuthGate({ pathname }) {
     } catch (error) {
       console.error('[scheduler] Drive backup failed:', error)
       setDriveBackupStatus(error instanceof Error ? error.message : 'Drive 백업에 실패했어요.')
+      const disconnectReason = inferGoogleDisconnectReason(error)
+      if (disconnectReason) markGoogleDisconnected(disconnectReason)
     } finally {
       setIsDriveBackupBusy(false)
     }
@@ -229,7 +233,9 @@ export function SchedulerAuthGate({ pathname }) {
               <button type="button" className="scheduler-modal-close" onClick={() => setIsGooglePanelOpen(false)}>닫기</button>
             </div>
             <p className="subtle" style={{ marginTop: 0, marginBottom: '1.25rem', fontSize: '0.86rem' }}>
-              캘린더 동기화와 Drive 백업에 사용하는 연결이에요.
+              {googleConnected
+                ? '캘린더 동기화와 Drive 백업에 사용하는 연결이에요.'
+                : getGoogleConnectionMessage(googleConnectionReason)}
             </p>
             <div className="scheduler-modal-actions stack">
               <button
@@ -257,6 +263,7 @@ export function SchedulerAuthGate({ pathname }) {
         pathname={pathname}
         session={session}
         googleConnected={googleConnected}
+        googleConnectionReason={googleConnectionReason}
         googleConnectionState={googleConnectionState}
         onGoogleDisconnected={handleGoogleDisconnected}
       />

@@ -5,6 +5,7 @@ import {
   normalizeGoogleReturnOrigin,
   normalizeGoogleReturnPath,
 } from '../_shared/googleOAuth.ts'
+import { buildGoogleOAuthTokenPayload } from '../_shared/googleOAuthTokens.js'
 
 serve(async (req) => {
   if (req.method === 'OPTIONS') {
@@ -77,20 +78,28 @@ serve(async (req) => {
       }),
     })
 
-    const tokens = await tokenResponse.json()
-    if (tokens.error) {
-      throw new Error(`Token exchange failed: ${tokens.error_description || tokens.error}`)
+    const tokens = await tokenResponse.json().catch(() => ({}))
+    if (!tokenResponse.ok || tokens.error) {
+      const tokenError = tokens.error_description || tokens.error || `HTTP ${tokenResponse.status}`
+      throw new Error(`Token exchange failed: ${tokenError}`)
     }
+
+    const { data: existingToken, error: existingTokenError } = await supabase
+      .from('google_calendar_tokens')
+      .select('refresh_token, scope')
+      .eq('user_id', userId)
+      .maybeSingle()
+
+    if (existingTokenError) throw existingTokenError
+
+    const tokenPayload = buildGoogleOAuthTokenPayload(tokens, existingToken)
 
     // Store tokens
     const { error: upsertError } = await supabase
       .from('google_calendar_tokens')
       .upsert({
         user_id: userId,
-        access_token: tokens.access_token,
-        refresh_token: tokens.refresh_token, // Only sent on first consent
-        expires_at: new Date(Date.now() + tokens.expires_in * 1000).toISOString(),
-        scope: tokens.scope,
+        ...tokenPayload,
       }, { onConflict: 'user_id' })
 
     if (upsertError) throw upsertError

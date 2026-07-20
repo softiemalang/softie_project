@@ -61,6 +61,7 @@ const DEFAULT_PUSH_PREFERENCES = {
 export function TodaySchedulerPage({
   effectiveOwnerKey,
   googleConnected,
+  googleConnectionReason,
   googleConnectionState,
   initialViewState,
   onGoogleDisconnected,
@@ -729,6 +730,7 @@ export function TodaySchedulerPage({
 
       <SchedulerGoogleSettings
         googleConnected={googleConnected}
+        googleConnectionReason={googleConnectionReason}
         googleConnectionState={googleConnectionState}
         onGoogleDisconnected={onGoogleDisconnected}
       />

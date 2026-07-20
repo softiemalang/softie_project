@@ -1,7 +1,13 @@
-export function isDisconnectedGoogleTokenError(error) {
+export function getGoogleDisconnectReason(error) {
   const message = error instanceof Error ? error.message.toLowerCase() : ''
-  return message.includes('not connected')
-    || message.includes('no refresh token')
-    || message.includes('invalid_grant')
-    || message.includes('token has been expired or revoked')
+  if (message.includes('no refresh token')) return 'missing_refresh_token'
+  if (message.includes('invalid_grant') || message.includes('token has been expired or revoked')) {
+    return 'token_expired_or_revoked'
+  }
+  if (message.includes('not connected')) return 'missing_token'
+  return null
+}
+
+export function isDisconnectedGoogleTokenError(error) {
+  return getGoogleDisconnectReason(error) !== null
 }

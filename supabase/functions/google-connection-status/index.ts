@@ -1,7 +1,7 @@
 import { serve } from 'https://deno.land/std@0.168.0/http/server.ts'
 import { createClient } from 'https://esm.sh/@supabase/supabase-js@2'
 import { corsHeaders } from '../_shared/cors.ts'
-import { isDisconnectedGoogleTokenError } from '../_shared/googleConnectionStatus.js'
+import { getGoogleDisconnectReason } from '../_shared/googleConnectionStatus.js'
 import { getOrRefreshToken } from '../_shared/googleToken.ts'
 import { AuthError, authErrorResponse, requireGoogleManualUser } from '../_shared/googleManualAuth.ts'
 
@@ -37,8 +37,10 @@ serve(async (req) => {
       await getOrRefreshToken(supabase, userId)
       return jsonResponse({ connected: true })
     } catch (error) {
-      if (isDisconnectedGoogleTokenError(error)) {
-        return jsonResponse({ connected: false, reason: 'reconnect_required' })
+      const disconnectReason = getGoogleDisconnectReason(error)
+      if (disconnectReason) {
+        console.warn('[google-connection-status] reconnect required', { reason: disconnectReason })
+        return jsonResponse({ connected: false, reason: disconnectReason })
       }
       throw error
     }

@@ -1,5 +1,13 @@
 export const GOOGLE_CONNECTION_STORAGE_KEY = 'scheduler:google_connected'
 
+const GOOGLE_CONNECTION_MESSAGES = {
+  missing_refresh_token: 'Google 권한 갱신 정보가 없어 계정을 다시 연결해야 해요.',
+  token_expired_or_revoked: 'Google 권한이 만료되었거나 취소되어 계정을 다시 연결해야 해요.',
+  missing_token: 'Google 연결 정보가 없어 계정 연결이 필요해요.',
+  reconnect_required: 'Google 계정을 다시 연결해 주세요.',
+  verification_failed: 'Google 연결 상태를 확인하지 못했어요. 잠시 후 다시 시도해 주세요.',
+}
+
 function getBrowserStorage() {
   return typeof window === 'undefined' ? null : window.localStorage
 }
@@ -43,6 +51,19 @@ export function normalizeGoogleConnectionStatus(payload) {
     connected: payload.connected,
     reason: typeof payload.reason === 'string' ? payload.reason : null,
   }
+}
+
+export function getGoogleConnectionMessage(reason) {
+  return GOOGLE_CONNECTION_MESSAGES[reason] || '연결하면 일정 동기화와 백업을 사용할 수 있어요.'
+}
+
+export function inferGoogleDisconnectReason(error) {
+  const message = error instanceof Error ? error.message.toLowerCase() : ''
+  if (message.includes('invalid_grant') || message.includes('expired or revoked')) return 'token_expired_or_revoked'
+  if (message.includes('no refresh token') || message.includes('refresh token')) return 'missing_refresh_token'
+  if (message.includes('not connected')) return 'missing_token'
+  if (message.includes('insufficient')) return 'reconnect_required'
+  return null
 }
 
 export async function verifyGoogleConnectionWith({ userId, requestStatus, storage = getBrowserStorage() }) {

@@ -6,16 +6,11 @@ import {
   createGoogleCalendarEvent,
   triggerGoogleDriveBackup,
 } from './googleApi'
-
-function requiresGoogleReconnect(error) {
-  const message = error instanceof Error ? error.message : ''
-  return message.includes('not connected')
-    || message.includes('refresh token')
-    || message.includes('insufficient')
-}
+import { getGoogleConnectionMessage, inferGoogleDisconnectReason } from './googleConnectionState'
 
 export function SchedulerGoogleSettings({
   googleConnected,
+  googleConnectionReason,
   googleConnectionState,
   onGoogleDisconnected,
 }) {
@@ -61,7 +56,8 @@ export function SchedulerGoogleSettings({
       setStatus('일정을 생성했어요.')
     } catch (error) {
       setStatus(`오류: ${error.message}`)
-      if (requiresGoogleReconnect(error)) onGoogleDisconnected()
+      const disconnectReason = inferGoogleDisconnectReason(error)
+      if (disconnectReason) onGoogleDisconnected(disconnectReason)
     }
   }
 
@@ -90,7 +86,8 @@ export function SchedulerGoogleSettings({
       ])
     } catch (error) {
       setStatus(`오류: ${error.message}`)
-      if (requiresGoogleReconnect(error)) onGoogleDisconnected()
+      const disconnectReason = inferGoogleDisconnectReason(error)
+      if (disconnectReason) onGoogleDisconnected(disconnectReason)
     }
   }
 
@@ -117,7 +114,7 @@ export function SchedulerGoogleSettings({
         </div>
         {!googleConnected && (
           <p className="scheduler-setting-subtitle">
-            연결하면 일정 동기화와 백업을 사용할 수 있어요.
+            {getGoogleConnectionMessage(googleConnectionReason)}
           </p>
         )}
       </button>

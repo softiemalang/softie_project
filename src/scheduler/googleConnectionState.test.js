@@ -4,11 +4,16 @@ import {
   GOOGLE_CONNECTION_STORAGE_KEY,
   cacheGoogleConnection,
   consumeGoogleConnectedCallback,
+  getGoogleConnectionMessage,
+  inferGoogleDisconnectReason,
   normalizeGoogleConnectionStatus,
   readCachedGoogleConnection,
   verifyGoogleConnectionWith,
 } from './googleConnectionState.js'
-import { isDisconnectedGoogleTokenError } from '../../supabase/functions/_shared/googleConnectionStatus.js'
+import {
+  getGoogleDisconnectReason,
+  isDisconnectedGoogleTokenError,
+} from '../../supabase/functions/_shared/googleConnectionStatus.js'
 
 function createStorage(initial = {}) {
   const values = new Map(Object.entries(initial))
@@ -109,10 +114,27 @@ test('known missing or revoked Google token errors require reconnection', () => 
   assert.equal(isDisconnectedGoogleTokenError(new Error('No refresh token available. Please reconnect.')), true)
   assert.equal(isDisconnectedGoogleTokenError(new Error('Failed to refresh token: invalid_grant')), true)
   assert.equal(isDisconnectedGoogleTokenError(new Error('Token has been expired or revoked')), true)
+  assert.equal(getGoogleDisconnectReason(new Error('Google Calendar not connected')), 'missing_token')
+  assert.equal(getGoogleDisconnectReason(new Error('No refresh token available. Please reconnect.')), 'missing_refresh_token')
+  assert.equal(getGoogleDisconnectReason(new Error('Failed to refresh token: invalid_grant')), 'token_expired_or_revoked')
 })
 
 test('temporary infrastructure errors are not misclassified as disconnection', () => {
   assert.equal(isDisconnectedGoogleTokenError(new Error('fetch failed')), false)
   assert.equal(isDisconnectedGoogleTokenError(new Error('database timeout')), false)
   assert.equal(isDisconnectedGoogleTokenError(null), false)
+  assert.equal(getGoogleDisconnectReason(new Error('fetch failed')), null)
+})
+
+test('Google disconnect reasons provide actionable user messages', () => {
+  assert.match(getGoogleConnectionMessage('token_expired_or_revoked'), /만료되었거나 취소/)
+  assert.match(getGoogleConnectionMessage('missing_refresh_token'), /갱신 정보/)
+  assert.match(getGoogleConnectionMessage(null), /일정 동기화와 백업/)
+})
+
+test('client errors are classified before clearing the connection state', () => {
+  assert.equal(inferGoogleDisconnectReason(new Error('Failed to refresh token: invalid_grant')), 'token_expired_or_revoked')
+  assert.equal(inferGoogleDisconnectReason(new Error('No refresh token available')), 'missing_refresh_token')
+  assert.equal(inferGoogleDisconnectReason(new Error('Google Calendar not connected')), 'missing_token')
+  assert.equal(inferGoogleDisconnectReason(new Error('fetch failed')), null)
 })

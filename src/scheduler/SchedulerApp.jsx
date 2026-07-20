@@ -16,6 +16,7 @@ export function SchedulerApp({
   pathname,
   session,
   googleConnected = false,
+  googleConnectionReason = null,
   googleConnectionState = 'disconnected',
   onGoogleDisconnected = () => {},
 }) {
@@ -57,6 +58,7 @@ export function SchedulerApp({
         <TodaySchedulerPage
           effectiveOwnerKey={effectiveOwnerKey}
           googleConnected={googleConnected}
+          googleConnectionReason={googleConnectionReason}
           googleConnectionState={googleConnectionState}
           initialViewState={schedulerViewState}
           onGoogleDisconnected={onGoogleDisconnected}
