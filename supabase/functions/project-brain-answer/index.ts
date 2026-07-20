@@ -2,14 +2,56 @@ import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2.45.1";
 import { corsHeaders } from "../_shared/cors.ts";
 
+const supabaseUrl = Deno.env.get('SUPABASE_URL') ?? '';
+
 const supabaseAdmin = createClient(
-  Deno.env.get('SUPABASE_URL') ?? '',
+  supabaseUrl,
   Deno.env.get('SUPABASE_SERVICE_ROLE_KEY') ?? ''
+);
+const supabaseAuth = createClient(
+  supabaseUrl,
+  Deno.env.get('SUPABASE_ANON_KEY') ?? ''
 );
 
 const GOOGLE_OAUTH_SCOPE = 'https://www.googleapis.com/auth/cloud-platform';
 const GOOGLE_TOKEN_ENDPOINT = 'https://oauth2.googleapis.com/token';
 const PROJECT_BRAIN_DISABLED_WARNING = 'Project Brain RAG is disabled.';
+const MAX_QUESTION_LENGTH = 4000;
+const UUID_PATTERN = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
+
+class RequestError extends Error {
+  status: number;
+
+  constructor(status: number, message: string) {
+    super(message);
+    this.name = 'RequestError';
+    this.status = status;
+  }
+}
+
+function jsonResponse(body: Record<string, unknown>, status = 200) {
+  return new Response(JSON.stringify(body), {
+    status,
+    headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+  });
+}
+
+function getBearerToken(req: Request) {
+  const authorization = req.headers.get('Authorization') || '';
+  return authorization.match(/^Bearer\s+(.+)$/i)?.[1]?.trim() || '';
+}
+
+async function requireAuthenticatedUser(req: Request) {
+  const token = getBearerToken(req);
+  if (!token) throw new RequestError(401, 'Missing authorization token.');
+
+  const { data, error } = await supabaseAuth.auth.getUser(token);
+  if (error || !data.user?.id) {
+    throw new RequestError(401, 'Invalid authorization token.');
+  }
+
+  return data.user.id;
+}
 
 function createFallbackAnswer(question: string) {
   return `Project Brain is currently disabled. I received your question: "${question}".`;
@@ -171,32 +213,59 @@ serve(async (req) => {
     return new Response('ok', { headers: corsHeaders });
   }
 
+  if (req.method !== 'POST') {
+    return jsonResponse({ error: 'Method not allowed.' }, 405);
+  }
+
   try {
-    const authHeader = req.headers.get('Authorization');
-    const user = authHeader ? await supabaseAdmin.auth.getUser(authHeader.split(' ')[1]) : null;
-    const userId = user?.data?.user?.id || null;
-    const ownerKey = userId || 'anonymous-mvp';
+    const userId = await requireAuthenticatedUser(req);
+    const ownerKey = userId;
 
     const body = await req.json();
-    const question = body.question || 'No question provided.';
-    let threadId = body.threadId || null;
+    const question = typeof body.question === 'string' ? body.question.trim() : '';
+    if (!question) throw new RequestError(400, 'Question is required.');
+    if (question.length > MAX_QUESTION_LENGTH) {
+      throw new RequestError(400, `Question must be ${MAX_QUESTION_LENGTH} characters or fewer.`);
+    }
+
+    const requestedThreadId = body.threadId;
+    if (requestedThreadId != null && typeof requestedThreadId !== 'string') {
+      throw new RequestError(400, 'threadId must be a UUID string.');
+    }
+
+    let threadId = requestedThreadId?.trim() || null;
+    if (threadId && !UUID_PATTERN.test(threadId)) {
+      throw new RequestError(400, 'threadId must be a valid UUID.');
+    }
 
     // 1. Create thread if missing
     if (!threadId) {
       const { data: newThread, error: threadErr } = await supabaseAdmin
         .from('project_brain_threads')
-        .insert([{ owner_key: ownerKey, user_id: userId, title: question.substring(0, 60) }])
-        .select()
+        .insert([{ owner_key: ownerKey, user_id: userId, title: question.slice(0, 60) }])
+        .select('id')
         .single();
-      
+
       if (threadErr) throw threadErr;
       threadId = newThread.id;
+    } else {
+      const { data: ownedThread, error: threadErr } = await supabaseAdmin
+        .from('project_brain_threads')
+        .select('id')
+        .eq('id', threadId)
+        .eq('owner_key', ownerKey)
+        .maybeSingle();
+
+      if (threadErr) throw threadErr;
+      if (!ownedThread) throw new RequestError(404, 'Thread not found.');
     }
 
     // 2. Save user message
-    await supabaseAdmin
+    const { error: userMessageError } = await supabaseAdmin
       .from('project_brain_messages')
       .insert([{ thread_id: threadId, role: 'user', content: question }]);
+
+    if (userMessageError) throw userMessageError;
 
     // 3. Generate answer with Vertex AI Search only when explicitly enabled.
     let answer = createFallbackAnswer(question);
@@ -217,19 +286,18 @@ serve(async (req) => {
     }
 
     // 4. Save assistant message
-    await supabaseAdmin
+    const { error: assistantMessageError } = await supabaseAdmin
       .from('project_brain_messages')
       .insert([{ thread_id: threadId, role: 'assistant', content: answer }]);
 
-    return new Response(
-      JSON.stringify({ answer, citations, threadId, warning }),
-      { headers: { ...corsHeaders, "Content-Type": "application/json" } }
-    );
+    if (assistantMessageError) throw assistantMessageError;
+
+    return jsonResponse({ answer, citations, threadId, warning });
   } catch (err) {
-    console.error('Error:', err);
-    return new Response(
-      JSON.stringify({ error: err.message }),
-      { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } }
-    );
+    const status = err instanceof RequestError ? err.status : 500;
+    const message = err instanceof Error ? err.message : 'Unexpected error.';
+
+    if (status >= 500) console.error('Error:', err);
+    return jsonResponse({ error: message }, status);
   }
 });
