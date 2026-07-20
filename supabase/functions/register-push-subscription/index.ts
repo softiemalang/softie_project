@@ -3,7 +3,10 @@ import {
   createServiceRoleClient,
   describePushError,
   hashEndpoint,
+  requireSchedulerPushUser,
   SCHEDULER_NOTIFICATION_TYPES,
+  SchedulerPushAuthError,
+  schedulerPushAuthErrorResponse,
   validatePushSubscriptionPayload,
 } from '../_shared/push.ts'
 
@@ -22,6 +25,9 @@ Deno.serve(async (request) => {
   }
 
   try {
+    failedStep = 'authenticate_user'
+    const ownerKey = await requireSchedulerPushUser(request)
+
     failedStep = 'parse_request'
     const { deviceId, subscription, userAgent = '', platform = '' } = await request.json()
 
@@ -40,6 +46,7 @@ Deno.serve(async (request) => {
     const { data: existingPreferences, error: existingPreferencesError } = await supabase
       .from('push_subscriptions')
       .select('notifications_enabled, notification_types, work_time_enabled, work_time_start_hour, work_time_end_hour, work_time_selected_date')
+      .eq('owner_key', ownerKey)
       .eq('device_id', deviceId)
       .order('last_seen_at', { ascending: false })
       .limit(1)
@@ -55,6 +62,7 @@ Deno.serve(async (request) => {
     const { error: deactivateError } = await supabase
       .from('push_subscriptions')
       .update({ active: false, updated_at: now })
+      .eq('owner_key', ownerKey)
       .eq('device_id', deviceId)
       .neq('endpoint_hash', endpointHash)
       .eq('active', true)
@@ -66,6 +74,7 @@ Deno.serve(async (request) => {
       .from('push_subscriptions')
       .upsert(
         {
+          owner_key: ownerKey,
           device_id: deviceId,
           endpoint: validatedSubscription.endpoint,
           endpoint_hash: endpointHash,
@@ -92,6 +101,10 @@ Deno.serve(async (request) => {
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },
     })
   } catch (error) {
+    if (error instanceof SchedulerPushAuthError) {
+      return schedulerPushAuthErrorResponse(error)
+    }
+
     const { message, details } = describePushError(error)
 
     console.error('register-push-subscription failed', {

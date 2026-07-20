@@ -1,4 +1,5 @@
 import { createClient } from 'npm:@supabase/supabase-js@2'
+import { corsHeaders } from './cors.ts'
 
 export type NotificationCategory = 'test' | 'checkin' | 'warning' | 'checkout'
 export type SchedulerNotificationType = 'checkin' | 'warning' | 'checkout'
@@ -14,6 +15,7 @@ const SCHEDULER_TIMEZONE = 'Asia/Seoul'
 
 export type PushSubscriptionRow = {
   id: string
+  owner_key: string
   device_id: string
   endpoint_hash: string
   subscription: Record<string, unknown>
@@ -52,6 +54,48 @@ export function createServiceRoleClient() {
 
   return createClient(supabaseUrl, serviceRoleKey, {
     auth: { persistSession: false, autoRefreshToken: false },
+  })
+}
+
+export class SchedulerPushAuthError extends Error {
+  constructor(message: string) {
+    super(message)
+    this.name = 'SchedulerPushAuthError'
+  }
+}
+
+export async function requireSchedulerPushUser(request: Request) {
+  const authorization = request.headers.get('Authorization') || ''
+  const token = authorization.match(/^Bearer\s+(.+)$/i)?.[1]?.trim() || ''
+
+  if (!token) {
+    throw new SchedulerPushAuthError('Missing authorization token')
+  }
+
+  const supabaseUrl = Deno.env.get('SUPABASE_URL')
+  const supabaseAnonKey = Deno.env.get('SUPABASE_ANON_KEY')
+
+  if (!supabaseUrl || !supabaseAnonKey) {
+    throw new Error('SUPABASE_URL / SUPABASE_ANON_KEY 설정이 필요합니다.')
+  }
+
+  const authClient = createClient(supabaseUrl, supabaseAnonKey, {
+    auth: { persistSession: false, autoRefreshToken: false },
+  })
+  const { data, error } = await authClient.auth.getUser(token)
+
+  if (error || !data.user?.id) {
+    throw new SchedulerPushAuthError('Invalid authorization token')
+  }
+
+  return data.user.id
+}
+
+export function schedulerPushAuthErrorResponse(error: unknown) {
+  const message = error instanceof SchedulerPushAuthError ? error.message : 'Unauthorized'
+  return new Response(JSON.stringify({ error: message }), {
+    status: 401,
+    headers: { ...corsHeaders, 'Content-Type': 'application/json' },
   })
 }
 

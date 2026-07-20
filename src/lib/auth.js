@@ -23,19 +23,21 @@ export async function getCurrentUser() {
 }
 
 export async function signInWithGoogle(returnUrl = getAuthRedirectUrl()) {
-  if (!supabase) return
+  if (!supabase) throw new Error('Supabase 설정이 없어요. 환경변수를 확인해 주세요.')
 
-  await supabase.auth.signInWithOAuth({
+  const { error } = await supabase.auth.signInWithOAuth({
     provider: 'google',
     options: {
       redirectTo: returnUrl,
     }
   })
+  if (error) throw error
 }
 
 export async function signOut() {
-  if (!supabase) return
-  await supabase.auth.signOut()
+  if (!supabase) throw new Error('Supabase 설정이 없어요. 환경변수를 확인해 주세요.')
+  const { error } = await supabase.auth.signOut()
+  if (error) throw error
 }
 
 export function subscribeAuthChanges(callback) {

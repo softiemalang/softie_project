@@ -2,7 +2,10 @@ import { corsHeaders } from '../_shared/cors.ts'
 import {
   createServiceRoleClient,
   describePushError,
+  requireSchedulerPushUser,
   SCHEDULER_NOTIFICATION_TYPES,
+  SchedulerPushAuthError,
+  schedulerPushAuthErrorResponse,
 } from '../_shared/push.ts'
 
 Deno.serve(async (request) => {
@@ -20,6 +23,9 @@ Deno.serve(async (request) => {
   }
 
   try {
+    failedStep = 'authenticate_user'
+    const ownerKey = await requireSchedulerPushUser(request)
+
     failedStep = 'parse_request'
     const { deviceId } = await request.json()
 
@@ -34,6 +40,7 @@ Deno.serve(async (request) => {
     const { data, error } = await supabase
       .from('push_subscriptions')
       .select('notifications_enabled, notification_types, work_time_enabled, work_time_start_hour, work_time_end_hour, work_time_selected_date')
+      .eq('owner_key', ownerKey)
       .eq('device_id', deviceId)
       .eq('active', true)
       .order('last_seen_at', { ascending: false })
@@ -53,6 +60,10 @@ Deno.serve(async (request) => {
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },
     })
   } catch (error) {
+    if (error instanceof SchedulerPushAuthError) {
+      return schedulerPushAuthErrorResponse(error)
+    }
+
     const { message, details } = describePushError(error)
 
     console.error('get-push-preferences failed', {

@@ -2,6 +2,9 @@ import { corsHeaders } from '../_shared/cors.ts'
 import {
   createServiceRoleClient,
   describePushError,
+  requireSchedulerPushUser,
+  SchedulerPushAuthError,
+  schedulerPushAuthErrorResponse,
   validatePushPreferencePayload,
 } from '../_shared/push.ts'
 
@@ -23,6 +26,7 @@ Deno.serve(async (request: Request) => {
   }
 
   try {
+    const ownerKey = await requireSchedulerPushUser(request)
     const body = await request.json()
     const {
       deviceId,
@@ -59,6 +63,7 @@ Deno.serve(async (request: Request) => {
         work_time_end_hour: validated.workTimeEndHour,
         work_time_selected_date: validated.selectedDate,
       })
+      .eq('owner_key', ownerKey)
       .eq('device_id', deviceId)
       .eq('active', true)
       .select('id')
@@ -86,6 +91,10 @@ Deno.serve(async (request: Request) => {
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },
     })
   } catch (error) {
+    if (error instanceof SchedulerPushAuthError) {
+      return schedulerPushAuthErrorResponse(error)
+    }
+
     const { message, details } = describePushError(error)
 
     console.error('update-push-preferences failed', {

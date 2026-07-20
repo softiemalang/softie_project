@@ -126,6 +126,19 @@ test('event decoration and grouping use the supplied clock deterministically', (
   assert.deepEqual(grouped.allToday.map((item) => item.id), ['completed', 'overdue', 'action', 'upcoming', 'later'])
 })
 
+test('historical scheduler dates do not show live urgency or overdue timing', () => {
+  const now = new Date(Date.UTC(2026, 6, 21, 3, 0))
+  const historical = event({ id: 'historical', minutes: -5 })
+  historical.scheduled_at = new Date(Date.UTC(2026, 6, 16, 3, 0)).toISOString()
+
+  const grouped = groupTodayEvents([historical], now, '2026-07-16')
+
+  assert.equal(grouped.actionNow.length, 0)
+  assert.equal(grouped.upcomingSoon.length, 0)
+  assert.equal(grouped.allToday[0].relativeTimingEnabled, false)
+  assert.equal(grouped.allToday[0].isOverdue, false)
+})
+
 test('room status prioritizes checkout action over active check-in', () => {
   const now = new Date(Date.UTC(2026, 6, 16, 3, 0))
   const status = getRoomStatus([
@@ -135,6 +148,21 @@ test('room status prioritizes checkout action over active check-in', () => {
 
   assert.equal(status.tone, 'needs-checkout')
   assert.equal(status.focusEvent.id, 'warning')
+})
+
+test('room status is idle after the reservation checkout time has passed', () => {
+  const now = new Date(Date.UTC(2026, 6, 16, 6, 0))
+  const checkin = event({ id: 'finished-checkin', minutes: 0, type: 'checkin', status: 'done' })
+  const checkout = event({ id: 'finished-checkout', minutes: 0, type: 'checkout', status: 'done' })
+  checkin.reservation_id = 'finished-reservation'
+  checkout.reservation_id = 'finished-reservation'
+  checkin.scheduled_at = new Date(Date.UTC(2026, 6, 16, 3, 0)).toISOString()
+  checkout.scheduled_at = new Date(Date.UTC(2026, 6, 16, 5, 0)).toISOString()
+
+  const status = getRoomStatus([checkin, checkout], now)
+
+  assert.equal(status.tone, 'idle')
+  assert.equal(status.focusEvent, null)
 })
 
 test('room events stay separated by branch and room', () => {

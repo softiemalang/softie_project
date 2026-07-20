@@ -110,15 +110,33 @@ async function claimDueReminders(
 
 async function fetchTargetSubscriptions(
   supabase: ReturnType<typeof createServiceRoleClient>,
+  ownerKeys: string[],
 ) {
+  if (ownerKeys.length === 0) return []
+
   const { data, error } = await supabase
     .from('push_subscriptions')
-    .select('id, device_id, endpoint_hash, subscription, notifications_enabled, notification_types, work_time_enabled, work_time_start_hour, work_time_end_hour, work_time_selected_date')
+    .select('id, owner_key, device_id, endpoint_hash, subscription, notifications_enabled, notification_types, work_time_enabled, work_time_start_hour, work_time_end_hour, work_time_selected_date')
+    .in('owner_key', ownerKeys)
     .eq('active', true)
     .eq('notifications_enabled', true)
 
   if (error) throw error
   return (data ?? []) as PushSubscriptionRow[]
+}
+
+async function fetchReminderOwners(
+  supabase: ReturnType<typeof createServiceRoleClient>,
+  reminders: ReminderRow[],
+) {
+  const reservationIds = Array.from(new Set(reminders.map((reminder) => reminder.reservation_id)))
+  const { data, error } = await supabase
+    .from('reservations')
+    .select('id, owner_key')
+    .in('id', reservationIds)
+
+  if (error) throw error
+  return new Map((data ?? []).map((reservation) => [reservation.id, reservation.owner_key]))
 }
 
 async function markSubscriptionError(
@@ -226,8 +244,16 @@ Deno.serve(async (request) => {
       })
     }
 
+    failedStep = 'fetch_reminder_owners'
+    const ownerByReservation = await fetchReminderOwners(supabase, dueReminders)
+    const reminderOwnerKeys = Array.from(new Set(
+      dueReminders
+        .map((reminder) => ownerByReservation.get(reminder.reservation_id))
+        .filter((ownerKey): ownerKey is string => Boolean(ownerKey)),
+    ))
+
     failedStep = 'fetch_target_subscriptions'
-    const activeSubscriptions = await fetchTargetSubscriptions(supabase)
+    const activeSubscriptions = await fetchTargetSubscriptions(supabase, reminderOwnerKeys)
 
     let sentCount = 0
     let failedCount = 0
@@ -235,8 +261,9 @@ Deno.serve(async (request) => {
 
     for (const reminder of dueReminders) {
       const attemptNumber = reminder.attempt_count + 1
+      const reminderOwnerKey = ownerByReservation.get(reminder.reservation_id)
 
-      if (!reminder.branch || !reminder.room || !reminder.customer_name || !reminder.event_scheduled_at) {
+      if (!reminderOwnerKey || !reminder.branch || !reminder.room || !reminder.customer_name || !reminder.event_scheduled_at) {
         await updateReminderState(supabase, reminder.id, claimToken, {
           status: 'skipped',
           error_message: 'Reminder context is incomplete.',
@@ -249,7 +276,8 @@ Deno.serve(async (request) => {
       }
 
       const eligibleSubscriptions = activeSubscriptions.filter((subscription) =>
-        Array.isArray(subscription.notification_types)
+        subscription.owner_key === reminderOwnerKey
+          && Array.isArray(subscription.notification_types)
           && subscription.notification_types.includes(reminder.notification_type)
           && subscription.notifications_enabled !== false
           && isWorkTimeEligible(subscription, reminder.event_scheduled_at)

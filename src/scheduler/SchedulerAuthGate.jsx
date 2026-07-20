@@ -6,7 +6,7 @@ import { getGoogleConnectionMessage, inferGoogleDisconnectReason } from './googl
 import { SchedulerApp } from './SchedulerApp'
 import { useGoogleConnection } from './useGoogleConnection'
 
-function SchedulerLoginPage({ isSigningIn, onSignIn }) {
+function SchedulerLoginPage({ isSigningIn, onSignIn, status }) {
   return (
     <div className="scheduler-shell">
       <section className="scheduler-panel scheduler-setting-card is-setup">
@@ -34,6 +34,7 @@ function SchedulerLoginPage({ isSigningIn, onSignIn }) {
             Softie Project 홈으로 이동
           </button>
         </div>
+        {status ? <p className="status">{status}</p> : null}
       </section>
 
       <section className="scheduler-panel scheduler-setting-card">
@@ -53,6 +54,8 @@ export function SchedulerAuthGate({ pathname }) {
   const [session, setSession] = useState(null)
   const [isLoading, setIsLoading] = useState(true)
   const [isSigningIn, setIsSigningIn] = useState(false)
+  const [isSigningOut, setIsSigningOut] = useState(false)
+  const [authStatus, setAuthStatus] = useState('')
   const [isGooglePanelOpen, setIsGooglePanelOpen] = useState(false)
   const [isDriveBackupBusy, setIsDriveBackupBusy] = useState(false)
   const [driveBackupStatus, setDriveBackupStatus] = useState('')
@@ -86,13 +89,29 @@ export function SchedulerAuthGate({ pathname }) {
 
   async function handleSignIn() {
     setIsSigningIn(true)
-    await signInWithGoogle(window.location.href)
+    setAuthStatus('')
+    try {
+      await signInWithGoogle(window.location.href)
+    } catch (error) {
+      console.error('[scheduler] Sign in failed:', error)
+      setAuthStatus(error instanceof Error ? error.message : '로그인을 시작하지 못했어요.')
+      setIsSigningIn(false)
+    }
   }
 
   async function handleSignOut() {
-    await signOut()
-    markGoogleDisconnected()
-    setSession(null)
+    setIsSigningOut(true)
+    setAuthStatus('')
+    try {
+      await signOut()
+      markGoogleDisconnected()
+      setSession(null)
+    } catch (error) {
+      console.error('[scheduler] Sign out failed:', error)
+      setAuthStatus(error instanceof Error ? error.message : '로그아웃하지 못했어요.')
+    } finally {
+      setIsSigningOut(false)
+    }
   }
 
   function handleGoogleDisconnected(reason) {
@@ -132,7 +151,7 @@ export function SchedulerAuthGate({ pathname }) {
   }
 
   if (!session) {
-    return <SchedulerLoginPage isSigningIn={isSigningIn} onSignIn={handleSignIn} />
+    return <SchedulerLoginPage isSigningIn={isSigningIn} onSignIn={handleSignIn} status={authStatus} />
   }
 
   return (
@@ -202,9 +221,10 @@ export function SchedulerAuthGate({ pathname }) {
                 type="button"
                 className="scheduler-count-pill"
                 onClick={handleSignOut}
+                disabled={isSigningOut}
                 style={{ border: 0, cursor: 'pointer' }}
               >
-                로그아웃
+                {isSigningOut ? '로그아웃 중' : '로그아웃'}
               </button>
               <button
                 type="button"
@@ -222,6 +242,7 @@ export function SchedulerAuthGate({ pathname }) {
               </button>
             </div>
           </div>
+          {authStatus ? <p className="status">{authStatus}</p> : null}
         </section>
       </div>
 

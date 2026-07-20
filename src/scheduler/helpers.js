@@ -107,19 +107,21 @@ export function sortEventsByTime(items) {
   return sortSchedulerEvents(items)
 }
 
-export function decorateEvent(item, now = new Date()) {
+export function decorateEvent(item, now = new Date(), options = {}) {
   const scheduledAt = new Date(item.scheduled_at)
   const minutesAway = Math.round((scheduledAt.getTime() - now.getTime()) / (60 * 1000))
+  const relativeTimingEnabled = options.relativeTimingEnabled !== false
   const isPending = item.status === 'pending'
-  const isOverdue = isPending && minutesAway < 0
-  const isActionNow = isPending && minutesAway <= 10
-  const isUpcomingSoon = isPending && minutesAway > 10 && minutesAway <= 60
+  const isOverdue = relativeTimingEnabled && isPending && minutesAway < 0
+  const isActionNow = relativeTimingEnabled && isPending && minutesAway <= 10
+  const isUpcomingSoon = relativeTimingEnabled && isPending && minutesAway > 10 && minutesAway <= 60
 
   return {
     ...item,
     meta: WORK_EVENT_META[item.event_type],
     statusMeta: EVENT_STATUS_META[item.status],
     minutesAway,
+    relativeTimingEnabled,
     isPending,
     isOverdue,
     isActionNow,
@@ -128,8 +130,11 @@ export function decorateEvent(item, now = new Date()) {
   }
 }
 
-export function groupTodayEvents(items, now = new Date()) {
-  const decorated = sortEventsByTime(items).map((item) => decorateEvent(item, now))
+export function groupTodayEvents(items, now = new Date(), selectedDate = toLocalDateInputValue(now)) {
+  const relativeTimingEnabled = selectedDate === toLocalDateInputValue(now)
+  const decorated = sortEventsByTime(items).map((item) =>
+    decorateEvent(item, now, { relativeTimingEnabled })
+  )
 
   return {
     actionNow: decorated.filter((item) => item.isActionNow || item.isOverdue),
@@ -162,9 +167,18 @@ export function getRoomStatus(events, now = new Date()) {
   const checkoutNeeded = decorated.find(
     (item) => item.isPending && (item.event_type === 'warning' || item.event_type === 'checkout') && item.minutesAway <= 10,
   )
-  const activeCheckin = decorated.find(
-    (item) => item.event_type === 'checkin' && new Date(item.scheduled_at).getTime() <= now.getTime(),
-  )
+  const activeCheckin = decorated.find((item) => {
+    if (item.event_type !== 'checkin') return false
+
+    const checkoutEvent = decorated.find((candidate) =>
+      candidate.reservation_id === item.reservation_id && candidate.event_type === 'checkout'
+    )
+    const startAt = new Date(item.reservation?.start_at || item.scheduled_at).getTime()
+    const endAt = new Date(item.reservation?.end_at || checkoutEvent?.scheduled_at || '').getTime()
+    const nowTime = now.getTime()
+
+    return Number.isFinite(startAt) && Number.isFinite(endAt) && startAt <= nowTime && nowTime < endAt
+  })
   const nextPending = decorated.find((item) => item.status === 'pending' && item.minutesAway >= 0)
 
   if (checkoutNeeded) {

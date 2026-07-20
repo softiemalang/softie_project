@@ -3,7 +3,7 @@ import { getTagMeta } from './helpers'
 
 export function SchedulerEventCard({ item, onToggleDone, isSaving }) {
   const reservation = item.reservation || {}
-  const urgencyText = item.status === 'done'
+  const urgencyText = item.status === 'done' || item.relativeTimingEnabled === false
     ? ''
     : item.isOverdue
       ? `${Math.abs(item.minutesAway)}분 지남`

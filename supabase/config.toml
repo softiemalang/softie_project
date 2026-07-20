@@ -1,13 +1,17 @@
 [functions.update-push-preferences]
+# The handler validates the signed-in scheduler user explicitly.
 verify_jwt = false
 
 [functions.register-push-subscription]
+# The handler validates the signed-in scheduler user explicitly.
 verify_jwt = false
 
 [functions.get-push-preferences]
+# The handler validates the signed-in scheduler user explicitly.
 verify_jwt = false
 
 [functions.send-test-push]
+# The handler validates the signed-in scheduler user explicitly.
 verify_jwt = false
 
 [functions.dispatch-scheduler-reminders]

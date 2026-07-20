@@ -1,5 +1,13 @@
 import { corsHeaders } from '../_shared/cors.ts'
-import { buildPushPayload, createServiceRoleClient, describePushError, sendWebPush } from '../_shared/push.ts'
+import {
+  buildPushPayload,
+  createServiceRoleClient,
+  describePushError,
+  requireSchedulerPushUser,
+  SchedulerPushAuthError,
+  schedulerPushAuthErrorResponse,
+  sendWebPush,
+} from '../_shared/push.ts'
 
 Deno.serve(async (request) => {
   let failedStep = 'request'
@@ -16,6 +24,9 @@ Deno.serve(async (request) => {
   }
 
   try {
+    failedStep = 'authenticate_user'
+    const ownerKey = await requireSchedulerPushUser(request)
+
     failedStep = 'parse_request'
     const { deviceId } = await request.json()
 
@@ -29,6 +40,7 @@ Deno.serve(async (request) => {
     const { data, error } = await supabase
       .from('push_subscriptions')
       .select('id, device_id, endpoint_hash, subscription')
+      .eq('owner_key', ownerKey)
       .eq('device_id', deviceId)
       .eq('active', true)
       .order('last_seen_at', { ascending: false })
@@ -87,6 +99,10 @@ Deno.serve(async (request) => {
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },
     })
   } catch (error) {
+    if (error instanceof SchedulerPushAuthError) {
+      return schedulerPushAuthErrorResponse(error)
+    }
+
     const { message, details: describedDetails } = describePushError(error)
     const statusCode = error && typeof error === 'object' ? Reflect.get(error, 'statusCode') : null
     const body = error && typeof error === 'object' ? Reflect.get(error, 'body') : null

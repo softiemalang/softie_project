@@ -355,7 +355,7 @@ export function TodaySchedulerPage({
     return true
   })
 
-  const grouped = groupTodayEvents(filteredEvents)
+  const grouped = groupTodayEvents(filteredEvents, new Date(), selectedDate)
 
   async function handleToggleDone(eventRow) {
     const nextStatus = eventRow.status === 'done' ? 'pending' : 'done'
