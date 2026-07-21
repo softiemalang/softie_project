@@ -160,6 +160,17 @@ export default function HomePage() {
     }
   }
 
+  async function handleSignOut() {
+    if (!window.confirm('로그아웃하시겠습니까?')) return
+
+    try {
+      await signOut()
+    } catch (error) {
+      console.error('[HomePage] Failed to sign out.', error)
+      window.alert('로그아웃하지 못했어요. 잠시 후 다시 시도해 주세요.')
+    }
+  }
+
   return (
     <div className="app-shell ag-shell home-shell" data-design-theme="atmospheric">
       <main className="ag-layout home-layout">
@@ -173,8 +184,14 @@ export default function HomePage() {
                 <span className="home-auth-status">계정 확인 중</span>
               ) : session ? (
                 <div className="home-auth-signed-in home-account-bar">
-                  <p className="home-auth-email">{session.user.email}</p>
-                  <button className="ag-secondary-action home-auth-button" onClick={() => signOut()}>
+                  <p
+                    className="home-auth-email"
+                    aria-label={`로그인 계정 ${session.user.email}`}
+                    title={session.user.email}
+                  >
+                    {session.user.email}
+                  </p>
+                  <button className="ag-secondary-action home-auth-button" onClick={handleSignOut}>
                     로그아웃
                   </button>
                 </div>
