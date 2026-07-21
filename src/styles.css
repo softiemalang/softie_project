@@ -3446,22 +3446,32 @@ textarea {
   }
 
   .home-layout {
-    gap: 1.25rem;
+    gap: 1.8rem;
     padding:
-      max(0.75rem, calc(env(safe-area-inset-top) + 0.55rem))
-      0.75rem
-      max(2.5rem, calc(env(safe-area-inset-bottom) + 1.5rem));
+      max(1rem, calc(env(safe-area-inset-top) + 0.7rem))
+      1.25rem
+      max(3rem, calc(env(safe-area-inset-bottom) + 2rem));
   }
 
   .home-hero {
-    padding: 0.72rem 0.8rem;
+    padding: 0.88rem 1rem;
     border-radius: 18px;
   }
 
   .home-hero-topline {
     align-items: center;
     grid-template-columns: auto auto auto minmax(0, 1fr);
-    gap: 0.42rem;
+    gap: 0.55rem;
+  }
+
+  .home-hero .ag-kicker {
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+  }
+
+  .home-tool-count {
+    font-size: 0.66rem;
+    letter-spacing: 0.08em;
   }
 
   .home-auth-area {
@@ -3470,7 +3480,7 @@ textarea {
 
   .home-auth-button {
     min-height: 36px;
-    padding: 0.45rem 0.7rem;
+    padding: 0.45rem 0.62rem;
     font-size: 0.7rem;
   }
 
@@ -3481,24 +3491,24 @@ textarea {
   }
 
   .home-services {
-    gap: 1rem;
+    gap: 1.3rem;
   }
 
   .service-grid {
     grid-template-columns: 1fr;
-    gap: 0.7rem;
+    gap: 1.05rem;
   }
 
   .service-card {
     min-height: 0;
-    gap: 0.8rem;
-    padding: 1rem;
-    border-radius: 20px;
+    gap: 0.9rem;
+    padding: 1.15rem 1.1rem;
+    border-radius: 22px;
     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.16), 0 14px 36px rgba(12, 17, 27, 0.16);
   }
 
   .service-info {
-    gap: 0.45rem;
+    gap: 0.55rem;
   }
 
   .service-label {
@@ -3511,7 +3521,7 @@ textarea {
   }
 
   .home-footer {
-    padding-top: 1rem;
+    padding: 1.4rem 0 0.5rem;
   }
 
   .home-footer-intro {
