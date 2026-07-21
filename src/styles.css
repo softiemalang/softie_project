@@ -3425,6 +3425,10 @@ textarea {
   margin: 0;
 }
 
+.home-footer-mobile-break {
+  display: none;
+}
+
 .home-footer-mark {
   margin: 0;
   color: var(--ag-text-tertiary);
@@ -3525,9 +3529,14 @@ textarea {
   }
 
   .home-footer-intro {
+    gap: 0;
     margin-bottom: 0.85rem;
     font-size: 0.8rem;
     line-height: 1.58;
+  }
+
+  .home-footer-mobile-break {
+    display: block;
   }
 
   .home-memo-sheet {
