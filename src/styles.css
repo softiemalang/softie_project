@@ -3106,7 +3106,7 @@ textarea {
 }
 
 .home-auth-button {
-  min-height: 40px;
+  min-height: 44px;
   padding: 0.56rem 0.9rem;
   border-radius: var(--ag-radius-pill);
   font-size: 0.76rem;
@@ -3494,7 +3494,7 @@ textarea {
   }
 
   .home-auth-button {
-    min-height: 36px;
+    min-height: 44px;
     padding: 0.45rem 0.62rem;
     font-size: 0.7rem;
   }
