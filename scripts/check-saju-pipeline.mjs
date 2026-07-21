@@ -1,5 +1,6 @@
 import { generateNatalSnapshot, generateDailySnapshot } from '../src/saju/interpreter/preprocessor.js';
 import { derivePillars } from '../src/saju/engine/core.js';
+import { SAJU_ENGINE_VERSION } from '../src/saju/engine/fourPillars.js';
 
 console.log('--- Staging Pipeline Check ---');
 
@@ -36,7 +37,7 @@ assertEqual(`${natalSnapshot.hour_stem}${natalSnapshot.hour_branch}`, '기미', 
 assertEqual(natalSnapshot.day_master, '계', 'Natal Snapshot Day Master is correctly extracted');
 assertEqual(Array.isArray(natalSnapshot.natal_data.strongElements), true, 'Natal data includes strongElements');
 assertEqual(Array.isArray(natalSnapshot.natal_data.weakElements), true, 'Natal data includes weakElements');
-assertEqual(natalSnapshot.natal_data.engine_version, '1.2', 'Natal data engine_version is 1.2');
+assertEqual(natalSnapshot.natal_data.engine_version, SAJU_ENGINE_VERSION, `Natal data engine_version is ${SAJU_ENGINE_VERSION}`);
 
 // 3. Verify generateDailySnapshot
 const targetDateStr = '2026-04-27'; // Random test date
@@ -44,7 +45,7 @@ const dailySnapshot = generateDailySnapshot(natalSnapshot, targetDateStr);
 const expectedDailyPillars = derivePillars(targetDateStr, '12:00');
 assertEqual(dailySnapshot.daily_stem, expectedDailyPillars.day.stem, 'Daily Snapshot Stem dynamically generated');
 assertEqual(dailySnapshot.daily_branch, expectedDailyPillars.day.branch, 'Daily Snapshot Branch dynamically generated');
-assertEqual(dailySnapshot.computed_data.engine_version, '1.2', 'Daily Snapshot engine_version is 1.2');
+assertEqual(dailySnapshot.computed_data.engine_version, SAJU_ENGINE_VERSION, `Daily Snapshot engine_version is ${SAJU_ENGINE_VERSION}`);
 console.log(`  [INFO] The daily pillar used for ${targetDateStr} is ${dailySnapshot.daily_stem}${dailySnapshot.daily_branch}. Dummy '무진' is no longer hardcoded.`);
 
 // 4. Verify love section in computed_data

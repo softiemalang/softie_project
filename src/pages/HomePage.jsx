@@ -42,6 +42,12 @@ export default function HomePage() {
       label: 'SOFTIE FORTUNE',
     },
     {
+      description: '세 가지 명리 체계의 계산 근거와 불확실성을 해석 전에 구조화해요.',
+      path: '/interpretation-prep',
+      icon: 'IP',
+      label: 'INTERPRETATION PREP',
+    },
+    {
       description: '떠오른 생각을 잊기 전에 카카오톡 나에게 보내기로 빠르게 남겨요.',
       action: 'memo',
       icon: '📝',

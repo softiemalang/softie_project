@@ -2,9 +2,8 @@ import { ELEMENTS, RELATIONSHIPS, YIN_YANG, STEMS, BRANCHES, HIDDEN_STEMS, SEASO
 import { calculateFourPillars } from './fourPillars.js'
 
 /**
- * 날짜와 시간을 기반으로 사주 8자(사주팔자) 기둥을 도출합니다.
- * 실무적으로는 정교한 만세력 알고리즘(절기 기준 등)이 필요하지만, 
- * MVP 구조를 위해 기둥을 생성하는 인터페이스를 정의합니다.
+ * 명시된 KST 절기·태양시·자시 규칙으로 사주 8자 기둥을 도출합니다.
+ * 계산 정밀도와 학파 차이는 calculateFourPillars의 메타데이터와 옵션에 남깁니다.
  */
 export function derivePillars(birthDate, birthTime) {
   return calculateFourPillars({ birthDate, birthTime, timezone: 'Asia/Seoul' })

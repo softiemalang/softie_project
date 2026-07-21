@@ -1,11 +1,11 @@
 import { calculateFourPillars, DEFAULT_SAJU_OPTIONS } from '../src/saju/engine/fourPillars.js';
 
-// 카테고리 1: 완벽히 증명된 기준 케이스 (Known Fixtures)
-// 1997-04-21 및 기준점(1970-01-01)과 같이 다른 모든 계산의 기초가 되는 앵커 데이터입니다.
+// 카테고리 1: 고정 회귀 케이스 (Known Fixtures)
+// 사용자 확인값과 기존 기준점을 보존하며, 외부 천문 자료 대조는 node --test에서 별도로 수행합니다.
 const KNOWN_FIXTURES = [
-  { date: '1997-04-21', time: '14:40', expected: '정축 갑진 계사 기미', desc: 'Baseline (Prompt Truth)' },
+  { date: '1997-04-21', time: '14:40', expected: '정축 갑진 계사 기미', desc: 'User-confirmed regression fixture' },
   { date: '1970-01-01', time: '12:00', expected: '기유 병자 신사 갑오', desc: 'Epoch Baseline 1970-01-01' },
-  { date: '2024-02-10', time: '12:00', expected: '갑진 병인 갑진 경오', desc: '2024 Jiachen New Year' },
+  { date: '2024-02-10', time: '12:00', expected: '갑진 병인 갑진 경오', desc: '2024 after-Ipchun fixture' },
   { date: '2000-01-01', time: '12:00', expected: '기묘 병자 무오 무오', desc: 'Millennium start' }
 ];
 
@@ -75,7 +75,8 @@ if (knownRes.failed === 0 && internalRes.failed === 0) {
   console.log('\nConclusion:');
   console.log('✅ Known fixtures passed');
   console.log('✅ Internal consistency passed');
-  console.log('⚠️ External reference verification required for edge minute solar term boundaries.');
+  console.log('✅ External HKO solar-term boundary regressions are included in npm test.');
+  console.log('⚠️ Inputs inside the declared ±20 minute boundary window must retain candidates.');
   console.log('🟢 Safe for staging / pre-production testing.');
 } else {
   console.log('\nConclusion:');

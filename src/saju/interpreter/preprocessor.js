@@ -1,4 +1,5 @@
 import { derivePillars, analyzeNatalStructure, analyzeDailyInteraction, analyzePeriodPillar, buildDayType, buildSectionPriority, buildLongerCycleContext, buildDailyBalance } from '../engine/core.js'
+import { SAJU_ENGINE_VERSION } from '../engine/fourPillars.js'
 import { buildInterpretationProfile } from './interpretationRules.js'
 
 function addDaysToDateString(dateString, offset) {
@@ -25,7 +26,7 @@ export function generateNatalSnapshot(profile) {
     hour_stem: pillars.hour.stem,
     hour_branch: pillars.hour.branch,
     day_master: analysis.dayMaster,
-    natal_data: { ...analysis, gender: profile.gender, engine_version: '2.2' }
+    natal_data: { ...analysis, gender: profile.gender, engine_version: SAJU_ENGINE_VERSION }
   }
 }
 
@@ -252,7 +253,7 @@ export function generateDailySnapshot(natalSnapshot, targetDate) {
       longerCycleContext,
       dailyBalance,
       summary_hint: `${natalAnalysis.dayMaster}일간에게 올해/이번 달/오늘의 흐름이 겹쳐 들어오는 날`,
-      engine_version: '2.2'
+      engine_version: SAJU_ENGINE_VERSION
     }
   }
 }

@@ -14,6 +14,7 @@ const RehearsalCalendarPage = lazy(() => import('./pages/RehearsalCalendarPage')
 const SpotifyMusicPage = lazy(() => import('./pages/SpotifyMusicPage'))
 const KakaoCallbackPage = lazy(() => import('./pages/KakaoCallbackPage'))
 const LeadSheetPage = lazy(() => import('./pages/LeadSheetPage'))
+const InterpretationPrepPage = lazy(() => import('./interpretationPrep/InterpretationPrepPage'))
 
 const DEFAULT_APP_NAME = 'Softie Project'
 
@@ -102,6 +103,14 @@ function getRouteMetadata(pathname) {
       title: 'Lead Sheet | Softie Project',
       appTitle: 'Lead Sheet',
       ogTitle: 'Lead Sheet | Softie Project',
+    }
+  }
+
+  if (pathname.startsWith('/interpretation-prep')) {
+    return {
+      title: 'Interpretation Prep | Softie Project',
+      appTitle: 'Interpretation Prep',
+      ogTitle: 'Interpretation Prep | Softie Project',
     }
   }
 
@@ -233,6 +242,10 @@ export default function App() {
 
   if (pathname.startsWith('/lead-sheet')) {
     return <LazyRoute><LeadSheetPage /></LazyRoute>
+  }
+
+  if (pathname.startsWith('/interpretation-prep')) {
+    return <LazyRoute><InterpretationPrepPage /></LazyRoute>
   }
 
   return <NotFoundPage />

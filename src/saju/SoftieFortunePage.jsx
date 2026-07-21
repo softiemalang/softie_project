@@ -10,6 +10,7 @@ import {
   getFortuneReportById
 } from './api'
 import { generateNatalSnapshot, generateDailySnapshot } from './interpreter/preprocessor'
+import { SAJU_ENGINE_VERSION } from './engine/fourPillars'
 import { getOrGenerateReport } from './interpreter/reportGenerator'
 import { getKstDateString } from './utils'
 import { appendGoogleSheetsLog } from '../lib/googleApi'
@@ -54,7 +55,7 @@ function formatReportDateForDisplay(value) {
 
 function isValidDailySnapshot(snapshot) {
   const computed = snapshot?.computed_data
-  return computed?.engine_version === '2.2' &&
+  return computed?.engine_version === SAJU_ENGINE_VERSION &&
     computed?.love &&
     computed?.periodContext?.year &&
     computed?.periodContext?.month &&
@@ -229,7 +230,7 @@ export default function SoftieFortunePage() {
       if (!snapshot) {
         setStatus(force ? '오늘의 기운을 다시 작성하는 중입니다...' : '오늘의 기운을 분석 중입니다...')
         let natal = await getNatalSnapshot(targetProfile.id)
-        if (natal && natal.natal_data?.engine_version !== '2.2') {
+        if (natal && natal.natal_data?.engine_version !== SAJU_ENGINE_VERSION) {
           natal = null
         }
 
