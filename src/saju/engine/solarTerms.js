@@ -14,6 +14,14 @@ function signedAngularDistance(value, target) {
   return ((value - target + 540) % 360) - 180
 }
 
+function utcMsToJulianDay(utcMs) {
+  return (utcMs / 86400000) + 2440587.5
+}
+
+function formatKstDateTime(utcMs) {
+  return new Date(utcMs + 9 * 60 * 60 * 1000).toISOString().slice(0, 16)
+}
+
 /**
  * Apparent geocentric solar longitude.
  *
@@ -87,5 +95,39 @@ export function getBaziYearAndMonth(year, month, day, hour, min) {
     boundaryDistanceMinutes,
     boundaryUncertaintyMinutes: SOLAR_TERM_UNCERTAINTY_MINUTES,
     isNearSolarTermBoundary: Math.abs(boundaryDistanceMinutes) <= SOLAR_TERM_UNCERTAINTY_MINUTES,
+  }
+}
+
+export function getAdjacentBaziMonthBoundary(year, month, day, hour, min, direction) {
+  if (!['forward', 'backward'].includes(direction)) {
+    throw new Error('direction must be forward or backward.')
+  }
+
+  const birthUtcMs = Date.UTC(year, month - 1, day, hour - 9, min)
+  const birthLongitude = getSolarLongitude(utcMsToJulianDay(birthUtcMs))
+  const distances = SAJU_MONTH_BOUNDARIES.map((longitude) => ({
+    longitude,
+    distanceDegrees: direction === 'forward'
+      ? normalizeDegrees(longitude - birthLongitude)
+      : normalizeDegrees(birthLongitude - longitude),
+  }))
+  const nearest = distances.reduce((best, candidate) =>
+    candidate.distanceDegrees < best.distanceDegrees ? candidate : best)
+  const sign = direction === 'forward' ? 1 : -1
+  let boundaryUtcMs = birthUtcMs + sign * nearest.distanceDegrees * MINUTES_PER_SOLAR_DEGREE * 60000
+
+  for (let iteration = 0; iteration < 8; iteration += 1) {
+    const longitude = getSolarLongitude(utcMsToJulianDay(boundaryUtcMs))
+    const errorDegrees = signedAngularDistance(longitude, nearest.longitude)
+    boundaryUtcMs -= errorDegrees * MINUTES_PER_SOLAR_DEGREE * 60000
+  }
+
+  return {
+    direction,
+    longitude: nearest.longitude,
+    utcIso: new Date(boundaryUtcMs).toISOString(),
+    kstDateTime: formatKstDateTime(boundaryUtcMs),
+    distanceMinutes: Math.abs(boundaryUtcMs - birthUtcMs) / 60000,
+    method: SOLAR_LONGITUDE_METHOD,
   }
 }

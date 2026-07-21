@@ -5,7 +5,9 @@ import {
   SAJU_ENGINE_VERSION,
 } from '../saju/engine/fourPillars.js'
 import { ELEMENTS, YIN_YANG } from '../saju/engine/constants.js'
-import { SAJU_ADAPTER_VERSION } from './schema.js'
+import { getKoreaReferenceCity, KOREA_REFERENCE_CITIES, SAJU_ADAPTER_VERSION } from './schema.js'
+import { calculateNatalBranchRelations } from './sajuRelationRules.js'
+import { calculateSajuTiming } from './sajuTimingRules.js'
 
 const PILLAR_LABELS = {
   year: '연주',
@@ -14,18 +16,55 @@ const PILLAR_LABELS = {
   hour: '시주',
 }
 
-const UNSUPPORTED_SAJU_ITEMS = [
-  '대운 순행·역행 및 시작 나이',
-  '세운·월운·일진과 원국의 전체 작용',
-  '12운성 및 신살',
-  '합·충·형·파·해의 완전 판정',
-  '사용자 좌표 기반 진태양시 보정',
-]
+const SEOUL_STABLE_KST_START = '1961-08-10'
+// IANA Asia/Seoul rules: clocks jumped at 02:00 in May and repeated 02:00 in October.
+// https://lists.iana.org/hyperkitty/list/tz@iana.org/thread/Y6YDR3PU5PF3YXD6FMWIRYNW22VGSON6/
+const SEOUL_DST_PERIODS = {
+  1987: { startDate: '1987-05-10', endDate: '1987-10-11' },
+  1988: { startDate: '1988-05-08', endDate: '1988-10-09' },
+}
+
+const SAJU_SUPPORT_SCOPE = {
+  summary: '원국의 핵심 계산은 고정된 규칙 버전으로 재현하고, 판본 선택·추가 입력·고정밀 알고리즘이 필요한 항목은 분리합니다.',
+  supported: [
+    { item: '사주 네 기둥', basis: '입춘·절기월·진태양시 자정의 야자·조자 분리를 고정한 연·월·일·시주' },
+    { item: '원국 기초 구조', basis: '일간·오행 분포·십성·지장간·계절 가중치' },
+    { item: '원국 지지 기본 관계', basis: '육합·충·형·파·해의 쌍 조회와 완성된 삼합 조회' },
+    { item: '국내 주요 도시 진태양시', basis: '선택 도시 경도 보정과 NOAA 날짜별 균시차를 합산하고 전체 도시 후보 비교' },
+    { item: '대운', basis: '연간 음양·성별 순역과 절입 간격 3일당 1년 기산, 경계 후보·원국 관계를 포함한 10개 주기' },
+    { item: '세운·월운·일진', basis: '선택 기준일의 절기 간지·본기 십성·원국 및 기간 간 지지 관계 조회' },
+    { item: '12운성', basis: '일간 기준 양간 순행·음간 역행 고정표' },
+  ],
+  limitations: [
+    {
+      item: '신살',
+      reason: '신살은 목록과 적용 기둥이 판본별로 크게 달라, 표준 프로필에서 지원할 최소 목록을 별도로 검증해야 합니다.',
+      requirement: 'rule_profile',
+    },
+    {
+      item: '합화·관계 강약·길흉',
+      reason: '관계의 존재 여부는 계산하지만, 월령·투간·방합·해소 조건을 종합한 성립 및 우선순위 규칙은 확정하지 않았습니다.',
+      requirement: 'rule_profile',
+    },
+  ],
+}
+
+const UNSUPPORTED_SAJU_ITEMS = SAJU_SUPPORT_SCOPE.limitations.map(({ item, reason }) => `${item}: ${reason}`)
 
 function confidenceFromAccuracy(timeAccuracy) {
   if (timeAccuracy === 'exact') return 'high'
   if (timeAccuracy === 'approximate') return 'medium'
   return 'low'
+}
+
+function roundMinutes(value) {
+  return Math.round(value * 100) / 100
+}
+
+function subjectParticle(word) {
+  const lastCode = word.charCodeAt(word.length - 1) - 0xAC00
+  const hasFinalConsonant = lastCode >= 0 && lastCode <= 0xD7A3 - 0xAC00 && lastCode % 28 !== 0
+  return hasFinalConsonant ? '이' : '가'
 }
 
 function feature({ id, category, title, statement, evidence, strength, confidence, interpretationRange, tags }) {
@@ -46,8 +85,14 @@ function feature({ id, category, title, statement, evidence, strength, confidenc
 
 function buildFeatures(raw, timeAccuracy) {
   const hasSolarTermUncertainty = Boolean(raw.calculationUncertainty?.solarTermBoundary)
-  const confidence = hasSolarTermUncertainty ? 'medium' : confidenceFromAccuracy(timeAccuracy)
-  const structuralConfidence = hasSolarTermUncertainty ? 'medium' : 'high'
+  const hasHistoricalTimezoneUncertainty = raw.calculationUncertainty?.historicalTimezone?.requiresVerification
+  const hasDomesticLocationUncertainty = raw.calculationUncertainty?.domesticLocation?.requiresVerification
+  const confidence = hasHistoricalTimezoneUncertainty || hasDomesticLocationUncertainty
+    ? 'low'
+    : hasSolarTermUncertainty ? 'medium' : confidenceFromAccuracy(timeAccuracy)
+  const structuralConfidence = hasHistoricalTimezoneUncertainty || hasDomesticLocationUncertainty
+    ? 'low'
+    : hasSolarTermUncertainty ? 'medium' : 'high'
   const features = []
   if (timeAccuracy === 'unknown') {
     const dayCandidates = raw.pillars.day.candidates || []
@@ -123,12 +168,76 @@ function buildFeatures(raw, timeAccuracy) {
       id: `saju.natal.ten-god-repeat.${tenGod}`,
       category: tenGod.includes('재') ? 'money' : tenGod.includes('관') ? 'career' : tenGod.includes('식') || tenGod.includes('상') ? 'social' : 'identity',
       title: `${tenGod} 반복`,
-      statement: `표면 십성 배치에서 ${tenGod}이 ${count}회 반복된다.`,
+      statement: `표면 십성 배치에서 ${tenGod}${subjectParticle(tenGod)} ${count}회 반복된다.`,
       evidence: [{ type: 'ten_god_count', reference: `systems.saju.raw.tenGods.visible.${tenGod}`, value: count }],
       strength: Math.min(1, count / 4),
       confidence: structuralConfidence,
       interpretationRange: ['반복되는 십성 구조로 후속 해석 가능', '지장간 십성과 계절 강도를 별도로 확인'],
       tags: ['relationship', 'career', 'money', 'social'],
+    }))
+  })
+
+  raw.branchRelations.items.forEach((relation, index) => {
+    const branchText = relation.branches.join('·')
+    const positionText = relation.positionLabels.join('·')
+    features.push(feature({
+      id: `saju.natal.branch-relation.${relation.id}`,
+      category: 'structure',
+      title: `${branchText} ${relation.relation}`,
+      statement: `현재 기준 원국의 ${positionText}에서 ${relation.relation} 관계가 고정 규칙표로 조회된다. 성립 강도나 길흉은 판정하지 않는다.`,
+      evidence: [{
+        type: 'branch_relation',
+        reference: `systems.saju.raw.branchRelations.items.${index}`,
+        value: relation,
+      }],
+      strength: 1,
+      confidence: structuralConfidence,
+      interpretationRange: ['관계 존재 여부만 근거로 사용', '합화·강약·길흉은 별도 규칙 확정 전에 단정하지 않음'],
+      tags: ['identity', 'relationship', 'social'],
+    }))
+  })
+
+  const activeDaYun = raw.timing.daYun.status === 'calculated'
+    ? raw.timing.daYun.cycles.find((cycle) => cycle.isActive)
+    : null
+  if (activeDaYun) {
+    features.push(feature({
+      id: 'saju.timing.active-da-yun',
+      category: 'timing',
+      title: `현재 대운 ${activeDaYun.value}`,
+      statement: `${raw.timing.targetDate} 기준으로 ${activeDaYun.startDate}부터 시작한 ${activeDaYun.value} 대운 구간에 해당한다.`,
+      evidence: [{
+        type: 'da_yun_cycle',
+        reference: `systems.saju.raw.timing.daYun.cycles.${activeDaYun.index - 1}`,
+        value: activeDaYun,
+      }],
+      strength: 1,
+      confidence,
+      interpretationRange: ['현재 10년 주기의 배경으로 사용', '원국 및 세운·월운·일진과 함께 검토'],
+      tags: ['timing', 'career', 'money', 'relationship'],
+    }))
+  }
+
+  Object.entries(raw.timing.periods).forEach(([periodKey, period]) => {
+    const candidateSummary = period.candidates
+      .map((candidate) => `${candidate.value}/${candidate.dayMaster}일간/${candidate.stemTenGod}·${candidate.branchTenGod}/${candidate.twelveStage}`)
+      .join(' · ')
+    features.push(feature({
+      id: `saju.timing.${periodKey}`,
+      category: 'timing',
+      title: `${period.label} ${period.value}`,
+      statement: period.status === 'candidate_required'
+        ? `${raw.timing.targetDate} 기준 ${period.label}은 경계 또는 일간 후보에 따라 ${candidateSummary}로 나뉘며 하나로 확정하지 않는다.`
+        : `${raw.timing.targetDate} 기준 ${period.label}은 ${period.value}, 천간 십성은 ${period.stemTenGod}, 지지 본기(${period.branchMainStem}) 십성은 ${period.branchTenGod}, 12운성은 ${period.twelveStage}이다.`,
+      evidence: [{
+        type: 'period_pillar',
+        reference: `systems.saju.raw.timing.periods.${periodKey}`,
+        value: period.status === 'candidate_required' ? period.candidates : period,
+      }],
+      strength: 1,
+      confidence: period.status === 'candidate_required' ? 'low' : structuralConfidence,
+      interpretationRange: ['선택 기준일의 시기 간지로 사용', '길흉은 원국·대운·관계 근거를 함께 보고 해석'],
+      tags: ['timing'],
     }))
   })
 
@@ -145,6 +254,103 @@ function shiftLocalDateTime(dateString, timeString, minutes) {
   }
 }
 
+function formatPillarValue(pillar) {
+  return `${pillar.stem}${pillar.branch}`
+}
+
+function assessHistoricalSeoulTime(input, birthTimeUnknown, pillars, calculationOptions) {
+  if (input.birthDate < SEOUL_STABLE_KST_START) {
+    return {
+      status: 'historical_offset_unverified',
+      requiresVerification: true,
+      reason: '1961-08-10 이전 서울 표준시·서머타임 이력은 현재 계산에 직접 반영하지 않음',
+      alternativeInput: null,
+      alternativePillars: null,
+      changedPillars: [],
+    }
+  }
+
+  if (birthTimeUnknown) return null
+  const year = Number(input.birthDate.slice(0, 4))
+  const period = SEOUL_DST_PERIODS[year]
+  if (!period) return null
+
+  const localKey = `${input.birthDate} ${input.birthTime}`
+  const springGapStart = `${period.startDate} 02:00`
+  const springGapEnd = `${period.startDate} 03:00`
+  const autumnOverlapStart = `${period.endDate} 02:00`
+  const autumnOverlapEnd = `${period.endDate} 03:00`
+
+  if (localKey >= springGapStart && localKey < springGapEnd) {
+    return {
+      status: 'dst_nonexistent_local_time',
+      requiresVerification: true,
+      reason: '서머타임 시작으로 현지 시계에 존재하지 않았던 시각대',
+      alternativeInput: null,
+      alternativePillars: null,
+      changedPillars: ['hour'],
+    }
+  }
+
+  if (localKey >= autumnOverlapStart && localKey < autumnOverlapEnd) {
+    return {
+      status: 'dst_ambiguous_local_time',
+      requiresVerification: true,
+      reason: '서머타임 종료로 같은 현지 시각이 두 번 존재했던 시각대',
+      alternativeInput: null,
+      alternativePillars: null,
+      changedPillars: ['hour'],
+    }
+  }
+
+  const isDst = localKey >= `${period.startDate} 03:00` && localKey < `${period.endDate} 02:00`
+  if (!isDst) return null
+
+  const alternativeInput = shiftLocalDateTime(input.birthDate, input.birthTime, -60)
+  const alternativePillars = calculateFourPillars(alternativeInput, calculationOptions)
+  const changedPillars = Object.keys(PILLAR_LABELS).filter(
+    (key) => formatPillarValue(pillars[key]) !== formatPillarValue(alternativePillars[key]),
+  )
+
+  return {
+    status: changedPillars.length > 0 ? 'dst_changes_core_pillars' : 'dst_no_core_change',
+    requiresVerification: changedPillars.length > 0,
+    reason: changedPillars.length > 0
+      ? '서머타임 1시간 환산 전후로 핵심 사주 기둥이 달라짐'
+      : '서머타임 기간이지만 1시간 환산 전후 핵심 사주 기둥은 동일함',
+    alternativeInput,
+    alternativePillars,
+    changedPillars,
+  }
+}
+
+function assessDomesticLocationRange(input, birthTimeUnknown, pillars) {
+  if (birthTimeUnknown) return null
+
+  const candidates = KOREA_REFERENCE_CITIES.map((reference) => ({
+    ...reference,
+    pillars: calculateFourPillars(
+      { birthDate: input.birthDate, birthTime: input.birthTime },
+      { ...DEFAULT_SAJU_OPTIONS, longitudeDegrees: reference.longitude },
+    ),
+  }))
+  const changedPillars = Object.keys(PILLAR_LABELS).filter((key) =>
+    candidates.some((candidate) => formatPillarValue(candidate.pillars[key]) !== formatPillarValue(pillars[key])),
+  )
+
+  return {
+    status: changedPillars.length > 0
+      ? 'domestic_location_changes_core_pillars'
+      : 'domestic_location_no_core_change',
+    requiresVerification: changedPillars.length > 0,
+    reason: changedPillars.length > 0
+      ? '국내 주요 도시 진태양시 보정 후보에서 핵심 사주 기둥이 달라짐'
+      : '국내 주요 도시 진태양시 보정 후보에서 핵심 사주 기둥이 같음',
+    changedPillars,
+    candidates,
+  }
+}
+
 export function calculateSajuSystem(input, profile) {
   if (input.calendar !== 'solar') {
     throw new Error('현재 사주 어댑터는 양력 입력만 지원합니다.')
@@ -153,16 +359,29 @@ export function calculateSajuSystem(input, profile) {
     throw new Error('현재 사주 어댑터는 Asia/Seoul 시간대만 검증되었습니다.')
   }
 
+  const referenceCity = getKoreaReferenceCity(input.referenceCity)
+  const calculationOptions = {
+    ...DEFAULT_SAJU_OPTIONS,
+    longitudeDegrees: referenceCity.longitude,
+    solarTimeOffsetMinutes: referenceCity.correctionMinutes,
+  }
   const birthTimeUnknown = input.timeAccuracy === 'unknown'
   const referenceBirthTime = birthTimeUnknown ? '12:00' : input.birthTime
   const pillars = calculateFourPillars(
     { birthDate: input.birthDate, birthTime: referenceBirthTime },
-    DEFAULT_SAJU_OPTIONS,
+    calculationOptions,
   )
+  const historicalTimeAssessment = assessHistoricalSeoulTime(input, birthTimeUnknown, pillars, calculationOptions)
+  const domesticLocationAssessment = assessDomesticLocationRange(input, birthTimeUnknown, pillars)
+  const domesticCorrectionValues = (domesticLocationAssessment?.candidates || [])
+    .map((candidate) => candidate.pillars._meta.apparentSolarCorrectionMinutes)
+  const domesticCorrectionRange = domesticCorrectionValues.length > 0
+    ? [Math.min(...domesticCorrectionValues), Math.max(...domesticCorrectionValues)].map(roundMinutes)
+    : null
   const timeCandidatePillars = birthTimeUnknown
     ? ['00:00', '12:00', '23:59'].map((birthTime) => calculateFourPillars(
         { birthDate: input.birthDate, birthTime },
-        DEFAULT_SAJU_OPTIONS,
+        calculationOptions,
       ))
     : [pillars]
   const solarTermBoundarySensitive = !birthTimeUnknown && pillars._meta.isNearSolarTermBoundary
@@ -170,13 +389,61 @@ export function calculateSajuSystem(input, profile) {
   const solarTermCandidatePillars = solarTermBoundarySensitive
     ? [-solarTermCandidateProbeMinutes, solarTermCandidateProbeMinutes].map((minutes) => {
         const candidateInput = shiftLocalDateTime(input.birthDate, input.birthTime, minutes)
-        return calculateFourPillars(candidateInput, DEFAULT_SAJU_OPTIONS)
+        return calculateFourPillars(candidateInput, calculationOptions)
       })
     : [pillars]
   const analysisPillars = birthTimeUnknown
     ? { year: pillars.year, month: pillars.month, day: pillars.day, hour: {} }
     : pillars
   const analysis = analyzeNatalStructure(analysisPillars)
+  const branchRelations = calculateNatalBranchRelations(analysisPillars)
+  const natalCandidatePillars = [
+    ...(birthTimeUnknown ? timeCandidatePillars.map((candidate, index) => ({
+      label: `출생시각 미상 후보 ${index + 1}`,
+      pillars: candidate,
+    })) : []),
+    ...(solarTermBoundarySensitive ? solarTermCandidatePillars.map((candidate, index) => ({
+      label: `절입 경계 후보 ${index + 1}`,
+      pillars: candidate,
+    })) : []),
+    ...(historicalTimeAssessment?.alternativePillars ? [{
+      label: '역사 시간 환산 후보',
+      pillars: historicalTimeAssessment.alternativePillars,
+    }] : []),
+    ...(domesticLocationAssessment?.requiresVerification
+      ? domesticLocationAssessment.candidates.map((candidate) => ({
+          label: `${candidate.label} 지역 후보`,
+          pillars: candidate.pillars,
+        }))
+      : []),
+  ]
+  const daYunCandidateSources = [
+    ...(solarTermBoundarySensitive ? solarTermCandidatePillars.map((candidate, index) => ({
+      label: `절입 경계 후보 ${index + 1}`,
+      input,
+      pillars: candidate,
+    })) : []),
+    ...(historicalTimeAssessment?.alternativePillars && historicalTimeAssessment.alternativeInput ? [{
+      label: '서머타임 표준시 환산 후보',
+      input: { ...input, ...historicalTimeAssessment.alternativeInput },
+      pillars: historicalTimeAssessment.alternativePillars,
+    }] : []),
+    ...(domesticLocationAssessment?.requiresVerification
+      ? domesticLocationAssessment.candidates.map((candidate) => ({
+          label: `${candidate.label} 지역 후보`,
+          input,
+          pillars: candidate.pillars,
+        }))
+      : []),
+  ]
+  const timing = calculateSajuTiming({
+    input,
+    pillars,
+    natalAnalysis: analysis,
+    calculationOptions,
+    natalCandidatePillars,
+    daYunCandidateSources,
+  })
   const rawPillars = Object.fromEntries(
     Object.entries(PILLAR_LABELS).map(([key, label]) => {
       if (birthTimeUnknown && key === 'hour') {
@@ -186,7 +453,16 @@ export function calculateSajuSystem(input, profile) {
       const candidateSource = solarTermBoundarySensitive && ['year', 'month'].includes(key)
         ? [pillars, ...solarTermCandidatePillars]
         : timeCandidatePillars
-      const candidates = [...new Set(candidateSource.map((candidate) => `${candidate[key].stem}${candidate[key].branch}`))]
+      const historicalCandidateSource = historicalTimeAssessment?.requiresVerification
+        && historicalTimeAssessment.alternativePillars
+        && historicalTimeAssessment.changedPillars.includes(key)
+        ? [...candidateSource, historicalTimeAssessment.alternativePillars]
+        : candidateSource
+      const domesticCandidateSource = domesticLocationAssessment?.requiresVerification
+        && domesticLocationAssessment.changedPillars.includes(key)
+        ? [...historicalCandidateSource, ...domesticLocationAssessment.candidates.map((candidate) => candidate.pillars)]
+        : historicalCandidateSource
+      const candidates = [...new Set(domesticCandidateSource.map((candidate) => `${candidate[key].stem}${candidate[key].branch}`))]
       return [key, {
         label,
         stem: pillars[key].stem,
@@ -195,14 +471,22 @@ export function calculateSajuSystem(input, profile) {
         referenceValue: `${pillars[key].stem}${pillars[key].branch}`,
         candidates,
         status: candidates.length > 1
-          ? (solarTermBoundarySensitive && ['year', 'month'].includes(key) ? 'solar_term_sensitive' : 'time_sensitive')
+          ? (historicalTimeAssessment?.changedPillars.includes(key)
+              ? 'historical_time_sensitive'
+              : domesticLocationAssessment?.changedPillars.includes(key)
+                ? 'domestic_location_sensitive'
+              : solarTermBoundarySensitive && ['year', 'month'].includes(key) ? 'solar_term_sensitive' : 'time_sensitive')
           : 'calculated',
         stemElement: ELEMENTS[pillars[key].stem],
         branchElement: ELEMENTS[pillars[key].branch],
       }]
     }),
   )
-  const dayMasterCandidates = [...new Set(timeCandidatePillars.map((candidate) => candidate.day.stem))]
+  const dayMasterCandidates = [...new Set([
+    ...timeCandidatePillars.map((candidate) => candidate.day.stem),
+    ...(historicalTimeAssessment?.alternativePillars ? [historicalTimeAssessment.alternativePillars.day.stem] : []),
+    ...(domesticLocationAssessment?.candidates || []).map((candidate) => candidate.pillars.day.stem),
+  ])]
   const solarTermCandidates = solarTermBoundarySensitive
     ? {
         year: [...new Set([pillars, ...solarTermCandidatePillars].map((candidate) => `${candidate.year.stem}${candidate.year.branch}`))],
@@ -213,6 +497,21 @@ export function calculateSajuSystem(input, profile) {
   const raw = {
     birthTimeUnknown,
     calculationBasis: birthTimeUnknown ? '정오 기준 연·월·일 분석, 시주 제외, 하루 경계 후보 별도 저장' : '입력 시각 기준',
+    timeBoundary: {
+      rule: pillars._meta.dayBoundaryRule,
+      solarTimeMethod: pillars._meta.solarTimeMethod,
+      meanSolarCorrectionMinutes: birthTimeUnknown ? null : roundMinutes(pillars._meta.meanSolarCorrectionMinutes),
+      equationOfTimeMinutes: birthTimeUnknown ? null : roundMinutes(pillars._meta.equationOfTimeMinutes),
+      apparentSolarCorrectionMinutes: birthTimeUnknown ? null : roundMinutes(pillars._meta.apparentSolarCorrectionMinutes),
+      correctedSolarDateTime: birthTimeUnknown ? null : pillars._meta.correctedSolarDateTime,
+      solarDayShift: birthTimeUnknown ? null : pillars._meta.solarDayShift,
+      ziPeriod: birthTimeUnknown ? null : pillars._meta.ziPeriod,
+      ziPeriodLabel: birthTimeUnknown
+        ? null
+        : pillars._meta.ziPeriod === 'night_zi' ? '야자'
+          : pillars._meta.ziPeriod === 'early_zi' ? '조자'
+            : '자시 아님',
+    },
     calculationUncertainty: {
       solarTermBoundary: solarTermBoundarySensitive ? {
         status: 'candidate_required',
@@ -220,6 +519,31 @@ export function calculateSajuSystem(input, profile) {
         estimatedDistanceMinutes: Math.round(pillars._meta.boundaryDistanceMinutes * 10) / 10,
         uncertaintyWindowMinutes: pillars._meta.boundaryUncertaintyMinutes,
         candidates: solarTermCandidates,
+      } : null,
+      historicalTimezone: historicalTimeAssessment ? {
+        status: historicalTimeAssessment.status,
+        requiresVerification: historicalTimeAssessment.requiresVerification,
+        reason: historicalTimeAssessment.reason,
+        changedPillars: historicalTimeAssessment.changedPillars.map((key) => PILLAR_LABELS[key]),
+        standardTimeCandidate: historicalTimeAssessment.alternativeInput
+          ? `${historicalTimeAssessment.alternativeInput.birthDate} ${historicalTimeAssessment.alternativeInput.birthTime}`
+          : null,
+      } : null,
+      domesticLocation: domesticLocationAssessment ? {
+        status: domesticLocationAssessment.status,
+        requiresVerification: domesticLocationAssessment.requiresVerification,
+        reason: domesticLocationAssessment.reason,
+        changedPillars: domesticLocationAssessment.changedPillars.map((key) => PILLAR_LABELS[key]),
+        referenceCandidates: domesticLocationAssessment.candidates.map((candidate) => ({
+          id: candidate.id,
+          label: candidate.label,
+          latitude: candidate.latitude,
+          longitude: candidate.longitude,
+          meanSolarCorrectionMinutes: roundMinutes(candidate.pillars._meta.meanSolarCorrectionMinutes),
+          equationOfTimeMinutes: roundMinutes(candidate.pillars._meta.equationOfTimeMinutes),
+          correctionMinutes: roundMinutes(candidate.pillars._meta.apparentSolarCorrectionMinutes),
+          pillars: Object.fromEntries(Object.keys(PILLAR_LABELS).map((key) => [key, formatPillarValue(candidate.pillars[key])])),
+        })),
       } : null,
     },
     pillars: rawPillars,
@@ -248,19 +572,23 @@ export function calculateSajuSystem(input, profile) {
       adjustedLevel: analysis.adjustedDayMasterStrengthLevel,
       flags: analysis.refinedImbalanceFlags,
     },
+    branchRelations,
+    timing,
     calculationTrace: [
       `연주·월주: ${pillars._meta.solarLongitudeMethod} 태양 황경으로 입춘 및 절기 월 경계를 판정`,
       '일주: 1970-01-01 신사일 기준 60갑자 일수 차 계산',
       birthTimeUnknown
         ? '시주: 출생시각 미상으로 계산 제외, 00:00·12:00·23:59 후보를 비교해 시간 민감도 기록'
-        : '시주: 서울 기준 30분 보정 및 23:30 자시 경계 적용',
+        : `시주·일주: ${referenceCity.label} 경도 보정과 NOAA 균시차를 합산한 진태양시로 국내 주요 도시 후보 비교, 진태양시 자정 전 야자·자정 후 조자 분리`,
       '오행·십성: 천간·지지와 지장간 규칙표를 이용해 별도 집계',
+      `지지 관계: ${branchRelations.ruleVersion} 쌍·완성 그룹 조회로 존재 여부만 계산`,
+      `운 흐름: ${timing.ruleVersion} 대운 순역·기산점과 ${timing.targetDate} 세운·월운·일진·12운성 계산`,
     ],
   }
 
   const warnings = [
     '절기 계산은 의존성 없는 NOAA·Meeus 근사식을 사용합니다. 홍콩천문대 2013~2016 공개 절입 시각 48건 대조에서 최대 오차가 15분 이내였으며, 현재 엔진은 ±20분을 경계 불확실성 구간으로 취급합니다.',
-    '입력 좌표는 기록되지만 현재 엔진의 진태양시 보정에는 사용되지 않습니다.',
+    `기준 도시 ${referenceCity.label} 경도 보정에 NOAA 날짜별 균시차를 합산한 진태양시를 적용하고 국내 주요 도시 후보를 비교합니다.`,
   ]
   if (solarTermBoundarySensitive) {
     warnings.push('입력 시각이 절기 경계 불확실성 구간에 있어 연주·월주 후보를 함께 저장했습니다. 외부 고정밀 천문력 대조 전에는 하나로 확정하지 마세요.')
@@ -268,30 +596,64 @@ export function calculateSajuSystem(input, profile) {
   if (birthTimeUnknown) {
     warnings.push('출생시각 미상으로 시주를 제외했으며, 일주와 일간은 자시 경계에 따라 복수 후보로 저장했습니다.')
   }
+  if (timing.daYun.status === 'missing_gender') {
+    warnings.push('성별이 선택되지 않아 대운 순역과 시작 나이를 계산하지 않았습니다.')
+  } else if (timing.daYun.status === 'missing_birth_time') {
+    warnings.push('출생시각이 없어 대운 기산점과 시작 나이를 계산하지 않았습니다.')
+  }
+  if (timing.daYun.status === 'candidate_required') {
+    warnings.push(`대운 후보 확인 필요: ${timing.daYun.uncertaintyReason}`)
+  } else if (timing.daYun.startDateRange) {
+    warnings.push(`대운 기산일 후보는 ${timing.daYun.startDateRange.join('~')}이며 기준일의 현재 대운은 같습니다.`)
+  }
+  if (timing.targetDateBoundary.status === 'candidate_required') {
+    warnings.push(`운 흐름 기준일 확인 필요: ${timing.targetDateBoundary.reason}. 세운·월운 후보를 함께 저장했습니다.`)
+  }
+  if (domesticLocationAssessment?.requiresVerification) {
+    warnings.push(`국내 지역 보정 확인 필요: ${domesticLocationAssessment.reason}. 가장 가까운 기준 도시를 선택하세요.`)
+  }
+  if (historicalTimeAssessment?.status === 'historical_offset_unverified') {
+    warnings.push('1961-08-10 이전 출생은 당시 서울 표준시와 서머타임 이력을 현재 엔진이 직접 반영하지 않으므로 검증 필요 상태로 표시합니다.')
+  } else if (historicalTimeAssessment?.requiresVerification) {
+    warnings.push(`1987·1988년 서머타임 확인 필요: ${historicalTimeAssessment.reason}. 입력 기록과 표준시 환산 기준을 확인하세요.`)
+  } else if (historicalTimeAssessment?.status === 'dst_no_core_change') {
+    warnings.push('1987·1988년 서머타임 기간이지만 1시간 표준시 환산 전후 연주·월주·일주·시주가 같아 검증 필요 상태로 올리지 않았습니다.')
+  }
 
   return {
     system: 'saju',
-    status: 'partial',
+    status: historicalTimeAssessment?.requiresVerification || domesticLocationAssessment?.requiresVerification || timing.requiresVerification
+      ? 'needs_verification'
+      : 'partial',
     engine: {
       adapter: SAJU_ADAPTER_VERSION,
       sourceEngine: `softie saju core ${SAJU_ENGINE_VERSION}`,
-      options: { ...DEFAULT_SAJU_OPTIONS },
+      options: calculationOptions,
       profile,
     },
     inputNormalization: {
       original: `${input.birthDate} ${birthTimeUnknown ? '출생시각 모름' : input.birthTime} ${input.timezone}`,
+      referenceCity: `${referenceCity.label} (${referenceCity.latitude.toFixed(2)}°N, ${referenceCity.longitude.toFixed(2)}°E)`,
       correctedSolarTime: birthTimeUnknown
         ? null
-        : Object.values(shiftLocalDateTime(
-            input.birthDate,
-            input.birthTime,
-            -DEFAULT_SAJU_OPTIONS.solarTimeOffsetMinutes,
-          )).join(' '),
-      correctionMinutes: birthTimeUnknown ? null : -DEFAULT_SAJU_OPTIONS.solarTimeOffsetMinutes,
+        : pillars._meta.correctedSolarDateTime,
+      meanSolarCorrectionMinutes: birthTimeUnknown ? null : roundMinutes(pillars._meta.meanSolarCorrectionMinutes),
+      equationOfTimeMinutes: birthTimeUnknown ? null : roundMinutes(pillars._meta.equationOfTimeMinutes),
+      correctionMinutes: birthTimeUnknown ? null : roundMinutes(pillars._meta.apparentSolarCorrectionMinutes),
+      domesticCorrectionRangeMinutes: birthTimeUnknown
+        ? null
+        : domesticCorrectionRange,
+      ziPeriodLabel: birthTimeUnknown
+        ? null
+        : pillars._meta.ziPeriod === 'night_zi' ? '야자'
+          : pillars._meta.ziPeriod === 'early_zi' ? '조자'
+            : '자시 아님',
+      dayBoundaryDate: birthTimeUnknown ? null : pillars._meta.correctedSolarDateTime.slice(0, 10),
     },
     raw,
     features: buildFeatures(raw, input.timeAccuracy),
     warnings,
     unsupported: UNSUPPORTED_SAJU_ITEMS,
+    supportScope: SAJU_SUPPORT_SCOPE,
   }
 }

@@ -1,14 +1,19 @@
 import { getBaziYearAndMonth } from './solarTerms.js'
 import { STEMS, BRANCHES } from './constants.js'
+import { calculateEquationOfTimeMinutes, SOLAR_TIME_METHOD } from './solarTime.js'
 
-export const SAJU_ENGINE_VERSION = '2.3'
+export const SAJU_ENGINE_VERSION = '2.5'
 
 export const DEFAULT_SAJU_OPTIONS = {
   timezone: 'Asia/Seoul',
   useSolarTimeCorrection: true,
+  useEquationOfTimeCorrection: true,
+  longitudeDegrees: null,
+  standardMeridianDegrees: 135,
   solarTimeOffsetMinutes: 30,
-  ziHourStart: '23:30',
-  rollDayAtZiHour: true,
+  dayBoundaryRule: 'solar-midnight-split-zi',
+  ziHourStart: '23:00',
+  rollDayAtZiHour: false,
 }
 
 function parseClockMinutes(value, optionName) {
@@ -29,6 +34,12 @@ export function calculateFourPillars(params, options = DEFAULT_SAJU_OPTIONS) {
   }
   if (!Number.isFinite(opts.solarTimeOffsetMinutes)) {
     throw new Error('solarTimeOffsetMinutes must be a finite number.')
+  }
+  if (opts.longitudeDegrees != null && (!Number.isFinite(opts.longitudeDegrees) || Math.abs(opts.longitudeDegrees) > 180)) {
+    throw new Error('longitudeDegrees must be between -180 and 180.')
+  }
+  if (!Number.isFinite(opts.standardMeridianDegrees) || Math.abs(opts.standardMeridianDegrees) > 180) {
+    throw new Error('standardMeridianDegrees must be between -180 and 180.')
   }
   const [yearStr, monthStr, dayStr] = birthDate.split('-')
   const [hourStr, minStr] = birthTime ? birthTime.split(':') : ['12', '00']
@@ -62,8 +73,37 @@ export function calculateFourPillars(params, options = DEFAULT_SAJU_OPTIONS) {
 
   const totalMins = hour * 60 + min
   const ziStartMins = parseClockMinutes(opts.ziHourStart, 'ziHourStart')
+  if (!['solar-midnight-split-zi', 'zi-start'].includes(opts.dayBoundaryRule)) {
+    throw new Error('dayBoundaryRule must be solar-midnight-split-zi or zi-start.')
+  }
+
+  const longitudeOffsetMinutes = opts.longitudeDegrees == null
+    ? opts.solarTimeOffsetMinutes
+    : (opts.standardMeridianDegrees - opts.longitudeDegrees) * 4
+  const meanSolarCorrectionMinutes = opts.useSolarTimeCorrection ? -longitudeOffsetMinutes : 0
+  const equationOfTimeMinutes = opts.useSolarTimeCorrection && opts.useEquationOfTimeCorrection
+    ? calculateEquationOfTimeMinutes({ year, month, day, hour, minute: min })
+    : 0
+  const apparentSolarCorrectionMinutes = meanSolarCorrectionMinutes + equationOfTimeMinutes
+  const correctedSolarDate = new Date(
+    Date.UTC(year, month - 1, day, hour, min) + apparentSolarCorrectionMinutes * 60000,
+  )
+  const correctedYear = correctedSolarDate.getUTCFullYear()
+  const correctedMonth = correctedSolarDate.getUTCMonth() + 1
+  const correctedDay = correctedSolarDate.getUTCDate()
+  const correctedHour = correctedSolarDate.getUTCHours()
+  const correctedMinute = correctedSolarDate.getUTCMinutes()
+  const correctedSecond = correctedSolarDate.getUTCSeconds()
+  const correctedTotalMins = correctedHour * 60 + correctedMinute + correctedSecond / 60
+  const civilDayMs = Date.UTC(year, month - 1, day)
+  const correctedDayMs = Date.UTC(correctedYear, correctedMonth - 1, correctedDay)
+  const solarDayShift = Math.round((correctedDayMs - civilDayMs) / 86400000)
+
   let isRolledOverDay = false
-  if (opts.rollDayAtZiHour && totalMins >= ziStartMins) {
+  if (opts.dayBoundaryRule === 'solar-midnight-split-zi') {
+    dayIndex = (dayIndex + solarDayShift + 60) % 60
+    isRolledOverDay = solarDayShift !== 0
+  } else if (opts.rollDayAtZiHour && totalMins >= ziStartMins) {
     dayIndex = (dayIndex + 1) % 60
     isRolledOverDay = true
   }
@@ -74,8 +114,7 @@ export function calculateFourPillars(params, options = DEFAULT_SAJU_OPTIONS) {
   const dayBranch = BRANCHES[dayBranchIndex]
 
   // 4. Hour Pillar. The configured correction shifts civil time to local solar time.
-  const offsetMins = opts.useSolarTimeCorrection ? opts.solarTimeOffsetMinutes : 0
-  let hourBranchIndex = Math.floor((totalMins + 60 - offsetMins) / 120) % 12
+  let hourBranchIndex = Math.floor((correctedTotalMins + 60) / 120) % 12
   if (hourBranchIndex < 0) hourBranchIndex += 12
   const hourBranch = BRANCHES[hourBranchIndex]
   const hourStemStartOffset = (dayStemIndex % 5) * 2
@@ -90,6 +129,18 @@ export function calculateFourPillars(params, options = DEFAULT_SAJU_OPTIONS) {
     _meta: {
       engineVersion: SAJU_ENGINE_VERSION,
       isRolledOverDay,
+      dayBoundaryRule: opts.dayBoundaryRule,
+      solarTimeMethod: opts.useEquationOfTimeCorrection ? SOLAR_TIME_METHOD : 'mean solar time only',
+      longitudeDegrees: opts.longitudeDegrees,
+      standardMeridianDegrees: opts.standardMeridianDegrees,
+      meanSolarCorrectionMinutes,
+      equationOfTimeMinutes,
+      apparentSolarCorrectionMinutes,
+      solarDayShift,
+      correctedSolarDateTime: `${String(correctedYear).padStart(4, '0')}-${String(correctedMonth).padStart(2, '0')}-${String(correctedDay).padStart(2, '0')} ${String(correctedHour).padStart(2, '0')}:${String(correctedMinute).padStart(2, '0')}`,
+      ziPeriod: hourBranchIndex === 0
+        ? correctedTotalMins >= 23 * 60 ? 'night_zi' : 'early_zi'
+        : null,
       ziStartMins,
       ...solarTerm,
     },

@@ -2,6 +2,7 @@ import assert from 'node:assert/strict'
 import test from 'node:test'
 import { calculateFourPillars, DEFAULT_SAJU_OPTIONS, SAJU_ENGINE_VERSION } from './fourPillars.js'
 import { getSolarLongitude, SOLAR_LONGITUDE_METHOD } from './solarTerms.js'
+import { calculateEquationOfTimeMinutes, SOLAR_TIME_METHOD } from './solarTime.js'
 
 // Published Hong Kong Observatory times. HKT is UTC+8.
 // These are the 12 minor solar terms used as Four Pillars month boundaries.
@@ -66,14 +67,58 @@ test('day cycle matches the published HKO 2026-02-01 Byeong-O day', () => {
   assert.equal(pillars._meta.solarLongitudeMethod, SOLAR_LONGITUDE_METHOD)
 })
 
-test('configured Zi-hour rollover time is honored independently', () => {
+test('NOAA equation of time follows the published seasonal magnitude and sign', () => {
+  const lateJuly = calculateEquationOfTimeMinutes({ year: 2026, month: 7, day: 31, hour: 12 })
+  const earlyNovember = calculateEquationOfTimeMinutes({ year: 2026, month: 11, day: 3, hour: 12 })
+
+  assert.ok(lateJuly > -8 && lateJuly < -5)
+  assert.ok(earlyNovember > 15 && earlyNovember < 17)
+})
+
+test('apparent solar time can change the hour branch near a boundary', () => {
+  const meanSolar = calculateFourPillars(
+    { birthDate: '2026-11-03', birthTime: '01:20' },
+    { ...DEFAULT_SAJU_OPTIONS, longitudeDegrees: 126.97, useEquationOfTimeCorrection: false },
+  )
+  const apparentSolar = calculateFourPillars(
+    { birthDate: '2026-11-03', birthTime: '01:20' },
+    { ...DEFAULT_SAJU_OPTIONS, longitudeDegrees: 126.97 },
+  )
+
+  assert.equal(meanSolar.hour.branch, '자')
+  assert.equal(apparentSolar.hour.branch, '축')
+  assert.equal(apparentSolar._meta.solarTimeMethod, SOLAR_TIME_METHOD)
+  assert.ok(apparentSolar._meta.equationOfTimeMinutes > 15)
+})
+
+test('solar-midnight rule splits night Zi and early Zi at corrected solar midnight', () => {
+  const nightZi = calculateFourPillars(
+    { birthDate: '1997-04-22', birthTime: '00:20' },
+    { ...DEFAULT_SAJU_OPTIONS, solarTimeOffsetMinutes: 32 },
+  )
+  const earlyZi = calculateFourPillars(
+    { birthDate: '1997-04-22', birthTime: '00:40' },
+    { ...DEFAULT_SAJU_OPTIONS, solarTimeOffsetMinutes: 32 },
+  )
+
+  assert.equal(`${nightZi.day.stem}${nightZi.day.branch}`, '계사')
+  assert.equal(`${earlyZi.day.stem}${earlyZi.day.branch}`, '갑오')
+  assert.equal(nightZi.hour.branch, '자')
+  assert.equal(earlyZi.hour.branch, '자')
+  assert.equal(nightZi._meta.ziPeriod, 'night_zi')
+  assert.equal(earlyZi._meta.ziPeriod, 'early_zi')
+  assert.equal(nightZi._meta.correctedSolarDateTime, '1997-04-21 23:49')
+  assert.equal(earlyZi._meta.correctedSolarDateTime, '1997-04-22 00:09')
+})
+
+test('legacy configured Zi-hour rollover remains available only as an explicit profile', () => {
   const beforeConfiguredBoundary = calculateFourPillars(
     { birthDate: '1997-04-21', birthTime: '23:30' },
-    { ...DEFAULT_SAJU_OPTIONS, ziHourStart: '23:45' },
+    { ...DEFAULT_SAJU_OPTIONS, dayBoundaryRule: 'zi-start', rollDayAtZiHour: true, ziHourStart: '23:45' },
   )
   const afterConfiguredBoundary = calculateFourPillars(
     { birthDate: '1997-04-21', birthTime: '23:30' },
-    { ...DEFAULT_SAJU_OPTIONS, ziHourStart: '23:15' },
+    { ...DEFAULT_SAJU_OPTIONS, dayBoundaryRule: 'zi-start', rollDayAtZiHour: true, ziHourStart: '23:15' },
   )
 
   assert.equal(`${beforeConfiguredBoundary.day.stem}${beforeConfiguredBoundary.day.branch}`, '계사')
@@ -96,5 +141,19 @@ test('unsupported timezone and malformed Zi-hour settings fail explicitly', () =
       { ...DEFAULT_SAJU_OPTIONS, ziHourStart: '24:00' },
     ),
     /valid clock range/,
+  )
+  assert.throws(
+    () => calculateFourPillars(
+      { birthDate: '1997-04-21', birthTime: '14:40' },
+      { ...DEFAULT_SAJU_OPTIONS, dayBoundaryRule: 'unsupported' },
+    ),
+    /dayBoundaryRule/,
+  )
+  assert.throws(
+    () => calculateFourPillars(
+      { birthDate: '1997-04-21', birthTime: '14:40' },
+      { ...DEFAULT_SAJU_OPTIONS, longitudeDegrees: 181 },
+    ),
+    /longitudeDegrees/,
   )
 })

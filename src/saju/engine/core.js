@@ -48,6 +48,10 @@ export function getTenGod(dayMasterStem, targetStemOrBranch) {
   return null
 }
 
+export function getBranchMainStem(branch) {
+  return HIDDEN_STEMS[branch]?.[0]?.stem || null
+}
+
 function roundToTwo(value) {
   return Math.round((value + Number.EPSILON) * 100) / 100
 }
@@ -984,7 +988,7 @@ export function analyzeNatalStructure(pillars) {
     // 십성 분포 (일간 자신 제외)
     if (key !== 'day' || (key === 'day' && pillar.branch)) {
       const stemTenGod = key !== 'day' ? getTenGod(dayMaster, pillar.stem) : null
-      const branchTenGod = getTenGod(dayMaster, pillar.branch)
+      const branchTenGod = getTenGod(dayMaster, getBranchMainStem(pillar.branch))
       
       if (stemTenGod) tenGodsDistribution[stemTenGod] = (tenGodsDistribution[stemTenGod] || 0) + 1
       if (branchTenGod) tenGodsDistribution[branchTenGod] = (tenGodsDistribution[branchTenGod] || 0) + 1
@@ -1188,7 +1192,8 @@ export function analyzePeriodPillar(natalAnalysis, periodPillar, label) {
 
   const stemTenGod = pillar.stem ? getTenGod(natalAnalysis.dayMaster, pillar.stem) : null
   const stemElement = pillar.stem ? ELEMENTS[pillar.stem] || null : null
-  const branchTenGod = pillar.branch ? getTenGod(natalAnalysis.dayMaster, pillar.branch) : null
+  const branchMainStem = pillar.branch ? getBranchMainStem(pillar.branch) : null
+  const branchTenGod = branchMainStem ? getTenGod(natalAnalysis.dayMaster, branchMainStem) : null
   const branchElement = pillar.branch ? ELEMENTS[pillar.branch] || null : null
 
   if (stemTenGod) {
@@ -1196,7 +1201,7 @@ export function analyzePeriodPillar(natalAnalysis, periodPillar, label) {
     dominantTenGods.push(stemTenGod)
   }
   if (branchTenGod) {
-    signals.push({ type: 'branch', tenGod: branchTenGod, element: branchElement })
+    signals.push({ type: 'branch_main_stem', stem: branchMainStem, tenGod: branchTenGod, element: branchElement })
     dominantTenGods.push(branchTenGod)
   }
   if (stemElement) elements.push(stemElement)
@@ -1223,6 +1228,7 @@ export function analyzePeriodPillar(natalAnalysis, periodPillar, label) {
   return {
     label,
     pillar,
+    branchMainStem,
     signals,
     elements,
     dominantTenGods,
@@ -1248,7 +1254,7 @@ const HAP_RELATIONS = {
 export function analyzeDailyInteraction(natalAnalysis, dailyPillar, natalPillars) {
   const dayMaster = natalAnalysis.dayMaster
   const stemTenGod = getTenGod(dayMaster, dailyPillar.stem) || '비견'
-  const branchTenGod = getTenGod(dayMaster, dailyPillar.branch) || '비견'
+  const branchTenGod = getTenGod(dayMaster, getBranchMainStem(dailyPillar.branch)) || '비견'
 
   const dailyStemElement = ELEMENTS[dailyPillar.stem];
   const dailyBranchElement = ELEMENTS[dailyPillar.branch];

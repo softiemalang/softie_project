@@ -1,5 +1,23 @@
-export const INTERPRETATION_PREP_SCHEMA_VERSION = '1.1.0'
-export const SAJU_ADAPTER_VERSION = 'saju-adapter-1.1.0'
+export const INTERPRETATION_PREP_SCHEMA_VERSION = '1.8.0'
+export const SAJU_ADAPTER_VERSION = 'saju-adapter-1.8.0'
+
+// Korea Meteorological Administration observation-station coordinates.
+// correctionMinutes is a compact display value. Calculations use the exact longitude below.
+export const KOREA_REFERENCE_CITIES = [
+  { id: 'seoul', label: '서울', latitude: 37.57, longitude: 126.97, correctionMinutes: 32 },
+  { id: 'gwangmyeong', label: '광명', latitude: 37.48, longitude: 126.87, correctionMinutes: 33 },
+  { id: 'incheon', label: '인천', latitude: 37.48, longitude: 126.63, correctionMinutes: 33 },
+  { id: 'daejeon', label: '대전', latitude: 36.37, longitude: 127.37, correctionMinutes: 31 },
+  { id: 'gwangju', label: '광주', latitude: 35.17, longitude: 126.89, correctionMinutes: 32 },
+  { id: 'daegu', label: '대구', latitude: 35.88, longitude: 128.62, correctionMinutes: 26 },
+  { id: 'ulsan', label: '울산', latitude: 35.56, longitude: 129.32, correctionMinutes: 23 },
+  { id: 'busan', label: '부산', latitude: 35.10, longitude: 129.03, correctionMinutes: 24 },
+  { id: 'jeju', label: '제주', latitude: 33.51, longitude: 126.53, correctionMinutes: 34 },
+]
+
+export function getKoreaReferenceCity(cityId) {
+  return KOREA_REFERENCE_CITIES.find((city) => city.id === cityId) || KOREA_REFERENCE_CITIES[0]
+}
 
 export const SYSTEMS = [
   { id: 'saju', label: '사주', shortLabel: '四柱' },
@@ -24,29 +42,33 @@ export const DEFAULT_INPUT = {
   subjectName: '',
   birthDate: '',
   birthTime: '',
-  placeName: '서울',
+  targetDate: '',
+  placeName: '대한민국',
+  referenceCity: 'seoul',
   timezone: 'Asia/Seoul',
-  latitude: '37.5665',
-  longitude: '126.9780',
+  latitude: '37.57',
+  longitude: '126.97',
   gender: 'unspecified',
   calendar: 'solar',
-  source: '본인 또는 가족의 기록',
   timeAccuracy: 'exact',
 }
 
 export const DEFAULT_PROFILES = {
   saju: {
-    profileVersion: 'softie-saju-kst-v2',
+    profileVersion: 'softie-saju-standard-v1.3',
     calendarConversion: '양력 입력',
     solarTerms: 'NOAA·Meeus 겉보기 태양 황경 근사식 기반 절기 월',
     ipchunBoundary: '입춘 315° 경계',
-    timezone: 'Asia/Seoul 고정',
-    trueSolarTime: '서울 기준 고정 30분 평균태양시 보정(좌표·균시차 미반영)',
-    ziHourRule: '23:30 자시 시작 및 일주 변경',
-    luckDirection: '미지원',
-    luckStartAge: '미지원',
+    timezone: 'Asia/Seoul · 1961-08-10 이전 검증 필요 · 1987~1988 DST 조건부 검증',
+    trueSolarTime: '기준 도시 정확 경도 보정 + NOAA 날짜별 균시차 · 주요 도시 후보 비교',
+    ziHourRule: '진태양시 23:00~01:00 자시 · 자정 전 야자/자정 후 조자 분리 · 자정에 일주 변경',
+    luckDirection: '연간 음양·성별 기준 양남음녀 순행, 음남양녀 역행',
+    luckStartAge: '순행 다음 절·역행 이전 절까지 3일당 1년 환산',
+    periodPillars: '기준일 세운·월운·일진, 절입 당일 후보 및 원국·기간 간 관계 계산',
+    twelveStages: '일간 기준 양간 순행·음간 역행',
     hiddenStemRules: 'softie constants v1',
-    tenGodRules: 'softie core v2.2',
+    tenGodRules: '천간 및 지지 본기 지장간 기준',
+    branchRelationRules: 'softie natal branch relations v1 · 관계 존재 여부만',
   },
   ziwei: {
     profileVersion: 'unconfigured',
@@ -69,7 +91,7 @@ export const DEFAULT_PROFILES = {
 
 export const STATUS_META = {
   complete: { label: '계산 완료', tone: 'success' },
-  partial: { label: '부분 지원', tone: 'warning' },
+  partial: { label: '핵심 계산 지원', tone: 'warning' },
   needs_verification: { label: '검증 필요', tone: 'warning' },
   unsupported: { label: '미지원', tone: 'muted' },
   missing_input: { label: '입력값 부족', tone: 'danger' },
@@ -85,5 +107,6 @@ export function createEmptySystemResult(system, status, warnings = []) {
     features: [],
     warnings,
     unsupported: [],
+    supportScope: null,
   }
 }

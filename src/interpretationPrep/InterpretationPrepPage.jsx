@@ -8,6 +8,9 @@ import {
 import {
   DEFAULT_INPUT,
   DEFAULT_PROFILES,
+  getKoreaReferenceCity,
+  INTERPRETATION_PREP_SCHEMA_VERSION,
+  KOREA_REFERENCE_CITIES,
   STATUS_META,
   SYSTEMS,
   TOPICS,
@@ -16,12 +19,35 @@ import './interpretationPrep.css'
 
 const STORAGE_KEY = 'softie.interpretationPrep.draft.v1'
 
+function todayInKorea() {
+  const parts = new Intl.DateTimeFormat('en-CA', {
+    timeZone: 'Asia/Seoul',
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+  }).formatToParts(new Date())
+  return ['year', 'month', 'day']
+    .map((type) => parts.find((part) => part.type === type)?.value)
+    .join('-')
+}
+
 function loadSavedDraft() {
   try {
     const saved = JSON.parse(window.localStorage.getItem(STORAGE_KEY) || 'null')
     if (!saved) return null
+    const { source: _legacySource, ...savedInput } = saved.input || {}
+    const referenceCity = getKoreaReferenceCity(savedInput.referenceCity)
     return {
-      input: { ...DEFAULT_INPUT, ...saved.input },
+      input: {
+        ...DEFAULT_INPUT,
+        ...savedInput,
+        targetDate: savedInput.targetDate || todayInKorea(),
+        placeName: DEFAULT_INPUT.placeName,
+        gender: ['female', 'male'].includes(savedInput.gender) ? savedInput.gender : DEFAULT_INPUT.gender,
+        referenceCity: referenceCity.id,
+        latitude: String(referenceCity.latitude),
+        longitude: String(referenceCity.longitude),
+      },
       profiles: {
         // Calculation rules are engine-owned; keep saved input without reviving stale rule versions.
         saju: { ...saved.profiles?.saju, ...DEFAULT_PROFILES.saju },
@@ -40,9 +66,9 @@ function StatusBadge({ status }) {
   return <span className={`prep-status-badge is-${meta.tone}`}>{meta.label}</span>
 }
 
-function LabeledField({ label, hint, children }) {
+function LabeledField({ label, hint, className = '', children }) {
   return (
-    <label className="prep-field">
+    <label className={`prep-field ${className}`.trim()}>
       <span>{label}</span>
       {children}
       {hint && <small>{hint}</small>}
@@ -77,7 +103,11 @@ function PillarGrid({ pillars }) {
                 ? '출생시각에 따라 달라짐'
                 : pillar.status === 'solar_term_sensitive'
                   ? '절기 경계 후보 · 확정 전'
-                : `${pillar.stemElement} · ${pillar.branchElement}`}
+                  : pillar.status === 'historical_time_sensitive'
+                    ? '서머타임 환산 후보 · 검증 필요'
+                    : pillar.status === 'domestic_location_sensitive'
+                      ? '국내 지역 보정 후보 · 검증 필요'
+                      : `${pillar.stemElement} · ${pillar.branchElement}`}
           </small>
         </div>
       ))}
@@ -97,6 +127,122 @@ function ElementDistribution({ counts }) {
         </div>
       ))}
     </div>
+  )
+}
+
+function SupportScope({ scope }) {
+  if (!scope) return null
+  return (
+    <section className="prep-data-panel prep-support-panel">
+      <div className="prep-mini-head"><h4>현재 지원 범위</h4><span>계산과 판정 분리</span></div>
+      <p>{scope.summary}</p>
+      <div className="prep-support-grid">
+        <div>
+          <strong>재현 가능하게 계산됨</strong>
+          <ul>
+            {scope.supported.map(({ item, basis }) => (
+              <li key={item}><b>{item}</b><span>{basis}</span></li>
+            ))}
+          </ul>
+        </div>
+        <div>
+          <strong>아직 완전 지원하지 않는 이유</strong>
+          <div className="prep-support-limitations">
+            {scope.limitations.map(({ item, reason }) => (
+              <details key={item}>
+                <summary>{item}</summary>
+                <p>{reason}</p>
+              </details>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  )
+}
+
+function TimingSummary({ timing }) {
+  if (!timing) return null
+  const activeCycle = timing.daYun.status === 'calculated'
+    ? timing.daYun.cycles.find((cycle) => cycle.isActive)
+    : null
+  const positionLabels = { year: '년주', month: '월주', day: '일주', hour: '시주' }
+
+  return (
+    <section className="prep-data-panel prep-timing-panel">
+      <div className="prep-mini-head"><h4>운 흐름 기준값</h4><span>{timing.targetDate} · 길흉 판단 전</span></div>
+      <div className="prep-period-grid">
+        {Object.values(timing.periods).map((period) => {
+          const periodCandidates = period.candidates || [period]
+          return (
+            <article className={period.status === 'candidate_required' ? 'is-candidate' : ''} key={period.label}>
+              <span>{period.label}</span>
+              <strong>{[...new Set(periodCandidates.map((candidate) => candidate.value))].join(' / ')}</strong>
+              {period.status === 'candidate_required'
+                ? <small>후보 {periodCandidates.map((candidate) => `${candidate.dayMaster}일간: ${candidate.stemTenGod}·${candidate.branchTenGod}·${candidate.twelveStage}`).join(' / ')}</small>
+                : <small>{period.stemTenGod} · 본기 {period.branchMainStem || '-'}({period.branchTenGod}) · {period.twelveStage}</small>}
+              <small>{period.status === 'candidate_required'
+                ? '경계 또는 일간 후보 확인 필요'
+                : period.branchRelations.items.length > 0
+                  ? period.branchRelations.items.map((item) => item.relation).join(' · ')
+                  : '원국 지지 관계 없음'}</small>
+            </article>
+          )
+        })}
+      </div>
+      <div className="prep-twelve-stage-row">
+        {Object.entries(timing.natalTwelveStages).map(([position, item]) => (
+          <span className={item.status === 'candidate_required' ? 'is-candidate' : ''} key={position}>
+            <b>{positionLabels[position]}</b>
+            {(item.candidates || [item]).length > 1
+              ? (item.candidates || [item]).map((candidate) => `${candidate.dayMaster}일간 ${candidate.branch || '미상'}·${candidate.stage || '미상'}`).join(' / ')
+              : item.branch ? `${item.branch} · ${item.stage}` : '미상'}
+          </span>
+        ))}
+      </div>
+      <div className="prep-dayun-head">
+        <div>
+          <strong>대운</strong>
+          {['calculated', 'candidate_required'].includes(timing.daYun.status)
+            ? <small>{timing.daYun.directionLabel} · {timing.daYun.startAge.years}년 {timing.daYun.startAge.months}개월 {timing.daYun.startAge.days}일 기산</small>
+            : <small>{timing.daYun.reason}</small>}
+        </div>
+        {activeCycle && <span>기준일 해당 · {activeCycle.value}</span>}
+      </div>
+      {timing.daYun.status === 'candidate_required' && (
+        <div className="prep-timing-candidates">
+          <strong>대운 후보 확인 필요</strong>
+          {(timing.daYun.candidates || []).map((candidate) => (
+            <span key={`${candidate.sourceLabel}-${candidate.firstStartDate}-${candidate.monthPillar}`}>
+              {candidate.sourceLabel}: {candidate.directionLabel} · {candidate.monthPillar} 기준 · 첫 대운 {candidate.cycles[0]?.value} · 현재 {candidate.cycles.find((cycle) => cycle.isActive)?.value || '해당 없음'}
+            </span>
+          ))}
+        </div>
+      )}
+      {timing.daYun.status === 'calculated' && timing.daYun.startDateRange && (
+        <p className="prep-timing-inline-warning">기산일 후보 {timing.daYun.startDateRange.join('~')} · 기준일의 현재 대운은 동일</p>
+      )}
+      {timing.daYun.cycles.length > 0 && (
+        <div className="prep-dayun-grid">
+          {timing.daYun.cycles.map((cycle) => (
+            <div className={timing.daYun.status === 'calculated' && cycle.isActive ? 'is-active' : ''} key={cycle.index}>
+              <span>{cycle.startAgeYears}세</span>
+              <strong>{cycle.value}</strong>
+              <small>{cycle.startDate}</small>
+            </div>
+          ))}
+        </div>
+      )}
+      {timing.crossPeriodRelations?.status === 'calculated' && (
+        <div className="prep-cross-relations">
+          <strong>기간 간 지지 관계</strong>
+          <span>{timing.crossPeriodRelations.items.length > 0
+            ? timing.crossPeriodRelations.items.map((item) => `${item.labels.join('↔')} ${item.relation}`).join(' · ')
+            : '조회된 관계 없음'}</span>
+        </div>
+      )}
+      <p className="prep-timing-note">{timing.interpretationScope}</p>
+    </section>
   )
 }
 
@@ -158,12 +304,19 @@ function SystemResult({ result, view }) {
         <StatusBadge status={result.status} />
       </div>
       <PillarGrid pillars={result.raw.pillars} />
+      <TimingSummary timing={result.raw.timing} />
       <section className="prep-data-panel">
         <div className="prep-mini-head"><h4>입력 보정</h4><span>원본과 분리 저장</span></div>
         <dl className="prep-normalization-list">
           <div><dt>원본 입력</dt><dd>{result.inputNormalization.original}</dd></div>
-          <div><dt>보정 시각</dt><dd>{result.inputNormalization.correctedSolarTime || '출생시각 미상 · 적용하지 않음'}</dd></div>
-          <div><dt>보정량</dt><dd>{result.inputNormalization.correctionMinutes == null ? '적용하지 않음' : `${result.inputNormalization.correctionMinutes}분`}</dd></div>
+          <div><dt>기준 도시</dt><dd>{result.inputNormalization.referenceCity}</dd></div>
+          <div><dt>진태양시</dt><dd>{result.inputNormalization.correctedSolarTime || '출생시각 미상 · 적용하지 않음'}</dd></div>
+          <div><dt>경도 보정</dt><dd>{result.inputNormalization.meanSolarCorrectionMinutes == null ? '적용하지 않음' : `${result.inputNormalization.meanSolarCorrectionMinutes}분`}</dd></div>
+          <div><dt>균시차</dt><dd>{result.inputNormalization.equationOfTimeMinutes == null ? '적용하지 않음' : `${result.inputNormalization.equationOfTimeMinutes}분`}</dd></div>
+          <div><dt>총 보정</dt><dd>{result.inputNormalization.correctionMinutes == null ? '적용하지 않음' : `${result.inputNormalization.correctionMinutes}분`}</dd></div>
+          <div><dt>자시 구분</dt><dd>{result.inputNormalization.ziPeriodLabel || '출생시각 미상 · 판정하지 않음'}</dd></div>
+          <div><dt>일주 기준일</dt><dd>{result.inputNormalization.dayBoundaryDate || '출생시각 미상 · 후보로 저장'}</dd></div>
+          <div><dt>국내 후보</dt><dd>{result.inputNormalization.domesticCorrectionRangeMinutes == null ? '적용하지 않음' : `${result.inputNormalization.domesticCorrectionRangeMinutes.join('~')}분`}</dd></div>
         </dl>
       </section>
       <section className="prep-data-panel">
@@ -173,6 +326,7 @@ function SystemResult({ result, view }) {
         </div>
         <ElementDistribution counts={result.raw.elements.counts} />
       </section>
+      <SupportScope scope={result.supportScope} />
       <section className="prep-data-panel">
         <div className="prep-mini-head"><h4>계산 추적</h4><span>{result.engine.sourceEngine}</span></div>
         <ol className="prep-trace-list">
@@ -184,9 +338,9 @@ function SystemResult({ result, view }) {
         <pre>{JSON.stringify(result.raw, null, 2)}</pre>
       </details>
       <div className="prep-warning-box">
-        <strong>검증 및 미지원 범위</strong>
+        <strong>검증 알림</strong>
         <ul>
-          {[...result.warnings, ...result.unsupported].map((warning) => <li key={warning}>{warning}</li>)}
+          {result.warnings.map((warning) => <li key={warning}>{warning}</li>)}
         </ul>
       </div>
     </div>
@@ -212,7 +366,7 @@ async function copyText(text) {
 
 export default function InterpretationPrepPage() {
   const savedDraft = useMemo(loadSavedDraft, [])
-  const [input, setInput] = useState(savedDraft?.input || DEFAULT_INPUT)
+  const [input, setInput] = useState(savedDraft?.input || { ...DEFAULT_INPUT, targetDate: todayInKorea() })
   const [profiles, setProfiles] = useState(savedDraft?.profiles || DEFAULT_PROFILES)
   const [saveLocally, setSaveLocally] = useState(Boolean(savedDraft))
   const [result, setResult] = useState(null)
@@ -223,6 +377,7 @@ export default function InterpretationPrepPage() {
   const [topicId, setTopicId] = useState('overall')
   const [question, setQuestion] = useState('')
   const [copyStatus, setCopyStatus] = useState('')
+  const selectedReferenceCity = getKoreaReferenceCity(input.referenceCity)
 
   useEffect(() => {
     if (!saveLocally) return
@@ -259,6 +414,18 @@ export default function InterpretationPrepPage() {
       ...current,
       birthTime: '',
       timeAccuracy: current.timeAccuracy === 'unknown' ? 'exact' : 'unknown',
+    }))
+    setError('')
+    setCopyStatus('')
+  }
+
+  function updateReferenceCity(cityId) {
+    const city = getKoreaReferenceCity(cityId)
+    setInput((current) => ({
+      ...current,
+      referenceCity: city.id,
+      latitude: String(city.latitude),
+      longitude: String(city.longitude),
     }))
     setError('')
     setCopyStatus('')
@@ -311,43 +478,76 @@ export default function InterpretationPrepPage() {
   const currentSystem = result?.systems[activeSystem]
 
   return (
-    <main className="app-shell prep-shell">
-      <header className="hero prep-hero">
+    <main className="app-shell ag-shell prep-shell" data-design-theme="atmospheric">
+      <header className="hero prep-hero ag-glass">
         <div className="prep-hero-top">
           <button type="button" className="prep-ghost-button" onClick={() => navigate('/')}>홈</button>
-          <span className="prep-version">SCHEMA 1.0</span>
+          <span className="prep-version">SCHEMA {INTERPRETATION_PREP_SCHEMA_VERSION}</span>
         </div>
-        <p className="eyebrow">INTERPRETATION PREP</p>
-        <h1>해석 전, 근거부터 정리합니다.</h1>
-        <p className="subtle">사주·자미두수·서양 점성학의 계산값과 불확실성을 분리해 대화형 모델에 전달하는 준비 도구입니다. 최종 성격이나 미래를 단정하지 않습니다.</p>
-        <div className="prep-status-strip">
-          {SYSTEMS.map((system) => (
-            <div key={system.id}>
-              <span>{system.label}</span>
-              <StatusBadge status={system.id === 'saju' ? (result ? 'partial' : 'missing_input') : system.id === 'ziwei' ? 'needs_profile' : 'unsupported'} />
-            </div>
-          ))}
+        <div className="prep-hero-body">
+          <div className="prep-hero-copy">
+            <p className="eyebrow">INTERPRETATION PREP</p>
+            <h1>해석 전, 근거부터 정리합니다.</h1>
+            <p className="subtle">사주·자미두수·서양 점성학의 계산값과 불확실성을 분리해 대화형 모델에 전달하는 준비 도구입니다. 최종 성격이나 미래를 단정하지 않습니다.</p>
+          </div>
+          <div className="prep-status-strip" aria-label="계산 체계별 준비 상태">
+            {SYSTEMS.map((system) => (
+              <div key={system.id}>
+                <span>{system.label}</span>
+                <StatusBadge status={result?.systems?.[system.id]?.status || (system.id === 'saju' ? 'missing_input' : system.id === 'ziwei' ? 'needs_profile' : 'unsupported')} />
+              </div>
+            ))}
+          </div>
         </div>
       </header>
 
-      <form onSubmit={handleCalculate}>
-        <section className="card prep-card">
+      <form className="prep-workspace" onSubmit={handleCalculate}>
+        <section className="card prep-card ag-glass">
           <div className="card-header">
             <div>
               <p className="section-kicker">01 · INPUT LAYER</p>
               <h2>출생정보</h2>
             </div>
-            <span className="prep-step-note">먼저 필요한 정보만</span>
+            <span className="prep-step-note">대한민국 출생 기준</span>
           </div>
-          <p className="subtle prep-section-intro">생년월일과 시간을 먼저 입력하세요. 시간대·좌표 같은 기술 정보는 기본값을 그대로 사용해도 됩니다.</p>
+          <p className="subtle prep-section-intro">생년월일·시각과 성별, 달력 기준을 입력하세요. 국내 지역 차이는 결과가 달라지는 경계 시각에만 자동으로 알려드립니다.</p>
           <div className="prep-form-grid">
             <LabeledField label="이름">
               <input value={input.subjectName} onChange={(event) => updateInput('subjectName', event.target.value)} placeholder="예: 말랑이" />
             </LabeledField>
+            <div className="prep-field">
+              <span id="prep-gender-label">성별</span>
+              <div className="prep-gender-control" role="radiogroup" aria-labelledby="prep-gender-label">
+                <button
+                  type="button"
+                  role="radio"
+                  aria-checked={input.gender === 'male'}
+                  className={`prep-gender-option ${input.gender === 'male' ? 'is-active' : ''}`}
+                  onClick={() => updateInput('gender', 'male')}
+                >
+                  남성
+                </button>
+                <button
+                  type="button"
+                  role="radio"
+                  aria-checked={input.gender === 'female'}
+                  className={`prep-gender-option ${input.gender === 'female' ? 'is-active' : ''}`}
+                  onClick={() => updateInput('gender', 'female')}
+                >
+                  여성
+                </button>
+              </div>
+            </div>
             <LabeledField label="출생일">
               <input type="date" min="1901-01-01" max="2100-12-31" required value={input.birthDate} onChange={(event) => updateInput('birthDate', event.target.value)} />
             </LabeledField>
-            <LabeledField label="출생시각">
+            <LabeledField label="달력 기준">
+              <select value={input.calendar} onChange={(event) => updateInput('calendar', event.target.value)}>
+                <option value="solar">양력</option>
+                <option value="lunar">음력 · 미지원</option>
+              </select>
+            </LabeledField>
+            <LabeledField label="출생시각" className="prep-field-wide">
               <div className="prep-time-control">
                 <input
                   type="time"
@@ -369,47 +569,34 @@ export default function InterpretationPrepPage() {
                 </button>
               </div>
             </LabeledField>
-            <LabeledField label="출생 장소">
-              <input required value={input.placeName} onChange={(event) => updateInput('placeName', event.target.value)} />
+            <LabeledField label="운 흐름 기준일" hint="대운·세운·월운·일진을 이 날짜 기준으로 계산" className="prep-field-wide">
+              <input type="date" min="1901-01-01" max="2100-12-31" required value={input.targetDate} onChange={(event) => updateInput('targetDate', event.target.value)} />
             </LabeledField>
           </div>
           <details className="prep-advanced-inputs">
             <summary>
               <span>세부 입력과 계산 환경</span>
-              <small>성별 · 시간대 · 좌표 · 달력 기준 · 출처</small>
+              <small>기준 도시 · 시간대 · 좌표</small>
             </summary>
             <div className="prep-advanced-grid">
-              <LabeledField label="성별">
-                <select value={input.gender} onChange={(event) => updateInput('gender', event.target.value)}>
-                  <option value="unspecified">지정하지 않음</option>
-                  <option value="female">여성</option>
-                  <option value="male">남성</option>
-                  <option value="other">기타</option>
+              <LabeledField label="기준 도시" hint="기본값 서울 · 선택한 경도 보정 적용">
+                <select value={selectedReferenceCity.id} onChange={(event) => updateReferenceCity(event.target.value)}>
+                  {KOREA_REFERENCE_CITIES.map((city) => (
+                    <option value={city.id} key={city.id}>{city.label}{city.id === 'seoul' ? ' (기본)' : ''}</option>
+                  ))}
                 </select>
               </LabeledField>
-              <LabeledField label="달력 기준">
-                <select value={input.calendar} onChange={(event) => updateInput('calendar', event.target.value)}>
-                  <option value="solar">양력</option>
-                  <option value="lunar">음력 · 미지원</option>
-                </select>
+              <LabeledField label="시간대">
+                <output className="prep-readonly-value">Asia/Seoul (UTC+9)</output>
               </LabeledField>
-              <LabeledField label="시간대" hint="현재 Asia/Seoul만 검증됨">
-                <select value={input.timezone} onChange={(event) => updateInput('timezone', event.target.value)}>
-                  <option value="Asia/Seoul">Asia/Seoul (UTC+9)</option>
-                  <option value="unsupported">다른 시간대 · 미지원</option>
-                </select>
+              <LabeledField label="기준 위도">
+                <output className="prep-readonly-value">{selectedReferenceCity.latitude.toFixed(2)}°N</output>
               </LabeledField>
-              <LabeledField label="위도">
-                <input type="number" min="-90" max="90" step="0.0001" required value={input.latitude} onChange={(event) => updateInput('latitude', event.target.value)} />
-              </LabeledField>
-              <LabeledField label="경도">
-                <input type="number" min="-180" max="180" step="0.0001" required value={input.longitude} onChange={(event) => updateInput('longitude', event.target.value)} />
-              </LabeledField>
-              <LabeledField label="입력값 출처">
-                <input value={input.source} onChange={(event) => updateInput('source', event.target.value)} />
+              <LabeledField label="기준 경도">
+                <output className="prep-readonly-value">{selectedReferenceCity.longitude.toFixed(2)}°E</output>
               </LabeledField>
             </div>
-            <p className="prep-advanced-note">장소와 좌표는 출력에 기록되지만, 현재 사주 엔진의 진태양시 보정에는 사용하지 않습니다.</p>
+            <p className="prep-advanced-note">국내 시간대는 모두 Asia/Seoul로 동일합니다. 선택한 기준 도시의 경도 보정을 계산에 적용하며, 주요 도시 후보에서 기둥이 달라지는 경계 시각은 검증 필요로 표시합니다.</p>
           </details>
           <label className="prep-save-toggle">
             <input type="checkbox" checked={saveLocally} onChange={(event) => handleSavePreference(event.target.checked)} />
@@ -417,7 +604,7 @@ export default function InterpretationPrepPage() {
           </label>
         </section>
 
-        <section className="card prep-card">
+        <section className="card prep-card ag-glass">
           <div className="card-header">
             <div>
               <p className="section-kicker">02 · CALCULATION PROFILE</p>
@@ -428,7 +615,7 @@ export default function InterpretationPrepPage() {
           <p className="subtle prep-section-intro">현재 연결된 계산 범위를 확인하고, 필요한 경우에만 상세 규칙을 펼쳐보세요.</p>
           <div className="prep-profile-stack">
             <details>
-              <summary><span><strong>사주</strong><small>실제 계산 연결됨</small></span><StatusBadge status="partial" /></summary>
+              <summary><span><strong>사주</strong><small>핵심 원국 계산 · 일부 판정 규칙 미지원</small></span><StatusBadge status={result?.systems?.saju?.status || 'partial'} /></summary>
               <ProfileRows profile={profiles.saju} />
             </details>
             <details>
@@ -463,21 +650,21 @@ export default function InterpretationPrepPage() {
             </details>
           </div>
           {error && <p className="prep-form-error" role="alert">{error}</p>}
-          <button type="submit" className="prep-calculate-button">사주 계산하고 자료 만들기</button>
+          <button type="submit" className="prep-calculate-button ag-primary-action">사주와 운 흐름 계산하고 자료 만들기</button>
         </section>
       </form>
 
       {result && (
         <>
-          <section className="card prep-card prep-results-card">
+          <section className="card prep-card prep-results-card ag-glass">
             <div className="card-header">
               <div>
                 <p className="section-kicker">03 · SYSTEM RESULTS</p>
                 <h2>체계별 근거</h2>
               </div>
-              <span className="prep-step-note">부분 성공 허용</span>
+              <span className="prep-step-note">지원 범위와 한계 분리</span>
             </div>
-            <div className="prep-system-tabs" role="tablist" aria-label="계산 체계">
+            <div className="prep-system-tabs ag-segmented" role="tablist" aria-label="계산 체계">
               {SYSTEMS.map((system) => (
                 <button
                   type="button"
@@ -491,14 +678,14 @@ export default function InterpretationPrepPage() {
                 </button>
               ))}
             </div>
-            <div className="prep-view-switch" role="tablist" aria-label="결과 보기 방식">
+            <div className="prep-view-switch ag-segmented" role="tablist" aria-label="결과 보기 방식">
               <button type="button" className={resultView === 'raw' ? 'is-active' : ''} onClick={() => setResultView('raw')}>원자료</button>
               <button type="button" className={resultView === 'features' ? 'is-active' : ''} onClick={() => setResultView('features')}>주요 특징</button>
             </div>
             <SystemResult result={currentSystem} view={resultView} />
           </section>
 
-          <section className="card prep-card">
+          <section className="card prep-card ag-glass">
             <div className="card-header">
               <div>
                 <p className="section-kicker">04 · SYNTHESIS LAYER</p>
@@ -523,7 +710,7 @@ export default function InterpretationPrepPage() {
             </div>
           </section>
 
-          <section className="card prep-card">
+          <section className="card prep-card ag-glass">
             <div className="card-header">
               <div>
                 <p className="section-kicker">05 · EXPORT LAYER</p>
@@ -531,7 +718,7 @@ export default function InterpretationPrepPage() {
               </div>
               <span className="prep-step-note">AI 비종속 형식</span>
             </div>
-            <div className="prep-export-switch">
+            <div className="prep-export-switch ag-segmented">
               <button type="button" className={exportType === 'conversation' ? 'is-active' : ''} onClick={() => setExportType('conversation')}>대화용 요약</button>
               <button type="button" className={exportType === 'verification' ? 'is-active' : ''} onClick={() => setExportType('verification')}>검증용 상세</button>
             </div>
@@ -549,7 +736,7 @@ export default function InterpretationPrepPage() {
             )}
             <div className="prep-copy-actions">
               <button type="button" onClick={() => handleCopy('markdown')}>Markdown 복사</button>
-              <button type="button" className="prep-secondary-button" onClick={() => handleCopy('json')}>JSON 복사</button>
+              <button type="button" className="prep-secondary-button ag-secondary-action" onClick={() => handleCopy('json')}>JSON 복사</button>
             </div>
             {copyStatus && <p className="prep-copy-status" aria-live="polite">{copyStatus}</p>}
             <details className="prep-export-preview">

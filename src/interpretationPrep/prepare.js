@@ -1,20 +1,25 @@
 import {
   createEmptySystemResult,
+  DEFAULT_INPUT,
   DEFAULT_PROFILES,
+  getKoreaReferenceCity,
   INTERPRETATION_PREP_SCHEMA_VERSION,
+  KOREA_REFERENCE_CITIES,
   TOPICS,
 } from './schema.js'
 import { calculateSajuSystem } from './sajuAdapter.js'
 
-const REQUIRED_INPUTS = ['birthDate', 'placeName', 'timezone', 'latitude', 'longitude']
+const REQUIRED_INPUTS = ['birthDate', 'targetDate', 'timezone', 'referenceCity']
 
 export function validatePrepInput(input) {
   const missing = REQUIRED_INPUTS.filter((key) => String(input[key] ?? '').trim() === '')
   if (missing.length > 0) return `필수 입력값을 확인해 주세요: ${missing.join(', ')}`
   const birthTimeUnknown = input.timeAccuracy === 'unknown'
+  if (!['female', 'male'].includes(input.gender)) return '대운 순역 계산을 위해 성별을 선택해 주세요.'
   if (!birthTimeUnknown && !String(input.birthTime || '').trim()) return '출생시각을 입력하거나 모름을 선택해 주세요.'
   if (!/^\d{4}-\d{2}-\d{2}$/.test(input.birthDate)) return '출생일 형식을 확인해 주세요.'
   if (!birthTimeUnknown && !/^\d{2}:\d{2}$/.test(input.birthTime)) return '출생시각 형식을 확인해 주세요.'
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(input.targetDate)) return '운 흐름 기준일 형식을 확인해 주세요.'
   const [year, month, day] = input.birthDate.split('-').map(Number)
   const [hour, minute] = birthTimeUnknown ? [null, null] : input.birthTime.split(':').map(Number)
   if (year < 1901 || year > 2100) return '현재 검증된 사주 계산 범위는 1901년부터 2100년까지입니다.'
@@ -24,9 +29,16 @@ export function validatePrepInput(input) {
     parsedDate.getUTCMonth() !== month - 1 ||
     parsedDate.getUTCDate() !== day
   ) return '실제로 존재하는 출생일을 입력해 주세요.'
+  const [targetYear, targetMonth, targetDay] = input.targetDate.split('-').map(Number)
+  const parsedTargetDate = new Date(Date.UTC(targetYear, targetMonth - 1, targetDay))
+  if (
+    targetYear < 1901 || targetYear > 2100
+    || parsedTargetDate.getUTCFullYear() !== targetYear
+    || parsedTargetDate.getUTCMonth() !== targetMonth - 1
+    || parsedTargetDate.getUTCDate() !== targetDay
+  ) return '운 흐름 기준일은 1901년부터 2100년 사이의 실제 날짜여야 합니다.'
   if (!birthTimeUnknown && (hour > 23 || minute > 59)) return '출생시각 범위를 확인해 주세요.'
-  if (!Number.isFinite(Number(input.latitude)) || Number(input.latitude) < -90 || Number(input.latitude) > 90) return '위도는 -90부터 90 사이여야 합니다.'
-  if (!Number.isFinite(Number(input.longitude)) || Number(input.longitude) < -180 || Number(input.longitude) > 180) return '경도는 -180부터 180 사이여야 합니다.'
+  if (!KOREA_REFERENCE_CITIES.some((city) => city.id === input.referenceCity)) return '지원하는 국내 기준 도시를 선택해 주세요.'
   return ''
 }
 
@@ -55,13 +67,19 @@ export function prepareInterpretationData(input, profiles = DEFAULT_PROFILES) {
   const validationMessage = validatePrepInput(input)
   if (validationMessage) throw new Error(validationMessage)
 
+  const referenceCity = getKoreaReferenceCity(input.referenceCity)
+  const { source: _ignoredSource, ...inputWithoutSource } = input
   const normalizedInput = {
-    ...input,
+    ...inputWithoutSource,
     birthTime: input.timeAccuracy === 'unknown' ? '' : input.birthTime,
+    targetDate: input.targetDate.trim(),
     subjectName: input.subjectName.trim(),
-    placeName: input.placeName.trim(),
-    latitude: Number(input.latitude),
-    longitude: Number(input.longitude),
+    placeName: DEFAULT_INPUT.placeName,
+    gender: ['female', 'male'].includes(input.gender) ? input.gender : DEFAULT_INPUT.gender,
+    referenceCity: referenceCity.id,
+    referenceCityLabel: referenceCity.label,
+    latitude: referenceCity.latitude,
+    longitude: referenceCity.longitude,
   }
   const systems = {
     saju: calculateSajuSystem(normalizedInput, profiles.saju),
@@ -79,7 +97,7 @@ export function prepareInterpretationData(input, profiles = DEFAULT_PROFILES) {
   return {
     schemaVersion: INTERPRETATION_PREP_SCHEMA_VERSION,
     input: {
-      original: { ...input },
+      original: { ...normalizedInput },
       normalized: normalizedInput,
     },
     calculationProfiles: profiles,
@@ -98,7 +116,7 @@ export function selectTopicFeatures(result, topicId) {
 export function buildExportPayload(result, { type, topicId, question, generatedAt }) {
   const topic = TOPICS.find((item) => item.id === topicId) || TOPICS[0]
   const base = {
-    exportVersion: '1.1.0',
+    exportVersion: '1.4.0',
     exportType: type,
     generatedAt,
     schemaVersion: result.schemaVersion,
@@ -132,7 +150,11 @@ export function buildExportPayload(result, { type, topicId, question, generatedA
       saju: {
         pillars: result.systems.saju.raw.pillars,
         dayMaster: result.systems.saju.raw.dayMaster,
+        timeBoundary: result.systems.saju.raw.timeBoundary,
+        branchRelations: result.systems.saju.raw.branchRelations,
+        timing: result.systems.saju.raw.timing,
         calculationUncertainty: result.systems.saju.raw.calculationUncertainty,
+        supportScope: result.systems.saju.supportScope,
       },
     },
     features: selectedFeatures,
@@ -175,6 +197,20 @@ export function exportPayloadToMarkdown(payload) {
   const sajuPillars = Object.values(payload.calculationSummary.saju.pillars)
     .map((pillar) => `${pillar.label}: ${pillar.value || '미상'}${pillar.candidates?.length > 1 ? ` (후보 ${pillar.candidates.join(' · ')})` : ''}`)
     .join('\n- ')
+  const timing = payload.calculationSummary.saju.timing
+  const periods = Object.values(timing.periods)
+    .map((period) => period.status === 'candidate_required'
+      ? `${period.label}: 후보 ${period.candidates.map((candidate) => `${candidate.value}/${candidate.dayMaster}일간/${candidate.stemTenGod}·본기${candidate.branchMainStem}(${candidate.branchTenGod})/12운성 ${candidate.twelveStage}`).join(' | ')}`
+      : `${period.label}: ${period.value} (${period.stemTenGod}·본기${period.branchMainStem}(${period.branchTenGod}), 12운성 ${period.twelveStage})`)
+    .join('\n- ')
+  const activeDaYun = timing.daYun.status === 'calculated'
+    ? timing.daYun.cycles.find((cycle) => cycle.isActive)
+    : null
+  const daYunSummary = timing.daYun.status === 'candidate_required'
+    ? `후보 확인 필요 · ${timing.daYun.candidates.map((candidate) => `${candidate.sourceLabel} ${candidate.directionLabel}/${candidate.monthPillar}/첫 대운 ${candidate.cycles[0]?.value}/현재 ${candidate.cycles.find((cycle) => cycle.isActive)?.value || '없음'}`).join(' | ')}`
+    : timing.daYun.status === 'calculated'
+    ? `${timing.daYun.directionLabel} · ${timing.daYun.startAge.years}년 ${timing.daYun.startAge.months}개월 ${timing.daYun.startAge.days}일 기산 · 기준일 해당 ${activeDaYun?.value || '없음'}`
+    : timing.daYun.reason
 
   return [
     '# 해석 준비 도구 · 대화용 패키지',
@@ -182,11 +218,19 @@ export function exportPayloadToMarkdown(payload) {
     `- 주제: ${payload.target.topic}`,
     `- 질문: ${payload.target.question || '지정하지 않음'}`,
     `- 출생정보: ${payload.birthSummary.birthDate} ${payload.birthSummary.birthTime || '출생시각 모름'} (${payload.birthSummary.timezone})`,
-    `- 장소: ${payload.birthSummary.placeName} (${payload.birthSummary.latitude}, ${payload.birthSummary.longitude})`,
+    `- 지원 지역: ${payload.birthSummary.placeName}`,
+    `- 기준 도시: ${payload.birthSummary.referenceCityLabel} (${payload.birthSummary.latitude}, ${payload.birthSummary.longitude})`,
     '',
     '## 계산 요약',
     '',
     `- ${sajuPillars}`,
+    '',
+    '## 운 흐름 기준값',
+    '',
+    `- 기준일: ${timing.targetDate}`,
+    `- 대운: ${daYunSummary}`,
+    `- ${periods}`,
+    `- 범위: ${timing.interpretationScope}`,
     '',
     '## 체계별 핵심 특징',
     '',
