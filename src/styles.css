@@ -4649,6 +4649,21 @@ textarea {
   --ag-atmosphere-position: 58% 66%;
   --ag-surface-liquid: rgba(30, 27, 22, 0.34);
   --ag-surface-liquid-strong: rgba(30, 27, 22, 0.42);
+  --ag-text-faint: var(--ag-text-tertiary);
+  --scheduler-type-display-size: clamp(1.18rem, 5vw, 1.4rem);
+  --scheduler-type-title-size: 0.78rem;
+  --scheduler-type-value-size: 0.9rem;
+  --scheduler-type-body-size: 0.82rem;
+  --scheduler-type-meta-size: 0.76rem;
+  --scheduler-type-control-size: 0.8rem;
+  --scheduler-type-badge-size: 0.7rem;
+  --scheduler-type-display-weight: 650;
+  --scheduler-type-title-weight: 700;
+  --scheduler-type-value-weight: 650;
+  --scheduler-type-body-weight: 450;
+  --scheduler-type-meta-weight: 550;
+  --scheduler-type-control-weight: 600;
+  --scheduler-type-badge-weight: 650;
   min-height: 100dvh;
 }
 
@@ -4897,8 +4912,198 @@ textarea {
 
 .scheduler-theme-shell .scheduler-section-label {
   color: var(--ag-accent);
-  font-size: 0.76rem;
-  letter-spacing: 0.06em;
+  font-size: var(--scheduler-type-title-size);
+  font-weight: var(--scheduler-type-title-weight);
+  line-height: 1.25;
+  letter-spacing: 0.055em;
+}
+
+/* Scheduler typography hierarchy: display, title, value, body, meta, control, badge. */
+.scheduler-theme-shell .scheduler-status-item-label {
+  font-size: var(--scheduler-type-meta-size);
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: 0.015em;
+}
+
+.scheduler-theme-shell .scheduler-status-item-value,
+.scheduler-theme-shell .scheduler-count-pill,
+.scheduler-theme-shell .scheduler-status-badge,
+.scheduler-theme-shell .scheduler-tag-badge,
+.scheduler-theme-shell .scheduler-event-type {
+  font-size: var(--scheduler-type-badge-size);
+  font-weight: var(--scheduler-type-badge-weight);
+  line-height: 1;
+  letter-spacing: 0;
+}
+
+.scheduler-theme-shell .scheduler-today-page .scheduler-controls .scheduler-filter-summary-copy strong {
+  font-size: var(--scheduler-type-display-size);
+  font-weight: var(--scheduler-type-display-weight);
+  line-height: 1.08;
+  letter-spacing: -0.028em;
+}
+
+.scheduler-theme-shell .scheduler-today-page .scheduler-controls .scheduler-filter-summary-copy .scheduler-work-status-title {
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: -0.014em;
+}
+
+.scheduler-theme-shell .scheduler-filter-summary-copy .subtle,
+.scheduler-theme-shell .scheduler-work-log-card .scheduler-filter-summary-copy .subtle,
+.scheduler-theme-shell .scheduler-modal-description,
+.scheduler-theme-shell .scheduler-account-detail-note,
+.scheduler-theme-shell .scheduler-setting-subtitle,
+.scheduler-theme-shell .scheduler-room-subtitle {
+  font-size: var(--scheduler-type-body-size);
+  font-weight: var(--scheduler-type-body-weight);
+  line-height: 1.5;
+  letter-spacing: 0;
+}
+
+.scheduler-theme-shell .scheduler-modal-footnote,
+.scheduler-theme-shell .scheduler-push-summary,
+.scheduler-theme-shell .scheduler-push-status,
+.scheduler-theme-shell .scheduler-push-status-note,
+.scheduler-theme-shell .scheduler-account-status {
+  font-size: var(--scheduler-type-meta-size);
+  font-weight: var(--scheduler-type-meta-weight);
+  line-height: 1.4;
+  letter-spacing: 0;
+}
+
+.scheduler-theme-shell .scheduler-modal-footnote {
+  text-align: center;
+}
+
+.scheduler-theme-shell .scheduler-event-time-block strong {
+  font-size: var(--scheduler-type-value-size);
+  font-weight: var(--scheduler-type-value-weight);
+  line-height: 1.1;
+  letter-spacing: -0.012em;
+}
+
+.scheduler-theme-shell .scheduler-event-location,
+.scheduler-theme-shell .scheduler-event-customer,
+.scheduler-theme-shell .scheduler-event-urgency,
+.scheduler-theme-shell .scheduler-event-note {
+  font-size: var(--scheduler-type-meta-size);
+  line-height: 1.25;
+  letter-spacing: 0;
+}
+
+.scheduler-theme-shell .scheduler-event-location,
+.scheduler-theme-shell .scheduler-event-urgency {
+  font-weight: 650;
+}
+
+.scheduler-theme-shell .scheduler-event-customer,
+.scheduler-theme-shell .scheduler-event-note {
+  font-weight: var(--scheduler-type-meta-weight);
+}
+
+.scheduler-theme-shell .scheduler-summary-button,
+.scheduler-theme-shell .scheduler-compact-control-visual,
+.scheduler-theme-shell .scheduler-action-button-visual,
+.scheduler-theme-shell .scheduler-modal-close,
+.scheduler-theme-shell .scheduler-work-log-nav-btn,
+.scheduler-theme-shell .scheduler-log-delete-btn {
+  font-size: var(--scheduler-type-meta-size);
+  font-weight: var(--scheduler-type-control-weight);
+  line-height: 1;
+  letter-spacing: 0;
+}
+
+.scheduler-theme-shell .scheduler-modal-btn,
+.scheduler-theme-shell .scheduler-chip,
+.scheduler-theme-shell .scheduler-room-option,
+.scheduler-theme-shell .scheduler-nav-button,
+.scheduler-theme-shell .scheduler-link-button,
+.scheduler-theme-shell .scheduler-sign-out-button,
+.scheduler-theme-shell .scheduler-back-button,
+.scheduler-theme-shell .scheduler-form-actions > button {
+  font-size: var(--scheduler-type-control-size);
+  font-weight: var(--scheduler-type-control-weight);
+  line-height: 1.1;
+  letter-spacing: 0;
+}
+
+.scheduler-theme-shell .scheduler-chip,
+.scheduler-theme-shell .scheduler-room-option {
+  font-size: var(--scheduler-type-control-size) !important;
+  font-weight: var(--scheduler-type-control-weight) !important;
+}
+
+.scheduler-theme-shell .scheduler-form label,
+.scheduler-theme-shell .scheduler-field-label,
+.scheduler-theme-shell .scheduler-parent-label {
+  font-size: var(--scheduler-type-meta-size);
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: 0;
+}
+
+.scheduler-theme-shell .scheduler-form input,
+.scheduler-theme-shell .scheduler-form select,
+.scheduler-theme-shell .scheduler-form textarea,
+.scheduler-theme-shell .scheduler-controls input,
+.scheduler-theme-shell .scheduler-controls select {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.25;
+  letter-spacing: 0;
+}
+
+.scheduler-theme-shell .scheduler-native-picker-display,
+.scheduler-theme-shell .scheduler-room-picker-empty {
+  font-size: var(--scheduler-type-value-size);
+  font-weight: 500;
+  line-height: 1.25;
+  letter-spacing: 0;
+}
+
+.scheduler-theme-shell .scheduler-work-log-title strong {
+  font-size: 1rem;
+  font-weight: var(--scheduler-type-title-weight);
+  line-height: 1.2;
+  letter-spacing: -0.018em;
+}
+
+.scheduler-theme-shell .scheduler-work-log-title .subtle,
+.scheduler-theme-shell .scheduler-work-log-item strong,
+.scheduler-theme-shell .scheduler-work-log-total span {
+  font-size: var(--scheduler-type-meta-size);
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: 0;
+}
+
+.scheduler-theme-shell .scheduler-work-log-item p {
+  font-size: var(--scheduler-type-value-size);
+  font-weight: var(--scheduler-type-value-weight);
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+}
+
+.scheduler-theme-shell .scheduler-work-log-total strong.active,
+.scheduler-theme-shell .scheduler-work-log-total strong.empty {
+  font-size: 1rem;
+  line-height: 1.15;
+  letter-spacing: -0.018em;
+}
+
+.scheduler-theme-shell .scheduler-account-detail-row span {
+  font-size: var(--scheduler-type-meta-size);
+  font-weight: var(--scheduler-type-meta-weight);
+  line-height: 1.3;
+}
+
+.scheduler-theme-shell .scheduler-account-detail-row strong {
+  font-size: var(--scheduler-type-control-size);
+  font-weight: var(--scheduler-type-control-weight);
+  line-height: 1.3;
 }
 
 .scheduler-theme-shell .scheduler-setting-subtitle,
@@ -4923,17 +5128,18 @@ textarea {
   display: block;
   margin-top: 0.16rem;
   color: var(--ag-text);
-  font-size: clamp(1.42rem, 6vw, 1.72rem);
-  font-weight: 650;
-  letter-spacing: -0.035em;
-  line-height: 1.05;
+  font-size: var(--scheduler-type-display-size);
+  font-weight: var(--scheduler-type-display-weight);
+  letter-spacing: -0.028em;
+  line-height: 1.08;
 }
 
 .scheduler-theme-shell .scheduler-today-page .scheduler-controls .scheduler-filter-summary-copy .scheduler-work-status-title {
   color: var(--ag-text-tertiary);
-  font-size: clamp(1.12rem, 4.7vw, 1.28rem);
-  font-weight: 580;
-  letter-spacing: -0.018em;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: -0.014em;
+  line-height: 1.15;
 }
 
 .scheduler-theme-shell .scheduler-filter-summary-copy .subtle,
@@ -5170,11 +5376,6 @@ textarea {
   color: var(--ag-text-muted);
 }
 
-.scheduler-theme-shell .scheduler-event-location,
-.scheduler-theme-shell .scheduler-event-customer {
-  color: var(--ag-text-tertiary);
-}
-
 .scheduler-theme-shell .scheduler-event-card.event-checkin .scheduler-event-urgency,
 .scheduler-theme-shell .scheduler-event-card.event-checkin .scheduler-event-main strong {
   color: var(--ag-success);
@@ -5188,6 +5389,18 @@ textarea {
 .scheduler-theme-shell .scheduler-event-card.event-checkout .scheduler-event-urgency,
 .scheduler-theme-shell .scheduler-event-card.event-checkout .scheduler-event-main strong {
   color: var(--ag-danger);
+}
+
+.scheduler-theme-shell .scheduler-event-card .scheduler-event-location {
+  color: var(--ag-text-muted);
+}
+
+.scheduler-theme-shell .scheduler-event-card .scheduler-event-customer {
+  color: var(--ag-text-tertiary);
+}
+
+.scheduler-theme-shell .scheduler-event-card.overdue .scheduler-event-urgency {
+  color: var(--ag-warning);
 }
 
 .scheduler-theme-shell .scheduler-event-type.checkin {
@@ -5249,6 +5462,22 @@ textarea {
   background: var(--ag-brand);
   border: 1px solid var(--ag-brand);
   box-shadow: var(--ag-shadow-control), inset 0 1px 0 rgba(255, 255, 255, 0.55);
+}
+
+.scheduler-theme-shell .scheduler-form-actions > .danger-button {
+  color: var(--ag-danger);
+  background: var(--ag-danger-soft);
+  border-color: rgba(215, 160, 160, 0.28);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.scheduler-theme-shell .scheduler-account-detail-row strong:not(.is-ready) {
+  color: var(--ag-text-muted);
+}
+
+.scheduler-theme-shell .scheduler-modal-footnote,
+.scheduler-theme-shell .scheduler-account-status {
+  color: var(--ag-text-tertiary);
 }
 
 .scheduler-theme-shell .scheduler-sheet-backdrop,

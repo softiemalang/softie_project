@@ -222,7 +222,7 @@ export function SchedulerAuthGate({ pathname }) {
               </button>
             </div>
             {driveBackupStatus && (
-              <p className="subtle" style={{ marginTop: '0.9rem', marginBottom: 0, fontSize: '0.82rem', textAlign: 'center' }}>
+              <p className="subtle scheduler-modal-footnote" style={{ marginTop: '0.9rem', marginBottom: 0 }}>
                 {driveBackupStatus}
               </p>
             )}

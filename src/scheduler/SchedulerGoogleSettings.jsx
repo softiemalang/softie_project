@@ -134,7 +134,7 @@ export function SchedulerGoogleSettings({
             </div>
 
             <div className="scheduler-modal-actions stack">
-              <p className="subtle" style={{ marginTop: 0, marginBottom: '0.5rem', fontSize: '0.86rem' }}>
+              <p className="subtle scheduler-modal-description" style={{ marginTop: 0, marginBottom: '0.5rem' }}>
                 Google 캘린더와 연동하면 일정이 자동으로 동기화되고, 안전한 데이터 백업이 가능합니다.
               </p>
               <button type="button" className="scheduler-modal-btn" onClick={handleConnect}>

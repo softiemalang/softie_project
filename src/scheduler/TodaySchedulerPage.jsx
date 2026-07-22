@@ -673,7 +673,7 @@ export function TodaySchedulerPage({
               <button type="button" className="scheduler-modal-close" onClick={() => setIsWebPushModalOpen(false)}>닫기</button>
             </div>
 
-            <p className="subtle" style={{ marginTop: 0, marginBottom: '1.25rem', fontSize: '0.86rem' }}>
+            <p className="subtle scheduler-modal-description" style={{ marginTop: 0, marginBottom: '1.25rem' }}>
               {normalizedFilters.workTimeEnabled
                 ? '현재 브라우저 알림이 켜져 있어요.'
                 : isPushConnected
@@ -721,7 +721,7 @@ export function TodaySchedulerPage({
               </div>
             )}
 
-            <p className="subtle" style={{ marginTop: '1rem', marginBottom: 0, fontSize: '0.8rem', textAlign: 'center' }}>
+            <p className="subtle scheduler-modal-footnote" style={{ marginTop: '1rem', marginBottom: 0 }}>
               현재 알림 조건: 근무 중
             </p>
           </div>
@@ -777,7 +777,7 @@ export function TodaySchedulerPage({
               <button type="button" className="scheduler-modal-close" onClick={() => setIsFilterSheetOpen(false)}>닫기</button>
             </div>
 
-            <p className="subtle" style={{ marginTop: 0, marginBottom: '1.25rem', fontSize: '0.86rem' }}>
+            <p className="subtle scheduler-modal-description" style={{ marginTop: 0, marginBottom: '1.25rem' }}>
               확인할 날짜와 표시 범위를 선택해요.
             </p>
 
