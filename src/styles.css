@@ -798,6 +798,10 @@ textarea {
   cursor: pointer;
 }
 
+.scheduler-fab-icon {
+  display: none;
+}
+
 .scheduler-fab-button:active {
   transform: scale(0.96);
   box-shadow: 0 4px 12px rgba(31, 111, 95, 0.16);
@@ -805,8 +809,22 @@ textarea {
 
 @media (max-width: 720px) {
   .scheduler-fab-button {
+    width: 44px;
+    min-width: 44px;
+    padding: 0;
     bottom: max(1.2rem, calc(env(safe-area-inset-bottom) + 0.8rem));
-    right: 1.2rem;
+    right: max(0.5rem, env(safe-area-inset-right));
+    border-radius: 50%;
+    font-size: 1.18rem;
+    line-height: 1;
+  }
+
+  .scheduler-fab-icon {
+    display: inline;
+  }
+
+  .scheduler-fab-label {
+    display: none;
   }
 }
 
@@ -5138,6 +5156,10 @@ textarea {
 @media (max-width: 700px) {
   .scheduler-theme-shell.ag-shell {
     --ag-atmosphere-position: 85% 66%;
+  }
+
+  .scheduler-theme-shell .scheduler-fab-button {
+    right: max(0.5rem, env(safe-area-inset-right));
   }
 
   .scheduler-theme-shell .scheduler-shell {

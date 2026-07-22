@@ -197,4 +197,34 @@
 
 - P3: verify the background crop once in installed iPhone standalone mode; safe-area height may expose a few additional pixels compared with the 390×844 browser viewport.
 
+## Real-device iPhone Card Spacing QA
+
+- source visual truth: `/private/tmp/scheduler-iphone-spacing-audit/01-top.jpg` and `/private/tmp/scheduler-iphone-spacing-audit/02-events.jpg`, copied without modification from the user's iPhone captures
+- implementation screenshots: `/private/tmp/scheduler-iphone-spacing-audit/08-local-top-final.png` and `/private/tmp/scheduler-iphone-spacing-audit/09-local-events-final.png`
+- full-view comparison evidence: `/private/tmp/scheduler-iphone-spacing-audit/10-full-comparison.jpg`
+- focused comparison evidence: `/private/tmp/scheduler-iphone-spacing-audit/11-event-detail-comparison.jpg`
+- source pixels: `588×1280` including iPhone browser chrome; normalized to a `390×844` comparison panel for visual review
+- implementation viewport and pixels: `390×844` at 1× CSS-pixel density; desktop regression check at `1280×900`
+- state: signed-in scheduler today view with loaded event cards
+- primary interaction tested: the compact mobile add control retains the accessible name `새 일정 추가` and navigates to `/scheduler/new?date=2026-07-22`
+
+### Findings
+
+- P2 resolved: the original pill-shaped fixed add control visibly covered the `예약 수정` control during normal iPhone scrolling. On mobile it now renders as a `44×44px` circular `+` target at the outer-right gutter; the descriptive `일정 추가` label remains visible on wider screens.
+- Spacing and layout rhythm: no event-card padding correction was necessary. Browser measurement confirmed the `대기` metadata and `완료` visual centers are identical, the section title and count pill share the same center line, and the existing 95.8px card rhythm remains internally balanced.
+- Responsive fit: the final mobile add control starts 2.19px beyond the event action content edge, so it no longer covers `예약 수정`; `scrollWidth === clientWidth` at both 390px and 1280px.
+- Fonts and typography: text family, sizes, weights, wrapping, and event metadata hierarchy remain unchanged.
+- Colors and visual tokens: card surfaces, semantic event colors, borders, and atmospheric background remain unchanged.
+- Image quality and asset fidelity: the approved v4 background asset and crop remain unchanged.
+- Copy and content: the desktop label remains `일정 추가`; mobile uses the visible `+` with the full accessible label preserved on the button.
+
+### Comparison history
+
+- Iteration 20: the supplied iPhone screenshots exposed a real overlap between the persistent add control and event-card actions. The first compact-circle pass still inherited the scheduler theme's 20px right offset and overlapped the action content by about 9px. The final mobile override moves the 44px control to an 8px right inset, producing 2.19px clearance from the action content while retaining the desktop pill. Post-fix evidence is `/private/tmp/scheduler-iphone-spacing-audit/10-full-comparison.jpg` and `/private/tmp/scheduler-iphone-spacing-audit/11-event-detail-comparison.jpg`. No actionable P0/P1/P2 finding remains.
+- Iteration 21: user review found the signed-in account card taller than its single-line content required. Vertical padding was reduced from 15.2px to 6.4px, lowering the card from 76.38px to 58.78px while preserving both 44px button targets, the email ellipsis behavior, the 11.19px gap to the notification card, and zero horizontal overflow at 390px. Focused evidence is `/private/tmp/scheduler-iphone-spacing-audit/14-auth-height-comparison.jpg`. No actionable P0/P1/P2 finding remains.
+
+### Follow-up polish
+
+- P3: confirm the 8px outer-right inset once in the installed iPhone PWA; the control already accounts for `safe-area-inset-right`, but standalone-mode browser chrome cannot be reproduced exactly in the local viewport.
+
 final result: passed

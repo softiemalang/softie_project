@@ -188,7 +188,7 @@ export function SchedulerAuthGate({ pathname }) {
       <div className="scheduler-shell" style={{ paddingBottom: 0 }}>
         <section
           className="scheduler-panel scheduler-setting-card is-connected scheduler-auth-card"
-          style={{ padding: '0.95rem 1.05rem' }}
+          style={{ padding: '0.4rem 1.05rem' }}
         >
           <div className="scheduler-section-head" style={{ alignItems: 'center', gap: '0.75rem' }}>
             <div style={{ minWidth: 0 }}>

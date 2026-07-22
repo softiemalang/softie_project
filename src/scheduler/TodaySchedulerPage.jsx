@@ -473,9 +473,9 @@ export function TodaySchedulerPage({
 
   const filterSummaryParts = [
     formatDateLabel(selectedDate),
-    filters.branch === 'all' ? '전체 지점' : filters.branch,
-    filters.room === 'all' ? '전체 룸' : filters.room,
-  ]
+    filters.branch === 'all' ? null : filters.branch,
+    filters.room === 'all' ? null : filters.room,
+  ].filter(Boolean)
   if (normalizedFilters.workTimeEnabled) {
     filterSummaryParts.unshift(formatWorkTimeRange(normalizedFilters))
   }
