@@ -4930,9 +4930,9 @@ textarea {
 }
 
 .scheduler-theme-shell .scheduler-today-page .scheduler-controls .scheduler-filter-summary-copy .scheduler-work-status-title {
-  font-size: clamp(1.28rem, 5.3vw, 1.52rem);
-  font-weight: 620;
-  letter-spacing: -0.025em;
+  font-size: clamp(1.12rem, 4.7vw, 1.28rem);
+  font-weight: 580;
+  letter-spacing: -0.018em;
 }
 
 .scheduler-theme-shell .scheduler-filter-summary-copy .subtle,
