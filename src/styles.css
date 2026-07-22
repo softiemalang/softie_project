@@ -4762,17 +4762,30 @@ textarea {
 }
 
 .scheduler-theme-shell .scheduler-status-item-value {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 26px;
   margin-left: 0.45rem;
+  padding: 0.16rem 0.52rem;
   font-size: 0.74rem;
   font-weight: 650;
+  line-height: 1;
+  background: var(--ag-surface-operational);
+  border: 1px solid var(--ag-line);
+  border-radius: 999px;
 }
 
 .scheduler-theme-shell .scheduler-status-item.is-ready .scheduler-status-item-value {
   color: var(--ag-success);
+  background: var(--ag-success-soft);
+  border-color: rgba(167, 223, 197, 0.28);
 }
 
 .scheduler-theme-shell .scheduler-status-item.needs-attention .scheduler-status-item-value {
   color: var(--ag-warning);
+  background: var(--ag-warning-soft);
+  border-color: rgba(222, 187, 113, 0.26);
 }
 
 .scheduler-theme-shell .scheduler-google-modal {
