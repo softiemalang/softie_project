@@ -2071,6 +2071,33 @@
   color: #6b46c1;
 }
 
+/* 검증 센터 안내 배너 */
+.prep-validation-info-banner {
+  background: rgba(235, 248, 250, 0.85);
+  border: 1px solid rgba(49, 151, 149, 0.25);
+  border-radius: var(--radius-item);
+  padding: 0.85rem 1rem;
+  color: #234e52;
+  font-size: 0.82rem;
+  line-height: 1.5;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.01);
+}
+
+.prep-validation-info-banner p {
+  margin: 0;
+}
+
+/* 회귀 검증 세부 정보 알림 */
+.prep-val-type-note {
+  font-size: 0.76rem;
+  color: #4a5568;
+  background: #f7fafc;
+  border: 1px solid rgba(226, 232, 240, 0.8);
+  border-radius: var(--radius-control);
+  padding: 0.45rem 0.65rem;
+  margin-top: 0.4rem;
+}
+
 /* 필터 영역 */
 .prep-validation-filters {
   display: grid;

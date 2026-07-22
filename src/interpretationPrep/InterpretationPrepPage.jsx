@@ -953,7 +953,7 @@ export default function InterpretationPrepPage() {
             <details className="prep-validation-details" onToggle={(e) => { if (e.target.open && !validationSummary) handleRunValidation() }}>
               <summary className="prep-validation-summary-toggle">
                 <span>⚙️ 사주 계산 검증 센터 (개발자 검증용)</span>
-                <small>골든 픽스처 기반 회귀 & 신뢰성 수치 대시보드 (개방 시 또는 새로고침 클릭 시에만 지연 연산 시작)</small>
+                <small>회귀 검증 픽스처 기반 계산 일관성 대시보드 (개방 시 또는 새로고침 클릭 시에만 지연 연산 시작)</small>
               </summary>
 
               <div className="prep-validation-center-content">
@@ -974,18 +974,23 @@ export default function InterpretationPrepPage() {
                       <div className="prep-val-stat-card is-verified">
                         <span>외부 검증 완료 (Verified)</span>
                         <strong>{validationSummary.statistics.verified.passed} / {validationSummary.statistics.verified.total}</strong>
-                        <small>정통 천문력 대조 성공율</small>
+                        <small>독립 외부 대조 완료 항목</small>
                       </div>
                       <div className="prep-val-stat-card is-regression">
                         <span>회귀 검증 전용 (Regression)</span>
                         <strong>{validationSummary.statistics.regressionOnly.passed} / {validationSummary.statistics.regressionOnly.total}</strong>
-                        <small>엔진 사법 동작 고정율</small>
+                        <small>현재 엔진 계산 계약 유지율</small>
                       </div>
                       <div className="prep-val-stat-card is-pending">
                         <span>대기 및 예외 항목 (Pending/Invalid)</span>
                         <strong>{validationSummary.statistics.pending + validationSummary.statistics.invalid} 개</strong>
-                        <small>학술 추가 검토 대상</small>
+                        <small>외부 근거 보강 또는 계약 검토 대상</small>
                       </div>
+                    </div>
+
+                    {/* 검증 안전 안내 배너 (Verified 0개 안전 설명) */}
+                    <div className="prep-validation-info-banner">
+                      <p>💡 <b>안내:</b> 독립 외부 기관과의 대조 사례(Verified)는 현재 기준 정비 중에 있습니다. 본 검증 센터는 엔진 계산의 내부 계약 일관성을 감시하고 미작동 회귀를 조기에 포착하기 위한 <b>개발자 전용 품질 도구</b>입니다.</p>
                     </div>
 
                     {/* 필터 패널 */}
@@ -1068,14 +1073,19 @@ export default function InterpretationPrepPage() {
                               )}
 
                               <footer className="prep-val-item-footer">
-                                {itemFixture.source && (
+                                {itemFixture.source && itemFixture.source.trim() !== '' && (
                                   <div>
                                     <span><b>검증 출처:</b> {itemFixture.source}</span>
                                   </div>
                                 )}
                                 {itemFixture.notes && (
                                   <div className="prep-val-notes">
-                                    <span><b>학술 메모:</b> {itemFixture.notes}</span>
+                                    <span><b>검증 메모:</b> {itemFixture.notes}</span>
+                                  </div>
+                                )}
+                                {res.verificationStatus === 'regression_only' && (
+                                  <div className="prep-val-type-note">
+                                    <span>ℹ️ 본 항목은 독립 외부 출처가 아닌, 현재 엔진의 산출값을 고정한 <b>회귀 검증 전용</b> 기준입니다.</span>
                                   </div>
                                 )}
                               </footer>

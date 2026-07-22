@@ -1,7 +1,7 @@
 /**
  * Saju Validation Runner
  *
- * Pure functions to execute and compare Saju engine outputs against Golden Fixtures.
+ * Pure functions to execute and compare Saju engine outputs against Validation Fixtures.
  */
 
 import { SAJU_VALIDATION_FIXTURE_VERSION } from './fixtures/sajuValidationFixtures.js'
@@ -80,7 +80,7 @@ export function compareValues(actual, expected) {
 }
 
 /**
- * Validates a single Saju golden fixture against the computed result.
+ * Validates a single Saju validation fixture against the computed result.
  */
 export function validateSingleFixture(fixture, prepareInterpretationDataFn) {
   if (!fixture || !fixture.id) {
@@ -372,8 +372,8 @@ export function buildValidationReport(summary) {
   lines.push(`| Status Category | Total | Passed | Failed | Pending/Invalid |`)
   lines.push(`| :--- | :---: | :---: | :---: | :---: |`)
   lines.push(`| **Overall Fixtures** | ${summary.statistics.total} | ${summary.statistics.passed} | ${summary.statistics.failed} | ${summary.statistics.pending + summary.statistics.invalid} |`)
-  lines.push(`| **Verified (Golden)** | ${summary.statistics.verified.total} | ${summary.statistics.verified.passed} | ${summary.statistics.verified.failed} | - |`)
-  lines.push(`| **Regression Only** | ${summary.statistics.regressionOnly.total} | ${summary.statistics.regressionOnly.passed} | ${summary.statistics.regressionOnly.failed} | - |`)
+  lines.push(`| **독립 외부 대조 (Verified)** | ${summary.statistics.verified.total} | ${summary.statistics.verified.passed} | ${summary.statistics.verified.failed} | - |`)
+  lines.push(`| **회귀 검증 전용 (Regression)** | ${summary.statistics.regressionOnly.total} | ${summary.statistics.regressionOnly.passed} | ${summary.statistics.regressionOnly.failed} | - |`)
 
   lines.push(`\n## Category Breakdown`)
   lines.push(`| Category | Total | Passed | Failed | Pending | Invalid |`)
@@ -388,7 +388,22 @@ export function buildValidationReport(summary) {
     const statusIcon = res.status === 'passed' ? '✅' : res.status === 'pending' ? '⏳' : res.status === 'invalid_fixture' ? '⚠️' : '❌'
     lines.push(`### ${statusIcon} [${(res.verificationStatus || 'INVALID').toUpperCase()}] ${res.title || 'Invalid Fixture'} (\`${res.fixtureId}\`)`)
     lines.push(`* **Category**: \`${res.category || 'unknown'}\``)
-    lines.push(`* **Status**: **${res.status.toUpperCase()}** (Passed Paths: ${res.total - res.failed}/${res.total})`)
+
+    let explanation = ''
+    if (res.verificationStatus === 'verified') {
+      explanation = res.status === 'passed'
+        ? '독립 외부 근거와 대조 완료'
+        : '독립 외부 근거와 대조 불일치'
+    } else if (res.verificationStatus === 'regression_only') {
+      explanation = res.status === 'passed'
+        ? '현재 엔진의 계산 계약과 일치'
+        : '현재 엔진의 계산 계약과 불일치'
+    } else if (res.verificationStatus === 'pending_external_verification') {
+      explanation = '외부 근거 또는 고급 판정 검토 대기'
+    } else if (res.status === 'invalid_fixture') {
+      explanation = '유효하지 않은 검증 사양'
+    }
+    lines.push(`* **Status**: **${res.status.toUpperCase()}** (${explanation}) (Passed Paths: ${res.total - res.failed}/${res.total})`)
 
     if (res.mismatches && res.mismatches.length > 0) {
       lines.push(`\n#### Mismatches Detail:`)

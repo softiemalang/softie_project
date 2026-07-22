@@ -56,9 +56,9 @@ export const sajuValidationFixtures = [
       'systems.saju.status': 'experimental'
     },
     verificationStatus: 'regression_only', // 컨텍스트 내 실증 문서 부재에 따라 regression_only로 안전 하향
-    source: '한국천문연구원(KASI) 역서 표준 국치',
+    source: '현재 엔진 회귀 기준값',
     notes: '기존 테스트에서 검증용 기준 명식으로 삼은 정축 갑진 계사 기미 구조를 정밀하게 고정 대조함.',
-    tags: ['solar', 'golden', 'fixed_fixture']
+    tags: ['solar', 'regression', 'fixed_fixture']
   },
   {
     id: 'val-lunar-normal',
@@ -95,9 +95,9 @@ export const sajuValidationFixtures = [
       'systems.saju.raw.pillars.hour.referenceValue': '병오'
     },
     verificationStatus: 'regression_only', // 컨텍스트 내 실증 문서 부재에 따라 regression_only로 안전 하향
-    source: 'KASI 역서 1984년 대조표',
+    source: '현재 엔진 회귀 기준값',
     notes: '음력 10월 평달은 양력 11월 14일 임자일이며, 진태양시 적용 시 병오시로 정상 성립.',
-    tags: ['lunar', 'standard']
+    tags: ['lunar', 'regression']
   },
   {
     id: 'val-lunar-leap',
@@ -128,9 +128,9 @@ export const sajuValidationFixtures = [
       'systems.saju.raw.pillars.day.referenceValue': '임오'
     },
     verificationStatus: 'regression_only', // 컨텍스트 내 실증 문서 부재에 따라 regression_only로 안전 하향
-    source: 'KASI 역서 1984년 대조표 (윤10월 검증)',
+    source: '현재 엔진 회귀 기준값',
     notes: '1984년 윤10월은 실제 존재하며, 양력 12월 14일 임오일에 대치됨.',
-    tags: ['lunar', 'leap_month']
+    tags: ['lunar', 'leap_month', 'regression']
   },
   {
     id: 'val-lunar-year-boundary',
@@ -161,9 +161,9 @@ export const sajuValidationFixtures = [
       'systems.saju.raw.pillars.year.referenceValue': '갑술' // 1995년 을해년 설날 당일이지만 입춘(2/4) 전이므로 갑술년 유지됨
     },
     verificationStatus: 'regression_only', // 컨텍스트 내 실증 문서 부재에 따라 regression_only로 안전 하향
-    source: 'KASI 역서 및 입춘 세수 기준 명리 학술 조항',
+    source: '현재 엔진 회귀 기준값',
     notes: '음력 설날 당일이나 절기법 상 세수(연주)는 입춘시에 변경되므로 갑술년이 그대로 산출되는 것이 맞음.',
-    tags: ['lunar', 'year_boundary', 'solar_term']
+    tags: ['lunar', 'year_boundary', 'solar_term', 'regression']
   },
   {
     id: 'val-lunar-invalid-date',
@@ -191,9 +191,9 @@ export const sajuValidationFixtures = [
       substring: '음력 윤달이 아닙니다' // 예외 기대 부분 문자열 등록 완료
     },
     verificationStatus: 'regression_only',
-    source: '자체 윤달 매핑 유효성 거부 필터',
+    source: '현재 엔진 회귀 기준값',
     notes: '입력 유효성 검증 단(validatePrepInput)에서 가짜 윤달은 가로막혀 에러를 방지하게 됨.',
-    tags: ['lunar', 'validation_error']
+    tags: ['lunar', 'validation_error', 'regression']
   },
   {
     id: 'val-solar-term-boundary',
@@ -221,9 +221,9 @@ export const sajuValidationFixtures = [
       'systems.saju.raw.calculationUncertainty.solarTermBoundary.status': 'candidate_required'
     },
     verificationStatus: 'regression_only',
-    source: '1997년 Meeus/NOAA 입춘 경계 기산 수식 대조',
+    source: '현재 엔진 회귀 기준값',
     notes: '입춘 시간 근방의 ±20분 구간에 걸리게 되므로 자동 경계 후보 등록 대상이 됨.',
-    tags: ['solar_term', 'uncertainty']
+    tags: ['solar_term', 'uncertainty', 'regression']
   },
   {
     id: 'val-solar-midnight-boundary',
@@ -251,9 +251,9 @@ export const sajuValidationFixtures = [
       'systems.saju.raw.timeBoundary.ziPeriodLabel': '야자'
     },
     verificationStatus: 'regression_only',
-    source: '진태양시 기반 한국 천문 시법',
+    source: '현재 엔진 회귀 기준값',
     notes: '23:45분 출생 시 진태양시 기준 야자시가 검출되어 다음 날로 넘어가지 않고 본래 일간을 유지함.',
-    tags: ['midnight', 'zi_hour']
+    tags: ['midnight', 'zi_hour', 'regression']
   },
   {
     id: 'val-birth-time-unknown',
@@ -285,7 +285,7 @@ export const sajuValidationFixtures = [
       'systems.saju.raw.pillars.hour.branch': null
     },
     verificationStatus: 'regression_only',
-    source: '모바일 내부 툴 요구 스펙 시법 격리 조항',
+    source: '현재 엔진 회귀 기준값',
     notes: '시간이 unknown이면 기둥의 status는 unknown이 되고 자정 전후 변화량을 감안해 일주 후보군을 유지함.',
     tags: ['unknown_time', 'regression']
   },
@@ -315,9 +315,9 @@ export const sajuValidationFixtures = [
       'systems.saju.raw.calculationUncertainty.historicalTimezone.requiresVerification': true
     },
     verificationStatus: 'regression_only',
-    source: '대한민국 표준시 개정사 법령',
+    source: '현재 엔진 회귀 기준값',
     notes: '1961-08-10 이전 출생자는 한국천문연구원 공식 검증 대상 범위 외이므로 무조건 검증필요로 분기함.',
-    tags: ['historical', 'standard_time']
+    tags: ['historical', 'standard_time', 'regression']
   },
   {
     id: 'val-summer-time-check',
@@ -345,9 +345,9 @@ export const sajuValidationFixtures = [
       'systems.saju.raw.calculationUncertainty.historicalTimezone.status': 'dst_changes_core_pillars'
     },
     verificationStatus: 'regression_only',
-    source: '정부 서머타임 시행령령 기재 범위',
+    source: '현재 엔진 회귀 기준값',
     notes: '87년 및 88년 서머타임 시각에 탄력 차감이 작동해야 하므로 status가 dst_changes_core_pillars로 출력.',
-    tags: ['historical', 'dst']
+    tags: ['historical', 'dst', 'regression']
   },
   {
     id: 'val-repeating-stems',
@@ -427,9 +427,9 @@ export const sajuValidationFixtures = [
       ]
     },
     verificationStatus: 'regression_only',
-    source: '5차 계산 보완 계약 명세 조항',
+    source: '현재 엔진 회귀 기준값',
     notes: '동일 천간 쌍 간에는 천간합/천간충 세션에서 items 리스트에 가짜 관계가 유입되지 않는지 확인.',
-    tags: ['stems', 'combat_fake_relation']
+    tags: ['stems', 'combat_fake_relation', 'regression']
   },
   {
     id: 'val-branch-relation-basic',
@@ -457,9 +457,9 @@ export const sajuValidationFixtures = [
       'systems.saju.raw.branchRelations.ruleVersion': 'softie-natal-branch-relations-v2'
     },
     verificationStatus: 'regression_only',
-    source: 'softie-natal-branch-relations-v2 짝 대조표',
+    source: '현재 엔진 회귀 기준값',
     notes: '자체 지지 짝 매핑 테이블에 따른 축진파, 사미방합 등 세부 지지 관계 원형 보존 검토용.',
-    tags: ['branches', 'relations']
+    tags: ['branches', 'relations', 'regression']
   },
   {
     id: 'val-pending-external',
@@ -487,8 +487,8 @@ export const sajuValidationFixtures = [
       'systems.saju.raw.experimental.gyeokguk.type': '정격'
     },
     verificationStatus: 'pending_external_verification',
-    source: '중국 정통 명리 특수 종격 개연성 사서',
-    notes: '학술적으로 정형 종격인지 가종격인지 외부 추가 정밀 문헌 대조가 필요하므로 대기 상태(pending)임.',
+    source: '외부 근거 또는 학술 검토 대기',
+    notes: '신강 지수가 0점에 달하고 화 오행이 극도로 강한 극신강 사주가 현재 엔진의 종격 자동 판정 한계로 인해 추가 외부 검토 대상으로 올바르게 식별되는지 검증.',
     tags: ['pending_check', 'gyeokguk']
-  }
+  },
 ];
