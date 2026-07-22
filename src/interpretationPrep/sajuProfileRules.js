@@ -165,7 +165,11 @@ export function calculateStrengthScore(dayMaster, pillars) {
     deungJi,
     isStrong,
     isWeak,
-    candidates
+    candidates,
+    model: 'surface_support_heuristic',
+    basis: '표면 생조 및 득령·득지 기반 단순 득점 산식 (지장간 미반영 휴리스틱)',
+    limitations: '지지 지장간의 상세한 통근(TongGeun) 상태를 정량 스코어에 직접 산입하지 않는 표면 계산 제약이 있습니다.',
+    includesHiddenStemRoots: false
   }
 }
 
@@ -221,11 +225,12 @@ export function determineGyeokguk(dayMaster, pillars) {
   // 특수격(종격) 가능성 검토 (극단적 오행 쏠림 판정)
   const strength = calculateStrengthScore(dayMaster, pillars)
   if (strength.score >= 85) {
-    selectedGyeok = {
-      name: '종왕격 (또는 종강격)',
-      type: '특수격 (종격)',
-      reason: `인성과 비겁의 세력이 원국의 대부분(${strength.score}점)을 차지하여, 일간의 강한 세력에 순응하는 극신강 특수격 성립 가능성 높음`,
-      candidates: ['종왕격', '종강격', selectedGyeok.name]
+    selectedGyeok.specialStructureCandidate = {
+      name: '종격 가능성 검토 필요',
+      type: '특수격 (종격) 후보',
+      reason: `인성과 비겁의 표면 단순 점수가 극단적(${strength.score}점)으로 매우 높습니다. 일간의 강한 세력에 순응하는 특수격(종왕격·종강격 등)의 성립 개연성이 있으나, 정밀한 가종격 분석 및 판단은 지원 범위 외(advanced-following-structures)이므로 수동 학술 분석이 요구됩니다.`,
+      score: strength.score,
+      candidates: ['종왕격', '종강격']
     }
   }
 
@@ -296,8 +301,9 @@ export function determineYongShin(dayMaster, strength, seasonalContext) {
     primaryYongShinElement: yongShin,
     heeShinElement: heeShin,
     giShinElement: giShin,
-    confidence,
-    statement,
+    confidence: 'low',
+    statement: `[표면 생조 휴리스틱 기반] ${statement}`,
+    basis: '지지 지장간의 상세 통근 관계를 배제한 채 표면 생조 오행 단순 합산 점수(0~100점)를 대입해 도출한 간이 억부용신 후보로서 학술적 신뢰도가 낮습니다.',
     chohu: chohuYongShin ? {
       element: chohuYongShin,
       statement: chohuStatement

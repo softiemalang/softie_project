@@ -310,7 +310,7 @@ function SystemResult({ result, view }) {
         <section className="prep-data-panel prep-profile-panel">
           <div className="prep-mini-head">
             <div className="prep-mini-title-group">
-              <h4>사주 학파 표준 프로필</h4>
+              <h4>Experimental 사주 분석 프로필</h4>
               <span className="prep-experimental-badge">Experimental</span>
             </div>
             <span>정량적 원국 심층 분석</span>
@@ -323,7 +323,7 @@ function SystemResult({ result, view }) {
           <div className="profile-analysis-card">
             {/* 신강약 점수 시각화 */}
             <div className="profile-section-item">
-              <strong className="profile-sub-label">일간 강약 정량 평가 ({result.raw.experimental?.strength?.level || '미정'})</strong>
+              <strong className="profile-sub-label">표면 생조 기반 휴리스틱 강약 ({result.raw.experimental?.strength?.level || '미정'})</strong>
               <div className="strength-score-container">
                 <div className="strength-labels">
                   <span>극신약 (0)</span>
@@ -336,6 +336,20 @@ function SystemResult({ result, view }) {
                 <div className="strength-score-text">
                   {result.raw.experimental?.strength?.score || 0}점 · 득령 {result.raw.experimental?.strength?.deungRyeong ? '성공' : '실패'} · 득지 {result.raw.experimental?.strength?.deungJi ? '성공' : '실패'}
                 </div>
+                {/* 별도 독립 통근 정보 명시 */}
+                <div className="strength-tonggeun-note">
+                  <small>
+                    ※ <b>통근(TongGeun) 정보 (별도 참고)</b>:
+                    {result.raw.experimental?.strength?.tongGeunPillars && result.raw.experimental.strength.tongGeunPillars.length > 0 ? (
+                      ` 일간이 지지 지장간에 뿌리를 내린 기둥: ${result.raw.experimental.strength.tongGeunPillars.map(p => {
+                        const labels = { year: '연지', month: '월지', day: '일지', hour: '시지' }
+                        return labels[p] || p
+                      }).join(', ')}`
+                    ) : ' 일간이 지지에 뿌리를 내린 기둥(통근)이 없습니다.'}
+                    <br />
+                    (본 정량 스코어는 단순 오행 표면 생조 가치 합산이며 지장간 통근 정보는 스코어와 무관한 참고용 정보입니다.)
+                  </small>
+                </div>
               </div>
             </div>
 
@@ -346,6 +360,13 @@ function SystemResult({ result, view }) {
                 <h5>{result.raw.experimental?.gyeokguk?.name || '분석 불능'}</h5>
                 <span className="profile-meta-text">분류: {result.raw.experimental?.gyeokguk?.type || '불명'}</span>
                 <p className="profile-desc-text">{result.raw.experimental?.gyeokguk?.reason || ''}</p>
+                {/* 특수격 후보가 존재할 경우 참고 정보로 출력 */}
+                {result.raw.experimental?.gyeokguk?.specialStructureCandidate && (
+                  <div className="special-structure-note">
+                    <strong>[참고] {result.raw.experimental.gyeokguk.specialStructureCandidate.name}</strong>
+                    <p>{result.raw.experimental.gyeokguk.specialStructureCandidate.reason}</p>
+                  </div>
+                )}
               </div>
               <div className="profile-section-item profile-box ag-glass">
                 <strong className="profile-sub-label text-green">용희신 (YongShin & HeeShin)</strong>
@@ -365,7 +386,7 @@ function SystemResult({ result, view }) {
               {result.raw.experimental?.shinsal && result.raw.experimental.shinsal.length > 0 ? (
                 <div className="shinsal-chip-wrapper">
                   {result.raw.experimental.shinsal.map((shinsal, sIdx) => {
-                    const pillarNames = { year: '연지', month: '월지', day: '일지', time: '시지' }
+                    const pillarNames = { year: '연지', month: '월지', day: '일지', hour: '시지' }
                     return (
                       <div key={sIdx} className="shinsal-chip ag-glass">
                         <span className="shinsal-name">{shinsal.name}</span>
@@ -404,7 +425,19 @@ function SystemResult({ result, view }) {
                     <li key={idx}>
                       <span className="relation-item-title">[{item.relation}] {item.stems.join('·')}</span>
                       <div className="relation-item-status">
-                        합화성립: {item.assessment.transmutation ? <span className="text-success-soft">성공 (변환오행: {item.assessment.transformedElement})</span> : <span className="text-danger-soft">실패 (합반 묶임)</span>}
+                        {item.relation === '천간합' ? (
+                          <>
+                            합화성립: {item.assessment.transmutation ? (
+                              <span className="text-success-soft">성공 (변환오행: {item.assessment.transformedElement})</span>
+                            ) : (
+                              <span className="text-danger-soft">{item.assessment.establishment ? '실패 (합반 묶임)' : '무력 (원격 격리)'}</span>
+                            )}
+                          </>
+                        ) : item.relation === '천간충' ? (
+                          <span className="text-warning-soft">천간충 성립</span>
+                        ) : (
+                          <span>관계 성립</span>
+                        )}
                       </div>
                       <p className="relation-item-desc">{item.assessment.description}</p>
                     </li>

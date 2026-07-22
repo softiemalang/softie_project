@@ -1905,3 +1905,41 @@
 .strength-meter-track.val-step-90 i { width: 90% !important; }
 .strength-meter-track.val-step-95 i { width: 95% !important; }
 .strength-meter-track.val-step-100 i { width: 100% !important; }
+
+/* 5차 계산 계약 보완용 독립 참고 노트 스타일링 */
+.strength-tonggeun-note {
+  margin-top: 0.75rem;
+  padding: 0.6rem 0.8rem;
+  background: rgba(243, 236, 226, 0.5);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-item);
+  color: var(--text-muted);
+}
+.strength-tonggeun-note small {
+  display: block;
+  font-size: 0.76rem;
+  line-height: 1.45;
+}
+.strength-tonggeun-note b {
+  color: var(--brand);
+}
+
+.special-structure-note {
+  margin-top: 0.75rem;
+  padding: 0.6rem 0.8rem;
+  background: rgba(156, 39, 176, 0.05);
+  border: 1px dashed rgba(156, 39, 176, 0.25);
+  border-radius: var(--radius-item);
+}
+.special-structure-note strong {
+  display: block;
+  font-size: 0.78rem;
+  color: #9c27b0;
+  margin-bottom: 0.2rem;
+}
+.special-structure-note p {
+  font-size: 0.76rem;
+  margin: 0;
+  line-height: 1.45;
+  color: var(--text-muted);
+}

@@ -107,7 +107,7 @@ export function calculateNatalStemRelations(pillars) {
 
       // 천간합 연산
       STEM_COMBINATION_RULES.forEach((rule) => {
-        if (rule.stems.includes(left.stem) && rule.stems.includes(right.stem)) {
+        if (left.stem !== right.stem && rule.stems.includes(left.stem) && rule.stems.includes(right.stem)) {
           // 합화 성립 여부 판정 (월령 득실 또는 천간 세력 기준)
           const monthBranch = pillars.month?.branch
           const monthBranchElement = monthBranch ? getBranchElement(monthBranch) : null
@@ -148,7 +148,7 @@ export function calculateNatalStemRelations(pillars) {
 
       // 천간충 연산
       STEM_CLASH_RULES.forEach((rule) => {
-        if (rule.stems.includes(left.stem) && rule.stems.includes(right.stem)) {
+        if (left.stem !== right.stem && rule.stems.includes(left.stem) && rule.stems.includes(right.stem)) {
           const stemsSorted = [left.stem, right.stem].sort()
           const positionsSorted = [left.position, right.position].sort((a, b) => positionOrder[a] - positionOrder[b])
           const positionLabelsSorted = positionsSorted.map((pos) => pos === left.position ? left.positionLabel : right.positionLabel)

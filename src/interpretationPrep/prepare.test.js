@@ -2,9 +2,10 @@ import assert from 'node:assert/strict'
 import test from 'node:test'
 import { getBranchMainStem, getTenGod } from '../saju/engine/core.js'
 import { buildExportPayload, exportPayloadToMarkdown, prepareInterpretationData, validatePrepInput } from './prepare.js'
-import { calculateBranchGroupRelations, calculateNatalBranchRelations } from './sajuRelationRules.js'
+import { calculateBranchGroupRelations, calculateNatalBranchRelations, calculateNatalStemRelations } from './sajuRelationRules.js'
 import { addCalendarAge, calculateStartAge, getTwelveStage } from './sajuTimingRules.js'
 import { DEFAULT_INPUT, DEFAULT_PROFILES, KOREA_REFERENCE_CITIES } from './schema.js'
+import { determineGyeokguk } from './sajuProfileRules.js'
 
 const FIXED_INPUT = {
   subjectName: '고정 테스트',
@@ -738,4 +739,81 @@ test('도화살 삼합국 매핑 프로필 회귀 테스트 (해묘미 -> 자)',
 
   const hasDohwaAtHour = exp.shinsal.some(s => s.name === '도화살' && s.position === 'hour' && s.branch === '자')
   assert.ok(hasDohwaAtHour, '해미(亥未) 기준 자(子)수 도화살이 시지에 정상적으로 검출되는지 회귀 대조 완료')
+})
+
+test('5차 계산 보완: 동일 천간 갑·갑의 합·충 오판 차단 회귀 테스트', () => {
+  // 천간이 모두 갑(甲)인 명식 모델을 직접 mockpillars로 생성하여 대입
+  const mockPillars = {
+    year: { stem: '갑', branch: '인', label: '연주' },
+    month: { stem: '갑', branch: '술', label: '월주' },
+    day: { stem: '갑', branch: '인', label: '일주' },
+    hour: { stem: '갑', branch: '자', label: '시주' }
+  }
+  const resultRelations = calculateNatalStemRelations(mockPillars)
+
+  // 동일 천간 갑-갑 간에는 갑기합이나 갑경충 같은 가짜 관계가 단 하나도 존재하지 않아야 함
+  const hasFakeRelation = resultRelations.items.some(r => r.label === '갑기합토' || r.relation === '천간충')
+  assert.equal(hasFakeRelation, false, '동일 천간 갑·갑 반복 시 천간합/천간충 오판 차단 유닛 검증 완료')
+})
+
+test('5차 계산 보완: 일간 강약 평가의 표면 휴리스틱 메타데이터 계약 검증 회귀 테스트', () => {
+  const result = prepareInterpretationData(FIXED_INPUT, DEFAULT_PROFILES)
+  const strengthObj = result.systems.saju.raw.experimental.strength
+
+  assert.equal(strengthObj.model, 'surface_support_heuristic')
+  assert.equal(strengthObj.includesHiddenStemRoots, false)
+  assert.ok(typeof strengthObj.limitations === 'string' && strengthObj.limitations.includes('지장간'))
+})
+
+test('5차 계산 보완: 극단 스코어 시 격국 종격 강제 덮어쓰기 해소 및 특수격 후보 탑재 회귀 테스트', () => {
+  // 정사(丁巳)년 병오(丙午)월 정사(丁巳)일 병오(丙午)시 처럼 극단적인 화(火) 비겁 전용 mock 명식을 구성
+  const mockExtremePillars = {
+    year: { stem: '정', branch: '사', value: '정사', stemElement: '화', branchElement: '화' },
+    month: { stem: '병', branch: '오', value: '병오', stemElement: '화', branchElement: '화' },
+    day: { stem: '정', branch: '사', value: '정사', stemElement: '화', branchElement: '화' },
+    hour: { stem: '병', branch: '오', value: '병오', stemElement: '화', branchElement: '화' }
+  }
+  const gyeokguk = determineGyeokguk('정', mockExtremePillars)
+
+  // 격국이 '종왕격'으로 덮어쓰여지지 않고 정격으로 유지됨
+  assert.notEqual(gyeokguk.name, '종왕격 (또는 종강격)')
+
+  // 대신 specialStructureCandidate 하위에 비확정 격국 후보로서 안전하게 기록되어야 함
+  assert.ok(gyeokguk.specialStructureCandidate)
+  assert.equal(gyeokguk.specialStructureCandidate.name, '종격 가능성 검토 필요')
+  assert.ok(gyeokguk.specialStructureCandidate.reason.includes('advanced-following-structures'))
+})
+
+test('5차 계산 보완: 시지 신살의 위치 라벨 매핑 및 렌더 가독성 회귀 테스트', () => {
+  const result = prepareInterpretationData(FIXED_INPUT, DEFAULT_PROFILES)
+  const shinsals = result.systems.saju.raw.experimental.shinsal
+
+  // 시지(hour)에 발생한 신살이 존재한다면, prepare.js의 마크다운 가공이나 렌더 시 정상 위치 이름이 '시지'로 연쇄 매핑되는지 검증
+  const hourShinsal = shinsals.find(s => s.position === 'hour')
+  if (hourShinsal) {
+    // payload를 Markdown 생성용 payload 형식으로 빌드
+    const payload = buildExportPayload(result, { type: 'chat', topicId: 'general', question: '테스트', generatedAt: '2026-07-22' })
+    const mdString = exportPayloadToMarkdown(payload)
+    assert.ok(mdString.includes('시지'), '시지 신살이 마크다운 내에 정상적으로 시지로 기록되는지 회귀 증명')
+  }
+})
+
+test('5차 계산 보완: Limitations 역사 표준시의 pre-1961 정책과의 일치성 회귀 테스트', () => {
+  const result = prepareInterpretationData(FIXED_INPUT, DEFAULT_PROFILES)
+  const scope = result.systems.saju.supportScope
+
+  const histLimit = scope.limitations.find(l => l.id === 'historical-standard-time')
+  assert.ok(histLimit)
+  // 문구 내에 1961-08-10 이전 검증 필요와 자오선 개정이 정교하게 명기되어 있는지 대조
+  assert.ok(histLimit.impact.includes('1961-08-10 이전 역사 표준시'))
+  assert.ok(histLimit.reason.includes('동경 127.5도'))
+})
+
+test('5차 계산 보완: Markdown 내보내기 시 Experimental 중립 프로필 명칭 수록 검증 회귀 테스트', () => {
+  const result = prepareInterpretationData(FIXED_INPUT, DEFAULT_PROFILES)
+  const payload = buildExportPayload(result, { type: 'chat', topicId: 'general', question: '테스트', generatedAt: '2026-07-22' })
+  const mdString = exportPayloadToMarkdown(payload)
+
+  assert.ok(mdString.includes('## Experimental 사주 분석 프로필 (검증단계)'))
+  assert.equal(mdString.includes('사주 학파 표준 프로필'), false)
 })

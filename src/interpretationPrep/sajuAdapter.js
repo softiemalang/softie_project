@@ -56,12 +56,12 @@ const SAJU_SUPPORT_SCOPE = {
     },
     {
       id: 'historical-standard-time',
-      title: '역사 표준시 전환 구간',
+      title: '역사 표준시 및 서머타임 전환구간',
       status: 'partial',
-      impact: '1954-03-21~1961-08-10 역사 표준시 구간 출생일은 당시 실제 표준시 규정을 재확인해야 함',
+      impact: '1961-08-10 이전 역사 표준시 및 서머타임 이력은 시스템 연산에 직접 반영되지 않아 추가 수동 검증이 요구되며, 특히 1954-03-21~1961-08-10 기준 자오선 개정 구간은 실제 표준시 규정을 필히 확인해야 함',
       // UI 하위 호환성 필드
-      item: '1954-03-21~1961-08-10 역사 표준시 전환 구간',
-      reason: '대한민국은 1954년 3월 21일에 기준 자오선을 동경 127.5도로 개정했다가 1961년 8월 10일에 다시 135도로 복원했습니다. 이 구간 출생자는 역사 표준시 정합성을 추가 확인해야 합니다.'
+      item: '1961-08-10 이전 역사 표준시 제한 및 1954~1961 자오선 변경 구간',
+      reason: '시스템은 1961-08-10 이전 역사 표준시 및 서머타임 이력을 연산에 직접 자동 시뮬레이션하지 않습니다. 특히 1954년 3월 21일부터 1961년 8월 10일까지 자오선이 동경 127.5도로 변경되었던 시기에는 실 표준시와의 대조 검증이 수동으로 수반되어야 합니다.'
     }
   ],
 }
@@ -207,8 +207,8 @@ function buildFeatures(raw, timeAccuracy) {
       ...feature({
         id: 'saju.natal.experimental.strength-quantitative',
         category: 'experimental',
-        title: `[실험적 분석] 일간 강약: ${expStr.level} (${expStr.score}점)`,
-        statement: `정량 평가 결과 득령 ${expStr.deungRyeong ? '성공' : '실패'}, 득지 ${expStr.deungJi ? '성공' : '실패'}, 통근 기둥 ${expStr.tongGeunPillars.map(p => PILLAR_LABELS[p] || p).join('·') || '없음'} 등으로 총점 ${expStr.score}점을 기록하여 ${expStr.level}에 해당함.`,
+        title: `[실험적 분석] 표면 생조 기반 휴리스틱 강약: ${expStr.level} (${expStr.score}점)`,
+        statement: `표면 생조 기반 휴리스틱 정량 평가 결과 득령 ${expStr.deungRyeong ? '성공' : '실패'}, 득지 ${expStr.deungJi ? '성공' : '실패'}, 표면 생조 기둥 ${expStr.tongGeunPillars.map(p => PILLAR_LABELS[p] || p).join('·') || '없음'} 등으로 단순 득점 합산 ${expStr.score}점을 기록하여 ${expStr.level}에 해당함. (주의: 본 점수는 지장간 통근 관계를 종합 점수에 직접 산입하지 않고 득령·득지 및 단순 표면 생조에 가중치를 둔 단순 지표입니다. 실제 지장간 통근 정보는 하단 독립 영역을 참조바랍니다.)`,
         evidence: [{ type: 'strength_quantitative', reference: 'systems.saju.raw.experimental.strength', value: expStr }],
         strength: 0.5,
         confidence: 'low',
@@ -702,6 +702,10 @@ export function calculateSajuSystem(input, profile) {
         deungJi: strengthScore.deungJi,
         tongGeunPillars: tongGeunTuGan.tongGeunPillars,
         tuGanStems: tongGeunTuGan.tuGanStems,
+        model: strengthScore.model,
+        basis: strengthScore.basis,
+        limitations: strengthScore.limitations,
+        includesHiddenStemRoots: strengthScore.includesHiddenStemRoots,
       },
       gyeokguk,
       yongShin,
@@ -716,6 +720,7 @@ export function calculateSajuSystem(input, profile) {
           ? '시주: 출생시각 미상으로 계산 제외, 00:00·12:00·23:59 후보를 비교해 시간 민감도 기록'
           : `시주·일주: ${referenceCity.label} 경도 보정과 NOAA 균시차를 합산한 진태양시로 국내 주요 도시 후보 비교, 진태양시 자정 전 야자·자정 후 조자 분리`,
         '오행·십성: 천간·지지와 지장간 규칙표를 이용해 별도 집계',
+        '일간 강약: 표면 생조 및 득령·득지 기반 단순 득점 산식 (지장간 통근 미산입 간이 휴리스틱 0~100점 점수)',
         `천간 관계: ${stemRelations.ruleVersion} 쌍 조회 및 합화 성립 분석`,
         `지지 관계: ${branchRelations.ruleVersion} 쌍·완성·반합 그룹 및 합화·오행 변환 조건 정밀 연산`,
         `운 흐름: ${timing.ruleVersion} 대운 순역·기산점과 ${timing.targetDate} 세운·월운·일진·12운성 계산`,

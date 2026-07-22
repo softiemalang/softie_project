@@ -225,6 +225,7 @@ export function buildExportPayload(result, { type, topicId, question, generatedA
         stemRelations: result.systems.saju.raw.stemRelations,
         gyeokguk: result.systems.saju.raw.experimental?.gyeokguk,
         yongShin: result.systems.saju.raw.experimental?.yongShin,
+        strength: result.systems.saju.raw.experimental?.strength,
         shinsal: result.systems.saju.raw.experimental?.shinsal,
         timing: result.systems.saju.raw.timing,
         calculationUncertainty: result.systems.saju.raw.calculationUncertainty,
@@ -290,14 +291,18 @@ export function exportPayloadToMarkdown(payload) {
     : timing.daYun.reason
 
   const saju = payload.calculationSummary.saju
-  const gyeokgukText = saju.gyeokguk && saju.gyeokguk.name !== '불명'
+  let gyeokgukText = saju.gyeokguk && saju.gyeokguk.name !== '불명'
     ? `- **[Experimental] 격국**: ${saju.gyeokguk.name} (${saju.gyeokguk.type} · ${saju.gyeokguk.reason})`
     : '- **[Experimental] 격국**: 미성격 또는 분석 불능'
+  if (saju.gyeokguk?.specialStructureCandidate) {
+    const cand = saju.gyeokguk.specialStructureCandidate
+    gyeokgukText += `\n  - **특수격 후보 (참고)**: ${cand.name} (${cand.type} · ${cand.reason})`
+  }
   const yongshinText = saju.yongShin
     ? `- **[Experimental] 희용신**: 용신 오행 ${saju.yongShin.primaryYongShinElement} / 희신 오행 ${saju.yongShin.heeShinElement} (억부: ${saju.yongShin.statement}${saju.yongShin.chohu ? ` / 조후: ${saju.yongShin.chohu.statement}` : ''})`
     : '- **[Experimental] 희용신**: 분석 불능'
   const shinsalSummary = saju.shinsal && saju.shinsal.length > 0
-    ? `- **[Experimental] 신살**: ${saju.shinsal.map(s => `${s.name}(${s.position === 'year' ? '연지' : s.position === 'month' ? '월지' : s.position === 'day' ? '일지' : '시지'}: ${s.branch})`).join(', ')}`
+    ? `- **[Experimental] 신살**: ${saju.shinsal.map(s => `${s.name}(${s.position === 'year' ? '연지' : s.position === 'month' ? '월지' : s.position === 'day' ? '일지' : s.position === 'hour' ? '시지' : '불명'}: ${s.branch})`).join(', ')}`
     : '- **[Experimental] 신살**: 감지된 주요 신살 없음'
   const stemRelationSummary = saju.stemRelations && saju.stemRelations.items.length > 0
     ? `- **천간 관계**: ${saju.stemRelations.items.map(r => `${r.relation === '천간합' ? `${r.label}(${r.assessment.transmutation ? '합화성립' : '합반'})` : `${r.stems.join('·')}충`}`).join(', ')}`
@@ -327,7 +332,7 @@ export function exportPayloadToMarkdown(payload) {
     '',
     `- ${sajuPillars}`,
     '',
-    '## 사주 학파 표준 프로필 (검증단계 · Experimental)',
+    '## Experimental 사주 분석 프로필 (검증단계)',
     '※ 주의: 아래 항목들은 검증단계의 학술적 실험 결과물입니다. 공식 확정값이 아니므로 해석 시 신중히 검토해 주시기 바랍니다.',
     '',
     gyeokgukText,
