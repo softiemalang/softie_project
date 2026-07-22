@@ -5334,6 +5334,59 @@ textarea {
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
 
+/* Keep a 44px touch target while making modal controls look visually slimmer. */
+.scheduler-theme-shell .scheduler-modal-close,
+.scheduler-theme-shell .scheduler-work-log-nav-btn,
+.scheduler-theme-shell .scheduler-log-delete-btn,
+.scheduler-theme-shell .scheduler-filter-mode-row .scheduler-chip,
+.scheduler-theme-shell .scheduler-modal-actions .scheduler-modal-btn,
+.scheduler-theme-shell .scheduler-work-log-modal .scheduler-modal-btn {
+  --scheduler-compact-button-bg: var(--ag-surface-operational);
+  --scheduler-compact-button-line: var(--ag-line);
+  position: relative;
+  isolation: isolate;
+  min-height: 44px;
+  background: transparent !important;
+  border-color: transparent !important;
+  box-shadow: none !important;
+}
+
+.scheduler-theme-shell .scheduler-modal-close::before,
+.scheduler-theme-shell .scheduler-work-log-nav-btn::before,
+.scheduler-theme-shell .scheduler-log-delete-btn::before,
+.scheduler-theme-shell .scheduler-filter-mode-row .scheduler-chip::before,
+.scheduler-theme-shell .scheduler-modal-actions .scheduler-modal-btn::before,
+.scheduler-theme-shell .scheduler-work-log-modal .scheduler-modal-btn::before {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  inset: 4px 0;
+  background: var(--scheduler-compact-button-bg);
+  border: 1px solid var(--scheduler-compact-button-line);
+  border-radius: var(--ag-radius-control);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.scheduler-theme-shell .scheduler-filter-mode-row .scheduler-chip.active {
+  --scheduler-compact-button-bg: var(--ag-surface-selected);
+  --scheduler-compact-button-line: var(--ag-line-strong);
+}
+
+.scheduler-theme-shell .scheduler-log-delete-btn {
+  --scheduler-compact-button-bg: var(--ag-danger-soft);
+  --scheduler-compact-button-line: rgba(215, 160, 160, 0.22);
+}
+
+.scheduler-theme-shell .scheduler-modal-actions .scheduler-modal-btn.primary {
+  --scheduler-compact-button-bg: var(--ag-brand);
+  --scheduler-compact-button-line: var(--ag-brand);
+}
+
+.scheduler-theme-shell .scheduler-work-log-modal .scheduler-modal-btn {
+  --scheduler-compact-button-bg: var(--ag-surface-selected);
+  --scheduler-compact-button-line: var(--ag-line-strong);
+}
+
 .scheduler-theme-shell .scheduler-fab-button {
   right: max(1.25rem, calc((100vw - min(100vw, 860px)) / 2 + 1.25rem));
 }
