@@ -739,7 +739,9 @@ export function TodaySchedulerPage({
         <div className="scheduler-filter-summary-row">
           <div className="scheduler-filter-summary-copy">
             <p className="scheduler-section-label">운영 시간</p>
-            <strong>{normalizedFilters.workTimeEnabled ? '근무 중' : `${TODAY_HOURS.start}:00 - ${TODAY_HOURS.end}:00`}</strong>
+            <strong className={normalizedFilters.workTimeEnabled ? 'scheduler-work-status-title' : undefined}>
+              {normalizedFilters.workTimeEnabled ? '근무 중' : `${TODAY_HOURS.start}:00 - ${TODAY_HOURS.end}:00`}
+            </strong>
             <p className="subtle">{filterSummary}</p>
           </div>
           <div className="scheduler-summary-actions">

@@ -4797,6 +4797,12 @@ textarea {
   line-height: 1.05;
 }
 
+.scheduler-theme-shell .scheduler-today-page .scheduler-controls .scheduler-filter-summary-copy .scheduler-work-status-title {
+  font-size: clamp(1.28rem, 5.3vw, 1.52rem);
+  font-weight: 620;
+  letter-spacing: -0.025em;
+}
+
 .scheduler-theme-shell .scheduler-filter-summary-copy .subtle,
 .scheduler-theme-shell .scheduler-work-log-card .scheduler-filter-summary-copy .subtle {
   color: var(--ag-text-muted);
