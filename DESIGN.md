@@ -1,33 +1,37 @@
 ---
 # Design Tokens
 name: softie-project
-version: 2.0.0
+version: 2.4.1
 adoption: new-and-redesigned-surfaces
 tokens:
   colors:
-    atmosphere-fallback: "#778397"
-    canvas: "#111722"
-    atmosphere-overlay: "rgba(12, 17, 26, 0.38)"
-    surface-glass: "rgba(22, 27, 36, 0.62)"
-    surface-glass-strong: "rgba(27, 32, 42, 0.78)"
-    surface-operational: "rgba(9, 13, 20, 0.42)"
-    surface-selected: "rgba(236, 226, 245, 0.18)"
-    text: "#fbf9fb"
-    text-muted: "#dddce2"
-    text-tertiary: "#b1b2bc"
-    brand: "#e6d5ef"
-    brand-hover: "#f0e3f5"
-    accent: "#eadcf2"
-    line: "rgba(255, 255, 255, 0.15)"
-    line-strong: "rgba(255, 255, 255, 0.34)"
-    focus: "#fff4ff"
+    atmosphere-fallback: "#5b5848"
+    canvas: "#11120f"
+    atmosphere-overlay: "rgba(18, 18, 13, 0.40)"
+    surface-glass: "rgba(45, 41, 34, 0.66)"
+    surface-glass-strong: "rgba(37, 34, 29, 0.82)"
+    surface-operational: "rgba(17, 17, 14, 0.52)"
+    surface-selected: "rgba(219, 204, 175, 0.20)"
+    surface-liquid: "rgba(32, 29, 23, 0.44)"
+    surface-liquid-strong: "rgba(32, 29, 23, 0.50)"
+    text: "#f4eee4"
+    text-muted: "#d0c7b9"
+    text-tertiary: "#a39b8c"
+    brand: "#d5c5aa"
+    brand-hover: "#e3d7c0"
+    accent: "#d8c9ae"
+    line: "rgba(238, 229, 210, 0.14)"
+    line-strong: "rgba(238, 229, 210, 0.31)"
+    line-liquid: "rgba(255, 246, 228, 0.42)"
+    highlight-liquid: "rgba(255, 255, 255, 0.34)"
+    focus: "#fff1d2"
   semantic:
-    success: "#a7dfc5"
-    success-soft: "rgba(117, 195, 158, 0.18)"
-    warning: "#f1d09b"
-    warning-soft: "rgba(228, 184, 109, 0.18)"
-    danger: "#ffb6bd"
-    danger-soft: "rgba(236, 127, 139, 0.18)"
+    success: "#b8c8a5"
+    success-soft: "rgba(134, 153, 111, 0.22)"
+    warning: "#d6b37e"
+    warning-soft: "rgba(186, 143, 78, 0.20)"
+    danger: "#d7a0a0"
+    danger-soft: "rgba(161, 84, 85, 0.22)"
   typography:
     font-family: "-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
     size-base: "16px"
@@ -53,10 +57,13 @@ tokens:
     control: "14px"
     pill: "999px"
   elevation:
-    shadow-glass: "0 26px 70px rgba(12, 17, 27, 0.24)"
-    shadow-control: "0 8px 24px rgba(15, 18, 28, 0.12)"
+    shadow-glass: "0 26px 70px rgba(13, 12, 9, 0.28)"
+    shadow-control: "0 8px 24px rgba(18, 16, 12, 0.16)"
+    shadow-liquid: "0 30px 72px rgba(10, 9, 7, 0.34)"
     glass-blur: "24px"
     glass-saturation: "118%"
+    liquid-blur: "16px"
+    liquid-saturation: "132%"
     highlight: "inset 0 1px 0 rgba(255, 255, 255, 0.20)"
   motion:
     duration-fast: "180ms"
@@ -71,7 +78,7 @@ tokens:
   components:
     button-primary:
       background: "{colors.brand}"
-      text: "#28232f"
+      text: "#2f2a22"
       min-height: "44px"
       rounded: "{rounded.control}"
     card-primary:
@@ -79,6 +86,11 @@ tokens:
       border: "1px solid {colors.line}"
       rounded: "{rounded.card}"
       blur: "{elevation.glass-blur}"
+    card-liquid:
+      background: "{colors.surface-liquid}"
+      border: "1px solid {colors.line-liquid}"
+      rounded: "{rounded.card}"
+      blur: "{elevation.liquid-blur}"
     input:
       background: "{colors.surface-operational}"
       border: "1px solid {colors.line}"
@@ -88,11 +100,15 @@ reference-implementations:
   - route: "/interpretation-prep"
     role: "complex utility and form"
     stylesheet: "src/interpretationPrep/interpretationPrep.css"
-    atmosphere-image: "src/interpretationPrep/assets/prep-atmosphere.jpg"
+    atmosphere-image: "src/scheduler/assets/scheduler-atmosphere-v4.jpg"
   - route: "/"
     role: "editorial service index"
     stylesheet: "src/styles.css"
-    atmosphere-image: "src/pages/assets/home-atmosphere.jpg"
+    atmosphere-image: "src/scheduler/assets/scheduler-atmosphere-v4.jpg"
+  - route: "/scheduler"
+    role: "dense operational workflow"
+    stylesheet: "src/styles.css"
+    atmosphere-image: "src/scheduler/assets/scheduler-atmosphere-v4.jpg"
 legacy-theme:
   name: warm-classic
   status: existing-screens-only
@@ -109,32 +125,36 @@ legacy-theme:
 
 ## 1. Core direction
 
-기본 디자인 방향은 **Atmospheric Glass**입니다.
+기본 디자인 방향은 **Warm Nostalgic Atmospheric Glass**입니다.
 
-- **Atmospheric:** 저채도 사진 또는 차분한 단색 캔버스가 화면의 정서를 만듭니다.
+- **Warm Nostalgic:** 빛바랜 필름처럼 따뜻한 올리브·세피아·크림 계열이 정서를 만듭니다.
+- **Atmospheric:** 저채도 사진 또는 차분한 단색 캔버스가 화면의 깊이를 만듭니다.
 - **Selective Glass:** 유리는 주요 계층에만 사용하고 모든 요소를 투명하게 만들지 않습니다.
 - **Editorial:** 넓은 여백, 명확한 제목, 작은 키커로 정보에 리듬을 만듭니다.
 - **Operational:** 입력과 긴 결과는 안정적인 표면과 높은 대비를 우선합니다.
 - **Soft:** 모서리, 그림자, 상태색은 부드럽고 절제된 형태를 유지합니다.
 
-목표는 “몽환적인 분위기”와 “도구로서의 명확성”을 동시에 확보하는 것입니다. 장식이 기능을 가리거나 가독성을 희생해서는 안 됩니다.
+목표는 “조용하고 오래된 사진 같은 온기”와 “도구로서의 명확성”을 동시에 확보하는 것입니다. 장식이 기능을 가리거나 가독성을 희생해서는 안 됩니다.
 
 ## 2. Color system
 
 ### Default palette
 
-- **Canvas:** `#111722`
-- **Atmosphere fallback:** `#778397`
-- **Atmosphere overlay:** `rgba(12, 17, 26, 0.38)`
-- **Primary glass:** `rgba(22, 27, 36, 0.62)`
-- **Strong glass:** `rgba(27, 32, 42, 0.78)`
-- **Operational surface:** `rgba(9, 13, 20, 0.42)`
-- **Selected surface:** `rgba(236, 226, 245, 0.18)`
-- **Primary text:** `#fbf9fb`
-- **Secondary text:** `#dddce2`
-- **Tertiary text:** `#b1b2bc`
-- **Brand/primary action:** `#e6d5ef`
-- **Accent:** `#eadcf2`
+- **Canvas — Forest Charcoal:** `#11120f`
+- **Atmosphere fallback — Faded Olive:** `#5b5848`
+- **Atmosphere overlay — Sepia Shadow:** `rgba(18, 18, 13, 0.40)`
+- **Primary glass — Smoked Taupe:** `rgba(45, 41, 34, 0.66)`
+- **Strong glass — Dark Walnut Smoke:** `rgba(37, 34, 29, 0.82)`
+- **Operational surface — Ink Olive:** `rgba(17, 17, 14, 0.52)`
+- **Selected surface — Aged Parchment:** `rgba(219, 204, 175, 0.20)`
+- **Primary text — Warm Ivory:** `#f4eee4`
+- **Secondary text — Linen Beige:** `#d0c7b9`
+- **Tertiary text — Weathered Stone:** `#a39b8c`
+- **Brand/primary action — Parchment Cream:** `#d5c5aa`
+- **Accent — Soft Oat:** `#d8c9ae`
+- **Success — Muted Sage:** `#b8c8a5`
+- **Warning — Honey Ochre:** `#d6b37e`
+- **Danger — Dusty Rose:** `#d7a0a0`
 
 순색이나 네온은 기본 팔레트로 사용하지 않습니다. 상태색은 반드시 텍스트·아이콘·테두리 같은 두 번째 신호와 함께 사용합니다.
 
@@ -142,14 +162,22 @@ legacy-theme:
 
 사진은 장식이 아니라 최상위 배경 레이어입니다.
 
-- 새벽, 안개, 물, 흐린 초원, 저채도 자연처럼 피사체가 조용한 이미지를 선호합니다.
+- 어두운 숲, 늦은 오후의 길, 실내 전구빛, 오래된 패브릭, 빛바랜 꽃처럼 피사체가 조용하고 온도가 따뜻한 이미지를 선호합니다.
+- 필름 그레인, 낮은 채도, 깊은 그림자는 허용하지만 본문 뒤의 명암 변화는 과하지 않아야 합니다.
 - 중앙과 주요 텍스트 뒤는 낮은 대비여야 합니다.
 - 배경에는 단색 반투명 오버레이를 적용해 화면 전체의 텍스트 대비를 안정화합니다.
 - 화면별 이미지가 없다면 `atmosphere-fallback` 또는 `canvas`를 사용합니다.
 - 실제 사진 자산 없이 CSS 그래디언트·도형·임시 박스로 사진 분위기를 흉내 내지 않습니다.
 - 사진 위에 텍스트가 직접 놓이는 경우에도 본문은 반드시 읽을 수 있어야 합니다.
 
-`prep-atmosphere.jpg`는 방향을 보여주는 기준 자산이지 모든 페이지에 강제로 재사용하는 공용 배경은 아닙니다. 새 기능은 맥락에 맞는 승인된 이미지 또는 단색 fallback을 선택합니다.
+홈·해석 준비 도구·스케줄러의 승인된 공용 기준 배경은 `scheduler-atmosphere-v4.jpg`입니다. 낡은 토프 패브릭, 작은 곰 인형, 헤드폰과 악기처럼 개인 작업실을 암시하는 피사체를 사용하되, 화면 중앙과 상단은 글라스 카드가 안정적으로 읽히도록 어둡고 단순한 면을 남깁니다. 곰 인형은 카메라와 직접 눈을 맞추지 않고 화면 왼쪽 아래를 향해 조용한 보조 피사체로 머물게 합니다. 피사체보다 **olive-charcoal 그림자, cocoa·taupe 중간색, aged cream 하이라이트, 잔잔한 필름 입자**를 핵심 자산 특성으로 봅니다.
+
+- 모바일 크롭을 우선하며, 피사체는 오른쪽 아래에 작게 배치합니다.
+- 배경 사진 자체가 이미 어두우면 `background-blend-mode`로 추가 착색하지 않고 낮은 강도의 단색 오버레이만 사용합니다.
+- 승인된 세 기준 화면은 같은 사진을 사용해 제품의 정서를 연결하되, 오버레이 강도와 글라스 불투명도는 정보 밀도에 맞게 조절합니다.
+- 긴 페이지에서도 사진이 문서 높이만큼 늘어나지 않도록 배경 사진 레이어는 viewport에 고정합니다.
+- 아직 `warm-classic`을 쓰는 기존 도구는 기능 상태를 확인한 뒤 라우트 단위로 전환합니다.
+- 사용자 제공 사진은 분위기와 팔레트 참고 자료로만 사용하고 제품 자산에 직접 복사하지 않습니다.
 
 ## 4. Surface hierarchy
 
@@ -160,6 +188,20 @@ legacy-theme:
 3. **Operational Surface:** 입력창, 데이터 행, 펼침 영역, 긴 결과. `surface-operational` 또는 `surface-glass-strong`을 사용합니다.
 
 유리 패널 안에 또 다른 유리 패널을 반복해서 중첩하지 않습니다. 내부 요소는 더 단단한 표면이나 구분선으로 정리합니다.
+
+### Warm Liquid Glass variant
+
+Warm Liquid Glass는 따뜻한 사진의 색과 형태가 패널 안에서도 보이도록 투명도와 가장자리 빛을 강화한 선택적 변형입니다.
+
+- **Liquid surface:** `rgba(32, 29, 23, 0.44)`를 사용해 배경의 색과 큰 형태를 남깁니다.
+- **Liquid strong surface:** 모달처럼 집중이 필요한 부유 패널에는 `rgba(32, 29, 23, 0.50)`를 사용합니다.
+- **Edge light:** `rgba(255, 246, 228, 0.42)`의 얇은 외곽선과 `rgba(255, 255, 255, 0.34)`의 상단 하이라이트를 함께 사용합니다.
+- **Optics:** `blur(16px)`, `saturate(132%)`를 기본으로 하며, 배경이 완전히 뭉개지지 않도록 일반 Primary Glass보다 블러를 낮춥니다.
+- **Use for:** 로그인·계정 카드, 히어로 요약, 필터·설정·확인 모달, 화면당 한 개의 주요 폼처럼 정보 밀도가 낮은 핵심 표면.
+- **Avoid for:** 반복 일정, 표·목록, 긴 결과, 작은 버튼처럼 한 화면에 많이 반복되거나 빠른 판독이 필요한 표면.
+- Liquid Glass 내부 입력은 밝은 반투명 표면을 사용할 수 있지만, 텍스트 대비와 라벨은 Operational 기준을 유지합니다.
+
+이 변형은 전체 화면을 유리로 만드는 새 기본 테마가 아니라, Warm Nostalgic Atmospheric Glass 안에서 중요도가 높은 표면에만 사용하는 강조 단계입니다.
 
 ## 5. Typography
 
@@ -193,9 +235,10 @@ legacy-theme:
 
 ### Buttons
 
-- Primary는 밝은 펄 라벤더 배경과 어두운 텍스트를 사용합니다.
+- Primary는 빛바랜 양피지 크림 배경과 짙은 웜 차콜 텍스트를 사용합니다.
 - Secondary/Ghost는 투명 배경과 밝은 테두리를 사용합니다.
-- 최소 높이는 `44px`이며 모바일 터치 영역을 줄이지 않습니다.
+- Primary와 폼 액션은 외형과 터치 영역 모두 최소 `44px`을 사용합니다.
+- 카드 안에 반복되는 보조 액션은 터치 영역 `44px`을 유지하면서 보이는 캡슐을 `30–36px`로 줄일 수 있습니다. 상태 배지와 나란히 놓이는 액션은 `30–32px`, 독립적인 보조 액션은 `34–36px`을 권장합니다. 이때 인접 터치 영역은 겹치지 않고 `6–8px` 간격을 둡니다.
 - Hover, active, focus, disabled 상태를 모두 정의합니다.
 
 ### Cards
@@ -214,7 +257,7 @@ legacy-theme:
 ### Tabs and segmented controls
 
 - 바깥 컨테이너는 조용한 operational surface를 사용합니다.
-- 선택된 항목만 밝은 테두리와 라벤더 표면으로 들어 올립니다.
+- 선택된 항목만 밝은 테두리와 에이지드 파치먼트 표면으로 들어 올립니다.
 - 선택 여부는 색상만으로 전달하지 않으며 키보드 포커스를 제공합니다.
 
 ### Status and feedback
@@ -226,7 +269,7 @@ legacy-theme:
 ## 9. Accessibility baseline
 
 - 일반 본문은 WCAG AA 기준 `4.5:1` 이상, 큰 텍스트는 `3:1` 이상을 목표로 합니다.
-- 주요 컨트롤과 터치 영역은 최소 `44×44px`입니다.
+- 주요 컨트롤과 모든 터치 영역은 최소 `44×44px`입니다. 조밀한 보조 액션은 44px 투명 컨테이너 안에 더 작은 시각 요소를 배치합니다.
 - 포커스는 `2px` 밝은 외곽선과 `3px` 간격을 기본으로 합니다.
 - hover만으로 핵심 정보를 노출하지 않습니다.
 - 상태·선택·오류는 색상만으로 구분하지 않습니다.
@@ -254,14 +297,16 @@ legacy-theme:
 ## 11. Adoption and implementation
 
 - 이 가이드는 **새 페이지와 명시적으로 리뉴얼하는 페이지의 기본값**입니다.
+- Warm Nostalgic 팔레트는 `2.1.0`부터 Atmospheric Glass의 공식 기본 팔레트입니다.
 - 기존 `warm-classic` 화면은 자동 변경하지 않고 라우트 단위로 마이그레이션합니다.
 - 새 화면은 기능별 shell 클래스로 범위를 제한한 뒤 검증되면 공통 토큰으로 승격합니다.
 - 공통 토큰과 재사용 컴포넌트는 `src/styles.css`에서 관리합니다.
 - 기능 전용 스타일과 이미지 자산은 해당 기능 폴더에 둡니다.
 - `/interpretation-prep`은 복잡한 입력·결과 도구의 reference implementation입니다.
 - `/` 홈은 서비스 인덱스와 에디토리얼 히어로의 reference implementation입니다.
+- `/scheduler`는 반복 이벤트, 상태 색상, 모바일 폼을 포함한 고밀도 operational workflow의 reference implementation입니다.
 
-두 화면은 같은 토큰과 표면 계층을 공유하지만 맥락에 맞는 배경 이미지와 밀도를 사용합니다. 새 화면은 둘 중 더 가까운 정보 구조를 기준으로 삼고, 외형을 그대로 복제하지 않습니다.
+세 화면은 같은 토큰과 표면 계층을 공유하지만 맥락에 맞는 배경 이미지와 밀도를 사용합니다. 새 화면은 셋 중 더 가까운 정보 구조를 기준으로 삼고, 외형을 그대로 복제하지 않습니다.
 
 ### Reusable CSS API
 
@@ -269,6 +314,7 @@ legacy-theme:
 - `.ag-shell`: 사진 또는 단색 atmosphere와 대비 오버레이를 제공하는 전체 화면 shell입니다.
 - `.ag-layout`: 최대 너비와 safe-area를 포함한 공통 콘텐츠 레이아웃입니다.
 - `.ag-glass`, `.ag-glass-strong`: 주요 글라스와 더 안정적인 강한 글라스 표면입니다.
+- `.ag-liquid-glass`: 로그인·히어로·모달처럼 밀도가 낮은 핵심 표면을 위한 고투명도 Glass 변형입니다.
 - `.ag-operational-surface`: 입력·데이터·긴 결과를 위한 내부 표면입니다.
 - `.ag-primary-action`, `.ag-secondary-action`: 공통 버튼 상태를 제공합니다.
 - `.ag-segmented`: 탭·라디오형 선택 그룹의 공통 컨테이너입니다.
@@ -294,3 +340,4 @@ legacy-theme:
 - 새 재사용 패턴이나 공식적인 테마 변형이 도입될 때.
 - reference implementation이 바뀌거나 더 대표적인 화면이 생길 때.
 - 실제 구현 과정에서 이 문서가 모호하거나 서로 충돌한다고 확인될 때.
+- 새로운 사진 무드보드가 현재 기본 팔레트보다 프로젝트의 정서를 더 잘 대표하고, 실제 화면 검증까지 통과했을 때.

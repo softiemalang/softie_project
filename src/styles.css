@@ -24,38 +24,45 @@
   --shadow-card: 0 18px 48px rgba(92, 74, 43, 0.08);
   --blur-standard: 14px;
 
-  /* Atmospheric Glass tokens — default for new and redesigned surfaces. */
-  --ag-atmosphere-fallback: #778397;
-  --ag-canvas: #111722;
-  --ag-atmosphere-overlay: rgba(12, 17, 26, 0.38);
-  --ag-surface-glass: rgba(22, 27, 36, 0.62);
-  --ag-surface-glass-strong: rgba(27, 32, 42, 0.78);
-  --ag-surface-operational: rgba(9, 13, 20, 0.42);
-  --ag-surface-selected: rgba(236, 226, 245, 0.18);
-  --ag-text: #fbf9fb;
-  --ag-text-muted: #dddce2;
-  --ag-text-tertiary: #b1b2bc;
-  --ag-brand: #e6d5ef;
-  --ag-brand-hover: #f0e3f5;
-  --ag-accent: #eadcf2;
-  --ag-line: rgba(255, 255, 255, 0.15);
-  --ag-line-strong: rgba(255, 255, 255, 0.34);
-  --ag-focus: #fff4ff;
-  --ag-success: #a7dfc5;
-  --ag-success-soft: rgba(117, 195, 158, 0.18);
-  --ag-warning: #f1d09b;
-  --ag-warning-soft: rgba(228, 184, 109, 0.18);
-  --ag-danger: #ffb6bd;
-  --ag-danger-soft: rgba(236, 127, 139, 0.18);
+  /* Warm Nostalgic Atmospheric Glass — default for new and redesigned surfaces. */
+  --ag-atmosphere-fallback: #5b5848;
+  --ag-canvas: #11120f;
+  --ag-atmosphere-overlay: rgba(18, 18, 13, 0.4);
+  --ag-surface-glass: rgba(45, 41, 34, 0.66);
+  --ag-surface-glass-strong: rgba(37, 34, 29, 0.82);
+  --ag-surface-operational: rgba(17, 17, 14, 0.52);
+  --ag-surface-selected: rgba(219, 204, 175, 0.2);
+  --ag-surface-liquid: rgba(32, 29, 23, 0.44);
+  --ag-surface-liquid-strong: rgba(32, 29, 23, 0.5);
+  --ag-text: #f4eee4;
+  --ag-text-muted: #d0c7b9;
+  --ag-text-tertiary: #a39b8c;
+  --ag-brand: #d5c5aa;
+  --ag-brand-hover: #e3d7c0;
+  --ag-accent: #d8c9ae;
+  --ag-line: rgba(238, 229, 210, 0.14);
+  --ag-line-strong: rgba(238, 229, 210, 0.31);
+  --ag-line-liquid: rgba(255, 246, 228, 0.42);
+  --ag-highlight-liquid: rgba(255, 255, 255, 0.34);
+  --ag-focus: #fff1d2;
+  --ag-success: #b8c8a5;
+  --ag-success-soft: rgba(134, 153, 111, 0.22);
+  --ag-warning: #d6b37e;
+  --ag-warning-soft: rgba(186, 143, 78, 0.2);
+  --ag-danger: #d7a0a0;
+  --ag-danger-soft: rgba(161, 84, 85, 0.22);
   --ag-radius-hero: 28px;
   --ag-radius-card: 26px;
   --ag-radius-item: 18px;
   --ag-radius-control: 14px;
   --ag-radius-pill: 999px;
-  --ag-shadow-glass: 0 26px 70px rgba(12, 17, 27, 0.24);
-  --ag-shadow-control: 0 8px 24px rgba(15, 18, 28, 0.12);
+  --ag-shadow-glass: 0 26px 70px rgba(13, 12, 9, 0.28);
+  --ag-shadow-control: 0 8px 24px rgba(18, 16, 12, 0.16);
+  --ag-shadow-liquid: 0 30px 72px rgba(10, 9, 7, 0.34);
   --ag-glass-blur: 24px;
   --ag-glass-saturation: 118%;
+  --ag-liquid-blur: 16px;
+  --ag-liquid-saturation: 132%;
   --ag-content-simple: 760px;
   --ag-content-utility: 860px;
   --ag-content-wide: 1180px;
@@ -130,6 +137,25 @@
   border-radius: var(--ag-radius-item);
 }
 
+.ag-liquid-glass {
+  color: var(--ag-text);
+  background: var(--ag-surface-liquid);
+  border: 1px solid var(--ag-line-liquid);
+  border-radius: var(--ag-radius-card);
+  box-shadow:
+    inset 0 1px 0 var(--ag-highlight-liquid),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.08),
+    var(--ag-shadow-liquid);
+  backdrop-filter:
+    blur(var(--ag-liquid-blur))
+    saturate(var(--ag-liquid-saturation))
+    brightness(0.9);
+  -webkit-backdrop-filter:
+    blur(var(--ag-liquid-blur))
+    saturate(var(--ag-liquid-saturation))
+    brightness(0.9);
+}
+
 .ag-operational-surface {
   color: var(--ag-text);
   background: var(--ag-surface-operational);
@@ -149,7 +175,7 @@
 }
 
 .ag-primary-action {
-  color: #28232f;
+  color: #2f2a22;
   background: var(--ag-brand);
   border: 1px solid var(--ag-brand);
   box-shadow: var(--ag-shadow-control), inset 0 1px 0 rgba(255, 255, 255, 0.62);
@@ -2552,6 +2578,7 @@ textarea {
 
 .scheduler-event-actions .scheduler-event-meta {
   flex: 1 1 auto;
+  transform: translateY(-3px);
 }
 
 .scheduler-event-actions .scheduler-event-action-buttons {
@@ -3054,9 +3081,10 @@ textarea {
 
 /* Home Page Styles */
 .home-shell.ag-shell {
-  --ag-atmosphere-image: url('./pages/assets/home-atmosphere.jpg');
-  --ag-atmosphere-position: center 42%;
-  --ag-atmosphere-overlay: rgba(12, 17, 26, 0.48);
+  --ag-atmosphere-image: url('./scheduler/assets/scheduler-atmosphere-v4.jpg');
+  --ag-atmosphere-fallback: #3c382f;
+  --ag-atmosphere-position: 58% 66%;
+  --ag-atmosphere-overlay: rgba(14, 14, 10, 0.28);
   display: block;
   padding: 0;
 }
@@ -3233,7 +3261,7 @@ textarea {
     max(0.75rem, env(safe-area-inset-top))
     0.85rem
     max(0.75rem, env(safe-area-inset-bottom));
-  background: rgba(8, 11, 18, 0.58);
+  background: rgba(13, 12, 9, 0.6);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
   overflow-y: auto;
@@ -3279,7 +3307,7 @@ textarea {
 .home-memo-kakao-badge.success {
   background: var(--ag-success-soft);
   color: var(--ag-success);
-  border-color: rgba(167, 223, 197, 0.28);
+  border-color: rgba(184, 200, 165, 0.28);
 }
 
 .home-memo-kakao-badge.muted {
@@ -3342,7 +3370,7 @@ textarea {
 .home-memo-status.error {
   background: var(--ag-danger-soft);
   color: var(--ag-danger);
-  border: 1px solid rgba(255, 182, 189, 0.28);
+  border: 1px solid rgba(215, 160, 160, 0.28);
 }
 
 .home-memo-error-row {
@@ -3377,7 +3405,7 @@ textarea {
 
 .home-memo-primary {
   background: var(--ag-brand);
-  color: #28232f;
+  color: #2f2a22;
   min-width: 142px;
 }
 
@@ -3446,7 +3474,7 @@ textarea {
 
 @media (max-width: 700px) {
   .home-shell.ag-shell {
-    --ag-atmosphere-position: 57% center;
+    --ag-atmosphere-position: 85% 66%;
   }
 
   .home-layout {
@@ -4567,4 +4595,583 @@ textarea {
 
 .lead-sheet-undo-btn:hover {
   background-color: #b45309;
+}
+
+/* Shared Warm Nostalgic atmosphere for the redesigned reference screens. */
+.home-shell.ag-shell,
+.prep-shell.ag-shell,
+.scheduler-theme-shell.ag-shell {
+  background-image: none;
+}
+
+.home-shell.ag-shell::after,
+.prep-shell.ag-shell::after,
+.scheduler-theme-shell.ag-shell::after {
+  content: '';
+  position: fixed;
+  z-index: -2;
+  inset: 0;
+  background-color: var(--ag-atmosphere-fallback);
+  background-image: var(--ag-atmosphere-image);
+  background-position: var(--ag-atmosphere-position);
+  background-repeat: no-repeat;
+  background-size: cover;
+  pointer-events: none;
+}
+
+.scheduler-theme-shell.ag-shell {
+  --ag-atmosphere-image: url('./scheduler/assets/scheduler-atmosphere-v4.jpg');
+  --ag-atmosphere-fallback: #3c382f;
+  --ag-atmosphere-overlay: rgba(14, 14, 10, 0.22);
+  --ag-atmosphere-position: 58% 66%;
+  --ag-surface-liquid: rgba(30, 27, 22, 0.34);
+  --ag-surface-liquid-strong: rgba(30, 27, 22, 0.42);
+  min-height: 100dvh;
+}
+
+.scheduler-theme-shell .scheduler-shell {
+  --scheduler-card-pad: 1rem;
+  --scheduler-content-inset: 0.42rem;
+  --scheduler-gap-2xs: 0.25rem;
+  --scheduler-gap-xs: 0.4rem;
+  --scheduler-gap-sm: 0.6rem;
+  --scheduler-gap-md: 0.75rem;
+  --scheduler-gap-lg: 1rem;
+  --scheduler-gap-xl: 1.25rem;
+  --scheduler-control-min-h: 44px;
+  --scheduler-radius-md: var(--ag-radius-control);
+  --scheduler-radius-lg: var(--ag-radius-item);
+  --scheduler-radius-xl: var(--ag-radius-card);
+  color: var(--ag-text);
+}
+
+.scheduler-theme-shell .scheduler-topbar,
+.scheduler-theme-shell .scheduler-panel,
+.scheduler-theme-shell .scheduler-room-card,
+.scheduler-theme-shell .scheduler-setting-card {
+  color: var(--ag-text);
+  border-color: var(--ag-line);
+}
+
+/* Selective Glass: only hierarchy-defining surfaces carry the full glass treatment. */
+.scheduler-theme-shell .scheduler-auth-card,
+.scheduler-theme-shell .scheduler-controls,
+.scheduler-theme-shell .scheduler-editor-card {
+  background: var(--ag-surface-liquid);
+  border: 1px solid var(--ag-line-liquid);
+  box-shadow:
+    inset 0 1px 0 var(--ag-highlight-liquid),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.08),
+    var(--ag-shadow-liquid);
+  backdrop-filter:
+    blur(var(--ag-liquid-blur))
+    saturate(var(--ag-liquid-saturation))
+    brightness(0.9);
+  -webkit-backdrop-filter:
+    blur(var(--ag-liquid-blur))
+    saturate(var(--ag-liquid-saturation))
+    brightness(0.9);
+}
+
+.scheduler-theme-shell .scheduler-setting-card {
+  margin-bottom: var(--scheduler-gap-lg);
+  background: rgba(20, 19, 15, 0.38);
+  border: 1px solid var(--ag-line);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(12px) saturate(108%);
+  -webkit-backdrop-filter: blur(12px) saturate(108%);
+}
+
+.scheduler-theme-shell .scheduler-auth-card {
+  background: var(--ag-surface-liquid);
+  border-color: var(--ag-line-liquid);
+  border-radius: var(--ag-radius-card);
+  box-shadow:
+    inset 0 1px 0 var(--ag-highlight-liquid),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.08),
+    var(--ag-shadow-liquid);
+  backdrop-filter:
+    blur(var(--ag-liquid-blur))
+    saturate(var(--ag-liquid-saturation))
+    brightness(0.9);
+  -webkit-backdrop-filter:
+    blur(var(--ag-liquid-blur))
+    saturate(var(--ag-liquid-saturation))
+    brightness(0.9);
+}
+
+.scheduler-theme-shell .scheduler-today-page .scheduler-controls {
+  border-color: var(--ag-line-liquid);
+  border-radius: var(--ag-radius-card);
+}
+
+.scheduler-theme-shell .scheduler-work-log-card {
+  background: rgba(43, 39, 32, 0.54);
+  border: 1px solid var(--ag-line);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(18px) saturate(112%);
+  -webkit-backdrop-filter: blur(18px) saturate(112%);
+}
+
+.scheduler-theme-shell .scheduler-event-section {
+  background: rgba(18, 18, 14, 0.34);
+  border: 1px solid rgba(238, 229, 210, 0.11);
+  border-radius: calc(var(--ag-radius-item) + 4px);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(10px) saturate(106%);
+  -webkit-backdrop-filter: blur(10px) saturate(106%);
+}
+
+.scheduler-theme-shell .scheduler-event-section.is-primary {
+  background: rgba(43, 39, 32, 0.52);
+  border-color: var(--ag-line);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(18px) saturate(112%);
+  -webkit-backdrop-filter: blur(18px) saturate(112%);
+}
+
+.scheduler-theme-shell .scheduler-event-section.scheduler-panel-empty {
+  background: rgba(18, 18, 14, 0.28);
+  box-shadow: none;
+}
+
+.scheduler-theme-shell .scheduler-editor-card {
+  border-color: var(--ag-line-liquid);
+  border-radius: var(--ag-radius-card);
+}
+
+.scheduler-theme-shell .scheduler-primary-info-card {
+  background: var(--ag-surface-glass-strong);
+  border-color: var(--ag-line-strong);
+}
+
+.scheduler-theme-shell .scheduler-section-label {
+  color: var(--ag-accent);
+  font-size: 0.76rem;
+  letter-spacing: 0.06em;
+}
+
+.scheduler-theme-shell .scheduler-setting-subtitle,
+.scheduler-theme-shell .subtle,
+.scheduler-theme-shell .scheduler-room-subtitle,
+.scheduler-theme-shell .scheduler-event-note,
+.scheduler-theme-shell .scheduler-push-summary,
+.scheduler-theme-shell .scheduler-push-status,
+.scheduler-theme-shell .scheduler-push-status-note {
+  color: var(--ag-text-muted);
+}
+
+.scheduler-theme-shell .scheduler-filter-summary-copy strong,
+.scheduler-theme-shell .scheduler-primary-info-card .scheduler-filter-summary-copy strong,
+.scheduler-theme-shell .scheduler-controls strong,
+.scheduler-theme-shell .scheduler-room-card strong,
+.scheduler-theme-shell .scheduler-panel h2 {
+  color: var(--ag-text);
+}
+
+.scheduler-theme-shell .scheduler-today-page .scheduler-controls .scheduler-filter-summary-copy strong {
+  display: block;
+  margin-top: 0.16rem;
+  color: var(--ag-text);
+  font-size: clamp(1.42rem, 6vw, 1.72rem);
+  font-weight: 650;
+  letter-spacing: -0.035em;
+  line-height: 1.05;
+}
+
+.scheduler-theme-shell .scheduler-filter-summary-copy .subtle,
+.scheduler-theme-shell .scheduler-work-log-card .scheduler-filter-summary-copy .subtle {
+  color: var(--ag-text-muted);
+}
+
+.scheduler-theme-shell button,
+.scheduler-theme-shell .scheduler-native-picker-display,
+.scheduler-theme-shell .scheduler-room-picker-empty,
+.scheduler-theme-shell .scheduler-form input,
+.scheduler-theme-shell .scheduler-form select,
+.scheduler-theme-shell .scheduler-controls input,
+.scheduler-theme-shell .scheduler-controls select {
+  min-height: 44px;
+}
+
+.scheduler-theme-shell button:focus-visible,
+.scheduler-theme-shell input:focus-visible,
+.scheduler-theme-shell select:focus-visible,
+.scheduler-theme-shell textarea:focus-visible,
+.scheduler-theme-shell [role='button']:focus-visible {
+  outline: 2px solid var(--ag-focus);
+  outline-offset: 3px;
+}
+
+.scheduler-theme-shell .soft-button,
+.scheduler-theme-shell .scheduler-nav-button,
+.scheduler-theme-shell .scheduler-back-button,
+.scheduler-theme-shell .scheduler-action-button,
+.scheduler-theme-shell .scheduler-link-button,
+.scheduler-theme-shell .scheduler-modal-close,
+.scheduler-theme-shell .scheduler-modal-btn.secondary,
+.scheduler-theme-shell .scheduler-push-mini-button,
+.scheduler-theme-shell .scheduler-count-pill {
+  color: var(--ag-text-muted);
+  background: var(--ag-surface-operational);
+  border: 1px solid var(--ag-line);
+  box-shadow: none;
+}
+
+.scheduler-theme-shell .scheduler-count-pill {
+  color: var(--ag-text-muted);
+}
+
+.scheduler-theme-shell .scheduler-controls .scheduler-summary-button,
+.scheduler-theme-shell .scheduler-work-log-card .scheduler-summary-button,
+.scheduler-theme-shell .scheduler-push-actions.compact > button.soft-button,
+.scheduler-theme-shell .scheduler-push-mini-button,
+.scheduler-theme-shell .scheduler-work-log-nav-btn,
+.scheduler-theme-shell .scheduler-modal-close {
+  min-height: 44px;
+  height: 44px;
+  padding-inline: 0.8rem;
+  border-radius: var(--ag-radius-control);
+}
+
+.scheduler-theme-shell .scheduler-editor-page .scheduler-form input,
+.scheduler-theme-shell .scheduler-editor-page .scheduler-form select,
+.scheduler-theme-shell .scheduler-editor-page .scheduler-form textarea,
+.scheduler-theme-shell .scheduler-editor-page .scheduler-native-picker-display,
+.scheduler-theme-shell .scheduler-editor-page .scheduler-room-picker-empty,
+.scheduler-theme-shell .scheduler-editor-page .scheduler-chip:not(.active),
+.scheduler-theme-shell .scheduler-editor-page .scheduler-room-option:not(.active) {
+  background: rgba(244, 238, 228, 0.09);
+  border-color: rgba(255, 246, 228, 0.18);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.07);
+}
+
+.scheduler-theme-shell .scheduler-editor-page .scheduler-form-section {
+  padding-top: 0.16rem;
+}
+
+.scheduler-theme-shell .scheduler-count-pill.is-ready,
+.scheduler-theme-shell .scheduler-status-badge,
+.scheduler-theme-shell .status-done {
+  color: var(--ag-success);
+  background: var(--ag-success-soft);
+  border-color: rgba(167, 223, 197, 0.28);
+}
+
+.scheduler-theme-shell .scheduler-compact-control {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  min-height: 44px;
+  height: 44px;
+  padding: 0;
+  color: var(--ag-text-muted);
+  background: transparent;
+  border-color: transparent;
+  border-radius: var(--ag-radius-control);
+}
+
+.scheduler-theme-shell .scheduler-compact-control-visual {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 30px;
+  padding: 0.28rem 0.66rem;
+  color: inherit;
+  background: var(--ag-surface-operational);
+  border: 1px solid var(--ag-line);
+  border-radius: var(--ag-radius-control);
+  box-sizing: border-box;
+}
+
+.scheduler-theme-shell .scheduler-compact-control.is-ready .scheduler-compact-control-visual {
+  color: var(--ag-success);
+  background: var(--ag-success-soft);
+  border-color: rgba(167, 223, 197, 0.28);
+}
+
+.scheduler-theme-shell .scheduler-count-pill.scheduler-compact-control.is-ready,
+.scheduler-theme-shell .scheduler-controls .scheduler-summary-button.scheduler-compact-control,
+.scheduler-theme-shell .scheduler-work-log-card .scheduler-summary-button.scheduler-compact-control {
+  padding: 0;
+  background: transparent;
+  border-color: transparent;
+}
+
+.scheduler-theme-shell .status-pending {
+  color: var(--ag-warning);
+  background: var(--ag-warning-soft);
+}
+
+.scheduler-theme-shell .scheduler-chip,
+.scheduler-theme-shell .scheduler-room-option {
+  min-height: 44px;
+  color: var(--ag-text-muted);
+  background: var(--ag-surface-operational);
+  border: 1px solid var(--ag-line);
+  border-radius: var(--ag-radius-control);
+}
+
+.scheduler-theme-shell .scheduler-chip.active,
+.scheduler-theme-shell .scheduler-room-option.active,
+.scheduler-theme-shell .scheduler-nav-button.active {
+  color: var(--ag-text) !important;
+  background: var(--ag-surface-selected) !important;
+  border-color: var(--ag-line-strong) !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.16), var(--ag-shadow-control);
+}
+
+.scheduler-theme-shell .scheduler-form label,
+.scheduler-theme-shell .scheduler-field-label,
+.scheduler-theme-shell .scheduler-parent-label {
+  color: var(--ag-text-muted);
+}
+
+.scheduler-theme-shell .scheduler-form input,
+.scheduler-theme-shell .scheduler-form select,
+.scheduler-theme-shell .scheduler-form textarea,
+.scheduler-theme-shell .scheduler-controls input,
+.scheduler-theme-shell .scheduler-controls select,
+.scheduler-theme-shell .scheduler-native-picker-display,
+.scheduler-theme-shell .scheduler-room-picker-empty {
+  color: var(--ag-text);
+  background: var(--ag-surface-operational);
+  border-color: var(--ag-line);
+  border-radius: var(--ag-radius-control);
+}
+
+.scheduler-theme-shell .scheduler-form input::placeholder,
+.scheduler-theme-shell .scheduler-form textarea::placeholder,
+.scheduler-theme-shell .scheduler-native-picker-display.is-empty,
+.scheduler-theme-shell .scheduler-room-picker-empty {
+  color: var(--ag-text-tertiary);
+}
+
+.scheduler-theme-shell .scheduler-native-picker-display:not(.is-empty),
+.scheduler-theme-shell .scheduler-duration-field .scheduler-compact-input {
+  color: var(--ag-text);
+}
+
+.scheduler-theme-shell .scheduler-form input:focus,
+.scheduler-theme-shell .scheduler-form textarea:focus,
+.scheduler-theme-shell .scheduler-form select:focus,
+.scheduler-theme-shell .scheduler-native-picker-shell:focus-within .scheduler-native-picker-display {
+  border-color: var(--ag-line-strong);
+  outline-color: var(--ag-focus);
+}
+
+.scheduler-theme-shell .scheduler-event-card {
+  gap: 0.3rem;
+  padding: 0.55rem 0.75rem;
+  color: var(--ag-text);
+  background: rgba(35, 33, 28, 0.72);
+  border-color: var(--ag-line);
+  border-left-color: var(--ag-text-tertiary);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.scheduler-theme-shell .scheduler-event-card.has-note {
+  gap: 0.28rem;
+  padding: 0.55rem 0.75rem;
+}
+
+.scheduler-theme-shell .scheduler-event-card.event-checkin {
+  color: var(--ag-text);
+  background: rgba(45, 59, 43, 0.72);
+  border-color: rgba(184, 200, 165, 0.26);
+  border-left-color: var(--ag-success);
+}
+
+.scheduler-theme-shell .scheduler-event-card.event-warning {
+  color: var(--ag-text);
+  background: rgba(47, 44, 37, 0.74);
+  border-color: rgba(163, 155, 140, 0.28);
+  border-left-color: var(--ag-text-tertiary);
+}
+
+.scheduler-theme-shell .scheduler-event-card.event-checkout {
+  color: var(--ag-text);
+  background: rgba(70, 39, 38, 0.72);
+  border-color: rgba(215, 160, 160, 0.28);
+  border-left-color: var(--ag-danger);
+}
+
+.scheduler-theme-shell .scheduler-event-card.overdue {
+  background: rgba(74, 49, 29, 0.76);
+  border-color: rgba(214, 179, 126, 0.4);
+  border-left-color: var(--ag-warning);
+}
+
+.scheduler-theme-shell .scheduler-event-card.upcoming {
+  border-color: rgba(207, 194, 169, 0.42);
+}
+
+.scheduler-theme-shell .scheduler-event-time-block strong,
+.scheduler-theme-shell .scheduler-event-location,
+.scheduler-theme-shell .scheduler-event-customer,
+.scheduler-theme-shell .scheduler-event-main p,
+.scheduler-theme-shell .scheduler-event-note {
+  color: var(--ag-text-muted);
+}
+
+.scheduler-theme-shell .scheduler-event-card.event-checkin .scheduler-event-urgency,
+.scheduler-theme-shell .scheduler-event-card.event-checkin .scheduler-event-main strong {
+  color: var(--ag-success);
+}
+
+.scheduler-theme-shell .scheduler-event-card.event-warning .scheduler-event-urgency,
+.scheduler-theme-shell .scheduler-event-card.event-warning .scheduler-event-main strong {
+  color: var(--ag-text-muted);
+}
+
+.scheduler-theme-shell .scheduler-event-card.event-checkout .scheduler-event-urgency,
+.scheduler-theme-shell .scheduler-event-card.event-checkout .scheduler-event-main strong {
+  color: var(--ag-danger);
+}
+
+.scheduler-theme-shell .scheduler-event-type.checkin {
+  color: var(--ag-success);
+  background: var(--ag-success-soft);
+}
+
+.scheduler-theme-shell .scheduler-event-type.warning {
+  color: var(--ag-text-muted);
+  background: rgba(163, 155, 140, 0.18);
+}
+
+.scheduler-theme-shell .scheduler-event-type.checkout {
+  color: var(--ag-danger);
+  background: var(--ag-danger-soft);
+}
+
+.scheduler-theme-shell .scheduler-tag-badge {
+  color: var(--ag-text-muted);
+  background: var(--ag-surface-selected);
+}
+
+.scheduler-theme-shell .scheduler-action-button {
+  min-height: 44px;
+  min-width: 44px;
+  padding: 0;
+  color: var(--ag-text);
+  background: transparent;
+  border-color: transparent;
+}
+
+.scheduler-theme-shell .scheduler-action-button-visual {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 30px;
+  padding: 0.28rem 0.66rem;
+  color: inherit;
+  background: var(--ag-surface-selected);
+  border: 1px solid var(--ag-line-strong);
+  border-radius: var(--ag-radius-control);
+  box-sizing: border-box;
+  transform: translateY(-3px);
+}
+
+.scheduler-theme-shell .scheduler-action-button.secondary .scheduler-action-button-visual {
+  color: var(--ag-text-muted);
+  background: transparent;
+  border-color: var(--ag-line);
+}
+
+.scheduler-theme-shell .scheduler-form-actions > button:not(.danger-button),
+.scheduler-theme-shell .scheduler-modal-btn:not(.secondary),
+.scheduler-theme-shell .scheduler-nav-button.primary-action,
+.scheduler-theme-shell .scheduler-link-button,
+.scheduler-theme-shell .scheduler-fab-button {
+  min-height: 44px;
+  color: #2f2a22;
+  background: var(--ag-brand);
+  border: 1px solid var(--ag-brand);
+  box-shadow: var(--ag-shadow-control), inset 0 1px 0 rgba(255, 255, 255, 0.55);
+}
+
+.scheduler-theme-shell .scheduler-sheet-backdrop,
+.scheduler-theme-shell .scheduler-modal-backdrop {
+  background: rgba(10, 9, 7, 0.44);
+  backdrop-filter: blur(10px) saturate(92%);
+  -webkit-backdrop-filter: blur(10px) saturate(92%);
+}
+
+.scheduler-theme-shell .scheduler-sheet,
+.scheduler-theme-shell .scheduler-modal,
+.scheduler-theme-shell .scheduler-google-modal {
+  color: var(--ag-text);
+  background: var(--ag-surface-liquid-strong);
+  border: 1px solid var(--ag-line-liquid);
+  box-shadow:
+    inset 0 1px 0 var(--ag-highlight-liquid),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.08),
+    var(--ag-shadow-liquid);
+  backdrop-filter:
+    blur(var(--ag-liquid-blur))
+    saturate(var(--ag-liquid-saturation))
+    brightness(0.92);
+  -webkit-backdrop-filter:
+    blur(var(--ag-liquid-blur))
+    saturate(var(--ag-liquid-saturation))
+    brightness(0.92);
+}
+
+.scheduler-theme-shell .scheduler-setting-card:active,
+.scheduler-theme-shell .scheduler-modal-btn:active,
+.scheduler-theme-shell .scheduler-modal-btn.secondary:active,
+.scheduler-theme-shell .scheduler-modal-close:active {
+  color: var(--ag-text);
+  background: var(--ag-surface-selected);
+}
+
+.scheduler-theme-shell .scheduler-modal .scheduler-section-label,
+.scheduler-theme-shell .scheduler-sheet .scheduler-section-label {
+  color: var(--ag-accent);
+}
+
+.scheduler-theme-shell .scheduler-fab-button {
+  right: max(1.25rem, calc((100vw - min(100vw, 860px)) / 2 + 1.25rem));
+}
+
+@media (max-width: 700px) {
+  .scheduler-theme-shell.ag-shell {
+    --ag-atmosphere-position: 85% 66%;
+  }
+
+  .scheduler-theme-shell .scheduler-shell {
+    padding:
+      max(1rem, calc(env(safe-area-inset-top) + 0.75rem))
+      1.1rem
+      max(7rem, calc(env(safe-area-inset-bottom) + 3.5rem));
+  }
+
+  .scheduler-theme-shell .scheduler-event-list,
+  .scheduler-theme-shell .scheduler-room-grid {
+    gap: 0.6rem;
+  }
+
+  .scheduler-theme-shell .scheduler-event-card {
+    gap: 0.2rem;
+    padding: 0.42rem 0.68rem calc(0.42rem - 3px);
+  }
+
+  .scheduler-theme-shell .scheduler-event-card.has-note {
+    gap: 0.22rem;
+    padding: 0.45rem 0.68rem calc(0.45rem - 3px);
+  }
+
+  .scheduler-theme-shell .scheduler-event-actions {
+    align-items: center;
+    gap: 0.55rem;
+  }
+
+  .scheduler-theme-shell .scheduler-event-action-buttons {
+    gap: 0.4rem;
+  }
+
+  .scheduler-theme-shell .scheduler-event-action-buttons > button {
+    min-width: 62px;
+  }
 }

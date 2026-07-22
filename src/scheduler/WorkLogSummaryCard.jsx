@@ -13,13 +13,13 @@ export function WorkLogSummaryCard({ currentWeekStart, onOpen, onShare }) {
         <div className="scheduler-summary-actions">
           <button
             type="button"
-            className="soft-button scheduler-summary-button"
+            className="soft-button scheduler-summary-button scheduler-compact-control"
             onClick={() => onShare(currentWeekStart)}
           >
-            공유
+            <span className="scheduler-compact-control-visual">공유</span>
           </button>
-          <button type="button" className="soft-button scheduler-summary-button" onClick={onOpen}>
-            보기
+          <button type="button" className="soft-button scheduler-summary-button scheduler-compact-control" onClick={onOpen}>
+            <span className="scheduler-compact-control-visual">보기</span>
           </button>
         </div>
       </div>

@@ -51,14 +51,16 @@ export function SchedulerEventCard({ item, onToggleDone, isSaving }) {
             disabled={isSaving}
             onClick={() => onToggleDone(item)}
           >
-            {item.status === 'done' ? '완료 취소' : '완료'}
+            <span className="scheduler-action-button-visual">
+              {item.status === 'done' ? '완료 취소' : '완료'}
+            </span>
           </button>
           <button
             type="button"
             className="scheduler-action-button secondary"
             onClick={() => navigate(`/scheduler/${item.reservation_id}`)}
           >
-            예약 수정
+            <span className="scheduler-action-button-visual">예약 수정</span>
           </button>
         </div>
       </div>

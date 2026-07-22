@@ -640,7 +640,7 @@ export function TodaySchedulerPage({
   }
 
   return (
-    <div className="scheduler-shell">
+    <div className="scheduler-shell scheduler-today-page">
 
       <button
         type="button"
@@ -745,14 +745,14 @@ export function TodaySchedulerPage({
           <div className="scheduler-summary-actions">
             <button
               type="button"
-              className="soft-button scheduler-summary-button"
+              className="soft-button scheduler-summary-button scheduler-compact-control"
               onClick={handleSyncWorkLog}
               disabled={!normalizedFilters.workTimeEnabled}
             >
-              동기화
+              <span className="scheduler-compact-control-visual">동기화</span>
             </button>
-            <button type="button" className="soft-button scheduler-summary-button" onClick={openFilterSheet}>
-              변경
+            <button type="button" className="soft-button scheduler-summary-button scheduler-compact-control" onClick={openFilterSheet}>
+              <span className="scheduler-compact-control-visual">변경</span>
             </button>
           </div>
         </div>

@@ -196,9 +196,9 @@ export function ReservationEditorPage({
   }
 
   return (
-    <div className="scheduler-shell">
+    <div className="scheduler-shell scheduler-editor-page">
 
-      <section className="scheduler-panel" style={{ paddingTop: '1rem' }}>
+      <section className="scheduler-panel scheduler-editor-card" style={{ paddingTop: '1rem' }}>
         <div className="scheduler-section-head" style={{ marginBottom: '0.4rem' }}>
           <div />
           <button type="button" className="scheduler-back-button" onClick={() => navigate(backPath)}>

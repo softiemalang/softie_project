@@ -8,9 +8,17 @@ export function SchedulerEventSection({ title, items, emptyText, onToggleDone, p
     if (title === '곧 다가오는 일정') return '다가오는 일정 없음'
     return emptyText
   })()
+  const sectionClassName = [
+    'scheduler-panel',
+    'scheduler-event-section',
+    title === '오늘 전체' ? 'is-primary' : '',
+    items.length === 0 ? 'scheduler-panel-empty' : '',
+  ]
+    .filter(Boolean)
+    .join(' ')
 
   return (
-    <section className={`scheduler-panel ${items.length === 0 ? 'scheduler-panel-empty' : ''}`}>
+    <section className={sectionClassName}>
       <div className="scheduler-section-head">
         <div>
           <p className="scheduler-section-label">{title}</p>

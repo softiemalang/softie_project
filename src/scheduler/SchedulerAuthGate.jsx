@@ -8,8 +8,9 @@ import { useGoogleConnection } from './useGoogleConnection'
 
 function SchedulerLoginPage({ isSigningIn, onSignIn, status }) {
   return (
-    <div className="scheduler-shell">
-      <section className="scheduler-panel scheduler-setting-card is-setup">
+    <div className="scheduler-theme-shell ag-shell" data-design-theme="atmospheric">
+      <div className="scheduler-shell">
+        <section className="scheduler-panel scheduler-setting-card is-setup">
         <div className="scheduler-section-head">
           <p className="scheduler-section-label">계정 로그인</p>
           <div className="scheduler-count-pill">로그인 필요</div>
@@ -35,9 +36,9 @@ function SchedulerLoginPage({ isSigningIn, onSignIn, status }) {
           </button>
         </div>
         {status ? <p className="status">{status}</p> : null}
-      </section>
+        </section>
 
-      <section className="scheduler-panel scheduler-setting-card">
+        <section className="scheduler-panel scheduler-setting-card">
         <div className="scheduler-section-head">
           <p className="scheduler-section-label">Google 연동 안내</p>
           <div className="scheduler-count-pill">백업용</div>
@@ -45,7 +46,8 @@ function SchedulerLoginPage({ isSigningIn, onSignIn, status }) {
         <p className="scheduler-setting-subtitle">
           로그인은 내 데이터를 불러오는 용도이고, Google 연동은 캘린더 동기화와 Drive 백업에 사용하는 별도 연결이에요.
         </p>
-      </section>
+        </section>
+      </div>
     </div>
   )
 }
@@ -144,8 +146,10 @@ export function SchedulerAuthGate({ pathname }) {
 
   if (isLoading) {
     return (
-      <div className="app-shell scheduler-shell">
-        <p className="status" style={{ textAlign: 'center', marginTop: '4rem' }}>로그인 상태 확인 중...</p>
+      <div className="scheduler-theme-shell ag-shell" data-design-theme="atmospheric">
+        <div className="app-shell scheduler-shell">
+          <p className="status" style={{ textAlign: 'center', marginTop: '4rem' }}>로그인 상태 확인 중...</p>
+        </div>
       </div>
     )
   }
@@ -155,7 +159,7 @@ export function SchedulerAuthGate({ pathname }) {
   }
 
   return (
-    <div className="scheduler-auth-gated">
+    <div className="scheduler-auth-gated scheduler-theme-shell ag-shell" data-design-theme="atmospheric">
       <style>{`
         .scheduler-auth-gated > .scheduler-shell:first-of-type {
           padding-bottom: 0 !important;
@@ -219,26 +223,30 @@ export function SchedulerAuthGate({ pathname }) {
             >
               <button
                 type="button"
-                className="scheduler-count-pill"
+                className="scheduler-count-pill scheduler-compact-control"
                 onClick={handleSignOut}
                 disabled={isSigningOut}
                 style={{ border: 0, cursor: 'pointer' }}
               >
-                {isSigningOut ? '로그아웃 중' : '로그아웃'}
+                <span className="scheduler-compact-control-visual">
+                  {isSigningOut ? '로그아웃 중' : '로그아웃'}
+                </span>
               </button>
               <button
                 type="button"
-                className={`scheduler-count-pill ${googleConnected ? 'is-ready' : ''}`}
+                className={`scheduler-count-pill scheduler-compact-control ${googleConnected ? 'is-ready' : ''}`}
                 onClick={() => setIsGooglePanelOpen(true)}
                 style={{ border: 0, cursor: 'pointer' }}
               >
-                {googleConnectionState === 'checking'
-                  ? '확인 중'
-                  : googleConnectionState === 'error'
-                    ? '확인 실패'
-                    : googleConnected
-                      ? '연동됨'
-                      : '연결'}
+                <span className="scheduler-compact-control-visual">
+                  {googleConnectionState === 'checking'
+                    ? '확인 중'
+                    : googleConnectionState === 'error'
+                      ? '확인 실패'
+                      : googleConnected
+                        ? '연동됨'
+                        : '연결'}
+                </span>
               </button>
             </div>
           </div>

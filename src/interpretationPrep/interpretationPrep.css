@@ -985,12 +985,14 @@
   }
 }
 
-/* Pastel haze + selective liquid glass: scoped to the interpretation preparation tool. */
+/* Warm nostalgic atmosphere + selective liquid glass: scoped to the interpretation preparation tool. */
 .prep-shell {
   color-scheme: dark;
-  --ag-atmosphere-image: url('./assets/prep-atmosphere.jpg');
-  --ag-atmosphere-position: center top;
-  --ag-atmosphere-position-mobile: 62% top;
+  --ag-atmosphere-image: url('../scheduler/assets/scheduler-atmosphere-v4.jpg');
+  --ag-atmosphere-fallback: #3c382f;
+  --ag-atmosphere-overlay: rgba(14, 14, 10, 0.28);
+  --ag-atmosphere-position: 58% 66%;
+  --ag-atmosphere-position-mobile: 85% 66%;
   --background: var(--ag-atmosphere-fallback);
   --surface: var(--ag-surface-glass);
   --surface-strong: var(--ag-surface-glass-strong);
@@ -1004,7 +1006,7 @@
   --success: var(--ag-success);
   --warning: var(--ag-warning);
   --prep-bg-subtle: var(--ag-surface-operational);
-  --prep-surface-2: rgba(29, 34, 44, 0.58);
+  --prep-surface-2: rgba(38, 34, 28, 0.58);
   --prep-surface-3: rgba(255, 255, 255, 0.1);
   --prep-surface-selected: var(--ag-surface-selected);
   --prep-text-secondary: var(--ag-text-muted);
@@ -1045,7 +1047,7 @@
 .prep-hero {
   padding: clamp(1.35rem, 3vw, 2rem);
   border-radius: 28px;
-  background: rgba(18, 23, 32, 0.48) !important;
+  background: rgba(30, 27, 22, 0.48) !important;
   border-color: rgba(255, 255, 255, 0.24) !important;
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.2),
@@ -1054,7 +1056,7 @@
 
 @supports (backdrop-filter: blur(1px)) {
   .prep-hero {
-    background: rgba(18, 23, 32, 0.42) !important;
+    background: rgba(30, 27, 22, 0.42) !important;
     backdrop-filter: blur(28px) saturate(122%) !important;
     -webkit-backdrop-filter: blur(28px) saturate(122%) !important;
   }
@@ -1522,6 +1524,7 @@
 
 @media (max-width: 700px) {
   .prep-shell {
+    --ag-atmosphere-position: var(--ag-atmosphere-position-mobile);
     padding-inline: 1rem;
   }
 
