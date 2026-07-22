@@ -4,7 +4,10 @@ import {
   buildExportPayload,
   exportPayloadToMarkdown,
   prepareInterpretationData,
+  exportValidationReportToMarkdown,
 } from './prepare.js'
+import { sajuValidationFixtures } from './fixtures/sajuValidationFixtures.js'
+import { runSajuValidationSuite } from './sajuValidationRunner.js'
 import {
   DEFAULT_INPUT,
   DEFAULT_PROFILES,
@@ -549,6 +552,28 @@ export default function InterpretationPrepPage() {
   const [copyStatus, setCopyStatus] = useState('')
   const selectedReferenceCity = getKoreaReferenceCity(input.referenceCity)
 
+  // 검증 센터 전용 State 및 핸들러
+  const [validationSummary, setValidationSummary] = useState(null)
+  const [categoryFilter, setCategoryFilter] = useState('all')
+  const [statusFilter, setStatusFilter] = useState('all')
+  const [developerCopiedStatus, setDeveloperCopiedStatus] = useState('')
+
+  const handleRunValidation = () => {
+    const summary = runSajuValidationSuite(sajuValidationFixtures, prepareInterpretationData)
+    setValidationSummary(summary)
+  }
+
+  const handleCopyDevReport = async () => {
+    try {
+      const mdReport = exportValidationReportToMarkdown()
+      await copyTextToClipboard(mdReport)
+      setDeveloperCopiedStatus('검증 보고서가 클립보드에 복사되었습니다!')
+      setTimeout(() => setDeveloperCopiedStatus(''), 3000)
+    } catch (err) {
+      setDeveloperCopiedStatus('복사에 실패했습니다.')
+    }
+  }
+
   useEffect(() => {
     if (!saveLocally) return
     try {
@@ -920,6 +945,149 @@ export default function InterpretationPrepPage() {
             <details className="prep-export-preview">
               <summary>출력 미리보기</summary>
               <pre>{exportType === 'conversation' ? markdown : JSON.stringify(exportPayload, null, 2)}</pre>
+            </details>
+          </section>
+
+          {/* 개발자 전용 사주 계산 검증 센터 */}
+          <section className="card prep-card ag-glass prep-validation-section">
+            <details className="prep-validation-details" onToggle={(e) => { if (e.target.open && !validationSummary) handleRunValidation() }}>
+              <summary className="prep-validation-summary-toggle">
+                <span>⚙️ 사주 계산 검증 센터 (개발자 검증용)</span>
+                <small>골든 픽스처 기반 회귀 & 신뢰성 수치 대시보드 (개방 시 또는 새로고침 클릭 시에만 지연 연산 시작)</small>
+              </summary>
+
+              <div className="prep-validation-center-content">
+                <div className="prep-validation-top-actions">
+                  <button type="button" className="prep-validation-btn ag-primary-action" onClick={handleRunValidation}>검증 새로고침</button>
+                  <button type="button" className="prep-validation-btn prep-secondary-button ag-secondary-action" onClick={handleCopyDevReport}>검증 보고서(MD) 복사</button>
+                  {developerCopiedStatus && <span className="prep-dev-copied-msg">{developerCopiedStatus}</span>}
+                </div>
+
+                {validationSummary ? (
+                  <>
+                    {/* 통계 요약 보드 */}
+                    <div className="prep-validation-stats-grid">
+                      <div className="prep-val-stat-card">
+                        <span>전체 Fixtures 수</span>
+                        <strong>{validationSummary.statistics.total} 개</strong>
+                      </div>
+                      <div className="prep-val-stat-card is-verified">
+                        <span>외부 검증 완료 (Verified)</span>
+                        <strong>{validationSummary.statistics.verified.passed} / {validationSummary.statistics.verified.total}</strong>
+                        <small>정통 천문력 대조 성공율</small>
+                      </div>
+                      <div className="prep-val-stat-card is-regression">
+                        <span>회귀 검증 전용 (Regression)</span>
+                        <strong>{validationSummary.statistics.regressionOnly.passed} / {validationSummary.statistics.regressionOnly.total}</strong>
+                        <small>엔진 사법 동작 고정율</small>
+                      </div>
+                      <div className="prep-val-stat-card is-pending">
+                        <span>대기 및 예외 항목 (Pending/Invalid)</span>
+                        <strong>{validationSummary.statistics.pending + validationSummary.statistics.invalid} 개</strong>
+                        <small>학술 추가 검토 대상</small>
+                      </div>
+                    </div>
+
+                    {/* 필터 패널 */}
+                    <div className="prep-validation-filters">
+                      <LabeledField label="카테고리 필터">
+                        <select value={categoryFilter} onChange={(e) => setCategoryFilter(e.target.value)}>
+                          <option value="all">전체 보기 (All Categories)</option>
+                          {Object.keys(validationSummary.categoryStats).map(cat => (
+                            <option value={cat} key={cat}>{cat}</option>
+                          ))}
+                        </select>
+                      </LabeledField>
+
+                      <LabeledField label="신뢰 수준 필터">
+                        <select value={statusFilter} onChange={(e) => setStatusFilter(e.target.value)}>
+                          <option value="all">전체 보기 (All Statuses)</option>
+                          <option value="verified">외부 검증 완료 (Verified)</option>
+                          <option value="regression_only">회귀 검증 전용 (Regression Only)</option>
+                          <option value="pending_external_verification">외부 검증 대기 (Pending)</option>
+                        </select>
+                      </LabeledField>
+                    </div>
+
+                    {/* Fixtures 세부 리스트 */}
+                    <div className="prep-validation-fixtures-list">
+                      {validationSummary.results
+                        .filter(res => {
+                          const itemFixture = sajuValidationFixtures.find(f => f.id === res.fixtureId)
+                          if (!itemFixture) return true
+
+                          const matchesCategory = categoryFilter === 'all' || res.category === categoryFilter
+                          const matchesStatus = statusFilter === 'all' || res.verificationStatus === statusFilter
+                          return matchesCategory && matchesStatus
+                        })
+                        .map(res => {
+                          const itemFixture = sajuValidationFixtures.find(f => f.id === res.fixtureId) || {}
+                          const statusClass = res.status === 'passed' ? 'is-passed' : res.status === 'pending' ? 'is-pending' : 'is-failed'
+                          const statusLabel = res.status === 'passed' ? '계산 결과 일치' : res.status === 'pending' ? '외부 검증 대기' : '계산 결과 불일치'
+
+                          const vStatusLabel = res.verificationStatus === 'verified' ? '외부 검증 완료'
+                            : res.verificationStatus === 'regression_only' ? '회귀 검증 전용' : '외부 검증 대기'
+
+                          return (
+                            <article className={`prep-validation-item ${statusClass}`} key={res.fixtureId}>
+                              <header className="prep-val-item-header">
+                                <div>
+                                  <span className={`prep-val-badge ${res.verificationStatus}`}>{vStatusLabel}</span>
+                                  <h4>{res.title} <small>({res.fixtureId})</small></h4>
+                                </div>
+                                <span className={`prep-val-result-badge ${res.status}`}>{statusLabel}</span>
+                              </header>
+
+                              <p className="prep-val-desc">{itemFixture.description}</p>
+
+                              {/* Mismatches Detail Diff View */}
+                              {res.mismatches && res.mismatches.length > 0 && (
+                                <div className="prep-val-mismatches-box">
+                                  <h5>⚠️ 발견된 불일치 경로 (Mismatch Diff)</h5>
+                                  <table className="prep-val-diff-table">
+                                    <thead>
+                                      <tr>
+                                        <th>데이터 경로 (Dot Path)</th>
+                                        <th>기대값 (Expected)</th>
+                                        <th>실제값 (Actual)</th>
+                                        <th>불일치 사유</th>
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                      {res.mismatches.map((mis, idx) => (
+                                        <tr key={idx}>
+                                          <td><code>{mis.path}</code></td>
+                                          <td><span className="val-expected">{String(mis.expected)}</span></td>
+                                          <td><span className="val-actual">{String(mis.actual)}</span></td>
+                                          <td><em>{mis.reason}</em></td>
+                                        </tr>
+                                      ))}
+                                    </tbody>
+                                  </table>
+                                </div>
+                              )}
+
+                              <footer className="prep-val-item-footer">
+                                {itemFixture.source && (
+                                  <div>
+                                    <span><b>검증 출처:</b> {itemFixture.source}</span>
+                                  </div>
+                                )}
+                                {itemFixture.notes && (
+                                  <div className="prep-val-notes">
+                                    <span><b>학술 메모:</b> {itemFixture.notes}</span>
+                                  </div>
+                                )}
+                              </footer>
+                            </article>
+                          )
+                        })}
+                    </div>
+                  </>
+                ) : (
+                  <p className="prep-val-loading-placeholder">데이터를 분석하는 데 시간이 걸립니다. [검증 새로고침] 버튼을 눌러 실행을 시작하십시오.</p>
+                )}
+              </div>
             </details>
           </section>
         </>

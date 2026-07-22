@@ -373,3 +373,14 @@ export function exportPayloadToMarkdown(payload) {
     payload.instruction,
   ].join('\n')
 }
+
+/**
+ * Developer Only - Compiles and exports the complete validation report to Markdown
+ */
+import { sajuValidationFixtures } from './fixtures/sajuValidationFixtures.js'
+import { runSajuValidationSuite, buildValidationReport as compileReport } from './sajuValidationRunner.js'
+
+export function exportValidationReportToMarkdown() {
+  const summary = runSajuValidationSuite(sajuValidationFixtures, prepareInterpretationData)
+  return compileReport(summary)
+}
