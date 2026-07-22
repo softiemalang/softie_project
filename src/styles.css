@@ -5287,6 +5287,53 @@ textarea {
   color: var(--ag-accent);
 }
 
+.scheduler-theme-shell .scheduler-work-log-nav {
+  border-bottom-color: var(--ag-line);
+}
+
+.scheduler-theme-shell .scheduler-work-log-title strong,
+.scheduler-theme-shell .scheduler-work-log-item p {
+  color: var(--ag-text);
+}
+
+.scheduler-theme-shell .scheduler-work-log-item {
+  color: var(--ag-text);
+  background: var(--ag-surface-operational);
+  border-color: var(--ag-line);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.scheduler-theme-shell .scheduler-work-log-item strong {
+  color: var(--ag-text-muted);
+}
+
+.scheduler-theme-shell .scheduler-work-log-total {
+  background: var(--ag-surface-selected);
+  border: 1px solid var(--ag-line-strong);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.scheduler-theme-shell .scheduler-work-log-total span {
+  color: var(--ag-text-muted);
+}
+
+.scheduler-theme-shell .scheduler-work-log-total strong.active {
+  color: var(--ag-accent);
+}
+
+.scheduler-theme-shell .scheduler-log-delete-btn {
+  color: var(--ag-danger);
+  background: var(--ag-danger-soft);
+  border: 1px solid rgba(215, 160, 160, 0.22);
+}
+
+.scheduler-theme-shell .scheduler-work-log-modal .scheduler-modal-btn:not(.secondary) {
+  color: var(--ag-text);
+  background: var(--ag-surface-selected);
+  border-color: var(--ag-line-strong);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
 .scheduler-theme-shell .scheduler-fab-button {
   right: max(1.25rem, calc((100vw - min(100vw, 860px)) / 2 + 1.25rem));
 }
