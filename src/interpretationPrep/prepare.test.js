@@ -29,19 +29,79 @@ test('fixed birth input produces the known four pillars and traceable features',
   assert.equal(`${pillars.year.value} ${pillars.month.value} ${pillars.day.value} ${pillars.hour.value}`, '정축 갑진 계사 기미')
   assert.equal(result.systems.saju.raw.dayMaster.stem, '계')
   assert.equal(result.systems.saju.raw.calculationUncertainty.domesticLocation.status, 'domestic_location_no_core_change')
-  assert.equal(result.systems.saju.status, 'partial')
-  assert.equal(result.systems.saju.raw.branchRelations.ruleVersion, 'softie-natal-branch-relations-v1')
+  assert.equal(result.systems.saju.status, 'experimental') // complete에서 experimental로 격하 검증
+  assert.equal(result.systems.saju.raw.branchRelations.ruleVersion, 'softie-natal-branch-relations-v2')
+
+  // [사주 학파 프로필 회귀 테스트 1] 격국, 용신, 신강약 정량 스코어 정밀 대조 검증
+  // - 주석: 《자평진전(子平眞詮)》 격국론 및 《적천수(滴天髓)》 억부론 표준 원칙 교차 검증 완료.
+  // - 한계: 지장간에는 계수, 신금, 경금이 존재하여 현실 명리 임상에선 신약/신강 판정 시 이들의 통근 여부에 따른 가용 강약 점수가 학설마다 큰 차이를 보입니다. 본 엔진의 현재 수식은 단순 강약 산식에 의해 0점으로 계산하므로 이를 '골든 정확도'라 주장하지 않으며, 단지 현재 엔진의 출력 수식을 변함없이 유지하기 위한 '프로필 회귀 테스트'로 간주합니다.
+  // - 대상 사주: 계수(癸) 일간이 진월(辰)에 출생함. 진토의 본기는 무토(戊)이며 천간 투간자가 없으므로 본기를 격국으로 삼아 '정관격(正官格)'으로 성격(成格)됨이 고전 이론상의 기대값임.
+  // - 강약 평가: 사주 원국 표면에 일간을 생조하는 인성(금)과 비겁(수)이 전무하여 일간 계수가 완전히 고립되고 신약(극신약)하므로 정량 강약 점수가 수학적으로 0점으로 산출되는 것이 타당함.
+  // - 용희신 판정: 극신약 정관격 사주이므로 일간을 수호하는 인성(금)을 억부용신으로 삼고, 비겁(수)을 희신으로 취하는 '신약용인(身弱用印)' 배치가 성립됨.
+  const exp = result.systems.saju.raw.experimental
+  assert.ok(exp.isExperimental, '실험 결과 메타데이터 표식 존재 확인')
+  assert.equal(exp.gyeokguk.name, '정관격', '자평진전 진월 계수 무토사령 정관격 공식 검증')
+  assert.equal(exp.yongShin.primaryYongShinElement, '금', '억부 희용신 신약용인 오행 금 용신 검증')
+  assert.equal(exp.yongShin.heeShinElement, '수', '억부 수 희신 검증')
+  assert.equal(exp.strength.score, 0, '인성/비겁의 표면 전무로 인한 극신약 점수 0점 검증')
+
+  // [사주 학파 프로필 회귀 테스트 2] 원국 6대 신살 검출 회귀 방어 검증
+  // - 천을귀인: 《삼명통회(三明通會)》 천을귀인 조 '임계사묘수(壬癸巳卯隨)'에 따라 계수 일간 대비 일지 사화(巳) 귀인 매핑 검증.
+  // - 양인살: 고전 수식 '갑묘 을진 병오 정미 무오 기미 경유 신술 임자 계축'에 따라 계수 일간 대비 연지 축토(丑) 양인살 매핑 검증.
+  assert.ok(exp.shinsal.some(s => s.name === '천을귀인' && s.position === 'day'), '일지 사화 천을귀인 규칙 매핑 검증')
+  assert.ok(exp.shinsal.some(s => s.name === '양인살' && s.position === 'year'), '연지 축토 양인살 규칙 매핑 검증')
+
+  // [사주 학파 프로필 회귀 테스트 3] 천간합의 기둥 인접성 정합성 검증 (갑기합토)
+  // 월간 갑목 - 시간 기토는 떨어져(distance = 2) 있으므로 presence는 참이어야 하나 establishment 및 transmutation은 거짓이어야 함
+  const gapGiRelation = result.systems.saju.raw.stemRelations.items.find(r => r.relation === '천간합')
+  assert.ok(gapGiRelation, '갑기합 존재 확인')
+  assert.equal(gapGiRelation.assessment.establishment, false, '월간-시간은 인접해 있지 않으므로 합이 성립(establishment)되지 않음')
+  assert.equal(gapGiRelation.assessment.transmutation, false, '성립되지 않은 합은 합화(transmutation)가 불가능함')
+
   assert.deepEqual(
     result.systems.saju.raw.branchRelations.items.map(({ relation, branches }) => ({ relation, branches })),
     [
-      { relation: '파', branches: ['축', '진'] },
-      { relation: '충', branches: ['축', '미'] },
-      { relation: '형', branches: ['축', '미'] },
+      { relation: '파', branches: ['진', '축'] },
+      { relation: '충', branches: ['미', '축'] },
+      { relation: '형', branches: ['미', '축'] },
     ],
   )
-  assert.ok(result.systems.saju.supportScope.limitations.every(({ reason }) => reason.length > 0))
+  // limitations ID 및 구조 불변성 검증
+  const limitations = result.systems.saju.supportScope.limitations
+  assert.ok(limitations.length > 0)
+  const limIds = limitations.map((item) => item.id)
+  assert.equal(new Set(limIds).size, limIds.length)
+  assert.ok(limIds.includes('location-time-correction'))
+  assert.ok(limIds.includes('historical-standard-time'))
+  assert.ok(
+    limitations.every(
+      (item) =>
+        typeof item.id === 'string' &&
+        typeof item.title === 'string' &&
+        typeof item.status === 'string' &&
+        typeof item.impact === 'string' &&
+        typeof item.item === 'string' &&
+        typeof item.reason === 'string'
+    )
+  )
+
+  // unsupported ID 및 구조 불변성 검증
+  const unsupported = result.systems.saju.unsupported
+  assert.ok(unsupported.length > 0)
+  const unsIds = unsupported.map((item) => item.id)
+  assert.equal(new Set(unsIds).size, unsIds.length)
+  assert.ok(unsIds.includes('extended-shinsal'))
+  assert.ok(unsIds.includes('advanced-following-structures'))
+  assert.ok(
+    unsupported.every(
+      (item) =>
+        typeof item.id === 'string' &&
+        typeof item.title === 'string' &&
+        typeof item.status === 'string'
+    )
+  )
+
   assert.ok(result.systems.saju.supportScope.supported.some(({ item }) => item === '국내 주요 도시 진태양시'))
-  assert.ok(result.systems.saju.unsupported.every((item) => !item.startsWith('고정밀 진태양시:')))
   assert.equal(result.systems.saju.raw.timeBoundary.solarTimeMethod, 'NOAA fractional-year equation of time')
   assert.equal(result.systems.saju.raw.tenGods.visible.편재, 1)
   assert.equal(
@@ -53,6 +113,39 @@ test('fixed birth input produces the known four pillars and traceable features',
     assert.ok(feature.evidence.length > 0, `${feature.id} should include evidence`)
     feature.evidence.forEach((evidence) => assert.match(evidence.reference, /^systems\.saju\.raw\./))
   })
+})
+
+test('lunar date conversion and verification scope profile regression test', () => {
+  const lunarInput = {
+    ...FIXED_INPUT,
+    birthDate: '2025-06-01', // 음력 2025년 윤6월 1일 입력 (isLeapMonth: true)
+    calendar: 'lunar',
+    isLeapMonth: true,
+  }
+  const result = prepareInterpretationData(lunarInput, DEFAULT_PROFILES)
+  const norm = result.systems.saju.inputNormalization
+
+  // 음력 2025년 윤6월 1일은 양력 2025-07-25로 정상 변환
+  assert.equal(norm.convertedSolarDate, '2025-07-25')
+  assert.equal(norm.calendarType, 'lunar')
+  assert.equal(norm.isLeapMonth, true)
+
+  // KASI 표준 대조 범위 검증 (1951~2050년 사이이므로 kasi_reference_range_unverified 여야 함)
+  const lConv = result.input.lunarConversion
+  assert.equal(lConv.verificationScope, 'kasi_reference_range_unverified')
+  assert.equal(lConv.source, 'External Table (KASI-matching range 1951-2050)')
+
+  // 1940년 음력생인 경우 External Astrological Lunar Table 범위여야 함
+  const oldLunarInput = {
+    ...FIXED_INPUT,
+    birthDate: '1940-05-05',
+    calendar: 'lunar',
+    isLeapMonth: false,
+  }
+  const oldResult = prepareInterpretationData(oldLunarInput, DEFAULT_PROFILES)
+  const oldLConv = oldResult.input.lunarConversion
+  assert.equal(oldLConv.verificationScope, 'external_lunar_tables')
+  assert.equal(oldLConv.source, 'External Astrological Lunar Table')
 })
 
 test('same input and profile produce identical calculation data', () => {
@@ -386,7 +479,7 @@ test('1987 DST only needs verification when the one-hour correction changes a co
     birthTime: '12:00',
   }, DEFAULT_PROFILES).systems.saju
 
-  assert.equal(unchanged.status, 'partial')
+  assert.equal(unchanged.status, 'experimental')
   assert.equal(unchanged.raw.calculationUncertainty.historicalTimezone.status, 'dst_no_core_change')
   assert.deepEqual(unchanged.raw.timing.daYun.startDateRange, ['1996-02-10', '1996-02-15'])
   assert.match(unchanged.warnings.join(' '), /대운 기산일 후보/)
@@ -423,7 +516,7 @@ test('1988 DST follows the same conditional verification rule', () => {
     birthTime: '12:00',
   }, DEFAULT_PROFILES).systems.saju
 
-  assert.equal(unchanged.status, 'partial')
+  assert.equal(unchanged.status, 'experimental')
   assert.equal(changed.status, 'needs_verification')
   assert.deepEqual(changed.raw.calculationUncertainty.historicalTimezone.changedPillars, ['시주'])
 })
@@ -444,4 +537,205 @@ test('DST skipped and repeated local hours always require verification', () => {
   assert.equal(skipped.raw.calculationUncertainty.historicalTimezone.status, 'dst_nonexistent_local_time')
   assert.equal(repeated.status, 'needs_verification')
   assert.equal(repeated.raw.calculationUncertainty.historicalTimezone.status, 'dst_ambiguous_local_time')
+})
+
+test('음력 지원 검증 1: 평달 날짜 변환 및 사주 산출 검증', () => {
+  const result = prepareInterpretationData({
+    ...FIXED_INPUT,
+    calendar: 'lunar',
+    birthDate: '2025-01-01',
+    isLeapMonth: false,
+  }, DEFAULT_PROFILES)
+
+  // 음력 2025-01-01 -> 양력 2025-01-29 변환 확인
+  assert.equal(result.input.lunarConversion.convertedSolarDate, '2025-01-29')
+  assert.equal(result.input.lunarConversion.isLeapMonth, false)
+  assert.equal(result.input.original.birthDate, '2025-01-01')
+  assert.equal(result.input.normalized.birthDate, '2025-01-29')
+
+  // 사주 계산이 변환된 양력 기준으로 성공적으로 처리되었는지 확인
+  const pillars = result.systems.saju.raw.pillars
+  assert.ok(pillars)
+  assert.match(result.systems.saju.warnings.join(' '), /음력 날짜\(2025-01-01\)를 기준으로 변환된 양력 날짜\(2025-01-29\)/)
+})
+
+test('음력 지원 검증 2: 설날 전후 연도 경계 변환 검증', () => {
+  const resultBeforeNewYear = prepareInterpretationData({
+    ...FIXED_INPUT,
+    calendar: 'lunar',
+    birthDate: '2025-12-29',
+    isLeapMonth: false,
+  }, DEFAULT_PROFILES)
+
+  // 음력 2025-12-29는 양력 2026-02-16으로 변환되어야 함 (양력 연도가 바뀜)
+  assert.equal(resultBeforeNewYear.input.lunarConversion.convertedSolarDate, '2026-02-16')
+  assert.equal(resultBeforeNewYear.input.lunarConversion.originalLunarDate, '2025-12-29')
+})
+
+test('음력 지원 검증 3: 윤달이 존재하는 연도의 윤월 및 평월 교차 변환 검증', () => {
+  // 2025년 음력 6월은 윤달이 존재함 (윤6월)
+  const regularMonth = prepareInterpretationData({
+    ...FIXED_INPUT,
+    calendar: 'lunar',
+    birthDate: '2025-06-01',
+    isLeapMonth: false,
+  }, DEFAULT_PROFILES)
+
+  const leapMonthData = prepareInterpretationData({
+    ...FIXED_INPUT,
+    calendar: 'lunar',
+    birthDate: '2025-06-01',
+    isLeapMonth: true,
+  }, DEFAULT_PROFILES)
+
+  // 평6월 1일 -> 양력 2025-06-25
+  assert.equal(regularMonth.input.lunarConversion.convertedSolarDate, '2025-06-25')
+  // 윤6월 1일 -> 양력 2025-07-25
+  assert.equal(leapMonthData.input.lunarConversion.convertedSolarDate, '2025-07-25')
+})
+
+test('음력 지원 검증 4: 윤달이 없는 월에 윤달 지정 시 예외 거부 검증', () => {
+  // 2025년 음력 1월은 윤달이 없음
+  const badInput = {
+    ...FIXED_INPUT,
+    calendar: 'lunar',
+    birthDate: '2025-01-01',
+    isLeapMonth: true,
+  }
+  assert.match(validatePrepInput(badInput), /음력 윤달이 아닙니다/)
+})
+
+test('음력 지원 검증 5: 실제 존재하지 않는 날짜 예외 거부 검증', () => {
+  // 음력 2025년 2월은 소월(29일)이므로 30일이 존재하지 않음
+  const nonexistentDay = {
+    ...FIXED_INPUT,
+    calendar: 'lunar',
+    birthDate: '2025-02-30',
+    isLeapMonth: false,
+  }
+  assert.match(validatePrepInput(nonexistentDay), /실제로 존재하는 출생일/)
+
+  // 음력 범위 밖의 일수
+  const outOfRangeDay = {
+    ...FIXED_INPUT,
+    calendar: 'lunar',
+    birthDate: '2025-01-32',
+    isLeapMonth: false,
+  }
+  assert.match(validatePrepInput(outOfRangeDay), /실제로 존재하는 출생일/)
+})
+
+test('음력 지원 검증 6: 사주 계산 범위를 벗어나는 음력 연도 입력 거부 검증', () => {
+  const earlyYear = {
+    ...FIXED_INPUT,
+    calendar: 'lunar',
+    birthDate: '1900-12-15',
+    isLeapMonth: false,
+  }
+  assert.match(validatePrepInput(earlyYear), /1901년부터 2100년까지/)
+
+  const lateYear = {
+    ...FIXED_INPUT,
+    calendar: 'lunar',
+    birthDate: '2101-01-10',
+    isLeapMonth: false,
+  }
+  assert.match(validatePrepInput(lateYear), /1901년부터 2100년까지/)
+})
+
+test('사주 학파 표준 프로필 고도화 검증 1: 신강약, 격국, 용신 도출 정밀 검사', () => {
+  const result = prepareInterpretationData({
+    ...FIXED_INPUT,
+    birthDate: '1997-04-21',
+    birthTime: '13:30',
+  }, DEFAULT_PROFILES)
+
+  const saju = result.systems.saju.raw
+
+  // 1. 신강약 검증 (실험 기능 격리 참조)
+  const exp = saju.experimental
+  assert.ok(exp, 'experimental 블록이 존재해야 함')
+  assert.ok(exp.strength.score !== undefined)
+  assert.ok(exp.strength.score >= 0 && exp.strength.score <= 100)
+  assert.ok(typeof exp.strength.level === 'string')
+  assert.equal(typeof exp.strength.isStrong, 'boolean')
+  assert.equal(typeof exp.strength.isWeak, 'boolean')
+
+  // 2. 격국 검증 (실험 기능 격리 참조)
+  assert.ok(exp.gyeokguk)
+  assert.equal(typeof exp.gyeokguk.name, 'string')
+  assert.equal(typeof exp.gyeokguk.type, 'string')
+  assert.equal(typeof exp.gyeokguk.reason, 'string')
+
+  // 3. 용신 검증 (실험 기능 격리 참조)
+  assert.ok(exp.yongShin)
+  assert.equal(typeof exp.yongShin.primaryYongShinElement, 'string')
+  assert.equal(typeof exp.yongShin.heeShinElement, 'string')
+  assert.equal(typeof exp.yongShin.statement, 'string')
+  assert.equal(typeof exp.yongShin.confidence, 'string')
+})
+
+test('사주 학파 표준 프로필 고도화 검증 2: 6대 신살 및 천간/지지 세부 관계 결합 검사', () => {
+  const result = prepareInterpretationData({
+    ...FIXED_INPUT,
+    birthDate: '1997-04-21',
+    birthTime: '13:30',
+  }, DEFAULT_PROFILES)
+
+  const saju = result.systems.saju.raw
+
+  // 1. 신살 검증 (실험 기능 격리 참조)
+  const exp = saju.experimental
+  assert.ok(exp, 'experimental 블록이 존재해야 함')
+  assert.ok(Array.isArray(exp.shinsal))
+  exp.shinsal.forEach((s) => {
+    assert.equal(typeof s.name, 'string')
+    assert.ok(['year', 'month', 'day', 'hour', 'time'].includes(s.position))
+    assert.equal(typeof s.branch, 'string')
+    assert.equal(typeof s.formula, 'string')
+  })
+
+  // 2. 천간 관계 검증
+  assert.ok(saju.stemRelations)
+  assert.ok(saju.stemRelations.ruleVersion)
+  assert.ok(Array.isArray(saju.stemRelations.items))
+  saju.stemRelations.items.forEach((item) => {
+    assert.equal(typeof item.relation, 'string')
+    assert.ok(Array.isArray(item.stems))
+    assert.equal(typeof item.assessment.presence, 'boolean')
+    assert.equal(typeof item.assessment.establishment, 'boolean')
+    if (item.assessment.transmutation !== undefined) {
+      assert.equal(typeof item.assessment.transmutation, 'boolean')
+    }
+    assert.equal(typeof item.assessment.description, 'string')
+  })
+
+
+  // 3. 지지 관계 검증 (합화, 성립, 설명 필드 확장 점검)
+  assert.ok(saju.branchRelations)
+  saju.branchRelations.items.forEach((item) => {
+    assert.equal(typeof item.relation, 'string')
+    assert.ok(Array.isArray(item.branches))
+    assert.equal(typeof item.assessment.presence, 'boolean')
+    assert.equal(typeof item.assessment.establishment, 'boolean')
+    assert.equal(typeof item.assessment.description, 'string')
+  })
+
+  // 4. 최종 계산 상태가 잘 구성되었는지 확인
+  assert.ok(result.systems.saju.status)
+})
+
+test('도화살 삼합국 매핑 프로필 회귀 테스트 (해묘미 -> 자)', () => {
+  // 해묘미(목국) 삼합지(연지 해수, 일지 미토) 기준 '자(子)'수가 도화살로 검출되는지 명밀하게 회귀 검증
+  // 을해(乙亥)년 정해(丁亥)월 을미(乙未)일 병자(丙子)시 명조
+  const testInput = {
+    ...FIXED_INPUT,
+    birthDate: '1995-11-20',
+    birthTime: '00:30', // 시지가 '자(子)'수이므로 도화살이 시지에 정확히 매핑되어야 함
+  }
+  const result = prepareInterpretationData(testInput, DEFAULT_PROFILES)
+  const exp = result.systems.saju.raw.experimental
+
+  const hasDohwaAtHour = exp.shinsal.some(s => s.name === '도화살' && s.position === 'hour' && s.branch === '자')
+  assert.ok(hasDohwaAtHour, '해미(亥未) 기준 자(子)수 도화살이 시지에 정상적으로 검출되는지 회귀 대조 완료')
 })

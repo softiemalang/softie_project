@@ -50,6 +50,7 @@ export const DEFAULT_INPUT = {
   longitude: '126.97',
   gender: 'unspecified',
   calendar: 'solar',
+  isLeapMonth: false,
   timeAccuracy: 'exact',
 }
 
@@ -93,6 +94,7 @@ export const STATUS_META = {
   complete: { label: '계산 완료', tone: 'success' },
   partial: { label: '핵심 계산 지원', tone: 'warning' },
   needs_verification: { label: '검증 필요', tone: 'warning' },
+  experimental: { label: '검증단계(Experimental)', tone: 'warning' },
   unsupported: { label: '미지원', tone: 'muted' },
   missing_input: { label: '입력값 부족', tone: 'danger' },
   needs_profile: { label: '기준 선택 필요', tone: 'danger' },

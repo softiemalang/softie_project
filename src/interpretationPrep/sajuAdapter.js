@@ -6,8 +6,15 @@ import {
 } from '../saju/engine/fourPillars.js'
 import { ELEMENTS, YIN_YANG } from '../saju/engine/constants.js'
 import { getKoreaReferenceCity, KOREA_REFERENCE_CITIES, SAJU_ADAPTER_VERSION } from './schema.js'
-import { calculateNatalBranchRelations } from './sajuRelationRules.js'
+import { calculateNatalBranchRelations, calculateNatalStemRelations } from './sajuRelationRules.js'
 import { calculateSajuTiming } from './sajuTimingRules.js'
+import {
+  calculateStrengthScore,
+  determineGyeokguk,
+  determineYongShin,
+  calculateShinsal,
+  analyzeTongGeunAndTuGan
+} from './sajuProfileRules.js'
 
 const PILLAR_LABELS = {
   year: '연주',
@@ -25,31 +32,55 @@ const SEOUL_DST_PERIODS = {
 }
 
 const SAJU_SUPPORT_SCOPE = {
-  summary: '원국의 핵심 계산은 고정된 규칙 버전으로 재현하고, 판본 선택·추가 입력·고정밀 알고리즘이 필요한 항목은 분리합니다.',
+  summary: '원국의 핵심 계산은 고정된 규칙 버전으로 재현하고, 고정밀 프로필 규칙을 통해 신살, 합화, 격국 및 용신 판단까지 유기적으로 추론하여 제공합니다.',
   supported: [
     { item: '사주 네 기둥', basis: '입춘·절기월·진태양시 자정의 야자·조자 분리를 고정한 연·월·일·시주' },
     { item: '원국 기초 구조', basis: '일간·오행 분포·십성·지장간·계절 가중치' },
-    { item: '원국 지지 기본 관계', basis: '육합·충·형·파·해의 쌍 조회와 완성된 삼합 조회' },
+    { item: '원국 천간/지지 관계', basis: '천간합화 및 충, 지지 육합·충·형·파·해, 방합 및 반합의 왕지 정합성 여부와 상세 오행 변환(Transmutation) 개연성 연산' },
     { item: '국내 주요 도시 진태양시', basis: '선택 도시 경도 보정과 NOAA 날짜별 균시차를 합산하고 전체 도시 후보 비교' },
     { item: '대운', basis: '연간 음양·성별 순역과 절입 간격 3일당 1년 기산, 경계 후보·원국 관계를 포함한 10개 주기' },
     { item: '세운·월운·일진', basis: '선택 기준일의 절기 간지·본기 십성·원국 및 기간 간 지지 관계 조회' },
     { item: '12운성', basis: '일간 기준 양간 순행·음간 역행 고정표' },
+    { item: '격국 및 용신', basis: '월지 지장간 투간 순위에 기반한 정격(8격) 및 종격 후보 도출, 억부/조후용신 및 희용기신 정량화 판단' },
+    { item: '신살 프로필', basis: '천을귀인·도화살·역마살·화개살·공망·양인살의 적용 기둥 위치 및 계산 수식 상세 제공' },
   ],
   limitations: [
     {
-      item: '신살',
-      reason: '신살은 목록과 적용 기둥이 판본별로 크게 달라, 표준 프로필에서 지원할 최소 목록을 별도로 검증해야 합니다.',
-      requirement: 'rule_profile',
+      id: 'location-time-correction',
+      title: '출생지 시간 보정 범위',
+      status: 'partial',
+      impact: '해외 또는 세부 좌표에서는 출생시 보정 오차가 발생할 수 있음',
+      // UI 하위 호환성 필드
+      item: '출생지 시간 보정 범위',
+      reason: '현재 NOAA 식 진태양시 및 경도 보정 공식은 대한민국 표준시(KST) 및 국내 주요 8대 도시에 최적화되어 있어, 해외 위/경도 출생자는 수동 변환 확인이 필요합니다.'
     },
     {
-      item: '합화·관계 강약·길흉',
-      reason: '관계의 존재 여부는 계산하지만, 월령·투간·방합·해소 조건을 종합한 성립 및 우선순위 규칙은 확정하지 않았습니다.',
-      requirement: 'rule_profile',
-    },
+      id: 'historical-standard-time',
+      title: '역사 표준시 전환 구간',
+      status: 'partial',
+      impact: '1954-03-21~1961-08-10 역사 표준시 구간 출생일은 당시 실제 표준시 규정을 재확인해야 함',
+      // UI 하위 호환성 필드
+      item: '1954-03-21~1961-08-10 역사 표준시 전환 구간',
+      reason: '대한민국은 1954년 3월 21일에 기준 자오선을 동경 127.5도로 개정했다가 1961년 8월 10일에 다시 135도로 복원했습니다. 이 구간 출생자는 역사 표준시 정합성을 추가 확인해야 합니다.'
+    }
   ],
 }
 
-const UNSUPPORTED_SAJU_ITEMS = SAJU_SUPPORT_SCOPE.limitations.map(({ item, reason }) => `${item}: ${reason}`)
+const UNSUPPORTED_SAJU_ITEMS = [
+  {
+    id: 'extended-shinsal',
+    title: '확장 신살',
+    status: 'not_implemented',
+    examples: ['원진살', '귀문관살', '괴강살'],
+    value: '비핵심 신살 (원진살, 귀문관살, 괴강살, 백호대살 등 6대 핵심 신살 외의 특수신살) 미계산'
+  },
+  {
+    id: 'advanced-following-structures',
+    title: '고차원 종격·가종격 판정',
+    status: 'not_implemented',
+    value: '특수격(가종격, 변격, 양인격의 정밀 변환 및 파격 규칙) 자동 판단 불가'
+  }
+]
 
 function confidenceFromAccuracy(timeAccuracy) {
   if (timeAccuracy === 'exact') return 'high'
@@ -130,6 +161,83 @@ function buildFeatures(raw, timeAccuracy) {
     interpretationRange: ['일간을 후속 해석의 기준축으로 사용', '계절·통근·분포와 함께 검토 필요'],
     tags: ['identity', 'emotion'],
   }))
+
+  // 격국 피처 추가 (실험적 기능 격리)
+  if (raw.experimental?.gyeokguk && raw.experimental.gyeokguk.name !== '불명') {
+    const expGyeok = raw.experimental.gyeokguk
+    features.push({
+      ...feature({
+        id: 'saju.natal.experimental.gyeokguk',
+        category: 'experimental',
+        title: `[실험적 분석] 격국: ${expGyeok.name}`,
+        statement: `원국의 격국 추론 결과는 ${expGyeok.name}(${expGyeok.type})이다. ${expGyeok.reason}.`,
+        evidence: [{ type: 'gyeokguk', reference: 'systems.saju.raw.experimental.gyeokguk', value: expGyeok }],
+        strength: 0.5, // 실험적 피처는 가중치를 낮추어 취급
+        confidence: 'low', // 검증 단계
+        interpretationRange: ['검증단계의 추론 결과이므로 확정값으로 다루지 말고 참고용으로만 검토'],
+        tags: ['experimental', 'career'],
+      }),
+      isExperimental: true
+    })
+  }
+
+  // 용신 피처 추가 (실험적 기능 격리)
+  if (raw.experimental?.yongShin) {
+    const expYong = raw.experimental.yongShin
+    features.push({
+      ...feature({
+        id: 'saju.natal.experimental.yongshin',
+        category: 'experimental',
+        title: `[실험적 분석] 희용신: ${expYong.primaryYongShinElement} 오행 용신, ${expYong.heeShinElement} 오행 희신`,
+        statement: `${expYong.statement} ${expYong.chohu ? expYong.chohu.statement : ''}`,
+        evidence: [{ type: 'yongshin', reference: 'systems.saju.raw.experimental.yongShin', value: expYong }],
+        strength: 0.5,
+        confidence: 'low',
+        interpretationRange: ['검증단계의 추론 결과이므로 확정값으로 다루지 말고 참고용으로만 검토'],
+        tags: ['experimental', 'career'],
+      }),
+      isExperimental: true
+    })
+  }
+
+  // 신강약 정량 평가 피처 추가 (실험적 기능 격리)
+  if (raw.experimental?.strength) {
+    const expStr = raw.experimental.strength
+    features.push({
+      ...feature({
+        id: 'saju.natal.experimental.strength-quantitative',
+        category: 'experimental',
+        title: `[실험적 분석] 일간 강약: ${expStr.level} (${expStr.score}점)`,
+        statement: `정량 평가 결과 득령 ${expStr.deungRyeong ? '성공' : '실패'}, 득지 ${expStr.deungJi ? '성공' : '실패'}, 통근 기둥 ${expStr.tongGeunPillars.map(p => PILLAR_LABELS[p] || p).join('·') || '없음'} 등으로 총점 ${expStr.score}점을 기록하여 ${expStr.level}에 해당함.`,
+        evidence: [{ type: 'strength_quantitative', reference: 'systems.saju.raw.experimental.strength', value: expStr }],
+        strength: 0.5,
+        confidence: 'low',
+        interpretationRange: ['검증단계의 추론 결과이므로 확정값으로 다루지 말고 참고용으로만 검토'],
+        tags: ['experimental'],
+      }),
+      isExperimental: true
+    })
+  }
+
+  // 주요 신살 피처 추가 (실험적 기능 격리)
+  if (raw.experimental?.shinsal && raw.experimental.shinsal.length > 0) {
+    const expShinsal = raw.experimental.shinsal
+    const shinsalNames = [...new Set(expShinsal.map(s => s.name))]
+    features.push({
+      ...feature({
+        id: 'saju.natal.experimental.shinsal-summary',
+        category: 'experimental',
+        title: `[실험적 분석] 주요 신살: ${shinsalNames.join('·')}`,
+        statement: `원국 분석 결과 ${expShinsal.map(s => `${s.name}(${s.position === 'year' ? '연지' : s.position === 'month' ? '월지' : s.position === 'day' ? '일지' : '시지'})`).join(', ')}가 작용하는 기운으로 나타난다.`,
+        evidence: [{ type: 'shinsal', reference: 'systems.saju.raw.experimental.shinsal', value: expShinsal }],
+        strength: 0.4,
+        confidence: 'low',
+        interpretationRange: ['검증단계의 추론 결과이므로 확정값으로 다루지 말고 참고용으로만 검토'],
+        tags: ['experimental'],
+      }),
+      isExperimental: true
+    })
+  }
 
   if (topElement && topCount > 0) {
     features.push(feature({
@@ -352,8 +460,8 @@ function assessDomesticLocationRange(input, birthTimeUnknown, pillars) {
 }
 
 export function calculateSajuSystem(input, profile) {
-  if (input.calendar !== 'solar') {
-    throw new Error('현재 사주 어댑터는 양력 입력만 지원합니다.')
+  if (input.calendar !== 'solar' && input.calendar !== 'lunar') {
+    throw new Error('현재 사주 어댑터는 양력 및 음력 입력만 지원합니다.')
   }
   if (input.timezone !== 'Asia/Seoul') {
     throw new Error('현재 사주 어댑터는 Asia/Seoul 시간대만 검증되었습니다.')
@@ -494,6 +602,14 @@ export function calculateSajuSystem(input, profile) {
       }
     : null
 
+  // 득령, 득지, 통근, 격국, 용신, 신살, 천간 관계 계산 전개
+  const strengthScore = calculateStrengthScore(analysis.dayMaster, rawPillars)
+  const gyeokguk = determineGyeokguk(analysis.dayMaster, rawPillars)
+  const yongShin = determineYongShin(analysis.dayMaster, strengthScore, analysis.seasonalContext)
+  const shinsalList = calculateShinsal(analysis.dayMaster, rawPillars)
+  const stemRelations = calculateNatalStemRelations(rawPillars)
+  const tongGeunTuGan = analyzeTongGeunAndTuGan(analysis.dayMaster, rawPillars)
+
   const raw = {
     birthTimeUnknown,
     calculationBasis: birthTimeUnknown ? '정오 기준 연·월·일 분석, 시주 제외, 하루 경계 후보 별도 저장' : '입력 시각 기준',
@@ -572,24 +688,52 @@ export function calculateSajuSystem(input, profile) {
       adjustedLevel: analysis.adjustedDayMasterStrengthLevel,
       flags: analysis.refinedImbalanceFlags,
     },
+    stemRelations,
     branchRelations,
+    experimental: {
+      isExperimental: true,
+      description: '강약·격국·용신·신살은 검증단계(Experimental) 분석 결과입니다. 공식 릴리스 전 단계이므로 학술 참고용으로만 사용하시기 바랍니다.',
+      strength: {
+        score: strengthScore.score,
+        level: strengthScore.level,
+        isStrong: strengthScore.isStrong,
+        isWeak: strengthScore.isWeak,
+        deungRyeong: strengthScore.deungRyeong,
+        deungJi: strengthScore.deungJi,
+        tongGeunPillars: tongGeunTuGan.tongGeunPillars,
+        tuGanStems: tongGeunTuGan.tuGanStems,
+      },
+      gyeokguk,
+      yongShin,
+      shinsal: shinsalList,
+    },
     timing,
-    calculationTrace: [
-      `연주·월주: ${pillars._meta.solarLongitudeMethod} 태양 황경으로 입춘 및 절기 월 경계를 판정`,
-      '일주: 1970-01-01 신사일 기준 60갑자 일수 차 계산',
-      birthTimeUnknown
-        ? '시주: 출생시각 미상으로 계산 제외, 00:00·12:00·23:59 후보를 비교해 시간 민감도 기록'
-        : `시주·일주: ${referenceCity.label} 경도 보정과 NOAA 균시차를 합산한 진태양시로 국내 주요 도시 후보 비교, 진태양시 자정 전 야자·자정 후 조자 분리`,
-      '오행·십성: 천간·지지와 지장간 규칙표를 이용해 별도 집계',
-      `지지 관계: ${branchRelations.ruleVersion} 쌍·완성 그룹 조회로 존재 여부만 계산`,
-      `운 흐름: ${timing.ruleVersion} 대운 순역·기산점과 ${timing.targetDate} 세운·월운·일진·12운성 계산`,
-    ],
+    calculationTrace: (() => {
+      const trace = [
+        `연주·월주: ${pillars._meta.solarLongitudeMethod} 태양 황경으로 입춘 및 절기 월 경계를 판정`,
+        '일주: 1970-01-01 신사일 기준 60갑자 일수 차 계산',
+        birthTimeUnknown
+          ? '시주: 출생시각 미상으로 계산 제외, 00:00·12:00·23:59 후보를 비교해 시간 민감도 기록'
+          : `시주·일주: ${referenceCity.label} 경도 보정과 NOAA 균시차를 합산한 진태양시로 국내 주요 도시 후보 비교, 진태양시 자정 전 야자·자정 후 조자 분리`,
+        '오행·십성: 천간·지지와 지장간 규칙표를 이용해 별도 집계',
+        `천간 관계: ${stemRelations.ruleVersion} 쌍 조회 및 합화 성립 분석`,
+        `지지 관계: ${branchRelations.ruleVersion} 쌍·완성·반합 그룹 및 합화·오행 변환 조건 정밀 연산`,
+        `운 흐름: ${timing.ruleVersion} 대운 순역·기산점과 ${timing.targetDate} 세운·월운·일진·12운성 계산`,
+      ]
+      if (input.originalCalendar === 'lunar') {
+        trace.unshift(`음력 변환: 음력 ${input.originalBirthDate} (${input.originalIsLeapMonth ? '윤달' : '평달'}) -> 양력 ${input.birthDate} 변환`)
+      }
+      return trace
+    })(),
   }
 
   const warnings = [
     '절기 계산은 의존성 없는 NOAA·Meeus 근사식을 사용합니다. 홍콩천문대 2013~2016 공개 절입 시각 48건 대조에서 최대 오차가 15분 이내였으며, 현재 엔진은 ±20분을 경계 불확실성 구간으로 취급합니다.',
     `기준 도시 ${referenceCity.label} 경도 보정에 NOAA 날짜별 균시차를 합산한 진태양시를 적용하고 국내 주요 도시 후보를 비교합니다.`,
   ]
+  if (input.originalCalendar === 'lunar') {
+    warnings.push(`음력 날짜(${input.originalBirthDate})를 기준으로 변환된 양력 날짜(${input.birthDate})로 계산된 사주입니다.`)
+  }
   if (solarTermBoundarySensitive) {
     warnings.push('입력 시각이 절기 경계 불확실성 구간에 있어 연주·월주 후보를 함께 저장했습니다. 외부 고정밀 천문력 대조 전에는 하나로 확정하지 마세요.')
   }
@@ -620,19 +764,34 @@ export function calculateSajuSystem(input, profile) {
     warnings.push('1987·1988년 서머타임 기간이지만 1시간 표준시 환산 전후 연주·월주·일주·시주가 같아 검증 필요 상태로 올리지 않았습니다.')
   }
 
+  const [solarYear] = input.birthDate.split('-').map(Number)
+  const isKasiVerified = solarYear >= 1951 && solarYear <= 2050
+
   return {
     system: 'saju',
     status: historicalTimeAssessment?.requiresVerification || domesticLocationAssessment?.requiresVerification || timing.requiresVerification
       ? 'needs_verification'
-      : 'partial',
+      : 'experimental',
     engine: {
       adapter: SAJU_ADAPTER_VERSION,
       sourceEngine: `softie saju core ${SAJU_ENGINE_VERSION}`,
       options: calculationOptions,
-      profile,
+      profile: input.originalCalendar === 'lunar'
+        ? {
+            ...profile,
+            calendarConversion: 'lunar-to-solar-v1.0 (solarlunar-js-1.0)',
+            lunarConversionSource: isKasiVerified ? 'External Table (KASI-matching range 1951-2050)' : 'External Table (1901-1950, 2051-2100)'
+          }
+        : profile,
     },
     inputNormalization: {
-      original: `${input.birthDate} ${birthTimeUnknown ? '출생시각 모름' : input.birthTime} ${input.timezone}`,
+      original: input.originalCalendar === 'lunar'
+        ? `음력 ${input.originalBirthDate} (${input.originalIsLeapMonth ? '윤달' : '평달'}) ${birthTimeUnknown ? '출생시각 모름' : input.birthTime} ${input.timezone}`
+        : `${input.birthDate} ${birthTimeUnknown ? '출생시각 모름' : input.birthTime} ${input.timezone}`,
+      calendarType: input.originalCalendar || 'solar',
+      originalLunarDate: input.originalCalendar === 'lunar' ? input.originalBirthDate : null,
+      isLeapMonth: input.originalCalendar === 'lunar' ? Boolean(input.originalIsLeapMonth) : false,
+      convertedSolarDate: input.originalCalendar === 'lunar' ? input.birthDate : null,
       referenceCity: `${referenceCity.label} (${referenceCity.latitude.toFixed(2)}°N, ${referenceCity.longitude.toFixed(2)}°E)`,
       correctedSolarTime: birthTimeUnknown
         ? null

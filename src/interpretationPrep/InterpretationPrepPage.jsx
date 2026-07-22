@@ -122,7 +122,7 @@ function ElementDistribution({ counts }) {
       {Object.entries(counts).map(([element, count]) => (
         <div className="prep-element-row" key={element}>
           <span>{element}</span>
-          <div className="prep-element-track"><i style={{ width: `${(count / max) * 100}%` }} /></div>
+          <div className={`prep-element-track w-level-${Math.round((count / max) * 10)}`}><i /></div>
           <strong>{count}</strong>
         </div>
       ))}
@@ -272,7 +272,7 @@ function SystemResult({ result, view }) {
             </div>
             <p>{item.statement}</p>
             <div className="prep-meter" aria-label={`강도 ${item.strength}`}>
-              <i style={{ width: `${item.strength * 100}%` }} />
+              <i className={`prep-strength-bar val-${Math.min(Math.max(Math.round(item.strength * 10), 0), 12)}`} />
             </div>
             <details>
               <summary>근거 {item.evidence.length}개 보기</summary>
@@ -304,6 +304,143 @@ function SystemResult({ result, view }) {
         <StatusBadge status={result.status} />
       </div>
       <PillarGrid pillars={result.raw.pillars} />
+
+      {/* 1. 사주 학파 표준 프로필 패널 */}
+      {result.raw.experimental?.strength && (
+        <section className="prep-data-panel prep-profile-panel">
+          <div className="prep-mini-head">
+            <div className="prep-mini-title-group">
+              <h4>사주 학파 표준 프로필</h4>
+              <span className="prep-experimental-badge">Experimental</span>
+            </div>
+            <span>정량적 원국 심층 분석</span>
+          </div>
+
+          <p className="prep-experimental-warning">
+            {result.raw.experimental?.description || '강약·격국·용신·신살은 검증단계(Experimental) 분석 결과입니다. 학술 참고용으로 사용하세요.'}
+          </p>
+
+          <div className="profile-analysis-card">
+            {/* 신강약 점수 시각화 */}
+            <div className="profile-section-item">
+              <strong className="profile-sub-label">일간 강약 정량 평가 ({result.raw.experimental?.strength?.level || '미정'})</strong>
+              <div className="strength-score-container">
+                <div className="strength-labels">
+                  <span>극신약 (0)</span>
+                  <span>중화 (50)</span>
+                  <span>극신강 (100)</span>
+                </div>
+                <div className={`strength-meter-track val-step-${Math.min(Math.max(Math.round((result.raw.experimental?.strength?.score || 0) / 5) * 5, 0), 100)}`}>
+                  <i className={result.raw.experimental?.strength?.isStrong ? 'is-strong' : 'is-weak'} />
+                </div>
+                <div className="strength-score-text">
+                  {result.raw.experimental?.strength?.score || 0}점 · 득령 {result.raw.experimental?.strength?.deungRyeong ? '성공' : '실패'} · 득지 {result.raw.experimental?.strength?.deungJi ? '성공' : '실패'}
+                </div>
+              </div>
+            </div>
+
+            {/* 격국 및 용신 판단 */}
+            <div className="profile-grid-two-cols">
+              <div className="profile-section-item profile-box ag-glass">
+                <strong className="profile-sub-label text-purple">격국 (Gyeokguk)</strong>
+                <h5>{result.raw.experimental?.gyeokguk?.name || '분석 불능'}</h5>
+                <span className="profile-meta-text">분류: {result.raw.experimental?.gyeokguk?.type || '불명'}</span>
+                <p className="profile-desc-text">{result.raw.experimental?.gyeokguk?.reason || ''}</p>
+              </div>
+              <div className="profile-section-item profile-box ag-glass">
+                <strong className="profile-sub-label text-green">용희신 (YongShin & HeeShin)</strong>
+                <h5>
+                  용신: {result.raw.experimental?.yongShin?.primaryYongShinElement || '불명'} 오행 / 희신: {result.raw.experimental?.yongShin?.heeShinElement || '불명'} 오행
+                </h5>
+                <span className="profile-meta-text">판단 신뢰도: {result.raw.experimental?.yongShin?.confidence === 'high' ? '높음' : '보통'}</span>
+                <p className="profile-desc-text">
+                  {result.raw.experimental?.yongShin?.statement || ''} {result.raw.experimental?.yongShin?.chohu ? `(조후 보완: ${result.raw.experimental.yongShin.chohu.statement})` : ''}
+                </p>
+              </div>
+            </div>
+
+            {/* 6대 핵심 신살 조회 */}
+            <div className="profile-section-item">
+              <strong className="profile-sub-label">원국 6대 핵심 신살 (6 Core Shinsal)</strong>
+              {result.raw.experimental?.shinsal && result.raw.experimental.shinsal.length > 0 ? (
+                <div className="shinsal-chip-wrapper">
+                  {result.raw.experimental.shinsal.map((shinsal, sIdx) => {
+                    const pillarNames = { year: '연지', month: '월지', day: '일지', time: '시지' }
+                    return (
+                      <div key={sIdx} className="shinsal-chip ag-glass">
+                        <span className="shinsal-name">{shinsal.name}</span>
+                        <span className="shinsal-position">
+                          위치: {pillarNames[shinsal.position] || shinsal.position} ({shinsal.branch})
+                        </span>
+                        <span className="shinsal-formula">
+                          수식: {shinsal.formula}
+                        </span>
+                      </div>
+                    )
+                  })}
+                </div>
+              ) : (
+                <p className="profile-empty-info">원국 지지에서 검출된 주요 6대 신살이 없습니다.</p>
+              )}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* 2. 천간/지지 세부 관계 분석 패널 */}
+      {result.raw.stemRelations && (
+        <section className="prep-data-panel prep-relations-panel">
+          <div className="prep-mini-head">
+            <h4>천간 및 지지 관계 평가</h4>
+            <span>존재(presence) · 성립(establishment) · 합화(transmutation) 정밀 연산</span>
+          </div>
+          <div className="relations-analysis-card">
+            {/* 천간 관계 */}
+            <div className="relations-section-col ag-glass">
+              <strong className="relations-col-title text-blue">천간 관계 (Heavenly Stem Relations)</strong>
+              {result.raw.stemRelations.items && result.raw.stemRelations.items.length > 0 ? (
+                <ul className="relations-list">
+                  {result.raw.stemRelations.items.map((item, idx) => (
+                    <li key={idx}>
+                      <span className="relation-item-title">[{item.relation}] {item.stems.join('·')}</span>
+                      <div className="relation-item-status">
+                        합화성립: {item.assessment.transmutation ? <span className="text-success-soft">성공 (변환오행: {item.assessment.transformedElement})</span> : <span className="text-danger-soft">실패 (합반 묶임)</span>}
+                      </div>
+                      <p className="relation-item-desc">{item.assessment.description}</p>
+                    </li>
+                  ))}
+                </ul>
+              ) : (
+                <p className="profile-empty-info">천간에 특이 합/충 관계가 없습니다.</p>
+              )}
+            </div>
+
+            {/* 지지 관계 */}
+            <div className="relations-section-col ag-glass">
+              <strong className="relations-col-title text-orange">지지 관계 (Earthly Branch Relations)</strong>
+              {result.raw.branchRelations.items && result.raw.branchRelations.items.length > 0 ? (
+                <ul className="relations-list">
+                  {result.raw.branchRelations.items.map((item, idx) => (
+                    <li key={idx}>
+                      <span className="relation-item-title">[{item.relation}] {item.branches.join('·')}</span>
+                      <div className="relation-item-status">
+                        존재: {item.assessment?.presence ? '예' : '아니오'} · 성립: {item.assessment?.establishment ? <span className="text-success-soft">성공</span> : <span className="text-danger-soft">실패</span>}
+                        {item.assessment?.transmutation && (
+                          <span> · 합화: <span className="text-success-soft">성공 (변환: {item.assessment.transformedElement})</span></span>
+                        )}
+                      </div>
+                      <p className="relation-item-desc">{item.assessment?.description || '고정 규칙 조회됨'}</p>
+                    </li>
+                  ))}
+                </ul>
+              ) : (
+                <p className="profile-empty-info">지지에 특이 합/형/충/파/해 관계가 없습니다.</p>
+              )}
+            </div>
+          </div>
+        </section>
+      )}
+
       <TimingSummary timing={result.raw.timing} />
       <section className="prep-data-panel">
         <div className="prep-mini-head"><h4>입력 보정</h4><span>원본과 분리 저장</span></div>
@@ -544,9 +681,17 @@ export default function InterpretationPrepPage() {
             <LabeledField label="달력 기준">
               <select value={input.calendar} onChange={(event) => updateInput('calendar', event.target.value)}>
                 <option value="solar">양력</option>
-                <option value="lunar">음력 · 미지원</option>
+                <option value="lunar">음력</option>
               </select>
             </LabeledField>
+            {input.calendar === 'lunar' && (
+              <LabeledField label="윤달 여부">
+                <select value={input.isLeapMonth ? 'true' : 'false'} onChange={(event) => updateInput('isLeapMonth', event.target.value === 'true')}>
+                  <option value="false">평달 (평월)</option>
+                  <option value="true">윤달 (윤월)</option>
+                </select>
+              </LabeledField>
+            )}
             <LabeledField label="출생시각" className="prep-field-wide">
               <div className="prep-time-control">
                 <input

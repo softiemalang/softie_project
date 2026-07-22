@@ -8,6 +8,7 @@ import {
   TOPICS,
 } from './schema.js'
 import { calculateSajuSystem } from './sajuAdapter.js'
+import { lunar2solar, leapMonth, leapDays, monthDays } from './lunarConverter.js'
 
 const REQUIRED_INPUTS = ['birthDate', 'targetDate', 'timezone', 'referenceCity']
 
@@ -20,15 +21,44 @@ export function validatePrepInput(input) {
   if (!/^\d{4}-\d{2}-\d{2}$/.test(input.birthDate)) return '출생일 형식을 확인해 주세요.'
   if (!birthTimeUnknown && !/^\d{2}:\d{2}$/.test(input.birthTime)) return '출생시각 형식을 확인해 주세요.'
   if (!/^\d{4}-\d{2}-\d{2}$/.test(input.targetDate)) return '운 흐름 기준일 형식을 확인해 주세요.'
+
   const [year, month, day] = input.birthDate.split('-').map(Number)
   const [hour, minute] = birthTimeUnknown ? [null, null] : input.birthTime.split(':').map(Number)
-  if (year < 1901 || year > 2100) return '현재 검증된 사주 계산 범위는 1901년부터 2100년까지입니다.'
-  const parsedDate = new Date(Date.UTC(year, month - 1, day))
-  if (
-    parsedDate.getUTCFullYear() !== year ||
-    parsedDate.getUTCMonth() !== month - 1 ||
-    parsedDate.getUTCDate() !== day
-  ) return '실제로 존재하는 출생일을 입력해 주세요.'
+
+  if (input.calendar === 'lunar') {
+    if (year < 1901 || year > 2100) return '현재 검증된 사주 계산 범위는 1901년부터 2100년까지입니다.'
+    if (month < 1 || month > 12) return '실제로 존재하는 출생일을 입력해 주세요.'
+
+    const lMonth = leapMonth(year)
+    const isLeap = Boolean(input.isLeapMonth)
+    if (isLeap && lMonth !== month) {
+      return '입력하신 월은 해당 연도의 음력 윤달이 아닙니다.'
+    }
+
+    const maxDay = isLeap ? leapDays(year) : monthDays(year, month)
+    if (day < 1 || day > maxDay) {
+      return '실제로 존재하는 출생일을 입력해 주세요.'
+    }
+
+    const conversion = lunar2solar(year, month, day, isLeap)
+    if (conversion === -1 || !conversion.solarDate) {
+      return '실제로 존재하는 출생일을 입력해 주세요.'
+    }
+
+    const [solarYear] = conversion.solarDate.split('-').map(Number)
+    if (solarYear < 1901 || solarYear > 2100) {
+      return '변환된 양력 날짜가 사주 계산 범위(1901~2100년)를 벗어납니다.'
+    }
+  } else {
+    if (year < 1901 || year > 2100) return '현재 검증된 사주 계산 범위는 1901년부터 2100년까지입니다.'
+    const parsedDate = new Date(Date.UTC(year, month - 1, day))
+    if (
+      parsedDate.getUTCFullYear() !== year ||
+      parsedDate.getUTCMonth() !== month - 1 ||
+      parsedDate.getUTCDate() !== day
+    ) return '실제로 존재하는 출생일을 입력해 주세요.'
+  }
+
   const [targetYear, targetMonth, targetDay] = input.targetDate.split('-').map(Number)
   const parsedTargetDate = new Date(Date.UTC(targetYear, targetMonth - 1, targetDay))
   if (
@@ -69,8 +99,34 @@ export function prepareInterpretationData(input, profiles = DEFAULT_PROFILES) {
 
   const referenceCity = getKoreaReferenceCity(input.referenceCity)
   const { source: _ignoredSource, ...inputWithoutSource } = input
+
+  let birthDateSolar = input.birthDate
+  let lunarConversion = null
+
+  if (input.calendar === 'lunar') {
+    const [year, month, day] = input.birthDate.split('-').map(Number)
+    const conversion = lunar2solar(year, month, day, Boolean(input.isLeapMonth))
+    birthDateSolar = conversion.solarDate
+
+    const [solarYear] = birthDateSolar.split('-').map(Number)
+    const isKasiVerified = solarYear >= 1951 && solarYear <= 2050
+    lunarConversion = {
+      originalLunarDate: input.birthDate,
+      isLeapMonth: Boolean(input.isLeapMonth),
+      convertedSolarDate: birthDateSolar,
+      verificationScope: isKasiVerified ? 'kasi_reference_range_unverified' : 'external_lunar_tables',
+      source: isKasiVerified ? 'External Table (KASI-matching range 1951-2050)' : 'External Astrological Lunar Table',
+      scopeLabel: isKasiVerified
+        ? 'KASI 표준 대조 범위 내 (자체 전수 검증 대조 전, 1951~2050년)'
+        : '전통 명리 음양력 대조 테이블 범위 (KASI 비지원 영역, 1901~1950년 및 2051~2100년)',
+    }
+  }
+
   const normalizedInput = {
     ...inputWithoutSource,
+    calendar: 'solar', // 후속 코드가 이중 음력 변환하는 오류를 막기 위해 양력 계약 보장
+    isLeapMonth: false, // 양력 날짜 규격 상 윤달 플래그 무력화
+    birthDate: birthDateSolar,
     birthTime: input.timeAccuracy === 'unknown' ? '' : input.birthTime,
     targetDate: input.targetDate.trim(),
     subjectName: input.subjectName.trim(),
@@ -81,8 +137,14 @@ export function prepareInterpretationData(input, profiles = DEFAULT_PROFILES) {
     latitude: referenceCity.latitude,
     longitude: referenceCity.longitude,
   }
+
   const systems = {
-    saju: calculateSajuSystem(normalizedInput, profiles.saju),
+    saju: calculateSajuSystem({
+      ...normalizedInput,
+      originalCalendar: input.calendar,
+      originalIsLeapMonth: input.calendar === 'lunar' ? Boolean(input.isLeapMonth) : false,
+      originalBirthDate: input.birthDate,
+    }, profiles.saju),
     ziwei: createEmptySystemResult('ziwei', 'needs_profile', [
       '음력 변환·윤달·명궁·신궁·사화표 판본을 확정한 뒤 계산 모듈을 연결해야 합니다.',
     ]),
@@ -94,11 +156,19 @@ export function prepareInterpretationData(input, profiles = DEFAULT_PROFILES) {
   systems.ziwei.engine = { profile: profiles.ziwei }
   systems.astrology.engine = { profile: profiles.astrology }
 
+  const originalInputWithLunar = {
+    ...normalizedInput,
+    birthDate: input.birthDate,
+    calendar: input.calendar,
+    isLeapMonth: input.isLeapMonth,
+  }
+
   return {
     schemaVersion: INTERPRETATION_PREP_SCHEMA_VERSION,
     input: {
-      original: { ...normalizedInput },
+      original: originalInputWithLunar,
       normalized: normalizedInput,
+      lunarConversion,
     },
     calculationProfiles: profiles,
     systems,
@@ -152,9 +222,16 @@ export function buildExportPayload(result, { type, topicId, question, generatedA
         dayMaster: result.systems.saju.raw.dayMaster,
         timeBoundary: result.systems.saju.raw.timeBoundary,
         branchRelations: result.systems.saju.raw.branchRelations,
+        stemRelations: result.systems.saju.raw.stemRelations,
+        gyeokguk: result.systems.saju.raw.experimental?.gyeokguk,
+        yongShin: result.systems.saju.raw.experimental?.yongShin,
+        shinsal: result.systems.saju.raw.experimental?.shinsal,
         timing: result.systems.saju.raw.timing,
         calculationUncertainty: result.systems.saju.raw.calculationUncertainty,
         supportScope: result.systems.saju.supportScope,
+        unsupported: result.systems.saju.unsupported,
+        inputNormalization: result.systems.saju.inputNormalization,
+        engine: result.systems.saju.engine,
       },
     },
     features: selectedFeatures,
@@ -212,18 +289,51 @@ export function exportPayloadToMarkdown(payload) {
     ? `${timing.daYun.directionLabel} · ${timing.daYun.startAge.years}년 ${timing.daYun.startAge.months}개월 ${timing.daYun.startAge.days}일 기산 · 기준일 해당 ${activeDaYun?.value || '없음'}`
     : timing.daYun.reason
 
+  const saju = payload.calculationSummary.saju
+  const gyeokgukText = saju.gyeokguk && saju.gyeokguk.name !== '불명'
+    ? `- **[Experimental] 격국**: ${saju.gyeokguk.name} (${saju.gyeokguk.type} · ${saju.gyeokguk.reason})`
+    : '- **[Experimental] 격국**: 미성격 또는 분석 불능'
+  const yongshinText = saju.yongShin
+    ? `- **[Experimental] 희용신**: 용신 오행 ${saju.yongShin.primaryYongShinElement} / 희신 오행 ${saju.yongShin.heeShinElement} (억부: ${saju.yongShin.statement}${saju.yongShin.chohu ? ` / 조후: ${saju.yongShin.chohu.statement}` : ''})`
+    : '- **[Experimental] 희용신**: 분석 불능'
+  const shinsalSummary = saju.shinsal && saju.shinsal.length > 0
+    ? `- **[Experimental] 신살**: ${saju.shinsal.map(s => `${s.name}(${s.position === 'year' ? '연지' : s.position === 'month' ? '월지' : s.position === 'day' ? '일지' : '시지'}: ${s.branch})`).join(', ')}`
+    : '- **[Experimental] 신살**: 감지된 주요 신살 없음'
+  const stemRelationSummary = saju.stemRelations && saju.stemRelations.items.length > 0
+    ? `- **천간 관계**: ${saju.stemRelations.items.map(r => `${r.relation === '천간합' ? `${r.label}(${r.assessment.transmutation ? '합화성립' : '합반'})` : `${r.stems.join('·')}충`}`).join(', ')}`
+    : '- **천간 관계**: 특이 상호작용 없음'
+
+  const isLunar = payload.calculationSummary.saju.inputNormalization.calendarType === 'lunar'
+  const originalLunar = payload.calculationSummary.saju.inputNormalization.originalLunarDate
+  const isLeap = payload.calculationSummary.saju.inputNormalization.isLeapMonth
+  const convertedSolar = payload.calculationSummary.saju.inputNormalization.convertedSolarDate
+  const lunarSource = payload.calculationSummary.saju.engine?.profile?.lunarConversionSource || 'External Table (KASI-matching range 1951-2050)'
+
+  const birthSummaryText = isLunar
+    ? `음력 ${originalLunar} (${isLeap ? '윤달' : '평달'}) -> 변환 양력 ${convertedSolar} (출처: ${lunarSource}) ${payload.birthSummary.birthTime || '출생시각 모름'} (${payload.birthSummary.timezone})`
+    : `${payload.birthSummary.birthDate} ${payload.birthSummary.birthTime || '출생시각 모름'} (${payload.birthSummary.timezone})`
+
   return [
     '# 해석 준비 도구 · 대화용 패키지',
     '',
     `- 주제: ${payload.target.topic}`,
     `- 질문: ${payload.target.question || '지정하지 않음'}`,
-    `- 출생정보: ${payload.birthSummary.birthDate} ${payload.birthSummary.birthTime || '출생시각 모름'} (${payload.birthSummary.timezone})`,
+    `- 출생정보: ${birthSummaryText}`,
     `- 지원 지역: ${payload.birthSummary.placeName}`,
     `- 기준 도시: ${payload.birthSummary.referenceCityLabel} (${payload.birthSummary.latitude}, ${payload.birthSummary.longitude})`,
+
     '',
     '## 계산 요약',
     '',
     `- ${sajuPillars}`,
+    '',
+    '## 사주 학파 표준 프로필 (검증단계 · Experimental)',
+    '※ 주의: 아래 항목들은 검증단계의 학술적 실험 결과물입니다. 공식 확정값이 아니므로 해석 시 신중히 검토해 주시기 바랍니다.',
+    '',
+    gyeokgukText,
+    yongshinText,
+    shinsalSummary,
+    stemRelationSummary,
     '',
     '## 운 흐름 기준값',
     '',
@@ -242,9 +352,16 @@ export function exportPayloadToMarkdown(payload) {
     '- 보완점: 비교 가능한 체계가 2개 미만이므로 생성하지 않음',
     '- 긴장점: 비교 가능한 체계가 2개 미만이므로 생성하지 않음',
     '',
-    '## 불확실성 및 미지원 범위',
+    '## 불확실성 및 제한/미지원 범위',
     '',
+    '### 1. 사용자 경고 및 불확실성 (Uncertainties)',
     uncertainties,
+    '',
+    '### 2. 계산/판정 제약 조건 (Limitations)',
+    payload.calculationSummary.saju.supportScope.limitations.map(lim => `- **${lim.title}** (${lim.status}): ${lim.impact}`).join('\n'),
+    '',
+    '### 3. 미구현 미지원 기능 (Unsupported)',
+    payload.calculationSummary.saju.unsupported.map(un => `- **${un.title}** (${un.status})${un.examples ? ` (예: ${un.examples.join(', ')})` : ''}`).join('\n'),
     '',
     '## 해석 모델 지시문',
     '',

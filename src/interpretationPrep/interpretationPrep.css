@@ -1594,3 +1594,314 @@
     outline: 2px solid CanvasText;
   }
 }
+
+/* ==========================================
+   Design System Renewal & Experimental Styles
+   ========================================== */
+
+/* Experimental Badge & Warnings */
+.prep-mini-title-group {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+}
+
+.prep-experimental-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.22rem 0.55rem;
+  border-radius: var(--radius-pill);
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--danger);
+  background: var(--prep-danger-soft);
+  border: 1px solid rgba(215, 160, 160, 0.22);
+}
+
+.prep-experimental-warning {
+  margin: 0 0 1.15rem 0;
+  padding: 0.75rem 0.95rem;
+  border-radius: var(--radius-item);
+  font-size: 0.78rem;
+  line-height: 1.5;
+  color: var(--text-muted);
+  background: rgba(37, 34, 29, 0.44);
+  border-left: 3px solid var(--danger);
+}
+
+/* Profiles Cards & Layout */
+.profile-analysis-card {
+  display: flex;
+  flex-direction: column;
+  gap: 1.15rem;
+}
+
+.profile-section-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  width: 100%;
+}
+
+.profile-section-item.profile-box {
+  padding: 0.85rem;
+  border-radius: var(--radius-item);
+  background: var(--prep-surface-2);
+  border: 1px solid var(--line);
+  transition: border-color var(--ag-transition-duration-fast) var(--ag-transition-easing-standard);
+}
+
+.profile-section-item.profile-box:hover {
+  border-color: var(--line-strong);
+}
+
+.profile-section-item.profile-box h5 {
+  margin: 0 0 0.15rem 0;
+  font-size: 0.95rem;
+  color: var(--text);
+  font-weight: 700;
+}
+
+.profile-sub-label {
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--text-muted);
+}
+
+.profile-meta-text {
+  font-size: 0.72rem;
+  color: var(--text-tertiary);
+}
+
+.profile-desc-text {
+  margin: 0.35rem 0 0 0;
+  font-size: 0.76rem;
+  line-height: 1.45;
+  color: var(--text-muted);
+}
+
+/* Strength Meter */
+.strength-score-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  margin-top: 0.2rem;
+}
+
+.strength-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.7rem;
+  color: var(--text-tertiary);
+}
+
+.strength-meter-track {
+  height: 12px;
+  background: rgba(17, 17, 14, 0.72);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-pill);
+  overflow: hidden;
+}
+
+.strength-meter-track i {
+  display: block;
+  height: 100%;
+  width: var(--strength-percent);
+  border-radius: inherit;
+  transition: width 450ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.strength-meter-track i.is-strong {
+  background: linear-gradient(90deg, #b8c8a5, #86996f);
+}
+
+.strength-meter-track i.is-weak {
+  background: linear-gradient(90deg, #d6b37e, #d7a0a0);
+}
+
+.strength-score-text {
+  text-align: center;
+  margin-top: 0.15rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--text);
+}
+
+/* Grids and Columns */
+.profile-grid-two-cols {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 0.75rem;
+}
+
+/* Semantic Typography & Utility Colors */
+.text-purple { color: #d6b37e !important; }
+.text-green { color: #b8c8a5 !important; }
+.text-blue { color: #d8c9ae !important; }
+.text-orange { color: #d6b37e !important; }
+
+.text-success-soft {
+  color: var(--success);
+  font-weight: 700;
+}
+
+.text-danger-soft {
+  color: var(--danger);
+  font-weight: 700;
+}
+
+/* Shinsal Chip Layout */
+.shinsal-chip-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin-top: 0.2rem;
+}
+
+.shinsal-chip {
+  display: flex;
+  flex-direction: column;
+  gap: 0.12rem;
+  padding: 0.45rem 0.75rem;
+  border-radius: var(--radius-control);
+  background: var(--prep-surface-2);
+  border: 1px solid var(--line);
+  transition: all var(--ag-transition-duration-fast) var(--ag-transition-easing-standard);
+}
+
+.shinsal-chip:hover {
+  border-color: var(--line-strong);
+  transform: translateY(-1px);
+}
+
+.shinsal-name {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.shinsal-position {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+}
+
+.shinsal-formula {
+  font-size: 0.68rem;
+  color: var(--text-tertiary);
+  font-style: italic;
+}
+
+.profile-empty-info {
+  font-size: 0.76rem;
+  color: var(--text-tertiary);
+  margin: 0;
+}
+
+/* Relations Layout */
+.relations-analysis-card {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 0.75rem;
+}
+
+.relations-section-col {
+  padding: 0.85rem;
+  border-radius: var(--radius-item);
+  background: var(--prep-surface-2);
+  border: 1px solid var(--line);
+}
+
+.relations-col-title {
+  font-size: 0.8rem;
+  font-weight: 700;
+  display: block;
+  margin-bottom: 0.55rem;
+  letter-spacing: 0.02em;
+}
+
+.relations-list {
+  padding-left: 1rem;
+  margin: 0;
+  font-size: 0.76rem;
+  color: var(--text-muted);
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+
+.relation-item-title {
+  font-weight: 700;
+  color: var(--text);
+}
+
+.relation-item-status {
+  font-size: 0.7rem;
+  color: var(--text-tertiary);
+  margin-top: 0.12rem;
+}
+
+.relation-item-desc {
+  margin: 0.2rem 0 0 0;
+  font-size: 0.72rem;
+  line-height: 1.4;
+  color: var(--text-muted);
+}
+
+/* Gauge CSS Refactor: No Inline Style */
+.prep-element-track.w-level-0 i { width: 0% !important; }
+.prep-element-track.w-level-1 i { width: 10% !important; }
+.prep-element-track.w-level-2 i { width: 20% !important; }
+.prep-element-track.w-level-3 i { width: 30% !important; }
+.prep-element-track.w-level-4 i { width: 40% !important; }
+.prep-element-track.w-level-5 i { width: 50% !important; }
+.prep-element-track.w-level-6 i { width: 60% !important; }
+.prep-element-track.w-level-7 i { width: 70% !important; }
+.prep-element-track.w-level-8 i { width: 80% !important; }
+.prep-element-track.w-level-9 i { width: 90% !important; }
+.prep-element-track.w-level-10 i { width: 100% !important; }
+
+.prep-strength-bar {
+  display: block;
+  height: 100%;
+  border-radius: var(--radius-pill);
+  transition: width 0.3s ease;
+}
+.prep-strength-bar.val-0 { width: 0% !important; }
+.prep-strength-bar.val-1 { width: 10% !important; }
+.prep-strength-bar.val-2 { width: 20% !important; }
+.prep-strength-bar.val-3 { width: 30% !important; }
+.prep-strength-bar.val-4 { width: 40% !important; }
+.prep-strength-bar.val-5 { width: 50% !important; }
+.prep-strength-bar.val-6 { width: 60% !important; }
+.prep-strength-bar.val-7 { width: 70% !important; }
+.prep-strength-bar.val-8 { width: 80% !important; }
+.prep-strength-bar.val-9 { width: 90% !important; }
+.prep-strength-bar.val-10 { width: 100% !important; }
+.prep-strength-bar.val-11 { width: 110% !important; }
+.prep-strength-bar.val-12 { width: 120% !important; }
+
+/* 5-step detailed quantitative score bar mapping */
+.strength-meter-track.val-step-0 i { width: 0% !important; }
+.strength-meter-track.val-step-5 i { width: 5% !important; }
+.strength-meter-track.val-step-10 i { width: 10% !important; }
+.strength-meter-track.val-step-15 i { width: 15% !important; }
+.strength-meter-track.val-step-20 i { width: 20% !important; }
+.strength-meter-track.val-step-25 i { width: 25% !important; }
+.strength-meter-track.val-step-30 i { width: 30% !important; }
+.strength-meter-track.val-step-35 i { width: 35% !important; }
+.strength-meter-track.val-step-40 i { width: 40% !important; }
+.strength-meter-track.val-step-45 i { width: 45% !important; }
+.strength-meter-track.val-step-50 i { width: 50% !important; }
+.strength-meter-track.val-step-55 i { width: 55% !important; }
+.strength-meter-track.val-step-60 i { width: 60% !important; }
+.strength-meter-track.val-step-65 i { width: 65% !important; }
+.strength-meter-track.val-step-70 i { width: 70% !important; }
+.strength-meter-track.val-step-75 i { width: 75% !important; }
+.strength-meter-track.val-step-80 i { width: 80% !important; }
+.strength-meter-track.val-step-85 i { width: 85% !important; }
+.strength-meter-track.val-step-90 i { width: 90% !important; }
+.strength-meter-track.val-step-95 i { width: 95% !important; }
+.strength-meter-track.val-step-100 i { width: 100% !important; }
