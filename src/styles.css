@@ -3490,6 +3490,11 @@ textarea {
   font-size: 0.72rem;
 }
 
+.scheduler-footer {
+  margin-top: 1.6rem;
+  padding-inline: var(--scheduler-content-inset);
+}
+
 @media (max-width: 700px) {
   .home-shell.ag-shell {
     --ag-atmosphere-position: 85% 66%;
