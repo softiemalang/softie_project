@@ -18,6 +18,9 @@ export function SchedulerApp({
   googleConnected = false,
   googleConnectionReason = null,
   googleConnectionState = 'disconnected',
+  accountStatusLabel = '연결 필요',
+  accountStatusReady = false,
+  onOpenAccountPanel = () => {},
   onGoogleDisconnected = () => {},
 }) {
   const route = useMemo(() => parseSchedulerRoute(pathname), [pathname])
@@ -60,6 +63,9 @@ export function SchedulerApp({
           googleConnected={googleConnected}
           googleConnectionReason={googleConnectionReason}
           googleConnectionState={googleConnectionState}
+          accountStatusLabel={accountStatusLabel}
+          accountStatusReady={accountStatusReady}
+          onOpenAccountPanel={onOpenAccountPanel}
           initialViewState={schedulerViewState}
           onGoogleDisconnected={onGoogleDisconnected}
           onViewStateChange={setSchedulerViewState}

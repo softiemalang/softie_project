@@ -28,7 +28,6 @@ import {
   normalizeWorkTimeFilter,
 } from './rules'
 import { SchedulerEventSection } from './SchedulerEventSection'
-import { SchedulerGoogleSettings } from './SchedulerGoogleSettings'
 import {
   buildWeekWorkLogShareText,
   buildWeekWorkLogText,
@@ -60,11 +59,10 @@ const DEFAULT_PUSH_PREFERENCES = {
 
 export function TodaySchedulerPage({
   effectiveOwnerKey,
-  googleConnected,
-  googleConnectionReason,
-  googleConnectionState,
+  accountStatusLabel,
+  accountStatusReady,
   initialViewState,
-  onGoogleDisconnected,
+  onOpenAccountPanel,
   onViewStateChange,
 }) {
   const initialSelectedDate = initialViewState?.date || toLocalDateInputValue()
@@ -642,23 +640,26 @@ export function TodaySchedulerPage({
   return (
     <div className="scheduler-shell scheduler-today-page">
 
-      <button
-        type="button"
-        className={`scheduler-panel scheduler-push-panel scheduler-setting-card ${isPushConnected ? 'is-connected' : 'is-setup'}`}
-        onClick={() => setIsWebPushModalOpen(true)}
-      >
-        <div className="scheduler-section-head">
-          <p className="scheduler-section-label">웹 알림</p>
-          <div className={`scheduler-count-pill ${isPushConnected ? 'is-ready' : ''}`}>
-            {pushStatusLabel}
-          </div>
-        </div>
-        {!isPushConnected && (
-          <p className="scheduler-setting-subtitle">
-            알림을 받으려면 연결이 필요해요.
-          </p>
-        )}
-      </button>
+      <section className="scheduler-status-dock" aria-label="계정과 알림 연결 상태">
+        <button
+          type="button"
+          className={`scheduler-status-item ${accountStatusReady ? 'is-ready' : 'needs-attention'}`}
+          onClick={onOpenAccountPanel}
+          aria-label={`계정 ${accountStatusLabel}. 세부 설정 열기`}
+        >
+          <span className="scheduler-status-item-label">계정</span>
+          <span className="scheduler-status-item-value">{accountStatusLabel}</span>
+        </button>
+        <button
+          type="button"
+          className={`scheduler-status-item ${isPushConnected ? 'is-ready' : 'needs-attention'}`}
+          onClick={() => setIsWebPushModalOpen(true)}
+          aria-label={`알림 ${pushStatusLabel}. 세부 설정 열기`}
+        >
+          <span className="scheduler-status-item-label">알림</span>
+          <span className="scheduler-status-item-value">{pushStatusLabel}</span>
+        </button>
+      </section>
 
       {isWebPushModalOpen && (
         <div className="scheduler-sheet-backdrop scheduler-modal-backdrop" onClick={() => setIsWebPushModalOpen(false)}>
@@ -726,14 +727,6 @@ export function TodaySchedulerPage({
           </div>
         </div>
       )}
-
-
-      <SchedulerGoogleSettings
-        googleConnected={googleConnected}
-        googleConnectionReason={googleConnectionReason}
-        googleConnectionState={googleConnectionState}
-        onGoogleDisconnected={onGoogleDisconnected}
-      />
 
       <section className="scheduler-panel scheduler-controls">
         <div className="scheduler-filter-summary-row">

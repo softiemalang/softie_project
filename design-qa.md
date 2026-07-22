@@ -227,4 +227,43 @@
 
 - P3: confirm the 8px outer-right inset once in the installed iPhone PWA; the control already accounts for `safe-area-inset-right`, but standalone-mode browser chrome cannot be reproduced exactly in the local viewport.
 
+## Compact Account And Notification Status QA
+
+- source visual truth: `/tmp/codex-remote-attachments/019f8062-9b38-7640-ba78-3d604c8a3892/72CC5F0E-0194-4C2F-8188-FA80FCC12834/1-사진-1.jpg`
+- implementation screenshots: `/private/tmp/scheduler-status-dock-mobile.png`, `/private/tmp/scheduler-account-modal-mobile.png`, and `/private/tmp/scheduler-alert-modal-mobile.png`
+- full-view comparison evidence: `/private/tmp/scheduler-status-full-comparison.jpg`
+- focused comparison evidence: `/private/tmp/scheduler-status-focused-comparison.jpg`
+- source pixels: `1206×802`; source header is a real-use capture of the prior account, notification, and operating-time cards
+- implementation viewport and pixels: `390×844` CSS px at 1× density
+- state: signed-in scheduler today view; Google linked; this local browser reports notification permission blocked, so the implementation correctly renders the real `권한 차단` state instead of the source capture's `연결됨` state
+- primary interactions tested: account status opens its detail modal; notification status opens the existing notification modal; the logout action raises a confirmation dialog before changing session state
+- console errors checked: zero application errors in the final browser-rendered page
+
+### Findings
+
+- P2 resolved: persistent account email, logout, and notification cards consumed the entire top region even though they are normally status-only information. They are now two `48px` status controls in one row, and the operating-time card begins at `80px` in the `390px` viewport.
+- Fonts and typography: the compact controls preserve the scheduler system font and use a restrained `0.78rem` label / `0.74rem` state hierarchy. Detail copy, email truncation, and modal actions remain readable without wrapping or clipping.
+- Spacing and layout rhythm: both controls measure about `173×48px`, share the same top and baseline, and retain a `44px+` touch target. The page reports `scrollWidth === clientWidth` with no horizontal overflow.
+- Colors and visual tokens: the status dock reuses the approved charcoal glass, aged-cream text, green ready state, and amber attention state. It introduces no unrelated palette or elevation token.
+- Image quality and asset fidelity: the approved v4 atmospheric photograph and crop remain unchanged. No new raster, icon, SVG, or placeholder asset was introduced.
+- Copy and content: the persistent surface now contains only `계정` plus its live state and `알림` plus its live state. Email, Google connection detail, Drive backup, reconnection, logout, test notification, and browser reconnection remain available inside the appropriate modal.
+- Interaction and accessibility: both status controls have explicit accessible names that include their live state and the detail-opening action. The account modal is a labeled modal dialog, and logout retains a confirmation step.
+
+### Comparison history
+
+- Iteration 22: user review identified the signed-in account and notification cards as low-frequency controls that displaced daily operating information. The first implementation consolidates them into a single two-column status dock. The combined full and focused comparisons show the intended density reduction while preserving the existing glass language. Browser measurement and interaction checks found no actionable P0/P1/P2 issue after implementation.
+
+### Implementation checklist
+
+- [x] Replace the two persistent setup cards with a one-row status dock.
+- [x] Keep live ready, checking, error, denied, and setup-required states visible.
+- [x] Move email, Google connection, Drive backup, reconnect, and logout into the account modal.
+- [x] Preserve the existing notification diagnostic and reconnection modal.
+- [x] Preserve logout confirmation before session mutation.
+- [x] Verify both modal entry points, responsive fit, and browser console state.
+
+### Follow-up polish
+
+- P3: confirm the compact row once in the installed iPhone standalone PWA; the local `390×844` viewport covers the target width, but native safe-area chrome can slightly change its top offset.
+
 final result: passed

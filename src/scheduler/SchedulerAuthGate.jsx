@@ -102,6 +102,8 @@ export function SchedulerAuthGate({ pathname }) {
   }
 
   async function handleSignOut() {
+    if (!window.confirm('로그아웃하시겠습니까?')) return
+
     setIsSigningOut(true)
     setAuthStatus('')
     try {
@@ -158,112 +160,44 @@ export function SchedulerAuthGate({ pathname }) {
     return <SchedulerLoginPage isSigningIn={isSigningIn} onSignIn={handleSignIn} status={authStatus} />
   }
 
+  const accountStatusLabel = googleConnectionState === 'checking'
+    ? '확인 중'
+    : googleConnectionState === 'error'
+      ? '확인 필요'
+      : googleConnected
+        ? '연동됨'
+        : '연결 필요'
+
   return (
     <div className="scheduler-auth-gated scheduler-theme-shell ag-shell" data-design-theme="atmospheric">
-      <style>{`
-        .scheduler-auth-gated > .scheduler-shell:first-of-type {
-          padding-bottom: 0 !important;
-        }
-
-        .scheduler-auth-gated > .scheduler-shell + .scheduler-shell {
-          padding-top: 0.35rem !important;
-        }
-
-        .scheduler-auth-gated .scheduler-auth-card {
-          margin-bottom: 0.35rem;
-        }
-
-        .scheduler-auth-gated > .scheduler-shell + .scheduler-shell > button.scheduler-setting-card:nth-of-type(2) {
-          display: none;
-        }
-
-        .scheduler-auth-gated .scheduler-google-modal {
-          border: 1px solid rgba(190, 176, 160, 0.22);
-          border-radius: 28px;
-          box-shadow: 0 24px 60px rgba(44, 33, 20, 0.16);
-          overflow: hidden;
-          padding: 1.8rem 1.35rem 1.45rem;
-        }
-      `}</style>
-      <div className="scheduler-shell" style={{ paddingBottom: 0 }}>
-        <section
-          className="scheduler-panel scheduler-setting-card is-connected scheduler-auth-card"
-          style={{ padding: '0.4rem 1.05rem' }}
-        >
-          <div className="scheduler-section-head" style={{ alignItems: 'center', gap: '0.75rem' }}>
-            <div style={{ minWidth: 0 }}>
-              <p
-                className="scheduler-section-label"
-                role="button"
-                tabIndex={0}
-                onClick={() => setIsGooglePanelOpen(true)}
-                onKeyDown={(event) => {
-                  if (event.key === 'Enter' || event.key === ' ') {
-                    event.preventDefault()
-                    setIsGooglePanelOpen(true)
-                  }
-                }}
-                style={{
-                  cursor: 'pointer',
-                  overflow: 'hidden',
-                  textOverflow: 'ellipsis',
-                  whiteSpace: 'nowrap',
-                }}
-              >
-                {session.user.email || 'Google 계정'}
-              </p>
-            </div>
-            <div
-              style={{
-                alignItems: 'center',
-                display: 'flex',
-                flexShrink: 0,
-                gap: '0.45rem',
-              }}
-            >
-              <button
-                type="button"
-                className="scheduler-count-pill scheduler-compact-control"
-                onClick={handleSignOut}
-                disabled={isSigningOut}
-                style={{ border: 0, cursor: 'pointer' }}
-              >
-                <span className="scheduler-compact-control-visual">
-                  {isSigningOut ? '로그아웃 중' : '로그아웃'}
-                </span>
-              </button>
-              <button
-                type="button"
-                className={`scheduler-count-pill scheduler-compact-control ${googleConnected ? 'is-ready' : ''}`}
-                onClick={() => setIsGooglePanelOpen(true)}
-                style={{ border: 0, cursor: 'pointer' }}
-              >
-                <span className="scheduler-compact-control-visual">
-                  {googleConnectionState === 'checking'
-                    ? '확인 중'
-                    : googleConnectionState === 'error'
-                      ? '확인 실패'
-                      : googleConnected
-                        ? '연동됨'
-                        : '연결'}
-                </span>
-              </button>
-            </div>
-          </div>
-          {authStatus ? <p className="status">{authStatus}</p> : null}
-        </section>
-      </div>
-
       {isGooglePanelOpen && (
         <div className="scheduler-sheet-backdrop scheduler-modal-backdrop" onClick={() => setIsGooglePanelOpen(false)}>
-          <div className="scheduler-modal scheduler-google-modal" onClick={(event) => event.stopPropagation()}>
+          <div
+            className="scheduler-modal scheduler-google-modal"
+            role="dialog"
+            aria-modal="true"
+            aria-label="계정 및 Google 연동 설정"
+            onClick={(event) => event.stopPropagation()}
+          >
             <div className="scheduler-section-head" style={{ marginBottom: '0.65rem' }}>
-              <p className="scheduler-section-label">Google 연동</p>
+              <p className="scheduler-section-label">계정 및 연동</p>
               <button type="button" className="scheduler-modal-close" onClick={() => setIsGooglePanelOpen(false)}>닫기</button>
             </div>
-            <p className="subtle" style={{ marginTop: 0, marginBottom: '1.25rem', fontSize: '0.86rem' }}>
+
+            <div className="scheduler-account-detail-list">
+              <div className="scheduler-account-detail-row">
+                <span>로그인 계정</span>
+                <strong>{session.user.email || 'Google 계정'}</strong>
+              </div>
+              <div className="scheduler-account-detail-row">
+                <span>Google 연동</span>
+                <strong className={googleConnected ? 'is-ready' : ''}>{accountStatusLabel}</strong>
+              </div>
+            </div>
+
+            <p className="subtle scheduler-account-detail-note">
               {googleConnected
-                ? '캘린더 동기화와 Drive 백업에 사용하는 연결이에요.'
+                ? '캘린더 동기화와 Drive 백업을 사용할 수 있어요.'
                 : getGoogleConnectionMessage(googleConnectionReason)}
             </p>
             <div className="scheduler-modal-actions stack">
@@ -278,12 +212,21 @@ export function SchedulerAuthGate({ pathname }) {
               <button type="button" className="scheduler-modal-btn secondary" onClick={handleGoogleConnect}>
                 {googleConnected ? 'Google 다시 연결' : 'Google 연결'}
               </button>
+              <button
+                type="button"
+                className="scheduler-modal-btn secondary scheduler-sign-out-button"
+                onClick={handleSignOut}
+                disabled={isSigningOut}
+              >
+                {isSigningOut ? '로그아웃 중...' : '로그아웃'}
+              </button>
             </div>
             {driveBackupStatus && (
               <p className="subtle" style={{ marginTop: '0.9rem', marginBottom: 0, fontSize: '0.82rem', textAlign: 'center' }}>
                 {driveBackupStatus}
               </p>
             )}
+            {authStatus ? <p className="status scheduler-account-status">{authStatus}</p> : null}
           </div>
         </div>
       )}
@@ -294,6 +237,9 @@ export function SchedulerAuthGate({ pathname }) {
         googleConnected={googleConnected}
         googleConnectionReason={googleConnectionReason}
         googleConnectionState={googleConnectionState}
+        accountStatusLabel={accountStatusLabel}
+        accountStatusReady={googleConnected}
+        onOpenAccountPanel={() => setIsGooglePanelOpen(true)}
         onGoogleDisconnected={handleGoogleDisconnected}
       />
     </div>
