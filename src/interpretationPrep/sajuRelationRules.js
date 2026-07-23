@@ -1,5 +1,38 @@
 export const NATAL_BRANCH_RELATION_RULE_VERSION = 'softie-natal-branch-relations-v2'
 
+/**
+ * 한글 단어의 마지막 글자 받침(종성) 유무를 판별합니다.
+ */
+export function hasBatchim(word) {
+  if (!word || typeof word !== 'string') return false
+  const lastChar = word[word.length - 1]
+  const code = lastChar.charCodeAt(0)
+  if (code < 0xac00 || code > 0xd7a3) return false
+  return (code - 0xac00) % 28 !== 0
+}
+
+/**
+ * 한글 단어 뒤에 받침 유무에 알맞은 조사를 붙여 반환합니다.
+ * @param {string} word - 단어 (예: '갑', '기')
+ * @param {'이/가'|'과/와'|'은/는'|'을/를'} josaType - 조사 유형
+ */
+export function attachJosa(word, josaType) {
+  if (!word) return word
+  const batchim = hasBatchim(word)
+  switch (josaType) {
+    case '이/가':
+      return `${word}${batchim ? '이' : '가'}`
+    case '과/와':
+      return `${word}${batchim ? '과' : '와'}`
+    case '은/는':
+      return `${word}${batchim ? '은' : '는'}`
+    case '을/를':
+      return `${word}${batchim ? '을' : '를'}`
+    default:
+      return word
+  }
+}
+
 const PILLAR_LABELS = {
   year: '연지',
   month: '월지',
@@ -166,9 +199,9 @@ export function calculateNatalStemRelations(pillars) {
               : (isAdjacent ? '보통 (합반 상태)' : '약함 (원격 격리)'),
             description: isAdjacent
               ? (isTransmutationStable
-                  ? `천간에서 ${left.stem}과 ${right.stem}이 인접하여 합(${rule.label})을 이룸. 월지가 합화 오행을 생조하여 실제 오행 변환 개연성이 높음`
-                  : `천간에서 ${left.stem}과 ${right.stem}이 인접하여 합(${rule.label})을 이룸. 월지 조력이 부족하여 고유 특성을 유지한 합반 상태로 기록함`)
-              : `천간에서 ${left.stem}과 ${right.stem}이 떨어져 있어 합(${rule.label})의 작용력을 낮게 기록함`,
+                  ? `천간에서 ${attachJosa(left.stem, '과/와')} ${attachJosa(right.stem, '이/가')} 인접하여 합(${rule.label})을 이룸. 월지가 합화 오행을 생조하여 실제 오행 변환 개연성이 높음`
+                  : `천간에서 ${attachJosa(left.stem, '과/와')} ${attachJosa(right.stem, '이/가')} 인접하여 합(${rule.label})을 이룸. 월지 조력이 부족하여 고유 특성을 유지한 합반 상태로 기록함`)
+              : `천간에서 ${attachJosa(left.stem, '과/와')} ${attachJosa(right.stem, '이/가')} 떨어져 있어 합(${rule.label})의 작용력을 낮게 기록함`,
           },
         })
       })
@@ -186,7 +219,7 @@ export function calculateNatalStemRelations(pillars) {
           assessment: {
             presence: true,
             establishment: true,
-            description: `천간에서 ${left.stem}과 ${right.stem}의 충 관계가 존재함`,
+            description: `천간에서 ${attachJosa(left.stem, '과/와')} ${right.stem}의 충 관계가 존재함`,
           },
         })
       })
@@ -260,8 +293,8 @@ export function calculateNatalBranchRelations(pillars) {
             transformedElement: isTransmutation ? targetElement : null,
             strength: rule.relation === '충' || rule.relation === '형' ? 1.0 : 0.7,
             description: rule.relation === '육합'
-              ? `지지 ${left.branch}와 ${right.branch}의 육합 관계가 존재함. ${isTransmutation ? '월령 조건상 오행 변환 후보로 기록함' : '합화는 확정하지 않고 합반 후보로 기록함'}`
-              : `지지 ${left.branch}와 ${right.branch} 사이에 ${rule.relation} 관계가 존재함`,
+              ? `지지 ${attachJosa(left.branch, '과/와')} ${right.branch}의 육합 관계가 존재함. ${isTransmutation ? '월령 조건상 오행 변환 후보로 기록함' : '합화는 확정하지 않고 합반 후보로 기록함'}`
+              : `지지 ${attachJosa(left.branch, '과/와')} ${right.branch} 사이에 ${rule.relation} 관계가 존재함`,
           },
         })
       })
@@ -393,7 +426,7 @@ export function calculatePeriodBranchRelations(natalPillars, periodPillar, perio
         assessment: {
           presence: true,
           establishment: true,
-          description: `${periodLabel}의 ${periodBranch}와 원국 ${entry.positionLabel} ${entry.branch} 사이에 ${rule.relation} 관계가 존재함`,
+          description: `${periodLabel}의 ${attachJosa(periodBranch, '과/와')} 원국 ${entry.positionLabel} ${entry.branch} 사이에 ${rule.relation} 관계가 존재함`,
         },
       })
     })
@@ -416,7 +449,7 @@ export function calculatePeriodBranchRelations(natalPillars, periodPillar, perio
         assessment: {
           presence: true,
           establishment: true,
-          description: `${periodLabel}의 지지 ${periodBranch}와 원국 지지들이 삼합(${rule.element}국) 구조를 이룸`,
+          description: `${periodLabel}의 지지 ${attachJosa(periodBranch, '과/와')} 원국 지지들이 삼합(${rule.element}국) 구조를 이룸`,
         },
       })
     })

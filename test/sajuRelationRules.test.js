@@ -2,8 +2,11 @@ import test from 'node:test'
 import assert from 'node:assert/strict'
 
 import {
+  attachJosa,
+  hasBatchim,
   calculateBranchGroupRelations,
   calculateNatalBranchRelations,
+  calculateNatalStemRelations,
   calculatePeriodBranchRelations,
 } from '../src/interpretationPrep/sajuRelationRules.js'
 
@@ -100,4 +103,41 @@ test('period group relations use labels as identities and remove exact duplicate
   assert.equal(result.length, 1)
   assert.deepEqual(result[0].labels, ['대운', '세운', '월운'])
   assert.equal(result[0].interpretationStatus, 'presence_only')
+})
+
+test('hasBatchim and attachJosa attach correct Korean josa based on batchim', () => {
+  assert.equal(hasBatchim('갑'), true)
+  assert.equal(hasBatchim('기'), false)
+
+  // 받침 있는 천간
+  assert.equal(attachJosa('갑', '과/와'), '갑과')
+  assert.equal(attachJosa('갑', '이/가'), '갑이')
+
+  // 받침 없는 천간
+  assert.equal(attachJosa('기', '과/와'), '기와')
+  assert.equal(attachJosa('기', '이/가'), '기가')
+})
+
+test('calculateNatalStemRelations generates natural Korean descriptions', () => {
+  const result = calculateNatalStemRelations({
+    year: pillar('술', '갑'),
+    month: pillar('술', '임'),
+    day: pillar('인', '기'),
+    hour: pillar('자', '갑'),
+  })
+
+  // 연간(갑) - 일간(기) / 일간(기) - 시간(갑)
+  const yearDayHap = result.items.find(
+    (item) => item.positions.includes('year') && item.positions.includes('day'),
+  )
+  const dayHourHap = result.items.find(
+    (item) => item.positions.includes('day') && item.positions.includes('hour'),
+  )
+
+  assert.ok(yearDayHap)
+  assert.ok(dayHourHap)
+
+  // 받침 있는 갑 + 받침 없는 기
+  assert.ok(yearDayHap.assessment.description.includes('갑과 기가 떨어져 있어'))
+  assert.ok(dayHourHap.assessment.description.includes('기와 갑이 인접하여'))
 })

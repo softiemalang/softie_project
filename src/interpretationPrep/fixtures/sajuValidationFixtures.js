@@ -387,7 +387,7 @@ export const sajuValidationFixtures = [
             transmutation: false,
             transformedElement: null,
             strengthLabel: '약함 (원격 격리)',
-            description: '천간에서 갑과 기이 떨어져 있어 합(갑기합토)의 작용력이 무력함'
+            description: '천간에서 갑과 기가 떨어져 있어 합(갑기합토)의 작용력을 낮게 기록함'
           }
         },
         {
@@ -404,7 +404,7 @@ export const sajuValidationFixtures = [
             transmutation: true,
             transformedElement: '토',
             strengthLabel: '강함 (월지 생조)',
-            description: '천간에서 갑과 기이 인접하여 합(갑기합토)을 이룸. 월지가 합화 오행을 생조하여 실제 오행 변환 기운이 강함'
+            description: '천간에서 갑과 기가 인접하여 합(갑기합토)을 이룸. 월지가 합화 오행을 생조하여 실제 오행 변환 개연성이 높음'
           }
         },
         {
@@ -421,7 +421,7 @@ export const sajuValidationFixtures = [
             transmutation: true,
             transformedElement: '토',
             strengthLabel: '강함 (월지 생조)',
-            description: '천간에서 기과 갑이 인접하여 합(갑기합토)을 이룸. 월지가 합화 오행을 생조하여 실제 오행 변환 기운이 강함'
+            description: '천간에서 기와 갑이 인접하여 합(갑기합토)을 이룸. 월지가 합화 오행을 생조하여 실제 오행 변환 개연성이 높음'
           }
         }
       ]
