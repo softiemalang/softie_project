@@ -1,4 +1,4 @@
-export const NATAL_BRANCH_RELATION_RULE_VERSION = 'softie-natal-branch-relations-v2'
+export const NATAL_BRANCH_RELATION_RULE_VERSION = 'softie-natal-branch-relations-v3'
 
 const PILLAR_LABELS = {
   year: '연지',
@@ -13,6 +13,8 @@ const PILLAR_STEM_LABELS = {
   day: '일간',
   hour: '시간',
 }
+
+const POSITION_ORDER = { year: 0, month: 1, day: 2, hour: 3 }
 
 // 지지 짝 규칙 (육합, 충, 형, 파, 해)
 const PAIR_RULES = [
@@ -86,86 +88,103 @@ function matchesPair(left, right, pairs) {
   return pairs.some(([pairLeft, pairRight]) => normalizePair(pairLeft, pairRight) === target)
 }
 
-// 1. 천간 관계 계산 함수 추가
+function sortByPosition(entries) {
+  return [...entries].sort((left, right) => {
+    const leftOrder = POSITION_ORDER[left.position] ?? Number.MAX_SAFE_INTEGER
+    const rightOrder = POSITION_ORDER[right.position] ?? Number.MAX_SAFE_INTEGER
+    return leftOrder - rightOrder
+  })
+}
+
+function uniqueBy(items, keyFor) {
+  const seen = new Set()
+  return items.filter((item) => {
+    const key = keyFor(item)
+    if (seen.has(key)) return false
+    seen.add(key)
+    return true
+  })
+}
+
+function entryCombinationsForBranches(entries, branches) {
+  const groups = branches.map((branch) => entries.filter((entry) => entry.branch === branch))
+  if (groups.some((group) => group.length === 0)) return []
+
+  return groups.reduce(
+    (combinations, group) => combinations.flatMap((combination) => group
+      .filter((entry) => !combination.some((selected) => selected.position === entry.position))
+      .map((entry) => [...combination, entry])),
+    [[]],
+  )
+}
+
+// 1. 천간 관계 계산
 export function calculateNatalStemRelations(pillars) {
   const stems = ['year', 'month', 'day', 'hour']
-    .map((pos) => ({
-      position: pos,
-      positionLabel: PILLAR_STEM_LABELS[pos],
-      stem: pillars[pos]?.stem || null,
+    .map((position) => ({
+      position,
+      positionLabel: PILLAR_STEM_LABELS[position],
+      stem: pillars[position]?.stem || null,
     }))
     .filter((entry) => entry.stem)
 
   const items = []
 
-  const positionOrder = { year: 0, month: 1, day: 2, hour: 3 }
+  for (let leftIndex = 0; leftIndex < stems.length; leftIndex += 1) {
+    for (let rightIndex = leftIndex + 1; rightIndex < stems.length; rightIndex += 1) {
+      const left = stems[leftIndex]
+      const right = stems[rightIndex]
 
-  for (let i = 0; i < stems.length; i++) {
-    for (let j = i + 1; j < stems.length; j++) {
-      const left = stems[i]
-      const right = stems[j]
-
-      // 천간합 연산
       STEM_COMBINATION_RULES.forEach((rule) => {
-        if (left.stem !== right.stem && rule.stems.includes(left.stem) && rule.stems.includes(right.stem)) {
-          // 합화 성립 여부 판정 (월령 득실 또는 천간 세력 기준)
-          const monthBranch = pillars.month?.branch
-          const monthBranchElement = monthBranch ? getBranchElement(monthBranch) : null
-          const isTransmutationStable = monthBranchElement === rule.element || GENERATES[monthBranchElement] === rule.element
+        if (left.stem === right.stem || !rule.stems.includes(left.stem) || !rule.stems.includes(right.stem)) return
 
-          // 인접성 판정: 기둥 간 인접 시(거리 1)에만 합의 성립(establishment) 및 합화(transmutation) 가능
-          const isAdjacent = Math.abs(positionOrder[left.position] - positionOrder[right.position]) === 1
+        const monthBranch = pillars.month?.branch
+        const monthBranchElement = monthBranch ? getBranchElement(monthBranch) : null
+        const isTransmutationStable = monthBranchElement === rule.element || GENERATES[monthBranchElement] === rule.element
+        const isAdjacent = Math.abs(POSITION_ORDER[left.position] - POSITION_ORDER[right.position]) === 1
+        const sortedEntries = sortByPosition([left, right])
 
-          const stemsSorted = [left.stem, right.stem].sort()
-          const positionsSorted = [left.position, right.position].sort((a, b) => positionOrder[a] - positionOrder[b])
-          const positionLabelsSorted = positionsSorted.map((pos) => pos === left.position ? left.positionLabel : right.positionLabel)
-
-          items.push({
-            id: `${positionsSorted.join('-')}-천간합`,
-            relation: '천간합',
-            label: rule.label,
-            element: rule.element,
-            stems: stemsSorted,
-            positions: positionsSorted,
-            positionLabels: positionLabelsSorted,
-            assessment: {
-              presence: true,
-              establishment: isAdjacent, // 기둥이 붙어 있는 인접쌍만 실제 합이 성립됨
-              transmutation: isAdjacent && isTransmutationStable, // 인접하고 월령 생조까지 완비되어야 합화
-              transformedElement: isAdjacent && isTransmutationStable ? rule.element : null, // 변환 오행 필드 명시화
-              strengthLabel: isAdjacent && isTransmutationStable
-                ? '강함 (월지 생조)'
-                : (isAdjacent ? '보통 (합반 상태)' : '약함 (원격 격리)'),
-              description: isAdjacent
-                ? (isTransmutationStable
-                    ? `천간에서 ${left.stem}과 ${right.stem}이 인접하여 합(${rule.label})을 이룸. 월지가 합화 오행을 생조하여 실제 오행 변환 기운이 강함`
-                    : `천간에서 ${left.stem}과 ${right.stem}이 인접하여 합(${rule.label})을 이룸. 월지 조력이 부족하여 고유 특성은 유지한 채 묶여있는 상태(합반)`)
-                : `천간에서 ${left.stem}과 ${right.stem}이 떨어져 있어 합(${rule.label})의 작용력이 무력함`
-            }
-          })
-        }
+        items.push({
+          id: `${sortedEntries.map((entry) => entry.position).join('-')}-천간합`,
+          relation: '천간합',
+          label: rule.label,
+          element: rule.element,
+          stems: [left.stem, right.stem].sort(),
+          positions: sortedEntries.map((entry) => entry.position),
+          positionLabels: sortedEntries.map((entry) => entry.positionLabel),
+          assessment: {
+            presence: true,
+            establishment: isAdjacent,
+            transmutation: isAdjacent && isTransmutationStable,
+            transformedElement: isAdjacent && isTransmutationStable ? rule.element : null,
+            strengthLabel: isAdjacent && isTransmutationStable
+              ? '강함 (월지 생조)'
+              : (isAdjacent ? '보통 (합반 상태)' : '약함 (원격 격리)'),
+            description: isAdjacent
+              ? (isTransmutationStable
+                  ? `천간에서 ${left.stem}과 ${right.stem}이 인접하여 합(${rule.label})을 이룸. 월지가 합화 오행을 생조하여 실제 오행 변환 개연성이 높음`
+                  : `천간에서 ${left.stem}과 ${right.stem}이 인접하여 합(${rule.label})을 이룸. 월지 조력이 부족하여 고유 특성을 유지한 합반 상태로 기록함`)
+              : `천간에서 ${left.stem}과 ${right.stem}이 떨어져 있어 합(${rule.label})의 작용력을 낮게 기록함`,
+          },
+        })
       })
 
-      // 천간충 연산
       STEM_CLASH_RULES.forEach((rule) => {
-        if (left.stem !== right.stem && rule.stems.includes(left.stem) && rule.stems.includes(right.stem)) {
-          const stemsSorted = [left.stem, right.stem].sort()
-          const positionsSorted = [left.position, right.position].sort((a, b) => positionOrder[a] - positionOrder[b])
-          const positionLabelsSorted = positionsSorted.map((pos) => pos === left.position ? left.positionLabel : right.positionLabel)
+        if (left.stem === right.stem || !rule.stems.includes(left.stem) || !rule.stems.includes(right.stem)) return
 
-          items.push({
-            id: `${positionsSorted.join('-')}-천간충`,
-            relation: '천간충',
-            stems: stemsSorted,
-            positions: positionsSorted,
-            positionLabels: positionLabelsSorted,
-            assessment: {
-              presence: true,
-              establishment: true,
-              description: `천간에서 ${left.stem}과 ${right.stem}이 충돌하여 서로의 기운을 흔들고 자극함`
-            }
-          })
-        }
+        const sortedEntries = sortByPosition([left, right])
+        items.push({
+          id: `${sortedEntries.map((entry) => entry.position).join('-')}-천간충`,
+          relation: '천간충',
+          stems: [left.stem, right.stem].sort(),
+          positions: sortedEntries.map((entry) => entry.position),
+          positionLabels: sortedEntries.map((entry) => entry.positionLabel),
+          assessment: {
+            presence: true,
+            establishment: true,
+            description: `천간에서 ${left.stem}과 ${right.stem}의 충 관계가 존재함`,
+          },
+        })
       })
     }
   }
@@ -177,7 +196,6 @@ export function calculateNatalStemRelations(pillars) {
   }
 }
 
-// 지지 오행 판정 헬퍼
 function getBranchElement(branch) {
   const map = { '자': '수', '축': '토', '인': '목', '묘': '목', '진': '토', '사': '화', '오': '화', '미': '토', '신': '금', '유': '금', '술': '토', '해': '수' }
   return map[branch] || null
@@ -193,14 +211,12 @@ function branchEntries(pillars) {
     .filter((entry) => entry.branch)
 }
 
-// 2. 지지 관계 정밀 계산 (방합, 반합, 합화 여부 분리)
+// 2. 지지 관계 계산
 export function calculateNatalBranchRelations(pillars) {
   const entries = branchEntries(pillars)
   const relations = []
   const monthBranch = pillars.month?.branch
-  const positionOrder = { year: 0, month: 1, day: 2, hour: 3 }
 
-  // 1) 지지 짝 관계 (육합, 충, 형, 파, 해)
   for (let leftIndex = 0; leftIndex < entries.length; leftIndex += 1) {
     for (let rightIndex = leftIndex + 1; rightIndex < entries.length; rightIndex += 1) {
       const left = entries[leftIndex]
@@ -209,169 +225,150 @@ export function calculateNatalBranchRelations(pillars) {
       PAIR_RULES.forEach((rule) => {
         if (!matchesPair(left.branch, right.branch, rule.pairs)) return
 
-        // 세부 상태 분석 (충/형이 방해하는지 여부 등)
         let isTransmutation = false
         let targetElement = null
         if (rule.relation === '육합') {
-          // 육합은 월지가 육합화 오행과 같거나 생할 때 오행 변환 개연성 있음
           const hapElements = {
-            '자-축': '토', '축-자': '토',
-            '인-해': '목', '해-인': '목',
-            '묘-술': '화', '술-묘': '화',
-            '진-유': '금', '유-진': '금',
-            '사-신': '수', '신-사': '수',
-            '오-미': '화', '미-오': '화',
+            '자-축': '토',
+            '인-해': '목',
+            '묘-술': '화',
+            '진-유': '금',
+            '사-신': '수',
+            '미-오': '화',
           }
-          const pairKey = normalizePair(left.branch, right.branch)
-          targetElement = hapElements[pairKey] || null
+          targetElement = hapElements[normalizePair(left.branch, right.branch)] || null
           const monthElement = monthBranch ? getBranchElement(monthBranch) : null
-          isTransmutation = monthElement === targetElement || GENERATES[monthElement] === targetElement
+          isTransmutation = Boolean(targetElement) && (monthElement === targetElement || GENERATES[monthElement] === targetElement)
         }
 
-        const branchesSorted = [left.branch, right.branch].sort()
-        const positionsSorted = [left.position, right.position].sort((a, b) => positionOrder[a] - positionOrder[b])
-        const positionLabelsSorted = positionsSorted.map((pos) => pos === left.position ? left.positionLabel : right.positionLabel)
-
+        const sortedEntries = sortByPosition([left, right])
         relations.push({
-          id: `${positionsSorted.join('-')}-${rule.relation}`,
+          id: `${sortedEntries.map((entry) => entry.position).join('-')}-${rule.relation}`,
           relation: rule.relation,
-          branches: branchesSorted,
-          positions: positionsSorted,
-          positionLabels: positionLabelsSorted,
+          branches: [left.branch, right.branch].sort(),
+          positions: sortedEntries.map((entry) => entry.position),
+          positionLabels: sortedEntries.map((entry) => entry.positionLabel),
           ruleType: 'pair_lookup',
           assessment: {
             presence: true,
             establishment: true,
             transmutation: isTransmutation,
-            transformedElement: isTransmutation ? targetElement : null, // 변환 오행 필드 명사화
+            transformedElement: isTransmutation ? targetElement : null,
             strength: rule.relation === '충' || rule.relation === '형' ? 1.0 : 0.7,
             description: rule.relation === '육합'
-              ? `지지 ${left.branch}와 ${right.branch}가 만나 결합함. ${isTransmutation ? '월령의 도움을 받아 오행 변환 개연성이 높음' : '묶여서 고유 기능이 잠시 제어되는 합반 상태'}`
-              : `지지 ${left.branch}와 ${right.branch}가 만나 상극의 충돌(${rule.relation})을 이룸`
-          }
+              ? `지지 ${left.branch}와 ${right.branch}의 육합 관계가 존재함. ${isTransmutation ? '월령 조건상 오행 변환 후보로 기록함' : '합화는 확정하지 않고 합반 후보로 기록함'}`
+              : `지지 ${left.branch}와 ${right.branch} 사이에 ${rule.relation} 관계가 존재함`,
+          },
         })
       })
     }
   }
 
-  // 2) 지지 삼합(三合) 분석
   TRINE_RULES.forEach((rule) => {
-    const hasCompleteGroup = rule.branches.every((branch) => entries.some((entry) => entry.branch === branch))
+    const completeCombinations = entryCombinationsForBranches(entries, rule.branches)
 
-    if (hasCompleteGroup) {
-      const matchingEntries = entries.filter((entry) => rule.branches.includes(entry.branch))
-      const isTransmutation = monthBranch ? (getBranchElement(monthBranch) === rule.element || monthBranch === rule.king) : false
+    if (completeCombinations.length > 0) {
+      completeCombinations.forEach((combination) => {
+        const sortedEntries = sortByPosition(combination)
+        const isTransmutation = monthBranch
+          ? getBranchElement(monthBranch) === rule.element || monthBranch === rule.king
+          : false
 
-      const branchesSorted = [...rule.branches].sort()
-      const positionsSorted = matchingEntries.map((e) => e.position).sort((a, b) => positionOrder[a] - positionOrder[b])
-      const positionLabelsSorted = positionsSorted.map((pos) => matchingEntries.find((e) => e.position === pos).positionLabel)
-
-      relations.push({
-        id: `trine-${rule.element}-${positionsSorted.join('-')}`,
-        relation: rule.relation,
-        element: rule.element,
-        branches: branchesSorted,
-        positions: positionsSorted,
-        positionLabels: positionLabelsSorted,
-        ruleType: 'complete_group_lookup',
-        assessment: {
-          presence: true,
-          establishment: true,
-          transmutation: isTransmutation,
-          transformedElement: isTransmutation ? rule.element : null, // 변환 오행 필드 명사화
-          strength: 1.0,
-          description: `지지 세 자리에 ${rule.branches.join('·')}이 모두 모여 강력한 삼합(${rule.element}국)을 형성함`
-        }
-      })
-    } else {
-      // 3) 반합(半合) 분석: 삼합 글자 중 왕지(子, 午, 卯, 酉)를 필수로 포함하는 두 글자가 존재하는 경우
-      const hasKing = entries.some(entry => entry.branch === rule.king)
-      if (hasKing) {
-        rule.branches.forEach((b1, idx1) => {
-          rule.branches.forEach((b2, idx2) => {
-            if (idx1 >= idx2) return
-            // b1, b2 중 하나는 반드시 왕지여야 성립
-            if (b1 !== rule.king && b2 !== rule.king) return
-
-            const entry1 = entries.find(e => e.branch === b1)
-            const entry2 = entries.find(e => e.branch === b2)
-
-            if (entry1 && entry2) {
-              const isTransmutation = monthBranch === rule.king || getBranchElement(monthBranch) === rule.element
-
-              const branchesSorted = [b1, b2].sort()
-              const positionsSorted = [entry1.position, entry2.position].sort((a, b) => positionOrder[a] - positionOrder[b])
-              const positionLabelsSorted = positionsSorted.map((pos) => pos === entry1.position ? entry1.positionLabel : entry2.positionLabel)
-
-              relations.push({
-                id: `half-trine-${rule.element}-${positionsSorted.join('-')}`,
-                relation: '반합',
-                element: rule.element,
-                branches: branchesSorted,
-                positions: positionsSorted,
-                positionLabels: positionLabelsSorted,
-                ruleType: 'half_group_lookup',
-                assessment: {
-                  presence: true,
-                  establishment: true,
-                  transmutation: isTransmutation,
-                  transformedElement: isTransmutation ? rule.element : null, // 변환 오행 필드 명사화
-                  strength: 0.5,
-                  description: `삼합 중 중심 왕지인 ${rule.king}을 동반한 반합(${b1}·${b2})이 성립되어 ${rule.element} 기운을 생성함`
-                }
-              })
-            }
-          })
+        relations.push({
+          id: `trine-${rule.element}-${sortedEntries.map((entry) => entry.position).join('-')}`,
+          relation: rule.relation,
+          element: rule.element,
+          branches: [...rule.branches].sort(),
+          positions: sortedEntries.map((entry) => entry.position),
+          positionLabels: sortedEntries.map((entry) => entry.positionLabel),
+          ruleType: 'complete_group_lookup',
+          assessment: {
+            presence: true,
+            establishment: true,
+            transmutation: isTransmutation,
+            transformedElement: isTransmutation ? rule.element : null,
+            strength: 1.0,
+            description: `지지 ${rule.branches.join('·')}이 모두 모여 삼합(${rule.element}국) 구조가 존재함`,
+          },
         })
-      }
+      })
+      return
     }
+
+    const halfPairs = []
+    rule.branches.forEach((leftBranch, leftIndex) => {
+      rule.branches.forEach((rightBranch, rightIndex) => {
+        if (leftIndex >= rightIndex) return
+        if (leftBranch !== rule.king && rightBranch !== rule.king) return
+        halfPairs.push([leftBranch, rightBranch])
+      })
+    })
+
+    halfPairs.forEach(([leftBranch, rightBranch]) => {
+      entryCombinationsForBranches(entries, [leftBranch, rightBranch]).forEach((combination) => {
+        const sortedEntries = sortByPosition(combination)
+        const isTransmutation = monthBranch === rule.king || getBranchElement(monthBranch) === rule.element
+
+        relations.push({
+          id: `half-trine-${rule.element}-${sortedEntries.map((entry) => entry.position).join('-')}`,
+          relation: '반합',
+          element: rule.element,
+          branches: [leftBranch, rightBranch].sort(),
+          positions: sortedEntries.map((entry) => entry.position),
+          positionLabels: sortedEntries.map((entry) => entry.positionLabel),
+          ruleType: 'half_group_lookup',
+          assessment: {
+            presence: true,
+            establishment: true,
+            transmutation: isTransmutation,
+            transformedElement: isTransmutation ? rule.element : null,
+            strength: 0.5,
+            description: `삼합의 중심 왕지 ${rule.king}을 포함한 반합(${leftBranch}·${rightBranch}) 구조가 존재함`,
+          },
+        })
+      })
+    })
   })
 
-  // 4) 방합(方合) 분석
   DIRECTIONAL_RULES.forEach((rule) => {
-    const hasCompleteGroup = rule.branches.every((branch) => entries.some((entry) => entry.branch === branch))
-    if (hasCompleteGroup) {
-      const matchingEntries = entries.filter((entry) => rule.branches.includes(entry.branch))
-
-      const branchesSorted = [...rule.branches].sort()
-      const positionsSorted = matchingEntries.map((e) => e.position).sort((a, b) => positionOrder[a] - positionOrder[b])
-      const positionLabelsSorted = positionsSorted.map((pos) => matchingEntries.find((e) => e.position === pos).positionLabel)
-
+    entryCombinationsForBranches(entries, rule.branches).forEach((combination) => {
+      const sortedEntries = sortByPosition(combination)
       relations.push({
-        id: `directional-${rule.element}-${positionsSorted.join('-')}`,
+        id: `directional-${rule.element}-${sortedEntries.map((entry) => entry.position).join('-')}`,
         relation: rule.relation,
         element: rule.element,
-        branches: branchesSorted,
-        positions: positionsSorted,
-        positionLabels: positionLabelsSorted,
+        branches: [...rule.branches].sort(),
+        positions: sortedEntries.map((entry) => entry.position),
+        positionLabels: sortedEntries.map((entry) => entry.positionLabel),
         ruleType: 'complete_directional_lookup',
         assessment: {
           presence: true,
           establishment: true,
-          transmutation: true, // 방합은 가족이자 계절의 합이므로 무조건 완벽 성립
-          transformedElement: rule.element, // 변환 오행 필드 명사화
-          strength: 1.2,
-          description: `지지 세 자리에 계절의 세력인 ${rule.branches.join('·')}이 모두 모여 강력한 방합(${rule.element}국)을 형성함`
-        }
+          transmutation: false,
+          transmutationStatus: 'not_evaluated',
+          transformedElement: null,
+          strength: 1.0,
+          description: `지지 ${rule.branches.join('·')}이 모두 모여 방합(${rule.element}국) 구조가 존재함. 실제 오행 전환과 작용 강도는 별도 해석 대상으로 남김`,
+        },
       })
-    }
+    })
   })
 
   return {
     ruleVersion: NATAL_BRANCH_RELATION_RULE_VERSION,
     basis: 'reference_pillars',
-    interpretationScope: '합화 성립 조건·상세 관계 강도 및 오행 변환 개연성 분석 포함',
-    items: relations,
+    interpretationScope: '관계 존재와 제한된 합화 후보를 계산하며 방합의 실제 오행 전환·길흉은 확정하지 않음',
+    items: uniqueBy(relations, (relation) => relation.id),
   }
 }
 
-// 3. 운(대운/세운 등)과 원국 간 지지 관계 정밀 연산
+// 3. 운(대운/세운 등)과 원국 간 지지 관계 계산
 export function calculatePeriodBranchRelations(natalPillars, periodPillar, periodLabel) {
   const periodBranch = periodPillar?.branch
   if (!periodBranch) return {
     ruleVersion: NATAL_BRANCH_RELATION_RULE_VERSION,
     basis: 'period_to_natal_pillars',
-    interpretationScope: '합화 성립 조건·상세 관계 강도 분석 포함',
+    interpretationScope: '관계 존재 여부만 계산',
     items: [],
   }
 
@@ -392,8 +389,8 @@ export function calculatePeriodBranchRelations(natalPillars, periodPillar, perio
         assessment: {
           presence: true,
           establishment: true,
-          description: `${periodLabel}의 ${periodBranch}가 원국의 ${entry.positionLabel}인 ${entry.branch}를 만나 충동(${rule.relation}) 또는 결합함`
-        }
+          description: `${periodLabel}의 ${periodBranch}와 원국 ${entry.positionLabel} ${entry.branch} 사이에 ${rule.relation} 관계가 존재함`,
+        },
       })
     })
   })
@@ -401,37 +398,35 @@ export function calculatePeriodBranchRelations(natalPillars, periodPillar, perio
   TRINE_RULES.forEach((rule) => {
     if (!rule.branches.includes(periodBranch)) return
     const remainingBranches = rule.branches.filter((branch) => branch !== periodBranch)
-    const matchingEntries = remainingBranches.map((branch) =>
-      natalEntries.find((entry) => entry.branch === branch)).filter(Boolean)
-
-    if (matchingEntries.length === remainingBranches.length) {
+    entryCombinationsForBranches(natalEntries, remainingBranches).forEach((combination) => {
+      const sortedEntries = sortByPosition(combination)
       relations.push({
-        id: `${periodLabel}-trine-${rule.element}`,
+        id: `${periodLabel}-trine-${rule.element}-${sortedEntries.map((entry) => entry.position).join('-')}`,
         relation: rule.relation,
         element: rule.element,
         branches: [...rule.branches],
-        natalPositions: matchingEntries.map((entry) => entry.position),
-        natalPositionLabels: matchingEntries.map((entry) => entry.positionLabel),
+        natalPositions: sortedEntries.map((entry) => entry.position),
+        natalPositionLabels: sortedEntries.map((entry) => entry.positionLabel),
         periodLabel,
         ruleType: 'period_complete_group_lookup',
         assessment: {
           presence: true,
           establishment: true,
-          description: `${periodLabel}의 지지 ${periodBranch}가 원국의 지지들과 온전한 삼합(${rule.element}국)을 맞추어 기운을 급변시킴`
-        }
+          description: `${periodLabel}의 지지 ${periodBranch}와 원국 지지들이 삼합(${rule.element}국) 구조를 이룸`,
+        },
       })
-    }
+    })
   })
 
   return {
     ruleVersion: NATAL_BRANCH_RELATION_RULE_VERSION,
     basis: 'period_to_natal_pillars',
-    interpretationScope: '합화 성립 조건·상세 관계 강도 분석 포함',
-    items: relations,
+    interpretationScope: '관계 존재 여부를 계산하며 강약·길흉은 확정하지 않음',
+    items: uniqueBy(relations, (relation) => relation.id),
   }
 }
 
-// 4. 기간 간의 기본 지지 페어 관계 계산 (sajuTimingRules.js 및 prepare.test.js 호환용)
+// 4. 기간 간의 기본 지지 페어 관계 계산
 export function calculateBranchPairRelations(leftBranch, rightBranch, leftLabel, rightLabel) {
   const relations = []
   PAIR_RULES.forEach((rule) => {
@@ -445,26 +440,24 @@ export function calculateBranchPairRelations(leftBranch, rightBranch, leftLabel,
   return relations
 }
 
-
-// 5. 기간 간의 삼합 관계 계산 (sajuTimingRules.js 및 prepare.test.js 호환용)
+// 5. 기간 간의 삼합 관계 계산
 export function calculateBranchGroupRelations(entries) {
   const relations = []
-  const branches = entries.map((e) => e.branch)
-  const labels = entries.map((e) => e.label)
 
   TRINE_RULES.forEach((rule) => {
-    const hasAll = rule.branches.every((b) => branches.includes(b))
-    if (hasAll) {
+    entryCombinationsForBranches(entries, rule.branches).forEach((combination) => {
+      const labels = combination.map((entry) => entry.label)
       relations.push({
         id: `period-trine-${rule.element}-${labels.join('-')}`,
         relation: '삼합',
         element: rule.element,
         branches: [...rule.branches],
-        labels: [...labels],
+        labels,
         ruleType: 'period_complete_group_lookup',
         interpretationStatus: 'presence_only',
       })
-    }
+    })
   })
-  return relations
+
+  return uniqueBy(relations, (relation) => relation.id)
 }
