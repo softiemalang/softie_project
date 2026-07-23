@@ -69,7 +69,7 @@ export const DEFAULT_PROFILES = {
     twelveStages: '일간 기준 양간 순행·음간 역행',
     hiddenStemRules: 'softie constants v1',
     tenGodRules: '천간 및 지지 본기 지장간 기준',
-    branchRelationRules: 'softie natal branch relations v3 · 관계 존재와 제한된 합화 후보 계산 · 방합의 실제 오행 전환 미판정',
+    branchRelationRules: 'softie natal branch relations v2 · 관계 존재와 제한된 합화 후보 계산 · 방합의 실제 오행 전환 미판정',
   },
   ziwei: {
     profileVersion: 'unconfigured',
