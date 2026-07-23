@@ -53,9 +53,9 @@ export function validatePrepInput(input) {
     if (year < 1901 || year > 2100) return '현재 검증된 사주 계산 범위는 1901년부터 2100년까지입니다.'
     const parsedDate = new Date(Date.UTC(year, month - 1, day))
     if (
-      parsedDate.getUTCFullYear() !== year ||
-      parsedDate.getUTCMonth() !== month - 1 ||
-      parsedDate.getUTCDate() !== day
+      parsedDate.getUTCFullYear() !== year
+      || parsedDate.getUTCMonth() !== month - 1
+      || parsedDate.getUTCDate() !== day
     ) return '실제로 존재하는 출생일을 입력해 주세요.'
   }
 
@@ -93,6 +93,50 @@ function buildSynthesis(systems) {
   }
 }
 
+function guardUnknownBirthTimeExperimental(system, input) {
+  if (input.timeAccuracy !== 'unknown' || !system.raw?.experimental) return system
+
+  const candidateDayMasters = [...new Set(system.raw.dayMaster?.candidates || [])]
+  const reason = candidateDayMasters.length > 1
+    ? `출생시각 미상으로 일간 후보가 ${candidateDayMasters.join('·')}로 갈리므로 강약·격국·용신·신살을 하나의 확정값으로 제공하지 않습니다.`
+    : '출생시각 미상으로 시주가 제외되므로 강약·격국·용신·신살을 확정값으로 제공하지 않습니다.'
+
+  return {
+    ...system,
+    status: 'needs_verification',
+    raw: {
+      ...system.raw,
+      experimental: {
+        isExperimental: true,
+        status: 'candidate_required',
+        description: reason,
+        candidateDayMasters,
+        strength: null,
+        gyeokguk: null,
+        yongShin: null,
+        shinsal: [],
+      },
+    },
+    warnings: [...new Set([...(system.warnings || []), reason])],
+  }
+}
+
+function buildModelInstruction(result) {
+  const availableSystems = Object.values(result.systems)
+    .filter((system) => system.raw)
+    .map((system) => system.system)
+  const unavailableSystems = Object.values(result.systems)
+    .filter((system) => !system.raw)
+    .map((system) => system.system)
+
+  const availableText = availableSystems.length > 0 ? availableSystems.join(', ') : '없음'
+  const unavailableText = unavailableSystems.length > 0
+    ? ` 계산 자료가 없는 체계(${unavailableSystems.join(', ')})는 추정하거나 새로 만들어내지 마라.`
+    : ''
+
+  return `위 자료는 페이지에서 계산 및 구조화된 결과다. 제공된 계산값을 임의로 변경하지 말고 이를 근거로 해석하라. 현재 실제 계산된 체계는 ${availableText}다.${unavailableText} 후보 또는 검증 필요 상태는 하나로 확정하지 말고 가능성과 차이를 분리해 설명하라. 사용자의 실제 상황과 질문을 반영해 현실적으로 설명하라.`
+}
+
 export function prepareInterpretationData(input, profiles = DEFAULT_PROFILES) {
   const validationMessage = validatePrepInput(input)
   if (validationMessage) throw new Error(validationMessage)
@@ -124,8 +168,8 @@ export function prepareInterpretationData(input, profiles = DEFAULT_PROFILES) {
 
   const normalizedInput = {
     ...inputWithoutSource,
-    calendar: 'solar', // 후속 코드가 이중 음력 변환하는 오류를 막기 위해 양력 계약 보장
-    isLeapMonth: false, // 양력 날짜 규격 상 윤달 플래그 무력화
+    calendar: 'solar',
+    isLeapMonth: false,
     birthDate: birthDateSolar,
     birthTime: input.timeAccuracy === 'unknown' ? '' : input.birthTime,
     targetDate: input.targetDate.trim(),
@@ -138,13 +182,15 @@ export function prepareInterpretationData(input, profiles = DEFAULT_PROFILES) {
     longitude: referenceCity.longitude,
   }
 
+  const calculatedSaju = calculateSajuSystem({
+    ...normalizedInput,
+    originalCalendar: input.calendar,
+    originalIsLeapMonth: input.calendar === 'lunar' ? Boolean(input.isLeapMonth) : false,
+    originalBirthDate: input.birthDate,
+  }, profiles.saju)
+
   const systems = {
-    saju: calculateSajuSystem({
-      ...normalizedInput,
-      originalCalendar: input.calendar,
-      originalIsLeapMonth: input.calendar === 'lunar' ? Boolean(input.isLeapMonth) : false,
-      originalBirthDate: input.birthDate,
-    }, profiles.saju),
+    saju: guardUnknownBirthTimeExperimental(calculatedSaju, input),
     ziwei: createEmptySystemResult('ziwei', 'needs_profile', [
       '음력 변환·윤달·명궁·신궁·사화표 판본을 확정한 뒤 계산 모듈을 연결해야 합니다.',
     ]),
@@ -186,7 +232,7 @@ export function selectTopicFeatures(result, topicId) {
 export function buildExportPayload(result, { type, topicId, question, generatedAt }) {
   const topic = TOPICS.find((item) => item.id === topicId) || TOPICS[0]
   const base = {
-    exportVersion: '1.4.0',
+    exportVersion: '1.5.0',
     exportType: type,
     generatedAt,
     schemaVersion: result.schemaVersion,
@@ -203,6 +249,8 @@ export function buildExportPayload(result, { type, topicId, question, generatedA
   }
 
   const selectedFeatures = selectTopicFeatures(result, topic.id)
+  const sajuExperimental = result.systems.saju.raw.experimental
+
   return {
     ...base,
     target: {
@@ -223,10 +271,12 @@ export function buildExportPayload(result, { type, topicId, question, generatedA
         timeBoundary: result.systems.saju.raw.timeBoundary,
         branchRelations: result.systems.saju.raw.branchRelations,
         stemRelations: result.systems.saju.raw.stemRelations,
-        gyeokguk: result.systems.saju.raw.experimental?.gyeokguk,
-        yongShin: result.systems.saju.raw.experimental?.yongShin,
-        strength: result.systems.saju.raw.experimental?.strength,
-        shinsal: result.systems.saju.raw.experimental?.shinsal,
+        experimentalStatus: sajuExperimental?.status || 'calculated',
+        experimentalReason: sajuExperimental?.description || null,
+        gyeokguk: sajuExperimental?.gyeokguk,
+        yongShin: sajuExperimental?.yongShin,
+        strength: sajuExperimental?.strength,
+        shinsal: sajuExperimental?.shinsal,
         timing: result.systems.saju.raw.timing,
         calculationUncertainty: result.systems.saju.raw.calculationUncertainty,
         supportScope: result.systems.saju.supportScope,
@@ -241,7 +291,7 @@ export function buildExportPayload(result, { type, topicId, question, generatedA
       system: system.system,
       warning,
     }))),
-    instruction: '위 자료는 페이지에서 계산 및 구조화된 결과다. 제공된 계산값을 임의로 변경하지 말고 이를 근거로 해석하라. 사주·자미두수·점성학을 각각 먼저 살펴본 뒤 공통점, 보완점, 긴장점을 구분하라. 확정할 수 없는 부분은 가능성으로 표현하고 사용자의 실제 상황과 질문을 반영해 현실적으로 설명하라.',
+    instruction: buildModelInstruction(result),
   }
 }
 
@@ -287,25 +337,32 @@ export function exportPayloadToMarkdown(payload) {
   const daYunSummary = timing.daYun.status === 'candidate_required'
     ? `후보 확인 필요 · ${timing.daYun.candidates.map((candidate) => `${candidate.sourceLabel} ${candidate.directionLabel}/${candidate.monthPillar}/첫 대운 ${candidate.cycles[0]?.value}/현재 ${candidate.cycles.find((cycle) => cycle.isActive)?.value || '없음'}`).join(' | ')}`
     : timing.daYun.status === 'calculated'
-    ? `${timing.daYun.directionLabel} · ${timing.daYun.startAge.years}년 ${timing.daYun.startAge.months}개월 ${timing.daYun.startAge.days}일 기산 · 기준일 해당 ${activeDaYun?.value || '없음'}`
-    : timing.daYun.reason
+      ? `${timing.daYun.directionLabel} · ${timing.daYun.startAge.years}년 ${timing.daYun.startAge.months}개월 ${timing.daYun.startAge.days}일 기산 · 기준일 해당 ${activeDaYun?.value || '없음'}`
+      : timing.daYun.reason
 
   const saju = payload.calculationSummary.saju
-  let gyeokgukText = saju.gyeokguk && saju.gyeokguk.name !== '불명'
-    ? `- **[Experimental] 격국**: ${saju.gyeokguk.name} (${saju.gyeokguk.type} · ${saju.gyeokguk.reason})`
-    : '- **[Experimental] 격국**: 미성격 또는 분석 불능'
-  if (saju.gyeokguk?.specialStructureCandidate) {
-    const cand = saju.gyeokguk.specialStructureCandidate
-    gyeokgukText += `\n  - **특수격 후보 (참고)**: ${cand.name} (${cand.type} · ${cand.reason})`
+  const experimentalCandidateRequired = saju.experimentalStatus === 'candidate_required'
+  let gyeokgukText = experimentalCandidateRequired
+    ? `- **[Experimental] 격국**: 후보 확인 필요 (${saju.experimentalReason})`
+    : saju.gyeokguk && saju.gyeokguk.name !== '불명'
+      ? `- **[Experimental] 격국**: ${saju.gyeokguk.name} (${saju.gyeokguk.type} · ${saju.gyeokguk.reason})`
+      : '- **[Experimental] 격국**: 미성격 또는 분석 불능'
+  if (!experimentalCandidateRequired && saju.gyeokguk?.specialStructureCandidate) {
+    const candidate = saju.gyeokguk.specialStructureCandidate
+    gyeokgukText += `\n  - **특수격 후보 (참고)**: ${candidate.name} (${candidate.type} · ${candidate.reason})`
   }
-  const yongshinText = saju.yongShin
-    ? `- **[Experimental] 희용신**: 용신 오행 ${saju.yongShin.primaryYongShinElement} / 희신 오행 ${saju.yongShin.heeShinElement} (억부: ${saju.yongShin.statement}${saju.yongShin.chohu ? ` / 조후: ${saju.yongShin.chohu.statement}` : ''})`
-    : '- **[Experimental] 희용신**: 분석 불능'
-  const shinsalSummary = saju.shinsal && saju.shinsal.length > 0
-    ? `- **[Experimental] 신살**: ${saju.shinsal.map(s => `${s.name}(${s.position === 'year' ? '연지' : s.position === 'month' ? '월지' : s.position === 'day' ? '일지' : s.position === 'hour' ? '시지' : '불명'}: ${s.branch})`).join(', ')}`
-    : '- **[Experimental] 신살**: 감지된 주요 신살 없음'
+  const yongshinText = experimentalCandidateRequired
+    ? '- **[Experimental] 희용신**: 출생시각 후보 확인 전 미산출'
+    : saju.yongShin
+      ? `- **[Experimental] 희용신**: 용신 오행 ${saju.yongShin.primaryYongShinElement} / 희신 오행 ${saju.yongShin.heeShinElement} (억부: ${saju.yongShin.statement}${saju.yongShin.chohu ? ` / 조후: ${saju.yongShin.chohu.statement}` : ''})`
+      : '- **[Experimental] 희용신**: 분석 불능'
+  const shinsalSummary = experimentalCandidateRequired
+    ? '- **[Experimental] 신살**: 출생시각 후보 확인 전 미산출'
+    : saju.shinsal && saju.shinsal.length > 0
+      ? `- **[Experimental] 신살**: ${saju.shinsal.map((item) => `${item.name}(${item.position === 'year' ? '연지' : item.position === 'month' ? '월지' : item.position === 'day' ? '일지' : item.position === 'hour' ? '시지' : '불명'}: ${item.branch})`).join(', ')}`
+      : '- **[Experimental] 신살**: 감지된 주요 신살 없음'
   const stemRelationSummary = saju.stemRelations && saju.stemRelations.items.length > 0
-    ? `- **천간 관계**: ${saju.stemRelations.items.map(r => `${r.relation === '천간합' ? `${r.label}(${r.assessment.transmutation ? '합화성립' : '합반'})` : `${r.stems.join('·')}충`}`).join(', ')}`
+    ? `- **천간 관계**: ${saju.stemRelations.items.map((relation) => `${relation.relation === '천간합' ? `${relation.label}(${relation.assessment.transmutation ? '합화성립' : '합반'})` : `${relation.stems.join('·')}충`}`).join(', ')}`
     : '- **천간 관계**: 특이 상호작용 없음'
 
   const isLunar = payload.calculationSummary.saju.inputNormalization.calendarType === 'lunar'
@@ -326,14 +383,13 @@ export function exportPayloadToMarkdown(payload) {
     `- 출생정보: ${birthSummaryText}`,
     `- 지원 지역: ${payload.birthSummary.placeName}`,
     `- 기준 도시: ${payload.birthSummary.referenceCityLabel} (${payload.birthSummary.latitude}, ${payload.birthSummary.longitude})`,
-
     '',
     '## 계산 요약',
     '',
     `- ${sajuPillars}`,
     '',
     '## Experimental 사주 분석 프로필 (검증단계)',
-    '※ 주의: 아래 항목들은 검증단계의 학술적 실험 결과물입니다. 공식 확정값이 아니므로 해석 시 신중히 검토해 주시기 바랍니다.',
+    '※ 주의: 아래 항목들은 검증단계의 실험 결과물입니다. 후보 또는 미산출 상태를 임의로 확정하지 마세요.',
     '',
     gyeokgukText,
     yongshinText,
@@ -363,10 +419,10 @@ export function exportPayloadToMarkdown(payload) {
     uncertainties,
     '',
     '### 2. 계산/판정 제약 조건 (Limitations)',
-    payload.calculationSummary.saju.supportScope.limitations.map(lim => `- **${lim.title}** (${lim.status}): ${lim.impact}`).join('\n'),
+    payload.calculationSummary.saju.supportScope.limitations.map((limitation) => `- **${limitation.title}** (${limitation.status}): ${limitation.impact}`).join('\n'),
     '',
     '### 3. 미구현 미지원 기능 (Unsupported)',
-    payload.calculationSummary.saju.unsupported.map(un => `- **${un.title}** (${un.status})${un.examples ? ` (예: ${un.examples.join(', ')})` : ''}`).join('\n'),
+    payload.calculationSummary.saju.unsupported.map((item) => `- **${item.title}** (${item.status})${item.examples ? ` (예: ${item.examples.join(', ')})` : ''}`).join('\n'),
     '',
     '## 해석 모델 지시문',
     '',
