@@ -1,4 +1,7 @@
-export const INTERPRETATION_PREP_SCHEMA_VERSION = '1.9.0'
+import { getSystemCapabilities } from './engineCapabilities.js'
+import { resolveSystemStatus } from './statusResolver.js'
+
+export const INTERPRETATION_PREP_SCHEMA_VERSION = '1.10.0'
 export const SAJU_ADAPTER_VERSION = 'saju-adapter-1.9.0'
 
 // Korea Meteorological Administration observation-station coordinates.
@@ -101,10 +104,14 @@ export const STATUS_META = {
   needs_profile: { label: '기준 선택 필요', tone: 'danger' },
 }
 
-export function createEmptySystemResult(system, status, warnings = []) {
+export function createEmptySystemResult(system, requestedStatus, warnings = []) {
+  const capabilities = getSystemCapabilities(system)
+  const status = resolveSystemStatus({ system, requestedStatus })
+
   return {
     system,
     status,
+    capabilities,
     engine: null,
     raw: null,
     features: [],
