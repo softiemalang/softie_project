@@ -1,5 +1,5 @@
-export const INTERPRETATION_PREP_SCHEMA_VERSION = '1.8.0'
-export const SAJU_ADAPTER_VERSION = 'saju-adapter-1.8.0'
+export const INTERPRETATION_PREP_SCHEMA_VERSION = '1.9.0'
+export const SAJU_ADAPTER_VERSION = 'saju-adapter-1.9.0'
 
 // Korea Meteorological Administration observation-station coordinates.
 // correctionMinutes is a compact display value. Calculations use the exact longitude below.
@@ -56,7 +56,7 @@ export const DEFAULT_INPUT = {
 
 export const DEFAULT_PROFILES = {
   saju: {
-    profileVersion: 'softie-saju-standard-v1.3',
+    profileVersion: 'softie-saju-standard-v1.4',
     calendarConversion: '양력 입력',
     solarTerms: 'NOAA·Meeus 겉보기 태양 황경 근사식 기반 절기 월',
     ipchunBoundary: '입춘 315° 경계',
@@ -69,7 +69,7 @@ export const DEFAULT_PROFILES = {
     twelveStages: '일간 기준 양간 순행·음간 역행',
     hiddenStemRules: 'softie constants v1',
     tenGodRules: '천간 및 지지 본기 지장간 기준',
-    branchRelationRules: 'softie natal branch relations v1 · 관계 존재 여부만',
+    branchRelationRules: 'softie natal branch relations v3 · 관계 존재와 제한된 합화 후보 계산 · 방합의 실제 오행 전환 미판정',
   },
   ziwei: {
     profileVersion: 'unconfigured',
@@ -94,6 +94,7 @@ export const STATUS_META = {
   complete: { label: '계산 완료', tone: 'success' },
   partial: { label: '핵심 계산 지원', tone: 'warning' },
   needs_verification: { label: '검증 필요', tone: 'warning' },
+  candidate_required: { label: '후보 확인 필요', tone: 'warning' },
   experimental: { label: '검증단계(Experimental)', tone: 'warning' },
   unsupported: { label: '미지원', tone: 'muted' },
   missing_input: { label: '입력값 부족', tone: 'danger' },
