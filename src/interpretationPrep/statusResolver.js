@@ -32,16 +32,11 @@ export function resolveSystemStatus({
 
   if (!hasRequiredInput) return 'missing_input'
   if (!profileReady) return 'needs_profile'
-  if (!capabilities.calculation) {
-    return capabilities.defaultStatus === 'needs_profile' && profileReady
-      ? 'unsupported'
-      : capabilities.defaultStatus
-  }
-  if (!calculationSucceeded) return 'unsupported'
   if (candidateRequired) return 'candidate_required'
   if (needsVerification) return 'needs_verification'
   if (experimental) return 'experimental'
   if (partial) return 'partial'
   if (isSystemStatus(requestedStatus)) return requestedStatus
+  if (!capabilities.calculation || !calculationSucceeded) return 'unsupported'
   return capabilities.defaultStatus
 }
