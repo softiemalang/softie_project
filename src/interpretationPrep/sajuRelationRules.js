@@ -1,4 +1,4 @@
-export const NATAL_BRANCH_RELATION_RULE_VERSION = 'softie-natal-branch-relations-v3'
+export const NATAL_BRANCH_RELATION_RULE_VERSION = 'softie-natal-branch-relations-v2'
 
 const PILLAR_LABELS = {
   year: '연지',
@@ -106,13 +106,17 @@ function uniqueBy(items, keyFor) {
   })
 }
 
+function entryIdentity(entry) {
+  return entry.position ?? entry.label ?? `${entry.branch}`
+}
+
 function entryCombinationsForBranches(entries, branches) {
   const groups = branches.map((branch) => entries.filter((entry) => entry.branch === branch))
   if (groups.some((group) => group.length === 0)) return []
 
   return groups.reduce(
     (combinations, group) => combinations.flatMap((combination) => group
-      .filter((entry) => !combination.some((selected) => selected.position === entry.position))
+      .filter((entry) => !combination.some((selected) => entryIdentity(selected) === entryIdentity(entry)))
       .map((entry) => [...combination, entry])),
     [[]],
   )
@@ -232,7 +236,7 @@ export function calculateNatalBranchRelations(pillars) {
             '자-축': '토',
             '인-해': '목',
             '묘-술': '화',
-            '진-유': '금',
+            '유-진': '금',
             '사-신': '수',
             '미-오': '화',
           }
