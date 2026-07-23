@@ -100,6 +100,35 @@ export function analyzeTongGeunAndTuGan(dayMaster, pillars) {
   return result
 }
 
+/**
+ * 분석 결과의 인식론적 성격, 도출 방법, 근거, 불확실성 수준을 나타내는 공통 메타데이터를 생성합니다.
+ */
+export function createEpistemicMetadata({
+  epistemicStatus,
+  confidence = 'medium',
+  method = { id: 'unspecified-method', label: '미지정 분석 방법' },
+  evidence = [],
+  alternatives = [],
+  limitations = [],
+  reviewNotes = '',
+}) {
+  const VALID_STATUSES = ['fact', 'derived', 'candidate', 'notable', 'open']
+  const VALID_CONFIDENCES = ['high', 'medium', 'low']
+
+  return {
+    epistemicStatus: VALID_STATUSES.includes(epistemicStatus) ? epistemicStatus : 'derived',
+    confidence: VALID_CONFIDENCES.includes(confidence) ? confidence : 'medium',
+    method: {
+      id: method.id || 'unspecified-method',
+      label: method.label || '미지정 분석 방법',
+    },
+    evidence: Array.isArray(evidence) ? evidence : [],
+    alternatives: Array.isArray(alternatives) ? alternatives : [],
+    limitations: Array.isArray(limitations) ? limitations : [],
+    reviewNotes: typeof reviewNotes === 'string' ? reviewNotes : '',
+  }
+}
+
 // 4. 신강·신약 점수 시스템 (100점 가중 만점)
 export function calculateStrengthScore(dayMaster, pillars) {
   let score = 0
@@ -144,6 +173,7 @@ export function calculateStrengthScore(dayMaster, pillars) {
   let isStrong = false
   let isWeak = false
   let candidates = []
+  let isBorderline = false
 
   if (score >= 55) {
     level = '신강 (Strong)'
@@ -156,7 +186,42 @@ export function calculateStrengthScore(dayMaster, pillars) {
   } else {
     level = '중화 경계 (Borderline)'
     candidates = ['신약', '신강']
+    isBorderline = true
   }
+
+  const basis = '표면 생조 및 득령·득지 기반 단순 득점 산식 (지장간 미반영 휴리스틱)'
+  const limitationsText = '지지 지장간의 상세한 통근(TongGeun) 상태를 정량 스코어에 직접 산입하지 않는 표면 계산 제약이 있습니다.'
+
+  const epistemicMetadata = createEpistemicMetadata({
+    epistemicStatus: 'derived',
+    confidence: isBorderline ? 'low' : 'medium',
+    method: {
+      id: 'surface-support-heuristic-v1',
+      label: '표면 생조 및 득령·득지 가중치 득점 산식',
+    },
+    evidence: [
+      {
+        source: 'pillars.month.branch',
+        value: deungRyeong ? '득령 (월지 생조/비겁)' : '실령',
+        role: '월지 득령 가중치 (+40점 산입 여부)',
+      },
+      {
+        source: 'pillars.day.branch',
+        value: deungJi ? '득지 (일지 생조/비겁)' : '실지',
+        role: '일지 득지 가중치 (+20점 산입 여부)',
+      },
+      {
+        source: 'pillars.other',
+        value: `${score}점`,
+        role: '천간/지지 인성 및 비겁 표면 배치 합산 점수',
+      },
+    ],
+    alternatives: isBorderline ? ['신약', '신강'] : [],
+    limitations: [limitationsText],
+    reviewNotes: isBorderline
+      ? '본 일간 강도 평가 결과는 표면 오행 배치를 수치화한 유도값(derived)이며, 45~54점 중화 경계 구간에 해당하여 신강/신약 판정의 불확실성(confidence: low)이 높습니다.'
+      : '본 일간 강도 평가 결과는 표면 오행 배치를 수치화한 유도값(derived)이며, 정밀한 지장간 통근 상태나 학파에 따라 최종 판정이 달라질 수 있습니다.',
+  })
 
   return {
     score,
@@ -167,9 +232,10 @@ export function calculateStrengthScore(dayMaster, pillars) {
     isWeak,
     candidates,
     model: 'surface_support_heuristic',
-    basis: '표면 생조 및 득령·득지 기반 단순 득점 산식 (지장간 미반영 휴리스틱)',
-    limitations: '지지 지장간의 상세한 통근(TongGeun) 상태를 정량 스코어에 직접 산입하지 않는 표면 계산 제약이 있습니다.',
-    includesHiddenStemRoots: false
+    basis,
+    limitations: limitationsText,
+    includesHiddenStemRoots: false,
+    epistemicMetadata,
   }
 }
 
@@ -230,7 +296,27 @@ export function determineGyeokguk(dayMaster, pillars) {
       type: '특수격 (종격) 후보',
       reason: `인성과 비겁의 표면 단순 점수가 극단적(${strength.score}점)으로 매우 높습니다. 일간의 강한 세력에 순응하는 특수격(종왕격·종강격 등)의 성립 개연성이 있으나, 정밀한 가종격 분석 및 판단은 지원 범위 외(advanced-following-structures)이므로 수동 학술 분석이 요구됩니다.`,
       score: strength.score,
-      candidates: ['종왕격', '종강격']
+      candidates: ['종왕격', '종강격'],
+      epistemicMetadata: createEpistemicMetadata({
+        epistemicStatus: 'candidate',
+        confidence: 'low',
+        method: {
+          id: 'surface-extreme-score-check-v1',
+          label: '표면 오행 쏠림(85점 이상) 기준 종격 검토 알고리즘',
+        },
+        evidence: [
+          {
+            source: 'strength.score',
+            value: strength.score,
+            role: '극단적 오행 생조/비겁 득점 확인',
+          },
+        ],
+        alternatives: ['종왕격', '종강격', '가종격'],
+        limitations: [
+          '가종격 성립 여부, 파격 요인, 지장간 세력의 정밀한 조합은 자동 판정 범위 외이므로 수동 검토가 필요합니다.',
+        ],
+        reviewNotes: '표면 득점이 극단적으로 높아 종격 후보로 제시되었으나, 최종 판정이 아닌 검토용 유력 후보(candidate) 상태입니다.',
+      }),
     }
   }
 
