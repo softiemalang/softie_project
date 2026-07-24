@@ -706,6 +706,7 @@ export function calculateSajuSystem(input, profile) {
         basis: strengthScore.basis,
         limitations: strengthScore.limitations,
         includesHiddenStemRoots: strengthScore.includesHiddenStemRoots,
+        ...(strengthScore.epistemicMetadata ? { epistemicMetadata: strengthScore.epistemicMetadata } : {}),
       },
       gyeokguk,
       yongShin,

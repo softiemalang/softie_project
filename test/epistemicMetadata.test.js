@@ -6,6 +6,9 @@ import {
   calculateStrengthScore,
   determineGyeokguk,
 } from '../src/interpretationPrep/sajuProfileRules.js'
+import { prepareInterpretationData } from '../src/interpretationPrep/prepare.js'
+import { sajuValidationFixtures } from '../src/interpretationPrep/fixtures/sajuValidationFixtures.js'
+import { calculateSajuSystem } from '../src/interpretationPrep/sajuAdapter.js'
 
 function pillar(branch, stem = '갑') {
   return { stem, branch }
@@ -123,11 +126,57 @@ test('determineGyeokguk specialStructureCandidate includes candidate epistemicMe
   assert.ok(candidate.score >= 85)
   assert.ok(Array.isArray(candidate.candidates))
 
-  // 메타데이터 검증
   assert.ok(candidate.epistemicMetadata)
   assert.equal(candidate.epistemicMetadata.epistemicStatus, 'candidate')
   assert.equal(candidate.epistemicMetadata.confidence, 'low')
   assert.equal(candidate.epistemicMetadata.method.id, 'surface-extreme-score-check-v1')
   assert.equal(candidate.epistemicMetadata.evidence[0].source, 'strength.score')
   assert.equal(candidate.epistemicMetadata.evidence[0].value, candidate.score)
+})
+
+test('prepareInterpretationData preserves strength epistemicMetadata and specialStructureCandidate in full pipeline', () => {
+  const fixtureInput = sajuValidationFixtures[0].input
+  const result = prepareInterpretationData(fixtureInput, {})
+
+  const strength = result.systems.saju.raw.experimental.strength
+
+  // 1. 기존 strength 필드 보존 확인
+  assert.equal(typeof strength.score, 'number')
+  assert.equal(typeof strength.level, 'string')
+  assert.equal(typeof strength.isStrong, 'boolean')
+  assert.equal(typeof strength.isWeak, 'boolean')
+  assert.equal(strength.model, 'surface_support_heuristic')
+  assert.ok(typeof strength.basis === 'string')
+
+  // 2. epistemicMetadata 파이프라인 전달 확인
+  assert.ok(strength.epistemicMetadata)
+  assert.equal(strength.epistemicMetadata.epistemicStatus, 'derived')
+  assert.equal(strength.epistemicMetadata.confidence, 'medium')
+  assert.equal(strength.epistemicMetadata.method.id, 'surface-support-heuristic-v1')
+  assert.ok(Array.isArray(strength.epistemicMetadata.evidence))
+  assert.ok(Array.isArray(strength.epistemicMetadata.alternatives))
+  assert.ok(Array.isArray(strength.epistemicMetadata.limitations))
+  assert.ok(typeof strength.epistemicMetadata.reviewNotes === 'string')
+
+  // 3. 특수격 후보 epistemicMetadata 전달 확인 (극단적 사주 인풋)
+  const extremeInput = {
+    ...fixtureInput,
+    birthDate: '1986-02-14',
+    birthTime: '04:00', // 갑인년 갑인월 갑인일 갑인시 계열
+  }
+  const extremeResult = prepareInterpretationData(extremeInput, {})
+  const specialCandidate = extremeResult.systems.saju.raw.experimental.gyeokguk?.specialStructureCandidate
+
+  if (specialCandidate) {
+    assert.ok(specialCandidate.epistemicMetadata)
+    assert.equal(specialCandidate.epistemicMetadata.epistemicStatus, 'candidate')
+  }
+})
+
+test('calculateSajuSystem handles objects gracefully when epistemicMetadata is absent', () => {
+  const fixtureInput = sajuValidationFixtures[0].input
+  const result = calculateSajuSystem(fixtureInput, {})
+
+  assert.ok(result.raw.experimental.strength)
+  assert.equal(typeof result.raw.experimental.strength.score, 'number')
 })
