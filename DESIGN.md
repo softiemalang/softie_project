@@ -1,7 +1,7 @@
 ---
 # Design Tokens
 name: softie-project
-version: 3.0.0
+version: 3.1.0
 status: design-contract
 adoption: new-and-explicitly-redesigned-surfaces
 source:
@@ -28,6 +28,7 @@ tokens:
       fill-primary: "rgba(120, 120, 120, 0.20)"
       fill-secondary: "rgba(120, 120, 128, 0.16)"
       fill-tertiary: "rgba(118, 118, 128, 0.12)"
+      fill-quaternary: "rgba(116, 116, 128, 0.08)"
       separator: "rgba(0, 0, 0, 0.12)"
       separator-opaque: "#C6C6C8"
       accent: "#0088FF"
@@ -49,6 +50,7 @@ tokens:
       fill-primary: "rgba(120, 120, 128, 0.36)"
       fill-secondary: "rgba(120, 120, 128, 0.32)"
       fill-tertiary: "rgba(118, 118, 128, 0.24)"
+      fill-quaternary: "rgba(118, 118, 128, 0.18)"
       separator: "rgba(255, 255, 255, 0.12)"
       separator-opaque: "#38383A"
       accent: "#0091FF"
@@ -85,6 +87,26 @@ tokens:
     button-regular-visual: "34px"
     button-large-visual: "50px"
     tab-bar-glass-height: "62px"
+  spacing:
+    1: "4px"
+    2: "8px"
+    3: "12px"
+    4: "16px"
+    5: "20px"
+    6: "24px"
+    8: "32px"
+    10: "40px"
+  radius:
+    control: "17px"
+    group: "22px"
+    sheet: "28px"
+    pill: "999px"
+  material:
+    regular-web-blur: "24px"
+    regular-web-saturation: "120%"
+    liquid-web-blur: "15px"
+    liquid-web-saturation: "140%"
+    fallback: "opaque background-secondary/elevated"
   motion:
     web-fast: "160ms"
     web-standard: "240ms"
@@ -209,6 +231,7 @@ Softie의 개성은 시스템 UI를 변형하는 장식보다 카피, 콘텐츠,
 
 - 모바일은 `402px` 공식 아트보드를 설계 기준으로 보고 `390px`에서 반드시 회귀 확인합니다.
 - 기본 좌우 콘텐츠 인셋은 `16px`입니다.
+- 공통 간격은 `4, 8, 12, 16, 20, 24, 32, 40px`만 사용합니다. 새 임의 간격은 두 화면 이상에서 필요성이 확인된 뒤 추가합니다.
 - 페이지는 safe area를 존중하고 하단 고정 컨트롤은 `env(safe-area-inset-bottom)`을 포함합니다.
 - 기본 목록 행과 텍스트 필드는 `52px`, 두 줄 정보나 큰 썸네일 행은 `68px`를 사용합니다.
 - 하나의 모바일 화면에서 주요 액션은 원칙적으로 하나입니다.
@@ -255,6 +278,7 @@ Liquid Glass는 탐색과 조작 계층을 띄우는 광학적 재료입니다.
 
 - 작은 독립 컨트롤은 pill 또는 capsule 형태를 사용합니다.
 - 그룹 목록과 시트는 바깥 컨테이너와 안쪽 행의 곡률을 동심 형태로 맞춥니다.
+- Softie 웹 기본값은 컨트롤 `17px`, 그룹 `22px`, 시트 `28px`, pill `999px`입니다. 이는 공식 컴포넌트의 형태를 웹에서 일관되게 재사용하기 위한 프로젝트 토큰입니다.
 - 임의의 `26–28px` 대형 카드 radius를 모든 곳에 반복하지 않습니다.
 - 구분은 그림자보다 배경 단계, 인셋, separator로 만듭니다.
 - 그림자는 떠 있는 메뉴, 시트, 팝오버처럼 실제 고도 차이가 있을 때만 사용합니다.
@@ -293,6 +317,19 @@ Liquid Glass는 탐색과 조작 계층을 띄우는 광학적 재료입니다.
 - 하단 Glass 묶음의 시각 높이는 `62px`를 기준으로 하고 safe area는 별도로 더합니다.
 - 현재 위치를 탭 색상만으로 알리지 않습니다.
 - segmented control은 짧고 상호 배타적인 선택에만 사용합니다. 긴 라벨은 탭 또는 목록으로 전환합니다.
+
+### Toggles
+
+- Boolean 설정에만 사용하며 즉시 적용되는 상태여야 합니다. 저장 버튼이 필요한 선택에는 checkbox 또는 명시적 폼을 사용합니다.
+- 시각 트랙이 `28px`여도 전체 행 또는 라벨을 포함한 hit area는 최소 `44px`입니다.
+- On/Off는 색상과 knob 위치를 함께 바꾸고, 접근 가능한 이름과 현재 상태를 제공합니다.
+
+### Search and date/time controls
+
+- 검색은 목록 탐색 맥락에서만 제공하며, 입력 중 결과 수·빈 상태·지우기 동작을 함께 설계합니다.
+- 날짜·시간은 브라우저의 네이티브 입력을 우선하고 `52px` 필드 높이와 Body 타입을 유지합니다.
+- 스케줄러처럼 날짜와 시간이 핵심인 화면은 compact picker를 단독 액션처럼 사용하지 않고 현재 값, 시간대, 저장 결과를 함께 보여줍니다.
+- 지원되지 않는 브라우저에서는 검증된 텍스트 입력으로 대체하며 포맷 예시와 오류 복구를 제공합니다.
 
 ### Sheets, alerts, and menus
 
@@ -360,6 +397,41 @@ Liquid Glass는 탐색과 조작 계층을 띄우는 광학적 재료입니다.
 - route-local 값이 두 화면 이상에서 검증된 뒤에만 공통 컴포넌트 또는 토큰으로 승격합니다.
 
 권장 순서는 작은 utility 화면 → 홈 → 스케줄러입니다. 스케줄러는 상태와 데이터 밀도가 높으므로 마지막에 운영 흐름을 보존하며 전환합니다.
+
+### Theme selection
+
+- 기본 모드는 `prefers-color-scheme`을 따릅니다.
+- 사용자 모드 선택을 추가할 경우 `system`, `light`, `dark` 세 값만 허용하고 같은 브라우저의 localStorage에 저장합니다.
+- 초기 렌더 전에 저장값을 적용해 색상 깜빡임을 막되, 저장값이 없거나 손상되면 즉시 시스템 모드로 돌아갑니다.
+- 브라우저 UI의 `theme-color`도 Light `#F2F2F7`, Dark `#000000`으로 모드별 선언합니다.
+
+### Brand expression
+
+- `system-blue`는 기본 상호작용 색이고 `product-tint`는 Softie 고유 강조가 실제 화면에서 대비 검증을 통과한 뒤 추가할 수 있는 별도 토큰입니다.
+- 공식 시스템 색상 값을 브랜드 장식에 반복하지 않습니다. Softie의 개성은 문구, 콘텐츠 순서, 사진·아트워크 선택에서 표현합니다.
+- 새 `product-tint`는 Light/Dark 값을 각각 정의하고 일반 텍스트 `4.5:1`, 큰 텍스트·UI 경계 `3:1` 조합을 검증해야 합니다.
+
+### Migration matrix
+
+| Route | Current | Target | Status |
+| --- | --- | --- | --- |
+| `/` | Atmospheric Glass | iOS 27 | Phase 1 implemented; validation evidence in `design-qa.md` |
+| `/interpretation-prep` | Warm/Atmospheric utility | iOS 27 | Preserve until route-specific review |
+| `/scheduler` | Atmospheric operational | iOS 27 | Planned after Home validation |
+| `/lead-sheet` | Performance-focused legacy | iOS 27 content-first | Planned; data safety has priority |
+
+각 라우트는 Light/Dark, `390px`, `402px`, 데스크톱, 핵심 상호작용, 콘솔 오류를 검증한 뒤 상태를 `Validated`로 바꿉니다.
+
+### Reusable CSS API
+
+- `data-design-theme="ios27"`: 새 semantic token 범위
+- `.ios27-shell`: 시스템 canvas와 기본 전경색
+- `.ios27-layout`: safe-area를 포함한 화면 레이아웃
+- `.ios27-material`: 불투명 grouped content surface
+- `.ios27-glass`: 탐색·떠 있는 조작용 Liquid Glass 근사
+- `.ios27-action`, `.ios27-action-primary`, `.ios27-action-secondary`: 최소 `44px` 액션과 상태 표현
+
+홈 화면은 이 API의 첫 참조 구현입니다. 라우트 전용 selector는 검증 없이 다른 화면에 복사하지 않고, 두 화면 이상에서 동일하게 필요한 패턴만 공통 API로 승격합니다.
 
 ## 13. Definition of done
 

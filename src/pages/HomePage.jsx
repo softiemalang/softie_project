@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { navigate } from '../lib/router'
 import { getCurrentSession, signInWithGoogle, signOut, subscribeAuthChanges } from '../lib/auth'
 import { isKakaoMemoConnected, sendKakaoMemoText, startKakaoMemoLogin } from '../lib/kakaoMessage'
@@ -12,6 +12,7 @@ export default function HomePage() {
   const [memoError, setMemoError] = useState('')
   const [isSendingMemo, setIsSendingMemo] = useState(false)
   const [isKakaoMemoReady, setIsKakaoMemoReady] = useState(() => isKakaoMemoConnected())
+  const memoTextareaRef = useRef(null)
 
   useEffect(() => {
     getCurrentSession().then(s => {
@@ -27,6 +28,29 @@ export default function HomePage() {
       sub.unsubscribe()
     }
   }, [])
+
+  useEffect(() => {
+    if (!isMemoOpen) return undefined
+
+    const previousOverflow = document.body.style.overflow
+    document.body.style.overflow = 'hidden'
+    memoTextareaRef.current?.focus()
+
+    function handleKeyDown(event) {
+      if (event.key === 'Escape' && !isSendingMemo) {
+        setIsMemoOpen(false)
+        setMemoStatus('')
+        setMemoError('')
+      }
+    }
+
+    window.addEventListener('keydown', handleKeyDown)
+
+    return () => {
+      document.body.style.overflow = previousOverflow
+      window.removeEventListener('keydown', handleKeyDown)
+    }
+  }, [isMemoOpen, isSendingMemo])
 
   const services = [
     {
@@ -172,18 +196,20 @@ export default function HomePage() {
   }
 
   return (
-    <div className="app-shell ag-shell home-shell" data-design-theme="atmospheric">
-      <main className="ag-layout home-layout">
-        <header className="ag-glass home-hero">
+    <div className="app-shell ios27-shell home-shell" data-design-theme="ios27">
+      <main className="ios27-layout home-layout">
+        <header className="ios27-glass home-hero">
           <div className="home-hero-topline">
-            <p className="ag-kicker">SOFTIE PROJECT</p>
-            <span className="home-topline-divider" aria-hidden="true">·</span>
-            <span className="home-tool-count">8 TOOLS</span>
+            <div className="home-title-lockup">
+              <p className="home-supertitle">말랑이의 작업실</p>
+              <h1>Softie Project</h1>
+              <p className="home-hero-description">일상을 조금 더 편하게 만드는 8개의 도구</p>
+            </div>
             <div className="home-auth-area">
               {isLoadingAuth ? (
                 <span className="home-auth-status">계정 확인 중</span>
               ) : session ? (
-                <div className="home-auth-signed-in home-account-bar">
+                <div className="home-auth-signed-in home-account-bar ios27-glass">
                   <p
                     className="home-auth-email"
                     aria-label={`로그인 계정 ${session.user.email}`}
@@ -191,12 +217,12 @@ export default function HomePage() {
                   >
                     {session.user.email}
                   </p>
-                  <button className="ag-secondary-action home-auth-button" onClick={handleSignOut}>
+                  <button className="ios27-action ios27-action-secondary home-auth-button" onClick={handleSignOut}>
                     로그아웃
                   </button>
                 </div>
               ) : (
-                <button className="ag-secondary-action home-auth-button" onClick={() => signInWithGoogle()}>
+                <button className="ios27-action ios27-action-secondary home-auth-button" onClick={() => signInWithGoogle()}>
                   Google로 로그인
                 </button>
               )}
@@ -206,15 +232,19 @@ export default function HomePage() {
 
         <section className="home-services" aria-label="도구 목록">
           <div className="home-section-heading">
-            <p className="ag-kicker">TOOLS</p>
+            <div>
+              <p className="home-section-supertitle">TOOLS</p>
+              <h2>도구</h2>
+            </div>
+            <span className="home-tool-count">8개</span>
           </div>
 
-          <div className="service-grid">
+          <div className="service-grid ios27-material">
             {services.map((service, index) => (
               <button
                 type="button"
                 key={service.path || service.label}
-                className="ag-glass service-card"
+                className="service-card"
                 onClick={() => service.action === 'memo' ? openMemoModal() : navigate(service.path)}
               >
                 <span className="service-index">{String(index + 1).padStart(2, '0')}</span>
@@ -247,14 +277,24 @@ export default function HomePage() {
 
       {isMemoOpen && (
         <div className="home-memo-backdrop" onClick={closeMemoModal}>
-          <section className="home-memo-sheet" role="dialog" aria-modal="true" aria-label="SOFTIE MEMO" onClick={(event) => event.stopPropagation()}>
+          <section
+            className="home-memo-sheet ios27-glass"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="home-memo-title"
+            onClick={(event) => event.stopPropagation()}
+          >
             <div className="home-memo-header">
-              <span className={`home-memo-kakao-badge ${isKakaoMemoReady ? 'success' : 'muted'}`}>
-                {isKakaoMemoReady ? '카카오 연결됨' : '카카오 재연결 필요'}
-              </span>
-              <button type="button" className="home-memo-close" onClick={closeMemoModal}>닫기</button>
+              <div>
+                <h2 id="home-memo-title">Softie Memo</h2>
+                <span className={`home-memo-kakao-badge ${isKakaoMemoReady ? 'success' : 'muted'}`}>
+                  {isKakaoMemoReady ? '카카오 연결됨' : '카카오 재연결 필요'}
+                </span>
+              </div>
+              <button type="button" className="ios27-action ios27-action-secondary home-memo-close" onClick={closeMemoModal}>닫기</button>
             </div>
             <textarea
+              ref={memoTextareaRef}
               className="home-memo-textarea"
               value={memoText}
               onChange={(event) => {
@@ -270,14 +310,14 @@ export default function HomePage() {
               <div className="home-memo-error-row">
                 <p className="home-memo-status error">{memoError}</p>
                 {memoText.trim() && (
-                  <button type="button" className="home-memo-secondary home-memo-copy" onClick={handleCopyMemo}>
+                  <button type="button" className="ios27-action ios27-action-secondary home-memo-secondary home-memo-copy" onClick={handleCopyMemo}>
                     복사
                   </button>
                 )}
               </div>
             )}
             <div className="home-memo-actions">
-              <button type="button" className="home-memo-primary" onClick={handleSendMemo} disabled={isSendingMemo || !memoText.trim()}>
+              <button type="button" className="ios27-action ios27-action-primary home-memo-primary" onClick={handleSendMemo} disabled={isSendingMemo || !memoText.trim()}>
                 {isSendingMemo ? '보내는 중...' : '나에게 보내기'}
               </button>
             </div>

@@ -267,3 +267,49 @@
 - P3: confirm the compact row once in the installed iPhone standalone PWA; the local `390×844` viewport covers the target width, but native safe-area chrome can slightly change its top offset.
 
 final result: passed
+
+## iOS 27 Home Phase 1 QA
+
+- source visual truth: `/Users/softie/Documents/softie_design/Apple iOS 27 UI Kit.sketch`
+- source identity preview: `/private/tmp/softie-ios27-source/previews/preview.png`
+- implementation: `http://127.0.0.1:4173/`
+- implementation screenshots: `/private/tmp/softie-ios27-migration/05-home-after-dark-390.png`, `/private/tmp/softie-ios27-migration/08-home-after-dark-402.png`, `/private/tmp/softie-ios27-migration/07-home-after-dark-768.png`, and `/private/tmp/softie-ios27-migration/06-home-after-dark-1280.png`
+- full-view comparison evidence: `/private/tmp/softie-ios27-migration/09-source-implementation-comparison.png`
+- source limitation: the official kit supplies system components, colors, text styles, and metrics rather than a Softie Home artboard; this phase is therefore a measured design-system adaptation, not a pixel-identical screen clone
+- tested states: logged-out Home, memo sheet open, textarea focus, disabled/enabled send action, expected signed-out send error, error copy action, Escape dismissal
+- primary navigation tested: the full `LEAD SHEET` service row navigates to `/lead-sheet` and browser Back returns to `/`
+- console errors checked: zero warnings and zero errors in the final Home state
+
+### Findings
+
+- No actionable P0, P1, or P2 difference remains within the Phase 1 Home scope.
+- Fonts and typography: the implementation uses Apple system-font fallbacks and the extracted iOS type roles: `34/41` desktop large title, `30/36` compact large title, `22/28` title, `17/22` headline/body, `15/20` subheadline, and `13/18` footnote.
+- Spacing and layout rhythm: shared `4–40px` spacing tokens, `17/22/28px` radii, content-driven service rows, and `44px` minimum actions replace route-local decorative sizing. The first three mobile rows measure `99px`, expanding above the `68px` large-row minimum to preserve Korean wrapping.
+- Colors and visual tokens: the official semantic Light/Dark colors are defined under `data-design-theme="ios27"`. The active browser rendered the system Dark state with `#000000` canvas, `#1C1C1E` elevated surfaces, `#0091FF` action tint, and semantic label/separator alpha values.
+- Material hierarchy: Liquid Glass is limited to the floating hero/auth and memo sheet. The eight tools use one opaque grouped material with separators instead of eight independent glass cards.
+- Responsive fit: `scrollWidth === viewport width` at `390`, `402`, `768`, and `1280px`. The content width is capped at `860px` on desktop and centered at a measured `210px` left inset in the `1280px` viewport.
+- Interaction and accessibility: the page exposes one level-1 heading, one level-2 tools heading, a named tools region, full-row semantic buttons, visible focus styling, a labeled modal dialog, textarea autofocus, body scroll lock, and Escape dismissal. The login action measures exactly `44px` high at `402px`.
+- Copy and behavior: service labels, descriptions, route destinations, Google login behavior, memo request behavior, and the existing signed-out error path are preserved. No authentication, scheduler, Supabase, or data logic changed.
+- Image and asset fidelity: no new visible asset, placeholder, SVG, emoji, CSS illustration, or generated image was introduced. The official Sketch remains the source of system tokens and metrics.
+
+### Comparison history
+
+- Iteration 23: the former warm photographic Home was replaced with the first scoped iOS 27 implementation. The initial compact render inherited the legacy section-heading column direction; the mobile override now restores the required left title / right count row. The final combined source-and-implementation review found no blocking typography, spacing, radius, separator, wrapping, crop, or overflow issue.
+
+### Implementation checklist
+
+- [x] Add scoped iOS 27 semantic tokens without deleting legacy route tokens.
+- [x] Add reusable shell, layout, material, glass, and action APIs.
+- [x] Convert Home to one grouped content surface and selective glass hierarchy.
+- [x] Preserve all Home routes and memo behavior.
+- [x] Verify `390px`, `402px`, `768px`, and `1280px` without horizontal overflow.
+- [x] Verify memo input, error recovery, Escape dismissal, and service navigation.
+- [x] Verify final browser console state, unit tests, production build, and diff whitespace.
+
+### Follow-up polish
+
+- P3: visually confirm the Light appearance in a light-system browser; the official Light tokens are implemented, but this browser session exposed only the system Dark preference.
+- P3: confirm safe-area padding and reduced-transparency behavior once in an installed iPhone PWA.
+- P3: migrate `/interpretation-prep`, `/scheduler`, and `/lead-sheet` independently; their dense or performance-critical flows should not inherit the Home composition blindly.
+
+final result: passed
