@@ -1,420 +1,385 @@
 ---
 # Design Tokens
 name: softie-project
-version: 2.5.0
-adoption: new-and-redesigned-surfaces
+version: 3.0.0
+status: design-contract
+adoption: new-and-explicitly-redesigned-surfaces
+source:
+  title: "Apple iOS 27 UI Kit"
+  file: "../softie_design/Apple iOS 27 UI Kit.sketch"
+  sha256: "5941547509b49a3756667905f18492dfdf4e59a977de1deacccfcf7ff94ac295"
+  sketch-version: "2026.2"
+  sketch-build: 231037
+  pages: 34
+  shared-swatches: 107
+  text-styles: 105
+  layer-styles: 42
 tokens:
-  colors:
-    atmosphere-fallback: "#5b5848"
-    canvas: "#11120f"
-    atmosphere-overlay: "rgba(18, 18, 13, 0.40)"
-    surface-glass: "rgba(45, 41, 34, 0.66)"
-    surface-glass-strong: "rgba(37, 34, 29, 0.82)"
-    surface-operational: "rgba(17, 17, 14, 0.52)"
-    surface-selected: "rgba(219, 204, 175, 0.20)"
-    surface-liquid: "rgba(32, 29, 23, 0.44)"
-    surface-liquid-strong: "rgba(32, 29, 23, 0.50)"
-    text: "#f4eee4"
-    text-muted: "#d0c7b9"
-    text-tertiary: "#a39b8c"
-    text-faint: "#a39b8c"
-    brand: "#d5c5aa"
-    brand-hover: "#e3d7c0"
-    accent: "#d8c9ae"
-    line: "rgba(238, 229, 210, 0.14)"
-    line-strong: "rgba(238, 229, 210, 0.31)"
-    line-liquid: "rgba(255, 246, 228, 0.42)"
-    highlight-liquid: "rgba(255, 255, 255, 0.34)"
-    focus: "#fff1d2"
-  semantic:
-    success: "#b8c8a5"
-    success-soft: "rgba(134, 153, 111, 0.22)"
-    warning: "#d6b37e"
-    warning-soft: "rgba(186, 143, 78, 0.20)"
-    danger: "#d7a0a0"
-    danger-soft: "rgba(161, 84, 85, 0.22)"
+  color:
+    light:
+      background-primary: "#FFFFFF"
+      background-secondary: "#F2F2F7"
+      grouped-primary: "#F2F2F7"
+      grouped-secondary: "#FFFFFF"
+      label-primary: "#000000"
+      label-secondary: "rgba(60, 60, 67, 0.60)"
+      label-tertiary: "rgba(60, 60, 67, 0.30)"
+      label-quaternary: "rgba(60, 60, 67, 0.18)"
+      fill-primary: "rgba(120, 120, 120, 0.20)"
+      fill-secondary: "rgba(120, 120, 128, 0.16)"
+      fill-tertiary: "rgba(118, 118, 128, 0.12)"
+      separator: "rgba(0, 0, 0, 0.12)"
+      separator-opaque: "#C6C6C8"
+      accent: "#0088FF"
+      destructive: "#FF383C"
+      success: "#34C759"
+      warning: "#FF8D28"
+    dark:
+      background-primary: "#000000"
+      background-secondary: "#1C1C1E"
+      grouped-primary: "#000000"
+      grouped-secondary: "#1C1C1E"
+      grouped-tertiary: "#2C2C2E"
+      elevated-primary: "#1C1C1E"
+      elevated-secondary: "#2C2C2E"
+      label-primary: "#FFFFFF"
+      label-secondary: "rgba(235, 235, 245, 0.60)"
+      label-tertiary: "rgba(235, 235, 245, 0.30)"
+      label-quaternary: "rgba(235, 235, 245, 0.16)"
+      fill-primary: "rgba(120, 120, 128, 0.36)"
+      fill-secondary: "rgba(120, 120, 128, 0.32)"
+      fill-tertiary: "rgba(118, 118, 128, 0.24)"
+      separator: "rgba(255, 255, 255, 0.12)"
+      separator-opaque: "#38383A"
+      accent: "#0091FF"
+      destructive: "#FF4245"
+      success: "#30D158"
+      warning: "#FF9230"
+    liquid-label:
+      light-primary: "#1A1A1A"
+      light-secondary: "#727272"
+      dark-primary: "#EDEDED"
+      dark-secondary: "#8A8A8A"
   typography:
-    font-family: "-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
-    size-base: "16px"
-    size-hero: "clamp(1.45rem, 4.2vw, 2.65rem)"
-    size-section: "clamp(1.3rem, 2.2vw, 1.8rem)"
-    size-card: "1.15rem"
-    size-small: "0.78rem"
-    size-operational-display: "clamp(1.18rem, 5vw, 1.4rem)"
-    size-operational-title: "0.78rem"
-    size-operational-value: "0.9rem"
-    size-operational-body: "0.82rem"
-    size-operational-meta: "0.76rem"
-    size-operational-control: "0.8rem"
-    size-operational-badge: "0.7rem"
-    weight-bold: "700"
-    weight-medium: "550"
-    weight-operational-display: "650"
-    weight-operational-value: "650"
-    weight-operational-body: "450"
-    weight-operational-meta: "550"
-    weight-operational-control: "600"
-    tracking-display: "-0.04em"
-    tracking-kicker: "0.1em"
-  spacing:
-    layout-padding-mobile: "1rem"
-    layout-padding-desktop: "clamp(1.25rem, 3vw, 2.5rem)"
-    section-gap: "1.15rem"
-    gap-standard: "1rem"
-    gap-tight: "0.75rem"
-    content-inset: "clamp(1.2rem, 2.5vw, 1.7rem)"
-    compact-action-visible-height: "30–36px"
-    compact-action-hit-area: "44px"
-  rounded:
-    hero: "28px"
-    card: "26px"
-    item: "18px"
-    control: "14px"
-    pill: "999px"
-  elevation:
-    shadow-glass: "0 26px 70px rgba(13, 12, 9, 0.28)"
-    shadow-control: "0 8px 24px rgba(18, 16, 12, 0.16)"
-    shadow-liquid: "0 30px 72px rgba(10, 9, 7, 0.34)"
-    glass-blur: "24px"
-    glass-saturation: "118%"
-    liquid-blur: "16px"
-    liquid-saturation: "132%"
-    highlight: "inset 0 1px 0 rgba(255, 255, 255, 0.20)"
+    family: "-apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', 'Noto Sans KR', 'Segoe UI', sans-serif"
+    large-title: "34px/41px 700"
+    title-1: "28px/34px 400"
+    title-2: "22px/28px 700"
+    title-3: "20px/25px 400"
+    headline: "17px/22px 600"
+    body: "17px/22px 400"
+    callout: "16px/21px 400"
+    subheadline: "15px/20px 400"
+    footnote: "13px/18px 400"
+    caption-1: "12px/16px 500"
+    caption-2: "11px/13px 600"
+  metrics:
+    mobile-reference-source: "402px"
+    mobile-regression-width: "390px"
+    content-inset: "16px"
+    touch-target-min: "44px"
+    row-default: "52px"
+    row-large: "68px"
+    input-height: "52px"
+    button-small-visual: "28px"
+    button-regular-visual: "34px"
+    button-large-visual: "50px"
+    tab-bar-glass-height: "62px"
   motion:
-    duration-fast: "180ms"
-    easing-standard: "ease"
-  layout:
-    content-simple: "760px"
-    content-utility: "860px"
-    content-wide: "1180px"
-    breakpoint-stack: "700px"
-    breakpoint-split: "960px"
-    mobile-reference: "390px"
-  components:
-    button-primary:
-      background: "{colors.brand}"
-      text: "#2f2a22"
-      min-height: "44px"
-      rounded: "{rounded.control}"
-    button-compact:
-      visual-height: "30–36px"
-      hit-area: "44px"
-      gap: "6–8px"
-      rounded: "{rounded.pill}"
-    card-primary:
-      background: "{colors.surface-glass}"
-      border: "1px solid {colors.line}"
-      rounded: "{rounded.card}"
-      blur: "{elevation.glass-blur}"
-    card-liquid:
-      background: "{colors.surface-liquid}"
-      border: "1px solid {colors.line-liquid}"
-      rounded: "{rounded.card}"
-      blur: "{elevation.liquid-blur}"
-    input:
-      background: "{colors.surface-operational}"
-      border: "1px solid {colors.line}"
-      min-height: "44px"
-      rounded: "{rounded.control}"
-reference-implementations:
-  - route: "/interpretation-prep"
-    role: "complex utility and form"
-    stylesheet: "src/interpretationPrep/interpretationPrep.css"
-    atmosphere-image: "src/scheduler/assets/scheduler-atmosphere-v4.jpg"
-  - route: "/"
-    role: "editorial service index"
-    stylesheet: "src/styles.css"
-    atmosphere-image: "src/scheduler/assets/scheduler-atmosphere-v4.jpg"
-  - route: "/scheduler"
-    role: "dense operational workflow"
-    stylesheet: "src/styles.css"
-    atmosphere-image: "src/scheduler/assets/scheduler-atmosphere-v4.jpg"
-legacy-theme:
-  name: warm-classic
-  status: existing-screens-only
-  background: "#f5efe7"
-  surface: "rgba(255, 252, 248, 0.88)"
-  brand: "#1f6f5f"
+    web-fast: "160ms"
+    web-standard: "240ms"
+    easing: "cubic-bezier(0.2, 0.8, 0.2, 1)"
+legacy-themes:
+  atmospheric:
+    status: existing-implementation-only
+    selector: "data-design-theme='atmospheric'"
+    api: "ag-*"
+  warm-classic:
+    status: existing-screens-only
 ---
 
-# Softie Design System
+# Softie Design System — iOS 27
 
-이 문서는 프로젝트의 디자인 진실의 원천(Source of Truth)입니다. 새로운 페이지와 명시적으로 리뉴얼하는 화면은 이 가이드를 기본값으로 사용합니다.
+이 문서는 Softie의 새 화면과 명시적으로 리뉴얼하는 화면을 위한 디자인 진실의 원천입니다. 기준 자료는 사용자가 추가한 Apple 공식 `Apple iOS 27 UI Kit.sketch`이며, 문서의 수치와 색상은 해당 Sketch 패키지의 공유 스와치·텍스트 스타일·컴포넌트 프레임에서 추출했습니다.
 
-기존 화면은 자동으로 재스타일링하지 않습니다. `warm-classic`을 사용하는 기존 페이지는 기능과 시각 상태를 확인하면서 라우트 단위로 점진적으로 전환합니다.
+이 시스템의 목표는 iOS 화면을 픽셀 단위로 복제하는 것이 아닙니다. Apple의 **명확한 정보 위계, 동적 색상, 콘텐츠 중심 표면, 선택적 Liquid Glass, 일관된 컨트롤 크기**를 React/Vite 웹 앱에 맞게 번역합니다.
 
-## 1. Core direction
+## 1. Design direction
 
-기본 디자인 방향은 **Warm Nostalgic Atmospheric Glass**입니다.
+기본 방향은 **Native Clarity with Selective Liquid Glass**입니다.
 
-- **Warm Nostalgic:** 빛바랜 필름처럼 따뜻한 올리브·세피아·크림 계열이 정서를 만듭니다.
-- **Atmospheric:** 저채도 사진 또는 차분한 단색 캔버스가 화면의 깊이를 만듭니다.
-- **Selective Glass:** 유리는 주요 계층에만 사용하고 모든 요소를 투명하게 만들지 않습니다.
-- **Editorial:** 넓은 여백, 명확한 제목, 작은 키커로 정보에 리듬을 만듭니다.
-- **Operational:** 입력과 긴 결과는 안정적인 표면과 높은 대비를 우선합니다.
-- **Soft:** 모서리, 그림자, 상태색은 부드럽고 절제된 형태를 유지합니다.
+- **Content first:** 장식보다 일정, 상태, 입력값, 다음 행동이 먼저 읽혀야 합니다.
+- **System hierarchy:** 크기, 굵기, 동적 레이블 색상으로 위계를 만들고 카드와 그림자를 반복하지 않습니다.
+- **Adaptive:** Light/Dark를 각각 설계합니다. 한 모드의 색을 반전해 다른 모드를 만들지 않습니다.
+- **Selective glass:** Liquid Glass는 내비게이션과 떠 있는 컨트롤에 집중합니다. 본문 전체를 유리 카드로 덮지 않습니다.
+- **Concentric geometry:** 컨테이너와 내부 컨트롤의 곡률은 같은 중심을 공유하는 것처럼 정렬합니다.
+- **Operational calm:** 모바일에서 짧게 사용하는 도구답게 한 화면의 선택지와 강조점을 줄입니다.
 
-목표는 “조용하고 오래된 사진 같은 온기”와 “도구로서의 명확성”을 동시에 확보하는 것입니다. 장식이 기능을 가리거나 가독성을 희생해서는 안 됩니다.
+Softie의 개성은 시스템 UI를 변형하는 장식보다 카피, 콘텐츠, 이미지 선택, 데이터 표현에서 만듭니다.
 
-## 2. Color system
+## 2. Source fidelity and web adaptation
 
-### Default palette
+### Source-exact facts
 
-- **Canvas — Forest Charcoal:** `#11120f`
-- **Atmosphere fallback — Faded Olive:** `#5b5848`
-- **Atmosphere overlay — Sepia Shadow:** `rgba(18, 18, 13, 0.40)`
-- **Primary glass — Smoked Taupe:** `rgba(45, 41, 34, 0.66)`
-- **Strong glass — Dark Walnut Smoke:** `rgba(37, 34, 29, 0.82)`
-- **Operational surface — Ink Olive:** `rgba(17, 17, 14, 0.52)`
-- **Selected surface — Aged Parchment:** `rgba(219, 204, 175, 0.20)`
-- **Primary text — Warm Ivory:** `#f4eee4`
-- **Secondary text — Linen Beige:** `#d0c7b9`
-- **Tertiary text — Weathered Stone:** `#a39b8c`
-- **Brand/primary action — Parchment Cream:** `#d5c5aa`
-- **Accent — Soft Oat:** `#d8c9ae`
-- **Success — Muted Sage:** `#b8c8a5`
-- **Warning — Honey Ochre:** `#d6b37e`
-- **Danger — Dusty Rose:** `#d7a0a0`
+- 공식 예제 iPhone 아트보드는 `402×874pt`입니다.
+- 기본 텍스트 필드는 `288×52pt`, 좌우 인셋은 `16pt`입니다.
+- 기본 목록 행은 `52pt`, 큰 행은 `68pt`입니다.
+- 버튼의 시각 높이는 Small `28pt`, Regular/Medium `34pt`, Large `50pt`입니다.
+- iPhone 탭 바의 Glass 묶음은 `346×62pt`이며 개별 탭은 `54–72pt` 폭을 사용합니다.
+- 공유 타입 역할은 Large Title `34/41`, Title 1 `28/34`, Title 2 `22/28`, Title 3 `20/25`, Headline/Body `17/22`를 중심으로 구성됩니다.
+- 공식 Liquid Glass Medium 스타일은 custom glass blur `15`, saturation `1.4`, distortion `0.3`, depth `0.9`를 포함합니다.
+- 공식 Regular Material은 blur `75`를 사용하고, Light는 흰색 혼합 레이어, Dark는 검정 반투명 레이어로 모드별 광학 특성을 다르게 만듭니다.
 
-순색이나 네온은 기본 팔레트로 사용하지 않습니다. 상태색은 반드시 텍스트·아이콘·테두리 같은 두 번째 신호와 함께 사용합니다.
+### Web adaptation rules
 
-### Text tone hierarchy
+- CSS `backdrop-filter`는 Sketch의 distortion, depth, 조명 효과를 동일하게 재현하지 못합니다. 웹 구현은 **시각적 등가물**이며 Apple 렌더러와 픽셀 일치를 주장하지 않습니다.
+- `pt`는 이 프로젝트의 CSS에서 기본적으로 `px`와 1:1 설계 단위로 번역하되, 브라우저 확대와 사용자 글꼴 설정을 막지 않습니다.
+- Apple 플랫폼 글꼴은 `-apple-system`으로 사용합니다. SF Pro 폰트 파일을 저장소에 복사하거나 웹폰트로 재배포하지 않습니다.
+- 앱의 실제 회귀 기준은 기존 지원 폭 `390px`과 소스 기준 `402px`를 모두 사용합니다.
+- 값이 Source-exact 목록에 없으면 이 문서의 수치는 Softie 웹 구현 규칙이지 Apple의 공식 수치가 아닙니다.
 
-이 프로젝트는 밝은 흰색을 넓게 반복하기보다 **따뜻한 명도 차이**로 위계를 만듭니다. `Primary text`는 가장 중요한 현재 값과 핵심 제목에만 제한하고, 화면의 대부분은 `Secondary`와 `Tertiary`가 차분하게 받칩니다.
+## 3. Color system
 
-- **Primary / Warm Ivory:** 현재 상태의 핵심 값, 선택된 값, 반드시 먼저 읽어야 하는 제목에만 사용합니다.
-- **Secondary / Linen Beige:** 카드 제목, 장소·시간처럼 중요한 보조 정보, 일반 컨트롤 텍스트에 사용합니다.
-- **Tertiary / Weathered Stone:** 고객명, 설명, 메타데이터, 모달 각주, 비활성 정보에 사용합니다.
-- 동일한 카드 안에서 제목·장소·이름·상태를 모두 Primary로 만들지 않습니다. 한 묶음에는 하나의 시각적 시작점만 둡니다.
-- `#ffffff` 같은 순백은 기본 텍스트로 사용하지 않습니다. 사진 위에서 대비가 더 필요하면 먼저 표면 불투명도나 오버레이를 조절합니다.
-- 성공·경고·위험 색은 항상 의미가 있는 상태에만 사용합니다. 시간 초과는 Honey Ochre, 삭제·파괴 동작은 Dusty Rose의 저채도 표면을 사용합니다.
+색상은 용도가 아니라 외형으로 이름 짓지 않습니다. `label-secondary`를 임의의 회색으로 바꾸거나 Light 토큰을 Dark에서 재사용하지 않습니다.
 
-## 3. Atmospheric imagery
+### Light
 
-사진은 장식이 아니라 최상위 배경 레이어입니다.
+| Role | Value | Use |
+| --- | --- | --- |
+| Background primary | `#FFFFFF` | 일반 페이지 바닥 |
+| Grouped background | `#F2F2F7` | 설정, 폼, 그룹 목록 바닥 |
+| Grouped secondary | `#FFFFFF` | 그룹 내부 표면 |
+| Label primary | `#000000` | 제목, 현재 값, 핵심 본문 |
+| Label secondary | `rgba(60, 60, 67, 0.60)` | 설명, 메타데이터 |
+| Label tertiary | `rgba(60, 60, 67, 0.30)` | 비활성 보조 정보 |
+| Fill secondary | `rgba(120, 120, 128, 0.16)` | 비강조 컨트롤 배경 |
+| Separator | `rgba(0, 0, 0, 0.12)` | 목록 구분선 |
+| Accent | `#0088FF` | 기본 상호작용, 선택, 포커스 |
+| Destructive | `#FF383C` | 삭제와 파괴적 동작 |
 
-- 어두운 숲, 늦은 오후의 길, 실내 전구빛, 오래된 패브릭, 빛바랜 꽃처럼 피사체가 조용하고 온도가 따뜻한 이미지를 선호합니다.
-- 필름 그레인, 낮은 채도, 깊은 그림자는 허용하지만 본문 뒤의 명암 변화는 과하지 않아야 합니다.
-- 중앙과 주요 텍스트 뒤는 낮은 대비여야 합니다.
-- 배경에는 단색 반투명 오버레이를 적용해 화면 전체의 텍스트 대비를 안정화합니다.
-- 화면별 이미지가 없다면 `atmosphere-fallback` 또는 `canvas`를 사용합니다.
-- 실제 사진 자산 없이 CSS 그래디언트·도형·임시 박스로 사진 분위기를 흉내 내지 않습니다.
-- 사진 위에 텍스트가 직접 놓이는 경우에도 본문은 반드시 읽을 수 있어야 합니다.
+### Dark
 
-홈·해석 준비 도구·스케줄러의 승인된 공용 기준 배경은 `scheduler-atmosphere-v4.jpg`입니다. 낡은 토프 패브릭, 작은 곰 인형, 헤드폰과 악기처럼 개인 작업실을 암시하는 피사체를 사용하되, 화면 중앙과 상단은 글라스 카드가 안정적으로 읽히도록 어둡고 단순한 면을 남깁니다. 곰 인형은 카메라와 직접 눈을 맞추지 않고 화면 왼쪽 아래를 향해 조용한 보조 피사체로 머물게 합니다. 피사체보다 **olive-charcoal 그림자, cocoa·taupe 중간색, aged cream 하이라이트, 잔잔한 필름 입자**를 핵심 자산 특성으로 봅니다.
+| Role | Value | Use |
+| --- | --- | --- |
+| Background primary | `#000000` | 기본 바닥 |
+| Background secondary | `#1C1C1E` | 일반 보조 표면 |
+| Grouped tertiary | `#2C2C2E` | 중첩된 운영 표면 |
+| Label primary | `#FFFFFF` | 제목, 현재 값, 핵심 본문 |
+| Label secondary | `rgba(235, 235, 245, 0.60)` | 설명, 메타데이터 |
+| Label tertiary | `rgba(235, 235, 245, 0.30)` | 비활성 보조 정보 |
+| Fill secondary | `rgba(120, 120, 128, 0.32)` | 비강조 컨트롤 배경 |
+| Separator | `rgba(255, 255, 255, 0.12)` | 목록 구분선 |
+| Accent | `#0091FF` | 기본 상호작용, 선택, 포커스 |
+| Destructive | `#FF4245` | 삭제와 파괴적 동작 |
 
-- 모바일 크롭을 우선하며, 피사체는 오른쪽 아래에 작게 배치합니다.
-- 배경 사진 자체가 이미 어두우면 `background-blend-mode`로 추가 착색하지 않고 낮은 강도의 단색 오버레이만 사용합니다.
-- 승인된 세 기준 화면은 같은 사진을 사용해 제품의 정서를 연결하되, 오버레이 강도와 글라스 불투명도는 정보 밀도에 맞게 조절합니다.
-- 긴 페이지에서도 사진이 문서 높이만큼 늘어나지 않도록 배경 사진 레이어는 viewport에 고정합니다.
-- 아직 `warm-classic`을 쓰는 기존 도구는 기능 상태를 확인한 뒤 라우트 단위로 전환합니다.
-- 사용자 제공 사진은 분위기와 팔레트 참고 자료로만 사용하고 제품 자산에 직접 복사하지 않습니다.
+### Semantic use
 
-## 4. Surface hierarchy
+- Accent는 한 화면의 주요 상호작용에만 사용합니다. 제목과 장식에 반복하지 않습니다.
+- Success는 Light `#34C759`, Dark `#30D158`을 사용하되 텍스트나 아이콘을 함께 표시합니다.
+- Warning은 Light `#FF8D28`, Dark `#FF9230`을 사용합니다. 단순 대기 상태를 오류처럼 표현하지 않습니다.
+- Destructive는 실제 데이터 삭제, 구독 해제, 방 나가기처럼 되돌리기 어려운 행동에만 사용합니다.
+- 사진 위 텍스트는 사진 자체에 직접 의존하지 않습니다. 읽기 가능한 Material 또는 불투명 표면을 먼저 제공합니다.
+- `color-scheme: light dark`와 모드별 변수 집합을 사용합니다. CSS 필터로 전체 화면을 반전하지 않습니다.
 
-한 화면에서는 다음 세 단계만 사용합니다.
+## 4. Typography
 
-1. **Atmosphere / Canvas:** 사진 또는 단색 바닥 레이어.
-2. **Primary Glass:** 히어로, 내비게이션, 주요 섹션 카드. `surface-glass`와 `blur(24px)`를 기본으로 사용합니다.
-3. **Operational Surface:** 입력창, 데이터 행, 펼침 영역, 긴 결과. `surface-operational` 또는 `surface-glass-strong`을 사용합니다.
+공식 타입 역할을 그대로 이름으로 사용합니다.
 
-유리 패널 안에 또 다른 유리 패널을 반복해서 중첩하지 않습니다. 내부 요소는 더 단단한 표면이나 구분선으로 정리합니다.
-
-### Warm Liquid Glass variant
-
-Warm Liquid Glass는 따뜻한 사진의 색과 형태가 패널 안에서도 보이도록 투명도와 가장자리 빛을 강화한 선택적 변형입니다.
-
-- **Liquid surface:** `rgba(32, 29, 23, 0.44)`를 사용해 배경의 색과 큰 형태를 남깁니다.
-- **Liquid strong surface:** 모달처럼 집중이 필요한 부유 패널에는 `rgba(32, 29, 23, 0.50)`를 사용합니다.
-- **Edge light:** `rgba(255, 246, 228, 0.42)`의 얇은 외곽선과 `rgba(255, 255, 255, 0.34)`의 상단 하이라이트를 함께 사용합니다.
-- **Optics:** `blur(16px)`, `saturate(132%)`를 기본으로 하며, 배경이 완전히 뭉개지지 않도록 일반 Primary Glass보다 블러를 낮춥니다.
-- **Use for:** 로그인·계정 카드, 히어로 요약, 필터·설정·확인 모달, 화면당 한 개의 주요 폼처럼 정보 밀도가 낮은 핵심 표면.
-- **Avoid for:** 반복 일정, 표·목록, 긴 결과, 작은 버튼처럼 한 화면에 많이 반복되거나 빠른 판독이 필요한 표면.
-- Liquid Glass 내부 입력은 밝은 반투명 표면을 사용할 수 있지만, 텍스트 대비와 라벨은 Operational 기준을 유지합니다.
-
-이 변형은 전체 화면을 유리로 만드는 새 기본 테마가 아니라, Warm Nostalgic Atmospheric Glass 안에서 중요도가 높은 표면에만 사용하는 강조 단계입니다.
-
-## 5. Typography
-
-- 기본 글꼴은 시스템 산세리프를 사용해 한글 가독성과 성능을 확보합니다.
-- 히어로 제목은 가능한 한 한 줄로 유지하고, 모바일에서는 크기를 줄여 억지 줄바꿈을 피합니다.
-- 제목은 `700`, 좁은 자간 `-0.04em`을 기본으로 합니다.
-- 영문 키커는 `0.78rem`, `700`, `0.1em`, Uppercase를 사용합니다.
-- 읽기 중심 본문은 최소 `16px`, 권장 line-height `1.55–1.7`을 사용합니다.
-- 고밀도 운영 화면의 짧은 라벨·메타데이터는 아래 역할표에 따라 더 작게 사용할 수 있지만, 긴 설명문과 입력값에는 적용하지 않습니다.
-- 폼의 실제 `input`, `select`, `textarea`는 iOS 자동 확대를 막기 위해 `16px` 이상을 유지합니다.
-- 세리프 글꼴은 에디토리얼 콘텐츠의 짧은 표시 제목에만 선택적으로 허용하며, 입력·데이터·상태 UI에는 사용하지 않습니다.
-
-### Operational type roles
-
-스케줄러처럼 정보 밀도가 높은 화면은 요소별 임의 크기 대신 다음 일곱 역할을 사용합니다. 크기보다 **역할과 톤을 먼저 통일**하며, 인접 단계의 차이는 작고 안정적으로 유지합니다.
-
-| Role | Default | Weight | Use |
+| Role | Size / line-height | Default weight | Use |
 | --- | --- | --- | --- |
-| Display | `clamp(1.18rem, 5vw, 1.4rem)` | `650` | 현재 상태·합계처럼 카드의 한 가지 핵심 값 |
-| Title | `0.78rem` | `700` | 섹션명·카드명 |
-| Value | `0.9rem` | `650` | 시간·기간·주요 데이터 값 |
-| Body | `0.82rem` | `450` | 짧은 설명과 보조 문장 |
-| Meta | `0.76rem` | `550` | 이름·위치 보조 정보·각주 |
-| Control | `0.8rem` | `600` | 버튼·칩·선택지 |
-| Badge | `0.7rem` | `650` | 상태·건수·종류 배지 |
+| Large Title | `34px / 41px` | `700` | 페이지의 한 가지 큰 제목 |
+| Title 1 | `28px / 34px` | `400` | 주요 화면 제목 |
+| Title 2 | `22px / 28px` | `700` | 큰 섹션 제목 |
+| Title 3 | `20px / 25px` | `400` | 카드·시트 제목 |
+| Headline | `17px / 22px` | `600` | 행 제목, 강조 값 |
+| Body | `17px / 22px` | `400` | 입력값, 본문, 일반 목록 |
+| Callout | `16px / 21px` | `400` | 짧은 설명, 보조 컨트롤 |
+| Subheadline | `15px / 20px` | `400` | 메타데이터 |
+| Footnote | `13px / 18px` | `400` | 도움말, 각주 |
+| Caption 1 | `12px / 16px` | `500` | 배지, 짧은 보조 라벨 |
+| Caption 2 | `11px / 13px` | `600` | 공간이 제한된 시스템 메타 |
 
-- 한 카드에 Display는 최대 하나만 둡니다. 단순한 상태명은 `1rem / 600` 정도로 낮춰 Display보다 조용하게 표현할 수 있습니다.
-- 카드 제목과 핵심 값은 가까운 웜 아이보리, 설명과 고객명은 Linen Beige 또는 Weathered Stone으로 한 단계 낮춥니다.
-- 작은 글자는 굵기나 대문자 자간을 과도하게 올리지 않습니다. 한글 컨트롤은 기본 자간 `0`을 유지합니다.
-- 모바일 실사용 화면에서 글자가 작게 느껴지면 전체를 키우기보다 역할 간 대비, 행간, 표면 대비를 먼저 점검합니다.
+- 실제 `input`, `select`, `textarea`는 iOS Safari 자동 확대를 막기 위해 `16px` 이상을 유지합니다.
+- 기본 자간은 `normal`입니다. 현재의 과도한 `-0.04em` 제목과 영문 대문자 키커는 신규 화면의 기본 패턴이 아닙니다.
+- 한 화면에는 Large Title을 하나만 사용합니다. 운영 화면은 Title 2 또는 Title 3부터 시작해도 됩니다.
+- 본문을 Caption 크기로 줄여 밀도를 확보하지 않습니다. 행 구조와 정보 우선순위를 먼저 정리합니다.
+- 한글은 시스템 한글 글꼴로 자연스럽게 대체되며, SF Pro의 영문 수치만 맞추기 위해 별도 글꼴을 강제하지 않습니다.
 
-## 6. Layout and density
+## 5. Layout and density
 
-- **Simple page:** 최대 `760px`
-- **Utility page:** 최대 `860px`
-- **Wide/split workspace:** 최대 `1180px`
-- **Mobile reference:** `390px`
-- **Stack breakpoint:** `<700px`
-- **Split workspace breakpoint:** `>=960px`
+- 모바일은 `402px` 공식 아트보드를 설계 기준으로 보고 `390px`에서 반드시 회귀 확인합니다.
+- 기본 좌우 콘텐츠 인셋은 `16px`입니다.
+- 페이지는 safe area를 존중하고 하단 고정 컨트롤은 `env(safe-area-inset-bottom)`을 포함합니다.
+- 기본 목록 행과 텍스트 필드는 `52px`, 두 줄 정보나 큰 썸네일 행은 `68px`를 사용합니다.
+- 하나의 모바일 화면에서 주요 액션은 원칙적으로 하나입니다.
+- 그룹형 화면은 큰 카드 여러 개보다 `grouped background → section → row` 구조를 우선합니다.
+- 데스크톱에서는 모바일 UI를 무한히 늘리지 않습니다. 단순 폼 `680px`, 운영 도구 `860px`, 분할 작업공간 `1180px`을 상한의 출발점으로 사용합니다.
+- `>=960px`에서만 분할 레이아웃을 고려합니다. 그 전에는 한 열의 읽기 순서를 유지합니다.
 
-모바일에서는 콘텐츠를 한 열로 쌓되, 관련 선택지가 짧으면 2–3열 캡슐형 그룹을 유지할 수 있습니다. 주요 액션은 화면 밖으로 밀리거나 가로 스크롤을 만들면 안 됩니다.
+## 6. Materials and Liquid Glass
 
-### Compact operational density
+### Material
 
-- 운영 화면은 큰 카드 수를 줄이기보다 카드 내부의 상하 패딩과 반복 행 간격을 조절해 한눈에 더 많은 정보를 보여줍니다.
-- 기본 모바일 카드 인셋은 약 `1rem`, 내부 정보 시작점은 좌우가 시각적으로 정렬되어야 합니다.
-- 좁은 화면에서는 계정·알림처럼 자주 조작하지 않는 항목을 작은 상태 카드로 요약하고, 상세 조작은 모달로 옮깁니다.
-- 텍스트와 버튼을 같은 행에 놓을 때는 실제 터치 영역 때문에 생기는 빈 공간을 시각 요소의 높이로 오해하지 않습니다. 보이는 캡슐은 작게, 터치 영역은 안전하게 유지합니다.
-- 상단과 하단 패딩은 수치상 같더라도 글자의 베이스라인과 버튼의 광학적 무게를 기준으로 보정할 수 있습니다.
+Material은 콘텐츠와 배경을 분리하는 시스템 표면입니다. 목록, 긴 결과, 입력 영역처럼 읽기가 우선인 곳은 일반 Material 또는 불투명 배경을 사용합니다.
 
-## 7. Shape, depth, and motion
+- Light Regular Material은 밝은 혼합 레이어와 강한 배경 블러를 사용합니다.
+- Dark Regular Material은 검정 기반의 반투명 레이어로 대비를 확보합니다.
+- 웹에서는 기본 근사값으로 `backdrop-filter: blur(24px) saturate(120%)`를 사용하고, 모드별 반투명 배경을 별도로 둡니다.
+- 콘텐츠 대비가 부족하면 블러를 높이는 대신 표면 불투명도를 먼저 높입니다.
 
-- 히어로 `28px`, 주요 카드 `26px`, 내부 항목 `18px`, 컨트롤 `14px`, 배지는 pill 형태를 사용합니다.
-- 그림자는 넓고 부드럽게 퍼지게 하며 딱딱한 검은 외곽선을 만들지 않습니다.
-- 유리 표면은 얇은 밝은 테두리와 상단 하이라이트로 경계를 보여줍니다.
-- 기본 전환은 `180ms ease`를 사용하며 위치 변화는 작게 유지합니다.
-- `prefers-reduced-motion`에서는 전환과 애니메이션 시간을 사실상 제거합니다.
+### Liquid Glass
 
-## 8. Component defaults
+Liquid Glass는 탐색과 조작 계층을 띄우는 광학적 재료입니다.
+
+사용:
+
+- 하단 탭 바
+- 상단 툴바
+- 떠 있는 검색·필터 컨트롤
+- 작은 segmented control
+- 시트의 고정 액션 영역
+- 화면당 한 개의 핵심 Glass Prominent 버튼
+
+사용하지 않음:
+
+- 모든 콘텐츠 카드
+- 긴 목록의 각 행
+- 입력 필드 전체
+- 표와 긴 결과
+- 중첩된 글라스 안의 또 다른 글라스
+- 배경 맥락 없이 단독으로 놓이는 장식 캡슐
+
+웹 근사 구현은 `blur(15px) saturate(140%)`를 출발점으로 삼되, distortion과 depth를 가짜 CSS 그림자로 과장하지 않습니다. 얇은 내부 하이라이트와 모드별 fill만 사용하고, `backdrop-filter` 미지원 환경에서는 불투명한 `background-secondary`로 대체합니다.
+
+## 7. Shape and elevation
+
+- 작은 독립 컨트롤은 pill 또는 capsule 형태를 사용합니다.
+- 그룹 목록과 시트는 바깥 컨테이너와 안쪽 행의 곡률을 동심 형태로 맞춥니다.
+- 임의의 `26–28px` 대형 카드 radius를 모든 곳에 반복하지 않습니다.
+- 구분은 그림자보다 배경 단계, 인셋, separator로 만듭니다.
+- 그림자는 떠 있는 메뉴, 시트, 팝오버처럼 실제 고도 차이가 있을 때만 사용합니다.
+- 한 컨테이너에 테두리, 강한 그림자, 고대비 fill, blur를 모두 겹치지 않습니다.
+
+## 8. Component rules
 
 ### Buttons
 
-- Primary는 빛바랜 양피지 크림 배경과 짙은 웜 차콜 텍스트를 사용합니다.
-- Secondary/Ghost는 투명 배경과 밝은 테두리를 사용합니다.
-- Primary와 폼 액션은 외형과 터치 영역 모두 최소 `44px`을 사용합니다.
-- 카드 안에 반복되는 보조 액션은 터치 영역 `44px`을 유지하면서 보이는 캡슐을 `30–36px`로 줄입니다. 상태 배지와 나란히 놓이는 액션은 `30–32px`, 독립적인 보조 액션은 `34–36px`을 권장합니다. 이때 인접 터치 영역은 겹치지 않고 `6–8px` 간격을 둡니다.
-- 조밀한 보조 버튼은 상하 패딩을 늘려 통통하게 만들지 않습니다. 텍스트를 감싸는 작은 시각 캡슐과 바깥의 투명한 터치 컨테이너를 분리합니다.
-- 삭제처럼 위험한 보조 동작은 밝은 흰색 버튼으로 띄우지 않고 `danger-soft` 배경, Dusty Rose 텍스트, 얇은 테두리를 사용합니다.
-- 상태 확인 카드 전체가 열기 동작을 가질 때 내부의 “연결됨”은 작은 상태형 캡슐로 보여 클릭 가능성과 현재 상태를 동시에 전달합니다.
-- Hover, active, focus, disabled 상태를 모두 정의합니다.
+- 계층은 `Glass Prominent → Bordered/Glass → Borderless` 순서입니다.
+- 파괴적 버튼은 같은 구조에서 Destructive 색으로 의미만 바꿉니다.
+- 시각 높이는 Small `28px`, Regular `34px`, Large `50px`를 사용합니다.
+- Small/Regular 버튼도 투명한 바깥 hit area를 포함해 최소 `44×44px`을 보장합니다.
+- 주요 폼 제출은 Large 또는 너비가 충분한 Regular을 사용합니다.
+- 아이콘만 있는 버튼에는 접근 가능한 이름을 제공합니다.
+- pressed, focus-visible, disabled, loading 상태를 모두 정의합니다.
 
-### Cards
+### Text fields
 
-- 주요 카드는 `Primary Glass`를 사용합니다.
-- 긴 본문이나 데이터 목록은 더 불투명한 `Operational Surface`를 사용합니다.
-- 카드가 많아질수록 그림자를 반복하지 말고 구분선과 표면 차이로 계층을 표현합니다.
+- 기본 높이는 `52px`, 좌우 인셋은 `16px`, 입력 글자는 Body `17/22`입니다.
+- 라벨을 placeholder로 대체하지 않습니다.
+- 기본 구조는 하단 separator 또는 안정적인 grouped fill입니다. 모든 입력을 두꺼운 카드로 만들지 않습니다.
+- 오류는 색상, 아이콘 또는 텍스트 중 두 가지 이상의 신호로 표시하고 다음 행동을 설명합니다.
 
-### Forms
+### Lists
 
-- Input/Select/Textarea는 최소 높이 `44px`, radius `14px`를 사용합니다.
-- 입력 표면은 배경 사진보다 충분히 어둡고 안정적이어야 합니다.
-- 라벨은 placeholder로 대체하지 않습니다.
-- 선택 상태는 배경, 테두리, 텍스트 중 최소 두 가지 신호로 표시합니다.
+- 기본 행은 `52px`, 큰 행은 `68px`입니다.
+- 한 행의 leading, title/subtitle, trailing value/accessory 역할을 명확히 구분합니다.
+- separator는 콘텐츠 시작점에 맞춰 inset할 수 있습니다.
+- 행 전체가 이동 동작이면 내부에 동일한 목적의 중복 버튼을 넣지 않습니다.
+- swipe action을 웹에 그대로 흉내 내기보다 명시적 메뉴나 안전한 보조 액션을 제공합니다.
 
 ### Tabs and segmented controls
 
-- 바깥 컨테이너는 조용한 operational surface를 사용합니다.
-- 선택된 항목만 밝은 테두리와 에이지드 파치먼트 표면으로 들어 올립니다.
-- 선택 여부는 색상만으로 전달하지 않으며 키보드 포커스를 제공합니다.
+- iPhone 하단 탭은 2–5개를 사용합니다. 선택된 항목은 색상과 형태를 함께 바꿉니다.
+- 하단 Glass 묶음의 시각 높이는 `62px`를 기준으로 하고 safe area는 별도로 더합니다.
+- 현재 위치를 탭 색상만으로 알리지 않습니다.
+- segmented control은 짧고 상호 배타적인 선택에만 사용합니다. 긴 라벨은 탭 또는 목록으로 전환합니다.
+
+### Sheets, alerts, and menus
+
+- 모바일의 복잡한 보조 작업은 중앙 모달보다 bottom sheet를 우선합니다.
+- Alert는 짧은 확인과 위험 경고에만 사용합니다. 폼 전체를 Alert에 넣지 않습니다.
+- 파괴적 액션은 일반 액션과 시각적으로 분리하고 가능하면 취소를 제공합니다.
+- 메뉴 항목은 기본, 선택, 비활성, 파괴적 상태를 구분합니다.
 
 ### Status and feedback
 
-- Success, warning, danger는 채도가 낮은 semantic 색상을 사용합니다.
-- 상태 배지는 텍스트를 항상 포함합니다.
-- 정상 상태는 Muted Sage, 대기·시간 임박은 Honey Ochre, 오류·삭제는 Dusty Rose로 구분합니다.
-- 시간 초과처럼 주의가 필요하지만 파괴적이지 않은 상태를 Danger로 과장하지 않습니다.
-- 상태색이 없는 일반 값은 Warm Ivory보다 Linen Beige를 우선해 화면 전체의 밝기를 낮춥니다.
-- 오류 메시지는 문제와 다음 행동을 함께 설명합니다.
+- 상태는 색상만으로 전달하지 않고 짧은 텍스트와 아이콘을 함께 사용합니다.
+- 로딩 중에는 버튼의 폭과 레이아웃을 유지합니다.
+- 빈 상태는 큰 장식보다 제목, 이유, 다음 행동 순으로 구성합니다.
+- 오류 메시지는 발생 사실보다 복구 방법을 먼저 이해할 수 있어야 합니다.
 
-## 9. Accessibility baseline
+## 9. Motion and interaction
 
-- 일반 본문은 WCAG AA 기준 `4.5:1` 이상, 큰 텍스트는 `3:1` 이상을 목표로 합니다.
-- 주요 컨트롤과 모든 터치 영역은 최소 `44×44px`입니다. 조밀한 보조 액션은 44px 투명 컨테이너 안에 더 작은 시각 요소를 배치합니다.
-- 포커스는 `2px` 밝은 외곽선과 `3px` 간격을 기본으로 합니다.
-- hover만으로 핵심 정보를 노출하지 않습니다.
-- 상태·선택·오류는 색상만으로 구분하지 않습니다.
-- `390px`에서 가로 스크롤, 잘린 텍스트, 화면 밖 주요 액션이 없어야 합니다.
-- `forced-colors`와 `prefers-reduced-motion`을 고려합니다.
+- 웹 전환은 빠른 피드백 `160ms`, 일반 상태 변화 `240ms`를 기본으로 합니다. 이 값은 Softie 웹 근사 규칙이며 Sketch 소스의 공식 duration이 아닙니다.
+- hover는 포인터 환경의 보조 피드백일 뿐이며 핵심 상태를 담지 않습니다.
+- pressed 상태는 작은 scale 또는 fill 변화 하나로 충분합니다.
+- 시트와 메뉴는 출발 위치가 이해되는 짧은 이동을 사용합니다.
+- `prefers-reduced-motion: reduce`에서는 이동과 확대를 제거하고 즉시 또는 짧은 opacity 전환으로 대체합니다.
 
-## 10. Do and don't
+## 10. Accessibility baseline
 
-### Do
+- 모든 상호작용의 hit area는 최소 `44×44px`입니다.
+- 일반 텍스트는 WCAG AA `4.5:1`, 큰 텍스트와 UI 경계는 `3:1` 이상을 목표로 합니다.
+- `focus-visible`은 accent 기반 `2px` 외곽선과 충분한 offset으로 명확히 표시합니다.
+- Dynamic Type에 대응하도록 텍스트 컨테이너를 고정 높이로 자르지 않습니다.
+- 브라우저 확대, `200%` 텍스트 확대, 긴 한글 라벨에서 핵심 액션이 잘리지 않아야 합니다.
+- `forced-colors`, `prefers-contrast`, `prefers-reduced-transparency`, `prefers-reduced-motion`을 고려합니다.
+- 투명도 감소 환경에서는 Glass를 불투명한 secondary/elevated 표면으로 대체합니다.
 
-- 분위기 이미지와 정보 표면의 역할을 분리합니다.
-- 히어로와 주요 섹션에만 유리 효과를 집중합니다.
-- 복잡한 데이터일수록 내부 표면의 대비를 높입니다.
-- 여백과 타이포그래피로 먼저 계층을 만들고 장식은 나중에 추가합니다.
-- 실제 사용 상태와 긴 콘텐츠로 모바일·데스크톱을 검증합니다.
-- Primary text를 한 카드의 핵심 한두 지점에만 사용하고 나머지는 Secondary/Tertiary로 단계화합니다.
-- 반복 액션은 작은 시각 캡슐과 안전한 터치 영역을 분리합니다.
+## 11. Product-specific guidance
 
-### Don't
+### Scheduler
 
-- 모든 카드와 버튼에 blur와 그림자를 반복하지 않습니다.
-- 검정 단색 카드가 화면 전체를 지배하게 만들지 않습니다.
-- CSS 그래디언트나 장식 도형으로 사진 자산을 대체하지 않습니다.
-- 네온, 순색, 강한 광택, 두꺼운 그림자를 기본 스타일로 사용하지 않습니다.
-- 투명도를 높이는 대신 텍스트 대비를 희생하지 않습니다.
-- 모든 정보와 버튼 문구를 같은 밝기·굵기로 만들지 않습니다.
-- 최소 터치 영역을 그대로 보이는 버튼 높이로 표현해 반복 목록을 불필요하게 두껍게 만들지 않습니다.
+- 이벤트 목록은 `52/68px` 행과 grouped section을 기본 구조로 사용합니다.
+- 시간, 장소, 참석 상태 중 한 가지만 Headline로 두고 나머지는 Secondary/Subheadline로 낮춥니다.
+- 생성·수정은 bottom sheet 또는 독립 페이지를 사용하고, 첫 화면에는 가장 빈번한 액션만 남깁니다.
+- 알림과 위험 상태는 시스템 semantic 색상과 텍스트를 함께 사용합니다.
 
-## 11. Adoption and implementation
+### Lead sheet
 
-- 이 가이드는 **새 페이지와 명시적으로 리뉴얼하는 페이지의 기본값**입니다.
-- Warm Nostalgic 팔레트는 `2.1.0`부터 Atmospheric Glass의 공식 기본 팔레트입니다.
-- 기존 `warm-classic` 화면은 자동 변경하지 않고 라우트 단위로 마이그레이션합니다.
-- 새 화면은 기능별 shell 클래스로 범위를 제한한 뒤 검증되면 공통 토큰으로 승격합니다.
-- 공통 토큰과 재사용 컴포넌트는 `src/styles.css`에서 관리합니다.
-- 기능 전용 스타일과 이미지 자산은 해당 기능 폴더에 둡니다.
-- `/interpretation-prep`은 복잡한 입력·결과 도구의 reference implementation입니다.
-- `/` 홈은 서비스 인덱스와 에디토리얼 히어로의 reference implementation입니다.
-- `/scheduler`는 반복 이벤트, 상태 색상, 모바일 폼을 포함한 고밀도 operational workflow의 reference implementation입니다.
-- `/scheduler`에서 검증한 일곱 단계 타이포 역할과 Primary/Secondary/Tertiary 텍스트 톤은 새 고밀도 도구의 기본값입니다. 다른 페이지에 적용할 때 수치를 그대로 복사하기보다 동일한 역할 관계를 유지합니다.
-- 모달 설명과 각주는 인라인 크기 지정 대신 공통 Body/Meta 역할을 사용합니다. 기능별 예외값을 늘리기 전에 기존 역할로 해결 가능한지 확인합니다.
+- 공연 중 판독성이 우선이므로 콘텐츠 영역에는 Liquid Glass를 사용하지 않습니다.
+- 자동 저장, 로컬 데이터, 복구 상태는 항상 텍스트로 확인할 수 있어야 합니다.
+- 백업과 복원은 명확한 확인, 결과, 복구 경로를 제공합니다.
 
-세 화면은 같은 토큰과 표면 계층을 공유하지만 맥락에 맞는 배경 이미지와 밀도를 사용합니다. 새 화면은 셋 중 더 가까운 정보 구조를 기준으로 삼고, 외형을 그대로 복제하지 않습니다.
+### Home and utility tools
 
-### Reusable CSS API
+- 홈은 서비스 카드의 장식 경쟁을 줄이고 단순한 목록 또는 grouped collection으로 정리합니다.
+- 해석 준비처럼 입력이 긴 도구는 `52px` 필드와 명확한 섹션 헤더를 사용합니다.
+- 사진은 선택적 브랜드 콘텐츠로 사용할 수 있지만, 전체 제품의 필수 배경 레이어가 아닙니다.
 
-- `data-design-theme="atmospheric"`: 기존 공통 변수(`--surface`, `--text`, `--brand` 등)를 Atmospheric Glass 토큰으로 연결합니다.
-- `.ag-shell`: 사진 또는 단색 atmosphere와 대비 오버레이를 제공하는 전체 화면 shell입니다.
-- `.ag-layout`: 최대 너비와 safe-area를 포함한 공통 콘텐츠 레이아웃입니다.
-- `.ag-glass`, `.ag-glass-strong`: 주요 글라스와 더 안정적인 강한 글라스 표면입니다.
-- `.ag-liquid-glass`: 로그인·히어로·모달처럼 밀도가 낮은 핵심 표면을 위한 고투명도 Glass 변형입니다.
-- `.ag-operational-surface`: 입력·데이터·긴 결과를 위한 내부 표면입니다.
-- `.ag-primary-action`, `.ag-secondary-action`: 공통 버튼 상태를 제공합니다.
-- `.ag-segmented`: 탭·라디오형 선택 그룹의 공통 컨테이너입니다.
-- `.ag-kicker`, `.ag-status`: 키커와 텍스트 기반 상태 배지입니다.
+## 12. Adoption and implementation
 
-고밀도 도구는 기능 shell 안에서 `display`, `title`, `value`, `body`, `meta`, `control`, `badge` 역할 토큰을 정의할 수 있습니다. 검증 후 공통 토큰으로 승격하되, 실제 폼 입력의 `16px` 기준과 `44px` 터치 영역은 유지합니다.
+이 문서는 디자인 계약이며 아직 전체 코드에 구현되었다는 뜻이 아닙니다.
 
-새 페이지는 theme attribute와 필요한 `ag-*` 패턴만 선택해 사용합니다. 기존 `.hero`, `.card`, `button` 전역 클래스에는 Atmospheric Glass를 자동 적용하지 않습니다.
+- 현재 `data-design-theme="atmospheric"`과 `.ag-*` API는 기존 홈·스케줄러 화면의 레거시 구현입니다.
+- 기존 화면은 이 문서 변경만으로 자동 재스타일링하지 않습니다.
+- 새 iOS 27 스타일은 기능 단위로 설계·구현·검증한 뒤 공통 토큰으로 승격합니다.
+- 첫 구현 시 `src/styles.css`에 모드별 semantic token을 추가하고 `data-design-theme="ios27"` 범위 안에서만 적용합니다.
+- 레거시 `warm-classic`과 `atmospheric` 토큰은 참조 화면이 모두 마이그레이션되기 전까지 삭제하지 않습니다.
+- UI/CSS 마이그레이션과 스케줄러·인증·Supabase 비즈니스 로직 변경은 별도 작업으로 유지합니다.
+- route-local 값이 두 화면 이상에서 검증된 뒤에만 공통 컴포넌트 또는 토큰으로 승격합니다.
 
-## 12. Definition of done
+권장 순서는 작은 utility 화면 → 홈 → 스케줄러입니다. 스케줄러는 상태와 데이터 밀도가 높으므로 마지막에 운영 흐름을 보존하며 전환합니다.
 
-새 화면은 다음 조건을 만족해야 디자인 완료로 봅니다.
+## 13. Definition of done
 
-- 배경, primary glass, operational surface의 세 계층이 명확합니다.
-- 핵심 정보와 주요 액션이 첫 화면에서 이해됩니다.
-- hover, focus, selected, disabled, error 상태가 존재합니다.
-- `390px`, `768px`, `1280px`에서 레이아웃을 확인했습니다.
-- 핵심 흐름이 실제 데이터로 동작합니다.
-- 브라우저 콘솔 오류가 없습니다.
-- 접근성 기준과 reduced-motion 동작을 확인했습니다.
-- 한 카드 안에서 모든 문구가 같은 밝기나 굵기로 경쟁하지 않는지 톤 위계를 점검했습니다.
-- 조밀한 반복 버튼은 보이는 높이와 터치 영역을 분리했고, 인접 터치 영역이 겹치지 않습니다.
-- iOS 실제 폭 또는 `390px` 기준에서 입력 자동 확대, 잘린 텍스트, 상태 배지 정렬을 확인했습니다.
+새 화면 또는 마이그레이션 화면은 다음 조건을 모두 만족해야 합니다.
 
-## When to update DESIGN.md
+- Light와 Dark에서 각각 semantic token이 올바르게 적용됩니다.
+- 정보 위계가 타입 역할과 label 단계만으로 이해됩니다.
+- Liquid Glass가 탐색·떠 있는 조작 계층에만 사용됩니다.
+- 기본 필드와 행은 `52px`, 큰 행은 `68px`, 터치 영역은 최소 `44px`입니다.
+- `390px`, `402px`, `768px`, `1280px`에서 가로 스크롤과 핵심 액션 잘림이 없습니다.
+- 긴 한글, 빈 상태, 오류, 로딩, disabled, selected, focus-visible 상태를 확인했습니다.
+- Light/Dark 모두 텍스트 및 UI 대비 기준을 통과합니다.
+- reduced motion, reduced transparency, 브라우저 확대에서 핵심 흐름이 유지됩니다.
+- 실제 데이터와 주요 사용자 흐름이 기존과 동일하게 동작합니다.
+- 브라우저 콘솔 오류가 없고 관련 빌드·테스트가 통과합니다.
 
-- 기본 토큰, 공통 컴포넌트, 표면 계층이 변경될 때.
-- 새 재사용 패턴이나 공식적인 테마 변형이 도입될 때.
-- reference implementation이 바뀌거나 더 대표적인 화면이 생길 때.
-- 실제 구현 과정에서 이 문서가 모호하거나 서로 충돌한다고 확인될 때.
-- 새로운 사진 무드보드가 현재 기본 팔레트보다 프로젝트의 정서를 더 잘 대표하고, 실제 화면 검증까지 통과했을 때.
+## 14. When to update this file
+
+- 공식 Apple UI Kit 소스가 교체되고 checksum 또는 토큰이 달라질 때
+- 공통 semantic token이나 타입 역할이 변경될 때
+- 두 개 이상의 화면에서 검증된 재사용 패턴이 생길 때
+- 웹 근사값이 실제 Safari/Chrome 검증을 통해 조정될 때
+- 기존 레거시 테마의 마이그레이션 상태가 바뀔 때
