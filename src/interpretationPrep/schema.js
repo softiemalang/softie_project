@@ -98,7 +98,7 @@ export const STATUS_META = {
   partial: { label: '핵심 계산 지원', tone: 'warning' },
   needs_verification: { label: '검증 필요', tone: 'warning' },
   candidate_required: { label: '후보 확인 필요', tone: 'warning' },
-  experimental: { label: '검증단계(Experimental)', tone: 'warning' },
+  experimental: { label: '검토 중', tone: 'warning' },
   unsupported: { label: '미지원', tone: 'muted' },
   missing_input: { label: '입력값 부족', tone: 'danger' },
   needs_profile: { label: '기준 선택 필요', tone: 'danger' },
