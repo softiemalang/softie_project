@@ -359,8 +359,8 @@ function SystemResult({ result, view }) {
           <article className="prep-feature" key={item.id}>
             <div className="prep-feature-head">
               <div>
-                <span className="prep-feature-category">{item.category}</span>
-                <h3>{item.title}</h3>
+                <span className="prep-feature-category">{item.category === 'experimental' ? '검토 중' : item.category}</span>
+                <h3>{item.title.replace('[실험적 분석]', '[검토 중]')}</h3>
               </div>
               <span className="prep-confidence">{item.confidence}</span>
             </div>
@@ -403,15 +403,12 @@ function SystemResult({ result, view }) {
       {result.raw.experimental?.strength && (
         <section className="prep-data-panel prep-profile-panel">
           <div className="prep-mini-head">
-            <div className="prep-mini-title-group">
-              <h4>Experimental 사주 분석 프로필</h4>
-              <span className="prep-experimental-badge">Experimental</span>
-            </div>
+            <h4>사주 분석 프로필</h4>
             <span>정량적 원국 심층 분석</span>
           </div>
 
           <p className="prep-experimental-warning">
-            {result.raw.experimental?.description || '강약·격국·용신·신살은 검증단계(Experimental) 분석 결과입니다. 학술 참고용으로 사용하세요.'}
+            강약·격국·용신·신살은 현재 검토 중인 분석 결과입니다. 최종 판정이 아닌 해석 준비용 참고 자료로 사용해 주세요.
           </p>
 
           <div className="profile-analysis-card">
