@@ -2323,3 +2323,155 @@
   from { opacity: 0; transform: translateY(3px); }
   to { opacity: 1; transform: translateY(0); }
 }
+
+/* ==========================================================================
+   EPISTEMIC METADATA COMPONENT STYLES
+   ========================================================================== */
+.epistemic-metadata-container {
+  margin-top: 0.65rem;
+  padding-top: 0.5rem;
+  border-top: 1px solid var(--line);
+}
+
+.epistemic-badges {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.35rem;
+  margin-bottom: 0.35rem;
+}
+
+.epistemic-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.18rem 0.5rem;
+  font-size: 0.7rem;
+  font-weight: 550;
+  border-radius: var(--radius-pill, 999px);
+  line-height: 1.2;
+}
+
+.epistemic-badge.status-derived {
+  background: rgba(214, 179, 126, 0.15);
+  color: #d6b37e;
+  border: 1px solid rgba(214, 179, 126, 0.3);
+}
+
+.epistemic-badge.status-candidate {
+  background: rgba(156, 39, 176, 0.12);
+  color: #ce93d8;
+  border: 1px solid rgba(156, 39, 176, 0.3);
+}
+
+.epistemic-badge.status-fact {
+  background: rgba(184, 200, 165, 0.15);
+  color: #b8c8a5;
+  border: 1px solid rgba(184, 200, 165, 0.3);
+}
+
+.epistemic-badge.confidence-high {
+  background: rgba(134, 153, 111, 0.15);
+  color: #a3c293;
+  border: 1px solid rgba(134, 153, 111, 0.25);
+}
+
+.epistemic-badge.confidence-medium {
+  background: rgba(219, 204, 175, 0.12);
+  color: var(--text-muted);
+  border: 1px solid var(--line);
+}
+
+.epistemic-badge.confidence-low {
+  background: rgba(215, 160, 160, 0.15);
+  color: #e57373;
+  border: 1px solid rgba(215, 160, 160, 0.3);
+}
+
+.epistemic-details {
+  font-size: 0.76rem;
+  color: var(--text-muted);
+}
+
+.epistemic-summary {
+  cursor: pointer;
+  user-select: none;
+  font-size: 0.75rem;
+  color: var(--brand);
+  font-weight: 550;
+  padding: 0.35rem 0;
+  display: block;
+  width: 100%;
+  transition: color 0.18s ease;
+}
+
+.epistemic-summary:hover {
+  color: var(--brand-hover);
+}
+
+.epistemic-content {
+  margin-top: 0.4rem;
+  padding: 0.6rem 0.75rem;
+  background: rgba(17, 17, 14, 0.35);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-item, 12px);
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.epistemic-row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.epistemic-label {
+  font-size: 0.7rem;
+  color: var(--text-tertiary, #a39b8c);
+  font-weight: 600;
+}
+
+.epistemic-val {
+  font-size: 0.76rem;
+  color: var(--text);
+  line-height: 1.4;
+  margin: 0;
+  word-break: keep-all;
+  overflow-wrap: break-word;
+}
+
+.epistemic-notes {
+  background: rgba(255, 255, 255, 0.03);
+  padding: 0.35rem 0.5rem;
+  border-radius: 6px;
+  border-left: 2px solid var(--brand);
+}
+
+.epistemic-list {
+  margin: 0;
+  padding-left: 1.1rem;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  line-height: 1.4;
+}
+
+.epistemic-list li {
+  margin-bottom: 0.15rem;
+  word-break: keep-all;
+  overflow-wrap: break-word;
+}
+
+.epistemic-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+}
+
+.epistemic-chip {
+  font-size: 0.7rem;
+  padding: 0.15rem 0.45rem;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-pill, 999px);
+  color: var(--text);
+}

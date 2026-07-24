@@ -22,6 +22,97 @@ import './interpretationPrep.css'
 
 const STORAGE_KEY = 'softie.interpretationPrep.draft.v1'
 
+function EpistemicMetadataViewer({ metadata, title = '분석 상태 및 근거 상세' }) {
+  if (!metadata) return null
+
+  const statusLabels = {
+    derived: '파생 결과',
+    candidate: '검토 후보',
+    fact: '확정 계산',
+    notable: '주목 포인트',
+    open: '열린 쟁점',
+  }
+
+  const confidenceLabels = {
+    high: '확신도 높음',
+    medium: '확신도 중간',
+    low: '추가 검토 필요',
+  }
+
+  const statusText = statusLabels[metadata.epistemicStatus] || metadata.epistemicStatus || '파생 결과'
+  const confidenceText = confidenceLabels[metadata.confidence] || (metadata.confidence ? `확신도 ${metadata.confidence}` : '')
+
+  return (
+    <div className="epistemic-metadata-container">
+      <div className="epistemic-badges">
+        <span className={`epistemic-badge status-${metadata.epistemicStatus || 'derived'}`}>
+          {statusText}
+        </span>
+        {confidenceText && (
+          <span className={`epistemic-badge confidence-${metadata.confidence || 'medium'}`}>
+            {confidenceText}
+          </span>
+        )}
+      </div>
+
+      <details className="epistemic-details">
+        <summary className="epistemic-summary">{title}</summary>
+        <div className="epistemic-content">
+          {metadata.method?.label && (
+            <div className="epistemic-row">
+              <strong className="epistemic-label">분석 방법</strong>
+              <span className="epistemic-val">{metadata.method.label}</span>
+            </div>
+          )}
+
+          {metadata.reviewNotes && (
+            <div className="epistemic-row">
+              <strong className="epistemic-label">검토 메모</strong>
+              <p className="epistemic-val epistemic-notes">{metadata.reviewNotes}</p>
+            </div>
+          )}
+
+          {Array.isArray(metadata.evidence) && metadata.evidence.length > 0 && (
+            <div className="epistemic-row">
+              <strong className="epistemic-label">근거 요소</strong>
+              <ul className="epistemic-list">
+                {metadata.evidence.map((ev, idx) => (
+                  <li key={idx}>
+                    {ev.role ? <span><b>{ev.role}</b>: </span> : null}
+                    <span>{ev.value}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+
+          {Array.isArray(metadata.alternatives) && metadata.alternatives.length > 0 && (
+            <div className="epistemic-row">
+              <strong className="epistemic-label">다른 가능성</strong>
+              <div className="epistemic-chips">
+                {metadata.alternatives.map((alt, idx) => (
+                  <span key={idx} className="epistemic-chip">{alt}</span>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {Array.isArray(metadata.limitations) && metadata.limitations.length > 0 && (
+            <div className="epistemic-row">
+              <strong className="epistemic-label">제약 및 유의사항</strong>
+              <ul className="epistemic-list">
+                {metadata.limitations.map((lim, idx) => (
+                  <li key={idx}>{lim}</li>
+                ))}
+              </ul>
+            </div>
+          )}
+        </div>
+      </details>
+    </div>
+  )
+}
+
 function todayInKorea() {
   const parts = new Intl.DateTimeFormat('en-CA', {
     timeZone: 'Asia/Seoul',
@@ -353,6 +444,10 @@ function SystemResult({ result, view }) {
                     (본 정량 스코어는 단순 오행 표면 생조 가치 합산이며 지장간 통근 정보는 스코어와 무관한 참고용 정보입니다.)
                   </small>
                 </div>
+                <EpistemicMetadataViewer
+                  metadata={result.raw.experimental?.strength?.epistemicMetadata}
+                  title="일간 강도 평가 근거 및 유의사항 보기"
+                />
               </div>
             </div>
 
@@ -368,6 +463,10 @@ function SystemResult({ result, view }) {
                   <div className="special-structure-note">
                     <strong>[참고] {result.raw.experimental.gyeokguk.specialStructureCandidate.name}</strong>
                     <p>{result.raw.experimental.gyeokguk.specialStructureCandidate.reason}</p>
+                    <EpistemicMetadataViewer
+                      metadata={result.raw.experimental.gyeokguk.specialStructureCandidate.epistemicMetadata}
+                      title="특수격 후보 검토 근거 보기"
+                    />
                   </div>
                 )}
               </div>
