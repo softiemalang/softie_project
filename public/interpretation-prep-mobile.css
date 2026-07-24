@@ -1,0 +1,114 @@
+/* Interpretation Prep mobile form polish.
+   Scoped to .prep-shell so other pages are unaffected. */
+
+.prep-shell .prep-form-grid,
+.prep-shell .prep-form-grid > *,
+.prep-shell .prep-field,
+.prep-shell .prep-time-control,
+.prep-shell .prep-gender-control {
+  min-width: 0;
+  max-width: 100%;
+}
+
+.prep-shell .prep-field input,
+.prep-shell .prep-field select,
+.prep-shell .prep-field textarea,
+.prep-shell .prep-readonly-value {
+  display: block;
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.prep-shell input[type='date'],
+.prep-shell input[type='time'] {
+  inline-size: 100%;
+  min-inline-size: 0;
+  max-inline-size: 100%;
+}
+
+.prep-shell input[type='date']::-webkit-date-and-time-value,
+.prep-shell input[type='time']::-webkit-date-and-time-value {
+  min-width: 0;
+  text-align: left;
+}
+
+.prep-shell .prep-time-control {
+  width: 100%;
+  grid-template-columns: minmax(0, 1fr) 76px;
+  align-items: stretch;
+}
+
+.prep-shell .prep-time-control > input,
+.prep-shell .prep-time-control > button {
+  min-width: 0;
+  max-width: 100%;
+}
+
+.prep-shell .prep-time-unknown,
+.prep-shell .prep-gender-option {
+  width: 100%;
+  box-sizing: border-box;
+  border-radius: var(--radius-control);
+}
+
+@media (max-width: 700px) {
+  .prep-shell .prep-form-grid {
+    gap: 0.95rem;
+  }
+
+  .prep-shell .prep-field {
+    gap: 0.42rem;
+  }
+
+  .prep-shell .prep-field > span {
+    line-height: 1.3;
+  }
+
+  .prep-shell .prep-field input,
+  .prep-shell .prep-field select,
+  .prep-shell .prep-field textarea,
+  .prep-shell .prep-readonly-value,
+  .prep-shell .prep-gender-option,
+  .prep-shell .prep-time-unknown {
+    min-height: 52px;
+    font-size: 1rem;
+  }
+
+  .prep-shell .prep-field input,
+  .prep-shell .prep-field select,
+  .prep-shell .prep-field textarea,
+  .prep-shell .prep-readonly-value {
+    padding-inline: 0.95rem;
+  }
+
+  .prep-shell .prep-gender-control {
+    gap: 0.55rem;
+  }
+
+  .prep-shell .prep-gender-option {
+    font-size: 0.94rem;
+  }
+
+  .prep-shell .prep-time-control {
+    grid-template-columns: minmax(0, 1fr) 72px;
+    gap: 0.55rem;
+  }
+
+  .prep-shell .prep-time-unknown {
+    padding-inline: 0.45rem;
+    font-size: 0.9rem;
+  }
+
+  .prep-shell .prep-field small {
+    margin-top: -0.08rem;
+    padding-inline: 0.05rem;
+  }
+}
+
+@media (max-width: 390px) {
+  .prep-shell .prep-time-control {
+    grid-template-columns: minmax(0, 1fr) 68px;
+  }
+}
