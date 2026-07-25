@@ -118,7 +118,7 @@ export function ChatHandoffCard({ unifiedContext = {} }) {
               onClick={() => handleCopy('full')}
               className={`prep-copy-mode-btn ${selectedCopyType === 'full' ? 'is-active' : ''}`}
             >
-              <span>📋</span> 전체 복사 ({handoffPackage.characterCounts.full}자)
+              <span>📋</span> 전체 복사 ({handoffPackage?.characterCounts?.full || 0}자)
             </button>
 
             <button
@@ -126,7 +126,7 @@ export function ChatHandoffCard({ unifiedContext = {} }) {
               onClick={() => handleCopy('quick')}
               className={`prep-copy-mode-btn ${selectedCopyType === 'quick' ? 'is-active' : ''}`}
             >
-              <span>⚡</span> 간편 복사 ({handoffPackage.characterCounts.quick}자)
+              <span>⚡</span> 간편 복사 ({handoffPackage?.characterCounts?.quick || 0}자)
             </button>
 
             <button
@@ -134,7 +134,7 @@ export function ChatHandoffCard({ unifiedContext = {} }) {
               onClick={() => handleCopy('topicFocused')}
               className={`prep-copy-mode-btn ${selectedCopyType === 'topicFocused' ? 'is-active' : ''}`}
             >
-              <span>🎯</span> 질문 중심 복사 ({handoffPackage.characterCounts.topicFocused}자)
+              <span>🎯</span> 질문 중심 복사 ({handoffPackage?.characterCounts?.topicFocused || 0}자)
             </button>
 
             <button
@@ -142,9 +142,10 @@ export function ChatHandoffCard({ unifiedContext = {} }) {
               onClick={() => handleCopy('privacyMinimal')}
               className={`prep-copy-mode-btn is-privacy ${selectedCopyType === 'privacyMinimal' ? 'is-active' : ''}`}
             >
-              <span>🔒</span> 개인정보 보호 익명 복사 ({handoffPackage.characterCounts.privacyMinimal}자)
+              <span>🔒</span> 개인정보 보호 익명 복사 ({handoffPackage?.characterCounts?.privacyMinimal || 0}자)
             </button>
           </div>
+
 
           {/* Text Preview Accordion */}
           {showPreview && (
