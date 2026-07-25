@@ -7,6 +7,7 @@ import {
 import { getAdjacentBaziMonthBoundary } from '../saju/engine/solarTerms.js'
 import { ELEMENTS, YIN_YANG } from '../saju/engine/constants.js'
 import { getKoreaReferenceCity, KOREA_REFERENCE_CITIES, SAJU_ADAPTER_VERSION, resolveStateContract } from './schema.js'
+import { attachValidationMetadata } from './validationMetadata.js'
 import { calculateNatalBranchRelations, calculateNatalStemRelations } from './sajuRelationRules.js'
 import { calculateSajuTiming } from './sajuTimingRules.js'
 import { getHourCandidatesForUnknown, getHourCandidatesForRange } from './sajuHourUtils.js'
@@ -1226,7 +1227,7 @@ export function calculateSajuSystem(input, profile) {
     confidence: birthTimeUnknown || isMultipleRangeCandidates || isDstOverlap || isNeedsVerification ? 'low' : (isSingleRangeCandidate || solarTermBoundarySensitive ? 'medium' : confidenceFromAccuracy(input.timeAccuracy)),
   })
 
-  return {
+  const outputResult = {
     system: 'saju',
     status: systemStatus,
     stateContract,
@@ -1279,4 +1280,22 @@ export function calculateSajuSystem(input, profile) {
     unsupported: UNSUPPORTED_SAJU_ITEMS,
     supportScope: SAJU_SUPPORT_SCOPE,
   }
+
+  return attachValidationMetadata(outputResult, {
+    lunarValidation: input.originalCalendar === 'lunar' ? {
+      scope: 'external_reference_dataset',
+      status: isInKasiReferenceRange ? 'KASI_reference_pending_validation' : 'external_table_unverified',
+      sourceNote: isInKasiReferenceRange ? 'Local lunar table (KASI comparison pending, 1951-2050)' : 'External Table',
+      isDirectionalValidated: true,
+    } : null,
+    solarTermValidation: {
+      method: 'meeus-noaa-apparent-v1',
+      thresholdMinutes: pillars._meta.boundaryUncertaintyMinutes || 20,
+      estimatedErrorMarginMinutes: pillars._meta.boundaryTimeDiffMinutes !== undefined ? Math.abs(pillars._meta.boundaryTimeDiffMinutes) : null,
+    },
+    boundarySensitivity: {
+      boundarySensitive: solarTermBoundarySensitive,
+      reasons: solarTermBoundarySensitive ? ['birth_near_term', 'calculation_uncertainty'] : [],
+    },
+  })
 }
