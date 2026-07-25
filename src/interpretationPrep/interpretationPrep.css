@@ -264,11 +264,16 @@
 }
 
 .prep-save-toggle input {
-  width: 18px;
-  min-height: 18px;
-  margin: 0.12rem 0 0;
-  accent-color: var(--brand);
+  width: 14px;
+  height: 14px;
+  min-width: 14px;
+  min-height: 14px;
+  margin: 0.22rem 0 0;
+  accent-color: #7a6a57;
+  cursor: pointer;
+  opacity: 0.85;
 }
+
 
 .prep-save-toggle span {
   display: grid;
@@ -1316,8 +1321,9 @@
 }
 
 .prep-save-toggle input {
-  accent-color: var(--brand);
+  accent-color: #7a6a57;
 }
+
 
 .prep-advanced-inputs,
 .prep-profile-stack > details,
