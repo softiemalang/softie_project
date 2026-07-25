@@ -57,12 +57,19 @@ export function analyzeCandidateSet(candidates) {
   })
 
   // --- 2. Factual Consensus (계산적 공통점) ---
+  // --- 4. Variances & Distributions (변동 항목 및 수량 분포) ---
+  const varianceFields = []
+  const distributions = {}
+
+  // --- 2. Factual Consensus (계산적 공통점) ---
   const factualPillars = {}
   PILLAR_KEYS.forEach((key) => {
-    const values = candidates.map((c) => c.pillars?.[key]?.value || '')
+    const values = candidates.map((c) => c.pillars?.[key]?.value || (c.pillars?.[key]?.stem && c.pillars?.[key]?.branch ? `${c.pillars[key].stem}${c.pillars[key].branch}` : ''))
     const firstVal = values[0]
     if (firstVal && values.every((v) => v === firstVal)) {
       factualPillars[key] = firstVal
+    } else {
+      varianceFields.push(`pillars.${key}`)
     }
   })
 
@@ -83,10 +90,6 @@ export function analyzeCandidateSet(candidates) {
   const yongShins = candidates.map((c) => c.experimental?.yongShin?.yongShin || null)
   const firstYong = yongShins[0]
   const interpretiveYongShin = (firstYong && yongShins.every((y) => y === firstYong)) ? firstYong : null
-
-  // --- 4. Variances & Distributions (변동 항목 및 수량 분포) ---
-  const varianceFields = []
-  const distributions = {}
 
   // 시주 분포
   const hourBranchValues = candidates.map((c) => c.hourBranch || c.pillars?.hour?.branch || '').filter(Boolean)

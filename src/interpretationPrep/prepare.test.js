@@ -468,7 +468,7 @@ test('solar-term boundary inputs expose year and month candidates instead of hid
   assert.ok(saju.raw.timing.daYun.candidates.length > 1)
   assert.equal(saju.raw.experimental.status, 'candidate_required')
   assert.equal(saju.raw.candidates.length, 2)
-  assert.deepEqual(saju.raw.candidates.map((candidate) => candidate.label), ['입력 기준', '절입 경계 후보 1'])
+  assert.deepEqual(saju.raw.candidates.map((candidate) => candidate.label), ['절입 전 (입춘 이전)', '절입 후 (입춘 이후)'])
   assert.ok(saju.raw.candidates.every((candidate) => candidate.experimental.gyeokguk))
   assert.ok(saju.raw.candidateComparison.differences.some((item) => item.path === 'pillars.year'))
   assert.match(saju.warnings.join(' '), /하나로 확정하지/)

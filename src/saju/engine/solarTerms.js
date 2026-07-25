@@ -6,6 +6,21 @@ export const SOLAR_TERM_UNCERTAINTY_MINUTES = 20
 
 const SAJU_MONTH_BOUNDARIES = Array.from({ length: 12 }, (_, index) => (315 + index * 30) % 360)
 
+const SOLAR_TERM_NAMES = {
+  315: '입춘',
+  345: '경칩',
+  15: '청명',
+  45: '입하',
+  75: '망종',
+  105: '소서',
+  135: '입추',
+  165: '백로',
+  195: '한로',
+  225: '입동',
+  255: '대설',
+  285: '소한',
+}
+
 function normalizeDegrees(value) {
   return ((value % 360) + 360) % 360
 }
@@ -92,6 +107,8 @@ export function getBaziYearAndMonth(year, month, day, hour, min) {
     solarLongitude,
     solarLongitudeMethod: SOLAR_LONGITUDE_METHOD,
     nearestBoundaryLongitude: nearestBoundary.longitude,
+    boundaryTermName: SOLAR_TERM_NAMES[nearestBoundary.longitude] || '절기',
+    boundaryTimeDiffMinutes: Math.round(boundaryDistanceMinutes),
     boundaryDistanceMinutes,
     boundaryUncertaintyMinutes: SOLAR_TERM_UNCERTAINTY_MINUTES,
     isNearSolarTermBoundary: Math.abs(boundaryDistanceMinutes) <= SOLAR_TERM_UNCERTAINTY_MINUTES,

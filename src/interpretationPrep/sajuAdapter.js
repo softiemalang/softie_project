@@ -4,6 +4,7 @@ import {
   DEFAULT_SAJU_OPTIONS,
   SAJU_ENGINE_VERSION,
 } from '../saju/engine/fourPillars.js'
+import { getAdjacentBaziMonthBoundary } from '../saju/engine/solarTerms.js'
 import { ELEMENTS, YIN_YANG } from '../saju/engine/constants.js'
 import { getKoreaReferenceCity, KOREA_REFERENCE_CITIES, SAJU_ADAPTER_VERSION, resolveStateContract } from './schema.js'
 import { calculateNatalBranchRelations, calculateNatalStemRelations } from './sajuRelationRules.js'
@@ -451,16 +452,37 @@ function buildCandidateComparison(candidates) {
  * 동일 연주/월주/일주에 대해 natal calculation 및 파생 명식 계산을 재사용(memoization)하는 최적화를 추후 적용 예정.
  */
 function buildCandidatePipeline({ input, primaryPillars, primaryRawPillars, primaryAnalysis, primaryTiming, primaryExperimental, candidateSources = [], candidateInstants = null, calculationOptions }) {
+  const isSolarTermPipeline = candidateSources.length > 0 && candidateSources.some((s) => s.candidateOrigin === 'solar_term_boundary')
+
   const sourceEntries = candidateInstants && candidateInstants.length > 0
     ? candidateInstants.map((inst) => ({
         id: inst.id, label: inst.label, inputAssumption: inst.inputAssumption,
+        candidateOrigin: inst.candidateOrigin, candidatePriority: inst.candidatePriority,
+        ruleAssumption: inst.ruleAssumption, affectedFields: inst.affectedFields,
+        boundaryPolicy: inst.boundaryPolicy, boundaryContext: inst.boundaryContext, actualBirthTime: inst.actualBirthTime,
         utcDateTime: inst.utcDateTime, timezoneRuleVersion: inst.timezoneRuleVersion,
         input: inst.input, pillars: calculateFourPillars(inst.input, calculationOptions), rawPillars: toRawPillars(calculateFourPillars(inst.input, calculationOptions))
       }))
-    : [
-        { id: 'primary', label: input.timeAccuracy === 'unknown' ? '정오 기준' : '입력 기준', inputAssumption: '입력 시각 기준', input, pillars: primaryPillars, rawPillars: primaryRawPillars, analysis: primaryAnalysis, timing: primaryTiming, experimental: primaryExperimental },
-        ...candidateSources.map((s, i) => ({ id: s.id || `candidate-${i + 1}`, label: s.label, inputAssumption: s.inputAssumption, utcDateTime: s.utcDateTime, input: s.input || input, pillars: s.pillars, rawPillars: toRawPillars(s.pillars), calculationOptions: s.calculationOptions || calculationOptions }))
-      ]
+    : isSolarTermPipeline
+      ? candidateSources.map((s, i) => ({
+          id: s.id || `candidate-${i + 1}`, label: s.label, inputAssumption: s.inputAssumption,
+          candidateOrigin: s.candidateOrigin, candidatePriority: s.candidatePriority,
+          ruleAssumption: s.ruleAssumption, affectedFields: s.affectedFields,
+          boundaryPolicy: s.boundaryPolicy, boundaryContext: s.boundaryContext, actualBirthTime: s.actualBirthTime,
+          utcDateTime: s.utcDateTime, input: s.input || input, pillars: s.pillars, rawPillars: toRawPillars(s.pillars),
+          calculationOptions: s.calculationOptions || calculationOptions
+        }))
+      : [
+          { id: 'primary', label: input.timeAccuracy === 'unknown' ? '정오 기준' : '입력 기준', inputAssumption: '입력 시각 기준', input, pillars: primaryPillars, rawPillars: primaryRawPillars, analysis: primaryAnalysis, timing: primaryTiming, experimental: primaryExperimental },
+          ...candidateSources.map((s, i) => ({
+            id: s.id || `candidate-${i + 1}`, label: s.label, inputAssumption: s.inputAssumption,
+            candidateOrigin: s.candidateOrigin, candidatePriority: s.candidatePriority,
+            ruleAssumption: s.ruleAssumption, affectedFields: s.affectedFields,
+            boundaryPolicy: s.boundaryPolicy, boundaryContext: s.boundaryContext, actualBirthTime: s.actualBirthTime,
+            utcDateTime: s.utcDateTime, input: s.input || input, pillars: s.pillars, rawPillars: toRawPillars(s.pillars),
+            calculationOptions: s.calculationOptions || calculationOptions
+          }))
+        ]
 
   const candidates = []
   const seenFingerprints = new Map()
@@ -482,6 +504,13 @@ function buildCandidatePipeline({ input, primaryPillars, primaryRawPillars, prim
       candidateId: source.id,
       label: source.label,
       inputAssumption: source.inputAssumption,
+      candidateOrigin: source.candidateOrigin || 'user_input',
+      candidatePriority: source.candidatePriority || 1,
+      ruleAssumption: source.ruleAssumption || null,
+      affectedFields: source.affectedFields || null,
+      boundaryPolicy: source.boundaryPolicy || null,
+      boundaryContext: source.boundaryContext || null,
+      actualBirthTime: source.actualBirthTime || null,
       timezoneOffset: typeof source.input?.timezoneOffset === 'number'
         ? `${source.input.timezoneOffset >= 0 ? '+' : '-'}${String(Math.abs(source.input.timezoneOffset)).padStart(2, '0')}:00`
         : (source.input?.timezoneOffset || (source.id === 'dst-daylight' ? '+10:00' : '+09:00')),
@@ -728,13 +757,57 @@ export function calculateSajuSystem(input, profile) {
     ? hourCandidateEntries.map((e) => e.pillars)
     : [pillars]
 
-  const solarTermBoundarySensitive = !birthTimeUnknown && !birthTimeRange && pillars._meta.isNearSolarTermBoundary
-  const solarTermCandidateProbeMinutes = pillars._meta.boundaryUncertaintyMinutes + 2
+  const solarTermBoundarySensitive = !birthTimeUnknown && !birthTimeRange && Boolean(pillars._meta.isNearSolarTermBoundary)
+  const isMajorSolarTerm = pillars._meta.boundaryTermName === '입춘'
+  const affectedFields = isMajorSolarTerm ? ['year', 'month'] : ['month']
+  const solarTermCandidateProbeMinutes = (pillars._meta.boundaryUncertaintyMinutes || 20) + 2
   const solarTermCandidateEntries = solarTermBoundarySensitive
-    ? [-solarTermCandidateProbeMinutes, solarTermCandidateProbeMinutes].map((minutes) => {
-        const candidateInput = shiftLocalDateTime(input.birthDate, input.birthTime, minutes)
-        return { input: { ...input, ...candidateInput }, pillars: calculateFourPillars(candidateInput, calculationOptions) }
-      })
+    ? (() => {
+        let termExactUtc = null
+        try {
+          const direction = (pillars._meta.boundaryTimeDiffMinutes || 0) >= 0 ? 'forward' : 'backward'
+          const [bYear, bMonth, bDay] = input.birthDate.split('-').map(Number)
+          const [bHour, bMin] = (input.birthTime || '12:00').split(':').map(Number)
+          const boundaryInfo = getAdjacentBaziMonthBoundary(bYear, bMonth, bDay, bHour, bMin, direction)
+          termExactUtc = boundaryInfo.utcIso
+        } catch (e) {
+          termExactUtc = null
+        }
+
+        return [-solarTermCandidateProbeMinutes, solarTermCandidateProbeMinutes].map((minutes) => {
+          const isBefore = minutes < 0
+          const phase = isBefore ? 'before' : 'after'
+          const candidateInput = shiftLocalDateTime(input.birthDate, input.birthTime, minutes)
+          const candidatePillars = calculateFourPillars(candidateInput, calculationOptions)
+          const termName = pillars._meta.boundaryTermName || '절기'
+
+          return {
+            id: `term-${phase}`,
+            label: isBefore ? `절입 전 (${termName} 이전)` : `절입 후 (${termName} 이후)`,
+            inputAssumption: isBefore ? `${termName} 입절 전 규칙 적용` : `${termName} 입절 후 규칙 적용`,
+            candidateOrigin: 'solar_term_boundary',
+            candidatePriority: 2,
+            ruleAssumption: {
+              termPhase: phase,
+              termName: termName,
+            },
+            affectedFields: affectedFields,
+            boundaryPolicy: {
+              method: 'solar_term_error_window',
+              thresholdMinutes: pillars._meta.boundaryUncertaintyMinutes || 20,
+              source: 'NOAA/Meeus approximation',
+            },
+            boundaryContext: {
+              termExactUtc: pillars._meta.boundaryTermExactUtc || termExactUtc,
+              termName: termName,
+              differenceMinutes: pillars._meta.boundaryTimeDiffMinutes || null,
+            },
+            actualBirthTime: `${input.birthDate} ${input.birthTime}`,
+            input: { ...input },
+            pillars: candidatePillars,
+          }
+        })
+      })()
     : []
   const solarTermCandidatePillars = solarTermCandidateEntries.map((entry) => entry.pillars)
   const analysisPillars = birthTimeUnknown
@@ -772,10 +845,19 @@ export function calculateSajuSystem(input, profile) {
       input: hc.input,
       pillars: hc.pillars,
     })),
-    ...(solarTermBoundarySensitive ? solarTermCandidatePillars.map((candidate, index) => ({
-      label: `절입 경계 후보 ${index + 1}`,
-      input: solarTermCandidateEntries[index].input,
-      pillars: candidate,
+    ...(solarTermBoundarySensitive ? solarTermCandidateEntries.map((entry) => ({
+      id: entry.id,
+      label: entry.label,
+      inputAssumption: entry.inputAssumption,
+      candidateOrigin: entry.candidateOrigin,
+      candidatePriority: entry.candidatePriority,
+      ruleAssumption: entry.ruleAssumption,
+      affectedFields: entry.affectedFields,
+      boundaryPolicy: entry.boundaryPolicy,
+      boundaryContext: entry.boundaryContext,
+      actualBirthTime: entry.actualBirthTime,
+      input: entry.input,
+      pillars: entry.pillars,
     })) : []),
     ...historicalCandidateEntries.map((candidate) => ({
       id: candidate.id,
