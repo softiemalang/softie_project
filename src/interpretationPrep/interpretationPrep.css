@@ -1206,11 +1206,24 @@
 .prep-shell select,
 .prep-shell textarea,
 .prep-readonly-value {
-  min-height: 46px;
+  min-height: 42px;
   color: var(--text);
   background: var(--prep-bg-subtle);
   border: 1px solid var(--prep-border-default);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.prep-shell input:not([type='checkbox']),
+.prep-shell select,
+.prep-shell .prep-readonly-value {
+  height: 42px;
+  padding: 0 0.82rem;
+  line-height: 40px;
+}
+
+.prep-shell textarea {
+  padding: 0.72rem 0.82rem;
+  line-height: 1.35;
 }
 
 .prep-shell input::placeholder,
@@ -1247,7 +1260,7 @@
 
 .prep-gender-option,
 .prep-time-unknown {
-  min-height: 46px;
+  min-height: 44px;
   color: var(--prep-text-secondary);
   background: var(--prep-bg-subtle);
   border: 1px solid var(--prep-border-default);

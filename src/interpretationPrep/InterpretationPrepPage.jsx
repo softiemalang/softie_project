@@ -125,6 +125,59 @@ function todayInKorea() {
     .join('-')
 }
 
+function digitsOnly(value, maxLength) {
+  return String(value || '').replace(/\D/g, '').slice(0, maxLength)
+}
+
+function formatDateDraft(value) {
+  const digits = digitsOnly(value, 8)
+  if (digits.length <= 4) return digits
+  if (digits.length <= 6) return `${digits.slice(0, 4)}.${digits.slice(4)}`
+  return `${digits.slice(0, 4)}.${digits.slice(4, 6)}.${digits.slice(6)}`
+}
+
+function formatDateValue(value) {
+  if (/^\d{4}-\d{2}-\d{2}$/.test(value || '')) return value.replaceAll('-', '.')
+  return formatDateDraft(value)
+}
+
+function normalizeDateDraft(value) {
+  const digits = digitsOnly(value, 8)
+  if (digits.length !== 8) return ''
+
+  const year = Number(digits.slice(0, 4))
+  const month = Number(digits.slice(4, 6))
+  const day = Number(digits.slice(6, 8))
+  const candidate = new Date(Date.UTC(year, month - 1, day))
+  const isValidDate = candidate.getUTCFullYear() === year
+    && candidate.getUTCMonth() === month - 1
+    && candidate.getUTCDate() === day
+
+  if (!isValidDate || year < 1901 || year > 2100) return ''
+  return `${digits.slice(0, 4)}-${digits.slice(4, 6)}-${digits.slice(6, 8)}`
+}
+
+function formatTimeDraft(value) {
+  const digits = digitsOnly(value, 4)
+  if (digits.length <= 2) return digits
+  return `${digits.slice(0, 2)}:${digits.slice(2)}`
+}
+
+function formatTimeValue(value) {
+  if (/^\d{2}:\d{2}$/.test(value || '')) return value
+  return formatTimeDraft(value)
+}
+
+function normalizeTimeDraft(value) {
+  const digits = digitsOnly(value, 4)
+  if (digits.length !== 4) return ''
+
+  const hour = Number(digits.slice(0, 2))
+  const minute = Number(digits.slice(2, 4))
+  if (hour > 23 || minute > 59) return ''
+  return `${digits.slice(0, 2)}:${digits.slice(2, 4)}`
+}
+
 function loadSavedDraft() {
   try {
     const saved = JSON.parse(window.localStorage.getItem(STORAGE_KEY) || 'null')
@@ -636,6 +689,12 @@ async function copyText(text) {
 export default function InterpretationPrepPage() {
   const savedDraft = useMemo(loadSavedDraft, [])
   const [input, setInput] = useState(savedDraft?.input || { ...DEFAULT_INPUT, targetDate: todayInKorea() })
+  const [textDrafts, setTextDrafts] = useState(() => ({
+    birthDate: formatDateValue(savedDraft?.input?.birthDate || ''),
+    birthTime: formatTimeValue(savedDraft?.input?.birthTime || ''),
+    targetDate: formatDateValue(savedDraft?.input?.targetDate || todayInKorea()),
+  }))
+  const [targetDateTouched, setTargetDateTouched] = useState(Boolean(savedDraft?.input?.targetDate))
   const [profiles, setProfiles] = useState(savedDraft?.profiles || DEFAULT_PROFILES)
   const [saveLocally, setSaveLocally] = useState(Boolean(savedDraft))
   const [result, setResult] = useState(null)
@@ -700,7 +759,30 @@ export default function InterpretationPrepPage() {
     setCopyStatus('')
   }
 
+  function updateDateDraft(key, value) {
+    const formatted = formatDateDraft(value)
+    if (key === 'targetDate') setTargetDateTouched(true)
+    setTextDrafts((current) => ({ ...current, [key]: formatted }))
+    updateInput(key, normalizeDateDraft(formatted))
+  }
+
+  function refreshTargetDateOnFocus(event) {
+    if (targetDateTouched) return
+    const currentDate = todayInKorea()
+    setTextDrafts((current) => ({ ...current, targetDate: formatDateValue(currentDate) }))
+    updateInput('targetDate', currentDate)
+    event.currentTarget.select()
+  }
+
+  function updateTimeDraft(value) {
+    const formatted = formatTimeDraft(value)
+    setTextDrafts((current) => ({ ...current, birthTime: formatted }))
+    updateInput('birthTime', normalizeTimeDraft(formatted))
+    updateInput('timeAccuracy', 'exact')
+  }
+
   function toggleUnknownBirthTime() {
+    setTextDrafts((current) => ({ ...current, birthTime: '' }))
     setInput((current) => ({
       ...current,
       birthTime: '',
@@ -830,7 +912,17 @@ export default function InterpretationPrepPage() {
               </div>
             </div>
             <LabeledField label="출생일">
-              <input type="date" min="1901-01-01" max="2100-12-31" required value={input.birthDate} onChange={(event) => updateInput('birthDate', event.target.value)} />
+              <input
+                type="text"
+                inputMode="numeric"
+                autoComplete="bday"
+                placeholder="YYYY.MM.DD"
+                maxLength={10}
+                pattern="[0-9.]*"
+                required
+                value={textDrafts.birthDate}
+                onChange={(event) => updateDateDraft('birthDate', event.target.value)}
+              />
             </LabeledField>
             <LabeledField label="달력 기준">
               <select value={input.calendar} onChange={(event) => updateInput('calendar', event.target.value)}>
@@ -849,14 +941,15 @@ export default function InterpretationPrepPage() {
             <LabeledField label="출생시각" className="prep-field-wide">
               <div className="prep-time-control">
                 <input
-                  type="time"
+                  type="text"
+                  inputMode="numeric"
+                  placeholder="HH:MM"
+                  maxLength={5}
+                  pattern="[0-9:]*"
                   required={input.timeAccuracy !== 'unknown'}
                   disabled={input.timeAccuracy === 'unknown'}
-                  value={input.birthTime}
-                  onChange={(event) => {
-                    updateInput('birthTime', event.target.value)
-                    updateInput('timeAccuracy', 'exact')
-                  }}
+                  value={textDrafts.birthTime}
+                  onChange={(event) => updateTimeDraft(event.target.value)}
                 />
                 <button
                   type="button"
@@ -868,16 +961,26 @@ export default function InterpretationPrepPage() {
                 </button>
               </div>
             </LabeledField>
-            <LabeledField label="운 흐름 기준일" hint="대운·세운·월운·일진을 이 날짜 기준으로 계산" className="prep-field-wide">
-              <input type="date" min="1901-01-01" max="2100-12-31" required value={input.targetDate} onChange={(event) => updateInput('targetDate', event.target.value)} />
-            </LabeledField>
           </div>
           <details className="prep-advanced-inputs">
             <summary>
               <span>세부 입력과 계산 환경</span>
-              <small>기준 도시 · 시간대 · 좌표</small>
+              <small>기준일 · 도시 · 시간대 · 좌표</small>
             </summary>
             <div className="prep-advanced-grid">
+              <LabeledField label="운 흐름 기준일" hint="대운·세운·월운·일진을 이 날짜 기준으로 계산" className="prep-field-wide">
+                <input
+                  type="text"
+                  inputMode="numeric"
+                  placeholder="YYYY.MM.DD"
+                  maxLength={10}
+                  pattern="[0-9.]*"
+                  required
+                  value={textDrafts.targetDate}
+                  onFocus={refreshTargetDateOnFocus}
+                  onChange={(event) => updateDateDraft('targetDate', event.target.value)}
+                />
+              </LabeledField>
               <LabeledField label="기준 도시" hint="기본값 서울 · 선택한 경도 보정 적용">
                 <select value={selectedReferenceCity.id} onChange={(event) => updateReferenceCity(event.target.value)}>
                   {KOREA_REFERENCE_CITIES.map((city) => (

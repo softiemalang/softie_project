@@ -268,6 +268,72 @@
 
 final result: passed
 
+## Interpretation Prep Scheduler Form Rhythm QA
+
+- reference: scheduler new-reservation form (`/private/tmp/scheduler-warm-nostalgic-qa/02-editor-mobile.png`)
+- implementation: `src/interpretationPrep/interpretationPrep.css` and `public/interpretation-prep-mobile.css`
+- rendered route: `/interpretation-prep` at `http://127.0.0.1:4173/interpretation-prep`
+- viewport: `390×844` CSS px
+- state: primary input form with advanced details collapsed, then expanded
+
+### Findings
+
+- P2 resolved: primary text/select controls now use the scheduler rhythm (`42px` height, `0.82rem` horizontal padding, full available width).
+- Gender choices and the `모름` control use the scheduler chip rhythm (`44px` height, equal two-up widths for gender choices).
+- The advanced target-date field and reference-city/environment fields use the same `42px` control height when expanded.
+- Measured mobile widths remain bounded (`scrollWidth === clientWidth === 390`); no horizontal overflow or clipped control was observed.
+
+final result: passed
+
+## Interpretation Prep Real-Time Target Date QA
+
+- implementation: `http://127.0.0.1:4173/interpretation-prep`
+- implementation screenshot: `/Users/softie/.codex/visualizations/2026/07/24/019f9618-8084-7c03-a518-af09fcce8455/interpretation-prep-text-mask-390.png`
+- viewport and pixels: `390×844` CSS px at 1× density
+- state: untouched default target date, then focus-and-type, followed by manual target-date edit
+- primary interactions tested: target-date focus selects the untouched default, numeric typing replaces it with a formatted date, and a manually edited date remains unchanged on subsequent focus
+
+### Findings
+
+- P2 resolved: an untouched target-date field now refreshes from the current `Asia/Seoul` date when it receives focus, preventing an open page from carrying yesterday's default across midnight.
+- User edits are preserved: once the target date is typed or changed manually, later focus does not overwrite it.
+- Existing typed-mask formatting and calculation contracts remain unchanged (`YYYY.MM.DD` in the UI, `YYYY-MM-DD` internally).
+
+### Follow-up polish
+
+- P3: validate the midnight rollover behavior on a physical iPhone or a controlled clock test; the local browser verified the focus selection and manual-value preservation paths.
+
+final result: passed
+
+## Interpretation Prep Typed Input Mask QA
+
+- source visual truth: `/tmp/codex-remote-attachments/019f9618-8084-7c03-a518-af09fcce8455/959D7D5A-7E51-4CE6-9A89-7F5951DF2492/1-붙여넣은-이미지-1.jpg` and the prior native-input overflow capture
+- implementation: `http://127.0.0.1:4173/interpretation-prep`
+- implementation screenshot: `/Users/softie/.codex/visualizations/2026/07/24/019f9618-8084-7c03-a518-af09fcce8455/interpretation-prep-text-mask-390.png`
+- viewport and pixels: `390×844` CSS px at 1× density
+- state: mobile birth input form with typed date, typed time, and typed target date
+- focused comparison evidence: three equal-width text fields, centered field edges, and the time-row boundary were inspected in the rendered screen
+- primary interactions tested: sequential numeric typing, date/time auto-formatting, calculation with formatted values, invalid-date rejection, and `모름` toggle
+- console errors checked: none observed
+
+### Findings
+
+- P1 resolved: native date/time controls were replaced with text inputs using numeric mobile keyboards and visible masks. `19970421` becomes `1997.04.21`, and `1440` becomes `14:40` while the calculation layer continues receiving ISO values (`YYYY-MM-DD`, `HH:mm`).
+- Spacing and layout rhythm: birth date, birth time, and target date now share the same text-field geometry. At `390px`, the date fields measure `325.625px`, the time field and `모름` control remain inside the same `325.625px` row, and document overflow remains `0px`.
+- Defaults and validation: the target-date draft displays the Korea-timezone current date by default. Incomplete or invalid dates remain visible as drafts but are rejected by the existing calculation validation before computation.
+- Interaction and accessibility: labels remain associated through the existing `LabeledField` wrapper, numeric input mode is requested on mobile, the `모름` state still clears and disables the time field, and a valid typed form reaches the existing calculation result.
+- Fonts, colors, image treatment, and copy remain unchanged from the approved Softie atmosphere.
+
+### Comparison history
+
+- Iteration 1: native controls were kept after the iOS overflow fix, but the asymmetric time-row silhouette remained visually harder to center. The typed-mask alternative was implemented locally and compared at the same mobile width; all three fields now follow one centered text-field pattern without changing calculation contracts.
+
+### Follow-up polish
+
+- P3: preserve the typed draft through a full page reload if users frequently edit incomplete dates before saving a local draft. The current implementation intentionally keeps only valid ISO values in the calculation state.
+
+final result: passed
+
 ## Interpretation Prep iOS Native Input Width QA
 
 - source visual truth: `/tmp/codex-remote-attachments/019f9618-8084-7c03-a518-af09fcce8455/1D768D63-A2B6-4BE8-A683-EF5CAC5D4920/1-붙여넣은-이미지-1.jpg`
@@ -488,5 +554,22 @@ final result: passed
 - P3 resolved: successful sync now gives a non-blocking, warm liquid-glass confirmation at the top of the scheduler so the result is visible without interrupting the next action.
 - Existing overlap confirmation and error status flows remain unchanged; the completion feedback is only shown after the save or replacement request resolves successfully.
 - The toast is `role="status"` with `aria-live="polite"`, ignores pointer input, and respects `prefers-reduced-motion`.
+
+final result: passed
+
+## Interpretation Prep Target Date Placement QA
+
+- implementation: `src/interpretationPrep/InterpretationPrepPage.jsx`
+- rendered route: `/interpretation-prep` at `http://127.0.0.1:4173/interpretation-prep`
+- viewport: `390×844` CSS px
+- states: primary form with advanced details collapsed, then expanded
+- primary interaction tested: `세부 입력과 계산 환경` summary toggle
+
+### Findings
+
+- P2 resolved: `운 흐름 기준일` now lives inside the advanced details section, reducing accidental edits while keeping the field available for users who need it.
+- With the section collapsed, the primary form ends after birth time and the target-date control is not exposed. When expanded, the target date appears first in the advanced grid, followed by city, timezone, latitude, and longitude.
+- Summary copy now names the hidden content (`기준일 · 도시 · 시간대 · 좌표`) so the control remains discoverable without adding visual density to the default form.
+- Mobile layout remains bounded at `390px` (`scrollWidth === clientWidth`); no horizontal overflow or clipped target-date field was observed.
 
 final result: passed
