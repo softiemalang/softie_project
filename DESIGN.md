@@ -1,7 +1,7 @@
 ---
 # Design Tokens
 name: softie-project
-version: 2.5.0
+version: 2.6.0
 adoption: new-and-redesigned-surfaces
 tokens:
   colors:
@@ -395,6 +395,16 @@ Warm Liquid Glass는 따뜻한 사진의 색과 형태가 패널 안에서도 �
 고밀도 도구는 기능 shell 안에서 `display`, `title`, `value`, `body`, `meta`, `control`, `badge` 역할 토큰을 정의할 수 있습니다. 검증 후 공통 토큰으로 승격하되, 실제 폼 입력의 `16px` 기준과 `44px` 터치 영역은 유지합니다.
 
 새 페이지는 theme attribute와 필요한 `ag-*` 패턴만 선택해 사용합니다. 기존 `.hero`, `.card`, `button` 전역 클래스에는 Atmospheric Glass를 자동 적용하지 않습니다.
+
+### Selective iOS 27 adoption
+
+- **Softie의 미감, Apple의 공차.** Apple의 색과 외형을 복제하지 않고, 폰트·간격·곡률·정렬·광학 마감처럼 집요하게 다듬어진 측정 기준만 빌립니다. 결과는 Apple처럼 보이는 서비스가 아니라, 원래 Softie였는데 유난히 반듯하고 완성도 높아진 서비스여야 합니다.
+- iOS 27은 별도 테마나 전면 재디자인이 아니라, Warm Nostalgic Atmospheric Glass 안에서 검증된 상호작용 원칙을 선택적으로 가져오는 기준입니다.
+- 공통 우선순위는 `44px` 터치 영역, 명시적 포커스, safe-area, reduced motion/투명도 대응, 시트의 키보드 닫기와 포커스 복귀입니다.
+- 사진 배경, 웜 글라스 표면, 기존 카드 배치, 콘텐츠 위계는 유지합니다. 검은 시스템 캔버스나 전면 grouped-list 전환은 적용하지 않습니다.
+- Liquid Glass는 배경을 가리는 장식이 아니라 배경을 통과시키는 명령 표면입니다. 중앙은 투명하게, 경계는 밝게, 깊이는 얕은 내부 하이라이트로 표현하며 홈 상단·시트·스케줄러 주요 명령 표면에만 사용합니다.
+- 첫 파일럿은 `/`의 Softie Memo 시트입니다. 인증·카카오 전송·서비스 탐색 로직을 바꾸지 않고 시트 상호작용과 접근성만 검증합니다.
+- 파일럿에서 검증된 selector와 토큰만 다른 화면에 승격합니다. `/scheduler`와 `/lead-sheet`은 데이터·운영 위험 때문에 별도 작업으로 다룹니다.
 
 ## 12. Definition of done
 

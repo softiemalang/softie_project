@@ -728,7 +728,7 @@ export function TodaySchedulerPage({
         </div>
       )}
 
-      <section className="scheduler-panel scheduler-controls">
+      <section className="scheduler-panel scheduler-controls softie-liquid-glass">
         <div className="scheduler-filter-summary-row">
           <div className="scheduler-filter-summary-copy">
             <strong className={normalizedFilters.workTimeEnabled ? 'scheduler-work-status-title' : undefined}>

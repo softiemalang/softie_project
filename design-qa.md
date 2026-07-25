@@ -267,3 +267,35 @@
 - P3: confirm the compact row once in the installed iPhone standalone PWA; the local `390×844` viewport covers the target width, but native safe-area chrome can slightly change its top offset.
 
 final result: passed
+
+## Selective Liquid Glass Material QA
+
+- source visual truth: `/tmp/codex-remote-attachments/019f9618-8084-7c03-a518-af09fcce8455/7D29A77E-ABCC-4613-9A61-6A54103166EE/1-사진-1.jpg`
+- implementation screenshots: `/private/tmp/softie-liquid-glass-qa/home-390.png`, `/private/tmp/softie-liquid-glass-qa/scheduler-login-390.png`, and `/private/tmp/softie-liquid-glass-qa/memo-sheet-390-revised.png`
+- full-view and focused material comparison evidence: `/private/tmp/softie-liquid-glass-qa/material-comparison.png`
+- source pixels: `1206×676`; this is a system-screen material reference, not a Softie layout target
+- implementation viewport and pixels: `390×844` CSS px at 1× density
+- state: signed-out home, open Softie Memo sheet, and signed-out scheduler login
+- primary interactions tested: Softie Memo opens from its service card, receives textarea focus, and exposes a labeled dialog; scheduler primary authentication action was visually inspected but not activated
+- console errors checked: no application errors were observed in the inspected home and scheduler states
+
+### Findings
+
+- P2 resolved: the mobile memo sheet initially collapsed to its intrinsic grid-column width (`239.5px`) instead of filling the viewport. The mobile backdrop now defines a `minmax(0, 1fr)` track and stretches its content, producing a full-width bottom sheet.
+- Fonts and typography: Softie's existing system typography and warm uppercase hierarchy are preserved. The material reference contributes no copied type styling; the memo title and scheduler primary action remain legible over the more transparent surface.
+- Spacing and layout rhythm: the existing home and scheduler composition is unchanged. Liquid treatment is restricted to hierarchy-defining surfaces; standard service and informational cards retain the quieter material.
+- Colors and visual tokens: the implementation uses a neutral warm transparent fill, bright optical border, shallow inner highlights, and reduced outer shadow. It intentionally omits the source screenshot's chromatic fringe because CSS cannot reproduce iOS renderer refraction reliably without decorative imitation.
+- Image quality and asset fidelity: the existing Softie atmospheric photograph remains the only product background asset. No replacement image, SVG, gradient, or simulated system icon was introduced.
+- Copy and content: application copy is unchanged except for the previously added visible `Softie Memo` dialog title. The reference screen's flashlight, camera, carrier label, and home indicator were correctly treated as irrelevant system UI.
+- Accessibility and fallbacks: 44px memo targets, textarea autofocus, Escape closing, trigger focus return, safe-area padding, reduced-transparency fallback, and no-backdrop-filter fallback are present.
+
+### Comparison history
+
+- Iteration 23: the first browser capture showed the new material direction working on the home header and scheduler login surface but exposed the collapsed mobile sheet width. After adding an explicit full-width mobile grid track, the revised screenshot shows a stable edge-to-edge sheet with no remaining actionable P0/P1/P2 issue.
+
+### Follow-up polish
+
+- P3: verify the blur, brightness, and border response on a physical iPhone in Safari/PWA mode. Web `backdrop-filter` can match the transparency and edge hierarchy, but not iOS's native optical distortion or chromatic refraction.
+- P3: the signed-in scheduler command surface is code-covered by the same modifier but was not browser-captured because this session has no authenticated scheduler state.
+
+final result: passed

@@ -10,7 +10,7 @@ function SchedulerLoginPage({ isSigningIn, onSignIn, status }) {
   return (
     <div className="scheduler-theme-shell ag-shell" data-design-theme="atmospheric">
       <div className="scheduler-shell">
-        <section className="scheduler-panel scheduler-setting-card is-setup">
+        <section className="scheduler-panel scheduler-setting-card softie-liquid-glass is-setup">
         <div className="scheduler-section-head">
           <p className="scheduler-section-label">계정 로그인</p>
           <div className="scheduler-count-pill">로그인 필요</div>
@@ -21,7 +21,7 @@ function SchedulerLoginPage({ isSigningIn, onSignIn, status }) {
         <div className="scheduler-modal-actions stack" style={{ marginTop: '1rem' }}>
           <button
             type="button"
-            className="scheduler-modal-btn"
+            className="scheduler-modal-btn primary"
             onClick={onSignIn}
             disabled={isSigningIn}
           >

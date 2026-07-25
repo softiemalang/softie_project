@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { navigate } from '../lib/router'
 import { getCurrentSession, signInWithGoogle, signOut, subscribeAuthChanges } from '../lib/auth'
 import { isKakaoMemoConnected, sendKakaoMemoText, startKakaoMemoLogin } from '../lib/kakaoMessage'
@@ -12,6 +12,9 @@ export default function HomePage() {
   const [memoError, setMemoError] = useState('')
   const [isSendingMemo, setIsSendingMemo] = useState(false)
   const [isKakaoMemoReady, setIsKakaoMemoReady] = useState(() => isKakaoMemoConnected())
+  const memoTriggerRef = useRef(null)
+  const memoTextareaRef = useRef(null)
+  const isSendingMemoRef = useRef(false)
 
   useEffect(() => {
     getCurrentSession().then(s => {
@@ -27,6 +30,37 @@ export default function HomePage() {
       sub.unsubscribe()
     }
   }, [])
+
+  useEffect(() => {
+    isSendingMemoRef.current = isSendingMemo
+  }, [isSendingMemo])
+
+  useEffect(() => {
+    if (!isMemoOpen) return undefined
+
+    const previousOverflow = document.body.style.overflow
+    const focusFrame = window.requestAnimationFrame(() => memoTextareaRef.current?.focus())
+
+    document.body.style.overflow = 'hidden'
+
+    function handleKeyDown(event) {
+      if (event.key !== 'Escape' || isSendingMemoRef.current) return
+
+      event.preventDefault()
+      setIsMemoOpen(false)
+      setMemoStatus('')
+      setMemoError('')
+    }
+
+    window.addEventListener('keydown', handleKeyDown)
+
+    return () => {
+      window.cancelAnimationFrame(focusFrame)
+      window.removeEventListener('keydown', handleKeyDown)
+      document.body.style.overflow = previousOverflow
+      memoTriggerRef.current?.focus()
+    }
+  }, [isMemoOpen])
 
   const services = [
     {
@@ -78,7 +112,7 @@ export default function HomePage() {
   }
 
   function closeMemoModal() {
-    if (isSendingMemo) return
+    if (isSendingMemoRef.current) return
     setIsMemoOpen(false)
     setMemoStatus('')
     setMemoError('')
@@ -174,7 +208,7 @@ export default function HomePage() {
   return (
     <div className="app-shell ag-shell home-shell" data-design-theme="atmospheric">
       <main className="ag-layout home-layout">
-        <header className="ag-glass home-hero">
+        <header className="ag-glass softie-liquid-glass home-hero">
           <div className="home-hero-topline">
             <p className="ag-kicker">SOFTIE PROJECT</p>
             <span className="home-topline-divider" aria-hidden="true">·</span>
@@ -214,6 +248,7 @@ export default function HomePage() {
               <button
                 type="button"
                 key={service.path || service.label}
+                ref={service.action === 'memo' ? memoTriggerRef : undefined}
                 className="ag-glass service-card"
                 onClick={() => service.action === 'memo' ? openMemoModal() : navigate(service.path)}
               >
@@ -247,14 +282,24 @@ export default function HomePage() {
 
       {isMemoOpen && (
         <div className="home-memo-backdrop" onClick={closeMemoModal}>
-          <section className="home-memo-sheet" role="dialog" aria-modal="true" aria-label="SOFTIE MEMO" onClick={(event) => event.stopPropagation()}>
+          <section
+            className="home-memo-sheet ios27-selective-sheet softie-liquid-glass"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="home-memo-title"
+            onClick={(event) => event.stopPropagation()}
+          >
             <div className="home-memo-header">
-              <span className={`home-memo-kakao-badge ${isKakaoMemoReady ? 'success' : 'muted'}`}>
-                {isKakaoMemoReady ? '카카오 연결됨' : '카카오 재연결 필요'}
-              </span>
-              <button type="button" className="home-memo-close" onClick={closeMemoModal}>닫기</button>
+              <div>
+                <h2 id="home-memo-title">Softie Memo</h2>
+                <span className={`home-memo-kakao-badge ${isKakaoMemoReady ? 'success' : 'muted'}`}>
+                  {isKakaoMemoReady ? '카카오 연결됨' : '카카오 재연결 필요'}
+                </span>
+              </div>
+              <button type="button" className="home-memo-close ios27-selective-touch-target" onClick={closeMemoModal}>닫기</button>
             </div>
             <textarea
+              ref={memoTextareaRef}
               className="home-memo-textarea"
               value={memoText}
               onChange={(event) => {
@@ -270,14 +315,14 @@ export default function HomePage() {
               <div className="home-memo-error-row">
                 <p className="home-memo-status error">{memoError}</p>
                 {memoText.trim() && (
-                  <button type="button" className="home-memo-secondary home-memo-copy" onClick={handleCopyMemo}>
+                  <button type="button" className="home-memo-secondary home-memo-copy ios27-selective-touch-target" onClick={handleCopyMemo}>
                     복사
                   </button>
                 )}
               </div>
             )}
             <div className="home-memo-actions">
-              <button type="button" className="home-memo-primary" onClick={handleSendMemo} disabled={isSendingMemo || !memoText.trim()}>
+              <button type="button" className="home-memo-primary ios27-selective-touch-target" onClick={handleSendMemo} disabled={isSendingMemo || !memoText.trim()}>
                 {isSendingMemo ? '보내는 중...' : '나에게 보내기'}
               </button>
             </div>

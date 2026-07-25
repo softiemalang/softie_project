@@ -67,6 +67,11 @@
   --ag-content-utility: 860px;
   --ag-content-wide: 1180px;
   --ag-duration-fast: 180ms;
+
+  /* Selective iOS 27 interaction primitives; the warm visual language remains primary. */
+  --ios27-selective-touch-target: 44px;
+  --ios27-selective-sheet-radius: 28px;
+  --ios27-selective-sheet-inset: 1rem;
 }
 
 [data-design-theme='atmospheric'] {
@@ -3300,13 +3305,49 @@ textarea {
   transform: translateY(-4vh);
 }
 
+.ios27-selective-touch-target {
+  min-height: var(--ios27-selective-touch-target);
+}
+
+.softie-liquid-glass {
+  background: rgba(24, 23, 18, 0.24) !important;
+  border: 1px solid rgba(255, 248, 235, 0.34) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.38),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.08),
+    0 18px 44px rgba(8, 7, 5, 0.2) !important;
+  backdrop-filter: blur(15px) saturate(140%) brightness(0.94) !important;
+  -webkit-backdrop-filter: blur(15px) saturate(140%) brightness(0.94) !important;
+}
+
+.home-memo-sheet.ios27-selective-sheet {
+  padding: 1rem;
+  border-radius: var(--ios27-selective-sheet-radius);
+  transform: none;
+}
+
 .home-memo-header {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
   gap: 0.65rem;
-  min-height: 34px;
-  margin-bottom: 0.58rem;
+  min-height: var(--ios27-selective-touch-target);
+  margin-bottom: 0.75rem;
+}
+
+.home-memo-header > div {
+  min-width: 0;
+  display: grid;
+  gap: 0.35rem;
+}
+
+.home-memo-header h2 {
+  margin: 0;
+  color: var(--ag-text);
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
 }
 
 .home-memo-kakao-badge {
@@ -3342,7 +3383,6 @@ textarea {
 }
 
 .home-memo-close {
-  min-height: 30px;
   padding: 0.28rem 0.68rem;
   border-radius: var(--radius-pill);
   font-size: 0.76rem;
@@ -3400,7 +3440,6 @@ textarea {
 
 .home-memo-copy {
   margin-top: 0.55rem;
-  min-height: 30px;
   padding: 0.32rem 0.62rem;
   border-radius: var(--radius-pill);
   font-size: 0.78rem;
@@ -3415,7 +3454,6 @@ textarea {
 }
 
 .home-memo-actions button {
-  min-height: 40px;
   border-radius: var(--radius-pill);
   padding: 0.6rem 0.95rem;
   font-size: 0.88rem;
@@ -3425,6 +3463,27 @@ textarea {
   background: var(--ag-brand);
   color: #2f2a22;
   min-width: 142px;
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  .home-memo-backdrop {
+    background: rgba(13, 12, 9, 0.84);
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+
+  .softie-liquid-glass,
+  .home-memo-sheet.ios27-selective-sheet {
+    background: rgba(37, 34, 29, 0.96);
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+}
+
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .softie-liquid-glass {
+    background: rgba(37, 34, 29, 0.94) !important;
+  }
 }
 
 .home-footer {
@@ -3607,6 +3666,30 @@ textarea {
     padding: 0.78rem 0.82rem 0.86rem;
     border-radius: 20px;
     transform: translateY(-7vh);
+  }
+
+  .home-memo-backdrop {
+    grid-template-columns: minmax(0, 1fr);
+    align-items: end;
+    justify-content: stretch;
+    padding:
+      max(0.75rem, env(safe-area-inset-top))
+      0
+      0;
+  }
+
+  .home-memo-sheet.ios27-selective-sheet {
+    width: 100%;
+    max-height: min(84dvh, 520px);
+    padding:
+      1.15rem
+      var(--ios27-selective-sheet-inset)
+      max(1.15rem, calc(env(safe-area-inset-bottom) + 1rem));
+    border-right: 0;
+    border-bottom: 0;
+    border-left: 0;
+    border-radius: var(--ios27-selective-sheet-radius) var(--ios27-selective-sheet-radius) 0 0;
+    transform: none;
   }
 
   .home-memo-textarea {
