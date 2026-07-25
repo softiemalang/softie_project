@@ -809,6 +809,7 @@ export default function InterpretationPrepPage() {
   }))
   const [targetDateTouched, setTargetDateTouched] = useState(Boolean(savedDraft?.input?.targetDate))
   const [profiles, setProfiles] = useState(savedDraft?.profiles || DEFAULT_PROFILES)
+  const [saveLocally, setSaveLocally] = useState(Boolean(savedDraft))
   const [result, setResult] = useState(null)
   const [showDetails, setShowDetails] = useState(true)
   const [error, setError] = useState('')
