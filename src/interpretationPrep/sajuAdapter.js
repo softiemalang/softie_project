@@ -8,6 +8,7 @@ import { ELEMENTS, YIN_YANG } from '../saju/engine/constants.js'
 import { getKoreaReferenceCity, KOREA_REFERENCE_CITIES, SAJU_ADAPTER_VERSION, resolveStateContract } from './schema.js'
 import { calculateNatalBranchRelations, calculateNatalStemRelations } from './sajuRelationRules.js'
 import { calculateSajuTiming } from './sajuTimingRules.js'
+import { getHourCandidatesForUnknown, getHourCandidatesForRange } from './sajuHourUtils.js'
 import {
   calculateStrengthScore,
   determineGyeokguk,
@@ -443,6 +444,11 @@ function buildCandidateComparison(candidates) {
   return { status: differences.length === 0 ? 'identical' : pillarsEqual ? 'equivalent_pillars' : 'different', equivalentFields, differences }
 }
 
+/**
+ * TODO(candidatePipelineOptimization: future):
+ * 출생시각 미상(12개 후보) 또는 절기/DST 복합 경계 후보 확장 시,
+ * 동일 연주/월주/일주에 대해 natal calculation 및 파생 명식 계산을 재사용(memoization)하는 최적화를 추후 적용 예정.
+ */
 function buildCandidatePipeline({ input, primaryPillars, primaryRawPillars, primaryAnalysis, primaryTiming, primaryExperimental, candidateSources = [], candidateInstants = null, calculationOptions }) {
   const sourceEntries = candidateInstants && candidateInstants.length > 0
     ? candidateInstants.map((inst) => ({
@@ -672,7 +678,19 @@ export function calculateSajuSystem(input, profile) {
     solarTimeOffsetMinutes: referenceCity.correctionMinutes,
   }
   const birthTimeUnknown = input.timeAccuracy === 'unknown'
-  const referenceBirthTime = birthTimeUnknown ? '12:00' : input.birthTime
+  const birthTimeRange = input.timeAccuracy === 'range'
+
+  // TODO: candidateOptimization: 'planned' (12개 시지 후보 계산 시 공통 연·월·일주 산출을 재활용하는 성능 최적화 예정)
+  const hourCandidateSpecs = birthTimeUnknown
+    ? getHourCandidatesForUnknown()
+    : (birthTimeRange ? getHourCandidatesForRange(input.birthTimeStart, input.birthTimeEnd) : [])
+
+  const referenceBirthTime = birthTimeUnknown
+    ? '12:00'
+    : (birthTimeRange
+        ? (hourCandidateSpecs[0]?.representativeTime || '12:00')
+        : input.birthTime)
+
   const pillars = calculateFourPillars(
     { birthDate: input.birthDate, birthTime: referenceBirthTime },
     calculationOptions,
@@ -684,13 +702,31 @@ export function calculateSajuSystem(input, profile) {
   const domesticCorrectionRange = domesticCorrectionValues.length > 0
     ? [Math.min(...domesticCorrectionValues), Math.max(...domesticCorrectionValues)].map(roundMinutes)
     : null
-  const timeCandidatePillars = birthTimeUnknown
-    ? ['00:00', '12:00', '23:59'].map((birthTime) => calculateFourPillars(
-        { birthDate: input.birthDate, birthTime },
-        calculationOptions,
-      ))
+
+  const hourCandidateEntries = hourCandidateSpecs.map((hc) => {
+    const candidateInput = { birthDate: input.birthDate, birthTime: hc.representativeTime }
+    const candidatePillars = calculateFourPillars(candidateInput, calculationOptions)
+    return {
+      id: hc.id,
+      label: hc.label,
+      hourBranch: hc.hourBranch,
+      assumedTimeRange: hc.assumedTimeRange,
+      representativeTime: hc.representativeTime,
+      inputAssumption: hc.assumption,
+      candidateOrigin: hc.candidateOrigin,
+      candidatePriority: hc.candidatePriority,
+      sourceRange: hc.sourceRange,
+      matchedHourRange: hc.matchedHourRange,
+      input: { ...input, ...candidateInput },
+      pillars: candidatePillars,
+    }
+  })
+
+  const timeCandidatePillars = hourCandidateEntries.length > 0
+    ? hourCandidateEntries.map((e) => e.pillars)
     : [pillars]
-  const solarTermBoundarySensitive = !birthTimeUnknown && pillars._meta.isNearSolarTermBoundary
+
+  const solarTermBoundarySensitive = !birthTimeUnknown && !birthTimeRange && pillars._meta.isNearSolarTermBoundary
   const solarTermCandidateProbeMinutes = pillars._meta.boundaryUncertaintyMinutes + 2
   const solarTermCandidateEntries = solarTermBoundarySensitive
     ? [-solarTermCandidateProbeMinutes, solarTermCandidateProbeMinutes].map((minutes) => {
@@ -720,10 +756,20 @@ export function calculateSajuSystem(input, profile) {
         : [])))
     : []
   const natalCandidatePillars = [
-    ...(birthTimeUnknown ? timeCandidatePillars.map((candidate, index) => ({
-      label: `출생시각 미상 후보 ${index + 1}`,
-      pillars: candidate,
-    })) : []),
+    ...hourCandidateEntries.map((hc) => ({
+      id: hc.id,
+      label: hc.label,
+      hourBranch: hc.hourBranch,
+      assumedTimeRange: hc.assumedTimeRange,
+      representativeTime: hc.representativeTime,
+      inputAssumption: hc.inputAssumption,
+      candidateOrigin: hc.candidateOrigin,
+      candidatePriority: hc.candidatePriority,
+      sourceRange: hc.sourceRange,
+      matchedHourRange: hc.matchedHourRange,
+      input: hc.input,
+      pillars: hc.pillars,
+    })),
     ...(solarTermBoundarySensitive ? solarTermCandidatePillars.map((candidate, index) => ({
       label: `절입 경계 후보 ${index + 1}`,
       input: solarTermCandidateEntries[index].input,
@@ -843,17 +889,29 @@ export function calculateSajuSystem(input, profile) {
   const isInKasiReferenceRange = solarYear >= 1951 && solarYear <= 2050
 
   const isNeedsVerification = systemStatus === 'needs_verification'
-  const isCandidateRequired = isNeedsVerification || birthTimeUnknown
+  const isMultipleRangeCandidates = birthTimeRange && hourCandidateEntries.length > 1
+  const isCandidateRequired = isNeedsVerification || birthTimeUnknown || isMultipleRangeCandidates
+
+  const resolvedVerificationStatus = (historicalTimeAssessment?.status === 'dst_ambiguous_local_time' || solarTermBoundarySensitive || birthTimeUnknown || isMultipleRangeCandidates)
+    ? 'candidate_required'
+    : (isNeedsVerification || (birthTimeRange && hourCandidateEntries.length === 1) ? 'needs_verification' : 'verified')
+
+  const resolvedInterpretationStatus = (birthTimeUnknown || isMultipleRangeCandidates || historicalTimeAssessment?.status === 'dst_ambiguous_local_time')
+    ? 'candidate_only'
+    : 'experimental'
+
+  const resolvedConfidence = (birthTimeUnknown || isMultipleRangeCandidates || isNeedsVerification)
+    ? 'low'
+    : ((birthTimeRange && hourCandidateEntries.length === 1) ? 'medium' : confidenceFromAccuracy(input.timeAccuracy))
 
   const primaryExperimental = {
     isExperimental: true,
     status: isCandidateRequired ? 'candidate_required' : 'calculated',
-    verificationStatus: (historicalTimeAssessment?.status === 'dst_ambiguous_local_time' || solarTermBoundarySensitive)
-      ? 'candidate_required'
-      : isNeedsVerification ? 'needs_verification' : 'verified',
-    confidence: isNeedsVerification ? 'low' : 'medium',
-    description: isNeedsVerification
-      ? '절기·출생시각·출생지·운 흐름 중 하나 이상에 후보 또는 검증 필요 상태가 있어 강약·격국·용신·신살을 하나로 확정하지 않습니다.'
+    verificationStatus: resolvedVerificationStatus,
+    interpretationStatus: resolvedInterpretationStatus,
+    confidence: resolvedConfidence,
+    description: isNeedsVerification || isCandidateRequired
+      ? '절기·출생시각·출생지·운 흐름 중 하나 이상에 복수 후보 또는 검증 필요 상태가 있어 강약·격국·용신·신살을 하나로 확정하지 않습니다.'
       : '강약·격국·용신·신살은 검증단계(Experimental) 분석 결과입니다. 공식 릴리스 전 단계이므로 학술 참고용으로만 사용하시기 바랍니다.',
     strength: {
       score: strengthScore.score,
@@ -871,8 +929,8 @@ export function calculateSajuSystem(input, profile) {
       ...(strengthScore.epistemicMetadata ? {
         epistemicMetadata: {
           ...strengthScore.epistemicMetadata,
-          confidence: isNeedsVerification ? 'low' : strengthScore.epistemicMetadata.confidence,
-          reviewNotes: isNeedsVerification
+          confidence: resolvedConfidence === 'low' ? 'low' : strengthScore.epistemicMetadata.confidence,
+          reviewNotes: isNeedsVerification || isCandidateRequired
             ? `[검증 필요] ${strengthScore.epistemicMetadata.reviewNotes}`
             : strengthScore.epistemicMetadata.reviewNotes,
         }
@@ -883,7 +941,7 @@ export function calculateSajuSystem(input, profile) {
       ...(gyeokguk.epistemicMetadata ? {
         epistemicMetadata: {
           ...gyeokguk.epistemicMetadata,
-          confidence: isNeedsVerification ? 'low' : gyeokguk.epistemicMetadata.confidence,
+          confidence: resolvedConfidence === 'low' ? 'low' : gyeokguk.epistemicMetadata.confidence,
         }
       } : {}),
     },
@@ -892,7 +950,7 @@ export function calculateSajuSystem(input, profile) {
       ...(yongShin.epistemicMetadata ? {
         epistemicMetadata: {
           ...yongShin.epistemicMetadata,
-          confidence: isNeedsVerification ? 'low' : yongShin.epistemicMetadata.confidence,
+          confidence: resolvedConfidence === 'low' ? 'low' : yongShin.epistemicMetadata.confidence,
         }
       } : {}),
     },
@@ -1073,12 +1131,14 @@ export function calculateSajuSystem(input, profile) {
 
   const hasCandidates = candidatePipeline.candidates.length > 1
   const isDstOverlap = historicalTimeAssessment?.status === 'dst_ambiguous_local_time'
+  const isSingleRangeCandidate = birthTimeRange && hourCandidateEntries.length === 1
+
   const stateContract = resolveStateContract({
     inputStatus: birthTimeUnknown ? 'unknown_birth_time' : 'valid',
     calculationStatus: 'calculated',
-    verificationStatus: isDstOverlap || hasCandidates || birthTimeUnknown ? 'candidate_required' : (isNeedsVerification ? 'needs_verification' : 'verified'),
-    interpretationStatus: isDstOverlap || hasCandidates ? 'candidate_only' : 'experimental',
-    confidence: isNeedsVerification || hasCandidates || isDstOverlap ? 'low' : (solarTermBoundarySensitive ? 'medium' : 'high'),
+    verificationStatus: isDstOverlap || hasCandidates || birthTimeUnknown || isMultipleRangeCandidates ? 'candidate_required' : (isNeedsVerification || isSingleRangeCandidate ? 'needs_verification' : 'verified'),
+    interpretationStatus: isDstOverlap || hasCandidates || birthTimeUnknown || isMultipleRangeCandidates ? 'candidate_only' : 'experimental',
+    confidence: birthTimeUnknown || isMultipleRangeCandidates || isDstOverlap || isNeedsVerification ? 'low' : (isSingleRangeCandidate || solarTermBoundarySensitive ? 'medium' : confidenceFromAccuracy(input.timeAccuracy)),
   })
 
   return {

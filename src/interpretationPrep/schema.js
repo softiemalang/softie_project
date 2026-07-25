@@ -47,6 +47,8 @@ export const DEFAULT_INPUT = {
   subjectName: '',
   birthDate: '',
   birthTime: '',
+  birthTimeStart: '',
+  birthTimeEnd: '',
   targetDate: '',
   placeName: '대한민국',
   referenceCity: 'seoul',

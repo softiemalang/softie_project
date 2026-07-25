@@ -889,13 +889,27 @@ export default function InterpretationPrepPage() {
     updateInput('timeAccuracy', 'exact')
   }
 
-  function toggleUnknownBirthTime() {
-    setTextDrafts((current) => ({ ...current, birthTime: '' }))
-    setInput((current) => ({
-      ...current,
-      birthTime: '',
-      timeAccuracy: current.timeAccuracy === 'unknown' ? 'exact' : 'unknown',
-    }))
+  function setTimeAccuracyMode(mode) {
+    if (mode === 'unknown') {
+      setTextDrafts((current) => ({ ...current, birthTime: '' }))
+      setInput((current) => ({
+        ...current,
+        birthTime: '',
+        timeAccuracy: 'unknown',
+      }))
+    } else if (mode === 'range') {
+      setInput((current) => ({
+        ...current,
+        timeAccuracy: 'range',
+        birthTimeStart: current.birthTimeStart || '13:00',
+        birthTimeEnd: current.birthTimeEnd || '15:00',
+      }))
+    } else {
+      setInput((current) => ({
+        ...current,
+        timeAccuracy: 'exact',
+      }))
+    }
     setError('')
     setCopyStatus('')
   }
@@ -1047,26 +1061,64 @@ export default function InterpretationPrepPage() {
               </LabeledField>
             )}
             <LabeledField label="출생시각" className="prep-field-wide">
-              <div className="prep-time-control">
-                <input
-                  type="text"
-                  inputMode="numeric"
-                  placeholder="HH:MM"
-                  maxLength={5}
-                  pattern="[0-9:]*"
-                  required={input.timeAccuracy !== 'unknown'}
-                  disabled={input.timeAccuracy === 'unknown'}
-                  value={textDrafts.birthTime}
-                  onChange={(event) => updateTimeDraft(event.target.value)}
-                />
-                <button
-                  type="button"
-                  aria-pressed={input.timeAccuracy === 'unknown'}
-                  className={`prep-time-unknown ${input.timeAccuracy === 'unknown' ? 'is-active' : ''}`}
-                  onClick={toggleUnknownBirthTime}
-                >
-                  모름
-                </button>
+              <div className="prep-time-control-group">
+                <div className="prep-time-mode-selector">
+                  <button
+                    type="button"
+                    className={`prep-time-mode-btn ${input.timeAccuracy === 'exact' || input.timeAccuracy === 'approximate' ? 'is-active' : ''}`}
+                    onClick={() => setTimeAccuracyMode('exact')}
+                  >
+                    지정 시각
+                  </button>
+                  <button
+                    type="button"
+                    className={`prep-time-mode-btn ${input.timeAccuracy === 'range' ? 'is-active' : ''}`}
+                    onClick={() => setTimeAccuracyMode('range')}
+                  >
+                    범위 지정
+                  </button>
+                  <button
+                    type="button"
+                    className={`prep-time-mode-btn ${input.timeAccuracy === 'unknown' ? 'is-active' : ''}`}
+                    onClick={() => setTimeAccuracyMode('unknown')}
+                  >
+                    시각 모름
+                  </button>
+                </div>
+
+                {input.timeAccuracy === 'range' ? (
+                  <div className="prep-time-range-inputs">
+                    <input
+                      type="text"
+                      placeholder="시작 HH:MM"
+                      maxLength={5}
+                      value={input.birthTimeStart || ''}
+                      onChange={(event) => updateInput('birthTimeStart', formatTimeValue(event.target.value))}
+                    />
+                    <span>~</span>
+                    <input
+                      type="text"
+                      placeholder="종료 HH:MM"
+                      maxLength={5}
+                      value={input.birthTimeEnd || ''}
+                      onChange={(event) => updateInput('birthTimeEnd', formatTimeValue(event.target.value))}
+                    />
+                  </div>
+                ) : (
+                  <div className="prep-time-control">
+                    <input
+                      type="text"
+                      inputMode="numeric"
+                      placeholder="HH:MM"
+                      maxLength={5}
+                      pattern="[0-9:]*"
+                      required={input.timeAccuracy !== 'unknown'}
+                      disabled={input.timeAccuracy === 'unknown'}
+                      value={textDrafts.birthTime}
+                      onChange={(event) => updateTimeDraft(event.target.value)}
+                    />
+                  </div>
+                )}
               </div>
             </LabeledField>
           </div>

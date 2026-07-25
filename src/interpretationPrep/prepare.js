@@ -15,11 +15,18 @@ const REQUIRED_INPUTS = ['birthDate', 'targetDate', 'timezone', 'referenceCity']
 export function validatePrepInput(input) {
   const missing = REQUIRED_INPUTS.filter((key) => String(input[key] ?? '').trim() === '')
   if (missing.length > 0) return `필수 입력값을 확인해 주세요: ${missing.join(', ')}`
-  const birthTimeUnknown = input.timeAccuracy === 'unknown'
   if (!['female', 'male'].includes(input.gender)) return '대운 순역 계산을 위해 성별을 선택해 주세요.'
-  if (!birthTimeUnknown && !String(input.birthTime || '').trim()) return '출생시각을 입력하거나 모름을 선택해 주세요.'
+  const birthTimeUnknown = input.timeAccuracy === 'unknown'
+  const birthTimeRange = input.timeAccuracy === 'range'
+
+  if (!birthTimeUnknown && !birthTimeRange && !String(input.birthTime || '').trim()) return '출생시각을 입력하거나 모름 또는 범위 지정을 선택해 주세요.'
+  if (birthTimeRange) {
+    if (!/^\d{2}:\d{2}$/.test(input.birthTimeStart) || !/^\d{2}:\d{2}$/.test(input.birthTimeEnd)) {
+      return '출생시각 범위(시작 시각, 종료 시각)를 올바르게 입력해 주세요.'
+    }
+  }
   if (!/^\d{4}-\d{2}-\d{2}$/.test(input.birthDate)) return '출생일 형식을 확인해 주세요.'
-  if (!birthTimeUnknown && !/^\d{2}:\d{2}$/.test(input.birthTime)) return '출생시각 형식을 확인해 주세요.'
+  if (!birthTimeUnknown && !birthTimeRange && !/^\d{2}:\d{2}$/.test(input.birthTime)) return '출생시각 형식을 확인해 주세요.'
   if (!/^\d{4}-\d{2}-\d{2}$/.test(input.targetDate)) return '운 흐름 기준일 형식을 확인해 주세요.'
 
   const [year, month, day] = input.birthDate.split('-').map(Number)
