@@ -153,15 +153,16 @@ export function prepareInterpretationData(input, profiles = DEFAULT_PROFILES) {
     birthDateSolar = conversion.solarDate
 
     const [solarYear] = birthDateSolar.split('-').map(Number)
-    const isKasiVerified = solarYear >= 1951 && solarYear <= 2050
+    const isInKasiReferenceRange = solarYear >= 1951 && solarYear <= 2050
     lunarConversion = {
       originalLunarDate: input.birthDate,
       isLeapMonth: Boolean(input.isLeapMonth),
       convertedSolarDate: birthDateSolar,
-      verificationScope: isKasiVerified ? 'kasi_reference_range_unverified' : 'external_lunar_tables',
-      source: isKasiVerified ? 'External Table (KASI-matching range 1951-2050)' : 'External Astrological Lunar Table',
-      scopeLabel: isKasiVerified
-        ? 'KASI 표준 대조 범위 내 (자체 전수 검증 대조 전, 1951~2050년)'
+      verificationStatus: isInKasiReferenceRange ? 'pending' : 'out_of_scope',
+      verificationScope: isInKasiReferenceRange ? 'kasi_reference_range_unverified' : 'external_lunar_tables',
+      source: isInKasiReferenceRange ? 'Local lunar table (KASI comparison pending, 1951-2050)' : 'External Astrological Lunar Table',
+      scopeLabel: isInKasiReferenceRange
+        ? '로컬 음력 테이블 범위 (KASI 전수 대조 검증 전, 1951~2050년)'
         : '전통 명리 음양력 대조 테이블 범위 (KASI 비지원 영역, 1901~1950년 및 2051~2100년)',
     }
   }
@@ -271,12 +272,15 @@ export function buildExportPayload(result, { type, topicId, question, generatedA
         timeBoundary: result.systems.saju.raw.timeBoundary,
         branchRelations: result.systems.saju.raw.branchRelations,
         stemRelations: result.systems.saju.raw.stemRelations,
+        systemStatus: result.systems.saju.status,
         experimentalStatus: sajuExperimental?.status || 'calculated',
         experimentalReason: sajuExperimental?.description || null,
-        gyeokguk: sajuExperimental?.gyeokguk,
-        yongShin: sajuExperimental?.yongShin,
-        strength: sajuExperimental?.strength,
-        shinsal: sajuExperimental?.shinsal,
+        gyeokguk: sajuExperimental?.status === 'candidate_required' ? null : sajuExperimental?.gyeokguk,
+        yongShin: sajuExperimental?.status === 'candidate_required' ? null : sajuExperimental?.yongShin,
+        strength: sajuExperimental?.status === 'candidate_required' ? null : sajuExperimental?.strength,
+        shinsal: sajuExperimental?.status === 'candidate_required' ? [] : sajuExperimental?.shinsal,
+        candidates: result.systems.saju.raw.candidates || [],
+        candidateComparison: result.systems.saju.raw.candidateComparison || { common: {}, differences: [] },
         timing: result.systems.saju.raw.timing,
         calculationUncertainty: result.systems.saju.raw.calculationUncertainty,
         supportScope: result.systems.saju.supportScope,
@@ -342,6 +346,7 @@ export function exportPayloadToMarkdown(payload) {
 
   const saju = payload.calculationSummary.saju
   const experimentalCandidateRequired = saju.experimentalStatus === 'candidate_required'
+    || saju.systemStatus === 'needs_verification'
   let gyeokgukText = experimentalCandidateRequired
     ? `- **[Experimental] 격국**: 후보 확인 필요 (${saju.experimentalReason})`
     : saju.gyeokguk && saju.gyeokguk.name !== '불명'
@@ -369,7 +374,7 @@ export function exportPayloadToMarkdown(payload) {
   const originalLunar = payload.calculationSummary.saju.inputNormalization.originalLunarDate
   const isLeap = payload.calculationSummary.saju.inputNormalization.isLeapMonth
   const convertedSolar = payload.calculationSummary.saju.inputNormalization.convertedSolarDate
-  const lunarSource = payload.calculationSummary.saju.engine?.profile?.lunarConversionSource || 'External Table (KASI-matching range 1951-2050)'
+  const lunarSource = payload.calculationSummary.saju.engine?.profile?.lunarConversionSource || 'Local lunar table (KASI comparison pending, 1951-2050)'
 
   const birthSummaryText = isLunar
     ? `음력 ${originalLunar} (${isLeap ? '윤달' : '평달'}) -> 변환 양력 ${convertedSolar} (출처: ${lunarSource}) ${payload.birthSummary.birthTime || '출생시각 모름'} (${payload.birthSummary.timezone})`

@@ -6,6 +6,8 @@ import { calculateBranchGroupRelations, calculateNatalBranchRelations, calculate
 import { addCalendarAge, calculateStartAge, getTwelveStage } from './sajuTimingRules.js'
 import { DEFAULT_INPUT, DEFAULT_PROFILES, KOREA_REFERENCE_CITIES } from './schema.js'
 import { determineGyeokguk } from './sajuProfileRules.js'
+import { lunar2solar } from './lunarConverter.js'
+import { EXTERNAL_VALIDATION_FIXTURES } from '../saju/engine/externalValidationFixtures.js'
 
 const FIXED_INPUT = {
   subjectName: '고정 테스트',
@@ -41,6 +43,7 @@ test('fixed birth input produces the known four pillars and traceable features',
   // - 용희신 판정: 극신약 정관격 사주이므로 일간을 수호하는 인성(금)을 억부용신으로 삼고, 비겁(수)을 희신으로 취하는 '신약용인(身弱用印)' 배치가 성립됨.
   const exp = result.systems.saju.raw.experimental
   assert.ok(exp.isExperimental, '실험 결과 메타데이터 표식 존재 확인')
+  assert.equal(exp.status, 'calculated')
   assert.equal(exp.gyeokguk.name, '정관격', '자평진전 진월 계수 무토사령 정관격 공식 검증')
   assert.equal(exp.yongShin.primaryYongShinElement, '금', '억부 희용신 신약용인 오행 금 용신 검증')
   assert.equal(exp.yongShin.heeShinElement, '수', '억부 수 희신 검증')
@@ -134,7 +137,11 @@ test('lunar date conversion and verification scope profile regression test', () 
   // KASI 표준 대조 범위 검증 (1951~2050년 사이이므로 kasi_reference_range_unverified 여야 함)
   const lConv = result.input.lunarConversion
   assert.equal(lConv.verificationScope, 'kasi_reference_range_unverified')
-  assert.equal(lConv.source, 'External Table (KASI-matching range 1951-2050)')
+  assert.equal(lConv.verificationStatus, 'pending')
+  assert.equal(result.systems.saju.raw.lunarConversion.verificationStatus, 'pending')
+  assert.equal(result.systems.saju.inputNormalization.lunarConversionVerificationStatus, 'pending')
+  assert.equal(lConv.source, 'Local lunar table (KASI comparison pending, 1951-2050)')
+  assert.match(lConv.scopeLabel, /KASI 전수 대조 검증 전/)
 
   // 1940년 음력생인 경우 External Astrological Lunar Table 범위여야 함
   const oldLunarInput = {
@@ -146,7 +153,30 @@ test('lunar date conversion and verification scope profile regression test', () 
   const oldResult = prepareInterpretationData(oldLunarInput, DEFAULT_PROFILES)
   const oldLConv = oldResult.input.lunarConversion
   assert.equal(oldLConv.verificationScope, 'external_lunar_tables')
+  assert.equal(oldLConv.verificationStatus, 'out_of_scope')
+  assert.equal(oldResult.systems.saju.raw.lunarConversion.verificationStatus, 'out_of_scope')
   assert.equal(oldLConv.source, 'External Astrological Lunar Table')
+})
+
+test('외부 공개 음양력 대조값은 생성값과 분리된 fixture로 검증한다', () => {
+  EXTERNAL_VALIDATION_FIXTURES.lunarConversions.forEach((fixture) => {
+    const [year, month, day] = fixture.lunarDate.split('-').map(Number)
+    const converted = lunar2solar(year, month, day, fixture.isLeapMonth)
+    assert.equal(converted.solarDate, fixture.expectedSolarDate, fixture.id)
+    assert.match(fixture.sourceUrl, /^https:\/\//)
+  })
+})
+
+test('외부 시간대 경계 fixture는 DST 후보 상태를 검증한다', () => {
+  EXTERNAL_VALIDATION_FIXTURES.historicalTime.forEach((fixture) => {
+    const saju = prepareInterpretationData({
+      ...FIXED_INPUT,
+      birthDate: fixture.localDate,
+      birthTime: fixture.localTime,
+    }, DEFAULT_PROFILES).systems.saju
+    assert.equal(saju.raw.calculationUncertainty.historicalTimezone.status, fixture.expectedStatus, fixture.id)
+    assert.match(fixture.sourceUrl, /^https:\/\//)
+  })
 })
 
 test('same input and profile produce identical calculation data', () => {
@@ -436,7 +466,34 @@ test('solar-term boundary inputs expose year and month candidates instead of hid
   assert.equal(saju.status, 'needs_verification')
   assert.equal(saju.raw.timing.daYun.status, 'candidate_required')
   assert.ok(saju.raw.timing.daYun.candidates.length > 1)
+  assert.equal(saju.raw.experimental.status, 'candidate_required')
+  assert.equal(saju.raw.candidates.length, 2)
+  assert.deepEqual(saju.raw.candidates.map((candidate) => candidate.label), ['입력 기준', '절입 경계 후보 1'])
+  assert.ok(saju.raw.candidates.every((candidate) => candidate.experimental.gyeokguk))
+  assert.ok(saju.raw.candidateComparison.differences.some((item) => item.path === 'pillars.year'))
   assert.match(saju.warnings.join(' '), /하나로 확정하지/)
+})
+
+test('검증 필요 상태는 대화용 export에서 실험 판정을 확정값으로 내보내지 않는다', () => {
+  const result = prepareInterpretationData({
+    ...FIXED_INPUT,
+    birthDate: '2014-02-04',
+    birthTime: '07:03',
+  }, DEFAULT_PROFILES)
+  const payload = buildExportPayload(result, {
+    type: 'conversation',
+    topicId: 'overall',
+    question: '',
+    generatedAt: '2026-07-25T00:00:00.000Z',
+  })
+
+  assert.equal(payload.calculationSummary.saju.systemStatus, 'needs_verification')
+  assert.equal(payload.calculationSummary.saju.experimentalStatus, 'candidate_required')
+  assert.equal(payload.calculationSummary.saju.gyeokguk, null)
+  assert.equal(payload.calculationSummary.saju.candidates.length, 2)
+  assert.ok(payload.calculationSummary.saju.candidateComparison.differences.length > 0)
+  assert.equal(payload.features.some((feature) => feature.category === 'experimental'), false)
+  assert.match(exportPayloadToMarkdown(payload), /후보 확인 필요/)
 })
 
 test('운 흐름 기준일에 절입이 있으면 세운 월운 후보를 함께 보존한다', () => {
@@ -536,8 +593,17 @@ test('DST skipped and repeated local hours always require verification', () => {
 
   assert.equal(skipped.status, 'needs_verification')
   assert.equal(skipped.raw.calculationUncertainty.historicalTimezone.status, 'dst_nonexistent_local_time')
+  assert.equal(skipped.raw.calculationUncertainty.historicalTimezone.candidates.length, 2)
+  assert.ok(skipped.raw.pillars.hour.candidates.length > 1)
+  assert.equal(skipped.raw.candidates.length, 2)
   assert.equal(repeated.status, 'needs_verification')
   assert.equal(repeated.raw.calculationUncertainty.historicalTimezone.status, 'dst_ambiguous_local_time')
+  assert.equal(repeated.raw.calculationUncertainty.historicalTimezone.candidates.length, 2)
+  assert.deepEqual(
+    repeated.raw.calculationUncertainty.historicalTimezone.candidates.map((candidate) => candidate.label),
+    ['표준시 해석 후보', '서머타임 해석 후보'],
+  )
+  assert.equal(repeated.raw.candidates.length, 1, '동일 명식은 후보 파이프라인에서 중복 제거')
 })
 
 test('음력 지원 검증 1: 평달 날짜 변환 및 사주 산출 검증', () => {

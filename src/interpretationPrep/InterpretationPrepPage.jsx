@@ -291,6 +291,16 @@ function SupportScope({ scope }) {
               <li key={item}><b>{item}</b><span>{basis}</span></li>
             ))}
           </ul>
+          {scope.experimental?.length > 0 && (
+            <>
+              <strong className="prep-support-experimental-label">실험적 파생 판정 (Experimental)</strong>
+              <ul>
+                {scope.experimental.map(({ item, basis }) => (
+                  <li key={item}><b>{item}</b><span>{basis}</span></li>
+                ))}
+              </ul>
+            </>
+          )}
         </div>
         <div>
           <strong>아직 완전 지원하지 않는 이유</strong>
@@ -452,8 +462,47 @@ function SystemResult({ result, view }) {
       </div>
       <PillarGrid pillars={result.raw.pillars} />
 
+      {result.raw.lunarConversion && (
+        <p className="prep-timing-note">
+          음력 변환 검증 상태: {result.raw.lunarConversion.verificationStatus === 'verified' ? '외부 검증 완료' : result.raw.lunarConversion.verificationStatus === 'pending' ? '외부 대조 대기' : '현재 외부 검증 범위 밖'} · {result.raw.lunarConversion.source}
+        </p>
+      )}
+
+      {result.raw.experimental?.status === 'candidate_required' && (
+        <section className="prep-data-panel prep-profile-panel">
+          <p className="prep-experimental-warning">
+            {result.raw.experimental.description} 후보 명식과 근거를 먼저 확인한 뒤 강약·격국·용신·신살을 비교해 주세요.
+          </p>
+        </section>
+      )}
+
+      {result.raw.candidates?.length > 1 && (
+        <section className="prep-data-panel prep-profile-panel">
+          <div className="prep-mini-head">
+            <h4>후보별 계산</h4>
+            <span>{result.raw.candidates.length}개 명식 후보 · 동일 명식 중복 제거</span>
+          </div>
+          <div className="prep-profile-list">
+            {result.raw.candidates.map((candidate) => (
+              <div key={candidate.id}>
+                <strong>{candidate.label}</strong>
+                <span>{candidate.input.birthDate} {candidate.input.birthTime || '시각 미상'}</span>
+                <span>{['year', 'month', 'day', 'hour'].map((key) => candidate.pillars[key]?.value || '미상').join(' · ')}</span>
+                <span>대운: {candidate.timing.daYun?.cycles?.find((cycle) => cycle.isActive)?.value || '후보 확인 필요'}</span>
+                <span>강약·격국·용신: {candidate.experimental.strength?.level || '미산출'} · {candidate.experimental.gyeokguk?.name || '미산출'} · {candidate.experimental.yongShin?.primaryYongShinElement || '미산출'}</span>
+              </div>
+            ))}
+          </div>
+          {result.raw.candidateComparison?.differences?.length > 0 && (
+            <p className="prep-timing-note">
+              후보 간 차이: {result.raw.candidateComparison.differences.map((item) => item.path).join(', ')}
+            </p>
+          )}
+        </section>
+      )}
+
       {/* 1. 사주 학파 표준 프로필 패널 */}
-      {result.raw.experimental?.strength && (
+      {result.raw.experimental?.strength && result.raw.experimental?.status !== 'candidate_required' && (
         <section className="prep-data-panel prep-profile-panel">
           <div className="prep-mini-head">
             <h4>사주 분석 프로필</h4>
@@ -525,7 +574,7 @@ function SystemResult({ result, view }) {
                 <h5>
                   용신: {result.raw.experimental?.yongShin?.primaryYongShinElement || '불명'} 오행 / 희신: {result.raw.experimental?.yongShin?.heeShinElement || '불명'} 오행
                 </h5>
-                <span className="profile-meta-text">판단 신뢰도: {result.raw.experimental?.yongShin?.confidence === 'high' ? '높음' : '보통'}</span>
+                <span className="profile-meta-text">판단 신뢰도: {result.raw.experimental?.yongShin?.confidence === 'high' ? '높음' : result.raw.experimental?.yongShin?.confidence === 'medium' ? '보통' : '낮음'}</span>
                 <p className="profile-desc-text">
                   {result.raw.experimental?.yongShin?.statement || ''} {result.raw.experimental?.yongShin?.chohu ? `(조후 보완: ${result.raw.experimental.yongShin.chohu.statement})` : ''}
                 </p>

@@ -4,15 +4,25 @@ import { calculateEquationOfTimeMinutes, SOLAR_TIME_METHOD } from './solarTime.j
 
 export const SAJU_ENGINE_VERSION = '2.5'
 
-export const DEFAULT_SAJU_OPTIONS = {
+export const SAJU_CALCULATION_PROFILE = Object.freeze({
+  id: 'softie-kst-apparent-solar-v1',
   timezone: 'Asia/Seoul',
+  standardMeridianDegrees: 135,
+  solarTime: 'longitude correction + NOAA equation of time when enabled',
+  dayBoundaryRule: 'solar-midnight-split-zi',
+  ziHourStart: '23:00',
+})
+
+export const DEFAULT_SAJU_OPTIONS = {
+  calculationProfile: SAJU_CALCULATION_PROFILE.id,
+  timezone: SAJU_CALCULATION_PROFILE.timezone,
   useSolarTimeCorrection: true,
   useEquationOfTimeCorrection: true,
   longitudeDegrees: null,
-  standardMeridianDegrees: 135,
+  standardMeridianDegrees: SAJU_CALCULATION_PROFILE.standardMeridianDegrees,
   solarTimeOffsetMinutes: 30,
-  dayBoundaryRule: 'solar-midnight-split-zi',
-  ziHourStart: '23:00',
+  dayBoundaryRule: SAJU_CALCULATION_PROFILE.dayBoundaryRule,
+  ziHourStart: SAJU_CALCULATION_PROFILE.ziHourStart,
   rollDayAtZiHour: false,
 }
 
@@ -24,6 +34,23 @@ function parseClockMinutes(value, optionName) {
   const minute = Number(match[2])
   if (hour > 23 || minute > 59) throw new Error(`${optionName} is outside the valid clock range.`)
   return hour * 60 + minute
+}
+
+function parseCivilDate(value) {
+  const match = /^(\d{4})-(\d{2})-(\d{2})$/.exec(value || '')
+  if (!match) throw new Error('birthDate must use YYYY-MM-DD format.')
+
+  const year = Number(match[1])
+  const month = Number(match[2])
+  const day = Number(match[3])
+  const date = new Date(Date.UTC(year, month - 1, day))
+  if (
+    date.getUTCFullYear() !== year
+    || date.getUTCMonth() !== month - 1
+    || date.getUTCDate() !== day
+  ) throw new Error('birthDate is not a valid calendar date.')
+
+  return { year, month, day }
 }
 
 export function calculateFourPillars(params, options = DEFAULT_SAJU_OPTIONS) {
@@ -41,13 +68,11 @@ export function calculateFourPillars(params, options = DEFAULT_SAJU_OPTIONS) {
   if (!Number.isFinite(opts.standardMeridianDegrees) || Math.abs(opts.standardMeridianDegrees) > 180) {
     throw new Error('standardMeridianDegrees must be between -180 and 180.')
   }
-  const [yearStr, monthStr, dayStr] = birthDate.split('-')
-  const [hourStr, minStr] = birthTime ? birthTime.split(':') : ['12', '00']
-  const year = parseInt(yearStr, 10)
-  const month = parseInt(monthStr, 10)
-  const day = parseInt(dayStr, 10)
-  const hour = parseInt(hourStr, 10)
-  const min = parseInt(minStr, 10)
+  const { year, month, day } = parseCivilDate(birthDate)
+  const timeValue = birthTime || '12:00'
+  const totalClockMinutes = parseClockMinutes(timeValue, 'birthTime')
+  const hour = Math.floor(totalClockMinutes / 60)
+  const min = totalClockMinutes % 60
 
   const solarTerm = getBaziYearAndMonth(year, month, day, hour, min)
   const { baziYear, monthIndex } = solarTerm
@@ -130,7 +155,14 @@ export function calculateFourPillars(params, options = DEFAULT_SAJU_OPTIONS) {
       engineVersion: SAJU_ENGINE_VERSION,
       isRolledOverDay,
       dayBoundaryRule: opts.dayBoundaryRule,
-      solarTimeMethod: opts.useEquationOfTimeCorrection ? SOLAR_TIME_METHOD : 'mean solar time only',
+      calculationProfile: opts.calculationProfile || SAJU_CALCULATION_PROFILE.id,
+      solarTimeMethod: !opts.useSolarTimeCorrection
+        ? 'civil time only'
+        : opts.useEquationOfTimeCorrection ? SOLAR_TIME_METHOD : 'mean solar time only',
+      appliedCorrections: {
+        longitude: opts.useSolarTimeCorrection,
+        equationOfTime: opts.useSolarTimeCorrection && opts.useEquationOfTimeCorrection,
+      },
       longitudeDegrees: opts.longitudeDegrees,
       standardMeridianDegrees: opts.standardMeridianDegrees,
       meanSolarCorrectionMinutes,

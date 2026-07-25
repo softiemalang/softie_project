@@ -6,7 +6,7 @@ import { calculateFourPillars } from './fourPillars.js'
  * 계산 정밀도와 학파 차이는 calculateFourPillars의 메타데이터와 옵션에 남깁니다.
  */
 export function derivePillars(birthDate, birthTime) {
-  return calculateFourPillars({ birthDate, birthTime, timezone: 'Asia/Seoul' })
+  return calculateFourPillars({ birthDate, birthTime }, { timezone: 'Asia/Seoul' })
 }
 
 /**

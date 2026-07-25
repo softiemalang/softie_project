@@ -1,4 +1,5 @@
 import { getTenGod, getBranchMainStem } from '../saju/engine/core.js'
+import { HIDDEN_STEMS } from '../saju/engine/constants.js'
 
 // 사주 표준 해석 프로필 연산 엔진 버전
 export const SAJU_PROFILE_RULES_VERSION = 'softie-saju-profile-rules-v1.0'
@@ -13,20 +14,15 @@ export const YIN_YANG_MAP = {
   '자': '양', '축': '음', '인': '양', '묘': '음', '진': '양', '사': '음', '오': '양', '미': '음', '신': '양', '유': '음', '술': '양', '해': '음'
 }
 
-export const JIJANGAN_MAP = {
-  '자': { 여: '임', 중: null, 본: '계' },
-  '축': { 여: '계', 중: '신', 본: '기' },
-  '인': { 여: '무', 중: '병', 본: '갑' },
-  '묘': { 여: '갑', 중: null, 본: '을' },
-  '진': { 여: '을', 중: '계', 본: '무' },
-  '사': { 여: '무', 중: '경', 본: '병' },
-  '오': { 여: '병', 중: '기', 본: '정' },
-  '미': { 여: '정', 중: '을', 본: '기' },
-  '신': { 여: '무', 중: '임', 본: '경' },
-  '유': { 여: '경', 중: null, 본: '신' },
-  '술': { 여: '신', 중: '정', 본: '무' },
-  '해': { 여: '무', 중: '갑', 본: '임' }
-}
+// 지장간의 단일 진실 공급원은 core engine의 가중치 표다.
+// 프로필 규칙에서 필요한 여기·중기·본기 형태로만 투영한다.
+export const JIJANGAN_MAP = Object.fromEntries(
+  Object.entries(HIDDEN_STEMS).map(([branch, entries]) => [branch, {
+    여: entries[2]?.stem || null,
+    중: entries[1]?.stem || null,
+    본: entries[0]?.stem || null,
+  }]),
+)
 
 const GENERATES = { '목': '화', '화': '토', '토': '금', '금': '수', '수': '목' }
 const CONTROLS = { '목': '토', '토': '수', '수': '화', '화': '금', '금': '목' }

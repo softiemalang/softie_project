@@ -1,8 +1,9 @@
 import assert from 'node:assert/strict'
 import test from 'node:test'
-import { calculateFourPillars, DEFAULT_SAJU_OPTIONS, SAJU_ENGINE_VERSION } from './fourPillars.js'
+import { calculateFourPillars, DEFAULT_SAJU_OPTIONS, SAJU_CALCULATION_PROFILE, SAJU_ENGINE_VERSION } from './fourPillars.js'
 import { getSolarLongitude, SOLAR_LONGITUDE_METHOD } from './solarTerms.js'
 import { calculateEquationOfTimeMinutes, SOLAR_TIME_METHOD } from './solarTime.js'
+import { EXTERNAL_VALIDATION_FIXTURES } from './externalValidationFixtures.js'
 
 // Published Hong Kong Observatory times. HKT is UTC+8.
 // These are the 12 minor solar terms used as Four Pillars month boundaries.
@@ -43,6 +44,19 @@ function findCalculatedBoundary(targetLongitude, publishedHktMs) {
   return (low + high) / 2
 }
 
+test('외부 절기 fixture는 엔진 황경 경계와 허용 오차 안에서 일치한다', () => {
+  EXTERNAL_VALIDATION_FIXTURES.solarTerms.forEach((fixture) => {
+    const [year, month, day] = fixture.localDate.split('-').map(Number)
+    const [hour, minute] = fixture.localTime.split(':').map(Number)
+    const publishedHktMs = Date.UTC(year, month - 1, day, hour - 8, minute)
+    const calculatedUtcMs = findCalculatedBoundary(fixture.longitude, publishedHktMs)
+    const errorMinutes = Math.abs(calculatedUtcMs - publishedHktMs) / 60000
+
+    assert.ok(errorMinutes <= fixture.toleranceMinutes, `${fixture.id}: ${errorMinutes.toFixed(2)} minutes`)
+    assert.match(fixture.sourceUrl, /^https:\/\//)
+  })
+})
+
 test('minor solar-term boundaries stay within 15 minutes of 48 HKO reference times', () => {
   let maximumErrorMinutes = 0
 
@@ -61,10 +75,12 @@ test('minor solar-term boundaries stay within 15 minutes of 48 HKO reference tim
 })
 
 test('day cycle matches the published HKO 2026-02-01 Byeong-O day', () => {
-  const pillars = calculateFourPillars({ birthDate: '2026-02-01', birthTime: '12:00' })
-  assert.equal(`${pillars.day.stem}${pillars.day.branch}`, '병오')
+  const fixture = EXTERNAL_VALIDATION_FIXTURES.dayPillars[0]
+  const pillars = calculateFourPillars({ birthDate: fixture.birthDate, birthTime: '12:00' })
+  assert.equal(`${pillars.day.stem}${pillars.day.branch}`, fixture.expectedDayPillar)
   assert.equal(pillars._meta.engineVersion, SAJU_ENGINE_VERSION)
   assert.equal(pillars._meta.solarLongitudeMethod, SOLAR_LONGITUDE_METHOD)
+  assert.equal(pillars._meta.calculationProfile, SAJU_CALCULATION_PROFILE.id)
 })
 
 test('NOAA equation of time follows the published seasonal magnitude and sign', () => {
@@ -156,4 +172,18 @@ test('unsupported timezone and malformed Zi-hour settings fail explicitly', () =
     ),
     /longitudeDegrees/,
   )
+  assert.throws(
+    () => calculateFourPillars({ birthDate: '2026-02-30', birthTime: '12:00' }),
+    /valid calendar date/,
+  )
+  assert.throws(
+    () => calculateFourPillars({ birthDate: '2026-02-01', birthTime: '7:03' }),
+    /HH:MM/,
+  )
+  const civilOnly = calculateFourPillars(
+    { birthDate: '2026-02-01', birthTime: '12:00' },
+    { ...DEFAULT_SAJU_OPTIONS, useSolarTimeCorrection: false },
+  )
+  assert.equal(civilOnly._meta.solarTimeMethod, 'civil time only')
+  assert.equal(civilOnly._meta.appliedCorrections.equationOfTime, false)
 })
