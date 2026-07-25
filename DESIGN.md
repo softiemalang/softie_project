@@ -1,7 +1,7 @@
 ---
 # Design Tokens
 name: softie-project
-version: 2.6.0
+version: 2.7.0
 adoption: new-and-redesigned-surfaces
 tokens:
   colors:
@@ -14,6 +14,8 @@ tokens:
     surface-selected: "rgba(219, 204, 175, 0.20)"
     surface-liquid: "rgba(32, 29, 23, 0.44)"
     surface-liquid-strong: "rgba(32, 29, 23, 0.50)"
+    surface-scheduler-default: "rgba(18, 18, 14, 0.34)"
+    surface-scheduler-selected: "rgba(219, 204, 175, 0.28)"
     text: "#f4eee4"
     text-muted: "#d0c7b9"
     text-tertiary: "#a39b8c"
@@ -24,6 +26,8 @@ tokens:
     line: "rgba(238, 229, 210, 0.14)"
     line-strong: "rgba(238, 229, 210, 0.31)"
     line-liquid: "rgba(255, 246, 228, 0.42)"
+    line-soft: "rgba(238, 229, 210, 0.11)"
+    line-scheduler-selected: "rgba(255, 246, 228, 0.42)"
     highlight-liquid: "rgba(255, 255, 255, 0.34)"
     focus: "#fff1d2"
   semantic:
@@ -234,6 +238,25 @@ Warm Liquid Glass는 따뜻한 사진의 색과 형태가 패널 안에서도 �
 
 이 변형은 전체 화면을 유리로 만드는 새 기본 테마가 아니라, Warm Nostalgic Atmospheric Glass 안에서 중요도가 높은 표면에만 사용하는 강조 단계입니다.
 
+### Scheduler reference surface
+
+`/scheduler`의 `지금 처리할 일`과 `곧 다가오는 일정` 표면을 고밀도 도구의 기본 재질 기준으로 사용합니다.
+
+- **Default scheduler surface:** `rgba(18, 18, 14, 0.34)`와 짧은 `blur(10px) saturate(106%)`를 사용합니다. 배경 사진은 은은하게 통과시키되 일정 정보가 먼저 읽혀야 합니다.
+- **Quiet outer line:** 주요 외곽선은 `1px solid rgba(238, 229, 210, 0.11)`로 통일합니다. 두께보다 낮은 광학 존재감으로 그룹을 구분합니다.
+- **Selected control:** 선택된 지점·룸·보기·기간·태그는 `rgba(219, 204, 175, 0.28)` 표면과 `rgba(255, 246, 228, 0.42)` 선을 사용합니다. 내부 하이라이트를 추가하되 주변 표면보다 한 단계만 밝게 올립니다.
+- **Information hierarchy:** 섹션 표면은 공유하되 일정 행·상태 칩·액션 버튼은 더 안정적인 대비를 유지합니다. 선택 상태는 배경·테두리·텍스트 중 최소 두 가지 신호로 표현합니다.
+- **Scope:** 근무 중, 근무 일지, 일정 그룹, 예약 편집처럼 운영 흐름을 묶는 표면에 적용합니다. 홈과 다른 페이지는 이 토큰을 검증한 뒤 선택적으로 승격합니다.
+
+### Home index reference
+
+홈의 히어로와 서비스 인덱스 카드도 스케줄러 기본 표면을 사용해 제품 전체의 재질을 연결합니다.
+
+- 서비스 카드는 `surface-scheduler-default`와 `line-soft`를 기본값으로 사용합니다.
+- Hover/active처럼 사용자가 방금 가리킨 서비스만 `surface-scheduler-selected`와 `line-scheduler-selected`로 한 단계 올립니다.
+- Softie Memo 시트처럼 입력에 집중하는 부유 표면은 별도의 강한 표면을 유지합니다.
+- 홈의 서비스 설명과 번호는 스케줄러의 일정 행처럼 정보 위계를 낮춰, 서비스 이름이 먼저 읽히게 합니다.
+
 ## 5. Typography
 
 - 기본 글꼴은 시스템 산세리프를 사용해 한글 가독성과 성능을 확보합니다.
@@ -309,6 +332,7 @@ Warm Liquid Glass는 따뜻한 사진의 색과 형태가 패널 안에서도 �
 - 주요 카드는 `Primary Glass`를 사용합니다.
 - 긴 본문이나 데이터 목록은 더 불투명한 `Operational Surface`를 사용합니다.
 - 카드가 많아질수록 그림자를 반복하지 말고 구분선과 표면 차이로 계층을 표현합니다.
+- 고밀도 운영 화면은 스케줄러 기본 표면을 먼저 검토합니다. 섹션 카드의 외곽선·곡률·내부 여백은 `지금 처리할 일`과 `곧 다가오는 일정`의 리듬을 기준으로 맞춥니다.
 
 ### Forms
 
@@ -373,9 +397,10 @@ Warm Liquid Glass는 따뜻한 사진의 색과 형태가 패널 안에서도 �
 - 공통 토큰과 재사용 컴포넌트는 `src/styles.css`에서 관리합니다.
 - 기능 전용 스타일과 이미지 자산은 해당 기능 폴더에 둡니다.
 - `/interpretation-prep`은 복잡한 입력·결과 도구의 reference implementation입니다.
-- `/` 홈은 서비스 인덱스와 에디토리얼 히어로의 reference implementation입니다.
+- `/` 홈은 서비스 인덱스와 에디토리얼 히어로의 reference implementation이며, 스케줄러 기본 표면을 공유합니다.
 - `/scheduler`는 반복 이벤트, 상태 색상, 모바일 폼을 포함한 고밀도 operational workflow의 reference implementation입니다.
 - `/scheduler`에서 검증한 일곱 단계 타이포 역할과 Primary/Secondary/Tertiary 텍스트 톤은 새 고밀도 도구의 기본값입니다. 다른 페이지에 적용할 때 수치를 그대로 복사하기보다 동일한 역할 관계를 유지합니다.
+- `/scheduler`의 `surface-scheduler-default`, `line-soft`, `surface-scheduler-selected`, `line-scheduler-selected`는 고밀도 도구의 기본 표면 토큰입니다. 다른 화면에는 동일한 계층 관계를 확인한 뒤 선택적으로 적용합니다.
 - 모달 설명과 각주는 인라인 크기 지정 대신 공통 Body/Meta 역할을 사용합니다. 기능별 예외값을 늘리기 전에 기존 역할로 해결 가능한지 확인합니다.
 
 세 화면은 같은 토큰과 표면 계층을 공유하지만 맥락에 맞는 배경 이미지와 밀도를 사용합니다. 새 화면은 셋 중 더 가까운 정보 구조를 기준으로 삼고, 외형을 그대로 복제하지 않습니다.

@@ -268,6 +268,27 @@
 
 final result: passed
 
+## Home Scheduler-Default Surface QA
+
+- source visual truth: the approved scheduler reference captures, including `/tmp/codex-remote-attachments/019f9618-8084-7c03-a518-af09fcce8455/F309FE6D-B5F1-49D9-9254-F25DAC29DBE9/1-붙여넣은-이미지-1.jpg`
+- implementation screenshots: `/private/tmp/softie-home-default-qa/home-390.png` and `/private/tmp/softie-home-default-qa/home-1280.png`
+- viewport and pixels: `390×844` and `1280×900` at 1× CSS density
+- state: home service index, signed-out
+
+### Findings
+
+- P3 resolved: the home hero and service cards now use the scheduler's default surface, quiet outer line, short blur, and low inner highlight.
+- Hover state uses the scheduler selected surface without changing the default resting cards.
+- Softie Memo's focused sheet remains a stronger input surface, so the shared default does not reduce writing contrast.
+- Fonts, copy, information order, photo asset, mobile stacking, and desktop two-column layout remain unchanged.
+- No home or scheduler behavior/data flow changed.
+
+### Follow-up polish
+
+- P3: validate the home card hover/active optical lift once in a physical pointer device and installed PWA; mobile resting state was captured at `390×844`.
+
+final result: passed
+
 ## Scheduler Selected-State Contrast QA
 
 - source visual truth: `/tmp/codex-remote-attachments/019f9618-8084-7c03-a518-af09fcce8455/D4D4FED9-061C-49E1-A3AE-526A40A73D7D/1-붙여넣은-이미지-1.jpg`

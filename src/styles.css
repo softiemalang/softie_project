@@ -34,6 +34,8 @@
   --ag-surface-selected: rgba(219, 204, 175, 0.2);
   --ag-surface-liquid: rgba(32, 29, 23, 0.44);
   --ag-surface-liquid-strong: rgba(32, 29, 23, 0.5);
+  --ag-surface-scheduler-default: rgba(18, 18, 14, 0.34);
+  --ag-surface-scheduler-selected: rgba(219, 204, 175, 0.28);
   --ag-text: #f4eee4;
   --ag-text-muted: #d0c7b9;
   --ag-text-tertiary: #a39b8c;
@@ -43,6 +45,8 @@
   --ag-line: rgba(238, 229, 210, 0.14);
   --ag-line-strong: rgba(238, 229, 210, 0.31);
   --ag-line-liquid: rgba(255, 246, 228, 0.42);
+  --ag-line-soft: rgba(238, 229, 210, 0.11);
+  --ag-line-scheduler-selected: rgba(255, 246, 228, 0.42);
   --ag-highlight-liquid: rgba(255, 255, 255, 0.34);
   --ag-focus: #fff1d2;
   --ag-success: #b8c8a5;
@@ -3124,6 +3128,24 @@ textarea {
   border-radius: var(--ag-radius-hero);
 }
 
+.home-shell.ag-shell .home-hero.softie-liquid-glass,
+.home-shell.ag-shell .service-card {
+  background: var(--ag-surface-scheduler-default) !important;
+  border-color: var(--ag-line-soft) !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06) !important;
+  backdrop-filter: blur(10px) saturate(106%) !important;
+  -webkit-backdrop-filter: blur(10px) saturate(106%) !important;
+}
+
+.home-shell.ag-shell .service-card:hover {
+  background: var(--ag-surface-scheduler-selected) !important;
+  border-color: var(--ag-line-scheduler-selected) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.22),
+    0 0 0 1px rgba(255, 246, 228, 0.04),
+    var(--ag-shadow-control) !important;
+}
+
 .home-hero-topline,
 .home-section-heading {
   display: flex;
@@ -4753,10 +4775,10 @@ textarea {
   --scheduler-type-meta-weight: 550;
   --scheduler-type-control-weight: 600;
   --scheduler-type-badge-weight: 650;
-  --scheduler-line-soft: rgba(238, 229, 210, 0.11);
-  --scheduler-surface-default: rgba(18, 18, 14, 0.34);
-  --scheduler-surface-selected: rgba(219, 204, 175, 0.28);
-  --scheduler-line-selected: rgba(255, 246, 228, 0.42);
+  --scheduler-line-soft: var(--ag-line-soft);
+  --scheduler-surface-default: var(--ag-surface-scheduler-default);
+  --scheduler-surface-selected: var(--ag-surface-scheduler-selected);
+  --scheduler-line-selected: var(--ag-line-scheduler-selected);
   min-height: 100dvh;
 }
 
