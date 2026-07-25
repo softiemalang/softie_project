@@ -864,6 +864,20 @@ export default function InterpretationPrepPage() {
     }
   }, [])
 
+  const safeUnifiedContext = useMemo(() => {
+    try {
+      return createUnifiedInterpretationContext(
+        result?.systems?.saju || {},
+        result?.systems?.ziwei || {},
+        result?.systems?.astrology || {}
+      )
+    } catch (e) {
+      console.warn('[InterpretationPrep] Failed to create unified context.', e)
+      return createUnifiedInterpretationContext({}, {}, {})
+    }
+  }, [result])
+
+
 
   const exportPayload = useMemo(() => {
     if (!result) return null
@@ -1199,13 +1213,8 @@ export default function InterpretationPrepPage() {
 
         {/* Main Product Feature: Chat Handoff Package Creation */}
         <section className="mt-4 mb-4">
-          <ChatHandoffCard
-            unifiedContext={createUnifiedInterpretationContext(
-              result?.systems?.saju || {},
-              result?.systems?.ziwei || {},
-              result?.systems?.astrology || {}
-            )}
-          />
+          <ChatHandoffCard unifiedContext={safeUnifiedContext} />
+
 
         </section>
 
