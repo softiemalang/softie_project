@@ -1095,8 +1095,7 @@
 
 .prep-hero-body {
   display: grid;
-  grid-template-columns: minmax(0, 1.45fr) minmax(260px, 0.55fr);
-  gap: clamp(1.25rem, 3vw, 2rem);
+  grid-template-columns: minmax(0, 1fr);
   align-items: end;
   margin-top: clamp(0.9rem, 2vw, 1.3rem);
 }
@@ -1146,39 +1145,6 @@
 .prep-version,
 .prep-step-note {
   color: var(--prep-text-tertiary);
-}
-
-.prep-support-summary {
-  display: flex;
-  flex-direction: column;
-  gap: 0.32rem;
-  margin: 0;
-  padding: 0.85rem 1rem;
-  border: 1px solid var(--prep-border-default);
-  border-radius: 20px;
-  background: rgba(18, 18, 14, 0.28);
-  box-shadow: none;
-}
-
-.prep-support-summary > div {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 0.75rem;
-  color: var(--prep-text-secondary);
-  font-size: 0.8rem;
-}
-
-.prep-support-summary > strong {
-  color: var(--text);
-  font-size: 0.98rem;
-  font-weight: 680;
-}
-
-.prep-support-summary > small {
-  color: var(--prep-text-tertiary);
-  font-size: 0.73rem;
-  line-height: 1.5;
 }
 
 .prep-status-badge {
@@ -1620,10 +1586,8 @@
 
 @media (max-width: 959px) {
   .prep-hero-body {
-    grid-template-columns: 1fr;
-    gap: 1.25rem;
+    margin-top: 1.25rem;
   }
-
 }
 
 @media (max-width: 700px) {
@@ -1669,9 +1633,6 @@
     font-size: 1.08rem;
   }
 
-  .prep-support-summary .prep-status-badge {
-    white-space: nowrap;
-  }
 }
 
 @media (prefers-reduced-motion: reduce) {

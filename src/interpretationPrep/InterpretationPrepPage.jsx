@@ -186,7 +186,8 @@ function loadSavedDraft() {
       input: {
         ...DEFAULT_INPUT,
         ...savedInput,
-        targetDate: savedInput.targetDate || todayInKorea(),
+        // The timing reference is fixed when the user creates Chat materials.
+        targetDate: todayInKorea(),
         placeName: DEFAULT_INPUT.placeName,
         gender: ['female', 'male'].includes(savedInput.gender) ? savedInput.gender : DEFAULT_INPUT.gender,
         referenceCity: referenceCity.id,
@@ -768,19 +769,17 @@ export default function InterpretationPrepPage() {
   const [textDrafts, setTextDrafts] = useState(() => ({
     birthDate: formatDateValue(savedDraft?.input?.birthDate || ''),
     birthTime: formatTimeValue(savedDraft?.input?.birthTime || ''),
-    targetDate: formatDateValue(savedDraft?.input?.targetDate || todayInKorea()),
   }))
-  const [targetDateTouched, setTargetDateTouched] = useState(Boolean(savedDraft?.input?.targetDate))
   const [profiles, setProfiles] = useState(savedDraft?.profiles || DEFAULT_PROFILES)
   const [saveLocally, setSaveLocally] = useState(Boolean(savedDraft))
-  const [result, setResult] = useState(null)
   const [error, setError] = useState('')
   const selectedReferenceCity = getKoreaReferenceCity(input.referenceCity)
 
   useEffect(() => {
     if (!saveLocally) return
     try {
-      window.localStorage.setItem(STORAGE_KEY, JSON.stringify({ input, profiles }))
+      const { targetDate: _targetDate, ...draftInput } = input
+      window.localStorage.setItem(STORAGE_KEY, JSON.stringify({ input: draftInput, profiles }))
     } catch (storageError) {
       console.warn('[InterpretationPrep] Failed to save local draft.', storageError)
     }
@@ -793,17 +792,8 @@ export default function InterpretationPrepPage() {
 
   function updateDateDraft(key, value) {
     const formatted = formatDateDraft(value)
-    if (key === 'targetDate') setTargetDateTouched(true)
     setTextDrafts((current) => ({ ...current, [key]: formatted }))
     updateInput(key, normalizeDateDraft(formatted))
-  }
-
-  function refreshTargetDateOnFocus(event) {
-    if (targetDateTouched) return
-    const currentDate = todayInKorea()
-    setTextDrafts((current) => ({ ...current, targetDate: formatDateValue(currentDate) }))
-    updateInput('targetDate', currentDate)
-    event.currentTarget.select()
   }
 
   function updateTimeDraft(value) {
@@ -867,8 +857,10 @@ export default function InterpretationPrepPage() {
 
   function prepareForChat() {
     try {
-      const nextResult = prepareInterpretationData(input, profiles)
-      setResult(nextResult)
+      const nextResult = prepareInterpretationData({
+        ...input,
+        targetDate: todayInKorea(),
+      }, profiles)
       setError('')
       return createUnifiedInterpretationContext(
         nextResult.interpretationContext || {},
@@ -894,16 +886,6 @@ export default function InterpretationPrepPage() {
             <p className="eyebrow">INTERPRETATION PREP</p>
             <h1>해석 전, 근거부터 정리합니다.</h1>
             <p className="subtle">현재 지원되는 사주 계산값과 불확실성을 분리해 대화형 모델에 전달하는 준비 도구입니다. 최종 성격이나 미래를 단정하지 않습니다.</p>
-          </div>
-          <div className="prep-support-summary" aria-label="현재 계산 지원 범위">
-            <div>
-              <span>현재 지원</span>
-              {result
-                ? <StatusBadge status={result.systems?.saju?.status} />
-                : <span className="prep-status-badge is-muted">자료 생성 시 계산</span>}
-            </div>
-            <strong>사주 핵심 계산</strong>
-            <small>자미두수·서양 점성학은 계산 자료를 만들지 않습니다.</small>
           </div>
         </div>
       </header>
@@ -1021,22 +1003,9 @@ export default function InterpretationPrepPage() {
           <details className="prep-advanced-inputs">
             <summary>
               <span>세부 입력과 계산 환경</span>
-              <small>기준일 · 도시 · 시간대 · 좌표</small>
+              <small>자료 생성일 · 도시 · 시간대 · 좌표</small>
             </summary>
             <div className="prep-advanced-grid">
-              <LabeledField label="운 흐름 기준일" hint="대운·세운·월운·일진을 이 날짜 기준으로 계산" className="prep-field-wide">
-                <input
-                  type="text"
-                  inputMode="numeric"
-                  placeholder="YYYY.MM.DD"
-                  maxLength={10}
-                  pattern="[0-9.]*"
-                  required
-                  value={textDrafts.targetDate}
-                  onFocus={refreshTargetDateOnFocus}
-                  onChange={(event) => updateDateDraft('targetDate', event.target.value)}
-                />
-              </LabeledField>
               <LabeledField label="기준 도시" hint="기본값 서울 · 선택한 경도 보정 적용">
                 <select value={selectedReferenceCity.id} onChange={(event) => updateReferenceCity(event.target.value)}>
                   {KOREA_REFERENCE_CITIES.map((city) => (
@@ -1054,7 +1023,7 @@ export default function InterpretationPrepPage() {
                 <output className="prep-readonly-value">{selectedReferenceCity.longitude.toFixed(2)}°E</output>
               </LabeledField>
             </div>
-            <p className="prep-advanced-note">국내 시간대는 모두 Asia/Seoul로 동일합니다. 선택한 기준 도시의 경도 보정을 계산에 적용하며, 주요 도시 후보에서 기둥이 달라지는 경계 시각은 검증 필요로 표시합니다.</p>
+            <p className="prep-advanced-note">운 흐름 기준일은 자료 생성 시점의 한국 날짜로 고정합니다. 국내 시간대는 모두 Asia/Seoul로 동일하며, 선택한 기준 도시의 경도 보정을 적용합니다. 주요 도시 후보에서 기둥이 달라지는 경계 시각은 검증 필요로 표시합니다.</p>
           </details>
           <label className="prep-save-toggle">
             <input type="checkbox" checked={saveLocally} onChange={(event) => handleSavePreference(event.target.checked)} />
