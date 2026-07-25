@@ -268,6 +268,48 @@
 
 final result: passed
 
+## Interpretation Prep Scheduler Surface Alignment QA
+
+- source visual truth: `/Users/softie/.codex/visualizations/2026/07/25/019f9983-84de-72a2-b3ab-e6f6f653b053/interpretation-prep-audit/10-scheduler-reference-1280.png`
+- implementation: `http://127.0.0.1:5173/interpretation-prep`
+- implementation screenshots: `/Users/softie/.codex/visualizations/2026/07/25/019f9983-84de-72a2-b3ab-e6f6f653b053/interpretation-prep-audit/13-prep-after-scheduler-alignment-final-1280.png` and `/Users/softie/.codex/visualizations/2026/07/25/019f9983-84de-72a2-b3ab-e6f6f653b053/interpretation-prep-audit/14-prep-scheduler-alignment-mobile-390.png`
+- full-view comparison evidence: `/Users/softie/.codex/visualizations/2026/07/25/019f9983-84de-72a2-b3ab-e6f6f653b053/interpretation-prep-audit/15-scheduler-reference-vs-prep-final.png`
+- focused region comparison evidence: a separate crop was not needed because the combined `2560×900` board keeps both `1280×900` top regions, navigation surfaces, form controls, status rows, typography, and borders readable at original density
+- source and implementation dimensions: `1280×900` pixels at a `1280×900` CSS viewport and 1× density; mobile implementation `390×844` pixels at a `390×844` CSS viewport and 1× density
+- states: authenticated scheduler today view with loaded event rows; interpretation preparation saved-input view with calculation details collapsed
+- primary checks: both routes rendered with live data/state, the interpretation form remained interactive, desktop and mobile horizontal fit were measured, and browser error logs were checked
+
+### Findings
+
+- No actionable P0, P1, or P2 differences remain.
+- Fonts and typography: the interpretation page keeps its editorial hero and evidence-specific copy, while the narrower line lengths, compact section rhythm, and restrained supporting text now match the scheduler's operational reading density.
+- Spacing and layout rhythm: the interpretation content column now uses the scheduler's `860px` shell width. Section gaps, card padding, hero spacing, and handoff spacing were tightened without collapsing the two-column desktop form or the stacked mobile flow.
+- Colors and visual tokens: primary cards now use `surface-scheduler-default`, selected controls use `surface-scheduler-selected`, and borders use `line-soft`. Strong blur and highlight treatments were replaced with the scheduler's lower-elevation `10px / 106%` material treatment.
+- Image quality and asset fidelity: both routes continue to use the approved `scheduler-atmosphere-v4.jpg` asset with no generated replacement, CSS illustration, placeholder, or altered crop.
+- Copy and content: interpretation labels, support-state wording, uncertainty boundaries, input values, and calculation controls are unchanged.
+- Responsive and accessibility checks: desktop measures `860px` for the shell and stage navigation with no horizontal overflow. Mobile reports `scrollWidth 375px` inside the `390px` viewport, a `44px` select control, and no clipped primary content. Browser error logs contain zero errors.
+
+### Comparison history
+
+- Iteration 1: the source comparison identified a P2 material and density mismatch. Interpretation Prep used a `1180px` shell, strong `24–28px` blur, brighter borders, a larger hero, and deeper shadows, while the scheduler used a centered `860px` operational column and quieter low-elevation surfaces. The shell, surface tokens, blur, shadow, spacing, and selected states were aligned.
+- Iteration 2: the first post-fix capture exposed a P2 width mismatch because the sticky stage navigation still expanded to the full page width. It was constrained to the same `860px` column, then recaptured at the identical viewport.
+- Post-fix evidence: the final combined board shows matching column scale, low-opacity olive-charcoal surfaces, thin warm borders, compact vertical rhythm, and background participation. The interpretation page intentionally retains its hero and two-column form because those support a different task without changing the shared material language.
+
+### Implementation checklist
+
+- [x] Reuse scheduler surface and selected-state tokens.
+- [x] Match the scheduler's centered `860px` operational column.
+- [x] Reduce glass blur, border brightness, elevation, and repeated gaps.
+- [x] Preserve interpretation-specific content hierarchy and business logic.
+- [x] Verify desktop and mobile renderings with no horizontal overflow.
+- [x] Check browser error logs and production build.
+
+### Follow-up polish
+
+- P3: confirm surface opacity once in the installed iPhone PWA, where Safari backdrop compositing can render slightly lighter than the local in-app browser.
+
+final result: passed
+
 ## Interpretation Prep Scheduler Form Rhythm QA
 
 - reference: scheduler new-reservation form (`/private/tmp/scheduler-warm-nostalgic-qa/02-editor-mobile.png`)
@@ -571,5 +613,128 @@ final result: passed
 - With the section collapsed, the primary form ends after birth time and the target-date control is not exposed. When expanded, the target date appears first in the advanced grid, followed by city, timezone, latitude, and longitude.
 - Summary copy now names the hidden content (`기준일 · 도시 · 시간대 · 좌표`) so the control remains discoverable without adding visual density to the default form.
 - Mobile layout remains bounded at `390px` (`scrollWidth === clientWidth`); no horizontal overflow or clipped target-date field was observed.
+
+final result: passed
+
+## Interpretation Prep Runtime And Stylesheet Optimization QA
+
+- source visual truth: `/Users/softie/.codex/visualizations/2026/07/25/019f9983-84de-72a2-b3ab-e6f6f653b053/interpretation-prep-audit/13-prep-after-scheduler-alignment-final-1280.png`
+- implementation: `http://127.0.0.1:5173/interpretation-prep`
+- implementation screenshots: `/Users/softie/.codex/visualizations/2026/07/25/019f9983-84de-72a2-b3ab-e6f6f653b053/interpretation-prep-audit/16-prep-optimized-desktop-1280.png` and `/Users/softie/.codex/visualizations/2026/07/25/019f9983-84de-72a2-b3ab-e6f6f653b053/interpretation-prep-audit/18-prep-optimized-mobile-handoff-final-390.png`
+- full-view comparison evidence: `/Users/softie/.codex/visualizations/2026/07/25/019f9983-84de-72a2-b3ab-e6f6f653b053/interpretation-prep-audit/19-prep-before-after-optimization.png`
+- focused region comparison evidence: the final `390×844` handoff capture verifies the sticky stage navigation, synthesis boundary, handoff controls, wrapping, and bottom-of-page anchor behavior
+- source and implementation dimensions: `1280×900` pixels at a `1280×900` CSS viewport and 1× density; mobile implementation `390×844` pixels at a `390×844` CSS viewport and 1× density
+- states: saved-input preparation view with details collapsed; calculated result with synthesis and Chat handoff visible
+- primary interactions tested: open calculation details, use the `01 입력` and `04 Chat 전달` stage links, and render the mobile handoff controls
+- console errors checked: zero browser errors
+
+### Findings
+
+- No actionable P0, P1, or P2 differences remain.
+- Fonts and typography: font family, Korean wrapping, weights, kickers, hierarchy, and control labels are unchanged from the approved scheduler-aligned source.
+- Spacing and layout rhythm: the `860px` desktop shell, card geometry, stage navigation, result structure, and `390px` mobile stack remain visually stable. Desktop and mobile report no horizontal overflow.
+- Colors and visual tokens: scheduler surfaces, selected states, borders, shadows, and atmospheric image treatment are unchanged.
+- Image quality and asset fidelity: the approved `scheduler-atmosphere-v4.jpg` remains unchanged and no replacement or synthetic asset was introduced.
+- Copy and content: all user-facing input, calculation, uncertainty, synthesis, and handoff copy is preserved.
+- Runtime and bundle: unused developer validation-center imports, state, handlers, and CSS were removed. The interpretation CSS asset decreased from `49.21kB` (`9.34kB` gzip) to `43.69kB` (`8.22kB` gzip); the JavaScript asset decreased from `146.61kB` (`53.46kB` gzip) to `146.49kB` (`53.40kB` gzip).
+- Rendering behavior: the synthesis and handoff sections use `content-visibility: auto` so the browser can skip off-screen layout and paint. The large result card deliberately remains fully laid out to preserve stable fragment navigation.
+
+### Comparison history
+
+- Iteration 1: removed production-unreachable validation-center code and styles, combined two birth-time state updates into one, and added deferred rendering to the result, synthesis, and handoff sections.
+- Iteration 2: mobile browser verification found a P2 fragment-navigation shift because the result section's intrinsic placeholder was much shorter than its real long-form content. Deferred rendering was removed from the result card while retained for the smaller synthesis and handoff sections.
+- Post-fix evidence: `04 Chat 전달` reaches the final section at the maximum legal document scroll position, all controls remain visible, `scrollWidth === 390px`, browser errors remain zero, and the approved desktop appearance is preserved.
+
+### Implementation checklist
+
+- [x] Remove unreachable validation-center JavaScript and CSS.
+- [x] Consolidate duplicate birth-time state updates.
+- [x] Defer only safe off-screen sections.
+- [x] Preserve stage-link behavior and long-result layout stability.
+- [x] Verify production build, targeted tests, desktop/mobile rendering, overflow, and browser errors.
+
+### Follow-up polish
+
+- P3: validate the same off-screen rendering behavior once in Mobile Safari/PWA mode because WebKit's `content-visibility` heuristics can differ slightly from the in-app browser.
+
+final result: passed
+
+## Interpretation Prep Standalone Chat Handoff QA
+
+- source visual truth and established style comparison: `/Users/softie/.codex/visualizations/2026/07/25/019f9983-84de-72a2-b3ab-e6f6f653b053/interpretation-prep-audit/19-prep-before-after-optimization.png`
+- implementation: `http://127.0.0.1:5173/interpretation-prep`
+- implementation screenshots: `/Users/softie/.codex/visualizations/2026/07/25/019f9983-84de-72a2-b3ab-e6f6f653b053/interpretation-prep-audit/20-prep-chat-standalone-desktop-1280.png` and `/Users/softie/.codex/visualizations/2026/07/25/019f9983-84de-72a2-b3ab-e6f6f653b053/interpretation-prep-audit/21-prep-chat-standalone-mobile-390.png`
+- source and implementation dimensions: established desktop comparison at `1280×900` CSS px and 1× density; implementation captures at `1280×900` and `390×844` CSS px and 1× density
+- states: calculated result with details collapsed, details opened, and details collapsed again
+- primary interactions tested: calculate-state restoration, `계산 결과 상세 보기`, `계산 결과 닫기`, and `03 Chat 전달` fragment navigation
+- console errors checked: zero browser errors
+
+### Findings
+
+- No actionable P0, P1, or P2 differences remain.
+- Information architecture: `Chat에서 해석할 자료 만들기` is now a standalone third step directly after the input and calculation-profile form. It remains visible while the details are closed.
+- Interaction scope: the details control now governs only `체계별 근거` and `통합 구조`. Opening it adds `04 결과` to the stage navigation; closing it removes only those two result sections.
+- Fonts and typography: the scheduler-aligned Korean hierarchy, uppercase kickers, weights, line heights, and mobile wrapping remain unchanged. Step kickers now read `03 · CHAT HANDOFF`, `04 · SYSTEM RESULTS`, and `04B · SYNTHESIS LAYER`.
+- Spacing and layout rhythm: the standalone handoff keeps the existing card width, padding, gaps, radius, and scroll margin. Both desktop and mobile remain horizontally bounded.
+- Colors and visual tokens: atmospheric background, warm glass fill, borders, selected states, and primary/secondary actions are unchanged from the established design target.
+- Image quality and asset fidelity: the existing scheduler atmosphere image is unchanged; no new or substitute asset was introduced.
+- Copy and content: handoff copy and controls are unchanged. Navigation copy now mirrors the actual order: input, calculation profile, Chat handoff, then optional detailed results.
+- Accessibility: the detail button now declares both controlled regions through `aria-controls="prep-results prep-synthesis"` and retains accurate `aria-expanded` state.
+
+### Comparison history
+
+- Iteration 1: moved the handoff section above the detail-only regions and renumbered navigation and section kickers.
+- Post-fix evidence: in the collapsed state the DOM contains `#prep-handoff` but not `#prep-results` or `#prep-synthesis`; after opening, all three are present; after closing, only the handoff remains. Desktop and mobile report no horizontal overflow.
+
+### Focused region comparison
+
+- The desktop capture verifies that the handoff card begins immediately after the two-column input/profile workspace without an intervening result section.
+- The mobile capture verifies the stacked relationship between the calculation actions and standalone handoff card, plus two-column handoff topic controls and full-width generation action.
+
+### Implementation checklist
+
+- [x] Keep Chat handoff visible after calculation.
+- [x] Limit the details toggle to evidence and synthesis.
+- [x] Renumber stage navigation and section kickers.
+- [x] Update the details control relationship for both collapsible regions.
+- [x] Verify build, targeted tests, desktop/mobile rendering, interaction state, overflow, and browser errors.
+
+### Follow-up polish
+
+- P3: confirm the same scroll position and backdrop compositing once in physical Mobile Safari/PWA mode.
+
+final result: passed
+
+## Interpretation Prep Input Control Consistency Audit
+
+- rendered route: `http://127.0.0.1:5173/interpretation-prep#prep-input`
+- before screenshot: `/Users/softie/.codex/visualizations/2026/07/25/019f9983-84de-72a2-b3ab-e6f6f653b053/interpretation-prep-controls-audit/01-before-controls-desktop-1280.png`
+- after screenshots: `/Users/softie/.codex/visualizations/2026/07/25/019f9983-84de-72a2-b3ab-e6f6f653b053/interpretation-prep-controls-audit/02-after-controls-desktop-1280.png`, `/Users/softie/.codex/visualizations/2026/07/25/019f9983-84de-72a2-b3ab-e6f6f653b053/interpretation-prep-controls-audit/03-active-controls-desktop-1280.png`, and `/Users/softie/.codex/visualizations/2026/07/25/019f9983-84de-72a2-b3ab-e6f6f653b053/interpretation-prep-controls-audit/09-after-controls-mobile-final-390.png`
+- viewport and density: `1280×900` and `390×844` CSS px at 1× density
+- states: exact birth time, unknown birth time selected, and local-save preference selected
+- primary interactions tested: toggle unknown time on and off; verify persisted birth-time value restoration; inspect selected local-save preference without changing stored preference
+- console errors checked: zero browser errors
+
+### Findings
+
+- P2 resolved: the inactive `모름` control previously used a pale background and low-contrast brown label that read as disabled inside the dark scheduler-aligned surface. It now uses the same dark operational fill, line, 44px height, and text hierarchy as adjacent secondary controls.
+- P2 resolved: the native local-save checkbox previously rendered as a visually tiny 14px mark despite a 44px computed input height. It now renders at `18×18px`, while the enclosing label preserves a large click target.
+- P2 resolved: the save row previously had no visible selected-state relationship to the checked control. The checked row now uses a restrained selected border and warm transparent fill derived from the scheduler surface tokens.
+- Accessibility: `모름` now exposes its toggle state through `aria-pressed`. Keyboard focus continues to use the shared 2px focus ring, the button remains `64×44px`, and the entire save row remains the checkbox label.
+- Fonts and typography: labels, weights, Korean wrapping, supporting-copy size, and line height remain aligned with the surrounding input card.
+- Spacing and layout rhythm: control height, radius, inset, and row spacing now match nearby gender and advanced-setting controls. The mobile layout remains at `scrollWidth === clientWidth`.
+- Colors and visual tokens: the controls use existing `--prep-*` and scheduler-selected variables; no new palette or material family was introduced.
+- Image quality and asset fidelity: the scheduler atmosphere asset and its crop are unchanged; no new icon or substitute asset was introduced.
+- Copy and content: visible copy and save behavior are unchanged.
+
+### Flow steps
+
+1. Exact birth time — healthy: `모름` reads as an available secondary toggle beside the time field.
+2. Unknown birth time — healthy: selected material, focus ring, explanatory warning, and `aria-pressed="true"` make the state clear.
+3. Local-save preference — healthy: the native checked control and softly selected row communicate persistence without competing with the primary calculation action.
+
+### Remaining limits
+
+- Physical Safari/PWA rendering was not captured; native checkbox glyph and backdrop compositing can vary slightly from the in-app browser.
 
 final result: passed

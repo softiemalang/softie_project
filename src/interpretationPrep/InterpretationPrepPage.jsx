@@ -8,11 +8,8 @@ import {
   buildExportPayload,
   exportPayloadToMarkdown,
   prepareInterpretationData,
-  exportValidationReportToMarkdown,
 } from './prepare.js'
 
-import { sajuValidationFixtures } from './fixtures/sajuValidationFixtures.js'
-import { runSajuValidationSuite } from './sajuValidationRunner.js'
 import {
   DEFAULT_INPUT,
   DEFAULT_PROFILES,
@@ -823,28 +820,6 @@ export default function InterpretationPrepPage() {
   const [copyStatus, setCopyStatus] = useState('')
   const selectedReferenceCity = getKoreaReferenceCity(input.referenceCity)
 
-  // 검증 센터 전용 State 및 핸들러
-  const [validationSummary, setValidationSummary] = useState(null)
-  const [categoryFilter, setCategoryFilter] = useState('all')
-  const [statusFilter, setStatusFilter] = useState('all')
-  const [developerCopiedStatus, setDeveloperCopiedStatus] = useState('')
-
-  const handleRunValidation = () => {
-    const summary = runSajuValidationSuite(sajuValidationFixtures, prepareInterpretationData)
-    setValidationSummary(summary)
-  }
-
-  const handleCopyDevReport = async () => {
-    try {
-      const mdReport = exportValidationReportToMarkdown()
-      await copyTextToClipboard(mdReport)
-      setDeveloperCopiedStatus('검증 보고서가 클립보드에 복사되었습니다!')
-      setTimeout(() => setDeveloperCopiedStatus(''), 3000)
-    } catch (err) {
-      setDeveloperCopiedStatus('복사에 실패했습니다.')
-    }
-  }
-
   useEffect(() => {
     if (!saveLocally) return
     try {
@@ -919,9 +894,15 @@ export default function InterpretationPrepPage() {
 
   function updateTimeDraft(value) {
     const formatted = formatTimeDraft(value)
+    const normalized = normalizeTimeDraft(formatted)
     setTextDrafts((current) => ({ ...current, birthTime: formatted }))
-    updateInput('birthTime', normalizeTimeDraft(formatted))
-    updateInput('timeAccuracy', 'exact')
+    setInput((current) => ({
+      ...current,
+      birthTime: normalized,
+      timeAccuracy: 'exact',
+    }))
+    setError('')
+    setCopyStatus('')
   }
 
   function setTimeAccuracyMode(mode) {
@@ -1034,15 +1015,35 @@ export default function InterpretationPrepPage() {
         </div>
       </header>
 
+      <nav className="prep-flow-nav ag-glass" aria-label="해석 준비 단계">
+        <a href="#prep-input">
+          <span>01</span>
+          <strong>입력</strong>
+        </a>
+        <a href="#prep-profile">
+          <span>02</span>
+          <strong>계산 기준</strong>
+        </a>
+        {result && (
+          <a href="#prep-handoff">
+            <span>03</span>
+            <strong>Chat 전달</strong>
+          </a>
+        )}
+        {result && showDetails && (
+          <a href="#prep-results">
+            <span>04</span>
+            <strong>결과</strong>
+          </a>
+        )}
+      </nav>
+
       <form className="prep-workspace" onSubmit={handleCalculate}>
-
-
-
-        <section className="card prep-card ag-glass">
+        <section className="card prep-card ag-glass" id="prep-input" aria-labelledby="prep-input-title">
           <div className="card-header">
             <div>
               <p className="section-kicker">01 · INPUT LAYER</p>
-              <h2>출생정보</h2>
+              <h2 id="prep-input-title">출생정보</h2>
             </div>
             <span className="prep-step-note">대한민국 출생 기준</span>
           </div>
@@ -1102,14 +1103,13 @@ export default function InterpretationPrepPage() {
               </LabeledField>
             )}
             <LabeledField label="출생시각" className="prep-field-wide">
-              <div className="prep-time-row" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+              <div className="prep-time-row">
                 <input
                   type="text"
                   inputMode="numeric"
                   placeholder="HH:MM (예: 14:40)"
                   maxLength={5}
                   pattern="[0-9:]*"
-                  style={{ flex: 1 }}
                   value={input.timeAccuracy === 'unknown' ? '12:00' : textDrafts.birthTime}
                   onChange={(event) => {
                     if (input.timeAccuracy === 'unknown') {
@@ -1126,6 +1126,7 @@ export default function InterpretationPrepPage() {
                 <button
                   type="button"
                   className={`prep-time-unknown-toggle ${input.timeAccuracy === 'unknown' ? 'is-active' : ''}`}
+                  aria-pressed={input.timeAccuracy === 'unknown'}
                   onClick={() => {
                     if (input.timeAccuracy === 'unknown') {
                       setTimeAccuracyMode('exact')
@@ -1139,8 +1140,8 @@ export default function InterpretationPrepPage() {
 
               </div>
               {input.timeAccuracy === 'unknown' && (
-                <p className="prep-field-hint" style={{ marginTop: '0.4rem', color: 'var(--brand)', fontSize: '0.74rem' }}>
-                  💡 정오 12:00를 대표 앵커 시각으로 세팅하여 사주·자미두수·점성학 계산 변수를 최소화합니다. (시주/하우스 불확실성은 보존됨)
+                <p className="prep-field-hint prep-time-unknown-hint">
+                  정오 12:00를 대표 시각으로 사용하되, 시주와 하우스의 불확실성은 그대로 보존합니다.
                 </p>
               )}
             </LabeledField>
@@ -1191,19 +1192,11 @@ export default function InterpretationPrepPage() {
           </label>
         </section>
 
-        {/* Main Product Feature: Chat Handoff Package Creation */}
-        <section className="mt-4 mb-4">
-          <ChatHandoffCard unifiedContext={safeUnifiedContext} />
-
-
-        </section>
-
-        <section className="card prep-card ag-glass">
-
+        <section className="card prep-card ag-glass" id="prep-profile" aria-labelledby="prep-profile-title">
           <div className="card-header">
             <div>
               <p className="section-kicker">02 · CALCULATION PROFILE</p>
-              <h2>계산 기준</h2>
+              <h2 id="prep-profile-title">계산 기준</h2>
             </div>
             <span className="prep-step-note">결과와 함께 출력</span>
           </div>
@@ -1245,8 +1238,8 @@ export default function InterpretationPrepPage() {
             </details>
           </div>
           {error && <p className="prep-form-error" role="alert">{error}</p>}
-          <div style={{ display: 'flex', gap: '0.6rem', marginTop: '1rem' }}>
-            <button type="submit" className="prep-calculate-button ag-primary-action" style={{ flex: 1 }}>
+          <div className="prep-calculation-actions">
+            <button type="submit" className="prep-calculate-button ag-primary-action">
               {result ? '계산 새로 적용하기' : '계산 적용하기'}
             </button>
             {result && (
@@ -1254,7 +1247,8 @@ export default function InterpretationPrepPage() {
                 type="button"
                 className="prep-secondary-button ag-secondary-action"
                 onClick={() => setShowDetails(!showDetails)}
-                style={{ padding: '0 1rem', borderRadius: 'var(--radius-control)', fontSize: '0.82rem', fontWeight: 600 }}
+                aria-expanded={showDetails}
+                aria-controls="prep-results prep-synthesis"
               >
                 {showDetails ? '계산 결과 닫기 ▴' : '계산 결과 상세 보기 ▾'}
               </button>
@@ -1264,14 +1258,20 @@ export default function InterpretationPrepPage() {
         </section>
       </form>
 
+      {result && (
+        <section className="prep-handoff-section" id="prep-handoff" aria-label="Chat 전달 자료 만들기">
+          <ChatHandoffCard unifiedContext={safeUnifiedContext} />
+        </section>
+      )}
+
       {result && showDetails && (
         <>
-          <section className="card prep-card prep-results-card ag-glass">
+          <section className="card prep-card prep-results-card ag-glass" id="prep-results" aria-labelledby="prep-results-title">
             <div className="card-header">
               <div>
-                <p className="section-kicker">03 · SYSTEM RESULTS</p>
+                <p className="section-kicker">04 · SYSTEM RESULTS</p>
 
-                <h2>체계별 근거</h2>
+                <h2 id="prep-results-title">체계별 근거</h2>
               </div>
               <span className="prep-step-note">지원 범위와 한계 분리</span>
             </div>
@@ -1296,11 +1296,11 @@ export default function InterpretationPrepPage() {
             <SystemResult result={currentSystem} view={resultView} />
           </section>
 
-          <section className="card prep-card ag-glass">
+          <section className="card prep-card ag-glass" id="prep-synthesis" aria-labelledby="prep-synthesis-title">
             <div className="card-header">
               <div>
-                <p className="section-kicker">04 · SYNTHESIS LAYER</p>
-                <h2>통합 구조</h2>
+                <p className="section-kicker">04B · SYNTHESIS LAYER</p>
+                <h2 id="prep-synthesis-title">통합 구조</h2>
               </div>
               <StatusBadge status="needs_verification" />
             </div>
@@ -1320,10 +1320,6 @@ export default function InterpretationPrepPage() {
               ))}
             </div>
           </section>
-
-
-
-
         </>
       )}
     </main>
