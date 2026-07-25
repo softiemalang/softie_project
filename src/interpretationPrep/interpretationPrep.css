@@ -223,6 +223,36 @@
   border-color: rgba(31, 111, 95, 0.24);
 }
 
+.prep-time-unknown-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+  height: 38px;
+  padding: 0 0.85rem;
+  border-radius: var(--radius-control);
+  border: 1px solid var(--line);
+  background: rgba(243, 236, 226, 0.45);
+  color: #7a6b57;
+  font-size: 0.8rem;
+  font-weight: 550;
+  cursor: pointer;
+  transition: all var(--ag-duration-fast) ease;
+}
+
+.prep-time-unknown-toggle:hover {
+  background: rgba(243, 236, 226, 0.85);
+  color: #5c4c39;
+}
+
+.prep-time-unknown-toggle.is-active {
+  background: #eae2d3;
+  color: #4a3b29;
+  border-color: #d5c8b5;
+  font-weight: 650;
+}
+
+
 .prep-save-toggle {
   display: flex;
   align-items: flex-start;

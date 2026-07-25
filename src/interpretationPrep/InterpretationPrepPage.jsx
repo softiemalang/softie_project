@@ -1125,7 +1125,7 @@ export default function InterpretationPrepPage() {
                 />
                 <button
                   type="button"
-                  className={`prep-time-mode-btn ${input.timeAccuracy === 'unknown' ? 'is-active' : ''}`}
+                  className={`prep-time-unknown-toggle ${input.timeAccuracy === 'unknown' ? 'is-active' : ''}`}
                   onClick={() => {
                     if (input.timeAccuracy === 'unknown') {
                       setTimeAccuracyMode('exact')
@@ -1133,10 +1133,10 @@ export default function InterpretationPrepPage() {
                       setTimeAccuracyMode('unknown')
                     }
                   }}
-                  style={{ whiteSpace: 'nowrap', height: '42px', padding: '0 1.1rem', borderRadius: 'var(--radius-control)', fontWeight: 600 }}
                 >
                   모름
                 </button>
+
               </div>
               {input.timeAccuracy === 'unknown' && (
                 <p className="prep-field-hint" style={{ marginTop: '0.4rem', color: 'var(--brand)', fontSize: '0.74rem' }}>
