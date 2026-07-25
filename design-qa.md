@@ -268,6 +268,26 @@
 
 final result: passed
 
+## Scheduler-Only Liquid Glass Transparency Tuning QA
+
+- source visual truth: `/tmp/codex-remote-attachments/019f9618-8084-7c03-a518-af09fcce8455/7E696A20-D0D2-4D8A-AAFD-81CFACAE3FFF/1-붙여넣은-이미지-1.jpg` plus the earlier iOS material reference
+- implementation screenshot: `/private/tmp/softie-liquid-glass-qa-v2/scheduler-login-390-scoped.png`
+- viewport and pixels: `390×844` CSS px at 1× density
+- state: signed-out scheduler login; home and memo remain on the previously shipped opacity
+
+### Findings
+
+- P3 resolved: scheduler liquid surfaces now use a lower-opacity warm fill (`0.18`), allowing more of the atmospheric photograph to show through. Home and memo retain the previously shipped `0.24` surface for this scoped pass.
+- Spacing, typography, copy, and layout remain unchanged from the previously passed implementation.
+- The screenshot shows the intended distinction: scheduler status/command surfaces are more transparent, while content controls retain contrast and the background remains supportive rather than decorative.
+- Reduced-transparency and unsupported-backdrop fallbacks now use `!important`, so accessibility fallbacks correctly override the transparent base rule.
+
+### Follow-up polish
+
+- P3: validate the new opacity values on a physical iPhone in Safari/PWA mode, where native backdrop compositing can appear slightly brighter or darker than Chromium.
+
+final result: passed
+
 ## Selective Liquid Glass Material QA
 
 - source visual truth: `/tmp/codex-remote-attachments/019f9618-8084-7c03-a518-af09fcce8455/7D29A77E-ABCC-4613-9A61-6A54103166EE/1-사진-1.jpg`
