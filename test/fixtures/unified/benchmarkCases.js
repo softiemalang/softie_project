@@ -7,7 +7,7 @@
 export const UNIFIED_BENCHMARK_CASES = [
   {
     id: 'case_1_exact_saju_exact_ziwei',
-    name: 'Case 1: 양쪽 모두 정격 명반 (strong_agreement)',
+    name: 'Case 1: 양쪽 모두 정격 명반 (multi_lens_synthesis)',
     sajuInput: {
       subjectName: '양쪽정격테스트',
       birthYear: 1984,
@@ -22,11 +22,11 @@ export const UNIFIED_BENCHMARK_CASES = [
       hourBranch: '午',
     },
     domainProfile: 'career',
-    expectedAgreement: 'strong_agreement',
+    expectedAgreement: 'multi_lens_synthesis',
   },
   {
     id: 'case_2_low_saju_exact_ziwei',
-    name: 'Case 2: 사주 절기 경계(low) + 자미두수 정격(high) (partial_agreement)',
+    name: 'Case 2: 사주 절기 경계(low) + 자미두수 정격(high) (partial_uncertainty_preserved)',
     sajuInput: {
       subjectName: '사주불확실테스트',
       birthYear: 1984,
@@ -41,12 +41,12 @@ export const UNIFIED_BENCHMARK_CASES = [
       hourBranch: '卯',
     },
     domainProfile: 'personality',
-    expectedAgreement: 'partial_agreement',
+    expectedAgreement: 'partial_uncertainty_preserved',
     expectedOverallConfidence: 'medium',
   },
   {
     id: 'case_3_exact_saju_low_ziwei',
-    name: 'Case 3: 사주 정격(high) + 자미두수 윤달/시간 미상(low) (partial_agreement)',
+    name: 'Case 3: 사주 정격(high) + 자미두수 윤달/시간 미상(low) (partial_uncertainty_preserved)',
     sajuInput: {
       subjectName: '자미불확실테스트',
       birthYear: 1990,
@@ -61,7 +61,7 @@ export const UNIFIED_BENCHMARK_CASES = [
       isLeapMonth: true, // 윤달 불확실성
     },
     domainProfile: 'relationship',
-    expectedAgreement: 'partial_agreement',
+    expectedAgreement: 'partial_uncertainty_preserved',
     expectedOverallConfidence: 'medium',
   },
   {
@@ -80,7 +80,7 @@ export const UNIFIED_BENCHMARK_CASES = [
       hourBranch: '酉',
     },
     domainProfile: 'career',
-    expectedAgreement: 'strong_agreement',
+    expectedAgreement: 'multi_lens_synthesis',
   },
   {
     id: 'case_5_both_low_confidence',
@@ -102,3 +102,4 @@ export const UNIFIED_BENCHMARK_CASES = [
     expectedOverallConfidence: 'low',
   },
 ]
+

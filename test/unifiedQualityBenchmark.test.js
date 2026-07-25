@@ -55,17 +55,22 @@ test('unifiedQualityBenchmark: validates contract & system independence across 5
     const ziweiCtx = createZiweiInterpretationContext(ziweiCalcCtx)
 
     // 3. Build Unified Context & Prompt Payload
-    const unifiedCtx = createUnifiedInterpretationContext(sajuCtx, ziweiCtx)
+    const astrologyCtx = c.expectedAgreement === 'insufficient_data'
+      ? { calculationConfidence: { stateContract: { confidence: 'low' } } }
+      : {}
+    const unifiedCtx = createUnifiedInterpretationContext(sajuCtx, ziweiCtx, astrologyCtx)
     const payload = buildUnifiedPromptPayload(unifiedCtx, c.domainProfile)
+
 
     // Verify System Agreement
     assert.equal(unifiedCtx.systemAgreement.agreementLevel, c.expectedAgreement)
 
     // Verify 4-step protocol
-    assert.ok(payload.systemPrompt.includes('Step 1: 각 체계별 독립 관점 설명'))
-    assert.ok(payload.systemPrompt.includes('Step 2: 공통 테마와 입체적 관점 차이'))
-    assert.ok(payload.systemPrompt.includes('Step 3: 통합 안전 지침'))
+    assert.ok(payload.systemPrompt.includes('Step 1: 3대 체계별 독립 렌즈 설명'))
+    assert.ok(payload.systemPrompt.includes('Step 2: 공통 테마'))
+    assert.ok(payload.systemPrompt.includes('Step 3: 통합 안전'))
     assert.ok(payload.systemPrompt.includes('Step 4: 대화형 가이드'))
+
 
     // Verify Safety Guardrails
     UNIFIED_SAFETY_GUARDRAILS.forEach((g) => {
