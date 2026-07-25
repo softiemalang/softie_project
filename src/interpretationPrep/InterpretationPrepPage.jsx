@@ -1002,18 +1002,8 @@ export default function InterpretationPrepPage() {
         </div>
       </header>
 
-      {/* Main Product Feature: Chat Handoff Package Creation */}
-      <section className="mt-6">
-        <ChatHandoffCard
-          unifiedContext={createUnifiedInterpretationContext(
-            result?.systems?.saju,
-            result?.systems?.ziwei,
-            result?.systems?.astrology
-          )}
-        />
-      </section>
-
       <form className="prep-workspace" onSubmit={handleCalculate}>
+
 
 
         <section className="card prep-card ag-glass">
@@ -1191,7 +1181,19 @@ export default function InterpretationPrepPage() {
           </label>
         </section>
 
+        {/* Main Product Feature: Chat Handoff Package Creation */}
+        <section className="mt-4 mb-4">
+          <ChatHandoffCard
+            unifiedContext={createUnifiedInterpretationContext(
+              result?.systems?.saju,
+              result?.systems?.ziwei,
+              result?.systems?.astrology
+            )}
+          />
+        </section>
+
         <section className="card prep-card ag-glass">
+
           <div className="card-header">
             <div>
               <p className="section-kicker">02 · CALCULATION PROFILE</p>
@@ -1237,7 +1239,8 @@ export default function InterpretationPrepPage() {
             </details>
           </div>
           {error && <p className="prep-form-error" role="alert">{error}</p>}
-          <button type="submit" className="prep-calculate-button ag-primary-action">사주와 운 흐름 계산하고 자료 만들기</button>
+          <button type="submit" className="prep-calculate-button ag-primary-action">계산 적용하기</button>
+
         </section>
       </form>
 
@@ -1297,40 +1300,7 @@ export default function InterpretationPrepPage() {
             </div>
           </section>
 
-          <section className="card prep-card ag-glass">
-            <div className="card-header">
-              <div>
-                <p className="section-kicker">05 · EXPORT LAYER</p>
-                <h2>해석 패키지 만들기</h2>
-              </div>
-              <span className="prep-step-note">AI 비종속 형식</span>
-            </div>
-            <div className="prep-export-switch ag-segmented">
-              <button type="button" className={exportType === 'conversation' ? 'is-active' : ''} onClick={() => setExportType('conversation')}>대화용 요약</button>
-              <button type="button" className={exportType === 'verification' ? 'is-active' : ''} onClick={() => setExportType('verification')}>검증용 상세</button>
-            </div>
-            {exportType === 'conversation' && (
-              <div className="prep-export-fields">
-                <LabeledField label="질문 주제">
-                  <select value={topicId} onChange={(event) => setTopicId(event.target.value)}>
-                    {TOPICS.map((topic) => <option value={topic.id} key={topic.id}>{topic.label}</option>)}
-                  </select>
-                </LabeledField>
-                <LabeledField label="구체적인 질문" hint="선택 입력 · 계산값이 아니라 대화의 방향만 지정합니다.">
-                  <textarea rows="3" value={question} onChange={(event) => setQuestion(event.target.value)} placeholder="예: 올해 이직 고민을 어떤 근거부터 살펴보면 좋을까?" />
-                </LabeledField>
-              </div>
-            )}
-            <div className="prep-copy-actions">
-              <button type="button" onClick={() => handleCopy('markdown')}>Markdown 복사</button>
-              <button type="button" className="prep-secondary-button ag-secondary-action" onClick={() => handleCopy('json')}>JSON 복사</button>
-            </div>
-            {copyStatus && <p className="prep-copy-status" aria-live="polite">{copyStatus}</p>}
-            <details className="prep-export-preview">
-              <summary>출력 미리보기</summary>
-              <pre>{exportType === 'conversation' ? markdown : JSON.stringify(exportPayload, null, 2)}</pre>
-            </details>
-          </section>
+
 
           {/* 🔬 실험실 (Lab Workspace): 내부 상담 인터페이스 & 세션 데이터 미리보기 */}
           <section className="card prep-card ag-glass prep-lab-section">
