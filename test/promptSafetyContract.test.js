@@ -84,3 +84,52 @@ test('promptSafetyContract: solar term boundary case demands rule candidate comp
   assert.ok(promptPkg.systemInstruction.includes('사용자 질문에 포함된 전제나 가정'))
   assert.ok(promptPkg.contextPayload.interpretationConstraints.some((c) => c.includes('절기 입절 시각 경계에 위치하여')))
 })
+
+test('promptSafetyContract: domain profile (career) injects 4-step protocol and career framework', () => {
+  const prepResult = prepareInterpretationData({
+    subjectName: '커리어질문',
+    birthDate: '1990-05-15',
+    birthTime: '14:30',
+    timeAccuracy: 'exact',
+    targetDate: '2026-07-25',
+    gender: 'female',
+    calendar: 'solar',
+    referenceCity: 'seoul',
+    timezone: 'Asia/Seoul',
+  })
+
+  const promptPkg = buildInterpretationPrompt(prepResult.interpretationContext, {
+    topicId: 'career',
+    question: '제게 맞는 적성과 업무 환경이 궁금합니다.',
+  })
+
+  assert.equal(promptPkg.interpretationTask.topicId, 'career')
+  assert.ok(promptPkg.systemInstruction.includes('4단계 해석 프로토콜 준수'))
+  assert.ok(promptPkg.systemInstruction.includes('직업 및 적성 탐색'))
+  assert.ok(promptPkg.userQuestionPrompt.includes('[상담 주제]: 직업 및 적성 탐색'))
+})
+
+test('promptSafetyContract: timing profile + low confidence forbids deterministic future prediction and demands preparedness guidance', () => {
+  const prepResult = prepareInterpretationData({
+    subjectName: '시점질문_DST',
+    birthDate: '1988-05-10',
+    birthTime: '01:30',
+    timeAccuracy: 'exact',
+    targetDate: '2026-07-25',
+    gender: 'female',
+    calendar: 'solar',
+    referenceCity: 'seoul',
+    timezone: 'Asia/Seoul',
+  })
+
+  const promptPkg = buildInterpretationPrompt(prepResult.interpretationContext, {
+    topicId: 'timing',
+    question: '2027년에 제 운이 크게 좋아지는 시기인가요?',
+  })
+
+  assert.equal(promptPkg.contextPayload.calculationConfidence.stateContract.confidence, 'low')
+  assert.equal(promptPkg.contextPayload.calculationConfidence.stateContract.verificationStatus, 'candidate_required')
+  assert.ok(promptPkg.systemInstruction.includes('미래 특정 연도나 날짜에 특정 사건이 일어난다고 단정적으로 예언하지 마십시오'))
+  assert.ok(promptPkg.systemInstruction.includes('운의 흐름은 절대적 운명이 아닌 "환경적 변동성과 시도의 적기"로 설명하십시오'))
+  assert.ok(promptPkg.systemInstruction.includes('[HIGH PRIORITY]'))
+})

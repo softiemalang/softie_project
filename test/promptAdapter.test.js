@@ -24,7 +24,7 @@ test('promptAdapter: exact birth time generates clean prompt package with system
   })
 
   assert.ok(promptPkg)
-  assert.ok(promptPkg.systemInstruction.includes('사주명리학적 바탕과 불확실성을 객관적으로 설명하는'))
+  assert.ok(promptPkg.systemInstruction.includes('사주명리학적 바탕과 불확실성을 객관적으로 설명하고'))
   assert.equal(promptPkg.interpretationTask.topicId, 'career')
   assert.equal(promptPkg.interpretationTask.goal, '직업적 강점 및 적성 분석')
   assert.ok(Array.isArray(promptPkg.interpretationTask.avoid))
