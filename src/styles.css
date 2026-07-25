@@ -3180,10 +3180,13 @@ textarea {
 }
 
 .home-auth-button {
-  min-height: 44px;
-  padding: 0.56rem 0.9rem;
+  min-height: 36px;
+  height: 36px;
+  padding: 0.32rem 0.68rem;
   border-radius: var(--ag-radius-pill);
-  font-size: 0.76rem;
+  font-size: 0.7rem;
+  background: var(--ag-surface-operational);
+  box-shadow: none;
   white-space: nowrap;
 }
 
@@ -3202,7 +3205,7 @@ textarea {
 
 .home-account-bar {
   max-width: min(100%, 370px);
-  padding: 0.3rem 0.32rem 0.3rem 0.75rem;
+  padding: 0.16rem 0.2rem 0.16rem 0.58rem;
   border: 1px solid var(--ag-line);
   border-radius: var(--ag-radius-pill);
   background: var(--ag-surface-operational);
@@ -3632,9 +3635,10 @@ textarea {
   }
 
   .home-auth-button {
-    min-height: 44px;
-    padding: 0.45rem 0.62rem;
-    font-size: 0.7rem;
+    min-height: 36px;
+    height: 36px;
+    padding: 0.32rem 0.58rem;
+    font-size: 0.68rem;
   }
 
   .home-section-heading {
