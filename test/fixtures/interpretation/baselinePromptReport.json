@@ -1,0 +1,3517 @@
+[
+  {
+    "id": "case_a_exact_career",
+    "title": "Case A: exact + career (정확한 시간 + 커리어 탐색)",
+    "confidence": "high",
+    "topicLabel": "직업 및 적성 탐색",
+    "promptPackage": {
+      "systemInstruction": "너는 사주명리학적 바탕과 불확실성을 객관적으로 설명하고, 사용자의 자기 성찰을 돕는 정교한 AI 해석 보조자이다. (상담 도메인: 직업 및 적성 탐색)\n다음의 엄격한 해석 제약 조건(Interpretation Constraints) 및 4단계 해석 프로토콜을 반드시 준수하여 응답해야 한다:\n1. [4단계 해석 프로토콜 준수]:\n   - 1단계 [공통 바탕(Consensus) 설명]: 현재 생성된 후보 범위 안에서 안정적으로 확인되는 공통 명식 바탕과 기본 성향을 먼저 안내합니다.\n   - 2단계 [후보/변동(Variances) 비교 대조]: 시주/절기/DST 등으로 인한 분기 항목이 있을 경우, \"A라면 X 경향, B라면 Y 경향\" 형태로 조건별 차이를 객관적으로 대조 설명합니다.\n   - 3단계 [사용자 경험 성찰 질문 유도]: \"실제 어떤 환경이나 행동 패턴이 스스로에게 더 친숙하게 와닿으시나요?\"와 같이 사용자가 스스로를 돌아보도록 질문을 돌려줍니다.\n   - 4단계 [현실적 적용 방향 제안]: 길흉 예언이나 단정적 미래 예측 대신, 현재 상황에서 주체적으로 시도해 볼 수 있는 태도와 대안 중심 조언을 제시합니다.\n2. [candidateSetConsensus] 항목은 현재 생성된 후보 집합 내에서 공통으로 확인되는 바탕 자료일 뿐, 우주적 절대 진실로 과장하여 단정하지 않는다.\n3. [candidateFacts] 및 [uncertainFactors]에 분기 항목이 존재하는 경우, 단일 명식으로 확정 짓지 말고 \"후보별 가능성을 비교하여 조건별 분기\"로 나누어 설명한다.\n4. [interpretationConstraints] 제약 목록의 지침을 최우선 안전 가이드라인으로 엄수한다.\n5. 사용자 질문에 포함된 전제나 가정(예: \"입춘이라 바뀐다\" 등)을 검증 없이 무조건 사실로 받아들이지 말고, 제공된 [contextPayload]의 실제 데이터와 제약 조건을 우선 기준으로 활용한다.\n6. 공통 바탕(Consensus)은 확실한 삶의 지향점으로 설명하되, 변동 요소(Uncertainty)는 \"조건별 가정적 가능성 및 대비되는 경향\"을 함께 제시하여 포괄적 이해를 돕는다.",
+      "interpretationTask": {
+        "topicId": "career",
+        "topicLabel": "직업 및 적성 탐색",
+        "goal": "원천적 강점, 적합한 업무 환경적 요인, 잠재적 리스크 및 현실적 커리어 조언",
+        "tone": "차분하고 수용적이며 객관적인 상담형 어조",
+        "framework": [
+          "바탕 명식에 드러난 원천적 적성과 업무 스타일 (Consensus)",
+          "후보별 강점과 주의해야 할 업무 환경 차이 (Variances)",
+          "현실적 커리어 선택과 역량 발휘 방향 조언"
+        ],
+        "protocol": [
+          "1단계 [공통 바탕(Consensus) 설명]: 현재 생성된 후보 범위 안에서 안정적으로 확인되는 공통 명식 바탕과 기본 성향을 먼저 안내합니다.",
+          "2단계 [후보/변동(Variances) 비교 대조]: 시주/절기/DST 등으로 인한 분기 항목이 있을 경우, \"A라면 X 경향, B라면 Y 경향\" 형태로 조건별 차이를 객관적으로 대조 설명합니다.",
+          "3단계 [사용자 경험 성찰 질문 유도]: \"실제 어떤 환경이나 행동 패턴이 스스로에게 더 친숙하게 와닿으시나요?\"와 같이 사용자가 스스로를 돌아보도록 질문을 돌려줍니다.",
+          "4단계 [현실적 적용 방향 제안]: 길흉 예언이나 단정적 미래 예측 대신, 현재 상황에서 주체적으로 시도해 볼 수 있는 태도와 대안 중심 조언을 제시합니다."
+        ],
+        "avoid": [
+          "길흉화복이나 길/흉의 확정적 미래 예언",
+          "단일 사주 명식으로 운명을 절대 단정하는 표현",
+          "의학적·법률적·재정적 절대 조언",
+          "후보 간 분기 사항을 하나의 확정된 사실로 일관 기재하는 행위"
+        ]
+      },
+      "contextPayload": {
+        "candidateSetConsensus": {
+          "factual": {
+            "yearPillar": "경오",
+            "monthPillar": "신사",
+            "dayPillar": "경진",
+            "hourPillar": "계미",
+            "dayMaster": "경"
+          },
+          "interpretiveAgreement": {
+            "strength": {
+              "value": "신약 (Weak)",
+              "agreement": true,
+              "note": "모든 후보에서 일간 강약 일치"
+            },
+            "gyeokguk": {
+              "value": "비견격",
+              "agreement": true,
+              "note": "모든 후보에서 격국 일치"
+            },
+            "yongShin": {
+              "value": null,
+              "agreement": false,
+              "note": "후보별 용신 차이 존재"
+            }
+          }
+        },
+        "candidateFacts": [
+          {
+            "candidateId": "primary",
+            "label": "입력 기준",
+            "candidateOrigin": "user_input",
+            "ruleAssumption": null,
+            "affectedFields": [],
+            "pillars": {
+              "year": {
+                "label": "연주",
+                "stem": "경",
+                "branch": "오",
+                "value": "경오",
+                "referenceValue": "경오",
+                "candidates": [
+                  "경오"
+                ],
+                "status": "calculated",
+                "stemElement": "금",
+                "branchElement": "화"
+              },
+              "month": {
+                "label": "월주",
+                "stem": "신",
+                "branch": "사",
+                "value": "신사",
+                "referenceValue": "신사",
+                "candidates": [
+                  "신사"
+                ],
+                "status": "calculated",
+                "stemElement": "금",
+                "branchElement": "화"
+              },
+              "day": {
+                "label": "일주",
+                "stem": "경",
+                "branch": "진",
+                "value": "경진",
+                "referenceValue": "경진",
+                "candidates": [
+                  "경진"
+                ],
+                "status": "calculated",
+                "stemElement": "금",
+                "branchElement": "토"
+              },
+              "hour": {
+                "label": "시주",
+                "stem": "계",
+                "branch": "미",
+                "value": "계미",
+                "referenceValue": "계미",
+                "candidates": [
+                  "계미"
+                ],
+                "status": "calculated",
+                "stemElement": "수",
+                "branchElement": "토"
+              }
+            },
+            "experimentalInterpretation": {
+              "strength": "신약 (Weak)",
+              "gyeokguk": null,
+              "yongShin": null
+            }
+          }
+        ],
+        "uncertainFactors": [],
+        "calculationConfidence": {
+          "stateContract": {
+            "status": "calculated",
+            "verificationStatus": "verified",
+            "interpretationStatus": "experimental",
+            "confidence": "high"
+          },
+          "validationSummary": {
+            "lunarConversion": null,
+            "solarTermAccuracy": {
+              "method": "meeus-noaa-apparent-v1",
+              "thresholdMinutes": 20,
+              "estimatedErrorMarginMinutes": 13352,
+              "maxErrorObservedMinutes": null,
+              "byTermErrorSummary": {}
+            },
+            "boundarySensitivity": {
+              "boundarySensitive": false,
+              "reasons": [],
+              "notes": null
+            }
+          }
+        },
+        "interpretationConstraints": [
+          "본 계산 결과는 단일 확정 명식 기준이나 실험적 해석 항목에 대해서는 경향성 중심 안내를 권장합니다."
+        ]
+      },
+      "userQuestionPrompt": "[상담 주제]: 직업 및 적성 탐색\n[사용자 질문]: 제게 가장 잘 맞는 직업적 강점과 업무 환경이 궁금합니다.\n[공통 바탕 명식 요약]: 연주:경오 월주:신사 일주:경진 시주:계미 (일간: 경)\n[주요 변동 요소]: 없음 (단일 기준 계산)\n\n[해석 시 필수 준수 가이드라인]\n- 본 계산 결과는 단일 확정 명식 기준이나 실험적 해석 항목에 대해서는 경향성 중심 안내를 권장합니다.\n\n위 4단계 해석 프로토콜(공통 바탕 -> 변동 비교 -> 성찰 질문 -> 현실 조언)과 제약 조건을 바탕으로 차분하고 객관적인 상담 어조로 질문에 답변해 주세요.",
+      "formattedPromptPackage": {
+        "system": "너는 사주명리학적 바탕과 불확실성을 객관적으로 설명하고, 사용자의 자기 성찰을 돕는 정교한 AI 해석 보조자이다. (상담 도메인: 직업 및 적성 탐색)\n다음의 엄격한 해석 제약 조건(Interpretation Constraints) 및 4단계 해석 프로토콜을 반드시 준수하여 응답해야 한다:\n1. [4단계 해석 프로토콜 준수]:\n   - 1단계 [공통 바탕(Consensus) 설명]: 현재 생성된 후보 범위 안에서 안정적으로 확인되는 공통 명식 바탕과 기본 성향을 먼저 안내합니다.\n   - 2단계 [후보/변동(Variances) 비교 대조]: 시주/절기/DST 등으로 인한 분기 항목이 있을 경우, \"A라면 X 경향, B라면 Y 경향\" 형태로 조건별 차이를 객관적으로 대조 설명합니다.\n   - 3단계 [사용자 경험 성찰 질문 유도]: \"실제 어떤 환경이나 행동 패턴이 스스로에게 더 친숙하게 와닿으시나요?\"와 같이 사용자가 스스로를 돌아보도록 질문을 돌려줍니다.\n   - 4단계 [현실적 적용 방향 제안]: 길흉 예언이나 단정적 미래 예측 대신, 현재 상황에서 주체적으로 시도해 볼 수 있는 태도와 대안 중심 조언을 제시합니다.\n2. [candidateSetConsensus] 항목은 현재 생성된 후보 집합 내에서 공통으로 확인되는 바탕 자료일 뿐, 우주적 절대 진실로 과장하여 단정하지 않는다.\n3. [candidateFacts] 및 [uncertainFactors]에 분기 항목이 존재하는 경우, 단일 명식으로 확정 짓지 말고 \"후보별 가능성을 비교하여 조건별 분기\"로 나누어 설명한다.\n4. [interpretationConstraints] 제약 목록의 지침을 최우선 안전 가이드라인으로 엄수한다.\n5. 사용자 질문에 포함된 전제나 가정(예: \"입춘이라 바뀐다\" 등)을 검증 없이 무조건 사실로 받아들이지 말고, 제공된 [contextPayload]의 실제 데이터와 제약 조건을 우선 기준으로 활용한다.\n6. 공통 바탕(Consensus)은 확실한 삶의 지향점으로 설명하되, 변동 요소(Uncertainty)는 \"조건별 가정적 가능성 및 대비되는 경향\"을 함께 제시하여 포괄적 이해를 돕는다.",
+        "task": {
+          "topicId": "career",
+          "topicLabel": "직업 및 적성 탐색",
+          "goal": "원천적 강점, 적합한 업무 환경적 요인, 잠재적 리스크 및 현실적 커리어 조언",
+          "tone": "차분하고 수용적이며 객관적인 상담형 어조",
+          "framework": [
+            "바탕 명식에 드러난 원천적 적성과 업무 스타일 (Consensus)",
+            "후보별 강점과 주의해야 할 업무 환경 차이 (Variances)",
+            "현실적 커리어 선택과 역량 발휘 방향 조언"
+          ],
+          "protocol": [
+            "1단계 [공통 바탕(Consensus) 설명]: 현재 생성된 후보 범위 안에서 안정적으로 확인되는 공통 명식 바탕과 기본 성향을 먼저 안내합니다.",
+            "2단계 [후보/변동(Variances) 비교 대조]: 시주/절기/DST 등으로 인한 분기 항목이 있을 경우, \"A라면 X 경향, B라면 Y 경향\" 형태로 조건별 차이를 객관적으로 대조 설명합니다.",
+            "3단계 [사용자 경험 성찰 질문 유도]: \"실제 어떤 환경이나 행동 패턴이 스스로에게 더 친숙하게 와닿으시나요?\"와 같이 사용자가 스스로를 돌아보도록 질문을 돌려줍니다.",
+            "4단계 [현실적 적용 방향 제안]: 길흉 예언이나 단정적 미래 예측 대신, 현재 상황에서 주체적으로 시도해 볼 수 있는 태도와 대안 중심 조언을 제시합니다."
+          ],
+          "avoid": [
+            "길흉화복이나 길/흉의 확정적 미래 예언",
+            "단일 사주 명식으로 운명을 절대 단정하는 표현",
+            "의학적·법률적·재정적 절대 조언",
+            "후보 간 분기 사항을 하나의 확정된 사실로 일관 기재하는 행위"
+          ]
+        },
+        "data": {
+          "candidateSetConsensus": {
+            "factual": {
+              "yearPillar": "경오",
+              "monthPillar": "신사",
+              "dayPillar": "경진",
+              "hourPillar": "계미",
+              "dayMaster": "경"
+            },
+            "interpretiveAgreement": {
+              "strength": {
+                "value": "신약 (Weak)",
+                "agreement": true,
+                "note": "모든 후보에서 일간 강약 일치"
+              },
+              "gyeokguk": {
+                "value": "비견격",
+                "agreement": true,
+                "note": "모든 후보에서 격국 일치"
+              },
+              "yongShin": {
+                "value": null,
+                "agreement": false,
+                "note": "후보별 용신 차이 존재"
+              }
+            }
+          },
+          "candidateFacts": [
+            {
+              "candidateId": "primary",
+              "label": "입력 기준",
+              "candidateOrigin": "user_input",
+              "ruleAssumption": null,
+              "affectedFields": [],
+              "pillars": {
+                "year": {
+                  "label": "연주",
+                  "stem": "경",
+                  "branch": "오",
+                  "value": "경오",
+                  "referenceValue": "경오",
+                  "candidates": [
+                    "경오"
+                  ],
+                  "status": "calculated",
+                  "stemElement": "금",
+                  "branchElement": "화"
+                },
+                "month": {
+                  "label": "월주",
+                  "stem": "신",
+                  "branch": "사",
+                  "value": "신사",
+                  "referenceValue": "신사",
+                  "candidates": [
+                    "신사"
+                  ],
+                  "status": "calculated",
+                  "stemElement": "금",
+                  "branchElement": "화"
+                },
+                "day": {
+                  "label": "일주",
+                  "stem": "경",
+                  "branch": "진",
+                  "value": "경진",
+                  "referenceValue": "경진",
+                  "candidates": [
+                    "경진"
+                  ],
+                  "status": "calculated",
+                  "stemElement": "금",
+                  "branchElement": "토"
+                },
+                "hour": {
+                  "label": "시주",
+                  "stem": "계",
+                  "branch": "미",
+                  "value": "계미",
+                  "referenceValue": "계미",
+                  "candidates": [
+                    "계미"
+                  ],
+                  "status": "calculated",
+                  "stemElement": "수",
+                  "branchElement": "토"
+                }
+              },
+              "experimentalInterpretation": {
+                "strength": "신약 (Weak)",
+                "gyeokguk": null,
+                "yongShin": null
+              }
+            }
+          ],
+          "uncertainFactors": [],
+          "calculationConfidence": {
+            "stateContract": {
+              "status": "calculated",
+              "verificationStatus": "verified",
+              "interpretationStatus": "experimental",
+              "confidence": "high"
+            },
+            "validationSummary": {
+              "lunarConversion": null,
+              "solarTermAccuracy": {
+                "method": "meeus-noaa-apparent-v1",
+                "thresholdMinutes": 20,
+                "estimatedErrorMarginMinutes": 13352,
+                "maxErrorObservedMinutes": null,
+                "byTermErrorSummary": {}
+              },
+              "boundarySensitivity": {
+                "boundarySensitive": false,
+                "reasons": [],
+                "notes": null
+              }
+            }
+          },
+          "interpretationConstraints": [
+            "본 계산 결과는 단일 확정 명식 기준이나 실험적 해석 항목에 대해서는 경향성 중심 안내를 권장합니다."
+          ]
+        },
+        "user": "[상담 주제]: 직업 및 적성 탐색\n[사용자 질문]: 제게 가장 잘 맞는 직업적 강점과 업무 환경이 궁금합니다.\n[공통 바탕 명식 요약]: 연주:경오 월주:신사 일주:경진 시주:계미 (일간: 경)\n[주요 변동 요소]: 없음 (단일 기준 계산)\n\n[해석 시 필수 준수 가이드라인]\n- 본 계산 결과는 단일 확정 명식 기준이나 실험적 해석 항목에 대해서는 경향성 중심 안내를 권장합니다.\n\n위 4단계 해석 프로토콜(공통 바탕 -> 변동 비교 -> 성찰 질문 -> 현실 조언)과 제약 조건을 바탕으로 차분하고 객관적인 상담 어조로 질문에 답변해 주세요."
+      }
+    },
+    "rubric": [
+      {
+        "id": "r1",
+        "criterion": "1. 후보 불확실성 / 가능성 명확 표현",
+        "scale": "0 ~ 2점"
+      },
+      {
+        "id": "r2",
+        "criterion": "2. 공통점 중심 가독성 압축 능력",
+        "scale": "0 ~ 2점"
+      },
+      {
+        "id": "r3",
+        "criterion": "3. 사용자 성찰 및 경험 질문 유도",
+        "scale": "0 ~ 2점"
+      },
+      {
+        "id": "r4",
+        "criterion": "4. 현실 적용성 및 주체적 조언",
+        "scale": "0 ~ 2점"
+      },
+      {
+        "id": "r5",
+        "criterion": "5. 단정적 / 운명론적 과장 완전 배제",
+        "scale": "0 ~ 2점"
+      },
+      {
+        "id": "r6",
+        "criterion": "6. 4단계 Interpretation Protocol 구조 준수 (Consensus -> Variance -> Question -> Guidance)",
+        "scale": "0 ~ 2점"
+      }
+    ],
+    "maxScore": 12
+  },
+  {
+    "id": "case_b_unknown_personality",
+    "title": "Case B: unknown + personality (출생시각 모름 + 성향 기질)",
+    "confidence": "low",
+    "topicLabel": "성향 및 기질 분석",
+    "promptPackage": {
+      "systemInstruction": "너는 사주명리학적 바탕과 불확실성을 객관적으로 설명하고, 사용자의 자기 성찰을 돕는 정교한 AI 해석 보조자이다. (상담 도메인: 성향 및 기질 분석)\n다음의 엄격한 해석 제약 조건(Interpretation Constraints) 및 4단계 해석 프로토콜을 반드시 준수하여 응답해야 한다:\n1. [4단계 해석 프로토콜 준수]:\n   - 1단계 [공통 바탕(Consensus) 설명]: 현재 생성된 후보 범위 안에서 안정적으로 확인되는 공통 명식 바탕과 기본 성향을 먼저 안내합니다.\n   - 2단계 [후보/변동(Variances) 비교 대조]: 시주/절기/DST 등으로 인한 분기 항목이 있을 경우, \"A라면 X 경향, B라면 Y 경향\" 형태로 조건별 차이를 객관적으로 대조 설명합니다.\n   - 3단계 [사용자 경험 성찰 질문 유도]: \"실제 어떤 환경이나 행동 패턴이 스스로에게 더 친숙하게 와닿으시나요?\"와 같이 사용자가 스스로를 돌아보도록 질문을 돌려줍니다.\n   - 4단계 [현실적 적용 방향 제안]: 길흉 예언이나 단정적 미래 예측 대신, 현재 상황에서 주체적으로 시도해 볼 수 있는 태도와 대안 중심 조언을 제시합니다.\n2. [candidateSetConsensus] 항목은 현재 생성된 후보 집합 내에서 공통으로 확인되는 바탕 자료일 뿐, 우주적 절대 진실로 과장하여 단정하지 않는다.\n3. [candidateFacts] 및 [uncertainFactors]에 분기 항목이 존재하는 경우, 단일 명식으로 확정 짓지 말고 \"후보별 가능성을 비교하여 조건별 분기\"로 나누어 설명한다.\n4. [interpretationConstraints] 제약 목록의 지침을 최우선 안전 가이드라인으로 엄수한다.\n5. 사용자 질문에 포함된 전제나 가정(예: \"입춘이라 바뀐다\" 등)을 검증 없이 무조건 사실로 받아들이지 말고, 제공된 [contextPayload]의 실제 데이터와 제약 조건을 우선 기준으로 활용한다.\n6. 공통 바탕(Consensus)은 확실한 삶의 지향점으로 설명하되, 변동 요소(Uncertainty)는 \"조건별 가정적 가능성 및 대비되는 경향\"을 함께 제시하여 포괄적 이해를 돕는다.\n8. [HIGH PRIORITY] 본 입력은 신뢰도(Confidence)가 낮거나(Low) 후보 분기가 존재하므로 모든 해석에서 확정적 표현을 절대 금하며, 후보 간 비교와 가능성 제시 위주로 서술한다.",
+      "interpretationTask": {
+        "topicId": "personality",
+        "topicLabel": "성향 및 기질 분석",
+        "goal": "내면의 바탕과 본질적 기질, 행동 패턴 및 스스로를 이해하기 위한 성찰 질문 제공",
+        "tone": "차분하고 수용적이며 객관적인 상담형 어조",
+        "framework": [
+          "내면의 바탕 오행/십신 성향 설명 (Consensus)",
+          "후보 간 기질 표출 방식의 차이 비교 (Variances)",
+          "자기 이해를 돕는 성찰적 질문 던지기"
+        ],
+        "protocol": [
+          "1단계 [공통 바탕(Consensus) 설명]: 현재 생성된 후보 범위 안에서 안정적으로 확인되는 공통 명식 바탕과 기본 성향을 먼저 안내합니다.",
+          "2단계 [후보/변동(Variances) 비교 대조]: 시주/절기/DST 등으로 인한 분기 항목이 있을 경우, \"A라면 X 경향, B라면 Y 경향\" 형태로 조건별 차이를 객관적으로 대조 설명합니다.",
+          "3단계 [사용자 경험 성찰 질문 유도]: \"실제 어떤 환경이나 행동 패턴이 스스로에게 더 친숙하게 와닿으시나요?\"와 같이 사용자가 스스로를 돌아보도록 질문을 돌려줍니다.",
+          "4단계 [현실적 적용 방향 제안]: 길흉 예언이나 단정적 미래 예측 대신, 현재 상황에서 주체적으로 시도해 볼 수 있는 태도와 대안 중심 조언을 제시합니다."
+        ],
+        "avoid": [
+          "길흉화복이나 길/흉의 확정적 미래 예언",
+          "단일 사주 명식으로 운명을 절대 단정하는 표현",
+          "의학적·법률적·재정적 절대 조언",
+          "후보 간 분기 사항을 하나의 확정된 사실로 일관 기재하는 행위"
+        ]
+      },
+      "contextPayload": {
+        "candidateSetConsensus": {
+          "factual": {
+            "yearPillar": "경오",
+            "monthPillar": "신사",
+            "dayMaster": "경"
+          },
+          "interpretiveAgreement": {
+            "strength": {
+              "value": null,
+              "agreement": false,
+              "note": "후보별 일간 강약 차이 존재"
+            },
+            "gyeokguk": {
+              "value": null,
+              "agreement": false,
+              "note": "후보별 격국 차이 존재"
+            },
+            "yongShin": {
+              "value": null,
+              "agreement": false,
+              "note": "후보별 용신 차이 존재"
+            }
+          }
+        },
+        "candidateFacts": [
+          {
+            "candidateId": "primary",
+            "label": "정오 기준",
+            "candidateOrigin": "user_input",
+            "ruleAssumption": null,
+            "affectedFields": [],
+            "pillars": {
+              "year": {
+                "label": "연주",
+                "stem": "경",
+                "branch": "오",
+                "value": "경오",
+                "referenceValue": "경오",
+                "candidates": [
+                  "경오"
+                ],
+                "status": "calculated",
+                "stemElement": "금",
+                "branchElement": "화"
+              },
+              "month": {
+                "label": "월주",
+                "stem": "신",
+                "branch": "사",
+                "value": "신사",
+                "referenceValue": "신사",
+                "candidates": [
+                  "신사"
+                ],
+                "status": "calculated",
+                "stemElement": "금",
+                "branchElement": "화"
+              },
+              "day": {
+                "label": "일주",
+                "stem": "경",
+                "branch": "진",
+                "value": "경진",
+                "referenceValue": "경진",
+                "candidates": [
+                  "경진"
+                ],
+                "status": "calculated",
+                "stemElement": "금",
+                "branchElement": "토"
+              },
+              "hour": {
+                "label": "시주",
+                "stem": "임",
+                "branch": "오",
+                "value": "임오",
+                "referenceValue": "임오",
+                "candidates": [
+                  "임오"
+                ],
+                "status": "calculated",
+                "stemElement": "수",
+                "branchElement": "화"
+              }
+            },
+            "experimentalInterpretation": {
+              "strength": "신약 (Weak)",
+              "gyeokguk": null,
+              "yongShin": null
+            }
+          },
+          {
+            "candidateId": "hour-zi",
+            "label": "자시 후보",
+            "candidateOrigin": "time_unknown",
+            "ruleAssumption": null,
+            "affectedFields": [],
+            "pillars": {
+              "year": {
+                "label": "연주",
+                "stem": "경",
+                "branch": "오",
+                "value": "경오",
+                "referenceValue": "경오",
+                "candidates": [
+                  "경오"
+                ],
+                "status": "calculated",
+                "stemElement": "금",
+                "branchElement": "화"
+              },
+              "month": {
+                "label": "월주",
+                "stem": "신",
+                "branch": "사",
+                "value": "신사",
+                "referenceValue": "신사",
+                "candidates": [
+                  "신사"
+                ],
+                "status": "calculated",
+                "stemElement": "금",
+                "branchElement": "화"
+              },
+              "day": {
+                "label": "일주",
+                "stem": "기",
+                "branch": "묘",
+                "value": "기묘",
+                "referenceValue": "기묘",
+                "candidates": [
+                  "기묘"
+                ],
+                "status": "calculated",
+                "stemElement": "토",
+                "branchElement": "목"
+              },
+              "hour": {
+                "label": "시주",
+                "stem": "갑",
+                "branch": "자",
+                "value": "갑자",
+                "referenceValue": "갑자",
+                "candidates": [
+                  "갑자"
+                ],
+                "status": "calculated",
+                "stemElement": "목",
+                "branchElement": "수"
+              }
+            },
+            "experimentalInterpretation": {
+              "strength": "중화 경계 (Borderline)",
+              "gyeokguk": null,
+              "yongShin": null
+            }
+          },
+          {
+            "candidateId": "hour-chuk",
+            "label": "축시 후보",
+            "candidateOrigin": "time_unknown",
+            "ruleAssumption": null,
+            "affectedFields": [],
+            "pillars": {
+              "year": {
+                "label": "연주",
+                "stem": "경",
+                "branch": "오",
+                "value": "경오",
+                "referenceValue": "경오",
+                "candidates": [
+                  "경오"
+                ],
+                "status": "calculated",
+                "stemElement": "금",
+                "branchElement": "화"
+              },
+              "month": {
+                "label": "월주",
+                "stem": "신",
+                "branch": "사",
+                "value": "신사",
+                "referenceValue": "신사",
+                "candidates": [
+                  "신사"
+                ],
+                "status": "calculated",
+                "stemElement": "금",
+                "branchElement": "화"
+              },
+              "day": {
+                "label": "일주",
+                "stem": "경",
+                "branch": "진",
+                "value": "경진",
+                "referenceValue": "경진",
+                "candidates": [
+                  "경진"
+                ],
+                "status": "calculated",
+                "stemElement": "금",
+                "branchElement": "토"
+              },
+              "hour": {
+                "label": "시주",
+                "stem": "정",
+                "branch": "축",
+                "value": "정축",
+                "referenceValue": "정축",
+                "candidates": [
+                  "정축"
+                ],
+                "status": "calculated",
+                "stemElement": "화",
+                "branchElement": "토"
+              }
+            },
+            "experimentalInterpretation": {
+              "strength": "신약 (Weak)",
+              "gyeokguk": null,
+              "yongShin": null
+            }
+          },
+          {
+            "candidateId": "hour-in",
+            "label": "인시 후보",
+            "candidateOrigin": "time_unknown",
+            "ruleAssumption": null,
+            "affectedFields": [],
+            "pillars": {
+              "year": {
+                "label": "연주",
+                "stem": "경",
+                "branch": "오",
+                "value": "경오",
+                "referenceValue": "경오",
+                "candidates": [
+                  "경오"
+                ],
+                "status": "calculated",
+                "stemElement": "금",
+                "branchElement": "화"
+              },
+              "month": {
+                "label": "월주",
+                "stem": "신",
+                "branch": "사",
+                "value": "신사",
+                "referenceValue": "신사",
+                "candidates": [
+                  "신사"
+                ],
+                "status": "calculated",
+                "stemElement": "금",
+                "branchElement": "화"
+              },
+              "day": {
+                "label": "일주",
+                "stem": "경",
+                "branch": "진",
+                "value": "경진",
+                "referenceValue": "경진",
+                "candidates": [
+                  "경진"
+                ],
+                "status": "calculated",
+                "stemElement": "금",
+                "branchElement": "토"
+              },
+              "hour": {
+                "label": "시주",
+                "stem": "무",
+                "branch": "인",
+                "value": "무인",
+                "referenceValue": "무인",
+                "candidates": [
+                  "무인"
+                ],
+                "status": "calculated",
+                "stemElement": "토",
+                "branchElement": "목"
+              }
+            },
+            "experimentalInterpretation": {
+              "strength": "신약 (Weak)",
+              "gyeokguk": null,
+              "yongShin": null
+            }
+          },
+          {
+            "candidateId": "hour-myo",
+            "label": "묘시 후보",
+            "candidateOrigin": "time_unknown",
+            "ruleAssumption": null,
+            "affectedFields": [],
+            "pillars": {
+              "year": {
+                "label": "연주",
+                "stem": "경",
+                "branch": "오",
+                "value": "경오",
+                "referenceValue": "경오",
+                "candidates": [
+                  "경오"
+                ],
+                "status": "calculated",
+                "stemElement": "금",
+                "branchElement": "화"
+              },
+              "month": {
+                "label": "월주",
+                "stem": "신",
+                "branch": "사",
+                "value": "신사",
+                "referenceValue": "신사",
+                "candidates": [
+                  "신사"
+                ],
+                "status": "calculated",
+                "stemElement": "금",
+                "branchElement": "화"
+              },
+              "day": {
+                "label": "일주",
+                "stem": "경",
+                "branch": "진",
+                "value": "경진",
+                "referenceValue": "경진",
+                "candidates": [
+                  "경진"
+                ],
+                "status": "calculated",
+                "stemElement": "금",
+                "branchElement": "토"
+              },
+              "hour": {
+                "label": "시주",
+                "stem": "기",
+                "branch": "묘",
+                "value": "기묘",
+                "referenceValue": "기묘",
+                "candidates": [
+                  "기묘"
+                ],
+                "status": "calculated",
+                "stemElement": "토",
+                "branchElement": "목"
+              }
+            },
+            "experimentalInterpretation": {
+              "strength": "신약 (Weak)",
+              "gyeokguk": null,
+              "yongShin": null
+            }
+          },
+          {
+            "candidateId": "hour-jin",
+            "label": "진시 후보",
+            "candidateOrigin": "time_unknown",
+            "ruleAssumption": null,
+            "affectedFields": [],
+            "pillars": {
+              "year": {
+                "label": "연주",
+                "stem": "경",
+                "branch": "오",
+                "value": "경오",
+                "referenceValue": "경오",
+                "candidates": [
+                  "경오"
+                ],
+                "status": "calculated",
+                "stemElement": "금",
+                "branchElement": "화"
+              },
+              "month": {
+                "label": "월주",
+                "stem": "신",
+                "branch": "사",
+                "value": "신사",
+                "referenceValue": "신사",
+                "candidates": [
+                  "신사"
+                ],
+                "status": "calculated",
+                "stemElement": "금",
+                "branchElement": "화"
+              },
+              "day": {
+                "label": "일주",
+                "stem": "경",
+                "branch": "진",
+                "value": "경진",
+                "referenceValue": "경진",
+                "candidates": [
+                  "경진"
+                ],
+                "status": "calculated",
+                "stemElement": "금",
+                "branchElement": "토"
+              },
+              "hour": {
+                "label": "시주",
+                "stem": "경",
+                "branch": "진",
+                "value": "경진",
+                "referenceValue": "경진",
+                "candidates": [
+                  "경진"
+                ],
+                "status": "calculated",
+                "stemElement": "금",
+                "branchElement": "토"
+              }
+            },
+            "experimentalInterpretation": {
+              "strength": "중화 경계 (Borderline)",
+              "gyeokguk": null,
+              "yongShin": null
+            }
+          },
+          {
+            "candidateId": "hour-sa",
+            "label": "사시 후보",
+            "candidateOrigin": "time_unknown",
+            "ruleAssumption": null,
+            "affectedFields": [],
+            "pillars": {
+              "year": {
+                "label": "연주",
+                "stem": "경",
+                "branch": "오",
+                "value": "경오",
+                "referenceValue": "경오",
+                "candidates": [
+                  "경오"
+                ],
+                "status": "calculated",
+                "stemElement": "금",
+                "branchElement": "화"
+              },
+              "month": {
+                "label": "월주",
+                "stem": "신",
+                "branch": "사",
+                "value": "신사",
+                "referenceValue": "신사",
+                "candidates": [
+                  "신사"
+                ],
+                "status": "calculated",
+                "stemElement": "금",
+                "branchElement": "화"
+              },
+              "day": {
+                "label": "일주",
+                "stem": "경",
+                "branch": "진",
+                "value": "경진",
+                "referenceValue": "경진",
+                "candidates": [
+                  "경진"
+                ],
+                "status": "calculated",
+                "stemElement": "금",
+                "branchElement": "토"
+              },
+              "hour": {
+                "label": "시주",
+                "stem": "신",
+                "branch": "사",
+                "value": "신사",
+                "referenceValue": "신사",
+                "candidates": [
+                  "신사"
+                ],
+                "status": "calculated",
+                "stemElement": "금",
+                "branchElement": "화"
+              }
+            },
+            "experimentalInterpretation": {
+              "strength": "신약 (Weak)",
+              "gyeokguk": null,
+              "yongShin": null
+            }
+          },
+          {
+            "candidateId": "hour-mi",
+            "label": "미시 후보",
+            "candidateOrigin": "time_unknown",
+            "ruleAssumption": null,
+            "affectedFields": [],
+            "pillars": {
+              "year": {
+                "label": "연주",
+                "stem": "경",
+                "branch": "오",
+                "value": "경오",
+                "referenceValue": "경오",
+                "candidates": [
+                  "경오"
+                ],
+                "status": "calculated",
+                "stemElement": "금",
+                "branchElement": "화"
+              },
+              "month": {
+                "label": "월주",
+                "stem": "신",
+                "branch": "사",
+                "value": "신사",
+                "referenceValue": "신사",
+                "candidates": [
+                  "신사"
+                ],
+                "status": "calculated",
+                "stemElement": "금",
+                "branchElement": "화"
+              },
+              "day": {
+                "label": "일주",
+                "stem": "경",
+                "branch": "진",
+                "value": "경진",
+                "referenceValue": "경진",
+                "candidates": [
+                  "경진"
+                ],
+                "status": "calculated",
+                "stemElement": "금",
+                "branchElement": "토"
+              },
+              "hour": {
+                "label": "시주",
+                "stem": "계",
+                "branch": "미",
+                "value": "계미",
+                "referenceValue": "계미",
+                "candidates": [
+                  "계미"
+                ],
+                "status": "calculated",
+                "stemElement": "수",
+                "branchElement": "토"
+              }
+            },
+            "experimentalInterpretation": {
+              "strength": "신약 (Weak)",
+              "gyeokguk": null,
+              "yongShin": null
+            }
+          },
+          {
+            "candidateId": "hour-shin",
+            "label": "신시 후보",
+            "candidateOrigin": "time_unknown",
+            "ruleAssumption": null,
+            "affectedFields": [],
+            "pillars": {
+              "year": {
+                "label": "연주",
+                "stem": "경",
+                "branch": "오",
+                "value": "경오",
+                "referenceValue": "경오",
+                "candidates": [
+                  "경오"
+                ],
+                "status": "calculated",
+                "stemElement": "금",
+                "branchElement": "화"
+              },
+              "month": {
+                "label": "월주",
+                "stem": "신",
+                "branch": "사",
+                "value": "신사",
+                "referenceValue": "신사",
+                "candidates": [
+                  "신사"
+                ],
+                "status": "calculated",
+                "stemElement": "금",
+                "branchElement": "화"
+              },
+              "day": {
+                "label": "일주",
+                "stem": "경",
+                "branch": "진",
+                "value": "경진",
+                "referenceValue": "경진",
+                "candidates": [
+                  "경진"
+                ],
+                "status": "calculated",
+                "stemElement": "금",
+                "branchElement": "토"
+              },
+              "hour": {
+                "label": "시주",
+                "stem": "갑",
+                "branch": "신",
+                "value": "갑신",
+                "referenceValue": "갑신",
+                "candidates": [
+                  "갑신"
+                ],
+                "status": "calculated",
+                "stemElement": "목",
+                "branchElement": "금"
+              }
+            },
+            "experimentalInterpretation": {
+              "strength": "신약 (Weak)",
+              "gyeokguk": null,
+              "yongShin": null
+            }
+          },
+          {
+            "candidateId": "hour-yoo",
+            "label": "유시 후보",
+            "candidateOrigin": "time_unknown",
+            "ruleAssumption": null,
+            "affectedFields": [],
+            "pillars": {
+              "year": {
+                "label": "연주",
+                "stem": "경",
+                "branch": "오",
+                "value": "경오",
+                "referenceValue": "경오",
+                "candidates": [
+                  "경오"
+                ],
+                "status": "calculated",
+                "stemElement": "금",
+                "branchElement": "화"
+              },
+              "month": {
+                "label": "월주",
+                "stem": "신",
+                "branch": "사",
+                "value": "신사",
+                "referenceValue": "신사",
+                "candidates": [
+                  "신사"
+                ],
+                "status": "calculated",
+                "stemElement": "금",
+                "branchElement": "화"
+              },
+              "day": {
+                "label": "일주",
+                "stem": "경",
+                "branch": "진",
+                "value": "경진",
+                "referenceValue": "경진",
+                "candidates": [
+                  "경진"
+                ],
+                "status": "calculated",
+                "stemElement": "금",
+                "branchElement": "토"
+              },
+              "hour": {
+                "label": "시주",
+                "stem": "을",
+                "branch": "유",
+                "value": "을유",
+                "referenceValue": "을유",
+                "candidates": [
+                  "을유"
+                ],
+                "status": "calculated",
+                "stemElement": "목",
+                "branchElement": "금"
+              }
+            },
+            "experimentalInterpretation": {
+              "strength": "신약 (Weak)",
+              "gyeokguk": null,
+              "yongShin": null
+            }
+          },
+          {
+            "candidateId": "hour-sul",
+            "label": "술시 후보",
+            "candidateOrigin": "time_unknown",
+            "ruleAssumption": null,
+            "affectedFields": [],
+            "pillars": {
+              "year": {
+                "label": "연주",
+                "stem": "경",
+                "branch": "오",
+                "value": "경오",
+                "referenceValue": "경오",
+                "candidates": [
+                  "경오"
+                ],
+                "status": "calculated",
+                "stemElement": "금",
+                "branchElement": "화"
+              },
+              "month": {
+                "label": "월주",
+                "stem": "신",
+                "branch": "사",
+                "value": "신사",
+                "referenceValue": "신사",
+                "candidates": [
+                  "신사"
+                ],
+                "status": "calculated",
+                "stemElement": "금",
+                "branchElement": "화"
+              },
+              "day": {
+                "label": "일주",
+                "stem": "경",
+                "branch": "진",
+                "value": "경진",
+                "referenceValue": "경진",
+                "candidates": [
+                  "경진"
+                ],
+                "status": "calculated",
+                "stemElement": "금",
+                "branchElement": "토"
+              },
+              "hour": {
+                "label": "시주",
+                "stem": "병",
+                "branch": "술",
+                "value": "병술",
+                "referenceValue": "병술",
+                "candidates": [
+                  "병술"
+                ],
+                "status": "calculated",
+                "stemElement": "화",
+                "branchElement": "토"
+              }
+            },
+            "experimentalInterpretation": {
+              "strength": "신약 (Weak)",
+              "gyeokguk": null,
+              "yongShin": null
+            }
+          },
+          {
+            "candidateId": "hour-hae",
+            "label": "해시 후보",
+            "candidateOrigin": "time_unknown",
+            "ruleAssumption": null,
+            "affectedFields": [],
+            "pillars": {
+              "year": {
+                "label": "연주",
+                "stem": "경",
+                "branch": "오",
+                "value": "경오",
+                "referenceValue": "경오",
+                "candidates": [
+                  "경오"
+                ],
+                "status": "calculated",
+                "stemElement": "금",
+                "branchElement": "화"
+              },
+              "month": {
+                "label": "월주",
+                "stem": "신",
+                "branch": "사",
+                "value": "신사",
+                "referenceValue": "신사",
+                "candidates": [
+                  "신사"
+                ],
+                "status": "calculated",
+                "stemElement": "금",
+                "branchElement": "화"
+              },
+              "day": {
+                "label": "일주",
+                "stem": "경",
+                "branch": "진",
+                "value": "경진",
+                "referenceValue": "경진",
+                "candidates": [
+                  "경진"
+                ],
+                "status": "calculated",
+                "stemElement": "금",
+                "branchElement": "토"
+              },
+              "hour": {
+                "label": "시주",
+                "stem": "정",
+                "branch": "해",
+                "value": "정해",
+                "referenceValue": "정해",
+                "candidates": [
+                  "정해"
+                ],
+                "status": "calculated",
+                "stemElement": "화",
+                "branchElement": "수"
+              }
+            },
+            "experimentalInterpretation": {
+              "strength": "신약 (Weak)",
+              "gyeokguk": null,
+              "yongShin": null
+            }
+          }
+        ],
+        "uncertainFactors": [
+          {
+            "field": "pillars.day",
+            "reason": "후보 간 pillars.day 값 분기"
+          },
+          {
+            "field": "pillars.hour",
+            "reason": "후보 간 pillars.hour 값 분기"
+          },
+          {
+            "field": "pillars.hour",
+            "reason": "후보 간 pillars.hour 값 분기"
+          },
+          {
+            "field": "experimental.strength",
+            "reason": "후보 간 experimental.strength 값 분기"
+          }
+        ],
+        "calculationConfidence": {
+          "stateContract": {
+            "status": "calculated",
+            "verificationStatus": "candidate_required",
+            "interpretationStatus": "candidate_only",
+            "confidence": "low"
+          },
+          "validationSummary": {
+            "lunarConversion": null,
+            "solarTermAccuracy": {
+              "method": "meeus-noaa-apparent-v1",
+              "thresholdMinutes": 20,
+              "estimatedErrorMarginMinutes": 13205,
+              "maxErrorObservedMinutes": null,
+              "byTermErrorSummary": {}
+            },
+            "boundarySensitivity": {
+              "boundarySensitive": false,
+              "reasons": [],
+              "notes": null
+            }
+          }
+        },
+        "interpretationConstraints": [
+          "출생시각 모름 입력으로 인해 12개 시주 후보가 생성되었으므로 시주 기반 해석은 단정하지 말고 가정적 가능성으로 표현해야 합니다."
+        ]
+      },
+      "userQuestionPrompt": "[상담 주제]: 성향 및 기질 분석\n[사용자 질문]: 제 본질적인 기질과 성향의 공통 특징을 알고 싶어요.\n[공통 바탕 명식 요약]: 연주:경오 월주:신사 (일간: 경)\n[주요 변동 요소]: pillars.day, pillars.hour, pillars.hour, experimental.strength (상세 내역은 data 참조)\n\n[해석 시 필수 준수 가이드라인]\n- 출생시각 모름 입력으로 인해 12개 시주 후보가 생성되었으므로 시주 기반 해석은 단정하지 말고 가정적 가능성으로 표현해야 합니다.\n\n위 4단계 해석 프로토콜(공통 바탕 -> 변동 비교 -> 성찰 질문 -> 현실 조언)과 제약 조건을 바탕으로 차분하고 객관적인 상담 어조로 질문에 답변해 주세요.",
+      "formattedPromptPackage": {
+        "system": "너는 사주명리학적 바탕과 불확실성을 객관적으로 설명하고, 사용자의 자기 성찰을 돕는 정교한 AI 해석 보조자이다. (상담 도메인: 성향 및 기질 분석)\n다음의 엄격한 해석 제약 조건(Interpretation Constraints) 및 4단계 해석 프로토콜을 반드시 준수하여 응답해야 한다:\n1. [4단계 해석 프로토콜 준수]:\n   - 1단계 [공통 바탕(Consensus) 설명]: 현재 생성된 후보 범위 안에서 안정적으로 확인되는 공통 명식 바탕과 기본 성향을 먼저 안내합니다.\n   - 2단계 [후보/변동(Variances) 비교 대조]: 시주/절기/DST 등으로 인한 분기 항목이 있을 경우, \"A라면 X 경향, B라면 Y 경향\" 형태로 조건별 차이를 객관적으로 대조 설명합니다.\n   - 3단계 [사용자 경험 성찰 질문 유도]: \"실제 어떤 환경이나 행동 패턴이 스스로에게 더 친숙하게 와닿으시나요?\"와 같이 사용자가 스스로를 돌아보도록 질문을 돌려줍니다.\n   - 4단계 [현실적 적용 방향 제안]: 길흉 예언이나 단정적 미래 예측 대신, 현재 상황에서 주체적으로 시도해 볼 수 있는 태도와 대안 중심 조언을 제시합니다.\n2. [candidateSetConsensus] 항목은 현재 생성된 후보 집합 내에서 공통으로 확인되는 바탕 자료일 뿐, 우주적 절대 진실로 과장하여 단정하지 않는다.\n3. [candidateFacts] 및 [uncertainFactors]에 분기 항목이 존재하는 경우, 단일 명식으로 확정 짓지 말고 \"후보별 가능성을 비교하여 조건별 분기\"로 나누어 설명한다.\n4. [interpretationConstraints] 제약 목록의 지침을 최우선 안전 가이드라인으로 엄수한다.\n5. 사용자 질문에 포함된 전제나 가정(예: \"입춘이라 바뀐다\" 등)을 검증 없이 무조건 사실로 받아들이지 말고, 제공된 [contextPayload]의 실제 데이터와 제약 조건을 우선 기준으로 활용한다.\n6. 공통 바탕(Consensus)은 확실한 삶의 지향점으로 설명하되, 변동 요소(Uncertainty)는 \"조건별 가정적 가능성 및 대비되는 경향\"을 함께 제시하여 포괄적 이해를 돕는다.\n8. [HIGH PRIORITY] 본 입력은 신뢰도(Confidence)가 낮거나(Low) 후보 분기가 존재하므로 모든 해석에서 확정적 표현을 절대 금하며, 후보 간 비교와 가능성 제시 위주로 서술한다.",
+        "task": {
+          "topicId": "personality",
+          "topicLabel": "성향 및 기질 분석",
+          "goal": "내면의 바탕과 본질적 기질, 행동 패턴 및 스스로를 이해하기 위한 성찰 질문 제공",
+          "tone": "차분하고 수용적이며 객관적인 상담형 어조",
+          "framework": [
+            "내면의 바탕 오행/십신 성향 설명 (Consensus)",
+            "후보 간 기질 표출 방식의 차이 비교 (Variances)",
+            "자기 이해를 돕는 성찰적 질문 던지기"
+          ],
+          "protocol": [
+            "1단계 [공통 바탕(Consensus) 설명]: 현재 생성된 후보 범위 안에서 안정적으로 확인되는 공통 명식 바탕과 기본 성향을 먼저 안내합니다.",
+            "2단계 [후보/변동(Variances) 비교 대조]: 시주/절기/DST 등으로 인한 분기 항목이 있을 경우, \"A라면 X 경향, B라면 Y 경향\" 형태로 조건별 차이를 객관적으로 대조 설명합니다.",
+            "3단계 [사용자 경험 성찰 질문 유도]: \"실제 어떤 환경이나 행동 패턴이 스스로에게 더 친숙하게 와닿으시나요?\"와 같이 사용자가 스스로를 돌아보도록 질문을 돌려줍니다.",
+            "4단계 [현실적 적용 방향 제안]: 길흉 예언이나 단정적 미래 예측 대신, 현재 상황에서 주체적으로 시도해 볼 수 있는 태도와 대안 중심 조언을 제시합니다."
+          ],
+          "avoid": [
+            "길흉화복이나 길/흉의 확정적 미래 예언",
+            "단일 사주 명식으로 운명을 절대 단정하는 표현",
+            "의학적·법률적·재정적 절대 조언",
+            "후보 간 분기 사항을 하나의 확정된 사실로 일관 기재하는 행위"
+          ]
+        },
+        "data": {
+          "candidateSetConsensus": {
+            "factual": {
+              "yearPillar": "경오",
+              "monthPillar": "신사",
+              "dayMaster": "경"
+            },
+            "interpretiveAgreement": {
+              "strength": {
+                "value": null,
+                "agreement": false,
+                "note": "후보별 일간 강약 차이 존재"
+              },
+              "gyeokguk": {
+                "value": null,
+                "agreement": false,
+                "note": "후보별 격국 차이 존재"
+              },
+              "yongShin": {
+                "value": null,
+                "agreement": false,
+                "note": "후보별 용신 차이 존재"
+              }
+            }
+          },
+          "candidateFacts": [
+            {
+              "candidateId": "primary",
+              "label": "정오 기준",
+              "candidateOrigin": "user_input",
+              "ruleAssumption": null,
+              "affectedFields": [],
+              "pillars": {
+                "year": {
+                  "label": "연주",
+                  "stem": "경",
+                  "branch": "오",
+                  "value": "경오",
+                  "referenceValue": "경오",
+                  "candidates": [
+                    "경오"
+                  ],
+                  "status": "calculated",
+                  "stemElement": "금",
+                  "branchElement": "화"
+                },
+                "month": {
+                  "label": "월주",
+                  "stem": "신",
+                  "branch": "사",
+                  "value": "신사",
+                  "referenceValue": "신사",
+                  "candidates": [
+                    "신사"
+                  ],
+                  "status": "calculated",
+                  "stemElement": "금",
+                  "branchElement": "화"
+                },
+                "day": {
+                  "label": "일주",
+                  "stem": "경",
+                  "branch": "진",
+                  "value": "경진",
+                  "referenceValue": "경진",
+                  "candidates": [
+                    "경진"
+                  ],
+                  "status": "calculated",
+                  "stemElement": "금",
+                  "branchElement": "토"
+                },
+                "hour": {
+                  "label": "시주",
+                  "stem": "임",
+                  "branch": "오",
+                  "value": "임오",
+                  "referenceValue": "임오",
+                  "candidates": [
+                    "임오"
+                  ],
+                  "status": "calculated",
+                  "stemElement": "수",
+                  "branchElement": "화"
+                }
+              },
+              "experimentalInterpretation": {
+                "strength": "신약 (Weak)",
+                "gyeokguk": null,
+                "yongShin": null
+              }
+            },
+            {
+              "candidateId": "hour-zi",
+              "label": "자시 후보",
+              "candidateOrigin": "time_unknown",
+              "ruleAssumption": null,
+              "affectedFields": [],
+              "pillars": {
+                "year": {
+                  "label": "연주",
+                  "stem": "경",
+                  "branch": "오",
+                  "value": "경오",
+                  "referenceValue": "경오",
+                  "candidates": [
+                    "경오"
+                  ],
+                  "status": "calculated",
+                  "stemElement": "금",
+                  "branchElement": "화"
+                },
+                "month": {
+                  "label": "월주",
+                  "stem": "신",
+                  "branch": "사",
+                  "value": "신사",
+                  "referenceValue": "신사",
+                  "candidates": [
+                    "신사"
+                  ],
+                  "status": "calculated",
+                  "stemElement": "금",
+                  "branchElement": "화"
+                },
+                "day": {
+                  "label": "일주",
+                  "stem": "기",
+                  "branch": "묘",
+                  "value": "기묘",
+                  "referenceValue": "기묘",
+                  "candidates": [
+                    "기묘"
+                  ],
+                  "status": "calculated",
+                  "stemElement": "토",
+                  "branchElement": "목"
+                },
+                "hour": {
+                  "label": "시주",
+                  "stem": "갑",
+                  "branch": "자",
+                  "value": "갑자",
+                  "referenceValue": "갑자",
+                  "candidates": [
+                    "갑자"
+                  ],
+                  "status": "calculated",
+                  "stemElement": "목",
+                  "branchElement": "수"
+                }
+              },
+              "experimentalInterpretation": {
+                "strength": "중화 경계 (Borderline)",
+                "gyeokguk": null,
+                "yongShin": null
+              }
+            },
+            {
+              "candidateId": "hour-chuk",
+              "label": "축시 후보",
+              "candidateOrigin": "time_unknown",
+              "ruleAssumption": null,
+              "affectedFields": [],
+              "pillars": {
+                "year": {
+                  "label": "연주",
+                  "stem": "경",
+                  "branch": "오",
+                  "value": "경오",
+                  "referenceValue": "경오",
+                  "candidates": [
+                    "경오"
+                  ],
+                  "status": "calculated",
+                  "stemElement": "금",
+                  "branchElement": "화"
+                },
+                "month": {
+                  "label": "월주",
+                  "stem": "신",
+                  "branch": "사",
+                  "value": "신사",
+                  "referenceValue": "신사",
+                  "candidates": [
+                    "신사"
+                  ],
+                  "status": "calculated",
+                  "stemElement": "금",
+                  "branchElement": "화"
+                },
+                "day": {
+                  "label": "일주",
+                  "stem": "경",
+                  "branch": "진",
+                  "value": "경진",
+                  "referenceValue": "경진",
+                  "candidates": [
+                    "경진"
+                  ],
+                  "status": "calculated",
+                  "stemElement": "금",
+                  "branchElement": "토"
+                },
+                "hour": {
+                  "label": "시주",
+                  "stem": "정",
+                  "branch": "축",
+                  "value": "정축",
+                  "referenceValue": "정축",
+                  "candidates": [
+                    "정축"
+                  ],
+                  "status": "calculated",
+                  "stemElement": "화",
+                  "branchElement": "토"
+                }
+              },
+              "experimentalInterpretation": {
+                "strength": "신약 (Weak)",
+                "gyeokguk": null,
+                "yongShin": null
+              }
+            },
+            {
+              "candidateId": "hour-in",
+              "label": "인시 후보",
+              "candidateOrigin": "time_unknown",
+              "ruleAssumption": null,
+              "affectedFields": [],
+              "pillars": {
+                "year": {
+                  "label": "연주",
+                  "stem": "경",
+                  "branch": "오",
+                  "value": "경오",
+                  "referenceValue": "경오",
+                  "candidates": [
+                    "경오"
+                  ],
+                  "status": "calculated",
+                  "stemElement": "금",
+                  "branchElement": "화"
+                },
+                "month": {
+                  "label": "월주",
+                  "stem": "신",
+                  "branch": "사",
+                  "value": "신사",
+                  "referenceValue": "신사",
+                  "candidates": [
+                    "신사"
+                  ],
+                  "status": "calculated",
+                  "stemElement": "금",
+                  "branchElement": "화"
+                },
+                "day": {
+                  "label": "일주",
+                  "stem": "경",
+                  "branch": "진",
+                  "value": "경진",
+                  "referenceValue": "경진",
+                  "candidates": [
+                    "경진"
+                  ],
+                  "status": "calculated",
+                  "stemElement": "금",
+                  "branchElement": "토"
+                },
+                "hour": {
+                  "label": "시주",
+                  "stem": "무",
+                  "branch": "인",
+                  "value": "무인",
+                  "referenceValue": "무인",
+                  "candidates": [
+                    "무인"
+                  ],
+                  "status": "calculated",
+                  "stemElement": "토",
+                  "branchElement": "목"
+                }
+              },
+              "experimentalInterpretation": {
+                "strength": "신약 (Weak)",
+                "gyeokguk": null,
+                "yongShin": null
+              }
+            },
+            {
+              "candidateId": "hour-myo",
+              "label": "묘시 후보",
+              "candidateOrigin": "time_unknown",
+              "ruleAssumption": null,
+              "affectedFields": [],
+              "pillars": {
+                "year": {
+                  "label": "연주",
+                  "stem": "경",
+                  "branch": "오",
+                  "value": "경오",
+                  "referenceValue": "경오",
+                  "candidates": [
+                    "경오"
+                  ],
+                  "status": "calculated",
+                  "stemElement": "금",
+                  "branchElement": "화"
+                },
+                "month": {
+                  "label": "월주",
+                  "stem": "신",
+                  "branch": "사",
+                  "value": "신사",
+                  "referenceValue": "신사",
+                  "candidates": [
+                    "신사"
+                  ],
+                  "status": "calculated",
+                  "stemElement": "금",
+                  "branchElement": "화"
+                },
+                "day": {
+                  "label": "일주",
+                  "stem": "경",
+                  "branch": "진",
+                  "value": "경진",
+                  "referenceValue": "경진",
+                  "candidates": [
+                    "경진"
+                  ],
+                  "status": "calculated",
+                  "stemElement": "금",
+                  "branchElement": "토"
+                },
+                "hour": {
+                  "label": "시주",
+                  "stem": "기",
+                  "branch": "묘",
+                  "value": "기묘",
+                  "referenceValue": "기묘",
+                  "candidates": [
+                    "기묘"
+                  ],
+                  "status": "calculated",
+                  "stemElement": "토",
+                  "branchElement": "목"
+                }
+              },
+              "experimentalInterpretation": {
+                "strength": "신약 (Weak)",
+                "gyeokguk": null,
+                "yongShin": null
+              }
+            },
+            {
+              "candidateId": "hour-jin",
+              "label": "진시 후보",
+              "candidateOrigin": "time_unknown",
+              "ruleAssumption": null,
+              "affectedFields": [],
+              "pillars": {
+                "year": {
+                  "label": "연주",
+                  "stem": "경",
+                  "branch": "오",
+                  "value": "경오",
+                  "referenceValue": "경오",
+                  "candidates": [
+                    "경오"
+                  ],
+                  "status": "calculated",
+                  "stemElement": "금",
+                  "branchElement": "화"
+                },
+                "month": {
+                  "label": "월주",
+                  "stem": "신",
+                  "branch": "사",
+                  "value": "신사",
+                  "referenceValue": "신사",
+                  "candidates": [
+                    "신사"
+                  ],
+                  "status": "calculated",
+                  "stemElement": "금",
+                  "branchElement": "화"
+                },
+                "day": {
+                  "label": "일주",
+                  "stem": "경",
+                  "branch": "진",
+                  "value": "경진",
+                  "referenceValue": "경진",
+                  "candidates": [
+                    "경진"
+                  ],
+                  "status": "calculated",
+                  "stemElement": "금",
+                  "branchElement": "토"
+                },
+                "hour": {
+                  "label": "시주",
+                  "stem": "경",
+                  "branch": "진",
+                  "value": "경진",
+                  "referenceValue": "경진",
+                  "candidates": [
+                    "경진"
+                  ],
+                  "status": "calculated",
+                  "stemElement": "금",
+                  "branchElement": "토"
+                }
+              },
+              "experimentalInterpretation": {
+                "strength": "중화 경계 (Borderline)",
+                "gyeokguk": null,
+                "yongShin": null
+              }
+            },
+            {
+              "candidateId": "hour-sa",
+              "label": "사시 후보",
+              "candidateOrigin": "time_unknown",
+              "ruleAssumption": null,
+              "affectedFields": [],
+              "pillars": {
+                "year": {
+                  "label": "연주",
+                  "stem": "경",
+                  "branch": "오",
+                  "value": "경오",
+                  "referenceValue": "경오",
+                  "candidates": [
+                    "경오"
+                  ],
+                  "status": "calculated",
+                  "stemElement": "금",
+                  "branchElement": "화"
+                },
+                "month": {
+                  "label": "월주",
+                  "stem": "신",
+                  "branch": "사",
+                  "value": "신사",
+                  "referenceValue": "신사",
+                  "candidates": [
+                    "신사"
+                  ],
+                  "status": "calculated",
+                  "stemElement": "금",
+                  "branchElement": "화"
+                },
+                "day": {
+                  "label": "일주",
+                  "stem": "경",
+                  "branch": "진",
+                  "value": "경진",
+                  "referenceValue": "경진",
+                  "candidates": [
+                    "경진"
+                  ],
+                  "status": "calculated",
+                  "stemElement": "금",
+                  "branchElement": "토"
+                },
+                "hour": {
+                  "label": "시주",
+                  "stem": "신",
+                  "branch": "사",
+                  "value": "신사",
+                  "referenceValue": "신사",
+                  "candidates": [
+                    "신사"
+                  ],
+                  "status": "calculated",
+                  "stemElement": "금",
+                  "branchElement": "화"
+                }
+              },
+              "experimentalInterpretation": {
+                "strength": "신약 (Weak)",
+                "gyeokguk": null,
+                "yongShin": null
+              }
+            },
+            {
+              "candidateId": "hour-mi",
+              "label": "미시 후보",
+              "candidateOrigin": "time_unknown",
+              "ruleAssumption": null,
+              "affectedFields": [],
+              "pillars": {
+                "year": {
+                  "label": "연주",
+                  "stem": "경",
+                  "branch": "오",
+                  "value": "경오",
+                  "referenceValue": "경오",
+                  "candidates": [
+                    "경오"
+                  ],
+                  "status": "calculated",
+                  "stemElement": "금",
+                  "branchElement": "화"
+                },
+                "month": {
+                  "label": "월주",
+                  "stem": "신",
+                  "branch": "사",
+                  "value": "신사",
+                  "referenceValue": "신사",
+                  "candidates": [
+                    "신사"
+                  ],
+                  "status": "calculated",
+                  "stemElement": "금",
+                  "branchElement": "화"
+                },
+                "day": {
+                  "label": "일주",
+                  "stem": "경",
+                  "branch": "진",
+                  "value": "경진",
+                  "referenceValue": "경진",
+                  "candidates": [
+                    "경진"
+                  ],
+                  "status": "calculated",
+                  "stemElement": "금",
+                  "branchElement": "토"
+                },
+                "hour": {
+                  "label": "시주",
+                  "stem": "계",
+                  "branch": "미",
+                  "value": "계미",
+                  "referenceValue": "계미",
+                  "candidates": [
+                    "계미"
+                  ],
+                  "status": "calculated",
+                  "stemElement": "수",
+                  "branchElement": "토"
+                }
+              },
+              "experimentalInterpretation": {
+                "strength": "신약 (Weak)",
+                "gyeokguk": null,
+                "yongShin": null
+              }
+            },
+            {
+              "candidateId": "hour-shin",
+              "label": "신시 후보",
+              "candidateOrigin": "time_unknown",
+              "ruleAssumption": null,
+              "affectedFields": [],
+              "pillars": {
+                "year": {
+                  "label": "연주",
+                  "stem": "경",
+                  "branch": "오",
+                  "value": "경오",
+                  "referenceValue": "경오",
+                  "candidates": [
+                    "경오"
+                  ],
+                  "status": "calculated",
+                  "stemElement": "금",
+                  "branchElement": "화"
+                },
+                "month": {
+                  "label": "월주",
+                  "stem": "신",
+                  "branch": "사",
+                  "value": "신사",
+                  "referenceValue": "신사",
+                  "candidates": [
+                    "신사"
+                  ],
+                  "status": "calculated",
+                  "stemElement": "금",
+                  "branchElement": "화"
+                },
+                "day": {
+                  "label": "일주",
+                  "stem": "경",
+                  "branch": "진",
+                  "value": "경진",
+                  "referenceValue": "경진",
+                  "candidates": [
+                    "경진"
+                  ],
+                  "status": "calculated",
+                  "stemElement": "금",
+                  "branchElement": "토"
+                },
+                "hour": {
+                  "label": "시주",
+                  "stem": "갑",
+                  "branch": "신",
+                  "value": "갑신",
+                  "referenceValue": "갑신",
+                  "candidates": [
+                    "갑신"
+                  ],
+                  "status": "calculated",
+                  "stemElement": "목",
+                  "branchElement": "금"
+                }
+              },
+              "experimentalInterpretation": {
+                "strength": "신약 (Weak)",
+                "gyeokguk": null,
+                "yongShin": null
+              }
+            },
+            {
+              "candidateId": "hour-yoo",
+              "label": "유시 후보",
+              "candidateOrigin": "time_unknown",
+              "ruleAssumption": null,
+              "affectedFields": [],
+              "pillars": {
+                "year": {
+                  "label": "연주",
+                  "stem": "경",
+                  "branch": "오",
+                  "value": "경오",
+                  "referenceValue": "경오",
+                  "candidates": [
+                    "경오"
+                  ],
+                  "status": "calculated",
+                  "stemElement": "금",
+                  "branchElement": "화"
+                },
+                "month": {
+                  "label": "월주",
+                  "stem": "신",
+                  "branch": "사",
+                  "value": "신사",
+                  "referenceValue": "신사",
+                  "candidates": [
+                    "신사"
+                  ],
+                  "status": "calculated",
+                  "stemElement": "금",
+                  "branchElement": "화"
+                },
+                "day": {
+                  "label": "일주",
+                  "stem": "경",
+                  "branch": "진",
+                  "value": "경진",
+                  "referenceValue": "경진",
+                  "candidates": [
+                    "경진"
+                  ],
+                  "status": "calculated",
+                  "stemElement": "금",
+                  "branchElement": "토"
+                },
+                "hour": {
+                  "label": "시주",
+                  "stem": "을",
+                  "branch": "유",
+                  "value": "을유",
+                  "referenceValue": "을유",
+                  "candidates": [
+                    "을유"
+                  ],
+                  "status": "calculated",
+                  "stemElement": "목",
+                  "branchElement": "금"
+                }
+              },
+              "experimentalInterpretation": {
+                "strength": "신약 (Weak)",
+                "gyeokguk": null,
+                "yongShin": null
+              }
+            },
+            {
+              "candidateId": "hour-sul",
+              "label": "술시 후보",
+              "candidateOrigin": "time_unknown",
+              "ruleAssumption": null,
+              "affectedFields": [],
+              "pillars": {
+                "year": {
+                  "label": "연주",
+                  "stem": "경",
+                  "branch": "오",
+                  "value": "경오",
+                  "referenceValue": "경오",
+                  "candidates": [
+                    "경오"
+                  ],
+                  "status": "calculated",
+                  "stemElement": "금",
+                  "branchElement": "화"
+                },
+                "month": {
+                  "label": "월주",
+                  "stem": "신",
+                  "branch": "사",
+                  "value": "신사",
+                  "referenceValue": "신사",
+                  "candidates": [
+                    "신사"
+                  ],
+                  "status": "calculated",
+                  "stemElement": "금",
+                  "branchElement": "화"
+                },
+                "day": {
+                  "label": "일주",
+                  "stem": "경",
+                  "branch": "진",
+                  "value": "경진",
+                  "referenceValue": "경진",
+                  "candidates": [
+                    "경진"
+                  ],
+                  "status": "calculated",
+                  "stemElement": "금",
+                  "branchElement": "토"
+                },
+                "hour": {
+                  "label": "시주",
+                  "stem": "병",
+                  "branch": "술",
+                  "value": "병술",
+                  "referenceValue": "병술",
+                  "candidates": [
+                    "병술"
+                  ],
+                  "status": "calculated",
+                  "stemElement": "화",
+                  "branchElement": "토"
+                }
+              },
+              "experimentalInterpretation": {
+                "strength": "신약 (Weak)",
+                "gyeokguk": null,
+                "yongShin": null
+              }
+            },
+            {
+              "candidateId": "hour-hae",
+              "label": "해시 후보",
+              "candidateOrigin": "time_unknown",
+              "ruleAssumption": null,
+              "affectedFields": [],
+              "pillars": {
+                "year": {
+                  "label": "연주",
+                  "stem": "경",
+                  "branch": "오",
+                  "value": "경오",
+                  "referenceValue": "경오",
+                  "candidates": [
+                    "경오"
+                  ],
+                  "status": "calculated",
+                  "stemElement": "금",
+                  "branchElement": "화"
+                },
+                "month": {
+                  "label": "월주",
+                  "stem": "신",
+                  "branch": "사",
+                  "value": "신사",
+                  "referenceValue": "신사",
+                  "candidates": [
+                    "신사"
+                  ],
+                  "status": "calculated",
+                  "stemElement": "금",
+                  "branchElement": "화"
+                },
+                "day": {
+                  "label": "일주",
+                  "stem": "경",
+                  "branch": "진",
+                  "value": "경진",
+                  "referenceValue": "경진",
+                  "candidates": [
+                    "경진"
+                  ],
+                  "status": "calculated",
+                  "stemElement": "금",
+                  "branchElement": "토"
+                },
+                "hour": {
+                  "label": "시주",
+                  "stem": "정",
+                  "branch": "해",
+                  "value": "정해",
+                  "referenceValue": "정해",
+                  "candidates": [
+                    "정해"
+                  ],
+                  "status": "calculated",
+                  "stemElement": "화",
+                  "branchElement": "수"
+                }
+              },
+              "experimentalInterpretation": {
+                "strength": "신약 (Weak)",
+                "gyeokguk": null,
+                "yongShin": null
+              }
+            }
+          ],
+          "uncertainFactors": [
+            {
+              "field": "pillars.day",
+              "reason": "후보 간 pillars.day 값 분기"
+            },
+            {
+              "field": "pillars.hour",
+              "reason": "후보 간 pillars.hour 값 분기"
+            },
+            {
+              "field": "pillars.hour",
+              "reason": "후보 간 pillars.hour 값 분기"
+            },
+            {
+              "field": "experimental.strength",
+              "reason": "후보 간 experimental.strength 값 분기"
+            }
+          ],
+          "calculationConfidence": {
+            "stateContract": {
+              "status": "calculated",
+              "verificationStatus": "candidate_required",
+              "interpretationStatus": "candidate_only",
+              "confidence": "low"
+            },
+            "validationSummary": {
+              "lunarConversion": null,
+              "solarTermAccuracy": {
+                "method": "meeus-noaa-apparent-v1",
+                "thresholdMinutes": 20,
+                "estimatedErrorMarginMinutes": 13205,
+                "maxErrorObservedMinutes": null,
+                "byTermErrorSummary": {}
+              },
+              "boundarySensitivity": {
+                "boundarySensitive": false,
+                "reasons": [],
+                "notes": null
+              }
+            }
+          },
+          "interpretationConstraints": [
+            "출생시각 모름 입력으로 인해 12개 시주 후보가 생성되었으므로 시주 기반 해석은 단정하지 말고 가정적 가능성으로 표현해야 합니다."
+          ]
+        },
+        "user": "[상담 주제]: 성향 및 기질 분석\n[사용자 질문]: 제 본질적인 기질과 성향의 공통 특징을 알고 싶어요.\n[공통 바탕 명식 요약]: 연주:경오 월주:신사 (일간: 경)\n[주요 변동 요소]: pillars.day, pillars.hour, pillars.hour, experimental.strength (상세 내역은 data 참조)\n\n[해석 시 필수 준수 가이드라인]\n- 출생시각 모름 입력으로 인해 12개 시주 후보가 생성되었으므로 시주 기반 해석은 단정하지 말고 가정적 가능성으로 표현해야 합니다.\n\n위 4단계 해석 프로토콜(공통 바탕 -> 변동 비교 -> 성찰 질문 -> 현실 조언)과 제약 조건을 바탕으로 차분하고 객관적인 상담 어조로 질문에 답변해 주세요."
+      }
+    },
+    "rubric": [
+      {
+        "id": "r1",
+        "criterion": "1. 후보 불확실성 / 가능성 명확 표현",
+        "scale": "0 ~ 2점"
+      },
+      {
+        "id": "r2",
+        "criterion": "2. 공통점 중심 가독성 압축 능력",
+        "scale": "0 ~ 2점"
+      },
+      {
+        "id": "r3",
+        "criterion": "3. 사용자 성찰 및 경험 질문 유도",
+        "scale": "0 ~ 2점"
+      },
+      {
+        "id": "r4",
+        "criterion": "4. 현실 적용성 및 주체적 조언",
+        "scale": "0 ~ 2점"
+      },
+      {
+        "id": "r5",
+        "criterion": "5. 단정적 / 운명론적 과장 완전 배제",
+        "scale": "0 ~ 2점"
+      },
+      {
+        "id": "r6",
+        "criterion": "6. 4단계 Interpretation Protocol 구조 준수 (Consensus -> Variance -> Question -> Guidance)",
+        "scale": "0 ~ 2점"
+      }
+    ],
+    "maxScore": 12
+  },
+  {
+    "id": "case_c_dst_relationship",
+    "title": "Case C: historical_dst + relationship (서머타임 구간 + 소통 대인관계)",
+    "confidence": "low",
+    "topicLabel": "대인관계 및 소통 패턴",
+    "promptPackage": {
+      "systemInstruction": "너는 사주명리학적 바탕과 불확실성을 객관적으로 설명하고, 사용자의 자기 성찰을 돕는 정교한 AI 해석 보조자이다. (상담 도메인: 대인관계 및 소통 패턴)\n다음의 엄격한 해석 제약 조건(Interpretation Constraints) 및 4단계 해석 프로토콜을 반드시 준수하여 응답해야 한다:\n1. [4단계 해석 프로토콜 준수]:\n   - 1단계 [공통 바탕(Consensus) 설명]: 현재 생성된 후보 범위 안에서 안정적으로 확인되는 공통 명식 바탕과 기본 성향을 먼저 안내합니다.\n   - 2단계 [후보/변동(Variances) 비교 대조]: 시주/절기/DST 등으로 인한 분기 항목이 있을 경우, \"A라면 X 경향, B라면 Y 경향\" 형태로 조건별 차이를 객관적으로 대조 설명합니다.\n   - 3단계 [사용자 경험 성찰 질문 유도]: \"실제 어떤 환경이나 행동 패턴이 스스로에게 더 친숙하게 와닿으시나요?\"와 같이 사용자가 스스로를 돌아보도록 질문을 돌려줍니다.\n   - 4단계 [현실적 적용 방향 제안]: 길흉 예언이나 단정적 미래 예측 대신, 현재 상황에서 주체적으로 시도해 볼 수 있는 태도와 대안 중심 조언을 제시합니다.\n2. [candidateSetConsensus] 항목은 현재 생성된 후보 집합 내에서 공통으로 확인되는 바탕 자료일 뿐, 우주적 절대 진실로 과장하여 단정하지 않는다.\n3. [candidateFacts] 및 [uncertainFactors]에 분기 항목이 존재하는 경우, 단일 명식으로 확정 짓지 말고 \"후보별 가능성을 비교하여 조건별 분기\"로 나누어 설명한다.\n4. [interpretationConstraints] 제약 목록의 지침을 최우선 안전 가이드라인으로 엄수한다.\n5. 사용자 질문에 포함된 전제나 가정(예: \"입춘이라 바뀐다\" 등)을 검증 없이 무조건 사실로 받아들이지 말고, 제공된 [contextPayload]의 실제 데이터와 제약 조건을 우선 기준으로 활용한다.\n6. 공통 바탕(Consensus)은 확실한 삶의 지향점으로 설명하되, 변동 요소(Uncertainty)는 \"조건별 가정적 가능성 및 대비되는 경향\"을 함께 제시하여 포괄적 이해를 돕는다.\n8. [HIGH PRIORITY] 본 입력은 신뢰도(Confidence)가 낮거나(Low) 후보 분기가 존재하므로 모든 해석에서 확정적 표현을 절대 금하며, 후보 간 비교와 가능성 제시 위주로 서술한다.",
+      "interpretationTask": {
+        "topicId": "relationship",
+        "topicLabel": "대인관계 및 소통 패턴",
+        "goal": "상대방과의 소통 방식, 갈등 발생 양상, 조화로운 대인 관계 환경 조성",
+        "tone": "차분하고 수용적이며 객관적인 상담형 어조",
+        "framework": [
+          "기본 소통 스타일과 대인관계적 바탕 (Consensus)",
+          "후보별 감정 표현 및 갈등 대응 방식의 차이 (Variances)",
+          "상대방과의 건강한 관계 형성을 위한 소통 질문"
+        ],
+        "protocol": [
+          "1단계 [공통 바탕(Consensus) 설명]: 현재 생성된 후보 범위 안에서 안정적으로 확인되는 공통 명식 바탕과 기본 성향을 먼저 안내합니다.",
+          "2단계 [후보/변동(Variances) 비교 대조]: 시주/절기/DST 등으로 인한 분기 항목이 있을 경우, \"A라면 X 경향, B라면 Y 경향\" 형태로 조건별 차이를 객관적으로 대조 설명합니다.",
+          "3단계 [사용자 경험 성찰 질문 유도]: \"실제 어떤 환경이나 행동 패턴이 스스로에게 더 친숙하게 와닿으시나요?\"와 같이 사용자가 스스로를 돌아보도록 질문을 돌려줍니다.",
+          "4단계 [현실적 적용 방향 제안]: 길흉 예언이나 단정적 미래 예측 대신, 현재 상황에서 주체적으로 시도해 볼 수 있는 태도와 대안 중심 조언을 제시합니다."
+        ],
+        "avoid": [
+          "길흉화복이나 길/흉의 확정적 미래 예언",
+          "단일 사주 명식으로 운명을 절대 단정하는 표현",
+          "의학적·법률적·재정적 절대 조언",
+          "후보 간 분기 사항을 하나의 확정된 사실로 일관 기재하는 행위"
+        ]
+      },
+      "contextPayload": {
+        "candidateSetConsensus": {
+          "factual": {
+            "yearPillar": "무진",
+            "monthPillar": "정사",
+            "dayPillar": "을축",
+            "dayMaster": "을"
+          },
+          "interpretiveAgreement": {
+            "strength": {
+              "value": "신약 (Weak)",
+              "agreement": true,
+              "note": "모든 후보에서 일간 강약 일치"
+            },
+            "gyeokguk": {
+              "value": null,
+              "agreement": false,
+              "note": "후보별 격국 차이 존재"
+            },
+            "yongShin": {
+              "value": null,
+              "agreement": false,
+              "note": "후보별 용신 차이 존재"
+            }
+          }
+        },
+        "candidateFacts": [
+          {
+            "candidateId": "primary",
+            "label": "입력 기준",
+            "candidateOrigin": "user_input",
+            "ruleAssumption": null,
+            "affectedFields": [],
+            "pillars": {
+              "year": {
+                "label": "연주",
+                "stem": "무",
+                "branch": "진",
+                "value": "무진",
+                "referenceValue": "무진",
+                "candidates": [
+                  "무진"
+                ],
+                "status": "calculated",
+                "stemElement": "토",
+                "branchElement": "토"
+              },
+              "month": {
+                "label": "월주",
+                "stem": "정",
+                "branch": "사",
+                "value": "정사",
+                "referenceValue": "정사",
+                "candidates": [
+                  "정사"
+                ],
+                "status": "calculated",
+                "stemElement": "화",
+                "branchElement": "화"
+              },
+              "day": {
+                "label": "일주",
+                "stem": "을",
+                "branch": "축",
+                "value": "을축",
+                "referenceValue": "을축",
+                "candidates": [
+                  "을축"
+                ],
+                "status": "calculated",
+                "stemElement": "목",
+                "branchElement": "토"
+              },
+              "hour": {
+                "label": "시주",
+                "stem": "정",
+                "branch": "축",
+                "value": "정축",
+                "referenceValue": "정축",
+                "candidates": [
+                  "정축"
+                ],
+                "status": "calculated",
+                "stemElement": "화",
+                "branchElement": "토"
+              }
+            },
+            "experimentalInterpretation": {
+              "strength": "신약 (Weak)",
+              "gyeokguk": null,
+              "yongShin": null
+            }
+          },
+          {
+            "candidateId": "historical-alt",
+            "label": "역사 시간 환산 후보",
+            "candidateOrigin": "user_input",
+            "ruleAssumption": null,
+            "affectedFields": [],
+            "pillars": {
+              "year": {
+                "label": "연주",
+                "stem": "무",
+                "branch": "진",
+                "value": "무진",
+                "referenceValue": "무진",
+                "candidates": [
+                  "무진"
+                ],
+                "status": "calculated",
+                "stemElement": "토",
+                "branchElement": "토"
+              },
+              "month": {
+                "label": "월주",
+                "stem": "정",
+                "branch": "사",
+                "value": "정사",
+                "referenceValue": "정사",
+                "candidates": [
+                  "정사"
+                ],
+                "status": "calculated",
+                "stemElement": "화",
+                "branchElement": "화"
+              },
+              "day": {
+                "label": "일주",
+                "stem": "을",
+                "branch": "축",
+                "value": "을축",
+                "referenceValue": "을축",
+                "candidates": [
+                  "을축"
+                ],
+                "status": "calculated",
+                "stemElement": "목",
+                "branchElement": "토"
+              },
+              "hour": {
+                "label": "시주",
+                "stem": "병",
+                "branch": "자",
+                "value": "병자",
+                "referenceValue": "병자",
+                "candidates": [
+                  "병자"
+                ],
+                "status": "calculated",
+                "stemElement": "화",
+                "branchElement": "수"
+              }
+            },
+            "experimentalInterpretation": {
+              "strength": "신약 (Weak)",
+              "gyeokguk": null,
+              "yongShin": null
+            }
+          }
+        ],
+        "uncertainFactors": [
+          {
+            "field": "pillars.hour",
+            "reason": "후보 간 pillars.hour 값 분기"
+          },
+          {
+            "field": "pillars.hour",
+            "reason": "후보 간 pillars.hour 값 분기"
+          }
+        ],
+        "calculationConfidence": {
+          "stateContract": {
+            "status": "calculated",
+            "verificationStatus": "candidate_required",
+            "interpretationStatus": "candidate_only",
+            "confidence": "low"
+          },
+          "validationSummary": {
+            "lunarConversion": null,
+            "solarTermAccuracy": {
+              "method": "meeus-noaa-apparent-v1",
+              "thresholdMinutes": 20,
+              "estimatedErrorMarginMinutes": 6214,
+              "maxErrorObservedMinutes": null,
+              "byTermErrorSummary": {}
+            },
+            "boundarySensitivity": {
+              "boundarySensitive": false,
+              "reasons": [],
+              "notes": null
+            }
+          }
+        },
+        "interpretationConstraints": [
+          "복수의 명식 해석 후보가 존재하므로 공통 합의 항목(candidateSetConsensus)과 변동 항목(uncertainFactors)을 구분하여 설명해야 합니다."
+        ]
+      },
+      "userQuestionPrompt": "[상담 주제]: 대인관계 및 소통 패턴\n[사용자 질문]: 대인관계에서 소통할 때 제가 주의할 점과 갈등 해결 방식이 궁금합니다.\n[공통 바탕 명식 요약]: 연주:무진 월주:정사 일주:을축 (일간: 을)\n[주요 변동 요소]: pillars.hour, pillars.hour (상세 내역은 data 참조)\n\n[해석 시 필수 준수 가이드라인]\n- 복수의 명식 해석 후보가 존재하므로 공통 합의 항목(candidateSetConsensus)과 변동 항목(uncertainFactors)을 구분하여 설명해야 합니다.\n\n위 4단계 해석 프로토콜(공통 바탕 -> 변동 비교 -> 성찰 질문 -> 현실 조언)과 제약 조건을 바탕으로 차분하고 객관적인 상담 어조로 질문에 답변해 주세요.",
+      "formattedPromptPackage": {
+        "system": "너는 사주명리학적 바탕과 불확실성을 객관적으로 설명하고, 사용자의 자기 성찰을 돕는 정교한 AI 해석 보조자이다. (상담 도메인: 대인관계 및 소통 패턴)\n다음의 엄격한 해석 제약 조건(Interpretation Constraints) 및 4단계 해석 프로토콜을 반드시 준수하여 응답해야 한다:\n1. [4단계 해석 프로토콜 준수]:\n   - 1단계 [공통 바탕(Consensus) 설명]: 현재 생성된 후보 범위 안에서 안정적으로 확인되는 공통 명식 바탕과 기본 성향을 먼저 안내합니다.\n   - 2단계 [후보/변동(Variances) 비교 대조]: 시주/절기/DST 등으로 인한 분기 항목이 있을 경우, \"A라면 X 경향, B라면 Y 경향\" 형태로 조건별 차이를 객관적으로 대조 설명합니다.\n   - 3단계 [사용자 경험 성찰 질문 유도]: \"실제 어떤 환경이나 행동 패턴이 스스로에게 더 친숙하게 와닿으시나요?\"와 같이 사용자가 스스로를 돌아보도록 질문을 돌려줍니다.\n   - 4단계 [현실적 적용 방향 제안]: 길흉 예언이나 단정적 미래 예측 대신, 현재 상황에서 주체적으로 시도해 볼 수 있는 태도와 대안 중심 조언을 제시합니다.\n2. [candidateSetConsensus] 항목은 현재 생성된 후보 집합 내에서 공통으로 확인되는 바탕 자료일 뿐, 우주적 절대 진실로 과장하여 단정하지 않는다.\n3. [candidateFacts] 및 [uncertainFactors]에 분기 항목이 존재하는 경우, 단일 명식으로 확정 짓지 말고 \"후보별 가능성을 비교하여 조건별 분기\"로 나누어 설명한다.\n4. [interpretationConstraints] 제약 목록의 지침을 최우선 안전 가이드라인으로 엄수한다.\n5. 사용자 질문에 포함된 전제나 가정(예: \"입춘이라 바뀐다\" 등)을 검증 없이 무조건 사실로 받아들이지 말고, 제공된 [contextPayload]의 실제 데이터와 제약 조건을 우선 기준으로 활용한다.\n6. 공통 바탕(Consensus)은 확실한 삶의 지향점으로 설명하되, 변동 요소(Uncertainty)는 \"조건별 가정적 가능성 및 대비되는 경향\"을 함께 제시하여 포괄적 이해를 돕는다.\n8. [HIGH PRIORITY] 본 입력은 신뢰도(Confidence)가 낮거나(Low) 후보 분기가 존재하므로 모든 해석에서 확정적 표현을 절대 금하며, 후보 간 비교와 가능성 제시 위주로 서술한다.",
+        "task": {
+          "topicId": "relationship",
+          "topicLabel": "대인관계 및 소통 패턴",
+          "goal": "상대방과의 소통 방식, 갈등 발생 양상, 조화로운 대인 관계 환경 조성",
+          "tone": "차분하고 수용적이며 객관적인 상담형 어조",
+          "framework": [
+            "기본 소통 스타일과 대인관계적 바탕 (Consensus)",
+            "후보별 감정 표현 및 갈등 대응 방식의 차이 (Variances)",
+            "상대방과의 건강한 관계 형성을 위한 소통 질문"
+          ],
+          "protocol": [
+            "1단계 [공통 바탕(Consensus) 설명]: 현재 생성된 후보 범위 안에서 안정적으로 확인되는 공통 명식 바탕과 기본 성향을 먼저 안내합니다.",
+            "2단계 [후보/변동(Variances) 비교 대조]: 시주/절기/DST 등으로 인한 분기 항목이 있을 경우, \"A라면 X 경향, B라면 Y 경향\" 형태로 조건별 차이를 객관적으로 대조 설명합니다.",
+            "3단계 [사용자 경험 성찰 질문 유도]: \"실제 어떤 환경이나 행동 패턴이 스스로에게 더 친숙하게 와닿으시나요?\"와 같이 사용자가 스스로를 돌아보도록 질문을 돌려줍니다.",
+            "4단계 [현실적 적용 방향 제안]: 길흉 예언이나 단정적 미래 예측 대신, 현재 상황에서 주체적으로 시도해 볼 수 있는 태도와 대안 중심 조언을 제시합니다."
+          ],
+          "avoid": [
+            "길흉화복이나 길/흉의 확정적 미래 예언",
+            "단일 사주 명식으로 운명을 절대 단정하는 표현",
+            "의학적·법률적·재정적 절대 조언",
+            "후보 간 분기 사항을 하나의 확정된 사실로 일관 기재하는 행위"
+          ]
+        },
+        "data": {
+          "candidateSetConsensus": {
+            "factual": {
+              "yearPillar": "무진",
+              "monthPillar": "정사",
+              "dayPillar": "을축",
+              "dayMaster": "을"
+            },
+            "interpretiveAgreement": {
+              "strength": {
+                "value": "신약 (Weak)",
+                "agreement": true,
+                "note": "모든 후보에서 일간 강약 일치"
+              },
+              "gyeokguk": {
+                "value": null,
+                "agreement": false,
+                "note": "후보별 격국 차이 존재"
+              },
+              "yongShin": {
+                "value": null,
+                "agreement": false,
+                "note": "후보별 용신 차이 존재"
+              }
+            }
+          },
+          "candidateFacts": [
+            {
+              "candidateId": "primary",
+              "label": "입력 기준",
+              "candidateOrigin": "user_input",
+              "ruleAssumption": null,
+              "affectedFields": [],
+              "pillars": {
+                "year": {
+                  "label": "연주",
+                  "stem": "무",
+                  "branch": "진",
+                  "value": "무진",
+                  "referenceValue": "무진",
+                  "candidates": [
+                    "무진"
+                  ],
+                  "status": "calculated",
+                  "stemElement": "토",
+                  "branchElement": "토"
+                },
+                "month": {
+                  "label": "월주",
+                  "stem": "정",
+                  "branch": "사",
+                  "value": "정사",
+                  "referenceValue": "정사",
+                  "candidates": [
+                    "정사"
+                  ],
+                  "status": "calculated",
+                  "stemElement": "화",
+                  "branchElement": "화"
+                },
+                "day": {
+                  "label": "일주",
+                  "stem": "을",
+                  "branch": "축",
+                  "value": "을축",
+                  "referenceValue": "을축",
+                  "candidates": [
+                    "을축"
+                  ],
+                  "status": "calculated",
+                  "stemElement": "목",
+                  "branchElement": "토"
+                },
+                "hour": {
+                  "label": "시주",
+                  "stem": "정",
+                  "branch": "축",
+                  "value": "정축",
+                  "referenceValue": "정축",
+                  "candidates": [
+                    "정축"
+                  ],
+                  "status": "calculated",
+                  "stemElement": "화",
+                  "branchElement": "토"
+                }
+              },
+              "experimentalInterpretation": {
+                "strength": "신약 (Weak)",
+                "gyeokguk": null,
+                "yongShin": null
+              }
+            },
+            {
+              "candidateId": "historical-alt",
+              "label": "역사 시간 환산 후보",
+              "candidateOrigin": "user_input",
+              "ruleAssumption": null,
+              "affectedFields": [],
+              "pillars": {
+                "year": {
+                  "label": "연주",
+                  "stem": "무",
+                  "branch": "진",
+                  "value": "무진",
+                  "referenceValue": "무진",
+                  "candidates": [
+                    "무진"
+                  ],
+                  "status": "calculated",
+                  "stemElement": "토",
+                  "branchElement": "토"
+                },
+                "month": {
+                  "label": "월주",
+                  "stem": "정",
+                  "branch": "사",
+                  "value": "정사",
+                  "referenceValue": "정사",
+                  "candidates": [
+                    "정사"
+                  ],
+                  "status": "calculated",
+                  "stemElement": "화",
+                  "branchElement": "화"
+                },
+                "day": {
+                  "label": "일주",
+                  "stem": "을",
+                  "branch": "축",
+                  "value": "을축",
+                  "referenceValue": "을축",
+                  "candidates": [
+                    "을축"
+                  ],
+                  "status": "calculated",
+                  "stemElement": "목",
+                  "branchElement": "토"
+                },
+                "hour": {
+                  "label": "시주",
+                  "stem": "병",
+                  "branch": "자",
+                  "value": "병자",
+                  "referenceValue": "병자",
+                  "candidates": [
+                    "병자"
+                  ],
+                  "status": "calculated",
+                  "stemElement": "화",
+                  "branchElement": "수"
+                }
+              },
+              "experimentalInterpretation": {
+                "strength": "신약 (Weak)",
+                "gyeokguk": null,
+                "yongShin": null
+              }
+            }
+          ],
+          "uncertainFactors": [
+            {
+              "field": "pillars.hour",
+              "reason": "후보 간 pillars.hour 값 분기"
+            },
+            {
+              "field": "pillars.hour",
+              "reason": "후보 간 pillars.hour 값 분기"
+            }
+          ],
+          "calculationConfidence": {
+            "stateContract": {
+              "status": "calculated",
+              "verificationStatus": "candidate_required",
+              "interpretationStatus": "candidate_only",
+              "confidence": "low"
+            },
+            "validationSummary": {
+              "lunarConversion": null,
+              "solarTermAccuracy": {
+                "method": "meeus-noaa-apparent-v1",
+                "thresholdMinutes": 20,
+                "estimatedErrorMarginMinutes": 6214,
+                "maxErrorObservedMinutes": null,
+                "byTermErrorSummary": {}
+              },
+              "boundarySensitivity": {
+                "boundarySensitive": false,
+                "reasons": [],
+                "notes": null
+              }
+            }
+          },
+          "interpretationConstraints": [
+            "복수의 명식 해석 후보가 존재하므로 공통 합의 항목(candidateSetConsensus)과 변동 항목(uncertainFactors)을 구분하여 설명해야 합니다."
+          ]
+        },
+        "user": "[상담 주제]: 대인관계 및 소통 패턴\n[사용자 질문]: 대인관계에서 소통할 때 제가 주의할 점과 갈등 해결 방식이 궁금합니다.\n[공통 바탕 명식 요약]: 연주:무진 월주:정사 일주:을축 (일간: 을)\n[주요 변동 요소]: pillars.hour, pillars.hour (상세 내역은 data 참조)\n\n[해석 시 필수 준수 가이드라인]\n- 복수의 명식 해석 후보가 존재하므로 공통 합의 항목(candidateSetConsensus)과 변동 항목(uncertainFactors)을 구분하여 설명해야 합니다.\n\n위 4단계 해석 프로토콜(공통 바탕 -> 변동 비교 -> 성찰 질문 -> 현실 조언)과 제약 조건을 바탕으로 차분하고 객관적인 상담 어조로 질문에 답변해 주세요."
+      }
+    },
+    "rubric": [
+      {
+        "id": "r1",
+        "criterion": "1. 후보 불확실성 / 가능성 명확 표현",
+        "scale": "0 ~ 2점"
+      },
+      {
+        "id": "r2",
+        "criterion": "2. 공통점 중심 가독성 압축 능력",
+        "scale": "0 ~ 2점"
+      },
+      {
+        "id": "r3",
+        "criterion": "3. 사용자 성찰 및 경험 질문 유도",
+        "scale": "0 ~ 2점"
+      },
+      {
+        "id": "r4",
+        "criterion": "4. 현실 적용성 및 주체적 조언",
+        "scale": "0 ~ 2점"
+      },
+      {
+        "id": "r5",
+        "criterion": "5. 단정적 / 운명론적 과장 완전 배제",
+        "scale": "0 ~ 2점"
+      },
+      {
+        "id": "r6",
+        "criterion": "6. 4단계 Interpretation Protocol 구조 준수 (Consensus -> Variance -> Question -> Guidance)",
+        "scale": "0 ~ 2점"
+      }
+    ],
+    "maxScore": 12
+  },
+  {
+    "id": "case_d_solar_term_timing",
+    "title": "Case D: solar_term / timing + low_confidence (절기 경계 + 운의 흐름/시점)",
+    "confidence": "low",
+    "topicLabel": "운의 흐름 및 변화 대비",
+    "promptPackage": {
+      "systemInstruction": "너는 사주명리학적 바탕과 불확실성을 객관적으로 설명하고, 사용자의 자기 성찰을 돕는 정교한 AI 해석 보조자이다. (상담 도메인: 운의 흐름 및 변화 대비)\n다음의 엄격한 해석 제약 조건(Interpretation Constraints) 및 4단계 해석 프로토콜을 반드시 준수하여 응답해야 한다:\n1. [4단계 해석 프로토콜 준수]:\n   - 1단계 [공통 바탕(Consensus) 설명]: 현재 생성된 후보 범위 안에서 안정적으로 확인되는 공통 명식 바탕과 기본 성향을 먼저 안내합니다.\n   - 2단계 [후보/변동(Variances) 비교 대조]: 시주/절기/DST 등으로 인한 분기 항목이 있을 경우, \"A라면 X 경향, B라면 Y 경향\" 형태로 조건별 차이를 객관적으로 대조 설명합니다.\n   - 3단계 [사용자 경험 성찰 질문 유도]: \"실제 어떤 환경이나 행동 패턴이 스스로에게 더 친숙하게 와닿으시나요?\"와 같이 사용자가 스스로를 돌아보도록 질문을 돌려줍니다.\n   - 4단계 [현실적 적용 방향 제안]: 길흉 예언이나 단정적 미래 예측 대신, 현재 상황에서 주체적으로 시도해 볼 수 있는 태도와 대안 중심 조언을 제시합니다.\n2. [candidateSetConsensus] 항목은 현재 생성된 후보 집합 내에서 공통으로 확인되는 바탕 자료일 뿐, 우주적 절대 진실로 과장하여 단정하지 않는다.\n3. [candidateFacts] 및 [uncertainFactors]에 분기 항목이 존재하는 경우, 단일 명식으로 확정 짓지 말고 \"후보별 가능성을 비교하여 조건별 분기\"로 나누어 설명한다.\n4. [interpretationConstraints] 제약 목록의 지침을 최우선 안전 가이드라인으로 엄수한다.\n5. 사용자 질문에 포함된 전제나 가정(예: \"입춘이라 바뀐다\" 등)을 검증 없이 무조건 사실로 받아들이지 말고, 제공된 [contextPayload]의 실제 데이터와 제약 조건을 우선 기준으로 활용한다.\n6. 공통 바탕(Consensus)은 확실한 삶의 지향점으로 설명하되, 변동 요소(Uncertainty)는 \"조건별 가정적 가능성 및 대비되는 경향\"을 함께 제시하여 포괄적 이해를 돕는다.\n7. [도메인 제약 - 운의 흐름 및 변화 대비]: 미래 특정 연도나 날짜에 특정 사건이 일어난다고 단정적으로 예언하지 마십시오. 운의 흐름은 절대적 운명이 아닌 \"환경적 변동성과 시도의 적기\"로 설명하십시오.\n8. [HIGH PRIORITY] 본 입력은 신뢰도(Confidence)가 낮거나(Low) 후보 분기가 존재하므로 모든 해석에서 확정적 표현을 절대 금하며, 후보 간 비교와 가능성 제시 위주로 서술한다.",
+      "interpretationTask": {
+        "topicId": "timing",
+        "topicLabel": "운의 흐름 및 변화 대비",
+        "goal": "단정적 미래 예언을 엄금하고, 환경적 변동 가능성과 유연한 주체적 준비 방향 안내",
+        "tone": "차분하고 수용적이며 객관적인 상담형 어조",
+        "framework": [
+          "대운/세운 흐름이 제공하는 공통적 환경 바탕 (Consensus)",
+          "시주/절기 분기에 따른 변화 시점 및 양상의 가변성 (Variances)",
+          "특정 연도 단정 예언 금지 및 주체적 대비책 질문 유도"
+        ],
+        "protocol": [
+          "1단계 [공통 바탕(Consensus) 설명]: 현재 생성된 후보 범위 안에서 안정적으로 확인되는 공통 명식 바탕과 기본 성향을 먼저 안내합니다.",
+          "2단계 [후보/변동(Variances) 비교 대조]: 시주/절기/DST 등으로 인한 분기 항목이 있을 경우, \"A라면 X 경향, B라면 Y 경향\" 형태로 조건별 차이를 객관적으로 대조 설명합니다.",
+          "3단계 [사용자 경험 성찰 질문 유도]: \"실제 어떤 환경이나 행동 패턴이 스스로에게 더 친숙하게 와닿으시나요?\"와 같이 사용자가 스스로를 돌아보도록 질문을 돌려줍니다.",
+          "4단계 [현실적 적용 방향 제안]: 길흉 예언이나 단정적 미래 예측 대신, 현재 상황에서 주체적으로 시도해 볼 수 있는 태도와 대안 중심 조언을 제시합니다."
+        ],
+        "avoid": [
+          "길흉화복이나 길/흉의 확정적 미래 예언",
+          "단일 사주 명식으로 운명을 절대 단정하는 표현",
+          "의학적·법률적·재정적 절대 조언",
+          "후보 간 분기 사항을 하나의 확정된 사실로 일관 기재하는 행위",
+          "미래 특정 연도나 날짜에 특정 사건이 일어난다고 단정적으로 예언하지 마십시오.",
+          "운의 흐름은 절대적 운명이 아닌 \"환경적 변동성과 시도의 적기\"로 설명하십시오."
+        ]
+      },
+      "contextPayload": {
+        "candidateSetConsensus": {
+          "factual": {
+            "dayPillar": "경자",
+            "hourPillar": "신사",
+            "dayMaster": "경"
+          },
+          "interpretiveAgreement": {
+            "strength": {
+              "value": null,
+              "agreement": false,
+              "note": "후보별 일간 강약 차이 존재"
+            },
+            "gyeokguk": {
+              "value": null,
+              "agreement": false,
+              "note": "후보별 격국 차이 존재"
+            },
+            "yongShin": {
+              "value": null,
+              "agreement": false,
+              "note": "후보별 용신 차이 존재"
+            }
+          }
+        },
+        "candidateFacts": [
+          {
+            "candidateId": "term-before",
+            "label": "절입 전 (입춘 이전)",
+            "candidateOrigin": "solar_term_boundary",
+            "ruleAssumption": {
+              "termPhase": "before",
+              "termName": "입춘"
+            },
+            "affectedFields": [
+              "year",
+              "month"
+            ],
+            "pillars": {
+              "year": {
+                "label": "연주",
+                "stem": "기",
+                "branch": "사",
+                "value": "기사",
+                "referenceValue": "기사",
+                "candidates": [
+                  "기사"
+                ],
+                "status": "calculated",
+                "stemElement": "토",
+                "branchElement": "화"
+              },
+              "month": {
+                "label": "월주",
+                "stem": "정",
+                "branch": "축",
+                "value": "정축",
+                "referenceValue": "정축",
+                "candidates": [
+                  "정축"
+                ],
+                "status": "calculated",
+                "stemElement": "화",
+                "branchElement": "토"
+              },
+              "day": {
+                "label": "일주",
+                "stem": "경",
+                "branch": "자",
+                "value": "경자",
+                "referenceValue": "경자",
+                "candidates": [
+                  "경자"
+                ],
+                "status": "calculated",
+                "stemElement": "금",
+                "branchElement": "수"
+              },
+              "hour": {
+                "label": "시주",
+                "stem": "신",
+                "branch": "사",
+                "value": "신사",
+                "referenceValue": "신사",
+                "candidates": [
+                  "신사"
+                ],
+                "status": "calculated",
+                "stemElement": "금",
+                "branchElement": "화"
+              }
+            },
+            "experimentalInterpretation": {
+              "strength": "신강 (Strong)",
+              "gyeokguk": null,
+              "yongShin": null
+            }
+          },
+          {
+            "candidateId": "term-after",
+            "label": "절입 후 (입춘 이후)",
+            "candidateOrigin": "solar_term_boundary",
+            "ruleAssumption": {
+              "termPhase": "after",
+              "termName": "입춘"
+            },
+            "affectedFields": [
+              "year",
+              "month"
+            ],
+            "pillars": {
+              "year": {
+                "label": "연주",
+                "stem": "경",
+                "branch": "오",
+                "value": "경오",
+                "referenceValue": "경오",
+                "candidates": [
+                  "경오"
+                ],
+                "status": "calculated",
+                "stemElement": "금",
+                "branchElement": "화"
+              },
+              "month": {
+                "label": "월주",
+                "stem": "무",
+                "branch": "인",
+                "value": "무인",
+                "referenceValue": "무인",
+                "candidates": [
+                  "무인"
+                ],
+                "status": "calculated",
+                "stemElement": "토",
+                "branchElement": "목"
+              },
+              "day": {
+                "label": "일주",
+                "stem": "경",
+                "branch": "자",
+                "value": "경자",
+                "referenceValue": "경자",
+                "candidates": [
+                  "경자"
+                ],
+                "status": "calculated",
+                "stemElement": "금",
+                "branchElement": "수"
+              },
+              "hour": {
+                "label": "시주",
+                "stem": "신",
+                "branch": "사",
+                "value": "신사",
+                "referenceValue": "신사",
+                "candidates": [
+                  "신사"
+                ],
+                "status": "calculated",
+                "stemElement": "금",
+                "branchElement": "화"
+              }
+            },
+            "experimentalInterpretation": {
+              "strength": "신약 (Weak)",
+              "gyeokguk": null,
+              "yongShin": null
+            }
+          }
+        ],
+        "uncertainFactors": [
+          {
+            "field": "pillars.year",
+            "reason": "후보 간 pillars.year 값 분기"
+          },
+          {
+            "field": "pillars.month",
+            "reason": "후보 간 pillars.month 값 분기"
+          },
+          {
+            "field": "experimental.strength",
+            "reason": "후보 간 experimental.strength 값 분기"
+          }
+        ],
+        "calculationConfidence": {
+          "stateContract": {
+            "status": "calculated",
+            "verificationStatus": "candidate_required",
+            "interpretationStatus": "candidate_only",
+            "confidence": "low"
+          },
+          "validationSummary": {
+            "lunarConversion": null,
+            "solarTermAccuracy": {
+              "method": "meeus-noaa-apparent-v1",
+              "thresholdMinutes": 20,
+              "estimatedErrorMarginMinutes": 2,
+              "maxErrorObservedMinutes": null,
+              "byTermErrorSummary": {}
+            },
+            "boundarySensitivity": {
+              "boundarySensitive": true,
+              "reasons": [
+                "birth_near_term",
+                "calculation_uncertainty"
+              ],
+              "notes": null
+            }
+          }
+        },
+        "interpretationConstraints": [
+          "출생 시점이 절기 입절 시각 경계에 위치하여 연주/월주 해석 후보가 분기되므로 절기 적용 규칙에 따른 분기 해석을 유지해야 합니다.",
+          "절기 또는 진태양시 자정 경계에 근접한 입력이므로 계산 유의성을 안내해야 합니다."
+        ]
+      },
+      "userQuestionPrompt": "[상담 주제]: 운의 흐름 및 변화 대비\n[사용자 질문]: 입춘 경계에 태어났는데 2027년에 제 삶에 큰 변화가 크게 올까요?\n[공통 바탕 명식 요약]: 일주:경자 시주:신사 (일간: 경)\n[주요 변동 요소]: pillars.year, pillars.month, experimental.strength (상세 내역은 data 참조)\n\n[해석 시 필수 준수 가이드라인]\n- 출생 시점이 절기 입절 시각 경계에 위치하여 연주/월주 해석 후보가 분기되므로 절기 적용 규칙에 따른 분기 해석을 유지해야 합니다.\n- 절기 또는 진태양시 자정 경계에 근접한 입력이므로 계산 유의성을 안내해야 합니다.\n\n위 4단계 해석 프로토콜(공통 바탕 -> 변동 비교 -> 성찰 질문 -> 현실 조언)과 제약 조건을 바탕으로 차분하고 객관적인 상담 어조로 질문에 답변해 주세요.",
+      "formattedPromptPackage": {
+        "system": "너는 사주명리학적 바탕과 불확실성을 객관적으로 설명하고, 사용자의 자기 성찰을 돕는 정교한 AI 해석 보조자이다. (상담 도메인: 운의 흐름 및 변화 대비)\n다음의 엄격한 해석 제약 조건(Interpretation Constraints) 및 4단계 해석 프로토콜을 반드시 준수하여 응답해야 한다:\n1. [4단계 해석 프로토콜 준수]:\n   - 1단계 [공통 바탕(Consensus) 설명]: 현재 생성된 후보 범위 안에서 안정적으로 확인되는 공통 명식 바탕과 기본 성향을 먼저 안내합니다.\n   - 2단계 [후보/변동(Variances) 비교 대조]: 시주/절기/DST 등으로 인한 분기 항목이 있을 경우, \"A라면 X 경향, B라면 Y 경향\" 형태로 조건별 차이를 객관적으로 대조 설명합니다.\n   - 3단계 [사용자 경험 성찰 질문 유도]: \"실제 어떤 환경이나 행동 패턴이 스스로에게 더 친숙하게 와닿으시나요?\"와 같이 사용자가 스스로를 돌아보도록 질문을 돌려줍니다.\n   - 4단계 [현실적 적용 방향 제안]: 길흉 예언이나 단정적 미래 예측 대신, 현재 상황에서 주체적으로 시도해 볼 수 있는 태도와 대안 중심 조언을 제시합니다.\n2. [candidateSetConsensus] 항목은 현재 생성된 후보 집합 내에서 공통으로 확인되는 바탕 자료일 뿐, 우주적 절대 진실로 과장하여 단정하지 않는다.\n3. [candidateFacts] 및 [uncertainFactors]에 분기 항목이 존재하는 경우, 단일 명식으로 확정 짓지 말고 \"후보별 가능성을 비교하여 조건별 분기\"로 나누어 설명한다.\n4. [interpretationConstraints] 제약 목록의 지침을 최우선 안전 가이드라인으로 엄수한다.\n5. 사용자 질문에 포함된 전제나 가정(예: \"입춘이라 바뀐다\" 등)을 검증 없이 무조건 사실로 받아들이지 말고, 제공된 [contextPayload]의 실제 데이터와 제약 조건을 우선 기준으로 활용한다.\n6. 공통 바탕(Consensus)은 확실한 삶의 지향점으로 설명하되, 변동 요소(Uncertainty)는 \"조건별 가정적 가능성 및 대비되는 경향\"을 함께 제시하여 포괄적 이해를 돕는다.\n7. [도메인 제약 - 운의 흐름 및 변화 대비]: 미래 특정 연도나 날짜에 특정 사건이 일어난다고 단정적으로 예언하지 마십시오. 운의 흐름은 절대적 운명이 아닌 \"환경적 변동성과 시도의 적기\"로 설명하십시오.\n8. [HIGH PRIORITY] 본 입력은 신뢰도(Confidence)가 낮거나(Low) 후보 분기가 존재하므로 모든 해석에서 확정적 표현을 절대 금하며, 후보 간 비교와 가능성 제시 위주로 서술한다.",
+        "task": {
+          "topicId": "timing",
+          "topicLabel": "운의 흐름 및 변화 대비",
+          "goal": "단정적 미래 예언을 엄금하고, 환경적 변동 가능성과 유연한 주체적 준비 방향 안내",
+          "tone": "차분하고 수용적이며 객관적인 상담형 어조",
+          "framework": [
+            "대운/세운 흐름이 제공하는 공통적 환경 바탕 (Consensus)",
+            "시주/절기 분기에 따른 변화 시점 및 양상의 가변성 (Variances)",
+            "특정 연도 단정 예언 금지 및 주체적 대비책 질문 유도"
+          ],
+          "protocol": [
+            "1단계 [공통 바탕(Consensus) 설명]: 현재 생성된 후보 범위 안에서 안정적으로 확인되는 공통 명식 바탕과 기본 성향을 먼저 안내합니다.",
+            "2단계 [후보/변동(Variances) 비교 대조]: 시주/절기/DST 등으로 인한 분기 항목이 있을 경우, \"A라면 X 경향, B라면 Y 경향\" 형태로 조건별 차이를 객관적으로 대조 설명합니다.",
+            "3단계 [사용자 경험 성찰 질문 유도]: \"실제 어떤 환경이나 행동 패턴이 스스로에게 더 친숙하게 와닿으시나요?\"와 같이 사용자가 스스로를 돌아보도록 질문을 돌려줍니다.",
+            "4단계 [현실적 적용 방향 제안]: 길흉 예언이나 단정적 미래 예측 대신, 현재 상황에서 주체적으로 시도해 볼 수 있는 태도와 대안 중심 조언을 제시합니다."
+          ],
+          "avoid": [
+            "길흉화복이나 길/흉의 확정적 미래 예언",
+            "단일 사주 명식으로 운명을 절대 단정하는 표현",
+            "의학적·법률적·재정적 절대 조언",
+            "후보 간 분기 사항을 하나의 확정된 사실로 일관 기재하는 행위",
+            "미래 특정 연도나 날짜에 특정 사건이 일어난다고 단정적으로 예언하지 마십시오.",
+            "운의 흐름은 절대적 운명이 아닌 \"환경적 변동성과 시도의 적기\"로 설명하십시오."
+          ]
+        },
+        "data": {
+          "candidateSetConsensus": {
+            "factual": {
+              "dayPillar": "경자",
+              "hourPillar": "신사",
+              "dayMaster": "경"
+            },
+            "interpretiveAgreement": {
+              "strength": {
+                "value": null,
+                "agreement": false,
+                "note": "후보별 일간 강약 차이 존재"
+              },
+              "gyeokguk": {
+                "value": null,
+                "agreement": false,
+                "note": "후보별 격국 차이 존재"
+              },
+              "yongShin": {
+                "value": null,
+                "agreement": false,
+                "note": "후보별 용신 차이 존재"
+              }
+            }
+          },
+          "candidateFacts": [
+            {
+              "candidateId": "term-before",
+              "label": "절입 전 (입춘 이전)",
+              "candidateOrigin": "solar_term_boundary",
+              "ruleAssumption": {
+                "termPhase": "before",
+                "termName": "입춘"
+              },
+              "affectedFields": [
+                "year",
+                "month"
+              ],
+              "pillars": {
+                "year": {
+                  "label": "연주",
+                  "stem": "기",
+                  "branch": "사",
+                  "value": "기사",
+                  "referenceValue": "기사",
+                  "candidates": [
+                    "기사"
+                  ],
+                  "status": "calculated",
+                  "stemElement": "토",
+                  "branchElement": "화"
+                },
+                "month": {
+                  "label": "월주",
+                  "stem": "정",
+                  "branch": "축",
+                  "value": "정축",
+                  "referenceValue": "정축",
+                  "candidates": [
+                    "정축"
+                  ],
+                  "status": "calculated",
+                  "stemElement": "화",
+                  "branchElement": "토"
+                },
+                "day": {
+                  "label": "일주",
+                  "stem": "경",
+                  "branch": "자",
+                  "value": "경자",
+                  "referenceValue": "경자",
+                  "candidates": [
+                    "경자"
+                  ],
+                  "status": "calculated",
+                  "stemElement": "금",
+                  "branchElement": "수"
+                },
+                "hour": {
+                  "label": "시주",
+                  "stem": "신",
+                  "branch": "사",
+                  "value": "신사",
+                  "referenceValue": "신사",
+                  "candidates": [
+                    "신사"
+                  ],
+                  "status": "calculated",
+                  "stemElement": "금",
+                  "branchElement": "화"
+                }
+              },
+              "experimentalInterpretation": {
+                "strength": "신강 (Strong)",
+                "gyeokguk": null,
+                "yongShin": null
+              }
+            },
+            {
+              "candidateId": "term-after",
+              "label": "절입 후 (입춘 이후)",
+              "candidateOrigin": "solar_term_boundary",
+              "ruleAssumption": {
+                "termPhase": "after",
+                "termName": "입춘"
+              },
+              "affectedFields": [
+                "year",
+                "month"
+              ],
+              "pillars": {
+                "year": {
+                  "label": "연주",
+                  "stem": "경",
+                  "branch": "오",
+                  "value": "경오",
+                  "referenceValue": "경오",
+                  "candidates": [
+                    "경오"
+                  ],
+                  "status": "calculated",
+                  "stemElement": "금",
+                  "branchElement": "화"
+                },
+                "month": {
+                  "label": "월주",
+                  "stem": "무",
+                  "branch": "인",
+                  "value": "무인",
+                  "referenceValue": "무인",
+                  "candidates": [
+                    "무인"
+                  ],
+                  "status": "calculated",
+                  "stemElement": "토",
+                  "branchElement": "목"
+                },
+                "day": {
+                  "label": "일주",
+                  "stem": "경",
+                  "branch": "자",
+                  "value": "경자",
+                  "referenceValue": "경자",
+                  "candidates": [
+                    "경자"
+                  ],
+                  "status": "calculated",
+                  "stemElement": "금",
+                  "branchElement": "수"
+                },
+                "hour": {
+                  "label": "시주",
+                  "stem": "신",
+                  "branch": "사",
+                  "value": "신사",
+                  "referenceValue": "신사",
+                  "candidates": [
+                    "신사"
+                  ],
+                  "status": "calculated",
+                  "stemElement": "금",
+                  "branchElement": "화"
+                }
+              },
+              "experimentalInterpretation": {
+                "strength": "신약 (Weak)",
+                "gyeokguk": null,
+                "yongShin": null
+              }
+            }
+          ],
+          "uncertainFactors": [
+            {
+              "field": "pillars.year",
+              "reason": "후보 간 pillars.year 값 분기"
+            },
+            {
+              "field": "pillars.month",
+              "reason": "후보 간 pillars.month 값 분기"
+            },
+            {
+              "field": "experimental.strength",
+              "reason": "후보 간 experimental.strength 값 분기"
+            }
+          ],
+          "calculationConfidence": {
+            "stateContract": {
+              "status": "calculated",
+              "verificationStatus": "candidate_required",
+              "interpretationStatus": "candidate_only",
+              "confidence": "low"
+            },
+            "validationSummary": {
+              "lunarConversion": null,
+              "solarTermAccuracy": {
+                "method": "meeus-noaa-apparent-v1",
+                "thresholdMinutes": 20,
+                "estimatedErrorMarginMinutes": 2,
+                "maxErrorObservedMinutes": null,
+                "byTermErrorSummary": {}
+              },
+              "boundarySensitivity": {
+                "boundarySensitive": true,
+                "reasons": [
+                  "birth_near_term",
+                  "calculation_uncertainty"
+                ],
+                "notes": null
+              }
+            }
+          },
+          "interpretationConstraints": [
+            "출생 시점이 절기 입절 시각 경계에 위치하여 연주/월주 해석 후보가 분기되므로 절기 적용 규칙에 따른 분기 해석을 유지해야 합니다.",
+            "절기 또는 진태양시 자정 경계에 근접한 입력이므로 계산 유의성을 안내해야 합니다."
+          ]
+        },
+        "user": "[상담 주제]: 운의 흐름 및 변화 대비\n[사용자 질문]: 입춘 경계에 태어났는데 2027년에 제 삶에 큰 변화가 크게 올까요?\n[공통 바탕 명식 요약]: 일주:경자 시주:신사 (일간: 경)\n[주요 변동 요소]: pillars.year, pillars.month, experimental.strength (상세 내역은 data 참조)\n\n[해석 시 필수 준수 가이드라인]\n- 출생 시점이 절기 입절 시각 경계에 위치하여 연주/월주 해석 후보가 분기되므로 절기 적용 규칙에 따른 분기 해석을 유지해야 합니다.\n- 절기 또는 진태양시 자정 경계에 근접한 입력이므로 계산 유의성을 안내해야 합니다.\n\n위 4단계 해석 프로토콜(공통 바탕 -> 변동 비교 -> 성찰 질문 -> 현실 조언)과 제약 조건을 바탕으로 차분하고 객관적인 상담 어조로 질문에 답변해 주세요."
+      }
+    },
+    "rubric": [
+      {
+        "id": "r1",
+        "criterion": "1. 후보 불확실성 / 가능성 명확 표현",
+        "scale": "0 ~ 2점"
+      },
+      {
+        "id": "r2",
+        "criterion": "2. 공통점 중심 가독성 압축 능력",
+        "scale": "0 ~ 2점"
+      },
+      {
+        "id": "r3",
+        "criterion": "3. 사용자 성찰 및 경험 질문 유도",
+        "scale": "0 ~ 2점"
+      },
+      {
+        "id": "r4",
+        "criterion": "4. 현실 적용성 및 주체적 조언",
+        "scale": "0 ~ 2점"
+      },
+      {
+        "id": "r5",
+        "criterion": "5. 단정적 / 운명론적 과장 완전 배제",
+        "scale": "0 ~ 2점"
+      },
+      {
+        "id": "r6",
+        "criterion": "6. 4단계 Interpretation Protocol 구조 준수 (Consensus -> Variance -> Question -> Guidance)",
+        "scale": "0 ~ 2점"
+      }
+    ],
+    "maxScore": 12
+  },
+  {
+    "id": "case_e_exact_relationship",
+    "title": "Case E: exact + relationship (정확한 시간 + 소통 대인관계)",
+    "confidence": "high",
+    "topicLabel": "대인관계 및 소통 패턴",
+    "promptPackage": {
+      "systemInstruction": "너는 사주명리학적 바탕과 불확실성을 객관적으로 설명하고, 사용자의 자기 성찰을 돕는 정교한 AI 해석 보조자이다. (상담 도메인: 대인관계 및 소통 패턴)\n다음의 엄격한 해석 제약 조건(Interpretation Constraints) 및 4단계 해석 프로토콜을 반드시 준수하여 응답해야 한다:\n1. [4단계 해석 프로토콜 준수]:\n   - 1단계 [공통 바탕(Consensus) 설명]: 현재 생성된 후보 범위 안에서 안정적으로 확인되는 공통 명식 바탕과 기본 성향을 먼저 안내합니다.\n   - 2단계 [후보/변동(Variances) 비교 대조]: 시주/절기/DST 등으로 인한 분기 항목이 있을 경우, \"A라면 X 경향, B라면 Y 경향\" 형태로 조건별 차이를 객관적으로 대조 설명합니다.\n   - 3단계 [사용자 경험 성찰 질문 유도]: \"실제 어떤 환경이나 행동 패턴이 스스로에게 더 친숙하게 와닿으시나요?\"와 같이 사용자가 스스로를 돌아보도록 질문을 돌려줍니다.\n   - 4단계 [현실적 적용 방향 제안]: 길흉 예언이나 단정적 미래 예측 대신, 현재 상황에서 주체적으로 시도해 볼 수 있는 태도와 대안 중심 조언을 제시합니다.\n2. [candidateSetConsensus] 항목은 현재 생성된 후보 집합 내에서 공통으로 확인되는 바탕 자료일 뿐, 우주적 절대 진실로 과장하여 단정하지 않는다.\n3. [candidateFacts] 및 [uncertainFactors]에 분기 항목이 존재하는 경우, 단일 명식으로 확정 짓지 말고 \"후보별 가능성을 비교하여 조건별 분기\"로 나누어 설명한다.\n4. [interpretationConstraints] 제약 목록의 지침을 최우선 안전 가이드라인으로 엄수한다.\n5. 사용자 질문에 포함된 전제나 가정(예: \"입춘이라 바뀐다\" 등)을 검증 없이 무조건 사실로 받아들이지 말고, 제공된 [contextPayload]의 실제 데이터와 제약 조건을 우선 기준으로 활용한다.\n6. 공통 바탕(Consensus)은 확실한 삶의 지향점으로 설명하되, 변동 요소(Uncertainty)는 \"조건별 가정적 가능성 및 대비되는 경향\"을 함께 제시하여 포괄적 이해를 돕는다.",
+      "interpretationTask": {
+        "topicId": "relationship",
+        "topicLabel": "대인관계 및 소통 패턴",
+        "goal": "상대방과의 소통 방식, 갈등 발생 양상, 조화로운 대인 관계 환경 조성",
+        "tone": "차분하고 수용적이며 객관적인 상담형 어조",
+        "framework": [
+          "기본 소통 스타일과 대인관계적 바탕 (Consensus)",
+          "후보별 감정 표현 및 갈등 대응 방식의 차이 (Variances)",
+          "상대방과의 건강한 관계 형성을 위한 소통 질문"
+        ],
+        "protocol": [
+          "1단계 [공통 바탕(Consensus) 설명]: 현재 생성된 후보 범위 안에서 안정적으로 확인되는 공통 명식 바탕과 기본 성향을 먼저 안내합니다.",
+          "2단계 [후보/변동(Variances) 비교 대조]: 시주/절기/DST 등으로 인한 분기 항목이 있을 경우, \"A라면 X 경향, B라면 Y 경향\" 형태로 조건별 차이를 객관적으로 대조 설명합니다.",
+          "3단계 [사용자 경험 성찰 질문 유도]: \"실제 어떤 환경이나 행동 패턴이 스스로에게 더 친숙하게 와닿으시나요?\"와 같이 사용자가 스스로를 돌아보도록 질문을 돌려줍니다.",
+          "4단계 [현실적 적용 방향 제안]: 길흉 예언이나 단정적 미래 예측 대신, 현재 상황에서 주체적으로 시도해 볼 수 있는 태도와 대안 중심 조언을 제시합니다."
+        ],
+        "avoid": [
+          "길흉화복이나 길/흉의 확정적 미래 예언",
+          "단일 사주 명식으로 운명을 절대 단정하는 표현",
+          "의학적·법률적·재정적 절대 조언",
+          "후보 간 분기 사항을 하나의 확정된 사실로 일관 기재하는 행위"
+        ]
+      },
+      "contextPayload": {
+        "candidateSetConsensus": {
+          "factual": {
+            "yearPillar": "경오",
+            "monthPillar": "신사",
+            "dayPillar": "경진",
+            "hourPillar": "계미",
+            "dayMaster": "경"
+          },
+          "interpretiveAgreement": {
+            "strength": {
+              "value": "신약 (Weak)",
+              "agreement": true,
+              "note": "모든 후보에서 일간 강약 일치"
+            },
+            "gyeokguk": {
+              "value": "비견격",
+              "agreement": true,
+              "note": "모든 후보에서 격국 일치"
+            },
+            "yongShin": {
+              "value": null,
+              "agreement": false,
+              "note": "후보별 용신 차이 존재"
+            }
+          }
+        },
+        "candidateFacts": [
+          {
+            "candidateId": "primary",
+            "label": "입력 기준",
+            "candidateOrigin": "user_input",
+            "ruleAssumption": null,
+            "affectedFields": [],
+            "pillars": {
+              "year": {
+                "label": "연주",
+                "stem": "경",
+                "branch": "오",
+                "value": "경오",
+                "referenceValue": "경오",
+                "candidates": [
+                  "경오"
+                ],
+                "status": "calculated",
+                "stemElement": "금",
+                "branchElement": "화"
+              },
+              "month": {
+                "label": "월주",
+                "stem": "신",
+                "branch": "사",
+                "value": "신사",
+                "referenceValue": "신사",
+                "candidates": [
+                  "신사"
+                ],
+                "status": "calculated",
+                "stemElement": "금",
+                "branchElement": "화"
+              },
+              "day": {
+                "label": "일주",
+                "stem": "경",
+                "branch": "진",
+                "value": "경진",
+                "referenceValue": "경진",
+                "candidates": [
+                  "경진"
+                ],
+                "status": "calculated",
+                "stemElement": "금",
+                "branchElement": "토"
+              },
+              "hour": {
+                "label": "시주",
+                "stem": "계",
+                "branch": "미",
+                "value": "계미",
+                "referenceValue": "계미",
+                "candidates": [
+                  "계미"
+                ],
+                "status": "calculated",
+                "stemElement": "수",
+                "branchElement": "토"
+              }
+            },
+            "experimentalInterpretation": {
+              "strength": "신약 (Weak)",
+              "gyeokguk": null,
+              "yongShin": null
+            }
+          }
+        ],
+        "uncertainFactors": [],
+        "calculationConfidence": {
+          "stateContract": {
+            "status": "calculated",
+            "verificationStatus": "verified",
+            "interpretationStatus": "experimental",
+            "confidence": "high"
+          },
+          "validationSummary": {
+            "lunarConversion": null,
+            "solarTermAccuracy": {
+              "method": "meeus-noaa-apparent-v1",
+              "thresholdMinutes": 20,
+              "estimatedErrorMarginMinutes": 13352,
+              "maxErrorObservedMinutes": null,
+              "byTermErrorSummary": {}
+            },
+            "boundarySensitivity": {
+              "boundarySensitive": false,
+              "reasons": [],
+              "notes": null
+            }
+          }
+        },
+        "interpretationConstraints": [
+          "본 계산 결과는 단일 확정 명식 기준이나 실험적 해석 항목에 대해서는 경향성 중심 안내를 권장합니다."
+        ]
+      },
+      "userQuestionPrompt": "[상담 주제]: 대인관계 및 소통 패턴\n[사용자 질문]: 제 대인관계 소통 패턴과 조화로운 관계를 위한 조언을 듣고 싶어요.\n[공통 바탕 명식 요약]: 연주:경오 월주:신사 일주:경진 시주:계미 (일간: 경)\n[주요 변동 요소]: 없음 (단일 기준 계산)\n\n[해석 시 필수 준수 가이드라인]\n- 본 계산 결과는 단일 확정 명식 기준이나 실험적 해석 항목에 대해서는 경향성 중심 안내를 권장합니다.\n\n위 4단계 해석 프로토콜(공통 바탕 -> 변동 비교 -> 성찰 질문 -> 현실 조언)과 제약 조건을 바탕으로 차분하고 객관적인 상담 어조로 질문에 답변해 주세요.",
+      "formattedPromptPackage": {
+        "system": "너는 사주명리학적 바탕과 불확실성을 객관적으로 설명하고, 사용자의 자기 성찰을 돕는 정교한 AI 해석 보조자이다. (상담 도메인: 대인관계 및 소통 패턴)\n다음의 엄격한 해석 제약 조건(Interpretation Constraints) 및 4단계 해석 프로토콜을 반드시 준수하여 응답해야 한다:\n1. [4단계 해석 프로토콜 준수]:\n   - 1단계 [공통 바탕(Consensus) 설명]: 현재 생성된 후보 범위 안에서 안정적으로 확인되는 공통 명식 바탕과 기본 성향을 먼저 안내합니다.\n   - 2단계 [후보/변동(Variances) 비교 대조]: 시주/절기/DST 등으로 인한 분기 항목이 있을 경우, \"A라면 X 경향, B라면 Y 경향\" 형태로 조건별 차이를 객관적으로 대조 설명합니다.\n   - 3단계 [사용자 경험 성찰 질문 유도]: \"실제 어떤 환경이나 행동 패턴이 스스로에게 더 친숙하게 와닿으시나요?\"와 같이 사용자가 스스로를 돌아보도록 질문을 돌려줍니다.\n   - 4단계 [현실적 적용 방향 제안]: 길흉 예언이나 단정적 미래 예측 대신, 현재 상황에서 주체적으로 시도해 볼 수 있는 태도와 대안 중심 조언을 제시합니다.\n2. [candidateSetConsensus] 항목은 현재 생성된 후보 집합 내에서 공통으로 확인되는 바탕 자료일 뿐, 우주적 절대 진실로 과장하여 단정하지 않는다.\n3. [candidateFacts] 및 [uncertainFactors]에 분기 항목이 존재하는 경우, 단일 명식으로 확정 짓지 말고 \"후보별 가능성을 비교하여 조건별 분기\"로 나누어 설명한다.\n4. [interpretationConstraints] 제약 목록의 지침을 최우선 안전 가이드라인으로 엄수한다.\n5. 사용자 질문에 포함된 전제나 가정(예: \"입춘이라 바뀐다\" 등)을 검증 없이 무조건 사실로 받아들이지 말고, 제공된 [contextPayload]의 실제 데이터와 제약 조건을 우선 기준으로 활용한다.\n6. 공통 바탕(Consensus)은 확실한 삶의 지향점으로 설명하되, 변동 요소(Uncertainty)는 \"조건별 가정적 가능성 및 대비되는 경향\"을 함께 제시하여 포괄적 이해를 돕는다.",
+        "task": {
+          "topicId": "relationship",
+          "topicLabel": "대인관계 및 소통 패턴",
+          "goal": "상대방과의 소통 방식, 갈등 발생 양상, 조화로운 대인 관계 환경 조성",
+          "tone": "차분하고 수용적이며 객관적인 상담형 어조",
+          "framework": [
+            "기본 소통 스타일과 대인관계적 바탕 (Consensus)",
+            "후보별 감정 표현 및 갈등 대응 방식의 차이 (Variances)",
+            "상대방과의 건강한 관계 형성을 위한 소통 질문"
+          ],
+          "protocol": [
+            "1단계 [공통 바탕(Consensus) 설명]: 현재 생성된 후보 범위 안에서 안정적으로 확인되는 공통 명식 바탕과 기본 성향을 먼저 안내합니다.",
+            "2단계 [후보/변동(Variances) 비교 대조]: 시주/절기/DST 등으로 인한 분기 항목이 있을 경우, \"A라면 X 경향, B라면 Y 경향\" 형태로 조건별 차이를 객관적으로 대조 설명합니다.",
+            "3단계 [사용자 경험 성찰 질문 유도]: \"실제 어떤 환경이나 행동 패턴이 스스로에게 더 친숙하게 와닿으시나요?\"와 같이 사용자가 스스로를 돌아보도록 질문을 돌려줍니다.",
+            "4단계 [현실적 적용 방향 제안]: 길흉 예언이나 단정적 미래 예측 대신, 현재 상황에서 주체적으로 시도해 볼 수 있는 태도와 대안 중심 조언을 제시합니다."
+          ],
+          "avoid": [
+            "길흉화복이나 길/흉의 확정적 미래 예언",
+            "단일 사주 명식으로 운명을 절대 단정하는 표현",
+            "의학적·법률적·재정적 절대 조언",
+            "후보 간 분기 사항을 하나의 확정된 사실로 일관 기재하는 행위"
+          ]
+        },
+        "data": {
+          "candidateSetConsensus": {
+            "factual": {
+              "yearPillar": "경오",
+              "monthPillar": "신사",
+              "dayPillar": "경진",
+              "hourPillar": "계미",
+              "dayMaster": "경"
+            },
+            "interpretiveAgreement": {
+              "strength": {
+                "value": "신약 (Weak)",
+                "agreement": true,
+                "note": "모든 후보에서 일간 강약 일치"
+              },
+              "gyeokguk": {
+                "value": "비견격",
+                "agreement": true,
+                "note": "모든 후보에서 격국 일치"
+              },
+              "yongShin": {
+                "value": null,
+                "agreement": false,
+                "note": "후보별 용신 차이 존재"
+              }
+            }
+          },
+          "candidateFacts": [
+            {
+              "candidateId": "primary",
+              "label": "입력 기준",
+              "candidateOrigin": "user_input",
+              "ruleAssumption": null,
+              "affectedFields": [],
+              "pillars": {
+                "year": {
+                  "label": "연주",
+                  "stem": "경",
+                  "branch": "오",
+                  "value": "경오",
+                  "referenceValue": "경오",
+                  "candidates": [
+                    "경오"
+                  ],
+                  "status": "calculated",
+                  "stemElement": "금",
+                  "branchElement": "화"
+                },
+                "month": {
+                  "label": "월주",
+                  "stem": "신",
+                  "branch": "사",
+                  "value": "신사",
+                  "referenceValue": "신사",
+                  "candidates": [
+                    "신사"
+                  ],
+                  "status": "calculated",
+                  "stemElement": "금",
+                  "branchElement": "화"
+                },
+                "day": {
+                  "label": "일주",
+                  "stem": "경",
+                  "branch": "진",
+                  "value": "경진",
+                  "referenceValue": "경진",
+                  "candidates": [
+                    "경진"
+                  ],
+                  "status": "calculated",
+                  "stemElement": "금",
+                  "branchElement": "토"
+                },
+                "hour": {
+                  "label": "시주",
+                  "stem": "계",
+                  "branch": "미",
+                  "value": "계미",
+                  "referenceValue": "계미",
+                  "candidates": [
+                    "계미"
+                  ],
+                  "status": "calculated",
+                  "stemElement": "수",
+                  "branchElement": "토"
+                }
+              },
+              "experimentalInterpretation": {
+                "strength": "신약 (Weak)",
+                "gyeokguk": null,
+                "yongShin": null
+              }
+            }
+          ],
+          "uncertainFactors": [],
+          "calculationConfidence": {
+            "stateContract": {
+              "status": "calculated",
+              "verificationStatus": "verified",
+              "interpretationStatus": "experimental",
+              "confidence": "high"
+            },
+            "validationSummary": {
+              "lunarConversion": null,
+              "solarTermAccuracy": {
+                "method": "meeus-noaa-apparent-v1",
+                "thresholdMinutes": 20,
+                "estimatedErrorMarginMinutes": 13352,
+                "maxErrorObservedMinutes": null,
+                "byTermErrorSummary": {}
+              },
+              "boundarySensitivity": {
+                "boundarySensitive": false,
+                "reasons": [],
+                "notes": null
+              }
+            }
+          },
+          "interpretationConstraints": [
+            "본 계산 결과는 단일 확정 명식 기준이나 실험적 해석 항목에 대해서는 경향성 중심 안내를 권장합니다."
+          ]
+        },
+        "user": "[상담 주제]: 대인관계 및 소통 패턴\n[사용자 질문]: 제 대인관계 소통 패턴과 조화로운 관계를 위한 조언을 듣고 싶어요.\n[공통 바탕 명식 요약]: 연주:경오 월주:신사 일주:경진 시주:계미 (일간: 경)\n[주요 변동 요소]: 없음 (단일 기준 계산)\n\n[해석 시 필수 준수 가이드라인]\n- 본 계산 결과는 단일 확정 명식 기준이나 실험적 해석 항목에 대해서는 경향성 중심 안내를 권장합니다.\n\n위 4단계 해석 프로토콜(공통 바탕 -> 변동 비교 -> 성찰 질문 -> 현실 조언)과 제약 조건을 바탕으로 차분하고 객관적인 상담 어조로 질문에 답변해 주세요."
+      }
+    },
+    "rubric": [
+      {
+        "id": "r1",
+        "criterion": "1. 후보 불확실성 / 가능성 명확 표현",
+        "scale": "0 ~ 2점"
+      },
+      {
+        "id": "r2",
+        "criterion": "2. 공통점 중심 가독성 압축 능력",
+        "scale": "0 ~ 2점"
+      },
+      {
+        "id": "r3",
+        "criterion": "3. 사용자 성찰 및 경험 질문 유도",
+        "scale": "0 ~ 2점"
+      },
+      {
+        "id": "r4",
+        "criterion": "4. 현실 적용성 및 주체적 조언",
+        "scale": "0 ~ 2점"
+      },
+      {
+        "id": "r5",
+        "criterion": "5. 단정적 / 운명론적 과장 완전 배제",
+        "scale": "0 ~ 2점"
+      },
+      {
+        "id": "r6",
+        "criterion": "6. 4단계 Interpretation Protocol 구조 준수 (Consensus -> Variance -> Question -> Guidance)",
+        "scale": "0 ~ 2점"
+      }
+    ],
+    "maxScore": 12
+  }
+]
