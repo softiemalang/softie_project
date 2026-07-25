@@ -268,21 +268,6 @@
 
 final result: passed
 
-## Work Status Title Contrast QA
-
-- source visual truth: `/tmp/codex-remote-attachments/019f9618-8084-7c03-a518-af09fcce8455/8EDDBE81-6886-4AE9-A833-F8E9477AEDB6/1-붙여넣은-이미지-1.jpg`
-- implementation selector: `.scheduler-theme-shell .scheduler-today-page .scheduler-controls .scheduler-work-status-title`
-- change: `--ag-text-tertiary` → `--ag-text-muted`
-- state: signed-in today view in the source; no authenticated local browser session available for direct capture
-
-### Findings
-
-- P3 resolved: only the `근무 중` title is one text tier brighter. The time/range supporting line, controls, surfaces, and all non-scheduler pages remain unchanged.
-- The selected tone stays below full `--ag-text`, preserving the low-contrast atmospheric hierarchy while improving scanability.
-- Tests, build, and diff validation passed; no behavior or data flow changed.
-
-final result: passed
-
 ## Scheduler Selected-State Contrast QA
 
 - source visual truth: `/tmp/codex-remote-attachments/019f9618-8084-7c03-a518-af09fcce8455/D4D4FED9-061C-49E1-A3AE-526A40A73D7D/1-붙여넣은-이미지-1.jpg`
