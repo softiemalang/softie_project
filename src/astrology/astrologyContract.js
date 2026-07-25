@@ -61,6 +61,8 @@ export function createAstrologyCalculationContext({
   }
 }
 
+import { extractAstrologyPatterns } from './astrologyPatternContext.js'
+
 export function createAstrologyInterpretationContext(calcCtx = {}) {
   const input = calcCtx.input || {}
   const chartSystem = calcCtx.chartSystem || ASTROLOGY_CHART_SYSTEM_DEFAULTS
@@ -68,6 +70,13 @@ export function createAstrologyInterpretationContext(calcCtx = {}) {
 
   const sunPlanet = (calcCtx.planets || []).find((p) => p.planet === 'sun') || {}
   const moonPlanet = (calcCtx.planets || []).find((p) => p.planet === 'moon') || {}
+
+  const patternRes = extractAstrologyPatterns({
+    planets: calcCtx.planets || [],
+    houses: calcCtx.houses || [],
+    aspects: calcCtx.aspects || [],
+    elementsAndModalities: calcCtx.elementsAndModalities || { elements: {}, modalities: {} },
+  })
 
   const uncertainFactors = []
   if (!input.birthTime) {
@@ -94,7 +103,8 @@ export function createAstrologyInterpretationContext(calcCtx = {}) {
       interpretiveAgreement: {
         dominantElements: calcCtx.elementsAndModalities?.elements || {},
         dominantModalities: calcCtx.elementsAndModalities?.modalities || {},
-        majorPatterns: [],
+        majorPatterns: patternRes.majorPatterns,
+        houseAxes: patternRes.houseAxes,
       },
     },
 
