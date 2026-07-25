@@ -268,6 +268,26 @@
 
 final result: passed
 
+## Scheduler Default Surface QA
+
+- source visual truth: `/tmp/codex-remote-attachments/019f9618-8084-7c03-a518-af09fcce8455/F309FE6D-B5F1-49D9-9254-F25DAC29DBE9/1-붙여넣은-이미지-1.jpg`
+- implementation evidence: existing signed-out scheduler render at `/private/tmp/softie-scheduler-tidy-qa/scheduler-login-390.png`, plus the scoped scheduler selectors in `src/styles.css`
+- source pixels: `588×1280`; implementation capture: `390×844` CSS px at 1× density
+- state: signed-in today view in the source; signed-out route in the browser, because no authenticated local session was available
+
+### Findings
+
+- P3 resolved: `지금 처리할 일` and `곧 다가오는 일정` are now the scheduler's default surface reference through `--scheduler-surface-default: rgba(18, 18, 14, 0.34)`.
+- Applied to the 근무 중 controls, 근무 일지/work-log surface, and scheduler editor card with the same short blur, quiet inner highlight, and shared soft outer border. Event rows, semantic status colors, and control affordances remain differentiated.
+- No home or non-scheduler surface changed.
+- Fonts, spacing, copy, and image assets remain unchanged from the previously passed scheduler QA.
+
+### Follow-up polish
+
+- P3: verify the signed-in today view and editor route on a physical iPhone/PWA capture to confirm the common surface reads consistently across real event data.
+
+final result: passed
+
 ## Scheduler Shared Outer Border QA
 
 - source visual truth: `/tmp/codex-remote-attachments/019f9618-8084-7c03-a518-af09fcce8455/C4C7B5AB-0B97-4590-9DD9-A8BBE63CCECE/1-붙여넣은-이미지-1.jpg` and `/tmp/codex-remote-attachments/019f9618-8084-7c03-a518-af09fcce8455/C4C7B5AB-0B97-4590-9DD9-A8BBE63CCECE/2-붙여넣은-이미지-2.jpg`
