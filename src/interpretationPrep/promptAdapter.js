@@ -46,11 +46,12 @@ export function buildInterpretationPrompt(interpretationContext, options = {}) {
 
   // 3. Structured Context Payload (LLM 전달용 정제 데이터)
   const contextPayload = {
-    consensus: candidateSetConsensus || {},
+    candidateSetConsensus: candidateSetConsensus || {},
     candidateFacts: Array.isArray(candidateFacts) ? candidateFacts : [],
     uncertainFactors: Array.isArray(uncertainFactors) ? uncertainFactors : [],
-    confidence: calculationConfidence?.stateContract?.confidence || 'high',
-    verificationStatus: calculationConfidence?.stateContract?.verificationStatus || 'verified',
+    calculationConfidence: calculationConfidence || {
+      stateContract: { confidence: 'high', verificationStatus: 'verified' },
+    },
     interpretationConstraints: Array.isArray(interpretationWarnings) ? interpretationWarnings : [],
   }
 

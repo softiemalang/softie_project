@@ -48,7 +48,9 @@ test('promptAdapter: unknown birth time adds low confidence guardrails to SYSTEM
 
   assert.ok(promptPkg)
   assert.equal(context.calculationConfidence.stateContract.confidence, 'low')
+  assert.equal(promptPkg.contextPayload.calculationConfidence.stateContract.confidence, 'low')
   assert.ok(promptPkg.systemInstruction.includes('[HIGH PRIORITY]'))
+  assert.ok(promptPkg.systemInstruction.includes('확정적 표현을 절대 금하며'))
   assert.ok(promptPkg.contextPayload.interpretationConstraints.some((c) => c.includes('12개 시주 후보가 생성되었으므로')))
   assert.ok(promptPkg.userQuestionPrompt.includes('[해석 시 필수 준수 가이드라인]'))
 })
