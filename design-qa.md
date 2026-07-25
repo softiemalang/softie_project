@@ -268,6 +268,20 @@
 
 final result: passed
 
+## Scheduler Work-Time Range Hierarchy QA
+
+- source visual truth: `/tmp/codex-remote-attachments/019f9618-8084-7c03-a518-af09fcce8455/B36D787E-66DB-4DEA-B776-55A8D4FEF6B3/1-붙여넣은-이미지-1.jpg` and `/tmp/codex-remote-attachments/019f9618-8084-7c03-a518-af09fcce8455/B36D787E-66DB-4DEA-B776-55A8D4FEF6B3/2-붙여넣은-이미지-2.jpg`
+- implementation selector: `.scheduler-theme-shell .scheduler-today-page .scheduler-controls .scheduler-filter-summary-copy > strong:not(.scheduler-work-status-title)`
+- change: the non-work-time range now uses the same `1rem/600` title hierarchy as `근무 중`; event row times are unchanged
+- state: signed-in today view in the source; no authenticated local browser session available for direct capture
+
+### Findings
+
+- P3 resolved: `8:00 - 24:00` no longer dominates the controls card. It now sits at the same quiet title level as `근무 중`, while its date/range supporting copy remains subordinate.
+- No event row time, spacing, state color, action label, or data behavior changed.
+
+final result: passed
+
 ## Home Scheduler-Default Surface QA
 
 - source visual truth: the approved scheduler reference captures, including `/tmp/codex-remote-attachments/019f9618-8084-7c03-a518-af09fcce8455/F309FE6D-B5F1-49D9-9254-F25DAC29DBE9/1-붙여넣은-이미지-1.jpg`
@@ -426,5 +440,20 @@ final result: passed
 
 - P3: verify the blur, brightness, and border response on a physical iPhone in Safari/PWA mode. Web `backdrop-filter` can match the transparency and edge hierarchy, but not iOS's native optical distortion or chromatic refraction.
 - P3: the signed-in scheduler command surface is code-covered by the same modifier but was not browser-captured because this session has no authenticated scheduler state.
+
+final result: passed
+
+## Scheduler Sync Completion Feedback QA
+
+- implementation: `src/scheduler/TodaySchedulerPage.jsx` and `src/styles.css`
+- rendered route: `/scheduler` at `http://127.0.0.1:5173/scheduler`
+- state: authenticated local preview with work-time mode enabled and an existing overlapping work log
+- primary interaction tested: `동기화` → `진행` displayed `동기화가 완료되었습니다` through an accessible status toast; the toast disappeared automatically after the transient interval
+
+### Findings
+
+- P3 resolved: successful sync now gives a non-blocking, warm liquid-glass confirmation at the top of the scheduler so the result is visible without interrupting the next action.
+- Existing overlap confirmation and error status flows remain unchanged; the completion feedback is only shown after the save or replacement request resolves successfully.
+- The toast is `role="status"` with `aria-live="polite"`, ignores pointer input, and respects `prefers-reduced-motion`.
 
 final result: passed

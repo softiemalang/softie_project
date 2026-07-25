@@ -108,7 +108,26 @@ export function TodaySchedulerPage({
   const [viewingWeekStart, setViewingWeekStart] = useState(() => getWeekStartDate(initialSelectedDate))
   const [copyFeedback, setCopyFeedback] = useState('')
   const [syncConfirmation, setSyncConfirmation] = useState(null)
+  const [syncToast, setSyncToast] = useState('')
   const eventsRequestSequenceRef = useRef(0)
+  const syncToastTimerRef = useRef(null)
+
+  useEffect(() => () => {
+    if (syncToastTimerRef.current) {
+      window.clearTimeout(syncToastTimerRef.current)
+    }
+  }, [])
+
+  function showSyncToast(message = '동기화가 완료되었습니다') {
+    setSyncToast(message)
+    if (syncToastTimerRef.current) {
+      window.clearTimeout(syncToastTimerRef.current)
+    }
+    syncToastTimerRef.current = window.setTimeout(() => {
+      setSyncToast('')
+      syncToastTimerRef.current = null
+    }, 1800)
+  }
 
   useEffect(() => {
     if (!effectiveOwnerKey) return
@@ -172,6 +191,7 @@ export function TodaySchedulerPage({
       setWorkLogs(prev => [...prev, saved])
       setPushStatus('근무 기록을 동기화했어요.')
       setTimeout(() => setPushStatus(''), 2000)
+      showSyncToast()
     } catch (err) {
       setPushStatus('기록 저장 중 오류가 발생했습니다.')
       console.error(err)
@@ -194,6 +214,7 @@ export function TodaySchedulerPage({
       setSyncConfirmation(null)
       setPushStatus('근무 기록을 변경 적용했어요.')
       setTimeout(() => setPushStatus(''), 2000)
+      showSyncToast()
     } catch (err) {
       setPushStatus('기록 변경 중 오류가 발생했습니다.')
       console.error(err)
@@ -639,6 +660,12 @@ export function TodaySchedulerPage({
 
   return (
     <div className="scheduler-shell scheduler-today-page">
+
+      {syncToast ? (
+        <div className="scheduler-sync-toast" role="status" aria-live="polite">
+          {syncToast}
+        </div>
+      ) : null}
 
       <section className="scheduler-status-dock" aria-label="계정과 알림 연결 상태">
         <button

@@ -5269,6 +5269,14 @@ textarea {
   line-height: 1.15;
 }
 
+.scheduler-theme-shell .scheduler-today-page .scheduler-controls .scheduler-filter-summary-copy > strong:not(.scheduler-work-status-title) {
+  color: var(--ag-text-tertiary);
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: -0.014em;
+  line-height: 1.15;
+}
+
 .scheduler-theme-shell .scheduler-filter-summary-copy .subtle,
 .scheduler-theme-shell .scheduler-work-log-card .scheduler-filter-summary-copy .subtle {
   color: var(--ag-text-muted);
@@ -5615,6 +5623,51 @@ textarea {
   background: rgba(10, 9, 7, 0.44);
   backdrop-filter: blur(10px) saturate(92%);
   -webkit-backdrop-filter: blur(10px) saturate(92%);
+}
+
+.scheduler-theme-shell .scheduler-sync-toast {
+  position: fixed;
+  z-index: 80;
+  top: max(1rem, calc(env(safe-area-inset-top) + 0.75rem));
+  left: 50%;
+  width: min(calc(100vw - 2rem), 320px);
+  box-sizing: border-box;
+  padding: 0.8rem 1rem;
+  transform: translateX(-50%);
+  color: var(--ag-text);
+  text-align: center;
+  font-size: 0.88rem;
+  font-weight: 650;
+  letter-spacing: -0.012em;
+  line-height: 1.3;
+  background: var(--ag-surface-liquid-strong);
+  border: 1px solid var(--ag-line-liquid);
+  border-radius: var(--ag-radius-control);
+  box-shadow:
+    inset 0 1px 0 var(--ag-highlight-liquid),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.06),
+    var(--ag-shadow-control);
+  backdrop-filter: blur(12px) saturate(108%) brightness(0.96);
+  -webkit-backdrop-filter: blur(12px) saturate(108%) brightness(0.96);
+  pointer-events: none;
+  animation: scheduler-sync-toast-in 180ms ease-out both;
+}
+
+@keyframes scheduler-sync-toast-in {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -6px);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scheduler-theme-shell .scheduler-sync-toast {
+    animation: none;
+  }
 }
 
 .scheduler-theme-shell .scheduler-sheet,
