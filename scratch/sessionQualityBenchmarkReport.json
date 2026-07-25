@@ -1,0 +1,589 @@
+{
+  "timestamp": "2026-07-25T12:59:20.434Z",
+  "engine": "Phase UX-1 Interpretation Session Engine (Topic Router + Priority Ordering + Strict Isolation)",
+  "totalCases": 3,
+  "passedCases": 3,
+  "passRate": "100%",
+  "rubricCriteria": [
+    "intentAccuracy (질문 의도 및 도메인 분석 정확도)",
+    "lensPriorityRelevance (Primary/Secondary 렌즈 참조 순서 적절성)",
+    "systemIndependence (체계 간 용어 및 근거 분리 유지)",
+    "uncertaintySeparation (개별 불확실성 분리 고지)",
+    "nonDeterministicGuidance (결정론적 단정 배제)",
+    "practicalActionability (현실적 주체적 조언)",
+    "conversationalContinuity (마무리 대화 지속성 및 성찰 질문)"
+  ],
+  "evaluations": [
+    {
+      "caseId": "session-case-1-career",
+      "caseName": "커리어/이직 관련 질문 세션 케이스",
+      "scores": {
+        "intentAccuracy": 2,
+        "lensPriorityRelevance": 2,
+        "systemIndependence": 2,
+        "uncertaintySeparation": 2,
+        "nonDeterministicGuidance": 2,
+        "practicalActionability": 1,
+        "conversationalContinuity": 2
+      },
+      "totalScore": 13,
+      "passed": true,
+      "sessionStateSnapshot": {
+        "sessionId": "session-1784984360434",
+        "currentQuestion": "요즘 이직을 고민 중인데, 제 직업 적성과 대외적 환경이 어떤 방향인지 궁금해요.",
+        "topicAnalysis": {
+          "originalQuestion": "요즘 이직을 고민 중인데, 제 직업 적성과 대외적 환경이 어떤 방향인지 궁금해요.",
+          "topic": {
+            "primary": "career",
+            "secondary": []
+          },
+          "intent": "self_reflection_and_empathy",
+          "questionType": "open_question",
+          "lensPriority": {
+            "primary": [
+              "ziwei"
+            ],
+            "secondary": [
+              "saju"
+            ],
+            "contextual": [
+              "astrology"
+            ],
+            "rationale": "사회적 환경 배치, 명궁/관록궁/재백궁 삼방사정 관계망(자미두수)을 최우선 참조합니다."
+          }
+        },
+        "userIntent": "self_reflection_and_empathy",
+        "currentTopic": {
+          "primary": "career",
+          "secondary": []
+        },
+        "lensPriority": {
+          "primary": [
+            "ziwei"
+          ],
+          "secondary": [
+            "saju"
+          ],
+          "contextual": [
+            "astrology"
+          ],
+          "rationale": "사회적 환경 배치, 명궁/관록궁/재백궁 삼방사정 관계망(자미두수)을 최우선 참조합니다."
+        },
+        "previousInsights": [],
+        "userProvidedContext": [],
+        "followUpQuestions": []
+      },
+      "payloadSnapshot": {
+        "systemPrompt": "# [3대 체계 상담 세션 AI 대화 가이드 - 홍길동님]\n## 내담자 질문: \"요즘 이직을 고민 중인데, 제 직업 적성과 대외적 환경이 어떤 방향인지 궁금해요.\"\n- 분석된 고민 주제: career (부주제: 없음)\n- 상담 의도: self_reflection_and_empathy\n- 렌즈 참조 우선순위: Primary [ziwei], Secondary [saju]\n- 렌즈 참조 이유: 사회적 환경 배치, 명궁/관록궁/재백궁 삼방사정 관계망(자미두수)을 최우선 참조합니다.\n## Step 1: 렌즈 우선순위에 따른 다차원 조망 (Strict Term Isolation 준수)\n* Primary 렌즈 [ziwei]에 대한 근거를 해당 체계 전용 용어로 정갈하게 설명하십시오.\n* Secondary 렌즈 [saju]에 대한 보완 근거를 해당 체계 전용 용어로 설명하십시오.\n* 체계 간 용어(예: 오행과 하우스/궁위)를 인과관계로 직접 섞어 서술하는 것을 엄격히 금합니다.\n## Step 2: 공통 테마 및 통합 조망 (Synthesis)\n- 체계 간 시너지: multi_lens_synthesis (사주(내면 오행 기질), 자미두수(대외 환경·관계), 점성학(원형적 심리·상징 시간선) 3대 체계가 다차원적 입체 관점을 제공합니다.)\n- 신뢰도 상태: 세 체계 모두 안정적인 데이터 계약 상태를 유지하고 있습니다.\n- 통합 조망: 세 체계는 [주체적 역량 발휘 및 자기 표현]이라는 동일한 공통 주제에 대해 각자 내면 기질, 대외 환경, 심리 원형이라는 서로 다른 층위를 보여줍니다.\n## Step 3: 세션 안전 및 대화 지속성 지침 (Safety & Conversational Continuity)\n- 각 체계의 용어(사주의 오행/십신, 자미두수의 주성/궁위, 점성학의 행성/하우스)는 반드시 해당 체계 내부 의미로만 설명하십시오.\n- 서로 다른 체계의 상징을 한 문장에서 직접 인과관계로 연결하거나, 하나의 체계가 다른 체계를 증명한다고 표현하지 마십시오.\n- 렌즈 참조 우선순위(Primary/Secondary/Contextual)를 준수하여 질문 의도에 가장 친화적인 체계를 중심으로 조명하되 특정 체계의 정답 독점을 배제하십시오.\n- 불확실 요소가 포함된 체계가 있다면 이를 숨기지 말고 솔직하게 분리 고지하십시오.\n- 결정론적 예언을 철저히 금지하며, 답변 마지막에는 내담자의 경험과 생각을 묻는 질문을 포함하여 따뜻한 대화를 이어가십시오.\n## Step 4: 대화식 답변 구조\n1. 공감과 질문 의도 확인\n2. 렌즈 우선순위별 독립 근거 제시\n3. 통합 synthesis 관점 서술 (판결이나 단정 금지)\n4. [중요] 내담자가 자신의 경험과 연결해볼 수 있도록 묻는 성찰 질문으로 마무리하여 대화 지속하기",
+        "sessionState": {
+          "sessionId": "session-1784984360434",
+          "currentQuestion": "요즘 이직을 고민 중인데, 제 직업 적성과 대외적 환경이 어떤 방향인지 궁금해요.",
+          "topicAnalysis": {
+            "originalQuestion": "요즘 이직을 고민 중인데, 제 직업 적성과 대외적 환경이 어떤 방향인지 궁금해요.",
+            "topic": {
+              "primary": "career",
+              "secondary": []
+            },
+            "intent": "self_reflection_and_empathy",
+            "questionType": "open_question",
+            "lensPriority": {
+              "primary": [
+                "ziwei"
+              ],
+              "secondary": [
+                "saju"
+              ],
+              "contextual": [
+                "astrology"
+              ],
+              "rationale": "사회적 환경 배치, 명궁/관록궁/재백궁 삼방사정 관계망(자미두수)을 최우선 참조합니다."
+            }
+          },
+          "userIntent": "self_reflection_and_empathy",
+          "currentTopic": {
+            "primary": "career",
+            "secondary": []
+          },
+          "lensPriority": {
+            "primary": [
+              "ziwei"
+            ],
+            "secondary": [
+              "saju"
+            ],
+            "contextual": [
+              "astrology"
+            ],
+            "rationale": "사회적 환경 배치, 명궁/관록궁/재백궁 삼방사정 관계망(자미두수)을 최우선 참조합니다."
+          },
+          "previousInsights": [],
+          "userProvidedContext": [],
+          "followUpQuestions": []
+        },
+        "unifiedContextPayload": {
+          "systemType": "unified_3system_saju_ziwei_astrology",
+          "subjectName": "홍길동",
+          "systemAgreement": {
+            "agreementLevel": "multi_lens_synthesis",
+            "note": "사주(내면 오행 기질), 자미두수(대외 환경·관계), 점성학(원형적 심리·상징 시간선) 3대 체계가 다차원적 입체 관점을 제공합니다."
+          },
+          "sharedThemes": [
+            {
+              "themeId": "core_competency_and_expression",
+              "label": "주체적 역량 발휘 및 자기 표현",
+              "evidence": {
+                "saju": [
+                  "일간 甲 중심 오행 흐름"
+                ],
+                "ziwei": [
+                  "명궁 寅宮 삼방사정 배치"
+                ],
+                "astrology": [
+                  "Sun in Aries, Ascendant in Leo"
+                ]
+              },
+              "sajuPerspective": "사주는 일간 甲 중심의 내면적 에너지와 축적된 역량에 주목합니다.",
+              "ziweiPerspective": "자미두수는 寅宮 명궁 중심의 사회적 관계망과 대외적 역동성에 주목합니다.",
+              "astrologyPerspective": "점성학은 Aries 태양 및 상승궁 중심의 심리 원형과 의식 발전 여정에 주목합니다.",
+              "synthesis": "세 체계는 모두 주체적 표현이라는 동일한 삶의 주제를 비추지만, 사주는 내면의 오행 동력, 자미두수는 사회적 환경 배치, 점성학은 심리적 원형과 발전 여정이라는 서로 다른 층위를 충실히 보여줍니다."
+            }
+          ],
+          "differentPerspectives": [
+            {
+              "perspectiveId": "internal_vs_external_vs_archetypal",
+              "label": "내면 기질(사주) vs 환경 역동성(자미두수) vs 원형적 시간선(점성학)",
+              "description": "사주는 오행의 기운 축적과 조화를 비추고, 자미두수는 삶의 무대와 인연의 관계망을 조명하며, 서양 점성학은 심리적 상징과 우주적 시기의 전개를 보여줍니다."
+            }
+          ],
+          "unifiedConfidence": {
+            "overallConfidence": "high",
+            "sajuConfidence": "high",
+            "ziweiConfidence": "high",
+            "astrologyConfidence": "high",
+            "overallGuidance": "세 체계 모두 안정적인 데이터 계약 상태를 유지하고 있습니다.",
+            "uncertainFactors": [],
+            "warnings": []
+          },
+          "sajuContext": {
+            "subjectName": "홍길동",
+            "calculationConfidence": {
+              "stateContract": {
+                "confidence": "high"
+              }
+            },
+            "candidateSetConsensus": {
+              "factual": {
+                "dayMaster": "甲"
+              }
+            }
+          },
+          "ziweiContext": {
+            "subjectName": "홍길동",
+            "calculationConfidence": {
+              "stateContract": {
+                "confidence": "high"
+              }
+            },
+            "candidateSetConsensus": {
+              "factual": {
+                "mingGongBranch": "寅"
+              }
+            }
+          },
+          "astrologyContext": {
+            "subjectName": "홍길동",
+            "astrologyContextSnapshot": {
+              "confidence": "high",
+              "factualSigns": {
+                "sunSign": "Aries",
+                "ascendantSign": "Leo"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "caseId": "session-case-2-personality-self",
+      "caseName": "내면 기질 및 왜 지치는지에 대한 성찰 질문 세션 케이스",
+      "scores": {
+        "intentAccuracy": 2,
+        "lensPriorityRelevance": 2,
+        "systemIndependence": 2,
+        "uncertaintySeparation": 2,
+        "nonDeterministicGuidance": 2,
+        "practicalActionability": 1,
+        "conversationalContinuity": 2
+      },
+      "totalScore": 13,
+      "passed": true,
+      "sessionStateSnapshot": {
+        "sessionId": "session-1784984360434",
+        "currentQuestion": "요즘 내가 왜 이렇게 마음이 지치고 스스로에 대해 잘 모르겠는지 고민이에요.",
+        "topicAnalysis": {
+          "originalQuestion": "요즘 내가 왜 이렇게 마음이 지치고 스스로에 대해 잘 모르겠는지 고민이에요.",
+          "topic": {
+            "primary": "personality",
+            "secondary": [
+              "timing"
+            ]
+          },
+          "intent": "self_reflection_and_empathy",
+          "questionType": "open_question",
+          "lensPriority": {
+            "primary": [
+              "saju",
+              "astrology"
+            ],
+            "secondary": [
+              "ziwei"
+            ],
+            "contextual": [],
+            "rationale": "내면의 기질 및 오행 수양(사주)과 심리 원형·의식 발전 여정(점성학)을 최우선 참조합니다."
+          }
+        },
+        "userIntent": "self_reflection_and_empathy",
+        "currentTopic": {
+          "primary": "personality",
+          "secondary": [
+            "timing"
+          ]
+        },
+        "lensPriority": {
+          "primary": [
+            "saju",
+            "astrology"
+          ],
+          "secondary": [
+            "ziwei"
+          ],
+          "contextual": [],
+          "rationale": "내면의 기질 및 오행 수양(사주)과 심리 원형·의식 발전 여정(점성학)을 최우선 참조합니다."
+        },
+        "previousInsights": [],
+        "userProvidedContext": [],
+        "followUpQuestions": []
+      },
+      "payloadSnapshot": {
+        "systemPrompt": "# [3대 체계 상담 세션 AI 대화 가이드 - 김철수님]\n## 내담자 질문: \"요즘 내가 왜 이렇게 마음이 지치고 스스로에 대해 잘 모르겠는지 고민이에요.\"\n- 분석된 고민 주제: personality (부주제: timing)\n- 상담 의도: self_reflection_and_empathy\n- 렌즈 참조 우선순위: Primary [saju, astrology], Secondary [ziwei]\n- 렌즈 참조 이유: 내면의 기질 및 오행 수양(사주)과 심리 원형·의식 발전 여정(점성학)을 최우선 참조합니다.\n## Step 1: 렌즈 우선순위에 따른 다차원 조망 (Strict Term Isolation 준수)\n* Primary 렌즈 [saju, astrology]에 대한 근거를 해당 체계 전용 용어로 정갈하게 설명하십시오.\n* Secondary 렌즈 [ziwei]에 대한 보완 근거를 해당 체계 전용 용어로 설명하십시오.\n* 체계 간 용어(예: 오행과 하우스/궁위)를 인과관계로 직접 섞어 서술하는 것을 엄격히 금합니다.\n## Step 2: 공통 테마 및 통합 조망 (Synthesis)\n- 체계 간 시너지: partial_uncertainty_preserved (일부 체계(saju)의 불확실성 요소로 인해 정밀 측정된 확정 데이터 중심의 보완적 서술이 요구됩니다.)\n- 신뢰도 상태: 일부 체계(saju)는 경계 후보 요소를 포함하되, 나머지 확정된 체계의 데이터는 안정적인 참고 자료가 됩니다.\n- 통합 조망: 세 체계는 [주체적 역량 발휘 및 자기 표현]이라는 동일한 공통 주제에 대해 각자 내면 기질, 대외 환경, 심리 원형이라는 서로 다른 층위를 보여줍니다.\n## Step 3: 세션 안전 및 대화 지속성 지침 (Safety & Conversational Continuity)\n- 각 체계의 용어(사주의 오행/십신, 자미두수의 주성/궁위, 점성학의 행성/하우스)는 반드시 해당 체계 내부 의미로만 설명하십시오.\n- 서로 다른 체계의 상징을 한 문장에서 직접 인과관계로 연결하거나, 하나의 체계가 다른 체계를 증명한다고 표현하지 마십시오.\n- 렌즈 참조 우선순위(Primary/Secondary/Contextual)를 준수하여 질문 의도에 가장 친화적인 체계를 중심으로 조명하되 특정 체계의 정답 독점을 배제하십시오.\n- 불확실 요소가 포함된 체계가 있다면 이를 숨기지 말고 솔직하게 분리 고지하십시오.\n- 결정론적 예언을 철저히 금지하며, 답변 마지막에는 내담자의 경험과 생각을 묻는 질문을 포함하여 따뜻한 대화를 이어가십시오.\n## Step 4: 대화식 답변 구조\n1. 공감과 질문 의도 확인\n2. 렌즈 우선순위별 독립 근거 제시\n3. 통합 synthesis 관점 서술 (판결이나 단정 금지)\n4. [중요] 내담자가 자신의 경험과 연결해볼 수 있도록 묻는 성찰 질문으로 마무리하여 대화 지속하기",
+        "sessionState": {
+          "sessionId": "session-1784984360434",
+          "currentQuestion": "요즘 내가 왜 이렇게 마음이 지치고 스스로에 대해 잘 모르겠는지 고민이에요.",
+          "topicAnalysis": {
+            "originalQuestion": "요즘 내가 왜 이렇게 마음이 지치고 스스로에 대해 잘 모르겠는지 고민이에요.",
+            "topic": {
+              "primary": "personality",
+              "secondary": [
+                "timing"
+              ]
+            },
+            "intent": "self_reflection_and_empathy",
+            "questionType": "open_question",
+            "lensPriority": {
+              "primary": [
+                "saju",
+                "astrology"
+              ],
+              "secondary": [
+                "ziwei"
+              ],
+              "contextual": [],
+              "rationale": "내면의 기질 및 오행 수양(사주)과 심리 원형·의식 발전 여정(점성학)을 최우선 참조합니다."
+            }
+          },
+          "userIntent": "self_reflection_and_empathy",
+          "currentTopic": {
+            "primary": "personality",
+            "secondary": [
+              "timing"
+            ]
+          },
+          "lensPriority": {
+            "primary": [
+              "saju",
+              "astrology"
+            ],
+            "secondary": [
+              "ziwei"
+            ],
+            "contextual": [],
+            "rationale": "내면의 기질 및 오행 수양(사주)과 심리 원형·의식 발전 여정(점성학)을 최우선 참조합니다."
+          },
+          "previousInsights": [],
+          "userProvidedContext": [],
+          "followUpQuestions": []
+        },
+        "unifiedContextPayload": {
+          "systemType": "unified_3system_saju_ziwei_astrology",
+          "subjectName": "김철수",
+          "systemAgreement": {
+            "agreementLevel": "partial_uncertainty_preserved",
+            "note": "일부 체계(saju)의 불확실성 요소로 인해 정밀 측정된 확정 데이터 중심의 보완적 서술이 요구됩니다."
+          },
+          "sharedThemes": [
+            {
+              "themeId": "core_competency_and_expression",
+              "label": "주체적 역량 발휘 및 자기 표현",
+              "evidence": {
+                "saju": [
+                  "일간 중심 내부 기질"
+                ],
+                "ziwei": [
+                  "명궁 巳宮 삼방사정 배치"
+                ],
+                "astrology": [
+                  "Sun in Taurus, Ascendant in Virgo"
+                ]
+              },
+              "sajuPerspective": "사주는 일간 중심의 내면 기질과 오행 생극 제화에 주목합니다.",
+              "ziweiPerspective": "자미두수는 巳宮 명궁 중심의 사회적 관계망과 대외적 역동성에 주목합니다.",
+              "astrologyPerspective": "점성학은 Taurus 태양 및 상승궁 중심의 심리 원형과 의식 발전 여정에 주목합니다.",
+              "synthesis": "세 체계는 모두 주체적 표현이라는 동일한 삶의 주제를 비추지만, 사주는 내면의 오행 동력, 자미두수는 사회적 환경 배치, 점성학은 심리적 원형과 발전 여정이라는 서로 다른 층위를 충실히 보여줍니다."
+            }
+          ],
+          "differentPerspectives": [
+            {
+              "perspectiveId": "internal_vs_external_vs_archetypal",
+              "label": "내면 기질(사주) vs 환경 역동성(자미두수) vs 원형적 시간선(점성학)",
+              "description": "사주는 오행의 기운 축적과 조화를 비추고, 자미두수는 삶의 무대와 인연의 관계망을 조명하며, 서양 점성학은 심리적 상징과 우주적 시기의 전개를 보여줍니다."
+            }
+          ],
+          "unifiedConfidence": {
+            "overallConfidence": "medium",
+            "sajuConfidence": "low",
+            "ziweiConfidence": "high",
+            "astrologyConfidence": "high",
+            "overallGuidance": "일부 체계(saju)는 경계 후보 요소를 포함하되, 나머지 확정된 체계의 데이터는 안정적인 참고 자료가 됩니다.",
+            "uncertainFactors": [
+              "입춘 절기 경계 시각 출생"
+            ],
+            "warnings": []
+          },
+          "sajuContext": {
+            "subjectName": "김철수",
+            "calculationConfidence": {
+              "stateContract": {
+                "confidence": "low"
+              }
+            },
+            "uncertainFactors": [
+              "입춘 절기 경계 시각 출생"
+            ]
+          },
+          "ziweiContext": {
+            "subjectName": "김철수",
+            "calculationConfidence": {
+              "stateContract": {
+                "confidence": "high"
+              }
+            },
+            "candidateSetConsensus": {
+              "factual": {
+                "mingGongBranch": "巳"
+              }
+            }
+          },
+          "astrologyContext": {
+            "subjectName": "김철수",
+            "astrologyContextSnapshot": {
+              "confidence": "high",
+              "factualSigns": {
+                "sunSign": "Taurus",
+                "ascendantSign": "Virgo"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "caseId": "session-case-3-relationship",
+      "caseName": "연애 패턴 및 인간관계 인연 질문 세션 케이스",
+      "scores": {
+        "intentAccuracy": 2,
+        "lensPriorityRelevance": 2,
+        "systemIndependence": 2,
+        "uncertaintySeparation": 2,
+        "nonDeterministicGuidance": 2,
+        "practicalActionability": 1,
+        "conversationalContinuity": 2
+      },
+      "totalScore": 13,
+      "passed": true,
+      "sessionStateSnapshot": {
+        "sessionId": "session-1784984360434",
+        "currentQuestion": "사람들과 관계를 맺을 때 왜 자꾸 일정한 패턴이 반복되는지, 연애와 인간관계가 궁금해요.",
+        "topicAnalysis": {
+          "originalQuestion": "사람들과 관계를 맺을 때 왜 자꾸 일정한 패턴이 반복되는지, 연애와 인간관계가 궁금해요.",
+          "topic": {
+            "primary": "career",
+            "secondary": []
+          },
+          "intent": "exploration",
+          "questionType": "open_question",
+          "lensPriority": {
+            "primary": [
+              "ziwei"
+            ],
+            "secondary": [
+              "saju"
+            ],
+            "contextual": [
+              "astrology"
+            ],
+            "rationale": "사회적 환경 배치, 명궁/관록궁/재백궁 삼방사정 관계망(자미두수)을 최우선 참조합니다."
+          }
+        },
+        "userIntent": "exploration",
+        "currentTopic": {
+          "primary": "career",
+          "secondary": []
+        },
+        "lensPriority": {
+          "primary": [
+            "ziwei"
+          ],
+          "secondary": [
+            "saju"
+          ],
+          "contextual": [
+            "astrology"
+          ],
+          "rationale": "사회적 환경 배치, 명궁/관록궁/재백궁 삼방사정 관계망(자미두수)을 최우선 참조합니다."
+        },
+        "previousInsights": [],
+        "userProvidedContext": [],
+        "followUpQuestions": []
+      },
+      "payloadSnapshot": {
+        "systemPrompt": "# [3대 체계 상담 세션 AI 대화 가이드 - 이영희님]\n## 내담자 질문: \"사람들과 관계를 맺을 때 왜 자꾸 일정한 패턴이 반복되는지, 연애와 인간관계가 궁금해요.\"\n- 분석된 고민 주제: career (부주제: 없음)\n- 상담 의도: exploration\n- 렌즈 참조 우선순위: Primary [ziwei], Secondary [saju]\n- 렌즈 참조 이유: 사회적 환경 배치, 명궁/관록궁/재백궁 삼방사정 관계망(자미두수)을 최우선 참조합니다.\n## Step 1: 렌즈 우선순위에 따른 다차원 조망 (Strict Term Isolation 준수)\n* Primary 렌즈 [ziwei]에 대한 근거를 해당 체계 전용 용어로 정갈하게 설명하십시오.\n* Secondary 렌즈 [saju]에 대한 보완 근거를 해당 체계 전용 용어로 설명하십시오.\n* 체계 간 용어(예: 오행과 하우스/궁위)를 인과관계로 직접 섞어 서술하는 것을 엄격히 금합니다.\n## Step 2: 공통 테마 및 통합 조망 (Synthesis)\n- 체계 간 시너지: multi_lens_synthesis (사주(내면 오행 기질), 자미두수(대외 환경·관계), 점성학(원형적 심리·상징 시간선) 3대 체계가 다차원적 입체 관점을 제공합니다.)\n- 신뢰도 상태: 세 체계 모두 안정적인 데이터 계약 상태를 유지하고 있습니다.\n- 통합 조망: 세 체계는 [주체적 역량 발휘 및 자기 표현]이라는 동일한 공통 주제에 대해 각자 내면 기질, 대외 환경, 심리 원형이라는 서로 다른 층위를 보여줍니다.\n## Step 3: 세션 안전 및 대화 지속성 지침 (Safety & Conversational Continuity)\n- 각 체계의 용어(사주의 오행/십신, 자미두수의 주성/궁위, 점성학의 행성/하우스)는 반드시 해당 체계 내부 의미로만 설명하십시오.\n- 서로 다른 체계의 상징을 한 문장에서 직접 인과관계로 연결하거나, 하나의 체계가 다른 체계를 증명한다고 표현하지 마십시오.\n- 렌즈 참조 우선순위(Primary/Secondary/Contextual)를 준수하여 질문 의도에 가장 친화적인 체계를 중심으로 조명하되 특정 체계의 정답 독점을 배제하십시오.\n- 불확실 요소가 포함된 체계가 있다면 이를 숨기지 말고 솔직하게 분리 고지하십시오.\n- 결정론적 예언을 철저히 금지하며, 답변 마지막에는 내담자의 경험과 생각을 묻는 질문을 포함하여 따뜻한 대화를 이어가십시오.\n## Step 4: 대화식 답변 구조\n1. 공감과 질문 의도 확인\n2. 렌즈 우선순위별 독립 근거 제시\n3. 통합 synthesis 관점 서술 (판결이나 단정 금지)\n4. [중요] 내담자가 자신의 경험과 연결해볼 수 있도록 묻는 성찰 질문으로 마무리하여 대화 지속하기",
+        "sessionState": {
+          "sessionId": "session-1784984360434",
+          "currentQuestion": "사람들과 관계를 맺을 때 왜 자꾸 일정한 패턴이 반복되는지, 연애와 인간관계가 궁금해요.",
+          "topicAnalysis": {
+            "originalQuestion": "사람들과 관계를 맺을 때 왜 자꾸 일정한 패턴이 반복되는지, 연애와 인간관계가 궁금해요.",
+            "topic": {
+              "primary": "career",
+              "secondary": []
+            },
+            "intent": "exploration",
+            "questionType": "open_question",
+            "lensPriority": {
+              "primary": [
+                "ziwei"
+              ],
+              "secondary": [
+                "saju"
+              ],
+              "contextual": [
+                "astrology"
+              ],
+              "rationale": "사회적 환경 배치, 명궁/관록궁/재백궁 삼방사정 관계망(자미두수)을 최우선 참조합니다."
+            }
+          },
+          "userIntent": "exploration",
+          "currentTopic": {
+            "primary": "career",
+            "secondary": []
+          },
+          "lensPriority": {
+            "primary": [
+              "ziwei"
+            ],
+            "secondary": [
+              "saju"
+            ],
+            "contextual": [
+              "astrology"
+            ],
+            "rationale": "사회적 환경 배치, 명궁/관록궁/재백궁 삼방사정 관계망(자미두수)을 최우선 참조합니다."
+          },
+          "previousInsights": [],
+          "userProvidedContext": [],
+          "followUpQuestions": []
+        },
+        "unifiedContextPayload": {
+          "systemType": "unified_3system_saju_ziwei_astrology",
+          "subjectName": "이영희",
+          "systemAgreement": {
+            "agreementLevel": "multi_lens_synthesis",
+            "note": "사주(내면 오행 기질), 자미두수(대외 환경·관계), 점성학(원형적 심리·상징 시간선) 3대 체계가 다차원적 입체 관점을 제공합니다."
+          },
+          "sharedThemes": [
+            {
+              "themeId": "core_competency_and_expression",
+              "label": "주체적 역량 발휘 및 자기 표현",
+              "evidence": {
+                "saju": [
+                  "일간 丙 중심 오행 흐름"
+                ],
+                "ziwei": [
+                  "명궁 申宮 삼방사정 배치"
+                ],
+                "astrology": [
+                  "Sun in Scorpio, Ascendant in Libra"
+                ]
+              },
+              "sajuPerspective": "사주는 일간 丙 중심의 내면적 에너지와 축적된 역량에 주목합니다.",
+              "ziweiPerspective": "자미두수는 申宮 명궁 중심의 사회적 관계망과 대외적 역동성에 주목합니다.",
+              "astrologyPerspective": "점성학은 Scorpio 태양 및 상승궁 중심의 심리 원형과 의식 발전 여정에 주목합니다.",
+              "synthesis": "세 체계는 모두 주체적 표현이라는 동일한 삶의 주제를 비추지만, 사주는 내면의 오행 동력, 자미두수는 사회적 환경 배치, 점성학은 심리적 원형과 발전 여정이라는 서로 다른 층위를 충실히 보여줍니다."
+            }
+          ],
+          "differentPerspectives": [
+            {
+              "perspectiveId": "internal_vs_external_vs_archetypal",
+              "label": "내면 기질(사주) vs 환경 역동성(자미두수) vs 원형적 시간선(점성학)",
+              "description": "사주는 오행의 기운 축적과 조화를 비추고, 자미두수는 삶의 무대와 인연의 관계망을 조명하며, 서양 점성학은 심리적 상징과 우주적 시기의 전개를 보여줍니다."
+            }
+          ],
+          "unifiedConfidence": {
+            "overallConfidence": "high",
+            "sajuConfidence": "high",
+            "ziweiConfidence": "high",
+            "astrologyConfidence": "high",
+            "overallGuidance": "세 체계 모두 안정적인 데이터 계약 상태를 유지하고 있습니다.",
+            "uncertainFactors": [],
+            "warnings": []
+          },
+          "sajuContext": {
+            "subjectName": "이영희",
+            "calculationConfidence": {
+              "stateContract": {
+                "confidence": "high"
+              }
+            },
+            "candidateSetConsensus": {
+              "factual": {
+                "dayMaster": "丙"
+              }
+            }
+          },
+          "ziweiContext": {
+            "subjectName": "이영희",
+            "calculationConfidence": {
+              "stateContract": {
+                "confidence": "high"
+              }
+            },
+            "candidateSetConsensus": {
+              "factual": {
+                "mingGongBranch": "申"
+              }
+            }
+          },
+          "astrologyContext": {
+            "subjectName": "이영희",
+            "astrologyContextSnapshot": {
+              "confidence": "high",
+              "factualSigns": {
+                "sunSign": "Scorpio",
+                "ascendantSign": "Libra"
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
+}

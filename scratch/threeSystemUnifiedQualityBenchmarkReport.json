@@ -1,0 +1,436 @@
+{
+  "timestamp": "2026-07-25T12:56:21.024Z",
+  "engine": "3-System Unified Interpretation Engine (Saju + Ziwei + Western Astrology)",
+  "totalCases": 3,
+  "passedCases": 3,
+  "passRate": "100%",
+  "rubricCriteria": [
+    "systemIndependencePreservation (체계 간 용어/논리 오염 배제)",
+    "evidenceTraceability (근거 출처 추적 가능성)",
+    "uncertaintySeparation (개별 불확실성 분리 고지)",
+    "multiLensSynthesis (다차원 층위적 관점 보완)",
+    "nonDeterministicGuidance (비결정론적 성찰 유도)",
+    "practicalReflection (실용적 주체적 선택 유도)"
+  ],
+  "evaluations": [
+    {
+      "caseId": "case-1-all-high",
+      "caseName": "3대 체계 모두 고신뢰도(High Confidence) 정상 케이스",
+      "scores": {
+        "systemIndependencePreservation": 2,
+        "evidenceTraceability": 2,
+        "uncertaintySeparation": 2,
+        "multiLensSynthesis": 2,
+        "nonDeterministicGuidance": 2,
+        "practicalReflection": 2
+      },
+      "totalScore": 12,
+      "passed": true,
+      "unifiedContextSnapshot": {
+        "systemType": "unified_3system_saju_ziwei_astrology",
+        "subjectName": "홍길동",
+        "systemAgreement": {
+          "agreementLevel": "multi_lens_synthesis",
+          "note": "사주(내면 오행 기질), 자미두수(대외 환경·관계), 점성학(원형적 심리·상징 시간선) 3대 체계가 다차원적 입체 관점을 제공합니다."
+        },
+        "sharedThemes": [
+          {
+            "themeId": "core_competency_and_expression",
+            "label": "주체적 역량 발휘 및 자기 표현",
+            "evidence": {
+              "saju": [
+                "일간 甲 중심 오행 흐름"
+              ],
+              "ziwei": [
+                "명궁 寅宮 삼방사정 배치"
+              ],
+              "astrology": [
+                "Sun in Aries, Ascendant in Leo"
+              ]
+            },
+            "sajuPerspective": "사주는 일간 甲 중심의 내면적 에너지와 축적된 역량에 주목합니다.",
+            "ziweiPerspective": "자미두수는 寅宮 명궁 중심의 사회적 관계망과 대외적 역동성에 주목합니다.",
+            "astrologyPerspective": "점성학은 Aries 태양 및 상승궁 중심의 심리 원형과 의식 발전 여정에 주목합니다.",
+            "synthesis": "세 체계는 모두 주체적 표현이라는 동일한 삶의 주제를 비추지만, 사주는 내면의 오행 동력, 자미두수는 사회적 환경 배치, 점성학은 심리적 원형과 발전 여정이라는 서로 다른 층위를 충실히 보여줍니다."
+          }
+        ],
+        "differentPerspectives": [
+          {
+            "perspectiveId": "internal_vs_external_vs_archetypal",
+            "label": "내면 기질(사주) vs 환경 역동성(자미두수) vs 원형적 시간선(점성학)",
+            "description": "사주는 오행의 기운 축적과 조화를 비추고, 자미두수는 삶의 무대와 인연의 관계망을 조명하며, 서양 점성학은 심리적 상징과 우주적 시기의 전개를 보여줍니다."
+          }
+        ],
+        "unifiedConfidence": {
+          "overallConfidence": "high",
+          "sajuConfidence": "high",
+          "ziweiConfidence": "high",
+          "astrologyConfidence": "high",
+          "overallGuidance": "세 체계 모두 안정적인 데이터 계약 상태를 유지하고 있습니다.",
+          "uncertainFactors": [],
+          "warnings": []
+        },
+        "sajuContext": {
+          "subjectName": "홍길동",
+          "calculationConfidence": {
+            "stateContract": {
+              "confidence": "high"
+            }
+          },
+          "candidateSetConsensus": {
+            "factual": {
+              "dayMaster": "甲"
+            }
+          }
+        },
+        "ziweiContext": {
+          "subjectName": "홍길동",
+          "calculationConfidence": {
+            "stateContract": {
+              "confidence": "high"
+            }
+          },
+          "candidateSetConsensus": {
+            "factual": {
+              "mingGongBranch": "寅"
+            }
+          }
+        },
+        "astrologyContext": {
+          "subjectName": "홍길동",
+          "astrologyContextSnapshot": {
+            "confidence": "high",
+            "factualSigns": {
+              "sunSign": "Aries",
+              "ascendantSign": "Leo"
+            }
+          }
+        }
+      },
+      "payloadSnapshot": {
+        "systemPrompt": "# [사주 + 자미두수 + 서양점성학 3대 체계 통합 AI 해석 가이드 - 홍길동님]\n## Step 1: 3대 체계별 독립 렌즈 설명\n- 사주 관점: 내면의 기질, 오행 생극제화 및 십성 에너지 흐름\n- 자미두수 관점: 명궁 중심의 삼방사정(三方四正) 환경 배치 및 인연 네트워크\n- 서양점성학 관점: 태양·달·상승궁 및 하우스/애스펙트 중심의 심리 원형과 상징적 시간선\n## Step 2: 공통 테마 (Shared Themes & Synthesis)\n- 체계 간 시너지 상태: multi_lens_synthesis (사주(내면 오행 기질), 자미두수(대외 환경·관계), 점성학(원형적 심리·상징 시간선) 3대 체계가 다차원적 입체 관점을 제공합니다.)\n- 통합 신뢰도 가이드: 세 체계 모두 안정적인 데이터 계약 상태를 유지하고 있습니다.\n- 공통 테마 [주체적 역량 발휘 및 자기 표현]:\n  * 사주 시각: 사주는 일간 甲 중심의 내면적 에너지와 축적된 역량에 주목합니다.\n  * 자미두수 시각: 자미두수는 寅宮 명궁 중심의 사회적 관계망과 대외적 역동성에 주목합니다.\n  * 점성학 시각: 점성학은 Aries 태양 및 상승궁 중심의 심리 원형과 의식 발전 여정에 주목합니다.\n  * 통합 조망(Synthesis): 세 체계는 모두 주체적 표현이라는 동일한 삶의 주제를 비추지만, 사주는 내면의 오행 동력, 자미두수는 사회적 환경 배치, 점성학은 심리적 원형과 발전 여정이라는 서로 다른 층위를 충실히 보여줍니다.\n- 관점 차이 및 구별: 사주는 오행의 기운 축적과 조화를 비추고, 자미두수는 삶의 무대와 인연의 관계망을 조명하며, 서양 점성학은 심리적 상징과 우주적 시기의 전개를 보여줍니다.\n## Step 3: 통합 안전 및 용어 분리 지침 (Safety & Strict Term Isolation)\n- 사주, 자미두수, 서양 점성학 3대 체계의 해석을 단일 결론으로 억지 합산하거나 특정 체계의 우위를 단정하지 마십시오.\n- 각 체계의 용어(사주의 오행/십신, 자미두수의 주성/궁위, 점성학의 행성/하우스)는 해당 체계 내부 의미로만 설명하십시오.\n- 서로 다른 체계의 상징을 직접 인과관계로 연결하거나, 한 체계가 다른 체계를 증명한다고 표현하지 마십시오.\n- 공통 테마는 동일한 삶의 주제에 대해 관찰되는 공통 패턴으로 설명하고, 차이점은 입체적 보완 관점으로 서술하십시오.\n- 불확실성 요소(윤달, 시간 경계, 절기 경계, 하우스 경계)가 존재할 경우 특정 결과를 단정하지 말고 불확실성을 분리 고지하십시오.\n- 운명의 결정론적 예언을 철저히 금지하며, 내담자의 성찰과 주체적 선택을 돕는 현실적 대화 가이드를 제공하십시오.\n## Step 4: 대화형 가이드 및 현실적 적용 제안\n- 질문 도메인: personality\n- 내담자가 세 점술 체계의 다차원 시각을 균형 있게 참고하여 주체적으로 삶의 방향을 탐색할 수 있도록 조율해주십시오.",
+        "contextPayload": {
+          "subjectName": "홍길동",
+          "overallConfidence": "high",
+          "systemAgreement": {
+            "agreementLevel": "multi_lens_synthesis",
+            "note": "사주(내면 오행 기질), 자미두수(대외 환경·관계), 점성학(원형적 심리·상징 시간선) 3대 체계가 다차원적 입체 관점을 제공합니다."
+          },
+          "sharedThemes": [
+            {
+              "themeId": "core_competency_and_expression",
+              "label": "주체적 역량 발휘 및 자기 표현",
+              "evidence": {
+                "saju": [
+                  "일간 甲 중심 오행 흐름"
+                ],
+                "ziwei": [
+                  "명궁 寅宮 삼방사정 배치"
+                ],
+                "astrology": [
+                  "Sun in Aries, Ascendant in Leo"
+                ]
+              },
+              "sajuPerspective": "사주는 일간 甲 중심의 내면적 에너지와 축적된 역량에 주목합니다.",
+              "ziweiPerspective": "자미두수는 寅宮 명궁 중심의 사회적 관계망과 대외적 역동성에 주목합니다.",
+              "astrologyPerspective": "점성학은 Aries 태양 및 상승궁 중심의 심리 원형과 의식 발전 여정에 주목합니다.",
+              "synthesis": "세 체계는 모두 주체적 표현이라는 동일한 삶의 주제를 비추지만, 사주는 내면의 오행 동력, 자미두수는 사회적 환경 배치, 점성학은 심리적 원형과 발전 여정이라는 서로 다른 층위를 충실히 보여줍니다."
+            }
+          ],
+          "differentPerspectives": [
+            {
+              "perspectiveId": "internal_vs_external_vs_archetypal",
+              "label": "내면 기질(사주) vs 환경 역동성(자미두수) vs 원형적 시간선(점성학)",
+              "description": "사주는 오행의 기운 축적과 조화를 비추고, 자미두수는 삶의 무대와 인연의 관계망을 조명하며, 서양 점성학은 심리적 상징과 우주적 시기의 전개를 보여줍니다."
+            }
+          ],
+          "sajuConfidence": "high",
+          "ziweiConfidence": "high",
+          "astrologyConfidence": "high",
+          "overallGuidance": "세 체계 모두 안정적인 데이터 계약 상태를 유지하고 있습니다."
+        }
+      }
+    },
+    {
+      "caseId": "case-2-saju-low-uncertainty",
+      "caseName": "사주 절기 경계(Low Confidence) + 자미두수 High + 점성학 High 케이스",
+      "scores": {
+        "systemIndependencePreservation": 2,
+        "evidenceTraceability": 2,
+        "uncertaintySeparation": 2,
+        "multiLensSynthesis": 2,
+        "nonDeterministicGuidance": 2,
+        "practicalReflection": 2
+      },
+      "totalScore": 12,
+      "passed": true,
+      "unifiedContextSnapshot": {
+        "systemType": "unified_3system_saju_ziwei_astrology",
+        "subjectName": "김철수",
+        "systemAgreement": {
+          "agreementLevel": "partial_uncertainty_preserved",
+          "note": "일부 체계(saju)의 불확실성 요소로 인해 정밀 측정된 확정 데이터 중심의 보완적 서술이 요구됩니다."
+        },
+        "sharedThemes": [
+          {
+            "themeId": "core_competency_and_expression",
+            "label": "주체적 역량 발휘 및 자기 표현",
+            "evidence": {
+              "saju": [
+                "일간 중심 내부 기질"
+              ],
+              "ziwei": [
+                "명궁 巳宮 삼방사정 배치"
+              ],
+              "astrology": [
+                "Sun in Taurus, Ascendant in Virgo"
+              ]
+            },
+            "sajuPerspective": "사주는 일간 중심의 내면 기질과 오행 생극 제화에 주목합니다.",
+            "ziweiPerspective": "자미두수는 巳宮 명궁 중심의 사회적 관계망과 대외적 역동성에 주목합니다.",
+            "astrologyPerspective": "점성학은 Taurus 태양 및 상승궁 중심의 심리 원형과 의식 발전 여정에 주목합니다.",
+            "synthesis": "세 체계는 모두 주체적 표현이라는 동일한 삶의 주제를 비추지만, 사주는 내면의 오행 동력, 자미두수는 사회적 환경 배치, 점성학은 심리적 원형과 발전 여정이라는 서로 다른 층위를 충실히 보여줍니다."
+          }
+        ],
+        "differentPerspectives": [
+          {
+            "perspectiveId": "internal_vs_external_vs_archetypal",
+            "label": "내면 기질(사주) vs 환경 역동성(자미두수) vs 원형적 시간선(점성학)",
+            "description": "사주는 오행의 기운 축적과 조화를 비추고, 자미두수는 삶의 무대와 인연의 관계망을 조명하며, 서양 점성학은 심리적 상징과 우주적 시기의 전개를 보여줍니다."
+          }
+        ],
+        "unifiedConfidence": {
+          "overallConfidence": "medium",
+          "sajuConfidence": "low",
+          "ziweiConfidence": "high",
+          "astrologyConfidence": "high",
+          "overallGuidance": "일부 체계(saju)는 경계 후보 요소를 포함하되, 나머지 확정된 체계의 데이터는 안정적인 참고 자료가 됩니다.",
+          "uncertainFactors": [
+            "입춘 절기 경계 시각 출생 (후보 2개)"
+          ],
+          "warnings": []
+        },
+        "sajuContext": {
+          "subjectName": "김철수",
+          "calculationConfidence": {
+            "stateContract": {
+              "confidence": "low"
+            }
+          },
+          "uncertainFactors": [
+            "입춘 절기 경계 시각 출생 (후보 2개)"
+          ]
+        },
+        "ziweiContext": {
+          "subjectName": "김철수",
+          "calculationConfidence": {
+            "stateContract": {
+              "confidence": "high"
+            }
+          },
+          "candidateSetConsensus": {
+            "factual": {
+              "mingGongBranch": "巳"
+            }
+          }
+        },
+        "astrologyContext": {
+          "subjectName": "김철수",
+          "astrologyContextSnapshot": {
+            "confidence": "high",
+            "factualSigns": {
+              "sunSign": "Taurus",
+              "ascendantSign": "Virgo"
+            }
+          }
+        }
+      },
+      "payloadSnapshot": {
+        "systemPrompt": "# [사주 + 자미두수 + 서양점성학 3대 체계 통합 AI 해석 가이드 - 김철수님]\n## Step 1: 3대 체계별 독립 렌즈 설명\n- 사주 관점: 내면의 기질, 오행 생극제화 및 십성 에너지 흐름\n- 자미두수 관점: 명궁 중심의 삼방사정(三方四正) 환경 배치 및 인연 네트워크\n- 서양점성학 관점: 태양·달·상승궁 및 하우스/애스펙트 중심의 심리 원형과 상징적 시간선\n## Step 2: 공통 테마 (Shared Themes & Synthesis)\n- 체계 간 시너지 상태: partial_uncertainty_preserved (일부 체계(saju)의 불확실성 요소로 인해 정밀 측정된 확정 데이터 중심의 보완적 서술이 요구됩니다.)\n- 통합 신뢰도 가이드: 일부 체계(saju)는 경계 후보 요소를 포함하되, 나머지 확정된 체계의 데이터는 안정적인 참고 자료가 됩니다.\n- 공통 테마 [주체적 역량 발휘 및 자기 표현]:\n  * 사주 시각: 사주는 일간 중심의 내면 기질과 오행 생극 제화에 주목합니다.\n  * 자미두수 시각: 자미두수는 巳宮 명궁 중심의 사회적 관계망과 대외적 역동성에 주목합니다.\n  * 점성학 시각: 점성학은 Taurus 태양 및 상승궁 중심의 심리 원형과 의식 발전 여정에 주목합니다.\n  * 통합 조망(Synthesis): 세 체계는 모두 주체적 표현이라는 동일한 삶의 주제를 비추지만, 사주는 내면의 오행 동력, 자미두수는 사회적 환경 배치, 점성학은 심리적 원형과 발전 여정이라는 서로 다른 층위를 충실히 보여줍니다.\n- 관점 차이 및 구별: 사주는 오행의 기운 축적과 조화를 비추고, 자미두수는 삶의 무대와 인연의 관계망을 조명하며, 서양 점성학은 심리적 상징과 우주적 시기의 전개를 보여줍니다.\n## Step 3: 통합 안전 및 용어 분리 지침 (Safety & Strict Term Isolation)\n- 사주, 자미두수, 서양 점성학 3대 체계의 해석을 단일 결론으로 억지 합산하거나 특정 체계의 우위를 단정하지 마십시오.\n- 각 체계의 용어(사주의 오행/십신, 자미두수의 주성/궁위, 점성학의 행성/하우스)는 해당 체계 내부 의미로만 설명하십시오.\n- 서로 다른 체계의 상징을 직접 인과관계로 연결하거나, 한 체계가 다른 체계를 증명한다고 표현하지 마십시오.\n- 공통 테마는 동일한 삶의 주제에 대해 관찰되는 공통 패턴으로 설명하고, 차이점은 입체적 보완 관점으로 서술하십시오.\n- 불확실성 요소(윤달, 시간 경계, 절기 경계, 하우스 경계)가 존재할 경우 특정 결과를 단정하지 말고 불확실성을 분리 고지하십시오.\n- 운명의 결정론적 예언을 철저히 금지하며, 내담자의 성찰과 주체적 선택을 돕는 현실적 대화 가이드를 제공하십시오.\n- [주의] 일부 체계에 불확실 요소가 포함되어 있으므로 미래 단정적 예언을 절대 금하고 분리 고지 안내를 유지하십시오.\n## Step 4: 대화형 가이드 및 현실적 적용 제안\n- 질문 도메인: personality\n- 내담자가 세 점술 체계의 다차원 시각을 균형 있게 참고하여 주체적으로 삶의 방향을 탐색할 수 있도록 조율해주십시오.",
+        "contextPayload": {
+          "subjectName": "김철수",
+          "overallConfidence": "medium",
+          "systemAgreement": {
+            "agreementLevel": "partial_uncertainty_preserved",
+            "note": "일부 체계(saju)의 불확실성 요소로 인해 정밀 측정된 확정 데이터 중심의 보완적 서술이 요구됩니다."
+          },
+          "sharedThemes": [
+            {
+              "themeId": "core_competency_and_expression",
+              "label": "주체적 역량 발휘 및 자기 표현",
+              "evidence": {
+                "saju": [
+                  "일간 중심 내부 기질"
+                ],
+                "ziwei": [
+                  "명궁 巳宮 삼방사정 배치"
+                ],
+                "astrology": [
+                  "Sun in Taurus, Ascendant in Virgo"
+                ]
+              },
+              "sajuPerspective": "사주는 일간 중심의 내면 기질과 오행 생극 제화에 주목합니다.",
+              "ziweiPerspective": "자미두수는 巳宮 명궁 중심의 사회적 관계망과 대외적 역동성에 주목합니다.",
+              "astrologyPerspective": "점성학은 Taurus 태양 및 상승궁 중심의 심리 원형과 의식 발전 여정에 주목합니다.",
+              "synthesis": "세 체계는 모두 주체적 표현이라는 동일한 삶의 주제를 비추지만, 사주는 내면의 오행 동력, 자미두수는 사회적 환경 배치, 점성학은 심리적 원형과 발전 여정이라는 서로 다른 층위를 충실히 보여줍니다."
+            }
+          ],
+          "differentPerspectives": [
+            {
+              "perspectiveId": "internal_vs_external_vs_archetypal",
+              "label": "내면 기질(사주) vs 환경 역동성(자미두수) vs 원형적 시간선(점성학)",
+              "description": "사주는 오행의 기운 축적과 조화를 비추고, 자미두수는 삶의 무대와 인연의 관계망을 조명하며, 서양 점성학은 심리적 상징과 우주적 시기의 전개를 보여줍니다."
+            }
+          ],
+          "sajuConfidence": "low",
+          "ziweiConfidence": "high",
+          "astrologyConfidence": "high",
+          "overallGuidance": "일부 체계(saju)는 경계 후보 요소를 포함하되, 나머지 확정된 체계의 데이터는 안정적인 참고 자료가 됩니다."
+        }
+      }
+    },
+    {
+      "caseId": "case-3-astrology-asc-low",
+      "caseName": "사주 High + 자미두수 High + 점성학 ASC 경계(Low Confidence) 케이스",
+      "scores": {
+        "systemIndependencePreservation": 2,
+        "evidenceTraceability": 2,
+        "uncertaintySeparation": 2,
+        "multiLensSynthesis": 2,
+        "nonDeterministicGuidance": 2,
+        "practicalReflection": 2
+      },
+      "totalScore": 12,
+      "passed": true,
+      "unifiedContextSnapshot": {
+        "systemType": "unified_3system_saju_ziwei_astrology",
+        "subjectName": "이영희",
+        "systemAgreement": {
+          "agreementLevel": "partial_uncertainty_preserved",
+          "note": "일부 체계(astrology)의 불확실성 요소로 인해 정밀 측정된 확정 데이터 중심의 보완적 서술이 요구됩니다."
+        },
+        "sharedThemes": [
+          {
+            "themeId": "core_competency_and_expression",
+            "label": "주체적 역량 발휘 및 자기 표현",
+            "evidence": {
+              "saju": [
+                "일간 丙 중심 오행 흐름"
+              ],
+              "ziwei": [
+                "명궁 申宮 삼방사정 배치"
+              ],
+              "astrology": [
+                "Sun in Scorpio, Ascendant in Libra"
+              ]
+            },
+            "sajuPerspective": "사주는 일간 丙 중심의 내면적 에너지와 축적된 역량에 주목합니다.",
+            "ziweiPerspective": "자미두수는 申宮 명궁 중심의 사회적 관계망과 대외적 역동성에 주목합니다.",
+            "astrologyPerspective": "점성학은 Scorpio 태양 및 상승궁 중심의 심리 원형과 의식 발전 여정에 주목합니다.",
+            "synthesis": "세 체계는 모두 주체적 표현이라는 동일한 삶의 주제를 비추지만, 사주는 내면의 오행 동력, 자미두수는 사회적 환경 배치, 점성학은 심리적 원형과 발전 여정이라는 서로 다른 층위를 충실히 보여줍니다."
+          }
+        ],
+        "differentPerspectives": [
+          {
+            "perspectiveId": "internal_vs_external_vs_archetypal",
+            "label": "내면 기질(사주) vs 환경 역동성(자미두수) vs 원형적 시간선(점성학)",
+            "description": "사주는 오행의 기운 축적과 조화를 비추고, 자미두수는 삶의 무대와 인연의 관계망을 조명하며, 서양 점성학은 심리적 상징과 우주적 시기의 전개를 보여줍니다."
+          }
+        ],
+        "unifiedConfidence": {
+          "overallConfidence": "medium",
+          "sajuConfidence": "high",
+          "ziweiConfidence": "high",
+          "astrologyConfidence": "low",
+          "overallGuidance": "일부 체계(astrology)는 경계 후보 요소를 포함하되, 나머지 확정된 체계의 데이터는 안정적인 참고 자료가 됩니다.",
+          "uncertainFactors": [
+            "ASC 경계 도수 (후보 2개 하우스 구조)"
+          ],
+          "warnings": []
+        },
+        "sajuContext": {
+          "subjectName": "이영희",
+          "calculationConfidence": {
+            "stateContract": {
+              "confidence": "high"
+            }
+          },
+          "candidateSetConsensus": {
+            "factual": {
+              "dayMaster": "丙"
+            }
+          }
+        },
+        "ziweiContext": {
+          "subjectName": "이영희",
+          "calculationConfidence": {
+            "stateContract": {
+              "confidence": "high"
+            }
+          },
+          "candidateSetConsensus": {
+            "factual": {
+              "mingGongBranch": "申"
+            }
+          }
+        },
+        "astrologyContext": {
+          "subjectName": "이영희",
+          "astrologyContextSnapshot": {
+            "confidence": "low",
+            "uncertainFactors": [
+              "ASC 경계 도수 (후보 2개 하우스 구조)"
+            ],
+            "factualSigns": {
+              "sunSign": "Scorpio",
+              "ascendantSign": "Libra"
+            }
+          }
+        }
+      },
+      "payloadSnapshot": {
+        "systemPrompt": "# [사주 + 자미두수 + 서양점성학 3대 체계 통합 AI 해석 가이드 - 이영희님]\n## Step 1: 3대 체계별 독립 렌즈 설명\n- 사주 관점: 내면의 기질, 오행 생극제화 및 십성 에너지 흐름\n- 자미두수 관점: 명궁 중심의 삼방사정(三方四正) 환경 배치 및 인연 네트워크\n- 서양점성학 관점: 태양·달·상승궁 및 하우스/애스펙트 중심의 심리 원형과 상징적 시간선\n## Step 2: 공통 테마 (Shared Themes & Synthesis)\n- 체계 간 시너지 상태: partial_uncertainty_preserved (일부 체계(astrology)의 불확실성 요소로 인해 정밀 측정된 확정 데이터 중심의 보완적 서술이 요구됩니다.)\n- 통합 신뢰도 가이드: 일부 체계(astrology)는 경계 후보 요소를 포함하되, 나머지 확정된 체계의 데이터는 안정적인 참고 자료가 됩니다.\n- 공통 테마 [주체적 역량 발휘 및 자기 표현]:\n  * 사주 시각: 사주는 일간 丙 중심의 내면적 에너지와 축적된 역량에 주목합니다.\n  * 자미두수 시각: 자미두수는 申宮 명궁 중심의 사회적 관계망과 대외적 역동성에 주목합니다.\n  * 점성학 시각: 점성학은 Scorpio 태양 및 상승궁 중심의 심리 원형과 의식 발전 여정에 주목합니다.\n  * 통합 조망(Synthesis): 세 체계는 모두 주체적 표현이라는 동일한 삶의 주제를 비추지만, 사주는 내면의 오행 동력, 자미두수는 사회적 환경 배치, 점성학은 심리적 원형과 발전 여정이라는 서로 다른 층위를 충실히 보여줍니다.\n- 관점 차이 및 구별: 사주는 오행의 기운 축적과 조화를 비추고, 자미두수는 삶의 무대와 인연의 관계망을 조명하며, 서양 점성학은 심리적 상징과 우주적 시기의 전개를 보여줍니다.\n## Step 3: 통합 안전 및 용어 분리 지침 (Safety & Strict Term Isolation)\n- 사주, 자미두수, 서양 점성학 3대 체계의 해석을 단일 결론으로 억지 합산하거나 특정 체계의 우위를 단정하지 마십시오.\n- 각 체계의 용어(사주의 오행/십신, 자미두수의 주성/궁위, 점성학의 행성/하우스)는 해당 체계 내부 의미로만 설명하십시오.\n- 서로 다른 체계의 상징을 직접 인과관계로 연결하거나, 한 체계가 다른 체계를 증명한다고 표현하지 마십시오.\n- 공통 테마는 동일한 삶의 주제에 대해 관찰되는 공통 패턴으로 설명하고, 차이점은 입체적 보완 관점으로 서술하십시오.\n- 불확실성 요소(윤달, 시간 경계, 절기 경계, 하우스 경계)가 존재할 경우 특정 결과를 단정하지 말고 불확실성을 분리 고지하십시오.\n- 운명의 결정론적 예언을 철저히 금지하며, 내담자의 성찰과 주체적 선택을 돕는 현실적 대화 가이드를 제공하십시오.\n- [주의] 일부 체계에 불확실 요소가 포함되어 있으므로 미래 단정적 예언을 절대 금하고 분리 고지 안내를 유지하십시오.\n## Step 4: 대화형 가이드 및 현실적 적용 제안\n- 질문 도메인: personality\n- 내담자가 세 점술 체계의 다차원 시각을 균형 있게 참고하여 주체적으로 삶의 방향을 탐색할 수 있도록 조율해주십시오.",
+        "contextPayload": {
+          "subjectName": "이영희",
+          "overallConfidence": "medium",
+          "systemAgreement": {
+            "agreementLevel": "partial_uncertainty_preserved",
+            "note": "일부 체계(astrology)의 불확실성 요소로 인해 정밀 측정된 확정 데이터 중심의 보완적 서술이 요구됩니다."
+          },
+          "sharedThemes": [
+            {
+              "themeId": "core_competency_and_expression",
+              "label": "주체적 역량 발휘 및 자기 표현",
+              "evidence": {
+                "saju": [
+                  "일간 丙 중심 오행 흐름"
+                ],
+                "ziwei": [
+                  "명궁 申宮 삼방사정 배치"
+                ],
+                "astrology": [
+                  "Sun in Scorpio, Ascendant in Libra"
+                ]
+              },
+              "sajuPerspective": "사주는 일간 丙 중심의 내면적 에너지와 축적된 역량에 주목합니다.",
+              "ziweiPerspective": "자미두수는 申宮 명궁 중심의 사회적 관계망과 대외적 역동성에 주목합니다.",
+              "astrologyPerspective": "점성학은 Scorpio 태양 및 상승궁 중심의 심리 원형과 의식 발전 여정에 주목합니다.",
+              "synthesis": "세 체계는 모두 주체적 표현이라는 동일한 삶의 주제를 비추지만, 사주는 내면의 오행 동력, 자미두수는 사회적 환경 배치, 점성학은 심리적 원형과 발전 여정이라는 서로 다른 층위를 충실히 보여줍니다."
+            }
+          ],
+          "differentPerspectives": [
+            {
+              "perspectiveId": "internal_vs_external_vs_archetypal",
+              "label": "내면 기질(사주) vs 환경 역동성(자미두수) vs 원형적 시간선(점성학)",
+              "description": "사주는 오행의 기운 축적과 조화를 비추고, 자미두수는 삶의 무대와 인연의 관계망을 조명하며, 서양 점성학은 심리적 상징과 우주적 시기의 전개를 보여줍니다."
+            }
+          ],
+          "sajuConfidence": "high",
+          "ziweiConfidence": "high",
+          "astrologyConfidence": "low",
+          "overallGuidance": "일부 체계(astrology)는 경계 후보 요소를 포함하되, 나머지 확정된 체계의 데이터는 안정적인 참고 자료가 됩니다."
+        }
+      }
+    }
+  ]
+}

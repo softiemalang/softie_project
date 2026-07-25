@@ -1,11 +1,16 @@
 import { useEffect, useMemo, useState } from 'react'
 import { navigate } from '../lib/router'
+import { InterpretationSessionView } from './InterpretationSessionView.jsx'
+import { ChatHandoffCard } from './components/ChatHandoffCard.jsx'
+import { createUnifiedInterpretationContext } from './unifiedInterpretationContext.js'
+
 import {
   buildExportPayload,
   exportPayloadToMarkdown,
   prepareInterpretationData,
   exportValidationReportToMarkdown,
 } from './prepare.js'
+
 import { sajuValidationFixtures } from './fixtures/sajuValidationFixtures.js'
 import { runSajuValidationSuite } from './sajuValidationRunner.js'
 import {
@@ -996,7 +1001,20 @@ export default function InterpretationPrepPage() {
         </div>
       </header>
 
+      {/* Main Product Feature: Chat Handoff Package Creation */}
+      <section className="mt-6">
+        <ChatHandoffCard
+          unifiedContext={createUnifiedInterpretationContext(
+            result?.systems?.saju,
+            result?.systems?.ziwei,
+            result?.systems?.astrology
+          )}
+        />
+      </section>
+
       <form className="prep-workspace" onSubmit={handleCalculate}>
+
+
         <section className="card prep-card ag-glass">
           <div className="card-header">
             <div>
@@ -1307,8 +1325,26 @@ export default function InterpretationPrepPage() {
             </details>
           </section>
 
+          {/* 🔬 실험실 (Lab Workspace): 내부 상담 인터페이스 & 세션 데이터 미리보기 */}
+          <section className="card prep-card ag-glass prep-lab-section border border-purple-500/20 bg-purple-950/10">
+            <details className="prep-lab-details">
+              <summary className="cursor-pointer font-bold text-sm text-purple-200 flex items-center gap-2 p-2">
+                <span>🔬 실험실 (Lab Workspace)</span>
+                <span className="text-xs text-slate-400 font-normal">내부 상담 세션 UI, Response Schema & Multi-turn Loop 미리보기</span>
+              </summary>
+              <div className="pt-4">
+                <InterpretationSessionView
+                  sajuContext={result?.systems?.saju}
+                  ziweiContext={result?.systems?.ziwei}
+                  astrologyContext={result?.systems?.astrology}
+                />
+              </div>
+            </details>
+          </section>
+
           {/* 개발자 전용 사주 계산 검증 센터 */}
           <section className="card prep-card ag-glass prep-validation-section">
+
             <details className="prep-validation-details" onToggle={(e) => { if (e.target.open && !validationSummary) handleRunValidation() }}>
               <summary className="prep-validation-summary-toggle">
                 <span>⚙️ 사주 계산 검증 센터 (개발자 검증용)</span>
