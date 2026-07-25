@@ -1326,13 +1326,13 @@ export default function InterpretationPrepPage() {
           </section>
 
           {/* 🔬 실험실 (Lab Workspace): 내부 상담 인터페이스 & 세션 데이터 미리보기 */}
-          <section className="card prep-card ag-glass prep-lab-section border border-purple-500/20 bg-purple-950/10">
+          <section className="card prep-card ag-glass prep-lab-section">
             <details className="prep-lab-details">
-              <summary className="cursor-pointer font-bold text-sm text-purple-200 flex items-center gap-2 p-2">
-                <span>🔬 실험실 (Lab Workspace)</span>
-                <span className="text-xs text-slate-400 font-normal">내부 상담 세션 UI, Response Schema & Multi-turn Loop 미리보기</span>
+              <summary style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', color: 'var(--text-muted)' }}>
+                <span style={{ fontWeight: 700, fontSize: '0.9rem', color: 'var(--brand)' }}>🔬 실험실 (Lab Workspace)</span>
+                <span style={{ fontSize: '0.76rem', color: 'var(--text-tertiary)' }}>내부 상담 세션 UI, Response Schema & Multi-turn Loop 미리보기</span>
               </summary>
-              <div className="pt-4">
+              <div style={{ paddingTop: '1rem' }}>
                 <InterpretationSessionView
                   sajuContext={result?.systems?.saju}
                   ziweiContext={result?.systems?.ziwei}
@@ -1341,6 +1341,7 @@ export default function InterpretationPrepPage() {
               </div>
             </details>
           </section>
+
 
           {/* 개발자 전용 사주 계산 검증 센터 */}
           <section className="card prep-card ag-glass prep-validation-section">

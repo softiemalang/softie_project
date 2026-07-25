@@ -2488,3 +2488,243 @@
   border-radius: var(--radius-pill, 999px);
   color: var(--text);
 }
+
+/* ==========================================================================
+   Chat Handoff Card & Lab Workspace Atmospheric Glass Styles
+   ========================================================================== */
+
+.prep-handoff-card {
+  padding: 1.45rem 1.6rem;
+  border-radius: var(--radius-card, 26px);
+  background: var(--surface-glass, rgba(45, 41, 34, 0.66));
+  border: 1px solid var(--line-liquid, rgba(255, 246, 228, 0.42));
+  backdrop-filter: blur(var(--glass-blur, 24px));
+  box-shadow: var(--shadow-glass, 0 26px 70px rgba(13, 12, 9, 0.28));
+  margin-bottom: 1.75rem;
+}
+
+.prep-handoff-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.prep-handoff-title-wrap {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.prep-handoff-title-wrap h3 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text, #f4eee4);
+  margin: 0;
+}
+
+.prep-handoff-badge {
+  font-family: var(--font-mono, monospace);
+  font-size: 0.68rem;
+  font-weight: 650;
+  padding: 0.2rem 0.55rem;
+  border-radius: var(--radius-pill, 999px);
+  background: rgba(219, 204, 175, 0.15);
+  border: 1px solid var(--line, rgba(238, 229, 210, 0.14));
+  color: var(--brand, #d5c5aa);
+}
+
+.prep-handoff-intro {
+  font-size: 0.82rem;
+  line-height: 1.6;
+  color: var(--text-muted, #d0c7b9);
+  margin-bottom: 1.1rem;
+}
+
+.prep-handoff-presets {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 0.6rem;
+  margin-bottom: 1.1rem;
+}
+
+.prep-handoff-preset-btn {
+  padding: 0.7rem 0.85rem;
+  border-radius: var(--radius-control, 14px);
+  border: 1px solid var(--line, rgba(238, 229, 210, 0.14));
+  background: rgba(17, 17, 14, 0.45);
+  color: var(--text-muted, #d0c7b9);
+  font-size: 0.78rem;
+  font-weight: 550;
+  text-align: left;
+  transition: all 180ms ease;
+  cursor: pointer;
+}
+
+.prep-handoff-preset-btn:hover {
+  background: rgba(219, 204, 175, 0.12);
+  color: var(--text, #f4eee4);
+  border-color: var(--line-strong, rgba(238, 229, 210, 0.31));
+}
+
+.prep-handoff-preset-btn.is-active {
+  background: var(--surface-selected, rgba(219, 204, 175, 0.20));
+  border-color: var(--brand, #d5c5aa);
+  color: var(--text, #f4eee4);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
+}
+
+.prep-handoff-input-group {
+  display: flex;
+  gap: 0.6rem;
+  margin-bottom: 1.1rem;
+}
+
+.prep-handoff-input {
+  flex: 1;
+  min-height: 44px;
+  padding: 0.65rem 1rem;
+  border-radius: var(--radius-control, 14px);
+  border: 1px solid var(--line, rgba(238, 229, 210, 0.14));
+  background: var(--surface-operational, rgba(17, 17, 14, 0.52));
+  color: var(--text, #f4eee4);
+  font-size: 0.84rem;
+}
+
+.prep-handoff-input::placeholder {
+  color: var(--text-tertiary, #a39b8c);
+}
+
+.prep-handoff-generate-btn {
+  min-height: 44px;
+  padding: 0 1.25rem;
+  border-radius: var(--radius-control, 14px);
+  background: var(--brand, #d5c5aa);
+  color: #2f2a22;
+  font-size: 0.82rem;
+  font-weight: 700;
+  border: none;
+  cursor: pointer;
+  transition: all 180ms ease;
+  box-shadow: var(--shadow-control, 0 8px 24px rgba(18, 16, 12, 0.16));
+}
+
+.prep-handoff-generate-btn:hover {
+  background: var(--brand-hover, #e3d7c0);
+  transform: translateY(-1px);
+}
+
+.prep-handoff-actions-wrap {
+  padding-top: 1.1rem;
+  border-top: 1px solid var(--line, rgba(238, 229, 210, 0.14));
+}
+
+.prep-handoff-copy-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+  margin-bottom: 0.85rem;
+}
+
+.prep-copy-mode-btn {
+  padding: 0.55rem 0.95rem;
+  border-radius: var(--radius-control, 14px);
+  font-size: 0.78rem;
+  font-weight: 600;
+  border: 1px solid var(--line, rgba(238, 229, 210, 0.14));
+  background: rgba(17, 17, 14, 0.45);
+  color: var(--text-muted, #d0c7b9);
+  cursor: pointer;
+  transition: all 180ms ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.prep-copy-mode-btn:hover {
+  border-color: var(--line-strong, rgba(238, 229, 210, 0.31));
+  color: var(--text, #f4eee4);
+}
+
+.prep-copy-mode-btn.is-active {
+  background: var(--brand, #d5c5aa);
+  color: #2f2a22;
+  border-color: var(--brand, #d5c5aa);
+  box-shadow: var(--shadow-control, 0 8px 24px rgba(18, 16, 12, 0.16));
+}
+
+.prep-copy-mode-btn.is-privacy {
+  border-color: rgba(214, 179, 126, 0.35);
+  color: var(--warning, #d6b37e);
+}
+
+.prep-copy-mode-btn.is-privacy.is-active {
+  background: var(--warning, #d6b37e);
+  color: #2f2a22;
+}
+
+.prep-preview-box {
+  background: rgba(17, 17, 14, 0.78);
+  border: 1px solid var(--line, rgba(238, 229, 210, 0.14));
+  border-radius: var(--radius-item, 18px);
+  padding: 1rem;
+  margin-bottom: 0.85rem;
+  max-height: 200px;
+  overflow-y: auto;
+  font-family: var(--font-mono, monospace);
+  font-size: 0.76rem;
+  line-height: 1.55;
+  color: var(--text-muted, #d0c7b9);
+}
+
+.prep-preview-label {
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: var(--brand, #d5c5aa);
+  margin-bottom: 0.4rem;
+  letter-spacing: 0.05em;
+}
+
+.prep-copied-alert {
+  padding: 0.75rem 1rem;
+  border-radius: var(--radius-control, 14px);
+  background: var(--success-soft, rgba(134, 153, 111, 0.22));
+  border: 1px solid var(--success, #b8c8a5);
+  color: var(--text, #f4eee4);
+  font-size: 0.8rem;
+  font-weight: 550;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.85rem;
+}
+
+.prep-quality-guide {
+  background: rgba(17, 17, 14, 0.35);
+  border: 1px solid var(--line-soft, rgba(238, 229, 210, 0.11));
+  border-radius: var(--radius-item, 18px);
+  padding: 0.85rem 1rem;
+  font-size: 0.76rem;
+  color: var(--text-tertiary, #a39b8c);
+  line-height: 1.5;
+}
+
+.prep-quality-guide strong {
+  color: var(--text-muted, #d0c7b9);
+}
+
+/* Lab Workspace Section */
+.prep-lab-section {
+  border-radius: var(--radius-card, 26px);
+  background: var(--surface-glass-strong, rgba(37, 34, 29, 0.82));
+  border: 1px solid var(--line, rgba(238, 229, 210, 0.14));
+  margin-bottom: 1.5rem;
+}
+
+.prep-lab-details summary {
+  padding: 1rem 1.25rem;
+  cursor: pointer;
+  user-select: none;
+}
+

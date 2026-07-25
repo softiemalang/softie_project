@@ -149,39 +149,39 @@ export function InterpretationSessionView({ sajuContext = {}, ziweiContext = {},
 
       {/* 2. Loading State */}
       {sessionStatus === 'analyzing' && (
-        <div className="glass-panel p-8 rounded-2xl border border-white/10 text-center my-6 animate-pulse">
-          <div className="text-2xl mb-2 font-bold text-indigo-400">🔮</div>
-          <div className="text-base font-bold text-white mb-1">대화 맥락과 3대 점술 렌즈를 조율 중입니다...</div>
-          <div className="text-xs text-slate-400">사주·자미두수·점성학 Context를 교차 반영하고 있습니다.</div>
+        <div className="card prep-card ag-glass text-center my-6 p-6 animate-pulse" style={{ background: 'var(--surface-glass)', borderColor: 'var(--line-strong)' }}>
+          <div style={{ fontSize: '1.5rem', marginBottom: '0.5rem' }}>🔮</div>
+          <div style={{ fontSize: '0.95rem', fontWeight: 700, color: 'var(--text)', marginBottom: '0.25rem' }}>대화 맥락과 3대 점술 렌즈를 조율 중입니다...</div>
+          <div style={{ fontSize: '0.78rem', color: 'var(--text-muted)' }}>사주·자미두수·점성학 Context를 교차 반영하고 있습니다.</div>
         </div>
       )}
 
       {/* 3. Error State */}
       {sessionStatus === 'error' && (
-        <div className="bg-rose-950/40 border border-rose-500/30 p-4 rounded-2xl text-center text-xs text-rose-200 my-4">
+        <div style={{ background: 'var(--danger-soft)', borderColor: 'var(--danger)', color: 'var(--text)', padding: '0.85rem 1rem', borderRadius: 'var(--radius-control)', textAlign: 'center', fontSize: '0.8rem', margin: '1rem 0' }}>
           세션 처리 중 오류가 발생했습니다. 다시 시도해주세요.
         </div>
       )}
 
       {/* 4. Multi-Turn Conversation History */}
       {conversationHistory.length > 0 && currentSessionInstance && (
-        <div className="session-output-container space-y-8 animate-fadeIn">
+        <div className="session-output-container animate-fadeIn" style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
           {/* Lens Priority Indicator Card */}
           <LensPriorityCard lensPriority={currentSessionInstance.sessionState.lensPriority} />
 
           {conversationHistory.map((item) => (
-            <div key={item.turn} className="turn-container border-b border-white/10 pb-6 last:border-b-0">
+            <div key={item.turn} className="turn-container" style={{ borderBottom: '1px solid var(--line)', paddingBottom: '1.5rem' }}>
               {/* User Question / Response Banner */}
-              <div className="user-question-banner bg-white/5 p-3 rounded-xl border border-white/10 mb-4 text-xs text-indigo-200 flex items-center gap-2">
-                <span className="font-bold text-indigo-400">Turn {item.turn} · 내담자:</span>
+              <div style={{ background: 'rgba(17, 17, 14, 0.45)', padding: '0.65rem 0.95rem', borderRadius: 'var(--radius-control)', border: '1px solid var(--line)', marginBottom: '1rem', fontSize: '0.78rem', color: 'var(--text-muted)', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                <span style={{ fontWeight: 700, color: 'var(--brand)' }}>Turn {item.turn} · 내담자:</span>
                 <span>"{item.question}"</span>
               </div>
 
               {/* Core Summary Card */}
-              <div className="summary-card glass-panel p-6 rounded-2xl border border-indigo-500/30 bg-gradient-to-r from-indigo-950/40 to-purple-950/40 mb-6 backdrop-blur-md">
-                <div className="text-xs font-bold text-indigo-400 mb-1">TOGETHER VIEWED PERSPECTIVES</div>
-                <h3 className="text-lg font-bold text-white mb-2">{item.response.summary.title}</h3>
-                <p className="text-sm text-slate-200 leading-relaxed">{item.response.summary.coreMessage}</p>
+              <div className="card prep-card ag-glass" style={{ padding: '1.25rem 1.4rem', borderRadius: 'var(--radius-card)', background: 'var(--surface-glass)', border: '1px solid var(--line-liquid)', marginBottom: '1.25rem' }}>
+                <div style={{ fontSize: '0.7rem', fontWeight: 700, color: 'var(--brand)', letterSpacing: '0.05em', marginBottom: '0.35rem' }}>TOGETHER VIEWED PERSPECTIVES</div>
+                <h3 style={{ fontSize: '1.15rem', fontWeight: 700, color: 'var(--text)', marginBottom: '0.45rem' }}>{item.response.summary.title}</h3>
+                <p style={{ fontSize: '0.84rem', color: 'var(--text-muted)', lineHeight: 1.6, margin: 0 }}>{item.response.summary.coreMessage}</p>
               </div>
 
               {/* 3-System Perspective Tabs */}
@@ -208,6 +208,7 @@ export function InterpretationSessionView({ sajuContext = {}, ziweiContext = {},
           ))}
         </div>
       )}
+
     </div>
   )
 }
