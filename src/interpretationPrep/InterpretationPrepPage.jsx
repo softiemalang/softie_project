@@ -896,13 +896,14 @@ export default function InterpretationPrepPage() {
 
   function setTimeAccuracyMode(mode) {
     if (mode === 'unknown') {
-      setTextDrafts((current) => ({ ...current, birthTime: '' }))
+      setTextDrafts((current) => ({ ...current, birthTime: '12:00' }))
       setInput((current) => ({
         ...current,
-        birthTime: '',
+        birthTime: '12:00',
         timeAccuracy: 'unknown',
       }))
     } else if (mode === 'range') {
+
       setInput((current) => ({
         ...current,
         timeAccuracy: 'range',
@@ -1132,13 +1133,19 @@ export default function InterpretationPrepPage() {
                       pattern="[0-9:]*"
                       required={input.timeAccuracy !== 'unknown'}
                       disabled={input.timeAccuracy === 'unknown'}
-                      value={textDrafts.birthTime}
+                      value={input.timeAccuracy === 'unknown' ? '12:00' : textDrafts.birthTime}
                       onChange={(event) => updateTimeDraft(event.target.value)}
                     />
                   </div>
                 )}
+                {input.timeAccuracy === 'unknown' && (
+                  <p className="prep-field-hint" style={{ marginTop: '0.4rem', color: 'var(--brand)', fontSize: '0.74rem' }}>
+                    💡 정오 12:00를 대표 앵커 시각으로 세팅하여 사주·자미두수·점성학 계산 변수를 최소화합니다. (시주/하우스 불확실성은 보존됨)
+                  </p>
+                )}
               </div>
             </LabeledField>
+
           </div>
           <details className="prep-advanced-inputs">
             <summary>
