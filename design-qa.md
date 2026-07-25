@@ -268,6 +268,27 @@
 
 final result: passed
 
+## Scheduler Shared Outer Border QA
+
+- source visual truth: `/tmp/codex-remote-attachments/019f9618-8084-7c03-a518-af09fcce8455/C4C7B5AB-0B97-4590-9DD9-A8BBE63CCECE/1-붙여넣은-이미지-1.jpg` and `/tmp/codex-remote-attachments/019f9618-8084-7c03-a518-af09fcce8455/C4C7B5AB-0B97-4590-9DD9-A8BBE63CCECE/2-붙여넣은-이미지-2.jpg`
+- implementation screenshot: `/private/tmp/softie-scheduler-border-qa/scheduler-login-390.png`
+- focused comparison evidence: the supplied signed-in event and editor captures were compared against the rendered scheduler surface; signed-in browser state was unavailable, so the shared selectors were verified in code and the signed-out login surface was captured
+- source pixels: `588×1280` and `588×1280`; implementation pixels: `390×844` CSS px at 1× density
+- state: signed-out scheduler login capture plus code-informed signed-in today/editor surfaces
+
+### Findings
+
+- P3 resolved: major scheduler surfaces now share `--scheduler-line-soft: rgba(238, 229, 210, 0.11)`, matching the quiet outer border seen on `지금 처리할 일`.
+- Applied to status capsules, login/control glass surfaces, work-log card, event sections, primary info, and editor card. Internal inputs, buttons, and semantic state borders remain distinct for affordance and contrast.
+- The 1px physical border remains unchanged; only its optical presence is normalized, preventing the 근무 중 surface from appearing heavier than the event section.
+- Typography, spacing, image asset, copy, and behavior were not changed.
+
+### Follow-up polish
+
+- P3: confirm the shared border token on a signed-in iPhone/PWA capture across the today view and editor route.
+
+final result: passed
+
 ## Scheduler Hierarchy And Rhythm Tidy QA
 
 - source visual truth: `/tmp/codex-remote-attachments/019f9618-8084-7c03-a518-af09fcce8455/71EC4BDE-2BC4-4C1F-A1C6-F8E7F3A8845C/1-붙여넣은-이미지-1.jpg`
