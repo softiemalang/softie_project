@@ -23,9 +23,14 @@
 
 .prep-shell input[type='date'],
 .prep-shell input[type='time'] {
-  inline-size: 100%;
+  /* iOS WebKit overflows native date/time controls when 100% width and
+     inline padding are combined. Let the grid stretch the auto-sized item. */
+  width: auto;
+  inline-size: auto;
   min-inline-size: 0;
-  max-inline-size: 100%;
+  max-width: none;
+  max-inline-size: none;
+  justify-self: stretch;
 }
 
 .prep-shell input[type='date']::-webkit-date-and-time-value,

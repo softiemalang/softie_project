@@ -268,6 +268,39 @@
 
 final result: passed
 
+## Interpretation Prep iOS Native Input Width QA
+
+- source visual truth: `/tmp/codex-remote-attachments/019f9618-8084-7c03-a518-af09fcce8455/1D768D63-A2B6-4BE8-A683-EF5CAC5D4920/1-붙여넣은-이미지-1.jpg`
+- implementation: `http://127.0.0.1:4173/interpretation-prep`
+- implementation screenshot: `/Users/softie/.codex/visualizations/2026/07/24/019f9618-8084-7c03-a518-af09fcce8455/interpretation-prep-ios-width-fix.png`
+- source pixels: `588×1280`; reviewed proportionally against the `390px` CSS-width implementation (`1.508×` source scale), with the source iPhone system chrome treated as out of scope
+- implementation viewport and pixels: `390×844` CSS px at 1× density
+- state: mobile birth input form, scrolled to the native date/time control group
+- full-view comparison evidence: the source and implementation screenshots were opened together in one visual comparison input
+- focused comparison evidence: date-input right edges, the time-input/unknown-button boundary, and the form-card right edge were measured directly in the rendered implementation
+- primary interaction tested: the `모름` toggle sets `aria-pressed`, disables the time input, and restores the enabled state
+- console errors checked: none
+
+### Findings
+
+- P1 resolved: the supplied iPhone capture shows both native date controls extending past the form card and the native time control intruding beneath the fixed-width `모름` button. Native date/time controls now use auto inline sizing and grid stretch instead of the iOS WebKit-sensitive `100%` width plus padding combination.
+- Spacing and layout rhythm: at `390px`, both date controls remain within their `325.625px` field width. The time field ends at `281.016px`, the `모름` button begins at `289.813px`, and the intended gap remains visible with `0px` overlap.
+- Responsive behavior: `375px`, `390px`, and `430px` checks all report zero document overflow, contained date controls, a contained time-control row, and zero time/button overlap.
+- Fonts and typography: labels, values, font sizes, weights, line heights, and native value alignment are unchanged.
+- Colors and visual tokens: glass surfaces, borders, radii, opacity, selected states, and focus treatment are unchanged.
+- Image quality and asset fidelity: the approved atmospheric background asset and crop are unchanged; no new asset was required.
+- Copy and content: all field labels, hints, values, and button copy are unchanged.
+
+### Comparison history
+
+- Iteration 1: the iPhone source exposed a platform-specific P1 overflow that Chromium did not reproduce with the previous `100%` width rule. The date/time rule was changed to auto inline sizing with grid stretch. Post-fix browser measurements at three mobile widths show no overflow or overlap, and the clean `390×844` capture preserves the existing form appearance.
+
+### Follow-up polish
+
+- P3: confirm once on the physical iPhone/PWA runtime because the original defect is specific to iOS WebKit native form controls and cannot be fully emulated by the Chromium-based local browser.
+
+final result: passed
+
 ## Scheduler Work-Time Range Hierarchy QA
 
 - source visual truth: `/tmp/codex-remote-attachments/019f9618-8084-7c03-a518-af09fcce8455/B36D787E-66DB-4DEA-B776-55A8D4FEF6B3/1-붙여넣은-이미지-1.jpg` and `/tmp/codex-remote-attachments/019f9618-8084-7c03-a518-af09fcce8455/B36D787E-66DB-4DEA-B776-55A8D4FEF6B3/2-붙여넣은-이미지-2.jpg`
