@@ -5,8 +5,6 @@ import { createUnifiedInterpretationContext } from './unifiedInterpretationConte
 
 
 import {
-  buildExportPayload,
-  exportPayloadToMarkdown,
   prepareInterpretationData,
 } from './prepare.js'
 
@@ -17,8 +15,6 @@ import {
   INTERPRETATION_PREP_SCHEMA_VERSION,
   KOREA_REFERENCE_CITIES,
   STATUS_META,
-  SYSTEMS,
-  TOPICS,
 } from './schema.js'
 import './interpretationPrep.css'
 
@@ -222,19 +218,6 @@ function LabeledField({ label, hint, className = '', children }) {
       {children}
       {hint && <small>{hint}</small>}
     </label>
-  )
-}
-
-function ProfileRows({ profile }) {
-  return (
-    <dl className="prep-profile-list">
-      {Object.entries(profile).map(([key, value]) => (
-        <div key={key}>
-          <dt>{key}</dt>
-          <dd>{String(value)}</dd>
-        </div>
-      ))}
-    </dl>
   )
 }
 
@@ -779,23 +762,6 @@ function SystemResult({ result, view }) {
   )
 }
 
-async function copyText(text) {
-  if (navigator.clipboard?.writeText) {
-    await navigator.clipboard.writeText(text)
-    return
-  }
-
-  const textarea = document.createElement('textarea')
-  textarea.value = text
-  textarea.style.position = 'fixed'
-  textarea.style.opacity = '0'
-  document.body.appendChild(textarea)
-  textarea.select()
-  const copied = document.execCommand('copy')
-  textarea.remove()
-  if (!copied) throw new Error('copy_failed')
-}
-
 export default function InterpretationPrepPage() {
   const savedDraft = useMemo(loadSavedDraft, [])
   const [input, setInput] = useState(savedDraft?.input || { ...DEFAULT_INPUT, targetDate: todayInKorea() })
@@ -808,16 +774,7 @@ export default function InterpretationPrepPage() {
   const [profiles, setProfiles] = useState(savedDraft?.profiles || DEFAULT_PROFILES)
   const [saveLocally, setSaveLocally] = useState(Boolean(savedDraft))
   const [result, setResult] = useState(null)
-  const [showDetails, setShowDetails] = useState(false)
   const [error, setError] = useState('')
-
-  const [activeSystem, setActiveSystem] = useState('saju')
-
-  const [resultView, setResultView] = useState('raw')
-  const [exportType, setExportType] = useState('conversation')
-  const [topicId, setTopicId] = useState('overall')
-  const [question, setQuestion] = useState('')
-  const [copyStatus, setCopyStatus] = useState('')
   const selectedReferenceCity = getKoreaReferenceCity(input.referenceCity)
 
   useEffect(() => {
@@ -829,52 +786,9 @@ export default function InterpretationPrepPage() {
     }
   }, [input, profiles, saveLocally])
 
-  // Initial calculation on page mount if missing
-  useEffect(() => {
-    if (!result) {
-      try {
-        const initialResult = prepareInterpretationData(input, profiles)
-        setResult(initialResult)
-      } catch (e) {
-        // Initial calculation fallback
-      }
-    }
-  }, [])
-
-  const safeUnifiedContext = useMemo(() => {
-    try {
-      return createUnifiedInterpretationContext(
-        result?.systems?.saju || {},
-        result?.systems?.ziwei || {},
-        result?.systems?.astrology || {}
-      )
-    } catch (e) {
-      console.warn('[InterpretationPrep] Failed to create unified context.', e)
-      return createUnifiedInterpretationContext({}, {}, {})
-    }
-  }, [result])
-
-
-
-  const exportPayload = useMemo(() => {
-    if (!result) return null
-    return buildExportPayload(result, {
-      type: exportType,
-      topicId,
-      question,
-      generatedAt: new Date().toISOString(),
-    })
-  }, [result, exportType, topicId, question])
-
-  const markdown = useMemo(
-    () => exportPayload ? exportPayloadToMarkdown(exportPayload) : '',
-    [exportPayload],
-  )
-
   function updateInput(key, value) {
     setInput((current) => ({ ...current, [key]: value }))
     setError('')
-    setCopyStatus('')
   }
 
   function updateDateDraft(key, value) {
@@ -902,7 +816,6 @@ export default function InterpretationPrepPage() {
       timeAccuracy: 'exact',
     }))
     setError('')
-    setCopyStatus('')
   }
 
   function setTimeAccuracyMode(mode) {
@@ -928,7 +841,6 @@ export default function InterpretationPrepPage() {
       }))
     }
     setError('')
-    setCopyStatus('')
   }
 
   function updateReferenceCity(cityId) {
@@ -940,14 +852,6 @@ export default function InterpretationPrepPage() {
       longitude: String(city.longitude),
     }))
     setError('')
-    setCopyStatus('')
-  }
-
-  function updateAstrologyProfile(key, value) {
-    setProfiles((current) => ({
-      ...current,
-      astrology: { ...current.astrology, [key]: value },
-    }))
   }
 
   function handleSavePreference(checked) {
@@ -961,35 +865,22 @@ export default function InterpretationPrepPage() {
     }
   }
 
-  function handleCalculate(event) {
-    event.preventDefault()
+  function prepareForChat() {
     try {
       const nextResult = prepareInterpretationData(input, profiles)
       setResult(nextResult)
-      setShowDetails(true)
       setError('')
-      setActiveSystem('saju')
-      setResultView('raw')
-      setCopyStatus('계산값을 새로 적용했습니다.')
+      return createUnifiedInterpretationContext(
+        nextResult.interpretationContext || {},
+        nextResult.systems?.ziwei || {},
+        nextResult.systems?.astrology || {}
+      )
     } catch (calculationError) {
-      setResult(null)
-      setError(calculationError.message || '계산 중 오류가 발생했습니다.')
+      setError(calculationError.message || '출생정보를 확인한 뒤 다시 시도해 주세요.')
+      throw calculationError
     }
   }
 
-
-  async function handleCopy(format) {
-    if (!exportPayload) return
-    try {
-      await copyText(format === 'markdown' ? markdown : JSON.stringify(exportPayload, null, 2))
-      setCopyStatus(format === 'markdown' ? 'Markdown을 복사했습니다.' : 'JSON을 복사했습니다.')
-    } catch (copyError) {
-      console.error('[InterpretationPrep] Copy failed.', copyError)
-      setCopyStatus('복사에 실패했습니다. 아래 미리보기에서 직접 선택해 주세요.')
-    }
-  }
-
-  const currentSystem = result?.systems[activeSystem]
 
   return (
     <main className="app-shell ag-shell prep-shell" data-design-theme="atmospheric">
@@ -1002,43 +893,22 @@ export default function InterpretationPrepPage() {
           <div className="prep-hero-copy">
             <p className="eyebrow">INTERPRETATION PREP</p>
             <h1>해석 전, 근거부터 정리합니다.</h1>
-            <p className="subtle">사주·자미두수·서양 점성학의 계산값과 불확실성을 분리해 대화형 모델에 전달하는 준비 도구입니다. 최종 성격이나 미래를 단정하지 않습니다.</p>
+            <p className="subtle">현재 지원되는 사주 계산값과 불확실성을 분리해 대화형 모델에 전달하는 준비 도구입니다. 최종 성격이나 미래를 단정하지 않습니다.</p>
           </div>
-          <div className="prep-status-strip" aria-label="계산 체계별 준비 상태">
-            {SYSTEMS.map((system) => (
-              <div key={system.id}>
-                <span>{system.label}</span>
-                <StatusBadge status={result?.systems?.[system.id]?.status || (system.id === 'saju' ? 'missing_input' : system.id === 'ziwei' ? 'needs_profile' : 'unsupported')} />
-              </div>
-            ))}
+          <div className="prep-support-summary" aria-label="현재 계산 지원 범위">
+            <div>
+              <span>현재 지원</span>
+              {result
+                ? <StatusBadge status={result.systems?.saju?.status} />
+                : <span className="prep-status-badge is-muted">자료 생성 시 계산</span>}
+            </div>
+            <strong>사주 핵심 계산</strong>
+            <small>자미두수·서양 점성학은 계산 자료를 만들지 않습니다.</small>
           </div>
         </div>
       </header>
 
-      <nav className="prep-flow-nav ag-glass" aria-label="해석 준비 단계">
-        <a href="#prep-input">
-          <span>01</span>
-          <strong>입력</strong>
-        </a>
-        <a href="#prep-profile">
-          <span>02</span>
-          <strong>계산 기준</strong>
-        </a>
-        {result && (
-          <a href="#prep-handoff">
-            <span>03</span>
-            <strong>Chat 전달</strong>
-          </a>
-        )}
-        {result && showDetails && (
-          <a href="#prep-results">
-            <span>04</span>
-            <strong>결과</strong>
-          </a>
-        )}
-      </nav>
-
-      <form className="prep-workspace" onSubmit={handleCalculate}>
+      <div className="prep-workspace">
         <section className="card prep-card ag-glass" id="prep-input" aria-labelledby="prep-input-title">
           <div className="card-header">
             <div>
@@ -1188,140 +1058,15 @@ export default function InterpretationPrepPage() {
           </details>
           <label className="prep-save-toggle">
             <input type="checkbox" checked={saveLocally} onChange={(event) => handleSavePreference(event.target.checked)} />
-            <span><strong>이 브라우저에 입력과 기준 저장</strong><small>클라우드로 전송하지 않으며, 계산 결과는 저장하지 않습니다.</small></span>
+            <span><strong>이 브라우저에 입력 저장</strong><small>클라우드로 전송하지 않으며, 계산 결과는 저장하지 않습니다.</small></span>
           </label>
-        </section>
-
-        <section className="card prep-card ag-glass" id="prep-profile" aria-labelledby="prep-profile-title">
-          <div className="card-header">
-            <div>
-              <p className="section-kicker">02 · CALCULATION PROFILE</p>
-              <h2 id="prep-profile-title">계산 기준</h2>
-            </div>
-            <span className="prep-step-note">결과와 함께 출력</span>
-          </div>
-          <p className="subtle prep-section-intro">현재 연결된 계산 범위를 확인하고, 필요한 경우에만 상세 규칙을 펼쳐보세요.</p>
-          <div className="prep-profile-stack">
-            <details>
-              <summary><span><strong>사주</strong><small>핵심 원국 계산 · 일부 판정 규칙 미지원</small></span><StatusBadge status={result?.systems?.saju?.status || 'partial'} /></summary>
-              <ProfileRows profile={profiles.saju} />
-            </details>
-            <details>
-              <summary><span><strong>자미두수</strong><small>판본과 배치 규칙 미확정</small></span><StatusBadge status="needs_profile" /></summary>
-              <p>판본과 핵심 배치 규칙이 정해지기 전에는 계산값을 생성하지 않습니다.</p>
-              <ProfileRows profile={profiles.ziwei} />
-            </details>
-            <details>
-              <summary><span><strong>서양 점성학</strong><small>천문력 어댑터 미연결</small></span><StatusBadge status="unsupported" /></summary>
-              <div className="prep-inline-settings">
-                <LabeledField label="황도">
-                  <select value={profiles.astrology.zodiac} onChange={(event) => updateAstrologyProfile('zodiac', event.target.value)}>
-                    <option value="tropical">열대황도</option>
-                    <option value="sidereal">항성황도</option>
-                  </select>
-                </LabeledField>
-                <LabeledField label="하우스 시스템">
-                  <select value={profiles.astrology.houseSystem} onChange={(event) => updateAstrologyProfile('houseSystem', event.target.value)}>
-                    <option value="placidus">Placidus</option>
-                    <option value="whole-sign">Whole Sign</option>
-                    <option value="equal">Equal</option>
-                  </select>
-                </LabeledField>
-                <LabeledField label="노드">
-                  <select value={profiles.astrology.nodeType} onChange={(event) => updateAstrologyProfile('nodeType', event.target.value)}>
-                    <option value="true">True Node</option>
-                    <option value="mean">Mean Node</option>
-                  </select>
-                </LabeledField>
-              </div>
-              <p>선택값은 프로필에 저장되지만, 검증된 천문력 어댑터가 없어 아직 차트를 계산하지 않습니다.</p>
-            </details>
-          </div>
           {error && <p className="prep-form-error" role="alert">{error}</p>}
-          <div className="prep-calculation-actions">
-            <button type="submit" className="prep-calculate-button ag-primary-action">
-              {result ? '계산 새로 적용하기' : '계산 적용하기'}
-            </button>
-            {result && (
-              <button
-                type="button"
-                className="prep-secondary-button ag-secondary-action"
-                onClick={() => setShowDetails(!showDetails)}
-                aria-expanded={showDetails}
-                aria-controls="prep-results prep-synthesis"
-              >
-                {showDetails ? '계산 결과 닫기 ▴' : '계산 결과 상세 보기 ▾'}
-              </button>
-            )}
-          </div>
-
         </section>
-      </form>
+      </div>
 
-      {result && (
-        <section className="prep-handoff-section" id="prep-handoff" aria-label="Chat 전달 자료 만들기">
-          <ChatHandoffCard unifiedContext={safeUnifiedContext} />
-        </section>
-      )}
-
-      {result && showDetails && (
-        <>
-          <section className="card prep-card prep-results-card ag-glass" id="prep-results" aria-labelledby="prep-results-title">
-            <div className="card-header">
-              <div>
-                <p className="section-kicker">04 · SYSTEM RESULTS</p>
-
-                <h2 id="prep-results-title">체계별 근거</h2>
-              </div>
-              <span className="prep-step-note">지원 범위와 한계 분리</span>
-            </div>
-            <div className="prep-system-tabs ag-segmented" role="tablist" aria-label="계산 체계">
-              {SYSTEMS.map((system) => (
-                <button
-                  type="button"
-                  role="tab"
-                  aria-selected={activeSystem === system.id}
-                  className={activeSystem === system.id ? 'is-active' : ''}
-                  key={system.id}
-                  onClick={() => setActiveSystem(system.id)}
-                >
-                  <span>{system.shortLabel}</span>{system.label}
-                </button>
-              ))}
-            </div>
-            <div className="prep-view-switch ag-segmented" role="tablist" aria-label="결과 보기 방식">
-              <button type="button" className={resultView === 'raw' ? 'is-active' : ''} onClick={() => setResultView('raw')}>원자료</button>
-              <button type="button" className={resultView === 'features' ? 'is-active' : ''} onClick={() => setResultView('features')}>주요 특징</button>
-            </div>
-            <SystemResult result={currentSystem} view={resultView} />
-          </section>
-
-          <section className="card prep-card ag-glass" id="prep-synthesis" aria-labelledby="prep-synthesis-title">
-            <div className="card-header">
-              <div>
-                <p className="section-kicker">04B · SYNTHESIS LAYER</p>
-                <h2 id="prep-synthesis-title">통합 구조</h2>
-              </div>
-              <StatusBadge status="needs_verification" />
-            </div>
-            <div className="prep-synthesis-grid">
-              {[
-                ['Agreement', '공통점', result.synthesis.agreements],
-                ['Complementary', '보완점', result.synthesis.complementary],
-                ['Tension', '긴장점', result.synthesis.tensions],
-                ['Uncertainty', '미확정', result.synthesis.uncertainties],
-              ].map(([key, label, items]) => (
-                <article className={`prep-synthesis-item is-${key.toLowerCase()}`} key={key}>
-                  <span>{key}</span>
-                  <h3>{label}</h3>
-                  <p>{items.length > 0 ? items[0].summary : '비교 가능한 체계가 2개 이상일 때 근거 기반으로 생성합니다.'}</p>
-                  <strong>{items.length}</strong>
-                </article>
-              ))}
-            </div>
-          </section>
-        </>
-      )}
+      <section className="prep-handoff-section" id="prep-handoff" aria-label="Chat 전달 자료 만들기">
+        <ChatHandoffCard onPrepare={prepareForChat} />
+      </section>
     </main>
   )
 }

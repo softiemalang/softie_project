@@ -228,7 +228,9 @@ export function prepareInterpretationData(input, profiles = DEFAULT_PROFILES) {
     isLeapMonth: input.isLeapMonth,
   }
 
-  const interpretationContext = buildInterpretationContext(systems.saju)
+  const interpretationContext = buildInterpretationContext(systems.saju, {
+    subjectName: normalizedInput.subjectName || '내담자',
+  })
   const interpretationPrompt = buildInterpretationPrompt(interpretationContext)
 
   return {

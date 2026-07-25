@@ -104,6 +104,7 @@ export function buildInterpretationContext(rawResult, options = {}) {
 
   return {
     ...contextHeader,
+    subjectName: options.subjectName || rawResult.subjectName || '내담자',
     candidateSetConsensus,
     candidateFacts,
     uncertainFactors,
