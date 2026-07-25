@@ -1,8 +1,8 @@
 import { useEffect, useMemo, useState } from 'react'
 import { navigate } from '../lib/router'
-import { InterpretationSessionView } from './InterpretationSessionView.jsx'
 import { ChatHandoffCard } from './components/ChatHandoffCard.jsx'
 import { createUnifiedInterpretationContext } from './unifiedInterpretationContext.js'
+
 
 import {
   buildExportPayload,
@@ -809,10 +809,11 @@ export default function InterpretationPrepPage() {
   }))
   const [targetDateTouched, setTargetDateTouched] = useState(Boolean(savedDraft?.input?.targetDate))
   const [profiles, setProfiles] = useState(savedDraft?.profiles || DEFAULT_PROFILES)
-  const [saveLocally, setSaveLocally] = useState(Boolean(savedDraft))
   const [result, setResult] = useState(null)
+  const [showDetails, setShowDetails] = useState(true)
   const [error, setError] = useState('')
   const [activeSystem, setActiveSystem] = useState('saju')
+
   const [resultView, setResultView] = useState('raw')
   const [exportType, setExportType] = useState('conversation')
   const [topicId, setTopicId] = useState('overall')
@@ -955,15 +956,17 @@ export default function InterpretationPrepPage() {
     try {
       const nextResult = prepareInterpretationData(input, profiles)
       setResult(nextResult)
+      setShowDetails(true)
       setError('')
       setActiveSystem('saju')
       setResultView('raw')
-      setCopyStatus('계산값과 파생 특징을 새로 만들었습니다.')
+      setCopyStatus('계산값을 새로 적용했습니다.')
     } catch (calculationError) {
       setResult(null)
       setError(calculationError.message || '계산 중 오류가 발생했습니다.')
     }
   }
+
 
   async function handleCopy(format) {
     if (!exportPayload) return
@@ -1239,17 +1242,32 @@ export default function InterpretationPrepPage() {
             </details>
           </div>
           {error && <p className="prep-form-error" role="alert">{error}</p>}
-          <button type="submit" className="prep-calculate-button ag-primary-action">계산 적용하기</button>
+          <div style={{ display: 'flex', gap: '0.6rem', marginTop: '1rem' }}>
+            <button type="submit" className="prep-calculate-button ag-primary-action" style={{ flex: 1 }}>
+              {result ? '계산 새로 적용하기' : '계산 적용하기'}
+            </button>
+            {result && (
+              <button
+                type="button"
+                className="prep-secondary-button ag-secondary-action"
+                onClick={() => setShowDetails(!showDetails)}
+                style={{ padding: '0 1rem', borderRadius: 'var(--radius-control)', fontSize: '0.82rem', fontWeight: 600 }}
+              >
+                {showDetails ? '계산 결과 닫기 ▴' : '계산 결과 상세 보기 ▾'}
+              </button>
+            )}
+          </div>
 
         </section>
       </form>
 
-      {result && (
+      {result && showDetails && (
         <>
           <section className="card prep-card prep-results-card ag-glass">
             <div className="card-header">
               <div>
                 <p className="section-kicker">03 · SYSTEM RESULTS</p>
+
                 <h2>체계별 근거</h2>
               </div>
               <span className="prep-step-note">지원 범위와 한계 분리</span>
@@ -1302,177 +1320,7 @@ export default function InterpretationPrepPage() {
 
 
 
-          {/* 🔬 실험실 (Lab Workspace): 내부 상담 인터페이스 & 세션 데이터 미리보기 */}
-          <section className="card prep-card ag-glass prep-lab-section">
-            <details className="prep-lab-details">
-              <summary style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', color: 'var(--text-muted)' }}>
-                <span style={{ fontWeight: 700, fontSize: '0.9rem', color: 'var(--brand)' }}>🔬 실험실 (Lab Workspace)</span>
-                <span style={{ fontSize: '0.76rem', color: 'var(--text-tertiary)' }}>내부 상담 세션 UI, Response Schema & Multi-turn Loop 미리보기</span>
-              </summary>
-              <div style={{ paddingTop: '1rem' }}>
-                <InterpretationSessionView
-                  sajuContext={result?.systems?.saju}
-                  ziweiContext={result?.systems?.ziwei}
-                  astrologyContext={result?.systems?.astrology}
-                />
-              </div>
-            </details>
-          </section>
 
-
-          {/* 개발자 전용 사주 계산 검증 센터 */}
-          <section className="card prep-card ag-glass prep-validation-section">
-
-            <details className="prep-validation-details" onToggle={(e) => { if (e.target.open && !validationSummary) handleRunValidation() }}>
-              <summary className="prep-validation-summary-toggle">
-                <span>⚙️ 사주 계산 검증 센터 (개발자 검증용)</span>
-                <small>회귀 검증 픽스처 기반 계산 일관성 대시보드 (개방 시 또는 새로고침 클릭 시에만 지연 연산 시작)</small>
-              </summary>
-
-              <div className="prep-validation-center-content">
-                <div className="prep-validation-top-actions">
-                  <button type="button" className="prep-validation-btn ag-primary-action" onClick={handleRunValidation}>검증 새로고침</button>
-                  <button type="button" className="prep-validation-btn prep-secondary-button ag-secondary-action" onClick={handleCopyDevReport}>검증 보고서(MD) 복사</button>
-                  {developerCopiedStatus && <span className="prep-dev-copied-msg">{developerCopiedStatus}</span>}
-                </div>
-
-                {validationSummary ? (
-                  <>
-                    {/* 통계 요약 보드 */}
-                    <div className="prep-validation-stats-grid">
-                      <div className="prep-val-stat-card">
-                        <span>전체 Fixtures 수</span>
-                        <strong>{validationSummary.statistics.total} 개</strong>
-                      </div>
-                      <div className="prep-val-stat-card is-verified">
-                        <span>외부 검증 완료 (Verified)</span>
-                        <strong>{validationSummary.statistics.verified.passed} / {validationSummary.statistics.verified.total}</strong>
-                        <small>독립 외부 대조 완료 항목</small>
-                      </div>
-                      <div className="prep-val-stat-card is-regression">
-                        <span>회귀 검증 전용 (Regression)</span>
-                        <strong>{validationSummary.statistics.regressionOnly.passed} / {validationSummary.statistics.regressionOnly.total}</strong>
-                        <small>현재 엔진 계산 계약 유지율</small>
-                      </div>
-                      <div className="prep-val-stat-card is-pending">
-                        <span>대기 및 예외 항목 (Pending/Invalid)</span>
-                        <strong>{validationSummary.statistics.pending + validationSummary.statistics.invalid} 개</strong>
-                        <small>외부 근거 보강 또는 계약 검토 대상</small>
-                      </div>
-                    </div>
-
-                    {/* 검증 안전 안내 배너 (Verified 0개 안전 설명) */}
-                    <div className="prep-validation-info-banner">
-                      <p>💡 <b>안내:</b> 독립 외부 기관과의 대조 사례(Verified)는 현재 기준 정비 중에 있습니다. 본 검증 센터는 엔진 계산의 내부 계약 일관성을 감시하고 미작동 회귀를 조기에 포착하기 위한 <b>개발자 전용 품질 도구</b>입니다.</p>
-                    </div>
-
-                    {/* 필터 패널 */}
-                    <div className="prep-validation-filters">
-                      <LabeledField label="카테고리 필터">
-                        <select value={categoryFilter} onChange={(e) => setCategoryFilter(e.target.value)}>
-                          <option value="all">전체 보기 (All Categories)</option>
-                          {Object.keys(validationSummary.categoryStats).map(cat => (
-                            <option value={cat} key={cat}>{cat}</option>
-                          ))}
-                        </select>
-                      </LabeledField>
-
-                      <LabeledField label="신뢰 수준 필터">
-                        <select value={statusFilter} onChange={(e) => setStatusFilter(e.target.value)}>
-                          <option value="all">전체 보기 (All Statuses)</option>
-                          <option value="verified">외부 검증 완료 (Verified)</option>
-                          <option value="regression_only">회귀 검증 전용 (Regression Only)</option>
-                          <option value="pending_external_verification">외부 검증 대기 (Pending)</option>
-                        </select>
-                      </LabeledField>
-                    </div>
-
-                    {/* Fixtures 세부 리스트 */}
-                    <div className="prep-validation-fixtures-list">
-                      {validationSummary.results
-                        .filter(res => {
-                          const itemFixture = sajuValidationFixtures.find(f => f.id === res.fixtureId)
-                          if (!itemFixture) return true
-
-                          const matchesCategory = categoryFilter === 'all' || res.category === categoryFilter
-                          const matchesStatus = statusFilter === 'all' || res.verificationStatus === statusFilter
-                          return matchesCategory && matchesStatus
-                        })
-                        .map(res => {
-                          const itemFixture = sajuValidationFixtures.find(f => f.id === res.fixtureId) || {}
-                          const statusClass = res.status === 'passed' ? 'is-passed' : res.status === 'pending' ? 'is-pending' : 'is-failed'
-                          const statusLabel = res.status === 'passed' ? '계산 결과 일치' : res.status === 'pending' ? '외부 검증 대기' : '계산 결과 불일치'
-
-                          const vStatusLabel = res.verificationStatus === 'verified' ? '외부 검증 완료'
-                            : res.verificationStatus === 'regression_only' ? '회귀 검증 전용' : '외부 검증 대기'
-
-                          return (
-                            <article className={`prep-validation-item ${statusClass}`} key={res.fixtureId}>
-                              <header className="prep-val-item-header">
-                                <div>
-                                  <span className={`prep-val-badge ${res.verificationStatus}`}>{vStatusLabel}</span>
-                                  <h4>{res.title} <small>({res.fixtureId})</small></h4>
-                                </div>
-                                <span className={`prep-val-result-badge ${res.status}`}>{statusLabel}</span>
-                              </header>
-
-                              <p className="prep-val-desc">{itemFixture.description}</p>
-
-                              {/* Mismatches Detail Diff View */}
-                              {res.mismatches && res.mismatches.length > 0 && (
-                                <div className="prep-val-mismatches-box">
-                                  <h5>⚠️ 발견된 불일치 경로 (Mismatch Diff)</h5>
-                                  <table className="prep-val-diff-table">
-                                    <thead>
-                                      <tr>
-                                        <th>데이터 경로 (Dot Path)</th>
-                                        <th>기대값 (Expected)</th>
-                                        <th>실제값 (Actual)</th>
-                                        <th>불일치 사유</th>
-                                      </tr>
-                                    </thead>
-                                    <tbody>
-                                      {res.mismatches.map((mis, idx) => (
-                                        <tr key={idx}>
-                                          <td><code>{mis.path}</code></td>
-                                          <td><span className="val-expected">{String(mis.expected)}</span></td>
-                                          <td><span className="val-actual">{String(mis.actual)}</span></td>
-                                          <td><em>{mis.reason}</em></td>
-                                        </tr>
-                                      ))}
-                                    </tbody>
-                                  </table>
-                                </div>
-                              )}
-
-                              <footer className="prep-val-item-footer">
-                                {itemFixture.source && itemFixture.source.trim() !== '' && (
-                                  <div>
-                                    <span><b>검증 출처:</b> {itemFixture.source}</span>
-                                  </div>
-                                )}
-                                {itemFixture.notes && (
-                                  <div className="prep-val-notes">
-                                    <span><b>검증 메모:</b> {itemFixture.notes}</span>
-                                  </div>
-                                )}
-                                {res.verificationStatus === 'regression_only' && (
-                                  <div className="prep-val-type-note">
-                                    <span>ℹ️ 본 항목은 독립 외부 출처가 아닌, 현재 엔진의 산출값을 고정한 <b>회귀 검증 전용</b> 기준입니다.</span>
-                                  </div>
-                                )}
-                              </footer>
-                            </article>
-                          )
-                        })}
-                    </div>
-                  </>
-                ) : (
-                  <p className="prep-val-loading-placeholder">데이터를 분석하는 데 시간이 걸립니다. [검증 새로고침] 버튼을 눌러 실행을 시작하십시오.</p>
-                )}
-              </div>
-            </details>
-          </section>
         </>
       )}
     </main>
