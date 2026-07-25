@@ -268,6 +268,26 @@
 
 final result: passed
 
+## Scheduler Selected-State Contrast QA
+
+- source visual truth: `/tmp/codex-remote-attachments/019f9618-8084-7c03-a518-af09fcce8455/D4D4FED9-061C-49E1-A3AE-526A40A73D7D/1-붙여넣은-이미지-1.jpg`
+- implementation evidence: scheduler stylesheet selectors in `src/styles.css`; signed-out browser capture remains `/private/tmp/softie-scheduler-default-qa/scheduler-login-390.png`
+- source pixels: `588×1280`; implementation capture: `390×844` CSS px at 1× density
+- state: signed-in scheduler editor in the source; signed-out route in the browser, with no local authenticated session available for direct field interaction
+
+### Findings
+
+- P3 resolved: selected scheduler chips, room options, navigation states, and compact filter chips now use a slightly brighter warm selected fill (`rgba(219, 204, 175, 0.28)`) and selected line (`rgba(255, 246, 228, 0.42)`).
+- A restrained inner highlight and 1px optical ring improve identification without changing the surrounding atmospheric surface or unselected controls.
+- The change is scoped to scheduler selected states; home and other pages remain unchanged.
+- Typography, spacing, copy, event-row opacity, and semantic status colors remain unchanged.
+
+### Follow-up polish
+
+- P3: confirm the selected branch, room, duration, and tag states on a signed-in iPhone/PWA capture; direct field interaction was unavailable in this browser session.
+
+final result: passed
+
 ## Scheduler Default Surface QA
 
 - source visual truth: `/tmp/codex-remote-attachments/019f9618-8084-7c03-a518-af09fcce8455/F309FE6D-B5F1-49D9-9254-F25DAC29DBE9/1-붙여넣은-이미지-1.jpg`
