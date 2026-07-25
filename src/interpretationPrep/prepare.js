@@ -9,6 +9,7 @@ import {
 } from './schema.js'
 import { calculateSajuSystem } from './sajuAdapter.js'
 import { lunar2solar, leapMonth, leapDays, monthDays } from './lunarConverter.js'
+import { buildInterpretationContext } from './interpretationContext.js'
 
 const REQUIRED_INPUTS = ['birthDate', 'targetDate', 'timezone', 'referenceCity']
 
@@ -226,6 +227,8 @@ export function prepareInterpretationData(input, profiles = DEFAULT_PROFILES) {
     isLeapMonth: input.isLeapMonth,
   }
 
+  const interpretationContext = buildInterpretationContext(systems.saju)
+
   return {
     schemaVersion: INTERPRETATION_PREP_SCHEMA_VERSION,
     input: {
@@ -236,6 +239,7 @@ export function prepareInterpretationData(input, profiles = DEFAULT_PROFILES) {
     calculationProfiles: profiles,
     systems,
     synthesis: buildSynthesis(systems),
+    interpretationContext,
   }
 }
 
