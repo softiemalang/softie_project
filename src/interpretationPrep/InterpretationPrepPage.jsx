@@ -852,6 +852,19 @@ export default function InterpretationPrepPage() {
     }
   }, [input, profiles, saveLocally])
 
+  // Initial calculation on page mount if missing
+  useEffect(() => {
+    if (!result) {
+      try {
+        const initialResult = prepareInterpretationData(input, profiles)
+        setResult(initialResult)
+      } catch (e) {
+        // Initial calculation fallback
+      }
+    }
+  }, [])
+
+
   const exportPayload = useMemo(() => {
     if (!result) return null
     return buildExportPayload(result, {
@@ -1188,11 +1201,12 @@ export default function InterpretationPrepPage() {
         <section className="mt-4 mb-4">
           <ChatHandoffCard
             unifiedContext={createUnifiedInterpretationContext(
-              result?.systems?.saju,
-              result?.systems?.ziwei,
-              result?.systems?.astrology
+              result?.systems?.saju || {},
+              result?.systems?.ziwei || {},
+              result?.systems?.astrology || {}
             )}
           />
+
         </section>
 
         <section className="card prep-card ag-glass">
