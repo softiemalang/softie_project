@@ -268,6 +268,33 @@
 
 final result: passed
 
+## Scheduler Hierarchy And Rhythm Tidy QA
+
+- source visual truth: `/tmp/codex-remote-attachments/019f9618-8084-7c03-a518-af09fcce8455/71EC4BDE-2BC4-4C1F-A1C6-F8E7F3A8845C/1-붙여넣은-이미지-1.jpg`
+- implementation screenshots: `/private/tmp/softie-scheduler-tidy-qa/scheduler-login-390.png` and `/private/tmp/softie-scheduler-tidy-qa/scheduler-login-1280.png`
+- full-view comparison evidence: `/private/tmp/softie-scheduler-tidy-qa/comparison.png`
+- source pixels: `629×1280`; source is a signed-in scheduler capture embedded in a Messages view, so only the scheduler material and hierarchy were compared
+- implementation pixels: `390×844` at 1× CSS density and `1280×900` desktop regression capture
+- state: signed-out scheduler login for the rendered route; signed-in event hierarchy was checked against the supplied source and existing selectors
+- primary interactions tested: route load, Google login action visibility, and home navigation action visibility; OAuth was not activated
+- console errors checked: no application errors were observed in the captured scheduler states
+
+### Findings
+
+- P3 resolved: scheduler status controls now use a 52px rhythm, 17px capsule radius, and a slightly more even dock gap, matching the supplied reference's calm top-row grouping without copying its system chrome.
+- P3 resolved: event lists use a consistent `0.65rem` inter-row gap so the upcoming schedule reads as a deliberate stack rather than a compressed list. Event opacity and information contrast were unchanged.
+- Fonts and typography: existing Softie scheduler hierarchy remains intact; no new font or copied Apple typography was introduced.
+- Colors and visual tokens: warm photo atmosphere, charcoal surfaces, aged-cream text, and semantic status colors are preserved. The supplied black Messages canvas is intentionally not adopted.
+- Image quality and asset fidelity: the existing `scheduler-atmosphere-v4.jpg` remains the only product imagery; no replacement or CSS-drawn asset was added.
+- Copy and content: scheduler copy and actions are unchanged.
+- Responsive behavior: mobile and desktop login captures remain aligned, with no visible overflow or clipped controls. Signed-in event rendering was not available in this browser session and remains a follow-up verification item.
+
+### Follow-up polish
+
+- P3: confirm the 52px status rhythm and event-list gap on a signed-in iPhone/PWA capture once an authenticated session is available.
+
+final result: passed
+
 ## Scheduler-Only Liquid Glass Transparency Tuning QA
 
 - source visual truth: `/tmp/codex-remote-attachments/019f9618-8084-7c03-a518-af09fcce8455/7E696A20-D0D2-4D8A-AAFD-81CFACAE3FFF/1-붙여넣은-이미지-1.jpg` plus the earlier iOS material reference
