@@ -284,6 +284,23 @@ export function determineGyeokguk(dayMaster, pillars) {
     }
   }
 
+  selectedGyeok.epistemicMetadata = createEpistemicMetadata({
+    epistemicStatus: 'derived',
+    confidence: 'medium',
+    method: {
+      id: 'month-jijangan-tugan-v1',
+      label: '월지 지장간 투간 및 본기 기준 정격 산식',
+    },
+    evidence: [
+      { source: 'pillars.month.branch', value: monthBranch, role: '월지 기준 지장간 확인' },
+      { source: 'gyeokguk.stem', value: selectedGyeok.stem, role: '투출 또는 기준 천간' },
+    ],
+    limitations: [
+      '변격, 가종격 및 파격 정밀 판정은 지원 범위 외(advanced-following-structures)입니다.',
+    ],
+    reviewNotes: `월지 ${monthBranch}의 지장간 투간/본기 기준으로 ${selectedGyeok.name}을 도출하였습니다.`,
+  })
+
   // 특수격(종격) 가능성 검토 (극단적 오행 쏠림 판정)
   const strength = calculateStrengthScore(dayMaster, pillars)
   if (strength.score >= 85) {
@@ -378,6 +395,23 @@ export function determineYongShin(dayMaster, strength, seasonalContext) {
     }
   }
 
+  const epistemicMetadata = createEpistemicMetadata({
+    epistemicStatus: 'derived',
+    confidence: 'low',
+    method: {
+      id: 'surface-support-heuristic-v1',
+      label: '표면 생조 오행 단순 합산 억부용신 산식',
+    },
+    evidence: [
+      { source: 'strength.level', value: strength.level, role: '일간 강도 수준' },
+      { source: 'strength.score', value: strength.score, role: '일간 강도 점수' },
+    ],
+    limitations: [
+      '지지 지장간의 상세 통근 관계 및 종격/가종격 성립 여부를 종합 반영하지 않는 표면 계산 제약이 있습니다.',
+    ],
+    reviewNotes: '지지 지장간의 상세 통근 관계를 배제한 표면 생조 산식으로 도출한 간이 억부용신 후보로서 추가 검토(confidence: low)가 필요합니다.',
+  })
+
   return {
     ruleType: type,
     primaryYongShinElement: yongShin,
@@ -390,7 +424,8 @@ export function determineYongShin(dayMaster, strength, seasonalContext) {
       element: chohuYongShin,
       statement: chohuStatement
     } : null,
-    version: SAJU_PROFILE_RULES_VERSION
+    version: SAJU_PROFILE_RULES_VERSION,
+    epistemicMetadata,
   }
 }
 

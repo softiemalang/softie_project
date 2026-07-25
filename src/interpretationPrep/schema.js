@@ -1,8 +1,10 @@
 import { getSystemCapabilities } from './engineCapabilities.js'
-import { resolveSystemStatus } from './statusResolver.js'
+import { resolveSystemStatus, resolveStateContract } from './statusResolver.js'
 
 export const INTERPRETATION_PREP_SCHEMA_VERSION = '1.10.0'
 export const SAJU_ADAPTER_VERSION = 'saju-adapter-1.9.0'
+export { resolveStateContract }
+
 
 // Korea Meteorological Administration observation-station coordinates.
 // correctionMinutes is a compact display value. Calculations use the exact longitude below.
@@ -107,10 +109,18 @@ export const STATUS_META = {
 export function createEmptySystemResult(system, requestedStatus, warnings = []) {
   const capabilities = getSystemCapabilities(system)
   const status = resolveSystemStatus({ system, requestedStatus })
+  const stateContract = resolveStateContract({
+    inputStatus: status === 'missing_input' ? 'missing_input' : 'valid',
+    calculationStatus: status === 'unsupported' ? 'unsupported' : 'failed',
+    verificationStatus: status === 'needs_verification' ? 'needs_verification' : (status === 'candidate_required' ? 'candidate_required' : 'verified'),
+    interpretationStatus: 'ready',
+    confidence: 'medium',
+  })
 
   return {
     system,
     status,
+    stateContract,
     capabilities,
     engine: null,
     raw: null,

@@ -104,11 +104,20 @@ function guardUnknownBirthTimeExperimental(system, input) {
   return {
     ...system,
     status: 'needs_verification',
+    stateContract: {
+      ...(system.stateContract || {}),
+      inputStatus: 'unknown_birth_time',
+      verificationStatus: 'candidate_required',
+      interpretationStatus: 'candidate_only',
+      confidence: 'low',
+    },
     raw: {
       ...system.raw,
       experimental: {
         isExperimental: true,
         status: 'candidate_required',
+        verificationStatus: 'candidate_required',
+        confidence: 'low',
         description: reason,
         candidateDayMasters,
         strength: null,

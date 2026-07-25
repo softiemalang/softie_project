@@ -574,10 +574,22 @@ function SystemResult({ result, view }) {
                 <h5>
                   용신: {result.raw.experimental?.yongShin?.primaryYongShinElement || '불명'} 오행 / 희신: {result.raw.experimental?.yongShin?.heeShinElement || '불명'} 오행
                 </h5>
-                <span className="profile-meta-text">판단 신뢰도: {result.raw.experimental?.yongShin?.confidence === 'high' ? '높음' : result.raw.experimental?.yongShin?.confidence === 'medium' ? '보통' : '낮음'}</span>
+                <span className="profile-meta-text">
+                  판단 신뢰도: {
+                    result.raw.experimental?.yongShin?.confidence === 'high'
+                      ? '높음'
+                      : result.raw.experimental?.yongShin?.confidence === 'medium'
+                        ? '보통'
+                        : '추가 검토 필요 (낮음)'
+                  }
+                </span>
                 <p className="profile-desc-text">
                   {result.raw.experimental?.yongShin?.statement || ''} {result.raw.experimental?.yongShin?.chohu ? `(조후 보완: ${result.raw.experimental.yongShin.chohu.statement})` : ''}
                 </p>
+                <EpistemicMetadataViewer
+                  metadata={result.raw.experimental?.yongShin?.epistemicMetadata}
+                  title="희용신 분석 상태 및 근거 상세"
+                />
               </div>
             </div>
 

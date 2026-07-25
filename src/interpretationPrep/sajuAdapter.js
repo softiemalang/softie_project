@@ -5,7 +5,7 @@ import {
   SAJU_ENGINE_VERSION,
 } from '../saju/engine/fourPillars.js'
 import { ELEMENTS, YIN_YANG } from '../saju/engine/constants.js'
-import { getKoreaReferenceCity, KOREA_REFERENCE_CITIES, SAJU_ADAPTER_VERSION } from './schema.js'
+import { getKoreaReferenceCity, KOREA_REFERENCE_CITIES, SAJU_ADAPTER_VERSION, resolveStateContract } from './schema.js'
 import { calculateNatalBranchRelations, calculateNatalStemRelations } from './sajuRelationRules.js'
 import { calculateSajuTiming } from './sajuTimingRules.js'
 import {
@@ -770,10 +770,15 @@ export function calculateSajuSystem(input, profile) {
   const [solarYear] = input.birthDate.split('-').map(Number)
   const isInKasiReferenceRange = solarYear >= 1951 && solarYear <= 2050
 
+  const isNeedsVerification = systemStatus === 'needs_verification'
+  const isCandidateRequired = isNeedsVerification || birthTimeUnknown
+
   const primaryExperimental = {
     isExperimental: true,
-    status: systemStatus === 'needs_verification' ? 'candidate_required' : 'calculated',
-    description: systemStatus === 'needs_verification'
+    status: isCandidateRequired ? 'candidate_required' : 'calculated',
+    verificationStatus: isNeedsVerification ? 'needs_verification' : 'verified',
+    confidence: isNeedsVerification ? 'low' : 'medium',
+    description: isNeedsVerification
       ? '절기·출생시각·출생지·운 흐름 중 하나 이상에 후보 또는 검증 필요 상태가 있어 강약·격국·용신·신살을 하나로 확정하지 않습니다.'
       : '강약·격국·용신·신살은 검증단계(Experimental) 분석 결과입니다. 공식 릴리스 전 단계이므로 학술 참고용으로만 사용하시기 바랍니다.',
     strength: {
@@ -789,10 +794,34 @@ export function calculateSajuSystem(input, profile) {
       basis: strengthScore.basis,
       limitations: strengthScore.limitations,
       includesHiddenStemRoots: strengthScore.includesHiddenStemRoots,
-      ...(strengthScore.epistemicMetadata ? { epistemicMetadata: strengthScore.epistemicMetadata } : {}),
+      ...(strengthScore.epistemicMetadata ? {
+        epistemicMetadata: {
+          ...strengthScore.epistemicMetadata,
+          confidence: isNeedsVerification ? 'low' : strengthScore.epistemicMetadata.confidence,
+          reviewNotes: isNeedsVerification
+            ? `[검증 필요] ${strengthScore.epistemicMetadata.reviewNotes}`
+            : strengthScore.epistemicMetadata.reviewNotes,
+        }
+      } : {}),
     },
-    gyeokguk,
-    yongShin,
+    gyeokguk: {
+      ...gyeokguk,
+      ...(gyeokguk.epistemicMetadata ? {
+        epistemicMetadata: {
+          ...gyeokguk.epistemicMetadata,
+          confidence: isNeedsVerification ? 'low' : gyeokguk.epistemicMetadata.confidence,
+        }
+      } : {}),
+    },
+    yongShin: {
+      ...yongShin,
+      ...(yongShin.epistemicMetadata ? {
+        epistemicMetadata: {
+          ...yongShin.epistemicMetadata,
+          confidence: isNeedsVerification ? 'low' : yongShin.epistemicMetadata.confidence,
+        }
+      } : {}),
+    },
     shinsal: shinsalList,
   }
   const candidatePipeline = buildCandidatePipeline({
@@ -963,9 +992,18 @@ export function calculateSajuSystem(input, profile) {
     warnings.push('1987·1988년 서머타임 기간이지만 1시간 표준시 환산 전후 연주·월주·일주·시주가 같아 검증 필요 상태로 올리지 않았습니다.')
   }
 
+  const stateContract = resolveStateContract({
+    inputStatus: birthTimeUnknown ? 'unknown_birth_time' : 'valid',
+    calculationStatus: 'calculated',
+    verificationStatus: isNeedsVerification ? 'needs_verification' : 'verified',
+    interpretationStatus: 'experimental',
+    confidence: isNeedsVerification ? 'low' : (solarTermBoundarySensitive ? 'medium' : 'high'),
+  })
+
   return {
     system: 'saju',
     status: systemStatus,
+    stateContract,
     engine: {
       adapter: SAJU_ADAPTER_VERSION,
       sourceEngine: `softie saju core ${SAJU_ENGINE_VERSION}`,
