@@ -2,11 +2,9 @@
  * ziweiContract.js
  *
  * 자미두수(紫微斗數) 해석 오케스트레이션을 위한 데이터 계약(Data Contract) 및 스키마 모듈
- *
- * [핵심 원칙]
- * - 계산 코드 작성 전, 데이터를 정갈하게 고정하는 데이터 계약부터 선제적 정의
- * - 사주 엔진의 불확실성 제어, 후보 관리, InterpretationContext 철학과 완벽히 동기화
  */
+
+import { buildZiweiPalaceContexts } from './ziweiPalaceContext.js'
 
 export const ZIWEI_PALACE_DEFINITIONS = [
   { id: 'life', name: '명궁', defaultIndex: 0, description: '본질적 기질, 운명의 총체적 바탕' },
@@ -40,15 +38,18 @@ export function createZiweiCalculationContext(params = {}) {
     ruleSet = {},
   } = params
 
+  const isLowConfidence = calculationMeta.confidence === 'low'
+
   return {
+    systemType: 'ziwei',
     input: {
       subjectName: input.subjectName || '무명',
-      birthDate: input.birthDate || null,
-      birthTime: input.birthTime || null,
+      birthYearStem: input.birthYearStem || '甲',
+      birthYearBranch: input.birthYearBranch || '子',
+      lunarMonth: Number(input.lunarMonth) || 1,
+      hourBranch: input.hourBranch || '子',
       gender: input.gender || 'female',
       calendarBasis: {
-        solarDate: input.calendarBasis?.solarDate || null,
-        lunarDate: input.calendarBasis?.lunarDate || null,
         isLeapMonth: Boolean(input.calendarBasis?.isLeapMonth),
         timeAccuracy: input.calendarBasis?.timeAccuracy || 'exact',
       },
@@ -62,7 +63,7 @@ export function createZiweiCalculationContext(params = {}) {
       mingGong: chart.mingGong || { id: 'life', name: '명궁', branch: '寅', index: 2 },
       shenGong: chart.shenGong || { id: 'mind', name: '신궁', branch: '午', index: 6 },
       fiveElementsBureau: chart.fiveElementsBureau || { name: '수이국', number: 2 },
-      palaces: Array.isArray(chart.palaces)
+      palaces: Array.isArray(chart.palaces) && chart.palaces.length > 0
         ? chart.palaces
         : ZIWEI_PALACE_DEFINITIONS.map((p) => ({
             id: p.id,
@@ -75,7 +76,7 @@ export function createZiweiCalculationContext(params = {}) {
           })),
       majorStars: Array.isArray(chart.majorStars) ? chart.majorStars : [],
       minorStars: Array.isArray(chart.minorStars) ? chart.minorStars : [],
-      mutations: Array.isArray(chart.mutations) ? chart.mutations : [], // 사화 (화록/화권/화과/화기)
+      transformations: Array.isArray(chart.transformations) ? chart.transformations : [],
     },
 
     candidates: {
@@ -85,7 +86,7 @@ export function createZiweiCalculationContext(params = {}) {
     },
 
     calculationMeta: {
-      confidence: calculationMeta.confidence || 'high',
+      confidence: calculationMeta.confidence || (isLowConfidence ? 'low' : 'high'),
       verificationStatus: calculationMeta.verificationStatus || 'verified',
       warnings: Array.isArray(calculationMeta.warnings) ? calculationMeta.warnings : [],
     },
@@ -102,8 +103,15 @@ export function createZiweiInterpretationContext(calculationContext) {
   const isLowConfidence = calculationMeta.confidence === 'low'
   const hasMultipleAlternatives = candidates.alternatives && candidates.alternatives.length > 0
 
+  const palaceRelationData = buildZiweiPalaceContexts(chart)
+
   return {
     systemType: 'ziwei',
+    subjectName: input.subjectName || '무명',
+
+    palaceContexts: palaceRelationData.palaceContexts,
+    interpretivePatterns: palaceRelationData.interpretivePatterns,
+
     candidateSetConsensus: {
       factual: {
         mingGongBranch: chart.mingGong?.branch || '미상',
