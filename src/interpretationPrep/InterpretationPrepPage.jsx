@@ -811,8 +811,9 @@ export default function InterpretationPrepPage() {
   const [profiles, setProfiles] = useState(savedDraft?.profiles || DEFAULT_PROFILES)
   const [saveLocally, setSaveLocally] = useState(Boolean(savedDraft))
   const [result, setResult] = useState(null)
-  const [showDetails, setShowDetails] = useState(true)
+  const [showDetails, setShowDetails] = useState(false)
   const [error, setError] = useState('')
+
   const [activeSystem, setActiveSystem] = useState('saju')
 
   const [resultView, setResultView] = useState('raw')
