@@ -9,6 +9,7 @@ import { getKoreaReferenceCity, KOREA_REFERENCE_CITIES, SAJU_ADAPTER_VERSION, re
 import { calculateNatalBranchRelations, calculateNatalStemRelations } from './sajuRelationRules.js'
 import { calculateSajuTiming } from './sajuTimingRules.js'
 import { getHourCandidatesForUnknown, getHourCandidatesForRange } from './sajuHourUtils.js'
+import { analyzeCandidateSet } from './candidateAnalysis.js'
 import {
   calculateStrengthScore,
   determineGyeokguk,
@@ -518,18 +519,19 @@ function buildCandidatePipeline({ input, primaryPillars, primaryRawPillars, prim
     candidates.push(candidateObj)
   })
 
-  let comparison
-  if (candidates.length > 1) {
-    comparison = buildCandidateComparison(candidates)
-  } else if (candidates.length === 1 && candidates[0].sourceCandidates && candidates[0].sourceCandidates.length > 1) {
-    comparison = buildCandidateComparison(candidates[0].sourceCandidates)
-  } else {
-    comparison = { status: 'identical', equivalentFields: [], differences: [] }
-  }
+  const targetList = candidates.length > 1
+    ? candidates
+    : (candidates.length === 1 && candidates[0].sourceCandidates && candidates[0].sourceCandidates.length > 1)
+      ? candidates[0].sourceCandidates
+      : candidates
+
+  const candidateAnalysis = analyzeCandidateSet(targetList)
+  const comparison = candidateAnalysis.pairwiseDiff || { status: 'identical', equivalentFields: [], differences: [] }
 
   return {
     candidates,
     comparison,
+    candidateAnalysis,
   }
 }
 
@@ -1071,6 +1073,7 @@ export function calculateSajuSystem(input, profile) {
     experimental: primaryExperimental,
     candidates: candidatePipeline.candidates,
     candidateComparison: candidatePipeline.comparison,
+    candidateAnalysis: candidatePipeline.candidateAnalysis,
     timing,
     calculationTrace: (() => {
       const trace = [

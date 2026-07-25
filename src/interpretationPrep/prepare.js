@@ -400,37 +400,80 @@ export function exportPayloadToMarkdown(payload) {
   const displayCandidates = primaryCandidates.length > 1
     ? primaryCandidates
     : (primaryCandidates[0]?.sourceCandidates?.length > 1 ? primaryCandidates[0].sourceCandidates : primaryCandidates)
-  const comparison = payload.calculationSummary.saju.candidateComparison || { status: 'identical', equivalentFields: [], differences: [] }
+  const candidateAnalysis = payload.calculationSummary.saju.candidateAnalysis
+  const comparison = payload.calculationSummary.saju.candidateComparison || candidateAnalysis?.pairwiseDiff || { status: 'identical', equivalentFields: [], differences: [] }
 
   let candidatesMarkdownSection = ''
   if (displayCandidates.length > 1) {
+    let consensusText = ''
+    let varianceText = ''
+
+    if (candidateAnalysis && candidateAnalysis.consensus) {
+      const factual = candidateAnalysis.consensus.factual
+      const interpretive = candidateAnalysis.consensus.interpretiveAgreement
+      const distributions = candidateAnalysis.variances?.distributions || {}
+
+      const factualPillarsStr = Object.entries(factual.pillars)
+        ? Object.entries(factual.pillars).map(([k, v]) => `${k === 'year' ? '연주' : k === 'month' ? '월주' : k === 'day' ? '일주' : '시주'}: ${v}`).join(' · ')
+        : '없음'
+
+      const stVal = interpretive.strength?.value
+      const gkVal = interpretive.gyeokguk?.value
+      const ysVal = interpretive.yongShin?.value
+
+      consensusText = [
+        '### 모든 후보에서 공통으로 나타나는 정보 (Candidate Set Consensus)',
+        `- **계산적 공통점 (Factual)**: ${factualPillarsStr || '없음'}${factual.dayMaster ? ` (일간: ${factual.dayMaster})` : ''}`,
+        `- **해석적 일치 (Interpretive Agreement)**: ${stVal ? `일간 강약: ${stVal} ` : ''}${gkVal ? `격국: ${gkVal} ` : ''}${ysVal ? `용신: ${ysVal}` : ''}${!stVal && !gkVal && !ysVal ? '해석 가변 구간 (후보별 상이)' : ''}`,
+      ].join('\n')
+
+      const distLines = []
+      if (distributions.hourBranch) {
+        const hbList = Object.entries(distributions.hourBranch.distribution).map(([k, v]) => `${k}시(${v}개)`).join(', ')
+        distLines.push(`- **시지 분포**: ${hbList}`)
+      }
+      if (distributions.strengthLevel) {
+        const stList = Object.entries(distributions.strengthLevel.distribution).map(([k, v]) => `${k}(${v}개)`).join(', ')
+        distLines.push(`- **강약 분포**: ${stList}`)
+      }
+      if (distributions.daYunStartAge) {
+        distLines.push(`- **첫 대운 시작 연령**: ${distributions.daYunStartAge.min}세 ~ ${distributions.daYunStartAge.max}세`)
+      }
+
+      if (distLines.length > 0) {
+        varianceText = [
+          '### 변동 요인 및 분포 (Variances & Distributions)',
+          distLines.join('\n'),
+        ].join('\n')
+      }
+    }
+
     const diffLines = comparison.differences && comparison.differences.length > 0
       ? comparison.differences.map((diff) => `- **${diff.label || diff.field}**: ${diff.candidateA} vs ${diff.candidateB}`).join('\n')
       : '- 달라지는 주요 항목 없음'
-
-    const equivalentLines = comparison.equivalentFields && comparison.equivalentFields.length > 0
-      ? comparison.equivalentFields.map((eq) => `${eq.label || eq.field}: ${eq.value}`).join(' · ')
-      : '없음'
 
     const candidateCards = displayCandidates.map((c, i) => {
       const pillarsStr = Object.entries(c.pillars).map(([k, v]) => `${v.label || k}: ${v.value || '미상'}`).join(' ')
       const strengthStr = c.experimental?.strength?.level ? ` (강약: ${c.experimental.strength.level})` : ''
       const gyeokStr = c.experimental?.gyeokguk?.name ? ` (격국: ${c.experimental.gyeokguk.name})` : ''
       const yongStr = c.experimental?.yongShin?.primaryYongShinElement ? ` (용신: ${c.experimental.yongShin.primaryYongShinElement})` : ''
-      return `### 후보 ${String.fromCharCode(65 + i)}: ${c.label}\n- 가정: ${c.inputAssumption || c.label}\n- UTC 시각: ${c.utcDateTime || '미상'}\n- 명식: ${pillarsStr}${strengthStr}${gyeokStr}${yongStr}`
+      return `### 후보 ${String.fromCharCode(65 + i)}: ${c.label || c.id}\n- 가정: ${c.inputAssumption || c.label || c.id}\n- UTC 시각: ${c.utcDateTime || '미상'}\n- 명식: ${pillarsStr}${strengthStr}${gyeokStr}${yongStr}`
     }).join('\n\n')
 
     candidatesMarkdownSection = [
-      '## 해석 후보 (Candidates A/B)',
-      '※ 복수의 해석 후보가 존재하는 구간입니다. 단정하지 않고 후보 전체를 함께 검토합니다.',
+      `## 해석 후보 (Candidates A/B) (${displayCandidates.length}개 후보)`,
+      '※ 복수의 해석 후보가 존재하는 구간입니다. 단정하지 않고 공통점과 분포를 중심으로 종합 검토합니다.',
       '',
+      consensusText,
+      '',
+      varianceText,
+      '',
+      '### 개별 후보 상세',
       candidateCards,
       '',
-      '### 후보 간 비교 (Structured Diff)',
-      `- 동일 항목: ${equivalentLines}`,
-      diffLines,
-      '',
-    ].join('\n\n')
+      displayCandidates.length === 2 ? '### 후보 간 비교 (Structured Diff)' : '',
+      displayCandidates.length === 2 ? diffLines : '',
+    ].filter(Boolean).join('\n\n')
   }
 
   return [
