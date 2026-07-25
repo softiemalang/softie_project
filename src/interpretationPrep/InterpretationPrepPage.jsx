@@ -1102,71 +1102,49 @@ export default function InterpretationPrepPage() {
               </LabeledField>
             )}
             <LabeledField label="출생시각" className="prep-field-wide">
-              <div className="prep-time-control-group">
-                <div className="prep-time-mode-selector">
-                  <button
-                    type="button"
-                    className={`prep-time-mode-btn ${input.timeAccuracy === 'exact' || input.timeAccuracy === 'approximate' ? 'is-active' : ''}`}
-                    onClick={() => setTimeAccuracyMode('exact')}
-                  >
-                    지정 시각
-                  </button>
-                  <button
-                    type="button"
-                    className={`prep-time-mode-btn ${input.timeAccuracy === 'range' ? 'is-active' : ''}`}
-                    onClick={() => setTimeAccuracyMode('range')}
-                  >
-                    범위 지정
-                  </button>
-                  <button
-                    type="button"
-                    className={`prep-time-mode-btn ${input.timeAccuracy === 'unknown' ? 'is-active' : ''}`}
-                    onClick={() => setTimeAccuracyMode('unknown')}
-                  >
-                    시각 모름
-                  </button>
-                </div>
-
-                {input.timeAccuracy === 'range' ? (
-                  <div className="prep-time-range-inputs">
-                    <input
-                      type="text"
-                      placeholder="시작 HH:MM"
-                      maxLength={5}
-                      value={input.birthTimeStart || ''}
-                      onChange={(event) => updateInput('birthTimeStart', formatTimeValue(event.target.value))}
-                    />
-                    <span>~</span>
-                    <input
-                      type="text"
-                      placeholder="종료 HH:MM"
-                      maxLength={5}
-                      value={input.birthTimeEnd || ''}
-                      onChange={(event) => updateInput('birthTimeEnd', formatTimeValue(event.target.value))}
-                    />
-                  </div>
-                ) : (
-                  <div className="prep-time-control">
-                    <input
-                      type="text"
-                      inputMode="numeric"
-                      placeholder="HH:MM"
-                      maxLength={5}
-                      pattern="[0-9:]*"
-                      required={input.timeAccuracy !== 'unknown'}
-                      disabled={input.timeAccuracy === 'unknown'}
-                      value={input.timeAccuracy === 'unknown' ? '12:00' : textDrafts.birthTime}
-                      onChange={(event) => updateTimeDraft(event.target.value)}
-                    />
-                  </div>
-                )}
-                {input.timeAccuracy === 'unknown' && (
-                  <p className="prep-field-hint" style={{ marginTop: '0.4rem', color: 'var(--brand)', fontSize: '0.74rem' }}>
-                    💡 정오 12:00를 대표 앵커 시각으로 세팅하여 사주·자미두수·점성학 계산 변수를 최소화합니다. (시주/하우스 불확실성은 보존됨)
-                  </p>
-                )}
+              <div className="prep-time-row" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                <input
+                  type="text"
+                  inputMode="numeric"
+                  placeholder="HH:MM (예: 14:40)"
+                  maxLength={5}
+                  pattern="[0-9:]*"
+                  style={{ flex: 1 }}
+                  value={input.timeAccuracy === 'unknown' ? '12:00' : textDrafts.birthTime}
+                  onChange={(event) => {
+                    if (input.timeAccuracy === 'unknown') {
+                      setTimeAccuracyMode('exact')
+                    }
+                    updateTimeDraft(event.target.value)
+                  }}
+                  onClick={() => {
+                    if (input.timeAccuracy === 'unknown') {
+                      setTimeAccuracyMode('exact')
+                    }
+                  }}
+                />
+                <button
+                  type="button"
+                  className={`prep-time-mode-btn ${input.timeAccuracy === 'unknown' ? 'is-active' : ''}`}
+                  onClick={() => {
+                    if (input.timeAccuracy === 'unknown') {
+                      setTimeAccuracyMode('exact')
+                    } else {
+                      setTimeAccuracyMode('unknown')
+                    }
+                  }}
+                  style={{ whiteSpace: 'nowrap', height: '42px', padding: '0 1.1rem', borderRadius: 'var(--radius-control)', fontWeight: 600 }}
+                >
+                  모름
+                </button>
               </div>
+              {input.timeAccuracy === 'unknown' && (
+                <p className="prep-field-hint" style={{ marginTop: '0.4rem', color: 'var(--brand)', fontSize: '0.74rem' }}>
+                  💡 정오 12:00를 대표 앵커 시각으로 세팅하여 사주·자미두수·점성학 계산 변수를 최소화합니다. (시주/하우스 불확실성은 보존됨)
+                </p>
+              )}
             </LabeledField>
+
 
           </div>
           <details className="prep-advanced-inputs">
