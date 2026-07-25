@@ -5240,7 +5240,7 @@ textarea {
 }
 
 .scheduler-theme-shell .scheduler-today-page .scheduler-controls .scheduler-filter-summary-copy .scheduler-work-status-title {
-  color: var(--ag-text-tertiary);
+  color: var(--ag-text-muted);
   font-size: 1rem;
   font-weight: 600;
   letter-spacing: -0.014em;
