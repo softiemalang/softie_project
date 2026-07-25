@@ -6,8 +6,11 @@
  */
 
 export function createUnifiedInterpretationContext(sajuContext = {}, ziweiContext = {}) {
-  const sajuConfidence = sajuContext.calculationConfidence?.stateContract?.confidence || 'high'
-  const ziweiConfidence = ziweiContext.calculationConfidence?.stateContract?.confidence || 'high'
+  const saju = sajuContext || {}
+  const ziwei = ziweiContext || {}
+
+  const sajuConfidence = saju.calculationConfidence?.stateContract?.confidence || 'high'
+  const ziweiConfidence = ziwei.calculationConfidence?.stateContract?.confidence || 'high'
 
   const isAnyLowConfidence = sajuConfidence === 'low' || ziweiConfidence === 'low'
   const isBothLowConfidence = sajuConfidence === 'low' && ziweiConfidence === 'low'
@@ -37,11 +40,11 @@ export function createUnifiedInterpretationContext(sajuContext = {}, ziweiContex
         saju: ['일간 및 식상/재성 기질 흐름'],
         ziwei: ['명궁 자체 주성 및 삼방사정(관록궁/재백궁) 구조'],
       },
-      sajuPerspective: sajuContext.candidateSetConsensus?.factual?.dayMaster
-        ? `사주는 일간 ${sajuContext.candidateSetConsensus.factual.dayMaster} 중심의 내부적 기질과 역량에 주목합니다.`
+      sajuPerspective: saju.candidateSetConsensus?.factual?.dayMaster
+        ? `사주는 일간 ${saju.candidateSetConsensus.factual.dayMaster} 중심의 내부적 기질과 역량에 주목합니다.`
         : '사주는 일간 중심의 내부 기질과 에너지 흐름에 주목합니다.',
-      ziweiPerspective: ziweiContext.candidateSetConsensus?.factual?.mingGongBranch
-        ? `자미두수는 ${ziweiContext.candidateSetConsensus.factual.mingGongBranch}宮 명궁 중심의 삼방사정 관계망에 주목합니다.`
+      ziweiPerspective: ziwei.candidateSetConsensus?.factual?.mingGongBranch
+        ? `자미두수는 ${ziwei.candidateSetConsensus.factual.mingGongBranch}宮 명궁 중심의 삼방사정 관계망에 주목합니다.`
         : '자미두수는 명궁 중심의 삼방사정 환경 관계망에 주목합니다.',
     },
   ]
@@ -62,23 +65,23 @@ export function createUnifiedInterpretationContext(sajuContext = {}, ziweiContex
     sajuConfidence,
     ziweiConfidence,
     uncertainFactors: [
-      ...(sajuContext.uncertainFactors || []),
-      ...(ziweiContext.uncertainFactors || []),
+      ...(saju.uncertainFactors || []),
+      ...(ziwei.uncertainFactors || []),
     ],
     warnings: [
-      ...(sajuContext.interpretationWarnings || []),
-      ...(ziweiContext.interpretationWarnings || []),
+      ...(saju.interpretationWarnings || []),
+      ...(ziwei.interpretationWarnings || []),
     ],
   }
 
   return {
     systemType: 'unified_saju_ziwei',
-    subjectName: sajuContext.subjectName || ziweiContext.subjectName || '내담자',
+    subjectName: saju.subjectName || ziwei.subjectName || '내담자',
     systemAgreement,
     sharedThemes,
     differentPerspectives,
     unifiedConfidence,
-    sajuContext,
-    ziweiContext,
+    sajuContext: saju,
+    ziweiContext: ziwei,
   }
 }
