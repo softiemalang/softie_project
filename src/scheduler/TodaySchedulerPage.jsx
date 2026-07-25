@@ -915,6 +915,7 @@ export function TodaySchedulerPage({
         title="지금 처리할 일"
         items={grouped.actionNow}
         emptyText={isLoading ? '불러오는 중...' : '없음'}
+        hideEmptyText
         pendingStatusId={pendingStatusId}
         onToggleDone={handleToggleDone}
       />
@@ -923,6 +924,7 @@ export function TodaySchedulerPage({
         title="곧 다가오는 일정"
         items={grouped.upcomingSoon}
         emptyText={isLoading ? '불러오는 중...' : '없음'}
+        hideEmptyText
         pendingStatusId={pendingStatusId}
         onToggleDone={handleToggleDone}
       />

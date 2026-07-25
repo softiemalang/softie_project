@@ -1,7 +1,14 @@
 import { SchedulerEventCard } from './SchedulerEventCard'
 
 
-export function SchedulerEventSection({ title, items, emptyText, onToggleDone, pendingStatusId }) {
+export function SchedulerEventSection({
+  title,
+  items,
+  emptyText,
+  onToggleDone,
+  pendingStatusId,
+  hideEmptyText = false,
+}) {
   const normalizedEmptyText = (() => {
     if (emptyText === '불러오는 중...') return emptyText
     if (title === '지금 처리할 일') return '처리할 작업 없음'
@@ -27,7 +34,9 @@ export function SchedulerEventSection({ title, items, emptyText, onToggleDone, p
       </div>
 
       {items.length === 0 ? (
-        <p className="subtle scheduler-empty-note">{normalizedEmptyText}</p>
+        normalizedEmptyText === '불러오는 중...' || !hideEmptyText ? (
+          <p className="subtle scheduler-empty-note">{normalizedEmptyText}</p>
+        ) : null
       ) : (
         <div className="scheduler-event-list">
           {items.map((item) => (
