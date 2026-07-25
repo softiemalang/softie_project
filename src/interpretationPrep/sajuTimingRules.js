@@ -171,7 +171,7 @@ function calculateDaYunSingle(input, pillars, natalAnalysis, calculationOptions,
       startDate,
       nextStartDate,
       startAgeYears: Number((startAge.decimalYears + index * 10).toFixed(4)),
-      isActive: targetDate >= startDate && targetDate < nextStartDate,
+      isActive: targetDate ? (targetDate >= startDate && targetDate < nextStartDate) : null,
     }
   })
 
@@ -288,7 +288,7 @@ function buildNatalTwelveStages(natalCandidates) {
 }
 
 function buildCrossPeriodRelations(daYun, periods) {
-  if (daYun.status !== 'calculated' || Object.values(periods).some((period) => period.status !== 'calculated')) {
+  if (!periods || daYun.status !== 'calculated' || Object.values(periods).some((period) => period.status !== 'calculated')) {
     return {
       status: 'candidate_required',
       items: [],
@@ -326,21 +326,44 @@ export function calculateSajuTiming({
   natalCandidatePillars = [],
   daYunCandidateSources = [],
 }) {
-  const targetDate = input.targetDate
+  const targetDate = input?.targetDate ? String(input.targetDate).trim() : null
   const birthTimeUnknown = input.timeAccuracy === 'unknown'
   const natalCandidates = buildNatalCandidates(pillars, natalAnalysis, natalCandidatePillars, birthTimeUnknown)
-  const targetSamples = ['00:00', '12:00', '23:59'].map((birthTime) => ({
-    sourceLabel: `${targetDate} ${birthTime}`,
-    pillars: calculateFourPillars({ birthDate: targetDate, birthTime }, calculationOptions),
-  }))
-  const targetNoon = targetSamples[1].pillars
-  const targetYearPillars = uniqueBy(targetSamples.map((sample) => ({ sourceLabel: sample.sourceLabel, pillar: sample.pillars.year })), (sample) => formatPillar(sample.pillar))
-  const targetMonthPillars = uniqueBy(targetSamples.map((sample) => ({ sourceLabel: sample.sourceLabel, pillar: sample.pillars.month })), (sample) => formatPillar(sample.pillar))
-  const periods = {
-    year: mergePeriodCandidates('세운', targetYearPillars, natalCandidates),
-    month: mergePeriodCandidates('월운', targetMonthPillars, natalCandidates),
-    day: mergePeriodCandidates('일진', [{ sourceLabel: `${targetDate} 12:00`, pillar: targetNoon.day }], natalCandidates),
+
+  let targetSamples = []
+  let periods = null
+  let targetDateBoundary = {
+    status: 'uncalculated',
+    referenceTime: null,
+    yearPillarCandidates: [],
+    monthPillarCandidates: [],
+    reason: 'targetDate 미지정으로 세운·월운·일진 미계산',
   }
+
+  if (targetDate) {
+    targetSamples = ['00:00', '12:00', '23:59'].map((birthTime) => ({
+      sourceLabel: `${targetDate} ${birthTime}`,
+      pillars: calculateFourPillars({ birthDate: targetDate, birthTime }, calculationOptions),
+    }))
+    const targetNoon = targetSamples[1].pillars
+    const targetYearPillars = uniqueBy(targetSamples.map((sample) => ({ sourceLabel: sample.sourceLabel, pillar: sample.pillars.year })), (sample) => formatPillar(sample.pillar))
+    const targetMonthPillars = uniqueBy(targetSamples.map((sample) => ({ sourceLabel: sample.sourceLabel, pillar: sample.pillars.month })), (sample) => formatPillar(sample.pillar))
+    periods = {
+      year: mergePeriodCandidates('세운', targetYearPillars, natalCandidates),
+      month: mergePeriodCandidates('월운', targetMonthPillars, natalCandidates),
+      day: mergePeriodCandidates('일진', [{ sourceLabel: `${targetDate} 12:00`, pillar: targetNoon.day }], natalCandidates),
+    }
+    targetDateBoundary = {
+      status: targetYearPillars.length > 1 || targetMonthPillars.length > 1 ? 'candidate_required' : 'calculated',
+      referenceTime: '12:00',
+      yearPillarCandidates: targetYearPillars.map((candidate) => candidate.pillar).map(formatPillar),
+      monthPillarCandidates: targetMonthPillars.map((candidate) => candidate.pillar).map(formatPillar),
+      reason: targetYearPillars.length > 1 || targetMonthPillars.length > 1
+        ? '기준일 안에 절입 경계가 있어 세운 또는 월운이 시각에 따라 달라짐'
+        : null,
+    }
+  }
+
   const daYunSources = uniqueBy([
     { label: '입력 기준', input, pillars, analysis: natalAnalysis },
     ...daYunCandidateSources.map((source) => ({
@@ -349,15 +372,6 @@ export function calculateSajuTiming({
     })),
   ], (source) => `${source.input.birthDate}|${source.input.birthTime}|${formatPillarSet(source.pillars)}`)
   const daYun = mergeDaYunCandidates(input, daYunSources, calculationOptions, targetDate)
-  const targetDateBoundary = {
-    status: targetYearPillars.length > 1 || targetMonthPillars.length > 1 ? 'candidate_required' : 'calculated',
-    referenceTime: '12:00',
-    yearPillarCandidates: targetYearPillars.map((candidate) => candidate.pillar).map(formatPillar),
-    monthPillarCandidates: targetMonthPillars.map((candidate) => candidate.pillar).map(formatPillar),
-    reason: targetYearPillars.length > 1 || targetMonthPillars.length > 1
-      ? '기준일 안에 절입 경계가 있어 세운 또는 월운이 시각에 따라 달라짐'
-      : null,
-  }
   const natalTwelveStages = buildNatalTwelveStages(natalCandidates)
   const crossPeriodRelations = buildCrossPeriodRelations(daYun, periods)
 

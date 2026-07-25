@@ -182,9 +182,9 @@ export function prepareInterpretationData(input, profiles = DEFAULT_PROFILES) {
     isLeapMonth: false,
     birthDate: birthDateSolar,
     birthTime: input.timeAccuracy === 'unknown' ? '' : input.birthTime,
-    targetDate: input.targetDate.trim(),
-    subjectName: input.subjectName.trim(),
-    placeName: DEFAULT_INPUT.placeName,
+    targetDate: (input.targetDate || DEFAULT_INPUT.targetDate).trim(),
+    subjectName: (input.subjectName || DEFAULT_INPUT.subjectName).trim(),
+    placeName: input.placeName || DEFAULT_INPUT.placeName,
     gender: ['female', 'male'].includes(input.gender) ? input.gender : DEFAULT_INPUT.gender,
     referenceCity: referenceCity.id,
     referenceCityLabel: referenceCity.label,
@@ -389,6 +389,43 @@ export function exportPayloadToMarkdown(payload) {
     ? `음력 ${originalLunar} (${isLeap ? '윤달' : '평달'}) -> 변환 양력 ${convertedSolar} (출처: ${lunarSource}) ${payload.birthSummary.birthTime || '출생시각 모름'} (${payload.birthSummary.timezone})`
     : `${payload.birthSummary.birthDate} ${payload.birthSummary.birthTime || '출생시각 모름'} (${payload.birthSummary.timezone})`
 
+  const primaryCandidates = payload.calculationSummary.saju.candidates || []
+  const displayCandidates = primaryCandidates.length > 1
+    ? primaryCandidates
+    : (primaryCandidates[0]?.sourceCandidates?.length > 1 ? primaryCandidates[0].sourceCandidates : primaryCandidates)
+  const comparison = payload.calculationSummary.saju.candidateComparison || { status: 'identical', equivalentFields: [], differences: [] }
+
+  let candidatesMarkdownSection = ''
+  if (displayCandidates.length > 1) {
+    const diffLines = comparison.differences && comparison.differences.length > 0
+      ? comparison.differences.map((diff) => `- **${diff.label || diff.field}**: ${diff.candidateA} vs ${diff.candidateB}`).join('\n')
+      : '- 달라지는 주요 항목 없음'
+
+    const equivalentLines = comparison.equivalentFields && comparison.equivalentFields.length > 0
+      ? comparison.equivalentFields.map((eq) => `${eq.label || eq.field}: ${eq.value}`).join(' · ')
+      : '없음'
+
+    const candidateCards = displayCandidates.map((c, i) => {
+      const pillarsStr = Object.entries(c.pillars).map(([k, v]) => `${v.label || k}: ${v.value || '미상'}`).join(' ')
+      const strengthStr = c.experimental?.strength?.level ? ` (강약: ${c.experimental.strength.level})` : ''
+      const gyeokStr = c.experimental?.gyeokguk?.name ? ` (격국: ${c.experimental.gyeokguk.name})` : ''
+      const yongStr = c.experimental?.yongShin?.primaryYongShinElement ? ` (용신: ${c.experimental.yongShin.primaryYongShinElement})` : ''
+      return `### 후보 ${String.fromCharCode(65 + i)}: ${c.label}\n- 가정: ${c.inputAssumption || c.label}\n- UTC 시각: ${c.utcDateTime || '미상'}\n- 명식: ${pillarsStr}${strengthStr}${gyeokStr}${yongStr}`
+    }).join('\n\n')
+
+    candidatesMarkdownSection = [
+      '## 해석 후보 (Candidates A/B)',
+      '※ 복수의 해석 후보가 존재하는 구간입니다. 단정하지 않고 후보 전체를 함께 검토합니다.',
+      '',
+      candidateCards,
+      '',
+      '### 후보 간 비교 (Structured Diff)',
+      `- 동일 항목: ${equivalentLines}`,
+      diffLines,
+      '',
+    ].join('\n\n')
+  }
+
   return [
     '# 해석 준비 도구 · 대화용 패키지',
     '',
@@ -398,6 +435,7 @@ export function exportPayloadToMarkdown(payload) {
     `- 지원 지역: ${payload.birthSummary.placeName}`,
     `- 기준 도시: ${payload.birthSummary.referenceCityLabel} (${payload.birthSummary.latitude}, ${payload.birthSummary.longitude})`,
     '',
+    candidatesMarkdownSection,
     '## 계산 요약',
     '',
     `- ${sajuPillars}`,

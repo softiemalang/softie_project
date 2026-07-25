@@ -476,30 +476,77 @@ function SystemResult({ result, view }) {
         </section>
       )}
 
-      {result.raw.candidates?.length > 1 && (
-        <section className="prep-data-panel prep-profile-panel">
-          <div className="prep-mini-head">
-            <h4>후보별 계산</h4>
-            <span>{result.raw.candidates.length}개 명식 후보 · 동일 명식 중복 제거</span>
-          </div>
-          <div className="prep-profile-list">
-            {result.raw.candidates.map((candidate) => (
-              <div key={candidate.id}>
-                <strong>{candidate.label}</strong>
-                <span>{candidate.input.birthDate} {candidate.input.birthTime || '시각 미상'}</span>
-                <span>{['year', 'month', 'day', 'hour'].map((key) => candidate.pillars[key]?.value || '미상').join(' · ')}</span>
-                <span>대운: {candidate.timing.daYun?.cycles?.find((cycle) => cycle.isActive)?.value || '후보 확인 필요'}</span>
-                <span>강약·격국·용신: {candidate.experimental.strength?.level || '미산출'} · {candidate.experimental.gyeokguk?.name || '미산출'} · {candidate.experimental.yongShin?.primaryYongShinElement || '미산출'}</span>
-              </div>
-            ))}
-          </div>
-          {result.raw.candidateComparison?.differences?.length > 0 && (
-            <p className="prep-timing-note">
-              후보 간 차이: {result.raw.candidateComparison.differences.map((item) => item.path).join(', ')}
-            </p>
+      {(() => {
+        const primaryCandidates = result.raw.candidates || []
+        const displayCandidates = primaryCandidates.length > 1
+          ? primaryCandidates
+          : (primaryCandidates[0]?.sourceCandidates?.length > 1 ? primaryCandidates[0].sourceCandidates : [])
+        if (displayCandidates.length <= 1) return null
+
+        return (
+          <section className="prep-data-panel prep-profile-panel">
+            <div className="prep-mini-head">
+              <h4>해석 후보 목록 (Candidates A/B)</h4>
+              <span>{displayCandidates.length}개 해석 후보 · 단정 없이 묶음으로 검토</span>
+            </div>
+            <div className="prep-profile-list">
+              {displayCandidates.map((candidate, idx) => (
+                <div key={candidate.id || candidate.candidateId || idx} className="candidate-card-item">
+                  <div className="candidate-card-header">
+                    <strong>후보 {String.fromCharCode(65 + idx)}: {candidate.label}</strong>
+                    {candidate.status && <span className="prep-badge warning">{candidate.status}</span>}
+                  </div>
+                  {candidate.inputAssumption && (
+                    <p className="candidate-assumption">가정: {candidate.inputAssumption}</p>
+                  )}
+                  {candidate.utcDateTime && (
+                    <p className="candidate-utc">UTC: <code>{candidate.utcDateTime}</code> ({candidate.timezoneRuleVersion || '표준 시간대 규칙'})</p>
+                  )}
+                  <div className="candidate-pillars-row">
+                    명식: {candidate.pillars ? ['year', 'month', 'day', 'hour'].map((key) => `${candidate.pillars[key]?.label || key}: ${candidate.pillars[key]?.value || '미상'}`).join(' · ') : '동일 명식'}
+                  </div>
+                  <div className="candidate-derived-row">
+                    <span>일간: <strong>{candidate.dayMaster || '미상'}</strong></span>
+                    <span>첫 대운: {candidate.timing?.daYun?.startAge ? `${candidate.timing.daYun.startAge.years}세` : '미상'}</span>
+                    <span>강약: {candidate.experimental?.strength?.level || '미산출'}</span>
+                    <span>격국: {candidate.experimental?.gyeokguk?.name || '미산출'}</span>
+                    <span>용신: {candidate.experimental?.yongShin?.primaryYongShinElement || '미산출'}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+          {result.raw.candidateComparison && (
+            <div className="candidate-comparison-block">
+              <h5>후보 간 비교 (Structured Diff)</h5>
+              {result.raw.candidateComparison.status === 'equivalent_pillars' && (
+                <p className="candidate-eq-notice">
+                  ※ 두 실제 시각의 사주팔자(명식)는 동일하지만, UTC 시각 및 시간 기반 파생 결과가 다릅니다.
+                </p>
+              )}
+
+              {result.raw.candidateComparison.equivalentFields?.length > 0 && (
+                <div className="comparison-eq-list">
+                  <strong>동일 항목:</strong>{' '}
+                  {result.raw.candidateComparison.equivalentFields.map((eq) => `${eq.label || eq.field} (${eq.value})`).join(' · ')}
+                </div>
+              )}
+
+              {result.raw.candidateComparison.differences?.length > 0 ? (
+                <ul className="comparison-diff-list">
+                  {result.raw.candidateComparison.differences.map((diff, idx) => (
+                    <li key={idx}>
+                      <strong>{diff.label || diff.field}:</strong> Candidate A (<code>{diff.candidateA}</code>) vs Candidate B (<code>{diff.candidateB}</code>)
+                    </li>
+                  ))}
+                </ul>
+              ) : (
+                <p className="prep-timing-note">달라지는 주요 항목이 없습니다.</p>
+              )}
+            </div>
           )}
         </section>
-      )}
+      )})()}
 
       {/* 1. 사주 학파 표준 프로필 패널 */}
       {result.raw.experimental?.strength && result.raw.experimental?.status !== 'candidate_required' && (

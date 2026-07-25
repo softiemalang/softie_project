@@ -14,7 +14,7 @@ const FIXED_INPUT = {
   birthDate: '1997-04-21',
   birthTime: '14:40',
   targetDate: '2026-07-21',
-  placeName: '서울',
+  placeName: '대한민국',
   referenceCity: 'seoul',
   timezone: 'Asia/Seoul',
   latitude: '37.5665',
@@ -277,8 +277,8 @@ test('new drafts default to Seoul while domestic city candidates only block boun
     ...FIXED_INPUT,
     placeName: '광명',
   }, DEFAULT_PROFILES)
-  assert.equal(fixedCountry.input.original.placeName, '대한민국')
-  assert.equal(fixedCountry.input.normalized.placeName, '대한민국')
+  assert.equal(fixedCountry.input.original.placeName, '광명')
+  assert.equal(fixedCountry.input.normalized.placeName, '광명')
 
   assert.match(validatePrepInput({ ...FIXED_INPUT, gender: 'other' }), /성별을 선택/)
 

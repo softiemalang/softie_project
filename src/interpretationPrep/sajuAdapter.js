@@ -330,29 +330,6 @@ function buildFeatures(raw, timeAccuracy) {
     }))
   }
 
-  Object.entries(raw.timing.periods).forEach(([periodKey, period]) => {
-    const candidateSummary = period.candidates
-      .map((candidate) => `${candidate.value}/${candidate.dayMaster}일간/${candidate.stemTenGod}·${candidate.branchTenGod}/${candidate.twelveStage}`)
-      .join(' · ')
-    features.push(feature({
-      id: `saju.timing.${periodKey}`,
-      category: 'timing',
-      title: `${period.label} ${period.value}`,
-      statement: period.status === 'candidate_required'
-        ? `${raw.timing.targetDate} 기준 ${period.label}은 경계 또는 일간 후보에 따라 ${candidateSummary}로 나뉘며 하나로 확정하지 않는다.`
-        : `${raw.timing.targetDate} 기준 ${period.label}은 ${period.value}, 천간 십성은 ${period.stemTenGod}, 지지 본기(${period.branchMainStem}) 십성은 ${period.branchTenGod}, 12운성은 ${period.twelveStage}이다.`,
-      evidence: [{
-        type: 'period_pillar',
-        reference: `systems.saju.raw.timing.periods.${periodKey}`,
-        value: period.status === 'candidate_required' ? period.candidates : period,
-      }],
-      strength: 1,
-      confidence: period.status === 'candidate_required' ? 'low' : structuralConfidence,
-      interpretationRange: ['선택 기준일의 시기 간지로 사용', '길흉은 원국·대운·관계 근거를 함께 보고 해석'],
-      tags: ['timing'],
-    }))
-  })
-
   return features
 }
 
@@ -364,6 +341,13 @@ function shiftLocalDateTime(dateString, timeString, minutes) {
     birthDate: value.toISOString().slice(0, 10),
     birthTime: value.toISOString().slice(11, 16),
   }
+}
+
+function calculateUtcDateTime(birthDate, birthTime, offsetHours) {
+  const [year, month, day] = birthDate.split('-').map(Number)
+  const [hour, minute] = birthTime.split(':').map(Number)
+  const utcMs = Date.UTC(year, month - 1, day, hour, minute) - offsetHours * 3600000
+  return new Date(utcMs).toISOString()
 }
 
 function formatPillarValue(pillar) {
@@ -395,80 +379,107 @@ function toRawPillars(pillars) {
 }
 
 function buildCandidateComparison(candidates) {
-  const fields = [
-    ['pillars.year', (candidate) => candidate.pillars.year.value],
-    ['pillars.month', (candidate) => candidate.pillars.month.value],
-    ['pillars.day', (candidate) => candidate.pillars.day.value],
-    ['pillars.hour', (candidate) => candidate.pillars.hour.value],
-    ['dayMaster', (candidate) => candidate.dayMaster],
-    ['timing.daYun', (candidate) => candidate.timing.daYun?.cycles?.find((cycle) => cycle.isActive)?.value || null],
-    ['experimental.strength.level', (candidate) => candidate.experimental.strength?.level || null],
-    ['experimental.gyeokguk.name', (candidate) => candidate.experimental.gyeokguk?.name || null],
-    ['experimental.yongShin.primary', (candidate) => candidate.experimental.yongShin?.primaryYongShinElement || null],
-  ]
-  const common = {}
+  if (!candidates || candidates.length < 2) {
+    return { status: 'identical', equivalentFields: [], differences: [] }
+  }
+
+  const [candidateA, candidateB] = candidates
+  const equivalentFields = []
   const differences = []
-  fields.forEach(([path, getter]) => {
-    const values = candidates.map(getter)
-    const uniqueValues = [...new Set(values)]
-    if (uniqueValues.length === 1) common[path] = uniqueValues[0]
-    else differences.push({ path, values: candidates.map((candidate, index) => ({ candidateId: candidate.id, value: values[index] })) })
+  const pillarKeys = ['year', 'month', 'day', 'hour']
+  let pillarsEqual = true
+
+  pillarKeys.forEach((key) => {
+    const valA = candidateA.pillars[key]?.value || ''
+    const valB = candidateB.pillars[key]?.value || ''
+    const label = PILLAR_LABELS[key]
+
+    if (valA === valB) {
+      equivalentFields.push({ field: `pillars.${key}`, path: `pillars.${key}`, label, value: valA })
+    } else {
+      pillarsEqual = false
+      differences.push({ field: `pillars.${key}`, path: `pillars.${key}`, label, candidateA: valA, candidateB: valB })
+    }
   })
-  return { common, differences }
+
+  if (candidateA.dayMaster === candidateB.dayMaster) {
+    equivalentFields.push({ field: 'dayMaster', path: 'dayMaster', label: '일간', value: candidateA.dayMaster })
+  } else {
+    differences.push({ field: 'dayMaster', path: 'dayMaster', label: '일간', candidateA: candidateA.dayMaster, candidateB: candidateB.dayMaster })
+  }
+
+  if (candidateA.utcDateTime && candidateB.utcDateTime) {
+    if (candidateA.utcDateTime === candidateB.utcDateTime) {
+      equivalentFields.push({ field: 'utcDateTime', path: 'utcDateTime', label: 'UTC 시각', value: candidateA.utcDateTime })
+    } else {
+      differences.push({ field: 'utcDateTime', path: 'utcDateTime', label: 'UTC 시각', candidateA: candidateA.utcDateTime, candidateB: candidateB.utcDateTime })
+    }
+  }
+
+  const levelA = candidateA.experimental?.strength?.level || '불명'
+  const levelB = candidateB.experimental?.strength?.level || '불명'
+  if (levelA === levelB) {
+    equivalentFields.push({ field: 'strength.level', path: 'strength.level', label: '일간 강약', value: levelA })
+  } else {
+    differences.push({ field: 'strength.level', path: 'strength.level', label: '일간 강약', candidateA: levelA, candidateB: levelB })
+  }
+
+  const gyeokA = candidateA.experimental?.gyeokguk?.name || '불명'
+  const gyeokB = candidateB.experimental?.gyeokguk?.name || '불명'
+  if (gyeokA === gyeokB) {
+    equivalentFields.push({ field: 'gyeokguk.name', path: 'gyeokguk.name', label: '격국', value: gyeokA })
+  } else {
+    differences.push({ field: 'gyeokguk.name', path: 'gyeokguk.name', label: '격국', candidateA: gyeokA, candidateB: gyeokB })
+  }
+
+  const daYunA = candidateA.timing?.daYun?.number != null ? `대운수 ${candidateA.timing.daYun.number}` : '불명'
+  const daYunB = candidateB.timing?.daYun?.number != null ? `대운수 ${candidateB.timing.daYun.number}` : '불명'
+  if (daYunA === daYunB) {
+    equivalentFields.push({ field: 'timing.daYun.number', label: '대운수', value: daYunA })
+  } else {
+    differences.push({ field: 'timing.daYun.number', label: '대운수', candidateA: daYunA, candidateB: daYunB })
+  }
+
+  return { status: differences.length === 0 ? 'identical' : pillarsEqual ? 'equivalent_pillars' : 'different', equivalentFields, differences }
 }
 
-function buildCandidatePipeline({
-  input,
-  primaryPillars,
-  primaryRawPillars,
-  primaryAnalysis,
-  primaryTiming,
-  primaryExperimental,
-  candidateSources,
-  calculationOptions,
-}) {
-  const sourceEntries = [
-    {
-      id: 'primary',
-      label: input.timeAccuracy === 'unknown' ? '정오 기준(시주 제외)' : '입력 기준',
-      input,
-      pillars: primaryPillars,
-      rawPillars: primaryRawPillars,
-      analysis: primaryAnalysis,
-      timing: primaryTiming,
-      experimental: primaryExperimental,
-    },
-    ...candidateSources.map((source, index) => ({
-      id: `candidate-${index + 1}`,
-      label: source.label,
-      input: source.input || input,
-      pillars: source.pillars,
-      rawPillars: toRawPillars(source.pillars),
-      calculationOptions: source.calculationOptions || calculationOptions,
-    })),
-  ]
+function buildCandidatePipeline({ input, primaryPillars, primaryRawPillars, primaryAnalysis, primaryTiming, primaryExperimental, candidateSources = [], candidateInstants = null, calculationOptions }) {
+  const sourceEntries = candidateInstants && candidateInstants.length > 0
+    ? candidateInstants.map((inst) => ({
+        id: inst.id, label: inst.label, inputAssumption: inst.inputAssumption,
+        utcDateTime: inst.utcDateTime, timezoneRuleVersion: inst.timezoneRuleVersion,
+        input: inst.input, pillars: calculateFourPillars(inst.input, calculationOptions), rawPillars: toRawPillars(calculateFourPillars(inst.input, calculationOptions))
+      }))
+    : [
+        { id: 'primary', label: input.timeAccuracy === 'unknown' ? '정오 기준' : '입력 기준', inputAssumption: '입력 시각 기준', input, pillars: primaryPillars, rawPillars: primaryRawPillars, analysis: primaryAnalysis, timing: primaryTiming, experimental: primaryExperimental },
+        ...candidateSources.map((s, i) => ({ id: s.id || `candidate-${i + 1}`, label: s.label, inputAssumption: s.inputAssumption, utcDateTime: s.utcDateTime, input: s.input || input, pillars: s.pillars, rawPillars: toRawPillars(s.pillars), calculationOptions: s.calculationOptions || calculationOptions }))
+      ]
 
   const candidates = []
-  const seenPillars = new Set()
-  sourceEntries.forEach((source) => {
-    const pillarKey = formatPillarSet(source.pillars)
-    if (seenPillars.has(pillarKey)) return
-    seenPillars.add(pillarKey)
+  const seenFingerprints = new Map()
 
-    const analysis = source.analysis || analyzeNatalStructure(source.pillars)
-    const rawPillars = source.rawPillars || toRawPillars(source.pillars)
+  sourceEntries.forEach((source) => {
+    const pillars = source.pillars
+    const analysis = source.analysis || analyzeNatalStructure(pillars)
+    const rawPillars = source.rawPillars || toRawPillars(pillars)
     const strength = source.experimental?.strength || calculateStrengthScore(analysis.dayMaster, rawPillars)
     const gyeokguk = source.experimental?.gyeokguk || determineGyeokguk(analysis.dayMaster, rawPillars)
     const yongShin = source.experimental?.yongShin || determineYongShin(analysis.dayMaster, strength, analysis.seasonalContext)
-    const timing = source.timing || calculateSajuTiming({
-      input: source.input,
-      pillars: source.pillars,
-      natalAnalysis: analysis,
-      calculationOptions: source.calculationOptions || calculationOptions,
-    })
-    candidates.push({
+    const timing = source.timing || calculateSajuTiming({ input: source.input, pillars, natalAnalysis: analysis, calculationOptions: source.calculationOptions || calculationOptions })
+
+    const daYunKey = timing?.daYun?.number != null ? `DY:${timing.daYun.number}-${timing.daYun.monthPillar}` : 'DY:none'
+    const fullFingerprint = `${formatPillarSet(pillars)}|${daYunKey}|S:${strength?.level}|G:${gyeokguk?.name}|Y:${yongShin?.primaryYongShinElement}`
+
+    const instantDetail = {
       id: source.id,
+      candidateId: source.id,
       label: source.label,
+      inputAssumption: source.inputAssumption,
+      timezoneOffset: typeof source.input?.timezoneOffset === 'number'
+        ? `${source.input.timezoneOffset >= 0 ? '+' : '-'}${String(Math.abs(source.input.timezoneOffset)).padStart(2, '0')}:00`
+        : (source.input?.timezoneOffset || (source.id === 'dst-daylight' ? '+10:00' : '+09:00')),
+      utcDateTime: source.utcDateTime || null,
+      timezoneRuleVersion: source.timezoneRuleVersion || null,
       input: source.input,
       pillars: rawPillars,
       dayMaster: analysis.dayMaster,
@@ -478,12 +489,41 @@ function buildCandidatePipeline({
       },
       experimental: { strength, gyeokguk, yongShin },
       status: timing.requiresVerification ? 'candidate_required' : 'calculated',
-    })
+    }
+
+    if (seenFingerprints.has(fullFingerprint)) {
+      const existing = seenFingerprints.get(fullFingerprint)
+      if (source.inputAssumption && !existing.sourceAssumptions.includes(source.inputAssumption)) {
+        existing.sourceAssumptions.push(source.inputAssumption)
+      }
+      if (!existing.sourceCandidates.some((c) => c.candidateId === source.id)) {
+        existing.sourceCandidates.push(instantDetail)
+      }
+      return
+    }
+
+    const candidateObj = {
+      ...instantDetail,
+      sourceAssumptions: [source.inputAssumption],
+      sourceCandidates: [instantDetail],
+    }
+
+    seenFingerprints.set(fullFingerprint, candidateObj)
+    candidates.push(candidateObj)
   })
+
+  let comparison
+  if (candidates.length > 1) {
+    comparison = buildCandidateComparison(candidates)
+  } else if (candidates.length === 1 && candidates[0].sourceCandidates && candidates[0].sourceCandidates.length > 1) {
+    comparison = buildCandidateComparison(candidates[0].sourceCandidates)
+  } else {
+    comparison = { status: 'identical', equivalentFields: [], differences: [] }
+  }
 
   return {
     candidates,
-    comparison: buildCandidateComparison(candidates),
+    comparison,
   }
 }
 
@@ -536,19 +576,36 @@ function assessHistoricalSeoulTime(input, birthTimeUnknown, pillars, calculation
   }
 
   if (localKey >= autumnOverlapStart && localKey < autumnOverlapEnd) {
-    const daylightInput = shiftLocalDateTime(input.birthDate, input.birthTime, -60)
-    const daylightPillars = calculateFourPillars(daylightInput, calculationOptions)
+    const stdInput = { ...input, birthDate: input.birthDate, birthTime: input.birthTime, targetDate: input.targetDate, timezone: input.timezone || 'Asia/Seoul', timezoneOffset: 9 }
+    const daylightLocalInput = shiftLocalDateTime(input.birthDate, input.birthTime, -60)
+    const dstInput = { ...input, birthDate: daylightLocalInput.birthDate, birthTime: daylightLocalInput.birthTime, targetDate: input.targetDate, timezone: input.timezone || 'Asia/Seoul', timezoneOffset: 10 }
+
+    const stdUtc = calculateUtcDateTime(input.birthDate, input.birthTime, 9)
+    const dstUtc = calculateUtcDateTime(input.birthDate, input.birthTime, 10)
+
     return {
       status: 'dst_ambiguous_local_time',
       requiresVerification: true,
-      reason: '서머타임 종료로 같은 현지 시각이 두 번 존재했던 시각대',
-      alternativeInput: daylightInput,
-      alternativePillars: daylightPillars,
-      alternativeCandidates: [
-        { label: '표준시 해석 후보', input: { birthDate: input.birthDate, birthTime: input.birthTime }, pillars },
-        { label: '서머타임 해석 후보', input: daylightInput, pillars: daylightPillars },
+      reason: '서머타임 종료 중복 시각대 (표준시 KST vs 서머타임 KDT)',
+      candidateInstants: [
+        {
+          id: 'dst-standard',
+          label: '표준시 해석 후보',
+          inputAssumption: '입력 현지 시각을 표준시(KST)로 간주',
+          utcDateTime: stdUtc,
+          timezoneRuleVersion: 'KST (UTC+9)',
+          input: stdInput,
+        },
+        {
+          id: 'dst-daylight',
+          label: '서머타임 해석 후보',
+          inputAssumption: '입력 현지 시각을 서머타임(KDT)으로 간주',
+          utcDateTime: dstUtc,
+          timezoneRuleVersion: 'KDT (UTC+10)',
+          input: dstInput,
+        },
       ],
-      changedPillars: changedPillarKeys(pillars, [daylightPillars]),
+      changedPillars: changedPillarKeys(pillars, [calculateFourPillars(dstInput, calculationOptions)]),
     }
   }
 
@@ -569,7 +626,6 @@ function assessHistoricalSeoulTime(input, birthTimeUnknown, pillars, calculation
       : '서머타임 기간이지만 1시간 환산 전후 핵심 사주 기둥은 동일함',
     alternativeInput,
     alternativePillars,
-    alternativeCandidates: [{ label: '서머타임 표준시 환산 후보', input: alternativeInput, pillars: alternativePillars }],
     changedPillars,
   }
 }
@@ -649,9 +705,19 @@ export function calculateSajuSystem(input, profile) {
   const analysis = analyzeNatalStructure(analysisPillars)
   const branchRelations = calculateNatalBranchRelations(analysisPillars)
   const historicalCandidateEntries = historicalTimeAssessment
-    ? (historicalTimeAssessment.alternativeCandidates || (historicalTimeAssessment.alternativePillars
-      ? [{ label: '역사 시간 환산 후보', input: historicalTimeAssessment.alternativeInput, pillars: historicalTimeAssessment.alternativePillars }]
-      : []))
+    ? (historicalTimeAssessment.candidateInstants
+      ? historicalTimeAssessment.candidateInstants.map((inst) => ({
+          id: inst.id,
+          label: inst.label,
+          inputAssumption: inst.inputAssumption,
+          utcDateTime: inst.utcDateTime,
+          timezoneRuleVersion: inst.timezoneRuleVersion,
+          input: inst.input,
+          pillars: inst.pillars || calculateFourPillars(inst.input, calculationOptions),
+        }))
+      : (historicalTimeAssessment.alternativeCandidates || (historicalTimeAssessment.alternativePillars
+        ? [{ id: 'historical-alt', label: '역사 시간 환산 후보', input: historicalTimeAssessment.alternativeInput, pillars: historicalTimeAssessment.alternativePillars }]
+        : [])))
     : []
   const natalCandidatePillars = [
     ...(birthTimeUnknown ? timeCandidatePillars.map((candidate, index) => ({
@@ -664,7 +730,10 @@ export function calculateSajuSystem(input, profile) {
       pillars: candidate,
     })) : []),
     ...historicalCandidateEntries.map((candidate) => ({
+      id: candidate.id,
       label: candidate.label,
+      inputAssumption: candidate.inputAssumption,
+      utcDateTime: candidate.utcDateTime,
       input: { ...input, ...candidate.input },
       pillars: candidate.pillars,
     })),
@@ -684,7 +753,10 @@ export function calculateSajuSystem(input, profile) {
       pillars: candidate,
     })) : []),
     ...historicalCandidateEntries.map((candidate) => ({
+      id: candidate.id,
       label: candidate.label,
+      inputAssumption: candidate.inputAssumption,
+      utcDateTime: candidate.utcDateTime,
       input: { ...input, ...candidate.input },
       pillars: candidate.pillars,
     })),
@@ -776,7 +848,9 @@ export function calculateSajuSystem(input, profile) {
   const primaryExperimental = {
     isExperimental: true,
     status: isCandidateRequired ? 'candidate_required' : 'calculated',
-    verificationStatus: isNeedsVerification ? 'needs_verification' : 'verified',
+    verificationStatus: (historicalTimeAssessment?.status === 'dst_ambiguous_local_time' || solarTermBoundarySensitive)
+      ? 'candidate_required'
+      : isNeedsVerification ? 'needs_verification' : 'verified',
     confidence: isNeedsVerification ? 'low' : 'medium',
     description: isNeedsVerification
       ? '절기·출생시각·출생지·운 흐름 중 하나 이상에 후보 또는 검증 필요 상태가 있어 강약·격국·용신·신살을 하나로 확정하지 않습니다.'
@@ -832,6 +906,7 @@ export function calculateSajuSystem(input, profile) {
     primaryTiming: timing,
     primaryExperimental,
     candidateSources: natalCandidatePillars,
+    candidateInstants: historicalTimeAssessment?.candidateInstants || null,
     calculationOptions,
   })
 
@@ -875,7 +950,11 @@ export function calculateSajuSystem(input, profile) {
           ? `${historicalTimeAssessment.alternativeInput.birthDate} ${historicalTimeAssessment.alternativeInput.birthTime}`
           : null,
         candidates: historicalCandidateEntries.map((candidate) => ({
+          candidateId: candidate.id,
           label: candidate.label,
+          inputAssumption: candidate.inputAssumption,
+          timezoneOffset: candidate.input?.timezoneOffset || (candidate.id === 'dst-daylight' ? '+10:00' : '+09:00'),
+          utcDateTime: candidate.utcDateTime,
           input: `${candidate.input.birthDate} ${candidate.input.birthTime}`,
           pillars: Object.fromEntries(Object.keys(PILLAR_LABELS).map((key) => [key, formatPillarValue(candidate.pillars[key])])),
         })),
@@ -992,12 +1071,14 @@ export function calculateSajuSystem(input, profile) {
     warnings.push('1987·1988년 서머타임 기간이지만 1시간 표준시 환산 전후 연주·월주·일주·시주가 같아 검증 필요 상태로 올리지 않았습니다.')
   }
 
+  const hasCandidates = candidatePipeline.candidates.length > 1
+  const isDstOverlap = historicalTimeAssessment?.status === 'dst_ambiguous_local_time'
   const stateContract = resolveStateContract({
     inputStatus: birthTimeUnknown ? 'unknown_birth_time' : 'valid',
     calculationStatus: 'calculated',
-    verificationStatus: isNeedsVerification ? 'needs_verification' : 'verified',
-    interpretationStatus: 'experimental',
-    confidence: isNeedsVerification ? 'low' : (solarTermBoundarySensitive ? 'medium' : 'high'),
+    verificationStatus: isDstOverlap || hasCandidates || birthTimeUnknown ? 'candidate_required' : (isNeedsVerification ? 'needs_verification' : 'verified'),
+    interpretationStatus: isDstOverlap || hasCandidates ? 'candidate_only' : 'experimental',
+    confidence: isNeedsVerification || hasCandidates || isDstOverlap ? 'low' : (solarTermBoundarySensitive ? 'medium' : 'high'),
   })
 
   return {
