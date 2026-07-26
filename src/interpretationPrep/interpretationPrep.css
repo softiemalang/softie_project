@@ -2269,7 +2269,8 @@
   border: 1px solid var(--line, rgba(238, 229, 210, 0.14));
   background: var(--surface-operational, rgba(17, 17, 14, 0.52));
   color: var(--text, #f4eee4);
-  font-size: 0.84rem;
+  /* iOS Safari zooms focused inputs below 16px. Keep the handoff field stable. */
+  font-size: 16px;
 }
 
 .prep-handoff-input::placeholder {
