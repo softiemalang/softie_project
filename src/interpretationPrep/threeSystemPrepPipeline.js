@@ -56,18 +56,33 @@ const ASTROLOGY_ADAPTER_WARNING =
 function buildSajuSystem(baseResult) {
   const calculationResult = baseResult.systems.saju
   const interpretationContext = baseResult.interpretationContext
+
+  // verificationStatus를 먼저 결정하여 status와 일관성을 보장합니다.
+  // interpretationContext 수정 이후 ?? null fallback이 적용되므로
+  // null인 경우 calculationResult.stateContract를 참조합니다.
+  const verificationStatus =
+    interpretationContext?.calculationConfidence?.stateContract?.verificationStatus
+    ?? calculationResult?.stateContract?.verificationStatus
+    ?? 'needs_verification'
+
+  // status는 verificationStatus에서 파생하여 두 필드가 서로 모순되지 않도록 합니다.
+  // availableForChat은 별도 가용성 필드로 status와 독립적으로 유지됩니다.
+  const status =
+    verificationStatus === 'candidate_required'
+      ? 'candidate_required'
+      : verificationStatus === 'needs_verification'
+        ? 'needs_verification'
+        : 'available'
+
   const confidence =
     interpretationContext?.calculationConfidence?.stateContract?.confidence
-    || calculationResult?.stateContract?.confidence
-    || 'medium'
+    ?? calculationResult?.stateContract?.confidence
+    ?? 'medium'
 
   return {
     system: 'saju',
-    status: calculationResult?.status === 'candidate_required' ? 'candidate_required' : 'available',
-    verificationStatus:
-      interpretationContext?.calculationConfidence?.stateContract?.verificationStatus
-      || calculationResult?.stateContract?.verificationStatus
-      || 'needs_verification',
+    status,
+    verificationStatus,
     confidence,
     availableForChat: Boolean(calculationResult?.raw && interpretationContext),
     calculationResult,

@@ -80,12 +80,17 @@ export function buildInterpretationContext(rawResult, options = {}) {
     : []
 
   // 5. Calculation Confidence & State Contract
+  // stateContract는 calculateSajuSystem()이 항상 제공하는 5개 필드 계약입니다.
+  // ?? null을 사용하여 undefined 필드를 명시적 null로 전달하며,
+  // || 'verified' / || 'high' 같은 fallback이 needs_verification·candidate_required 상태를
+  // 암묵적으로 상향 승격하는 경로를 차단합니다.
   const calculationConfidence = {
     stateContract: {
-      status: stateContract?.status || 'calculated',
-      verificationStatus: stateContract?.verificationStatus || 'verified',
-      interpretationStatus: stateContract?.interpretationStatus || 'experimental',
-      confidence: stateContract?.confidence || 'high',
+      inputStatus: stateContract?.inputStatus ?? null,
+      calculationStatus: stateContract?.calculationStatus ?? null,
+      verificationStatus: stateContract?.verificationStatus ?? null,
+      interpretationStatus: stateContract?.interpretationStatus ?? null,
+      confidence: stateContract?.confidence ?? null,
     },
     validationSummary: {
       lunarConversion: validationMetadata.lunarConversion || null,

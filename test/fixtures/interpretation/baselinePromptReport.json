@@ -127,7 +127,8 @@
         "uncertainFactors": [],
         "calculationConfidence": {
           "stateContract": {
-            "status": "calculated",
+            "inputStatus": "valid",
+            "calculationStatus": "calculated",
             "verificationStatus": "verified",
             "interpretationStatus": "experimental",
             "confidence": "high"
@@ -276,7 +277,8 @@
           "uncertainFactors": [],
           "calculationConfidence": {
             "stateContract": {
-              "status": "calculated",
+              "inputStatus": "valid",
+              "calculationStatus": "calculated",
               "verificationStatus": "verified",
               "interpretationStatus": "experimental",
               "confidence": "high"
@@ -1207,7 +1209,8 @@
         ],
         "calculationConfidence": {
           "stateContract": {
-            "status": "calculated",
+            "inputStatus": "unknown_birth_time",
+            "calculationStatus": "calculated",
             "verificationStatus": "candidate_required",
             "interpretationStatus": "candidate_only",
             "confidence": "low"
@@ -2097,7 +2100,8 @@
           ],
           "calculationConfidence": {
             "stateContract": {
-              "status": "calculated",
+              "inputStatus": "unknown_birth_time",
+              "calculationStatus": "calculated",
               "verificationStatus": "candidate_required",
               "interpretationStatus": "candidate_only",
               "confidence": "low"
@@ -2361,7 +2365,8 @@
         ],
         "calculationConfidence": {
           "stateContract": {
-            "status": "calculated",
+            "inputStatus": "valid",
+            "calculationStatus": "calculated",
             "verificationStatus": "candidate_required",
             "interpretationStatus": "candidate_only",
             "confidence": "low"
@@ -2584,7 +2589,8 @@
           ],
           "calculationConfidence": {
             "stateContract": {
-              "status": "calculated",
+              "inputStatus": "valid",
+              "calculationStatus": "calculated",
               "verificationStatus": "candidate_required",
               "interpretationStatus": "candidate_only",
               "confidence": "low"
@@ -2865,7 +2871,8 @@
         ],
         "calculationConfidence": {
           "stateContract": {
-            "status": "calculated",
+            "inputStatus": "valid",
+            "calculationStatus": "calculated",
             "verificationStatus": "candidate_required",
             "interpretationStatus": "candidate_only",
             "confidence": "low"
@@ -3109,7 +3116,8 @@
           ],
           "calculationConfidence": {
             "stateContract": {
-              "status": "calculated",
+              "inputStatus": "valid",
+              "calculationStatus": "calculated",
               "verificationStatus": "candidate_required",
               "interpretationStatus": "candidate_only",
               "confidence": "low"
@@ -3303,7 +3311,8 @@
         "uncertainFactors": [],
         "calculationConfidence": {
           "stateContract": {
-            "status": "calculated",
+            "inputStatus": "valid",
+            "calculationStatus": "calculated",
             "verificationStatus": "verified",
             "interpretationStatus": "experimental",
             "confidence": "high"
@@ -3452,7 +3461,8 @@
           "uncertainFactors": [],
           "calculationConfidence": {
             "stateContract": {
-              "status": "calculated",
+              "inputStatus": "valid",
+              "calculationStatus": "calculated",
               "verificationStatus": "verified",
               "interpretationStatus": "experimental",
               "confidence": "high"

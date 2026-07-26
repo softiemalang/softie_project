@@ -1,5 +1,9 @@
 /**
- * Saju Validation Fixtures - Golden & Regression Cases
+ * Saju Validation Fixtures - 내부 회귀 검증 픽스처 (Internal Regression Cases)
+ *
+ * 이 파일의 모든 픽스처는 현재 엔진 계산 계약의 일관성을 확인하는
+ * 내부 테스트 기준입니다. 독립 외부 출처와 대조 완료된 검증값이 아닙니다.
+ * (verificationStatus: 'regression_only' 항목은 외부 검증 완료를 의미하지 않습니다.)
  *
  * Version: saju-validation-fixtures-v0.1.0
  */
