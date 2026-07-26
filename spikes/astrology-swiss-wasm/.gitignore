@@ -1,0 +1,6 @@
+generated/
+web/public/swiss/
+web/public/probe/
+web/public-neutral/probe/
+vercel-output/
+reports/*.json

@@ -60,6 +60,10 @@ test('three-system pipeline derives lunar input and builds experimental Ziwei co
 test('three-system pipeline blocks simulated astrology from interpretation and unified themes', () => {
   const prepared = prepareThreeSystemInterpretationData(INPUT)
   const astrology = prepared.systems.astrology
+  const pipelineSource = fs.readFileSync(
+    new URL('../src/interpretationPrep/threeSystemPrepPipeline.js', import.meta.url),
+    'utf8',
+  )
 
   assert.equal(astrology.status, 'simulation_blocked')
   assert.equal(astrology.verificationStatus, 'unsupported_for_interpretation')
@@ -68,6 +72,8 @@ test('three-system pipeline blocks simulated astrology from interpretation and u
   assert.equal(astrology.calculationResult, null)
   assert.equal(astrology.interpretationContext, null)
   assert.equal(prepared.unifiedContext.sharedThemes[0].evidence.astrology, undefined)
+  assert.doesNotMatch(pipelineSource, /planetResolver/)
+  assert.doesNotMatch(pipelineSource, /houseResolver/)
 })
 
 test('three-system pipeline does not collapse unknown birth time into a single Ziwei chart', () => {
