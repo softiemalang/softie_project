@@ -55,19 +55,32 @@ function inferLegacyStatus(system, context, availableForChat) {
   return system === 'astrology' ? 'adapter_required' : 'unavailable'
 }
 
+function defaultSystemVerificationStatus(system, availableForChat) {
+  if (!availableForChat) return 'not_available'
+  if (system === 'ziwei') return 'needs_external_verification'
+  if (system === 'saju') return 'needs_verification'
+  return 'not_available'
+}
+
+function defaultSystemConfidence(system, availableForChat) {
+  if (!availableForChat) return 'not_available'
+  if (system === 'ziwei' || system === 'saju') return 'low'
+  return 'not_available'
+}
+
 function normalizeSystem(system, value = {}) {
   const supplied = value || {}
   if (isDescriptor(supplied)) {
     const context = supplied.interpretationContext || supplied.context || null
     const confidence = supplied.confidence
       || context?.calculationConfidence?.stateContract?.confidence
-      || 'not_available'
+      || defaultSystemConfidence(system, supplied.availableForChat)
     return {
       system,
       status: supplied.status || (supplied.availableForChat ? 'available' : 'unavailable'),
       verificationStatus: supplied.verificationStatus
         || context?.calculationConfidence?.stateContract?.verificationStatus
-        || 'not_available',
+        || defaultSystemVerificationStatus(system, supplied.availableForChat),
       confidence: supplied.availableForChat ? confidence : 'not_available',
       availableForChat: supplied.availableForChat === true && Boolean(context),
       context: supplied.availableForChat === true ? context : null,
@@ -80,15 +93,17 @@ function normalizeSystem(system, value = {}) {
 
   const availableForChat = hasLegacyEvidence(system, supplied)
   const confidence = availableForChat
-    ? supplied.calculationConfidence?.stateContract?.confidence || 'high'
+    ? supplied.calculationConfidence?.stateContract?.confidence || defaultSystemConfidence(system, availableForChat)
+    : 'not_available'
+
+  const verificationStatus = availableForChat
+    ? supplied.calculationConfidence?.stateContract?.verificationStatus || defaultSystemVerificationStatus(system, availableForChat)
     : 'not_available'
 
   return {
     system,
     status: inferLegacyStatus(system, supplied, availableForChat),
-    verificationStatus: availableForChat
-      ? supplied.calculationConfidence?.stateContract?.verificationStatus || 'verified'
-      : 'not_available',
+    verificationStatus,
     confidence,
     availableForChat,
     context: availableForChat ? supplied : null,

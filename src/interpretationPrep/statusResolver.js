@@ -9,7 +9,7 @@
  *   resolveStateContract()는 5개 차원의 상태 계약을 반환합니다:
  *   - inputStatus: 입력 유효성 (valid, unknown_birth_time, missing_input, invalid)
  *   - calculationStatus: 계산 완료 여부 (calculated, partial, unsupported, failed)
- *   - verificationStatus: 외부 검증 상태 (verified, needs_verification, candidate_required)
+ *   - verificationStatus: 외부 검증 상태 (verified, needs_verification, needs_external_verification, candidate_required)
  *   - interpretationStatus: 해석 준비 상태 (ready, experimental, candidate_only)
  *   - confidence: 종합 신뢰도 (high, medium, low)
  *
@@ -39,7 +39,7 @@ const STATUS_SET = new Set(SYSTEM_STATUSES)
 
 export const VALID_INPUT_STATUSES = Object.freeze(['valid', 'missing_input', 'unknown_birth_time', 'invalid'])
 export const VALID_CALCULATION_STATUSES = Object.freeze(['calculated', 'partial', 'unsupported', 'failed'])
-export const VALID_VERIFICATION_STATUSES = Object.freeze(['verified', 'needs_verification', 'candidate_required'])
+export const VALID_VERIFICATION_STATUSES = Object.freeze(['verified', 'needs_verification', 'needs_external_verification', 'candidate_required'])
 export const VALID_INTERPRETATION_STATUSES = Object.freeze(['ready', 'experimental', 'candidate_only'])
 export const VALID_CONFIDENCES = Object.freeze(['high', 'medium', 'low'])
 
@@ -47,19 +47,35 @@ export function isSystemStatus(value) {
   return STATUS_SET.has(value)
 }
 
-export function resolveStateContract({
-  inputStatus = 'valid',
-  calculationStatus = 'calculated',
-  verificationStatus = 'verified',
-  interpretationStatus = 'ready',
-  confidence = 'medium',
-} = {}) {
+export function resolveStateContract(params = {}) {
+  const {
+    inputStatus = 'valid',
+    calculationStatus = 'calculated',
+    verificationStatus = 'verified',
+    interpretationStatus = 'ready',
+    confidence = 'medium',
+  } = params
+
+  const resolvedVerification = VALID_VERIFICATION_STATUSES.includes(verificationStatus)
+    ? verificationStatus
+    : Object.hasOwn(params, 'verificationStatus')
+      ? 'needs_verification'
+      : 'verified'
+
   return {
-    inputStatus: VALID_INPUT_STATUSES.includes(inputStatus) ? inputStatus : 'valid',
-    calculationStatus: VALID_CALCULATION_STATUSES.includes(calculationStatus) ? calculationStatus : 'calculated',
-    verificationStatus: VALID_VERIFICATION_STATUSES.includes(verificationStatus) ? verificationStatus : 'verified',
-    interpretationStatus: VALID_INTERPRETATION_STATUSES.includes(interpretationStatus) ? interpretationStatus : 'ready',
-    confidence: VALID_CONFIDENCES.includes(confidence) ? confidence : 'medium',
+    inputStatus: VALID_INPUT_STATUSES.includes(inputStatus)
+      ? inputStatus
+      : Object.hasOwn(params, 'inputStatus') ? 'invalid' : 'valid',
+    calculationStatus: VALID_CALCULATION_STATUSES.includes(calculationStatus)
+      ? calculationStatus
+      : Object.hasOwn(params, 'calculationStatus') ? 'failed' : 'calculated',
+    verificationStatus: resolvedVerification,
+    interpretationStatus: VALID_INTERPRETATION_STATUSES.includes(interpretationStatus)
+      ? interpretationStatus
+      : Object.hasOwn(params, 'interpretationStatus') ? 'candidate_only' : 'ready',
+    confidence: VALID_CONFIDENCES.includes(confidence)
+      ? confidence
+      : Object.hasOwn(params, 'confidence') ? 'low' : 'medium',
   }
 }
 

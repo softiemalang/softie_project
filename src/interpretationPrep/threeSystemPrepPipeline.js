@@ -149,13 +149,14 @@ function buildZiweiSystem(baseResult, profiles) {
     lunarMonth: lunar.lMonth,
     hourBranch,
     birthYearStem,
+    birthYearBranch,
     isLeapMonth: lunar.isLeap,
     birthTime: normalized.birthTime,
     ruleSet,
   })
   const chart = { ...baseChart.chart }
   const majorResult = resolve14MajorStars({
-    bureauNumber: chart.fiveElementsBureau.number,
+    bureauNumber: chart.fiveElementsBureau?.number || 2,
     lunarDay: lunar.lDay,
     palaces: chart.palaces,
   })
@@ -207,6 +208,9 @@ function buildZiweiSystem(baseResult, profiles) {
     calculationMeta: {
       confidence,
       verificationStatus,
+      calculationStatus: 'calculated',
+      inputStatus: 'valid',
+      interpretationStatus: hasBoundaryCandidate ? 'candidate_only' : 'experimental',
       warnings,
       ruleSetVersions: {
         palace: ruleSet.profileVersion,
@@ -217,13 +221,44 @@ function buildZiweiSystem(baseResult, profiles) {
     },
     ruleSet,
   })
+
+  if (hasBoundaryCandidate) {
+    return {
+      system: 'ziwei',
+      status: 'candidate_required',
+      verificationStatus: 'candidate_required',
+      confidence: 'low',
+      availableForChat: false,
+      calculationResult,
+      interpretationContext: null,
+      warnings: [
+        ...warnings,
+        '복수의 명반 후보가 존재하는 입력 조건이나, 전체 명반 후보 듀얼 재계산 기능 미지원으로 Chat 해석 자료에서 차단합니다.',
+      ],
+      candidates: baseChart.candidates,
+      sourceDerivation: {
+        lunarConversion: {
+          solarDate: normalized.birthDate,
+          lunarYear: lunar.lYear,
+          lunarMonth: lunar.lMonth,
+          lunarDay: lunar.lDay,
+          isLeapMonth: lunar.isLeap,
+          verificationStatus: 'needs_external_verification',
+        },
+        birthYearStem,
+        birthYearBranch,
+        hourBranch,
+      },
+    }
+  }
+
   const interpretationContext = createZiweiInterpretationContext(calculationResult)
 
   return {
     system: 'ziwei',
     status: 'experimental',
-    verificationStatus,
-    confidence,
+    verificationStatus: 'needs_external_verification',
+    confidence: 'medium',
     availableForChat: true,
     calculationResult,
     interpretationContext,

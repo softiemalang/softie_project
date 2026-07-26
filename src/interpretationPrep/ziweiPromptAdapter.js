@@ -22,8 +22,10 @@ export function buildZiweiPromptPayload(ziweiInterpretationContext = {}, domainP
     interpretationWarnings = [],
   } = ziweiInterpretationContext
 
-  const confidenceState = calculationConfidence.stateContract?.confidence || 'high'
-  const isLowConfidence = confidenceState === 'low'
+  const confidenceState = calculationConfidence.stateContract?.confidence ?? 'low'
+  const verificationStatus = calculationConfidence.stateContract?.verificationStatus ?? 'needs_external_verification'
+  const interpretationStatus = calculationConfidence.stateContract?.interpretationStatus ?? 'candidate_only'
+  const isLowConfidence = confidenceState === 'low' || verificationStatus === 'candidate_required' || interpretationStatus === 'candidate_only'
 
   // 1. 도메인 프로필별 집중 궁위 파악
   let patternKey = 'careerPattern'
@@ -45,7 +47,7 @@ export function buildZiweiPromptPayload(ziweiInterpretationContext = {}, domainP
     '## 2단계: Variance & Candidates (불확실성 및 후보 안내)',
     isLowConfidence
       ? `- 현재 출생조건(윤달/시간 경계 등)으로 인해 복수의 명반 후보가 존재합니다. 단정적 해석을 금하고 후보별 차이를 투명하게 설명하십시오.`
-      : `- 현재 조건은 단일 정격 명반으로 안정적인 삼방사정 분석이 가능합니다.`,
+      : `- 단일 입력 기준으로 계산된 명반의 삼방사정 구조를 제공합니다. 현재 고정 RuleSet의 내부 계산 결과이며 독립 외부 명반 대조 전 단계입니다.`,
     '',
     '## 3단계: Safety & Guardrails (안전 지침)',
     ...ZIWEI_SAFETY_GUARDRAILS.map((g) => `- ${g}`),

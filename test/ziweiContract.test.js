@@ -7,17 +7,19 @@ import {
   DEFAULT_ZIWEI_RULE_SET,
 } from '../src/ziwei/ziweiContract.js'
 
-test('ziweiContract: creates normalized calculation context with defaults & ruleSet', () => {
+test('ziweiContract: creates normalized calculation context with fail-closed state on incomplete inputs', () => {
   const context = createZiweiCalculationContext({
     input: { subjectName: '자미테스트', gender: 'female' },
   })
 
   assert.equal(context.input.subjectName, '자미테스트')
   assert.equal(context.input.ruleSet.calendar, 'traditional_lunar')
-  assert.equal(context.chart.palaces.length, 12)
-  assert.equal(context.chart.palaces[0].id, 'life')
-  assert.equal(context.chart.palaces[8].id, 'career')
-  assert.equal(context.calculationMeta.confidence, 'high')
+  assert.equal(context.chart.palaces.length, 0)
+  assert.equal(context.chart.mingGong, null)
+  assert.equal(context.chart.fiveElementsBureau, null)
+  assert.equal(context.calculationMeta.confidence, 'low')
+  assert.equal(context.calculationMeta.verificationStatus, 'needs_external_verification')
+  assert.equal(context.calculationMeta.calculationStatus, 'partial')
 })
 
 test('ziweiContract: maps calculation context to ZiweiInterpretationContext with consensus & confidence', () => {

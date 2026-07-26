@@ -51,8 +51,8 @@ UNIFIED_BENCHMARK_CASES.forEach((c) => {
     input: c.ziweiInput,
     chart,
     calculationMeta: {
-      confidence: c.ziweiInput.isLeapMonth ? 'low' : 'high',
-      verificationStatus: c.ziweiInput.isLeapMonth ? 'needs_verification' : 'verified',
+      confidence: c.ziweiInput.isLeapMonth ? 'low' : 'medium',
+      verificationStatus: c.ziweiInput.isLeapMonth ? 'candidate_required' : 'needs_external_verification',
     },
   })
   const ziweiCtx = createZiweiInterpretationContext(ziweiCalcCtx)

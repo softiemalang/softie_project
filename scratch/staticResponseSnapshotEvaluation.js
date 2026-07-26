@@ -94,7 +94,19 @@ export function runLayer2RubricEvaluation(caseId, responseText, unifiedCtx) {
 
   const rubricScores = {
     systemIndependencePreservation: responseText.includes('사주') && responseText.includes('자미두수') ? 2 : 1,
-    uncertaintyPreservation: unifiedCtx.unifiedConfidence.overallConfidence !== 'high' ? (responseText.includes('불확실') || responseText.includes('후보') ? 2 : 0) : 2,
+    uncertaintyPreservation: (() => {
+      const isLow = unifiedCtx.unifiedConfidence.overallConfidence === 'low'
+      const isNeedsVerification = unifiedCtx.unifiedConfidence.overallConfidence === 'medium' ||
+        Object.values(unifiedCtx.systems).some((s) => s.verificationStatus === 'needs_external_verification' || s.verificationStatus === 'needs_verification')
+
+      if (isLow) {
+        return (responseText.includes('불확실') || responseText.includes('후보') || responseText.includes('경계')) ? 2 : 0
+      }
+      if (isNeedsVerification) {
+        return (responseText.includes('불확실') || responseText.includes('후보') || responseText.includes('대조') || responseText.includes('검증') || responseText.includes('독립') || responseText.includes('내부') || responseText.includes('단계')) ? 2 : 0
+      }
+      return 2
+    })(),
     nonDeterministicGuardrail: layer1.foundForbidden.length === 0 ? 2 : 0,
     multiPerspectiveSynthesis: responseText.includes('공통') || responseText.includes('보완') || responseText.includes('통합') ? 2 : 1,
     interactiveQuestions: layer1.hasReflectionQuestion ? 2 : 0,

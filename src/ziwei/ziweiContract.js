@@ -38,23 +38,35 @@ export function createZiweiCalculationContext(params = {}) {
     ruleSet = {},
   } = params
 
-  const isLowConfidence = calculationMeta.confidence === 'low'
+  const hasChart = Boolean(chart.mingGong && chart.fiveElementsBureau && Array.isArray(chart.palaces) && chart.palaces.length > 0)
+  const isMissingInput = !input.birthYearStem || !input.lunarMonth || !input.hourBranch
+
+  const inputStatus = calculationMeta.inputStatus ?? (isMissingInput ? 'missing_input' : 'valid')
+  const calculationStatus = calculationMeta.calculationStatus ?? (hasChart && !isMissingInput ? 'calculated' : 'partial')
+  const verificationStatus = calculationMeta.verificationStatus ?? 'needs_external_verification'
+  const confidence = calculationMeta.confidence ?? (hasChart && !isMissingInput ? 'medium' : 'low')
+  const interpretationStatus = calculationMeta.interpretationStatus ?? (
+    confidence === 'low' || verificationStatus === 'candidate_required' || !hasChart || isMissingInput
+      ? 'candidate_only'
+      : 'experimental'
+  )
 
   return {
     systemType: 'ziwei',
     input: {
       subjectName: input.subjectName || '무명',
-      birthYearStem: input.birthYearStem || '甲',
-      birthYearBranch: input.birthYearBranch || '子',
-      lunarYear: Number(input.calendarBasis?.lunarYear) || null,
-      lunarMonth: Number(input.lunarMonth) || 1,
-      lunarDay: Number(input.calendarBasis?.lunarDay) || null,
-      hourBranch: input.hourBranch || '子',
+      birthTime: input.birthTime ?? '',
+      birthYearStem: input.birthYearStem ?? null,
+      birthYearBranch: input.birthYearBranch ?? null,
+      lunarYear: input.calendarBasis?.lunarYear ? Number(input.calendarBasis.lunarYear) : null,
+      lunarMonth: input.lunarMonth ? Number(input.lunarMonth) : null,
+      lunarDay: input.calendarBasis?.lunarDay ? Number(input.calendarBasis.lunarDay) : null,
+      hourBranch: input.hourBranch ?? null,
       gender: input.gender || 'female',
       calendarBasis: {
         sourceSolarDate: input.calendarBasis?.sourceSolarDate || null,
-        lunarYear: Number(input.calendarBasis?.lunarYear) || null,
-        lunarDay: Number(input.calendarBasis?.lunarDay) || null,
+        lunarYear: input.calendarBasis?.lunarYear ? Number(input.calendarBasis.lunarYear) : null,
+        lunarDay: input.calendarBasis?.lunarDay ? Number(input.calendarBasis.lunarDay) : null,
         isLeapMonth: Boolean(input.calendarBasis?.isLeapMonth),
         timeAccuracy: input.calendarBasis?.timeAccuracy || 'exact',
         conversionVerificationStatus:
@@ -67,34 +79,27 @@ export function createZiweiCalculationContext(params = {}) {
     },
 
     chart: {
-      mingGong: chart.mingGong || { id: 'life', name: '명궁', branch: '寅', index: 2 },
-      shenGong: chart.shenGong || { id: 'mind', name: '신궁', branch: '午', index: 6 },
-      fiveElementsBureau: chart.fiveElementsBureau || { name: '수이국', number: 2 },
-      palaces: Array.isArray(chart.palaces) && chart.palaces.length > 0
-        ? chart.palaces
-        : ZIWEI_PALACE_DEFINITIONS.map((p) => ({
-            id: p.id,
-            name: p.name,
-            index: p.defaultIndex,
-            branch: '寅',
-            isMingGong: p.id === 'life',
-            isShenGong: p.id === 'mind',
-            stars: [],
-          })),
+      mingGong: chart.mingGong || null,
+      shenGong: chart.shenGong || null,
+      fiveElementsBureau: chart.fiveElementsBureau || null,
+      palaces: Array.isArray(chart.palaces) ? chart.palaces : [],
       majorStars: Array.isArray(chart.majorStars) ? chart.majorStars : [],
       minorStars: Array.isArray(chart.minorStars) ? chart.minorStars : [],
       transformations: Array.isArray(chart.transformations) ? chart.transformations : [],
     },
 
     candidates: {
-      candidateOrigin: candidates.candidateOrigin || 'exact_single_chart',
+      candidateOrigin: candidates.candidateOrigin || (isMissingInput ? 'missing_input' : 'exact_single_chart'),
       assumptions: Array.isArray(candidates.assumptions) ? candidates.assumptions : [],
       alternatives: Array.isArray(candidates.alternatives) ? candidates.alternatives : [],
     },
 
     calculationMeta: {
-      confidence: calculationMeta.confidence || (isLowConfidence ? 'low' : 'high'),
-      verificationStatus: calculationMeta.verificationStatus || 'verified',
+      confidence,
+      verificationStatus,
+      calculationStatus,
+      inputStatus,
+      interpretationStatus,
       warnings: Array.isArray(calculationMeta.warnings) ? calculationMeta.warnings : [],
       ruleSetVersions: calculationMeta.ruleSetVersions || {},
     },
@@ -106,10 +111,19 @@ export function createZiweiInterpretationContext(calculationContext) {
     return null
   }
 
-  const { input, chart, candidates, calculationMeta } = calculationContext
+  const { input = {}, chart = {}, candidates = {}, calculationMeta = {} } = calculationContext
 
-  const isLowConfidence = calculationMeta.confidence === 'low'
-  const isExperimental = calculationMeta.verificationStatus === 'needs_external_verification'
+  const inputStatus = calculationMeta.inputStatus ?? (input.birthYearStem && input.lunarMonth && input.hourBranch ? 'valid' : 'missing_input')
+  const calculationStatus = calculationMeta.calculationStatus ?? (chart.mingGong ? 'calculated' : 'partial')
+  const verificationStatus = calculationMeta.verificationStatus ?? 'needs_external_verification'
+  const confidence = calculationMeta.confidence ?? 'low'
+  const interpretationStatus = calculationMeta.interpretationStatus ?? (
+    confidence === 'low' || verificationStatus === 'candidate_required' || !chart.mingGong
+      ? 'candidate_only'
+      : 'experimental'
+  )
+
+  const isLowConfidence = confidence === 'low'
   const hasMultipleAlternatives = candidates.alternatives && candidates.alternatives.length > 0
 
   const palaceRelationData = buildZiweiPalaceContexts(chart)
@@ -141,9 +155,11 @@ export function createZiweiInterpretationContext(calculationContext) {
 
     calculationConfidence: {
       stateContract: {
-        confidence: calculationMeta.confidence || 'high',
-        verificationStatus: calculationMeta.verificationStatus || 'verified',
-        interpretationStatus: isLowConfidence ? 'candidate_required' : isExperimental ? 'experimental' : 'ready',
+        inputStatus,
+        calculationStatus,
+        verificationStatus,
+        interpretationStatus,
+        confidence,
       },
     },
 

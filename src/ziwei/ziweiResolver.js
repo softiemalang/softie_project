@@ -17,16 +17,58 @@ const BRANCHES = ['子', '丑', '寅', '卯', '辰', '巳', '午', '未', '申',
 export function resolveZiweiChart(params = {}) {
   const {
     subjectName = '무명',
-    lunarMonth = 1,
-    hourBranch = '子',
-    birthYearStem = '甲',
+    birthYearStem = null,
+    birthYearBranch = null,
+    lunarMonth = null,
+    hourBranch = null,
     isLeapMonth = false,
-    birthTime = '12:00',
+    birthTime = '',
     ruleSet = {},
-  } = params
+  } = params || {}
 
-  const hourIndex = BRANCHES.indexOf(hourBranch) !== -1 ? BRANCHES.indexOf(hourBranch) : 0
-  const monthVal = Number(lunarMonth) || 1
+  const isValidMonth = Number.isInteger(Number(lunarMonth)) && Number(lunarMonth) >= 1 && Number(lunarMonth) <= 12
+  const isValidBranch = typeof hourBranch === 'string' && BRANCHES.includes(hourBranch)
+  const isValidStem = typeof birthYearStem === 'string' && ['甲', '乙', '丙', '丁', '戊', '己', '庚', '辛', '壬', '癸'].includes(birthYearStem)
+
+  if (!isValidMonth || !isValidBranch || !isValidStem) {
+    const warnings = ['필수 계산 입력(lunarMonth, hourBranch, birthYearStem)이 누락되거나 유효하지 않아 명반 계산을 수행하지 않았습니다.']
+    return createZiweiCalculationContext({
+      input: {
+        subjectName,
+        birthTime: typeof birthTime === 'string' ? birthTime : '',
+        birthYearStem,
+        birthYearBranch,
+        lunarMonth: lunarMonth ? Number(lunarMonth) : null,
+        hourBranch,
+        calendarBasis: { lunarDate: null, isLeapMonth: Boolean(isLeapMonth) },
+        ruleSet,
+      },
+      chart: {
+        mingGong: null,
+        shenGong: null,
+        fiveElementsBureau: null,
+        palaces: [],
+        majorStars: [],
+        minorStars: [],
+        transformations: [],
+      },
+      candidates: {
+        candidateOrigin: 'missing_input',
+        alternatives: [],
+      },
+      calculationMeta: {
+        confidence: 'low',
+        verificationStatus: 'needs_external_verification',
+        calculationStatus: 'partial',
+        inputStatus: 'missing_input',
+        interpretationStatus: 'candidate_only',
+        warnings,
+      },
+    })
+  }
+
+  const hourIndex = BRANCHES.indexOf(hourBranch)
+  const monthVal = Number(lunarMonth)
 
   // 1. 명궁 지지 산출: (음력 월 - 출생 시지 + 1)
   // 인궁(寅, index 2)을 기준점으로 한 계산
@@ -57,7 +99,7 @@ export function resolveZiweiChart(params = {}) {
   })
 
   // 5. 불확실성 후보 감지 (자시 경계 또는 윤달 조건)
-  const isZiHourBoundary = birthTime.startsWith('23:') || birthTime.startsWith('00:')
+  const isZiHourBoundary = typeof birthTime === 'string' && (birthTime.startsWith('23:') || birthTime.startsWith('00:'))
   const warnings = []
   const alternatives = []
 
@@ -72,12 +114,17 @@ export function resolveZiweiChart(params = {}) {
     )
   }
 
-  const confidence = isZiHourBoundary || isLeapMonth ? 'low' : 'high'
+  const confidence = isZiHourBoundary || isLeapMonth ? 'low' : 'medium'
+  const verificationStatus = confidence === 'low' ? 'candidate_required' : 'needs_external_verification'
 
   return createZiweiCalculationContext({
     input: {
       subjectName,
       birthTime,
+      birthYearStem,
+      birthYearBranch,
+      lunarMonth: monthVal,
+      hourBranch,
       calendarBasis: { lunarDate: `lunar_${monthVal}`, isLeapMonth },
       ruleSet,
     },
@@ -93,7 +140,10 @@ export function resolveZiweiChart(params = {}) {
     },
     calculationMeta: {
       confidence,
-      verificationStatus: confidence === 'low' ? 'candidate_required' : 'verified',
+      verificationStatus,
+      calculationStatus: 'calculated',
+      inputStatus: 'valid',
+      interpretationStatus: confidence === 'low' ? 'candidate_only' : 'experimental',
       warnings,
     },
   })

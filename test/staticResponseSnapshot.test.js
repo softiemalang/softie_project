@@ -20,15 +20,15 @@ test('staticResponseSnapshot: validates rubric checks without making a live LLM 
   UNIFIED_BENCHMARK_CASES.forEach((c) => {
     const sajuCtx = buildInterpretationContext({
       subjectName: c.sajuInput.subjectName,
-      solarPillars: { year: '甲子', month: '丙寅', day: '甲子', hour: '甲子' },
-      isSolarTermBoundary: c.sajuInput.birthDay === 4,
+      raw: { pillars: { year: '甲子', month: '丙寅', day: '甲子', hour: '甲子' } },
+      stateContract: {
+        confidence: c.sajuInput.birthDay === 4 ? 'low' : 'high',
+        verificationStatus: c.sajuInput.birthDay === 4 ? 'needs_verification' : 'verified',
+        inputStatus: 'valid',
+        calculationStatus: 'calculated',
+        interpretationStatus: 'ready',
+      },
     }) || { subjectName: c.sajuInput.subjectName }
-
-    if (c.sajuInput.birthDay === 4) {
-      sajuCtx.calculationConfidence = {
-        stateContract: { confidence: 'low', verificationStatus: 'needs_verification' },
-      }
-    }
 
     const chartCtx = resolveZiweiChart({
       subjectName: c.ziweiInput.subjectName,
@@ -39,19 +39,24 @@ test('staticResponseSnapshot: validates rubric checks without making a live LLM 
     })
 
     const chart = chartCtx.chart
-    chart.majorStars = resolve14MajorStars({
-      bureauNumber: chart.fiveElementsBureau.number,
-      lunarDay: 15,
-      palaces: chart.palaces,
-    }).majorStars
-    chart.transformations = resolveFourTransformations(c.ziweiInput.birthYearStem).transformations
+    if (chart.fiveElementsBureau && chart.palaces.length > 0) {
+      chart.majorStars = resolve14MajorStars({
+        bureauNumber: chart.fiveElementsBureau.number,
+        lunarDay: 15,
+        palaces: chart.palaces,
+      }).majorStars
+      chart.transformations = resolveFourTransformations(c.ziweiInput.birthYearStem).transformations
+    }
 
     const ziweiCalcCtx = createZiweiCalculationContext({
-      input: c.ziweiInput,
+      input: {
+        ...c.ziweiInput,
+        hourBranch: c.ziweiInput.hourBranch || '子',
+      },
       chart,
       calculationMeta: {
-        confidence: c.ziweiInput.isLeapMonth ? 'low' : 'high',
-        verificationStatus: c.ziweiInput.isLeapMonth ? 'needs_verification' : 'verified',
+        confidence: c.ziweiInput.isLeapMonth ? 'low' : 'medium',
+        verificationStatus: c.ziweiInput.isLeapMonth ? 'candidate_required' : 'needs_external_verification',
       },
     })
     const ziweiCtx = createZiweiInterpretationContext(ziweiCalcCtx)
