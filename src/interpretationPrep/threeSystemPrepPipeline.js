@@ -57,22 +57,24 @@ function buildSajuSystem(baseResult) {
   const calculationResult = baseResult.systems.saju
   const interpretationContext = baseResult.interpretationContext
 
-  // verificationStatus를 먼저 결정하여 status와 일관성을 보장합니다.
-  // interpretationContext 수정 이후 ?? null fallback이 적용되므로
-  // null인 경우 calculationResult.stateContract를 참조합니다.
   const verificationStatus =
     interpretationContext?.calculationConfidence?.stateContract?.verificationStatus
     ?? calculationResult?.stateContract?.verificationStatus
     ?? 'needs_verification'
 
-  // status는 verificationStatus에서 파생하여 두 필드가 서로 모순되지 않도록 합니다.
-  // availableForChat은 별도 가용성 필드로 status와 독립적으로 유지됩니다.
   const status =
     verificationStatus === 'candidate_required'
       ? 'candidate_required'
       : verificationStatus === 'needs_verification'
         ? 'needs_verification'
         : 'available'
+
+  const interpretationStatus =
+    verificationStatus === 'candidate_required'
+      ? 'candidate_only'
+      : (interpretationContext?.calculationConfidence?.stateContract?.interpretationStatus
+        ?? calculationResult?.stateContract?.interpretationStatus
+        ?? 'ready')
 
   const confidence =
     interpretationContext?.calculationConfidence?.stateContract?.confidence
@@ -83,6 +85,7 @@ function buildSajuSystem(baseResult) {
     system: 'saju',
     status,
     verificationStatus,
+    interpretationStatus,
     confidence,
     availableForChat: Boolean(calculationResult?.raw && interpretationContext),
     calculationResult,
@@ -97,12 +100,19 @@ function buildSajuSystem(baseResult) {
 function buildUnavailableZiweiSystem(reason, verificationStatus = 'insufficient_data') {
   return {
     system: 'ziwei',
-    status: 'experimental',
+    status: verificationStatus === 'candidate_required' ? 'candidate_required' : 'experimental',
     verificationStatus,
+    interpretationStatus: 'candidate_only',
     confidence: 'low',
     availableForChat: false,
     calculationResult: null,
     interpretationContext: null,
+    supportScope: {
+      timingStatus: 'unsupported',
+      brightnessStatus: 'unsupported',
+      extendedMinorStarsStatus: 'unsupported',
+      supported: [],
+    },
     warnings: [reason, ZIWEI_EXTERNAL_VERIFICATION_WARNING],
   }
 }
@@ -175,6 +185,16 @@ function buildZiweiSystem(baseResult, profiles) {
     palaces: chart.palaces,
   })
 
+  if (
+    majorResult.status === 'failed' ||
+    transformationResult.status === 'failed' ||
+    minorResult.status === 'failed'
+  ) {
+    return buildUnavailableZiweiSystem(
+      '자미두수 주성·사화·보조성 산출에 실패하여 명반 포국을 중단했습니다.',
+    )
+  }
+
   chart.majorStars = majorResult.majorStars
   chart.transformations = transformationResult.transformations
   chart.minorStars = minorResult.minorStars
@@ -185,11 +205,19 @@ function buildZiweiSystem(baseResult, profiles) {
   const verificationStatus = hasBoundaryCandidate
     ? 'candidate_required'
     : 'needs_external_verification'
+  const interpretationStatus = hasBoundaryCandidate ? 'candidate_only' : 'experimental'
   const warnings = [
     ...resolverWarnings,
     ZIWEI_EXTERNAL_VERIFICATION_WARNING,
     '출생 연간·연지와 시지는 현재 사주 엔진의 계산 기둥을 입력 근거로 사용했습니다.',
   ]
+
+  const supportScope = {
+    timingStatus: 'unsupported',
+    brightnessStatus: 'unsupported',
+    extendedMinorStarsStatus: 'unsupported',
+    supported: ['명궁·신궁 지지', '오행국', '14주성', '4대 사화', '6길성'],
+  }
 
   const calculationResult = createZiweiCalculationContext({
     input: {
@@ -217,7 +245,7 @@ function buildZiweiSystem(baseResult, profiles) {
       verificationStatus,
       calculationStatus: 'calculated',
       inputStatus: 'valid',
-      interpretationStatus: hasBoundaryCandidate ? 'candidate_only' : 'experimental',
+      interpretationStatus,
       warnings,
       ruleSetVersions: {
         palace: ruleSet.profileVersion,
@@ -226,6 +254,7 @@ function buildZiweiSystem(baseResult, profiles) {
         minorStars: minorResult.minorStarMeta.ruleSetVersion,
       },
     },
+    supportScope,
     ruleSet,
   })
 
@@ -234,10 +263,12 @@ function buildZiweiSystem(baseResult, profiles) {
       system: 'ziwei',
       status: 'candidate_required',
       verificationStatus: 'candidate_required',
+      interpretationStatus: 'candidate_only',
       confidence: 'low',
       availableForChat: false,
       calculationResult,
       interpretationContext: null,
+      supportScope,
       warnings: [
         ...warnings,
         '복수의 명반 후보가 존재하는 입력 조건이나, 전체 명반 후보 듀얼 재계산 기능 미지원으로 Chat 해석 자료에서 차단합니다.',
@@ -265,11 +296,14 @@ function buildZiweiSystem(baseResult, profiles) {
     system: 'ziwei',
     status: 'experimental',
     verificationStatus: 'needs_external_verification',
+    interpretationStatus: 'experimental',
     confidence: 'medium',
     availableForChat: true,
     calculationResult,
     interpretationContext,
+    supportScope,
     warnings,
+    candidates: baseChart.candidates,
     sourceDerivation: {
       lunarConversion: {
         solarDate: normalized.birthDate,

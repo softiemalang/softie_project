@@ -117,13 +117,43 @@ export const STATUS_META = {
 export function createEmptySystemResult(system, requestedStatus, warnings = []) {
   const capabilities = getSystemCapabilities(system)
   const status = resolveSystemStatus({ system, requestedStatus })
-  const stateContract = resolveStateContract({
-    inputStatus: status === 'missing_input' ? 'missing_input' : 'valid',
-    calculationStatus: status === 'unsupported' ? 'unsupported' : 'failed',
-    verificationStatus: status === 'needs_verification' ? 'needs_verification' : (status === 'candidate_required' ? 'candidate_required' : 'verified'),
-    interpretationStatus: 'ready',
-    confidence: 'medium',
-  })
+
+  const isMissingInput = status === 'missing_input' || requestedStatus === 'missing_input'
+  const isCandidate = status === 'candidate_required'
+
+  let stateContract
+  if (system === 'ziwei') {
+    stateContract = resolveStateContract({
+      inputStatus: isMissingInput ? 'missing_input' : 'valid',
+      calculationStatus: status === 'unsupported' ? 'unsupported' : 'failed',
+      verificationStatus: isCandidate ? 'candidate_required' : 'needs_external_verification',
+      interpretationStatus: 'candidate_only',
+      confidence: 'low',
+    })
+  } else if (system === 'saju') {
+    stateContract = resolveStateContract({
+      inputStatus: isMissingInput ? 'missing_input' : 'valid',
+      calculationStatus: status === 'unsupported' ? 'unsupported' : (status === 'partial' ? 'partial' : 'failed'),
+      verificationStatus: isCandidate ? 'candidate_required' : 'needs_verification',
+      interpretationStatus: 'candidate_only',
+      confidence: 'low',
+    })
+  } else {
+    stateContract = resolveStateContract({
+      inputStatus: isMissingInput ? 'missing_input' : 'valid',
+      calculationStatus: status === 'unsupported' ? 'unsupported' : 'failed',
+      verificationStatus: 'needs_verification',
+      interpretationStatus: 'candidate_only',
+      confidence: 'low',
+    })
+  }
+
+  const supportScope = system === 'ziwei' ? {
+    timingStatus: 'unsupported',
+    brightnessStatus: 'unsupported',
+    extendedMinorStarsStatus: 'unsupported',
+    supported: [],
+  } : null
 
   return {
     system,
@@ -135,6 +165,6 @@ export function createEmptySystemResult(system, requestedStatus, warnings = []) 
     features: [],
     warnings,
     unsupported: [],
-    supportScope: null,
+    supportScope,
   }
 }

@@ -14,6 +14,7 @@ import {
   STATIC_RESPONSE_SNAPSHOTS,
   runLayer1AutomatedChecks,
   runLayer2RubricEvaluation,
+  buildStaticResponseSnapshotReport,
 } from '../scratch/staticResponseSnapshotEvaluation.js'
 
 test('staticResponseSnapshot: validates rubric checks without making a live LLM request', () => {
@@ -23,10 +24,10 @@ test('staticResponseSnapshot: validates rubric checks without making a live LLM 
       raw: { pillars: { year: '甲子', month: '丙寅', day: '甲子', hour: '甲子' } },
       stateContract: {
         confidence: c.sajuInput.birthDay === 4 ? 'low' : 'high',
-        verificationStatus: c.sajuInput.birthDay === 4 ? 'needs_verification' : 'verified',
+        verificationStatus: c.sajuInput.birthDay === 4 ? 'candidate_required' : 'verified',
         inputStatus: 'valid',
         calculationStatus: 'calculated',
-        interpretationStatus: 'ready',
+        interpretationStatus: c.sajuInput.birthDay === 4 ? 'candidate_only' : 'ready',
       },
     }) || { subjectName: c.sajuInput.subjectName }
 
@@ -76,5 +77,15 @@ test('staticResponseSnapshot: validates rubric checks without making a live LLM 
     assert.equal(evalResult.rubricScores.systemIndependencePreservation, 2)
     assert.equal(evalResult.rubricScores.nonDeterministicGuardrail, 2)
     assert.equal(evalResult.rubricScores.interactiveQuestions, 2)
+  })
+})
+
+test('staticResponseSnapshot: buildStaticResponseSnapshotReport path evaluates all 5 benchmark cases to 12/12 score', () => {
+  const report = buildStaticResponseSnapshotReport()
+  assert.equal(report.totalCases, 5)
+  assert.equal(report.evaluations.length, 5)
+  report.evaluations.forEach((item) => {
+    assert.equal(item.evaluation.totalScore, 12, `Report evaluation failed for ${item.caseId}: score ${item.evaluation.totalScore}`)
+    assert.equal(item.evaluation.rubricScores.uncertaintyPreservation, 2, `Uncertainty preservation failed for ${item.caseId}`)
   })
 })

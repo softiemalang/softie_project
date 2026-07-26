@@ -18,6 +18,7 @@ import { createZiweiCalculationContext, createZiweiInterpretationContext } from 
 import { prepareThreeSystemInterpretationData } from '../src/interpretationPrep/threeSystemPrepPipeline.js'
 import { createUnifiedInterpretationContext } from '../src/interpretationPrep/unifiedInterpretationContext.js'
 import { buildChatHandoffPackage } from '../src/interpretationPrep/chatHandoffPackage.js'
+import { createEmptySystemResult } from '../src/interpretationPrep/schema.js'
 
 // 정상 입력 샘플
 const NORMAL_INPUT = {
@@ -182,28 +183,37 @@ test('createUnifiedInterpretationContext: excludes candidate_required Ziwei from
 
 // ── 9. Chat Handoff에서 candidate_required 자미두수 실제 값 차단 검증 ──────────────
 
-test('buildChatHandoffPackage: blocks actual Ziwei chart values across full, quick, and topicFocused markdowns on candidate_required boundary input', () => {
+test('buildChatHandoffPackage: blocks actual Ziwei chart values across full, quick, topicFocused, and privacyMinimal markdowns on candidate_required boundary input', () => {
   const prepared = prepareThreeSystemInterpretationData(LEAP_MONTH_INPUT)
   const pkg = buildChatHandoffPackage(prepared)
 
   const full = pkg.copies.full
   const quick = pkg.copies.quick
-  const topicFocus = pkg.copies.topicFocus || ''
+  const topicFocused = pkg.copies.topicFocused
+  const privacyMinimal = pkg.copies.privacyMinimal
+
+  assert.ok(full, 'full markdown copy must exist')
+  assert.ok(quick, 'quick markdown copy must exist')
+  assert.ok(topicFocused, 'topicFocused markdown copy must exist (not topicFocus)')
+  assert.ok(privacyMinimal, 'privacyMinimal markdown copy must exist')
 
   // 차단 안내가 포함되어야 함
   assert.ok(full.includes('candidate_required'), 'full markdown must include candidate_required status')
   assert.ok(quick.includes('실제 계산값을 생성하지 않음') || quick.includes('candidate_required'),
     'quick markdown must state that actual values are omitted or candidate_required')
+  assert.ok(topicFocused.includes('candidate_required') || topicFocused.includes('unavailable'),
+    'topicFocused markdown must state ziwei candidate_required or unavailable')
+  assert.ok(privacyMinimal.includes('실제 계산값을 생성하지 않음') || privacyMinimal.includes('candidate_required'),
+    'privacyMinimal markdown must state ziwei candidate_required or omitted')
 
-  // 실제 명궁·신궁·오행국·주성 값 차단 확인
-  assert.ok(!full.includes('명궁: 寅宮') && !full.includes('명궁: 子宮'), 'full markdown must not present factual mingGong')
-  assert.ok(!full.includes('신궁: 午宮') && !full.includes('신궁: 申宮'), 'full markdown must not present factual shenGong')
-  assert.ok(!full.includes('오행국: 수이국') && !full.includes('오행국: 목삼국'), 'full markdown must not present factual fiveElementsBureau')
-
-  assert.ok(!quick.includes('명궁 子宮') && !quick.includes('명궁 寅宮'), 'quick markdown must not present factual mingGong')
-  assert.ok(!quick.includes('신궁 午宮') && !quick.includes('신궁 申宮'), 'quick markdown must not present factual shenGong')
-
-  assert.ok(!topicFocus.includes('자미두수 ·'), 'topicFocus markdown must not include ziwei palace context when candidate_required')
+  // 네 출력을 모두 실제로 검사하여 명궁·신궁·오행국·주성 실제값이 전혀 없는지 확인
+  const copies = [full, quick, topicFocused, privacyMinimal]
+  copies.forEach((copy, idx) => {
+    assert.ok(!copy.includes('명궁: 寅宮') && !copy.includes('명궁: 子宮') && !copy.includes('명궁 寅宮') && !copy.includes('명궁 子宮'), `copy ${idx} must not include factual mingGong`)
+    assert.ok(!copy.includes('신궁: 午宮') && !copy.includes('신궁: 申宮') && !copy.includes('신궁 午宮') && !copy.includes('신궁 申宮'), `copy ${idx} must not include factual shenGong`)
+    assert.ok(!copy.includes('오행국: 수이국') && !copy.includes('오행국: 목삼국') && !copy.includes('수이국') && !copy.includes('목삼국'), `copy ${idx} must not include factual fiveElementsBureau`)
+    assert.ok(!copy.includes('주성 자미') && !copy.includes('주성 탐랑') && !copy.includes('주성 칠살'), `copy ${idx} must not include factual majorStars`)
+  })
 })
 
 // ── 10. Unified Legacy Fallback 승격 방지 검증 ───────────────────────────────────
@@ -324,7 +334,7 @@ test('statusResolver: explicitly passed unknown verification status is normalize
   assert.equal(unknownContract.verificationStatus, 'needs_verification', 'unknown verification status must be normalized to needs_verification')
 
   const defaultContract = resolveStateContract()
-  assert.equal(defaultContract.verificationStatus, 'verified', 'omitted verification status preserves backward compatible default')
+  assert.equal(defaultContract.verificationStatus, 'needs_verification', 'omitted verification status fail-closes to needs_verification')
 })
 
 // ── 16. 오행국 산출 실패 시 Dummy Fallback 차단 검증 ───────────────────────────────
@@ -411,4 +421,232 @@ test('threeSystemPrepPipeline & ziweiResolver: missing or invalid bureau stops 1
 
   assert.equal(ziwei.availableForChat, false)
   assert.equal(ziwei.interpretationContext, null)
+})
+
+// ── 21. 세 Ziwei Sub-resolver Invalid 및 경계값 검증 ───────────────────────────────
+
+test('ziwei sub-resolvers: fail-closed on missing/invalid inputs and succeed on valid boundaries', () => {
+  // 1. resolve14MajorStars invalid & boundary
+  assert.equal(resolve14MajorStars({ bureauNumber: 1, lunarDay: 15 }).status, 'failed')
+  assert.equal(resolve14MajorStars({ bureauNumber: 7, lunarDay: 15 }).status, 'failed')
+  assert.equal(resolve14MajorStars({ bureauNumber: '2', lunarDay: 15 }).status, 'failed')
+  assert.equal(resolve14MajorStars({ bureauNumber: null, lunarDay: 15 }).status, 'failed')
+  assert.equal(resolve14MajorStars({ bureauNumber: 2, lunarDay: 0 }).status, 'failed')
+  assert.equal(resolve14MajorStars({ bureauNumber: 2, lunarDay: 31 }).status, 'failed')
+  assert.equal(resolve14MajorStars({ bureauNumber: 2, lunarDay: 1.5 }).status, 'failed')
+  assert.equal(resolve14MajorStars({ bureauNumber: 2, lunarDay: '15' }).status, 'failed')
+
+  assert.equal(resolve14MajorStars({ bureauNumber: 2, lunarDay: 1 }).majorStars.length, 14)
+  assert.equal(resolve14MajorStars({ bureauNumber: 6, lunarDay: 30 }).majorStars.length, 14)
+
+  // 2. resolveFourTransformations invalid & boundary
+  assert.equal(resolveFourTransformations('甲甲').status, 'failed')
+  assert.equal(resolveFourTransformations('').status, 'failed')
+  assert.equal(resolveFourTransformations(null).status, 'failed')
+  assert.equal(resolveFourTransformations('甲').transformations.length, 4)
+  assert.equal(resolveFourTransformations('癸').transformations.length, 4)
+
+  // 3. resolveMinorStars invalid & boundary
+  assert.equal(resolveMinorStars({ birthYearStem: '甲甲', lunarMonth: 1, hourBranch: '子' }).status, 'failed')
+  assert.equal(resolveMinorStars({ birthYearStem: '甲', lunarMonth: 0, hourBranch: '子' }).status, 'failed')
+  assert.equal(resolveMinorStars({ birthYearStem: '甲', lunarMonth: 13, hourBranch: '子' }).status, 'failed')
+  assert.equal(resolveMinorStars({ birthYearStem: '甲', lunarMonth: 1.5, hourBranch: '子' }).status, 'failed')
+  assert.equal(resolveMinorStars({ birthYearStem: '甲', lunarMonth: 1, hourBranch: 'X' }).status, 'failed')
+  assert.equal(resolveMinorStars(null).status, 'failed')
+
+  assert.equal(resolveMinorStars({ birthYearStem: '甲', lunarMonth: 1, hourBranch: '子' }).minorStars.length, 6)
+  assert.equal(resolveMinorStars({ birthYearStem: '癸', lunarMonth: 12, hourBranch: '亥' }).minorStars.length, 6)
+})
+
+// ── 22. Handoff 4개 복사본 및 topicFocused 속성/상태 보존 검증 ───────────────────────
+
+test('buildChatHandoffPackage: correctly outputs all 4 copies and preserves status, confidence, and supportScope', () => {
+  const normalInput = {
+    subjectName: '포맷테스트',
+    birthDate: '1997-04-21',
+    birthTime: '14:40',
+    gender: 'male',
+    timeAccuracy: 'exact',
+    targetDate: '2026-07-27',
+    timezone: 'Asia/Seoul',
+    referenceCity: 'seoul',
+  }
+  const prepared = prepareThreeSystemInterpretationData(normalInput)
+  const unified = createUnifiedInterpretationContext(prepared.systems)
+  const pkg = buildChatHandoffPackage({ result: prepared, unifiedContext: unified, userQuestion: '진로 문의', topicCategory: 'career' })
+
+  assert.ok(pkg.copies.full, 'pkg.copies.full must exist')
+  assert.ok(pkg.copies.quick, 'pkg.copies.quick must exist')
+  assert.ok(pkg.copies.topicFocused, 'pkg.copies.topicFocused property must exist (not topicFocus)')
+  assert.ok(pkg.copies.privacyMinimal, 'pkg.copies.privacyMinimal must exist')
+
+  // Full
+  assert.ok(pkg.copies.full.includes('needs_external_verification'))
+  assert.ok(pkg.copies.full.includes('운한/시기 계산'))
+  assert.ok(pkg.copies.full.includes('묘왕리함'))
+  assert.ok(pkg.copies.full.includes('확장 성요'))
+
+  // Quick
+  assert.ok(pkg.copies.quick.includes('needs_external_verification'))
+  assert.ok(pkg.copies.quick.includes('신뢰도 medium'))
+  assert.ok(pkg.copies.quick.includes('운한/시기 계산'))
+  assert.ok(pkg.copies.quick.includes('묘왕리함'))
+  assert.ok(pkg.copies.quick.includes('확장 성요'))
+
+  // TopicFocused
+  assert.ok(pkg.copies.topicFocused.includes('needs_external_verification'))
+  assert.ok(pkg.copies.topicFocused.includes('신뢰도 medium'))
+  assert.ok(pkg.copies.topicFocused.includes('운한/시기 계산'))
+
+  // PrivacyMinimal
+  assert.ok(pkg.copies.privacyMinimal.includes('needs_external_verification'))
+  assert.ok(pkg.copies.privacyMinimal.includes('신뢰도 medium'))
+  assert.ok(pkg.copies.privacyMinimal.includes('운한/시기 계산'))
+})
+
+// ── 23. 절기 경계 후보 사주 synthesisSystems 제외 및 4종 복사본 대표값 누출 차단 검증 ───
+
+test('unifiedInterpretationContext & handoff: boundary candidate Saju blocks representative values across all 4 copies', () => {
+  const boundaryInput = {
+    subjectName: '절기경계테스트',
+    birthDate: '2014-02-04',
+    birthTime: '07:03',
+    gender: 'female',
+    timeAccuracy: 'exact',
+    targetDate: '2026-07-27',
+    timezone: 'Asia/Seoul',
+    referenceCity: 'seoul',
+  }
+  const prepared = prepareThreeSystemInterpretationData(boundaryInput)
+  const unified = createUnifiedInterpretationContext(prepared.systems)
+
+  assert.deepEqual(unified.availableSystems, ['saju', 'ziwei'])
+  assert.deepEqual(unified.synthesisSystems, ['ziwei'])
+  const sajuCandidates = prepared.systems.saju.calculationResult?.raw?.candidates
+    || prepared.systems.saju.interpretationContext?.candidateFacts
+    || []
+  assert.ok(sajuCandidates.length >= 2, 'candidate saju array preserved')
+  assert.equal(prepared.systems.saju.status, 'candidate_required')
+  assert.equal(prepared.systems.saju.interpretationStatus, 'candidate_only')
+
+  assert.deepEqual(unified.sharedThemes, [], 'candidate saju excluded from sharedThemes')
+  assert.deepEqual(unified.differentPerspectives, [], 'candidate saju excluded from differentPerspectives')
+  assert.equal(unified.unifiedConfidence.overallConfidence, 'medium', 'overallConfidence computed over synthesisSystems only')
+
+  const pkg = buildChatHandoffPackage({ result: prepared, unifiedContext: unified })
+
+  // Check 4 copies block representative Saju confirmed facts
+  assert.ok(pkg.copies.full.includes('후보 확인 필요 (단일 확정 명식 없음'))
+  assert.ok(pkg.copies.quick.includes('후보 확인 필요 (단일 확정 명식 없음)'))
+  assert.ok(pkg.copies.topicFocused.includes('단일 대표 Feature를 출력하지 않음'))
+  assert.ok(pkg.copies.privacyMinimal.includes('후보 확인 필요 (단일 확정 명식 없음)'))
+})
+
+// ── 24. synthesisSystems 개수별 agreementLevel 규칙 검증 ─────────────────────────
+
+test('unifiedInterpretationContext: agreementLevel rules for 0, 1, and 2+ synthesis systems', () => {
+  // 0 synthesis systems
+  const emptyUnified = createUnifiedInterpretationContext({}, {}, {})
+  assert.deepEqual(emptyUnified.synthesisSystems, [])
+  assert.equal(emptyUnified.systemAgreement.agreementLevel, 'insufficient_data')
+
+  // 1 synthesis system (only Ziwei)
+  const ziweiOnlyPrep = prepareThreeSystemInterpretationData({
+    subjectName: '단일체계테스트',
+    birthDate: '2014-02-04',
+    birthTime: '07:03',
+    gender: 'female',
+    timeAccuracy: 'exact',
+    targetDate: '2026-07-27',
+    timezone: 'Asia/Seoul',
+    referenceCity: 'seoul',
+  })
+  const ziweiOnlyUnified = createUnifiedInterpretationContext(ziweiOnlyPrep.systems)
+  assert.deepEqual(ziweiOnlyUnified.synthesisSystems, ['ziwei'])
+  assert.equal(ziweiOnlyUnified.systemAgreement.agreementLevel, 'single_system_only')
+
+  // 2 synthesis systems (Saju + Ziwei)
+  const dualPrep = prepareThreeSystemInterpretationData({
+    subjectName: '양쪽정격테스트',
+    birthDate: '1997-04-21',
+    birthTime: '14:40',
+    gender: 'male',
+    timeAccuracy: 'exact',
+    targetDate: '2026-07-27',
+    timezone: 'Asia/Seoul',
+    referenceCity: 'seoul',
+  })
+  const dualUnified = createUnifiedInterpretationContext(dualPrep.systems)
+  assert.deepEqual(dualUnified.synthesisSystems, ['saju', 'ziwei'])
+  assert.equal(dualUnified.systemAgreement.agreementLevel, 'multi_lens_synthesis')
+})
+
+// ── 25. 서양 점성학 Generic Placeholder 계약 검증 ─────────────────────────────────
+
+test('threeSystemPrepPipeline & schema: astrology placeholder preserves simulation_blocked contract', () => {
+  const prep = prepareThreeSystemInterpretationData({
+    subjectName: '점성학계약테스트',
+    birthDate: '1997-04-21',
+    birthTime: '14:40',
+    gender: 'male',
+    timeAccuracy: 'exact',
+    targetDate: '2026-07-27',
+    timezone: 'Asia/Seoul',
+    referenceCity: 'seoul',
+  })
+  const astro = prep.systems.astrology
+  assert.equal(astro.system, 'astrology')
+  assert.equal(astro.status, 'simulation_blocked')
+  assert.equal(astro.verificationStatus, 'unsupported_for_interpretation')
+  assert.equal(astro.confidence, 'not_available')
+  assert.equal(astro.availableForChat, false)
+})
+
+// ── 26. 추가 회귀 테스트 ──────────────────────────────────────────────────────────
+
+test('regression: contract defaults, empty saju, synthesis confidence description, and 4-copy ziwei blocking', () => {
+  // 1. resolveStateContract() parameterless call is fail-closed
+  const emptyContract = resolveStateContract()
+  assert.equal(emptyContract.verificationStatus, 'needs_verification')
+  assert.equal(emptyContract.interpretationStatus, 'candidate_only')
+  assert.equal(emptyContract.confidence, 'low')
+  assert.equal(emptyContract.inputStatus, 'missing_input')
+
+  // 2. Explicit normal Saju contract is preserved
+  const normalSajuContract = resolveStateContract({
+    inputStatus: 'valid',
+    calculationStatus: 'calculated',
+    verificationStatus: 'verified',
+    interpretationStatus: 'ready',
+    confidence: 'high',
+  })
+  assert.equal(normalSajuContract.verificationStatus, 'verified')
+  assert.equal(normalSajuContract.interpretationStatus, 'ready')
+  assert.equal(normalSajuContract.confidence, 'high')
+
+  // 3. Empty Saju missing/unsupported result is not verified/ready
+  const emptySajuMissing = createEmptySystemResult('saju', 'missing_input')
+  assert.notEqual(emptySajuMissing.stateContract.verificationStatus, 'verified')
+  assert.notEqual(emptySajuMissing.stateContract.interpretationStatus, 'ready')
+  assert.equal(emptySajuMissing.stateContract.inputStatus, 'missing_input')
+
+  const emptySajuUnsupported = createEmptySystemResult('saju', 'unsupported')
+  assert.notEqual(emptySajuUnsupported.stateContract.verificationStatus, 'verified')
+  assert.notEqual(emptySajuUnsupported.stateContract.interpretationStatus, 'ready')
+
+  // 4. Candidate Saju + normal Ziwei handoff describes "합성 대상 체계 중 가장 낮은 신뢰도 기준"
+  const candidateSajuPrep = prepareThreeSystemInterpretationData({
+    subjectName: '합성신뢰도테스트',
+    birthDate: '2014-02-04',
+    birthTime: '07:03',
+    gender: 'female',
+    timeAccuracy: 'exact',
+    targetDate: '2026-07-27',
+    timezone: 'Asia/Seoul',
+    referenceCity: 'seoul',
+  })
+  const candidateSajuUnified = createUnifiedInterpretationContext(candidateSajuPrep.systems)
+  const candidateSajuPkg = buildChatHandoffPackage({ result: candidateSajuPrep, unifiedContext: candidateSajuUnified })
+  assert.ok(candidateSajuPkg.copies.full.includes('합성 대상 체계 중 가장 낮은 신뢰도 기준'))
+  assert.ok(candidateSajuPkg.copies.full.includes('통합 신뢰도: medium'))
 })

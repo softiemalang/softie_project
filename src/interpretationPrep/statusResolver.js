@@ -49,33 +49,31 @@ export function isSystemStatus(value) {
 
 export function resolveStateContract(params = {}) {
   const {
-    inputStatus = 'valid',
-    calculationStatus = 'calculated',
-    verificationStatus = 'verified',
-    interpretationStatus = 'ready',
-    confidence = 'medium',
+    inputStatus = 'missing_input',
+    calculationStatus = 'partial',
+    verificationStatus = 'needs_verification',
+    interpretationStatus = 'candidate_only',
+    confidence = 'low',
   } = params
 
   const resolvedVerification = VALID_VERIFICATION_STATUSES.includes(verificationStatus)
     ? verificationStatus
-    : Object.hasOwn(params, 'verificationStatus')
-      ? 'needs_verification'
-      : 'verified'
+    : 'needs_verification'
 
   return {
     inputStatus: VALID_INPUT_STATUSES.includes(inputStatus)
       ? inputStatus
-      : Object.hasOwn(params, 'inputStatus') ? 'invalid' : 'valid',
+      : 'missing_input',
     calculationStatus: VALID_CALCULATION_STATUSES.includes(calculationStatus)
       ? calculationStatus
-      : Object.hasOwn(params, 'calculationStatus') ? 'failed' : 'calculated',
+      : 'partial',
     verificationStatus: resolvedVerification,
     interpretationStatus: VALID_INTERPRETATION_STATUSES.includes(interpretationStatus)
       ? interpretationStatus
-      : Object.hasOwn(params, 'interpretationStatus') ? 'candidate_only' : 'ready',
+      : 'candidate_only',
     confidence: VALID_CONFIDENCES.includes(confidence)
       ? confidence
-      : Object.hasOwn(params, 'confidence') ? 'low' : 'medium',
+      : 'low',
   }
 }
 

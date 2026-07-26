@@ -16,10 +16,28 @@ const BRANCHES = ['子', '丑', '寅', '卯', '辰', '巳', '午', '未', '申',
 
 export function resolve14MajorStars(params = {}) {
   const {
-    bureauNumber = 2,
-    lunarDay = 1,
+    bureauNumber,
+    lunarDay,
     palaces = [],
-  } = params
+  } = params || {}
+
+  const isValidBureau = typeof bureauNumber === 'number' && Number.isInteger(bureauNumber) && bureauNumber >= 2 && bureauNumber <= 6
+  const isValidLunarDay = typeof lunarDay === 'number' && Number.isInteger(lunarDay) && lunarDay >= 1 && lunarDay <= 30
+
+  if (!isValidBureau || !isValidLunarDay) {
+    return {
+      ziweiBranch: null,
+      tianfuBranch: null,
+      majorStars: [],
+      status: 'failed',
+      reason: 'missing_or_invalid_input',
+      starPlacementMeta: {
+        ruleSetVersion: STAR_PLACEMENT_RULESET.version,
+        ziweiMethod: STAR_PLACEMENT_RULESET.ziweiMethod,
+        tianfuMethod: STAR_PLACEMENT_RULESET.tianfuMethod,
+      },
+    }
+  }
 
   const ziweiBranch = calculateZiweiBranch(bureauNumber, lunarDay)
   const tianfuBranch = calculateTianfuBranch(ziweiBranch)

@@ -7,11 +7,11 @@ import { resolveStateContract } from '../src/interpretationPrep/statusResolver.j
 
 test('resolveStateContract splits 5 state dimensions correctly', () => {
   const defaultContract = resolveStateContract()
-  assert.equal(defaultContract.inputStatus, 'valid')
-  assert.equal(defaultContract.calculationStatus, 'calculated')
-  assert.equal(defaultContract.verificationStatus, 'verified')
-  assert.equal(defaultContract.interpretationStatus, 'ready')
-  assert.equal(defaultContract.confidence, 'medium')
+  assert.equal(defaultContract.inputStatus, 'missing_input')
+  assert.equal(defaultContract.calculationStatus, 'partial')
+  assert.equal(defaultContract.verificationStatus, 'needs_verification')
+  assert.equal(defaultContract.interpretationStatus, 'candidate_only')
+  assert.equal(defaultContract.confidence, 'low')
 
   const customContract = resolveStateContract({
     inputStatus: 'unknown_birth_time',

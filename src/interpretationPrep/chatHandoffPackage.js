@@ -104,9 +104,17 @@ function sajuQuickFacts(unifiedContext, result) {
   const calculationResult = system.calculationResult || result?.systems?.saju || {}
   const context = system.context || unifiedContext.sajuContext || {}
   const raw = calculationResult.raw || {}
+  const isCandidate = system.verificationStatus === 'candidate_required' || system.interpretationStatus === 'candidate_only'
+  const pillarsText = isCandidate
+    ? '후보 확인 필요 (단일 확정 명식 없음)'
+    : formatSajuPillars(raw, context)
+  const dayMaster = isCandidate
+    ? '후보 확인 필요 (단일 확정 불가)'
+    : (raw.dayMaster?.stem || context.candidateSetConsensus?.factual?.dayMaster || '후보 확인 필요')
+
   return [
-    `- 사주: ${formatSajuPillars(raw, context)}`,
-    `- 일간: ${raw.dayMaster?.stem || context.candidateSetConsensus?.factual?.dayMaster || '후보 확인 필요'}`,
+    `- 사주: ${pillarsText}`,
+    `- 일간: ${dayMaster}`,
     `- 신뢰도/상태: ${system.confidence || unifiedContext.unifiedConfidence?.sajuConfidence || '미상'} / ${system.status || 'available'}${calculationResult.status === 'experimental' ? ' · Experimental 판정 포함' : ''}`,
   ].join('\n')
 }
@@ -117,7 +125,9 @@ function ziweiQuickFacts(unifiedContext) {
     return `- 자미두수: ${system.status || 'unavailable'} · 실제 계산값을 생성하지 않음`
   }
   const factual = system.context.candidateSetConsensus?.factual || {}
-  return `- 자미두수 [Experimental · ${system.verificationStatus}]: 명궁 ${factual.mingGongBranch || '후보'}宮 · 신궁 ${factual.shenGongBranch || '후보'}宮 · ${factual.fiveElementsBureau || '오행국 후보'}`
+  const scope = system.supportScope || system.context?.supportScope || system.calculationResult?.supportScope || {}
+  const scopeText = `미지원 범위: 운한/시기 계산 ${scope.timingStatus || 'unsupported'} · 묘왕리함 ${scope.brightnessStatus || 'unsupported'} · 확장 성요 ${scope.extendedMinorStarsStatus || 'unsupported'}`
+  return `- 자미두수 [Experimental · ${system.verificationStatus || 'needs_external_verification'} · 신뢰도 ${system.confidence || 'medium'}]: 명궁 ${factual.mingGongBranch || '후보'}宮 · 신궁 ${factual.shenGongBranch || '후보'}宮 · ${factual.fiveElementsBureau || '오행국 후보'} (${scopeText})`
 }
 
 function astrologyStatus(unifiedContext) {
@@ -172,7 +182,7 @@ export function buildChatHandoffPackage(configOrUnified = {}, legacyQuestion = '
     '## 5. Availability-aware 통합 구조',
     `- Context 유형: ${unifiedContext.systemType || 'no_system_context'}`,
     `- 사용 가능 체계: ${(unifiedContext.availableSystems || []).map((system) => SYSTEM_LABELS[system]).join(' · ') || '없음'}`,
-    `- 통합 신뢰도: ${unifiedContext.unifiedConfidence?.overallConfidence || 'not_available'} (실사용 체계 중 가장 낮은 신뢰도 기준)`,
+    `- 통합 신뢰도: ${unifiedContext.unifiedConfidence?.overallConfidence || 'not_available'} (합성 대상 체계 중 가장 낮은 신뢰도 기준)`,
     '### 공통으로 비추는 질문 영역',
     formatSharedThemes(unifiedContext),
     '### 서로 다른 독립 관점',

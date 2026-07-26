@@ -35,6 +35,7 @@ export function createZiweiCalculationContext(params = {}) {
     chart = {},
     candidates = {},
     calculationMeta = {},
+    supportScope = null,
     ruleSet = {},
   } = params
 
@@ -50,6 +51,13 @@ export function createZiweiCalculationContext(params = {}) {
       ? 'candidate_only'
       : 'experimental'
   )
+
+  const resolvedScope = supportScope || {
+    timingStatus: 'unsupported',
+    brightnessStatus: 'unsupported',
+    extendedMinorStarsStatus: 'unsupported',
+    supported: ['명궁·신궁 지지', '오행국', '14주성', '4대 사화', '6길성'],
+  }
 
   return {
     systemType: 'ziwei',
@@ -103,6 +111,8 @@ export function createZiweiCalculationContext(params = {}) {
       warnings: Array.isArray(calculationMeta.warnings) ? calculationMeta.warnings : [],
       ruleSetVersions: calculationMeta.ruleSetVersions || {},
     },
+
+    supportScope: resolvedScope,
   }
 }
 
@@ -127,6 +137,12 @@ export function createZiweiInterpretationContext(calculationContext) {
   const hasMultipleAlternatives = candidates.alternatives && candidates.alternatives.length > 0
 
   const palaceRelationData = buildZiweiPalaceContexts(chart)
+  const supportScope = calculationContext.supportScope || {
+    timingStatus: 'unsupported',
+    brightnessStatus: 'unsupported',
+    extendedMinorStarsStatus: 'unsupported',
+    supported: ['명궁·신궁 지지', '오행국', '14주성', '4대 사화', '6길성'],
+  }
 
   return {
     systemType: 'ziwei',
@@ -162,6 +178,8 @@ export function createZiweiInterpretationContext(calculationContext) {
         confidence,
       },
     },
+
+    supportScope,
 
     interpretationWarnings: [
       ...(calculationMeta.warnings || []),

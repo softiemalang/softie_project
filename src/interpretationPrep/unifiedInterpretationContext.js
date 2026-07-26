@@ -68,6 +68,13 @@ function defaultSystemConfidence(system, availableForChat) {
   return 'not_available'
 }
 
+function defaultInterpretationStatus(system, availableForChat) {
+  if (!availableForChat) return 'candidate_only'
+  if (system === 'ziwei') return 'experimental'
+  if (system === 'saju') return 'ready'
+  return 'candidate_only'
+}
+
 function normalizeSystem(system, value = {}) {
   const supplied = value || {}
   if (isDescriptor(supplied)) {
@@ -75,12 +82,18 @@ function normalizeSystem(system, value = {}) {
     const confidence = supplied.confidence
       || context?.calculationConfidence?.stateContract?.confidence
       || defaultSystemConfidence(system, supplied.availableForChat)
+    const verificationStatus = supplied.verificationStatus
+      || context?.calculationConfidence?.stateContract?.verificationStatus
+      || defaultSystemVerificationStatus(system, supplied.availableForChat)
+    const interpretationStatus = supplied.interpretationStatus
+      || context?.calculationConfidence?.stateContract?.interpretationStatus
+      || defaultInterpretationStatus(system, supplied.availableForChat)
+
     return {
       system,
       status: supplied.status || (supplied.availableForChat ? 'available' : 'unavailable'),
-      verificationStatus: supplied.verificationStatus
-        || context?.calculationConfidence?.stateContract?.verificationStatus
-        || defaultSystemVerificationStatus(system, supplied.availableForChat),
+      verificationStatus,
+      interpretationStatus,
       confidence: supplied.availableForChat ? confidence : 'not_available',
       availableForChat: supplied.availableForChat === true && Boolean(context),
       context: supplied.availableForChat === true ? context : null,
@@ -88,6 +101,7 @@ function normalizeSystem(system, value = {}) {
       warnings: Array.isArray(supplied.warnings) ? supplied.warnings : [],
       sourceDerivation: supplied.sourceDerivation || null,
       adapterContract: supplied.adapterContract || null,
+      supportScope: supplied.supportScope || null,
     }
   }
 
@@ -100,10 +114,15 @@ function normalizeSystem(system, value = {}) {
     ? supplied.calculationConfidence?.stateContract?.verificationStatus || defaultSystemVerificationStatus(system, availableForChat)
     : 'not_available'
 
+  const interpretationStatus = availableForChat
+    ? supplied.calculationConfidence?.stateContract?.interpretationStatus || defaultInterpretationStatus(system, availableForChat)
+    : 'candidate_only'
+
   return {
     system,
     status: inferLegacyStatus(system, supplied, availableForChat),
     verificationStatus,
+    interpretationStatus,
     confidence,
     availableForChat,
     context: availableForChat ? supplied : null,
@@ -130,6 +149,13 @@ function parseInputs(sajuOrSystems, ziweiContext, astrologyContext) {
   }
 }
 
+function isEligibleForSynthesis(sys) {
+  if (!sys || !sys.availableForChat) return false
+  if (sys.verificationStatus === 'candidate_required') return false
+  if (sys.interpretationStatus === 'candidate_only') return false
+  return true
+}
+
 function evidenceFor(system, context) {
   if (system === 'saju') {
     const dayMaster = context?.candidateSetConsensus?.factual?.dayMaster
@@ -145,9 +171,9 @@ function evidenceFor(system, context) {
   return factual.sunSign ? [`서양 점성학: 태양 ${factual.sunSign}`] : ['서양 점성학: 검증된 계산 Context 제공']
 }
 
-function lowestConfidence(systems, availableSystems) {
-  if (availableSystems.length === 0) return 'not_available'
-  return availableSystems.reduce((lowest, system) => {
+function lowestConfidence(systems, synthesisSystems) {
+  if (synthesisSystems.length === 0) return 'not_available'
+  return synthesisSystems.reduce((lowest, system) => {
     const confidence = systems[system].confidence
     if (!CONFIDENCE_RANK[confidence]) return lowest
     if (!lowest || CONFIDENCE_RANK[confidence] < CONFIDENCE_RANK[lowest]) return confidence
@@ -173,32 +199,36 @@ export function createUnifiedInterpretationContext(
   )
   const availableSystems = SYSTEM_IDS.filter((system) => systems[system].availableForChat)
   const unavailableSystems = SYSTEM_IDS.filter((system) => !systems[system].availableForChat)
-  const overallConfidence = lowestConfidence(systems, availableSystems)
-  const hasLowConfidence = availableSystems.some((system) => systems[system].confidence === 'low')
-  const allLowConfidence = availableSystems.length > 0
-    && availableSystems.every((system) => systems[system].confidence === 'low')
+  const synthesisSystems = SYSTEM_IDS.filter((system) => isEligibleForSynthesis(systems[system]))
 
-  const agreementLevel = availableSystems.length < 2
-    ? 'single_system_only'
-    : allLowConfidence
-      ? 'insufficient_data'
-      : hasLowConfidence
-        ? 'partial_uncertainty_preserved'
-        : 'multi_lens_synthesis'
+  const overallConfidence = lowestConfidence(systems, synthesisSystems)
+  const hasLowConfidence = synthesisSystems.some((system) => systems[system].confidence === 'low')
+  const allLowConfidence = synthesisSystems.length > 0
+    && synthesisSystems.every((system) => systems[system].confidence === 'low')
 
-  const sharedThemes = availableSystems.length >= 2
+  const agreementLevel = synthesisSystems.length === 0
+    ? 'insufficient_data'
+    : synthesisSystems.length === 1
+      ? 'single_system_only'
+      : allLowConfidence
+        ? 'insufficient_data'
+        : hasLowConfidence
+          ? 'partial_uncertainty_preserved'
+          : 'multi_lens_synthesis'
+
+  const sharedThemes = synthesisSystems.length >= 2
     ? [{
         themeId: 'independent_system_evidence_comparison',
         label: '두 체계 이상이 함께 비추는 질문 영역',
         evidence: Object.fromEntries(
-          availableSystems.map((system) => [system, evidenceFor(system, systems[system].context)]),
+          synthesisSystems.map((system) => [system, evidenceFor(system, systems[system].context)]),
         ),
         synthesis: '각 체계의 용어와 근거를 섞지 않고, 같은 삶의 질문을 비추는 독립 관점으로 비교합니다.',
       }]
     : []
 
-  const differentPerspectives = availableSystems.length >= 2
-    ? availableSystems.map((system) => ({
+  const differentPerspectives = synthesisSystems.length >= 2
+    ? synthesisSystems.map((system) => ({
         system,
         label: {
           saju: '사주 관점',
@@ -224,9 +254,9 @@ export function createUnifiedInterpretationContext(
     .map((system) => systems[system].context?.subjectName)
     .find(Boolean) || '내담자'
 
-  const overallGuidance = availableSystems.length === 0
-    ? '해석에 사용할 수 있는 실제 계산 자료가 없습니다.'
-    : `${availableSystems.join(', ')}의 독립 계산 근거만 사용하며, 미지원 체계는 통합·공통 테마에서 제외합니다.`
+  const overallGuidance = synthesisSystems.length === 0
+    ? '해석에 합성 가능한 확정 계산 자료가 없습니다.'
+    : `${synthesisSystems.join(', ')}의 독립 계산 근거를 중심으로 구성하며, 후보 및 미지원 체계는 통합·공통 테마에서 제외합니다.`
 
   return {
     systemType: systemTypeFor(availableSystems.length),
@@ -234,14 +264,17 @@ export function createUnifiedInterpretationContext(
     systems,
     availableSystems,
     unavailableSystems,
+    synthesisSystems,
     systemAvailability: Object.fromEntries(
       SYSTEM_IDS.map((system) => [system, systems[system].status]),
     ),
     systemAgreement: {
       agreementLevel,
-      note: availableSystems.length >= 2
-        ? `사용 가능한 ${availableSystems.length}개 체계의 근거를 독립적으로 비교합니다.`
-        : '사용 가능한 체계가 2개 미만이므로 체계 간 공통 테마를 생성하지 않습니다.',
+      note: synthesisSystems.length >= 2
+        ? `합성 가능한 ${synthesisSystems.length}개 체계의 근거를 독립적으로 비교합니다.`
+        : synthesisSystems.length === 1
+          ? `단일 확정 체계(${synthesisSystems[0]})의 근거를 중심으로 구성하며, 후보/미지원 체계는 공통 테마 생성에서 제외합니다.`
+          : '합성 가능한 체계가 없으므로 체계 간 공통 테마를 생성하지 않습니다.',
     },
     sharedThemes,
     differentPerspectives,

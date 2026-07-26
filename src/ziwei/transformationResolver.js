@@ -11,7 +11,19 @@ import {
 } from './transformationRules.js'
 
 export function resolveFourTransformations(birthYearStem) {
-  const stemMap = YEAR_STEM_TRANSFORMATIONS[birthYearStem] || YEAR_STEM_TRANSFORMATIONS['甲']
+  const stemMap = YEAR_STEM_TRANSFORMATIONS[birthYearStem]
+
+  if (!birthYearStem || !stemMap) {
+    return {
+      transformations: [],
+      status: 'failed',
+      reason: 'missing_or_invalid_input',
+      transformationMeta: {
+        ruleSetVersion: TRANSFORMATION_RULESET.version,
+        birthYearStem: typeof birthYearStem === 'string' ? birthYearStem : null,
+      },
+    }
+  }
 
   const transformations = [
     {

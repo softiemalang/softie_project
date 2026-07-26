@@ -20,10 +20,10 @@ test('unifiedQualityBenchmark: validates contract & system independence across 5
       raw: { pillars: { year: '甲子', month: '丙寅', day: '甲子', hour: '甲子' } },
       stateContract: {
         confidence: c.sajuInput.birthDay === 4 ? 'low' : 'high',
-        verificationStatus: c.sajuInput.birthDay === 4 ? 'needs_verification' : 'verified',
+        verificationStatus: c.sajuInput.birthDay === 4 ? 'candidate_required' : 'verified',
         inputStatus: 'valid',
         calculationStatus: 'calculated',
-        interpretationStatus: 'ready',
+        interpretationStatus: c.sajuInput.birthDay === 4 ? 'candidate_only' : 'ready',
       },
     }) || { subjectName: c.sajuInput.subjectName }
 
@@ -55,6 +55,7 @@ test('unifiedQualityBenchmark: validates contract & system independence across 5
       calculationMeta: {
         confidence: c.ziweiInput.isLeapMonth ? 'low' : 'medium',
         verificationStatus: c.ziweiInput.isLeapMonth ? 'candidate_required' : 'needs_external_verification',
+        interpretationStatus: c.ziweiInput.isLeapMonth ? 'candidate_only' : 'experimental',
       },
     })
     const ziweiCtx = createZiweiInterpretationContext(ziweiCalcCtx)
@@ -67,8 +68,12 @@ test('unifiedQualityBenchmark: validates contract & system independence across 5
     const payload = buildUnifiedPromptPayload(unifiedCtx, c.domainProfile)
 
 
-    // Verify System Agreement
+    // Verify System Agreement & Synthesis Systems
     assert.equal(unifiedCtx.systemAgreement.agreementLevel, c.expectedAgreement)
+    assert.ok(Array.isArray(unifiedCtx.synthesisSystems), 'synthesisSystems must be an array')
+    if (c.expectedOverallConfidence) {
+      assert.equal(unifiedCtx.unifiedConfidence.overallConfidence, c.expectedOverallConfidence)
+    }
 
     // Verify 4-step protocol
     assert.ok(payload.systemPrompt.includes('Step 1: 3대 체계별 독립 렌즈 설명'))
@@ -76,14 +81,23 @@ test('unifiedQualityBenchmark: validates contract & system independence across 5
     assert.ok(payload.systemPrompt.includes('Step 3: 통합 안전'))
     assert.ok(payload.systemPrompt.includes('Step 4: 대화형 가이드'))
 
-
     // Verify Safety Guardrails
     UNIFIED_SAFETY_GUARDRAILS.forEach((g) => {
       assert.ok(payload.systemPrompt.includes(g))
     })
 
-    // Verify Evidence Preservation
-    assert.ok(unifiedCtx.sharedThemes[0].evidence.saju)
-    assert.ok(unifiedCtx.sharedThemes[0].evidence.ziwei)
+    // Verify Evidence Preservation per Agreement Level
+    if (c.expectedAgreement === 'multi_lens_synthesis') {
+      assert.ok(unifiedCtx.synthesisSystems.length >= 2)
+      assert.equal(unifiedCtx.sharedThemes.length, 1)
+      assert.ok(unifiedCtx.sharedThemes[0].evidence.saju)
+      assert.ok(unifiedCtx.sharedThemes[0].evidence.ziwei)
+    } else if (c.expectedAgreement === 'single_system_only') {
+      assert.equal(unifiedCtx.synthesisSystems.length, 1)
+      assert.equal(unifiedCtx.sharedThemes.length, 0)
+    } else if (c.expectedAgreement === 'insufficient_data') {
+      assert.equal(unifiedCtx.synthesisSystems.length, 0)
+      assert.equal(unifiedCtx.sharedThemes.length, 0)
+    }
   })
 })

@@ -13,13 +13,31 @@ import {
   calculateTiankuiYueBranch,
 } from './minorStarRules.js'
 
+const STEMS = ['甲', '乙', '丙', '丁', '戊', '己', '庚', '辛', '壬', '癸']
+const BRANCHES = ['子', '丑', '寅', '卯', '辰', '巳', '午', '未', '申', '酉', '戌', '亥']
+
 export function resolveMinorStars(params = {}) {
   const {
-    birthYearStem = '甲',
-    lunarMonth = 1,
-    hourBranch = '子',
+    birthYearStem,
+    lunarMonth,
+    hourBranch,
     palaces = [],
-  } = params
+  } = params || {}
+
+  const isValidStem = typeof birthYearStem === 'string' && STEMS.includes(birthYearStem)
+  const isValidMonth = typeof lunarMonth === 'number' && Number.isInteger(lunarMonth) && lunarMonth >= 1 && lunarMonth <= 12
+  const isValidBranch = typeof hourBranch === 'string' && BRANCHES.includes(hourBranch)
+
+  if (!isValidStem || !isValidMonth || !isValidBranch) {
+    return {
+      minorStars: [],
+      status: 'failed',
+      reason: 'missing_or_invalid_input',
+      minorStarMeta: {
+        ruleSetVersion: MINOR_STAR_RULESET.version,
+      },
+    }
+  }
 
   const minorStars = []
 

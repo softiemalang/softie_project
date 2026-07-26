@@ -177,6 +177,37 @@ export function formatSajuFull(system = {}) {
   const calculationResult = system.calculationResult || {}
   const raw = calculationResult.raw || {}
   const context = system.context || system.interpretationContext || {}
+  const isCandidate = system.verificationStatus === 'candidate_required' || system.interpretationStatus === 'candidate_only'
+
+  if (isCandidate) {
+    return [
+      '### 사주 · 복수 명식 후보 존재 (단일 확정 불가)',
+      `- 상태: ${system.status || 'candidate_required'} / 검증 ${system.verificationStatus || 'candidate_required'} / 신뢰도 ${system.confidence || 'low'}`,
+      `- RuleSet/엔진: ${calculationResult.engine?.profile?.profileVersion || calculationResult.engine?.sourceEngine || '현재 사주 엔진 프로필'}`,
+      '- 원국: 후보 확인 필요 (단일 확정 명식 없음 - 아래 후보 목록 참조)',
+      '- 일간: 후보 확인 필요 (단일 확정 일간 없음 - 아래 후보 목록 참조)',
+      '- 오행 표면 분포: 후보별 상이함 (아래 후보 비교 항목 참조)',
+      '- 십성 표면 분포: 후보별 상이함 (아래 후보 비교 항목 참조)',
+      '- 지장간: 후보별 상이함 (아래 후보 비교 항목 참조)',
+      '- 천간 관계: 후보 확인 필요 (단일 확정 관계 없음)',
+      '- 지지 관계: 후보 확인 필요 (단일 확정 관계 없음)',
+      '',
+      '#### 후보·불확실성',
+      formatCandidates(raw, context),
+      `- 계산값이 달라지는 조건: ${compactJson(raw.calculationUncertainty || context.uncertainFactors || [])}`,
+      `- 해석 경고: ${(system.warnings || []).join(' / ') || '별도 경고 없음'}`,
+      '',
+      '#### 운 흐름 계산값',
+      '- 운 흐름: 후보별 상이함 (단일 확정 운 흐름 없음 - 아래 후보 목록 참조)',
+      '',
+      '#### Experimental 판정',
+      formatExperimental(raw.experimental, 'candidate_required'),
+      '',
+      '#### 지원 범위와 미지원 항목',
+      formatScope(calculationResult),
+    ].join('\n')
+  }
+
   return [
     '### 사주 · 실제 계산 근거',
     `- 상태: ${system.status || 'available'} / 검증 ${system.verificationStatus || '미상'} / 신뢰도 ${system.confidence || '미상'}`,
@@ -206,6 +237,9 @@ export function formatSajuFull(system = {}) {
 }
 
 export function selectSajuTopicFeatures(calculationResult = {}, topic = 'general') {
+  if (calculationResult.verificationStatus === 'candidate_required' || calculationResult.interpretationStatus === 'candidate_only') {
+    return []
+  }
   const features = calculationResult.features || []
   const tags = TOPIC_FEATURE_TAGS[topic] || []
   if (tags.length === 0) return features
@@ -247,9 +281,10 @@ export function formatZiweiFull(system = {}) {
   const context = system.context
   const chart = calculation.chart || {}
   const lunar = system.sourceDerivation?.lunarConversion || {}
+  const scope = system.supportScope || calculation.supportScope || {}
   return [
     '### 자미두수 · 고정 RuleSet 기반 실험적 계산',
-    `- 상태: ${system.status} / 검증 ${system.verificationStatus} / 신뢰도 ${system.confidence}`,
+    `- 상태: ${system.status} / 검증 ${system.verificationStatus} / 신뢰도 ${system.confidence} (독립 외부 명반 대조 전)`,
     `- RuleSet: ${calculation.input?.ruleSet?.profileVersion || 'ziwei-fixed-ruleset-experimental-v1'} / ${compactJson(calculation.calculationMeta?.ruleSetVersions || {})}`,
     `- 음력 파생 입력: ${lunar.lunarYear || calculation.input?.calendarBasis?.lunarYear || '미상'}년 ${lunar.lunarMonth || calculation.input?.lunarMonth || '미상'}월 ${lunar.lunarDay || calculation.input?.calendarBasis?.lunarDay || '미상'}일${lunar.isLeapMonth ? ' 윤달' : ''}`,
     `- 연간·연지·시지: ${calculation.input?.birthYearStem || '미상'}${calculation.input?.birthYearBranch || '미상'} / ${calculation.input?.hourBranch || '미상'}시`,
@@ -258,6 +293,7 @@ export function formatZiweiFull(system = {}) {
     `- 14주성: ${(chart.majorStars || []).map((star) => `${star.name}(${star.palaceName || star.palaceBranch})`).join(' · ') || '자료 없음'}`,
     `- 사화: ${(chart.transformations || []).map((item) => `${item.name}:${item.starId}`).join(' · ') || '자료 없음'}`,
     `- 보조성: ${(chart.minorStars || []).map((star) => `${star.name}(${star.palaceName || star.palaceBranch})`).join(' · ') || '자료 없음'}`,
+    `- 미지원 범위(supportScope): 운한/시기 계산(${scope.timingStatus || 'unsupported'}) · 묘왕리함(${scope.brightnessStatus || 'unsupported'}) · 확장 성요(${scope.extendedMinorStarsStatus || 'unsupported'})`,
     '',
     '#### 12궁 및 삼방사정',
     ...Object.values(context.palaceContexts || {}).map((palace) => `- ${formatZiweiPalace(palace)}`),
@@ -270,16 +306,18 @@ export function formatZiweiTopic(system = {}, topic = 'general') {
   if (!system.availableForChat || !system.context) {
     return `- 자미두수: ${system.status || 'unavailable'} (${(system.warnings || []).join(' / ')})`
   }
+  const scope = system.supportScope || system.calculationResult?.supportScope || {}
+  const statusHeader = `- 자미두수 [Experimental · ${system.verificationStatus || 'needs_external_verification'} · 신뢰도 ${system.confidence || 'medium'}]: 독립 외부 명반 대조 전 (미지원 범위: 운한/시기 계산 ${scope.timingStatus || 'unsupported'} · 묘왕리함 ${scope.brightnessStatus || 'unsupported'} · 확장 성요 ${scope.extendedMinorStarsStatus || 'unsupported'})`
   if (topic === 'timing') {
-    return '- 자미두수: 현재 RuleSet은 대운·세운 등 독립 시기 계산을 지원하지 않으므로 시기 값을 생성하지 않음'
+    return `${statusHeader}\n- 자미두수: 현재 RuleSet은 대운·세운 등 독립 시기 계산을 지원하지 않으므로 시기 값을 생성하지 않음 (timingStatus: unsupported)`
   }
   const ids = TOPIC_PALACES[topic] || TOPIC_PALACES.general
   const contexts = system.context.palaceContexts || {}
-  return ids
+  const lines = ids
     .map((id) => contexts[id])
     .filter(Boolean)
     .map((palace) => `- ${formatZiweiPalace(palace)}`)
-    .join('\n') || '- 자미두수: 해당 주제 Palace Context 없음'
+  return [statusHeader, ...lines].join('\n')
 }
 
 export function formatTopicEvidence({ result, unifiedContext, topic = 'general' }) {
@@ -287,33 +325,60 @@ export function formatTopicEvidence({ result, unifiedContext, topic = 'general' 
   const ziweiSystem = unifiedContext.systems?.ziwei || {}
   const sajuResult = sajuSystem.calculationResult || result?.systems?.saju || {}
   const raw = sajuResult.raw || {}
-  const features = selectSajuTopicFeatures(sajuResult, topic)
+  const isCandidateSaju = sajuSystem.verificationStatus === 'candidate_required' || sajuSystem.interpretationStatus === 'candidate_only'
+  const features = isCandidateSaju ? [] : selectSajuTopicFeatures(sajuResult, topic)
+  const sajuFeatureText = isCandidateSaju
+    ? '- 사주: 복수 명식 후보 존재 조건으로 단일 대표 Feature를 출력하지 않음'
+    : formatFeatures(features)
+
   const sections = [
     `### 사주 · ${TOPIC_LABELS[topic] || TOPIC_LABELS.general} Feature`,
-    formatFeatures(features),
+    sajuFeatureText,
   ]
 
   if (topic === 'personality') {
-    sections.push(
-      formatMap('오행 표면 분포', raw.elements?.counts),
-      formatMap('십성 표면 분포', raw.tenGods?.visible),
-      formatExperimental(raw.experimental, sajuResult.status),
-    )
+    if (isCandidateSaju) {
+      sections.push(
+        '- 오행/십성: 후보별 상이함 (아래 후보 비교 항목 참조)',
+        formatExperimental(raw.experimental, 'candidate_required'),
+      )
+    } else {
+      sections.push(
+        formatMap('오행 표면 분포', raw.elements?.counts),
+        formatMap('십성 표면 분포', raw.tenGods?.visible),
+        formatExperimental(raw.experimental, sajuResult.status),
+      )
+    }
   } else if (topic === 'career') {
-    sections.push('#### 직업 관련 시기 근거', formatDaYun(raw.timing?.daYun), `- 세운: ${formatPeriod(raw.timing?.periods?.year || {})}`)
+    if (isCandidateSaju) {
+      sections.push('#### 직업 관련 시기 근거', '- 대운·세운: 후보별 상이함 (단일 확정 불가)')
+    } else {
+      sections.push('#### 직업 관련 시기 근거', formatDaYun(raw.timing?.daYun), `- 세운: ${formatPeriod(raw.timing?.periods?.year || {})}`)
+    }
   } else if (topic === 'relationship') {
-    const dayBranch = raw.pillars?.day?.branch
-    const relationshipRelations = (raw.branchRelations?.items || []).filter((item) => (
-      (item.positions || []).includes('day')
-      || (item.branches || []).includes(dayBranch)
-      || (item.positionLabels || []).includes('일지')
-    ))
-    sections.push(
-      `- 일지: ${dayBranch || '후보 확인 필요'}`,
-      formatRelations('일지·관계 관련 합충형파해', { items: relationshipRelations }),
-    )
+    if (isCandidateSaju) {
+      sections.push(
+        '- 일지: 후보 확인 필요 (단일 확정 불가)',
+        '- 일지·관계 관련 합충형파해: 후보별 상이함',
+      )
+    } else {
+      const dayBranch = raw.pillars?.day?.branch
+      const relationshipRelations = (raw.branchRelations?.items || []).filter((item) => (
+        (item.positions || []).includes('day')
+        || (item.branches || []).includes(dayBranch)
+        || (item.positionLabels || []).includes('일지')
+      ))
+      sections.push(
+        `- 일지: ${dayBranch || '후보 확인 필요'}`,
+        formatRelations('일지·관계 관련 합충형파해', { items: relationshipRelations }),
+      )
+    }
   } else if (topic === 'timing') {
-    sections.push('#### 대운·세운·월운·일진·경계 후보', formatSajuTiming(raw), formatCandidates(raw, sajuSystem.context || {}))
+    if (isCandidateSaju) {
+      sections.push('#### 대운·세운·월운·일진·경계 후보', '- 시기 계산: 후보별 상이함 (단일 확정 불가)', formatCandidates(raw, sajuSystem.context || {}))
+    } else {
+      sections.push('#### 대운·세운·월운·일진·경계 후보', formatSajuTiming(raw), formatCandidates(raw, sajuSystem.context || {}))
+    }
   }
 
   sections.push(

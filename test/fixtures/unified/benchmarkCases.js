@@ -26,7 +26,7 @@ export const UNIFIED_BENCHMARK_CASES = [
   },
   {
     id: 'case_2_low_saju_exact_ziwei',
-    name: 'Case 2: 사주 절기 경계(low) + 자미두수 정격(high) (partial_uncertainty_preserved)',
+    name: 'Case 2: 사주 절기 경계(low) + 자미두수 정격(high) (single_system_only - 후보 사주 합성 제외)',
     sajuInput: {
       subjectName: '사주불확실테스트',
       birthYear: 1984,
@@ -41,12 +41,12 @@ export const UNIFIED_BENCHMARK_CASES = [
       hourBranch: '卯',
     },
     domainProfile: 'personality',
-    expectedAgreement: 'partial_uncertainty_preserved',
+    expectedAgreement: 'single_system_only',
     expectedOverallConfidence: 'medium',
   },
   {
     id: 'case_3_exact_saju_low_ziwei',
-    name: 'Case 3: 사주 정격(high) + 자미두수 윤달/시간 미상(low) (partial_uncertainty_preserved)',
+    name: 'Case 3: 사주 정격(high) + 자미두수 윤달/시간 미상(low) (single_system_only - 후보 자미두수 합성 제외)',
     sajuInput: {
       subjectName: '자미불확실테스트',
       birthYear: 1990,
@@ -59,10 +59,11 @@ export const UNIFIED_BENCHMARK_CASES = [
       birthYearStem: '庚',
       lunarMonth: 8,
       isLeapMonth: true, // 윤달 불확실성
+      hourBranch: '未',
     },
-    domainProfile: 'relationship',
-    expectedAgreement: 'partial_uncertainty_preserved',
-    expectedOverallConfidence: 'medium',
+    domainProfile: 'timing',
+    expectedAgreement: 'single_system_only',
+    expectedOverallConfidence: 'high',
   },
   {
     id: 'case_4_hua_ji_saju_conflict',
@@ -84,22 +85,23 @@ export const UNIFIED_BENCHMARK_CASES = [
   },
   {
     id: 'case_5_both_low_confidence',
-    name: 'Case 5: 양쪽 모두 불확실 (insufficient_data)',
+    name: 'Case 5: 양쪽 모두 불확실 (insufficient_data - 복수 후보 차단)',
     sajuInput: {
       subjectName: '양쪽불확실테스트',
-      birthYear: 1995,
+      birthYear: 2000,
       birthMonth: 2,
       birthDay: 4, // 입춘 경계
+      birthHour: 0, // 자시 경계
     },
     ziweiInput: {
       subjectName: '양쪽불확실테스트',
-      birthYearStem: '乙',
-      lunarMonth: 2,
-      isLeapMonth: true, // 윤달
+      birthYearStem: '庚',
+      lunarMonth: 1,
+      isLeapMonth: true,
+      hourBranch: '子',
     },
-    domainProfile: 'timing',
+    domainProfile: 'general',
     expectedAgreement: 'insufficient_data',
-    expectedOverallConfidence: 'low',
+    expectedOverallConfidence: 'not_available',
   },
 ]
-
