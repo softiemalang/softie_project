@@ -13,6 +13,7 @@ import { resolve14MajorStars } from '../src/ziwei/starResolver.js'
 import { resolveFourTransformations } from '../src/ziwei/transformationResolver.js'
 import { resolveMinorStars } from '../src/ziwei/minorStarResolver.js'
 import { YEAR_STEM_TRANSFORMATIONS } from '../src/ziwei/transformationRules.js'
+import { resolveFiveElementBureau } from '../src/ziwei/fiveElementResolver.js'
 import { createZiweiCalculationContext, createZiweiInterpretationContext } from '../src/ziwei/ziweiContract.js'
 import { prepareThreeSystemInterpretationData } from '../src/interpretationPrep/threeSystemPrepPipeline.js'
 import { createUnifiedInterpretationContext } from '../src/interpretationPrep/unifiedInterpretationContext.js'
@@ -324,4 +325,90 @@ test('statusResolver: explicitly passed unknown verification status is normalize
 
   const defaultContract = resolveStateContract()
   assert.equal(defaultContract.verificationStatus, 'verified', 'omitted verification status preserves backward compatible default')
+})
+
+// ── 16. 오행국 산출 실패 시 Dummy Fallback 차단 검증 ───────────────────────────────
+
+test('fiveElementResolver: returns null without dummy fallback on invalid birthYearStem or mingGongBranch', () => {
+  assert.equal(resolveFiveElementBureau('INVALID_STEM', '寅'), null, 'invalid stem must return null')
+  assert.equal(resolveFiveElementBureau('甲', 'INVALID_BRANCH'), null, 'invalid branch must return null')
+  assert.equal(resolveFiveElementBureau(null, '寅'), null, 'null stem must return null')
+})
+
+// ── 17. 120개 전 조합 유효 오행국 수치 반환 검증 ────────────────────────────────────
+
+test('fiveElementResolver: all 120 combinations of valid 10 year stems and 12 mingGong branches return valid Bureau (2, 3, 4, 5, 6)', () => {
+  const STEMS = ['甲', '乙', '丙', '丁', '戊', '己', '庚', '辛', '壬', '癸']
+  const BRANCHES = ['子', '丑', '寅', '卯', '辰', '巳', '午', '未', '申', '酉', '戌', '亥']
+  const VALID_NUMBERS = [2, 3, 4, 5, 6]
+
+  let count = 0
+  for (const stem of STEMS) {
+    for (const branch of BRANCHES) {
+      count++
+      const bureau = resolveFiveElementBureau(stem, branch)
+      assert.ok(bureau !== null, `bureau for ${stem}${branch} must not be null`)
+      assert.ok(VALID_NUMBERS.includes(bureau.number), `bureau number for ${stem}${branch} must be 2, 3, 4, 5, or 6`)
+    }
+  }
+  assert.equal(count, 120, 'total evaluated combinations must be 120')
+})
+
+// ── 18. STEM_PAIR_MAP 천간 페어 일관성 검증 ───────────────────────────────────────
+
+test('fiveElementResolver: stem pairs (甲/乙, 丙/丁, 戊/己, 庚/辛, 壬/癸) yield consistent paired bureau structures', () => {
+  const BRANCHES = ['子', '丑', '寅', '卯', '辰', '巳', '午', '未', '申', '酉', '戌', '亥']
+  const PAIRS = [
+    ['甲', '己'], // YIN_STEM_MAP: 甲,己 -> 丙
+    ['乙', '庚'], // YIN_STEM_MAP: 乙,庚 -> 戊
+    ['丙', '辛'], // YIN_STEM_MAP: 丙,辛 -> 庚
+    ['丁', '壬'], // YIN_STEM_MAP: 丁,壬 -> 壬
+    ['戊', '癸'], // YIN_STEM_MAP: 戊,癸 -> 甲
+  ]
+
+  for (const [stemA, stemB] of PAIRS) {
+    for (const branch of BRANCHES) {
+      const bureauA = resolveFiveElementBureau(stemA, branch)
+      const bureauB = resolveFiveElementBureau(stemB, branch)
+      assert.equal(bureauA.number, bureauB.number, `stem pair ${stemA} and ${stemB} for branch ${branch} must match`)
+    }
+  }
+})
+
+// ── 19. 기존 회귀 픽스처 오행국 기대값 유지 검증 ────────────────────────────────────
+
+test('fiveElementResolver: preserves expected bureau values for known regression chart fixtures', () => {
+  const sample1 = resolveFiveElementBureau('庚', '子')
+  assert.equal(sample1.name, '화육국')
+  assert.equal(sample1.number, 6)
+
+  const sample2 = resolveFiveElementBureau('甲', '寅')
+  assert.equal(sample2.name, '화육국')
+  assert.equal(sample2.number, 6)
+})
+
+// ── 20. 오행국 null 시 14주성 미호출 및 파이프라인 안전 차단 검증 ───────────────────
+
+test('threeSystemPrepPipeline & ziweiResolver: missing or invalid bureau stops 14-major-star placement fail-closed', () => {
+  const invalidResult = resolveZiweiChart({ subjectName: '계산실패테스트' })
+  assert.equal(invalidResult.chart.fiveElementsBureau, null)
+  assert.equal(invalidResult.chart.majorStars.length, 0)
+  assert.equal(invalidResult.chart.palaces.length, 0)
+
+  // prepareThreeSystemInterpretationData with incomplete input
+  const incompleteInput = {
+    subjectName: '미완성입력',
+    birthDate: '1997-04-21',
+    birthTime: '', // time missing
+    gender: 'male',
+    timeAccuracy: 'unknown',
+    targetDate: '2026-07-27',
+    timezone: 'Asia/Seoul',
+    referenceCity: 'seoul',
+  }
+  const prepared = prepareThreeSystemInterpretationData(incompleteInput)
+  const ziwei = prepared.systems.ziwei
+
+  assert.equal(ziwei.availableForChat, false)
+  assert.equal(ziwei.interpretationContext, null)
 })

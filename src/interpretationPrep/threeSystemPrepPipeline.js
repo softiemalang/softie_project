@@ -155,8 +155,15 @@ function buildZiweiSystem(baseResult, profiles) {
     ruleSet,
   })
   const chart = { ...baseChart.chart }
+  const bureauNumber = chart.fiveElementsBureau?.number
+  if (!bureauNumber) {
+    return buildUnavailableZiweiSystem(
+      '자미두수 오행국 산출에 실패하여 명반 포국을 중단했습니다.',
+    )
+  }
+
   const majorResult = resolve14MajorStars({
-    bureauNumber: chart.fiveElementsBureau?.number || 2,
+    bureauNumber,
     lunarDay: lunar.lDay,
     palaces: chart.palaces,
   })

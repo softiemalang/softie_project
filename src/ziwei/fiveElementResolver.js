@@ -74,16 +74,29 @@ const BUREAU_TABLE = {
   壬戌: BUREAU_DEFINITIONS.water_2, 壬亥: BUREAU_DEFINITIONS.water_2,
 }
 
+const STEM_PAIR_MAP = {
+  甲: '甲', 乙: '甲',
+  丙: '丙', 丁: '丙',
+  戊: '戊', 己: '戊',
+  庚: '庚', 辛: '庚',
+  壬: '壬', 癸: '壬',
+}
+
 export function resolveFiveElementBureau(birthYearStem, mingGongBranch) {
-  const yinStem = YIN_STEM_MAP[birthYearStem] || '丙'
-  const yinStemIndex = STEMS.indexOf(yinStem)
+  const yinStem = YIN_STEM_MAP[birthYearStem]
+  if (!yinStem) return null
+
   const targetBranchIndex = BRANCHES.indexOf(mingGongBranch)
+  if (targetBranchIndex === -1) return null
+
+  const yinStemIndex = STEMS.indexOf(yinStem)
   const yinBranchIndex = BRANCHES.indexOf('寅')
 
   // 인궁(寅)으로부터의 지지 거리
   const offset = (targetBranchIndex - yinBranchIndex + 12) % 12
   const mingGongStem = STEMS[(yinStemIndex + offset) % 10]
+  const pairStem = STEM_PAIR_MAP[mingGongStem] || mingGongStem
 
-  const key = `${mingGongStem}${mingGongBranch}`
-  return BUREAU_TABLE[key] || BUREAU_DEFINITIONS.water_2
+  const key = `${pairStem}${mingGongBranch}`
+  return BUREAU_TABLE[key] || null
 }
