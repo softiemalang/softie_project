@@ -92,16 +92,14 @@ export function ChatHandoffCard({ unifiedContext = {}, onPrepare }) {
 
       {/* Custom Question Form */}
       <div className="prep-handoff-question-row">
-        <label className="prep-handoff-question-label" htmlFor="prep-handoff-question">
-          질문 또는 고민
-        </label>
         <div className="prep-handoff-input-group">
           <input
             id="prep-handoff-question"
             type="text"
             value={questionText}
             onChange={(e) => setQuestionText(e.target.value)}
-            placeholder="예: 커리어 전환 방향이 궁금해요."
+            placeholder="질문 또는 고민"
+            aria-label="질문 또는 고민"
             className="prep-handoff-input"
           />
           <button

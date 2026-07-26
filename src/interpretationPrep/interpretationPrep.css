@@ -2249,20 +2249,8 @@
 }
 
 .prep-handoff-question-row {
-  display: grid;
-  grid-template-columns: auto minmax(0, 1fr);
-  align-items: center;
-  gap: 0.7rem;
-  margin-bottom: 0.85rem;
-}
-
-.prep-handoff-question-label {
   display: block;
-  margin: 0;
-  color: var(--text-muted, #d0c7b9);
-  font-size: 0.78rem;
-  font-weight: 650;
-  white-space: nowrap;
+  margin-bottom: 0.85rem;
 }
 
 .prep-handoff-input-group {
@@ -2491,14 +2479,6 @@
 @media (max-width: 390px) {
   .prep-handoff-header {
     flex-direction: column;
-  }
-
-  .prep-handoff-question-row {
-    gap: 0.45rem;
-  }
-
-  .prep-handoff-question-label {
-    font-size: 0.72rem;
   }
 
   .prep-handoff-generate-btn {
