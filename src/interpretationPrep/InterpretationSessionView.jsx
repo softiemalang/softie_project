@@ -1,3 +1,7 @@
+/**
+ * LAB ONLY — preserved Session/Conversation prototype.
+ * InterpretationPrepPage does not import or render this component.
+ */
 import React, { useState } from 'react'
 import { QuestionStarter } from './components/QuestionStarter'
 import { LensPriorityCard } from './components/LensPriorityCard'
@@ -19,67 +23,56 @@ export function InterpretationSessionView({ sajuContext = {}, ziweiContext = {},
     const { sessionState, unifiedContext } = sessionInstance
     const sajuFactual = unifiedContext.sajuContext?.candidateSetConsensus?.factual || {}
     const ziweiFactual = unifiedContext.ziweiContext?.candidateSetConsensus?.factual || {}
-    const astrologyFactual = unifiedContext.astrologyContext?.astrologyContextSnapshot?.factualSigns || {}
+    const availableSystems = unifiedContext.availableSystems || []
 
     const userProvidedCtx = sessionState.userProvidedContext || []
     const latestUserContext = userProvidedCtx.length > 0 ? userProvidedCtx[userProvidedCtx.length - 1] : ''
 
     const isFollowup = turnIndex > 1
 
+    const perspectives = {}
+    if (availableSystems.includes('saju')) {
+      perspectives.saju = {
+        label: '사주 렌즈',
+        insight: sajuFactual.dayMaster
+          ? `일간 ${sajuFactual.dayMaster} 중심의 계산 근거를 확인합니다.`
+          : '제공된 사주 계산 Context를 확인합니다.',
+        evidence: sajuFactual.dayMaster ? [`일간 ${sajuFactual.dayMaster}`] : [],
+      }
+    }
+    if (availableSystems.includes('ziwei')) {
+      perspectives.ziwei = {
+        label: '자미두수 렌즈 (Experimental)',
+        insight: ziweiFactual.mingGongBranch
+          ? `명궁 ${ziweiFactual.mingGongBranch}宮의 고정 RuleSet 계산 근거를 확인합니다.`
+          : '제공된 자미두수 계산 Context를 확인합니다.',
+        evidence: ziweiFactual.mingGongBranch ? [`명궁 ${ziweiFactual.mingGongBranch}宮`] : [],
+      }
+    }
+
     return createStructuredSessionResponse({
       sessionId: sessionState.sessionId,
       topic: sessionState.currentTopic?.primary || 'general',
       confidenceSummary: unifiedContext.unifiedConfidence?.overallConfidence || 'high',
-      statusType: 'complete',
+      statusType: availableSystems.length > 0 ? 'partial' : 'insufficient_data',
+      warnings: unifiedContext.warnings || [],
       summary: {
         title: isFollowup
-          ? `[Turn ${turnIndex}] 경험과 나누는 심층 3-System 관점`
-          : `[${sessionState.currentTopic?.primary.toUpperCase()}] 함께 살펴본 3-System 관점`,
+          ? `[Turn ${turnIndex}] 경험과 나누는 사용 가능 관점`
+          : `[${sessionState.currentTopic?.primary.toUpperCase()}] 사용 가능한 계산 관점`,
         coreMessage: isFollowup
-          ? `내담자님의 경험("${latestUserContext}")과 결합하여 3대 체계가 더욱 정교한 조명을 제공합니다.`
-          : `사주, 자미두수, 점성학 3대 체계가 "${sessionState.currentQuestion}"라는 고민에 대해 함께 비춰본 관점입니다.`,
+          ? `내담자님의 경험("${latestUserContext}")과 사용 가능한 계산 근거를 함께 확인합니다.`
+          : `"${sessionState.currentQuestion}"라는 고민을 사용 가능한 계산 근거 안에서 살펴봅니다.`,
       },
-      perspectives: {
-        saju: {
-          label: '사주 렌즈 (내면 오행 기질)',
-          insight: sajuFactual.dayMaster
-            ? `일간 ${sajuFactual.dayMaster} 중심의 내면 오행 기질과 수양 역량을 나타냅니다.`
-            : '사주는 내면의 오행 축적과 에너지 조화에 주목합니다.',
-          evidence: [sajuFactual.dayMaster ? `일간 ${sajuFactual.dayMaster} 오행 생극제화` : '일간 중심 내부 기질'],
-        },
-        ziwei: {
-          label: '자미두수 렌즈 (대외 환경·관계)',
-          insight: ziweiFactual.mingGongBranch
-            ? `${ziweiFactual.mingGongBranch}宮 명궁 중심의 사회적 관계망과 대외 무대 흐름을 보여줍니다.`
-            : '자미두수는 삼방사정 중심의 환경적 표현에 주목합니다.',
-          evidence: [ziweiFactual.mingGongBranch ? `${ziweiFactual.mingGongBranch}宮 삼방사정 배치` : '명궁 삼방사정 체계'],
-        },
-        astrology: {
-          label: '서양점성학 렌즈 (원형적 심리·시간선)',
-          insight: astrologyFactual.sunSign
-            ? `${astrologyFactual.sunSign} 태양 및 상승궁 중심의 심리 원형과 발전 여정을 비춥니다.`
-            : '점성학은 원형적 심리 역동과 상징적 시간선에 주목합니다.',
-          evidence: [
-            astrologyFactual.sunSign ? `Sun in ${astrologyFactual.sunSign}` : '태양/달/상승궁 원형',
-            astrologyFactual.ascendantSign ? `Ascendant in ${astrologyFmarketSign || 'Ascendant'}` : 'ASC 하우스 축',
-          ],
-        },
-      },
+      perspectives,
       synthesis: {
-        sharedThemes: [
-          {
-            theme: '주체적 역량 발휘와 삶의 방향',
-            description: '세 체계는 사주의 내면 동력, 자미두수의 환경 무대, 점성학의 심리 원형이라는 다른 층위에서 같은 주제를 보여줍니다.',
-          },
-        ],
-        differentPerspectives: [
-          '사주는 내면 오행, 자미두수는 사회적 인연망, 점성학은 심리적 상징 시간선을 입체적으로 비춥니다.',
-        ],
+        sharedThemes: unifiedContext.sharedThemes || [],
+        differentPerspectives: unifiedContext.differentPerspectives || [],
       },
       reflectionQuestions: isFollowup
         ? ['새롭게 조명된 이 관점들이 현재 상황에 어떤 힌트를 주나요?']
         : [
-            '최근 자신의 경험 속에서 세 관점 중 가장 공감되는 모습이 있으셨나요?',
+            '최근 자신의 경험 속에서 제공된 계산 관점과 맞닿는 모습이 있으셨나요?',
             '실제 삶에서 주변 환경과의 관계를 어떻게 조화시키고 계신가요?',
           ],
       practicalSuggestions: [
@@ -106,7 +99,11 @@ export function InterpretationSessionView({ sajuContext = {}, ziweiContext = {},
         setConversationHistory([{ turn: 1, question: questionText, response: firstResponse }])
         setSessionStatus('completed')
 
-        const primaryLens = sessionInstance.sessionState.lensPriority?.primary?.[0] || 'saju'
+        const availableSystems = sessionInstance.unifiedContext.availableSystems || []
+        const primaryLens = sessionInstance.sessionState.lensPriority?.primary
+          ?.find((system) => availableSystems.includes(system))
+          || availableSystems[0]
+          || 'saju'
         setActiveTab(primaryLens)
       } catch (err) {
         console.error(err)
@@ -185,7 +182,11 @@ export function InterpretationSessionView({ sajuContext = {}, ziweiContext = {},
               </div>
 
               {/* 3-System Perspective Tabs */}
-              <LensTabs activeTab={activeTab} onChangeTab={setActiveTab} />
+              <LensTabs
+                activeTab={activeTab}
+                onChangeTab={setActiveTab}
+                availableSystems={currentSessionInstance.unifiedContext.availableSystems}
+              />
               <PerspectiveCard perspectiveData={item.response.perspectives[activeTab]} />
 
               {/* Multi-Lens Synthesis Card */}
@@ -212,4 +213,3 @@ export function InterpretationSessionView({ sajuContext = {}, ziweiContext = {},
     </div>
   )
 }
-

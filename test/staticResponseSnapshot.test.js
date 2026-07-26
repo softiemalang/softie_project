@@ -11,12 +11,12 @@ import {
 } from '../src/ziwei/ziweiContract.js'
 import { createUnifiedInterpretationContext } from '../src/interpretationPrep/unifiedInterpretationContext.js'
 import {
-  LLM_RESPONSE_SNAPSHOTS,
+  STATIC_RESPONSE_SNAPSHOTS,
   runLayer1AutomatedChecks,
   runLayer2RubricEvaluation,
-} from '../scratch/actualLlmResponseEvaluation.js'
+} from '../scratch/staticResponseSnapshotEvaluation.js'
 
-test('actualLlmResponse: validates Layer 1 automated checks and Layer 2 6-dimension rubric across generated response snapshots', () => {
+test('staticResponseSnapshot: validates rubric checks without making a live LLM request', () => {
   UNIFIED_BENCHMARK_CASES.forEach((c) => {
     const sajuCtx = buildInterpretationContext({
       subjectName: c.sajuInput.subjectName,
@@ -57,7 +57,7 @@ test('actualLlmResponse: validates Layer 1 automated checks and Layer 2 6-dimens
     const ziweiCtx = createZiweiInterpretationContext(ziweiCalcCtx)
     const unifiedCtx = createUnifiedInterpretationContext(sajuCtx, ziweiCtx)
 
-    const responseText = LLM_RESPONSE_SNAPSHOTS[c.id] || ''
+    const responseText = STATIC_RESPONSE_SNAPSHOTS[c.id] || ''
 
     // Layer 1 Automated Checks
     const layer1 = runLayer1AutomatedChecks(responseText)

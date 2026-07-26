@@ -30,7 +30,8 @@ test('unknown systems safely fall back to unsupported capabilities', () => {
 test('capability registry describes currently implemented calculation coverage', () => {
   assert.equal(supportsCapability('saju', 'pillars'), true)
   assert.equal(supportsCapability('saju', 'relations'), true)
-  assert.equal(supportsCapability('ziwei', 'calculation'), false)
+  assert.equal(supportsCapability('ziwei', 'calculation'), true)
+  assert.equal(supportsCapability('ziwei', 'timing'), false)
   assert.equal(supportsCapability('astrology', 'calculation'), false)
 })
 
@@ -39,7 +40,7 @@ test('empty system results expose the resolved status and capability snapshot', 
 
   assert.equal(result.status, 'needs_profile')
   assert.equal(result.capabilities.system, 'ziwei')
-  assert.equal(result.capabilities.calculation, false)
+  assert.equal(result.capabilities.calculation, true)
   assert.deepEqual(result.warnings, ['profile required'])
 })
 
@@ -50,6 +51,12 @@ test('status guard recognizes every public resolver state', () => {
     'needs_verification',
     'candidate_required',
     'experimental',
+    'available',
+    'unavailable',
+    'simulation_only',
+    'simulation_blocked',
+    'adapter_required',
+    'insufficient_data',
     'unsupported',
     'missing_input',
     'needs_profile',

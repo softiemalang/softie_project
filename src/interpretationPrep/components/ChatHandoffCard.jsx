@@ -19,9 +19,16 @@ export function ChatHandoffCard({ unifiedContext = {}, onPrepare }) {
 
   const handleGeneratePackage = (q = questionText, topic = topicCategory) => {
     try {
-      const preparedContext = onPrepare ? onPrepare() : unifiedContext
-      if (!preparedContext) return
-      const pkg = buildChatHandoffPackage(preparedContext, q, topic)
+      const prepared = onPrepare ? onPrepare() : { unifiedContext }
+      if (!prepared) return
+      const presetQuestion = TOPIC_PRESETS.find((preset) => preset.id === topic)?.question || ''
+      const effectiveQuestion = q.trim() || presetQuestion
+      const pkg = buildChatHandoffPackage({
+        result: prepared.result || null,
+        unifiedContext: prepared.unifiedContext || prepared,
+        userQuestion: effectiveQuestion,
+        topicCategory: topic,
+      })
       setHandoffPackage(pkg)
       setCopiedStatus('')
       setGenerationError('')
@@ -67,12 +74,12 @@ export function ChatHandoffCard({ unifiedContext = {}, onPrepare }) {
           <h3>Chat에서 해석할 자료 만들기</h3>
         </div>
         <span className="prep-handoff-badge">
-          SCHEMA v1.0
+          SCHEMA v2.0
         </span>
       </div>
 
       <p className="prep-handoff-intro">
-        현재 지원되는 사주 계산 근거와 불확실성 기준만 묶어 전달합니다. 자미두수·서양 점성학의 미지원 값은 추정하거나 포함하지 않습니다.
+        사주 계산 근거와 실험적 자미두수 Context를 분리해 묶고, 검증된 천문력 Adapter가 없는 점성학 값은 포함하지 않습니다.
       </p>
 
       {/* Preset Topics */}

@@ -12,8 +12,8 @@ import {
 import { createUnifiedInterpretationContext } from '../src/interpretationPrep/unifiedInterpretationContext.js'
 import { buildUnifiedPromptPayload } from '../src/interpretationPrep/unifiedPromptAdapter.js'
 
-// Actual LLM Generated Response Snapshots for 5 Benchmark Cases
-export const LLM_RESPONSE_SNAPSHOTS = {
+// Static LAB snapshots. No live LLM request is made by this evaluator.
+export const STATIC_RESPONSE_SNAPSHOTS = {
   case_1_exact_saju_exact_ziwei: `
 [사주 관점 분석]
 사주에서는 일간 甲木 중심의 내부 기질과 역량에 주목합니다. 식상과 재성 흐름을 통해 주체적인 표현력과 창의적 성과를 만들어내는 내면적 동력이 강하게 작용합니다.
@@ -112,67 +112,72 @@ export function runLayer2RubricEvaluation(caseId, responseText, unifiedCtx) {
   }
 }
 
-// Generate Report
-const report = {
-  timestamp: new Date().toISOString(),
-  totalCases: UNIFIED_BENCHMARK_CASES.length,
-  evaluations: [],
-}
-
-UNIFIED_BENCHMARK_CASES.forEach((c) => {
-  const sajuCtx = buildInterpretationContext({
-    subjectName: c.sajuInput.subjectName,
-    solarPillars: { year: '甲子', month: '丙寅', day: '甲子', hour: '甲子' },
-    isSolarTermBoundary: c.sajuInput.birthDay === 4,
-  }) || { subjectName: c.sajuInput.subjectName }
-
-  if (c.sajuInput.birthDay === 4) {
-    sajuCtx.calculationConfidence = {
-      stateContract: { confidence: 'low', verificationStatus: 'needs_verification' },
-    }
+export function buildStaticResponseSnapshotReport() {
+  const report = {
+    timestamp: new Date().toISOString(),
+    sourceType: 'static_lab_snapshots',
+    liveLlmCalled: false,
+    totalCases: UNIFIED_BENCHMARK_CASES.length,
+    evaluations: [],
   }
 
-  const chartCtx = resolveZiweiChart({
-    subjectName: c.ziweiInput.subjectName,
-    birthYearStem: c.ziweiInput.birthYearStem,
-    lunarMonth: c.ziweiInput.lunarMonth,
-    hourBranch: c.ziweiInput.hourBranch || '子',
-    isLeapMonth: Boolean(c.ziweiInput.isLeapMonth),
+  UNIFIED_BENCHMARK_CASES.forEach((c) => {
+    const sajuCtx = buildInterpretationContext({
+      subjectName: c.sajuInput.subjectName,
+      solarPillars: { year: '甲子', month: '丙寅', day: '甲子', hour: '甲子' },
+      isSolarTermBoundary: c.sajuInput.birthDay === 4,
+    }) || { subjectName: c.sajuInput.subjectName }
+
+    if (c.sajuInput.birthDay === 4) {
+      sajuCtx.calculationConfidence = {
+        stateContract: { confidence: 'low', verificationStatus: 'needs_verification' },
+      }
+    }
+
+    const chartCtx = resolveZiweiChart({
+      subjectName: c.ziweiInput.subjectName,
+      birthYearStem: c.ziweiInput.birthYearStem,
+      lunarMonth: c.ziweiInput.lunarMonth,
+      hourBranch: c.ziweiInput.hourBranch || '子',
+      isLeapMonth: Boolean(c.ziweiInput.isLeapMonth),
+    })
+
+    const chart = chartCtx.chart
+    chart.majorStars = resolve14MajorStars({
+      bureauNumber: chart.fiveElementsBureau.number,
+      lunarDay: 15,
+      palaces: chart.palaces,
+    }).majorStars
+    chart.transformations = resolveFourTransformations(c.ziweiInput.birthYearStem).transformations
+
+    const ziweiCalcCtx = createZiweiCalculationContext({
+      input: c.ziweiInput,
+      chart,
+      calculationMeta: {
+        confidence: c.ziweiInput.isLeapMonth ? 'low' : 'high',
+        verificationStatus: c.ziweiInput.isLeapMonth ? 'needs_verification' : 'verified',
+      },
+    })
+    const ziweiCtx = createZiweiInterpretationContext(ziweiCalcCtx)
+    const unifiedCtx = createUnifiedInterpretationContext(sajuCtx, ziweiCtx)
+    const promptPayload = buildUnifiedPromptPayload(unifiedCtx, c.domainProfile)
+    const responseText = STATIC_RESPONSE_SNAPSHOTS[c.id] || ''
+
+    report.evaluations.push({
+      caseId: c.id,
+      caseName: c.name,
+      promptSystemPrompt: promptPayload.systemPrompt,
+      staticResponseText: responseText,
+      evaluation: runLayer2RubricEvaluation(c.id, responseText, unifiedCtx),
+    })
   })
 
-  const chart = chartCtx.chart
-  chart.majorStars = resolve14MajorStars({
-    bureauNumber: chart.fiveElementsBureau.number,
-    lunarDay: 15,
-    palaces: chart.palaces,
-  }).majorStars
-  chart.transformations = resolveFourTransformations(c.ziweiInput.birthYearStem).transformations
+  return report
+}
 
-  const ziweiCalcCtx = createZiweiCalculationContext({
-    input: c.ziweiInput,
-    chart,
-    calculationMeta: {
-      confidence: c.ziweiInput.isLeapMonth ? 'low' : 'high',
-      verificationStatus: c.ziweiInput.isLeapMonth ? 'needs_verification' : 'verified',
-    },
-  })
-  const ziweiCtx = createZiweiInterpretationContext(ziweiCalcCtx)
-
-  const unifiedCtx = createUnifiedInterpretationContext(sajuCtx, ziweiCtx)
-  const promptPayload = buildUnifiedPromptPayload(unifiedCtx, c.domainProfile)
-
-  const responseText = LLM_RESPONSE_SNAPSHOTS[c.id] || ''
-  const evalResult = runLayer2RubricEvaluation(c.id, responseText, unifiedCtx)
-
-  report.evaluations.push({
-    caseId: c.id,
-    caseName: c.name,
-    promptSystemPrompt: promptPayload.systemPrompt,
-    actualResponseText: responseText,
-    evaluation: evalResult,
-  })
-})
-
-const outputPath = path.join(process.cwd(), 'scratch', 'actualLlmResponseReport.json')
-fs.writeFileSync(outputPath, JSON.stringify(report, null, 2), 'utf-8')
-console.log(`[SUCCESS] Actual LLM Response Evaluation Completed! Report saved to ${outputPath}`)
+if (process.argv[1]?.endsWith('staticResponseSnapshotEvaluation.js')) {
+  const report = buildStaticResponseSnapshotReport()
+  const outputPath = path.join(process.cwd(), 'scratch', 'staticResponseSnapshotReport.json')
+  fs.writeFileSync(outputPath, JSON.stringify(report, null, 2), 'utf-8')
+  console.log(`[SUCCESS] Static response snapshot evaluation saved to ${outputPath}`)
+}

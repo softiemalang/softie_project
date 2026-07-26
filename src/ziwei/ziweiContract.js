@@ -46,12 +46,19 @@ export function createZiweiCalculationContext(params = {}) {
       subjectName: input.subjectName || '무명',
       birthYearStem: input.birthYearStem || '甲',
       birthYearBranch: input.birthYearBranch || '子',
+      lunarYear: Number(input.calendarBasis?.lunarYear) || null,
       lunarMonth: Number(input.lunarMonth) || 1,
+      lunarDay: Number(input.calendarBasis?.lunarDay) || null,
       hourBranch: input.hourBranch || '子',
       gender: input.gender || 'female',
       calendarBasis: {
+        sourceSolarDate: input.calendarBasis?.sourceSolarDate || null,
+        lunarYear: Number(input.calendarBasis?.lunarYear) || null,
+        lunarDay: Number(input.calendarBasis?.lunarDay) || null,
         isLeapMonth: Boolean(input.calendarBasis?.isLeapMonth),
         timeAccuracy: input.calendarBasis?.timeAccuracy || 'exact',
+        conversionVerificationStatus:
+          input.calendarBasis?.conversionVerificationStatus || 'needs_external_verification',
       },
       ruleSet: {
         ...DEFAULT_ZIWEI_RULE_SET,
@@ -89,6 +96,7 @@ export function createZiweiCalculationContext(params = {}) {
       confidence: calculationMeta.confidence || (isLowConfidence ? 'low' : 'high'),
       verificationStatus: calculationMeta.verificationStatus || 'verified',
       warnings: Array.isArray(calculationMeta.warnings) ? calculationMeta.warnings : [],
+      ruleSetVersions: calculationMeta.ruleSetVersions || {},
     },
   }
 }
@@ -101,6 +109,7 @@ export function createZiweiInterpretationContext(calculationContext) {
   const { input, chart, candidates, calculationMeta } = calculationContext
 
   const isLowConfidence = calculationMeta.confidence === 'low'
+  const isExperimental = calculationMeta.verificationStatus === 'needs_external_verification'
   const hasMultipleAlternatives = candidates.alternatives && candidates.alternatives.length > 0
 
   const palaceRelationData = buildZiweiPalaceContexts(chart)
@@ -134,7 +143,7 @@ export function createZiweiInterpretationContext(calculationContext) {
       stateContract: {
         confidence: calculationMeta.confidence || 'high',
         verificationStatus: calculationMeta.verificationStatus || 'verified',
-        interpretationStatus: isLowConfidence ? 'candidate_required' : 'ready',
+        interpretationStatus: isLowConfidence ? 'candidate_required' : isExperimental ? 'experimental' : 'ready',
       },
     },
 

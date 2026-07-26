@@ -6,10 +6,14 @@ const TABS = [
   { id: 'astrology', title: '서양점성학', subtitle: '상징적 심리 패턴' },
 ]
 
-export function LensTabs({ activeTab, onChangeTab }) {
+export function LensTabs({ activeTab, onChangeTab, availableSystems = [] }) {
+  const visibleTabs = availableSystems.length > 0
+    ? TABS.filter((tab) => availableSystems.includes(tab.id))
+    : []
+
   return (
     <div className="lens-tabs flex gap-2 mb-4 overflow-x-auto pb-1">
-      {TABS.map((t) => {
+      {visibleTabs.map((t) => {
         const isActive = activeTab === t.id
         return (
           <button

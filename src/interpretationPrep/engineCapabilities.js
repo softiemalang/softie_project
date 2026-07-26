@@ -12,12 +12,12 @@ export const ENGINE_CAPABILITIES = Object.freeze({
   }),
   ziwei: Object.freeze({
     system: 'ziwei',
-    calculation: false,
+    calculation: true,
     pillars: false,
-    relations: false,
+    relations: true,
     timing: false,
-    interpretationFeatures: false,
-    defaultStatus: 'needs_profile',
+    interpretationFeatures: true,
+    defaultStatus: 'experimental',
   }),
   astrology: Object.freeze({
     system: 'astrology',

@@ -1,8 +1,8 @@
 /**
- * sessionResponsePipeline.js
+ * LAB ONLY — not imported by InterpretationPrepPage.
  *
- * LLM 출력 텍스트(자연어 마크다운 또는 JSON)를 수신하여
- * UI가 100% 안전하게 바인딩할 수 있는 Session Response Schema 규격으로 변환 및 폴백 처리하는 파이프라인
+ * Preserved fallback parser. It must never fabricate a perspective for an
+ * unavailable system or report a complete response without calculation data.
  */
 
 import { createStructuredSessionResponse, validateSessionResponseSchema } from './sessionResponseSchema.js'
@@ -12,85 +12,72 @@ export function transformRawLlmResponseToSchema(rawLlmOutput = '', sessionContex
   const subjectName = sessionContext.subjectName || unifiedContext.subjectName || '내담자'
 
   let parsedObj = null
-
-  // 1. Try parsing JSON
   try {
     const jsonMatch = rawLlmOutput.match(/\{[\s\S]*\}/)
-    if (jsonMatch) {
-      parsedObj = JSON.parse(jsonMatch[0])
-    }
-  } catch (err) {
-    // Non-JSON format, proceed to fallback parser
+    if (jsonMatch) parsedObj = JSON.parse(jsonMatch[0])
+  } catch {
+    // Non-JSON format; continue with the availability-aware Lab fallback.
   }
 
-  // 2. If valid schema object exists, use it
   if (parsedObj) {
     const validation = validateSessionResponseSchema(parsedObj)
-    if (validation.valid) {
-      return parsedObj
+    if (validation.valid) return parsedObj
+  }
+
+  const availableSystems = unifiedContext.availableSystems || []
+  const sajuFactual = unifiedContext.systems?.saju?.context?.candidateSetConsensus?.factual
+    || unifiedContext.sajuContext?.candidateSetConsensus?.factual
+    || {}
+  const ziweiFactual = unifiedContext.systems?.ziwei?.context?.candidateSetConsensus?.factual
+    || unifiedContext.ziweiContext?.candidateSetConsensus?.factual
+    || {}
+  const perspectives = {}
+
+  if (availableSystems.includes('saju')) {
+    perspectives.saju = {
+      label: '사주 렌즈',
+      insight: sajuFactual.dayMaster
+        ? `일간 ${sajuFactual.dayMaster} 중심의 계산 근거를 확인합니다.`
+        : '제공된 사주 계산 Context를 확인합니다.',
+      evidence: sajuFactual.dayMaster ? [`일간 ${sajuFactual.dayMaster}`] : [],
+    }
+  }
+  if (availableSystems.includes('ziwei')) {
+    perspectives.ziwei = {
+      label: '자미두수 렌즈 (Experimental)',
+      insight: ziweiFactual.mingGongBranch
+        ? `명궁 ${ziweiFactual.mingGongBranch}宮의 고정 RuleSet 계산 근거를 확인합니다.`
+        : '제공된 자미두수 계산 Context를 확인합니다.',
+      evidence: ziweiFactual.mingGongBranch ? [`명궁 ${ziweiFactual.mingGongBranch}宮`] : [],
     }
   }
 
-  // 3. Fallback Parser for Natural Language Text
-  const sajuFactual = unifiedContext.sajuContext?.candidateSetConsensus?.factual || {}
-  const ziweiFactual = unifiedContext.ziweiContext?.candidateSetConsensus?.factual || {}
-  const astrologyFactual = unifiedContext.astrologyContext?.astrologyContextSnapshot?.factualSigns || {}
-
-  const fallbackTitle = `[${(sessionState.currentTopic?.primary || '통합').toUpperCase()}] 함께 살펴본 3-System 관점`
-  const fallbackMessage = rawLlmOutput.slice(0, 200) || `${subjectName}님의 고민에 대한 3대 점술 체계의 입체적 조망입니다.`
+  const fallbackTitle = `[${(sessionState.currentTopic?.primary || '통합').toUpperCase()}] 사용 가능한 계산 관점`
+  const fallbackMessage = rawLlmOutput.slice(0, 200)
+    || (availableSystems.length > 0
+      ? `${subjectName}님의 고민을 사용 가능한 계산 근거 안에서 살펴봅니다.`
+      : '사용 가능한 계산 자료가 없어 응답을 생성하지 않습니다.')
 
   return createStructuredSessionResponse({
     sessionId: sessionState.sessionId || `session-${Date.now()}`,
     topic: sessionState.currentTopic?.primary || 'general',
-    confidenceSummary: unifiedContext.unifiedConfidence?.overallConfidence || 'high',
-    statusType: 'complete',
+    confidenceSummary: unifiedContext.unifiedConfidence?.overallConfidence || 'not_available',
+    statusType: availableSystems.length > 0 ? 'partial' : 'insufficient_data',
+    warnings: unifiedContext.warnings || [],
     summary: {
       title: fallbackTitle,
       coreMessage: fallbackMessage,
     },
-    perspectives: {
-      saju: {
-        label: '사주 렌즈 (내면 오행 기질)',
-        insight: sajuFactual.dayMaster
-          ? `일간 ${sajuFactual.dayMaster} 중심의 내면 오행 기질과 수양 역량을 나타냅니다.`
-          : '사주는 내면의 오행 축적과 에너지 조화에 주목합니다.',
-        evidence: [sajuFactual.dayMaster ? `일간 ${sajuFactual.dayMaster} 오행 생극제화` : '일간 중심 내부 기질'],
-      },
-      ziwei: {
-        label: '자미두수 렌즈 (대외 환경·관계)',
-        insight: ziweiFactual.mingGongBranch
-          ? `${ziweiFactual.mingGongBranch}宮 명궁 중심의 사회적 관계망과 대외 무대 흐름을 보여줍니다.`
-          : '자미두수는 삼방사정 중심의 환경적 표현에 주목합니다.',
-        evidence: [ziweiFactual.mingGongBranch ? `${ziweiFactual.mingGongBranch}宮 삼방사정 배치` : '명궁 삼방사정 체계'],
-      },
-      astrology: {
-        label: '서양점성학 렌즈 (원형적 심리·시간선)',
-        insight: astrologyFactual.sunSign
-          ? `${astrologyFactual.sunSign} 태양 및 상승궁 중심의 심리 원형과 발전 여정을 비춥니다.`
-          : '점성학은 원형적 심리 역동과 상징적 시간선에 주목합니다.',
-        evidence: [
-          astrologyFactual.sunSign ? `Sun in ${astrologyFactual.sunSign}` : '태양/달/상승궁 원형',
-          astrologyFactual.ascendantSign ? `Ascendant in ${astrologyFactual.ascendantSign}` : 'ASC 하우스 축',
-        ],
-      },
-    },
+    perspectives,
     synthesis: {
-      sharedThemes: [
-        {
-          theme: '주체적 역량 발휘와 삶의 방향',
-          description: '세 체계는 사주의 내면 동력, 자미두수의 환경 무대, 점성학의 심리 원형이라는 다른 층위에서 같은 주제를 보여줍니다.',
-        },
-      ],
-      differentPerspectives: [
-        '사주는 내면 오행, 자미두수는 사회적 인연망, 점성학은 심리적 상징 시간선을 입체적으로 비춥니다.',
-      ],
+      sharedThemes: unifiedContext.sharedThemes || [],
+      differentPerspectives: unifiedContext.differentPerspectives || [],
     },
     reflectionQuestions: [
-      '최근 자신의 경험 속에서 세 관점 중 가장 공감되는 모습이 있으셨나요?',
-      '실제 삶에서 주변 환경과의 관계를 어떻게 조화시키고 계신가요?',
+      '제공된 계산 관점 중 실제 경험과 맞닿는 부분과 다른 부분은 무엇인가요?',
     ],
     practicalSuggestions: [
-      '내면 기질과 대외 환경의 결이 맞는 방향으로 작은 실천을 시도해보세요.',
+      '계산 근거를 확정 판정이 아닌 자기 관찰의 출발점으로 활용해보세요.',
     ],
   })
 }

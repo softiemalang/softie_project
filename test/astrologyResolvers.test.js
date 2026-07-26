@@ -8,7 +8,7 @@ import {
   createAstrologyInterpretationContext,
 } from '../src/astrology/astrologyContract.js'
 
-test('astrologyResolvers: calculates 10 planets with ephemeris metadata and ruleSet', () => {
+test('astrologyResolvers: labels seeded planet output as simulation-only and not astronomical', () => {
   const planetRes = resolvePlanets({
     birthYear: 1990,
     birthMonth: 5,
@@ -17,11 +17,15 @@ test('astrologyResolvers: calculates 10 planets with ephemeris metadata and rule
   })
 
   assert.equal(planetRes.planets.length, 10)
-  assert.equal(planetRes.calculationMeta.ephemerisSource, 'meeus_approx_v1')
+  assert.equal(planetRes.calculationMeta.status, 'simulation_only')
+  assert.equal(planetRes.calculationMeta.availableForInterpretation, false)
+  assert.equal(planetRes.calculationMeta.ephemerisSource, 'date_seed_simulation')
+  assert.equal(planetRes.calculationMeta.accuracy, 'not_astronomical')
+  assert.equal(planetRes.calculationMeta.verifiedAgainst, null)
   assert.equal(planetRes.planets[0].planet, 'sun')
 })
 
-test('astrologyResolvers: resolves houses and assigns to planets when birth time is present', () => {
+test('astrologyResolvers: labels seeded houses as simulation-only even when birth time is present', () => {
   const planetRes = resolvePlanets({
     birthYear: 1990,
     birthMonth: 5,
@@ -38,7 +42,9 @@ test('astrologyResolvers: resolves houses and assigns to planets when birth time
     longitude: 126.97,
   })
 
-  assert.equal(houseRes.houseCalculationMeta.confidence, 'high')
+  assert.equal(houseRes.houseCalculationMeta.status, 'simulation_only')
+  assert.equal(houseRes.houseCalculationMeta.confidence, 'not_available')
+  assert.equal(houseRes.houseCalculationMeta.availableForInterpretation, false)
   assert.equal(houseRes.houses.length, 12)
   assert.notEqual(houseRes.angles.ascendant, null)
 

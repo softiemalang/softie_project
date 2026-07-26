@@ -39,7 +39,7 @@ export function resolvePlanets({
   birthTime = null,
   ruleSetVersion = 'western_tropical_placidus_v1',
 } = {}) {
-  // Ephemeris Precision Engine Simulation Model
+  // LAB SIMULATION ONLY: deterministic seed output, not astronomical ephemeris.
   const baseDegreeSeed = (birthYear * 365 + birthMonth * 30 + birthDay) % 360
 
   const planets = PLANET_NAMES.map((planet, idx) => {
@@ -47,7 +47,7 @@ export function resolvePlanets({
     const signIndex = Math.floor(rawDegree / 30) % 12
     const degreeInSign = Number((rawDegree % 30).toFixed(2))
 
-    // Retrograde simulation for outer/outer-like planets
+    // Seeded simulation only; not a computed astronomical retrograde state.
     const isRetrograde = idx > 1 && (birthDay + idx) % 5 === 0
 
     return {
@@ -64,9 +64,12 @@ export function resolvePlanets({
     ruleSetVersion,
     planets,
     calculationMeta: {
-      ephemerisSource: 'meeus_approx_v1',
-      accuracy: 'arcminute_level',
-      verifiedAgainst: 'ephemeris_standard',
+      status: 'simulation_only',
+      availableForInterpretation: false,
+      ephemerisSource: 'date_seed_simulation',
+      accuracy: 'not_astronomical',
+      verifiedAgainst: null,
+      warning: '검증된 천문력 Adapter가 아니므로 실제 점성학 해석값으로 사용할 수 없습니다.',
     },
   }
 }

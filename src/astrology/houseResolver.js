@@ -20,10 +20,13 @@ export function resolveHouses({
   if (!isTimeAvailable) {
     return {
       houseCalculationMeta: {
-        method: houseSystem,
+        status: 'simulation_only',
+        method: 'date_seed_simulation',
+        requestedHouseSystem: houseSystem,
+        availableForInterpretation: false,
         locationUsed: Boolean(latitude && longitude),
         birthTimeRequired: true,
-        confidence: 'low',
+        confidence: 'not_available',
       },
       angles: { ascendant: null, mc: null },
       houses: [],
@@ -37,7 +40,7 @@ export function resolveHouses({
     }
   }
 
-  // Placidus House Cusp Computation Simulation
+  // LAB SIMULATION ONLY: this is not a Placidus astronomical calculation.
   const [hours, minutes] = birthTime.split(':').map(Number)
   const timeSeed = (hours * 15 + minutes * 0.25 + birthDay * 12) % 360
 
@@ -67,10 +70,14 @@ export function resolveHouses({
 
   return {
     houseCalculationMeta: {
-      method: houseSystem,
+      status: 'simulation_only',
+      method: 'date_seed_simulation',
+      requestedHouseSystem: houseSystem,
+      availableForInterpretation: false,
       locationUsed: Boolean(latitude && longitude),
       birthTimeRequired: true,
-      confidence: 'high',
+      confidence: 'not_available',
+      warning: '검증된 천문력과 하우스 계산 Adapter가 아니므로 실제 해석값으로 사용할 수 없습니다.',
     },
     angles,
     houses,

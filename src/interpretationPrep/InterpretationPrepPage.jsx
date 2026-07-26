@@ -1,12 +1,7 @@
 import { useEffect, useMemo, useState } from 'react'
 import { navigate } from '../lib/router'
 import { ChatHandoffCard } from './components/ChatHandoffCard.jsx'
-import { createUnifiedInterpretationContext } from './unifiedInterpretationContext.js'
-
-
-import {
-  prepareInterpretationData,
-} from './prepare.js'
+import { prepareThreeSystemInterpretationData } from './threeSystemPrepPipeline.js'
 
 import {
   DEFAULT_INPUT,
@@ -857,16 +852,12 @@ export default function InterpretationPrepPage() {
 
   function prepareForChat() {
     try {
-      const nextResult = prepareInterpretationData({
+      const nextResult = prepareThreeSystemInterpretationData({
         ...input,
         targetDate: todayInKorea(),
       }, profiles)
       setError('')
-      return createUnifiedInterpretationContext(
-        nextResult.interpretationContext || {},
-        nextResult.systems?.ziwei || {},
-        nextResult.systems?.astrology || {}
-      )
+      return nextResult
     } catch (calculationError) {
       setError(calculationError.message || '출생정보를 확인한 뒤 다시 시도해 주세요.')
       throw calculationError
