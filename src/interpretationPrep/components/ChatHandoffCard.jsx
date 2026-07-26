@@ -32,7 +32,6 @@ export function ChatHandoffCard({ unifiedContext = {}, onPrepare }) {
   }
 
   const handleSelectPreset = (preset) => {
-    setQuestionText(preset.question)
     setTopicCategory(preset.id)
     handleGeneratePackage(preset.question, preset.id)
   }
@@ -58,6 +57,7 @@ export function ChatHandoffCard({ unifiedContext = {}, onPrepare }) {
 
   const currentPreviewText = handoffPackage?.copies[selectedCopyType] || handoffPackage?.copies.full || ''
   const currentCharCount = handoffPackage?.characterCounts[selectedCopyType] || currentPreviewText.length
+  const selectedPreset = TOPIC_PRESETS.find((preset) => preset.id === topicCategory)
 
   return (
     <div className="prep-handoff-card">
@@ -98,7 +98,7 @@ export function ChatHandoffCard({ unifiedContext = {}, onPrepare }) {
             type="text"
             value={questionText}
             onChange={(e) => setQuestionText(e.target.value)}
-            placeholder="질문 또는 고민"
+            placeholder={selectedPreset?.question || '질문 또는 고민'}
             aria-label="질문 또는 고민"
             className="prep-handoff-input"
           />
