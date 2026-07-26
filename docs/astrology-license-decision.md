@@ -4,6 +4,10 @@
 결정 상태: `license_pending`
 법률 자문이 아니라 공식 배포 문서와 계약서 문구를 바탕으로 한 기술·제품 의사결정 기록이다.
 
+> Astro-0.75의 최신 공식 근거, 문의 초안, Gate는
+> [astrology-license-resolution.md](./astrology-license-resolution.md)를
+> 따른다. `license_pending` 판정은 유지된다.
+
 ## 결론
 
 Swiss Ephemeris를 공개 제품에 포함하거나 공개 서비스에서 사용하기 전 다음 둘 중 하나를 사용자가 명시적으로 승인해야 한다.

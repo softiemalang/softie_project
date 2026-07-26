@@ -2,6 +2,12 @@
 
 기준일: 2026-07-26
 
+> Astro-0.75에서 Astrolog Matrix-only ASC·MC·Placidus provenance를
+> 확보했다. 최신 항목별 판정은
+> [astrology-independent-reference-evaluation.md](./astrology-independent-reference-evaluation.md)와
+> [astrology-true-node-reference.md](./astrology-true-node-reference.md)를
+> 따른다. True Node는 계속 `pending`이다.
+
 ## 원칙
 
 Swiss `swetest`, Astro.com chart 또는 Swiss 기반 Wrapper 결과는 regression/end-to-end 참고에는 사용할 수 있지만 Swiss 구현의 독립 외부 검증으로 계산하지 않는다.

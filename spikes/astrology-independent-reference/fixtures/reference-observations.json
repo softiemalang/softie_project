@@ -1,0 +1,72 @@
+[
+  {
+    "id": "midlatitude",
+    "houseSystemRequested": "placidus",
+    "houseSystemEffective": "placidus",
+    "ascendantLongitude": 24.297777778,
+    "mcLongitude": 279.614444444,
+    "houseCusps": [
+      24.297777778,
+      61.168333333,
+      82.034444444,
+      99.614444444,
+      119.056111111,
+      147.691666667,
+      204.297777778,
+      241.168333333,
+      262.034444444,
+      279.614444444,
+      299.056111111,
+      327.691666667
+    ],
+    "matrixNodeLongitudeObserved": 123.924444444,
+    "trueNodeReferenceAccepted": false
+  },
+  {
+    "id": "southern",
+    "houseSystemRequested": "placidus",
+    "houseSystemEffective": "placidus",
+    "ascendantLongitude": 335.773333333,
+    "mcLongitude": 243.226388889,
+    "houseCusps": [
+      335.773333333,
+      1.088055556,
+      30.647222222,
+      63.226388889,
+      96.234444444,
+      127.398055556,
+      155.773333333,
+      181.088055556,
+      210.647222222,
+      243.226388889,
+      276.234444444,
+      307.398055556
+    ],
+    "matrixNodeLongitudeObserved": 114.67,
+    "trueNodeReferenceAccepted": false
+  },
+  {
+    "id": "highlatitude",
+    "houseSystemRequested": "placidus",
+    "houseSystemEffective": "porphyry_fallback",
+    "houseStatus": "unavailable_as_placidus_reference",
+    "ascendantLongitude": 301.99,
+    "mcLongitude": 287.826666667,
+    "fallbackHouseCusps": [
+      301.99,
+      357.268888889,
+      52.547777778,
+      107.826666667,
+      112.547777778,
+      117.268888889,
+      121.99,
+      177.268888889,
+      232.547777778,
+      287.826666667,
+      292.547777778,
+      297.268888889
+    ],
+    "matrixNodeLongitudeObserved": 105.575277778,
+    "trueNodeReferenceAccepted": false
+  }
+]

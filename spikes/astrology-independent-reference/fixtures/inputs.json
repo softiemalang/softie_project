@@ -1,0 +1,36 @@
+[
+  {
+    "id": "midlatitude",
+    "description": "Synthetic UTC chart at Greenwich latitude",
+    "utcDateTime": "2000-01-01T12:00:00Z",
+    "latitude": 51.5,
+    "longitude": 0,
+    "zodiac": "tropical",
+    "coordinateSystem": "geocentric",
+    "houseSystemRequested": "placidus",
+    "nodeRequested": "true"
+  },
+  {
+    "id": "southern",
+    "description": "Synthetic UTC chart at a southern-hemisphere coordinate",
+    "utcDateTime": "2000-06-21T12:00:00Z",
+    "latitude": -33.8666666667,
+    "longitude": 151.2,
+    "zodiac": "tropical",
+    "coordinateSystem": "geocentric",
+    "houseSystemRequested": "placidus",
+    "nodeRequested": "true"
+  },
+  {
+    "id": "highlatitude",
+    "description": "Synthetic UTC chart beyond the Placidus polar limit",
+    "utcDateTime": "2000-12-21T12:00:00Z",
+    "latitude": 69.65,
+    "longitude": 18.95,
+    "zodiac": "tropical",
+    "coordinateSystem": "geocentric",
+    "houseSystemRequested": "placidus",
+    "nodeRequested": "true",
+    "expectedHouseStatus": "fallback_detected_not_placidus"
+  }
+]

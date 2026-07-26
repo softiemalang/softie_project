@@ -1,0 +1,26 @@
+{
+  "capturedAt": "2026-07-26",
+  "source": {
+    "project": "Astrolog",
+    "version": "8.00",
+    "repository": "https://github.com/CruiserOne/Astrolog.git",
+    "commit": "5bf172ea231c4b6ea3d7e09ca307571354a41e8a",
+    "license": "GPL-2.0-or-later"
+  },
+  "build": {
+    "platform": "macOS 26.5.2 arm64",
+    "compiler": "Apple clang 21.0.0 (clang-2100.1.1.101)",
+    "binarySha256": "7f1231a43c89ad2e2a89c08d74e3ca8252ea023f8679fabae9f39de4bb439f3a",
+    "repeatBuildSha256Matched": true,
+    "swissLinked": false,
+    "placalcLinked": false,
+    "executableTracked": false
+  },
+  "outputs": {
+    "midlatitude.stdout.txt": "9e3dd5efa228710f6969f4e1166fa395fed242a5dbdd17657b6fd305c1a5ac9f",
+    "southern.stdout.txt": "d8ae6bc1ea376142ebb0a5386107ccac50a84c3b40e57002dde80ac9e1c5249a",
+    "highlatitude.stdout.txt": "174812e516f111ff74aca090a63da5d03e7c7c303f484882a62884f969e34a0e",
+    "highlatitude.stderr.txt": "df0787883908c957afb0b7df9669043728abae7a25cdbce87eea2dd27f679128"
+  },
+  "status": "reference_spike_not_golden_fixture"
+}
