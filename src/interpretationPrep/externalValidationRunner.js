@@ -272,13 +272,18 @@ export function compareSajuFixture(fixture) {
 export function compareZiweiFixture(fixture) {
   validateFixtureProvenance(fixture)
 
-  if (fixture.referenceType === 'boundary_contract') {
+  if (
+    fixture.isExcludedFromValidationCount ||
+    fixture.referenceType === 'boundary_contract' ||
+    fixture.referenceType === 'worked_chart_bureau_reference_pending'
+  ) {
     return {
       fixtureId: fixture.fixtureId,
       system: 'ziwei',
       referenceType: fixture.referenceType,
       isExcludedFromValidationCount: true,
       declaredReviewStatus: fixture.declaredReviewStatus,
+      sourceVerdict: fixture.sourceVerdict,
       source: fixture.source,
       observedComparison: {
         overallStatus: 'out_of_scope',
@@ -388,7 +393,10 @@ export function compareZiweiFixture(fixture) {
         reason: matched ? null : 'needs_investigation',
       })
     }
-  } else if (fixture.referenceType === 'worked_chart_reference') {
+  } else if (
+    fixture.referenceType === 'worked_chart_reference' ||
+    fixture.referenceType === 'worked_chart_ming_shen_reference'
+  ) {
     const chartRes = resolveZiweiChart(fixture.input)
     const chart = chartRes.chart || {}
 
@@ -485,8 +493,37 @@ export function compareZiweiFixture(fixture) {
  *   - draft / disputed / unknown / pending_source_review / pending 등 미확정 상태는 무조건 제외.
  */
 export function buildFixtureSummary(results, systemName) {
+  const totalFixtureCount = results.length
   const included = results.filter((r) => !r.isExcludedFromValidationCount)
   const excluded = results.filter((r) => r.isExcludedFromValidationCount)
+
+  const evaluatedFixtureCount = included.length
+  const excludedFromValidationCount = excluded.length
+
+  const excludedBoundaryContracts = excluded.filter(
+    (result) => result.referenceType === 'boundary_contract'
+  )
+
+  const excludedSourceGaps = excluded.filter(
+    (result) =>
+      result.referenceType !== 'boundary_contract' &&
+      (
+        result.sourceVerdict === 'source_locator_unverified' ||
+        result.sourceVerdict === 'insufficient_reproducible_input' ||
+        result.declaredReviewStatus === 'pending_source_review'
+      )
+  )
+
+  const excludedBoundaryContractsCount = excludedBoundaryContracts.length
+  const notEvaluableSourceGapCount = excludedSourceGaps.length
+
+  const pendingSourceReviewCountTotal = results.filter(
+    (r) => r.declaredReviewStatus === 'pending_source_review'
+  ).length
+
+  const pendingSourceReviewCountEvaluated = included.filter(
+    (r) => r.declaredReviewStatus === 'pending_source_review'
+  ).length
 
   // 1. observedMatches / observedMismatches: 실제 계산 대조 산출값 (declaredReviewStatus 불문)
   const observedMatches = included.filter(
@@ -500,11 +537,6 @@ export function buildFixtureSummary(results, systemName) {
   const partialMatches = included.filter((r) => r.observedComparison.overallStatus === 'partial_match').length
   const disputed = included.filter((r) => r.observedComparison.overallStatus === 'disputed').length
   const pending = included.filter((r) => r.observedComparison.overallStatus === 'pending').length
-
-  // 2. pending_source_review 항목 집계
-  const pendingSourceReviewCount = included.filter(
-    (r) => r.declaredReviewStatus === 'pending_source_review'
-  ).length
 
   // 3. verifiedMatches / verifiedMismatches: declaredReviewStatus === 'verified_reference'인 fixture만 포함
   //    Tier 2 자료도 verified_reference로 명시 등록된 경우 포함.
@@ -523,22 +555,26 @@ export function buildFixtureSummary(results, systemName) {
 
   // sourceTier별 픽스처 및 match 수 집계
   const coverageBySourceTier = {}
-  included.forEach((r) => {
-    const tier = r.source.sourceTier || 'Unknown'
+  results.forEach((r) => {
+    const tier = r.source?.sourceTier || 'Unknown'
     if (!coverageBySourceTier[tier]) {
-      coverageBySourceTier[tier] = { fixtureCount: 0, observedMatches: 0, observedMismatches: 0 }
+      coverageBySourceTier[tier] = { totalFixtureCount: 0, evaluatedFixtureCount: 0, fixtureCount: 0, observedMatches: 0, observedMismatches: 0 }
     }
-    coverageBySourceTier[tier].fixtureCount += 1
-    if (r.observedComparison.overallStatus === 'matched_within_declared_scope') {
-      coverageBySourceTier[tier].observedMatches += 1
-    } else if (r.observedComparison.overallStatus === 'mismatched_within_declared_scope') {
-      coverageBySourceTier[tier].observedMismatches += 1
+    coverageBySourceTier[tier].totalFixtureCount += 1
+    if (!r.isExcludedFromValidationCount) {
+      coverageBySourceTier[tier].evaluatedFixtureCount += 1
+      coverageBySourceTier[tier].fixtureCount += 1
+      if (r.observedComparison.overallStatus === 'matched_within_declared_scope') {
+        coverageBySourceTier[tier].observedMatches += 1
+      } else if (r.observedComparison.overallStatus === 'mismatched_within_declared_scope') {
+        coverageBySourceTier[tier].observedMismatches += 1
+      }
     }
   })
 
   // 4. 출처 정규화 집계 (referenceDocumentId, publisherId)
-  const uniqueDocs = new Set(included.map((r) => r.source.referenceDocumentId))
-  const uniquePublishers = new Set(included.map((r) => r.source.publisherId))
+  const uniqueDocs = new Set(results.map((r) => r.source?.referenceDocumentId).filter(Boolean))
+  const uniquePublishers = new Set(results.map((r) => r.source?.publisherId).filter(Boolean))
 
   const coverageByField = {}
   included.forEach((r) => {
@@ -554,19 +590,27 @@ export function buildFixtureSummary(results, systemName) {
 
   return {
     system: systemName,
-    fixtureCount: included.length,
+    totalFixtureCount,
+    evaluatedFixtureCount,
+    excludedFromValidationCount,
+    excludedBoundaryContractsCount,
+    notEvaluableSourceGapCount,
+    pendingSourceReviewCountTotal,
+    pendingSourceReviewCountEvaluated,
+
+    // 호환성 필드
+    fixtureCount: evaluatedFixtureCount,
+    pendingSourceReviewCount: pendingSourceReviewCountEvaluated,
     uniqueReferenceDocumentCount: uniqueDocs.size,
     independentPublisherCount: uniquePublishers.size,
-    excludedBoundaryContractsCount: excluded.length,
     observedMatches,
     observedMismatches,
-    pendingSourceReviewCount,
     verifiedMatches,
     verifiedMismatches,
     partialMatches,
     disputed,
     pending,
-    outOfScope: excluded.length,
+    outOfScope: excludedFromValidationCount,
     coverageByField,
     coverageBySourceTier,
   }
@@ -584,16 +628,20 @@ export function runExternalValidationSuite() {
 
   // 동적 게이트 상태 산출
   const sajuExternalValidationStatus =
-    sajuSummary.verifiedMatches === sajuSummary.fixtureCount &&
-    sajuSummary.pendingSourceReviewCount === 0 &&
+    sajuSummary.verifiedMatches === sajuSummary.evaluatedFixtureCount &&
+    sajuSummary.evaluatedFixtureCount > 0 &&
+    sajuSummary.pendingSourceReviewCountTotal === 0 &&
+    sajuSummary.notEvaluableSourceGapCount === 0 &&
     sajuSummary.pending === 0 &&
     sajuSummary.observedMismatches === 0
       ? 'scoped_external_validation_passed'
       : 'external_fixture_pack_started'
 
   const ziweiExternalValidationStatus =
-    ziweiSummary.verifiedMatches === ziweiSummary.fixtureCount &&
-    ziweiSummary.pendingSourceReviewCount === 0 &&
+    ziweiSummary.verifiedMatches === ziweiSummary.evaluatedFixtureCount &&
+    ziweiSummary.evaluatedFixtureCount > 0 &&
+    ziweiSummary.pendingSourceReviewCountTotal === 0 &&
+    ziweiSummary.notEvaluableSourceGapCount === 0 &&
     ziweiSummary.pending === 0 &&
     ziweiSummary.observedMismatches === 0
       ? 'scoped_external_validation_passed'
@@ -602,8 +650,10 @@ export function runExternalValidationSuite() {
   const finalJudgement =
     sajuSummary.observedMismatches > 0 ||
     ziweiSummary.observedMismatches > 0 ||
-    sajuSummary.pendingSourceReviewCount > 0 ||
-    ziweiSummary.pendingSourceReviewCount > 0 ||
+    sajuSummary.pendingSourceReviewCountTotal > 0 ||
+    ziweiSummary.pendingSourceReviewCountTotal > 0 ||
+    sajuSummary.notEvaluableSourceGapCount > 0 ||
+    ziweiSummary.notEvaluableSourceGapCount > 0 ||
     sajuSummary.pending > 0 ||
     ziweiSummary.pending > 0 ||
     sajuSummary.partialMatches > 0 ||

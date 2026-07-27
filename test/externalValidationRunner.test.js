@@ -103,7 +103,55 @@ test('externalValidationRunner: Ziwei star ID ziwei and name-based star adaptati
   assert.equal(comparison.observedComparison.fields[0].status, 'matched')
 })
 
-test('externalValidationRunner: separates observed vs verified counts and counts documents & publishers accurately', () => {
+test('externalValidationRunner: directly asserts field-level statuses for Ziwei placement, minor stars, and worked charts', () => {
+  // 1. 수이국 15일 자미성 위치 expected === 申
+  const ziweiPlacementFixture = ZIWEI_EXTERNAL_FIXTURES.find((f) => f.fixtureId === 'ziwei-ext-table-ziwei-placement')
+  assert.equal(ziweiPlacementFixture.expected.ziweiPalaceBranch, '申')
+  const ziweiPlacementRes = compareZiweiFixture(ziweiPlacementFixture)
+  assert.equal(ziweiPlacementRes.observedComparison.overallStatus, 'matched_within_declared_scope')
+  assert.equal(ziweiPlacementRes.observedComparison.fields[0].status, 'matched')
+  assert.equal(ziweiPlacementRes.observedComparison.fields[0].actual, '申')
+
+  // 2. 5월 午시 6길성 위치 및 실제 actual 객체 검증
+  const minorStarsFixture = ZIWEI_EXTERNAL_FIXTURES.find((f) => f.fixtureId === 'ziwei-ext-table-minor-stars')
+  assert.deepEqual(minorStarsFixture.expected.minorStarBranches, {
+    '좌보': '申',
+    '우필': '午',
+    '문창': '辰',
+    '문곡': '戌',
+    '천괴': '丑',
+    '천월': '未',
+  })
+  const minorStarsRes = compareZiweiFixture(minorStarsFixture)
+  assert.equal(minorStarsRes.observedComparison.overallStatus, 'matched_within_declared_scope')
+  assert.equal(minorStarsRes.observedComparison.fields[0].status, 'matched')
+  assert.deepEqual(minorStarsRes.observedComparison.fields[0].actual, {
+    '좌보': '申',
+    '우필': '午',
+    '문창': '辰',
+    '문곡': '戌',
+    '천괴': '丑',
+    '천월': '未',
+  })
+
+  // 3. Worked chart split:
+  // 명신궁 출처 미확정 Fixture: isExcludedFromValidationCount === true, overallStatus === out_of_scope (observedMismatches 미포함)
+  const mingshenFixture = ZIWEI_EXTERNAL_FIXTURES.find((f) => f.fixtureId === 'ziwei-ext-chart-sample-classic-1-mingshen')
+  const mingshenRes = compareZiweiFixture(mingshenFixture)
+  assert.equal(mingshenRes.isExcludedFromValidationCount, true)
+  assert.equal(mingshenRes.observedComparison.overallStatus, 'out_of_scope')
+  assert.equal(mingshenRes.sourceVerdict, 'source_locator_unverified')
+
+  // 오행국 입력 불충분 Fixture: isExcludedFromValidationCount === true, overallStatus === out_of_scope, birthYearStem === null
+  const bureauFixture = ZIWEI_EXTERNAL_FIXTURES.find((f) => f.fixtureId === 'ziwei-ext-chart-sample-classic-1-bureau')
+  assert.equal(bureauFixture.input.birthYearStem, null)
+  const bureauRes = compareZiweiFixture(bureauFixture)
+  assert.equal(bureauRes.isExcludedFromValidationCount, true)
+  assert.equal(bureauRes.observedComparison.overallStatus, 'out_of_scope')
+  assert.equal(bureauRes.sourceVerdict, 'insufficient_reproducible_input')
+})
+
+test('externalValidationRunner: separates total vs evaluated counts and asserts exact Ziwei suite metrics', () => {
   const suite = runExternalValidationSuite()
 
   assert.ok(suite.timestamp)
@@ -120,24 +168,31 @@ test('externalValidationRunner: separates observed vs verified counts and counts
   // 사주 sourceTier 집계: Tier 1 (5건) + Tier 2 (2건)
   const sajuTiers = suite.sajuSummary.coverageBySourceTier
   assert.ok(sajuTiers['Tier 1'], 'Saju must have Tier 1 fixtures')
-  assert.equal(sajuTiers['Tier 1'].fixtureCount, 5)
+  assert.equal(sajuTiers['Tier 1'].evaluatedFixtureCount, 5)
   assert.ok(sajuTiers['Tier 2'], 'Saju must have Tier 2 fixtures (IANA DST discussion)')
-  assert.equal(sajuTiers['Tier 2'].fixtureCount, 2)
+  assert.equal(sajuTiers['Tier 2'].evaluatedFixtureCount, 2)
 
-  // 자미두수: 5개 픽스처 (모두 pending_source_review), 1개 문서, 1개 발행기관
-  assert.equal(suite.ziweiSummary.fixtureCount, 5)
+  // 자미두수: totalFixtureCount 6, evaluatedFixtureCount 4, excludedFromValidationCount 2
+  assert.equal(suite.ziweiSummary.totalFixtureCount, 6)
+  assert.equal(suite.ziweiSummary.evaluatedFixtureCount, 4)
+  assert.equal(suite.ziweiSummary.excludedFromValidationCount, 2)
+  assert.equal(suite.ziweiSummary.excludedBoundaryContractsCount, 0)
+  assert.equal(suite.ziweiSummary.notEvaluableSourceGapCount, 2)
   assert.equal(suite.ziweiSummary.uniqueReferenceDocumentCount, 1)
   assert.equal(suite.ziweiSummary.independentPublisherCount, 1)
-  assert.equal(suite.ziweiSummary.pendingSourceReviewCount, 5)
-  assert.equal(suite.ziweiSummary.observedMatches, 2)
-  assert.equal(suite.ziweiSummary.observedMismatches, 3)
+  assert.equal(suite.ziweiSummary.pendingSourceReviewCountTotal, 6)
+  assert.equal(suite.ziweiSummary.pendingSourceReviewCountEvaluated, 4)
+  assert.equal(suite.ziweiSummary.observedMatches, 4)
+  assert.equal(suite.ziweiSummary.observedMismatches, 0)
   assert.equal(suite.ziweiSummary.verifiedMatches, 0, 'pending_source_review fixtures must not be counted in verifiedMatches')
   assert.equal(suite.ziweiSummary.verifiedMismatches, 0, 'pending_source_review fixtures must not be counted in verifiedMismatches')
+  assert.equal(suite.ziweiSummary.outOfScope, 2)
 
-  // 자미두수 sourceTier 집계: Tier 2 전체 5건
+  // 자미두수 sourceTier 집계: Tier 2 전체 6건 (평가 4건, 제외 2건)
   const ziweiTiers = suite.ziweiSummary.coverageBySourceTier
   assert.ok(ziweiTiers['Tier 2'], 'Ziwei must have Tier 2 fixtures')
-  assert.equal(ziweiTiers['Tier 2'].fixtureCount, 5)
+  assert.equal(ziweiTiers['Tier 2'].totalFixtureCount, 6)
+  assert.equal(ziweiTiers['Tier 2'].evaluatedFixtureCount, 4)
 
   assert.equal(suite.gateStatus.sajuExternalValidationStatus, 'scoped_external_validation_passed')
   assert.equal(suite.gateStatus.ziweiExternalValidationStatus, 'external_fixture_pack_started')
@@ -202,6 +257,12 @@ test('externalValidationRunner: boundary safety fixtures are excluded from valid
   const comparison = compareZiweiFixture(boundaryFixture)
   assert.equal(comparison.isExcludedFromValidationCount, true)
   assert.equal(comparison.observedComparison.overallStatus, 'out_of_scope')
+
+  // boundary contract 전용 summary 호출 시 분리 집계 검증
+  const boundarySummary = buildFixtureSummary([comparison], 'ziwei')
+  assert.equal(boundarySummary.excludedFromValidationCount, 1)
+  assert.equal(boundarySummary.excludedBoundaryContractsCount, 1)
+  assert.equal(boundarySummary.notEvaluableSourceGapCount, 0)
 })
 
 test('externalValidationRunner: buildFixtureSummary correctly counts observed vs verified for each declaredReviewStatus', () => {
