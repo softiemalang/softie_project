@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict'
 import test from 'node:test'
 import { calculateFourPillars, DEFAULT_SAJU_OPTIONS, SAJU_CALCULATION_PROFILE, SAJU_ENGINE_VERSION } from './fourPillars.js'
-import { getSolarLongitude, SOLAR_LONGITUDE_METHOD } from './solarTerms.js'
+import { getSolarLongitude, findCalculatedBoundary, SOLAR_LONGITUDE_METHOD } from './solarTerms.js'
 import { calculateEquationOfTimeMinutes, SOLAR_TIME_METHOD } from './solarTime.js'
 import { EXTERNAL_VALIDATION_FIXTURES } from './externalValidationFixtures.js'
 
@@ -31,18 +31,7 @@ function signedAngularDistance(value, target) {
   return ((value - target + 540) % 360) - 180
 }
 
-function findCalculatedBoundary(targetLongitude, publishedHktMs) {
-  let low = publishedHktMs - 30 * 60 * 1000
-  let high = publishedHktMs + 30 * 60 * 1000
 
-  for (let index = 0; index < 60; index += 1) {
-    const middle = (low + high) / 2
-    const julianDay = middle / 86400000 + 2440587.5
-    if (signedAngularDistance(getSolarLongitude(julianDay), targetLongitude) < 0) low = middle
-    else high = middle
-  }
-  return (low + high) / 2
-}
 
 test('외부 절기 fixture는 엔진 황경 경계와 허용 오차 안에서 일치한다', () => {
   EXTERNAL_VALIDATION_FIXTURES.solarTerms.forEach((fixture) => {

@@ -571,7 +571,7 @@ function changedPillarKeys(referencePillars, candidatePillars) {
   )
 }
 
-function assessHistoricalSeoulTime(input, birthTimeUnknown, pillars, calculationOptions) {
+export function assessHistoricalSeoulTime(input, birthTimeUnknown, pillars, calculationOptions) {
   if (input.birthDate < SEOUL_STABLE_KST_START) {
     return {
       status: 'historical_offset_unverified',

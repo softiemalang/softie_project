@@ -6,7 +6,7 @@ export const SOLAR_TERM_UNCERTAINTY_MINUTES = 20
 
 const SAJU_MONTH_BOUNDARIES = Array.from({ length: 12 }, (_, index) => (315 + index * 30) % 360)
 
-const SOLAR_TERM_NAMES = {
+export const SOLAR_TERM_NAMES = {
   315: '입춘',
   345: '경칩',
   15: '청명',
@@ -147,4 +147,17 @@ export function getAdjacentBaziMonthBoundary(year, month, day, hour, min, direct
     distanceMinutes: Math.abs(boundaryUtcMs - birthUtcMs) / 60000,
     method: SOLAR_LONGITUDE_METHOD,
   }
+}
+
+export function findCalculatedBoundary(targetLongitude, publishedHktMs) {
+  let low = publishedHktMs - 30 * 60 * 1000
+  let high = publishedHktMs + 30 * 60 * 1000
+
+  for (let index = 0; index < 60; index += 1) {
+    const middle = (low + high) / 2
+    const julianDay = middle / 86400000 + 2440587.5
+    if (signedAngularDistance(getSolarLongitude(julianDay), targetLongitude) < 0) low = middle
+    else high = middle
+  }
+  return (low + high) / 2
 }
