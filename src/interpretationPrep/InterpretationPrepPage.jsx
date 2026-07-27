@@ -432,7 +432,6 @@ function SystemResult({ result, view }) {
     <div className="prep-raw-stack">
       <div className="prep-result-heading">
         <div>
-          <p className="section-kicker">RAW CALCULATION</p>
           <h3>
             {result.raw.dayMaster.candidates?.length > 1
               ? `일간 후보 ${result.raw.dayMaster.candidates.join(' · ')}`
@@ -443,11 +442,7 @@ function SystemResult({ result, view }) {
       </div>
       <PillarGrid pillars={result.raw.pillars} />
 
-      {result.raw.lunarConversion && (
-        <p className="prep-timing-note">
-          음력 변환 검증 상태: {result.raw.lunarConversion.verificationStatus === 'verified' ? '외부 검증 완료' : result.raw.lunarConversion.verificationStatus === 'pending' ? '외부 대조 대기' : '현재 외부 검증 범위 밖'} · {result.raw.lunarConversion.source}
-        </p>
-      )}
+
 
       {result.raw.experimental?.status === 'candidate_required' && (
         <section className="prep-data-panel prep-profile-panel">
@@ -717,37 +712,12 @@ function SystemResult({ result, view }) {
 
       <TimingSummary timing={result.raw.timing} />
       <section className="prep-data-panel">
-        <div className="prep-mini-head"><h4>입력 보정</h4><span>원본과 분리 저장</span></div>
-        <dl className="prep-normalization-list">
-          <div><dt>원본 입력</dt><dd>{result.inputNormalization.original}</dd></div>
-          <div><dt>기준 도시</dt><dd>{result.inputNormalization.referenceCity}</dd></div>
-          <div><dt>진태양시</dt><dd>{result.inputNormalization.correctedSolarTime || '출생시각 미상 · 적용하지 않음'}</dd></div>
-          <div><dt>경도 보정</dt><dd>{result.inputNormalization.meanSolarCorrectionMinutes == null ? '적용하지 않음' : `${result.inputNormalization.meanSolarCorrectionMinutes}분`}</dd></div>
-          <div><dt>균시차</dt><dd>{result.inputNormalization.equationOfTimeMinutes == null ? '적용하지 않음' : `${result.inputNormalization.equationOfTimeMinutes}분`}</dd></div>
-          <div><dt>총 보정</dt><dd>{result.inputNormalization.correctionMinutes == null ? '적용하지 않음' : `${result.inputNormalization.correctionMinutes}분`}</dd></div>
-          <div><dt>자시 구분</dt><dd>{result.inputNormalization.ziPeriodLabel || '출생시각 미상 · 판정하지 않음'}</dd></div>
-          <div><dt>일주 기준일</dt><dd>{result.inputNormalization.dayBoundaryDate || '출생시각 미상 · 후보로 저장'}</dd></div>
-          <div><dt>국내 후보</dt><dd>{result.inputNormalization.domesticCorrectionRangeMinutes == null ? '적용하지 않음' : `${result.inputNormalization.domesticCorrectionRangeMinutes.join('~')}분`}</dd></div>
-        </dl>
-      </section>
-      <section className="prep-data-panel">
         <div className="prep-mini-head">
           <h4>오행 단순 분포</h4>
           <span>{result.raw.birthTimeUnknown ? '정오 기준 · 시주 제외' : '지장간·계절 가중 전'}</span>
         </div>
         <ElementDistribution counts={result.raw.elements.counts} />
       </section>
-      <SupportScope scope={result.supportScope} />
-      <section className="prep-data-panel">
-        <div className="prep-mini-head"><h4>계산 추적</h4><span>{result.engine.sourceEngine}</span></div>
-        <ol className="prep-trace-list">
-          {result.raw.calculationTrace.map((line) => <li key={line}>{line}</li>)}
-        </ol>
-      </section>
-      <details className="prep-json-details">
-        <summary>검증용 원자료 JSON 보기</summary>
-        <pre>{JSON.stringify(result.raw, null, 2)}</pre>
-      </details>
       <div className="prep-warning-box">
         <strong>검증 알림</strong>
         <ul>
@@ -994,7 +964,7 @@ export default function InterpretationPrepPage() {
           <details className="prep-advanced-inputs">
             <summary>
               <span>세부 입력과 계산 환경</span>
-              <small>자료 생성일 · 도시 · 시간대 · 좌표</small>
+              <small>도시 · 시간대 · 좌표</small>
             </summary>
             <div className="prep-advanced-grid">
               <LabeledField label="기준 도시" hint="기본값 서울 · 선택한 경도 보정 적용">
