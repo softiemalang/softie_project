@@ -28,3 +28,12 @@
 - **위치 누락**: LMST, MC, ASC 차단. GMST까지 계산 가능.
 - **위도 누락, 경도 존재**: LMST, MC 계산 가능, ASC 차단 (`latitude_unavailable`).
 - **극점 (|latitude| >= 90 - 1e-10)**: MC 계산 가능, ASC 차단 (`ascendant_undefined_at_geographic_pole`).
+
+---
+
+## 4. External Astronomical Validation Summary
+- **External Validation Status**: `externalAstronomicalValidationStatus: confirmed_for_declared_mean_model`
+- **Primary Oracles**: IAU SOFA (2023-10-11 ANSI C), Swiss Ephemeris (v2.10.03 `swe_houses_armc`), USNO Data Service (v4.0.1)
+- **SOFA Fixture Pass Rate**: 8 / 8 passed (Julian Date `< 1e-9 day`, ERA `< 1e-9 deg`, Obliquity `< 1e-10 deg`, GMST `< 1e-9 deg`)
+- **Swiss Ephemeris Pass Rate**: 12 / 12 passed (Mean ASC `< 1e-7 deg`, Mean MC `< 1e-7 deg`)
+- **Full Report**: 상세 출처, 오차 분포, Provenance 및 제외 범위는 [docs/astrology/time-angle-external-validation.md](file:///Users/softie/Documents/softie_project/docs/astrology/time-angle-external-validation.md) 문서 참조.

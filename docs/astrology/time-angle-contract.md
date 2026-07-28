@@ -36,7 +36,7 @@
 
 ## 4. Verification & Readiness Statuses
 - **formulaConformanceStatus**: `confirmed` (지시서 명시 수식 및 상수의 수치 일치 검증 완료)
-- **externalAstronomicalValidationStatus**: `pending` (후속 독립 천문 데이터 오차 검증 전 단계)
+- **externalAstronomicalValidationStatus**: `confirmed_for_declared_mean_model` (IAU SOFA 2023-10-11 & Swiss Ephemeris v2.10.03 오프라인 회귀 fixture 검증 완료)
 - **serviceIntegrationStatus**: `not_connected` (서비스 API/UI 및 Prep 파이프라인 미연결)
 - **availableForInterpretation**: `false` (해석 결과 생성 및 전달 불가)
 

@@ -48,7 +48,8 @@ export function deriveEarthRotationAngle(julianDateUt1) {
   }
 
   const dUT1 = julianDateUt1.value - J2000_JULIAN_DATE
-  const eraRawTurns = ERA_ORIGIN_TURNS + (ERA_RATE_TURNS_PER_UT1_DAY * dUT1)
+  const dayFrac = fractionalPart(dUT1)
+  const eraRawTurns = ERA_ORIGIN_TURNS + dayFrac + (0.00273781191135448 * dUT1)
   const eraTurns = fractionalPart(eraRawTurns)
   const degrees = normalizeDegrees360(eraTurns * 360)
 
