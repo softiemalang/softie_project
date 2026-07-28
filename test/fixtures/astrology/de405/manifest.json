@@ -1,0 +1,67 @@
+{
+  "schemaVersion": 1,
+  "fixtureStatus": "provenance_incomplete",
+  "legacyDisposition": "historical_evidence",
+  "canonical": false,
+  "artifacts": {
+    "jplDe405Binary": {
+      "sha256": "7ec77287b6fddd3d7adabb87709ee5e926e3d1123fbae5d1485a42913cf175e7",
+      "sizeBytes": 55900416
+    },
+    "naifDe405Spk": {
+      "sha256": "30a7113793ee5b6bf1e5546c6dfc21d9682d9ffabfe9b17b4bab27ba2ac75c89",
+      "md5": "26d9596d003d6bf3b1c0b33e9567275b",
+      "sizeBytes": 10898432
+    }
+  },
+  "timestamps": {
+    "sha256": "f3198ef890e61b4a60f38d27ec9e6a69540759a444d3541ca32c5833e6241377",
+    "sampleCount": 36525,
+    "coverage": { "startJd": 2433282, "endJd": 2469806 }
+  },
+  "officialReader": {
+    "testRowCount": 7214,
+    "failureCount": 0,
+    "toleranceAu": 1e-13,
+    "maxResidualAu": 5.3291e-14,
+    "o0OutputSha256": "9a7e04ad5e56025169196a6863ff832e1fdc7aa4dba2ba16b8c6465bbc7f8995",
+    "o2OutputSha256": "9a7e04ad5e56025169196a6863ff832e1fdc7aa4dba2ba16b8c6465bbc7f8995"
+  },
+  "artifactIntegrityEvidence": {
+    "jplDe405Binary": { "sha256": "7ec77287b6fddd3d7adabb87709ee5e926e3d1123fbae5d1485a42913cf175e7", "sizeBytes": 55900416 },
+    "naifDe405Spk": { "sha256": "30a7113793ee5b6bf1e5546c6dfc21d9682d9ffabfe9b17b4bab27ba2ac75c89", "md5": "26d9596d003d6bf3b1c0b33e9567275b", "sizeBytes": 10898432 },
+    "timestamps": { "sha256": "f3198ef890e61b4a60f38d27ec9e6a69540759a444d3541ca32c5833e6241377", "sampleCount": 36525 },
+    "coverage": { "startJd": 2433282, "endJd": 2469806 },
+    "metadata": { "source": "versioned evidence; verified values pending" },
+    "fixtureSampleCount": 36525
+  },
+  "officialReaderEvidence": {
+    "testRowCount": 7214,
+    "failureCount": 0,
+    "toleranceAu": 1e-13,
+    "maxResidualAu": 5.3291e-14,
+    "o0OutputSha256": "9a7e04ad5e56025169196a6863ff832e1fdc7aa4dba2ba16b8c6465bbc7f8995",
+    "o2OutputSha256": "9a7e04ad5e56025169196a6863ff832e1fdc7aa4dba2ba16b8c6465bbc7f8995"
+  },
+  "productionEquivalence": {
+    "positionComponentBitIdentical": true,
+    "velocityComponentBitIdentical": true,
+    "statusMismatch": 0,
+    "sampleCount": 36525,
+    "timestampSha256": "f3198ef890e61b4a60f38d27ec9e6a69540759a444d3541ca32c5833e6241377",
+    "coverage": { "startJd": 2433282, "endJd": 2469806 }
+  },
+  "crossReferenceStructure": {
+    "artifactSha256": "30a7113793ee5b6bf1e5546c6dfc21d9682d9ffabfe9b17b4bab27ba2ac75c89",
+    "timestampSha256": "f3198ef890e61b4a60f38d27ec9e6a69540759a444d3541ca32c5833e6241377",
+    "sampleCount": 36525,
+    "statusMismatch": 0,
+    "start": { "sampleCount": 12175 }, "middle": { "sampleCount": 12175 }, "end": { "sampleCount": 12175 },
+    "fittedDriftKmPerDay": 8.2723967e-13,
+    "adjacentChange": { "detected": false },
+    "segmentBoundaryDiscontinuityDetected": false,
+    "worstEpochJd": 2433833,
+    "worstPositionResidualKm": [0.002111, -0.008169, -0.003543],
+    "baselineSchemaVersion": 1
+  }
+}
