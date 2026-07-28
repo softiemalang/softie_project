@@ -34,7 +34,7 @@ export const ORACLE_PROVENANCE = {
     downloadArtifactName: 'swisseph-2.10.03.tar.gz',
     downloadedAtUtc: '2026-07-28T00:16:38Z',
     artifactChecksumSha256: '8c166796767a560691581575b6eb4b4383d849e542b16647dca2e0b127fb70b0',
-    artifactAuthorityStatus: 'not_independently_verified',
+    artifactAuthorityStatus: 'official_distribution_link_confirmed',
     publicFunctionUsed: 'swe_houses_armc',
     houseSystemArgument: 'W',
     temporaryLocation: '/tmp/mallang-time-angle-validation/swisseph',

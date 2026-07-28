@@ -35,7 +35,7 @@
 - **Download Artifact**: `swisseph-2.10.03.tar.gz` (from `https://github.com/aloistr/swisseph/archive/refs/tags/v2.10.03.tar.gz`)
 - **Downloaded At (UTC)**: `2026-07-28T00:16:38Z`
 - **Artifact SHA-256 Checksum**: `8c166796767a560691581575b6eb4b4383d849e542b16647dca2e0b127fb70b0`
-- **Artifact Authority Status**: `not_independently_verified`
+- **Artifact Authority Status**: `official_distribution_link_confirmed` (Confirmed via direct download link on Astrodienst official domain `https://www.astro.com/swisseph/swephinfo_e.htm`)
 - **Public Function Used**: `swe_houses_armc(armc, geolat, eps, 'W', cusps, ascmc)`
 - **Temporary Execution Location**: `/tmp/mallang-time-angle-validation/swisseph`
 - **Committed Artifact**: `false`

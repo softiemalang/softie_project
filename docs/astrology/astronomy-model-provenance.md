@@ -45,3 +45,11 @@ $$\phi = \text{geographic\_latitude}_{\text{radians}}$$
 $$\text{ASC}_{\text{base}} = \text{atan2}(-\cos\theta, \sin\theta \cos\epsilon + \tan\phi \sin\epsilon)$$
 $$\text{ASC}^{\circ} = \text{normalizeDegrees360}((\text{ASC}_{\text{base}} \times \frac{180}{\pi}) + 180)$$
 - **Geographic Pole Restriction**: $90^{\circ} - |\text{latitude}| \le 10^{-10}$ 인 경우 ASC 계산 불가 (`blocked`).
+
+---
+
+## 3. External Validation Oracles & License Boundaries
+- 본 코어 구현체는 저장소 밖에서 일회성 수치 비교용으로 실행한 **IAU SOFA (2023-10-11 ANSI C)** 및 **Swiss Ephemeris (v2.10.03)** 외부 오라클 결과와 검증되었습니다.
+- 외부 라이브러리 소스, 바이너리, 헤더, wrapper, 런타임 호출은 저장소에 전혀 포함되지 않았습니다.
+- IAU SOFA 공식 라이선스 및 제3자 지적재산권 고지는 [THIRD_PARTY_NOTICES.md](file:///Users/softie/Documents/softie_project/THIRD_PARTY_NOTICES.md) 및 [docs/astrology/licenses/IAU-SOFA-LICENSE.txt](file:///Users/softie/Documents/softie_project/docs/astrology/licenses/IAU-SOFA-LICENSE.txt)에 보존되어 있습니다.
+- 상세 오라클 출처 및 수치 검증 결과는 [docs/astrology/time-angle-external-validation.md](file:///Users/softie/Documents/softie_project/docs/astrology/time-angle-external-validation.md) 문서 참조.

@@ -48,6 +48,9 @@ export function deriveEarthRotationAngle(julianDateUt1) {
   }
 
   const dUT1 = julianDateUt1.value - J2000_JULIAN_DATE
+  // Independent Mallang implementation of the declared IAU 2000 ERA model.
+  // The numerically stable equivalent expression was validated against IAU SOFA release 2023-10-11.
+  // No SOFA source code is included. This implementation is not software provided or endorsed by the IAU SOFA Board.
   const dayFrac = fractionalPart(dUT1)
   const eraRawTurns = ERA_ORIGIN_TURNS + dayFrac + (0.00273781191135448 * dUT1)
   const eraTurns = fractionalPart(eraRawTurns)
