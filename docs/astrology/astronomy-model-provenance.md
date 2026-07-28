@@ -53,3 +53,10 @@ $$\text{ASC}^{\circ} = \text{normalizeDegrees360}((\text{ASC}_{\text{base}} \tim
 - 외부 라이브러리 소스, 바이너리, 헤더, wrapper, 런타임 호출은 저장소에 전혀 포함되지 않았습니다.
 - IAU SOFA 공식 라이선스 및 제3자 지적재산권 고지는 [THIRD_PARTY_NOTICES.md](file:///Users/softie/Documents/softie_project/THIRD_PARTY_NOTICES.md) 및 [docs/astrology/licenses/IAU-SOFA-LICENSE.txt](file:///Users/softie/Documents/softie_project/docs/astrology/licenses/IAU-SOFA-LICENSE.txt)에 보존되어 있습니다.
 - 상세 오라클 출처 및 수치 검증 결과는 [docs/astrology/time-angle-external-validation.md](file:///Users/softie/Documents/softie_project/docs/astrology/time-angle-external-validation.md) 문서 참조.
+
+---
+
+## 4. Solar Position Core Model Status (v0 Pre-implementation)
+- 태양 위치 계산 모델 후보 조사 및 평가 결과는 [docs/astrology/solar-model-decision.md](file:///Users/softie/Documents/softie_project/docs/astrology/solar-model-decision.md)에 의거하여 현재 `solarModelDecisionStatus: blocked`입니다.
+- 표준 좌표·시간 계약 및 층위 구조는 [docs/astrology/solar-position-contract.md](file:///Users/softie/Documents/softie_project/docs/astrology/solar-position-contract.md)를 따르며, 구현 전 `availableForInterpretation: false` 상태로 보존됩니다.
+- 오라클 검증 설계 및 표준 파라미터 규격은 [docs/astrology/solar-validation-plan.md](file:///Users/softie/Documents/softie_project/docs/astrology/solar-validation-plan.md)에 수립되어 있습니다.
