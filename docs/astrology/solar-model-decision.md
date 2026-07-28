@@ -126,7 +126,7 @@ Mallang의 대원칙에 따라, **라이선스가 명확하지 않거나 수치�
 - **이유**:
   1. 고정확도 독립 구현 후보인 **VSOP87**은 공식 재배포/상용 런타임 이용 라이선스가 `unresolved` 상태입니다.
   2. **JPL Approximate Positions Table 1 EM Bary**는 Horizons 검증을 완료했으나 total practical 3D angular p99가 0.006731도로 0.005도 기준을 초과해 거부되었습니다. 최대값 통과만으로 후보를 채택하지 않습니다.
-  3. ERFA EPV00 controlled adaptation은 단 하나의 **후속 feasibility 후보**로만 선정되었습니다. production runtime 모델·of-date transform·interpretation 사용은 아직 확정되지 않았습니다.
+  3. ERFA EPV00 controlled adaptation의 C→JavaScript 일치성은 통과했지만, 2026-07-28 Horizons DE441 barycentric Earth 비교가 사전 30 km gate를 초과했습니다. 따라서 `technicalModelStatus: blocked_by_reference_ephemeris_delta`이며 production runtime 모델·of-date transform·interpretation 사용은 아직 확정되지 않았습니다.
 
 ---
 

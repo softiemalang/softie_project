@@ -9,7 +9,7 @@ or make astronomy available for interpretation.
 
 ```text
 solarModelDecisionStatus: provisional
-technicalModelStatus: not_yet_empirically_validated
+technicalModelStatus: blocked_by_reference_ephemeris_delta
 runtimeSelectionStatus: candidate_selected_for_feasibility_only
 algorithmLineage: ERFA v2.0.1 eraEpv00 / SOFA 20231011-derived
 adaptationPolicy: controlled_permissive_adaptation
@@ -203,6 +203,11 @@ then validate 1900-2100 Earth-to-Sun position and analytic velocity against
 Horizons. It must separately measure frame transforms and bundle size, retain
 notice design, and leave production implementation, interpretation, and
 runtime inclusion out of scope.
+
+The subsequent feasibility result is recorded in
+[erfa-epv00-solar-feasibility.md](./erfa-epv00-solar-feasibility.md): the
+adaptation conforms to ERFA v2.0.1, but the current Horizons DE441
+barycentric-Earth comparison is `blocked_by_reference_ephemeris_delta`.
 
 ## Official sources
 
