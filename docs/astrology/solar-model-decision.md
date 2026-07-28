@@ -90,28 +90,24 @@ Mallang의 대원칙에 따라, **라이선스가 명확하지 않거나 수치�
 
 ---
 
-### Candidate C — IAU SOFA EPV00 계열
-- **공식 출처**: IAU Standards of Fundamental Astronomy (SOFA)
-- **공식 오차 선언 정정**:
-  - `declaredAccuracy`: official limited-precision routine; exact bound not yet transcribed from the authoritative routine preamble
-  - (SOFA 공식 문서가 EPV00을 limited precision ephemeris 루틴으로 분류하므로, 근거 없는 `< 0.001 arcsec` 표기를 제거함)
-- **라이선스 상태와 프로젝트 정책의 분리**:
-  - `licenseStatus`: `verified_permissive_with_derived-work_conditions`
-  - `commercialUsePermission`: `allowed_subject_to_SOFA_terms`
-  - `runtimeEligibility`: `rejected_by_project_clean_room_policy`
-  - `selectionStatus`: `rejected`
-- **거부 사유 정정**:
-  - SOFA 라이선스가 런타임 구현을 법적으로 금지해서가 아니라, **Mallang의 프로젝트 자체 Clean-room 정책**에 따라 SOFA C/Fortran 구현을 JavaScript로 직역/포팅하지 않고 외부 알고리즘 구조를 런타임 코드에 복제하지 않기 때문입니다.
-  - SOFA는 런타임 코드가 아닌 **외부 검증 오라클 및 수치 비교 기준**으로만 사용됩니다.
+### Candidate C — ERFA EPV00 controlled adaptation
+- **공식 출처**: ERFA v2.0.1 `eraEpv00`, IAU SOFA terms and ERFA's SOFA-Board-permitted BSD distribution.
+- **기술 계약**: 1900-2100 TDB two-part JD 입력, BCRS-oriented heliocentric/barycentric Earth position and velocity (AU, AU/day). 공식 DE405 비교 최대치는 heliocentric 11.2 km, barycentric 13.4 km입니다.
+- **라이선스와 정책 판정**:
+  - `licenseStatus`: `BSD-3-Clause_with_SOFA_heritage_notice`
+  - `commercialUsePermission`: `allowed`
+  - `runtimeEligibility`: `candidate_for_controlled_adaptation`
+  - `selectionStatus`: `selected_for_feasibility`
+- 이는 production 채택이 아닙니다. ERFA 코드·계수는 아직 저장소에 포함되지 않았고, 정확한 Earth(399) vector, 속도, frame transform, bundle 크기는 독립 Horizons feasibility를 통과해야 합니다.
 
 ---
 
 ### Candidate D — JPL DE / NAIF SPICE Runtime
 - **공식 출처**: NASA JPL Planetary Ephemeris (DE440/DE441), NAIF SPICE Toolkit
 - **정확도**: 최고 정밀도
-- **라이선스 상태**: Public Domain (NASA/JPL)
-- **거부 사유**: 수십~수백 MB 바이너리 커널 의존성으로 브라우저/모바일 런타임 부적합.
-- **선정 상태**: `rejected`
+- **권리 상태**: reviewed official availability/provenance pages alone do not establish Mallang's compact-coefficient extraction and redistribution rights.
+- **거부 사유**: full kernel is tens to hundreds of MB and requires a reader; compact-subset redistribution rights remain unresolved.
+- **선정 상태**: `blocked_by_rights_and_architecture`
 
 ---
 
@@ -125,20 +121,23 @@ Mallang의 대원칙에 따라, **라이선스가 명확하지 않거나 수치�
 
 ## 4. 최종 결정 및 선택 상태 (Decision Summary)
 
-### `solarModelDecisionStatus: blocked`
+### `solarModelDecisionStatus: provisional`
 
 - **이유**:
   1. 고정확도 독립 구현 후보인 **VSOP87**은 공식 재배포/상용 런타임 이용 라이선스가 `unresolved` 상태입니다.
   2. **JPL Approximate Positions Table 1 EM Bary**는 Horizons 검증을 완료했으나 total practical 3D angular p99가 0.006731도로 0.005도 기준을 초과해 거부되었습니다. 최대값 통과만으로 후보를 채택하지 않습니다.
-  3. 따라서 Minimum Selection Threshold를 만족하는 최종 런타임 모델이 현재 확정되지 않아 `blocked` 판정을 유지합니다.
+  3. ERFA EPV00 controlled adaptation은 단 하나의 **후속 feasibility 후보**로만 선정되었습니다. production runtime 모델·of-date transform·interpretation 사용은 아직 확정되지 않았습니다.
 
 ---
 
 ## 5. 차단 해제 및 후속 수립 절차 (Action Items for Resolution)
 
 1. **IMCCE/IAU 공식 라이선스 확인 요청**: VSOP87 계수 파일 재배포권 공식 문서화 확인.
-2. **대체 모델 평가**: 동일한 사전 기준과 권리 검토를 적용하되, 이번 Table 1 EM Bary 후보에 Horizons 맞춤 보정을 추가하지 않습니다.
-3. **권리 검토 분리**: 기술적으로 통과하는 별도 후보가 생겨도 runtime 권한을 독립적으로 검토합니다.
+2. **ERFA EPV00 temporary feasibility**: ERFA v2.0.1과 임시 JavaScript adaptation의 일치, 1900-2100 Horizons Earth(399) 벡터·속도·frame 검증, bundle 측정, notice 설계를 수행합니다.
+3. **권리 검토 분리**: feasibility 통과 뒤에도 실제 adapted source/coefficients의 고지와 배포 검토를 독립적으로 완료합니다.
 
 상세 연구 설계, 오라클 계약, 통계 및 산출물 해시는
 [jpl-approximate-solar-feasibility.md](./jpl-approximate-solar-feasibility.md)에 보존합니다.
+
+후보 권리표와 정책 판정은
+[solar-alternative-model-survey.md](./solar-alternative-model-survey.md)에 보존합니다.

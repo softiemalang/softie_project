@@ -57,6 +57,6 @@ $$\text{ASC}^{\circ} = \text{normalizeDegrees360}((\text{ASC}_{\text{base}} \tim
 ---
 
 ## 4. Solar Position Core Model Status (v0 Pre-implementation)
-- 태양 위치 계산 모델 후보 조사 및 평가 결과는 [docs/astrology/solar-model-decision.md](file:///Users/softie/Documents/softie_project/docs/astrology/solar-model-decision.md)에 의거하여 현재 `solarModelDecisionStatus: blocked`입니다.
+- 태양 위치 계산 모델 후보 조사 결과 ERFA EPV00 controlled adaptation만 `selected_for_feasibility` 상태입니다. 이는 production 구현이나 수치 검증 완료가 아니며, 현재 `solarModelDecisionStatus: provisional`, `technicalModelStatus: not_yet_empirically_validated`입니다. 출처·권리표·정책 판단은 [docs/astrology/solar-alternative-model-survey.md](file:///Users/softie/Documents/softie_project/docs/astrology/solar-alternative-model-survey.md)에 기록합니다.
 - 표준 좌표·시간 계약 및 층위 구조는 [docs/astrology/solar-position-contract.md](file:///Users/softie/Documents/softie_project/docs/astrology/solar-position-contract.md)를 따르며, 구현 전 `availableForInterpretation: false` 상태로 보존됩니다.
 - 오라클 검증 설계 및 표준 파라미터 규격은 [docs/astrology/solar-validation-plan.md](file:///Users/softie/Documents/softie_project/docs/astrology/solar-validation-plan.md)에 수립되어 있습니다.
