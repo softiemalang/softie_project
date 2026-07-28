@@ -117,3 +117,22 @@ Layer B의 geometric, geocentric, tropical, mean-equinox-of-date 태양 위치�
    - 황경 오차가 `astrologyUseTolerance` ($0.01^{\circ}$) 이내에 들어오나, 모델 자체 오차로 인해 `near_boundary` 경계 메타데이터가 동반되는 경우.
 3. **`failed`**:
    - 황경 오차 $> 0.01^{\circ}$ 이거나 궤도 경계 부근에서 수치 수렴에 실패한 경우.
+
+---
+
+## 6. Table 1 EM Bary feasibility execution (2026-07-28)
+
+이 계획의 일반 Solar Core 계약과 분리하여, JPL Approximate Positions Table 1
+EM Bary 후보는 J2000 황도 기하 벡터 계약으로 연구했다. Oracle A(EMB/Sun),
+Oracle B(Sun/EMB), Oracle C(Sun/Earth)를 각각 `REF_PLANE=ECLIPTIC`,
+`TIME_TYPE=TDB`, `VEC_CORR=NONE`, `AU-D`로 수집하고 실제 응답 헤더를 검증했다.
+
+사전 고정한 후보 승격 기준은 total proxy의 최대 3D 각오차 및 최대 J2000
+황경오차가 각각 0.01도 이하이고, p99 3D 각오차가 0.005도 이하인 것이었다.
+57,052개 고유 표본의 결과는 최대 0.008013도, 최대 황경오차 0.008011도,
+p99 0.006731도였다. p99 실패로 이 후보는 `rejected`이며, 이 계획의
+`limited_for_astrology_use` 또는 구현 검증 상태로 승격되지 않는다.
+
+이 결과는 of-date/tropical 또는 점성학 경계 검증 결과가 아니다. 상세 표본 설계,
+오차 분리, 속도 연구, 임시 아티팩트 provenance는
+[jpl-approximate-solar-feasibility.md](./jpl-approximate-solar-feasibility.md)를 참조한다.

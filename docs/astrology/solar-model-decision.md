@@ -60,32 +60,33 @@ Mallang의 대원칙에 따라, **라이선스가 명확하지 않거나 수치�
 
 ---
 
-### Candidate B — JPL Approximate Planetary Positions (Standish et al., 1992/2021)
+### Candidate B — JPL Approximate Planetary Positions (Table 1 EM Bary research)
 - **공식 출처**: NASA JPL Solar System Dynamics (SSD) 공식 명세
-- **원점 및 좌표계**: Heliocentric Keplerian elements (J2000 / ICRF) + 세차 rate, TDB 시간척도
+- **원점 및 좌표계**: Sun-centered heliocentric Keplerian elements, mean ecliptic and equinox of J2000, TDB 시간척도. J2000 황도 벡터를 ICRF 벡터와 동일시하지 않습니다.
 - **명목 오차 및 정확도 평가 정정**:
   - 공식 JPL 표는 1800~2050년 EM barycenter에 대해 명목 heliocentric longitude error를 **20 arcsec** ($20'' = 0.005555...^{\circ}$)로 제시합니다.
-  - > "The official nominal EM-barycenter longitude error of 20 arcsec is numerically below the 0.01-degree astrology-use threshold. However, this is a nominal model error rather than a guaranteed maximum, and the Earth-center correction and final geocentric solar-longitude error have not yet been independently validated."
+  - 2026-07-28 외부 Horizons 연구는 model/center/total 오차를 분리해 검증했습니다. total 최대 각오차 0.008013도와 최대 황경오차 0.008011도는 0.01도 이내였지만, total p99 각오차는 **0.006731도**로 사전 기준 0.005도를 초과했습니다.
 - **결격 사유 및 제약 사항**:
   1. 20 arcsec 오차는 보장된 최대 오차가 아닌 명목 오차(nominal model error)임.
-  2. Earth-Moon Barycenter(EMB)에서 지구 중심(Earth center)으로 옮기는 섭동 보정 과정 미구현.
-  3. 최종 지구중심 태양 황경에 대한 NASA JPL Horizons 회귀 검증 미수행.
-  4. 궤도 경계 부근에서의 안정성 미검증.
+  2. Earth-Moon Barycenter(EMB)를 Earth 대용으로 쓴 total proxy가 p99 기준에 실패했습니다.
+  3. 이 결과에 맞춘 섭동 보정 또는 경험적 잔차 보정은 이번 후보 검증 범위에서 금지됩니다.
+  4. native frame은 J2000 황도이며 of-date/tropical 변환 및 별자리 경계 안정성은 미구현입니다.
   5. 향후 타 행성 확장 시 정밀도 부족.
 - **라이선스 및 런타임 자격 상태**:
-  - `licenseStatus`: `verified` (US Federal Government work / Public domain)
-  - `runtimeEligibility`: `allowed_for_sanity_only`
-  - `selectionStatus`: `provisional` (단, 1차 프로토타입 sanity reference 용도)
+  - `rightsReviewStatus`: `pending`
+  - `runtimeEligibility`: `rejected_for_current_threshold`
+  - `selectionStatus`: `rejected`
+  - 기술 검증 결과만으로 copyright, redistribution, commercial runtime permission을 확정하지 않습니다.
 - **평가 점수**:
   - License Clarity: 25/25
-  - Astronomical Accuracy: 13/20 (EMB 명목 오차 20" 및 수치 검증 미수행 반영)
-  - Coverage: 9/10
-  - Coordinate Clarity: 6/10 (EMB $\rightarrow$ Earth 중심 변환 미구현)
+  - Astronomical Accuracy: 0/20 (사전 p99 proxy 기준 실패)
+  - Coverage: 0/10 (검증 범위 후보로 채택 불가)
+  - Coordinate Clarity: 6/10 (EMB $\rightarrow$ Earth proxy 명시 및 검증은 완료했으나 정확도 기준 실패)
   - Position/Velocity: 8/10
   - Provenance: 10/10
   - Auditability: 10/10
   - Maintenance: 5/5
-  - **총점**: 67/100
+  - **총점**: Rejected (사전 total practical p99 기준 실패)
 
 ---
 
@@ -128,7 +129,7 @@ Mallang의 대원칙에 따라, **라이선스가 명확하지 않거나 수치�
 
 - **이유**:
   1. 고정확도 독립 구현 후보인 **VSOP87**은 공식 재배포/상용 런타임 이용 라이선스가 `unresolved` 상태입니다.
-  2. 라이선스가 명확한 **JPL Approximate Positions**는 명목 20" 오차 모델로, EMB $\rightarrow$ Earth 중심 변환 및 Horizons 회귀 검증이 완료되기 전까지는 단독 최종 모델로 고정할 수 없습니다.
+  2. **JPL Approximate Positions Table 1 EM Bary**는 Horizons 검증을 완료했으나 total practical 3D angular p99가 0.006731도로 0.005도 기준을 초과해 거부되었습니다. 최대값 통과만으로 후보를 채택하지 않습니다.
   3. 따라서 Minimum Selection Threshold를 만족하는 최종 런타임 모델이 현재 확정되지 않아 `blocked` 판정을 유지합니다.
 
 ---
@@ -136,5 +137,8 @@ Mallang의 대원칙에 따라, **라이선스가 명확하지 않거나 수치�
 ## 5. 차단 해제 및 후속 수립 절차 (Action Items for Resolution)
 
 1. **IMCCE/IAU 공식 라이선스 확인 요청**: VSOP87 계수 파일 재배포권 공식 문서화 확인.
-2. **JPL Approximate Model EMB $\rightarrow$ Earth 중심 변환 구현 및 Horizons 회귀 검증**: 섭동 수식을 추가하여 지중심 태양 황경 오차를 명확히 산출하고 회귀 테스트 수행.
-3. **확인 완료 시 `provisional` $\rightarrow$ `selected` 승격 조건 수립**.
+2. **대체 모델 평가**: 동일한 사전 기준과 권리 검토를 적용하되, 이번 Table 1 EM Bary 후보에 Horizons 맞춤 보정을 추가하지 않습니다.
+3. **권리 검토 분리**: 기술적으로 통과하는 별도 후보가 생겨도 runtime 권한을 독립적으로 검토합니다.
+
+상세 연구 설계, 오라클 계약, 통계 및 산출물 해시는
+[jpl-approximate-solar-feasibility.md](./jpl-approximate-solar-feasibility.md)에 보존합니다.

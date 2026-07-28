@@ -36,9 +36,12 @@
    - Raw Ephemeris Vector (Layer A)만 산출되고 황도 세차 변환(Layer B) 또는 검증이 완료되지 않은 경우 점성학 해석에 사용할 수 없습니다 (`availableForInterpretation: false`).
    - Apparent Position 보정(Layer C: 광행차, 광시차, 장동)은 v0 미지원으로 처리하며, 미지원 보정이 적용된 것처럼 추정하지 않습니다.
    - `boundaryRisk: near_boundary` 또는 `indeterminate` 판정 시 단일 황도 12별자리 위치를 확정된 수치로 간주하지 않고 경계 메타데이터를 포함합니다.
+   - JPL Approximate Positions Table 1 EM Bary proxy는 2026-07-28 Horizons
+     연구에서 total practical p99 기준에 실패했으므로 `technicalModelStatus: rejected`이며,
+     runtime fallback 또는 해석용 대체값으로 사용하지 않습니다.
 
 ## 5. 후속 과제
-- VSOP87 또는 JPL 모델의 재배포 라이선스/EMB 변환 수식 확정 및 `solarModelDecisionStatus` 해제
+- 사전 기준을 통과하는 대체 태양 모델의 기술 검증 및 별도 권리 검토
 - Placidus, Koch, Regiomontanus 등 하우스 시스템 도입
 - 노드, 키론 및 소행성 연산 지원
 - Aspect 패턴 (Stellium, Grand Trine, T-Square 등) 탐지
