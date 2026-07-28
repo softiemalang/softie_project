@@ -621,6 +621,23 @@ Tests must assert the manifest structure, fail-closed conditions, legacy separat
 **Status**: `open` (but `blocksImplementation: false`)
 **Decision**: Distribution mechanism (git LFS, local build script, etc.) is deferred. However, any subsequent implementation must pin the runner source, compiler version, build flags, binary hash, and architecture.
 
+### 22.3 Resolved ET boundaries
+
+The exact values and their complete acquisition/build/execution provenance are
+recorded in `de405-canonical-v2-boundary-resolution.md` after the official
+CSPICE N0067 resolver has passed its two-run byte-identity and grid-invariant
+gates. This section is intentionally pending until those gates pass.
+
+```yaml
+regularGridStartEt: "-3.1557168000000000e+09"
+regularGridEndExclusiveEt: "3.1872528000000000e+09"
+regularGridStepSeconds: "8.6400000000000000e+05"
+regularGridTimestampCount: 7342
+targetCount: 10
+expectedRowCount: 73420
+boundaryResolutionProvenance: de405-canonical-v2-boundary-resolution.md
+```
+
 ---
 
 ## 23. Implementation Readiness
