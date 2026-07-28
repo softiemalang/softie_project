@@ -9,8 +9,15 @@ or make astronomy available for interpretation.
 
 ```text
 solarModelDecisionStatus: provisional
-technicalModelStatus: blocked_by_reference_ephemeris_delta
-runtimeSelectionStatus: candidate_selected_for_feasibility_only
+technicalModelStatus: blocked_by_incomplete_de405_diagnosis
+runtimeSelectionStatus: not_selected
+de405ModelCoverage: 1599-12-09 through 2201-02-20
+subsetDe405ArtifactCoverage: 1950-01-01 through 2050-01-01
+fullRangeDe405ArtifactStatus: acquired_unvalidated
+fullRangeDe405DeclaredCoverage: 1599-12-09 through 2201-02-20
+officialDe405ReaderStatus: blocked_by_fortran_compiler_unavailable
+de405DirectValidationStatus: blocked_by_official_reader_toolchain_unavailable
+referenceEphemerisDeltaAttribution: confirmed_for_1950_2050_subset
 algorithmLineage: ERFA v2.0.1 eraEpv00 / SOFA 20231011-derived
 adaptationPolicy: controlled_permissive_adaptation
 copyrightOwnership: upstream ERFA copyright and BSD-3-Clause terms retained
@@ -20,6 +27,13 @@ productionSelectionStatus: not_selected
 availableForInterpretation: false
 ```
 
+The ERFA reference-delta diagnosis found that the selected official NAIF DE405
+artifact covers only 36,525 of the mandatory 73,051 cached dates. Its covered
+span supports the SSB→Sun explanation and passes the declared ERFA-vs-DE405
+diagnostic gates. The official JPL full-range candidate is acquired with
+declared 1599–2201 coverage, but `gfortran`, `flang`, and `f77` are unavailable
+for the official JPL reader; numerical full-range validation therefore remains
+blocked and the runtime model is not selected.
 The previously rejected paths remain rejected: IMCCE VSOP87 distribution rights
 are unresolved for this project; JPL Approximate Table 1 EM Bary failed the
 predeclared practical p99 criterion; Swiss Ephemeris has an AGPL/commercial
@@ -204,10 +218,11 @@ Horizons. It must separately measure frame transforms and bundle size, retain
 notice design, and leave production implementation, interpretation, and
 runtime inclusion out of scope.
 
-The subsequent feasibility result is recorded in
-[erfa-epv00-solar-feasibility.md](./erfa-epv00-solar-feasibility.md): the
-adaptation conforms to ERFA v2.0.1, but the current Horizons DE441
-barycentric-Earth comparison is `blocked_by_reference_ephemeris_delta`.
+The subsequent feasibility and coverage-limited reference-delta results are
+recorded in [erfa-epv00-solar-feasibility.md](./erfa-epv00-solar-feasibility.md)
+and [erfa-epv00-reference-ephemeris-delta.md](./erfa-epv00-reference-ephemeris-delta.md):
+the adaptation conforms to ERFA v2.0.1, but the full mandatory DE405 diagnosis
+is `blocked_by_incomplete_de405_diagnosis`.
 
 ## Official sources
 

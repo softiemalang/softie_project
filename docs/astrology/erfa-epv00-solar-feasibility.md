@@ -16,15 +16,20 @@ patentClause: none_explicit
 candidateStatus: selected_for_feasibility
 productionSelectionStatus: not_selected
 candidateRejectionStatus: not_rejected
-technicalModelStatus: blocked_by_reference_ephemeris_delta
-runtimeSelectionStatus: candidate_selected_for_feasibility_only
+technicalModelStatus: blocked_by_incomplete_de405_diagnosis
+runtimeSelectionStatus: not_selected
 availableForInterpretation: false
 ```
 
-The adaptation itself passed. The current-Horizons barycentric Earth vector did
-not meet the predeclared DE405-to-current-reference feasibility gate, so this
-work does **not** authorize production implementation or alter any threshold.
-This is not a rejection of ERFA or its heliocentric `pvh` model.
+The adaptation itself passed. The subsequent official-DE405 diagnosis confirms
+the component identity and passes for the selected NAIF artifact's 1950–2050
+coverage, but that subset artifact does not cover 36,526 mandatory 1900–2100
+samples. The official JPL full-range candidate is acquired with declared
+1599–2201 coverage, but `gfortran`, `flang`, and `f77` are unavailable, so it
+has not been numerically validated by an executable official reader. This work
+therefore
+does **not** authorize production implementation or alter any threshold. This
+is not a rejection of ERFA or its heliocentric `pvh` model.
 
 ## Baseline and provenance
 
@@ -124,8 +129,10 @@ The failed result is only `pvb` barycentric Earth **position**. `pvb` is not a
 required Solar Raw Core product output. Nevertheless, the predeclared
 barycentric gate is retained: it is neither deleted after the result nor used
 to justify a tolerance expansion, residual correction, or date exclusion.
-Production selection remains withheld until a DE405-to-DE441
-reference-ephemeris-delta diagnosis resolves this distinction.
+Production selection remains withheld until a complete DE405-to-DE441
+reference-ephemeris-delta diagnosis resolves this distinction. The current
+coverage-limited result is recorded in
+[erfa-epv00-reference-ephemeris-delta.md](./erfa-epv00-reference-ephemeris-delta.md).
 
 ## Frame, performance, and notice plan
 
@@ -149,12 +156,19 @@ Those files are intentionally unchanged now.
 ## Final result and next task
 
 ```text
-finalDecision: blocked_by_reference_ephemeris_delta
+finalDecision: blocked_by_incomplete_de405_diagnosis
 adaptationConformanceStatus: confirmed_against_erfa_v2_0_1
 heliocentricVectorValidationStatus: passed_against_current_Horizons_DE441
 earthToSunVectorValidationStatus: passed_against_current_Horizons_DE441
-barycentricVectorValidationStatus: blocked_by_reference_ephemeris_delta
-technicalModelStatus: blocked_by_reference_ephemeris_delta
+barycentricVectorValidationStatus: blocked_by_incomplete_de405_diagnosis
+de405ModelCoverage: 1599-12-09 through 2201-02-20
+subsetDe405ArtifactCoverage: 1950-01-01 through 2050-01-01
+fullRangeDe405ArtifactStatus: acquired_unvalidated
+fullRangeDe405DeclaredCoverage: 1599-12-09 through 2201-02-20
+officialDe405ReaderStatus: blocked_by_fortran_compiler_unavailable
+de405DirectValidationStatus: blocked_by_official_reader_toolchain_unavailable
+technicalModelStatus: blocked_by_incomplete_de405_diagnosis
+referenceEphemerisDeltaAttribution: confirmed_for_1950_2050_subset
 productionSelectionStatus: not_selected
 candidateRejectionStatus: not_rejected
 speedValidationStatus: confirmed_for_raw_vector_velocity
@@ -164,6 +178,8 @@ serviceIntegrationStatus: not_connected
 availableForInterpretation: false
 ```
 
-The next single task is to quantify the documented DE405-to-DE441 Earth/Sun
-and barycentric Earth delta under the same BCRS/TDB contracts. It must not
-change thresholds, add residual correction, or implement the Solar Core.
+The next single task is to make the located official full-range DE405 artifact
+executable with an official JPL reader, then complete the DE405-to-DE441
+Earth/Sun and barycentric-Earth delta under the same BCRS/TDB contracts for
+all mandatory timestamps. It must not change thresholds, add residual
+correction, or implement the Solar Core.

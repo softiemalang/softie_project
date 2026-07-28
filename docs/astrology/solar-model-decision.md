@@ -126,7 +126,7 @@ Mallang의 대원칙에 따라, **라이선스가 명확하지 않거나 수치�
 - **이유**:
   1. 고정확도 독립 구현 후보인 **VSOP87**은 공식 재배포/상용 런타임 이용 라이선스가 `unresolved` 상태입니다.
   2. **JPL Approximate Positions Table 1 EM Bary**는 Horizons 검증을 완료했으나 total practical 3D angular p99가 0.006731도로 0.005도 기준을 초과해 거부되었습니다. 최대값 통과만으로 후보를 채택하지 않습니다.
-  3. ERFA EPV00 controlled adaptation의 C→JavaScript 일치성은 통과했지만, 2026-07-28 Horizons DE441 barycentric Earth 비교가 사전 30 km gate를 초과했습니다. 따라서 `technicalModelStatus: blocked_by_reference_ephemeris_delta`이며 production runtime 모델·of-date transform·interpretation 사용은 아직 확정되지 않았습니다.
+  3. ERFA EPV00 controlled adaptation의 C→JavaScript 일치성과 DE441 `pvh` gate는 통과했습니다. 선택한 NAIF DE405 subset artifact의 1950–2050 coverage에서는 공식 reader 진단도 통과하고 SSB→Sun 계층 원인을 지지하지만, 필수 1900–2100 표본 중 36,526개가 그 subset artifact coverage 밖입니다. 공식 JPL full-range candidate는 확보했고 1599–2201 coverage를 선언하지만, `gfortran`·`flang`·`f77` 부재로 공식 JPL reader를 실행하지 못해 아직 수치 검증되지 않았습니다. 따라서 `technicalModelStatus: blocked_by_incomplete_de405_diagnosis`이며 production runtime 모델·of-date transform·interpretation 사용은 아직 확정되지 않았습니다.
 
 ---
 
@@ -136,8 +136,9 @@ Mallang의 대원칙에 따라, **라이선스가 명확하지 않거나 수치�
 2. **ERFA EPV00 temporary feasibility**: ERFA v2.0.1과 임시 JavaScript adaptation의 일치, 1900-2100 Horizons Earth(399) 벡터·속도·frame 검증, bundle 측정, notice 설계를 수행합니다.
 3. **권리 검토 분리**: feasibility 통과 뒤에도 실제 adapted source/coefficients의 고지와 배포 검토를 독립적으로 완료합니다.
 
-상세 연구 설계, 오라클 계약, 통계 및 산출물 해시는
-[jpl-approximate-solar-feasibility.md](./jpl-approximate-solar-feasibility.md)에 보존합니다.
+ERFA의 component 분해, 공식 DE405/CSPICE provenance, coverage 제한, 통계 및
+임시 산출물 해시는
+[erfa-epv00-reference-ephemeris-delta.md](./erfa-epv00-reference-ephemeris-delta.md)에 보존합니다.
 
 후보 권리표와 정책 판정은
 [solar-alternative-model-survey.md](./solar-alternative-model-survey.md)에 보존합니다.

@@ -40,7 +40,7 @@
      연구에서 total practical p99 기준에 실패했으므로 `technicalModelStatus: rejected`이며,
      runtime fallback 또는 해석용 대체값으로 사용하지 않습니다.
    - ERFA EPV00 후보를 이유로 JPL 후보의 거부 결과를 되돌리거나, ERFA를 runtime fallback으로 연결하지 않습니다.
-   - ERFA EPV00의 2026-07-28 feasibility는 current Horizons DE441 barycentric vector gate에서 `blocked_by_reference_ephemeris_delta` 상태이므로 production 또는 fallback에 연결하지 않습니다.
+   - ERFA EPV00의 2026-07-28 reference-delta diagnosis는 선택한 NAIF DE405 subset artifact의 1900–2100 coverage가 불완전하고, 확보한 공식 JPL full-range candidate를 읽을 `gfortran`·`flang`·`f77` 기반 공식 reader toolchain이 없어 `blocked_by_incomplete_de405_diagnosis` 상태입니다. full-range artifact 부재가 원인은 아니며, 비공식 parser나 wrapper를 사용하지 않았습니다. Subset SSB→Sun 진단이나 pvh-only temporary extraction을 production 또는 fallback에 연결하지 않습니다.
 
 ## 5. 후속 과제
 - 사전 기준을 통과하는 대체 태양 모델의 기술 검증 및 별도 권리 검토
