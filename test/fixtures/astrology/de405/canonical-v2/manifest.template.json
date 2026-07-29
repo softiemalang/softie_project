@@ -1,0 +1,21 @@
+{
+  "manifestSchemaVersion": 2,
+  "canonicalId": "de405-canonical-v2-regular-grid",
+  "canonical": true,
+  "status": "draft",
+  "provenanceStatus": "contract_ready",
+  "contractDocument": "docs/astrology/de405-canonical-v2-contract.md",
+  "primarySource": "official NAIF de405.bsp",
+  "upstreamReferenceSource": "JPL lnxp1600p2200.405",
+  "sourceFiles": { "spk": { "file": "de405.bsp", "sizeBytes": null, "sha256": null } },
+  "reader": { "name": "CSPICE", "version": "N0067" },
+  "runner": { "version": "de405-canonical-v2-runner", "binarySha256": null },
+  "requiredKernels": { "spk": "de405.bsp", "lsk": null },
+  "timeAxis": "CSPICE ET / TDB",
+  "regularGrid": { "regularGridStartEt": "-3.1557168000000000e+09", "regularGridEndExclusiveEt": "3.1872528000000000e+09", "regularGridStepSeconds": 864000, "regularGridTimestampCount": 7342 },
+  "targetCount": 10,
+  "expectedRowCount": 73420,
+  "targets": [{"targetId":1,"target":"MERCURY BARYCENTER","targetType":"barycenter","observerId":399,"included":true},{"targetId":2,"target":"VENUS BARYCENTER","targetType":"barycenter","observerId":399,"included":true},{"targetId":4,"target":"MARS BARYCENTER","targetType":"barycenter","observerId":399,"included":true},{"targetId":5,"target":"JUPITER BARYCENTER","targetType":"barycenter","observerId":399,"included":true},{"targetId":6,"target":"SATURN BARYCENTER","targetType":"barycenter","observerId":399,"included":true},{"targetId":7,"target":"URANUS BARYCENTER","targetType":"barycenter","observerId":399,"included":true},{"targetId":8,"target":"NEPTUNE BARYCENTER","targetType":"barycenter","observerId":399,"included":true},{"targetId":9,"target":"PLUTO BARYCENTER","targetType":"barycenter","observerId":399,"included":true},{"targetId":10,"target":"SUN","targetType":"body","observerId":399,"included":true},{"targetId":301,"target":"MOON","targetType":"body","observerId":399,"included":true}],
+  "observer": { "id": 399, "name": "EARTH" }, "frame": "J2000", "aberrationCorrection": "NONE", "units": { "position": "km", "velocity": "km/s" }, "serialization": "decimal string %.16e", "jsonlSchemaVersion": "de405-canonical-v2", "ordering": "etSeconds ascending, targetId ascending", "determinism": { "samePlatformByteIdentity": "required", "crossPlatformByteIdentity": "not_guaranteed", "crossPlatformNumericEquivalence": "future_validation" },
+  "output": { "file": null, "sizeBytes": null, "rowCount": null, "sha256": null, "generatedByRunnerSha256": null }, "generationCommand": "node scripts/generate-de405-canonical-v2.mjs", "createdByCommit": "b2fadee"
+}

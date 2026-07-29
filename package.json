@@ -8,6 +8,9 @@
     "build": "vite build",
     "test": "node --test",
     "preview": "vite preview",
+    "de405:v2:build-runner": "node tools/de405-cspice-runner/build.mjs",
+    "de405:v2:generate": "node scripts/generate-de405-canonical-v2.mjs",
+    "de405:v2:validate": "node scripts/validate-de405-canonical-v2.mjs",
     "postinstall": "node scripts/patch-rollup-native.mjs"
   },
   "dependencies": {
