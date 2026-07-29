@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 1,
+  "sampleCount": 36525,
+  "statusMismatch": 0,
+  "positionComponentKm": { "p95": 0.0087488949, "p99": 0.0089927471, "max": 0.0090330839 },
+  "positionNormKm": { "p95": 0.0091485549, "p99": 0.0091503162, "max": 0.0091509078 },
+  "velocityComponentKmPerSec": { "p95": 1.7375456e-9, "p99": 1.812793e-9, "max": 1.8221868e-9 },
+  "velocityNormKmPerSec": { "p95": 1.8215373e-9, "p99": 1.8225334e-9, "max": 1.8229023e-9 },
+  "worstEpochJd": 2433833,
+  "worstPositionResidualKm": [0.002111, -0.008169, -0.003543],
+  "positionNormSegmentMaxKm": { "start": 0.0091509078, "middle": 0.0091506716, "end": 0.0091503603 },
+  "fittedDriftKmPerDay": 8.2723967e-13,
+  "segmentBoundaryDiscontinuityDetected": false
+}
