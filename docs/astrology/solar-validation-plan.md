@@ -3,6 +3,38 @@
 ## 1. 개요
 본 문서는 `Mallang Solar Position Core v0` 구현체의 독립 검증을 위해 1차 오라클(JPL Horizons), 2차 오라클(IAU SOFA), 점성학 오라클(Swiss Ephemeris)의 역할 분담, API/파라미터 표준 계약, 검증 픽스처(Fixture) 범주, 정확도 허용 오차(Tolerance) 및 승격 기준을 정의합니다.
 
+### DE405-specific hierarchy addendum (2026-07-28)
+
+The generic Horizons/SOFA/Swiss Ephemeris plan above does not override the
+DE405 pvh-only contract. For DE405, the official JPL binary plus official
+`testeph.f` reader is the primary oracle; the official full reader and pvh-only
+must be bit-identical for position/velocity with status mismatch 0. The NAIF
+DE405 SPK plus CSPICE is a separate official conversion artifact and an
+independent cross-reference, not a strict-equality oracle.
+
+The former CSPICE `1e-6` km / `1e-12` km/s check is retained as historical
+diagnostic evidence. Gate D must use a versioned fingerprint and jointly assess
+sample/timestamp identity, status, component/norm distributions, worst vector,
+start/middle/end windows, drift, adjacent changes, segment continuity, and
+baseline changes. No single position tolerance may replace this contract.
+
+The hierarchy is confirmed, but numeric Gate D promotion is
+`blocked_by_cross_reference_numeric_policy_gap` until repeatability and an
+independent hard ceiling are evidenced. This addendum does not authorize any
+runtime model or production status change.
+
+### Reproducible repository runner
+
+The repository runner at `scripts/validate-de405-hierarchy.mjs` reads the
+versioned `test/fixtures/astrology/de405/manifest.json` and `baseline.json`.
+The manifest records artifact, timestamp, official-reader, and equivalence
+contracts; the baseline preserves the existing 36,525-row CSPICE overlap as
+change-detection evidence. Gate A/B/C failures and Gate D structural failures
+exit non-zero. An unset Gate D numeric envelope is reported as
+`needs_calibration`; it is not converted into a Gate C failure or an overall
+`passed`/`blocked` shortcut. The runner never updates either fixture.
+Changes to the baseline require a separate approval task.
+
 본 검증 데이터 생성 및 오라클 호출은 저장소 외부 임시 작업공간에서 독립 수행되며, 저장소 런타임 코드에 외부 엔진 라이브러리가 포함되지 않도록 Clean-Room 원칙을 엄격히 준수합니다.
 
 ---

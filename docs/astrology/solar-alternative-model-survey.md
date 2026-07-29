@@ -1,5 +1,9 @@
 # Solar Alternative Model Survey v0
 
+## Reference update
+
+ERFA EPV00 now has full 1900–2100 official-DE405 reader validation, but the required CSPICE overlap misses its strict contract. It is not selected for implementation; frame, of-date, tropical, apparent-Sun, and interpretive outputs remain out of scope.
+
 ## Purpose and current contract
 
 This survey selects one offline model candidate for a later *temporary*
@@ -9,14 +13,14 @@ or make astronomy available for interpretation.
 
 ```text
 solarModelDecisionStatus: provisional
-technicalModelStatus: blocked_by_incomplete_de405_diagnosis
+technicalModelStatus: blocked_by_de405_spk_provenance_gap
 runtimeSelectionStatus: not_selected
 de405ModelCoverage: 1599-12-09 through 2201-02-20
 subsetDe405ArtifactCoverage: 1950-01-01 through 2050-01-01
-fullRangeDe405ArtifactStatus: acquired_unvalidated
+fullRangeDe405ArtifactStatus: official_testpo_validated
 fullRangeDe405DeclaredCoverage: 1599-12-09 through 2201-02-20
-officialDe405ReaderStatus: blocked_by_fortran_compiler_unavailable
-de405DirectValidationStatus: blocked_by_official_reader_toolchain_unavailable
+officialDe405ReaderStatus: passed_full_jpl_testpo
+de405DirectValidationStatus: pvh_only_bit_identical_to_official_full_reader
 referenceEphemerisDeltaAttribution: confirmed_for_1950_2050_subset
 algorithmLineage: ERFA v2.0.1 eraEpv00 / SOFA 20231011-derived
 adaptationPolicy: controlled_permissive_adaptation
@@ -29,11 +33,11 @@ availableForInterpretation: false
 
 The ERFA reference-delta diagnosis found that the selected official NAIF DE405
 artifact covers only 36,525 of the mandatory 73,051 cached dates. Its covered
-span supports the SSB→Sun explanation and passes the declared ERFA-vs-DE405
-diagnostic gates. The official JPL full-range candidate is acquired with
-declared 1599–2201 coverage, but `gfortran`, `flang`, and `f77` are unavailable
-for the official JPL reader; numerical full-range validation therefore remains
-blocked and the runtime model is not selected.
+span supports the SSB→Sun explanation, but the CSPICE strict equality result is
+an independent-artifact delta rather than a pvh-only implementation failure.
+The official JPL full-range candidate passed the official reader self-validation
+and pvh-only direct equivalence; runtime selection remains blocked by the SPK
+provenance gap and the unfinalized Gate D numeric envelope.
 The previously rejected paths remain rejected: IMCCE VSOP87 distribution rights
 are unresolved for this project; JPL Approximate Table 1 EM Bary failed the
 predeclared practical p99 criterion; Swiss Ephemeris has an AGPL/commercial

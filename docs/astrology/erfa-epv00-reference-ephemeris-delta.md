@@ -1,6 +1,55 @@
 # ERFA EPV00 Reference-Ephemeris Delta Diagnosis
 
+## 2026-07-28 provenance closure
+
+The existing NAIF SPK is verified against the official directory checksum, but
+the original NIO, exact NIOSPK version, and complete conversion command/options
+are not available. The SPK-regeneration provenance prerequisites therefore
+remain incomplete and no regeneration was attempted.
+The final status is `blocked_by_de405_spk_provenance_gap`.
+
 ## Decision
+
+### Source hierarchy decision
+
+The official JPL DE405 binary plus official JPL reader is the primary oracle
+for pvh-only production accuracy. The official `testpo.405` evidence is 7,214
+rows, zero failures, tolerance `1e-13` AU/AU-day, maximum residual
+`5.3291e-14`, with identical O0/O2 output hashes. pvh-only is position/velocity
+component bit-identical to the official full reader with status mismatch 0.
+This direct comparison is the production accuracy Gate C.
+
+The official NAIF DE405 SPK plus CSPICE is a separate converted artifact and an
+independent cross-reference, not a strict-equality oracle for the JPL binary.
+The old `1e-6` km / `1e-12` km/s check remains historical diagnostic evidence,
+not a Gate C approval condition. Gate D jointly evaluates sample/timestamp
+identity, status, component/norm distributions, worst epoch/vector,
+start/middle/end windows, drift, adjacent changes, segment continuity, and a
+versioned baseline fingerprint. A single position threshold is not a
+replacement policy.
+
+The hierarchy is confirmed. Gate D numeric promotion remains
+`blocked_by_cross_reference_numeric_policy_gap` because repeatability and an
+independent hard ceiling have not yet been evidenced.
+
+## 2026-07-28 reader/CSPICE contract re-investigation
+
+The CSPICE calls are target 399/center 10 for Sun→Earth, 399/0 for
+SSB→Earth, 10/0 for SSB→Sun, and 10/399 for Earth→Sun, in J2000 and km/km/s.
+The official reader uses target 3 (EMB), 10 (Moon), 11 (Sun), and 12 (SSB),
+with `Earth = EMB - geocentricMoon/(1+EMRAT)` and header `EMRAT=81.30056`.
+The SPK contains one J2000/type-2 segment per object, including 399←3 and
+301←3; its internal Earth/Moon/EMRAT identity closes to machine precision.
+
+Correctly paired over all 36,525 rows, the Sun→Earth position residual is
+p95 0.0091486 km, p99 0.0091503 km, max 0.0091509 km (worst JD 2433833,
+components +0.002111/-0.008169/-0.003543 km); velocity p95/p99/max are
+1.8215e-9/1.8225e-9/1.8229e-9 km/s. Start, middle, and end windows are the
+same magnitude; fitted drift is 8.27e-13 km/day and no segment-boundary jump
+was found. This strongly supports a DE405→SPK representation/conversion
+difference, not a mapping or time-offset error. The NIOSPK comment identifies
+`/usr2/nio/gen/de405.nio` and the 1999 creation, but the source NIO file and
+exact NIOSPK version/options are unavailable; root cause remains unconfirmed.
 
 This out-of-repository diagnosis confirms the algebraic separation between
 ERFA's heliocentric Earth model and its SSB-to-Sun contribution for the
@@ -8,24 +57,28 @@ selected artifact's 1950–2050 subset. The subset NAIF `de405.bsp` artifact
 covers only 1950-01-01 through 2050-01-01. An official JPL full-range candidate
 has been acquired and declares coverage through 2201-02-20, but has not yet
 been numerically validated by an executable official reader in this study.
-Therefore no sample was silently removed, no threshold was changed, and pvh-only production
-implementation is **not** selected.
+Therefore no sample was silently removed and no threshold was changed;
+pvh-only production implementation is **not** selected because runtime
+selection remains separately blocked by unresolved SPK provenance and Gate D
+numeric policy.
 
 ```text
 solarModelDecisionStatus: provisional
 adaptationConformanceStatus: confirmed_against_erfa_v2_0_1
 heliocentricVectorValidationStatus: passed_against_current_Horizons_DE441
 earthToSunVectorValidationStatus: passed_against_current_Horizons_DE441
-barycentricVectorValidationStatus: blocked_by_incomplete_de405_diagnosis
+barycentricVectorValidationStatus: existing_spk_overlap_only
 de405ModelCoverage: 1599-12-09 through 2201-02-20
 subsetDe405ArtifactCoverage: 1950-01-01 through 2050-01-01
-fullRangeDe405ArtifactStatus: acquired_unvalidated
+fullRangeDe405ArtifactStatus: official_testpo_validated
 fullRangeDe405DeclaredCoverage: 1599-12-09 through 2201-02-20
-officialDe405ReaderStatus: blocked_by_fortran_compiler_unavailable
-de405DirectValidationStatus: blocked_by_official_reader_toolchain_unavailable
-technicalModelStatus: blocked_by_incomplete_de405_diagnosis
+officialDe405ReaderStatus: passed_full_jpl_testpo_and_spk_overlap
+de405DirectValidationStatus: pvh_only_bit_identical_to_official_full_reader
+technicalModelStatus: blocked_by_de405_spk_provenance_gap
+validationHierarchyStatus: confirmed
+cspiceAnomalyPolicyStatus: blocked_by_cross_reference_numeric_policy_gap
 referenceEphemerisDeltaAttribution: confirmed_for_1950_2050_subset
-referenceEphemerisDeltaStatus: partially_diagnosed_on_de405_coverage_only
+referenceEphemerisDeltaStatus: existing_spk_only_regeneration_blocked_by_provenance_gap
 runtimeSelectionStatus: not_selected
 productionOutputScope: not_implemented
 frameTransformStatus: not_implemented
@@ -124,14 +177,10 @@ constants. Official `testpo.405` identifies the downloaded Linux candidate as
 `DE-0405LE-0405` with the same endpoints. The JPL reader contract identifies
 Earth as target 3, Sun as 11, and SSB as 12, returning AU and AU/day.
 
-This is provenance and format evidence, not operational reader validation of
-the full-range candidate: the host has no Fortran compiler (`gfortran`,
-`flang`, and `f77` are unavailable), so the official `testeph.f` could not be
-compiled. Consequently this study did not infer body coverage, executable
-frame handling, segment behavior, or final state vectors from the file name,
-header, or test printout alone. The exact failure record is
-`officialDe405ReaderStatus: blocked_by_fortran_compiler_unavailable` and
-`de405DirectValidationStatus: blocked_by_official_reader_toolchain_unavailable`.
+This is provenance and format evidence for a separate full-range candidate,
+not evidence that it reproduces the historical NIOSPK SPK. The existing SPK
+overlap used the executable official CSPICE reader; no regenerated SPK was
+available to compare because A/B/C were incomplete.
 No unofficial parser, wrapper, PyPI package, MATLAB, GitHub conversion, or
 third-party artifact was substituted. NAIF TOBIN was used only to inspect a
 SPICE transfer-format `.xsp` file; it is not a JPL binary ephemeris reader and

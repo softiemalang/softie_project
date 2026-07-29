@@ -1,5 +1,30 @@
 # Astrology Core Unsupported Cases & Fail-Closed Behavior Policy
 
+## Solar raw-core boundary update
+
+The 9.15 m official-reader/CSPICE residual is not hidden by a tolerance or
+runtime correction. Until the DE405→SPK NIOSPK provenance is reproducible and
+the strict overlap gate passes, pvh-only remains unavailable for production.
+
+The existing DE405 SPK was compared through the official reader on 36,525
+epochs, but the unchanged strict gate failed. The original NIO artifact,
+exact NIOSPK version, and complete conversion command/options are unavailable,
+so the fail-closed status is `blocked_by_de405_spk_provenance_gap`:
+regeneration, substitute artifacts, tolerance changes, and corrections remain
+forbidden. Interpretation remains unavailable; frame bias, precession,
+ecliptic/equinox-of-date, tropical longitude, apparent Sun, notices, and
+service integration remain unsupported.
+
+For policy clarity, the strict CSPICE failure is not a pvh-only production
+failure. Production accuracy is gated by official JPL full-reader equivalence:
+pvh-only position/velocity components must remain bit-identical with zero
+status mismatch. CSPICE is an independent anomaly cross-reference. Its anomaly
+gate must inspect timestamp/sample identity, status, component and norm
+distributions, worst vector, temporal windows, drift, adjacent changes,
+segment continuity, and baseline fingerprint. Because repeatability and an
+independent hard ceiling have not yet been established, the cross-reference
+policy itself is `blocked_by_cross_reference_numeric_policy_gap`.
+
 ## 1. 개요
 본 문서는 `Mallang Astrology Rule Core v0`에서 의도적으로 미지원하거나 차단(blocked/unavailable/unsupported) 처리하는 항목과 그 대응 정책을 정리합니다.
 
@@ -40,7 +65,7 @@
      연구에서 total practical p99 기준에 실패했으므로 `technicalModelStatus: rejected`이며,
      runtime fallback 또는 해석용 대체값으로 사용하지 않습니다.
    - ERFA EPV00 후보를 이유로 JPL 후보의 거부 결과를 되돌리거나, ERFA를 runtime fallback으로 연결하지 않습니다.
-   - ERFA EPV00의 2026-07-28 reference-delta diagnosis는 선택한 NAIF DE405 subset artifact의 1900–2100 coverage가 불완전하고, 확보한 공식 JPL full-range candidate를 읽을 `gfortran`·`flang`·`f77` 기반 공식 reader toolchain이 없어 `blocked_by_incomplete_de405_diagnosis` 상태입니다. full-range artifact 부재가 원인은 아니며, 비공식 parser나 wrapper를 사용하지 않았습니다. Subset SSB→Sun 진단이나 pvh-only temporary extraction을 production 또는 fallback에 연결하지 않습니다.
+   - ERFA EPV00의 2026-07-28 DE405 SPK provenance 조사에서 공식 NAIF comment/checksum은 확인됐지만 원본 NIO·정확한 NIOSPK 버전·전체 변환 명령이 없어 `blocked_by_de405_spk_provenance_gap` 상태입니다. 비공식 parser, 유사 artifact, 추정 옵션, tolerance 완화, 보정 상수는 사용하지 않았고 pvh-only를 production 또는 fallback에 연결하지 않습니다.
 
 ## 5. 후속 과제
 - 사전 기준을 통과하는 대체 태양 모델의 기술 검증 및 별도 권리 검토

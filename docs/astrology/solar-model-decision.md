@@ -1,5 +1,38 @@
 # Solar Model Decision & Evaluation Matrix v0
 
+## 2026-07-28 decision update
+
+The overlap re-investigation separates the failure from the model itself:
+Earth/EMB/Moon/EMRAT contracts and time input are consistent, while the SPK
+conversion provenance is incomplete. The existing historical decision remains
+`blocked_by_de405_reader_contract_mismatch`, and this provenance task ends at
+the stronger reproduction status `blocked_by_de405_spk_provenance_gap`.
+
+The official NAIF artifact/checksum and existing-SPK reader comparison are
+verified. The 36,525-row existing-SPK overlap has status mismatch 0, but fails
+the unchanged gates (position component max `0.0090330839 km`; velocity
+component max `1.8221868e-9 km/s`). Original NIO, exact NIOSPK version, and
+the complete conversion command/options remain unavailable, so no regeneration
+or production implementation is approved.
+
+### DE405 oracle-role decision
+
+The official JPL DE405 binary and official JPL reader are the primary oracle
+for pvh-only. The official `testpo.405` run passed all 7,214 rows with zero
+failures, tolerance `1e-13` AU/AU-day, maximum residual `5.3291e-14`, and
+identical O0/O2 output hashes. pvh-only is bit-identical to the official full
+reader for position and velocity, with status mismatch 0. This direct
+equivalence is the production accuracy Gate C.
+
+The NAIF DE405 SPK/CSPICE result is a separate official conversion artifact and
+is retained as Gate D independent cross-reference. The old `1e-6` km /
+`1e-12` km/s strict equality is not a production approval requirement and its
+failure is not interpreted as a pvh-only defect. Gate D instead requires a
+versioned baseline fingerprint plus distribution, drift, continuity, segment,
+status, and timestamp-shape checks. Repeatability and hard-ceiling evidence is
+not yet sufficient to set its numeric envelope, so the policy remains
+`blocked_by_cross_reference_numeric_policy_gap`.
+
 ## 1. 개요
 본 문서는 Mallang Solar Position Core v0의 역법 계산 모델을 확정하기 위해 검토한 5개 천문 모델 후보(Candidate A~E)의 명세, 출처, 라이선스, 좌표/시간 계약, 정확도 및 평가 매트릭스를 기록합니다.
 
@@ -126,7 +159,7 @@ Mallang의 대원칙에 따라, **라이선스가 명확하지 않거나 수치�
 - **이유**:
   1. 고정확도 독립 구현 후보인 **VSOP87**은 공식 재배포/상용 런타임 이용 라이선스가 `unresolved` 상태입니다.
   2. **JPL Approximate Positions Table 1 EM Bary**는 Horizons 검증을 완료했으나 total practical 3D angular p99가 0.006731도로 0.005도 기준을 초과해 거부되었습니다. 최대값 통과만으로 후보를 채택하지 않습니다.
-  3. ERFA EPV00 controlled adaptation의 C→JavaScript 일치성과 DE441 `pvh` gate는 통과했습니다. 선택한 NAIF DE405 subset artifact의 1950–2050 coverage에서는 공식 reader 진단도 통과하고 SSB→Sun 계층 원인을 지지하지만, 필수 1900–2100 표본 중 36,526개가 그 subset artifact coverage 밖입니다. 공식 JPL full-range candidate는 확보했고 1599–2201 coverage를 선언하지만, `gfortran`·`flang`·`f77` 부재로 공식 JPL reader를 실행하지 못해 아직 수치 검증되지 않았습니다. 따라서 `technicalModelStatus: blocked_by_incomplete_de405_diagnosis`이며 production runtime 모델·of-date transform·interpretation 사용은 아직 확정되지 않았습니다.
+  3. ERFA EPV00 controlled adaptation의 C→JavaScript 일치성과 DE441 `pvh` gate는 통과했습니다. 선택한 NAIF DE405 subset artifact의 1950–2050 coverage에서는 공식 reader 진단도 통과하고 SSB→Sun 계층 원인을 지지하지만, 기존 SPK의 strict overlap은 component gate를 실패했습니다. 원본 NIO·정확한 NIOSPK 버전·전체 변환 명령이 검증되지 않아 `technicalModelStatus: blocked_by_de405_spk_provenance_gap`이며 production runtime 모델·of-date transform·interpretation 사용은 아직 확정되지 않았습니다.
 
 ---
 

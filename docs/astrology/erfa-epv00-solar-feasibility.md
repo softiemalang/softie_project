@@ -1,6 +1,34 @@
 # ERFA EPV00 Solar Feasibility v0
 
+## DE405 SPK provenance closure (2026-07-28)
+
+The existing NAIF DE405 SPK comment and checksum are verified, but its original
+NIO artifact, exact NIOSPK version, and complete conversion command/options are
+not recoverable from the official materials. The SPK-regeneration provenance
+prerequisites are therefore incomplete; regeneration and regenerated-SPK strict
+overlap were not performed.
+Final status: `blocked_by_de405_spk_provenance_gap`.
+
 ## Scope and decision
+
+The follow-up contract investigation found no Earth/EMB identity failure and
+no evidence of UTC/TAI/TT conversion in the CSPICE path (`ET=(JD-2451545.0)*86400`).
+The strict overlap gate remains failed because the likely SPK conversion
+representation difference is not reproducibly attributable with the available
+NIO provenance.
+
+That historical strict overlap is not the pvh-only production oracle. The
+primary oracle is the official JPL DE405 binary through the official reader;
+the official full reader and pvh-only are bit-identical for position and
+velocity, with status mismatch 0. CSPICE remains an independent official-SPK
+cross-reference. Its Gate D role is anomaly detection over counts, timestamp
+identity, status, distributions, drift, continuity, segment boundaries, and
+baseline fingerprint—not a single mm-level equality test.
+
+The Gate A/B/C/D hierarchy is confirmed, but Gate D has no evidence-based
+repeatability margin or independent hard ceiling yet. The policy status is
+`blocked_by_cross_reference_numeric_policy_gap`; this does not change runtime
+availability or authorize production selection.
 
 This is an out-of-repository research validation only. No Solar Core, frame
 transform, apparent-Sun calculation, package, runtime dependency, ERFA source,
@@ -16,20 +44,17 @@ patentClause: none_explicit
 candidateStatus: selected_for_feasibility
 productionSelectionStatus: not_selected
 candidateRejectionStatus: not_rejected
-technicalModelStatus: blocked_by_incomplete_de405_diagnosis
+technicalModelStatus: blocked_by_de405_spk_provenance_gap
 runtimeSelectionStatus: not_selected
 availableForInterpretation: false
 ```
 
-The adaptation itself passed. The subsequent official-DE405 diagnosis confirms
+The adaptation itself passed. The existing-SPK official-reader diagnosis confirms
 the component identity and passes for the selected NAIF artifact's 1950–2050
-coverage, but that subset artifact does not cover 36,526 mandatory 1900–2100
-samples. The official JPL full-range candidate is acquired with declared
-1599–2201 coverage, but `gfortran`, `flang`, and `f77` are unavailable, so it
-has not been numerically validated by an executable official reader. This work
-therefore
-does **not** authorize production implementation or alter any threshold. This
-is not a rejection of ERFA or its heliocentric `pvh` model.
+coverage. Its 36,525-row overlap fails the unchanged strict component gates,
+and the missing NIO provenance prevents attributing or reproducing the SPK
+conversion. This work therefore does **not** authorize production
+implementation or alter any threshold.
 
 ## Baseline and provenance
 
@@ -156,18 +181,19 @@ Those files are intentionally unchanged now.
 ## Final result and next task
 
 ```text
-finalDecision: blocked_by_incomplete_de405_diagnosis
+finalDecision: blocked_by_de405_spk_provenance_gap
 adaptationConformanceStatus: confirmed_against_erfa_v2_0_1
 heliocentricVectorValidationStatus: passed_against_current_Horizons_DE441
 earthToSunVectorValidationStatus: passed_against_current_Horizons_DE441
-barycentricVectorValidationStatus: blocked_by_incomplete_de405_diagnosis
+barycentricVectorValidationStatus: existing_spk_overlap_only
 de405ModelCoverage: 1599-12-09 through 2201-02-20
 subsetDe405ArtifactCoverage: 1950-01-01 through 2050-01-01
-fullRangeDe405ArtifactStatus: acquired_unvalidated
+fullRangeDe405ArtifactStatus: official_testpo_validated
 fullRangeDe405DeclaredCoverage: 1599-12-09 through 2201-02-20
-officialDe405ReaderStatus: blocked_by_fortran_compiler_unavailable
-de405DirectValidationStatus: blocked_by_official_reader_toolchain_unavailable
-technicalModelStatus: blocked_by_incomplete_de405_diagnosis
+officialDe405ReaderStatus: passed_full_jpl_testpo_and_spk_overlap
+de405DirectValidationStatus: pvh_only_bit_identical_to_official_full_reader
+technicalModelStatus: blocked_by_de405_spk_provenance_gap
+cspiceAnomalyPolicyStatus: blocked_by_cross_reference_numeric_policy_gap
 referenceEphemerisDeltaAttribution: confirmed_for_1950_2050_subset
 productionSelectionStatus: not_selected
 candidateRejectionStatus: not_rejected
@@ -178,8 +204,8 @@ serviceIntegrationStatus: not_connected
 availableForInterpretation: false
 ```
 
-The next single task is to make the located official full-range DE405 artifact
-executable with an official JPL reader, then complete the DE405-to-DE441
-Earth/Sun and barycentric-Earth delta under the same BCRS/TDB contracts for
-all mandatory timestamps. It must not change thresholds, add residual
-correction, or implement the Solar Core.
+The next single task is to obtain and independently hash the original NIO,
+identify the exact NIOSPK version, and recover the complete conversion command;
+only then may conditional regeneration and regenerated-SPK overlap be considered.
+That work must not change thresholds, add residual correction, or implement the
+Solar Core.
