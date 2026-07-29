@@ -31,6 +31,16 @@ static void json_string(const char *value) {
   putchar('"');
 }
 
+static void json_string_file(FILE *output, const char *value) {
+  fputc('"', output);
+  for (const unsigned char *p = (const unsigned char *)value; *p; p++) {
+    if (*p == '"' || *p == '\\') { fputc('\\', output); fputc(*p, output); }
+    else if (*p < 0x20) fprintf(output, "\\u%04x", *p);
+    else fputc(*p, output);
+  }
+  fputc('"', output);
+}
+
 static int exact_int(SpiceDouble value, SpiceInt *out) {
   if (!isfinite(value) || trunc(value) != value || value < 1.0 || value > (SpiceDouble)INT32_MAX) return 0;
   *out = (SpiceInt)value;
@@ -97,6 +107,92 @@ static uint64_t bits(SpiceDouble value) { uint64_t out; memcpy(&out, &value, siz
 static uint64_t ordered_bits(SpiceDouble value) { uint64_t b = bits(value); return (b & UINT64_C(0x8000000000000000)) ? ~b + 1 : b | UINT64_C(0x8000000000000000); }
 static uint64_t ulp_distance(SpiceDouble a, SpiceDouble b) { uint64_t x = ordered_bits(a), y = ordered_bits(b); return x > y ? x - y : y - x; }
 
+static int read_record(SpiceInt handle, const Type2Segment *s, SpiceInt index, SpiceDouble **record);
+static int evaluate_record(SpiceInt handle, const Type2Segment *s, SpiceInt index, SpiceDouble et, SpiceDouble state[6], SpiceDouble *mid, SpiceDouble *radius, SpiceDouble *normalized);
+
+static void print_json_string_value(const char *value) {
+  json_string(value);
+}
+
+static int json_field_start(const char *line, const char *field, const char **value) {
+  char needle[128];
+  int written = snprintf(needle, sizeof(needle), "\"%s\":", field);
+  if (written < 0 || (size_t)written >= sizeof(needle)) return 0;
+  const char *found = strstr(line, needle);
+  if (!found) return 0;
+  *value = found + written;
+  return 1;
+}
+
+static int json_string_field(const char *line, const char *field, char *out, size_t capacity) {
+  const char *value = NULL;
+  if (!json_field_start(line, field, &value) || *value != '"' || capacity == 0) return 0;
+  value++;
+  size_t length = 0;
+  while (value[length] && value[length] != '"') length++;
+  if (!value[length] || length + 1 > capacity) return 0;
+  memcpy(out, value, length);
+  out[length] = '\0';
+  return 1;
+}
+
+static int json_number_field(const char *line, const char *field, SpiceDouble *out) {
+  const char *value = NULL, *end = NULL;
+  if (!json_field_start(line, field, &value)) return 0;
+  *out = strtod(value, (char **)&end);
+  return end != value && isfinite(*out);
+}
+
+static int json_int_field(const char *line, const char *field, SpiceInt *out) {
+  SpiceDouble value;
+  if (!json_number_field(line, field, &value) || trunc(value) != value || value < (SpiceDouble)INT32_MIN || value > (SpiceDouble)INT32_MAX) return 0;
+  *out = (SpiceInt)value;
+  return 1;
+}
+
+static int json_hex_field(const char *line, const char *field, uint64_t *out) {
+  char text[32];
+  if (!json_string_field(line, field, text, sizeof(text)) || strncmp(text, "0x", 2) != 0) return 0;
+  char *end = NULL;
+  unsigned long long value = strtoull(text + 2, &end, 16);
+  if (end == text + 2 || *end != '\0') return 0;
+  *out = (uint64_t)value;
+  return 1;
+}
+
+static const char *case_name(SpiceInt target) {
+  switch (target) {
+    case 1: return "mercury-barycenter";
+    case 2: return "venus-barycenter";
+    case 4: return "mars-barycenter";
+    case 5: return "jupiter-barycenter";
+    case 6: return "saturn-barycenter";
+    case 7: return "uranus-barycenter";
+    case 8: return "neptune-barycenter";
+    case 9: return "pluto-barycenter";
+    case 10: return "sun";
+    case 301: return "moon";
+    default: return "unsupported-target";
+  }
+}
+
+static void print_sample_manifest(const Type2Segment *s, int ordinal, SpiceInt record, SpiceInt knot, const char *kind, SpiceDouble et, SpiceDouble directory_knot, SpiceDouble stored_knot, const char *knot_status) {
+  uint64_t et_bits = bits(et);
+  printf("{\"schemaVersion\":1,\"recordType\":\"de405_spk_type2_sweep_sample\",\"sampleId\":\"");
+  printf("segment-%d-", ordinal);
+  if (record >= 0) printf("record-%d-%s\"", record, kind);
+  else printf("knot-%d-%s\"", knot, kind);
+  printf(",\"comparisonCaseId\":"); print_json_string_value(case_name(s->ic[0]));
+  printf(",\"targetId\":%d,\"centerId\":399,\"frameId\":%d,\"segmentOrdinal\":%d,\"spkSegmentCenterId\":%d,\"recordIndex\":", s->ic[0], s->ic[2], ordinal, s->ic[1]);
+  if (record >= 0) printf("%d", record); else printf("null");
+  printf(",\"knotIndex\":");
+  if (knot >= 0) printf("%d", knot); else printf("null");
+  printf(",\"epochKind\":"); print_json_string_value(kind);
+  printf(",\"queryEt\":%.17g,\"queryEtHex\":\"0x%016" PRIx64 "\",\"metadataStatus\":\"%s\"", et, et_bits, s->valid ? "verified" : "metadata_invalid");
+  if (knot >= 0) printf(",\"directoryKnotEt\":%.17g,\"storedKnotEt\":%.17g,\"knotIdentityStatus\":\"%s\"", directory_knot, stored_knot, knot_status);
+  printf("}\n");
+}
+
 static int read_record(SpiceInt handle, const Type2Segment *s, SpiceInt index, SpiceDouble **record) {
   if (!s->valid || index < 0 || index >= s->n) return 0;
   SpiceInt begin = s->begin + index * s->rsize;
@@ -124,6 +220,133 @@ static int evaluate_record(SpiceInt handle, const Type2Segment *s, SpiceInt inde
   return !failed_c();
 }
 
+static int emit_sweep_manifest(SpiceInt handle, const Type2Segment *segments, int count) {
+  int invalid = 0;
+  for (int i = 0; i < count; i++) {
+    const Type2Segment *s = &segments[i];
+    if (s->ic[3] != 2 || s->ic[2] != 1 ||
+        !(s->ic[0] == 1 || s->ic[0] == 2 || s->ic[0] == 4 ||
+          s->ic[0] == 5 || s->ic[0] == 6 || s->ic[0] == 7 ||
+          s->ic[0] == 8 || s->ic[0] == 9 || s->ic[0] == 10 ||
+          s->ic[0] == 301)) continue;
+    if (!s->valid) { invalid = 1; continue; }
+    SpiceDouble *records = malloc((size_t)s->n * (size_t)s->rsize * sizeof(*records));
+    if (!records) fail("sweep record allocation failed");
+    dafgda_c(handle, s->begin, s->end - 4, records);
+    if (failed_c()) fail("sweep record extraction failed");
+    for (SpiceInt record = 0; record < s->n; record++) {
+      SpiceDouble *row = records + (size_t)record * s->rsize;
+      SpiceDouble mid = row[0], radius = row[1];
+      if (!isfinite(mid) || !isfinite(radius) || radius <= 0.0) { invalid = 1; continue; }
+      print_sample_manifest(s, i, record, -1, "record_quarter", mid - 0.5 * radius, 0.0, 0.0, "not_applicable");
+      print_sample_manifest(s, i, record, -1, "record_midpoint", mid, 0.0, 0.0, "not_applicable");
+      print_sample_manifest(s, i, record, -1, "record_three_quarter", mid + 0.5 * radius, 0.0, 0.0, "not_applicable");
+    }
+    for (SpiceInt knot = 1; knot < s->n; knot++) {
+      SpiceDouble *previous = records + (size_t)(knot - 1) * s->rsize;
+      SpiceDouble *next = records + (size_t)knot * s->rsize;
+      SpiceDouble directory_knot = s->init + knot * s->intlen;
+      SpiceDouble stored_knot = previous[0] + previous[1];
+      SpiceDouble next_start = next[0] - next[1];
+      int identical = bits(directory_knot) == bits(stored_knot) && bits(directory_knot) == bits(next_start);
+      const char *identity_status = identical ? "verified" : "mismatch";
+      if (!identical) invalid = 1;
+      print_sample_manifest(s, i, -1, knot, "next_down_knot", nextafter(directory_knot, -INFINITY), directory_knot, stored_knot, identity_status);
+      print_sample_manifest(s, i, -1, knot, "exact_knot", directory_knot, directory_knot, stored_knot, identity_status);
+      print_sample_manifest(s, i, -1, knot, "next_up_knot", nextafter(directory_knot, INFINITY), directory_knot, stored_knot, identity_status);
+    }
+    print_sample_manifest(s, i, 0, -1, "segment_coverage_start", s->dc[0], 0.0, 0.0, "not_applicable");
+    print_sample_manifest(s, i, s->n - 1, -1, "segment_coverage_end", s->dc[1], 0.0, 0.0, "not_applicable");
+    free(records);
+  }
+  return invalid ? 1 : 0;
+}
+
+static int evaluate_batch(SpiceInt handle, const Type2Segment *segments, int count, const char *input_path, const char *output_path) {
+  FILE *input = input_path ? fopen(input_path, "rb") : stdin;
+  FILE *output = output_path ? fopen(output_path, "wb") : stdout;
+  if (!input) fail("batch input open failed");
+  if (!output) fail("batch output open failed");
+  char line[8192], sample_id[512];
+  int failed = 0;
+  while (fgets(line, sizeof(line), input)) {
+    if (!strchr(line, '\n') && !feof(input)) { failed = 1; continue; }
+    SpiceDouble et = 0.0;
+    SpiceInt target = 0, center = 0, frame = 0;
+    uint64_t et_bits = 0;
+    if (!json_string_field(line, "sampleId", sample_id, sizeof(sample_id)) ||
+        !json_int_field(line, "targetId", &target) || !json_int_field(line, "centerId", &center) ||
+        !json_int_field(line, "frameId", &frame) || !json_hex_field(line, "queryEtHex", &et_bits)) {
+      failed = 1;
+      continue;
+    }
+    memcpy(&et, &et_bits, sizeof(et));
+    if (!isfinite(et)) { failed = 1; continue; }
+    int matching[8], matching_count = 0;
+    for (int i = 0; i < count; i++) {
+      const Type2Segment *s = &segments[i];
+      SpiceDouble record_coverage_start = s->init;
+      SpiceDouble record_coverage_end = s->init + s->n * s->intlen;
+      if (s->ic[3] == 2 && s->ic[0] == target && s->ic[2] == frame && et >= record_coverage_start && et <= record_coverage_end) {
+        if (matching_count < (int)(sizeof(matching) / sizeof(matching[0]))) matching[matching_count++] = i;
+      }
+    }
+    if (matching_count == 0) {
+      fprintf(output, "{\"schemaVersion\":1,\"recordType\":\"de405_spk_type2_batch_state\",\"sampleId\":");
+      json_string_file(output, sample_id);
+      fprintf(output, ",\"queryEt\":%.17g,\"queryEtHex\":\"0x%016" PRIx64 "\",\"targetId\":%d,\"centerId\":%d,\"frameId\":%d,\"segmentOrdinal\":null,\"spkSegmentCenterId\":null,\"selectedRecordIndex\":null,\"selectionEvidenceStatus\":\"out_of_coverage\",\"normalizedTime\":null,\"stateKmKmPerSec\":null}\n", et, et_bits, target, center, frame);
+      continue;
+    }
+    const Type2Segment *s = &segments[matching[0]];
+    SpiceInt selected = -1;
+    SpiceDouble selected_mid = 0.0, selected_radius = 0.0, selected_normalized = 0.0;
+    SpiceInt base = (SpiceInt)floor((et - s->init) / s->intlen);
+    if (base < 0) base = 0;
+    if (base >= s->n) base = s->n - 1;
+    SpiceDouble reference[6]; SpiceInt reference_id = s->ic[2], reference_center = s->ic[1];
+    spkpvn_c(handle, s->sum, et, &reference_id, reference, &reference_center);
+    if (failed_c()) fail("SPK batch evaluation failed");
+    for (int offset = -1; offset <= 1; offset++) {
+      SpiceInt candidate = base + offset;
+      SpiceDouble state[6], mid = 0.0, radius = 0.0, normalized = 0.0;
+      if (candidate < 0 || candidate >= s->n || !evaluate_record(handle, s, candidate, et, state, &mid, &radius, &normalized)) continue;
+      int match = 1;
+      for (int axis = 0; axis < 6; axis++) if (bits(state[axis]) != bits(reference[axis])) match = 0;
+      if (match) {
+        if (selected >= 0) selected = -2;
+        else { selected = candidate; selected_mid = mid; selected_radius = radius; selected_normalized = normalized; }
+      }
+    }
+    const char *status = matching_count > 1 ? "selection_ambiguous" : (selected >= 0 ? "verified" : "selection_ambiguous");
+    /* Evidence ambiguity is a row-level result; the batch must still emit every sample. */
+    if (et < s->dc[0] || et > s->dc[1]) {
+      fprintf(output, "{\"schemaVersion\":1,\"recordType\":\"de405_spk_type2_batch_state\",\"sampleId\":");
+      json_string_file(output, sample_id);
+      fprintf(output, ",\"queryEt\":%.17g,\"queryEtHex\":\"0x%016" PRIx64 "\",\"targetId\":%d,\"centerId\":%d,\"frameId\":%d,\"segmentOrdinal\":%d,\"spkSegmentCenterId\":%d,\"selectedRecordIndex\":", et, et_bits, target, center, frame, matching[0], s->ic[1]);
+      if (selected >= 0) fprintf(output, "%d", selected); else fprintf(output, "null");
+      fprintf(output, ",\"selectionEvidenceStatus\":\"out_of_coverage\",\"normalizedTime\":");
+      if (selected >= 0) fprintf(output, "%.17g", selected_normalized); else fprintf(output, "null");
+      fprintf(output, ",\"recordMidEt\":%.17g,\"recordRadiusSec\":%.17g,\"stateKmKmPerSec\":null}\n", selected_mid, selected_radius);
+      continue;
+    }
+    SpiceDouble output_state[6], light_time;
+    spkez_c(target, et, "J2000", "NONE", center, output_state, &light_time);
+    if (failed_c()) fail("SPK batch observer-state evaluation failed");
+    fprintf(output, "{\"schemaVersion\":1,\"recordType\":\"de405_spk_type2_batch_state\",\"sampleId\":");
+    json_string_file(output, sample_id);
+    fprintf(output, ",\"queryEt\":%.17g,\"queryEtHex\":\"0x%016" PRIx64 "\",\"targetId\":%d,\"centerId\":%d,\"frameId\":%d,\"segmentOrdinal\":%d,\"spkSegmentCenterId\":%d,\"selectedRecordIndex\":", et, et_bits, target, center, frame, matching[0], s->ic[1]);
+    if (selected >= 0) fprintf(output, "%d", selected); else fprintf(output, "null");
+    fprintf(output, ",\"selectionEvidenceStatus\":\"%s\",\"normalizedTime\":", status);
+    if (selected >= 0) fprintf(output, "%.17g", selected_normalized); else fprintf(output, "null");
+    fprintf(output, ",\"recordMidEt\":%.17g,\"recordRadiusSec\":%.17g,\"stateKmKmPerSec\":", selected_mid, selected_radius);
+    fprintf(output, "[%.17g,%.17g,%.17g,%.17g,%.17g,%.17g]", output_state[0], output_state[1], output_state[2], output_state[3], output_state[4], output_state[5]);
+    fprintf(output, "}\n");
+  }
+  if (input_path) fclose(input);
+  if (output_path) fclose(output);
+  return failed ? 1 : 0;
+}
+
 static void print_selection(const Type2Segment *s, int ordinal, SpiceInt knot, SpiceDouble et, const char *kind, const SpiceInt *candidates, int candidate_count, const char *status, SpiceInt selected, const SpiceDouble states[][6], const SpiceDouble mids[], const SpiceDouble radii[], const SpiceDouble normalized[], const SpiceDouble spice_state[6]) {
   printf("{\"schemaVersion\":1,\"recordType\":\"spk_type2_record_selection\",\"boundaryId\":\"target-%d-knot-%d\",\"targetId\":%d,\"centerId\":%d,\"frameId\":%d,\"segmentOrdinal\":%d,\"segmentId\":", s->ic[0], knot, s->ic[0], s->ic[1], s->ic[2], ordinal);
   json_string(s->id);
@@ -147,12 +370,14 @@ int main(int argc, char **argv) {
   setlocale(LC_NUMERIC, "C"); erract_c("SET", 6, "RETURN");
   if (argc < 2) { fprintf(stderr, "mode required\n"); return 2; }
   if (!strcmp(argv[1], "--version")) { puts("{\"runnerVersion\":\"de405-canonical-v2-runner\",\"cspiceToolkitVersion\":\"N0067\",\"testOnly\":false}"); return 0; }
-  const char *spk = NULL, *out = NULL; int target = 0, knot = -1;
-  for (int i = 2; i + 1 < argc; i++) { if (!strcmp(argv[i], "--spk")) spk = argv[++i]; else if (!strcmp(argv[i], "--output")) out = argv[++i]; else if (!strcmp(argv[i], "--target-id")) target = atoi(argv[++i]); else if (!strcmp(argv[i], "--knot-index")) knot = atoi(argv[++i]); }
+  const char *spk = NULL, *out = NULL, *input_jsonl = NULL; int target = 0, knot = -1;
+  for (int i = 2; i + 1 < argc; i++) { if (!strcmp(argv[i], "--spk")) spk = argv[++i]; else if (!strcmp(argv[i], "--output") || !strcmp(argv[i], "--output-jsonl")) out = argv[++i]; else if (!strcmp(argv[i], "--input-jsonl")) input_jsonl = argv[++i]; else if (!strcmp(argv[i], "--target-id")) target = atoi(argv[++i]); else if (!strcmp(argv[i], "--knot-index")) knot = atoi(argv[++i]); }
   if (!spk) fail("missing SPK argument");
   furnsh_c(spk); if (failed_c()) fail("SPK load failed");
   SpiceInt handle; dafopr_c(spk, &handle); if (failed_c()) fail("DAF open failed");
   Type2Segment segments[256]; int count = load_type2_segments(handle, segments, 256);
+  if (!strcmp(argv[1], "--emit-spk-type2-sweep-manifest")) { int status = emit_sweep_manifest(handle, segments, count); dafcls_c(handle); kclear_c(); return status; }
+  if (!strcmp(argv[1], "--evaluate-spk-type2-batch")) { int status = evaluate_batch(handle, segments, count, input_jsonl, out); dafcls_c(handle); kclear_c(); return status; }
   if (!strcmp(argv[1], "--dump-spk-type2-segments")) { int invalid = 0; for (int i = 0; i < count; i++) if (segments[i].ic[3] == 2) { print_metadata(&segments[i], i); if (!segments[i].valid) invalid = 1; } dafcls_c(handle); kclear_c(); return invalid ? 1 : 0; }
   if (!strcmp(argv[1], "--inspect-spk-type2-knot")) {
     if (target == 0 || knot < 1) fail("target-id and positive knot-index are required");

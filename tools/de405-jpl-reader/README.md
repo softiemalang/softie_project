@@ -28,3 +28,16 @@ This directory contains the build tooling, Fortran reader wrapper source, and ex
 ## Single Authority Serialization
 
 The Fortran runner emits raw machine-readable state streams (IEEE-754 double precision components). The Node generator (`scripts/generate-de405-jpl-canonical-v2.mjs`) is the single authority for `%.16e` decimal formatting, negative-zero normalization, JSONL key ordering, LF line endings, manifest generation, and atomic writes.
+
+For arbitrary-ET overlap evidence, the runner also accepts a common JSONL query
+manifest in one execution:
+
+```bash
+node tools/de405-jpl-reader/run.mjs --evaluate-et-batch \
+  --binary tools/de405-jpl-reader/fixtures/lnxp1600p2200.405 \
+  --input-jsonl sweep.manifest.jsonl --output-jsonl jpl.states.jsonl
+```
+
+Each row retains `sampleId` and `queryEtHex`, calls the official `DPLEPH` entry
+point, and reports the JPL outer record and target subinterval metadata. The
+existing stream mode remains unchanged.

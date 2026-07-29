@@ -878,3 +878,28 @@ metadata and selection status per sample. Its `spkRecordMetadataStatus` may be
 `verified`, `metadata_invalid`, `selection_ambiguous`, or `unavailable`. This
 status is independent of the existing candidate tolerance result; observed
 residuals above the candidate continue to return exit code `1`.
+
+## 21. Arbitrary-ET Complete Residual Sweep
+
+The complete sweep is a separate evidence workflow and does not modify the
+candidate contract:
+
+```bash
+node scripts/run-de405-jpl-cspice-residual-sweep.mjs \
+  --spk /path/to/de405.bsp \
+  --jpl-binary tools/de405-jpl-reader/fixtures/lnxp1600p2200.405
+```
+
+The CSPICE runner creates the query manifest from stored Type 2 `MID`/`RADIUS`
+metadata. Each logical record contributes `record_quarter`, `record_midpoint`,
+and `record_three_quarter`; each internal knot contributes `next_down_knot`,
+`exact_knot`, and `next_up_knot`; and each selected segment contributes coverage
+start/end rows. JPL and CSPICE consume the same JSONL manifest, and the Node
+orchestrator joins their outputs by `sampleId` while streaming raw evidence to
+JSONL files. Checkpoints include the manifest, SPK, JPL binary, and contract
+hash/version identity and cannot be reused across changed inputs.
+
+The summary records `complete_sweep`, `complete_sweep_with_evidence_failures`,
+or `partial_sweep`. A partial sweep or any evidence failure blocks an active
+tolerance proposal. `selection_ambiguous` and `out_of_coverage` rows remain in
+the raw evidence; they are never dropped to improve residual statistics.
