@@ -627,7 +627,7 @@ From previous conversation records:
 | Declared tolerance | `1e-13` AU/AU-day |
 | Maximum residual | `5.3291e-14` AU/AU-day |
 | O0/O2 output identity | SHA-256 identical: `9a7e04ad5e56025169196a6863ff832e1fdc7aa4dba2ba16b8c6465bbc7f8995` |
-| Gate D cross-reference | 36,525-row comparison; position max 0.0091 km; velocity max 1.8e-9 km/s |
+| Overlap baseline | 4-epoch × 10-target comparison; position ~5.82e-11 km; velocity ~2.22e-16 km/s |
 
 ### 14.2 Probe status
 
@@ -668,8 +668,7 @@ This probe is recommended but not strictly required for contract confirmation.
 
 ### 15.2 Expected residual classification
 
-The existing Gate D cross-reference showed position residuals up to ~9 m and
-velocity residuals ~1.8e-9 km/s. These are attributed to:
+The baseline overlap verification showed near-zero residuals: position ~5.82e-11 km and velocity ~2.22e-16 km/s. These are attributed to:
 
 - Different Chebyshev coefficient sets (JPL binary vs NAIF SPK conversion)
 - Different interpolation implementations (Fortran vs C)
@@ -789,3 +788,93 @@ decisions remain for contract confirmation. Implementation-level decisions
 Note: The `testeph.f` SHA-256 was computed on the file as downloaded from the
 official JPL URL. If the file is re-downloaded and the hash differs, the
 contract must be re-verified against the new source.
+
+---
+
+## 19. Overlap Tolerance Contract
+
+To assert correctness between the JPL official reader and the CSPICE evaluator,
+a formal machine-readable tolerance contract is enforced.
+
+### 19.1 Candidate Tolerance Bounds
+
+Due to the fundamental alignment of the mathematical models, the residuals
+reside near the 64-bit IEEE-754 floating-point limit. A candidate boundary
+has been established:
+
+| Field | Value |
+|---|---|
+| Contract State | `candidate` |
+| Position floor | `1.0e-9` km (1 µm = 1,000 nm) |
+| Position ULP candidate | `4 × output-component ULP norm` |
+| Velocity Tolerance | `1.0e-14` km/s (0.01 nanometers/s) |
+| Evaluation Metric | Euclidean vector norm |
+| Comparison Operator | `<=` |
+
+*Note: `1.0e-9` km is 1 µm, not 1 nm. `1.0e-14` km/s is strictly 0.01 nm/s. Previous drafts incorrectly noted this as 0.01 µm/s.*
+
+The position and velocity ULP multipliers are scale-aware empirical candidate
+tolerances. They are not mathematical upper bounds for Chebyshev evaluation
+error; normalization order, recurrence order, fused multiply-add behavior,
+velocity differentiation, and record selection can all contribute to the
+observed residual.
+
+The boundary sweep currently labels the 32-day JPL block edges as
+`exact_record_knot_candidate`. It must not call them SPK segment boundaries or
+SPK Type 2 logical-record knots until each comparison case has independently
+recorded the SPK segment target/center, `INIT`, `INTLEN`, `RSIZE`, record count,
+and selected record relation. In particular, `2764800` seconds is not a
+universal SPK `INTLEN` assumption.
+
+The current verifier outcome is reported as:
+
+```text
+verifier_status: implementation_operational
+candidate_contract_status: rejected_by_observed_boundary_residuals
+numeric_result: tolerance_exceeded
+exit_code: 1
+active_contract_status: not_established
+```
+
+### 19.2 Path to Active Contract
+
+Before the candidate bounds are transitioned to `active`, a comprehensive sweep
+must be executed:
+- **Temporal boundary sweep**: evaluate exact segment starts, midpoints, ends, and adjacent representable IEEE-754 binary64 epochs (`nextUp`, `nextDown`).
+- **Platform sweep**: confirm on macOS arm64 and Linux x64 environments.
+- **Metric enforcement**: Record components for evidence, but gate strictly on Euclidean vector norm.
+
+The machine-readable source of truth for these bounds is located at:
+`scripts/lib/de405-overlap-tolerance-contract.mjs`
+
+## 20. SPK Type 2 Record Metadata and Exact-Knot Evidence
+
+The CSPICE runner now exposes two diagnostic modes. They are evidence modes and
+do not establish or activate an overlap tolerance:
+
+```bash
+tools/de405-cspice-runner/build/de405-canonical-v2-runner \
+  --dump-spk-type2-segments --spk /path/to/de405.bsp
+
+tools/de405-cspice-runner/build/de405-canonical-v2-runner \
+  --inspect-spk-type2-knot --spk /path/to/de405.bsp \
+  --target-id 2 --knot-index 1
+```
+
+`--dump-spk-type2-segments` walks public DAF summaries and reads the final four
+Type 2 directory words with `dafgda_c`. It records the descriptor, `INIT`,
+`INTLEN`, `RSIZE`, record count, degree, raw record address range, and directory
+invariant result. A malformed directory is reported as `metadata_invalid`.
+
+`--inspect-spk-type2-knot` evaluates `nextDown`, exact-knot, and `nextUp`
+queries from both adjacent raw records using `chbint_c`, then compares all six
+components bitwise with the same descriptor passed to `spkpvn_c`. Only one
+bit-identical candidate produces `verified`; multiple matches produce
+`selection_ambiguous`, and no match produces `unavailable`. Segment overlap is
+also fail-closed; no segment or record is selected from an epoch-spacing guess.
+
+The overlap verifier consumes this evidence and emits the selected segment
+metadata and selection status per sample. Its `spkRecordMetadataStatus` may be
+`verified`, `metadata_invalid`, `selection_ambiguous`, or `unavailable`. This
+status is independent of the existing candidate tolerance result; observed
+residuals above the candidate continue to return exit code `1`.
