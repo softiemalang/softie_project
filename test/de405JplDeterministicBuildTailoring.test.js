@@ -37,6 +37,7 @@ test('deterministic build tailoring generator produces 2-run byte-identical Fort
     assert.equal(run1.provenance.buildTailoring.manualEdits, false)
     assert.deepEqual(run1.provenance.buildTailoring.allowedTransformations, [
       'select_fsizer3',
+      'add_opt_in_jpl_candidate_entry',
       'set_nrecl_4',
       'set_ksize_2036'
     ])

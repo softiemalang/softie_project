@@ -238,9 +238,13 @@ static int emit_sweep_manifest(SpiceInt handle, const Type2Segment *segments, in
       SpiceDouble *row = records + (size_t)record * s->rsize;
       SpiceDouble mid = row[0], radius = row[1];
       if (!isfinite(mid) || !isfinite(radius) || radius <= 0.0) { invalid = 1; continue; }
-      print_sample_manifest(s, i, record, -1, "record_quarter", mid - 0.5 * radius, 0.0, 0.0, "not_applicable");
-      print_sample_manifest(s, i, record, -1, "record_midpoint", mid, 0.0, 0.0, "not_applicable");
-      print_sample_manifest(s, i, record, -1, "record_three_quarter", mid + 0.5 * radius, 0.0, 0.0, "not_applicable");
+      const SpiceDouble probes[3] = {mid - 0.5 * radius, mid, mid + 0.5 * radius};
+      const char *kinds[3] = {"record_quarter", "record_midpoint", "record_three_quarter"};
+      for (int probe = 0; probe < 3; probe++) {
+        /* Record polynomial coverage may extend beyond the SPK directory. */
+        if (probes[probe] < s->dc[0] || probes[probe] > s->dc[1]) continue;
+        print_sample_manifest(s, i, record, -1, kinds[probe], probes[probe], 0.0, 0.0, "not_applicable");
+      }
     }
     for (SpiceInt knot = 1; knot < s->n; knot++) {
       SpiceDouble *previous = records + (size_t)(knot - 1) * s->rsize;

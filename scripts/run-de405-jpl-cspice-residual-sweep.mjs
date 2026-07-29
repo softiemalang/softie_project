@@ -176,7 +176,9 @@ async function main() {
     await runNativeToFile(cspiceRunner, ['--emit-spk-type2-sweep-manifest', '--spk', spk], manifestPath)
   }
   if (!has('--resume') || !existsSync(jplOutputPath)) {
-    const jplResult = spawnSync(process.execPath, [jplRunner, '--evaluate-et-batch', '--binary', jplBinary, '--input-jsonl', manifestPath, '--output-jsonl', jplOutputPath], { stdio: 'inherit' })
+    const jplArgs = [jplRunner, '--evaluate-et-batch', '--binary', jplBinary, '--input-jsonl', manifestPath, '--output-jsonl', jplOutputPath]
+    if (has('--jpl-candidate-evidence')) jplArgs.push('--candidate-evidence')
+    const jplResult = spawnSync(process.execPath, jplArgs, { stdio: 'inherit' })
     if (jplResult.status !== 0) throw new Error(`JPL batch failed with exit ${jplResult.status}`)
   }
   if (!has('--resume') || !existsSync(cspiceOutputPath)) {

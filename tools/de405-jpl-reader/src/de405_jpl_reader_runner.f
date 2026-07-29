@@ -29,8 +29,10 @@ C=======================================================================
       INTEGER OUT_UNIT, ERR_CODE
       INTEGER QUERY_TARGET, QUERY_CENTER, QUERY_FRAME, JPL_TARGET
       INTEGER JPL_OUTER_RECORD, JPL_SUBINTERVAL, JPL_SUBINTERVAL_COUNT
+      INTEGER CAND_IDX
       DOUBLE PRECISION QUERY_JED, QUERY_NORMALIZED, TMP_RECORD_START
-      LOGICAL BATCH_MODE, OK
+      DOUBLE PRECISION CAND_START, CAND_END
+      LOGICAL BATCH_MODE, OK, CANDIDATE_EVIDENCE_MODE
       DOUBLE PRECISION CVAL(1000), SS_HEADER(3), AU, EMRAT
       INTEGER DENUM, NCONST, IPT(3,13)
       COMMON/EPHHDR/CVAL,SS_HEADER,AU,EMRAT,DENUM,NCONST,IPT
@@ -71,6 +73,7 @@ C=======================================================================
       COUNT = 1
       STEP_SEC = 864000.0D0
       BATCH_MODE = .FALSE.
+      CANDIDATE_EVIDENCE_MODE = .FALSE.
       IF (MODE .EQ. '--evaluate-et-batch') BATCH_MODE = .TRUE.
 
       I = 2
@@ -97,6 +100,8 @@ C=======================================================================
         ELSE IF (ARG .EQ. '--input-jsonl') THEN
           I = I + 1
           CALL GET_COMMAND_ARGUMENT(I, INPUT_FILE)
+        ELSE IF (ARG .EQ. '--candidate-evidence') THEN
+          CANDIDATE_EVIDENCE_MODE = .TRUE.
         ENDIF
         I = I + 1
       ENDDO
@@ -214,8 +219,40 @@ C Open binary file via STROPEN or direct Fortran OPEN if needed by PLEPH
         WRITE(OUT_UNIT, '(1PE30.17,A)', ADVANCE='NO') QUERY_NORMALIZED,
      &    ',"evaluationStatus":"evaluated","stateKmKmPerSec":['
         WRITE(OUT_UNIT, '(1PE30.17,A,1PE30.17,A,1PE30.17,A,1PE30.17,A,
-     &    1PE30.17,A,1PE30.17,A)') RRD(1), ',', RRD(2), ',', RRD(3),
-     &    ',', RRD(4), ',', RRD(5), ',', RRD(6), ']}'
+     &    1PE30.17,A,1PE30.17,A)', ADVANCE='NO') RRD(1), ',', RRD(2), ',', RRD(3),
+     &    ',', RRD(4), ',', RRD(5), ',', RRD(6), ']'
+        IF (CANDIDATE_EVIDENCE_MODE) THEN
+          WRITE(OUT_UNIT, '(A)', ADVANCE='NO')
+     &      ',"candidateStates":['
+          CAND_IDX = JPL_SUBINTERVAL
+          CAND_START = (TMP_RECORD_START +
+     &      DBLE(CAND_IDX) * BLOCK_STEP /
+     &      DBLE(JPL_SUBINTERVAL_COUNT) - 2451545.0D0) * 86400.D0
+          CAND_END = (TMP_RECORD_START +
+     &      DBLE(CAND_IDX + 1) * BLOCK_STEP /
+     &      DBLE(JPL_SUBINTERVAL_COUNT) - 2451545.0D0) * 86400.D0
+          WRITE(OUT_UNIT, '(A)', ADVANCE='NO')
+     &      '{"candidateIndex":0,"candidateId":"jpl:'
+          WRITE(OUT_UNIT, '(I0,A,I0,A)', ADVANCE='NO')
+     &      JPL_OUTER_RECORD, ':subinterval:', CAND_IDX,
+     &      '","recordId":"'
+          WRITE(OUT_UNIT, '(I0,A,I0,A,1PE30.17,A,1PE30.17,A)',
+     &      ADVANCE='NO') JPL_OUTER_RECORD,
+     &      '","subintervalIndex":', CAND_IDX,
+     &      ',"startEt":', CAND_START, ',"endEt":', CAND_END, ','
+          WRITE(OUT_UNIT, '(A)', ADVANCE='NO')
+     &      '"selected":true,"selectionReason":"official_jpl_subinterval",'
+          WRITE(OUT_UNIT, '(A)', ADVANCE='NO')
+     &      '"boundaryRule":"subinterval_start_le_query_lt_end",'
+          WRITE(OUT_UNIT, '(A)', ADVANCE='NO') '"positionKm":['
+          WRITE(OUT_UNIT, '(1PE30.17,A,1PE30.17,A,1PE30.17,A)',
+     &      ADVANCE='NO') RRD(1), ',', RRD(2), ',', RRD(3), ']'
+          WRITE(OUT_UNIT, '(A)', ADVANCE='NO') ',"velocityKmS":['
+          WRITE(OUT_UNIT, '(1PE30.17,A,1PE30.17,A,1PE30.17,A)',
+     &      ADVANCE='NO') RRD(4), ',', RRD(5), ',', RRD(6), ']}'
+          WRITE(OUT_UNIT, '(A)', ADVANCE='NO') ']'
+        ENDIF
+        WRITE(OUT_UNIT, '(A)') '}'
         GO TO 250
   290   IF (INPUT_FILE .NE. 'stdin') CLOSE(IN_UNIT)
         IF (OUTPUT_FILE .NE. 'stdout') CLOSE(OUT_UNIT)
