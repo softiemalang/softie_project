@@ -12,6 +12,13 @@ must be bit-identical for position/velocity with status mismatch 0. The NAIF
 DE405 SPK plus CSPICE is a separate official conversion artifact and an
 independent cross-reference, not a strict-equality oracle.
 
+The service-range role is constrained by source coverage: the JPL
+binary/official reader owns the 1900–2101 full range, while the SHA-matched
+NAIF `de405.bsp`/CSPICE N0067 path is overlap-only at its verified
+1950-01-01 00:00:41.183 ET through 2050-01-01 00:01:04.183 ET window. CSPICE
+cannot execute the full-range profile, and neither source can automatically
+replace the other.
+
 The former CSPICE `1e-6` km / `1e-12` km/s check is retained as historical
 diagnostic evidence. Gate D must use a versioned fingerprint and jointly assess
 sample/timestamp identity, status, component/norm distributions, worst vector,

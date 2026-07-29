@@ -17,9 +17,10 @@ Official sources: [NAIF de405.cmt](https://naif.jpl.nasa.gov/pub/naif/generic_ke
 [NAIF checksum list](https://naif.jpl.nasa.gov/pub/naif/generic_kernels/spk/planets/a_old_versions/aa_checksums.txt),
 and [NAIF DE405 directory](https://naif.jpl.nasa.gov/pub/naif/generic_kernels/spk/planets/a_old_versions/).
 
-The separate JPL full-range candidate is not a verified source for reproducing
-the historical NIOSPK SPK and is not used as a substitute. No runtime model is
-selected.
+The JPL full-range binary is the primary full-range oracle when read by the
+official JPL reader. It is not evidence that the historical NIOSPK conversion
+can be reproduced and is not a substitute for the separate NAIF SPK provenance
+record. No runtime model is selected.
 
 ## DE405 validation hierarchy and CSPICE contract (2026-07-28)
 
@@ -36,6 +37,18 @@ independent cross-reference and anomaly detector. The observed 36,525-row
 Sun-to-Earth baseline (position norm maximum `0.0091509078` km; velocity norm
 maximum `1.8229023e-9` km/s; status mismatch 0) is not, by itself, evidence of
 a pvh-only implementation error.
+
+### Source-role and coverage correction (2026-07-29)
+
+The JPL binary `lnxp1600p2200.405` plus the official JPL reader is the
+`primary_oracle` for the full `1900-01-01` through `2101-01-01` service range.
+The SHA-matched NAIF `de405.bsp` plus CSPICE N0067 is only an
+`independent_cross_reference` over its verified `1950-01-01 00:00:41.183 ET`
+through `2050-01-01 00:01:04.183 ET` coverage. CSPICE is never canonical,
+never `primary_oracle`, and never a fallback. The JPL reader
+target/center/time-scale semantic contract is confirmed in
+`docs/astrology/de405-jpl-official-reader-contract.md`; production selection
+remains blocked pending pipeline implementation.
 
 The contract is Gate A artifact integrity (JPL binary hash, NAIF SPK hash,
 timestamp/fixture hash, coverage, metadata); Gate B official-reader

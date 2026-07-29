@@ -33,6 +33,11 @@ status, and timestamp-shape checks. Repeatability and hard-ceiling evidence is
 not yet sufficient to set its numeric envelope, so the policy remains
 `blocked_by_cross_reference_numeric_policy_gap`.
 
+The role boundary is explicit: JPL DE405 binary plus the official JPL reader
+is the full-range `primary_oracle`; NAIF `de405.bsp` plus CSPICE N0067 is
+overlap-only `independent_cross_reference` because the verified SPK covers
+1950–2050 only. There is no automatic fallback or mixed canonical output.
+
 ## 1. 개요
 본 문서는 Mallang Solar Position Core v0의 역법 계산 모델을 확정하기 위해 검토한 5개 천문 모델 후보(Candidate A~E)의 명세, 출처, 라이선스, 좌표/시간 계약, 정확도 및 평가 매트릭스를 기록합니다.
 

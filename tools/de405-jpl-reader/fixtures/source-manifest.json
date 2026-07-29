@@ -1,0 +1,13 @@
+{
+  "readerSource": {
+    "filename": "testeph.f",
+    "url": "https://ssd.jpl.nasa.gov/ftp/eph/planets/fortran/testeph.f",
+    "sha256": "18f32f073c1a345850d9deebc8b53b06c83a386c066b566f65001b51adeb7120"
+  },
+  "jplBinary": {
+    "filename": "lnxp1600p2200.405",
+    "url": "https://ssd.jpl.nasa.gov/ftp/eph/planets/Linux/de405/lnxp1600p2200.405",
+    "sizeBytes": 55900416,
+    "sha256": "7ec77287b6fddd3d7adabb87709ee5e926e3d1123fbae5d1485a42913cf175e7"
+  }
+}

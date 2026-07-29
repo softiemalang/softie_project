@@ -25,6 +25,17 @@ This contract is entirely separate from the legacy DE405 evidence chain
 (manifest v1, `provenance_incomplete`, `canonical: false`). Legacy files
 are not inputs to canonical v2 and are not modified by this contract.
 
+### Source-role correction (2026-07-29)
+
+The source-role and coverage contract is defined in
+[`de405-source-role-and-coverage-contract.md`](./de405-source-role-and-coverage-contract.md).
+JPL DE405 plus the official JPL reader is the full-range primary oracle.
+CSPICE N0067 is an overlap-only independent
+cross-reference. Neither path falls back to the other, and their rows are
+never concatenated into one canonical artifact. The JPL reader semantic
+contract is confirmed in
+[`de405-jpl-official-reader-contract.md`](./de405-jpl-official-reader-contract.md).
+
 ---
 
 ## 2. Official Sources
@@ -40,7 +51,7 @@ entry states what contract it supports.
 | Size | 10,898,432 bytes |
 | SHA-256 | `30a7113793ee5b6bf1e5546c6dfc21d9682d9ffabfe9b17b4bab27ba2ac75c89` |
 | MD5 | `26d9596d003d6bf3b1c0b33e9567275b` |
-| Coverage | JED 2305424.50 (1599-12-09) — JED 2525008.50 (2201-02-20) |
+| Coverage used by the verified SHA-matched artifact | 1950-01-01 00:00:41.183 ET — 2050-01-01 00:01:04.183 ET |
 | Frame | ICRF (International Celestial Reference Frame) |
 | Distribution | `https://naif.jpl.nasa.gov/pub/naif/generic_kernels/spk/planets/a_old_versions/de405.bsp` |
 | Checksum list | `https://naif.jpl.nasa.gov/pub/naif/generic_kernels/spk/planets/a_old_versions/aa_checksums.txt` |
@@ -56,7 +67,7 @@ body coverage (§10), frame confirmation (§8).
 | File | `lnxp1600p2200.405` |
 | Size | 55,900,416 bytes |
 | SHA-256 | `7ec77287b6fddd3d7adabb87709ee5e926e3d1123fbae5d1485a42913cf175e7` |
-| Coverage | Same as NAIF SPK (source ephemeris) |
+| Coverage role | Full service range source for the JPL reader pipeline |
 | Distribution | JPL Horizons / Solar System Dynamics |
 
 **Supports**: upstream reference source role (§3), cross-reference
@@ -103,34 +114,27 @@ kernel verification (§17).
 
 | Role | Source | File |
 |---|---|---|
-| **Primary execution source** | NAIF `de405.bsp` | `de405.bsp` |
-| **Upstream reference source** | JPL DE405 binary | `lnxp1600p2200.405` |
+| **Primary full-range oracle** | JPL DE405 binary + official JPL reader | `lnxp1600p2200.405` |
+| **Independent overlap cross-reference** | NAIF `de405.bsp` + CSPICE N0067 | `de405.bsp` |
 
 ### 3.2 Rationale
 
 | Criterion | NAIF `de405.bsp` | JPL DE405 binary |
 |---|---|---|
-| CSPICE direct compatibility | Yes — native SPK format | No — requires conversion |
-| Conversion step required | None | NIOSPK conversion (original tool unavailable) |
-| Official NAIF checksum | MD5 verified, SHA-256 in manifest | Not in NAIF checksum list |
-| Reproducibility | Download and verify hash | Hash-verified but not CSPICE-readable |
-| Coverage metadata via CSPICE | `spkcov_c` / `spkobj_c` | Not applicable |
-| Target/center/frame metadata | `spkobj_c`, kernel comments | Requires separate reader |
+| Full service range | No — verified SPK artifact covers only 1950–2050 | Yes — JPL binary covers the service source range |
+| Direct reader | CSPICE N0067 | Official JPL `testeph.f` reader |
+| Role | Independent overlap evidence only | Primary full-range oracle |
+| Fallback | Forbidden | Forbidden |
 
 ### 3.3 Source manifest fields
 
 ```
-canonical_source_role:      primary_execution_source
-primary_execution_source:   de405.bsp
-upstream_reference_source:  lnxp1600p2200.405
-source_file_name:           de405.bsp
-source_file_size:           10898432
-source_sha256:              30a7113793ee5b6bf1e5546c6dfc21d9682d9ffabfe9b17b4bab27ba2ac75c89
-source_md5:                 26d9596d003d6bf3b1c0b33e9567275b
-coverage_start_jed:         2305424.50
-coverage_end_jed:           2525008.50
-coverage_start_approx:      1599-12-09
-coverage_end_approx:        2201-02-20
+primary_source_role:        primary_oracle
+primary_source_file:        lnxp1600p2200.405
+cross_reference_source:     de405.bsp
+cspice_source_role:         independent_cross_reference
+cspice_coverage_role:       overlap_only
+fallback_allowed:           false
 ```
 
 ---
@@ -141,8 +145,8 @@ coverage_end_approx:        2201-02-20
 
 | Field | Value |
 |---|---|
-| `reader_name` | CSPICE |
-| `reader_version` | N0067 |
+| `reader_name` | Profile-specific: official JPL `testeph.f` or CSPICE |
+| `reader_version` | JPL official reader or CSPICE N0067 |
 | `reader_invocation` | Native CLI binary spawned from Node.js via `child_process` |
 | `reader_binary_hash` | SHA-256 of the runner binary, recorded in manifest |
 
@@ -188,7 +192,10 @@ timeAxisFamily:       TDB (Barycentric Dynamical Time)
 etEpoch:              J2000
 ```
 
-The canonical raw fixture uses CSPICE Ephemeris Time (ET), which corresponds to TDB, as the primary key. UTC is not the primary key.
+The raw fixture uses Ephemeris Time (ET), corresponding to TDB, as the primary
+key. UTC is not the primary key. CSPICE ET is used only for overlap evidence;
+the JPL full-range reader must prove the same time contract before generating
+canonical output.
 
 - **Primary canonical key**: `etSeconds`
 - **Data type**: decimal string (§13)
@@ -268,9 +275,12 @@ Expected Row Count = 7,342 × 10 = 73,420 rows
 The fixture hierarchy is separated into three distinct domains.
 
 ### 7.1 Regular Grid Fixture
-- **Path**: `test/fixtures/astrology/de405/canonical-v2/regular-grid/`
+- **Profile**: `jpl-full-range-regular-grid`
 - Contains the 73,420 rows defined in §6.
 - Purely deterministic, ET-based iteration.
+
+The CSPICE path has no full-range regular-grid profile. Its implemented
+profile is `cspice-overlap-smoke`, which is test-only overlap evidence.
 
 ### 7.2 Boundary Fixture
 - **Path**: `test/fixtures/astrology/de405/canonical-v2/boundary/`
@@ -488,7 +498,18 @@ The manifest must include the following structural definitions:
 ```json
 {
   "manifestSchemaVersion": 2,
-  "canonicalId": "de405-canonical-v2-regular-grid",
+  "canonicalId": "de405-canonical-v2-jpl-full-range-regular-grid",
+  "materializationProfile": "jpl-full-range-regular-grid",
+  "sourceRole": "primary_oracle",
+  "coverageRole": "full_service_range",
+  "canonicalEligible": true,
+  "evidenceType": "canonical",
+  "sourceCoverageStartEt": "(number)",
+  "sourceCoverageEndEt": "(number)",
+  "requestedStartEt": "(number)",
+  "requestedEndExclusiveEt": "(number)",
+  "coverageVerified": true,
+  "fallbackAllowed": false,
   "canonical": true,
   "provenanceStatus": "generated | verified | draft | rejected",
   
@@ -525,7 +546,7 @@ If the start/end ET boundaries were derived from a human-readable TDB string via
 
 | Aspect | Legacy | Canonical v2 |
 |---|---|---|
-| Status | `provenance_incomplete`, `canonical: false`, `needs_verification` | `canonical: true`, manifest v2 |
+| Status | `provenance_incomplete`, `canonical: false`, `needs_verification` | Profile-dependent; only verified JPL full-range may be canonical |
 | Role | `historical_evidence` | Ground truth validation |
 | Paths | `test/fixtures/astrology/de405/` | `test/fixtures/astrology/de405/canonical-v2/...` |
 | Tools | `generate-de405-cross-reference.mjs` | Separate v2 generator |
@@ -555,6 +576,13 @@ The generator and validator must fail-closed (exit ≥ 1) immediately on any of 
 - Any duplicated `(etSeconds, targetId)` pair is detected.
 
 No fallback or warning-only modes are permitted.
+
+Additional source-role gates are mandatory: CSPICE overlap manifests must have
+`canonical: false`, `canonicalEligible: false`, `sourceRole:
+independent_cross_reference`, `coverageRole: overlap_only`, verified coverage
+metadata, and `fallbackAllowed: false`. A CSPICE runner cannot execute a
+full-range profile. JPL reader contract uncertainty blocks canonical output;
+it never causes a CSPICE fallback.
 
 ---
 
@@ -623,10 +651,9 @@ Tests must assert the manifest structure, fail-closed conditions, legacy separat
 
 ### 22.3 Resolved ET boundaries
 
-The exact values and their complete acquisition/build/execution provenance are
-recorded in `de405-canonical-v2-boundary-resolution.md` after the official
-CSPICE N0067 resolver has passed its two-run byte-identity and grid-invariant
-gates. This section is intentionally pending until those gates pass.
+The exact CSPICE overlap coverage values and their acquisition provenance are
+recorded in `de405-source-role-and-coverage-contract.md` after the official
+CSPICE N0067 coverage API and overlap smoke byte-identity gates passed.
 
 ```yaml
 regularGridStartEt: "-3.1557168000000000e+09"
@@ -643,9 +670,19 @@ boundaryResolutionProvenance: de405-canonical-v2-boundary-resolution.md
 ## 23. Implementation Readiness
 
 ```
-verdict: canonical_v2_contract_ready
+verdict: de405_jpl_official_reader_contract_ready
+canonicalJplPipeline: not_implemented_fail_closed
+cspiceOverlapSmoke: implemented_and_independently_verified
+productionRuntimeSelection: blocked
+jplReaderContract: confirmed
 ```
 
-All required design decisions are now finalized. The time axis is strictly ET/TDB, interval and bounds are mathematically fixed, determinism and fail-closed conditions are robust, and the separation of legacy/v2 is maintained.
+The time axis, service interval, source roles, coverage boundary, determinism,
+and fail-closed separation are fixed. JPL full-range canonical generation is
+not claimed until its reader target/center/time-scale contract is confirmed.
 
-**Next step**: `DE405 Canonical v2 Generator 및 Validator 구현`
+**Next step**: `DE405 JPL Official Reader Full-Range Canonical Pipeline 구현`
+
+The reader target/center/time-scale contract is now confirmed. See
+[`de405-jpl-official-reader-contract.md`](./de405-jpl-official-reader-contract.md)
+for the complete semantic contract.
