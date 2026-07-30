@@ -11,6 +11,8 @@ export const DEFAULT_ANALYSIS_INPUTS = Object.freeze({
   phaseSummary: 'artifacts/de405-jpl-cspice-phase-c-summary.json'
 })
 
+export const DEFAULT_ANALYSIS_OUTPUT = 'artifacts/de405-jpl-cspice-unresolved-selection-breakdown.json'
+
 export function parseCliOptions(args) {
   const options = {}
   for (let i = 0; i < args.length; i++) {
@@ -401,4 +403,83 @@ export async function runUnresolvedSelectionAnalysis(inputPaths = {}, { cwd = pr
 
 export function serializeCanonicalJson(obj) {
   return JSON.stringify(obj, null, 2) + '\n'
+}
+
+function addMismatch(mismatches, source, field, recorded, expected) {
+  if (JSON.stringify(recorded) !== JSON.stringify(expected)) {
+    mismatches.push({ source, field, recorded, actual: expected })
+  }
+}
+
+export async function validateUnresolvedSelectionAnalysisFreshness(
+  analysisPath = DEFAULT_ANALYSIS_OUTPUT,
+  inputPaths = DEFAULT_ANALYSIS_INPUTS,
+  { cwd = process.cwd() } = {}
+) {
+  let expectedReport
+  let expectedCanonical
+  try {
+    expectedReport = await runUnresolvedSelectionAnalysis(inputPaths, { cwd })
+    expectedCanonical = serializeCanonicalJson(expectedReport)
+  } catch (err) {
+    return {
+      status: 'invalid',
+      fresh: false,
+      schemaVersion: null,
+      mismatches: [],
+      error: `Failed to regenerate expected analysis: ${err.message}`
+    }
+  }
+
+  let actualMeta
+  let actualReport
+  try {
+    actualMeta = await inspectFileIdentity(analysisPath, { cwd })
+    actualReport = actualMeta.parsedContent
+    if (!actualReport || typeof actualReport !== 'object' || Array.isArray(actualReport)) {
+      throw new Error('analysis output is not a JSON object')
+    }
+  } catch (err) {
+    return {
+      status: 'invalid',
+      fresh: false,
+      schemaVersion: null,
+      mismatches: [],
+      error: `Failed to read or parse analysis output: ${err.message}`
+    }
+  }
+
+  const mismatches = []
+  addMismatch(mismatches, 'output', 'schemaVersion', actualReport.schemaVersion, expectedReport.schemaVersion)
+  addMismatch(mismatches, 'output', 'recordType', actualReport.recordType, expectedReport.recordType)
+
+  for (const role of Object.keys(DEFAULT_ANALYSIS_INPUTS)) {
+    const expectedSource = expectedReport.sources?.[role]
+    const actualSource = actualReport.sources?.[role]
+    for (const field of ['path', 'sizeBytes', 'sha256', 'lineCount']) {
+      addMismatch(mismatches, `source.${role}`, field, actualSource?.[field], expectedSource?.[field])
+    }
+  }
+
+  addMismatch(mismatches, 'invariants', 'value', actualReport.invariants, expectedReport.invariants)
+  addMismatch(mismatches, 'candidateAlternativesBitwiseIdentity', 'value', actualReport.candidateAlternativesBitwiseIdentity, expectedReport.candidateAlternativesBitwiseIdentity)
+  addMismatch(mismatches, 'aggregations', 'value', actualReport.aggregations, expectedReport.aggregations)
+  addMismatch(mismatches, 'analysisCapabilityMatrix', 'value', actualReport.analysisCapabilityMatrix, expectedReport.analysisCapabilityMatrix)
+  addMismatch(mismatches, 'observedDistributions', 'value', actualReport.observedDistributions, expectedReport.observedDistributions)
+  addMismatch(mismatches, 'limitationsAndFindings', 'value', actualReport.limitationsAndFindings, expectedReport.limitationsAndFindings)
+
+  const expectedSha256 = createHash('sha256').update(expectedCanonical).digest('hex')
+  if (actualMeta.rawContent !== expectedCanonical) {
+    mismatches.push({ source: 'output', field: 'sha256', recorded: actualMeta.sha256, actual: expectedSha256 })
+  }
+
+  mismatches.sort((a, b) => a.source.localeCompare(b.source) || a.field.localeCompare(b.field))
+  return {
+    status: mismatches.length === 0 ? 'fresh' : 'stale',
+    fresh: mismatches.length === 0,
+    schemaVersion: actualReport.schemaVersion ?? null,
+    mismatches,
+    expectedSha256,
+    actualSha256: actualMeta.sha256
+  }
 }

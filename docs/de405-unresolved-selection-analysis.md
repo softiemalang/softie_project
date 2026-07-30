@@ -57,3 +57,25 @@ If any invariant fails, execution aborts with exit code `1`.
 ## 5. Candidate Alternatives Bitwise Identity
 
 The `candidateAlternativesBitwiseIdentity` field measures IEEE-754 bitwise identity across candidate alternative SPK records evaluated for the same query epoch against SPK reference stateBits. It does **not** assert bitwise identity between CSPICE and JPL reference states across non-zero residual evaluations.
+
+## 6. Official Evidence Artifact and Freshness
+
+The official generated evidence artifact is:
+
+```text
+artifacts/de405-jpl-cspice-unresolved-selection-breakdown.json
+```
+
+The deterministic temporary output and the official artifact are the same canonical JSON bytes. The expected identity is `11033` bytes with SHA-256 `52866438dd3cbe1a51ca6016e17a5d2f8d43fed1e11ca0cc8790b30893c64c61`.
+
+The six source files and their recorded size/SHA-256 identities are embedded in the artifact. Check freshness with:
+
+```bash
+npm run check:de405:unresolved-selection-analysis
+```
+
+The checker regenerates the expected canonical output from the explicit six-source contract and exits `0` for `fresh`, `2` for `stale`, and `1` for invalid input or execution errors. A source mutation, output mutation, missing required source, or canonical-byte mismatch is reported rather than relaxed.
+
+The artifact is untracked generated evidence. Materializing it does not resolve the `selection_unresolved=1701` blocker, split the 606/1,095 groups, change canonical selection, approve tolerance, enable active transition, modify the contract, or grant scientific approval.
+
+To reproduce it, generate two outputs outside the repository, compare them byte-for-byte, verify the expected SHA/size, then generate the official path from the committed analyzer. The inventory records the artifact as `generated`; readiness verifies its exact size and SHA-256.

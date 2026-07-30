@@ -43,10 +43,14 @@ test('repository default discovery excludes every artifact path', async () => {
   assert.equal(files.some(file => file.startsWith('de405-artifacts/')), false)
 })
 
-test('DE405 inventory excludes OS metadata and preserves the 10 generated plus 3 pending contract', async () => {
+test('DE405 inventory excludes OS metadata and keeps summary counts synchronized with artifact entries', async () => {
   const inventory = JSON.parse(await readFile('docs/de405-artifact-inventory.json', 'utf8'))
   assert.equal(inventory.artifacts.some(artifact => artifact.path.endsWith('.DS_Store')), false)
-  assert.equal(inventory.summary.fileCount, 13)
-  assert.equal(inventory.summary.byStorageClass.generated.fileCount, 10)
-  assert.equal(inventory.summary.byStorageClass.pending.fileCount, 3)
+  const fileCount = inventory.artifacts.length
+  const generatedCount = inventory.artifacts.filter(artifact => artifact.storageClass === 'generated').length
+  const pendingCount = inventory.artifacts.filter(artifact => artifact.storageClass === 'pending').length
+  assert.equal(inventory.summary.fileCount, fileCount)
+  assert.equal(inventory.summary.byStorageClass.generated.fileCount, generatedCount)
+  assert.equal(inventory.summary.byStorageClass.pending.fileCount, pendingCount)
+  assert.equal(generatedCount + pendingCount, fileCount)
 })

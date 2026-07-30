@@ -4,12 +4,12 @@
   "artifactRoot": "artifacts",
   "generatedAt": "2026-07-30T01:30:00.000Z",
   "summary": {
-    "fileCount": 13,
-    "totalSizeBytes": 600136782,
+    "fileCount": 14,
+    "totalSizeBytes": 600147815,
     "byStorageClass": {
       "repository": { "fileCount": 0, "totalSizeBytes": 0 },
       "external": { "fileCount": 0, "totalSizeBytes": 0 },
-      "generated": { "fileCount": 10, "totalSizeBytes": 600128106 },
+      "generated": { "fileCount": 11, "totalSizeBytes": 600139139 },
       "pending": { "fileCount": 3, "totalSizeBytes": 8676 }
     }
   },
@@ -190,6 +190,24 @@
       "storageClass": "generated",
       "proposedAction": "ignore_after_policy_commit",
       "rationale": "The summary records a complete sweep with evidence failures and explicitly leaves the active contract unchanged."
+    },
+    {
+      "path": "artifacts/de405-jpl-cspice-unresolved-selection-breakdown.json",
+      "sizeBytes": 11033,
+      "sha256": "52866438dd3cbe1a51ca6016e17a5d2f8d43fed1e11ca0cc8790b30893c64c61",
+      "format": "json",
+      "role": "evidence",
+      "producer": { "type": "script", "path": "scripts/analyze-de405-unresolved-selection.mjs", "command": "npm run analyze:de405:unresolved-selection -- --output artifacts/de405-jpl-cspice-unresolved-selection-breakdown.json", "confidence": "confirmed" },
+      "references": [
+        { "path": "scripts/analyze-de405-unresolved-selection.mjs", "kind": "generation_output" },
+        { "path": "scripts/check-de405-unresolved-selection-analysis-freshness.mjs", "kind": "freshness_validation" }
+      ],
+      "sourceCount": 6,
+      "requiredBy": { "runtime": false, "build": false, "defaultTests": false, "specializedTests": false, "researchValidation": true },
+      "reproducibility": { "status": "conditionally_reproducible", "requirements": ["the six recorded DE405 source artifacts and this analyzer commit"], "estimatedCost": "medium" },
+      "storageClass": "generated",
+      "proposedAction": "ignore_after_policy_commit",
+      "rationale": "Materialized structural evidence for the unresolved selection breakdown; it does not modify blocker, tolerance, canonical selection, or scientific approval state."
     },
     {
       "path": "artifacts/de405-jpl-cspice-residual-sweep.worst-case-reproduction.json",
