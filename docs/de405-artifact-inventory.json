@@ -4,12 +4,12 @@
   "artifactRoot": "artifacts",
   "generatedAt": "2026-07-30T01:30:00.000Z",
   "summary": {
-    "fileCount": 16,
-    "totalSizeBytes": 610675620,
+    "fileCount": 17,
+    "totalSizeBytes": 622920562,
     "byStorageClass": {
       "repository": { "fileCount": 0, "totalSizeBytes": 0 },
       "external": { "fileCount": 0, "totalSizeBytes": 0 },
-      "generated": { "fileCount": 13, "totalSizeBytes": 610666944 },
+      "generated": { "fileCount": 14, "totalSizeBytes": 622911886 },
       "pending": { "fileCount": 3, "totalSizeBytes": 8676 }
     }
   },
@@ -90,6 +90,24 @@
       "storageClass": "generated",
       "proposedAction": "ignore_after_policy_commit",
       "rationale": "Deterministic project-owned Type 2 record reconstruction. It exposes a project selector and evaluator only; it does not assert an unexposed CSPICE internal selection or change approval state."
+    },
+    {
+      "path": "artifacts/de405-spk-center-chain-decomposition.jsonl",
+      "sizeBytes": 12244942,
+      "sha256": "69bc1e853b4616dce63403151caec41a54b7db3d575ae3db0b1ee30b45c23711",
+      "format": "jsonl",
+      "role": "evidence",
+      "producer": { "type": "script", "path": "scripts/materialize-de405-spk-center-chain-decomposition.mjs", "command": "npm run materialize:de405:spk-center-chain", "confidence": "confirmed" },
+      "references": [
+        { "path": "scripts/analyze-de405-spk-center-chain-decomposition.mjs", "kind": "analysis_input" },
+        { "path": "scripts/check-de405-spk-center-chain-decomposition-freshness.mjs", "kind": "freshness_validation" },
+        { "path": "test/de405-artifacts/de405SpkCenterChainDecomposition.test.js", "kind": "test_input" }
+      ],
+      "requiredBy": { "runtime": false, "build": false, "defaultTests": false, "specializedTests": true, "researchValidation": true },
+      "reproducibility": { "status": "conditionally_reproducible", "requirements": ["existing project probe artifact", "selection trace", "DE405 SPK", "existing project probe and canonical CSPICE binaries"], "estimatedCost": "medium" },
+      "storageClass": "generated",
+      "proposedAction": "ignore_after_policy_commit",
+      "rationale": "Project-owned center-chain decomposition and CSPICE API-state comparison; no CSPICE internal route or selected-record claim is made."
     },
     {
       "path": "artifacts/de405-jpl-cspice-out-of-coverage-investigation.json",

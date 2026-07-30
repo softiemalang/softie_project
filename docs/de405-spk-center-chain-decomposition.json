@@ -1,0 +1,82 @@
+{
+  "schemaVersion": 1,
+  "recordType": "de405_spk_center_chain_decomposition_analysis",
+  "generator": "scripts/analyze-de405-spk-center-chain-decomposition.mjs",
+  "sourceIdentities": {
+    "probe": {
+      "path": "/Users/softie/Documents/softie_project/artifacts/de405-spk-record-probe.jsonl",
+      "sizeBytes": 4087326,
+      "sha256": "8156952cb27b2cfd85bd094f204a84df4b6a40d32e7cb5fc136554a4aab7bafd"
+    },
+    "probeSummary": {
+      "path": "/Users/softie/Documents/softie_project/docs/de405-spk-record-probe-analysis.json",
+      "sizeBytes": 4395,
+      "sha256": "c58c44fa7fe0e84e315db32cbeca4c9b8bdd85b6781e361af69dd85fb7adbbec"
+    },
+    "selectionTrace": {
+      "path": "/Users/softie/Documents/softie_project/artifacts/de405-jpl-cspice-selection-trace.jsonl",
+      "sizeBytes": 6440479,
+      "sha256": "7d7a5757c5a2c2457e0c733ca95c7091df7b4a70a2edc82586a43b520e78078c"
+    },
+    "probeBinary": {
+      "path": "/Users/softie/Documents/softie_project/tools/de405-spk-record-probe/build/de405-spk-record-probe",
+      "sizeBytes": 241336,
+      "sha256": "d18d844a5b9e45df6ac6c735fba274c208af03081a6587212a6632fd104e9fa2"
+    },
+    "cspiceBinary": {
+      "path": "/Users/softie/Documents/softie_project/tools/de405-cspice-runner/build/de405-canonical-v2-runner",
+      "sizeBytes": 1343336,
+      "sha256": "92297c604fe43a147bc1f16cfbe33bf482f9ae7d001cd1c6fad87c5d5c2b8964"
+    },
+    "spk": {
+      "path": "/Users/softie/.local/share/softie-de405/kernels/spk/de405.bsp",
+      "sizeBytes": 10898432,
+      "sha256": "30a7113793ee5b6bf1e5546c6dfc21d9682d9ffabfe9b17b4bab27ba2ac75c89"
+    }
+  },
+  "rawArtifact": {
+    "path": "de405-spk-center-chain-decomposition.jsonl",
+    "sizeBytes": 12244942,
+    "sha256": "69bc1e853b4616dce63403151caec41a54b7db3d575ae3db0b1ee30b45c23711",
+    "recordCount": 1701
+  },
+  "totalSamples": 1701,
+  "controlCount": 1222,
+  "mismatchCount": 479,
+  "groups": {
+    "candidate_state_different": 1095,
+    "state_equivalent_selection_different": 606
+  },
+  "primaryDivergenceCounts": {
+    "both_target_and_center_chains_diverge": 64,
+    "center_chain_diverges": 243,
+    "control_project_direct_matches_cspice": 1222,
+    "project_components_match_cspice_but_final_composition_diverges": 97,
+    "target_chain_diverges": 75
+  },
+  "targetChainCounts": {
+    "match": 1520,
+    "different": 181
+  },
+  "centerChainCounts": {
+    "match": 1258,
+    "different": 443
+  },
+  "chainLengthDistribution": {
+    "target": {
+      "1": 1583,
+      "2": 118
+    },
+    "center": {
+      "2": 1701
+    }
+  },
+  "contractState": {
+    "selectionUnresolved": 1701,
+    "toleranceChanged": false,
+    "canonicalSelectionChanged": false,
+    "activeTransition": false,
+    "scientificApproval": false,
+    "productionIntegration": false
+  }
+}

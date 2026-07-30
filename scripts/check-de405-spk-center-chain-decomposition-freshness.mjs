@@ -1,0 +1,1 @@
+import { fresh } from './lib/de405-spk-center-chain-decomposition.mjs';const r=await fresh();console.log(`DE405 center-chain freshness: ${r.status}`);if(r.error)console.error(r.error);if(r.status!=='fresh')process.exitCode=r.status==='invalid'?3:1

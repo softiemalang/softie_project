@@ -1,0 +1,1 @@
+import { materializeWithFrame,opts } from './lib/de405-spk-center-chain-decomposition.mjs';materializeWithFrame({output:opts(process.argv.slice(2)).output}).then(console.log).catch(e=>{console.error(e.stack);process.exitCode=1})
