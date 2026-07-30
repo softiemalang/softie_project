@@ -18,6 +18,13 @@ async function main() {
   }
 
   const outputPath = resolve(process.cwd(), options.output)
+  const candidateSourcePath = resolve(process.cwd(), options.candidateSource || 'docs/de405-active-tolerance-candidate.json')
+
+  if (outputPath === candidateSourcePath) {
+    console.error(`Error: candidate_source_equals_output - Candidate source path cannot be the same as output path: ${outputPath}`)
+    process.exitCode = 1
+    return
+  }
 
   // Overwrite protection
   let fileExists = false

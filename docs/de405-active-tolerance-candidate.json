@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "recordType": "de405_active_tolerance_candidate",
+  "status": "candidate_only_not_approved",
+  "platformScope": "macOS arm64 source evidence only",
+  "proposals": {
+    "A": {
+      "status": "blocked_by_unresolved_evidence",
+      "rule": "max(active absolute tolerance, active ULP multiplier × ULP norm)",
+      "complexity": "lower",
+      "distributionFit": "single global distribution",
+      "regressionSensitivity": "not approved without resolved evidence",
+      "excessiveExpansionRisk": "unresolved"
+    },
+    "B": {
+      "status": "blocked_by_unresolved_evidence",
+      "rule": "epoch-class absolute tolerance plus ULP floor",
+      "complexity": "higher",
+      "distributionFit": "record interior / knot adjacent / exact knot / coverage edge",
+      "regressionSensitivity": "potentially higher by class",
+      "excessiveExpansionRisk": "unresolved"
+    }
+  }
+}

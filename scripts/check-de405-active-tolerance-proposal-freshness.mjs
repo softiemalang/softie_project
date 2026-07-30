@@ -6,7 +6,7 @@ import {
 
 async function main() {
   const options = parseCliOptions(process.argv.slice(2))
-  const proposalPath = options.proposal || options.candidateSource || 'artifacts/de405-jpl-cspice-active-tolerance-proposal.json'
+  const proposalPath = options.proposal || 'artifacts/de405-jpl-cspice-active-tolerance-proposal.json'
 
   const result = await validateProposalFreshness(proposalPath, options)
 

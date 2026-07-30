@@ -5,7 +5,7 @@ import { isAbsolute, relative, resolve, sep } from 'node:path'
 const toPosix = value => value.split(sep).join('/')
 
 export const DEFAULT_PROPOSAL_INPUTS = {
-  candidateSource: 'artifacts/de405-jpl-cspice-active-tolerance-proposal.json',
+  candidateSource: 'docs/de405-active-tolerance-candidate.json',
   summary: 'artifacts/de405-jpl-cspice-residual-sweep.summary.json',
   manifest: 'artifacts/de405-jpl-cspice-residual-sweep.manifest.jsonl',
   samples: 'artifacts/de405-jpl-cspice-residual-sweep.samples.jsonl',
@@ -132,11 +132,18 @@ export function extractCandidateAllowlist(candidateSourceJson) {
 export async function runProposalPreflight(inputPaths, { cwd = process.cwd() } = {}) {
   const resolvedPaths = {}
   for (const [role, path] of Object.entries(inputPaths)) {
+    if (role === 'output' || role === 'force' || role === 'json') continue
     if (!path) throw new Error(`Missing path for input role: ${role}`)
     resolvedPaths[role] = await inspectFileIdentity(path, { cwd })
   }
 
   const candidateSource = resolvedPaths.candidateSource
+  if (inputPaths.output) {
+    const normOutput = isAbsolute(inputPaths.output) ? inputPaths.output : resolve(cwd, inputPaths.output)
+    if (candidateSource.absolutePath === normOutput) {
+      throw new Error(`candidate_source_equals_output: Candidate source path cannot be identical to output path (${normOutput})`)
+    }
+  }
   const summary = resolvedPaths.summary
   const manifest = resolvedPaths.manifest
   const samples = resolvedPaths.samples
@@ -240,7 +247,7 @@ export async function runProposalPreflight(inputPaths, { cwd = process.cwd() } =
   }
 
   // H. Worst-Case Reproduction Check
-  const worstCaseStatus = worstCase.parsedContent?.worstCaseReproduction?.status || worstCase.parsedContent?.status
+  const worstCaseStatus = worstCase.parsedContent?.worstCaseReproduction?.status || worstCase.parsedContent?.reproductionStatus || worstCase.parsedContent?.status
   if (worstCaseStatus !== 'verified') {
     throw new Error(`Preflight error: worst-case reproduction status is not verified (${worstCaseStatus})`)
   }
@@ -424,7 +431,13 @@ export async function validateProposalFreshness(proposalPath, inputPaths = DEFAU
 
   // Schema Version 2 Freshness Check
   const recordedSources = proposal.sources || {}
+  const candRec = recordedSources.candidateSource
+  if (candRec && (candRec.path === relative(cwd, resolvedProposalPath) || candRec.path.endsWith(proposalPath.split('/').pop()))) {
+    mismatches.push({ source: 'candidateSource', field: 'self_reference', recorded: candRec.path, actual: 'candidate_source_equals_proposal_output' })
+  }
+
   for (const [role, inputPath] of Object.entries(inputPaths)) {
+    if (role === 'proposal' || role === 'output' || role === 'force' || role === 'json') continue
     const rec = recordedSources[role]
     if (!rec) {
       mismatches.push({ source: role, field: 'provenance', recorded: null, actual: 'missing_source_record' })

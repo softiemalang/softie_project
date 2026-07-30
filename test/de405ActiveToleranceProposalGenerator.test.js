@@ -207,3 +207,33 @@ test('preflight rejects unverified worst-case reproduction status', async () => 
     await cleanup()
   }
 })
+
+test('generator rejects when candidate source path is identical to output path', async () => {
+  const { paths, cleanup } = await createSyntheticFixtures()
+  try {
+    const samePathOptions = { ...paths, output: paths.candidateSource }
+    await assert.rejects(
+      async () => generateActiveToleranceProposal(samePathOptions),
+      /candidate_source_equals_output/
+    )
+  } finally {
+    await cleanup()
+  }
+})
+
+test('generator allows replacement simulation without self-reference hash chain when output is written to a distinct file', async () => {
+  const { dir, paths, cleanup } = await createSyntheticFixtures()
+  try {
+    const proposal1 = await generateActiveToleranceProposal(paths)
+    const json1 = serializeProposalCanonical(proposal1)
+
+    // Simulate replacement: output is written to distinct file (or replaced via script --force)
+    const distinctOutput = join(dir, 'output-proposal.json')
+    const proposal2 = await generateActiveToleranceProposal({ ...paths, output: distinctOutput })
+    const json2 = serializeProposalCanonical(proposal2)
+
+    assert.equal(json1, json2)
+  } finally {
+    await cleanup()
+  }
+})

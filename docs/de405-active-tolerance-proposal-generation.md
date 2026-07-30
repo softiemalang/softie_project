@@ -29,7 +29,7 @@ npm run generate:de405:tolerance-proposal -- --output <path>
 
 | Role | Default Path | Description |
 |---|---|---|
-| `candidateSource` | `artifacts/de405-jpl-cspice-active-tolerance-proposal.json` | Candidate tolerance values and headroom comparison |
+| `candidateSource` | `docs/de405-active-tolerance-candidate.json` | Project-owned candidate tolerance definition (tracked source of truth) |
 | `summary` | `artifacts/de405-jpl-cspice-residual-sweep.summary.json` | Sweep evaluation summary and source sample counts |
 | `manifest` | `artifacts/de405-jpl-cspice-residual-sweep.manifest.jsonl` | Primary evaluation sample manifest |
 | `samples` | `artifacts/de405-jpl-cspice-residual-sweep.samples.jsonl` | Evaluated residual sample records |
