@@ -8,6 +8,8 @@
     "build": "vite build",
     "test": "node scripts/run-default-tests.mjs",
     "check:de405:artifacts": "node scripts/check-de405-artifacts.mjs",
+    "check:de405:tolerance-proposal": "node scripts/check-de405-active-tolerance-proposal-freshness.mjs",
+    "generate:de405:tolerance-proposal": "node scripts/generate-de405-active-tolerance-proposal.mjs",
     "test:de405:artifacts": "node scripts/test-de405-artifacts.mjs",
     "preview": "vite preview",
     "de405:v2:build-runner": "node tools/de405-cspice-runner/build.mjs",
