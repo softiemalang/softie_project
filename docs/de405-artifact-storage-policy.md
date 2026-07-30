@@ -14,11 +14,11 @@ Inventory source commit: `111281e5be0e15f4d81e965463d0685bf386a502`.
 |---|---:|---:|
 | `repository` | 0 | 0 |
 | `external` | 0 | 0 |
-| `generated` | 12 | 606,579,618 |
+| `generated` | 13 | 610,666,944 |
 | `pending` | 3 | 8,676 |
-| **Total** | **15** | **606,588,294** |
+| **Total** | **16** | **610,675,620** |
 
-The largest file is `artifacts/de405-jpl-cspice-residual-sweep.samples.jsonl` at 280,780,522 bytes. The three `pending` files are `de405-jpl-cspice-active-tolerance-proposal.json`, `de405-jpl-cspice-residual-sweep.classification-summary.json`, and `de405-jpl-cspice-residual-sweep.worst-case-reproduction.json`. The generated `de405-jpl-cspice-selection-trace.jsonl` is deterministic, opt-in diagnostic evidence and does not promote a selection, tolerance, or scientific approval state. OS and file-manager metadata such as `.DS_Store` and `Thumbs.db` are outside this inventory, materialization, and readiness contract; their presence does not affect readiness.
+The largest file is `artifacts/de405-jpl-cspice-residual-sweep.samples.jsonl` at 280,780,522 bytes. The three `pending` files are `de405-jpl-cspice-active-tolerance-proposal.json`, `de405-jpl-cspice-residual-sweep.classification-summary.json`, and `de405-jpl-cspice-residual-sweep.worst-case-reproduction.json`. The generated selection trace and project-owned SPK record probe are deterministic diagnostic evidence and do not promote a selection, tolerance, or scientific approval state. OS and file-manager metadata such as `.DS_Store` and `Thumbs.db` are outside this inventory, materialization, and readiness contract; their presence does not affect readiness.
 
 The sweep summary reports `complete_sweep_with_evidence_failures`, 1,701 unresolved selections, and an unchanged active tolerance contract. The inventory therefore does not treat any sweep output as canonical approval evidence.
 

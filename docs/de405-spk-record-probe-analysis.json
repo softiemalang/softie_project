@@ -1,0 +1,129 @@
+{
+  "schemaVersion": 1,
+  "recordType": "de405_spk_record_probe_analysis",
+  "generator": "scripts/analyze-de405-spk-record-probe.mjs",
+  "sourceIdentities": {
+    "breakdown": {
+      "path": "artifacts/de405-jpl-cspice-unresolved-selection-breakdown.json",
+      "sizeBytes": 11033,
+      "sha256": "52866438dd3cbe1a51ca6016e17a5d2f8d43fed1e11ca0cc8790b30893c64c61"
+    },
+    "classifications": {
+      "path": "artifacts/de405-jpl-cspice-residual-sweep.classifications.jsonl",
+      "sizeBytes": 434602,
+      "sha256": "75c9817e52dce30e9c73f9fd04c7412e31528669030a8c63bffa07998a1847a5"
+    },
+    "candidateEvidence": {
+      "path": "artifacts/de405-jpl-cspice-candidate-state-evidence.jsonl",
+      "sizeBytes": 5466407,
+      "sha256": "c894ce46c20f1b255be7bc1579c8335dd2a1b8d67abbb650c72076d9396afde4"
+    },
+    "selectionTrace": {
+      "path": "artifacts/de405-jpl-cspice-selection-trace.jsonl",
+      "sizeBytes": 6440479,
+      "sha256": "7d7a5757c5a2c2457e0c733ca95c7091df7b4a70a2edc82586a43b520e78078c"
+    },
+    "spk": {
+      "path": "/Users/softie/.local/share/softie-de405/kernels/spk/de405.bsp",
+      "sizeBytes": 10898432,
+      "sha256": "30a7113793ee5b6bf1e5546c6dfc21d9682d9ffabfe9b17b4bab27ba2ac75c89"
+    },
+    "probeSource": {
+      "path": "tools/de405-spk-record-probe/src/de405_spk_record_probe.c",
+      "sizeBytes": 9250,
+      "sha256": "68a7dafacdb3a99c49ade2a89fc17b4a01df7bd9310eb2608006e0af1b7a763e"
+    },
+    "probeBinary": {
+      "path": "tools/de405-spk-record-probe/build/de405-spk-record-probe",
+      "sizeBytes": 241336,
+      "sha256": "d18d844a5b9e45df6ac6c735fba274c208af03081a6587212a6632fd104e9fa2"
+    },
+    "probeBuild": {
+      "path": "tools/de405-spk-record-probe/build/runner-build.json",
+      "sizeBytes": 728,
+      "sha256": "2b1d1926e3cbb3f90a5da889d96ae9b61d91c2007711b4b08e9b0db9bedc8590"
+    }
+  },
+  "rawProbe": {
+    "path": "de405-spk-record-probe.jsonl",
+    "sizeBytes": 4087326,
+    "sha256": "8156952cb27b2cfd85bd094f204a84df4b6a40d32e7cb5fc136554a4aab7bafd",
+    "recordCount": 1701
+  },
+  "totalSampleCount": 1701,
+  "groupCounts": {
+    "candidate_state_different": 1095,
+    "state_equivalent_selection_different": 606
+  },
+  "segmentTypes": {
+    "2": 1701
+  },
+  "mechanismCounts": {
+    "project_evaluator_state_different": 479,
+    "project_selector_reproduces_cspice": 1222
+  },
+  "comparisonCounts": {
+    "projectBitwiseEqualsExistingCspice": 1222,
+    "projectBitwiseEqualsExistingJpl": 43,
+    "projectDiffersFromExistingCspice": 479,
+    "projectDiffersFromExistingJpl": 1658
+  },
+  "groups": {
+    "state_equivalent_selection_different": {
+      "count": 606,
+      "epochKinds": {
+        "exact_knot": 558,
+        "next_down_knot": 22,
+        "next_up_knot": 26
+      }
+    },
+    "candidate_state_different": {
+      "count": 1095,
+      "epochKinds": {
+        "next_down_knot": 548,
+        "next_up_knot": 547
+      },
+      "velocityOnlyCount": 9
+    }
+  },
+  "findings": {
+    "confirmed": [
+      {
+        "level": "confirmed",
+        "text": "The project-owned selector and Type 2 evaluator directly read the recorded DAF words and expose their own selected record and normalized-time inputs."
+      }
+    ],
+    "strong_correlation": [
+      {
+        "level": "strong_correlation",
+        "text": "All fixed unresolved samples are reconstructed from Type 2 records at the established knot-adjacent epochs."
+      }
+    ],
+    "candidate_explanation": [
+      {
+        "level": "candidate_explanation",
+        "text": "Project-owned reconstruction comparisons localize agreement or disagreement without asserting CSPICE internal record selection."
+      }
+    ],
+    "not_computable": [
+      {
+        "level": "not_computable",
+        "text": "CSPICE internal selected-record markers remain unavailable because the probe deliberately does not invoke high-level CSPICE SPK evaluation APIs."
+      }
+    ],
+    "unresolved": [
+      {
+        "level": "unresolved",
+        "text": "This evidence does not approve a canonical selection, tolerance, scientific interpretation, or implementation-fault attribution."
+      }
+    ]
+  },
+  "contractState": {
+    "selectionUnresolvedCount": 1701,
+    "toleranceChanged": false,
+    "canonicalSelectionChanged": false,
+    "activeTransitionPerformed": false,
+    "scientificApproval": false,
+    "blockerState": "selection_unresolved"
+  }
+}

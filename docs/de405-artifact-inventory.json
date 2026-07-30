@@ -4,12 +4,12 @@
   "artifactRoot": "artifacts",
   "generatedAt": "2026-07-30T01:30:00.000Z",
   "summary": {
-    "fileCount": 15,
-    "totalSizeBytes": 606588294,
+    "fileCount": 16,
+    "totalSizeBytes": 610675620,
     "byStorageClass": {
       "repository": { "fileCount": 0, "totalSizeBytes": 0 },
       "external": { "fileCount": 0, "totalSizeBytes": 0 },
-      "generated": { "fileCount": 12, "totalSizeBytes": 606579618 },
+      "generated": { "fileCount": 13, "totalSizeBytes": 610666944 },
       "pending": { "fileCount": 3, "totalSizeBytes": 8676 }
     }
   },
@@ -72,6 +72,24 @@
       "storageClass": "generated",
       "proposedAction": "ignore_after_policy_commit",
       "rationale": "Deterministic opt-in trace evidence records actual rerun state bits and explicit selection-observability limits without changing tolerance, canonical selection, blocker, or scientific approval state."
+    },
+    {
+      "path": "artifacts/de405-spk-record-probe.jsonl",
+      "sizeBytes": 4087326,
+      "sha256": "8156952cb27b2cfd85bd094f204a84df4b6a40d32e7cb5fc136554a4aab7bafd",
+      "format": "jsonl",
+      "role": "evidence",
+      "producer": { "type": "script", "path": "scripts/materialize-de405-spk-record-probe.mjs", "command": "npm run materialize:de405:spk-record-probe", "confidence": "confirmed" },
+      "references": [
+        { "path": "scripts/analyze-de405-spk-record-probe.mjs", "kind": "analysis_input" },
+        { "path": "scripts/check-de405-spk-record-probe-freshness.mjs", "kind": "freshness_validation" },
+        { "path": "test/de405-artifacts/de405SpkRecordProbe.test.js", "kind": "test_input" }
+      ],
+      "requiredBy": { "runtime": false, "build": false, "defaultTests": false, "specializedTests": true, "researchValidation": true },
+      "reproducibility": { "status": "conditionally_reproducible", "requirements": ["current unresolved-selection evidence", "selection trace", "DE405 SPK", "rebuilt project-owned DAF probe"], "estimatedCost": "medium" },
+      "storageClass": "generated",
+      "proposedAction": "ignore_after_policy_commit",
+      "rationale": "Deterministic project-owned Type 2 record reconstruction. It exposes a project selector and evaluator only; it does not assert an unexposed CSPICE internal selection or change approval state."
     },
     {
       "path": "artifacts/de405-jpl-cspice-out-of-coverage-investigation.json",
