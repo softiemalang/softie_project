@@ -14,11 +14,11 @@ Inventory source commit: `111281e5be0e15f4d81e965463d0685bf386a502`.
 |---|---:|---:|
 | `repository` | 0 | 0 |
 | `external` | 0 | 0 |
-| `generated` | 11 | 600,134,254 |
+| `generated` | 10 | 600,128,106 |
 | `pending` | 3 | 103,649 |
-| **Total** | **14** | **600,237,903** |
+| **Total** | **13** | **600,231,755** |
 
-The largest file is `artifacts/de405-jpl-cspice-residual-sweep.samples.jsonl` at 280,780,522 bytes. The three `pending` files are `de405-jpl-cspice-active-tolerance-proposal.json`, `de405-jpl-cspice-residual-sweep.classification-summary.json`, and `de405-jpl-cspice-residual-sweep.worst-case-reproduction.json`.
+The largest file is `artifacts/de405-jpl-cspice-residual-sweep.samples.jsonl` at 280,780,522 bytes. The three `pending` files are `de405-jpl-cspice-active-tolerance-proposal.json`, `de405-jpl-cspice-residual-sweep.classification-summary.json`, and `de405-jpl-cspice-residual-sweep.worst-case-reproduction.json`. OS and file-manager metadata such as `.DS_Store` and `Thumbs.db` are outside this inventory, materialization, and readiness contract; their presence does not affect readiness.
 
 The sweep summary reports `complete_sweep_with_evidence_failures`, 1,701 unresolved selections, and an unchanged active tolerance contract. The inventory therefore does not treat any sweep output as canonical approval evidence.
 
@@ -42,9 +42,19 @@ Use when the producer, exact input identity, canonical-versus-derived role, or s
 
 ## Test dependency
 
-The current default command is `npm test` (`node --test`). It passed locally with 347 tests and 0 failures while this untracked directory was present. The suite is nevertheless `environment_dependent`, not `independent`: `test/de405ManifestCoverage.test.js` directly reads the sweep manifest, and `test/de405PhaseCEvidence.test.js` directly reads candidate evidence and the out-of-coverage investigation. A fresh clone without materialized artifacts is therefore expected to fail those direct reads rather than skip them. This task records the dependency and does not change the tests.
+The default command is `npm test` (`node scripts/run-default-tests.mjs`) and is artifact-independent. Its deterministic discovery recursively includes every `*.test.js` under `test/` except `test/de405-artifacts/`; artifact-backed tests are run explicitly with `npm run test:de405:artifacts`, after `npm run check:de405:artifacts` confirms that the generated inputs are present and byte-valid. Use `npm test -- --list` to inspect the selected default files.
+
+`npm run check:de405:artifacts` reports the resolved artifact root, generated-file counts, pending count, deterministic missing paths, size/hash mismatches, and one of `ready`, `blocked_missing_de405_artifacts`, or `blocked_pending_de405_artifact_contract`. It exits `0` only for `ready`, and exits `3` for a blocked state. The JSON form is available with `-- --json`.
+
+The readiness and test commands never download, generate, modify, delete, or move artifact files. A missing artifact is reported with its path and the preparation document rather than as a raw `ENOENT`.
+
+OS and file-manager metadata such as `.DS_Store` and `Thumbs.db` are outside the DE405 artifact inventory, materialization target, and readiness contract. Their presence never changes readiness and must not be confused with official evidence, manifests, summaries, or checkpoints.
 
 Runtime and build code do not require these files. The overlap runner and Phase-C generator use them as generated inputs/outputs for specialized research validation. The test contract should be addressed in a separate, explicitly scoped task before generated outputs are ignored or externalized.
+
+## Clone behavior
+
+After `npm install`, a fresh clone can run `npm test` without `artifacts/`. `npm run check:de405:artifacts` will report `blocked_missing_de405_artifacts` until the generated files are materialized. `npm run test:de405:artifacts` reports the same blocked state and preparation guidance; it does not silently pass.
 
 ## Recommended follow-up actions
 
@@ -55,4 +65,4 @@ Runtime and build code do not require these files. The overlap runner and Phase-
 
 ## Scope and non-actions
 
-This policy work created only the inventory and policy documents. It did not modify files under `artifacts/`, `.gitignore`, `.git/info/exclude`, scripts, runners, tests, tolerance values, canonical selection, external data, or database/deployment state. No staging, commit, push, or deploy was performed.
+This policy work preserves the inventory and pending states. The test contract adds only the artifact resolver/readiness boundary and explicit commands; it does not modify files under `artifacts/`, `.gitignore`, `.git/info/exclude`, tolerance values, canonical selection, external data, or database/deployment state. No staging, commit, push, or deploy was performed.

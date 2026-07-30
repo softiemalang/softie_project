@@ -12,11 +12,11 @@ The verified baseline for the current suite contract is:
 
 | Suite | Files | Tests | Result |
 |---|---:|---:|---|
-| Default | 56 | 256 | 256 passed |
+| Default | 54 | 256 | 256 passed |
 | Artifact | 2 | 4 | 4 passed |
-| Total | 58 | 260 | 260 passed |
+| Total | 56 | 260 | 260 passed |
 
-The suites are disjoint, deterministically sorted, and contain all actual repository test files exactly once. The current suite uses explicit recursive `*.test.js` discovery under `test/`, excluding only `test/de405-artifacts/`; artifact tests are run separately after readiness succeeds. The baseline commit and Node version above are part of this verification record.
+The previous `56 + 2 = 58` file count mixed measurements from different working-tree states. Two new default-suite regression files were counted while two existing DE405 tests had already moved from the default suite into the artifact suite: `test/de405ArtifactReadiness.test.js`, `test/testSuitePartition.test.js`, `test/de405ManifestCoverage.test.js`, and `test/de405PhaseCEvidence.test.js`. The current unique file baseline is therefore `54 + 2 = 56`. The suites are disjoint, deterministically sorted, and contain all actual repository test files exactly once. The current suite uses explicit recursive `*.test.js` discovery under `test/`, excluding only `test/de405-artifacts/`; artifact tests are run separately after readiness succeeds. The baseline commit and Node version above are part of this verification record.
 
 ## Commands
 

@@ -1,9 +1,10 @@
 import test from 'node:test'
 import assert from 'node:assert/strict'
 import { readFile } from 'node:fs/promises'
+import { resolveArtifactRoot } from '../../scripts/lib/de405-artifact-contract.mjs'
 
-const root = process.cwd()
-const manifestPath = `${root}/artifacts/de405-jpl-cspice-residual-sweep.manifest.jsonl`
+const artifactRoot = resolveArtifactRoot()
+const manifestPath = `${artifactRoot}/de405-jpl-cspice-residual-sweep.manifest.jsonl`
 const coverageStartEt = -1577879958.8160586
 const coverageEndEt = 1577880064.1839132
 

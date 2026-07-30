@@ -4,40 +4,26 @@
   "artifactRoot": "artifacts",
   "generatedAt": "2026-07-30T01:30:00.000Z",
   "summary": {
-    "fileCount": 14,
-    "totalSizeBytes": 600237903,
+    "fileCount": 13,
+    "totalSizeBytes": 600231755,
     "byStorageClass": {
       "repository": { "fileCount": 0, "totalSizeBytes": 0 },
       "external": { "fileCount": 0, "totalSizeBytes": 0 },
-      "generated": { "fileCount": 11, "totalSizeBytes": 600134254 },
+      "generated": { "fileCount": 10, "totalSizeBytes": 600128106 },
       "pending": { "fileCount": 3, "totalSizeBytes": 103649 }
     }
   },
   "defaultTestDependency": {
     "status": "environment_dependent",
     "evidence": [
-      { "path": "test/de405ManifestCoverage.test.js", "kind": "test_input", "detail": "reads artifacts/de405-jpl-cspice-residual-sweep.manifest.jsonl directly" },
-      { "path": "test/de405PhaseCEvidence.test.js", "kind": "test_input", "detail": "reads candidate-state evidence and out-of-coverage investigation directly" },
-      { "path": "package.json", "kind": "documentation_reference", "detail": "npm test runs node --test, which discovers both tests" }
+      { "path": "test/de405-artifacts/de405ManifestCoverage.test.js", "kind": "test_input", "detail": "reads artifacts/de405-jpl-cspice-residual-sweep.manifest.jsonl directly" },
+      { "path": "test/de405-artifacts/de405PhaseCEvidence.test.js", "kind": "test_input", "detail": "reads candidate-state evidence and out-of-coverage investigation directly" },
+      { "path": "package.json", "kind": "documentation_reference", "detail": "npm test uses recursive deterministic discovery and excludes test/de405-artifacts/" }
     ],
-    "currentRun": { "command": "npm test", "status": "passed", "tests": 347, "failures": 0 },
-    "newCloneExpectation": "The default test suite is not artifact-independent: a clone without this untracked directory will fail these direct reads unless the tests or artifact materialization contract is changed in a later task."
+    "currentRun": { "command": "npm test", "status": "passed", "tests": 256, "failures": 0 },
+    "newCloneExpectation": "The default test suite is artifact-independent. A clone without materialized artifacts can run npm test; the artifact suite remains explicitly blocked until its generated inputs are materialized."
   },
   "artifacts": [
-    {
-      "path": "artifacts/.DS_Store",
-      "sizeBytes": 6148,
-      "sha256": "16d64146626c8d2b23de2edbb0ed0356e048aede88b45665d95473a6aea82843",
-      "format": "binary",
-      "role": "debug_output",
-      "producer": { "type": "system", "path": null, "command": "macOS Finder metadata", "confidence": "inferred" },
-      "references": [],
-      "requiredBy": { "runtime": false, "build": false, "defaultTests": false, "specializedTests": false, "researchValidation": false },
-      "reproducibility": { "status": "reproducible", "requirements": ["macOS Finder metadata generation"], "estimatedCost": "small" },
-      "storageClass": "generated",
-      "proposedAction": "ignore_after_policy_commit",
-      "rationale": "Desktop metadata is not DE405 evidence or a test input."
-    },
     {
       "path": "artifacts/de405-jpl-cspice-active-tolerance-proposal.json",
       "sizeBytes": 8798,
@@ -63,7 +49,7 @@
         { "path": "scripts/generate-de405-phase-c-evidence.mjs", "kind": "generation_output" },
         { "path": "test/de405PhaseCEvidence.test.js", "kind": "test_input" }
       ],
-      "requiredBy": { "runtime": false, "build": false, "defaultTests": true, "specializedTests": true, "researchValidation": true },
+      "requiredBy": { "runtime": false, "build": false, "defaultTests": false, "specializedTests": true, "researchValidation": true },
       "reproducibility": { "status": "conditionally_reproducible", "requirements": ["the current sweep manifest, samples, classifications, JPL binary, DE405 SPK, and CSPICE runner"], "estimatedCost": "medium" },
       "storageClass": "generated",
       "proposedAction": "ignore_after_policy_commit",
@@ -80,7 +66,7 @@
         { "path": "scripts/generate-de405-phase-c-evidence.mjs", "kind": "generation_output" },
         { "path": "test/de405PhaseCEvidence.test.js", "kind": "test_input" }
       ],
-      "requiredBy": { "runtime": false, "build": false, "defaultTests": true, "specializedTests": true, "researchValidation": true },
+      "requiredBy": { "runtime": false, "build": false, "defaultTests": false, "specializedTests": true, "researchValidation": true },
       "reproducibility": { "status": "conditionally_reproducible", "requirements": ["the current sweep inputs and CSPICE runner"], "estimatedCost": "medium" },
       "storageClass": "generated",
       "proposedAction": "ignore_after_policy_commit",
@@ -168,7 +154,7 @@
         { "path": "test/de405ManifestCoverage.test.js", "kind": "test_input" },
         { "path": "scripts/generate-de405-phase-c-evidence.mjs", "kind": "validation_input" }
       ],
-      "requiredBy": { "runtime": false, "build": false, "defaultTests": true, "specializedTests": true, "researchValidation": true },
+      "requiredBy": { "runtime": false, "build": false, "defaultTests": false, "specializedTests": true, "researchValidation": true },
       "reproducibility": { "status": "conditionally_reproducible", "requirements": ["DE405 SPK and CSPICE N0067 runner"], "estimatedCost": "large" },
       "storageClass": "generated",
       "proposedAction": "ignore_after_policy_commit",
