@@ -1,0 +1,302 @@
+{
+  "schemaVersion": 1,
+  "recordType": "de405_unresolved_selection_cause_analysis",
+  "generator": "scripts/analyze-de405-unresolved-selection-cause.mjs",
+  "sources": {
+    "breakdown": {
+      "path": "artifacts/de405-jpl-cspice-unresolved-selection-breakdown.json",
+      "sizeBytes": 11033,
+      "sha256": "52866438dd3cbe1a51ca6016e17a5d2f8d43fed1e11ca0cc8790b30893c64c61",
+      "lineCount": 1
+    },
+    "classifications": {
+      "path": "artifacts/de405-jpl-cspice-residual-sweep.classifications.jsonl",
+      "sizeBytes": 434602,
+      "sha256": "75c9817e52dce30e9c73f9fd04c7412e31528669030a8c63bffa07998a1847a5",
+      "lineCount": 1701
+    },
+    "candidateEvidence": {
+      "path": "artifacts/de405-jpl-cspice-candidate-state-evidence.jsonl",
+      "sizeBytes": 5466407,
+      "sha256": "c894ce46c20f1b255be7bc1579c8335dd2a1b8d67abbb650c72076d9396afde4",
+      "lineCount": 1701
+    }
+  },
+  "invariants": {
+    "totalUnresolvedCount": 1701,
+    "stateEquivalentSelectionDifferentCount": 606,
+    "candidateStateDifferentCount": 1095,
+    "crossGroupOverlap": 0,
+    "duplicateClassifications": 0,
+    "duplicateCandidateEvidence": 0,
+    "missingCandidateEvidence": 0,
+    "extraCandidateEvidence": 0
+  },
+  "priorBreakdownIdentityMatches": true,
+  "groups": {
+    "state_equivalent_selection_different": {
+      "classification": "state_equivalent_selection_different",
+      "count": 606,
+      "distributions": {
+        "targetCenter": {
+          "1:399": 90,
+          "2:399": 55,
+          "4:399": 33,
+          "5:399": 46,
+          "6:399": 49,
+          "7:399": 62,
+          "8:399": 34,
+          "9:399": 69,
+          "10:399": 120,
+          "301:399": 48
+        },
+        "epochKind": {
+          "exact_knot": 558,
+          "next_down_knot": 22,
+          "next_up_knot": 26
+        },
+        "trigger": {
+          "neither": 46,
+          "position_and_velocity": 111,
+          "position_only": 12,
+          "velocity_only": 437
+        }
+      },
+      "selectionAndBoundary": {
+        "jplSelectedCandidateCount": 1,
+        "jplSelectedCandidateRelationToItsRecordedInterval": {
+          "at_start": 558,
+          "inside": 26,
+          "outside": 22
+        },
+        "cspiceCandidateCount": {
+          "2": 606
+        },
+        "cspiceSelectedCandidateCountRecorded": {
+          "0": 606
+        },
+        "cspiceCandidateStateBits": {
+          "all_candidates_bitwise_match_reference": 606
+        },
+        "cspiceRecordPattern": {
+          "DE-405:adjacent_records": 606
+        },
+        "sharedCspiceRecordBoundaryRelation": {
+          "after": 26,
+          "before": 22,
+          "exact": 558
+        },
+        "deltaEtToSharedCspiceRecordBoundarySeconds": {
+          "min": -7.450580596923828e-9,
+          "p50": 0,
+          "p95": 0,
+          "p99": 7.264316082000902e-9,
+          "max": 7.450580596923828e-9
+        },
+        "ulpDistanceToSharedCspiceRecordBoundary": {
+          "min": 0,
+          "p50": 0,
+          "p95": 1,
+          "p99": 1,
+          "max": 1
+        }
+      },
+      "residuals": {
+        "positionNormKm": {
+          "min": 0,
+          "p50": 0,
+          "p95": 2.9802322387695312e-8,
+          "p99": 1.3017976534400212e-7,
+          "max": 2.6656007498500226e-7
+        },
+        "velocityNormKmPerSec": {
+          "min": 0,
+          "p50": 3.580361673049448e-15,
+          "p95": 1.0805156823142814e-14,
+          "p99": 1.5962146971933466e-14,
+          "max": 2.1316282072803006e-14
+        }
+      },
+      "representativeSamples": [
+        {
+          "sampleId": "segment-0-knot-104-exact_knot",
+          "queryEt": -1506168000,
+          "epochKind": "exact_knot",
+          "targetCenter": "1:399",
+          "jplCandidateId": "jpl:4021:subinterval:2",
+          "cspiceCandidateIds": [
+            "spk:0:record:103",
+            "spk:0:record:104"
+          ],
+          "positionResidualNormKm": 7.450580596923828e-9,
+          "velocityResidualNormKmPerSec": 7.944109290391274e-15,
+          "sharedCspiceBoundaryEt": -1506168000,
+          "deltaEtToSharedCspiceBoundarySeconds": 0,
+          "ulpDistanceToSharedCspiceBoundary": 0
+        },
+        {
+          "sampleId": "segment-8-knot-584-next_up_knot",
+          "queryEt": 35208000.00000001,
+          "epochKind": "next_up_knot",
+          "targetCenter": "9:399",
+          "jplCandidateId": "jpl:4579:subinterval:0",
+          "cspiceCandidateIds": [
+            "spk:8:record:583",
+            "spk:8:record:584"
+          ],
+          "positionResidualNormKm": 2.6656007498500226e-7,
+          "velocityResidualNormKmPerSec": 1.0986160316453369e-14,
+          "sharedCspiceBoundaryEt": 35208000,
+          "deltaEtToSharedCspiceBoundarySeconds": 7.450580596923828e-9,
+          "ulpDistanceToSharedCspiceBoundary": 1
+        }
+      ]
+    },
+    "candidate_state_different": {
+      "classification": "candidate_state_different",
+      "count": 1095,
+      "distributions": {
+        "targetCenter": {
+          "1:399": 179,
+          "2:399": 83,
+          "4:399": 69,
+          "5:399": 96,
+          "6:399": 98,
+          "7:399": 111,
+          "8:399": 82,
+          "9:399": 111,
+          "10:399": 196,
+          "301:399": 70
+        },
+        "epochKind": {
+          "next_down_knot": 548,
+          "next_up_knot": 547
+        },
+        "trigger": {
+          "neither": 0,
+          "position_and_velocity": 1086,
+          "position_only": 0,
+          "velocity_only": 9
+        }
+      },
+      "selectionAndBoundary": {
+        "jplSelectedCandidateCount": 1,
+        "jplSelectedCandidateRelationToItsRecordedInterval": {
+          "inside": 547,
+          "outside": 548
+        },
+        "cspiceCandidateCount": {
+          "2": 1095
+        },
+        "cspiceSelectedCandidateCountRecorded": {
+          "0": 1095
+        },
+        "cspiceCandidateStateBits": {
+          "all_candidates_bitwise_match_reference": 1095
+        },
+        "cspiceRecordPattern": {
+          "DE-405:adjacent_records": 1095
+        },
+        "sharedCspiceRecordBoundaryRelation": {
+          "after": 547,
+          "before": 548
+        },
+        "deltaEtToSharedCspiceRecordBoundarySeconds": {
+          "min": -2.384185791015625e-7,
+          "p50": -3.725290298461914e-9,
+          "p95": 2.384185791015625e-7,
+          "p99": 2.384185791015625e-7,
+          "max": 2.384185791015625e-7
+        },
+        "ulpDistanceToSharedCspiceRecordBoundary": {
+          "min": 1,
+          "p50": 1,
+          "p95": 1,
+          "p99": 1,
+          "max": 1
+        }
+      },
+      "residuals": {
+        "positionNormKm": {
+          "min": 0,
+          "p50": 0.0000011449678368746367,
+          "p95": 0.000003855430651317289,
+          "p99": 0.0000059027696186724715,
+          "max": 0.000006646535961209399
+        },
+        "velocityNormKmPerSec": {
+          "min": 6.507424778298154e-15,
+          "p50": 2.3212573159866617e-13,
+          "p95": 2.3904673490012813e-12,
+          "p99": 4.325280295136371e-12,
+          "max": 5.061968736361303e-12
+        }
+      },
+      "representativeSamples": [
+        {
+          "sampleId": "segment-0-knot-1-next_up_knot",
+          "queryEt": -1577361599.9999998,
+          "epochKind": "next_up_knot",
+          "targetCenter": "1:399",
+          "jplCandidateId": "jpl:3995:subinterval:3",
+          "cspiceCandidateIds": [
+            "spk:0:record:0",
+            "spk:0:record:1"
+          ],
+          "positionResidualNormKm": 0.0000034680031755701034,
+          "velocityResidualNormKmPerSec": 4.361415843278513e-12,
+          "sharedCspiceBoundaryEt": -1577361600,
+          "deltaEtToSharedCspiceBoundarySeconds": 2.384185791015625e-7,
+          "ulpDistanceToSharedCspiceBoundary": 1
+        },
+        {
+          "sampleId": "segment-0-knot-155-next_down_knot",
+          "queryEt": -1470916800.0000002,
+          "epochKind": "next_down_knot",
+          "targetCenter": "1:399",
+          "jplCandidateId": "jpl:4034:subinterval:1",
+          "cspiceCandidateIds": [
+            "spk:0:record:154",
+            "spk:0:record:155"
+          ],
+          "positionResidualNormKm": 0.000006646535961209399,
+          "velocityResidualNormKmPerSec": 5.061968736361303e-12,
+          "sharedCspiceBoundaryEt": -1470916800,
+          "deltaEtToSharedCspiceBoundarySeconds": -2.384185791015625e-7,
+          "ulpDistanceToSharedCspiceBoundary": 1
+        }
+      ]
+    }
+  },
+  "findings": {
+    "confirmed": [
+      "The input population is exactly 1,701, split into 606 state_equivalent_selection_different and 1,095 candidate_state_different with no missing or extra candidate-evidence rows.",
+      "Each evidence row records exactly one selected JPL candidate; CSPICE candidate state bits match its recorded reference for every candidate in both groups.",
+      "candidate_state_different has 547 next_up_knot and 548 next_down_knot rows, with no exact_knot row; its trigger distribution is 0 position-only, 9 velocity-only, 1,086 position-and-velocity, 0 neither."
+    ],
+    "strong_correlation": [
+      "All 1,095 candidate_state_different rows are one representable IEEE-754 step from their recorded shared CSPICE record boundary, split by next_up_knot and next_down_knot direction.",
+      "state_equivalent_selection_different and candidate_state_different remain disjoint classifications with materially different residual distributions."
+    ],
+    "candidate_explanation": [
+      "The directional one-ULP boundary concentration is consistent with source-specific record/subinterval selection or evaluation behavior around logical Chebyshev record knots, but it does not by itself prove a segment-boundary defect or identify a canonical selection."
+    ],
+    "not_computable": [
+      "A CSPICE selected record identity is not recorded for these ambiguous rows (all recorded CSPICE candidates have selected:false), so selected-record disagreement cannot be directly measured.",
+      "Bitwise JPL-to-CSPICE state identity is not computable because the JPL candidate evidence has numeric state vectors but no component-bit representation.",
+      "SPK segment-directory boundary distance is not established by record start/end fields alone; this report only computes explicitly recorded shared record boundaries."
+    ],
+    "unresolved": [
+      "The source-specific mechanism that produces the non-equivalent JPL/CSPICE states at the 1,095 directional knot-adjacent samples remains unresolved.",
+      "selection_unresolved=1701 remains an active blocker."
+    ]
+  },
+  "contractState": {
+    "selectionUnresolvedBlockerActive": true,
+    "selectionUnresolvedCount": 1701,
+    "toleranceChanged": false,
+    "canonicalSelectionChanged": false,
+    "activeTransitionPerformed": false,
+    "scientificApproval": false
+  }
+}
