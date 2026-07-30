@@ -1,12 +1,15 @@
 import test from 'node:test'
 import assert from 'node:assert/strict'
+import { createHash } from 'node:crypto'
 import { mkdtemp, readFile, rm, writeFile } from 'node:fs/promises'
 import { tmpdir } from 'node:os'
-import { join } from 'node:path'
+import { join, resolve } from 'node:path'
 import {
   generateClassificationSummary,
   validateClassificationSummaryFreshness
 } from '../scripts/lib/de405-classification-summary.mjs'
+
+const sha256File = async path => createHash('sha256').update(await readFile(path)).digest('hex')
 
 async function createFreshFixture() {
   const dir = await mkdtemp(join(tmpdir(), 'de405-class-summary-fresh-test-'))
@@ -82,9 +85,13 @@ test('freshness validator identifies classifications sha256 change as stale', as
     await writeFile(paths.classifications, JSON.stringify({ sampleId: 's1', classification: 'other' }) + '\n')
 
     const result = await validateClassificationSummaryFreshness(paths.output, paths)
-    assert.equal(result.status, 'stale')
-    assert.equal(result.fresh, false)
-    assert.equal(result.mismatches.some(m => m.source === 'classifications' && m.field === 'sha256'), true)
+    assert.equal(result.status, 'stale', `expected status=stale after classifications SHA mutation; actual status=${result.status}`)
+    assert.equal(result.fresh, false, `expected fresh=false for mismatch role=classifications; actual fresh=${result.fresh}`)
+    assert.equal(
+      result.mismatches.some(m => m.source === 'classifications' && m.field === 'sha256'),
+      true,
+      `expected mismatch role=classifications field=sha256; actual mismatches=${JSON.stringify(result.mismatches)}`
+    )
   } finally {
     await cleanup()
   }
@@ -141,12 +148,37 @@ test('freshness validator returns deterministically ordered mismatches', async (
   }
 })
 
-test('validates current stale repository summary as stale status', async () => {
-  const result = await validateClassificationSummaryFreshness(
-    'artifacts/de405-jpl-cspice-residual-sweep.classification-summary.json'
-  )
-  assert.equal(result.status, 'stale')
-  assert.equal(result.fresh, false)
+test('validates current repository summary as fresh without mutating repository artifacts', async () => {
+  const paths = {
+    summary: resolve('artifacts/de405-jpl-cspice-residual-sweep.summary.json'),
+    manifest: resolve('artifacts/de405-jpl-cspice-residual-sweep.manifest.jsonl'),
+    samples: resolve('artifacts/de405-jpl-cspice-residual-sweep.samples.jsonl'),
+    classifications: resolve('artifacts/de405-jpl-cspice-residual-sweep.classifications.jsonl'),
+    classificationSummary: resolve('artifacts/de405-jpl-cspice-residual-sweep.classification-summary.json'),
+    proposal: resolve('artifacts/de405-jpl-cspice-active-tolerance-proposal.json')
+  }
+  const before = {
+    classificationSummary: await sha256File(paths.classificationSummary),
+    proposal: await sha256File(paths.proposal)
+  }
+
+  const result = await validateClassificationSummaryFreshness(paths.classificationSummary, {
+    summary: paths.summary,
+    manifest: paths.manifest,
+    samples: paths.samples,
+    classifications: paths.classifications
+  })
+
+  assert.equal(result.status, 'fresh', `expected status=fresh for repository classification summary; actual status=${result.status}`)
+  assert.equal(result.fresh, true, `expected fresh=true for repository classification summary; actual fresh=${result.fresh}`)
   assert.equal(result.schemaVersion, 1)
-  assert.ok(result.mismatches.length > 0)
+  assert.deepEqual(result.mismatches, [], `expected no mismatches; actual mismatches=${JSON.stringify(result.mismatches)}`)
+
+  const after = {
+    classificationSummary: await sha256File(paths.classificationSummary),
+    proposal: await sha256File(paths.proposal)
+  }
+  assert.equal(before.classificationSummary, '57c8177ae330afb2f7aef9a6cecc1faab0d3151a3e22da8ffc129f682c73f2e7')
+  assert.equal(before.proposal, 'b4fb0e412c586116bda4bde9b97bef3fc6ceff01ec7a64b36e1638d2a3f44174')
+  assert.deepEqual(after, before, `repository artifact SHA changed during freshness validation: before=${JSON.stringify(before)} after=${JSON.stringify(after)}`)
 })

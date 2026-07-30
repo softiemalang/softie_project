@@ -5,12 +5,12 @@
   "generatedAt": "2026-07-30T01:30:00.000Z",
   "summary": {
     "fileCount": 13,
-    "totalSizeBytes": 600231755,
+    "totalSizeBytes": 600136782,
     "byStorageClass": {
       "repository": { "fileCount": 0, "totalSizeBytes": 0 },
       "external": { "fileCount": 0, "totalSizeBytes": 0 },
       "generated": { "fileCount": 10, "totalSizeBytes": 600128106 },
-      "pending": { "fileCount": 3, "totalSizeBytes": 103649 }
+      "pending": { "fileCount": 3, "totalSizeBytes": 8676 }
     }
   },
   "defaultTestDependency": {
@@ -26,8 +26,8 @@
   "artifacts": [
     {
       "path": "artifacts/de405-jpl-cspice-active-tolerance-proposal.json",
-      "sizeBytes": 8798,
-      "sha256": "415c54dd4c2380bc7efdf94cd1fe766665a3240eb1a8238fad51216611fd6ff6",
+      "sizeBytes": 4937,
+      "sha256": "b4fb0e412c586116bda4bde9b97bef3fc6ceff01ec7a64b36e1638d2a3f44174",
       "format": "json",
       "role": "summary",
       "producer": { "type": "unknown", "path": null, "command": "unknown", "confidence": "unknown" },
@@ -88,8 +88,8 @@
     },
     {
       "path": "artifacts/de405-jpl-cspice-residual-sweep.classification-summary.json",
-      "sizeBytes": 93153,
-      "sha256": "9129876987badfd554b56d8ecb8c93a3981f1891ffcd4f9a3b84e49c22cf2ec9",
+      "sizeBytes": 2041,
+      "sha256": "57c8177ae330afb2f7aef9a6cecc1faab0d3151a3e22da8ffc129f682c73f2e7",
       "format": "json",
       "role": "summary",
       "producer": { "type": "unknown", "path": null, "command": "unknown", "confidence": "unknown" },
