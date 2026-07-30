@@ -32,7 +32,8 @@ C=======================================================================
       INTEGER CAND_IDX
       DOUBLE PRECISION QUERY_JED, QUERY_NORMALIZED, TMP_RECORD_START
       DOUBLE PRECISION CAND_START, CAND_END
-      LOGICAL BATCH_MODE, OK, CANDIDATE_EVIDENCE_MODE
+      LOGICAL BATCH_MODE, OK, CANDIDATE_EVIDENCE_MODE,
+     &  SELECTION_TRACE_MODE
       DOUBLE PRECISION CVAL(1000), SS_HEADER(3), AU, EMRAT
       INTEGER DENUM, NCONST, IPT(3,13)
       COMMON/EPHHDR/CVAL,SS_HEADER,AU,EMRAT,DENUM,NCONST,IPT
@@ -74,6 +75,7 @@ C=======================================================================
       STEP_SEC = 864000.0D0
       BATCH_MODE = .FALSE.
       CANDIDATE_EVIDENCE_MODE = .FALSE.
+      SELECTION_TRACE_MODE = .FALSE.
       IF (MODE .EQ. '--evaluate-et-batch') BATCH_MODE = .TRUE.
 
       I = 2
@@ -102,6 +104,8 @@ C=======================================================================
           CALL GET_COMMAND_ARGUMENT(I, INPUT_FILE)
         ELSE IF (ARG .EQ. '--candidate-evidence') THEN
           CANDIDATE_EVIDENCE_MODE = .TRUE.
+        ELSE IF (ARG .EQ. '--selection-trace') THEN
+          SELECTION_TRACE_MODE = .TRUE.
         ENDIF
         I = I + 1
       ENDDO
@@ -182,10 +186,18 @@ C Open binary file via STROPEN or direct Fortran OPEN if needed by PLEPH
      &      ',"centerId":', QUERY_CENTER, ',"frameId":', QUERY_FRAME,
      &      ',"jplOuterRecordIndex":null,"jplTargetId":',
      &      JPL_TARGET
-          WRITE(OUT_UNIT, '(A)')
+          WRITE(OUT_UNIT, '(A)', ADVANCE='NO')
      &      ',"jplSubintervalIndex":null,"jplSubintervalCount":null,'//
      &      '"normalizedTime":null,"evaluationStatus":"out_of_coverage",'//
-     &      '"stateKmKmPerSec":null}'
+     &      '"stateKmKmPerSec":null'
+          IF (SELECTION_TRACE_MODE) THEN
+            WRITE(OUT_UNIT, '(A)', ADVANCE='NO')
+     &        ',"selectionTrace":{"schemaVersion":1,'//
+     &        '"selectionObservable":false,"unavailableReason":'//
+     &        '"not_applicable","selectionMethod":'//
+     &        '"official_testeph_state_record_not_exposed"}'
+          ENDIF
+          WRITE(OUT_UNIT, '(A)') '}'
           GO TO 250
         ENDIF
         JPL_OUTER_RECORD = IDINT((QUERY_JED-JED_START)/BLOCK_STEP)
@@ -251,6 +263,13 @@ C Open binary file via STROPEN or direct Fortran OPEN if needed by PLEPH
           WRITE(OUT_UNIT, '(1PE30.17,A,1PE30.17,A,1PE30.17,A)',
      &      ADVANCE='NO') RRD(4), ',', RRD(5), ',', RRD(6), ']}'
           WRITE(OUT_UNIT, '(A)', ADVANCE='NO') ']'
+        ENDIF
+        IF (SELECTION_TRACE_MODE) THEN
+          WRITE(OUT_UNIT, '(A)', ADVANCE='NO')
+     &      ',"selectionTrace":{"schemaVersion":1,'//
+     &      '"selectionObservable":false,"unavailableReason":'//
+     &      '"api_does_not_expose_selected_record","selectionMethod":'//
+     &      '"official_testeph_state_record_not_exposed"}'
         ENDIF
         WRITE(OUT_UNIT, '(A)') '}'
         GO TO 250

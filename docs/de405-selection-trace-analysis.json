@@ -1,0 +1,180 @@
+{
+  "schemaVersion": 1,
+  "recordType": "de405_selection_trace_analysis",
+  "generator": "scripts/analyze-de405-selection-trace.mjs",
+  "sourceIdentities": {
+    "breakdown": {
+      "path": "artifacts/de405-jpl-cspice-unresolved-selection-breakdown.json",
+      "sizeBytes": 11033,
+      "sha256": "52866438dd3cbe1a51ca6016e17a5d2f8d43fed1e11ca0cc8790b30893c64c61"
+    },
+    "classifications": {
+      "path": "artifacts/de405-jpl-cspice-residual-sweep.classifications.jsonl",
+      "sizeBytes": 434602,
+      "sha256": "75c9817e52dce30e9c73f9fd04c7412e31528669030a8c63bffa07998a1847a5"
+    },
+    "candidateEvidence": {
+      "path": "artifacts/de405-jpl-cspice-candidate-state-evidence.jsonl",
+      "sizeBytes": 5466407,
+      "sha256": "c894ce46c20f1b255be7bc1579c8335dd2a1b8d67abbb650c72076d9396afde4"
+    },
+    "jplRunnerSource": {
+      "path": "tools/de405-jpl-reader/src/de405_jpl_reader_runner.f",
+      "sizeBytes": 16701,
+      "sha256": "4500860065b0659bc1800637bdabd7a0da073c7f0412c58eacde48716417d240"
+    },
+    "cspiceRunnerSource": {
+      "path": "tools/de405-cspice-runner/src/de405_canonical_v2.c",
+      "sizeBytes": 27613,
+      "sha256": "798b208f65d17f1bf1972cbe9ad17a1f08b8859baa3880d14e1796b841a89426"
+    },
+    "jplRunnerBinary": {
+      "path": "tools/de405-jpl-reader/build/de405-jpl-canonical-v2-runner",
+      "sizeBytes": 70304,
+      "sha256": "bb58e6798017af37892400b0ef09164ba6c1fc0173acd8bea3c5b549470e7ebc"
+    },
+    "cspiceRunnerBinary": {
+      "path": "tools/de405-cspice-runner/build/de405-canonical-v2-runner",
+      "sizeBytes": 1343336,
+      "sha256": "92297c604fe43a147bc1f16cfbe33bf482f9ae7d001cd1c6fad87c5d5c2b8964"
+    },
+    "jplBinary": {
+      "path": "tools/de405-jpl-reader/fixtures/lnxp1600p2200.405",
+      "sizeBytes": 55900416,
+      "sha256": "7ec77287b6fddd3d7adabb87709ee5e926e3d1123fbae5d1485a42913cf175e7"
+    },
+    "spk": {
+      "path": "/Users/softie/.local/share/softie-de405/kernels/spk/de405.bsp",
+      "sizeBytes": 10898432,
+      "sha256": "30a7113793ee5b6bf1e5546c6dfc21d9682d9ffabfe9b17b4bab27ba2ac75c89"
+    }
+  },
+  "rawTrace": {
+    "path": "selection-trace.jsonl",
+    "sizeBytes": 6440479,
+    "sha256": "7d7a5757c5a2c2457e0c733ca95c7091df7b4a70a2edc82586a43b520e78078c",
+    "recordCount": 3402
+  },
+  "totalSampleCount": 1701,
+  "totalTraceCount": 3402,
+  "groupCounts": {
+    "state_equivalent_selection_different": 606,
+    "candidate_state_different": 1095
+  },
+  "observability": {
+    "jplObservable": 0,
+    "cspiceObservable": 0,
+    "unobservable": 3402
+  },
+  "comparisons": {
+    "logicalRecord": {
+      "comparable": 0,
+      "different": 0,
+      "notComparable": 1701
+    },
+    "subinterval": {
+      "comparable": 0,
+      "different": 0,
+      "notComparable": 1701
+    },
+    "normalizedTime": {
+      "comparable": 0,
+      "different": 0,
+      "notComparable": 1701
+    },
+    "coefficientBlock": {
+      "comparable": 0,
+      "different": 0,
+      "notComparable": 1701
+    },
+    "evaluationPath": {
+      "comparable": 0,
+      "different": 0,
+      "notComparable": 1701
+    }
+  },
+  "groups": {
+    "state_equivalent_selection_different": {
+      "count": 606,
+      "epochKinds": {
+        "exact_knot": 558,
+        "next_down_knot": 22,
+        "next_up_knot": 26
+      },
+      "mechanismCounts": {
+        "selection_not_observable": 606
+      },
+      "selectionObservableCount": 0,
+      "selectionUnobservableCount": 606,
+      "representativeSamples": [
+        "segment-0-knot-104-exact_knot",
+        "segment-0-knot-1070-exact_knot"
+      ]
+    },
+    "candidate_state_different": {
+      "count": 1095,
+      "epochKinds": {
+        "next_down_knot": 548,
+        "next_up_knot": 547
+      },
+      "mechanismCounts": {
+        "selection_not_observable": 1095
+      },
+      "selectionUnobservableCount": 1095,
+      "oneUlpSharedCandidateBoundaryCount": 1095,
+      "velocityOnlyCount": 9,
+      "representativeSamples": [
+        "segment-0-knot-1-next_up_knot",
+        "segment-0-knot-1001-next_up_knot"
+      ]
+    }
+  },
+  "findings": {
+    "confirmed": [
+      {
+        "level": "confirmed",
+        "text": "The trace has exactly 3,402 records for 1,701 samples, preserving the 606/1,095 split."
+      },
+      {
+        "level": "confirmed",
+        "text": "Both native diagnostic paths reran the sampled states while default selection markers remained unavailable."
+      }
+    ],
+    "strong_correlation": [
+      {
+        "level": "strong_correlation",
+        "text": "1095 of 1,095 candidate_state_different CSPICE traces are one ULP from the recorded shared candidate boundary."
+      }
+    ],
+    "candidate_explanation": [
+      {
+        "level": "candidate_explanation",
+        "text": "The directional boundary concentration remains consistent with source-specific selection or evaluation behavior, without proving either mechanism."
+      }
+    ],
+    "not_computable": [
+      {
+        "level": "not_computable",
+        "text": "Neither native API exposes the actual selected Type 2/JPL logical record marker for these diagnostic calls, so selected-record and normalized-time comparisons are not computable."
+      },
+      {
+        "level": "not_computable",
+        "text": "Coefficient-block and evaluator-path equality cannot be inferred without an exposed selected record."
+      }
+    ],
+    "unresolved": [
+      {
+        "level": "unresolved",
+        "text": "selection_unresolved=1701 remains active; no canonical selection, tolerance, or scientific approval transition is made."
+      }
+    ]
+  },
+  "contractState": {
+    "selectionUnresolvedBlockerActive": true,
+    "selectionUnresolvedCount": 1701,
+    "toleranceChanged": false,
+    "canonicalSelectionChanged": false,
+    "activeTransitionPerformed": false,
+    "scientificApproval": false
+  }
+}

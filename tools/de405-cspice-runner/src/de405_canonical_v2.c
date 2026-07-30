@@ -266,7 +266,13 @@ static int emit_sweep_manifest(SpiceInt handle, const Type2Segment *segments, in
   return invalid ? 1 : 0;
 }
 
-static int evaluate_batch(SpiceInt handle, const Type2Segment *segments, int count, const char *input_path, const char *output_path) {
+static void emit_selection_trace_unavailable(FILE *output, const char *reason) {
+  fprintf(output, ",\"selectionTrace\":{\"schemaVersion\":1,\"selectionObservable\":false,\"unavailableReason\":\"");
+  fputs(reason, output);
+  fprintf(output, "\",\"selectionMethod\":\"cspice_spkez_c_type2_record_not_exposed\"}");
+}
+
+static int evaluate_batch(SpiceInt handle, const Type2Segment *segments, int count, const char *input_path, const char *output_path, int selection_trace) {
   FILE *input = input_path ? fopen(input_path, "rb") : stdin;
   FILE *output = output_path ? fopen(output_path, "wb") : stdout;
   if (!input) fail("batch input open failed");
@@ -298,7 +304,9 @@ static int evaluate_batch(SpiceInt handle, const Type2Segment *segments, int cou
     if (matching_count == 0) {
       fprintf(output, "{\"schemaVersion\":1,\"recordType\":\"de405_spk_type2_batch_state\",\"sampleId\":");
       json_string_file(output, sample_id);
-      fprintf(output, ",\"queryEt\":%.17g,\"queryEtHex\":\"0x%016" PRIx64 "\",\"targetId\":%d,\"centerId\":%d,\"frameId\":%d,\"segmentOrdinal\":null,\"spkSegmentCenterId\":null,\"selectedRecordIndex\":null,\"selectionEvidenceStatus\":\"out_of_coverage\",\"normalizedTime\":null,\"stateKmKmPerSec\":null}\n", et, et_bits, target, center, frame);
+      fprintf(output, ",\"queryEt\":%.17g,\"queryEtHex\":\"0x%016" PRIx64 "\",\"targetId\":%d,\"centerId\":%d,\"frameId\":%d,\"segmentOrdinal\":null,\"spkSegmentCenterId\":null,\"selectedRecordIndex\":null,\"selectionEvidenceStatus\":\"out_of_coverage\",\"normalizedTime\":null,\"stateKmKmPerSec\":null", et, et_bits, target, center, frame);
+      if (selection_trace) emit_selection_trace_unavailable(output, "not_applicable");
+      fprintf(output, "}\n");
       continue;
     }
     const Type2Segment *s = &segments[matching[0]];
@@ -330,7 +338,9 @@ static int evaluate_batch(SpiceInt handle, const Type2Segment *segments, int cou
       if (selected >= 0) fprintf(output, "%d", selected); else fprintf(output, "null");
       fprintf(output, ",\"selectionEvidenceStatus\":\"out_of_coverage\",\"normalizedTime\":");
       if (selected >= 0) fprintf(output, "%.17g", selected_normalized); else fprintf(output, "null");
-      fprintf(output, ",\"recordMidEt\":%.17g,\"recordRadiusSec\":%.17g,\"stateKmKmPerSec\":null}\n", selected_mid, selected_radius);
+      fprintf(output, ",\"recordMidEt\":%.17g,\"recordRadiusSec\":%.17g,\"stateKmKmPerSec\":null", selected_mid, selected_radius);
+      if (selection_trace) emit_selection_trace_unavailable(output, "not_applicable");
+      fprintf(output, "}\n");
       continue;
     }
     SpiceDouble output_state[6], light_time;
@@ -344,6 +354,7 @@ static int evaluate_batch(SpiceInt handle, const Type2Segment *segments, int cou
     if (selected >= 0) fprintf(output, "%.17g", selected_normalized); else fprintf(output, "null");
     fprintf(output, ",\"recordMidEt\":%.17g,\"recordRadiusSec\":%.17g,\"stateKmKmPerSec\":", selected_mid, selected_radius);
     fprintf(output, "[%.17g,%.17g,%.17g,%.17g,%.17g,%.17g]", output_state[0], output_state[1], output_state[2], output_state[3], output_state[4], output_state[5]);
+    if (selection_trace) emit_selection_trace_unavailable(output, "api_does_not_expose_selected_record");
     fprintf(output, "}\n");
   }
   if (input_path) fclose(input);
@@ -374,14 +385,21 @@ int main(int argc, char **argv) {
   setlocale(LC_NUMERIC, "C"); erract_c("SET", 6, "RETURN");
   if (argc < 2) { fprintf(stderr, "mode required\n"); return 2; }
   if (!strcmp(argv[1], "--version")) { puts("{\"runnerVersion\":\"de405-canonical-v2-runner\",\"cspiceToolkitVersion\":\"N0067\",\"testOnly\":false}"); return 0; }
-  const char *spk = NULL, *out = NULL, *input_jsonl = NULL; int target = 0, knot = -1;
-  for (int i = 2; i + 1 < argc; i++) { if (!strcmp(argv[i], "--spk")) spk = argv[++i]; else if (!strcmp(argv[i], "--output") || !strcmp(argv[i], "--output-jsonl")) out = argv[++i]; else if (!strcmp(argv[i], "--input-jsonl")) input_jsonl = argv[++i]; else if (!strcmp(argv[i], "--target-id")) target = atoi(argv[++i]); else if (!strcmp(argv[i], "--knot-index")) knot = atoi(argv[++i]); }
+  const char *spk = NULL, *out = NULL, *input_jsonl = NULL; int target = 0, knot = -1, selection_trace = 0;
+  for (int i = 2; i < argc; i++) {
+    if (!strcmp(argv[i], "--selection-trace")) selection_trace = 1;
+    else if (i + 1 < argc && !strcmp(argv[i], "--spk")) spk = argv[++i];
+    else if (i + 1 < argc && (!strcmp(argv[i], "--output") || !strcmp(argv[i], "--output-jsonl"))) out = argv[++i];
+    else if (i + 1 < argc && !strcmp(argv[i], "--input-jsonl")) input_jsonl = argv[++i];
+    else if (i + 1 < argc && !strcmp(argv[i], "--target-id")) target = atoi(argv[++i]);
+    else if (i + 1 < argc && !strcmp(argv[i], "--knot-index")) knot = atoi(argv[++i]);
+  }
   if (!spk) fail("missing SPK argument");
   furnsh_c(spk); if (failed_c()) fail("SPK load failed");
   SpiceInt handle; dafopr_c(spk, &handle); if (failed_c()) fail("DAF open failed");
   Type2Segment segments[256]; int count = load_type2_segments(handle, segments, 256);
   if (!strcmp(argv[1], "--emit-spk-type2-sweep-manifest")) { int status = emit_sweep_manifest(handle, segments, count); dafcls_c(handle); kclear_c(); return status; }
-  if (!strcmp(argv[1], "--evaluate-spk-type2-batch")) { int status = evaluate_batch(handle, segments, count, input_jsonl, out); dafcls_c(handle); kclear_c(); return status; }
+  if (!strcmp(argv[1], "--evaluate-spk-type2-batch")) { int status = evaluate_batch(handle, segments, count, input_jsonl, out, selection_trace); dafcls_c(handle); kclear_c(); return status; }
   if (!strcmp(argv[1], "--dump-spk-type2-segments")) { int invalid = 0; for (int i = 0; i < count; i++) if (segments[i].ic[3] == 2) { print_metadata(&segments[i], i); if (!segments[i].valid) invalid = 1; } dafcls_c(handle); kclear_c(); return invalid ? 1 : 0; }
   if (!strcmp(argv[1], "--inspect-spk-type2-knot")) {
     if (target == 0 || knot < 1) fail("target-id and positive knot-index are required");

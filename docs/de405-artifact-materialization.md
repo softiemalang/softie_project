@@ -35,14 +35,15 @@ OS and file-manager metadata such as `.DS_Store` and `Thumbs.db` are not invento
 
 ## Generated files
 
-The 10 DE405 generated files with confirmed script producers are prepared by these existing commands:
+The 11 DE405 generated files with confirmed script producers are prepared by these existing commands:
 
 | Files | Producer and command | Inputs / dependencies | Cost and ordering |
 |---|---|---|---|
 | `de405-jpl-cspice-residual-sweep.manifest.jsonl`, `.jpl.jsonl`, `.cspice.jsonl`, `.samples.jsonl`, `.summary.json`, `de405-sweep-checkpoints/checkpoint.json` | `scripts/run-de405-jpl-cspice-residual-sweep.mjs`; `npm run de405:overlap:sweep` (resume checkpoint with `-- --resume`) | DE405 SPK, `tools/de405-jpl-reader/fixtures/lnxp1600p2200.405`, built JPL/CSPICE runners, sweep contract | Large. Manifest and both runner outputs precede merge; checkpoint is resumable state. Full residual sweep is required. |
 | `de405-jpl-cspice-candidate-state-evidence.jsonl`, `de405-jpl-cspice-out-of-coverage-investigation.json`, `de405-jpl-cspice-phase-c-summary.json`, `de405-jpl-cspice-residual-sweep.classifications.jsonl` | `scripts/generate-de405-phase-c-evidence.mjs`; `node scripts/generate-de405-phase-c-evidence.mjs` | The completed sweep manifest, samples, classifications, JPL binary, DE405 SPK, and built CSPICE runner | Medium to large. Run after the sweep inputs exist; native runners and external inputs are required. |
+| `de405-jpl-cspice-selection-trace.jsonl` | `scripts/materialize-de405-selection-trace.mjs`; `npm run materialize:de405:selection-trace` | Fixed 1,701 unresolved-selection rows, JPL binary, DE405 SPK, and rebuilt diagnostic runners | Medium. Produces 3,402 ordered JPL/CSPICE trace rows; it does not rerun the full residual sweep. |
 
-The inventory contains 10 generated DE405 files and 3 pending files. OS metadata is not counted as a generated entry and has no producer contract.
+The inventory contains 12 generated DE405 files and 3 pending files. OS metadata is not counted as a generated entry and has no producer contract.
 
 No orchestration command is added because the existing producers have different external inputs, native runner prerequisites, resume semantics, and large/full-sweep cost. The existing producer commands above are the authoritative preparation steps. This task does not execute them.
 

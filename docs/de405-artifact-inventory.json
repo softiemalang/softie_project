@@ -4,12 +4,12 @@
   "artifactRoot": "artifacts",
   "generatedAt": "2026-07-30T01:30:00.000Z",
   "summary": {
-    "fileCount": 14,
-    "totalSizeBytes": 600147815,
+    "fileCount": 15,
+    "totalSizeBytes": 606588294,
     "byStorageClass": {
       "repository": { "fileCount": 0, "totalSizeBytes": 0 },
       "external": { "fileCount": 0, "totalSizeBytes": 0 },
-      "generated": { "fileCount": 11, "totalSizeBytes": 600139139 },
+      "generated": { "fileCount": 12, "totalSizeBytes": 606579618 },
       "pending": { "fileCount": 3, "totalSizeBytes": 8676 }
     }
   },
@@ -54,6 +54,24 @@
       "storageClass": "generated",
       "proposedAction": "ignore_after_policy_commit",
       "rationale": "Phase-D candidate evidence is a derived research output consumed by a specialized default test and is not canonical runtime data."
+    },
+    {
+      "path": "artifacts/de405-jpl-cspice-selection-trace.jsonl",
+      "sizeBytes": 6440479,
+      "sha256": "7d7a5757c5a2c2457e0c733ca95c7091df7b4a70a2edc82586a43b520e78078c",
+      "format": "jsonl",
+      "role": "evidence",
+      "producer": { "type": "script", "path": "scripts/materialize-de405-selection-trace.mjs", "command": "npm run materialize:de405:selection-trace", "confidence": "confirmed" },
+      "references": [
+        { "path": "scripts/analyze-de405-selection-trace.mjs", "kind": "analysis_input" },
+        { "path": "scripts/check-de405-selection-trace-freshness.mjs", "kind": "freshness_validation" },
+        { "path": "test/de405-artifacts/de405SelectionTrace.test.js", "kind": "test_input" }
+      ],
+      "requiredBy": { "runtime": false, "build": false, "defaultTests": false, "specializedTests": true, "researchValidation": true },
+      "reproducibility": { "status": "conditionally_reproducible", "requirements": ["current unresolved-selection evidence", "JPL binary", "DE405 SPK", "rebuilt JPL/CSPICE runners"], "estimatedCost": "medium" },
+      "storageClass": "generated",
+      "proposedAction": "ignore_after_policy_commit",
+      "rationale": "Deterministic opt-in trace evidence records actual rerun state bits and explicit selection-observability limits without changing tolerance, canonical selection, blocker, or scientific approval state."
     },
     {
       "path": "artifacts/de405-jpl-cspice-out-of-coverage-investigation.json",
