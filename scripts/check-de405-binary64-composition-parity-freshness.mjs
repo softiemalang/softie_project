@@ -1,0 +1,1 @@
+import{fresh}from'./lib/de405-binary64-composition-parity.mjs';const r=await fresh();console.log(`DE405 binary64 parity freshness: ${r.status}`);if(r.error)console.error(r.error);if(r.status!=='fresh')process.exitCode=1

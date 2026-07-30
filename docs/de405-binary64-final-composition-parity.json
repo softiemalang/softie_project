@@ -1,0 +1,56 @@
+{
+  "schemaVersion": 1,
+  "recordType": "de405_binary64_final_composition_parity_analysis",
+  "generator": "scripts/analyze-de405-binary64-composition-parity.mjs",
+  "runtimeIdentity": {
+    "node": "v22.20.0"
+  },
+  "rawArtifact": {
+    "path": "de405-binary64-final-composition-parity.jsonl",
+    "sizeBytes": 880297,
+    "sha256": "b2d68ca7de252b9e920f86f69db242f40a9f9d5a90331202e18489acaf30a830",
+    "recordCount": 97
+  },
+  "cohortCount": 97,
+  "classificationCounts": {
+    "multiple_composition_variants_match_cspice": 61,
+    "no_tested_composition_matches_cspice": 36
+  },
+  "groupCounts": {
+    "candidate_state_different": 53,
+    "state_equivalent_selection_different": 44
+  },
+  "matchingVariantCounts": {
+    "minimal_path_target_first": 61,
+    "minimal_path_center_first": 61,
+    "ordered_body_path": 61
+  },
+  "multipleMatchCount": 61,
+  "noMatchCount": 36,
+  "contractState": {
+    "selectionUnresolved": 1701,
+    "toleranceChanged": false,
+    "canonicalSelectionChanged": false,
+    "activeTransition": false,
+    "scientificApproval": false,
+    "productionIntegration": false
+  },
+  "findings": {
+    "confirmed": [
+      "JS/native operation execution was run for all 97 samples and fixed variants.",
+      "All 97 samples satisfy the existing component bit-equality cohort predicate."
+    ],
+    "strongCorrelation": [
+      "The tested recomposition variants provide bounded evidence about final binary64 composition without exposing CSPICE internals."
+    ],
+    "candidateExplanation": [
+      "A matching project-owned variant is a reconstruction explanation only, not proof of CSPICE internal operation order."
+    ],
+    "notComputable": [
+      "CSPICE internal accumulator order and route remain unobservable."
+    ],
+    "unresolved": [
+      "No tolerance, canonical selection, or scientific approval conclusion is made."
+    ]
+  }
+}

@@ -44,8 +44,9 @@ The 11 DE405 generated files with confirmed script producers are prepared by the
 | `de405-jpl-cspice-selection-trace.jsonl` | `scripts/materialize-de405-selection-trace.mjs`; `npm run materialize:de405:selection-trace` | Fixed 1,701 unresolved-selection rows, JPL binary, DE405 SPK, and rebuilt diagnostic runners | Medium. Produces 3,402 ordered JPL/CSPICE trace rows; it does not rerun the full residual sweep. |
 | `de405-spk-record-probe.jsonl` | `scripts/materialize-de405-spk-record-probe.mjs`; `npm run materialize:de405:spk-record-probe` | Fixed 1,701 unresolved-selection rows, committed selection trace, DE405 SPK, and the project-owned DAF probe | Medium. Produces one ordered project-owned Type 2 reconstruction per sample; it does not call a high-level CSPICE state API or assert CSPICE internal selection. |
 | `de405-spk-center-chain-decomposition.jsonl` | `scripts/materialize-de405-spk-center-chain-decomposition.mjs`; `npm run materialize:de405:spk-center-chain` | Existing 1,701 project-probe rows, selection trace, DE405 SPK, existing project probe, and canonical CSPICE runner | Medium. Produces one ordered target/center-to-SSB decomposition per sample; CSPICE values are API state comparisons only. |
+| `de405-binary64-final-composition-parity.jsonl` | `scripts/materialize-de405-binary64-composition-parity.mjs`; `npm run materialize:de405:binary64-composition-parity` | Fixed 97-sample component-equality cohort and native binary64 helper | Low. Produces fixed-variant recomposition evidence; it does not inspect CSPICE internals. |
 
-The inventory contains 14 generated DE405 files and 3 pending files. OS metadata is not counted as a generated entry and has no producer contract.
+The inventory contains 15 generated DE405 files and 3 pending files. OS metadata is not counted as a generated entry and has no producer contract.
 
 No orchestration command is added because the existing producers have different external inputs, native runner prerequisites, resume semantics, and large/full-sweep cost. The existing producer commands above are the authoritative preparation steps. This task does not execute them.
 

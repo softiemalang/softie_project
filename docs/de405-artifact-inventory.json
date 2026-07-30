@@ -4,12 +4,12 @@
   "artifactRoot": "artifacts",
   "generatedAt": "2026-07-30T01:30:00.000Z",
   "summary": {
-    "fileCount": 17,
-    "totalSizeBytes": 622920562,
+    "fileCount": 18,
+    "totalSizeBytes": 623800859,
     "byStorageClass": {
       "repository": { "fileCount": 0, "totalSizeBytes": 0 },
       "external": { "fileCount": 0, "totalSizeBytes": 0 },
-      "generated": { "fileCount": 14, "totalSizeBytes": 622911886 },
+      "generated": { "fileCount": 15, "totalSizeBytes": 623792183 },
       "pending": { "fileCount": 3, "totalSizeBytes": 8676 }
     }
   },
@@ -108,6 +108,24 @@
       "storageClass": "generated",
       "proposedAction": "ignore_after_policy_commit",
       "rationale": "Project-owned center-chain decomposition and CSPICE API-state comparison; no CSPICE internal route or selected-record claim is made."
+    },
+    {
+      "path": "artifacts/de405-binary64-final-composition-parity.jsonl",
+      "sizeBytes": 880297,
+      "sha256": "b2d68ca7de252b9e920f86f69db242f40a9f9d5a90331202e18489acaf30a830",
+      "format": "jsonl",
+      "role": "evidence",
+      "producer": { "type": "script", "path": "scripts/materialize-de405-binary64-composition-parity.mjs", "command": "npm run materialize:de405:binary64-composition-parity", "confidence": "confirmed" },
+      "references": [
+        { "path": "scripts/analyze-de405-binary64-composition-parity.mjs", "kind": "analysis_input" },
+        { "path": "scripts/check-de405-binary64-composition-parity-freshness.mjs", "kind": "freshness_validation" },
+        { "path": "test/de405-artifacts/de405Binary64CompositionParity.test.js", "kind": "test_input" }
+      ],
+      "requiredBy": { "runtime": false, "build": false, "defaultTests": false, "specializedTests": true, "researchValidation": true },
+      "reproducibility": { "status": "conditionally_reproducible", "requirements": ["existing center-chain decomposition", "binary64 helper", "Node.js runtime"], "estimatedCost": "low" },
+      "storageClass": "generated",
+      "proposedAction": "ignore_after_policy_commit",
+      "rationale": "Fixed 97-sample binary64 composition comparison. It reports bounded project-owned reconstruction evidence and does not assert CSPICE internal operation order."
     },
     {
       "path": "artifacts/de405-jpl-cspice-out-of-coverage-investigation.json",

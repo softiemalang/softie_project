@@ -1,0 +1,1 @@
+import assert from 'node:assert/strict';import{test}from'node:test';import{analyze}from'../../scripts/lib/de405-binary64-composition-parity.mjs';test('binary64 parity cohort remains fixed',async()=>{const a=await analyze();assert.equal(a.cohortCount,97);assert.equal(a.contractState.selectionUnresolved,1701);assert.equal(a.contractState.toleranceChanged,false)})

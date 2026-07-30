@@ -1,0 +1,1 @@
+import{materialize,opts}from'./lib/de405-binary64-composition-parity.mjs';materialize({output:opts(process.argv.slice(2)).output}).then(console.log).catch(e=>{console.error(e.stack);process.exitCode=1})
