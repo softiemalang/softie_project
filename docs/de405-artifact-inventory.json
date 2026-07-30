@@ -1,0 +1,237 @@
+{
+  "schemaVersion": "de405-artifact-inventory-v1",
+  "generatedFromCommit": "111281e5be0e15f4d81e965463d0685bf386a502",
+  "artifactRoot": "artifacts",
+  "generatedAt": "2026-07-30T01:30:00.000Z",
+  "summary": {
+    "fileCount": 14,
+    "totalSizeBytes": 600237903,
+    "byStorageClass": {
+      "repository": { "fileCount": 0, "totalSizeBytes": 0 },
+      "external": { "fileCount": 0, "totalSizeBytes": 0 },
+      "generated": { "fileCount": 11, "totalSizeBytes": 600134254 },
+      "pending": { "fileCount": 3, "totalSizeBytes": 103649 }
+    }
+  },
+  "defaultTestDependency": {
+    "status": "environment_dependent",
+    "evidence": [
+      { "path": "test/de405ManifestCoverage.test.js", "kind": "test_input", "detail": "reads artifacts/de405-jpl-cspice-residual-sweep.manifest.jsonl directly" },
+      { "path": "test/de405PhaseCEvidence.test.js", "kind": "test_input", "detail": "reads candidate-state evidence and out-of-coverage investigation directly" },
+      { "path": "package.json", "kind": "documentation_reference", "detail": "npm test runs node --test, which discovers both tests" }
+    ],
+    "currentRun": { "command": "npm test", "status": "passed", "tests": 347, "failures": 0 },
+    "newCloneExpectation": "The default test suite is not artifact-independent: a clone without this untracked directory will fail these direct reads unless the tests or artifact materialization contract is changed in a later task."
+  },
+  "artifacts": [
+    {
+      "path": "artifacts/.DS_Store",
+      "sizeBytes": 6148,
+      "sha256": "16d64146626c8d2b23de2edbb0ed0356e048aede88b45665d95473a6aea82843",
+      "format": "binary",
+      "role": "debug_output",
+      "producer": { "type": "system", "path": null, "command": "macOS Finder metadata", "confidence": "inferred" },
+      "references": [],
+      "requiredBy": { "runtime": false, "build": false, "defaultTests": false, "specializedTests": false, "researchValidation": false },
+      "reproducibility": { "status": "reproducible", "requirements": ["macOS Finder metadata generation"], "estimatedCost": "small" },
+      "storageClass": "generated",
+      "proposedAction": "ignore_after_policy_commit",
+      "rationale": "Desktop metadata is not DE405 evidence or a test input."
+    },
+    {
+      "path": "artifacts/de405-jpl-cspice-active-tolerance-proposal.json",
+      "sizeBytes": 8798,
+      "sha256": "415c54dd4c2380bc7efdf94cd1fe766665a3240eb1a8238fad51216611fd6ff6",
+      "format": "json",
+      "role": "summary",
+      "producer": { "type": "unknown", "path": null, "command": "unknown", "confidence": "unknown" },
+      "references": [],
+      "requiredBy": { "runtime": false, "build": false, "defaultTests": false, "specializedTests": false, "researchValidation": true },
+      "reproducibility": { "status": "unknown", "requirements": ["identify the producing analysis and exact input identities"], "estimatedCost": "unknown" },
+      "storageClass": "pending",
+      "proposedAction": "hold_pending_review",
+      "rationale": "The proposal is explicitly blocked by unresolved evidence and contains provenance values that do not match the current sweep files; no producing script was found."
+    },
+    {
+      "path": "artifacts/de405-jpl-cspice-candidate-state-evidence.jsonl",
+      "sizeBytes": 5466407,
+      "sha256": "c894ce46c20f1b255be7bc1579c8335dd2a1b8d67abbb650c72076d9396afde4",
+      "format": "jsonl",
+      "role": "evidence",
+      "producer": { "type": "script", "path": "scripts/generate-de405-phase-c-evidence.mjs", "command": "node scripts/generate-de405-phase-c-evidence.mjs", "confidence": "confirmed" },
+      "references": [
+        { "path": "scripts/generate-de405-phase-c-evidence.mjs", "kind": "generation_output" },
+        { "path": "test/de405PhaseCEvidence.test.js", "kind": "test_input" }
+      ],
+      "requiredBy": { "runtime": false, "build": false, "defaultTests": true, "specializedTests": true, "researchValidation": true },
+      "reproducibility": { "status": "conditionally_reproducible", "requirements": ["the current sweep manifest, samples, classifications, JPL binary, DE405 SPK, and CSPICE runner"], "estimatedCost": "medium" },
+      "storageClass": "generated",
+      "proposedAction": "ignore_after_policy_commit",
+      "rationale": "Phase-D candidate evidence is a derived research output consumed by a specialized default test and is not canonical runtime data."
+    },
+    {
+      "path": "artifacts/de405-jpl-cspice-out-of-coverage-investigation.json",
+      "sizeBytes": 113,
+      "sha256": "e09e3ef172ac6cd18bc78f84f194355ae9736995acefb65c6744020c6e312b61",
+      "format": "json",
+      "role": "evidence",
+      "producer": { "type": "script", "path": "scripts/generate-de405-phase-c-evidence.mjs", "command": "node scripts/generate-de405-phase-c-evidence.mjs", "confidence": "confirmed" },
+      "references": [
+        { "path": "scripts/generate-de405-phase-c-evidence.mjs", "kind": "generation_output" },
+        { "path": "test/de405PhaseCEvidence.test.js", "kind": "test_input" }
+      ],
+      "requiredBy": { "runtime": false, "build": false, "defaultTests": true, "specializedTests": true, "researchValidation": true },
+      "reproducibility": { "status": "conditionally_reproducible", "requirements": ["the current sweep inputs and CSPICE runner"], "estimatedCost": "medium" },
+      "storageClass": "generated",
+      "proposedAction": "ignore_after_policy_commit",
+      "rationale": "The empty investigation is generated evidence, not a canonical source or runtime input."
+    },
+    {
+      "path": "artifacts/de405-jpl-cspice-phase-c-summary.json",
+      "sizeBytes": 1508,
+      "sha256": "17861f612d77fac06f6e969652f10fc911a353757b554e9fe84dacc9d18de887",
+      "format": "json",
+      "role": "summary",
+      "producer": { "type": "script", "path": "scripts/generate-de405-phase-c-evidence.mjs", "command": "node scripts/generate-de405-phase-c-evidence.mjs", "confidence": "confirmed" },
+      "references": [ { "path": "scripts/generate-de405-phase-c-evidence.mjs", "kind": "generation_output" } ],
+      "requiredBy": { "runtime": false, "build": false, "defaultTests": false, "specializedTests": false, "researchValidation": true },
+      "reproducibility": { "status": "conditionally_reproducible", "requirements": ["the current sweep inputs and CSPICE runner"], "estimatedCost": "medium" },
+      "storageClass": "generated",
+      "proposedAction": "ignore_after_policy_commit",
+      "rationale": "The phase summary is derived analysis output and records that tolerance and canonical contracts were unchanged."
+    },
+    {
+      "path": "artifacts/de405-jpl-cspice-residual-sweep.classification-summary.json",
+      "sizeBytes": 93153,
+      "sha256": "9129876987badfd554b56d8ecb8c93a3981f1891ffcd4f9a3b84e49c22cf2ec9",
+      "format": "json",
+      "role": "summary",
+      "producer": { "type": "unknown", "path": null, "command": "unknown", "confidence": "unknown" },
+      "references": [],
+      "requiredBy": { "runtime": false, "build": false, "defaultTests": false, "specializedTests": false, "researchValidation": true },
+      "reproducibility": { "status": "unknown", "requirements": ["identify the producing analysis and exact input identities"], "estimatedCost": "unknown" },
+      "storageClass": "pending",
+      "proposedAction": "hold_pending_review",
+      "rationale": "The summary is meaningful research output, but no active producer or direct code reference was found."
+    },
+    {
+      "path": "artifacts/de405-jpl-cspice-residual-sweep.classifications.jsonl",
+      "sizeBytes": 434602,
+      "sha256": "75c9817e52dce30e9c73f9fd04c7412e31528669030a8c63bffa07998a1847a5",
+      "format": "jsonl",
+      "role": "evidence",
+      "producer": { "type": "script", "path": "scripts/generate-de405-phase-c-evidence.mjs", "command": "node scripts/generate-de405-phase-c-evidence.mjs", "confidence": "confirmed" },
+      "references": [ { "path": "scripts/generate-de405-phase-c-evidence.mjs", "kind": "generation_output" } ],
+      "requiredBy": { "runtime": false, "build": false, "defaultTests": false, "specializedTests": false, "researchValidation": true },
+      "reproducibility": { "status": "conditionally_reproducible", "requirements": ["the current sweep manifest, samples, and phase evidence inputs"], "estimatedCost": "medium" },
+      "storageClass": "generated",
+      "proposedAction": "ignore_after_policy_commit",
+      "rationale": "This is derived classification evidence and is not a canonical selection or tolerance contract."
+    },
+    {
+      "path": "artifacts/de405-jpl-cspice-residual-sweep.cspice.jsonl",
+      "sizeBytes": 79915561,
+      "sha256": "07b51b47dee7042056f7b127886e93f7f0d84283348d5a941f8be27ca65ac08b",
+      "format": "jsonl",
+      "role": "intermediate",
+      "producer": { "type": "script", "path": "scripts/run-de405-jpl-cspice-residual-sweep.mjs", "command": "npm run de405:overlap:sweep", "confidence": "confirmed" },
+      "references": [ { "path": "scripts/run-de405-jpl-cspice-residual-sweep.mjs", "kind": "generation_output" } ],
+      "requiredBy": { "runtime": false, "build": false, "defaultTests": false, "specializedTests": false, "researchValidation": true },
+      "reproducibility": { "status": "conditionally_reproducible", "requirements": ["DE405 SPK, CSPICE N0067 runner, and the sweep manifest"], "estimatedCost": "large" },
+      "storageClass": "generated",
+      "proposedAction": "ignore_after_policy_commit",
+      "rationale": "Raw CSPICE batch output is an intermediate research result and is not canonical runtime data."
+    },
+    {
+      "path": "artifacts/de405-jpl-cspice-residual-sweep.jpl.jsonl",
+      "sizeBytes": 169710274,
+      "sha256": "2f68957b05830e03a0996decec46bcfa3415cead335554731c5340c98a9d212b",
+      "format": "jsonl",
+      "role": "intermediate",
+      "producer": { "type": "script", "path": "scripts/run-de405-jpl-cspice-residual-sweep.mjs", "command": "npm run de405:overlap:sweep", "confidence": "confirmed" },
+      "references": [ { "path": "scripts/run-de405-jpl-cspice-residual-sweep.mjs", "kind": "generation_output" } ],
+      "requiredBy": { "runtime": false, "build": false, "defaultTests": false, "specializedTests": false, "researchValidation": true },
+      "reproducibility": { "status": "conditionally_reproducible", "requirements": ["JPL DE405 binary, sweep manifest, and the JPL reader"], "estimatedCost": "large" },
+      "storageClass": "generated",
+      "proposedAction": "ignore_after_policy_commit",
+      "rationale": "Raw JPL batch output is a regenerable comparison intermediate, not the full-range canonical artifact."
+    },
+    {
+      "path": "artifacts/de405-jpl-cspice-residual-sweep.manifest.jsonl",
+      "sizeBytes": 63738094,
+      "sha256": "99ba50c4e58c76db9dc0fb76bbbbeefa99d5528d12d8e6e930754fabfe205992",
+      "format": "manifest",
+      "role": "manifest",
+      "producer": { "type": "script", "path": "scripts/run-de405-jpl-cspice-residual-sweep.mjs", "command": "npm run de405:overlap:sweep", "confidence": "confirmed" },
+      "references": [
+        { "path": "scripts/run-de405-jpl-cspice-residual-sweep.mjs", "kind": "generation_output" },
+        { "path": "test/de405ManifestCoverage.test.js", "kind": "test_input" },
+        { "path": "scripts/generate-de405-phase-c-evidence.mjs", "kind": "validation_input" }
+      ],
+      "requiredBy": { "runtime": false, "build": false, "defaultTests": true, "specializedTests": true, "researchValidation": true },
+      "reproducibility": { "status": "conditionally_reproducible", "requirements": ["DE405 SPK and CSPICE N0067 runner"], "estimatedCost": "large" },
+      "storageClass": "generated",
+      "proposedAction": "ignore_after_policy_commit",
+      "rationale": "The manifest is generated input for the overlap sweep and specialized validation, not a repository contract."
+    },
+    {
+      "path": "artifacts/de405-jpl-cspice-residual-sweep.samples.jsonl",
+      "sizeBytes": 280780522,
+      "sha256": "62192cde5fdecbf53307ed532da212156bc7dcc4beade08117a6bd75c1101d84",
+      "format": "jsonl",
+      "role": "evidence",
+      "producer": { "type": "script", "path": "scripts/run-de405-jpl-cspice-residual-sweep.mjs", "command": "npm run de405:overlap:sweep", "confidence": "confirmed" },
+      "references": [
+        { "path": "scripts/run-de405-jpl-cspice-residual-sweep.mjs", "kind": "generation_output" },
+        { "path": "scripts/generate-de405-phase-c-evidence.mjs", "kind": "validation_input" }
+      ],
+      "requiredBy": { "runtime": false, "build": false, "defaultTests": false, "specializedTests": false, "researchValidation": true },
+      "reproducibility": { "status": "conditionally_reproducible", "requirements": ["DE405 SPK, JPL binary, CSPICE runner, and sweep manifest"], "estimatedCost": "large" },
+      "storageClass": "generated",
+      "proposedAction": "ignore_after_policy_commit",
+      "rationale": "The residual rows are large derived evidence; current sweep status includes unresolved evidence failures, so they are not a canonical approval record."
+    },
+    {
+      "path": "artifacts/de405-jpl-cspice-residual-sweep.summary.json",
+      "sizeBytes": 80378,
+      "sha256": "ed0276ad0d122f1749634700f591eec481bee1e3801f0f55e2d62a2f341d02f5",
+      "format": "json",
+      "role": "summary",
+      "producer": { "type": "script", "path": "scripts/run-de405-jpl-cspice-residual-sweep.mjs", "command": "npm run de405:overlap:sweep", "confidence": "confirmed" },
+      "references": [ { "path": "scripts/run-de405-jpl-cspice-residual-sweep.mjs", "kind": "generation_output" } ],
+      "requiredBy": { "runtime": false, "build": false, "defaultTests": false, "specializedTests": false, "researchValidation": true },
+      "reproducibility": { "status": "conditionally_reproducible", "requirements": ["DE405 SPK, JPL binary, CSPICE runner, and sweep inputs"], "estimatedCost": "large" },
+      "storageClass": "generated",
+      "proposedAction": "ignore_after_policy_commit",
+      "rationale": "The summary records a complete sweep with evidence failures and explicitly leaves the active contract unchanged."
+    },
+    {
+      "path": "artifacts/de405-jpl-cspice-residual-sweep.worst-case-reproduction.json",
+      "sizeBytes": 1698,
+      "sha256": "42add33c928bd43652a213a36de9e1ab46b6f545f39bb31c263ffc488708a3f6",
+      "format": "json",
+      "role": "research_output",
+      "producer": { "type": "unknown", "path": null, "command": "unknown", "confidence": "unknown" },
+      "references": [],
+      "requiredBy": { "runtime": false, "build": false, "defaultTests": false, "specializedTests": false, "researchValidation": true },
+      "reproducibility": { "status": "unknown", "requirements": ["identify the producing reproduction procedure"], "estimatedCost": "unknown" },
+      "storageClass": "pending",
+      "proposedAction": "hold_pending_review",
+      "rationale": "The result claims verified reproduction but no active producer or code reference establishes how it was created."
+    },
+    {
+      "path": "artifacts/de405-sweep-checkpoints/checkpoint.json",
+      "sizeBytes": 647,
+      "sha256": "4910571328cf7c43822b025f3b68ae36270262df0d77a0a489357a59dec32ee6",
+      "format": "checkpoint",
+      "role": "checkpoint",
+      "producer": { "type": "script", "path": "scripts/run-de405-jpl-cspice-residual-sweep.mjs", "command": "npm run de405:overlap:sweep -- --resume", "confidence": "confirmed" },
+      "references": [ { "path": "scripts/run-de405-jpl-cspice-residual-sweep.mjs", "kind": "generation_output" } ],
+      "requiredBy": { "runtime": false, "build": false, "defaultTests": false, "specializedTests": false, "researchValidation": true },
+      "reproducibility": { "status": "conditionally_reproducible", "requirements": ["the same sweep inputs and chunk size"], "estimatedCost": "large" },
+      "storageClass": "generated",
+      "proposedAction": "ignore_after_policy_commit",
+      "rationale": "The checkpoint is resumable execution state and has no independent canonical meaning."
+    }
+  ]
+}
