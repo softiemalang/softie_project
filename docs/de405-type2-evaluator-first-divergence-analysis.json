@@ -1,0 +1,511 @@
+{
+  "schemaVersion": 1,
+  "recordType": "de405_type2_evaluator_first_divergence_analysis",
+  "generator": "scripts/analyze-de405-type2-evaluator-first-divergence.mjs",
+  "cspiceSourceIdentities": {
+    "spke02": {
+      "path": "/Users/softie/.local/share/softie-de405/cspice/N0067/src/cspice/spke02.c",
+      "sizeBytes": 10818,
+      "sha256": "e6d934db2793c3cf10b590743db6609a089383551881c5add229eb585ea0472b"
+    },
+    "chbint": {
+      "path": "/Users/softie/.local/share/softie-de405/cspice/N0067/src/cspice/chbint.c",
+      "sizeBytes": 12372,
+      "sha256": "0d37a160f6e5cf2542b21653631650df5db581f18e2d8012786d072ac77e99ca"
+    },
+    "header": {
+      "path": "/Users/softie/.local/share/softie-de405/cspice/N0067/include/SpiceUsr.h",
+      "sizeBytes": 7150,
+      "sha256": "cb507d162dce21ff523a8f7793ceac521b92a548732c1782bb109af59ad4aca4"
+    }
+  },
+  "linkedCspiceLibraryIdentity": {
+    "cspice": {
+      "path": "/Users/softie/.local/share/softie-de405/cspice/N0067/lib/cspice.a",
+      "sizeBytes": 6991568,
+      "sha256": "f3a1adf1742c7a63c390834f4227936a36e3c18dd78bf427bc96a04b703946f3"
+    },
+    "csupport": {
+      "path": "/Users/softie/.local/share/softie-de405/cspice/N0067/lib/csupport.a",
+      "sizeBytes": 888144,
+      "sha256": "6f293e8a096860279a349743b420ad53b323c3df13cab8b4befbd47bfec2197b"
+    }
+  },
+  "instrumentationIdentity": {
+    "build": {
+      "schemaVersion": 1,
+      "toolkitVersion": "N0067",
+      "compiler": "cc",
+      "buildFlags": {
+        "wrapper": [
+          "-std=c11",
+          "-O2",
+          "-Wall",
+          "-Wextra",
+          "-Werror",
+          "-I/Users/softie/.local/share/softie-de405/cspice/N0067/include",
+          "-c",
+          "/Users/softie/Documents/softie_project/tools/de405-type2-evaluator-trace-probe/src/de405_type2_evaluator_trace_probe.c",
+          "-o",
+          "/Users/softie/Documents/softie_project/tools/de405-type2-evaluator-trace-probe/build/trace-probe.o"
+        ],
+        "instrumentedOfficial": [
+          "-std=c11",
+          "-O2",
+          "-Wall",
+          "-Wextra",
+          "-Werror",
+          "-I/Users/softie/.local/share/softie-de405/cspice/N0067/include",
+          "-ffp-contract=off",
+          "-c",
+          "/Users/softie/Documents/softie_project/tools/de405-type2-evaluator-trace-probe/build/instrumented-source/spke02.instrumented.c",
+          "-o",
+          "/Users/softie/Documents/softie_project/tools/de405-type2-evaluator-trace-probe/build/spke02.instrumented.o"
+        ],
+        "instrumentedDependency": [
+          "-std=c11",
+          "-O2",
+          "-Wall",
+          "-Wextra",
+          "-Werror",
+          "-I/Users/softie/.local/share/softie-de405/cspice/N0067/include",
+          "-ffp-contract=off",
+          "-c",
+          "/Users/softie/Documents/softie_project/tools/de405-type2-evaluator-trace-probe/build/instrumented-source/chbint.instrumented.c",
+          "-o",
+          "/Users/softie/Documents/softie_project/tools/de405-type2-evaluator-trace-probe/build/chbint.instrumented.o"
+        ],
+        "link": [
+          "/Users/softie/Documents/softie_project/tools/de405-type2-evaluator-trace-probe/build/trace-probe.o",
+          "/Users/softie/Documents/softie_project/tools/de405-type2-evaluator-trace-probe/build/spke02.instrumented.o",
+          "/Users/softie/Documents/softie_project/tools/de405-type2-evaluator-trace-probe/build/chbint.instrumented.o",
+          "/Users/softie/.local/share/softie-de405/cspice/N0067/lib/cspice.a",
+          "/Users/softie/.local/share/softie-de405/cspice/N0067/lib/csupport.a",
+          "-lm",
+          "-o",
+          "/Users/softie/Documents/softie_project/tools/de405-type2-evaluator-trace-probe/build/de405-type2-evaluator-trace-probe"
+        ]
+      },
+      "sourceIdentity": {
+        "sourceHashes": {
+          "spke02": "e6d934db2793c3cf10b590743db6609a089383551881c5add229eb585ea0472b",
+          "chbint": "0d37a160f6e5cf2542b21653631650df5db581f18e2d8012786d072ac77e99ca"
+        },
+        "sourcePaths": {
+          "spke02": "/Users/softie/.local/share/softie-de405/cspice/N0067/src/cspice/spke02.c",
+          "chbint": "/Users/softie/.local/share/softie-de405/cspice/N0067/src/cspice/chbint.c"
+        },
+        "instrumentedPaths": {
+          "spke02": "/Users/softie/Documents/softie_project/tools/de405-type2-evaluator-trace-probe/build/instrumented-source/spke02.instrumented.c",
+          "chbint": "/Users/softie/Documents/softie_project/tools/de405-type2-evaluator-trace-probe/build/instrumented-source/chbint.instrumented.c"
+        },
+        "patcher": "tools/de405-type2-evaluator-trace-probe/scripts/instrument-spke02.mjs"
+      },
+      "binarySha256": "dfbc977fd6c137cb0dc6cf84b845913a3258510b97b5eea546b625ce4dc0ba0b"
+    },
+    "patcher": {
+      "path": "tools/de405-type2-evaluator-trace-probe/scripts/instrument-spke02.mjs",
+      "sizeBytes": 3327,
+      "sha256": "3cdceb115a7f2d466934f43503f0bb8cc51a1e62d4b18a8092bdb1b5d0c4a418"
+    },
+    "buildScript": {
+      "path": "tools/de405-type2-evaluator-trace-probe/build.mjs",
+      "sizeBytes": 3022,
+      "sha256": "4960a4675b9c7b70be2a55d155658605f0662c2ba94ab06c5e6d3ba57ff1f0c0"
+    },
+    "binary": {
+      "path": "tools/de405-type2-evaluator-trace-probe/build/de405-type2-evaluator-trace-probe",
+      "sizeBytes": 131376,
+      "sha256": "dfbc977fd6c137cb0dc6cf84b845913a3258510b97b5eea546b625ce4dc0ba0b"
+    }
+  },
+  "projectEvaluatorIdentity": {
+    "source": {
+      "path": "tools/de405-type2-record-neighborhood/src/de405_type2_record_neighborhood.c",
+      "sizeBytes": 11840,
+      "sha256": "3d7404f8bef46a58df86a13d9fff77e9b2f7c72aed564376e998fad545cd26db"
+    },
+    "buildScript": {
+      "path": "tools/de405-type2-record-neighborhood/build.mjs",
+      "sizeBytes": 1981,
+      "sha256": "e35df91f7425bc88647d2df75417c069b2aa2ea8579d32e1e40d78bed6bbc86e"
+    },
+    "routine": "project_owned_type2_chbint_recurrence_v1"
+  },
+  "kernelIdentity": {
+    "path": "/Users/softie/.local/share/softie-de405/kernels/spk/de405.bsp",
+    "sizeBytes": 10898432,
+    "sha256": "30a7113793ee5b6bf1e5546c6dfc21d9682d9ffabfe9b17b4bab27ba2ac75c89"
+  },
+  "sourceEvidenceIdentities": {
+    "existingEvaluation": {
+      "path": "artifacts/de405-center-leg0-cspice-type2-evaluation-evidence.jsonl",
+      "sizeBytes": 4680931,
+      "sha256": "d4bc979b443273d9b39da49f14dd9db401e343d724ec744b2a4b56ad46cfbbd7"
+    },
+    "neighborhood": {
+      "path": "artifacts/de405-center-leg0-record-neighborhood-evidence.jsonl",
+      "sizeBytes": 2367011,
+      "sha256": "cac6a96a2ab6547b44c7ffed0624b34de535666e6650c1e45bc781cb91524a8b"
+    },
+    "centerLeg": {
+      "path": "artifacts/de405-center-chain-first-divergence-evidence.jsonl",
+      "sizeBytes": 5161821,
+      "sha256": "3a7356aacd5a9fb71a507b89d7dd25d978d714e99529f7488aff8f15adf5e6a3"
+    },
+    "cspiceReference": {
+      "path": "docs/de405-cspice-reference-contract-audit.json",
+      "sizeBytes": 2915,
+      "sha256": "60f2bf478215089c9e48b0c3b84ab50a8efdedc30141d0dd3fff3965207bd319"
+    }
+  },
+  "rawArtifact": {
+    "path": "artifacts/de405-type2-evaluator-first-divergence-evidence.jsonl",
+    "sizeBytes": 14785747,
+    "sha256": "de00fc8fa9d8e3973e74406e5963177d7e60a5947ac4456e119bcf5b8a2df92a",
+    "recordCount": 154
+  },
+  "cohortCount": 154,
+  "officialFinalParityCount": 154,
+  "projectFinalReproductionCount": 154,
+  "inputIdentityCount": 154,
+  "notComputableCount": 0,
+  "primaryClassificationCounts": {
+    "position_recurrence_divergence": 93,
+    "velocity_derivative_divergence": 61
+  },
+  "firstDivergentStageDistribution": {
+    "position_polynomial": 93,
+    "velocity_derivative": 61
+  },
+  "firstDivergentComponentDistribution": {
+    "positionX": 29,
+    "positionY": 33,
+    "positionZ": 31,
+    "velocityX": 19,
+    "velocityY": 19,
+    "velocityZ": 23
+  },
+  "positionVelocityDivergenceDistribution": {
+    "position_diverges_first_or_same_stage": 142,
+    "velocity_diverges_first": 12
+  },
+  "positionDivergenceStageDistribution": {
+    "no_position_divergence": 12,
+    "position_polynomial": 142
+  },
+  "velocityDivergenceStageDistribution": {
+    "velocity_derivative": 154
+  },
+  "operationKindDistribution": {
+    "polynomial_output": 1,
+    "position_recurrence": 92,
+    "velocity_derivative_recurrence": 61
+  },
+  "degreeCoefficientCountDistribution": {
+    "13": 154
+  },
+  "segmentDistribution": {
+    "target:399:center:3:frame:1:begin:987781:end:1362196": 154
+  },
+  "recordIndexDistribution": {
+    "92": 1,
+    "460": 1,
+    "499": 1,
+    "508": 1,
+    "548": 1,
+    "723": 1,
+    "727": 1,
+    "1012": 1,
+    "1020": 1,
+    "1116": 1,
+    "1139": 1,
+    "1171": 1,
+    "1235": 1,
+    "1280": 1,
+    "1359": 1,
+    "1395": 1,
+    "1436": 1,
+    "1540": 1,
+    "1548": 1,
+    "1627": 1,
+    "1644": 1,
+    "1743": 1,
+    "1756": 1,
+    "1847": 1,
+    "1916": 1,
+    "2015": 1,
+    "2044": 1,
+    "2100": 1,
+    "2120": 1,
+    "2188": 1,
+    "2304": 1,
+    "2340": 1,
+    "2400": 1,
+    "2428": 1,
+    "2627": 1,
+    "2635": 1,
+    "2732": 1,
+    "2876": 2,
+    "2920": 1,
+    "3164": 1,
+    "3180": 1,
+    "3276": 1,
+    "3280": 1,
+    "3284": 1,
+    "3324": 1,
+    "3356": 1,
+    "3492": 1,
+    "3604": 1,
+    "3756": 2,
+    "3788": 2,
+    "3812": 1,
+    "3876": 1,
+    "3996": 1,
+    "4108": 1,
+    "4112": 1,
+    "4196": 1,
+    "4236": 2,
+    "4248": 1,
+    "4612": 2,
+    "4652": 1,
+    "4740": 1,
+    "4820": 1,
+    "4852": 1,
+    "4860": 1,
+    "4900": 1,
+    "4924": 1,
+    "4940": 2,
+    "5092": 1,
+    "5192": 1,
+    "5216": 1,
+    "5228": 1,
+    "5292": 1,
+    "5336": 1,
+    "5380": 1,
+    "5444": 1,
+    "5452": 1,
+    "5540": 1,
+    "5572": 1,
+    "5652": 1,
+    "5660": 1,
+    "5704": 1,
+    "5756": 2,
+    "5808": 1,
+    "5908": 1,
+    "5956": 1,
+    "6068": 1,
+    "6100": 1,
+    "6260": 1,
+    "6292": 1,
+    "6364": 2,
+    "6380": 1,
+    "6396": 1,
+    "6404": 1,
+    "6420": 2,
+    "6456": 2,
+    "6552": 1,
+    "6724": 1,
+    "6756": 1,
+    "6804": 1,
+    "6848": 1,
+    "6868": 1,
+    "6916": 1,
+    "6964": 1,
+    "7260": 1,
+    "7276": 1,
+    "7308": 1,
+    "7316": 1,
+    "7500": 1,
+    "7532": 1,
+    "7576": 1,
+    "7720": 1,
+    "7740": 1,
+    "7784": 1,
+    "7796": 1,
+    "7800": 1,
+    "7812": 1,
+    "7848": 1,
+    "7860": 1,
+    "7868": 1,
+    "7988": 2,
+    "8060": 1,
+    "8064": 1,
+    "8144": 1,
+    "8164": 1,
+    "8284": 1,
+    "8300": 1,
+    "8308": 2,
+    "8348": 2,
+    "8380": 1,
+    "8444": 1,
+    "8492": 1,
+    "8504": 1,
+    "8516": 1,
+    "8632": 1,
+    "8764": 2,
+    "8796": 1,
+    "8812": 1,
+    "8876": 2,
+    "9056": 1
+  },
+  "boundaryDistribution": {
+    "exact": 7,
+    "query_is_next_down_of_boundary": 76,
+    "query_is_next_up_of_boundary": 71
+  },
+  "normalizedTimeDistribution": {
+    "interior": 85,
+    "minus_one": 7,
+    "outside_domain": 62
+  },
+  "normalizedTimeRegionDistribution": {
+    "interior": 85,
+    "minus_one": 7,
+    "outside_domain": 62
+  },
+  "oneUlpGroupCrossAnalysis": {
+    "count": 82,
+    "firstDivergentStage": {
+      "position_polynomial": 47,
+      "velocity_derivative": 35
+    },
+    "firstDivergentComponent": {
+      "positionX": 20,
+      "positionY": 16,
+      "positionZ": 11,
+      "velocityX": 11,
+      "velocityY": 12,
+      "velocityZ": 12
+    },
+    "firstDivergentOperationKind": {
+      "polynomial_output": 1,
+      "position_recurrence": 46,
+      "velocity_derivative_recurrence": 35
+    },
+    "recurrenceDepth": {
+      "2": 14,
+      "3": 15,
+      "4": 8,
+      "5": 7,
+      "6": 13,
+      "7": 10,
+      "8": 1,
+      "9": 1,
+      "10": 6,
+      "11": 6,
+      "none": 1
+    },
+    "positionVelocityOrder": {
+      "position_diverges_first_or_same_stage": 72,
+      "velocity_diverges_first": 10
+    },
+    "normalizedTimeRegion": {
+      "interior": 37,
+      "minus_one": 7,
+      "outside_domain": 38
+    },
+    "ulpDirection": {
+      "project_above_official": 41,
+      "project_below_official": 41
+    },
+    "primaryClassification": {
+      "position_recurrence_divergence": 47,
+      "velocity_derivative_divergence": 35
+    }
+  },
+  "overOneUlpGroupCrossAnalysis": {
+    "count": 72,
+    "firstDivergentStage": {
+      "position_polynomial": 46,
+      "velocity_derivative": 26
+    },
+    "firstDivergentComponent": {
+      "positionX": 9,
+      "positionY": 17,
+      "positionZ": 20,
+      "velocityX": 8,
+      "velocityY": 7,
+      "velocityZ": 11
+    },
+    "firstDivergentOperationKind": {
+      "position_recurrence": 46,
+      "velocity_derivative_recurrence": 26
+    },
+    "recurrenceDepth": {
+      "2": 10,
+      "3": 16,
+      "4": 11,
+      "5": 5,
+      "6": 8,
+      "7": 7,
+      "8": 5,
+      "9": 3,
+      "10": 3,
+      "11": 4
+    },
+    "positionVelocityOrder": {
+      "position_diverges_first_or_same_stage": 70,
+      "velocity_diverges_first": 2
+    },
+    "normalizedTimeRegion": {
+      "interior": 48,
+      "outside_domain": 24
+    },
+    "ulpDirection": {
+      "project_above_official": 38,
+      "project_below_official": 34
+    },
+    "primaryClassification": {
+      "position_recurrence_divergence": 46,
+      "velocity_derivative_divergence": 26
+    }
+  },
+  "confirmedFindings": [
+    "All 154 source samples have identical record payload bits and query ET bits for linked official, instrumented official, and project evaluation.",
+    "The temporary instrumented official evaluator reproduces linked CSPICE output bitwise for 154/154 samples.",
+    "The project trace reproduces existing P0 bitwise for 154/154 samples.",
+    "The first differing captured stage is an observation of the two diagnostic evaluators under the stated source and compiler contract."
+  ],
+  "strongCorrelations": [
+    "The source contract has a confirmed structural recurrence-order difference: official CHBINT uses left-associated derivative accumulation while the project evaluator groups the final subtraction inside the right operand.",
+    "The 82/72 final ULP groups can be cross-tabulated against trace stages without upgrading the cross-tabulation to causal proof."
+  ],
+  "candidateExplanations": [
+    "The observed velocity-derivative divergence is consistent with the confirmed source recurrence-order difference; the trace does not establish that this is the only cause of every residual.",
+    "A final position or velocity ULP distribution may correlate with normalized-time region, degree, or record identity, but those correlations remain candidate explanations."
+  ],
+  "notComputableItems": [
+    "High-level CSPICE selected segment, selected record, route, and accumulator order are not observed.",
+    "Unexposed official library temporaries outside the parity-validated temporary source instrumentation are not available.",
+    "JPL internal evaluator behavior is not measured by this trace."
+  ],
+  "unresolvedItems": [
+    "selection_unresolved remains 1,701.",
+    "No tolerance, canonical selection, active transition, scientific approval, or production integration decision is changed by this evidence."
+  ],
+  "selectionUnresolved": 1701,
+  "toleranceChanged": false,
+  "canonicalSelectionChanged": false,
+  "activeTransition": false,
+  "scientificApproval": false,
+  "productionIntegration": false,
+  "sourceContractComparison": {
+    "status": "source_contract_structurally_different",
+    "official": {
+      "routine": "spke02_ -> chbint_",
+      "normalizedTime": "s=(et-record[1])/record[2]; s2=s*2",
+      "recurrence": "w0=cp[j-1]+(s2*w1-w2); d0=(w1*2 + d1*s2) - d2",
+      "derivativeScaling": "dpdx=(w0+s*dw0-dw1)/record[2]"
+    },
+    "project": {
+      "routine": "project-owned cheby",
+      "normalizedTime": "normalized=(et-midpoint)/radius; twice=2*normalized",
+      "recurrence": "w0=cp[j-1]+(twice*w1-w2); d0=w1*2 + (d1*twice-d2)",
+      "derivativeScaling": "velocity=(w0+normalized*d0-d1)/radius"
+    },
+    "qualification": "The source structure difference is confirmed from the inspected sources; it is not by itself a causal attribution."
+  },
+  "evidenceLevel": "confirmed",
+  "sourceRowsUsed": 154
+}
