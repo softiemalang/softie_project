@@ -1,0 +1,116 @@
+{
+  "schemaVersion": 1,
+  "recordType": "de405_cspice_reference_contract_audit_summary",
+  "generator": "scripts/analyze-de405-cspice-reference-contract-audit.mjs",
+  "sourceIdentities": {
+    "edgeEvidence": {
+      "path": "artifacts/de405-edge-composition-residual-evidence.jsonl",
+      "sizeBytes": 2171452,
+      "sha256": "79af4e72ea5f4347399432250ab752c3d125f89e965eb8fb9b398262f3c7e2e7"
+    },
+    "kernel": {
+      "path": "/Users/softie/.local/share/softie-de405/kernels/spk/de405.bsp",
+      "sizeBytes": 10898432,
+      "sha256": "30a7113793ee5b6bf1e5546c6dfc21d9682d9ffabfe9b17b4bab27ba2ac75c89"
+    },
+    "runnerBinary": {
+      "path": "tools/de405-cspice-reference-contract-audit/build/de405-reference-contract-audit",
+      "sizeBytes": 1324576,
+      "sha256": "804daf4f934d766e2d3e98afd0623beba95dcdc656d70d6130401c0d91864961"
+    },
+    "runnerBuild": {
+      "path": "tools/de405-cspice-reference-contract-audit/build/runner-build.json",
+      "sizeBytes": 774,
+      "sha256": "8a00696e757c42d9ca6a654ae9f24dc804f83d149355406b603b1a72e3fd9225"
+    }
+  },
+  "rawArtifact": {
+    "path": "artifacts/de405-cspice-reference-contract-audit.jsonl",
+    "sizeBytes": 2583433,
+    "sha256": "1f35862d434756bde937b04ce2f70ee7d65acc5627aa737474918b106a5b5708"
+  },
+  "cohortCount": 36,
+  "processRunCount": 360,
+  "callCount": 1368,
+  "sequenceMatrixCoverage": {
+    "A": 36,
+    "B": 36,
+    "C": 36,
+    "D": 36,
+    "E": 36
+  },
+  "etContractCounts": {
+    "match": 1368,
+    "mismatch": 0
+  },
+  "bodyContractCounts": {
+    "match": 1368,
+    "mismatch": 0
+  },
+  "frameContractCounts": {
+    "match": 1368,
+    "mismatch": 0
+  },
+  "aberrationContractCounts": {
+    "match": 1368,
+    "mismatch": 0
+  },
+  "apiContractCounts": {
+    "match": 1368,
+    "mismatch": 0
+  },
+  "kernelSetCounts": {
+    "stable": 360,
+    "mismatch": 0
+  },
+  "loadOrderCounts": {
+    "stable": 360,
+    "mismatch": 0
+  },
+  "errorStateCounts": {
+    "valid": 1368,
+    "failure": 0
+  },
+  "outputExtractionCounts": {
+    "match": 1368,
+    "mismatch": 0
+  },
+  "unitContractCounts": {
+    "match": 1368,
+    "mismatch": 0
+  },
+  "primaryClassificationCounts": {
+    "contract_equivalent_direct_pair_residual_persists": 36
+  },
+  "targetCenterDistribution": {
+    "301": 36
+  },
+  "epochKindDistribution": {
+    "exact_knot": 8,
+    "next_down_knot": 12,
+    "next_up_knot": 16
+  },
+  "confirmedFindings": 36,
+  "candidateExplanations": 0,
+  "unresolvedItems": 0,
+  "contractState": {
+    "selectionUnresolved": 1701,
+    "toleranceChanged": false,
+    "canonicalSelectionChanged": false,
+    "activeTransition": false,
+    "scientificApproval": false,
+    "productionIntegration": false
+  },
+  "freshProcessDeterminismCounts": {
+    "stable": 36,
+    "mismatch": 0
+  },
+  "queryOrderDeterminismCounts": {
+    "stable": 36,
+    "mismatch": 0
+  },
+  "inProcessRepeatCounts": {
+    "stable": 36,
+    "mismatch": 0
+  }
+}
