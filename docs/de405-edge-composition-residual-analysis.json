@@ -1,0 +1,85 @@
+{
+  "schemaVersion": 1,
+  "recordType": "de405_edge_composition_residual_analysis",
+  "generator": "scripts/analyze-de405-edge-composition-residual.mjs",
+  "runtimeIdentity": {
+    "node": "v22.20.0"
+  },
+  "rawArtifact": {
+    "path": "artifacts/de405-edge-composition-residual-evidence.jsonl",
+    "sizeBytes": 2171452,
+    "sha256": "79af4e72ea5f4347399432250ab752c3d125f89e965eb8fb9b398262f3c7e2e7"
+  },
+  "cohortCount": 36,
+  "uniquePairQueryCount": 108,
+  "pairReferenceCount": 144,
+  "pairReferenceUnavailableCount": 0,
+  "targetLegStatusCounts": {
+    "all_target_legs_match": 2,
+    "target_unique_leg_differs": 34
+  },
+  "centerLegStatusCounts": {
+    "all_center_legs_match": 12,
+    "center_unique_leg_differs": 24
+  },
+  "commonSuffixStatusCounts": {
+    "all_common_suffix_legs_match": 36
+  },
+  "primaryClassificationCounts": {
+    "pair_state_composition_still_does_not_match_direct": 36
+  },
+  "matchingVariantCounts": {},
+  "multipleMatchCount": 0,
+  "noMatchCount": 36,
+  "contractState": {
+    "selectionUnresolved": 1701,
+    "toleranceChanged": false,
+    "canonicalSelectionChanged": false,
+    "activeTransition": false,
+    "scientificApproval": false,
+    "productionIntegration": false
+  },
+  "evidenceLevel": "confirmed",
+  "unresolved": [
+    "CSPICE internal route, selected record, and accumulator order remain unobserved"
+  ],
+  "nativeParity": {
+    "helperSourceIdentity": {
+      "path": "tools/de405-binary64-composition-probe/src/de405_binary64_composition_probe.c",
+      "sizeBytes": 810,
+      "sha256": "9db993b3f038b5dc177bf629f644da757d8ef49773664775b39af43c759ff846"
+    },
+    "helperBinaryIdentity": {
+      "path": "tools/de405-binary64-composition-probe/build/de405-binary64-composition-probe",
+      "sizeBytes": 33808,
+      "sha256": "97a89a7650fe5543a34b858d9c23c97cd6a217a2d1ff97ba31808fadb701ad0d"
+    },
+    "buildIdentity": {
+      "path": "tools/de405-binary64-composition-probe/build/runner-build.json",
+      "sizeBytes": 552,
+      "sha256": "48f51a14623e5dcfa04ccffc805b503c7fe69108af163a4a7b7aa31e6371eae4"
+    },
+    "buildCommand": "node tools/de405-binary64-composition-probe/build.mjs",
+    "environmentIdentity": {
+      "sizeofDouble": 8,
+      "dbMantissaDigits": 53,
+      "fltRadix": 2,
+      "fltEvalMethod": 0,
+      "roundingMode": "FE_TONEAREST",
+      "architecture": "arm64"
+    },
+    "sampleCount": 36,
+    "computableVariantCount": 144,
+    "expectedOperationCount": 4536,
+    "nativeInputRecordCount": 4536,
+    "nativeOutputRecordCount": 4536,
+    "nativeInvocationCount": 1,
+    "executedNativeOperationCount": 4536,
+    "parityComparedOperationCount": 4536,
+    "parityMatchCount": 4536,
+    "parityMismatchCount": 0,
+    "nativeFailureCount": 0,
+    "jsFallbackUsed": false,
+    "operationEvidenceIdentity": "12d1149a4e4fe7da2932840a5698f991856bd9d42ce72bb3e9ef5dca9eae599e"
+  }
+}
