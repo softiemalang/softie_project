@@ -55,6 +55,7 @@
     "analyze:de405:type2-evaluator-first-divergence": "node scripts/analyze-de405-type2-evaluator-first-divergence.mjs",
     "check:de405:type2-evaluator-first-divergence": "node scripts/check-de405-type2-evaluator-first-divergence-freshness.mjs",
     "test:de405:artifacts": "node scripts/test-de405-artifacts.mjs",
+    "audit:security": "node scripts/run-osv-security-audit.mjs",
     "audit:dependencies": "depcruise --config .dependency-cruiser.cjs --output-type err-long -- src scripts tools test",
     "audit:unused": "knip --config knip.jsonc --no-exit-code --no-progress",
     "preview": "vite preview",
