@@ -1,0 +1,21 @@
+{
+  "$schema": "https://unpkg.com/knip@6/schema-jsonc.json",
+
+  "entry": [
+    "test/**/*.test.js",
+    "test/de405-artifacts/**/*.test.js"
+  ],
+
+  "project": [
+    "src/**/*.{js,jsx,mjs,cjs}",
+    "scripts/**/*.{js,jsx,mjs,cjs}",
+    "tools/**/*.{js,jsx,mjs,cjs}",
+    "test/**/*.{js,jsx,mjs,cjs}",
+
+    "!**/node_modules/**",
+    "!**/dist/**",
+    "!**/build/**",
+    "!**/coverage/**",
+    "!artifacts/**"
+  ]
+}
