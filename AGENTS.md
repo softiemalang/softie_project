@@ -35,6 +35,11 @@
 - Do not create a branch or switch away from `main`.
 - Do not run `git add`, `git commit`, or `git push` without explicit user approval for that exact step. Treat staging, committing, pushing, deploying, and remote database changes as separate approval steps: approval for one does not imply approval for any later step.
 - Stage and commit only the explicitly approved files and changes. Never include unrelated or pre-existing worktree changes.
+- For an explicitly approved `git add`, `git commit`, or `git push`, request elevated execution before the first attempt when the command is expected to write Git metadata or use restricted network access. Do not probe with a normal sandbox attempt first.
+- When the current task requires `git fetch`, request elevated execution before the first attempt if it is expected to write `.git/FETCH_HEAD` or update remote-tracking refs.
+- Keep read-only Git commands in the normal sandbox unless a separate permission failure is observed.
+- Staging, committing, and pushing remain separate exact approvals and must use explicit path allowlists.
+- After a known sandbox permission failure, do not repeat the same command unchanged. Retry with elevation at most once for that command, then stop and report the failure.
 - Do not interpret ambiguous requests such as “반영해줘” (“apply it”) as approval for the entire commit-and-push sequence.
 - Do not run `vercel`, `vercel deploy`, or production deployment commands unless the user explicitly asks.
 - Do not run `supabase db push`, `supabase functions deploy`, or any remote database-changing command unless the user explicitly asks.
