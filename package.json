@@ -31,6 +31,7 @@
     "analyze:de405:edge-composition-residual": "node scripts/analyze-de405-edge-composition-residual.mjs",
     "check:de405:edge-composition-residual": "node scripts/check-de405-edge-composition-residual-freshness.mjs",
     "build:de405:cspice-reference-contract-audit": "node tools/de405-cspice-reference-contract-audit/build.mjs",
+    "build:de405:cspice-route-diagnostic": "node tools/de405-cspice-route-diagnostic/build.mjs",
     "materialize:de405:cspice-reference-contract-audit": "node scripts/materialize-de405-cspice-reference-contract-audit.mjs",
     "analyze:de405:cspice-reference-contract-audit": "node scripts/analyze-de405-cspice-reference-contract-audit.mjs",
     "check:de405:cspice-reference-contract-audit": "node scripts/check-de405-cspice-reference-contract-audit-freshness.mjs",
