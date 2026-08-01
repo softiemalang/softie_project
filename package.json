@@ -49,6 +49,7 @@
     "analyze:de405:unresolved-selection": "node scripts/analyze-de405-unresolved-selection.mjs",
     "analyze:de405:unresolved-selection-cause": "node scripts/analyze-de405-unresolved-selection-cause.mjs",
     "build:de405:type2-evaluator-trace-probe": "node tools/de405-type2-evaluator-trace-probe/build.mjs",
+    "build:de405:type2-experimental-evaluator": "node tools/de405-type2-experimental-evaluator/build.mjs",
     "materialize:de405:type2-evaluator-first-divergence": "node scripts/materialize-de405-type2-evaluator-first-divergence.mjs",
     "analyze:de405:type2-evaluator-first-divergence": "node scripts/analyze-de405-type2-evaluator-first-divergence.mjs",
     "check:de405:type2-evaluator-first-divergence": "node scripts/check-de405-type2-evaluator-first-divergence-freshness.mjs",
