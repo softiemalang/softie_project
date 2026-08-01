@@ -55,6 +55,7 @@
     "analyze:de405:type2-evaluator-first-divergence": "node scripts/analyze-de405-type2-evaluator-first-divergence.mjs",
     "check:de405:type2-evaluator-first-divergence": "node scripts/check-de405-type2-evaluator-first-divergence-freshness.mjs",
     "test:de405:artifacts": "node scripts/test-de405-artifacts.mjs",
+    "audit:dependencies": "depcruise --config .dependency-cruiser.cjs --output-type err-long -- src scripts tools test",
     "preview": "vite preview",
     "de405:v2:build-runner": "node tools/de405-cspice-runner/build.mjs",
     "de405:v2:generate": "node scripts/generate-de405-canonical-v2.mjs",
@@ -72,6 +73,7 @@
   "devDependencies": {
     "@rollup/wasm-node": "4.60.2",
     "@vitejs/plugin-react": "^4.3.4",
+    "dependency-cruiser": "^18.1.0",
     "fast-check": "^4.9.0",
     "openai": "^6.34.0",
     "vite": "^5.4.10"
