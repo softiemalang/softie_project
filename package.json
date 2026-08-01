@@ -7,6 +7,7 @@
     "dev": "vite",
     "build": "vite build",
     "test": "node scripts/run-default-tests.mjs",
+    "test:properties": "node --test test/astrologyAngleProperties.test.js",
     "check:de405:artifacts": "node scripts/check-de405-artifacts.mjs",
     "check:de405:classification-summary": "node scripts/check-de405-classification-summary-freshness.mjs",
     "check:de405:tolerance-proposal": "node scripts/check-de405-active-tolerance-proposal-freshness.mjs",
@@ -71,6 +72,7 @@
   "devDependencies": {
     "@rollup/wasm-node": "4.60.2",
     "@vitejs/plugin-react": "^4.3.4",
+    "fast-check": "^4.9.0",
     "openai": "^6.34.0",
     "vite": "^5.4.10"
   }
