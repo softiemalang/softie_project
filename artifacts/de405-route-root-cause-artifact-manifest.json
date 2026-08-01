@@ -1,0 +1,84 @@
+{
+  "schemaVersion": 1,
+  "recordType": "de405_route_root_cause_artifact_manifest",
+  "deterministic": true,
+  "artifacts": {
+    "de405-route-root-cause-joined.jsonl": {
+      "path": "artifacts/de405-route-root-cause-joined.jsonl",
+      "sizeBytes": 8952115,
+      "sha256": "6dd7563feda3257c1f4192a04924bf57ff789ba4b551ae156b988402faaf1687",
+      "storage": "untracked_generated"
+    },
+    "de405-route-root-cause-reconciliation.json": {
+      "path": "artifacts/de405-route-root-cause-reconciliation.json",
+      "sizeBytes": 3191,
+      "sha256": "19cd0e6ad55af00fff9e7c33fcdbf6ae2f9f5f39e203a532edc25ab0fcf97ba5",
+      "storage": "untracked_generated"
+    },
+    "de405-route-root-cause-cross-tabs.json": {
+      "path": "artifacts/de405-route-root-cause-cross-tabs.json",
+      "sizeBytes": 4596656,
+      "sha256": "1bcf00c6757b90f24adf14f105a3fd32aa4ae39e82a9c2d9c168447a83325084",
+      "storage": "untracked_generated"
+    },
+    "de405-route-root-cause-clusters.jsonl": {
+      "path": "artifacts/de405-route-root-cause-clusters.jsonl",
+      "sizeBytes": 13236,
+      "sha256": "4c53d6f5af25f377ee115758c996846360a9b8b0ffc5b9b6b952cc32e11c7dbf",
+      "storage": "untracked_generated"
+    },
+    "de405-route-root-cause-sentinels.jsonl": {
+      "path": "artifacts/de405-route-root-cause-sentinels.jsonl",
+      "sizeBytes": 61321,
+      "sha256": "2642260c36680cd09cd0ee3e96ed3fd717676e1a958391678e66de7ce8ab3d61",
+      "storage": "untracked_generated"
+    },
+    "de405-route-candidate-registry.json": {
+      "path": "artifacts/de405-route-candidate-registry.json",
+      "sizeBytes": 5521,
+      "sha256": "04cbb14e4753ac045150b887961ef33c8502a23bd5e00b42760f99b975a7502e",
+      "storage": "untracked_generated"
+    },
+    "de405-route-candidate-shadow-results.json": {
+      "path": "artifacts/de405-route-candidate-shadow-results.json",
+      "sizeBytes": 4547,
+      "sha256": "868f4137d59dc095297b7b1362f46e903fae1b1658f84a43da819694f62c7842",
+      "storage": "untracked_generated"
+    },
+    "de405-route-candidate-outcomes.jsonl": {
+      "path": "artifacts/de405-route-candidate-outcomes.jsonl",
+      "sizeBytes": 4679380,
+      "sha256": "bbc86d865ba64683fa18e4c2e577ea40d7cac55cff9e9ecc483dfcae9064494f",
+      "storage": "untracked_generated"
+    },
+    "de405-route-candidate-combinations.json": {
+      "path": "artifacts/de405-route-candidate-combinations.json",
+      "sizeBytes": 4663,
+      "sha256": "6c166f3acfe34855a417b75e133b15e2160a428adc2149b630b2fc7640a2ff2e",
+      "storage": "untracked_generated"
+    },
+    "de405-route-production-readiness.json": {
+      "path": "artifacts/de405-route-production-readiness.json",
+      "sizeBytes": 2243,
+      "sha256": "4a158b655644d8b8fe207740fd926de177b00bc574cb192183302b702dacafc8",
+      "storage": "untracked_generated"
+    },
+    "de405-route-root-cause-summary.json": {
+      "path": "artifacts/de405-route-root-cause-summary.json",
+      "sizeBytes": 5068,
+      "sha256": "325dee4bc8e3c461c5fe080fc1ddc2b14cf34f9439332fa03214feb367f20da3",
+      "storage": "untracked_generated"
+    },
+    "de405-route-wider-regression.json": {
+      "path": "artifacts/de405-route-wider-regression.json",
+      "sizeBytes": 18168,
+      "sha256": "88ba8f8d9a3da1574cb993a6c4987cf6bdcdb102f783e28bf993752b88e14d0e",
+      "storage": "untracked_generated"
+    }
+  },
+  "humanReadable": {
+    "path": "docs/de405-route-root-cause-analysis.md",
+    "sha256": "258d0f116ce7d8a98f56238feba07c2b0135174e7becec071cca78a9a360ffa7",
+    "storage": "untracked_generated"
+  }
+}
