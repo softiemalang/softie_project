@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "sourceHead": "fae15f6aa1cf881e2a4b077462b0547a313e725e",
+  "sourceHead": "2d699e82b4c2665b241ab697e712d20d22516e83",
   "generatedAt": "2026-08-01T11:01:31Z",
   "auditCommand": "npm run audit:dependencies",
   "auditExitCode": 0,
@@ -157,7 +157,7 @@
       "declaredSection": "repository_file",
       "currentVersion": null,
       "classification": "unresolved",
-      "contractStatus": "unresolved_external_dependency",
+      "contractStatus": "external_verification_incomplete",
       "confidence": "medium",
       "exports": ["SOFTIE_PERSONAL_REFERENCE"],
       "staticReferences": [],
@@ -169,9 +169,14 @@
       "externalContractRisk": "high",
       "evidence": [{"path": "supabase/functions/generate-fortune-report/index.ts", "line": 584, "description": "Active personal reference path is controlled by SOFTIE_PERSONAL_RAG_ENABLED."}, {"path": "supabase/functions/generate-fortune-report/index.ts", "line": 793, "description": "Edge Function creates and injects Softie personal RAG snippets into the report prompt."}, {"path": "src/saju/SoftieFortunePage.jsx", "line": 249, "description": "The /softie-fortune UI requests the report with softiePersonalRag enabled."}],
       "runtimeOrToolingPath": "SoftieFortunePage -> requestLlmReport -> generate-fortune-report -> external Softie Personal RAG -> prompt payload; target module is not imported.",
-      "auditLimitation": "Static repository search cannot determine whether this versioned personal reference is consumed by an external datastore, separate deployment, or legacy client.",
-      "recommendedNextAction": "verify_external_consumer",
-      "notes": "Do not classify as removal candidate until the external personal-reference consumer and migration/deprecation state are verified."
+      "auditLimitation": "GitHub and Vercel access was partial, and the external Google Discovery Engine datastore and deployed Edge Function source were not inspected; exact consumption of this module remains unverified.",
+      "recommendedNextAction": "preserve_until_external_verification_is_complete",
+      "externalContractAnalysis": "artifacts/softie-personal-reference-external-contract-analysis.json",
+      "externalContractClassification": "external_verification_incomplete",
+      "externalContractConfidence": "medium",
+      "deployedSurfaces": ["Supabase txkqkvkwasfzapvcbezv: ACTIVE generate-fortune-report Edge Function"],
+      "unverifiedSurfaces": ["authenticated GitHub repositories and legacy clients", "Vercel production project/deployment and route bundle", "Google Discovery Engine app/datastore identity and contents", "deployed Edge Function source parity"],
+      "notes": "The related /softie-fortune RAG path is active, but exact target-module consumption is unverified. Preserve until external verification is complete; do not classify as a removal candidate."
     },
     {
       "name": "src/scheduler/googleOAuthTokens.test.js",

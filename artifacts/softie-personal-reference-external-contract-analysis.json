@@ -1,0 +1,79 @@
+{
+  "schemaVersion": 1,
+  "sourceHead": "2d699e82b4c2665b241ab697e712d20d22516e83",
+  "generatedAt": "2026-08-01T11:21:45Z",
+  "target": {
+    "name": "softiePersonalReference.js",
+    "path": "src/saju/personal/softiePersonalReference.js",
+    "exports": ["SOFTIE_PERSONAL_REFERENCE"],
+    "localContractIdentifiers": [
+      "/softie-fortune",
+      "softie-personal-reference-v1",
+      "generate-fortune-report",
+      "SOFTIE_PERSONAL_RAG_ENABLED",
+      "SOFTIE_PERSONAL_SEARCH_APP_ID",
+      "SOFTIE_PERSONAL_SEARCH_DATASTORE_ID",
+      "GOOGLE_CLOUD_PROJECT_ID",
+      "Google Discovery Engine"
+    ]
+  },
+  "verificationScope": {
+    "localRepository": {
+      "status": "checked",
+      "evidence": [
+        {"surface":"local","resource":"softiePersonalReference.js","location":"src/saju/personal/softiePersonalReference.js:1-11","description":"Reference module exists, exports SOFTIE_PERSONAL_REFERENCE, and declares /softie-fortune personalization purpose; no local import was found."},
+        {"surface":"local","resource":"/softie-fortune","location":"src/saju/SoftieFortunePage.jsx:249-252; src/saju/api.js:344-357","description":"The current UI requests softiePersonalRag and invokes the generate-fortune-report Edge Function."},
+        {"surface":"local","resource":"Vercel metadata","location":".vercel/project.json","description":"Local project metadata identifies Vercel project project-fp5ie; remote project state was not independently verified."}
+      ]
+    },
+    "gitHistory": {
+      "status": "checked",
+      "evidence": [
+        {"surface":"git_history","resource":"1af593ee34a21ba22746d83052b8f581c4e0c30e","location":"src/saju/personal/softiePersonalReference.js","description":"Module was introduced as a personal fortune reference document on 2026-05-04; no later internal consumer was found."},
+        {"surface":"git_history","resource":"2e7a99491763dd55c992597058ecbc4a78d960f0","location":"supabase/functions/generate-fortune-report/index.ts","description":"A Softie personal RAG hook was added to the Edge Function and connected to Google Discovery Engine search."}
+      ]
+    },
+    "github": {
+      "status": "partial",
+      "repositoriesChecked": [],
+      "evidence": [],
+      "limitations": ["GitHub CLI credentials were invalid for the configured account; no authenticated repository-wide search was possible.","Public web search for the exact identifiers found no matching consumer, but this does not establish absence from private or inaccessible repositories."]
+    },
+    "vercel": {
+      "status": "partial",
+      "projectsChecked": ["project-fp5ie (local .vercel metadata only)"],
+      "evidence": [],
+      "limitations": ["Vercel CLI authentication did not return a readable account/project result; production deployment, route bundle, environment-variable names, and status were not independently verified."]
+    },
+    "supabase": {
+      "status": "checked",
+      "projectsChecked": ["txkqkvkwasfzapvcbezv"],
+      "edgeFunctionsChecked": ["generate-fortune-report"],
+      "schemaObjectsChecked": ["public.saju_fortune_reports", "matching information_schema routines: none", "storage buckets: none"],
+      "evidence": [
+        {"surface":"supabase","resource":"generate-fortune-report","location":"deployed function list; local supabase/functions/generate-fortune-report/index.ts:579-603,793-815","description":"The Edge Function is ACTIVE in the linked project and has a Softie Personal RAG path controlled by named configuration and connected to Google Discovery Engine search."},
+        {"surface":"supabase","resource":"configuration names","location":"supabase secrets list (names only)","description":"SOFTIE_PERSONAL_RAG_ENABLED, SOFTIE_PERSONAL_SEARCH_APP_ID, GOOGLE_CLOUD_PROJECT_ID, and GOOGLE_SERVICE_ACCOUNT_* names exist; values were not read. SOFTIE_PERSONAL_SEARCH_DATASTORE_ID is read by code but was not present in the listed secret names."},
+        {"surface":"supabase","resource":"public.saju_fortune_reports","location":"linked database information_schema metadata","description":"A fortune-report table exists; no matching personal/reference/RAG table, routine, or storage bucket was found by metadata-only name search."}
+      ],
+      "limitations": ["The deployed function source and Google Discovery Engine datastore contents were not read; no user rows, reference text, embeddings, or function invocation was performed."]
+    }
+  },
+  "contractAssessment": {
+    "classification": "external_verification_incomplete",
+    "confidence": "medium",
+    "activeConsumers": ["Current local /softie-fortune UI -> generate-fortune-report -> Softie Personal RAG request path; exact consumption of this JS module is not established."],
+    "deployedSurfaces": ["Supabase project txkqkvkwasfzapvcbezv: ACTIVE generate-fortune-report Edge Function"],
+    "legacyEvidence": ["The target module declares a versioned /softie-fortune personal-reference contract, but no explicit legacy client or deprecation record was found locally."],
+    "migrationOrReplacementEvidence": ["The active implementation path uses external Google Discovery Engine snippets rather than importing the target module; this is a related replacement/adapter path, not proof that the target module's data was migrated."],
+    "unverifiedSurfaces": ["Authenticated GitHub repositories and legacy clients", "Vercel production project/deployment and route bundle", "Google Discovery Engine app/datastore identity and whether it contains the target reference", "deployed Edge Function source parity with local source"],
+    "recommendedNextAction": "preserve_until_external_verification_is_complete",
+    "rationale": "The target module has no local consumer, but an active deployed Supabase function exposes a related Softie Personal RAG contract. GitHub and Vercel verification is incomplete and the external Discovery Engine datastore was not inspected, so absence of an external consumer cannot be concluded."
+  },
+  "safety": {
+    "secretsRead": false,
+    "userRowsRead": false,
+    "externalWritesPerformed": false,
+    "deploymentsChanged": false,
+    "databaseChangesPerformed": false
+  }
+}

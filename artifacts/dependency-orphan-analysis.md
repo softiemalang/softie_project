@@ -7,7 +7,7 @@
 ## 기준선
 
 - branch: `main`
-- HEAD: `fae15f6aa1cf881e2a4b077462b0547a313e725e`
+- HEAD: `2d699e82b4c2665b241ab697e712d20d22516e83`
 - `origin/main...main`: `0 0`
 - audit command: `npm run audit:dependencies`
 - audit exit code: `0`
@@ -79,25 +79,29 @@
 
 ### `src/saju/personal/softiePersonalReference.js`
 
-- 최종 상태: `unresolved_external_dependency`
+- 최종 상태: `external_verification_incomplete`
 - 신뢰도: `medium`
 - 내부 사용: 현재 static/dynamic import 없음. package exports와 Vite entry 노출도 확인되지 않았다.
 - 기록된 계약: 파일 자체가 `/softie-fortune` 전용 개인 reference이며 common saju engine 이후의 personalization layer라고 선언한다 (`src/saju/personal/softiePersonalReference.js:1-11`). Git commit `1af593ee`에서 personal fortune reference 문서로 도입됐다.
 - 현재 활성 `/softie-fortune` 경로: UI가 `softiePersonalRag: true`로 report를 요청하고 (`src/saju/SoftieFortunePage.jsx:249`), API가 Edge Function을 호출하며 (`src/saju/api.js:344-357`), Edge Function은 feature flag와 외부 Discovery Engine 검색을 통해 snippets를 prompt에 주입한다 (`supabase/functions/generate-fortune-report/index.ts:584-603,793-905`). 대상 JS module 자체는 이 경로에 연결되지 않는다.
-- 외부 계약 위험: `high`. 별도 datastore, deployment, legacy client가 이 versioned reference를 소비하는지는 저장소 내부만으로 확정할 수 없다.
-- 권장: `verify_external_consumer`; 외부 소비자와 migration/deprecation 상태 확인 전 삭제하지 않는다.
+- 외부 계약 위험: `high`. 관련 `/softie-fortune` RAG 경로는 Supabase에 배포되어 있지만, 이 versioned reference가 실제 외부 datastore에 소비되는지는 확정할 수 없다.
+- 외부 조사 artifact: `artifacts/softie-personal-reference-external-contract-analysis.json`, `artifacts/softie-personal-reference-external-contract-analysis.md`.
+- 최종 외부 계약 판정: `external_verification_incomplete`, 신뢰도 `medium`.
+- 확인된 deployed surface: Supabase project `txkqkvkwasfzapvcbezv`의 `generate-fortune-report` Edge Function (`ACTIVE`).
+- 미확인 surface: 인증된 GitHub 저장소·legacy client, Vercel production deployment/route bundle, Google Discovery Engine datastore identity/content, deployed Edge Function source parity.
+- 권장: `preserve_until_external_verification_is_complete`; 외부 소비자와 migration/deprecation 상태 확인 전 삭제하지 않는다.
 
 ## 다음 작업 권장 순서
 
-1. `softiePersonalReference.js`를 소비할 수 있는 외부 datastore, 별도 배포 프로젝트, legacy client의 존재와 종료/deprecation 기록을 확인한다. 이번 작업에서는 외부 시스템에 접근하지 않았다.
+1. `softiePersonalReference.js`를 소비할 수 있는 외부 datastore, 별도 배포 프로젝트, legacy client의 존재와 종료/deprecation 상태를 추가 확인한다. 이번 조사에서 Supabase metadata와 Edge Function 배포 목록은 읽었지만 GitHub/Vercel/Google datastore 확인은 불완전했다.
 2. 두 active evaluation contract는 `scratch/` 실행 경로를 유지하고, 필요하면 별도 후속 작업에서 audit 검사 범위와 report-only 정책을 설계한다.
 3. 외부 소비 확인 전에는 세 파일 모두 삭제·deprecation·export 변경을 수행하지 않는다.
 
 ## 검증 결과
 
-- JSON parse 및 구조 검증: 통과. `reportedCount = items.length = classifiedCount = 29`, summary 합계 `29`.
+- JSON parse 및 구조 검증: 전용 artifact 생성 후 실행한다. `reportedCount = items.length = classifiedCount = 29`, summary 합계 `29`를 유지해야 한다.
 - 각 item의 classification, confidence, recommendedNextAction, evidence: 통과.
-- 세 대상의 path, exports, static/dynamic references, contractStatus, runtimePath, Git history, externalContractRisk: 기록 완료.
+- 세 대상의 path, exports, static/dynamic references, contractStatus, runtimePath, Git history, externalContractRisk: 기록 완료. `softiePersonalReference.js`의 전용 외부 계약 artifact 연결도 기록했다.
 - 존재하지 않는 evidence path/line: 확인 범위 내에서 없음.
 - `package.json`, `package-lock.json`, source, test, script, tool, config: 수정하지 않음.
 - 기존 DE405 artifact/native/generated/untracked 파일: 보존.
