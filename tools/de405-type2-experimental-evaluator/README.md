@@ -10,3 +10,9 @@ parity-validated evidence for the official evaluator. No CSPICE source or
 comments are copied, and the binary has no CSPICE runtime dependency. This is
 not represented as clean-room or production-approved; separate provenance,
 licensing, and scientific review are required before any production use.
+
+The source keeps the official `CHBINT` binary64 operation order explicit,
+including the left-associative derivative recurrence. The parity materializer
+compares every intermediate operation and final state bit against the existing
+154-case instrumented-official trace corpus. It is diagnostic-only and has no
+production routing or selection integration.

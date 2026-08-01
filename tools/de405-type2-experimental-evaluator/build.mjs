@@ -10,7 +10,7 @@ const source = resolve(root, 'src/de405_type2_experimental_evaluator.c')
 const binary = resolve(build, 'de405-type2-experimental-evaluator')
 await mkdir(build, { recursive: true })
 const compiler = process.env.CC || 'cc'
-const flags = ['-std=c11', '-O2', '-Wall', '-Wextra', '-Werror', source, '-lm', '-o', binary]
+const flags = ['-std=c11', '-O0', '-Wall', '-Wextra', '-Werror', '-ffp-contract=off', source, '-lm', '-o', binary]
 execFileSync(compiler, flags, { stdio: 'inherit' })
 const binarySha256 = createHash('sha256').update(await readFile(binary)).digest('hex')
 await writeFile(resolve(build, 'runner-build.json'), JSON.stringify({ schemaVersion: 1, recordType: 'de405_type2_experimental_evaluator_build', compiler, flags, binarySha256, cspiceDependency: false }, null, 2) + '\n')
