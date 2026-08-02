@@ -42,7 +42,7 @@ test('toolchain lock materializer records repository, package, database, and bin
   await writeFile(join(raw, 'tool-binary-sha256.txt'), ['musl  /lib/ld-musl-x86_64.so.1', 'node  /usr/bin/node', 'ar  /usr/bin/ar', 'ld  /usr/bin/ld'].map(line => `hash-${line.split('  ')[0]}  ${line.split('  ')[1]}`).join('\n') + '\n')
   const output = join(base, 'lock.json')
   await run('node', ['scripts/materialize-de405-alpine-toolchain-lock.mjs', '--raw', raw, '--image-id', 'sha256:image', '--image-archive-sha256', 'archive', '--output', output], { cwd: root })
-  const lock = JSON.parse(await readFile(output, 'utf8')); assert.equal(lock.packages.nodejs, '22.23.2-r0'); assert.equal(lock.image.id, 'sha256:image'); assert.equal(lock.repositories.length, 1)
+  const lock = JSON.parse(await readFile(output, 'utf8')); assert.equal(lock.packages.nodejs, '22.23.2-r0'); assert.equal(lock.image.id, 'sha256:image'); assert.equal(lock.repositories.length, 1); assert.equal(lock.binarySha256.muslLoader, 'hash-musl'); assert.equal(lock.installedDatabaseSha256, 'hash')
   await writeFile(join(raw, 'package-info.txt'), 'musl-1.2.5-r11\n')
   await assert.rejects(run('node', ['scripts/materialize-de405-alpine-toolchain-lock.mjs', '--raw', raw, '--image-id', 'sha256:image', '--image-archive-sha256', 'archive', '--output', join(base, 'bad-lock.json')], { cwd: root }))
 })

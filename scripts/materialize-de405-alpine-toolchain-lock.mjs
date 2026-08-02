@@ -14,10 +14,10 @@ for (const [name, version] of Object.entries(contract.packages)) {
 }
 const packageLines = packageInfo.split('\n').filter(Boolean)
 const packageLockSha256 = createHash('sha256').update(packageInfo + '\n').digest('hex')
-const binarySha256 = Object.fromEntries((await text('tool-binary-sha256.txt')).split('\n').map(line => line.split(/\s+/, 2)).filter(pair => pair.length === 2).map(([file, hash]) => [file.split('/').at(-1), hash]))
-const indexSha256 = (await text('apkindex-sha256.txt')).split('\n').filter(Boolean)
+const binarySha256 = Object.fromEntries((await text('tool-binary-sha256.txt')).split('\n').map(line => line.split(/\s+/, 2)).filter(pair => pair.length === 2).map(([hash, file]) => [file.split('/').at(-1), hash]))
+const indexSha256 = (await text('apkindex-sha256.txt')).split('\n').filter(Boolean).map(line => line.split(/\s+/, 1)[0])
 const repositories = (await text('repositories.txt')).split('\n').filter(Boolean)
-const installedDbSha256 = await text('installed-db-sha256.txt')
+const installedDbSha256 = (await text('installed-db-sha256.txt')).split(/\s+/, 1)[0]
 const filesystemSha256 = await text('filesystem-sha256.txt')
 const nodejs = packageLines.find(line => line.startsWith('nodejs-'))?.split(/\s+/, 1)[0]?.slice('nodejs-'.length)
 if (!nodejs) throw new Error('resolved nodejs package missing')
