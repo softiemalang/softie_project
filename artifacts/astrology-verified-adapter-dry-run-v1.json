@@ -1,0 +1,628 @@
+{
+  "schemaVersion": "astrology-verified-adapter-dry-run-evidence-v1",
+  "adapterVersion": "verified-astrology-adapter-v1",
+  "input": {
+    "rawChartHash": "0236f31d83a98110dca217a1215378d2de7bd2e502a5eee673ba1877d0304d71",
+    "ruleChartHash": "dcccdcef89549c6b5374abe8b3a78ba58c7fd2bd99cb3bf70631c599ff9e1e2f",
+    "goldenEvidence": "test/fixtures/astrology/golden/astrology-ephemeris-golden-v1.json"
+  },
+  "chartSystem": {
+    "zodiac": "tropical",
+    "coordinateBasis": "mean_ecliptic/equinox-of-date",
+    "geometry": "geometric",
+    "referenceFrame": "geocentric",
+    "houseSystem": "whole_sign",
+    "ephemeris": "DE405 canonical-v2"
+  },
+  "bodies": [
+    {
+      "id": "sun",
+      "longitudeDegrees": 280.3785821768816,
+      "movingFrameSpeedDegreesPerDay": 1.0194321262201047,
+      "motion": "direct"
+    },
+    {
+      "id": "moon",
+      "longitudeDegrees": 223.32785647872348,
+      "movingFrameSpeedDegreesPerDay": 12.021320914208635,
+      "motion": "direct"
+    },
+    {
+      "id": "mercury",
+      "longitudeDegrees": 271.90588090714016,
+      "movingFrameSpeedDegreesPerDay": 1.5563383446904988,
+      "motion": "direct"
+    },
+    {
+      "id": "venus",
+      "longitudeDegrees": 241.57760791819095,
+      "movingFrameSpeedDegreesPerDay": 1.2090930091483942,
+      "motion": "direct"
+    },
+    {
+      "id": "mars",
+      "longitudeDegrees": 327.97546096011195,
+      "movingFrameSpeedDegreesPerDay": 0.7756961415361856,
+      "motion": "direct"
+    },
+    {
+      "id": "jupiter",
+      "longitudeDegrees": 25.25805008263694,
+      "movingFrameSpeedDegreesPerDay": 0.04085289902218832,
+      "motion": "direct"
+    },
+    {
+      "id": "saturn",
+      "longitudeDegrees": 40.3985293023884,
+      "movingFrameSpeedDegreesPerDay": -0.01985761540051485,
+      "motion": "retrograde"
+    },
+    {
+      "id": "uranus",
+      "longitudeDegrees": 314.81910643782487,
+      "movingFrameSpeedDegreesPerDay": 0.050396400688169536,
+      "motion": "direct"
+    },
+    {
+      "id": "neptune",
+      "longitudeDegrees": 303.2032576554017,
+      "movingFrameSpeedDegreesPerDay": 0.035606416143852807,
+      "motion": "direct"
+    },
+    {
+      "id": "pluto",
+      "longitudeDegrees": 251.46494987414775,
+      "movingFrameSpeedDegreesPerDay": 0.03510342034968774,
+      "motion": "direct"
+    }
+  ],
+  "angles": {
+    "ascendant": {
+      "id": "ascendant",
+      "longitudeDegrees": 11.377879402158158,
+      "signId": "aries",
+      "signIndex": 0,
+      "degreeInSign": 11.377879402158158,
+      "boundaryStatus": "normal",
+      "distanceToNearestBoundaryDegrees": 11.377879402158158,
+      "thresholdDegrees": 0.016666666666666666,
+      "availability": "available",
+      "epistemicStatus": "derived",
+      "ruleId": "sign_from_ecliptic_longitude_v0",
+      "ruleSetVersion": "mallang-astrology-rule-core-v0",
+      "sourceRefs": [
+        "angles.ascendant.longitudeDegrees"
+      ]
+    },
+    "midheaven": {
+      "id": "midheaven",
+      "longitudeDegrees": 279.61424754509665,
+      "signId": "capricorn",
+      "signIndex": 9,
+      "degreeInSign": 9.614247545096646,
+      "boundaryStatus": "normal",
+      "distanceToNearestBoundaryDegrees": 9.614247545096646,
+      "thresholdDegrees": 0.016666666666666666,
+      "availability": "available",
+      "epistemicStatus": "derived",
+      "ruleId": "sign_from_ecliptic_longitude_v0",
+      "ruleSetVersion": "mallang-astrology-rule-core-v0",
+      "sourceRefs": [
+        "angles.midheaven.longitudeDegrees"
+      ]
+    }
+  },
+  "houses": {
+    "availability": "available",
+    "houseSystem": "whole_sign",
+    "placements": [
+      {
+        "id": "sun",
+        "house": 10,
+        "houseSystem": "whole_sign",
+        "availability": "available",
+        "epistemicStatus": "derived",
+        "ruleId": "whole_sign_house_v0"
+      },
+      {
+        "id": "moon",
+        "house": 8,
+        "houseSystem": "whole_sign",
+        "availability": "available",
+        "epistemicStatus": "derived",
+        "ruleId": "whole_sign_house_v0"
+      },
+      {
+        "id": "mercury",
+        "house": 10,
+        "houseSystem": "whole_sign",
+        "availability": "available",
+        "epistemicStatus": "derived",
+        "ruleId": "whole_sign_house_v0"
+      },
+      {
+        "id": "venus",
+        "house": 9,
+        "houseSystem": "whole_sign",
+        "availability": "available",
+        "epistemicStatus": "derived",
+        "ruleId": "whole_sign_house_v0"
+      },
+      {
+        "id": "mars",
+        "house": 11,
+        "houseSystem": "whole_sign",
+        "availability": "available",
+        "epistemicStatus": "derived",
+        "ruleId": "whole_sign_house_v0"
+      },
+      {
+        "id": "jupiter",
+        "house": 1,
+        "houseSystem": "whole_sign",
+        "availability": "available",
+        "epistemicStatus": "derived",
+        "ruleId": "whole_sign_house_v0"
+      },
+      {
+        "id": "saturn",
+        "house": 2,
+        "houseSystem": "whole_sign",
+        "availability": "available",
+        "epistemicStatus": "derived",
+        "ruleId": "whole_sign_house_v0"
+      },
+      {
+        "id": "uranus",
+        "house": 11,
+        "houseSystem": "whole_sign",
+        "availability": "available",
+        "epistemicStatus": "derived",
+        "ruleId": "whole_sign_house_v0"
+      },
+      {
+        "id": "neptune",
+        "house": 11,
+        "houseSystem": "whole_sign",
+        "availability": "available",
+        "epistemicStatus": "derived",
+        "ruleId": "whole_sign_house_v0"
+      },
+      {
+        "id": "pluto",
+        "house": 9,
+        "houseSystem": "whole_sign",
+        "availability": "available",
+        "epistemicStatus": "derived",
+        "ruleId": "whole_sign_house_v0"
+      }
+    ]
+  },
+  "aspects": [
+    {
+      "id": "sun__moon__sextile",
+      "pointA": "sun",
+      "pointB": "moon",
+      "aspectId": "sextile",
+      "exactAngleDegrees": 60,
+      "angularDistanceDegrees": 57.05072569815809,
+      "orbDegrees": 2.9492743018419105,
+      "maxOrbDegrees": 5,
+      "orbBoundaryStatus": "normal",
+      "distanceToOrbBoundaryDegrees": 2.0507256981580895,
+      "phase": "separating",
+      "signedOffsetDegrees": 2.9492743018419105,
+      "relativeSpeedDegreesPerDay": 11.00188878798853,
+      "phaseRuleId": "aspect_phase_from_relative_speed_v0",
+      "epistemicStatus": "derived",
+      "ruleId": "major_aspect_v0"
+    },
+    {
+      "id": "sun__saturn__trine",
+      "pointA": "sun",
+      "pointB": "saturn",
+      "aspectId": "trine",
+      "exactAngleDegrees": 120,
+      "angularDistanceDegrees": 120.01994712550686,
+      "orbDegrees": 0.019947125506860175,
+      "maxOrbDegrees": 7,
+      "orbBoundaryStatus": "normal",
+      "distanceToOrbBoundaryDegrees": 6.98005287449314,
+      "phase": "applying",
+      "signedOffsetDegrees": 0.019947125506860175,
+      "relativeSpeedDegreesPerDay": -1.0392897416206195,
+      "phaseRuleId": "aspect_phase_from_relative_speed_v0",
+      "epistemicStatus": "derived",
+      "ruleId": "major_aspect_v0"
+    },
+    {
+      "id": "sun__ascendant__square",
+      "pointA": "sun",
+      "pointB": "ascendant",
+      "aspectId": "square",
+      "exactAngleDegrees": 90,
+      "angularDistanceDegrees": 90.99929722527662,
+      "orbDegrees": 0.9992972252766208,
+      "maxOrbDegrees": 7,
+      "orbBoundaryStatus": "normal",
+      "distanceToOrbBoundaryDegrees": 6.000702774723379,
+      "phase": "unavailable",
+      "phaseReason": "angle_phase_not_supported_v0",
+      "signedOffsetDegrees": null,
+      "relativeSpeedDegreesPerDay": null,
+      "phaseRuleId": "aspect_phase_from_relative_speed_v0",
+      "epistemicStatus": "derived",
+      "ruleId": "major_aspect_v0"
+    },
+    {
+      "id": "sun__midheaven__conjunction",
+      "pointA": "sun",
+      "pointB": "midheaven",
+      "aspectId": "conjunction",
+      "exactAngleDegrees": 0,
+      "angularDistanceDegrees": 0.7643346317848909,
+      "orbDegrees": 0.7643346317848909,
+      "maxOrbDegrees": 8,
+      "orbBoundaryStatus": "normal",
+      "distanceToOrbBoundaryDegrees": 7.235665368215109,
+      "phase": "unavailable",
+      "phaseReason": "angle_phase_not_supported_v0",
+      "signedOffsetDegrees": null,
+      "relativeSpeedDegreesPerDay": null,
+      "phaseRuleId": "aspect_phase_from_relative_speed_v0",
+      "epistemicStatus": "derived",
+      "ruleId": "major_aspect_v0"
+    },
+    {
+      "id": "moon__saturn__opposition",
+      "pointA": "moon",
+      "pointB": "saturn",
+      "aspectId": "opposition",
+      "exactAngleDegrees": 180,
+      "angularDistanceDegrees": 177.07067282366495,
+      "orbDegrees": 2.9293271763350504,
+      "maxOrbDegrees": 8,
+      "orbBoundaryStatus": "normal",
+      "distanceToOrbBoundaryDegrees": 5.07067282366495,
+      "phase": "separating",
+      "signedOffsetDegrees": -2.9293271763350504,
+      "relativeSpeedDegreesPerDay": -12.04117852960915,
+      "phaseRuleId": "aspect_phase_from_relative_speed_v0",
+      "epistemicStatus": "derived",
+      "ruleId": "major_aspect_v0"
+    },
+    {
+      "id": "moon__uranus__square",
+      "pointA": "moon",
+      "pointB": "uranus",
+      "aspectId": "square",
+      "exactAngleDegrees": 90,
+      "angularDistanceDegrees": 91.49124995910142,
+      "orbDegrees": 1.4912499591014239,
+      "maxOrbDegrees": 7,
+      "orbBoundaryStatus": "normal",
+      "distanceToOrbBoundaryDegrees": 5.508750040898576,
+      "phase": "applying",
+      "signedOffsetDegrees": 1.4912499591014239,
+      "relativeSpeedDegreesPerDay": -11.970924513520465,
+      "phaseRuleId": "aspect_phase_from_relative_speed_v0",
+      "epistemicStatus": "derived",
+      "ruleId": "major_aspect_v0"
+    },
+    {
+      "id": "moon__midheaven__sextile",
+      "pointA": "moon",
+      "pointB": "midheaven",
+      "aspectId": "sextile",
+      "exactAngleDegrees": 60,
+      "angularDistanceDegrees": 56.2863910663732,
+      "orbDegrees": 3.7136089336268014,
+      "maxOrbDegrees": 5,
+      "orbBoundaryStatus": "normal",
+      "distanceToOrbBoundaryDegrees": 1.2863910663731986,
+      "phase": "unavailable",
+      "phaseReason": "angle_phase_not_supported_v0",
+      "signedOffsetDegrees": null,
+      "relativeSpeedDegreesPerDay": null,
+      "phaseRuleId": "aspect_phase_from_relative_speed_v0",
+      "epistemicStatus": "derived",
+      "ruleId": "major_aspect_v0"
+    },
+    {
+      "id": "mercury__mars__sextile",
+      "pointA": "mercury",
+      "pointB": "mars",
+      "aspectId": "sextile",
+      "exactAngleDegrees": 60,
+      "angularDistanceDegrees": 56.06958005297179,
+      "orbDegrees": 3.930419947028213,
+      "maxOrbDegrees": 5,
+      "orbBoundaryStatus": "normal",
+      "distanceToOrbBoundaryDegrees": 1.0695800529717872,
+      "phase": "separating",
+      "signedOffsetDegrees": -3.930419947028213,
+      "relativeSpeedDegreesPerDay": -0.7806422031543132,
+      "phaseRuleId": "aspect_phase_from_relative_speed_v0",
+      "epistemicStatus": "derived",
+      "ruleId": "major_aspect_v0"
+    },
+    {
+      "id": "mercury__jupiter__trine",
+      "pointA": "mercury",
+      "pointB": "jupiter",
+      "aspectId": "trine",
+      "exactAngleDegrees": 120,
+      "angularDistanceDegrees": 113.35216917549678,
+      "orbDegrees": 6.647830824503217,
+      "maxOrbDegrees": 7,
+      "orbBoundaryStatus": "normal",
+      "distanceToOrbBoundaryDegrees": 0.3521691754967833,
+      "phase": "separating",
+      "signedOffsetDegrees": -6.647830824503217,
+      "relativeSpeedDegreesPerDay": -1.5154854456683104,
+      "phaseRuleId": "aspect_phase_from_relative_speed_v0",
+      "epistemicStatus": "derived",
+      "ruleId": "major_aspect_v0"
+    },
+    {
+      "id": "mercury__midheaven__conjunction",
+      "pointA": "mercury",
+      "pointB": "midheaven",
+      "aspectId": "conjunction",
+      "exactAngleDegrees": 0,
+      "angularDistanceDegrees": 7.7083666379564875,
+      "orbDegrees": 7.7083666379564875,
+      "maxOrbDegrees": 8,
+      "orbBoundaryStatus": "normal",
+      "distanceToOrbBoundaryDegrees": 0.29163336204351253,
+      "phase": "unavailable",
+      "phaseReason": "angle_phase_not_supported_v0",
+      "signedOffsetDegrees": null,
+      "relativeSpeedDegreesPerDay": null,
+      "phaseRuleId": "aspect_phase_from_relative_speed_v0",
+      "epistemicStatus": "derived",
+      "ruleId": "major_aspect_v0"
+    },
+    {
+      "id": "venus__mars__square",
+      "pointA": "venus",
+      "pointB": "mars",
+      "aspectId": "square",
+      "exactAngleDegrees": 90,
+      "angularDistanceDegrees": 86.39785304192094,
+      "orbDegrees": 3.602146958079061,
+      "maxOrbDegrees": 7,
+      "orbBoundaryStatus": "normal",
+      "distanceToOrbBoundaryDegrees": 3.397853041920939,
+      "phase": "separating",
+      "signedOffsetDegrees": -3.602146958079061,
+      "relativeSpeedDegreesPerDay": -0.43339686761220864,
+      "phaseRuleId": "aspect_phase_from_relative_speed_v0",
+      "epistemicStatus": "derived",
+      "ruleId": "major_aspect_v0"
+    },
+    {
+      "id": "venus__neptune__sextile",
+      "pointA": "venus",
+      "pointB": "neptune",
+      "aspectId": "sextile",
+      "exactAngleDegrees": 60,
+      "angularDistanceDegrees": 61.62564973721078,
+      "orbDegrees": 1.6256497372107788,
+      "maxOrbDegrees": 5,
+      "orbBoundaryStatus": "normal",
+      "distanceToOrbBoundaryDegrees": 3.3743502627892212,
+      "phase": "applying",
+      "signedOffsetDegrees": 1.6256497372107788,
+      "relativeSpeedDegreesPerDay": -1.1734865930045415,
+      "phaseRuleId": "aspect_phase_from_relative_speed_v0",
+      "epistemicStatus": "derived",
+      "ruleId": "major_aspect_v0"
+    },
+    {
+      "id": "mars__jupiter__sextile",
+      "pointA": "mars",
+      "pointB": "jupiter",
+      "aspectId": "sextile",
+      "exactAngleDegrees": 60,
+      "angularDistanceDegrees": 57.282589122524996,
+      "orbDegrees": 2.717410877475004,
+      "maxOrbDegrees": 5,
+      "orbBoundaryStatus": "normal",
+      "distanceToOrbBoundaryDegrees": 2.282589122524996,
+      "phase": "separating",
+      "signedOffsetDegrees": -2.717410877475004,
+      "relativeSpeedDegreesPerDay": -0.7348432425139972,
+      "phaseRuleId": "aspect_phase_from_relative_speed_v0",
+      "epistemicStatus": "derived",
+      "ruleId": "major_aspect_v0"
+    },
+    {
+      "id": "saturn__uranus__square",
+      "pointA": "saturn",
+      "pointB": "uranus",
+      "aspectId": "square",
+      "exactAngleDegrees": 90,
+      "angularDistanceDegrees": 85.57942286456353,
+      "orbDegrees": 4.420577135436474,
+      "maxOrbDegrees": 7,
+      "orbBoundaryStatus": "normal",
+      "distanceToOrbBoundaryDegrees": 2.5794228645635258,
+      "phase": "separating",
+      "signedOffsetDegrees": 4.420577135436474,
+      "relativeSpeedDegreesPerDay": 0.07025401608868438,
+      "phaseRuleId": "aspect_phase_from_relative_speed_v0",
+      "epistemicStatus": "derived",
+      "ruleId": "major_aspect_v0"
+    },
+    {
+      "id": "saturn__midheaven__trine",
+      "pointA": "saturn",
+      "pointB": "midheaven",
+      "aspectId": "trine",
+      "exactAngleDegrees": 120,
+      "angularDistanceDegrees": 120.78428175729175,
+      "orbDegrees": 0.7842817572917511,
+      "maxOrbDegrees": 7,
+      "orbBoundaryStatus": "normal",
+      "distanceToOrbBoundaryDegrees": 6.215718242708249,
+      "phase": "unavailable",
+      "phaseReason": "angle_phase_not_supported_v0",
+      "signedOffsetDegrees": null,
+      "relativeSpeedDegreesPerDay": null,
+      "phaseRuleId": "aspect_phase_from_relative_speed_v0",
+      "epistemicStatus": "derived",
+      "ruleId": "major_aspect_v0"
+    },
+    {
+      "id": "uranus__pluto__sextile",
+      "pointA": "uranus",
+      "pointB": "pluto",
+      "aspectId": "sextile",
+      "exactAngleDegrees": 60,
+      "angularDistanceDegrees": 63.354156563677066,
+      "orbDegrees": 3.3541565636770656,
+      "maxOrbDegrees": 5,
+      "orbBoundaryStatus": "normal",
+      "distanceToOrbBoundaryDegrees": 1.6458434363229344,
+      "phase": "separating",
+      "signedOffsetDegrees": -3.3541565636770656,
+      "relativeSpeedDegreesPerDay": -0.015292980338481796,
+      "phaseRuleId": "aspect_phase_from_relative_speed_v0",
+      "epistemicStatus": "derived",
+      "ruleId": "major_aspect_v0"
+    },
+    {
+      "id": "uranus__ascendant__sextile",
+      "pointA": "uranus",
+      "pointB": "ascendant",
+      "aspectId": "sextile",
+      "exactAngleDegrees": 60,
+      "angularDistanceDegrees": 56.558772964333286,
+      "orbDegrees": 3.4412270356667136,
+      "maxOrbDegrees": 5,
+      "orbBoundaryStatus": "normal",
+      "distanceToOrbBoundaryDegrees": 1.5587729643332864,
+      "phase": "unavailable",
+      "phaseReason": "angle_phase_not_supported_v0",
+      "signedOffsetDegrees": null,
+      "relativeSpeedDegreesPerDay": null,
+      "phaseRuleId": "aspect_phase_from_relative_speed_v0",
+      "epistemicStatus": "derived",
+      "ruleId": "major_aspect_v0"
+    },
+    {
+      "id": "pluto__ascendant__trine",
+      "pointA": "pluto",
+      "pointB": "ascendant",
+      "aspectId": "trine",
+      "exactAngleDegrees": 120,
+      "angularDistanceDegrees": 119.91292952801035,
+      "orbDegrees": 0.08707047198964801,
+      "maxOrbDegrees": 7,
+      "orbBoundaryStatus": "normal",
+      "distanceToOrbBoundaryDegrees": 6.912929528010352,
+      "phase": "unavailable",
+      "phaseReason": "angle_phase_not_supported_v0",
+      "signedOffsetDegrees": null,
+      "relativeSpeedDegreesPerDay": null,
+      "phaseRuleId": "aspect_phase_from_relative_speed_v0",
+      "epistemicStatus": "derived",
+      "ruleId": "major_aspect_v0"
+    }
+  ],
+  "distribution": {
+    "overall": {
+      "totalBodiesCount": 10,
+      "elements": {
+        "counts": {
+          "fire": 3,
+          "earth": 3,
+          "air": 3,
+          "water": 1
+        },
+        "leaders": [
+          "fire",
+          "earth",
+          "air"
+        ],
+        "tie": true
+      },
+      "modalities": {
+        "counts": {
+          "cardinal": 3,
+          "fixed": 5,
+          "mutable": 2
+        },
+        "leaders": [
+          "fixed"
+        ],
+        "tie": false
+      },
+      "polarities": {
+        "counts": {
+          "masculine": 6,
+          "feminine": 4
+        },
+        "leaders": [
+          "masculine"
+        ],
+        "tie": false
+      },
+      "ruleId": "distribution_from_body_signs_v0"
+    },
+    "personal": {
+      "totalBodiesCount": 5,
+      "elements": {
+        "counts": {
+          "fire": 1,
+          "earth": 2,
+          "air": 1,
+          "water": 1
+        },
+        "leaders": [
+          "earth"
+        ],
+        "tie": false
+      },
+      "modalities": {
+        "counts": {
+          "cardinal": 2,
+          "fixed": 2,
+          "mutable": 1
+        },
+        "leaders": [
+          "cardinal",
+          "fixed"
+        ],
+        "tie": true
+      },
+      "polarities": {
+        "counts": {
+          "masculine": 2,
+          "feminine": 3
+        },
+        "leaders": [
+          "feminine"
+        ],
+        "tie": false
+      },
+      "ruleId": "distribution_from_body_signs_v0"
+    },
+    "epistemicStatus": "derived",
+    "ruleId": "distribution_from_body_signs_v0"
+  },
+  "compatibility": {
+    "decision": "compatible_additively_only",
+    "matrix": "docs/astrology/verified-adapter-compatibility-matrix.json"
+  },
+  "simulationContamination": false,
+  "service": {
+    "calculationStatus": "verified",
+    "availableForInterpretation": false,
+    "integrationStatus": "not_connected",
+    "serviceEligibility": "blocked",
+    "reason": "verified_adapter_not_activated"
+  },
+  "outputSha256": "07dbc23f67366eaf0996bdfe30b18053564435aa26619bb786e8e429cacce6f8"
+}

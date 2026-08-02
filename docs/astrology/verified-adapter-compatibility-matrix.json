@@ -1,0 +1,24 @@
+{
+  "schemaVersion": "astrology-verified-adapter-compatibility-matrix-v1",
+  "decision": "compatible_additively_only",
+  "legacyContract": { "ruleSetVersion": "western_tropical_placidus_v1", "houseSystem": "placidus", "ephemerisSource": "pending", "status": "legacy_only" },
+  "verifiedContract": { "adapterVersion": "verified-astrology-adapter-v1", "rawSchema": "astrology-raw-chart-v1", "ruleSchema": "astrology-rule-chart-v0", "houseSystem": "whole_sign", "ephemeris": "DE405 canonical-v2", "activation": "blocked" },
+  "gaps": [
+    { "id": "house-system", "legacy": "placidus", "verified": "whole_sign", "decision": "preserve_both_no_coercion" },
+    { "id": "ephemeris-provenance", "legacy": "pending/simulation", "verified": "DE405 canonical-v2 verified", "decision": "preserve_verified_provenance" },
+    { "id": "aspect-rules", "legacy": "legacy orb and hardcoded applying", "verified": "Rule Core orb and speed-derived phase", "decision": "preserve_rule_core_fields" },
+    { "id": "confidence", "legacy": "birthTime implies high", "verified": "explicit evidence and completeness", "decision": "never_infer_from_birthTime" },
+    { "id": "shape", "legacy": "planet/angle/house fields", "verified": "raw/rule versioned documents", "decision": "additive_context_with_source_refs" },
+    { "id": "activation", "legacy": "interpretation-capable shape", "verified": "calculation verified but service blocked", "decision": "availableForInterpretation_false" }
+  ],
+  "consumers": [
+    { "path": "src/astrology/astrologyContract.js", "role": "legacy calculation/interpretation context", "verifiedAdapter": "not_called" },
+    { "path": "src/astrology/planetResolver.js", "role": "date-seed simulation", "verifiedAdapter": "not_called" },
+    { "path": "src/astrology/houseResolver.js", "role": "seeded simulation houses", "verifiedAdapter": "not_called" },
+    { "path": "src/astrology/aspectResolver.js", "role": "legacy aspect projection", "verifiedAdapter": "not_called" },
+    { "path": "src/astrology/astrologyPromptAdapter.js", "role": "legacy prompt payload", "verifiedAdapter": "not_called" },
+    { "path": "src/interpretationPrep/threeSystemPrepPipeline.js", "role": "production Prep placeholder", "verifiedAdapter": "not_called" },
+    { "path": "src/interpretationPrep/unifiedPromptAdapter.js", "role": "production unified prompt", "verifiedAdapter": "not_called" },
+    { "path": "src/lib/supabase.js", "role": "API/DB client boundary", "verifiedAdapter": "not_called" }
+  ]
+}
