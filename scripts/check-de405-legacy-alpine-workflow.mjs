@@ -1,0 +1,10 @@
+import { readFile } from 'node:fs/promises'
+const workflow = await readFile('.github/workflows/de405-legacy-native-matrix.yml', 'utf8')
+const contract = JSON.parse(await readFile('docs/de405-legacy-alpine-toolchain-contract.json', 'utf8'))
+for (const required of ['workflow_dispatch:', 'contents: read', 'sample_asset_url', 'sample_asset_sha256', 'ubuntu-24.04', 'alpine-gcc', 'alpine-clang', 'linux/amd64', 'actions/upload-artifact@', 'scripts/analyze-de405-legacy-matrix.mjs', 'scripts/materialize-de405-legacy-matrix.mjs', 'retention-days: 14', 'DE405_EXPECTED_HEAD: ${{ github.sha }}', '150671', 'LC_ALL: C.UTF-8', 'TZ: UTC', '-ffp-contract=off', '-fno-fast-math']) if (!workflow.includes(required)) throw new Error(`workflow missing ${required}`)
+for (const forbidden of ['push:', 'pull_request:', 'schedule:', 'workflow_call:', 'qemu', 'tonistiigi/binfmt', 'git push', 'git commit', 'git add', 'secrets.', 'npm install', '@v4', '@v3']) if (workflow.toLowerCase().includes(forbidden.toLowerCase())) throw new Error(`workflow contains forbidden ${forbidden}`)
+for (const match of workflow.matchAll(/uses:\s*([^\s#]+)/g)) if (!/@[0-9a-f]{40}$/.test(match[1])) throw new Error(`action is not SHA pinned: ${match[1]}`)
+if (contract.image.reference !== 'docker.io/library/alpine@sha256:eafc1edb577d2e9b458664a15f23ea1c370214193226069eb22921169fc7e43f') throw new Error('unexpected immutable Alpine image')
+for (const [name, version] of Object.entries(contract.packages)) if (!workflow.includes(`${name}=${version}`)) throw new Error(`workflow missing exact package ${name}=${version}`)
+if (contract.architecture !== 'x86_64' || contract.emulationAllowed !== false || contract.rawJsonlTracked !== false) throw new Error('invalid Alpine contract taxonomy')
+console.log(JSON.stringify({ status: 'pass', manualOnly: true, immutableImage: contract.image.reference, packages: contract.packages, nativeArchitecture: contract.architecture, qemu: 'forbidden' }, null, 2))
