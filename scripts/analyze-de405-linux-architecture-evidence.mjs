@@ -2,9 +2,11 @@ import { createHash } from 'node:crypto'
 import { createReadStream } from 'node:fs'
 import { open, stat, readFile, writeFile } from 'node:fs/promises'
 import { createInterface } from 'node:readline'
+import { CONTROL_CONTRACT_VERSION, compareControls, taxonomy } from './lib/de405-linux-architecture-control-contract.mjs'
 
 const args = Object.fromEntries(process.argv.slice(2).map((value, index, all) => value.startsWith('--') ? [value.slice(2), all[index + 1]] : []).filter(Boolean))
 for (const key of ['x64', 'arm64', 'output']) if (!args[key]) throw new Error(`--${key} is required`)
+if (args['contract-version'] && args['contract-version'] !== CONTROL_CONTRACT_VERSION) throw new Error(`unsupported control contract: ${args['contract-version']}`)
 const hash = async file => { const h = createHash('sha256'); for await (const c of createReadStream(file)) h.update(c); return h.digest('hex') }
 const bits = value => { const b = Buffer.alloc(8); b.writeDoubleLE(Number(value)); return b.readBigUInt64LE() }
 const ulp = (a, b) => { const x = bits(a), y = bits(b); const key = v => (v >> 63n) ? (~v + 1n) : (v | (1n << 63n)); const d = key(x) - key(y); return Number(d < 0n ? -d : d) }
@@ -22,9 +24,8 @@ async function load(dir) {
 }
 const x = await load(args.x64); const a = await load(args.arm64)
 const xp = x.provenance; const ap = a.provenance
-const common = ['expectedHead', 'sampleAsset.archiveSha256', 'sampleAsset.urlSha256', 'officialInputs.cspiceArchiveSha256', 'officialInputs.spkSha256', 'officialInputs.sourceManifestSha256', 'officialInputs.cspiceUrlSha256', 'officialInputs.spkUrlSha256', 'host.imageOS', 'host.imageVersion', 'userspace.family', 'userspace.osRelease', 'userspace.libc', 'userspace.compiler', 'userspace.compilerVersion', 'userspace.node', 'cspiceBuild.compiler', 'cspiceBuild.compilerVersion', 'cspiceBuild.flags', 'cspiceBuild.sourceManifestSha256', 'controls.flags', 'controls.locale', 'controls.timezone', 'controls.wrapper', 'controls.serialization', 'controls.sourceHashes', 'container.used', 'container.image']
-const get = (p, key) => key.split('.').reduce((v, k) => v?.[k], p)
-const mismatchedControls = common.filter(key => JSON.stringify(get(xp, key)) !== JSON.stringify(get(ap, key)))
+const controlComparison = compareControls(xp, ap)
+const mismatchedControls = [...controlComparison.mismatchedRequired, ...controlComparison.missingSemantic.map(key => `missing:${key}`)]
 const mismatches = []; const ulps = []; const absolutes = []; const differingRows = new Set(); let firstDivergence = null
 if (x.rows.length !== a.rows.length) mismatchedControls.push('result.rowCount')
 for (let i = 0; i < Math.min(x.rows.length, a.rows.length); i++) {
@@ -39,5 +40,6 @@ for (let i = 0; i < Math.min(x.rows.length, a.rows.length); i++) {
     mismatches.push({ ordinal: i, component, ulpDistance: distance, absoluteDifference: absolute })
   }
 }
-const classification = mismatchedControls.length ? 'blocked_reproducible_linux_userspace_unavailable' : (mismatches.length ? 'architecture_sensitivity_confirmed_same_linux_environment' : 'no_controlled_difference_observed')
-await writeFile(args.output, JSON.stringify({ schemaVersion: 1, evidenceKind: 'de405-linux-architecture-comparison', classification, controls: { mismatched: mismatchedControls, sourceHashesEqual: JSON.stringify(xp.controls.sourceHashes) === JSON.stringify(ap.controls.sourceHashes) }, sampleCount: Math.min(x.rows.length, a.rows.length), differingRows: differingRows.size, differingComponents: mismatches.length, firstDivergence, distribution: { maxUlp: Math.max(0, ...ulps), p50Ulp: quantile(ulps, .5), p95Ulp: quantile(ulps, .95), p99Ulp: quantile(ulps, .99), p999Ulp: quantile(ulps, .999), maxAbsoluteDifference: Math.max(0, ...absolutes), p50AbsoluteDifference: quantile(absolutes, .5), p95AbsoluteDifference: quantile(absolutes, .95), p99AbsoluteDifference: quantile(absolutes, .99), p999AbsoluteDifference: quantile(absolutes, .999) }, provenance: { x64: xp, arm64: ap } }, null, 2) + '\n')
+const classification = controlComparison.missingSemantic.length ? 'blocked_semantic_userspace_fingerprint_incomplete' : mismatchedControls.length ? 'blocked_required_userspace_control_mismatch' : mismatches.length ? 'architecture_effect_observed_semantically_matched_linux_userspace' : 'no_architecture_effect_observed_semantically_matched_linux_userspace'
+const sampleCount = Math.min(x.rows.length, a.rows.length)
+await writeFile(args.output, JSON.stringify({ schemaVersion: 2, evidenceKind: 'de405-linux-architecture-comparison', controlContractVersion: CONTROL_CONTRACT_VERSION, classification, controls: { mismatchedRequired: controlComparison.mismatchedRequired, missingSemantic: controlComparison.missingSemantic, differingArchitecture: controlComparison.differingArchitecture, differingObservational: controlComparison.differingObservational, taxonomy, sourceHashesEqual: JSON.stringify(xp.controls.sourceHashes) === JSON.stringify(ap.controls.sourceHashes) }, sampleCount, componentCount: sampleCount * 6, differingRows: differingRows.size, differingComponents: mismatches.length, firstDivergence, distribution: { maxUlp: Math.max(0, ...ulps), p50Ulp: quantile(ulps, .5), p95Ulp: quantile(ulps, .95), p99Ulp: quantile(ulps, .99), p999Ulp: quantile(ulps, .999), maxAbsoluteDifference: Math.max(0, ...absolutes), p50AbsoluteDifference: quantile(absolutes, .5), p95AbsoluteDifference: quantile(absolutes, .95), p99AbsoluteDifference: quantile(absolutes, .99), p999AbsoluteDifference: quantile(absolutes, .999) }, provenance: { x64: xp, arm64: ap } }, null, 2) + '\n')

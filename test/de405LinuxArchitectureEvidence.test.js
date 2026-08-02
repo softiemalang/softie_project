@@ -10,7 +10,7 @@ import { promisify } from 'node:util'
 const run = promisify(execFile)
 const root = process.cwd()
 
-async function makeFixture(dir) {
+async function makeFixture(dir, overrides = {}) {
   await mkdir(dir, { recursive: true })
   const rows = [
     { schemaVersion: 1, sampleId: 's0', queryEtHex: '0x3ff0000000000000', stateKmKmPerSec: [1, 2, 3, 4, 5, 6] },
@@ -18,7 +18,12 @@ async function makeFixture(dir) {
   ]
   await writeFile(join(dir, 'result.jsonl'), rows.map(row => JSON.stringify(row)).join('\n') + '\n')
   const sourceHashes = { runnerSource: 'a', samples: 'b', spk: 'c', cspiceHeader: 'd', cspiceLibrary: 'e', csupportLibrary: 'f' }
-  await writeFile(join(dir, 'provenance.json'), JSON.stringify({ schemaVersion: 1, evidenceKind: 'de405-linux-architecture', fixture: true, expectedHead: 'fixture', githubSha: 'fixture', githubRef: 'refs/heads/main', workflowIdentity: '.github/workflows/de405-linux-architecture-evidence.yml', architecture: dir.includes('arm') ? 'arm64' : 'x64', runnerLabel: 'fixture', execution: 'fixture', emulation: false, sampleAsset: { archiveSha256: 'fixture', urlSha256: 'fixture' }, officialInputs: { cspiceArchiveSha256: 'fixture', spkSha256: 'fixture', sourceManifestSha256: 'fixture', cspiceUrlSha256: 'fixture', spkUrlSha256: 'fixture', arm64SourcePort: dir.includes('arm') }, host: { imageOS: 'fixture-os', imageVersion: 'fixture-image', uname: 'fixture', machine: 'fixture' }, userspace: { family: 'ubuntu-24.04', osRelease: 'fixture Ubuntu 24.04', libc: 'glibc', compiler: 'gcc', compilerVersion: 'gcc fixture', compilerTarget: 'fixture', node: process.version }, cspiceBuild: { compiler: 'gcc', compilerVersion: 'gcc fixture', flags: ['fixture'], sourceManifestSha256: 'fixture' }, container: { used: false, image: null }, controls: { flags: ['fixture'], locale: 'C.UTF-8', timezone: 'UTC', wrapper: 'fixture', serialization: 'JSONL LF final newline', sourceHashes, artifactHashes: { cspiceLibrary: 'fixture', csupportLibrary: 'fixture' } }, result: { path: 'result.jsonl', sha256: 'fixture', bytes: 0, rowCount: 2, lineEnding: 'lf_only_final_lf' } }, null, 2) + '\n')
+  const provenance = { schemaVersion: 1, evidenceKind: 'de405-linux-architecture', fixture: true, expectedHead: 'fixture', githubSha: 'fixture', githubRef: 'refs/heads/main', workflowIdentity: '.github/workflows/de405-linux-architecture-evidence.yml', architecture: dir.includes('arm') ? 'arm64' : 'x64', runnerLabel: dir.includes('arm') ? 'ubuntu-24.04-arm' : 'ubuntu-24.04', execution: 'fixture', emulation: false, sampleAsset: { archiveSha256: 'fixture', urlSha256: 'fixture' }, officialInputs: { cspiceArchiveSha256: 'fixture', spkSha256: 'fixture', sourceManifestSha256: 'fixture', cspiceUrlSha256: 'fixture', spkUrlSha256: 'fixture', arm64SourcePort: dir.includes('arm') }, host: { imageOS: dir.includes('arm') ? 'fixture-arm-os' : 'fixture-os', imageVersion: dir.includes('arm') ? 'fixture-arm-image' : 'fixture-image', uname: 'fixture', machine: dir.includes('arm') ? 'aarch64' : 'x86_64' }, userspace: { family: 'ubuntu-24.04', osRelease: 'fixture Ubuntu 24.04', libc: 'glibc', compiler: 'gcc', compilerVersion: 'gcc fixture', compilerTarget: dir.includes('arm') ? 'aarch64-linux-gnu' : 'x86_64-linux-gnu', node: process.version }, cspiceBuild: { compiler: 'gcc', compilerVersion: 'gcc fixture', compilerTarget: dir.includes('arm') ? 'aarch64-linux-gnu' : 'x86_64-linux-gnu', architecture: dir.includes('arm') ? 'arm64' : 'x64', flags: ['fixture'], sourceManifestSha256: 'fixture', libraries: { cspice: { sha256: dir.includes('arm') ? 'arm-lib' : 'x64-lib' }, csupport: { sha256: dir.includes('arm') ? 'arm-support' : 'x64-support' } } }, container: { used: false, image: null }, controls: { flags: ['fixture'], locale: 'C.UTF-8', timezone: 'UTC', wrapper: 'fixture', serialization: 'JSONL LF final newline', sourceHashes, artifactHashes: { cspiceLibrary: dir.includes('arm') ? 'arm-lib' : 'x64-lib', csupportLibrary: dir.includes('arm') ? 'arm-support' : 'x64-support' } }, result: { path: 'result.jsonl', sha256: 'fixture', bytes: 0, rowCount: 2, lineEnding: 'lf_only_final_lf' } }
+  for (const [key, value] of Object.entries(overrides)) {
+    if (value && typeof value === 'object' && !Array.isArray(value)) Object.assign(provenance[key], value)
+    else provenance[key] = value
+  }
+  await writeFile(join(dir, 'provenance.json'), JSON.stringify(provenance, null, 2) + '\n')
 }
 
 test('workflow contract and deterministic fixture compare', async () => {
@@ -51,4 +56,28 @@ test('persisted remote architecture summary has a checked identity record', asyn
   assert.equal(record.head, '234969cad8a96a30386bfd9b115210d744b58716')
   assert.equal(record.summary.sha256, createHash('sha256').update(summaryBytes).digest('hex'))
   assert.equal(record.summary.markdownSha256, createHash('sha256').update(markdownBytes).digest('hex'))
+})
+
+test('v2 permits image metadata and architecture-specific compiled identities', async () => {
+  const base = await mkdtemp(join(tmpdir(), 'de405-linux-v2-positive-'))
+  const x = join(base, 'x64'); const a = join(base, 'arm64')
+  await makeFixture(x); await makeFixture(a)
+  const output = join(base, 'analysis.json')
+  await run('node', ['scripts/analyze-de405-linux-architecture-evidence.mjs', '--x64', x, '--arm64', a, '--output', output], { cwd: root })
+  const analysis = JSON.parse(await readFile(output, 'utf8'))
+  assert.equal(analysis.classification, 'no_architecture_effect_observed_semantically_matched_linux_userspace')
+  assert.deepEqual(analysis.controls.mismatchedRequired, [])
+  assert.ok(analysis.controls.differingArchitecture.includes('userspace.compilerTarget'))
+  assert.ok(analysis.controls.differingObservational.includes('host.imageOS'))
+})
+
+test('v2 blocks a semantic compiler mismatch', async () => {
+  const base = await mkdtemp(join(tmpdir(), 'de405-linux-v2-negative-'))
+  const x = join(base, 'x64'); const a = join(base, 'arm64')
+  await makeFixture(x); await makeFixture(a, { userspace: { compilerVersion: 'gcc different' } })
+  const output = join(base, 'analysis.json')
+  await run('node', ['scripts/analyze-de405-linux-architecture-evidence.mjs', '--x64', x, '--arm64', a, '--output', output], { cwd: root })
+  const analysis = JSON.parse(await readFile(output, 'utf8'))
+  assert.equal(analysis.classification, 'blocked_required_userspace_control_mismatch')
+  assert.deepEqual(analysis.controls.mismatchedRequired, ['userspace.compilerVersion'])
 })

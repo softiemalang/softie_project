@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "recordType": "de405-linux-architecture-v2-reanalysis-record",
+  "controlContractVersion": "de405-linux-architecture-controls-v2",
+  "sourceRunId": "30748663327",
+  "recordedAt": "2026-08-02T00:00:00Z",
+  "rawArtifactPaths": {
+    "x64": "/private/tmp/de405-linux-remote-4285P4/de405-linux-architecture-x64",
+    "arm64": "/private/tmp/de405-linux-remote-4285P4/de405-linux-architecture-arm64"
+  },
+  "existingV1": {
+    "classification": "blocked_reproducible_linux_userspace_unavailable",
+    "summarySha256": "895b90143aff1cc101587ad33e60a6694da5ea0c9697b2e996f78a238a2dcb47",
+    "markdownSha256": "f5eeb7ebdb370e7496dd76c4bafb13033b9346d7308e4ab391644cca07f63bfe"
+  },
+  "v2": {
+    "classification": "no_architecture_effect_observed_semantically_matched_linux_userspace",
+    "summarySha256": "e8ba0b3a49fe5aa217360d9815beb3637e83b7aee7fc319581f6c49fcbf17f8a",
+    "markdownSha256": "1435f1c7f46af596e18382ffd0f0e4418169ab56da4e2d9cfa7e1752e66bb2a2"
+  },
+  "changedTaxonomy": {
+    "reclassifiedNonBlocking": [
+      "host.imageOS",
+      "host.imageVersion"
+    ],
+    "allowedArchitectureSpecific": [
+      "architecture",
+      "runnerLabel",
+      "officialInputs.arm64SourcePort",
+      "host.machine",
+      "userspace.compilerTarget",
+      "cspiceBuild.compilerTarget",
+      "cspiceBuild.architecture",
+      "cspiceBuild.libraries.cspice.sha256",
+      "cspiceBuild.libraries.csupport.sha256",
+      "controls.artifactHashes.cspiceLibrary",
+      "controls.artifactHashes.csupportLibrary"
+    ],
+    "requiredSemanticControls": [],
+    "observationalDifferences": [
+      "host.imageOS",
+      "host.imageVersion",
+      "host.uname"
+    ]
+  },
+  "reinterpretationRationale": "The v1 block treated runner image labels as identical arithmetic controls. v2 separates hosting-image observation from matched Ubuntu/glibc/GCC/Node userspace and source/input invariants; the raw result remains byte-identical across x64 and arm64.",
+  "scopeBoundary": "Fixed official CSPICE N0067 source, DE405 SPK, canonical-v2 full corpus, and the observed Ubuntu 24.04.4/glibc 2.39/GCC 13.3.0/Node v22.23.1 matrix only."
+}
