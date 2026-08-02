@@ -1,0 +1,105 @@
+{
+  "schemaVersion": 2,
+  "recordType": "de405_legacy_native_matrix_remote_record",
+  "runId": "30768814210",
+  "execution": {
+    "head": "02a85fe40e1cb468eb28046cee00d543df9b5d60",
+    "ref": "refs/heads/main",
+    "workflow": ".github/workflows/de405-legacy-native-matrix.yml"
+  },
+  "jobs": {
+    "setup": "success",
+    "variant (ubuntu-gcc, ubuntu-24.04-glibc, gcc, false)": "success",
+    "variant (alpine-gcc, alpine-3.22.1-musl, gcc, true)": "success",
+    "variant (alpine-clang, alpine-3.22.1-musl, clang, true)": "success",
+    "analyze": "success"
+  },
+  "sampleAsset": {
+    "url": "https://github.com/softiemalang/softie_project/releases/download/de405-sample-corpus-62192cde/de405-sample-corpus-62192cde.zip",
+    "archiveBytes": 280781846,
+    "archiveSha256": "5fb3f6f7c5a7b20f9081d1f16a6f000c00df8594c88606344a9c8d833b9aa1c8"
+  },
+  "setupImage": {
+    "id": "sha256:f36bd95fad46641a2c723bdcc8f3cce1fe46f0cebe62eda28fb95952312c78c6",
+    "archiveSha256": "6447e903512b19f19cc05f37e351051581dfe17737d4e117339a3d951c998e45",
+    "baseReference": "docker.io/library/alpine@sha256:eafc1edb577d2e9b458664a15f23ea1c370214193226069eb22921169fc7e43f",
+    "packages": {
+      "musl": "1.2.5-r12",
+      "binutils": "2.44-r3",
+      "gcc": "14.2.0-r6",
+      "clang20": "20.1.8-r0",
+      "nodejs": "22.23.2-r0"
+    },
+    "repositories": [
+      "https://dl-cdn.alpinelinux.org/alpine/v3.22/main",
+      "https://dl-cdn.alpinelinux.org/alpine/v3.22/community"
+    ],
+    "apkIndexSha256": [
+      "11a3fe310f35af7740bf4f6aaa3f5e99a05948b3f4e018259ef951b56ec9cffc",
+      "11ba708c3a91d5898653105f3a507b9f44b2191bb66be24c656c9cb0c050b26a"
+    ],
+    "installedDatabaseSha256": "faed974aa9e0ba71d659337516aa0b438477a8298544cdf577e7831f2f63f077",
+    "packageLockSha256": "994a356ecc3e2561201787f406f6158e958d7be1af28a5ef323056a18c751260",
+    "filesystemSha256": "69fd5c3ff7f69942a1f2007875b695960109cf92cca0dc52758960f33be1edfe",
+    "binarySha256": {
+      "ld-musl-x86_64.so.1": "1cc5c3f502179e2a4befae29658fb109102effefc75742893aa4a449fd3fbb03",
+      "node": "a4b585b338f114850bc4f41cb0f33d2311722cdeded1b54f23e4a9df771d98af",
+      "ar": "52f2abd2da2000bd435d09ad1b27bc3674b60ebe0871295477e3c21aea3482e5",
+      "ld": "6c5bf7be2803e54ba22744cb30730f89b24e5e03771de630ae97d806951b19c5",
+      "gcc": "3790afd5098d7b7c459b3ff94f2c55a789c495532e8e0bd82ec2e44ad34c5a43",
+      "clang": "2ae933987908f35ce1700a80007299692e5b47e95b3b72bfec19d05b9d09a263",
+      "muslLoader": "1cc5c3f502179e2a4befae29658fb109102effefc75742893aa4a449fd3fbb03"
+    },
+    "retentionDays": 14
+  },
+  "variants": {
+    "ubuntu-gcc": {
+      "compiler": "gcc",
+      "node": "v22.23.1",
+      "resultSha256": "07b51b47dee7042056f7b127886e93f7f0d84283348d5a941f8be27ca65ac08b",
+      "rowCount": 150671,
+      "toolchainImage": null,
+      "packageLockSha256": null,
+      "filesystemSha256": null
+    },
+    "alpine-gcc": {
+      "compiler": "gcc",
+      "node": "v22.23.2",
+      "resultSha256": "07b51b47dee7042056f7b127886e93f7f0d84283348d5a941f8be27ca65ac08b",
+      "rowCount": 150671,
+      "toolchainImage": {
+        "baseReference": "docker.io/library/alpine@sha256:eafc1edb577d2e9b458664a15f23ea1c370214193226069eb22921169fc7e43f",
+        "platform": "linux/amd64",
+        "id": "sha256:f36bd95fad46641a2c723bdcc8f3cce1fe46f0cebe62eda28fb95952312c78c6",
+        "archiveSha256": "6447e903512b19f19cc05f37e351051581dfe17737d4e117339a3d951c998e45"
+      },
+      "packageLockSha256": "994a356ecc3e2561201787f406f6158e958d7be1af28a5ef323056a18c751260",
+      "filesystemSha256": "69fd5c3ff7f69942a1f2007875b695960109cf92cca0dc52758960f33be1edfe"
+    },
+    "alpine-clang": {
+      "compiler": "clang",
+      "node": "v22.23.2",
+      "resultSha256": "07b51b47dee7042056f7b127886e93f7f0d84283348d5a941f8be27ca65ac08b",
+      "rowCount": 150671,
+      "toolchainImage": {
+        "baseReference": "docker.io/library/alpine@sha256:eafc1edb577d2e9b458664a15f23ea1c370214193226069eb22921169fc7e43f",
+        "platform": "linux/amd64",
+        "id": "sha256:f36bd95fad46641a2c723bdcc8f3cce1fe46f0cebe62eda28fb95952312c78c6",
+        "archiveSha256": "6447e903512b19f19cc05f37e351051581dfe17737d4e117339a3d951c998e45"
+      },
+      "packageLockSha256": "994a356ecc3e2561201787f406f6158e958d7be1af28a5ef323056a18c751260",
+      "filesystemSha256": "69fd5c3ff7f69942a1f2007875b695960109cf92cca0dc52758960f33be1edfe"
+    }
+  },
+  "summaryHashes": {
+    "remoteSummarySha256": "ba272af189c29f875d46163e97b7669b8e3c16682c726edee9063b91759b92f3",
+    "localReanalysisSummarySha256": "ba272af189c29f875d46163e97b7669b8e3c16682c726edee9063b91759b92f3",
+    "remoteLocalSummaryByteIdentical": true,
+    "materializedSummarySha256": "5d619794aa068a58d4f1e49dc95cec6965cb110e58d99bccedb465b444daa5f3"
+  },
+  "rawArtifacts": {
+    "tracked": false,
+    "storedOutsideRepository": true,
+    "retentionDays": 14
+  }
+}

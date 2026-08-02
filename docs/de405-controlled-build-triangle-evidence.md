@@ -13,3 +13,5 @@
 - macOS arm64 ↔ existing Linux x86_64: observed but mixed; existing provenance requires recheck.
 
 The Apple controlled-build variants are persisted by normalized provenance and raw-output hashes under the generated artifact directory. No production route, tolerance, or public contract changed.
+
+This triangle record is preserved as a historical controlled-build snapshot: its Linux arm64 control remains blocked and its existing Linux x86_64 comparison remains mixed/emulation-labeled. It is superseded for the narrower canonical-v2 cross-environment question by native matrix run `30768814210`, which tested Ubuntu glibc/GCC and Alpine musl GCC/Clang on native x64 and established bitwise identity for all three pairs. This does not rewrite the triangle classification or claim a universal platform theorem.
