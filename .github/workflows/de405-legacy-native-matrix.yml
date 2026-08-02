@@ -127,14 +127,16 @@ jobs:
             -e DE405_EXPECTED_HEAD -e GITHUB_SHA -e GITHUB_REF -e DE405_EXPECTED_ROW_COUNT \
             -e DE405_CFLAGS -e DE405_CSPICE_CFLAGS -e LC_ALL -e LANG -e TZ \
             -e DE405_SAMPLE_ASSET_SHA256 -e DE405_SAMPLE_ASSET_URL -e ImageOS -e ImageVersion \
+            -e DE405_TOOLCHAIN_IMAGE_ID="$image_id" \
             -e DE405_TOOLCHAIN_LOCK_FILE=/runner-temp/de405-toolchain-setup/toolchain-lock.json \
+            --user "$(id -u):$(id -g)" \
             "$image_id" sh -euxc '
               test "$(uname -m)" = x86_64
               test "$(git -c safe.directory=/workspace -C /workspace rev-parse HEAD)" = "$GITHUB_SHA"
               node --version; gcc --version; clang --version; musl-gcc --version || true; ld --version
               mkdir -p /runner-temp/de405-built /runner-temp/de405-output/${{ matrix.id }}
               node /workspace/scripts/build-de405-linux-cspice.mjs --cspice /runner-temp/de405-inputs/cspice/N0067 --output /runner-temp/de405-built/N0067
-              node /workspace/scripts/run-de405-linux-architecture-evidence.mjs --samples /runner-temp/de405-inputs/samples.jsonl --spk /runner-temp/de405-inputs/de405.bsp --cspice /runner-temp/de405-built/N0067 --acquisition-provenance /runner-temp/de405-inputs/acquisition-provenance.json --output /runner-temp/de405-output/${{ matrix.id }} --arch x64 --runner ${{ matrix.environment }} --runtime-head "$GITHUB_SHA" --workflow-identity .github/workflows/de405-legacy-native-matrix.yml --variant ${{ matrix.id }} --userspace-family alpine-3.22.1-musl --execution-mode github-hosted-vm-native-x64-container --emulation false --container-used true --container-image "alpine-toolchain:$image_id" --container-identity-source setup-job-docker-save-image --host-image-os "$ImageOS" --host-image-version "$ImageVersion"
+              node /workspace/scripts/run-de405-linux-architecture-evidence.mjs --samples /runner-temp/de405-inputs/samples.jsonl --spk /runner-temp/de405-inputs/de405.bsp --cspice /runner-temp/de405-built/N0067 --acquisition-provenance /runner-temp/de405-inputs/acquisition-provenance.json --output /runner-temp/de405-output/${{ matrix.id }} --arch x64 --runner ${{ matrix.environment }} --runtime-head "$GITHUB_SHA" --workflow-identity .github/workflows/de405-legacy-native-matrix.yml --variant ${{ matrix.id }} --userspace-family alpine-3.22.1-musl --execution-mode github-hosted-vm-native-x64-container --emulation false --container-used true --container-image "alpine-toolchain:$DE405_TOOLCHAIN_IMAGE_ID" --container-identity-source setup-job-docker-save-image --host-image-os "$ImageOS" --host-image-version "$ImageVersion"
             '
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
         with:
