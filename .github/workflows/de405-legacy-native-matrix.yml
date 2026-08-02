@@ -71,35 +71,35 @@ jobs:
         if: matrix.container == false
         run: |
           set -euo pipefail
-          mkdir -p "$RUNNER_TEMP/de405-output"
+          mkdir -p "$RUNNER_TEMP/de405-output/${{ matrix.id }}"
           node scripts/build-de405-linux-cspice.mjs --cspice "$RUNNER_TEMP/de405-inputs/cspice/N0067" --output "$RUNNER_TEMP/de405-built/N0067"
-          node scripts/run-de405-linux-architecture-evidence.mjs --samples "$RUNNER_TEMP/de405-inputs/samples.jsonl" --spk "$RUNNER_TEMP/de405-inputs/de405.bsp" --cspice "$RUNNER_TEMP/de405-built/N0067" --acquisition-provenance "$RUNNER_TEMP/de405-inputs/acquisition-provenance.json" --output "$RUNNER_TEMP/de405-output" --arch x64 --runner ubuntu-24.04
-          cp "$RUNNER_TEMP/de405-output/result.jsonl" "$RUNNER_TEMP/de405-output/ubuntu-gcc.jsonl"
-          cp "$RUNNER_TEMP/de405-output/provenance.json" "$RUNNER_TEMP/de405-output/ubuntu-gcc.provenance.json"
+          node scripts/run-de405-linux-architecture-evidence.mjs --samples "$RUNNER_TEMP/de405-inputs/samples.jsonl" --spk "$RUNNER_TEMP/de405-inputs/de405.bsp" --cspice "$RUNNER_TEMP/de405-built/N0067" --acquisition-provenance "$RUNNER_TEMP/de405-inputs/acquisition-provenance.json" --output "$RUNNER_TEMP/de405-output/${{ matrix.id }}" --arch x64 --runner ubuntu-24.04 --workflow-identity .github/workflows/de405-legacy-native-matrix.yml --variant ubuntu-gcc --userspace-family ubuntu-24.04-glibc --execution-mode github-hosted-vm --emulation false --container-used false --container-identity-source github-hosted-runner-image
       - name: Run Alpine native x64 compiler variant
         if: matrix.container == true
         run: |
           set -euo pipefail
-          mkdir -p "$RUNNER_TEMP/de405-output"
+          mkdir -p "$RUNNER_TEMP/de405-output/${{ matrix.id }}"
           docker run --rm --platform linux/amd64 \
             -v "$GITHUB_WORKSPACE:/workspace:ro" \
             -v "$RUNNER_TEMP:/runner-temp" \
             -e CC=${{ matrix.compiler == 'clang20' && 'clang' || 'gcc' }} \
             -e DE405_EXPECTED_HEAD -e GITHUB_SHA -e GITHUB_REF -e DE405_EXPECTED_ROW_COUNT \
             -e DE405_CFLAGS -e DE405_CSPICE_CFLAGS -e LC_ALL -e LANG -e TZ \
-            -e DE405_SAMPLE_ASSET_SHA256 -e DE405_SAMPLE_ASSET_URL \
+            -e DE405_SAMPLE_ASSET_SHA256 -e DE405_SAMPLE_ASSET_URL -e ImageOS -e ImageVersion \
+            -e DE405_PACKAGE_INFO_FILE -e DE405_TOOL_BINARY_SHA256_FILE \
             docker.io/library/alpine@sha256:eafc1edb577d2e9b458664a15f23ea1c370214193226069eb22921169fc7e43f \
             sh -euxc '
+              export DE405_PACKAGE_INFO_FILE=/runner-temp/de405-output/${{ matrix.id }}/apk-info.txt
+              export DE405_TOOL_BINARY_SHA256_FILE=/runner-temp/de405-output/${{ matrix.id }}/tool-binary-sha256.txt
               apk add --no-cache musl=1.2.5-r12 binutils=2.44-r3 gcc=14.2.0-r6 clang20=20.1.8-r0 nodejs=22.23.0-r0 unzip tar gzip
               test "$(uname -m)" = x86_64
               node --version; gcc --version; clang --version; musl-gcc --version || true; ld --version
-              apk info -vv > /runner-temp/de405-output/apk-info.txt
-              sha256sum /lib/ld-musl-x86_64.so.1 /usr/bin/node /usr/bin/ar /usr/bin/ld > /runner-temp/de405-output/tool-binary-sha256.txt
-              mkdir -p /runner-temp/de405-built /runner-temp/de405-output
+              apk info -vv > /runner-temp/de405-output/${{ matrix.id }}/apk-info.txt
+              sha256sum /lib/ld-musl-x86_64.so.1 /usr/bin/node /usr/bin/ar /usr/bin/ld /usr/bin/${{ matrix.compiler == 'clang20' && 'clang' || 'gcc' }} > /runner-temp/de405-output/${{ matrix.id }}/tool-binary-sha256.txt
+              mkdir -p /runner-temp/de405-built /runner-temp/de405-output/${{ matrix.id }}
               node /workspace/scripts/build-de405-linux-cspice.mjs --cspice /runner-temp/de405-inputs/cspice/N0067 --output /runner-temp/de405-built/N0067
-              node /workspace/scripts/run-de405-linux-architecture-evidence.mjs --samples /runner-temp/de405-inputs/samples.jsonl --spk /runner-temp/de405-inputs/de405.bsp --cspice /runner-temp/de405-built/N0067 --acquisition-provenance /runner-temp/de405-inputs/acquisition-provenance.json --output /runner-temp/de405-output --arch x64 --runner ${{ matrix.environment }}
-              cp /runner-temp/de405-output/result.jsonl /runner-temp/de405-output/${{ matrix.id }}.jsonl
-              cp /runner-temp/de405-output/provenance.json /runner-temp/de405-output/${{ matrix.id }}.provenance.json
+              git -c safe.directory=/workspace -C /workspace rev-parse HEAD > /runner-temp/de405-output/${{ matrix.id }}/runtime-head.txt
+              node /workspace/scripts/run-de405-linux-architecture-evidence.mjs --samples /runner-temp/de405-inputs/samples.jsonl --spk /runner-temp/de405-inputs/de405.bsp --cspice /runner-temp/de405-built/N0067 --acquisition-provenance /runner-temp/de405-inputs/acquisition-provenance.json --output /runner-temp/de405-output/${{ matrix.id }} --arch x64 --runner ${{ matrix.environment }} --runtime-head "$GITHUB_SHA" --workflow-identity .github/workflows/de405-legacy-native-matrix.yml --variant ${{ matrix.id }} --userspace-family alpine-3.22.1-musl --execution-mode github-hosted-vm-native-x64-container --emulation false --container-used true --container-image docker.io/library/alpine@sha256:eafc1edb577d2e9b458664a15f23ea1c370214193226069eb22921169fc7e43f --container-identity-source immutable-image-digest --host-image-os "$ImageOS" --host-image-version "$ImageVersion"
             '
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
         with:
@@ -118,16 +118,23 @@ jobs:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
       - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4.3.0
         with:
-          pattern: de405-legacy-*
-          path: ${{ runner.temp }}/legacy
-          merge-multiple: true
+          name: de405-legacy-ubuntu-gcc
+          path: ${{ runner.temp }}/legacy/ubuntu-gcc
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4.3.0
+        with:
+          name: de405-legacy-alpine-gcc
+          path: ${{ runner.temp }}/legacy/alpine-gcc
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4.3.0
+        with:
+          name: de405-legacy-alpine-clang
+          path: ${{ runner.temp }}/legacy/alpine-clang
       - name: Analyze and materialize deterministic summary
         env:
           DE405_EXPECTED_HEAD: ${{ github.sha }}
         run: |
           set -euo pipefail
           node scripts/check-de405-legacy-alpine-workflow.mjs
-          node --input-type=module -e 'import { readFile, writeFile } from "node:fs/promises"; const m=JSON.parse(await readFile("scripts/fixtures/de405-legacy-matrix-manifest.json", "utf8")); m.root=process.env.RUNNER_TEMP+"/legacy"; m.variants.forEach(v => { v.provenance={path:v.output.path.replace(/\.jsonl$/, ".provenance.json")}; }); m.controlTaxonomy.requiredIdentical=["expectedHead","githubRef","workflowIdentity","officialInputs.spkSha256","officialInputs.cspiceArchiveSha256","controls.flags","controls.locale","controls.timezone","controls.wrapper","controls.serialization","controls.sourceHashes","result.rowCount"]; await writeFile(process.env.RUNNER_TEMP+"/de405-legacy-manifest.json", JSON.stringify(m)+"\\n")'
+          node --input-type=module -e 'import { readFile, writeFile } from "node:fs/promises"; const m=JSON.parse(await readFile("scripts/fixtures/de405-legacy-matrix-manifest.json", "utf8")); m.root=process.env.RUNNER_TEMP+"/legacy"; m.variants.forEach(v => { v.output.path=`${v.id}/result.jsonl`; v.provenance={path:`${v.id}/provenance.json`}; }); m.controlTaxonomy.requiredIdentical=["expectedHead","githubRef","workflowIdentity","officialInputs.spkSha256","officialInputs.cspiceArchiveSha256","officialInputs.sourceManifestSha256","controls.flags","controls.locale","controls.timezone","controls.wrapper","controls.serialization","controls.sourceHashes","result.rowCount"]; await writeFile(process.env.RUNNER_TEMP+"/de405-legacy-manifest.json", JSON.stringify(m)+"\\n")'
           node scripts/analyze-de405-legacy-matrix.mjs --manifest "$RUNNER_TEMP/de405-legacy-manifest.json" --output "$RUNNER_TEMP/de405-legacy-analysis.json"
           node scripts/materialize-de405-legacy-matrix.mjs --input "$RUNNER_TEMP/de405-legacy-analysis.json" --json "$RUNNER_TEMP/de405-legacy-summary.json" --markdown "$RUNNER_TEMP/de405-legacy-summary.md"
           node scripts/materialize-de405-legacy-matrix.mjs --input "$RUNNER_TEMP/de405-legacy-analysis.json" --json "$RUNNER_TEMP/de405-legacy-summary-2.json" --markdown "$RUNNER_TEMP/de405-legacy-summary-2.md"

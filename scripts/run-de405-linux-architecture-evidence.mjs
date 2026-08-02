@@ -1,5 +1,5 @@
 import { createHash } from 'node:crypto'
-import { execFileSync } from 'node:child_process'
+import { execFileSync, spawnSync } from 'node:child_process'
 import { createReadStream } from 'node:fs'
 import { mkdir, open, readFile, stat, writeFile } from 'node:fs/promises'
 import { createInterface } from 'node:readline'
@@ -11,7 +11,7 @@ const root = resolve(new URL('..', import.meta.url).pathname)
 const required = ['samples', 'spk', 'cspice', 'acquisition-provenance', 'output', 'arch', 'runner']
 for (const key of required) if (!args[key]) throw new Error(`--${key} is required`)
 const expectedHead = process.env.DE405_EXPECTED_HEAD || process.env.GITHUB_SHA
-const head = execFileSync('git', ['rev-parse', 'HEAD'], { cwd: root, encoding: 'utf8' }).trim()
+const head = args['runtime-head'] || process.env.DE405_RUNTIME_HEAD || execFileSync('git', ['rev-parse', 'HEAD'], { cwd: root, encoding: 'utf8' }).trim()
 const githubSha = process.env.GITHUB_SHA || expectedHead
 assertRuntimeProvenance({ head, githubSha, githubRef: process.env.GITHUB_REF, expectedHead })
 const source = resolve(root, 'tools/de405-cspice-runner/src/de405_canonical_v2.c')
@@ -34,6 +34,7 @@ const actualFlags = ['-std=c11', '-O2', '-ffp-contract=off', '-fno-fast-math', '
 const buildProvenancePath = resolve(cspice, 'build-provenance.json')
 await stat(buildProvenancePath)
 const cspiceBuild = JSON.parse(await readFile(buildProvenancePath, 'utf8'))
+if (cspiceBuild.compiler !== compiler) throw new Error(`CSPICE compiler ${cspiceBuild.compiler} does not match runner compiler ${compiler}`)
 const acquisitionProvenance = JSON.parse(await readFile(resolve(args['acquisition-provenance']), 'utf8'))
 const binary = resolve(build, 'de405-canonical-v2-runner')
 execFileSync(compiler, [...actualFlags, source, `${lib}/cspice.a`, `${lib}/csupport.a`, '-lm', '-o', binary], { stdio: 'inherit' })
@@ -50,20 +51,30 @@ const resultBytes = (await stat(result)).size
 const resultHash = await sha256(result)
 let osRelease = 'unavailable'
 try { osRelease = execFileSync('sh', ['-c', '. /etc/os-release && printf "%s" "$PRETTY_NAME"'], { encoding: 'utf8' }) } catch { /* non-Linux local smoke */ }
+const commandOutput = (command, commandArgs = []) => { const result = spawnSync(command, commandArgs, { encoding: 'utf8' }); return { exitCode: result.status, stdout: result.stdout || '', stderr: result.stderr || '' } }
 let libc = 'unavailable'
-try { libc = execFileSync('ldd', ['--version'], { encoding: 'utf8' }).split('\n')[0] } catch { /* non-Linux local smoke */ }
+const ldd = commandOutput('ldd', ['--version'])
+if (ldd.stdout || ldd.stderr) libc = (ldd.stdout || ldd.stderr).split('\n').find(Boolean) || 'unavailable'
+const packageInfoPath = process.env.DE405_PACKAGE_INFO_FILE
+const toolBinarySha256Path = process.env.DE405_TOOL_BINARY_SHA256_FILE
+const packageInfo = packageInfoPath ? (await readFile(resolve(packageInfoPath), 'utf8')).trim().split('\n').filter(Boolean) : []
+const toolBinarySha256 = toolBinarySha256Path ? (await readFile(resolve(toolBinarySha256Path), 'utf8')).trim().split('\n').filter(Boolean) : []
+const optionalIdentity = name => { const result = commandOutput(name, ['--version']); return { exitCode: result.exitCode, stdout: result.stdout, stderr: result.stderr } }
+const binutils = optionalIdentity('ld')
+const linker = optionalIdentity('ld')
+const ar = optionalIdentity('ar')
 const provenance = {
   schemaVersion: 1, evidenceKind: 'de405-linux-architecture', fixture: false,
-  expectedHead: head, githubSha, githubRef: process.env.GITHUB_REF, workflowIdentity: '.github/workflows/de405-linux-architecture-evidence.yml', volatileProvenance: { runId: null, timestamp: null }, architecture: args.arch, runnerLabel: args.runner,
+  expectedHead: head, githubSha, githubRef: process.env.GITHUB_REF, workflowIdentity: args['workflow-identity'] || process.env.DE405_WORKFLOW_IDENTITY || '.github/workflows/de405-linux-architecture-evidence.yml', variantId: args.variant || process.env.DE405_VARIANT_ID || args.arch, volatileProvenance: { runId: null, timestamp: null }, architecture: args.arch, runnerLabel: args.runner,
   sampleAsset: { archiveSha256: process.env.DE405_SAMPLE_ASSET_SHA256 || 'fixture', urlSha256: createHash('sha256').update(process.env.DE405_SAMPLE_ASSET_URL || 'fixture').digest('hex') },
   officialInputs: { cspiceArchiveSha256: acquisitionProvenance.cspice.sha256, spkSha256: acquisitionProvenance.spk.sha256, sourceManifestSha256: acquisitionProvenance.inputs.sourceManifestSha256, cspiceUrlSha256: createHash('sha256').update(acquisitionProvenance.cspice.url).digest('hex'), spkUrlSha256: createHash('sha256').update(acquisitionProvenance.spk.url).digest('hex'), arm64SourcePort: args.arch === 'arm64' },
-  execution: 'github-hosted-vm', emulation: false,
-  host: { uname: execFileSync('uname', ['-a'], { encoding: 'utf8' }).trim(), machine: execFileSync('uname', ['-m'], { encoding: 'utf8' }).trim(), imageOS: process.env.ImageOS || 'unavailable', imageVersion: process.env.ImageVersion || 'unavailable' },
-  userspace: { family: 'ubuntu-24.04', osRelease, libc, compiler, compilerVersion: execFileSync(compiler, ['--version'], { encoding: 'utf8' }).split('\n')[0], compilerTarget: execFileSync(compiler, ['-dumpmachine'], { encoding: 'utf8' }).trim(), node: process.version },
+  execution: args['execution-mode'] || process.env.DE405_EXECUTION_MODE || 'github-hosted-vm', emulation: args.emulation === 'true' || process.env.DE405_EMULATION === 'true',
+  host: { uname: execFileSync('uname', ['-a'], { encoding: 'utf8' }).trim(), machine: execFileSync('uname', ['-m'], { encoding: 'utf8' }).trim(), imageOS: args['host-image-os'] || process.env.DE405_HOST_IMAGE_OS || process.env.ImageOS || 'unavailable', imageVersion: args['host-image-version'] || process.env.DE405_HOST_IMAGE_VERSION || process.env.ImageVersion || 'unavailable' },
+  userspace: { family: args['userspace-family'] || process.env.DE405_USERSPACE_FAMILY || 'ubuntu-24.04', osRelease, libc, compiler, compilerVersion: execFileSync(compiler, ['--version'], { encoding: 'utf8' }).split('\n')[0], compilerTarget: execFileSync(compiler, ['-dumpmachine'], { encoding: 'utf8' }).trim(), node: process.version, packages: packageInfo, binutils: binutils.stdout.split('\n').find(Boolean) || binutils.stderr.split('\n').find(Boolean) || 'unavailable', linker: linker.stdout.split('\n').find(Boolean) || linker.stderr.split('\n').find(Boolean) || 'unavailable', ar: ar.stdout.split('\n').find(Boolean) || ar.stderr.split('\n').find(Boolean) || 'unavailable', toolBinarySha256 },
   cspiceBuild: cspiceBuild,
   controls: { flags, locale: process.env.LC_ALL || process.env.LANG || 'unavailable', timezone: process.env.TZ || 'unavailable', wrapper: 'de405-canonical-v2-runner', serialization: 'JSONL LF final newline', sourceHashes: hashes, artifactHashes },
   result: { path: 'result.jsonl', sha256: resultHash, bytes: resultBytes, rowCount: await countRows(result), lineEnding: 'lf_only_final_lf' },
-  container: { used: false, image: null, identitySource: 'github-hosted-runner-image' }
+  container: { used: args['container-used'] === 'true' || process.env.DE405_CONTAINER_USED === 'true', image: args['container-image'] || process.env.DE405_CONTAINER_IMAGE || null, identitySource: args['container-identity-source'] || process.env.DE405_CONTAINER_IDENTITY_SOURCE || 'github-hosted-runner-image' }
 }
 const expectedRowCount = Number(process.env.DE405_EXPECTED_ROW_COUNT || 150671)
 if (provenance.result.rowCount !== expectedRowCount) throw new Error(`expected complete ${expectedRowCount}-row corpus, got ${provenance.result.rowCount}`)

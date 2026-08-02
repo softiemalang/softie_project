@@ -94,6 +94,10 @@ jobs:
           --acquisition-provenance "${RUNNER_TEMP}/de405-inputs/acquisition-provenance.json"
           --output "${RUNNER_TEMP}/de405-linux-output"
           --arch "${{ matrix.arch }}" --runner "${{ matrix.runner }}"
+          --workflow-identity .github/workflows/de405-linux-architecture-evidence.yml
+          --variant "${{ matrix.arch }}" --userspace-family ubuntu-24.04-glibc
+          --execution-mode github-hosted-vm --emulation false --container-used false
+          --container-identity-source github-hosted-runner-image
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
         with:
           name: de405-linux-architecture-${{ matrix.arch }}

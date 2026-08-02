@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "recordType": "de405_legacy_matrix_manifest",
-  "baselineHead": "33e8215f1349860e6166f7d1c779b6d36b6a9624",
+  "historicalBaselineHead": "33e8215f1349860e6166f7d1c779b6d36b6a9624",
   "root": "scripts/fixtures/de405-legacy",
   "referenceVariant": "ubuntu-gcc",
   "controlTaxonomy": { "requiredIdentical": [] },
