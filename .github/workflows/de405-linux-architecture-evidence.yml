@@ -91,6 +91,7 @@ jobs:
           --samples "${RUNNER_TEMP}/de405-inputs/samples.jsonl"
           --spk "${RUNNER_TEMP}/de405-inputs/de405.bsp"
           --cspice "${RUNNER_TEMP}/de405-cspice-built/N0067"
+          --acquisition-provenance "${RUNNER_TEMP}/de405-inputs/acquisition-provenance.json"
           --output "${RUNNER_TEMP}/de405-linux-output"
           --arch "${{ matrix.arch }}" --runner "${{ matrix.runner }}"
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2

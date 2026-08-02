@@ -8,7 +8,7 @@ import { assertRuntimeProvenance } from './lib/de405-runtime-provenance.mjs'
 
 const args = Object.fromEntries(process.argv.slice(2).map((value, index, all) => value.startsWith('--') ? [value.slice(2), all[index + 1]] : []).filter(Boolean))
 const root = resolve(new URL('..', import.meta.url).pathname)
-const required = ['samples', 'spk', 'cspice', 'output', 'arch', 'runner']
+const required = ['samples', 'spk', 'cspice', 'acquisition-provenance', 'output', 'arch', 'runner']
 for (const key of required) if (!args[key]) throw new Error(`--${key} is required`)
 const expectedHead = process.env.DE405_EXPECTED_HEAD || process.env.GITHUB_SHA
 const head = execFileSync('git', ['rev-parse', 'HEAD'], { cwd: root, encoding: 'utf8' }).trim()
@@ -34,7 +34,7 @@ const actualFlags = ['-std=c11', '-O2', '-ffp-contract=off', '-fno-fast-math', '
 const buildProvenancePath = resolve(cspice, 'build-provenance.json')
 await stat(buildProvenancePath)
 const cspiceBuild = JSON.parse(await readFile(buildProvenancePath, 'utf8'))
-const acquisitionProvenance = JSON.parse(await readFile(resolve(cspice, '../../acquisition-provenance.json'), 'utf8'))
+const acquisitionProvenance = JSON.parse(await readFile(resolve(args['acquisition-provenance']), 'utf8'))
 const binary = resolve(build, 'de405-canonical-v2-runner')
 execFileSync(compiler, [...actualFlags, source, `${lib}/cspice.a`, `${lib}/csupport.a`, '-lm', '-o', binary], { stdio: 'inherit' })
 execFileSync(binary, ['--evaluate-spk-type2-batch', '--spk', args.spk, '--input-jsonl', args.samples, '--output-jsonl', resolve(args.output, 'result.jsonl')], { stdio: 'inherit' })

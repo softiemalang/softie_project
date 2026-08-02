@@ -1,6 +1,8 @@
 # DE405 official acquisition and sample asset
 
 Each Linux architecture job runs `scripts/fetch-de405-linux-official-inputs.mjs`.
+
+The downloader writes `acquisition-provenance.json` at the requested `--output` root. The architecture runner receives that exact file explicitly with `--acquisition-provenance`; it does not infer provenance relative to the built CSPICE directory.
 It downloads the NAIF PC/Linux/GCC/64-bit N0067 package and the unmodified
 generic-kernel `de405.bsp` over HTTPS, rejects redirects outside
 `naif.jpl.nasa.gov`, enforces size limits, verifies the fixed SHA-256, and only

@@ -18,3 +18,13 @@ test('official NAIF archive and SPK are hash-verified and source-only extracted'
   assert.equal(provenance.inputs.sourceFileCount, 2547)
   assert.match(result.stdout, /sourceManifestSha256/)
 })
+
+test('official-input producer output is the explicit runner provenance contract', async () => {
+  const workflow = await readFile(join(root, '.github/workflows/de405-linux-architecture-evidence.yml'), 'utf8')
+  assert.match(workflow, /fetch-de405-linux-official-inputs\.mjs[\s\S]*--output "\$\{RUNNER_TEMP\}\/de405-inputs"/)
+  assert.match(workflow, /run-de405-linux-architecture-evidence\.mjs[\s\S]*--acquisition-provenance "\$\{RUNNER_TEMP\}\/de405-inputs\/acquisition-provenance\.json"/)
+  const runner = await readFile(join(root, 'scripts/run-de405-linux-architecture-evidence.mjs'), 'utf8')
+  assert.match(runner, /'acquisition-provenance'/)
+  assert.match(runner, /readFile\(resolve\(args\['acquisition-provenance'\]\)/)
+  assert.doesNotMatch(runner, /cspice, '\.\.\/\.\.\/acquisition-provenance\.json'/)
+})
