@@ -1,0 +1,295 @@
+{
+  "schemaVersion": 1,
+  "evidenceKind": "de405-linux-architecture-comparison",
+  "fixture": false,
+  "classification": "blocked_reproducible_linux_userspace_unavailable",
+  "sampleCount": 150671,
+  "differingRows": 0,
+  "differingComponents": 0,
+  "firstDivergence": null,
+  "distribution": {
+    "maxUlp": 0,
+    "p50Ulp": 0,
+    "p95Ulp": 0,
+    "p99Ulp": 0,
+    "p999Ulp": 0,
+    "maxAbsoluteDifference": 0,
+    "p50AbsoluteDifference": 0,
+    "p95AbsoluteDifference": 0,
+    "p99AbsoluteDifference": 0,
+    "p999AbsoluteDifference": 0
+  },
+  "controls": {
+    "mismatched": [
+      "host.imageOS",
+      "host.imageVersion"
+    ],
+    "sourceHashesEqual": true
+  },
+  "provenance": {
+    "x64": {
+      "schemaVersion": 1,
+      "evidenceKind": "de405-linux-architecture",
+      "fixture": false,
+      "expectedHead": "234969cad8a96a30386bfd9b115210d744b58716",
+      "githubSha": "234969cad8a96a30386bfd9b115210d744b58716",
+      "githubRef": "refs/heads/main",
+      "workflowIdentity": ".github/workflows/de405-linux-architecture-evidence.yml",
+      "volatileProvenance": {
+        "runId": null,
+        "timestamp": null
+      },
+      "architecture": "x64",
+      "runnerLabel": "ubuntu-24.04",
+      "sampleAsset": {
+        "archiveSha256": "5fb3f6f7c5a7b20f9081d1f16a6f000c00df8594c88606344a9c8d833b9aa1c8",
+        "urlSha256": "8790b366143e1dc2170197dc66237012eccca525dbaa985b234bfcc72580d628"
+      },
+      "officialInputs": {
+        "cspiceArchiveSha256": "60a95b51a6472f1afe7e40d77ebdee43c12bb5b8823676ccc74692ddfede06ce",
+        "spkSha256": "30a7113793ee5b6bf1e5546c6dfc21d9682d9ffabfe9b17b4bab27ba2ac75c89",
+        "sourceManifestSha256": "9921db7667b999253d78bf814c93fda76bb04169abfa2a583d6eecffb43fb229",
+        "cspiceUrlSha256": "cdd015021beea67e40044112c95c2d7825cfc5e8fc7ea9bd23158ae24de1fa0d",
+        "spkUrlSha256": "02c41a4c40e74433b6a8a0779de53145c3e9151c62cb104f76ec511bb9055ccf",
+        "arm64SourcePort": false
+      },
+      "execution": "github-hosted-vm",
+      "emulation": false,
+      "host": {
+        "uname": "Linux runnervmvrwv9 6.17.0-1020-azure #20~24.04.1-Ubuntu SMP Fri Jun 19 20:09:14 UTC 2026 x86_64 x86_64 x86_64 GNU/Linux",
+        "machine": "x86_64",
+        "imageOS": "ubuntu24",
+        "imageVersion": "20260720.247.2"
+      },
+      "userspace": {
+        "family": "ubuntu-24.04",
+        "osRelease": "Ubuntu 24.04.4 LTS",
+        "libc": "ldd (Ubuntu GLIBC 2.39-0ubuntu8.7) 2.39",
+        "compiler": "gcc",
+        "compilerVersion": "gcc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0",
+        "compilerTarget": "x86_64-linux-gnu",
+        "node": "v22.23.1"
+      },
+      "cspiceBuild": {
+        "schemaVersion": 1,
+        "recordType": "de405_linux_cspice_source_build",
+        "toolkitVersion": "N0067",
+        "compiler": "gcc",
+        "compilerVersion": "gcc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0",
+        "compilerTarget": "x86_64-linux-gnu",
+        "architecture": "x64",
+        "flags": [
+          "-std=c89",
+          "-O2",
+          "-ffp-contract=off",
+          "-fno-fast-math",
+          "-fPIC",
+          "-DNON_UNIX_STDIO",
+          "-Wno-shift-op-parentheses",
+          "-Wno-logical-op-parentheses",
+          "-Wno-parentheses",
+          "-I<CSPICE_N0067/include>",
+          "-I<CSPICE_N0067/src/cspice>",
+          "-I<CSPICE_N0067/src/csupport>"
+        ],
+        "archiveTool": {
+          "command": "ar",
+          "flags": [
+            "rcs"
+          ]
+        },
+        "sourceManifestSha256": "54a50975a8ea536bd5fc18add2d2fe481c35aaba07bebc1bcc630b76ba8925f1",
+        "sourceFileCount": 2439,
+        "libraries": {
+          "cspice": {
+            "path": "lib/cspice.a",
+            "sha256": "9432a1493bfd794b9bb9e5057fbb0c13b57492e6ff0aeedd4879d4bb79676481"
+          },
+          "csupport": {
+            "path": "lib/csupport.a",
+            "sha256": "2bf2023c26311037f313bd5f76995118d86fee6ac947dc55e966845c13adb29d"
+          }
+        }
+      },
+      "controls": {
+        "flags": [
+          "-std=c11",
+          "-O2",
+          "-ffp-contract=off",
+          "-fno-fast-math",
+          "-Wall",
+          "-Wextra",
+          "-Werror",
+          "-I<CSPICE_N0067/include>"
+        ],
+        "locale": "C.UTF-8",
+        "timezone": "UTC",
+        "wrapper": "de405-canonical-v2-runner",
+        "serialization": "JSONL LF final newline",
+        "sourceHashes": {
+          "runnerSource": "798b208f65d17f1bf1972cbe9ad17a1f08b8859baa3880d14e1796b841a89426",
+          "samples": "62192cde5fdecbf53307ed532da212156bc7dcc4beade08117a6bd75c1101d84",
+          "spk": "30a7113793ee5b6bf1e5546c6dfc21d9682d9ffabfe9b17b4bab27ba2ac75c89",
+          "cspiceHeader": "cb507d162dce21ff523a8f7793ceac521b92a548732c1782bb109af59ad4aca4",
+          "cspiceSourceManifest": "54a50975a8ea536bd5fc18add2d2fe481c35aaba07bebc1bcc630b76ba8925f1"
+        },
+        "artifactHashes": {
+          "cspiceLibrary": "9432a1493bfd794b9bb9e5057fbb0c13b57492e6ff0aeedd4879d4bb79676481",
+          "csupportLibrary": "2bf2023c26311037f313bd5f76995118d86fee6ac947dc55e966845c13adb29d"
+        }
+      },
+      "result": {
+        "path": "result.jsonl",
+        "sha256": "07b51b47dee7042056f7b127886e93f7f0d84283348d5a941f8be27ca65ac08b",
+        "bytes": 79915561,
+        "rowCount": 150671,
+        "lineEnding": "lf_only_final_lf"
+      },
+      "container": {
+        "used": false,
+        "image": null,
+        "identitySource": "github-hosted-runner-image"
+      }
+    },
+    "arm64": {
+      "schemaVersion": 1,
+      "evidenceKind": "de405-linux-architecture",
+      "fixture": false,
+      "expectedHead": "234969cad8a96a30386bfd9b115210d744b58716",
+      "githubSha": "234969cad8a96a30386bfd9b115210d744b58716",
+      "githubRef": "refs/heads/main",
+      "workflowIdentity": ".github/workflows/de405-linux-architecture-evidence.yml",
+      "volatileProvenance": {
+        "runId": null,
+        "timestamp": null
+      },
+      "architecture": "arm64",
+      "runnerLabel": "ubuntu-24.04-arm",
+      "sampleAsset": {
+        "archiveSha256": "5fb3f6f7c5a7b20f9081d1f16a6f000c00df8594c88606344a9c8d833b9aa1c8",
+        "urlSha256": "8790b366143e1dc2170197dc66237012eccca525dbaa985b234bfcc72580d628"
+      },
+      "officialInputs": {
+        "cspiceArchiveSha256": "60a95b51a6472f1afe7e40d77ebdee43c12bb5b8823676ccc74692ddfede06ce",
+        "spkSha256": "30a7113793ee5b6bf1e5546c6dfc21d9682d9ffabfe9b17b4bab27ba2ac75c89",
+        "sourceManifestSha256": "9921db7667b999253d78bf814c93fda76bb04169abfa2a583d6eecffb43fb229",
+        "cspiceUrlSha256": "cdd015021beea67e40044112c95c2d7825cfc5e8fc7ea9bd23158ae24de1fa0d",
+        "spkUrlSha256": "02c41a4c40e74433b6a8a0779de53145c3e9151c62cb104f76ec511bb9055ccf",
+        "arm64SourcePort": true
+      },
+      "execution": "github-hosted-vm",
+      "emulation": false,
+      "host": {
+        "uname": "Linux runnervma9114 6.17.0-1020-azure #20~24.04.1-Ubuntu SMP Fri Jun 19 20:26:28 UTC 2026 aarch64 aarch64 aarch64 GNU/Linux",
+        "machine": "aarch64",
+        "imageOS": "ubuntu24-arm64",
+        "imageVersion": "20260719.67.1"
+      },
+      "userspace": {
+        "family": "ubuntu-24.04",
+        "osRelease": "Ubuntu 24.04.4 LTS",
+        "libc": "ldd (Ubuntu GLIBC 2.39-0ubuntu8.7) 2.39",
+        "compiler": "gcc",
+        "compilerVersion": "gcc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0",
+        "compilerTarget": "aarch64-linux-gnu",
+        "node": "v22.23.1"
+      },
+      "cspiceBuild": {
+        "schemaVersion": 1,
+        "recordType": "de405_linux_cspice_source_build",
+        "toolkitVersion": "N0067",
+        "compiler": "gcc",
+        "compilerVersion": "gcc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0",
+        "compilerTarget": "aarch64-linux-gnu",
+        "architecture": "arm64",
+        "flags": [
+          "-std=c89",
+          "-O2",
+          "-ffp-contract=off",
+          "-fno-fast-math",
+          "-fPIC",
+          "-DNON_UNIX_STDIO",
+          "-Wno-shift-op-parentheses",
+          "-Wno-logical-op-parentheses",
+          "-Wno-parentheses",
+          "-I<CSPICE_N0067/include>",
+          "-I<CSPICE_N0067/src/cspice>",
+          "-I<CSPICE_N0067/src/csupport>"
+        ],
+        "archiveTool": {
+          "command": "ar",
+          "flags": [
+            "rcs"
+          ]
+        },
+        "sourceManifestSha256": "54a50975a8ea536bd5fc18add2d2fe481c35aaba07bebc1bcc630b76ba8925f1",
+        "sourceFileCount": 2439,
+        "libraries": {
+          "cspice": {
+            "path": "lib/cspice.a",
+            "sha256": "d9a94dc384ff6e4d9418bea12249b61b4e796abbd34a65cc86088c56304262e9"
+          },
+          "csupport": {
+            "path": "lib/csupport.a",
+            "sha256": "91df81a3061981f7a2fa77eba3e64cd8fd3637bbbb33341ae4914b179bcd8063"
+          }
+        }
+      },
+      "controls": {
+        "flags": [
+          "-std=c11",
+          "-O2",
+          "-ffp-contract=off",
+          "-fno-fast-math",
+          "-Wall",
+          "-Wextra",
+          "-Werror",
+          "-I<CSPICE_N0067/include>"
+        ],
+        "locale": "C.UTF-8",
+        "timezone": "UTC",
+        "wrapper": "de405-canonical-v2-runner",
+        "serialization": "JSONL LF final newline",
+        "sourceHashes": {
+          "runnerSource": "798b208f65d17f1bf1972cbe9ad17a1f08b8859baa3880d14e1796b841a89426",
+          "samples": "62192cde5fdecbf53307ed532da212156bc7dcc4beade08117a6bd75c1101d84",
+          "spk": "30a7113793ee5b6bf1e5546c6dfc21d9682d9ffabfe9b17b4bab27ba2ac75c89",
+          "cspiceHeader": "cb507d162dce21ff523a8f7793ceac521b92a548732c1782bb109af59ad4aca4",
+          "cspiceSourceManifest": "54a50975a8ea536bd5fc18add2d2fe481c35aaba07bebc1bcc630b76ba8925f1"
+        },
+        "artifactHashes": {
+          "cspiceLibrary": "d9a94dc384ff6e4d9418bea12249b61b4e796abbd34a65cc86088c56304262e9",
+          "csupportLibrary": "91df81a3061981f7a2fa77eba3e64cd8fd3637bbbb33341ae4914b179bcd8063"
+        }
+      },
+      "result": {
+        "path": "result.jsonl",
+        "sha256": "07b51b47dee7042056f7b127886e93f7f0d84283348d5a941f8be27ca65ac08b",
+        "bytes": 79915561,
+        "rowCount": 150671,
+        "lineEnding": "lf_only_final_lf"
+      },
+      "container": {
+        "used": false,
+        "image": null,
+        "identitySource": "github-hosted-runner-image"
+      }
+    }
+  },
+  "provenanceHashes": {
+    "x64": {
+      "runnerSource": "798b208f65d17f1bf1972cbe9ad17a1f08b8859baa3880d14e1796b841a89426",
+      "samples": "62192cde5fdecbf53307ed532da212156bc7dcc4beade08117a6bd75c1101d84",
+      "spk": "30a7113793ee5b6bf1e5546c6dfc21d9682d9ffabfe9b17b4bab27ba2ac75c89",
+      "cspiceHeader": "cb507d162dce21ff523a8f7793ceac521b92a548732c1782bb109af59ad4aca4",
+      "cspiceSourceManifest": "54a50975a8ea536bd5fc18add2d2fe481c35aaba07bebc1bcc630b76ba8925f1"
+    },
+    "arm64": {
+      "runnerSource": "798b208f65d17f1bf1972cbe9ad17a1f08b8859baa3880d14e1796b841a89426",
+      "samples": "62192cde5fdecbf53307ed532da212156bc7dcc4beade08117a6bd75c1101d84",
+      "spk": "30a7113793ee5b6bf1e5546c6dfc21d9682d9ffabfe9b17b4bab27ba2ac75c89",
+      "cspiceHeader": "cb507d162dce21ff523a8f7793ceac521b92a548732c1782bb109af59ad4aca4",
+      "cspiceSourceManifest": "54a50975a8ea536bd5fc18add2d2fe481c35aaba07bebc1bcc630b76ba8925f1"
+    }
+  }
+}

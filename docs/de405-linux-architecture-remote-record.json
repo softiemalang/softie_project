@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "recordType": "de405-linux-architecture-remote-record",
+  "runId": "30748663327",
+  "head": "234969cad8a96a30386bfd9b115210d744b58716",
+  "ref": "refs/heads/main",
+  "workflow": ".github/workflows/de405-linux-architecture-evidence.yml",
+  "jobs": {
+    "provenance": "success",
+    "compare (x64, ubuntu-24.04)": "success",
+    "compare (arm64, ubuntu-24.04-arm)": "success",
+    "analyze": "success"
+  },
+  "sampleAsset": {
+    "url": "https://github.com/softiemalang/softie_project/releases/download/de405-sample-corpus-62192cde/de405-sample-corpus-62192cde.zip",
+    "archiveBytes": 280781846,
+    "archiveSha256": "5fb3f6f7c5a7b20f9081d1f16a6f000c00df8594c88606344a9c8d833b9aa1c8"
+  },
+  "officialInputs": {
+    "cspiceArchiveSha256": "60a95b51a6472f1afe7e40d77ebdee43c12bb5b8823676ccc74692ddfede06ce",
+    "spkSha256": "30a7113793ee5b6bf1e5546c6dfc21d9682d9ffabfe9b17b4bab27ba2ac75c89"
+  },
+  "summary": {
+    "path": "docs/de405-linux-architecture-summary.json",
+    "sha256": "895b90143aff1cc101587ad33e60a6694da5ea0c9697b2e996f78a238a2dcb47",
+    "markdownSha256": "f5eeb7ebdb370e7496dd76c4bafb13033b9346d7308e4ab391644cca07f63bfe",
+    "classification": "blocked_reproducible_linux_userspace_unavailable",
+    "sampleCount": 150671,
+    "differingRows": 0,
+    "differingComponents": 0,
+    "firstDivergence": null
+  },
+  "artifactRetention": {
+    "rawArchitectureArtifacts": "GitHub Actions retention-days: 14; downloaded copy retained outside repository",
+    "summaryArtifact": "GitHub Actions retention-days: 14; deterministic summary persisted in repository"
+  }
+}

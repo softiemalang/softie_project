@@ -7,15 +7,17 @@ canonical-v2 CSPICE runner on `ubuntu-24.04` (`x64`) and
 does not install packages, use emulation, access secrets, or modify production
 data.
 
-Before dispatching, provide an immutable public GitHub asset URL and its
-SHA-256. The archive must contain the sample JSONL corpus, `de405.bsp`, and
-the full CSPICE N0067 source tree (`src/cspice` and `src/csupport`) under the
-workflow input paths. The workflow builds CSPICE on each runner; prebuilt
-architecture-specific libraries are not accepted. It is downloaded without a token,
-restricted to GitHub asset hosts, and verified independently on both runners.
-This preserves the `contents: read`-only and no-secret contract. Raw per-arch
-JSONL and provenance remain short-lived Actions artifacts; the collector emits
-only a small JSON/Markdown summary artifact.
+Before dispatching, provide the existing immutable public GitHub sample-only
+asset URL and its SHA-256. The archive contains only the project-generated
+sample JSONL corpus and its manifest. Each architecture job independently
+acquires the official CSPICE N0067 source and `de405.bsp` directly from NAIF,
+verifies their fixed hashes, and builds CSPICE on that runner; prebuilt
+architecture-specific libraries are not accepted. The sample asset is
+downloaded without a token, restricted to GitHub asset hosts, and verified
+independently on both runners. This preserves the `contents: read`-only and
+no-secret contract. Raw per-arch JSONL and provenance remain short-lived
+Actions artifacts; the collector emits only a small JSON/Markdown summary
+artifact.
 
 The analyzer rejects mismatched source/input hashes, userspace/compiler/flags,
 locale, timezone, wrapper, serialization, row identity, or result provenance
@@ -28,3 +30,10 @@ available in the local environment. The workflow instead records the exact
 GitHub runner image identity (`ImageOS`/`ImageVersion`) and fails closed unless
 both architectures report the same Ubuntu userspace, compiler family/version,
 libc identity, flags, locale, timezone, and source/input hashes.
+
+The successful dispatch `30748663327` was materialized into
+`de405-linux-architecture-summary.json` and `.md` after byte-identical local
+reanalyzer verification. Its fail-closed classification is
+`blocked_reproducible_linux_userspace_unavailable`: the x64 and arm64 jobs
+used different GitHub image identities, so architecture sensitivity is not
+claimed. The raw per-architecture artifacts remain outside the repository.

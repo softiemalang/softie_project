@@ -1,5 +1,6 @@
 import test from 'node:test'
 import assert from 'node:assert/strict'
+import { createHash } from 'node:crypto'
 import { mkdtemp, mkdir, writeFile, readFile } from 'node:fs/promises'
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
@@ -35,4 +36,19 @@ test('workflow contract and deterministic fixture compare', async () => {
   await run('node', ['scripts/check-de405-linux-architecture-evidence.mjs', '--input', summary], { cwd: root })
   assert.equal(await readFile(summary, 'utf8'), await readFile(summary2, 'utf8'))
   assert.equal(await readFile(md, 'utf8'), await readFile(md2, 'utf8'))
+})
+
+test('persisted remote architecture summary has a checked identity record', async () => {
+  const summaryPath = join(root, 'docs/de405-linux-architecture-summary.json')
+  const markdownPath = join(root, 'docs/de405-linux-architecture-summary.md')
+  const record = JSON.parse(await readFile(join(root, 'docs/de405-linux-architecture-remote-record.json'), 'utf8'))
+  const summaryBytes = await readFile(summaryPath)
+  const markdownBytes = await readFile(markdownPath)
+  const summary = JSON.parse(summaryBytes)
+  assert.equal(summary.classification, 'blocked_reproducible_linux_userspace_unavailable')
+  assert.equal(summary.sampleCount, 150671)
+  assert.equal(record.runId, '30748663327')
+  assert.equal(record.head, '234969cad8a96a30386bfd9b115210d744b58716')
+  assert.equal(record.summary.sha256, createHash('sha256').update(summaryBytes).digest('hex'))
+  assert.equal(record.summary.markdownSha256, createHash('sha256').update(markdownBytes).digest('hex'))
 })
