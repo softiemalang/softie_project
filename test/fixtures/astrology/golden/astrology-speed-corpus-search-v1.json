@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "astrology-speed-corpus-search-v1",
+  "search": {
+    "startJd": 2451545,
+    "endJd": 2462502.5,
+    "coarseStepDays": 10,
+    "refinement": {
+      "halfWidthDays": 10,
+      "stepDays": 0.1
+    },
+    "selection": "first coarse retrograde sign-change bracket; stationary minimum absolute speed after local refinement",
+    "tdbMinusTt": "explicit deterministic periodic fixture at every query epoch"
+  },
+  "cases": {
+    "mercury": {
+      "coarseBracket": {
+        "jd": 2451605,
+        "speed": -1.0414082940235967
+      },
+      "selectedStationary": {
+        "jd": 2451596.000000001,
+        "speed": 0.004873216495270706
+      },
+      "selectedRetrograde": {
+        "jd": 2451596.100000001,
+        "speed": -0.012089983608186125
+      },
+      "refinedSampleCount": 200
+    },
+    "mars": {
+      "coarseBracket": {
+        "jd": 2452045,
+        "speed": -0.04814337359632708
+      },
+      "selectedStationary": {
+        "jd": 2452041.200000006,
+        "speed": -0.00040070852639986434
+      },
+      "selectedRetrograde": {
+        "jd": 2452041.200000006,
+        "speed": -0.00040070852639986434
+      },
+      "refinedSampleCount": 200
+    }
+  }
+}
