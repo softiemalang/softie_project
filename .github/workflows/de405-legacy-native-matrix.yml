@@ -130,7 +130,7 @@ jobs:
             -e DE405_TOOLCHAIN_LOCK_FILE=/runner-temp/de405-toolchain-setup/toolchain-lock.json \
             "$image_id" sh -euxc '
               test "$(uname -m)" = x86_64
-              test "$(git -C /workspace rev-parse HEAD)" = "$GITHUB_SHA"
+              test "$(git -c safe.directory=/workspace -C /workspace rev-parse HEAD)" = "$GITHUB_SHA"
               node --version; gcc --version; clang --version; musl-gcc --version || true; ld --version
               mkdir -p /runner-temp/de405-built /runner-temp/de405-output/${{ matrix.id }}
               node /workspace/scripts/build-de405-linux-cspice.mjs --cspice /runner-temp/de405-inputs/cspice/N0067 --output /runner-temp/de405-built/N0067
