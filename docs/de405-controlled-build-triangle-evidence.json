@@ -1,0 +1,625 @@
+{
+  "schemaVersion": 1,
+  "recordType": "de405_controlled_build_triangle_evidence",
+  "storageClass": "repository_provenance_manifest",
+  "baselineHead": "83220c05e88c9f13a88c6c66502974928125bd9f",
+  "finalClassification": "blocked_linux_arm64_control_unavailable",
+  "materialization": {
+    "generator": {
+      "path": "scripts/materialize-de405-controlled-build-triangle.mjs",
+      "sizeBytes": 6321,
+      "sha256": "f29dd01a9b342e5b6ff11b4259230607df5e1985354968da642534d21fff6d4d"
+    },
+    "deterministicSerialization": "JSON.stringify with two-space indentation and final LF",
+    "machineSpecificFields": "normalized out of this artifact",
+    "productionActivation": false,
+    "productionRoutingChanged": false,
+    "toleranceChanged": false
+  },
+  "commonInput": {
+    "sourceIdentities": {
+      "integration": {
+        "path": "tools/de405-type2-strategy-c-integration/src/de405_type2_strategy_c_integration.c",
+        "sizeBytes": 1981,
+        "sha256": "bc1b95e5bcedaab78a89f8920e14ea12afc2b2d828510841b10d85b9aa32ec3d"
+      },
+      "candidate": {
+        "path": "tools/de405-type2-experimental-shadow/src/de405_type2_candidate.c",
+        "sizeBytes": 930,
+        "sha256": "90ae376b87e440670b66e3b928fe602512a22748ddc3eb6d67967e7555844859"
+      },
+      "corpus": {
+        "path": "artifacts/de405-jpl-cspice-residual-sweep.samples.jsonl",
+        "sizeBytes": 280780522,
+        "sha256": "62192cde5fdecbf53307ed532da212156bc7dcc4beade08117a6bd75c1101d84"
+      },
+      "kernel": {
+        "path": "external-kernel/de405.bsp",
+        "sizeBytes": 10898432,
+        "sha256": "30a7113793ee5b6bf1e5546c6dfc21d9682d9ffabfe9b17b4bab27ba2ac75c89"
+      },
+      "cspiceArchive": {
+        "path": "external-cspice/N0067/lib/cspice.a",
+        "sizeBytes": 6991568,
+        "sha256": "f3a1adf1742c7a63c390834f4227936a36e3c18dd78bf427bc96a04b703946f3"
+      },
+      "csupportArchive": {
+        "path": "external-cspice/N0067/lib/csupport.a",
+        "sizeBytes": 888144,
+        "sha256": "6f293e8a096860279a349743b420ad53b323c3df13cab8b4befbd47bfec2197b"
+      }
+    },
+    "corpusRowCount": 150671,
+    "stateComponentCount": 6,
+    "inputOrder": "samples.jsonl order; sampleId and queryEtHex identity checked",
+    "wrapper": "same C integration runner and JSONL writer for Apple matrix; existing Linux evidence retained separately"
+  },
+  "environments": {
+    "macosArm64": {
+      "status": "executed",
+      "osIdentity": "darwin-arm64",
+      "architecture": "arm64",
+      "execution": "native host",
+      "emulation": false,
+      "compilerFamilyControl": "same compiler command and version for all variants",
+      "variants": [
+        {
+          "id": "apple-clang-o0-contract-off",
+          "status": "executed",
+          "target": "arm64-darwin",
+          "compiler": {
+            "command": "cc",
+            "version": [
+              "Apple clang version 21.0.0 (clang-2100.1.1.101)",
+              "Target: arm64-apple-darwin25.6.0",
+              "Thread model: posix",
+              "InstalledDir: /Library/Developer/CommandLineTools/usr/bin"
+            ]
+          },
+          "flags": [
+            "-std=c11",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-DDE405_TYPE2_STRATEGY_C",
+            "-I<CSPICE_N0067>/include",
+            "-O0",
+            "-ffp-contract=off"
+          ],
+          "binary": {
+            "path": "artifacts/de405-controlled-build-matrix/build/apple-clang-o0-contract-off/runner",
+            "sizeBytes": 1343848,
+            "sha256": "4808404754972bff15efaec31b6e0672195994b560315345b5500ba1544b8642"
+          },
+          "output": {
+            "path": "artifacts/de405-controlled-build-matrix/apple-clang-o0-contract-off.jsonl",
+            "sizeBytes": 79915561,
+            "sha256": "07b51b47dee7042056f7b127886e93f7f0d84283348d5a941f8be27ca65ac08b"
+          }
+        },
+        {
+          "id": "apple-clang-o2-contract-off",
+          "status": "executed",
+          "target": "arm64-darwin",
+          "compiler": {
+            "command": "cc",
+            "version": [
+              "Apple clang version 21.0.0 (clang-2100.1.1.101)",
+              "Target: arm64-apple-darwin25.6.0",
+              "Thread model: posix",
+              "InstalledDir: /Library/Developer/CommandLineTools/usr/bin"
+            ]
+          },
+          "flags": [
+            "-std=c11",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-DDE405_TYPE2_STRATEGY_C",
+            "-I<CSPICE_N0067>/include",
+            "-O2",
+            "-ffp-contract=off"
+          ],
+          "binary": {
+            "path": "artifacts/de405-controlled-build-matrix/build/apple-clang-o2-contract-off/runner",
+            "sizeBytes": 1344648,
+            "sha256": "4ba597f02103ff5e2af68c224e982670955ba5fb70b14150db33cc567adbc281"
+          },
+          "output": {
+            "path": "artifacts/de405-controlled-build-matrix/apple-clang-o2-contract-off.jsonl",
+            "sizeBytes": 79915561,
+            "sha256": "07b51b47dee7042056f7b127886e93f7f0d84283348d5a941f8be27ca65ac08b"
+          }
+        },
+        {
+          "id": "apple-clang-o2-contract-fast",
+          "status": "executed",
+          "target": "arm64-darwin",
+          "compiler": {
+            "command": "cc",
+            "version": [
+              "Apple clang version 21.0.0 (clang-2100.1.1.101)",
+              "Target: arm64-apple-darwin25.6.0",
+              "Thread model: posix",
+              "InstalledDir: /Library/Developer/CommandLineTools/usr/bin"
+            ]
+          },
+          "flags": [
+            "-std=c11",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-DDE405_TYPE2_STRATEGY_C",
+            "-I<CSPICE_N0067>/include",
+            "-O2",
+            "-ffp-contract=fast"
+          ],
+          "binary": {
+            "path": "artifacts/de405-controlled-build-matrix/build/apple-clang-o2-contract-fast/runner",
+            "sizeBytes": 1344648,
+            "sha256": "dd199425ab78af5fd866495e1fd52bccd625c2281c824b850b7083c828238672"
+          },
+          "output": {
+            "path": "artifacts/de405-controlled-build-matrix/apple-clang-o2-contract-fast.jsonl",
+            "sizeBytes": 79529892,
+            "sha256": "a915b02429f8e3d92dac8cdc55b7eab7d81c3b2ccb42bf3c8fd7fe5ef9a44802"
+          }
+        },
+        {
+          "id": "apple-clang-o2-fast-math",
+          "status": "executed",
+          "target": "arm64-darwin",
+          "compiler": {
+            "command": "cc",
+            "version": [
+              "Apple clang version 21.0.0 (clang-2100.1.1.101)",
+              "Target: arm64-apple-darwin25.6.0",
+              "Thread model: posix",
+              "InstalledDir: /Library/Developer/CommandLineTools/usr/bin"
+            ]
+          },
+          "flags": [
+            "-std=c11",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-DDE405_TYPE2_STRATEGY_C",
+            "-I<CSPICE_N0067>/include",
+            "-O2",
+            "-ffp-contract=fast",
+            "-ffast-math",
+            "-Wno-nan-infinity-disabled"
+          ],
+          "binary": {
+            "path": "artifacts/de405-controlled-build-matrix/build/apple-clang-o2-fast-math/runner",
+            "sizeBytes": 1344728,
+            "sha256": "fbfdcfe0363a2c9991028fb1a08df447e60d977e8ed1cc53274df9078f6f3668"
+          },
+          "output": {
+            "path": "artifacts/de405-controlled-build-matrix/apple-clang-o2-fast-math.jsonl",
+            "sizeBytes": 79519040,
+            "sha256": "9988f735ade8a062d43d1ce7502de1e7fc798d34162730852166622a895cab4f"
+          }
+        }
+      ],
+      "analysis": {
+        "schemaVersion": 1,
+        "recordType": "de405_controlled_build_matrix_analysis",
+        "baselineHead": "83220c05e88c9f13a88c6c66502974928125bd9f",
+        "sourceIdentities": {
+          "integration": {
+            "path": "tools/de405-type2-strategy-c-integration/src/de405_type2_strategy_c_integration.c",
+            "sizeBytes": 1981,
+            "sha256": "bc1b95e5bcedaab78a89f8920e14ea12afc2b2d828510841b10d85b9aa32ec3d"
+          },
+          "candidate": {
+            "path": "tools/de405-type2-experimental-shadow/src/de405_type2_candidate.c",
+            "sizeBytes": 930,
+            "sha256": "90ae376b87e440670b66e3b928fe602512a22748ddc3eb6d67967e7555844859"
+          },
+          "corpus": {
+            "path": "artifacts/de405-jpl-cspice-residual-sweep.samples.jsonl",
+            "sizeBytes": 280780522,
+            "sha256": "62192cde5fdecbf53307ed532da212156bc7dcc4beade08117a6bd75c1101d84"
+          },
+          "kernel": {
+            "path": "external-kernel/de405.bsp",
+            "sizeBytes": 10898432,
+            "sha256": "30a7113793ee5b6bf1e5546c6dfc21d9682d9ffabfe9b17b4bab27ba2ac75c89"
+          },
+          "cspiceArchive": {
+            "path": "external-cspice/N0067/lib/cspice.a",
+            "sizeBytes": 6991568,
+            "sha256": "f3a1adf1742c7a63c390834f4227936a36e3c18dd78bf427bc96a04b703946f3"
+          },
+          "csupportArchive": {
+            "path": "external-cspice/N0067/lib/csupport.a",
+            "sizeBytes": 888144,
+            "sha256": "6f293e8a096860279a349743b420ad53b323c3df13cab8b4befbd47bfec2197b"
+          }
+        },
+        "matrixCompleteness": {
+          "expectedVariantCount": 4,
+          "executedVariantCount": 4,
+          "rowCountPerVariant": [
+            {
+              "id": "apple-clang-o0-contract-off",
+              "count": 150671
+            },
+            {
+              "id": "apple-clang-o2-contract-off",
+              "count": 150671
+            },
+            {
+              "id": "apple-clang-o2-contract-fast",
+              "count": 150671
+            },
+            {
+              "id": "apple-clang-o2-fast-math",
+              "count": 150671
+            }
+          ],
+          "identityChecked": true
+        },
+        "nonArithmeticControls": {
+          "wrapper": "same C source and CLI",
+          "serialization": "same JSONL writer",
+          "locale": "C.UTF-8",
+          "executionOrder": "variant declaration order; one process per variant",
+          "status": "held_constant_and_identity_checked"
+        },
+        "comparisons": [
+          {
+            "baseline": "apple-clang-o0-contract-off",
+            "variant": "apple-clang-o2-contract-off",
+            "rowCount": 150671,
+            "differingRows": 0,
+            "differingComponents": 0,
+            "firstDivergence": null,
+            "fullSweep": {
+              "maxUlp": 0,
+              "ulpQuantiles": {
+                "p50": 0,
+                "p95": 0,
+                "p99": 0,
+                "p999": 0
+              },
+              "maxAbsoluteDifference": 0,
+              "absoluteQuantiles": {
+                "p50": 0,
+                "p95": 0,
+                "p99": 0,
+                "p999": 0
+              }
+            },
+            "classification": "no_difference_observed"
+          },
+          {
+            "baseline": "apple-clang-o0-contract-off",
+            "variant": "apple-clang-o2-contract-fast",
+            "rowCount": 150671,
+            "differingRows": 0,
+            "differingComponents": 0,
+            "firstDivergence": null,
+            "fullSweep": {
+              "maxUlp": 0,
+              "ulpQuantiles": {
+                "p50": 0,
+                "p95": 0,
+                "p99": 0,
+                "p999": 0
+              },
+              "maxAbsoluteDifference": 0,
+              "absoluteQuantiles": {
+                "p50": 0,
+                "p95": 0,
+                "p99": 0,
+                "p999": 0
+              }
+            },
+            "classification": "no_difference_observed"
+          },
+          {
+            "baseline": "apple-clang-o0-contract-off",
+            "variant": "apple-clang-o2-fast-math",
+            "rowCount": 150671,
+            "differingRows": 0,
+            "differingComponents": 0,
+            "firstDivergence": null,
+            "fullSweep": {
+              "maxUlp": 0,
+              "ulpQuantiles": {
+                "p50": 0,
+                "p95": 0,
+                "p99": 0,
+                "p999": 0
+              },
+              "maxAbsoluteDifference": 0,
+              "absoluteQuantiles": {
+                "p50": 0,
+                "p95": 0,
+                "p99": 0,
+                "p999": 0
+              }
+            },
+            "classification": "no_difference_observed"
+          }
+        ],
+        "expectedClassification": "compiler_effect_not_observed_os_architecture_remains",
+        "productionRoutingChanged": false,
+        "toleranceChanged": false,
+        "unresolved": [
+          "compiler family is not separated because only Apple clang 21 is installed",
+          "OS and architecture are fixed to Apple arm64"
+        ]
+      }
+    },
+    "linuxArm64": {
+      "status": "blocked",
+      "osIdentity": "linux-arm64",
+      "architecture": "arm64",
+      "execution": "unavailable in current host",
+      "emulation": false,
+      "availability": {
+        "docker": false,
+        "podman": false,
+        "qemu": false,
+        "lima": false,
+        "nativeLinux": false
+      },
+      "reason": "No installed Linux arm64 runtime, container engine, VM, or QEMU executable was available; no installation or external download was performed."
+    },
+    "linuxX8664": {
+      "status": "existing_external_execution",
+      "osIdentity": "alpine-linux-3.22.1-musl",
+      "architecture": "x86_64",
+      "execution": "QEMU x86_64 emulation on Darwin arm64",
+      "emulation": true,
+      "provenance": {
+        "source": {
+          "path": "artifacts/de405-cross-platform-evidence/linux-x86_64-comparison.json",
+          "sizeBytes": 11407,
+          "sha256": "0a673e8aa0f292d56e773eec9cd9d7952de04f63f12064154e7fcfe45f16a6d4"
+        },
+        "environment": {
+          "distribution": "Alpine Linux 3.22.1",
+          "kernel": "6.12.38-0-lts",
+          "architecture": "x86_64",
+          "execution": "QEMU x86_64 emulation on Darwin arm64",
+          "nativeHardware": false,
+          "kernelCommandLine": "-m 2048 -smp 4 -nic user,model=e1000"
+        },
+        "compilerRuns": [
+          {
+            "compiler": "GCC",
+            "version": "14.2.0",
+            "runnerBinarySha256": "c48746f59fd7ac8c01155138b81fcd5b1d3b3eef3bfc29f7b8225501a89f23cc",
+            "runs": [
+              "875f16751128a999f72e89868d239e280bb4dce1590bb48623a808f833809215",
+              "875f16751128a999f72e89868d239e280bb4dce1590bb48623a808f833809215"
+            ],
+            "runsByteIdentical": true,
+            "candidateShadowEqualRows": 150671,
+            "candidateShadowDifferentRows": 0,
+            "baselineCandidatePairSameRows": 142259,
+            "baselineCandidatePairDifferentRows": 8412,
+            "libc": "musl libc (x86_64)",
+            "buildFlags": {
+              "cspice": "-m64 -std=gnu89 -O2 -fPIC",
+              "shadowBaseline": "-m64 -std=c11 -O2 -Wall -Wextra -Werror",
+              "shadowCandidate": "-m64 -std=c11 -O2 -Wall -Wextra -Werror -DDE405_TYPE2_STRATEGY_C -ffp-contract=off"
+            }
+          },
+          {
+            "compiler": "Clang",
+            "version": "20.1.8",
+            "runnerBinarySha256": "88b7c956db1699e0f90420e87600bb42c6868ab1578543905d28f3db1db50551",
+            "runs": [
+              "875f16751128a999f72e89868d239e280bb4dce1590bb48623a808f833809215",
+              "875f16751128a999f72e89868d239e280bb4dce1590bb48623a808f833809215"
+            ],
+            "runsByteIdentical": true,
+            "rawOutputMatchesGcc": true,
+            "libc": "musl libc (x86_64)",
+            "buildFlags": {
+              "shadowBaseline": "-m64 -std=c11 -O2 -Wall -Wextra -Werror",
+              "shadowCandidate": "-m64 -std=c11 -O2 -Wall -Wextra -Werror -DDE405_TYPE2_STRATEGY_C -ffp-contract=off"
+            },
+            "linkageLimitation": "The Clang shadow runner was linked with the GCC-built CSPICE and csupport archives."
+          }
+        ],
+        "exactness": {
+          "appleReference": {
+            "baselineExact": 133392,
+            "baselineNonExact": 17279,
+            "candidateExact": 150671,
+            "candidateRegressed": 0
+          },
+          "linuxGcc": {
+            "rows": 150671,
+            "baselineExact": 88646,
+            "baselineNonExact": 62025,
+            "candidateExact": 95882,
+            "candidateRegressed": 54789
+          },
+          "linuxClang": {
+            "rows": 150671,
+            "baselineExact": 88646,
+            "baselineNonExact": 62025,
+            "candidateExact": 95882,
+            "candidateRegressed": 54789,
+            "derivedFromByteIdenticalGccOutput": true
+          },
+          "observedLinuxCandidateStateBitsByKey": {
+            "component:velocityX": [
+              "0xc19774d5ba00a161",
+              "0x412de066477ed000",
+              "0xc15cd012ebd9ffec",
+              "0x4029a24420690045",
+              "0x4026452ee8a95a2c",
+              "0x401aa27c64e0879a"
+            ],
+            "component:velocityY": [
+              "0x4177276eae75f23f",
+              "0xc196068a47b70542",
+              "0xc18129bc12cc5f9a",
+              "0xc03c9b999ca26b33",
+              "0x4010c845287074ed",
+              "0x401f6b1795886b34"
+            ],
+            "component:velocityZ": [
+              "0xc1988efda7762109",
+              "0x4179964855206892",
+              "0x414f0182526df5d0",
+              "0x4033c125436c8dc6",
+              "0xc01a8582d9d8698a",
+              "0xc014e21d37d39330"
+            ],
+            "epoch:exact_knot": [
+              "0x41828e0de83ea698",
+              "0xc199451c13ca4b9d",
+              "0xc1833d698d64b2f4",
+              "0x402da2eedd826cc5",
+              "0xc03761490f74e175",
+              "0xc02af028405bee80"
+            ],
+            "epoch:next_down_knot": [
+              "0x418938734b705932",
+              "0xc193a539b2d3b931",
+              "0xc17d565db295495e",
+              "0xc03e01df0dc6e482",
+              "0x4004711448bfe318",
+              "0x4018acd010574588"
+            ],
+            "epoch:next_up_knot": [
+              "0x418938734b7051b4",
+              "0xc193a539b2d3b8de",
+              "0xc17d565db2954648",
+              "0xc03e01df0dc6df91",
+              "0x4004711448bf1e24",
+              "0x4018acd010570d43"
+            ],
+            "epoch:record_midpoint": [
+              "0x41a7e1df9af3f388",
+              "0xc17cfd42fa727ced",
+              "0xc1729d70b962af66",
+              "0x4015e92964480c96",
+              "0x4051d30962fa043f",
+              "0x4041aee99855cdae"
+            ],
+            "epoch:record_quarter": [
+              "0xc1988efda7762109",
+              "0x4179964855206892",
+              "0x414f0182526df5d0",
+              "0x4033c125436c8dc6",
+              "0xc01a8582d9d8698a",
+              "0xc014e21d37d39330"
+            ],
+            "epoch:record_three_quarter": [
+              "0xc19774d5ba00a161",
+              "0x412de066477ed000",
+              "0xc15cd012ebd9ffec",
+              "0x4029a24420690045",
+              "0x4026452ee8a95a2c",
+              "0x401aa27c64e0879a"
+            ],
+            "max-ulp": [
+              "0xc118be51b7711400",
+              "0x40baf7c624fa5000",
+              "0xc0b1089b4b464800",
+              "0xbed60db796400000",
+              "0xbfed963951995e20",
+              "0xbfd38757e04850e0"
+            ],
+            "operation:type2_evaluator_leg_state": [
+              "0xc19774d5ba00a161",
+              "0x412de066477ed000",
+              "0xc15cd012ebd9ffec",
+              "0x4029a24420690045",
+              "0x4026452ee8a95a2c",
+              "0x401aa27c64e0879a"
+            ],
+            "relation:exact_knot_right_record_selected": [
+              "0x41828e0de83ea698",
+              "0xc199451c13ca4b9d",
+              "0xc1833d698d64b2f4",
+              "0x402da2eedd826cc5",
+              "0xc03761490f74e175",
+              "0xc02af028405bee80"
+            ],
+            "relation:opposite_sides_of_shared_knot": [
+              "0x418938734b705932",
+              "0xc193a539b2d3b931",
+              "0xc17d565db295495e",
+              "0xc03e01df0dc6e482",
+              "0x4004711448bfe318",
+              "0x4018acd010574588"
+            ],
+            "relation:same_logical_interval": [
+              "0xc19774d5ba00a161",
+              "0x412de066477ed000",
+              "0xc15cd012ebd9ffec",
+              "0x4029a24420690045",
+              "0x4026452ee8a95a2c",
+              "0x401aa27c64e0879a"
+            ]
+          }
+        },
+        "mismatchSets": {
+          "idHashDefinition": "sorted sampleId values joined by LF and terminated by LF; SHA-256",
+          "emptySetSha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+          "baselineNonExact": {
+            "appleCount": 17279,
+            "linuxCount": 62025,
+            "intersectionCount": 17279,
+            "intersectionSha256": "2fbdd2aeab97a3cb46383b9fd03326c20f92809409b95dcf3913dcbe0a2fc289",
+            "onlyAppleCount": 0,
+            "onlyAppleSha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+            "onlyLinuxCount": 44746,
+            "onlyLinuxSha256": "f20cb23999007be07f828bdd5edda185e45b0cd1410dc84191e991a5b7fe1a80"
+          },
+          "candidateNonExact": {
+            "appleCount": 0,
+            "linuxCount": 54789,
+            "intersectionCount": 0,
+            "intersectionSha256": "01ba4719c80b6fe911b091a7c05124b64eeece96409c058ef8f9805daca546b",
+            "onlyAppleCount": 0,
+            "onlyAppleSha256": "01ba4719c80b6fe911b091a7c05124b64eeece96409c058ef8f9805daca546b",
+            "onlyLinuxCount": 54789,
+            "onlyLinuxSha256": "014ef1566856218deaaf00fdfe3b12ade8ca864ab6be90d3e86fc606b1d53cf2"
+          }
+        }
+      }
+    }
+  },
+  "pairs": {
+    "linuxArm64VsLinuxX8664": {
+      "status": "blocked",
+      "classification": "blocked_linux_arm64_control_unavailable",
+      "firstDivergence": null,
+      "fullSweep": null,
+      "reason": "Linux arm64 control is unavailable, so architecture cannot be isolated under the same Linux image/compiler/libc/runtime."
+    },
+    "macosArm64VsLinuxArm64": {
+      "status": "blocked",
+      "classification": "blocked_linux_arm64_control_unavailable",
+      "firstDivergence": null,
+      "fullSweep": null,
+      "reason": "Linux arm64 control is unavailable, so OS/environment cannot be isolated while holding arm64 constant."
+    },
+    "macosArm64VsExistingLinuxX8664": {
+      "status": "observed_but_mixed",
+      "classification": "no_controlled_difference_observed_prior_provenance_requires_recheck",
+      "firstDivergence": null,
+      "fullSweep": null,
+      "reason": "Existing Linux x86_64 evidence records a reproducible mismatch, but OS, architecture, compiler family/version, libc, and execution/emulation differ; paired raw state streams for a new first-divergence distribution are not available in that artifact."
+    }
+  },
+  "unresolvedVariables": [
+    "Linux arm64 execution",
+    "same Linux image across arm64 and x86_64",
+    "same compiler family/version on Linux arm64 and x86_64",
+    "pairwise raw-state first divergence for the existing Apple/Linux-x86_64 record"
+  ],
+  "existingEvidenceClassification": "recorded_comparison_mismatch"
+}
