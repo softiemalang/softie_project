@@ -1,0 +1,123 @@
+name: DE405 Linux architecture evidence
+
+on:
+  workflow_dispatch:
+    inputs:
+      input_bundle_url:
+        description: Immutable public GitHub asset URL for the DE405 input bundle
+        required: true
+        type: string
+      input_bundle_sha256:
+        description: SHA-256 of the input bundle archive
+        required: true
+        type: string
+      samples_path:
+        required: false
+        default: inputs/de405-jpl-cspice-residual-sweep.samples.jsonl
+        type: string
+      spk_path:
+        required: false
+        default: inputs/de405.bsp
+        type: string
+      cspice_path:
+        required: false
+        default: inputs/cspice
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  compare:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - arch: x64
+            runner: ubuntu-24.04
+          - arch: arm64
+            runner: ubuntu-24.04-arm
+    runs-on: ${{ matrix.runner }}
+    env:
+      LC_ALL: C.UTF-8
+      LANG: C.UTF-8
+      TZ: UTC
+      CC: gcc
+      DE405_EXPECTED_COMPILER: gcc
+      DE405_CFLAGS: -std=c11 -O2 -ffp-contract=off -fno-fast-math -Wall -Wextra -Werror
+      DE405_CSPICE_CFLAGS: -std=c89 -O2 -ffp-contract=off -fno-fast-math -fPIC -DNON_UNIX_STDIO
+      DE405_EXPECTED_HEAD: 68442c0b2748245e58fe817597f79958af16d185
+      DE405_EXPECTED_ROW_COUNT: 150671
+      DE405_INPUT_BUNDLE_URL: ${{ inputs.input_bundle_url }}
+      DE405_INPUT_BUNDLE_SHA256: ${{ inputs.input_bundle_sha256 }}
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+      - name: Fetch and verify immutable input bundle
+        shell: bash
+        run: |
+          set -euo pipefail
+          case "$DE405_INPUT_BUNDLE_URL" in
+            https://github.com/*|https://objects.githubusercontent.com/*) ;;
+            *) echo 'input bundle URL must be an approved public GitHub asset host' >&2; exit 1 ;;
+          esac
+          mkdir -p "${RUNNER_TEMP}/de405-inputs"
+          curl --fail --location --proto '=https' --tlsv1.2 --output "${RUNNER_TEMP}/de405-input-bundle.zip" "$DE405_INPUT_BUNDLE_URL"
+          printf '%s  %s\n' "$DE405_INPUT_BUNDLE_SHA256" "${RUNNER_TEMP}/de405-input-bundle.zip" | sha256sum --check --status
+          unzip -q "${RUNNER_TEMP}/de405-input-bundle.zip" -d "${RUNNER_TEMP}/de405-inputs"
+          command -v gcc
+          test -f "${RUNNER_TEMP}/de405-inputs/${{ inputs.samples_path }}"
+          test -f "${RUNNER_TEMP}/de405-inputs/${{ inputs.spk_path }}"
+          test -f "${RUNNER_TEMP}/de405-inputs/${{ inputs.cspice_path }}/N0067/include/SpiceUsr.h"
+          test -d "${RUNNER_TEMP}/de405-inputs/${{ inputs.cspice_path }}/N0067/src/cspice"
+          test -d "${RUNNER_TEMP}/de405-inputs/${{ inputs.cspice_path }}/N0067/src/csupport"
+      - name: Build CSPICE from immutable source
+        run: >-
+          node scripts/build-de405-linux-cspice.mjs
+          --cspice "${RUNNER_TEMP}/de405-inputs/${{ inputs.cspice_path }}/N0067"
+          --output "${RUNNER_TEMP}/de405-cspice-built/N0067"
+      - name: Run canonical-v2 sweep
+        run: >-
+          node scripts/run-de405-linux-architecture-evidence.mjs
+          --samples "${RUNNER_TEMP}/de405-inputs/${{ inputs.samples_path }}"
+          --spk "${RUNNER_TEMP}/de405-inputs/${{ inputs.spk_path }}"
+          --cspice "${RUNNER_TEMP}/de405-cspice-built/N0067"
+          --output "${RUNNER_TEMP}/de405-linux-output"
+          --arch "${{ matrix.arch }}" --runner "${{ matrix.runner }}"
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: de405-linux-architecture-${{ matrix.arch }}
+          path: ${{ runner.temp }}/de405-linux-output
+          if-no-files-found: error
+          retention-days: 14
+
+  analyze:
+    needs: compare
+    runs-on: ubuntu-24.04
+    env:
+      LC_ALL: C.UTF-8
+      LANG: C.UTF-8
+      TZ: UTC
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4.3.0
+        with:
+          name: de405-linux-architecture-x64
+          path: ${{ runner.temp }}/de405-linux/x64
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4.3.0
+        with:
+          name: de405-linux-architecture-arm64
+          path: ${{ runner.temp }}/de405-linux/arm64
+      - name: Analyze and materialize
+        run: |
+          set -euo pipefail
+          node scripts/analyze-de405-linux-architecture-evidence.mjs --x64 "${RUNNER_TEMP}/de405-linux/x64" --arm64 "${RUNNER_TEMP}/de405-linux/arm64" --output "${RUNNER_TEMP}/de405-linux-analysis.json"
+          node scripts/materialize-de405-linux-architecture-summary.mjs --input "${RUNNER_TEMP}/de405-linux-analysis.json" --json "${RUNNER_TEMP}/de405-linux-summary.json" --markdown "${RUNNER_TEMP}/de405-linux-summary.md"
+          node scripts/check-de405-linux-architecture-evidence.mjs --input "${RUNNER_TEMP}/de405-linux-summary.json"
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: de405-linux-architecture-summary
+          path: |
+            ${{ runner.temp }}/de405-linux-summary.json
+            ${{ runner.temp }}/de405-linux-summary.md
+          if-no-files-found: error
+          retention-days: 14
