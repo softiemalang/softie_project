@@ -67,6 +67,8 @@
     "audit:de405:production-route-shadow": "node scripts/audit-de405-production-route-shadow-fidelity.mjs",
     "analyze:de405:type2-shadow-remaining": "node scripts/analyze-de405-type2-shadow-remaining-mismatch.mjs",
     "check:de405:type2-shadow-determinism": "node scripts/check-de405-type2-shadow-determinism.mjs",
+    "materialize:de405:cross-platform-evidence": "node scripts/materialize-de405-cross-platform-evidence.mjs",
+    "check:de405:cross-platform-evidence": "node scripts/check-de405-cross-platform-evidence.mjs",
     "analyze:de405:type2-shadow-readiness": "node scripts/analyze-de405-type2-shadow-readiness.mjs",
     "check:de405:route-root-cause-determinism": "node scripts/check-de405-route-root-cause-determinism.mjs",
     "test:de405:artifacts": "node scripts/test-de405-artifacts.mjs",

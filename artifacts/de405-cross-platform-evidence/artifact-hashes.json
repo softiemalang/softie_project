@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "recordType": "de405_cross_platform_artifact_hashes",
+  "files": {
+    "manifest.json": {
+      "path": "manifest.json",
+      "sizeBytes": 2116,
+      "sha256": "b4a605725214dc00fcf2a880485b9a34b5b37cbc2e1f6e17db389ff931e1cbcb"
+    },
+    "breakdown.json": {
+      "path": "breakdown.json",
+      "sizeBytes": 5095,
+      "sha256": "a709db5fccd92ac353a13e1c7380546adf0633d629848a830801081b38fd0897"
+    },
+    "sentinels.json": {
+      "path": "sentinels.json",
+      "sizeBytes": 39444,
+      "sha256": "3c6afbed3044fc07300393df8e8b2e51109788642b2f40e42dd1c3a55007b608"
+    },
+    "environment.json": {
+      "path": "environment.json",
+      "sizeBytes": 818,
+      "sha256": "172e4d3a0f586250140c9d15ed31e1e43580922352a3f597cb47aa49b4cde249"
+    },
+    "check.mjs": {
+      "path": "check.mjs",
+      "sizeBytes": 63,
+      "sha256": "4f4040006b103150c608e4b5affbc78bf78e61d6626868ccf9df57e74248a849"
+    },
+    "non-exact-cases.jsonl": {
+      "path": "non-exact-cases.jsonl",
+      "sizeBytes": 30576873,
+      "sha256": "23392543bef5a2f958449ad8c105aa8fce56c07174fd559b24e00e0f9f183456"
+    }
+  }
+}

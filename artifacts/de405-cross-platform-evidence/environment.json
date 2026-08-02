@@ -1,0 +1,18 @@
+{
+  "schemaVersion": 1,
+  "recordType": "de405_cross_platform_environment",
+  "executionStatus": "local_only",
+  "platform": "darwin",
+  "architecture": "arm64",
+  "compiler": "cc",
+  "compilerVersion": "Apple clang version 21.0.0 (clang-2100.1.1.101)",
+  "nodeVersion": "v22.20.0",
+  "cspiceToolkit": "N0067",
+  "shadowBinary": {
+    "path": "tools/de405-type2-experimental-shadow/build/de405-type2-experimental-shadow",
+    "sizeBytes": 241696,
+    "sha256": "148bf449de74a9a6d3162660e6c9f1decf0b365a1808bc8cbe49c82a3913258e"
+  },
+  "compileProcedure": "DE405_SHADOW_PRODUCTION_FLAGS=1 npm run build:de405:type2-experimental-shadow",
+  "externalProcedure": "Set CSPICE_DIR and DE405_SPK, run the same npm entrypoint on Linux x86_64 with GCC or Clang, then run check.mjs; retain separate environment/hash records."
+}

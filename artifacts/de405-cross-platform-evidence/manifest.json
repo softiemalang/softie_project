@@ -1,0 +1,57 @@
+{
+  "schemaVersion": 1,
+  "recordType": "de405_cross_platform_evidence_manifest",
+  "productionActivation": false,
+  "status": "local_execution_only_external_execution_pending",
+  "corpus": {
+    "sampleCount": 150671,
+    "nonExactCount": 17279,
+    "samples": {
+      "path": "artifacts/de405-jpl-cspice-residual-sweep.samples.jsonl",
+      "sizeBytes": 280780522,
+      "sha256": "62192cde5fdecbf53307ed532da212156bc7dcc4beade08117a6bd75c1101d84"
+    },
+    "canonical": {
+      "path": "artifacts/de405-jpl-cspice-residual-sweep.cspice.jsonl",
+      "sizeBytes": 79915561,
+      "sha256": "07b51b47dee7042056f7b127886e93f7f0d84283348d5a941f8be27ca65ac08b"
+    },
+    "kernel": {
+      "path": "external-kernel/de405.bsp",
+      "sizeBytes": 10898432,
+      "sha256": "30a7113793ee5b6bf1e5546c6dfc21d9682d9ffabfe9b17b4bab27ba2ac75c89"
+    }
+  },
+  "source": {
+    "materializer": {
+      "path": "scripts/materialize-de405-cross-platform-evidence.mjs",
+      "sizeBytes": 16030,
+      "sha256": "b86b68377a603405e33ca326dd4d6fcd799ba1fbdb0049c22a4961a8dee559a5"
+    },
+    "normalizer": {
+      "path": "scripts/normalize-de405-strategy-c-canonical-route-shadow.mjs",
+      "sizeBytes": 2989,
+      "sha256": "fa3bd21aa570d55d8defe5f9ae38bfe5f31278bf40874e816f82a5e8cc7171b5"
+    }
+  },
+  "command": "npm run materialize:de405:cross-platform-evidence",
+  "inputOrder": "samples.jsonl order; all three streams identity-checked by sampleId/queryEtHex",
+  "classification": "exactly one JSONL record for every canonical-route baseline non-exact case; unresolved causes remain explicit",
+  "outputs": {
+    "nonExactCases": "non-exact-cases.jsonl",
+    "breakdown": "breakdown.json",
+    "sentinels": "sentinels.json",
+    "environment": "environment.json",
+    "checker": "check.mjs",
+    "artifactHashes": "artifact-hashes.json"
+  },
+  "externalExecution": {
+    "required": true,
+    "supported": [
+      "Linux x86_64 GCC",
+      "Linux x86_64 Clang"
+    ],
+    "status": "not_executed_in_this_environment",
+    "comparisonRule": "compare canonical JSON artifacts and hashes; do not merge platform results"
+  }
+}

@@ -1,0 +1,1590 @@
+{
+  "schemaVersion": 1,
+  "recordType": "de405_non_exact_sentinels",
+  "selection": "first deterministic row per key plus maximum ULP with sampleId tie-break",
+  "count": 14,
+  "sentinels": {
+    "component:velocityX": {
+      "schemaVersion": 1,
+      "recordType": "de405_non_exact_case",
+      "ordinal": 95,
+      "sampleId": "segment-0-record-31-record_three_quarter",
+      "input": {
+        "targetId": 1,
+        "centerId": 399,
+        "frameId": 1,
+        "segmentOrdinal": 0,
+        "recordIndex": 31,
+        "knotIndex": null,
+        "epochKind": "record_three_quarter",
+        "queryEtHex": "0xc1d73013f0000000",
+        "recordSelectionRelation": "same_logical_interval"
+      },
+      "routeComposition": {
+        "commonSuffixLegCount": 0,
+        "targetLegCount": 1,
+        "centerLegCount": 2,
+        "targetRouteLegCount": 1,
+        "centerRouteLegCount": 2
+      },
+      "baselineStateBits": [
+        "0xc19774d5ba00a161",
+        "0x412de066477ed000",
+        "0xc15cd012ebd9ffec",
+        "0x4029a24420690046",
+        "0x4026452ee8a95a2c",
+        "0x401aa27c64e0879a"
+      ],
+      "candidateStateBits": [
+        "0xc19774d5ba00a161",
+        "0x412de066477ed000",
+        "0xc15cd012ebd9ffec",
+        "0x4029a24420690045",
+        "0x4026452ee8a95a2c",
+        "0x401aa27c64e0879a"
+      ],
+      "referenceStateBits": [
+        "0xc19774d5ba00a161",
+        "0x412de066477ed000",
+        "0xc15cd012ebd9ffec",
+        "0x4029a24420690045",
+        "0x4026452ee8a95a2c",
+        "0x401aa27c64e0879a"
+      ],
+      "delta": [
+        0,
+        0,
+        0,
+        -1.7763568394002505e-15,
+        0,
+        0
+      ],
+      "ulpDistance": [
+        0,
+        0,
+        0,
+        1,
+        0,
+        0
+      ],
+      "maxUlpDistance": 1,
+      "firstDifferentComponent": "velocityX",
+      "sign": [
+        "zero",
+        "zero",
+        "zero",
+        "negative",
+        "zero",
+        "zero"
+      ],
+      "magnitude": [
+        "zero",
+        "zero",
+        "zero",
+        "tiny",
+        "zero",
+        "zero"
+      ],
+      "binary64": {
+        "zeroOrSubnormalComponents": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "negativeZeroComponents": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ]
+      },
+      "firstDivergence": {
+        "operation": "type2_evaluator_leg_state",
+        "chain": "center",
+        "body": 3,
+        "recordIndex": 15,
+        "component": "velocityX",
+        "componentIndex": 3
+      },
+      "classification": {
+        "primary": "canonical_route_recomposition_resolves_baseline_mismatch",
+        "causeStatus": "unresolved",
+        "evidence": "baseline/candidate share route identities; canonical-route shadow removes only the common target/center suffix from pair composition; this does not prove the original mismatch mechanism"
+      }
+    },
+    "component:velocityY": {
+      "schemaVersion": 1,
+      "recordType": "de405_non_exact_case",
+      "ordinal": 137,
+      "sampleId": "segment-0-record-45-record_three_quarter",
+      "input": {
+        "targetId": 1,
+        "centerId": 399,
+        "frameId": 1,
+        "segmentOrdinal": 0,
+        "recordIndex": 45,
+        "knotIndex": null,
+        "epochKind": "record_three_quarter",
+        "queryEtHex": "0xc1d70b29f0000000",
+        "recordSelectionRelation": "same_logical_interval"
+      },
+      "routeComposition": {
+        "commonSuffixLegCount": 0,
+        "targetLegCount": 1,
+        "centerLegCount": 2,
+        "targetRouteLegCount": 1,
+        "centerRouteLegCount": 2
+      },
+      "baselineStateBits": [
+        "0x4177276eae75f23f",
+        "0xc196068a47b70542",
+        "0xc18129bc12cc5f9a",
+        "0xc03c9b999ca26b33",
+        "0x4010c845287074ee",
+        "0x401f6b1795886b34"
+      ],
+      "candidateStateBits": [
+        "0x4177276eae75f23f",
+        "0xc196068a47b70542",
+        "0xc18129bc12cc5f9a",
+        "0xc03c9b999ca26b33",
+        "0x4010c845287074ed",
+        "0x401f6b1795886b34"
+      ],
+      "referenceStateBits": [
+        "0x4177276eae75f23f",
+        "0xc196068a47b70542",
+        "0xc18129bc12cc5f9a",
+        "0xc03c9b999ca26b33",
+        "0x4010c845287074ed",
+        "0x401f6b1795886b34"
+      ],
+      "delta": [
+        0,
+        0,
+        0,
+        0,
+        -8.881784197001252e-16,
+        0
+      ],
+      "ulpDistance": [
+        0,
+        0,
+        0,
+        0,
+        1,
+        0
+      ],
+      "maxUlpDistance": 1,
+      "firstDifferentComponent": "velocityY",
+      "sign": [
+        "zero",
+        "zero",
+        "zero",
+        "zero",
+        "negative",
+        "zero"
+      ],
+      "magnitude": [
+        "zero",
+        "zero",
+        "zero",
+        "zero",
+        "tiny",
+        "zero"
+      ],
+      "binary64": {
+        "zeroOrSubnormalComponents": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "negativeZeroComponents": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ]
+      },
+      "firstDivergence": {
+        "operation": "type2_evaluator_leg_state",
+        "chain": "target",
+        "body": 1,
+        "recordIndex": 45,
+        "component": "velocityY",
+        "componentIndex": 4
+      },
+      "classification": {
+        "primary": "canonical_route_recomposition_resolves_baseline_mismatch",
+        "causeStatus": "unresolved",
+        "evidence": "baseline/candidate share route identities; canonical-route shadow removes only the common target/center suffix from pair composition; this does not prove the original mismatch mechanism"
+      }
+    },
+    "component:velocityZ": {
+      "schemaVersion": 1,
+      "recordType": "de405_non_exact_case",
+      "ordinal": 222,
+      "sampleId": "segment-0-record-74-record_quarter",
+      "input": {
+        "targetId": 1,
+        "centerId": 399,
+        "frameId": 1,
+        "segmentOrdinal": 0,
+        "recordIndex": 74,
+        "knotIndex": null,
+        "epochKind": "record_quarter",
+        "queryEtHex": "0xc1d6c00470000000",
+        "recordSelectionRelation": "same_logical_interval"
+      },
+      "routeComposition": {
+        "commonSuffixLegCount": 0,
+        "targetLegCount": 1,
+        "centerLegCount": 2,
+        "targetRouteLegCount": 1,
+        "centerRouteLegCount": 2
+      },
+      "baselineStateBits": [
+        "0xc1988efda7762109",
+        "0x4179964855206892",
+        "0x414f0182526df5d0",
+        "0x4033c125436c8dc6",
+        "0xc01a8582d9d8698a",
+        "0xc014e21d37d39332"
+      ],
+      "candidateStateBits": [
+        "0xc1988efda7762109",
+        "0x4179964855206892",
+        "0x414f0182526df5d0",
+        "0x4033c125436c8dc6",
+        "0xc01a8582d9d8698a",
+        "0xc014e21d37d39330"
+      ],
+      "referenceStateBits": [
+        "0xc1988efda7762109",
+        "0x4179964855206892",
+        "0x414f0182526df5d0",
+        "0x4033c125436c8dc6",
+        "0xc01a8582d9d8698a",
+        "0xc014e21d37d39330"
+      ],
+      "delta": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        1.7763568394002505e-15
+      ],
+      "ulpDistance": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        2
+      ],
+      "maxUlpDistance": 2,
+      "firstDifferentComponent": "velocityZ",
+      "sign": [
+        "zero",
+        "zero",
+        "zero",
+        "zero",
+        "zero",
+        "positive"
+      ],
+      "magnitude": [
+        "zero",
+        "zero",
+        "zero",
+        "zero",
+        "zero",
+        "tiny"
+      ],
+      "binary64": {
+        "zeroOrSubnormalComponents": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "negativeZeroComponents": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ]
+      },
+      "firstDivergence": {
+        "operation": "type2_evaluator_leg_state",
+        "chain": "center",
+        "body": 3,
+        "recordIndex": 37,
+        "component": "velocityZ",
+        "componentIndex": 5
+      },
+      "classification": {
+        "primary": "canonical_route_recomposition_resolves_baseline_mismatch",
+        "causeStatus": "unresolved",
+        "evidence": "baseline/candidate share route identities; canonical-route shadow removes only the common target/center suffix from pair composition; this does not prove the original mismatch mechanism"
+      }
+    },
+    "epoch:exact_knot": {
+      "schemaVersion": 1,
+      "recordType": "de405_non_exact_case",
+      "ordinal": 13708,
+      "sampleId": "segment-0-knot-4-exact_knot",
+      "input": {
+        "targetId": 1,
+        "centerId": 399,
+        "frameId": 1,
+        "segmentOrdinal": 0,
+        "recordIndex": null,
+        "knotIndex": 4,
+        "epochKind": "exact_knot",
+        "queryEtHex": "0xc1d7793f30000000",
+        "recordSelectionRelation": "exact_knot_right_record_selected"
+      },
+      "routeComposition": {
+        "commonSuffixLegCount": 0,
+        "targetLegCount": 1,
+        "centerLegCount": 2,
+        "targetRouteLegCount": 1,
+        "centerRouteLegCount": 2
+      },
+      "baselineStateBits": [
+        "0x41828e0de83ea698",
+        "0xc199451c13ca4b9d",
+        "0xc1833d698d64b2f4",
+        "0x402da2eedd826cc4",
+        "0xc03761490f74e175",
+        "0xc02af028405bee80"
+      ],
+      "candidateStateBits": [
+        "0x41828e0de83ea698",
+        "0xc199451c13ca4b9d",
+        "0xc1833d698d64b2f4",
+        "0x402da2eedd826cc5",
+        "0xc03761490f74e175",
+        "0xc02af028405bee80"
+      ],
+      "referenceStateBits": [
+        "0x41828e0de83ea698",
+        "0xc199451c13ca4b9d",
+        "0xc1833d698d64b2f4",
+        "0x402da2eedd826cc5",
+        "0xc03761490f74e175",
+        "0xc02af028405bee80"
+      ],
+      "delta": [
+        0,
+        0,
+        0,
+        1.7763568394002505e-15,
+        0,
+        0
+      ],
+      "ulpDistance": [
+        0,
+        0,
+        0,
+        1,
+        0,
+        0
+      ],
+      "maxUlpDistance": 1,
+      "firstDifferentComponent": "velocityX",
+      "sign": [
+        "zero",
+        "zero",
+        "zero",
+        "positive",
+        "zero",
+        "zero"
+      ],
+      "magnitude": [
+        "zero",
+        "zero",
+        "zero",
+        "tiny",
+        "zero",
+        "zero"
+      ],
+      "binary64": {
+        "zeroOrSubnormalComponents": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "negativeZeroComponents": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ]
+      },
+      "firstDivergence": {
+        "operation": "type2_evaluator_leg_state",
+        "chain": "target",
+        "body": 1,
+        "recordIndex": 4,
+        "component": "velocityX",
+        "componentIndex": 3
+      },
+      "classification": {
+        "primary": "canonical_route_recomposition_resolves_baseline_mismatch",
+        "causeStatus": "unresolved",
+        "evidence": "baseline/candidate share route identities; canonical-route shadow removes only the common target/center suffix from pair composition; this does not prove the original mismatch mechanism"
+      }
+    },
+    "epoch:next_down_knot": {
+      "schemaVersion": 1,
+      "recordType": "de405_non_exact_case",
+      "ordinal": 13701,
+      "sampleId": "segment-0-knot-2-next_down_knot",
+      "input": {
+        "targetId": 1,
+        "centerId": 399,
+        "frameId": 1,
+        "segmentOrdinal": 0,
+        "recordIndex": null,
+        "knotIndex": 2,
+        "epochKind": "next_down_knot",
+        "queryEtHex": "0xc1d77e8530000001",
+        "recordSelectionRelation": "opposite_sides_of_shared_knot"
+      },
+      "routeComposition": {
+        "commonSuffixLegCount": 0,
+        "targetLegCount": 1,
+        "centerLegCount": 2,
+        "targetRouteLegCount": 1,
+        "centerRouteLegCount": 2
+      },
+      "baselineStateBits": [
+        "0x418938734b705932",
+        "0xc193a539b2d3b931",
+        "0xc17d565db295495e",
+        "0xc03e01df0dc6e482",
+        "0x4004711448bfe318",
+        "0x4018acd010574587"
+      ],
+      "candidateStateBits": [
+        "0x418938734b705932",
+        "0xc193a539b2d3b931",
+        "0xc17d565db295495e",
+        "0xc03e01df0dc6e482",
+        "0x4004711448bfe318",
+        "0x4018acd010574588"
+      ],
+      "referenceStateBits": [
+        "0x418938734b705932",
+        "0xc193a539b2d3b931",
+        "0xc17d565db295495e",
+        "0xc03e01df0dc6e482",
+        "0x4004711448bfe318",
+        "0x4018acd010574588"
+      ],
+      "delta": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        8.881784197001252e-16
+      ],
+      "ulpDistance": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        1
+      ],
+      "maxUlpDistance": 1,
+      "firstDifferentComponent": "velocityZ",
+      "sign": [
+        "zero",
+        "zero",
+        "zero",
+        "zero",
+        "zero",
+        "positive"
+      ],
+      "magnitude": [
+        "zero",
+        "zero",
+        "zero",
+        "zero",
+        "zero",
+        "tiny"
+      ],
+      "binary64": {
+        "zeroOrSubnormalComponents": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "negativeZeroComponents": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ]
+      },
+      "firstDivergence": {
+        "operation": "type2_evaluator_leg_state",
+        "chain": "target",
+        "body": 1,
+        "recordIndex": 1,
+        "component": "velocityZ",
+        "componentIndex": 5
+      },
+      "classification": {
+        "primary": "canonical_route_recomposition_resolves_baseline_mismatch",
+        "causeStatus": "unresolved",
+        "evidence": "baseline/candidate share route identities; canonical-route shadow removes only the common target/center suffix from pair composition; this does not prove the original mismatch mechanism"
+      }
+    },
+    "epoch:next_up_knot": {
+      "schemaVersion": 1,
+      "recordType": "de405_non_exact_case",
+      "ordinal": 13703,
+      "sampleId": "segment-0-knot-2-next_up_knot",
+      "input": {
+        "targetId": 1,
+        "centerId": 399,
+        "frameId": 1,
+        "segmentOrdinal": 0,
+        "recordIndex": null,
+        "knotIndex": 2,
+        "epochKind": "next_up_knot",
+        "queryEtHex": "0xc1d77e852fffffff",
+        "recordSelectionRelation": "opposite_sides_of_shared_knot"
+      },
+      "routeComposition": {
+        "commonSuffixLegCount": 0,
+        "targetLegCount": 1,
+        "centerLegCount": 2,
+        "targetRouteLegCount": 1,
+        "centerRouteLegCount": 2
+      },
+      "baselineStateBits": [
+        "0x418938734b7051b4",
+        "0xc193a539b2d3b8de",
+        "0xc17d565db2954648",
+        "0xc03e01df0dc6df91",
+        "0x4004711448bf1e24",
+        "0x4018acd010570d44"
+      ],
+      "candidateStateBits": [
+        "0x418938734b7051b4",
+        "0xc193a539b2d3b8de",
+        "0xc17d565db2954648",
+        "0xc03e01df0dc6df91",
+        "0x4004711448bf1e24",
+        "0x4018acd010570d43"
+      ],
+      "referenceStateBits": [
+        "0x418938734b7051b4",
+        "0xc193a539b2d3b8de",
+        "0xc17d565db2954648",
+        "0xc03e01df0dc6df91",
+        "0x4004711448bf1e24",
+        "0x4018acd010570d43"
+      ],
+      "delta": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        -8.881784197001252e-16
+      ],
+      "ulpDistance": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        1
+      ],
+      "maxUlpDistance": 1,
+      "firstDifferentComponent": "velocityZ",
+      "sign": [
+        "zero",
+        "zero",
+        "zero",
+        "zero",
+        "zero",
+        "negative"
+      ],
+      "magnitude": [
+        "zero",
+        "zero",
+        "zero",
+        "zero",
+        "zero",
+        "tiny"
+      ],
+      "binary64": {
+        "zeroOrSubnormalComponents": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "negativeZeroComponents": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ]
+      },
+      "firstDivergence": {
+        "operation": "type2_evaluator_leg_state",
+        "chain": "target",
+        "body": 1,
+        "recordIndex": 2,
+        "component": "velocityZ",
+        "componentIndex": 5
+      },
+      "classification": {
+        "primary": "canonical_route_recomposition_resolves_baseline_mismatch",
+        "causeStatus": "unresolved",
+        "evidence": "baseline/candidate share route identities; canonical-route shadow removes only the common target/center suffix from pair composition; this does not prove the original mismatch mechanism"
+      }
+    },
+    "epoch:record_midpoint": {
+      "schemaVersion": 1,
+      "recordType": "de405_non_exact_case",
+      "ordinal": 163,
+      "sampleId": "segment-0-record-54-record_midpoint",
+      "input": {
+        "targetId": 1,
+        "centerId": 399,
+        "frameId": 1,
+        "segmentOrdinal": 0,
+        "recordIndex": 54,
+        "knotIndex": null,
+        "epochKind": "record_midpoint",
+        "queryEtHex": "0xc1d6f417b0000000",
+        "recordSelectionRelation": "same_logical_interval"
+      },
+      "routeComposition": {
+        "commonSuffixLegCount": 0,
+        "targetLegCount": 1,
+        "centerLegCount": 2,
+        "targetRouteLegCount": 1,
+        "centerRouteLegCount": 2
+      },
+      "baselineStateBits": [
+        "0x41a7e1df9af3f388",
+        "0xc17cfd42fa727ced",
+        "0xc1729d70b962af66",
+        "0x4015e92964480c95",
+        "0x4051d30962fa043f",
+        "0x4041aee99855cdae"
+      ],
+      "candidateStateBits": [
+        "0x41a7e1df9af3f388",
+        "0xc17cfd42fa727ced",
+        "0xc1729d70b962af66",
+        "0x4015e92964480c96",
+        "0x4051d30962fa043f",
+        "0x4041aee99855cdae"
+      ],
+      "referenceStateBits": [
+        "0x41a7e1df9af3f388",
+        "0xc17cfd42fa727ced",
+        "0xc1729d70b962af66",
+        "0x4015e92964480c96",
+        "0x4051d30962fa043f",
+        "0x4041aee99855cdae"
+      ],
+      "delta": [
+        0,
+        0,
+        0,
+        8.881784197001252e-16,
+        0,
+        0
+      ],
+      "ulpDistance": [
+        0,
+        0,
+        0,
+        1,
+        0,
+        0
+      ],
+      "maxUlpDistance": 1,
+      "firstDifferentComponent": "velocityX",
+      "sign": [
+        "zero",
+        "zero",
+        "zero",
+        "positive",
+        "zero",
+        "zero"
+      ],
+      "magnitude": [
+        "zero",
+        "zero",
+        "zero",
+        "tiny",
+        "zero",
+        "zero"
+      ],
+      "binary64": {
+        "zeroOrSubnormalComponents": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "negativeZeroComponents": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ]
+      },
+      "firstDivergence": {
+        "operation": "type2_evaluator_leg_state",
+        "chain": "center",
+        "body": 3,
+        "recordIndex": 27,
+        "component": "velocityX",
+        "componentIndex": 3
+      },
+      "classification": {
+        "primary": "canonical_route_recomposition_resolves_baseline_mismatch",
+        "causeStatus": "unresolved",
+        "evidence": "baseline/candidate share route identities; canonical-route shadow removes only the common target/center suffix from pair composition; this does not prove the original mismatch mechanism"
+      }
+    },
+    "epoch:record_quarter": {
+      "schemaVersion": 1,
+      "recordType": "de405_non_exact_case",
+      "ordinal": 222,
+      "sampleId": "segment-0-record-74-record_quarter",
+      "input": {
+        "targetId": 1,
+        "centerId": 399,
+        "frameId": 1,
+        "segmentOrdinal": 0,
+        "recordIndex": 74,
+        "knotIndex": null,
+        "epochKind": "record_quarter",
+        "queryEtHex": "0xc1d6c00470000000",
+        "recordSelectionRelation": "same_logical_interval"
+      },
+      "routeComposition": {
+        "commonSuffixLegCount": 0,
+        "targetLegCount": 1,
+        "centerLegCount": 2,
+        "targetRouteLegCount": 1,
+        "centerRouteLegCount": 2
+      },
+      "baselineStateBits": [
+        "0xc1988efda7762109",
+        "0x4179964855206892",
+        "0x414f0182526df5d0",
+        "0x4033c125436c8dc6",
+        "0xc01a8582d9d8698a",
+        "0xc014e21d37d39332"
+      ],
+      "candidateStateBits": [
+        "0xc1988efda7762109",
+        "0x4179964855206892",
+        "0x414f0182526df5d0",
+        "0x4033c125436c8dc6",
+        "0xc01a8582d9d8698a",
+        "0xc014e21d37d39330"
+      ],
+      "referenceStateBits": [
+        "0xc1988efda7762109",
+        "0x4179964855206892",
+        "0x414f0182526df5d0",
+        "0x4033c125436c8dc6",
+        "0xc01a8582d9d8698a",
+        "0xc014e21d37d39330"
+      ],
+      "delta": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        1.7763568394002505e-15
+      ],
+      "ulpDistance": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        2
+      ],
+      "maxUlpDistance": 2,
+      "firstDifferentComponent": "velocityZ",
+      "sign": [
+        "zero",
+        "zero",
+        "zero",
+        "zero",
+        "zero",
+        "positive"
+      ],
+      "magnitude": [
+        "zero",
+        "zero",
+        "zero",
+        "zero",
+        "zero",
+        "tiny"
+      ],
+      "binary64": {
+        "zeroOrSubnormalComponents": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "negativeZeroComponents": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ]
+      },
+      "firstDivergence": {
+        "operation": "type2_evaluator_leg_state",
+        "chain": "center",
+        "body": 3,
+        "recordIndex": 37,
+        "component": "velocityZ",
+        "componentIndex": 5
+      },
+      "classification": {
+        "primary": "canonical_route_recomposition_resolves_baseline_mismatch",
+        "causeStatus": "unresolved",
+        "evidence": "baseline/candidate share route identities; canonical-route shadow removes only the common target/center suffix from pair composition; this does not prove the original mismatch mechanism"
+      }
+    },
+    "epoch:record_three_quarter": {
+      "schemaVersion": 1,
+      "recordType": "de405_non_exact_case",
+      "ordinal": 95,
+      "sampleId": "segment-0-record-31-record_three_quarter",
+      "input": {
+        "targetId": 1,
+        "centerId": 399,
+        "frameId": 1,
+        "segmentOrdinal": 0,
+        "recordIndex": 31,
+        "knotIndex": null,
+        "epochKind": "record_three_quarter",
+        "queryEtHex": "0xc1d73013f0000000",
+        "recordSelectionRelation": "same_logical_interval"
+      },
+      "routeComposition": {
+        "commonSuffixLegCount": 0,
+        "targetLegCount": 1,
+        "centerLegCount": 2,
+        "targetRouteLegCount": 1,
+        "centerRouteLegCount": 2
+      },
+      "baselineStateBits": [
+        "0xc19774d5ba00a161",
+        "0x412de066477ed000",
+        "0xc15cd012ebd9ffec",
+        "0x4029a24420690046",
+        "0x4026452ee8a95a2c",
+        "0x401aa27c64e0879a"
+      ],
+      "candidateStateBits": [
+        "0xc19774d5ba00a161",
+        "0x412de066477ed000",
+        "0xc15cd012ebd9ffec",
+        "0x4029a24420690045",
+        "0x4026452ee8a95a2c",
+        "0x401aa27c64e0879a"
+      ],
+      "referenceStateBits": [
+        "0xc19774d5ba00a161",
+        "0x412de066477ed000",
+        "0xc15cd012ebd9ffec",
+        "0x4029a24420690045",
+        "0x4026452ee8a95a2c",
+        "0x401aa27c64e0879a"
+      ],
+      "delta": [
+        0,
+        0,
+        0,
+        -1.7763568394002505e-15,
+        0,
+        0
+      ],
+      "ulpDistance": [
+        0,
+        0,
+        0,
+        1,
+        0,
+        0
+      ],
+      "maxUlpDistance": 1,
+      "firstDifferentComponent": "velocityX",
+      "sign": [
+        "zero",
+        "zero",
+        "zero",
+        "negative",
+        "zero",
+        "zero"
+      ],
+      "magnitude": [
+        "zero",
+        "zero",
+        "zero",
+        "tiny",
+        "zero",
+        "zero"
+      ],
+      "binary64": {
+        "zeroOrSubnormalComponents": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "negativeZeroComponents": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ]
+      },
+      "firstDivergence": {
+        "operation": "type2_evaluator_leg_state",
+        "chain": "center",
+        "body": 3,
+        "recordIndex": 15,
+        "component": "velocityX",
+        "componentIndex": 3
+      },
+      "classification": {
+        "primary": "canonical_route_recomposition_resolves_baseline_mismatch",
+        "causeStatus": "unresolved",
+        "evidence": "baseline/candidate share route identities; canonical-route shadow removes only the common target/center suffix from pair composition; this does not prove the original mismatch mechanism"
+      }
+    },
+    "max-ulp": {
+      "schemaVersion": 1,
+      "recordType": "de405_non_exact_case",
+      "ordinal": 141132,
+      "sampleId": "segment-10-knot-5952-next_up_knot",
+      "input": {
+        "targetId": 301,
+        "centerId": 399,
+        "frameId": 1,
+        "segmentOrdinal": 10,
+        "recordIndex": null,
+        "knotIndex": 5952,
+        "epochKind": "next_up_knot",
+        "queryEtHex": "0x41bc8c5340000001",
+        "recordSelectionRelation": "opposite_sides_of_shared_knot"
+      },
+      "routeComposition": {
+        "commonSuffixLegCount": 1,
+        "targetLegCount": 2,
+        "centerLegCount": 2,
+        "targetRouteLegCount": 1,
+        "centerRouteLegCount": 1
+      },
+      "baselineStateBits": [
+        "0xc118be51b7711390",
+        "0x40baf7c624fa5313",
+        "0xc0b1089b4b4645d0",
+        "0xbed60db7963b4cc0",
+        "0xbfed963951995e13",
+        "0xbfd38757e04850e6"
+      ],
+      "candidateStateBits": [
+        "0xc118be51b7711390",
+        "0x40baf7c624fa5313",
+        "0xc0b1089b4b4645d0",
+        "0xbed60db7963c106d",
+        "0xbfed963951995e13",
+        "0xbfd38757e04850e6"
+      ],
+      "referenceStateBits": [
+        "0xc118be51b7711390",
+        "0x40baf7c624fa5313",
+        "0xc0b1089b4b4645d0",
+        "0xbed60db7963c106d",
+        "0xbfed963951995e13",
+        "0xbfd38757e04850e6"
+      ],
+      "delta": [
+        0,
+        0,
+        0,
+        -4.2430421426809667e-17,
+        0,
+        0
+      ],
+      "ulpDistance": [
+        0,
+        0,
+        0,
+        50093,
+        0,
+        0
+      ],
+      "maxUlpDistance": 50093,
+      "firstDifferentComponent": "velocityX",
+      "sign": [
+        "zero",
+        "zero",
+        "zero",
+        "negative",
+        "zero",
+        "zero"
+      ],
+      "magnitude": [
+        "zero",
+        "zero",
+        "zero",
+        "tiny",
+        "zero",
+        "zero"
+      ],
+      "binary64": {
+        "zeroOrSubnormalComponents": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "negativeZeroComponents": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ]
+      },
+      "firstDivergence": {
+        "operation": "type2_evaluator_leg_state",
+        "chain": "target",
+        "body": 301,
+        "recordIndex": 5952,
+        "component": "velocityX",
+        "componentIndex": 3
+      },
+      "classification": {
+        "primary": "canonical_route_recomposition_resolves_baseline_mismatch",
+        "causeStatus": "unresolved",
+        "evidence": "baseline/candidate share route identities; canonical-route shadow removes only the common target/center suffix from pair composition; this does not prove the original mismatch mechanism"
+      }
+    },
+    "operation:type2_evaluator_leg_state": {
+      "schemaVersion": 1,
+      "recordType": "de405_non_exact_case",
+      "ordinal": 95,
+      "sampleId": "segment-0-record-31-record_three_quarter",
+      "input": {
+        "targetId": 1,
+        "centerId": 399,
+        "frameId": 1,
+        "segmentOrdinal": 0,
+        "recordIndex": 31,
+        "knotIndex": null,
+        "epochKind": "record_three_quarter",
+        "queryEtHex": "0xc1d73013f0000000",
+        "recordSelectionRelation": "same_logical_interval"
+      },
+      "routeComposition": {
+        "commonSuffixLegCount": 0,
+        "targetLegCount": 1,
+        "centerLegCount": 2,
+        "targetRouteLegCount": 1,
+        "centerRouteLegCount": 2
+      },
+      "baselineStateBits": [
+        "0xc19774d5ba00a161",
+        "0x412de066477ed000",
+        "0xc15cd012ebd9ffec",
+        "0x4029a24420690046",
+        "0x4026452ee8a95a2c",
+        "0x401aa27c64e0879a"
+      ],
+      "candidateStateBits": [
+        "0xc19774d5ba00a161",
+        "0x412de066477ed000",
+        "0xc15cd012ebd9ffec",
+        "0x4029a24420690045",
+        "0x4026452ee8a95a2c",
+        "0x401aa27c64e0879a"
+      ],
+      "referenceStateBits": [
+        "0xc19774d5ba00a161",
+        "0x412de066477ed000",
+        "0xc15cd012ebd9ffec",
+        "0x4029a24420690045",
+        "0x4026452ee8a95a2c",
+        "0x401aa27c64e0879a"
+      ],
+      "delta": [
+        0,
+        0,
+        0,
+        -1.7763568394002505e-15,
+        0,
+        0
+      ],
+      "ulpDistance": [
+        0,
+        0,
+        0,
+        1,
+        0,
+        0
+      ],
+      "maxUlpDistance": 1,
+      "firstDifferentComponent": "velocityX",
+      "sign": [
+        "zero",
+        "zero",
+        "zero",
+        "negative",
+        "zero",
+        "zero"
+      ],
+      "magnitude": [
+        "zero",
+        "zero",
+        "zero",
+        "tiny",
+        "zero",
+        "zero"
+      ],
+      "binary64": {
+        "zeroOrSubnormalComponents": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "negativeZeroComponents": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ]
+      },
+      "firstDivergence": {
+        "operation": "type2_evaluator_leg_state",
+        "chain": "center",
+        "body": 3,
+        "recordIndex": 15,
+        "component": "velocityX",
+        "componentIndex": 3
+      },
+      "classification": {
+        "primary": "canonical_route_recomposition_resolves_baseline_mismatch",
+        "causeStatus": "unresolved",
+        "evidence": "baseline/candidate share route identities; canonical-route shadow removes only the common target/center suffix from pair composition; this does not prove the original mismatch mechanism"
+      }
+    },
+    "relation:exact_knot_right_record_selected": {
+      "schemaVersion": 1,
+      "recordType": "de405_non_exact_case",
+      "ordinal": 13708,
+      "sampleId": "segment-0-knot-4-exact_knot",
+      "input": {
+        "targetId": 1,
+        "centerId": 399,
+        "frameId": 1,
+        "segmentOrdinal": 0,
+        "recordIndex": null,
+        "knotIndex": 4,
+        "epochKind": "exact_knot",
+        "queryEtHex": "0xc1d7793f30000000",
+        "recordSelectionRelation": "exact_knot_right_record_selected"
+      },
+      "routeComposition": {
+        "commonSuffixLegCount": 0,
+        "targetLegCount": 1,
+        "centerLegCount": 2,
+        "targetRouteLegCount": 1,
+        "centerRouteLegCount": 2
+      },
+      "baselineStateBits": [
+        "0x41828e0de83ea698",
+        "0xc199451c13ca4b9d",
+        "0xc1833d698d64b2f4",
+        "0x402da2eedd826cc4",
+        "0xc03761490f74e175",
+        "0xc02af028405bee80"
+      ],
+      "candidateStateBits": [
+        "0x41828e0de83ea698",
+        "0xc199451c13ca4b9d",
+        "0xc1833d698d64b2f4",
+        "0x402da2eedd826cc5",
+        "0xc03761490f74e175",
+        "0xc02af028405bee80"
+      ],
+      "referenceStateBits": [
+        "0x41828e0de83ea698",
+        "0xc199451c13ca4b9d",
+        "0xc1833d698d64b2f4",
+        "0x402da2eedd826cc5",
+        "0xc03761490f74e175",
+        "0xc02af028405bee80"
+      ],
+      "delta": [
+        0,
+        0,
+        0,
+        1.7763568394002505e-15,
+        0,
+        0
+      ],
+      "ulpDistance": [
+        0,
+        0,
+        0,
+        1,
+        0,
+        0
+      ],
+      "maxUlpDistance": 1,
+      "firstDifferentComponent": "velocityX",
+      "sign": [
+        "zero",
+        "zero",
+        "zero",
+        "positive",
+        "zero",
+        "zero"
+      ],
+      "magnitude": [
+        "zero",
+        "zero",
+        "zero",
+        "tiny",
+        "zero",
+        "zero"
+      ],
+      "binary64": {
+        "zeroOrSubnormalComponents": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "negativeZeroComponents": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ]
+      },
+      "firstDivergence": {
+        "operation": "type2_evaluator_leg_state",
+        "chain": "target",
+        "body": 1,
+        "recordIndex": 4,
+        "component": "velocityX",
+        "componentIndex": 3
+      },
+      "classification": {
+        "primary": "canonical_route_recomposition_resolves_baseline_mismatch",
+        "causeStatus": "unresolved",
+        "evidence": "baseline/candidate share route identities; canonical-route shadow removes only the common target/center suffix from pair composition; this does not prove the original mismatch mechanism"
+      }
+    },
+    "relation:opposite_sides_of_shared_knot": {
+      "schemaVersion": 1,
+      "recordType": "de405_non_exact_case",
+      "ordinal": 13701,
+      "sampleId": "segment-0-knot-2-next_down_knot",
+      "input": {
+        "targetId": 1,
+        "centerId": 399,
+        "frameId": 1,
+        "segmentOrdinal": 0,
+        "recordIndex": null,
+        "knotIndex": 2,
+        "epochKind": "next_down_knot",
+        "queryEtHex": "0xc1d77e8530000001",
+        "recordSelectionRelation": "opposite_sides_of_shared_knot"
+      },
+      "routeComposition": {
+        "commonSuffixLegCount": 0,
+        "targetLegCount": 1,
+        "centerLegCount": 2,
+        "targetRouteLegCount": 1,
+        "centerRouteLegCount": 2
+      },
+      "baselineStateBits": [
+        "0x418938734b705932",
+        "0xc193a539b2d3b931",
+        "0xc17d565db295495e",
+        "0xc03e01df0dc6e482",
+        "0x4004711448bfe318",
+        "0x4018acd010574587"
+      ],
+      "candidateStateBits": [
+        "0x418938734b705932",
+        "0xc193a539b2d3b931",
+        "0xc17d565db295495e",
+        "0xc03e01df0dc6e482",
+        "0x4004711448bfe318",
+        "0x4018acd010574588"
+      ],
+      "referenceStateBits": [
+        "0x418938734b705932",
+        "0xc193a539b2d3b931",
+        "0xc17d565db295495e",
+        "0xc03e01df0dc6e482",
+        "0x4004711448bfe318",
+        "0x4018acd010574588"
+      ],
+      "delta": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        8.881784197001252e-16
+      ],
+      "ulpDistance": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        1
+      ],
+      "maxUlpDistance": 1,
+      "firstDifferentComponent": "velocityZ",
+      "sign": [
+        "zero",
+        "zero",
+        "zero",
+        "zero",
+        "zero",
+        "positive"
+      ],
+      "magnitude": [
+        "zero",
+        "zero",
+        "zero",
+        "zero",
+        "zero",
+        "tiny"
+      ],
+      "binary64": {
+        "zeroOrSubnormalComponents": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "negativeZeroComponents": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ]
+      },
+      "firstDivergence": {
+        "operation": "type2_evaluator_leg_state",
+        "chain": "target",
+        "body": 1,
+        "recordIndex": 1,
+        "component": "velocityZ",
+        "componentIndex": 5
+      },
+      "classification": {
+        "primary": "canonical_route_recomposition_resolves_baseline_mismatch",
+        "causeStatus": "unresolved",
+        "evidence": "baseline/candidate share route identities; canonical-route shadow removes only the common target/center suffix from pair composition; this does not prove the original mismatch mechanism"
+      }
+    },
+    "relation:same_logical_interval": {
+      "schemaVersion": 1,
+      "recordType": "de405_non_exact_case",
+      "ordinal": 95,
+      "sampleId": "segment-0-record-31-record_three_quarter",
+      "input": {
+        "targetId": 1,
+        "centerId": 399,
+        "frameId": 1,
+        "segmentOrdinal": 0,
+        "recordIndex": 31,
+        "knotIndex": null,
+        "epochKind": "record_three_quarter",
+        "queryEtHex": "0xc1d73013f0000000",
+        "recordSelectionRelation": "same_logical_interval"
+      },
+      "routeComposition": {
+        "commonSuffixLegCount": 0,
+        "targetLegCount": 1,
+        "centerLegCount": 2,
+        "targetRouteLegCount": 1,
+        "centerRouteLegCount": 2
+      },
+      "baselineStateBits": [
+        "0xc19774d5ba00a161",
+        "0x412de066477ed000",
+        "0xc15cd012ebd9ffec",
+        "0x4029a24420690046",
+        "0x4026452ee8a95a2c",
+        "0x401aa27c64e0879a"
+      ],
+      "candidateStateBits": [
+        "0xc19774d5ba00a161",
+        "0x412de066477ed000",
+        "0xc15cd012ebd9ffec",
+        "0x4029a24420690045",
+        "0x4026452ee8a95a2c",
+        "0x401aa27c64e0879a"
+      ],
+      "referenceStateBits": [
+        "0xc19774d5ba00a161",
+        "0x412de066477ed000",
+        "0xc15cd012ebd9ffec",
+        "0x4029a24420690045",
+        "0x4026452ee8a95a2c",
+        "0x401aa27c64e0879a"
+      ],
+      "delta": [
+        0,
+        0,
+        0,
+        -1.7763568394002505e-15,
+        0,
+        0
+      ],
+      "ulpDistance": [
+        0,
+        0,
+        0,
+        1,
+        0,
+        0
+      ],
+      "maxUlpDistance": 1,
+      "firstDifferentComponent": "velocityX",
+      "sign": [
+        "zero",
+        "zero",
+        "zero",
+        "negative",
+        "zero",
+        "zero"
+      ],
+      "magnitude": [
+        "zero",
+        "zero",
+        "zero",
+        "tiny",
+        "zero",
+        "zero"
+      ],
+      "binary64": {
+        "zeroOrSubnormalComponents": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "negativeZeroComponents": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ]
+      },
+      "firstDivergence": {
+        "operation": "type2_evaluator_leg_state",
+        "chain": "center",
+        "body": 3,
+        "recordIndex": 15,
+        "component": "velocityX",
+        "componentIndex": 3
+      },
+      "classification": {
+        "primary": "canonical_route_recomposition_resolves_baseline_mismatch",
+        "causeStatus": "unresolved",
+        "evidence": "baseline/candidate share route identities; canonical-route shadow removes only the common target/center suffix from pair composition; this does not prove the original mismatch mechanism"
+      }
+    }
+  }
+}

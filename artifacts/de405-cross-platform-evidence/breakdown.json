@@ -1,0 +1,177 @@
+{
+  "schemaVersion": 1,
+  "recordType": "de405_non_exact_breakdown",
+  "counts": {
+    "total": 150671,
+    "baselineExact": 133392,
+    "nonExact": 17279,
+    "candidateExact": 150671,
+    "candidateRegressed": 0,
+    "identityErrors": 0,
+    "executionErrors": 0,
+    "classificationExactlyOnce": 17279,
+    "byEpochKind": {
+      "record_three_quarter": 2223,
+      "record_midpoint": 581,
+      "record_quarter": 2256,
+      "next_down_knot": 4030,
+      "next_up_knot": 4139,
+      "exact_knot": 4050
+    },
+    "byRecordSelectionRelation": {
+      "same_logical_interval": 5060,
+      "opposite_sides_of_shared_knot": 8219,
+      "exact_knot_right_record_selected": 4000
+    },
+    "byTarget": {
+      "1": 2747,
+      "2": 1149,
+      "4": 430,
+      "5": 320,
+      "6": 346,
+      "7": 377,
+      "8": 399,
+      "9": 418,
+      "10": 1050,
+      "301": 10043
+    },
+    "byCenter": {
+      "399": 17279
+    },
+    "byComponent": {
+      "velocityX": 6357,
+      "velocityY": 5952,
+      "velocityZ": 4970
+    },
+    "bySign": {
+      "zero": 85358,
+      "negative": 9080,
+      "positive": 9236
+    },
+    "byMagnitude": {
+      "zero": 85358,
+      "tiny": 18316
+    },
+    "byUlpBucket": {
+      "1": 9976,
+      "2-4": 5648,
+      "5-16": 1249,
+      "17-256": 380,
+      "257+": 26
+    },
+    "byOperation": {
+      "type2_evaluator_leg_state": 17279
+    },
+    "byBoundary": {
+      "no_common_suffix": 7236,
+      "common_suffix_removed": 10043
+    },
+    "crossTabs": {
+      "epochKind_x_component": {
+        "record_three_quarter|velocityX": 831,
+        "record_three_quarter|velocityY": 776,
+        "record_midpoint|velocityX": 215,
+        "record_quarter|velocityZ": 645,
+        "record_quarter|velocityX": 790,
+        "record_quarter|velocityY": 821,
+        "record_three_quarter|velocityZ": 616,
+        "record_midpoint|velocityY": 213,
+        "record_midpoint|velocityZ": 153,
+        "next_down_knot|velocityZ": 1201,
+        "next_up_knot|velocityZ": 1195,
+        "exact_knot|velocityX": 1533,
+        "exact_knot|velocityZ": 1160,
+        "next_up_knot|velocityY": 1424,
+        "next_down_knot|velocityX": 1468,
+        "next_down_knot|velocityY": 1361,
+        "exact_knot|velocityY": 1357,
+        "next_up_knot|velocityX": 1520
+      },
+      "epochKind_x_ulpBucket": {
+        "record_three_quarter|1": 1350,
+        "record_midpoint|1": 336,
+        "record_quarter|2-4": 675,
+        "record_quarter|1": 1400,
+        "record_three_quarter|2-4": 682,
+        "record_quarter|5-16": 133,
+        "record_quarter|17-256": 43,
+        "record_three_quarter|5-16": 148,
+        "record_midpoint|2-4": 198,
+        "record_three_quarter|17-256": 38,
+        "record_midpoint|17-256": 11,
+        "record_midpoint|5-16": 36,
+        "next_down_knot|1": 2256,
+        "next_up_knot|1": 2352,
+        "exact_knot|1": 2282,
+        "exact_knot|2-4": 1361,
+        "next_down_knot|2-4": 1376,
+        "next_down_knot|5-16": 278,
+        "next_down_knot|17-256": 115,
+        "next_up_knot|17-256": 98,
+        "next_up_knot|2-4": 1356,
+        "exact_knot|5-16": 325,
+        "next_up_knot|5-16": 329,
+        "exact_knot|257+": 7,
+        "exact_knot|17-256": 75,
+        "next_up_knot|257+": 4,
+        "record_quarter|257+": 5,
+        "next_down_knot|257+": 5,
+        "record_three_quarter|257+": 5
+      },
+      "target_x_component": {
+        "1|velocityX": 962,
+        "1|velocityY": 951,
+        "1|velocityZ": 834,
+        "2|velocityZ": 349,
+        "2|velocityY": 409,
+        "2|velocityX": 391,
+        "4|velocityX": 147,
+        "4|velocityY": 149,
+        "4|velocityZ": 134,
+        "5|velocityX": 118,
+        "5|velocityY": 108,
+        "5|velocityZ": 94,
+        "6|velocityX": 126,
+        "6|velocityY": 112,
+        "6|velocityZ": 108,
+        "7|velocityX": 141,
+        "7|velocityZ": 117,
+        "7|velocityY": 119,
+        "8|velocityX": 152,
+        "8|velocityZ": 122,
+        "8|velocityY": 125,
+        "9|velocityX": 158,
+        "9|velocityZ": 126,
+        "9|velocityY": 134,
+        "10|velocityZ": 302,
+        "10|velocityX": 372,
+        "10|velocityY": 376,
+        "301|velocityZ": 2784,
+        "301|velocityY": 3469,
+        "301|velocityX": 3790
+      },
+      "recordRelation_x_operation": {
+        "same_logical_interval|type2_evaluator_leg_state": 5060,
+        "opposite_sides_of_shared_knot|type2_evaluator_leg_state": 8219,
+        "exact_knot_right_record_selected|type2_evaluator_leg_state": 4000
+      },
+      "boundary_x_sign": {
+        "no_common_suffix|negative": 3611,
+        "no_common_suffix|positive": 3625,
+        "common_suffix_removed|positive": 5064,
+        "common_suffix_removed|negative": 4979
+      }
+    }
+  },
+  "conservation": {
+    "total": 150671,
+    "exactPlusNonExact": 150671,
+    "expectedTotal": 150671,
+    "nonExactExactlyOnce": true
+  },
+  "unresolved": {
+    "count": 17279,
+    "status": "unresolved",
+    "reason": "No external compiler/platform execution is available here, and no internal route/evaluator observation proves a causal mechanism for all rows."
+  }
+}
