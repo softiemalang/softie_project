@@ -3,32 +3,36 @@ name: DE405 Linux architecture evidence
 on:
   workflow_dispatch:
     inputs:
-      input_bundle_url:
-        description: Immutable public GitHub asset URL for the DE405 input bundle
+      sample_asset_url:
+        description: Immutable project-generated sample JSONL Release asset URL
         required: true
         type: string
-      input_bundle_sha256:
-        description: SHA-256 of the input bundle archive
+      sample_asset_sha256:
+        description: SHA-256 of the sample-only asset archive
         required: true
-        type: string
-      samples_path:
-        required: false
-        default: inputs/de405-jpl-cspice-residual-sweep.samples.jsonl
-        type: string
-      spk_path:
-        required: false
-        default: inputs/de405.bsp
-        type: string
-      cspice_path:
-        required: false
-        default: inputs/cspice
         type: string
 
 permissions:
   contents: read
 
 jobs:
+  provenance:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+      - name: Reject non-main dispatch and verify runtime commit binding
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$GITHUB_REF" = "refs/heads/main" || { echo "workflow must be dispatched from refs/heads/main; got $GITHUB_REF" >&2; exit 1; }
+          checkout_head="$(git rev-parse HEAD)"
+          test "$checkout_head" = "$GITHUB_SHA" || { echo "checkout HEAD $checkout_head does not equal GITHUB_SHA $GITHUB_SHA" >&2; exit 1; }
+      - name: Verify official-source DE405 bridge evidence
+        run: |
+          node scripts/check-de405-cspice-source-divergence.mjs docs/de405-cspice-source-divergence.json
+          node scripts/check-de405-cspice-source-equivalence.mjs docs/de405-cspice-source-equivalence.json
   compare:
+    needs: provenance
     strategy:
       fail-fast: false
       matrix:
@@ -46,40 +50,46 @@ jobs:
       DE405_EXPECTED_COMPILER: gcc
       DE405_CFLAGS: -std=c11 -O2 -ffp-contract=off -fno-fast-math -Wall -Wextra -Werror
       DE405_CSPICE_CFLAGS: -std=c89 -O2 -ffp-contract=off -fno-fast-math -fPIC -DNON_UNIX_STDIO
-      DE405_EXPECTED_HEAD: 68442c0b2748245e58fe817597f79958af16d185
+      DE405_EXPECTED_HEAD: ${{ github.sha }}
       DE405_EXPECTED_ROW_COUNT: 150671
-      DE405_INPUT_BUNDLE_URL: ${{ inputs.input_bundle_url }}
-      DE405_INPUT_BUNDLE_SHA256: ${{ inputs.input_bundle_sha256 }}
+      DE405_SAMPLE_ASSET_URL: ${{ inputs.sample_asset_url }}
+      DE405_SAMPLE_ASSET_SHA256: ${{ inputs.sample_asset_sha256 }}
+      DE405_CSPICE_URL: https://naif.jpl.nasa.gov/pub/naif/toolkit//C/PC_Linux_GCC_64bit/packages/cspice.tar.Z
+      DE405_CSPICE_ARCHIVE_SHA256: 60a95b51a6472f1afe7e40d77ebdee43c12bb5b8823676ccc74692ddfede06ce
+      DE405_SPK_URL: https://naif.jpl.nasa.gov/pub/naif/generic_kernels/spk/planets/a_old_versions/de405.bsp
+      DE405_SPK_SHA256: 30a7113793ee5b6bf1e5546c6dfc21d9682d9ffabfe9b17b4bab27ba2ac75c89
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
-      - name: Fetch and verify immutable input bundle
+      - name: Fetch and verify project sample asset
         shell: bash
         run: |
           set -euo pipefail
-          case "$DE405_INPUT_BUNDLE_URL" in
+          case "$DE405_SAMPLE_ASSET_URL" in
             https://github.com/*|https://objects.githubusercontent.com/*) ;;
-            *) echo 'input bundle URL must be an approved public GitHub asset host' >&2; exit 1 ;;
+            *) echo 'sample asset URL must be an approved public GitHub asset host' >&2; exit 1 ;;
           esac
           mkdir -p "${RUNNER_TEMP}/de405-inputs"
-          curl --fail --location --proto '=https' --tlsv1.2 --output "${RUNNER_TEMP}/de405-input-bundle.zip" "$DE405_INPUT_BUNDLE_URL"
-          printf '%s  %s\n' "$DE405_INPUT_BUNDLE_SHA256" "${RUNNER_TEMP}/de405-input-bundle.zip" | sha256sum --check --status
-          unzip -q "${RUNNER_TEMP}/de405-input-bundle.zip" -d "${RUNNER_TEMP}/de405-inputs"
+          curl --fail --location --proto '=https' --tlsv1.2 --output "${RUNNER_TEMP}/de405-sample-asset.zip" "$DE405_SAMPLE_ASSET_URL"
+          printf '%s  %s\n' "$DE405_SAMPLE_ASSET_SHA256" "${RUNNER_TEMP}/de405-sample-asset.zip" | sha256sum --check --status
+          unzip -q "${RUNNER_TEMP}/de405-sample-asset.zip" -d "${RUNNER_TEMP}/de405-sample"
+          node scripts/check-de405-input-bundle.mjs --archive "${RUNNER_TEMP}/de405-sample-asset.zip"
+          mkdir -p "${RUNNER_TEMP}/de405-inputs"
+          cp "${RUNNER_TEMP}/de405-sample/de405-jpl-cspice-residual-sweep.samples.jsonl" "${RUNNER_TEMP}/de405-inputs/samples.jsonl"
+          node scripts/fetch-de405-linux-official-inputs.mjs --output "${RUNNER_TEMP}/de405-inputs" --cspice-url "$DE405_CSPICE_URL" --cspice-sha256 "$DE405_CSPICE_ARCHIVE_SHA256" --spk-url "$DE405_SPK_URL" --spk-sha256 "$DE405_SPK_SHA256"
           command -v gcc
-          test -f "${RUNNER_TEMP}/de405-inputs/${{ inputs.samples_path }}"
-          test -f "${RUNNER_TEMP}/de405-inputs/${{ inputs.spk_path }}"
-          test -f "${RUNNER_TEMP}/de405-inputs/${{ inputs.cspice_path }}/N0067/include/SpiceUsr.h"
-          test -d "${RUNNER_TEMP}/de405-inputs/${{ inputs.cspice_path }}/N0067/src/cspice"
-          test -d "${RUNNER_TEMP}/de405-inputs/${{ inputs.cspice_path }}/N0067/src/csupport"
+          test -f "${RUNNER_TEMP}/de405-inputs/samples.jsonl"
+          test -f "${RUNNER_TEMP}/de405-inputs/de405.bsp"
+          test -f "${RUNNER_TEMP}/de405-inputs/cspice/N0067/include/SpiceUsr.h"
       - name: Build CSPICE from immutable source
         run: >-
           node scripts/build-de405-linux-cspice.mjs
-          --cspice "${RUNNER_TEMP}/de405-inputs/${{ inputs.cspice_path }}/N0067"
+          --cspice "${RUNNER_TEMP}/de405-inputs/cspice/N0067"
           --output "${RUNNER_TEMP}/de405-cspice-built/N0067"
       - name: Run canonical-v2 sweep
         run: >-
           node scripts/run-de405-linux-architecture-evidence.mjs
-          --samples "${RUNNER_TEMP}/de405-inputs/${{ inputs.samples_path }}"
-          --spk "${RUNNER_TEMP}/de405-inputs/${{ inputs.spk_path }}"
+          --samples "${RUNNER_TEMP}/de405-inputs/samples.jsonl"
+          --spk "${RUNNER_TEMP}/de405-inputs/de405.bsp"
           --cspice "${RUNNER_TEMP}/de405-cspice-built/N0067"
           --output "${RUNNER_TEMP}/de405-linux-output"
           --arch "${{ matrix.arch }}" --runner "${{ matrix.runner }}"

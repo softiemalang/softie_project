@@ -22,7 +22,7 @@ async function load(dir) {
 }
 const x = await load(args.x64); const a = await load(args.arm64)
 const xp = x.provenance; const ap = a.provenance
-const common = ['expectedHead', 'inputBundle.archiveSha256', 'inputBundle.urlSha256', 'host.imageOS', 'host.imageVersion', 'userspace.family', 'userspace.osRelease', 'userspace.libc', 'userspace.compiler', 'userspace.compilerVersion', 'userspace.node', 'cspiceBuild.compiler', 'cspiceBuild.compilerVersion', 'cspiceBuild.flags', 'cspiceBuild.sourceManifestSha256', 'controls.flags', 'controls.locale', 'controls.timezone', 'controls.wrapper', 'controls.serialization', 'controls.sourceHashes', 'container.used', 'container.image']
+const common = ['expectedHead', 'sampleAsset.archiveSha256', 'sampleAsset.urlSha256', 'officialInputs.cspiceArchiveSha256', 'officialInputs.spkSha256', 'officialInputs.sourceManifestSha256', 'officialInputs.cspiceUrlSha256', 'officialInputs.spkUrlSha256', 'host.imageOS', 'host.imageVersion', 'userspace.family', 'userspace.osRelease', 'userspace.libc', 'userspace.compiler', 'userspace.compilerVersion', 'userspace.node', 'cspiceBuild.compiler', 'cspiceBuild.compilerVersion', 'cspiceBuild.flags', 'cspiceBuild.sourceManifestSha256', 'controls.flags', 'controls.locale', 'controls.timezone', 'controls.wrapper', 'controls.serialization', 'controls.sourceHashes', 'container.used', 'container.image']
 const get = (p, key) => key.split('.').reduce((v, k) => v?.[k], p)
 const mismatchedControls = common.filter(key => JSON.stringify(get(xp, key)) !== JSON.stringify(get(ap, key)))
 const mismatches = []; const ulps = []; const absolutes = []; const differingRows = new Set(); let firstDivergence = null

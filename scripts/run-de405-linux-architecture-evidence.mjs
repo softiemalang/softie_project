@@ -4,14 +4,16 @@ import { createReadStream } from 'node:fs'
 import { mkdir, open, readFile, stat, writeFile } from 'node:fs/promises'
 import { createInterface } from 'node:readline'
 import { resolve } from 'node:path'
+import { assertRuntimeProvenance } from './lib/de405-runtime-provenance.mjs'
 
 const args = Object.fromEntries(process.argv.slice(2).map((value, index, all) => value.startsWith('--') ? [value.slice(2), all[index + 1]] : []).filter(Boolean))
 const root = resolve(new URL('..', import.meta.url).pathname)
 const required = ['samples', 'spk', 'cspice', 'output', 'arch', 'runner']
 for (const key of required) if (!args[key]) throw new Error(`--${key} is required`)
-const expectedHead = process.env.DE405_EXPECTED_HEAD || '68442c0b2748245e58fe817597f79958af16d185'
+const expectedHead = process.env.DE405_EXPECTED_HEAD || process.env.GITHUB_SHA
 const head = execFileSync('git', ['rev-parse', 'HEAD'], { cwd: root, encoding: 'utf8' }).trim()
-if (head !== expectedHead) throw new Error(`unexpected checkout HEAD: ${head}`)
+const githubSha = process.env.GITHUB_SHA || expectedHead
+assertRuntimeProvenance({ head, githubSha, githubRef: process.env.GITHUB_REF, expectedHead })
 const source = resolve(root, 'tools/de405-cspice-runner/src/de405_canonical_v2.c')
 const configuredCspice = resolve(args.cspice)
 let cspice = configuredCspice
@@ -32,6 +34,7 @@ const actualFlags = ['-std=c11', '-O2', '-ffp-contract=off', '-fno-fast-math', '
 const buildProvenancePath = resolve(cspice, 'build-provenance.json')
 await stat(buildProvenancePath)
 const cspiceBuild = JSON.parse(await readFile(buildProvenancePath, 'utf8'))
+const acquisitionProvenance = JSON.parse(await readFile(resolve(cspice, '../../acquisition-provenance.json'), 'utf8'))
 const binary = resolve(build, 'de405-canonical-v2-runner')
 execFileSync(compiler, [...actualFlags, source, `${lib}/cspice.a`, `${lib}/csupport.a`, '-lm', '-o', binary], { stdio: 'inherit' })
 execFileSync(binary, ['--evaluate-spk-type2-batch', '--spk', args.spk, '--input-jsonl', args.samples, '--output-jsonl', resolve(args.output, 'result.jsonl')], { stdio: 'inherit' })
@@ -51,8 +54,9 @@ let libc = 'unavailable'
 try { libc = execFileSync('ldd', ['--version'], { encoding: 'utf8' }).split('\n')[0] } catch { /* non-Linux local smoke */ }
 const provenance = {
   schemaVersion: 1, evidenceKind: 'de405-linux-architecture', fixture: false,
-  expectedHead: head, architecture: args.arch, runnerLabel: args.runner,
-  inputBundle: { archiveSha256: process.env.DE405_INPUT_BUNDLE_SHA256 || 'fixture', urlSha256: createHash('sha256').update(process.env.DE405_INPUT_BUNDLE_URL || 'fixture').digest('hex') },
+  expectedHead: head, githubSha, githubRef: process.env.GITHUB_REF, workflowIdentity: '.github/workflows/de405-linux-architecture-evidence.yml', volatileProvenance: { runId: null, timestamp: null }, architecture: args.arch, runnerLabel: args.runner,
+  sampleAsset: { archiveSha256: process.env.DE405_SAMPLE_ASSET_SHA256 || 'fixture', urlSha256: createHash('sha256').update(process.env.DE405_SAMPLE_ASSET_URL || 'fixture').digest('hex') },
+  officialInputs: { cspiceArchiveSha256: acquisitionProvenance.cspice.sha256, spkSha256: acquisitionProvenance.spk.sha256, sourceManifestSha256: acquisitionProvenance.inputs.sourceManifestSha256, cspiceUrlSha256: createHash('sha256').update(acquisitionProvenance.cspice.url).digest('hex'), spkUrlSha256: createHash('sha256').update(acquisitionProvenance.spk.url).digest('hex'), arm64SourcePort: args.arch === 'arm64' },
   execution: 'github-hosted-vm', emulation: false,
   host: { uname: execFileSync('uname', ['-a'], { encoding: 'utf8' }).trim(), machine: execFileSync('uname', ['-m'], { encoding: 'utf8' }).trim(), imageOS: process.env.ImageOS || 'unavailable', imageVersion: process.env.ImageVersion || 'unavailable' },
   userspace: { family: 'ubuntu-24.04', osRelease, libc, compiler, compilerVersion: execFileSync(compiler, ['--version'], { encoding: 'utf8' }).split('\n')[0], compilerTarget: execFileSync(compiler, ['-dumpmachine'], { encoding: 'utf8' }).trim(), node: process.version },
