@@ -57,8 +57,10 @@ const ldd = commandOutput('ldd', ['--version'])
 if (ldd.stdout || ldd.stderr) libc = (ldd.stdout || ldd.stderr).split('\n').find(Boolean) || 'unavailable'
 const packageInfoPath = process.env.DE405_PACKAGE_INFO_FILE
 const toolBinarySha256Path = process.env.DE405_TOOL_BINARY_SHA256_FILE
-const packageInfo = packageInfoPath ? (await readFile(resolve(packageInfoPath), 'utf8')).trim().split('\n').filter(Boolean) : []
-const toolBinarySha256 = toolBinarySha256Path ? (await readFile(resolve(toolBinarySha256Path), 'utf8')).trim().split('\n').filter(Boolean) : []
+const toolchainLockPath = process.env.DE405_TOOLCHAIN_LOCK_FILE
+const toolchain = toolchainLockPath ? JSON.parse(await readFile(resolve(toolchainLockPath), 'utf8')) : null
+const packageInfo = packageInfoPath ? (await readFile(resolve(packageInfoPath), 'utf8')).trim().split('\n').filter(Boolean) : toolchain?.packageInfo || []
+const toolBinarySha256 = toolBinarySha256Path ? (await readFile(resolve(toolBinarySha256Path), 'utf8')).trim().split('\n').filter(Boolean) : Object.entries(toolchain?.binarySha256 || {}).map(([name, hash]) => `${name} ${hash}`)
 const optionalIdentity = name => { const result = commandOutput(name, ['--version']); return { exitCode: result.exitCode, stdout: result.stdout, stderr: result.stderr } }
 const binutils = optionalIdentity('ld')
 const linker = optionalIdentity('ld')
@@ -70,7 +72,7 @@ const provenance = {
   officialInputs: { cspiceArchiveSha256: acquisitionProvenance.cspice.sha256, spkSha256: acquisitionProvenance.spk.sha256, sourceManifestSha256: acquisitionProvenance.inputs.sourceManifestSha256, cspiceUrlSha256: createHash('sha256').update(acquisitionProvenance.cspice.url).digest('hex'), spkUrlSha256: createHash('sha256').update(acquisitionProvenance.spk.url).digest('hex'), arm64SourcePort: args.arch === 'arm64' },
   execution: args['execution-mode'] || process.env.DE405_EXECUTION_MODE || 'github-hosted-vm', emulation: args.emulation === 'true' || process.env.DE405_EMULATION === 'true',
   host: { uname: execFileSync('uname', ['-a'], { encoding: 'utf8' }).trim(), machine: execFileSync('uname', ['-m'], { encoding: 'utf8' }).trim(), imageOS: args['host-image-os'] || process.env.DE405_HOST_IMAGE_OS || process.env.ImageOS || 'unavailable', imageVersion: args['host-image-version'] || process.env.DE405_HOST_IMAGE_VERSION || process.env.ImageVersion || 'unavailable' },
-  userspace: { family: args['userspace-family'] || process.env.DE405_USERSPACE_FAMILY || 'ubuntu-24.04', osRelease, libc, compiler, compilerVersion: execFileSync(compiler, ['--version'], { encoding: 'utf8' }).split('\n')[0], compilerTarget: execFileSync(compiler, ['-dumpmachine'], { encoding: 'utf8' }).trim(), node: process.version, packages: packageInfo, binutils: binutils.stdout.split('\n').find(Boolean) || binutils.stderr.split('\n').find(Boolean) || 'unavailable', linker: linker.stdout.split('\n').find(Boolean) || linker.stderr.split('\n').find(Boolean) || 'unavailable', ar: ar.stdout.split('\n').find(Boolean) || ar.stderr.split('\n').find(Boolean) || 'unavailable', toolBinarySha256 },
+  userspace: { family: args['userspace-family'] || process.env.DE405_USERSPACE_FAMILY || 'ubuntu-24.04', osRelease, libc, compiler, compilerVersion: execFileSync(compiler, ['--version'], { encoding: 'utf8' }).split('\n')[0], compilerTarget: execFileSync(compiler, ['-dumpmachine'], { encoding: 'utf8' }).trim(), node: process.version, packages: packageInfo, binutils: binutils.stdout.split('\n').find(Boolean) || binutils.stderr.split('\n').find(Boolean) || 'unavailable', linker: linker.stdout.split('\n').find(Boolean) || linker.stderr.split('\n').find(Boolean) || 'unavailable', ar: ar.stdout.split('\n').find(Boolean) || ar.stderr.split('\n').find(Boolean) || 'unavailable', toolBinarySha256, toolchain },
   cspiceBuild: cspiceBuild,
   controls: { flags, locale: process.env.LC_ALL || process.env.LANG || 'unavailable', timezone: process.env.TZ || 'unavailable', wrapper: 'de405-canonical-v2-runner', serialization: 'JSONL LF final newline', sourceHashes: hashes, artifactHashes },
   result: { path: 'result.jsonl', sha256: resultHash, bytes: resultBytes, rowCount: await countRows(result), lineEnding: 'lf_only_final_lf' },

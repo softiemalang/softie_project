@@ -15,8 +15,59 @@ on:
 permissions:
   contents: read
 
+env:
+  LC_ALL: C.UTF-8
+  LANG: C.UTF-8
+  TZ: UTC
+  DE405_EXPECTED_HEAD: ${{ github.sha }}
+  DE405_EXPECTED_ROW_COUNT: 150671
+  DE405_CFLAGS: -std=c11 -O2 -ffp-contract=off -fno-fast-math -Wall -Wextra -Werror
+  DE405_CSPICE_CFLAGS: -std=c89 -O2 -ffp-contract=off -fno-fast-math -fPIC -DNON_UNIX_STDIO
+  DE405_SAMPLE_ASSET_URL: ${{ inputs.sample_asset_url }}
+  DE405_SAMPLE_ASSET_SHA256: ${{ inputs.sample_asset_sha256 }}
+  DE405_CSPICE_URL: https://naif.jpl.nasa.gov/pub/naif/toolkit//C/PC_Linux_GCC_64bit/packages/cspice.tar.Z
+  DE405_CSPICE_ARCHIVE_SHA256: 60a95b51a6472f1afe7e40d77ebdee43c12bb5b8823676ccc74692ddfede06ce
+  DE405_SPK_URL: https://naif.jpl.nasa.gov/pub/naif/generic_kernels/spk/planets/a_old_versions/de405.bsp
+  DE405_SPK_SHA256: 30a7113793ee5b6bf1e5546c6dfc21d9682d9ffabfe9b17b4bab27ba2ac75c89
+
 jobs:
+  setup:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+      - name: Verify main/ref binding and workflow contract
+        run: |
+          set -euo pipefail
+          test "$GITHUB_REF" = refs/heads/main
+          test "$(git rev-parse HEAD)" = "$GITHUB_SHA"
+          node scripts/check-de405-legacy-alpine-workflow.mjs
+      - name: Build and lock immutable Alpine toolchain once
+        run: |
+          set -euo pipefail
+          mkdir -p "$RUNNER_TEMP/de405-toolchain-raw" "$RUNNER_TEMP/de405-toolchain-setup"
+          image="de405-alpine-toolchain:${GITHUB_SHA}"
+          docker build --platform linux/amd64 --file scripts/fixtures/de405-alpine-toolchain.Dockerfile --tag "$image" .
+          image_id="$(docker image inspect --format '{{.Id}}' "$image")"
+          docker save "$image" --output "$RUNNER_TEMP/de405-toolchain-setup/toolchain-image.tar"
+          archive_sha256="$(sha256sum "$RUNNER_TEMP/de405-toolchain-setup/toolchain-image.tar" | cut -d' ' -f1)"
+          container_id="$(docker create "$image" true)"
+          docker cp "$container_id:/opt/de405-toolchain/." "$RUNNER_TEMP/de405-toolchain-raw/"
+          docker rm "$container_id"
+          node scripts/materialize-de405-alpine-toolchain-lock.mjs --raw "$RUNNER_TEMP/de405-toolchain-raw" --image-id "$image_id" --image-archive-sha256 "$archive_sha256" --output "$RUNNER_TEMP/de405-toolchain-setup/toolchain-lock.json"
+          printf '%s\n' "$image_id" > "$RUNNER_TEMP/de405-toolchain-setup/image-id.txt"
+          printf '%s\n' "$archive_sha256" > "$RUNNER_TEMP/de405-toolchain-setup/image-archive-sha256.txt"
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: de405-legacy-alpine-toolchain
+          path: ${{ runner.temp }}/de405-toolchain-setup
+          if-no-files-found: error
+          retention-days: 14
+      - name: Cleanup task-owned setup files
+        if: always()
+        run: rm -rf "$RUNNER_TEMP/de405-toolchain-raw" "$RUNNER_TEMP/de405-toolchain-setup"
+
   variant:
+    needs: setup
     runs-on: ubuntu-24.04
     strategy:
       fail-fast: false
@@ -32,30 +83,10 @@ jobs:
             container: true
           - id: alpine-clang
             environment: alpine-3.22.1-musl
-            compiler: clang20
+            compiler: clang
             container: true
-    env:
-      LC_ALL: C.UTF-8
-      LANG: C.UTF-8
-      TZ: UTC
-      DE405_EXPECTED_HEAD: ${{ github.sha }}
-      DE405_EXPECTED_ROW_COUNT: 150671
-      DE405_CFLAGS: -std=c11 -O2 -ffp-contract=off -fno-fast-math -Wall -Wextra -Werror
-      DE405_CSPICE_CFLAGS: -std=c89 -O2 -ffp-contract=off -fno-fast-math -fPIC -DNON_UNIX_STDIO
-      DE405_SAMPLE_ASSET_URL: ${{ inputs.sample_asset_url }}
-      DE405_SAMPLE_ASSET_SHA256: ${{ inputs.sample_asset_sha256 }}
-      DE405_CSPICE_URL: https://naif.jpl.nasa.gov/pub/naif/toolkit//C/PC_Linux_GCC_64bit/packages/cspice.tar.Z
-      DE405_CSPICE_ARCHIVE_SHA256: 60a95b51a6472f1afe7e40d77ebdee43c12bb5b8823676ccc74692ddfede06ce
-      DE405_SPK_URL: https://naif.jpl.nasa.gov/pub/naif/generic_kernels/spk/planets/a_old_versions/de405.bsp
-      DE405_SPK_SHA256: 30a7113793ee5b6bf1e5546c6dfc21d9682d9ffabfe9b17b4bab27ba2ac75c89
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
-      - name: Verify main/ref binding and workflow contract
-        run: |
-          set -euo pipefail
-          test "$GITHUB_REF" = refs/heads/main
-          test "$(git rev-parse HEAD)" = "$GITHUB_SHA"
-          node scripts/check-de405-legacy-alpine-workflow.mjs
       - name: Fetch sample and official NAIF inputs
         run: |
           set -euo pipefail
@@ -67,49 +98,53 @@ jobs:
           node scripts/check-de405-input-bundle.mjs --archive "$RUNNER_TEMP/de405-sample.zip"
           cp "$RUNNER_TEMP/de405-sample/de405-jpl-cspice-residual-sweep.samples.jsonl" "$RUNNER_TEMP/de405-inputs/samples.jsonl"
           node scripts/fetch-de405-linux-official-inputs.mjs --output "$RUNNER_TEMP/de405-inputs" --cspice-url "$DE405_CSPICE_URL" --cspice-sha256 "$DE405_CSPICE_ARCHIVE_SHA256" --spk-url "$DE405_SPK_URL" --spk-sha256 "$DE405_SPK_SHA256"
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4.3.0
+        if: matrix.container == true
+        with:
+          name: de405-legacy-alpine-toolchain
+          path: ${{ runner.temp }}/de405-toolchain-setup
       - name: Run Ubuntu native control
         if: matrix.container == false
+        env:
+          CC: gcc
+          DE405_EXPECTED_COMPILER: gcc
         run: |
           set -euo pipefail
           mkdir -p "$RUNNER_TEMP/de405-output/${{ matrix.id }}"
           node scripts/build-de405-linux-cspice.mjs --cspice "$RUNNER_TEMP/de405-inputs/cspice/N0067" --output "$RUNNER_TEMP/de405-built/N0067"
           node scripts/run-de405-linux-architecture-evidence.mjs --samples "$RUNNER_TEMP/de405-inputs/samples.jsonl" --spk "$RUNNER_TEMP/de405-inputs/de405.bsp" --cspice "$RUNNER_TEMP/de405-built/N0067" --acquisition-provenance "$RUNNER_TEMP/de405-inputs/acquisition-provenance.json" --output "$RUNNER_TEMP/de405-output/${{ matrix.id }}" --arch x64 --runner ubuntu-24.04 --workflow-identity .github/workflows/de405-legacy-native-matrix.yml --variant ubuntu-gcc --userspace-family ubuntu-24.04-glibc --execution-mode github-hosted-vm --emulation false --container-used false --container-identity-source github-hosted-runner-image
-      - name: Run Alpine native x64 compiler variant
+      - name: Run Alpine native x64 compiler variant from setup image
         if: matrix.container == true
         run: |
           set -euo pipefail
           mkdir -p "$RUNNER_TEMP/de405-output/${{ matrix.id }}"
-          docker run --rm --platform linux/amd64 \
+          image_id="$(cat "$RUNNER_TEMP/de405-toolchain-setup/image-id.txt")"
+          test "$(docker load --input "$RUNNER_TEMP/de405-toolchain-setup/toolchain-image.tar" | sed -n 's/^Loaded image ID: //p')" = "$image_id" || test "$(docker image inspect --format '{{.Id}}' "$image_id")" = "$image_id"
+          docker run --rm --platform linux/amd64 --network none \
             -v "$GITHUB_WORKSPACE:/workspace:ro" \
             -v "$RUNNER_TEMP:/runner-temp" \
-            -e CC=${{ matrix.compiler == 'clang20' && 'clang' || 'gcc' }} \
+            -e CC=${{ matrix.compiler }} -e DE405_EXPECTED_COMPILER=${{ matrix.compiler }} \
             -e DE405_EXPECTED_HEAD -e GITHUB_SHA -e GITHUB_REF -e DE405_EXPECTED_ROW_COUNT \
             -e DE405_CFLAGS -e DE405_CSPICE_CFLAGS -e LC_ALL -e LANG -e TZ \
             -e DE405_SAMPLE_ASSET_SHA256 -e DE405_SAMPLE_ASSET_URL -e ImageOS -e ImageVersion \
-            -e DE405_PACKAGE_INFO_FILE -e DE405_TOOL_BINARY_SHA256_FILE \
-            docker.io/library/alpine@sha256:eafc1edb577d2e9b458664a15f23ea1c370214193226069eb22921169fc7e43f \
-            sh -euxc '
-              export DE405_PACKAGE_INFO_FILE=/runner-temp/de405-output/${{ matrix.id }}/apk-info.txt
-              export DE405_TOOL_BINARY_SHA256_FILE=/runner-temp/de405-output/${{ matrix.id }}/tool-binary-sha256.txt
-              apk add --no-cache musl=1.2.5-r12 binutils=2.44-r3 gcc=14.2.0-r6 clang20=20.1.8-r0 nodejs=22.23.0-r0 unzip tar gzip
+            -e DE405_TOOLCHAIN_LOCK_FILE=/runner-temp/de405-toolchain-setup/toolchain-lock.json \
+            "$image_id" sh -euxc '
               test "$(uname -m)" = x86_64
+              test "$(git -C /workspace rev-parse HEAD)" = "$GITHUB_SHA"
               node --version; gcc --version; clang --version; musl-gcc --version || true; ld --version
-              apk info -vv > /runner-temp/de405-output/${{ matrix.id }}/apk-info.txt
-              sha256sum /lib/ld-musl-x86_64.so.1 /usr/bin/node /usr/bin/ar /usr/bin/ld /usr/bin/${{ matrix.compiler == 'clang20' && 'clang' || 'gcc' }} > /runner-temp/de405-output/${{ matrix.id }}/tool-binary-sha256.txt
               mkdir -p /runner-temp/de405-built /runner-temp/de405-output/${{ matrix.id }}
               node /workspace/scripts/build-de405-linux-cspice.mjs --cspice /runner-temp/de405-inputs/cspice/N0067 --output /runner-temp/de405-built/N0067
-              git -c safe.directory=/workspace -C /workspace rev-parse HEAD > /runner-temp/de405-output/${{ matrix.id }}/runtime-head.txt
-              node /workspace/scripts/run-de405-linux-architecture-evidence.mjs --samples /runner-temp/de405-inputs/samples.jsonl --spk /runner-temp/de405-inputs/de405.bsp --cspice /runner-temp/de405-built/N0067 --acquisition-provenance /runner-temp/de405-inputs/acquisition-provenance.json --output /runner-temp/de405-output/${{ matrix.id }} --arch x64 --runner ${{ matrix.environment }} --runtime-head "$GITHUB_SHA" --workflow-identity .github/workflows/de405-legacy-native-matrix.yml --variant ${{ matrix.id }} --userspace-family alpine-3.22.1-musl --execution-mode github-hosted-vm-native-x64-container --emulation false --container-used true --container-image docker.io/library/alpine@sha256:eafc1edb577d2e9b458664a15f23ea1c370214193226069eb22921169fc7e43f --container-identity-source immutable-image-digest --host-image-os "$ImageOS" --host-image-version "$ImageVersion"
+              node /workspace/scripts/run-de405-linux-architecture-evidence.mjs --samples /runner-temp/de405-inputs/samples.jsonl --spk /runner-temp/de405-inputs/de405.bsp --cspice /runner-temp/de405-built/N0067 --acquisition-provenance /runner-temp/de405-inputs/acquisition-provenance.json --output /runner-temp/de405-output/${{ matrix.id }} --arch x64 --runner ${{ matrix.environment }} --runtime-head "$GITHUB_SHA" --workflow-identity .github/workflows/de405-legacy-native-matrix.yml --variant ${{ matrix.id }} --userspace-family alpine-3.22.1-musl --execution-mode github-hosted-vm-native-x64-container --emulation false --container-used true --container-image "alpine-toolchain:$image_id" --container-identity-source setup-job-docker-save-image --host-image-os "$ImageOS" --host-image-version "$ImageVersion"
             '
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
         with:
           name: de405-legacy-${{ matrix.id }}
-          path: ${{ runner.temp }}/de405-output
+          path: ${{ runner.temp }}/de405-output/${{ matrix.id }}
           if-no-files-found: error
           retention-days: 14
       - name: Cleanup task-owned runner temporary files
         if: always()
-        run: rm -rf "$RUNNER_TEMP/de405-inputs" "$RUNNER_TEMP/de405-sample" "$RUNNER_TEMP/de405-sample.zip" "$RUNNER_TEMP/de405-built" "$RUNNER_TEMP/de405-output"
+        run: rm -rf "$RUNNER_TEMP/de405-inputs" "$RUNNER_TEMP/de405-sample" "$RUNNER_TEMP/de405-sample.zip" "$RUNNER_TEMP/de405-built" "$RUNNER_TEMP/de405-output" "$RUNNER_TEMP/de405-toolchain-setup"
 
   analyze:
     needs: variant
@@ -118,23 +153,14 @@ jobs:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
       - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4.3.0
         with:
-          name: de405-legacy-ubuntu-gcc
-          path: ${{ runner.temp }}/legacy/ubuntu-gcc
-      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4.3.0
-        with:
-          name: de405-legacy-alpine-gcc
-          path: ${{ runner.temp }}/legacy/alpine-gcc
-      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4.3.0
-        with:
-          name: de405-legacy-alpine-clang
-          path: ${{ runner.temp }}/legacy/alpine-clang
+          pattern: de405-legacy-*
+          path: ${{ runner.temp }}/legacy
+          merge-multiple: false
       - name: Analyze and materialize deterministic summary
-        env:
-          DE405_EXPECTED_HEAD: ${{ github.sha }}
         run: |
           set -euo pipefail
           node scripts/check-de405-legacy-alpine-workflow.mjs
-          node --input-type=module -e 'import { readFile, writeFile } from "node:fs/promises"; const m=JSON.parse(await readFile("scripts/fixtures/de405-legacy-matrix-manifest.json", "utf8")); m.root=process.env.RUNNER_TEMP+"/legacy"; m.variants.forEach(v => { v.output.path=`${v.id}/result.jsonl`; v.provenance={path:`${v.id}/provenance.json`}; }); m.controlTaxonomy.requiredIdentical=["expectedHead","githubRef","workflowIdentity","officialInputs.spkSha256","officialInputs.cspiceArchiveSha256","officialInputs.sourceManifestSha256","controls.flags","controls.locale","controls.timezone","controls.wrapper","controls.serialization","controls.sourceHashes","result.rowCount"]; await writeFile(process.env.RUNNER_TEMP+"/de405-legacy-manifest.json", JSON.stringify(m)+"\\n")'
+          node --input-type=module -e 'import { readFile, writeFile } from "node:fs/promises"; const m=JSON.parse(await readFile("scripts/fixtures/de405-legacy-matrix-manifest.json", "utf8")); m.root=process.env.RUNNER_TEMP+"/legacy"; m.variants.forEach(v => { v.output.path=`de405-legacy-${v.id}/result.jsonl`; v.provenance={path:`de405-legacy-${v.id}/provenance.json`}; }); m.controlTaxonomy.requiredIdentical=["expectedHead","githubRef","workflowIdentity","officialInputs.spkSha256","officialInputs.cspiceArchiveSha256","officialInputs.sourceManifestSha256","controls.flags","controls.locale","controls.timezone","controls.wrapper","controls.serialization","controls.sourceHashes","result.rowCount"]; await writeFile(process.env.RUNNER_TEMP+"/de405-legacy-manifest.json", JSON.stringify(m)+"\n")'
           node scripts/analyze-de405-legacy-matrix.mjs --manifest "$RUNNER_TEMP/de405-legacy-manifest.json" --output "$RUNNER_TEMP/de405-legacy-analysis.json"
           node scripts/materialize-de405-legacy-matrix.mjs --input "$RUNNER_TEMP/de405-legacy-analysis.json" --json "$RUNNER_TEMP/de405-legacy-summary.json" --markdown "$RUNNER_TEMP/de405-legacy-summary.md"
           node scripts/materialize-de405-legacy-matrix.mjs --input "$RUNNER_TEMP/de405-legacy-analysis.json" --json "$RUNNER_TEMP/de405-legacy-summary-2.json" --markdown "$RUNNER_TEMP/de405-legacy-summary-2.md"

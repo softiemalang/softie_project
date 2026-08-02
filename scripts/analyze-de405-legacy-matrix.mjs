@@ -20,10 +20,20 @@ const variants = []
 for (const variant of manifest.variants) { const path = resolve(manifest.root, variant.output.path); const provenancePath = resolve(manifest.root, variant.provenance?.path || variant.output.path.replace(/\.jsonl$/, '.provenance.json')); const provenance = JSON.parse(await readFile(provenancePath, 'utf8')); variants.push({ ...variant, path, provenance, rows: await rows(path), resultSha256: await hash(path) }) }
 const expectedRowCount = manifest.expectedRowCount || 150671
 if (!variants.length || variants.some(v => v.rows.length !== expectedRowCount)) throw new Error(`every legacy variant must contain exactly ${expectedRowCount} rows`)
+for (const variant of variants.filter(v => v.id.startsWith('alpine-'))) {
+  const toolchain = variant.provenance.userspace?.toolchain
+  if (!toolchain?.image?.baseReference || !toolchain.image.id || !toolchain.image.archiveSha256 || !toolchain.packageLockSha256 || !toolchain.filesystemSha256) throw new Error(`missing Alpine toolchain identity: ${variant.id}`)
+  for (const key of ['musl', 'binutils', 'gcc', 'clang20', 'nodejs']) if (!toolchain.packages?.[key]) throw new Error(`missing Alpine package identity ${key}: ${variant.id}`)
+  for (const key of ['muslLoader', 'node', 'ar', 'ld']) if (!toolchain.binarySha256?.[key]) throw new Error(`missing Alpine binary identity ${key}: ${variant.id}`)
+  const expectedCompiler = variant.id === 'alpine-clang' ? 'clang' : 'gcc'
+  if (variant.provenance.userspace.compiler !== expectedCompiler) throw new Error(`compiler variant mismatch: ${variant.id}`)
+}
 const reference = variants.find(v => v.id === manifest.referenceVariant) || variants[0]
 const pairList = []
 for (let i = 0; i < variants.length; i++) for (let j = i + 1; j < variants.length; j++) pairList.push([variants[i], variants[j]])
 const pairAxis = (left, right) => left.id === 'ubuntu-gcc' && right.id === 'alpine-gcc' ? { deliberateAxisDifferences: ['Ubuntu glibc vs Alpine musl userspace'], classification: 'musl_userspace_arithmetic_difference_observed' } : left.id.startsWith('alpine-') && right.id.startsWith('alpine-') ? { deliberateAxisDifferences: ['GCC vs Clang compiler family on Alpine musl'], classification: 'compiler_family_arithmetic_difference_observed_on_alpine' } : { deliberateAxisDifferences: ['Ubuntu glibc vs Alpine musl userspace', 'GCC vs Clang compiler family'], classification: 'musl_and_compiler_effects_both_observed' }
+const pairKey = (left, right) => `${left.id}|${right.id}`
+const requiredIdenticalFor = (left, right) => manifest.controlTaxonomy.pairRequiredIdentical?.[pairKey(left, right)] || manifest.controlTaxonomy.pairRequiredIdentical?.[pairKey(right, left)] || (Array.isArray(manifest.controlTaxonomy.requiredIdentical) ? manifest.controlTaxonomy.requiredIdentical : Object.keys(manifest.controlTaxonomy.requiredIdentical || {}))
 const comparisons = pairList.map(([reference, variant]) => {
   const ulps = [], absolutes = []; let differingRows = 0, differingComponents = 0, firstDivergence = null
   if (variant.rows.length !== reference.rows.length) throw new Error(`row count mismatch ${variant.id}`)
@@ -34,7 +44,7 @@ const comparisons = pairList.map(([reference, variant]) => {
     for (let j = 0; j < 6; j++) { const distance = ulp(lb[j], rb[j]); const lv = Buffer.alloc(8); lv.writeBigUInt64BE(BigInt(lb[j])); const rv = Buffer.alloc(8); rv.writeBigUInt64BE(BigInt(rb[j])); const delta = rv.readDoubleBE() - lv.readDoubleBE(); ulps.push(distance); absolutes.push(Math.abs(delta)); if (distance) { rowDiff = true; differingComponents++; if (!firstDivergence) firstDivergence = { ordinal: i + 1, sampleId: left.sampleId, queryEtHex: left.queryEtHex, stage: 'canonical_v2_result', component: components[j], componentIndex: j, referenceBits: lb[j], variantBits: rb[j], ulpDistance: distance, absoluteDifference: Math.abs(delta) } } }
     if (rowDiff) differingRows++
   }
-  const requiredIdentical = Array.isArray(manifest.controlTaxonomy.requiredIdentical) ? manifest.controlTaxonomy.requiredIdentical : Object.keys(manifest.controlTaxonomy.requiredIdentical || {})
+  const requiredIdentical = requiredIdenticalFor(reference, variant)
   const controlMismatches = requiredIdentical.filter(key => JSON.stringify(getPath(reference.provenance, key)) !== JSON.stringify(getPath(variant.provenance, key)))
   const axis = pairAxis(reference, variant)
   return { reference: reference.id, variant: variant.id, resultHashes: { reference: reference.resultSha256, variant: variant.resultSha256 }, rowCount: reference.rows.length, differingRows, differingComponents, firstDivergence, ulp: quantiles(ulps), absolute: quantiles(absolutes), deliberateAxisDifferences: axis.deliberateAxisDifferences, controls: { requiredIdentityMismatches: controlMismatches, arithmeticCompared: true, unexpectedBlockingMismatch: controlMismatches.length ? controlMismatches : [] }, classification: controlMismatches.length ? 'blocked_legacy_matrix_control_mismatch' : differingComponents ? axis.classification : 'legacy_matrix_bitwise_identity_observed' }

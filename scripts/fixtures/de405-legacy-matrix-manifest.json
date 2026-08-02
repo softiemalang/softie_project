@@ -4,7 +4,40 @@
   "historicalBaselineHead": "33e8215f1349860e6166f7d1c779b6d36b6a9624",
   "root": "scripts/fixtures/de405-legacy",
   "referenceVariant": "ubuntu-gcc",
-  "controlTaxonomy": { "requiredIdentical": [] },
+  "controlTaxonomy": {
+    "requiredIdentical": [],
+    "pairRequiredIdentical": {
+      "alpine-gcc|alpine-clang": [
+        "expectedHead",
+        "githubRef",
+        "workflowIdentity",
+        "officialInputs.spkSha256",
+        "officialInputs.cspiceArchiveSha256",
+        "officialInputs.sourceManifestSha256",
+        "controls.flags",
+        "controls.locale",
+        "controls.timezone",
+        "controls.wrapper",
+        "controls.serialization",
+        "controls.sourceHashes",
+        "result.rowCount",
+        "userspace.toolchain.image.baseReference",
+        "userspace.toolchain.image.id",
+        "userspace.toolchain.image.archiveSha256",
+        "userspace.toolchain.packageLockSha256",
+        "userspace.toolchain.filesystemSha256",
+        "userspace.toolchain.packages.musl",
+        "userspace.toolchain.packages.binutils",
+        "userspace.toolchain.packages.gcc",
+        "userspace.toolchain.packages.clang20",
+        "userspace.toolchain.packages.nodejs",
+        "userspace.toolchain.binarySha256.muslLoader",
+        "userspace.toolchain.binarySha256.node",
+        "userspace.toolchain.binarySha256.ar",
+        "userspace.toolchain.binarySha256.ld"
+      ]
+    }
+  },
   "variants": [
     { "id": "ubuntu-gcc", "output": { "path": "ubuntu-gcc.jsonl" } },
     { "id": "alpine-gcc", "output": { "path": "alpine-gcc.jsonl" } },
