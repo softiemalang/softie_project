@@ -1,0 +1,1209 @@
+{
+  "schemaVersion": "astrology-local-orchestration-evidence-v1",
+  "orchestrationSchema": "astrology-local-verified-orchestration-v1",
+  "providerBundleCanonicalSha256": "4c1814208dacbb2fd86674c15f37c2c70c14485cd031541e3acfd1190df835c5",
+  "cases": {
+    "complete": {
+      "schemaVersion": "astrology-local-verified-orchestration-v1",
+      "orchestrationVersion": "1.0.0",
+      "status": "completed",
+      "stages": {
+        "input": {
+          "status": "completed",
+          "schemaVersion": "astrology-local-orchestration-input-v1",
+          "sourceRefs": [
+            "input.civilTime",
+            "input.location"
+          ]
+        },
+        "providerBundle": {
+          "status": "completed",
+          "schemaVersion": "astrology-provider-evidence-bundle-v1",
+          "version": "local-snapshot-2026-08-03",
+          "canonicalSha256": "4c1814208dacbb2fd86674c15f37c2c70c14485cd031541e3acfd1190df835c5",
+          "sourceRefs": [
+            "offline-snapshot/iers-dut1",
+            "offline-snapshot/iers-leap-seconds",
+            "offline-snapshot/tai-utc",
+            "offline-snapshot/tdb-minus-tt"
+          ]
+        },
+        "runtime": {
+          "status": "completed",
+          "identity": {
+            "bsp": {
+              "hash": "30a7113793ee5b6bf1e5546c6dfc21d9682d9ffabfe9b17b4bab27ba2ac75c89",
+              "hashStatus": "verified",
+              "coverage": {
+                "start": -1577879958.8160586,
+                "end": 1577880064.1839132
+              }
+            },
+            "runner": {
+              "protocolVersion": "de405-canonical-v2-protocol-v1",
+              "protocolStatus": "verified",
+              "identityStatus": "verified",
+              "runnerIdentity": "sha256:92297c604fe43a147bc1f16cfbe33bf482f9ae7d001cd1c6fad87c5d5c2b8964"
+            },
+            "evaluator": {
+              "status": "verified",
+              "evaluator": "de405-canonical-v2"
+            }
+          },
+          "sourceRefs": [
+            "runtime.kernel",
+            "runtime.runner",
+            "runtime.evaluatorSelection"
+          ]
+        },
+        "timeAngle": {
+          "status": "completed",
+          "schemaVersion": "astrology-time-angle-result-v0",
+          "sourceRefs": [
+            "input.civilTime.utc",
+            "input.location",
+            "input.timeScaleOffsets"
+          ]
+        },
+        "raw": {
+          "status": "completed",
+          "schemaVersion": "astrology-raw-chart-v1",
+          "sourceRefs": [
+            "timeAngle",
+            "provider.tdb-minus-tt",
+            "runtime.kernel",
+            "runtime.evaluatorSelection"
+          ]
+        },
+        "rule": {
+          "status": "completed",
+          "schemaVersion": "astrology-rule-chart-v0",
+          "sourceRefs": [
+            "rawChart.bodies[*]",
+            "rawChart.angles.*"
+          ]
+        },
+        "adapter": {
+          "status": "completed",
+          "schemaVersion": "verified-astrology-adapter-v1",
+          "sourceRefs": [
+            "rawChart",
+            "ruleChart",
+            "provenance"
+          ]
+        },
+        "readiness": {
+          "status": "completed",
+          "schemaVersion": "verified-astrology-readiness-v1",
+          "reasonCodes": [],
+          "sourceRefs": [
+            "input.civilTime",
+            "input.location",
+            "input.dut1",
+            "input.dut1",
+            "timeScale.leapSecond",
+            "timeScale.ttMinusUtc",
+            "timeScale.tdbMinusTt",
+            "ephemeris.bsp",
+            "ephemeris.evaluatorSelection",
+            "runtime.runner",
+            "documents.raw",
+            "documents.rule",
+            "documents.adapter",
+            "contamination"
+          ]
+        }
+      },
+      "schemaIdentities": {
+        "raw": "astrology-raw-chart-v1",
+        "rule": "astrology-rule-chart-v0",
+        "adapter": "verified-astrology-adapter-v1",
+        "readiness": "verified-astrology-readiness-v1"
+      },
+      "providerBundleCanonicalSha256": "4c1814208dacbb2fd86674c15f37c2c70c14485cd031541e3acfd1190df835c5",
+      "runtime": {
+        "bsp": {
+          "hash": "30a7113793ee5b6bf1e5546c6dfc21d9682d9ffabfe9b17b4bab27ba2ac75c89",
+          "hashStatus": "verified",
+          "coverage": {
+            "start": -1577879958.8160586,
+            "end": 1577880064.1839132
+          }
+        },
+        "runner": {
+          "protocolVersion": "de405-canonical-v2-protocol-v1",
+          "protocolStatus": "verified",
+          "identityStatus": "verified",
+          "runnerIdentity": "sha256:92297c604fe43a147bc1f16cfbe33bf482f9ae7d001cd1c6fad87c5d5c2b8964"
+        },
+        "evaluator": {
+          "status": "verified",
+          "evaluator": "de405-canonical-v2"
+        }
+      },
+      "rawChartHash": "08d88494a59e53495301a0efc11cf29397370786f9733932da297787a3aff015",
+      "ruleChartHash": "0cbd2754da1da729773d088254492adf824a9a0702d3480960b2f3d8ed4240da",
+      "adapter": {
+        "schemaVersion": "verified-astrology-adapter-v1",
+        "status": {
+          "calculationStatus": "verified",
+          "availableForInterpretation": false,
+          "integrationStatus": "not_connected",
+          "serviceEligibility": "blocked",
+          "reason": "verified_adapter_not_activated"
+        }
+      },
+      "readiness": {
+        "schemaVersion": "verified-astrology-readiness-v1",
+        "readiness": "ready",
+        "areas": {
+          "input": {
+            "status": "ready",
+            "reasons": [],
+            "sourceRefs": [
+              "input.civilTime",
+              "input.location",
+              "input.dut1"
+            ]
+          },
+          "timeScale": {
+            "status": "ready",
+            "reasons": [],
+            "sourceRefs": [
+              "input.dut1",
+              "timeScale.leapSecond",
+              "timeScale.ttMinusUtc",
+              "timeScale.tdbMinusTt"
+            ]
+          },
+          "ephemeris": {
+            "status": "ready",
+            "reasons": [],
+            "sourceRefs": [
+              "ephemeris.bsp",
+              "ephemeris.evaluatorSelection"
+            ]
+          },
+          "runtime": {
+            "status": "ready",
+            "reasons": [],
+            "sourceRefs": [
+              "runtime.runner"
+            ]
+          },
+          "documents": {
+            "status": "ready",
+            "reasons": [],
+            "sourceRefs": [
+              "documents.raw",
+              "documents.rule",
+              "documents.adapter"
+            ]
+          },
+          "contamination": {
+            "status": "ready",
+            "reasons": [],
+            "sourceRefs": [
+              "contamination"
+            ]
+          }
+        },
+        "reasonCodes": [],
+        "calculationReady": true,
+        "activation": {
+          "availableForInterpretation": false,
+          "integrationStatus": "not_connected",
+          "serviceEligibility": "blocked",
+          "reason": "activation_requires_user_approval"
+        },
+        "sourceRefs": [
+          "input.civilTime",
+          "input.location",
+          "input.dut1",
+          "input.dut1",
+          "timeScale.leapSecond",
+          "timeScale.ttMinusUtc",
+          "timeScale.tdbMinusTt",
+          "ephemeris.bsp",
+          "ephemeris.evaluatorSelection",
+          "runtime.runner",
+          "documents.raw",
+          "documents.rule",
+          "documents.adapter",
+          "contamination"
+        ]
+      },
+      "sourceRefs": [
+        "adapter",
+        "contamination",
+        "documents.adapter",
+        "documents.raw",
+        "documents.rule",
+        "ephemeris.bsp",
+        "ephemeris.evaluatorSelection",
+        "input",
+        "input.civilTime",
+        "input.dut1",
+        "input.location",
+        "providerBundle",
+        "rawChart",
+        "readiness",
+        "ruleChart",
+        "runtime",
+        "runtime.runner",
+        "timeAngle",
+        "timeScale.leapSecond",
+        "timeScale.tdbMinusTt",
+        "timeScale.ttMinusUtc"
+      ],
+      "blockedReasons": [
+        "activation_requires_user_approval"
+      ],
+      "activation": {
+        "availableForInterpretation": false,
+        "integrationStatus": "not_connected",
+        "serviceEligibility": "blocked",
+        "reason": "activation_requires_user_approval"
+      },
+      "execution": "actual-local-canonical-v2"
+    },
+    "civilTimeFold": {
+      "schemaVersion": "astrology-local-verified-orchestration-v1",
+      "orchestrationVersion": "1.0.0",
+      "stages": {
+        "input": {
+          "status": "blocked",
+          "reason": "civil_time_ambiguous",
+          "schemaVersion": "astrology-local-orchestration-input-v1",
+          "sourceRefs": [
+            "input.civilTime"
+          ]
+        },
+        "providerBundle": {
+          "status": "completed",
+          "schemaVersion": "astrology-provider-evidence-bundle-v1",
+          "version": "local-snapshot-2026-08-03",
+          "canonicalSha256": "4c1814208dacbb2fd86674c15f37c2c70c14485cd031541e3acfd1190df835c5",
+          "sourceRefs": [
+            "offline-snapshot/iers-dut1",
+            "offline-snapshot/iers-leap-seconds",
+            "offline-snapshot/tai-utc",
+            "offline-snapshot/tdb-minus-tt"
+          ]
+        }
+      },
+      "blockedReasons": [
+        "civil_time_ambiguous"
+      ],
+      "activation": {
+        "availableForInterpretation": false,
+        "integrationStatus": "not_connected",
+        "serviceEligibility": "blocked",
+        "reason": "activation_requires_user_approval"
+      },
+      "status": "blocked",
+      "providerBundleCanonicalSha256": "4c1814208dacbb2fd86674c15f37c2c70c14485cd031541e3acfd1190df835c5"
+    },
+    "civilTimeGap": {
+      "schemaVersion": "astrology-local-verified-orchestration-v1",
+      "orchestrationVersion": "1.0.0",
+      "stages": {
+        "input": {
+          "status": "blocked",
+          "reason": "civil_time_nonexistent",
+          "schemaVersion": "astrology-local-orchestration-input-v1",
+          "sourceRefs": [
+            "input.civilTime"
+          ]
+        },
+        "providerBundle": {
+          "status": "completed",
+          "schemaVersion": "astrology-provider-evidence-bundle-v1",
+          "version": "local-snapshot-2026-08-03",
+          "canonicalSha256": "4c1814208dacbb2fd86674c15f37c2c70c14485cd031541e3acfd1190df835c5",
+          "sourceRefs": [
+            "offline-snapshot/iers-dut1",
+            "offline-snapshot/iers-leap-seconds",
+            "offline-snapshot/tai-utc",
+            "offline-snapshot/tdb-minus-tt"
+          ]
+        }
+      },
+      "blockedReasons": [
+        "civil_time_nonexistent"
+      ],
+      "activation": {
+        "availableForInterpretation": false,
+        "integrationStatus": "not_connected",
+        "serviceEligibility": "blocked",
+        "reason": "activation_requires_user_approval"
+      },
+      "status": "blocked",
+      "providerBundleCanonicalSha256": "4c1814208dacbb2fd86674c15f37c2c70c14485cd031541e3acfd1190df835c5"
+    },
+    "staleProviderBundle": {
+      "schemaVersion": "astrology-local-verified-orchestration-v1",
+      "orchestrationVersion": "1.0.0",
+      "stages": {
+        "input": {
+          "status": "completed",
+          "schemaVersion": "astrology-local-orchestration-input-v1",
+          "sourceRefs": [
+            "input.civilTime",
+            "input.location"
+          ]
+        },
+        "providerBundle": {
+          "status": "blocked",
+          "reason": "provider_unverified_or_stale",
+          "schemaVersion": "astrology-provider-evidence-bundle-v1",
+          "canonicalSha256": "a49a319e3e21b2a52affddd4ca0cf590b198eff0484b93990e9b01ed1741c5d6"
+        }
+      },
+      "blockedReasons": [
+        "provider_unverified_or_stale"
+      ],
+      "activation": {
+        "availableForInterpretation": false,
+        "integrationStatus": "not_connected",
+        "serviceEligibility": "blocked",
+        "reason": "activation_requires_user_approval"
+      },
+      "status": "blocked",
+      "providerBundleCanonicalSha256": "a49a319e3e21b2a52affddd4ca0cf590b198eff0484b93990e9b01ed1741c5d6"
+    },
+    "tamperedProviderBundle": {
+      "schemaVersion": "astrology-local-verified-orchestration-v1",
+      "orchestrationVersion": "1.0.0",
+      "stages": {
+        "input": {
+          "status": "completed",
+          "schemaVersion": "astrology-local-orchestration-input-v1",
+          "sourceRefs": [
+            "input.civilTime",
+            "input.location"
+          ]
+        },
+        "providerBundle": {
+          "status": "blocked",
+          "reason": "provider_bundle_hash_mismatch",
+          "schemaVersion": "astrology-provider-evidence-bundle-v1",
+          "canonicalSha256": "63516e277ff5e82758bb68fc8732589cd85357d81b8ec4a5116be82f918abc91"
+        }
+      },
+      "blockedReasons": [
+        "provider_bundle_hash_mismatch"
+      ],
+      "activation": {
+        "availableForInterpretation": false,
+        "integrationStatus": "not_connected",
+        "serviceEligibility": "blocked",
+        "reason": "activation_requires_user_approval"
+      },
+      "status": "blocked",
+      "providerBundleCanonicalSha256": "63516e277ff5e82758bb68fc8732589cd85357d81b8ec4a5116be82f918abc91"
+    },
+    "kernelMismatch": {
+      "schemaVersion": "astrology-local-verified-orchestration-v1",
+      "orchestrationVersion": "1.0.0",
+      "stages": {
+        "input": {
+          "status": "completed",
+          "schemaVersion": "astrology-local-orchestration-input-v1",
+          "sourceRefs": [
+            "input.civilTime",
+            "input.location"
+          ]
+        },
+        "providerBundle": {
+          "status": "completed",
+          "schemaVersion": "astrology-provider-evidence-bundle-v1",
+          "version": "local-snapshot-2026-08-03",
+          "canonicalSha256": "4c1814208dacbb2fd86674c15f37c2c70c14485cd031541e3acfd1190df835c5",
+          "sourceRefs": [
+            "offline-snapshot/iers-dut1",
+            "offline-snapshot/iers-leap-seconds",
+            "offline-snapshot/tai-utc",
+            "offline-snapshot/tdb-minus-tt"
+          ]
+        },
+        "runtime": {
+          "status": "blocked",
+          "reason": "runtime_identity_or_protocol_mismatch",
+          "identity": {
+            "bsp": {
+              "hash": "30a7113793ee5b6bf1e5546c6dfc21d9682d9ffabfe9b17b4bab27ba2ac75c89",
+              "hashStatus": "mismatch",
+              "coverage": {
+                "start": -1577879958.8160586,
+                "end": 1577880064.1839132
+              }
+            },
+            "runner": {
+              "protocolVersion": "de405-canonical-v2-protocol-v1",
+              "protocolStatus": "verified",
+              "identityStatus": "verified",
+              "runnerIdentity": "sha256:92297c604fe43a147bc1f16cfbe33bf482f9ae7d001cd1c6fad87c5d5c2b8964"
+            },
+            "evaluator": {
+              "status": "verified",
+              "evaluator": "de405-canonical-v2"
+            }
+          },
+          "sourceRefs": [
+            "runtime.kernel",
+            "runtime.runner",
+            "runtime.evaluatorSelection"
+          ]
+        }
+      },
+      "blockedReasons": [
+        "runtime_identity_or_protocol_mismatch"
+      ],
+      "activation": {
+        "availableForInterpretation": false,
+        "integrationStatus": "not_connected",
+        "serviceEligibility": "blocked",
+        "reason": "activation_requires_user_approval"
+      },
+      "status": "blocked",
+      "providerBundleCanonicalSha256": "4c1814208dacbb2fd86674c15f37c2c70c14485cd031541e3acfd1190df835c5",
+      "runtime": {
+        "bsp": {
+          "hash": "30a7113793ee5b6bf1e5546c6dfc21d9682d9ffabfe9b17b4bab27ba2ac75c89",
+          "hashStatus": "mismatch",
+          "coverage": {
+            "start": -1577879958.8160586,
+            "end": 1577880064.1839132
+          }
+        },
+        "runner": {
+          "protocolVersion": "de405-canonical-v2-protocol-v1",
+          "protocolStatus": "verified",
+          "identityStatus": "verified",
+          "runnerIdentity": "sha256:92297c604fe43a147bc1f16cfbe33bf482f9ae7d001cd1c6fad87c5d5c2b8964"
+        },
+        "evaluator": {
+          "status": "verified",
+          "evaluator": "de405-canonical-v2"
+        }
+      }
+    },
+    "runnerMismatch": {
+      "schemaVersion": "astrology-local-verified-orchestration-v1",
+      "orchestrationVersion": "1.0.0",
+      "stages": {
+        "input": {
+          "status": "completed",
+          "schemaVersion": "astrology-local-orchestration-input-v1",
+          "sourceRefs": [
+            "input.civilTime",
+            "input.location"
+          ]
+        },
+        "providerBundle": {
+          "status": "completed",
+          "schemaVersion": "astrology-provider-evidence-bundle-v1",
+          "version": "local-snapshot-2026-08-03",
+          "canonicalSha256": "4c1814208dacbb2fd86674c15f37c2c70c14485cd031541e3acfd1190df835c5",
+          "sourceRefs": [
+            "offline-snapshot/iers-dut1",
+            "offline-snapshot/iers-leap-seconds",
+            "offline-snapshot/tai-utc",
+            "offline-snapshot/tdb-minus-tt"
+          ]
+        },
+        "runtime": {
+          "status": "blocked",
+          "reason": "runtime_identity_or_protocol_mismatch",
+          "identity": {
+            "bsp": {
+              "hash": "30a7113793ee5b6bf1e5546c6dfc21d9682d9ffabfe9b17b4bab27ba2ac75c89",
+              "hashStatus": "verified",
+              "coverage": {
+                "start": -1577879958.8160586,
+                "end": 1577880064.1839132
+              }
+            },
+            "runner": {
+              "protocolVersion": "wrong",
+              "protocolStatus": "verified",
+              "identityStatus": "verified",
+              "runnerIdentity": "sha256:92297c604fe43a147bc1f16cfbe33bf482f9ae7d001cd1c6fad87c5d5c2b8964"
+            },
+            "evaluator": {
+              "status": "verified",
+              "evaluator": "de405-canonical-v2"
+            }
+          },
+          "sourceRefs": [
+            "runtime.kernel",
+            "runtime.runner",
+            "runtime.evaluatorSelection"
+          ]
+        }
+      },
+      "blockedReasons": [
+        "runtime_identity_or_protocol_mismatch"
+      ],
+      "activation": {
+        "availableForInterpretation": false,
+        "integrationStatus": "not_connected",
+        "serviceEligibility": "blocked",
+        "reason": "activation_requires_user_approval"
+      },
+      "status": "blocked",
+      "providerBundleCanonicalSha256": "4c1814208dacbb2fd86674c15f37c2c70c14485cd031541e3acfd1190df835c5",
+      "runtime": {
+        "bsp": {
+          "hash": "30a7113793ee5b6bf1e5546c6dfc21d9682d9ffabfe9b17b4bab27ba2ac75c89",
+          "hashStatus": "verified",
+          "coverage": {
+            "start": -1577879958.8160586,
+            "end": 1577880064.1839132
+          }
+        },
+        "runner": {
+          "protocolVersion": "wrong",
+          "protocolStatus": "verified",
+          "identityStatus": "verified",
+          "runnerIdentity": "sha256:92297c604fe43a147bc1f16cfbe33bf482f9ae7d001cd1c6fad87c5d5c2b8964"
+        },
+        "evaluator": {
+          "status": "verified",
+          "evaluator": "de405-canonical-v2"
+        }
+      }
+    },
+    "timeCoreProviderMissing": {
+      "schemaVersion": "astrology-local-verified-orchestration-v1",
+      "orchestrationVersion": "1.0.0",
+      "stages": {
+        "input": {
+          "status": "completed",
+          "schemaVersion": "astrology-local-orchestration-input-v1",
+          "sourceRefs": [
+            "input.civilTime",
+            "input.location"
+          ]
+        },
+        "providerBundle": {
+          "status": "completed",
+          "schemaVersion": "astrology-provider-evidence-bundle-v1",
+          "version": "local-snapshot-2026-08-03",
+          "canonicalSha256": "2ba53491844ef2c64f54f7ff9b58bdb3c18959f69e25850e87e3df611526ee75",
+          "sourceRefs": [
+            "offline-snapshot/iers-leap-seconds",
+            "offline-snapshot/tai-utc",
+            "offline-snapshot/tdb-minus-tt"
+          ]
+        },
+        "runtime": {
+          "status": "completed",
+          "identity": {
+            "bsp": {
+              "hash": "30a7113793ee5b6bf1e5546c6dfc21d9682d9ffabfe9b17b4bab27ba2ac75c89",
+              "hashStatus": "verified",
+              "coverage": {
+                "start": -1577879958.8160586,
+                "end": 1577880064.1839132
+              }
+            },
+            "runner": {
+              "protocolVersion": "de405-canonical-v2-protocol-v1",
+              "protocolStatus": "verified",
+              "identityStatus": "verified",
+              "runnerIdentity": "sha256:92297c604fe43a147bc1f16cfbe33bf482f9ae7d001cd1c6fad87c5d5c2b8964"
+            },
+            "evaluator": {
+              "status": "verified",
+              "evaluator": "de405-canonical-v2"
+            }
+          },
+          "sourceRefs": [
+            "runtime.kernel",
+            "runtime.runner",
+            "runtime.evaluatorSelection"
+          ]
+        },
+        "timeAngle": {
+          "status": "blocked",
+          "reason": "ut1_minus_utc_unavailable",
+          "schemaVersion": "astrology-time-angle-result-v0",
+          "sourceRefs": [
+            "input.civilTime.utc",
+            "input.location",
+            "input.timeScaleOffsets"
+          ]
+        }
+      },
+      "blockedReasons": [
+        "ut1_minus_utc_unavailable"
+      ],
+      "activation": {
+        "availableForInterpretation": false,
+        "integrationStatus": "not_connected",
+        "serviceEligibility": "blocked",
+        "reason": "activation_requires_user_approval"
+      },
+      "status": "blocked",
+      "providerBundleCanonicalSha256": "2ba53491844ef2c64f54f7ff9b58bdb3c18959f69e25850e87e3df611526ee75",
+      "runtime": {
+        "bsp": {
+          "hash": "30a7113793ee5b6bf1e5546c6dfc21d9682d9ffabfe9b17b4bab27ba2ac75c89",
+          "hashStatus": "verified",
+          "coverage": {
+            "start": -1577879958.8160586,
+            "end": 1577880064.1839132
+          }
+        },
+        "runner": {
+          "protocolVersion": "de405-canonical-v2-protocol-v1",
+          "protocolStatus": "verified",
+          "identityStatus": "verified",
+          "runnerIdentity": "sha256:92297c604fe43a147bc1f16cfbe33bf482f9ae7d001cd1c6fad87c5d5c2b8964"
+        },
+        "evaluator": {
+          "status": "verified",
+          "evaluator": "de405-canonical-v2"
+        }
+      }
+    },
+    "rawHashMismatch": {
+      "schemaVersion": "astrology-local-verified-orchestration-v1",
+      "orchestrationVersion": "1.0.0",
+      "stages": {
+        "input": {
+          "status": "completed",
+          "schemaVersion": "astrology-local-orchestration-input-v1",
+          "sourceRefs": [
+            "input.civilTime",
+            "input.location"
+          ]
+        },
+        "providerBundle": {
+          "status": "completed",
+          "schemaVersion": "astrology-provider-evidence-bundle-v1",
+          "version": "local-snapshot-2026-08-03",
+          "canonicalSha256": "4c1814208dacbb2fd86674c15f37c2c70c14485cd031541e3acfd1190df835c5",
+          "sourceRefs": [
+            "offline-snapshot/iers-dut1",
+            "offline-snapshot/iers-leap-seconds",
+            "offline-snapshot/tai-utc",
+            "offline-snapshot/tdb-minus-tt"
+          ]
+        },
+        "runtime": {
+          "status": "completed",
+          "identity": {
+            "bsp": {
+              "hash": "30a7113793ee5b6bf1e5546c6dfc21d9682d9ffabfe9b17b4bab27ba2ac75c89",
+              "hashStatus": "verified",
+              "coverage": {
+                "start": -1577879958.8160586,
+                "end": 1577880064.1839132
+              }
+            },
+            "runner": {
+              "protocolVersion": "de405-canonical-v2-protocol-v1",
+              "protocolStatus": "verified",
+              "identityStatus": "verified",
+              "runnerIdentity": "sha256:92297c604fe43a147bc1f16cfbe33bf482f9ae7d001cd1c6fad87c5d5c2b8964"
+            },
+            "evaluator": {
+              "status": "verified",
+              "evaluator": "de405-canonical-v2"
+            }
+          },
+          "sourceRefs": [
+            "runtime.kernel",
+            "runtime.runner",
+            "runtime.evaluatorSelection"
+          ]
+        },
+        "timeAngle": {
+          "status": "completed",
+          "schemaVersion": "astrology-time-angle-result-v0",
+          "sourceRefs": [
+            "input.civilTime.utc",
+            "input.location",
+            "input.timeScaleOffsets"
+          ]
+        },
+        "raw": {
+          "status": "completed",
+          "schemaVersion": "astrology-raw-chart-v1",
+          "sourceRefs": [
+            "timeAngle",
+            "provider.tdb-minus-tt",
+            "runtime.kernel",
+            "runtime.evaluatorSelection"
+          ]
+        },
+        "rule": {
+          "status": "completed",
+          "schemaVersion": "astrology-rule-chart-v0",
+          "sourceRefs": [
+            "rawChart.bodies[*]",
+            "rawChart.angles.*"
+          ]
+        },
+        "adapter": {
+          "status": "blocked",
+          "reason": "raw_hash_mismatch",
+          "schemaVersion": "verified-astrology-adapter-v1",
+          "sourceRefs": [
+            "rawChart",
+            "ruleChart",
+            "provenance"
+          ]
+        }
+      },
+      "blockedReasons": [
+        "raw_hash_mismatch"
+      ],
+      "activation": {
+        "availableForInterpretation": false,
+        "integrationStatus": "not_connected",
+        "serviceEligibility": "blocked",
+        "reason": "activation_requires_user_approval"
+      },
+      "status": "blocked",
+      "providerBundleCanonicalSha256": "4c1814208dacbb2fd86674c15f37c2c70c14485cd031541e3acfd1190df835c5",
+      "rawChartHash": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+      "ruleChartHash": "0cbd2754da1da729773d088254492adf824a9a0702d3480960b2f3d8ed4240da",
+      "runtime": {
+        "bsp": {
+          "hash": "30a7113793ee5b6bf1e5546c6dfc21d9682d9ffabfe9b17b4bab27ba2ac75c89",
+          "hashStatus": "verified",
+          "coverage": {
+            "start": -1577879958.8160586,
+            "end": 1577880064.1839132
+          }
+        },
+        "runner": {
+          "protocolVersion": "de405-canonical-v2-protocol-v1",
+          "protocolStatus": "verified",
+          "identityStatus": "verified",
+          "runnerIdentity": "sha256:92297c604fe43a147bc1f16cfbe33bf482f9ae7d001cd1c6fad87c5d5c2b8964"
+        },
+        "evaluator": {
+          "status": "verified",
+          "evaluator": "de405-canonical-v2"
+        }
+      }
+    },
+    "ruleHashMismatch": {
+      "schemaVersion": "astrology-local-verified-orchestration-v1",
+      "orchestrationVersion": "1.0.0",
+      "stages": {
+        "input": {
+          "status": "completed",
+          "schemaVersion": "astrology-local-orchestration-input-v1",
+          "sourceRefs": [
+            "input.civilTime",
+            "input.location"
+          ]
+        },
+        "providerBundle": {
+          "status": "completed",
+          "schemaVersion": "astrology-provider-evidence-bundle-v1",
+          "version": "local-snapshot-2026-08-03",
+          "canonicalSha256": "4c1814208dacbb2fd86674c15f37c2c70c14485cd031541e3acfd1190df835c5",
+          "sourceRefs": [
+            "offline-snapshot/iers-dut1",
+            "offline-snapshot/iers-leap-seconds",
+            "offline-snapshot/tai-utc",
+            "offline-snapshot/tdb-minus-tt"
+          ]
+        },
+        "runtime": {
+          "status": "completed",
+          "identity": {
+            "bsp": {
+              "hash": "30a7113793ee5b6bf1e5546c6dfc21d9682d9ffabfe9b17b4bab27ba2ac75c89",
+              "hashStatus": "verified",
+              "coverage": {
+                "start": -1577879958.8160586,
+                "end": 1577880064.1839132
+              }
+            },
+            "runner": {
+              "protocolVersion": "de405-canonical-v2-protocol-v1",
+              "protocolStatus": "verified",
+              "identityStatus": "verified",
+              "runnerIdentity": "sha256:92297c604fe43a147bc1f16cfbe33bf482f9ae7d001cd1c6fad87c5d5c2b8964"
+            },
+            "evaluator": {
+              "status": "verified",
+              "evaluator": "de405-canonical-v2"
+            }
+          },
+          "sourceRefs": [
+            "runtime.kernel",
+            "runtime.runner",
+            "runtime.evaluatorSelection"
+          ]
+        },
+        "timeAngle": {
+          "status": "completed",
+          "schemaVersion": "astrology-time-angle-result-v0",
+          "sourceRefs": [
+            "input.civilTime.utc",
+            "input.location",
+            "input.timeScaleOffsets"
+          ]
+        },
+        "raw": {
+          "status": "completed",
+          "schemaVersion": "astrology-raw-chart-v1",
+          "sourceRefs": [
+            "timeAngle",
+            "provider.tdb-minus-tt",
+            "runtime.kernel",
+            "runtime.evaluatorSelection"
+          ]
+        },
+        "rule": {
+          "status": "completed",
+          "schemaVersion": "astrology-rule-chart-v0",
+          "sourceRefs": [
+            "rawChart.bodies[*]",
+            "rawChart.angles.*"
+          ]
+        },
+        "adapter": {
+          "status": "blocked",
+          "reason": "rule_hash_mismatch",
+          "schemaVersion": "verified-astrology-adapter-v1",
+          "sourceRefs": [
+            "rawChart",
+            "ruleChart",
+            "provenance"
+          ]
+        }
+      },
+      "blockedReasons": [
+        "rule_hash_mismatch"
+      ],
+      "activation": {
+        "availableForInterpretation": false,
+        "integrationStatus": "not_connected",
+        "serviceEligibility": "blocked",
+        "reason": "activation_requires_user_approval"
+      },
+      "status": "blocked",
+      "providerBundleCanonicalSha256": "4c1814208dacbb2fd86674c15f37c2c70c14485cd031541e3acfd1190df835c5",
+      "rawChartHash": "08d88494a59e53495301a0efc11cf29397370786f9733932da297787a3aff015",
+      "ruleChartHash": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
+      "runtime": {
+        "bsp": {
+          "hash": "30a7113793ee5b6bf1e5546c6dfc21d9682d9ffabfe9b17b4bab27ba2ac75c89",
+          "hashStatus": "verified",
+          "coverage": {
+            "start": -1577879958.8160586,
+            "end": 1577880064.1839132
+          }
+        },
+        "runner": {
+          "protocolVersion": "de405-canonical-v2-protocol-v1",
+          "protocolStatus": "verified",
+          "identityStatus": "verified",
+          "runnerIdentity": "sha256:92297c604fe43a147bc1f16cfbe33bf482f9ae7d001cd1c6fad87c5d5c2b8964"
+        },
+        "evaluator": {
+          "status": "verified",
+          "evaluator": "de405-canonical-v2"
+        }
+      }
+    },
+    "contamination": {
+      "schemaVersion": "astrology-local-verified-orchestration-v1",
+      "orchestrationVersion": "1.0.0",
+      "stages": {
+        "input": {
+          "status": "completed",
+          "schemaVersion": "astrology-local-orchestration-input-v1",
+          "sourceRefs": [
+            "input.civilTime",
+            "input.location"
+          ]
+        },
+        "providerBundle": {
+          "status": "completed",
+          "schemaVersion": "astrology-provider-evidence-bundle-v1",
+          "version": "local-snapshot-2026-08-03",
+          "canonicalSha256": "4c1814208dacbb2fd86674c15f37c2c70c14485cd031541e3acfd1190df835c5",
+          "sourceRefs": [
+            "offline-snapshot/iers-dut1",
+            "offline-snapshot/iers-leap-seconds",
+            "offline-snapshot/tai-utc",
+            "offline-snapshot/tdb-minus-tt"
+          ]
+        },
+        "contamination": {
+          "status": "blocked",
+          "reason": "simulation_contamination",
+          "sourceRefs": [
+            "contamination"
+          ]
+        }
+      },
+      "blockedReasons": [
+        "simulation_contamination"
+      ],
+      "activation": {
+        "availableForInterpretation": false,
+        "integrationStatus": "not_connected",
+        "serviceEligibility": "blocked",
+        "reason": "activation_requires_user_approval"
+      },
+      "status": "blocked",
+      "providerBundleCanonicalSha256": "4c1814208dacbb2fd86674c15f37c2c70c14485cd031541e3acfd1190df835c5"
+    },
+    "readinessBlockedPropagation": {
+      "schemaVersion": "astrology-local-verified-orchestration-v1",
+      "orchestrationVersion": "1.0.0",
+      "stages": {
+        "input": {
+          "status": "completed",
+          "schemaVersion": "astrology-local-orchestration-input-v1",
+          "sourceRefs": [
+            "input.civilTime",
+            "input.location"
+          ]
+        },
+        "providerBundle": {
+          "status": "completed",
+          "schemaVersion": "astrology-provider-evidence-bundle-v1",
+          "version": "local-snapshot-2026-08-03",
+          "canonicalSha256": "d4305990181b7e1e22357cccf94eaeee3fad1cdaf380802d411bd53964dc6a37",
+          "sourceRefs": [
+            "offline-snapshot/iers-dut1",
+            "offline-snapshot/iers-leap-seconds",
+            "offline-snapshot/tai-utc",
+            "offline-snapshot/tdb-minus-tt"
+          ]
+        },
+        "runtime": {
+          "status": "completed",
+          "identity": {
+            "bsp": {
+              "hash": "30a7113793ee5b6bf1e5546c6dfc21d9682d9ffabfe9b17b4bab27ba2ac75c89",
+              "hashStatus": "verified",
+              "coverage": {
+                "start": -1577879958.8160586,
+                "end": 1577880064.1839132
+              }
+            },
+            "runner": {
+              "protocolVersion": "de405-canonical-v2-protocol-v1",
+              "protocolStatus": "verified",
+              "identityStatus": "verified",
+              "runnerIdentity": "sha256:92297c604fe43a147bc1f16cfbe33bf482f9ae7d001cd1c6fad87c5d5c2b8964"
+            },
+            "evaluator": {
+              "status": "verified",
+              "evaluator": "de405-canonical-v2"
+            }
+          },
+          "sourceRefs": [
+            "runtime.kernel",
+            "runtime.runner",
+            "runtime.evaluatorSelection"
+          ]
+        },
+        "timeAngle": {
+          "status": "completed",
+          "schemaVersion": "astrology-time-angle-result-v0",
+          "sourceRefs": [
+            "input.civilTime.utc",
+            "input.location",
+            "input.timeScaleOffsets"
+          ]
+        },
+        "raw": {
+          "status": "completed",
+          "schemaVersion": "astrology-raw-chart-v1",
+          "sourceRefs": [
+            "timeAngle",
+            "provider.tdb-minus-tt",
+            "runtime.kernel",
+            "runtime.evaluatorSelection"
+          ]
+        },
+        "rule": {
+          "status": "completed",
+          "schemaVersion": "astrology-rule-chart-v0",
+          "sourceRefs": [
+            "rawChart.bodies[*]",
+            "rawChart.angles.*"
+          ]
+        },
+        "adapter": {
+          "status": "completed",
+          "schemaVersion": "verified-astrology-adapter-v1",
+          "sourceRefs": [
+            "rawChart",
+            "ruleChart",
+            "provenance"
+          ]
+        },
+        "readiness": {
+          "status": "blocked",
+          "reason": "tdb_minus_tt_model_nondeterministic",
+          "schemaVersion": "verified-astrology-readiness-v1",
+          "reasonCodes": [
+            "tdb_minus_tt_model_nondeterministic"
+          ],
+          "sourceRefs": [
+            "input.civilTime",
+            "input.location",
+            "input.dut1",
+            "input.dut1",
+            "timeScale.leapSecond",
+            "timeScale.ttMinusUtc",
+            "timeScale.tdbMinusTt",
+            "ephemeris.bsp",
+            "ephemeris.evaluatorSelection",
+            "runtime.runner",
+            "documents.raw",
+            "documents.rule",
+            "documents.adapter",
+            "contamination"
+          ]
+        }
+      },
+      "blockedReasons": [
+        "tdb_minus_tt_model_nondeterministic"
+      ],
+      "activation": {
+        "availableForInterpretation": false,
+        "integrationStatus": "not_connected",
+        "serviceEligibility": "blocked",
+        "reason": "activation_requires_user_approval"
+      },
+      "status": "blocked",
+      "providerBundleCanonicalSha256": "d4305990181b7e1e22357cccf94eaeee3fad1cdaf380802d411bd53964dc6a37",
+      "rawChartHash": "08d88494a59e53495301a0efc11cf29397370786f9733932da297787a3aff015",
+      "ruleChartHash": "0cbd2754da1da729773d088254492adf824a9a0702d3480960b2f3d8ed4240da",
+      "runtime": {
+        "bsp": {
+          "hash": "30a7113793ee5b6bf1e5546c6dfc21d9682d9ffabfe9b17b4bab27ba2ac75c89",
+          "hashStatus": "verified",
+          "coverage": {
+            "start": -1577879958.8160586,
+            "end": 1577880064.1839132
+          }
+        },
+        "runner": {
+          "protocolVersion": "de405-canonical-v2-protocol-v1",
+          "protocolStatus": "verified",
+          "identityStatus": "verified",
+          "runnerIdentity": "sha256:92297c604fe43a147bc1f16cfbe33bf482f9ae7d001cd1c6fad87c5d5c2b8964"
+        },
+        "evaluator": {
+          "status": "verified",
+          "evaluator": "de405-canonical-v2"
+        }
+      },
+      "readiness": {
+        "schemaVersion": "verified-astrology-readiness-v1",
+        "readiness": "blocked",
+        "areas": {
+          "input": {
+            "status": "ready",
+            "reasons": [],
+            "sourceRefs": [
+              "input.civilTime",
+              "input.location",
+              "input.dut1"
+            ]
+          },
+          "timeScale": {
+            "status": "blocked",
+            "reasons": [
+              "tdb_minus_tt_model_nondeterministic"
+            ],
+            "sourceRefs": [
+              "input.dut1",
+              "timeScale.leapSecond",
+              "timeScale.ttMinusUtc",
+              "timeScale.tdbMinusTt"
+            ]
+          },
+          "ephemeris": {
+            "status": "ready",
+            "reasons": [],
+            "sourceRefs": [
+              "ephemeris.bsp",
+              "ephemeris.evaluatorSelection"
+            ]
+          },
+          "runtime": {
+            "status": "ready",
+            "reasons": [],
+            "sourceRefs": [
+              "runtime.runner"
+            ]
+          },
+          "documents": {
+            "status": "ready",
+            "reasons": [],
+            "sourceRefs": [
+              "documents.raw",
+              "documents.rule",
+              "documents.adapter"
+            ]
+          },
+          "contamination": {
+            "status": "ready",
+            "reasons": [],
+            "sourceRefs": [
+              "contamination"
+            ]
+          }
+        },
+        "reasonCodes": [
+          "tdb_minus_tt_model_nondeterministic"
+        ],
+        "calculationReady": false,
+        "activation": {
+          "availableForInterpretation": false,
+          "integrationStatus": "not_connected",
+          "serviceEligibility": "blocked",
+          "reason": "activation_requires_user_approval"
+        },
+        "sourceRefs": [
+          "input.civilTime",
+          "input.location",
+          "input.dut1",
+          "input.dut1",
+          "timeScale.leapSecond",
+          "timeScale.ttMinusUtc",
+          "timeScale.tdbMinusTt",
+          "ephemeris.bsp",
+          "ephemeris.evaluatorSelection",
+          "runtime.runner",
+          "documents.raw",
+          "documents.rule",
+          "documents.adapter",
+          "contamination"
+        ]
+      }
+    }
+  },
+  "completeActivation": {
+    "availableForInterpretation": false,
+    "integrationStatus": "not_connected",
+    "serviceEligibility": "blocked",
+    "reason": "activation_requires_user_approval"
+  },
+  "sourcePolicy": {
+    "provider": "versioned offline snapshot + build/release materialization",
+    "networkFetch": "reject",
+    "sameProcessNativeChild": "reject",
+    "independentService": "defer"
+  },
+  "payloadCanonicalSha256": "13072b1fe839486108def35555af5fc6b1b05c2b24dee7695ac429f043136da8"
+}
