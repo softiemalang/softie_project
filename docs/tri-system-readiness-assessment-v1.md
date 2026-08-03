@@ -14,7 +14,7 @@
 | 자미두수 | implemented_unverified | partial | partial | implemented_unverified | partial | partial | absent / partial | partial |
 | 서양 점성학 | verified | verified | verified | verified | verified | verified | verified / verified | verified |
 
-세부 13계층, 파일·export·테스트·artifact 연결, gap 및 순서는 [machine-readable inventory](../artifacts/tri-system-readiness-v1/inventory.json)에 고정한다. `scripts/materialize-tri-system-readiness.mjs`는 현재 HEAD를 확인한 뒤 동일 inventory byte hash와 요약을 결정론적으로 materialize하는 deterministic materializer다.
+세부 13계층, 파일·export·테스트·artifact 연결, gap 및 순서는 [machine-readable inventory](../artifacts/tri-system-readiness-v1/inventory.json)에 고정한다. `scripts/materialize-tri-system-readiness.mjs`는 artifact의 generation base/input identity와 계약/materializer version을 확인한 뒤 현재 HEAD 차이만으로 stale 처리하지 않고 동일 inventory byte hash와 요약을 결정론적으로 materialize하는 deterministic materializer다.
 
 ## 데이터 흐름과 핵심 근거
 

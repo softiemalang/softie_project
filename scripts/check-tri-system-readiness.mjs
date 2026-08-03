@@ -2,6 +2,7 @@ import { readFile } from 'node:fs/promises'
 import { existsSync } from 'node:fs'
 import { execFileSync } from 'node:child_process'
 import { resolve } from 'node:path'
+import { checkArtifactIdentity } from '../src/artifactIdentity.js'
 
 const root = resolve(new URL('..', import.meta.url).pathname)
 const inventoryPath = resolve(root, 'artifacts/tri-system-readiness-v1/inventory.json')
@@ -14,8 +15,8 @@ const errors = []
 if (inventory.schemaVersion !== 'tri-system-readiness-inventory-v1') fail(errors, 'inventory_schema')
 if (inventory.inventoryVersion !== '1.0.0') fail(errors, 'inventory_version')
 if (!inventory.materializerPath || !existsSync(resolve(root, inventory.materializerPath))) fail(errors, 'materializer_missing')
-const head = execFileSync('git', ['rev-parse', 'HEAD'], { cwd: root, encoding: 'utf8' }).trim()
-if (inventory.head !== head) fail(errors, 'head_mismatch')
+const head = execFileSync('git', ['-c', 'core.fsmonitor=false', 'rev-parse', 'HEAD'], { cwd: root, encoding: 'utf8' }).trim()
+errors.push(...checkArtifactIdentity(inventory, { root, artifactId: 'tri-system-readiness-v1', materializerPath: 'scripts/materialize-tri-system-readiness.mjs', materializerVersion: '1.1.0' }))
 if (!assessment.includes('verdict=' + inventory.verdictToken) || !assessment.includes('head=' + inventory.head)) fail(errors, 'assessment_marker_mismatch')
 if (!assessment.includes('deterministic materializer') || !assessment.includes('materialize-tri-system-readiness.mjs')) fail(errors, 'materializer_not_documented')
 const evidenceIds = new Set()
@@ -41,6 +42,6 @@ for (const system of inventory.systems || []) {
 for (const gap of inventory.gaps || []) if (!allowed.has(gap.status)) fail(errors, 'gap_status:' + gap.id)
 if (inventory.envelopeDecision?.status !== 'blocked') fail(errors, 'envelope_not_blocked')
 if (inventory.systems.some(system => system.id === 'astrology' && system.activation !== 'blocked')) fail(errors, 'astrology_activation_promoted')
-const result = { pass: errors.length === 0, head, verdictToken: inventory.verdictToken, systemStatuses: Object.fromEntries(inventory.systems.map(system => [system.id, { overallStatus: system.overallStatus, activation: system.activation }])), gapCount: inventory.gaps.length, errors: [...new Set(errors)].sort() }
+const result = { pass: errors.length === 0, generationBaseHead: inventory.artifactIdentity?.generation?.baseHead, currentHead: head, verdictToken: inventory.verdictToken, systemStatuses: Object.fromEntries(inventory.systems.map(system => [system.id, { overallStatus: system.overallStatus, activation: system.activation }])), gapCount: inventory.gaps.length, errors: [...new Set(errors)].sort() }
 console.log(JSON.stringify(result, null, 2))
 if (errors.length) process.exitCode = 1

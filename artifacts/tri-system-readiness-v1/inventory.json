@@ -4,6 +4,7 @@
   "verdictToken": "tri_system_preparation_baseline_partial",
   "scope": "read_only_repository_evidence_audit",
   "head": "acb1af9f7ad393cea23d8d9949660c9bcfe37beb",
+  "artifactIdentity": {"contractVersion":"artifact-identity-v1","artifactId":"tri-system-readiness-v1","generation":{"baseHead":"acb1af9f7ad393cea23d8d9949660c9bcfe37beb","baseHeadSource":"git rev-parse HEAD at materialization","includedCommit":null,"includedCommitSource":"unknown_at_generation; artifact may be included by a later commit"},"inputs":[{"path":"docs/tri-system-readiness-assessment-v1.md","byteSha256":"2bc62f13fc59385576dd5046cad5a1921245be9a0385ee5829341541fb577c80"},{"path":"scripts/materialize-tri-system-readiness.mjs","byteSha256":"606d48d53460481bba6af9f303c4b1330723c2db9ea51bcf6665b111eb49460f"}],"materializer":{"path":"scripts/materialize-tri-system-readiness.mjs","version":"1.1.0"},"artifactPayloadSha256":"b6e8027da260af5731fb582405a3d34ab5843cdd3821e843057de0ef995663d8"},
   "materializerPath": "scripts/materialize-tri-system-readiness.mjs",
   "statusVocabulary": ["verified", "implemented_unverified", "partial", "experimental", "stub_or_simulation", "documented_only", "absent", "blocked"],
   "systems": [

@@ -1,0 +1,479 @@
+{
+  "artifactIdentity": {
+    "artifactId": "ziwei-readiness-baseline-v1",
+    "artifactPayloadSha256": "d7b6c889182e160cf4dd78be38cde65a9c3917594931be5ab47352dbf430c34c",
+    "contractVersion": "artifact-identity-v1",
+    "generation": {
+      "baseHead": "d40f0fe167a020a6c6f576ac45bd180c2989da55",
+      "baseHeadSource": "git rev-parse HEAD at materialization",
+      "includedCommit": null,
+      "includedCommitSource": "unknown_at_generation; artifact may be included by a later commit"
+    },
+    "inputs": [
+      {
+        "byteSha256": "6c0e59de0363a07a0bc9342e161e9b7d70747f1dd0077ee61b2a1149571a9a2f",
+        "path": "src/interpretationPrep/ziweiPromptAdapter.js"
+      },
+      {
+        "byteSha256": "716875185d87da22ceef5f66f32899359642646367133f6c9f4bf87718bf130e",
+        "path": "src/ziwei/ziweiContract.js"
+      },
+      {
+        "byteSha256": "5336f15968b4c618d9b1248b0967deab22b778f48996cb60939ab19cabadf513",
+        "path": "src/ziwei/ziweiResolver.js"
+      }
+    ],
+    "materializer": {
+      "path": "scripts/materialize-ziwei-readiness-baseline-v1.mjs",
+      "version": "1.1.0"
+    }
+  },
+  "basisHead": "d40f0fe167a020a6c6f576ac45bd180c2989da55",
+  "checkerPath": "scripts/check-ziwei-readiness-baseline-v1.mjs",
+  "claimAssessment": {
+    "blockers": [
+      "source identity and rule-set boundary are not closed",
+      "current output facts have no stable claim/occurrence identity",
+      "current handoff has no sourceRefs-grounded consumer contract"
+    ],
+    "currentStructures": [
+      "src/ziwei/ziweiContract.js:createZiweiInterpretationContext",
+      "src/ziwei/ziweiPalaceContext.js:interpretivePatterns",
+      "src/interpretationPrep/ziweiPromptAdapter.js:buildZiweiPromptPayload"
+    ],
+    "meaningCandidatesPresent": true,
+    "sourceRefsOnOutput": false,
+    "stableClaimId": false,
+    "stableOccurrenceId": false,
+    "verdict": "not_ready_for_claim_level_provenance"
+  },
+  "evidence": [
+    {
+      "exports": [
+        "createZiweiCalculationContext",
+        "DEFAULT_ZIWEI_RULE_SET"
+      ],
+      "id": "ziwei-input-contract",
+      "kind": "source_test",
+      "note": "normalizes lunar fields and records conversion status, but does not perform solar/lunar conversion or attach sourceRefs",
+      "path": "src/ziwei/ziweiContract.js",
+      "testPaths": [
+        "test/ziweiContract.test.js"
+      ]
+    },
+    {
+      "exports": [
+        "prepareThreeSystemInterpretationData"
+      ],
+      "id": "ziwei-calendar-execution",
+      "kind": "source_test",
+      "note": "solar2lunar is used on the exact-time path; leap-month and time-boundary paths fail closed",
+      "path": "src/interpretationPrep/threeSystemPrepPipeline.js",
+      "testPaths": [
+        "test/ziweiCoreContract.test.js",
+        "test/ziweiPipeline.test.js"
+      ]
+    },
+    {
+      "exports": [
+        "resolveZiweiChart"
+      ],
+      "id": "ziwei-core-calculation",
+      "kind": "source_test",
+      "note": "ming/shen branches, palace cycle, bureau and candidate warnings are implemented under a fixed ruleset",
+      "path": "src/ziwei/ziweiResolver.js",
+      "testPaths": [
+        "test/ziweiResolver.test.js",
+        "test/ziweiCoreContract.test.js"
+      ]
+    },
+    {
+      "exports": [
+        "resolveFiveElementBureau"
+      ],
+      "id": "ziwei-rule-resolvers",
+      "kind": "source_test",
+      "note": "bureau, 14 major stars, six minor stars and four transformations have named local ruleset versions",
+      "path": "src/ziwei/fiveElementResolver.js",
+      "relatedPaths": [
+        "src/ziwei/starPlacementRules.js",
+        "src/ziwei/starResolver.js",
+        "src/ziwei/minorStarRules.js",
+        "src/ziwei/minorStarResolver.js",
+        "src/ziwei/transformationRules.js",
+        "src/ziwei/transformationResolver.js"
+      ],
+      "testPaths": [
+        "test/ziweiCoreContract.test.js"
+      ]
+    },
+    {
+      "exports": [
+        "buildZiweiPalaceContexts"
+      ],
+      "id": "ziwei-relation-structure",
+      "kind": "source_test",
+      "note": "opposite/trine palace structure and topic patterns exist; these are not claim relation edges",
+      "path": "src/ziwei/ziweiPalaceContext.js",
+      "relatedPaths": [
+        "src/ziwei/palaceRelationRules.js"
+      ],
+      "testPaths": [
+        "test/ziweiContract.test.js",
+        "test/ziweiCoreContract.test.js"
+      ]
+    },
+    {
+      "exports": [
+        "KNOWN_ZIWEI_CHARTS"
+      ],
+      "id": "ziwei-internal-fixtures",
+      "kind": "fixture_test",
+      "note": "six expected-value cases are local regression fixtures, not independent evidence",
+      "path": "test/fixtures/ziwei/knownCharts.js",
+      "relatedPaths": [
+        "test/fixtures/ziwei/starPlacementCharts.js"
+      ],
+      "testPaths": [
+        "test/ziweiResolver.test.js",
+        "test/ziweiCoreContract.test.js"
+      ]
+    },
+    {
+      "exports": [
+        "ZIWEI_BENCHMARK_CASES"
+      ],
+      "id": "ziwei-benchmark-fixtures",
+      "kind": "fixture_test",
+      "note": "five prompt/rubric cases assess adapter behavior; they do not validate chart truth",
+      "path": "test/fixtures/ziwei/benchmarkCases.js",
+      "relatedPaths": [
+        "scratch/ziweiQualityBenchmarkEvaluation.js",
+        "scratch/ziweiQualityBenchmarkReport.json"
+      ],
+      "testPaths": [
+        "test/ziweiQualityBenchmark.test.js"
+      ]
+    },
+    {
+      "exports": [
+        "ZIWEI_EXTERNAL_FIXTURES"
+      ],
+      "id": "ziwei-external-fixtures",
+      "kind": "external_fixture_runner",
+      "note": "six declared external-looking fixtures: four observed matches and two excluded, all pending source review",
+      "path": "src/ziwei/externalZiweiFixtures.js",
+      "relatedPaths": [
+        "src/interpretationPrep/externalValidationRunner.js"
+      ],
+      "testPaths": [
+        "test/ziweiPipeline.test.js"
+      ]
+    },
+    {
+      "id": "ziwei-external-reports",
+      "kind": "document_fixture_artifact",
+      "note": "reports preserve observed versus verified distinction and state verifiedMatches=0",
+      "path": "docs/ziwei-source-audit-report.md",
+      "relatedPaths": [
+        "docs/ziwei-external-validation-report.md",
+        "docs/ziwei-final-readiness.md"
+      ]
+    },
+    {
+      "exports": [
+        "buildZiweiPromptPayload"
+      ],
+      "id": "ziwei-handoff-adapter",
+      "kind": "source_test",
+      "note": "prompt/session handoff exists with safety wording, but no claim IDs, sourceRefs or grounding artifact",
+      "path": "src/interpretationPrep/ziweiPromptAdapter.js",
+      "relatedPaths": [
+        "src/interpretationPrep/sessionResponsePipeline.js"
+      ],
+      "testPaths": [
+        "test/ziweiPromptSafetyContract.test.js"
+      ]
+    },
+    {
+      "exports": [
+        "prepareThreeSystemInterpretationData"
+      ],
+      "id": "ziwei-pipeline-boundary",
+      "kind": "source_test",
+      "note": "normal exact input can expose experimental Ziwei to chat; candidate paths are blocked; production activation is not established",
+      "path": "src/interpretationPrep/threeSystemPrepPipeline.js",
+      "testPaths": [
+        "test/ziweiCoreContract.test.js",
+        "test/ziweiPipeline.test.js"
+      ]
+    },
+    {
+      "id": "ziwei-tri-baseline",
+      "kind": "artifact_document",
+      "note": "prior tri-system summary records Ziwei partial/experimental and absent materialization, but is coarser than this inventory",
+      "path": "artifacts/tri-system-readiness-v1/inventory.json",
+      "relatedPaths": [
+        "scripts/materialize-tri-system-readiness.mjs"
+      ]
+    }
+  ],
+  "gaps": {
+    "beforeProvenanceBlockers": [
+      {
+        "id": "source-edition-identity",
+        "reason": "exact source edition, author/editor identity, page/scan locator and immutable retrieval identity are unresolved",
+        "status": "blocked"
+      },
+      {
+        "id": "external-oracle-identity",
+        "reason": "no independent implementation/product/version/settings identity is recorded; current runner invokes local resolvers",
+        "status": "blocked"
+      },
+      {
+        "id": "claim-boundary",
+        "reason": "stable claim/occurrence unit and fact-versus-candidate boundary are not defined for Ziwei output",
+        "status": "blocked"
+      }
+    ],
+    "evidenceHardeningTrack": [
+      {
+        "id": "immutable-source-capture",
+        "reason": "source download/acquisition is outside this work order",
+        "status": "blocked"
+      },
+      {
+        "id": "independent-reproduction",
+        "reason": "requires separately identified external implementation or manual oracle with settings",
+        "status": "blocked"
+      },
+      {
+        "id": "negative-boundary-corpus",
+        "reason": "candidate and unsupported paths exist but are not materialized as claim-grounded evidence",
+        "status": "partial"
+      }
+    ],
+    "parallelWithUnresolvedState": [
+      {
+        "id": "inventory-schema-tests",
+        "reason": "baseline inventory/checker can be hardened without changing calculation",
+        "status": "implemented_unverified"
+      },
+      {
+        "id": "fixture-reconciliation",
+        "reason": "retain observed/pending/out-of-scope distinctions while source identity remains unresolved",
+        "status": "partial"
+      },
+      {
+        "id": "unsupported-scope-catalog",
+        "reason": "timing, brightness, extended minor stars and palace transformations remain explicit unsupported boundaries",
+        "status": "documented_only"
+      }
+    ]
+  },
+  "invariants": [
+    "no traditional validity or life-accuracy judgment is made",
+    "internal expected values are regression evidence only",
+    "observed external matches are not promoted to verified",
+    "unresolved source identity is preserved as unresolved_source_identity",
+    "no new claim, relation, interpretation, ranking or common envelope is created"
+  ],
+  "inventoryVersion": "1.0.0",
+  "layerStatus": [
+    {
+      "basis": "solar2lunar execution and lunar fields exist; conversion verification/source identity is unresolved; leap-month and time-boundary cases are candidate-blocked",
+      "evidenceIds": [
+        "ziwei-input-contract",
+        "ziwei-calendar-execution"
+      ],
+      "id": "input_calendar",
+      "status": "partial"
+    },
+    {
+      "basis": "deterministic local resolvers and regression expectations exist; no independent chart oracle is established",
+      "evidenceIds": [
+        "ziwei-core-calculation",
+        "ziwei-rule-resolvers",
+        "ziwei-internal-fixtures"
+      ],
+      "id": "deterministic_calculation",
+      "status": "implemented_unverified"
+    },
+    {
+      "basis": "local rules have versions and comments; this inventory does not assess traditional validity and the cited edition is unresolved",
+      "evidenceIds": [
+        "ziwei-rule-resolvers",
+        "ziwei-external-fixtures",
+        "ziwei-external-reports"
+      ],
+      "id": "traditional_rule_application",
+      "status": "implemented_unverified"
+    },
+    {
+      "basis": "six internal regression cases; six declared external fixtures with four observed matches, zero verified matches, two excluded",
+      "evidenceIds": [
+        "ziwei-internal-fixtures",
+        "ziwei-external-fixtures",
+        "ziwei-external-reports"
+      ],
+      "id": "fixture_external_validation",
+      "status": "partial"
+    },
+    {
+      "basis": "interpretivePatterns and prompt payload are meaning-adjacent structures, but stable claim/occurrence identity is absent",
+      "evidenceIds": [
+        "ziwei-relation-structure",
+        "ziwei-handoff-adapter",
+        "ziwei-benchmark-fixtures"
+      ],
+      "id": "claim_meaning_candidate_structure",
+      "status": "partial"
+    },
+    {
+      "basis": "fixture source objects exist; chart facts and meaning candidates do not carry claim-level sourceRefs, source hashes or source identity links",
+      "evidenceIds": [
+        "ziwei-external-fixtures",
+        "ziwei-external-reports",
+        "ziwei-handoff-adapter"
+      ],
+      "id": "provenance",
+      "status": "partial"
+    },
+    {
+      "basis": "palace opposite/trine structure is computed, but no claim relation graph or mechanically bounded claim edges exists",
+      "evidenceIds": [
+        "ziwei-relation-structure",
+        "ziwei-handoff-adapter"
+      ],
+      "id": "relation_graph",
+      "status": "implemented_unverified"
+    },
+    {
+      "basis": "per-result state fields and candidate blocking exist; no Ziwei-specific deterministic readiness/grounding artifact existed at the baseline",
+      "evidenceIds": [
+        "ziwei-input-contract",
+        "ziwei-pipeline-boundary",
+        "ziwei-tri-baseline"
+      ],
+      "id": "readiness_context",
+      "status": "partial"
+    },
+    {
+      "basis": "prompt/session handoff exists; it is not sourceRefs-grounded evidence and normal exact input remains experimental",
+      "evidenceIds": [
+        "ziwei-handoff-adapter",
+        "ziwei-pipeline-boundary"
+      ],
+      "id": "handoff_grounding",
+      "status": "partial"
+    },
+    {
+      "basis": "this work adds a baseline inventory materializer/checker; calculation/readiness facts are not thereby independently verified",
+      "evidenceIds": [
+        "ziwei-tri-baseline"
+      ],
+      "id": "materialization_checker",
+      "status": "partial"
+    },
+    {
+      "basis": "tri-system baseline says experimental; no production activation or claim-grounded user-delivery contract is established",
+      "evidenceIds": [
+        "ziwei-pipeline-boundary",
+        "ziwei-tri-baseline"
+      ],
+      "id": "activation",
+      "status": "experimental"
+    }
+  ],
+  "materializerPath": "scripts/materialize-ziwei-readiness-baseline-v1.mjs",
+  "nextGoal": {
+    "allowedScope": [
+      "read_only source audit",
+      "fixture metadata reconciliation",
+      "assessment/checker tests"
+    ],
+    "objective": "자미두수 외부 fixture의 정확한 source edition·retrieval identity·비순환 비교 조건과 계산 output의 claim/occurrence 경계를 확정하고, 계산 코드는 변경하지 않은 채 acceptance 기준을 문서화한다.",
+    "prohibitedScope": [
+      "calculation/rule/fixture value changes",
+      "source download",
+      "claim/provenance/readiness/grounding implementation",
+      "UI/API/DB/LLM/activation"
+    ],
+    "verdictToken": "ziwei_source_identity_and_claim_boundary_audit"
+  },
+  "overall": {
+    "activation": "experimental",
+    "calculation": "implemented_unverified",
+    "claimIdentification": "not_stable",
+    "claimProvenanceStart": "blocked",
+    "externalValidation": "partial",
+    "nextUnit": "ziwei_source_identity_and_claim_boundary_audit",
+    "status": "partial"
+  },
+  "recommendedOrder": [
+    "ziwei_source_identity_and_claim_boundary_audit",
+    "ziwei_independent_fixture_reconciliation",
+    "ziwei_claim_provenance_contract",
+    "ziwei_readiness_grounding_artifact",
+    "ziwei_handoff_boundary_review"
+  ],
+  "schemaVersion": "ziwei-readiness-baseline-v1",
+  "scope": "read_only_repository_evidence_audit_at_fixed_head",
+  "sourceIdentity": {
+    "authorIdentity": "attributed_or_editorial_identity_only",
+    "circularValidation": true,
+    "currentSourceLabels": [
+      "紫微斗數全書 / Ziwei Dou Shu Quan Shu",
+      "CText public digital transcription",
+      "陳摶 (attributed) / 羅洪先 (edit)"
+    ],
+    "directEvidence": "CText URL and quoted section labels are recorded in fixtures/reports; no immutable retrieval bytes or edition hash are present",
+    "externalImplementation": "absent",
+    "externalSettings": "fixture-declared settings exist (calendar/timezone/boundary/school), but no external product/version execution identity exists",
+    "externalVersion": "absent",
+    "indirectEvidence": "observed comparisons are produced by src/interpretationPrep/externalValidationRunner.js calling current local resolvers",
+    "pageSectionIdentity": "section_labels_recorded; exact edition/page/scan identity unresolved",
+    "sourceEditionIdentity": "unresolved_source_identity",
+    "unresolvedReasonCodes": [
+      "exact_edition_missing",
+      "external_implementation_identity_missing",
+      "retrieval_bytes_missing",
+      "runner_reuses_current_resolvers"
+    ]
+  },
+  "statusVocabulary": [
+    "verified",
+    "implemented_unverified",
+    "partial",
+    "experimental",
+    "regression_only",
+    "stub_or_simulation",
+    "documented_only",
+    "absent",
+    "blocked"
+  ],
+  "validationSummary": {
+    "declaredExternalFixtures": {
+      "evaluated": 4,
+      "excluded": 2,
+      "observedMatches": 4,
+      "observedMismatches": 0,
+      "pendingSourceReview": 6,
+      "status": "partial",
+      "total": 6,
+      "verifiedMatches": 0
+    },
+    "independence": "not_established",
+    "internalRegressionFixtures": {
+      "knownCharts": 3,
+      "starPlacementCharts": 3,
+      "status": "regression_only",
+      "total": 6
+    },
+    "interpretationBenchmarkFixtures": {
+      "status": "regression_only",
+      "total": 5
+    }
+  },
+  "verdictToken": "ziwei_readiness_baseline_partial_unverified"
+}

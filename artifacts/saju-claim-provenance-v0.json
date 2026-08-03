@@ -32803,5 +32803,34 @@
   "schemaVersion": "saju-claim-provenance-v0",
   "sourceState": "implemented_unverified",
   "system": "saju",
-  "verdictToken": "saju_claim_provenance_partial_unverified"
+  "verdictToken": "saju_claim_provenance_partial_unverified",
+  "artifactIdentity": {
+    "contractVersion": "artifact-identity-v1",
+    "artifactId": "saju-claim-provenance-v0",
+    "generation": {
+      "baseHead": "acb1af9f7ad393cea23d8d9949660c9bcfe37beb",
+      "baseHeadSource": "git rev-parse HEAD at materialization",
+      "includedCommit": null,
+      "includedCommitSource": "unknown_at_generation; artifact may be included by a later commit"
+    },
+    "inputs": [
+      {
+        "path": "src/interpretationPrep/fixtures/sajuValidationFixtures.js",
+        "byteSha256": "c6e983015f06968f7d326c17c5151a81b3554300ad8fa5d59897bdd2eed50ffe"
+      },
+      {
+        "path": "src/interpretationPrep/prepare.js",
+        "byteSha256": "ef9c9e7b7d3460ec98d0361db7dad7b99626f9a4206af52455fe955feb0fb6ff"
+      },
+      {
+        "path": "src/saju/engine/externalValidationFixtures.js",
+        "byteSha256": "4a80715252cdce10a64f78a9c5ca206b4e98b6c141c74695d8592eb4d6c165ea"
+      }
+    ],
+    "materializer": {
+      "path": "scripts/materialize-saju-claim-provenance-v0.mjs",
+      "version": "1.1.0"
+    },
+    "artifactPayloadSha256": "ee19d93021b2c749594c82e35c5bb15d5a60896b1355d8be28874c470be85dac"
+  }
 }

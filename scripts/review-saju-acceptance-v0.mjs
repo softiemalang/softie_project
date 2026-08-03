@@ -1,5 +1,6 @@
 import fs from 'node:fs'
 import crypto from 'node:crypto'
+import { attachArtifactIdentity, buildArtifactIdentity } from '../src/artifactIdentity.js'
 
 const provenance = JSON.parse(fs.readFileSync('artifacts/saju-claim-provenance-v0.json', 'utf8'))
 const readinessArtifact = JSON.parse(fs.readFileSync('artifacts/saju-readiness-grounding-v0.json', 'utf8'))
@@ -105,6 +106,14 @@ const payload = {schemaVersion:'saju-acceptance-review-v0', verdictToken:'saju_a
 payload.deterministic.reviewContentSha256 = hash(canonical(payload))
 const fileObject = {...payload,deterministic:{...payload.deterministic,artifactByteSha256:null}}
 const outputText = canonical({...payload,deterministic:{...payload.deterministic,artifactByteSha256:hash(canonical(fileObject))}})
-const final = JSON.parse(outputText)
-fs.writeFileSync('artifacts/saju-acceptance-review-v0.json', outputText)
-console.log(JSON.stringify({status:'materialized',output:'artifacts/saju-acceptance-review-v0.json',head:final.basisHead,verdictToken:final.verdictToken,distribution,negativeResults,reviewContentSha256:final.deterministic.reviewContentSha256,artifactByteSha256:final.deterministic.artifactByteSha256,actualFileByteSha256:hash(outputText)},null,2))
+const final = attachArtifactIdentity(JSON.parse(outputText), buildArtifactIdentity({
+  root: process.cwd(),
+  artifactId: 'saju-acceptance-review-v0',
+  materializerPath: 'scripts/review-saju-acceptance-v0.mjs',
+  materializerVersion: '1.1.0',
+  baseHead: payload.basisHead,
+  inputs: ['artifacts/saju-claim-provenance-v0.json', 'artifacts/saju-readiness-grounding-v0.json', 'test/fixtures/saju-acceptance-review-negative-v0.json'],
+}))
+const finalText = canonical(final)
+fs.writeFileSync('artifacts/saju-acceptance-review-v0.json', finalText)
+console.log(JSON.stringify({status:'materialized',output:'artifacts/saju-acceptance-review-v0.json',head:final.basisHead,verdictToken:final.verdictToken,distribution,negativeResults,reviewContentSha256:final.deterministic.reviewContentSha256,artifactByteSha256:final.deterministic.artifactByteSha256,actualFileByteSha256:hash(finalText)},null,2))

@@ -503,7 +503,7 @@
       "id": "tri_system_inventory",
       "path": "artifacts/tri-system-readiness-v1/inventory.json",
       "role": "tri-system readiness baseline",
-      "sha256": "3f8ef9f29b125501788c19e56c046327d6a8a1521b81eb35a4c31bcbcb81fe22",
+      "sha256": "644b14b10f3c2b30ed1043a11ee2303a39029b0cefedecf0e5012a15ff309082",
       "sourceIdentity": "repository document/artifact identity only",
       "editionVersionIdentifiable": false,
       "directOrIndirect": "indirect_or_internal",
@@ -602,5 +602,82 @@
       "subject": "docs/saju-final-readiness.md vs docs/saju-external-validation-report.md",
       "reason": "readiness correctly keeps externalValidationStatus pending while companion report calls seven scoped matches verified_reference; both are true only when scope is made explicit"
     }
-  ]
+  ],
+  "artifactIdentity": {
+    "contractVersion": "artifact-identity-v1",
+    "artifactId": "saju-verification-reconciliation-v1",
+    "generation": {
+      "baseHead": "acb1af9f7ad393cea23d8d9949660c9bcfe37beb",
+      "baseHeadSource": "git rev-parse HEAD at materialization",
+      "includedCommit": null,
+      "includedCommitSource": "unknown_at_generation; artifact may be included by a later commit"
+    },
+    "inputs": [
+      {
+        "path": "artifacts/tri-system-readiness-v1/inventory.json",
+        "byteSha256": "644b14b10f3c2b30ed1043a11ee2303a39029b0cefedecf0e5012a15ff309082"
+      },
+      {
+        "path": "docs/saju-external-validation-report.md",
+        "byteSha256": "3d72021b16dba06770acc35b242b319e472913f580909f5d7d79ec42efba0499"
+      },
+      {
+        "path": "docs/saju-final-readiness.md",
+        "byteSha256": "0c8654f3da56efdcbee6c12e773848aa06423b544467fc46e1b7ed25c2a4f3e3"
+      },
+      {
+        "path": "src/interpretationPrep/externalValidationRunner.js",
+        "byteSha256": "8f8aae9decc4e2cf83868a784e6cb6c8709c755bf2ef79ed52a811dede85c5f3"
+      },
+      {
+        "path": "src/interpretationPrep/fixtures/sajuValidationFixtures.js",
+        "byteSha256": "c6e983015f06968f7d326c17c5151a81b3554300ad8fa5d59897bdd2eed50ffe"
+      },
+      {
+        "path": "src/interpretationPrep/lunarConverter.js",
+        "byteSha256": "466c7774c3dc8ef89fb99345561db4bf5c1ec9fd786b5279fabcfa507e2bb224"
+      },
+      {
+        "path": "src/interpretationPrep/sajuProfileRules.js",
+        "byteSha256": "3fa0850957479f2bad5b56f9395b0f2b0957f62671e67dea1d5473802e9a51c8"
+      },
+      {
+        "path": "src/interpretationPrep/sajuRelationRules.js",
+        "byteSha256": "bfdfc82d91d563674ac95e6310d8c500918839373f51def40daf254af719cd9c"
+      },
+      {
+        "path": "src/interpretationPrep/sajuTimingRules.js",
+        "byteSha256": "849bf4744c33437b0f15f083f46f8f8c5434f0edb35d0f5e3b94848b65c2c808"
+      },
+      {
+        "path": "src/interpretationPrep/sajuValidationRunner.test.js",
+        "byteSha256": "37a0bb6664ee9f02190a1b3429860ea043757999f2d973dd22ed6c8c75e2bbf4"
+      },
+      {
+        "path": "src/saju/engine/externalValidationFixtures.js",
+        "byteSha256": "4a80715252cdce10a64f78a9c5ca206b4e98b6c141c74695d8592eb4d6c165ea"
+      },
+      {
+        "path": "src/saju/engine/fourPillars.js",
+        "byteSha256": "27f71a0bbad8476895766c29c42bec1f95ddeb0b5fec3171c56e19265e936cc7"
+      },
+      {
+        "path": "src/saju/engine/fourPillars.test.js",
+        "byteSha256": "afcc7d42018d1b0573623af2236ac2ee85391cda37b5e76f9eaecf1ced7b63f0"
+      },
+      {
+        "path": "src/saju/engine/solarTerms.js",
+        "byteSha256": "5dcab28d38a3b51182fb984abbd1461934a348213b5d53cee9828e0f04b02f56"
+      },
+      {
+        "path": "test/externalValidationRunner.test.js",
+        "byteSha256": "4de5478db198e4620072b9f2f993beb8f14e454dac1f7b8de640b4ee549b2b41"
+      }
+    ],
+    "materializer": {
+      "path": "scripts/migrate-saju-reconciliation-identity-v1.mjs",
+      "version": "1.1.0"
+    },
+    "artifactPayloadSha256": "cf672ca1f140c2b1ada12fbdaa6cc31dfc9d68dc160e8f5af55a75fded965f7a"
+  }
 }

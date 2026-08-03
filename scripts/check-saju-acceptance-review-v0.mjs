@@ -1,5 +1,6 @@
 import fs from 'node:fs'
 import crypto from 'node:crypto'
+import { checkArtifactIdentity, artifactPayloadWithoutIdentity } from '../src/artifactIdentity.js'
 
 const path = 'artifacts/saju-acceptance-review-v0.json'
 const value = JSON.parse(fs.readFileSync(path, 'utf8'))
@@ -43,12 +44,13 @@ if (!value.independentFindings?.includes('grounding_claim_refs_have_per_claim_ga
 if (!value.independentFindings?.includes('closed_world_status_enum_preserved')) errors.push('independent status enum audit missing')
 if (!Array.isArray(value.gapClosure) || value.gapClosure.length !== 5 || value.gapClosure.some(item => item.before !== 'gap' || !item.after || !item.evidence?.length)) errors.push('gap closure evidence incomplete')
 if (value.negativeResults.length !== 12 || value.negativeResults.some(item => item.detected !== true || !item.reasonCodes?.length)) errors.push('negative fixture coverage incomplete')
-const content = structuredClone(value)
+const content = artifactPayloadWithoutIdentity(value)
 content.deterministic.reviewContentSha256 = null
 content.deterministic.artifactByteSha256 = null
 if (sha256(canonical(content)) !== value.deterministic.reviewContentSha256) errors.push('review content hash mismatch')
-const preimage = structuredClone(value)
+const preimage = artifactPayloadWithoutIdentity(value)
 preimage.deterministic.artifactByteSha256 = null
 if (sha256(canonical(preimage)) !== value.deterministic.artifactByteSha256) errors.push('artifact byte preimage hash mismatch')
 if (value.acceptance?.claimTruth !== 'not assessed' || value.acceptance?.productionReady !== false || value.acceptance?.ziweiStart !== 'blocked_pending_gap_closure_and_independent_acceptance') errors.push('acceptance boundary changed')
+errors.push(...checkArtifactIdentity(value, { root: process.cwd(), artifactId: 'saju-acceptance-review-v0', materializerPath: 'scripts/review-saju-acceptance-v0.mjs', materializerVersion: '1.1.0' }))
 if (errors.length) { console.error(errors.map(error => `FAIL ${error}`).join('\n')); process.exitCode = 1 } else console.log(JSON.stringify({status:'pass',basisHead:value.basisHead,verdictToken:value.verdictToken,distribution:value.reviewSummary.distribution,negativeCases:value.negativeResults.length,reviewContentSha256:value.deterministic.reviewContentSha256,artifactByteSha256:value.deterministic.artifactByteSha256},null,2))

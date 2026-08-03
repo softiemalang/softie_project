@@ -1,4 +1,6 @@
 import { createHash } from 'node:crypto'
+import { attachArtifactIdentity, buildArtifactIdentity } from '../src/artifactIdentity.js'
+import { execFileSync } from 'node:child_process'
 import fs from 'node:fs'
 import { buildSajuConversationGrounding, buildSajuReadiness, canonicalSajuReadinessJson, checkSajuConversationGrounding, checkSajuReadiness, sajuGroundingContentSha256 } from '../src/interpretationPrep/sajuReadinessGrounding.js'
 
@@ -25,7 +27,14 @@ const output = {
   readiness, bundle, negativeEvidence,
 }
 const artifactByteSha256 = createHash('sha256').update(canonicalSajuReadinessJson({ ...output, artifactByteSha256: null })).digest('hex')
-const materialized = { ...output, artifactByteSha256 }
+const materialized = attachArtifactIdentity({ ...output, artifactByteSha256 }, buildArtifactIdentity({
+  root: new URL('../', import.meta.url).pathname,
+  artifactId: 'saju-readiness-grounding-v0',
+  materializerPath: 'scripts/materialize-saju-readiness-grounding-v0.mjs',
+  materializerVersion: '1.1.0',
+  baseHead: execFileSync('git', ['-c', 'core.fsmonitor=false', 'rev-parse', 'HEAD'], { cwd: new URL('../', import.meta.url).pathname, encoding: 'utf8' }).trim(),
+  inputs: ['artifacts/saju-claim-provenance-v0.json', 'src/interpretationPrep/sajuReadinessGrounding.js'],
+}))
 const outputText = canonicalSajuReadinessJson(materialized)
 fs.writeFileSync('artifacts/saju-readiness-grounding-v0.json', outputText)
 console.log(JSON.stringify({ status: 'materialized', output: 'artifacts/saju-readiness-grounding-v0.json', claimCount: readiness.claimCount, occurrenceCount: readiness.occurrenceCount, readinessStatusDistribution: readiness.statusDistribution, readinessContentSha256: readiness.contentSha256, groundingContentSha256: bundle.contentSha256, artifactByteSha256, actualFileByteSha256: createHash('sha256').update(outputText).digest('hex'), readinessErrors: checkSajuReadiness(readiness, provenance), groundingErrors: checkSajuConversationGrounding(bundle, { provenance, readiness }) }, null, 2))

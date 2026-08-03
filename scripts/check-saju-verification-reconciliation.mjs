@@ -4,6 +4,7 @@ import { execFileSync } from 'node:child_process'
 import { SAJU_EXTERNAL_FIXTURES } from '../src/saju/engine/externalValidationFixtures.js'
 import { SAJU_VALIDATION_FIXTURE_VERSION, sajuValidationFixtures } from '../src/interpretationPrep/fixtures/sajuValidationFixtures.js'
 import { runExternalValidationSuite } from '../src/interpretationPrep/externalValidationRunner.js'
+import { checkArtifactIdentity } from '../src/artifactIdentity.js'
 
 const root = new URL('../', import.meta.url).pathname
 const artifactPath = new URL('../artifacts/saju-verification-reconciliation-v1.json', import.meta.url).pathname
@@ -15,7 +16,7 @@ const externalRun = runExternalValidationSuite()
 const fail = (message) => errors.push(message)
 
 if (artifact.schemaVersion !== 'saju-verification-reconciliation-v1') fail('schemaVersion mismatch')
-if (artifact.generatedFromHead !== currentHead) fail(`generatedFromHead ${artifact.generatedFromHead} != current HEAD ${currentHead}`)
+for (const error of checkArtifactIdentity(artifact, { root, artifactId: 'saju-verification-reconciliation-v1', materializerPath: 'scripts/migrate-saju-reconciliation-identity-v1.mjs', materializerVersion: '1.1.0' })) fail(error)
 if (artifact.verdictToken !== 'saju_scoped_external_matches_but_claim_level_verification_unproven') fail('unexpected verdictToken')
 if (artifact.counts.internalRegressionFixtures !== sajuValidationFixtures.length) fail('internal fixture count drift')
 if (artifact.counts.internalRegressionOnly !== sajuValidationFixtures.filter((fixture) => fixture.verificationStatus === 'regression_only').length) fail('regression_only count drift')
