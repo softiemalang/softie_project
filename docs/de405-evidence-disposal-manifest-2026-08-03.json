@@ -1,0 +1,2796 @@
+{
+  "schemaVersion": 1,
+  "recordType": "de405_evidence_disposal_manifest",
+  "phase": "post_disposal",
+  "decision": "complete_de405_raw_evidence_disposal_uncommitted",
+  "commitStatus": "uncommitted",
+  "repository": "$REPO",
+  "branch": "main",
+  "head": "3c3b45dc9c79507ccc8759f1ff7a8afac7349865",
+  "parity": "0\t0",
+  "auditedStorageRoots": [
+    "$REPO/artifacts",
+    "$TMPDIR/de405-remote-30768814210",
+    "$TMPDIR/de405-run-30748244499",
+    "$TMPDIR/de405-setup-30768513595",
+    "$TMPDIR/de405-linux-remote-4285P4",
+    "$TMPDIR/de405-sample-release-one.qbUQfF",
+    "$TMPDIR/de405-sample-release-two.xzMoUt",
+    "$TMPDIR/de405-sample-asset-check",
+    "$TMPDIR/de405-linux-asset-iOGC1t",
+    "$TMPDIR/astro-query.jsonl",
+    "$TMPDIR/astro-states.jsonl",
+    "$TMPDIR/de405-source-equivalence (result/provenance boundary only; source trees not expanded)",
+    "$TMPDIR/de405-official-extracted-check (top-level/provenance boundary only; extracted source tree not expanded)",
+    "$TMPDIR/de405-naif-download-check (top-level/provenance boundary only; extracted source tree not expanded)",
+    "$TMPDIR/.de405-official-download (top-level/provenance boundary only)",
+    "$HOME/.local/share/softie-de405 (read-only canonical runtime inventory)"
+  ],
+  "minimumCanonicalEvidenceSet": [
+    {
+      "path": "$HOME/.local/share/softie-de405/kernels/spk/de405.bsp",
+      "classification": "required_runtime",
+      "reason": "canonical DE405 kernel"
+    },
+    {
+      "path": "$HOME/.local/share/softie-de405/cspice/N0067/lib/cspice.a",
+      "classification": "required_runtime",
+      "reason": "CSPICE N0067 library"
+    },
+    {
+      "path": "$HOME/.local/share/softie-de405/cspice/N0067/lib/csupport.a",
+      "classification": "required_runtime",
+      "reason": "CSPICE support library"
+    },
+    {
+      "path": "tools/de405-cspice-runner/build/de405-canonical-v2-runner",
+      "classification": "required_runtime",
+      "reason": "canonical-v2 runner"
+    },
+    {
+      "path": "tools/de405-jpl-reader/build/de405-jpl-canonical-v2-runner",
+      "classification": "required_runtime",
+      "reason": "official JPL reader runner"
+    },
+    {
+      "path": "tools/de405-jpl-reader/fixtures/lnxp1600p2200.405",
+      "classification": "required_runtime",
+      "reason": "JPL reader input fixture"
+    },
+    {
+      "path": "test/fixtures/astrology/golden/astrology-ephemeris-golden-v1.json",
+      "classification": "required_verification_input",
+      "reason": "Golden Astrology evidence"
+    },
+    {
+      "path": "docs/de405-legacy-native-cross-environment-summary.json",
+      "classification": "required_unique_evidence",
+      "reason": "cross-environment result summary"
+    },
+    {
+      "path": "docs/de405-legacy-native-cross-environment-remote-record.json",
+      "classification": "required_unique_evidence",
+      "reason": "remote provenance record"
+    },
+    {
+      "path": "docs/de405-linux-architecture-remote-record.json",
+      "classification": "required_unique_evidence",
+      "reason": "remote architecture provenance"
+    },
+    {
+      "path": "docs/de405-linux-architecture-summary.json",
+      "classification": "required_unique_evidence",
+      "reason": "cross-platform summary and hashes"
+    },
+    {
+      "path": "docs/de405-controlled-build-triangle-evidence.json",
+      "classification": "required_unique_evidence",
+      "reason": "controlled-build evidence"
+    },
+    {
+      "path": "artifacts/de405-jpl-cspice-residual-sweep.samples.jsonl",
+      "classification": "required_verification_input",
+      "reason": "current artifact checker and sweep input"
+    },
+    {
+      "path": "artifacts/de405-jpl-cspice-residual-sweep.manifest.jsonl",
+      "classification": "required_verification_input",
+      "reason": "current artifact checker and manifest identity"
+    },
+    {
+      "path": "artifacts/de405-jpl-cspice-residual-sweep.jpl.jsonl",
+      "classification": "required_verification_input",
+      "reason": "JPL overlap result stream"
+    },
+    {
+      "path": "artifacts/de405-jpl-cspice-residual-sweep.cspice.jsonl",
+      "classification": "required_verification_input",
+      "reason": "CSPICE overlap result stream"
+    },
+    {
+      "path": "scripts/run-de405-jpl-cspice-residual-sweep.mjs",
+      "classification": "required_verification_input",
+      "reason": "reproduction command"
+    },
+    {
+      "path": "scripts/generate-de405-canonical-v2.mjs",
+      "classification": "required_verification_input",
+      "reason": "canonical-v2 reproduction command"
+    },
+    {
+      "path": "scripts/validate-de405-canonical-v2.mjs",
+      "classification": "required_verification_input",
+      "reason": "canonical-v2 checker"
+    },
+    {
+      "path": "test/de405ArtifactReadiness.test.js",
+      "classification": "required_verification_input",
+      "reason": "artifact contract tests"
+    },
+    {
+      "path": "test/de405CanonicalV2Smoke.test.js",
+      "classification": "required_verification_input",
+      "reason": "canonical-v2 smoke contract"
+    },
+    {
+      "path": "test/de405JplCspiceOverlapEvidence.test.js",
+      "classification": "required_verification_input",
+      "reason": "JPL/CSPICE overlap contract"
+    }
+  ],
+  "storage": {
+    "auditedBytesBefore": 6714277994,
+    "auditedBytesAfter": 4748799352,
+    "deletedBytes": 1965478642,
+    "auditedFileCountBefore": 191,
+    "auditedFileCountAfter": 177,
+    "deletedFileCount": 14
+  },
+  "residualSweep": {
+    "files": [
+      "artifacts/de405-jpl-cspice-residual-sweep.samples.jsonl",
+      "artifacts/de405-jpl-cspice-residual-sweep.jpl.jsonl",
+      "artifacts/de405-jpl-cspice-residual-sweep.cspice.jsonl",
+      "artifacts/de405-jpl-cspice-residual-sweep.manifest.jsonl"
+    ],
+    "disposition": "preserved_required_verification_input",
+    "reason": "direct consumers and readiness/inventory contract still require exact bytes; checker contract was not changed"
+  },
+  "files": [
+    {
+      "path": "artifacts/de405-cspice-route-build-manifest.json",
+      "scope": "repository_ignored_artifact",
+      "classification": "required_verification_input",
+      "sizeBytes": 1845,
+      "sha256": "e12668ea49bac289a6448024a311565eca8cade0a44a0c1319fbf1cd5e310c24",
+      "lineCount": 44,
+      "currentConsumers": [
+        "docs/de405-evidence-disposal-manifest-2026-08-03.json"
+      ],
+      "basis": "current direct consumers: docs/de405-evidence-disposal-manifest-2026-08-03.json",
+      "regeneration": "producer script and recorded inputs in docs/de405-artifact-materialization.md; conditional on DE405/CSPICE/JPL runtime"
+    },
+    {
+      "path": "artifacts/de405-cspice-route-events.jsonl",
+      "scope": "repository_ignored_artifact",
+      "classification": "required_verification_input",
+      "sizeBytes": 9329610,
+      "sha256": "e2d7bbdbc3d17bf7b8eaaf0d65ebebbde3667bccf659a45e8d97e52902413a11",
+      "lineCount": 21877,
+      "currentConsumers": [
+        "docs/de405-evidence-disposal-manifest-2026-08-03.json",
+        "scripts/analyze-de405-route-root-cause.mjs",
+        "test/de405CspiceRouteDiagnostic.test.js"
+      ],
+      "basis": "current direct consumers: docs/de405-evidence-disposal-manifest-2026-08-03.json, scripts/analyze-de405-route-root-cause.mjs, test/de405CspiceRouteDiagnostic.test.js",
+      "regeneration": "producer script and recorded inputs in docs/de405-artifact-materialization.md; conditional on DE405/CSPICE/JPL runtime"
+    },
+    {
+      "path": "artifacts/de405-cspice-route-first-divergence.jsonl",
+      "scope": "repository_ignored_artifact",
+      "classification": "required_verification_input",
+      "sizeBytes": 726596,
+      "sha256": "6ca023422e05b53fb6ca8fe32c588af8eb40a294d836b61618c8761a7b572822",
+      "lineCount": 1701,
+      "currentConsumers": [
+        "docs/de405-evidence-disposal-manifest-2026-08-03.json",
+        "scripts/analyze-de405-route-root-cause.mjs",
+        "test/de405CspiceRouteDiagnostic.test.js"
+      ],
+      "basis": "current direct consumers: docs/de405-evidence-disposal-manifest-2026-08-03.json, scripts/analyze-de405-route-root-cause.mjs, test/de405CspiceRouteDiagnostic.test.js",
+      "regeneration": "producer script and recorded inputs in docs/de405-artifact-materialization.md; conditional on DE405/CSPICE/JPL runtime"
+    },
+    {
+      "path": "artifacts/de405-cspice-route-inventory.jsonl",
+      "scope": "repository_ignored_artifact",
+      "classification": "required_verification_input",
+      "sizeBytes": 1113434,
+      "sha256": "e9eaa84f566dcdf77142e1a09cf81bbac237ec4027896b56ef48db80f4f3a553",
+      "lineCount": 1590,
+      "currentConsumers": [
+        "docs/de405-evidence-disposal-manifest-2026-08-03.json",
+        "test/de405CspiceRouteDiagnostic.test.js"
+      ],
+      "basis": "current direct consumers: docs/de405-evidence-disposal-manifest-2026-08-03.json, test/de405CspiceRouteDiagnostic.test.js",
+      "regeneration": "producer script and recorded inputs in docs/de405-artifact-materialization.md; conditional on DE405/CSPICE/JPL runtime"
+    },
+    {
+      "path": "artifacts/de405-cspice-route-map.json",
+      "scope": "repository_ignored_artifact",
+      "classification": "required_verification_input",
+      "sizeBytes": 3010,
+      "sha256": "7e426eb628ac26c1b267e063c035912cc59d1d341767e0c1f1c6a3acf36a77aa",
+      "lineCount": 68,
+      "currentConsumers": [
+        "docs/de405-evidence-disposal-manifest-2026-08-03.json",
+        "test/de405CspiceRouteDiagnostic.test.js"
+      ],
+      "basis": "current direct consumers: docs/de405-evidence-disposal-manifest-2026-08-03.json, test/de405CspiceRouteDiagnostic.test.js",
+      "regeneration": "producer script and recorded inputs in docs/de405-artifact-materialization.md; conditional on DE405/CSPICE/JPL runtime"
+    },
+    {
+      "path": "artifacts/de405-cspice-route-neutrality.json",
+      "scope": "repository_ignored_artifact",
+      "classification": "required_verification_input",
+      "sizeBytes": 308,
+      "sha256": "c52064006def7313b4954b3f994b4a5f7350d6e978d081c2cd8f976a2a89a9c0",
+      "lineCount": 10,
+      "currentConsumers": [
+        "docs/de405-evidence-disposal-manifest-2026-08-03.json",
+        "test/de405CspiceRouteDiagnostic.test.js"
+      ],
+      "basis": "current direct consumers: docs/de405-evidence-disposal-manifest-2026-08-03.json, test/de405CspiceRouteDiagnostic.test.js",
+      "regeneration": "producer script and recorded inputs in docs/de405-artifact-materialization.md; conditional on DE405/CSPICE/JPL runtime"
+    },
+    {
+      "path": "artifacts/de405-cspice-route-results.jsonl",
+      "scope": "repository_ignored_artifact",
+      "classification": "required_verification_input",
+      "sizeBytes": 443563,
+      "sha256": "4120f5b751c59d44f038d31b32866b8405413b083147ab3eca276a485ee55d5a",
+      "lineCount": 1701,
+      "currentConsumers": [
+        "docs/de405-evidence-disposal-manifest-2026-08-03.json"
+      ],
+      "basis": "current direct consumers: docs/de405-evidence-disposal-manifest-2026-08-03.json",
+      "regeneration": "producer script and recorded inputs in docs/de405-artifact-materialization.md; conditional on DE405/CSPICE/JPL runtime"
+    },
+    {
+      "path": "artifacts/de405-cspice-route-summary.json",
+      "scope": "repository_ignored_artifact",
+      "classification": "required_verification_input",
+      "sizeBytes": 79677,
+      "sha256": "ad066371809216b146c361084b4b208403aab28d8d859ccfcafe71dea906b4ba",
+      "lineCount": 4062,
+      "currentConsumers": [
+        "docs/de405-evidence-disposal-manifest-2026-08-03.json",
+        "scripts/analyze-de405-route-root-cause.mjs",
+        "test/de405CspiceRouteDiagnostic.test.js"
+      ],
+      "basis": "current direct consumers: docs/de405-evidence-disposal-manifest-2026-08-03.json, scripts/analyze-de405-route-root-cause.mjs, test/de405CspiceRouteDiagnostic.test.js",
+      "regeneration": "producer script and recorded inputs in docs/de405-artifact-materialization.md; conditional on DE405/CSPICE/JPL runtime"
+    },
+    {
+      "path": "artifacts/de405-jpl-cspice-active-tolerance-proposal.json",
+      "scope": "repository_ignored_artifact",
+      "classification": "required_verification_input",
+      "sizeBytes": 4937,
+      "sha256": "b4fb0e412c586116bda4bde9b97bef3fc6ceff01ec7a64b36e1638d2a3f44174",
+      "lineCount": 136,
+      "currentConsumers": [
+        "docs/de405-artifact-inventory.json",
+        "docs/de405-evidence-disposal-manifest-2026-08-03.json",
+        "scripts/check-de405-active-tolerance-proposal-freshness.mjs",
+        "test/de405ClassificationSummaryFreshness.test.js",
+        "test/de405UnresolvedSelectionAnalysis.test.js"
+      ],
+      "basis": "current direct consumers: docs/de405-artifact-inventory.json, docs/de405-evidence-disposal-manifest-2026-08-03.json, scripts/check-de405-active-tolerance-proposal-freshness.mjs, test/de405ClassificationSummaryFreshness.test.js, test/de405UnresolvedSelectionAnalysis.test.js",
+      "regeneration": "producer script and recorded inputs in docs/de405-artifact-materialization.md; conditional on DE405/CSPICE/JPL runtime"
+    },
+    {
+      "path": "artifacts/de405-jpl-cspice-candidate-state-evidence.jsonl",
+      "scope": "repository_ignored_artifact",
+      "classification": "required_verification_input",
+      "sizeBytes": 5466407,
+      "sha256": "c894ce46c20f1b255be7bc1579c8335dd2a1b8d67abbb650c72076d9396afde4",
+      "lineCount": 1701,
+      "currentConsumers": [
+        "docs/de405-active-tolerance-proposal-generation.md",
+        "docs/de405-artifact-inventory.json",
+        "docs/de405-evidence-disposal-manifest-2026-08-03.json",
+        "docs/de405-selection-trace-analysis.json",
+        "docs/de405-spk-record-probe-analysis.json",
+        "docs/de405-unresolved-selection-analysis.md",
+        "docs/de405-unresolved-selection-cause-analysis.json",
+        "scripts/lib/de405-active-tolerance-proposal.mjs",
+        "scripts/lib/de405-selection-trace.mjs",
+        "scripts/lib/de405-spk-record-probe.mjs",
+        "scripts/lib/de405-unresolved-selection-analysis.mjs",
+        "scripts/lib/de405-unresolved-selection-cause-analysis.mjs",
+        "scripts/materialize-de405-type2-experimental-shadow-impact.mjs"
+      ],
+      "basis": "current direct consumers: docs/de405-active-tolerance-proposal-generation.md, docs/de405-artifact-inventory.json, docs/de405-evidence-disposal-manifest-2026-08-03.json, docs/de405-selection-trace-analysis.json, docs/de405-spk-record-probe-analysis.json, docs/de405-unresolved-selection-analysis.md, docs/de405-unresolved-selection-cause-analysis.json, scripts/lib/de405-active-tolerance-proposal.mjs, scripts/lib/de405-selection-trace.mjs, scripts/lib/de405-spk-record-probe.mjs, scripts/lib/de405-unresolved-selection-analysis.mjs, scripts/lib/de405-unresolved-selection-cause-analysis.mjs, scripts/materialize-de405-type2-experimental-shadow-impact.mjs",
+      "regeneration": "producer script and recorded inputs in docs/de405-artifact-materialization.md; conditional on DE405/CSPICE/JPL runtime"
+    },
+    {
+      "path": "artifacts/de405-jpl-cspice-out-of-coverage-investigation.json",
+      "scope": "repository_ignored_artifact",
+      "classification": "required_verification_input",
+      "sizeBytes": 113,
+      "sha256": "e09e3ef172ac6cd18bc78f84f194355ae9736995acefb65c6744020c6e312b61",
+      "lineCount": 7,
+      "currentConsumers": [
+        "docs/de405-active-tolerance-proposal-generation.md",
+        "docs/de405-artifact-inventory.json",
+        "docs/de405-evidence-disposal-manifest-2026-08-03.json",
+        "scripts/lib/de405-active-tolerance-proposal.mjs"
+      ],
+      "basis": "current direct consumers: docs/de405-active-tolerance-proposal-generation.md, docs/de405-artifact-inventory.json, docs/de405-evidence-disposal-manifest-2026-08-03.json, scripts/lib/de405-active-tolerance-proposal.mjs",
+      "regeneration": "producer script and recorded inputs in docs/de405-artifact-materialization.md; conditional on DE405/CSPICE/JPL runtime"
+    },
+    {
+      "path": "artifacts/de405-jpl-cspice-phase-c-summary.json",
+      "scope": "repository_ignored_artifact",
+      "classification": "required_verification_input",
+      "sizeBytes": 1508,
+      "sha256": "17861f612d77fac06f6e969652f10fc911a353757b554e9fe84dacc9d18de887",
+      "lineCount": 32,
+      "currentConsumers": [
+        "docs/de405-active-tolerance-proposal-generation.md",
+        "docs/de405-artifact-inventory.json",
+        "docs/de405-evidence-disposal-manifest-2026-08-03.json",
+        "docs/de405-unresolved-selection-analysis.md",
+        "scripts/lib/de405-active-tolerance-proposal.mjs",
+        "scripts/lib/de405-unresolved-selection-analysis.mjs"
+      ],
+      "basis": "current direct consumers: docs/de405-active-tolerance-proposal-generation.md, docs/de405-artifact-inventory.json, docs/de405-evidence-disposal-manifest-2026-08-03.json, docs/de405-unresolved-selection-analysis.md, scripts/lib/de405-active-tolerance-proposal.mjs, scripts/lib/de405-unresolved-selection-analysis.mjs",
+      "regeneration": "producer script and recorded inputs in docs/de405-artifact-materialization.md; conditional on DE405/CSPICE/JPL runtime"
+    },
+    {
+      "path": "artifacts/de405-jpl-cspice-residual-sweep.classification-summary.json",
+      "scope": "repository_ignored_artifact",
+      "classification": "required_verification_input",
+      "sizeBytes": 2041,
+      "sha256": "57c8177ae330afb2f7aef9a6cecc1faab0d3151a3e22da8ffc129f682c73f2e7",
+      "lineCount": 50,
+      "currentConsumers": [
+        "docs/de405-active-tolerance-proposal-generation.md",
+        "docs/de405-artifact-inventory.json",
+        "docs/de405-classification-summary-generation.md",
+        "docs/de405-evidence-disposal-manifest-2026-08-03.json",
+        "scripts/check-de405-classification-summary-freshness.mjs",
+        "scripts/lib/de405-active-tolerance-proposal.mjs",
+        "test/de405ClassificationSummaryFreshness.test.js",
+        "test/de405ClassificationSummaryGenerator.test.js"
+      ],
+      "basis": "current direct consumers: docs/de405-active-tolerance-proposal-generation.md, docs/de405-artifact-inventory.json, docs/de405-classification-summary-generation.md, docs/de405-evidence-disposal-manifest-2026-08-03.json, scripts/check-de405-classification-summary-freshness.mjs, scripts/lib/de405-active-tolerance-proposal.mjs, test/de405ClassificationSummaryFreshness.test.js, test/de405ClassificationSummaryGenerator.test.js",
+      "regeneration": "producer script and recorded inputs in docs/de405-artifact-materialization.md; conditional on DE405/CSPICE/JPL runtime"
+    },
+    {
+      "path": "artifacts/de405-jpl-cspice-residual-sweep.classifications.jsonl",
+      "scope": "repository_ignored_artifact",
+      "classification": "required_verification_input",
+      "sizeBytes": 434602,
+      "sha256": "75c9817e52dce30e9c73f9fd04c7412e31528669030a8c63bffa07998a1847a5",
+      "lineCount": 1701,
+      "currentConsumers": [
+        "docs/de405-active-tolerance-proposal-generation.md",
+        "docs/de405-artifact-inventory.json",
+        "docs/de405-classification-summary-generation.md",
+        "docs/de405-cspice-route-observability.md",
+        "docs/de405-evidence-disposal-manifest-2026-08-03.json",
+        "docs/de405-selection-trace-analysis.json",
+        "docs/de405-spk-record-probe-analysis.json",
+        "docs/de405-unresolved-selection-analysis.md",
+        "docs/de405-unresolved-selection-cause-analysis.json",
+        "scripts/analyze-de405-route-root-cause.mjs",
+        "scripts/lib/de405-active-tolerance-proposal.mjs",
+        "scripts/lib/de405-classification-summary.mjs",
+        "scripts/lib/de405-selection-trace.mjs",
+        "scripts/lib/de405-spk-record-probe.mjs",
+        "scripts/lib/de405-unresolved-selection-analysis.mjs",
+        "scripts/lib/de405-unresolved-selection-cause-analysis.mjs",
+        "test/de405ClassificationSummaryFreshness.test.js"
+      ],
+      "basis": "current direct consumers: docs/de405-active-tolerance-proposal-generation.md, docs/de405-artifact-inventory.json, docs/de405-classification-summary-generation.md, docs/de405-cspice-route-observability.md, docs/de405-evidence-disposal-manifest-2026-08-03.json, docs/de405-selection-trace-analysis.json, docs/de405-spk-record-probe-analysis.json, docs/de405-unresolved-selection-analysis.md, docs/de405-unresolved-selection-cause-analysis.json, scripts/analyze-de405-route-root-cause.mjs, scripts/lib/de405-active-tolerance-proposal.mjs, scripts/lib/de405-classification-summary.mjs, scripts/lib/de405-selection-trace.mjs, scripts/lib/de405-spk-record-probe.mjs, scripts/lib/de405-unresolved-selection-analysis.mjs, scripts/lib/de405-unresolved-selection-cause-analysis.mjs, test/de405ClassificationSummaryFreshness.test.js",
+      "regeneration": "producer script and recorded inputs in docs/de405-artifact-materialization.md; conditional on DE405/CSPICE/JPL runtime"
+    },
+    {
+      "path": "artifacts/de405-jpl-cspice-residual-sweep.cspice.jsonl",
+      "scope": "repository_ignored_artifact",
+      "classification": "required_verification_input",
+      "sizeBytes": 79915561,
+      "sha256": "07b51b47dee7042056f7b127886e93f7f0d84283348d5a941f8be27ca65ac08b",
+      "lineCount": 150673,
+      "currentConsumers": [
+        "docs/astrology-de405-local-storage-cleanup.md",
+        "docs/de405-artifact-inventory.json",
+        "docs/de405-evidence-disposal-manifest-2026-08-03.json",
+        "docs/de405-evidence-disposal-manifest-2026-08-03.md",
+        "docs/de405-type2-readiness-gap-closure.md",
+        "scripts/audit-de405-evidence-disposal.mjs",
+        "scripts/materialize-de405-cross-platform-evidence.mjs",
+        "scripts/materialize-de405-route-wider-regression.mjs"
+      ],
+      "basis": "current direct consumers: docs/astrology-de405-local-storage-cleanup.md, docs/de405-artifact-inventory.json, docs/de405-evidence-disposal-manifest-2026-08-03.json, docs/de405-evidence-disposal-manifest-2026-08-03.md, docs/de405-type2-readiness-gap-closure.md, scripts/audit-de405-evidence-disposal.mjs, scripts/materialize-de405-cross-platform-evidence.mjs, scripts/materialize-de405-route-wider-regression.mjs",
+      "regeneration": "producer script and recorded inputs in docs/de405-artifact-materialization.md; conditional on DE405/CSPICE/JPL runtime"
+    },
+    {
+      "path": "artifacts/de405-jpl-cspice-residual-sweep.jpl.jsonl",
+      "scope": "repository_ignored_artifact",
+      "classification": "required_verification_input",
+      "sizeBytes": 169710274,
+      "sha256": "2f68957b05830e03a0996decec46bcfa3415cead335554731c5340c98a9d212b",
+      "lineCount": 150675,
+      "currentConsumers": [
+        "docs/astrology-de405-local-storage-cleanup.md",
+        "docs/de405-artifact-inventory.json",
+        "docs/de405-evidence-disposal-manifest-2026-08-03.json",
+        "docs/de405-evidence-disposal-manifest-2026-08-03.md",
+        "scripts/audit-de405-evidence-disposal.mjs"
+      ],
+      "basis": "current direct consumers: docs/astrology-de405-local-storage-cleanup.md, docs/de405-artifact-inventory.json, docs/de405-evidence-disposal-manifest-2026-08-03.json, docs/de405-evidence-disposal-manifest-2026-08-03.md, scripts/audit-de405-evidence-disposal.mjs",
+      "regeneration": "producer script and recorded inputs in docs/de405-artifact-materialization.md; conditional on DE405/CSPICE/JPL runtime"
+    },
+    {
+      "path": "artifacts/de405-jpl-cspice-residual-sweep.manifest.jsonl",
+      "scope": "repository_ignored_artifact",
+      "classification": "required_verification_input",
+      "sizeBytes": 63738094,
+      "sha256": "99ba50c4e58c76db9dc0fb76bbbbeefa99d5528d12d8e6e930754fabfe205992",
+      "lineCount": 150672,
+      "currentConsumers": [
+        "docs/astrology-de405-local-storage-cleanup.md",
+        "docs/de405-active-tolerance-proposal-generation.md",
+        "docs/de405-artifact-inventory.json",
+        "docs/de405-classification-summary-generation.md",
+        "docs/de405-evidence-disposal-manifest-2026-08-03.json",
+        "docs/de405-evidence-disposal-manifest-2026-08-03.md",
+        "docs/de405-unresolved-selection-analysis.md",
+        "scripts/analyze-de405-wider-corpus-exclusions.mjs",
+        "scripts/audit-de405-evidence-disposal.mjs",
+        "scripts/generate-de405-phase-c-evidence.mjs",
+        "scripts/lib/de405-active-tolerance-proposal.mjs",
+        "scripts/lib/de405-classification-summary.mjs",
+        "scripts/lib/de405-unresolved-selection-analysis.mjs",
+        "scripts/materialize-de405-type2-strategy-evidence.mjs",
+        "test/de405-artifacts/de405SelectionTrace.test.js",
+        "test/de405ClassificationSummaryFreshness.test.js"
+      ],
+      "basis": "current direct consumers: docs/astrology-de405-local-storage-cleanup.md, docs/de405-active-tolerance-proposal-generation.md, docs/de405-artifact-inventory.json, docs/de405-classification-summary-generation.md, docs/de405-evidence-disposal-manifest-2026-08-03.json, docs/de405-evidence-disposal-manifest-2026-08-03.md, docs/de405-unresolved-selection-analysis.md, scripts/analyze-de405-wider-corpus-exclusions.mjs, scripts/audit-de405-evidence-disposal.mjs, scripts/generate-de405-phase-c-evidence.mjs, scripts/lib/de405-active-tolerance-proposal.mjs, scripts/lib/de405-classification-summary.mjs, scripts/lib/de405-unresolved-selection-analysis.mjs, scripts/materialize-de405-type2-strategy-evidence.mjs, test/de405-artifacts/de405SelectionTrace.test.js, test/de405ClassificationSummaryFreshness.test.js",
+      "regeneration": "producer script and recorded inputs in docs/de405-artifact-materialization.md; conditional on DE405/CSPICE/JPL runtime"
+    },
+    {
+      "path": "artifacts/de405-jpl-cspice-residual-sweep.samples.jsonl",
+      "scope": "repository_ignored_artifact",
+      "classification": "required_verification_input",
+      "sizeBytes": 280780522,
+      "sha256": "62192cde5fdecbf53307ed532da212156bc7dcc4beade08117a6bd75c1101d84",
+      "lineCount": 150673,
+      "currentConsumers": [
+        "docs/astrology-de405-local-storage-cleanup.md",
+        "docs/de405-active-tolerance-proposal-generation.md",
+        "docs/de405-artifact-inventory.json",
+        "docs/de405-artifact-storage-policy.md",
+        "docs/de405-classification-summary-generation.md",
+        "docs/de405-controlled-build-triangle-evidence.json",
+        "docs/de405-cspice-route-observability.md",
+        "docs/de405-evidence-disposal-manifest-2026-08-03.json",
+        "docs/de405-evidence-disposal-manifest-2026-08-03.md",
+        "docs/de405-storage-cleanup-plan-2026-08-02.md",
+        "docs/de405-unresolved-selection-analysis.md",
+        "scripts/audit-de405-evidence-disposal.mjs",
+        "scripts/audit-de405-production-route-shadow-fidelity.mjs",
+        "scripts/audit-de405-project-route-shadow-fidelity.mjs",
+        "scripts/audit-de405-strategy-c-support.mjs",
+        "scripts/check-de405-controlled-build-triangle.mjs",
+        "scripts/compare-de405-strategy-c-center-chain.mjs",
+        "scripts/generate-de405-strategy-c-boundary-evidence.mjs",
+        "scripts/lib/de405-active-tolerance-proposal.mjs",
+        "scripts/lib/de405-classification-summary.mjs",
+        "scripts/lib/de405-unresolved-selection-analysis.mjs",
+        "scripts/materialize-de405-cross-platform-evidence.mjs",
+        "scripts/materialize-de405-route-wider-regression.mjs",
+        "scripts/run-de405-controlled-build-matrix.mjs",
+        "test/de405ClassificationSummaryFreshness.test.js",
+        "test/de405InputBundle.test.js"
+      ],
+      "basis": "current direct consumers: docs/astrology-de405-local-storage-cleanup.md, docs/de405-active-tolerance-proposal-generation.md, docs/de405-artifact-inventory.json, docs/de405-artifact-storage-policy.md, docs/de405-classification-summary-generation.md, docs/de405-controlled-build-triangle-evidence.json, docs/de405-cspice-route-observability.md, docs/de405-evidence-disposal-manifest-2026-08-03.json, docs/de405-evidence-disposal-manifest-2026-08-03.md, docs/de405-storage-cleanup-plan-2026-08-02.md, docs/de405-unresolved-selection-analysis.md, scripts/audit-de405-evidence-disposal.mjs, scripts/audit-de405-production-route-shadow-fidelity.mjs, scripts/audit-de405-project-route-shadow-fidelity.mjs, scripts/audit-de405-strategy-c-support.mjs, scripts/check-de405-controlled-build-triangle.mjs, scripts/compare-de405-strategy-c-center-chain.mjs, scripts/generate-de405-strategy-c-boundary-evidence.mjs, scripts/lib/de405-active-tolerance-proposal.mjs, scripts/lib/de405-classification-summary.mjs, scripts/lib/de405-unresolved-selection-analysis.mjs, scripts/materialize-de405-cross-platform-evidence.mjs, scripts/materialize-de405-route-wider-regression.mjs, scripts/run-de405-controlled-build-matrix.mjs, test/de405ClassificationSummaryFreshness.test.js, test/de405InputBundle.test.js",
+      "regeneration": "producer script and recorded inputs in docs/de405-artifact-materialization.md; conditional on DE405/CSPICE/JPL runtime"
+    },
+    {
+      "path": "artifacts/de405-jpl-cspice-residual-sweep.summary.json",
+      "scope": "repository_ignored_artifact",
+      "classification": "required_verification_input",
+      "sizeBytes": 80378,
+      "sha256": "ed0276ad0d122f1749634700f591eec481bee1e3801f0f55e2d62a2f341d02f5",
+      "lineCount": 2547,
+      "currentConsumers": [
+        "docs/de405-active-tolerance-proposal-generation.md",
+        "docs/de405-artifact-inventory.json",
+        "docs/de405-classification-summary-generation.md",
+        "docs/de405-evidence-disposal-manifest-2026-08-03.json",
+        "docs/de405-unresolved-selection-analysis.md",
+        "scripts/lib/de405-active-tolerance-proposal.mjs",
+        "scripts/lib/de405-classification-summary.mjs",
+        "scripts/lib/de405-unresolved-selection-analysis.mjs",
+        "test/de405ClassificationSummaryFreshness.test.js"
+      ],
+      "basis": "current direct consumers: docs/de405-active-tolerance-proposal-generation.md, docs/de405-artifact-inventory.json, docs/de405-classification-summary-generation.md, docs/de405-evidence-disposal-manifest-2026-08-03.json, docs/de405-unresolved-selection-analysis.md, scripts/lib/de405-active-tolerance-proposal.mjs, scripts/lib/de405-classification-summary.mjs, scripts/lib/de405-unresolved-selection-analysis.mjs, test/de405ClassificationSummaryFreshness.test.js",
+      "regeneration": "producer script and recorded inputs in docs/de405-artifact-materialization.md; conditional on DE405/CSPICE/JPL runtime"
+    },
+    {
+      "path": "artifacts/de405-jpl-cspice-residual-sweep.worst-case-reproduction.json",
+      "scope": "repository_ignored_artifact",
+      "classification": "required_verification_input",
+      "sizeBytes": 1698,
+      "sha256": "42add33c928bd43652a213a36de9e1ab46b6f545f39bb31c263ffc488708a3f6",
+      "lineCount": 51,
+      "currentConsumers": [
+        "docs/de405-active-tolerance-proposal-generation.md",
+        "docs/de405-artifact-inventory.json",
+        "docs/de405-evidence-disposal-manifest-2026-08-03.json",
+        "scripts/lib/de405-active-tolerance-proposal.mjs"
+      ],
+      "basis": "current direct consumers: docs/de405-active-tolerance-proposal-generation.md, docs/de405-artifact-inventory.json, docs/de405-evidence-disposal-manifest-2026-08-03.json, scripts/lib/de405-active-tolerance-proposal.mjs",
+      "regeneration": "producer script and recorded inputs in docs/de405-artifact-materialization.md; conditional on DE405/CSPICE/JPL runtime"
+    },
+    {
+      "path": "artifacts/de405-jpl-cspice-unresolved-selection-breakdown.json",
+      "scope": "repository_ignored_artifact",
+      "classification": "required_verification_input",
+      "sizeBytes": 11033,
+      "sha256": "52866438dd3cbe1a51ca6016e17a5d2f8d43fed1e11ca0cc8790b30893c64c61",
+      "lineCount": 300,
+      "currentConsumers": [
+        "docs/de405-artifact-inventory.json",
+        "docs/de405-evidence-disposal-manifest-2026-08-03.json",
+        "docs/de405-selection-trace-analysis.json",
+        "docs/de405-spk-record-probe-analysis.json",
+        "docs/de405-unresolved-selection-analysis.md",
+        "docs/de405-unresolved-selection-cause-analysis.json",
+        "scripts/lib/de405-selection-trace.mjs",
+        "scripts/lib/de405-spk-record-probe.mjs",
+        "scripts/lib/de405-unresolved-selection-analysis.mjs",
+        "scripts/lib/de405-unresolved-selection-cause-analysis.mjs"
+      ],
+      "basis": "current direct consumers: docs/de405-artifact-inventory.json, docs/de405-evidence-disposal-manifest-2026-08-03.json, docs/de405-selection-trace-analysis.json, docs/de405-spk-record-probe-analysis.json, docs/de405-unresolved-selection-analysis.md, docs/de405-unresolved-selection-cause-analysis.json, scripts/lib/de405-selection-trace.mjs, scripts/lib/de405-spk-record-probe.mjs, scripts/lib/de405-unresolved-selection-analysis.mjs, scripts/lib/de405-unresolved-selection-cause-analysis.mjs",
+      "regeneration": "producer script and recorded inputs in docs/de405-artifact-materialization.md; conditional on DE405/CSPICE/JPL runtime"
+    },
+    {
+      "path": "artifacts/de405-project-route-events.jsonl",
+      "scope": "repository_ignored_artifact",
+      "classification": "required_verification_input",
+      "sizeBytes": 6978114,
+      "sha256": "2237132916bf10c146aa7537d4b0fcfd0662b91526c4d40a6dee87e5c07d4d60",
+      "lineCount": 8623,
+      "currentConsumers": [
+        "docs/de405-evidence-disposal-manifest-2026-08-03.json",
+        "scripts/analyze-de405-route-root-cause.mjs",
+        "test/de405CspiceRouteDiagnostic.test.js"
+      ],
+      "basis": "current direct consumers: docs/de405-evidence-disposal-manifest-2026-08-03.json, scripts/analyze-de405-route-root-cause.mjs, test/de405CspiceRouteDiagnostic.test.js",
+      "regeneration": "producer script and recorded inputs in docs/de405-artifact-materialization.md; conditional on DE405/CSPICE/JPL runtime"
+    },
+    {
+      "path": "artifacts/de405-project-route-shadow-fidelity.json",
+      "scope": "repository_ignored_artifact",
+      "classification": "required_verification_input",
+      "sizeBytes": 1144,
+      "sha256": "98893f4537f07d8db74c9f15a84358532d2b3e8af749c40959f2fda46c947165",
+      "lineCount": 38,
+      "currentConsumers": [
+        "docs/de405-evidence-disposal-manifest-2026-08-03.json",
+        "scripts/audit-de405-project-route-shadow-fidelity.mjs"
+      ],
+      "basis": "current direct consumers: docs/de405-evidence-disposal-manifest-2026-08-03.json, scripts/audit-de405-project-route-shadow-fidelity.mjs",
+      "regeneration": "producer script and recorded inputs in docs/de405-artifact-materialization.md; conditional on DE405/CSPICE/JPL runtime"
+    },
+    {
+      "path": "artifacts/de405-route-candidate-combinations.json",
+      "scope": "repository_ignored_artifact",
+      "classification": "required_verification_input",
+      "sizeBytes": 4663,
+      "sha256": "6c166f3acfe34855a417b75e133b15e2160a428adc2149b630b2fc7640a2ff2e",
+      "lineCount": 145,
+      "currentConsumers": [
+        "docs/de405-evidence-disposal-manifest-2026-08-03.json",
+        "test/de405RouteRootCauseAnalysis.test.js"
+      ],
+      "basis": "current direct consumers: docs/de405-evidence-disposal-manifest-2026-08-03.json, test/de405RouteRootCauseAnalysis.test.js",
+      "regeneration": "producer script and recorded inputs in docs/de405-artifact-materialization.md; conditional on DE405/CSPICE/JPL runtime"
+    },
+    {
+      "path": "artifacts/de405-route-candidate-outcomes.jsonl",
+      "scope": "repository_ignored_artifact",
+      "classification": "required_verification_input",
+      "sizeBytes": 4679380,
+      "sha256": "bbc86d865ba64683fa18e4c2e577ea40d7cac55cff9e9ecc483dfcae9064494f",
+      "lineCount": 6804,
+      "currentConsumers": [
+        "docs/de405-evidence-disposal-manifest-2026-08-03.json",
+        "scripts/analyze-de405-route-root-cause.mjs",
+        "test/de405RouteRootCauseAnalysis.test.js"
+      ],
+      "basis": "current direct consumers: docs/de405-evidence-disposal-manifest-2026-08-03.json, scripts/analyze-de405-route-root-cause.mjs, test/de405RouteRootCauseAnalysis.test.js",
+      "regeneration": "producer script and recorded inputs in docs/de405-artifact-materialization.md; conditional on DE405/CSPICE/JPL runtime"
+    },
+    {
+      "path": "artifacts/de405-route-candidate-registry.json",
+      "scope": "repository_ignored_artifact",
+      "classification": "required_verification_input",
+      "sizeBytes": 5521,
+      "sha256": "04cbb14e4753ac045150b887961ef33c8502a23bd5e00b42760f99b975a7502e",
+      "lineCount": 115,
+      "currentConsumers": [
+        "docs/de405-evidence-disposal-manifest-2026-08-03.json",
+        "test/de405RouteRootCauseAnalysis.test.js"
+      ],
+      "basis": "current direct consumers: docs/de405-evidence-disposal-manifest-2026-08-03.json, test/de405RouteRootCauseAnalysis.test.js",
+      "regeneration": "producer script and recorded inputs in docs/de405-artifact-materialization.md; conditional on DE405/CSPICE/JPL runtime"
+    },
+    {
+      "path": "artifacts/de405-route-candidate-shadow-results.json",
+      "scope": "repository_ignored_artifact",
+      "classification": "required_verification_input",
+      "sizeBytes": 4547,
+      "sha256": "868f4137d59dc095297b7b1362f46e903fae1b1658f84a43da819694f62c7842",
+      "lineCount": 140,
+      "currentConsumers": [
+        "docs/de405-evidence-disposal-manifest-2026-08-03.json",
+        "test/de405RouteRootCauseAnalysis.test.js"
+      ],
+      "basis": "current direct consumers: docs/de405-evidence-disposal-manifest-2026-08-03.json, test/de405RouteRootCauseAnalysis.test.js",
+      "regeneration": "producer script and recorded inputs in docs/de405-artifact-materialization.md; conditional on DE405/CSPICE/JPL runtime"
+    },
+    {
+      "path": "artifacts/de405-route-production-readiness.json",
+      "scope": "repository_ignored_artifact",
+      "classification": "required_verification_input",
+      "sizeBytes": 2243,
+      "sha256": "4a158b655644d8b8fe207740fd926de177b00bc574cb192183302b702dacafc8",
+      "lineCount": 46,
+      "currentConsumers": [
+        "docs/de405-evidence-disposal-manifest-2026-08-03.json"
+      ],
+      "basis": "current direct consumers: docs/de405-evidence-disposal-manifest-2026-08-03.json",
+      "regeneration": "producer script and recorded inputs in docs/de405-artifact-materialization.md; conditional on DE405/CSPICE/JPL runtime"
+    },
+    {
+      "path": "artifacts/de405-route-root-cause-clusters.jsonl",
+      "scope": "repository_ignored_artifact",
+      "classification": "required_verification_input",
+      "sizeBytes": 13236,
+      "sha256": "4c53d6f5af25f377ee115758c996846360a9b8b0ffc5b9b6b952cc32e11c7dbf",
+      "lineCount": 4,
+      "currentConsumers": [
+        "docs/de405-evidence-disposal-manifest-2026-08-03.json",
+        "test/de405RouteRootCauseAnalysis.test.js"
+      ],
+      "basis": "current direct consumers: docs/de405-evidence-disposal-manifest-2026-08-03.json, test/de405RouteRootCauseAnalysis.test.js",
+      "regeneration": "producer script and recorded inputs in docs/de405-artifact-materialization.md; conditional on DE405/CSPICE/JPL runtime"
+    },
+    {
+      "path": "artifacts/de405-route-root-cause-cross-tabs.json",
+      "scope": "repository_ignored_artifact",
+      "classification": "required_verification_input",
+      "sizeBytes": 4596656,
+      "sha256": "1bcf00c6757b90f24adf14f105a3fd32aa4ae39e82a9c2d9c168447a83325084",
+      "lineCount": 118341,
+      "currentConsumers": [
+        "docs/de405-evidence-disposal-manifest-2026-08-03.json",
+        "test/de405RouteRootCauseAnalysis.test.js"
+      ],
+      "basis": "current direct consumers: docs/de405-evidence-disposal-manifest-2026-08-03.json, test/de405RouteRootCauseAnalysis.test.js",
+      "regeneration": "producer script and recorded inputs in docs/de405-artifact-materialization.md; conditional on DE405/CSPICE/JPL runtime"
+    },
+    {
+      "path": "artifacts/de405-route-root-cause-joined.jsonl",
+      "scope": "repository_ignored_artifact",
+      "classification": "required_verification_input",
+      "sizeBytes": 8952115,
+      "sha256": "6dd7563feda3257c1f4192a04924bf57ff789ba4b551ae156b988402faaf1687",
+      "lineCount": 1701,
+      "currentConsumers": [
+        "docs/de405-evidence-disposal-manifest-2026-08-03.json",
+        "test/de405RouteRootCauseAnalysis.test.js"
+      ],
+      "basis": "current direct consumers: docs/de405-evidence-disposal-manifest-2026-08-03.json, test/de405RouteRootCauseAnalysis.test.js",
+      "regeneration": "producer script and recorded inputs in docs/de405-artifact-materialization.md; conditional on DE405/CSPICE/JPL runtime"
+    },
+    {
+      "path": "artifacts/de405-route-root-cause-reconciliation.json",
+      "scope": "repository_ignored_artifact",
+      "classification": "required_verification_input",
+      "sizeBytes": 3191,
+      "sha256": "19cd0e6ad55af00fff9e7c33fcdbf6ae2f9f5f39e203a532edc25ab0fcf97ba5",
+      "lineCount": 110,
+      "currentConsumers": [
+        "docs/de405-evidence-disposal-manifest-2026-08-03.json",
+        "test/de405RouteRootCauseAnalysis.test.js"
+      ],
+      "basis": "current direct consumers: docs/de405-evidence-disposal-manifest-2026-08-03.json, test/de405RouteRootCauseAnalysis.test.js",
+      "regeneration": "producer script and recorded inputs in docs/de405-artifact-materialization.md; conditional on DE405/CSPICE/JPL runtime"
+    },
+    {
+      "path": "artifacts/de405-route-root-cause-sentinels.jsonl",
+      "scope": "repository_ignored_artifact",
+      "classification": "required_verification_input",
+      "sizeBytes": 61321,
+      "sha256": "2642260c36680cd09cd0ee3e96ed3fd717676e1a958391678e66de7ce8ab3d61",
+      "lineCount": 20,
+      "currentConsumers": [
+        "docs/de405-evidence-disposal-manifest-2026-08-03.json",
+        "test/de405RouteRootCauseAnalysis.test.js"
+      ],
+      "basis": "current direct consumers: docs/de405-evidence-disposal-manifest-2026-08-03.json, test/de405RouteRootCauseAnalysis.test.js",
+      "regeneration": "producer script and recorded inputs in docs/de405-artifact-materialization.md; conditional on DE405/CSPICE/JPL runtime"
+    },
+    {
+      "path": "artifacts/de405-route-root-cause-summary.json",
+      "scope": "repository_ignored_artifact",
+      "classification": "required_verification_input",
+      "sizeBytes": 5068,
+      "sha256": "325dee4bc8e3c461c5fe080fc1ddc2b14cf34f9439332fa03214feb367f20da3",
+      "lineCount": 167,
+      "currentConsumers": [
+        "docs/de405-evidence-disposal-manifest-2026-08-03.json",
+        "test/de405RouteRootCauseAnalysis.test.js"
+      ],
+      "basis": "current direct consumers: docs/de405-evidence-disposal-manifest-2026-08-03.json, test/de405RouteRootCauseAnalysis.test.js",
+      "regeneration": "producer script and recorded inputs in docs/de405-artifact-materialization.md; conditional on DE405/CSPICE/JPL runtime"
+    },
+    {
+      "path": "artifacts/de405-route-wider-regression-shadow.json",
+      "scope": "repository_ignored_artifact",
+      "classification": "required_verification_input",
+      "sizeBytes": 24167,
+      "sha256": "a8132bea8deb7d53cd7f2724fbe23c926bdfb2d7f5fa9d65897b0b6fd9af0f8f",
+      "lineCount": 817,
+      "currentConsumers": [
+        "docs/de405-evidence-disposal-manifest-2026-08-03.json"
+      ],
+      "basis": "current direct consumers: docs/de405-evidence-disposal-manifest-2026-08-03.json",
+      "regeneration": "producer script and recorded inputs in docs/de405-artifact-materialization.md; conditional on DE405/CSPICE/JPL runtime"
+    },
+    {
+      "path": "artifacts/de405-route-wider-regression.json",
+      "scope": "repository_ignored_artifact",
+      "classification": "required_verification_input",
+      "sizeBytes": 18168,
+      "sha256": "88ba8f8d9a3da1574cb993a6c4987cf6bdcdb102f783e28bf993752b88e14d0e",
+      "lineCount": 632,
+      "currentConsumers": [
+        "docs/de405-evidence-disposal-manifest-2026-08-03.json",
+        "scripts/analyze-de405-route-root-cause.mjs",
+        "scripts/materialize-de405-route-wider-regression.mjs",
+        "test/de405RouteRootCauseAnalysis.test.js"
+      ],
+      "basis": "current direct consumers: docs/de405-evidence-disposal-manifest-2026-08-03.json, scripts/analyze-de405-route-root-cause.mjs, scripts/materialize-de405-route-wider-regression.mjs, test/de405RouteRootCauseAnalysis.test.js",
+      "regeneration": "producer script and recorded inputs in docs/de405-artifact-materialization.md; conditional on DE405/CSPICE/JPL runtime"
+    },
+    {
+      "path": "artifacts/de405-strategy-c-boundary-comparison.json",
+      "scope": "repository_ignored_artifact",
+      "classification": "required_unique_evidence",
+      "sizeBytes": 12948,
+      "sha256": "bc5b0931bd6cc45c4b57b11bc99875eaf75659c4dcb4965275455b1312274543",
+      "lineCount": 364,
+      "currentConsumers": [
+        "docs/de405-evidence-disposal-manifest-2026-08-03.json",
+        "scripts/audit-de405-strategy-c-completion.mjs",
+        "scripts/generate-de405-strategy-c-boundary-evidence.mjs",
+        "test/de405StrategyCBoundaryEvidence.test.js"
+      ],
+      "basis": "Strategy-C or strategy comparison evidence is explicitly protected",
+      "regeneration": "producer script and recorded inputs in docs/de405-artifact-materialization.md; conditional on DE405/CSPICE/JPL runtime"
+    },
+    {
+      "path": "artifacts/de405-strategy-c-boundary-comparison.md",
+      "scope": "repository_ignored_artifact",
+      "classification": "required_unique_evidence",
+      "sizeBytes": 1765,
+      "sha256": "7171c13c4c3b2e0efeb0aa1bcc5134777f124137acdd418661e011c60b59c369",
+      "lineCount": 19,
+      "currentConsumers": [
+        "docs/de405-evidence-disposal-manifest-2026-08-03.json",
+        "scripts/audit-de405-strategy-c-completion.mjs",
+        "test/de405StrategyCBoundaryEvidence.test.js"
+      ],
+      "basis": "Strategy-C or strategy comparison evidence is explicitly protected",
+      "regeneration": "producer script and recorded inputs in docs/de405-artifact-materialization.md; conditional on DE405/CSPICE/JPL runtime"
+    },
+    {
+      "path": "artifacts/de405-strategy-c-boundary-inventory.json",
+      "scope": "repository_ignored_artifact",
+      "classification": "required_unique_evidence",
+      "sizeBytes": 7041,
+      "sha256": "3d2e80a65c7df5a5d2735162cee17c7a9b943811a292aa485b3ac2af52d2a9c3",
+      "lineCount": 196,
+      "currentConsumers": [
+        "docs/de405-evidence-disposal-manifest-2026-08-03.json",
+        "scripts/audit-de405-strategy-c-completion.mjs",
+        "test/de405StrategyCBoundaryEvidence.test.js"
+      ],
+      "basis": "Strategy-C or strategy comparison evidence is explicitly protected",
+      "regeneration": "producer script and recorded inputs in docs/de405-artifact-materialization.md; conditional on DE405/CSPICE/JPL runtime"
+    },
+    {
+      "path": "artifacts/de405-strategy-c-canonical-route-full-audit.json",
+      "scope": "repository_ignored_artifact",
+      "classification": "required_unique_evidence",
+      "sizeBytes": 2386,
+      "sha256": "d4d0fda40b875d7883990053726891ed607452fb8fe13d034cdb4942bc88b95a",
+      "lineCount": 80,
+      "currentConsumers": [
+        "docs/de405-evidence-disposal-manifest-2026-08-03.json",
+        "scripts/audit-de405-strategy-c-completion.mjs",
+        "scripts/generate-de405-strategy-c-canonical-route-evidence.mjs",
+        "test/de405StrategyCBoundaryEvidence.test.js"
+      ],
+      "basis": "Strategy-C or strategy comparison evidence is explicitly protected",
+      "regeneration": "producer script and recorded inputs in docs/de405-artifact-materialization.md; conditional on DE405/CSPICE/JPL runtime"
+    },
+    {
+      "path": "artifacts/de405-strategy-c-canonical-route-numeric-audit.json",
+      "scope": "repository_ignored_artifact",
+      "classification": "required_unique_evidence",
+      "sizeBytes": 1747,
+      "sha256": "3e4c5d9be4721fe60e5f86fad767893ce86e4b456fbaff01cce831a85181405c",
+      "lineCount": 62,
+      "currentConsumers": [
+        "docs/de405-evidence-disposal-manifest-2026-08-03.json",
+        "scripts/generate-de405-strategy-c-canonical-route-evidence.mjs"
+      ],
+      "basis": "Strategy-C or strategy comparison evidence is explicitly protected",
+      "regeneration": "producer script and recorded inputs in docs/de405-artifact-materialization.md; conditional on DE405/CSPICE/JPL runtime"
+    },
+    {
+      "path": "artifacts/de405-strategy-c-canonical-route-sentinel-comparison.json",
+      "scope": "repository_ignored_artifact",
+      "classification": "required_unique_evidence",
+      "sizeBytes": 1231,
+      "sha256": "b5eb83b294e15ff1ad5b5e49801db4216a8eaf27f2bce0b81820695f6cbb92c6",
+      "lineCount": 41,
+      "currentConsumers": [
+        "docs/de405-evidence-disposal-manifest-2026-08-03.json",
+        "scripts/generate-de405-strategy-c-canonical-route-evidence.mjs"
+      ],
+      "basis": "Strategy-C or strategy comparison evidence is explicitly protected",
+      "regeneration": "producer script and recorded inputs in docs/de405-artifact-materialization.md; conditional on DE405/CSPICE/JPL runtime"
+    },
+    {
+      "path": "artifacts/de405-strategy-c-canonical-route-variant-evidence.json",
+      "scope": "repository_ignored_artifact",
+      "classification": "required_unique_evidence",
+      "sizeBytes": 9535,
+      "sha256": "cc78b61d549b4a9d933a1376e99c2b8420f081e5f1c97ccb5a7dd89874a022e0",
+      "lineCount": 278,
+      "currentConsumers": [
+        "docs/de405-evidence-disposal-manifest-2026-08-03.json",
+        "scripts/audit-de405-strategy-c-completion.mjs",
+        "scripts/generate-de405-strategy-c-canonical-route-evidence.mjs",
+        "test/de405StrategyCBoundaryEvidence.test.js"
+      ],
+      "basis": "Strategy-C or strategy comparison evidence is explicitly protected",
+      "regeneration": "producer script and recorded inputs in docs/de405-artifact-materialization.md; conditional on DE405/CSPICE/JPL runtime"
+    },
+    {
+      "path": "artifacts/de405-strategy-c-canonical-route-variant-evidence.md",
+      "scope": "repository_ignored_artifact",
+      "classification": "required_unique_evidence",
+      "sizeBytes": 956,
+      "sha256": "1d21db3dc02f53436e865fce9d5f3863cdb570ab75aabf771d561464454ff9e7",
+      "lineCount": 23,
+      "currentConsumers": [
+        "docs/de405-evidence-disposal-manifest-2026-08-03.json",
+        "scripts/audit-de405-strategy-c-completion.mjs",
+        "scripts/generate-de405-strategy-c-canonical-route-evidence.mjs",
+        "test/de405StrategyCBoundaryEvidence.test.js"
+      ],
+      "basis": "Strategy-C or strategy comparison evidence is explicitly protected",
+      "regeneration": "producer script and recorded inputs in docs/de405-artifact-materialization.md; conditional on DE405/CSPICE/JPL runtime"
+    },
+    {
+      "path": "artifacts/de405-strategy-c-center-chain-comparison.json",
+      "scope": "repository_ignored_artifact",
+      "classification": "required_unique_evidence",
+      "sizeBytes": 2094,
+      "sha256": "e8d92197490a4cf8e07743300f24ce1b51c2a750bc3733d13af7e4c347274ff9",
+      "lineCount": 63,
+      "currentConsumers": [
+        "docs/de405-evidence-disposal-manifest-2026-08-03.json",
+        "scripts/audit-de405-strategy-c-completion.mjs",
+        "test/de405StrategyCBoundaryEvidence.test.js"
+      ],
+      "basis": "Strategy-C or strategy comparison evidence is explicitly protected",
+      "regeneration": "producer script and recorded inputs in docs/de405-artifact-materialization.md; conditional on DE405/CSPICE/JPL runtime"
+    },
+    {
+      "path": "artifacts/de405-strategy-c-completion-audit.json",
+      "scope": "repository_ignored_artifact",
+      "classification": "required_unique_evidence",
+      "sizeBytes": 10230,
+      "sha256": "ab573290ada71a47b661e02164550a32c1ee3a4500ee386f4d34f2f6c7ceab4a",
+      "lineCount": 278,
+      "currentConsumers": [
+        "docs/de405-evidence-disposal-manifest-2026-08-03.json",
+        "scripts/audit-de405-strategy-c-completion.mjs",
+        "test/de405StrategyCBoundaryEvidence.test.js"
+      ],
+      "basis": "Strategy-C or strategy comparison evidence is explicitly protected",
+      "regeneration": "producer script and recorded inputs in docs/de405-artifact-materialization.md; conditional on DE405/CSPICE/JPL runtime"
+    },
+    {
+      "path": "artifacts/de405-strategy-c-integration-trace-comparison.json",
+      "scope": "repository_ignored_artifact",
+      "classification": "required_unique_evidence",
+      "sizeBytes": 666,
+      "sha256": "da2e6ed148a1cd1ddf3d402e1c266fcb2f13083da55d0751c94b63059d75a814",
+      "lineCount": 21,
+      "currentConsumers": [
+        "docs/de405-evidence-disposal-manifest-2026-08-03.json",
+        "scripts/generate-de405-strategy-c-boundary-evidence.mjs"
+      ],
+      "basis": "Strategy-C or strategy comparison evidence is explicitly protected",
+      "regeneration": "producer script and recorded inputs in docs/de405-artifact-materialization.md; conditional on DE405/CSPICE/JPL runtime"
+    },
+    {
+      "path": "artifacts/de405-strategy-c-numeric-stream-audit.json",
+      "scope": "repository_ignored_artifact",
+      "classification": "required_unique_evidence",
+      "sizeBytes": 1744,
+      "sha256": "5331194ade9f2f2880e37f74b084e338c09a500bf7347db49aa9f676c235961e",
+      "lineCount": 62,
+      "currentConsumers": [
+        "docs/de405-evidence-disposal-manifest-2026-08-03.json"
+      ],
+      "basis": "Strategy-C or strategy comparison evidence is explicitly protected",
+      "regeneration": "producer script and recorded inputs in docs/de405-artifact-materialization.md; conditional on DE405/CSPICE/JPL runtime"
+    },
+    {
+      "path": "artifacts/de405-strategy-c-route-comparison.json",
+      "scope": "repository_ignored_artifact",
+      "classification": "required_unique_evidence",
+      "sizeBytes": 1813,
+      "sha256": "dd95f0137f9e69a9299d26bd6c251e7775ad3267d2d8aa07b4a449d85df06477",
+      "lineCount": 54,
+      "currentConsumers": [
+        "docs/de405-evidence-disposal-manifest-2026-08-03.json",
+        "scripts/audit-de405-strategy-c-completion.mjs",
+        "test/de405StrategyCBoundaryEvidence.test.js"
+      ],
+      "basis": "Strategy-C or strategy comparison evidence is explicitly protected",
+      "regeneration": "producer script and recorded inputs in docs/de405-artifact-materialization.md; conditional on DE405/CSPICE/JPL runtime"
+    },
+    {
+      "path": "artifacts/de405-strategy-c-shadow-summary.json",
+      "scope": "repository_ignored_artifact",
+      "classification": "required_unique_evidence",
+      "sizeBytes": 3734,
+      "sha256": "ce354cd0ebb64469754889d290b438d2cfca015d0f1b444d4d5575820f54c763",
+      "lineCount": 117,
+      "currentConsumers": [
+        "docs/de405-evidence-disposal-manifest-2026-08-03.json",
+        "scripts/generate-de405-strategy-c-boundary-evidence.mjs",
+        "scripts/generate-de405-strategy-c-canonical-route-evidence.mjs"
+      ],
+      "basis": "Strategy-C or strategy comparison evidence is explicitly protected",
+      "regeneration": "producer script and recorded inputs in docs/de405-artifact-materialization.md; conditional on DE405/CSPICE/JPL runtime"
+    },
+    {
+      "path": "artifacts/de405-strategy-c-support-audit.json",
+      "scope": "repository_ignored_artifact",
+      "classification": "required_unique_evidence",
+      "sizeBytes": 55119,
+      "sha256": "80c6cff3c34894f5793eb67aa7a403aaabd8c20d689ed71b50d062a6ed46948f",
+      "lineCount": 1277,
+      "currentConsumers": [
+        "docs/de405-evidence-disposal-manifest-2026-08-03.json",
+        "scripts/audit-de405-strategy-c-completion.mjs",
+        "scripts/audit-de405-strategy-c-support.mjs",
+        "test/de405StrategyCBoundaryEvidence.test.js"
+      ],
+      "basis": "Strategy-C or strategy comparison evidence is explicitly protected",
+      "regeneration": "producer script and recorded inputs in docs/de405-artifact-materialization.md; conditional on DE405/CSPICE/JPL runtime"
+    },
+    {
+      "path": "artifacts/de405-strategy-c-support-contract.json",
+      "scope": "repository_ignored_artifact",
+      "classification": "required_unique_evidence",
+      "sizeBytes": 55422,
+      "sha256": "4a23e6f237b844a7f62600467503f5171a5a49e0d4a8ae2d513dbbc171ddfcdd",
+      "lineCount": 1285,
+      "currentConsumers": [
+        "docs/de405-evidence-disposal-manifest-2026-08-03.json",
+        "scripts/audit-de405-strategy-c-completion.mjs",
+        "test/de405StrategyCBoundaryEvidence.test.js"
+      ],
+      "basis": "Strategy-C or strategy comparison evidence is explicitly protected",
+      "regeneration": "producer script and recorded inputs in docs/de405-artifact-materialization.md; conditional on DE405/CSPICE/JPL runtime"
+    },
+    {
+      "path": "artifacts/de405-sweep-checkpoints/checkpoint.json",
+      "scope": "repository_ignored_artifact",
+      "classification": "required_verification_input",
+      "sizeBytes": 647,
+      "sha256": "4910571328cf7c43822b025f3b68ae36270262df0d77a0a489357a59dec32ee6",
+      "lineCount": 42,
+      "currentConsumers": [
+        "docs/de405-artifact-inventory.json",
+        "docs/de405-evidence-disposal-manifest-2026-08-03.json"
+      ],
+      "basis": "current direct consumers: docs/de405-artifact-inventory.json, docs/de405-evidence-disposal-manifest-2026-08-03.json",
+      "regeneration": "producer script and recorded inputs in docs/de405-artifact-materialization.md; conditional on DE405/CSPICE/JPL runtime"
+    },
+    {
+      "path": "artifacts/de405-type2-experimental-evaluator-parity.jsonl",
+      "scope": "repository_ignored_artifact",
+      "classification": "required_verification_input",
+      "sizeBytes": 156497,
+      "sha256": "43361205e2b3495559a787dc7fa392bb51300dc5e6c6e905c49c09e0172f970e",
+      "lineCount": 154,
+      "currentConsumers": [
+        "docs/de405-evidence-disposal-manifest-2026-08-03.json",
+        "scripts/materialize-de405-type2-experimental-parity.mjs",
+        "scripts/materialize-de405-type2-experimental-summary.mjs",
+        "test/de405ExperimentalType2Evaluator.test.js"
+      ],
+      "basis": "current direct consumers: docs/de405-evidence-disposal-manifest-2026-08-03.json, scripts/materialize-de405-type2-experimental-parity.mjs, scripts/materialize-de405-type2-experimental-summary.mjs, test/de405ExperimentalType2Evaluator.test.js",
+      "regeneration": "producer script and recorded inputs in docs/de405-artifact-materialization.md; conditional on DE405/CSPICE/JPL runtime"
+    },
+    {
+      "path": "artifacts/de405-type2-experimental-evaluator-parity.jsonl.summary.json",
+      "scope": "repository_ignored_artifact",
+      "classification": "required_verification_input",
+      "sizeBytes": 590,
+      "sha256": "f7d989114667f23f323cfcb04885f4a11ae24355195a26bc8d8aa54df7811ba4",
+      "lineCount": 18,
+      "currentConsumers": [
+        "docs/de405-evidence-disposal-manifest-2026-08-03.json",
+        "scripts/materialize-de405-type2-experimental-summary.mjs",
+        "test/de405ExperimentalType2Evaluator.test.js"
+      ],
+      "basis": "current direct consumers: docs/de405-evidence-disposal-manifest-2026-08-03.json, scripts/materialize-de405-type2-experimental-summary.mjs, test/de405ExperimentalType2Evaluator.test.js",
+      "regeneration": "producer script and recorded inputs in docs/de405-artifact-materialization.md; conditional on DE405/CSPICE/JPL runtime"
+    },
+    {
+      "path": "artifacts/de405-type2-experimental-official-order-summary.json",
+      "scope": "repository_ignored_artifact",
+      "classification": "required_verification_input",
+      "sizeBytes": 129960,
+      "sha256": "1a200b36653801ac9e7471a49f446974aacc5869e13505b3f2f921c545a5a150",
+      "lineCount": 1845,
+      "currentConsumers": [
+        "docs/de405-evidence-disposal-manifest-2026-08-03.json",
+        "scripts/materialize-de405-cspice-route-summary.mjs",
+        "scripts/materialize-de405-type2-experimental-summary.mjs"
+      ],
+      "basis": "current direct consumers: docs/de405-evidence-disposal-manifest-2026-08-03.json, scripts/materialize-de405-cspice-route-summary.mjs, scripts/materialize-de405-type2-experimental-summary.mjs",
+      "regeneration": "producer script and recorded inputs in docs/de405-artifact-materialization.md; conditional on DE405/CSPICE/JPL runtime"
+    },
+    {
+      "path": "artifacts/de405-type2-experimental-shadow-impact.jsonl",
+      "scope": "repository_ignored_artifact",
+      "classification": "required_verification_input",
+      "sizeBytes": 8767058,
+      "sha256": "d0023d0444cc33ad83208eb42bb555a71c9cf16a7b928ae4318f1b26e14aaf70",
+      "lineCount": 1701,
+      "currentConsumers": [
+        "docs/de405-evidence-disposal-manifest-2026-08-03.json",
+        "scripts/analyze-de405-route-root-cause.mjs",
+        "scripts/materialize-de405-type2-experimental-parity.mjs",
+        "scripts/materialize-de405-type2-experimental-shadow-impact.mjs",
+        "scripts/materialize-de405-type2-experimental-summary.mjs",
+        "scripts/materialize-de405-type2-experimental-unique-parity.mjs",
+        "test/de405ExperimentalType2Evaluator.test.js"
+      ],
+      "basis": "current direct consumers: docs/de405-evidence-disposal-manifest-2026-08-03.json, scripts/analyze-de405-route-root-cause.mjs, scripts/materialize-de405-type2-experimental-parity.mjs, scripts/materialize-de405-type2-experimental-shadow-impact.mjs, scripts/materialize-de405-type2-experimental-summary.mjs, scripts/materialize-de405-type2-experimental-unique-parity.mjs, test/de405ExperimentalType2Evaluator.test.js",
+      "regeneration": "producer script and recorded inputs in docs/de405-artifact-materialization.md; conditional on DE405/CSPICE/JPL runtime"
+    },
+    {
+      "path": "artifacts/de405-type2-experimental-shadow-impact.jsonl.md",
+      "scope": "repository_ignored_artifact",
+      "classification": "required_verification_input",
+      "sizeBytes": 875,
+      "sha256": "4a976f10c178501be040ee175abdc29289c4723dca7bcba4b155a86ae6a4ba5e",
+      "lineCount": 11,
+      "currentConsumers": [
+        "docs/de405-evidence-disposal-manifest-2026-08-03.json"
+      ],
+      "basis": "current direct consumers: docs/de405-evidence-disposal-manifest-2026-08-03.json",
+      "regeneration": "producer script and recorded inputs in docs/de405-artifact-materialization.md; conditional on DE405/CSPICE/JPL runtime"
+    },
+    {
+      "path": "artifacts/de405-type2-experimental-shadow-impact.jsonl.summary.json",
+      "scope": "repository_ignored_artifact",
+      "classification": "required_verification_input",
+      "sizeBytes": 123822,
+      "sha256": "7250964f7f37fa2240918d11a3eb6e3dfcd4715154f1c43a9b3c06359c3a64f3",
+      "lineCount": 1778,
+      "currentConsumers": [
+        "docs/de405-evidence-disposal-manifest-2026-08-03.json",
+        "scripts/materialize-de405-type2-experimental-parity.mjs",
+        "scripts/materialize-de405-type2-experimental-summary.mjs",
+        "test/de405ExperimentalType2Evaluator.test.js"
+      ],
+      "basis": "current direct consumers: docs/de405-evidence-disposal-manifest-2026-08-03.json, scripts/materialize-de405-type2-experimental-parity.mjs, scripts/materialize-de405-type2-experimental-summary.mjs, test/de405ExperimentalType2Evaluator.test.js",
+      "regeneration": "producer script and recorded inputs in docs/de405-artifact-materialization.md; conditional on DE405/CSPICE/JPL runtime"
+    },
+    {
+      "path": "artifacts/de405-type2-experimental-unique-instance-parity.jsonl",
+      "scope": "repository_ignored_artifact",
+      "classification": "required_verification_input",
+      "sizeBytes": 10599660,
+      "sha256": "0d075672fb6bdb069cba7d66cc1e034b379f1a9cbc47a9d7a612d08793b3e778",
+      "lineCount": 4779,
+      "currentConsumers": [
+        "docs/de405-evidence-disposal-manifest-2026-08-03.json",
+        "scripts/materialize-de405-type2-experimental-summary.mjs",
+        "scripts/materialize-de405-type2-experimental-unique-parity.mjs",
+        "scripts/run-de405-type2-strategy-micro.mjs",
+        "test/de405ExperimentalType2Evaluator.test.js"
+      ],
+      "basis": "current direct consumers: docs/de405-evidence-disposal-manifest-2026-08-03.json, scripts/materialize-de405-type2-experimental-summary.mjs, scripts/materialize-de405-type2-experimental-unique-parity.mjs, scripts/run-de405-type2-strategy-micro.mjs, test/de405ExperimentalType2Evaluator.test.js",
+      "regeneration": "producer script and recorded inputs in docs/de405-artifact-materialization.md; conditional on DE405/CSPICE/JPL runtime"
+    },
+    {
+      "path": "artifacts/de405-type2-experimental-unique-instance-parity.jsonl.summary.json",
+      "scope": "repository_ignored_artifact",
+      "classification": "required_verification_input",
+      "sizeBytes": 1203,
+      "sha256": "dabf3edbddaf9a4747dbcc4c38eb8f7bf21e5fda7ff390972b73f490881fb90f",
+      "lineCount": 31,
+      "currentConsumers": [
+        "docs/de405-evidence-disposal-manifest-2026-08-03.json",
+        "scripts/materialize-de405-type2-experimental-summary.mjs",
+        "test/de405ExperimentalType2Evaluator.test.js"
+      ],
+      "basis": "current direct consumers: docs/de405-evidence-disposal-manifest-2026-08-03.json, scripts/materialize-de405-type2-experimental-summary.mjs, test/de405ExperimentalType2Evaluator.test.js",
+      "regeneration": "producer script and recorded inputs in docs/de405-artifact-materialization.md; conditional on DE405/CSPICE/JPL runtime"
+    },
+    {
+      "path": "artifacts/de405-type2-o2-baseline-exact-inventory.json",
+      "scope": "repository_ignored_artifact",
+      "classification": "required_verification_input",
+      "sizeBytes": 3421043,
+      "sha256": "9115a582b5c2385c840d4b8c80679c5584b46fd585fed3b13c02391f6d262273",
+      "lineCount": 79835,
+      "currentConsumers": [
+        "docs/de405-evidence-disposal-manifest-2026-08-03.json"
+      ],
+      "basis": "current direct consumers: docs/de405-evidence-disposal-manifest-2026-08-03.json",
+      "regeneration": "producer script and recorded inputs in docs/de405-artifact-materialization.md; conditional on DE405/CSPICE/JPL runtime"
+    },
+    {
+      "path": "artifacts/de405-type2-o2-build-comparison.json",
+      "scope": "repository_ignored_artifact",
+      "classification": "required_verification_input",
+      "sizeBytes": 6676,
+      "sha256": "26b6f3a7f32c607caa84e4e89cd5bf0b23a60dbc0c79899bc9e87fbc4a72b2f0",
+      "lineCount": 180,
+      "currentConsumers": [
+        "docs/de405-evidence-disposal-manifest-2026-08-03.json"
+      ],
+      "basis": "current direct consumers: docs/de405-evidence-disposal-manifest-2026-08-03.json",
+      "regeneration": "producer script and recorded inputs in docs/de405-artifact-materialization.md; conditional on DE405/CSPICE/JPL runtime"
+    },
+    {
+      "path": "artifacts/de405-type2-o2-candidate-registry.json",
+      "scope": "repository_ignored_artifact",
+      "classification": "required_verification_input",
+      "sizeBytes": 2882,
+      "sha256": "44904c7e62a08077f150b5e56cd5fc92c6694aab4881227aa0386bd6424f89a7",
+      "lineCount": 83,
+      "currentConsumers": [
+        "docs/de405-evidence-disposal-manifest-2026-08-03.json"
+      ],
+      "basis": "current direct consumers: docs/de405-evidence-disposal-manifest-2026-08-03.json",
+      "regeneration": "producer script and recorded inputs in docs/de405-artifact-materialization.md; conditional on DE405/CSPICE/JPL runtime"
+    },
+    {
+      "path": "artifacts/de405-type2-o2-candidate-validation.json",
+      "scope": "repository_ignored_artifact",
+      "classification": "required_verification_input",
+      "sizeBytes": 2643,
+      "sha256": "572c32e812eee8a3ad233d3909188b85097ce6a8655fb6368012e18f30f0c1d9",
+      "lineCount": 84,
+      "currentConsumers": [
+        "docs/de405-evidence-disposal-manifest-2026-08-03.json"
+      ],
+      "basis": "current direct consumers: docs/de405-evidence-disposal-manifest-2026-08-03.json",
+      "regeneration": "producer script and recorded inputs in docs/de405-artifact-materialization.md; conditional on DE405/CSPICE/JPL runtime"
+    },
+    {
+      "path": "artifacts/de405-type2-o2-combination-results.json",
+      "scope": "repository_ignored_artifact",
+      "classification": "required_verification_input",
+      "sizeBytes": 241,
+      "sha256": "41db4d86dc5e6a7bb15289f7ea9826fc9f41f13fac34151e428ac0b8f9532c2b",
+      "lineCount": 7,
+      "currentConsumers": [
+        "docs/de405-evidence-disposal-manifest-2026-08-03.json"
+      ],
+      "basis": "current direct consumers: docs/de405-evidence-disposal-manifest-2026-08-03.json",
+      "regeneration": "producer script and recorded inputs in docs/de405-artifact-materialization.md; conditional on DE405/CSPICE/JPL runtime"
+    },
+    {
+      "path": "artifacts/de405-type2-o2-diagnostic-neutrality.json",
+      "scope": "repository_ignored_artifact",
+      "classification": "required_verification_input",
+      "sizeBytes": 2440,
+      "sha256": "996e6e9a249d32b26d26e69b9e82f562c84f65fc18cb85f14b5a216d2ddd75fc",
+      "lineCount": 80,
+      "currentConsumers": [
+        "docs/de405-evidence-disposal-manifest-2026-08-03.json"
+      ],
+      "basis": "current direct consumers: docs/de405-evidence-disposal-manifest-2026-08-03.json",
+      "regeneration": "producer script and recorded inputs in docs/de405-artifact-materialization.md; conditional on DE405/CSPICE/JPL runtime"
+    },
+    {
+      "path": "artifacts/de405-type2-o2-generated-instruction-map.json",
+      "scope": "repository_ignored_artifact",
+      "classification": "required_verification_input",
+      "sizeBytes": 1309,
+      "sha256": "f805a4b01d51e9bfda3f97f268ff49832074250a8680d70381d655b6ff04d7e3",
+      "lineCount": 51,
+      "currentConsumers": [
+        "docs/de405-evidence-disposal-manifest-2026-08-03.json"
+      ],
+      "basis": "current direct consumers: docs/de405-evidence-disposal-manifest-2026-08-03.json",
+      "regeneration": "producer script and recorded inputs in docs/de405-artifact-materialization.md; conditional on DE405/CSPICE/JPL runtime"
+    },
+    {
+      "path": "artifacts/de405-type2-o2-performance.json",
+      "scope": "repository_ignored_artifact",
+      "classification": "required_verification_input",
+      "sizeBytes": 223,
+      "sha256": "130f60cf70db0d2792f5d6dea14569ebae56d5f396e5e9378648dc075af5d485",
+      "lineCount": 6,
+      "currentConsumers": [
+        "docs/de405-evidence-disposal-manifest-2026-08-03.json"
+      ],
+      "basis": "current direct consumers: docs/de405-evidence-disposal-manifest-2026-08-03.json",
+      "regeneration": "producer script and recorded inputs in docs/de405-artifact-materialization.md; conditional on DE405/CSPICE/JPL runtime"
+    },
+    {
+      "path": "artifacts/de405-type2-o2-portability-analysis.json",
+      "scope": "repository_ignored_artifact",
+      "classification": "required_verification_input",
+      "sizeBytes": 681,
+      "sha256": "009e2a5e3e538b523b64622ee445ae3fb0a04c37e0eb80345fcace3e463ac040",
+      "lineCount": 24,
+      "currentConsumers": [
+        "docs/de405-evidence-disposal-manifest-2026-08-03.json"
+      ],
+      "basis": "current direct consumers: docs/de405-evidence-disposal-manifest-2026-08-03.json",
+      "regeneration": "producer script and recorded inputs in docs/de405-artifact-materialization.md; conditional on DE405/CSPICE/JPL runtime"
+    },
+    {
+      "path": "artifacts/de405-type2-o2-readiness.json",
+      "scope": "repository_ignored_artifact",
+      "classification": "required_verification_input",
+      "sizeBytes": 1470,
+      "sha256": "87f9689ad3efa629443f5a0af05d5b1cbeb7b86f38d1afbf69d3f042a5dd3585",
+      "lineCount": 37,
+      "currentConsumers": [
+        "docs/de405-evidence-disposal-manifest-2026-08-03.json"
+      ],
+      "basis": "current direct consumers: docs/de405-evidence-disposal-manifest-2026-08-03.json",
+      "regeneration": "producer script and recorded inputs in docs/de405-artifact-materialization.md; conditional on DE405/CSPICE/JPL runtime"
+    },
+    {
+      "path": "artifacts/de405-type2-o2-regression-cross-tabs.json",
+      "scope": "repository_ignored_artifact",
+      "classification": "required_verification_input",
+      "sizeBytes": 55468,
+      "sha256": "6417d9ed59e54c03343cfdb87e9a101d528f38820c53caa7cc1256b4d0ca6a74",
+      "lineCount": 2093,
+      "currentConsumers": [
+        "docs/de405-evidence-disposal-manifest-2026-08-03.json"
+      ],
+      "basis": "current direct consumers: docs/de405-evidence-disposal-manifest-2026-08-03.json",
+      "regeneration": "producer script and recorded inputs in docs/de405-artifact-materialization.md; conditional on DE405/CSPICE/JPL runtime"
+    },
+    {
+      "path": "artifacts/de405-type2-o2-regression-inventory.json",
+      "scope": "repository_ignored_artifact",
+      "classification": "required_verification_input",
+      "sizeBytes": 510333,
+      "sha256": "c67ab0f3eb490a82578a48f7450f6222991312fb082819cdbff2b77ae4cc48ab",
+      "lineCount": 18396,
+      "currentConsumers": [
+        "docs/de405-evidence-disposal-manifest-2026-08-03.json"
+      ],
+      "basis": "current direct consumers: docs/de405-evidence-disposal-manifest-2026-08-03.json",
+      "regeneration": "producer script and recorded inputs in docs/de405-artifact-materialization.md; conditional on DE405/CSPICE/JPL runtime"
+    },
+    {
+      "path": "artifacts/de405-type2-o2-root-cause-analysis.md",
+      "scope": "repository_ignored_artifact",
+      "classification": "required_verification_input",
+      "sizeBytes": 2172,
+      "sha256": "90bfbc6744f77749fbf566bdaaf0bec66144ce2ba7a5a00c8ec0b0451da12de7",
+      "lineCount": 13,
+      "currentConsumers": [
+        "docs/de405-evidence-disposal-manifest-2026-08-03.json"
+      ],
+      "basis": "current direct consumers: docs/de405-evidence-disposal-manifest-2026-08-03.json",
+      "regeneration": "producer script and recorded inputs in docs/de405-artifact-materialization.md; conditional on DE405/CSPICE/JPL runtime"
+    },
+    {
+      "path": "artifacts/de405-type2-o2-root-cause-clusters.json",
+      "scope": "repository_ignored_artifact",
+      "classification": "required_verification_input",
+      "sizeBytes": 1634,
+      "sha256": "e6697e8fe506e0f52100d535428e04fbed4910c85558a9ea0554ea297462ddcb",
+      "lineCount": 36,
+      "currentConsumers": [
+        "docs/de405-evidence-disposal-manifest-2026-08-03.json"
+      ],
+      "basis": "current direct consumers: docs/de405-evidence-disposal-manifest-2026-08-03.json",
+      "regeneration": "producer script and recorded inputs in docs/de405-artifact-materialization.md; conditional on DE405/CSPICE/JPL runtime"
+    },
+    {
+      "path": "artifacts/de405-type2-o2-sentinel-inventory.json",
+      "scope": "repository_ignored_artifact",
+      "classification": "required_verification_input",
+      "sizeBytes": 2212,
+      "sha256": "4671dfaa27d4b20eaa5e0b61057b9125ead74f0ae67de9b5c62674568a3699ac",
+      "lineCount": 74,
+      "currentConsumers": [
+        "docs/de405-evidence-disposal-manifest-2026-08-03.json"
+      ],
+      "basis": "current direct consumers: docs/de405-evidence-disposal-manifest-2026-08-03.json",
+      "regeneration": "producer script and recorded inputs in docs/de405-artifact-materialization.md; conditional on DE405/CSPICE/JPL runtime"
+    },
+    {
+      "path": "artifacts/de405-type2-o2-source-operation-registry.json",
+      "scope": "repository_ignored_artifact",
+      "classification": "required_verification_input",
+      "sizeBytes": 1274,
+      "sha256": "70d9a8c0784fe317a664aa040c5b4e217b63a52cac5aa429de9cc6bad4cf5ad8",
+      "lineCount": 37,
+      "currentConsumers": [
+        "docs/de405-evidence-disposal-manifest-2026-08-03.json"
+      ],
+      "basis": "current direct consumers: docs/de405-evidence-disposal-manifest-2026-08-03.json",
+      "regeneration": "producer script and recorded inputs in docs/de405-artifact-materialization.md; conditional on DE405/CSPICE/JPL runtime"
+    },
+    {
+      "path": "artifacts/de405-type2-readiness-gap-matrix.json",
+      "scope": "repository_ignored_artifact",
+      "classification": "required_verification_input",
+      "sizeBytes": 6676,
+      "sha256": "c96e222e6975519d753a6e053278b94ec319dfb1038ff5e02884cd79364a2db2",
+      "lineCount": 129,
+      "currentConsumers": [
+        "docs/de405-evidence-disposal-manifest-2026-08-03.json",
+        "docs/de405-type2-readiness-gap-closure.md"
+      ],
+      "basis": "current direct consumers: docs/de405-evidence-disposal-manifest-2026-08-03.json, docs/de405-type2-readiness-gap-closure.md",
+      "regeneration": "producer script and recorded inputs in docs/de405-artifact-materialization.md; conditional on DE405/CSPICE/JPL runtime"
+    },
+    {
+      "path": "artifacts/de405-type2-shadow-build-identity.json",
+      "scope": "repository_ignored_artifact",
+      "classification": "required_verification_input",
+      "sizeBytes": 2176,
+      "sha256": "ca8dbea70f6e1b7f3cb7aa70b6254a500f30bb90e108098f31c4681798939082",
+      "lineCount": 67,
+      "currentConsumers": [
+        "docs/de405-evidence-disposal-manifest-2026-08-03.json"
+      ],
+      "basis": "current direct consumers: docs/de405-evidence-disposal-manifest-2026-08-03.json",
+      "regeneration": "producer script and recorded inputs in docs/de405-artifact-materialization.md; conditional on DE405/CSPICE/JPL runtime"
+    },
+    {
+      "path": "artifacts/de405-type2-shadow-determinism.json",
+      "scope": "repository_ignored_artifact",
+      "classification": "required_verification_input",
+      "sizeBytes": 1545,
+      "sha256": "8b6a9d5981ba03482f46ea4e66e4e3a83efd4b10109c36773095550c40e3ba33",
+      "lineCount": 40,
+      "currentConsumers": [
+        "docs/de405-evidence-disposal-manifest-2026-08-03.json",
+        "scripts/analyze-de405-type2-shadow-readiness.mjs",
+        "scripts/check-de405-type2-shadow-determinism.mjs"
+      ],
+      "basis": "current direct consumers: docs/de405-evidence-disposal-manifest-2026-08-03.json, scripts/analyze-de405-type2-shadow-readiness.mjs, scripts/check-de405-type2-shadow-determinism.mjs",
+      "regeneration": "producer script and recorded inputs in docs/de405-artifact-materialization.md; conditional on DE405/CSPICE/JPL runtime"
+    },
+    {
+      "path": "artifacts/de405-type2-shadow-readiness.json",
+      "scope": "repository_ignored_artifact",
+      "classification": "required_verification_input",
+      "sizeBytes": 6167,
+      "sha256": "064f48827485ff7164d6acadc70e06bb3d0775543c50e1d776d3119a04aad64a",
+      "lineCount": 246,
+      "currentConsumers": [
+        "docs/de405-evidence-disposal-manifest-2026-08-03.json",
+        "scripts/analyze-de405-type2-shadow-readiness.mjs"
+      ],
+      "basis": "current direct consumers: docs/de405-evidence-disposal-manifest-2026-08-03.json, scripts/analyze-de405-type2-shadow-readiness.mjs",
+      "regeneration": "producer script and recorded inputs in docs/de405-artifact-materialization.md; conditional on DE405/CSPICE/JPL runtime"
+    },
+    {
+      "path": "artifacts/de405-type2-shadow-remaining-mismatch.json",
+      "scope": "repository_ignored_artifact",
+      "classification": "required_verification_input",
+      "sizeBytes": 3724,
+      "sha256": "bf770d4fb860468ce9755266786ea5d87773d6a17c16e10b4988e9700d865964",
+      "lineCount": 135,
+      "currentConsumers": [
+        "docs/de405-evidence-disposal-manifest-2026-08-03.json",
+        "scripts/analyze-de405-type2-shadow-remaining-mismatch.mjs"
+      ],
+      "basis": "current direct consumers: docs/de405-evidence-disposal-manifest-2026-08-03.json, scripts/analyze-de405-type2-shadow-remaining-mismatch.mjs",
+      "regeneration": "producer script and recorded inputs in docs/de405-artifact-materialization.md; conditional on DE405/CSPICE/JPL runtime"
+    },
+    {
+      "path": "artifacts/de405-type2-strategy-A-build-manifest.json",
+      "scope": "repository_ignored_artifact",
+      "classification": "required_unique_evidence",
+      "sizeBytes": 2234,
+      "sha256": "b34f82e6c8c65a4757c8eb54e2f768f7f4e4051f8ba3c297488a92f7d3be3a3a",
+      "lineCount": 69,
+      "currentConsumers": [
+        "docs/de405-evidence-disposal-manifest-2026-08-03.json"
+      ],
+      "basis": "Strategy-C or strategy comparison evidence is explicitly protected",
+      "regeneration": "producer script and recorded inputs in docs/de405-artifact-materialization.md; conditional on DE405/CSPICE/JPL runtime"
+    },
+    {
+      "path": "artifacts/de405-type2-strategy-A-full-range.json",
+      "scope": "repository_ignored_artifact",
+      "classification": "required_unique_evidence",
+      "sizeBytes": 534,
+      "sha256": "a4e45ce7f47d324e994a1b29c2ecf1ca42fc987bf241416b916f0be6d5bdce27",
+      "lineCount": 15,
+      "currentConsumers": [
+        "docs/de405-evidence-disposal-manifest-2026-08-03.json"
+      ],
+      "basis": "Strategy-C or strategy comparison evidence is explicitly protected",
+      "regeneration": "producer script and recorded inputs in docs/de405-artifact-materialization.md; conditional on DE405/CSPICE/JPL runtime"
+    },
+    {
+      "path": "artifacts/de405-type2-strategy-B-build-manifest.json",
+      "scope": "repository_ignored_artifact",
+      "classification": "required_unique_evidence",
+      "sizeBytes": 2234,
+      "sha256": "d6eda6d089b8932b7cbba48c9aae21e2f233e4c52ece228d2589dcd3baae74ec",
+      "lineCount": 69,
+      "currentConsumers": [
+        "docs/de405-evidence-disposal-manifest-2026-08-03.json"
+      ],
+      "basis": "Strategy-C or strategy comparison evidence is explicitly protected",
+      "regeneration": "producer script and recorded inputs in docs/de405-artifact-materialization.md; conditional on DE405/CSPICE/JPL runtime"
+    },
+    {
+      "path": "artifacts/de405-type2-strategy-B-full-range.json",
+      "scope": "repository_ignored_artifact",
+      "classification": "required_unique_evidence",
+      "sizeBytes": 534,
+      "sha256": "a4e45ce7f47d324e994a1b29c2ecf1ca42fc987bf241416b916f0be6d5bdce27",
+      "lineCount": 15,
+      "currentConsumers": [
+        "docs/de405-evidence-disposal-manifest-2026-08-03.json"
+      ],
+      "basis": "Strategy-C or strategy comparison evidence is explicitly protected",
+      "regeneration": "producer script and recorded inputs in docs/de405-artifact-materialization.md; conditional on DE405/CSPICE/JPL runtime"
+    },
+    {
+      "path": "artifacts/de405-type2-strategy-C-build-manifest.json",
+      "scope": "repository_ignored_artifact",
+      "classification": "required_unique_evidence",
+      "sizeBytes": 2259,
+      "sha256": "214c4ec6bfd8ee03b816e35c2a2bcff47e347115c8a51f4c9c4a0bd29d98d1c7",
+      "lineCount": 70,
+      "currentConsumers": [
+        "docs/de405-evidence-disposal-manifest-2026-08-03.json"
+      ],
+      "basis": "Strategy-C or strategy comparison evidence is explicitly protected",
+      "regeneration": "producer script and recorded inputs in docs/de405-artifact-materialization.md; conditional on DE405/CSPICE/JPL runtime"
+    },
+    {
+      "path": "artifacts/de405-type2-strategy-C-full-range.json",
+      "scope": "repository_ignored_artifact",
+      "classification": "required_unique_evidence",
+      "sizeBytes": 534,
+      "sha256": "a4e45ce7f47d324e994a1b29c2ecf1ca42fc987bf241416b916f0be6d5bdce27",
+      "lineCount": 15,
+      "currentConsumers": [
+        "docs/de405-evidence-disposal-manifest-2026-08-03.json"
+      ],
+      "basis": "Strategy-C or strategy comparison evidence is explicitly protected",
+      "regeneration": "producer script and recorded inputs in docs/de405-artifact-materialization.md; conditional on DE405/CSPICE/JPL runtime"
+    },
+    {
+      "path": "artifacts/de405-type2-strategy-aggregate-summary.json",
+      "scope": "repository_ignored_artifact",
+      "classification": "required_unique_evidence",
+      "sizeBytes": 37882,
+      "sha256": "5a357b347f1b74fd46bb94ca9364789858a624338a344960b5d0bbff93262bf3",
+      "lineCount": 958,
+      "currentConsumers": [
+        "docs/de405-evidence-disposal-manifest-2026-08-03.json"
+      ],
+      "basis": "Strategy-C or strategy comparison evidence is explicitly protected",
+      "regeneration": "producer script and recorded inputs in docs/de405-artifact-materialization.md; conditional on DE405/CSPICE/JPL runtime"
+    },
+    {
+      "path": "artifacts/de405-type2-strategy-analysis.md",
+      "scope": "repository_ignored_artifact",
+      "classification": "required_unique_evidence",
+      "sizeBytes": 1126,
+      "sha256": "f581e6b7d8c7aa98869adee11757161ff51b9a09e930c168624176ea3f143fde",
+      "lineCount": 9,
+      "currentConsumers": [
+        "docs/de405-evidence-disposal-manifest-2026-08-03.json"
+      ],
+      "basis": "Strategy-C or strategy comparison evidence is explicitly protected",
+      "regeneration": "producer script and recorded inputs in docs/de405-artifact-materialization.md; conditional on DE405/CSPICE/JPL runtime"
+    },
+    {
+      "path": "artifacts/de405-type2-strategy-baseline-fidelity.json",
+      "scope": "repository_ignored_artifact",
+      "classification": "required_unique_evidence",
+      "sizeBytes": 343,
+      "sha256": "4117de425cec57ce9700e1f5f8a01f717cdfc1ecc6bfe23ad07ee22cd88d9082",
+      "lineCount": 14,
+      "currentConsumers": [
+        "docs/de405-evidence-disposal-manifest-2026-08-03.json",
+        "scripts/audit-de405-strategy-c-completion.mjs",
+        "test/de405StrategyCBoundaryEvidence.test.js"
+      ],
+      "basis": "Strategy-C or strategy comparison evidence is explicitly protected",
+      "regeneration": "producer script and recorded inputs in docs/de405-artifact-materialization.md; conditional on DE405/CSPICE/JPL runtime"
+    },
+    {
+      "path": "artifacts/de405-type2-strategy-build-rule-loss-detection.json",
+      "scope": "repository_ignored_artifact",
+      "classification": "required_unique_evidence",
+      "sizeBytes": 624,
+      "sha256": "1db15dd3764812a8a8db1c4310abe72f39f0f6bd6e224380bb6fe8626a706752",
+      "lineCount": 24,
+      "currentConsumers": [
+        "docs/de405-evidence-disposal-manifest-2026-08-03.json"
+      ],
+      "basis": "Strategy-C or strategy comparison evidence is explicitly protected",
+      "regeneration": "producer script and recorded inputs in docs/de405-artifact-materialization.md; conditional on DE405/CSPICE/JPL runtime"
+    },
+    {
+      "path": "artifacts/de405-type2-strategy-clean-build-determinism.json",
+      "scope": "repository_ignored_artifact",
+      "classification": "required_unique_evidence",
+      "sizeBytes": 593,
+      "sha256": "92ec5d88c20f9651403f4d6856dc37bc516f0709121ddcd43e4f751ea4c7555f",
+      "lineCount": 22,
+      "currentConsumers": [
+        "docs/de405-evidence-disposal-manifest-2026-08-03.json"
+      ],
+      "basis": "Strategy-C or strategy comparison evidence is explicitly protected",
+      "regeneration": "producer script and recorded inputs in docs/de405-artifact-materialization.md; conditional on DE405/CSPICE/JPL runtime"
+    },
+    {
+      "path": "artifacts/de405-type2-strategy-comparison.json",
+      "scope": "repository_ignored_artifact",
+      "classification": "required_unique_evidence",
+      "sizeBytes": 3350,
+      "sha256": "e8b76491483812fb26f92967cca60ddc6a3116fcde922e3ad971a2506f7ac3f9",
+      "lineCount": 95,
+      "currentConsumers": [
+        "docs/de405-evidence-disposal-manifest-2026-08-03.json",
+        "scripts/audit-de405-strategy-c-completion.mjs",
+        "scripts/compare-de405-type2-strategies.mjs",
+        "scripts/generate-de405-strategy-c-boundary-evidence.mjs",
+        "scripts/materialize-de405-type2-strategy-evidence.mjs"
+      ],
+      "basis": "Strategy-C or strategy comparison evidence is explicitly protected",
+      "regeneration": "producer script and recorded inputs in docs/de405-artifact-materialization.md; conditional on DE405/CSPICE/JPL runtime"
+    },
+    {
+      "path": "artifacts/de405-type2-strategy-cross-comparison.json",
+      "scope": "repository_ignored_artifact",
+      "classification": "required_unique_evidence",
+      "sizeBytes": 3350,
+      "sha256": "e8b76491483812fb26f92967cca60ddc6a3116fcde922e3ad971a2506f7ac3f9",
+      "lineCount": 95,
+      "currentConsumers": [
+        "docs/de405-evidence-disposal-manifest-2026-08-03.json"
+      ],
+      "basis": "Strategy-C or strategy comparison evidence is explicitly protected",
+      "regeneration": "producer script and recorded inputs in docs/de405-artifact-materialization.md; conditional on DE405/CSPICE/JPL runtime"
+    },
+    {
+      "path": "artifacts/de405-type2-strategy-decision-matrix.json",
+      "scope": "repository_ignored_artifact",
+      "classification": "required_unique_evidence",
+      "sizeBytes": 1353,
+      "sha256": "51546546bc587ee6b04e1d29f99e927fa6c3dc7c3721b3fdd0db78821cbd9284",
+      "lineCount": 34,
+      "currentConsumers": [
+        "docs/de405-evidence-disposal-manifest-2026-08-03.json"
+      ],
+      "basis": "Strategy-C or strategy comparison evidence is explicitly protected",
+      "regeneration": "producer script and recorded inputs in docs/de405-artifact-materialization.md; conditional on DE405/CSPICE/JPL runtime"
+    },
+    {
+      "path": "artifacts/de405-type2-strategy-dependency-ownership-analysis.json",
+      "scope": "repository_ignored_artifact",
+      "classification": "required_unique_evidence",
+      "sizeBytes": 1202,
+      "sha256": "c9e6bc7d87eefc331096428c3c39963c2bbd108e858c4fd24e1baa9988bcdda2",
+      "lineCount": 27,
+      "currentConsumers": [
+        "docs/de405-evidence-disposal-manifest-2026-08-03.json"
+      ],
+      "basis": "Strategy-C or strategy comparison evidence is explicitly protected",
+      "regeneration": "producer script and recorded inputs in docs/de405-artifact-materialization.md; conditional on DE405/CSPICE/JPL runtime"
+    },
+    {
+      "path": "artifacts/de405-type2-strategy-final-readiness.json",
+      "scope": "repository_ignored_artifact",
+      "classification": "required_unique_evidence",
+      "sizeBytes": 10037,
+      "sha256": "67d8ef96b16839d9af09ae38f2cc26012034473e397cf66f333dbccd75b50a8b",
+      "lineCount": 262,
+      "currentConsumers": [
+        "docs/de405-evidence-disposal-manifest-2026-08-03.json"
+      ],
+      "basis": "Strategy-C or strategy comparison evidence is explicitly protected",
+      "regeneration": "producer script and recorded inputs in docs/de405-artifact-materialization.md; conditional on DE405/CSPICE/JPL runtime"
+    },
+    {
+      "path": "artifacts/de405-type2-strategy-generated-instruction-audit.json",
+      "scope": "repository_ignored_artifact",
+      "classification": "required_unique_evidence",
+      "sizeBytes": 5905,
+      "sha256": "002463cadd21f242514f03c7c6be171e1d60c70eaeef687efe976c3ca3800efb",
+      "lineCount": 46,
+      "currentConsumers": [
+        "docs/de405-evidence-disposal-manifest-2026-08-03.json"
+      ],
+      "basis": "Strategy-C or strategy comparison evidence is explicitly protected",
+      "regeneration": "producer script and recorded inputs in docs/de405-artifact-materialization.md; conditional on DE405/CSPICE/JPL runtime"
+    },
+    {
+      "path": "artifacts/de405-type2-strategy-official-parity-results.json",
+      "scope": "repository_ignored_artifact",
+      "classification": "required_unique_evidence",
+      "sizeBytes": 7552,
+      "sha256": "88b45fefa967b861684c9e1cecc9cca55ea5389ed56970dc05b1f9e492e2b034",
+      "lineCount": 193,
+      "currentConsumers": [
+        "docs/de405-evidence-disposal-manifest-2026-08-03.json"
+      ],
+      "basis": "Strategy-C or strategy comparison evidence is explicitly protected",
+      "regeneration": "producer script and recorded inputs in docs/de405-artifact-materialization.md; conditional on DE405/CSPICE/JPL runtime"
+    },
+    {
+      "path": "artifacts/de405-type2-strategy-official-parity.json",
+      "scope": "repository_ignored_artifact",
+      "classification": "required_unique_evidence",
+      "sizeBytes": 7552,
+      "sha256": "88b45fefa967b861684c9e1cecc9cca55ea5389ed56970dc05b1f9e492e2b034",
+      "lineCount": 193,
+      "currentConsumers": [
+        "docs/de405-evidence-disposal-manifest-2026-08-03.json",
+        "scripts/materialize-de405-type2-strategy-evidence.mjs",
+        "scripts/run-de405-type2-strategy-micro.mjs"
+      ],
+      "basis": "Strategy-C or strategy comparison evidence is explicitly protected",
+      "regeneration": "producer script and recorded inputs in docs/de405-artifact-materialization.md; conditional on DE405/CSPICE/JPL runtime"
+    },
+    {
+      "path": "artifacts/de405-type2-strategy-performance-comparison.json",
+      "scope": "repository_ignored_artifact",
+      "classification": "required_unique_evidence",
+      "sizeBytes": 539,
+      "sha256": "7d7d9b5d7347dc5db0fa7b77a2179011f916a1fbeb123524157a996da5a38953",
+      "lineCount": 17,
+      "currentConsumers": [
+        "docs/de405-evidence-disposal-manifest-2026-08-03.json"
+      ],
+      "basis": "Strategy-C or strategy comparison evidence is explicitly protected",
+      "regeneration": "producer script and recorded inputs in docs/de405-artifact-materialization.md; conditional on DE405/CSPICE/JPL runtime"
+    },
+    {
+      "path": "artifacts/de405-type2-strategy-portability-matrix.json",
+      "scope": "repository_ignored_artifact",
+      "classification": "required_unique_evidence",
+      "sizeBytes": 488,
+      "sha256": "4d25f90776b12ee07f3475f975ac56703d1caca505966e325650cce1f65cf7fd",
+      "lineCount": 18,
+      "currentConsumers": [
+        "docs/de405-evidence-disposal-manifest-2026-08-03.json"
+      ],
+      "basis": "Strategy-C or strategy comparison evidence is explicitly protected",
+      "regeneration": "producer script and recorded inputs in docs/de405-artifact-materialization.md; conditional on DE405/CSPICE/JPL runtime"
+    },
+    {
+      "path": "artifacts/de405-type2-strategy-production-build-matrix.json",
+      "scope": "repository_ignored_artifact",
+      "classification": "required_unique_evidence",
+      "sizeBytes": 10463,
+      "sha256": "1e64d452f685d5e4699e0b2f902b90d2484edc40032c4e1dbdfdc1ce45bc1360",
+      "lineCount": 274,
+      "currentConsumers": [
+        "docs/de405-evidence-disposal-manifest-2026-08-03.json"
+      ],
+      "basis": "Strategy-C or strategy comparison evidence is explicitly protected",
+      "regeneration": "producer script and recorded inputs in docs/de405-artifact-materialization.md; conditional on DE405/CSPICE/JPL runtime"
+    },
+    {
+      "path": "artifacts/de405-type2-strategy-shared-input-boundary.json",
+      "scope": "repository_ignored_artifact",
+      "classification": "required_unique_evidence",
+      "sizeBytes": 1190,
+      "sha256": "80065659e5e1fe659eae20f1561edb5b7f84bda75b2ee3033ae4f88a412a3d76",
+      "lineCount": 39,
+      "currentConsumers": [
+        "docs/de405-evidence-disposal-manifest-2026-08-03.json"
+      ],
+      "basis": "Strategy-C or strategy comparison evidence is explicitly protected",
+      "regeneration": "producer script and recorded inputs in docs/de405-artifact-materialization.md; conditional on DE405/CSPICE/JPL runtime"
+    },
+    {
+      "path": "artifacts/de405-wider-corpus-exclusion-inventory.json",
+      "scope": "repository_ignored_artifact",
+      "classification": "required_verification_input",
+      "sizeBytes": 10177,
+      "sha256": "27d05757f87ce6f8e0d358032ed14f8e94b3eb049554c4dfcb737214398b376a",
+      "lineCount": 335,
+      "currentConsumers": [
+        "docs/de405-evidence-disposal-manifest-2026-08-03.json",
+        "scripts/analyze-de405-type2-shadow-readiness.mjs",
+        "scripts/analyze-de405-wider-corpus-exclusions.mjs"
+      ],
+      "basis": "current direct consumers: docs/de405-evidence-disposal-manifest-2026-08-03.json, scripts/analyze-de405-type2-shadow-readiness.mjs, scripts/analyze-de405-wider-corpus-exclusions.mjs",
+      "regeneration": "producer script and recorded inputs in docs/de405-artifact-materialization.md; conditional on DE405/CSPICE/JPL runtime"
+    },
+    {
+      "path": "/private/tmp/astro-query.jsonl",
+      "scope": "external_recovery_or_raw",
+      "classification": "unknown_or_user_owned",
+      "sizeBytes": 1077,
+      "sha256": "1f8c275ae6a8895bd7719fb03658f979019d32cbf9a8ae01268f5d4d73b856c7",
+      "lineCount": 10,
+      "currentConsumers": [],
+      "basis": "raw local inspection material; ownership and uniqueness are not disproven",
+      "regeneration": "reacquire from the recorded release/Actions/official source or rerun the recorded local materialization"
+    },
+    {
+      "path": "/private/tmp/astro-states.jsonl",
+      "scope": "external_recovery_or_raw",
+      "classification": "unknown_or_user_owned",
+      "sizeBytes": 4823,
+      "sha256": "18cb30da148923fb0ecb045d22b12ee0a36b09bb09513ce9e65345b8636e7f6d",
+      "lineCount": 10,
+      "currentConsumers": [],
+      "basis": "raw local inspection material; ownership and uniqueness are not disproven",
+      "regeneration": "reacquire from the recorded release/Actions/official source or rerun the recorded local materialization"
+    },
+    {
+      "path": "/private/tmp/de405-linux-remote-4285P4/de405-linux-architecture-arm64/provenance.json",
+      "scope": "external_recovery_or_raw",
+      "classification": "required_unique_evidence",
+      "sizeBytes": 4319,
+      "sha256": "ba982d2bef0d28f37777f16317efd2a26eeea0378ad5c44d0aad9dc1c7834168",
+      "lineCount": 124,
+      "currentConsumers": [],
+      "basis": "remote result, provenance, or OCI setup record; same payload bytes do not erase variant provenance",
+      "regeneration": "reacquire from the recorded release/Actions/official source or rerun the recorded local materialization"
+    },
+    {
+      "path": "/private/tmp/de405-linux-remote-4285P4/de405-linux-architecture-arm64/result.jsonl",
+      "scope": "external_recovery_or_raw",
+      "classification": "required_unique_evidence",
+      "sizeBytes": 79915561,
+      "sha256": "07b51b47dee7042056f7b127886e93f7f0d84283348d5a941f8be27ca65ac08b",
+      "lineCount": 150673,
+      "currentConsumers": [],
+      "basis": "remote result, provenance, or OCI setup record; same payload bytes do not erase variant provenance",
+      "regeneration": "reacquire from the recorded release/Actions/official source or rerun the recorded local materialization"
+    },
+    {
+      "path": "/private/tmp/de405-linux-remote-4285P4/de405-linux-architecture-summary/de405-linux-summary.json",
+      "scope": "external_recovery_or_raw",
+      "classification": "required_unique_evidence",
+      "sizeBytes": 11281,
+      "sha256": "895b90143aff1cc101587ad33e60a6694da5ea0c9697b2e996f78a238a2dcb47",
+      "lineCount": 295,
+      "currentConsumers": [],
+      "basis": "remote result, provenance, or OCI setup record; same payload bytes do not erase variant provenance",
+      "regeneration": "reacquire from the recorded release/Actions/official source or rerun the recorded local materialization"
+    },
+    {
+      "path": "/private/tmp/de405-linux-remote-4285P4/de405-linux-architecture-summary/de405-linux-summary.md",
+      "scope": "external_recovery_or_raw",
+      "classification": "required_unique_evidence",
+      "sizeBytes": 352,
+      "sha256": "f5eeb7ebdb370e7496dd76c4bafb13033b9346d7308e4ab391644cca07f63bfe",
+      "lineCount": 10,
+      "currentConsumers": [],
+      "basis": "remote result, provenance, or OCI setup record; same payload bytes do not erase variant provenance",
+      "regeneration": "reacquire from the recorded release/Actions/official source or rerun the recorded local materialization"
+    },
+    {
+      "path": "/private/tmp/de405-linux-remote-4285P4/de405-linux-architecture-x64/provenance.json",
+      "scope": "external_recovery_or_raw",
+      "classification": "required_unique_evidence",
+      "sizeBytes": 4301,
+      "sha256": "25ae51d97d38c2f6f898f7badb7ac4bfb0f11cd65160519c76abe5d747983875",
+      "lineCount": 124,
+      "currentConsumers": [],
+      "basis": "remote result, provenance, or OCI setup record; same payload bytes do not erase variant provenance",
+      "regeneration": "reacquire from the recorded release/Actions/official source or rerun the recorded local materialization"
+    },
+    {
+      "path": "/private/tmp/de405-linux-remote-4285P4/de405-linux-architecture-x64/result.jsonl",
+      "scope": "external_recovery_or_raw",
+      "classification": "required_unique_evidence",
+      "sizeBytes": 79915561,
+      "sha256": "07b51b47dee7042056f7b127886e93f7f0d84283348d5a941f8be27ca65ac08b",
+      "lineCount": 150673,
+      "currentConsumers": [],
+      "basis": "remote result, provenance, or OCI setup record; same payload bytes do not erase variant provenance",
+      "regeneration": "reacquire from the recorded release/Actions/official source or rerun the recorded local materialization"
+    },
+    {
+      "path": "/private/tmp/de405-linux-remote-4285P4/local-analysis.json",
+      "scope": "external_recovery_or_raw",
+      "classification": "required_unique_evidence",
+      "sizeBytes": 10305,
+      "sha256": "795cac35885dddc069e810e5f7e5c30c1acaf63123f09e923378dfd397ab085f",
+      "lineCount": 278,
+      "currentConsumers": [],
+      "basis": "remote result, provenance, or OCI setup record; same payload bytes do not erase variant provenance",
+      "regeneration": "reacquire from the recorded release/Actions/official source or rerun the recorded local materialization"
+    },
+    {
+      "path": "/private/tmp/de405-linux-remote-4285P4/local-summary.json",
+      "scope": "external_recovery_or_raw",
+      "classification": "required_unique_evidence",
+      "sizeBytes": 11281,
+      "sha256": "895b90143aff1cc101587ad33e60a6694da5ea0c9697b2e996f78a238a2dcb47",
+      "lineCount": 295,
+      "currentConsumers": [],
+      "basis": "remote result, provenance, or OCI setup record; same payload bytes do not erase variant provenance",
+      "regeneration": "reacquire from the recorded release/Actions/official source or rerun the recorded local materialization"
+    },
+    {
+      "path": "/private/tmp/de405-linux-remote-4285P4/local-summary.md",
+      "scope": "external_recovery_or_raw",
+      "classification": "required_unique_evidence",
+      "sizeBytes": 352,
+      "sha256": "f5eeb7ebdb370e7496dd76c4bafb13033b9346d7308e4ab391644cca07f63bfe",
+      "lineCount": 10,
+      "currentConsumers": [],
+      "basis": "remote result, provenance, or OCI setup record; same payload bytes do not erase variant provenance",
+      "regeneration": "reacquire from the recorded release/Actions/official source or rerun the recorded local materialization"
+    },
+    {
+      "path": "/private/tmp/de405-remote-30768814210/de405-legacy-alpine-clang/provenance.json",
+      "scope": "external_recovery_or_raw",
+      "classification": "required_unique_evidence",
+      "sizeBytes": 16869,
+      "sha256": "bea327853e886d22e112e68ac614cd086bb962c2146875655ad6f4c2e335fc5d",
+      "lineCount": 311,
+      "currentConsumers": [],
+      "basis": "remote result, provenance, or OCI setup record; same payload bytes do not erase variant provenance",
+      "regeneration": "reacquire from the recorded release/Actions/official source or rerun the recorded local materialization"
+    },
+    {
+      "path": "/private/tmp/de405-remote-30768814210/de405-legacy-alpine-clang/result.jsonl",
+      "scope": "external_recovery_or_raw",
+      "classification": "required_unique_evidence",
+      "sizeBytes": 79915561,
+      "sha256": "07b51b47dee7042056f7b127886e93f7f0d84283348d5a941f8be27ca65ac08b",
+      "lineCount": 150673,
+      "currentConsumers": [],
+      "basis": "remote result, provenance, or OCI setup record; same payload bytes do not erase variant provenance",
+      "regeneration": "reacquire from the recorded release/Actions/official source or rerun the recorded local materialization"
+    },
+    {
+      "path": "/private/tmp/de405-remote-30768814210/de405-legacy-alpine-gcc/provenance.json",
+      "scope": "external_recovery_or_raw",
+      "classification": "required_unique_evidence",
+      "sizeBytes": 16861,
+      "sha256": "8a25d1924e2e53457b13a309bfa35c3f3e78ac0cef855dc32da7a6079804b8b9",
+      "lineCount": 311,
+      "currentConsumers": [],
+      "basis": "remote result, provenance, or OCI setup record; same payload bytes do not erase variant provenance",
+      "regeneration": "reacquire from the recorded release/Actions/official source or rerun the recorded local materialization"
+    },
+    {
+      "path": "/private/tmp/de405-remote-30768814210/de405-legacy-alpine-gcc/result.jsonl",
+      "scope": "external_recovery_or_raw",
+      "classification": "required_unique_evidence",
+      "sizeBytes": 79915561,
+      "sha256": "07b51b47dee7042056f7b127886e93f7f0d84283348d5a941f8be27ca65ac08b",
+      "lineCount": 150673,
+      "currentConsumers": [],
+      "basis": "remote result, provenance, or OCI setup record; same payload bytes do not erase variant provenance",
+      "regeneration": "reacquire from the recorded release/Actions/official source or rerun the recorded local materialization"
+    },
+    {
+      "path": "/private/tmp/de405-remote-30768814210/de405-legacy-alpine-toolchain/image-archive-sha256.txt",
+      "scope": "external_recovery_or_raw",
+      "classification": "required_unique_evidence",
+      "sizeBytes": 65,
+      "sha256": "b74a03ca9d3966b43b279ab935b4d910a7680b85f597a9c6cba74fb292c83f89",
+      "lineCount": 1,
+      "currentConsumers": [],
+      "basis": "remote result, provenance, or OCI setup record; same payload bytes do not erase variant provenance",
+      "regeneration": "reacquire from the recorded release/Actions/official source or rerun the recorded local materialization"
+    },
+    {
+      "path": "/private/tmp/de405-remote-30768814210/de405-legacy-alpine-toolchain/image-id.txt",
+      "scope": "external_recovery_or_raw",
+      "classification": "required_unique_evidence",
+      "sizeBytes": 72,
+      "sha256": "9e258fdb522e397b884935f4512538ff1cb4b2c29582a4450c479eae78f673df",
+      "lineCount": 1,
+      "currentConsumers": [],
+      "basis": "remote result, provenance, or OCI setup record; same payload bytes do not erase variant provenance",
+      "regeneration": "reacquire from the recorded release/Actions/official source or rerun the recorded local materialization"
+    },
+    {
+      "path": "/private/tmp/de405-remote-30768814210/de405-legacy-alpine-toolchain/toolchain-image.tar",
+      "scope": "external_recovery_or_raw",
+      "classification": "required_unique_evidence",
+      "sizeBytes": 580115456,
+      "sha256": "6447e903512b19f19cc05f37e351051581dfe17737d4e117339a3d951c998e45",
+      "lineCount": 3078665,
+      "currentConsumers": [],
+      "basis": "remote result, provenance, or OCI setup record; same payload bytes do not erase variant provenance",
+      "regeneration": "reacquire from the recorded release/Actions/official source or rerun the recorded local materialization"
+    },
+    {
+      "path": "/private/tmp/de405-remote-30768814210/de405-legacy-alpine-toolchain/toolchain-lock.json",
+      "scope": "external_recovery_or_raw",
+      "classification": "required_unique_evidence",
+      "sizeBytes": 6500,
+      "sha256": "d78f97287252876eee29149d95acaef4cd7adb8c194aff5b0d15d0f3caf04adf",
+      "lineCount": 107,
+      "currentConsumers": [],
+      "basis": "remote result, provenance, or OCI setup record; same payload bytes do not erase variant provenance",
+      "regeneration": "reacquire from the recorded release/Actions/official source or rerun the recorded local materialization"
+    },
+    {
+      "path": "/private/tmp/de405-remote-30768814210/de405-legacy-native-summary/de405-legacy-summary.json",
+      "scope": "external_recovery_or_raw",
+      "classification": "required_unique_evidence",
+      "sizeBytes": 46577,
+      "sha256": "ba272af189c29f875d46163e97b7669b8e3c16682c726edee9063b91759b92f3",
+      "lineCount": 888,
+      "currentConsumers": [],
+      "basis": "remote result, provenance, or OCI setup record; same payload bytes do not erase variant provenance",
+      "regeneration": "reacquire from the recorded release/Actions/official source or rerun the recorded local materialization"
+    },
+    {
+      "path": "/private/tmp/de405-remote-30768814210/de405-legacy-native-summary/de405-legacy-summary.md",
+      "scope": "external_recovery_or_raw",
+      "classification": "required_unique_evidence",
+      "sizeBytes": 1487,
+      "sha256": "7f06ef314d8b9521a664535a40757adc78ec0578f8b81c30911e33c4be96703b",
+      "lineCount": 34,
+      "currentConsumers": [],
+      "basis": "remote result, provenance, or OCI setup record; same payload bytes do not erase variant provenance",
+      "regeneration": "reacquire from the recorded release/Actions/official source or rerun the recorded local materialization"
+    },
+    {
+      "path": "/private/tmp/de405-remote-30768814210/de405-legacy-ubuntu-gcc/provenance.json",
+      "scope": "external_recovery_or_raw",
+      "classification": "required_unique_evidence",
+      "sizeBytes": 4563,
+      "sha256": "b5959413b0dccf88e30671595cd70f14078062354440aa3a731da511731a4aba",
+      "lineCount": 131,
+      "currentConsumers": [],
+      "basis": "remote result, provenance, or OCI setup record; same payload bytes do not erase variant provenance",
+      "regeneration": "reacquire from the recorded release/Actions/official source or rerun the recorded local materialization"
+    },
+    {
+      "path": "/private/tmp/de405-remote-30768814210/de405-legacy-ubuntu-gcc/result.jsonl",
+      "scope": "external_recovery_or_raw",
+      "classification": "required_unique_evidence",
+      "sizeBytes": 79915561,
+      "sha256": "07b51b47dee7042056f7b127886e93f7f0d84283348d5a941f8be27ca65ac08b",
+      "lineCount": 150673,
+      "currentConsumers": [],
+      "basis": "remote result, provenance, or OCI setup record; same payload bytes do not erase variant provenance",
+      "regeneration": "reacquire from the recorded release/Actions/official source or rerun the recorded local materialization"
+    },
+    {
+      "path": "/private/tmp/de405-remote-30768814210/local-analysis-1.json",
+      "scope": "external_recovery_or_raw",
+      "classification": "required_unique_evidence",
+      "sizeBytes": 46605,
+      "sha256": "32cc8cecf366e7ff626a3ddaa543de4df6b198cc607d8f5fecd9dd3cb74967d2",
+      "lineCount": 889,
+      "currentConsumers": [],
+      "basis": "remote result, provenance, or OCI setup record; same payload bytes do not erase variant provenance",
+      "regeneration": "reacquire from the recorded release/Actions/official source or rerun the recorded local materialization"
+    },
+    {
+      "path": "/private/tmp/de405-remote-30768814210/local-analysis-1.log",
+      "scope": "external_recovery_or_raw",
+      "classification": "required_unique_evidence",
+      "sizeBytes": 46605,
+      "sha256": "32cc8cecf366e7ff626a3ddaa543de4df6b198cc607d8f5fecd9dd3cb74967d2",
+      "lineCount": 889,
+      "currentConsumers": [],
+      "basis": "remote result, provenance, or OCI setup record; same payload bytes do not erase variant provenance",
+      "regeneration": "reacquire from the recorded release/Actions/official source or rerun the recorded local materialization"
+    },
+    {
+      "path": "/private/tmp/de405-remote-30768814210/local-analysis-2.json",
+      "scope": "external_recovery_or_raw",
+      "classification": "required_unique_evidence",
+      "sizeBytes": 46605,
+      "sha256": "32cc8cecf366e7ff626a3ddaa543de4df6b198cc607d8f5fecd9dd3cb74967d2",
+      "lineCount": 889,
+      "currentConsumers": [],
+      "basis": "remote result, provenance, or OCI setup record; same payload bytes do not erase variant provenance",
+      "regeneration": "reacquire from the recorded release/Actions/official source or rerun the recorded local materialization"
+    },
+    {
+      "path": "/private/tmp/de405-remote-30768814210/local-analysis-2.log",
+      "scope": "external_recovery_or_raw",
+      "classification": "required_unique_evidence",
+      "sizeBytes": 46605,
+      "sha256": "32cc8cecf366e7ff626a3ddaa543de4df6b198cc607d8f5fecd9dd3cb74967d2",
+      "lineCount": 889,
+      "currentConsumers": [],
+      "basis": "remote result, provenance, or OCI setup record; same payload bytes do not erase variant provenance",
+      "regeneration": "reacquire from the recorded release/Actions/official source or rerun the recorded local materialization"
+    },
+    {
+      "path": "/private/tmp/de405-remote-30768814210/local-summary-1.json",
+      "scope": "external_recovery_or_raw",
+      "classification": "required_unique_evidence",
+      "sizeBytes": 46577,
+      "sha256": "ba272af189c29f875d46163e97b7669b8e3c16682c726edee9063b91759b92f3",
+      "lineCount": 888,
+      "currentConsumers": [],
+      "basis": "remote result, provenance, or OCI setup record; same payload bytes do not erase variant provenance",
+      "regeneration": "reacquire from the recorded release/Actions/official source or rerun the recorded local materialization"
+    },
+    {
+      "path": "/private/tmp/de405-remote-30768814210/local-summary-1.md",
+      "scope": "external_recovery_or_raw",
+      "classification": "required_unique_evidence",
+      "sizeBytes": 1487,
+      "sha256": "7f06ef314d8b9521a664535a40757adc78ec0578f8b81c30911e33c4be96703b",
+      "lineCount": 34,
+      "currentConsumers": [],
+      "basis": "remote result, provenance, or OCI setup record; same payload bytes do not erase variant provenance",
+      "regeneration": "reacquire from the recorded release/Actions/official source or rerun the recorded local materialization"
+    },
+    {
+      "path": "/private/tmp/de405-remote-30768814210/local-summary-2.json",
+      "scope": "external_recovery_or_raw",
+      "classification": "required_unique_evidence",
+      "sizeBytes": 46577,
+      "sha256": "ba272af189c29f875d46163e97b7669b8e3c16682c726edee9063b91759b92f3",
+      "lineCount": 888,
+      "currentConsumers": [],
+      "basis": "remote result, provenance, or OCI setup record; same payload bytes do not erase variant provenance",
+      "regeneration": "reacquire from the recorded release/Actions/official source or rerun the recorded local materialization"
+    },
+    {
+      "path": "/private/tmp/de405-remote-30768814210/local-summary-2.md",
+      "scope": "external_recovery_or_raw",
+      "classification": "required_unique_evidence",
+      "sizeBytes": 1487,
+      "sha256": "7f06ef314d8b9521a664535a40757adc78ec0578f8b81c30911e33c4be96703b",
+      "lineCount": 34,
+      "currentConsumers": [],
+      "basis": "remote result, provenance, or OCI setup record; same payload bytes do not erase variant provenance",
+      "regeneration": "reacquire from the recorded release/Actions/official source or rerun the recorded local materialization"
+    },
+    {
+      "path": "/private/tmp/de405-remote-30768814210/manifest.json",
+      "scope": "external_recovery_or_raw",
+      "classification": "required_unique_evidence",
+      "sizeBytes": 1871,
+      "sha256": "f86618af475bc8fdd72ec4ce7a405568cc28e7449d79e36ef3201098f3ec2d2b",
+      "lineCount": 1,
+      "currentConsumers": [],
+      "basis": "remote result, provenance, or OCI setup record; same payload bytes do not erase variant provenance",
+      "regeneration": "reacquire from the recorded release/Actions/official source or rerun the recorded local materialization"
+    },
+    {
+      "path": "/private/tmp/de405-remote-30768814210/materialized-record-2.json",
+      "scope": "external_recovery_or_raw",
+      "classification": "required_unique_evidence",
+      "sizeBytes": 4895,
+      "sha256": "963a99bd19dbcbc9e3d25de4839c0ce439ff37f75a41930dedc8e3b4ecfc2184",
+      "lineCount": 105,
+      "currentConsumers": [],
+      "basis": "remote result, provenance, or OCI setup record; same payload bytes do not erase variant provenance",
+      "regeneration": "reacquire from the recorded release/Actions/official source or rerun the recorded local materialization"
+    },
+    {
+      "path": "/private/tmp/de405-remote-30768814210/materialized-summary-2.json",
+      "scope": "external_recovery_or_raw",
+      "classification": "required_unique_evidence",
+      "sizeBytes": 9026,
+      "sha256": "5d619794aa068a58d4f1e49dc95cec6965cb110e58d99bccedb465b444daa5f3",
+      "lineCount": 287,
+      "currentConsumers": [],
+      "basis": "remote result, provenance, or OCI setup record; same payload bytes do not erase variant provenance",
+      "regeneration": "reacquire from the recorded release/Actions/official source or rerun the recorded local materialization"
+    },
+    {
+      "path": "/private/tmp/de405-remote-30768814210/materialized-summary-2.md",
+      "scope": "external_recovery_or_raw",
+      "classification": "required_unique_evidence",
+      "sizeBytes": 1786,
+      "sha256": "128d76d1bf360f2cd930147c1e75b738bb10eed7d8de7f6e00ecf5cc59903e2e",
+      "lineCount": 22,
+      "currentConsumers": [],
+      "basis": "remote result, provenance, or OCI setup record; same payload bytes do not erase variant provenance",
+      "regeneration": "reacquire from the recorded release/Actions/official source or rerun the recorded local materialization"
+    },
+    {
+      "path": "/private/tmp/de405-remote-30768814210/reanalysis-1.json",
+      "scope": "external_recovery_or_raw",
+      "classification": "required_unique_evidence",
+      "sizeBytes": 46605,
+      "sha256": "32cc8cecf366e7ff626a3ddaa543de4df6b198cc607d8f5fecd9dd3cb74967d2",
+      "lineCount": 889,
+      "currentConsumers": [],
+      "basis": "remote result, provenance, or OCI setup record; same payload bytes do not erase variant provenance",
+      "regeneration": "reacquire from the recorded release/Actions/official source or rerun the recorded local materialization"
+    },
+    {
+      "path": "/private/tmp/de405-remote-30768814210/reanalysis-2.json",
+      "scope": "external_recovery_or_raw",
+      "classification": "required_unique_evidence",
+      "sizeBytes": 46605,
+      "sha256": "32cc8cecf366e7ff626a3ddaa543de4df6b198cc607d8f5fecd9dd3cb74967d2",
+      "lineCount": 889,
+      "currentConsumers": [],
+      "basis": "remote result, provenance, or OCI setup record; same payload bytes do not erase variant provenance",
+      "regeneration": "reacquire from the recorded release/Actions/official source or rerun the recorded local materialization"
+    },
+    {
+      "path": "/private/tmp/de405-remote-30768814210/reanalysis-summary-1.json",
+      "scope": "external_recovery_or_raw",
+      "classification": "required_unique_evidence",
+      "sizeBytes": 46577,
+      "sha256": "ba272af189c29f875d46163e97b7669b8e3c16682c726edee9063b91759b92f3",
+      "lineCount": 888,
+      "currentConsumers": [],
+      "basis": "remote result, provenance, or OCI setup record; same payload bytes do not erase variant provenance",
+      "regeneration": "reacquire from the recorded release/Actions/official source or rerun the recorded local materialization"
+    },
+    {
+      "path": "/private/tmp/de405-remote-30768814210/reanalysis-summary-1.md",
+      "scope": "external_recovery_or_raw",
+      "classification": "required_unique_evidence",
+      "sizeBytes": 1487,
+      "sha256": "7f06ef314d8b9521a664535a40757adc78ec0578f8b81c30911e33c4be96703b",
+      "lineCount": 34,
+      "currentConsumers": [],
+      "basis": "remote result, provenance, or OCI setup record; same payload bytes do not erase variant provenance",
+      "regeneration": "reacquire from the recorded release/Actions/official source or rerun the recorded local materialization"
+    },
+    {
+      "path": "/private/tmp/de405-remote-30768814210/reanalysis-summary-2.json",
+      "scope": "external_recovery_or_raw",
+      "classification": "required_unique_evidence",
+      "sizeBytes": 46577,
+      "sha256": "ba272af189c29f875d46163e97b7669b8e3c16682c726edee9063b91759b92f3",
+      "lineCount": 888,
+      "currentConsumers": [],
+      "basis": "remote result, provenance, or OCI setup record; same payload bytes do not erase variant provenance",
+      "regeneration": "reacquire from the recorded release/Actions/official source or rerun the recorded local materialization"
+    },
+    {
+      "path": "/private/tmp/de405-remote-30768814210/reanalysis-summary-2.md",
+      "scope": "external_recovery_or_raw",
+      "classification": "required_unique_evidence",
+      "sizeBytes": 1487,
+      "sha256": "7f06ef314d8b9521a664535a40757adc78ec0578f8b81c30911e33c4be96703b",
+      "lineCount": 34,
+      "currentConsumers": [],
+      "basis": "remote result, provenance, or OCI setup record; same payload bytes do not erase variant provenance",
+      "regeneration": "reacquire from the recorded release/Actions/official source or rerun the recorded local materialization"
+    },
+    {
+      "path": "/private/tmp/de405-remote-30768814210/remote-record.json",
+      "scope": "external_recovery_or_raw",
+      "classification": "required_unique_evidence",
+      "sizeBytes": 9347,
+      "sha256": "320872ecadca294c60a6483274296be4192959474a2e4db2dc1b099f6ab32c7e",
+      "lineCount": 237,
+      "currentConsumers": [],
+      "basis": "remote result, provenance, or OCI setup record; same payload bytes do not erase variant provenance",
+      "regeneration": "reacquire from the recorded release/Actions/official source or rerun the recorded local materialization"
+    },
+    {
+      "path": "/private/tmp/de405-remote-30768814210/remote-record.md",
+      "scope": "external_recovery_or_raw",
+      "classification": "required_unique_evidence",
+      "sizeBytes": 1130,
+      "sha256": "938811c62c4d22fa951c64318cf6a5c4e868fb721145b5949e8484295af755c2",
+      "lineCount": 12,
+      "currentConsumers": [],
+      "basis": "remote result, provenance, or OCI setup record; same payload bytes do not erase variant provenance",
+      "regeneration": "reacquire from the recorded release/Actions/official source or rerun the recorded local materialization"
+    },
+    {
+      "path": "/private/tmp/de405-run-30748244499/failed.log",
+      "scope": "external_recovery_or_raw",
+      "classification": "cold_archive_optional",
+      "sizeBytes": 10538,
+      "sha256": "aa43589a1e1adae1c246c0a14d5ccd72c32ed6eedd90da2552916f7b5f3d532d",
+      "lineCount": 72,
+      "currentConsumers": [],
+      "basis": "external derived material with no current repository consumer; retained conservatively",
+      "regeneration": "reacquire from the recorded release/Actions/official source or rerun the recorded local materialization"
+    },
+    {
+      "path": "/private/tmp/de405-run-30748244499/run.json",
+      "scope": "external_recovery_or_raw",
+      "classification": "cold_archive_optional",
+      "sizeBytes": 5359,
+      "sha256": "5b103ba8273261dffe44e1f055e6554c7392d81653f92b36634ad77d63f917d2",
+      "lineCount": 1,
+      "currentConsumers": [],
+      "basis": "external derived material with no current repository consumer; retained conservatively",
+      "regeneration": "reacquire from the recorded release/Actions/official source or rerun the recorded local materialization"
+    },
+    {
+      "path": "/private/tmp/de405-sample-asset-check/one.json",
+      "scope": "external_recovery_or_raw",
+      "classification": "cold_archive_optional",
+      "sizeBytes": 490,
+      "sha256": "ac3af69d7154ead8c278aa2507f8749c7a6a61936b140997ee08e41d397dd4b8",
+      "lineCount": 10,
+      "currentConsumers": [],
+      "basis": "external derived material with no current repository consumer; retained conservatively",
+      "regeneration": "reacquire from the recorded release/Actions/official source or rerun the recorded local materialization"
+    },
+    {
+      "path": "/private/tmp/de405-sample-asset-check/two.json",
+      "scope": "external_recovery_or_raw",
+      "classification": "cold_archive_optional",
+      "sizeBytes": 490,
+      "sha256": "ea37d54fbb5c0d8484e03de248290e5e2b5d717452c976001d0c42d129274fd6",
+      "lineCount": 10,
+      "currentConsumers": [],
+      "basis": "external derived material with no current repository consumer; retained conservatively",
+      "regeneration": "reacquire from the recorded release/Actions/official source or rerun the recorded local materialization"
+    },
+    {
+      "path": "/private/tmp/de405-sample-release-one.qbUQfF/check.json",
+      "scope": "external_recovery_or_raw",
+      "classification": "cold_archive_optional",
+      "sizeBytes": 313,
+      "sha256": "0c84830e7f1e699f223bb3d76832aa9d02a71c78a7c80737f5dad1d59f706989",
+      "lineCount": 10,
+      "currentConsumers": [],
+      "basis": "reproducible release materialization retained because attempt/release context differs",
+      "regeneration": "reacquire from the recorded release/Actions/official source or rerun the recorded local materialization"
+    },
+    {
+      "path": "/private/tmp/de405-sample-release-one.qbUQfF/de405-sample-asset.zip",
+      "scope": "external_recovery_or_raw",
+      "classification": "cold_archive_optional",
+      "sizeBytes": 280781846,
+      "sha256": "5fb3f6f7c5a7b20f9081d1f16a6f000c00df8594c88606344a9c8d833b9aa1c8",
+      "lineCount": 150710,
+      "currentConsumers": [],
+      "basis": "reproducible release materialization retained because attempt/release context differs",
+      "regeneration": "reacquire from the recorded release/Actions/official source or rerun the recorded local materialization"
+    },
+    {
+      "path": "/private/tmp/de405-sample-release-one.qbUQfF/de405-sample-asset.zip.extracted/de405-jpl-cspice-residual-sweep.samples.jsonl",
+      "scope": "external_recovery_or_raw",
+      "classification": "cold_archive_optional",
+      "sizeBytes": 280780522,
+      "sha256": "62192cde5fdecbf53307ed532da212156bc7dcc4beade08117a6bd75c1101d84",
+      "lineCount": 150673,
+      "currentConsumers": [],
+      "basis": "reproducible release materialization retained because attempt/release context differs",
+      "regeneration": "reacquire from the recorded release/Actions/official source or rerun the recorded local materialization"
+    },
+    {
+      "path": "/private/tmp/de405-sample-release-one.qbUQfF/de405-sample-asset.zip.extracted/sample-asset-manifest.json",
+      "scope": "external_recovery_or_raw",
+      "classification": "cold_archive_optional",
+      "sizeBytes": 1008,
+      "sha256": "864d912dd07983de0cbde82e671399047b4684257c4439f5ddfb7a8949f92eb7",
+      "lineCount": 34,
+      "currentConsumers": [],
+      "basis": "reproducible release materialization retained because attempt/release context differs",
+      "regeneration": "reacquire from the recorded release/Actions/official source or rerun the recorded local materialization"
+    },
+    {
+      "path": "/private/tmp/de405-sample-release-one.qbUQfF/de405-sample-corpus-62192cde.zip",
+      "scope": "external_recovery_or_raw",
+      "classification": "cold_archive_optional",
+      "sizeBytes": 280781846,
+      "sha256": "5fb3f6f7c5a7b20f9081d1f16a6f000c00df8594c88606344a9c8d833b9aa1c8",
+      "lineCount": 150710,
+      "currentConsumers": [],
+      "basis": "reproducible release materialization retained because attempt/release context differs",
+      "regeneration": "reacquire from the recorded release/Actions/official source or rerun the recorded local materialization"
+    },
+    {
+      "path": "/private/tmp/de405-sample-release-one.qbUQfF/materialize.json",
+      "scope": "external_recovery_or_raw",
+      "classification": "cold_archive_optional",
+      "sizeBytes": 496,
+      "sha256": "33ee4deaf8f68ce561b197341709d5757154c08df763deeb4ade7936ecc381f6",
+      "lineCount": 10,
+      "currentConsumers": [],
+      "basis": "reproducible release materialization retained because attempt/release context differs",
+      "regeneration": "reacquire from the recorded release/Actions/official source or rerun the recorded local materialization"
+    },
+    {
+      "path": "/private/tmp/de405-sample-release-one.qbUQfF/public-download.zip",
+      "scope": "external_recovery_or_raw",
+      "classification": "cold_archive_optional",
+      "sizeBytes": 280781846,
+      "sha256": "5fb3f6f7c5a7b20f9081d1f16a6f000c00df8594c88606344a9c8d833b9aa1c8",
+      "lineCount": 150710,
+      "currentConsumers": [],
+      "basis": "reproducible release materialization retained because attempt/release context differs",
+      "regeneration": "reacquire from the recorded release/Actions/official source or rerun the recorded local materialization"
+    },
+    {
+      "path": "/private/tmp/de405-sample-release-one.qbUQfF/public-download.zip.extracted/de405-jpl-cspice-residual-sweep.samples.jsonl",
+      "scope": "external_recovery_or_raw",
+      "classification": "cold_archive_optional",
+      "sizeBytes": 280780522,
+      "sha256": "62192cde5fdecbf53307ed532da212156bc7dcc4beade08117a6bd75c1101d84",
+      "lineCount": 150673,
+      "currentConsumers": [],
+      "basis": "reproducible release materialization retained because attempt/release context differs",
+      "regeneration": "reacquire from the recorded release/Actions/official source or rerun the recorded local materialization"
+    },
+    {
+      "path": "/private/tmp/de405-sample-release-one.qbUQfF/public-download.zip.extracted/sample-asset-manifest.json",
+      "scope": "external_recovery_or_raw",
+      "classification": "cold_archive_optional",
+      "sizeBytes": 1008,
+      "sha256": "864d912dd07983de0cbde82e671399047b4684257c4439f5ddfb7a8949f92eb7",
+      "lineCount": 34,
+      "currentConsumers": [],
+      "basis": "reproducible release materialization retained because attempt/release context differs",
+      "regeneration": "reacquire from the recorded release/Actions/official source or rerun the recorded local materialization"
+    },
+    {
+      "path": "/private/tmp/de405-sample-release-one.qbUQfF/sample-asset-record.json",
+      "scope": "external_recovery_or_raw",
+      "classification": "cold_archive_optional",
+      "sizeBytes": 421,
+      "sha256": "c239535670545a796f70921664dc5d7afa8c594f7d51a004d67e647352d7eabb",
+      "lineCount": 11,
+      "currentConsumers": [],
+      "basis": "reproducible release materialization retained because attempt/release context differs",
+      "regeneration": "reacquire from the recorded release/Actions/official source or rerun the recorded local materialization"
+    },
+    {
+      "path": "/private/tmp/de405-sample-release-one.qbUQfF/stage/de405-jpl-cspice-residual-sweep.samples.jsonl",
+      "scope": "external_recovery_or_raw",
+      "classification": "cold_archive_optional",
+      "sizeBytes": 280780522,
+      "sha256": "62192cde5fdecbf53307ed532da212156bc7dcc4beade08117a6bd75c1101d84",
+      "lineCount": 150673,
+      "currentConsumers": [],
+      "basis": "reproducible release materialization retained because attempt/release context differs",
+      "regeneration": "reacquire from the recorded release/Actions/official source or rerun the recorded local materialization"
+    },
+    {
+      "path": "/private/tmp/de405-sample-release-one.qbUQfF/stage/sample-asset-manifest.json",
+      "scope": "external_recovery_or_raw",
+      "classification": "cold_archive_optional",
+      "sizeBytes": 1008,
+      "sha256": "864d912dd07983de0cbde82e671399047b4684257c4439f5ddfb7a8949f92eb7",
+      "lineCount": 34,
+      "currentConsumers": [],
+      "basis": "reproducible release materialization retained because attempt/release context differs",
+      "regeneration": "reacquire from the recorded release/Actions/official source or rerun the recorded local materialization"
+    },
+    {
+      "path": "/private/tmp/de405-sample-release-two.xzMoUt/check.json",
+      "scope": "external_recovery_or_raw",
+      "classification": "cold_archive_optional",
+      "sizeBytes": 313,
+      "sha256": "0c84830e7f1e699f223bb3d76832aa9d02a71c78a7c80737f5dad1d59f706989",
+      "lineCount": 10,
+      "currentConsumers": [],
+      "basis": "reproducible release materialization retained because attempt/release context differs",
+      "regeneration": "reacquire from the recorded release/Actions/official source or rerun the recorded local materialization"
+    },
+    {
+      "path": "/private/tmp/de405-sample-release-two.xzMoUt/de405-sample-asset.zip",
+      "scope": "external_recovery_or_raw",
+      "classification": "cold_archive_optional",
+      "sizeBytes": 280781846,
+      "sha256": "5fb3f6f7c5a7b20f9081d1f16a6f000c00df8594c88606344a9c8d833b9aa1c8",
+      "lineCount": 150710,
+      "currentConsumers": [],
+      "basis": "reproducible release materialization retained because attempt/release context differs",
+      "regeneration": "reacquire from the recorded release/Actions/official source or rerun the recorded local materialization"
+    },
+    {
+      "path": "/private/tmp/de405-sample-release-two.xzMoUt/de405-sample-asset.zip.extracted/de405-jpl-cspice-residual-sweep.samples.jsonl",
+      "scope": "external_recovery_or_raw",
+      "classification": "cold_archive_optional",
+      "sizeBytes": 280780522,
+      "sha256": "62192cde5fdecbf53307ed532da212156bc7dcc4beade08117a6bd75c1101d84",
+      "lineCount": 150673,
+      "currentConsumers": [],
+      "basis": "reproducible release materialization retained because attempt/release context differs",
+      "regeneration": "reacquire from the recorded release/Actions/official source or rerun the recorded local materialization"
+    },
+    {
+      "path": "/private/tmp/de405-sample-release-two.xzMoUt/de405-sample-asset.zip.extracted/sample-asset-manifest.json",
+      "scope": "external_recovery_or_raw",
+      "classification": "cold_archive_optional",
+      "sizeBytes": 1008,
+      "sha256": "864d912dd07983de0cbde82e671399047b4684257c4439f5ddfb7a8949f92eb7",
+      "lineCount": 34,
+      "currentConsumers": [],
+      "basis": "reproducible release materialization retained because attempt/release context differs",
+      "regeneration": "reacquire from the recorded release/Actions/official source or rerun the recorded local materialization"
+    },
+    {
+      "path": "/private/tmp/de405-sample-release-two.xzMoUt/materialize.json",
+      "scope": "external_recovery_or_raw",
+      "classification": "cold_archive_optional",
+      "sizeBytes": 496,
+      "sha256": "8c47123bd8aaaa694fbab2fb5b94fef2389427717c5bc1ec219d7c8ff7fab85b",
+      "lineCount": 10,
+      "currentConsumers": [],
+      "basis": "reproducible release materialization retained because attempt/release context differs",
+      "regeneration": "reacquire from the recorded release/Actions/official source or rerun the recorded local materialization"
+    },
+    {
+      "path": "/private/tmp/de405-sample-release-two.xzMoUt/sample-asset-record.json",
+      "scope": "external_recovery_or_raw",
+      "classification": "cold_archive_optional",
+      "sizeBytes": 421,
+      "sha256": "3c5401d5977170c59c5249e57437abfcbe5bd32ff70816a55959b452a2e5cfd8",
+      "lineCount": 11,
+      "currentConsumers": [],
+      "basis": "reproducible release materialization retained because attempt/release context differs",
+      "regeneration": "reacquire from the recorded release/Actions/official source or rerun the recorded local materialization"
+    },
+    {
+      "path": "/private/tmp/de405-sample-release-two.xzMoUt/stage/de405-jpl-cspice-residual-sweep.samples.jsonl",
+      "scope": "external_recovery_or_raw",
+      "classification": "cold_archive_optional",
+      "sizeBytes": 280780522,
+      "sha256": "62192cde5fdecbf53307ed532da212156bc7dcc4beade08117a6bd75c1101d84",
+      "lineCount": 150673,
+      "currentConsumers": [],
+      "basis": "reproducible release materialization retained because attempt/release context differs",
+      "regeneration": "reacquire from the recorded release/Actions/official source or rerun the recorded local materialization"
+    },
+    {
+      "path": "/private/tmp/de405-sample-release-two.xzMoUt/stage/sample-asset-manifest.json",
+      "scope": "external_recovery_or_raw",
+      "classification": "cold_archive_optional",
+      "sizeBytes": 1008,
+      "sha256": "864d912dd07983de0cbde82e671399047b4684257c4439f5ddfb7a8949f92eb7",
+      "lineCount": 34,
+      "currentConsumers": [],
+      "basis": "reproducible release materialization retained because attempt/release context differs",
+      "regeneration": "reacquire from the recorded release/Actions/official source or rerun the recorded local materialization"
+    },
+    {
+      "path": "/private/tmp/de405-setup-30768513595/image-archive-sha256.txt",
+      "scope": "external_recovery_or_raw",
+      "classification": "required_unique_evidence",
+      "sizeBytes": 65,
+      "sha256": "c077f8fc735e939297cdec195860b7d4edeea0231ef5fca2d18846178a5175c3",
+      "lineCount": 1,
+      "currentConsumers": [],
+      "basis": "remote result, provenance, or OCI setup record; same payload bytes do not erase variant provenance",
+      "regeneration": "reacquire from the recorded release/Actions/official source or rerun the recorded local materialization"
+    },
+    {
+      "path": "/private/tmp/de405-setup-30768513595/image-id.txt",
+      "scope": "external_recovery_or_raw",
+      "classification": "required_unique_evidence",
+      "sizeBytes": 72,
+      "sha256": "03bc4837b97de5c0d76ddc522fd47e11055f12af49d4c7fd5999ab075f459146",
+      "lineCount": 1,
+      "currentConsumers": [],
+      "basis": "remote result, provenance, or OCI setup record; same payload bytes do not erase variant provenance",
+      "regeneration": "reacquire from the recorded release/Actions/official source or rerun the recorded local materialization"
+    },
+    {
+      "path": "/private/tmp/de405-setup-30768513595/toolchain-image.tar",
+      "scope": "external_recovery_or_raw",
+      "classification": "required_unique_evidence",
+      "sizeBytes": 580115456,
+      "sha256": "ca4cc3db6b5144c372307026883c90e21265a5069c40e0b537e318478191c767",
+      "lineCount": 3078667,
+      "currentConsumers": [],
+      "basis": "remote result, provenance, or OCI setup record; same payload bytes do not erase variant provenance",
+      "regeneration": "reacquire from the recorded release/Actions/official source or rerun the recorded local materialization"
+    },
+    {
+      "path": "/private/tmp/de405-setup-30768513595/toolchain-lock.json",
+      "scope": "external_recovery_or_raw",
+      "classification": "required_unique_evidence",
+      "sizeBytes": 6569,
+      "sha256": "27c7d55d4cf787a83836537b1576676d7c994de13ff5792f97eaab7409d98530",
+      "lineCount": 106,
+      "currentConsumers": [],
+      "basis": "remote result, provenance, or OCI setup record; same payload bytes do not erase variant provenance",
+      "regeneration": "reacquire from the recorded release/Actions/official source or rerun the recorded local materialization"
+    },
+    {
+      "path": "artifacts/.DS_Store",
+      "scope": "repository_ignored_artifact",
+      "classification": "fully_reproducible_disposable",
+      "sizeBytes": 6148,
+      "sha256": "e8ab059e9431af4d9d3ea23701566216448b90c98ab07ef76924187fb124a36e",
+      "lineCount": 2,
+      "currentConsumers": [
+        "scripts/audit-de405-evidence-disposal.mjs"
+      ],
+      "basis": "Finder metadata; outside the artifact contract",
+      "regeneration": "producer script and recorded inputs in docs/de405-artifact-materialization.md; conditional on DE405/CSPICE/JPL runtime",
+      "status": "deleted"
+    },
+    {
+      "path": "/private/tmp/de405-linux-asset-iOGC1t/sample.zip",
+      "scope": "external_recovery_or_raw",
+      "classification": "duplicate_disposable",
+      "sizeBytes": 280781846,
+      "sha256": "5fb3f6f7c5a7b20f9081d1f16a6f000c00df8594c88606344a9c8d833b9aa1c8",
+      "lineCount": 150710,
+      "currentConsumers": [],
+      "basis": "exact byte duplicate of the canonical sample release/input; no unique remote provenance",
+      "regeneration": "reacquire from the recorded release/Actions/official source or rerun the recorded local materialization",
+      "status": "deleted"
+    },
+    {
+      "path": "/private/tmp/de405-linux-asset-iOGC1t/sample.zip.extracted/de405-jpl-cspice-residual-sweep.samples.jsonl",
+      "scope": "external_recovery_or_raw",
+      "classification": "duplicate_disposable",
+      "sizeBytes": 280780522,
+      "sha256": "62192cde5fdecbf53307ed532da212156bc7dcc4beade08117a6bd75c1101d84",
+      "lineCount": 150673,
+      "currentConsumers": [],
+      "basis": "exact byte duplicate of the canonical sample release/input; no unique remote provenance",
+      "regeneration": "reacquire from the recorded release/Actions/official source or rerun the recorded local materialization",
+      "status": "deleted"
+    },
+    {
+      "path": "/private/tmp/de405-linux-asset-iOGC1t/sample.zip.extracted/sample-asset-manifest.json",
+      "scope": "external_recovery_or_raw",
+      "classification": "duplicate_disposable",
+      "sizeBytes": 1008,
+      "sha256": "864d912dd07983de0cbde82e671399047b4684257c4439f5ddfb7a8949f92eb7",
+      "lineCount": 34,
+      "currentConsumers": [],
+      "basis": "exact byte duplicate of the canonical sample release/input; no unique remote provenance",
+      "regeneration": "reacquire from the recorded release/Actions/official source or rerun the recorded local materialization",
+      "status": "deleted"
+    },
+    {
+      "path": "/private/tmp/de405-sample-asset-check/one/de405-sample-asset.zip",
+      "scope": "external_recovery_or_raw",
+      "classification": "duplicate_disposable",
+      "sizeBytes": 280781846,
+      "sha256": "5fb3f6f7c5a7b20f9081d1f16a6f000c00df8594c88606344a9c8d833b9aa1c8",
+      "lineCount": 150710,
+      "currentConsumers": [],
+      "basis": "exact byte duplicate of the canonical sample release/input; no unique remote provenance",
+      "regeneration": "reacquire from the recorded release/Actions/official source or rerun the recorded local materialization",
+      "status": "deleted"
+    },
+    {
+      "path": "/private/tmp/de405-sample-asset-check/one/de405-sample-asset.zip.extracted/de405-jpl-cspice-residual-sweep.samples.jsonl",
+      "scope": "external_recovery_or_raw",
+      "classification": "duplicate_disposable",
+      "sizeBytes": 280780522,
+      "sha256": "62192cde5fdecbf53307ed532da212156bc7dcc4beade08117a6bd75c1101d84",
+      "lineCount": 150673,
+      "currentConsumers": [],
+      "basis": "exact byte duplicate of the canonical sample release/input; no unique remote provenance",
+      "regeneration": "reacquire from the recorded release/Actions/official source or rerun the recorded local materialization",
+      "status": "deleted"
+    },
+    {
+      "path": "/private/tmp/de405-sample-asset-check/one/de405-sample-asset.zip.extracted/sample-asset-manifest.json",
+      "scope": "external_recovery_or_raw",
+      "classification": "duplicate_disposable",
+      "sizeBytes": 1008,
+      "sha256": "864d912dd07983de0cbde82e671399047b4684257c4439f5ddfb7a8949f92eb7",
+      "lineCount": 34,
+      "currentConsumers": [],
+      "basis": "exact byte duplicate of the canonical sample release/input; no unique remote provenance",
+      "regeneration": "reacquire from the recorded release/Actions/official source or rerun the recorded local materialization",
+      "status": "deleted"
+    },
+    {
+      "path": "/private/tmp/de405-sample-asset-check/one/sample-asset-record.json",
+      "scope": "external_recovery_or_raw",
+      "classification": "duplicate_disposable",
+      "sizeBytes": 418,
+      "sha256": "477d86164d2c3dade8f478e2c759666e655fe082d95fac857774db260e033880",
+      "lineCount": 11,
+      "currentConsumers": [],
+      "basis": "exact byte duplicate of the canonical sample release/input; no unique remote provenance",
+      "regeneration": "reacquire from the recorded release/Actions/official source or rerun the recorded local materialization",
+      "status": "deleted"
+    },
+    {
+      "path": "/private/tmp/de405-sample-asset-check/one/stage/de405-jpl-cspice-residual-sweep.samples.jsonl",
+      "scope": "external_recovery_or_raw",
+      "classification": "duplicate_disposable",
+      "sizeBytes": 280780522,
+      "sha256": "62192cde5fdecbf53307ed532da212156bc7dcc4beade08117a6bd75c1101d84",
+      "lineCount": 150673,
+      "currentConsumers": [],
+      "basis": "exact byte duplicate of the canonical sample release/input; no unique remote provenance",
+      "regeneration": "reacquire from the recorded release/Actions/official source or rerun the recorded local materialization",
+      "status": "deleted"
+    },
+    {
+      "path": "/private/tmp/de405-sample-asset-check/one/stage/sample-asset-manifest.json",
+      "scope": "external_recovery_or_raw",
+      "classification": "duplicate_disposable",
+      "sizeBytes": 1008,
+      "sha256": "864d912dd07983de0cbde82e671399047b4684257c4439f5ddfb7a8949f92eb7",
+      "lineCount": 34,
+      "currentConsumers": [],
+      "basis": "exact byte duplicate of the canonical sample release/input; no unique remote provenance",
+      "regeneration": "reacquire from the recorded release/Actions/official source or rerun the recorded local materialization",
+      "status": "deleted"
+    },
+    {
+      "path": "/private/tmp/de405-sample-asset-check/two/de405-sample-asset.zip",
+      "scope": "external_recovery_or_raw",
+      "classification": "duplicate_disposable",
+      "sizeBytes": 280781846,
+      "sha256": "5fb3f6f7c5a7b20f9081d1f16a6f000c00df8594c88606344a9c8d833b9aa1c8",
+      "lineCount": 150710,
+      "currentConsumers": [],
+      "basis": "exact byte duplicate of the canonical sample release/input; no unique remote provenance",
+      "regeneration": "reacquire from the recorded release/Actions/official source or rerun the recorded local materialization",
+      "status": "deleted"
+    },
+    {
+      "path": "/private/tmp/de405-sample-asset-check/two/sample-asset-record.json",
+      "scope": "external_recovery_or_raw",
+      "classification": "duplicate_disposable",
+      "sizeBytes": 418,
+      "sha256": "801a9e665dded7957d05156db33836c69716d8baeb41b635fed84cc0334eb85f",
+      "lineCount": 11,
+      "currentConsumers": [],
+      "basis": "exact byte duplicate of the canonical sample release/input; no unique remote provenance",
+      "regeneration": "reacquire from the recorded release/Actions/official source or rerun the recorded local materialization",
+      "status": "deleted"
+    },
+    {
+      "path": "/private/tmp/de405-sample-asset-check/two/stage/de405-jpl-cspice-residual-sweep.samples.jsonl",
+      "scope": "external_recovery_or_raw",
+      "classification": "duplicate_disposable",
+      "sizeBytes": 280780522,
+      "sha256": "62192cde5fdecbf53307ed532da212156bc7dcc4beade08117a6bd75c1101d84",
+      "lineCount": 150673,
+      "currentConsumers": [],
+      "basis": "exact byte duplicate of the canonical sample release/input; no unique remote provenance",
+      "regeneration": "reacquire from the recorded release/Actions/official source or rerun the recorded local materialization",
+      "status": "deleted"
+    },
+    {
+      "path": "/private/tmp/de405-sample-asset-check/two/stage/sample-asset-manifest.json",
+      "scope": "external_recovery_or_raw",
+      "classification": "duplicate_disposable",
+      "sizeBytes": 1008,
+      "sha256": "864d912dd07983de0cbde82e671399047b4684257c4439f5ddfb7a8949f92eb7",
+      "lineCount": 34,
+      "currentConsumers": [],
+      "basis": "exact byte duplicate of the canonical sample release/input; no unique remote provenance",
+      "regeneration": "reacquire from the recorded release/Actions/official source or rerun the recorded local materialization",
+      "status": "deleted"
+    }
+  ],
+  "preservedBoundaries": [
+    "canonical DE405 BSP",
+    "canonical-v2 runner and native dependencies",
+    "tracked files",
+    "Strategy-C artifacts and visible Strategy-C source/test/native files",
+    ".git",
+    "remote provenance and variant outputs",
+    "official source/download/extraction material"
+  ],
+  "regenerationConditions": [
+    "npm run de405:overlap:sweep",
+    "node scripts/generate-de405-phase-c-evidence.mjs",
+    "node scripts/generate-de405-canonical-v2.mjs",
+    "requires the recorded DE405 SPK, JPL fixture/reader, CSPICE N0067, native runners, and exact source/input identities"
+  ],
+  "validationResults": [
+    {
+      "command": "node scripts/check-astrology-ephemeris-golden.mjs",
+      "status": "passed",
+      "evidence": "golden checker pass; raw/rule-core hashes and recorded error bounds verified"
+    },
+    {
+      "command": "node scripts/check-verified-astrology-boundary.mjs",
+      "status": "passed",
+      "evidence": "adapter boundary pass; no forbidden imports or production imports"
+    },
+    {
+      "command": "npm run check:de405:artifacts",
+      "status": "passed",
+      "evidence": "15/15 generated present, 0 missing, 3 pending, ready status"
+    },
+    {
+      "command": "npm run check:de405:cross-platform-evidence",
+      "status": "passed",
+      "evidence": "corpus/conservation/exactly-once/candidate/sentinels/artifact hashes all true; 17,279 non-exact rows"
+    },
+    {
+      "command": "node --test test/de405CanonicalV2Smoke.test.js",
+      "status": "passed",
+      "evidence": "9/9 tests passed"
+    },
+    {
+      "command": "node --test test/de405JplCspiceOverlapEvidence.test.js",
+      "status": "passed",
+      "evidence": "3/3 tests passed after rebuilding the missing JPL runner with npm run de405:jpl:build-runner"
+    },
+    {
+      "command": "node --test test/astrologyAngleProperties.test.js test/astrologyContract.test.js test/astrologyEphemerisCore.test.js test/astrologyEphemerisGolden.test.js test/astrologyEphemerisMovingFrame.test.js test/astrologyPromptAdapter.test.js test/astrologyRuleCore.test.js test/astrologyTimeAngleCore.test.js test/de405JplCanonicalV2Smoke.test.js",
+      "status": "passed",
+      "evidence": "51/51 tests passed; actual ephemeris core 10-body composition and JPL smoke 10 rows included"
+    },
+    {
+      "command": "npm run build",
+      "status": "passed",
+      "evidence": "Vite production build completed"
+    },
+    {
+      "command": "git diff --check",
+      "status": "passed",
+      "evidence": "no whitespace errors; fsmonitor warning was non-fatal"
+    },
+    {
+      "command": "git -c core.fsmonitor=false status --short --branch; git diff --cached --name-only; git rev-list --left-right --count main...origin/main",
+      "status": "passed",
+      "evidence": "main, staged 0, parity 0 0; package.json and 21 pre-existing visible Strategy-C paths remain"
+    },
+    {
+      "command": "npm test",
+      "status": "skipped",
+      "evidence": "explicitly prohibited by work order"
+    }
+  ],
+  "unresolved": [
+    "repository ignored artifacts with no direct consumer remain cold_archive_optional because unique diagnostic/evidence role was not disproven",
+    "OCI setup image hash ca4cc3db... differs from remote run archive 6447e903... and is therefore not disposable",
+    "Actions variant JSONL hashes are equal but provenance is distinct",
+    "readiness checker still requires the four residual streams; no contract relaxation was attempted"
+  ],
+  "validationPlan": [
+    "Golden evidence checker",
+    "Verified Astrology boundary checker",
+    "DE405 artifact checker",
+    "cross-platform evidence checker",
+    "canonical-v2 smoke",
+    "JPL/CSPICE overlap baseline smoke",
+    "actual DE405 adapter 10/10",
+    "focused Astrology tests",
+    "npm run build",
+    "git diff --check",
+    "staged=0; main; parity=0 0; Strategy-C/package.json/21 visible files preserved"
+  ],
+  "generatedAt": "2026-08-03"
+}
