@@ -1,0 +1,2095 @@
+{
+  "schemaVersion": "astrology-interpretation-readiness-evidence-v1",
+  "inputPacket": {
+    "schemaVersion": "astrology-interpretation-packet-v1",
+    "packetContentSha256": "509148b669dd99927e870cacb2216929e2c69792a08e8d2157718f2bd039a424"
+  },
+  "readiness": {
+    "schemaVersion": "astrology-interpretation-readiness-v1",
+    "readinessVersion": "1.0.0",
+    "readinessStatus": "complete",
+    "input": {
+      "contextSchemaVersion": "astrology-interpretation-context-v1",
+      "contextVersion": "1.0.0",
+      "contextContentSha256": "610852ef32546e1bb5df63ed544be6e2760f533146a9ccc6954b19d0b138ac91",
+      "packetSchemaVersion": "astrology-interpretation-packet-v1",
+      "packetVersion": "1.0.0",
+      "packetContentSha256": "509148b669dd99927e870cacb2216929e2c69792a08e8d2157718f2bd039a424"
+    },
+    "claimCounts": {
+      "total": 53,
+      "observedOrCalculated": 20,
+      "deterministicallyDerived": 33
+    },
+    "checks": [
+      {
+        "id": "context_schema",
+        "status": "passed",
+        "reasonCodes": []
+      },
+      {
+        "id": "context_status",
+        "status": "passed",
+        "reasonCodes": []
+      },
+      {
+        "id": "context_content_hash",
+        "status": "passed",
+        "reasonCodes": []
+      },
+      {
+        "id": "packet_identity",
+        "status": "passed",
+        "reasonCodes": []
+      },
+      {
+        "id": "provenance_source_refs",
+        "status": "passed",
+        "reasonCodes": []
+      },
+      {
+        "id": "claim_counts",
+        "status": "passed",
+        "reasonCodes": []
+      },
+      {
+        "id": "claim_vocabulary",
+        "status": "passed",
+        "reasonCodes": []
+      },
+      {
+        "id": "epistemic_boundary",
+        "status": "passed",
+        "reasonCodes": []
+      },
+      {
+        "id": "calculation_contamination",
+        "status": "passed",
+        "reasonCodes": []
+      },
+      {
+        "id": "activation_boundary",
+        "status": "passed",
+        "reasonCodes": []
+      },
+      {
+        "id": "consumer_boundary",
+        "status": "passed",
+        "reasonCodes": []
+      }
+    ],
+    "decisions": {
+      "localInterpretationResearch": "eligible_for_local_interpretation_research",
+      "userDelivery": "not_eligible_for_user_delivery",
+      "productionActivation": "production_activation_blocked",
+      "humanReview": "human_review_required"
+    },
+    "satisfiedConditions": [
+      "context_schema",
+      "context_status",
+      "context_content_hash",
+      "packet_identity",
+      "provenance_source_refs",
+      "claim_counts",
+      "claim_vocabulary",
+      "epistemic_boundary",
+      "calculation_contamination",
+      "activation_boundary",
+      "consumer_boundary"
+    ],
+    "blockedReasons": [
+      "human_review_required",
+      "production_activation_not_authorized",
+      "user_delivery_not_authorized"
+    ],
+    "connected": false,
+    "activation": {
+      "availableForInterpretation": false,
+      "integrationStatus": "not_connected",
+      "serviceEligibility": "blocked",
+      "reason": "interpretation_packet_not_activated"
+    },
+    "consumerBoundary": {
+      "externalLlm": false,
+      "userDelivery": false,
+      "ui": false,
+      "production": false,
+      "database": false
+    },
+    "hashScopes": {
+      "packetContentSha256": "packet object excluding packetContentSha256, recursively sorted object keys, arrays preserved, JSON plus LF",
+      "contextContentSha256": "context object excluding contextContentSha256, recursively sorted object keys, arrays preserved, JSON plus LF",
+      "readinessContentSha256": "readiness object excluding readinessContentSha256, recursively sorted object keys, arrays preserved, JSON plus LF",
+      "artifactByteSha256": "exact UTF-8 bytes of materialized evidence JSON, including formatting and final LF"
+    },
+    "readinessContentSha256": "1c62daa33447f2bf130d7f5935ebe0a2b07369c348c1c7e60fc13bd6f1e91c38"
+  },
+  "cases": {
+    "complete": {
+      "schemaVersion": "astrology-interpretation-readiness-v1",
+      "readinessVersion": "1.0.0",
+      "readinessStatus": "complete",
+      "input": {
+        "contextSchemaVersion": "astrology-interpretation-context-v1",
+        "contextVersion": "1.0.0",
+        "contextContentSha256": "610852ef32546e1bb5df63ed544be6e2760f533146a9ccc6954b19d0b138ac91",
+        "packetSchemaVersion": "astrology-interpretation-packet-v1",
+        "packetVersion": "1.0.0",
+        "packetContentSha256": "509148b669dd99927e870cacb2216929e2c69792a08e8d2157718f2bd039a424"
+      },
+      "claimCounts": {
+        "total": 53,
+        "observedOrCalculated": 20,
+        "deterministicallyDerived": 33
+      },
+      "checks": [
+        {
+          "id": "context_schema",
+          "status": "passed",
+          "reasonCodes": []
+        },
+        {
+          "id": "context_status",
+          "status": "passed",
+          "reasonCodes": []
+        },
+        {
+          "id": "context_content_hash",
+          "status": "passed",
+          "reasonCodes": []
+        },
+        {
+          "id": "packet_identity",
+          "status": "passed",
+          "reasonCodes": []
+        },
+        {
+          "id": "provenance_source_refs",
+          "status": "passed",
+          "reasonCodes": []
+        },
+        {
+          "id": "claim_counts",
+          "status": "passed",
+          "reasonCodes": []
+        },
+        {
+          "id": "claim_vocabulary",
+          "status": "passed",
+          "reasonCodes": []
+        },
+        {
+          "id": "epistemic_boundary",
+          "status": "passed",
+          "reasonCodes": []
+        },
+        {
+          "id": "calculation_contamination",
+          "status": "passed",
+          "reasonCodes": []
+        },
+        {
+          "id": "activation_boundary",
+          "status": "passed",
+          "reasonCodes": []
+        },
+        {
+          "id": "consumer_boundary",
+          "status": "passed",
+          "reasonCodes": []
+        }
+      ],
+      "decisions": {
+        "localInterpretationResearch": "eligible_for_local_interpretation_research",
+        "userDelivery": "not_eligible_for_user_delivery",
+        "productionActivation": "production_activation_blocked",
+        "humanReview": "human_review_required"
+      },
+      "satisfiedConditions": [
+        "context_schema",
+        "context_status",
+        "context_content_hash",
+        "packet_identity",
+        "provenance_source_refs",
+        "claim_counts",
+        "claim_vocabulary",
+        "epistemic_boundary",
+        "calculation_contamination",
+        "activation_boundary",
+        "consumer_boundary"
+      ],
+      "blockedReasons": [
+        "human_review_required",
+        "production_activation_not_authorized",
+        "user_delivery_not_authorized"
+      ],
+      "connected": false,
+      "activation": {
+        "availableForInterpretation": false,
+        "integrationStatus": "not_connected",
+        "serviceEligibility": "blocked",
+        "reason": "interpretation_packet_not_activated"
+      },
+      "consumerBoundary": {
+        "externalLlm": false,
+        "userDelivery": false,
+        "ui": false,
+        "production": false,
+        "database": false
+      },
+      "hashScopes": {
+        "packetContentSha256": "packet object excluding packetContentSha256, recursively sorted object keys, arrays preserved, JSON plus LF",
+        "contextContentSha256": "context object excluding contextContentSha256, recursively sorted object keys, arrays preserved, JSON plus LF",
+        "readinessContentSha256": "readiness object excluding readinessContentSha256, recursively sorted object keys, arrays preserved, JSON plus LF",
+        "artifactByteSha256": "exact UTF-8 bytes of materialized evidence JSON, including formatting and final LF"
+      },
+      "readinessContentSha256": "1c62daa33447f2bf130d7f5935ebe0a2b07369c348c1c7e60fc13bd6f1e91c38"
+    },
+    "wrongSchemaVersion": {
+      "schemaVersion": "astrology-interpretation-readiness-v1",
+      "readinessVersion": "1.0.0",
+      "readinessStatus": "blocked",
+      "input": {
+        "contextSchemaVersion": "astrology-interpretation-context-v1",
+        "contextVersion": "1.0.0",
+        "contextContentSha256": "93bc2c7489bae36916ba56d87cb12a9395646fdaeb48efdd757f13b89eaabd12",
+        "packetSchemaVersion": "astrology-interpretation-packet-v1",
+        "packetVersion": "9.9.9",
+        "packetContentSha256": "a3d4fc5174d1281ebf604f92e5d7c3ca4f0af27a8b88d13ed41c15aeeaf42dc8"
+      },
+      "claimCounts": {
+        "total": 0,
+        "observedOrCalculated": 0,
+        "deterministicallyDerived": 0
+      },
+      "checks": [
+        {
+          "id": "context_schema",
+          "status": "passed",
+          "reasonCodes": []
+        },
+        {
+          "id": "context_status",
+          "status": "failed",
+          "reasonCodes": [
+            "context_not_complete"
+          ]
+        },
+        {
+          "id": "context_content_hash",
+          "status": "passed",
+          "reasonCodes": []
+        },
+        {
+          "id": "packet_identity",
+          "status": "failed",
+          "reasonCodes": [
+            "packet_schema_or_version_mismatch"
+          ]
+        },
+        {
+          "id": "provenance_source_refs",
+          "status": "failed",
+          "reasonCodes": [
+            "provenance_or_source_refs_invalid"
+          ]
+        },
+        {
+          "id": "claim_counts",
+          "status": "failed",
+          "reasonCodes": [
+            "claim_count_invalid"
+          ]
+        },
+        {
+          "id": "claim_vocabulary",
+          "status": "passed",
+          "reasonCodes": []
+        },
+        {
+          "id": "epistemic_boundary",
+          "status": "failed",
+          "reasonCodes": [
+            "claim_epistemic_boundary_invalid"
+          ]
+        },
+        {
+          "id": "calculation_contamination",
+          "status": "failed",
+          "reasonCodes": [
+            "calculation_contamination"
+          ]
+        },
+        {
+          "id": "activation_boundary",
+          "status": "failed",
+          "reasonCodes": [
+            "activation_boundary_mismatch"
+          ]
+        },
+        {
+          "id": "consumer_boundary",
+          "status": "passed",
+          "reasonCodes": []
+        }
+      ],
+      "decisions": {
+        "localInterpretationResearch": "not_eligible_for_local_interpretation",
+        "userDelivery": "not_eligible_for_user_delivery",
+        "productionActivation": "production_activation_blocked",
+        "humanReview": "human_review_required"
+      },
+      "satisfiedConditions": [
+        "context_schema",
+        "context_content_hash",
+        "claim_vocabulary",
+        "consumer_boundary"
+      ],
+      "blockedReasons": [
+        "activation_boundary_mismatch",
+        "calculation_contamination",
+        "claim_count_invalid",
+        "claim_epistemic_boundary_invalid",
+        "context_not_complete",
+        "human_review_required",
+        "packet_schema_or_version_mismatch",
+        "production_activation_not_authorized",
+        "provenance_or_source_refs_invalid",
+        "user_delivery_not_authorized"
+      ],
+      "connected": false,
+      "activation": {
+        "availableForInterpretation": false,
+        "integrationStatus": "not_connected",
+        "serviceEligibility": "blocked",
+        "reason": "interpretation_packet_not_activated"
+      },
+      "consumerBoundary": {
+        "externalLlm": false,
+        "userDelivery": false,
+        "ui": false,
+        "production": false,
+        "database": false
+      },
+      "hashScopes": {
+        "packetContentSha256": "packet object excluding packetContentSha256, recursively sorted object keys, arrays preserved, JSON plus LF",
+        "contextContentSha256": "context object excluding contextContentSha256, recursively sorted object keys, arrays preserved, JSON plus LF",
+        "readinessContentSha256": "readiness object excluding readinessContentSha256, recursively sorted object keys, arrays preserved, JSON plus LF",
+        "artifactByteSha256": "exact UTF-8 bytes of materialized evidence JSON, including formatting and final LF"
+      },
+      "readinessContentSha256": "96e1699a675910054c1bfabb708d0fdcdf3f7c03870750253b149a4c63c5a3ee"
+    },
+    "packetContextHashMismatch": {
+      "schemaVersion": "astrology-interpretation-readiness-v1",
+      "readinessVersion": "1.0.0",
+      "readinessStatus": "blocked",
+      "input": {
+        "contextSchemaVersion": "astrology-interpretation-context-v1",
+        "contextVersion": "1.0.0",
+        "contextContentSha256": "60f946d3d38ed578cb510b4ee84e0b2f0edb981fb4e5dd7a908ab8bfb697f9a2",
+        "packetSchemaVersion": "astrology-interpretation-packet-v1",
+        "packetVersion": "1.0.0",
+        "packetContentSha256": "0000000000000000000000000000000000000000000000000000000000000000"
+      },
+      "claimCounts": {
+        "total": 0,
+        "observedOrCalculated": 0,
+        "deterministicallyDerived": 0
+      },
+      "checks": [
+        {
+          "id": "context_schema",
+          "status": "passed",
+          "reasonCodes": []
+        },
+        {
+          "id": "context_status",
+          "status": "failed",
+          "reasonCodes": [
+            "context_not_complete"
+          ]
+        },
+        {
+          "id": "context_content_hash",
+          "status": "passed",
+          "reasonCodes": []
+        },
+        {
+          "id": "packet_identity",
+          "status": "failed",
+          "reasonCodes": [
+            "packet_content_hash_missing_or_mismatch"
+          ]
+        },
+        {
+          "id": "provenance_source_refs",
+          "status": "failed",
+          "reasonCodes": [
+            "provenance_or_source_refs_invalid"
+          ]
+        },
+        {
+          "id": "claim_counts",
+          "status": "failed",
+          "reasonCodes": [
+            "claim_count_invalid"
+          ]
+        },
+        {
+          "id": "claim_vocabulary",
+          "status": "passed",
+          "reasonCodes": []
+        },
+        {
+          "id": "epistemic_boundary",
+          "status": "failed",
+          "reasonCodes": [
+            "claim_epistemic_boundary_invalid"
+          ]
+        },
+        {
+          "id": "calculation_contamination",
+          "status": "failed",
+          "reasonCodes": [
+            "calculation_contamination"
+          ]
+        },
+        {
+          "id": "activation_boundary",
+          "status": "failed",
+          "reasonCodes": [
+            "activation_boundary_mismatch"
+          ]
+        },
+        {
+          "id": "consumer_boundary",
+          "status": "passed",
+          "reasonCodes": []
+        }
+      ],
+      "decisions": {
+        "localInterpretationResearch": "not_eligible_for_local_interpretation",
+        "userDelivery": "not_eligible_for_user_delivery",
+        "productionActivation": "production_activation_blocked",
+        "humanReview": "human_review_required"
+      },
+      "satisfiedConditions": [
+        "context_schema",
+        "context_content_hash",
+        "claim_vocabulary",
+        "consumer_boundary"
+      ],
+      "blockedReasons": [
+        "activation_boundary_mismatch",
+        "calculation_contamination",
+        "claim_count_invalid",
+        "claim_epistemic_boundary_invalid",
+        "context_not_complete",
+        "human_review_required",
+        "packet_content_hash_missing_or_mismatch",
+        "production_activation_not_authorized",
+        "provenance_or_source_refs_invalid",
+        "user_delivery_not_authorized"
+      ],
+      "connected": false,
+      "activation": {
+        "availableForInterpretation": false,
+        "integrationStatus": "not_connected",
+        "serviceEligibility": "blocked",
+        "reason": "interpretation_packet_not_activated"
+      },
+      "consumerBoundary": {
+        "externalLlm": false,
+        "userDelivery": false,
+        "ui": false,
+        "production": false,
+        "database": false
+      },
+      "hashScopes": {
+        "packetContentSha256": "packet object excluding packetContentSha256, recursively sorted object keys, arrays preserved, JSON plus LF",
+        "contextContentSha256": "context object excluding contextContentSha256, recursively sorted object keys, arrays preserved, JSON plus LF",
+        "readinessContentSha256": "readiness object excluding readinessContentSha256, recursively sorted object keys, arrays preserved, JSON plus LF",
+        "artifactByteSha256": "exact UTF-8 bytes of materialized evidence JSON, including formatting and final LF"
+      },
+      "readinessContentSha256": "e115bff135614d4c5014968a20c80a8425a2832910524c4aa3e3ea5db7bfaca0"
+    },
+    "provenanceTampered": {
+      "schemaVersion": "astrology-interpretation-readiness-v1",
+      "readinessVersion": "1.0.0",
+      "readinessStatus": "blocked",
+      "input": {
+        "contextSchemaVersion": "astrology-interpretation-context-v1",
+        "contextVersion": "1.0.0",
+        "contextContentSha256": "24576b59064a10f0653f452db7d28a2b6c3c5d06bd5de102b27b4b4ca9d5f9b0",
+        "packetSchemaVersion": "astrology-interpretation-packet-v1",
+        "packetVersion": "1.0.0",
+        "packetContentSha256": "9a473797534f5c02e9a9e11374643cd321c2d69f889561293573f7fd4d6a7490"
+      },
+      "claimCounts": {
+        "total": 0,
+        "observedOrCalculated": 0,
+        "deterministicallyDerived": 0
+      },
+      "checks": [
+        {
+          "id": "context_schema",
+          "status": "passed",
+          "reasonCodes": []
+        },
+        {
+          "id": "context_status",
+          "status": "failed",
+          "reasonCodes": [
+            "context_not_complete"
+          ]
+        },
+        {
+          "id": "context_content_hash",
+          "status": "passed",
+          "reasonCodes": []
+        },
+        {
+          "id": "packet_identity",
+          "status": "failed",
+          "reasonCodes": [
+            "packet_context_hash_link_invalid"
+          ]
+        },
+        {
+          "id": "provenance_source_refs",
+          "status": "failed",
+          "reasonCodes": [
+            "provenance_or_source_refs_invalid"
+          ]
+        },
+        {
+          "id": "claim_counts",
+          "status": "failed",
+          "reasonCodes": [
+            "claim_count_invalid"
+          ]
+        },
+        {
+          "id": "claim_vocabulary",
+          "status": "passed",
+          "reasonCodes": []
+        },
+        {
+          "id": "epistemic_boundary",
+          "status": "failed",
+          "reasonCodes": [
+            "claim_epistemic_boundary_invalid"
+          ]
+        },
+        {
+          "id": "calculation_contamination",
+          "status": "failed",
+          "reasonCodes": [
+            "calculation_contamination"
+          ]
+        },
+        {
+          "id": "activation_boundary",
+          "status": "failed",
+          "reasonCodes": [
+            "activation_boundary_mismatch"
+          ]
+        },
+        {
+          "id": "consumer_boundary",
+          "status": "passed",
+          "reasonCodes": []
+        }
+      ],
+      "decisions": {
+        "localInterpretationResearch": "not_eligible_for_local_interpretation",
+        "userDelivery": "not_eligible_for_user_delivery",
+        "productionActivation": "production_activation_blocked",
+        "humanReview": "human_review_required"
+      },
+      "satisfiedConditions": [
+        "context_schema",
+        "context_content_hash",
+        "claim_vocabulary",
+        "consumer_boundary"
+      ],
+      "blockedReasons": [
+        "activation_boundary_mismatch",
+        "calculation_contamination",
+        "claim_count_invalid",
+        "claim_epistemic_boundary_invalid",
+        "context_not_complete",
+        "human_review_required",
+        "packet_context_hash_link_invalid",
+        "packet_provenance_mismatch",
+        "production_activation_not_authorized",
+        "provenance_or_source_refs_invalid",
+        "user_delivery_not_authorized"
+      ],
+      "connected": false,
+      "activation": {
+        "availableForInterpretation": false,
+        "integrationStatus": "not_connected",
+        "serviceEligibility": "blocked",
+        "reason": "interpretation_packet_not_activated"
+      },
+      "consumerBoundary": {
+        "externalLlm": false,
+        "userDelivery": false,
+        "ui": false,
+        "production": false,
+        "database": false
+      },
+      "hashScopes": {
+        "packetContentSha256": "packet object excluding packetContentSha256, recursively sorted object keys, arrays preserved, JSON plus LF",
+        "contextContentSha256": "context object excluding contextContentSha256, recursively sorted object keys, arrays preserved, JSON plus LF",
+        "readinessContentSha256": "readiness object excluding readinessContentSha256, recursively sorted object keys, arrays preserved, JSON plus LF",
+        "artifactByteSha256": "exact UTF-8 bytes of materialized evidence JSON, including formatting and final LF"
+      },
+      "readinessContentSha256": "f61afceef8c48a01cf00357445acb544948d749c5a2501e7e4d8fc1c21542d2d"
+    },
+    "sourceRefsTampered": {
+      "schemaVersion": "astrology-interpretation-readiness-v1",
+      "readinessVersion": "1.0.0",
+      "readinessStatus": "blocked",
+      "input": {
+        "contextSchemaVersion": "astrology-interpretation-context-v1",
+        "contextVersion": "1.0.0",
+        "contextContentSha256": "cb81018280095ba678fc11c0ceca40cee1ba2061b6a53da6a870bfe55f851514",
+        "packetSchemaVersion": "astrology-interpretation-packet-v1",
+        "packetVersion": "1.0.0",
+        "packetContentSha256": "e83e9a072aa606ab11b77c5ef57b91d447cf16522766e2bf3d4418ce39a33086"
+      },
+      "claimCounts": {
+        "total": 0,
+        "observedOrCalculated": 0,
+        "deterministicallyDerived": 0
+      },
+      "checks": [
+        {
+          "id": "context_schema",
+          "status": "passed",
+          "reasonCodes": []
+        },
+        {
+          "id": "context_status",
+          "status": "failed",
+          "reasonCodes": [
+            "context_not_complete"
+          ]
+        },
+        {
+          "id": "context_content_hash",
+          "status": "passed",
+          "reasonCodes": []
+        },
+        {
+          "id": "packet_identity",
+          "status": "failed",
+          "reasonCodes": [
+            "packet_context_hash_link_invalid"
+          ]
+        },
+        {
+          "id": "provenance_source_refs",
+          "status": "failed",
+          "reasonCodes": [
+            "provenance_or_source_refs_invalid"
+          ]
+        },
+        {
+          "id": "claim_counts",
+          "status": "failed",
+          "reasonCodes": [
+            "claim_count_invalid"
+          ]
+        },
+        {
+          "id": "claim_vocabulary",
+          "status": "passed",
+          "reasonCodes": []
+        },
+        {
+          "id": "epistemic_boundary",
+          "status": "failed",
+          "reasonCodes": [
+            "claim_epistemic_boundary_invalid"
+          ]
+        },
+        {
+          "id": "calculation_contamination",
+          "status": "failed",
+          "reasonCodes": [
+            "calculation_contamination"
+          ]
+        },
+        {
+          "id": "activation_boundary",
+          "status": "failed",
+          "reasonCodes": [
+            "activation_boundary_mismatch"
+          ]
+        },
+        {
+          "id": "consumer_boundary",
+          "status": "passed",
+          "reasonCodes": []
+        }
+      ],
+      "decisions": {
+        "localInterpretationResearch": "not_eligible_for_local_interpretation",
+        "userDelivery": "not_eligible_for_user_delivery",
+        "productionActivation": "production_activation_blocked",
+        "humanReview": "human_review_required"
+      },
+      "satisfiedConditions": [
+        "context_schema",
+        "context_content_hash",
+        "claim_vocabulary",
+        "consumer_boundary"
+      ],
+      "blockedReasons": [
+        "activation_boundary_mismatch",
+        "calculation_contamination",
+        "claim_count_invalid",
+        "claim_epistemic_boundary_invalid",
+        "claim_source_refs_missing_or_unresolvable",
+        "context_not_complete",
+        "human_review_required",
+        "packet_context_hash_link_invalid",
+        "production_activation_not_authorized",
+        "provenance_or_source_refs_invalid",
+        "user_delivery_not_authorized"
+      ],
+      "connected": false,
+      "activation": {
+        "availableForInterpretation": false,
+        "integrationStatus": "not_connected",
+        "serviceEligibility": "blocked",
+        "reason": "interpretation_packet_not_activated"
+      },
+      "consumerBoundary": {
+        "externalLlm": false,
+        "userDelivery": false,
+        "ui": false,
+        "production": false,
+        "database": false
+      },
+      "hashScopes": {
+        "packetContentSha256": "packet object excluding packetContentSha256, recursively sorted object keys, arrays preserved, JSON plus LF",
+        "contextContentSha256": "context object excluding contextContentSha256, recursively sorted object keys, arrays preserved, JSON plus LF",
+        "readinessContentSha256": "readiness object excluding readinessContentSha256, recursively sorted object keys, arrays preserved, JSON plus LF",
+        "artifactByteSha256": "exact UTF-8 bytes of materialized evidence JSON, including formatting and final LF"
+      },
+      "readinessContentSha256": "4234cd17cc977e508a127a1cbe3a8d2297f0a5d8fdc3407432d6e6ae5434f1dd"
+    },
+    "claimCountTampered": {
+      "schemaVersion": "astrology-interpretation-readiness-v1",
+      "readinessVersion": "1.0.0",
+      "readinessStatus": "blocked",
+      "input": {
+        "contextSchemaVersion": "astrology-interpretation-context-v1",
+        "contextVersion": "1.0.0",
+        "contextContentSha256": "273b44a6916b8242a30e8ab00fcc47acde6ca09ce4da4f0368a2b26df12c1a30",
+        "packetSchemaVersion": "astrology-interpretation-packet-v1",
+        "packetVersion": "1.0.0",
+        "packetContentSha256": "824d36da6119cd208f0b154336789cf9a8f0404168eb77bedb865788cfccf8e6"
+      },
+      "claimCounts": {
+        "total": 50,
+        "observedOrCalculated": 18,
+        "deterministicallyDerived": 32
+      },
+      "checks": [
+        {
+          "id": "context_schema",
+          "status": "passed",
+          "reasonCodes": []
+        },
+        {
+          "id": "context_status",
+          "status": "passed",
+          "reasonCodes": []
+        },
+        {
+          "id": "context_content_hash",
+          "status": "passed",
+          "reasonCodes": []
+        },
+        {
+          "id": "packet_identity",
+          "status": "passed",
+          "reasonCodes": []
+        },
+        {
+          "id": "provenance_source_refs",
+          "status": "passed",
+          "reasonCodes": []
+        },
+        {
+          "id": "claim_counts",
+          "status": "failed",
+          "reasonCodes": [
+            "claim_count_invalid"
+          ]
+        },
+        {
+          "id": "claim_vocabulary",
+          "status": "passed",
+          "reasonCodes": []
+        },
+        {
+          "id": "epistemic_boundary",
+          "status": "passed",
+          "reasonCodes": []
+        },
+        {
+          "id": "calculation_contamination",
+          "status": "passed",
+          "reasonCodes": []
+        },
+        {
+          "id": "activation_boundary",
+          "status": "passed",
+          "reasonCodes": []
+        },
+        {
+          "id": "consumer_boundary",
+          "status": "passed",
+          "reasonCodes": []
+        }
+      ],
+      "decisions": {
+        "localInterpretationResearch": "not_eligible_for_local_interpretation",
+        "userDelivery": "not_eligible_for_user_delivery",
+        "productionActivation": "production_activation_blocked",
+        "humanReview": "human_review_required"
+      },
+      "satisfiedConditions": [
+        "context_schema",
+        "context_status",
+        "context_content_hash",
+        "packet_identity",
+        "provenance_source_refs",
+        "claim_vocabulary",
+        "epistemic_boundary",
+        "calculation_contamination",
+        "activation_boundary",
+        "consumer_boundary"
+      ],
+      "blockedReasons": [
+        "claim_count_invalid",
+        "human_review_required",
+        "production_activation_not_authorized",
+        "user_delivery_not_authorized"
+      ],
+      "connected": false,
+      "activation": {
+        "availableForInterpretation": false,
+        "integrationStatus": "not_connected",
+        "serviceEligibility": "blocked",
+        "reason": "interpretation_packet_not_activated"
+      },
+      "consumerBoundary": {
+        "externalLlm": false,
+        "userDelivery": false,
+        "ui": false,
+        "production": false,
+        "database": false
+      },
+      "hashScopes": {
+        "packetContentSha256": "packet object excluding packetContentSha256, recursively sorted object keys, arrays preserved, JSON plus LF",
+        "contextContentSha256": "context object excluding contextContentSha256, recursively sorted object keys, arrays preserved, JSON plus LF",
+        "readinessContentSha256": "readiness object excluding readinessContentSha256, recursively sorted object keys, arrays preserved, JSON plus LF",
+        "artifactByteSha256": "exact UTF-8 bytes of materialized evidence JSON, including formatting and final LF"
+      },
+      "readinessContentSha256": "5b4186a196086d43019002ea4f7da08e5a80efad6129bdf8f644a2c1587ce6ba"
+    },
+    "vocabularyTampered": {
+      "schemaVersion": "astrology-interpretation-readiness-v1",
+      "readinessVersion": "1.0.0",
+      "readinessStatus": "blocked",
+      "input": {
+        "contextSchemaVersion": "astrology-interpretation-context-v1",
+        "contextVersion": "1.0.0",
+        "contextContentSha256": "d108dd12164f5a5691a6f6b0af31ea975b06263b870c7da3897922a2527a1f2d",
+        "packetSchemaVersion": "astrology-interpretation-packet-v1",
+        "packetVersion": "1.0.0",
+        "packetContentSha256": "50328a4909993792271a960dfd92a10b038fb373753834901306e7aa3cba007c"
+      },
+      "claimCounts": {
+        "total": 0,
+        "observedOrCalculated": 0,
+        "deterministicallyDerived": 0
+      },
+      "checks": [
+        {
+          "id": "context_schema",
+          "status": "passed",
+          "reasonCodes": []
+        },
+        {
+          "id": "context_status",
+          "status": "failed",
+          "reasonCodes": [
+            "context_not_complete"
+          ]
+        },
+        {
+          "id": "context_content_hash",
+          "status": "passed",
+          "reasonCodes": []
+        },
+        {
+          "id": "packet_identity",
+          "status": "failed",
+          "reasonCodes": [
+            "packet_context_hash_link_invalid"
+          ]
+        },
+        {
+          "id": "provenance_source_refs",
+          "status": "failed",
+          "reasonCodes": [
+            "provenance_or_source_refs_invalid"
+          ]
+        },
+        {
+          "id": "claim_counts",
+          "status": "failed",
+          "reasonCodes": [
+            "claim_count_invalid"
+          ]
+        },
+        {
+          "id": "claim_vocabulary",
+          "status": "passed",
+          "reasonCodes": []
+        },
+        {
+          "id": "epistemic_boundary",
+          "status": "failed",
+          "reasonCodes": [
+            "claim_epistemic_boundary_invalid"
+          ]
+        },
+        {
+          "id": "calculation_contamination",
+          "status": "failed",
+          "reasonCodes": [
+            "calculation_contamination"
+          ]
+        },
+        {
+          "id": "activation_boundary",
+          "status": "failed",
+          "reasonCodes": [
+            "activation_boundary_mismatch"
+          ]
+        },
+        {
+          "id": "consumer_boundary",
+          "status": "passed",
+          "reasonCodes": []
+        }
+      ],
+      "decisions": {
+        "localInterpretationResearch": "not_eligible_for_local_interpretation",
+        "userDelivery": "not_eligible_for_user_delivery",
+        "productionActivation": "production_activation_blocked",
+        "humanReview": "human_review_required"
+      },
+      "satisfiedConditions": [
+        "context_schema",
+        "context_content_hash",
+        "claim_vocabulary",
+        "consumer_boundary"
+      ],
+      "blockedReasons": [
+        "activation_boundary_mismatch",
+        "calculation_contamination",
+        "claim_count_invalid",
+        "claim_epistemic_boundary_invalid",
+        "context_not_complete",
+        "human_review_required",
+        "packet_claim_vocabulary_invalid",
+        "packet_context_hash_link_invalid",
+        "production_activation_not_authorized",
+        "provenance_or_source_refs_invalid",
+        "user_delivery_not_authorized"
+      ],
+      "connected": false,
+      "activation": {
+        "availableForInterpretation": false,
+        "integrationStatus": "not_connected",
+        "serviceEligibility": "blocked",
+        "reason": "interpretation_packet_not_activated"
+      },
+      "consumerBoundary": {
+        "externalLlm": false,
+        "userDelivery": false,
+        "ui": false,
+        "production": false,
+        "database": false
+      },
+      "hashScopes": {
+        "packetContentSha256": "packet object excluding packetContentSha256, recursively sorted object keys, arrays preserved, JSON plus LF",
+        "contextContentSha256": "context object excluding contextContentSha256, recursively sorted object keys, arrays preserved, JSON plus LF",
+        "readinessContentSha256": "readiness object excluding readinessContentSha256, recursively sorted object keys, arrays preserved, JSON plus LF",
+        "artifactByteSha256": "exact UTF-8 bytes of materialized evidence JSON, including formatting and final LF"
+      },
+      "readinessContentSha256": "909c14084275986fc02a29e45fd6a5f274adc2deeb2ef6b3ff627b4ddfb110fa"
+    },
+    "epistemicBoundaryMixed": {
+      "schemaVersion": "astrology-interpretation-readiness-v1",
+      "readinessVersion": "1.0.0",
+      "readinessStatus": "blocked",
+      "input": {
+        "contextSchemaVersion": "astrology-interpretation-context-v1",
+        "contextVersion": "1.0.0",
+        "contextContentSha256": "f3a7cf7a3f681ee77777041571f5b4c4db41a54a2f08976b5799cce128680eec",
+        "packetSchemaVersion": "astrology-interpretation-packet-v1",
+        "packetVersion": "1.0.0",
+        "packetContentSha256": "b33648d094c4809a582531a262fdca8cc56226c88d15e4507acf32c176ca1488"
+      },
+      "claimCounts": {
+        "total": 0,
+        "observedOrCalculated": 0,
+        "deterministicallyDerived": 0
+      },
+      "checks": [
+        {
+          "id": "context_schema",
+          "status": "passed",
+          "reasonCodes": []
+        },
+        {
+          "id": "context_status",
+          "status": "failed",
+          "reasonCodes": [
+            "context_not_complete"
+          ]
+        },
+        {
+          "id": "context_content_hash",
+          "status": "passed",
+          "reasonCodes": []
+        },
+        {
+          "id": "packet_identity",
+          "status": "failed",
+          "reasonCodes": [
+            "packet_context_hash_link_invalid"
+          ]
+        },
+        {
+          "id": "provenance_source_refs",
+          "status": "failed",
+          "reasonCodes": [
+            "provenance_or_source_refs_invalid"
+          ]
+        },
+        {
+          "id": "claim_counts",
+          "status": "failed",
+          "reasonCodes": [
+            "claim_count_invalid"
+          ]
+        },
+        {
+          "id": "claim_vocabulary",
+          "status": "passed",
+          "reasonCodes": []
+        },
+        {
+          "id": "epistemic_boundary",
+          "status": "failed",
+          "reasonCodes": [
+            "claim_epistemic_boundary_invalid"
+          ]
+        },
+        {
+          "id": "calculation_contamination",
+          "status": "failed",
+          "reasonCodes": [
+            "calculation_contamination"
+          ]
+        },
+        {
+          "id": "activation_boundary",
+          "status": "failed",
+          "reasonCodes": [
+            "activation_boundary_mismatch"
+          ]
+        },
+        {
+          "id": "consumer_boundary",
+          "status": "passed",
+          "reasonCodes": []
+        }
+      ],
+      "decisions": {
+        "localInterpretationResearch": "not_eligible_for_local_interpretation",
+        "userDelivery": "not_eligible_for_user_delivery",
+        "productionActivation": "production_activation_blocked",
+        "humanReview": "human_review_required"
+      },
+      "satisfiedConditions": [
+        "context_schema",
+        "context_content_hash",
+        "claim_vocabulary",
+        "consumer_boundary"
+      ],
+      "blockedReasons": [
+        "activation_boundary_mismatch",
+        "calculation_contamination",
+        "claim_count_invalid",
+        "claim_epistemic_boundary_invalid",
+        "context_not_complete",
+        "human_review_required",
+        "packet_context_hash_link_invalid",
+        "production_activation_not_authorized",
+        "provenance_or_source_refs_invalid",
+        "user_delivery_not_authorized"
+      ],
+      "connected": false,
+      "activation": {
+        "availableForInterpretation": false,
+        "integrationStatus": "not_connected",
+        "serviceEligibility": "blocked",
+        "reason": "interpretation_packet_not_activated"
+      },
+      "consumerBoundary": {
+        "externalLlm": false,
+        "userDelivery": false,
+        "ui": false,
+        "production": false,
+        "database": false
+      },
+      "hashScopes": {
+        "packetContentSha256": "packet object excluding packetContentSha256, recursively sorted object keys, arrays preserved, JSON plus LF",
+        "contextContentSha256": "context object excluding contextContentSha256, recursively sorted object keys, arrays preserved, JSON plus LF",
+        "readinessContentSha256": "readiness object excluding readinessContentSha256, recursively sorted object keys, arrays preserved, JSON plus LF",
+        "artifactByteSha256": "exact UTF-8 bytes of materialized evidence JSON, including formatting and final LF"
+      },
+      "readinessContentSha256": "1a3be1f4610e57b1ab3a7c06336a636c28de731e357b254c4856bed44a3d2674"
+    },
+    "activationInjected": {
+      "schemaVersion": "astrology-interpretation-readiness-v1",
+      "readinessVersion": "1.0.0",
+      "readinessStatus": "blocked",
+      "input": {
+        "contextSchemaVersion": "astrology-interpretation-context-v1",
+        "contextVersion": "1.0.0",
+        "contextContentSha256": "c50df8bc580e86a7fb7af9fc241269fff3404d1ba8a62526b93a4ba577f93902",
+        "packetSchemaVersion": "astrology-interpretation-packet-v1",
+        "packetVersion": "1.0.0",
+        "packetContentSha256": "8a563a1fd397fe2de32f1a7348b4ef8d844df71d2a9fdb8bca5fab1eca8a6201"
+      },
+      "claimCounts": {
+        "total": 0,
+        "observedOrCalculated": 0,
+        "deterministicallyDerived": 0
+      },
+      "checks": [
+        {
+          "id": "context_schema",
+          "status": "passed",
+          "reasonCodes": []
+        },
+        {
+          "id": "context_status",
+          "status": "failed",
+          "reasonCodes": [
+            "context_not_complete"
+          ]
+        },
+        {
+          "id": "context_content_hash",
+          "status": "passed",
+          "reasonCodes": []
+        },
+        {
+          "id": "packet_identity",
+          "status": "failed",
+          "reasonCodes": [
+            "packet_context_hash_link_invalid"
+          ]
+        },
+        {
+          "id": "provenance_source_refs",
+          "status": "failed",
+          "reasonCodes": [
+            "provenance_or_source_refs_invalid"
+          ]
+        },
+        {
+          "id": "claim_counts",
+          "status": "failed",
+          "reasonCodes": [
+            "claim_count_invalid"
+          ]
+        },
+        {
+          "id": "claim_vocabulary",
+          "status": "passed",
+          "reasonCodes": []
+        },
+        {
+          "id": "epistemic_boundary",
+          "status": "failed",
+          "reasonCodes": [
+            "claim_epistemic_boundary_invalid"
+          ]
+        },
+        {
+          "id": "calculation_contamination",
+          "status": "failed",
+          "reasonCodes": [
+            "calculation_contamination"
+          ]
+        },
+        {
+          "id": "activation_boundary",
+          "status": "failed",
+          "reasonCodes": [
+            "activation_boundary_mismatch"
+          ]
+        },
+        {
+          "id": "consumer_boundary",
+          "status": "passed",
+          "reasonCodes": []
+        }
+      ],
+      "decisions": {
+        "localInterpretationResearch": "not_eligible_for_local_interpretation",
+        "userDelivery": "not_eligible_for_user_delivery",
+        "productionActivation": "production_activation_blocked",
+        "humanReview": "human_review_required"
+      },
+      "satisfiedConditions": [
+        "context_schema",
+        "context_content_hash",
+        "claim_vocabulary",
+        "consumer_boundary"
+      ],
+      "blockedReasons": [
+        "activation_boundary_mismatch",
+        "calculation_contamination",
+        "claim_count_invalid",
+        "claim_epistemic_boundary_invalid",
+        "context_not_complete",
+        "human_review_required",
+        "packet_context_hash_link_invalid",
+        "packet_usable_or_activation_boundary_invalid",
+        "production_activation_not_authorized",
+        "provenance_or_source_refs_invalid",
+        "user_delivery_not_authorized"
+      ],
+      "connected": false,
+      "activation": {
+        "availableForInterpretation": false,
+        "integrationStatus": "not_connected",
+        "serviceEligibility": "blocked",
+        "reason": "interpretation_packet_not_activated"
+      },
+      "consumerBoundary": {
+        "externalLlm": false,
+        "userDelivery": false,
+        "ui": false,
+        "production": false,
+        "database": false
+      },
+      "hashScopes": {
+        "packetContentSha256": "packet object excluding packetContentSha256, recursively sorted object keys, arrays preserved, JSON plus LF",
+        "contextContentSha256": "context object excluding contextContentSha256, recursively sorted object keys, arrays preserved, JSON plus LF",
+        "readinessContentSha256": "readiness object excluding readinessContentSha256, recursively sorted object keys, arrays preserved, JSON plus LF",
+        "artifactByteSha256": "exact UTF-8 bytes of materialized evidence JSON, including formatting and final LF"
+      },
+      "readinessContentSha256": "c94ca9320e3fb2e2b74c72e23d6194e3e9ad77284245d12f0b675a3b85f81de6"
+    },
+    "placidusContamination": {
+      "schemaVersion": "astrology-interpretation-readiness-v1",
+      "readinessVersion": "1.0.0",
+      "readinessStatus": "blocked",
+      "input": {
+        "contextSchemaVersion": "astrology-interpretation-context-v1",
+        "contextVersion": "1.0.0",
+        "contextContentSha256": "4e9e5bce7dca528669824975d803f0c9fe8ab113ba19448c912302c408cce205",
+        "packetSchemaVersion": "astrology-interpretation-packet-v1",
+        "packetVersion": "1.0.0",
+        "packetContentSha256": "c6f3ef1269a7d778fba1ce2a22299bfa8371c8c318384ecb743976a57e8852dc"
+      },
+      "claimCounts": {
+        "total": 0,
+        "observedOrCalculated": 0,
+        "deterministicallyDerived": 0
+      },
+      "checks": [
+        {
+          "id": "context_schema",
+          "status": "passed",
+          "reasonCodes": []
+        },
+        {
+          "id": "context_status",
+          "status": "failed",
+          "reasonCodes": [
+            "context_not_complete"
+          ]
+        },
+        {
+          "id": "context_content_hash",
+          "status": "passed",
+          "reasonCodes": []
+        },
+        {
+          "id": "packet_identity",
+          "status": "failed",
+          "reasonCodes": [
+            "packet_context_hash_link_invalid"
+          ]
+        },
+        {
+          "id": "provenance_source_refs",
+          "status": "failed",
+          "reasonCodes": [
+            "provenance_or_source_refs_invalid"
+          ]
+        },
+        {
+          "id": "claim_counts",
+          "status": "failed",
+          "reasonCodes": [
+            "claim_count_invalid"
+          ]
+        },
+        {
+          "id": "claim_vocabulary",
+          "status": "passed",
+          "reasonCodes": []
+        },
+        {
+          "id": "epistemic_boundary",
+          "status": "failed",
+          "reasonCodes": [
+            "claim_epistemic_boundary_invalid"
+          ]
+        },
+        {
+          "id": "calculation_contamination",
+          "status": "failed",
+          "reasonCodes": [
+            "calculation_contamination"
+          ]
+        },
+        {
+          "id": "activation_boundary",
+          "status": "failed",
+          "reasonCodes": [
+            "activation_boundary_mismatch"
+          ]
+        },
+        {
+          "id": "consumer_boundary",
+          "status": "passed",
+          "reasonCodes": []
+        }
+      ],
+      "decisions": {
+        "localInterpretationResearch": "not_eligible_for_local_interpretation",
+        "userDelivery": "not_eligible_for_user_delivery",
+        "productionActivation": "production_activation_blocked",
+        "humanReview": "human_review_required"
+      },
+      "satisfiedConditions": [
+        "context_schema",
+        "context_content_hash",
+        "claim_vocabulary",
+        "consumer_boundary"
+      ],
+      "blockedReasons": [
+        "activation_boundary_mismatch",
+        "calculation_contamination",
+        "claim_count_invalid",
+        "claim_epistemic_boundary_invalid",
+        "context_not_complete",
+        "human_review_required",
+        "packet_context_hash_link_invalid",
+        "production_activation_not_authorized",
+        "provenance_or_source_refs_invalid",
+        "user_delivery_not_authorized",
+        "whole_sign_contract_invalid"
+      ],
+      "connected": false,
+      "activation": {
+        "availableForInterpretation": false,
+        "integrationStatus": "not_connected",
+        "serviceEligibility": "blocked",
+        "reason": "interpretation_packet_not_activated"
+      },
+      "consumerBoundary": {
+        "externalLlm": false,
+        "userDelivery": false,
+        "ui": false,
+        "production": false,
+        "database": false
+      },
+      "hashScopes": {
+        "packetContentSha256": "packet object excluding packetContentSha256, recursively sorted object keys, arrays preserved, JSON plus LF",
+        "contextContentSha256": "context object excluding contextContentSha256, recursively sorted object keys, arrays preserved, JSON plus LF",
+        "readinessContentSha256": "readiness object excluding readinessContentSha256, recursively sorted object keys, arrays preserved, JSON plus LF",
+        "artifactByteSha256": "exact UTF-8 bytes of materialized evidence JSON, including formatting and final LF"
+      },
+      "readinessContentSha256": "76603ec627542a8599f9965f6854c08ffccb58777ac1ce3f0622ec27da52020f"
+    },
+    "simulationContamination": {
+      "schemaVersion": "astrology-interpretation-readiness-v1",
+      "readinessVersion": "1.0.0",
+      "readinessStatus": "blocked",
+      "input": {
+        "contextSchemaVersion": "astrology-interpretation-context-v1",
+        "contextVersion": "1.0.0",
+        "contextContentSha256": "fee8c69595d6bbd1f328be5de7248882e37267bce9a2ddbd2858c0271752ea69",
+        "packetSchemaVersion": "astrology-interpretation-packet-v1",
+        "packetVersion": "1.0.0",
+        "packetContentSha256": "a89eeb261f863237929cb207f30942b395cdb80978f50182814bf584c6e39f8c"
+      },
+      "claimCounts": {
+        "total": 0,
+        "observedOrCalculated": 0,
+        "deterministicallyDerived": 0
+      },
+      "checks": [
+        {
+          "id": "context_schema",
+          "status": "passed",
+          "reasonCodes": []
+        },
+        {
+          "id": "context_status",
+          "status": "failed",
+          "reasonCodes": [
+            "context_not_complete"
+          ]
+        },
+        {
+          "id": "context_content_hash",
+          "status": "passed",
+          "reasonCodes": []
+        },
+        {
+          "id": "packet_identity",
+          "status": "failed",
+          "reasonCodes": [
+            "packet_context_hash_link_invalid"
+          ]
+        },
+        {
+          "id": "provenance_source_refs",
+          "status": "failed",
+          "reasonCodes": [
+            "provenance_or_source_refs_invalid"
+          ]
+        },
+        {
+          "id": "claim_counts",
+          "status": "failed",
+          "reasonCodes": [
+            "claim_count_invalid"
+          ]
+        },
+        {
+          "id": "claim_vocabulary",
+          "status": "passed",
+          "reasonCodes": []
+        },
+        {
+          "id": "epistemic_boundary",
+          "status": "failed",
+          "reasonCodes": [
+            "claim_epistemic_boundary_invalid"
+          ]
+        },
+        {
+          "id": "calculation_contamination",
+          "status": "failed",
+          "reasonCodes": [
+            "calculation_contamination"
+          ]
+        },
+        {
+          "id": "activation_boundary",
+          "status": "failed",
+          "reasonCodes": [
+            "activation_boundary_mismatch"
+          ]
+        },
+        {
+          "id": "consumer_boundary",
+          "status": "passed",
+          "reasonCodes": []
+        }
+      ],
+      "decisions": {
+        "localInterpretationResearch": "not_eligible_for_local_interpretation",
+        "userDelivery": "not_eligible_for_user_delivery",
+        "productionActivation": "production_activation_blocked",
+        "humanReview": "human_review_required"
+      },
+      "satisfiedConditions": [
+        "context_schema",
+        "context_content_hash",
+        "claim_vocabulary",
+        "consumer_boundary"
+      ],
+      "blockedReasons": [
+        "activation_boundary_mismatch",
+        "calculation_contamination",
+        "claim_count_invalid",
+        "claim_epistemic_boundary_invalid",
+        "context_not_complete",
+        "human_review_required",
+        "packet_context_hash_link_invalid",
+        "production_activation_not_authorized",
+        "provenance_or_source_refs_invalid",
+        "user_delivery_not_authorized"
+      ],
+      "connected": false,
+      "activation": {
+        "availableForInterpretation": false,
+        "integrationStatus": "not_connected",
+        "serviceEligibility": "blocked",
+        "reason": "interpretation_packet_not_activated"
+      },
+      "consumerBoundary": {
+        "externalLlm": false,
+        "userDelivery": false,
+        "ui": false,
+        "production": false,
+        "database": false
+      },
+      "hashScopes": {
+        "packetContentSha256": "packet object excluding packetContentSha256, recursively sorted object keys, arrays preserved, JSON plus LF",
+        "contextContentSha256": "context object excluding contextContentSha256, recursively sorted object keys, arrays preserved, JSON plus LF",
+        "readinessContentSha256": "readiness object excluding readinessContentSha256, recursively sorted object keys, arrays preserved, JSON plus LF",
+        "artifactByteSha256": "exact UTF-8 bytes of materialized evidence JSON, including formatting and final LF"
+      },
+      "readinessContentSha256": "42935d603433c64d1967ba45804f878b0ba5f02f5de33a8b6ca650039327ae1e"
+    },
+    "frozenSpeedContamination": {
+      "schemaVersion": "astrology-interpretation-readiness-v1",
+      "readinessVersion": "1.0.0",
+      "readinessStatus": "blocked",
+      "input": {
+        "contextSchemaVersion": "astrology-interpretation-context-v1",
+        "contextVersion": "1.0.0",
+        "contextContentSha256": "5a57e84f60bc036541f48205f1d84896251fc08d3146d7d9413561cc4f9adfdf",
+        "packetSchemaVersion": "astrology-interpretation-packet-v1",
+        "packetVersion": "1.0.0",
+        "packetContentSha256": "a58c535fc26ee1b9756ad14ed4ce406971787bb5a7ab33d8696e3650deabe81f"
+      },
+      "claimCounts": {
+        "total": 0,
+        "observedOrCalculated": 0,
+        "deterministicallyDerived": 0
+      },
+      "checks": [
+        {
+          "id": "context_schema",
+          "status": "passed",
+          "reasonCodes": []
+        },
+        {
+          "id": "context_status",
+          "status": "failed",
+          "reasonCodes": [
+            "context_not_complete"
+          ]
+        },
+        {
+          "id": "context_content_hash",
+          "status": "passed",
+          "reasonCodes": []
+        },
+        {
+          "id": "packet_identity",
+          "status": "failed",
+          "reasonCodes": [
+            "packet_context_hash_link_invalid"
+          ]
+        },
+        {
+          "id": "provenance_source_refs",
+          "status": "failed",
+          "reasonCodes": [
+            "provenance_or_source_refs_invalid"
+          ]
+        },
+        {
+          "id": "claim_counts",
+          "status": "failed",
+          "reasonCodes": [
+            "claim_count_invalid"
+          ]
+        },
+        {
+          "id": "claim_vocabulary",
+          "status": "passed",
+          "reasonCodes": []
+        },
+        {
+          "id": "epistemic_boundary",
+          "status": "failed",
+          "reasonCodes": [
+            "claim_epistemic_boundary_invalid"
+          ]
+        },
+        {
+          "id": "calculation_contamination",
+          "status": "failed",
+          "reasonCodes": [
+            "calculation_contamination"
+          ]
+        },
+        {
+          "id": "activation_boundary",
+          "status": "failed",
+          "reasonCodes": [
+            "activation_boundary_mismatch"
+          ]
+        },
+        {
+          "id": "consumer_boundary",
+          "status": "passed",
+          "reasonCodes": []
+        }
+      ],
+      "decisions": {
+        "localInterpretationResearch": "not_eligible_for_local_interpretation",
+        "userDelivery": "not_eligible_for_user_delivery",
+        "productionActivation": "production_activation_blocked",
+        "humanReview": "human_review_required"
+      },
+      "satisfiedConditions": [
+        "context_schema",
+        "context_content_hash",
+        "claim_vocabulary",
+        "consumer_boundary"
+      ],
+      "blockedReasons": [
+        "activation_boundary_mismatch",
+        "calculation_contamination",
+        "claim_count_invalid",
+        "claim_epistemic_boundary_invalid",
+        "context_not_complete",
+        "human_review_required",
+        "packet_context_hash_link_invalid",
+        "production_activation_not_authorized",
+        "provenance_or_source_refs_invalid",
+        "user_delivery_not_authorized"
+      ],
+      "connected": false,
+      "activation": {
+        "availableForInterpretation": false,
+        "integrationStatus": "not_connected",
+        "serviceEligibility": "blocked",
+        "reason": "interpretation_packet_not_activated"
+      },
+      "consumerBoundary": {
+        "externalLlm": false,
+        "userDelivery": false,
+        "ui": false,
+        "production": false,
+        "database": false
+      },
+      "hashScopes": {
+        "packetContentSha256": "packet object excluding packetContentSha256, recursively sorted object keys, arrays preserved, JSON plus LF",
+        "contextContentSha256": "context object excluding contextContentSha256, recursively sorted object keys, arrays preserved, JSON plus LF",
+        "readinessContentSha256": "readiness object excluding readinessContentSha256, recursively sorted object keys, arrays preserved, JSON plus LF",
+        "artifactByteSha256": "exact UTF-8 bytes of materialized evidence JSON, including formatting and final LF"
+      },
+      "readinessContentSha256": "88510729b10c11b7d53317957aef51355351002686aac8be15509169d2080024"
+    },
+    "legacyPrepContamination": {
+      "schemaVersion": "astrology-interpretation-readiness-v1",
+      "readinessVersion": "1.0.0",
+      "readinessStatus": "blocked",
+      "input": {
+        "contextSchemaVersion": "astrology-interpretation-context-v1",
+        "contextVersion": "1.0.0",
+        "contextContentSha256": "5f066071d7e0be1d21eb9a9355d88fbdd5eaa449217ac61e92029a0a68c68ab4",
+        "packetSchemaVersion": "astrology-interpretation-packet-v1",
+        "packetVersion": "1.0.0",
+        "packetContentSha256": "a439ea39eceba9dfe5b79eaed7f17c8bc9c5988dd6b2325b8697e9bf0d1884ce"
+      },
+      "claimCounts": {
+        "total": 0,
+        "observedOrCalculated": 0,
+        "deterministicallyDerived": 0
+      },
+      "checks": [
+        {
+          "id": "context_schema",
+          "status": "passed",
+          "reasonCodes": []
+        },
+        {
+          "id": "context_status",
+          "status": "failed",
+          "reasonCodes": [
+            "context_not_complete"
+          ]
+        },
+        {
+          "id": "context_content_hash",
+          "status": "passed",
+          "reasonCodes": []
+        },
+        {
+          "id": "packet_identity",
+          "status": "failed",
+          "reasonCodes": [
+            "packet_context_hash_link_invalid"
+          ]
+        },
+        {
+          "id": "provenance_source_refs",
+          "status": "failed",
+          "reasonCodes": [
+            "provenance_or_source_refs_invalid"
+          ]
+        },
+        {
+          "id": "claim_counts",
+          "status": "failed",
+          "reasonCodes": [
+            "claim_count_invalid"
+          ]
+        },
+        {
+          "id": "claim_vocabulary",
+          "status": "passed",
+          "reasonCodes": []
+        },
+        {
+          "id": "epistemic_boundary",
+          "status": "failed",
+          "reasonCodes": [
+            "claim_epistemic_boundary_invalid"
+          ]
+        },
+        {
+          "id": "calculation_contamination",
+          "status": "failed",
+          "reasonCodes": [
+            "calculation_contamination"
+          ]
+        },
+        {
+          "id": "activation_boundary",
+          "status": "failed",
+          "reasonCodes": [
+            "activation_boundary_mismatch"
+          ]
+        },
+        {
+          "id": "consumer_boundary",
+          "status": "passed",
+          "reasonCodes": []
+        }
+      ],
+      "decisions": {
+        "localInterpretationResearch": "not_eligible_for_local_interpretation",
+        "userDelivery": "not_eligible_for_user_delivery",
+        "productionActivation": "production_activation_blocked",
+        "humanReview": "human_review_required"
+      },
+      "satisfiedConditions": [
+        "context_schema",
+        "context_content_hash",
+        "claim_vocabulary",
+        "consumer_boundary"
+      ],
+      "blockedReasons": [
+        "activation_boundary_mismatch",
+        "calculation_contamination",
+        "claim_count_invalid",
+        "claim_epistemic_boundary_invalid",
+        "context_not_complete",
+        "human_review_required",
+        "packet_context_hash_link_invalid",
+        "production_activation_not_authorized",
+        "provenance_or_source_refs_invalid",
+        "user_delivery_not_authorized"
+      ],
+      "connected": false,
+      "activation": {
+        "availableForInterpretation": false,
+        "integrationStatus": "not_connected",
+        "serviceEligibility": "blocked",
+        "reason": "interpretation_packet_not_activated"
+      },
+      "consumerBoundary": {
+        "externalLlm": false,
+        "userDelivery": false,
+        "ui": false,
+        "production": false,
+        "database": false
+      },
+      "hashScopes": {
+        "packetContentSha256": "packet object excluding packetContentSha256, recursively sorted object keys, arrays preserved, JSON plus LF",
+        "contextContentSha256": "context object excluding contextContentSha256, recursively sorted object keys, arrays preserved, JSON plus LF",
+        "readinessContentSha256": "readiness object excluding readinessContentSha256, recursively sorted object keys, arrays preserved, JSON plus LF",
+        "artifactByteSha256": "exact UTF-8 bytes of materialized evidence JSON, including formatting and final LF"
+      },
+      "readinessContentSha256": "3cb212b45ee9e685a68eb93b0cc564e493af1ae4b945ce32b8704a01ab838aa0"
+    },
+    "userDeliveryClaim": {
+      "schemaVersion": "astrology-interpretation-readiness-v1",
+      "readinessVersion": "1.0.0",
+      "readinessStatus": "blocked",
+      "input": {
+        "contextSchemaVersion": "astrology-interpretation-context-v1",
+        "contextVersion": "1.0.0",
+        "contextContentSha256": "dd7ae078c987c0bf9f669a91c6ddbed4eec9f5aec697489bc28814d491745632",
+        "packetSchemaVersion": "astrology-interpretation-packet-v1",
+        "packetVersion": "1.0.0",
+        "packetContentSha256": "509148b669dd99927e870cacb2216929e2c69792a08e8d2157718f2bd039a424"
+      },
+      "claimCounts": {
+        "total": 53,
+        "observedOrCalculated": 20,
+        "deterministicallyDerived": 33
+      },
+      "checks": [
+        {
+          "id": "context_schema",
+          "status": "passed",
+          "reasonCodes": []
+        },
+        {
+          "id": "context_status",
+          "status": "passed",
+          "reasonCodes": []
+        },
+        {
+          "id": "context_content_hash",
+          "status": "passed",
+          "reasonCodes": []
+        },
+        {
+          "id": "packet_identity",
+          "status": "passed",
+          "reasonCodes": []
+        },
+        {
+          "id": "provenance_source_refs",
+          "status": "passed",
+          "reasonCodes": []
+        },
+        {
+          "id": "claim_counts",
+          "status": "passed",
+          "reasonCodes": []
+        },
+        {
+          "id": "claim_vocabulary",
+          "status": "passed",
+          "reasonCodes": []
+        },
+        {
+          "id": "epistemic_boundary",
+          "status": "passed",
+          "reasonCodes": []
+        },
+        {
+          "id": "calculation_contamination",
+          "status": "passed",
+          "reasonCodes": []
+        },
+        {
+          "id": "activation_boundary",
+          "status": "passed",
+          "reasonCodes": []
+        },
+        {
+          "id": "consumer_boundary",
+          "status": "failed",
+          "reasonCodes": [
+            "consumer_boundary_promoted"
+          ]
+        }
+      ],
+      "decisions": {
+        "localInterpretationResearch": "not_eligible_for_local_interpretation",
+        "userDelivery": "not_eligible_for_user_delivery",
+        "productionActivation": "production_activation_blocked",
+        "humanReview": "human_review_required"
+      },
+      "satisfiedConditions": [
+        "context_schema",
+        "context_status",
+        "context_content_hash",
+        "packet_identity",
+        "provenance_source_refs",
+        "claim_counts",
+        "claim_vocabulary",
+        "epistemic_boundary",
+        "calculation_contamination",
+        "activation_boundary"
+      ],
+      "blockedReasons": [
+        "consumer_boundary_promoted",
+        "human_review_required",
+        "production_activation_not_authorized",
+        "user_delivery_not_authorized"
+      ],
+      "connected": false,
+      "activation": {
+        "availableForInterpretation": false,
+        "integrationStatus": "not_connected",
+        "serviceEligibility": "blocked",
+        "reason": "interpretation_packet_not_activated"
+      },
+      "consumerBoundary": {
+        "externalLlm": false,
+        "userDelivery": false,
+        "ui": false,
+        "production": false,
+        "database": false
+      },
+      "hashScopes": {
+        "packetContentSha256": "packet object excluding packetContentSha256, recursively sorted object keys, arrays preserved, JSON plus LF",
+        "contextContentSha256": "context object excluding contextContentSha256, recursively sorted object keys, arrays preserved, JSON plus LF",
+        "readinessContentSha256": "readiness object excluding readinessContentSha256, recursively sorted object keys, arrays preserved, JSON plus LF",
+        "artifactByteSha256": "exact UTF-8 bytes of materialized evidence JSON, including formatting and final LF"
+      },
+      "readinessContentSha256": "ec4025397fe6746b0bb12ad84ce637ec4f07bd071b317e49e9b6cba1e11bfa9c"
+    },
+    "productionClaim": {
+      "schemaVersion": "astrology-interpretation-readiness-v1",
+      "readinessVersion": "1.0.0",
+      "readinessStatus": "blocked",
+      "input": {
+        "contextSchemaVersion": "astrology-interpretation-context-v1",
+        "contextVersion": "1.0.0",
+        "contextContentSha256": "49c8a06e468547fe945beb09105b455631a283c727593dd1cf56bc0e246e1c6e",
+        "packetSchemaVersion": "astrology-interpretation-packet-v1",
+        "packetVersion": "1.0.0",
+        "packetContentSha256": "509148b669dd99927e870cacb2216929e2c69792a08e8d2157718f2bd039a424"
+      },
+      "claimCounts": {
+        "total": 53,
+        "observedOrCalculated": 20,
+        "deterministicallyDerived": 33
+      },
+      "checks": [
+        {
+          "id": "context_schema",
+          "status": "passed",
+          "reasonCodes": []
+        },
+        {
+          "id": "context_status",
+          "status": "passed",
+          "reasonCodes": []
+        },
+        {
+          "id": "context_content_hash",
+          "status": "passed",
+          "reasonCodes": []
+        },
+        {
+          "id": "packet_identity",
+          "status": "passed",
+          "reasonCodes": []
+        },
+        {
+          "id": "provenance_source_refs",
+          "status": "passed",
+          "reasonCodes": []
+        },
+        {
+          "id": "claim_counts",
+          "status": "passed",
+          "reasonCodes": []
+        },
+        {
+          "id": "claim_vocabulary",
+          "status": "passed",
+          "reasonCodes": []
+        },
+        {
+          "id": "epistemic_boundary",
+          "status": "passed",
+          "reasonCodes": []
+        },
+        {
+          "id": "calculation_contamination",
+          "status": "passed",
+          "reasonCodes": []
+        },
+        {
+          "id": "activation_boundary",
+          "status": "passed",
+          "reasonCodes": []
+        },
+        {
+          "id": "consumer_boundary",
+          "status": "failed",
+          "reasonCodes": [
+            "consumer_boundary_promoted"
+          ]
+        }
+      ],
+      "decisions": {
+        "localInterpretationResearch": "not_eligible_for_local_interpretation",
+        "userDelivery": "not_eligible_for_user_delivery",
+        "productionActivation": "production_activation_blocked",
+        "humanReview": "human_review_required"
+      },
+      "satisfiedConditions": [
+        "context_schema",
+        "context_status",
+        "context_content_hash",
+        "packet_identity",
+        "provenance_source_refs",
+        "claim_counts",
+        "claim_vocabulary",
+        "epistemic_boundary",
+        "calculation_contamination",
+        "activation_boundary"
+      ],
+      "blockedReasons": [
+        "consumer_boundary_promoted",
+        "human_review_required",
+        "production_activation_not_authorized",
+        "user_delivery_not_authorized"
+      ],
+      "connected": false,
+      "activation": {
+        "availableForInterpretation": false,
+        "integrationStatus": "not_connected",
+        "serviceEligibility": "blocked",
+        "reason": "interpretation_packet_not_activated"
+      },
+      "consumerBoundary": {
+        "externalLlm": false,
+        "userDelivery": false,
+        "ui": false,
+        "production": false,
+        "database": false
+      },
+      "hashScopes": {
+        "packetContentSha256": "packet object excluding packetContentSha256, recursively sorted object keys, arrays preserved, JSON plus LF",
+        "contextContentSha256": "context object excluding contextContentSha256, recursively sorted object keys, arrays preserved, JSON plus LF",
+        "readinessContentSha256": "readiness object excluding readinessContentSha256, recursively sorted object keys, arrays preserved, JSON plus LF",
+        "artifactByteSha256": "exact UTF-8 bytes of materialized evidence JSON, including formatting and final LF"
+      },
+      "readinessContentSha256": "02174d6624ff341460cd90a0fcf6df879fcf76aba426068bec7e2b24bb5945f7"
+    }
+  },
+  "readinessContentSha256": "1c62daa33447f2bf130d7f5935ebe0a2b07369c348c1c7e60fc13bd6f1e91c38"
+}
