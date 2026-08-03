@@ -16,3 +16,10 @@ scratch/actualLlmResponseReport.json
 /tools/de405-jpl-reader/fixtures/lnxp1600p2200.405
 /JPLEPH
 /test/fixtures/astrology/de405/canonical-v2/de405.bsp
+
+# DE405 research outputs are retained locally and reproducible only with the
+# external DE405/CSPICE inputs; tracked artifact contracts remain trackable.
+/artifacts/de405-*.json
+/artifacts/de405-*.jsonl
+/artifacts/de405-*.md
+/artifacts/de405-sweep-checkpoints/

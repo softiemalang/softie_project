@@ -30,7 +30,7 @@ Use only for a small, deterministic source, contract, fixture, or provenance man
 
 ### `external`
 
-Use for official evidence that must be retained, is expensive or impossible to regenerate, is unsuitable for ordinary Git, and is not needed by default runtime/build/test. A future external record must include a stable external location, exact hash, provenance, and materialization procedure. The proposed local evidence root is `/Users/softie/.local/share/softie-de405/artifacts/`; this task does not create or modify it.
+Use for official evidence that must be retained, is expensive or impossible to regenerate, is unsuitable for ordinary Git, and is not needed by default runtime/build/test. A future external record must include a stable external location, exact hash, provenance, and materialization procedure. The proposed local evidence root is `$HOME/.local/share/softie-de405/artifacts/`; this task does not create or modify it.
 
 ### `generated`
 
@@ -65,4 +65,28 @@ After `npm install`, a fresh clone can run `npm test` without `artifacts/`. `npm
 
 ## Scope and non-actions
 
-This policy work preserves the inventory and pending states. The test contract adds only the artifact resolver/readiness boundary and explicit commands; it does not modify files under `artifacts/`, `.gitignore`, `.git/info/exclude`, tolerance values, canonical selection, external data, or database/deployment state. No staging, commit, push, or deploy was performed.
+This policy work preserves the inventory and pending states. The test contract adds only the artifact resolver/readiness boundary and explicit commands; it does not modify files under `artifacts/`, `.git/info/exclude`, tolerance values, canonical selection, external data, or database/deployment state.
+
+## Working-tree boundary (2026-08-03)
+
+The working tree snapshot was `main` at `bade86f6181bc18f7197ca1493426d31aa7d1df4`, with `main...origin/main = 0 0`, no staged files, and the user-owned `package.json` Strategy-C change. Before this boundary was applied:
+
+| class | files | lines | bytes | status |
+|---|---:|---:|---:|---|
+| untracked DE405 artifacts | 106 | 897,102 | 661,288,532 | retained, now ignored |
+| untracked Strategy-C source/test/tool files | 21 | 1,199 | 103,994 | retained, visible |
+| tracked source change (`package.json`) | 1 | +12/-0 | — | retained, visible |
+
+The resulting `+898,313` is therefore `897,102 + 1,199 + 12`; it is not a tracked source diff. The four largest contributors are the retained raw sweep files `artifacts/de405-jpl-cspice-residual-sweep.samples.jsonl` (150,671 lines, 280,780,522 bytes), `.jpl.jsonl` (150,671, 169,710,274), `.cspice.jsonl` (150,671, 79,915,561), and `.manifest.jsonl` (150,671, 63,738,094). They contribute 602,684 lines and 594,144,451 bytes.
+
+### Classification and location rules
+
+- `intentional_source_change` is tracked source/config/test work such as `package.json`; preserve it and do not hide or restore it.
+- `reproducible_generated` includes DE405 JSON/JSONL/Markdown reports and checkpoints produced by the commands recorded in `package.json` and the producer scripts. These remain in `artifacts/`, are preserved for validation, and are ignored by the narrow `/artifacts/de405-*` rules above; tracked files remain visible and trackable.
+- `required_runtime` includes the canonical BSP, JPL input, CSPICE/native runners, and their build metadata. Keep the canonical runtime in its existing paths; the existing exact rules for BSP, `JPLEPH`, and native build directories do not move or delete them.
+- `required_raw_evidence` includes the residual-sweep streams, route events, and source/provenance evidence that current checkers and analysis scripts consume. Preserve the unique bytes in the repository artifact paths or, when externally archived, under `$HOME/.local/share/softie-de405/artifacts/` with a manifest and SHA-256. Ignoring is not deletion and does not change consumer paths.
+- `duplicate_archive` is assigned only when an exact hash match has a verified canonical replacement and no provenance or consumer role is lost. Five same-hash groups were observed, but none was removed because byte equality alone did not establish that boundary.
+- `temporary_output` is limited to explicitly identified, terminated, task-owned paths outside this repository; no such path was deleted or moved in this working-tree operation.
+- `unknown_or_user_owned` includes the 21 untracked Strategy-C scripts, test, and native integration files. They remain unignored and untouched.
+
+The ignore rules are intentionally limited to the DE405 artifact filename family and checkpoint directory. They do not cover source, tests, native source, runtime inputs, tracked artifacts, or arbitrary caches. `git check-ignore -v` confirms the rules apply to retained generated artifacts; ignored files remain addressable by the existing artifact checkers and scripts. No file was deleted, moved, compressed, untracked, staged, committed, pushed, deployed, or changed in a remote database.
