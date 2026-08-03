@@ -1,0 +1,2647 @@
+{
+  "schemaVersion": "astrology-verified-readiness-evidence-v1",
+  "contract": "verified-astrology-readiness-v1",
+  "cases": [
+    {
+      "id": "all-valid-calculation-ready",
+      "assessment": {
+        "schemaVersion": "verified-astrology-readiness-v1",
+        "readiness": "ready",
+        "areas": {
+          "input": {
+            "status": "ready",
+            "reasons": [],
+            "sourceRefs": [
+              "input.civilTime",
+              "input.location",
+              "input.dut1"
+            ]
+          },
+          "timeScale": {
+            "status": "ready",
+            "reasons": [],
+            "sourceRefs": [
+              "input.dut1",
+              "timeScale.leapSecond",
+              "timeScale.ttMinusUtc",
+              "timeScale.tdbMinusTt"
+            ]
+          },
+          "ephemeris": {
+            "status": "ready",
+            "reasons": [],
+            "sourceRefs": [
+              "ephemeris.bsp",
+              "ephemeris.evaluatorSelection"
+            ]
+          },
+          "runtime": {
+            "status": "ready",
+            "reasons": [],
+            "sourceRefs": [
+              "runtime.runner"
+            ]
+          },
+          "documents": {
+            "status": "ready",
+            "reasons": [],
+            "sourceRefs": [
+              "documents.raw",
+              "documents.rule",
+              "documents.adapter"
+            ]
+          },
+          "contamination": {
+            "status": "ready",
+            "reasons": [],
+            "sourceRefs": [
+              "contamination"
+            ]
+          }
+        },
+        "reasonCodes": [],
+        "calculationReady": true,
+        "activation": {
+          "availableForInterpretation": false,
+          "integrationStatus": "not_connected",
+          "serviceEligibility": "blocked",
+          "reason": "activation_requires_user_approval"
+        },
+        "sourceRefs": [
+          "input.civilTime",
+          "input.location",
+          "input.dut1",
+          "input.dut1",
+          "timeScale.leapSecond",
+          "timeScale.ttMinusUtc",
+          "timeScale.tdbMinusTt",
+          "ephemeris.bsp",
+          "ephemeris.evaluatorSelection",
+          "runtime.runner",
+          "documents.raw",
+          "documents.rule",
+          "documents.adapter",
+          "contamination"
+        ]
+      }
+    },
+    {
+      "id": "coverage-boundary-in",
+      "expectedReason": null,
+      "assessment": {
+        "schemaVersion": "verified-astrology-readiness-v1",
+        "readiness": "ready",
+        "areas": {
+          "input": {
+            "status": "ready",
+            "reasons": [],
+            "sourceRefs": [
+              "input.civilTime",
+              "input.location",
+              "input.dut1"
+            ]
+          },
+          "timeScale": {
+            "status": "ready",
+            "reasons": [],
+            "sourceRefs": [
+              "input.dut1",
+              "timeScale.leapSecond",
+              "timeScale.ttMinusUtc",
+              "timeScale.tdbMinusTt"
+            ]
+          },
+          "ephemeris": {
+            "status": "ready",
+            "reasons": [],
+            "sourceRefs": [
+              "ephemeris.bsp",
+              "ephemeris.evaluatorSelection"
+            ]
+          },
+          "runtime": {
+            "status": "ready",
+            "reasons": [],
+            "sourceRefs": [
+              "runtime.runner"
+            ]
+          },
+          "documents": {
+            "status": "ready",
+            "reasons": [],
+            "sourceRefs": [
+              "documents.raw",
+              "documents.rule",
+              "documents.adapter"
+            ]
+          },
+          "contamination": {
+            "status": "ready",
+            "reasons": [],
+            "sourceRefs": [
+              "contamination"
+            ]
+          }
+        },
+        "reasonCodes": [],
+        "calculationReady": true,
+        "activation": {
+          "availableForInterpretation": false,
+          "integrationStatus": "not_connected",
+          "serviceEligibility": "blocked",
+          "reason": "activation_requires_user_approval"
+        },
+        "sourceRefs": [
+          "input.civilTime",
+          "input.location",
+          "input.dut1",
+          "input.dut1",
+          "timeScale.leapSecond",
+          "timeScale.ttMinusUtc",
+          "timeScale.tdbMinusTt",
+          "ephemeris.bsp",
+          "ephemeris.evaluatorSelection",
+          "runtime.runner",
+          "documents.raw",
+          "documents.rule",
+          "documents.adapter",
+          "contamination"
+        ]
+      }
+    },
+    {
+      "id": "civil-time-fold",
+      "expectedReason": "civil_time_ambiguous",
+      "assessment": {
+        "schemaVersion": "verified-astrology-readiness-v1",
+        "readiness": "blocked",
+        "areas": {
+          "input": {
+            "status": "blocked",
+            "reasons": [
+              "civil_time_ambiguous",
+              "timezone_unverified"
+            ],
+            "sourceRefs": [
+              "input.civilTime",
+              "input.location",
+              "input.dut1"
+            ]
+          },
+          "timeScale": {
+            "status": "ready",
+            "reasons": [],
+            "sourceRefs": [
+              "input.dut1",
+              "timeScale.leapSecond",
+              "timeScale.ttMinusUtc",
+              "timeScale.tdbMinusTt"
+            ]
+          },
+          "ephemeris": {
+            "status": "ready",
+            "reasons": [],
+            "sourceRefs": [
+              "ephemeris.bsp",
+              "ephemeris.evaluatorSelection"
+            ]
+          },
+          "runtime": {
+            "status": "ready",
+            "reasons": [],
+            "sourceRefs": [
+              "runtime.runner"
+            ]
+          },
+          "documents": {
+            "status": "ready",
+            "reasons": [],
+            "sourceRefs": [
+              "documents.raw",
+              "documents.rule",
+              "documents.adapter"
+            ]
+          },
+          "contamination": {
+            "status": "ready",
+            "reasons": [],
+            "sourceRefs": [
+              "contamination"
+            ]
+          }
+        },
+        "reasonCodes": [
+          "civil_time_ambiguous",
+          "timezone_unverified"
+        ],
+        "calculationReady": false,
+        "activation": {
+          "availableForInterpretation": false,
+          "integrationStatus": "not_connected",
+          "serviceEligibility": "blocked",
+          "reason": "activation_requires_user_approval"
+        },
+        "sourceRefs": [
+          "input.civilTime",
+          "input.location",
+          "input.dut1",
+          "input.dut1",
+          "timeScale.leapSecond",
+          "timeScale.ttMinusUtc",
+          "timeScale.tdbMinusTt",
+          "ephemeris.bsp",
+          "ephemeris.evaluatorSelection",
+          "runtime.runner",
+          "documents.raw",
+          "documents.rule",
+          "documents.adapter",
+          "contamination"
+        ]
+      }
+    },
+    {
+      "id": "civil-time-gap",
+      "expectedReason": "civil_time_nonexistent",
+      "assessment": {
+        "schemaVersion": "verified-astrology-readiness-v1",
+        "readiness": "blocked",
+        "areas": {
+          "input": {
+            "status": "blocked",
+            "reasons": [
+              "civil_time_nonexistent",
+              "timezone_unverified"
+            ],
+            "sourceRefs": [
+              "input.civilTime",
+              "input.location",
+              "input.dut1"
+            ]
+          },
+          "timeScale": {
+            "status": "ready",
+            "reasons": [],
+            "sourceRefs": [
+              "input.dut1",
+              "timeScale.leapSecond",
+              "timeScale.ttMinusUtc",
+              "timeScale.tdbMinusTt"
+            ]
+          },
+          "ephemeris": {
+            "status": "ready",
+            "reasons": [],
+            "sourceRefs": [
+              "ephemeris.bsp",
+              "ephemeris.evaluatorSelection"
+            ]
+          },
+          "runtime": {
+            "status": "ready",
+            "reasons": [],
+            "sourceRefs": [
+              "runtime.runner"
+            ]
+          },
+          "documents": {
+            "status": "ready",
+            "reasons": [],
+            "sourceRefs": [
+              "documents.raw",
+              "documents.rule",
+              "documents.adapter"
+            ]
+          },
+          "contamination": {
+            "status": "ready",
+            "reasons": [],
+            "sourceRefs": [
+              "contamination"
+            ]
+          }
+        },
+        "reasonCodes": [
+          "civil_time_nonexistent",
+          "timezone_unverified"
+        ],
+        "calculationReady": false,
+        "activation": {
+          "availableForInterpretation": false,
+          "integrationStatus": "not_connected",
+          "serviceEligibility": "blocked",
+          "reason": "activation_requires_user_approval"
+        },
+        "sourceRefs": [
+          "input.civilTime",
+          "input.location",
+          "input.dut1",
+          "input.dut1",
+          "timeScale.leapSecond",
+          "timeScale.ttMinusUtc",
+          "timeScale.tdbMinusTt",
+          "ephemeris.bsp",
+          "ephemeris.evaluatorSelection",
+          "runtime.runner",
+          "documents.raw",
+          "documents.rule",
+          "documents.adapter",
+          "contamination"
+        ]
+      }
+    },
+    {
+      "id": "timezone-unverified",
+      "expectedReason": "timezone_unverified",
+      "assessment": {
+        "schemaVersion": "verified-astrology-readiness-v1",
+        "readiness": "blocked",
+        "areas": {
+          "input": {
+            "status": "blocked",
+            "reasons": [
+              "timezone_unverified"
+            ],
+            "sourceRefs": [
+              "input.civilTime",
+              "input.location",
+              "input.dut1"
+            ]
+          },
+          "timeScale": {
+            "status": "ready",
+            "reasons": [],
+            "sourceRefs": [
+              "input.dut1",
+              "timeScale.leapSecond",
+              "timeScale.ttMinusUtc",
+              "timeScale.tdbMinusTt"
+            ]
+          },
+          "ephemeris": {
+            "status": "ready",
+            "reasons": [],
+            "sourceRefs": [
+              "ephemeris.bsp",
+              "ephemeris.evaluatorSelection"
+            ]
+          },
+          "runtime": {
+            "status": "ready",
+            "reasons": [],
+            "sourceRefs": [
+              "runtime.runner"
+            ]
+          },
+          "documents": {
+            "status": "ready",
+            "reasons": [],
+            "sourceRefs": [
+              "documents.raw",
+              "documents.rule",
+              "documents.adapter"
+            ]
+          },
+          "contamination": {
+            "status": "ready",
+            "reasons": [],
+            "sourceRefs": [
+              "contamination"
+            ]
+          }
+        },
+        "reasonCodes": [
+          "timezone_unverified"
+        ],
+        "calculationReady": false,
+        "activation": {
+          "availableForInterpretation": false,
+          "integrationStatus": "not_connected",
+          "serviceEligibility": "blocked",
+          "reason": "activation_requires_user_approval"
+        },
+        "sourceRefs": [
+          "input.civilTime",
+          "input.location",
+          "input.dut1",
+          "input.dut1",
+          "timeScale.leapSecond",
+          "timeScale.ttMinusUtc",
+          "timeScale.tdbMinusTt",
+          "ephemeris.bsp",
+          "ephemeris.evaluatorSelection",
+          "runtime.runner",
+          "documents.raw",
+          "documents.rule",
+          "documents.adapter",
+          "contamination"
+        ]
+      }
+    },
+    {
+      "id": "location-unverified",
+      "expectedReason": "location_unverified",
+      "assessment": {
+        "schemaVersion": "verified-astrology-readiness-v1",
+        "readiness": "blocked",
+        "areas": {
+          "input": {
+            "status": "blocked",
+            "reasons": [
+              "location_unverified"
+            ],
+            "sourceRefs": [
+              "input.civilTime",
+              "input.location",
+              "input.dut1"
+            ]
+          },
+          "timeScale": {
+            "status": "ready",
+            "reasons": [],
+            "sourceRefs": [
+              "input.dut1",
+              "timeScale.leapSecond",
+              "timeScale.ttMinusUtc",
+              "timeScale.tdbMinusTt"
+            ]
+          },
+          "ephemeris": {
+            "status": "ready",
+            "reasons": [],
+            "sourceRefs": [
+              "ephemeris.bsp",
+              "ephemeris.evaluatorSelection"
+            ]
+          },
+          "runtime": {
+            "status": "ready",
+            "reasons": [],
+            "sourceRefs": [
+              "runtime.runner"
+            ]
+          },
+          "documents": {
+            "status": "ready",
+            "reasons": [],
+            "sourceRefs": [
+              "documents.raw",
+              "documents.rule",
+              "documents.adapter"
+            ]
+          },
+          "contamination": {
+            "status": "ready",
+            "reasons": [],
+            "sourceRefs": [
+              "contamination"
+            ]
+          }
+        },
+        "reasonCodes": [
+          "location_unverified"
+        ],
+        "calculationReady": false,
+        "activation": {
+          "availableForInterpretation": false,
+          "integrationStatus": "not_connected",
+          "serviceEligibility": "blocked",
+          "reason": "activation_requires_user_approval"
+        },
+        "sourceRefs": [
+          "input.civilTime",
+          "input.location",
+          "input.dut1",
+          "input.dut1",
+          "timeScale.leapSecond",
+          "timeScale.ttMinusUtc",
+          "timeScale.tdbMinusTt",
+          "ephemeris.bsp",
+          "ephemeris.evaluatorSelection",
+          "runtime.runner",
+          "documents.raw",
+          "documents.rule",
+          "documents.adapter",
+          "contamination"
+        ]
+      }
+    },
+    {
+      "id": "dut1-missing",
+      "expectedReason": "dut1_missing",
+      "assessment": {
+        "schemaVersion": "verified-astrology-readiness-v1",
+        "readiness": "blocked",
+        "areas": {
+          "input": {
+            "status": "blocked",
+            "reasons": [
+              "dut1_missing"
+            ],
+            "sourceRefs": [
+              "input.civilTime",
+              "input.location",
+              "input.dut1"
+            ]
+          },
+          "timeScale": {
+            "status": "ready",
+            "reasons": [],
+            "sourceRefs": [
+              "input.dut1",
+              "timeScale.leapSecond",
+              "timeScale.ttMinusUtc",
+              "timeScale.tdbMinusTt"
+            ]
+          },
+          "ephemeris": {
+            "status": "ready",
+            "reasons": [],
+            "sourceRefs": [
+              "ephemeris.bsp",
+              "ephemeris.evaluatorSelection"
+            ]
+          },
+          "runtime": {
+            "status": "ready",
+            "reasons": [],
+            "sourceRefs": [
+              "runtime.runner"
+            ]
+          },
+          "documents": {
+            "status": "ready",
+            "reasons": [],
+            "sourceRefs": [
+              "documents.raw",
+              "documents.rule",
+              "documents.adapter"
+            ]
+          },
+          "contamination": {
+            "status": "ready",
+            "reasons": [],
+            "sourceRefs": [
+              "contamination"
+            ]
+          }
+        },
+        "reasonCodes": [
+          "dut1_missing"
+        ],
+        "calculationReady": false,
+        "activation": {
+          "availableForInterpretation": false,
+          "integrationStatus": "not_connected",
+          "serviceEligibility": "blocked",
+          "reason": "activation_requires_user_approval"
+        },
+        "sourceRefs": [
+          "input.civilTime",
+          "input.location",
+          "input.dut1",
+          "input.dut1",
+          "timeScale.leapSecond",
+          "timeScale.ttMinusUtc",
+          "timeScale.tdbMinusTt",
+          "ephemeris.bsp",
+          "ephemeris.evaluatorSelection",
+          "runtime.runner",
+          "documents.raw",
+          "documents.rule",
+          "documents.adapter",
+          "contamination"
+        ]
+      }
+    },
+    {
+      "id": "dut1-stale",
+      "expectedReason": "dut1_stale",
+      "assessment": {
+        "schemaVersion": "verified-astrology-readiness-v1",
+        "readiness": "blocked",
+        "areas": {
+          "input": {
+            "status": "blocked",
+            "reasons": [
+              "dut1_stale"
+            ],
+            "sourceRefs": [
+              "input.civilTime",
+              "input.location",
+              "input.dut1"
+            ]
+          },
+          "timeScale": {
+            "status": "ready",
+            "reasons": [],
+            "sourceRefs": [
+              "input.dut1",
+              "timeScale.leapSecond",
+              "timeScale.ttMinusUtc",
+              "timeScale.tdbMinusTt"
+            ]
+          },
+          "ephemeris": {
+            "status": "ready",
+            "reasons": [],
+            "sourceRefs": [
+              "ephemeris.bsp",
+              "ephemeris.evaluatorSelection"
+            ]
+          },
+          "runtime": {
+            "status": "ready",
+            "reasons": [],
+            "sourceRefs": [
+              "runtime.runner"
+            ]
+          },
+          "documents": {
+            "status": "ready",
+            "reasons": [],
+            "sourceRefs": [
+              "documents.raw",
+              "documents.rule",
+              "documents.adapter"
+            ]
+          },
+          "contamination": {
+            "status": "ready",
+            "reasons": [],
+            "sourceRefs": [
+              "contamination"
+            ]
+          }
+        },
+        "reasonCodes": [
+          "dut1_stale"
+        ],
+        "calculationReady": false,
+        "activation": {
+          "availableForInterpretation": false,
+          "integrationStatus": "not_connected",
+          "serviceEligibility": "blocked",
+          "reason": "activation_requires_user_approval"
+        },
+        "sourceRefs": [
+          "input.civilTime",
+          "input.location",
+          "input.dut1",
+          "input.dut1",
+          "timeScale.leapSecond",
+          "timeScale.ttMinusUtc",
+          "timeScale.tdbMinusTt",
+          "ephemeris.bsp",
+          "ephemeris.evaluatorSelection",
+          "runtime.runner",
+          "documents.raw",
+          "documents.rule",
+          "documents.adapter",
+          "contamination"
+        ]
+      }
+    },
+    {
+      "id": "dut1-future-effective",
+      "expectedReason": "provider_future_effective",
+      "assessment": {
+        "schemaVersion": "verified-astrology-readiness-v1",
+        "readiness": "blocked",
+        "areas": {
+          "input": {
+            "status": "blocked",
+            "reasons": [
+              "provider_future_effective"
+            ],
+            "sourceRefs": [
+              "input.civilTime",
+              "input.location",
+              "input.dut1"
+            ]
+          },
+          "timeScale": {
+            "status": "ready",
+            "reasons": [],
+            "sourceRefs": [
+              "input.dut1",
+              "timeScale.leapSecond",
+              "timeScale.ttMinusUtc",
+              "timeScale.tdbMinusTt"
+            ]
+          },
+          "ephemeris": {
+            "status": "ready",
+            "reasons": [],
+            "sourceRefs": [
+              "ephemeris.bsp",
+              "ephemeris.evaluatorSelection"
+            ]
+          },
+          "runtime": {
+            "status": "ready",
+            "reasons": [],
+            "sourceRefs": [
+              "runtime.runner"
+            ]
+          },
+          "documents": {
+            "status": "ready",
+            "reasons": [],
+            "sourceRefs": [
+              "documents.raw",
+              "documents.rule",
+              "documents.adapter"
+            ]
+          },
+          "contamination": {
+            "status": "ready",
+            "reasons": [],
+            "sourceRefs": [
+              "contamination"
+            ]
+          }
+        },
+        "reasonCodes": [
+          "provider_future_effective"
+        ],
+        "calculationReady": false,
+        "activation": {
+          "availableForInterpretation": false,
+          "integrationStatus": "not_connected",
+          "serviceEligibility": "blocked",
+          "reason": "activation_requires_user_approval"
+        },
+        "sourceRefs": [
+          "input.civilTime",
+          "input.location",
+          "input.dut1",
+          "input.dut1",
+          "timeScale.leapSecond",
+          "timeScale.ttMinusUtc",
+          "timeScale.tdbMinusTt",
+          "ephemeris.bsp",
+          "ephemeris.evaluatorSelection",
+          "runtime.runner",
+          "documents.raw",
+          "documents.rule",
+          "documents.adapter",
+          "contamination"
+        ]
+      }
+    },
+    {
+      "id": "leap-second-missing",
+      "expectedReason": "leap_second_provenance_missing",
+      "assessment": {
+        "schemaVersion": "verified-astrology-readiness-v1",
+        "readiness": "blocked",
+        "areas": {
+          "input": {
+            "status": "ready",
+            "reasons": [],
+            "sourceRefs": [
+              "input.civilTime",
+              "input.location",
+              "input.dut1"
+            ]
+          },
+          "timeScale": {
+            "status": "blocked",
+            "reasons": [
+              "leap_second_provenance_missing"
+            ],
+            "sourceRefs": [
+              "input.dut1",
+              "timeScale.leapSecond",
+              "timeScale.ttMinusUtc",
+              "timeScale.tdbMinusTt"
+            ]
+          },
+          "ephemeris": {
+            "status": "ready",
+            "reasons": [],
+            "sourceRefs": [
+              "ephemeris.bsp",
+              "ephemeris.evaluatorSelection"
+            ]
+          },
+          "runtime": {
+            "status": "ready",
+            "reasons": [],
+            "sourceRefs": [
+              "runtime.runner"
+            ]
+          },
+          "documents": {
+            "status": "ready",
+            "reasons": [],
+            "sourceRefs": [
+              "documents.raw",
+              "documents.rule",
+              "documents.adapter"
+            ]
+          },
+          "contamination": {
+            "status": "ready",
+            "reasons": [],
+            "sourceRefs": [
+              "contamination"
+            ]
+          }
+        },
+        "reasonCodes": [
+          "leap_second_provenance_missing"
+        ],
+        "calculationReady": false,
+        "activation": {
+          "availableForInterpretation": false,
+          "integrationStatus": "not_connected",
+          "serviceEligibility": "blocked",
+          "reason": "activation_requires_user_approval"
+        },
+        "sourceRefs": [
+          "input.civilTime",
+          "input.location",
+          "input.dut1",
+          "input.dut1",
+          "timeScale.leapSecond",
+          "timeScale.ttMinusUtc",
+          "timeScale.tdbMinusTt",
+          "ephemeris.bsp",
+          "ephemeris.evaluatorSelection",
+          "runtime.runner",
+          "documents.raw",
+          "documents.rule",
+          "documents.adapter",
+          "contamination"
+        ]
+      }
+    },
+    {
+      "id": "leap-second-time-mismatch",
+      "expectedReason": "leap_second_time_mismatch",
+      "assessment": {
+        "schemaVersion": "verified-astrology-readiness-v1",
+        "readiness": "blocked",
+        "areas": {
+          "input": {
+            "status": "ready",
+            "reasons": [],
+            "sourceRefs": [
+              "input.civilTime",
+              "input.location",
+              "input.dut1"
+            ]
+          },
+          "timeScale": {
+            "status": "blocked",
+            "reasons": [
+              "leap_second_time_mismatch"
+            ],
+            "sourceRefs": [
+              "input.dut1",
+              "timeScale.leapSecond",
+              "timeScale.ttMinusUtc",
+              "timeScale.tdbMinusTt"
+            ]
+          },
+          "ephemeris": {
+            "status": "ready",
+            "reasons": [],
+            "sourceRefs": [
+              "ephemeris.bsp",
+              "ephemeris.evaluatorSelection"
+            ]
+          },
+          "runtime": {
+            "status": "ready",
+            "reasons": [],
+            "sourceRefs": [
+              "runtime.runner"
+            ]
+          },
+          "documents": {
+            "status": "ready",
+            "reasons": [],
+            "sourceRefs": [
+              "documents.raw",
+              "documents.rule",
+              "documents.adapter"
+            ]
+          },
+          "contamination": {
+            "status": "ready",
+            "reasons": [],
+            "sourceRefs": [
+              "contamination"
+            ]
+          }
+        },
+        "reasonCodes": [
+          "leap_second_time_mismatch"
+        ],
+        "calculationReady": false,
+        "activation": {
+          "availableForInterpretation": false,
+          "integrationStatus": "not_connected",
+          "serviceEligibility": "blocked",
+          "reason": "activation_requires_user_approval"
+        },
+        "sourceRefs": [
+          "input.civilTime",
+          "input.location",
+          "input.dut1",
+          "input.dut1",
+          "timeScale.leapSecond",
+          "timeScale.ttMinusUtc",
+          "timeScale.tdbMinusTt",
+          "ephemeris.bsp",
+          "ephemeris.evaluatorSelection",
+          "runtime.runner",
+          "documents.raw",
+          "documents.rule",
+          "documents.adapter",
+          "contamination"
+        ]
+      }
+    },
+    {
+      "id": "tt-utc-missing",
+      "expectedReason": "tt_minus_utc_provenance_missing",
+      "assessment": {
+        "schemaVersion": "verified-astrology-readiness-v1",
+        "readiness": "blocked",
+        "areas": {
+          "input": {
+            "status": "ready",
+            "reasons": [],
+            "sourceRefs": [
+              "input.civilTime",
+              "input.location",
+              "input.dut1"
+            ]
+          },
+          "timeScale": {
+            "status": "blocked",
+            "reasons": [
+              "tt_minus_utc_provenance_missing"
+            ],
+            "sourceRefs": [
+              "input.dut1",
+              "timeScale.leapSecond",
+              "timeScale.ttMinusUtc",
+              "timeScale.tdbMinusTt"
+            ]
+          },
+          "ephemeris": {
+            "status": "ready",
+            "reasons": [],
+            "sourceRefs": [
+              "ephemeris.bsp",
+              "ephemeris.evaluatorSelection"
+            ]
+          },
+          "runtime": {
+            "status": "ready",
+            "reasons": [],
+            "sourceRefs": [
+              "runtime.runner"
+            ]
+          },
+          "documents": {
+            "status": "ready",
+            "reasons": [],
+            "sourceRefs": [
+              "documents.raw",
+              "documents.rule",
+              "documents.adapter"
+            ]
+          },
+          "contamination": {
+            "status": "ready",
+            "reasons": [],
+            "sourceRefs": [
+              "contamination"
+            ]
+          }
+        },
+        "reasonCodes": [
+          "tt_minus_utc_provenance_missing"
+        ],
+        "calculationReady": false,
+        "activation": {
+          "availableForInterpretation": false,
+          "integrationStatus": "not_connected",
+          "serviceEligibility": "blocked",
+          "reason": "activation_requires_user_approval"
+        },
+        "sourceRefs": [
+          "input.civilTime",
+          "input.location",
+          "input.dut1",
+          "input.dut1",
+          "timeScale.leapSecond",
+          "timeScale.ttMinusUtc",
+          "timeScale.tdbMinusTt",
+          "ephemeris.bsp",
+          "ephemeris.evaluatorSelection",
+          "runtime.runner",
+          "documents.raw",
+          "documents.rule",
+          "documents.adapter",
+          "contamination"
+        ]
+      }
+    },
+    {
+      "id": "tt-utc-time-mismatch",
+      "expectedReason": "tt_minus_utc_time_mismatch",
+      "assessment": {
+        "schemaVersion": "verified-astrology-readiness-v1",
+        "readiness": "blocked",
+        "areas": {
+          "input": {
+            "status": "ready",
+            "reasons": [],
+            "sourceRefs": [
+              "input.civilTime",
+              "input.location",
+              "input.dut1"
+            ]
+          },
+          "timeScale": {
+            "status": "blocked",
+            "reasons": [
+              "tt_minus_utc_time_mismatch"
+            ],
+            "sourceRefs": [
+              "input.dut1",
+              "timeScale.leapSecond",
+              "timeScale.ttMinusUtc",
+              "timeScale.tdbMinusTt"
+            ]
+          },
+          "ephemeris": {
+            "status": "ready",
+            "reasons": [],
+            "sourceRefs": [
+              "ephemeris.bsp",
+              "ephemeris.evaluatorSelection"
+            ]
+          },
+          "runtime": {
+            "status": "ready",
+            "reasons": [],
+            "sourceRefs": [
+              "runtime.runner"
+            ]
+          },
+          "documents": {
+            "status": "ready",
+            "reasons": [],
+            "sourceRefs": [
+              "documents.raw",
+              "documents.rule",
+              "documents.adapter"
+            ]
+          },
+          "contamination": {
+            "status": "ready",
+            "reasons": [],
+            "sourceRefs": [
+              "contamination"
+            ]
+          }
+        },
+        "reasonCodes": [
+          "tt_minus_utc_time_mismatch"
+        ],
+        "calculationReady": false,
+        "activation": {
+          "availableForInterpretation": false,
+          "integrationStatus": "not_connected",
+          "serviceEligibility": "blocked",
+          "reason": "activation_requires_user_approval"
+        },
+        "sourceRefs": [
+          "input.civilTime",
+          "input.location",
+          "input.dut1",
+          "input.dut1",
+          "timeScale.leapSecond",
+          "timeScale.ttMinusUtc",
+          "timeScale.tdbMinusTt",
+          "ephemeris.bsp",
+          "ephemeris.evaluatorSelection",
+          "runtime.runner",
+          "documents.raw",
+          "documents.rule",
+          "documents.adapter",
+          "contamination"
+        ]
+      }
+    },
+    {
+      "id": "tdb-tt-missing",
+      "expectedReason": "tdb_minus_tt_missing",
+      "assessment": {
+        "schemaVersion": "verified-astrology-readiness-v1",
+        "readiness": "blocked",
+        "areas": {
+          "input": {
+            "status": "ready",
+            "reasons": [],
+            "sourceRefs": [
+              "input.civilTime",
+              "input.location",
+              "input.dut1"
+            ]
+          },
+          "timeScale": {
+            "status": "blocked",
+            "reasons": [
+              "tdb_minus_tt_missing"
+            ],
+            "sourceRefs": [
+              "input.dut1",
+              "timeScale.leapSecond",
+              "timeScale.ttMinusUtc",
+              "timeScale.tdbMinusTt"
+            ]
+          },
+          "ephemeris": {
+            "status": "ready",
+            "reasons": [],
+            "sourceRefs": [
+              "ephemeris.bsp",
+              "ephemeris.evaluatorSelection"
+            ]
+          },
+          "runtime": {
+            "status": "ready",
+            "reasons": [],
+            "sourceRefs": [
+              "runtime.runner"
+            ]
+          },
+          "documents": {
+            "status": "ready",
+            "reasons": [],
+            "sourceRefs": [
+              "documents.raw",
+              "documents.rule",
+              "documents.adapter"
+            ]
+          },
+          "contamination": {
+            "status": "ready",
+            "reasons": [],
+            "sourceRefs": [
+              "contamination"
+            ]
+          }
+        },
+        "reasonCodes": [
+          "tdb_minus_tt_missing"
+        ],
+        "calculationReady": false,
+        "activation": {
+          "availableForInterpretation": false,
+          "integrationStatus": "not_connected",
+          "serviceEligibility": "blocked",
+          "reason": "activation_requires_user_approval"
+        },
+        "sourceRefs": [
+          "input.civilTime",
+          "input.location",
+          "input.dut1",
+          "input.dut1",
+          "timeScale.leapSecond",
+          "timeScale.ttMinusUtc",
+          "timeScale.tdbMinusTt",
+          "ephemeris.bsp",
+          "ephemeris.evaluatorSelection",
+          "runtime.runner",
+          "documents.raw",
+          "documents.rule",
+          "documents.adapter",
+          "contamination"
+        ]
+      }
+    },
+    {
+      "id": "tdb-tt-nondeterministic",
+      "expectedReason": "tdb_minus_tt_model_nondeterministic",
+      "assessment": {
+        "schemaVersion": "verified-astrology-readiness-v1",
+        "readiness": "blocked",
+        "areas": {
+          "input": {
+            "status": "ready",
+            "reasons": [],
+            "sourceRefs": [
+              "input.civilTime",
+              "input.location",
+              "input.dut1"
+            ]
+          },
+          "timeScale": {
+            "status": "blocked",
+            "reasons": [
+              "tdb_minus_tt_model_nondeterministic"
+            ],
+            "sourceRefs": [
+              "input.dut1",
+              "timeScale.leapSecond",
+              "timeScale.ttMinusUtc",
+              "timeScale.tdbMinusTt"
+            ]
+          },
+          "ephemeris": {
+            "status": "ready",
+            "reasons": [],
+            "sourceRefs": [
+              "ephemeris.bsp",
+              "ephemeris.evaluatorSelection"
+            ]
+          },
+          "runtime": {
+            "status": "ready",
+            "reasons": [],
+            "sourceRefs": [
+              "runtime.runner"
+            ]
+          },
+          "documents": {
+            "status": "ready",
+            "reasons": [],
+            "sourceRefs": [
+              "documents.raw",
+              "documents.rule",
+              "documents.adapter"
+            ]
+          },
+          "contamination": {
+            "status": "ready",
+            "reasons": [],
+            "sourceRefs": [
+              "contamination"
+            ]
+          }
+        },
+        "reasonCodes": [
+          "tdb_minus_tt_model_nondeterministic"
+        ],
+        "calculationReady": false,
+        "activation": {
+          "availableForInterpretation": false,
+          "integrationStatus": "not_connected",
+          "serviceEligibility": "blocked",
+          "reason": "activation_requires_user_approval"
+        },
+        "sourceRefs": [
+          "input.civilTime",
+          "input.location",
+          "input.dut1",
+          "input.dut1",
+          "timeScale.leapSecond",
+          "timeScale.ttMinusUtc",
+          "timeScale.tdbMinusTt",
+          "ephemeris.bsp",
+          "ephemeris.evaluatorSelection",
+          "runtime.runner",
+          "documents.raw",
+          "documents.rule",
+          "documents.adapter",
+          "contamination"
+        ]
+      }
+    },
+    {
+      "id": "bsp-missing",
+      "expectedReason": "bsp_missing",
+      "assessment": {
+        "schemaVersion": "verified-astrology-readiness-v1",
+        "readiness": "blocked",
+        "areas": {
+          "input": {
+            "status": "ready",
+            "reasons": [],
+            "sourceRefs": [
+              "input.civilTime",
+              "input.location",
+              "input.dut1"
+            ]
+          },
+          "timeScale": {
+            "status": "ready",
+            "reasons": [],
+            "sourceRefs": [
+              "input.dut1",
+              "timeScale.leapSecond",
+              "timeScale.ttMinusUtc",
+              "timeScale.tdbMinusTt"
+            ]
+          },
+          "ephemeris": {
+            "status": "blocked",
+            "reasons": [
+              "bsp_missing"
+            ],
+            "sourceRefs": [
+              "ephemeris.bsp",
+              "ephemeris.evaluatorSelection"
+            ]
+          },
+          "runtime": {
+            "status": "ready",
+            "reasons": [],
+            "sourceRefs": [
+              "runtime.runner"
+            ]
+          },
+          "documents": {
+            "status": "ready",
+            "reasons": [],
+            "sourceRefs": [
+              "documents.raw",
+              "documents.rule",
+              "documents.adapter"
+            ]
+          },
+          "contamination": {
+            "status": "ready",
+            "reasons": [],
+            "sourceRefs": [
+              "contamination"
+            ]
+          }
+        },
+        "reasonCodes": [
+          "bsp_missing"
+        ],
+        "calculationReady": false,
+        "activation": {
+          "availableForInterpretation": false,
+          "integrationStatus": "not_connected",
+          "serviceEligibility": "blocked",
+          "reason": "activation_requires_user_approval"
+        },
+        "sourceRefs": [
+          "input.civilTime",
+          "input.location",
+          "input.dut1",
+          "input.dut1",
+          "timeScale.leapSecond",
+          "timeScale.ttMinusUtc",
+          "timeScale.tdbMinusTt",
+          "ephemeris.bsp",
+          "ephemeris.evaluatorSelection",
+          "runtime.runner",
+          "documents.raw",
+          "documents.rule",
+          "documents.adapter",
+          "contamination"
+        ]
+      }
+    },
+    {
+      "id": "bsp-hash-mismatch",
+      "expectedReason": "bsp_hash_mismatch",
+      "assessment": {
+        "schemaVersion": "verified-astrology-readiness-v1",
+        "readiness": "blocked",
+        "areas": {
+          "input": {
+            "status": "ready",
+            "reasons": [],
+            "sourceRefs": [
+              "input.civilTime",
+              "input.location",
+              "input.dut1"
+            ]
+          },
+          "timeScale": {
+            "status": "ready",
+            "reasons": [],
+            "sourceRefs": [
+              "input.dut1",
+              "timeScale.leapSecond",
+              "timeScale.ttMinusUtc",
+              "timeScale.tdbMinusTt"
+            ]
+          },
+          "ephemeris": {
+            "status": "blocked",
+            "reasons": [
+              "bsp_hash_mismatch"
+            ],
+            "sourceRefs": [
+              "ephemeris.bsp",
+              "ephemeris.evaluatorSelection"
+            ]
+          },
+          "runtime": {
+            "status": "ready",
+            "reasons": [],
+            "sourceRefs": [
+              "runtime.runner"
+            ]
+          },
+          "documents": {
+            "status": "ready",
+            "reasons": [],
+            "sourceRefs": [
+              "documents.raw",
+              "documents.rule",
+              "documents.adapter"
+            ]
+          },
+          "contamination": {
+            "status": "ready",
+            "reasons": [],
+            "sourceRefs": [
+              "contamination"
+            ]
+          }
+        },
+        "reasonCodes": [
+          "bsp_hash_mismatch"
+        ],
+        "calculationReady": false,
+        "activation": {
+          "availableForInterpretation": false,
+          "integrationStatus": "not_connected",
+          "serviceEligibility": "blocked",
+          "reason": "activation_requires_user_approval"
+        },
+        "sourceRefs": [
+          "input.civilTime",
+          "input.location",
+          "input.dut1",
+          "input.dut1",
+          "timeScale.leapSecond",
+          "timeScale.ttMinusUtc",
+          "timeScale.tdbMinusTt",
+          "ephemeris.bsp",
+          "ephemeris.evaluatorSelection",
+          "runtime.runner",
+          "documents.raw",
+          "documents.rule",
+          "documents.adapter",
+          "contamination"
+        ]
+      }
+    },
+    {
+      "id": "bsp-outside-coverage",
+      "expectedReason": "bsp_coverage_outside",
+      "assessment": {
+        "schemaVersion": "verified-astrology-readiness-v1",
+        "readiness": "blocked",
+        "areas": {
+          "input": {
+            "status": "ready",
+            "reasons": [],
+            "sourceRefs": [
+              "input.civilTime",
+              "input.location",
+              "input.dut1"
+            ]
+          },
+          "timeScale": {
+            "status": "ready",
+            "reasons": [],
+            "sourceRefs": [
+              "input.dut1",
+              "timeScale.leapSecond",
+              "timeScale.ttMinusUtc",
+              "timeScale.tdbMinusTt"
+            ]
+          },
+          "ephemeris": {
+            "status": "blocked",
+            "reasons": [
+              "bsp_coverage_outside"
+            ],
+            "sourceRefs": [
+              "ephemeris.bsp",
+              "ephemeris.evaluatorSelection"
+            ]
+          },
+          "runtime": {
+            "status": "ready",
+            "reasons": [],
+            "sourceRefs": [
+              "runtime.runner"
+            ]
+          },
+          "documents": {
+            "status": "ready",
+            "reasons": [],
+            "sourceRefs": [
+              "documents.raw",
+              "documents.rule",
+              "documents.adapter"
+            ]
+          },
+          "contamination": {
+            "status": "ready",
+            "reasons": [],
+            "sourceRefs": [
+              "contamination"
+            ]
+          }
+        },
+        "reasonCodes": [
+          "bsp_coverage_outside"
+        ],
+        "calculationReady": false,
+        "activation": {
+          "availableForInterpretation": false,
+          "integrationStatus": "not_connected",
+          "serviceEligibility": "blocked",
+          "reason": "activation_requires_user_approval"
+        },
+        "sourceRefs": [
+          "input.civilTime",
+          "input.location",
+          "input.dut1",
+          "input.dut1",
+          "timeScale.leapSecond",
+          "timeScale.ttMinusUtc",
+          "timeScale.tdbMinusTt",
+          "ephemeris.bsp",
+          "ephemeris.evaluatorSelection",
+          "runtime.runner",
+          "documents.raw",
+          "documents.rule",
+          "documents.adapter",
+          "contamination"
+        ]
+      }
+    },
+    {
+      "id": "runner-missing",
+      "expectedReason": "runner_missing",
+      "assessment": {
+        "schemaVersion": "verified-astrology-readiness-v1",
+        "readiness": "blocked",
+        "areas": {
+          "input": {
+            "status": "ready",
+            "reasons": [],
+            "sourceRefs": [
+              "input.civilTime",
+              "input.location",
+              "input.dut1"
+            ]
+          },
+          "timeScale": {
+            "status": "ready",
+            "reasons": [],
+            "sourceRefs": [
+              "input.dut1",
+              "timeScale.leapSecond",
+              "timeScale.ttMinusUtc",
+              "timeScale.tdbMinusTt"
+            ]
+          },
+          "ephemeris": {
+            "status": "ready",
+            "reasons": [],
+            "sourceRefs": [
+              "ephemeris.bsp",
+              "ephemeris.evaluatorSelection"
+            ]
+          },
+          "runtime": {
+            "status": "blocked",
+            "reasons": [
+              "runner_missing"
+            ],
+            "sourceRefs": [
+              "runtime.runner"
+            ]
+          },
+          "documents": {
+            "status": "ready",
+            "reasons": [],
+            "sourceRefs": [
+              "documents.raw",
+              "documents.rule",
+              "documents.adapter"
+            ]
+          },
+          "contamination": {
+            "status": "ready",
+            "reasons": [],
+            "sourceRefs": [
+              "contamination"
+            ]
+          }
+        },
+        "reasonCodes": [
+          "runner_missing"
+        ],
+        "calculationReady": false,
+        "activation": {
+          "availableForInterpretation": false,
+          "integrationStatus": "not_connected",
+          "serviceEligibility": "blocked",
+          "reason": "activation_requires_user_approval"
+        },
+        "sourceRefs": [
+          "input.civilTime",
+          "input.location",
+          "input.dut1",
+          "input.dut1",
+          "timeScale.leapSecond",
+          "timeScale.ttMinusUtc",
+          "timeScale.tdbMinusTt",
+          "ephemeris.bsp",
+          "ephemeris.evaluatorSelection",
+          "runtime.runner",
+          "documents.raw",
+          "documents.rule",
+          "documents.adapter",
+          "contamination"
+        ]
+      }
+    },
+    {
+      "id": "runner-unexecutable",
+      "expectedReason": "runner_unexecutable",
+      "assessment": {
+        "schemaVersion": "verified-astrology-readiness-v1",
+        "readiness": "blocked",
+        "areas": {
+          "input": {
+            "status": "ready",
+            "reasons": [],
+            "sourceRefs": [
+              "input.civilTime",
+              "input.location",
+              "input.dut1"
+            ]
+          },
+          "timeScale": {
+            "status": "ready",
+            "reasons": [],
+            "sourceRefs": [
+              "input.dut1",
+              "timeScale.leapSecond",
+              "timeScale.ttMinusUtc",
+              "timeScale.tdbMinusTt"
+            ]
+          },
+          "ephemeris": {
+            "status": "ready",
+            "reasons": [],
+            "sourceRefs": [
+              "ephemeris.bsp",
+              "ephemeris.evaluatorSelection"
+            ]
+          },
+          "runtime": {
+            "status": "blocked",
+            "reasons": [
+              "runner_unexecutable"
+            ],
+            "sourceRefs": [
+              "runtime.runner"
+            ]
+          },
+          "documents": {
+            "status": "ready",
+            "reasons": [],
+            "sourceRefs": [
+              "documents.raw",
+              "documents.rule",
+              "documents.adapter"
+            ]
+          },
+          "contamination": {
+            "status": "ready",
+            "reasons": [],
+            "sourceRefs": [
+              "contamination"
+            ]
+          }
+        },
+        "reasonCodes": [
+          "runner_unexecutable"
+        ],
+        "calculationReady": false,
+        "activation": {
+          "availableForInterpretation": false,
+          "integrationStatus": "not_connected",
+          "serviceEligibility": "blocked",
+          "reason": "activation_requires_user_approval"
+        },
+        "sourceRefs": [
+          "input.civilTime",
+          "input.location",
+          "input.dut1",
+          "input.dut1",
+          "timeScale.leapSecond",
+          "timeScale.ttMinusUtc",
+          "timeScale.tdbMinusTt",
+          "ephemeris.bsp",
+          "ephemeris.evaluatorSelection",
+          "runtime.runner",
+          "documents.raw",
+          "documents.rule",
+          "documents.adapter",
+          "contamination"
+        ]
+      }
+    },
+    {
+      "id": "runner-protocol-mismatch",
+      "expectedReason": "runner_protocol_mismatch",
+      "assessment": {
+        "schemaVersion": "verified-astrology-readiness-v1",
+        "readiness": "blocked",
+        "areas": {
+          "input": {
+            "status": "ready",
+            "reasons": [],
+            "sourceRefs": [
+              "input.civilTime",
+              "input.location",
+              "input.dut1"
+            ]
+          },
+          "timeScale": {
+            "status": "ready",
+            "reasons": [],
+            "sourceRefs": [
+              "input.dut1",
+              "timeScale.leapSecond",
+              "timeScale.ttMinusUtc",
+              "timeScale.tdbMinusTt"
+            ]
+          },
+          "ephemeris": {
+            "status": "ready",
+            "reasons": [],
+            "sourceRefs": [
+              "ephemeris.bsp",
+              "ephemeris.evaluatorSelection"
+            ]
+          },
+          "runtime": {
+            "status": "blocked",
+            "reasons": [
+              "runner_protocol_mismatch"
+            ],
+            "sourceRefs": [
+              "runtime.runner"
+            ]
+          },
+          "documents": {
+            "status": "ready",
+            "reasons": [],
+            "sourceRefs": [
+              "documents.raw",
+              "documents.rule",
+              "documents.adapter"
+            ]
+          },
+          "contamination": {
+            "status": "ready",
+            "reasons": [],
+            "sourceRefs": [
+              "contamination"
+            ]
+          }
+        },
+        "reasonCodes": [
+          "runner_protocol_mismatch"
+        ],
+        "calculationReady": false,
+        "activation": {
+          "availableForInterpretation": false,
+          "integrationStatus": "not_connected",
+          "serviceEligibility": "blocked",
+          "reason": "activation_requires_user_approval"
+        },
+        "sourceRefs": [
+          "input.civilTime",
+          "input.location",
+          "input.dut1",
+          "input.dut1",
+          "timeScale.leapSecond",
+          "timeScale.ttMinusUtc",
+          "timeScale.tdbMinusTt",
+          "ephemeris.bsp",
+          "ephemeris.evaluatorSelection",
+          "runtime.runner",
+          "documents.raw",
+          "documents.rule",
+          "documents.adapter",
+          "contamination"
+        ]
+      }
+    },
+    {
+      "id": "runner-identity-mismatch",
+      "expectedReason": "runner_identity_mismatch",
+      "assessment": {
+        "schemaVersion": "verified-astrology-readiness-v1",
+        "readiness": "blocked",
+        "areas": {
+          "input": {
+            "status": "ready",
+            "reasons": [],
+            "sourceRefs": [
+              "input.civilTime",
+              "input.location",
+              "input.dut1"
+            ]
+          },
+          "timeScale": {
+            "status": "ready",
+            "reasons": [],
+            "sourceRefs": [
+              "input.dut1",
+              "timeScale.leapSecond",
+              "timeScale.ttMinusUtc",
+              "timeScale.tdbMinusTt"
+            ]
+          },
+          "ephemeris": {
+            "status": "ready",
+            "reasons": [],
+            "sourceRefs": [
+              "ephemeris.bsp",
+              "ephemeris.evaluatorSelection"
+            ]
+          },
+          "runtime": {
+            "status": "blocked",
+            "reasons": [
+              "runner_identity_mismatch"
+            ],
+            "sourceRefs": [
+              "runtime.runner"
+            ]
+          },
+          "documents": {
+            "status": "ready",
+            "reasons": [],
+            "sourceRefs": [
+              "documents.raw",
+              "documents.rule",
+              "documents.adapter"
+            ]
+          },
+          "contamination": {
+            "status": "ready",
+            "reasons": [],
+            "sourceRefs": [
+              "contamination"
+            ]
+          }
+        },
+        "reasonCodes": [
+          "runner_identity_mismatch"
+        ],
+        "calculationReady": false,
+        "activation": {
+          "availableForInterpretation": false,
+          "integrationStatus": "not_connected",
+          "serviceEligibility": "blocked",
+          "reason": "activation_requires_user_approval"
+        },
+        "sourceRefs": [
+          "input.civilTime",
+          "input.location",
+          "input.dut1",
+          "input.dut1",
+          "timeScale.leapSecond",
+          "timeScale.ttMinusUtc",
+          "timeScale.tdbMinusTt",
+          "ephemeris.bsp",
+          "ephemeris.evaluatorSelection",
+          "runtime.runner",
+          "documents.raw",
+          "documents.rule",
+          "documents.adapter",
+          "contamination"
+        ]
+      }
+    },
+    {
+      "id": "evaluator-selection-unverified",
+      "expectedReason": "evaluator_selection_unverified",
+      "assessment": {
+        "schemaVersion": "verified-astrology-readiness-v1",
+        "readiness": "blocked",
+        "areas": {
+          "input": {
+            "status": "ready",
+            "reasons": [],
+            "sourceRefs": [
+              "input.civilTime",
+              "input.location",
+              "input.dut1"
+            ]
+          },
+          "timeScale": {
+            "status": "ready",
+            "reasons": [],
+            "sourceRefs": [
+              "input.dut1",
+              "timeScale.leapSecond",
+              "timeScale.ttMinusUtc",
+              "timeScale.tdbMinusTt"
+            ]
+          },
+          "ephemeris": {
+            "status": "blocked",
+            "reasons": [
+              "evaluator_selection_unverified"
+            ],
+            "sourceRefs": [
+              "ephemeris.bsp",
+              "ephemeris.evaluatorSelection"
+            ]
+          },
+          "runtime": {
+            "status": "ready",
+            "reasons": [],
+            "sourceRefs": [
+              "runtime.runner"
+            ]
+          },
+          "documents": {
+            "status": "blocked",
+            "reasons": [
+              "evaluator_selection_unverified"
+            ],
+            "sourceRefs": [
+              "documents.raw",
+              "documents.rule",
+              "documents.adapter"
+            ]
+          },
+          "contamination": {
+            "status": "ready",
+            "reasons": [],
+            "sourceRefs": [
+              "contamination"
+            ]
+          }
+        },
+        "reasonCodes": [
+          "evaluator_selection_unverified",
+          "evaluator_selection_unverified"
+        ],
+        "calculationReady": false,
+        "activation": {
+          "availableForInterpretation": false,
+          "integrationStatus": "not_connected",
+          "serviceEligibility": "blocked",
+          "reason": "activation_requires_user_approval"
+        },
+        "sourceRefs": [
+          "input.civilTime",
+          "input.location",
+          "input.dut1",
+          "input.dut1",
+          "timeScale.leapSecond",
+          "timeScale.ttMinusUtc",
+          "timeScale.tdbMinusTt",
+          "ephemeris.bsp",
+          "ephemeris.evaluatorSelection",
+          "runtime.runner",
+          "documents.raw",
+          "documents.rule",
+          "documents.adapter",
+          "contamination"
+        ]
+      }
+    },
+    {
+      "id": "raw-schema-hash-mismatch",
+      "expectedReason": "raw_schema_hash_mismatch",
+      "assessment": {
+        "schemaVersion": "verified-astrology-readiness-v1",
+        "readiness": "blocked",
+        "areas": {
+          "input": {
+            "status": "ready",
+            "reasons": [],
+            "sourceRefs": [
+              "input.civilTime",
+              "input.location",
+              "input.dut1"
+            ]
+          },
+          "timeScale": {
+            "status": "ready",
+            "reasons": [],
+            "sourceRefs": [
+              "input.dut1",
+              "timeScale.leapSecond",
+              "timeScale.ttMinusUtc",
+              "timeScale.tdbMinusTt"
+            ]
+          },
+          "ephemeris": {
+            "status": "ready",
+            "reasons": [],
+            "sourceRefs": [
+              "ephemeris.bsp",
+              "ephemeris.evaluatorSelection"
+            ]
+          },
+          "runtime": {
+            "status": "ready",
+            "reasons": [],
+            "sourceRefs": [
+              "runtime.runner"
+            ]
+          },
+          "documents": {
+            "status": "blocked",
+            "reasons": [
+              "raw_schema_hash_mismatch"
+            ],
+            "sourceRefs": [
+              "documents.raw",
+              "documents.rule",
+              "documents.adapter"
+            ]
+          },
+          "contamination": {
+            "status": "ready",
+            "reasons": [],
+            "sourceRefs": [
+              "contamination"
+            ]
+          }
+        },
+        "reasonCodes": [
+          "raw_schema_hash_mismatch"
+        ],
+        "calculationReady": false,
+        "activation": {
+          "availableForInterpretation": false,
+          "integrationStatus": "not_connected",
+          "serviceEligibility": "blocked",
+          "reason": "activation_requires_user_approval"
+        },
+        "sourceRefs": [
+          "input.civilTime",
+          "input.location",
+          "input.dut1",
+          "input.dut1",
+          "timeScale.leapSecond",
+          "timeScale.ttMinusUtc",
+          "timeScale.tdbMinusTt",
+          "ephemeris.bsp",
+          "ephemeris.evaluatorSelection",
+          "runtime.runner",
+          "documents.raw",
+          "documents.rule",
+          "documents.adapter",
+          "contamination"
+        ]
+      }
+    },
+    {
+      "id": "rule-schema-hash-mismatch",
+      "expectedReason": "rule_schema_hash_mismatch",
+      "assessment": {
+        "schemaVersion": "verified-astrology-readiness-v1",
+        "readiness": "blocked",
+        "areas": {
+          "input": {
+            "status": "ready",
+            "reasons": [],
+            "sourceRefs": [
+              "input.civilTime",
+              "input.location",
+              "input.dut1"
+            ]
+          },
+          "timeScale": {
+            "status": "ready",
+            "reasons": [],
+            "sourceRefs": [
+              "input.dut1",
+              "timeScale.leapSecond",
+              "timeScale.ttMinusUtc",
+              "timeScale.tdbMinusTt"
+            ]
+          },
+          "ephemeris": {
+            "status": "ready",
+            "reasons": [],
+            "sourceRefs": [
+              "ephemeris.bsp",
+              "ephemeris.evaluatorSelection"
+            ]
+          },
+          "runtime": {
+            "status": "ready",
+            "reasons": [],
+            "sourceRefs": [
+              "runtime.runner"
+            ]
+          },
+          "documents": {
+            "status": "blocked",
+            "reasons": [
+              "rule_schema_hash_mismatch"
+            ],
+            "sourceRefs": [
+              "documents.raw",
+              "documents.rule",
+              "documents.adapter"
+            ]
+          },
+          "contamination": {
+            "status": "ready",
+            "reasons": [],
+            "sourceRefs": [
+              "contamination"
+            ]
+          }
+        },
+        "reasonCodes": [
+          "rule_schema_hash_mismatch"
+        ],
+        "calculationReady": false,
+        "activation": {
+          "availableForInterpretation": false,
+          "integrationStatus": "not_connected",
+          "serviceEligibility": "blocked",
+          "reason": "activation_requires_user_approval"
+        },
+        "sourceRefs": [
+          "input.civilTime",
+          "input.location",
+          "input.dut1",
+          "input.dut1",
+          "timeScale.leapSecond",
+          "timeScale.ttMinusUtc",
+          "timeScale.tdbMinusTt",
+          "ephemeris.bsp",
+          "ephemeris.evaluatorSelection",
+          "runtime.runner",
+          "documents.raw",
+          "documents.rule",
+          "documents.adapter",
+          "contamination"
+        ]
+      }
+    },
+    {
+      "id": "adapter-schema-hash-mismatch",
+      "expectedReason": "adapter_schema_hash_mismatch",
+      "assessment": {
+        "schemaVersion": "verified-astrology-readiness-v1",
+        "readiness": "blocked",
+        "areas": {
+          "input": {
+            "status": "ready",
+            "reasons": [],
+            "sourceRefs": [
+              "input.civilTime",
+              "input.location",
+              "input.dut1"
+            ]
+          },
+          "timeScale": {
+            "status": "ready",
+            "reasons": [],
+            "sourceRefs": [
+              "input.dut1",
+              "timeScale.leapSecond",
+              "timeScale.ttMinusUtc",
+              "timeScale.tdbMinusTt"
+            ]
+          },
+          "ephemeris": {
+            "status": "ready",
+            "reasons": [],
+            "sourceRefs": [
+              "ephemeris.bsp",
+              "ephemeris.evaluatorSelection"
+            ]
+          },
+          "runtime": {
+            "status": "ready",
+            "reasons": [],
+            "sourceRefs": [
+              "runtime.runner"
+            ]
+          },
+          "documents": {
+            "status": "blocked",
+            "reasons": [
+              "adapter_schema_hash_mismatch"
+            ],
+            "sourceRefs": [
+              "documents.raw",
+              "documents.rule",
+              "documents.adapter"
+            ]
+          },
+          "contamination": {
+            "status": "ready",
+            "reasons": [],
+            "sourceRefs": [
+              "contamination"
+            ]
+          }
+        },
+        "reasonCodes": [
+          "adapter_schema_hash_mismatch"
+        ],
+        "calculationReady": false,
+        "activation": {
+          "availableForInterpretation": false,
+          "integrationStatus": "not_connected",
+          "serviceEligibility": "blocked",
+          "reason": "activation_requires_user_approval"
+        },
+        "sourceRefs": [
+          "input.civilTime",
+          "input.location",
+          "input.dut1",
+          "input.dut1",
+          "timeScale.leapSecond",
+          "timeScale.ttMinusUtc",
+          "timeScale.tdbMinusTt",
+          "ephemeris.bsp",
+          "ephemeris.evaluatorSelection",
+          "runtime.runner",
+          "documents.raw",
+          "documents.rule",
+          "documents.adapter",
+          "contamination"
+        ]
+      }
+    },
+    {
+      "id": "simulation-contamination",
+      "expectedReason": "simulation_contamination",
+      "assessment": {
+        "schemaVersion": "verified-astrology-readiness-v1",
+        "readiness": "blocked",
+        "areas": {
+          "input": {
+            "status": "ready",
+            "reasons": [],
+            "sourceRefs": [
+              "input.civilTime",
+              "input.location",
+              "input.dut1"
+            ]
+          },
+          "timeScale": {
+            "status": "ready",
+            "reasons": [],
+            "sourceRefs": [
+              "input.dut1",
+              "timeScale.leapSecond",
+              "timeScale.ttMinusUtc",
+              "timeScale.tdbMinusTt"
+            ]
+          },
+          "ephemeris": {
+            "status": "ready",
+            "reasons": [],
+            "sourceRefs": [
+              "ephemeris.bsp",
+              "ephemeris.evaluatorSelection"
+            ]
+          },
+          "runtime": {
+            "status": "ready",
+            "reasons": [],
+            "sourceRefs": [
+              "runtime.runner"
+            ]
+          },
+          "documents": {
+            "status": "ready",
+            "reasons": [],
+            "sourceRefs": [
+              "documents.raw",
+              "documents.rule",
+              "documents.adapter"
+            ]
+          },
+          "contamination": {
+            "status": "blocked",
+            "reasons": [
+              "simulation_contamination"
+            ],
+            "sourceRefs": [
+              "contamination"
+            ]
+          }
+        },
+        "reasonCodes": [
+          "simulation_contamination"
+        ],
+        "calculationReady": false,
+        "activation": {
+          "availableForInterpretation": false,
+          "integrationStatus": "not_connected",
+          "serviceEligibility": "blocked",
+          "reason": "activation_requires_user_approval"
+        },
+        "sourceRefs": [
+          "input.civilTime",
+          "input.location",
+          "input.dut1",
+          "input.dut1",
+          "timeScale.leapSecond",
+          "timeScale.ttMinusUtc",
+          "timeScale.tdbMinusTt",
+          "ephemeris.bsp",
+          "ephemeris.evaluatorSelection",
+          "runtime.runner",
+          "documents.raw",
+          "documents.rule",
+          "documents.adapter",
+          "contamination"
+        ]
+      }
+    },
+    {
+      "id": "placidus-contamination",
+      "expectedReason": "placidus_contamination",
+      "assessment": {
+        "schemaVersion": "verified-astrology-readiness-v1",
+        "readiness": "blocked",
+        "areas": {
+          "input": {
+            "status": "ready",
+            "reasons": [],
+            "sourceRefs": [
+              "input.civilTime",
+              "input.location",
+              "input.dut1"
+            ]
+          },
+          "timeScale": {
+            "status": "ready",
+            "reasons": [],
+            "sourceRefs": [
+              "input.dut1",
+              "timeScale.leapSecond",
+              "timeScale.ttMinusUtc",
+              "timeScale.tdbMinusTt"
+            ]
+          },
+          "ephemeris": {
+            "status": "ready",
+            "reasons": [],
+            "sourceRefs": [
+              "ephemeris.bsp",
+              "ephemeris.evaluatorSelection"
+            ]
+          },
+          "runtime": {
+            "status": "ready",
+            "reasons": [],
+            "sourceRefs": [
+              "runtime.runner"
+            ]
+          },
+          "documents": {
+            "status": "ready",
+            "reasons": [],
+            "sourceRefs": [
+              "documents.raw",
+              "documents.rule",
+              "documents.adapter"
+            ]
+          },
+          "contamination": {
+            "status": "blocked",
+            "reasons": [
+              "placidus_contamination"
+            ],
+            "sourceRefs": [
+              "contamination"
+            ]
+          }
+        },
+        "reasonCodes": [
+          "placidus_contamination"
+        ],
+        "calculationReady": false,
+        "activation": {
+          "availableForInterpretation": false,
+          "integrationStatus": "not_connected",
+          "serviceEligibility": "blocked",
+          "reason": "activation_requires_user_approval"
+        },
+        "sourceRefs": [
+          "input.civilTime",
+          "input.location",
+          "input.dut1",
+          "input.dut1",
+          "timeScale.leapSecond",
+          "timeScale.ttMinusUtc",
+          "timeScale.tdbMinusTt",
+          "ephemeris.bsp",
+          "ephemeris.evaluatorSelection",
+          "runtime.runner",
+          "documents.raw",
+          "documents.rule",
+          "documents.adapter",
+          "contamination"
+        ]
+      }
+    },
+    {
+      "id": "frozen-speed-contamination",
+      "expectedReason": "frozen_speed_contamination",
+      "assessment": {
+        "schemaVersion": "verified-astrology-readiness-v1",
+        "readiness": "blocked",
+        "areas": {
+          "input": {
+            "status": "ready",
+            "reasons": [],
+            "sourceRefs": [
+              "input.civilTime",
+              "input.location",
+              "input.dut1"
+            ]
+          },
+          "timeScale": {
+            "status": "ready",
+            "reasons": [],
+            "sourceRefs": [
+              "input.dut1",
+              "timeScale.leapSecond",
+              "timeScale.ttMinusUtc",
+              "timeScale.tdbMinusTt"
+            ]
+          },
+          "ephemeris": {
+            "status": "ready",
+            "reasons": [],
+            "sourceRefs": [
+              "ephemeris.bsp",
+              "ephemeris.evaluatorSelection"
+            ]
+          },
+          "runtime": {
+            "status": "ready",
+            "reasons": [],
+            "sourceRefs": [
+              "runtime.runner"
+            ]
+          },
+          "documents": {
+            "status": "ready",
+            "reasons": [],
+            "sourceRefs": [
+              "documents.raw",
+              "documents.rule",
+              "documents.adapter"
+            ]
+          },
+          "contamination": {
+            "status": "blocked",
+            "reasons": [
+              "frozen_speed_contamination"
+            ],
+            "sourceRefs": [
+              "contamination"
+            ]
+          }
+        },
+        "reasonCodes": [
+          "frozen_speed_contamination"
+        ],
+        "calculationReady": false,
+        "activation": {
+          "availableForInterpretation": false,
+          "integrationStatus": "not_connected",
+          "serviceEligibility": "blocked",
+          "reason": "activation_requires_user_approval"
+        },
+        "sourceRefs": [
+          "input.civilTime",
+          "input.location",
+          "input.dut1",
+          "input.dut1",
+          "timeScale.leapSecond",
+          "timeScale.ttMinusUtc",
+          "timeScale.tdbMinusTt",
+          "ephemeris.bsp",
+          "ephemeris.evaluatorSelection",
+          "runtime.runner",
+          "documents.raw",
+          "documents.rule",
+          "documents.adapter",
+          "contamination"
+        ]
+      }
+    },
+    {
+      "id": "consumer-connection-detected",
+      "expectedReason": "consumer_connection_detected",
+      "assessment": {
+        "schemaVersion": "verified-astrology-readiness-v1",
+        "readiness": "blocked",
+        "areas": {
+          "input": {
+            "status": "ready",
+            "reasons": [],
+            "sourceRefs": [
+              "input.civilTime",
+              "input.location",
+              "input.dut1"
+            ]
+          },
+          "timeScale": {
+            "status": "ready",
+            "reasons": [],
+            "sourceRefs": [
+              "input.dut1",
+              "timeScale.leapSecond",
+              "timeScale.ttMinusUtc",
+              "timeScale.tdbMinusTt"
+            ]
+          },
+          "ephemeris": {
+            "status": "ready",
+            "reasons": [],
+            "sourceRefs": [
+              "ephemeris.bsp",
+              "ephemeris.evaluatorSelection"
+            ]
+          },
+          "runtime": {
+            "status": "ready",
+            "reasons": [],
+            "sourceRefs": [
+              "runtime.runner"
+            ]
+          },
+          "documents": {
+            "status": "ready",
+            "reasons": [],
+            "sourceRefs": [
+              "documents.raw",
+              "documents.rule",
+              "documents.adapter"
+            ]
+          },
+          "contamination": {
+            "status": "blocked",
+            "reasons": [
+              "consumer_connection_detected"
+            ],
+            "sourceRefs": [
+              "contamination"
+            ]
+          }
+        },
+        "reasonCodes": [
+          "consumer_connection_detected"
+        ],
+        "calculationReady": false,
+        "activation": {
+          "availableForInterpretation": false,
+          "integrationStatus": "not_connected",
+          "serviceEligibility": "blocked",
+          "reason": "activation_requires_user_approval"
+        },
+        "sourceRefs": [
+          "input.civilTime",
+          "input.location",
+          "input.dut1",
+          "input.dut1",
+          "timeScale.leapSecond",
+          "timeScale.ttMinusUtc",
+          "timeScale.tdbMinusTt",
+          "ephemeris.bsp",
+          "ephemeris.evaluatorSelection",
+          "runtime.runner",
+          "documents.raw",
+          "documents.rule",
+          "documents.adapter",
+          "contamination"
+        ]
+      }
+    }
+  ],
+  "evidenceSha256": "f3e631f4d0d1030644dae57b211bff60ce5582764ff2a0dd24d9d53208690863",
+  "byteIdentity": true,
+  "serviceActivation": "blocked"
+}
