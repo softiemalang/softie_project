@@ -3,7 +3,7 @@
   "inventoryVersion": "1.0.0",
   "verdictToken": "tri_system_preparation_baseline_partial",
   "scope": "read_only_repository_evidence_audit",
-  "head": "1a94a468d19f7e36c1c6ca00fd9e9c1655f4bd93",
+  "head": "6bb8aaf689d1c6038e1039f474e3965770a28b83",
   "materializerPath": "scripts/materialize-tri-system-readiness.mjs",
   "statusVocabulary": ["verified", "implemented_unverified", "partial", "experimental", "stub_or_simulation", "documented_only", "absent", "blocked"],
   "systems": [
