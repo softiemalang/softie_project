@@ -1,0 +1,606 @@
+{
+  "schemaVersion": "saju-verification-reconciliation-v1",
+  "verdictToken": "saju_scoped_external_matches_but_claim_level_verification_unproven",
+  "generatedFromHead": "7777e639a6b5aaf3648acee4926519a7a3583b76",
+  "scope": "read_only_reconciliation_of_existing_saju_evidence",
+  "invariants": [
+    "no calculation, rule, fixture expectation, contract, or tolerance was changed",
+    "internal regression evidence is not independent verification",
+    "traditional-rule validity and life-interpretation accuracy are out of scope",
+    "source identity is unresolved when edition or reproducible source bytes are absent"
+  ],
+  "counts": {
+    "internalRegressionFixtures": 13,
+    "internalRegressionOnly": 12,
+    "internalPendingExternal": 1,
+    "independentReferenceFixtures": 7,
+    "independentObservedMatches": 7,
+    "independentObservedMismatches": 0,
+    "declaredVerifiedReferenceMatches": 7,
+    "traditionalRuleSourceIdentities": 0
+  },
+  "implementationIdentity": {
+    "engineVersion": "2.5",
+    "calculationProfile": {
+      "id": "softie-kst-apparent-solar-v1",
+      "timezone": "Asia/Seoul",
+      "standardMeridianDegrees": 135,
+      "solarTime": "longitude correction + NOAA equation of time when enabled",
+      "dayBoundaryRule": "solar-midnight-split-zi",
+      "ziHourStart": "23:00"
+    },
+    "fixtureVersion": "saju-validation-fixtures-v0.1.0"
+  },
+  "externalComparison": {
+    "runnerVerdict": "scoped_external_validation_passed",
+    "finalJudgementWhenFullSuiteRuns": "PARTIAL_FIXTURE_PACK_REFERENCE_GAP",
+    "summary": {
+      "system": "saju",
+      "totalFixtureCount": 7,
+      "evaluatedFixtureCount": 7,
+      "excludedFromValidationCount": 0,
+      "excludedBoundaryContractsCount": 0,
+      "notEvaluableSourceGapCount": 0,
+      "pendingSourceReviewCountTotal": 0,
+      "pendingSourceReviewCountEvaluated": 0,
+      "fixtureCount": 7,
+      "pendingSourceReviewCount": 0,
+      "uniqueReferenceDocumentCount": 3,
+      "independentPublisherCount": 2,
+      "observedMatches": 7,
+      "observedMismatches": 0,
+      "verifiedMatches": 7,
+      "verifiedMismatches": 0,
+      "partialMatches": 0,
+      "disputed": 0,
+      "pending": 0,
+      "outOfScope": 0,
+      "coverageByField": {
+        "solarTermName": {
+          "total": 1,
+          "matched": 1,
+          "mismatched": 0
+        },
+        "solarTermLocalTime": {
+          "total": 1,
+          "matched": 1,
+          "mismatched": 0
+        },
+        "dayPillar": {
+          "total": 1,
+          "matched": 1,
+          "mismatched": 0
+        },
+        "solarDate": {
+          "total": 3,
+          "matched": 3,
+          "mismatched": 0
+        },
+        "historicalTimezoneStatus": {
+          "total": 2,
+          "matched": 2,
+          "mismatched": 0
+        }
+      },
+      "coverageBySourceTier": {
+        "Tier 1": {
+          "totalFixtureCount": 5,
+          "evaluatedFixtureCount": 5,
+          "fixtureCount": 5,
+          "observedMatches": 5,
+          "observedMismatches": 0
+        },
+        "Tier 2": {
+          "totalFixtureCount": 2,
+          "evaluatedFixtureCount": 2,
+          "fixtureCount": 2,
+          "observedMatches": 2,
+          "observedMismatches": 0
+        }
+      }
+    },
+    "fixtures": [
+      {
+        "fixtureId": "saju-ext-hko-2026-spring-commences",
+        "referenceType": "astronomical_reference",
+        "sourceDocumentId": "doc-hko-almanac-2026",
+        "declaredReviewStatus": "verified_reference",
+        "observedStatus": "matched_within_declared_scope",
+        "comparedFields": [
+          "solarTermName",
+          "solarTermLocalTime"
+        ]
+      },
+      {
+        "fixtureId": "saju-ext-hko-2026-02-01-day-pillar",
+        "referenceType": "calendar_conversion_reference",
+        "sourceDocumentId": "doc-hko-almanac-2026",
+        "declaredReviewStatus": "verified_reference",
+        "observedStatus": "matched_within_declared_scope",
+        "comparedFields": [
+          "dayPillar"
+        ]
+      },
+      {
+        "fixtureId": "saju-ext-hko-2026-lunar-new-year",
+        "referenceType": "calendar_conversion_reference",
+        "sourceDocumentId": "doc-hko-gregorian-lunar-2026",
+        "declaredReviewStatus": "verified_reference",
+        "observedStatus": "matched_within_declared_scope",
+        "comparedFields": [
+          "solarDate"
+        ]
+      },
+      {
+        "fixtureId": "saju-ext-hko-2026-sixth-month-start",
+        "referenceType": "calendar_conversion_reference",
+        "sourceDocumentId": "doc-hko-gregorian-lunar-2026",
+        "declaredReviewStatus": "verified_reference",
+        "observedStatus": "matched_within_declared_scope",
+        "comparedFields": [
+          "solarDate"
+        ]
+      },
+      {
+        "fixtureId": "saju-ext-hko-2026-sixth-month-midpoint",
+        "referenceType": "calendar_conversion_reference",
+        "sourceDocumentId": "doc-hko-gregorian-lunar-2026",
+        "declaredReviewStatus": "verified_reference",
+        "observedStatus": "matched_within_declared_scope",
+        "comparedFields": [
+          "solarDate"
+        ]
+      },
+      {
+        "fixtureId": "saju-ext-iana-seoul-1987-dst-overlap",
+        "referenceType": "timezone_reference",
+        "sourceDocumentId": "doc-iana-tz-discussion-2019",
+        "declaredReviewStatus": "verified_reference",
+        "observedStatus": "matched_within_declared_scope",
+        "comparedFields": [
+          "historicalTimezoneStatus"
+        ]
+      },
+      {
+        "fixtureId": "saju-ext-iana-seoul-1987-dst-gap",
+        "referenceType": "timezone_reference",
+        "sourceDocumentId": "doc-iana-tz-discussion-2019",
+        "declaredReviewStatus": "verified_reference",
+        "observedStatus": "matched_within_declared_scope",
+        "comparedFields": [
+          "historicalTimezoneStatus"
+        ]
+      }
+    ]
+  },
+  "verificationVocabulary": [
+    {
+      "token": "verified",
+      "meaningInRepository": "either a per-result state or a declared external fixture review status; not one uniform evidence level",
+      "evidenceLevel": "overloaded",
+      "locations": [
+        {
+          "path": "src/saju/engine/externalValidationFixtures.js",
+          "lines": [
+            59,
+            106,
+            153,
+            200,
+            247,
+            293,
+            339
+          ]
+        },
+        {
+          "path": "docs/saju-final-readiness.md",
+          "lines": [
+            8,
+            51,
+            105,
+            113
+          ]
+        },
+        {
+          "path": "artifacts/tri-system-readiness-v1/inventory.json",
+          "lines": [
+            8,
+            10,
+            11,
+            12
+          ]
+        }
+      ],
+      "reconciliation": "do not use as a claim-level truth label; preserve scope, source identity, and comparison result beside it"
+    },
+    {
+      "token": "validated",
+      "meaningInRepository": "human prose for completed or scoped comparison; often broader than the fields actually compared",
+      "evidenceLevel": "scope-dependent",
+      "locations": [
+        {
+          "path": "docs/saju-external-validation-report.md",
+          "lines": [
+            1,
+            8,
+            41,
+            59,
+            69
+          ]
+        },
+        {
+          "path": "src/interpretationPrep/validationMetadata.js",
+          "lines": [
+            2,
+            9,
+            18,
+            21,
+            25,
+            27,
+            45,
+            48
+          ]
+        }
+      ],
+      "reconciliation": "replace with an explicit comparison scope and observed result in future evidence records"
+    },
+    {
+      "token": "confirmed",
+      "meaningInRepository": "not established as a Saju-specific evidence status in the audited sources",
+      "evidenceLevel": "not_found_as_saju_contract",
+      "locations": [],
+      "reconciliation": "reserve for an independently identified source plus reproducible comparison, if adopted later"
+    },
+    {
+      "token": "canonical",
+      "meaningInRepository": "used by the external-fixture source-of-truth comment, but not a proof that the source edition or bytes are canonical",
+      "evidenceLevel": "repository-source-of-truth_only",
+      "locations": [
+        {
+          "path": "src/saju/engine/externalValidationFixtures.js",
+          "lines": [
+            4
+          ]
+        }
+      ],
+      "reconciliation": "use only for repository ownership/selection, never for scientific or traditional-rule authority"
+    },
+    {
+      "token": "regression_only",
+      "meaningInRepository": "internal expected-value comparison against the current engine",
+      "evidenceLevel": "internal_regression",
+      "locations": [
+        {
+          "path": "src/interpretationPrep/fixtures/sajuValidationFixtures.js",
+          "lines": [
+            6,
+            62,
+            101,
+            134,
+            167,
+            197,
+            227,
+            257,
+            291,
+            321,
+            351,
+            433,
+            463
+          ]
+        }
+      ],
+      "reconciliation": "accurate and should remain distinct from independent validation"
+    },
+    {
+      "token": "experimental",
+      "meaningInRepository": "derived interpretation/rule output kept separate from the core calculation contract",
+      "evidenceLevel": "experimental_or_unverified",
+      "locations": [
+        {
+          "path": "src/interpretationPrep/sajuAdapter.js",
+          "lines": [
+            49,
+            128,
+            174,
+            175,
+            178,
+            179,
+            182,
+            186,
+            193,
+            194,
+            197,
+            198,
+            201,
+            205,
+            212,
+            213,
+            216,
+            217,
+            220,
+            224,
+            231,
+            232,
+            236,
+            237,
+            240,
+            244,
+            423,
+            424,
+            431,
+            432,
+            477,
+            495,
+            496,
+            497,
+            527,
+            972,
+            986,
+            1156,
+            1226
+          ]
+        }
+      ],
+      "reconciliation": "appropriate for derived rules; does not establish traditional-rule validity"
+    },
+    {
+      "token": "production",
+      "meaningInRepository": "implementation scope, not evidence strength",
+      "evidenceLevel": "not_a_verification_level",
+      "locations": [
+        {
+          "path": "docs/saju-external-validation-report.md",
+          "lines": [
+            3,
+            9
+          ]
+        }
+      ],
+      "reconciliation": "do not infer external correctness from production module membership"
+    }
+  ],
+  "sourceIdentityInventory": [
+    {
+      "id": "internal_regression_fixture",
+      "path": "src/interpretationPrep/fixtures/sajuValidationFixtures.js",
+      "role": "fixture expected values and verificationStatus",
+      "sha256": "c6e983015f06968f7d326c17c5151a81b3554300ad8fa5d59897bdd2eed50ffe",
+      "sourceIdentity": "current engine regression baseline; no independent source identity",
+      "editionVersionIdentifiable": false,
+      "directOrIndirect": "indirect_or_internal",
+      "circularValidation": true
+    },
+    {
+      "id": "external_reference_fixture",
+      "path": "src/saju/engine/externalValidationFixtures.js",
+      "role": "external expected values and source metadata",
+      "sha256": "4a80715252cdce10a64f78a9c5ca206b4e98b6c141c74695d8592eb4d6c165ea",
+      "sourceIdentity": "fixture-declared source metadata; source bytes are not vendored or hash-pinned",
+      "editionVersionIdentifiable": true,
+      "directOrIndirect": "direct_reference_metadata",
+      "circularValidation": false
+    },
+    {
+      "id": "external_runner",
+      "path": "src/interpretationPrep/externalValidationRunner.js",
+      "role": "actual-vs-expected comparison runner",
+      "sha256": "8f8aae9decc4e2cf83868a784e6cb6c8709c755bf2ef79ed52a811dede85c5f3",
+      "sourceIdentity": "repository implementation identity only",
+      "editionVersionIdentifiable": false,
+      "directOrIndirect": "indirect_or_internal",
+      "circularValidation": false
+    },
+    {
+      "id": "internal_fixture_test",
+      "path": "src/interpretationPrep/sajuValidationRunner.test.js",
+      "role": "internal fixture runner tests",
+      "sha256": "37a0bb6664ee9f02190a1b3429860ea043757999f2d973dd22ed6c8c75e2bbf4",
+      "sourceIdentity": "repository implementation identity only",
+      "editionVersionIdentifiable": false,
+      "directOrIndirect": "indirect_or_internal",
+      "circularValidation": false
+    },
+    {
+      "id": "engine_external_fixture_test",
+      "path": "src/saju/engine/fourPillars.test.js",
+      "role": "engine and HKO fixture tests",
+      "sha256": "afcc7d42018d1b0573623af2236ac2ee85391cda37b5e76f9eaecf1ced7b63f0",
+      "sourceIdentity": "repository implementation identity only",
+      "editionVersionIdentifiable": false,
+      "directOrIndirect": "indirect_or_internal",
+      "circularValidation": false
+    },
+    {
+      "id": "external_runner_test",
+      "path": "test/externalValidationRunner.test.js",
+      "role": "external provenance runner tests",
+      "sha256": "4de5478db198e4620072b9f2f993beb8f14e454dac1f7b8de640b4ee549b2b41",
+      "sourceIdentity": "repository implementation identity only",
+      "editionVersionIdentifiable": false,
+      "directOrIndirect": "indirect_or_internal",
+      "circularValidation": false
+    },
+    {
+      "id": "calculation_engine",
+      "path": "src/saju/engine/fourPillars.js",
+      "role": "deterministic four-pillars implementation",
+      "sha256": "27f71a0bbad8476895766c29c42bec1f95ddeb0b5fec3171c56e19265e936cc7",
+      "sourceIdentity": "repository implementation identity only",
+      "editionVersionIdentifiable": true,
+      "directOrIndirect": "indirect_or_internal",
+      "circularValidation": false
+    },
+    {
+      "id": "solar_terms_engine",
+      "path": "src/saju/engine/solarTerms.js",
+      "role": "solar-term boundary implementation",
+      "sha256": "5dcab28d38a3b51182fb984abbd1461934a348213b5d53cee9828e0f04b02f56",
+      "sourceIdentity": "repository implementation identity only",
+      "editionVersionIdentifiable": false,
+      "directOrIndirect": "indirect_or_internal",
+      "circularValidation": false
+    },
+    {
+      "id": "lunar_converter",
+      "path": "src/interpretationPrep/lunarConverter.js",
+      "role": "lunar-to-solar conversion implementation",
+      "sha256": "466c7774c3dc8ef89fb99345561db4bf5c1ec9fd786b5279fabcfa507e2bb224",
+      "sourceIdentity": "repository implementation identity only",
+      "editionVersionIdentifiable": false,
+      "directOrIndirect": "indirect_or_internal",
+      "circularValidation": false
+    },
+    {
+      "id": "saju_profile_rules",
+      "path": "src/interpretationPrep/sajuProfileRules.js",
+      "role": "derived profile/rule implementation",
+      "sha256": "3fa0850957479f2bad5b56f9395b0f2b0957f62671e67dea1d5473802e9a51c8",
+      "sourceIdentity": "repository implementation identity only",
+      "editionVersionIdentifiable": false,
+      "directOrIndirect": "indirect_or_internal",
+      "circularValidation": false
+    },
+    {
+      "id": "saju_relation_rules",
+      "path": "src/interpretationPrep/sajuRelationRules.js",
+      "role": "relation rule implementation",
+      "sha256": "bfdfc82d91d563674ac95e6310d8c500918839373f51def40daf254af719cd9c",
+      "sourceIdentity": "repository implementation identity only",
+      "editionVersionIdentifiable": false,
+      "directOrIndirect": "indirect_or_internal",
+      "circularValidation": false
+    },
+    {
+      "id": "saju_timing_rules",
+      "path": "src/interpretationPrep/sajuTimingRules.js",
+      "role": "timing rule implementation",
+      "sha256": "849bf4744c33437b0f15f083f46f8f8c5434f0edb35d0f5e3b94848b65c2c808",
+      "sourceIdentity": "repository implementation identity only",
+      "editionVersionIdentifiable": false,
+      "directOrIndirect": "indirect_or_internal",
+      "circularValidation": false
+    },
+    {
+      "id": "final_readiness_document",
+      "path": "docs/saju-final-readiness.md",
+      "role": "readiness vocabulary and scope",
+      "sha256": "0c8654f3da56efdcbee6c12e773848aa06423b544467fc46e1b7ed25c2a4f3e3",
+      "sourceIdentity": "repository document/artifact identity only",
+      "editionVersionIdentifiable": false,
+      "directOrIndirect": "indirect_or_internal",
+      "circularValidation": false
+    },
+    {
+      "id": "external_validation_report",
+      "path": "docs/saju-external-validation-report.md",
+      "role": "external fixture report",
+      "sha256": "3d72021b16dba06770acc35b242b319e472913f580909f5d7d79ec42efba0499",
+      "sourceIdentity": "repository document/artifact identity only",
+      "editionVersionIdentifiable": false,
+      "directOrIndirect": "indirect_or_internal",
+      "circularValidation": false
+    },
+    {
+      "id": "tri_system_inventory",
+      "path": "artifacts/tri-system-readiness-v1/inventory.json",
+      "role": "tri-system readiness baseline",
+      "sha256": "f6c81ad68ef700fe808a83526c0cc74fe52b3097fcf08bc627b98111caac23a3",
+      "sourceIdentity": "repository document/artifact identity only",
+      "editionVersionIdentifiable": false,
+      "directOrIndirect": "indirect_or_internal",
+      "circularValidation": false
+    }
+  ],
+  "findings": [
+    {
+      "id": "internal-fixtures-circular",
+      "status": "confirmed_gap",
+      "subject": "12 regression_only fixtures",
+      "reason": "expected values are compared to outputs from the same repository engine; no independent source identity is attached"
+    },
+    {
+      "id": "pending-fixture-unresolved",
+      "status": "unresolved_source_identity",
+      "subject": "val-pending-external",
+      "reason": "source is explicitly pending and has no edition, locator, or reproducible external comparison record"
+    },
+    {
+      "id": "external-fixtures-scoped",
+      "status": "scoped_match",
+      "subject": "7 external fixtures",
+      "reason": "runner observes 7/7 matches across 5 Tier 1 HKO and 2 Tier 2 IANA discussion fixtures; this covers declared fields only"
+    },
+    {
+      "id": "external-source-bytes-unpinned",
+      "status": "source_provenance_gap",
+      "subject": "HKO/IANA source documents",
+      "reason": "metadata includes URL, edition/date, and page/section, but no retrieved source-byte hash or vendored snapshot"
+    },
+    {
+      "id": "traditional-rule-edition-missing",
+      "status": "unresolved_source_identity",
+      "subject": "profile/relation/timing rules",
+      "reason": "internal rule versions exist, but no attributable traditional text edition, author, translation, page, section, or table is linked"
+    },
+    {
+      "id": "readiness-report-conflict",
+      "status": "document_reconciliation",
+      "subject": "docs/saju-final-readiness.md vs docs/saju-external-validation-report.md",
+      "reason": "readiness correctly keeps externalValidationStatus pending while companion report calls seven scoped matches verified_reference; both are true only when scope is made explicit"
+    }
+  ],
+  "recommendedVocabularyContract": {
+    "internal_regression": "value matches a repository-owned expected value; no independent source claim",
+    "scoped_external_reference_match": "declared field(s) match an independently described external reference under recorded rules; not a universal or claim-level verified label",
+    "source_identity_incomplete": "a source is named but edition, locator, retrieval identity, or reproducibility is incomplete",
+    "rule_derivation_unverified": "deterministically derived from an implementation rule version whose external traditional source is not identified",
+    "experimental_unverified": "experimental or heuristic output; not promoted by regression or scoped reference matches",
+    "unresolved_source_identity": "do not infer, substitute, or upgrade when the external source cannot be identified"
+  },
+  "minimumClaimProvenanceRequirements": [
+    "stable source identity: publisher/author, title, edition/version, publication date, URL or archive locator",
+    "precise locator: page, section, table, example, or machine-readable record key",
+    "retrieval identity: access date plus source-byte/content hash or immutable archive snapshot when feasible",
+    "declared rule/school/settings: calendar, timezone, day boundary, solar-time policy, leap-month policy, and relevant rule variant",
+    "implementation identity: engine/rule version and input/output field paths",
+    "independence declaration and explicit circular-validation check",
+    "reproducible comparison record with expected, actual, tolerance, and observed status"
+  ],
+  "sourceIdentityFindings": [
+    {
+      "id": "internal-fixtures-circular",
+      "status": "confirmed_gap",
+      "subject": "12 regression_only fixtures",
+      "reason": "expected values are compared to outputs from the same repository engine; no independent source identity is attached"
+    },
+    {
+      "id": "pending-fixture-unresolved",
+      "status": "unresolved_source_identity",
+      "subject": "val-pending-external",
+      "reason": "source is explicitly pending and has no edition, locator, or reproducible external comparison record"
+    },
+    {
+      "id": "external-fixtures-scoped",
+      "status": "scoped_match",
+      "subject": "7 external fixtures",
+      "reason": "runner observes 7/7 matches across 5 Tier 1 HKO and 2 Tier 2 IANA discussion fixtures; this covers declared fields only"
+    },
+    {
+      "id": "external-source-bytes-unpinned",
+      "status": "source_provenance_gap",
+      "subject": "HKO/IANA source documents",
+      "reason": "metadata includes URL, edition/date, and page/section, but no retrieved source-byte hash or vendored snapshot"
+    },
+    {
+      "id": "traditional-rule-edition-missing",
+      "status": "unresolved_source_identity",
+      "subject": "profile/relation/timing rules",
+      "reason": "internal rule versions exist, but no attributable traditional text edition, author, translation, page, section, or table is linked"
+    },
+    {
+      "id": "readiness-report-conflict",
+      "status": "document_reconciliation",
+      "subject": "docs/saju-final-readiness.md vs docs/saju-external-validation-report.md",
+      "reason": "readiness correctly keeps externalValidationStatus pending while companion report calls seven scoped matches verified_reference; both are true only when scope is made explicit"
+    }
+  ]
+}
