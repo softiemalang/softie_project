@@ -1,0 +1,260 @@
+{
+  "schemaVersion": "astrology-interpretation-handoff-evidence-v1",
+  "bundle": {
+    "schemaVersion": "astrology-interpretation-handoff-v1",
+    "handoffVersion": "1.0.0",
+    "bundleStatus": "complete",
+    "usable": false,
+    "activation": {
+      "availableForInterpretation": false,
+      "integrationStatus": "not_connected",
+      "serviceEligibility": "blocked",
+      "reason": "interpretation_packet_not_activated"
+    },
+    "connected": false,
+    "components": {
+      "packet": {
+        "role": "packet",
+        "artifact": {
+          "path": "artifacts/astrology-interpretation-packet-v1/complete.json",
+          "wrapperSchemaVersion": "astrology-interpretation-packet-evidence-v1",
+          "artifactByteSha256": "e349c45ac0a44a7182f627805156ac5a810688fed27ff39a2a2f61e90d1e6b64"
+        },
+        "content": {
+          "schemaVersion": "astrology-interpretation-packet-v1",
+          "version": "1.0.0",
+          "contentSha256": "509148b669dd99927e870cacb2216929e2c69792a08e8d2157718f2bd039a424"
+        },
+        "status": "complete"
+      },
+      "context": {
+        "role": "context",
+        "artifact": {
+          "path": "artifacts/astrology-interpretation-context-v1/complete.json",
+          "wrapperSchemaVersion": "astrology-interpretation-context-evidence-v1",
+          "artifactByteSha256": "7669f537c34836787eb2efbb38721364182a8a3728211ec397a1846c0ab434b3"
+        },
+        "content": {
+          "schemaVersion": "astrology-interpretation-context-v1",
+          "version": "1.0.0",
+          "contentSha256": "610852ef32546e1bb5df63ed544be6e2760f533146a9ccc6954b19d0b138ac91"
+        },
+        "status": "complete"
+      },
+      "readiness": {
+        "role": "readiness",
+        "artifact": {
+          "path": "artifacts/astrology-interpretation-readiness-v1/complete.json",
+          "wrapperSchemaVersion": "astrology-interpretation-readiness-evidence-v1",
+          "artifactByteSha256": "f8943a611e01997ad10c5c4d5d7da03595b5a549f06da58b438ad456aa8506f3"
+        },
+        "content": {
+          "schemaVersion": "astrology-interpretation-readiness-v1",
+          "version": "1.0.0",
+          "contentSha256": "1c62daa33447f2bf130d7f5935ebe0a2b07369c348c1c7e60fc13bd6f1e91c38"
+        },
+        "status": "complete"
+      },
+      "graph": {
+        "role": "graph",
+        "artifact": {
+          "path": "artifacts/astrology-claim-relation-graph-v1/complete.json",
+          "wrapperSchemaVersion": "astrology-claim-relation-graph-evidence-v1",
+          "artifactByteSha256": "b1fba97e6a98a4cb7f318818d3b963df7bcb8ffd5b0612daa773e44b57314336"
+        },
+        "content": {
+          "schemaVersion": "astrology-claim-relation-graph-v1",
+          "version": "1.0.0",
+          "contentSha256": "bcece84fe79f6dafb1aae13cc89a2d4e0ae7ce1da1441fe1b785d621e5ed3da0"
+        },
+        "status": "complete"
+      }
+    },
+    "crossHashLinks": {
+      "contextFromPacket": "509148b669dd99927e870cacb2216929e2c69792a08e8d2157718f2bd039a424",
+      "readinessFromPacket": "509148b669dd99927e870cacb2216929e2c69792a08e8d2157718f2bd039a424",
+      "graphFromContext": "610852ef32546e1bb5df63ed544be6e2760f533146a9ccc6954b19d0b138ac91",
+      "graphFromReadiness": "1c62daa33447f2bf130d7f5935ebe0a2b07369c348c1c7e60fc13bd6f1e91c38"
+    },
+    "statistics": {
+      "claims": {
+        "total": 53,
+        "observedOrCalculated": 20,
+        "deterministicallyDerived": 33
+      },
+      "graphNodes": 53,
+      "graphEdges": 1753
+    },
+    "relationVocabulary": [
+      "same_chart",
+      "shares_body_subject",
+      "shares_angle_subject",
+      "shares_aspect_endpoint",
+      "shares_house_subject",
+      "shares_ruler_subject",
+      "shares_distribution_dimension",
+      "same_rule_id"
+    ],
+    "provenance": {
+      "sourceRefsCompleteness": "complete",
+      "packet": "complete",
+      "context": "complete",
+      "graphNodes": "complete",
+      "graphEdges": "complete"
+    },
+    "eligibility": {
+      "localResearch": "eligible_for_local_interpretation_research",
+      "userDelivery": "not_eligible_for_user_delivery",
+      "production": "production_activation_blocked",
+      "humanReview": "human_review_required",
+      "activation": "blocked"
+    },
+    "deliveryPolicy": {
+      "allowedFields": [
+        "component manifest identities and hashes",
+        "verified claim counts and epistemic counts",
+        "relation vocabulary and graph counts",
+        "sourceRefs and provenance completeness status",
+        "local research eligibility and human-review status",
+        "activation, user-delivery, and production boundary status",
+        "deterministic source artifact references"
+      ],
+      "forbiddenUsages": [
+        "generate_new_claims",
+        "delete_merge_or_transform_claims",
+        "infer_personality_psychology_strength_weakness_wound_desire_risk_or_destiny",
+        "create_theme_narrative_synthesis_or_conclusion",
+        "rank_claims_or_assign_meaning_weight_or_priority",
+        "judge_conflict_dominance_balance_or_winner_between_claims",
+        "infer_experience_environment_or_behavior",
+        "generate_natural_language_interpretation_questions_or_advice",
+        "convert_structural_relations_to_psychological_support_or_conflict",
+        "promote_readiness_to_user_delivery_or_production",
+        "inject_prompt_or_call_llm_api"
+      ],
+      "relationSemantics": "structural_co-occurrence_only",
+      "noInterpretationText": true,
+      "noPromptTemplate": true,
+      "noLlmCall": true
+    },
+    "hashScopes": {
+      "bundleContentSha256": "bundle object excluding bundleContentSha256, recursively sorted object keys, arrays preserved, JSON plus LF",
+      "artifactByteSha256": "exact UTF-8 bytes of the materialized bundle evidence JSON, including formatting and final LF"
+    },
+    "bundleContentSha256": "0c8a5ad9f11abf00bcf61165d91a75fb22bcf843118c5c8d41c5e9b07bbf8661"
+  },
+  "inputArtifacts": {
+    "packet": "artifacts/astrology-interpretation-packet-v1/complete.json",
+    "context": "artifacts/astrology-interpretation-context-v1/complete.json",
+    "readiness": "artifacts/astrology-interpretation-readiness-v1/complete.json",
+    "graph": "artifacts/astrology-claim-relation-graph-v1/complete.json"
+  },
+  "negativeEvidence": [
+    {
+      "caseId": "missing_component",
+      "expectedReasonCode": "component_missing_or_not_object",
+      "observedReasonCodes": [
+        "component_missing_or_not_object"
+      ]
+    },
+    {
+      "caseId": "wrong_version",
+      "expectedReasonCode": "component_schema_or_version_mismatch",
+      "observedReasonCodes": [
+        "component_schema_or_version_mismatch"
+      ]
+    },
+    {
+      "caseId": "content_hash",
+      "expectedReasonCode": "bundle_content_hash_mismatch",
+      "observedReasonCodes": [
+        "bundle_content_hash_mismatch"
+      ]
+    },
+    {
+      "caseId": "statistics",
+      "expectedReasonCode": "statistics_invalid",
+      "observedReasonCodes": [
+        "statistics_invalid"
+      ]
+    },
+    {
+      "caseId": "provenance",
+      "expectedReasonCode": "provenance_incomplete",
+      "observedReasonCodes": [
+        "provenance_incomplete"
+      ]
+    },
+    {
+      "caseId": "interpretation",
+      "expectedReasonCode": "interpretation_output_present",
+      "observedReasonCodes": [
+        "interpretation_output_present"
+      ]
+    },
+    {
+      "caseId": "claim_deleted",
+      "expectedReasonCode": "component_content_hash_mismatch",
+      "observedReasonCodes": [
+        "component_content_hash_mismatch",
+        "source_refs_incomplete"
+      ]
+    },
+    {
+      "caseId": "forbidden_relation",
+      "expectedReasonCode": "relation_vocabulary_invalid",
+      "observedReasonCodes": [
+        "relation_vocabulary_invalid"
+      ]
+    },
+    {
+      "caseId": "activation_promoted",
+      "expectedReasonCode": "activation_boundary_mismatch",
+      "observedReasonCodes": [
+        "activation_boundary_mismatch"
+      ]
+    },
+    {
+      "caseId": "user_delivery_promoted",
+      "expectedReasonCode": "promotion_boundary_invalid",
+      "observedReasonCodes": [
+        "promotion_boundary_invalid"
+      ]
+    },
+    {
+      "caseId": "production_promoted",
+      "expectedReasonCode": "promotion_boundary_invalid",
+      "observedReasonCodes": [
+        "promotion_boundary_invalid"
+      ]
+    },
+    {
+      "caseId": "simulation_contamination",
+      "expectedReasonCode": "component_content_hash_mismatch",
+      "observedReasonCodes": [
+        "component_content_hash_mismatch"
+      ]
+    },
+    {
+      "caseId": "placidus_contamination",
+      "expectedReasonCode": "component_content_hash_mismatch",
+      "observedReasonCodes": [
+        "component_content_hash_mismatch"
+      ]
+    },
+    {
+      "caseId": "frozen_speed_contamination",
+      "expectedReasonCode": "component_content_hash_mismatch",
+      "observedReasonCodes": [
+        "component_content_hash_mismatch"
+      ]
+    },
+    {
+      "caseId": "legacy_prep_contamination",
+      "expectedReasonCode": "component_content_hash_mismatch",
+      "observedReasonCodes": [
+        "component_content_hash_mismatch"
+      ]
+    }
+  ]
+}
