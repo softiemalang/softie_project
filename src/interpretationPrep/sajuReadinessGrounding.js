@@ -12,6 +12,7 @@ const STATUS_MAP = Object.freeze({
   provenance_partial: { readiness: 'partial_evidence_only', availability: 'available_with_explicit_limits' },
   rule_implemented_source_unresolved: { readiness: 'source_unresolved', availability: 'not_available_for_assertion' },
 })
+const RAW_TEXT_CONSUMPTION = 'raw_text_not_verified_fact_or_interpretation'
 
 const ordered = value => {
   if (Array.isArray(value)) return value.map(ordered)
@@ -34,7 +35,8 @@ const refs = claim => [
 ].map(ref => ref.refId || ref.id).filter(Boolean).sort()
 
 function readinessForClaim(claim) {
-  const mapping = STATUS_MAP[claim.provenanceCompleteness] || STATUS_MAP.unverified
+  const mapping = STATUS_MAP[claim.provenanceCompleteness]
+  if (!mapping) throw new Error(`unsupported provenance completeness: ${claim.provenanceCompleteness}`)
   const unresolved = sortedUnique([
     ...(claim.unresolvedGaps || []),
     ...(claim.externalEvidenceRefs?.length ? ['external match is limited to declared fixture fields and is not claim-level verification'] : []),
@@ -53,6 +55,15 @@ function readinessForClaim(claim) {
     },
     readinessStatus: mapping.readiness,
     conversationAvailability: mapping.availability,
+    conversationGate: {
+      conversationAvailability: mapping.availability,
+      evidenceLimitation: unresolved,
+      userContextDependency: ['lived_experience', 'personal_context'],
+      mustNotAssume: ['actual_life_expression', 'intensity', 'personal_significance', 'priority', 'likelihood', 'accuracy', 'user_identity', 'behavior', 'outcome'],
+      rawTextConsumption: { allowed: true, isVerifiedFact: false, restriction: RAW_TEXT_CONSUMPTION },
+      status: mapping.availability === 'not_available_for_assertion' ? 'blocked' : 'unsupported_for_assertion',
+      blockedOrUnsupportedReason: unresolved.length ? unresolved : ['claim is not independently verified'],
+    },
     knownFacts: [
       { domain: 'calculation', subject: 'repository_calculation_output', refs: claim.calculationRefs.map(ref => ref.refId) },
       { domain: 'rule', subject: 'implemented_rule_reference', refs: claim.ruleRefs.map(ref => ref.refId) },
@@ -95,7 +106,7 @@ export function buildSajuConversationGrounding({ provenance, readiness, provenan
     verdictToken: 'saju_conversation_grounding_unverified', bundleStatus: 'complete', usable: false, connected: false,
     subject: { domain: 'saju', subjectRef: 'input_subjects_preserved_in_claim_provenance', inputIdentity: identityRef('saju-input-inventory', provenanceIdentity) },
     artifactIdentity: { provenance: identityRef('saju-claim-provenance-v0', provenanceIdentity), readiness: identityRef('saju-readiness-v0', readinessIdentity) },
-    claimRefs: provenance.claims.map(claim => ({ claimId: claim.claimId, provenanceRef: `claim-provenance.claim.${claim.claimId}`, readinessRef: `readiness.claim.${claim.claimId}` })),
+    claimRefs: readiness.claims.map(claim => ({ claimId: claim.claimId, provenanceRef: `claim-provenance.claim.${claim.claimId}`, readinessRef: `readiness.claim.${claim.claimId}`, conversationGate: claim.conversationGate })),
     claims: { count: readiness.claimCount, occurrenceCount: readiness.occurrenceCount, readinessStatuses: readiness.statusDistribution },
     availableEvidence: { calculationRefs: provenance.claims.flatMap(claim => claim.calculationRefs.map(ref => ref.refId)).sort(), ruleRefs: provenance.claims.flatMap(claim => claim.ruleRefs.map(ref => ref.refId)).sort(), scope: 'references_only; no claim-level verification promotion' },
     epistemicState: {
@@ -126,6 +137,7 @@ export function checkSajuReadiness(readiness, provenance) {
   if (readiness?.claims?.some(claim => claim.evidence.verificationStatus !== 'unverified')) errors.push('unverified claim promoted')
   if (readiness?.claims?.some(claim => claim.evidence.unresolved.length === 0)) errors.push('unresolved evidence hidden')
   if (readiness?.claims?.some(claim => claim.mustNotAssume.length === 0 || claim.userDependent.length === 0)) errors.push('user-dependent boundary missing')
+  if (readiness?.claims?.some(claim => claim.conversationGate?.conversationAvailability !== claim.conversationAvailability || !Array.isArray(claim.conversationGate?.evidenceLimitation) || claim.conversationGate?.userContextDependency?.length !== 2 || claim.conversationGate?.rawTextConsumption?.isVerifiedFact !== false || !claim.conversationGate?.blockedOrUnsupportedReason?.length)) errors.push('per-claim conversation gate missing or promoted')
   if (readiness?.activation?.availableForInterpretation !== false || readiness?.activation?.serviceEligibility !== 'blocked') errors.push('activation boundary promoted')
   if (walkKeys(readiness).some(([key, path]) => FORBIDDEN_KEYS.has(key.toLowerCase()) && path[0] !== 'boundary')) errors.push('question/interpretation/advice/prompt inserted')
   return errors
@@ -139,11 +151,13 @@ export function checkSajuConversationGrounding(bundle, { provenance, readiness }
   if (bundle?.claims?.count !== provenance?.claimCount || bundle?.claimRefs?.length !== provenance?.claimCount) errors.push('grounding claim omission/duplication')
   if (new Set((bundle?.claimRefs || []).map(ref => ref.claimId)).size !== bundle?.claimRefs?.length) errors.push('grounding claim duplication')
   if (bundle?.claimRefs?.some(ref => !readiness?.claims?.some(claim => claim.claimId === ref.claimId && ref.readinessRef === `readiness.claim.${claim.claimId}`))) errors.push('grounding readiness reference broken')
+  if (bundle?.claimRefs?.some(ref => !ref.conversationGate || ref.conversationGate.rawTextConsumption?.isVerifiedFact !== false || ref.conversationGate.rawTextConsumption?.restriction !== RAW_TEXT_CONSUMPTION || !ref.conversationGate.blockedOrUnsupportedReason?.length)) errors.push('grounding per-claim conversation gate missing or raw text promoted')
   if (bundle?.preservedClaimRelations?.relatedClaimRefs?.length || bundle?.preservedClaimRelations?.tensionClaimRefs?.length) errors.push('unproven relation inserted')
   const statusKeys = Object.keys(readiness?.statusDistribution || {})
   if (statusKeys.some(key => bundle?.claims?.readinessStatuses?.[key] !== readiness.statusDistribution[key]) || Object.keys(bundle?.claims?.readinessStatuses || {}).length !== statusKeys.length) errors.push('readiness status inventory changed')
   if (bundle?.useLimits?.noFrequencyRanking !== true || bundle?.useLimits?.noClaimMerging !== true) errors.push('frequency ranking or claim merging allowed')
   if (bundle?.frequencyRanking || bundle?.frequencyRank || bundle?.score || bundle?.selection) errors.push('frequency ranking or claim selection inserted')
+  if (bundle?.claims?.occurrenceCount !== provenance?.claims?.reduce((sum, claim) => sum + claim.occurrenceCount, 0)) errors.push('occurrence inventory changed')
   if (bundle?.epistemicState?.unknown?.some(item => item.status !== 'unknown') || bundle?.epistemicState?.userDependent?.some(item => item.status !== 'user_dependent') || bundle?.epistemicState?.unresolved?.some(item => item.status !== 'unresolved')) errors.push('unknown/unresolved/user-dependent promoted')
   if (!bundle?.epistemicState?.unresolved?.length) errors.push('unresolved source hidden')
   if (walkKeys(bundle).some(([key, path]) => FORBIDDEN_KEYS.has(key.toLowerCase()) && path[0] !== 'boundary' && path[0] !== 'useLimits')) errors.push('question/interpretation/advice/prompt inserted')

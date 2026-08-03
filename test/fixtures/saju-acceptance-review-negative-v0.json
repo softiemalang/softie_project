@@ -1,0 +1,14 @@
+[
+  {"caseId":"unverified_promotion","target":"provenance.claims[0].verificationStatus","mutation":"verified"},
+  {"caseId":"unresolved_source_omission","target":"provenance.claims[0].traditionalSourceRefs","mutation":"delete"},
+  {"caseId":"external_scope_expansion","target":"grounding.availableEvidence.scope","mutation":"claim_level_verification"},
+  {"caseId":"frequency_ranking","target":"grounding.frequencyRanking","mutation":["claim-a"]},
+  {"caseId":"user_experience_prejudgment","target":"grounding.epistemicState.userDependent[0].status","mutation":"known"},
+  {"caseId":"empty_relations_overstated","target":"grounding.preservedClaimRelations.note","mutation":"no relations exist"},
+  {"caseId":"dangling_reference","target":"provenance.claims[0].occurrences[0].calculationRefs","mutation":[{"refId":"calculation.does-not-exist"}]},
+  {"caseId":"natural_language_injection","target":"grounding.question","mutation":"What is my destiny?"},
+  {"caseId":"occurrence_variant_erased","target":"provenance.claims[0].occurrences[0].rawText","mutation":"delete"},
+  {"caseId":"per_claim_gate_removed","target":"grounding.claimRefs[0].conversationGate","mutation":"delete"},
+  {"caseId":"raw_text_fact_promoted","target":"grounding.claimRefs[0].conversationGate.rawTextConsumption.isVerifiedFact","mutation":true},
+  {"caseId":"unknown_status","target":"provenance.claims[0].provenanceCompleteness","mutation":"future_status"}
+]

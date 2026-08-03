@@ -1,7 +1,7 @@
 {
   "schemaVersion": "saju-verification-reconciliation-v1",
   "verdictToken": "saju_scoped_external_matches_but_claim_level_verification_unproven",
-  "generatedFromHead": "6bb8aaf689d1c6038e1039f474e3965770a28b83",
+  "generatedFromHead": "acb1af9f7ad393cea23d8d9949660c9bcfe37beb",
   "scope": "read_only_reconciliation_of_existing_saju_evidence",
   "invariants": [
     "no calculation, rule, fixture expectation, contract, or tolerance was changed",
@@ -503,7 +503,7 @@
       "id": "tri_system_inventory",
       "path": "artifacts/tri-system-readiness-v1/inventory.json",
       "role": "tri-system readiness baseline",
-      "sha256": "028559ea8ae6f07695cbe7823954569f7aee40a35a8aec2a7415cdf64a4384a5",
+      "sha256": "3f8ef9f29b125501788c19e56c046327d6a8a1521b81eb35a4c31bcbcb81fe22",
       "sourceIdentity": "repository document/artifact identity only",
       "editionVersionIdentifiable": false,
       "directOrIndirect": "indirect_or_internal",

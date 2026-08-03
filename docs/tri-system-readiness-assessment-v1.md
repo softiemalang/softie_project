@@ -1,6 +1,6 @@
 # 세 체계 준비 상태 조사 기준선 v1
 
-<!-- tri-system-readiness: verdict=tri_system_preparation_baseline_partial head=6bb8aaf689d1c6038e1039f474e3965770a28b83 -->
+<!-- tri-system-readiness: verdict=tri_system_preparation_baseline_partial head=acb1af9f7ad393cea23d8d9949660c9bcfe37beb -->
 
 ## 판정
 

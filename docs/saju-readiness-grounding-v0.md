@@ -16,7 +16,7 @@
 
 ## Grounding bundle
 
-`artifacts/saju-readiness-grounding-v0.json`의 `bundle`이 대화 AI가 해석 전에 읽는 단일 자료다. subject/input/provenance/readiness identity와 claim refs, 이용 가능한 계산·규칙 참조, known/unknown/unresolved/user-dependent/unavailable 상태, activation 상태, 구조적 사용 제한을 포함한다. 자연어 질문·해석·조언·prompt·LLM 호출·ranking은 포함하지 않는다.
+`artifacts/saju-readiness-grounding-v0.json`의 `bundle`이 대화 AI가 해석 전에 읽는 단일 자료다. subject/input/provenance/readiness identity와 claim refs, 이용 가능한 계산·규칙 참조, known/unknown/unresolved/user-dependent/unavailable 상태, activation 상태, 구조적 사용 제한을 포함한다. 모든 claim과 grounding `claimRef`에는 conversation availability, evidence limitation, user-context dependency, `mustNotAssume`, raw text 소비 제한, blocked/unsupported reason을 담은 per-claim conversation gate가 있다. raw text는 verified fact로 소비될 수 없고 unknown provenance status는 조용히 unverified로 대체되지 않는다. 자연어 질문·해석·조언·prompt·LLM 호출·ranking은 포함하지 않는다.
 
 현재 claim 관계는 기계적으로 증명된 입력이 없으므로 `preservedClaimRelations.relatedClaimRefs`와 `tensionClaimRefs`가 빈 배열이다. occurrence 수·evidence 수·claim 수를 ranking이나 선택 근거로 사용하지 않는다.
 

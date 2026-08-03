@@ -1,0 +1,9 @@
+{
+  "schemaVersion": "saju-acceptance-review-positive-fixture-v0",
+  "claimCount": 43,
+  "occurrenceCount": 126,
+  "uniqueOccurrenceCount": 126,
+  "claimTextContract": "representative_only; never substitutes for occurrence raw text",
+  "rawTextIsVerifiedFact": false,
+  "requiresPerClaimConversationGate": true
+}

@@ -4,7 +4,7 @@
 
 ## 경계
 
-- stable `claimId`는 기존 feature의 `id`이며 `claimText`와 occurrence의 `claimText`는 기존 `statement`의 원문 보존이다. 동일 claim ID가 여러 입력에서 나타나면 `occurrences`로 분리한다.
+- stable `claimId`는 기존 feature의 `id`이며 `claimText`와 occurrence의 `claimText`는 기존 `statement`의 원문 보존이다. stable `occurrenceId`와 source location은 claim ID와 분리해 추적한다. record의 `claimText`는 대표 표시일 뿐 occurrence 원문을 대체하지 않으며 서로 다른 원문을 자동 등가 claim으로 판정하지 않는다. raw text에는 `isVerifiedFact=false`와 `raw_text_not_verified_fact_or_interpretation` 소비 제한이 붙는다.
 - `calculationRefs`, `ruleRefs`, `fixtureRefs`, `externalEvidenceRefs`, `traditionalSourceRefs`는 서로 다른 evidence kind와 verification scope를 유지한다.
 - 내부 fixture는 `regression_fixture_only`이며 독립 외부 검증이 아니다.
 - 외부 7/7 match는 fixture 선언 필드 범위의 `calculation_externally_matched_scoped` 관측일 뿐 claim-level `verified`가 아니다. source byte hash/snapshot이 없으므로 `external_evidence_unhashed`이다.

@@ -1,6 +1,7 @@
 import crypto from 'node:crypto'
 
 export const SAJU_CLAIM_PROVENANCE_SCHEMA_VERSION = 'saju-claim-provenance-v0'
+export const SAJU_RAW_TEXT_CONSUMPTION = 'raw_text_not_verified_fact_or_interpretation'
 
 const SOURCE_STATUS = Object.freeze({
   implementation: 'implementation_identity',
@@ -177,12 +178,29 @@ export function materializeSajuClaimProvenance(config = {}) {
     return {
       claimId,
       claimText: feature.statement,
+      claimTextContract: 'representative_only; never substitutes for occurrence raw text',
+      rawText: {
+        text: feature.statement,
+        isVerifiedFact: false,
+        consumption: SAJU_RAW_TEXT_CONSUMPTION,
+      },
       existingStructureRef: `systems.saju.features.${claimId}`,
       category: feature.category || 'unspecified',
       occurrenceCount: group.length,
       occurrences: group.map((entry) => ({
         occurrenceId: `${entry.contextId}.${claimId}`,
+        claimId,
+        sourceLocation: {
+          contextId: entry.contextId,
+          existingStructureRef: `systems.saju.features.${claimId}`,
+          calculationRefs: entry.refs.calculationRefs.map((ref) => ref.refId),
+        },
         claimText: entry.feature.statement,
+        rawText: {
+          text: entry.feature.statement,
+          isVerifiedFact: false,
+          consumption: SAJU_RAW_TEXT_CONSUMPTION,
+        },
         inputRefs: entry.inputRefs.map(({ id, kind, path, verificationScope }) => ({ id, kind, path, verificationScope })),
         calculationRefs: entry.refs.calculationRefs,
         ruleRefs: entry.refs.ruleRefs,
@@ -289,6 +307,13 @@ export function checkSajuClaimProvenanceArtifact(artifact) {
   if ((artifact.claims || []).some((claim) => claim.externalEvidenceRefs?.length && claim.verificationStatus === 'verified')) errors.push('scoped external match expanded to verified')
   if ((artifact.claims || []).some((claim) => claim.fixtureRefs?.some((ref) => ref.kind !== 'internal_regression'))) errors.push('internal fixture mislabeled as external evidence')
   if ((artifact.claims || []).some((claim) => !claim.calculationRefs?.length || !claim.ruleRefs?.length)) errors.push('calculation/rule reference disconnected')
+  if ((artifact.claims || []).some((claim) => claim.claimTextContract !== 'representative_only; never substitutes for occurrence raw text' || claim.rawText?.isVerifiedFact !== false || claim.rawText?.consumption !== SAJU_RAW_TEXT_CONSUMPTION)) errors.push('claim raw text contract missing')
+  const occurrenceIds = new Set()
+  if ((artifact.claims || []).some((claim) => (claim.occurrences || []).some((occurrence) => {
+    if (occurrence.claimId !== claim.claimId || !occurrence.occurrenceId || occurrenceIds.has(occurrence.occurrenceId)) return true
+    occurrenceIds.add(occurrence.occurrenceId)
+    return occurrence.rawText?.text !== occurrence.claimText || occurrence.rawText?.isVerifiedFact !== false || occurrence.rawText?.consumption !== SAJU_RAW_TEXT_CONSUMPTION || !occurrence.sourceLocation?.contextId
+  }))) errors.push('occurrence identity/raw text contract missing')
   if ((artifact.claims || []).some((claim) => !claim.traditionalSourceRefs?.length || !claim.unresolvedGaps?.length)) errors.push('unresolved source gap hidden')
   const indexedIds = new Set((artifact.evidenceIndex || []).map((entry) => entry.id))
   for (const claim of artifact.claims || []) {
