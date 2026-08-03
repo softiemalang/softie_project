@@ -1,0 +1,1444 @@
+{
+  "auditVersion": "1.0.0",
+  "basisHead": "704266bbb84882e4b3498bf3b60aeb576e8441fa",
+  "blockers": [
+    {
+      "id": "exact-source-edition",
+      "reason": "문헌명만 있고 저본/판본/저자·편집자 확정, 권·페이지·절의 immutable retrieval identity가 없다.",
+      "status": "blocked"
+    },
+    {
+      "id": "independent-external-oracle",
+      "reason": "제품/라이브러리·버전·설정·retrieval identity가 없고 observed comparison runner가 현재 로컬 resolver를 재사용한다.",
+      "status": "blocked"
+    },
+    {
+      "id": "meaning-source-location",
+      "reason": "19개 의미 literal은 로컬 위치만 있고 외부 원문 위치와 sourceRefs가 없다.",
+      "status": "blocked"
+    },
+    {
+      "id": "claim-grouping-boundary",
+      "reason": "유사 문장을 같은 claim으로 묶을 source identity·semantic unit·school/edition boundary가 없다.",
+      "status": "blocked"
+    },
+    {
+      "id": "fixture-provenance",
+      "reason": "내부 6건은 regression_only이며 external 6건도 verified 0/pending 6이다.",
+      "status": "blocked"
+    }
+  ],
+  "byteEvidence": {
+    "docs/saju-ziwei-external-validation-plan.md": {
+      "scope": "repository file UTF-8/raw bytes as stored",
+      "sha256": "4c562557aff4952059a886a90f535ec927dcd19e78c072b81b1a189d4e1ef0db"
+    },
+    "docs/ziwei-external-validation-report.md": {
+      "scope": "repository file UTF-8/raw bytes as stored",
+      "sha256": "c8ccbaa13b139e925822f8cac6fe5114fa9fbd92e49f79f04730fe47780aeec3"
+    },
+    "docs/ziwei-final-readiness.md": {
+      "scope": "repository file UTF-8/raw bytes as stored",
+      "sha256": "fa029f6ca8e8bde374eed6bf2ceb546a4676045097aaf1c67f7e377be72b62fb"
+    },
+    "docs/ziwei-readiness-baseline-v1.md": {
+      "scope": "repository file UTF-8/raw bytes as stored",
+      "sha256": "13f004999279b3f915b97e9b609851f5daa50a4ec93c0048b1f14a6e9421bcb3"
+    },
+    "docs/ziwei-source-audit-report.md": {
+      "scope": "repository file UTF-8/raw bytes as stored",
+      "sha256": "ea9d6c46790463e1d7c59e3392f0bd90b59fe2534dd9c924b7ba43308377f66b"
+    },
+    "src/interpretationPrep/lunarConverter.js": {
+      "scope": "repository file UTF-8/raw bytes as stored",
+      "sha256": "466c7774c3dc8ef89fb99345561db4bf5c1ec9fd786b5279fabcfa507e2bb224"
+    },
+    "src/interpretationPrep/threeSystemPrepPipeline.js": {
+      "scope": "repository file UTF-8/raw bytes as stored",
+      "sha256": "3f73716acf442f1717781d874872729c1c57d8b3e69498ae30284646297424fb"
+    },
+    "src/interpretationPrep/ziweiPromptAdapter.js": {
+      "scope": "repository file UTF-8/raw bytes as stored",
+      "sha256": "6c0e59de0363a07a0bc9342e161e9b7d70747f1dd0077ee61b2a1149571a9a2f"
+    },
+    "src/ziwei/externalZiweiFixtures.js": {
+      "scope": "repository file UTF-8/raw bytes as stored",
+      "sha256": "c379c3d364ea8bdc1062f7a59f2f1b8f83de4762489a86a520733d9d288917cf"
+    },
+    "src/ziwei/fiveElementResolver.js": {
+      "scope": "repository file UTF-8/raw bytes as stored",
+      "sha256": "7af13da1e88dbe41e4a239d5359a0f49d05316235e668c7bd1302a3de8825144"
+    },
+    "src/ziwei/minorStarResolver.js": {
+      "scope": "repository file UTF-8/raw bytes as stored",
+      "sha256": "40bfa66f576027a5ef77374257da895bbe714c331f6ded6e004048f246bc3c7a"
+    },
+    "src/ziwei/minorStarRules.js": {
+      "scope": "repository file UTF-8/raw bytes as stored",
+      "sha256": "b7cdc5db61a1a70dae3a4a243b5bccc0c148488c4c8e9f81bcfc345e4e8a4be3"
+    },
+    "src/ziwei/palaceRelationRules.js": {
+      "scope": "repository file UTF-8/raw bytes as stored",
+      "sha256": "afd4f2ef13da4a13f7dece79e801dab6867e5cd1ee30d2e588dce19935c9aaaa"
+    },
+    "src/ziwei/starPlacementRules.js": {
+      "scope": "repository file UTF-8/raw bytes as stored",
+      "sha256": "1edb93929e441b009e33abd8179e72cf5b216e7378a40813657ea52dc1a0759c"
+    },
+    "src/ziwei/starResolver.js": {
+      "scope": "repository file UTF-8/raw bytes as stored",
+      "sha256": "c9797f2405df6afeb336226bcbff66e199e856d181e71e2317a9794dba0a6ad7"
+    },
+    "src/ziwei/transformationResolver.js": {
+      "scope": "repository file UTF-8/raw bytes as stored",
+      "sha256": "ec47b97109d514fb5317e1e0dfb9fb195fa77429ab2d451b3de9a97897babe9d"
+    },
+    "src/ziwei/transformationRules.js": {
+      "scope": "repository file UTF-8/raw bytes as stored",
+      "sha256": "e602ab8611e846b53b9c1ffed2d2dbcb5b77afd13973187ee40d748370846e76"
+    },
+    "src/ziwei/ziweiContract.js": {
+      "scope": "repository file UTF-8/raw bytes as stored",
+      "sha256": "716875185d87da22ceef5f66f32899359642646367133f6c9f4bf87718bf130e"
+    },
+    "src/ziwei/ziweiPalaceContext.js": {
+      "scope": "repository file UTF-8/raw bytes as stored",
+      "sha256": "633b3b3d586a5e9a2f7cf855fad1937cb6b4115ac4271c5bf8d7472d77ad9964"
+    },
+    "src/ziwei/ziweiResolver.js": {
+      "scope": "repository file UTF-8/raw bytes as stored",
+      "sha256": "5336f15968b4c618d9b1248b0967deab22b778f48996cb60939ab19cabadf513"
+    },
+    "test/fixtures/ziwei/benchmarkCases.js": {
+      "scope": "repository file UTF-8/raw bytes as stored",
+      "sha256": "f809a56f6f36ab0d8f08a073e083ca0e2783170e8303cd14013d4a19648575c2"
+    },
+    "test/fixtures/ziwei/knownCharts.js": {
+      "scope": "repository file UTF-8/raw bytes as stored",
+      "sha256": "c78d3bc2e418ea81fc97061a5a011628b6ba674af9f4fef795a085f4dc381037"
+    },
+    "test/fixtures/ziwei/starPlacementCharts.js": {
+      "scope": "repository file UTF-8/raw bytes as stored",
+      "sha256": "b79bb0c3c7105cd83563fcee59264d832372e6143b4c0bc19347a125e7dfa226"
+    },
+    "test/ziweiReadinessBaseline.test.js": {
+      "scope": "repository file UTF-8/raw bytes as stored",
+      "sha256": "5205197927f23e643046a719978bcb75ce816c6bee6b85be9f5f63cf8f070e9a"
+    }
+  },
+  "checker": "scripts/check-ziwei-source-identity-claim-boundary-audit-v1.mjs",
+  "claimBoundaryVocabulary": {
+    "decision": "No stable claim IDs are asserted. The IDs in occurrences are deterministic candidates only; all 19 meaning occurrences remain provenance-blocked.",
+    "definitions": {
+      "ambiguous grouping": "Similar topic or schema slot exists, but text/source/rule differences prevent mechanical equivalence.",
+      "blocked": "Do not begin claim-level provenance until the required identity/boundary inputs are closed.",
+      "conflation risk": "A representative sentence or normalized label could erase text, source, school, edition, or scope differences.",
+      "occurrence-only identifiable": "Exact local text and repository source location are stable, but a source-backed claim identity or grouping basis is absent.",
+      "source identity unresolved": "Edition/author/location/retrieval or external implementation identity is incomplete.",
+      "stable claim boundary": "Same source identity, exact source location, feature scope, generation rule, and semantic unit are all explicit; none is currently closed for Ziwei meaning candidates."
+    },
+    "distribution": {
+      "ambiguous grouping": 7,
+      "blocked": 19,
+      "conflation risk": 19,
+      "occurrence-only identifiable": 12,
+      "source identity unresolved": 19,
+      "stable claim boundary": 0
+    }
+  },
+  "deterministicContract": {
+    "byteHashScope": "actual repository file bytes",
+    "frequencyRanking": "forbidden",
+    "idRule": "sha256(path#export#slot) truncated to 16 hex; candidate only",
+    "sorting": "lexicographic by generated ID",
+    "textNormalization": "forbidden for occurrence identity",
+    "timestamps": "forbidden"
+  },
+  "fixtureProvenanceAssessment": {
+    "circularValidationRisk": true,
+    "declaredExternal": {
+      "count": 6,
+      "pending": 6,
+      "sourceIdentity": "unresolved_source_identity",
+      "verified": 0
+    },
+    "internalKnownCharts": {
+      "count": 3,
+      "sourceRefs": false,
+      "status": "regression_only"
+    },
+    "internalStarPlacement": {
+      "count": 3,
+      "sourceRefs": false,
+      "status": "regression_only"
+    },
+    "interpretationBenchmark": {
+      "count": 5,
+      "sourceRefs": false,
+      "status": "regression_only"
+    }
+  },
+  "materializer": "scripts/materialize-ziwei-source-identity-claim-boundary-audit-v1.mjs",
+  "meaningCandidateOccurrenceInventory": [
+    {
+      "boundary": "occurrence-only identifiable",
+      "claimIdCandidate": "ziwei-claim-candidate-21d731586efc0e34",
+      "conflationRisk": "high",
+      "featureReference": "transformation-label:lu",
+      "generationRule": "static_local_literal_attached_to_transformation_type",
+      "grouping": "ambiguous grouping",
+      "groupingBasis": "Four labels share the same schema slot but differ in text and type; no source edition or school identity permits grouping.",
+      "occurrenceId": "ziwei-occ-21d731586efc0e34",
+      "sourceExport": "TRANSFORMATION_LABELS",
+      "sourceFile": "src/ziwei/transformationRules.js",
+      "sourceIdentityStatus": "source identity unresolved",
+      "sourceLocation": "TRANSFORMATION_LABELS[lu].description",
+      "sourceSlot": "lu",
+      "text": "재물, 유연함, 발전"
+    },
+    {
+      "boundary": "occurrence-only identifiable",
+      "claimIdCandidate": "ziwei-claim-candidate-2260aba6ed2163e3",
+      "conflationRisk": "high",
+      "featureReference": "palace:career",
+      "generationRule": "static_local_literal",
+      "grouping": "ambiguous grouping",
+      "groupingBasis": "Each palace description has a distinct target domain, but no external source location or explicit claim semantics.",
+      "occurrenceId": "ziwei-occ-2260aba6ed2163e3",
+      "sourceExport": "ZIWEI_PALACE_DEFINITIONS",
+      "sourceFile": "src/ziwei/ziweiContract.js",
+      "sourceIdentityStatus": "source identity unresolved",
+      "sourceLocation": "ZIWEI_PALACE_DEFINITIONS[id=career].description",
+      "sourceSlot": "career",
+      "text": "직업, 사회적 위치, 역량 발휘"
+    },
+    {
+      "boundary": "occurrence-only identifiable",
+      "claimIdCandidate": "ziwei-claim-candidate-2b792b2cac1c58ab",
+      "conflationRisk": "high",
+      "featureReference": "palace:life",
+      "generationRule": "static_local_literal",
+      "grouping": "ambiguous grouping",
+      "groupingBasis": "Each palace description has a distinct target domain, but no external source location or explicit claim semantics.",
+      "occurrenceId": "ziwei-occ-2b792b2cac1c58ab",
+      "sourceExport": "ZIWEI_PALACE_DEFINITIONS",
+      "sourceFile": "src/ziwei/ziweiContract.js",
+      "sourceIdentityStatus": "source identity unresolved",
+      "sourceLocation": "ZIWEI_PALACE_DEFINITIONS[id=life].description",
+      "sourceSlot": "life",
+      "text": "본질적 기질, 운명의 총체적 바탕"
+    },
+    {
+      "boundary": "ambiguous grouping",
+      "claimIdCandidate": "ziwei-claim-candidate-2d961f3216f41e70",
+      "conflationRisk": "high",
+      "featureReference": "topic-pattern:relationshipPattern",
+      "generationRule": "static_local_literal_plus_related_palace_ids",
+      "grouping": "ambiguous grouping",
+      "groupingBasis": "Labels are broad UI/topic labels, not sourced propositions; related palace IDs are structure, not an interpretive claim.",
+      "occurrenceId": "ziwei-occ-2d961f3216f41e70",
+      "sourceExport": "TOPIC_PALACE_PATTERNS",
+      "sourceFile": "src/ziwei/palaceRelationRules.js",
+      "sourceIdentityStatus": "source identity unresolved",
+      "sourceLocation": "TOPIC_PALACE_PATTERNS[relationshipPattern].label",
+      "sourceSlot": "relationshipPattern",
+      "text": "대인관계 및 배우자 소통 패턴"
+    },
+    {
+      "boundary": "ambiguous grouping",
+      "claimIdCandidate": "ziwei-claim-candidate-6e095d58a62d9b86",
+      "conflationRisk": "high",
+      "featureReference": "topic-pattern:careerPattern",
+      "generationRule": "static_local_literal_plus_related_palace_ids",
+      "grouping": "ambiguous grouping",
+      "groupingBasis": "Labels are broad UI/topic labels, not sourced propositions; related palace IDs are structure, not an interpretive claim.",
+      "occurrenceId": "ziwei-occ-6e095d58a62d9b86",
+      "sourceExport": "TOPIC_PALACE_PATTERNS",
+      "sourceFile": "src/ziwei/palaceRelationRules.js",
+      "sourceIdentityStatus": "source identity unresolved",
+      "sourceLocation": "TOPIC_PALACE_PATTERNS[careerPattern].label",
+      "sourceSlot": "careerPattern",
+      "text": "직업 및 역량 개발 패턴"
+    },
+    {
+      "boundary": "occurrence-only identifiable",
+      "claimIdCandidate": "ziwei-claim-candidate-894fa6fa97b81dfd",
+      "conflationRisk": "high",
+      "featureReference": "palace:children",
+      "generationRule": "static_local_literal",
+      "grouping": "ambiguous grouping",
+      "groupingBasis": "Each palace description has a distinct target domain, but no external source location or explicit claim semantics.",
+      "occurrenceId": "ziwei-occ-894fa6fa97b81dfd",
+      "sourceExport": "ZIWEI_PALACE_DEFINITIONS",
+      "sourceFile": "src/ziwei/ziweiContract.js",
+      "sourceIdentityStatus": "source identity unresolved",
+      "sourceLocation": "ZIWEI_PALACE_DEFINITIONS[id=children].description",
+      "sourceSlot": "children",
+      "text": "자녀, 후배, 제자, 창작물"
+    },
+    {
+      "boundary": "occurrence-only identifiable",
+      "claimIdCandidate": "ziwei-claim-candidate-a09e10a5495186b8",
+      "conflationRisk": "high",
+      "featureReference": "palace:siblings",
+      "generationRule": "static_local_literal",
+      "grouping": "ambiguous grouping",
+      "groupingBasis": "Each palace description has a distinct target domain, but no external source location or explicit claim semantics.",
+      "occurrenceId": "ziwei-occ-a09e10a5495186b8",
+      "sourceExport": "ZIWEI_PALACE_DEFINITIONS",
+      "sourceFile": "src/ziwei/ziweiContract.js",
+      "sourceIdentityStatus": "source identity unresolved",
+      "sourceLocation": "ZIWEI_PALACE_DEFINITIONS[id=siblings].description",
+      "sourceSlot": "siblings",
+      "text": "형제자매, 동료, 친밀한 지인 관계"
+    },
+    {
+      "boundary": "occurrence-only identifiable",
+      "claimIdCandidate": "ziwei-claim-candidate-a54cfa4de8051b41",
+      "conflationRisk": "high",
+      "featureReference": "palace:health",
+      "generationRule": "static_local_literal",
+      "grouping": "ambiguous grouping",
+      "groupingBasis": "Each palace description has a distinct target domain, but no external source location or explicit claim semantics.",
+      "occurrenceId": "ziwei-occ-a54cfa4de8051b41",
+      "sourceExport": "ZIWEI_PALACE_DEFINITIONS",
+      "sourceFile": "src/ziwei/ziweiContract.js",
+      "sourceIdentityStatus": "source identity unresolved",
+      "sourceLocation": "ZIWEI_PALACE_DEFINITIONS[id=health].description",
+      "sourceSlot": "health",
+      "text": "건강, 신체적 체질, 질병 유의점"
+    },
+    {
+      "boundary": "occurrence-only identifiable",
+      "claimIdCandidate": "ziwei-claim-candidate-a72bdf60ef809b58",
+      "conflationRisk": "high",
+      "featureReference": "palace:friends",
+      "generationRule": "static_local_literal",
+      "grouping": "ambiguous grouping",
+      "groupingBasis": "Each palace description has a distinct target domain, but no external source location or explicit claim semantics.",
+      "occurrenceId": "ziwei-occ-a72bdf60ef809b58",
+      "sourceExport": "ZIWEI_PALACE_DEFINITIONS",
+      "sourceFile": "src/ziwei/ziweiContract.js",
+      "sourceIdentityStatus": "source identity unresolved",
+      "sourceLocation": "ZIWEI_PALACE_DEFINITIONS[id=friends].description",
+      "sourceSlot": "friends",
+      "text": "부하, 대중, 일반 인간관계"
+    },
+    {
+      "boundary": "ambiguous grouping",
+      "claimIdCandidate": "ziwei-claim-candidate-acb0dce151f32dcb",
+      "conflationRisk": "high",
+      "featureReference": "topic-pattern:wealthPattern",
+      "generationRule": "static_local_literal_plus_related_palace_ids",
+      "grouping": "ambiguous grouping",
+      "groupingBasis": "Labels are broad UI/topic labels, not sourced propositions; related palace IDs are structure, not an interpretive claim.",
+      "occurrenceId": "ziwei-occ-acb0dce151f32dcb",
+      "sourceExport": "TOPIC_PALACE_PATTERNS",
+      "sourceFile": "src/ziwei/palaceRelationRules.js",
+      "sourceIdentityStatus": "source identity unresolved",
+      "sourceLocation": "TOPIC_PALACE_PATTERNS[wealthPattern].label",
+      "sourceSlot": "wealthPattern",
+      "text": "재물 및 자산 관리 패턴"
+    },
+    {
+      "boundary": "occurrence-only identifiable",
+      "claimIdCandidate": "ziwei-claim-candidate-b1d4bbca55c2007f",
+      "conflationRisk": "high",
+      "featureReference": "palace:spouse",
+      "generationRule": "static_local_literal",
+      "grouping": "ambiguous grouping",
+      "groupingBasis": "Each palace description has a distinct target domain, but no external source location or explicit claim semantics.",
+      "occurrenceId": "ziwei-occ-b1d4bbca55c2007f",
+      "sourceExport": "ZIWEI_PALACE_DEFINITIONS",
+      "sourceFile": "src/ziwei/ziweiContract.js",
+      "sourceIdentityStatus": "source identity unresolved",
+      "sourceLocation": "ZIWEI_PALACE_DEFINITIONS[id=spouse].description",
+      "sourceSlot": "spouse",
+      "text": "배우자, 연인, 이성 인연"
+    },
+    {
+      "boundary": "occurrence-only identifiable",
+      "claimIdCandidate": "ziwei-claim-candidate-bb986540a877dcee",
+      "conflationRisk": "high",
+      "featureReference": "palace:property",
+      "generationRule": "static_local_literal",
+      "grouping": "ambiguous grouping",
+      "groupingBasis": "Each palace description has a distinct target domain, but no external source location or explicit claim semantics.",
+      "occurrenceId": "ziwei-occ-bb986540a877dcee",
+      "sourceExport": "ZIWEI_PALACE_DEFINITIONS",
+      "sourceFile": "src/ziwei/ziweiContract.js",
+      "sourceIdentityStatus": "source identity unresolved",
+      "sourceLocation": "ZIWEI_PALACE_DEFINITIONS[id=property].description",
+      "sourceSlot": "property",
+      "text": "부동산, 주거 환경, 가문 바탕"
+    },
+    {
+      "boundary": "occurrence-only identifiable",
+      "claimIdCandidate": "ziwei-claim-candidate-c4b8407cdc824d27",
+      "conflationRisk": "high",
+      "featureReference": "palace:parents",
+      "generationRule": "static_local_literal",
+      "grouping": "ambiguous grouping",
+      "groupingBasis": "Each palace description has a distinct target domain, but no external source location or explicit claim semantics.",
+      "occurrenceId": "ziwei-occ-c4b8407cdc824d27",
+      "sourceExport": "ZIWEI_PALACE_DEFINITIONS",
+      "sourceFile": "src/ziwei/ziweiContract.js",
+      "sourceIdentityStatus": "source identity unresolved",
+      "sourceLocation": "ZIWEI_PALACE_DEFINITIONS[id=parents].description",
+      "sourceSlot": "parents",
+      "text": "부모, 윗사람, 덕망, 문서 운"
+    },
+    {
+      "boundary": "occurrence-only identifiable",
+      "claimIdCandidate": "ziwei-claim-candidate-d31091d32f84777c",
+      "conflationRisk": "high",
+      "featureReference": "palace:wealth",
+      "generationRule": "static_local_literal",
+      "grouping": "ambiguous grouping",
+      "groupingBasis": "Each palace description has a distinct target domain, but no external source location or explicit claim semantics.",
+      "occurrenceId": "ziwei-occ-d31091d32f84777c",
+      "sourceExport": "ZIWEI_PALACE_DEFINITIONS",
+      "sourceFile": "src/ziwei/ziweiContract.js",
+      "sourceIdentityStatus": "source identity unresolved",
+      "sourceLocation": "ZIWEI_PALACE_DEFINITIONS[id=wealth].description",
+      "sourceSlot": "wealth",
+      "text": "재물 운, 수입 및 지출 패턴"
+    },
+    {
+      "boundary": "occurrence-only identifiable",
+      "claimIdCandidate": "ziwei-claim-candidate-dd08863eb441bb65",
+      "conflationRisk": "high",
+      "featureReference": "transformation-label:quan",
+      "generationRule": "static_local_literal_attached_to_transformation_type",
+      "grouping": "ambiguous grouping",
+      "groupingBasis": "Four labels share the same schema slot but differ in text and type; no source edition or school identity permits grouping.",
+      "occurrenceId": "ziwei-occ-dd08863eb441bb65",
+      "sourceExport": "TRANSFORMATION_LABELS",
+      "sourceFile": "src/ziwei/transformationRules.js",
+      "sourceIdentityStatus": "source identity unresolved",
+      "sourceLocation": "TRANSFORMATION_LABELS[quan].description",
+      "sourceSlot": "quan",
+      "text": "권력, 과감함, 영향력"
+    },
+    {
+      "boundary": "occurrence-only identifiable",
+      "claimIdCandidate": "ziwei-claim-candidate-e70f01a8752ee8d2",
+      "conflationRisk": "high",
+      "featureReference": "palace:travel",
+      "generationRule": "static_local_literal",
+      "grouping": "ambiguous grouping",
+      "groupingBasis": "Each palace description has a distinct target domain, but no external source location or explicit claim semantics.",
+      "occurrenceId": "ziwei-occ-e70f01a8752ee8d2",
+      "sourceExport": "ZIWEI_PALACE_DEFINITIONS",
+      "sourceFile": "src/ziwei/ziweiContract.js",
+      "sourceIdentityStatus": "source identity unresolved",
+      "sourceLocation": "ZIWEI_PALACE_DEFINITIONS[id=travel].description",
+      "sourceSlot": "travel",
+      "text": "대외 활동, 이동, 타향/해외 운"
+    },
+    {
+      "boundary": "occurrence-only identifiable",
+      "claimIdCandidate": "ziwei-claim-candidate-e73f469c5e35e072",
+      "conflationRisk": "high",
+      "featureReference": "palace:mind",
+      "generationRule": "static_local_literal",
+      "grouping": "ambiguous grouping",
+      "groupingBasis": "Each palace description has a distinct target domain, but no external source location or explicit claim semantics.",
+      "occurrenceId": "ziwei-occ-e73f469c5e35e072",
+      "sourceExport": "ZIWEI_PALACE_DEFINITIONS",
+      "sourceFile": "src/ziwei/ziweiContract.js",
+      "sourceIdentityStatus": "source identity unresolved",
+      "sourceLocation": "ZIWEI_PALACE_DEFINITIONS[id=mind].description",
+      "sourceSlot": "mind",
+      "text": "정신적 만족, 취향, 내면의 휴식"
+    },
+    {
+      "boundary": "occurrence-only identifiable",
+      "claimIdCandidate": "ziwei-claim-candidate-ed75580c000adb8f",
+      "conflationRisk": "high",
+      "featureReference": "transformation-label:ke",
+      "generationRule": "static_local_literal_attached_to_transformation_type",
+      "grouping": "ambiguous grouping",
+      "groupingBasis": "Four labels share the same schema slot but differ in text and type; no source edition or school identity permits grouping.",
+      "occurrenceId": "ziwei-occ-ed75580c000adb8f",
+      "sourceExport": "TRANSFORMATION_LABELS",
+      "sourceFile": "src/ziwei/transformationRules.js",
+      "sourceIdentityStatus": "source identity unresolved",
+      "sourceLocation": "TRANSFORMATION_LABELS[ke].description",
+      "sourceSlot": "ke",
+      "text": "명예, 학문, 구원"
+    },
+    {
+      "boundary": "occurrence-only identifiable",
+      "claimIdCandidate": "ziwei-claim-candidate-f7017ade296bb707",
+      "conflationRisk": "high",
+      "featureReference": "transformation-label:ji",
+      "generationRule": "static_local_literal_attached_to_transformation_type",
+      "grouping": "ambiguous grouping",
+      "groupingBasis": "Four labels share the same schema slot but differ in text and type; no source edition or school identity permits grouping.",
+      "occurrenceId": "ziwei-occ-f7017ade296bb707",
+      "sourceExport": "TRANSFORMATION_LABELS",
+      "sourceFile": "src/ziwei/transformationRules.js",
+      "sourceIdentityStatus": "source identity unresolved",
+      "sourceLocation": "TRANSFORMATION_LABELS[ji].description",
+      "sourceSlot": "ji",
+      "text": "장애, 집착, 주의 요망"
+    }
+  ],
+  "observedHead": "704266bbb84882e4b3498bf3b60aeb576e8441fa",
+  "parallelWork": [
+    "source inventory and byte hashing",
+    "occurrence-preserving audit",
+    "negative boundary checker",
+    "deterministic materializer/test",
+    "unsupported-scope documentation"
+  ],
+  "prohibitedChangesPreserved": [
+    "calculation",
+    "rules",
+    "fixture expected values",
+    "claim/provenance implementation",
+    "readiness",
+    "handoff",
+    "UI/API/DB/LLM/activation"
+  ],
+  "provenanceStart": {
+    "prerequisites": [
+      "exact source identity or explicit unresolved source record",
+      "independent oracle identity where external comparison is claimed",
+      "source location for every occurrence",
+      "mechanical stable claim boundary decision",
+      "fixture provenance classification that cannot promote regression_only"
+    ],
+    "status": "blocked"
+  },
+  "ruleSetIdentity": {
+    "default": {
+      "calendar": "traditional_lunar",
+      "fiveElementCycle": "standard_wuhangju",
+      "leapMonthRule": "mid_month_split",
+      "majorStarPlacement": "standard_ziwei_tianfu",
+      "mingGongMethod": "standard_month_hour"
+    },
+    "localVersionLabels": [
+      "local resolver",
+      "local solar2lunar execution",
+      "traditional_lunar / standard_month_hour / mid_month_split / standard_wuhangju / standard_ziwei_tianfu",
+      "traditional_v1"
+    ],
+    "schoolOrEdition": "unresolved_source_identity"
+  },
+  "schemaVersion": "ziwei-source-identity-claim-boundary-audit-v1",
+  "scope": "read_only_source_identity_and_claim_boundary_audit",
+  "sourceIdentityInventory": [
+    {
+      "author": null,
+      "currentSource": "solar2lunar; local solar2lunar execution; external calendar edition and retrieval identity absent",
+      "edition": null,
+      "evidence": {
+        "directOrIndirect": "indirect",
+        "immutableRetrievalHash": null,
+        "repositoryByteEvidence": true,
+        "retrievalByteEvidence": false
+      },
+      "externalImplementation": null,
+      "externalSettings": null,
+      "externalVersion": null,
+      "id": "ziwei-calendar-conversion",
+      "independence": "not_established",
+      "kind": "calendar_execution",
+      "pageVolumeChapterSection": null,
+      "sourceFile": "src/interpretationPrep/lunarConverter.js",
+      "sourceIdentity": "unresolved_source_identity",
+      "status": "implemented_unverified",
+      "unresolvedReason": "local ruleset/version metadata has no cited edition, source byte, or external oracle identity"
+    },
+    {
+      "author": "陳摶 (attributed) / 羅洪先 (edit)",
+      "currentSource": {
+        "accessedAt": "2026-07-27",
+        "documentId": "doc-ziwei-quan-shu",
+        "edition": "pending_exact_edition_review",
+        "editionOrVersion": "pending_exact_edition_review",
+        "editionPublicationDate": "pending",
+        "methodDisclosure": "classical_worked_chart_example",
+        "organizationOrAuthor": "陳摶 (attributed) / 羅洪先 (edit)",
+        "pageOrLine": "諸星入命吉凶例 (五月午時安命在丑身在未例 - 생년천간 누락)",
+        "pageOrTableOrSection": "卷二 · 諸星入命吉凶例 (五月午時安命在丑身在未例 - 생년천간 누락)",
+        "permanentUrl": "https://ctext.org/wiki.pl?if=gb&res=446219",
+        "prefaceDate": "1550",
+        "publicationDate": "pending",
+        "publisherId": "pub-quan-shu-classic",
+        "referenceDocumentId": "doc-ziwei-quan-shu",
+        "sourceTier": "Tier 2",
+        "sourceTitle": "紫微斗數全書 (Ziwei Dou Shu Quan Shu)",
+        "title": "紫微斗數全書 (Ziwei Dou Shu Quan Shu)",
+        "urlOrReference": "https://ctext.org/wiki.pl?if=gb&res=446219",
+        "volume": "卷二"
+      },
+      "edition": "pending_exact_edition_review",
+      "evidence": {
+        "directOrIndirect": "direct citation metadata only",
+        "immutableRetrievalHash": null,
+        "repositoryByteEvidence": true,
+        "retrievalByteEvidence": false
+      },
+      "externalImplementation": null,
+      "externalSettings": {
+        "calendar": "chinese_lunar",
+        "dayBoundary": "midnight_00:00",
+        "hourBoundary": "standard_12_branches",
+        "leapMonthRule": "standard_lunar",
+        "schoolOrRuleSet": "ziwei_quan_shu_classic",
+        "timezone": "Asia/Seoul"
+      },
+      "externalVersion": null,
+      "fixtureId": "ziwei-ext-chart-sample-classic-1-bureau",
+      "id": "ziwei-fixture-ziwei-ext-chart-sample-classic-1-bureau",
+      "independence": "declared_independent_pending_reproduction",
+      "kind": "fixture",
+      "pageVolumeChapterSection": "卷二; 卷二 · 諸星入命吉凶例 (五月午時安命在丑身在未例 - 생년천간 누락)",
+      "sourceFile": "src/ziwei/externalZiweiFixtures.js",
+      "sourceIdentity": "unresolved_source_identity",
+      "status": "pending_source_review",
+      "unresolvedReason": [
+        "exact_edition_missing",
+        "retrieval_bytes_missing",
+        "external_implementation_identity_missing",
+        "fixture_runner_oracle_not_independent"
+      ]
+    },
+    {
+      "author": "陳摶 (attributed) / 羅洪先 (edit)",
+      "currentSource": {
+        "accessedAt": "2026-07-27",
+        "documentId": "doc-ziwei-quan-shu",
+        "edition": "pending_exact_edition_review",
+        "editionOrVersion": "pending_exact_edition_review",
+        "editionPublicationDate": "pending",
+        "methodDisclosure": "classical_worked_chart_example",
+        "organizationOrAuthor": "陳摶 (attributed) / 羅洪先 (edit)",
+        "pageOrLine": "諸星入命吉凶例 (五月午時安命在丑身在未例)",
+        "pageOrTableOrSection": "卷二 · 諸星入命吉凶例 (五月午時安命在丑身在未例)",
+        "permanentUrl": "https://ctext.org/wiki.pl?if=gb&res=446219",
+        "prefaceDate": "1550",
+        "publicationDate": "pending",
+        "publisherId": "pub-quan-shu-classic",
+        "referenceDocumentId": "doc-ziwei-quan-shu",
+        "sourceTier": "Tier 2",
+        "sourceTitle": "紫微斗數全書 (Ziwei Dou Shu Quan Shu)",
+        "title": "紫微斗數全書 (Ziwei Dou Shu Quan Shu)",
+        "urlOrReference": "https://ctext.org/wiki.pl?if=gb&res=446219",
+        "volume": "卷二"
+      },
+      "edition": "pending_exact_edition_review",
+      "evidence": {
+        "directOrIndirect": "direct citation metadata only",
+        "immutableRetrievalHash": null,
+        "repositoryByteEvidence": true,
+        "retrievalByteEvidence": false
+      },
+      "externalImplementation": null,
+      "externalSettings": {
+        "calendar": "chinese_lunar",
+        "dayBoundary": "midnight_00:00",
+        "hourBoundary": "standard_12_branches",
+        "leapMonthRule": "standard_lunar",
+        "schoolOrRuleSet": "ziwei_quan_shu_classic",
+        "timezone": "Asia/Seoul"
+      },
+      "externalVersion": null,
+      "fixtureId": "ziwei-ext-chart-sample-classic-1-mingshen",
+      "id": "ziwei-fixture-ziwei-ext-chart-sample-classic-1-mingshen",
+      "independence": "declared_independent_pending_reproduction",
+      "kind": "fixture",
+      "pageVolumeChapterSection": "卷二; 卷二 · 諸星入命吉凶例 (五月午時安命在丑身在未例)",
+      "sourceFile": "src/ziwei/externalZiweiFixtures.js",
+      "sourceIdentity": "unresolved_source_identity",
+      "status": "pending_source_review",
+      "unresolvedReason": [
+        "exact_edition_missing",
+        "retrieval_bytes_missing",
+        "external_implementation_identity_missing",
+        "fixture_runner_oracle_not_independent"
+      ]
+    },
+    {
+      "author": "陳摶 (attributed) / 羅洪先 (edit)",
+      "currentSource": {
+        "accessedAt": "2026-07-27",
+        "documentId": "doc-ziwei-quan-shu",
+        "edition": "pending_exact_edition_review",
+        "editionOrVersion": "pending_exact_edition_review",
+        "editionPublicationDate": "pending",
+        "methodDisclosure": "classical_text_bureau_table",
+        "organizationOrAuthor": "陳摶 (attributed) / 羅洪先 (edit)",
+        "pageOrLine": "五行局起例表 (甲己之年丙作首 丙子澗下水 水二局)",
+        "pageOrTableOrSection": "卷一 · 五行局起例表 (甲己之年丙作首 丙子澗下水 水二局)",
+        "permanentUrl": "https://ctext.org/wiki.pl?if=gb&res=446219",
+        "prefaceDate": "1550",
+        "publicationDate": "pending",
+        "publisherId": "pub-quan-shu-classic",
+        "referenceDocumentId": "doc-ziwei-quan-shu",
+        "sourceTier": "Tier 2",
+        "sourceTitle": "紫微斗數全書 (Ziwei Dou Shu Quan Shu)",
+        "title": "紫微斗數全書 (Ziwei Dou Shu Quan Shu)",
+        "urlOrReference": "https://ctext.org/wiki.pl?if=gb&res=446219",
+        "volume": "卷一"
+      },
+      "edition": "pending_exact_edition_review",
+      "evidence": {
+        "directOrIndirect": "direct citation metadata only",
+        "immutableRetrievalHash": null,
+        "repositoryByteEvidence": true,
+        "retrievalByteEvidence": false
+      },
+      "externalImplementation": null,
+      "externalSettings": {
+        "calendar": "chinese_lunar",
+        "dayBoundary": "midnight_00:00",
+        "hourBoundary": "standard_12_branches",
+        "leapMonthRule": "standard_lunar",
+        "schoolOrRuleSet": "ziwei_quan_shu_classic",
+        "timezone": "Asia/Seoul"
+      },
+      "externalVersion": null,
+      "fixtureId": "ziwei-ext-table-bureau-lookup",
+      "id": "ziwei-fixture-ziwei-ext-table-bureau-lookup",
+      "independence": "declared_independent_pending_reproduction",
+      "kind": "fixture",
+      "pageVolumeChapterSection": "卷一; 卷一 · 五行局起例表 (甲己之年丙作首 丙子澗下水 水二局)",
+      "sourceFile": "src/ziwei/externalZiweiFixtures.js",
+      "sourceIdentity": "unresolved_source_identity",
+      "status": "pending_source_review",
+      "unresolvedReason": [
+        "exact_edition_missing",
+        "retrieval_bytes_missing",
+        "external_implementation_identity_missing",
+        "fixture_runner_oracle_not_independent"
+      ]
+    },
+    {
+      "author": "陳摶 (attributed) / 羅洪先 (edit)",
+      "currentSource": {
+        "accessedAt": "2026-07-27",
+        "documentId": "doc-ziwei-quan-shu",
+        "edition": "pending_exact_edition_review",
+        "editionOrVersion": "pending_exact_edition_review",
+        "editionPublicationDate": "pending",
+        "methodDisclosure": "classical_text_transformation_table",
+        "organizationOrAuthor": "陳摶 (attributed) / 羅洪先 (edit)",
+        "pageOrLine": "安十干四化星訣 (甲廉破武陽)",
+        "pageOrTableOrSection": "卷一 · 安十干四化星訣 (甲廉破武陽)",
+        "permanentUrl": "https://ctext.org/wiki.pl?if=gb&res=446219",
+        "prefaceDate": "1550",
+        "publicationDate": "pending",
+        "publisherId": "pub-quan-shu-classic",
+        "referenceDocumentId": "doc-ziwei-quan-shu",
+        "sourceTier": "Tier 2",
+        "sourceTitle": "紫微斗數全書 (Ziwei Dou Shu Quan Shu)",
+        "title": "紫微斗數全書 (Ziwei Dou Shu Quan Shu)",
+        "urlOrReference": "https://ctext.org/wiki.pl?if=gb&res=446219",
+        "volume": "卷一"
+      },
+      "edition": "pending_exact_edition_review",
+      "evidence": {
+        "directOrIndirect": "direct citation metadata only",
+        "immutableRetrievalHash": null,
+        "repositoryByteEvidence": true,
+        "retrievalByteEvidence": false
+      },
+      "externalImplementation": null,
+      "externalSettings": {
+        "calendar": "chinese_lunar",
+        "dayBoundary": "midnight_00:00",
+        "hourBoundary": "standard_12_branches",
+        "leapMonthRule": "standard_lunar",
+        "schoolOrRuleSet": "ziwei_quan_shu_classic",
+        "timezone": "Asia/Seoul"
+      },
+      "externalVersion": null,
+      "fixtureId": "ziwei-ext-table-four-transformations",
+      "id": "ziwei-fixture-ziwei-ext-table-four-transformations",
+      "independence": "declared_independent_pending_reproduction",
+      "kind": "fixture",
+      "pageVolumeChapterSection": "卷一; 卷一 · 安十干四化星訣 (甲廉破武陽)",
+      "sourceFile": "src/ziwei/externalZiweiFixtures.js",
+      "sourceIdentity": "unresolved_source_identity",
+      "status": "pending_source_review",
+      "unresolvedReason": [
+        "exact_edition_missing",
+        "retrieval_bytes_missing",
+        "external_implementation_identity_missing",
+        "fixture_runner_oracle_not_independent"
+      ]
+    },
+    {
+      "author": "陳摶 (attributed) / 羅洪先 (edit)",
+      "currentSource": {
+        "accessedAt": "2026-07-27",
+        "documentId": "doc-ziwei-quan-shu",
+        "edition": "pending_exact_edition_review",
+        "editionOrVersion": "pending_exact_edition_review",
+        "editionPublicationDate": "pending",
+        "methodDisclosure": "classical_text_minor_star_table",
+        "organizationOrAuthor": "陳摶 (attributed) / 羅洪先 (edit)",
+        "pageOrLine": "安諸吉星訣 (左輔辰順 右弼戌逆 昌戌逆 曲辰順 魁鉞丑未)",
+        "pageOrTableOrSection": "卷一 · 安諸吉星訣 (左輔辰順 右弼戌逆 昌戌逆 曲辰順 魁鉞丑未)",
+        "permanentUrl": "https://ctext.org/wiki.pl?if=gb&res=446219",
+        "prefaceDate": "1550",
+        "publicationDate": "pending",
+        "publisherId": "pub-quan-shu-classic",
+        "referenceDocumentId": "doc-ziwei-quan-shu",
+        "sourceTier": "Tier 2",
+        "sourceTitle": "紫微斗數全書 (Ziwei Dou Shu Quan Shu)",
+        "title": "紫微斗數全書 (Ziwei Dou Shu Quan Shu)",
+        "urlOrReference": "https://ctext.org/wiki.pl?if=gb&res=446219",
+        "volume": "卷一"
+      },
+      "edition": "pending_exact_edition_review",
+      "evidence": {
+        "directOrIndirect": "direct citation metadata only",
+        "immutableRetrievalHash": null,
+        "repositoryByteEvidence": true,
+        "retrievalByteEvidence": false
+      },
+      "externalImplementation": null,
+      "externalSettings": {
+        "calendar": "chinese_lunar",
+        "dayBoundary": "midnight_00:00",
+        "hourBoundary": "standard_12_branches",
+        "leapMonthRule": "standard_lunar",
+        "schoolOrRuleSet": "ziwei_quan_shu_classic",
+        "timezone": "Asia/Seoul"
+      },
+      "externalVersion": null,
+      "fixtureId": "ziwei-ext-table-minor-stars",
+      "id": "ziwei-fixture-ziwei-ext-table-minor-stars",
+      "independence": "declared_independent_pending_reproduction",
+      "kind": "fixture",
+      "pageVolumeChapterSection": "卷一; 卷一 · 安諸吉星訣 (左輔辰順 右弼戌逆 昌戌逆 曲辰順 魁鉞丑未)",
+      "sourceFile": "src/ziwei/externalZiweiFixtures.js",
+      "sourceIdentity": "unresolved_source_identity",
+      "status": "pending_source_review",
+      "unresolvedReason": [
+        "exact_edition_missing",
+        "retrieval_bytes_missing",
+        "external_implementation_identity_missing",
+        "fixture_runner_oracle_not_independent"
+      ]
+    },
+    {
+      "author": "陳摶 (attributed) / 羅洪先 (edit)",
+      "currentSource": {
+        "accessedAt": "2026-07-27",
+        "documentId": "doc-ziwei-quan-shu",
+        "edition": "pending_exact_edition_review",
+        "editionOrVersion": "pending_exact_edition_review",
+        "editionPublicationDate": "pending",
+        "methodDisclosure": "classical_text_placement_table",
+        "organizationOrAuthor": "陳摶 (attributed) / 羅洪先 (edit)",
+        "pageOrLine": "定紫微星所在表 (水二局十五日在申)",
+        "pageOrTableOrSection": "卷一 · 定紫微星所在表 (水二局十五日在申)",
+        "permanentUrl": "https://ctext.org/wiki.pl?if=gb&res=446219",
+        "prefaceDate": "1550",
+        "publicationDate": "pending",
+        "publisherId": "pub-quan-shu-classic",
+        "referenceDocumentId": "doc-ziwei-quan-shu",
+        "sourceTier": "Tier 2",
+        "sourceTitle": "紫微斗數全書 (Ziwei Dou Shu Quan Shu)",
+        "title": "紫微斗數全書 (Ziwei Dou Shu Quan Shu)",
+        "urlOrReference": "https://ctext.org/wiki.pl?if=gb&res=446219",
+        "volume": "卷一"
+      },
+      "edition": "pending_exact_edition_review",
+      "evidence": {
+        "directOrIndirect": "direct citation metadata only",
+        "immutableRetrievalHash": null,
+        "repositoryByteEvidence": true,
+        "retrievalByteEvidence": false
+      },
+      "externalImplementation": null,
+      "externalSettings": {
+        "calendar": "chinese_lunar",
+        "dayBoundary": "midnight_00:00",
+        "hourBoundary": "standard_12_branches",
+        "leapMonthRule": "standard_lunar",
+        "schoolOrRuleSet": "ziwei_quan_shu_classic",
+        "timezone": "Asia/Seoul"
+      },
+      "externalVersion": null,
+      "fixtureId": "ziwei-ext-table-ziwei-placement",
+      "id": "ziwei-fixture-ziwei-ext-table-ziwei-placement",
+      "independence": "declared_independent_pending_reproduction",
+      "kind": "fixture",
+      "pageVolumeChapterSection": "卷一; 卷一 · 定紫微星所在表 (水二局十五日在申)",
+      "sourceFile": "src/ziwei/externalZiweiFixtures.js",
+      "sourceIdentity": "unresolved_source_identity",
+      "status": "pending_source_review",
+      "unresolvedReason": [
+        "exact_edition_missing",
+        "retrieval_bytes_missing",
+        "external_implementation_identity_missing",
+        "fixture_runner_oracle_not_independent"
+      ]
+    },
+    {
+      "author": null,
+      "currentSource": "TRANSFORMATION_LABELS lu; local literal: 재물, 유연함, 발전",
+      "edition": null,
+      "evidence": {
+        "directOrIndirect": "direct",
+        "immutableRetrievalHash": null,
+        "repositoryByteEvidence": true,
+        "retrievalByteEvidence": false
+      },
+      "externalImplementation": null,
+      "externalSettings": null,
+      "externalVersion": null,
+      "id": "ziwei-occ-21d731586efc0e34",
+      "independence": "not_established",
+      "kind": "meaning_candidate",
+      "pageVolumeChapterSection": null,
+      "sourceFile": "src/ziwei/transformationRules.js",
+      "sourceIdentity": "unresolved_source_identity",
+      "status": "occurrence_only_identifiable",
+      "unresolvedReason": "literal has repository byte location but no external source location, edition, or sourceRefs"
+    },
+    {
+      "author": null,
+      "currentSource": "ZIWEI_PALACE_DEFINITIONS career; local literal: 직업, 사회적 위치, 역량 발휘",
+      "edition": null,
+      "evidence": {
+        "directOrIndirect": "direct",
+        "immutableRetrievalHash": null,
+        "repositoryByteEvidence": true,
+        "retrievalByteEvidence": false
+      },
+      "externalImplementation": null,
+      "externalSettings": null,
+      "externalVersion": null,
+      "id": "ziwei-occ-2260aba6ed2163e3",
+      "independence": "not_established",
+      "kind": "meaning_candidate",
+      "pageVolumeChapterSection": null,
+      "sourceFile": "src/ziwei/ziweiContract.js",
+      "sourceIdentity": "unresolved_source_identity",
+      "status": "occurrence_only_identifiable",
+      "unresolvedReason": "literal has repository byte location but no external source location, edition, or sourceRefs"
+    },
+    {
+      "author": null,
+      "currentSource": "ZIWEI_PALACE_DEFINITIONS life; local literal: 본질적 기질, 운명의 총체적 바탕",
+      "edition": null,
+      "evidence": {
+        "directOrIndirect": "direct",
+        "immutableRetrievalHash": null,
+        "repositoryByteEvidence": true,
+        "retrievalByteEvidence": false
+      },
+      "externalImplementation": null,
+      "externalSettings": null,
+      "externalVersion": null,
+      "id": "ziwei-occ-2b792b2cac1c58ab",
+      "independence": "not_established",
+      "kind": "meaning_candidate",
+      "pageVolumeChapterSection": null,
+      "sourceFile": "src/ziwei/ziweiContract.js",
+      "sourceIdentity": "unresolved_source_identity",
+      "status": "occurrence_only_identifiable",
+      "unresolvedReason": "literal has repository byte location but no external source location, edition, or sourceRefs"
+    },
+    {
+      "author": null,
+      "currentSource": "TOPIC_PALACE_PATTERNS relationshipPattern; local literal: 대인관계 및 배우자 소통 패턴",
+      "edition": null,
+      "evidence": {
+        "directOrIndirect": "direct",
+        "immutableRetrievalHash": null,
+        "repositoryByteEvidence": true,
+        "retrievalByteEvidence": false
+      },
+      "externalImplementation": null,
+      "externalSettings": null,
+      "externalVersion": null,
+      "id": "ziwei-occ-2d961f3216f41e70",
+      "independence": "not_established",
+      "kind": "meaning_candidate",
+      "pageVolumeChapterSection": null,
+      "sourceFile": "src/ziwei/palaceRelationRules.js",
+      "sourceIdentity": "unresolved_source_identity",
+      "status": "occurrence_only_identifiable",
+      "unresolvedReason": "literal has repository byte location but no external source location, edition, or sourceRefs"
+    },
+    {
+      "author": null,
+      "currentSource": "TOPIC_PALACE_PATTERNS careerPattern; local literal: 직업 및 역량 개발 패턴",
+      "edition": null,
+      "evidence": {
+        "directOrIndirect": "direct",
+        "immutableRetrievalHash": null,
+        "repositoryByteEvidence": true,
+        "retrievalByteEvidence": false
+      },
+      "externalImplementation": null,
+      "externalSettings": null,
+      "externalVersion": null,
+      "id": "ziwei-occ-6e095d58a62d9b86",
+      "independence": "not_established",
+      "kind": "meaning_candidate",
+      "pageVolumeChapterSection": null,
+      "sourceFile": "src/ziwei/palaceRelationRules.js",
+      "sourceIdentity": "unresolved_source_identity",
+      "status": "occurrence_only_identifiable",
+      "unresolvedReason": "literal has repository byte location but no external source location, edition, or sourceRefs"
+    },
+    {
+      "author": null,
+      "currentSource": "ZIWEI_PALACE_DEFINITIONS children; local literal: 자녀, 후배, 제자, 창작물",
+      "edition": null,
+      "evidence": {
+        "directOrIndirect": "direct",
+        "immutableRetrievalHash": null,
+        "repositoryByteEvidence": true,
+        "retrievalByteEvidence": false
+      },
+      "externalImplementation": null,
+      "externalSettings": null,
+      "externalVersion": null,
+      "id": "ziwei-occ-894fa6fa97b81dfd",
+      "independence": "not_established",
+      "kind": "meaning_candidate",
+      "pageVolumeChapterSection": null,
+      "sourceFile": "src/ziwei/ziweiContract.js",
+      "sourceIdentity": "unresolved_source_identity",
+      "status": "occurrence_only_identifiable",
+      "unresolvedReason": "literal has repository byte location but no external source location, edition, or sourceRefs"
+    },
+    {
+      "author": null,
+      "currentSource": "ZIWEI_PALACE_DEFINITIONS siblings; local literal: 형제자매, 동료, 친밀한 지인 관계",
+      "edition": null,
+      "evidence": {
+        "directOrIndirect": "direct",
+        "immutableRetrievalHash": null,
+        "repositoryByteEvidence": true,
+        "retrievalByteEvidence": false
+      },
+      "externalImplementation": null,
+      "externalSettings": null,
+      "externalVersion": null,
+      "id": "ziwei-occ-a09e10a5495186b8",
+      "independence": "not_established",
+      "kind": "meaning_candidate",
+      "pageVolumeChapterSection": null,
+      "sourceFile": "src/ziwei/ziweiContract.js",
+      "sourceIdentity": "unresolved_source_identity",
+      "status": "occurrence_only_identifiable",
+      "unresolvedReason": "literal has repository byte location but no external source location, edition, or sourceRefs"
+    },
+    {
+      "author": null,
+      "currentSource": "ZIWEI_PALACE_DEFINITIONS health; local literal: 건강, 신체적 체질, 질병 유의점",
+      "edition": null,
+      "evidence": {
+        "directOrIndirect": "direct",
+        "immutableRetrievalHash": null,
+        "repositoryByteEvidence": true,
+        "retrievalByteEvidence": false
+      },
+      "externalImplementation": null,
+      "externalSettings": null,
+      "externalVersion": null,
+      "id": "ziwei-occ-a54cfa4de8051b41",
+      "independence": "not_established",
+      "kind": "meaning_candidate",
+      "pageVolumeChapterSection": null,
+      "sourceFile": "src/ziwei/ziweiContract.js",
+      "sourceIdentity": "unresolved_source_identity",
+      "status": "occurrence_only_identifiable",
+      "unresolvedReason": "literal has repository byte location but no external source location, edition, or sourceRefs"
+    },
+    {
+      "author": null,
+      "currentSource": "ZIWEI_PALACE_DEFINITIONS friends; local literal: 부하, 대중, 일반 인간관계",
+      "edition": null,
+      "evidence": {
+        "directOrIndirect": "direct",
+        "immutableRetrievalHash": null,
+        "repositoryByteEvidence": true,
+        "retrievalByteEvidence": false
+      },
+      "externalImplementation": null,
+      "externalSettings": null,
+      "externalVersion": null,
+      "id": "ziwei-occ-a72bdf60ef809b58",
+      "independence": "not_established",
+      "kind": "meaning_candidate",
+      "pageVolumeChapterSection": null,
+      "sourceFile": "src/ziwei/ziweiContract.js",
+      "sourceIdentity": "unresolved_source_identity",
+      "status": "occurrence_only_identifiable",
+      "unresolvedReason": "literal has repository byte location but no external source location, edition, or sourceRefs"
+    },
+    {
+      "author": null,
+      "currentSource": "TOPIC_PALACE_PATTERNS wealthPattern; local literal: 재물 및 자산 관리 패턴",
+      "edition": null,
+      "evidence": {
+        "directOrIndirect": "direct",
+        "immutableRetrievalHash": null,
+        "repositoryByteEvidence": true,
+        "retrievalByteEvidence": false
+      },
+      "externalImplementation": null,
+      "externalSettings": null,
+      "externalVersion": null,
+      "id": "ziwei-occ-acb0dce151f32dcb",
+      "independence": "not_established",
+      "kind": "meaning_candidate",
+      "pageVolumeChapterSection": null,
+      "sourceFile": "src/ziwei/palaceRelationRules.js",
+      "sourceIdentity": "unresolved_source_identity",
+      "status": "occurrence_only_identifiable",
+      "unresolvedReason": "literal has repository byte location but no external source location, edition, or sourceRefs"
+    },
+    {
+      "author": null,
+      "currentSource": "ZIWEI_PALACE_DEFINITIONS spouse; local literal: 배우자, 연인, 이성 인연",
+      "edition": null,
+      "evidence": {
+        "directOrIndirect": "direct",
+        "immutableRetrievalHash": null,
+        "repositoryByteEvidence": true,
+        "retrievalByteEvidence": false
+      },
+      "externalImplementation": null,
+      "externalSettings": null,
+      "externalVersion": null,
+      "id": "ziwei-occ-b1d4bbca55c2007f",
+      "independence": "not_established",
+      "kind": "meaning_candidate",
+      "pageVolumeChapterSection": null,
+      "sourceFile": "src/ziwei/ziweiContract.js",
+      "sourceIdentity": "unresolved_source_identity",
+      "status": "occurrence_only_identifiable",
+      "unresolvedReason": "literal has repository byte location but no external source location, edition, or sourceRefs"
+    },
+    {
+      "author": null,
+      "currentSource": "ZIWEI_PALACE_DEFINITIONS property; local literal: 부동산, 주거 환경, 가문 바탕",
+      "edition": null,
+      "evidence": {
+        "directOrIndirect": "direct",
+        "immutableRetrievalHash": null,
+        "repositoryByteEvidence": true,
+        "retrievalByteEvidence": false
+      },
+      "externalImplementation": null,
+      "externalSettings": null,
+      "externalVersion": null,
+      "id": "ziwei-occ-bb986540a877dcee",
+      "independence": "not_established",
+      "kind": "meaning_candidate",
+      "pageVolumeChapterSection": null,
+      "sourceFile": "src/ziwei/ziweiContract.js",
+      "sourceIdentity": "unresolved_source_identity",
+      "status": "occurrence_only_identifiable",
+      "unresolvedReason": "literal has repository byte location but no external source location, edition, or sourceRefs"
+    },
+    {
+      "author": null,
+      "currentSource": "ZIWEI_PALACE_DEFINITIONS parents; local literal: 부모, 윗사람, 덕망, 문서 운",
+      "edition": null,
+      "evidence": {
+        "directOrIndirect": "direct",
+        "immutableRetrievalHash": null,
+        "repositoryByteEvidence": true,
+        "retrievalByteEvidence": false
+      },
+      "externalImplementation": null,
+      "externalSettings": null,
+      "externalVersion": null,
+      "id": "ziwei-occ-c4b8407cdc824d27",
+      "independence": "not_established",
+      "kind": "meaning_candidate",
+      "pageVolumeChapterSection": null,
+      "sourceFile": "src/ziwei/ziweiContract.js",
+      "sourceIdentity": "unresolved_source_identity",
+      "status": "occurrence_only_identifiable",
+      "unresolvedReason": "literal has repository byte location but no external source location, edition, or sourceRefs"
+    },
+    {
+      "author": null,
+      "currentSource": "ZIWEI_PALACE_DEFINITIONS wealth; local literal: 재물 운, 수입 및 지출 패턴",
+      "edition": null,
+      "evidence": {
+        "directOrIndirect": "direct",
+        "immutableRetrievalHash": null,
+        "repositoryByteEvidence": true,
+        "retrievalByteEvidence": false
+      },
+      "externalImplementation": null,
+      "externalSettings": null,
+      "externalVersion": null,
+      "id": "ziwei-occ-d31091d32f84777c",
+      "independence": "not_established",
+      "kind": "meaning_candidate",
+      "pageVolumeChapterSection": null,
+      "sourceFile": "src/ziwei/ziweiContract.js",
+      "sourceIdentity": "unresolved_source_identity",
+      "status": "occurrence_only_identifiable",
+      "unresolvedReason": "literal has repository byte location but no external source location, edition, or sourceRefs"
+    },
+    {
+      "author": null,
+      "currentSource": "TRANSFORMATION_LABELS quan; local literal: 권력, 과감함, 영향력",
+      "edition": null,
+      "evidence": {
+        "directOrIndirect": "direct",
+        "immutableRetrievalHash": null,
+        "repositoryByteEvidence": true,
+        "retrievalByteEvidence": false
+      },
+      "externalImplementation": null,
+      "externalSettings": null,
+      "externalVersion": null,
+      "id": "ziwei-occ-dd08863eb441bb65",
+      "independence": "not_established",
+      "kind": "meaning_candidate",
+      "pageVolumeChapterSection": null,
+      "sourceFile": "src/ziwei/transformationRules.js",
+      "sourceIdentity": "unresolved_source_identity",
+      "status": "occurrence_only_identifiable",
+      "unresolvedReason": "literal has repository byte location but no external source location, edition, or sourceRefs"
+    },
+    {
+      "author": null,
+      "currentSource": "ZIWEI_PALACE_DEFINITIONS travel; local literal: 대외 활동, 이동, 타향/해외 운",
+      "edition": null,
+      "evidence": {
+        "directOrIndirect": "direct",
+        "immutableRetrievalHash": null,
+        "repositoryByteEvidence": true,
+        "retrievalByteEvidence": false
+      },
+      "externalImplementation": null,
+      "externalSettings": null,
+      "externalVersion": null,
+      "id": "ziwei-occ-e70f01a8752ee8d2",
+      "independence": "not_established",
+      "kind": "meaning_candidate",
+      "pageVolumeChapterSection": null,
+      "sourceFile": "src/ziwei/ziweiContract.js",
+      "sourceIdentity": "unresolved_source_identity",
+      "status": "occurrence_only_identifiable",
+      "unresolvedReason": "literal has repository byte location but no external source location, edition, or sourceRefs"
+    },
+    {
+      "author": null,
+      "currentSource": "ZIWEI_PALACE_DEFINITIONS mind; local literal: 정신적 만족, 취향, 내면의 휴식",
+      "edition": null,
+      "evidence": {
+        "directOrIndirect": "direct",
+        "immutableRetrievalHash": null,
+        "repositoryByteEvidence": true,
+        "retrievalByteEvidence": false
+      },
+      "externalImplementation": null,
+      "externalSettings": null,
+      "externalVersion": null,
+      "id": "ziwei-occ-e73f469c5e35e072",
+      "independence": "not_established",
+      "kind": "meaning_candidate",
+      "pageVolumeChapterSection": null,
+      "sourceFile": "src/ziwei/ziweiContract.js",
+      "sourceIdentity": "unresolved_source_identity",
+      "status": "occurrence_only_identifiable",
+      "unresolvedReason": "literal has repository byte location but no external source location, edition, or sourceRefs"
+    },
+    {
+      "author": null,
+      "currentSource": "TRANSFORMATION_LABELS ke; local literal: 명예, 학문, 구원",
+      "edition": null,
+      "evidence": {
+        "directOrIndirect": "direct",
+        "immutableRetrievalHash": null,
+        "repositoryByteEvidence": true,
+        "retrievalByteEvidence": false
+      },
+      "externalImplementation": null,
+      "externalSettings": null,
+      "externalVersion": null,
+      "id": "ziwei-occ-ed75580c000adb8f",
+      "independence": "not_established",
+      "kind": "meaning_candidate",
+      "pageVolumeChapterSection": null,
+      "sourceFile": "src/ziwei/transformationRules.js",
+      "sourceIdentity": "unresolved_source_identity",
+      "status": "occurrence_only_identifiable",
+      "unresolvedReason": "literal has repository byte location but no external source location, edition, or sourceRefs"
+    },
+    {
+      "author": null,
+      "currentSource": "TRANSFORMATION_LABELS ji; local literal: 장애, 집착, 주의 요망",
+      "edition": null,
+      "evidence": {
+        "directOrIndirect": "direct",
+        "immutableRetrievalHash": null,
+        "repositoryByteEvidence": true,
+        "retrievalByteEvidence": false
+      },
+      "externalImplementation": null,
+      "externalSettings": null,
+      "externalVersion": null,
+      "id": "ziwei-occ-f7017ade296bb707",
+      "independence": "not_established",
+      "kind": "meaning_candidate",
+      "pageVolumeChapterSection": null,
+      "sourceFile": "src/ziwei/transformationRules.js",
+      "sourceIdentity": "unresolved_source_identity",
+      "status": "occurrence_only_identifiable",
+      "unresolvedReason": "literal has repository byte location but no external source location, edition, or sourceRefs"
+    },
+    {
+      "author": null,
+      "currentSource": "resolveFiveElementBureau; local resolver; named rule-set version is output metadata only",
+      "edition": null,
+      "evidence": {
+        "directOrIndirect": "indirect",
+        "immutableRetrievalHash": null,
+        "repositoryByteEvidence": true,
+        "retrievalByteEvidence": false
+      },
+      "externalImplementation": null,
+      "externalSettings": null,
+      "externalVersion": null,
+      "id": "ziwei-rule-five-element-bureau",
+      "independence": "not_established",
+      "kind": "rule_bundle",
+      "pageVolumeChapterSection": null,
+      "sourceFile": "src/ziwei/fiveElementResolver.js",
+      "sourceIdentity": "unresolved_source_identity",
+      "status": "implemented_unverified",
+      "unresolvedReason": "local ruleset/version metadata has no cited edition, source byte, or external oracle identity"
+    },
+    {
+      "author": null,
+      "currentSource": "DEFAULT_ZIWEI_RULE_SET; traditional_lunar / standard_month_hour / mid_month_split / standard_wuhangju / standard_ziwei_tianfu",
+      "edition": null,
+      "evidence": {
+        "directOrIndirect": "indirect",
+        "immutableRetrievalHash": null,
+        "repositoryByteEvidence": true,
+        "retrievalByteEvidence": false
+      },
+      "externalImplementation": null,
+      "externalSettings": null,
+      "externalVersion": null,
+      "id": "ziwei-rule-input-contract",
+      "independence": "not_established",
+      "kind": "rule_bundle",
+      "pageVolumeChapterSection": null,
+      "sourceFile": "src/ziwei/ziweiContract.js",
+      "sourceIdentity": "unresolved_source_identity",
+      "status": "implemented_unverified",
+      "unresolvedReason": "local ruleset/version metadata has no cited edition, source byte, or external oracle identity"
+    },
+    {
+      "author": null,
+      "currentSource": "STAR_PLACEMENT_RULESET; traditional_v1; bureau_lunar_day_division; opposite_yin_shen_axis; standard_14_major",
+      "edition": null,
+      "evidence": {
+        "directOrIndirect": "indirect",
+        "immutableRetrievalHash": null,
+        "repositoryByteEvidence": true,
+        "retrievalByteEvidence": false
+      },
+      "externalImplementation": null,
+      "externalSettings": null,
+      "externalVersion": null,
+      "id": "ziwei-rule-major-stars",
+      "independence": "not_established",
+      "kind": "rule_bundle",
+      "pageVolumeChapterSection": null,
+      "sourceFile": "src/ziwei/starPlacementRules.js",
+      "sourceIdentity": "unresolved_source_identity",
+      "status": "implemented_unverified",
+      "unresolvedReason": "local ruleset/version metadata has no cited edition, source byte, or external oracle identity"
+    },
+    {
+      "author": null,
+      "currentSource": "MINOR_STAR_RULESET; traditional_v1; six minor-star placement functions",
+      "edition": null,
+      "evidence": {
+        "directOrIndirect": "indirect",
+        "immutableRetrievalHash": null,
+        "repositoryByteEvidence": true,
+        "retrievalByteEvidence": false
+      },
+      "externalImplementation": null,
+      "externalSettings": null,
+      "externalVersion": null,
+      "id": "ziwei-rule-minor-stars",
+      "independence": "not_established",
+      "kind": "rule_bundle",
+      "pageVolumeChapterSection": null,
+      "sourceFile": "src/ziwei/minorStarRules.js",
+      "sourceIdentity": "unresolved_source_identity",
+      "status": "implemented_unverified",
+      "unresolvedReason": "local ruleset/version metadata has no cited edition, source byte, or external oracle identity"
+    },
+    {
+      "author": null,
+      "currentSource": "PALACE_RELATION_RULESET; traditional_v1; opposite +6 and trine +4/+8",
+      "edition": null,
+      "evidence": {
+        "directOrIndirect": "indirect",
+        "immutableRetrievalHash": null,
+        "repositoryByteEvidence": true,
+        "retrievalByteEvidence": false
+      },
+      "externalImplementation": null,
+      "externalSettings": null,
+      "externalVersion": null,
+      "id": "ziwei-rule-palace-relations",
+      "independence": "not_established",
+      "kind": "rule_bundle",
+      "pageVolumeChapterSection": null,
+      "sourceFile": "src/ziwei/palaceRelationRules.js",
+      "sourceIdentity": "unresolved_source_identity",
+      "status": "implemented_unverified",
+      "unresolvedReason": "local ruleset/version metadata has no cited edition, source byte, or external oracle identity"
+    },
+    {
+      "author": null,
+      "currentSource": "TRANSFORMATION_RULESET; traditional_v1; year-stem four transformations",
+      "edition": null,
+      "evidence": {
+        "directOrIndirect": "indirect",
+        "immutableRetrievalHash": null,
+        "repositoryByteEvidence": true,
+        "retrievalByteEvidence": false
+      },
+      "externalImplementation": null,
+      "externalSettings": null,
+      "externalVersion": null,
+      "id": "ziwei-rule-transformations",
+      "independence": "not_established",
+      "kind": "rule_bundle",
+      "pageVolumeChapterSection": null,
+      "sourceFile": "src/ziwei/transformationRules.js",
+      "sourceIdentity": "unresolved_source_identity",
+      "status": "implemented_unverified",
+      "unresolvedReason": "local ruleset/version metadata has no cited edition, source byte, or external oracle identity"
+    }
+  ],
+  "unsupportedPreserved": [
+    "timing",
+    "brightness",
+    "extended minor stars",
+    "palace-based transformations"
+  ],
+  "verdictToken": "ziwei_claim_boundary_audit_partial_unresolved"
+}

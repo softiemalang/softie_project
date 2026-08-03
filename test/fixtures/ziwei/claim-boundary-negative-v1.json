@@ -1,0 +1,12 @@
+{
+  "schemaVersion": "ziwei-claim-boundary-negative-v1",
+  "cases": [
+    {"id":"forced-merge","kind":"original_text_merge","mergedOriginalTexts":["문장 A","문장 B"],"expectedCode":"forced_original_text_merge"},
+    {"id":"missing-location","kind":"source_location_missing","sourceLocation":null,"expectedCode":"source_location_missing"},
+    {"id":"regression-promotion","kind":"regression_fixture_promotion","fixtureStatus":"regression_only","promotedStatus":"verified","expectedCode":"regression_fixture_promoted"},
+    {"id":"hidden-unresolved","kind":"unresolved_source_hidden","sourceIdentity":"unresolved_source_identity","resolutionState":"verified","expectedCode":"unresolved_source_hidden"},
+    {"id":"edition-school-collapse","kind":"edition_school_difference_deleted","sourceVariants":["edition-a","edition-b"],"collapsed":true,"expectedCode":"edition_school_difference_deleted"},
+    {"id":"frequency-ranking","kind":"frequency_ranking","rankByFrequency":true,"expectedCode":"frequency_ranking"},
+    {"id":"nondeterministic-id-order","kind":"nondeterministic_id_or_sort","idsAreStable":false,"sort":"insertion_order","expectedCode":"nondeterministic_id_or_sort"}
+  ]
+}
