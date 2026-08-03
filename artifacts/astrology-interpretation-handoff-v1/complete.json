@@ -18,12 +18,12 @@
         "artifact": {
           "path": "artifacts/astrology-interpretation-packet-v1/complete.json",
           "wrapperSchemaVersion": "astrology-interpretation-packet-evidence-v1",
-          "artifactByteSha256": "e349c45ac0a44a7182f627805156ac5a810688fed27ff39a2a2f61e90d1e6b64"
+          "artifactByteSha256": "d17cd16c7ebccc0d33fb9c43466da3ea40734ea22ef4028a7e1cf14fc33b9d9f"
         },
         "content": {
           "schemaVersion": "astrology-interpretation-packet-v1",
           "version": "1.0.0",
-          "contentSha256": "509148b669dd99927e870cacb2216929e2c69792a08e8d2157718f2bd039a424"
+          "contentSha256": "e51f29c4f52a003518ddc38b67e73c54c2d6562091112a45f1af23180093d767"
         },
         "status": "complete"
       },
@@ -32,12 +32,12 @@
         "artifact": {
           "path": "artifacts/astrology-interpretation-context-v1/complete.json",
           "wrapperSchemaVersion": "astrology-interpretation-context-evidence-v1",
-          "artifactByteSha256": "7669f537c34836787eb2efbb38721364182a8a3728211ec397a1846c0ab434b3"
+          "artifactByteSha256": "d0319ff287c39ec2d494b42a14ae87630c9372c192ebb469d362dcfecc09f995"
         },
         "content": {
           "schemaVersion": "astrology-interpretation-context-v1",
           "version": "1.0.0",
-          "contentSha256": "610852ef32546e1bb5df63ed544be6e2760f533146a9ccc6954b19d0b138ac91"
+          "contentSha256": "c1f9943327f6dffa77f09a6ea79428ab27c449f04eef820c0d53889efa33c95c"
         },
         "status": "complete"
       },
@@ -46,12 +46,12 @@
         "artifact": {
           "path": "artifacts/astrology-interpretation-readiness-v1/complete.json",
           "wrapperSchemaVersion": "astrology-interpretation-readiness-evidence-v1",
-          "artifactByteSha256": "f8943a611e01997ad10c5c4d5d7da03595b5a549f06da58b438ad456aa8506f3"
+          "artifactByteSha256": "11ffa619fa2bb731defdb623308b538c60a541fbfe560881350754b33a2f5624"
         },
         "content": {
           "schemaVersion": "astrology-interpretation-readiness-v1",
           "version": "1.0.0",
-          "contentSha256": "1c62daa33447f2bf130d7f5935ebe0a2b07369c348c1c7e60fc13bd6f1e91c38"
+          "contentSha256": "808618cbeae08d3f671f30f2ea075ed4c67968174af2ca3ac4f42d6c3b7ffd8f"
         },
         "status": "complete"
       },
@@ -60,21 +60,21 @@
         "artifact": {
           "path": "artifacts/astrology-claim-relation-graph-v1/complete.json",
           "wrapperSchemaVersion": "astrology-claim-relation-graph-evidence-v1",
-          "artifactByteSha256": "b1fba97e6a98a4cb7f318818d3b963df7bcb8ffd5b0612daa773e44b57314336"
+          "artifactByteSha256": "cbd56236818196070a63df56e9752c9a14a039ab5f6728a80c1c8d4cc9d5d6ae"
         },
         "content": {
           "schemaVersion": "astrology-claim-relation-graph-v1",
           "version": "1.0.0",
-          "contentSha256": "bcece84fe79f6dafb1aae13cc89a2d4e0ae7ce1da1441fe1b785d621e5ed3da0"
+          "contentSha256": "a7f7e79419b47330ebc6f2b897ecb639f28c8d922f497e186b641a717b23c255"
         },
         "status": "complete"
       }
     },
     "crossHashLinks": {
-      "contextFromPacket": "509148b669dd99927e870cacb2216929e2c69792a08e8d2157718f2bd039a424",
-      "readinessFromPacket": "509148b669dd99927e870cacb2216929e2c69792a08e8d2157718f2bd039a424",
-      "graphFromContext": "610852ef32546e1bb5df63ed544be6e2760f533146a9ccc6954b19d0b138ac91",
-      "graphFromReadiness": "1c62daa33447f2bf130d7f5935ebe0a2b07369c348c1c7e60fc13bd6f1e91c38"
+      "contextFromPacket": "e51f29c4f52a003518ddc38b67e73c54c2d6562091112a45f1af23180093d767",
+      "readinessFromPacket": "e51f29c4f52a003518ddc38b67e73c54c2d6562091112a45f1af23180093d767",
+      "graphFromContext": "c1f9943327f6dffa77f09a6ea79428ab27c449f04eef820c0d53889efa33c95c",
+      "graphFromReadiness": "808618cbeae08d3f671f30f2ea075ed4c67968174af2ca3ac4f42d6c3b7ffd8f"
     },
     "statistics": {
       "claims": {
@@ -141,7 +141,7 @@
       "bundleContentSha256": "bundle object excluding bundleContentSha256, recursively sorted object keys, arrays preserved, JSON plus LF",
       "artifactByteSha256": "exact UTF-8 bytes of the materialized bundle evidence JSON, including formatting and final LF"
     },
-    "bundleContentSha256": "0c8a5ad9f11abf00bcf61165d91a75fb22bcf843118c5c8d41c5e9b07bbf8661"
+    "bundleContentSha256": "d71331bfd6c9a1345922ef82ecbeade347e060f804530a246ed434e4032472b0"
   },
   "inputArtifacts": {
     "packet": "artifacts/astrology-interpretation-packet-v1/complete.json",

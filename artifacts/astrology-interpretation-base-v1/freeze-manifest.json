@@ -1,0 +1,177 @@
+{
+  "schemaVersion": "astrology-interpretation-base-freeze-manifest-v1",
+  "manifestVersion": "1.0.0",
+  "baselineStatus": "audited_and_frozen_uncommitted",
+  "freezeScope": "verified orchestration through interpretation handoff v1; deterministic facts and structural relations only",
+  "components": {
+    "orchestration": {
+      "role": "orchestration",
+      "path": "artifacts/astrology-local-verified-orchestration-v1/evidence.json",
+      "artifactByteSha256": "55dc01350a4dc07a8ad6f7c2533a6ce71f0c05fbc76e60f003ed7cc7aa948c6c",
+      "schemaVersion": "astrology-local-verified-orchestration-v1",
+      "version": "1.0.0",
+      "contentSha256": "eb5fe02cb618ea61b760ec927b4ceded3d700f601e9bc6e0fb533771835efc0a"
+    },
+    "packet": {
+      "role": "packet",
+      "path": "artifacts/astrology-interpretation-packet-v1/complete.json",
+      "artifactByteSha256": "d17cd16c7ebccc0d33fb9c43466da3ea40734ea22ef4028a7e1cf14fc33b9d9f",
+      "schemaVersion": "astrology-interpretation-packet-v1",
+      "version": "1.0.0",
+      "contentSha256": "e51f29c4f52a003518ddc38b67e73c54c2d6562091112a45f1af23180093d767"
+    },
+    "context": {
+      "role": "context",
+      "path": "artifacts/astrology-interpretation-context-v1/complete.json",
+      "artifactByteSha256": "d0319ff287c39ec2d494b42a14ae87630c9372c192ebb469d362dcfecc09f995",
+      "schemaVersion": "astrology-interpretation-context-v1",
+      "version": "1.0.0",
+      "contentSha256": "c1f9943327f6dffa77f09a6ea79428ab27c449f04eef820c0d53889efa33c95c"
+    },
+    "readiness": {
+      "role": "readiness",
+      "path": "artifacts/astrology-interpretation-readiness-v1/complete.json",
+      "artifactByteSha256": "11ffa619fa2bb731defdb623308b538c60a541fbfe560881350754b33a2f5624",
+      "schemaVersion": "astrology-interpretation-readiness-v1",
+      "version": "1.0.0",
+      "contentSha256": "808618cbeae08d3f671f30f2ea075ed4c67968174af2ca3ac4f42d6c3b7ffd8f"
+    },
+    "graph": {
+      "role": "graph",
+      "path": "artifacts/astrology-claim-relation-graph-v1/complete.json",
+      "artifactByteSha256": "cbd56236818196070a63df56e9752c9a14a039ab5f6728a80c1c8d4cc9d5d6ae",
+      "schemaVersion": "astrology-claim-relation-graph-v1",
+      "version": "1.0.0",
+      "contentSha256": "a7f7e79419b47330ebc6f2b897ecb639f28c8d922f497e186b641a717b23c255"
+    },
+    "handoff": {
+      "role": "handoff",
+      "path": "artifacts/astrology-interpretation-handoff-v1/complete.json",
+      "artifactByteSha256": "8ac2d4856016a1aed2aa636e20fd0e0298a57f6bed9ed07a96d518f63e793991",
+      "schemaVersion": "astrology-interpretation-handoff-v1",
+      "version": "1.0.0",
+      "contentSha256": "d71331bfd6c9a1345922ef82ecbeade347e060f804530a246ed434e4032472b0"
+    }
+  },
+  "upstreamIdentity": {
+    "providerBundleCanonicalSha256": "d9f7b3990ab93c4029307f2f2501f52af2cf79c81a6d66f8a9cf51c7ee45ffc5",
+    "rawChartSha256": "109066786fadb36d2cfb7f50bc9af30a6f033ab356e987b9a9fc606e24200ddb",
+    "ruleChartSha256": "31d7d6807beac29b9b54827f7416517ad14ea3f927295e2f24326832cf777cb1",
+    "kernelSha256": "30a7113793ee5b6bf1e5546c6dfc21d9682d9ffabfe9b17b4bab27ba2ac75c89",
+    "runnerIdentity": "sha256:92297c604fe43a147bc1f16cfbe33bf482f9ae7d001cd1c6fad87c5d5c2b8964",
+    "evaluator": "de405-canonical-v2"
+  },
+  "crossHashLinks": {
+    "packetFromOrchestration": {
+      "providerBundleSha256": "d9f7b3990ab93c4029307f2f2501f52af2cf79c81a6d66f8a9cf51c7ee45ffc5",
+      "rawChartSha256": "109066786fadb36d2cfb7f50bc9af30a6f033ab356e987b9a9fc606e24200ddb",
+      "ruleChartSha256": "31d7d6807beac29b9b54827f7416517ad14ea3f927295e2f24326832cf777cb1"
+    },
+    "contextFromPacket": "e51f29c4f52a003518ddc38b67e73c54c2d6562091112a45f1af23180093d767",
+    "readinessFromPacket": "e51f29c4f52a003518ddc38b67e73c54c2d6562091112a45f1af23180093d767",
+    "readinessFromContext": "c1f9943327f6dffa77f09a6ea79428ab27c449f04eef820c0d53889efa33c95c",
+    "graphFromContext": "c1f9943327f6dffa77f09a6ea79428ab27c449f04eef820c0d53889efa33c95c",
+    "graphFromReadiness": "808618cbeae08d3f671f30f2ea075ed4c67968174af2ca3ac4f42d6c3b7ffd8f",
+    "handoff": {
+      "contextFromPacket": "e51f29c4f52a003518ddc38b67e73c54c2d6562091112a45f1af23180093d767",
+      "readinessFromPacket": "e51f29c4f52a003518ddc38b67e73c54c2d6562091112a45f1af23180093d767",
+      "graphFromContext": "c1f9943327f6dffa77f09a6ea79428ab27c449f04eef820c0d53889efa33c95c",
+      "graphFromReadiness": "808618cbeae08d3f671f30f2ea075ed4c67968174af2ca3ac4f42d6c3b7ffd8f"
+    }
+  },
+  "statistics": {
+    "claims": {
+      "total": 53,
+      "observedOrCalculated": 20,
+      "deterministicallyDerived": 33
+    },
+    "graphNodes": 53,
+    "graphEdges": 1753
+  },
+  "relationVocabulary": [
+    "same_chart",
+    "shares_body_subject",
+    "shares_angle_subject",
+    "shares_aspect_endpoint",
+    "shares_house_subject",
+    "shares_ruler_subject",
+    "shares_distribution_dimension",
+    "same_rule_id"
+  ],
+  "boundaries": {
+    "activation": {
+      "availableForInterpretation": false,
+      "integrationStatus": "not_connected",
+      "serviceEligibility": "blocked",
+      "reason": "interpretation_packet_not_activated"
+    },
+    "connected": false,
+    "readiness": {
+      "localInterpretationResearch": "eligible_for_local_interpretation_research",
+      "userDelivery": "not_eligible_for_user_delivery",
+      "productionActivation": "production_activation_blocked",
+      "humanReview": "human_review_required"
+    },
+    "eligibility": {
+      "localResearch": "eligible_for_local_interpretation_research",
+      "userDelivery": "not_eligible_for_user_delivery",
+      "production": "production_activation_blocked",
+      "humanReview": "human_review_required",
+      "activation": "blocked"
+    },
+    "deliveryPolicy": {
+      "allowedFields": [
+        "component manifest identities and hashes",
+        "verified claim counts and epistemic counts",
+        "relation vocabulary and graph counts",
+        "sourceRefs and provenance completeness status",
+        "local research eligibility and human-review status",
+        "activation, user-delivery, and production boundary status",
+        "deterministic source artifact references"
+      ],
+      "forbiddenUsages": [
+        "generate_new_claims",
+        "delete_merge_or_transform_claims",
+        "infer_personality_psychology_strength_weakness_wound_desire_risk_or_destiny",
+        "create_theme_narrative_synthesis_or_conclusion",
+        "rank_claims_or_assign_meaning_weight_or_priority",
+        "judge_conflict_dominance_balance_or_winner_between_claims",
+        "infer_experience_environment_or_behavior",
+        "generate_natural_language_interpretation_questions_or_advice",
+        "convert_structural_relations_to_psychological_support_or_conflict",
+        "promote_readiness_to_user_delivery_or_production",
+        "inject_prompt_or_call_llm_api"
+      ],
+      "relationSemantics": "structural_co-occurrence_only",
+      "noInterpretationText": true,
+      "noPromptTemplate": true,
+      "noLlmCall": true
+    }
+  },
+  "interpretationBoundary": {
+    "noInterpretationText": true,
+    "noPromptTemplate": true,
+    "noLlmCall": true,
+    "structuralRelationsOnly": true,
+    "noThemeNarrativePsychologyRankingMeaningWeight": true,
+    "forbiddenUsages": [
+      "generate_new_claims",
+      "delete_merge_or_transform_claims",
+      "infer_personality_psychology_strength_weakness_wound_desire_risk_or_destiny",
+      "create_theme_narrative_synthesis_or_conclusion",
+      "rank_claims_or_assign_meaning_weight_or_priority",
+      "judge_conflict_dominance_balance_or_winner_between_claims",
+      "infer_experience_environment_or_behavior",
+      "generate_natural_language_interpretation_questions_or_advice",
+      "convert_structural_relations_to_psychological_support_or_conflict",
+      "promote_readiness_to_user_delivery_or_production",
+      "inject_prompt_or_call_llm_api"
+    ]
+  },
+  "hashScopes": {
+    "content": "component-defined content hash excluding its content hash field, recursively sorted keys, arrays preserved, JSON plus LF",
+    "artifactByte": "exact UTF-8 bytes of each materialized evidence JSON",
+    "manifest": "manifest object excluding manifestContentSha256, recursively sorted keys, JSON plus LF"
+  },
+  "manifestContentSha256": "e39942cc7ecbea0e4d328068f2a9fec860a34e35e90bdf5f9c13c46756a901aa"
+}

@@ -44,7 +44,7 @@ const HASH = /^[a-f0-9]{64}$/
 const BODY_IDS = new Set(['sun', 'moon', 'mercury', 'venus', 'mars', 'jupiter', 'saturn', 'uranus', 'neptune', 'pluto'])
 const OBSERVED_CLAIMS = new Set(['body.longitude'])
 const DERIVED_CLAIMS = new Set(['angle.placement', 'house.whole_sign_placement', 'aspect.major', 'distribution.elements_modalities_polarity', 'chart_ruler'])
-const PACKET_PROVENANCE_REFS = value => value === 'rawChart' || value === 'ruleChart' || value === 'goldenEvidence' || /^orchestration\.[a-zA-Z]+$/.test(value) || /^readiness\.[a-zA-Z]+$/.test(value)
+const PACKET_PROVENANCE_REFS = value => value === 'rawChart' || value === 'ruleChart' || value === 'goldenEvidence' || /^(input|providerBundle|runtime|timeAngle|adapter|readiness|contamination|orchestration|provider|timeScale|ephemeris|documents|compatibility)(\.|$)/.test(value)
 
 const ordered = value => {
   if (Array.isArray(value)) return value.map(ordered)

@@ -30,7 +30,7 @@ const cases = {
 }
 const output = {
   schemaVersion: 'astrology-interpretation-context-evidence-v1',
-  inputPacket: { path: inputPath, schemaVersion: packet?.schemaVersion || null, packetContentSha256: packet?.packetContentSha256 || null },
+  inputPacket: { schemaVersion: packet?.schemaVersion || null, packetVersion: packet?.packetVersion || null, packetContentSha256: packet?.packetContentSha256 || null },
   context,
   cases,
   contextContentSha256: interpretationContextContentSha256(context),

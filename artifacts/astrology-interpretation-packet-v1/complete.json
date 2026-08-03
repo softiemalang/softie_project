@@ -1,6 +1,13 @@
 {
   "schemaVersion": "astrology-interpretation-packet-evidence-v1",
   "fixture": "synthetic-de405-golden-2000-01-01T12:00:00Z",
+  "inputOrchestration": {
+    "schemaVersion": "astrology-local-verified-orchestration-v1",
+    "orchestrationVersion": "1.0.0",
+    "providerBundleCanonicalSha256": "d9f7b3990ab93c4029307f2f2501f52af2cf79c81a6d66f8a9cf51c7ee45ffc5",
+    "rawChartHash": "109066786fadb36d2cfb7f50bc9af30a6f033ab356e987b9a9fc606e24200ddb",
+    "ruleChartHash": "31d7d6807beac29b9b54827f7416517ad14ea3f927295e2f24326832cf777cb1"
+  },
   "packet": {
     "schemaVersion": "astrology-interpretation-packet-v1",
     "packetVersion": "1.0.0",
@@ -17,25 +24,32 @@
       "orchestrationVersion": "1.0.0",
       "status": "completed",
       "candidateId": "synthetic-de405-golden-2000-01-01T12:00:00Z",
-      "providerBundleSha256": "4c1814208dacbb2fd86674c15f37c2c70c14485cd031541e3acfd1190df835c5",
-      "rawChartSha256": "0236f31d83a98110dca217a1215378d2de7bd2e502a5eee673ba1877d0304d71",
-      "ruleChartSha256": "dcccdcef89549c6b5374abe8b3a78ba58c7fd2bd99cb3bf70631c599ff9e1e2f"
+      "providerBundleSha256": "d9f7b3990ab93c4029307f2f2501f52af2cf79c81a6d66f8a9cf51c7ee45ffc5",
+      "rawChartSha256": "109066786fadb36d2cfb7f50bc9af30a6f033ab356e987b9a9fc606e24200ddb",
+      "ruleChartSha256": "31d7d6807beac29b9b54827f7416517ad14ea3f927295e2f24326832cf777cb1"
     },
     "identities": {
-      "providerBundleSha256": "4c1814208dacbb2fd86674c15f37c2c70c14485cd031541e3acfd1190df835c5",
-      "rawChartSha256": "0236f31d83a98110dca217a1215378d2de7bd2e502a5eee673ba1877d0304d71",
-      "ruleChartSha256": "dcccdcef89549c6b5374abe8b3a78ba58c7fd2bd99cb3bf70631c599ff9e1e2f",
-      "adapterSha256": "5ce36b8f48d094d6b2b5316141d41ee31de3ed4c393f4bbad8c7b696b25f8db3",
-      "readinessSha256": "98c27fcee92a82a941abba0b8dc52951dc253a4a646efa1e4f42ce7bc06a1673",
+      "providerBundleSha256": "d9f7b3990ab93c4029307f2f2501f52af2cf79c81a6d66f8a9cf51c7ee45ffc5",
+      "rawChartSha256": "109066786fadb36d2cfb7f50bc9af30a6f033ab356e987b9a9fc606e24200ddb",
+      "ruleChartSha256": "31d7d6807beac29b9b54827f7416517ad14ea3f927295e2f24326832cf777cb1",
+      "adapterSha256": "3dba77b210db7304fe43eac8eec7a9a5220f101918cdebe60db39c8aef1367c0",
+      "readinessSha256": "f6486e1f1d870e24e586e159b31179accfdd297708840ecdbb8cf78eea77139a",
       "kernel": {
         "hash": "30a7113793ee5b6bf1e5546c6dfc21d9682d9ffabfe9b17b4bab27ba2ac75c89",
-        "hashStatus": "verified"
+        "hashStatus": "verified",
+        "coverage": {
+          "start": -1577879958.8160586,
+          "end": 1577880064.1839132
+        }
       },
       "runner": {
         "protocolVersion": "de405-canonical-v2-protocol-v1",
-        "runnerIdentity": "sha256:synthetic-runner"
+        "protocolStatus": "verified",
+        "identityStatus": "verified",
+        "runnerIdentity": "sha256:92297c604fe43a147bc1f16cfbe33bf482f9ae7d001cd1c6fad87c5d5c2b8964"
       },
       "evaluator": {
+        "status": "verified",
         "evaluator": "de405-canonical-v2"
       }
     },
@@ -67,24 +81,24 @@
           "epistemic": "deterministically_derived"
         },
         "state": {
-          "longitude": 280.3785821768816,
-          "speed": 1.0194321262201047,
-          "longitudeSpeedDegreesPerDay": 1.0194321262201047,
           "frozenFrameSpeedDegreesPerDay": 1.0193938815157209,
+          "frozenFrameVelocityKmPerSecond": [
+            29.794190357120872,
+            5.4696845672402,
+            -0.00018383518089737372
+          ],
+          "longitude": 280.3785821768816,
+          "longitudeSpeedDegreesPerDay": 1.0194321262201047,
           "positionKm": [
             26500951.37122975,
             -144696944.74706098,
             575.2531356662512
           ],
+          "speed": 1.0194321262201047,
           "velocityKmPerSecond": [
             29.795308234873964,
             5.469889304007006,
             -0.00018366994130869507
-          ],
-          "frozenFrameVelocityKmPerSecond": [
-            29.794190357120872,
-            5.4696845672402,
-            -0.00018383518089737372
           ]
         }
       },
@@ -115,24 +129,24 @@
           "epistemic": "deterministically_derived"
         },
         "state": {
-          "longitude": 223.32785647872348,
-          "speed": 12.021320914208635,
-          "longitudeSpeedDegreesPerDay": 12.021320914208635,
           "frozenFrameSpeedDegreesPerDay": 12.021282671473985,
+          "frozenFrameVelocityKmPerSecond": [
+            0.6436483493214196,
+            -0.7308756910481938,
+            -0.011521208723353937
+          ],
+          "longitude": 223.32785647872348,
+          "longitudeSpeedDegreesPerDay": 12.021320914208635,
           "positionKm": [
             -291567.067445369,
             -275026.667328896,
             36270.42595007016
           ],
+          "speed": 12.021320914208635,
           "velocityKmPerSecond": [
             0.64365047384621,
             -0.7308779435947843,
             -0.01152121061520578
-          ],
-          "frozenFrameVelocityKmPerSecond": [
-            0.6436483493214196,
-            -0.7308756910481938,
-            -0.011521208723353937
           ]
         }
       },
@@ -163,24 +177,24 @@
           "epistemic": "deterministically_derived"
         },
         "state": {
-          "longitude": 271.90588090714016,
-          "speed": 1.5563383446904988,
-          "longitudeSpeedDegreesPerDay": 1.5563383446904988,
           "frozenFrameSpeedDegreesPerDay": 1.5563000994311766,
+          "frozenFrameVelocityKmPerSecond": [
+            66.78966991529325,
+            -5.693051395836135,
+            -4.30772712424859
+          ],
+          "longitude": 271.90588090714016,
+          "longitudeSpeedDegreesPerDay": 1.5563383446904988,
           "positionKm": [
             7041601.728127308,
             -211610936.44863462,
             -3679569.9033935815
           ],
+          "speed": 1.5563383446904988,
           "velocityKmPerSecond": [
             66.79130477072016,
             -5.692996995134698,
             -4.307727087193353
-          ],
-          "frozenFrameVelocityKmPerSecond": [
-            66.78966991529325,
-            -5.693051395836135,
-            -4.30772712424859
           ]
         }
       },
@@ -211,24 +225,24 @@
           "epistemic": "deterministically_derived"
         },
         "state": {
-          "longitude": 241.57760791819095,
-          "speed": 1.2090930091483942,
-          "longitudeSpeedDegreesPerDay": 1.2090930091483942,
           "frozenFrameSpeedDegreesPerDay": 1.2090547654537325,
+          "frozenFrameVelocityKmPerSecond": [
+            31.176829423417864,
+            -29.67057715651425,
+            -0.5602762012671576
+          ],
+          "longitude": 241.57760791819095,
+          "longitudeSpeedDegreesPerDay": 1.2090930091483942,
           "positionKm": [
             -80955453.09898876,
             -149584220.4860974,
             6136184.235122792
           ],
+          "speed": 1.2090930091483942,
           "velocityKmPerSecond": [
             31.177985018766424,
             -29.671202590394913,
             -0.560276729448681
-          ],
-          "frozenFrameVelocityKmPerSecond": [
-            31.176829423417864,
-            -29.67057715651425,
-            -0.5602762012671576
           ]
         }
       },
@@ -259,24 +273,24 @@
           "epistemic": "deterministically_derived"
         },
         "state": {
-          "longitude": 327.97546096011195,
-          "speed": 0.7756961415361856,
-          "longitudeSpeedDegreesPerDay": 0.7756961415361856,
           "frozenFrameSpeedDegreesPerDay": 0.7756578965129166,
+          "frozenFrameVelocityKmPerSecond": [
+            30.956665308628537,
+            31.76575093052351,
+            0.5221239584120276
+          ],
+          "longitude": 327.97546096011195,
+          "longitudeSpeedDegreesPerDay": 0.7756961415361856,
           "positionKm": [
             234549166.17266524,
             -146702300.80942497,
             -5155702.2592989355
           ],
+          "speed": 0.7756961415361856,
           "velocityKmPerSecond": [
             30.95779871270088,
             31.767562974836487,
             0.5221254657426062
-          ],
-          "frozenFrameVelocityKmPerSecond": [
-            30.956665308628537,
-            31.76575093052351,
-            0.5221239584120276
           ]
         }
       },
@@ -307,24 +321,24 @@
           "epistemic": "deterministically_derived"
         },
         "state": {
-          "longitude": 25.25805008263694,
-          "speed": 0.04085289902218832,
-          "longitudeSpeedDegreesPerDay": 0.04085289902218832,
           "frozenFrameSpeedDegreesPerDay": 0.04081465461390924,
+          "frozenFrameVelocityKmPerSecond": [
+            21.88433907485362,
+            16.62580788507332,
+            0.1306828700408973
+          ],
+          "longitude": 25.25805008263694,
+          "longitudeSpeedDegreesPerDay": 0.04085289902218832,
           "positionKm": [
             625067969.1334825,
             294908557.2992006,
             -15226232.847851932
           ],
+          "speed": 0.04085289902218832,
           "velocityKmPerSecond": [
             21.882060814419784,
             16.63063694153257,
             0.13068691417581757
-          ],
-          "frozenFrameVelocityKmPerSecond": [
-            21.88433907485362,
-            16.62580788507332,
-            0.1306828700408973
           ]
         }
       },
@@ -355,24 +369,24 @@
           "epistemic": "deterministically_derived"
         },
         "state": {
-          "longitude": 40.3985293023884,
-          "speed": -0.01985761540051485,
-          "longitudeSpeedDegreesPerDay": -0.01985761540051485,
           "frozenFrameSpeedDegreesPerDay": -0.019895859227884144,
+          "frozenFrameVelocityKmPerSecond": [
+            22.362167876927796,
+            12.205594996967664,
+            0.1780686617161482
+          ],
+          "longitude": 40.3985293023884,
+          "longitudeSpeedDegreesPerDay": -0.01985761540051485,
           "positionKm": [
             984885930.977168,
             838160037.1905636,
             -55212058.02533382
           ],
+          "speed": -0.01985761540051485,
           "velocityKmPerSecond": [
             22.355692905223567,
             12.213203883063882,
             0.1780750486178766
-          ],
-          "frozenFrameVelocityKmPerSecond": [
-            22.362167876927796,
-            12.205594996967664,
-            0.1780686617161482
           ]
         }
       },
@@ -403,24 +417,24 @@
           "epistemic": "deterministically_derived"
         },
         "state": {
-          "longitude": 314.81910643782487,
-          "speed": 0.050396400688169536,
-          "longitudeSpeedDegreesPerDay": 0.050396400688169536,
           "frozenFrameSpeedDegreesPerDay": 0.050358155721759855,
+          "frozenFrameVelocityKmPerSecond": [
+            34.43121238752453,
+            10.097345106382239,
+            -0.04307481327370333
+          ],
+          "longitude": 314.81910643782487,
+          "longitudeSpeedDegreesPerDay": 0.050396400688169536,
           "positionKm": [
             2185476779.970486,
             -2199320456.30532,
             -35624938.14231932
           ],
+          "speed": 0.050396400688169536,
           "velocityKmPerSecond": [
             34.448203797727146,
             10.114229328831744,
             -0.04306080123492295
-          ],
-          "frozenFrameVelocityKmPerSecond": [
-            34.43121238752453,
-            10.097345106382239,
-            -0.04307481327370333
           ]
         }
       },
@@ -451,24 +465,24 @@
           "epistemic": "deterministically_derived"
         },
         "state": {
-          "longitude": 303.2032576554017,
-          "speed": 0.035606416143852807,
-          "longitudeSpeedDegreesPerDay": 0.035606416143852807,
           "frozenFrameSpeedDegreesPerDay": 0.03556817154937668,
+          "frozenFrameVelocityKmPerSecond": [
+            34.26009435562021,
+            8.546308823565356,
+            -0.16624567775039534
+          ],
+          "longitude": 303.2032576554017,
+          "longitudeSpeedDegreesPerDay": 0.035606416143852807,
           "positionKm": [
             2541549141.809089,
             -3883412270.934564,
             19032632.643232107
           ],
+          "speed": 0.035606416143852807,
           "velocityKmPerSecond": [
             34.29009611496548,
             8.56594393058537,
             -0.1662294352280136
-          ],
-          "frozenFrameVelocityKmPerSecond": [
-            34.26009435562021,
-            8.546308823565356,
-            -0.16624567775039534
           ]
         }
       },
@@ -499,24 +513,24 @@
           "epistemic": "deterministically_derived"
         },
         "state": {
-          "longitude": 251.46494987414775,
-          "speed": 0.03510342034968774,
-          "longitudeSpeedDegreesPerDay": 0.03510342034968774,
           "frozenFrameSpeedDegreesPerDay": 0.03506518143951475,
+          "frozenFrameVelocityKmPerSecond": [
+            35.03834259636619,
+            2.8070897785603206,
+            -1.2333368181802742
+          ],
+          "longitude": 251.46494987414775,
+          "longitudeSpeedDegreesPerDay": 0.03510342034968774,
           "positionKm": [
             -1450828837.9011738,
             -4327271256.802681,
             875213793.2928271
           ],
+          "speed": 0.03510342034968774,
           "velocityKmPerSecond": [
             35.07176792343003,
             2.795881141979131,
             -1.2333463490327687
-          ],
-          "frozenFrameVelocityKmPerSecond": [
-            35.03834259636619,
-            2.8070897785603206,
-            -1.2333368181802742
           ]
         }
       }
@@ -525,21 +539,21 @@
       "ascendant": {
         "claimType": "angle.placement",
         "value": {
+          "availability": "available",
+          "boundaryStatus": "normal",
+          "degreeInSign": 11.377879402158158,
+          "distanceToNearestBoundaryDegrees": 11.377879402158158,
+          "epistemicStatus": "derived",
           "id": "ascendant",
           "longitudeDegrees": 11.377879402158158,
-          "signId": "aries",
-          "signIndex": 0,
-          "degreeInSign": 11.377879402158158,
-          "boundaryStatus": "normal",
-          "distanceToNearestBoundaryDegrees": 11.377879402158158,
-          "thresholdDegrees": 0.016666666666666666,
-          "availability": "available",
-          "epistemicStatus": "derived",
           "ruleId": "sign_from_ecliptic_longitude_v0",
           "ruleSetVersion": "mallang-astrology-rule-core-v0",
+          "signId": "aries",
+          "signIndex": 0,
           "sourceRefs": [
             "angles.ascendant.longitudeDegrees"
-          ]
+          ],
+          "thresholdDegrees": 0.016666666666666666
         },
         "sourceRefs": [
           "ruleChart.angles.ascendant"
@@ -549,21 +563,21 @@
       "midheaven": {
         "claimType": "angle.placement",
         "value": {
+          "availability": "available",
+          "boundaryStatus": "normal",
+          "degreeInSign": 9.614247545096646,
+          "distanceToNearestBoundaryDegrees": 9.614247545096646,
+          "epistemicStatus": "derived",
           "id": "midheaven",
           "longitudeDegrees": 279.61424754509665,
-          "signId": "capricorn",
-          "signIndex": 9,
-          "degreeInSign": 9.614247545096646,
-          "boundaryStatus": "normal",
-          "distanceToNearestBoundaryDegrees": 9.614247545096646,
-          "thresholdDegrees": 0.016666666666666666,
-          "availability": "available",
-          "epistemicStatus": "derived",
           "ruleId": "sign_from_ecliptic_longitude_v0",
           "ruleSetVersion": "mallang-astrology-rule-core-v0",
+          "signId": "capricorn",
+          "signIndex": 9,
           "sourceRefs": [
             "angles.midheaven.longitudeDegrees"
-          ]
+          ],
+          "thresholdDegrees": 0.016666666666666666
         },
         "sourceRefs": [
           "ruleChart.angles.midheaven"
@@ -574,89 +588,89 @@
     "wholeSignHouses": {
       "claimType": "house.whole_sign_placement",
       "value": {
-        "availability": "available",
-        "houseSystem": "whole_sign",
         "ascendantSignId": "aries",
         "ascendantSignIndex": 0,
+        "availability": "available",
+        "houseSystem": "whole_sign",
         "placements": [
           {
-            "id": "sun",
-            "house": 10,
-            "houseSystem": "whole_sign",
             "availability": "available",
             "epistemicStatus": "derived",
+            "house": 10,
+            "houseSystem": "whole_sign",
+            "id": "sun",
             "ruleId": "whole_sign_house_v0"
           },
           {
-            "id": "moon",
+            "availability": "available",
+            "epistemicStatus": "derived",
             "house": 8,
             "houseSystem": "whole_sign",
-            "availability": "available",
-            "epistemicStatus": "derived",
+            "id": "moon",
             "ruleId": "whole_sign_house_v0"
           },
           {
-            "id": "mercury",
+            "availability": "available",
+            "epistemicStatus": "derived",
             "house": 10,
             "houseSystem": "whole_sign",
-            "availability": "available",
-            "epistemicStatus": "derived",
+            "id": "mercury",
             "ruleId": "whole_sign_house_v0"
           },
           {
-            "id": "venus",
+            "availability": "available",
+            "epistemicStatus": "derived",
             "house": 9,
             "houseSystem": "whole_sign",
-            "availability": "available",
-            "epistemicStatus": "derived",
+            "id": "venus",
             "ruleId": "whole_sign_house_v0"
           },
           {
-            "id": "mars",
+            "availability": "available",
+            "epistemicStatus": "derived",
             "house": 11,
             "houseSystem": "whole_sign",
-            "availability": "available",
-            "epistemicStatus": "derived",
+            "id": "mars",
             "ruleId": "whole_sign_house_v0"
           },
           {
-            "id": "jupiter",
+            "availability": "available",
+            "epistemicStatus": "derived",
             "house": 1,
             "houseSystem": "whole_sign",
-            "availability": "available",
-            "epistemicStatus": "derived",
+            "id": "jupiter",
             "ruleId": "whole_sign_house_v0"
           },
           {
-            "id": "saturn",
+            "availability": "available",
+            "epistemicStatus": "derived",
             "house": 2,
             "houseSystem": "whole_sign",
-            "availability": "available",
-            "epistemicStatus": "derived",
+            "id": "saturn",
             "ruleId": "whole_sign_house_v0"
           },
           {
+            "availability": "available",
+            "epistemicStatus": "derived",
+            "house": 11,
+            "houseSystem": "whole_sign",
             "id": "uranus",
-            "house": 11,
-            "houseSystem": "whole_sign",
-            "availability": "available",
-            "epistemicStatus": "derived",
             "ruleId": "whole_sign_house_v0"
           },
           {
+            "availability": "available",
+            "epistemicStatus": "derived",
+            "house": 11,
+            "houseSystem": "whole_sign",
             "id": "neptune",
-            "house": 11,
-            "houseSystem": "whole_sign",
-            "availability": "available",
-            "epistemicStatus": "derived",
             "ruleId": "whole_sign_house_v0"
           },
           {
-            "id": "pluto",
+            "availability": "available",
+            "epistemicStatus": "derived",
             "house": 9,
             "houseSystem": "whole_sign",
-            "availability": "available",
-            "epistemicStatus": "derived",
+            "id": "pluto",
             "ruleId": "whole_sign_house_v0"
           }
         ],
@@ -671,22 +685,22 @@
       {
         "claimType": "aspect.major",
         "value": {
-          "id": "sun__moon__sextile",
-          "pointA": "sun",
-          "pointB": "moon",
-          "aspectId": "sextile",
-          "exactAngleDegrees": 60,
           "angularDistanceDegrees": 57.05072569815809,
-          "orbDegrees": 2.9492743018419105,
+          "aspectId": "sextile",
+          "distanceToOrbBoundaryDegrees": 2.0507256981580895,
+          "epistemicStatus": "derived",
+          "exactAngleDegrees": 60,
+          "id": "sun__moon__sextile",
           "maxOrbDegrees": 5,
           "orbBoundaryStatus": "normal",
-          "distanceToOrbBoundaryDegrees": 2.0507256981580895,
+          "orbDegrees": 2.9492743018419105,
           "phase": "separating",
-          "signedOffsetDegrees": 2.9492743018419105,
-          "relativeSpeedDegreesPerDay": 11.00188878798853,
           "phaseRuleId": "aspect_phase_from_relative_speed_v0",
-          "epistemicStatus": "derived",
-          "ruleId": "major_aspect_v0"
+          "pointA": "sun",
+          "pointB": "moon",
+          "relativeSpeedDegreesPerDay": 11.00188878798853,
+          "ruleId": "major_aspect_v0",
+          "signedOffsetDegrees": 2.9492743018419105
         },
         "sourceRefs": [
           "ruleChart.aspects.sun.moon"
@@ -696,22 +710,22 @@
       {
         "claimType": "aspect.major",
         "value": {
-          "id": "sun__saturn__trine",
-          "pointA": "sun",
-          "pointB": "saturn",
-          "aspectId": "trine",
-          "exactAngleDegrees": 120,
           "angularDistanceDegrees": 120.01994712550686,
-          "orbDegrees": 0.019947125506860175,
+          "aspectId": "trine",
+          "distanceToOrbBoundaryDegrees": 6.98005287449314,
+          "epistemicStatus": "derived",
+          "exactAngleDegrees": 120,
+          "id": "sun__saturn__trine",
           "maxOrbDegrees": 7,
           "orbBoundaryStatus": "normal",
-          "distanceToOrbBoundaryDegrees": 6.98005287449314,
+          "orbDegrees": 0.019947125506860175,
           "phase": "applying",
-          "signedOffsetDegrees": 0.019947125506860175,
-          "relativeSpeedDegreesPerDay": -1.0392897416206195,
           "phaseRuleId": "aspect_phase_from_relative_speed_v0",
-          "epistemicStatus": "derived",
-          "ruleId": "major_aspect_v0"
+          "pointA": "sun",
+          "pointB": "saturn",
+          "relativeSpeedDegreesPerDay": -1.0392897416206195,
+          "ruleId": "major_aspect_v0",
+          "signedOffsetDegrees": 0.019947125506860175
         },
         "sourceRefs": [
           "ruleChart.aspects.sun.saturn"
@@ -721,23 +735,23 @@
       {
         "claimType": "aspect.major",
         "value": {
-          "id": "sun__ascendant__square",
-          "pointA": "sun",
-          "pointB": "ascendant",
-          "aspectId": "square",
-          "exactAngleDegrees": 90,
           "angularDistanceDegrees": 90.99929722527662,
-          "orbDegrees": 0.9992972252766208,
+          "aspectId": "square",
+          "distanceToOrbBoundaryDegrees": 6.000702774723379,
+          "epistemicStatus": "derived",
+          "exactAngleDegrees": 90,
+          "id": "sun__ascendant__square",
           "maxOrbDegrees": 7,
           "orbBoundaryStatus": "normal",
-          "distanceToOrbBoundaryDegrees": 6.000702774723379,
+          "orbDegrees": 0.9992972252766208,
           "phase": "unavailable",
           "phaseReason": "angle_phase_not_supported_v0",
-          "signedOffsetDegrees": null,
-          "relativeSpeedDegreesPerDay": null,
           "phaseRuleId": "aspect_phase_from_relative_speed_v0",
-          "epistemicStatus": "derived",
-          "ruleId": "major_aspect_v0"
+          "pointA": "sun",
+          "pointB": "ascendant",
+          "relativeSpeedDegreesPerDay": null,
+          "ruleId": "major_aspect_v0",
+          "signedOffsetDegrees": null
         },
         "sourceRefs": [
           "ruleChart.aspects.sun.ascendant"
@@ -747,23 +761,23 @@
       {
         "claimType": "aspect.major",
         "value": {
-          "id": "sun__midheaven__conjunction",
-          "pointA": "sun",
-          "pointB": "midheaven",
-          "aspectId": "conjunction",
-          "exactAngleDegrees": 0,
           "angularDistanceDegrees": 0.7643346317848909,
-          "orbDegrees": 0.7643346317848909,
+          "aspectId": "conjunction",
+          "distanceToOrbBoundaryDegrees": 7.235665368215109,
+          "epistemicStatus": "derived",
+          "exactAngleDegrees": 0,
+          "id": "sun__midheaven__conjunction",
           "maxOrbDegrees": 8,
           "orbBoundaryStatus": "normal",
-          "distanceToOrbBoundaryDegrees": 7.235665368215109,
+          "orbDegrees": 0.7643346317848909,
           "phase": "unavailable",
           "phaseReason": "angle_phase_not_supported_v0",
-          "signedOffsetDegrees": null,
-          "relativeSpeedDegreesPerDay": null,
           "phaseRuleId": "aspect_phase_from_relative_speed_v0",
-          "epistemicStatus": "derived",
-          "ruleId": "major_aspect_v0"
+          "pointA": "sun",
+          "pointB": "midheaven",
+          "relativeSpeedDegreesPerDay": null,
+          "ruleId": "major_aspect_v0",
+          "signedOffsetDegrees": null
         },
         "sourceRefs": [
           "ruleChart.aspects.sun.midheaven"
@@ -773,22 +787,22 @@
       {
         "claimType": "aspect.major",
         "value": {
-          "id": "moon__saturn__opposition",
-          "pointA": "moon",
-          "pointB": "saturn",
-          "aspectId": "opposition",
-          "exactAngleDegrees": 180,
           "angularDistanceDegrees": 177.07067282366495,
-          "orbDegrees": 2.9293271763350504,
+          "aspectId": "opposition",
+          "distanceToOrbBoundaryDegrees": 5.07067282366495,
+          "epistemicStatus": "derived",
+          "exactAngleDegrees": 180,
+          "id": "moon__saturn__opposition",
           "maxOrbDegrees": 8,
           "orbBoundaryStatus": "normal",
-          "distanceToOrbBoundaryDegrees": 5.07067282366495,
+          "orbDegrees": 2.9293271763350504,
           "phase": "separating",
-          "signedOffsetDegrees": -2.9293271763350504,
-          "relativeSpeedDegreesPerDay": -12.04117852960915,
           "phaseRuleId": "aspect_phase_from_relative_speed_v0",
-          "epistemicStatus": "derived",
-          "ruleId": "major_aspect_v0"
+          "pointA": "moon",
+          "pointB": "saturn",
+          "relativeSpeedDegreesPerDay": -12.04117852960915,
+          "ruleId": "major_aspect_v0",
+          "signedOffsetDegrees": -2.9293271763350504
         },
         "sourceRefs": [
           "ruleChart.aspects.moon.saturn"
@@ -798,22 +812,22 @@
       {
         "claimType": "aspect.major",
         "value": {
-          "id": "moon__uranus__square",
-          "pointA": "moon",
-          "pointB": "uranus",
-          "aspectId": "square",
-          "exactAngleDegrees": 90,
           "angularDistanceDegrees": 91.49124995910142,
-          "orbDegrees": 1.4912499591014239,
+          "aspectId": "square",
+          "distanceToOrbBoundaryDegrees": 5.508750040898576,
+          "epistemicStatus": "derived",
+          "exactAngleDegrees": 90,
+          "id": "moon__uranus__square",
           "maxOrbDegrees": 7,
           "orbBoundaryStatus": "normal",
-          "distanceToOrbBoundaryDegrees": 5.508750040898576,
+          "orbDegrees": 1.4912499591014239,
           "phase": "applying",
-          "signedOffsetDegrees": 1.4912499591014239,
-          "relativeSpeedDegreesPerDay": -11.970924513520465,
           "phaseRuleId": "aspect_phase_from_relative_speed_v0",
-          "epistemicStatus": "derived",
-          "ruleId": "major_aspect_v0"
+          "pointA": "moon",
+          "pointB": "uranus",
+          "relativeSpeedDegreesPerDay": -11.970924513520465,
+          "ruleId": "major_aspect_v0",
+          "signedOffsetDegrees": 1.4912499591014239
         },
         "sourceRefs": [
           "ruleChart.aspects.moon.uranus"
@@ -823,23 +837,23 @@
       {
         "claimType": "aspect.major",
         "value": {
-          "id": "moon__midheaven__sextile",
-          "pointA": "moon",
-          "pointB": "midheaven",
-          "aspectId": "sextile",
-          "exactAngleDegrees": 60,
           "angularDistanceDegrees": 56.2863910663732,
-          "orbDegrees": 3.7136089336268014,
+          "aspectId": "sextile",
+          "distanceToOrbBoundaryDegrees": 1.2863910663731986,
+          "epistemicStatus": "derived",
+          "exactAngleDegrees": 60,
+          "id": "moon__midheaven__sextile",
           "maxOrbDegrees": 5,
           "orbBoundaryStatus": "normal",
-          "distanceToOrbBoundaryDegrees": 1.2863910663731986,
+          "orbDegrees": 3.7136089336268014,
           "phase": "unavailable",
           "phaseReason": "angle_phase_not_supported_v0",
-          "signedOffsetDegrees": null,
-          "relativeSpeedDegreesPerDay": null,
           "phaseRuleId": "aspect_phase_from_relative_speed_v0",
-          "epistemicStatus": "derived",
-          "ruleId": "major_aspect_v0"
+          "pointA": "moon",
+          "pointB": "midheaven",
+          "relativeSpeedDegreesPerDay": null,
+          "ruleId": "major_aspect_v0",
+          "signedOffsetDegrees": null
         },
         "sourceRefs": [
           "ruleChart.aspects.moon.midheaven"
@@ -849,22 +863,22 @@
       {
         "claimType": "aspect.major",
         "value": {
-          "id": "mercury__mars__sextile",
-          "pointA": "mercury",
-          "pointB": "mars",
-          "aspectId": "sextile",
-          "exactAngleDegrees": 60,
           "angularDistanceDegrees": 56.06958005297179,
-          "orbDegrees": 3.930419947028213,
+          "aspectId": "sextile",
+          "distanceToOrbBoundaryDegrees": 1.0695800529717872,
+          "epistemicStatus": "derived",
+          "exactAngleDegrees": 60,
+          "id": "mercury__mars__sextile",
           "maxOrbDegrees": 5,
           "orbBoundaryStatus": "normal",
-          "distanceToOrbBoundaryDegrees": 1.0695800529717872,
+          "orbDegrees": 3.930419947028213,
           "phase": "separating",
-          "signedOffsetDegrees": -3.930419947028213,
-          "relativeSpeedDegreesPerDay": -0.7806422031543132,
           "phaseRuleId": "aspect_phase_from_relative_speed_v0",
-          "epistemicStatus": "derived",
-          "ruleId": "major_aspect_v0"
+          "pointA": "mercury",
+          "pointB": "mars",
+          "relativeSpeedDegreesPerDay": -0.7806422031543132,
+          "ruleId": "major_aspect_v0",
+          "signedOffsetDegrees": -3.930419947028213
         },
         "sourceRefs": [
           "ruleChart.aspects.mercury.mars"
@@ -874,22 +888,22 @@
       {
         "claimType": "aspect.major",
         "value": {
-          "id": "mercury__jupiter__trine",
-          "pointA": "mercury",
-          "pointB": "jupiter",
-          "aspectId": "trine",
-          "exactAngleDegrees": 120,
           "angularDistanceDegrees": 113.35216917549678,
-          "orbDegrees": 6.647830824503217,
+          "aspectId": "trine",
+          "distanceToOrbBoundaryDegrees": 0.3521691754967833,
+          "epistemicStatus": "derived",
+          "exactAngleDegrees": 120,
+          "id": "mercury__jupiter__trine",
           "maxOrbDegrees": 7,
           "orbBoundaryStatus": "normal",
-          "distanceToOrbBoundaryDegrees": 0.3521691754967833,
+          "orbDegrees": 6.647830824503217,
           "phase": "separating",
-          "signedOffsetDegrees": -6.647830824503217,
-          "relativeSpeedDegreesPerDay": -1.5154854456683104,
           "phaseRuleId": "aspect_phase_from_relative_speed_v0",
-          "epistemicStatus": "derived",
-          "ruleId": "major_aspect_v0"
+          "pointA": "mercury",
+          "pointB": "jupiter",
+          "relativeSpeedDegreesPerDay": -1.5154854456683104,
+          "ruleId": "major_aspect_v0",
+          "signedOffsetDegrees": -6.647830824503217
         },
         "sourceRefs": [
           "ruleChart.aspects.mercury.jupiter"
@@ -899,23 +913,23 @@
       {
         "claimType": "aspect.major",
         "value": {
-          "id": "mercury__midheaven__conjunction",
-          "pointA": "mercury",
-          "pointB": "midheaven",
-          "aspectId": "conjunction",
-          "exactAngleDegrees": 0,
           "angularDistanceDegrees": 7.7083666379564875,
-          "orbDegrees": 7.7083666379564875,
+          "aspectId": "conjunction",
+          "distanceToOrbBoundaryDegrees": 0.29163336204351253,
+          "epistemicStatus": "derived",
+          "exactAngleDegrees": 0,
+          "id": "mercury__midheaven__conjunction",
           "maxOrbDegrees": 8,
           "orbBoundaryStatus": "normal",
-          "distanceToOrbBoundaryDegrees": 0.29163336204351253,
+          "orbDegrees": 7.7083666379564875,
           "phase": "unavailable",
           "phaseReason": "angle_phase_not_supported_v0",
-          "signedOffsetDegrees": null,
-          "relativeSpeedDegreesPerDay": null,
           "phaseRuleId": "aspect_phase_from_relative_speed_v0",
-          "epistemicStatus": "derived",
-          "ruleId": "major_aspect_v0"
+          "pointA": "mercury",
+          "pointB": "midheaven",
+          "relativeSpeedDegreesPerDay": null,
+          "ruleId": "major_aspect_v0",
+          "signedOffsetDegrees": null
         },
         "sourceRefs": [
           "ruleChart.aspects.mercury.midheaven"
@@ -925,22 +939,22 @@
       {
         "claimType": "aspect.major",
         "value": {
-          "id": "venus__mars__square",
-          "pointA": "venus",
-          "pointB": "mars",
-          "aspectId": "square",
-          "exactAngleDegrees": 90,
           "angularDistanceDegrees": 86.39785304192094,
-          "orbDegrees": 3.602146958079061,
+          "aspectId": "square",
+          "distanceToOrbBoundaryDegrees": 3.397853041920939,
+          "epistemicStatus": "derived",
+          "exactAngleDegrees": 90,
+          "id": "venus__mars__square",
           "maxOrbDegrees": 7,
           "orbBoundaryStatus": "normal",
-          "distanceToOrbBoundaryDegrees": 3.397853041920939,
+          "orbDegrees": 3.602146958079061,
           "phase": "separating",
-          "signedOffsetDegrees": -3.602146958079061,
-          "relativeSpeedDegreesPerDay": -0.43339686761220864,
           "phaseRuleId": "aspect_phase_from_relative_speed_v0",
-          "epistemicStatus": "derived",
-          "ruleId": "major_aspect_v0"
+          "pointA": "venus",
+          "pointB": "mars",
+          "relativeSpeedDegreesPerDay": -0.43339686761220864,
+          "ruleId": "major_aspect_v0",
+          "signedOffsetDegrees": -3.602146958079061
         },
         "sourceRefs": [
           "ruleChart.aspects.venus.mars"
@@ -950,22 +964,22 @@
       {
         "claimType": "aspect.major",
         "value": {
-          "id": "venus__neptune__sextile",
-          "pointA": "venus",
-          "pointB": "neptune",
-          "aspectId": "sextile",
-          "exactAngleDegrees": 60,
           "angularDistanceDegrees": 61.62564973721078,
-          "orbDegrees": 1.6256497372107788,
+          "aspectId": "sextile",
+          "distanceToOrbBoundaryDegrees": 3.3743502627892212,
+          "epistemicStatus": "derived",
+          "exactAngleDegrees": 60,
+          "id": "venus__neptune__sextile",
           "maxOrbDegrees": 5,
           "orbBoundaryStatus": "normal",
-          "distanceToOrbBoundaryDegrees": 3.3743502627892212,
+          "orbDegrees": 1.6256497372107788,
           "phase": "applying",
-          "signedOffsetDegrees": 1.6256497372107788,
-          "relativeSpeedDegreesPerDay": -1.1734865930045415,
           "phaseRuleId": "aspect_phase_from_relative_speed_v0",
-          "epistemicStatus": "derived",
-          "ruleId": "major_aspect_v0"
+          "pointA": "venus",
+          "pointB": "neptune",
+          "relativeSpeedDegreesPerDay": -1.1734865930045415,
+          "ruleId": "major_aspect_v0",
+          "signedOffsetDegrees": 1.6256497372107788
         },
         "sourceRefs": [
           "ruleChart.aspects.venus.neptune"
@@ -975,22 +989,22 @@
       {
         "claimType": "aspect.major",
         "value": {
-          "id": "mars__jupiter__sextile",
-          "pointA": "mars",
-          "pointB": "jupiter",
-          "aspectId": "sextile",
-          "exactAngleDegrees": 60,
           "angularDistanceDegrees": 57.282589122524996,
-          "orbDegrees": 2.717410877475004,
+          "aspectId": "sextile",
+          "distanceToOrbBoundaryDegrees": 2.282589122524996,
+          "epistemicStatus": "derived",
+          "exactAngleDegrees": 60,
+          "id": "mars__jupiter__sextile",
           "maxOrbDegrees": 5,
           "orbBoundaryStatus": "normal",
-          "distanceToOrbBoundaryDegrees": 2.282589122524996,
+          "orbDegrees": 2.717410877475004,
           "phase": "separating",
-          "signedOffsetDegrees": -2.717410877475004,
-          "relativeSpeedDegreesPerDay": -0.7348432425139972,
           "phaseRuleId": "aspect_phase_from_relative_speed_v0",
-          "epistemicStatus": "derived",
-          "ruleId": "major_aspect_v0"
+          "pointA": "mars",
+          "pointB": "jupiter",
+          "relativeSpeedDegreesPerDay": -0.7348432425139972,
+          "ruleId": "major_aspect_v0",
+          "signedOffsetDegrees": -2.717410877475004
         },
         "sourceRefs": [
           "ruleChart.aspects.mars.jupiter"
@@ -1000,22 +1014,22 @@
       {
         "claimType": "aspect.major",
         "value": {
-          "id": "saturn__uranus__square",
-          "pointA": "saturn",
-          "pointB": "uranus",
-          "aspectId": "square",
-          "exactAngleDegrees": 90,
           "angularDistanceDegrees": 85.57942286456353,
-          "orbDegrees": 4.420577135436474,
+          "aspectId": "square",
+          "distanceToOrbBoundaryDegrees": 2.5794228645635258,
+          "epistemicStatus": "derived",
+          "exactAngleDegrees": 90,
+          "id": "saturn__uranus__square",
           "maxOrbDegrees": 7,
           "orbBoundaryStatus": "normal",
-          "distanceToOrbBoundaryDegrees": 2.5794228645635258,
+          "orbDegrees": 4.420577135436474,
           "phase": "separating",
-          "signedOffsetDegrees": 4.420577135436474,
-          "relativeSpeedDegreesPerDay": 0.07025401608868438,
           "phaseRuleId": "aspect_phase_from_relative_speed_v0",
-          "epistemicStatus": "derived",
-          "ruleId": "major_aspect_v0"
+          "pointA": "saturn",
+          "pointB": "uranus",
+          "relativeSpeedDegreesPerDay": 0.07025401608868438,
+          "ruleId": "major_aspect_v0",
+          "signedOffsetDegrees": 4.420577135436474
         },
         "sourceRefs": [
           "ruleChart.aspects.saturn.uranus"
@@ -1025,23 +1039,23 @@
       {
         "claimType": "aspect.major",
         "value": {
-          "id": "saturn__midheaven__trine",
-          "pointA": "saturn",
-          "pointB": "midheaven",
-          "aspectId": "trine",
-          "exactAngleDegrees": 120,
           "angularDistanceDegrees": 120.78428175729175,
-          "orbDegrees": 0.7842817572917511,
+          "aspectId": "trine",
+          "distanceToOrbBoundaryDegrees": 6.215718242708249,
+          "epistemicStatus": "derived",
+          "exactAngleDegrees": 120,
+          "id": "saturn__midheaven__trine",
           "maxOrbDegrees": 7,
           "orbBoundaryStatus": "normal",
-          "distanceToOrbBoundaryDegrees": 6.215718242708249,
+          "orbDegrees": 0.7842817572917511,
           "phase": "unavailable",
           "phaseReason": "angle_phase_not_supported_v0",
-          "signedOffsetDegrees": null,
-          "relativeSpeedDegreesPerDay": null,
           "phaseRuleId": "aspect_phase_from_relative_speed_v0",
-          "epistemicStatus": "derived",
-          "ruleId": "major_aspect_v0"
+          "pointA": "saturn",
+          "pointB": "midheaven",
+          "relativeSpeedDegreesPerDay": null,
+          "ruleId": "major_aspect_v0",
+          "signedOffsetDegrees": null
         },
         "sourceRefs": [
           "ruleChart.aspects.saturn.midheaven"
@@ -1051,22 +1065,22 @@
       {
         "claimType": "aspect.major",
         "value": {
-          "id": "uranus__pluto__sextile",
-          "pointA": "uranus",
-          "pointB": "pluto",
-          "aspectId": "sextile",
-          "exactAngleDegrees": 60,
           "angularDistanceDegrees": 63.354156563677066,
-          "orbDegrees": 3.3541565636770656,
+          "aspectId": "sextile",
+          "distanceToOrbBoundaryDegrees": 1.6458434363229344,
+          "epistemicStatus": "derived",
+          "exactAngleDegrees": 60,
+          "id": "uranus__pluto__sextile",
           "maxOrbDegrees": 5,
           "orbBoundaryStatus": "normal",
-          "distanceToOrbBoundaryDegrees": 1.6458434363229344,
+          "orbDegrees": 3.3541565636770656,
           "phase": "separating",
-          "signedOffsetDegrees": -3.3541565636770656,
-          "relativeSpeedDegreesPerDay": -0.015292980338481796,
           "phaseRuleId": "aspect_phase_from_relative_speed_v0",
-          "epistemicStatus": "derived",
-          "ruleId": "major_aspect_v0"
+          "pointA": "uranus",
+          "pointB": "pluto",
+          "relativeSpeedDegreesPerDay": -0.015292980338481796,
+          "ruleId": "major_aspect_v0",
+          "signedOffsetDegrees": -3.3541565636770656
         },
         "sourceRefs": [
           "ruleChart.aspects.uranus.pluto"
@@ -1076,23 +1090,23 @@
       {
         "claimType": "aspect.major",
         "value": {
-          "id": "uranus__ascendant__sextile",
-          "pointA": "uranus",
-          "pointB": "ascendant",
-          "aspectId": "sextile",
-          "exactAngleDegrees": 60,
           "angularDistanceDegrees": 56.558772964333286,
-          "orbDegrees": 3.4412270356667136,
+          "aspectId": "sextile",
+          "distanceToOrbBoundaryDegrees": 1.5587729643332864,
+          "epistemicStatus": "derived",
+          "exactAngleDegrees": 60,
+          "id": "uranus__ascendant__sextile",
           "maxOrbDegrees": 5,
           "orbBoundaryStatus": "normal",
-          "distanceToOrbBoundaryDegrees": 1.5587729643332864,
+          "orbDegrees": 3.4412270356667136,
           "phase": "unavailable",
           "phaseReason": "angle_phase_not_supported_v0",
-          "signedOffsetDegrees": null,
-          "relativeSpeedDegreesPerDay": null,
           "phaseRuleId": "aspect_phase_from_relative_speed_v0",
-          "epistemicStatus": "derived",
-          "ruleId": "major_aspect_v0"
+          "pointA": "uranus",
+          "pointB": "ascendant",
+          "relativeSpeedDegreesPerDay": null,
+          "ruleId": "major_aspect_v0",
+          "signedOffsetDegrees": null
         },
         "sourceRefs": [
           "ruleChart.aspects.uranus.ascendant"
@@ -1102,23 +1116,23 @@
       {
         "claimType": "aspect.major",
         "value": {
-          "id": "pluto__ascendant__trine",
-          "pointA": "pluto",
-          "pointB": "ascendant",
-          "aspectId": "trine",
-          "exactAngleDegrees": 120,
           "angularDistanceDegrees": 119.91292952801035,
-          "orbDegrees": 0.08707047198964801,
+          "aspectId": "trine",
+          "distanceToOrbBoundaryDegrees": 6.912929528010352,
+          "epistemicStatus": "derived",
+          "exactAngleDegrees": 120,
+          "id": "pluto__ascendant__trine",
           "maxOrbDegrees": 7,
           "orbBoundaryStatus": "normal",
-          "distanceToOrbBoundaryDegrees": 6.912929528010352,
+          "orbDegrees": 0.08707047198964801,
           "phase": "unavailable",
           "phaseReason": "angle_phase_not_supported_v0",
-          "signedOffsetDegrees": null,
-          "relativeSpeedDegreesPerDay": null,
           "phaseRuleId": "aspect_phase_from_relative_speed_v0",
-          "epistemicStatus": "derived",
-          "ruleId": "major_aspect_v0"
+          "pointA": "pluto",
+          "pointB": "ascendant",
+          "relativeSpeedDegreesPerDay": null,
+          "ruleId": "major_aspect_v0",
+          "signedOffsetDegrees": null
         },
         "sourceRefs": [
           "ruleChart.aspects.pluto.ascendant"
@@ -1129,13 +1143,13 @@
     "distribution": {
       "claimType": "distribution.elements_modalities_polarity",
       "value": {
+        "epistemicStatus": "derived",
         "overall": {
-          "totalBodiesCount": 10,
           "elements": {
             "counts": {
-              "fire": 3,
-              "earth": 3,
               "air": 3,
+              "earth": 3,
+              "fire": 3,
               "water": 1
             },
             "leaders": [
@@ -1158,23 +1172,23 @@
           },
           "polarities": {
             "counts": {
-              "masculine": 6,
-              "feminine": 4
+              "feminine": 4,
+              "masculine": 6
             },
             "leaders": [
               "masculine"
             ],
             "tie": false
           },
-          "ruleId": "distribution_from_body_signs_v0"
+          "ruleId": "distribution_from_body_signs_v0",
+          "totalBodiesCount": 10
         },
         "personal": {
-          "totalBodiesCount": 5,
           "elements": {
             "counts": {
-              "fire": 1,
-              "earth": 2,
               "air": 1,
+              "earth": 2,
+              "fire": 1,
               "water": 1
             },
             "leaders": [
@@ -1196,17 +1210,17 @@
           },
           "polarities": {
             "counts": {
-              "masculine": 2,
-              "feminine": 3
+              "feminine": 3,
+              "masculine": 2
             },
             "leaders": [
               "feminine"
             ],
             "tie": false
           },
-          "ruleId": "distribution_from_body_signs_v0"
+          "ruleId": "distribution_from_body_signs_v0",
+          "totalBodiesCount": 5
         },
-        "epistemicStatus": "derived",
         "ruleId": "distribution_from_body_signs_v0"
       },
       "sourceRefs": [
@@ -1217,12 +1231,12 @@
     "chartRulers": {
       "claimType": "chart_ruler",
       "value": {
-        "availability": "available",
         "ascendantSignId": "aries",
-        "traditionalChartRuler": "mars",
-        "modernChartRuler": "mars",
+        "availability": "available",
         "epistemicStatus": "derived",
-        "ruleId": "chart_ruler_from_ascendant_v0"
+        "modernChartRuler": "mars",
+        "ruleId": "chart_ruler_from_ascendant_v0",
+        "traditionalChartRuler": "mars"
       },
       "sourceRefs": [
         "ruleChart.chartRulers"
@@ -1232,28 +1246,38 @@
     "inputCompleteness": "complete",
     "provenance": {
       "sourceRefs": [
-        "goldenEvidence",
+        "adapter",
+        "contamination",
+        "documents.adapter",
+        "documents.raw",
+        "documents.rule",
+        "ephemeris.bsp",
+        "ephemeris.evaluatorSelection",
+        "input",
+        "input.civilTime",
+        "input.dut1",
+        "input.location",
         "orchestration.adapter",
-        "orchestration.input",
         "orchestration.providerBundle",
         "orchestration.rawChart",
         "orchestration.readiness",
         "orchestration.ruleChart",
-        "orchestration.runtime",
+        "providerBundle",
         "rawChart",
-        "readiness.contamination",
-        "readiness.documents",
-        "readiness.ephemeris",
-        "readiness.input",
-        "readiness.runtime",
-        "readiness.timeScale",
-        "ruleChart"
+        "readiness",
+        "ruleChart",
+        "runtime",
+        "runtime.runner",
+        "timeAngle",
+        "timeScale.leapSecond",
+        "timeScale.tdbMinusTt",
+        "timeScale.ttMinusUtc"
       ],
       "sourceDocuments": {
         "rawSchema": "astrology-raw-chart-v1",
-        "rawChartHash": "0236f31d83a98110dca217a1215378d2de7bd2e502a5eee673ba1877d0304d71",
+        "rawChartHash": "109066786fadb36d2cfb7f50bc9af30a6f033ab356e987b9a9fc606e24200ddb",
         "ruleSchema": "astrology-rule-chart-v0",
-        "ruleChartHash": "dcccdcef89549c6b5374abe8b3a78ba58c7fd2bd99cb3bf70631c599ff9e1e2f"
+        "ruleChartHash": "31d7d6807beac29b9b54827f7416517ad14ea3f927295e2f24326832cf777cb1"
       }
     },
     "unsupportedFeatures": [
@@ -1370,7 +1394,7 @@
         }
       ]
     },
-    "packetContentSha256": "509148b669dd99927e870cacb2216929e2c69792a08e8d2157718f2bd039a424"
+    "packetContentSha256": "e51f29c4f52a003518ddc38b67e73c54c2d6562091112a45f1af23180093d767"
   },
   "cases": {
     "complete": {
@@ -1389,25 +1413,32 @@
         "orchestrationVersion": "1.0.0",
         "status": "completed",
         "candidateId": "synthetic-de405-golden-2000-01-01T12:00:00Z",
-        "providerBundleSha256": "4c1814208dacbb2fd86674c15f37c2c70c14485cd031541e3acfd1190df835c5",
-        "rawChartSha256": "0236f31d83a98110dca217a1215378d2de7bd2e502a5eee673ba1877d0304d71",
-        "ruleChartSha256": "dcccdcef89549c6b5374abe8b3a78ba58c7fd2bd99cb3bf70631c599ff9e1e2f"
+        "providerBundleSha256": "d9f7b3990ab93c4029307f2f2501f52af2cf79c81a6d66f8a9cf51c7ee45ffc5",
+        "rawChartSha256": "109066786fadb36d2cfb7f50bc9af30a6f033ab356e987b9a9fc606e24200ddb",
+        "ruleChartSha256": "31d7d6807beac29b9b54827f7416517ad14ea3f927295e2f24326832cf777cb1"
       },
       "identities": {
-        "providerBundleSha256": "4c1814208dacbb2fd86674c15f37c2c70c14485cd031541e3acfd1190df835c5",
-        "rawChartSha256": "0236f31d83a98110dca217a1215378d2de7bd2e502a5eee673ba1877d0304d71",
-        "ruleChartSha256": "dcccdcef89549c6b5374abe8b3a78ba58c7fd2bd99cb3bf70631c599ff9e1e2f",
-        "adapterSha256": "5ce36b8f48d094d6b2b5316141d41ee31de3ed4c393f4bbad8c7b696b25f8db3",
-        "readinessSha256": "98c27fcee92a82a941abba0b8dc52951dc253a4a646efa1e4f42ce7bc06a1673",
+        "providerBundleSha256": "d9f7b3990ab93c4029307f2f2501f52af2cf79c81a6d66f8a9cf51c7ee45ffc5",
+        "rawChartSha256": "109066786fadb36d2cfb7f50bc9af30a6f033ab356e987b9a9fc606e24200ddb",
+        "ruleChartSha256": "31d7d6807beac29b9b54827f7416517ad14ea3f927295e2f24326832cf777cb1",
+        "adapterSha256": "3dba77b210db7304fe43eac8eec7a9a5220f101918cdebe60db39c8aef1367c0",
+        "readinessSha256": "f6486e1f1d870e24e586e159b31179accfdd297708840ecdbb8cf78eea77139a",
         "kernel": {
           "hash": "30a7113793ee5b6bf1e5546c6dfc21d9682d9ffabfe9b17b4bab27ba2ac75c89",
-          "hashStatus": "verified"
+          "hashStatus": "verified",
+          "coverage": {
+            "start": -1577879958.8160586,
+            "end": 1577880064.1839132
+          }
         },
         "runner": {
           "protocolVersion": "de405-canonical-v2-protocol-v1",
-          "runnerIdentity": "sha256:synthetic-runner"
+          "protocolStatus": "verified",
+          "identityStatus": "verified",
+          "runnerIdentity": "sha256:92297c604fe43a147bc1f16cfbe33bf482f9ae7d001cd1c6fad87c5d5c2b8964"
         },
         "evaluator": {
+          "status": "verified",
           "evaluator": "de405-canonical-v2"
         }
       },
@@ -1439,24 +1470,24 @@
             "epistemic": "deterministically_derived"
           },
           "state": {
-            "longitude": 280.3785821768816,
-            "speed": 1.0194321262201047,
-            "longitudeSpeedDegreesPerDay": 1.0194321262201047,
             "frozenFrameSpeedDegreesPerDay": 1.0193938815157209,
+            "frozenFrameVelocityKmPerSecond": [
+              29.794190357120872,
+              5.4696845672402,
+              -0.00018383518089737372
+            ],
+            "longitude": 280.3785821768816,
+            "longitudeSpeedDegreesPerDay": 1.0194321262201047,
             "positionKm": [
               26500951.37122975,
               -144696944.74706098,
               575.2531356662512
             ],
+            "speed": 1.0194321262201047,
             "velocityKmPerSecond": [
               29.795308234873964,
               5.469889304007006,
               -0.00018366994130869507
-            ],
-            "frozenFrameVelocityKmPerSecond": [
-              29.794190357120872,
-              5.4696845672402,
-              -0.00018383518089737372
             ]
           }
         },
@@ -1487,24 +1518,24 @@
             "epistemic": "deterministically_derived"
           },
           "state": {
-            "longitude": 223.32785647872348,
-            "speed": 12.021320914208635,
-            "longitudeSpeedDegreesPerDay": 12.021320914208635,
             "frozenFrameSpeedDegreesPerDay": 12.021282671473985,
+            "frozenFrameVelocityKmPerSecond": [
+              0.6436483493214196,
+              -0.7308756910481938,
+              -0.011521208723353937
+            ],
+            "longitude": 223.32785647872348,
+            "longitudeSpeedDegreesPerDay": 12.021320914208635,
             "positionKm": [
               -291567.067445369,
               -275026.667328896,
               36270.42595007016
             ],
+            "speed": 12.021320914208635,
             "velocityKmPerSecond": [
               0.64365047384621,
               -0.7308779435947843,
               -0.01152121061520578
-            ],
-            "frozenFrameVelocityKmPerSecond": [
-              0.6436483493214196,
-              -0.7308756910481938,
-              -0.011521208723353937
             ]
           }
         },
@@ -1535,24 +1566,24 @@
             "epistemic": "deterministically_derived"
           },
           "state": {
-            "longitude": 271.90588090714016,
-            "speed": 1.5563383446904988,
-            "longitudeSpeedDegreesPerDay": 1.5563383446904988,
             "frozenFrameSpeedDegreesPerDay": 1.5563000994311766,
+            "frozenFrameVelocityKmPerSecond": [
+              66.78966991529325,
+              -5.693051395836135,
+              -4.30772712424859
+            ],
+            "longitude": 271.90588090714016,
+            "longitudeSpeedDegreesPerDay": 1.5563383446904988,
             "positionKm": [
               7041601.728127308,
               -211610936.44863462,
               -3679569.9033935815
             ],
+            "speed": 1.5563383446904988,
             "velocityKmPerSecond": [
               66.79130477072016,
               -5.692996995134698,
               -4.307727087193353
-            ],
-            "frozenFrameVelocityKmPerSecond": [
-              66.78966991529325,
-              -5.693051395836135,
-              -4.30772712424859
             ]
           }
         },
@@ -1583,24 +1614,24 @@
             "epistemic": "deterministically_derived"
           },
           "state": {
-            "longitude": 241.57760791819095,
-            "speed": 1.2090930091483942,
-            "longitudeSpeedDegreesPerDay": 1.2090930091483942,
             "frozenFrameSpeedDegreesPerDay": 1.2090547654537325,
+            "frozenFrameVelocityKmPerSecond": [
+              31.176829423417864,
+              -29.67057715651425,
+              -0.5602762012671576
+            ],
+            "longitude": 241.57760791819095,
+            "longitudeSpeedDegreesPerDay": 1.2090930091483942,
             "positionKm": [
               -80955453.09898876,
               -149584220.4860974,
               6136184.235122792
             ],
+            "speed": 1.2090930091483942,
             "velocityKmPerSecond": [
               31.177985018766424,
               -29.671202590394913,
               -0.560276729448681
-            ],
-            "frozenFrameVelocityKmPerSecond": [
-              31.176829423417864,
-              -29.67057715651425,
-              -0.5602762012671576
             ]
           }
         },
@@ -1631,24 +1662,24 @@
             "epistemic": "deterministically_derived"
           },
           "state": {
-            "longitude": 327.97546096011195,
-            "speed": 0.7756961415361856,
-            "longitudeSpeedDegreesPerDay": 0.7756961415361856,
             "frozenFrameSpeedDegreesPerDay": 0.7756578965129166,
+            "frozenFrameVelocityKmPerSecond": [
+              30.956665308628537,
+              31.76575093052351,
+              0.5221239584120276
+            ],
+            "longitude": 327.97546096011195,
+            "longitudeSpeedDegreesPerDay": 0.7756961415361856,
             "positionKm": [
               234549166.17266524,
               -146702300.80942497,
               -5155702.2592989355
             ],
+            "speed": 0.7756961415361856,
             "velocityKmPerSecond": [
               30.95779871270088,
               31.767562974836487,
               0.5221254657426062
-            ],
-            "frozenFrameVelocityKmPerSecond": [
-              30.956665308628537,
-              31.76575093052351,
-              0.5221239584120276
             ]
           }
         },
@@ -1679,24 +1710,24 @@
             "epistemic": "deterministically_derived"
           },
           "state": {
-            "longitude": 25.25805008263694,
-            "speed": 0.04085289902218832,
-            "longitudeSpeedDegreesPerDay": 0.04085289902218832,
             "frozenFrameSpeedDegreesPerDay": 0.04081465461390924,
+            "frozenFrameVelocityKmPerSecond": [
+              21.88433907485362,
+              16.62580788507332,
+              0.1306828700408973
+            ],
+            "longitude": 25.25805008263694,
+            "longitudeSpeedDegreesPerDay": 0.04085289902218832,
             "positionKm": [
               625067969.1334825,
               294908557.2992006,
               -15226232.847851932
             ],
+            "speed": 0.04085289902218832,
             "velocityKmPerSecond": [
               21.882060814419784,
               16.63063694153257,
               0.13068691417581757
-            ],
-            "frozenFrameVelocityKmPerSecond": [
-              21.88433907485362,
-              16.62580788507332,
-              0.1306828700408973
             ]
           }
         },
@@ -1727,24 +1758,24 @@
             "epistemic": "deterministically_derived"
           },
           "state": {
-            "longitude": 40.3985293023884,
-            "speed": -0.01985761540051485,
-            "longitudeSpeedDegreesPerDay": -0.01985761540051485,
             "frozenFrameSpeedDegreesPerDay": -0.019895859227884144,
+            "frozenFrameVelocityKmPerSecond": [
+              22.362167876927796,
+              12.205594996967664,
+              0.1780686617161482
+            ],
+            "longitude": 40.3985293023884,
+            "longitudeSpeedDegreesPerDay": -0.01985761540051485,
             "positionKm": [
               984885930.977168,
               838160037.1905636,
               -55212058.02533382
             ],
+            "speed": -0.01985761540051485,
             "velocityKmPerSecond": [
               22.355692905223567,
               12.213203883063882,
               0.1780750486178766
-            ],
-            "frozenFrameVelocityKmPerSecond": [
-              22.362167876927796,
-              12.205594996967664,
-              0.1780686617161482
             ]
           }
         },
@@ -1775,24 +1806,24 @@
             "epistemic": "deterministically_derived"
           },
           "state": {
-            "longitude": 314.81910643782487,
-            "speed": 0.050396400688169536,
-            "longitudeSpeedDegreesPerDay": 0.050396400688169536,
             "frozenFrameSpeedDegreesPerDay": 0.050358155721759855,
+            "frozenFrameVelocityKmPerSecond": [
+              34.43121238752453,
+              10.097345106382239,
+              -0.04307481327370333
+            ],
+            "longitude": 314.81910643782487,
+            "longitudeSpeedDegreesPerDay": 0.050396400688169536,
             "positionKm": [
               2185476779.970486,
               -2199320456.30532,
               -35624938.14231932
             ],
+            "speed": 0.050396400688169536,
             "velocityKmPerSecond": [
               34.448203797727146,
               10.114229328831744,
               -0.04306080123492295
-            ],
-            "frozenFrameVelocityKmPerSecond": [
-              34.43121238752453,
-              10.097345106382239,
-              -0.04307481327370333
             ]
           }
         },
@@ -1823,24 +1854,24 @@
             "epistemic": "deterministically_derived"
           },
           "state": {
-            "longitude": 303.2032576554017,
-            "speed": 0.035606416143852807,
-            "longitudeSpeedDegreesPerDay": 0.035606416143852807,
             "frozenFrameSpeedDegreesPerDay": 0.03556817154937668,
+            "frozenFrameVelocityKmPerSecond": [
+              34.26009435562021,
+              8.546308823565356,
+              -0.16624567775039534
+            ],
+            "longitude": 303.2032576554017,
+            "longitudeSpeedDegreesPerDay": 0.035606416143852807,
             "positionKm": [
               2541549141.809089,
               -3883412270.934564,
               19032632.643232107
             ],
+            "speed": 0.035606416143852807,
             "velocityKmPerSecond": [
               34.29009611496548,
               8.56594393058537,
               -0.1662294352280136
-            ],
-            "frozenFrameVelocityKmPerSecond": [
-              34.26009435562021,
-              8.546308823565356,
-              -0.16624567775039534
             ]
           }
         },
@@ -1871,24 +1902,24 @@
             "epistemic": "deterministically_derived"
           },
           "state": {
-            "longitude": 251.46494987414775,
-            "speed": 0.03510342034968774,
-            "longitudeSpeedDegreesPerDay": 0.03510342034968774,
             "frozenFrameSpeedDegreesPerDay": 0.03506518143951475,
+            "frozenFrameVelocityKmPerSecond": [
+              35.03834259636619,
+              2.8070897785603206,
+              -1.2333368181802742
+            ],
+            "longitude": 251.46494987414775,
+            "longitudeSpeedDegreesPerDay": 0.03510342034968774,
             "positionKm": [
               -1450828837.9011738,
               -4327271256.802681,
               875213793.2928271
             ],
+            "speed": 0.03510342034968774,
             "velocityKmPerSecond": [
               35.07176792343003,
               2.795881141979131,
               -1.2333463490327687
-            ],
-            "frozenFrameVelocityKmPerSecond": [
-              35.03834259636619,
-              2.8070897785603206,
-              -1.2333368181802742
             ]
           }
         }
@@ -1897,21 +1928,21 @@
         "ascendant": {
           "claimType": "angle.placement",
           "value": {
+            "availability": "available",
+            "boundaryStatus": "normal",
+            "degreeInSign": 11.377879402158158,
+            "distanceToNearestBoundaryDegrees": 11.377879402158158,
+            "epistemicStatus": "derived",
             "id": "ascendant",
             "longitudeDegrees": 11.377879402158158,
-            "signId": "aries",
-            "signIndex": 0,
-            "degreeInSign": 11.377879402158158,
-            "boundaryStatus": "normal",
-            "distanceToNearestBoundaryDegrees": 11.377879402158158,
-            "thresholdDegrees": 0.016666666666666666,
-            "availability": "available",
-            "epistemicStatus": "derived",
             "ruleId": "sign_from_ecliptic_longitude_v0",
             "ruleSetVersion": "mallang-astrology-rule-core-v0",
+            "signId": "aries",
+            "signIndex": 0,
             "sourceRefs": [
               "angles.ascendant.longitudeDegrees"
-            ]
+            ],
+            "thresholdDegrees": 0.016666666666666666
           },
           "sourceRefs": [
             "ruleChart.angles.ascendant"
@@ -1921,21 +1952,21 @@
         "midheaven": {
           "claimType": "angle.placement",
           "value": {
+            "availability": "available",
+            "boundaryStatus": "normal",
+            "degreeInSign": 9.614247545096646,
+            "distanceToNearestBoundaryDegrees": 9.614247545096646,
+            "epistemicStatus": "derived",
             "id": "midheaven",
             "longitudeDegrees": 279.61424754509665,
-            "signId": "capricorn",
-            "signIndex": 9,
-            "degreeInSign": 9.614247545096646,
-            "boundaryStatus": "normal",
-            "distanceToNearestBoundaryDegrees": 9.614247545096646,
-            "thresholdDegrees": 0.016666666666666666,
-            "availability": "available",
-            "epistemicStatus": "derived",
             "ruleId": "sign_from_ecliptic_longitude_v0",
             "ruleSetVersion": "mallang-astrology-rule-core-v0",
+            "signId": "capricorn",
+            "signIndex": 9,
             "sourceRefs": [
               "angles.midheaven.longitudeDegrees"
-            ]
+            ],
+            "thresholdDegrees": 0.016666666666666666
           },
           "sourceRefs": [
             "ruleChart.angles.midheaven"
@@ -1946,89 +1977,89 @@
       "wholeSignHouses": {
         "claimType": "house.whole_sign_placement",
         "value": {
-          "availability": "available",
-          "houseSystem": "whole_sign",
           "ascendantSignId": "aries",
           "ascendantSignIndex": 0,
+          "availability": "available",
+          "houseSystem": "whole_sign",
           "placements": [
             {
-              "id": "sun",
-              "house": 10,
-              "houseSystem": "whole_sign",
               "availability": "available",
               "epistemicStatus": "derived",
+              "house": 10,
+              "houseSystem": "whole_sign",
+              "id": "sun",
               "ruleId": "whole_sign_house_v0"
             },
             {
-              "id": "moon",
+              "availability": "available",
+              "epistemicStatus": "derived",
               "house": 8,
               "houseSystem": "whole_sign",
-              "availability": "available",
-              "epistemicStatus": "derived",
+              "id": "moon",
               "ruleId": "whole_sign_house_v0"
             },
             {
-              "id": "mercury",
+              "availability": "available",
+              "epistemicStatus": "derived",
               "house": 10,
               "houseSystem": "whole_sign",
-              "availability": "available",
-              "epistemicStatus": "derived",
+              "id": "mercury",
               "ruleId": "whole_sign_house_v0"
             },
             {
-              "id": "venus",
+              "availability": "available",
+              "epistemicStatus": "derived",
               "house": 9,
               "houseSystem": "whole_sign",
-              "availability": "available",
-              "epistemicStatus": "derived",
+              "id": "venus",
               "ruleId": "whole_sign_house_v0"
             },
             {
-              "id": "mars",
+              "availability": "available",
+              "epistemicStatus": "derived",
               "house": 11,
               "houseSystem": "whole_sign",
-              "availability": "available",
-              "epistemicStatus": "derived",
+              "id": "mars",
               "ruleId": "whole_sign_house_v0"
             },
             {
-              "id": "jupiter",
+              "availability": "available",
+              "epistemicStatus": "derived",
               "house": 1,
               "houseSystem": "whole_sign",
-              "availability": "available",
-              "epistemicStatus": "derived",
+              "id": "jupiter",
               "ruleId": "whole_sign_house_v0"
             },
             {
-              "id": "saturn",
+              "availability": "available",
+              "epistemicStatus": "derived",
               "house": 2,
               "houseSystem": "whole_sign",
-              "availability": "available",
-              "epistemicStatus": "derived",
+              "id": "saturn",
               "ruleId": "whole_sign_house_v0"
             },
             {
+              "availability": "available",
+              "epistemicStatus": "derived",
+              "house": 11,
+              "houseSystem": "whole_sign",
               "id": "uranus",
-              "house": 11,
-              "houseSystem": "whole_sign",
-              "availability": "available",
-              "epistemicStatus": "derived",
               "ruleId": "whole_sign_house_v0"
             },
             {
+              "availability": "available",
+              "epistemicStatus": "derived",
+              "house": 11,
+              "houseSystem": "whole_sign",
               "id": "neptune",
-              "house": 11,
-              "houseSystem": "whole_sign",
-              "availability": "available",
-              "epistemicStatus": "derived",
               "ruleId": "whole_sign_house_v0"
             },
             {
-              "id": "pluto",
+              "availability": "available",
+              "epistemicStatus": "derived",
               "house": 9,
               "houseSystem": "whole_sign",
-              "availability": "available",
-              "epistemicStatus": "derived",
+              "id": "pluto",
               "ruleId": "whole_sign_house_v0"
             }
           ],
@@ -2043,22 +2074,22 @@
         {
           "claimType": "aspect.major",
           "value": {
-            "id": "sun__moon__sextile",
-            "pointA": "sun",
-            "pointB": "moon",
-            "aspectId": "sextile",
-            "exactAngleDegrees": 60,
             "angularDistanceDegrees": 57.05072569815809,
-            "orbDegrees": 2.9492743018419105,
+            "aspectId": "sextile",
+            "distanceToOrbBoundaryDegrees": 2.0507256981580895,
+            "epistemicStatus": "derived",
+            "exactAngleDegrees": 60,
+            "id": "sun__moon__sextile",
             "maxOrbDegrees": 5,
             "orbBoundaryStatus": "normal",
-            "distanceToOrbBoundaryDegrees": 2.0507256981580895,
+            "orbDegrees": 2.9492743018419105,
             "phase": "separating",
-            "signedOffsetDegrees": 2.9492743018419105,
-            "relativeSpeedDegreesPerDay": 11.00188878798853,
             "phaseRuleId": "aspect_phase_from_relative_speed_v0",
-            "epistemicStatus": "derived",
-            "ruleId": "major_aspect_v0"
+            "pointA": "sun",
+            "pointB": "moon",
+            "relativeSpeedDegreesPerDay": 11.00188878798853,
+            "ruleId": "major_aspect_v0",
+            "signedOffsetDegrees": 2.9492743018419105
           },
           "sourceRefs": [
             "ruleChart.aspects.sun.moon"
@@ -2068,22 +2099,22 @@
         {
           "claimType": "aspect.major",
           "value": {
-            "id": "sun__saturn__trine",
-            "pointA": "sun",
-            "pointB": "saturn",
-            "aspectId": "trine",
-            "exactAngleDegrees": 120,
             "angularDistanceDegrees": 120.01994712550686,
-            "orbDegrees": 0.019947125506860175,
+            "aspectId": "trine",
+            "distanceToOrbBoundaryDegrees": 6.98005287449314,
+            "epistemicStatus": "derived",
+            "exactAngleDegrees": 120,
+            "id": "sun__saturn__trine",
             "maxOrbDegrees": 7,
             "orbBoundaryStatus": "normal",
-            "distanceToOrbBoundaryDegrees": 6.98005287449314,
+            "orbDegrees": 0.019947125506860175,
             "phase": "applying",
-            "signedOffsetDegrees": 0.019947125506860175,
-            "relativeSpeedDegreesPerDay": -1.0392897416206195,
             "phaseRuleId": "aspect_phase_from_relative_speed_v0",
-            "epistemicStatus": "derived",
-            "ruleId": "major_aspect_v0"
+            "pointA": "sun",
+            "pointB": "saturn",
+            "relativeSpeedDegreesPerDay": -1.0392897416206195,
+            "ruleId": "major_aspect_v0",
+            "signedOffsetDegrees": 0.019947125506860175
           },
           "sourceRefs": [
             "ruleChart.aspects.sun.saturn"
@@ -2093,23 +2124,23 @@
         {
           "claimType": "aspect.major",
           "value": {
-            "id": "sun__ascendant__square",
-            "pointA": "sun",
-            "pointB": "ascendant",
-            "aspectId": "square",
-            "exactAngleDegrees": 90,
             "angularDistanceDegrees": 90.99929722527662,
-            "orbDegrees": 0.9992972252766208,
+            "aspectId": "square",
+            "distanceToOrbBoundaryDegrees": 6.000702774723379,
+            "epistemicStatus": "derived",
+            "exactAngleDegrees": 90,
+            "id": "sun__ascendant__square",
             "maxOrbDegrees": 7,
             "orbBoundaryStatus": "normal",
-            "distanceToOrbBoundaryDegrees": 6.000702774723379,
+            "orbDegrees": 0.9992972252766208,
             "phase": "unavailable",
             "phaseReason": "angle_phase_not_supported_v0",
-            "signedOffsetDegrees": null,
-            "relativeSpeedDegreesPerDay": null,
             "phaseRuleId": "aspect_phase_from_relative_speed_v0",
-            "epistemicStatus": "derived",
-            "ruleId": "major_aspect_v0"
+            "pointA": "sun",
+            "pointB": "ascendant",
+            "relativeSpeedDegreesPerDay": null,
+            "ruleId": "major_aspect_v0",
+            "signedOffsetDegrees": null
           },
           "sourceRefs": [
             "ruleChart.aspects.sun.ascendant"
@@ -2119,23 +2150,23 @@
         {
           "claimType": "aspect.major",
           "value": {
-            "id": "sun__midheaven__conjunction",
-            "pointA": "sun",
-            "pointB": "midheaven",
-            "aspectId": "conjunction",
-            "exactAngleDegrees": 0,
             "angularDistanceDegrees": 0.7643346317848909,
-            "orbDegrees": 0.7643346317848909,
+            "aspectId": "conjunction",
+            "distanceToOrbBoundaryDegrees": 7.235665368215109,
+            "epistemicStatus": "derived",
+            "exactAngleDegrees": 0,
+            "id": "sun__midheaven__conjunction",
             "maxOrbDegrees": 8,
             "orbBoundaryStatus": "normal",
-            "distanceToOrbBoundaryDegrees": 7.235665368215109,
+            "orbDegrees": 0.7643346317848909,
             "phase": "unavailable",
             "phaseReason": "angle_phase_not_supported_v0",
-            "signedOffsetDegrees": null,
-            "relativeSpeedDegreesPerDay": null,
             "phaseRuleId": "aspect_phase_from_relative_speed_v0",
-            "epistemicStatus": "derived",
-            "ruleId": "major_aspect_v0"
+            "pointA": "sun",
+            "pointB": "midheaven",
+            "relativeSpeedDegreesPerDay": null,
+            "ruleId": "major_aspect_v0",
+            "signedOffsetDegrees": null
           },
           "sourceRefs": [
             "ruleChart.aspects.sun.midheaven"
@@ -2145,22 +2176,22 @@
         {
           "claimType": "aspect.major",
           "value": {
-            "id": "moon__saturn__opposition",
-            "pointA": "moon",
-            "pointB": "saturn",
-            "aspectId": "opposition",
-            "exactAngleDegrees": 180,
             "angularDistanceDegrees": 177.07067282366495,
-            "orbDegrees": 2.9293271763350504,
+            "aspectId": "opposition",
+            "distanceToOrbBoundaryDegrees": 5.07067282366495,
+            "epistemicStatus": "derived",
+            "exactAngleDegrees": 180,
+            "id": "moon__saturn__opposition",
             "maxOrbDegrees": 8,
             "orbBoundaryStatus": "normal",
-            "distanceToOrbBoundaryDegrees": 5.07067282366495,
+            "orbDegrees": 2.9293271763350504,
             "phase": "separating",
-            "signedOffsetDegrees": -2.9293271763350504,
-            "relativeSpeedDegreesPerDay": -12.04117852960915,
             "phaseRuleId": "aspect_phase_from_relative_speed_v0",
-            "epistemicStatus": "derived",
-            "ruleId": "major_aspect_v0"
+            "pointA": "moon",
+            "pointB": "saturn",
+            "relativeSpeedDegreesPerDay": -12.04117852960915,
+            "ruleId": "major_aspect_v0",
+            "signedOffsetDegrees": -2.9293271763350504
           },
           "sourceRefs": [
             "ruleChart.aspects.moon.saturn"
@@ -2170,22 +2201,22 @@
         {
           "claimType": "aspect.major",
           "value": {
-            "id": "moon__uranus__square",
-            "pointA": "moon",
-            "pointB": "uranus",
-            "aspectId": "square",
-            "exactAngleDegrees": 90,
             "angularDistanceDegrees": 91.49124995910142,
-            "orbDegrees": 1.4912499591014239,
+            "aspectId": "square",
+            "distanceToOrbBoundaryDegrees": 5.508750040898576,
+            "epistemicStatus": "derived",
+            "exactAngleDegrees": 90,
+            "id": "moon__uranus__square",
             "maxOrbDegrees": 7,
             "orbBoundaryStatus": "normal",
-            "distanceToOrbBoundaryDegrees": 5.508750040898576,
+            "orbDegrees": 1.4912499591014239,
             "phase": "applying",
-            "signedOffsetDegrees": 1.4912499591014239,
-            "relativeSpeedDegreesPerDay": -11.970924513520465,
             "phaseRuleId": "aspect_phase_from_relative_speed_v0",
-            "epistemicStatus": "derived",
-            "ruleId": "major_aspect_v0"
+            "pointA": "moon",
+            "pointB": "uranus",
+            "relativeSpeedDegreesPerDay": -11.970924513520465,
+            "ruleId": "major_aspect_v0",
+            "signedOffsetDegrees": 1.4912499591014239
           },
           "sourceRefs": [
             "ruleChart.aspects.moon.uranus"
@@ -2195,23 +2226,23 @@
         {
           "claimType": "aspect.major",
           "value": {
-            "id": "moon__midheaven__sextile",
-            "pointA": "moon",
-            "pointB": "midheaven",
-            "aspectId": "sextile",
-            "exactAngleDegrees": 60,
             "angularDistanceDegrees": 56.2863910663732,
-            "orbDegrees": 3.7136089336268014,
+            "aspectId": "sextile",
+            "distanceToOrbBoundaryDegrees": 1.2863910663731986,
+            "epistemicStatus": "derived",
+            "exactAngleDegrees": 60,
+            "id": "moon__midheaven__sextile",
             "maxOrbDegrees": 5,
             "orbBoundaryStatus": "normal",
-            "distanceToOrbBoundaryDegrees": 1.2863910663731986,
+            "orbDegrees": 3.7136089336268014,
             "phase": "unavailable",
             "phaseReason": "angle_phase_not_supported_v0",
-            "signedOffsetDegrees": null,
-            "relativeSpeedDegreesPerDay": null,
             "phaseRuleId": "aspect_phase_from_relative_speed_v0",
-            "epistemicStatus": "derived",
-            "ruleId": "major_aspect_v0"
+            "pointA": "moon",
+            "pointB": "midheaven",
+            "relativeSpeedDegreesPerDay": null,
+            "ruleId": "major_aspect_v0",
+            "signedOffsetDegrees": null
           },
           "sourceRefs": [
             "ruleChart.aspects.moon.midheaven"
@@ -2221,22 +2252,22 @@
         {
           "claimType": "aspect.major",
           "value": {
-            "id": "mercury__mars__sextile",
-            "pointA": "mercury",
-            "pointB": "mars",
-            "aspectId": "sextile",
-            "exactAngleDegrees": 60,
             "angularDistanceDegrees": 56.06958005297179,
-            "orbDegrees": 3.930419947028213,
+            "aspectId": "sextile",
+            "distanceToOrbBoundaryDegrees": 1.0695800529717872,
+            "epistemicStatus": "derived",
+            "exactAngleDegrees": 60,
+            "id": "mercury__mars__sextile",
             "maxOrbDegrees": 5,
             "orbBoundaryStatus": "normal",
-            "distanceToOrbBoundaryDegrees": 1.0695800529717872,
+            "orbDegrees": 3.930419947028213,
             "phase": "separating",
-            "signedOffsetDegrees": -3.930419947028213,
-            "relativeSpeedDegreesPerDay": -0.7806422031543132,
             "phaseRuleId": "aspect_phase_from_relative_speed_v0",
-            "epistemicStatus": "derived",
-            "ruleId": "major_aspect_v0"
+            "pointA": "mercury",
+            "pointB": "mars",
+            "relativeSpeedDegreesPerDay": -0.7806422031543132,
+            "ruleId": "major_aspect_v0",
+            "signedOffsetDegrees": -3.930419947028213
           },
           "sourceRefs": [
             "ruleChart.aspects.mercury.mars"
@@ -2246,22 +2277,22 @@
         {
           "claimType": "aspect.major",
           "value": {
-            "id": "mercury__jupiter__trine",
-            "pointA": "mercury",
-            "pointB": "jupiter",
-            "aspectId": "trine",
-            "exactAngleDegrees": 120,
             "angularDistanceDegrees": 113.35216917549678,
-            "orbDegrees": 6.647830824503217,
+            "aspectId": "trine",
+            "distanceToOrbBoundaryDegrees": 0.3521691754967833,
+            "epistemicStatus": "derived",
+            "exactAngleDegrees": 120,
+            "id": "mercury__jupiter__trine",
             "maxOrbDegrees": 7,
             "orbBoundaryStatus": "normal",
-            "distanceToOrbBoundaryDegrees": 0.3521691754967833,
+            "orbDegrees": 6.647830824503217,
             "phase": "separating",
-            "signedOffsetDegrees": -6.647830824503217,
-            "relativeSpeedDegreesPerDay": -1.5154854456683104,
             "phaseRuleId": "aspect_phase_from_relative_speed_v0",
-            "epistemicStatus": "derived",
-            "ruleId": "major_aspect_v0"
+            "pointA": "mercury",
+            "pointB": "jupiter",
+            "relativeSpeedDegreesPerDay": -1.5154854456683104,
+            "ruleId": "major_aspect_v0",
+            "signedOffsetDegrees": -6.647830824503217
           },
           "sourceRefs": [
             "ruleChart.aspects.mercury.jupiter"
@@ -2271,23 +2302,23 @@
         {
           "claimType": "aspect.major",
           "value": {
-            "id": "mercury__midheaven__conjunction",
-            "pointA": "mercury",
-            "pointB": "midheaven",
-            "aspectId": "conjunction",
-            "exactAngleDegrees": 0,
             "angularDistanceDegrees": 7.7083666379564875,
-            "orbDegrees": 7.7083666379564875,
+            "aspectId": "conjunction",
+            "distanceToOrbBoundaryDegrees": 0.29163336204351253,
+            "epistemicStatus": "derived",
+            "exactAngleDegrees": 0,
+            "id": "mercury__midheaven__conjunction",
             "maxOrbDegrees": 8,
             "orbBoundaryStatus": "normal",
-            "distanceToOrbBoundaryDegrees": 0.29163336204351253,
+            "orbDegrees": 7.7083666379564875,
             "phase": "unavailable",
             "phaseReason": "angle_phase_not_supported_v0",
-            "signedOffsetDegrees": null,
-            "relativeSpeedDegreesPerDay": null,
             "phaseRuleId": "aspect_phase_from_relative_speed_v0",
-            "epistemicStatus": "derived",
-            "ruleId": "major_aspect_v0"
+            "pointA": "mercury",
+            "pointB": "midheaven",
+            "relativeSpeedDegreesPerDay": null,
+            "ruleId": "major_aspect_v0",
+            "signedOffsetDegrees": null
           },
           "sourceRefs": [
             "ruleChart.aspects.mercury.midheaven"
@@ -2297,22 +2328,22 @@
         {
           "claimType": "aspect.major",
           "value": {
-            "id": "venus__mars__square",
-            "pointA": "venus",
-            "pointB": "mars",
-            "aspectId": "square",
-            "exactAngleDegrees": 90,
             "angularDistanceDegrees": 86.39785304192094,
-            "orbDegrees": 3.602146958079061,
+            "aspectId": "square",
+            "distanceToOrbBoundaryDegrees": 3.397853041920939,
+            "epistemicStatus": "derived",
+            "exactAngleDegrees": 90,
+            "id": "venus__mars__square",
             "maxOrbDegrees": 7,
             "orbBoundaryStatus": "normal",
-            "distanceToOrbBoundaryDegrees": 3.397853041920939,
+            "orbDegrees": 3.602146958079061,
             "phase": "separating",
-            "signedOffsetDegrees": -3.602146958079061,
-            "relativeSpeedDegreesPerDay": -0.43339686761220864,
             "phaseRuleId": "aspect_phase_from_relative_speed_v0",
-            "epistemicStatus": "derived",
-            "ruleId": "major_aspect_v0"
+            "pointA": "venus",
+            "pointB": "mars",
+            "relativeSpeedDegreesPerDay": -0.43339686761220864,
+            "ruleId": "major_aspect_v0",
+            "signedOffsetDegrees": -3.602146958079061
           },
           "sourceRefs": [
             "ruleChart.aspects.venus.mars"
@@ -2322,22 +2353,22 @@
         {
           "claimType": "aspect.major",
           "value": {
-            "id": "venus__neptune__sextile",
-            "pointA": "venus",
-            "pointB": "neptune",
-            "aspectId": "sextile",
-            "exactAngleDegrees": 60,
             "angularDistanceDegrees": 61.62564973721078,
-            "orbDegrees": 1.6256497372107788,
+            "aspectId": "sextile",
+            "distanceToOrbBoundaryDegrees": 3.3743502627892212,
+            "epistemicStatus": "derived",
+            "exactAngleDegrees": 60,
+            "id": "venus__neptune__sextile",
             "maxOrbDegrees": 5,
             "orbBoundaryStatus": "normal",
-            "distanceToOrbBoundaryDegrees": 3.3743502627892212,
+            "orbDegrees": 1.6256497372107788,
             "phase": "applying",
-            "signedOffsetDegrees": 1.6256497372107788,
-            "relativeSpeedDegreesPerDay": -1.1734865930045415,
             "phaseRuleId": "aspect_phase_from_relative_speed_v0",
-            "epistemicStatus": "derived",
-            "ruleId": "major_aspect_v0"
+            "pointA": "venus",
+            "pointB": "neptune",
+            "relativeSpeedDegreesPerDay": -1.1734865930045415,
+            "ruleId": "major_aspect_v0",
+            "signedOffsetDegrees": 1.6256497372107788
           },
           "sourceRefs": [
             "ruleChart.aspects.venus.neptune"
@@ -2347,22 +2378,22 @@
         {
           "claimType": "aspect.major",
           "value": {
-            "id": "mars__jupiter__sextile",
-            "pointA": "mars",
-            "pointB": "jupiter",
-            "aspectId": "sextile",
-            "exactAngleDegrees": 60,
             "angularDistanceDegrees": 57.282589122524996,
-            "orbDegrees": 2.717410877475004,
+            "aspectId": "sextile",
+            "distanceToOrbBoundaryDegrees": 2.282589122524996,
+            "epistemicStatus": "derived",
+            "exactAngleDegrees": 60,
+            "id": "mars__jupiter__sextile",
             "maxOrbDegrees": 5,
             "orbBoundaryStatus": "normal",
-            "distanceToOrbBoundaryDegrees": 2.282589122524996,
+            "orbDegrees": 2.717410877475004,
             "phase": "separating",
-            "signedOffsetDegrees": -2.717410877475004,
-            "relativeSpeedDegreesPerDay": -0.7348432425139972,
             "phaseRuleId": "aspect_phase_from_relative_speed_v0",
-            "epistemicStatus": "derived",
-            "ruleId": "major_aspect_v0"
+            "pointA": "mars",
+            "pointB": "jupiter",
+            "relativeSpeedDegreesPerDay": -0.7348432425139972,
+            "ruleId": "major_aspect_v0",
+            "signedOffsetDegrees": -2.717410877475004
           },
           "sourceRefs": [
             "ruleChart.aspects.mars.jupiter"
@@ -2372,22 +2403,22 @@
         {
           "claimType": "aspect.major",
           "value": {
-            "id": "saturn__uranus__square",
-            "pointA": "saturn",
-            "pointB": "uranus",
-            "aspectId": "square",
-            "exactAngleDegrees": 90,
             "angularDistanceDegrees": 85.57942286456353,
-            "orbDegrees": 4.420577135436474,
+            "aspectId": "square",
+            "distanceToOrbBoundaryDegrees": 2.5794228645635258,
+            "epistemicStatus": "derived",
+            "exactAngleDegrees": 90,
+            "id": "saturn__uranus__square",
             "maxOrbDegrees": 7,
             "orbBoundaryStatus": "normal",
-            "distanceToOrbBoundaryDegrees": 2.5794228645635258,
+            "orbDegrees": 4.420577135436474,
             "phase": "separating",
-            "signedOffsetDegrees": 4.420577135436474,
-            "relativeSpeedDegreesPerDay": 0.07025401608868438,
             "phaseRuleId": "aspect_phase_from_relative_speed_v0",
-            "epistemicStatus": "derived",
-            "ruleId": "major_aspect_v0"
+            "pointA": "saturn",
+            "pointB": "uranus",
+            "relativeSpeedDegreesPerDay": 0.07025401608868438,
+            "ruleId": "major_aspect_v0",
+            "signedOffsetDegrees": 4.420577135436474
           },
           "sourceRefs": [
             "ruleChart.aspects.saturn.uranus"
@@ -2397,23 +2428,23 @@
         {
           "claimType": "aspect.major",
           "value": {
-            "id": "saturn__midheaven__trine",
-            "pointA": "saturn",
-            "pointB": "midheaven",
-            "aspectId": "trine",
-            "exactAngleDegrees": 120,
             "angularDistanceDegrees": 120.78428175729175,
-            "orbDegrees": 0.7842817572917511,
+            "aspectId": "trine",
+            "distanceToOrbBoundaryDegrees": 6.215718242708249,
+            "epistemicStatus": "derived",
+            "exactAngleDegrees": 120,
+            "id": "saturn__midheaven__trine",
             "maxOrbDegrees": 7,
             "orbBoundaryStatus": "normal",
-            "distanceToOrbBoundaryDegrees": 6.215718242708249,
+            "orbDegrees": 0.7842817572917511,
             "phase": "unavailable",
             "phaseReason": "angle_phase_not_supported_v0",
-            "signedOffsetDegrees": null,
-            "relativeSpeedDegreesPerDay": null,
             "phaseRuleId": "aspect_phase_from_relative_speed_v0",
-            "epistemicStatus": "derived",
-            "ruleId": "major_aspect_v0"
+            "pointA": "saturn",
+            "pointB": "midheaven",
+            "relativeSpeedDegreesPerDay": null,
+            "ruleId": "major_aspect_v0",
+            "signedOffsetDegrees": null
           },
           "sourceRefs": [
             "ruleChart.aspects.saturn.midheaven"
@@ -2423,22 +2454,22 @@
         {
           "claimType": "aspect.major",
           "value": {
-            "id": "uranus__pluto__sextile",
-            "pointA": "uranus",
-            "pointB": "pluto",
-            "aspectId": "sextile",
-            "exactAngleDegrees": 60,
             "angularDistanceDegrees": 63.354156563677066,
-            "orbDegrees": 3.3541565636770656,
+            "aspectId": "sextile",
+            "distanceToOrbBoundaryDegrees": 1.6458434363229344,
+            "epistemicStatus": "derived",
+            "exactAngleDegrees": 60,
+            "id": "uranus__pluto__sextile",
             "maxOrbDegrees": 5,
             "orbBoundaryStatus": "normal",
-            "distanceToOrbBoundaryDegrees": 1.6458434363229344,
+            "orbDegrees": 3.3541565636770656,
             "phase": "separating",
-            "signedOffsetDegrees": -3.3541565636770656,
-            "relativeSpeedDegreesPerDay": -0.015292980338481796,
             "phaseRuleId": "aspect_phase_from_relative_speed_v0",
-            "epistemicStatus": "derived",
-            "ruleId": "major_aspect_v0"
+            "pointA": "uranus",
+            "pointB": "pluto",
+            "relativeSpeedDegreesPerDay": -0.015292980338481796,
+            "ruleId": "major_aspect_v0",
+            "signedOffsetDegrees": -3.3541565636770656
           },
           "sourceRefs": [
             "ruleChart.aspects.uranus.pluto"
@@ -2448,23 +2479,23 @@
         {
           "claimType": "aspect.major",
           "value": {
-            "id": "uranus__ascendant__sextile",
-            "pointA": "uranus",
-            "pointB": "ascendant",
-            "aspectId": "sextile",
-            "exactAngleDegrees": 60,
             "angularDistanceDegrees": 56.558772964333286,
-            "orbDegrees": 3.4412270356667136,
+            "aspectId": "sextile",
+            "distanceToOrbBoundaryDegrees": 1.5587729643332864,
+            "epistemicStatus": "derived",
+            "exactAngleDegrees": 60,
+            "id": "uranus__ascendant__sextile",
             "maxOrbDegrees": 5,
             "orbBoundaryStatus": "normal",
-            "distanceToOrbBoundaryDegrees": 1.5587729643332864,
+            "orbDegrees": 3.4412270356667136,
             "phase": "unavailable",
             "phaseReason": "angle_phase_not_supported_v0",
-            "signedOffsetDegrees": null,
-            "relativeSpeedDegreesPerDay": null,
             "phaseRuleId": "aspect_phase_from_relative_speed_v0",
-            "epistemicStatus": "derived",
-            "ruleId": "major_aspect_v0"
+            "pointA": "uranus",
+            "pointB": "ascendant",
+            "relativeSpeedDegreesPerDay": null,
+            "ruleId": "major_aspect_v0",
+            "signedOffsetDegrees": null
           },
           "sourceRefs": [
             "ruleChart.aspects.uranus.ascendant"
@@ -2474,23 +2505,23 @@
         {
           "claimType": "aspect.major",
           "value": {
-            "id": "pluto__ascendant__trine",
-            "pointA": "pluto",
-            "pointB": "ascendant",
-            "aspectId": "trine",
-            "exactAngleDegrees": 120,
             "angularDistanceDegrees": 119.91292952801035,
-            "orbDegrees": 0.08707047198964801,
+            "aspectId": "trine",
+            "distanceToOrbBoundaryDegrees": 6.912929528010352,
+            "epistemicStatus": "derived",
+            "exactAngleDegrees": 120,
+            "id": "pluto__ascendant__trine",
             "maxOrbDegrees": 7,
             "orbBoundaryStatus": "normal",
-            "distanceToOrbBoundaryDegrees": 6.912929528010352,
+            "orbDegrees": 0.08707047198964801,
             "phase": "unavailable",
             "phaseReason": "angle_phase_not_supported_v0",
-            "signedOffsetDegrees": null,
-            "relativeSpeedDegreesPerDay": null,
             "phaseRuleId": "aspect_phase_from_relative_speed_v0",
-            "epistemicStatus": "derived",
-            "ruleId": "major_aspect_v0"
+            "pointA": "pluto",
+            "pointB": "ascendant",
+            "relativeSpeedDegreesPerDay": null,
+            "ruleId": "major_aspect_v0",
+            "signedOffsetDegrees": null
           },
           "sourceRefs": [
             "ruleChart.aspects.pluto.ascendant"
@@ -2501,13 +2532,13 @@
       "distribution": {
         "claimType": "distribution.elements_modalities_polarity",
         "value": {
+          "epistemicStatus": "derived",
           "overall": {
-            "totalBodiesCount": 10,
             "elements": {
               "counts": {
-                "fire": 3,
-                "earth": 3,
                 "air": 3,
+                "earth": 3,
+                "fire": 3,
                 "water": 1
               },
               "leaders": [
@@ -2530,23 +2561,23 @@
             },
             "polarities": {
               "counts": {
-                "masculine": 6,
-                "feminine": 4
+                "feminine": 4,
+                "masculine": 6
               },
               "leaders": [
                 "masculine"
               ],
               "tie": false
             },
-            "ruleId": "distribution_from_body_signs_v0"
+            "ruleId": "distribution_from_body_signs_v0",
+            "totalBodiesCount": 10
           },
           "personal": {
-            "totalBodiesCount": 5,
             "elements": {
               "counts": {
-                "fire": 1,
-                "earth": 2,
                 "air": 1,
+                "earth": 2,
+                "fire": 1,
                 "water": 1
               },
               "leaders": [
@@ -2568,17 +2599,17 @@
             },
             "polarities": {
               "counts": {
-                "masculine": 2,
-                "feminine": 3
+                "feminine": 3,
+                "masculine": 2
               },
               "leaders": [
                 "feminine"
               ],
               "tie": false
             },
-            "ruleId": "distribution_from_body_signs_v0"
+            "ruleId": "distribution_from_body_signs_v0",
+            "totalBodiesCount": 5
           },
-          "epistemicStatus": "derived",
           "ruleId": "distribution_from_body_signs_v0"
         },
         "sourceRefs": [
@@ -2589,12 +2620,12 @@
       "chartRulers": {
         "claimType": "chart_ruler",
         "value": {
-          "availability": "available",
           "ascendantSignId": "aries",
-          "traditionalChartRuler": "mars",
-          "modernChartRuler": "mars",
+          "availability": "available",
           "epistemicStatus": "derived",
-          "ruleId": "chart_ruler_from_ascendant_v0"
+          "modernChartRuler": "mars",
+          "ruleId": "chart_ruler_from_ascendant_v0",
+          "traditionalChartRuler": "mars"
         },
         "sourceRefs": [
           "ruleChart.chartRulers"
@@ -2604,28 +2635,38 @@
       "inputCompleteness": "complete",
       "provenance": {
         "sourceRefs": [
-          "goldenEvidence",
+          "adapter",
+          "contamination",
+          "documents.adapter",
+          "documents.raw",
+          "documents.rule",
+          "ephemeris.bsp",
+          "ephemeris.evaluatorSelection",
+          "input",
+          "input.civilTime",
+          "input.dut1",
+          "input.location",
           "orchestration.adapter",
-          "orchestration.input",
           "orchestration.providerBundle",
           "orchestration.rawChart",
           "orchestration.readiness",
           "orchestration.ruleChart",
-          "orchestration.runtime",
+          "providerBundle",
           "rawChart",
-          "readiness.contamination",
-          "readiness.documents",
-          "readiness.ephemeris",
-          "readiness.input",
-          "readiness.runtime",
-          "readiness.timeScale",
-          "ruleChart"
+          "readiness",
+          "ruleChart",
+          "runtime",
+          "runtime.runner",
+          "timeAngle",
+          "timeScale.leapSecond",
+          "timeScale.tdbMinusTt",
+          "timeScale.ttMinusUtc"
         ],
         "sourceDocuments": {
           "rawSchema": "astrology-raw-chart-v1",
-          "rawChartHash": "0236f31d83a98110dca217a1215378d2de7bd2e502a5eee673ba1877d0304d71",
+          "rawChartHash": "109066786fadb36d2cfb7f50bc9af30a6f033ab356e987b9a9fc606e24200ddb",
           "ruleSchema": "astrology-rule-chart-v0",
-          "ruleChartHash": "dcccdcef89549c6b5374abe8b3a78ba58c7fd2bd99cb3bf70631c599ff9e1e2f"
+          "ruleChartHash": "31d7d6807beac29b9b54827f7416517ad14ea3f927295e2f24326832cf777cb1"
         }
       },
       "unsupportedFeatures": [
@@ -2742,7 +2783,7 @@
           }
         ]
       },
-      "packetContentSha256": "509148b669dd99927e870cacb2216929e2c69792a08e8d2157718f2bd039a424"
+      "packetContentSha256": "e51f29c4f52a003518ddc38b67e73c54c2d6562091112a45f1af23180093d767"
     },
     "orchestrationBlocked": {
       "schemaVersion": "astrology-interpretation-packet-v1",
@@ -3617,5 +3658,5 @@
       }
     }
   },
-  "packetContentSha256": "509148b669dd99927e870cacb2216929e2c69792a08e8d2157718f2bd039a424"
+  "packetContentSha256": "e51f29c4f52a003518ddc38b67e73c54c2d6562091112a45f1af23180093d767"
 }

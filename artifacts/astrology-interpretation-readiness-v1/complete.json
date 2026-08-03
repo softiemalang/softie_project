@@ -2,7 +2,7 @@
   "schemaVersion": "astrology-interpretation-readiness-evidence-v1",
   "inputPacket": {
     "schemaVersion": "astrology-interpretation-packet-v1",
-    "packetContentSha256": "509148b669dd99927e870cacb2216929e2c69792a08e8d2157718f2bd039a424"
+    "packetContentSha256": "e51f29c4f52a003518ddc38b67e73c54c2d6562091112a45f1af23180093d767"
   },
   "readiness": {
     "schemaVersion": "astrology-interpretation-readiness-v1",
@@ -11,10 +11,10 @@
     "input": {
       "contextSchemaVersion": "astrology-interpretation-context-v1",
       "contextVersion": "1.0.0",
-      "contextContentSha256": "610852ef32546e1bb5df63ed544be6e2760f533146a9ccc6954b19d0b138ac91",
+      "contextContentSha256": "c1f9943327f6dffa77f09a6ea79428ab27c449f04eef820c0d53889efa33c95c",
       "packetSchemaVersion": "astrology-interpretation-packet-v1",
       "packetVersion": "1.0.0",
-      "packetContentSha256": "509148b669dd99927e870cacb2216929e2c69792a08e8d2157718f2bd039a424"
+      "packetContentSha256": "e51f29c4f52a003518ddc38b67e73c54c2d6562091112a45f1af23180093d767"
     },
     "claimCounts": {
       "total": 53,
@@ -122,7 +122,7 @@
       "readinessContentSha256": "readiness object excluding readinessContentSha256, recursively sorted object keys, arrays preserved, JSON plus LF",
       "artifactByteSha256": "exact UTF-8 bytes of materialized evidence JSON, including formatting and final LF"
     },
-    "readinessContentSha256": "1c62daa33447f2bf130d7f5935ebe0a2b07369c348c1c7e60fc13bd6f1e91c38"
+    "readinessContentSha256": "808618cbeae08d3f671f30f2ea075ed4c67968174af2ca3ac4f42d6c3b7ffd8f"
   },
   "cases": {
     "complete": {
@@ -132,10 +132,10 @@
       "input": {
         "contextSchemaVersion": "astrology-interpretation-context-v1",
         "contextVersion": "1.0.0",
-        "contextContentSha256": "610852ef32546e1bb5df63ed544be6e2760f533146a9ccc6954b19d0b138ac91",
+        "contextContentSha256": "c1f9943327f6dffa77f09a6ea79428ab27c449f04eef820c0d53889efa33c95c",
         "packetSchemaVersion": "astrology-interpretation-packet-v1",
         "packetVersion": "1.0.0",
-        "packetContentSha256": "509148b669dd99927e870cacb2216929e2c69792a08e8d2157718f2bd039a424"
+        "packetContentSha256": "e51f29c4f52a003518ddc38b67e73c54c2d6562091112a45f1af23180093d767"
       },
       "claimCounts": {
         "total": 53,
@@ -243,7 +243,7 @@
         "readinessContentSha256": "readiness object excluding readinessContentSha256, recursively sorted object keys, arrays preserved, JSON plus LF",
         "artifactByteSha256": "exact UTF-8 bytes of materialized evidence JSON, including formatting and final LF"
       },
-      "readinessContentSha256": "1c62daa33447f2bf130d7f5935ebe0a2b07369c348c1c7e60fc13bd6f1e91c38"
+      "readinessContentSha256": "808618cbeae08d3f671f30f2ea075ed4c67968174af2ca3ac4f42d6c3b7ffd8f"
     },
     "wrongSchemaVersion": {
       "schemaVersion": "astrology-interpretation-readiness-v1",
@@ -252,10 +252,10 @@
       "input": {
         "contextSchemaVersion": "astrology-interpretation-context-v1",
         "contextVersion": "1.0.0",
-        "contextContentSha256": "93bc2c7489bae36916ba56d87cb12a9395646fdaeb48efdd757f13b89eaabd12",
+        "contextContentSha256": "67cd2d68479e5ae61095fd0902557c854f680cac32097124c973e94f976c57c8",
         "packetSchemaVersion": "astrology-interpretation-packet-v1",
         "packetVersion": "9.9.9",
-        "packetContentSha256": "a3d4fc5174d1281ebf604f92e5d7c3ca4f0af27a8b88d13ed41c15aeeaf42dc8"
+        "packetContentSha256": "62f665569ea718893f64dddb4be953cdee3b67550b041c64ff40eaf656717fec"
       },
       "claimCounts": {
         "total": 0,
@@ -377,7 +377,7 @@
         "readinessContentSha256": "readiness object excluding readinessContentSha256, recursively sorted object keys, arrays preserved, JSON plus LF",
         "artifactByteSha256": "exact UTF-8 bytes of materialized evidence JSON, including formatting and final LF"
       },
-      "readinessContentSha256": "96e1699a675910054c1bfabb708d0fdcdf3f7c03870750253b149a4c63c5a3ee"
+      "readinessContentSha256": "b2fdeb6f65fd922f726e4d50beb161d877718930be3872b8aebd52199a0fa55d"
     },
     "packetContextHashMismatch": {
       "schemaVersion": "astrology-interpretation-readiness-v1",
@@ -520,10 +520,10 @@
       "input": {
         "contextSchemaVersion": "astrology-interpretation-context-v1",
         "contextVersion": "1.0.0",
-        "contextContentSha256": "24576b59064a10f0653f452db7d28a2b6c3c5d06bd5de102b27b4b4ca9d5f9b0",
+        "contextContentSha256": "bd44575a24a6bacbb4975c5683f7b3f3340623bd205b777a89e1484398f4c558",
         "packetSchemaVersion": "astrology-interpretation-packet-v1",
         "packetVersion": "1.0.0",
-        "packetContentSha256": "9a473797534f5c02e9a9e11374643cd321c2d69f889561293573f7fd4d6a7490"
+        "packetContentSha256": "08d013741faba2837bb2822023c7ebc2d553c241780cfc71785813a3e92967bd"
       },
       "claimCounts": {
         "total": 0,
@@ -646,7 +646,7 @@
         "readinessContentSha256": "readiness object excluding readinessContentSha256, recursively sorted object keys, arrays preserved, JSON plus LF",
         "artifactByteSha256": "exact UTF-8 bytes of materialized evidence JSON, including formatting and final LF"
       },
-      "readinessContentSha256": "f61afceef8c48a01cf00357445acb544948d749c5a2501e7e4d8fc1c21542d2d"
+      "readinessContentSha256": "a54a04812b0cbed4975fa4f7ef1a773e64b30f511d1f003b2e43bc82a9d2679e"
     },
     "sourceRefsTampered": {
       "schemaVersion": "astrology-interpretation-readiness-v1",
@@ -655,10 +655,10 @@
       "input": {
         "contextSchemaVersion": "astrology-interpretation-context-v1",
         "contextVersion": "1.0.0",
-        "contextContentSha256": "cb81018280095ba678fc11c0ceca40cee1ba2061b6a53da6a870bfe55f851514",
+        "contextContentSha256": "7a4018963bd4759d698f55eb0019d5f3d12b633d137c7c6dc741337088a6c51c",
         "packetSchemaVersion": "astrology-interpretation-packet-v1",
         "packetVersion": "1.0.0",
-        "packetContentSha256": "e83e9a072aa606ab11b77c5ef57b91d447cf16522766e2bf3d4418ce39a33086"
+        "packetContentSha256": "1adb8bd20a2f6bc2d7e76e9e82989ed0494eb295a43f11617f51222e268194bb"
       },
       "claimCounts": {
         "total": 0,
@@ -781,7 +781,7 @@
         "readinessContentSha256": "readiness object excluding readinessContentSha256, recursively sorted object keys, arrays preserved, JSON plus LF",
         "artifactByteSha256": "exact UTF-8 bytes of materialized evidence JSON, including formatting and final LF"
       },
-      "readinessContentSha256": "4234cd17cc977e508a127a1cbe3a8d2297f0a5d8fdc3407432d6e6ae5434f1dd"
+      "readinessContentSha256": "663570b24ee7860ea722de86f685502e07c2e44fbb2b84f7b32c24a14946e903"
     },
     "claimCountTampered": {
       "schemaVersion": "astrology-interpretation-readiness-v1",
@@ -790,10 +790,10 @@
       "input": {
         "contextSchemaVersion": "astrology-interpretation-context-v1",
         "contextVersion": "1.0.0",
-        "contextContentSha256": "273b44a6916b8242a30e8ab00fcc47acde6ca09ce4da4f0368a2b26df12c1a30",
+        "contextContentSha256": "b82efdcc7c0150b35e77c4d79d6192d78cad5b1a3059210de0faf15a541d3d45",
         "packetSchemaVersion": "astrology-interpretation-packet-v1",
         "packetVersion": "1.0.0",
-        "packetContentSha256": "824d36da6119cd208f0b154336789cf9a8f0404168eb77bedb865788cfccf8e6"
+        "packetContentSha256": "f2b3b910c9ee84fe22d75727a52633f10bb64dff37a395c684390cd80b0bb2e5"
       },
       "claimCounts": {
         "total": 50,
@@ -903,7 +903,7 @@
         "readinessContentSha256": "readiness object excluding readinessContentSha256, recursively sorted object keys, arrays preserved, JSON plus LF",
         "artifactByteSha256": "exact UTF-8 bytes of materialized evidence JSON, including formatting and final LF"
       },
-      "readinessContentSha256": "5b4186a196086d43019002ea4f7da08e5a80efad6129bdf8f644a2c1587ce6ba"
+      "readinessContentSha256": "71238697f26a3354f253e9f67bdca3e342263f29579d3d3c396a7cd5e69d8a53"
     },
     "vocabularyTampered": {
       "schemaVersion": "astrology-interpretation-readiness-v1",
@@ -912,10 +912,10 @@
       "input": {
         "contextSchemaVersion": "astrology-interpretation-context-v1",
         "contextVersion": "1.0.0",
-        "contextContentSha256": "d108dd12164f5a5691a6f6b0af31ea975b06263b870c7da3897922a2527a1f2d",
+        "contextContentSha256": "b876b5f64b21b1f3ccaa1d5503aa2a5397660386ca45576ba7f8151153f0042a",
         "packetSchemaVersion": "astrology-interpretation-packet-v1",
         "packetVersion": "1.0.0",
-        "packetContentSha256": "50328a4909993792271a960dfd92a10b038fb373753834901306e7aa3cba007c"
+        "packetContentSha256": "5684086bb2213c74986978c1c5e983afcce73f2ae8cc7662906d6bfad54cf4d1"
       },
       "claimCounts": {
         "total": 0,
@@ -1038,7 +1038,7 @@
         "readinessContentSha256": "readiness object excluding readinessContentSha256, recursively sorted object keys, arrays preserved, JSON plus LF",
         "artifactByteSha256": "exact UTF-8 bytes of materialized evidence JSON, including formatting and final LF"
       },
-      "readinessContentSha256": "909c14084275986fc02a29e45fd6a5f274adc2deeb2ef6b3ff627b4ddfb110fa"
+      "readinessContentSha256": "09217b9d0b8b629f6edb5ecd07cb3599a4aedd926195dc0e0daddec2a3721634"
     },
     "epistemicBoundaryMixed": {
       "schemaVersion": "astrology-interpretation-readiness-v1",
@@ -1047,10 +1047,10 @@
       "input": {
         "contextSchemaVersion": "astrology-interpretation-context-v1",
         "contextVersion": "1.0.0",
-        "contextContentSha256": "f3a7cf7a3f681ee77777041571f5b4c4db41a54a2f08976b5799cce128680eec",
+        "contextContentSha256": "3a0c1fc0cb0b2ffd40cb0bba7dc36a694f5aeba0c9844fa9f0ad3b2adeb13e2c",
         "packetSchemaVersion": "astrology-interpretation-packet-v1",
         "packetVersion": "1.0.0",
-        "packetContentSha256": "b33648d094c4809a582531a262fdca8cc56226c88d15e4507acf32c176ca1488"
+        "packetContentSha256": "c89dfe58e3bd1da320057f723929e6160c9748d70042f35f5f2a56d76d1c24c4"
       },
       "claimCounts": {
         "total": 0,
@@ -1172,7 +1172,7 @@
         "readinessContentSha256": "readiness object excluding readinessContentSha256, recursively sorted object keys, arrays preserved, JSON plus LF",
         "artifactByteSha256": "exact UTF-8 bytes of materialized evidence JSON, including formatting and final LF"
       },
-      "readinessContentSha256": "1a3be1f4610e57b1ab3a7c06336a636c28de731e357b254c4856bed44a3d2674"
+      "readinessContentSha256": "7736746c9101dd53f4d7d74f34831b08e010f3f0af6087f5c00ad5fba949d60c"
     },
     "activationInjected": {
       "schemaVersion": "astrology-interpretation-readiness-v1",
@@ -1181,10 +1181,10 @@
       "input": {
         "contextSchemaVersion": "astrology-interpretation-context-v1",
         "contextVersion": "1.0.0",
-        "contextContentSha256": "c50df8bc580e86a7fb7af9fc241269fff3404d1ba8a62526b93a4ba577f93902",
+        "contextContentSha256": "7c78eff92ea1ed692a88abd4a9c0ee110ea89967cfa034016c296849781265ae",
         "packetSchemaVersion": "astrology-interpretation-packet-v1",
         "packetVersion": "1.0.0",
-        "packetContentSha256": "8a563a1fd397fe2de32f1a7348b4ef8d844df71d2a9fdb8bca5fab1eca8a6201"
+        "packetContentSha256": "40b5b6384752d09a51aea4c15d4c981a74469daf5bb13c6b4c0c82c5d6a505a7"
       },
       "claimCounts": {
         "total": 0,
@@ -1307,7 +1307,7 @@
         "readinessContentSha256": "readiness object excluding readinessContentSha256, recursively sorted object keys, arrays preserved, JSON plus LF",
         "artifactByteSha256": "exact UTF-8 bytes of materialized evidence JSON, including formatting and final LF"
       },
-      "readinessContentSha256": "c94ca9320e3fb2e2b74c72e23d6194e3e9ad77284245d12f0b675a3b85f81de6"
+      "readinessContentSha256": "2d474b4efcd3d08bd9a6f073af7e4ebfabd8a352833d492f5fc979b144f6802a"
     },
     "placidusContamination": {
       "schemaVersion": "astrology-interpretation-readiness-v1",
@@ -1316,10 +1316,10 @@
       "input": {
         "contextSchemaVersion": "astrology-interpretation-context-v1",
         "contextVersion": "1.0.0",
-        "contextContentSha256": "4e9e5bce7dca528669824975d803f0c9fe8ab113ba19448c912302c408cce205",
+        "contextContentSha256": "b2af7516e6af8fee813c4f336b436dc0aafd21f2dfddab5eb4b57d1ae0e0de7c",
         "packetSchemaVersion": "astrology-interpretation-packet-v1",
         "packetVersion": "1.0.0",
-        "packetContentSha256": "c6f3ef1269a7d778fba1ce2a22299bfa8371c8c318384ecb743976a57e8852dc"
+        "packetContentSha256": "5e91d2c6a277e270d938e9bb4f0a6ec74a46391b140ed9a218fdf237b2e00e74"
       },
       "claimCounts": {
         "total": 0,
@@ -1442,7 +1442,7 @@
         "readinessContentSha256": "readiness object excluding readinessContentSha256, recursively sorted object keys, arrays preserved, JSON plus LF",
         "artifactByteSha256": "exact UTF-8 bytes of materialized evidence JSON, including formatting and final LF"
       },
-      "readinessContentSha256": "76603ec627542a8599f9965f6854c08ffccb58777ac1ce3f0622ec27da52020f"
+      "readinessContentSha256": "a41c622f033de5c063f224a89807995fc5f38e9159db20764f22de85217ada15"
     },
     "simulationContamination": {
       "schemaVersion": "astrology-interpretation-readiness-v1",
@@ -1451,10 +1451,10 @@
       "input": {
         "contextSchemaVersion": "astrology-interpretation-context-v1",
         "contextVersion": "1.0.0",
-        "contextContentSha256": "fee8c69595d6bbd1f328be5de7248882e37267bce9a2ddbd2858c0271752ea69",
+        "contextContentSha256": "15004503907b02741bacd09a6e08ee9cb7ee27dc7ac27e57218decdd89a0bf4d",
         "packetSchemaVersion": "astrology-interpretation-packet-v1",
         "packetVersion": "1.0.0",
-        "packetContentSha256": "a89eeb261f863237929cb207f30942b395cdb80978f50182814bf584c6e39f8c"
+        "packetContentSha256": "c14ff4b8af5779e5c1f5cb26066e5fc59782e84ee8f67f45d1ec7192c5bf38cd"
       },
       "claimCounts": {
         "total": 0,
@@ -1576,7 +1576,7 @@
         "readinessContentSha256": "readiness object excluding readinessContentSha256, recursively sorted object keys, arrays preserved, JSON plus LF",
         "artifactByteSha256": "exact UTF-8 bytes of materialized evidence JSON, including formatting and final LF"
       },
-      "readinessContentSha256": "42935d603433c64d1967ba45804f878b0ba5f02f5de33a8b6ca650039327ae1e"
+      "readinessContentSha256": "468d09ee1da80b27f4dd95590d37c309d529f6c689eaecd862ac0d05a45a011a"
     },
     "frozenSpeedContamination": {
       "schemaVersion": "astrology-interpretation-readiness-v1",
@@ -1585,10 +1585,10 @@
       "input": {
         "contextSchemaVersion": "astrology-interpretation-context-v1",
         "contextVersion": "1.0.0",
-        "contextContentSha256": "5a57e84f60bc036541f48205f1d84896251fc08d3146d7d9413561cc4f9adfdf",
+        "contextContentSha256": "3e8a2ea435d5331f97064c53e1ca91106ec3e7fd9482e1c90a4df60d2ee2b9d8",
         "packetSchemaVersion": "astrology-interpretation-packet-v1",
         "packetVersion": "1.0.0",
-        "packetContentSha256": "a58c535fc26ee1b9756ad14ed4ce406971787bb5a7ab33d8696e3650deabe81f"
+        "packetContentSha256": "849a456cbdc4be83c02363379f596320d3062ca8baf63209d865eb13e2d87453"
       },
       "claimCounts": {
         "total": 0,
@@ -1710,7 +1710,7 @@
         "readinessContentSha256": "readiness object excluding readinessContentSha256, recursively sorted object keys, arrays preserved, JSON plus LF",
         "artifactByteSha256": "exact UTF-8 bytes of materialized evidence JSON, including formatting and final LF"
       },
-      "readinessContentSha256": "88510729b10c11b7d53317957aef51355351002686aac8be15509169d2080024"
+      "readinessContentSha256": "fdfb7bb0ec37642fded350494889b03c3be8e81f2489215ca181f7ead5b8806a"
     },
     "legacyPrepContamination": {
       "schemaVersion": "astrology-interpretation-readiness-v1",
@@ -1719,10 +1719,10 @@
       "input": {
         "contextSchemaVersion": "astrology-interpretation-context-v1",
         "contextVersion": "1.0.0",
-        "contextContentSha256": "5f066071d7e0be1d21eb9a9355d88fbdd5eaa449217ac61e92029a0a68c68ab4",
+        "contextContentSha256": "f7a495effee2297137f0fd0a94804f14eefb5ee1d7f6403f78dc5a6b821a26ff",
         "packetSchemaVersion": "astrology-interpretation-packet-v1",
         "packetVersion": "1.0.0",
-        "packetContentSha256": "a439ea39eceba9dfe5b79eaed7f17c8bc9c5988dd6b2325b8697e9bf0d1884ce"
+        "packetContentSha256": "72a2183bccbd61e14cc01406128e250d4c2633c14380ba6e11cd664865cd5373"
       },
       "claimCounts": {
         "total": 0,
@@ -1844,7 +1844,7 @@
         "readinessContentSha256": "readiness object excluding readinessContentSha256, recursively sorted object keys, arrays preserved, JSON plus LF",
         "artifactByteSha256": "exact UTF-8 bytes of materialized evidence JSON, including formatting and final LF"
       },
-      "readinessContentSha256": "3cb212b45ee9e685a68eb93b0cc564e493af1ae4b945ce32b8704a01ab838aa0"
+      "readinessContentSha256": "0a936d83c5a31888b4811f5f5dd1e89210bc3869a58e6c5f01c141fa7a248e99"
     },
     "userDeliveryClaim": {
       "schemaVersion": "astrology-interpretation-readiness-v1",
@@ -1853,10 +1853,10 @@
       "input": {
         "contextSchemaVersion": "astrology-interpretation-context-v1",
         "contextVersion": "1.0.0",
-        "contextContentSha256": "dd7ae078c987c0bf9f669a91c6ddbed4eec9f5aec697489bc28814d491745632",
+        "contextContentSha256": "213ff89623f93246fc06169c18c20b8657a5dfb38e01ac26e84777feec091c97",
         "packetSchemaVersion": "astrology-interpretation-packet-v1",
         "packetVersion": "1.0.0",
-        "packetContentSha256": "509148b669dd99927e870cacb2216929e2c69792a08e8d2157718f2bd039a424"
+        "packetContentSha256": "e51f29c4f52a003518ddc38b67e73c54c2d6562091112a45f1af23180093d767"
       },
       "claimCounts": {
         "total": 53,
@@ -1966,7 +1966,7 @@
         "readinessContentSha256": "readiness object excluding readinessContentSha256, recursively sorted object keys, arrays preserved, JSON plus LF",
         "artifactByteSha256": "exact UTF-8 bytes of materialized evidence JSON, including formatting and final LF"
       },
-      "readinessContentSha256": "ec4025397fe6746b0bb12ad84ce637ec4f07bd071b317e49e9b6cba1e11bfa9c"
+      "readinessContentSha256": "0d0e8a2cf65900254b5b550cb7277bc669d605a243fa450d26a1ba4bcfd24ef2"
     },
     "productionClaim": {
       "schemaVersion": "astrology-interpretation-readiness-v1",
@@ -1975,10 +1975,10 @@
       "input": {
         "contextSchemaVersion": "astrology-interpretation-context-v1",
         "contextVersion": "1.0.0",
-        "contextContentSha256": "49c8a06e468547fe945beb09105b455631a283c727593dd1cf56bc0e246e1c6e",
+        "contextContentSha256": "ebb31472ea89be801b26b4dc0ef8c121b874bd46a8994acfcefb99cc2d2eb1bf",
         "packetSchemaVersion": "astrology-interpretation-packet-v1",
         "packetVersion": "1.0.0",
-        "packetContentSha256": "509148b669dd99927e870cacb2216929e2c69792a08e8d2157718f2bd039a424"
+        "packetContentSha256": "e51f29c4f52a003518ddc38b67e73c54c2d6562091112a45f1af23180093d767"
       },
       "claimCounts": {
         "total": 53,
@@ -2088,8 +2088,8 @@
         "readinessContentSha256": "readiness object excluding readinessContentSha256, recursively sorted object keys, arrays preserved, JSON plus LF",
         "artifactByteSha256": "exact UTF-8 bytes of materialized evidence JSON, including formatting and final LF"
       },
-      "readinessContentSha256": "02174d6624ff341460cd90a0fcf6df879fcf76aba426068bec7e2b24bb5945f7"
+      "readinessContentSha256": "98da453149c6ac6ab63f39153f0f2ae443d243f7096f1e197cbcceda3127d365"
     }
   },
-  "readinessContentSha256": "1c62daa33447f2bf130d7f5935ebe0a2b07369c348c1c7e60fc13bd6f1e91c38"
+  "readinessContentSha256": "808618cbeae08d3f671f30f2ea075ed4c67968174af2ca3ac4f42d6c3b7ffd8f"
 }

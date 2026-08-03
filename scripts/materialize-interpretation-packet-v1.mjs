@@ -2,33 +2,21 @@
 import { createHash } from 'node:crypto'
 import { readFile, mkdir, writeFile } from 'node:fs/promises'
 import { resolve } from 'node:path'
-import { deriveAstrologyRuleChart } from '../src/astrology/astrologyRuleCore.js'
-import { canonicalSha256, createVerifiedAstrologyAdapterContext } from '../src/astrology/verifiedAstrologyAdapter.js'
+import { canonicalSha256 } from '../src/astrology/verifiedAstrologyAdapter.js'
 import { buildInterpretationPacket, packetContentSha256 } from '../src/astrology/interpretationPacket.js'
 
-const evidencePath = 'test/fixtures/astrology/golden/astrology-ephemeris-golden-v1.json'
-const evidence = JSON.parse(await readFile(evidencePath, 'utf8'))
-const rawChart = evidence.rawChart.value
-const ruleChart = deriveAstrologyRuleChart(rawChart)
+const orchestrationEvidencePath = resolve(process.env.ASTROLOGY_ORCHESTRATION_INPUT || 'artifacts/astrology-local-verified-orchestration-v1/evidence.json')
+const orchestrationEvidence = JSON.parse(await readFile(orchestrationEvidencePath, 'utf8'))
+const evidence = JSON.parse(await readFile('test/fixtures/astrology/golden/astrology-ephemeris-golden-v1.json', 'utf8'))
+const orchestration = orchestrationEvidence.cases?.complete
+if (!orchestration || orchestration.status !== 'completed' || !orchestration.verifiedDocuments) throw new Error('verified orchestration complete documents missing')
+const rawChart = orchestration.verifiedDocuments.rawChart
+const ruleChart = orchestration.verifiedDocuments.ruleChart
+const adapter = orchestration.verifiedDocuments.adapter
 const rawChartSha256 = canonicalSha256(rawChart)
 const ruleChartSha256 = canonicalSha256(ruleChart)
-const adapter = createVerifiedAstrologyAdapterContext({
-  rawChart, ruleChart, rawChartHash: rawChartSha256, ruleChartHash: ruleChartSha256,
-  provenance: { rawChartSha256, ruleChartSha256, sourceRefs: ['rawChart', 'ruleChart', 'goldenEvidence'] },
-  inputCompleteness: { time: 'complete', location: 'complete', evidence: 'complete' },
-})
-const readiness = {
-  schemaVersion: 'verified-astrology-readiness-v1', calculationReady: true, readiness: 'ready',
-  sourceRefs: ['readiness.input', 'readiness.timeScale', 'readiness.ephemeris', 'readiness.runtime', 'readiness.documents', 'readiness.contamination'],
-}
-const orchestration = {
-  schemaVersion: 'astrology-local-verified-orchestration-v1', orchestrationVersion: '1.0.0', status: 'completed',
-  providerBundleCanonicalSha256: '4c1814208dacbb2fd86674c15f37c2c70c14485cd031541e3acfd1190df835c5',
-  rawChartHash: rawChartSha256, ruleChartHash: ruleChartSha256,
-  runtime: { bsp: { hash: evidence.kernel.sha256, hashStatus: 'verified' }, runner: { protocolVersion: 'de405-canonical-v2-protocol-v1', runnerIdentity: 'sha256:synthetic-runner' }, evaluator: { evaluator: 'de405-canonical-v2' } },
-  sourceRefs: ['orchestration.input', 'orchestration.providerBundle', 'orchestration.runtime', 'orchestration.rawChart', 'orchestration.ruleChart', 'orchestration.adapter', 'orchestration.readiness'],
-  activation: { availableForInterpretation: false, integrationStatus: 'not_connected', serviceEligibility: 'blocked', reason: 'activation_requires_user_approval' },
-}
+if (rawChartSha256 !== orchestration.rawChartHash || ruleChartSha256 !== orchestration.ruleChartHash) throw new Error('verified orchestration document identity mismatch')
+const readiness = orchestration.readiness
 const sourceIdentities = {
   providerBundleSha256: orchestration.providerBundleCanonicalSha256, rawChartSha256, ruleChartSha256,
   adapterSha256: packetContentSha256(adapter.interpretationPreparationContext), readinessSha256: packetContentSha256(readiness), inputCompleteness: 'complete', contamination: false,
@@ -52,7 +40,7 @@ const cases = {
   activationBoundaryRegression: makeCase(value => { value.orchestration.activation.availableForInterpretation = true }),
   inputCompletenessFailure: makeCase(value => { value.sourceIdentities.inputCompleteness = 'pending' }),
 }
-const output = { schemaVersion: 'astrology-interpretation-packet-evidence-v1', fixture: evidence.fixture.id, packet, cases, packetContentSha256: packetContentSha256(packet) }
+const output = { schemaVersion: 'astrology-interpretation-packet-evidence-v1', fixture: evidence.fixture.id, inputOrchestration: { schemaVersion: orchestrationEvidence.orchestrationSchema, orchestrationVersion: orchestration.orchestrationVersion, providerBundleCanonicalSha256: orchestration.providerBundleCanonicalSha256, rawChartHash: orchestration.rawChartHash, ruleChartHash: orchestration.ruleChartHash }, packet, cases, packetContentSha256: packetContentSha256(packet) }
 const outputDir = resolve(process.env.INTERPRETATION_PACKET_OUTPUT_DIR || 'artifacts/astrology-interpretation-packet-v1')
 await mkdir(outputDir, { recursive: true })
 const outputPath = resolve(outputDir, 'complete.json')

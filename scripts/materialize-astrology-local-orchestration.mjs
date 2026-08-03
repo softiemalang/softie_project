@@ -9,14 +9,14 @@ const kernelPath = process.env.DE405_BSP_PATH || `${process.env.HOME}/.local/sha
 const runnerPath = process.env.DE405_RUNNER || resolve('tools/de405-cspice-runner/build/de405-canonical-v2-runner')
 const sourceHash = 'a'.repeat(64)
 const evidence = (identity, value, extra = {}) => ({ identity, provider: identity.startsWith('iers') ? 'IERS' : 'project-controlled', model: identity, version: 'offline-v1', value, unit: 'seconds', verificationStatus: 'verified', freshnessStatus: 'fresh', effectiveAt: '1900-01-01T00:00:00.000Z', expiryAt: '2100-01-01T00:00:00.000Z', sourceRefs: [`offline-snapshot/${identity}`], source: { identity: `offline-${identity}`, sha256: sourceHash }, ...extra })
-const providerBundle = { schemaVersion: 'astrology-provider-evidence-bundle-v1', bundleVersion: 'local-snapshot-2026-08-03', materialization: 'adopt', fetchMode: 'offline', cacheMode: 'disabled', evidence: [evidence('iers-dut1', 0.1), evidence('iers-leap-seconds', 37), evidence('tai-utc', 69.184), evidence('tdb-minus-tt', 0, { modelDeterminism: 'deterministic' })] }
+const providerBundle = { schemaVersion: 'astrology-provider-evidence-bundle-v1', bundleVersion: 'local-snapshot-2026-08-03', materialization: 'adopt', fetchMode: 'offline', cacheMode: 'disabled', evidence: [evidence('iers-dut1', 0), evidence('iers-leap-seconds', 37), evidence('tai-utc', 64.184), evidence('tdb-minus-tt', -0.00007138938272964899, { modelDeterminism: 'deterministic' })] }
 providerBundle.providerBundleCanonicalSha256 = providerBundleCanonicalSha256(providerBundle)
 const withBundleEvidence = changes => {
   const next = { ...providerBundle, evidence: providerBundle.evidence.map(item => ({ ...item, ...(changes[item.identity] || {}) })) }
   next.providerBundleCanonicalSha256 = providerBundleCanonicalSha256(next)
   return next
 }
-const input = { schemaVersion: 'astrology-local-orchestration-input-v1', candidateId: 'synthetic-local-complete-001', civilTime: { local: '2000-01-01T12:00:00', utc: '2000-01-01T12:00:00.000Z', utcFields: { year: 2000, month: 1, day: 1, hour: 12, minute: 0, second: 0 }, ianaTimeZone: 'Etc/UTC', resolutionStatus: 'resolved', foldStatus: 'unique', gapStatus: 'none' }, location: { latitude: 37.47722, longitude: 126.86639, verificationStatus: 'verified' } }
+const input = { schemaVersion: 'astrology-local-orchestration-input-v1', candidateId: 'synthetic-de405-golden-2000-01-01T12:00:00Z', civilTime: { local: '2000-01-01T12:00:00', utc: '2000-01-01T12:00:00.000Z', utcFields: { year: 2000, month: 1, day: 1, hour: 12, minute: 0, second: 0 }, ianaTimeZone: 'Etc/UTC', resolutionStatus: 'resolved', foldStatus: 'unique', gapStatus: 'none' }, location: { latitude: 0, longitude: 0, verificationStatus: 'verified' } }
 
 let evaluator
 let runtime
