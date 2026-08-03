@@ -62,7 +62,12 @@ consumer connection, provider evidence shape/status, and the mandatory
 ## Deterministic evidence
 
 `scripts/materialize-verified-astrology-readiness.mjs` emits only fixed
-synthetic evidence to `artifacts/astrology-verified-readiness-v1.json`. It
+synthetic evidence to `artifacts/astrology-verified-readiness-v1.json`. Its
+`payloadCanonicalSha256` covers only `{schemaVersion, contract, cases}`;
+`documentCanonicalSha256` and `fileBytesSha256` are recorded in the adjacent
+deterministic integrity sidecar. The materialized inventory is 30 cases: 2
+ready and 28 blocked, including `all-valid-calculation-ready` and
+`coverage-boundary-in`; readiness does not activate interpretation.
 covers a valid calculation-ready case, DST fold/gap, stale DUT1,
 non-deterministic TDB−TT, BSP coverage outside, and runner identity mismatch.
 The materializer serializes twice and records a canonical SHA-256; the checker

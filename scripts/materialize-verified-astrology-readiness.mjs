@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import { createHash } from 'node:crypto'
 import { mkdir, writeFile } from 'node:fs/promises'
 import { assessVerifiedAstrologyReadiness, canonicalSha256 } from '../src/astrology/verifiedAstrologyReadiness.js'
 
@@ -41,7 +42,28 @@ const materialized = { schemaVersion: 'astrology-verified-readiness-evidence-v1'
 const first = JSON.stringify(materialized, null, 2) + '\n'
 const second = JSON.stringify(materialized, null, 2) + '\n'
 if (first !== second) throw new Error('readiness evidence is not byte-stable')
-const output = { ...materialized, evidenceSha256: canonicalSha256(materialized), byteIdentity: true, serviceActivation: 'blocked' }
+const output = { ...materialized, payloadCanonicalSha256: canonicalSha256(materialized), byteIdentity: true, serviceActivation: 'blocked' }
+const fileBytes = value => Buffer.from(JSON.stringify(value, null, 2) + '\n')
+const documentCanonicalSha256 = canonicalSha256(output)
+const outputBytes = fileBytes(output)
+const fileBytesSha256 = createHash('sha256').update(outputBytes).digest('hex')
+const counts = {
+  total: materialized.cases.length,
+  ready: materialized.cases.filter(item => item.assessment.readiness === 'ready').length,
+  blocked: materialized.cases.filter(item => item.assessment.readiness === 'blocked').length,
+  expectedReasonPresent: materialized.cases.filter(item => item.expectedReason).length,
+  expectedReasonMissing: materialized.cases.filter(item => !item.expectedReason).length,
+  positiveBoundaryCaseIds: materialized.cases.filter(item => item.assessment.readiness === 'ready').map(item => item.id),
+  negativeCaseIds: materialized.cases.filter(item => item.assessment.readiness === 'blocked').map(item => item.id),
+}
 await mkdir('artifacts', { recursive: true })
-await writeFile('artifacts/astrology-verified-readiness-v1.json', JSON.stringify(output, null, 2) + '\n')
-console.log(JSON.stringify({ path: 'artifacts/astrology-verified-readiness-v1.json', evidenceSha256: output.evidenceSha256, cases: output.cases?.length || materialized.cases.length, byteIdentity: true }, null, 2))
+await writeFile('artifacts/astrology-verified-readiness-v1.json', outputBytes)
+await writeFile('artifacts/astrology-verified-readiness-v1.integrity.json', JSON.stringify({
+  schemaVersion: 'astrology-verified-readiness-integrity-v1',
+  artifactPath: 'artifacts/astrology-verified-readiness-v1.json',
+  payloadCanonicalSha256: output.payloadCanonicalSha256,
+  documentCanonicalSha256,
+  fileBytesSha256,
+  counts,
+}, null, 2) + '\n')
+console.log(JSON.stringify({ path: 'artifacts/astrology-verified-readiness-v1.json', payloadCanonicalSha256: output.payloadCanonicalSha256, documentCanonicalSha256, fileBytesSha256, counts, byteIdentity: true, serviceActivation: output.serviceActivation }, null, 2))

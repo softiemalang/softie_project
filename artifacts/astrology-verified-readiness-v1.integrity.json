@@ -1,0 +1,48 @@
+{
+  "schemaVersion": "astrology-verified-readiness-integrity-v1",
+  "artifactPath": "artifacts/astrology-verified-readiness-v1.json",
+  "payloadCanonicalSha256": "f3e631f4d0d1030644dae57b211bff60ce5582764ff2a0dd24d9d53208690863",
+  "documentCanonicalSha256": "0578caacab4d90c1f9a49d323e4dfb7e5ef69b86040619861af29f5f64c3a2e9",
+  "fileBytesSha256": "a377da4a1bd8c37996c2321c5ee5b737b2d618fdc94f53384c08c6b86f7c25da",
+  "counts": {
+    "total": 30,
+    "ready": 2,
+    "blocked": 28,
+    "expectedReasonPresent": 28,
+    "expectedReasonMissing": 2,
+    "positiveBoundaryCaseIds": [
+      "all-valid-calculation-ready",
+      "coverage-boundary-in"
+    ],
+    "negativeCaseIds": [
+      "civil-time-fold",
+      "civil-time-gap",
+      "timezone-unverified",
+      "location-unverified",
+      "dut1-missing",
+      "dut1-stale",
+      "dut1-future-effective",
+      "leap-second-missing",
+      "leap-second-time-mismatch",
+      "tt-utc-missing",
+      "tt-utc-time-mismatch",
+      "tdb-tt-missing",
+      "tdb-tt-nondeterministic",
+      "bsp-missing",
+      "bsp-hash-mismatch",
+      "bsp-outside-coverage",
+      "runner-missing",
+      "runner-unexecutable",
+      "runner-protocol-mismatch",
+      "runner-identity-mismatch",
+      "evaluator-selection-unverified",
+      "raw-schema-hash-mismatch",
+      "rule-schema-hash-mismatch",
+      "adapter-schema-hash-mismatch",
+      "simulation-contamination",
+      "placidus-contamination",
+      "frozen-speed-contamination",
+      "consumer-connection-detected"
+    ]
+  }
+}
