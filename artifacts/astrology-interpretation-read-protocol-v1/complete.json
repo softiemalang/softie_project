@@ -1,0 +1,1088 @@
+{
+  "schemaVersion": "astrology-interpretation-read-protocol-evidence-v1",
+  "input": {
+    "freezeManifestPath": "artifacts/astrology-interpretation-base-v1/freeze-manifest.json",
+    "handoffPath": "artifacts/astrology-interpretation-handoff-v1/complete.json"
+  },
+  "protocol": {
+    "schemaVersion": "astrology-interpretation-read-protocol-v1",
+    "protocolVersion": "1.0.0",
+    "protocolStatus": "complete",
+    "input": {
+      "handoffSchemaVersion": "astrology-interpretation-handoff-v1",
+      "handoffVersion": "1.0.0",
+      "handoffContentSha256": "d71331bfd6c9a1345922ef82ecbeade347e060f804530a246ed434e4032472b0"
+    },
+    "requirements": [
+      {
+        "order": 1,
+        "step": "freeze_manifest_identity",
+        "required": true,
+        "onFailure": "stop_and_block"
+      },
+      {
+        "order": 2,
+        "step": "handoff_identity",
+        "required": true,
+        "onFailure": "stop_and_block"
+      },
+      {
+        "order": 3,
+        "step": "component_artifact_identity",
+        "required": true,
+        "onFailure": "stop_and_block"
+      },
+      {
+        "order": 4,
+        "step": "component_content_identity",
+        "required": true,
+        "onFailure": "stop_and_block"
+      },
+      {
+        "order": 5,
+        "step": "cross_hash_links",
+        "required": true,
+        "onFailure": "stop_and_block"
+      },
+      {
+        "order": 6,
+        "step": "component_boundaries",
+        "required": true,
+        "onFailure": "stop_and_block"
+      },
+      {
+        "order": 7,
+        "step": "claim_inventory",
+        "required": true,
+        "onFailure": "stop_and_block"
+      },
+      {
+        "order": 8,
+        "step": "provenance_source_refs",
+        "required": true,
+        "onFailure": "stop_and_block"
+      },
+      {
+        "order": 9,
+        "step": "graph_structural_relations",
+        "required": true,
+        "onFailure": "stop_and_block"
+      },
+      {
+        "order": 10,
+        "step": "eligibility_activation",
+        "required": true,
+        "onFailure": "stop_and_block"
+      },
+      {
+        "order": 11,
+        "step": "access_policy",
+        "required": true,
+        "onFailure": "stop_and_block"
+      },
+      {
+        "order": 12,
+        "step": "human_review_boundary",
+        "required": true,
+        "onFailure": "stop_and_block"
+      }
+    ],
+    "steps": [
+      {
+        "step": "freeze_manifest_identity",
+        "status": "passed"
+      },
+      {
+        "step": "handoff_identity",
+        "status": "passed"
+      },
+      {
+        "step": "component_artifact_identity",
+        "status": "passed"
+      },
+      {
+        "step": "component_content_identity",
+        "status": "passed"
+      },
+      {
+        "step": "cross_hash_links",
+        "status": "passed"
+      },
+      {
+        "step": "component_boundaries",
+        "status": "passed"
+      },
+      {
+        "step": "claim_inventory",
+        "status": "passed"
+      },
+      {
+        "step": "provenance_source_refs",
+        "status": "passed"
+      },
+      {
+        "step": "graph_structural_relations",
+        "status": "passed"
+      },
+      {
+        "step": "eligibility_activation",
+        "status": "passed"
+      },
+      {
+        "step": "access_policy",
+        "status": "passed"
+      },
+      {
+        "step": "human_review_boundary",
+        "status": "passed"
+      }
+    ],
+    "failureProcedure": {
+      "onAnyFailedCheck": "stop_and_block",
+      "noPartialRead": true,
+      "noFallbackSource": true,
+      "noActivation": true
+    },
+    "checks": [
+      {
+        "id": "freeze_manifest_identity",
+        "status": "passed",
+        "reasonCodes": []
+      },
+      {
+        "id": "handoff_identity",
+        "status": "passed",
+        "reasonCodes": []
+      },
+      {
+        "id": "handoff_content_hash",
+        "status": "passed",
+        "reasonCodes": []
+      },
+      {
+        "id": "component_packet_artifact_identity",
+        "status": "passed",
+        "reasonCodes": []
+      },
+      {
+        "id": "component_packet_content_identity",
+        "status": "passed",
+        "reasonCodes": []
+      },
+      {
+        "id": "component_context_artifact_identity",
+        "status": "passed",
+        "reasonCodes": []
+      },
+      {
+        "id": "component_context_content_identity",
+        "status": "passed",
+        "reasonCodes": []
+      },
+      {
+        "id": "component_readiness_artifact_identity",
+        "status": "passed",
+        "reasonCodes": []
+      },
+      {
+        "id": "component_readiness_content_identity",
+        "status": "passed",
+        "reasonCodes": []
+      },
+      {
+        "id": "component_graph_artifact_identity",
+        "status": "passed",
+        "reasonCodes": []
+      },
+      {
+        "id": "component_graph_content_identity",
+        "status": "passed",
+        "reasonCodes": []
+      },
+      {
+        "id": "cross_hash_links",
+        "status": "passed",
+        "reasonCodes": []
+      },
+      {
+        "id": "component_boundaries",
+        "status": "passed",
+        "reasonCodes": []
+      },
+      {
+        "id": "claim_inventory",
+        "status": "passed",
+        "reasonCodes": []
+      },
+      {
+        "id": "provenance_source_refs",
+        "status": "passed",
+        "reasonCodes": []
+      },
+      {
+        "id": "graph_structural_relations",
+        "status": "passed",
+        "reasonCodes": []
+      },
+      {
+        "id": "eligibility_activation",
+        "status": "passed",
+        "reasonCodes": []
+      },
+      {
+        "id": "access_policy",
+        "status": "passed",
+        "reasonCodes": []
+      },
+      {
+        "id": "calculation_boundary",
+        "status": "passed",
+        "reasonCodes": []
+      },
+      {
+        "id": "human_review_boundary",
+        "status": "passed",
+        "reasonCodes": []
+      }
+    ],
+    "claimCounts": {
+      "total": 53,
+      "observedOrCalculated": 20,
+      "deterministicallyDerived": 33
+    },
+    "claimSourceTrace": [
+      {
+        "claimPath": "observedOrCalculated.bodies.0.longitudeDegrees",
+        "sourceRefs": [
+          "rawChart.bodies.jupiter.longitudeDegrees"
+        ],
+        "epistemic": "observed_or_calculated",
+        "provenanceStatus": "resolved"
+      },
+      {
+        "claimPath": "observedOrCalculated.bodies.0.movingFrameSpeedDegreesPerDay",
+        "sourceRefs": [
+          "rawChart.bodies.jupiter.longitudeSpeedDegreesPerDay"
+        ],
+        "epistemic": "observed_or_calculated",
+        "provenanceStatus": "resolved"
+      },
+      {
+        "claimPath": "observedOrCalculated.bodies.1.longitudeDegrees",
+        "sourceRefs": [
+          "rawChart.bodies.mars.longitudeDegrees"
+        ],
+        "epistemic": "observed_or_calculated",
+        "provenanceStatus": "resolved"
+      },
+      {
+        "claimPath": "observedOrCalculated.bodies.1.movingFrameSpeedDegreesPerDay",
+        "sourceRefs": [
+          "rawChart.bodies.mars.longitudeSpeedDegreesPerDay"
+        ],
+        "epistemic": "observed_or_calculated",
+        "provenanceStatus": "resolved"
+      },
+      {
+        "claimPath": "observedOrCalculated.bodies.2.longitudeDegrees",
+        "sourceRefs": [
+          "rawChart.bodies.mercury.longitudeDegrees"
+        ],
+        "epistemic": "observed_or_calculated",
+        "provenanceStatus": "resolved"
+      },
+      {
+        "claimPath": "observedOrCalculated.bodies.2.movingFrameSpeedDegreesPerDay",
+        "sourceRefs": [
+          "rawChart.bodies.mercury.longitudeSpeedDegreesPerDay"
+        ],
+        "epistemic": "observed_or_calculated",
+        "provenanceStatus": "resolved"
+      },
+      {
+        "claimPath": "observedOrCalculated.bodies.3.longitudeDegrees",
+        "sourceRefs": [
+          "rawChart.bodies.moon.longitudeDegrees"
+        ],
+        "epistemic": "observed_or_calculated",
+        "provenanceStatus": "resolved"
+      },
+      {
+        "claimPath": "observedOrCalculated.bodies.3.movingFrameSpeedDegreesPerDay",
+        "sourceRefs": [
+          "rawChart.bodies.moon.longitudeSpeedDegreesPerDay"
+        ],
+        "epistemic": "observed_or_calculated",
+        "provenanceStatus": "resolved"
+      },
+      {
+        "claimPath": "observedOrCalculated.bodies.4.longitudeDegrees",
+        "sourceRefs": [
+          "rawChart.bodies.neptune.longitudeDegrees"
+        ],
+        "epistemic": "observed_or_calculated",
+        "provenanceStatus": "resolved"
+      },
+      {
+        "claimPath": "observedOrCalculated.bodies.4.movingFrameSpeedDegreesPerDay",
+        "sourceRefs": [
+          "rawChart.bodies.neptune.longitudeSpeedDegreesPerDay"
+        ],
+        "epistemic": "observed_or_calculated",
+        "provenanceStatus": "resolved"
+      },
+      {
+        "claimPath": "observedOrCalculated.bodies.5.longitudeDegrees",
+        "sourceRefs": [
+          "rawChart.bodies.pluto.longitudeDegrees"
+        ],
+        "epistemic": "observed_or_calculated",
+        "provenanceStatus": "resolved"
+      },
+      {
+        "claimPath": "observedOrCalculated.bodies.5.movingFrameSpeedDegreesPerDay",
+        "sourceRefs": [
+          "rawChart.bodies.pluto.longitudeSpeedDegreesPerDay"
+        ],
+        "epistemic": "observed_or_calculated",
+        "provenanceStatus": "resolved"
+      },
+      {
+        "claimPath": "observedOrCalculated.bodies.6.longitudeDegrees",
+        "sourceRefs": [
+          "rawChart.bodies.saturn.longitudeDegrees"
+        ],
+        "epistemic": "observed_or_calculated",
+        "provenanceStatus": "resolved"
+      },
+      {
+        "claimPath": "observedOrCalculated.bodies.6.movingFrameSpeedDegreesPerDay",
+        "sourceRefs": [
+          "rawChart.bodies.saturn.longitudeSpeedDegreesPerDay"
+        ],
+        "epistemic": "observed_or_calculated",
+        "provenanceStatus": "resolved"
+      },
+      {
+        "claimPath": "observedOrCalculated.bodies.7.longitudeDegrees",
+        "sourceRefs": [
+          "rawChart.bodies.sun.longitudeDegrees"
+        ],
+        "epistemic": "observed_or_calculated",
+        "provenanceStatus": "resolved"
+      },
+      {
+        "claimPath": "observedOrCalculated.bodies.7.movingFrameSpeedDegreesPerDay",
+        "sourceRefs": [
+          "rawChart.bodies.sun.longitudeSpeedDegreesPerDay"
+        ],
+        "epistemic": "observed_or_calculated",
+        "provenanceStatus": "resolved"
+      },
+      {
+        "claimPath": "observedOrCalculated.bodies.8.longitudeDegrees",
+        "sourceRefs": [
+          "rawChart.bodies.uranus.longitudeDegrees"
+        ],
+        "epistemic": "observed_or_calculated",
+        "provenanceStatus": "resolved"
+      },
+      {
+        "claimPath": "observedOrCalculated.bodies.8.movingFrameSpeedDegreesPerDay",
+        "sourceRefs": [
+          "rawChart.bodies.uranus.longitudeSpeedDegreesPerDay"
+        ],
+        "epistemic": "observed_or_calculated",
+        "provenanceStatus": "resolved"
+      },
+      {
+        "claimPath": "observedOrCalculated.bodies.9.longitudeDegrees",
+        "sourceRefs": [
+          "rawChart.bodies.venus.longitudeDegrees"
+        ],
+        "epistemic": "observed_or_calculated",
+        "provenanceStatus": "resolved"
+      },
+      {
+        "claimPath": "observedOrCalculated.bodies.9.movingFrameSpeedDegreesPerDay",
+        "sourceRefs": [
+          "rawChart.bodies.venus.longitudeSpeedDegreesPerDay"
+        ],
+        "epistemic": "observed_or_calculated",
+        "provenanceStatus": "resolved"
+      },
+      {
+        "claimPath": "ruleCoreDerived.bodies.0.motion",
+        "sourceRefs": [
+          "ruleChart.bodies.jupiter.motionState"
+        ],
+        "epistemic": "deterministically_derived",
+        "provenanceStatus": "resolved"
+      },
+      {
+        "claimPath": "ruleCoreDerived.bodies.1.motion",
+        "sourceRefs": [
+          "ruleChart.bodies.mars.motionState"
+        ],
+        "epistemic": "deterministically_derived",
+        "provenanceStatus": "resolved"
+      },
+      {
+        "claimPath": "ruleCoreDerived.bodies.2.motion",
+        "sourceRefs": [
+          "ruleChart.bodies.mercury.motionState"
+        ],
+        "epistemic": "deterministically_derived",
+        "provenanceStatus": "resolved"
+      },
+      {
+        "claimPath": "ruleCoreDerived.bodies.3.motion",
+        "sourceRefs": [
+          "ruleChart.bodies.moon.motionState"
+        ],
+        "epistemic": "deterministically_derived",
+        "provenanceStatus": "resolved"
+      },
+      {
+        "claimPath": "ruleCoreDerived.bodies.4.motion",
+        "sourceRefs": [
+          "ruleChart.bodies.neptune.motionState"
+        ],
+        "epistemic": "deterministically_derived",
+        "provenanceStatus": "resolved"
+      },
+      {
+        "claimPath": "ruleCoreDerived.bodies.5.motion",
+        "sourceRefs": [
+          "ruleChart.bodies.pluto.motionState"
+        ],
+        "epistemic": "deterministically_derived",
+        "provenanceStatus": "resolved"
+      },
+      {
+        "claimPath": "ruleCoreDerived.bodies.6.motion",
+        "sourceRefs": [
+          "ruleChart.bodies.saturn.motionState"
+        ],
+        "epistemic": "deterministically_derived",
+        "provenanceStatus": "resolved"
+      },
+      {
+        "claimPath": "ruleCoreDerived.bodies.7.motion",
+        "sourceRefs": [
+          "ruleChart.bodies.sun.motionState"
+        ],
+        "epistemic": "deterministically_derived",
+        "provenanceStatus": "resolved"
+      },
+      {
+        "claimPath": "ruleCoreDerived.bodies.8.motion",
+        "sourceRefs": [
+          "ruleChart.bodies.uranus.motionState"
+        ],
+        "epistemic": "deterministically_derived",
+        "provenanceStatus": "resolved"
+      },
+      {
+        "claimPath": "ruleCoreDerived.bodies.9.motion",
+        "sourceRefs": [
+          "ruleChart.bodies.venus.motionState"
+        ],
+        "epistemic": "deterministically_derived",
+        "provenanceStatus": "resolved"
+      },
+      {
+        "claimPath": "ruleCoreDerived.angles.ascendant",
+        "sourceRefs": [
+          "ruleChart.angles.ascendant"
+        ],
+        "epistemic": "deterministically_derived",
+        "provenanceStatus": "resolved"
+      },
+      {
+        "claimPath": "ruleCoreDerived.angles.midheaven",
+        "sourceRefs": [
+          "ruleChart.angles.midheaven"
+        ],
+        "epistemic": "deterministically_derived",
+        "provenanceStatus": "resolved"
+      },
+      {
+        "claimPath": "ruleCoreDerived.wholeSignHouses",
+        "sourceRefs": [
+          "ruleChart.houses"
+        ],
+        "epistemic": "deterministically_derived",
+        "provenanceStatus": "resolved"
+      },
+      {
+        "claimPath": "ruleCoreDerived.majorAspects.0",
+        "sourceRefs": [
+          "ruleChart.aspects.mars.jupiter"
+        ],
+        "epistemic": "deterministically_derived",
+        "provenanceStatus": "resolved"
+      },
+      {
+        "claimPath": "ruleCoreDerived.majorAspects.1",
+        "sourceRefs": [
+          "ruleChart.aspects.mercury.jupiter"
+        ],
+        "epistemic": "deterministically_derived",
+        "provenanceStatus": "resolved"
+      },
+      {
+        "claimPath": "ruleCoreDerived.majorAspects.2",
+        "sourceRefs": [
+          "ruleChart.aspects.mercury.mars"
+        ],
+        "epistemic": "deterministically_derived",
+        "provenanceStatus": "resolved"
+      },
+      {
+        "claimPath": "ruleCoreDerived.majorAspects.3",
+        "sourceRefs": [
+          "ruleChart.aspects.mercury.midheaven"
+        ],
+        "epistemic": "deterministically_derived",
+        "provenanceStatus": "resolved"
+      },
+      {
+        "claimPath": "ruleCoreDerived.majorAspects.4",
+        "sourceRefs": [
+          "ruleChart.aspects.moon.midheaven"
+        ],
+        "epistemic": "deterministically_derived",
+        "provenanceStatus": "resolved"
+      },
+      {
+        "claimPath": "ruleCoreDerived.majorAspects.5",
+        "sourceRefs": [
+          "ruleChart.aspects.moon.saturn"
+        ],
+        "epistemic": "deterministically_derived",
+        "provenanceStatus": "resolved"
+      },
+      {
+        "claimPath": "ruleCoreDerived.majorAspects.6",
+        "sourceRefs": [
+          "ruleChart.aspects.moon.uranus"
+        ],
+        "epistemic": "deterministically_derived",
+        "provenanceStatus": "resolved"
+      },
+      {
+        "claimPath": "ruleCoreDerived.majorAspects.7",
+        "sourceRefs": [
+          "ruleChart.aspects.pluto.ascendant"
+        ],
+        "epistemic": "deterministically_derived",
+        "provenanceStatus": "resolved"
+      },
+      {
+        "claimPath": "ruleCoreDerived.majorAspects.8",
+        "sourceRefs": [
+          "ruleChart.aspects.saturn.midheaven"
+        ],
+        "epistemic": "deterministically_derived",
+        "provenanceStatus": "resolved"
+      },
+      {
+        "claimPath": "ruleCoreDerived.majorAspects.9",
+        "sourceRefs": [
+          "ruleChart.aspects.saturn.uranus"
+        ],
+        "epistemic": "deterministically_derived",
+        "provenanceStatus": "resolved"
+      },
+      {
+        "claimPath": "ruleCoreDerived.majorAspects.10",
+        "sourceRefs": [
+          "ruleChart.aspects.sun.ascendant"
+        ],
+        "epistemic": "deterministically_derived",
+        "provenanceStatus": "resolved"
+      },
+      {
+        "claimPath": "ruleCoreDerived.majorAspects.11",
+        "sourceRefs": [
+          "ruleChart.aspects.sun.midheaven"
+        ],
+        "epistemic": "deterministically_derived",
+        "provenanceStatus": "resolved"
+      },
+      {
+        "claimPath": "ruleCoreDerived.majorAspects.12",
+        "sourceRefs": [
+          "ruleChart.aspects.sun.moon"
+        ],
+        "epistemic": "deterministically_derived",
+        "provenanceStatus": "resolved"
+      },
+      {
+        "claimPath": "ruleCoreDerived.majorAspects.13",
+        "sourceRefs": [
+          "ruleChart.aspects.sun.saturn"
+        ],
+        "epistemic": "deterministically_derived",
+        "provenanceStatus": "resolved"
+      },
+      {
+        "claimPath": "ruleCoreDerived.majorAspects.14",
+        "sourceRefs": [
+          "ruleChart.aspects.uranus.ascendant"
+        ],
+        "epistemic": "deterministically_derived",
+        "provenanceStatus": "resolved"
+      },
+      {
+        "claimPath": "ruleCoreDerived.majorAspects.15",
+        "sourceRefs": [
+          "ruleChart.aspects.uranus.pluto"
+        ],
+        "epistemic": "deterministically_derived",
+        "provenanceStatus": "resolved"
+      },
+      {
+        "claimPath": "ruleCoreDerived.majorAspects.16",
+        "sourceRefs": [
+          "ruleChart.aspects.venus.mars"
+        ],
+        "epistemic": "deterministically_derived",
+        "provenanceStatus": "resolved"
+      },
+      {
+        "claimPath": "ruleCoreDerived.majorAspects.17",
+        "sourceRefs": [
+          "ruleChart.aspects.venus.neptune"
+        ],
+        "epistemic": "deterministically_derived",
+        "provenanceStatus": "resolved"
+      },
+      {
+        "claimPath": "ruleCoreDerived.distribution",
+        "sourceRefs": [
+          "ruleChart.distribution"
+        ],
+        "epistemic": "deterministically_derived",
+        "provenanceStatus": "resolved"
+      },
+      {
+        "claimPath": "ruleCoreDerived.chartRulers",
+        "sourceRefs": [
+          "ruleChart.chartRulers"
+        ],
+        "epistemic": "deterministically_derived",
+        "provenanceStatus": "resolved"
+      }
+    ],
+    "accessPolicy": {
+      "allowedTopLevel": [
+        "schemaVersion",
+        "handoffVersion",
+        "bundleStatus",
+        "usable",
+        "activation",
+        "connected",
+        "components",
+        "crossHashLinks",
+        "statistics",
+        "relationVocabulary",
+        "provenance",
+        "eligibility",
+        "deliveryPolicy",
+        "hashScopes",
+        "bundleContentSha256"
+      ],
+      "allowedComponentData": [
+        "schema/version/hash identity",
+        "status and boundary booleans",
+        "claimType/value/epistemic/sourceRefs",
+        "structural relation vocabulary and evidence",
+        "provenance/source documents"
+      ],
+      "forbiddenKeys": [
+        "theme",
+        "narrative",
+        "personality",
+        "psychology",
+        "strength",
+        "weakness",
+        "wound",
+        "desire",
+        "risk",
+        "destiny",
+        "meaningWeight",
+        "meaning_weight",
+        "priority",
+        "ranking",
+        "rank",
+        "prompt",
+        "template",
+        "systemMessage",
+        "question",
+        "advice",
+        "synthesis",
+        "conflict",
+        "dominance",
+        "balance",
+        "winner",
+        "score"
+      ],
+      "forbiddenOperations": [
+        "generate_new_claims",
+        "delete_merge_or_transform_claims",
+        "infer_personality_psychology_strength_weakness_wound_desire_risk_or_destiny",
+        "create_theme_narrative_synthesis_or_conclusion",
+        "rank_claims_or_assign_meaning_weight_or_priority",
+        "judge_conflict_dominance_balance_or_winner_between_claims",
+        "infer_experience_environment_or_behavior",
+        "generate_natural_language_interpretation_questions_or_advice",
+        "convert_structural_relations_to_psychological_support_or_conflict",
+        "promote_readiness_to_user_delivery_or_production",
+        "inject_prompt_or_call_llm_api",
+        "convert_orb_phase_motion_or_rule_identity_to_life_importance"
+      ],
+      "relationSemantics": "structural_co-occurrence_only"
+    },
+    "decisions": {
+      "localResearch": "eligible_for_local_interpretation_research",
+      "userDelivery": "blocked",
+      "productionActivation": "blocked",
+      "humanReview": "required"
+    },
+    "activation": {
+      "availableForInterpretation": false,
+      "integrationStatus": "not_connected",
+      "serviceEligibility": "blocked",
+      "reason": "interpretation_packet_not_activated"
+    },
+    "connected": false,
+    "availableForInterpretation": false,
+    "interpretationPacketActivation": "blocked",
+    "interpretationBoundary": {
+      "noInterpretationText": true,
+      "noPromptTemplate": true,
+      "noLlmCall": true,
+      "structuralRelationsOnly": true,
+      "noPriorityOrMeaningWeight": true,
+      "noMeaningBeforeExperience": true
+    },
+    "hashScopes": {
+      "protocolContentSha256": "protocol object excluding protocolContentSha256, recursively sorted object keys, arrays preserved, JSON plus LF",
+      "artifactByteSha256": "exact UTF-8 bytes of materialized protocol evidence JSON, including formatting and final LF"
+    },
+    "protocolContentSha256": "7be90b44e836dace355acab1d658309921124750cce8f7a0ed435c6b684f80c9",
+    "pass": true,
+    "reasonCodes": []
+  },
+  "negativeEvidence": [
+    {
+      "caseId": "freezeMismatch",
+      "expectedReasonCodes": [
+        "freeze_manifest_content_hash_mismatch"
+      ],
+      "observedReasonCodes": [
+        "freeze_component_identity_mismatch",
+        "freeze_manifest_content_hash_mismatch",
+        "freeze_manifest_schema_or_version_mismatch"
+      ]
+    },
+    {
+      "caseId": "handoffSchemaVersionMismatch",
+      "expectedReasonCodes": [
+        "handoff_schema_or_version_mismatch"
+      ],
+      "observedReasonCodes": [
+        "freeze_component_identity_mismatch",
+        "freeze_manifest_content_hash_mismatch",
+        "freeze_manifest_schema_or_version_mismatch",
+        "handoff_evidence_schema_or_version_mismatch",
+        "handoff_schema_or_version_mismatch"
+      ]
+    },
+    {
+      "caseId": "contentHashTampered",
+      "expectedReasonCodes": [
+        "handoff_content_hash_mismatch"
+      ],
+      "observedReasonCodes": [
+        "handoff_content_hash_mismatch"
+      ]
+    },
+    {
+      "caseId": "artifactHashTampered",
+      "expectedReasonCodes": [
+        "component_artifact_hash_mismatch"
+      ],
+      "observedReasonCodes": [
+        "component_artifact_hash_mismatch",
+        "freeze_component_identity_mismatch",
+        "freeze_manifest_content_hash_mismatch",
+        "freeze_manifest_schema_or_version_mismatch"
+      ]
+    },
+    {
+      "caseId": "crossHashTampered",
+      "expectedReasonCodes": [
+        "cross_hash_link_invalid"
+      ],
+      "observedReasonCodes": [
+        "cross_hash_link_invalid",
+        "freeze_component_identity_mismatch",
+        "freeze_manifest_content_hash_mismatch",
+        "freeze_manifest_schema_or_version_mismatch"
+      ]
+    },
+    {
+      "caseId": "claimCountTampered",
+      "expectedReasonCodes": [
+        "claim_inventory_invalid",
+        "claim_epistemic_statistics_invalid"
+      ],
+      "observedReasonCodes": [
+        "claim_epistemic_statistics_invalid",
+        "claim_inventory_invalid",
+        "freeze_component_identity_mismatch",
+        "freeze_manifest_content_hash_mismatch",
+        "freeze_manifest_schema_or_version_mismatch"
+      ]
+    },
+    {
+      "caseId": "sourceRefsTampered",
+      "expectedReasonCodes": [
+        "claim_source_refs_missing_or_unresolvable"
+      ],
+      "observedReasonCodes": [
+        "claim_source_refs_missing_or_unresolvable",
+        "component_content_hash_mismatch",
+        "component_schema_or_version_mismatch",
+        "freeze_component_identity_mismatch",
+        "freeze_manifest_content_hash_mismatch",
+        "freeze_manifest_schema_or_version_mismatch",
+        "provenance_incomplete"
+      ]
+    },
+    {
+      "caseId": "claimDeleted",
+      "expectedReasonCodes": [
+        "claim_inventory_invalid"
+      ],
+      "observedReasonCodes": [
+        "claim_epistemic_statistics_invalid",
+        "claim_inventory_invalid",
+        "component_content_hash_mismatch",
+        "component_schema_or_version_mismatch",
+        "freeze_component_identity_mismatch",
+        "freeze_manifest_content_hash_mismatch",
+        "freeze_manifest_schema_or_version_mismatch"
+      ]
+    },
+    {
+      "caseId": "claimMerged",
+      "expectedReasonCodes": [
+        "claim_inventory_invalid"
+      ],
+      "observedReasonCodes": [
+        "claim_epistemic_statistics_invalid",
+        "claim_inventory_invalid",
+        "component_content_hash_mismatch",
+        "component_schema_or_version_mismatch",
+        "freeze_component_identity_mismatch",
+        "freeze_manifest_content_hash_mismatch",
+        "freeze_manifest_schema_or_version_mismatch"
+      ]
+    },
+    {
+      "caseId": "claimRanked",
+      "expectedReasonCodes": [
+        "access_policy_violation"
+      ],
+      "observedReasonCodes": [
+        "access_policy_violation",
+        "calculation_contamination",
+        "freeze_component_identity_mismatch",
+        "freeze_manifest_content_hash_mismatch",
+        "freeze_manifest_schema_or_version_mismatch"
+      ]
+    },
+    {
+      "caseId": "claimRewritten",
+      "expectedReasonCodes": [
+        "claim_inventory_invalid"
+      ],
+      "observedReasonCodes": [
+        "claim_epistemic_statistics_invalid",
+        "claim_inventory_invalid",
+        "component_content_hash_mismatch",
+        "component_schema_or_version_mismatch",
+        "freeze_component_identity_mismatch",
+        "freeze_manifest_content_hash_mismatch",
+        "freeze_manifest_schema_or_version_mismatch"
+      ]
+    },
+    {
+      "caseId": "interpretationInjected",
+      "expectedReasonCodes": [
+        "access_policy_violation"
+      ],
+      "observedReasonCodes": [
+        "access_policy_violation",
+        "calculation_contamination",
+        "freeze_component_identity_mismatch",
+        "freeze_manifest_content_hash_mismatch",
+        "freeze_manifest_schema_or_version_mismatch"
+      ]
+    },
+    {
+      "caseId": "psychologyInjected",
+      "expectedReasonCodes": [
+        "access_policy_violation"
+      ],
+      "observedReasonCodes": [
+        "access_policy_violation",
+        "calculation_contamination",
+        "freeze_component_identity_mismatch",
+        "freeze_manifest_content_hash_mismatch",
+        "freeze_manifest_schema_or_version_mismatch"
+      ]
+    },
+    {
+      "caseId": "meaningWeightInjected",
+      "expectedReasonCodes": [
+        "access_policy_violation"
+      ],
+      "observedReasonCodes": [
+        "access_policy_violation",
+        "calculation_contamination",
+        "freeze_component_identity_mismatch",
+        "freeze_manifest_content_hash_mismatch",
+        "freeze_manifest_schema_or_version_mismatch"
+      ]
+    },
+    {
+      "caseId": "promptInjected",
+      "expectedReasonCodes": [
+        "access_policy_violation"
+      ],
+      "observedReasonCodes": [
+        "access_policy_violation",
+        "calculation_contamination",
+        "freeze_component_identity_mismatch",
+        "freeze_manifest_content_hash_mismatch",
+        "freeze_manifest_schema_or_version_mismatch"
+      ]
+    },
+    {
+      "caseId": "relationMeaningInjected",
+      "expectedReasonCodes": [
+        "relation_semantics_transformed"
+      ],
+      "observedReasonCodes": [
+        "component_content_hash_mismatch",
+        "component_schema_or_version_mismatch",
+        "freeze_component_identity_mismatch",
+        "freeze_manifest_content_hash_mismatch",
+        "freeze_manifest_schema_or_version_mismatch",
+        "relation_semantics_transformed",
+        "relation_vocabulary_invalid"
+      ]
+    },
+    {
+      "caseId": "activationPromoted",
+      "expectedReasonCodes": [
+        "user_delivery_or_production_promoted"
+      ],
+      "observedReasonCodes": [
+        "eligibility_or_activation_boundary_invalid",
+        "freeze_component_identity_mismatch",
+        "freeze_manifest_content_hash_mismatch",
+        "freeze_manifest_schema_or_version_mismatch",
+        "user_delivery_or_production_promoted"
+      ]
+    },
+    {
+      "caseId": "productionPromoted",
+      "expectedReasonCodes": [
+        "user_delivery_or_production_promoted"
+      ],
+      "observedReasonCodes": [
+        "eligibility_or_activation_boundary_invalid",
+        "freeze_component_identity_mismatch",
+        "freeze_manifest_content_hash_mismatch",
+        "freeze_manifest_schema_or_version_mismatch",
+        "user_delivery_or_production_promoted"
+      ]
+    },
+    {
+      "caseId": "simulationContamination",
+      "expectedReasonCodes": [
+        "calculation_contamination"
+      ],
+      "observedReasonCodes": [
+        "calculation_contamination",
+        "component_content_hash_mismatch",
+        "component_schema_or_version_mismatch",
+        "freeze_component_identity_mismatch",
+        "freeze_manifest_content_hash_mismatch",
+        "freeze_manifest_schema_or_version_mismatch"
+      ]
+    },
+    {
+      "caseId": "placidusContamination",
+      "expectedReasonCodes": [
+        "calculation_contamination"
+      ],
+      "observedReasonCodes": [
+        "calculation_contamination",
+        "component_content_hash_mismatch",
+        "component_schema_or_version_mismatch",
+        "freeze_component_identity_mismatch",
+        "freeze_manifest_content_hash_mismatch",
+        "freeze_manifest_schema_or_version_mismatch"
+      ]
+    },
+    {
+      "caseId": "frozenSpeedContamination",
+      "expectedReasonCodes": [
+        "calculation_contamination"
+      ],
+      "observedReasonCodes": [
+        "calculation_contamination",
+        "component_content_hash_mismatch",
+        "component_schema_or_version_mismatch",
+        "freeze_component_identity_mismatch",
+        "freeze_manifest_content_hash_mismatch",
+        "freeze_manifest_schema_or_version_mismatch"
+      ]
+    },
+    {
+      "caseId": "legacyPrepContamination",
+      "expectedReasonCodes": [
+        "calculation_contamination"
+      ],
+      "observedReasonCodes": [
+        "calculation_contamination",
+        "component_content_hash_mismatch",
+        "component_schema_or_version_mismatch",
+        "freeze_component_identity_mismatch",
+        "freeze_manifest_content_hash_mismatch",
+        "freeze_manifest_schema_or_version_mismatch"
+      ]
+    },
+    {
+      "caseId": "unverifiedProviderContamination",
+      "expectedReasonCodes": [
+        "calculation_contamination"
+      ],
+      "observedReasonCodes": [
+        "calculation_contamination",
+        "component_content_hash_mismatch",
+        "component_schema_or_version_mismatch",
+        "freeze_component_identity_mismatch",
+        "freeze_manifest_content_hash_mismatch",
+        "freeze_manifest_schema_or_version_mismatch"
+      ]
+    }
+  ]
+}
