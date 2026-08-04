@@ -1,0 +1,16 @@
+{
+  "schemaVersion": "ziwei-clean-rule-corpus-source-selection-negative-v0",
+  "cases": [
+    {"id": "admissible_missing_edition_location", "verdict": "admissible", "edition": null, "location": null, "expectedCode": "admissible_missing_edition_or_location"},
+    {"id": "catalog_claims_scan_identity", "sourceKind": "catalog_record", "claimsScan": true, "expectedCode": "catalog_only_scan_claim"},
+    {"id": "mirror_reprint_double_count", "independenceGroup": "edition:shared-root", "countsAsIndependentCandidate": true, "duplicateLineage": true, "expectedCode": "mirror_reprint_double_count"},
+    {"id": "blog_ai_unattributed", "sourceKind": "blog_or_ai_generated", "promoted": true, "expectedCode": "unattributed_blog_ai_promotion"},
+    {"id": "file_identity_inferred", "fileHash": "inferred", "expectedCode": "file_identity_inferred"},
+    {"id": "lineage_inferred", "lineage": "inferred", "expectedCode": "lineage_inferred"},
+    {"id": "interpretive_prose_verified", "contentClass": "interpretive_prose", "status": "verified", "expectedCode": "interpretive_prose_verified_claim"},
+    {"id": "access_bypass", "bypassUsed": true, "expectedCode": "access_restriction_bypass"},
+    {"id": "legacy_occurrence_autolink", "legacyOccurrenceLink": "legacy-occ-001", "expectedCode": "legacy_occurrence_auto_link"},
+    {"id": "readiness_grounding_activation_promotion", "readiness": "ready", "grounding": "grounded", "activation": "active", "expectedCode": "downstream_promotion"},
+    {"id": "nondeterministic_id_sort", "candidateId": "random-uuid", "sort": "insertion_order", "expectedCode": "nondeterministic_id_or_sort"}
+  ]
+}

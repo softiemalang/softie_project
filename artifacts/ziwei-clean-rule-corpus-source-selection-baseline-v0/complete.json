@@ -1,0 +1,788 @@
+{
+  "accessedOn": "2026-08-04",
+  "artifactIdentity": {
+    "artifactId": "ziwei-clean-rule-corpus-source-selection-baseline-v0",
+    "artifactPayloadSha256": "8ca865d02a161e504d71f9ca9b4ce3c8e659881be4d6fa230b3421b4b99f9ad0",
+    "contractVersion": "artifact-identity-v1",
+    "generation": {
+      "baseHead": "2595e087eaea4adb667a0280a677476aebcb80df",
+      "baseHeadSource": "git rev-parse HEAD at materialization",
+      "includedCommit": null,
+      "includedCommitSource": "unknown_at_generation; artifact may be included by a later commit"
+    },
+    "inputs": [
+      {
+        "byteSha256": "52bb80010f0f9061b0ddd9549a218ee79d98e69cb953d8c53e2f5b4c77c1eee1",
+        "path": "src/ziwei/cleanRuleCorpusSourceSelection.js"
+      },
+      {
+        "byteSha256": "852f0c0904acd4ed97989af05b31075fe749afa9b40f0c265fe199b0289bc4b3",
+        "path": "test/fixtures/ziwei/clean-rule-corpus-source-candidates-v0.json"
+      }
+    ],
+    "materializer": {
+      "path": "scripts/materialize-ziwei-clean-rule-corpus-source-selection-baseline-v0.mjs",
+      "version": "0.1.0"
+    }
+  },
+  "basisHead": "2595e087eaea4adb667a0280a677476aebcb80df",
+  "candidateCount": 6,
+  "candidateInventory": [
+    {
+      "accessedOn": "2026-08-04",
+      "candidateId": "ziwei-source-08ac4e56d2962f7c",
+      "contentClasses": {
+        "conditional_traditional_statement": {
+          "basis": "Conditions and exceptions cannot be reviewed.",
+          "status": "not_allowed"
+        },
+        "deterministic_calculation_rule": {
+          "basis": "Access and edition identity are unresolved.",
+          "status": "not_allowed"
+        },
+        "interpretive_prose": {
+          "basis": "Interpretive prose is never promoted by this baseline.",
+          "status": "not_allowed"
+        },
+        "table_mapping": {
+          "basis": "No stable page/file identity.",
+          "status": "not_allowed"
+        },
+        "terminology_alias": {
+          "basis": "A digital-text lead is not an admitted source.",
+          "status": "not_allowed"
+        },
+        "worked_example": {
+          "basis": "No independently reproducible example.",
+          "status": "not_allowed"
+        }
+      },
+      "fileIdentity": {
+        "byteSha256": null,
+        "hashStatus": "not_retrieved",
+        "inferred": false,
+        "kind": "web_revision",
+        "sizeBytes": null,
+        "url": "https://ctext.org/wiki.pl?if=gb&res=979714"
+      },
+      "independence": {
+        "basis": "Do not count a related digital transcription as a separate source family without identity and lineage evidence.",
+        "countsAsIndependentCandidate": false,
+        "groupKey": "unresolved-traditional-quanshu-transcription",
+        "status": "unresolved"
+      },
+      "legacyOccurrenceLink": null,
+      "legalAccess": {
+        "bypassUsed": false,
+        "fullTextStoredInRepository": false,
+        "limitNote": "Public URL was found, but direct review returned HTTP 403; no access-control bypass was attempted.",
+        "retrievalAllowed": false,
+        "status": "blocked"
+      },
+      "lineage": {
+        "basis": "The page is a secondary digital text lead; the reviewed public fetch returned access failure and no edition record was closed.",
+        "groupKey": "unresolved-traditional-quanshu-transcription",
+        "inferred": false,
+        "relation": "transcription"
+      },
+      "locationIdentity": {
+        "editionLocation": null,
+        "page": null,
+        "stable": false,
+        "volumeChapterSection": null
+      },
+      "missingEvidence": [
+        "direct_text_access",
+        "exact_edition",
+        "original_page_location",
+        "immutable_file_hash",
+        "lineage_identity"
+      ],
+      "ruleExtractability": {
+        "conditionalStatement": false,
+        "deterministicRule": false,
+        "note": "No directly reviewable original text, edition, or page location.",
+        "tableMapping": false,
+        "workedExample": false
+      },
+      "sourceIdentity": {
+        "authorEditor": [],
+        "edition": null,
+        "publisher": "中國哲學書電子化計劃 page",
+        "signature": "紫微斗數",
+        "status": "unresolved",
+        "year": null
+      },
+      "sourceKey": "ctext-ziwei-page-res-979714",
+      "stableUrls": [
+        {
+          "role": "public_text_page",
+          "url": "https://ctext.org/wiki.pl?if=gb&res=979714"
+        }
+      ],
+      "textAccessibility": {
+        "bypassUsed": false,
+        "directlyConfirmable": false,
+        "mode": "blocked",
+        "originalText": false
+      },
+      "verdict": "access_blocked",
+      "verdictBasis": "The public URL is a discovery lead only: direct review was blocked, and edition/file/lineage identity is unresolved.",
+      "workedEvidence": {
+        "note": "No independent fixture was identified.",
+        "present": false
+      }
+    },
+    {
+      "accessedOn": "2026-08-04",
+      "candidateId": "ziwei-source-0f094c55d61a5719",
+      "contentClasses": {
+        "conditional_traditional_statement": {
+          "basis": "No source passage is accessible.",
+          "status": "not_allowed"
+        },
+        "deterministic_calculation_rule": {
+          "basis": "Catalog metadata is not rule text.",
+          "status": "not_allowed"
+        },
+        "interpretive_prose": {
+          "basis": "Interpretive prose is never promoted by this baseline.",
+          "status": "not_allowed"
+        },
+        "table_mapping": {
+          "basis": "No table or page image is directly accessible.",
+          "status": "not_allowed"
+        },
+        "terminology_alias": {
+          "basis": "Title and subject metadata are not a source-backed alias list.",
+          "status": "not_allowed"
+        },
+        "worked_example": {
+          "basis": "No example is accessible.",
+          "status": "not_allowed"
+        }
+      },
+      "fileIdentity": {
+        "byteSha256": null,
+        "hashStatus": "not_available",
+        "inferred": false,
+        "kind": "catalog_record",
+        "sizeBytes": null,
+        "url": "https://isbn.ncl.edu.tw/NEW_ISBNNet/main_DisplayRecord_Popup.php?KeepThis=true&Pact=ShowCard&Pkey=1140418%2A0158&TB_iframe=true&height=400&width=500"
+      },
+      "independence": {
+        "basis": "Distinct ISBN, publisher, series, and publication date in the official catalog.",
+        "countsAsIndependentCandidate": true,
+        "groupKey": "edition:isbn:978-626-7723-02-9",
+        "status": "established"
+      },
+      "legacyOccurrenceLink": null,
+      "legalAccess": {
+        "bypassUsed": false,
+        "fullTextStoredInRepository": false,
+        "limitNote": "Catalog metadata is public; no scan or full text was retrieved.",
+        "retrievalAllowed": true,
+        "status": "public"
+      },
+      "lineage": {
+        "basis": "The official catalog identifies this modern publication but does not expose its source-edition lineage.",
+        "groupKey": null,
+        "inferred": false,
+        "relation": "unknown"
+      },
+      "locationIdentity": {
+        "editionLocation": "初版; 2025.07; 傳世經典 64; ISBN 978-626-7723-02-9",
+        "page": null,
+        "stable": false,
+        "volumeChapterSection": null
+      },
+      "missingEvidence": [
+        "scan_or_pdf_identity",
+        "immutable_file_hash",
+        "volume_chapter_page_location",
+        "direct_original_text"
+      ],
+      "ruleExtractability": {
+        "conditionalStatement": false,
+        "deterministicRule": false,
+        "note": "Bibliographic record only; no rule-bearing page can be isolated.",
+        "tableMapping": false,
+        "workedExample": false
+      },
+      "sourceIdentity": {
+        "authorEditor": [
+          "陳希夷"
+        ],
+        "edition": "初版, 2025.07, 傳世經典 64",
+        "publisher": "華夏出版有限公司",
+        "signature": "紫微斗數全書",
+        "status": "catalog_only",
+        "year": 2025
+      },
+      "sourceKey": "ncl-cip-2025-huaxia-chuanshi-64",
+      "stableUrls": [
+        {
+          "role": "official_national_library_catalog",
+          "url": "https://isbn.ncl.edu.tw/NEW_ISBNNet/main_DisplayRecord_Popup.php?KeepThis=true&Pact=ShowCard&Pkey=1140418%2A0158&TB_iframe=true&height=400&width=500"
+        }
+      ],
+      "textAccessibility": {
+        "bypassUsed": false,
+        "directlyConfirmable": false,
+        "mode": "catalog_metadata",
+        "originalText": false
+      },
+      "verdict": "reference_only",
+      "verdictBasis": "Exact catalog identity is useful for a future retrieval request, but edition pages, original text, and file identity are absent.",
+      "workedEvidence": {
+        "note": "No independently identifiable worked example is exposed by the catalog record.",
+        "present": false
+      }
+    },
+    {
+      "accessedOn": "2026-08-04",
+      "candidateId": "ziwei-source-86871df22b3a7e17",
+      "contentClasses": {
+        "conditional_traditional_statement": {
+          "basis": "Edition and exact source boundaries are unresolved.",
+          "status": "not_allowed"
+        },
+        "deterministic_calculation_rule": {
+          "basis": "Transcription without edition/scan identity cannot be a clean rule source.",
+          "status": "not_allowed"
+        },
+        "interpretive_prose": {
+          "basis": "Interpretive prose is never promoted by this baseline.",
+          "status": "not_allowed"
+        },
+        "table_mapping": {
+          "basis": "No scan page or immutable file identity is available.",
+          "status": "not_allowed"
+        },
+        "terminology_alias": {
+          "basis": "Transcription may be a discovery aid only while source identity remains unresolved.",
+          "status": "not_allowed"
+        },
+        "worked_example": {
+          "basis": "No independent fixture boundary is available.",
+          "status": "not_allowed"
+        }
+      },
+      "fileIdentity": {
+        "byteSha256": null,
+        "hashStatus": "not_retrieved",
+        "inferred": false,
+        "kind": "web_revision",
+        "sizeBytes": null,
+        "url": "https://zh.wikisource.org/w/index.php?title=%E7%B4%AB%E5%BE%AE%E6%96%97%E6%95%B8%E5%85%A8%E6%9B%B8&oldid=850736"
+      },
+      "independence": {
+        "basis": "A public transcription is a lead, not an independently established edition; related transcriptions must not be counted as separate source families.",
+        "countsAsIndependentCandidate": false,
+        "groupKey": "unresolved-traditional-quanshu-transcription",
+        "status": "unresolved"
+      },
+      "legacyOccurrenceLink": null,
+      "legalAccess": {
+        "bypassUsed": false,
+        "fullTextStoredInRepository": false,
+        "limitNote": "Public revision and license notice are visible, but downstream use must preserve Wikimedia and jurisdiction-specific rights limits.",
+        "retrievalAllowed": true,
+        "status": "public"
+      },
+      "lineage": {
+        "basis": "The revision exposes transcribed text and labels it Qing, but no scan, scribe, or exact printed edition is identified.",
+        "groupKey": "unresolved-traditional-quanshu-transcription",
+        "inferred": false,
+        "relation": "transcription"
+      },
+      "locationIdentity": {
+        "editionLocation": null,
+        "page": null,
+        "stable": true,
+        "volumeChapterSection": "卷一–卷三 and named section anchors"
+      },
+      "missingEvidence": [
+        "exact_edition",
+        "scan_or_pdf_identity",
+        "immutable_file_hash",
+        "original_page_location",
+        "scribe_or_transcription_lineage"
+      ],
+      "ruleExtractability": {
+        "conditionalStatement": false,
+        "deterministicRule": false,
+        "note": "Text is accessible, but edition identity and page correspondence are not closed.",
+        "tableMapping": false,
+        "workedExample": false
+      },
+      "sourceIdentity": {
+        "authorEditor": [
+          "陳希夷 (attributed)"
+        ],
+        "edition": null,
+        "publisher": "Wikisource transcription project",
+        "signature": "紫微斗數全書",
+        "status": "unresolved",
+        "year": null
+      },
+      "sourceKey": "wikisource-qing-quanshu-oldid-850736",
+      "stableUrls": [
+        {
+          "role": "stable_revision",
+          "url": "https://zh.wikisource.org/w/index.php?title=%E7%B4%AB%E5%BE%AE%E6%96%97%E6%95%B8%E5%85%A8%E6%9B%B8&oldid=850736"
+        }
+      ],
+      "textAccessibility": {
+        "bypassUsed": false,
+        "directlyConfirmable": true,
+        "mode": "direct_transcription",
+        "originalText": false
+      },
+      "verdict": "identity_unresolved",
+      "verdictBasis": "Stable web revision and direct transcription are observable, but author/editor, edition, scan lineage, and immutable file identity are not closed.",
+      "workedEvidence": {
+        "note": "Named sections are not independently validated worked fixtures.",
+        "present": false
+      }
+    },
+    {
+      "accessedOn": "2026-08-04",
+      "candidateId": "ziwei-source-bbe0465fa5344e51",
+      "contentClasses": {
+        "conditional_traditional_statement": {
+          "basis": "No cited passage and no access to the thesis text.",
+          "status": "not_allowed"
+        },
+        "deterministic_calculation_rule": {
+          "basis": "Secondary study is not a verified primary rule edition.",
+          "status": "not_allowed"
+        },
+        "interpretive_prose": {
+          "basis": "Interpretive prose is never promoted by this baseline.",
+          "status": "not_allowed"
+        },
+        "table_mapping": {
+          "basis": "No accessible page/table identity.",
+          "status": "not_allowed"
+        },
+        "terminology_alias": {
+          "basis": "No directly accessible source text or verified thesis metadata.",
+          "status": "not_allowed"
+        },
+        "worked_example": {
+          "basis": "No independently reproducible fixture is accessible.",
+          "status": "not_allowed"
+        }
+      },
+      "fileIdentity": {
+        "byteSha256": null,
+        "hashStatus": "not_available",
+        "inferred": false,
+        "kind": "catalog_record",
+        "sizeBytes": null,
+        "url": "https://ndltd.ncl.edu.tw/cgi-bin/gs32/gsweb.cgi?o=dnclcdr&s=id%3D%22097CGU05121028%22.&searchmode=basic"
+      },
+      "independence": {
+        "basis": "Distinct institutional thesis record; it is a secondary academic source, not a primary rule edition.",
+        "countsAsIndependentCandidate": true,
+        "groupKey": "academic:097CGU05121028",
+        "status": "established"
+      },
+      "legacyOccurrenceLink": null,
+      "legalAccess": {
+        "bypassUsed": false,
+        "fullTextStoredInRepository": false,
+        "limitNote": "The public portal presented a verification-code gate during review; no bypass was attempted.",
+        "retrievalAllowed": false,
+        "status": "blocked"
+      },
+      "lineage": {
+        "basis": "The official thesis portal identifies an academic study, but access is gated and its cited primary editions are not thereby verified.",
+        "groupKey": "academic:097CGU05121028",
+        "inferred": false,
+        "relation": "secondary_citation"
+      },
+      "locationIdentity": {
+        "editionLocation": null,
+        "page": null,
+        "stable": false,
+        "volumeChapterSection": null
+      },
+      "missingEvidence": [
+        "author_and_thesis_edition_metadata",
+        "direct_pdf_access",
+        "immutable_file_hash",
+        "cited_primary_source_locations"
+      ],
+      "ruleExtractability": {
+        "conditionalStatement": false,
+        "deterministicRule": false,
+        "note": "No thesis PDF or cited source passage was directly accessible for verification.",
+        "tableMapping": false,
+        "workedExample": false
+      },
+      "sourceIdentity": {
+        "authorEditor": [],
+        "edition": null,
+        "publisher": null,
+        "signature": "利用紫微斗數值分析預測台灣匯率走勢變化之研究",
+        "status": "unresolved",
+        "year": null
+      },
+      "sourceKey": "ndltd-097cgu05121028-exchange-rate-study",
+      "stableUrls": [
+        {
+          "role": "official_academic_thesis_record",
+          "url": "https://ndltd.ncl.edu.tw/cgi-bin/gs32/gsweb.cgi?o=dnclcdr&s=id%3D%22097CGU05121028%22.&searchmode=basic"
+        }
+      ],
+      "textAccessibility": {
+        "bypassUsed": false,
+        "directlyConfirmable": false,
+        "mode": "blocked",
+        "originalText": false
+      },
+      "verdict": "access_blocked",
+      "verdictBasis": "The official academic record is a useful lead, but verification-code gating prevents direct text, file, and citation review without bypass.",
+      "workedEvidence": {
+        "note": "The existence of an academic thesis is not an independent rule fixture.",
+        "present": false
+      }
+    },
+    {
+      "accessedOn": "2026-08-04",
+      "candidateId": "ziwei-source-cdb77fdafe9fdd2f",
+      "contentClasses": {
+        "conditional_traditional_statement": {
+          "basis": "No source passage is accessible.",
+          "status": "not_allowed"
+        },
+        "deterministic_calculation_rule": {
+          "basis": "Catalog metadata is not rule text.",
+          "status": "not_allowed"
+        },
+        "interpretive_prose": {
+          "basis": "Interpretive prose is never promoted by this baseline.",
+          "status": "not_allowed"
+        },
+        "table_mapping": {
+          "basis": "No table or page image is directly accessible.",
+          "status": "not_allowed"
+        },
+        "terminology_alias": {
+          "basis": "Title and subject metadata are not a source-backed alias list.",
+          "status": "not_allowed"
+        },
+        "worked_example": {
+          "basis": "No example is accessible.",
+          "status": "not_allowed"
+        }
+      },
+      "fileIdentity": {
+        "byteSha256": null,
+        "hashStatus": "not_available",
+        "inferred": false,
+        "kind": "catalog_record",
+        "sizeBytes": null,
+        "url": "https://isbn.ncl.edu.tw/NEW_ISBNNet/main_DisplayRecord_Popup.php?KeepThis=true&Pact=ShowCard&Pkey=1080418%2A0061&TB_iframe=true&height=400&width=500"
+      },
+      "independence": {
+        "basis": "Distinct ISBN, publisher, and publication date in the official catalog.",
+        "countsAsIndependentCandidate": true,
+        "groupKey": "edition:isbn:978-986-97737-1-3",
+        "status": "established"
+      },
+      "legacyOccurrenceLink": null,
+      "legalAccess": {
+        "bypassUsed": false,
+        "fullTextStoredInRepository": false,
+        "limitNote": "Catalog metadata is public; no scan or full text was retrieved.",
+        "retrievalAllowed": true,
+        "status": "public"
+      },
+      "lineage": {
+        "basis": "The official catalog identifies this publication but does not expose its source-edition lineage.",
+        "groupKey": null,
+        "inferred": false,
+        "relation": "unknown"
+      },
+      "locationIdentity": {
+        "editionLocation": "初版; 2019.05; ISBN 978-986-97737-1-3",
+        "page": null,
+        "stable": false,
+        "volumeChapterSection": null
+      },
+      "missingEvidence": [
+        "scan_or_pdf_identity",
+        "immutable_file_hash",
+        "volume_chapter_page_location",
+        "direct_original_text"
+      ],
+      "ruleExtractability": {
+        "conditionalStatement": false,
+        "deterministicRule": false,
+        "note": "Bibliographic record only; no rule-bearing page can be isolated.",
+        "tableMapping": false,
+        "workedExample": false
+      },
+      "sourceIdentity": {
+        "authorEditor": [
+          "陳希夷",
+          "了然山人"
+        ],
+        "edition": "初版, 2019.05",
+        "publisher": "現代美",
+        "signature": "紫微斗數全書",
+        "status": "catalog_only",
+        "year": 2019
+      },
+      "sourceKey": "ncl-cip-2019-modernbeauty",
+      "stableUrls": [
+        {
+          "role": "official_national_library_catalog",
+          "url": "https://isbn.ncl.edu.tw/NEW_ISBNNet/main_DisplayRecord_Popup.php?KeepThis=true&Pact=ShowCard&Pkey=1080418%2A0061&TB_iframe=true&height=400&width=500"
+        }
+      ],
+      "textAccessibility": {
+        "bypassUsed": false,
+        "directlyConfirmable": false,
+        "mode": "catalog_metadata",
+        "originalText": false
+      },
+      "verdict": "reference_only",
+      "verdictBasis": "Exact catalog identity is useful for a future retrieval request, but edition pages, original text, and file identity are absent.",
+      "workedEvidence": {
+        "note": "No independently identifiable worked example is exposed by the catalog record.",
+        "present": false
+      }
+    },
+    {
+      "accessedOn": "2026-08-04",
+      "candidateId": "ziwei-source-e4ff4ebc70d49f95",
+      "contentClasses": {
+        "conditional_traditional_statement": {
+          "basis": "Conditions and exceptions cannot be audited from the available access.",
+          "status": "not_allowed"
+        },
+        "deterministic_calculation_rule": {
+          "basis": "Limited preview and missing file hash do not meet admission.",
+          "status": "not_allowed"
+        },
+        "interpretive_prose": {
+          "basis": "Interpretive prose is never promoted by this baseline.",
+          "status": "not_allowed"
+        },
+        "table_mapping": {
+          "basis": "No stable page image/file identity is available.",
+          "status": "not_allowed"
+        },
+        "terminology_alias": {
+          "basis": "Bibliographic metadata cannot establish the edition's complete terminology.",
+          "status": "not_allowed"
+        },
+        "worked_example": {
+          "basis": "No independently reproducible example is available.",
+          "status": "not_allowed"
+        }
+      },
+      "fileIdentity": {
+        "byteSha256": null,
+        "hashStatus": "not_available",
+        "inferred": false,
+        "kind": "catalog_record",
+        "sizeBytes": null,
+        "url": "https://books.google.com/books?id=fo7VEAAAQBAJ"
+      },
+      "independence": {
+        "basis": "Distinct publisher, year, page count, and ISBN in the public record.",
+        "countsAsIndependentCandidate": true,
+        "groupKey": "edition:isbn:9786263503601",
+        "status": "established"
+      },
+      "legacyOccurrenceLink": null,
+      "legalAccess": {
+        "bypassUsed": false,
+        "fullTextStoredInRepository": false,
+        "limitNote": "The public record says no eBook is available; visible metadata/preview does not establish complete page access.",
+        "retrievalAllowed": true,
+        "status": "limited"
+      },
+      "lineage": {
+        "basis": "The Google Books record describes the 2000 publication but does not establish the underlying scan or source edition.",
+        "groupKey": null,
+        "inferred": false,
+        "relation": "unknown"
+      },
+      "locationIdentity": {
+        "editionLocation": "333-page Google Books record; ISBN 9786263503601",
+        "page": null,
+        "stable": false,
+        "volumeChapterSection": null
+      },
+      "missingEvidence": [
+        "full_original_text_access",
+        "volume_chapter_page_location",
+        "scan_or_pdf_identity",
+        "immutable_file_hash"
+      ],
+      "ruleExtractability": {
+        "conditionalStatement": false,
+        "deterministicRule": false,
+        "note": "Preview and bibliographic metadata do not support complete rule/condition/exception separation.",
+        "tableMapping": false,
+        "workedExample": false
+      },
+      "sourceIdentity": {
+        "authorEditor": [
+          "陳希夷",
+          "鼎文書局"
+        ],
+        "edition": "2000 publication, 333 pages",
+        "publisher": "鼎文書局",
+        "signature": "紫微斗數全書（命007）",
+        "status": "closed",
+        "year": 2000
+      },
+      "sourceKey": "google-books-2000-dingwen-ming007",
+      "stableUrls": [
+        {
+          "role": "publisher_metadata_and_limited_preview",
+          "url": "https://books.google.com/books/about/%E7%B4%AB%E5%BE%AE%E6%96%97%E6%95%B8%E5%85%A8%E6%9B%B8_%E5%91%BD007.html?id=fo7VEAAAQBAJ"
+        }
+      ],
+      "textAccessibility": {
+        "bypassUsed": false,
+        "directlyConfirmable": false,
+        "mode": "limited_preview",
+        "originalText": false
+      },
+      "verdict": "access_blocked",
+      "verdictBasis": "The edition identity is substantially specified, but complete original text, exact location, and immutable file identity are unavailable through the public record.",
+      "workedEvidence": {
+        "note": "No independently reproducible worked fixture was identified.",
+        "present": false
+      }
+    }
+  ],
+  "candidateValidation": {
+    "errors": {
+      "ziwei-source-08ac4e56d2962f7c": [],
+      "ziwei-source-0f094c55d61a5719": [],
+      "ziwei-source-86871df22b3a7e17": [],
+      "ziwei-source-bbe0465fa5344e51": [],
+      "ziwei-source-cdb77fdafe9fdd2f": [],
+      "ziwei-source-e4ff4ebc70d49f95": []
+    },
+    "pass": true
+  },
+  "checker": "scripts/check-ziwei-clean-rule-corpus-source-selection-baseline-v0.mjs",
+  "contentClassPolicy": {},
+  "deterministicContract": {
+    "candidateId": "sha256(sourceKey + bibliographic identity + stableUrls) truncated to 16 hex",
+    "fileHashScope": "candidate file identity is recorded only when directly evidenced; null is not upgraded",
+    "repeatedMaterialization": "complete.json bytes must be identical at fixed HEAD and input bytes",
+    "sorting": "candidateId lexicographic ascending",
+    "sourceTextNormalization": "forbidden; no source text is stored",
+    "timestamps": "accessedOn is an explicit inventory field; generated time is forbidden"
+  },
+  "downstreamBoundaries": {
+    "activation": "experimental",
+    "actualRuleCorpusGenerated": false,
+    "grounding": "blocked",
+    "interpretationGenerated": false,
+    "legacyOccurrenceAutoLink": false,
+    "promptGenerated": false,
+    "rankingGenerated": false,
+    "readiness": "not_safe_to_start",
+    "stableClaimCount": 0
+  },
+  "independentCandidateCount": 4,
+  "independentCandidateGroupKeys": [
+    "academic:097CGU05121028",
+    "edition:isbn:978-626-7723-02-9",
+    "edition:isbn:978-986-97737-1-3",
+    "edition:isbn:9786263503601"
+  ],
+  "lineageAccounting": {
+    "noPopularityOrCandidateCountRanking": true,
+    "rule": "Only independence.status=established and countsAsIndependentCandidate=true contributes to independentCandidateCount.",
+    "unresolvedTranscriptionGroupsExcluded": [
+      "unresolved-traditional-quanshu-transcription"
+    ]
+  },
+  "materializer": "scripts/materialize-ziwei-clean-rule-corpus-source-selection-baseline-v0.mjs",
+  "observedHead": "2595e087eaea4adb667a0280a677476aebcb80df",
+  "prohibitedChangesPreserved": [
+    "legacy occurrence provenance",
+    "legacy source-recovery artifacts",
+    "existing guards and audits",
+    "readiness/grounding/activation states",
+    "calculation/rule corpus/claims/interpretation/questions/advice/ranking/prompts",
+    "UI/API/DB/LLM/production consumers/tri-system envelope"
+  ],
+  "schemaVersion": "ziwei-clean-rule-corpus-source-selection-baseline-v0",
+  "scope": "source_candidate_inventory_and_admission_assessment_only; no clean rule corpus materialized",
+  "selectionDecision": {
+    "admissibleCandidateIds": [],
+    "admissibleWithLimitsCandidateIds": [],
+    "firstCleanCorpusPilotSourceId": null,
+    "reason": "No candidate simultaneously closes exact edition, stable source location, directly confirmable original text, and immutable file identity without access restrictions. Do not lower the threshold or generate corpus content.",
+    "status": "blocked"
+  },
+  "sourceAdmissionContract": {
+    "admissibleRequirements": [
+      "closed signature/author-editor/edition/publisher/year",
+      "stable edition and volume/chapter/section location",
+      "direct original text confirmation",
+      "legal access without bypass",
+      "verified file hash for unqualified admissible"
+    ],
+    "atomicAdmissionUnit": "one source edition or explicitly identified digital witness plus its location/file/lineage/access evidence",
+    "forbiddenShortcuts": [
+      "catalog_as_scan",
+      "inferred_file_identity",
+      "inferred_lineage",
+      "mirror_or_reprint_double_count",
+      "blog_or_ai_unattributed_promotion",
+      "access_bypass",
+      "legacy_occurrence_auto_link",
+      "readiness_grounding_activation_promotion",
+      "nondeterministic_id_or_sort"
+    ],
+    "limitedRequirements": [
+      "same edition/location/original-text/legal gates",
+      "missing hash or other declared limit must be explicit",
+      "no interpretive prose promotion"
+    ],
+    "requiredAxes": [
+      "sourceIdentity",
+      "locationIdentity",
+      "fileIdentity",
+      "textAccessibility",
+      "lineage",
+      "ruleExtractability",
+      "workedEvidence",
+      "legalAccess"
+    ],
+    "schema": "ziwei-clean-rule-corpus-source-admission-v0",
+    "verdicts": [
+      "admissible",
+      "admissible_with_limits",
+      "reference_only",
+      "rejected",
+      "access_blocked",
+      "identity_unresolved"
+    ],
+    "version": "0.1.0"
+  },
+  "verdictDistribution": {
+    "access_blocked": 3,
+    "admissible": 0,
+    "admissible_with_limits": 0,
+    "identity_unresolved": 1,
+    "reference_only": 2,
+    "rejected": 0
+  },
+  "verdictToken": "ziwei_clean_rule_corpus_source_selection_partial_blocked"
+}
