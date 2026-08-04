@@ -1,0 +1,73 @@
+{
+  "boundaries": {
+    "activation": "experimental",
+    "engineModified": false,
+    "grounding": "blocked",
+    "pdfStoredInGit": false,
+    "pilotOverwritten": false,
+    "productionRuleModified": false,
+    "readiness": "not_safe_to_start",
+    "renderStoredInGit": false,
+    "stableClaimCount": 0
+  },
+  "comparisonSummary": {
+    "deterministicOrdering": true,
+    "firstDivergence": null,
+    "inputCount": 144,
+    "matchCount": 144,
+    "mismatchCount": 0
+  },
+  "limitations": [
+    "Reviewer-B visual review is source-first but cannot prove a fully independent human process.",
+    "Small table glyphs remain unresolved where scan quality is insufficient.",
+    "Acceptance is source-backed rule reconciliation only, not truth, personal meaning, readiness, grounding, or activation evidence."
+  ],
+  "pilotImmutability": {
+    "actualHashes": {
+      "comparison": "fc831c4143dcdc840dc732355abd4cf4006986d2e764fb53fedbfe839642e964",
+      "normalizedRule": "05999a39ad715f7a2b43d98571dcc9857286c187dd4da9279c86a06d21a7fc7b",
+      "transcription": "d33e7f42b48eb9fde037e4fb8cd244a96f7371ca64b4d59f0fd9e3a1a2011a9a"
+    },
+    "expectedHashes": {
+      "comparison": "fc831c4143dcdc840dc732355abd4cf4006986d2e764fb53fedbfe839642e964",
+      "normalizedRule": "05999a39ad715f7a2b43d98571dcc9857286c187dd4da9279c86a06d21a7fc7b",
+      "transcription": "d33e7f42b48eb9fde037e4fb8cd244a96f7371ca64b4d59f0fd9e3a1a2011a9a"
+    },
+    "unchanged": true
+  },
+  "schemaVersion": "ziwei-ming-shen-seed-acceptance-v0-acceptance-v0",
+  "semanticDiscrepancy": false,
+  "semanticDiscrepancyIds": [],
+  "sourceTrace": {
+    "directLiteraryEvidence": {
+      "hourBranches": "partial: visible branch examples and grid labels; complete 12-item domain is normalization",
+      "indexModulo": "implementation normalization, not a direct source glyph claim",
+      "lunarMonths": "partial: visible examples and 十二月建 context; full 1..12 is normalization",
+      "mingShenDirection": "supported: 命宮逆至生時 and 順到生時即安身",
+      "palaceEnumMapping": "implementation normalization: 命宮→life, 身宮→shen",
+      "yinYangStart": "supported: 正月自寅起"
+    },
+    "implementationNormalization": {
+      "branchOrder": [
+        "子",
+        "丑",
+        "寅",
+        "卯",
+        "辰",
+        "巳",
+        "午",
+        "未",
+        "申",
+        "酉",
+        "戌",
+        "亥"
+      ],
+      "formulas": {
+        "mingGong": "(monthPalaceIndex-hourIndex) mod 12",
+        "shenGong": "(monthPalaceIndex+hourIndex) mod 12"
+      },
+      "modulo": 12
+    }
+  },
+  "verdict": "ziwei_ming_shen_seed_accepted_with_declared_limits"
+}

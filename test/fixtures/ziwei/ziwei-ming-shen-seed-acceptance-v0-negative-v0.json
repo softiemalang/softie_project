@@ -1,0 +1,17 @@
+{
+  "schemaVersion": "ziwei-ming-shen-seed-acceptance-v0-negative-v0",
+  "cases": [
+    { "id": "source-first-impersonation", "path": "reviewerB.blindStatus", "value": "after_existing_artifact_read", "finding": "source_first_impersonation" },
+    { "id": "render-hash-tamper", "path": "reviewerB.render.renderSha256.8", "value": "0", "finding": "artifact_not_reproducible" },
+    { "id": "ocr-canonical", "path": "reviewerB.ocrPolicy.canonical", "value": true, "finding": "ocr_canonical_promotion" },
+    { "id": "uncertainty-finalized", "path": "reviewerB.pages.0.uncertainty", "value": [], "finding": "uncertain_glyph_auto_finalization" },
+    { "id": "table-direction-hidden", "path": "reviewerB.pages.0.glyphs.table.direction", "value": "", "finding": "table_layout_direction_hidden" },
+    { "id": "semantic-relabeled", "path": "discrepancies.0.classification", "value": "rule-semantic discrepancy", "finding": "semantic_discrepancy_collapsed" },
+    { "id": "pilot-overwrite", "path": "acceptance.boundaries.pilotOverwritten", "value": true, "finding": "promotion_or_overwrite" },
+    { "id": "mismatch-hidden", "path": "comparison.matchCount", "value": 0, "finding": "mismatch_hidden" },
+    { "id": "interpretive-ingestion", "path": "acceptance.limitations.0", "value": "modern interpretation prose", "finding": "artifact_not_reproducible" },
+    { "id": "promotion", "path": "acceptance.boundaries.readiness", "value": "ready", "finding": "promotion_or_overwrite" },
+    { "id": "pdf-git", "path": "acceptance.boundaries.pdfStoredInGit", "value": true, "finding": "artifact_not_reproducible" },
+    { "id": "nondeterministic-order", "path": "comparison.rows", "swapFirstTwo": true, "finding": "nondeterministic_id_or_order" }
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "items": [
+    {
+      "a": "寅正巳順數生月逢",
+      "b": "寅正順數生月逢",
+      "classification": "uncertain but rule-neutral",
+      "id": "p8-rule-first-phrase",
+      "impact": "B records the visible reading and preserves uncertainty; the following 解 text independently supports 寅 start, month progression, and the normalized directions. No rule or engine change.",
+      "locator": "二十五 / 九、定命、身二宮 / rule phrase",
+      "page": 8
+    },
+    {
+      "a": "Pilot retains a compact rule-bearing sentence and paraphrase; auxiliary table is only a visual cross-check.",
+      "b": "B records line-level rule glyphs and table layout/examples.",
+      "classification": "punctuation·spacing·layout only",
+      "id": "p8-transcription-scope",
+      "impact": "Evidence coverage is additive; no existing pilot bytes are overwritten.",
+      "locator": "二十五 / rule text and 起五行冠蓋簡索表",
+      "page": 8
+    },
+    {
+      "a": "Pilot marks PDF 10 as visual cross-check only and has no canonical table transcription.",
+      "b": "B records the visible matrix labels, row/column boundaries, and unresolved small cells.",
+      "classification": "punctuation·spacing·layout only",
+      "id": "p10-auxiliary-table-scope",
+      "impact": "The table is retained as source evidence only; it does not alter the ming/shen seed rule.",
+      "locator": "二十九 / auxiliary table",
+      "page": 10
+    },
+    {
+      "a": "Normalized rule materializes 1..12, all 12 branches, modulo 12, and engine enum mapping.",
+      "b": "Direct source evidence explicitly shows 寅 start, month/hour examples, 命逆/身順, and multiple branches; complete ranges and mappings remain implementation normalization.",
+      "classification": "uncertain but rule-neutral",
+      "id": "rule-trace-completeness",
+      "impact": "Trace separates literary support from implementation normalization; stable claim count remains 0.",
+      "locator": "寅起月、十二月與時支",
+      "page": 8
+    }
+  ],
+  "schemaVersion": "ziwei-ming-shen-seed-acceptance-v0-discrepancies-v0"
+}

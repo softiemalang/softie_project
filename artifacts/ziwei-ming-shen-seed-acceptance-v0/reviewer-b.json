@@ -1,0 +1,104 @@
+{
+  "blindStatus": "source_first_before_existing_artifact_read",
+  "ocrPolicy": {
+    "canonical": false,
+    "note": "Visual glyph reading only; OCR is not an evidence source.",
+    "used": false
+  },
+  "pages": [
+    {
+      "glyphs": {
+        "heading": "九、定命、身二宮",
+        "ruleText": [
+          "命盤上的十干冠蓋既備，則需樹立問命者之「命」宮及「身」宮。",
+          "寅正順數生月逢；解：從寅宮起正月，順數到生月停止。",
+          "生月起子兩頭通；宮起「子」時，四月者起「子」時於「巳」宮。",
+          "逆至生時為命宮；順到生時即安身。"
+        ],
+        "table": {
+          "direction": "table is read by its drawn rows and columns; no transpose inferred",
+          "heading": "起五行冠蓋簡索表",
+          "layout": "six columns; header row is 生年天干 followed by 甲乙丙丁戊; rows proceed by the visible 己庚辛壬癸 cells",
+          "visibleExamples": [
+            "寅丙",
+            "寅戊",
+            "寅庚",
+            "寅壬",
+            "寅甲"
+          ]
+        }
+      },
+      "locator": "left scanned leaf; 九、定命、身二宮",
+      "pdfPage": 8,
+      "printedPage": "二十五",
+      "uncertainty": [
+        "The first rule phrase glyph read as 寅正順數生月逢 is retained as a reviewer reading; the small table cells are not silently completed beyond visible glyphs."
+      ]
+    },
+    {
+      "glyphs": {
+        "heading": "十三、單述命、身同宮",
+        "table": {
+          "direction": "row and column direction follows the drawn grid; no OCR reconstruction used",
+          "layout": "visible matrix with a diagonal 生月/命身/生時 header and branch-labelled rows; row/column boundaries are retained",
+          "visibleLabels": [
+            "生月",
+            "命身",
+            "生時",
+            "命",
+            "身",
+            "子",
+            "丑",
+            "寅",
+            "卯",
+            "辰",
+            "巳",
+            "午",
+            "未",
+            "申",
+            "酉",
+            "戌",
+            "亥"
+          ]
+        }
+      },
+      "locator": "left scanned leaf; auxiliary five-element-bureau table and 十三、單述命、身同宮",
+      "pdfPage": 10,
+      "printedPage": "二十九",
+      "uncertainty": [
+        "Several small grid glyphs are scan-noisy; unresolved cells remain unresolved and are not promoted to canonical text."
+      ]
+    }
+  ],
+  "render": {
+    "cropReview": {
+      "dpi": 350,
+      "half": "left",
+      "sha256": {
+        "8": "aafcd124510c65f103f0066992378f9ff97fa0bf89b713df54616e6a7bed7830",
+        "10": "9d2340a80f18894b40cef8731237455a5d69512112de2e5af36fd301b8fc8af1"
+      }
+    },
+    "dpi": 220,
+    "format": "png",
+    "pages": [
+      8,
+      10
+    ],
+    "renderSha256": {
+      "8": "1fb1f9ad6651fad1e20e3e7dd1bac85b0c4128b3240e906b2f3289dcdac485e9",
+      "10": "b74524696e264c91256801fff0f7974a31564e30e4a793ad7aac1d0d8b4d7342"
+    },
+    "settings": "-png -r 220 -singlefile",
+    "tool": "pdftoppm"
+  },
+  "reviewer": "B",
+  "schemaVersion": "ziwei-ming-shen-seed-acceptance-v0-reviewer-b-v0",
+  "source": {
+    "encrypted": false,
+    "pdfPageCount": 219,
+    "pdfPath": "/Users/softie/Downloads/命-南北山人_紫微斗数全书.pdf",
+    "pdfSha256": "4786a94ab454acdabf9716d7c0db4756dbcbde99a88bc45fda254863c1961023"
+  },
+  "sourceFirstDraftSha256": "b84f435047c9792bbad2f1af92a6f2b5cd4b3372d1d674c34f15185754956375"
+}
