@@ -1,0 +1,17 @@
+{
+  "schemaVersion": "ziwei-ming-shen-clean-rule-seed-pilot-negative-v0",
+  "cases": [
+    { "id": "pdf-hash-tamper", "path": "sourceWitness.pdfSha256", "value": "0000000000000000000000000000000000000000000000000000000000000000", "finding": "pdf_hash_or_source_ref" },
+    { "id": "ocr-canonical", "path": "transcription.ocrStatus", "value": "canonical", "finding": "ocr_canonical_promotion" },
+    { "id": "uncertainty-auto-corrected", "path": "transcription.reviewerStatus", "value": "reviewed_and_certain", "finding": "uncertainty_auto_correction_or_review_status" },
+    { "id": "mixed-rule", "path": "normalizedRule.sourceTranscriptionId", "value": "other-transcription", "finding": "transcription_normalization_mixing" },
+    { "id": "silent-direction", "path": "normalizedRule.hourPlacement.directionForMing", "value": "forward (+1)", "finding": "silent_direction_or_index_change" },
+    { "id": "partial-exhaustive", "path": "comparison.rows", "truncate": 143, "finding": "not_exhaustive_144" },
+    { "id": "mismatch-hidden", "path": "comparison.matchCount", "value": 0, "finding": "mismatch_hidden_or_forced_equivalence" },
+    { "id": "source-engine-reuse", "path": "independence.sourceEvaluatorImportsProductionEngine", "value": true, "finding": "source_evaluator_reuse" },
+    { "id": "interpretive-ingestion", "path": "normalizedRule.exclusions", "append": "interpretive_prose", "finding": "source_rule_mutated" },
+    { "id": "promotion", "path": "boundaries.readiness", "value": "ready", "finding": "promotion_or_pdf_git_inclusion" },
+    { "id": "pdf-git", "path": "boundaries.pdfStoredInGit", "value": true, "finding": "promotion_or_pdf_git_inclusion" },
+    { "id": "nondeterministic-order", "path": "comparison.rows", "swapFirstTwo": true, "finding": "row_id_or_ordering" }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "glyphPreservingText": "寅正巳順數生月逢。生月起子兩頭通。逆至生時為命宮。順到生時即安身。",
+  "locator": "PDF page 8, left printed page 二十五, section heading 九、定命、身二宮; rule text columns under 口訣如左",
+  "ocrStatus": "exploration_only_not_canonical",
+  "pdfPage": 8,
+  "printedPage": "二十五",
+  "reviewerStatus": "single_human_review_complete_second_review_pending",
+  "ruleBearingExplanation": "解：從寅宮起正月，順數到生月停止；再於數至的生月起「子」時，逆數到問命者的生時停止為命宮，順數到生時即安身。",
+  "schemaVersion": "ziwei-ming-shen-clean-rule-seed-pilot-v0-transcription-v0",
+  "section": "九、定命、身二宮",
+  "sourcePdfSha256": "4786a94ab454acdabf9716d7c0db4756dbcbde99a88bc45fda254863c1961023",
+  "transcriptionId": "ziwei-ming-shen-p25-rule-transcription-v0",
+  "uncertainty": [
+    {
+      "field": "glyphPreservingText",
+      "note": "Vertical scan glyphs were manually read from the original PDF image; second reviewer confirmation remains pending.",
+      "status": "human_readable_but_single_review"
+    },
+    {
+      "field": "ruleBearingExplanation",
+      "note": "Only the direction/start/stop mechanics needed by the normalized rule are retained; this is not presented as a full canonical transcription.",
+      "status": "scope_minimized_paraphrase_not_canonical"
+    },
+    {
+      "field": "printedPage",
+      "note": "The left page margin visibly shows 二十五; no modern edition page identity is inferred.",
+      "status": "page_label_observed"
+    }
+  ]
+}

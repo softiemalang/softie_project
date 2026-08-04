@@ -1,0 +1,5711 @@
+{
+  "artifactFiles": {
+    "comparison": "artifacts/ziwei-ming-shen-clean-rule-seed-pilot-v0/comparison.json",
+    "normalizedRule": "artifacts/ziwei-ming-shen-clean-rule-seed-pilot-v0/normalized-rule.json",
+    "transcription": "artifacts/ziwei-ming-shen-clean-rule-seed-pilot-v0/transcription.json"
+  },
+  "artifactHashes": {
+    "comparisonSha256": "fc831c4143dcdc840dc732355abd4cf4006986d2e764fb53fedbfe839642e964",
+    "normalizedRuleSha256": "05999a39ad715f7a2b43d98571dcc9857286c187dd4da9279c86a06d21a7fc7b",
+    "transcriptionSha256": "d33e7f42b48eb9fde037e4fb8cd244a96f7371ca64b4d59f0fd9e3a1a2011a9a"
+  },
+  "artifactIdentity": {
+    "artifactId": "ziwei-ming-shen-clean-rule-seed-pilot-v0",
+    "artifactPayloadSha256": "dc1e6059b0ad63a26cb4aa037796d0bb1bd6b8e8708fad170296144684d7494d",
+    "contractVersion": "artifact-identity-v1",
+    "generation": {
+      "baseHead": "c949669201c2b4c11de4dfdec9eb739cdba6ce38",
+      "baseHeadSource": "git rev-parse HEAD at materialization",
+      "includedCommit": null,
+      "includedCommitSource": "unknown_at_generation; artifact may be included by a later commit"
+    },
+    "inputs": [
+      {
+        "byteSha256": "84cc19ba2d6027f5b0c07747c6763fa5553935337230089c740395b121b89a0e",
+        "path": "src/ziwei/mingShenCleanRuleSeedPilot.js"
+      },
+      {
+        "byteSha256": "5336f15968b4c618d9b1248b0967deab22b778f48996cb60939ab19cabadf513",
+        "path": "src/ziwei/ziweiResolver.js"
+      }
+    ],
+    "materializer": {
+      "path": "scripts/materialize-ziwei-ming-shen-clean-rule-seed-pilot-v0.mjs",
+      "version": "0.1.0"
+    }
+  },
+  "basisHead": "c949669201c2b4c11de4dfdec9eb739cdba6ce38",
+  "boundaries": {
+    "activation": "experimental",
+    "claimPromoted": false,
+    "engineModified": false,
+    "grounding": "blocked",
+    "interpretationGenerated": false,
+    "pdfStoredInGit": false,
+    "readiness": "not_safe_to_start",
+    "stableClaimCount": 0
+  },
+  "causePreservation": [
+    "transcription_uncertainty",
+    "direction_or_index_convention",
+    "edition_rule_variant",
+    "production_engine_implementation",
+    "comparison_configuration"
+  ],
+  "checker": "scripts/check-ziwei-ming-shen-clean-rule-seed-pilot-v0.mjs",
+  "comparison": {
+    "expectedInputCount": 144,
+    "firstDivergence": null,
+    "inputCount": 144,
+    "matchCount": 144,
+    "mismatchCount": 0,
+    "mismatchDistribution": {
+      "byField": {
+        "mingGong": 0,
+        "shenGong": 0
+      }
+    },
+    "ordering": "lunarMonth ascending 1..12, then TRADITIONAL_BRANCH_ORDER",
+    "rows": [
+      {
+        "divergence": null,
+        "input": {
+          "hourBranch": "子",
+          "lunarMonth": 1
+        },
+        "match": true,
+        "orderingKey": "01:00",
+        "productionEngine": {
+          "mingGong": {
+            "branch": "寅",
+            "id": "life",
+            "index": 2,
+            "name": "명궁"
+          },
+          "shenGong": {
+            "branch": "寅",
+            "id": "shen",
+            "index": 2,
+            "name": "신궁"
+          }
+        },
+        "rowId": "lunar-month-01-hour-子",
+        "sourceDerived": {
+          "mingGong": {
+            "branch": "寅",
+            "branchIndex": 2,
+            "engineId": "life",
+            "traditionalName": "命宮"
+          },
+          "shenGong": {
+            "branch": "寅",
+            "branchIndex": 2,
+            "engineId": "shen",
+            "traditionalName": "身宮"
+          }
+        }
+      },
+      {
+        "divergence": null,
+        "input": {
+          "hourBranch": "丑",
+          "lunarMonth": 1
+        },
+        "match": true,
+        "orderingKey": "01:01",
+        "productionEngine": {
+          "mingGong": {
+            "branch": "丑",
+            "id": "life",
+            "index": 1,
+            "name": "명궁"
+          },
+          "shenGong": {
+            "branch": "卯",
+            "id": "shen",
+            "index": 3,
+            "name": "신궁"
+          }
+        },
+        "rowId": "lunar-month-01-hour-丑",
+        "sourceDerived": {
+          "mingGong": {
+            "branch": "丑",
+            "branchIndex": 1,
+            "engineId": "life",
+            "traditionalName": "命宮"
+          },
+          "shenGong": {
+            "branch": "卯",
+            "branchIndex": 3,
+            "engineId": "shen",
+            "traditionalName": "身宮"
+          }
+        }
+      },
+      {
+        "divergence": null,
+        "input": {
+          "hourBranch": "寅",
+          "lunarMonth": 1
+        },
+        "match": true,
+        "orderingKey": "01:02",
+        "productionEngine": {
+          "mingGong": {
+            "branch": "子",
+            "id": "life",
+            "index": 0,
+            "name": "명궁"
+          },
+          "shenGong": {
+            "branch": "辰",
+            "id": "shen",
+            "index": 4,
+            "name": "신궁"
+          }
+        },
+        "rowId": "lunar-month-01-hour-寅",
+        "sourceDerived": {
+          "mingGong": {
+            "branch": "子",
+            "branchIndex": 0,
+            "engineId": "life",
+            "traditionalName": "命宮"
+          },
+          "shenGong": {
+            "branch": "辰",
+            "branchIndex": 4,
+            "engineId": "shen",
+            "traditionalName": "身宮"
+          }
+        }
+      },
+      {
+        "divergence": null,
+        "input": {
+          "hourBranch": "卯",
+          "lunarMonth": 1
+        },
+        "match": true,
+        "orderingKey": "01:03",
+        "productionEngine": {
+          "mingGong": {
+            "branch": "亥",
+            "id": "life",
+            "index": 11,
+            "name": "명궁"
+          },
+          "shenGong": {
+            "branch": "巳",
+            "id": "shen",
+            "index": 5,
+            "name": "신궁"
+          }
+        },
+        "rowId": "lunar-month-01-hour-卯",
+        "sourceDerived": {
+          "mingGong": {
+            "branch": "亥",
+            "branchIndex": 11,
+            "engineId": "life",
+            "traditionalName": "命宮"
+          },
+          "shenGong": {
+            "branch": "巳",
+            "branchIndex": 5,
+            "engineId": "shen",
+            "traditionalName": "身宮"
+          }
+        }
+      },
+      {
+        "divergence": null,
+        "input": {
+          "hourBranch": "辰",
+          "lunarMonth": 1
+        },
+        "match": true,
+        "orderingKey": "01:04",
+        "productionEngine": {
+          "mingGong": {
+            "branch": "戌",
+            "id": "life",
+            "index": 10,
+            "name": "명궁"
+          },
+          "shenGong": {
+            "branch": "午",
+            "id": "shen",
+            "index": 6,
+            "name": "신궁"
+          }
+        },
+        "rowId": "lunar-month-01-hour-辰",
+        "sourceDerived": {
+          "mingGong": {
+            "branch": "戌",
+            "branchIndex": 10,
+            "engineId": "life",
+            "traditionalName": "命宮"
+          },
+          "shenGong": {
+            "branch": "午",
+            "branchIndex": 6,
+            "engineId": "shen",
+            "traditionalName": "身宮"
+          }
+        }
+      },
+      {
+        "divergence": null,
+        "input": {
+          "hourBranch": "巳",
+          "lunarMonth": 1
+        },
+        "match": true,
+        "orderingKey": "01:05",
+        "productionEngine": {
+          "mingGong": {
+            "branch": "酉",
+            "id": "life",
+            "index": 9,
+            "name": "명궁"
+          },
+          "shenGong": {
+            "branch": "未",
+            "id": "shen",
+            "index": 7,
+            "name": "신궁"
+          }
+        },
+        "rowId": "lunar-month-01-hour-巳",
+        "sourceDerived": {
+          "mingGong": {
+            "branch": "酉",
+            "branchIndex": 9,
+            "engineId": "life",
+            "traditionalName": "命宮"
+          },
+          "shenGong": {
+            "branch": "未",
+            "branchIndex": 7,
+            "engineId": "shen",
+            "traditionalName": "身宮"
+          }
+        }
+      },
+      {
+        "divergence": null,
+        "input": {
+          "hourBranch": "午",
+          "lunarMonth": 1
+        },
+        "match": true,
+        "orderingKey": "01:06",
+        "productionEngine": {
+          "mingGong": {
+            "branch": "申",
+            "id": "life",
+            "index": 8,
+            "name": "명궁"
+          },
+          "shenGong": {
+            "branch": "申",
+            "id": "shen",
+            "index": 8,
+            "name": "신궁"
+          }
+        },
+        "rowId": "lunar-month-01-hour-午",
+        "sourceDerived": {
+          "mingGong": {
+            "branch": "申",
+            "branchIndex": 8,
+            "engineId": "life",
+            "traditionalName": "命宮"
+          },
+          "shenGong": {
+            "branch": "申",
+            "branchIndex": 8,
+            "engineId": "shen",
+            "traditionalName": "身宮"
+          }
+        }
+      },
+      {
+        "divergence": null,
+        "input": {
+          "hourBranch": "未",
+          "lunarMonth": 1
+        },
+        "match": true,
+        "orderingKey": "01:07",
+        "productionEngine": {
+          "mingGong": {
+            "branch": "未",
+            "id": "life",
+            "index": 7,
+            "name": "명궁"
+          },
+          "shenGong": {
+            "branch": "酉",
+            "id": "shen",
+            "index": 9,
+            "name": "신궁"
+          }
+        },
+        "rowId": "lunar-month-01-hour-未",
+        "sourceDerived": {
+          "mingGong": {
+            "branch": "未",
+            "branchIndex": 7,
+            "engineId": "life",
+            "traditionalName": "命宮"
+          },
+          "shenGong": {
+            "branch": "酉",
+            "branchIndex": 9,
+            "engineId": "shen",
+            "traditionalName": "身宮"
+          }
+        }
+      },
+      {
+        "divergence": null,
+        "input": {
+          "hourBranch": "申",
+          "lunarMonth": 1
+        },
+        "match": true,
+        "orderingKey": "01:08",
+        "productionEngine": {
+          "mingGong": {
+            "branch": "午",
+            "id": "life",
+            "index": 6,
+            "name": "명궁"
+          },
+          "shenGong": {
+            "branch": "戌",
+            "id": "shen",
+            "index": 10,
+            "name": "신궁"
+          }
+        },
+        "rowId": "lunar-month-01-hour-申",
+        "sourceDerived": {
+          "mingGong": {
+            "branch": "午",
+            "branchIndex": 6,
+            "engineId": "life",
+            "traditionalName": "命宮"
+          },
+          "shenGong": {
+            "branch": "戌",
+            "branchIndex": 10,
+            "engineId": "shen",
+            "traditionalName": "身宮"
+          }
+        }
+      },
+      {
+        "divergence": null,
+        "input": {
+          "hourBranch": "酉",
+          "lunarMonth": 1
+        },
+        "match": true,
+        "orderingKey": "01:09",
+        "productionEngine": {
+          "mingGong": {
+            "branch": "巳",
+            "id": "life",
+            "index": 5,
+            "name": "명궁"
+          },
+          "shenGong": {
+            "branch": "亥",
+            "id": "shen",
+            "index": 11,
+            "name": "신궁"
+          }
+        },
+        "rowId": "lunar-month-01-hour-酉",
+        "sourceDerived": {
+          "mingGong": {
+            "branch": "巳",
+            "branchIndex": 5,
+            "engineId": "life",
+            "traditionalName": "命宮"
+          },
+          "shenGong": {
+            "branch": "亥",
+            "branchIndex": 11,
+            "engineId": "shen",
+            "traditionalName": "身宮"
+          }
+        }
+      },
+      {
+        "divergence": null,
+        "input": {
+          "hourBranch": "戌",
+          "lunarMonth": 1
+        },
+        "match": true,
+        "orderingKey": "01:10",
+        "productionEngine": {
+          "mingGong": {
+            "branch": "辰",
+            "id": "life",
+            "index": 4,
+            "name": "명궁"
+          },
+          "shenGong": {
+            "branch": "子",
+            "id": "shen",
+            "index": 0,
+            "name": "신궁"
+          }
+        },
+        "rowId": "lunar-month-01-hour-戌",
+        "sourceDerived": {
+          "mingGong": {
+            "branch": "辰",
+            "branchIndex": 4,
+            "engineId": "life",
+            "traditionalName": "命宮"
+          },
+          "shenGong": {
+            "branch": "子",
+            "branchIndex": 0,
+            "engineId": "shen",
+            "traditionalName": "身宮"
+          }
+        }
+      },
+      {
+        "divergence": null,
+        "input": {
+          "hourBranch": "亥",
+          "lunarMonth": 1
+        },
+        "match": true,
+        "orderingKey": "01:11",
+        "productionEngine": {
+          "mingGong": {
+            "branch": "卯",
+            "id": "life",
+            "index": 3,
+            "name": "명궁"
+          },
+          "shenGong": {
+            "branch": "丑",
+            "id": "shen",
+            "index": 1,
+            "name": "신궁"
+          }
+        },
+        "rowId": "lunar-month-01-hour-亥",
+        "sourceDerived": {
+          "mingGong": {
+            "branch": "卯",
+            "branchIndex": 3,
+            "engineId": "life",
+            "traditionalName": "命宮"
+          },
+          "shenGong": {
+            "branch": "丑",
+            "branchIndex": 1,
+            "engineId": "shen",
+            "traditionalName": "身宮"
+          }
+        }
+      },
+      {
+        "divergence": null,
+        "input": {
+          "hourBranch": "子",
+          "lunarMonth": 2
+        },
+        "match": true,
+        "orderingKey": "02:00",
+        "productionEngine": {
+          "mingGong": {
+            "branch": "卯",
+            "id": "life",
+            "index": 3,
+            "name": "명궁"
+          },
+          "shenGong": {
+            "branch": "卯",
+            "id": "shen",
+            "index": 3,
+            "name": "신궁"
+          }
+        },
+        "rowId": "lunar-month-02-hour-子",
+        "sourceDerived": {
+          "mingGong": {
+            "branch": "卯",
+            "branchIndex": 3,
+            "engineId": "life",
+            "traditionalName": "命宮"
+          },
+          "shenGong": {
+            "branch": "卯",
+            "branchIndex": 3,
+            "engineId": "shen",
+            "traditionalName": "身宮"
+          }
+        }
+      },
+      {
+        "divergence": null,
+        "input": {
+          "hourBranch": "丑",
+          "lunarMonth": 2
+        },
+        "match": true,
+        "orderingKey": "02:01",
+        "productionEngine": {
+          "mingGong": {
+            "branch": "寅",
+            "id": "life",
+            "index": 2,
+            "name": "명궁"
+          },
+          "shenGong": {
+            "branch": "辰",
+            "id": "shen",
+            "index": 4,
+            "name": "신궁"
+          }
+        },
+        "rowId": "lunar-month-02-hour-丑",
+        "sourceDerived": {
+          "mingGong": {
+            "branch": "寅",
+            "branchIndex": 2,
+            "engineId": "life",
+            "traditionalName": "命宮"
+          },
+          "shenGong": {
+            "branch": "辰",
+            "branchIndex": 4,
+            "engineId": "shen",
+            "traditionalName": "身宮"
+          }
+        }
+      },
+      {
+        "divergence": null,
+        "input": {
+          "hourBranch": "寅",
+          "lunarMonth": 2
+        },
+        "match": true,
+        "orderingKey": "02:02",
+        "productionEngine": {
+          "mingGong": {
+            "branch": "丑",
+            "id": "life",
+            "index": 1,
+            "name": "명궁"
+          },
+          "shenGong": {
+            "branch": "巳",
+            "id": "shen",
+            "index": 5,
+            "name": "신궁"
+          }
+        },
+        "rowId": "lunar-month-02-hour-寅",
+        "sourceDerived": {
+          "mingGong": {
+            "branch": "丑",
+            "branchIndex": 1,
+            "engineId": "life",
+            "traditionalName": "命宮"
+          },
+          "shenGong": {
+            "branch": "巳",
+            "branchIndex": 5,
+            "engineId": "shen",
+            "traditionalName": "身宮"
+          }
+        }
+      },
+      {
+        "divergence": null,
+        "input": {
+          "hourBranch": "卯",
+          "lunarMonth": 2
+        },
+        "match": true,
+        "orderingKey": "02:03",
+        "productionEngine": {
+          "mingGong": {
+            "branch": "子",
+            "id": "life",
+            "index": 0,
+            "name": "명궁"
+          },
+          "shenGong": {
+            "branch": "午",
+            "id": "shen",
+            "index": 6,
+            "name": "신궁"
+          }
+        },
+        "rowId": "lunar-month-02-hour-卯",
+        "sourceDerived": {
+          "mingGong": {
+            "branch": "子",
+            "branchIndex": 0,
+            "engineId": "life",
+            "traditionalName": "命宮"
+          },
+          "shenGong": {
+            "branch": "午",
+            "branchIndex": 6,
+            "engineId": "shen",
+            "traditionalName": "身宮"
+          }
+        }
+      },
+      {
+        "divergence": null,
+        "input": {
+          "hourBranch": "辰",
+          "lunarMonth": 2
+        },
+        "match": true,
+        "orderingKey": "02:04",
+        "productionEngine": {
+          "mingGong": {
+            "branch": "亥",
+            "id": "life",
+            "index": 11,
+            "name": "명궁"
+          },
+          "shenGong": {
+            "branch": "未",
+            "id": "shen",
+            "index": 7,
+            "name": "신궁"
+          }
+        },
+        "rowId": "lunar-month-02-hour-辰",
+        "sourceDerived": {
+          "mingGong": {
+            "branch": "亥",
+            "branchIndex": 11,
+            "engineId": "life",
+            "traditionalName": "命宮"
+          },
+          "shenGong": {
+            "branch": "未",
+            "branchIndex": 7,
+            "engineId": "shen",
+            "traditionalName": "身宮"
+          }
+        }
+      },
+      {
+        "divergence": null,
+        "input": {
+          "hourBranch": "巳",
+          "lunarMonth": 2
+        },
+        "match": true,
+        "orderingKey": "02:05",
+        "productionEngine": {
+          "mingGong": {
+            "branch": "戌",
+            "id": "life",
+            "index": 10,
+            "name": "명궁"
+          },
+          "shenGong": {
+            "branch": "申",
+            "id": "shen",
+            "index": 8,
+            "name": "신궁"
+          }
+        },
+        "rowId": "lunar-month-02-hour-巳",
+        "sourceDerived": {
+          "mingGong": {
+            "branch": "戌",
+            "branchIndex": 10,
+            "engineId": "life",
+            "traditionalName": "命宮"
+          },
+          "shenGong": {
+            "branch": "申",
+            "branchIndex": 8,
+            "engineId": "shen",
+            "traditionalName": "身宮"
+          }
+        }
+      },
+      {
+        "divergence": null,
+        "input": {
+          "hourBranch": "午",
+          "lunarMonth": 2
+        },
+        "match": true,
+        "orderingKey": "02:06",
+        "productionEngine": {
+          "mingGong": {
+            "branch": "酉",
+            "id": "life",
+            "index": 9,
+            "name": "명궁"
+          },
+          "shenGong": {
+            "branch": "酉",
+            "id": "shen",
+            "index": 9,
+            "name": "신궁"
+          }
+        },
+        "rowId": "lunar-month-02-hour-午",
+        "sourceDerived": {
+          "mingGong": {
+            "branch": "酉",
+            "branchIndex": 9,
+            "engineId": "life",
+            "traditionalName": "命宮"
+          },
+          "shenGong": {
+            "branch": "酉",
+            "branchIndex": 9,
+            "engineId": "shen",
+            "traditionalName": "身宮"
+          }
+        }
+      },
+      {
+        "divergence": null,
+        "input": {
+          "hourBranch": "未",
+          "lunarMonth": 2
+        },
+        "match": true,
+        "orderingKey": "02:07",
+        "productionEngine": {
+          "mingGong": {
+            "branch": "申",
+            "id": "life",
+            "index": 8,
+            "name": "명궁"
+          },
+          "shenGong": {
+            "branch": "戌",
+            "id": "shen",
+            "index": 10,
+            "name": "신궁"
+          }
+        },
+        "rowId": "lunar-month-02-hour-未",
+        "sourceDerived": {
+          "mingGong": {
+            "branch": "申",
+            "branchIndex": 8,
+            "engineId": "life",
+            "traditionalName": "命宮"
+          },
+          "shenGong": {
+            "branch": "戌",
+            "branchIndex": 10,
+            "engineId": "shen",
+            "traditionalName": "身宮"
+          }
+        }
+      },
+      {
+        "divergence": null,
+        "input": {
+          "hourBranch": "申",
+          "lunarMonth": 2
+        },
+        "match": true,
+        "orderingKey": "02:08",
+        "productionEngine": {
+          "mingGong": {
+            "branch": "未",
+            "id": "life",
+            "index": 7,
+            "name": "명궁"
+          },
+          "shenGong": {
+            "branch": "亥",
+            "id": "shen",
+            "index": 11,
+            "name": "신궁"
+          }
+        },
+        "rowId": "lunar-month-02-hour-申",
+        "sourceDerived": {
+          "mingGong": {
+            "branch": "未",
+            "branchIndex": 7,
+            "engineId": "life",
+            "traditionalName": "命宮"
+          },
+          "shenGong": {
+            "branch": "亥",
+            "branchIndex": 11,
+            "engineId": "shen",
+            "traditionalName": "身宮"
+          }
+        }
+      },
+      {
+        "divergence": null,
+        "input": {
+          "hourBranch": "酉",
+          "lunarMonth": 2
+        },
+        "match": true,
+        "orderingKey": "02:09",
+        "productionEngine": {
+          "mingGong": {
+            "branch": "午",
+            "id": "life",
+            "index": 6,
+            "name": "명궁"
+          },
+          "shenGong": {
+            "branch": "子",
+            "id": "shen",
+            "index": 0,
+            "name": "신궁"
+          }
+        },
+        "rowId": "lunar-month-02-hour-酉",
+        "sourceDerived": {
+          "mingGong": {
+            "branch": "午",
+            "branchIndex": 6,
+            "engineId": "life",
+            "traditionalName": "命宮"
+          },
+          "shenGong": {
+            "branch": "子",
+            "branchIndex": 0,
+            "engineId": "shen",
+            "traditionalName": "身宮"
+          }
+        }
+      },
+      {
+        "divergence": null,
+        "input": {
+          "hourBranch": "戌",
+          "lunarMonth": 2
+        },
+        "match": true,
+        "orderingKey": "02:10",
+        "productionEngine": {
+          "mingGong": {
+            "branch": "巳",
+            "id": "life",
+            "index": 5,
+            "name": "명궁"
+          },
+          "shenGong": {
+            "branch": "丑",
+            "id": "shen",
+            "index": 1,
+            "name": "신궁"
+          }
+        },
+        "rowId": "lunar-month-02-hour-戌",
+        "sourceDerived": {
+          "mingGong": {
+            "branch": "巳",
+            "branchIndex": 5,
+            "engineId": "life",
+            "traditionalName": "命宮"
+          },
+          "shenGong": {
+            "branch": "丑",
+            "branchIndex": 1,
+            "engineId": "shen",
+            "traditionalName": "身宮"
+          }
+        }
+      },
+      {
+        "divergence": null,
+        "input": {
+          "hourBranch": "亥",
+          "lunarMonth": 2
+        },
+        "match": true,
+        "orderingKey": "02:11",
+        "productionEngine": {
+          "mingGong": {
+            "branch": "辰",
+            "id": "life",
+            "index": 4,
+            "name": "명궁"
+          },
+          "shenGong": {
+            "branch": "寅",
+            "id": "shen",
+            "index": 2,
+            "name": "신궁"
+          }
+        },
+        "rowId": "lunar-month-02-hour-亥",
+        "sourceDerived": {
+          "mingGong": {
+            "branch": "辰",
+            "branchIndex": 4,
+            "engineId": "life",
+            "traditionalName": "命宮"
+          },
+          "shenGong": {
+            "branch": "寅",
+            "branchIndex": 2,
+            "engineId": "shen",
+            "traditionalName": "身宮"
+          }
+        }
+      },
+      {
+        "divergence": null,
+        "input": {
+          "hourBranch": "子",
+          "lunarMonth": 3
+        },
+        "match": true,
+        "orderingKey": "03:00",
+        "productionEngine": {
+          "mingGong": {
+            "branch": "辰",
+            "id": "life",
+            "index": 4,
+            "name": "명궁"
+          },
+          "shenGong": {
+            "branch": "辰",
+            "id": "shen",
+            "index": 4,
+            "name": "신궁"
+          }
+        },
+        "rowId": "lunar-month-03-hour-子",
+        "sourceDerived": {
+          "mingGong": {
+            "branch": "辰",
+            "branchIndex": 4,
+            "engineId": "life",
+            "traditionalName": "命宮"
+          },
+          "shenGong": {
+            "branch": "辰",
+            "branchIndex": 4,
+            "engineId": "shen",
+            "traditionalName": "身宮"
+          }
+        }
+      },
+      {
+        "divergence": null,
+        "input": {
+          "hourBranch": "丑",
+          "lunarMonth": 3
+        },
+        "match": true,
+        "orderingKey": "03:01",
+        "productionEngine": {
+          "mingGong": {
+            "branch": "卯",
+            "id": "life",
+            "index": 3,
+            "name": "명궁"
+          },
+          "shenGong": {
+            "branch": "巳",
+            "id": "shen",
+            "index": 5,
+            "name": "신궁"
+          }
+        },
+        "rowId": "lunar-month-03-hour-丑",
+        "sourceDerived": {
+          "mingGong": {
+            "branch": "卯",
+            "branchIndex": 3,
+            "engineId": "life",
+            "traditionalName": "命宮"
+          },
+          "shenGong": {
+            "branch": "巳",
+            "branchIndex": 5,
+            "engineId": "shen",
+            "traditionalName": "身宮"
+          }
+        }
+      },
+      {
+        "divergence": null,
+        "input": {
+          "hourBranch": "寅",
+          "lunarMonth": 3
+        },
+        "match": true,
+        "orderingKey": "03:02",
+        "productionEngine": {
+          "mingGong": {
+            "branch": "寅",
+            "id": "life",
+            "index": 2,
+            "name": "명궁"
+          },
+          "shenGong": {
+            "branch": "午",
+            "id": "shen",
+            "index": 6,
+            "name": "신궁"
+          }
+        },
+        "rowId": "lunar-month-03-hour-寅",
+        "sourceDerived": {
+          "mingGong": {
+            "branch": "寅",
+            "branchIndex": 2,
+            "engineId": "life",
+            "traditionalName": "命宮"
+          },
+          "shenGong": {
+            "branch": "午",
+            "branchIndex": 6,
+            "engineId": "shen",
+            "traditionalName": "身宮"
+          }
+        }
+      },
+      {
+        "divergence": null,
+        "input": {
+          "hourBranch": "卯",
+          "lunarMonth": 3
+        },
+        "match": true,
+        "orderingKey": "03:03",
+        "productionEngine": {
+          "mingGong": {
+            "branch": "丑",
+            "id": "life",
+            "index": 1,
+            "name": "명궁"
+          },
+          "shenGong": {
+            "branch": "未",
+            "id": "shen",
+            "index": 7,
+            "name": "신궁"
+          }
+        },
+        "rowId": "lunar-month-03-hour-卯",
+        "sourceDerived": {
+          "mingGong": {
+            "branch": "丑",
+            "branchIndex": 1,
+            "engineId": "life",
+            "traditionalName": "命宮"
+          },
+          "shenGong": {
+            "branch": "未",
+            "branchIndex": 7,
+            "engineId": "shen",
+            "traditionalName": "身宮"
+          }
+        }
+      },
+      {
+        "divergence": null,
+        "input": {
+          "hourBranch": "辰",
+          "lunarMonth": 3
+        },
+        "match": true,
+        "orderingKey": "03:04",
+        "productionEngine": {
+          "mingGong": {
+            "branch": "子",
+            "id": "life",
+            "index": 0,
+            "name": "명궁"
+          },
+          "shenGong": {
+            "branch": "申",
+            "id": "shen",
+            "index": 8,
+            "name": "신궁"
+          }
+        },
+        "rowId": "lunar-month-03-hour-辰",
+        "sourceDerived": {
+          "mingGong": {
+            "branch": "子",
+            "branchIndex": 0,
+            "engineId": "life",
+            "traditionalName": "命宮"
+          },
+          "shenGong": {
+            "branch": "申",
+            "branchIndex": 8,
+            "engineId": "shen",
+            "traditionalName": "身宮"
+          }
+        }
+      },
+      {
+        "divergence": null,
+        "input": {
+          "hourBranch": "巳",
+          "lunarMonth": 3
+        },
+        "match": true,
+        "orderingKey": "03:05",
+        "productionEngine": {
+          "mingGong": {
+            "branch": "亥",
+            "id": "life",
+            "index": 11,
+            "name": "명궁"
+          },
+          "shenGong": {
+            "branch": "酉",
+            "id": "shen",
+            "index": 9,
+            "name": "신궁"
+          }
+        },
+        "rowId": "lunar-month-03-hour-巳",
+        "sourceDerived": {
+          "mingGong": {
+            "branch": "亥",
+            "branchIndex": 11,
+            "engineId": "life",
+            "traditionalName": "命宮"
+          },
+          "shenGong": {
+            "branch": "酉",
+            "branchIndex": 9,
+            "engineId": "shen",
+            "traditionalName": "身宮"
+          }
+        }
+      },
+      {
+        "divergence": null,
+        "input": {
+          "hourBranch": "午",
+          "lunarMonth": 3
+        },
+        "match": true,
+        "orderingKey": "03:06",
+        "productionEngine": {
+          "mingGong": {
+            "branch": "戌",
+            "id": "life",
+            "index": 10,
+            "name": "명궁"
+          },
+          "shenGong": {
+            "branch": "戌",
+            "id": "shen",
+            "index": 10,
+            "name": "신궁"
+          }
+        },
+        "rowId": "lunar-month-03-hour-午",
+        "sourceDerived": {
+          "mingGong": {
+            "branch": "戌",
+            "branchIndex": 10,
+            "engineId": "life",
+            "traditionalName": "命宮"
+          },
+          "shenGong": {
+            "branch": "戌",
+            "branchIndex": 10,
+            "engineId": "shen",
+            "traditionalName": "身宮"
+          }
+        }
+      },
+      {
+        "divergence": null,
+        "input": {
+          "hourBranch": "未",
+          "lunarMonth": 3
+        },
+        "match": true,
+        "orderingKey": "03:07",
+        "productionEngine": {
+          "mingGong": {
+            "branch": "酉",
+            "id": "life",
+            "index": 9,
+            "name": "명궁"
+          },
+          "shenGong": {
+            "branch": "亥",
+            "id": "shen",
+            "index": 11,
+            "name": "신궁"
+          }
+        },
+        "rowId": "lunar-month-03-hour-未",
+        "sourceDerived": {
+          "mingGong": {
+            "branch": "酉",
+            "branchIndex": 9,
+            "engineId": "life",
+            "traditionalName": "命宮"
+          },
+          "shenGong": {
+            "branch": "亥",
+            "branchIndex": 11,
+            "engineId": "shen",
+            "traditionalName": "身宮"
+          }
+        }
+      },
+      {
+        "divergence": null,
+        "input": {
+          "hourBranch": "申",
+          "lunarMonth": 3
+        },
+        "match": true,
+        "orderingKey": "03:08",
+        "productionEngine": {
+          "mingGong": {
+            "branch": "申",
+            "id": "life",
+            "index": 8,
+            "name": "명궁"
+          },
+          "shenGong": {
+            "branch": "子",
+            "id": "shen",
+            "index": 0,
+            "name": "신궁"
+          }
+        },
+        "rowId": "lunar-month-03-hour-申",
+        "sourceDerived": {
+          "mingGong": {
+            "branch": "申",
+            "branchIndex": 8,
+            "engineId": "life",
+            "traditionalName": "命宮"
+          },
+          "shenGong": {
+            "branch": "子",
+            "branchIndex": 0,
+            "engineId": "shen",
+            "traditionalName": "身宮"
+          }
+        }
+      },
+      {
+        "divergence": null,
+        "input": {
+          "hourBranch": "酉",
+          "lunarMonth": 3
+        },
+        "match": true,
+        "orderingKey": "03:09",
+        "productionEngine": {
+          "mingGong": {
+            "branch": "未",
+            "id": "life",
+            "index": 7,
+            "name": "명궁"
+          },
+          "shenGong": {
+            "branch": "丑",
+            "id": "shen",
+            "index": 1,
+            "name": "신궁"
+          }
+        },
+        "rowId": "lunar-month-03-hour-酉",
+        "sourceDerived": {
+          "mingGong": {
+            "branch": "未",
+            "branchIndex": 7,
+            "engineId": "life",
+            "traditionalName": "命宮"
+          },
+          "shenGong": {
+            "branch": "丑",
+            "branchIndex": 1,
+            "engineId": "shen",
+            "traditionalName": "身宮"
+          }
+        }
+      },
+      {
+        "divergence": null,
+        "input": {
+          "hourBranch": "戌",
+          "lunarMonth": 3
+        },
+        "match": true,
+        "orderingKey": "03:10",
+        "productionEngine": {
+          "mingGong": {
+            "branch": "午",
+            "id": "life",
+            "index": 6,
+            "name": "명궁"
+          },
+          "shenGong": {
+            "branch": "寅",
+            "id": "shen",
+            "index": 2,
+            "name": "신궁"
+          }
+        },
+        "rowId": "lunar-month-03-hour-戌",
+        "sourceDerived": {
+          "mingGong": {
+            "branch": "午",
+            "branchIndex": 6,
+            "engineId": "life",
+            "traditionalName": "命宮"
+          },
+          "shenGong": {
+            "branch": "寅",
+            "branchIndex": 2,
+            "engineId": "shen",
+            "traditionalName": "身宮"
+          }
+        }
+      },
+      {
+        "divergence": null,
+        "input": {
+          "hourBranch": "亥",
+          "lunarMonth": 3
+        },
+        "match": true,
+        "orderingKey": "03:11",
+        "productionEngine": {
+          "mingGong": {
+            "branch": "巳",
+            "id": "life",
+            "index": 5,
+            "name": "명궁"
+          },
+          "shenGong": {
+            "branch": "卯",
+            "id": "shen",
+            "index": 3,
+            "name": "신궁"
+          }
+        },
+        "rowId": "lunar-month-03-hour-亥",
+        "sourceDerived": {
+          "mingGong": {
+            "branch": "巳",
+            "branchIndex": 5,
+            "engineId": "life",
+            "traditionalName": "命宮"
+          },
+          "shenGong": {
+            "branch": "卯",
+            "branchIndex": 3,
+            "engineId": "shen",
+            "traditionalName": "身宮"
+          }
+        }
+      },
+      {
+        "divergence": null,
+        "input": {
+          "hourBranch": "子",
+          "lunarMonth": 4
+        },
+        "match": true,
+        "orderingKey": "04:00",
+        "productionEngine": {
+          "mingGong": {
+            "branch": "巳",
+            "id": "life",
+            "index": 5,
+            "name": "명궁"
+          },
+          "shenGong": {
+            "branch": "巳",
+            "id": "shen",
+            "index": 5,
+            "name": "신궁"
+          }
+        },
+        "rowId": "lunar-month-04-hour-子",
+        "sourceDerived": {
+          "mingGong": {
+            "branch": "巳",
+            "branchIndex": 5,
+            "engineId": "life",
+            "traditionalName": "命宮"
+          },
+          "shenGong": {
+            "branch": "巳",
+            "branchIndex": 5,
+            "engineId": "shen",
+            "traditionalName": "身宮"
+          }
+        }
+      },
+      {
+        "divergence": null,
+        "input": {
+          "hourBranch": "丑",
+          "lunarMonth": 4
+        },
+        "match": true,
+        "orderingKey": "04:01",
+        "productionEngine": {
+          "mingGong": {
+            "branch": "辰",
+            "id": "life",
+            "index": 4,
+            "name": "명궁"
+          },
+          "shenGong": {
+            "branch": "午",
+            "id": "shen",
+            "index": 6,
+            "name": "신궁"
+          }
+        },
+        "rowId": "lunar-month-04-hour-丑",
+        "sourceDerived": {
+          "mingGong": {
+            "branch": "辰",
+            "branchIndex": 4,
+            "engineId": "life",
+            "traditionalName": "命宮"
+          },
+          "shenGong": {
+            "branch": "午",
+            "branchIndex": 6,
+            "engineId": "shen",
+            "traditionalName": "身宮"
+          }
+        }
+      },
+      {
+        "divergence": null,
+        "input": {
+          "hourBranch": "寅",
+          "lunarMonth": 4
+        },
+        "match": true,
+        "orderingKey": "04:02",
+        "productionEngine": {
+          "mingGong": {
+            "branch": "卯",
+            "id": "life",
+            "index": 3,
+            "name": "명궁"
+          },
+          "shenGong": {
+            "branch": "未",
+            "id": "shen",
+            "index": 7,
+            "name": "신궁"
+          }
+        },
+        "rowId": "lunar-month-04-hour-寅",
+        "sourceDerived": {
+          "mingGong": {
+            "branch": "卯",
+            "branchIndex": 3,
+            "engineId": "life",
+            "traditionalName": "命宮"
+          },
+          "shenGong": {
+            "branch": "未",
+            "branchIndex": 7,
+            "engineId": "shen",
+            "traditionalName": "身宮"
+          }
+        }
+      },
+      {
+        "divergence": null,
+        "input": {
+          "hourBranch": "卯",
+          "lunarMonth": 4
+        },
+        "match": true,
+        "orderingKey": "04:03",
+        "productionEngine": {
+          "mingGong": {
+            "branch": "寅",
+            "id": "life",
+            "index": 2,
+            "name": "명궁"
+          },
+          "shenGong": {
+            "branch": "申",
+            "id": "shen",
+            "index": 8,
+            "name": "신궁"
+          }
+        },
+        "rowId": "lunar-month-04-hour-卯",
+        "sourceDerived": {
+          "mingGong": {
+            "branch": "寅",
+            "branchIndex": 2,
+            "engineId": "life",
+            "traditionalName": "命宮"
+          },
+          "shenGong": {
+            "branch": "申",
+            "branchIndex": 8,
+            "engineId": "shen",
+            "traditionalName": "身宮"
+          }
+        }
+      },
+      {
+        "divergence": null,
+        "input": {
+          "hourBranch": "辰",
+          "lunarMonth": 4
+        },
+        "match": true,
+        "orderingKey": "04:04",
+        "productionEngine": {
+          "mingGong": {
+            "branch": "丑",
+            "id": "life",
+            "index": 1,
+            "name": "명궁"
+          },
+          "shenGong": {
+            "branch": "酉",
+            "id": "shen",
+            "index": 9,
+            "name": "신궁"
+          }
+        },
+        "rowId": "lunar-month-04-hour-辰",
+        "sourceDerived": {
+          "mingGong": {
+            "branch": "丑",
+            "branchIndex": 1,
+            "engineId": "life",
+            "traditionalName": "命宮"
+          },
+          "shenGong": {
+            "branch": "酉",
+            "branchIndex": 9,
+            "engineId": "shen",
+            "traditionalName": "身宮"
+          }
+        }
+      },
+      {
+        "divergence": null,
+        "input": {
+          "hourBranch": "巳",
+          "lunarMonth": 4
+        },
+        "match": true,
+        "orderingKey": "04:05",
+        "productionEngine": {
+          "mingGong": {
+            "branch": "子",
+            "id": "life",
+            "index": 0,
+            "name": "명궁"
+          },
+          "shenGong": {
+            "branch": "戌",
+            "id": "shen",
+            "index": 10,
+            "name": "신궁"
+          }
+        },
+        "rowId": "lunar-month-04-hour-巳",
+        "sourceDerived": {
+          "mingGong": {
+            "branch": "子",
+            "branchIndex": 0,
+            "engineId": "life",
+            "traditionalName": "命宮"
+          },
+          "shenGong": {
+            "branch": "戌",
+            "branchIndex": 10,
+            "engineId": "shen",
+            "traditionalName": "身宮"
+          }
+        }
+      },
+      {
+        "divergence": null,
+        "input": {
+          "hourBranch": "午",
+          "lunarMonth": 4
+        },
+        "match": true,
+        "orderingKey": "04:06",
+        "productionEngine": {
+          "mingGong": {
+            "branch": "亥",
+            "id": "life",
+            "index": 11,
+            "name": "명궁"
+          },
+          "shenGong": {
+            "branch": "亥",
+            "id": "shen",
+            "index": 11,
+            "name": "신궁"
+          }
+        },
+        "rowId": "lunar-month-04-hour-午",
+        "sourceDerived": {
+          "mingGong": {
+            "branch": "亥",
+            "branchIndex": 11,
+            "engineId": "life",
+            "traditionalName": "命宮"
+          },
+          "shenGong": {
+            "branch": "亥",
+            "branchIndex": 11,
+            "engineId": "shen",
+            "traditionalName": "身宮"
+          }
+        }
+      },
+      {
+        "divergence": null,
+        "input": {
+          "hourBranch": "未",
+          "lunarMonth": 4
+        },
+        "match": true,
+        "orderingKey": "04:07",
+        "productionEngine": {
+          "mingGong": {
+            "branch": "戌",
+            "id": "life",
+            "index": 10,
+            "name": "명궁"
+          },
+          "shenGong": {
+            "branch": "子",
+            "id": "shen",
+            "index": 0,
+            "name": "신궁"
+          }
+        },
+        "rowId": "lunar-month-04-hour-未",
+        "sourceDerived": {
+          "mingGong": {
+            "branch": "戌",
+            "branchIndex": 10,
+            "engineId": "life",
+            "traditionalName": "命宮"
+          },
+          "shenGong": {
+            "branch": "子",
+            "branchIndex": 0,
+            "engineId": "shen",
+            "traditionalName": "身宮"
+          }
+        }
+      },
+      {
+        "divergence": null,
+        "input": {
+          "hourBranch": "申",
+          "lunarMonth": 4
+        },
+        "match": true,
+        "orderingKey": "04:08",
+        "productionEngine": {
+          "mingGong": {
+            "branch": "酉",
+            "id": "life",
+            "index": 9,
+            "name": "명궁"
+          },
+          "shenGong": {
+            "branch": "丑",
+            "id": "shen",
+            "index": 1,
+            "name": "신궁"
+          }
+        },
+        "rowId": "lunar-month-04-hour-申",
+        "sourceDerived": {
+          "mingGong": {
+            "branch": "酉",
+            "branchIndex": 9,
+            "engineId": "life",
+            "traditionalName": "命宮"
+          },
+          "shenGong": {
+            "branch": "丑",
+            "branchIndex": 1,
+            "engineId": "shen",
+            "traditionalName": "身宮"
+          }
+        }
+      },
+      {
+        "divergence": null,
+        "input": {
+          "hourBranch": "酉",
+          "lunarMonth": 4
+        },
+        "match": true,
+        "orderingKey": "04:09",
+        "productionEngine": {
+          "mingGong": {
+            "branch": "申",
+            "id": "life",
+            "index": 8,
+            "name": "명궁"
+          },
+          "shenGong": {
+            "branch": "寅",
+            "id": "shen",
+            "index": 2,
+            "name": "신궁"
+          }
+        },
+        "rowId": "lunar-month-04-hour-酉",
+        "sourceDerived": {
+          "mingGong": {
+            "branch": "申",
+            "branchIndex": 8,
+            "engineId": "life",
+            "traditionalName": "命宮"
+          },
+          "shenGong": {
+            "branch": "寅",
+            "branchIndex": 2,
+            "engineId": "shen",
+            "traditionalName": "身宮"
+          }
+        }
+      },
+      {
+        "divergence": null,
+        "input": {
+          "hourBranch": "戌",
+          "lunarMonth": 4
+        },
+        "match": true,
+        "orderingKey": "04:10",
+        "productionEngine": {
+          "mingGong": {
+            "branch": "未",
+            "id": "life",
+            "index": 7,
+            "name": "명궁"
+          },
+          "shenGong": {
+            "branch": "卯",
+            "id": "shen",
+            "index": 3,
+            "name": "신궁"
+          }
+        },
+        "rowId": "lunar-month-04-hour-戌",
+        "sourceDerived": {
+          "mingGong": {
+            "branch": "未",
+            "branchIndex": 7,
+            "engineId": "life",
+            "traditionalName": "命宮"
+          },
+          "shenGong": {
+            "branch": "卯",
+            "branchIndex": 3,
+            "engineId": "shen",
+            "traditionalName": "身宮"
+          }
+        }
+      },
+      {
+        "divergence": null,
+        "input": {
+          "hourBranch": "亥",
+          "lunarMonth": 4
+        },
+        "match": true,
+        "orderingKey": "04:11",
+        "productionEngine": {
+          "mingGong": {
+            "branch": "午",
+            "id": "life",
+            "index": 6,
+            "name": "명궁"
+          },
+          "shenGong": {
+            "branch": "辰",
+            "id": "shen",
+            "index": 4,
+            "name": "신궁"
+          }
+        },
+        "rowId": "lunar-month-04-hour-亥",
+        "sourceDerived": {
+          "mingGong": {
+            "branch": "午",
+            "branchIndex": 6,
+            "engineId": "life",
+            "traditionalName": "命宮"
+          },
+          "shenGong": {
+            "branch": "辰",
+            "branchIndex": 4,
+            "engineId": "shen",
+            "traditionalName": "身宮"
+          }
+        }
+      },
+      {
+        "divergence": null,
+        "input": {
+          "hourBranch": "子",
+          "lunarMonth": 5
+        },
+        "match": true,
+        "orderingKey": "05:00",
+        "productionEngine": {
+          "mingGong": {
+            "branch": "午",
+            "id": "life",
+            "index": 6,
+            "name": "명궁"
+          },
+          "shenGong": {
+            "branch": "午",
+            "id": "shen",
+            "index": 6,
+            "name": "신궁"
+          }
+        },
+        "rowId": "lunar-month-05-hour-子",
+        "sourceDerived": {
+          "mingGong": {
+            "branch": "午",
+            "branchIndex": 6,
+            "engineId": "life",
+            "traditionalName": "命宮"
+          },
+          "shenGong": {
+            "branch": "午",
+            "branchIndex": 6,
+            "engineId": "shen",
+            "traditionalName": "身宮"
+          }
+        }
+      },
+      {
+        "divergence": null,
+        "input": {
+          "hourBranch": "丑",
+          "lunarMonth": 5
+        },
+        "match": true,
+        "orderingKey": "05:01",
+        "productionEngine": {
+          "mingGong": {
+            "branch": "巳",
+            "id": "life",
+            "index": 5,
+            "name": "명궁"
+          },
+          "shenGong": {
+            "branch": "未",
+            "id": "shen",
+            "index": 7,
+            "name": "신궁"
+          }
+        },
+        "rowId": "lunar-month-05-hour-丑",
+        "sourceDerived": {
+          "mingGong": {
+            "branch": "巳",
+            "branchIndex": 5,
+            "engineId": "life",
+            "traditionalName": "命宮"
+          },
+          "shenGong": {
+            "branch": "未",
+            "branchIndex": 7,
+            "engineId": "shen",
+            "traditionalName": "身宮"
+          }
+        }
+      },
+      {
+        "divergence": null,
+        "input": {
+          "hourBranch": "寅",
+          "lunarMonth": 5
+        },
+        "match": true,
+        "orderingKey": "05:02",
+        "productionEngine": {
+          "mingGong": {
+            "branch": "辰",
+            "id": "life",
+            "index": 4,
+            "name": "명궁"
+          },
+          "shenGong": {
+            "branch": "申",
+            "id": "shen",
+            "index": 8,
+            "name": "신궁"
+          }
+        },
+        "rowId": "lunar-month-05-hour-寅",
+        "sourceDerived": {
+          "mingGong": {
+            "branch": "辰",
+            "branchIndex": 4,
+            "engineId": "life",
+            "traditionalName": "命宮"
+          },
+          "shenGong": {
+            "branch": "申",
+            "branchIndex": 8,
+            "engineId": "shen",
+            "traditionalName": "身宮"
+          }
+        }
+      },
+      {
+        "divergence": null,
+        "input": {
+          "hourBranch": "卯",
+          "lunarMonth": 5
+        },
+        "match": true,
+        "orderingKey": "05:03",
+        "productionEngine": {
+          "mingGong": {
+            "branch": "卯",
+            "id": "life",
+            "index": 3,
+            "name": "명궁"
+          },
+          "shenGong": {
+            "branch": "酉",
+            "id": "shen",
+            "index": 9,
+            "name": "신궁"
+          }
+        },
+        "rowId": "lunar-month-05-hour-卯",
+        "sourceDerived": {
+          "mingGong": {
+            "branch": "卯",
+            "branchIndex": 3,
+            "engineId": "life",
+            "traditionalName": "命宮"
+          },
+          "shenGong": {
+            "branch": "酉",
+            "branchIndex": 9,
+            "engineId": "shen",
+            "traditionalName": "身宮"
+          }
+        }
+      },
+      {
+        "divergence": null,
+        "input": {
+          "hourBranch": "辰",
+          "lunarMonth": 5
+        },
+        "match": true,
+        "orderingKey": "05:04",
+        "productionEngine": {
+          "mingGong": {
+            "branch": "寅",
+            "id": "life",
+            "index": 2,
+            "name": "명궁"
+          },
+          "shenGong": {
+            "branch": "戌",
+            "id": "shen",
+            "index": 10,
+            "name": "신궁"
+          }
+        },
+        "rowId": "lunar-month-05-hour-辰",
+        "sourceDerived": {
+          "mingGong": {
+            "branch": "寅",
+            "branchIndex": 2,
+            "engineId": "life",
+            "traditionalName": "命宮"
+          },
+          "shenGong": {
+            "branch": "戌",
+            "branchIndex": 10,
+            "engineId": "shen",
+            "traditionalName": "身宮"
+          }
+        }
+      },
+      {
+        "divergence": null,
+        "input": {
+          "hourBranch": "巳",
+          "lunarMonth": 5
+        },
+        "match": true,
+        "orderingKey": "05:05",
+        "productionEngine": {
+          "mingGong": {
+            "branch": "丑",
+            "id": "life",
+            "index": 1,
+            "name": "명궁"
+          },
+          "shenGong": {
+            "branch": "亥",
+            "id": "shen",
+            "index": 11,
+            "name": "신궁"
+          }
+        },
+        "rowId": "lunar-month-05-hour-巳",
+        "sourceDerived": {
+          "mingGong": {
+            "branch": "丑",
+            "branchIndex": 1,
+            "engineId": "life",
+            "traditionalName": "命宮"
+          },
+          "shenGong": {
+            "branch": "亥",
+            "branchIndex": 11,
+            "engineId": "shen",
+            "traditionalName": "身宮"
+          }
+        }
+      },
+      {
+        "divergence": null,
+        "input": {
+          "hourBranch": "午",
+          "lunarMonth": 5
+        },
+        "match": true,
+        "orderingKey": "05:06",
+        "productionEngine": {
+          "mingGong": {
+            "branch": "子",
+            "id": "life",
+            "index": 0,
+            "name": "명궁"
+          },
+          "shenGong": {
+            "branch": "子",
+            "id": "shen",
+            "index": 0,
+            "name": "신궁"
+          }
+        },
+        "rowId": "lunar-month-05-hour-午",
+        "sourceDerived": {
+          "mingGong": {
+            "branch": "子",
+            "branchIndex": 0,
+            "engineId": "life",
+            "traditionalName": "命宮"
+          },
+          "shenGong": {
+            "branch": "子",
+            "branchIndex": 0,
+            "engineId": "shen",
+            "traditionalName": "身宮"
+          }
+        }
+      },
+      {
+        "divergence": null,
+        "input": {
+          "hourBranch": "未",
+          "lunarMonth": 5
+        },
+        "match": true,
+        "orderingKey": "05:07",
+        "productionEngine": {
+          "mingGong": {
+            "branch": "亥",
+            "id": "life",
+            "index": 11,
+            "name": "명궁"
+          },
+          "shenGong": {
+            "branch": "丑",
+            "id": "shen",
+            "index": 1,
+            "name": "신궁"
+          }
+        },
+        "rowId": "lunar-month-05-hour-未",
+        "sourceDerived": {
+          "mingGong": {
+            "branch": "亥",
+            "branchIndex": 11,
+            "engineId": "life",
+            "traditionalName": "命宮"
+          },
+          "shenGong": {
+            "branch": "丑",
+            "branchIndex": 1,
+            "engineId": "shen",
+            "traditionalName": "身宮"
+          }
+        }
+      },
+      {
+        "divergence": null,
+        "input": {
+          "hourBranch": "申",
+          "lunarMonth": 5
+        },
+        "match": true,
+        "orderingKey": "05:08",
+        "productionEngine": {
+          "mingGong": {
+            "branch": "戌",
+            "id": "life",
+            "index": 10,
+            "name": "명궁"
+          },
+          "shenGong": {
+            "branch": "寅",
+            "id": "shen",
+            "index": 2,
+            "name": "신궁"
+          }
+        },
+        "rowId": "lunar-month-05-hour-申",
+        "sourceDerived": {
+          "mingGong": {
+            "branch": "戌",
+            "branchIndex": 10,
+            "engineId": "life",
+            "traditionalName": "命宮"
+          },
+          "shenGong": {
+            "branch": "寅",
+            "branchIndex": 2,
+            "engineId": "shen",
+            "traditionalName": "身宮"
+          }
+        }
+      },
+      {
+        "divergence": null,
+        "input": {
+          "hourBranch": "酉",
+          "lunarMonth": 5
+        },
+        "match": true,
+        "orderingKey": "05:09",
+        "productionEngine": {
+          "mingGong": {
+            "branch": "酉",
+            "id": "life",
+            "index": 9,
+            "name": "명궁"
+          },
+          "shenGong": {
+            "branch": "卯",
+            "id": "shen",
+            "index": 3,
+            "name": "신궁"
+          }
+        },
+        "rowId": "lunar-month-05-hour-酉",
+        "sourceDerived": {
+          "mingGong": {
+            "branch": "酉",
+            "branchIndex": 9,
+            "engineId": "life",
+            "traditionalName": "命宮"
+          },
+          "shenGong": {
+            "branch": "卯",
+            "branchIndex": 3,
+            "engineId": "shen",
+            "traditionalName": "身宮"
+          }
+        }
+      },
+      {
+        "divergence": null,
+        "input": {
+          "hourBranch": "戌",
+          "lunarMonth": 5
+        },
+        "match": true,
+        "orderingKey": "05:10",
+        "productionEngine": {
+          "mingGong": {
+            "branch": "申",
+            "id": "life",
+            "index": 8,
+            "name": "명궁"
+          },
+          "shenGong": {
+            "branch": "辰",
+            "id": "shen",
+            "index": 4,
+            "name": "신궁"
+          }
+        },
+        "rowId": "lunar-month-05-hour-戌",
+        "sourceDerived": {
+          "mingGong": {
+            "branch": "申",
+            "branchIndex": 8,
+            "engineId": "life",
+            "traditionalName": "命宮"
+          },
+          "shenGong": {
+            "branch": "辰",
+            "branchIndex": 4,
+            "engineId": "shen",
+            "traditionalName": "身宮"
+          }
+        }
+      },
+      {
+        "divergence": null,
+        "input": {
+          "hourBranch": "亥",
+          "lunarMonth": 5
+        },
+        "match": true,
+        "orderingKey": "05:11",
+        "productionEngine": {
+          "mingGong": {
+            "branch": "未",
+            "id": "life",
+            "index": 7,
+            "name": "명궁"
+          },
+          "shenGong": {
+            "branch": "巳",
+            "id": "shen",
+            "index": 5,
+            "name": "신궁"
+          }
+        },
+        "rowId": "lunar-month-05-hour-亥",
+        "sourceDerived": {
+          "mingGong": {
+            "branch": "未",
+            "branchIndex": 7,
+            "engineId": "life",
+            "traditionalName": "命宮"
+          },
+          "shenGong": {
+            "branch": "巳",
+            "branchIndex": 5,
+            "engineId": "shen",
+            "traditionalName": "身宮"
+          }
+        }
+      },
+      {
+        "divergence": null,
+        "input": {
+          "hourBranch": "子",
+          "lunarMonth": 6
+        },
+        "match": true,
+        "orderingKey": "06:00",
+        "productionEngine": {
+          "mingGong": {
+            "branch": "未",
+            "id": "life",
+            "index": 7,
+            "name": "명궁"
+          },
+          "shenGong": {
+            "branch": "未",
+            "id": "shen",
+            "index": 7,
+            "name": "신궁"
+          }
+        },
+        "rowId": "lunar-month-06-hour-子",
+        "sourceDerived": {
+          "mingGong": {
+            "branch": "未",
+            "branchIndex": 7,
+            "engineId": "life",
+            "traditionalName": "命宮"
+          },
+          "shenGong": {
+            "branch": "未",
+            "branchIndex": 7,
+            "engineId": "shen",
+            "traditionalName": "身宮"
+          }
+        }
+      },
+      {
+        "divergence": null,
+        "input": {
+          "hourBranch": "丑",
+          "lunarMonth": 6
+        },
+        "match": true,
+        "orderingKey": "06:01",
+        "productionEngine": {
+          "mingGong": {
+            "branch": "午",
+            "id": "life",
+            "index": 6,
+            "name": "명궁"
+          },
+          "shenGong": {
+            "branch": "申",
+            "id": "shen",
+            "index": 8,
+            "name": "신궁"
+          }
+        },
+        "rowId": "lunar-month-06-hour-丑",
+        "sourceDerived": {
+          "mingGong": {
+            "branch": "午",
+            "branchIndex": 6,
+            "engineId": "life",
+            "traditionalName": "命宮"
+          },
+          "shenGong": {
+            "branch": "申",
+            "branchIndex": 8,
+            "engineId": "shen",
+            "traditionalName": "身宮"
+          }
+        }
+      },
+      {
+        "divergence": null,
+        "input": {
+          "hourBranch": "寅",
+          "lunarMonth": 6
+        },
+        "match": true,
+        "orderingKey": "06:02",
+        "productionEngine": {
+          "mingGong": {
+            "branch": "巳",
+            "id": "life",
+            "index": 5,
+            "name": "명궁"
+          },
+          "shenGong": {
+            "branch": "酉",
+            "id": "shen",
+            "index": 9,
+            "name": "신궁"
+          }
+        },
+        "rowId": "lunar-month-06-hour-寅",
+        "sourceDerived": {
+          "mingGong": {
+            "branch": "巳",
+            "branchIndex": 5,
+            "engineId": "life",
+            "traditionalName": "命宮"
+          },
+          "shenGong": {
+            "branch": "酉",
+            "branchIndex": 9,
+            "engineId": "shen",
+            "traditionalName": "身宮"
+          }
+        }
+      },
+      {
+        "divergence": null,
+        "input": {
+          "hourBranch": "卯",
+          "lunarMonth": 6
+        },
+        "match": true,
+        "orderingKey": "06:03",
+        "productionEngine": {
+          "mingGong": {
+            "branch": "辰",
+            "id": "life",
+            "index": 4,
+            "name": "명궁"
+          },
+          "shenGong": {
+            "branch": "戌",
+            "id": "shen",
+            "index": 10,
+            "name": "신궁"
+          }
+        },
+        "rowId": "lunar-month-06-hour-卯",
+        "sourceDerived": {
+          "mingGong": {
+            "branch": "辰",
+            "branchIndex": 4,
+            "engineId": "life",
+            "traditionalName": "命宮"
+          },
+          "shenGong": {
+            "branch": "戌",
+            "branchIndex": 10,
+            "engineId": "shen",
+            "traditionalName": "身宮"
+          }
+        }
+      },
+      {
+        "divergence": null,
+        "input": {
+          "hourBranch": "辰",
+          "lunarMonth": 6
+        },
+        "match": true,
+        "orderingKey": "06:04",
+        "productionEngine": {
+          "mingGong": {
+            "branch": "卯",
+            "id": "life",
+            "index": 3,
+            "name": "명궁"
+          },
+          "shenGong": {
+            "branch": "亥",
+            "id": "shen",
+            "index": 11,
+            "name": "신궁"
+          }
+        },
+        "rowId": "lunar-month-06-hour-辰",
+        "sourceDerived": {
+          "mingGong": {
+            "branch": "卯",
+            "branchIndex": 3,
+            "engineId": "life",
+            "traditionalName": "命宮"
+          },
+          "shenGong": {
+            "branch": "亥",
+            "branchIndex": 11,
+            "engineId": "shen",
+            "traditionalName": "身宮"
+          }
+        }
+      },
+      {
+        "divergence": null,
+        "input": {
+          "hourBranch": "巳",
+          "lunarMonth": 6
+        },
+        "match": true,
+        "orderingKey": "06:05",
+        "productionEngine": {
+          "mingGong": {
+            "branch": "寅",
+            "id": "life",
+            "index": 2,
+            "name": "명궁"
+          },
+          "shenGong": {
+            "branch": "子",
+            "id": "shen",
+            "index": 0,
+            "name": "신궁"
+          }
+        },
+        "rowId": "lunar-month-06-hour-巳",
+        "sourceDerived": {
+          "mingGong": {
+            "branch": "寅",
+            "branchIndex": 2,
+            "engineId": "life",
+            "traditionalName": "命宮"
+          },
+          "shenGong": {
+            "branch": "子",
+            "branchIndex": 0,
+            "engineId": "shen",
+            "traditionalName": "身宮"
+          }
+        }
+      },
+      {
+        "divergence": null,
+        "input": {
+          "hourBranch": "午",
+          "lunarMonth": 6
+        },
+        "match": true,
+        "orderingKey": "06:06",
+        "productionEngine": {
+          "mingGong": {
+            "branch": "丑",
+            "id": "life",
+            "index": 1,
+            "name": "명궁"
+          },
+          "shenGong": {
+            "branch": "丑",
+            "id": "shen",
+            "index": 1,
+            "name": "신궁"
+          }
+        },
+        "rowId": "lunar-month-06-hour-午",
+        "sourceDerived": {
+          "mingGong": {
+            "branch": "丑",
+            "branchIndex": 1,
+            "engineId": "life",
+            "traditionalName": "命宮"
+          },
+          "shenGong": {
+            "branch": "丑",
+            "branchIndex": 1,
+            "engineId": "shen",
+            "traditionalName": "身宮"
+          }
+        }
+      },
+      {
+        "divergence": null,
+        "input": {
+          "hourBranch": "未",
+          "lunarMonth": 6
+        },
+        "match": true,
+        "orderingKey": "06:07",
+        "productionEngine": {
+          "mingGong": {
+            "branch": "子",
+            "id": "life",
+            "index": 0,
+            "name": "명궁"
+          },
+          "shenGong": {
+            "branch": "寅",
+            "id": "shen",
+            "index": 2,
+            "name": "신궁"
+          }
+        },
+        "rowId": "lunar-month-06-hour-未",
+        "sourceDerived": {
+          "mingGong": {
+            "branch": "子",
+            "branchIndex": 0,
+            "engineId": "life",
+            "traditionalName": "命宮"
+          },
+          "shenGong": {
+            "branch": "寅",
+            "branchIndex": 2,
+            "engineId": "shen",
+            "traditionalName": "身宮"
+          }
+        }
+      },
+      {
+        "divergence": null,
+        "input": {
+          "hourBranch": "申",
+          "lunarMonth": 6
+        },
+        "match": true,
+        "orderingKey": "06:08",
+        "productionEngine": {
+          "mingGong": {
+            "branch": "亥",
+            "id": "life",
+            "index": 11,
+            "name": "명궁"
+          },
+          "shenGong": {
+            "branch": "卯",
+            "id": "shen",
+            "index": 3,
+            "name": "신궁"
+          }
+        },
+        "rowId": "lunar-month-06-hour-申",
+        "sourceDerived": {
+          "mingGong": {
+            "branch": "亥",
+            "branchIndex": 11,
+            "engineId": "life",
+            "traditionalName": "命宮"
+          },
+          "shenGong": {
+            "branch": "卯",
+            "branchIndex": 3,
+            "engineId": "shen",
+            "traditionalName": "身宮"
+          }
+        }
+      },
+      {
+        "divergence": null,
+        "input": {
+          "hourBranch": "酉",
+          "lunarMonth": 6
+        },
+        "match": true,
+        "orderingKey": "06:09",
+        "productionEngine": {
+          "mingGong": {
+            "branch": "戌",
+            "id": "life",
+            "index": 10,
+            "name": "명궁"
+          },
+          "shenGong": {
+            "branch": "辰",
+            "id": "shen",
+            "index": 4,
+            "name": "신궁"
+          }
+        },
+        "rowId": "lunar-month-06-hour-酉",
+        "sourceDerived": {
+          "mingGong": {
+            "branch": "戌",
+            "branchIndex": 10,
+            "engineId": "life",
+            "traditionalName": "命宮"
+          },
+          "shenGong": {
+            "branch": "辰",
+            "branchIndex": 4,
+            "engineId": "shen",
+            "traditionalName": "身宮"
+          }
+        }
+      },
+      {
+        "divergence": null,
+        "input": {
+          "hourBranch": "戌",
+          "lunarMonth": 6
+        },
+        "match": true,
+        "orderingKey": "06:10",
+        "productionEngine": {
+          "mingGong": {
+            "branch": "酉",
+            "id": "life",
+            "index": 9,
+            "name": "명궁"
+          },
+          "shenGong": {
+            "branch": "巳",
+            "id": "shen",
+            "index": 5,
+            "name": "신궁"
+          }
+        },
+        "rowId": "lunar-month-06-hour-戌",
+        "sourceDerived": {
+          "mingGong": {
+            "branch": "酉",
+            "branchIndex": 9,
+            "engineId": "life",
+            "traditionalName": "命宮"
+          },
+          "shenGong": {
+            "branch": "巳",
+            "branchIndex": 5,
+            "engineId": "shen",
+            "traditionalName": "身宮"
+          }
+        }
+      },
+      {
+        "divergence": null,
+        "input": {
+          "hourBranch": "亥",
+          "lunarMonth": 6
+        },
+        "match": true,
+        "orderingKey": "06:11",
+        "productionEngine": {
+          "mingGong": {
+            "branch": "申",
+            "id": "life",
+            "index": 8,
+            "name": "명궁"
+          },
+          "shenGong": {
+            "branch": "午",
+            "id": "shen",
+            "index": 6,
+            "name": "신궁"
+          }
+        },
+        "rowId": "lunar-month-06-hour-亥",
+        "sourceDerived": {
+          "mingGong": {
+            "branch": "申",
+            "branchIndex": 8,
+            "engineId": "life",
+            "traditionalName": "命宮"
+          },
+          "shenGong": {
+            "branch": "午",
+            "branchIndex": 6,
+            "engineId": "shen",
+            "traditionalName": "身宮"
+          }
+        }
+      },
+      {
+        "divergence": null,
+        "input": {
+          "hourBranch": "子",
+          "lunarMonth": 7
+        },
+        "match": true,
+        "orderingKey": "07:00",
+        "productionEngine": {
+          "mingGong": {
+            "branch": "申",
+            "id": "life",
+            "index": 8,
+            "name": "명궁"
+          },
+          "shenGong": {
+            "branch": "申",
+            "id": "shen",
+            "index": 8,
+            "name": "신궁"
+          }
+        },
+        "rowId": "lunar-month-07-hour-子",
+        "sourceDerived": {
+          "mingGong": {
+            "branch": "申",
+            "branchIndex": 8,
+            "engineId": "life",
+            "traditionalName": "命宮"
+          },
+          "shenGong": {
+            "branch": "申",
+            "branchIndex": 8,
+            "engineId": "shen",
+            "traditionalName": "身宮"
+          }
+        }
+      },
+      {
+        "divergence": null,
+        "input": {
+          "hourBranch": "丑",
+          "lunarMonth": 7
+        },
+        "match": true,
+        "orderingKey": "07:01",
+        "productionEngine": {
+          "mingGong": {
+            "branch": "未",
+            "id": "life",
+            "index": 7,
+            "name": "명궁"
+          },
+          "shenGong": {
+            "branch": "酉",
+            "id": "shen",
+            "index": 9,
+            "name": "신궁"
+          }
+        },
+        "rowId": "lunar-month-07-hour-丑",
+        "sourceDerived": {
+          "mingGong": {
+            "branch": "未",
+            "branchIndex": 7,
+            "engineId": "life",
+            "traditionalName": "命宮"
+          },
+          "shenGong": {
+            "branch": "酉",
+            "branchIndex": 9,
+            "engineId": "shen",
+            "traditionalName": "身宮"
+          }
+        }
+      },
+      {
+        "divergence": null,
+        "input": {
+          "hourBranch": "寅",
+          "lunarMonth": 7
+        },
+        "match": true,
+        "orderingKey": "07:02",
+        "productionEngine": {
+          "mingGong": {
+            "branch": "午",
+            "id": "life",
+            "index": 6,
+            "name": "명궁"
+          },
+          "shenGong": {
+            "branch": "戌",
+            "id": "shen",
+            "index": 10,
+            "name": "신궁"
+          }
+        },
+        "rowId": "lunar-month-07-hour-寅",
+        "sourceDerived": {
+          "mingGong": {
+            "branch": "午",
+            "branchIndex": 6,
+            "engineId": "life",
+            "traditionalName": "命宮"
+          },
+          "shenGong": {
+            "branch": "戌",
+            "branchIndex": 10,
+            "engineId": "shen",
+            "traditionalName": "身宮"
+          }
+        }
+      },
+      {
+        "divergence": null,
+        "input": {
+          "hourBranch": "卯",
+          "lunarMonth": 7
+        },
+        "match": true,
+        "orderingKey": "07:03",
+        "productionEngine": {
+          "mingGong": {
+            "branch": "巳",
+            "id": "life",
+            "index": 5,
+            "name": "명궁"
+          },
+          "shenGong": {
+            "branch": "亥",
+            "id": "shen",
+            "index": 11,
+            "name": "신궁"
+          }
+        },
+        "rowId": "lunar-month-07-hour-卯",
+        "sourceDerived": {
+          "mingGong": {
+            "branch": "巳",
+            "branchIndex": 5,
+            "engineId": "life",
+            "traditionalName": "命宮"
+          },
+          "shenGong": {
+            "branch": "亥",
+            "branchIndex": 11,
+            "engineId": "shen",
+            "traditionalName": "身宮"
+          }
+        }
+      },
+      {
+        "divergence": null,
+        "input": {
+          "hourBranch": "辰",
+          "lunarMonth": 7
+        },
+        "match": true,
+        "orderingKey": "07:04",
+        "productionEngine": {
+          "mingGong": {
+            "branch": "辰",
+            "id": "life",
+            "index": 4,
+            "name": "명궁"
+          },
+          "shenGong": {
+            "branch": "子",
+            "id": "shen",
+            "index": 0,
+            "name": "신궁"
+          }
+        },
+        "rowId": "lunar-month-07-hour-辰",
+        "sourceDerived": {
+          "mingGong": {
+            "branch": "辰",
+            "branchIndex": 4,
+            "engineId": "life",
+            "traditionalName": "命宮"
+          },
+          "shenGong": {
+            "branch": "子",
+            "branchIndex": 0,
+            "engineId": "shen",
+            "traditionalName": "身宮"
+          }
+        }
+      },
+      {
+        "divergence": null,
+        "input": {
+          "hourBranch": "巳",
+          "lunarMonth": 7
+        },
+        "match": true,
+        "orderingKey": "07:05",
+        "productionEngine": {
+          "mingGong": {
+            "branch": "卯",
+            "id": "life",
+            "index": 3,
+            "name": "명궁"
+          },
+          "shenGong": {
+            "branch": "丑",
+            "id": "shen",
+            "index": 1,
+            "name": "신궁"
+          }
+        },
+        "rowId": "lunar-month-07-hour-巳",
+        "sourceDerived": {
+          "mingGong": {
+            "branch": "卯",
+            "branchIndex": 3,
+            "engineId": "life",
+            "traditionalName": "命宮"
+          },
+          "shenGong": {
+            "branch": "丑",
+            "branchIndex": 1,
+            "engineId": "shen",
+            "traditionalName": "身宮"
+          }
+        }
+      },
+      {
+        "divergence": null,
+        "input": {
+          "hourBranch": "午",
+          "lunarMonth": 7
+        },
+        "match": true,
+        "orderingKey": "07:06",
+        "productionEngine": {
+          "mingGong": {
+            "branch": "寅",
+            "id": "life",
+            "index": 2,
+            "name": "명궁"
+          },
+          "shenGong": {
+            "branch": "寅",
+            "id": "shen",
+            "index": 2,
+            "name": "신궁"
+          }
+        },
+        "rowId": "lunar-month-07-hour-午",
+        "sourceDerived": {
+          "mingGong": {
+            "branch": "寅",
+            "branchIndex": 2,
+            "engineId": "life",
+            "traditionalName": "命宮"
+          },
+          "shenGong": {
+            "branch": "寅",
+            "branchIndex": 2,
+            "engineId": "shen",
+            "traditionalName": "身宮"
+          }
+        }
+      },
+      {
+        "divergence": null,
+        "input": {
+          "hourBranch": "未",
+          "lunarMonth": 7
+        },
+        "match": true,
+        "orderingKey": "07:07",
+        "productionEngine": {
+          "mingGong": {
+            "branch": "丑",
+            "id": "life",
+            "index": 1,
+            "name": "명궁"
+          },
+          "shenGong": {
+            "branch": "卯",
+            "id": "shen",
+            "index": 3,
+            "name": "신궁"
+          }
+        },
+        "rowId": "lunar-month-07-hour-未",
+        "sourceDerived": {
+          "mingGong": {
+            "branch": "丑",
+            "branchIndex": 1,
+            "engineId": "life",
+            "traditionalName": "命宮"
+          },
+          "shenGong": {
+            "branch": "卯",
+            "branchIndex": 3,
+            "engineId": "shen",
+            "traditionalName": "身宮"
+          }
+        }
+      },
+      {
+        "divergence": null,
+        "input": {
+          "hourBranch": "申",
+          "lunarMonth": 7
+        },
+        "match": true,
+        "orderingKey": "07:08",
+        "productionEngine": {
+          "mingGong": {
+            "branch": "子",
+            "id": "life",
+            "index": 0,
+            "name": "명궁"
+          },
+          "shenGong": {
+            "branch": "辰",
+            "id": "shen",
+            "index": 4,
+            "name": "신궁"
+          }
+        },
+        "rowId": "lunar-month-07-hour-申",
+        "sourceDerived": {
+          "mingGong": {
+            "branch": "子",
+            "branchIndex": 0,
+            "engineId": "life",
+            "traditionalName": "命宮"
+          },
+          "shenGong": {
+            "branch": "辰",
+            "branchIndex": 4,
+            "engineId": "shen",
+            "traditionalName": "身宮"
+          }
+        }
+      },
+      {
+        "divergence": null,
+        "input": {
+          "hourBranch": "酉",
+          "lunarMonth": 7
+        },
+        "match": true,
+        "orderingKey": "07:09",
+        "productionEngine": {
+          "mingGong": {
+            "branch": "亥",
+            "id": "life",
+            "index": 11,
+            "name": "명궁"
+          },
+          "shenGong": {
+            "branch": "巳",
+            "id": "shen",
+            "index": 5,
+            "name": "신궁"
+          }
+        },
+        "rowId": "lunar-month-07-hour-酉",
+        "sourceDerived": {
+          "mingGong": {
+            "branch": "亥",
+            "branchIndex": 11,
+            "engineId": "life",
+            "traditionalName": "命宮"
+          },
+          "shenGong": {
+            "branch": "巳",
+            "branchIndex": 5,
+            "engineId": "shen",
+            "traditionalName": "身宮"
+          }
+        }
+      },
+      {
+        "divergence": null,
+        "input": {
+          "hourBranch": "戌",
+          "lunarMonth": 7
+        },
+        "match": true,
+        "orderingKey": "07:10",
+        "productionEngine": {
+          "mingGong": {
+            "branch": "戌",
+            "id": "life",
+            "index": 10,
+            "name": "명궁"
+          },
+          "shenGong": {
+            "branch": "午",
+            "id": "shen",
+            "index": 6,
+            "name": "신궁"
+          }
+        },
+        "rowId": "lunar-month-07-hour-戌",
+        "sourceDerived": {
+          "mingGong": {
+            "branch": "戌",
+            "branchIndex": 10,
+            "engineId": "life",
+            "traditionalName": "命宮"
+          },
+          "shenGong": {
+            "branch": "午",
+            "branchIndex": 6,
+            "engineId": "shen",
+            "traditionalName": "身宮"
+          }
+        }
+      },
+      {
+        "divergence": null,
+        "input": {
+          "hourBranch": "亥",
+          "lunarMonth": 7
+        },
+        "match": true,
+        "orderingKey": "07:11",
+        "productionEngine": {
+          "mingGong": {
+            "branch": "酉",
+            "id": "life",
+            "index": 9,
+            "name": "명궁"
+          },
+          "shenGong": {
+            "branch": "未",
+            "id": "shen",
+            "index": 7,
+            "name": "신궁"
+          }
+        },
+        "rowId": "lunar-month-07-hour-亥",
+        "sourceDerived": {
+          "mingGong": {
+            "branch": "酉",
+            "branchIndex": 9,
+            "engineId": "life",
+            "traditionalName": "命宮"
+          },
+          "shenGong": {
+            "branch": "未",
+            "branchIndex": 7,
+            "engineId": "shen",
+            "traditionalName": "身宮"
+          }
+        }
+      },
+      {
+        "divergence": null,
+        "input": {
+          "hourBranch": "子",
+          "lunarMonth": 8
+        },
+        "match": true,
+        "orderingKey": "08:00",
+        "productionEngine": {
+          "mingGong": {
+            "branch": "酉",
+            "id": "life",
+            "index": 9,
+            "name": "명궁"
+          },
+          "shenGong": {
+            "branch": "酉",
+            "id": "shen",
+            "index": 9,
+            "name": "신궁"
+          }
+        },
+        "rowId": "lunar-month-08-hour-子",
+        "sourceDerived": {
+          "mingGong": {
+            "branch": "酉",
+            "branchIndex": 9,
+            "engineId": "life",
+            "traditionalName": "命宮"
+          },
+          "shenGong": {
+            "branch": "酉",
+            "branchIndex": 9,
+            "engineId": "shen",
+            "traditionalName": "身宮"
+          }
+        }
+      },
+      {
+        "divergence": null,
+        "input": {
+          "hourBranch": "丑",
+          "lunarMonth": 8
+        },
+        "match": true,
+        "orderingKey": "08:01",
+        "productionEngine": {
+          "mingGong": {
+            "branch": "申",
+            "id": "life",
+            "index": 8,
+            "name": "명궁"
+          },
+          "shenGong": {
+            "branch": "戌",
+            "id": "shen",
+            "index": 10,
+            "name": "신궁"
+          }
+        },
+        "rowId": "lunar-month-08-hour-丑",
+        "sourceDerived": {
+          "mingGong": {
+            "branch": "申",
+            "branchIndex": 8,
+            "engineId": "life",
+            "traditionalName": "命宮"
+          },
+          "shenGong": {
+            "branch": "戌",
+            "branchIndex": 10,
+            "engineId": "shen",
+            "traditionalName": "身宮"
+          }
+        }
+      },
+      {
+        "divergence": null,
+        "input": {
+          "hourBranch": "寅",
+          "lunarMonth": 8
+        },
+        "match": true,
+        "orderingKey": "08:02",
+        "productionEngine": {
+          "mingGong": {
+            "branch": "未",
+            "id": "life",
+            "index": 7,
+            "name": "명궁"
+          },
+          "shenGong": {
+            "branch": "亥",
+            "id": "shen",
+            "index": 11,
+            "name": "신궁"
+          }
+        },
+        "rowId": "lunar-month-08-hour-寅",
+        "sourceDerived": {
+          "mingGong": {
+            "branch": "未",
+            "branchIndex": 7,
+            "engineId": "life",
+            "traditionalName": "命宮"
+          },
+          "shenGong": {
+            "branch": "亥",
+            "branchIndex": 11,
+            "engineId": "shen",
+            "traditionalName": "身宮"
+          }
+        }
+      },
+      {
+        "divergence": null,
+        "input": {
+          "hourBranch": "卯",
+          "lunarMonth": 8
+        },
+        "match": true,
+        "orderingKey": "08:03",
+        "productionEngine": {
+          "mingGong": {
+            "branch": "午",
+            "id": "life",
+            "index": 6,
+            "name": "명궁"
+          },
+          "shenGong": {
+            "branch": "子",
+            "id": "shen",
+            "index": 0,
+            "name": "신궁"
+          }
+        },
+        "rowId": "lunar-month-08-hour-卯",
+        "sourceDerived": {
+          "mingGong": {
+            "branch": "午",
+            "branchIndex": 6,
+            "engineId": "life",
+            "traditionalName": "命宮"
+          },
+          "shenGong": {
+            "branch": "子",
+            "branchIndex": 0,
+            "engineId": "shen",
+            "traditionalName": "身宮"
+          }
+        }
+      },
+      {
+        "divergence": null,
+        "input": {
+          "hourBranch": "辰",
+          "lunarMonth": 8
+        },
+        "match": true,
+        "orderingKey": "08:04",
+        "productionEngine": {
+          "mingGong": {
+            "branch": "巳",
+            "id": "life",
+            "index": 5,
+            "name": "명궁"
+          },
+          "shenGong": {
+            "branch": "丑",
+            "id": "shen",
+            "index": 1,
+            "name": "신궁"
+          }
+        },
+        "rowId": "lunar-month-08-hour-辰",
+        "sourceDerived": {
+          "mingGong": {
+            "branch": "巳",
+            "branchIndex": 5,
+            "engineId": "life",
+            "traditionalName": "命宮"
+          },
+          "shenGong": {
+            "branch": "丑",
+            "branchIndex": 1,
+            "engineId": "shen",
+            "traditionalName": "身宮"
+          }
+        }
+      },
+      {
+        "divergence": null,
+        "input": {
+          "hourBranch": "巳",
+          "lunarMonth": 8
+        },
+        "match": true,
+        "orderingKey": "08:05",
+        "productionEngine": {
+          "mingGong": {
+            "branch": "辰",
+            "id": "life",
+            "index": 4,
+            "name": "명궁"
+          },
+          "shenGong": {
+            "branch": "寅",
+            "id": "shen",
+            "index": 2,
+            "name": "신궁"
+          }
+        },
+        "rowId": "lunar-month-08-hour-巳",
+        "sourceDerived": {
+          "mingGong": {
+            "branch": "辰",
+            "branchIndex": 4,
+            "engineId": "life",
+            "traditionalName": "命宮"
+          },
+          "shenGong": {
+            "branch": "寅",
+            "branchIndex": 2,
+            "engineId": "shen",
+            "traditionalName": "身宮"
+          }
+        }
+      },
+      {
+        "divergence": null,
+        "input": {
+          "hourBranch": "午",
+          "lunarMonth": 8
+        },
+        "match": true,
+        "orderingKey": "08:06",
+        "productionEngine": {
+          "mingGong": {
+            "branch": "卯",
+            "id": "life",
+            "index": 3,
+            "name": "명궁"
+          },
+          "shenGong": {
+            "branch": "卯",
+            "id": "shen",
+            "index": 3,
+            "name": "신궁"
+          }
+        },
+        "rowId": "lunar-month-08-hour-午",
+        "sourceDerived": {
+          "mingGong": {
+            "branch": "卯",
+            "branchIndex": 3,
+            "engineId": "life",
+            "traditionalName": "命宮"
+          },
+          "shenGong": {
+            "branch": "卯",
+            "branchIndex": 3,
+            "engineId": "shen",
+            "traditionalName": "身宮"
+          }
+        }
+      },
+      {
+        "divergence": null,
+        "input": {
+          "hourBranch": "未",
+          "lunarMonth": 8
+        },
+        "match": true,
+        "orderingKey": "08:07",
+        "productionEngine": {
+          "mingGong": {
+            "branch": "寅",
+            "id": "life",
+            "index": 2,
+            "name": "명궁"
+          },
+          "shenGong": {
+            "branch": "辰",
+            "id": "shen",
+            "index": 4,
+            "name": "신궁"
+          }
+        },
+        "rowId": "lunar-month-08-hour-未",
+        "sourceDerived": {
+          "mingGong": {
+            "branch": "寅",
+            "branchIndex": 2,
+            "engineId": "life",
+            "traditionalName": "命宮"
+          },
+          "shenGong": {
+            "branch": "辰",
+            "branchIndex": 4,
+            "engineId": "shen",
+            "traditionalName": "身宮"
+          }
+        }
+      },
+      {
+        "divergence": null,
+        "input": {
+          "hourBranch": "申",
+          "lunarMonth": 8
+        },
+        "match": true,
+        "orderingKey": "08:08",
+        "productionEngine": {
+          "mingGong": {
+            "branch": "丑",
+            "id": "life",
+            "index": 1,
+            "name": "명궁"
+          },
+          "shenGong": {
+            "branch": "巳",
+            "id": "shen",
+            "index": 5,
+            "name": "신궁"
+          }
+        },
+        "rowId": "lunar-month-08-hour-申",
+        "sourceDerived": {
+          "mingGong": {
+            "branch": "丑",
+            "branchIndex": 1,
+            "engineId": "life",
+            "traditionalName": "命宮"
+          },
+          "shenGong": {
+            "branch": "巳",
+            "branchIndex": 5,
+            "engineId": "shen",
+            "traditionalName": "身宮"
+          }
+        }
+      },
+      {
+        "divergence": null,
+        "input": {
+          "hourBranch": "酉",
+          "lunarMonth": 8
+        },
+        "match": true,
+        "orderingKey": "08:09",
+        "productionEngine": {
+          "mingGong": {
+            "branch": "子",
+            "id": "life",
+            "index": 0,
+            "name": "명궁"
+          },
+          "shenGong": {
+            "branch": "午",
+            "id": "shen",
+            "index": 6,
+            "name": "신궁"
+          }
+        },
+        "rowId": "lunar-month-08-hour-酉",
+        "sourceDerived": {
+          "mingGong": {
+            "branch": "子",
+            "branchIndex": 0,
+            "engineId": "life",
+            "traditionalName": "命宮"
+          },
+          "shenGong": {
+            "branch": "午",
+            "branchIndex": 6,
+            "engineId": "shen",
+            "traditionalName": "身宮"
+          }
+        }
+      },
+      {
+        "divergence": null,
+        "input": {
+          "hourBranch": "戌",
+          "lunarMonth": 8
+        },
+        "match": true,
+        "orderingKey": "08:10",
+        "productionEngine": {
+          "mingGong": {
+            "branch": "亥",
+            "id": "life",
+            "index": 11,
+            "name": "명궁"
+          },
+          "shenGong": {
+            "branch": "未",
+            "id": "shen",
+            "index": 7,
+            "name": "신궁"
+          }
+        },
+        "rowId": "lunar-month-08-hour-戌",
+        "sourceDerived": {
+          "mingGong": {
+            "branch": "亥",
+            "branchIndex": 11,
+            "engineId": "life",
+            "traditionalName": "命宮"
+          },
+          "shenGong": {
+            "branch": "未",
+            "branchIndex": 7,
+            "engineId": "shen",
+            "traditionalName": "身宮"
+          }
+        }
+      },
+      {
+        "divergence": null,
+        "input": {
+          "hourBranch": "亥",
+          "lunarMonth": 8
+        },
+        "match": true,
+        "orderingKey": "08:11",
+        "productionEngine": {
+          "mingGong": {
+            "branch": "戌",
+            "id": "life",
+            "index": 10,
+            "name": "명궁"
+          },
+          "shenGong": {
+            "branch": "申",
+            "id": "shen",
+            "index": 8,
+            "name": "신궁"
+          }
+        },
+        "rowId": "lunar-month-08-hour-亥",
+        "sourceDerived": {
+          "mingGong": {
+            "branch": "戌",
+            "branchIndex": 10,
+            "engineId": "life",
+            "traditionalName": "命宮"
+          },
+          "shenGong": {
+            "branch": "申",
+            "branchIndex": 8,
+            "engineId": "shen",
+            "traditionalName": "身宮"
+          }
+        }
+      },
+      {
+        "divergence": null,
+        "input": {
+          "hourBranch": "子",
+          "lunarMonth": 9
+        },
+        "match": true,
+        "orderingKey": "09:00",
+        "productionEngine": {
+          "mingGong": {
+            "branch": "戌",
+            "id": "life",
+            "index": 10,
+            "name": "명궁"
+          },
+          "shenGong": {
+            "branch": "戌",
+            "id": "shen",
+            "index": 10,
+            "name": "신궁"
+          }
+        },
+        "rowId": "lunar-month-09-hour-子",
+        "sourceDerived": {
+          "mingGong": {
+            "branch": "戌",
+            "branchIndex": 10,
+            "engineId": "life",
+            "traditionalName": "命宮"
+          },
+          "shenGong": {
+            "branch": "戌",
+            "branchIndex": 10,
+            "engineId": "shen",
+            "traditionalName": "身宮"
+          }
+        }
+      },
+      {
+        "divergence": null,
+        "input": {
+          "hourBranch": "丑",
+          "lunarMonth": 9
+        },
+        "match": true,
+        "orderingKey": "09:01",
+        "productionEngine": {
+          "mingGong": {
+            "branch": "酉",
+            "id": "life",
+            "index": 9,
+            "name": "명궁"
+          },
+          "shenGong": {
+            "branch": "亥",
+            "id": "shen",
+            "index": 11,
+            "name": "신궁"
+          }
+        },
+        "rowId": "lunar-month-09-hour-丑",
+        "sourceDerived": {
+          "mingGong": {
+            "branch": "酉",
+            "branchIndex": 9,
+            "engineId": "life",
+            "traditionalName": "命宮"
+          },
+          "shenGong": {
+            "branch": "亥",
+            "branchIndex": 11,
+            "engineId": "shen",
+            "traditionalName": "身宮"
+          }
+        }
+      },
+      {
+        "divergence": null,
+        "input": {
+          "hourBranch": "寅",
+          "lunarMonth": 9
+        },
+        "match": true,
+        "orderingKey": "09:02",
+        "productionEngine": {
+          "mingGong": {
+            "branch": "申",
+            "id": "life",
+            "index": 8,
+            "name": "명궁"
+          },
+          "shenGong": {
+            "branch": "子",
+            "id": "shen",
+            "index": 0,
+            "name": "신궁"
+          }
+        },
+        "rowId": "lunar-month-09-hour-寅",
+        "sourceDerived": {
+          "mingGong": {
+            "branch": "申",
+            "branchIndex": 8,
+            "engineId": "life",
+            "traditionalName": "命宮"
+          },
+          "shenGong": {
+            "branch": "子",
+            "branchIndex": 0,
+            "engineId": "shen",
+            "traditionalName": "身宮"
+          }
+        }
+      },
+      {
+        "divergence": null,
+        "input": {
+          "hourBranch": "卯",
+          "lunarMonth": 9
+        },
+        "match": true,
+        "orderingKey": "09:03",
+        "productionEngine": {
+          "mingGong": {
+            "branch": "未",
+            "id": "life",
+            "index": 7,
+            "name": "명궁"
+          },
+          "shenGong": {
+            "branch": "丑",
+            "id": "shen",
+            "index": 1,
+            "name": "신궁"
+          }
+        },
+        "rowId": "lunar-month-09-hour-卯",
+        "sourceDerived": {
+          "mingGong": {
+            "branch": "未",
+            "branchIndex": 7,
+            "engineId": "life",
+            "traditionalName": "命宮"
+          },
+          "shenGong": {
+            "branch": "丑",
+            "branchIndex": 1,
+            "engineId": "shen",
+            "traditionalName": "身宮"
+          }
+        }
+      },
+      {
+        "divergence": null,
+        "input": {
+          "hourBranch": "辰",
+          "lunarMonth": 9
+        },
+        "match": true,
+        "orderingKey": "09:04",
+        "productionEngine": {
+          "mingGong": {
+            "branch": "午",
+            "id": "life",
+            "index": 6,
+            "name": "명궁"
+          },
+          "shenGong": {
+            "branch": "寅",
+            "id": "shen",
+            "index": 2,
+            "name": "신궁"
+          }
+        },
+        "rowId": "lunar-month-09-hour-辰",
+        "sourceDerived": {
+          "mingGong": {
+            "branch": "午",
+            "branchIndex": 6,
+            "engineId": "life",
+            "traditionalName": "命宮"
+          },
+          "shenGong": {
+            "branch": "寅",
+            "branchIndex": 2,
+            "engineId": "shen",
+            "traditionalName": "身宮"
+          }
+        }
+      },
+      {
+        "divergence": null,
+        "input": {
+          "hourBranch": "巳",
+          "lunarMonth": 9
+        },
+        "match": true,
+        "orderingKey": "09:05",
+        "productionEngine": {
+          "mingGong": {
+            "branch": "巳",
+            "id": "life",
+            "index": 5,
+            "name": "명궁"
+          },
+          "shenGong": {
+            "branch": "卯",
+            "id": "shen",
+            "index": 3,
+            "name": "신궁"
+          }
+        },
+        "rowId": "lunar-month-09-hour-巳",
+        "sourceDerived": {
+          "mingGong": {
+            "branch": "巳",
+            "branchIndex": 5,
+            "engineId": "life",
+            "traditionalName": "命宮"
+          },
+          "shenGong": {
+            "branch": "卯",
+            "branchIndex": 3,
+            "engineId": "shen",
+            "traditionalName": "身宮"
+          }
+        }
+      },
+      {
+        "divergence": null,
+        "input": {
+          "hourBranch": "午",
+          "lunarMonth": 9
+        },
+        "match": true,
+        "orderingKey": "09:06",
+        "productionEngine": {
+          "mingGong": {
+            "branch": "辰",
+            "id": "life",
+            "index": 4,
+            "name": "명궁"
+          },
+          "shenGong": {
+            "branch": "辰",
+            "id": "shen",
+            "index": 4,
+            "name": "신궁"
+          }
+        },
+        "rowId": "lunar-month-09-hour-午",
+        "sourceDerived": {
+          "mingGong": {
+            "branch": "辰",
+            "branchIndex": 4,
+            "engineId": "life",
+            "traditionalName": "命宮"
+          },
+          "shenGong": {
+            "branch": "辰",
+            "branchIndex": 4,
+            "engineId": "shen",
+            "traditionalName": "身宮"
+          }
+        }
+      },
+      {
+        "divergence": null,
+        "input": {
+          "hourBranch": "未",
+          "lunarMonth": 9
+        },
+        "match": true,
+        "orderingKey": "09:07",
+        "productionEngine": {
+          "mingGong": {
+            "branch": "卯",
+            "id": "life",
+            "index": 3,
+            "name": "명궁"
+          },
+          "shenGong": {
+            "branch": "巳",
+            "id": "shen",
+            "index": 5,
+            "name": "신궁"
+          }
+        },
+        "rowId": "lunar-month-09-hour-未",
+        "sourceDerived": {
+          "mingGong": {
+            "branch": "卯",
+            "branchIndex": 3,
+            "engineId": "life",
+            "traditionalName": "命宮"
+          },
+          "shenGong": {
+            "branch": "巳",
+            "branchIndex": 5,
+            "engineId": "shen",
+            "traditionalName": "身宮"
+          }
+        }
+      },
+      {
+        "divergence": null,
+        "input": {
+          "hourBranch": "申",
+          "lunarMonth": 9
+        },
+        "match": true,
+        "orderingKey": "09:08",
+        "productionEngine": {
+          "mingGong": {
+            "branch": "寅",
+            "id": "life",
+            "index": 2,
+            "name": "명궁"
+          },
+          "shenGong": {
+            "branch": "午",
+            "id": "shen",
+            "index": 6,
+            "name": "신궁"
+          }
+        },
+        "rowId": "lunar-month-09-hour-申",
+        "sourceDerived": {
+          "mingGong": {
+            "branch": "寅",
+            "branchIndex": 2,
+            "engineId": "life",
+            "traditionalName": "命宮"
+          },
+          "shenGong": {
+            "branch": "午",
+            "branchIndex": 6,
+            "engineId": "shen",
+            "traditionalName": "身宮"
+          }
+        }
+      },
+      {
+        "divergence": null,
+        "input": {
+          "hourBranch": "酉",
+          "lunarMonth": 9
+        },
+        "match": true,
+        "orderingKey": "09:09",
+        "productionEngine": {
+          "mingGong": {
+            "branch": "丑",
+            "id": "life",
+            "index": 1,
+            "name": "명궁"
+          },
+          "shenGong": {
+            "branch": "未",
+            "id": "shen",
+            "index": 7,
+            "name": "신궁"
+          }
+        },
+        "rowId": "lunar-month-09-hour-酉",
+        "sourceDerived": {
+          "mingGong": {
+            "branch": "丑",
+            "branchIndex": 1,
+            "engineId": "life",
+            "traditionalName": "命宮"
+          },
+          "shenGong": {
+            "branch": "未",
+            "branchIndex": 7,
+            "engineId": "shen",
+            "traditionalName": "身宮"
+          }
+        }
+      },
+      {
+        "divergence": null,
+        "input": {
+          "hourBranch": "戌",
+          "lunarMonth": 9
+        },
+        "match": true,
+        "orderingKey": "09:10",
+        "productionEngine": {
+          "mingGong": {
+            "branch": "子",
+            "id": "life",
+            "index": 0,
+            "name": "명궁"
+          },
+          "shenGong": {
+            "branch": "申",
+            "id": "shen",
+            "index": 8,
+            "name": "신궁"
+          }
+        },
+        "rowId": "lunar-month-09-hour-戌",
+        "sourceDerived": {
+          "mingGong": {
+            "branch": "子",
+            "branchIndex": 0,
+            "engineId": "life",
+            "traditionalName": "命宮"
+          },
+          "shenGong": {
+            "branch": "申",
+            "branchIndex": 8,
+            "engineId": "shen",
+            "traditionalName": "身宮"
+          }
+        }
+      },
+      {
+        "divergence": null,
+        "input": {
+          "hourBranch": "亥",
+          "lunarMonth": 9
+        },
+        "match": true,
+        "orderingKey": "09:11",
+        "productionEngine": {
+          "mingGong": {
+            "branch": "亥",
+            "id": "life",
+            "index": 11,
+            "name": "명궁"
+          },
+          "shenGong": {
+            "branch": "酉",
+            "id": "shen",
+            "index": 9,
+            "name": "신궁"
+          }
+        },
+        "rowId": "lunar-month-09-hour-亥",
+        "sourceDerived": {
+          "mingGong": {
+            "branch": "亥",
+            "branchIndex": 11,
+            "engineId": "life",
+            "traditionalName": "命宮"
+          },
+          "shenGong": {
+            "branch": "酉",
+            "branchIndex": 9,
+            "engineId": "shen",
+            "traditionalName": "身宮"
+          }
+        }
+      },
+      {
+        "divergence": null,
+        "input": {
+          "hourBranch": "子",
+          "lunarMonth": 10
+        },
+        "match": true,
+        "orderingKey": "10:00",
+        "productionEngine": {
+          "mingGong": {
+            "branch": "亥",
+            "id": "life",
+            "index": 11,
+            "name": "명궁"
+          },
+          "shenGong": {
+            "branch": "亥",
+            "id": "shen",
+            "index": 11,
+            "name": "신궁"
+          }
+        },
+        "rowId": "lunar-month-10-hour-子",
+        "sourceDerived": {
+          "mingGong": {
+            "branch": "亥",
+            "branchIndex": 11,
+            "engineId": "life",
+            "traditionalName": "命宮"
+          },
+          "shenGong": {
+            "branch": "亥",
+            "branchIndex": 11,
+            "engineId": "shen",
+            "traditionalName": "身宮"
+          }
+        }
+      },
+      {
+        "divergence": null,
+        "input": {
+          "hourBranch": "丑",
+          "lunarMonth": 10
+        },
+        "match": true,
+        "orderingKey": "10:01",
+        "productionEngine": {
+          "mingGong": {
+            "branch": "戌",
+            "id": "life",
+            "index": 10,
+            "name": "명궁"
+          },
+          "shenGong": {
+            "branch": "子",
+            "id": "shen",
+            "index": 0,
+            "name": "신궁"
+          }
+        },
+        "rowId": "lunar-month-10-hour-丑",
+        "sourceDerived": {
+          "mingGong": {
+            "branch": "戌",
+            "branchIndex": 10,
+            "engineId": "life",
+            "traditionalName": "命宮"
+          },
+          "shenGong": {
+            "branch": "子",
+            "branchIndex": 0,
+            "engineId": "shen",
+            "traditionalName": "身宮"
+          }
+        }
+      },
+      {
+        "divergence": null,
+        "input": {
+          "hourBranch": "寅",
+          "lunarMonth": 10
+        },
+        "match": true,
+        "orderingKey": "10:02",
+        "productionEngine": {
+          "mingGong": {
+            "branch": "酉",
+            "id": "life",
+            "index": 9,
+            "name": "명궁"
+          },
+          "shenGong": {
+            "branch": "丑",
+            "id": "shen",
+            "index": 1,
+            "name": "신궁"
+          }
+        },
+        "rowId": "lunar-month-10-hour-寅",
+        "sourceDerived": {
+          "mingGong": {
+            "branch": "酉",
+            "branchIndex": 9,
+            "engineId": "life",
+            "traditionalName": "命宮"
+          },
+          "shenGong": {
+            "branch": "丑",
+            "branchIndex": 1,
+            "engineId": "shen",
+            "traditionalName": "身宮"
+          }
+        }
+      },
+      {
+        "divergence": null,
+        "input": {
+          "hourBranch": "卯",
+          "lunarMonth": 10
+        },
+        "match": true,
+        "orderingKey": "10:03",
+        "productionEngine": {
+          "mingGong": {
+            "branch": "申",
+            "id": "life",
+            "index": 8,
+            "name": "명궁"
+          },
+          "shenGong": {
+            "branch": "寅",
+            "id": "shen",
+            "index": 2,
+            "name": "신궁"
+          }
+        },
+        "rowId": "lunar-month-10-hour-卯",
+        "sourceDerived": {
+          "mingGong": {
+            "branch": "申",
+            "branchIndex": 8,
+            "engineId": "life",
+            "traditionalName": "命宮"
+          },
+          "shenGong": {
+            "branch": "寅",
+            "branchIndex": 2,
+            "engineId": "shen",
+            "traditionalName": "身宮"
+          }
+        }
+      },
+      {
+        "divergence": null,
+        "input": {
+          "hourBranch": "辰",
+          "lunarMonth": 10
+        },
+        "match": true,
+        "orderingKey": "10:04",
+        "productionEngine": {
+          "mingGong": {
+            "branch": "未",
+            "id": "life",
+            "index": 7,
+            "name": "명궁"
+          },
+          "shenGong": {
+            "branch": "卯",
+            "id": "shen",
+            "index": 3,
+            "name": "신궁"
+          }
+        },
+        "rowId": "lunar-month-10-hour-辰",
+        "sourceDerived": {
+          "mingGong": {
+            "branch": "未",
+            "branchIndex": 7,
+            "engineId": "life",
+            "traditionalName": "命宮"
+          },
+          "shenGong": {
+            "branch": "卯",
+            "branchIndex": 3,
+            "engineId": "shen",
+            "traditionalName": "身宮"
+          }
+        }
+      },
+      {
+        "divergence": null,
+        "input": {
+          "hourBranch": "巳",
+          "lunarMonth": 10
+        },
+        "match": true,
+        "orderingKey": "10:05",
+        "productionEngine": {
+          "mingGong": {
+            "branch": "午",
+            "id": "life",
+            "index": 6,
+            "name": "명궁"
+          },
+          "shenGong": {
+            "branch": "辰",
+            "id": "shen",
+            "index": 4,
+            "name": "신궁"
+          }
+        },
+        "rowId": "lunar-month-10-hour-巳",
+        "sourceDerived": {
+          "mingGong": {
+            "branch": "午",
+            "branchIndex": 6,
+            "engineId": "life",
+            "traditionalName": "命宮"
+          },
+          "shenGong": {
+            "branch": "辰",
+            "branchIndex": 4,
+            "engineId": "shen",
+            "traditionalName": "身宮"
+          }
+        }
+      },
+      {
+        "divergence": null,
+        "input": {
+          "hourBranch": "午",
+          "lunarMonth": 10
+        },
+        "match": true,
+        "orderingKey": "10:06",
+        "productionEngine": {
+          "mingGong": {
+            "branch": "巳",
+            "id": "life",
+            "index": 5,
+            "name": "명궁"
+          },
+          "shenGong": {
+            "branch": "巳",
+            "id": "shen",
+            "index": 5,
+            "name": "신궁"
+          }
+        },
+        "rowId": "lunar-month-10-hour-午",
+        "sourceDerived": {
+          "mingGong": {
+            "branch": "巳",
+            "branchIndex": 5,
+            "engineId": "life",
+            "traditionalName": "命宮"
+          },
+          "shenGong": {
+            "branch": "巳",
+            "branchIndex": 5,
+            "engineId": "shen",
+            "traditionalName": "身宮"
+          }
+        }
+      },
+      {
+        "divergence": null,
+        "input": {
+          "hourBranch": "未",
+          "lunarMonth": 10
+        },
+        "match": true,
+        "orderingKey": "10:07",
+        "productionEngine": {
+          "mingGong": {
+            "branch": "辰",
+            "id": "life",
+            "index": 4,
+            "name": "명궁"
+          },
+          "shenGong": {
+            "branch": "午",
+            "id": "shen",
+            "index": 6,
+            "name": "신궁"
+          }
+        },
+        "rowId": "lunar-month-10-hour-未",
+        "sourceDerived": {
+          "mingGong": {
+            "branch": "辰",
+            "branchIndex": 4,
+            "engineId": "life",
+            "traditionalName": "命宮"
+          },
+          "shenGong": {
+            "branch": "午",
+            "branchIndex": 6,
+            "engineId": "shen",
+            "traditionalName": "身宮"
+          }
+        }
+      },
+      {
+        "divergence": null,
+        "input": {
+          "hourBranch": "申",
+          "lunarMonth": 10
+        },
+        "match": true,
+        "orderingKey": "10:08",
+        "productionEngine": {
+          "mingGong": {
+            "branch": "卯",
+            "id": "life",
+            "index": 3,
+            "name": "명궁"
+          },
+          "shenGong": {
+            "branch": "未",
+            "id": "shen",
+            "index": 7,
+            "name": "신궁"
+          }
+        },
+        "rowId": "lunar-month-10-hour-申",
+        "sourceDerived": {
+          "mingGong": {
+            "branch": "卯",
+            "branchIndex": 3,
+            "engineId": "life",
+            "traditionalName": "命宮"
+          },
+          "shenGong": {
+            "branch": "未",
+            "branchIndex": 7,
+            "engineId": "shen",
+            "traditionalName": "身宮"
+          }
+        }
+      },
+      {
+        "divergence": null,
+        "input": {
+          "hourBranch": "酉",
+          "lunarMonth": 10
+        },
+        "match": true,
+        "orderingKey": "10:09",
+        "productionEngine": {
+          "mingGong": {
+            "branch": "寅",
+            "id": "life",
+            "index": 2,
+            "name": "명궁"
+          },
+          "shenGong": {
+            "branch": "申",
+            "id": "shen",
+            "index": 8,
+            "name": "신궁"
+          }
+        },
+        "rowId": "lunar-month-10-hour-酉",
+        "sourceDerived": {
+          "mingGong": {
+            "branch": "寅",
+            "branchIndex": 2,
+            "engineId": "life",
+            "traditionalName": "命宮"
+          },
+          "shenGong": {
+            "branch": "申",
+            "branchIndex": 8,
+            "engineId": "shen",
+            "traditionalName": "身宮"
+          }
+        }
+      },
+      {
+        "divergence": null,
+        "input": {
+          "hourBranch": "戌",
+          "lunarMonth": 10
+        },
+        "match": true,
+        "orderingKey": "10:10",
+        "productionEngine": {
+          "mingGong": {
+            "branch": "丑",
+            "id": "life",
+            "index": 1,
+            "name": "명궁"
+          },
+          "shenGong": {
+            "branch": "酉",
+            "id": "shen",
+            "index": 9,
+            "name": "신궁"
+          }
+        },
+        "rowId": "lunar-month-10-hour-戌",
+        "sourceDerived": {
+          "mingGong": {
+            "branch": "丑",
+            "branchIndex": 1,
+            "engineId": "life",
+            "traditionalName": "命宮"
+          },
+          "shenGong": {
+            "branch": "酉",
+            "branchIndex": 9,
+            "engineId": "shen",
+            "traditionalName": "身宮"
+          }
+        }
+      },
+      {
+        "divergence": null,
+        "input": {
+          "hourBranch": "亥",
+          "lunarMonth": 10
+        },
+        "match": true,
+        "orderingKey": "10:11",
+        "productionEngine": {
+          "mingGong": {
+            "branch": "子",
+            "id": "life",
+            "index": 0,
+            "name": "명궁"
+          },
+          "shenGong": {
+            "branch": "戌",
+            "id": "shen",
+            "index": 10,
+            "name": "신궁"
+          }
+        },
+        "rowId": "lunar-month-10-hour-亥",
+        "sourceDerived": {
+          "mingGong": {
+            "branch": "子",
+            "branchIndex": 0,
+            "engineId": "life",
+            "traditionalName": "命宮"
+          },
+          "shenGong": {
+            "branch": "戌",
+            "branchIndex": 10,
+            "engineId": "shen",
+            "traditionalName": "身宮"
+          }
+        }
+      },
+      {
+        "divergence": null,
+        "input": {
+          "hourBranch": "子",
+          "lunarMonth": 11
+        },
+        "match": true,
+        "orderingKey": "11:00",
+        "productionEngine": {
+          "mingGong": {
+            "branch": "子",
+            "id": "life",
+            "index": 0,
+            "name": "명궁"
+          },
+          "shenGong": {
+            "branch": "子",
+            "id": "shen",
+            "index": 0,
+            "name": "신궁"
+          }
+        },
+        "rowId": "lunar-month-11-hour-子",
+        "sourceDerived": {
+          "mingGong": {
+            "branch": "子",
+            "branchIndex": 0,
+            "engineId": "life",
+            "traditionalName": "命宮"
+          },
+          "shenGong": {
+            "branch": "子",
+            "branchIndex": 0,
+            "engineId": "shen",
+            "traditionalName": "身宮"
+          }
+        }
+      },
+      {
+        "divergence": null,
+        "input": {
+          "hourBranch": "丑",
+          "lunarMonth": 11
+        },
+        "match": true,
+        "orderingKey": "11:01",
+        "productionEngine": {
+          "mingGong": {
+            "branch": "亥",
+            "id": "life",
+            "index": 11,
+            "name": "명궁"
+          },
+          "shenGong": {
+            "branch": "丑",
+            "id": "shen",
+            "index": 1,
+            "name": "신궁"
+          }
+        },
+        "rowId": "lunar-month-11-hour-丑",
+        "sourceDerived": {
+          "mingGong": {
+            "branch": "亥",
+            "branchIndex": 11,
+            "engineId": "life",
+            "traditionalName": "命宮"
+          },
+          "shenGong": {
+            "branch": "丑",
+            "branchIndex": 1,
+            "engineId": "shen",
+            "traditionalName": "身宮"
+          }
+        }
+      },
+      {
+        "divergence": null,
+        "input": {
+          "hourBranch": "寅",
+          "lunarMonth": 11
+        },
+        "match": true,
+        "orderingKey": "11:02",
+        "productionEngine": {
+          "mingGong": {
+            "branch": "戌",
+            "id": "life",
+            "index": 10,
+            "name": "명궁"
+          },
+          "shenGong": {
+            "branch": "寅",
+            "id": "shen",
+            "index": 2,
+            "name": "신궁"
+          }
+        },
+        "rowId": "lunar-month-11-hour-寅",
+        "sourceDerived": {
+          "mingGong": {
+            "branch": "戌",
+            "branchIndex": 10,
+            "engineId": "life",
+            "traditionalName": "命宮"
+          },
+          "shenGong": {
+            "branch": "寅",
+            "branchIndex": 2,
+            "engineId": "shen",
+            "traditionalName": "身宮"
+          }
+        }
+      },
+      {
+        "divergence": null,
+        "input": {
+          "hourBranch": "卯",
+          "lunarMonth": 11
+        },
+        "match": true,
+        "orderingKey": "11:03",
+        "productionEngine": {
+          "mingGong": {
+            "branch": "酉",
+            "id": "life",
+            "index": 9,
+            "name": "명궁"
+          },
+          "shenGong": {
+            "branch": "卯",
+            "id": "shen",
+            "index": 3,
+            "name": "신궁"
+          }
+        },
+        "rowId": "lunar-month-11-hour-卯",
+        "sourceDerived": {
+          "mingGong": {
+            "branch": "酉",
+            "branchIndex": 9,
+            "engineId": "life",
+            "traditionalName": "命宮"
+          },
+          "shenGong": {
+            "branch": "卯",
+            "branchIndex": 3,
+            "engineId": "shen",
+            "traditionalName": "身宮"
+          }
+        }
+      },
+      {
+        "divergence": null,
+        "input": {
+          "hourBranch": "辰",
+          "lunarMonth": 11
+        },
+        "match": true,
+        "orderingKey": "11:04",
+        "productionEngine": {
+          "mingGong": {
+            "branch": "申",
+            "id": "life",
+            "index": 8,
+            "name": "명궁"
+          },
+          "shenGong": {
+            "branch": "辰",
+            "id": "shen",
+            "index": 4,
+            "name": "신궁"
+          }
+        },
+        "rowId": "lunar-month-11-hour-辰",
+        "sourceDerived": {
+          "mingGong": {
+            "branch": "申",
+            "branchIndex": 8,
+            "engineId": "life",
+            "traditionalName": "命宮"
+          },
+          "shenGong": {
+            "branch": "辰",
+            "branchIndex": 4,
+            "engineId": "shen",
+            "traditionalName": "身宮"
+          }
+        }
+      },
+      {
+        "divergence": null,
+        "input": {
+          "hourBranch": "巳",
+          "lunarMonth": 11
+        },
+        "match": true,
+        "orderingKey": "11:05",
+        "productionEngine": {
+          "mingGong": {
+            "branch": "未",
+            "id": "life",
+            "index": 7,
+            "name": "명궁"
+          },
+          "shenGong": {
+            "branch": "巳",
+            "id": "shen",
+            "index": 5,
+            "name": "신궁"
+          }
+        },
+        "rowId": "lunar-month-11-hour-巳",
+        "sourceDerived": {
+          "mingGong": {
+            "branch": "未",
+            "branchIndex": 7,
+            "engineId": "life",
+            "traditionalName": "命宮"
+          },
+          "shenGong": {
+            "branch": "巳",
+            "branchIndex": 5,
+            "engineId": "shen",
+            "traditionalName": "身宮"
+          }
+        }
+      },
+      {
+        "divergence": null,
+        "input": {
+          "hourBranch": "午",
+          "lunarMonth": 11
+        },
+        "match": true,
+        "orderingKey": "11:06",
+        "productionEngine": {
+          "mingGong": {
+            "branch": "午",
+            "id": "life",
+            "index": 6,
+            "name": "명궁"
+          },
+          "shenGong": {
+            "branch": "午",
+            "id": "shen",
+            "index": 6,
+            "name": "신궁"
+          }
+        },
+        "rowId": "lunar-month-11-hour-午",
+        "sourceDerived": {
+          "mingGong": {
+            "branch": "午",
+            "branchIndex": 6,
+            "engineId": "life",
+            "traditionalName": "命宮"
+          },
+          "shenGong": {
+            "branch": "午",
+            "branchIndex": 6,
+            "engineId": "shen",
+            "traditionalName": "身宮"
+          }
+        }
+      },
+      {
+        "divergence": null,
+        "input": {
+          "hourBranch": "未",
+          "lunarMonth": 11
+        },
+        "match": true,
+        "orderingKey": "11:07",
+        "productionEngine": {
+          "mingGong": {
+            "branch": "巳",
+            "id": "life",
+            "index": 5,
+            "name": "명궁"
+          },
+          "shenGong": {
+            "branch": "未",
+            "id": "shen",
+            "index": 7,
+            "name": "신궁"
+          }
+        },
+        "rowId": "lunar-month-11-hour-未",
+        "sourceDerived": {
+          "mingGong": {
+            "branch": "巳",
+            "branchIndex": 5,
+            "engineId": "life",
+            "traditionalName": "命宮"
+          },
+          "shenGong": {
+            "branch": "未",
+            "branchIndex": 7,
+            "engineId": "shen",
+            "traditionalName": "身宮"
+          }
+        }
+      },
+      {
+        "divergence": null,
+        "input": {
+          "hourBranch": "申",
+          "lunarMonth": 11
+        },
+        "match": true,
+        "orderingKey": "11:08",
+        "productionEngine": {
+          "mingGong": {
+            "branch": "辰",
+            "id": "life",
+            "index": 4,
+            "name": "명궁"
+          },
+          "shenGong": {
+            "branch": "申",
+            "id": "shen",
+            "index": 8,
+            "name": "신궁"
+          }
+        },
+        "rowId": "lunar-month-11-hour-申",
+        "sourceDerived": {
+          "mingGong": {
+            "branch": "辰",
+            "branchIndex": 4,
+            "engineId": "life",
+            "traditionalName": "命宮"
+          },
+          "shenGong": {
+            "branch": "申",
+            "branchIndex": 8,
+            "engineId": "shen",
+            "traditionalName": "身宮"
+          }
+        }
+      },
+      {
+        "divergence": null,
+        "input": {
+          "hourBranch": "酉",
+          "lunarMonth": 11
+        },
+        "match": true,
+        "orderingKey": "11:09",
+        "productionEngine": {
+          "mingGong": {
+            "branch": "卯",
+            "id": "life",
+            "index": 3,
+            "name": "명궁"
+          },
+          "shenGong": {
+            "branch": "酉",
+            "id": "shen",
+            "index": 9,
+            "name": "신궁"
+          }
+        },
+        "rowId": "lunar-month-11-hour-酉",
+        "sourceDerived": {
+          "mingGong": {
+            "branch": "卯",
+            "branchIndex": 3,
+            "engineId": "life",
+            "traditionalName": "命宮"
+          },
+          "shenGong": {
+            "branch": "酉",
+            "branchIndex": 9,
+            "engineId": "shen",
+            "traditionalName": "身宮"
+          }
+        }
+      },
+      {
+        "divergence": null,
+        "input": {
+          "hourBranch": "戌",
+          "lunarMonth": 11
+        },
+        "match": true,
+        "orderingKey": "11:10",
+        "productionEngine": {
+          "mingGong": {
+            "branch": "寅",
+            "id": "life",
+            "index": 2,
+            "name": "명궁"
+          },
+          "shenGong": {
+            "branch": "戌",
+            "id": "shen",
+            "index": 10,
+            "name": "신궁"
+          }
+        },
+        "rowId": "lunar-month-11-hour-戌",
+        "sourceDerived": {
+          "mingGong": {
+            "branch": "寅",
+            "branchIndex": 2,
+            "engineId": "life",
+            "traditionalName": "命宮"
+          },
+          "shenGong": {
+            "branch": "戌",
+            "branchIndex": 10,
+            "engineId": "shen",
+            "traditionalName": "身宮"
+          }
+        }
+      },
+      {
+        "divergence": null,
+        "input": {
+          "hourBranch": "亥",
+          "lunarMonth": 11
+        },
+        "match": true,
+        "orderingKey": "11:11",
+        "productionEngine": {
+          "mingGong": {
+            "branch": "丑",
+            "id": "life",
+            "index": 1,
+            "name": "명궁"
+          },
+          "shenGong": {
+            "branch": "亥",
+            "id": "shen",
+            "index": 11,
+            "name": "신궁"
+          }
+        },
+        "rowId": "lunar-month-11-hour-亥",
+        "sourceDerived": {
+          "mingGong": {
+            "branch": "丑",
+            "branchIndex": 1,
+            "engineId": "life",
+            "traditionalName": "命宮"
+          },
+          "shenGong": {
+            "branch": "亥",
+            "branchIndex": 11,
+            "engineId": "shen",
+            "traditionalName": "身宮"
+          }
+        }
+      },
+      {
+        "divergence": null,
+        "input": {
+          "hourBranch": "子",
+          "lunarMonth": 12
+        },
+        "match": true,
+        "orderingKey": "12:00",
+        "productionEngine": {
+          "mingGong": {
+            "branch": "丑",
+            "id": "life",
+            "index": 1,
+            "name": "명궁"
+          },
+          "shenGong": {
+            "branch": "丑",
+            "id": "shen",
+            "index": 1,
+            "name": "신궁"
+          }
+        },
+        "rowId": "lunar-month-12-hour-子",
+        "sourceDerived": {
+          "mingGong": {
+            "branch": "丑",
+            "branchIndex": 1,
+            "engineId": "life",
+            "traditionalName": "命宮"
+          },
+          "shenGong": {
+            "branch": "丑",
+            "branchIndex": 1,
+            "engineId": "shen",
+            "traditionalName": "身宮"
+          }
+        }
+      },
+      {
+        "divergence": null,
+        "input": {
+          "hourBranch": "丑",
+          "lunarMonth": 12
+        },
+        "match": true,
+        "orderingKey": "12:01",
+        "productionEngine": {
+          "mingGong": {
+            "branch": "子",
+            "id": "life",
+            "index": 0,
+            "name": "명궁"
+          },
+          "shenGong": {
+            "branch": "寅",
+            "id": "shen",
+            "index": 2,
+            "name": "신궁"
+          }
+        },
+        "rowId": "lunar-month-12-hour-丑",
+        "sourceDerived": {
+          "mingGong": {
+            "branch": "子",
+            "branchIndex": 0,
+            "engineId": "life",
+            "traditionalName": "命宮"
+          },
+          "shenGong": {
+            "branch": "寅",
+            "branchIndex": 2,
+            "engineId": "shen",
+            "traditionalName": "身宮"
+          }
+        }
+      },
+      {
+        "divergence": null,
+        "input": {
+          "hourBranch": "寅",
+          "lunarMonth": 12
+        },
+        "match": true,
+        "orderingKey": "12:02",
+        "productionEngine": {
+          "mingGong": {
+            "branch": "亥",
+            "id": "life",
+            "index": 11,
+            "name": "명궁"
+          },
+          "shenGong": {
+            "branch": "卯",
+            "id": "shen",
+            "index": 3,
+            "name": "신궁"
+          }
+        },
+        "rowId": "lunar-month-12-hour-寅",
+        "sourceDerived": {
+          "mingGong": {
+            "branch": "亥",
+            "branchIndex": 11,
+            "engineId": "life",
+            "traditionalName": "命宮"
+          },
+          "shenGong": {
+            "branch": "卯",
+            "branchIndex": 3,
+            "engineId": "shen",
+            "traditionalName": "身宮"
+          }
+        }
+      },
+      {
+        "divergence": null,
+        "input": {
+          "hourBranch": "卯",
+          "lunarMonth": 12
+        },
+        "match": true,
+        "orderingKey": "12:03",
+        "productionEngine": {
+          "mingGong": {
+            "branch": "戌",
+            "id": "life",
+            "index": 10,
+            "name": "명궁"
+          },
+          "shenGong": {
+            "branch": "辰",
+            "id": "shen",
+            "index": 4,
+            "name": "신궁"
+          }
+        },
+        "rowId": "lunar-month-12-hour-卯",
+        "sourceDerived": {
+          "mingGong": {
+            "branch": "戌",
+            "branchIndex": 10,
+            "engineId": "life",
+            "traditionalName": "命宮"
+          },
+          "shenGong": {
+            "branch": "辰",
+            "branchIndex": 4,
+            "engineId": "shen",
+            "traditionalName": "身宮"
+          }
+        }
+      },
+      {
+        "divergence": null,
+        "input": {
+          "hourBranch": "辰",
+          "lunarMonth": 12
+        },
+        "match": true,
+        "orderingKey": "12:04",
+        "productionEngine": {
+          "mingGong": {
+            "branch": "酉",
+            "id": "life",
+            "index": 9,
+            "name": "명궁"
+          },
+          "shenGong": {
+            "branch": "巳",
+            "id": "shen",
+            "index": 5,
+            "name": "신궁"
+          }
+        },
+        "rowId": "lunar-month-12-hour-辰",
+        "sourceDerived": {
+          "mingGong": {
+            "branch": "酉",
+            "branchIndex": 9,
+            "engineId": "life",
+            "traditionalName": "命宮"
+          },
+          "shenGong": {
+            "branch": "巳",
+            "branchIndex": 5,
+            "engineId": "shen",
+            "traditionalName": "身宮"
+          }
+        }
+      },
+      {
+        "divergence": null,
+        "input": {
+          "hourBranch": "巳",
+          "lunarMonth": 12
+        },
+        "match": true,
+        "orderingKey": "12:05",
+        "productionEngine": {
+          "mingGong": {
+            "branch": "申",
+            "id": "life",
+            "index": 8,
+            "name": "명궁"
+          },
+          "shenGong": {
+            "branch": "午",
+            "id": "shen",
+            "index": 6,
+            "name": "신궁"
+          }
+        },
+        "rowId": "lunar-month-12-hour-巳",
+        "sourceDerived": {
+          "mingGong": {
+            "branch": "申",
+            "branchIndex": 8,
+            "engineId": "life",
+            "traditionalName": "命宮"
+          },
+          "shenGong": {
+            "branch": "午",
+            "branchIndex": 6,
+            "engineId": "shen",
+            "traditionalName": "身宮"
+          }
+        }
+      },
+      {
+        "divergence": null,
+        "input": {
+          "hourBranch": "午",
+          "lunarMonth": 12
+        },
+        "match": true,
+        "orderingKey": "12:06",
+        "productionEngine": {
+          "mingGong": {
+            "branch": "未",
+            "id": "life",
+            "index": 7,
+            "name": "명궁"
+          },
+          "shenGong": {
+            "branch": "未",
+            "id": "shen",
+            "index": 7,
+            "name": "신궁"
+          }
+        },
+        "rowId": "lunar-month-12-hour-午",
+        "sourceDerived": {
+          "mingGong": {
+            "branch": "未",
+            "branchIndex": 7,
+            "engineId": "life",
+            "traditionalName": "命宮"
+          },
+          "shenGong": {
+            "branch": "未",
+            "branchIndex": 7,
+            "engineId": "shen",
+            "traditionalName": "身宮"
+          }
+        }
+      },
+      {
+        "divergence": null,
+        "input": {
+          "hourBranch": "未",
+          "lunarMonth": 12
+        },
+        "match": true,
+        "orderingKey": "12:07",
+        "productionEngine": {
+          "mingGong": {
+            "branch": "午",
+            "id": "life",
+            "index": 6,
+            "name": "명궁"
+          },
+          "shenGong": {
+            "branch": "申",
+            "id": "shen",
+            "index": 8,
+            "name": "신궁"
+          }
+        },
+        "rowId": "lunar-month-12-hour-未",
+        "sourceDerived": {
+          "mingGong": {
+            "branch": "午",
+            "branchIndex": 6,
+            "engineId": "life",
+            "traditionalName": "命宮"
+          },
+          "shenGong": {
+            "branch": "申",
+            "branchIndex": 8,
+            "engineId": "shen",
+            "traditionalName": "身宮"
+          }
+        }
+      },
+      {
+        "divergence": null,
+        "input": {
+          "hourBranch": "申",
+          "lunarMonth": 12
+        },
+        "match": true,
+        "orderingKey": "12:08",
+        "productionEngine": {
+          "mingGong": {
+            "branch": "巳",
+            "id": "life",
+            "index": 5,
+            "name": "명궁"
+          },
+          "shenGong": {
+            "branch": "酉",
+            "id": "shen",
+            "index": 9,
+            "name": "신궁"
+          }
+        },
+        "rowId": "lunar-month-12-hour-申",
+        "sourceDerived": {
+          "mingGong": {
+            "branch": "巳",
+            "branchIndex": 5,
+            "engineId": "life",
+            "traditionalName": "命宮"
+          },
+          "shenGong": {
+            "branch": "酉",
+            "branchIndex": 9,
+            "engineId": "shen",
+            "traditionalName": "身宮"
+          }
+        }
+      },
+      {
+        "divergence": null,
+        "input": {
+          "hourBranch": "酉",
+          "lunarMonth": 12
+        },
+        "match": true,
+        "orderingKey": "12:09",
+        "productionEngine": {
+          "mingGong": {
+            "branch": "辰",
+            "id": "life",
+            "index": 4,
+            "name": "명궁"
+          },
+          "shenGong": {
+            "branch": "戌",
+            "id": "shen",
+            "index": 10,
+            "name": "신궁"
+          }
+        },
+        "rowId": "lunar-month-12-hour-酉",
+        "sourceDerived": {
+          "mingGong": {
+            "branch": "辰",
+            "branchIndex": 4,
+            "engineId": "life",
+            "traditionalName": "命宮"
+          },
+          "shenGong": {
+            "branch": "戌",
+            "branchIndex": 10,
+            "engineId": "shen",
+            "traditionalName": "身宮"
+          }
+        }
+      },
+      {
+        "divergence": null,
+        "input": {
+          "hourBranch": "戌",
+          "lunarMonth": 12
+        },
+        "match": true,
+        "orderingKey": "12:10",
+        "productionEngine": {
+          "mingGong": {
+            "branch": "卯",
+            "id": "life",
+            "index": 3,
+            "name": "명궁"
+          },
+          "shenGong": {
+            "branch": "亥",
+            "id": "shen",
+            "index": 11,
+            "name": "신궁"
+          }
+        },
+        "rowId": "lunar-month-12-hour-戌",
+        "sourceDerived": {
+          "mingGong": {
+            "branch": "卯",
+            "branchIndex": 3,
+            "engineId": "life",
+            "traditionalName": "命宮"
+          },
+          "shenGong": {
+            "branch": "亥",
+            "branchIndex": 11,
+            "engineId": "shen",
+            "traditionalName": "身宮"
+          }
+        }
+      },
+      {
+        "divergence": null,
+        "input": {
+          "hourBranch": "亥",
+          "lunarMonth": 12
+        },
+        "match": true,
+        "orderingKey": "12:11",
+        "productionEngine": {
+          "mingGong": {
+            "branch": "寅",
+            "id": "life",
+            "index": 2,
+            "name": "명궁"
+          },
+          "shenGong": {
+            "branch": "子",
+            "id": "shen",
+            "index": 0,
+            "name": "신궁"
+          }
+        },
+        "rowId": "lunar-month-12-hour-亥",
+        "sourceDerived": {
+          "mingGong": {
+            "branch": "寅",
+            "branchIndex": 2,
+            "engineId": "life",
+            "traditionalName": "命宮"
+          },
+          "shenGong": {
+            "branch": "子",
+            "branchIndex": 0,
+            "engineId": "shen",
+            "traditionalName": "身宮"
+          }
+        }
+      }
+    ]
+  },
+  "deterministicContract": {
+    "generatedAt": "forbidden",
+    "hashes": "actual bytes only",
+    "rowId": "derived from lunarMonth and ordered branch glyph",
+    "sorting": "fixed numeric month then branch order"
+  },
+  "independence": {
+    "comparisonBoundary": "core lunarMonth x hourBranch placement; birthYearStem=甲 is adapter-only because production resolver requires it and placement does not use it",
+    "productionAdapter": "src/ziwei/ziweiResolver.js",
+    "sourceEvaluatorImportsProductionEngine": false,
+    "sourceEvaluatorModule": "src/ziwei/mingShenCleanRuleSeedPilot.js"
+  },
+  "inputByteEvidence": [
+    {
+      "path": "src/ziwei/mingShenCleanRuleSeedPilot.js",
+      "sha256": "84cc19ba2d6027f5b0c07747c6763fa5553935337230089c740395b121b89a0e"
+    },
+    {
+      "path": "src/ziwei/ziweiResolver.js",
+      "sha256": "5336f15968b4c618d9b1248b0967deab22b778f48996cb60939ab19cabadf513"
+    }
+  ],
+  "materializer": "scripts/materialize-ziwei-ming-shen-clean-rule-seed-pilot-v0.mjs",
+  "negativeContract": {
+    "detects": [
+      "PDF hash/page/sourceRef tampering",
+      "OCR canonical promotion",
+      "uncertainty auto-correction",
+      "transcription/normalization mixing",
+      "silent direction/index change",
+      "non-exhaustive 144 claim",
+      "mismatch concealment/equivalence forcing",
+      "production evaluator reuse",
+      "interpretive prose/commentary ingestion",
+      "claim/readiness/grounding/activation promotion",
+      "PDF Git inclusion",
+      "nondeterministic row ID/order/hash"
+    ],
+    "fixture": "test/fixtures/ziwei/ming-shen-clean-rule-seed-pilot-negative-v0.json"
+  },
+  "normalizedRule": {
+    "branchOrder": {
+      "indexConvention": "子=0, 丑=1, 寅=2, ... 亥=11",
+      "modulo": 12,
+      "traditional": [
+        "子",
+        "丑",
+        "寅",
+        "卯",
+        "辰",
+        "巳",
+        "午",
+        "未",
+        "申",
+        "酉",
+        "戌",
+        "亥"
+      ]
+    },
+    "exclusions": [
+      "leap-month resolution",
+      "solar/lunar conversion",
+      "calendar/time preprocessing",
+      "palace interpretation",
+      "five-element bureau",
+      "star placement"
+    ],
+    "formulas": {
+      "mingGong": "(monthPalaceIndex-hourIndex) mod 12",
+      "shenGong": "(monthPalaceIndex+hourIndex) mod 12"
+    },
+    "hourPlacement": {
+      "directionForMing": "reverse (-1)",
+      "directionForShen": "forward (+1)",
+      "hourIndex": "index(hourBranch) with 子=0",
+      "startAtMonthPalace": true,
+      "startLabel": "子"
+    },
+    "input": {
+      "hourBranch": [
+        "子",
+        "丑",
+        "寅",
+        "卯",
+        "辰",
+        "巳",
+        "午",
+        "未",
+        "申",
+        "酉",
+        "戌",
+        "亥"
+      ],
+      "lunarMonth": "integer 1..12"
+    },
+    "monthPlacement": {
+      "direction": "clockwise/traditional forward (+1)",
+      "firstLunarMonth": 1,
+      "formula": "monthPalaceIndex=(index(寅)+lunarMonth-1) mod 12",
+      "startBranch": "寅"
+    },
+    "output": {
+      "branch": "traditional branch glyph; engine mapping is explicit above",
+      "命宮": "life",
+      "身宮": "shen"
+    },
+    "schemaVersion": "ziwei-ming-shen-clean-rule-seed-rule-v0",
+    "sourceTranscriptionId": "ziwei-ming-shen-p25-rule-transcription-v0"
+  },
+  "observedHead": "c949669201c2b4c11de4dfdec9eb739cdba6ce38",
+  "schemaVersion": "ziwei-ming-shen-clean-rule-seed-pilot-v0",
+  "sourceWitness": {
+    "gitInclusion": "forbidden",
+    "pdfPageCount": 219,
+    "pdfPath": "/Users/softie/Downloads/命-南北山人_紫微斗数全书.pdf",
+    "pdfSha256": "4786a94ab454acdabf9716d7c0db4756dbcbde99a88bc45fda254863c1961023",
+    "rulePageRange": {
+      "auxiliaryTable": {
+        "pdfPages": [
+          10
+        ],
+        "printedPages": [
+          "二十九"
+        ],
+        "purpose": "visual cross-check only"
+      },
+      "pdfPages": [
+        8
+      ],
+      "printedPages": [
+        "二十五"
+      ],
+      "section": "九、定命、身二宮"
+    },
+    "sourceArtifact": "artifacts/ziwei-archive-scan-source-witness-admission-v0/complete.json",
+    "witnessVerdict": "source_witness_admissible_with_limits"
+  },
+  "transcription": {
+    "glyphPreservingText": "寅正巳順數生月逢。生月起子兩頭通。逆至生時為命宮。順到生時即安身。",
+    "locator": "PDF page 8, left printed page 二十五, section heading 九、定命、身二宮; rule text columns under 口訣如左",
+    "ocrStatus": "exploration_only_not_canonical",
+    "pdfPage": 8,
+    "printedPage": "二十五",
+    "reviewerStatus": "single_human_review_complete_second_review_pending",
+    "ruleBearingExplanation": "解：從寅宮起正月，順數到生月停止；再於數至的生月起「子」時，逆數到問命者的生時停止為命宮，順數到生時即安身。",
+    "section": "九、定命、身二宮",
+    "sourcePdfSha256": "4786a94ab454acdabf9716d7c0db4756dbcbde99a88bc45fda254863c1961023",
+    "transcriptionId": "ziwei-ming-shen-p25-rule-transcription-v0",
+    "uncertainty": [
+      {
+        "field": "glyphPreservingText",
+        "note": "Vertical scan glyphs were manually read from the original PDF image; second reviewer confirmation remains pending.",
+        "status": "human_readable_but_single_review"
+      },
+      {
+        "field": "ruleBearingExplanation",
+        "note": "Only the direction/start/stop mechanics needed by the normalized rule are retained; this is not presented as a full canonical transcription.",
+        "status": "scope_minimized_paraphrase_not_canonical"
+      },
+      {
+        "field": "printedPage",
+        "note": "The left page margin visibly shows 二十五; no modern edition page identity is inferred.",
+        "status": "page_label_observed"
+      }
+    ]
+  },
+  "verdictToken": "ziwei_ming_shen_clean_rule_seed_reconciled"
+}
