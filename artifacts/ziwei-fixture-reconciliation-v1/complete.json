@@ -1,0 +1,846 @@
+{
+  "artifactIdentity": {
+    "artifactId": "ziwei-fixture-reconciliation-v1",
+    "artifactPayloadSha256": "ebd7f664be3ff8107b0117aba8df437de0156173597d0942ad3b6d9fe82f779f",
+    "contractVersion": "artifact-identity-v1",
+    "generation": {
+      "baseHead": "ae72cb6e1b9252f53676fefb6c777301d8965d6d",
+      "baseHeadSource": "git rev-parse HEAD at materialization",
+      "includedCommit": null,
+      "includedCommitSource": "unknown_at_generation; artifact may be included by a later commit"
+    },
+    "inputs": [
+      {
+        "byteSha256": "c8ccbaa13b139e925822f8cac6fe5114fa9fbd92e49f79f04730fe47780aeec3",
+        "path": "docs/ziwei-external-validation-report.md"
+      },
+      {
+        "byteSha256": "c379c3d364ea8bdc1062f7a59f2f1b8f83de4762489a86a520733d9d288917cf",
+        "path": "src/ziwei/externalZiweiFixtures.js"
+      },
+      {
+        "byteSha256": "7af13da1e88dbe41e4a239d5359a0f49d05316235e668c7bd1302a3de8825144",
+        "path": "src/ziwei/fiveElementResolver.js"
+      },
+      {
+        "byteSha256": "40bfa66f576027a5ef77374257da895bbe714c331f6ded6e004048f246bc3c7a",
+        "path": "src/ziwei/minorStarResolver.js"
+      },
+      {
+        "byteSha256": "b7cdc5db61a1a70dae3a4a243b5bccc0c148488c4c8e9f81bcfc345e4e8a4be3",
+        "path": "src/ziwei/minorStarRules.js"
+      },
+      {
+        "byteSha256": "1edb93929e441b009e33abd8179e72cf5b216e7378a40813657ea52dc1a0759c",
+        "path": "src/ziwei/starPlacementRules.js"
+      },
+      {
+        "byteSha256": "ec47b97109d514fb5317e1e0dfb9fb195fa77429ab2d451b3de9a97897babe9d",
+        "path": "src/ziwei/transformationResolver.js"
+      },
+      {
+        "byteSha256": "e602ab8611e846b53b9c1ffed2d2dbcb5b77afd13973187ee40d748370846e76",
+        "path": "src/ziwei/transformationRules.js"
+      },
+      {
+        "byteSha256": "5336f15968b4c618d9b1248b0967deab22b778f48996cb60939ab19cabadf513",
+        "path": "src/ziwei/ziweiResolver.js"
+      }
+    ],
+    "materializer": {
+      "path": "scripts/materialize-ziwei-fixture-reconciliation-v1.mjs",
+      "version": "1.1.0"
+    }
+  },
+  "basisHead": "ae72cb6e1b9252f53676fefb6c777301d8965d6d",
+  "beforeAfter": {
+    "after": {
+      "externalFixtureCount": 6,
+      "independentlyVerified": 0,
+      "pending": 6,
+      "primaryClassifications": {
+        "configuration_mismatch": 2,
+        "source_identity_unresolved": 4
+      },
+      "verified": 0
+    },
+    "before": {
+      "externalFixtureCount": 6,
+      "pending": 6,
+      "verified": 0
+    }
+  },
+  "byteEvidence": {
+    "docs/ziwei-external-validation-report.md": {
+      "scope": "repository file actual bytes",
+      "sha256": "c8ccbaa13b139e925822f8cac6fe5114fa9fbd92e49f79f04730fe47780aeec3"
+    },
+    "src/ziwei/externalZiweiFixtures.js": {
+      "scope": "repository file actual bytes",
+      "sha256": "c379c3d364ea8bdc1062f7a59f2f1b8f83de4762489a86a520733d9d288917cf"
+    },
+    "src/ziwei/fiveElementResolver.js": {
+      "scope": "repository file actual bytes",
+      "sha256": "7af13da1e88dbe41e4a239d5359a0f49d05316235e668c7bd1302a3de8825144"
+    },
+    "src/ziwei/minorStarResolver.js": {
+      "scope": "repository file actual bytes",
+      "sha256": "40bfa66f576027a5ef77374257da895bbe714c331f6ded6e004048f246bc3c7a"
+    },
+    "src/ziwei/minorStarRules.js": {
+      "scope": "repository file actual bytes",
+      "sha256": "b7cdc5db61a1a70dae3a4a243b5bccc0c148488c4c8e9f81bcfc345e4e8a4be3"
+    },
+    "src/ziwei/starPlacementRules.js": {
+      "scope": "repository file actual bytes",
+      "sha256": "1edb93929e441b009e33abd8179e72cf5b216e7378a40813657ea52dc1a0759c"
+    },
+    "src/ziwei/transformationResolver.js": {
+      "scope": "repository file actual bytes",
+      "sha256": "ec47b97109d514fb5317e1e0dfb9fb195fa77429ab2d451b3de9a97897babe9d"
+    },
+    "src/ziwei/transformationRules.js": {
+      "scope": "repository file actual bytes",
+      "sha256": "e602ab8611e846b53b9c1ffed2d2dbcb5b77afd13973187ee40d748370846e76"
+    },
+    "src/ziwei/ziweiResolver.js": {
+      "scope": "repository file actual bytes",
+      "sha256": "5336f15968b4c618d9b1248b0967deab22b778f48996cb60939ab19cabadf513"
+    }
+  },
+  "claimBoundaryImpact": {
+    "claimProvenance": "blocked",
+    "reason": "fixture reconciliation does not create claims, claim grouping, sourceRefs, or interpretation evidence",
+    "stableClaimBoundary": 0
+  },
+  "classificationVocabulary": [
+    "scoped_independent_match",
+    "scoped_independent_mismatch",
+    "rule_variant_detected",
+    "configuration_mismatch",
+    "source_identity_unresolved",
+    "not_independently_verifiable",
+    "blocked"
+  ],
+  "deterministicContract": {
+    "contentHash": "canonical JSON bytes including final LF",
+    "externalByteHash": "null when original was not preserved",
+    "identityRule": "fixtureId from existing source fixture; no new source identity inferred",
+    "sorting": "fixtureId lexicographic; object keys lexicographic for canonical serialization",
+    "timestamps": "fixed declared retrieval-attempt date only; no generation timestamp"
+  },
+  "distribution": {
+    "blocked": 0,
+    "configuration_mismatch": 2,
+    "not_independently_verifiable": 0,
+    "rule_variant_detected": 0,
+    "scoped_independent_match": 0,
+    "scoped_independent_mismatch": 0,
+    "source_identity_unresolved": 4
+  },
+  "fixtures": [
+    {
+      "classification": {
+        "independence": {
+          "assessment": "not_established",
+          "declaredByFixture": {
+            "independentFromCurrentEngine": true,
+            "independentlyReproducible": "pending",
+            "suspectedSharedDependency": false
+          },
+          "reason": "external_source_bytes_and_external_runner_identity_are_not_available; local_observation_is_not_an_independent_oracle"
+        },
+        "primary": "source_identity_unresolved",
+        "supportingLimitations": [
+          "source_identity_unresolved",
+          "not_independently_verifiable"
+        ]
+      },
+      "comparisonStatus": "observed_match",
+      "expected": {
+        "bureauName": "수이국",
+        "bureauNumber": 2
+      },
+      "fixtureId": "ziwei-ext-table-bureau-lookup",
+      "fixtureProvenance": {
+        "expectationOrigin": "declared_external_fixture_metadata",
+        "internalTranscription": false,
+        "regressionOnly": false,
+        "verifiedPromotion": false
+      },
+      "input": {
+        "birthYearStem": "甲",
+        "mingGongBranch": "子"
+      },
+      "inputConfigurationIdentity": {
+        "birthTime": null,
+        "calendar": "chinese_lunar",
+        "dayBoundary": "midnight_00:00",
+        "gender": null,
+        "hourBoundary": "standard_12_branches",
+        "leapMonth": null,
+        "missingRequiredFields": [],
+        "timezone": "Asia/Seoul"
+      },
+      "mismatchInterpretation": null,
+      "observed": {
+        "bureauName": "수이국",
+        "bureauNumber": 2
+      },
+      "referenceType": "ruleset_table_reference",
+      "ruleVariant": {
+        "identified": null,
+        "note": "No rule variant is asserted from an unresolved source; current local rule metadata is recorded without treating it as source identity.",
+        "status": "not_detected"
+      },
+      "scope": {
+        "comparedFields": [
+          "fiveElementsBureau.bureauName",
+          "fiveElementsBureau.bureauNumber"
+        ],
+        "exactComparisonScope": "local resolver field output versus transcribed expected field only",
+        "fullChartValidationClaim": false
+      },
+      "source": {
+        "declared": {
+          "accessedAt": "2026-07-27",
+          "documentId": "doc-ziwei-quan-shu",
+          "edition": "pending_exact_edition_review",
+          "editionOrVersion": "pending_exact_edition_review",
+          "editionPublicationDate": "pending",
+          "methodDisclosure": "classical_text_bureau_table",
+          "organizationOrAuthor": "陳摶 (attributed) / 羅洪先 (edit)",
+          "pageOrLine": "五行局起例表 (甲己之年丙作首 丙子澗下水 水二局)",
+          "pageOrTableOrSection": "卷一 · 五行局起例表 (甲己之年丙作首 丙子澗下水 水二局)",
+          "permanentUrl": "https://ctext.org/wiki.pl?if=gb&res=446219",
+          "prefaceDate": "1550",
+          "publicationDate": "pending",
+          "publisherId": "pub-quan-shu-classic",
+          "referenceDocumentId": "doc-ziwei-quan-shu",
+          "sourceTier": "Tier 2",
+          "sourceTitle": "紫微斗數全書 (Ziwei Dou Shu Quan Shu)",
+          "title": "紫微斗數全書 (Ziwei Dou Shu Quan Shu)",
+          "urlOrReference": "https://ctext.org/wiki.pl?if=gb&res=446219",
+          "volume": "卷一"
+        },
+        "identityStatus": "unresolved",
+        "retrieval": {
+          "attemptedAt": "2026-08-04",
+          "byteSha256": null,
+          "method": "read_only_explicit_fixture_url_only",
+          "originalBytesPreserved": false,
+          "reason": "safe_url_retrieval_not_available_in_execution_environment",
+          "requestedUrl": "https://ctext.org/wiki.pl?if=gb&res=446219",
+          "status": "not_retrieved"
+        },
+        "unresolvedReasons": [
+          "exact_edition_or_base_copy_missing",
+          "immutable_retrieval_bytes_and_hash_missing",
+          "external_implementation_version_missing"
+        ]
+      },
+      "valueComparison": "match"
+    },
+    {
+      "classification": {
+        "independence": {
+          "assessment": "not_established",
+          "declaredByFixture": {
+            "independentFromCurrentEngine": true,
+            "independentlyReproducible": "pending",
+            "suspectedSharedDependency": false
+          },
+          "reason": "external_source_bytes_and_external_runner_identity_are_not_available; local_observation_is_not_an_independent_oracle"
+        },
+        "primary": "source_identity_unresolved",
+        "supportingLimitations": [
+          "source_identity_unresolved",
+          "not_independently_verifiable"
+        ]
+      },
+      "comparisonStatus": "observed_match",
+      "expected": {
+        "ziweiPalaceBranch": "申"
+      },
+      "fixtureId": "ziwei-ext-table-ziwei-placement",
+      "fixtureProvenance": {
+        "expectationOrigin": "declared_external_fixture_metadata",
+        "internalTranscription": false,
+        "regressionOnly": false,
+        "verifiedPromotion": false
+      },
+      "input": {
+        "bureauNumber": 2,
+        "lunarDay": 15
+      },
+      "inputConfigurationIdentity": {
+        "birthTime": null,
+        "calendar": "chinese_lunar",
+        "dayBoundary": "midnight_00:00",
+        "gender": null,
+        "hourBoundary": "standard_12_branches",
+        "leapMonth": null,
+        "missingRequiredFields": [],
+        "timezone": "Asia/Seoul"
+      },
+      "mismatchInterpretation": null,
+      "observed": {
+        "ziweiPalaceBranch": "申"
+      },
+      "referenceType": "ruleset_table_reference",
+      "ruleVariant": {
+        "identified": null,
+        "note": "No rule variant is asserted from an unresolved source; current local rule metadata is recorded without treating it as source identity.",
+        "status": "not_detected"
+      },
+      "scope": {
+        "comparedFields": [
+          "ziweiStarBranch"
+        ],
+        "exactComparisonScope": "local resolver field output versus transcribed expected field only",
+        "fullChartValidationClaim": false
+      },
+      "source": {
+        "declared": {
+          "accessedAt": "2026-07-27",
+          "documentId": "doc-ziwei-quan-shu",
+          "edition": "pending_exact_edition_review",
+          "editionOrVersion": "pending_exact_edition_review",
+          "editionPublicationDate": "pending",
+          "methodDisclosure": "classical_text_placement_table",
+          "organizationOrAuthor": "陳摶 (attributed) / 羅洪先 (edit)",
+          "pageOrLine": "定紫微星所在表 (水二局十五日在申)",
+          "pageOrTableOrSection": "卷一 · 定紫微星所在表 (水二局十五日在申)",
+          "permanentUrl": "https://ctext.org/wiki.pl?if=gb&res=446219",
+          "prefaceDate": "1550",
+          "publicationDate": "pending",
+          "publisherId": "pub-quan-shu-classic",
+          "referenceDocumentId": "doc-ziwei-quan-shu",
+          "sourceTier": "Tier 2",
+          "sourceTitle": "紫微斗數全書 (Ziwei Dou Shu Quan Shu)",
+          "title": "紫微斗數全書 (Ziwei Dou Shu Quan Shu)",
+          "urlOrReference": "https://ctext.org/wiki.pl?if=gb&res=446219",
+          "volume": "卷一"
+        },
+        "identityStatus": "unresolved",
+        "retrieval": {
+          "attemptedAt": "2026-08-04",
+          "byteSha256": null,
+          "method": "read_only_explicit_fixture_url_only",
+          "originalBytesPreserved": false,
+          "reason": "safe_url_retrieval_not_available_in_execution_environment",
+          "requestedUrl": "https://ctext.org/wiki.pl?if=gb&res=446219",
+          "status": "not_retrieved"
+        },
+        "unresolvedReasons": [
+          "exact_edition_or_base_copy_missing",
+          "immutable_retrieval_bytes_and_hash_missing",
+          "external_implementation_version_missing"
+        ]
+      },
+      "valueComparison": "match"
+    },
+    {
+      "classification": {
+        "independence": {
+          "assessment": "not_established",
+          "declaredByFixture": {
+            "independentFromCurrentEngine": true,
+            "independentlyReproducible": "pending",
+            "suspectedSharedDependency": false
+          },
+          "reason": "external_source_bytes_and_external_runner_identity_are_not_available; local_observation_is_not_an_independent_oracle"
+        },
+        "primary": "source_identity_unresolved",
+        "supportingLimitations": [
+          "source_identity_unresolved",
+          "not_independently_verifiable"
+        ]
+      },
+      "comparisonStatus": "observed_mismatch",
+      "expected": {
+        "transformations": [
+          {
+            "starName": "염정",
+            "type": "화록"
+          },
+          {
+            "starName": "파군",
+            "type": "화권"
+          },
+          {
+            "starName": "무곡",
+            "type": "화과"
+          },
+          {
+            "starName": "태양",
+            "type": "화기"
+          }
+        ]
+      },
+      "fixtureId": "ziwei-ext-table-four-transformations",
+      "fixtureProvenance": {
+        "expectationOrigin": "declared_external_fixture_metadata",
+        "internalTranscription": false,
+        "regressionOnly": false,
+        "verifiedPromotion": false
+      },
+      "input": {
+        "birthYearStem": "甲"
+      },
+      "inputConfigurationIdentity": {
+        "birthTime": null,
+        "calendar": "chinese_lunar",
+        "dayBoundary": "midnight_00:00",
+        "gender": null,
+        "hourBoundary": "standard_12_branches",
+        "leapMonth": null,
+        "missingRequiredFields": [],
+        "timezone": "Asia/Seoul"
+      },
+      "mismatchInterpretation": "local_output_schema_or_rule_scope_difference_not_separable_from_unresolved_source; no calculation correction inferred",
+      "observed": {
+        "transformations": [
+          {
+            "starId": "lianzhen",
+            "starName": "화록",
+            "type": "hua_lu"
+          },
+          {
+            "starId": "pojun",
+            "starName": "화권",
+            "type": "hua_quan"
+          },
+          {
+            "starId": "wugu",
+            "starName": "화과",
+            "type": "hua_ke"
+          },
+          {
+            "starId": "taiyang",
+            "starName": "화기",
+            "type": "hua_ji"
+          }
+        ]
+      },
+      "referenceType": "ruleset_table_reference",
+      "ruleVariant": {
+        "identified": null,
+        "note": "No rule variant is asserted from an unresolved source; current local rule metadata is recorded without treating it as source identity.",
+        "status": "not_detected"
+      },
+      "scope": {
+        "comparedFields": [
+          "transformations"
+        ],
+        "exactComparisonScope": "local resolver field output versus transcribed expected field only",
+        "fullChartValidationClaim": false
+      },
+      "source": {
+        "declared": {
+          "accessedAt": "2026-07-27",
+          "documentId": "doc-ziwei-quan-shu",
+          "edition": "pending_exact_edition_review",
+          "editionOrVersion": "pending_exact_edition_review",
+          "editionPublicationDate": "pending",
+          "methodDisclosure": "classical_text_transformation_table",
+          "organizationOrAuthor": "陳摶 (attributed) / 羅洪先 (edit)",
+          "pageOrLine": "安十干四化星訣 (甲廉破武陽)",
+          "pageOrTableOrSection": "卷一 · 安十干四化星訣 (甲廉破武陽)",
+          "permanentUrl": "https://ctext.org/wiki.pl?if=gb&res=446219",
+          "prefaceDate": "1550",
+          "publicationDate": "pending",
+          "publisherId": "pub-quan-shu-classic",
+          "referenceDocumentId": "doc-ziwei-quan-shu",
+          "sourceTier": "Tier 2",
+          "sourceTitle": "紫微斗數全書 (Ziwei Dou Shu Quan Shu)",
+          "title": "紫微斗數全書 (Ziwei Dou Shu Quan Shu)",
+          "urlOrReference": "https://ctext.org/wiki.pl?if=gb&res=446219",
+          "volume": "卷一"
+        },
+        "identityStatus": "unresolved",
+        "retrieval": {
+          "attemptedAt": "2026-08-04",
+          "byteSha256": null,
+          "method": "read_only_explicit_fixture_url_only",
+          "originalBytesPreserved": false,
+          "reason": "safe_url_retrieval_not_available_in_execution_environment",
+          "requestedUrl": "https://ctext.org/wiki.pl?if=gb&res=446219",
+          "status": "not_retrieved"
+        },
+        "unresolvedReasons": [
+          "exact_edition_or_base_copy_missing",
+          "immutable_retrieval_bytes_and_hash_missing",
+          "external_implementation_version_missing"
+        ]
+      },
+      "valueComparison": "mismatch"
+    },
+    {
+      "classification": {
+        "independence": {
+          "assessment": "not_established",
+          "declaredByFixture": {
+            "independentFromCurrentEngine": true,
+            "independentlyReproducible": "pending",
+            "suspectedSharedDependency": false
+          },
+          "reason": "external_source_bytes_and_external_runner_identity_are_not_available; local_observation_is_not_an_independent_oracle"
+        },
+        "primary": "source_identity_unresolved",
+        "supportingLimitations": [
+          "source_identity_unresolved",
+          "not_independently_verifiable"
+        ]
+      },
+      "comparisonStatus": "observed_match",
+      "expected": {
+        "minorStarBranches": {
+          "문곡": "戌",
+          "문창": "辰",
+          "우필": "午",
+          "좌보": "申",
+          "천괴": "丑",
+          "천월": "未"
+        }
+      },
+      "fixtureId": "ziwei-ext-table-minor-stars",
+      "fixtureProvenance": {
+        "expectationOrigin": "declared_external_fixture_metadata",
+        "internalTranscription": false,
+        "regressionOnly": false,
+        "verifiedPromotion": false
+      },
+      "input": {
+        "birthYearStem": "甲",
+        "hourBranch": "午",
+        "lunarMonth": 5
+      },
+      "inputConfigurationIdentity": {
+        "birthTime": null,
+        "calendar": "chinese_lunar",
+        "dayBoundary": "midnight_00:00",
+        "gender": null,
+        "hourBoundary": "standard_12_branches",
+        "leapMonth": null,
+        "missingRequiredFields": [],
+        "timezone": "Asia/Seoul"
+      },
+      "mismatchInterpretation": null,
+      "observed": {
+        "minorStarBranches": {
+          "문곡": "戌",
+          "문창": "辰",
+          "우필": "午",
+          "좌보": "申",
+          "천괴": "丑",
+          "천월": "未"
+        }
+      },
+      "referenceType": "ruleset_table_reference",
+      "ruleVariant": {
+        "identified": null,
+        "note": "No rule variant is asserted from an unresolved source; current local rule metadata is recorded without treating it as source identity.",
+        "status": "not_detected"
+      },
+      "scope": {
+        "comparedFields": [
+          "minorStarBranches"
+        ],
+        "exactComparisonScope": "local resolver field output versus transcribed expected field only",
+        "fullChartValidationClaim": false
+      },
+      "source": {
+        "declared": {
+          "accessedAt": "2026-07-27",
+          "documentId": "doc-ziwei-quan-shu",
+          "edition": "pending_exact_edition_review",
+          "editionOrVersion": "pending_exact_edition_review",
+          "editionPublicationDate": "pending",
+          "methodDisclosure": "classical_text_minor_star_table",
+          "organizationOrAuthor": "陳摶 (attributed) / 羅洪先 (edit)",
+          "pageOrLine": "安諸吉星訣 (左輔辰順 右弼戌逆 昌戌逆 曲辰順 魁鉞丑未)",
+          "pageOrTableOrSection": "卷一 · 安諸吉星訣 (左輔辰順 右弼戌逆 昌戌逆 曲辰順 魁鉞丑未)",
+          "permanentUrl": "https://ctext.org/wiki.pl?if=gb&res=446219",
+          "prefaceDate": "1550",
+          "publicationDate": "pending",
+          "publisherId": "pub-quan-shu-classic",
+          "referenceDocumentId": "doc-ziwei-quan-shu",
+          "sourceTier": "Tier 2",
+          "sourceTitle": "紫微斗數全書 (Ziwei Dou Shu Quan Shu)",
+          "title": "紫微斗數全書 (Ziwei Dou Shu Quan Shu)",
+          "urlOrReference": "https://ctext.org/wiki.pl?if=gb&res=446219",
+          "volume": "卷一"
+        },
+        "identityStatus": "unresolved",
+        "retrieval": {
+          "attemptedAt": "2026-08-04",
+          "byteSha256": null,
+          "method": "read_only_explicit_fixture_url_only",
+          "originalBytesPreserved": false,
+          "reason": "safe_url_retrieval_not_available_in_execution_environment",
+          "requestedUrl": "https://ctext.org/wiki.pl?if=gb&res=446219",
+          "status": "not_retrieved"
+        },
+        "unresolvedReasons": [
+          "exact_edition_or_base_copy_missing",
+          "immutable_retrieval_bytes_and_hash_missing",
+          "external_implementation_version_missing"
+        ]
+      },
+      "valueComparison": "match"
+    },
+    {
+      "classification": {
+        "independence": {
+          "assessment": "not_established",
+          "declaredByFixture": {
+            "independentFromCurrentEngine": true,
+            "independentlyReproducible": "pending",
+            "suspectedSharedDependency": false
+          },
+          "reason": "external_source_bytes_and_external_runner_identity_are_not_available; local_observation_is_not_an_independent_oracle"
+        },
+        "primary": "configuration_mismatch",
+        "supportingLimitations": [
+          "source_identity_unresolved",
+          "not_independently_verifiable",
+          "blocked"
+        ]
+      },
+      "comparisonStatus": "comparison_blocked",
+      "expected": {
+        "mingGongBranch": "丑",
+        "shenGongBranch": "未"
+      },
+      "fixtureId": "ziwei-ext-chart-sample-classic-1-mingshen",
+      "fixtureProvenance": {
+        "expectationOrigin": "declared_external_fixture_metadata",
+        "internalTranscription": false,
+        "regressionOnly": false,
+        "verifiedPromotion": false
+      },
+      "input": {
+        "hourBranch": "午",
+        "isLeapMonth": false,
+        "lunarMonth": 5,
+        "subjectName": "고전예제1-명신궁"
+      },
+      "inputConfigurationIdentity": {
+        "birthTime": null,
+        "calendar": "chinese_lunar",
+        "dayBoundary": "midnight_00:00",
+        "gender": null,
+        "hourBoundary": "standard_12_branches",
+        "leapMonth": false,
+        "missingRequiredFields": [],
+        "timezone": "Asia/Seoul"
+      },
+      "mismatchInterpretation": null,
+      "observed": {
+        "bureauName": null,
+        "bureauNumber": null,
+        "mingGongBranch": null,
+        "shenGongBranch": null
+      },
+      "referenceType": "worked_chart_ming_shen_reference",
+      "ruleVariant": {
+        "identified": null,
+        "note": "No rule variant is asserted from an unresolved source; current local rule metadata is recorded without treating it as source identity.",
+        "status": "not_detected"
+      },
+      "scope": {
+        "comparedFields": [
+          "mingGongBranch",
+          "shenGongBranch"
+        ],
+        "exactComparisonScope": "none; local resolver contract rejected incomplete input",
+        "fullChartValidationClaim": false
+      },
+      "source": {
+        "declared": {
+          "accessedAt": "2026-07-27",
+          "documentId": "doc-ziwei-quan-shu",
+          "edition": "pending_exact_edition_review",
+          "editionOrVersion": "pending_exact_edition_review",
+          "editionPublicationDate": "pending",
+          "methodDisclosure": "classical_worked_chart_example",
+          "organizationOrAuthor": "陳摶 (attributed) / 羅洪先 (edit)",
+          "pageOrLine": "諸星入命吉凶例 (五月午時安命在丑身在未例)",
+          "pageOrTableOrSection": "卷二 · 諸星入命吉凶例 (五月午時安命在丑身在未例)",
+          "permanentUrl": "https://ctext.org/wiki.pl?if=gb&res=446219",
+          "prefaceDate": "1550",
+          "publicationDate": "pending",
+          "publisherId": "pub-quan-shu-classic",
+          "referenceDocumentId": "doc-ziwei-quan-shu",
+          "sourceTier": "Tier 2",
+          "sourceTitle": "紫微斗數全書 (Ziwei Dou Shu Quan Shu)",
+          "title": "紫微斗數全書 (Ziwei Dou Shu Quan Shu)",
+          "urlOrReference": "https://ctext.org/wiki.pl?if=gb&res=446219",
+          "volume": "卷二"
+        },
+        "identityStatus": "unresolved",
+        "retrieval": {
+          "attemptedAt": "2026-08-04",
+          "byteSha256": null,
+          "method": "read_only_explicit_fixture_url_only",
+          "originalBytesPreserved": false,
+          "reason": "safe_url_retrieval_not_available_in_execution_environment",
+          "requestedUrl": "https://ctext.org/wiki.pl?if=gb&res=446219",
+          "status": "not_retrieved"
+        },
+        "unresolvedReasons": [
+          "exact_edition_or_base_copy_missing",
+          "immutable_retrieval_bytes_and_hash_missing",
+          "external_implementation_version_missing"
+        ]
+      },
+      "valueComparison": "not_compared"
+    },
+    {
+      "classification": {
+        "independence": {
+          "assessment": "not_established",
+          "declaredByFixture": {
+            "independentFromCurrentEngine": true,
+            "independentlyReproducible": "pending",
+            "suspectedSharedDependency": false
+          },
+          "reason": "external_source_bytes_and_external_runner_identity_are_not_available; local_observation_is_not_an_independent_oracle"
+        },
+        "primary": "configuration_mismatch",
+        "supportingLimitations": [
+          "source_identity_unresolved",
+          "not_independently_verifiable",
+          "blocked"
+        ]
+      },
+      "comparisonStatus": "comparison_blocked",
+      "expected": {
+        "bureauName": "목삼국",
+        "bureauNumber": 3
+      },
+      "fixtureId": "ziwei-ext-chart-sample-classic-1-bureau",
+      "fixtureProvenance": {
+        "expectationOrigin": "declared_external_fixture_metadata",
+        "internalTranscription": false,
+        "regressionOnly": false,
+        "verifiedPromotion": false
+      },
+      "input": {
+        "birthYearStem": null,
+        "hourBranch": "午",
+        "isLeapMonth": false,
+        "lunarMonth": 5,
+        "subjectName": "고전예제1-오행국"
+      },
+      "inputConfigurationIdentity": {
+        "birthTime": null,
+        "calendar": "chinese_lunar",
+        "dayBoundary": "midnight_00:00",
+        "gender": null,
+        "hourBoundary": "standard_12_branches",
+        "leapMonth": false,
+        "missingRequiredFields": [
+          "birthYearStem"
+        ],
+        "timezone": "Asia/Seoul"
+      },
+      "mismatchInterpretation": null,
+      "observed": {
+        "bureauName": null,
+        "bureauNumber": null,
+        "mingGongBranch": null,
+        "shenGongBranch": null
+      },
+      "referenceType": "worked_chart_bureau_reference_pending",
+      "ruleVariant": {
+        "identified": null,
+        "note": "No rule variant is asserted from an unresolved source; current local rule metadata is recorded without treating it as source identity.",
+        "status": "not_detected"
+      },
+      "scope": {
+        "comparedFields": [
+          "bureauName",
+          "bureauNumber"
+        ],
+        "exactComparisonScope": "none; local resolver contract rejected incomplete input",
+        "fullChartValidationClaim": false
+      },
+      "source": {
+        "declared": {
+          "accessedAt": "2026-07-27",
+          "documentId": "doc-ziwei-quan-shu",
+          "edition": "pending_exact_edition_review",
+          "editionOrVersion": "pending_exact_edition_review",
+          "editionPublicationDate": "pending",
+          "methodDisclosure": "classical_worked_chart_example",
+          "organizationOrAuthor": "陳摶 (attributed) / 羅洪先 (edit)",
+          "pageOrLine": "諸星入命吉凶例 (五月午時安命在丑身在未例 - 생년천간 누락)",
+          "pageOrTableOrSection": "卷二 · 諸星入命吉凶例 (五月午時安命在丑身在未例 - 생년천간 누락)",
+          "permanentUrl": "https://ctext.org/wiki.pl?if=gb&res=446219",
+          "prefaceDate": "1550",
+          "publicationDate": "pending",
+          "publisherId": "pub-quan-shu-classic",
+          "referenceDocumentId": "doc-ziwei-quan-shu",
+          "sourceTier": "Tier 2",
+          "sourceTitle": "紫微斗數全書 (Ziwei Dou Shu Quan Shu)",
+          "title": "紫微斗數全書 (Ziwei Dou Shu Quan Shu)",
+          "urlOrReference": "https://ctext.org/wiki.pl?if=gb&res=446219",
+          "volume": "卷二"
+        },
+        "identityStatus": "unresolved",
+        "retrieval": {
+          "attemptedAt": "2026-08-04",
+          "byteSha256": null,
+          "method": "read_only_explicit_fixture_url_only",
+          "originalBytesPreserved": false,
+          "reason": "safe_url_retrieval_not_available_in_execution_environment",
+          "requestedUrl": "https://ctext.org/wiki.pl?if=gb&res=446219",
+          "status": "not_retrieved"
+        },
+        "unresolvedReasons": [
+          "exact_edition_or_base_copy_missing",
+          "immutable_retrieval_bytes_and_hash_missing",
+          "external_implementation_version_missing"
+        ]
+      },
+      "valueComparison": "not_compared"
+    }
+  ],
+  "internalFixtureBoundary": {
+    "knownCharts": 3,
+    "promotedToExternal": false,
+    "starPlacementCharts": 3,
+    "status": "regression_only"
+  },
+  "negativeContract": {
+    "detects": [
+      "internal_result_disguised_as_external",
+      "source_or_version_omitted",
+      "configuration_mismatch_hidden",
+      "scoped_match_expanded_to_full_validation",
+      "rule_variant_deleted",
+      "unsupported_verified_promotion",
+      "non_deterministic_sort_or_output"
+    ],
+    "fixture": "test/fixtures/ziwei/fixture-reconciliation-negative-v1.json"
+  },
+  "observedHead": "ae72cb6e1b9252f53676fefb6c777301d8965d6d",
+  "prohibitedChangesPreserved": [
+    "calculation",
+    "rules",
+    "fixture expected values",
+    "handoff",
+    "claim provenance",
+    "readiness",
+    "activation",
+    "UI",
+    "API",
+    "DB",
+    "LLM"
+  ],
+  "schemaVersion": "ziwei-fixture-reconciliation-v1",
+  "scope": "read_only_reconciliation_of_six_pending_external_ziwei_fixtures",
+  "verdictToken": "ziwei_fixture_reconciliation_partial_unresolved"
+}

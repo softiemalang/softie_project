@@ -1,0 +1,11 @@
+{
+  "cases": [
+    {"id":"internal_as_external","mutation":"fixtureProvenance.expectationOrigin=internal_resolver; fixtureProvenance.regressionOnly=true"},
+    {"id":"source_version_omitted","mutation":"source.declared.editionOrVersion=null"},
+    {"id":"configuration_hidden","mutation":"classification.supportingLimitations=[] for missing stem"},
+    {"id":"scoped_match_expanded","mutation":"scope.fullChartValidationClaim=true"},
+    {"id":"rule_variant_deleted","mutation":"ruleVariant=null"},
+    {"id":"verified_promoted","mutation":"beforeAfter.after.verified=6"},
+    {"id":"nondeterministic_output","mutation":"fixtures sorted by retrieval time or random order"}
+  ]
+}

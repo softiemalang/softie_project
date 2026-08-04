@@ -3,6 +3,8 @@
 verdict=`ziwei_claim_boundary_audit_partial_unresolved`
 basis HEAD=`704266bbb84882e4b3498bf3b60aeb576e8441fa`
 
+artifact identity는 `artifact-identity-v1`을 따른다. 생성 기준은 `artifactIdentity.generation.baseHead`이며, 실제 입력 파일의 `inputs[*].byteSha256`, `artifactPayloadSha256`, contract/materializer version을 검증한다. 생성 시 artifact를 포함한 commit은 알 수 없으므로 `generation.includedCommit=null`이다. 현재 checkout HEAD가 historical `basisHead`와 다르다는 이유만으로 stale 처리하지 않는다.
+
 이 감사는 계산·규칙·fixture 기대값·handoff 의미를 변경하지 않고, 현재 저장소의 규칙 묶음, 외부 fixture 메타데이터, 로컬 의미 후보 literal, 문서의 provenance 경계를 읽기 전용으로 확인한다. 새 해석 claim이나 provenance 구현은 만들지 않는다. 감사 산출물은 [complete.json](../artifacts/ziwei-source-identity-claim-boundary-audit-v1/complete.json)이며, 생성기는 `scripts/materialize-ziwei-source-identity-claim-boundary-audit-v1.mjs`, checker는 `scripts/check-ziwei-source-identity-claim-boundary-audit-v1.mjs`이다.
 
 ## 결론
@@ -49,5 +51,7 @@ node --test test/ziweiSourceIdentityClaimBoundaryAudit.test.js
 ```
 
 이 artifact의 hash는 `complete.json` UTF-8 bytes including final LF 범위이며 sidecar에 기록한다. 생성 시각은 없고 배열/객체 정렬은 deterministic하다. checker 통과는 source truth, 전통적 타당성, 외부 독립성, UI/handoff 동작을 증명하지 않는다.
+
+identity migration evidence: 기존 domain payload의 verdict, source identity inventory 32개, occurrence 19개, occurrence-only 12개, ambiguous grouping 7개, stable claim boundary 0개, conflation risk 19개와 claim provenance `blocked`는 migration 전후 canonical 비교에서 동일하다. negative test는 generation base 누락·위조, input byte hash, payload hash, materializer version, self-referential included commit을 fail-closed로 검출한다.
 
 권장 다음 하나의 goal은 `ziwei_independent_fixture_reconciliation`이다. 단, exact edition·retrieval bytes·외부 oracle identity를 확보할 별도 권한이 없으면 그 goal도 `blocked` 또는 `partial`로 종료하고 현재 unresolved를 유지해야 한다.

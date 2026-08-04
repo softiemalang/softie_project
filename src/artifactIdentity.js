@@ -1,5 +1,6 @@
 import { createHash } from 'node:crypto'
 import { readFileSync } from 'node:fs'
+import { execFileSync } from 'node:child_process'
 
 export const ARTIFACT_IDENTITY_CONTRACT_VERSION = 'artifact-identity-v1'
 
@@ -54,6 +55,10 @@ export function checkArtifactIdentity(artifact, { root, artifactId, materializer
   if (identity?.artifactId !== artifactId) errors.push('artifact identity mismatch')
   if (identity?.materializer?.path !== materializerPath || identity?.materializer?.version !== materializerVersion) errors.push('materializer identity mismatch')
   if (!/^[0-9a-f]{40}$/.test(identity?.generation?.baseHead || '')) errors.push('generation base identity missing or invalid')
+  else {
+    try { execFileSync('git', ['-c', 'core.fsmonitor=false', 'cat-file', '-e', `${identity.generation.baseHead}^{commit}`], { cwd: root, stdio: 'ignore' }) }
+    catch { errors.push('generation base commit not found') }
+  }
   if (identity?.generation?.includedCommit !== null || identity?.generation?.includedCommitSource !== 'unknown_at_generation; artifact may be included by a later commit') errors.push('included commit must remain unknown at generation')
   if (identity?.artifactPayloadSha256 !== artifactPayloadSha256(artifact)) errors.push('artifact payload identity mismatch')
   for (const input of identity?.inputs || []) {

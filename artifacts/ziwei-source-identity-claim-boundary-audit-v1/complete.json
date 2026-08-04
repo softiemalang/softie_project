@@ -1,4 +1,117 @@
 {
+  "artifactIdentity": {
+    "artifactId": "ziwei-source-identity-claim-boundary-audit-v1",
+    "artifactPayloadSha256": "d155cae57004b334992b2c53645aa9d38e138a514e4fde8b0917a759ebf0a02e",
+    "contractVersion": "artifact-identity-v1",
+    "generation": {
+      "baseHead": "ae72cb6e1b9252f53676fefb6c777301d8965d6d",
+      "baseHeadSource": "git rev-parse HEAD at materialization",
+      "includedCommit": null,
+      "includedCommitSource": "unknown_at_generation; artifact may be included by a later commit"
+    },
+    "inputs": [
+      {
+        "byteSha256": "4c562557aff4952059a886a90f535ec927dcd19e78c072b81b1a189d4e1ef0db",
+        "path": "docs/saju-ziwei-external-validation-plan.md"
+      },
+      {
+        "byteSha256": "c8ccbaa13b139e925822f8cac6fe5114fa9fbd92e49f79f04730fe47780aeec3",
+        "path": "docs/ziwei-external-validation-report.md"
+      },
+      {
+        "byteSha256": "fa029f6ca8e8bde374eed6bf2ceb546a4676045097aaf1c67f7e377be72b62fb",
+        "path": "docs/ziwei-final-readiness.md"
+      },
+      {
+        "byteSha256": "13f004999279b3f915b97e9b609851f5daa50a4ec93c0048b1f14a6e9421bcb3",
+        "path": "docs/ziwei-readiness-baseline-v1.md"
+      },
+      {
+        "byteSha256": "ea9d6c46790463e1d7c59e3392f0bd90b59fe2534dd9c924b7ba43308377f66b",
+        "path": "docs/ziwei-source-audit-report.md"
+      },
+      {
+        "byteSha256": "466c7774c3dc8ef89fb99345561db4bf5c1ec9fd786b5279fabcfa507e2bb224",
+        "path": "src/interpretationPrep/lunarConverter.js"
+      },
+      {
+        "byteSha256": "3f73716acf442f1717781d874872729c1c57d8b3e69498ae30284646297424fb",
+        "path": "src/interpretationPrep/threeSystemPrepPipeline.js"
+      },
+      {
+        "byteSha256": "6c0e59de0363a07a0bc9342e161e9b7d70747f1dd0077ee61b2a1149571a9a2f",
+        "path": "src/interpretationPrep/ziweiPromptAdapter.js"
+      },
+      {
+        "byteSha256": "c379c3d364ea8bdc1062f7a59f2f1b8f83de4762489a86a520733d9d288917cf",
+        "path": "src/ziwei/externalZiweiFixtures.js"
+      },
+      {
+        "byteSha256": "7af13da1e88dbe41e4a239d5359a0f49d05316235e668c7bd1302a3de8825144",
+        "path": "src/ziwei/fiveElementResolver.js"
+      },
+      {
+        "byteSha256": "40bfa66f576027a5ef77374257da895bbe714c331f6ded6e004048f246bc3c7a",
+        "path": "src/ziwei/minorStarResolver.js"
+      },
+      {
+        "byteSha256": "b7cdc5db61a1a70dae3a4a243b5bccc0c148488c4c8e9f81bcfc345e4e8a4be3",
+        "path": "src/ziwei/minorStarRules.js"
+      },
+      {
+        "byteSha256": "afd4f2ef13da4a13f7dece79e801dab6867e5cd1ee30d2e588dce19935c9aaaa",
+        "path": "src/ziwei/palaceRelationRules.js"
+      },
+      {
+        "byteSha256": "1edb93929e441b009e33abd8179e72cf5b216e7378a40813657ea52dc1a0759c",
+        "path": "src/ziwei/starPlacementRules.js"
+      },
+      {
+        "byteSha256": "c9797f2405df6afeb336226bcbff66e199e856d181e71e2317a9794dba0a6ad7",
+        "path": "src/ziwei/starResolver.js"
+      },
+      {
+        "byteSha256": "ec47b97109d514fb5317e1e0dfb9fb195fa77429ab2d451b3de9a97897babe9d",
+        "path": "src/ziwei/transformationResolver.js"
+      },
+      {
+        "byteSha256": "e602ab8611e846b53b9c1ffed2d2dbcb5b77afd13973187ee40d748370846e76",
+        "path": "src/ziwei/transformationRules.js"
+      },
+      {
+        "byteSha256": "716875185d87da22ceef5f66f32899359642646367133f6c9f4bf87718bf130e",
+        "path": "src/ziwei/ziweiContract.js"
+      },
+      {
+        "byteSha256": "633b3b3d586a5e9a2f7cf855fad1937cb6b4115ac4271c5bf8d7472d77ad9964",
+        "path": "src/ziwei/ziweiPalaceContext.js"
+      },
+      {
+        "byteSha256": "5336f15968b4c618d9b1248b0967deab22b778f48996cb60939ab19cabadf513",
+        "path": "src/ziwei/ziweiResolver.js"
+      },
+      {
+        "byteSha256": "f809a56f6f36ab0d8f08a073e083ca0e2783170e8303cd14013d4a19648575c2",
+        "path": "test/fixtures/ziwei/benchmarkCases.js"
+      },
+      {
+        "byteSha256": "c78d3bc2e418ea81fc97061a5a011628b6ba674af9f4fef795a085f4dc381037",
+        "path": "test/fixtures/ziwei/knownCharts.js"
+      },
+      {
+        "byteSha256": "b79bb0c3c7105cd83563fcee59264d832372e6143b4c0bc19347a125e7dfa226",
+        "path": "test/fixtures/ziwei/starPlacementCharts.js"
+      },
+      {
+        "byteSha256": "5205197927f23e643046a719978bcb75ce816c6bee6b85be9f5f63cf8f070e9a",
+        "path": "test/ziweiReadinessBaseline.test.js"
+      }
+    ],
+    "materializer": {
+      "path": "scripts/materialize-ziwei-source-identity-claim-boundary-audit-v1.mjs",
+      "version": "1.1.0"
+    }
+  },
   "auditVersion": "1.0.0",
   "basisHead": "704266bbb84882e4b3498bf3b60aeb576e8441fa",
   "blockers": [

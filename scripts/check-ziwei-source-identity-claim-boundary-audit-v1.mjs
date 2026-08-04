@@ -1,19 +1,24 @@
 import { createHash } from 'node:crypto'
 import { readFile } from 'node:fs/promises'
 import { resolve } from 'node:path'
-import { canonicalJson, materializeAudit, AUDIT_SCHEMA, AUDIT_VERDICT, AUDIT_HEAD } from './materialize-ziwei-source-identity-claim-boundary-audit-v1.mjs'
+import { checkArtifactIdentity } from '../src/artifactIdentity.js'
+import { AUDIT_SCHEMA, AUDIT_VERDICT, AUDIT_HEAD, AUDIT_MATERIALIZER_VERSION } from './materialize-ziwei-source-identity-claim-boundary-audit-v1.mjs'
 
 const root = resolve(new URL('..', import.meta.url).pathname)
 const path = resolve(process.argv[2] || 'artifacts/ziwei-source-identity-claim-boundary-audit-v1/complete.json')
 const failures = []
 const bytes = await readFile(path)
 const artifact = JSON.parse(bytes)
-const expected = await materializeAudit()
 const hash = createHash('sha256').update(bytes).digest('hex')
 if (artifact.schemaVersion !== AUDIT_SCHEMA) failures.push('schema_version')
 if (artifact.verdictToken !== AUDIT_VERDICT || artifact.basisHead !== AUDIT_HEAD) failures.push('verdict_or_basis_head')
 if (artifact.observedHead !== AUDIT_HEAD) failures.push('observed_head_not_fixed')
-if (canonicalJson(artifact) !== canonicalJson(expected)) failures.push('materialized_content_mismatch')
+failures.push(...checkArtifactIdentity(artifact, {
+  root,
+  artifactId: AUDIT_SCHEMA,
+  materializerPath: 'scripts/materialize-ziwei-source-identity-claim-boundary-audit-v1.mjs',
+  materializerVersion: AUDIT_MATERIALIZER_VERSION,
+}))
 if (artifact.meaningCandidateOccurrenceInventory?.length !== 19) failures.push('meaning_occurrence_count')
 if (artifact.claimBoundaryVocabulary?.distribution?.['stable claim boundary'] !== 0) failures.push('stable_claim_overpromoted')
 if (artifact.fixtureProvenanceAssessment?.declaredExternal?.verified !== 0 || artifact.fixtureProvenanceAssessment?.declaredExternal?.pending !== 6) failures.push('external_fixture_promoted')

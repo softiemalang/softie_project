@@ -2,6 +2,7 @@ import { createHash } from 'node:crypto'
 import { mkdir, readFile, writeFile } from 'node:fs/promises'
 import { execFileSync } from 'node:child_process'
 import { dirname, resolve } from 'node:path'
+import { attachArtifactIdentity, buildArtifactIdentity } from '../src/artifactIdentity.js'
 import { ZIWEI_PALACE_DEFINITIONS } from '../src/ziwei/ziweiContract.js'
 import { TOPIC_PALACE_PATTERNS } from '../src/ziwei/palaceRelationRules.js'
 import { TRANSFORMATION_LABELS } from '../src/ziwei/transformationRules.js'
@@ -10,6 +11,7 @@ import { ZIWEI_EXTERNAL_FIXTURES } from '../src/ziwei/externalZiweiFixtures.js'
 export const AUDIT_SCHEMA = 'ziwei-source-identity-claim-boundary-audit-v1'
 export const AUDIT_VERDICT = 'ziwei_claim_boundary_audit_partial_unresolved'
 export const AUDIT_HEAD = '704266bbb84882e4b3498bf3b60aeb576e8441fa'
+export const AUDIT_MATERIALIZER_VERSION = '1.1.0'
 
 const sourceFiles = [
   'src/ziwei/ziweiContract.js', 'src/ziwei/fiveElementResolver.js',
@@ -81,7 +83,7 @@ function sourceIdentity(path, kind, id, currentSource, status, unresolvedReason,
 
 export async function materializeAudit() {
   const root = resolve(new URL('..', import.meta.url).pathname)
-  const actualHead = execFileSync('git', ['-c', 'core.fsmonitor=false', 'rev-parse', 'HEAD'], { cwd: root, encoding: 'utf8' }).trim()
+  const baseHead = execFileSync('git', ['-c', 'core.fsmonitor=false', 'rev-parse', 'HEAD'], { cwd: root, encoding: 'utf8' }).trim()
   const byteEvidence = {}
   for (const path of sourceFiles) byteEvidence[path] = { sha256: sha256(await readFile(resolve(root, path))), scope: 'repository file UTF-8/raw bytes as stored' }
   const sources = [
@@ -92,7 +94,7 @@ export async function materializeAudit() {
   const occurrences = meaningOccurrences()
   const artifact = {
     schemaVersion: AUDIT_SCHEMA, auditVersion: '1.0.0', verdictToken: AUDIT_VERDICT, basisHead: AUDIT_HEAD,
-    observedHead: actualHead, scope: 'read_only_source_identity_and_claim_boundary_audit',
+    observedHead: AUDIT_HEAD, scope: 'read_only_source_identity_and_claim_boundary_audit',
     prohibitedChangesPreserved: ['calculation', 'rules', 'fixture expected values', 'claim/provenance implementation', 'readiness', 'handoff', 'UI/API/DB/LLM/activation'],
     ruleSetIdentity: { default: { calendar: 'traditional_lunar', mingGongMethod: 'standard_month_hour', leapMonthRule: 'mid_month_split', fiveElementCycle: 'standard_wuhangju', majorStarPlacement: 'standard_ziwei_tianfu' }, localVersionLabels: [...new Set(ruleInventory.map(([, , , , note]) => note.split(';')[0]))].sort(), schoolOrEdition: 'unresolved_source_identity' },
     sourceIdentityInventory: sources,
@@ -124,7 +126,14 @@ export async function materializeAudit() {
     deterministicContract: { idRule: 'sha256(path#export#slot) truncated to 16 hex; candidate only', sorting: 'lexicographic by generated ID', timestamps: 'forbidden', frequencyRanking: 'forbidden', textNormalization: 'forbidden for occurrence identity', byteHashScope: 'actual repository file bytes' },
     materializer: 'scripts/materialize-ziwei-source-identity-claim-boundary-audit-v1.mjs', checker: 'scripts/check-ziwei-source-identity-claim-boundary-audit-v1.mjs',
   }
-  return artifact
+  return attachArtifactIdentity(artifact, buildArtifactIdentity({
+    root,
+    artifactId: AUDIT_SCHEMA,
+    materializerPath: 'scripts/materialize-ziwei-source-identity-claim-boundary-audit-v1.mjs',
+    materializerVersion: AUDIT_MATERIALIZER_VERSION,
+    baseHead,
+    inputs: sourceFiles,
+  }))
 }
 
 export function canonicalJson(value) {
