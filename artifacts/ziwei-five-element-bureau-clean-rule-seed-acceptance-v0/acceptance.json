@@ -1,0 +1,118 @@
+{
+  "boundaries": {
+    "activation": "experimental",
+    "grounding": "blocked",
+    "pdfStoredInGit": false,
+    "pilotOverwritten": false,
+    "productionEngineModified": false,
+    "productionRuleModified": false,
+    "readiness": "not_safe_to_start",
+    "renderStoredInGit": false,
+    "stableClaimCount": 0
+  },
+  "comparisonSummary": {
+    "deterministicOrdering": true,
+    "distribution": {
+      "earth_5": 288,
+      "fire_6": 288,
+      "metal_4": 288,
+      "water_2": 288,
+      "wood_3": 288
+    },
+    "firstDivergence": null,
+    "inputCount": 1440,
+    "matchCount": 1440,
+    "mismatchCount": 0
+  },
+  "limitations": [
+    "Full independent human blindness cannot be proven in this agent workflow because the existing pilot was inspected before the reviewer-B draft was fixed.",
+    "Small glyphs and table readings are bounded to the rendered witness; OCR was not canonical.",
+    "Acceptance is source-backed reconciliation of a traditional rule seed, not reality validation, personal-meaning claim, readiness, grounding, or activation evidence."
+  ],
+  "pilotImmutability": {
+    "actualHashes": {
+      "comparisonSha256": "4227debc05b1354b1c2ba6229c1d74ebd2510c56aff2840f248f85efedd73c48",
+      "normalizedRuleSha256": "571c0d33cea66a7924c0595fd199da04c66ae95862a313dd81242c47aaede6e8",
+      "transcriptionSha256": "4d243200d5c5fc465667a0b26915f92a48611442a4c0ea422ab5a45901bc69e5"
+    },
+    "expectedHashes": {
+      "comparisonSha256": "4227debc05b1354b1c2ba6229c1d74ebd2510c56aff2840f248f85efedd73c48",
+      "normalizedRuleSha256": "571c0d33cea66a7924c0595fd199da04c66ae95862a313dd81242c47aaede6e8",
+      "transcriptionSha256": "4d243200d5c5fc465667a0b26915f92a48611442a4c0ea422ab5a45901bc69e5"
+    },
+    "unchanged": true
+  },
+  "schemaVersion": "ziwei-five-element-bureau-clean-rule-seed-acceptance-v0-acceptance-v0",
+  "semanticDiscrepancy": false,
+  "sourceTrace": {
+    "boundary": "Direct glyph evidence is not presented as proof of the normalized formula, enum, historical truth, personal meaning, readiness, grounding, or activation.",
+    "directLiteraryEvidence": {
+      "p10": "Visible 命宮天干/地支 matrix with five stem-pair columns and twelve branch rows; drawn right-to-left column orientation retained.",
+      "p11": "Visible bureau-specific starting-day rows: 水二局初一丑, 木三局初一辰, 金四局初一辰, 土五局初一午, 火六局初一酉; auxiliary only.",
+      "p12": "Visible five-bureau labels and drawn 生日起例 table; auxiliary only.",
+      "p9": "Visible 水二局/木三局/金四局/土五局/火六局 labels and 六十花甲納音 pairs; text says to transform 命宮天干地支 into 六十花甲五行納音."
+    },
+    "implementationNormalization": {
+      "birthYearStemDomain": [
+        "甲",
+        "乙",
+        "丙",
+        "丁",
+        "戊",
+        "己",
+        "庚",
+        "辛",
+        "壬",
+        "癸"
+      ],
+      "bureauMapping": {
+        "土": {
+          "enum": "earth_5",
+          "number": 5,
+          "traditionalName": "土五局"
+        },
+        "木": {
+          "enum": "wood_3",
+          "number": 3,
+          "traditionalName": "木三局"
+        },
+        "水": {
+          "enum": "water_2",
+          "number": 2,
+          "traditionalName": "水二局"
+        },
+        "火": {
+          "enum": "fire_6",
+          "number": 6,
+          "traditionalName": "火六局"
+        },
+        "金": {
+          "enum": "metal_4",
+          "number": 4,
+          "traditionalName": "金四局"
+        }
+      },
+      "hourBranchDomain": [
+        "子",
+        "丑",
+        "寅",
+        "卯",
+        "辰",
+        "巳",
+        "午",
+        "未",
+        "申",
+        "酉",
+        "戌",
+        "亥"
+      ],
+      "lunarMonthDomain": "integer 1..12",
+      "mingGongPosition": "(monthPalaceIndex-index(hourBranch)) mod 12",
+      "modulo": "JavaScript non-negative modulo normalization for indices",
+      "monthPalace": "(index(寅)+lunarMonth-1) mod 12",
+      "nayinLookup": "normalized key from computed 命宮 stem+branch into independently transcribed 60-cycle pairs",
+      "palaceStem": "甲己丙寅頭;乙庚戊寅頭;丙辛庚寅頭;丁壬壬寅頭;戊癸甲寅頭, then (index(yinStem)+index(mingGongBranch)-index(寅)) mod 10"
+    }
+  },
+  "verdictToken": "ziwei_five_element_bureau_seed_accepted_with_declared_limits"
+}

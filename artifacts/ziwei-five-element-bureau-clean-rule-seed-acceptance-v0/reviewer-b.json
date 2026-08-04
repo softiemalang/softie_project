@@ -1,0 +1,225 @@
+{
+  "blindStatus": "source_first_reading_completed_but_full_blindness_unproven",
+  "blindnessLimit": "Existing pilot artifacts were inspected earlier in this work context before this draft was fixed; the draft is based on direct rendered-page inspection and is not evidence of a fully independent human process.",
+  "modernCommentaryIngested": false,
+  "ocrPolicy": {
+    "canonical": false,
+    "note": "Visual inspection of rendered PNGs only; OCR is not canonical and no OCR output was used to fill uncertain glyphs.",
+    "used": false
+  },
+  "pages": [
+    {
+      "locator": "left scanned leaf, vertical rule prose and 30 六十花甲納音 pairs",
+      "observedGlyphs": [
+        "水二局",
+        "木三局",
+        "金四局",
+        "土五局",
+        "火六局",
+        "甲子乙丑 海中金",
+        "丙寅丁卯 爐中火",
+        "戊辰己巳 大林木",
+        "庚午辛未 路旁土",
+        "壬申癸酉 劍鋒金",
+        "甲戌乙亥 山頭火",
+        "丙子丁丑 澗下水",
+        "戊寅己卯 城頭土",
+        "庚辰辛巳 白蠟金",
+        "壬午癸未 楊柳木",
+        "甲申乙酉 泉中水",
+        "丙戌丁亥 屋上土",
+        "戊子己丑 霹靂火",
+        "庚寅辛卯 松柏木",
+        "壬辰癸巳 長流水",
+        "甲午乙未 沙中金",
+        "丙申丁酉 山下火",
+        "戊戌己亥 平地木",
+        "庚子辛丑 壁上土",
+        "壬寅癸卯 金箔金",
+        "甲辰乙巳 覆燈火",
+        "丙午丁未 天河水",
+        "戊申己酉 大驛土",
+        "庚戌辛亥 釵釧金",
+        "壬子癸丑 桑柘木",
+        "甲寅乙卯 大溪水",
+        "丙辰丁巳 沙中土",
+        "戊午己未 天上火",
+        "庚申辛酉 石榴木",
+        "壬戌癸亥 大海水"
+      ],
+      "pdfPage": 9,
+      "printedPage": "二十七",
+      "section": "十、定五行局",
+      "table": {
+        "direction": "vertical columns read right-to-left; pair sequence is source order",
+        "present": false,
+        "uncertainGlyphs": []
+      },
+      "uncertainty": []
+    },
+    {
+      "locator": "right scanned leaf, 定五行局簡索表列左",
+      "observedGlyphs": [
+        "命宮天干",
+        "命宮地支",
+        "甲乙",
+        "丙丁",
+        "戊己",
+        "庚辛",
+        "壬癸",
+        "子",
+        "丑",
+        "寅",
+        "卯",
+        "辰",
+        "巳",
+        "午",
+        "未",
+        "申",
+        "酉",
+        "戌",
+        "亥",
+        "水二局",
+        "木三局",
+        "金四局",
+        "土五局",
+        "火六局"
+      ],
+      "pdfPage": 10,
+      "printedPage": "二十八",
+      "section": "十二、定五行局",
+      "table": {
+        "axisLabel": "命宮天干 / 命宮地支",
+        "columnHeaders": [
+          "甲乙",
+          "丙丁",
+          "戊己",
+          "庚辛",
+          "壬癸"
+        ],
+        "direction": "vertical Chinese table; column headers are read right-to-left as drawn, rows descend 子 through 亥; no transpose",
+        "present": true,
+        "rowHeaders": [
+          "子",
+          "丑",
+          "寅",
+          "卯",
+          "辰",
+          "巳",
+          "午",
+          "未",
+          "申",
+          "酉",
+          "戌",
+          "亥"
+        ],
+        "uncertainGlyphs": [],
+        "visibleRowExamples": {
+          "丑": {
+            "丙丁": "金四局",
+            "壬癸": "火六局",
+            "庚辛": "土五局",
+            "戊己": "木三局",
+            "甲乙": "水二局"
+          },
+          "子": {
+            "丙丁": "水二局",
+            "壬癸": "木三局",
+            "庚辛": "土五局",
+            "戊己": "火六局",
+            "甲乙": "金四局"
+          }
+        }
+      },
+      "uncertainty": []
+    },
+    {
+      "locator": "left scanned leaf, five bureau starting rows",
+      "observedGlyphs": [
+        "水二局中初一丑",
+        "木三局中初一辰",
+        "金四局中初一辰",
+        "土五局中初一午",
+        "火六局中初一酉"
+      ],
+      "pdfPage": 11,
+      "printedPage": "三十一",
+      "section": "起紫微五訣",
+      "table": {
+        "direction": "vertical prose columns; no lookup transpose",
+        "present": false,
+        "uncertainGlyphs": []
+      },
+      "uncertainty": [
+        "Auxiliary order cross-check only; not used to complete p9 Nayin pairs."
+      ]
+    },
+    {
+      "locator": "left scanned leaf, five bureau columns and 生日起例 table",
+      "observedGlyphs": [
+        "水二局",
+        "木三局",
+        "金四局",
+        "土五局",
+        "火六局"
+      ],
+      "pdfPage": 12,
+      "printedPage": "三十三",
+      "section": "起紫微簡索表",
+      "table": {
+        "direction": "drawn table columns retained; note states right table is read from right to left; no transpose",
+        "present": true,
+        "uncertainGlyphs": []
+      },
+      "uncertainty": [
+        "Auxiliary cross-check only; it does not independently define the p9 Nayin mapping."
+      ]
+    }
+  ],
+  "render": {
+    "dpi": 300,
+    "files": [
+      {
+        "file": "p9.png",
+        "pdfPage": 9,
+        "printedPage": "二十七",
+        "sha256": "ae423ab11bb14906cc9a34e26787570eac60007f89b307b684c18644ce243d4b",
+        "targetHalf": "left"
+      },
+      {
+        "file": "p10.png",
+        "pdfPage": 10,
+        "printedPage": "二十八",
+        "sha256": "e9be26fb374bb49a5eea5a2e55d911fe59879b6efe07912deea9d6724ad2c546",
+        "targetHalf": "right"
+      },
+      {
+        "file": "p11.png",
+        "pdfPage": 11,
+        "printedPage": "三十一",
+        "sha256": "e10b1b30c7928b2cc8e3afcbf3efec3c8d0cbdc9434233a939677869b8402201",
+        "targetHalf": "left"
+      },
+      {
+        "file": "p12.png",
+        "pdfPage": 12,
+        "printedPage": "三十三",
+        "sha256": "0cc8f8a56ce4b839f300a141f8fe9aa6f035801fda0e7464a3acab0e8af363b1",
+        "targetHalf": "left"
+      }
+    ],
+    "format": "png",
+    "settings": "-f N -l N -png -r 300 -singlefile",
+    "tool": "pdftoppm"
+  },
+  "renderGitInclusion": "forbidden",
+  "reviewer": "B",
+  "schemaVersion": "ziwei-five-element-bureau-clean-rule-seed-acceptance-v0-reviewer-b-v0",
+  "source": {
+    "encrypted": false,
+    "pdfPageCount": 219,
+    "pdfPath": "/Users/softie/Downloads/命-南北山人_紫微斗数全书.pdf",
+    "pdfSha256": "4786a94ab454acdabf9716d7c0db4756dbcbde99a88bc45fda254863c1961023"
+  },
+  "sourceFirstDraftSha256": "8207337795038d259035954684bb57fbbd524a2624ff4cca185c391aaad70f97"
+}

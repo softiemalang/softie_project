@@ -1,0 +1,20 @@
+{
+  "schemaVersion": "ziwei-five-element-bureau-clean-rule-seed-acceptance-v0-negative-v0",
+  "cases": [
+    {"id":"source-first-impersonation","path":"reviewerB.blindStatus","value":"source_first_before_existing_artifact_read","finding":"source_first_impersonation"},
+    {"id":"pdf-tamper","path":"source.pdfSha256","value":"0","finding":"pdf_hash_page_encryption"},
+    {"id":"page-render-tamper","path":"source.targetPages.0.sha256","value":"0","finding":"page_identity_or_render_hash"},
+    {"id":"ocr-promotion","path":"reviewerB.ocrPolicy.canonical","value":true,"finding":"ocr_canonical_promotion"},
+    {"id":"uncertain-glyph-auto-finalization","path":"reviewerB.pages.0.table.uncertainGlyphs","value":null,"finding":"uncertain_glyph_auto_finalization"},
+    {"id":"table-direction-hidden","path":"reviewerB.pages.1.table.direction","value":"inferred","finding":"table_direction_hidden"},
+    {"id":"semantic-collapse","semanticDiscrepancy":true,"finding":"semantic_discrepancy_collapsed"},
+    {"id":"pilot-overwrite","path":"acceptance.pilotImmutability.unchanged","value":false,"finding":"pilot_hash_immutability"},
+    {"id":"result-forcing","path":"comparison.matchCount","value":0,"finding":"mismatch_hidden_or_forced"},
+    {"id":"non-exhaustive","truncate":1439,"finding":"not_exhaustive_1440"},
+    {"id":"production-reuse","path":"independence.sourceEvaluatorImportsProduction","value":true,"finding":"production_evaluator_reuse"},
+    {"id":"commentary-ingestion","path":"reviewerB.modernCommentaryIngested","value":true,"finding":"commentary_or_render_git_inclusion"},
+    {"id":"promotion","path":"acceptance.boundaries.readiness","value":"ready","finding":"promotion_or_overwrite"},
+    {"id":"pdf-render-git","path":"source.gitInclusion","value":"allowed","finding":"commentary_or_render_git_inclusion"},
+    {"id":"nondeterministic-order","swapFirstTwo":true,"finding":"nondeterministic_id_or_order"}
+  ]
+}

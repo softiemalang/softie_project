@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "ziwei-five-element-bureau-clean-rule-seed-acceptance-v0",
+  "type": "object",
+  "required": ["schemaVersion", "verdictToken", "basisHead", "source", "reviewerB", "discrepancies", "comparison", "acceptance", "artifactIdentity"],
+  "properties": {
+    "schemaVersion": {"const": "ziwei-five-element-bureau-clean-rule-seed-acceptance-v0"},
+    "verdictToken": {"enum": ["ziwei_five_element_bureau_seed_accepted", "ziwei_five_element_bureau_seed_accepted_with_declared_limits", "ziwei_five_element_bureau_seed_review_discrepancy", "ziwei_five_element_bureau_seed_review_blocked"]},
+    "basisHead": {"type": "string", "pattern": "^[0-9a-f]{40}$"},
+    "source": {"type": "object", "required": ["pdfPath", "pdfSha256", "pdfPageCount", "encrypted", "targetPages", "gitInclusion"]},
+    "reviewerB": {"type": "object", "required": ["blindStatus", "source", "render", "pages", "ocrPolicy", "modernCommentaryIngested"]},
+    "discrepancies": {"type": "object", "required": ["items"]},
+    "comparison": {"type": "object", "required": ["inputCount", "expectedInputCount", "rows", "matchCount", "mismatchCount", "firstDivergence", "distribution"]},
+    "acceptance": {"type": "object", "required": ["sourceTrace", "pilotImmutability", "boundaries"]}
+  },
+  "additionalProperties": true
+}

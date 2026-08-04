@@ -1,0 +1,41 @@
+{
+  "items": [
+    {
+      "a": "Pilot sourceRef retains compact rule prose; transcription.nayinPairs contains the 30 pairs.",
+      "b": "Reviewer B records all 30 visible paired entries and their vertical source order.",
+      "classification": "layout only",
+      "id": "p9-scope-full-nayin-list",
+      "impact": "Evidence granularity differs only; all pair glyphs and rule outputs agree, so no rule or engine change.",
+      "locator": "二十七 / 十、定五行局 / Nayin columns",
+      "page": 9
+    },
+    {
+      "a": "Pilot records headers, rows, and no-transpose boundary without cell examples.",
+      "b": "Reviewer B records the same axes, right-to-left column reading, and visible 子/丑 examples.",
+      "classification": "layout only",
+      "id": "p10-table-explicit-direction",
+      "impact": "Direction is made auditable; no transposition or cell completion is inferred.",
+      "locator": "二十八 / 定五行局簡索表",
+      "page": 10
+    },
+    {
+      "a": "Pilot marks p11/p12 as auxiliary cross-checks.",
+      "b": "Reviewer B preserves their visible bureau order while keeping them out of the p9 Nayin lookup.",
+      "classification": "uncertain rule-neutral",
+      "id": "p11-p12-auxiliary-scope",
+      "impact": "These pages do not alter the normalized rule or 1,440-row reconciliation.",
+      "locator": "三十一 and 三十三 / auxiliary bureau order tables",
+      "page": 11
+    },
+    {
+      "a": "Pilot normalizes full 10×12×12 domain, modulo arithmetic, and enum names.",
+      "b": "Direct target-page evidence supports the Nayin lookup and bureau labels; complete domains, index arithmetic, and enum names are implementation normalization.",
+      "classification": "uncertain rule-neutral",
+      "id": "normalized-rule-boundary",
+      "impact": "Literary evidence and normalization remain separate; no semantic discrepancy is asserted and stable claim count remains 0.",
+      "locator": "二十七 / 將命宮天干地支…變成六十花甲五行納音",
+      "page": 9
+    }
+  ],
+  "schemaVersion": "ziwei-five-element-bureau-clean-rule-seed-acceptance-v0-discrepancies-v0"
+}
