@@ -1,0 +1,60 @@
+{
+  "boundaries": {
+    "modernCommentaryExcluded": true,
+    "sourceTextSeparateFromNormalizedRule": true
+  },
+  "input": {
+    "upstream": "already-resolved 紫微 branch; no calendar, 命宮, 身宮, 五行局, or other-star input",
+    "ziweiBranch": {
+      "domain": [
+        "子",
+        "丑",
+        "寅",
+        "卯",
+        "辰",
+        "巳",
+        "午",
+        "未",
+        "申",
+        "酉",
+        "戌",
+        "亥"
+      ],
+      "sourceRequired": true,
+      "traditionalName": "紫微所在地支"
+    }
+  },
+  "mapping": {
+    "indexConvention": "子=0 ... 亥=11",
+    "moduloBoundary": "only comparison adapter may normalize a production branch to this enum; source table does not calculate modulo",
+    "traditionalToEngine": {
+      "丑": 1,
+      "亥": 11,
+      "午": 6,
+      "卯": 3,
+      "天府": "tianfu",
+      "子": 0,
+      "寅": 2,
+      "巳": 5,
+      "戌": 10,
+      "未": 7,
+      "申": 8,
+      "紫微": "ziwei",
+      "辰": 4,
+      "酉": 9
+    }
+  },
+  "output": {
+    "productionComparisonField": "majorStars[id=tianfu].palaceBranch",
+    "traditionalName": "天府"
+  },
+  "procedure": {
+    "basePalace": "none; table-pair relation only",
+    "direction": "source table row order only; no forward/reverse progression is asserted",
+    "duplicateOrBoundary": "each of 12 source branch inputs has exactly one row; no duplicate or special same-palace exception appears in the transcribed table",
+    "mapping": "read source table row whose 紫微 cell equals input, return same-row 天府 cell",
+    "modulo": "none in source evaluator; branch normalization is an external boundary"
+  },
+  "schemaVersion": "ziwei-tianfu-star-placement-clean-rule-seed-rule-v0",
+  "sourceTranscriptionId": "ziwei-tianfu-p13-s34-transcription-v0"
+}
