@@ -1,0 +1,369 @@
+{
+  "archiveItem": {
+    "addedDate": "2021-09-24 04:33:30",
+    "archivePublicAccess": true,
+    "ark": "ark:/13960/t3d05mz07",
+    "creator": "南北山人",
+    "itemId": "20210924_20210924_0431",
+    "itemUrl": "https://archive.org/details/20210924_20210924_0431",
+    "metadataLanguage": "chi",
+    "metadataUrl": "https://archive.org/metadata/20210924_20210924_0431",
+    "title": "命 南北山人 紫微斗数全书",
+    "uploadedOn": "2021-09-24"
+  },
+  "artifactIdentity": {
+    "artifactId": "ziwei-archive-scan-source-witness-admission-v0",
+    "artifactPayloadSha256": "3805b46f5b43a942e60463436954088e7a5e0df9009e79f141635f8a76f3589e",
+    "contractVersion": "artifact-identity-v1",
+    "generation": {
+      "baseHead": "dd9c87596fe0d441d6a1b0bf25e16f972dc0e0f5",
+      "baseHeadSource": "git rev-parse HEAD at materialization",
+      "includedCommit": null,
+      "includedCommitSource": "unknown_at_generation; artifact may be included by a later commit"
+    },
+    "inputs": [
+      {
+        "byteSha256": "cccb5e28abacf2fe031b62f0871a19af898c9c17317e91261329208f732affda",
+        "path": "test/fixtures/ziwei/archive-scan-source-witness-admission-v0.json"
+      }
+    ],
+    "materializer": {
+      "path": "scripts/materialize-ziwei-archive-scan-source-witness-admission-v0.mjs",
+      "version": "0.1.0"
+    }
+  },
+  "basisHead": "dd9c87596fe0d441d6a1b0bf25e16f972dc0e0f5",
+  "checker": "scripts/check-ziwei-archive-scan-source-witness-admission-v0.mjs",
+  "contentClassAdmission": [
+    {
+      "admittedRanges": [
+        "r04"
+      ],
+      "contentClass": "deterministic_calculation_rule",
+      "reason": "closed-input/output candidates are preserved as page-located seeds only",
+      "stableClaimAllowed": false,
+      "status": "candidate_only"
+    },
+    {
+      "admittedRanges": [
+        "r04"
+      ],
+      "contentClass": "mapping_table",
+      "stableClaimAllowed": false,
+      "status": "candidate_only"
+    },
+    {
+      "admittedRanges": [],
+      "contentClass": "terminology_alias",
+      "stableClaimAllowed": false,
+      "status": "not_admitted"
+    },
+    {
+      "admittedRanges": [
+        "r05",
+        "r07"
+      ],
+      "contentClass": "worked_example",
+      "stableClaimAllowed": false,
+      "status": "candidate_only"
+    },
+    {
+      "admittedRanges": [],
+      "contentClass": "classical_source_text",
+      "stableClaimAllowed": false,
+      "status": "blocked_boundary_unresolved"
+    },
+    {
+      "admittedRanges": [],
+      "contentClass": "modern_commentary",
+      "stableClaimAllowed": false,
+      "status": "blocked_boundary_unresolved"
+    },
+    {
+      "admittedRanges": [],
+      "contentClass": "interpretive_prose",
+      "stableClaimAllowed": false,
+      "status": "not_admitted",
+      "verifiedFactAllowed": false
+    }
+  ],
+  "digitalWitness": {
+    "byteSize": 35515645,
+    "derivative": false,
+    "downloadUrl": "https://archive.org/download/20210924_20210924_0431/命-南北山人_紫微斗数全书.pdf",
+    "encrypted": false,
+    "fileName": "命-南北山人_紫微斗数全书.pdf",
+    "format": "Image Container PDF",
+    "gitInclusion": "forbidden",
+    "localEvidencePath": "/Users/softie/Downloads/命-南北山人_紫微斗数全书.pdf",
+    "md5": "41e7610510df4ad558aa328cf96cc096",
+    "metadata": {
+      "creationDate": "Fri Sep 24 13:21:02 2021 KST",
+      "customMetadata": false,
+      "metadataStream": false,
+      "modificationDate": "Fri Sep 24 13:21:02 2021 KST",
+      "optimized": false,
+      "pageRotation": 0,
+      "pageSize": "1505 x 2182 pts",
+      "pdfVersion": "1.3",
+      "producer": "iOS Version 15.0 (Build 19A346) Quartz PDFContext",
+      "tagged": false
+    },
+    "original": true,
+    "pdfPageCount": 219,
+    "sha256": "4786a94ab454acdabf9716d7c0db4756dbcbde99a88bc45fda254863c1961023",
+    "source": "original"
+  },
+  "downstreamBoundaries": {
+    "activation": "experimental",
+    "claimGeneration": false,
+    "grounding": "blocked",
+    "interpretationGenerated": false,
+    "readiness": "not_safe_to_start",
+    "ruleCorpusGenerated": false,
+    "stableClaimCount": 0,
+    "uiApiDbLlmWiring": false
+  },
+  "fileDisambiguation": [
+    {
+      "fileName": "命-南北山人_紫微斗数全书.pdf",
+      "format": "Image Container PDF",
+      "reason": "only original PDF; 219 pages",
+      "selected": true,
+      "source": "original"
+    },
+    {
+      "fileName": "命-南北山人_紫微斗数全书_text.pdf",
+      "format": "Additional Text PDF",
+      "selected": false,
+      "source": "derivative"
+    },
+    {
+      "fileName": "命-南北山人_紫微斗数全书_jp2.zip",
+      "format": "Single Page Processed JP2 ZIP",
+      "selected": false,
+      "source": "derivative"
+    },
+    {
+      "fileName": "命-南北山人_紫微斗数全书_djvu.txt",
+      "format": "DjVuTXT",
+      "selected": false,
+      "source": "derivative"
+    },
+    {
+      "fileName": "命-南北山人_紫微斗数全书_hocr.html",
+      "format": "hOCR",
+      "selected": false,
+      "source": "derivative"
+    }
+  ],
+  "identityLayers": {
+    "bibliographicEditionIdentity": {
+      "edition": null,
+      "editorAnnotator": "南北山人",
+      "originalAuthor": "陳希夷先生",
+      "pageEvidence": [
+        1,
+        4
+      ],
+      "publisher": null,
+      "status": "partial",
+      "title": "紫微斗數全書",
+      "unresolvedFields": [
+        "publisher",
+        "edition",
+        "year",
+        "volumeCount"
+      ],
+      "volumeCount": null,
+      "year": null
+    },
+    "digitalWitnessIdentity": {
+      "basis": [
+        "itemId",
+        "ark",
+        "fileName",
+        "originalFlag",
+        "sha256",
+        "pdfPageCount"
+      ],
+      "status": "resolved"
+    },
+    "historicalLineage": {
+      "observation": "Cover attributes the work to 陳希夷 and shows 南北山人編註; historical lineage is not independently established by this scan.",
+      "status": "unresolved_source_identity"
+    },
+    "rightsAccessStatus": {
+      "aiTrainingPermission": false,
+      "archivePublicAccess": true,
+      "conclusion": "Archive access is not a rights or reuse grant.",
+      "freeRedistribution": false,
+      "licenseStatement": null,
+      "publicDomain": false,
+      "status": "rights_unresolved"
+    },
+    "scanCompleteness": {
+      "missingPageEvidence": null,
+      "pdfPages": 219,
+      "rangeCoverage": "1-219 contiguous; image scan observed",
+      "reviewNeeded": true,
+      "status": "page_count_closed"
+    }
+  },
+  "materializer": "scripts/materialize-ziwei-archive-scan-source-witness-admission-v0.mjs",
+  "negativeFixture": "test/fixtures/ziwei/archive-scan-source-witness-admission-negative-v0.json",
+  "observedOn": "2026-08-04",
+  "prohibitedActionsNotTaken": [
+    "full_OCR_corpus",
+    "rule_ingestion",
+    "claim_generation",
+    "grounding",
+    "activation",
+    "ui",
+    "api",
+    "db",
+    "llm",
+    "prompt",
+    "git_inclusion",
+    "rights_inference"
+  ],
+  "rangeCoverage": {
+    "contiguous": true,
+    "firstPage": 1,
+    "lastPage": 219,
+    "overlap": false,
+    "pageCount": 219
+  },
+  "rangeOrdering": [
+    "r01",
+    "r02",
+    "r03",
+    "r04",
+    "r05",
+    "r06",
+    "r07",
+    "r08"
+  ],
+  "schemaVersion": "ziwei-archive-scan-source-witness-admission-v0",
+  "seedCandidates": [
+    {
+      "extracted": false,
+      "inputOutputClosed": "candidate",
+      "label": "命宮/身宮定位",
+      "pages": [
+        4,
+        5,
+        8,
+        9
+      ],
+      "reviewNeeded": true,
+      "scopeRisk": "method prose and chart conventions may be interleaved",
+      "seedId": "seed-01"
+    },
+    {
+      "extracted": false,
+      "inputOutputClosed": "candidate",
+      "label": "五行局定位/表",
+      "pages": [
+        9,
+        10,
+        11,
+        12
+      ],
+      "reviewNeeded": true,
+      "scopeRisk": "table reading and calendrical assumptions require manual page review",
+      "seedId": "seed-02"
+    },
+    {
+      "extracted": false,
+      "inputOutputClosed": "candidate",
+      "label": "主星/紫微星系佈立表",
+      "pages": [
+        13,
+        14,
+        15,
+        16,
+        17
+      ],
+      "reviewNeeded": true,
+      "scopeRisk": "star-placement pages may depend on preceding untranscribed conventions",
+      "seedId": "seed-03"
+    }
+  ],
+  "structuralRangeMap": [
+    {
+      "confidence": "high",
+      "contentClass": "front_matter_edition_evidence",
+      "evidence": "cover visibly states 紫微斗數全書; 陳希夷先生原著; 南北山人編註; 古版復修新梓; 加注標點符號",
+      "pageEnd": 1,
+      "pageStart": 1,
+      "rangeId": "r01",
+      "reviewNeeded": false
+    },
+    {
+      "confidence": "high",
+      "contentClass": "toc_section_boundaries",
+      "evidence": "引索/目錄 pages visibly list methods, tables, star placement and later sections",
+      "pageEnd": 3,
+      "pageStart": 2,
+      "rangeId": "r02",
+      "reviewNeeded": false
+    },
+    {
+      "confidence": "high",
+      "contentClass": "front_matter_edition_evidence",
+      "evidence": "八卦圖, 編註/校梓 notice, 命盤及諸星佈立之步驟與法則 heading and introductory material",
+      "pageEnd": 8,
+      "pageStart": 4,
+      "rangeId": "r03",
+      "reviewNeeded": false
+    },
+    {
+      "confidence": "medium",
+      "contentClass": "deterministic_rule_table_candidate",
+      "evidence": "命盤/十二宮/五行局/天干地支 and related closed tables visibly appear",
+      "pageEnd": 17,
+      "pageStart": 9,
+      "rangeId": "r04",
+      "reviewNeeded": true
+    },
+    {
+      "confidence": "medium",
+      "contentClass": "worked_example",
+      "evidence": "命盤 examples, 起例/冠蓋 and stepwise placement explanations visibly appear",
+      "pageEnd": 28,
+      "pageStart": 18,
+      "rangeId": "r05",
+      "reviewNeeded": true
+    },
+    {
+      "confidence": "low",
+      "contentClass": "unresolved_classical_commentary_boundary",
+      "evidence": "continuous vertical text with classical formulas, star lists, annotations and interpretive prose; page-level separation was not established without transcription",
+      "pageEnd": 208,
+      "pageStart": 29,
+      "rangeId": "r06",
+      "reviewNeeded": true
+    },
+    {
+      "confidence": "medium",
+      "contentClass": "worked_example",
+      "evidence": "late pages visibly contain chart layouts and worked 命盤 material",
+      "pageEnd": 218,
+      "pageStart": 209,
+      "rangeId": "r07",
+      "reviewNeeded": true
+    },
+    {
+      "confidence": "high",
+      "contentClass": "back_matter",
+      "evidence": "末页 visibly contains 編後記 and closing prose",
+      "pageEnd": 219,
+      "pageStart": 219,
+      "rangeId": "r08",
+      "reviewNeeded": false
+    }
+  ],
+  "verdictRationale": "Digital identity and page count are closed from actual bytes. Bibliographic metadata, historical lineage, rights, and classical/commentary page boundaries remain partial or unresolved; admission is limited to a source witness candidate with no claim or corpus promotion.",
+  "verdictToken": "source_witness_admissible_with_limits"
+}

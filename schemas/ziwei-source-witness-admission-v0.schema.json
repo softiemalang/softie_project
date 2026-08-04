@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "ziwei-source-witness-admission-v0",
+  "type": "object",
+  "required": ["schemaVersion", "verdictToken", "basisHead", "digitalWitness", "identityLayers", "structuralRangeMap", "contentClassAdmission", "downstreamBoundaries"],
+  "properties": {
+    "schemaVersion": {"const": "ziwei-archive-scan-source-witness-admission-v0"},
+    "verdictToken": {"enum": ["source_witness_admissible", "source_witness_admissible_with_limits", "digital_identity_resolved_bibliography_partial", "source_witness_blocked", "evidence_conflict"]},
+    "basisHead": {"type": "string", "pattern": "^[0-9a-f]{40}$"},
+    "digitalWitness": {"type": "object", "required": ["itemId", "ark", "fileName", "source", "format", "original", "downloadUrl", "byteSize", "md5", "sha256", "pdfPageCount", "encrypted", "metadata"]},
+    "identityLayers": {"type": "object", "required": ["digitalWitnessIdentity", "bibliographicEditionIdentity", "historicalLineage", "scanCompleteness", "rightsAccessStatus"]},
+    "structuralRangeMap": {"type": "array", "minItems": 1},
+    "contentClassAdmission": {"type": "array", "minItems": 1},
+    "downstreamBoundaries": {"type": "object", "required": ["stableClaimCount", "grounding", "readiness", "activation"]}
+  }
+}

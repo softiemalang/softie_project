@@ -43,10 +43,10 @@
   ],
   "artifactIdentity": {
     "artifactId": "ziwei-clean-rule-corpus-source-acquisition-feasibility-v0",
-    "artifactPayloadSha256": "139602802e1f9f5b6f42419765ac810c69a09ba00e7be4f09487e1400fee93d1",
+    "artifactPayloadSha256": "b7cdbc3810e0c89e3ca3d860e820ff2a349934b1b50883ba2ed91fed945a941c",
     "contractVersion": "artifact-identity-v1",
     "generation": {
-      "baseHead": "3bbae92d81fa19107167b288c666f9dc19e2fdf3",
+      "baseHead": "dd9c87596fe0d441d6a1b0bf25e16f972dc0e0f5",
       "baseHeadSource": "git rev-parse HEAD at materialization",
       "includedCommit": null,
       "includedCommitSource": "unknown_at_generation; artifact may be included by a later commit"
@@ -100,7 +100,7 @@
     "sourceSelectionLedger": "test/fixtures/ziwei/clean-rule-corpus-source-candidates-v0.json"
   },
   "negativeFixture": "test/fixtures/ziwei/clean-rule-corpus-source-acquisition-feasibility-negative-v0.json",
-  "observedHead": "3bbae92d81fa19107167b288c666f9dc19e2fdf3",
+  "observedHead": "dd9c87596fe0d441d6a1b0bf25e16f972dc0e0f5",
   "officialEvidence": [
     {
       "accessedOn": "2026-08-04",

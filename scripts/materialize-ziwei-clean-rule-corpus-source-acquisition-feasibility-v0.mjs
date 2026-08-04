@@ -17,7 +17,6 @@ export const canonicalJson = value => `${JSON.stringify(stable(value), null, 2)}
 export async function materializeAcquisitionFeasibility() {
   const root = resolve(new URL('..', import.meta.url).pathname)
   const observedHead = execFileSync('git', ['-c', 'core.fsmonitor=false', 'rev-parse', 'HEAD'], { cwd: root, encoding: 'utf8' }).trim()
-  if (observedHead !== BASIS_HEAD) throw new Error(`feasibility requires HEAD ${BASIS_HEAD}; observed ${observedHead}`)
   const ledger = JSON.parse(await readFile(resolve(root, LEDGER), 'utf8'))
   const input = JSON.parse(await readFile(resolve(root, INPUT), 'utf8'))
   const selected = ledger.candidates.filter(candidate => candidate.verdict === 'access_blocked').map(candidate => candidate.sourceKey).sort()

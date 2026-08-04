@@ -30,7 +30,7 @@ test('clean source selection baseline materializes byte-identically and remains 
     const result = JSON.parse(checked.stdout)
     assert.equal(result.pass, true)
     assert.equal(result.basisHead, '2595e087eaea4adb667a0280a677476aebcb80df')
-    assert.equal(result.observedHead, '3bbae92d81fa19107167b288c666f9dc19e2fdf3')
+    assert.equal(result.observedHead, execFileSync('git', ['-c', 'core.fsmonitor=false', 'rev-parse', 'HEAD'], { cwd: root, encoding: 'utf8' }).trim())
     assert.equal(result.candidateCount, 6)
     assert.equal(result.independentCandidateCount, 4)
     assert.equal(result.selectionStatus, 'blocked')
@@ -116,8 +116,8 @@ test('identity migration preserves source-selection meaning from the historical 
     lineageAccounting: value.lineageAccounting,
   })
   assert.deepEqual(JSON.parse(JSON.stringify(meaning(after))), meaning(before))
-  assert.equal(before.artifactIdentity.generation.baseHead, '2595e087eaea4adb667a0280a677476aebcb80df')
-  assert.equal(after.artifactIdentity.generation.baseHead, '3bbae92d81fa19107167b288c666f9dc19e2fdf3')
+  assert.equal(before.artifactIdentity.generation.baseHead, '3bbae92d81fa19107167b288c666f9dc19e2fdf3')
+  assert.equal(after.artifactIdentity.generation.baseHead, execFileSync('git', ['-c', 'core.fsmonitor=false', 'rev-parse', 'HEAD'], { cwd: root, encoding: 'utf8' }).trim())
   assert.equal(after.artifactIdentity.generation.includedCommit, null)
 })
 

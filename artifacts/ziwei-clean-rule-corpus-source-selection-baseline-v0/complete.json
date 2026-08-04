@@ -2,10 +2,10 @@
   "accessedOn": "2026-08-04",
   "artifactIdentity": {
     "artifactId": "ziwei-clean-rule-corpus-source-selection-baseline-v0",
-    "artifactPayloadSha256": "2ce9b70adb361a0c3b80b5375e02270c03eda50c0d3008894f426d265a4ff1e4",
+    "artifactPayloadSha256": "e9b79be984ff5c4a6b07f8904ef653ee3045ab775095289fb278b9c2aa32e088",
     "contractVersion": "artifact-identity-v1",
     "generation": {
-      "baseHead": "3bbae92d81fa19107167b288c666f9dc19e2fdf3",
+      "baseHead": "dd9c87596fe0d441d6a1b0bf25e16f972dc0e0f5",
       "baseHeadSource": "git rev-parse HEAD at materialization",
       "includedCommit": null,
       "includedCommitSource": "unknown_at_generation; artifact may be included by a later commit"
@@ -713,7 +713,7 @@
     ]
   },
   "materializer": "scripts/materialize-ziwei-clean-rule-corpus-source-selection-baseline-v0.mjs",
-  "observedHead": "3bbae92d81fa19107167b288c666f9dc19e2fdf3",
+  "observedHead": "dd9c87596fe0d441d6a1b0bf25e16f972dc0e0f5",
   "prohibitedChangesPreserved": [
     "legacy occurrence provenance",
     "legacy source-recovery artifacts",

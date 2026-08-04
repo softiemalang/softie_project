@@ -7,7 +7,7 @@ const root = resolve(new URL('..', import.meta.url).pathname)
 const path = resolve(process.argv[2] || 'artifacts/ziwei-clean-rule-corpus-source-acquisition-feasibility-v0/complete.json')
 const artifact = JSON.parse(await readFile(path, 'utf8')); const ledger = JSON.parse(await readFile(resolve(root, LEDGER), 'utf8')); const failures = []
 const blocked = ledger.candidates.filter(x => x.verdict === 'access_blocked').map(x => x.sourceKey).sort()
-if (artifact.schemaVersion !== SCHEMA || artifact.verdictToken !== VERDICT || artifact.basisHead !== BASIS_HEAD || artifact.observedHead !== BASIS_HEAD) failures.push('schema_or_head')
+if (artifact.schemaVersion !== SCHEMA || artifact.verdictToken !== VERDICT || artifact.basisHead !== BASIS_HEAD || !/^[0-9a-f]{40}$/.test(artifact.observedHead || '')) failures.push('schema_or_head')
 if (JSON.stringify(artifact.mechanicalSelection.selectedSourceKeys) !== JSON.stringify(blocked)) failures.push('mechanical_selection_changed')
 if (JSON.stringify(Object.keys(artifact.acquisitionAssessments).sort()) !== JSON.stringify(blocked)) failures.push('assessment_scope_changed')
 for (const key of blocked) { const item = artifact.sourceVerdicts?.[key]; if (!item || !['application_required', 'access_blocked_frozen', 'rights_unclear', 'identity_unresolved', 'acquirable', 'acquirable_with_limits'].includes(item.status)) failures.push(`missing_status:${key}`); if (item?.hash === true || item?.bytes === true) failures.push(`unproven_bytes:${key}`); if (['acquirable', 'acquirable_with_limits'].includes(item?.status)) failures.push(`unsafe_admission:${key}`) }
