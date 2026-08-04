@@ -1,0 +1,4229 @@
+{
+  "branchDistribution": {
+    "丑": 12,
+    "亥": 10,
+    "午": 16,
+    "卯": 15,
+    "子": 7,
+    "寅": 15,
+    "巳": 15,
+    "戌": 9,
+    "未": 13,
+    "申": 11,
+    "辰": 17,
+    "酉": 10
+  },
+  "deterministicOrdering": true,
+  "deterministicRowId": "source evaluator input-derived rowId",
+  "duplicateRowIdCount": 0,
+  "expectedInputCount": 150,
+  "firstDivergence": null,
+  "inputCount": 150,
+  "matchCount": 150,
+  "mismatchCount": 0,
+  "missingCount": 0,
+  "ordering": "bureauNumber ascending 2..6, lunarDay ascending 1..30",
+  "rows": [
+    {
+      "divergence": null,
+      "input": {
+        "bureau": "水二局",
+        "bureauNumber": 2,
+        "lunarDay": 1
+      },
+      "intermediate": {
+        "baseBranch": "寅",
+        "branchIndex": 1,
+        "direction": "reverse",
+        "quotient": 1,
+        "remainder": 1,
+        "signedRemainder": -1
+      },
+      "match": true,
+      "orderingKey": "2:01",
+      "productionEvaluator": {
+        "branch": "丑",
+        "starId": "ziwei"
+      },
+      "rowId": "bureau-2-day-01",
+      "sourceEvaluator": {
+        "branch": "丑",
+        "engineStarId": "ziwei",
+        "traditionalName": "紫微"
+      }
+    },
+    {
+      "divergence": null,
+      "input": {
+        "bureau": "水二局",
+        "bureauNumber": 2,
+        "lunarDay": 2
+      },
+      "intermediate": {
+        "baseBranch": "寅",
+        "branchIndex": 2,
+        "direction": "none",
+        "quotient": 1,
+        "remainder": 0,
+        "signedRemainder": 0
+      },
+      "match": true,
+      "orderingKey": "2:02",
+      "productionEvaluator": {
+        "branch": "寅",
+        "starId": "ziwei"
+      },
+      "rowId": "bureau-2-day-02",
+      "sourceEvaluator": {
+        "branch": "寅",
+        "engineStarId": "ziwei",
+        "traditionalName": "紫微"
+      }
+    },
+    {
+      "divergence": null,
+      "input": {
+        "bureau": "水二局",
+        "bureauNumber": 2,
+        "lunarDay": 3
+      },
+      "intermediate": {
+        "baseBranch": "寅",
+        "branchIndex": 2,
+        "direction": "reverse",
+        "quotient": 2,
+        "remainder": 1,
+        "signedRemainder": -1
+      },
+      "match": true,
+      "orderingKey": "2:03",
+      "productionEvaluator": {
+        "branch": "寅",
+        "starId": "ziwei"
+      },
+      "rowId": "bureau-2-day-03",
+      "sourceEvaluator": {
+        "branch": "寅",
+        "engineStarId": "ziwei",
+        "traditionalName": "紫微"
+      }
+    },
+    {
+      "divergence": null,
+      "input": {
+        "bureau": "水二局",
+        "bureauNumber": 2,
+        "lunarDay": 4
+      },
+      "intermediate": {
+        "baseBranch": "寅",
+        "branchIndex": 3,
+        "direction": "none",
+        "quotient": 2,
+        "remainder": 0,
+        "signedRemainder": 0
+      },
+      "match": true,
+      "orderingKey": "2:04",
+      "productionEvaluator": {
+        "branch": "卯",
+        "starId": "ziwei"
+      },
+      "rowId": "bureau-2-day-04",
+      "sourceEvaluator": {
+        "branch": "卯",
+        "engineStarId": "ziwei",
+        "traditionalName": "紫微"
+      }
+    },
+    {
+      "divergence": null,
+      "input": {
+        "bureau": "水二局",
+        "bureauNumber": 2,
+        "lunarDay": 5
+      },
+      "intermediate": {
+        "baseBranch": "寅",
+        "branchIndex": 3,
+        "direction": "reverse",
+        "quotient": 3,
+        "remainder": 1,
+        "signedRemainder": -1
+      },
+      "match": true,
+      "orderingKey": "2:05",
+      "productionEvaluator": {
+        "branch": "卯",
+        "starId": "ziwei"
+      },
+      "rowId": "bureau-2-day-05",
+      "sourceEvaluator": {
+        "branch": "卯",
+        "engineStarId": "ziwei",
+        "traditionalName": "紫微"
+      }
+    },
+    {
+      "divergence": null,
+      "input": {
+        "bureau": "水二局",
+        "bureauNumber": 2,
+        "lunarDay": 6
+      },
+      "intermediate": {
+        "baseBranch": "寅",
+        "branchIndex": 4,
+        "direction": "none",
+        "quotient": 3,
+        "remainder": 0,
+        "signedRemainder": 0
+      },
+      "match": true,
+      "orderingKey": "2:06",
+      "productionEvaluator": {
+        "branch": "辰",
+        "starId": "ziwei"
+      },
+      "rowId": "bureau-2-day-06",
+      "sourceEvaluator": {
+        "branch": "辰",
+        "engineStarId": "ziwei",
+        "traditionalName": "紫微"
+      }
+    },
+    {
+      "divergence": null,
+      "input": {
+        "bureau": "水二局",
+        "bureauNumber": 2,
+        "lunarDay": 7
+      },
+      "intermediate": {
+        "baseBranch": "寅",
+        "branchIndex": 4,
+        "direction": "reverse",
+        "quotient": 4,
+        "remainder": 1,
+        "signedRemainder": -1
+      },
+      "match": true,
+      "orderingKey": "2:07",
+      "productionEvaluator": {
+        "branch": "辰",
+        "starId": "ziwei"
+      },
+      "rowId": "bureau-2-day-07",
+      "sourceEvaluator": {
+        "branch": "辰",
+        "engineStarId": "ziwei",
+        "traditionalName": "紫微"
+      }
+    },
+    {
+      "divergence": null,
+      "input": {
+        "bureau": "水二局",
+        "bureauNumber": 2,
+        "lunarDay": 8
+      },
+      "intermediate": {
+        "baseBranch": "寅",
+        "branchIndex": 5,
+        "direction": "none",
+        "quotient": 4,
+        "remainder": 0,
+        "signedRemainder": 0
+      },
+      "match": true,
+      "orderingKey": "2:08",
+      "productionEvaluator": {
+        "branch": "巳",
+        "starId": "ziwei"
+      },
+      "rowId": "bureau-2-day-08",
+      "sourceEvaluator": {
+        "branch": "巳",
+        "engineStarId": "ziwei",
+        "traditionalName": "紫微"
+      }
+    },
+    {
+      "divergence": null,
+      "input": {
+        "bureau": "水二局",
+        "bureauNumber": 2,
+        "lunarDay": 9
+      },
+      "intermediate": {
+        "baseBranch": "寅",
+        "branchIndex": 5,
+        "direction": "reverse",
+        "quotient": 5,
+        "remainder": 1,
+        "signedRemainder": -1
+      },
+      "match": true,
+      "orderingKey": "2:09",
+      "productionEvaluator": {
+        "branch": "巳",
+        "starId": "ziwei"
+      },
+      "rowId": "bureau-2-day-09",
+      "sourceEvaluator": {
+        "branch": "巳",
+        "engineStarId": "ziwei",
+        "traditionalName": "紫微"
+      }
+    },
+    {
+      "divergence": null,
+      "input": {
+        "bureau": "水二局",
+        "bureauNumber": 2,
+        "lunarDay": 10
+      },
+      "intermediate": {
+        "baseBranch": "寅",
+        "branchIndex": 6,
+        "direction": "none",
+        "quotient": 5,
+        "remainder": 0,
+        "signedRemainder": 0
+      },
+      "match": true,
+      "orderingKey": "2:10",
+      "productionEvaluator": {
+        "branch": "午",
+        "starId": "ziwei"
+      },
+      "rowId": "bureau-2-day-10",
+      "sourceEvaluator": {
+        "branch": "午",
+        "engineStarId": "ziwei",
+        "traditionalName": "紫微"
+      }
+    },
+    {
+      "divergence": null,
+      "input": {
+        "bureau": "水二局",
+        "bureauNumber": 2,
+        "lunarDay": 11
+      },
+      "intermediate": {
+        "baseBranch": "寅",
+        "branchIndex": 6,
+        "direction": "reverse",
+        "quotient": 6,
+        "remainder": 1,
+        "signedRemainder": -1
+      },
+      "match": true,
+      "orderingKey": "2:11",
+      "productionEvaluator": {
+        "branch": "午",
+        "starId": "ziwei"
+      },
+      "rowId": "bureau-2-day-11",
+      "sourceEvaluator": {
+        "branch": "午",
+        "engineStarId": "ziwei",
+        "traditionalName": "紫微"
+      }
+    },
+    {
+      "divergence": null,
+      "input": {
+        "bureau": "水二局",
+        "bureauNumber": 2,
+        "lunarDay": 12
+      },
+      "intermediate": {
+        "baseBranch": "寅",
+        "branchIndex": 7,
+        "direction": "none",
+        "quotient": 6,
+        "remainder": 0,
+        "signedRemainder": 0
+      },
+      "match": true,
+      "orderingKey": "2:12",
+      "productionEvaluator": {
+        "branch": "未",
+        "starId": "ziwei"
+      },
+      "rowId": "bureau-2-day-12",
+      "sourceEvaluator": {
+        "branch": "未",
+        "engineStarId": "ziwei",
+        "traditionalName": "紫微"
+      }
+    },
+    {
+      "divergence": null,
+      "input": {
+        "bureau": "水二局",
+        "bureauNumber": 2,
+        "lunarDay": 13
+      },
+      "intermediate": {
+        "baseBranch": "寅",
+        "branchIndex": 7,
+        "direction": "reverse",
+        "quotient": 7,
+        "remainder": 1,
+        "signedRemainder": -1
+      },
+      "match": true,
+      "orderingKey": "2:13",
+      "productionEvaluator": {
+        "branch": "未",
+        "starId": "ziwei"
+      },
+      "rowId": "bureau-2-day-13",
+      "sourceEvaluator": {
+        "branch": "未",
+        "engineStarId": "ziwei",
+        "traditionalName": "紫微"
+      }
+    },
+    {
+      "divergence": null,
+      "input": {
+        "bureau": "水二局",
+        "bureauNumber": 2,
+        "lunarDay": 14
+      },
+      "intermediate": {
+        "baseBranch": "寅",
+        "branchIndex": 8,
+        "direction": "none",
+        "quotient": 7,
+        "remainder": 0,
+        "signedRemainder": 0
+      },
+      "match": true,
+      "orderingKey": "2:14",
+      "productionEvaluator": {
+        "branch": "申",
+        "starId": "ziwei"
+      },
+      "rowId": "bureau-2-day-14",
+      "sourceEvaluator": {
+        "branch": "申",
+        "engineStarId": "ziwei",
+        "traditionalName": "紫微"
+      }
+    },
+    {
+      "divergence": null,
+      "input": {
+        "bureau": "水二局",
+        "bureauNumber": 2,
+        "lunarDay": 15
+      },
+      "intermediate": {
+        "baseBranch": "寅",
+        "branchIndex": 8,
+        "direction": "reverse",
+        "quotient": 8,
+        "remainder": 1,
+        "signedRemainder": -1
+      },
+      "match": true,
+      "orderingKey": "2:15",
+      "productionEvaluator": {
+        "branch": "申",
+        "starId": "ziwei"
+      },
+      "rowId": "bureau-2-day-15",
+      "sourceEvaluator": {
+        "branch": "申",
+        "engineStarId": "ziwei",
+        "traditionalName": "紫微"
+      }
+    },
+    {
+      "divergence": null,
+      "input": {
+        "bureau": "水二局",
+        "bureauNumber": 2,
+        "lunarDay": 16
+      },
+      "intermediate": {
+        "baseBranch": "寅",
+        "branchIndex": 9,
+        "direction": "none",
+        "quotient": 8,
+        "remainder": 0,
+        "signedRemainder": 0
+      },
+      "match": true,
+      "orderingKey": "2:16",
+      "productionEvaluator": {
+        "branch": "酉",
+        "starId": "ziwei"
+      },
+      "rowId": "bureau-2-day-16",
+      "sourceEvaluator": {
+        "branch": "酉",
+        "engineStarId": "ziwei",
+        "traditionalName": "紫微"
+      }
+    },
+    {
+      "divergence": null,
+      "input": {
+        "bureau": "水二局",
+        "bureauNumber": 2,
+        "lunarDay": 17
+      },
+      "intermediate": {
+        "baseBranch": "寅",
+        "branchIndex": 9,
+        "direction": "reverse",
+        "quotient": 9,
+        "remainder": 1,
+        "signedRemainder": -1
+      },
+      "match": true,
+      "orderingKey": "2:17",
+      "productionEvaluator": {
+        "branch": "酉",
+        "starId": "ziwei"
+      },
+      "rowId": "bureau-2-day-17",
+      "sourceEvaluator": {
+        "branch": "酉",
+        "engineStarId": "ziwei",
+        "traditionalName": "紫微"
+      }
+    },
+    {
+      "divergence": null,
+      "input": {
+        "bureau": "水二局",
+        "bureauNumber": 2,
+        "lunarDay": 18
+      },
+      "intermediate": {
+        "baseBranch": "寅",
+        "branchIndex": 10,
+        "direction": "none",
+        "quotient": 9,
+        "remainder": 0,
+        "signedRemainder": 0
+      },
+      "match": true,
+      "orderingKey": "2:18",
+      "productionEvaluator": {
+        "branch": "戌",
+        "starId": "ziwei"
+      },
+      "rowId": "bureau-2-day-18",
+      "sourceEvaluator": {
+        "branch": "戌",
+        "engineStarId": "ziwei",
+        "traditionalName": "紫微"
+      }
+    },
+    {
+      "divergence": null,
+      "input": {
+        "bureau": "水二局",
+        "bureauNumber": 2,
+        "lunarDay": 19
+      },
+      "intermediate": {
+        "baseBranch": "寅",
+        "branchIndex": 10,
+        "direction": "reverse",
+        "quotient": 10,
+        "remainder": 1,
+        "signedRemainder": -1
+      },
+      "match": true,
+      "orderingKey": "2:19",
+      "productionEvaluator": {
+        "branch": "戌",
+        "starId": "ziwei"
+      },
+      "rowId": "bureau-2-day-19",
+      "sourceEvaluator": {
+        "branch": "戌",
+        "engineStarId": "ziwei",
+        "traditionalName": "紫微"
+      }
+    },
+    {
+      "divergence": null,
+      "input": {
+        "bureau": "水二局",
+        "bureauNumber": 2,
+        "lunarDay": 20
+      },
+      "intermediate": {
+        "baseBranch": "寅",
+        "branchIndex": 11,
+        "direction": "none",
+        "quotient": 10,
+        "remainder": 0,
+        "signedRemainder": 0
+      },
+      "match": true,
+      "orderingKey": "2:20",
+      "productionEvaluator": {
+        "branch": "亥",
+        "starId": "ziwei"
+      },
+      "rowId": "bureau-2-day-20",
+      "sourceEvaluator": {
+        "branch": "亥",
+        "engineStarId": "ziwei",
+        "traditionalName": "紫微"
+      }
+    },
+    {
+      "divergence": null,
+      "input": {
+        "bureau": "水二局",
+        "bureauNumber": 2,
+        "lunarDay": 21
+      },
+      "intermediate": {
+        "baseBranch": "寅",
+        "branchIndex": 11,
+        "direction": "reverse",
+        "quotient": 11,
+        "remainder": 1,
+        "signedRemainder": -1
+      },
+      "match": true,
+      "orderingKey": "2:21",
+      "productionEvaluator": {
+        "branch": "亥",
+        "starId": "ziwei"
+      },
+      "rowId": "bureau-2-day-21",
+      "sourceEvaluator": {
+        "branch": "亥",
+        "engineStarId": "ziwei",
+        "traditionalName": "紫微"
+      }
+    },
+    {
+      "divergence": null,
+      "input": {
+        "bureau": "水二局",
+        "bureauNumber": 2,
+        "lunarDay": 22
+      },
+      "intermediate": {
+        "baseBranch": "寅",
+        "branchIndex": 0,
+        "direction": "none",
+        "quotient": 11,
+        "remainder": 0,
+        "signedRemainder": 0
+      },
+      "match": true,
+      "orderingKey": "2:22",
+      "productionEvaluator": {
+        "branch": "子",
+        "starId": "ziwei"
+      },
+      "rowId": "bureau-2-day-22",
+      "sourceEvaluator": {
+        "branch": "子",
+        "engineStarId": "ziwei",
+        "traditionalName": "紫微"
+      }
+    },
+    {
+      "divergence": null,
+      "input": {
+        "bureau": "水二局",
+        "bureauNumber": 2,
+        "lunarDay": 23
+      },
+      "intermediate": {
+        "baseBranch": "寅",
+        "branchIndex": 0,
+        "direction": "reverse",
+        "quotient": 12,
+        "remainder": 1,
+        "signedRemainder": -1
+      },
+      "match": true,
+      "orderingKey": "2:23",
+      "productionEvaluator": {
+        "branch": "子",
+        "starId": "ziwei"
+      },
+      "rowId": "bureau-2-day-23",
+      "sourceEvaluator": {
+        "branch": "子",
+        "engineStarId": "ziwei",
+        "traditionalName": "紫微"
+      }
+    },
+    {
+      "divergence": null,
+      "input": {
+        "bureau": "水二局",
+        "bureauNumber": 2,
+        "lunarDay": 24
+      },
+      "intermediate": {
+        "baseBranch": "寅",
+        "branchIndex": 1,
+        "direction": "none",
+        "quotient": 12,
+        "remainder": 0,
+        "signedRemainder": 0
+      },
+      "match": true,
+      "orderingKey": "2:24",
+      "productionEvaluator": {
+        "branch": "丑",
+        "starId": "ziwei"
+      },
+      "rowId": "bureau-2-day-24",
+      "sourceEvaluator": {
+        "branch": "丑",
+        "engineStarId": "ziwei",
+        "traditionalName": "紫微"
+      }
+    },
+    {
+      "divergence": null,
+      "input": {
+        "bureau": "水二局",
+        "bureauNumber": 2,
+        "lunarDay": 25
+      },
+      "intermediate": {
+        "baseBranch": "寅",
+        "branchIndex": 1,
+        "direction": "reverse",
+        "quotient": 13,
+        "remainder": 1,
+        "signedRemainder": -1
+      },
+      "match": true,
+      "orderingKey": "2:25",
+      "productionEvaluator": {
+        "branch": "丑",
+        "starId": "ziwei"
+      },
+      "rowId": "bureau-2-day-25",
+      "sourceEvaluator": {
+        "branch": "丑",
+        "engineStarId": "ziwei",
+        "traditionalName": "紫微"
+      }
+    },
+    {
+      "divergence": null,
+      "input": {
+        "bureau": "水二局",
+        "bureauNumber": 2,
+        "lunarDay": 26
+      },
+      "intermediate": {
+        "baseBranch": "寅",
+        "branchIndex": 2,
+        "direction": "none",
+        "quotient": 13,
+        "remainder": 0,
+        "signedRemainder": 0
+      },
+      "match": true,
+      "orderingKey": "2:26",
+      "productionEvaluator": {
+        "branch": "寅",
+        "starId": "ziwei"
+      },
+      "rowId": "bureau-2-day-26",
+      "sourceEvaluator": {
+        "branch": "寅",
+        "engineStarId": "ziwei",
+        "traditionalName": "紫微"
+      }
+    },
+    {
+      "divergence": null,
+      "input": {
+        "bureau": "水二局",
+        "bureauNumber": 2,
+        "lunarDay": 27
+      },
+      "intermediate": {
+        "baseBranch": "寅",
+        "branchIndex": 2,
+        "direction": "reverse",
+        "quotient": 14,
+        "remainder": 1,
+        "signedRemainder": -1
+      },
+      "match": true,
+      "orderingKey": "2:27",
+      "productionEvaluator": {
+        "branch": "寅",
+        "starId": "ziwei"
+      },
+      "rowId": "bureau-2-day-27",
+      "sourceEvaluator": {
+        "branch": "寅",
+        "engineStarId": "ziwei",
+        "traditionalName": "紫微"
+      }
+    },
+    {
+      "divergence": null,
+      "input": {
+        "bureau": "水二局",
+        "bureauNumber": 2,
+        "lunarDay": 28
+      },
+      "intermediate": {
+        "baseBranch": "寅",
+        "branchIndex": 3,
+        "direction": "none",
+        "quotient": 14,
+        "remainder": 0,
+        "signedRemainder": 0
+      },
+      "match": true,
+      "orderingKey": "2:28",
+      "productionEvaluator": {
+        "branch": "卯",
+        "starId": "ziwei"
+      },
+      "rowId": "bureau-2-day-28",
+      "sourceEvaluator": {
+        "branch": "卯",
+        "engineStarId": "ziwei",
+        "traditionalName": "紫微"
+      }
+    },
+    {
+      "divergence": null,
+      "input": {
+        "bureau": "水二局",
+        "bureauNumber": 2,
+        "lunarDay": 29
+      },
+      "intermediate": {
+        "baseBranch": "寅",
+        "branchIndex": 3,
+        "direction": "reverse",
+        "quotient": 15,
+        "remainder": 1,
+        "signedRemainder": -1
+      },
+      "match": true,
+      "orderingKey": "2:29",
+      "productionEvaluator": {
+        "branch": "卯",
+        "starId": "ziwei"
+      },
+      "rowId": "bureau-2-day-29",
+      "sourceEvaluator": {
+        "branch": "卯",
+        "engineStarId": "ziwei",
+        "traditionalName": "紫微"
+      }
+    },
+    {
+      "divergence": null,
+      "input": {
+        "bureau": "水二局",
+        "bureauNumber": 2,
+        "lunarDay": 30
+      },
+      "intermediate": {
+        "baseBranch": "寅",
+        "branchIndex": 4,
+        "direction": "none",
+        "quotient": 15,
+        "remainder": 0,
+        "signedRemainder": 0
+      },
+      "match": true,
+      "orderingKey": "2:30",
+      "productionEvaluator": {
+        "branch": "辰",
+        "starId": "ziwei"
+      },
+      "rowId": "bureau-2-day-30",
+      "sourceEvaluator": {
+        "branch": "辰",
+        "engineStarId": "ziwei",
+        "traditionalName": "紫微"
+      }
+    },
+    {
+      "divergence": null,
+      "input": {
+        "bureau": "木三局",
+        "bureauNumber": 3,
+        "lunarDay": 1
+      },
+      "intermediate": {
+        "baseBranch": "寅",
+        "branchIndex": 4,
+        "direction": "forward",
+        "quotient": 1,
+        "remainder": 2,
+        "signedRemainder": 2
+      },
+      "match": true,
+      "orderingKey": "3:01",
+      "productionEvaluator": {
+        "branch": "辰",
+        "starId": "ziwei"
+      },
+      "rowId": "bureau-3-day-01",
+      "sourceEvaluator": {
+        "branch": "辰",
+        "engineStarId": "ziwei",
+        "traditionalName": "紫微"
+      }
+    },
+    {
+      "divergence": null,
+      "input": {
+        "bureau": "木三局",
+        "bureauNumber": 3,
+        "lunarDay": 2
+      },
+      "intermediate": {
+        "baseBranch": "寅",
+        "branchIndex": 1,
+        "direction": "reverse",
+        "quotient": 1,
+        "remainder": 1,
+        "signedRemainder": -1
+      },
+      "match": true,
+      "orderingKey": "3:02",
+      "productionEvaluator": {
+        "branch": "丑",
+        "starId": "ziwei"
+      },
+      "rowId": "bureau-3-day-02",
+      "sourceEvaluator": {
+        "branch": "丑",
+        "engineStarId": "ziwei",
+        "traditionalName": "紫微"
+      }
+    },
+    {
+      "divergence": null,
+      "input": {
+        "bureau": "木三局",
+        "bureauNumber": 3,
+        "lunarDay": 3
+      },
+      "intermediate": {
+        "baseBranch": "寅",
+        "branchIndex": 2,
+        "direction": "none",
+        "quotient": 1,
+        "remainder": 0,
+        "signedRemainder": 0
+      },
+      "match": true,
+      "orderingKey": "3:03",
+      "productionEvaluator": {
+        "branch": "寅",
+        "starId": "ziwei"
+      },
+      "rowId": "bureau-3-day-03",
+      "sourceEvaluator": {
+        "branch": "寅",
+        "engineStarId": "ziwei",
+        "traditionalName": "紫微"
+      }
+    },
+    {
+      "divergence": null,
+      "input": {
+        "bureau": "木三局",
+        "bureauNumber": 3,
+        "lunarDay": 4
+      },
+      "intermediate": {
+        "baseBranch": "寅",
+        "branchIndex": 5,
+        "direction": "forward",
+        "quotient": 2,
+        "remainder": 2,
+        "signedRemainder": 2
+      },
+      "match": true,
+      "orderingKey": "3:04",
+      "productionEvaluator": {
+        "branch": "巳",
+        "starId": "ziwei"
+      },
+      "rowId": "bureau-3-day-04",
+      "sourceEvaluator": {
+        "branch": "巳",
+        "engineStarId": "ziwei",
+        "traditionalName": "紫微"
+      }
+    },
+    {
+      "divergence": null,
+      "input": {
+        "bureau": "木三局",
+        "bureauNumber": 3,
+        "lunarDay": 5
+      },
+      "intermediate": {
+        "baseBranch": "寅",
+        "branchIndex": 2,
+        "direction": "reverse",
+        "quotient": 2,
+        "remainder": 1,
+        "signedRemainder": -1
+      },
+      "match": true,
+      "orderingKey": "3:05",
+      "productionEvaluator": {
+        "branch": "寅",
+        "starId": "ziwei"
+      },
+      "rowId": "bureau-3-day-05",
+      "sourceEvaluator": {
+        "branch": "寅",
+        "engineStarId": "ziwei",
+        "traditionalName": "紫微"
+      }
+    },
+    {
+      "divergence": null,
+      "input": {
+        "bureau": "木三局",
+        "bureauNumber": 3,
+        "lunarDay": 6
+      },
+      "intermediate": {
+        "baseBranch": "寅",
+        "branchIndex": 3,
+        "direction": "none",
+        "quotient": 2,
+        "remainder": 0,
+        "signedRemainder": 0
+      },
+      "match": true,
+      "orderingKey": "3:06",
+      "productionEvaluator": {
+        "branch": "卯",
+        "starId": "ziwei"
+      },
+      "rowId": "bureau-3-day-06",
+      "sourceEvaluator": {
+        "branch": "卯",
+        "engineStarId": "ziwei",
+        "traditionalName": "紫微"
+      }
+    },
+    {
+      "divergence": null,
+      "input": {
+        "bureau": "木三局",
+        "bureauNumber": 3,
+        "lunarDay": 7
+      },
+      "intermediate": {
+        "baseBranch": "寅",
+        "branchIndex": 6,
+        "direction": "forward",
+        "quotient": 3,
+        "remainder": 2,
+        "signedRemainder": 2
+      },
+      "match": true,
+      "orderingKey": "3:07",
+      "productionEvaluator": {
+        "branch": "午",
+        "starId": "ziwei"
+      },
+      "rowId": "bureau-3-day-07",
+      "sourceEvaluator": {
+        "branch": "午",
+        "engineStarId": "ziwei",
+        "traditionalName": "紫微"
+      }
+    },
+    {
+      "divergence": null,
+      "input": {
+        "bureau": "木三局",
+        "bureauNumber": 3,
+        "lunarDay": 8
+      },
+      "intermediate": {
+        "baseBranch": "寅",
+        "branchIndex": 3,
+        "direction": "reverse",
+        "quotient": 3,
+        "remainder": 1,
+        "signedRemainder": -1
+      },
+      "match": true,
+      "orderingKey": "3:08",
+      "productionEvaluator": {
+        "branch": "卯",
+        "starId": "ziwei"
+      },
+      "rowId": "bureau-3-day-08",
+      "sourceEvaluator": {
+        "branch": "卯",
+        "engineStarId": "ziwei",
+        "traditionalName": "紫微"
+      }
+    },
+    {
+      "divergence": null,
+      "input": {
+        "bureau": "木三局",
+        "bureauNumber": 3,
+        "lunarDay": 9
+      },
+      "intermediate": {
+        "baseBranch": "寅",
+        "branchIndex": 4,
+        "direction": "none",
+        "quotient": 3,
+        "remainder": 0,
+        "signedRemainder": 0
+      },
+      "match": true,
+      "orderingKey": "3:09",
+      "productionEvaluator": {
+        "branch": "辰",
+        "starId": "ziwei"
+      },
+      "rowId": "bureau-3-day-09",
+      "sourceEvaluator": {
+        "branch": "辰",
+        "engineStarId": "ziwei",
+        "traditionalName": "紫微"
+      }
+    },
+    {
+      "divergence": null,
+      "input": {
+        "bureau": "木三局",
+        "bureauNumber": 3,
+        "lunarDay": 10
+      },
+      "intermediate": {
+        "baseBranch": "寅",
+        "branchIndex": 7,
+        "direction": "forward",
+        "quotient": 4,
+        "remainder": 2,
+        "signedRemainder": 2
+      },
+      "match": true,
+      "orderingKey": "3:10",
+      "productionEvaluator": {
+        "branch": "未",
+        "starId": "ziwei"
+      },
+      "rowId": "bureau-3-day-10",
+      "sourceEvaluator": {
+        "branch": "未",
+        "engineStarId": "ziwei",
+        "traditionalName": "紫微"
+      }
+    },
+    {
+      "divergence": null,
+      "input": {
+        "bureau": "木三局",
+        "bureauNumber": 3,
+        "lunarDay": 11
+      },
+      "intermediate": {
+        "baseBranch": "寅",
+        "branchIndex": 4,
+        "direction": "reverse",
+        "quotient": 4,
+        "remainder": 1,
+        "signedRemainder": -1
+      },
+      "match": true,
+      "orderingKey": "3:11",
+      "productionEvaluator": {
+        "branch": "辰",
+        "starId": "ziwei"
+      },
+      "rowId": "bureau-3-day-11",
+      "sourceEvaluator": {
+        "branch": "辰",
+        "engineStarId": "ziwei",
+        "traditionalName": "紫微"
+      }
+    },
+    {
+      "divergence": null,
+      "input": {
+        "bureau": "木三局",
+        "bureauNumber": 3,
+        "lunarDay": 12
+      },
+      "intermediate": {
+        "baseBranch": "寅",
+        "branchIndex": 5,
+        "direction": "none",
+        "quotient": 4,
+        "remainder": 0,
+        "signedRemainder": 0
+      },
+      "match": true,
+      "orderingKey": "3:12",
+      "productionEvaluator": {
+        "branch": "巳",
+        "starId": "ziwei"
+      },
+      "rowId": "bureau-3-day-12",
+      "sourceEvaluator": {
+        "branch": "巳",
+        "engineStarId": "ziwei",
+        "traditionalName": "紫微"
+      }
+    },
+    {
+      "divergence": null,
+      "input": {
+        "bureau": "木三局",
+        "bureauNumber": 3,
+        "lunarDay": 13
+      },
+      "intermediate": {
+        "baseBranch": "寅",
+        "branchIndex": 8,
+        "direction": "forward",
+        "quotient": 5,
+        "remainder": 2,
+        "signedRemainder": 2
+      },
+      "match": true,
+      "orderingKey": "3:13",
+      "productionEvaluator": {
+        "branch": "申",
+        "starId": "ziwei"
+      },
+      "rowId": "bureau-3-day-13",
+      "sourceEvaluator": {
+        "branch": "申",
+        "engineStarId": "ziwei",
+        "traditionalName": "紫微"
+      }
+    },
+    {
+      "divergence": null,
+      "input": {
+        "bureau": "木三局",
+        "bureauNumber": 3,
+        "lunarDay": 14
+      },
+      "intermediate": {
+        "baseBranch": "寅",
+        "branchIndex": 5,
+        "direction": "reverse",
+        "quotient": 5,
+        "remainder": 1,
+        "signedRemainder": -1
+      },
+      "match": true,
+      "orderingKey": "3:14",
+      "productionEvaluator": {
+        "branch": "巳",
+        "starId": "ziwei"
+      },
+      "rowId": "bureau-3-day-14",
+      "sourceEvaluator": {
+        "branch": "巳",
+        "engineStarId": "ziwei",
+        "traditionalName": "紫微"
+      }
+    },
+    {
+      "divergence": null,
+      "input": {
+        "bureau": "木三局",
+        "bureauNumber": 3,
+        "lunarDay": 15
+      },
+      "intermediate": {
+        "baseBranch": "寅",
+        "branchIndex": 6,
+        "direction": "none",
+        "quotient": 5,
+        "remainder": 0,
+        "signedRemainder": 0
+      },
+      "match": true,
+      "orderingKey": "3:15",
+      "productionEvaluator": {
+        "branch": "午",
+        "starId": "ziwei"
+      },
+      "rowId": "bureau-3-day-15",
+      "sourceEvaluator": {
+        "branch": "午",
+        "engineStarId": "ziwei",
+        "traditionalName": "紫微"
+      }
+    },
+    {
+      "divergence": null,
+      "input": {
+        "bureau": "木三局",
+        "bureauNumber": 3,
+        "lunarDay": 16
+      },
+      "intermediate": {
+        "baseBranch": "寅",
+        "branchIndex": 9,
+        "direction": "forward",
+        "quotient": 6,
+        "remainder": 2,
+        "signedRemainder": 2
+      },
+      "match": true,
+      "orderingKey": "3:16",
+      "productionEvaluator": {
+        "branch": "酉",
+        "starId": "ziwei"
+      },
+      "rowId": "bureau-3-day-16",
+      "sourceEvaluator": {
+        "branch": "酉",
+        "engineStarId": "ziwei",
+        "traditionalName": "紫微"
+      }
+    },
+    {
+      "divergence": null,
+      "input": {
+        "bureau": "木三局",
+        "bureauNumber": 3,
+        "lunarDay": 17
+      },
+      "intermediate": {
+        "baseBranch": "寅",
+        "branchIndex": 6,
+        "direction": "reverse",
+        "quotient": 6,
+        "remainder": 1,
+        "signedRemainder": -1
+      },
+      "match": true,
+      "orderingKey": "3:17",
+      "productionEvaluator": {
+        "branch": "午",
+        "starId": "ziwei"
+      },
+      "rowId": "bureau-3-day-17",
+      "sourceEvaluator": {
+        "branch": "午",
+        "engineStarId": "ziwei",
+        "traditionalName": "紫微"
+      }
+    },
+    {
+      "divergence": null,
+      "input": {
+        "bureau": "木三局",
+        "bureauNumber": 3,
+        "lunarDay": 18
+      },
+      "intermediate": {
+        "baseBranch": "寅",
+        "branchIndex": 7,
+        "direction": "none",
+        "quotient": 6,
+        "remainder": 0,
+        "signedRemainder": 0
+      },
+      "match": true,
+      "orderingKey": "3:18",
+      "productionEvaluator": {
+        "branch": "未",
+        "starId": "ziwei"
+      },
+      "rowId": "bureau-3-day-18",
+      "sourceEvaluator": {
+        "branch": "未",
+        "engineStarId": "ziwei",
+        "traditionalName": "紫微"
+      }
+    },
+    {
+      "divergence": null,
+      "input": {
+        "bureau": "木三局",
+        "bureauNumber": 3,
+        "lunarDay": 19
+      },
+      "intermediate": {
+        "baseBranch": "寅",
+        "branchIndex": 10,
+        "direction": "forward",
+        "quotient": 7,
+        "remainder": 2,
+        "signedRemainder": 2
+      },
+      "match": true,
+      "orderingKey": "3:19",
+      "productionEvaluator": {
+        "branch": "戌",
+        "starId": "ziwei"
+      },
+      "rowId": "bureau-3-day-19",
+      "sourceEvaluator": {
+        "branch": "戌",
+        "engineStarId": "ziwei",
+        "traditionalName": "紫微"
+      }
+    },
+    {
+      "divergence": null,
+      "input": {
+        "bureau": "木三局",
+        "bureauNumber": 3,
+        "lunarDay": 20
+      },
+      "intermediate": {
+        "baseBranch": "寅",
+        "branchIndex": 7,
+        "direction": "reverse",
+        "quotient": 7,
+        "remainder": 1,
+        "signedRemainder": -1
+      },
+      "match": true,
+      "orderingKey": "3:20",
+      "productionEvaluator": {
+        "branch": "未",
+        "starId": "ziwei"
+      },
+      "rowId": "bureau-3-day-20",
+      "sourceEvaluator": {
+        "branch": "未",
+        "engineStarId": "ziwei",
+        "traditionalName": "紫微"
+      }
+    },
+    {
+      "divergence": null,
+      "input": {
+        "bureau": "木三局",
+        "bureauNumber": 3,
+        "lunarDay": 21
+      },
+      "intermediate": {
+        "baseBranch": "寅",
+        "branchIndex": 8,
+        "direction": "none",
+        "quotient": 7,
+        "remainder": 0,
+        "signedRemainder": 0
+      },
+      "match": true,
+      "orderingKey": "3:21",
+      "productionEvaluator": {
+        "branch": "申",
+        "starId": "ziwei"
+      },
+      "rowId": "bureau-3-day-21",
+      "sourceEvaluator": {
+        "branch": "申",
+        "engineStarId": "ziwei",
+        "traditionalName": "紫微"
+      }
+    },
+    {
+      "divergence": null,
+      "input": {
+        "bureau": "木三局",
+        "bureauNumber": 3,
+        "lunarDay": 22
+      },
+      "intermediate": {
+        "baseBranch": "寅",
+        "branchIndex": 11,
+        "direction": "forward",
+        "quotient": 8,
+        "remainder": 2,
+        "signedRemainder": 2
+      },
+      "match": true,
+      "orderingKey": "3:22",
+      "productionEvaluator": {
+        "branch": "亥",
+        "starId": "ziwei"
+      },
+      "rowId": "bureau-3-day-22",
+      "sourceEvaluator": {
+        "branch": "亥",
+        "engineStarId": "ziwei",
+        "traditionalName": "紫微"
+      }
+    },
+    {
+      "divergence": null,
+      "input": {
+        "bureau": "木三局",
+        "bureauNumber": 3,
+        "lunarDay": 23
+      },
+      "intermediate": {
+        "baseBranch": "寅",
+        "branchIndex": 8,
+        "direction": "reverse",
+        "quotient": 8,
+        "remainder": 1,
+        "signedRemainder": -1
+      },
+      "match": true,
+      "orderingKey": "3:23",
+      "productionEvaluator": {
+        "branch": "申",
+        "starId": "ziwei"
+      },
+      "rowId": "bureau-3-day-23",
+      "sourceEvaluator": {
+        "branch": "申",
+        "engineStarId": "ziwei",
+        "traditionalName": "紫微"
+      }
+    },
+    {
+      "divergence": null,
+      "input": {
+        "bureau": "木三局",
+        "bureauNumber": 3,
+        "lunarDay": 24
+      },
+      "intermediate": {
+        "baseBranch": "寅",
+        "branchIndex": 9,
+        "direction": "none",
+        "quotient": 8,
+        "remainder": 0,
+        "signedRemainder": 0
+      },
+      "match": true,
+      "orderingKey": "3:24",
+      "productionEvaluator": {
+        "branch": "酉",
+        "starId": "ziwei"
+      },
+      "rowId": "bureau-3-day-24",
+      "sourceEvaluator": {
+        "branch": "酉",
+        "engineStarId": "ziwei",
+        "traditionalName": "紫微"
+      }
+    },
+    {
+      "divergence": null,
+      "input": {
+        "bureau": "木三局",
+        "bureauNumber": 3,
+        "lunarDay": 25
+      },
+      "intermediate": {
+        "baseBranch": "寅",
+        "branchIndex": 0,
+        "direction": "forward",
+        "quotient": 9,
+        "remainder": 2,
+        "signedRemainder": 2
+      },
+      "match": true,
+      "orderingKey": "3:25",
+      "productionEvaluator": {
+        "branch": "子",
+        "starId": "ziwei"
+      },
+      "rowId": "bureau-3-day-25",
+      "sourceEvaluator": {
+        "branch": "子",
+        "engineStarId": "ziwei",
+        "traditionalName": "紫微"
+      }
+    },
+    {
+      "divergence": null,
+      "input": {
+        "bureau": "木三局",
+        "bureauNumber": 3,
+        "lunarDay": 26
+      },
+      "intermediate": {
+        "baseBranch": "寅",
+        "branchIndex": 9,
+        "direction": "reverse",
+        "quotient": 9,
+        "remainder": 1,
+        "signedRemainder": -1
+      },
+      "match": true,
+      "orderingKey": "3:26",
+      "productionEvaluator": {
+        "branch": "酉",
+        "starId": "ziwei"
+      },
+      "rowId": "bureau-3-day-26",
+      "sourceEvaluator": {
+        "branch": "酉",
+        "engineStarId": "ziwei",
+        "traditionalName": "紫微"
+      }
+    },
+    {
+      "divergence": null,
+      "input": {
+        "bureau": "木三局",
+        "bureauNumber": 3,
+        "lunarDay": 27
+      },
+      "intermediate": {
+        "baseBranch": "寅",
+        "branchIndex": 10,
+        "direction": "none",
+        "quotient": 9,
+        "remainder": 0,
+        "signedRemainder": 0
+      },
+      "match": true,
+      "orderingKey": "3:27",
+      "productionEvaluator": {
+        "branch": "戌",
+        "starId": "ziwei"
+      },
+      "rowId": "bureau-3-day-27",
+      "sourceEvaluator": {
+        "branch": "戌",
+        "engineStarId": "ziwei",
+        "traditionalName": "紫微"
+      }
+    },
+    {
+      "divergence": null,
+      "input": {
+        "bureau": "木三局",
+        "bureauNumber": 3,
+        "lunarDay": 28
+      },
+      "intermediate": {
+        "baseBranch": "寅",
+        "branchIndex": 1,
+        "direction": "forward",
+        "quotient": 10,
+        "remainder": 2,
+        "signedRemainder": 2
+      },
+      "match": true,
+      "orderingKey": "3:28",
+      "productionEvaluator": {
+        "branch": "丑",
+        "starId": "ziwei"
+      },
+      "rowId": "bureau-3-day-28",
+      "sourceEvaluator": {
+        "branch": "丑",
+        "engineStarId": "ziwei",
+        "traditionalName": "紫微"
+      }
+    },
+    {
+      "divergence": null,
+      "input": {
+        "bureau": "木三局",
+        "bureauNumber": 3,
+        "lunarDay": 29
+      },
+      "intermediate": {
+        "baseBranch": "寅",
+        "branchIndex": 10,
+        "direction": "reverse",
+        "quotient": 10,
+        "remainder": 1,
+        "signedRemainder": -1
+      },
+      "match": true,
+      "orderingKey": "3:29",
+      "productionEvaluator": {
+        "branch": "戌",
+        "starId": "ziwei"
+      },
+      "rowId": "bureau-3-day-29",
+      "sourceEvaluator": {
+        "branch": "戌",
+        "engineStarId": "ziwei",
+        "traditionalName": "紫微"
+      }
+    },
+    {
+      "divergence": null,
+      "input": {
+        "bureau": "木三局",
+        "bureauNumber": 3,
+        "lunarDay": 30
+      },
+      "intermediate": {
+        "baseBranch": "寅",
+        "branchIndex": 11,
+        "direction": "none",
+        "quotient": 10,
+        "remainder": 0,
+        "signedRemainder": 0
+      },
+      "match": true,
+      "orderingKey": "3:30",
+      "productionEvaluator": {
+        "branch": "亥",
+        "starId": "ziwei"
+      },
+      "rowId": "bureau-3-day-30",
+      "sourceEvaluator": {
+        "branch": "亥",
+        "engineStarId": "ziwei",
+        "traditionalName": "紫微"
+      }
+    },
+    {
+      "divergence": null,
+      "input": {
+        "bureau": "金四局",
+        "bureauNumber": 4,
+        "lunarDay": 1
+      },
+      "intermediate": {
+        "baseBranch": "寅",
+        "branchIndex": 11,
+        "direction": "reverse",
+        "quotient": 1,
+        "remainder": 3,
+        "signedRemainder": -3
+      },
+      "match": true,
+      "orderingKey": "4:01",
+      "productionEvaluator": {
+        "branch": "亥",
+        "starId": "ziwei"
+      },
+      "rowId": "bureau-4-day-01",
+      "sourceEvaluator": {
+        "branch": "亥",
+        "engineStarId": "ziwei",
+        "traditionalName": "紫微"
+      }
+    },
+    {
+      "divergence": null,
+      "input": {
+        "bureau": "金四局",
+        "bureauNumber": 4,
+        "lunarDay": 2
+      },
+      "intermediate": {
+        "baseBranch": "寅",
+        "branchIndex": 4,
+        "direction": "forward",
+        "quotient": 1,
+        "remainder": 2,
+        "signedRemainder": 2
+      },
+      "match": true,
+      "orderingKey": "4:02",
+      "productionEvaluator": {
+        "branch": "辰",
+        "starId": "ziwei"
+      },
+      "rowId": "bureau-4-day-02",
+      "sourceEvaluator": {
+        "branch": "辰",
+        "engineStarId": "ziwei",
+        "traditionalName": "紫微"
+      }
+    },
+    {
+      "divergence": null,
+      "input": {
+        "bureau": "金四局",
+        "bureauNumber": 4,
+        "lunarDay": 3
+      },
+      "intermediate": {
+        "baseBranch": "寅",
+        "branchIndex": 1,
+        "direction": "reverse",
+        "quotient": 1,
+        "remainder": 1,
+        "signedRemainder": -1
+      },
+      "match": true,
+      "orderingKey": "4:03",
+      "productionEvaluator": {
+        "branch": "丑",
+        "starId": "ziwei"
+      },
+      "rowId": "bureau-4-day-03",
+      "sourceEvaluator": {
+        "branch": "丑",
+        "engineStarId": "ziwei",
+        "traditionalName": "紫微"
+      }
+    },
+    {
+      "divergence": null,
+      "input": {
+        "bureau": "金四局",
+        "bureauNumber": 4,
+        "lunarDay": 4
+      },
+      "intermediate": {
+        "baseBranch": "寅",
+        "branchIndex": 2,
+        "direction": "none",
+        "quotient": 1,
+        "remainder": 0,
+        "signedRemainder": 0
+      },
+      "match": true,
+      "orderingKey": "4:04",
+      "productionEvaluator": {
+        "branch": "寅",
+        "starId": "ziwei"
+      },
+      "rowId": "bureau-4-day-04",
+      "sourceEvaluator": {
+        "branch": "寅",
+        "engineStarId": "ziwei",
+        "traditionalName": "紫微"
+      }
+    },
+    {
+      "divergence": null,
+      "input": {
+        "bureau": "金四局",
+        "bureauNumber": 4,
+        "lunarDay": 5
+      },
+      "intermediate": {
+        "baseBranch": "寅",
+        "branchIndex": 0,
+        "direction": "reverse",
+        "quotient": 2,
+        "remainder": 3,
+        "signedRemainder": -3
+      },
+      "match": true,
+      "orderingKey": "4:05",
+      "productionEvaluator": {
+        "branch": "子",
+        "starId": "ziwei"
+      },
+      "rowId": "bureau-4-day-05",
+      "sourceEvaluator": {
+        "branch": "子",
+        "engineStarId": "ziwei",
+        "traditionalName": "紫微"
+      }
+    },
+    {
+      "divergence": null,
+      "input": {
+        "bureau": "金四局",
+        "bureauNumber": 4,
+        "lunarDay": 6
+      },
+      "intermediate": {
+        "baseBranch": "寅",
+        "branchIndex": 5,
+        "direction": "forward",
+        "quotient": 2,
+        "remainder": 2,
+        "signedRemainder": 2
+      },
+      "match": true,
+      "orderingKey": "4:06",
+      "productionEvaluator": {
+        "branch": "巳",
+        "starId": "ziwei"
+      },
+      "rowId": "bureau-4-day-06",
+      "sourceEvaluator": {
+        "branch": "巳",
+        "engineStarId": "ziwei",
+        "traditionalName": "紫微"
+      }
+    },
+    {
+      "divergence": null,
+      "input": {
+        "bureau": "金四局",
+        "bureauNumber": 4,
+        "lunarDay": 7
+      },
+      "intermediate": {
+        "baseBranch": "寅",
+        "branchIndex": 2,
+        "direction": "reverse",
+        "quotient": 2,
+        "remainder": 1,
+        "signedRemainder": -1
+      },
+      "match": true,
+      "orderingKey": "4:07",
+      "productionEvaluator": {
+        "branch": "寅",
+        "starId": "ziwei"
+      },
+      "rowId": "bureau-4-day-07",
+      "sourceEvaluator": {
+        "branch": "寅",
+        "engineStarId": "ziwei",
+        "traditionalName": "紫微"
+      }
+    },
+    {
+      "divergence": null,
+      "input": {
+        "bureau": "金四局",
+        "bureauNumber": 4,
+        "lunarDay": 8
+      },
+      "intermediate": {
+        "baseBranch": "寅",
+        "branchIndex": 3,
+        "direction": "none",
+        "quotient": 2,
+        "remainder": 0,
+        "signedRemainder": 0
+      },
+      "match": true,
+      "orderingKey": "4:08",
+      "productionEvaluator": {
+        "branch": "卯",
+        "starId": "ziwei"
+      },
+      "rowId": "bureau-4-day-08",
+      "sourceEvaluator": {
+        "branch": "卯",
+        "engineStarId": "ziwei",
+        "traditionalName": "紫微"
+      }
+    },
+    {
+      "divergence": null,
+      "input": {
+        "bureau": "金四局",
+        "bureauNumber": 4,
+        "lunarDay": 9
+      },
+      "intermediate": {
+        "baseBranch": "寅",
+        "branchIndex": 1,
+        "direction": "reverse",
+        "quotient": 3,
+        "remainder": 3,
+        "signedRemainder": -3
+      },
+      "match": true,
+      "orderingKey": "4:09",
+      "productionEvaluator": {
+        "branch": "丑",
+        "starId": "ziwei"
+      },
+      "rowId": "bureau-4-day-09",
+      "sourceEvaluator": {
+        "branch": "丑",
+        "engineStarId": "ziwei",
+        "traditionalName": "紫微"
+      }
+    },
+    {
+      "divergence": null,
+      "input": {
+        "bureau": "金四局",
+        "bureauNumber": 4,
+        "lunarDay": 10
+      },
+      "intermediate": {
+        "baseBranch": "寅",
+        "branchIndex": 6,
+        "direction": "forward",
+        "quotient": 3,
+        "remainder": 2,
+        "signedRemainder": 2
+      },
+      "match": true,
+      "orderingKey": "4:10",
+      "productionEvaluator": {
+        "branch": "午",
+        "starId": "ziwei"
+      },
+      "rowId": "bureau-4-day-10",
+      "sourceEvaluator": {
+        "branch": "午",
+        "engineStarId": "ziwei",
+        "traditionalName": "紫微"
+      }
+    },
+    {
+      "divergence": null,
+      "input": {
+        "bureau": "金四局",
+        "bureauNumber": 4,
+        "lunarDay": 11
+      },
+      "intermediate": {
+        "baseBranch": "寅",
+        "branchIndex": 3,
+        "direction": "reverse",
+        "quotient": 3,
+        "remainder": 1,
+        "signedRemainder": -1
+      },
+      "match": true,
+      "orderingKey": "4:11",
+      "productionEvaluator": {
+        "branch": "卯",
+        "starId": "ziwei"
+      },
+      "rowId": "bureau-4-day-11",
+      "sourceEvaluator": {
+        "branch": "卯",
+        "engineStarId": "ziwei",
+        "traditionalName": "紫微"
+      }
+    },
+    {
+      "divergence": null,
+      "input": {
+        "bureau": "金四局",
+        "bureauNumber": 4,
+        "lunarDay": 12
+      },
+      "intermediate": {
+        "baseBranch": "寅",
+        "branchIndex": 4,
+        "direction": "none",
+        "quotient": 3,
+        "remainder": 0,
+        "signedRemainder": 0
+      },
+      "match": true,
+      "orderingKey": "4:12",
+      "productionEvaluator": {
+        "branch": "辰",
+        "starId": "ziwei"
+      },
+      "rowId": "bureau-4-day-12",
+      "sourceEvaluator": {
+        "branch": "辰",
+        "engineStarId": "ziwei",
+        "traditionalName": "紫微"
+      }
+    },
+    {
+      "divergence": null,
+      "input": {
+        "bureau": "金四局",
+        "bureauNumber": 4,
+        "lunarDay": 13
+      },
+      "intermediate": {
+        "baseBranch": "寅",
+        "branchIndex": 2,
+        "direction": "reverse",
+        "quotient": 4,
+        "remainder": 3,
+        "signedRemainder": -3
+      },
+      "match": true,
+      "orderingKey": "4:13",
+      "productionEvaluator": {
+        "branch": "寅",
+        "starId": "ziwei"
+      },
+      "rowId": "bureau-4-day-13",
+      "sourceEvaluator": {
+        "branch": "寅",
+        "engineStarId": "ziwei",
+        "traditionalName": "紫微"
+      }
+    },
+    {
+      "divergence": null,
+      "input": {
+        "bureau": "金四局",
+        "bureauNumber": 4,
+        "lunarDay": 14
+      },
+      "intermediate": {
+        "baseBranch": "寅",
+        "branchIndex": 7,
+        "direction": "forward",
+        "quotient": 4,
+        "remainder": 2,
+        "signedRemainder": 2
+      },
+      "match": true,
+      "orderingKey": "4:14",
+      "productionEvaluator": {
+        "branch": "未",
+        "starId": "ziwei"
+      },
+      "rowId": "bureau-4-day-14",
+      "sourceEvaluator": {
+        "branch": "未",
+        "engineStarId": "ziwei",
+        "traditionalName": "紫微"
+      }
+    },
+    {
+      "divergence": null,
+      "input": {
+        "bureau": "金四局",
+        "bureauNumber": 4,
+        "lunarDay": 15
+      },
+      "intermediate": {
+        "baseBranch": "寅",
+        "branchIndex": 4,
+        "direction": "reverse",
+        "quotient": 4,
+        "remainder": 1,
+        "signedRemainder": -1
+      },
+      "match": true,
+      "orderingKey": "4:15",
+      "productionEvaluator": {
+        "branch": "辰",
+        "starId": "ziwei"
+      },
+      "rowId": "bureau-4-day-15",
+      "sourceEvaluator": {
+        "branch": "辰",
+        "engineStarId": "ziwei",
+        "traditionalName": "紫微"
+      }
+    },
+    {
+      "divergence": null,
+      "input": {
+        "bureau": "金四局",
+        "bureauNumber": 4,
+        "lunarDay": 16
+      },
+      "intermediate": {
+        "baseBranch": "寅",
+        "branchIndex": 5,
+        "direction": "none",
+        "quotient": 4,
+        "remainder": 0,
+        "signedRemainder": 0
+      },
+      "match": true,
+      "orderingKey": "4:16",
+      "productionEvaluator": {
+        "branch": "巳",
+        "starId": "ziwei"
+      },
+      "rowId": "bureau-4-day-16",
+      "sourceEvaluator": {
+        "branch": "巳",
+        "engineStarId": "ziwei",
+        "traditionalName": "紫微"
+      }
+    },
+    {
+      "divergence": null,
+      "input": {
+        "bureau": "金四局",
+        "bureauNumber": 4,
+        "lunarDay": 17
+      },
+      "intermediate": {
+        "baseBranch": "寅",
+        "branchIndex": 3,
+        "direction": "reverse",
+        "quotient": 5,
+        "remainder": 3,
+        "signedRemainder": -3
+      },
+      "match": true,
+      "orderingKey": "4:17",
+      "productionEvaluator": {
+        "branch": "卯",
+        "starId": "ziwei"
+      },
+      "rowId": "bureau-4-day-17",
+      "sourceEvaluator": {
+        "branch": "卯",
+        "engineStarId": "ziwei",
+        "traditionalName": "紫微"
+      }
+    },
+    {
+      "divergence": null,
+      "input": {
+        "bureau": "金四局",
+        "bureauNumber": 4,
+        "lunarDay": 18
+      },
+      "intermediate": {
+        "baseBranch": "寅",
+        "branchIndex": 8,
+        "direction": "forward",
+        "quotient": 5,
+        "remainder": 2,
+        "signedRemainder": 2
+      },
+      "match": true,
+      "orderingKey": "4:18",
+      "productionEvaluator": {
+        "branch": "申",
+        "starId": "ziwei"
+      },
+      "rowId": "bureau-4-day-18",
+      "sourceEvaluator": {
+        "branch": "申",
+        "engineStarId": "ziwei",
+        "traditionalName": "紫微"
+      }
+    },
+    {
+      "divergence": null,
+      "input": {
+        "bureau": "金四局",
+        "bureauNumber": 4,
+        "lunarDay": 19
+      },
+      "intermediate": {
+        "baseBranch": "寅",
+        "branchIndex": 5,
+        "direction": "reverse",
+        "quotient": 5,
+        "remainder": 1,
+        "signedRemainder": -1
+      },
+      "match": true,
+      "orderingKey": "4:19",
+      "productionEvaluator": {
+        "branch": "巳",
+        "starId": "ziwei"
+      },
+      "rowId": "bureau-4-day-19",
+      "sourceEvaluator": {
+        "branch": "巳",
+        "engineStarId": "ziwei",
+        "traditionalName": "紫微"
+      }
+    },
+    {
+      "divergence": null,
+      "input": {
+        "bureau": "金四局",
+        "bureauNumber": 4,
+        "lunarDay": 20
+      },
+      "intermediate": {
+        "baseBranch": "寅",
+        "branchIndex": 6,
+        "direction": "none",
+        "quotient": 5,
+        "remainder": 0,
+        "signedRemainder": 0
+      },
+      "match": true,
+      "orderingKey": "4:20",
+      "productionEvaluator": {
+        "branch": "午",
+        "starId": "ziwei"
+      },
+      "rowId": "bureau-4-day-20",
+      "sourceEvaluator": {
+        "branch": "午",
+        "engineStarId": "ziwei",
+        "traditionalName": "紫微"
+      }
+    },
+    {
+      "divergence": null,
+      "input": {
+        "bureau": "金四局",
+        "bureauNumber": 4,
+        "lunarDay": 21
+      },
+      "intermediate": {
+        "baseBranch": "寅",
+        "branchIndex": 4,
+        "direction": "reverse",
+        "quotient": 6,
+        "remainder": 3,
+        "signedRemainder": -3
+      },
+      "match": true,
+      "orderingKey": "4:21",
+      "productionEvaluator": {
+        "branch": "辰",
+        "starId": "ziwei"
+      },
+      "rowId": "bureau-4-day-21",
+      "sourceEvaluator": {
+        "branch": "辰",
+        "engineStarId": "ziwei",
+        "traditionalName": "紫微"
+      }
+    },
+    {
+      "divergence": null,
+      "input": {
+        "bureau": "金四局",
+        "bureauNumber": 4,
+        "lunarDay": 22
+      },
+      "intermediate": {
+        "baseBranch": "寅",
+        "branchIndex": 9,
+        "direction": "forward",
+        "quotient": 6,
+        "remainder": 2,
+        "signedRemainder": 2
+      },
+      "match": true,
+      "orderingKey": "4:22",
+      "productionEvaluator": {
+        "branch": "酉",
+        "starId": "ziwei"
+      },
+      "rowId": "bureau-4-day-22",
+      "sourceEvaluator": {
+        "branch": "酉",
+        "engineStarId": "ziwei",
+        "traditionalName": "紫微"
+      }
+    },
+    {
+      "divergence": null,
+      "input": {
+        "bureau": "金四局",
+        "bureauNumber": 4,
+        "lunarDay": 23
+      },
+      "intermediate": {
+        "baseBranch": "寅",
+        "branchIndex": 6,
+        "direction": "reverse",
+        "quotient": 6,
+        "remainder": 1,
+        "signedRemainder": -1
+      },
+      "match": true,
+      "orderingKey": "4:23",
+      "productionEvaluator": {
+        "branch": "午",
+        "starId": "ziwei"
+      },
+      "rowId": "bureau-4-day-23",
+      "sourceEvaluator": {
+        "branch": "午",
+        "engineStarId": "ziwei",
+        "traditionalName": "紫微"
+      }
+    },
+    {
+      "divergence": null,
+      "input": {
+        "bureau": "金四局",
+        "bureauNumber": 4,
+        "lunarDay": 24
+      },
+      "intermediate": {
+        "baseBranch": "寅",
+        "branchIndex": 7,
+        "direction": "none",
+        "quotient": 6,
+        "remainder": 0,
+        "signedRemainder": 0
+      },
+      "match": true,
+      "orderingKey": "4:24",
+      "productionEvaluator": {
+        "branch": "未",
+        "starId": "ziwei"
+      },
+      "rowId": "bureau-4-day-24",
+      "sourceEvaluator": {
+        "branch": "未",
+        "engineStarId": "ziwei",
+        "traditionalName": "紫微"
+      }
+    },
+    {
+      "divergence": null,
+      "input": {
+        "bureau": "金四局",
+        "bureauNumber": 4,
+        "lunarDay": 25
+      },
+      "intermediate": {
+        "baseBranch": "寅",
+        "branchIndex": 5,
+        "direction": "reverse",
+        "quotient": 7,
+        "remainder": 3,
+        "signedRemainder": -3
+      },
+      "match": true,
+      "orderingKey": "4:25",
+      "productionEvaluator": {
+        "branch": "巳",
+        "starId": "ziwei"
+      },
+      "rowId": "bureau-4-day-25",
+      "sourceEvaluator": {
+        "branch": "巳",
+        "engineStarId": "ziwei",
+        "traditionalName": "紫微"
+      }
+    },
+    {
+      "divergence": null,
+      "input": {
+        "bureau": "金四局",
+        "bureauNumber": 4,
+        "lunarDay": 26
+      },
+      "intermediate": {
+        "baseBranch": "寅",
+        "branchIndex": 10,
+        "direction": "forward",
+        "quotient": 7,
+        "remainder": 2,
+        "signedRemainder": 2
+      },
+      "match": true,
+      "orderingKey": "4:26",
+      "productionEvaluator": {
+        "branch": "戌",
+        "starId": "ziwei"
+      },
+      "rowId": "bureau-4-day-26",
+      "sourceEvaluator": {
+        "branch": "戌",
+        "engineStarId": "ziwei",
+        "traditionalName": "紫微"
+      }
+    },
+    {
+      "divergence": null,
+      "input": {
+        "bureau": "金四局",
+        "bureauNumber": 4,
+        "lunarDay": 27
+      },
+      "intermediate": {
+        "baseBranch": "寅",
+        "branchIndex": 7,
+        "direction": "reverse",
+        "quotient": 7,
+        "remainder": 1,
+        "signedRemainder": -1
+      },
+      "match": true,
+      "orderingKey": "4:27",
+      "productionEvaluator": {
+        "branch": "未",
+        "starId": "ziwei"
+      },
+      "rowId": "bureau-4-day-27",
+      "sourceEvaluator": {
+        "branch": "未",
+        "engineStarId": "ziwei",
+        "traditionalName": "紫微"
+      }
+    },
+    {
+      "divergence": null,
+      "input": {
+        "bureau": "金四局",
+        "bureauNumber": 4,
+        "lunarDay": 28
+      },
+      "intermediate": {
+        "baseBranch": "寅",
+        "branchIndex": 8,
+        "direction": "none",
+        "quotient": 7,
+        "remainder": 0,
+        "signedRemainder": 0
+      },
+      "match": true,
+      "orderingKey": "4:28",
+      "productionEvaluator": {
+        "branch": "申",
+        "starId": "ziwei"
+      },
+      "rowId": "bureau-4-day-28",
+      "sourceEvaluator": {
+        "branch": "申",
+        "engineStarId": "ziwei",
+        "traditionalName": "紫微"
+      }
+    },
+    {
+      "divergence": null,
+      "input": {
+        "bureau": "金四局",
+        "bureauNumber": 4,
+        "lunarDay": 29
+      },
+      "intermediate": {
+        "baseBranch": "寅",
+        "branchIndex": 6,
+        "direction": "reverse",
+        "quotient": 8,
+        "remainder": 3,
+        "signedRemainder": -3
+      },
+      "match": true,
+      "orderingKey": "4:29",
+      "productionEvaluator": {
+        "branch": "午",
+        "starId": "ziwei"
+      },
+      "rowId": "bureau-4-day-29",
+      "sourceEvaluator": {
+        "branch": "午",
+        "engineStarId": "ziwei",
+        "traditionalName": "紫微"
+      }
+    },
+    {
+      "divergence": null,
+      "input": {
+        "bureau": "金四局",
+        "bureauNumber": 4,
+        "lunarDay": 30
+      },
+      "intermediate": {
+        "baseBranch": "寅",
+        "branchIndex": 11,
+        "direction": "forward",
+        "quotient": 8,
+        "remainder": 2,
+        "signedRemainder": 2
+      },
+      "match": true,
+      "orderingKey": "4:30",
+      "productionEvaluator": {
+        "branch": "亥",
+        "starId": "ziwei"
+      },
+      "rowId": "bureau-4-day-30",
+      "sourceEvaluator": {
+        "branch": "亥",
+        "engineStarId": "ziwei",
+        "traditionalName": "紫微"
+      }
+    },
+    {
+      "divergence": null,
+      "input": {
+        "bureau": "土五局",
+        "bureauNumber": 5,
+        "lunarDay": 1
+      },
+      "intermediate": {
+        "baseBranch": "寅",
+        "branchIndex": 6,
+        "direction": "forward",
+        "quotient": 1,
+        "remainder": 4,
+        "signedRemainder": 4
+      },
+      "match": true,
+      "orderingKey": "5:01",
+      "productionEvaluator": {
+        "branch": "午",
+        "starId": "ziwei"
+      },
+      "rowId": "bureau-5-day-01",
+      "sourceEvaluator": {
+        "branch": "午",
+        "engineStarId": "ziwei",
+        "traditionalName": "紫微"
+      }
+    },
+    {
+      "divergence": null,
+      "input": {
+        "bureau": "土五局",
+        "bureauNumber": 5,
+        "lunarDay": 2
+      },
+      "intermediate": {
+        "baseBranch": "寅",
+        "branchIndex": 11,
+        "direction": "reverse",
+        "quotient": 1,
+        "remainder": 3,
+        "signedRemainder": -3
+      },
+      "match": true,
+      "orderingKey": "5:02",
+      "productionEvaluator": {
+        "branch": "亥",
+        "starId": "ziwei"
+      },
+      "rowId": "bureau-5-day-02",
+      "sourceEvaluator": {
+        "branch": "亥",
+        "engineStarId": "ziwei",
+        "traditionalName": "紫微"
+      }
+    },
+    {
+      "divergence": null,
+      "input": {
+        "bureau": "土五局",
+        "bureauNumber": 5,
+        "lunarDay": 3
+      },
+      "intermediate": {
+        "baseBranch": "寅",
+        "branchIndex": 4,
+        "direction": "forward",
+        "quotient": 1,
+        "remainder": 2,
+        "signedRemainder": 2
+      },
+      "match": true,
+      "orderingKey": "5:03",
+      "productionEvaluator": {
+        "branch": "辰",
+        "starId": "ziwei"
+      },
+      "rowId": "bureau-5-day-03",
+      "sourceEvaluator": {
+        "branch": "辰",
+        "engineStarId": "ziwei",
+        "traditionalName": "紫微"
+      }
+    },
+    {
+      "divergence": null,
+      "input": {
+        "bureau": "土五局",
+        "bureauNumber": 5,
+        "lunarDay": 4
+      },
+      "intermediate": {
+        "baseBranch": "寅",
+        "branchIndex": 1,
+        "direction": "reverse",
+        "quotient": 1,
+        "remainder": 1,
+        "signedRemainder": -1
+      },
+      "match": true,
+      "orderingKey": "5:04",
+      "productionEvaluator": {
+        "branch": "丑",
+        "starId": "ziwei"
+      },
+      "rowId": "bureau-5-day-04",
+      "sourceEvaluator": {
+        "branch": "丑",
+        "engineStarId": "ziwei",
+        "traditionalName": "紫微"
+      }
+    },
+    {
+      "divergence": null,
+      "input": {
+        "bureau": "土五局",
+        "bureauNumber": 5,
+        "lunarDay": 5
+      },
+      "intermediate": {
+        "baseBranch": "寅",
+        "branchIndex": 2,
+        "direction": "none",
+        "quotient": 1,
+        "remainder": 0,
+        "signedRemainder": 0
+      },
+      "match": true,
+      "orderingKey": "5:05",
+      "productionEvaluator": {
+        "branch": "寅",
+        "starId": "ziwei"
+      },
+      "rowId": "bureau-5-day-05",
+      "sourceEvaluator": {
+        "branch": "寅",
+        "engineStarId": "ziwei",
+        "traditionalName": "紫微"
+      }
+    },
+    {
+      "divergence": null,
+      "input": {
+        "bureau": "土五局",
+        "bureauNumber": 5,
+        "lunarDay": 6
+      },
+      "intermediate": {
+        "baseBranch": "寅",
+        "branchIndex": 7,
+        "direction": "forward",
+        "quotient": 2,
+        "remainder": 4,
+        "signedRemainder": 4
+      },
+      "match": true,
+      "orderingKey": "5:06",
+      "productionEvaluator": {
+        "branch": "未",
+        "starId": "ziwei"
+      },
+      "rowId": "bureau-5-day-06",
+      "sourceEvaluator": {
+        "branch": "未",
+        "engineStarId": "ziwei",
+        "traditionalName": "紫微"
+      }
+    },
+    {
+      "divergence": null,
+      "input": {
+        "bureau": "土五局",
+        "bureauNumber": 5,
+        "lunarDay": 7
+      },
+      "intermediate": {
+        "baseBranch": "寅",
+        "branchIndex": 0,
+        "direction": "reverse",
+        "quotient": 2,
+        "remainder": 3,
+        "signedRemainder": -3
+      },
+      "match": true,
+      "orderingKey": "5:07",
+      "productionEvaluator": {
+        "branch": "子",
+        "starId": "ziwei"
+      },
+      "rowId": "bureau-5-day-07",
+      "sourceEvaluator": {
+        "branch": "子",
+        "engineStarId": "ziwei",
+        "traditionalName": "紫微"
+      }
+    },
+    {
+      "divergence": null,
+      "input": {
+        "bureau": "土五局",
+        "bureauNumber": 5,
+        "lunarDay": 8
+      },
+      "intermediate": {
+        "baseBranch": "寅",
+        "branchIndex": 5,
+        "direction": "forward",
+        "quotient": 2,
+        "remainder": 2,
+        "signedRemainder": 2
+      },
+      "match": true,
+      "orderingKey": "5:08",
+      "productionEvaluator": {
+        "branch": "巳",
+        "starId": "ziwei"
+      },
+      "rowId": "bureau-5-day-08",
+      "sourceEvaluator": {
+        "branch": "巳",
+        "engineStarId": "ziwei",
+        "traditionalName": "紫微"
+      }
+    },
+    {
+      "divergence": null,
+      "input": {
+        "bureau": "土五局",
+        "bureauNumber": 5,
+        "lunarDay": 9
+      },
+      "intermediate": {
+        "baseBranch": "寅",
+        "branchIndex": 2,
+        "direction": "reverse",
+        "quotient": 2,
+        "remainder": 1,
+        "signedRemainder": -1
+      },
+      "match": true,
+      "orderingKey": "5:09",
+      "productionEvaluator": {
+        "branch": "寅",
+        "starId": "ziwei"
+      },
+      "rowId": "bureau-5-day-09",
+      "sourceEvaluator": {
+        "branch": "寅",
+        "engineStarId": "ziwei",
+        "traditionalName": "紫微"
+      }
+    },
+    {
+      "divergence": null,
+      "input": {
+        "bureau": "土五局",
+        "bureauNumber": 5,
+        "lunarDay": 10
+      },
+      "intermediate": {
+        "baseBranch": "寅",
+        "branchIndex": 3,
+        "direction": "none",
+        "quotient": 2,
+        "remainder": 0,
+        "signedRemainder": 0
+      },
+      "match": true,
+      "orderingKey": "5:10",
+      "productionEvaluator": {
+        "branch": "卯",
+        "starId": "ziwei"
+      },
+      "rowId": "bureau-5-day-10",
+      "sourceEvaluator": {
+        "branch": "卯",
+        "engineStarId": "ziwei",
+        "traditionalName": "紫微"
+      }
+    },
+    {
+      "divergence": null,
+      "input": {
+        "bureau": "土五局",
+        "bureauNumber": 5,
+        "lunarDay": 11
+      },
+      "intermediate": {
+        "baseBranch": "寅",
+        "branchIndex": 8,
+        "direction": "forward",
+        "quotient": 3,
+        "remainder": 4,
+        "signedRemainder": 4
+      },
+      "match": true,
+      "orderingKey": "5:11",
+      "productionEvaluator": {
+        "branch": "申",
+        "starId": "ziwei"
+      },
+      "rowId": "bureau-5-day-11",
+      "sourceEvaluator": {
+        "branch": "申",
+        "engineStarId": "ziwei",
+        "traditionalName": "紫微"
+      }
+    },
+    {
+      "divergence": null,
+      "input": {
+        "bureau": "土五局",
+        "bureauNumber": 5,
+        "lunarDay": 12
+      },
+      "intermediate": {
+        "baseBranch": "寅",
+        "branchIndex": 1,
+        "direction": "reverse",
+        "quotient": 3,
+        "remainder": 3,
+        "signedRemainder": -3
+      },
+      "match": true,
+      "orderingKey": "5:12",
+      "productionEvaluator": {
+        "branch": "丑",
+        "starId": "ziwei"
+      },
+      "rowId": "bureau-5-day-12",
+      "sourceEvaluator": {
+        "branch": "丑",
+        "engineStarId": "ziwei",
+        "traditionalName": "紫微"
+      }
+    },
+    {
+      "divergence": null,
+      "input": {
+        "bureau": "土五局",
+        "bureauNumber": 5,
+        "lunarDay": 13
+      },
+      "intermediate": {
+        "baseBranch": "寅",
+        "branchIndex": 6,
+        "direction": "forward",
+        "quotient": 3,
+        "remainder": 2,
+        "signedRemainder": 2
+      },
+      "match": true,
+      "orderingKey": "5:13",
+      "productionEvaluator": {
+        "branch": "午",
+        "starId": "ziwei"
+      },
+      "rowId": "bureau-5-day-13",
+      "sourceEvaluator": {
+        "branch": "午",
+        "engineStarId": "ziwei",
+        "traditionalName": "紫微"
+      }
+    },
+    {
+      "divergence": null,
+      "input": {
+        "bureau": "土五局",
+        "bureauNumber": 5,
+        "lunarDay": 14
+      },
+      "intermediate": {
+        "baseBranch": "寅",
+        "branchIndex": 3,
+        "direction": "reverse",
+        "quotient": 3,
+        "remainder": 1,
+        "signedRemainder": -1
+      },
+      "match": true,
+      "orderingKey": "5:14",
+      "productionEvaluator": {
+        "branch": "卯",
+        "starId": "ziwei"
+      },
+      "rowId": "bureau-5-day-14",
+      "sourceEvaluator": {
+        "branch": "卯",
+        "engineStarId": "ziwei",
+        "traditionalName": "紫微"
+      }
+    },
+    {
+      "divergence": null,
+      "input": {
+        "bureau": "土五局",
+        "bureauNumber": 5,
+        "lunarDay": 15
+      },
+      "intermediate": {
+        "baseBranch": "寅",
+        "branchIndex": 4,
+        "direction": "none",
+        "quotient": 3,
+        "remainder": 0,
+        "signedRemainder": 0
+      },
+      "match": true,
+      "orderingKey": "5:15",
+      "productionEvaluator": {
+        "branch": "辰",
+        "starId": "ziwei"
+      },
+      "rowId": "bureau-5-day-15",
+      "sourceEvaluator": {
+        "branch": "辰",
+        "engineStarId": "ziwei",
+        "traditionalName": "紫微"
+      }
+    },
+    {
+      "divergence": null,
+      "input": {
+        "bureau": "土五局",
+        "bureauNumber": 5,
+        "lunarDay": 16
+      },
+      "intermediate": {
+        "baseBranch": "寅",
+        "branchIndex": 9,
+        "direction": "forward",
+        "quotient": 4,
+        "remainder": 4,
+        "signedRemainder": 4
+      },
+      "match": true,
+      "orderingKey": "5:16",
+      "productionEvaluator": {
+        "branch": "酉",
+        "starId": "ziwei"
+      },
+      "rowId": "bureau-5-day-16",
+      "sourceEvaluator": {
+        "branch": "酉",
+        "engineStarId": "ziwei",
+        "traditionalName": "紫微"
+      }
+    },
+    {
+      "divergence": null,
+      "input": {
+        "bureau": "土五局",
+        "bureauNumber": 5,
+        "lunarDay": 17
+      },
+      "intermediate": {
+        "baseBranch": "寅",
+        "branchIndex": 2,
+        "direction": "reverse",
+        "quotient": 4,
+        "remainder": 3,
+        "signedRemainder": -3
+      },
+      "match": true,
+      "orderingKey": "5:17",
+      "productionEvaluator": {
+        "branch": "寅",
+        "starId": "ziwei"
+      },
+      "rowId": "bureau-5-day-17",
+      "sourceEvaluator": {
+        "branch": "寅",
+        "engineStarId": "ziwei",
+        "traditionalName": "紫微"
+      }
+    },
+    {
+      "divergence": null,
+      "input": {
+        "bureau": "土五局",
+        "bureauNumber": 5,
+        "lunarDay": 18
+      },
+      "intermediate": {
+        "baseBranch": "寅",
+        "branchIndex": 7,
+        "direction": "forward",
+        "quotient": 4,
+        "remainder": 2,
+        "signedRemainder": 2
+      },
+      "match": true,
+      "orderingKey": "5:18",
+      "productionEvaluator": {
+        "branch": "未",
+        "starId": "ziwei"
+      },
+      "rowId": "bureau-5-day-18",
+      "sourceEvaluator": {
+        "branch": "未",
+        "engineStarId": "ziwei",
+        "traditionalName": "紫微"
+      }
+    },
+    {
+      "divergence": null,
+      "input": {
+        "bureau": "土五局",
+        "bureauNumber": 5,
+        "lunarDay": 19
+      },
+      "intermediate": {
+        "baseBranch": "寅",
+        "branchIndex": 4,
+        "direction": "reverse",
+        "quotient": 4,
+        "remainder": 1,
+        "signedRemainder": -1
+      },
+      "match": true,
+      "orderingKey": "5:19",
+      "productionEvaluator": {
+        "branch": "辰",
+        "starId": "ziwei"
+      },
+      "rowId": "bureau-5-day-19",
+      "sourceEvaluator": {
+        "branch": "辰",
+        "engineStarId": "ziwei",
+        "traditionalName": "紫微"
+      }
+    },
+    {
+      "divergence": null,
+      "input": {
+        "bureau": "土五局",
+        "bureauNumber": 5,
+        "lunarDay": 20
+      },
+      "intermediate": {
+        "baseBranch": "寅",
+        "branchIndex": 5,
+        "direction": "none",
+        "quotient": 4,
+        "remainder": 0,
+        "signedRemainder": 0
+      },
+      "match": true,
+      "orderingKey": "5:20",
+      "productionEvaluator": {
+        "branch": "巳",
+        "starId": "ziwei"
+      },
+      "rowId": "bureau-5-day-20",
+      "sourceEvaluator": {
+        "branch": "巳",
+        "engineStarId": "ziwei",
+        "traditionalName": "紫微"
+      }
+    },
+    {
+      "divergence": null,
+      "input": {
+        "bureau": "土五局",
+        "bureauNumber": 5,
+        "lunarDay": 21
+      },
+      "intermediate": {
+        "baseBranch": "寅",
+        "branchIndex": 10,
+        "direction": "forward",
+        "quotient": 5,
+        "remainder": 4,
+        "signedRemainder": 4
+      },
+      "match": true,
+      "orderingKey": "5:21",
+      "productionEvaluator": {
+        "branch": "戌",
+        "starId": "ziwei"
+      },
+      "rowId": "bureau-5-day-21",
+      "sourceEvaluator": {
+        "branch": "戌",
+        "engineStarId": "ziwei",
+        "traditionalName": "紫微"
+      }
+    },
+    {
+      "divergence": null,
+      "input": {
+        "bureau": "土五局",
+        "bureauNumber": 5,
+        "lunarDay": 22
+      },
+      "intermediate": {
+        "baseBranch": "寅",
+        "branchIndex": 3,
+        "direction": "reverse",
+        "quotient": 5,
+        "remainder": 3,
+        "signedRemainder": -3
+      },
+      "match": true,
+      "orderingKey": "5:22",
+      "productionEvaluator": {
+        "branch": "卯",
+        "starId": "ziwei"
+      },
+      "rowId": "bureau-5-day-22",
+      "sourceEvaluator": {
+        "branch": "卯",
+        "engineStarId": "ziwei",
+        "traditionalName": "紫微"
+      }
+    },
+    {
+      "divergence": null,
+      "input": {
+        "bureau": "土五局",
+        "bureauNumber": 5,
+        "lunarDay": 23
+      },
+      "intermediate": {
+        "baseBranch": "寅",
+        "branchIndex": 8,
+        "direction": "forward",
+        "quotient": 5,
+        "remainder": 2,
+        "signedRemainder": 2
+      },
+      "match": true,
+      "orderingKey": "5:23",
+      "productionEvaluator": {
+        "branch": "申",
+        "starId": "ziwei"
+      },
+      "rowId": "bureau-5-day-23",
+      "sourceEvaluator": {
+        "branch": "申",
+        "engineStarId": "ziwei",
+        "traditionalName": "紫微"
+      }
+    },
+    {
+      "divergence": null,
+      "input": {
+        "bureau": "土五局",
+        "bureauNumber": 5,
+        "lunarDay": 24
+      },
+      "intermediate": {
+        "baseBranch": "寅",
+        "branchIndex": 5,
+        "direction": "reverse",
+        "quotient": 5,
+        "remainder": 1,
+        "signedRemainder": -1
+      },
+      "match": true,
+      "orderingKey": "5:24",
+      "productionEvaluator": {
+        "branch": "巳",
+        "starId": "ziwei"
+      },
+      "rowId": "bureau-5-day-24",
+      "sourceEvaluator": {
+        "branch": "巳",
+        "engineStarId": "ziwei",
+        "traditionalName": "紫微"
+      }
+    },
+    {
+      "divergence": null,
+      "input": {
+        "bureau": "土五局",
+        "bureauNumber": 5,
+        "lunarDay": 25
+      },
+      "intermediate": {
+        "baseBranch": "寅",
+        "branchIndex": 6,
+        "direction": "none",
+        "quotient": 5,
+        "remainder": 0,
+        "signedRemainder": 0
+      },
+      "match": true,
+      "orderingKey": "5:25",
+      "productionEvaluator": {
+        "branch": "午",
+        "starId": "ziwei"
+      },
+      "rowId": "bureau-5-day-25",
+      "sourceEvaluator": {
+        "branch": "午",
+        "engineStarId": "ziwei",
+        "traditionalName": "紫微"
+      }
+    },
+    {
+      "divergence": null,
+      "input": {
+        "bureau": "土五局",
+        "bureauNumber": 5,
+        "lunarDay": 26
+      },
+      "intermediate": {
+        "baseBranch": "寅",
+        "branchIndex": 11,
+        "direction": "forward",
+        "quotient": 6,
+        "remainder": 4,
+        "signedRemainder": 4
+      },
+      "match": true,
+      "orderingKey": "5:26",
+      "productionEvaluator": {
+        "branch": "亥",
+        "starId": "ziwei"
+      },
+      "rowId": "bureau-5-day-26",
+      "sourceEvaluator": {
+        "branch": "亥",
+        "engineStarId": "ziwei",
+        "traditionalName": "紫微"
+      }
+    },
+    {
+      "divergence": null,
+      "input": {
+        "bureau": "土五局",
+        "bureauNumber": 5,
+        "lunarDay": 27
+      },
+      "intermediate": {
+        "baseBranch": "寅",
+        "branchIndex": 4,
+        "direction": "reverse",
+        "quotient": 6,
+        "remainder": 3,
+        "signedRemainder": -3
+      },
+      "match": true,
+      "orderingKey": "5:27",
+      "productionEvaluator": {
+        "branch": "辰",
+        "starId": "ziwei"
+      },
+      "rowId": "bureau-5-day-27",
+      "sourceEvaluator": {
+        "branch": "辰",
+        "engineStarId": "ziwei",
+        "traditionalName": "紫微"
+      }
+    },
+    {
+      "divergence": null,
+      "input": {
+        "bureau": "土五局",
+        "bureauNumber": 5,
+        "lunarDay": 28
+      },
+      "intermediate": {
+        "baseBranch": "寅",
+        "branchIndex": 9,
+        "direction": "forward",
+        "quotient": 6,
+        "remainder": 2,
+        "signedRemainder": 2
+      },
+      "match": true,
+      "orderingKey": "5:28",
+      "productionEvaluator": {
+        "branch": "酉",
+        "starId": "ziwei"
+      },
+      "rowId": "bureau-5-day-28",
+      "sourceEvaluator": {
+        "branch": "酉",
+        "engineStarId": "ziwei",
+        "traditionalName": "紫微"
+      }
+    },
+    {
+      "divergence": null,
+      "input": {
+        "bureau": "土五局",
+        "bureauNumber": 5,
+        "lunarDay": 29
+      },
+      "intermediate": {
+        "baseBranch": "寅",
+        "branchIndex": 6,
+        "direction": "reverse",
+        "quotient": 6,
+        "remainder": 1,
+        "signedRemainder": -1
+      },
+      "match": true,
+      "orderingKey": "5:29",
+      "productionEvaluator": {
+        "branch": "午",
+        "starId": "ziwei"
+      },
+      "rowId": "bureau-5-day-29",
+      "sourceEvaluator": {
+        "branch": "午",
+        "engineStarId": "ziwei",
+        "traditionalName": "紫微"
+      }
+    },
+    {
+      "divergence": null,
+      "input": {
+        "bureau": "土五局",
+        "bureauNumber": 5,
+        "lunarDay": 30
+      },
+      "intermediate": {
+        "baseBranch": "寅",
+        "branchIndex": 7,
+        "direction": "none",
+        "quotient": 6,
+        "remainder": 0,
+        "signedRemainder": 0
+      },
+      "match": true,
+      "orderingKey": "5:30",
+      "productionEvaluator": {
+        "branch": "未",
+        "starId": "ziwei"
+      },
+      "rowId": "bureau-5-day-30",
+      "sourceEvaluator": {
+        "branch": "未",
+        "engineStarId": "ziwei",
+        "traditionalName": "紫微"
+      }
+    },
+    {
+      "divergence": null,
+      "input": {
+        "bureau": "火六局",
+        "bureauNumber": 6,
+        "lunarDay": 1
+      },
+      "intermediate": {
+        "baseBranch": "寅",
+        "branchIndex": 9,
+        "direction": "reverse",
+        "quotient": 1,
+        "remainder": 5,
+        "signedRemainder": -5
+      },
+      "match": true,
+      "orderingKey": "6:01",
+      "productionEvaluator": {
+        "branch": "酉",
+        "starId": "ziwei"
+      },
+      "rowId": "bureau-6-day-01",
+      "sourceEvaluator": {
+        "branch": "酉",
+        "engineStarId": "ziwei",
+        "traditionalName": "紫微"
+      }
+    },
+    {
+      "divergence": null,
+      "input": {
+        "bureau": "火六局",
+        "bureauNumber": 6,
+        "lunarDay": 2
+      },
+      "intermediate": {
+        "baseBranch": "寅",
+        "branchIndex": 6,
+        "direction": "forward",
+        "quotient": 1,
+        "remainder": 4,
+        "signedRemainder": 4
+      },
+      "match": true,
+      "orderingKey": "6:02",
+      "productionEvaluator": {
+        "branch": "午",
+        "starId": "ziwei"
+      },
+      "rowId": "bureau-6-day-02",
+      "sourceEvaluator": {
+        "branch": "午",
+        "engineStarId": "ziwei",
+        "traditionalName": "紫微"
+      }
+    },
+    {
+      "divergence": null,
+      "input": {
+        "bureau": "火六局",
+        "bureauNumber": 6,
+        "lunarDay": 3
+      },
+      "intermediate": {
+        "baseBranch": "寅",
+        "branchIndex": 11,
+        "direction": "reverse",
+        "quotient": 1,
+        "remainder": 3,
+        "signedRemainder": -3
+      },
+      "match": true,
+      "orderingKey": "6:03",
+      "productionEvaluator": {
+        "branch": "亥",
+        "starId": "ziwei"
+      },
+      "rowId": "bureau-6-day-03",
+      "sourceEvaluator": {
+        "branch": "亥",
+        "engineStarId": "ziwei",
+        "traditionalName": "紫微"
+      }
+    },
+    {
+      "divergence": null,
+      "input": {
+        "bureau": "火六局",
+        "bureauNumber": 6,
+        "lunarDay": 4
+      },
+      "intermediate": {
+        "baseBranch": "寅",
+        "branchIndex": 4,
+        "direction": "forward",
+        "quotient": 1,
+        "remainder": 2,
+        "signedRemainder": 2
+      },
+      "match": true,
+      "orderingKey": "6:04",
+      "productionEvaluator": {
+        "branch": "辰",
+        "starId": "ziwei"
+      },
+      "rowId": "bureau-6-day-04",
+      "sourceEvaluator": {
+        "branch": "辰",
+        "engineStarId": "ziwei",
+        "traditionalName": "紫微"
+      }
+    },
+    {
+      "divergence": null,
+      "input": {
+        "bureau": "火六局",
+        "bureauNumber": 6,
+        "lunarDay": 5
+      },
+      "intermediate": {
+        "baseBranch": "寅",
+        "branchIndex": 1,
+        "direction": "reverse",
+        "quotient": 1,
+        "remainder": 1,
+        "signedRemainder": -1
+      },
+      "match": true,
+      "orderingKey": "6:05",
+      "productionEvaluator": {
+        "branch": "丑",
+        "starId": "ziwei"
+      },
+      "rowId": "bureau-6-day-05",
+      "sourceEvaluator": {
+        "branch": "丑",
+        "engineStarId": "ziwei",
+        "traditionalName": "紫微"
+      }
+    },
+    {
+      "divergence": null,
+      "input": {
+        "bureau": "火六局",
+        "bureauNumber": 6,
+        "lunarDay": 6
+      },
+      "intermediate": {
+        "baseBranch": "寅",
+        "branchIndex": 2,
+        "direction": "none",
+        "quotient": 1,
+        "remainder": 0,
+        "signedRemainder": 0
+      },
+      "match": true,
+      "orderingKey": "6:06",
+      "productionEvaluator": {
+        "branch": "寅",
+        "starId": "ziwei"
+      },
+      "rowId": "bureau-6-day-06",
+      "sourceEvaluator": {
+        "branch": "寅",
+        "engineStarId": "ziwei",
+        "traditionalName": "紫微"
+      }
+    },
+    {
+      "divergence": null,
+      "input": {
+        "bureau": "火六局",
+        "bureauNumber": 6,
+        "lunarDay": 7
+      },
+      "intermediate": {
+        "baseBranch": "寅",
+        "branchIndex": 10,
+        "direction": "reverse",
+        "quotient": 2,
+        "remainder": 5,
+        "signedRemainder": -5
+      },
+      "match": true,
+      "orderingKey": "6:07",
+      "productionEvaluator": {
+        "branch": "戌",
+        "starId": "ziwei"
+      },
+      "rowId": "bureau-6-day-07",
+      "sourceEvaluator": {
+        "branch": "戌",
+        "engineStarId": "ziwei",
+        "traditionalName": "紫微"
+      }
+    },
+    {
+      "divergence": null,
+      "input": {
+        "bureau": "火六局",
+        "bureauNumber": 6,
+        "lunarDay": 8
+      },
+      "intermediate": {
+        "baseBranch": "寅",
+        "branchIndex": 7,
+        "direction": "forward",
+        "quotient": 2,
+        "remainder": 4,
+        "signedRemainder": 4
+      },
+      "match": true,
+      "orderingKey": "6:08",
+      "productionEvaluator": {
+        "branch": "未",
+        "starId": "ziwei"
+      },
+      "rowId": "bureau-6-day-08",
+      "sourceEvaluator": {
+        "branch": "未",
+        "engineStarId": "ziwei",
+        "traditionalName": "紫微"
+      }
+    },
+    {
+      "divergence": null,
+      "input": {
+        "bureau": "火六局",
+        "bureauNumber": 6,
+        "lunarDay": 9
+      },
+      "intermediate": {
+        "baseBranch": "寅",
+        "branchIndex": 0,
+        "direction": "reverse",
+        "quotient": 2,
+        "remainder": 3,
+        "signedRemainder": -3
+      },
+      "match": true,
+      "orderingKey": "6:09",
+      "productionEvaluator": {
+        "branch": "子",
+        "starId": "ziwei"
+      },
+      "rowId": "bureau-6-day-09",
+      "sourceEvaluator": {
+        "branch": "子",
+        "engineStarId": "ziwei",
+        "traditionalName": "紫微"
+      }
+    },
+    {
+      "divergence": null,
+      "input": {
+        "bureau": "火六局",
+        "bureauNumber": 6,
+        "lunarDay": 10
+      },
+      "intermediate": {
+        "baseBranch": "寅",
+        "branchIndex": 5,
+        "direction": "forward",
+        "quotient": 2,
+        "remainder": 2,
+        "signedRemainder": 2
+      },
+      "match": true,
+      "orderingKey": "6:10",
+      "productionEvaluator": {
+        "branch": "巳",
+        "starId": "ziwei"
+      },
+      "rowId": "bureau-6-day-10",
+      "sourceEvaluator": {
+        "branch": "巳",
+        "engineStarId": "ziwei",
+        "traditionalName": "紫微"
+      }
+    },
+    {
+      "divergence": null,
+      "input": {
+        "bureau": "火六局",
+        "bureauNumber": 6,
+        "lunarDay": 11
+      },
+      "intermediate": {
+        "baseBranch": "寅",
+        "branchIndex": 2,
+        "direction": "reverse",
+        "quotient": 2,
+        "remainder": 1,
+        "signedRemainder": -1
+      },
+      "match": true,
+      "orderingKey": "6:11",
+      "productionEvaluator": {
+        "branch": "寅",
+        "starId": "ziwei"
+      },
+      "rowId": "bureau-6-day-11",
+      "sourceEvaluator": {
+        "branch": "寅",
+        "engineStarId": "ziwei",
+        "traditionalName": "紫微"
+      }
+    },
+    {
+      "divergence": null,
+      "input": {
+        "bureau": "火六局",
+        "bureauNumber": 6,
+        "lunarDay": 12
+      },
+      "intermediate": {
+        "baseBranch": "寅",
+        "branchIndex": 3,
+        "direction": "none",
+        "quotient": 2,
+        "remainder": 0,
+        "signedRemainder": 0
+      },
+      "match": true,
+      "orderingKey": "6:12",
+      "productionEvaluator": {
+        "branch": "卯",
+        "starId": "ziwei"
+      },
+      "rowId": "bureau-6-day-12",
+      "sourceEvaluator": {
+        "branch": "卯",
+        "engineStarId": "ziwei",
+        "traditionalName": "紫微"
+      }
+    },
+    {
+      "divergence": null,
+      "input": {
+        "bureau": "火六局",
+        "bureauNumber": 6,
+        "lunarDay": 13
+      },
+      "intermediate": {
+        "baseBranch": "寅",
+        "branchIndex": 11,
+        "direction": "reverse",
+        "quotient": 3,
+        "remainder": 5,
+        "signedRemainder": -5
+      },
+      "match": true,
+      "orderingKey": "6:13",
+      "productionEvaluator": {
+        "branch": "亥",
+        "starId": "ziwei"
+      },
+      "rowId": "bureau-6-day-13",
+      "sourceEvaluator": {
+        "branch": "亥",
+        "engineStarId": "ziwei",
+        "traditionalName": "紫微"
+      }
+    },
+    {
+      "divergence": null,
+      "input": {
+        "bureau": "火六局",
+        "bureauNumber": 6,
+        "lunarDay": 14
+      },
+      "intermediate": {
+        "baseBranch": "寅",
+        "branchIndex": 8,
+        "direction": "forward",
+        "quotient": 3,
+        "remainder": 4,
+        "signedRemainder": 4
+      },
+      "match": true,
+      "orderingKey": "6:14",
+      "productionEvaluator": {
+        "branch": "申",
+        "starId": "ziwei"
+      },
+      "rowId": "bureau-6-day-14",
+      "sourceEvaluator": {
+        "branch": "申",
+        "engineStarId": "ziwei",
+        "traditionalName": "紫微"
+      }
+    },
+    {
+      "divergence": null,
+      "input": {
+        "bureau": "火六局",
+        "bureauNumber": 6,
+        "lunarDay": 15
+      },
+      "intermediate": {
+        "baseBranch": "寅",
+        "branchIndex": 1,
+        "direction": "reverse",
+        "quotient": 3,
+        "remainder": 3,
+        "signedRemainder": -3
+      },
+      "match": true,
+      "orderingKey": "6:15",
+      "productionEvaluator": {
+        "branch": "丑",
+        "starId": "ziwei"
+      },
+      "rowId": "bureau-6-day-15",
+      "sourceEvaluator": {
+        "branch": "丑",
+        "engineStarId": "ziwei",
+        "traditionalName": "紫微"
+      }
+    },
+    {
+      "divergence": null,
+      "input": {
+        "bureau": "火六局",
+        "bureauNumber": 6,
+        "lunarDay": 16
+      },
+      "intermediate": {
+        "baseBranch": "寅",
+        "branchIndex": 6,
+        "direction": "forward",
+        "quotient": 3,
+        "remainder": 2,
+        "signedRemainder": 2
+      },
+      "match": true,
+      "orderingKey": "6:16",
+      "productionEvaluator": {
+        "branch": "午",
+        "starId": "ziwei"
+      },
+      "rowId": "bureau-6-day-16",
+      "sourceEvaluator": {
+        "branch": "午",
+        "engineStarId": "ziwei",
+        "traditionalName": "紫微"
+      }
+    },
+    {
+      "divergence": null,
+      "input": {
+        "bureau": "火六局",
+        "bureauNumber": 6,
+        "lunarDay": 17
+      },
+      "intermediate": {
+        "baseBranch": "寅",
+        "branchIndex": 3,
+        "direction": "reverse",
+        "quotient": 3,
+        "remainder": 1,
+        "signedRemainder": -1
+      },
+      "match": true,
+      "orderingKey": "6:17",
+      "productionEvaluator": {
+        "branch": "卯",
+        "starId": "ziwei"
+      },
+      "rowId": "bureau-6-day-17",
+      "sourceEvaluator": {
+        "branch": "卯",
+        "engineStarId": "ziwei",
+        "traditionalName": "紫微"
+      }
+    },
+    {
+      "divergence": null,
+      "input": {
+        "bureau": "火六局",
+        "bureauNumber": 6,
+        "lunarDay": 18
+      },
+      "intermediate": {
+        "baseBranch": "寅",
+        "branchIndex": 4,
+        "direction": "none",
+        "quotient": 3,
+        "remainder": 0,
+        "signedRemainder": 0
+      },
+      "match": true,
+      "orderingKey": "6:18",
+      "productionEvaluator": {
+        "branch": "辰",
+        "starId": "ziwei"
+      },
+      "rowId": "bureau-6-day-18",
+      "sourceEvaluator": {
+        "branch": "辰",
+        "engineStarId": "ziwei",
+        "traditionalName": "紫微"
+      }
+    },
+    {
+      "divergence": null,
+      "input": {
+        "bureau": "火六局",
+        "bureauNumber": 6,
+        "lunarDay": 19
+      },
+      "intermediate": {
+        "baseBranch": "寅",
+        "branchIndex": 0,
+        "direction": "reverse",
+        "quotient": 4,
+        "remainder": 5,
+        "signedRemainder": -5
+      },
+      "match": true,
+      "orderingKey": "6:19",
+      "productionEvaluator": {
+        "branch": "子",
+        "starId": "ziwei"
+      },
+      "rowId": "bureau-6-day-19",
+      "sourceEvaluator": {
+        "branch": "子",
+        "engineStarId": "ziwei",
+        "traditionalName": "紫微"
+      }
+    },
+    {
+      "divergence": null,
+      "input": {
+        "bureau": "火六局",
+        "bureauNumber": 6,
+        "lunarDay": 20
+      },
+      "intermediate": {
+        "baseBranch": "寅",
+        "branchIndex": 9,
+        "direction": "forward",
+        "quotient": 4,
+        "remainder": 4,
+        "signedRemainder": 4
+      },
+      "match": true,
+      "orderingKey": "6:20",
+      "productionEvaluator": {
+        "branch": "酉",
+        "starId": "ziwei"
+      },
+      "rowId": "bureau-6-day-20",
+      "sourceEvaluator": {
+        "branch": "酉",
+        "engineStarId": "ziwei",
+        "traditionalName": "紫微"
+      }
+    },
+    {
+      "divergence": null,
+      "input": {
+        "bureau": "火六局",
+        "bureauNumber": 6,
+        "lunarDay": 21
+      },
+      "intermediate": {
+        "baseBranch": "寅",
+        "branchIndex": 2,
+        "direction": "reverse",
+        "quotient": 4,
+        "remainder": 3,
+        "signedRemainder": -3
+      },
+      "match": true,
+      "orderingKey": "6:21",
+      "productionEvaluator": {
+        "branch": "寅",
+        "starId": "ziwei"
+      },
+      "rowId": "bureau-6-day-21",
+      "sourceEvaluator": {
+        "branch": "寅",
+        "engineStarId": "ziwei",
+        "traditionalName": "紫微"
+      }
+    },
+    {
+      "divergence": null,
+      "input": {
+        "bureau": "火六局",
+        "bureauNumber": 6,
+        "lunarDay": 22
+      },
+      "intermediate": {
+        "baseBranch": "寅",
+        "branchIndex": 7,
+        "direction": "forward",
+        "quotient": 4,
+        "remainder": 2,
+        "signedRemainder": 2
+      },
+      "match": true,
+      "orderingKey": "6:22",
+      "productionEvaluator": {
+        "branch": "未",
+        "starId": "ziwei"
+      },
+      "rowId": "bureau-6-day-22",
+      "sourceEvaluator": {
+        "branch": "未",
+        "engineStarId": "ziwei",
+        "traditionalName": "紫微"
+      }
+    },
+    {
+      "divergence": null,
+      "input": {
+        "bureau": "火六局",
+        "bureauNumber": 6,
+        "lunarDay": 23
+      },
+      "intermediate": {
+        "baseBranch": "寅",
+        "branchIndex": 4,
+        "direction": "reverse",
+        "quotient": 4,
+        "remainder": 1,
+        "signedRemainder": -1
+      },
+      "match": true,
+      "orderingKey": "6:23",
+      "productionEvaluator": {
+        "branch": "辰",
+        "starId": "ziwei"
+      },
+      "rowId": "bureau-6-day-23",
+      "sourceEvaluator": {
+        "branch": "辰",
+        "engineStarId": "ziwei",
+        "traditionalName": "紫微"
+      }
+    },
+    {
+      "divergence": null,
+      "input": {
+        "bureau": "火六局",
+        "bureauNumber": 6,
+        "lunarDay": 24
+      },
+      "intermediate": {
+        "baseBranch": "寅",
+        "branchIndex": 5,
+        "direction": "none",
+        "quotient": 4,
+        "remainder": 0,
+        "signedRemainder": 0
+      },
+      "match": true,
+      "orderingKey": "6:24",
+      "productionEvaluator": {
+        "branch": "巳",
+        "starId": "ziwei"
+      },
+      "rowId": "bureau-6-day-24",
+      "sourceEvaluator": {
+        "branch": "巳",
+        "engineStarId": "ziwei",
+        "traditionalName": "紫微"
+      }
+    },
+    {
+      "divergence": null,
+      "input": {
+        "bureau": "火六局",
+        "bureauNumber": 6,
+        "lunarDay": 25
+      },
+      "intermediate": {
+        "baseBranch": "寅",
+        "branchIndex": 1,
+        "direction": "reverse",
+        "quotient": 5,
+        "remainder": 5,
+        "signedRemainder": -5
+      },
+      "match": true,
+      "orderingKey": "6:25",
+      "productionEvaluator": {
+        "branch": "丑",
+        "starId": "ziwei"
+      },
+      "rowId": "bureau-6-day-25",
+      "sourceEvaluator": {
+        "branch": "丑",
+        "engineStarId": "ziwei",
+        "traditionalName": "紫微"
+      }
+    },
+    {
+      "divergence": null,
+      "input": {
+        "bureau": "火六局",
+        "bureauNumber": 6,
+        "lunarDay": 26
+      },
+      "intermediate": {
+        "baseBranch": "寅",
+        "branchIndex": 10,
+        "direction": "forward",
+        "quotient": 5,
+        "remainder": 4,
+        "signedRemainder": 4
+      },
+      "match": true,
+      "orderingKey": "6:26",
+      "productionEvaluator": {
+        "branch": "戌",
+        "starId": "ziwei"
+      },
+      "rowId": "bureau-6-day-26",
+      "sourceEvaluator": {
+        "branch": "戌",
+        "engineStarId": "ziwei",
+        "traditionalName": "紫微"
+      }
+    },
+    {
+      "divergence": null,
+      "input": {
+        "bureau": "火六局",
+        "bureauNumber": 6,
+        "lunarDay": 27
+      },
+      "intermediate": {
+        "baseBranch": "寅",
+        "branchIndex": 3,
+        "direction": "reverse",
+        "quotient": 5,
+        "remainder": 3,
+        "signedRemainder": -3
+      },
+      "match": true,
+      "orderingKey": "6:27",
+      "productionEvaluator": {
+        "branch": "卯",
+        "starId": "ziwei"
+      },
+      "rowId": "bureau-6-day-27",
+      "sourceEvaluator": {
+        "branch": "卯",
+        "engineStarId": "ziwei",
+        "traditionalName": "紫微"
+      }
+    },
+    {
+      "divergence": null,
+      "input": {
+        "bureau": "火六局",
+        "bureauNumber": 6,
+        "lunarDay": 28
+      },
+      "intermediate": {
+        "baseBranch": "寅",
+        "branchIndex": 8,
+        "direction": "forward",
+        "quotient": 5,
+        "remainder": 2,
+        "signedRemainder": 2
+      },
+      "match": true,
+      "orderingKey": "6:28",
+      "productionEvaluator": {
+        "branch": "申",
+        "starId": "ziwei"
+      },
+      "rowId": "bureau-6-day-28",
+      "sourceEvaluator": {
+        "branch": "申",
+        "engineStarId": "ziwei",
+        "traditionalName": "紫微"
+      }
+    },
+    {
+      "divergence": null,
+      "input": {
+        "bureau": "火六局",
+        "bureauNumber": 6,
+        "lunarDay": 29
+      },
+      "intermediate": {
+        "baseBranch": "寅",
+        "branchIndex": 5,
+        "direction": "reverse",
+        "quotient": 5,
+        "remainder": 1,
+        "signedRemainder": -1
+      },
+      "match": true,
+      "orderingKey": "6:29",
+      "productionEvaluator": {
+        "branch": "巳",
+        "starId": "ziwei"
+      },
+      "rowId": "bureau-6-day-29",
+      "sourceEvaluator": {
+        "branch": "巳",
+        "engineStarId": "ziwei",
+        "traditionalName": "紫微"
+      }
+    },
+    {
+      "divergence": null,
+      "input": {
+        "bureau": "火六局",
+        "bureauNumber": 6,
+        "lunarDay": 30
+      },
+      "intermediate": {
+        "baseBranch": "寅",
+        "branchIndex": 6,
+        "direction": "none",
+        "quotient": 5,
+        "remainder": 0,
+        "signedRemainder": 0
+      },
+      "match": true,
+      "orderingKey": "6:30",
+      "productionEvaluator": {
+        "branch": "午",
+        "starId": "ziwei"
+      },
+      "rowId": "bureau-6-day-30",
+      "sourceEvaluator": {
+        "branch": "午",
+        "engineStarId": "ziwei",
+        "traditionalName": "紫微"
+      }
+    }
+  ],
+  "schemaVersion": "ziwei-ziwei-star-placement-clean-rule-seed-acceptance-v0-comparison-v0"
+}

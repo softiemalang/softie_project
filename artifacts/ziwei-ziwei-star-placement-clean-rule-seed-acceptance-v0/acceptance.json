@@ -1,0 +1,109 @@
+{
+  "boundaries": {
+    "activation": "experimental",
+    "existingArtifactOverwritten": false,
+    "grounding": "blocked",
+    "interpretationGenerated": false,
+    "otherStarsIncluded": false,
+    "pdfStoredInGit": false,
+    "pilotOverwritten": false,
+    "productionEngineModified": false,
+    "productionRuleModified": false,
+    "readiness": "not_safe_to_start",
+    "renderStoredInGit": false,
+    "stableClaimCount": 0
+  },
+  "comparisonSummary": {
+    "branchDistribution": {
+      "丑": 12,
+      "亥": 10,
+      "午": 16,
+      "卯": 15,
+      "子": 7,
+      "寅": 15,
+      "巳": 15,
+      "戌": 9,
+      "未": 13,
+      "申": 11,
+      "辰": 17,
+      "酉": 10
+    },
+    "duplicateRowIdCount": 0,
+    "firstDivergence": null,
+    "inputCount": 150,
+    "matchCount": 150,
+    "mismatchCount": 0,
+    "missingCount": 0
+  },
+  "limitations": [
+    "The existing pilot was inspected before this draft was fixed in the same agent context; direct rendered-page review is preserved, but a fully independent human blind process is not claimed.",
+    "Acceptance is source-first provenance and evaluator reconciliation, not historical truth validation, personal meaning, readiness, grounding, or activation evidence."
+  ],
+  "pilotImmutability": {
+    "actualHashes": {
+      "comparisonSha256": "71aa749d3d8bf0a02103c371f3a752d857df6c70b9ed1c2a330f32f847545f4a",
+      "normalizedRuleSha256": "a7c7033566f46e3c32f5ee31f52c538ead2ab0a154b362b6f742ffbd45584370",
+      "transcriptionSha256": "b6f6a43a0f11761e0e88f52cc36c73a28ba3977c68327861cbf7176d50932c05"
+    },
+    "expectedHashes": {
+      "comparisonSha256": "71aa749d3d8bf0a02103c371f3a752d857df6c70b9ed1c2a330f32f847545f4a",
+      "normalizedRuleSha256": "a7c7033566f46e3c32f5ee31f52c538ead2ab0a154b362b6f742ffbd45584370",
+      "transcriptionSha256": "b6f6a43a0f11761e0e88f52cc36c73a28ba3977c68327861cbf7176d50932c05"
+    },
+    "unchanged": true
+  },
+  "schemaVersion": "ziwei-ziwei-star-placement-clean-rule-seed-acceptance-v0-acceptance-v0",
+  "semanticDiscrepancy": false,
+  "sourceTrace": {
+    "edgeCoverage": {
+      "allBureaus": true,
+      "allDays": true,
+      "day1": true,
+      "day30": true,
+      "divisibleDays": "day % bureauNumber = 0"
+    },
+    "fiveJue": {
+      "locator": "p11/三十一/起紫微五訣",
+      "p11": "五行局별 初一 위치와 순행/역행 문구를 세로 원문 방향으로 검토; starts: 水二局→丑, 木三局→辰, 金四局→亥, 土五局→午, 火六局→酉",
+      "sourceRole": "direct literary rule witness"
+    },
+    "jianSuo": {
+      "cellCount": 150,
+      "locator": "p12/三十三/起紫微簡索表",
+      "p12": "五行局 column headers × lunar-day rows 初一..三十; drawn right-to-left orientation retained",
+      "sourceRole": "direct lookup-table witness"
+    },
+    "normalizedTrace": {
+      "boundary": "source rule and production normalization remain separate",
+      "branchOrder": [
+        "子",
+        "丑",
+        "寅",
+        "卯",
+        "辰",
+        "巳",
+        "午",
+        "未",
+        "申",
+        "酉",
+        "戌",
+        "亥"
+      ],
+      "divisibleCase": "remainder=0; no directional correction",
+      "input": "already-resolved bureau and lunar day 1..30",
+      "mapping": {
+        "土五局": "earth_5",
+        "木三局": "wood_3",
+        "水二局": "water_2",
+        "火六局": "fire_6",
+        "紫微": "ziwei",
+        "金四局": "metal_4"
+      },
+      "modulo": 12,
+      "nonDivisibleCase": "odd remainder reverse; even remainder forward",
+      "progression": "base 寅, branchIndex=(2 + quotient - 1 + signedRemainder) mod 12",
+      "quotient": "floor((lunarDay + bureauNumber - 1) / bureauNumber)",
+      "remainder": "quotient * bureauNumber - lunarDay"
+    }
+  }
+}

@@ -17,7 +17,11 @@ export async function checkPilotArtifact(candidate, root = process.cwd()) {
   if (candidate.comparison?.rows?.some(row => row.sourceDerived?.traditionalName !== '紫微' || row.productionEngine?.starId !== 'ziwei' || row.divergence !== null)) errors.push('star_boundary_or_mismatch_hidden')
   if (candidate.independence?.sourceEvaluatorImportsProduction !== false || candidate.independence?.sourceEvaluatorCopiesProduction !== false) errors.push('independence')
   if (candidate.boundaries?.stableClaimCount !== 0 || candidate.boundaries?.readiness !== 'not_safe_to_start' || candidate.boundaries?.grounding !== 'blocked' || candidate.boundaries?.activation !== 'experimental' || candidate.boundaries?.otherStarsIncluded !== false) errors.push('promotion_or_scope')
-  const rebuilt = await buildPilotArtifact(); if (canonicalJson(candidate) !== canonicalJson(rebuilt)) errors.push('materialized_content')
+  const rebuilt = await buildPilotArtifact()
+  // observedHead is a current checkout observation, not immutable artifact content.
+  // Compare the stable payload while preserving and validating the stored generation.baseHead/payload hash.
+  const comparable = value => { const copy = structuredClone(value); delete copy.observedHead; delete copy.artifactIdentity; return copy }
+  if (canonicalJson(comparable(candidate)) !== canonicalJson(comparable(rebuilt))) errors.push('materialized_content')
   errors.push(...checkArtifactIdentity(candidate, { root, artifactId: SCHEMA, materializerPath: `scripts/materialize-${SCHEMA}.mjs`, materializerVersion: MATERIALIZER_VERSION }))
   const pdf = await readFile(SOURCE_PDF); if (hash(pdf) !== SOURCE_PDF_SHA256) errors.push('pdf_reverification')
   return errors

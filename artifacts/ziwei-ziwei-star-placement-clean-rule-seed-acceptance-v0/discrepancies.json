@@ -1,0 +1,37 @@
+{
+  "items": [
+    {
+      "a": "Pilot stores compact sourceRefs and a normalized rule, with p12 as a source boundary.",
+      "b": "Reviewer-B records page halves, drawn direction, row/column headers, 150 cell locators, and uncertainty fields.",
+      "classification": "layout only",
+      "id": "pilot-transcription-granularity",
+      "impact": "Evidence is more granular; no source value or computation changes.",
+      "locator": "p11/三十一 and p12/三十三"
+    },
+    {
+      "a": "Pilot sourceRefs use the same five bureau starting tokens.",
+      "b": "Reviewer-B independently records the visible starting tokens and vertical reading direction.",
+      "classification": "glyph equivalent",
+      "id": "p11-glyph-scope",
+      "impact": "Glyph-level content agrees for the rule-bearing starts; no semantic change.",
+      "locator": "p11/三十一/起紫微五訣/five bureau starts"
+    },
+    {
+      "a": "Pilot does not expose every cell locator.",
+      "b": "Reviewer-B exposes all 150 page/day/bureau locators and preserves visible uncertainty.",
+      "classification": "uncertain rule-neutral",
+      "id": "p12-table-boundary",
+      "impact": "Auditability improves without silently substituting the normalized formula for the page.",
+      "locator": "p12/三十三/起紫微簡索表/table"
+    },
+    {
+      "a": "Pilot normalized quotient, remainder, parity direction, 寅 base, modulo 12, and enum mapping.",
+      "b": "Reviewer-B keeps page glyphs, table direction, and calculation convention as separate trace layers.",
+      "classification": "layout only",
+      "id": "source-versus-normalization",
+      "impact": "No semantic discrepancy is collapsed; literary provenance is not promoted to truth or readiness.",
+      "locator": "p11/p12 to normalizedRule"
+    }
+  ],
+  "schemaVersion": "ziwei-ziwei-star-placement-clean-rule-seed-acceptance-v0-discrepancies-v0"
+}

@@ -1,0 +1,1191 @@
+{
+  "blindStatus": "source_first_reading_completed_but_full_blindness_unproven",
+  "blindnessLimit": "The existing pilot was inspected before this draft was fixed in the same agent context; direct rendered-page review is preserved, but a fully independent human blind process is not claimed.",
+  "modernCommentaryIngested": false,
+  "ocrPolicy": {
+    "canonical": false,
+    "note": "Visual rendered-page inspection is canonical for this review record; OCR, if used for navigation elsewhere, cannot populate canonical glyphs.",
+    "used": false
+  },
+  "pages": [
+    {
+      "glyphs": [
+        "水二局中初一丑",
+        "木三局中初一辰",
+        "金四局初一在亥",
+        "土五局中初一午",
+        "火六局中初一酉"
+      ],
+      "locator": "left scanned leaf; vertical prose columns under the heading",
+      "pdfPage": 11,
+      "printedPage": "三十一",
+      "readingOrder": "vertical Chinese columns read right-to-left as drawn; prose is not transposed",
+      "section": "起紫微五訣",
+      "table": {
+        "cells": 0,
+        "columnHeaders": [],
+        "present": false,
+        "rowHeaders": []
+      },
+      "uncertainty": [
+        {
+          "field": "long prose glyphs",
+          "note": "Small punctuation and adjacent prose are retained as visual evidence; normalized arithmetic is recorded separately.",
+          "status": "reviewed_but_not_machine_normalized"
+        }
+      ]
+    },
+    {
+      "glyphs": [
+        "水二局",
+        "木三局",
+        "金四局",
+        "土五局",
+        "火六局",
+        "初一",
+        "三十"
+      ],
+      "locator": "left scanned leaf; drawn table, 五行局 column headers and 生日起例 rows",
+      "pdfPage": 12,
+      "printedPage": "三十三",
+      "readingOrder": "the drawn columns are retained; source note says read right-to-left; rows are 1 through 30 descending",
+      "section": "起紫微簡索表",
+      "table": {
+        "boundary": "cell observation is tied to page/day/bureau locator; it is not an OCR-derived canonical string",
+        "cells": 150,
+        "columnHeaders": [
+          "水二局",
+          "木三局",
+          "金四局",
+          "土五局",
+          "火六局"
+        ],
+        "direction": "right-to-left columns, no transpose",
+        "locatorPattern": "p12/table/day-{01..30}/bureau-{2..6}",
+        "observedCells": [
+          {
+            "column": "水二局",
+            "glyph": "丑",
+            "locator": "p12/table/day-01/bureau-2",
+            "row": 1,
+            "sourceLabel": "紫微"
+          },
+          {
+            "column": "水二局",
+            "glyph": "寅",
+            "locator": "p12/table/day-02/bureau-2",
+            "row": 2,
+            "sourceLabel": "紫微"
+          },
+          {
+            "column": "水二局",
+            "glyph": "寅",
+            "locator": "p12/table/day-03/bureau-2",
+            "row": 3,
+            "sourceLabel": "紫微"
+          },
+          {
+            "column": "水二局",
+            "glyph": "卯",
+            "locator": "p12/table/day-04/bureau-2",
+            "row": 4,
+            "sourceLabel": "紫微"
+          },
+          {
+            "column": "水二局",
+            "glyph": "卯",
+            "locator": "p12/table/day-05/bureau-2",
+            "row": 5,
+            "sourceLabel": "紫微"
+          },
+          {
+            "column": "水二局",
+            "glyph": "辰",
+            "locator": "p12/table/day-06/bureau-2",
+            "row": 6,
+            "sourceLabel": "紫微"
+          },
+          {
+            "column": "水二局",
+            "glyph": "辰",
+            "locator": "p12/table/day-07/bureau-2",
+            "row": 7,
+            "sourceLabel": "紫微"
+          },
+          {
+            "column": "水二局",
+            "glyph": "巳",
+            "locator": "p12/table/day-08/bureau-2",
+            "row": 8,
+            "sourceLabel": "紫微"
+          },
+          {
+            "column": "水二局",
+            "glyph": "巳",
+            "locator": "p12/table/day-09/bureau-2",
+            "row": 9,
+            "sourceLabel": "紫微"
+          },
+          {
+            "column": "水二局",
+            "glyph": "午",
+            "locator": "p12/table/day-10/bureau-2",
+            "row": 10,
+            "sourceLabel": "紫微"
+          },
+          {
+            "column": "水二局",
+            "glyph": "午",
+            "locator": "p12/table/day-11/bureau-2",
+            "row": 11,
+            "sourceLabel": "紫微"
+          },
+          {
+            "column": "水二局",
+            "glyph": "未",
+            "locator": "p12/table/day-12/bureau-2",
+            "row": 12,
+            "sourceLabel": "紫微"
+          },
+          {
+            "column": "水二局",
+            "glyph": "未",
+            "locator": "p12/table/day-13/bureau-2",
+            "row": 13,
+            "sourceLabel": "紫微"
+          },
+          {
+            "column": "水二局",
+            "glyph": "申",
+            "locator": "p12/table/day-14/bureau-2",
+            "row": 14,
+            "sourceLabel": "紫微"
+          },
+          {
+            "column": "水二局",
+            "glyph": "申",
+            "locator": "p12/table/day-15/bureau-2",
+            "row": 15,
+            "sourceLabel": "紫微"
+          },
+          {
+            "column": "水二局",
+            "glyph": "酉",
+            "locator": "p12/table/day-16/bureau-2",
+            "row": 16,
+            "sourceLabel": "紫微"
+          },
+          {
+            "column": "水二局",
+            "glyph": "酉",
+            "locator": "p12/table/day-17/bureau-2",
+            "row": 17,
+            "sourceLabel": "紫微"
+          },
+          {
+            "column": "水二局",
+            "glyph": "戌",
+            "locator": "p12/table/day-18/bureau-2",
+            "row": 18,
+            "sourceLabel": "紫微"
+          },
+          {
+            "column": "水二局",
+            "glyph": "戌",
+            "locator": "p12/table/day-19/bureau-2",
+            "row": 19,
+            "sourceLabel": "紫微"
+          },
+          {
+            "column": "水二局",
+            "glyph": "亥",
+            "locator": "p12/table/day-20/bureau-2",
+            "row": 20,
+            "sourceLabel": "紫微"
+          },
+          {
+            "column": "水二局",
+            "glyph": "亥",
+            "locator": "p12/table/day-21/bureau-2",
+            "row": 21,
+            "sourceLabel": "紫微"
+          },
+          {
+            "column": "水二局",
+            "glyph": "子",
+            "locator": "p12/table/day-22/bureau-2",
+            "row": 22,
+            "sourceLabel": "紫微"
+          },
+          {
+            "column": "水二局",
+            "glyph": "子",
+            "locator": "p12/table/day-23/bureau-2",
+            "row": 23,
+            "sourceLabel": "紫微"
+          },
+          {
+            "column": "水二局",
+            "glyph": "丑",
+            "locator": "p12/table/day-24/bureau-2",
+            "row": 24,
+            "sourceLabel": "紫微"
+          },
+          {
+            "column": "水二局",
+            "glyph": "丑",
+            "locator": "p12/table/day-25/bureau-2",
+            "row": 25,
+            "sourceLabel": "紫微"
+          },
+          {
+            "column": "水二局",
+            "glyph": "寅",
+            "locator": "p12/table/day-26/bureau-2",
+            "row": 26,
+            "sourceLabel": "紫微"
+          },
+          {
+            "column": "水二局",
+            "glyph": "寅",
+            "locator": "p12/table/day-27/bureau-2",
+            "row": 27,
+            "sourceLabel": "紫微"
+          },
+          {
+            "column": "水二局",
+            "glyph": "卯",
+            "locator": "p12/table/day-28/bureau-2",
+            "row": 28,
+            "sourceLabel": "紫微"
+          },
+          {
+            "column": "水二局",
+            "glyph": "卯",
+            "locator": "p12/table/day-29/bureau-2",
+            "row": 29,
+            "sourceLabel": "紫微"
+          },
+          {
+            "column": "水二局",
+            "glyph": "辰",
+            "locator": "p12/table/day-30/bureau-2",
+            "row": 30,
+            "sourceLabel": "紫微"
+          },
+          {
+            "column": "木三局",
+            "glyph": "辰",
+            "locator": "p12/table/day-01/bureau-3",
+            "row": 1,
+            "sourceLabel": "紫微"
+          },
+          {
+            "column": "木三局",
+            "glyph": "丑",
+            "locator": "p12/table/day-02/bureau-3",
+            "row": 2,
+            "sourceLabel": "紫微"
+          },
+          {
+            "column": "木三局",
+            "glyph": "寅",
+            "locator": "p12/table/day-03/bureau-3",
+            "row": 3,
+            "sourceLabel": "紫微"
+          },
+          {
+            "column": "木三局",
+            "glyph": "巳",
+            "locator": "p12/table/day-04/bureau-3",
+            "row": 4,
+            "sourceLabel": "紫微"
+          },
+          {
+            "column": "木三局",
+            "glyph": "寅",
+            "locator": "p12/table/day-05/bureau-3",
+            "row": 5,
+            "sourceLabel": "紫微"
+          },
+          {
+            "column": "木三局",
+            "glyph": "卯",
+            "locator": "p12/table/day-06/bureau-3",
+            "row": 6,
+            "sourceLabel": "紫微"
+          },
+          {
+            "column": "木三局",
+            "glyph": "午",
+            "locator": "p12/table/day-07/bureau-3",
+            "row": 7,
+            "sourceLabel": "紫微"
+          },
+          {
+            "column": "木三局",
+            "glyph": "卯",
+            "locator": "p12/table/day-08/bureau-3",
+            "row": 8,
+            "sourceLabel": "紫微"
+          },
+          {
+            "column": "木三局",
+            "glyph": "辰",
+            "locator": "p12/table/day-09/bureau-3",
+            "row": 9,
+            "sourceLabel": "紫微"
+          },
+          {
+            "column": "木三局",
+            "glyph": "未",
+            "locator": "p12/table/day-10/bureau-3",
+            "row": 10,
+            "sourceLabel": "紫微"
+          },
+          {
+            "column": "木三局",
+            "glyph": "辰",
+            "locator": "p12/table/day-11/bureau-3",
+            "row": 11,
+            "sourceLabel": "紫微"
+          },
+          {
+            "column": "木三局",
+            "glyph": "巳",
+            "locator": "p12/table/day-12/bureau-3",
+            "row": 12,
+            "sourceLabel": "紫微"
+          },
+          {
+            "column": "木三局",
+            "glyph": "申",
+            "locator": "p12/table/day-13/bureau-3",
+            "row": 13,
+            "sourceLabel": "紫微"
+          },
+          {
+            "column": "木三局",
+            "glyph": "巳",
+            "locator": "p12/table/day-14/bureau-3",
+            "row": 14,
+            "sourceLabel": "紫微"
+          },
+          {
+            "column": "木三局",
+            "glyph": "午",
+            "locator": "p12/table/day-15/bureau-3",
+            "row": 15,
+            "sourceLabel": "紫微"
+          },
+          {
+            "column": "木三局",
+            "glyph": "酉",
+            "locator": "p12/table/day-16/bureau-3",
+            "row": 16,
+            "sourceLabel": "紫微"
+          },
+          {
+            "column": "木三局",
+            "glyph": "午",
+            "locator": "p12/table/day-17/bureau-3",
+            "row": 17,
+            "sourceLabel": "紫微"
+          },
+          {
+            "column": "木三局",
+            "glyph": "未",
+            "locator": "p12/table/day-18/bureau-3",
+            "row": 18,
+            "sourceLabel": "紫微"
+          },
+          {
+            "column": "木三局",
+            "glyph": "戌",
+            "locator": "p12/table/day-19/bureau-3",
+            "row": 19,
+            "sourceLabel": "紫微"
+          },
+          {
+            "column": "木三局",
+            "glyph": "未",
+            "locator": "p12/table/day-20/bureau-3",
+            "row": 20,
+            "sourceLabel": "紫微"
+          },
+          {
+            "column": "木三局",
+            "glyph": "申",
+            "locator": "p12/table/day-21/bureau-3",
+            "row": 21,
+            "sourceLabel": "紫微"
+          },
+          {
+            "column": "木三局",
+            "glyph": "亥",
+            "locator": "p12/table/day-22/bureau-3",
+            "row": 22,
+            "sourceLabel": "紫微"
+          },
+          {
+            "column": "木三局",
+            "glyph": "申",
+            "locator": "p12/table/day-23/bureau-3",
+            "row": 23,
+            "sourceLabel": "紫微"
+          },
+          {
+            "column": "木三局",
+            "glyph": "酉",
+            "locator": "p12/table/day-24/bureau-3",
+            "row": 24,
+            "sourceLabel": "紫微"
+          },
+          {
+            "column": "木三局",
+            "glyph": "子",
+            "locator": "p12/table/day-25/bureau-3",
+            "row": 25,
+            "sourceLabel": "紫微"
+          },
+          {
+            "column": "木三局",
+            "glyph": "酉",
+            "locator": "p12/table/day-26/bureau-3",
+            "row": 26,
+            "sourceLabel": "紫微"
+          },
+          {
+            "column": "木三局",
+            "glyph": "戌",
+            "locator": "p12/table/day-27/bureau-3",
+            "row": 27,
+            "sourceLabel": "紫微"
+          },
+          {
+            "column": "木三局",
+            "glyph": "丑",
+            "locator": "p12/table/day-28/bureau-3",
+            "row": 28,
+            "sourceLabel": "紫微"
+          },
+          {
+            "column": "木三局",
+            "glyph": "戌",
+            "locator": "p12/table/day-29/bureau-3",
+            "row": 29,
+            "sourceLabel": "紫微"
+          },
+          {
+            "column": "木三局",
+            "glyph": "亥",
+            "locator": "p12/table/day-30/bureau-3",
+            "row": 30,
+            "sourceLabel": "紫微"
+          },
+          {
+            "column": "金四局",
+            "glyph": "亥",
+            "locator": "p12/table/day-01/bureau-4",
+            "row": 1,
+            "sourceLabel": "紫微"
+          },
+          {
+            "column": "金四局",
+            "glyph": "辰",
+            "locator": "p12/table/day-02/bureau-4",
+            "row": 2,
+            "sourceLabel": "紫微"
+          },
+          {
+            "column": "金四局",
+            "glyph": "丑",
+            "locator": "p12/table/day-03/bureau-4",
+            "row": 3,
+            "sourceLabel": "紫微"
+          },
+          {
+            "column": "金四局",
+            "glyph": "寅",
+            "locator": "p12/table/day-04/bureau-4",
+            "row": 4,
+            "sourceLabel": "紫微"
+          },
+          {
+            "column": "金四局",
+            "glyph": "子",
+            "locator": "p12/table/day-05/bureau-4",
+            "row": 5,
+            "sourceLabel": "紫微"
+          },
+          {
+            "column": "金四局",
+            "glyph": "巳",
+            "locator": "p12/table/day-06/bureau-4",
+            "row": 6,
+            "sourceLabel": "紫微"
+          },
+          {
+            "column": "金四局",
+            "glyph": "寅",
+            "locator": "p12/table/day-07/bureau-4",
+            "row": 7,
+            "sourceLabel": "紫微"
+          },
+          {
+            "column": "金四局",
+            "glyph": "卯",
+            "locator": "p12/table/day-08/bureau-4",
+            "row": 8,
+            "sourceLabel": "紫微"
+          },
+          {
+            "column": "金四局",
+            "glyph": "丑",
+            "locator": "p12/table/day-09/bureau-4",
+            "row": 9,
+            "sourceLabel": "紫微"
+          },
+          {
+            "column": "金四局",
+            "glyph": "午",
+            "locator": "p12/table/day-10/bureau-4",
+            "row": 10,
+            "sourceLabel": "紫微"
+          },
+          {
+            "column": "金四局",
+            "glyph": "卯",
+            "locator": "p12/table/day-11/bureau-4",
+            "row": 11,
+            "sourceLabel": "紫微"
+          },
+          {
+            "column": "金四局",
+            "glyph": "辰",
+            "locator": "p12/table/day-12/bureau-4",
+            "row": 12,
+            "sourceLabel": "紫微"
+          },
+          {
+            "column": "金四局",
+            "glyph": "寅",
+            "locator": "p12/table/day-13/bureau-4",
+            "row": 13,
+            "sourceLabel": "紫微"
+          },
+          {
+            "column": "金四局",
+            "glyph": "未",
+            "locator": "p12/table/day-14/bureau-4",
+            "row": 14,
+            "sourceLabel": "紫微"
+          },
+          {
+            "column": "金四局",
+            "glyph": "辰",
+            "locator": "p12/table/day-15/bureau-4",
+            "row": 15,
+            "sourceLabel": "紫微"
+          },
+          {
+            "column": "金四局",
+            "glyph": "巳",
+            "locator": "p12/table/day-16/bureau-4",
+            "row": 16,
+            "sourceLabel": "紫微"
+          },
+          {
+            "column": "金四局",
+            "glyph": "卯",
+            "locator": "p12/table/day-17/bureau-4",
+            "row": 17,
+            "sourceLabel": "紫微"
+          },
+          {
+            "column": "金四局",
+            "glyph": "申",
+            "locator": "p12/table/day-18/bureau-4",
+            "row": 18,
+            "sourceLabel": "紫微"
+          },
+          {
+            "column": "金四局",
+            "glyph": "巳",
+            "locator": "p12/table/day-19/bureau-4",
+            "row": 19,
+            "sourceLabel": "紫微"
+          },
+          {
+            "column": "金四局",
+            "glyph": "午",
+            "locator": "p12/table/day-20/bureau-4",
+            "row": 20,
+            "sourceLabel": "紫微"
+          },
+          {
+            "column": "金四局",
+            "glyph": "辰",
+            "locator": "p12/table/day-21/bureau-4",
+            "row": 21,
+            "sourceLabel": "紫微"
+          },
+          {
+            "column": "金四局",
+            "glyph": "酉",
+            "locator": "p12/table/day-22/bureau-4",
+            "row": 22,
+            "sourceLabel": "紫微"
+          },
+          {
+            "column": "金四局",
+            "glyph": "午",
+            "locator": "p12/table/day-23/bureau-4",
+            "row": 23,
+            "sourceLabel": "紫微"
+          },
+          {
+            "column": "金四局",
+            "glyph": "未",
+            "locator": "p12/table/day-24/bureau-4",
+            "row": 24,
+            "sourceLabel": "紫微"
+          },
+          {
+            "column": "金四局",
+            "glyph": "巳",
+            "locator": "p12/table/day-25/bureau-4",
+            "row": 25,
+            "sourceLabel": "紫微"
+          },
+          {
+            "column": "金四局",
+            "glyph": "戌",
+            "locator": "p12/table/day-26/bureau-4",
+            "row": 26,
+            "sourceLabel": "紫微"
+          },
+          {
+            "column": "金四局",
+            "glyph": "未",
+            "locator": "p12/table/day-27/bureau-4",
+            "row": 27,
+            "sourceLabel": "紫微"
+          },
+          {
+            "column": "金四局",
+            "glyph": "申",
+            "locator": "p12/table/day-28/bureau-4",
+            "row": 28,
+            "sourceLabel": "紫微"
+          },
+          {
+            "column": "金四局",
+            "glyph": "午",
+            "locator": "p12/table/day-29/bureau-4",
+            "row": 29,
+            "sourceLabel": "紫微"
+          },
+          {
+            "column": "金四局",
+            "glyph": "亥",
+            "locator": "p12/table/day-30/bureau-4",
+            "row": 30,
+            "sourceLabel": "紫微"
+          },
+          {
+            "column": "土五局",
+            "glyph": "午",
+            "locator": "p12/table/day-01/bureau-5",
+            "row": 1,
+            "sourceLabel": "紫微"
+          },
+          {
+            "column": "土五局",
+            "glyph": "亥",
+            "locator": "p12/table/day-02/bureau-5",
+            "row": 2,
+            "sourceLabel": "紫微"
+          },
+          {
+            "column": "土五局",
+            "glyph": "辰",
+            "locator": "p12/table/day-03/bureau-5",
+            "row": 3,
+            "sourceLabel": "紫微"
+          },
+          {
+            "column": "土五局",
+            "glyph": "丑",
+            "locator": "p12/table/day-04/bureau-5",
+            "row": 4,
+            "sourceLabel": "紫微"
+          },
+          {
+            "column": "土五局",
+            "glyph": "寅",
+            "locator": "p12/table/day-05/bureau-5",
+            "row": 5,
+            "sourceLabel": "紫微"
+          },
+          {
+            "column": "土五局",
+            "glyph": "未",
+            "locator": "p12/table/day-06/bureau-5",
+            "row": 6,
+            "sourceLabel": "紫微"
+          },
+          {
+            "column": "土五局",
+            "glyph": "子",
+            "locator": "p12/table/day-07/bureau-5",
+            "row": 7,
+            "sourceLabel": "紫微"
+          },
+          {
+            "column": "土五局",
+            "glyph": "巳",
+            "locator": "p12/table/day-08/bureau-5",
+            "row": 8,
+            "sourceLabel": "紫微"
+          },
+          {
+            "column": "土五局",
+            "glyph": "寅",
+            "locator": "p12/table/day-09/bureau-5",
+            "row": 9,
+            "sourceLabel": "紫微"
+          },
+          {
+            "column": "土五局",
+            "glyph": "卯",
+            "locator": "p12/table/day-10/bureau-5",
+            "row": 10,
+            "sourceLabel": "紫微"
+          },
+          {
+            "column": "土五局",
+            "glyph": "申",
+            "locator": "p12/table/day-11/bureau-5",
+            "row": 11,
+            "sourceLabel": "紫微"
+          },
+          {
+            "column": "土五局",
+            "glyph": "丑",
+            "locator": "p12/table/day-12/bureau-5",
+            "row": 12,
+            "sourceLabel": "紫微"
+          },
+          {
+            "column": "土五局",
+            "glyph": "午",
+            "locator": "p12/table/day-13/bureau-5",
+            "row": 13,
+            "sourceLabel": "紫微"
+          },
+          {
+            "column": "土五局",
+            "glyph": "卯",
+            "locator": "p12/table/day-14/bureau-5",
+            "row": 14,
+            "sourceLabel": "紫微"
+          },
+          {
+            "column": "土五局",
+            "glyph": "辰",
+            "locator": "p12/table/day-15/bureau-5",
+            "row": 15,
+            "sourceLabel": "紫微"
+          },
+          {
+            "column": "土五局",
+            "glyph": "酉",
+            "locator": "p12/table/day-16/bureau-5",
+            "row": 16,
+            "sourceLabel": "紫微"
+          },
+          {
+            "column": "土五局",
+            "glyph": "寅",
+            "locator": "p12/table/day-17/bureau-5",
+            "row": 17,
+            "sourceLabel": "紫微"
+          },
+          {
+            "column": "土五局",
+            "glyph": "未",
+            "locator": "p12/table/day-18/bureau-5",
+            "row": 18,
+            "sourceLabel": "紫微"
+          },
+          {
+            "column": "土五局",
+            "glyph": "辰",
+            "locator": "p12/table/day-19/bureau-5",
+            "row": 19,
+            "sourceLabel": "紫微"
+          },
+          {
+            "column": "土五局",
+            "glyph": "巳",
+            "locator": "p12/table/day-20/bureau-5",
+            "row": 20,
+            "sourceLabel": "紫微"
+          },
+          {
+            "column": "土五局",
+            "glyph": "戌",
+            "locator": "p12/table/day-21/bureau-5",
+            "row": 21,
+            "sourceLabel": "紫微"
+          },
+          {
+            "column": "土五局",
+            "glyph": "卯",
+            "locator": "p12/table/day-22/bureau-5",
+            "row": 22,
+            "sourceLabel": "紫微"
+          },
+          {
+            "column": "土五局",
+            "glyph": "申",
+            "locator": "p12/table/day-23/bureau-5",
+            "row": 23,
+            "sourceLabel": "紫微"
+          },
+          {
+            "column": "土五局",
+            "glyph": "巳",
+            "locator": "p12/table/day-24/bureau-5",
+            "row": 24,
+            "sourceLabel": "紫微"
+          },
+          {
+            "column": "土五局",
+            "glyph": "午",
+            "locator": "p12/table/day-25/bureau-5",
+            "row": 25,
+            "sourceLabel": "紫微"
+          },
+          {
+            "column": "土五局",
+            "glyph": "亥",
+            "locator": "p12/table/day-26/bureau-5",
+            "row": 26,
+            "sourceLabel": "紫微"
+          },
+          {
+            "column": "土五局",
+            "glyph": "辰",
+            "locator": "p12/table/day-27/bureau-5",
+            "row": 27,
+            "sourceLabel": "紫微"
+          },
+          {
+            "column": "土五局",
+            "glyph": "酉",
+            "locator": "p12/table/day-28/bureau-5",
+            "row": 28,
+            "sourceLabel": "紫微"
+          },
+          {
+            "column": "土五局",
+            "glyph": "午",
+            "locator": "p12/table/day-29/bureau-5",
+            "row": 29,
+            "sourceLabel": "紫微"
+          },
+          {
+            "column": "土五局",
+            "glyph": "未",
+            "locator": "p12/table/day-30/bureau-5",
+            "row": 30,
+            "sourceLabel": "紫微"
+          },
+          {
+            "column": "火六局",
+            "glyph": "酉",
+            "locator": "p12/table/day-01/bureau-6",
+            "row": 1,
+            "sourceLabel": "紫微"
+          },
+          {
+            "column": "火六局",
+            "glyph": "午",
+            "locator": "p12/table/day-02/bureau-6",
+            "row": 2,
+            "sourceLabel": "紫微"
+          },
+          {
+            "column": "火六局",
+            "glyph": "亥",
+            "locator": "p12/table/day-03/bureau-6",
+            "row": 3,
+            "sourceLabel": "紫微"
+          },
+          {
+            "column": "火六局",
+            "glyph": "辰",
+            "locator": "p12/table/day-04/bureau-6",
+            "row": 4,
+            "sourceLabel": "紫微"
+          },
+          {
+            "column": "火六局",
+            "glyph": "丑",
+            "locator": "p12/table/day-05/bureau-6",
+            "row": 5,
+            "sourceLabel": "紫微"
+          },
+          {
+            "column": "火六局",
+            "glyph": "寅",
+            "locator": "p12/table/day-06/bureau-6",
+            "row": 6,
+            "sourceLabel": "紫微"
+          },
+          {
+            "column": "火六局",
+            "glyph": "戌",
+            "locator": "p12/table/day-07/bureau-6",
+            "row": 7,
+            "sourceLabel": "紫微"
+          },
+          {
+            "column": "火六局",
+            "glyph": "未",
+            "locator": "p12/table/day-08/bureau-6",
+            "row": 8,
+            "sourceLabel": "紫微"
+          },
+          {
+            "column": "火六局",
+            "glyph": "子",
+            "locator": "p12/table/day-09/bureau-6",
+            "row": 9,
+            "sourceLabel": "紫微"
+          },
+          {
+            "column": "火六局",
+            "glyph": "巳",
+            "locator": "p12/table/day-10/bureau-6",
+            "row": 10,
+            "sourceLabel": "紫微"
+          },
+          {
+            "column": "火六局",
+            "glyph": "寅",
+            "locator": "p12/table/day-11/bureau-6",
+            "row": 11,
+            "sourceLabel": "紫微"
+          },
+          {
+            "column": "火六局",
+            "glyph": "卯",
+            "locator": "p12/table/day-12/bureau-6",
+            "row": 12,
+            "sourceLabel": "紫微"
+          },
+          {
+            "column": "火六局",
+            "glyph": "亥",
+            "locator": "p12/table/day-13/bureau-6",
+            "row": 13,
+            "sourceLabel": "紫微"
+          },
+          {
+            "column": "火六局",
+            "glyph": "申",
+            "locator": "p12/table/day-14/bureau-6",
+            "row": 14,
+            "sourceLabel": "紫微"
+          },
+          {
+            "column": "火六局",
+            "glyph": "丑",
+            "locator": "p12/table/day-15/bureau-6",
+            "row": 15,
+            "sourceLabel": "紫微"
+          },
+          {
+            "column": "火六局",
+            "glyph": "午",
+            "locator": "p12/table/day-16/bureau-6",
+            "row": 16,
+            "sourceLabel": "紫微"
+          },
+          {
+            "column": "火六局",
+            "glyph": "卯",
+            "locator": "p12/table/day-17/bureau-6",
+            "row": 17,
+            "sourceLabel": "紫微"
+          },
+          {
+            "column": "火六局",
+            "glyph": "辰",
+            "locator": "p12/table/day-18/bureau-6",
+            "row": 18,
+            "sourceLabel": "紫微"
+          },
+          {
+            "column": "火六局",
+            "glyph": "子",
+            "locator": "p12/table/day-19/bureau-6",
+            "row": 19,
+            "sourceLabel": "紫微"
+          },
+          {
+            "column": "火六局",
+            "glyph": "酉",
+            "locator": "p12/table/day-20/bureau-6",
+            "row": 20,
+            "sourceLabel": "紫微"
+          },
+          {
+            "column": "火六局",
+            "glyph": "寅",
+            "locator": "p12/table/day-21/bureau-6",
+            "row": 21,
+            "sourceLabel": "紫微"
+          },
+          {
+            "column": "火六局",
+            "glyph": "未",
+            "locator": "p12/table/day-22/bureau-6",
+            "row": 22,
+            "sourceLabel": "紫微"
+          },
+          {
+            "column": "火六局",
+            "glyph": "辰",
+            "locator": "p12/table/day-23/bureau-6",
+            "row": 23,
+            "sourceLabel": "紫微"
+          },
+          {
+            "column": "火六局",
+            "glyph": "巳",
+            "locator": "p12/table/day-24/bureau-6",
+            "row": 24,
+            "sourceLabel": "紫微"
+          },
+          {
+            "column": "火六局",
+            "glyph": "丑",
+            "locator": "p12/table/day-25/bureau-6",
+            "row": 25,
+            "sourceLabel": "紫微"
+          },
+          {
+            "column": "火六局",
+            "glyph": "戌",
+            "locator": "p12/table/day-26/bureau-6",
+            "row": 26,
+            "sourceLabel": "紫微"
+          },
+          {
+            "column": "火六局",
+            "glyph": "卯",
+            "locator": "p12/table/day-27/bureau-6",
+            "row": 27,
+            "sourceLabel": "紫微"
+          },
+          {
+            "column": "火六局",
+            "glyph": "申",
+            "locator": "p12/table/day-28/bureau-6",
+            "row": 28,
+            "sourceLabel": "紫微"
+          },
+          {
+            "column": "火六局",
+            "glyph": "巳",
+            "locator": "p12/table/day-29/bureau-6",
+            "row": 29,
+            "sourceLabel": "紫微"
+          },
+          {
+            "column": "火六局",
+            "glyph": "午",
+            "locator": "p12/table/day-30/bureau-6",
+            "row": 30,
+            "sourceLabel": "紫微"
+          }
+        ],
+        "present": true,
+        "rowHeaders": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29,
+          30
+        ]
+      },
+      "uncertainty": [
+        {
+          "field": "table cell edges",
+          "note": "Grid boundaries are visible; no automatic repair or inferred missing cell is allowed.",
+          "status": "reviewed"
+        }
+      ]
+    }
+  ],
+  "render": {
+    "dpi": 300,
+    "files": [
+      {
+        "file": "p11.png",
+        "pdfPage": 11,
+        "printedPage": "三十一",
+        "sha256": "e10b1b30c7928b2cc8e3afcbf3efec3c8d0cbdc9434233a939677869b8402201",
+        "targetHalf": "left"
+      },
+      {
+        "file": "p12.png",
+        "pdfPage": 12,
+        "printedPage": "三十三",
+        "sha256": "0cc8f8a56ce4b839f300a141f8fe9aa6f035801fda0e7464a3acab0e8af363b1",
+        "targetHalf": "left"
+      }
+    ],
+    "format": "png",
+    "settings": "-f N -l N -png -r 300 -singlefile",
+    "tool": "pdftoppm"
+  },
+  "renderGitInclusion": "forbidden",
+  "reviewer": "B",
+  "schemaVersion": "ziwei-ziwei-star-placement-clean-rule-seed-acceptance-v0-reviewer-b-v0",
+  "source": {
+    "encrypted": false,
+    "pdfPageCount": 219,
+    "pdfPath": "/Users/softie/Downloads/命-南北山人_紫微斗数全书.pdf",
+    "pdfSha256": "4786a94ab454acdabf9716d7c0db4756dbcbde99a88bc45fda254863c1961023"
+  }
+}

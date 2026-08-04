@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "ziwei-ziwei-star-placement-clean-rule-seed-acceptance-v0",
+  "type": "object",
+  "required": ["schemaVersion", "verdictToken", "basisHead", "source", "reviewerB", "discrepancies", "comparison", "acceptance", "artifactIdentity"],
+  "properties": {
+    "schemaVersion": {"const": "ziwei-ziwei-star-placement-clean-rule-seed-acceptance-v0"},
+    "verdictToken": {"enum": ["ziwei_ziwei_star_placement_seed_accepted", "ziwei_ziwei_star_placement_seed_accepted_with_declared_limits", "ziwei_ziwei_star_placement_seed_review_discrepancy", "ziwei_ziwei_star_placement_seed_review_blocked"]},
+    "basisHead": {"type": "string", "pattern": "^[0-9a-f]{40}$"},
+    "source": {"type": "object", "required": ["pdfPath", "pdfSha256", "pdfPageCount", "encrypted", "targetPages", "gitInclusion"]},
+    "reviewerB": {"type": "object", "required": ["reviewer", "blindStatus", "source", "render", "pages", "ocrPolicy"]},
+    "discrepancies": {"type": "object", "required": ["items"]},
+    "comparison": {"type": "object", "required": ["inputCount", "expectedInputCount", "rows", "matchCount", "mismatchCount", "firstDivergence", "branchDistribution"]},
+    "acceptance": {"type": "object", "required": ["sourceTrace", "pilotImmutability", "boundaries"]}
+  },
+  "additionalProperties": true
+}
