@@ -1,0 +1,3359 @@
+{
+  "bureauDistribution": {
+    "2": 30,
+    "3": 30,
+    "4": 30,
+    "5": 30,
+    "6": 30
+  },
+  "dayDistribution": {
+    "1": 5,
+    "2": 5,
+    "3": 5,
+    "4": 5,
+    "5": 5,
+    "6": 5,
+    "7": 5,
+    "8": 5,
+    "9": 5,
+    "10": 5,
+    "11": 5,
+    "12": 5,
+    "13": 5,
+    "14": 5,
+    "15": 5,
+    "16": 5,
+    "17": 5,
+    "18": 5,
+    "19": 5,
+    "20": 5,
+    "21": 5,
+    "22": 5,
+    "23": 5,
+    "24": 5,
+    "25": 5,
+    "26": 5,
+    "27": 5,
+    "28": 5,
+    "29": 5,
+    "30": 5
+  },
+  "firstDivergence": {
+    "rowId": "bureau-2-day-01",
+    "stage": "tianfu"
+  },
+  "rowCount": 150,
+  "rows": [
+    {
+      "input": {
+        "bureauNumber": 2,
+        "lunarDay": 1
+      },
+      "orderingKey": "2:01",
+      "production": {
+        "tianfu": "酉",
+        "ziwei": "丑"
+      },
+      "reviewerAgreement": true,
+      "rowId": "bureau-2-day-01",
+      "source": {
+        "tianfu": "卯",
+        "ziwei": "丑"
+      },
+      "stages": {
+        "firstDivergence": "tianfu",
+        "tianfu": "transform_equivalent_under_rotation_06",
+        "ziwei": "exact_match"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 2,
+        "lunarDay": 2
+      },
+      "orderingKey": "2:02",
+      "production": {
+        "tianfu": "申",
+        "ziwei": "寅"
+      },
+      "reviewerAgreement": true,
+      "rowId": "bureau-2-day-02",
+      "source": {
+        "tianfu": "寅",
+        "ziwei": "寅"
+      },
+      "stages": {
+        "firstDivergence": "tianfu",
+        "tianfu": "transform_equivalent_under_rotation_06",
+        "ziwei": "exact_match"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 2,
+        "lunarDay": 3
+      },
+      "orderingKey": "2:03",
+      "production": {
+        "tianfu": "申",
+        "ziwei": "寅"
+      },
+      "reviewerAgreement": true,
+      "rowId": "bureau-2-day-03",
+      "source": {
+        "tianfu": "寅",
+        "ziwei": "寅"
+      },
+      "stages": {
+        "firstDivergence": "tianfu",
+        "tianfu": "transform_equivalent_under_rotation_06",
+        "ziwei": "exact_match"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 2,
+        "lunarDay": 4
+      },
+      "orderingKey": "2:04",
+      "production": {
+        "tianfu": "未",
+        "ziwei": "卯"
+      },
+      "reviewerAgreement": true,
+      "rowId": "bureau-2-day-04",
+      "source": {
+        "tianfu": "丑",
+        "ziwei": "卯"
+      },
+      "stages": {
+        "firstDivergence": "tianfu",
+        "tianfu": "transform_equivalent_under_rotation_06",
+        "ziwei": "exact_match"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 2,
+        "lunarDay": 5
+      },
+      "orderingKey": "2:05",
+      "production": {
+        "tianfu": "未",
+        "ziwei": "卯"
+      },
+      "reviewerAgreement": true,
+      "rowId": "bureau-2-day-05",
+      "source": {
+        "tianfu": "丑",
+        "ziwei": "卯"
+      },
+      "stages": {
+        "firstDivergence": "tianfu",
+        "tianfu": "transform_equivalent_under_rotation_06",
+        "ziwei": "exact_match"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 2,
+        "lunarDay": 6
+      },
+      "orderingKey": "2:06",
+      "production": {
+        "tianfu": "午",
+        "ziwei": "辰"
+      },
+      "reviewerAgreement": true,
+      "rowId": "bureau-2-day-06",
+      "source": {
+        "tianfu": "子",
+        "ziwei": "辰"
+      },
+      "stages": {
+        "firstDivergence": "tianfu",
+        "tianfu": "transform_equivalent_under_rotation_06",
+        "ziwei": "exact_match"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 2,
+        "lunarDay": 7
+      },
+      "orderingKey": "2:07",
+      "production": {
+        "tianfu": "午",
+        "ziwei": "辰"
+      },
+      "reviewerAgreement": true,
+      "rowId": "bureau-2-day-07",
+      "source": {
+        "tianfu": "子",
+        "ziwei": "辰"
+      },
+      "stages": {
+        "firstDivergence": "tianfu",
+        "tianfu": "transform_equivalent_under_rotation_06",
+        "ziwei": "exact_match"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 2,
+        "lunarDay": 8
+      },
+      "orderingKey": "2:08",
+      "production": {
+        "tianfu": "巳",
+        "ziwei": "巳"
+      },
+      "reviewerAgreement": true,
+      "rowId": "bureau-2-day-08",
+      "source": {
+        "tianfu": "亥",
+        "ziwei": "巳"
+      },
+      "stages": {
+        "firstDivergence": "tianfu",
+        "tianfu": "transform_equivalent_under_rotation_06",
+        "ziwei": "exact_match"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 2,
+        "lunarDay": 9
+      },
+      "orderingKey": "2:09",
+      "production": {
+        "tianfu": "巳",
+        "ziwei": "巳"
+      },
+      "reviewerAgreement": true,
+      "rowId": "bureau-2-day-09",
+      "source": {
+        "tianfu": "亥",
+        "ziwei": "巳"
+      },
+      "stages": {
+        "firstDivergence": "tianfu",
+        "tianfu": "transform_equivalent_under_rotation_06",
+        "ziwei": "exact_match"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 2,
+        "lunarDay": 10
+      },
+      "orderingKey": "2:10",
+      "production": {
+        "tianfu": "辰",
+        "ziwei": "午"
+      },
+      "reviewerAgreement": true,
+      "rowId": "bureau-2-day-10",
+      "source": {
+        "tianfu": "戌",
+        "ziwei": "午"
+      },
+      "stages": {
+        "firstDivergence": "tianfu",
+        "tianfu": "transform_equivalent_under_rotation_06",
+        "ziwei": "exact_match"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 2,
+        "lunarDay": 11
+      },
+      "orderingKey": "2:11",
+      "production": {
+        "tianfu": "辰",
+        "ziwei": "午"
+      },
+      "reviewerAgreement": true,
+      "rowId": "bureau-2-day-11",
+      "source": {
+        "tianfu": "戌",
+        "ziwei": "午"
+      },
+      "stages": {
+        "firstDivergence": "tianfu",
+        "tianfu": "transform_equivalent_under_rotation_06",
+        "ziwei": "exact_match"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 2,
+        "lunarDay": 12
+      },
+      "orderingKey": "2:12",
+      "production": {
+        "tianfu": "卯",
+        "ziwei": "未"
+      },
+      "reviewerAgreement": true,
+      "rowId": "bureau-2-day-12",
+      "source": {
+        "tianfu": "酉",
+        "ziwei": "未"
+      },
+      "stages": {
+        "firstDivergence": "tianfu",
+        "tianfu": "transform_equivalent_under_rotation_06",
+        "ziwei": "exact_match"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 2,
+        "lunarDay": 13
+      },
+      "orderingKey": "2:13",
+      "production": {
+        "tianfu": "卯",
+        "ziwei": "未"
+      },
+      "reviewerAgreement": true,
+      "rowId": "bureau-2-day-13",
+      "source": {
+        "tianfu": "酉",
+        "ziwei": "未"
+      },
+      "stages": {
+        "firstDivergence": "tianfu",
+        "tianfu": "transform_equivalent_under_rotation_06",
+        "ziwei": "exact_match"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 2,
+        "lunarDay": 14
+      },
+      "orderingKey": "2:14",
+      "production": {
+        "tianfu": "寅",
+        "ziwei": "申"
+      },
+      "reviewerAgreement": true,
+      "rowId": "bureau-2-day-14",
+      "source": {
+        "tianfu": "申",
+        "ziwei": "申"
+      },
+      "stages": {
+        "firstDivergence": "tianfu",
+        "tianfu": "transform_equivalent_under_rotation_06",
+        "ziwei": "exact_match"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 2,
+        "lunarDay": 15
+      },
+      "orderingKey": "2:15",
+      "production": {
+        "tianfu": "寅",
+        "ziwei": "申"
+      },
+      "reviewerAgreement": true,
+      "rowId": "bureau-2-day-15",
+      "source": {
+        "tianfu": "申",
+        "ziwei": "申"
+      },
+      "stages": {
+        "firstDivergence": "tianfu",
+        "tianfu": "transform_equivalent_under_rotation_06",
+        "ziwei": "exact_match"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 2,
+        "lunarDay": 16
+      },
+      "orderingKey": "2:16",
+      "production": {
+        "tianfu": "丑",
+        "ziwei": "酉"
+      },
+      "reviewerAgreement": true,
+      "rowId": "bureau-2-day-16",
+      "source": {
+        "tianfu": "未",
+        "ziwei": "酉"
+      },
+      "stages": {
+        "firstDivergence": "tianfu",
+        "tianfu": "transform_equivalent_under_rotation_06",
+        "ziwei": "exact_match"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 2,
+        "lunarDay": 17
+      },
+      "orderingKey": "2:17",
+      "production": {
+        "tianfu": "丑",
+        "ziwei": "酉"
+      },
+      "reviewerAgreement": true,
+      "rowId": "bureau-2-day-17",
+      "source": {
+        "tianfu": "未",
+        "ziwei": "酉"
+      },
+      "stages": {
+        "firstDivergence": "tianfu",
+        "tianfu": "transform_equivalent_under_rotation_06",
+        "ziwei": "exact_match"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 2,
+        "lunarDay": 18
+      },
+      "orderingKey": "2:18",
+      "production": {
+        "tianfu": "子",
+        "ziwei": "戌"
+      },
+      "reviewerAgreement": true,
+      "rowId": "bureau-2-day-18",
+      "source": {
+        "tianfu": "午",
+        "ziwei": "戌"
+      },
+      "stages": {
+        "firstDivergence": "tianfu",
+        "tianfu": "transform_equivalent_under_rotation_06",
+        "ziwei": "exact_match"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 2,
+        "lunarDay": 19
+      },
+      "orderingKey": "2:19",
+      "production": {
+        "tianfu": "子",
+        "ziwei": "戌"
+      },
+      "reviewerAgreement": true,
+      "rowId": "bureau-2-day-19",
+      "source": {
+        "tianfu": "午",
+        "ziwei": "戌"
+      },
+      "stages": {
+        "firstDivergence": "tianfu",
+        "tianfu": "transform_equivalent_under_rotation_06",
+        "ziwei": "exact_match"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 2,
+        "lunarDay": 20
+      },
+      "orderingKey": "2:20",
+      "production": {
+        "tianfu": "亥",
+        "ziwei": "亥"
+      },
+      "reviewerAgreement": true,
+      "rowId": "bureau-2-day-20",
+      "source": {
+        "tianfu": "巳",
+        "ziwei": "亥"
+      },
+      "stages": {
+        "firstDivergence": "tianfu",
+        "tianfu": "transform_equivalent_under_rotation_06",
+        "ziwei": "exact_match"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 2,
+        "lunarDay": 21
+      },
+      "orderingKey": "2:21",
+      "production": {
+        "tianfu": "亥",
+        "ziwei": "亥"
+      },
+      "reviewerAgreement": true,
+      "rowId": "bureau-2-day-21",
+      "source": {
+        "tianfu": "巳",
+        "ziwei": "亥"
+      },
+      "stages": {
+        "firstDivergence": "tianfu",
+        "tianfu": "transform_equivalent_under_rotation_06",
+        "ziwei": "exact_match"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 2,
+        "lunarDay": 22
+      },
+      "orderingKey": "2:22",
+      "production": {
+        "tianfu": "戌",
+        "ziwei": "子"
+      },
+      "reviewerAgreement": true,
+      "rowId": "bureau-2-day-22",
+      "source": {
+        "tianfu": "辰",
+        "ziwei": "子"
+      },
+      "stages": {
+        "firstDivergence": "tianfu",
+        "tianfu": "transform_equivalent_under_rotation_06",
+        "ziwei": "exact_match"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 2,
+        "lunarDay": 23
+      },
+      "orderingKey": "2:23",
+      "production": {
+        "tianfu": "戌",
+        "ziwei": "子"
+      },
+      "reviewerAgreement": true,
+      "rowId": "bureau-2-day-23",
+      "source": {
+        "tianfu": "辰",
+        "ziwei": "子"
+      },
+      "stages": {
+        "firstDivergence": "tianfu",
+        "tianfu": "transform_equivalent_under_rotation_06",
+        "ziwei": "exact_match"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 2,
+        "lunarDay": 24
+      },
+      "orderingKey": "2:24",
+      "production": {
+        "tianfu": "酉",
+        "ziwei": "丑"
+      },
+      "reviewerAgreement": true,
+      "rowId": "bureau-2-day-24",
+      "source": {
+        "tianfu": "卯",
+        "ziwei": "丑"
+      },
+      "stages": {
+        "firstDivergence": "tianfu",
+        "tianfu": "transform_equivalent_under_rotation_06",
+        "ziwei": "exact_match"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 2,
+        "lunarDay": 25
+      },
+      "orderingKey": "2:25",
+      "production": {
+        "tianfu": "酉",
+        "ziwei": "丑"
+      },
+      "reviewerAgreement": true,
+      "rowId": "bureau-2-day-25",
+      "source": {
+        "tianfu": "卯",
+        "ziwei": "丑"
+      },
+      "stages": {
+        "firstDivergence": "tianfu",
+        "tianfu": "transform_equivalent_under_rotation_06",
+        "ziwei": "exact_match"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 2,
+        "lunarDay": 26
+      },
+      "orderingKey": "2:26",
+      "production": {
+        "tianfu": "申",
+        "ziwei": "寅"
+      },
+      "reviewerAgreement": true,
+      "rowId": "bureau-2-day-26",
+      "source": {
+        "tianfu": "寅",
+        "ziwei": "寅"
+      },
+      "stages": {
+        "firstDivergence": "tianfu",
+        "tianfu": "transform_equivalent_under_rotation_06",
+        "ziwei": "exact_match"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 2,
+        "lunarDay": 27
+      },
+      "orderingKey": "2:27",
+      "production": {
+        "tianfu": "申",
+        "ziwei": "寅"
+      },
+      "reviewerAgreement": true,
+      "rowId": "bureau-2-day-27",
+      "source": {
+        "tianfu": "寅",
+        "ziwei": "寅"
+      },
+      "stages": {
+        "firstDivergence": "tianfu",
+        "tianfu": "transform_equivalent_under_rotation_06",
+        "ziwei": "exact_match"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 2,
+        "lunarDay": 28
+      },
+      "orderingKey": "2:28",
+      "production": {
+        "tianfu": "未",
+        "ziwei": "卯"
+      },
+      "reviewerAgreement": true,
+      "rowId": "bureau-2-day-28",
+      "source": {
+        "tianfu": "丑",
+        "ziwei": "卯"
+      },
+      "stages": {
+        "firstDivergence": "tianfu",
+        "tianfu": "transform_equivalent_under_rotation_06",
+        "ziwei": "exact_match"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 2,
+        "lunarDay": 29
+      },
+      "orderingKey": "2:29",
+      "production": {
+        "tianfu": "未",
+        "ziwei": "卯"
+      },
+      "reviewerAgreement": true,
+      "rowId": "bureau-2-day-29",
+      "source": {
+        "tianfu": "丑",
+        "ziwei": "卯"
+      },
+      "stages": {
+        "firstDivergence": "tianfu",
+        "tianfu": "transform_equivalent_under_rotation_06",
+        "ziwei": "exact_match"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 2,
+        "lunarDay": 30
+      },
+      "orderingKey": "2:30",
+      "production": {
+        "tianfu": "午",
+        "ziwei": "辰"
+      },
+      "reviewerAgreement": true,
+      "rowId": "bureau-2-day-30",
+      "source": {
+        "tianfu": "子",
+        "ziwei": "辰"
+      },
+      "stages": {
+        "firstDivergence": "tianfu",
+        "tianfu": "transform_equivalent_under_rotation_06",
+        "ziwei": "exact_match"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 3,
+        "lunarDay": 1
+      },
+      "orderingKey": "3:01",
+      "production": {
+        "tianfu": "午",
+        "ziwei": "辰"
+      },
+      "reviewerAgreement": true,
+      "rowId": "bureau-3-day-01",
+      "source": {
+        "tianfu": "子",
+        "ziwei": "辰"
+      },
+      "stages": {
+        "firstDivergence": "tianfu",
+        "tianfu": "transform_equivalent_under_rotation_06",
+        "ziwei": "exact_match"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 3,
+        "lunarDay": 2
+      },
+      "orderingKey": "3:02",
+      "production": {
+        "tianfu": "酉",
+        "ziwei": "丑"
+      },
+      "reviewerAgreement": true,
+      "rowId": "bureau-3-day-02",
+      "source": {
+        "tianfu": "卯",
+        "ziwei": "丑"
+      },
+      "stages": {
+        "firstDivergence": "tianfu",
+        "tianfu": "transform_equivalent_under_rotation_06",
+        "ziwei": "exact_match"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 3,
+        "lunarDay": 3
+      },
+      "orderingKey": "3:03",
+      "production": {
+        "tianfu": "申",
+        "ziwei": "寅"
+      },
+      "reviewerAgreement": true,
+      "rowId": "bureau-3-day-03",
+      "source": {
+        "tianfu": "寅",
+        "ziwei": "寅"
+      },
+      "stages": {
+        "firstDivergence": "tianfu",
+        "tianfu": "transform_equivalent_under_rotation_06",
+        "ziwei": "exact_match"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 3,
+        "lunarDay": 4
+      },
+      "orderingKey": "3:04",
+      "production": {
+        "tianfu": "巳",
+        "ziwei": "巳"
+      },
+      "reviewerAgreement": true,
+      "rowId": "bureau-3-day-04",
+      "source": {
+        "tianfu": "亥",
+        "ziwei": "巳"
+      },
+      "stages": {
+        "firstDivergence": "tianfu",
+        "tianfu": "transform_equivalent_under_rotation_06",
+        "ziwei": "exact_match"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 3,
+        "lunarDay": 5
+      },
+      "orderingKey": "3:05",
+      "production": {
+        "tianfu": "申",
+        "ziwei": "寅"
+      },
+      "reviewerAgreement": true,
+      "rowId": "bureau-3-day-05",
+      "source": {
+        "tianfu": "寅",
+        "ziwei": "寅"
+      },
+      "stages": {
+        "firstDivergence": "tianfu",
+        "tianfu": "transform_equivalent_under_rotation_06",
+        "ziwei": "exact_match"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 3,
+        "lunarDay": 6
+      },
+      "orderingKey": "3:06",
+      "production": {
+        "tianfu": "未",
+        "ziwei": "卯"
+      },
+      "reviewerAgreement": true,
+      "rowId": "bureau-3-day-06",
+      "source": {
+        "tianfu": "丑",
+        "ziwei": "卯"
+      },
+      "stages": {
+        "firstDivergence": "tianfu",
+        "tianfu": "transform_equivalent_under_rotation_06",
+        "ziwei": "exact_match"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 3,
+        "lunarDay": 7
+      },
+      "orderingKey": "3:07",
+      "production": {
+        "tianfu": "辰",
+        "ziwei": "午"
+      },
+      "reviewerAgreement": true,
+      "rowId": "bureau-3-day-07",
+      "source": {
+        "tianfu": "戌",
+        "ziwei": "午"
+      },
+      "stages": {
+        "firstDivergence": "tianfu",
+        "tianfu": "transform_equivalent_under_rotation_06",
+        "ziwei": "exact_match"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 3,
+        "lunarDay": 8
+      },
+      "orderingKey": "3:08",
+      "production": {
+        "tianfu": "未",
+        "ziwei": "卯"
+      },
+      "reviewerAgreement": true,
+      "rowId": "bureau-3-day-08",
+      "source": {
+        "tianfu": "丑",
+        "ziwei": "卯"
+      },
+      "stages": {
+        "firstDivergence": "tianfu",
+        "tianfu": "transform_equivalent_under_rotation_06",
+        "ziwei": "exact_match"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 3,
+        "lunarDay": 9
+      },
+      "orderingKey": "3:09",
+      "production": {
+        "tianfu": "午",
+        "ziwei": "辰"
+      },
+      "reviewerAgreement": true,
+      "rowId": "bureau-3-day-09",
+      "source": {
+        "tianfu": "子",
+        "ziwei": "辰"
+      },
+      "stages": {
+        "firstDivergence": "tianfu",
+        "tianfu": "transform_equivalent_under_rotation_06",
+        "ziwei": "exact_match"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 3,
+        "lunarDay": 10
+      },
+      "orderingKey": "3:10",
+      "production": {
+        "tianfu": "卯",
+        "ziwei": "未"
+      },
+      "reviewerAgreement": true,
+      "rowId": "bureau-3-day-10",
+      "source": {
+        "tianfu": "酉",
+        "ziwei": "未"
+      },
+      "stages": {
+        "firstDivergence": "tianfu",
+        "tianfu": "transform_equivalent_under_rotation_06",
+        "ziwei": "exact_match"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 3,
+        "lunarDay": 11
+      },
+      "orderingKey": "3:11",
+      "production": {
+        "tianfu": "午",
+        "ziwei": "辰"
+      },
+      "reviewerAgreement": true,
+      "rowId": "bureau-3-day-11",
+      "source": {
+        "tianfu": "子",
+        "ziwei": "辰"
+      },
+      "stages": {
+        "firstDivergence": "tianfu",
+        "tianfu": "transform_equivalent_under_rotation_06",
+        "ziwei": "exact_match"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 3,
+        "lunarDay": 12
+      },
+      "orderingKey": "3:12",
+      "production": {
+        "tianfu": "巳",
+        "ziwei": "巳"
+      },
+      "reviewerAgreement": true,
+      "rowId": "bureau-3-day-12",
+      "source": {
+        "tianfu": "亥",
+        "ziwei": "巳"
+      },
+      "stages": {
+        "firstDivergence": "tianfu",
+        "tianfu": "transform_equivalent_under_rotation_06",
+        "ziwei": "exact_match"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 3,
+        "lunarDay": 13
+      },
+      "orderingKey": "3:13",
+      "production": {
+        "tianfu": "寅",
+        "ziwei": "申"
+      },
+      "reviewerAgreement": true,
+      "rowId": "bureau-3-day-13",
+      "source": {
+        "tianfu": "申",
+        "ziwei": "申"
+      },
+      "stages": {
+        "firstDivergence": "tianfu",
+        "tianfu": "transform_equivalent_under_rotation_06",
+        "ziwei": "exact_match"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 3,
+        "lunarDay": 14
+      },
+      "orderingKey": "3:14",
+      "production": {
+        "tianfu": "巳",
+        "ziwei": "巳"
+      },
+      "reviewerAgreement": true,
+      "rowId": "bureau-3-day-14",
+      "source": {
+        "tianfu": "亥",
+        "ziwei": "巳"
+      },
+      "stages": {
+        "firstDivergence": "tianfu",
+        "tianfu": "transform_equivalent_under_rotation_06",
+        "ziwei": "exact_match"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 3,
+        "lunarDay": 15
+      },
+      "orderingKey": "3:15",
+      "production": {
+        "tianfu": "辰",
+        "ziwei": "午"
+      },
+      "reviewerAgreement": true,
+      "rowId": "bureau-3-day-15",
+      "source": {
+        "tianfu": "戌",
+        "ziwei": "午"
+      },
+      "stages": {
+        "firstDivergence": "tianfu",
+        "tianfu": "transform_equivalent_under_rotation_06",
+        "ziwei": "exact_match"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 3,
+        "lunarDay": 16
+      },
+      "orderingKey": "3:16",
+      "production": {
+        "tianfu": "丑",
+        "ziwei": "酉"
+      },
+      "reviewerAgreement": true,
+      "rowId": "bureau-3-day-16",
+      "source": {
+        "tianfu": "未",
+        "ziwei": "酉"
+      },
+      "stages": {
+        "firstDivergence": "tianfu",
+        "tianfu": "transform_equivalent_under_rotation_06",
+        "ziwei": "exact_match"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 3,
+        "lunarDay": 17
+      },
+      "orderingKey": "3:17",
+      "production": {
+        "tianfu": "辰",
+        "ziwei": "午"
+      },
+      "reviewerAgreement": true,
+      "rowId": "bureau-3-day-17",
+      "source": {
+        "tianfu": "戌",
+        "ziwei": "午"
+      },
+      "stages": {
+        "firstDivergence": "tianfu",
+        "tianfu": "transform_equivalent_under_rotation_06",
+        "ziwei": "exact_match"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 3,
+        "lunarDay": 18
+      },
+      "orderingKey": "3:18",
+      "production": {
+        "tianfu": "卯",
+        "ziwei": "未"
+      },
+      "reviewerAgreement": true,
+      "rowId": "bureau-3-day-18",
+      "source": {
+        "tianfu": "酉",
+        "ziwei": "未"
+      },
+      "stages": {
+        "firstDivergence": "tianfu",
+        "tianfu": "transform_equivalent_under_rotation_06",
+        "ziwei": "exact_match"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 3,
+        "lunarDay": 19
+      },
+      "orderingKey": "3:19",
+      "production": {
+        "tianfu": "子",
+        "ziwei": "戌"
+      },
+      "reviewerAgreement": true,
+      "rowId": "bureau-3-day-19",
+      "source": {
+        "tianfu": "午",
+        "ziwei": "戌"
+      },
+      "stages": {
+        "firstDivergence": "tianfu",
+        "tianfu": "transform_equivalent_under_rotation_06",
+        "ziwei": "exact_match"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 3,
+        "lunarDay": 20
+      },
+      "orderingKey": "3:20",
+      "production": {
+        "tianfu": "卯",
+        "ziwei": "未"
+      },
+      "reviewerAgreement": true,
+      "rowId": "bureau-3-day-20",
+      "source": {
+        "tianfu": "酉",
+        "ziwei": "未"
+      },
+      "stages": {
+        "firstDivergence": "tianfu",
+        "tianfu": "transform_equivalent_under_rotation_06",
+        "ziwei": "exact_match"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 3,
+        "lunarDay": 21
+      },
+      "orderingKey": "3:21",
+      "production": {
+        "tianfu": "寅",
+        "ziwei": "申"
+      },
+      "reviewerAgreement": true,
+      "rowId": "bureau-3-day-21",
+      "source": {
+        "tianfu": "申",
+        "ziwei": "申"
+      },
+      "stages": {
+        "firstDivergence": "tianfu",
+        "tianfu": "transform_equivalent_under_rotation_06",
+        "ziwei": "exact_match"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 3,
+        "lunarDay": 22
+      },
+      "orderingKey": "3:22",
+      "production": {
+        "tianfu": "亥",
+        "ziwei": "亥"
+      },
+      "reviewerAgreement": true,
+      "rowId": "bureau-3-day-22",
+      "source": {
+        "tianfu": "巳",
+        "ziwei": "亥"
+      },
+      "stages": {
+        "firstDivergence": "tianfu",
+        "tianfu": "transform_equivalent_under_rotation_06",
+        "ziwei": "exact_match"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 3,
+        "lunarDay": 23
+      },
+      "orderingKey": "3:23",
+      "production": {
+        "tianfu": "寅",
+        "ziwei": "申"
+      },
+      "reviewerAgreement": true,
+      "rowId": "bureau-3-day-23",
+      "source": {
+        "tianfu": "申",
+        "ziwei": "申"
+      },
+      "stages": {
+        "firstDivergence": "tianfu",
+        "tianfu": "transform_equivalent_under_rotation_06",
+        "ziwei": "exact_match"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 3,
+        "lunarDay": 24
+      },
+      "orderingKey": "3:24",
+      "production": {
+        "tianfu": "丑",
+        "ziwei": "酉"
+      },
+      "reviewerAgreement": true,
+      "rowId": "bureau-3-day-24",
+      "source": {
+        "tianfu": "未",
+        "ziwei": "酉"
+      },
+      "stages": {
+        "firstDivergence": "tianfu",
+        "tianfu": "transform_equivalent_under_rotation_06",
+        "ziwei": "exact_match"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 3,
+        "lunarDay": 25
+      },
+      "orderingKey": "3:25",
+      "production": {
+        "tianfu": "戌",
+        "ziwei": "子"
+      },
+      "reviewerAgreement": true,
+      "rowId": "bureau-3-day-25",
+      "source": {
+        "tianfu": "辰",
+        "ziwei": "子"
+      },
+      "stages": {
+        "firstDivergence": "tianfu",
+        "tianfu": "transform_equivalent_under_rotation_06",
+        "ziwei": "exact_match"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 3,
+        "lunarDay": 26
+      },
+      "orderingKey": "3:26",
+      "production": {
+        "tianfu": "丑",
+        "ziwei": "酉"
+      },
+      "reviewerAgreement": true,
+      "rowId": "bureau-3-day-26",
+      "source": {
+        "tianfu": "未",
+        "ziwei": "酉"
+      },
+      "stages": {
+        "firstDivergence": "tianfu",
+        "tianfu": "transform_equivalent_under_rotation_06",
+        "ziwei": "exact_match"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 3,
+        "lunarDay": 27
+      },
+      "orderingKey": "3:27",
+      "production": {
+        "tianfu": "子",
+        "ziwei": "戌"
+      },
+      "reviewerAgreement": true,
+      "rowId": "bureau-3-day-27",
+      "source": {
+        "tianfu": "午",
+        "ziwei": "戌"
+      },
+      "stages": {
+        "firstDivergence": "tianfu",
+        "tianfu": "transform_equivalent_under_rotation_06",
+        "ziwei": "exact_match"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 3,
+        "lunarDay": 28
+      },
+      "orderingKey": "3:28",
+      "production": {
+        "tianfu": "酉",
+        "ziwei": "丑"
+      },
+      "reviewerAgreement": true,
+      "rowId": "bureau-3-day-28",
+      "source": {
+        "tianfu": "卯",
+        "ziwei": "丑"
+      },
+      "stages": {
+        "firstDivergence": "tianfu",
+        "tianfu": "transform_equivalent_under_rotation_06",
+        "ziwei": "exact_match"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 3,
+        "lunarDay": 29
+      },
+      "orderingKey": "3:29",
+      "production": {
+        "tianfu": "子",
+        "ziwei": "戌"
+      },
+      "reviewerAgreement": true,
+      "rowId": "bureau-3-day-29",
+      "source": {
+        "tianfu": "午",
+        "ziwei": "戌"
+      },
+      "stages": {
+        "firstDivergence": "tianfu",
+        "tianfu": "transform_equivalent_under_rotation_06",
+        "ziwei": "exact_match"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 3,
+        "lunarDay": 30
+      },
+      "orderingKey": "3:30",
+      "production": {
+        "tianfu": "亥",
+        "ziwei": "亥"
+      },
+      "reviewerAgreement": true,
+      "rowId": "bureau-3-day-30",
+      "source": {
+        "tianfu": "巳",
+        "ziwei": "亥"
+      },
+      "stages": {
+        "firstDivergence": "tianfu",
+        "tianfu": "transform_equivalent_under_rotation_06",
+        "ziwei": "exact_match"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 4,
+        "lunarDay": 1
+      },
+      "orderingKey": "4:01",
+      "production": {
+        "tianfu": "亥",
+        "ziwei": "亥"
+      },
+      "reviewerAgreement": true,
+      "rowId": "bureau-4-day-01",
+      "source": {
+        "tianfu": "巳",
+        "ziwei": "亥"
+      },
+      "stages": {
+        "firstDivergence": "tianfu",
+        "tianfu": "transform_equivalent_under_rotation_06",
+        "ziwei": "exact_match"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 4,
+        "lunarDay": 2
+      },
+      "orderingKey": "4:02",
+      "production": {
+        "tianfu": "午",
+        "ziwei": "辰"
+      },
+      "reviewerAgreement": true,
+      "rowId": "bureau-4-day-02",
+      "source": {
+        "tianfu": "子",
+        "ziwei": "辰"
+      },
+      "stages": {
+        "firstDivergence": "tianfu",
+        "tianfu": "transform_equivalent_under_rotation_06",
+        "ziwei": "exact_match"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 4,
+        "lunarDay": 3
+      },
+      "orderingKey": "4:03",
+      "production": {
+        "tianfu": "酉",
+        "ziwei": "丑"
+      },
+      "reviewerAgreement": true,
+      "rowId": "bureau-4-day-03",
+      "source": {
+        "tianfu": "卯",
+        "ziwei": "丑"
+      },
+      "stages": {
+        "firstDivergence": "tianfu",
+        "tianfu": "transform_equivalent_under_rotation_06",
+        "ziwei": "exact_match"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 4,
+        "lunarDay": 4
+      },
+      "orderingKey": "4:04",
+      "production": {
+        "tianfu": "申",
+        "ziwei": "寅"
+      },
+      "reviewerAgreement": true,
+      "rowId": "bureau-4-day-04",
+      "source": {
+        "tianfu": "寅",
+        "ziwei": "寅"
+      },
+      "stages": {
+        "firstDivergence": "tianfu",
+        "tianfu": "transform_equivalent_under_rotation_06",
+        "ziwei": "exact_match"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 4,
+        "lunarDay": 5
+      },
+      "orderingKey": "4:05",
+      "production": {
+        "tianfu": "戌",
+        "ziwei": "子"
+      },
+      "reviewerAgreement": true,
+      "rowId": "bureau-4-day-05",
+      "source": {
+        "tianfu": "辰",
+        "ziwei": "子"
+      },
+      "stages": {
+        "firstDivergence": "tianfu",
+        "tianfu": "transform_equivalent_under_rotation_06",
+        "ziwei": "exact_match"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 4,
+        "lunarDay": 6
+      },
+      "orderingKey": "4:06",
+      "production": {
+        "tianfu": "巳",
+        "ziwei": "巳"
+      },
+      "reviewerAgreement": true,
+      "rowId": "bureau-4-day-06",
+      "source": {
+        "tianfu": "亥",
+        "ziwei": "巳"
+      },
+      "stages": {
+        "firstDivergence": "tianfu",
+        "tianfu": "transform_equivalent_under_rotation_06",
+        "ziwei": "exact_match"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 4,
+        "lunarDay": 7
+      },
+      "orderingKey": "4:07",
+      "production": {
+        "tianfu": "申",
+        "ziwei": "寅"
+      },
+      "reviewerAgreement": true,
+      "rowId": "bureau-4-day-07",
+      "source": {
+        "tianfu": "寅",
+        "ziwei": "寅"
+      },
+      "stages": {
+        "firstDivergence": "tianfu",
+        "tianfu": "transform_equivalent_under_rotation_06",
+        "ziwei": "exact_match"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 4,
+        "lunarDay": 8
+      },
+      "orderingKey": "4:08",
+      "production": {
+        "tianfu": "未",
+        "ziwei": "卯"
+      },
+      "reviewerAgreement": true,
+      "rowId": "bureau-4-day-08",
+      "source": {
+        "tianfu": "丑",
+        "ziwei": "卯"
+      },
+      "stages": {
+        "firstDivergence": "tianfu",
+        "tianfu": "transform_equivalent_under_rotation_06",
+        "ziwei": "exact_match"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 4,
+        "lunarDay": 9
+      },
+      "orderingKey": "4:09",
+      "production": {
+        "tianfu": "酉",
+        "ziwei": "丑"
+      },
+      "reviewerAgreement": true,
+      "rowId": "bureau-4-day-09",
+      "source": {
+        "tianfu": "卯",
+        "ziwei": "丑"
+      },
+      "stages": {
+        "firstDivergence": "tianfu",
+        "tianfu": "transform_equivalent_under_rotation_06",
+        "ziwei": "exact_match"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 4,
+        "lunarDay": 10
+      },
+      "orderingKey": "4:10",
+      "production": {
+        "tianfu": "辰",
+        "ziwei": "午"
+      },
+      "reviewerAgreement": true,
+      "rowId": "bureau-4-day-10",
+      "source": {
+        "tianfu": "戌",
+        "ziwei": "午"
+      },
+      "stages": {
+        "firstDivergence": "tianfu",
+        "tianfu": "transform_equivalent_under_rotation_06",
+        "ziwei": "exact_match"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 4,
+        "lunarDay": 11
+      },
+      "orderingKey": "4:11",
+      "production": {
+        "tianfu": "未",
+        "ziwei": "卯"
+      },
+      "reviewerAgreement": true,
+      "rowId": "bureau-4-day-11",
+      "source": {
+        "tianfu": "丑",
+        "ziwei": "卯"
+      },
+      "stages": {
+        "firstDivergence": "tianfu",
+        "tianfu": "transform_equivalent_under_rotation_06",
+        "ziwei": "exact_match"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 4,
+        "lunarDay": 12
+      },
+      "orderingKey": "4:12",
+      "production": {
+        "tianfu": "午",
+        "ziwei": "辰"
+      },
+      "reviewerAgreement": true,
+      "rowId": "bureau-4-day-12",
+      "source": {
+        "tianfu": "子",
+        "ziwei": "辰"
+      },
+      "stages": {
+        "firstDivergence": "tianfu",
+        "tianfu": "transform_equivalent_under_rotation_06",
+        "ziwei": "exact_match"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 4,
+        "lunarDay": 13
+      },
+      "orderingKey": "4:13",
+      "production": {
+        "tianfu": "申",
+        "ziwei": "寅"
+      },
+      "reviewerAgreement": true,
+      "rowId": "bureau-4-day-13",
+      "source": {
+        "tianfu": "寅",
+        "ziwei": "寅"
+      },
+      "stages": {
+        "firstDivergence": "tianfu",
+        "tianfu": "transform_equivalent_under_rotation_06",
+        "ziwei": "exact_match"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 4,
+        "lunarDay": 14
+      },
+      "orderingKey": "4:14",
+      "production": {
+        "tianfu": "卯",
+        "ziwei": "未"
+      },
+      "reviewerAgreement": true,
+      "rowId": "bureau-4-day-14",
+      "source": {
+        "tianfu": "酉",
+        "ziwei": "未"
+      },
+      "stages": {
+        "firstDivergence": "tianfu",
+        "tianfu": "transform_equivalent_under_rotation_06",
+        "ziwei": "exact_match"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 4,
+        "lunarDay": 15
+      },
+      "orderingKey": "4:15",
+      "production": {
+        "tianfu": "午",
+        "ziwei": "辰"
+      },
+      "reviewerAgreement": true,
+      "rowId": "bureau-4-day-15",
+      "source": {
+        "tianfu": "子",
+        "ziwei": "辰"
+      },
+      "stages": {
+        "firstDivergence": "tianfu",
+        "tianfu": "transform_equivalent_under_rotation_06",
+        "ziwei": "exact_match"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 4,
+        "lunarDay": 16
+      },
+      "orderingKey": "4:16",
+      "production": {
+        "tianfu": "巳",
+        "ziwei": "巳"
+      },
+      "reviewerAgreement": true,
+      "rowId": "bureau-4-day-16",
+      "source": {
+        "tianfu": "亥",
+        "ziwei": "巳"
+      },
+      "stages": {
+        "firstDivergence": "tianfu",
+        "tianfu": "transform_equivalent_under_rotation_06",
+        "ziwei": "exact_match"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 4,
+        "lunarDay": 17
+      },
+      "orderingKey": "4:17",
+      "production": {
+        "tianfu": "未",
+        "ziwei": "卯"
+      },
+      "reviewerAgreement": true,
+      "rowId": "bureau-4-day-17",
+      "source": {
+        "tianfu": "丑",
+        "ziwei": "卯"
+      },
+      "stages": {
+        "firstDivergence": "tianfu",
+        "tianfu": "transform_equivalent_under_rotation_06",
+        "ziwei": "exact_match"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 4,
+        "lunarDay": 18
+      },
+      "orderingKey": "4:18",
+      "production": {
+        "tianfu": "寅",
+        "ziwei": "申"
+      },
+      "reviewerAgreement": true,
+      "rowId": "bureau-4-day-18",
+      "source": {
+        "tianfu": "申",
+        "ziwei": "申"
+      },
+      "stages": {
+        "firstDivergence": "tianfu",
+        "tianfu": "transform_equivalent_under_rotation_06",
+        "ziwei": "exact_match"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 4,
+        "lunarDay": 19
+      },
+      "orderingKey": "4:19",
+      "production": {
+        "tianfu": "巳",
+        "ziwei": "巳"
+      },
+      "reviewerAgreement": true,
+      "rowId": "bureau-4-day-19",
+      "source": {
+        "tianfu": "亥",
+        "ziwei": "巳"
+      },
+      "stages": {
+        "firstDivergence": "tianfu",
+        "tianfu": "transform_equivalent_under_rotation_06",
+        "ziwei": "exact_match"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 4,
+        "lunarDay": 20
+      },
+      "orderingKey": "4:20",
+      "production": {
+        "tianfu": "辰",
+        "ziwei": "午"
+      },
+      "reviewerAgreement": true,
+      "rowId": "bureau-4-day-20",
+      "source": {
+        "tianfu": "戌",
+        "ziwei": "午"
+      },
+      "stages": {
+        "firstDivergence": "tianfu",
+        "tianfu": "transform_equivalent_under_rotation_06",
+        "ziwei": "exact_match"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 4,
+        "lunarDay": 21
+      },
+      "orderingKey": "4:21",
+      "production": {
+        "tianfu": "午",
+        "ziwei": "辰"
+      },
+      "reviewerAgreement": true,
+      "rowId": "bureau-4-day-21",
+      "source": {
+        "tianfu": "子",
+        "ziwei": "辰"
+      },
+      "stages": {
+        "firstDivergence": "tianfu",
+        "tianfu": "transform_equivalent_under_rotation_06",
+        "ziwei": "exact_match"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 4,
+        "lunarDay": 22
+      },
+      "orderingKey": "4:22",
+      "production": {
+        "tianfu": "丑",
+        "ziwei": "酉"
+      },
+      "reviewerAgreement": true,
+      "rowId": "bureau-4-day-22",
+      "source": {
+        "tianfu": "未",
+        "ziwei": "酉"
+      },
+      "stages": {
+        "firstDivergence": "tianfu",
+        "tianfu": "transform_equivalent_under_rotation_06",
+        "ziwei": "exact_match"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 4,
+        "lunarDay": 23
+      },
+      "orderingKey": "4:23",
+      "production": {
+        "tianfu": "辰",
+        "ziwei": "午"
+      },
+      "reviewerAgreement": true,
+      "rowId": "bureau-4-day-23",
+      "source": {
+        "tianfu": "戌",
+        "ziwei": "午"
+      },
+      "stages": {
+        "firstDivergence": "tianfu",
+        "tianfu": "transform_equivalent_under_rotation_06",
+        "ziwei": "exact_match"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 4,
+        "lunarDay": 24
+      },
+      "orderingKey": "4:24",
+      "production": {
+        "tianfu": "卯",
+        "ziwei": "未"
+      },
+      "reviewerAgreement": true,
+      "rowId": "bureau-4-day-24",
+      "source": {
+        "tianfu": "酉",
+        "ziwei": "未"
+      },
+      "stages": {
+        "firstDivergence": "tianfu",
+        "tianfu": "transform_equivalent_under_rotation_06",
+        "ziwei": "exact_match"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 4,
+        "lunarDay": 25
+      },
+      "orderingKey": "4:25",
+      "production": {
+        "tianfu": "巳",
+        "ziwei": "巳"
+      },
+      "reviewerAgreement": true,
+      "rowId": "bureau-4-day-25",
+      "source": {
+        "tianfu": "亥",
+        "ziwei": "巳"
+      },
+      "stages": {
+        "firstDivergence": "tianfu",
+        "tianfu": "transform_equivalent_under_rotation_06",
+        "ziwei": "exact_match"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 4,
+        "lunarDay": 26
+      },
+      "orderingKey": "4:26",
+      "production": {
+        "tianfu": "子",
+        "ziwei": "戌"
+      },
+      "reviewerAgreement": true,
+      "rowId": "bureau-4-day-26",
+      "source": {
+        "tianfu": "午",
+        "ziwei": "戌"
+      },
+      "stages": {
+        "firstDivergence": "tianfu",
+        "tianfu": "transform_equivalent_under_rotation_06",
+        "ziwei": "exact_match"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 4,
+        "lunarDay": 27
+      },
+      "orderingKey": "4:27",
+      "production": {
+        "tianfu": "卯",
+        "ziwei": "未"
+      },
+      "reviewerAgreement": true,
+      "rowId": "bureau-4-day-27",
+      "source": {
+        "tianfu": "酉",
+        "ziwei": "未"
+      },
+      "stages": {
+        "firstDivergence": "tianfu",
+        "tianfu": "transform_equivalent_under_rotation_06",
+        "ziwei": "exact_match"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 4,
+        "lunarDay": 28
+      },
+      "orderingKey": "4:28",
+      "production": {
+        "tianfu": "寅",
+        "ziwei": "申"
+      },
+      "reviewerAgreement": true,
+      "rowId": "bureau-4-day-28",
+      "source": {
+        "tianfu": "申",
+        "ziwei": "申"
+      },
+      "stages": {
+        "firstDivergence": "tianfu",
+        "tianfu": "transform_equivalent_under_rotation_06",
+        "ziwei": "exact_match"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 4,
+        "lunarDay": 29
+      },
+      "orderingKey": "4:29",
+      "production": {
+        "tianfu": "辰",
+        "ziwei": "午"
+      },
+      "reviewerAgreement": true,
+      "rowId": "bureau-4-day-29",
+      "source": {
+        "tianfu": "戌",
+        "ziwei": "午"
+      },
+      "stages": {
+        "firstDivergence": "tianfu",
+        "tianfu": "transform_equivalent_under_rotation_06",
+        "ziwei": "exact_match"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 4,
+        "lunarDay": 30
+      },
+      "orderingKey": "4:30",
+      "production": {
+        "tianfu": "亥",
+        "ziwei": "亥"
+      },
+      "reviewerAgreement": true,
+      "rowId": "bureau-4-day-30",
+      "source": {
+        "tianfu": "巳",
+        "ziwei": "亥"
+      },
+      "stages": {
+        "firstDivergence": "tianfu",
+        "tianfu": "transform_equivalent_under_rotation_06",
+        "ziwei": "exact_match"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 5,
+        "lunarDay": 1
+      },
+      "orderingKey": "5:01",
+      "production": {
+        "tianfu": "辰",
+        "ziwei": "午"
+      },
+      "reviewerAgreement": true,
+      "rowId": "bureau-5-day-01",
+      "source": {
+        "tianfu": "戌",
+        "ziwei": "午"
+      },
+      "stages": {
+        "firstDivergence": "tianfu",
+        "tianfu": "transform_equivalent_under_rotation_06",
+        "ziwei": "exact_match"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 5,
+        "lunarDay": 2
+      },
+      "orderingKey": "5:02",
+      "production": {
+        "tianfu": "亥",
+        "ziwei": "亥"
+      },
+      "reviewerAgreement": true,
+      "rowId": "bureau-5-day-02",
+      "source": {
+        "tianfu": "巳",
+        "ziwei": "亥"
+      },
+      "stages": {
+        "firstDivergence": "tianfu",
+        "tianfu": "transform_equivalent_under_rotation_06",
+        "ziwei": "exact_match"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 5,
+        "lunarDay": 3
+      },
+      "orderingKey": "5:03",
+      "production": {
+        "tianfu": "午",
+        "ziwei": "辰"
+      },
+      "reviewerAgreement": true,
+      "rowId": "bureau-5-day-03",
+      "source": {
+        "tianfu": "子",
+        "ziwei": "辰"
+      },
+      "stages": {
+        "firstDivergence": "tianfu",
+        "tianfu": "transform_equivalent_under_rotation_06",
+        "ziwei": "exact_match"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 5,
+        "lunarDay": 4
+      },
+      "orderingKey": "5:04",
+      "production": {
+        "tianfu": "酉",
+        "ziwei": "丑"
+      },
+      "reviewerAgreement": true,
+      "rowId": "bureau-5-day-04",
+      "source": {
+        "tianfu": "卯",
+        "ziwei": "丑"
+      },
+      "stages": {
+        "firstDivergence": "tianfu",
+        "tianfu": "transform_equivalent_under_rotation_06",
+        "ziwei": "exact_match"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 5,
+        "lunarDay": 5
+      },
+      "orderingKey": "5:05",
+      "production": {
+        "tianfu": "申",
+        "ziwei": "寅"
+      },
+      "reviewerAgreement": true,
+      "rowId": "bureau-5-day-05",
+      "source": {
+        "tianfu": "寅",
+        "ziwei": "寅"
+      },
+      "stages": {
+        "firstDivergence": "tianfu",
+        "tianfu": "transform_equivalent_under_rotation_06",
+        "ziwei": "exact_match"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 5,
+        "lunarDay": 6
+      },
+      "orderingKey": "5:06",
+      "production": {
+        "tianfu": "卯",
+        "ziwei": "未"
+      },
+      "reviewerAgreement": true,
+      "rowId": "bureau-5-day-06",
+      "source": {
+        "tianfu": "酉",
+        "ziwei": "未"
+      },
+      "stages": {
+        "firstDivergence": "tianfu",
+        "tianfu": "transform_equivalent_under_rotation_06",
+        "ziwei": "exact_match"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 5,
+        "lunarDay": 7
+      },
+      "orderingKey": "5:07",
+      "production": {
+        "tianfu": "戌",
+        "ziwei": "子"
+      },
+      "reviewerAgreement": true,
+      "rowId": "bureau-5-day-07",
+      "source": {
+        "tianfu": "辰",
+        "ziwei": "子"
+      },
+      "stages": {
+        "firstDivergence": "tianfu",
+        "tianfu": "transform_equivalent_under_rotation_06",
+        "ziwei": "exact_match"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 5,
+        "lunarDay": 8
+      },
+      "orderingKey": "5:08",
+      "production": {
+        "tianfu": "巳",
+        "ziwei": "巳"
+      },
+      "reviewerAgreement": true,
+      "rowId": "bureau-5-day-08",
+      "source": {
+        "tianfu": "亥",
+        "ziwei": "巳"
+      },
+      "stages": {
+        "firstDivergence": "tianfu",
+        "tianfu": "transform_equivalent_under_rotation_06",
+        "ziwei": "exact_match"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 5,
+        "lunarDay": 9
+      },
+      "orderingKey": "5:09",
+      "production": {
+        "tianfu": "申",
+        "ziwei": "寅"
+      },
+      "reviewerAgreement": true,
+      "rowId": "bureau-5-day-09",
+      "source": {
+        "tianfu": "寅",
+        "ziwei": "寅"
+      },
+      "stages": {
+        "firstDivergence": "tianfu",
+        "tianfu": "transform_equivalent_under_rotation_06",
+        "ziwei": "exact_match"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 5,
+        "lunarDay": 10
+      },
+      "orderingKey": "5:10",
+      "production": {
+        "tianfu": "未",
+        "ziwei": "卯"
+      },
+      "reviewerAgreement": true,
+      "rowId": "bureau-5-day-10",
+      "source": {
+        "tianfu": "丑",
+        "ziwei": "卯"
+      },
+      "stages": {
+        "firstDivergence": "tianfu",
+        "tianfu": "transform_equivalent_under_rotation_06",
+        "ziwei": "exact_match"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 5,
+        "lunarDay": 11
+      },
+      "orderingKey": "5:11",
+      "production": {
+        "tianfu": "寅",
+        "ziwei": "申"
+      },
+      "reviewerAgreement": true,
+      "rowId": "bureau-5-day-11",
+      "source": {
+        "tianfu": "申",
+        "ziwei": "申"
+      },
+      "stages": {
+        "firstDivergence": "tianfu",
+        "tianfu": "transform_equivalent_under_rotation_06",
+        "ziwei": "exact_match"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 5,
+        "lunarDay": 12
+      },
+      "orderingKey": "5:12",
+      "production": {
+        "tianfu": "酉",
+        "ziwei": "丑"
+      },
+      "reviewerAgreement": true,
+      "rowId": "bureau-5-day-12",
+      "source": {
+        "tianfu": "卯",
+        "ziwei": "丑"
+      },
+      "stages": {
+        "firstDivergence": "tianfu",
+        "tianfu": "transform_equivalent_under_rotation_06",
+        "ziwei": "exact_match"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 5,
+        "lunarDay": 13
+      },
+      "orderingKey": "5:13",
+      "production": {
+        "tianfu": "辰",
+        "ziwei": "午"
+      },
+      "reviewerAgreement": true,
+      "rowId": "bureau-5-day-13",
+      "source": {
+        "tianfu": "戌",
+        "ziwei": "午"
+      },
+      "stages": {
+        "firstDivergence": "tianfu",
+        "tianfu": "transform_equivalent_under_rotation_06",
+        "ziwei": "exact_match"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 5,
+        "lunarDay": 14
+      },
+      "orderingKey": "5:14",
+      "production": {
+        "tianfu": "未",
+        "ziwei": "卯"
+      },
+      "reviewerAgreement": true,
+      "rowId": "bureau-5-day-14",
+      "source": {
+        "tianfu": "丑",
+        "ziwei": "卯"
+      },
+      "stages": {
+        "firstDivergence": "tianfu",
+        "tianfu": "transform_equivalent_under_rotation_06",
+        "ziwei": "exact_match"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 5,
+        "lunarDay": 15
+      },
+      "orderingKey": "5:15",
+      "production": {
+        "tianfu": "午",
+        "ziwei": "辰"
+      },
+      "reviewerAgreement": true,
+      "rowId": "bureau-5-day-15",
+      "source": {
+        "tianfu": "子",
+        "ziwei": "辰"
+      },
+      "stages": {
+        "firstDivergence": "tianfu",
+        "tianfu": "transform_equivalent_under_rotation_06",
+        "ziwei": "exact_match"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 5,
+        "lunarDay": 16
+      },
+      "orderingKey": "5:16",
+      "production": {
+        "tianfu": "丑",
+        "ziwei": "酉"
+      },
+      "reviewerAgreement": true,
+      "rowId": "bureau-5-day-16",
+      "source": {
+        "tianfu": "未",
+        "ziwei": "酉"
+      },
+      "stages": {
+        "firstDivergence": "tianfu",
+        "tianfu": "transform_equivalent_under_rotation_06",
+        "ziwei": "exact_match"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 5,
+        "lunarDay": 17
+      },
+      "orderingKey": "5:17",
+      "production": {
+        "tianfu": "申",
+        "ziwei": "寅"
+      },
+      "reviewerAgreement": true,
+      "rowId": "bureau-5-day-17",
+      "source": {
+        "tianfu": "寅",
+        "ziwei": "寅"
+      },
+      "stages": {
+        "firstDivergence": "tianfu",
+        "tianfu": "transform_equivalent_under_rotation_06",
+        "ziwei": "exact_match"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 5,
+        "lunarDay": 18
+      },
+      "orderingKey": "5:18",
+      "production": {
+        "tianfu": "卯",
+        "ziwei": "未"
+      },
+      "reviewerAgreement": true,
+      "rowId": "bureau-5-day-18",
+      "source": {
+        "tianfu": "酉",
+        "ziwei": "未"
+      },
+      "stages": {
+        "firstDivergence": "tianfu",
+        "tianfu": "transform_equivalent_under_rotation_06",
+        "ziwei": "exact_match"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 5,
+        "lunarDay": 19
+      },
+      "orderingKey": "5:19",
+      "production": {
+        "tianfu": "午",
+        "ziwei": "辰"
+      },
+      "reviewerAgreement": true,
+      "rowId": "bureau-5-day-19",
+      "source": {
+        "tianfu": "子",
+        "ziwei": "辰"
+      },
+      "stages": {
+        "firstDivergence": "tianfu",
+        "tianfu": "transform_equivalent_under_rotation_06",
+        "ziwei": "exact_match"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 5,
+        "lunarDay": 20
+      },
+      "orderingKey": "5:20",
+      "production": {
+        "tianfu": "巳",
+        "ziwei": "巳"
+      },
+      "reviewerAgreement": true,
+      "rowId": "bureau-5-day-20",
+      "source": {
+        "tianfu": "亥",
+        "ziwei": "巳"
+      },
+      "stages": {
+        "firstDivergence": "tianfu",
+        "tianfu": "transform_equivalent_under_rotation_06",
+        "ziwei": "exact_match"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 5,
+        "lunarDay": 21
+      },
+      "orderingKey": "5:21",
+      "production": {
+        "tianfu": "子",
+        "ziwei": "戌"
+      },
+      "reviewerAgreement": true,
+      "rowId": "bureau-5-day-21",
+      "source": {
+        "tianfu": "午",
+        "ziwei": "戌"
+      },
+      "stages": {
+        "firstDivergence": "tianfu",
+        "tianfu": "transform_equivalent_under_rotation_06",
+        "ziwei": "exact_match"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 5,
+        "lunarDay": 22
+      },
+      "orderingKey": "5:22",
+      "production": {
+        "tianfu": "未",
+        "ziwei": "卯"
+      },
+      "reviewerAgreement": true,
+      "rowId": "bureau-5-day-22",
+      "source": {
+        "tianfu": "丑",
+        "ziwei": "卯"
+      },
+      "stages": {
+        "firstDivergence": "tianfu",
+        "tianfu": "transform_equivalent_under_rotation_06",
+        "ziwei": "exact_match"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 5,
+        "lunarDay": 23
+      },
+      "orderingKey": "5:23",
+      "production": {
+        "tianfu": "寅",
+        "ziwei": "申"
+      },
+      "reviewerAgreement": true,
+      "rowId": "bureau-5-day-23",
+      "source": {
+        "tianfu": "申",
+        "ziwei": "申"
+      },
+      "stages": {
+        "firstDivergence": "tianfu",
+        "tianfu": "transform_equivalent_under_rotation_06",
+        "ziwei": "exact_match"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 5,
+        "lunarDay": 24
+      },
+      "orderingKey": "5:24",
+      "production": {
+        "tianfu": "巳",
+        "ziwei": "巳"
+      },
+      "reviewerAgreement": true,
+      "rowId": "bureau-5-day-24",
+      "source": {
+        "tianfu": "亥",
+        "ziwei": "巳"
+      },
+      "stages": {
+        "firstDivergence": "tianfu",
+        "tianfu": "transform_equivalent_under_rotation_06",
+        "ziwei": "exact_match"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 5,
+        "lunarDay": 25
+      },
+      "orderingKey": "5:25",
+      "production": {
+        "tianfu": "辰",
+        "ziwei": "午"
+      },
+      "reviewerAgreement": true,
+      "rowId": "bureau-5-day-25",
+      "source": {
+        "tianfu": "戌",
+        "ziwei": "午"
+      },
+      "stages": {
+        "firstDivergence": "tianfu",
+        "tianfu": "transform_equivalent_under_rotation_06",
+        "ziwei": "exact_match"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 5,
+        "lunarDay": 26
+      },
+      "orderingKey": "5:26",
+      "production": {
+        "tianfu": "亥",
+        "ziwei": "亥"
+      },
+      "reviewerAgreement": true,
+      "rowId": "bureau-5-day-26",
+      "source": {
+        "tianfu": "巳",
+        "ziwei": "亥"
+      },
+      "stages": {
+        "firstDivergence": "tianfu",
+        "tianfu": "transform_equivalent_under_rotation_06",
+        "ziwei": "exact_match"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 5,
+        "lunarDay": 27
+      },
+      "orderingKey": "5:27",
+      "production": {
+        "tianfu": "午",
+        "ziwei": "辰"
+      },
+      "reviewerAgreement": true,
+      "rowId": "bureau-5-day-27",
+      "source": {
+        "tianfu": "子",
+        "ziwei": "辰"
+      },
+      "stages": {
+        "firstDivergence": "tianfu",
+        "tianfu": "transform_equivalent_under_rotation_06",
+        "ziwei": "exact_match"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 5,
+        "lunarDay": 28
+      },
+      "orderingKey": "5:28",
+      "production": {
+        "tianfu": "丑",
+        "ziwei": "酉"
+      },
+      "reviewerAgreement": true,
+      "rowId": "bureau-5-day-28",
+      "source": {
+        "tianfu": "未",
+        "ziwei": "酉"
+      },
+      "stages": {
+        "firstDivergence": "tianfu",
+        "tianfu": "transform_equivalent_under_rotation_06",
+        "ziwei": "exact_match"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 5,
+        "lunarDay": 29
+      },
+      "orderingKey": "5:29",
+      "production": {
+        "tianfu": "辰",
+        "ziwei": "午"
+      },
+      "reviewerAgreement": true,
+      "rowId": "bureau-5-day-29",
+      "source": {
+        "tianfu": "戌",
+        "ziwei": "午"
+      },
+      "stages": {
+        "firstDivergence": "tianfu",
+        "tianfu": "transform_equivalent_under_rotation_06",
+        "ziwei": "exact_match"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 5,
+        "lunarDay": 30
+      },
+      "orderingKey": "5:30",
+      "production": {
+        "tianfu": "卯",
+        "ziwei": "未"
+      },
+      "reviewerAgreement": true,
+      "rowId": "bureau-5-day-30",
+      "source": {
+        "tianfu": "酉",
+        "ziwei": "未"
+      },
+      "stages": {
+        "firstDivergence": "tianfu",
+        "tianfu": "transform_equivalent_under_rotation_06",
+        "ziwei": "exact_match"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 6,
+        "lunarDay": 1
+      },
+      "orderingKey": "6:01",
+      "production": {
+        "tianfu": "丑",
+        "ziwei": "酉"
+      },
+      "reviewerAgreement": true,
+      "rowId": "bureau-6-day-01",
+      "source": {
+        "tianfu": "未",
+        "ziwei": "酉"
+      },
+      "stages": {
+        "firstDivergence": "tianfu",
+        "tianfu": "transform_equivalent_under_rotation_06",
+        "ziwei": "exact_match"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 6,
+        "lunarDay": 2
+      },
+      "orderingKey": "6:02",
+      "production": {
+        "tianfu": "辰",
+        "ziwei": "午"
+      },
+      "reviewerAgreement": true,
+      "rowId": "bureau-6-day-02",
+      "source": {
+        "tianfu": "戌",
+        "ziwei": "午"
+      },
+      "stages": {
+        "firstDivergence": "tianfu",
+        "tianfu": "transform_equivalent_under_rotation_06",
+        "ziwei": "exact_match"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 6,
+        "lunarDay": 3
+      },
+      "orderingKey": "6:03",
+      "production": {
+        "tianfu": "亥",
+        "ziwei": "亥"
+      },
+      "reviewerAgreement": true,
+      "rowId": "bureau-6-day-03",
+      "source": {
+        "tianfu": "巳",
+        "ziwei": "亥"
+      },
+      "stages": {
+        "firstDivergence": "tianfu",
+        "tianfu": "transform_equivalent_under_rotation_06",
+        "ziwei": "exact_match"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 6,
+        "lunarDay": 4
+      },
+      "orderingKey": "6:04",
+      "production": {
+        "tianfu": "午",
+        "ziwei": "辰"
+      },
+      "reviewerAgreement": true,
+      "rowId": "bureau-6-day-04",
+      "source": {
+        "tianfu": "子",
+        "ziwei": "辰"
+      },
+      "stages": {
+        "firstDivergence": "tianfu",
+        "tianfu": "transform_equivalent_under_rotation_06",
+        "ziwei": "exact_match"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 6,
+        "lunarDay": 5
+      },
+      "orderingKey": "6:05",
+      "production": {
+        "tianfu": "酉",
+        "ziwei": "丑"
+      },
+      "reviewerAgreement": true,
+      "rowId": "bureau-6-day-05",
+      "source": {
+        "tianfu": "卯",
+        "ziwei": "丑"
+      },
+      "stages": {
+        "firstDivergence": "tianfu",
+        "tianfu": "transform_equivalent_under_rotation_06",
+        "ziwei": "exact_match"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 6,
+        "lunarDay": 6
+      },
+      "orderingKey": "6:06",
+      "production": {
+        "tianfu": "申",
+        "ziwei": "寅"
+      },
+      "reviewerAgreement": true,
+      "rowId": "bureau-6-day-06",
+      "source": {
+        "tianfu": "寅",
+        "ziwei": "寅"
+      },
+      "stages": {
+        "firstDivergence": "tianfu",
+        "tianfu": "transform_equivalent_under_rotation_06",
+        "ziwei": "exact_match"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 6,
+        "lunarDay": 7
+      },
+      "orderingKey": "6:07",
+      "production": {
+        "tianfu": "子",
+        "ziwei": "戌"
+      },
+      "reviewerAgreement": true,
+      "rowId": "bureau-6-day-07",
+      "source": {
+        "tianfu": "午",
+        "ziwei": "戌"
+      },
+      "stages": {
+        "firstDivergence": "tianfu",
+        "tianfu": "transform_equivalent_under_rotation_06",
+        "ziwei": "exact_match"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 6,
+        "lunarDay": 8
+      },
+      "orderingKey": "6:08",
+      "production": {
+        "tianfu": "卯",
+        "ziwei": "未"
+      },
+      "reviewerAgreement": true,
+      "rowId": "bureau-6-day-08",
+      "source": {
+        "tianfu": "酉",
+        "ziwei": "未"
+      },
+      "stages": {
+        "firstDivergence": "tianfu",
+        "tianfu": "transform_equivalent_under_rotation_06",
+        "ziwei": "exact_match"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 6,
+        "lunarDay": 9
+      },
+      "orderingKey": "6:09",
+      "production": {
+        "tianfu": "戌",
+        "ziwei": "子"
+      },
+      "reviewerAgreement": true,
+      "rowId": "bureau-6-day-09",
+      "source": {
+        "tianfu": "辰",
+        "ziwei": "子"
+      },
+      "stages": {
+        "firstDivergence": "tianfu",
+        "tianfu": "transform_equivalent_under_rotation_06",
+        "ziwei": "exact_match"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 6,
+        "lunarDay": 10
+      },
+      "orderingKey": "6:10",
+      "production": {
+        "tianfu": "巳",
+        "ziwei": "巳"
+      },
+      "reviewerAgreement": true,
+      "rowId": "bureau-6-day-10",
+      "source": {
+        "tianfu": "亥",
+        "ziwei": "巳"
+      },
+      "stages": {
+        "firstDivergence": "tianfu",
+        "tianfu": "transform_equivalent_under_rotation_06",
+        "ziwei": "exact_match"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 6,
+        "lunarDay": 11
+      },
+      "orderingKey": "6:11",
+      "production": {
+        "tianfu": "申",
+        "ziwei": "寅"
+      },
+      "reviewerAgreement": true,
+      "rowId": "bureau-6-day-11",
+      "source": {
+        "tianfu": "寅",
+        "ziwei": "寅"
+      },
+      "stages": {
+        "firstDivergence": "tianfu",
+        "tianfu": "transform_equivalent_under_rotation_06",
+        "ziwei": "exact_match"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 6,
+        "lunarDay": 12
+      },
+      "orderingKey": "6:12",
+      "production": {
+        "tianfu": "未",
+        "ziwei": "卯"
+      },
+      "reviewerAgreement": true,
+      "rowId": "bureau-6-day-12",
+      "source": {
+        "tianfu": "丑",
+        "ziwei": "卯"
+      },
+      "stages": {
+        "firstDivergence": "tianfu",
+        "tianfu": "transform_equivalent_under_rotation_06",
+        "ziwei": "exact_match"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 6,
+        "lunarDay": 13
+      },
+      "orderingKey": "6:13",
+      "production": {
+        "tianfu": "亥",
+        "ziwei": "亥"
+      },
+      "reviewerAgreement": true,
+      "rowId": "bureau-6-day-13",
+      "source": {
+        "tianfu": "巳",
+        "ziwei": "亥"
+      },
+      "stages": {
+        "firstDivergence": "tianfu",
+        "tianfu": "transform_equivalent_under_rotation_06",
+        "ziwei": "exact_match"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 6,
+        "lunarDay": 14
+      },
+      "orderingKey": "6:14",
+      "production": {
+        "tianfu": "寅",
+        "ziwei": "申"
+      },
+      "reviewerAgreement": true,
+      "rowId": "bureau-6-day-14",
+      "source": {
+        "tianfu": "申",
+        "ziwei": "申"
+      },
+      "stages": {
+        "firstDivergence": "tianfu",
+        "tianfu": "transform_equivalent_under_rotation_06",
+        "ziwei": "exact_match"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 6,
+        "lunarDay": 15
+      },
+      "orderingKey": "6:15",
+      "production": {
+        "tianfu": "酉",
+        "ziwei": "丑"
+      },
+      "reviewerAgreement": true,
+      "rowId": "bureau-6-day-15",
+      "source": {
+        "tianfu": "卯",
+        "ziwei": "丑"
+      },
+      "stages": {
+        "firstDivergence": "tianfu",
+        "tianfu": "transform_equivalent_under_rotation_06",
+        "ziwei": "exact_match"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 6,
+        "lunarDay": 16
+      },
+      "orderingKey": "6:16",
+      "production": {
+        "tianfu": "辰",
+        "ziwei": "午"
+      },
+      "reviewerAgreement": true,
+      "rowId": "bureau-6-day-16",
+      "source": {
+        "tianfu": "戌",
+        "ziwei": "午"
+      },
+      "stages": {
+        "firstDivergence": "tianfu",
+        "tianfu": "transform_equivalent_under_rotation_06",
+        "ziwei": "exact_match"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 6,
+        "lunarDay": 17
+      },
+      "orderingKey": "6:17",
+      "production": {
+        "tianfu": "未",
+        "ziwei": "卯"
+      },
+      "reviewerAgreement": true,
+      "rowId": "bureau-6-day-17",
+      "source": {
+        "tianfu": "丑",
+        "ziwei": "卯"
+      },
+      "stages": {
+        "firstDivergence": "tianfu",
+        "tianfu": "transform_equivalent_under_rotation_06",
+        "ziwei": "exact_match"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 6,
+        "lunarDay": 18
+      },
+      "orderingKey": "6:18",
+      "production": {
+        "tianfu": "午",
+        "ziwei": "辰"
+      },
+      "reviewerAgreement": true,
+      "rowId": "bureau-6-day-18",
+      "source": {
+        "tianfu": "子",
+        "ziwei": "辰"
+      },
+      "stages": {
+        "firstDivergence": "tianfu",
+        "tianfu": "transform_equivalent_under_rotation_06",
+        "ziwei": "exact_match"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 6,
+        "lunarDay": 19
+      },
+      "orderingKey": "6:19",
+      "production": {
+        "tianfu": "戌",
+        "ziwei": "子"
+      },
+      "reviewerAgreement": true,
+      "rowId": "bureau-6-day-19",
+      "source": {
+        "tianfu": "辰",
+        "ziwei": "子"
+      },
+      "stages": {
+        "firstDivergence": "tianfu",
+        "tianfu": "transform_equivalent_under_rotation_06",
+        "ziwei": "exact_match"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 6,
+        "lunarDay": 20
+      },
+      "orderingKey": "6:20",
+      "production": {
+        "tianfu": "丑",
+        "ziwei": "酉"
+      },
+      "reviewerAgreement": true,
+      "rowId": "bureau-6-day-20",
+      "source": {
+        "tianfu": "未",
+        "ziwei": "酉"
+      },
+      "stages": {
+        "firstDivergence": "tianfu",
+        "tianfu": "transform_equivalent_under_rotation_06",
+        "ziwei": "exact_match"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 6,
+        "lunarDay": 21
+      },
+      "orderingKey": "6:21",
+      "production": {
+        "tianfu": "申",
+        "ziwei": "寅"
+      },
+      "reviewerAgreement": true,
+      "rowId": "bureau-6-day-21",
+      "source": {
+        "tianfu": "寅",
+        "ziwei": "寅"
+      },
+      "stages": {
+        "firstDivergence": "tianfu",
+        "tianfu": "transform_equivalent_under_rotation_06",
+        "ziwei": "exact_match"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 6,
+        "lunarDay": 22
+      },
+      "orderingKey": "6:22",
+      "production": {
+        "tianfu": "卯",
+        "ziwei": "未"
+      },
+      "reviewerAgreement": true,
+      "rowId": "bureau-6-day-22",
+      "source": {
+        "tianfu": "酉",
+        "ziwei": "未"
+      },
+      "stages": {
+        "firstDivergence": "tianfu",
+        "tianfu": "transform_equivalent_under_rotation_06",
+        "ziwei": "exact_match"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 6,
+        "lunarDay": 23
+      },
+      "orderingKey": "6:23",
+      "production": {
+        "tianfu": "午",
+        "ziwei": "辰"
+      },
+      "reviewerAgreement": true,
+      "rowId": "bureau-6-day-23",
+      "source": {
+        "tianfu": "子",
+        "ziwei": "辰"
+      },
+      "stages": {
+        "firstDivergence": "tianfu",
+        "tianfu": "transform_equivalent_under_rotation_06",
+        "ziwei": "exact_match"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 6,
+        "lunarDay": 24
+      },
+      "orderingKey": "6:24",
+      "production": {
+        "tianfu": "巳",
+        "ziwei": "巳"
+      },
+      "reviewerAgreement": true,
+      "rowId": "bureau-6-day-24",
+      "source": {
+        "tianfu": "亥",
+        "ziwei": "巳"
+      },
+      "stages": {
+        "firstDivergence": "tianfu",
+        "tianfu": "transform_equivalent_under_rotation_06",
+        "ziwei": "exact_match"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 6,
+        "lunarDay": 25
+      },
+      "orderingKey": "6:25",
+      "production": {
+        "tianfu": "酉",
+        "ziwei": "丑"
+      },
+      "reviewerAgreement": true,
+      "rowId": "bureau-6-day-25",
+      "source": {
+        "tianfu": "卯",
+        "ziwei": "丑"
+      },
+      "stages": {
+        "firstDivergence": "tianfu",
+        "tianfu": "transform_equivalent_under_rotation_06",
+        "ziwei": "exact_match"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 6,
+        "lunarDay": 26
+      },
+      "orderingKey": "6:26",
+      "production": {
+        "tianfu": "子",
+        "ziwei": "戌"
+      },
+      "reviewerAgreement": true,
+      "rowId": "bureau-6-day-26",
+      "source": {
+        "tianfu": "午",
+        "ziwei": "戌"
+      },
+      "stages": {
+        "firstDivergence": "tianfu",
+        "tianfu": "transform_equivalent_under_rotation_06",
+        "ziwei": "exact_match"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 6,
+        "lunarDay": 27
+      },
+      "orderingKey": "6:27",
+      "production": {
+        "tianfu": "未",
+        "ziwei": "卯"
+      },
+      "reviewerAgreement": true,
+      "rowId": "bureau-6-day-27",
+      "source": {
+        "tianfu": "丑",
+        "ziwei": "卯"
+      },
+      "stages": {
+        "firstDivergence": "tianfu",
+        "tianfu": "transform_equivalent_under_rotation_06",
+        "ziwei": "exact_match"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 6,
+        "lunarDay": 28
+      },
+      "orderingKey": "6:28",
+      "production": {
+        "tianfu": "寅",
+        "ziwei": "申"
+      },
+      "reviewerAgreement": true,
+      "rowId": "bureau-6-day-28",
+      "source": {
+        "tianfu": "申",
+        "ziwei": "申"
+      },
+      "stages": {
+        "firstDivergence": "tianfu",
+        "tianfu": "transform_equivalent_under_rotation_06",
+        "ziwei": "exact_match"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 6,
+        "lunarDay": 29
+      },
+      "orderingKey": "6:29",
+      "production": {
+        "tianfu": "巳",
+        "ziwei": "巳"
+      },
+      "reviewerAgreement": true,
+      "rowId": "bureau-6-day-29",
+      "source": {
+        "tianfu": "亥",
+        "ziwei": "巳"
+      },
+      "stages": {
+        "firstDivergence": "tianfu",
+        "tianfu": "transform_equivalent_under_rotation_06",
+        "ziwei": "exact_match"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 6,
+        "lunarDay": 30
+      },
+      "orderingKey": "6:30",
+      "production": {
+        "tianfu": "辰",
+        "ziwei": "午"
+      },
+      "reviewerAgreement": true,
+      "rowId": "bureau-6-day-30",
+      "source": {
+        "tianfu": "戌",
+        "ziwei": "午"
+      },
+      "stages": {
+        "firstDivergence": "tianfu",
+        "tianfu": "transform_equivalent_under_rotation_06",
+        "ziwei": "exact_match"
+      }
+    }
+  ],
+  "stageCounts": {
+    "tianfu": {
+      "exactMatch": 0,
+      "semanticDiscrepancy": 0,
+      "transformEquivalent": 150
+    },
+    "ziwei": {
+      "exactMatch": 150,
+      "semanticDiscrepancy": 0
+    }
+  }
+}

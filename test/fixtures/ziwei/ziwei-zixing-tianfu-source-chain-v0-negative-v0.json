@@ -1,0 +1,5 @@
+{
+  "schemaVersion": "ziwei-zixing-tianfu-source-chain-negative-v0",
+  "purpose": "Fail-closed mutation inventory for source-only 安紫微 -> 安天府 chain evidence.",
+  "mutations": ["source PDF/render/crop hash", "reviewer row and source value", "150-row count/distribution", "first divergence", "transform coverage/residual", "production value", "prior baseline", "status promotion", "immutable hash", "nondeterministic ID"]
+}

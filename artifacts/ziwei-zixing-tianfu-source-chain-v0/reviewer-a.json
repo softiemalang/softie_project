@@ -1,0 +1,5323 @@
+{
+  "generatedFrom": [
+    "p11",
+    "p12"
+  ],
+  "rows": [
+    {
+      "input": {
+        "bureauNumber": 2,
+        "lunarDay": 1,
+        "orderingKey": "2:01",
+        "rowId": "bureau-2-day-01",
+        "source": {
+          "intermediate": {
+            "baseBranch": "寅",
+            "branchIndex": 1,
+            "direction": "reverse",
+            "quotient": 1,
+            "remainder": 1,
+            "signedRemainder": -1
+          },
+          "reviewer": "A",
+          "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+          "ziwei": "丑"
+        }
+      },
+      "rowId": "bureau-2-day-01",
+      "source": {
+        "intermediate": {
+          "baseBranch": "寅",
+          "branchIndex": 1,
+          "direction": "reverse",
+          "quotient": 1,
+          "remainder": 1,
+          "signedRemainder": -1
+        },
+        "reviewer": "A",
+        "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+        "ziwei": "丑"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 2,
+        "lunarDay": 2,
+        "orderingKey": "2:02",
+        "rowId": "bureau-2-day-02",
+        "source": {
+          "intermediate": {
+            "baseBranch": "寅",
+            "branchIndex": 2,
+            "direction": "none",
+            "quotient": 1,
+            "remainder": 0,
+            "signedRemainder": 0
+          },
+          "reviewer": "A",
+          "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+          "ziwei": "寅"
+        }
+      },
+      "rowId": "bureau-2-day-02",
+      "source": {
+        "intermediate": {
+          "baseBranch": "寅",
+          "branchIndex": 2,
+          "direction": "none",
+          "quotient": 1,
+          "remainder": 0,
+          "signedRemainder": 0
+        },
+        "reviewer": "A",
+        "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+        "ziwei": "寅"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 2,
+        "lunarDay": 3,
+        "orderingKey": "2:03",
+        "rowId": "bureau-2-day-03",
+        "source": {
+          "intermediate": {
+            "baseBranch": "寅",
+            "branchIndex": 2,
+            "direction": "reverse",
+            "quotient": 2,
+            "remainder": 1,
+            "signedRemainder": -1
+          },
+          "reviewer": "A",
+          "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+          "ziwei": "寅"
+        }
+      },
+      "rowId": "bureau-2-day-03",
+      "source": {
+        "intermediate": {
+          "baseBranch": "寅",
+          "branchIndex": 2,
+          "direction": "reverse",
+          "quotient": 2,
+          "remainder": 1,
+          "signedRemainder": -1
+        },
+        "reviewer": "A",
+        "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+        "ziwei": "寅"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 2,
+        "lunarDay": 4,
+        "orderingKey": "2:04",
+        "rowId": "bureau-2-day-04",
+        "source": {
+          "intermediate": {
+            "baseBranch": "寅",
+            "branchIndex": 3,
+            "direction": "none",
+            "quotient": 2,
+            "remainder": 0,
+            "signedRemainder": 0
+          },
+          "reviewer": "A",
+          "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+          "ziwei": "卯"
+        }
+      },
+      "rowId": "bureau-2-day-04",
+      "source": {
+        "intermediate": {
+          "baseBranch": "寅",
+          "branchIndex": 3,
+          "direction": "none",
+          "quotient": 2,
+          "remainder": 0,
+          "signedRemainder": 0
+        },
+        "reviewer": "A",
+        "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+        "ziwei": "卯"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 2,
+        "lunarDay": 5,
+        "orderingKey": "2:05",
+        "rowId": "bureau-2-day-05",
+        "source": {
+          "intermediate": {
+            "baseBranch": "寅",
+            "branchIndex": 3,
+            "direction": "reverse",
+            "quotient": 3,
+            "remainder": 1,
+            "signedRemainder": -1
+          },
+          "reviewer": "A",
+          "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+          "ziwei": "卯"
+        }
+      },
+      "rowId": "bureau-2-day-05",
+      "source": {
+        "intermediate": {
+          "baseBranch": "寅",
+          "branchIndex": 3,
+          "direction": "reverse",
+          "quotient": 3,
+          "remainder": 1,
+          "signedRemainder": -1
+        },
+        "reviewer": "A",
+        "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+        "ziwei": "卯"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 2,
+        "lunarDay": 6,
+        "orderingKey": "2:06",
+        "rowId": "bureau-2-day-06",
+        "source": {
+          "intermediate": {
+            "baseBranch": "寅",
+            "branchIndex": 4,
+            "direction": "none",
+            "quotient": 3,
+            "remainder": 0,
+            "signedRemainder": 0
+          },
+          "reviewer": "A",
+          "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+          "ziwei": "辰"
+        }
+      },
+      "rowId": "bureau-2-day-06",
+      "source": {
+        "intermediate": {
+          "baseBranch": "寅",
+          "branchIndex": 4,
+          "direction": "none",
+          "quotient": 3,
+          "remainder": 0,
+          "signedRemainder": 0
+        },
+        "reviewer": "A",
+        "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+        "ziwei": "辰"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 2,
+        "lunarDay": 7,
+        "orderingKey": "2:07",
+        "rowId": "bureau-2-day-07",
+        "source": {
+          "intermediate": {
+            "baseBranch": "寅",
+            "branchIndex": 4,
+            "direction": "reverse",
+            "quotient": 4,
+            "remainder": 1,
+            "signedRemainder": -1
+          },
+          "reviewer": "A",
+          "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+          "ziwei": "辰"
+        }
+      },
+      "rowId": "bureau-2-day-07",
+      "source": {
+        "intermediate": {
+          "baseBranch": "寅",
+          "branchIndex": 4,
+          "direction": "reverse",
+          "quotient": 4,
+          "remainder": 1,
+          "signedRemainder": -1
+        },
+        "reviewer": "A",
+        "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+        "ziwei": "辰"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 2,
+        "lunarDay": 8,
+        "orderingKey": "2:08",
+        "rowId": "bureau-2-day-08",
+        "source": {
+          "intermediate": {
+            "baseBranch": "寅",
+            "branchIndex": 5,
+            "direction": "none",
+            "quotient": 4,
+            "remainder": 0,
+            "signedRemainder": 0
+          },
+          "reviewer": "A",
+          "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+          "ziwei": "巳"
+        }
+      },
+      "rowId": "bureau-2-day-08",
+      "source": {
+        "intermediate": {
+          "baseBranch": "寅",
+          "branchIndex": 5,
+          "direction": "none",
+          "quotient": 4,
+          "remainder": 0,
+          "signedRemainder": 0
+        },
+        "reviewer": "A",
+        "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+        "ziwei": "巳"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 2,
+        "lunarDay": 9,
+        "orderingKey": "2:09",
+        "rowId": "bureau-2-day-09",
+        "source": {
+          "intermediate": {
+            "baseBranch": "寅",
+            "branchIndex": 5,
+            "direction": "reverse",
+            "quotient": 5,
+            "remainder": 1,
+            "signedRemainder": -1
+          },
+          "reviewer": "A",
+          "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+          "ziwei": "巳"
+        }
+      },
+      "rowId": "bureau-2-day-09",
+      "source": {
+        "intermediate": {
+          "baseBranch": "寅",
+          "branchIndex": 5,
+          "direction": "reverse",
+          "quotient": 5,
+          "remainder": 1,
+          "signedRemainder": -1
+        },
+        "reviewer": "A",
+        "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+        "ziwei": "巳"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 2,
+        "lunarDay": 10,
+        "orderingKey": "2:10",
+        "rowId": "bureau-2-day-10",
+        "source": {
+          "intermediate": {
+            "baseBranch": "寅",
+            "branchIndex": 6,
+            "direction": "none",
+            "quotient": 5,
+            "remainder": 0,
+            "signedRemainder": 0
+          },
+          "reviewer": "A",
+          "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+          "ziwei": "午"
+        }
+      },
+      "rowId": "bureau-2-day-10",
+      "source": {
+        "intermediate": {
+          "baseBranch": "寅",
+          "branchIndex": 6,
+          "direction": "none",
+          "quotient": 5,
+          "remainder": 0,
+          "signedRemainder": 0
+        },
+        "reviewer": "A",
+        "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+        "ziwei": "午"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 2,
+        "lunarDay": 11,
+        "orderingKey": "2:11",
+        "rowId": "bureau-2-day-11",
+        "source": {
+          "intermediate": {
+            "baseBranch": "寅",
+            "branchIndex": 6,
+            "direction": "reverse",
+            "quotient": 6,
+            "remainder": 1,
+            "signedRemainder": -1
+          },
+          "reviewer": "A",
+          "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+          "ziwei": "午"
+        }
+      },
+      "rowId": "bureau-2-day-11",
+      "source": {
+        "intermediate": {
+          "baseBranch": "寅",
+          "branchIndex": 6,
+          "direction": "reverse",
+          "quotient": 6,
+          "remainder": 1,
+          "signedRemainder": -1
+        },
+        "reviewer": "A",
+        "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+        "ziwei": "午"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 2,
+        "lunarDay": 12,
+        "orderingKey": "2:12",
+        "rowId": "bureau-2-day-12",
+        "source": {
+          "intermediate": {
+            "baseBranch": "寅",
+            "branchIndex": 7,
+            "direction": "none",
+            "quotient": 6,
+            "remainder": 0,
+            "signedRemainder": 0
+          },
+          "reviewer": "A",
+          "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+          "ziwei": "未"
+        }
+      },
+      "rowId": "bureau-2-day-12",
+      "source": {
+        "intermediate": {
+          "baseBranch": "寅",
+          "branchIndex": 7,
+          "direction": "none",
+          "quotient": 6,
+          "remainder": 0,
+          "signedRemainder": 0
+        },
+        "reviewer": "A",
+        "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+        "ziwei": "未"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 2,
+        "lunarDay": 13,
+        "orderingKey": "2:13",
+        "rowId": "bureau-2-day-13",
+        "source": {
+          "intermediate": {
+            "baseBranch": "寅",
+            "branchIndex": 7,
+            "direction": "reverse",
+            "quotient": 7,
+            "remainder": 1,
+            "signedRemainder": -1
+          },
+          "reviewer": "A",
+          "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+          "ziwei": "未"
+        }
+      },
+      "rowId": "bureau-2-day-13",
+      "source": {
+        "intermediate": {
+          "baseBranch": "寅",
+          "branchIndex": 7,
+          "direction": "reverse",
+          "quotient": 7,
+          "remainder": 1,
+          "signedRemainder": -1
+        },
+        "reviewer": "A",
+        "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+        "ziwei": "未"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 2,
+        "lunarDay": 14,
+        "orderingKey": "2:14",
+        "rowId": "bureau-2-day-14",
+        "source": {
+          "intermediate": {
+            "baseBranch": "寅",
+            "branchIndex": 8,
+            "direction": "none",
+            "quotient": 7,
+            "remainder": 0,
+            "signedRemainder": 0
+          },
+          "reviewer": "A",
+          "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+          "ziwei": "申"
+        }
+      },
+      "rowId": "bureau-2-day-14",
+      "source": {
+        "intermediate": {
+          "baseBranch": "寅",
+          "branchIndex": 8,
+          "direction": "none",
+          "quotient": 7,
+          "remainder": 0,
+          "signedRemainder": 0
+        },
+        "reviewer": "A",
+        "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+        "ziwei": "申"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 2,
+        "lunarDay": 15,
+        "orderingKey": "2:15",
+        "rowId": "bureau-2-day-15",
+        "source": {
+          "intermediate": {
+            "baseBranch": "寅",
+            "branchIndex": 8,
+            "direction": "reverse",
+            "quotient": 8,
+            "remainder": 1,
+            "signedRemainder": -1
+          },
+          "reviewer": "A",
+          "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+          "ziwei": "申"
+        }
+      },
+      "rowId": "bureau-2-day-15",
+      "source": {
+        "intermediate": {
+          "baseBranch": "寅",
+          "branchIndex": 8,
+          "direction": "reverse",
+          "quotient": 8,
+          "remainder": 1,
+          "signedRemainder": -1
+        },
+        "reviewer": "A",
+        "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+        "ziwei": "申"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 2,
+        "lunarDay": 16,
+        "orderingKey": "2:16",
+        "rowId": "bureau-2-day-16",
+        "source": {
+          "intermediate": {
+            "baseBranch": "寅",
+            "branchIndex": 9,
+            "direction": "none",
+            "quotient": 8,
+            "remainder": 0,
+            "signedRemainder": 0
+          },
+          "reviewer": "A",
+          "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+          "ziwei": "酉"
+        }
+      },
+      "rowId": "bureau-2-day-16",
+      "source": {
+        "intermediate": {
+          "baseBranch": "寅",
+          "branchIndex": 9,
+          "direction": "none",
+          "quotient": 8,
+          "remainder": 0,
+          "signedRemainder": 0
+        },
+        "reviewer": "A",
+        "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+        "ziwei": "酉"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 2,
+        "lunarDay": 17,
+        "orderingKey": "2:17",
+        "rowId": "bureau-2-day-17",
+        "source": {
+          "intermediate": {
+            "baseBranch": "寅",
+            "branchIndex": 9,
+            "direction": "reverse",
+            "quotient": 9,
+            "remainder": 1,
+            "signedRemainder": -1
+          },
+          "reviewer": "A",
+          "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+          "ziwei": "酉"
+        }
+      },
+      "rowId": "bureau-2-day-17",
+      "source": {
+        "intermediate": {
+          "baseBranch": "寅",
+          "branchIndex": 9,
+          "direction": "reverse",
+          "quotient": 9,
+          "remainder": 1,
+          "signedRemainder": -1
+        },
+        "reviewer": "A",
+        "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+        "ziwei": "酉"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 2,
+        "lunarDay": 18,
+        "orderingKey": "2:18",
+        "rowId": "bureau-2-day-18",
+        "source": {
+          "intermediate": {
+            "baseBranch": "寅",
+            "branchIndex": 10,
+            "direction": "none",
+            "quotient": 9,
+            "remainder": 0,
+            "signedRemainder": 0
+          },
+          "reviewer": "A",
+          "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+          "ziwei": "戌"
+        }
+      },
+      "rowId": "bureau-2-day-18",
+      "source": {
+        "intermediate": {
+          "baseBranch": "寅",
+          "branchIndex": 10,
+          "direction": "none",
+          "quotient": 9,
+          "remainder": 0,
+          "signedRemainder": 0
+        },
+        "reviewer": "A",
+        "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+        "ziwei": "戌"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 2,
+        "lunarDay": 19,
+        "orderingKey": "2:19",
+        "rowId": "bureau-2-day-19",
+        "source": {
+          "intermediate": {
+            "baseBranch": "寅",
+            "branchIndex": 10,
+            "direction": "reverse",
+            "quotient": 10,
+            "remainder": 1,
+            "signedRemainder": -1
+          },
+          "reviewer": "A",
+          "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+          "ziwei": "戌"
+        }
+      },
+      "rowId": "bureau-2-day-19",
+      "source": {
+        "intermediate": {
+          "baseBranch": "寅",
+          "branchIndex": 10,
+          "direction": "reverse",
+          "quotient": 10,
+          "remainder": 1,
+          "signedRemainder": -1
+        },
+        "reviewer": "A",
+        "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+        "ziwei": "戌"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 2,
+        "lunarDay": 20,
+        "orderingKey": "2:20",
+        "rowId": "bureau-2-day-20",
+        "source": {
+          "intermediate": {
+            "baseBranch": "寅",
+            "branchIndex": 11,
+            "direction": "none",
+            "quotient": 10,
+            "remainder": 0,
+            "signedRemainder": 0
+          },
+          "reviewer": "A",
+          "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+          "ziwei": "亥"
+        }
+      },
+      "rowId": "bureau-2-day-20",
+      "source": {
+        "intermediate": {
+          "baseBranch": "寅",
+          "branchIndex": 11,
+          "direction": "none",
+          "quotient": 10,
+          "remainder": 0,
+          "signedRemainder": 0
+        },
+        "reviewer": "A",
+        "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+        "ziwei": "亥"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 2,
+        "lunarDay": 21,
+        "orderingKey": "2:21",
+        "rowId": "bureau-2-day-21",
+        "source": {
+          "intermediate": {
+            "baseBranch": "寅",
+            "branchIndex": 11,
+            "direction": "reverse",
+            "quotient": 11,
+            "remainder": 1,
+            "signedRemainder": -1
+          },
+          "reviewer": "A",
+          "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+          "ziwei": "亥"
+        }
+      },
+      "rowId": "bureau-2-day-21",
+      "source": {
+        "intermediate": {
+          "baseBranch": "寅",
+          "branchIndex": 11,
+          "direction": "reverse",
+          "quotient": 11,
+          "remainder": 1,
+          "signedRemainder": -1
+        },
+        "reviewer": "A",
+        "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+        "ziwei": "亥"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 2,
+        "lunarDay": 22,
+        "orderingKey": "2:22",
+        "rowId": "bureau-2-day-22",
+        "source": {
+          "intermediate": {
+            "baseBranch": "寅",
+            "branchIndex": 0,
+            "direction": "none",
+            "quotient": 11,
+            "remainder": 0,
+            "signedRemainder": 0
+          },
+          "reviewer": "A",
+          "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+          "ziwei": "子"
+        }
+      },
+      "rowId": "bureau-2-day-22",
+      "source": {
+        "intermediate": {
+          "baseBranch": "寅",
+          "branchIndex": 0,
+          "direction": "none",
+          "quotient": 11,
+          "remainder": 0,
+          "signedRemainder": 0
+        },
+        "reviewer": "A",
+        "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+        "ziwei": "子"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 2,
+        "lunarDay": 23,
+        "orderingKey": "2:23",
+        "rowId": "bureau-2-day-23",
+        "source": {
+          "intermediate": {
+            "baseBranch": "寅",
+            "branchIndex": 0,
+            "direction": "reverse",
+            "quotient": 12,
+            "remainder": 1,
+            "signedRemainder": -1
+          },
+          "reviewer": "A",
+          "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+          "ziwei": "子"
+        }
+      },
+      "rowId": "bureau-2-day-23",
+      "source": {
+        "intermediate": {
+          "baseBranch": "寅",
+          "branchIndex": 0,
+          "direction": "reverse",
+          "quotient": 12,
+          "remainder": 1,
+          "signedRemainder": -1
+        },
+        "reviewer": "A",
+        "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+        "ziwei": "子"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 2,
+        "lunarDay": 24,
+        "orderingKey": "2:24",
+        "rowId": "bureau-2-day-24",
+        "source": {
+          "intermediate": {
+            "baseBranch": "寅",
+            "branchIndex": 1,
+            "direction": "none",
+            "quotient": 12,
+            "remainder": 0,
+            "signedRemainder": 0
+          },
+          "reviewer": "A",
+          "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+          "ziwei": "丑"
+        }
+      },
+      "rowId": "bureau-2-day-24",
+      "source": {
+        "intermediate": {
+          "baseBranch": "寅",
+          "branchIndex": 1,
+          "direction": "none",
+          "quotient": 12,
+          "remainder": 0,
+          "signedRemainder": 0
+        },
+        "reviewer": "A",
+        "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+        "ziwei": "丑"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 2,
+        "lunarDay": 25,
+        "orderingKey": "2:25",
+        "rowId": "bureau-2-day-25",
+        "source": {
+          "intermediate": {
+            "baseBranch": "寅",
+            "branchIndex": 1,
+            "direction": "reverse",
+            "quotient": 13,
+            "remainder": 1,
+            "signedRemainder": -1
+          },
+          "reviewer": "A",
+          "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+          "ziwei": "丑"
+        }
+      },
+      "rowId": "bureau-2-day-25",
+      "source": {
+        "intermediate": {
+          "baseBranch": "寅",
+          "branchIndex": 1,
+          "direction": "reverse",
+          "quotient": 13,
+          "remainder": 1,
+          "signedRemainder": -1
+        },
+        "reviewer": "A",
+        "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+        "ziwei": "丑"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 2,
+        "lunarDay": 26,
+        "orderingKey": "2:26",
+        "rowId": "bureau-2-day-26",
+        "source": {
+          "intermediate": {
+            "baseBranch": "寅",
+            "branchIndex": 2,
+            "direction": "none",
+            "quotient": 13,
+            "remainder": 0,
+            "signedRemainder": 0
+          },
+          "reviewer": "A",
+          "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+          "ziwei": "寅"
+        }
+      },
+      "rowId": "bureau-2-day-26",
+      "source": {
+        "intermediate": {
+          "baseBranch": "寅",
+          "branchIndex": 2,
+          "direction": "none",
+          "quotient": 13,
+          "remainder": 0,
+          "signedRemainder": 0
+        },
+        "reviewer": "A",
+        "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+        "ziwei": "寅"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 2,
+        "lunarDay": 27,
+        "orderingKey": "2:27",
+        "rowId": "bureau-2-day-27",
+        "source": {
+          "intermediate": {
+            "baseBranch": "寅",
+            "branchIndex": 2,
+            "direction": "reverse",
+            "quotient": 14,
+            "remainder": 1,
+            "signedRemainder": -1
+          },
+          "reviewer": "A",
+          "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+          "ziwei": "寅"
+        }
+      },
+      "rowId": "bureau-2-day-27",
+      "source": {
+        "intermediate": {
+          "baseBranch": "寅",
+          "branchIndex": 2,
+          "direction": "reverse",
+          "quotient": 14,
+          "remainder": 1,
+          "signedRemainder": -1
+        },
+        "reviewer": "A",
+        "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+        "ziwei": "寅"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 2,
+        "lunarDay": 28,
+        "orderingKey": "2:28",
+        "rowId": "bureau-2-day-28",
+        "source": {
+          "intermediate": {
+            "baseBranch": "寅",
+            "branchIndex": 3,
+            "direction": "none",
+            "quotient": 14,
+            "remainder": 0,
+            "signedRemainder": 0
+          },
+          "reviewer": "A",
+          "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+          "ziwei": "卯"
+        }
+      },
+      "rowId": "bureau-2-day-28",
+      "source": {
+        "intermediate": {
+          "baseBranch": "寅",
+          "branchIndex": 3,
+          "direction": "none",
+          "quotient": 14,
+          "remainder": 0,
+          "signedRemainder": 0
+        },
+        "reviewer": "A",
+        "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+        "ziwei": "卯"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 2,
+        "lunarDay": 29,
+        "orderingKey": "2:29",
+        "rowId": "bureau-2-day-29",
+        "source": {
+          "intermediate": {
+            "baseBranch": "寅",
+            "branchIndex": 3,
+            "direction": "reverse",
+            "quotient": 15,
+            "remainder": 1,
+            "signedRemainder": -1
+          },
+          "reviewer": "A",
+          "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+          "ziwei": "卯"
+        }
+      },
+      "rowId": "bureau-2-day-29",
+      "source": {
+        "intermediate": {
+          "baseBranch": "寅",
+          "branchIndex": 3,
+          "direction": "reverse",
+          "quotient": 15,
+          "remainder": 1,
+          "signedRemainder": -1
+        },
+        "reviewer": "A",
+        "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+        "ziwei": "卯"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 2,
+        "lunarDay": 30,
+        "orderingKey": "2:30",
+        "rowId": "bureau-2-day-30",
+        "source": {
+          "intermediate": {
+            "baseBranch": "寅",
+            "branchIndex": 4,
+            "direction": "none",
+            "quotient": 15,
+            "remainder": 0,
+            "signedRemainder": 0
+          },
+          "reviewer": "A",
+          "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+          "ziwei": "辰"
+        }
+      },
+      "rowId": "bureau-2-day-30",
+      "source": {
+        "intermediate": {
+          "baseBranch": "寅",
+          "branchIndex": 4,
+          "direction": "none",
+          "quotient": 15,
+          "remainder": 0,
+          "signedRemainder": 0
+        },
+        "reviewer": "A",
+        "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+        "ziwei": "辰"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 3,
+        "lunarDay": 1,
+        "orderingKey": "3:01",
+        "rowId": "bureau-3-day-01",
+        "source": {
+          "intermediate": {
+            "baseBranch": "寅",
+            "branchIndex": 4,
+            "direction": "forward",
+            "quotient": 1,
+            "remainder": 2,
+            "signedRemainder": 2
+          },
+          "reviewer": "A",
+          "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+          "ziwei": "辰"
+        }
+      },
+      "rowId": "bureau-3-day-01",
+      "source": {
+        "intermediate": {
+          "baseBranch": "寅",
+          "branchIndex": 4,
+          "direction": "forward",
+          "quotient": 1,
+          "remainder": 2,
+          "signedRemainder": 2
+        },
+        "reviewer": "A",
+        "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+        "ziwei": "辰"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 3,
+        "lunarDay": 2,
+        "orderingKey": "3:02",
+        "rowId": "bureau-3-day-02",
+        "source": {
+          "intermediate": {
+            "baseBranch": "寅",
+            "branchIndex": 1,
+            "direction": "reverse",
+            "quotient": 1,
+            "remainder": 1,
+            "signedRemainder": -1
+          },
+          "reviewer": "A",
+          "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+          "ziwei": "丑"
+        }
+      },
+      "rowId": "bureau-3-day-02",
+      "source": {
+        "intermediate": {
+          "baseBranch": "寅",
+          "branchIndex": 1,
+          "direction": "reverse",
+          "quotient": 1,
+          "remainder": 1,
+          "signedRemainder": -1
+        },
+        "reviewer": "A",
+        "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+        "ziwei": "丑"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 3,
+        "lunarDay": 3,
+        "orderingKey": "3:03",
+        "rowId": "bureau-3-day-03",
+        "source": {
+          "intermediate": {
+            "baseBranch": "寅",
+            "branchIndex": 2,
+            "direction": "none",
+            "quotient": 1,
+            "remainder": 0,
+            "signedRemainder": 0
+          },
+          "reviewer": "A",
+          "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+          "ziwei": "寅"
+        }
+      },
+      "rowId": "bureau-3-day-03",
+      "source": {
+        "intermediate": {
+          "baseBranch": "寅",
+          "branchIndex": 2,
+          "direction": "none",
+          "quotient": 1,
+          "remainder": 0,
+          "signedRemainder": 0
+        },
+        "reviewer": "A",
+        "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+        "ziwei": "寅"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 3,
+        "lunarDay": 4,
+        "orderingKey": "3:04",
+        "rowId": "bureau-3-day-04",
+        "source": {
+          "intermediate": {
+            "baseBranch": "寅",
+            "branchIndex": 5,
+            "direction": "forward",
+            "quotient": 2,
+            "remainder": 2,
+            "signedRemainder": 2
+          },
+          "reviewer": "A",
+          "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+          "ziwei": "巳"
+        }
+      },
+      "rowId": "bureau-3-day-04",
+      "source": {
+        "intermediate": {
+          "baseBranch": "寅",
+          "branchIndex": 5,
+          "direction": "forward",
+          "quotient": 2,
+          "remainder": 2,
+          "signedRemainder": 2
+        },
+        "reviewer": "A",
+        "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+        "ziwei": "巳"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 3,
+        "lunarDay": 5,
+        "orderingKey": "3:05",
+        "rowId": "bureau-3-day-05",
+        "source": {
+          "intermediate": {
+            "baseBranch": "寅",
+            "branchIndex": 2,
+            "direction": "reverse",
+            "quotient": 2,
+            "remainder": 1,
+            "signedRemainder": -1
+          },
+          "reviewer": "A",
+          "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+          "ziwei": "寅"
+        }
+      },
+      "rowId": "bureau-3-day-05",
+      "source": {
+        "intermediate": {
+          "baseBranch": "寅",
+          "branchIndex": 2,
+          "direction": "reverse",
+          "quotient": 2,
+          "remainder": 1,
+          "signedRemainder": -1
+        },
+        "reviewer": "A",
+        "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+        "ziwei": "寅"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 3,
+        "lunarDay": 6,
+        "orderingKey": "3:06",
+        "rowId": "bureau-3-day-06",
+        "source": {
+          "intermediate": {
+            "baseBranch": "寅",
+            "branchIndex": 3,
+            "direction": "none",
+            "quotient": 2,
+            "remainder": 0,
+            "signedRemainder": 0
+          },
+          "reviewer": "A",
+          "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+          "ziwei": "卯"
+        }
+      },
+      "rowId": "bureau-3-day-06",
+      "source": {
+        "intermediate": {
+          "baseBranch": "寅",
+          "branchIndex": 3,
+          "direction": "none",
+          "quotient": 2,
+          "remainder": 0,
+          "signedRemainder": 0
+        },
+        "reviewer": "A",
+        "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+        "ziwei": "卯"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 3,
+        "lunarDay": 7,
+        "orderingKey": "3:07",
+        "rowId": "bureau-3-day-07",
+        "source": {
+          "intermediate": {
+            "baseBranch": "寅",
+            "branchIndex": 6,
+            "direction": "forward",
+            "quotient": 3,
+            "remainder": 2,
+            "signedRemainder": 2
+          },
+          "reviewer": "A",
+          "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+          "ziwei": "午"
+        }
+      },
+      "rowId": "bureau-3-day-07",
+      "source": {
+        "intermediate": {
+          "baseBranch": "寅",
+          "branchIndex": 6,
+          "direction": "forward",
+          "quotient": 3,
+          "remainder": 2,
+          "signedRemainder": 2
+        },
+        "reviewer": "A",
+        "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+        "ziwei": "午"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 3,
+        "lunarDay": 8,
+        "orderingKey": "3:08",
+        "rowId": "bureau-3-day-08",
+        "source": {
+          "intermediate": {
+            "baseBranch": "寅",
+            "branchIndex": 3,
+            "direction": "reverse",
+            "quotient": 3,
+            "remainder": 1,
+            "signedRemainder": -1
+          },
+          "reviewer": "A",
+          "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+          "ziwei": "卯"
+        }
+      },
+      "rowId": "bureau-3-day-08",
+      "source": {
+        "intermediate": {
+          "baseBranch": "寅",
+          "branchIndex": 3,
+          "direction": "reverse",
+          "quotient": 3,
+          "remainder": 1,
+          "signedRemainder": -1
+        },
+        "reviewer": "A",
+        "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+        "ziwei": "卯"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 3,
+        "lunarDay": 9,
+        "orderingKey": "3:09",
+        "rowId": "bureau-3-day-09",
+        "source": {
+          "intermediate": {
+            "baseBranch": "寅",
+            "branchIndex": 4,
+            "direction": "none",
+            "quotient": 3,
+            "remainder": 0,
+            "signedRemainder": 0
+          },
+          "reviewer": "A",
+          "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+          "ziwei": "辰"
+        }
+      },
+      "rowId": "bureau-3-day-09",
+      "source": {
+        "intermediate": {
+          "baseBranch": "寅",
+          "branchIndex": 4,
+          "direction": "none",
+          "quotient": 3,
+          "remainder": 0,
+          "signedRemainder": 0
+        },
+        "reviewer": "A",
+        "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+        "ziwei": "辰"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 3,
+        "lunarDay": 10,
+        "orderingKey": "3:10",
+        "rowId": "bureau-3-day-10",
+        "source": {
+          "intermediate": {
+            "baseBranch": "寅",
+            "branchIndex": 7,
+            "direction": "forward",
+            "quotient": 4,
+            "remainder": 2,
+            "signedRemainder": 2
+          },
+          "reviewer": "A",
+          "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+          "ziwei": "未"
+        }
+      },
+      "rowId": "bureau-3-day-10",
+      "source": {
+        "intermediate": {
+          "baseBranch": "寅",
+          "branchIndex": 7,
+          "direction": "forward",
+          "quotient": 4,
+          "remainder": 2,
+          "signedRemainder": 2
+        },
+        "reviewer": "A",
+        "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+        "ziwei": "未"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 3,
+        "lunarDay": 11,
+        "orderingKey": "3:11",
+        "rowId": "bureau-3-day-11",
+        "source": {
+          "intermediate": {
+            "baseBranch": "寅",
+            "branchIndex": 4,
+            "direction": "reverse",
+            "quotient": 4,
+            "remainder": 1,
+            "signedRemainder": -1
+          },
+          "reviewer": "A",
+          "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+          "ziwei": "辰"
+        }
+      },
+      "rowId": "bureau-3-day-11",
+      "source": {
+        "intermediate": {
+          "baseBranch": "寅",
+          "branchIndex": 4,
+          "direction": "reverse",
+          "quotient": 4,
+          "remainder": 1,
+          "signedRemainder": -1
+        },
+        "reviewer": "A",
+        "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+        "ziwei": "辰"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 3,
+        "lunarDay": 12,
+        "orderingKey": "3:12",
+        "rowId": "bureau-3-day-12",
+        "source": {
+          "intermediate": {
+            "baseBranch": "寅",
+            "branchIndex": 5,
+            "direction": "none",
+            "quotient": 4,
+            "remainder": 0,
+            "signedRemainder": 0
+          },
+          "reviewer": "A",
+          "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+          "ziwei": "巳"
+        }
+      },
+      "rowId": "bureau-3-day-12",
+      "source": {
+        "intermediate": {
+          "baseBranch": "寅",
+          "branchIndex": 5,
+          "direction": "none",
+          "quotient": 4,
+          "remainder": 0,
+          "signedRemainder": 0
+        },
+        "reviewer": "A",
+        "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+        "ziwei": "巳"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 3,
+        "lunarDay": 13,
+        "orderingKey": "3:13",
+        "rowId": "bureau-3-day-13",
+        "source": {
+          "intermediate": {
+            "baseBranch": "寅",
+            "branchIndex": 8,
+            "direction": "forward",
+            "quotient": 5,
+            "remainder": 2,
+            "signedRemainder": 2
+          },
+          "reviewer": "A",
+          "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+          "ziwei": "申"
+        }
+      },
+      "rowId": "bureau-3-day-13",
+      "source": {
+        "intermediate": {
+          "baseBranch": "寅",
+          "branchIndex": 8,
+          "direction": "forward",
+          "quotient": 5,
+          "remainder": 2,
+          "signedRemainder": 2
+        },
+        "reviewer": "A",
+        "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+        "ziwei": "申"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 3,
+        "lunarDay": 14,
+        "orderingKey": "3:14",
+        "rowId": "bureau-3-day-14",
+        "source": {
+          "intermediate": {
+            "baseBranch": "寅",
+            "branchIndex": 5,
+            "direction": "reverse",
+            "quotient": 5,
+            "remainder": 1,
+            "signedRemainder": -1
+          },
+          "reviewer": "A",
+          "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+          "ziwei": "巳"
+        }
+      },
+      "rowId": "bureau-3-day-14",
+      "source": {
+        "intermediate": {
+          "baseBranch": "寅",
+          "branchIndex": 5,
+          "direction": "reverse",
+          "quotient": 5,
+          "remainder": 1,
+          "signedRemainder": -1
+        },
+        "reviewer": "A",
+        "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+        "ziwei": "巳"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 3,
+        "lunarDay": 15,
+        "orderingKey": "3:15",
+        "rowId": "bureau-3-day-15",
+        "source": {
+          "intermediate": {
+            "baseBranch": "寅",
+            "branchIndex": 6,
+            "direction": "none",
+            "quotient": 5,
+            "remainder": 0,
+            "signedRemainder": 0
+          },
+          "reviewer": "A",
+          "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+          "ziwei": "午"
+        }
+      },
+      "rowId": "bureau-3-day-15",
+      "source": {
+        "intermediate": {
+          "baseBranch": "寅",
+          "branchIndex": 6,
+          "direction": "none",
+          "quotient": 5,
+          "remainder": 0,
+          "signedRemainder": 0
+        },
+        "reviewer": "A",
+        "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+        "ziwei": "午"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 3,
+        "lunarDay": 16,
+        "orderingKey": "3:16",
+        "rowId": "bureau-3-day-16",
+        "source": {
+          "intermediate": {
+            "baseBranch": "寅",
+            "branchIndex": 9,
+            "direction": "forward",
+            "quotient": 6,
+            "remainder": 2,
+            "signedRemainder": 2
+          },
+          "reviewer": "A",
+          "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+          "ziwei": "酉"
+        }
+      },
+      "rowId": "bureau-3-day-16",
+      "source": {
+        "intermediate": {
+          "baseBranch": "寅",
+          "branchIndex": 9,
+          "direction": "forward",
+          "quotient": 6,
+          "remainder": 2,
+          "signedRemainder": 2
+        },
+        "reviewer": "A",
+        "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+        "ziwei": "酉"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 3,
+        "lunarDay": 17,
+        "orderingKey": "3:17",
+        "rowId": "bureau-3-day-17",
+        "source": {
+          "intermediate": {
+            "baseBranch": "寅",
+            "branchIndex": 6,
+            "direction": "reverse",
+            "quotient": 6,
+            "remainder": 1,
+            "signedRemainder": -1
+          },
+          "reviewer": "A",
+          "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+          "ziwei": "午"
+        }
+      },
+      "rowId": "bureau-3-day-17",
+      "source": {
+        "intermediate": {
+          "baseBranch": "寅",
+          "branchIndex": 6,
+          "direction": "reverse",
+          "quotient": 6,
+          "remainder": 1,
+          "signedRemainder": -1
+        },
+        "reviewer": "A",
+        "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+        "ziwei": "午"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 3,
+        "lunarDay": 18,
+        "orderingKey": "3:18",
+        "rowId": "bureau-3-day-18",
+        "source": {
+          "intermediate": {
+            "baseBranch": "寅",
+            "branchIndex": 7,
+            "direction": "none",
+            "quotient": 6,
+            "remainder": 0,
+            "signedRemainder": 0
+          },
+          "reviewer": "A",
+          "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+          "ziwei": "未"
+        }
+      },
+      "rowId": "bureau-3-day-18",
+      "source": {
+        "intermediate": {
+          "baseBranch": "寅",
+          "branchIndex": 7,
+          "direction": "none",
+          "quotient": 6,
+          "remainder": 0,
+          "signedRemainder": 0
+        },
+        "reviewer": "A",
+        "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+        "ziwei": "未"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 3,
+        "lunarDay": 19,
+        "orderingKey": "3:19",
+        "rowId": "bureau-3-day-19",
+        "source": {
+          "intermediate": {
+            "baseBranch": "寅",
+            "branchIndex": 10,
+            "direction": "forward",
+            "quotient": 7,
+            "remainder": 2,
+            "signedRemainder": 2
+          },
+          "reviewer": "A",
+          "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+          "ziwei": "戌"
+        }
+      },
+      "rowId": "bureau-3-day-19",
+      "source": {
+        "intermediate": {
+          "baseBranch": "寅",
+          "branchIndex": 10,
+          "direction": "forward",
+          "quotient": 7,
+          "remainder": 2,
+          "signedRemainder": 2
+        },
+        "reviewer": "A",
+        "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+        "ziwei": "戌"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 3,
+        "lunarDay": 20,
+        "orderingKey": "3:20",
+        "rowId": "bureau-3-day-20",
+        "source": {
+          "intermediate": {
+            "baseBranch": "寅",
+            "branchIndex": 7,
+            "direction": "reverse",
+            "quotient": 7,
+            "remainder": 1,
+            "signedRemainder": -1
+          },
+          "reviewer": "A",
+          "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+          "ziwei": "未"
+        }
+      },
+      "rowId": "bureau-3-day-20",
+      "source": {
+        "intermediate": {
+          "baseBranch": "寅",
+          "branchIndex": 7,
+          "direction": "reverse",
+          "quotient": 7,
+          "remainder": 1,
+          "signedRemainder": -1
+        },
+        "reviewer": "A",
+        "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+        "ziwei": "未"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 3,
+        "lunarDay": 21,
+        "orderingKey": "3:21",
+        "rowId": "bureau-3-day-21",
+        "source": {
+          "intermediate": {
+            "baseBranch": "寅",
+            "branchIndex": 8,
+            "direction": "none",
+            "quotient": 7,
+            "remainder": 0,
+            "signedRemainder": 0
+          },
+          "reviewer": "A",
+          "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+          "ziwei": "申"
+        }
+      },
+      "rowId": "bureau-3-day-21",
+      "source": {
+        "intermediate": {
+          "baseBranch": "寅",
+          "branchIndex": 8,
+          "direction": "none",
+          "quotient": 7,
+          "remainder": 0,
+          "signedRemainder": 0
+        },
+        "reviewer": "A",
+        "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+        "ziwei": "申"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 3,
+        "lunarDay": 22,
+        "orderingKey": "3:22",
+        "rowId": "bureau-3-day-22",
+        "source": {
+          "intermediate": {
+            "baseBranch": "寅",
+            "branchIndex": 11,
+            "direction": "forward",
+            "quotient": 8,
+            "remainder": 2,
+            "signedRemainder": 2
+          },
+          "reviewer": "A",
+          "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+          "ziwei": "亥"
+        }
+      },
+      "rowId": "bureau-3-day-22",
+      "source": {
+        "intermediate": {
+          "baseBranch": "寅",
+          "branchIndex": 11,
+          "direction": "forward",
+          "quotient": 8,
+          "remainder": 2,
+          "signedRemainder": 2
+        },
+        "reviewer": "A",
+        "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+        "ziwei": "亥"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 3,
+        "lunarDay": 23,
+        "orderingKey": "3:23",
+        "rowId": "bureau-3-day-23",
+        "source": {
+          "intermediate": {
+            "baseBranch": "寅",
+            "branchIndex": 8,
+            "direction": "reverse",
+            "quotient": 8,
+            "remainder": 1,
+            "signedRemainder": -1
+          },
+          "reviewer": "A",
+          "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+          "ziwei": "申"
+        }
+      },
+      "rowId": "bureau-3-day-23",
+      "source": {
+        "intermediate": {
+          "baseBranch": "寅",
+          "branchIndex": 8,
+          "direction": "reverse",
+          "quotient": 8,
+          "remainder": 1,
+          "signedRemainder": -1
+        },
+        "reviewer": "A",
+        "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+        "ziwei": "申"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 3,
+        "lunarDay": 24,
+        "orderingKey": "3:24",
+        "rowId": "bureau-3-day-24",
+        "source": {
+          "intermediate": {
+            "baseBranch": "寅",
+            "branchIndex": 9,
+            "direction": "none",
+            "quotient": 8,
+            "remainder": 0,
+            "signedRemainder": 0
+          },
+          "reviewer": "A",
+          "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+          "ziwei": "酉"
+        }
+      },
+      "rowId": "bureau-3-day-24",
+      "source": {
+        "intermediate": {
+          "baseBranch": "寅",
+          "branchIndex": 9,
+          "direction": "none",
+          "quotient": 8,
+          "remainder": 0,
+          "signedRemainder": 0
+        },
+        "reviewer": "A",
+        "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+        "ziwei": "酉"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 3,
+        "lunarDay": 25,
+        "orderingKey": "3:25",
+        "rowId": "bureau-3-day-25",
+        "source": {
+          "intermediate": {
+            "baseBranch": "寅",
+            "branchIndex": 0,
+            "direction": "forward",
+            "quotient": 9,
+            "remainder": 2,
+            "signedRemainder": 2
+          },
+          "reviewer": "A",
+          "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+          "ziwei": "子"
+        }
+      },
+      "rowId": "bureau-3-day-25",
+      "source": {
+        "intermediate": {
+          "baseBranch": "寅",
+          "branchIndex": 0,
+          "direction": "forward",
+          "quotient": 9,
+          "remainder": 2,
+          "signedRemainder": 2
+        },
+        "reviewer": "A",
+        "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+        "ziwei": "子"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 3,
+        "lunarDay": 26,
+        "orderingKey": "3:26",
+        "rowId": "bureau-3-day-26",
+        "source": {
+          "intermediate": {
+            "baseBranch": "寅",
+            "branchIndex": 9,
+            "direction": "reverse",
+            "quotient": 9,
+            "remainder": 1,
+            "signedRemainder": -1
+          },
+          "reviewer": "A",
+          "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+          "ziwei": "酉"
+        }
+      },
+      "rowId": "bureau-3-day-26",
+      "source": {
+        "intermediate": {
+          "baseBranch": "寅",
+          "branchIndex": 9,
+          "direction": "reverse",
+          "quotient": 9,
+          "remainder": 1,
+          "signedRemainder": -1
+        },
+        "reviewer": "A",
+        "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+        "ziwei": "酉"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 3,
+        "lunarDay": 27,
+        "orderingKey": "3:27",
+        "rowId": "bureau-3-day-27",
+        "source": {
+          "intermediate": {
+            "baseBranch": "寅",
+            "branchIndex": 10,
+            "direction": "none",
+            "quotient": 9,
+            "remainder": 0,
+            "signedRemainder": 0
+          },
+          "reviewer": "A",
+          "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+          "ziwei": "戌"
+        }
+      },
+      "rowId": "bureau-3-day-27",
+      "source": {
+        "intermediate": {
+          "baseBranch": "寅",
+          "branchIndex": 10,
+          "direction": "none",
+          "quotient": 9,
+          "remainder": 0,
+          "signedRemainder": 0
+        },
+        "reviewer": "A",
+        "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+        "ziwei": "戌"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 3,
+        "lunarDay": 28,
+        "orderingKey": "3:28",
+        "rowId": "bureau-3-day-28",
+        "source": {
+          "intermediate": {
+            "baseBranch": "寅",
+            "branchIndex": 1,
+            "direction": "forward",
+            "quotient": 10,
+            "remainder": 2,
+            "signedRemainder": 2
+          },
+          "reviewer": "A",
+          "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+          "ziwei": "丑"
+        }
+      },
+      "rowId": "bureau-3-day-28",
+      "source": {
+        "intermediate": {
+          "baseBranch": "寅",
+          "branchIndex": 1,
+          "direction": "forward",
+          "quotient": 10,
+          "remainder": 2,
+          "signedRemainder": 2
+        },
+        "reviewer": "A",
+        "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+        "ziwei": "丑"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 3,
+        "lunarDay": 29,
+        "orderingKey": "3:29",
+        "rowId": "bureau-3-day-29",
+        "source": {
+          "intermediate": {
+            "baseBranch": "寅",
+            "branchIndex": 10,
+            "direction": "reverse",
+            "quotient": 10,
+            "remainder": 1,
+            "signedRemainder": -1
+          },
+          "reviewer": "A",
+          "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+          "ziwei": "戌"
+        }
+      },
+      "rowId": "bureau-3-day-29",
+      "source": {
+        "intermediate": {
+          "baseBranch": "寅",
+          "branchIndex": 10,
+          "direction": "reverse",
+          "quotient": 10,
+          "remainder": 1,
+          "signedRemainder": -1
+        },
+        "reviewer": "A",
+        "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+        "ziwei": "戌"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 3,
+        "lunarDay": 30,
+        "orderingKey": "3:30",
+        "rowId": "bureau-3-day-30",
+        "source": {
+          "intermediate": {
+            "baseBranch": "寅",
+            "branchIndex": 11,
+            "direction": "none",
+            "quotient": 10,
+            "remainder": 0,
+            "signedRemainder": 0
+          },
+          "reviewer": "A",
+          "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+          "ziwei": "亥"
+        }
+      },
+      "rowId": "bureau-3-day-30",
+      "source": {
+        "intermediate": {
+          "baseBranch": "寅",
+          "branchIndex": 11,
+          "direction": "none",
+          "quotient": 10,
+          "remainder": 0,
+          "signedRemainder": 0
+        },
+        "reviewer": "A",
+        "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+        "ziwei": "亥"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 4,
+        "lunarDay": 1,
+        "orderingKey": "4:01",
+        "rowId": "bureau-4-day-01",
+        "source": {
+          "intermediate": {
+            "baseBranch": "寅",
+            "branchIndex": 11,
+            "direction": "reverse",
+            "quotient": 1,
+            "remainder": 3,
+            "signedRemainder": -3
+          },
+          "reviewer": "A",
+          "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+          "ziwei": "亥"
+        }
+      },
+      "rowId": "bureau-4-day-01",
+      "source": {
+        "intermediate": {
+          "baseBranch": "寅",
+          "branchIndex": 11,
+          "direction": "reverse",
+          "quotient": 1,
+          "remainder": 3,
+          "signedRemainder": -3
+        },
+        "reviewer": "A",
+        "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+        "ziwei": "亥"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 4,
+        "lunarDay": 2,
+        "orderingKey": "4:02",
+        "rowId": "bureau-4-day-02",
+        "source": {
+          "intermediate": {
+            "baseBranch": "寅",
+            "branchIndex": 4,
+            "direction": "forward",
+            "quotient": 1,
+            "remainder": 2,
+            "signedRemainder": 2
+          },
+          "reviewer": "A",
+          "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+          "ziwei": "辰"
+        }
+      },
+      "rowId": "bureau-4-day-02",
+      "source": {
+        "intermediate": {
+          "baseBranch": "寅",
+          "branchIndex": 4,
+          "direction": "forward",
+          "quotient": 1,
+          "remainder": 2,
+          "signedRemainder": 2
+        },
+        "reviewer": "A",
+        "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+        "ziwei": "辰"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 4,
+        "lunarDay": 3,
+        "orderingKey": "4:03",
+        "rowId": "bureau-4-day-03",
+        "source": {
+          "intermediate": {
+            "baseBranch": "寅",
+            "branchIndex": 1,
+            "direction": "reverse",
+            "quotient": 1,
+            "remainder": 1,
+            "signedRemainder": -1
+          },
+          "reviewer": "A",
+          "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+          "ziwei": "丑"
+        }
+      },
+      "rowId": "bureau-4-day-03",
+      "source": {
+        "intermediate": {
+          "baseBranch": "寅",
+          "branchIndex": 1,
+          "direction": "reverse",
+          "quotient": 1,
+          "remainder": 1,
+          "signedRemainder": -1
+        },
+        "reviewer": "A",
+        "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+        "ziwei": "丑"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 4,
+        "lunarDay": 4,
+        "orderingKey": "4:04",
+        "rowId": "bureau-4-day-04",
+        "source": {
+          "intermediate": {
+            "baseBranch": "寅",
+            "branchIndex": 2,
+            "direction": "none",
+            "quotient": 1,
+            "remainder": 0,
+            "signedRemainder": 0
+          },
+          "reviewer": "A",
+          "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+          "ziwei": "寅"
+        }
+      },
+      "rowId": "bureau-4-day-04",
+      "source": {
+        "intermediate": {
+          "baseBranch": "寅",
+          "branchIndex": 2,
+          "direction": "none",
+          "quotient": 1,
+          "remainder": 0,
+          "signedRemainder": 0
+        },
+        "reviewer": "A",
+        "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+        "ziwei": "寅"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 4,
+        "lunarDay": 5,
+        "orderingKey": "4:05",
+        "rowId": "bureau-4-day-05",
+        "source": {
+          "intermediate": {
+            "baseBranch": "寅",
+            "branchIndex": 0,
+            "direction": "reverse",
+            "quotient": 2,
+            "remainder": 3,
+            "signedRemainder": -3
+          },
+          "reviewer": "A",
+          "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+          "ziwei": "子"
+        }
+      },
+      "rowId": "bureau-4-day-05",
+      "source": {
+        "intermediate": {
+          "baseBranch": "寅",
+          "branchIndex": 0,
+          "direction": "reverse",
+          "quotient": 2,
+          "remainder": 3,
+          "signedRemainder": -3
+        },
+        "reviewer": "A",
+        "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+        "ziwei": "子"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 4,
+        "lunarDay": 6,
+        "orderingKey": "4:06",
+        "rowId": "bureau-4-day-06",
+        "source": {
+          "intermediate": {
+            "baseBranch": "寅",
+            "branchIndex": 5,
+            "direction": "forward",
+            "quotient": 2,
+            "remainder": 2,
+            "signedRemainder": 2
+          },
+          "reviewer": "A",
+          "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+          "ziwei": "巳"
+        }
+      },
+      "rowId": "bureau-4-day-06",
+      "source": {
+        "intermediate": {
+          "baseBranch": "寅",
+          "branchIndex": 5,
+          "direction": "forward",
+          "quotient": 2,
+          "remainder": 2,
+          "signedRemainder": 2
+        },
+        "reviewer": "A",
+        "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+        "ziwei": "巳"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 4,
+        "lunarDay": 7,
+        "orderingKey": "4:07",
+        "rowId": "bureau-4-day-07",
+        "source": {
+          "intermediate": {
+            "baseBranch": "寅",
+            "branchIndex": 2,
+            "direction": "reverse",
+            "quotient": 2,
+            "remainder": 1,
+            "signedRemainder": -1
+          },
+          "reviewer": "A",
+          "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+          "ziwei": "寅"
+        }
+      },
+      "rowId": "bureau-4-day-07",
+      "source": {
+        "intermediate": {
+          "baseBranch": "寅",
+          "branchIndex": 2,
+          "direction": "reverse",
+          "quotient": 2,
+          "remainder": 1,
+          "signedRemainder": -1
+        },
+        "reviewer": "A",
+        "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+        "ziwei": "寅"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 4,
+        "lunarDay": 8,
+        "orderingKey": "4:08",
+        "rowId": "bureau-4-day-08",
+        "source": {
+          "intermediate": {
+            "baseBranch": "寅",
+            "branchIndex": 3,
+            "direction": "none",
+            "quotient": 2,
+            "remainder": 0,
+            "signedRemainder": 0
+          },
+          "reviewer": "A",
+          "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+          "ziwei": "卯"
+        }
+      },
+      "rowId": "bureau-4-day-08",
+      "source": {
+        "intermediate": {
+          "baseBranch": "寅",
+          "branchIndex": 3,
+          "direction": "none",
+          "quotient": 2,
+          "remainder": 0,
+          "signedRemainder": 0
+        },
+        "reviewer": "A",
+        "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+        "ziwei": "卯"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 4,
+        "lunarDay": 9,
+        "orderingKey": "4:09",
+        "rowId": "bureau-4-day-09",
+        "source": {
+          "intermediate": {
+            "baseBranch": "寅",
+            "branchIndex": 1,
+            "direction": "reverse",
+            "quotient": 3,
+            "remainder": 3,
+            "signedRemainder": -3
+          },
+          "reviewer": "A",
+          "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+          "ziwei": "丑"
+        }
+      },
+      "rowId": "bureau-4-day-09",
+      "source": {
+        "intermediate": {
+          "baseBranch": "寅",
+          "branchIndex": 1,
+          "direction": "reverse",
+          "quotient": 3,
+          "remainder": 3,
+          "signedRemainder": -3
+        },
+        "reviewer": "A",
+        "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+        "ziwei": "丑"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 4,
+        "lunarDay": 10,
+        "orderingKey": "4:10",
+        "rowId": "bureau-4-day-10",
+        "source": {
+          "intermediate": {
+            "baseBranch": "寅",
+            "branchIndex": 6,
+            "direction": "forward",
+            "quotient": 3,
+            "remainder": 2,
+            "signedRemainder": 2
+          },
+          "reviewer": "A",
+          "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+          "ziwei": "午"
+        }
+      },
+      "rowId": "bureau-4-day-10",
+      "source": {
+        "intermediate": {
+          "baseBranch": "寅",
+          "branchIndex": 6,
+          "direction": "forward",
+          "quotient": 3,
+          "remainder": 2,
+          "signedRemainder": 2
+        },
+        "reviewer": "A",
+        "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+        "ziwei": "午"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 4,
+        "lunarDay": 11,
+        "orderingKey": "4:11",
+        "rowId": "bureau-4-day-11",
+        "source": {
+          "intermediate": {
+            "baseBranch": "寅",
+            "branchIndex": 3,
+            "direction": "reverse",
+            "quotient": 3,
+            "remainder": 1,
+            "signedRemainder": -1
+          },
+          "reviewer": "A",
+          "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+          "ziwei": "卯"
+        }
+      },
+      "rowId": "bureau-4-day-11",
+      "source": {
+        "intermediate": {
+          "baseBranch": "寅",
+          "branchIndex": 3,
+          "direction": "reverse",
+          "quotient": 3,
+          "remainder": 1,
+          "signedRemainder": -1
+        },
+        "reviewer": "A",
+        "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+        "ziwei": "卯"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 4,
+        "lunarDay": 12,
+        "orderingKey": "4:12",
+        "rowId": "bureau-4-day-12",
+        "source": {
+          "intermediate": {
+            "baseBranch": "寅",
+            "branchIndex": 4,
+            "direction": "none",
+            "quotient": 3,
+            "remainder": 0,
+            "signedRemainder": 0
+          },
+          "reviewer": "A",
+          "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+          "ziwei": "辰"
+        }
+      },
+      "rowId": "bureau-4-day-12",
+      "source": {
+        "intermediate": {
+          "baseBranch": "寅",
+          "branchIndex": 4,
+          "direction": "none",
+          "quotient": 3,
+          "remainder": 0,
+          "signedRemainder": 0
+        },
+        "reviewer": "A",
+        "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+        "ziwei": "辰"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 4,
+        "lunarDay": 13,
+        "orderingKey": "4:13",
+        "rowId": "bureau-4-day-13",
+        "source": {
+          "intermediate": {
+            "baseBranch": "寅",
+            "branchIndex": 2,
+            "direction": "reverse",
+            "quotient": 4,
+            "remainder": 3,
+            "signedRemainder": -3
+          },
+          "reviewer": "A",
+          "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+          "ziwei": "寅"
+        }
+      },
+      "rowId": "bureau-4-day-13",
+      "source": {
+        "intermediate": {
+          "baseBranch": "寅",
+          "branchIndex": 2,
+          "direction": "reverse",
+          "quotient": 4,
+          "remainder": 3,
+          "signedRemainder": -3
+        },
+        "reviewer": "A",
+        "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+        "ziwei": "寅"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 4,
+        "lunarDay": 14,
+        "orderingKey": "4:14",
+        "rowId": "bureau-4-day-14",
+        "source": {
+          "intermediate": {
+            "baseBranch": "寅",
+            "branchIndex": 7,
+            "direction": "forward",
+            "quotient": 4,
+            "remainder": 2,
+            "signedRemainder": 2
+          },
+          "reviewer": "A",
+          "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+          "ziwei": "未"
+        }
+      },
+      "rowId": "bureau-4-day-14",
+      "source": {
+        "intermediate": {
+          "baseBranch": "寅",
+          "branchIndex": 7,
+          "direction": "forward",
+          "quotient": 4,
+          "remainder": 2,
+          "signedRemainder": 2
+        },
+        "reviewer": "A",
+        "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+        "ziwei": "未"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 4,
+        "lunarDay": 15,
+        "orderingKey": "4:15",
+        "rowId": "bureau-4-day-15",
+        "source": {
+          "intermediate": {
+            "baseBranch": "寅",
+            "branchIndex": 4,
+            "direction": "reverse",
+            "quotient": 4,
+            "remainder": 1,
+            "signedRemainder": -1
+          },
+          "reviewer": "A",
+          "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+          "ziwei": "辰"
+        }
+      },
+      "rowId": "bureau-4-day-15",
+      "source": {
+        "intermediate": {
+          "baseBranch": "寅",
+          "branchIndex": 4,
+          "direction": "reverse",
+          "quotient": 4,
+          "remainder": 1,
+          "signedRemainder": -1
+        },
+        "reviewer": "A",
+        "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+        "ziwei": "辰"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 4,
+        "lunarDay": 16,
+        "orderingKey": "4:16",
+        "rowId": "bureau-4-day-16",
+        "source": {
+          "intermediate": {
+            "baseBranch": "寅",
+            "branchIndex": 5,
+            "direction": "none",
+            "quotient": 4,
+            "remainder": 0,
+            "signedRemainder": 0
+          },
+          "reviewer": "A",
+          "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+          "ziwei": "巳"
+        }
+      },
+      "rowId": "bureau-4-day-16",
+      "source": {
+        "intermediate": {
+          "baseBranch": "寅",
+          "branchIndex": 5,
+          "direction": "none",
+          "quotient": 4,
+          "remainder": 0,
+          "signedRemainder": 0
+        },
+        "reviewer": "A",
+        "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+        "ziwei": "巳"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 4,
+        "lunarDay": 17,
+        "orderingKey": "4:17",
+        "rowId": "bureau-4-day-17",
+        "source": {
+          "intermediate": {
+            "baseBranch": "寅",
+            "branchIndex": 3,
+            "direction": "reverse",
+            "quotient": 5,
+            "remainder": 3,
+            "signedRemainder": -3
+          },
+          "reviewer": "A",
+          "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+          "ziwei": "卯"
+        }
+      },
+      "rowId": "bureau-4-day-17",
+      "source": {
+        "intermediate": {
+          "baseBranch": "寅",
+          "branchIndex": 3,
+          "direction": "reverse",
+          "quotient": 5,
+          "remainder": 3,
+          "signedRemainder": -3
+        },
+        "reviewer": "A",
+        "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+        "ziwei": "卯"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 4,
+        "lunarDay": 18,
+        "orderingKey": "4:18",
+        "rowId": "bureau-4-day-18",
+        "source": {
+          "intermediate": {
+            "baseBranch": "寅",
+            "branchIndex": 8,
+            "direction": "forward",
+            "quotient": 5,
+            "remainder": 2,
+            "signedRemainder": 2
+          },
+          "reviewer": "A",
+          "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+          "ziwei": "申"
+        }
+      },
+      "rowId": "bureau-4-day-18",
+      "source": {
+        "intermediate": {
+          "baseBranch": "寅",
+          "branchIndex": 8,
+          "direction": "forward",
+          "quotient": 5,
+          "remainder": 2,
+          "signedRemainder": 2
+        },
+        "reviewer": "A",
+        "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+        "ziwei": "申"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 4,
+        "lunarDay": 19,
+        "orderingKey": "4:19",
+        "rowId": "bureau-4-day-19",
+        "source": {
+          "intermediate": {
+            "baseBranch": "寅",
+            "branchIndex": 5,
+            "direction": "reverse",
+            "quotient": 5,
+            "remainder": 1,
+            "signedRemainder": -1
+          },
+          "reviewer": "A",
+          "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+          "ziwei": "巳"
+        }
+      },
+      "rowId": "bureau-4-day-19",
+      "source": {
+        "intermediate": {
+          "baseBranch": "寅",
+          "branchIndex": 5,
+          "direction": "reverse",
+          "quotient": 5,
+          "remainder": 1,
+          "signedRemainder": -1
+        },
+        "reviewer": "A",
+        "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+        "ziwei": "巳"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 4,
+        "lunarDay": 20,
+        "orderingKey": "4:20",
+        "rowId": "bureau-4-day-20",
+        "source": {
+          "intermediate": {
+            "baseBranch": "寅",
+            "branchIndex": 6,
+            "direction": "none",
+            "quotient": 5,
+            "remainder": 0,
+            "signedRemainder": 0
+          },
+          "reviewer": "A",
+          "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+          "ziwei": "午"
+        }
+      },
+      "rowId": "bureau-4-day-20",
+      "source": {
+        "intermediate": {
+          "baseBranch": "寅",
+          "branchIndex": 6,
+          "direction": "none",
+          "quotient": 5,
+          "remainder": 0,
+          "signedRemainder": 0
+        },
+        "reviewer": "A",
+        "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+        "ziwei": "午"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 4,
+        "lunarDay": 21,
+        "orderingKey": "4:21",
+        "rowId": "bureau-4-day-21",
+        "source": {
+          "intermediate": {
+            "baseBranch": "寅",
+            "branchIndex": 4,
+            "direction": "reverse",
+            "quotient": 6,
+            "remainder": 3,
+            "signedRemainder": -3
+          },
+          "reviewer": "A",
+          "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+          "ziwei": "辰"
+        }
+      },
+      "rowId": "bureau-4-day-21",
+      "source": {
+        "intermediate": {
+          "baseBranch": "寅",
+          "branchIndex": 4,
+          "direction": "reverse",
+          "quotient": 6,
+          "remainder": 3,
+          "signedRemainder": -3
+        },
+        "reviewer": "A",
+        "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+        "ziwei": "辰"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 4,
+        "lunarDay": 22,
+        "orderingKey": "4:22",
+        "rowId": "bureau-4-day-22",
+        "source": {
+          "intermediate": {
+            "baseBranch": "寅",
+            "branchIndex": 9,
+            "direction": "forward",
+            "quotient": 6,
+            "remainder": 2,
+            "signedRemainder": 2
+          },
+          "reviewer": "A",
+          "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+          "ziwei": "酉"
+        }
+      },
+      "rowId": "bureau-4-day-22",
+      "source": {
+        "intermediate": {
+          "baseBranch": "寅",
+          "branchIndex": 9,
+          "direction": "forward",
+          "quotient": 6,
+          "remainder": 2,
+          "signedRemainder": 2
+        },
+        "reviewer": "A",
+        "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+        "ziwei": "酉"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 4,
+        "lunarDay": 23,
+        "orderingKey": "4:23",
+        "rowId": "bureau-4-day-23",
+        "source": {
+          "intermediate": {
+            "baseBranch": "寅",
+            "branchIndex": 6,
+            "direction": "reverse",
+            "quotient": 6,
+            "remainder": 1,
+            "signedRemainder": -1
+          },
+          "reviewer": "A",
+          "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+          "ziwei": "午"
+        }
+      },
+      "rowId": "bureau-4-day-23",
+      "source": {
+        "intermediate": {
+          "baseBranch": "寅",
+          "branchIndex": 6,
+          "direction": "reverse",
+          "quotient": 6,
+          "remainder": 1,
+          "signedRemainder": -1
+        },
+        "reviewer": "A",
+        "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+        "ziwei": "午"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 4,
+        "lunarDay": 24,
+        "orderingKey": "4:24",
+        "rowId": "bureau-4-day-24",
+        "source": {
+          "intermediate": {
+            "baseBranch": "寅",
+            "branchIndex": 7,
+            "direction": "none",
+            "quotient": 6,
+            "remainder": 0,
+            "signedRemainder": 0
+          },
+          "reviewer": "A",
+          "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+          "ziwei": "未"
+        }
+      },
+      "rowId": "bureau-4-day-24",
+      "source": {
+        "intermediate": {
+          "baseBranch": "寅",
+          "branchIndex": 7,
+          "direction": "none",
+          "quotient": 6,
+          "remainder": 0,
+          "signedRemainder": 0
+        },
+        "reviewer": "A",
+        "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+        "ziwei": "未"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 4,
+        "lunarDay": 25,
+        "orderingKey": "4:25",
+        "rowId": "bureau-4-day-25",
+        "source": {
+          "intermediate": {
+            "baseBranch": "寅",
+            "branchIndex": 5,
+            "direction": "reverse",
+            "quotient": 7,
+            "remainder": 3,
+            "signedRemainder": -3
+          },
+          "reviewer": "A",
+          "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+          "ziwei": "巳"
+        }
+      },
+      "rowId": "bureau-4-day-25",
+      "source": {
+        "intermediate": {
+          "baseBranch": "寅",
+          "branchIndex": 5,
+          "direction": "reverse",
+          "quotient": 7,
+          "remainder": 3,
+          "signedRemainder": -3
+        },
+        "reviewer": "A",
+        "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+        "ziwei": "巳"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 4,
+        "lunarDay": 26,
+        "orderingKey": "4:26",
+        "rowId": "bureau-4-day-26",
+        "source": {
+          "intermediate": {
+            "baseBranch": "寅",
+            "branchIndex": 10,
+            "direction": "forward",
+            "quotient": 7,
+            "remainder": 2,
+            "signedRemainder": 2
+          },
+          "reviewer": "A",
+          "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+          "ziwei": "戌"
+        }
+      },
+      "rowId": "bureau-4-day-26",
+      "source": {
+        "intermediate": {
+          "baseBranch": "寅",
+          "branchIndex": 10,
+          "direction": "forward",
+          "quotient": 7,
+          "remainder": 2,
+          "signedRemainder": 2
+        },
+        "reviewer": "A",
+        "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+        "ziwei": "戌"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 4,
+        "lunarDay": 27,
+        "orderingKey": "4:27",
+        "rowId": "bureau-4-day-27",
+        "source": {
+          "intermediate": {
+            "baseBranch": "寅",
+            "branchIndex": 7,
+            "direction": "reverse",
+            "quotient": 7,
+            "remainder": 1,
+            "signedRemainder": -1
+          },
+          "reviewer": "A",
+          "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+          "ziwei": "未"
+        }
+      },
+      "rowId": "bureau-4-day-27",
+      "source": {
+        "intermediate": {
+          "baseBranch": "寅",
+          "branchIndex": 7,
+          "direction": "reverse",
+          "quotient": 7,
+          "remainder": 1,
+          "signedRemainder": -1
+        },
+        "reviewer": "A",
+        "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+        "ziwei": "未"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 4,
+        "lunarDay": 28,
+        "orderingKey": "4:28",
+        "rowId": "bureau-4-day-28",
+        "source": {
+          "intermediate": {
+            "baseBranch": "寅",
+            "branchIndex": 8,
+            "direction": "none",
+            "quotient": 7,
+            "remainder": 0,
+            "signedRemainder": 0
+          },
+          "reviewer": "A",
+          "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+          "ziwei": "申"
+        }
+      },
+      "rowId": "bureau-4-day-28",
+      "source": {
+        "intermediate": {
+          "baseBranch": "寅",
+          "branchIndex": 8,
+          "direction": "none",
+          "quotient": 7,
+          "remainder": 0,
+          "signedRemainder": 0
+        },
+        "reviewer": "A",
+        "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+        "ziwei": "申"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 4,
+        "lunarDay": 29,
+        "orderingKey": "4:29",
+        "rowId": "bureau-4-day-29",
+        "source": {
+          "intermediate": {
+            "baseBranch": "寅",
+            "branchIndex": 6,
+            "direction": "reverse",
+            "quotient": 8,
+            "remainder": 3,
+            "signedRemainder": -3
+          },
+          "reviewer": "A",
+          "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+          "ziwei": "午"
+        }
+      },
+      "rowId": "bureau-4-day-29",
+      "source": {
+        "intermediate": {
+          "baseBranch": "寅",
+          "branchIndex": 6,
+          "direction": "reverse",
+          "quotient": 8,
+          "remainder": 3,
+          "signedRemainder": -3
+        },
+        "reviewer": "A",
+        "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+        "ziwei": "午"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 4,
+        "lunarDay": 30,
+        "orderingKey": "4:30",
+        "rowId": "bureau-4-day-30",
+        "source": {
+          "intermediate": {
+            "baseBranch": "寅",
+            "branchIndex": 11,
+            "direction": "forward",
+            "quotient": 8,
+            "remainder": 2,
+            "signedRemainder": 2
+          },
+          "reviewer": "A",
+          "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+          "ziwei": "亥"
+        }
+      },
+      "rowId": "bureau-4-day-30",
+      "source": {
+        "intermediate": {
+          "baseBranch": "寅",
+          "branchIndex": 11,
+          "direction": "forward",
+          "quotient": 8,
+          "remainder": 2,
+          "signedRemainder": 2
+        },
+        "reviewer": "A",
+        "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+        "ziwei": "亥"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 5,
+        "lunarDay": 1,
+        "orderingKey": "5:01",
+        "rowId": "bureau-5-day-01",
+        "source": {
+          "intermediate": {
+            "baseBranch": "寅",
+            "branchIndex": 6,
+            "direction": "forward",
+            "quotient": 1,
+            "remainder": 4,
+            "signedRemainder": 4
+          },
+          "reviewer": "A",
+          "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+          "ziwei": "午"
+        }
+      },
+      "rowId": "bureau-5-day-01",
+      "source": {
+        "intermediate": {
+          "baseBranch": "寅",
+          "branchIndex": 6,
+          "direction": "forward",
+          "quotient": 1,
+          "remainder": 4,
+          "signedRemainder": 4
+        },
+        "reviewer": "A",
+        "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+        "ziwei": "午"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 5,
+        "lunarDay": 2,
+        "orderingKey": "5:02",
+        "rowId": "bureau-5-day-02",
+        "source": {
+          "intermediate": {
+            "baseBranch": "寅",
+            "branchIndex": 11,
+            "direction": "reverse",
+            "quotient": 1,
+            "remainder": 3,
+            "signedRemainder": -3
+          },
+          "reviewer": "A",
+          "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+          "ziwei": "亥"
+        }
+      },
+      "rowId": "bureau-5-day-02",
+      "source": {
+        "intermediate": {
+          "baseBranch": "寅",
+          "branchIndex": 11,
+          "direction": "reverse",
+          "quotient": 1,
+          "remainder": 3,
+          "signedRemainder": -3
+        },
+        "reviewer": "A",
+        "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+        "ziwei": "亥"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 5,
+        "lunarDay": 3,
+        "orderingKey": "5:03",
+        "rowId": "bureau-5-day-03",
+        "source": {
+          "intermediate": {
+            "baseBranch": "寅",
+            "branchIndex": 4,
+            "direction": "forward",
+            "quotient": 1,
+            "remainder": 2,
+            "signedRemainder": 2
+          },
+          "reviewer": "A",
+          "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+          "ziwei": "辰"
+        }
+      },
+      "rowId": "bureau-5-day-03",
+      "source": {
+        "intermediate": {
+          "baseBranch": "寅",
+          "branchIndex": 4,
+          "direction": "forward",
+          "quotient": 1,
+          "remainder": 2,
+          "signedRemainder": 2
+        },
+        "reviewer": "A",
+        "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+        "ziwei": "辰"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 5,
+        "lunarDay": 4,
+        "orderingKey": "5:04",
+        "rowId": "bureau-5-day-04",
+        "source": {
+          "intermediate": {
+            "baseBranch": "寅",
+            "branchIndex": 1,
+            "direction": "reverse",
+            "quotient": 1,
+            "remainder": 1,
+            "signedRemainder": -1
+          },
+          "reviewer": "A",
+          "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+          "ziwei": "丑"
+        }
+      },
+      "rowId": "bureau-5-day-04",
+      "source": {
+        "intermediate": {
+          "baseBranch": "寅",
+          "branchIndex": 1,
+          "direction": "reverse",
+          "quotient": 1,
+          "remainder": 1,
+          "signedRemainder": -1
+        },
+        "reviewer": "A",
+        "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+        "ziwei": "丑"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 5,
+        "lunarDay": 5,
+        "orderingKey": "5:05",
+        "rowId": "bureau-5-day-05",
+        "source": {
+          "intermediate": {
+            "baseBranch": "寅",
+            "branchIndex": 2,
+            "direction": "none",
+            "quotient": 1,
+            "remainder": 0,
+            "signedRemainder": 0
+          },
+          "reviewer": "A",
+          "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+          "ziwei": "寅"
+        }
+      },
+      "rowId": "bureau-5-day-05",
+      "source": {
+        "intermediate": {
+          "baseBranch": "寅",
+          "branchIndex": 2,
+          "direction": "none",
+          "quotient": 1,
+          "remainder": 0,
+          "signedRemainder": 0
+        },
+        "reviewer": "A",
+        "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+        "ziwei": "寅"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 5,
+        "lunarDay": 6,
+        "orderingKey": "5:06",
+        "rowId": "bureau-5-day-06",
+        "source": {
+          "intermediate": {
+            "baseBranch": "寅",
+            "branchIndex": 7,
+            "direction": "forward",
+            "quotient": 2,
+            "remainder": 4,
+            "signedRemainder": 4
+          },
+          "reviewer": "A",
+          "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+          "ziwei": "未"
+        }
+      },
+      "rowId": "bureau-5-day-06",
+      "source": {
+        "intermediate": {
+          "baseBranch": "寅",
+          "branchIndex": 7,
+          "direction": "forward",
+          "quotient": 2,
+          "remainder": 4,
+          "signedRemainder": 4
+        },
+        "reviewer": "A",
+        "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+        "ziwei": "未"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 5,
+        "lunarDay": 7,
+        "orderingKey": "5:07",
+        "rowId": "bureau-5-day-07",
+        "source": {
+          "intermediate": {
+            "baseBranch": "寅",
+            "branchIndex": 0,
+            "direction": "reverse",
+            "quotient": 2,
+            "remainder": 3,
+            "signedRemainder": -3
+          },
+          "reviewer": "A",
+          "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+          "ziwei": "子"
+        }
+      },
+      "rowId": "bureau-5-day-07",
+      "source": {
+        "intermediate": {
+          "baseBranch": "寅",
+          "branchIndex": 0,
+          "direction": "reverse",
+          "quotient": 2,
+          "remainder": 3,
+          "signedRemainder": -3
+        },
+        "reviewer": "A",
+        "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+        "ziwei": "子"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 5,
+        "lunarDay": 8,
+        "orderingKey": "5:08",
+        "rowId": "bureau-5-day-08",
+        "source": {
+          "intermediate": {
+            "baseBranch": "寅",
+            "branchIndex": 5,
+            "direction": "forward",
+            "quotient": 2,
+            "remainder": 2,
+            "signedRemainder": 2
+          },
+          "reviewer": "A",
+          "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+          "ziwei": "巳"
+        }
+      },
+      "rowId": "bureau-5-day-08",
+      "source": {
+        "intermediate": {
+          "baseBranch": "寅",
+          "branchIndex": 5,
+          "direction": "forward",
+          "quotient": 2,
+          "remainder": 2,
+          "signedRemainder": 2
+        },
+        "reviewer": "A",
+        "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+        "ziwei": "巳"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 5,
+        "lunarDay": 9,
+        "orderingKey": "5:09",
+        "rowId": "bureau-5-day-09",
+        "source": {
+          "intermediate": {
+            "baseBranch": "寅",
+            "branchIndex": 2,
+            "direction": "reverse",
+            "quotient": 2,
+            "remainder": 1,
+            "signedRemainder": -1
+          },
+          "reviewer": "A",
+          "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+          "ziwei": "寅"
+        }
+      },
+      "rowId": "bureau-5-day-09",
+      "source": {
+        "intermediate": {
+          "baseBranch": "寅",
+          "branchIndex": 2,
+          "direction": "reverse",
+          "quotient": 2,
+          "remainder": 1,
+          "signedRemainder": -1
+        },
+        "reviewer": "A",
+        "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+        "ziwei": "寅"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 5,
+        "lunarDay": 10,
+        "orderingKey": "5:10",
+        "rowId": "bureau-5-day-10",
+        "source": {
+          "intermediate": {
+            "baseBranch": "寅",
+            "branchIndex": 3,
+            "direction": "none",
+            "quotient": 2,
+            "remainder": 0,
+            "signedRemainder": 0
+          },
+          "reviewer": "A",
+          "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+          "ziwei": "卯"
+        }
+      },
+      "rowId": "bureau-5-day-10",
+      "source": {
+        "intermediate": {
+          "baseBranch": "寅",
+          "branchIndex": 3,
+          "direction": "none",
+          "quotient": 2,
+          "remainder": 0,
+          "signedRemainder": 0
+        },
+        "reviewer": "A",
+        "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+        "ziwei": "卯"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 5,
+        "lunarDay": 11,
+        "orderingKey": "5:11",
+        "rowId": "bureau-5-day-11",
+        "source": {
+          "intermediate": {
+            "baseBranch": "寅",
+            "branchIndex": 8,
+            "direction": "forward",
+            "quotient": 3,
+            "remainder": 4,
+            "signedRemainder": 4
+          },
+          "reviewer": "A",
+          "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+          "ziwei": "申"
+        }
+      },
+      "rowId": "bureau-5-day-11",
+      "source": {
+        "intermediate": {
+          "baseBranch": "寅",
+          "branchIndex": 8,
+          "direction": "forward",
+          "quotient": 3,
+          "remainder": 4,
+          "signedRemainder": 4
+        },
+        "reviewer": "A",
+        "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+        "ziwei": "申"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 5,
+        "lunarDay": 12,
+        "orderingKey": "5:12",
+        "rowId": "bureau-5-day-12",
+        "source": {
+          "intermediate": {
+            "baseBranch": "寅",
+            "branchIndex": 1,
+            "direction": "reverse",
+            "quotient": 3,
+            "remainder": 3,
+            "signedRemainder": -3
+          },
+          "reviewer": "A",
+          "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+          "ziwei": "丑"
+        }
+      },
+      "rowId": "bureau-5-day-12",
+      "source": {
+        "intermediate": {
+          "baseBranch": "寅",
+          "branchIndex": 1,
+          "direction": "reverse",
+          "quotient": 3,
+          "remainder": 3,
+          "signedRemainder": -3
+        },
+        "reviewer": "A",
+        "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+        "ziwei": "丑"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 5,
+        "lunarDay": 13,
+        "orderingKey": "5:13",
+        "rowId": "bureau-5-day-13",
+        "source": {
+          "intermediate": {
+            "baseBranch": "寅",
+            "branchIndex": 6,
+            "direction": "forward",
+            "quotient": 3,
+            "remainder": 2,
+            "signedRemainder": 2
+          },
+          "reviewer": "A",
+          "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+          "ziwei": "午"
+        }
+      },
+      "rowId": "bureau-5-day-13",
+      "source": {
+        "intermediate": {
+          "baseBranch": "寅",
+          "branchIndex": 6,
+          "direction": "forward",
+          "quotient": 3,
+          "remainder": 2,
+          "signedRemainder": 2
+        },
+        "reviewer": "A",
+        "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+        "ziwei": "午"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 5,
+        "lunarDay": 14,
+        "orderingKey": "5:14",
+        "rowId": "bureau-5-day-14",
+        "source": {
+          "intermediate": {
+            "baseBranch": "寅",
+            "branchIndex": 3,
+            "direction": "reverse",
+            "quotient": 3,
+            "remainder": 1,
+            "signedRemainder": -1
+          },
+          "reviewer": "A",
+          "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+          "ziwei": "卯"
+        }
+      },
+      "rowId": "bureau-5-day-14",
+      "source": {
+        "intermediate": {
+          "baseBranch": "寅",
+          "branchIndex": 3,
+          "direction": "reverse",
+          "quotient": 3,
+          "remainder": 1,
+          "signedRemainder": -1
+        },
+        "reviewer": "A",
+        "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+        "ziwei": "卯"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 5,
+        "lunarDay": 15,
+        "orderingKey": "5:15",
+        "rowId": "bureau-5-day-15",
+        "source": {
+          "intermediate": {
+            "baseBranch": "寅",
+            "branchIndex": 4,
+            "direction": "none",
+            "quotient": 3,
+            "remainder": 0,
+            "signedRemainder": 0
+          },
+          "reviewer": "A",
+          "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+          "ziwei": "辰"
+        }
+      },
+      "rowId": "bureau-5-day-15",
+      "source": {
+        "intermediate": {
+          "baseBranch": "寅",
+          "branchIndex": 4,
+          "direction": "none",
+          "quotient": 3,
+          "remainder": 0,
+          "signedRemainder": 0
+        },
+        "reviewer": "A",
+        "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+        "ziwei": "辰"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 5,
+        "lunarDay": 16,
+        "orderingKey": "5:16",
+        "rowId": "bureau-5-day-16",
+        "source": {
+          "intermediate": {
+            "baseBranch": "寅",
+            "branchIndex": 9,
+            "direction": "forward",
+            "quotient": 4,
+            "remainder": 4,
+            "signedRemainder": 4
+          },
+          "reviewer": "A",
+          "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+          "ziwei": "酉"
+        }
+      },
+      "rowId": "bureau-5-day-16",
+      "source": {
+        "intermediate": {
+          "baseBranch": "寅",
+          "branchIndex": 9,
+          "direction": "forward",
+          "quotient": 4,
+          "remainder": 4,
+          "signedRemainder": 4
+        },
+        "reviewer": "A",
+        "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+        "ziwei": "酉"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 5,
+        "lunarDay": 17,
+        "orderingKey": "5:17",
+        "rowId": "bureau-5-day-17",
+        "source": {
+          "intermediate": {
+            "baseBranch": "寅",
+            "branchIndex": 2,
+            "direction": "reverse",
+            "quotient": 4,
+            "remainder": 3,
+            "signedRemainder": -3
+          },
+          "reviewer": "A",
+          "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+          "ziwei": "寅"
+        }
+      },
+      "rowId": "bureau-5-day-17",
+      "source": {
+        "intermediate": {
+          "baseBranch": "寅",
+          "branchIndex": 2,
+          "direction": "reverse",
+          "quotient": 4,
+          "remainder": 3,
+          "signedRemainder": -3
+        },
+        "reviewer": "A",
+        "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+        "ziwei": "寅"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 5,
+        "lunarDay": 18,
+        "orderingKey": "5:18",
+        "rowId": "bureau-5-day-18",
+        "source": {
+          "intermediate": {
+            "baseBranch": "寅",
+            "branchIndex": 7,
+            "direction": "forward",
+            "quotient": 4,
+            "remainder": 2,
+            "signedRemainder": 2
+          },
+          "reviewer": "A",
+          "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+          "ziwei": "未"
+        }
+      },
+      "rowId": "bureau-5-day-18",
+      "source": {
+        "intermediate": {
+          "baseBranch": "寅",
+          "branchIndex": 7,
+          "direction": "forward",
+          "quotient": 4,
+          "remainder": 2,
+          "signedRemainder": 2
+        },
+        "reviewer": "A",
+        "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+        "ziwei": "未"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 5,
+        "lunarDay": 19,
+        "orderingKey": "5:19",
+        "rowId": "bureau-5-day-19",
+        "source": {
+          "intermediate": {
+            "baseBranch": "寅",
+            "branchIndex": 4,
+            "direction": "reverse",
+            "quotient": 4,
+            "remainder": 1,
+            "signedRemainder": -1
+          },
+          "reviewer": "A",
+          "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+          "ziwei": "辰"
+        }
+      },
+      "rowId": "bureau-5-day-19",
+      "source": {
+        "intermediate": {
+          "baseBranch": "寅",
+          "branchIndex": 4,
+          "direction": "reverse",
+          "quotient": 4,
+          "remainder": 1,
+          "signedRemainder": -1
+        },
+        "reviewer": "A",
+        "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+        "ziwei": "辰"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 5,
+        "lunarDay": 20,
+        "orderingKey": "5:20",
+        "rowId": "bureau-5-day-20",
+        "source": {
+          "intermediate": {
+            "baseBranch": "寅",
+            "branchIndex": 5,
+            "direction": "none",
+            "quotient": 4,
+            "remainder": 0,
+            "signedRemainder": 0
+          },
+          "reviewer": "A",
+          "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+          "ziwei": "巳"
+        }
+      },
+      "rowId": "bureau-5-day-20",
+      "source": {
+        "intermediate": {
+          "baseBranch": "寅",
+          "branchIndex": 5,
+          "direction": "none",
+          "quotient": 4,
+          "remainder": 0,
+          "signedRemainder": 0
+        },
+        "reviewer": "A",
+        "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+        "ziwei": "巳"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 5,
+        "lunarDay": 21,
+        "orderingKey": "5:21",
+        "rowId": "bureau-5-day-21",
+        "source": {
+          "intermediate": {
+            "baseBranch": "寅",
+            "branchIndex": 10,
+            "direction": "forward",
+            "quotient": 5,
+            "remainder": 4,
+            "signedRemainder": 4
+          },
+          "reviewer": "A",
+          "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+          "ziwei": "戌"
+        }
+      },
+      "rowId": "bureau-5-day-21",
+      "source": {
+        "intermediate": {
+          "baseBranch": "寅",
+          "branchIndex": 10,
+          "direction": "forward",
+          "quotient": 5,
+          "remainder": 4,
+          "signedRemainder": 4
+        },
+        "reviewer": "A",
+        "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+        "ziwei": "戌"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 5,
+        "lunarDay": 22,
+        "orderingKey": "5:22",
+        "rowId": "bureau-5-day-22",
+        "source": {
+          "intermediate": {
+            "baseBranch": "寅",
+            "branchIndex": 3,
+            "direction": "reverse",
+            "quotient": 5,
+            "remainder": 3,
+            "signedRemainder": -3
+          },
+          "reviewer": "A",
+          "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+          "ziwei": "卯"
+        }
+      },
+      "rowId": "bureau-5-day-22",
+      "source": {
+        "intermediate": {
+          "baseBranch": "寅",
+          "branchIndex": 3,
+          "direction": "reverse",
+          "quotient": 5,
+          "remainder": 3,
+          "signedRemainder": -3
+        },
+        "reviewer": "A",
+        "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+        "ziwei": "卯"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 5,
+        "lunarDay": 23,
+        "orderingKey": "5:23",
+        "rowId": "bureau-5-day-23",
+        "source": {
+          "intermediate": {
+            "baseBranch": "寅",
+            "branchIndex": 8,
+            "direction": "forward",
+            "quotient": 5,
+            "remainder": 2,
+            "signedRemainder": 2
+          },
+          "reviewer": "A",
+          "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+          "ziwei": "申"
+        }
+      },
+      "rowId": "bureau-5-day-23",
+      "source": {
+        "intermediate": {
+          "baseBranch": "寅",
+          "branchIndex": 8,
+          "direction": "forward",
+          "quotient": 5,
+          "remainder": 2,
+          "signedRemainder": 2
+        },
+        "reviewer": "A",
+        "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+        "ziwei": "申"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 5,
+        "lunarDay": 24,
+        "orderingKey": "5:24",
+        "rowId": "bureau-5-day-24",
+        "source": {
+          "intermediate": {
+            "baseBranch": "寅",
+            "branchIndex": 5,
+            "direction": "reverse",
+            "quotient": 5,
+            "remainder": 1,
+            "signedRemainder": -1
+          },
+          "reviewer": "A",
+          "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+          "ziwei": "巳"
+        }
+      },
+      "rowId": "bureau-5-day-24",
+      "source": {
+        "intermediate": {
+          "baseBranch": "寅",
+          "branchIndex": 5,
+          "direction": "reverse",
+          "quotient": 5,
+          "remainder": 1,
+          "signedRemainder": -1
+        },
+        "reviewer": "A",
+        "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+        "ziwei": "巳"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 5,
+        "lunarDay": 25,
+        "orderingKey": "5:25",
+        "rowId": "bureau-5-day-25",
+        "source": {
+          "intermediate": {
+            "baseBranch": "寅",
+            "branchIndex": 6,
+            "direction": "none",
+            "quotient": 5,
+            "remainder": 0,
+            "signedRemainder": 0
+          },
+          "reviewer": "A",
+          "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+          "ziwei": "午"
+        }
+      },
+      "rowId": "bureau-5-day-25",
+      "source": {
+        "intermediate": {
+          "baseBranch": "寅",
+          "branchIndex": 6,
+          "direction": "none",
+          "quotient": 5,
+          "remainder": 0,
+          "signedRemainder": 0
+        },
+        "reviewer": "A",
+        "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+        "ziwei": "午"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 5,
+        "lunarDay": 26,
+        "orderingKey": "5:26",
+        "rowId": "bureau-5-day-26",
+        "source": {
+          "intermediate": {
+            "baseBranch": "寅",
+            "branchIndex": 11,
+            "direction": "forward",
+            "quotient": 6,
+            "remainder": 4,
+            "signedRemainder": 4
+          },
+          "reviewer": "A",
+          "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+          "ziwei": "亥"
+        }
+      },
+      "rowId": "bureau-5-day-26",
+      "source": {
+        "intermediate": {
+          "baseBranch": "寅",
+          "branchIndex": 11,
+          "direction": "forward",
+          "quotient": 6,
+          "remainder": 4,
+          "signedRemainder": 4
+        },
+        "reviewer": "A",
+        "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+        "ziwei": "亥"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 5,
+        "lunarDay": 27,
+        "orderingKey": "5:27",
+        "rowId": "bureau-5-day-27",
+        "source": {
+          "intermediate": {
+            "baseBranch": "寅",
+            "branchIndex": 4,
+            "direction": "reverse",
+            "quotient": 6,
+            "remainder": 3,
+            "signedRemainder": -3
+          },
+          "reviewer": "A",
+          "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+          "ziwei": "辰"
+        }
+      },
+      "rowId": "bureau-5-day-27",
+      "source": {
+        "intermediate": {
+          "baseBranch": "寅",
+          "branchIndex": 4,
+          "direction": "reverse",
+          "quotient": 6,
+          "remainder": 3,
+          "signedRemainder": -3
+        },
+        "reviewer": "A",
+        "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+        "ziwei": "辰"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 5,
+        "lunarDay": 28,
+        "orderingKey": "5:28",
+        "rowId": "bureau-5-day-28",
+        "source": {
+          "intermediate": {
+            "baseBranch": "寅",
+            "branchIndex": 9,
+            "direction": "forward",
+            "quotient": 6,
+            "remainder": 2,
+            "signedRemainder": 2
+          },
+          "reviewer": "A",
+          "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+          "ziwei": "酉"
+        }
+      },
+      "rowId": "bureau-5-day-28",
+      "source": {
+        "intermediate": {
+          "baseBranch": "寅",
+          "branchIndex": 9,
+          "direction": "forward",
+          "quotient": 6,
+          "remainder": 2,
+          "signedRemainder": 2
+        },
+        "reviewer": "A",
+        "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+        "ziwei": "酉"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 5,
+        "lunarDay": 29,
+        "orderingKey": "5:29",
+        "rowId": "bureau-5-day-29",
+        "source": {
+          "intermediate": {
+            "baseBranch": "寅",
+            "branchIndex": 6,
+            "direction": "reverse",
+            "quotient": 6,
+            "remainder": 1,
+            "signedRemainder": -1
+          },
+          "reviewer": "A",
+          "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+          "ziwei": "午"
+        }
+      },
+      "rowId": "bureau-5-day-29",
+      "source": {
+        "intermediate": {
+          "baseBranch": "寅",
+          "branchIndex": 6,
+          "direction": "reverse",
+          "quotient": 6,
+          "remainder": 1,
+          "signedRemainder": -1
+        },
+        "reviewer": "A",
+        "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+        "ziwei": "午"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 5,
+        "lunarDay": 30,
+        "orderingKey": "5:30",
+        "rowId": "bureau-5-day-30",
+        "source": {
+          "intermediate": {
+            "baseBranch": "寅",
+            "branchIndex": 7,
+            "direction": "none",
+            "quotient": 6,
+            "remainder": 0,
+            "signedRemainder": 0
+          },
+          "reviewer": "A",
+          "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+          "ziwei": "未"
+        }
+      },
+      "rowId": "bureau-5-day-30",
+      "source": {
+        "intermediate": {
+          "baseBranch": "寅",
+          "branchIndex": 7,
+          "direction": "none",
+          "quotient": 6,
+          "remainder": 0,
+          "signedRemainder": 0
+        },
+        "reviewer": "A",
+        "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+        "ziwei": "未"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 6,
+        "lunarDay": 1,
+        "orderingKey": "6:01",
+        "rowId": "bureau-6-day-01",
+        "source": {
+          "intermediate": {
+            "baseBranch": "寅",
+            "branchIndex": 9,
+            "direction": "reverse",
+            "quotient": 1,
+            "remainder": 5,
+            "signedRemainder": -5
+          },
+          "reviewer": "A",
+          "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+          "ziwei": "酉"
+        }
+      },
+      "rowId": "bureau-6-day-01",
+      "source": {
+        "intermediate": {
+          "baseBranch": "寅",
+          "branchIndex": 9,
+          "direction": "reverse",
+          "quotient": 1,
+          "remainder": 5,
+          "signedRemainder": -5
+        },
+        "reviewer": "A",
+        "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+        "ziwei": "酉"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 6,
+        "lunarDay": 2,
+        "orderingKey": "6:02",
+        "rowId": "bureau-6-day-02",
+        "source": {
+          "intermediate": {
+            "baseBranch": "寅",
+            "branchIndex": 6,
+            "direction": "forward",
+            "quotient": 1,
+            "remainder": 4,
+            "signedRemainder": 4
+          },
+          "reviewer": "A",
+          "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+          "ziwei": "午"
+        }
+      },
+      "rowId": "bureau-6-day-02",
+      "source": {
+        "intermediate": {
+          "baseBranch": "寅",
+          "branchIndex": 6,
+          "direction": "forward",
+          "quotient": 1,
+          "remainder": 4,
+          "signedRemainder": 4
+        },
+        "reviewer": "A",
+        "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+        "ziwei": "午"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 6,
+        "lunarDay": 3,
+        "orderingKey": "6:03",
+        "rowId": "bureau-6-day-03",
+        "source": {
+          "intermediate": {
+            "baseBranch": "寅",
+            "branchIndex": 11,
+            "direction": "reverse",
+            "quotient": 1,
+            "remainder": 3,
+            "signedRemainder": -3
+          },
+          "reviewer": "A",
+          "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+          "ziwei": "亥"
+        }
+      },
+      "rowId": "bureau-6-day-03",
+      "source": {
+        "intermediate": {
+          "baseBranch": "寅",
+          "branchIndex": 11,
+          "direction": "reverse",
+          "quotient": 1,
+          "remainder": 3,
+          "signedRemainder": -3
+        },
+        "reviewer": "A",
+        "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+        "ziwei": "亥"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 6,
+        "lunarDay": 4,
+        "orderingKey": "6:04",
+        "rowId": "bureau-6-day-04",
+        "source": {
+          "intermediate": {
+            "baseBranch": "寅",
+            "branchIndex": 4,
+            "direction": "forward",
+            "quotient": 1,
+            "remainder": 2,
+            "signedRemainder": 2
+          },
+          "reviewer": "A",
+          "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+          "ziwei": "辰"
+        }
+      },
+      "rowId": "bureau-6-day-04",
+      "source": {
+        "intermediate": {
+          "baseBranch": "寅",
+          "branchIndex": 4,
+          "direction": "forward",
+          "quotient": 1,
+          "remainder": 2,
+          "signedRemainder": 2
+        },
+        "reviewer": "A",
+        "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+        "ziwei": "辰"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 6,
+        "lunarDay": 5,
+        "orderingKey": "6:05",
+        "rowId": "bureau-6-day-05",
+        "source": {
+          "intermediate": {
+            "baseBranch": "寅",
+            "branchIndex": 1,
+            "direction": "reverse",
+            "quotient": 1,
+            "remainder": 1,
+            "signedRemainder": -1
+          },
+          "reviewer": "A",
+          "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+          "ziwei": "丑"
+        }
+      },
+      "rowId": "bureau-6-day-05",
+      "source": {
+        "intermediate": {
+          "baseBranch": "寅",
+          "branchIndex": 1,
+          "direction": "reverse",
+          "quotient": 1,
+          "remainder": 1,
+          "signedRemainder": -1
+        },
+        "reviewer": "A",
+        "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+        "ziwei": "丑"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 6,
+        "lunarDay": 6,
+        "orderingKey": "6:06",
+        "rowId": "bureau-6-day-06",
+        "source": {
+          "intermediate": {
+            "baseBranch": "寅",
+            "branchIndex": 2,
+            "direction": "none",
+            "quotient": 1,
+            "remainder": 0,
+            "signedRemainder": 0
+          },
+          "reviewer": "A",
+          "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+          "ziwei": "寅"
+        }
+      },
+      "rowId": "bureau-6-day-06",
+      "source": {
+        "intermediate": {
+          "baseBranch": "寅",
+          "branchIndex": 2,
+          "direction": "none",
+          "quotient": 1,
+          "remainder": 0,
+          "signedRemainder": 0
+        },
+        "reviewer": "A",
+        "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+        "ziwei": "寅"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 6,
+        "lunarDay": 7,
+        "orderingKey": "6:07",
+        "rowId": "bureau-6-day-07",
+        "source": {
+          "intermediate": {
+            "baseBranch": "寅",
+            "branchIndex": 10,
+            "direction": "reverse",
+            "quotient": 2,
+            "remainder": 5,
+            "signedRemainder": -5
+          },
+          "reviewer": "A",
+          "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+          "ziwei": "戌"
+        }
+      },
+      "rowId": "bureau-6-day-07",
+      "source": {
+        "intermediate": {
+          "baseBranch": "寅",
+          "branchIndex": 10,
+          "direction": "reverse",
+          "quotient": 2,
+          "remainder": 5,
+          "signedRemainder": -5
+        },
+        "reviewer": "A",
+        "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+        "ziwei": "戌"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 6,
+        "lunarDay": 8,
+        "orderingKey": "6:08",
+        "rowId": "bureau-6-day-08",
+        "source": {
+          "intermediate": {
+            "baseBranch": "寅",
+            "branchIndex": 7,
+            "direction": "forward",
+            "quotient": 2,
+            "remainder": 4,
+            "signedRemainder": 4
+          },
+          "reviewer": "A",
+          "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+          "ziwei": "未"
+        }
+      },
+      "rowId": "bureau-6-day-08",
+      "source": {
+        "intermediate": {
+          "baseBranch": "寅",
+          "branchIndex": 7,
+          "direction": "forward",
+          "quotient": 2,
+          "remainder": 4,
+          "signedRemainder": 4
+        },
+        "reviewer": "A",
+        "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+        "ziwei": "未"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 6,
+        "lunarDay": 9,
+        "orderingKey": "6:09",
+        "rowId": "bureau-6-day-09",
+        "source": {
+          "intermediate": {
+            "baseBranch": "寅",
+            "branchIndex": 0,
+            "direction": "reverse",
+            "quotient": 2,
+            "remainder": 3,
+            "signedRemainder": -3
+          },
+          "reviewer": "A",
+          "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+          "ziwei": "子"
+        }
+      },
+      "rowId": "bureau-6-day-09",
+      "source": {
+        "intermediate": {
+          "baseBranch": "寅",
+          "branchIndex": 0,
+          "direction": "reverse",
+          "quotient": 2,
+          "remainder": 3,
+          "signedRemainder": -3
+        },
+        "reviewer": "A",
+        "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+        "ziwei": "子"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 6,
+        "lunarDay": 10,
+        "orderingKey": "6:10",
+        "rowId": "bureau-6-day-10",
+        "source": {
+          "intermediate": {
+            "baseBranch": "寅",
+            "branchIndex": 5,
+            "direction": "forward",
+            "quotient": 2,
+            "remainder": 2,
+            "signedRemainder": 2
+          },
+          "reviewer": "A",
+          "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+          "ziwei": "巳"
+        }
+      },
+      "rowId": "bureau-6-day-10",
+      "source": {
+        "intermediate": {
+          "baseBranch": "寅",
+          "branchIndex": 5,
+          "direction": "forward",
+          "quotient": 2,
+          "remainder": 2,
+          "signedRemainder": 2
+        },
+        "reviewer": "A",
+        "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+        "ziwei": "巳"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 6,
+        "lunarDay": 11,
+        "orderingKey": "6:11",
+        "rowId": "bureau-6-day-11",
+        "source": {
+          "intermediate": {
+            "baseBranch": "寅",
+            "branchIndex": 2,
+            "direction": "reverse",
+            "quotient": 2,
+            "remainder": 1,
+            "signedRemainder": -1
+          },
+          "reviewer": "A",
+          "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+          "ziwei": "寅"
+        }
+      },
+      "rowId": "bureau-6-day-11",
+      "source": {
+        "intermediate": {
+          "baseBranch": "寅",
+          "branchIndex": 2,
+          "direction": "reverse",
+          "quotient": 2,
+          "remainder": 1,
+          "signedRemainder": -1
+        },
+        "reviewer": "A",
+        "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+        "ziwei": "寅"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 6,
+        "lunarDay": 12,
+        "orderingKey": "6:12",
+        "rowId": "bureau-6-day-12",
+        "source": {
+          "intermediate": {
+            "baseBranch": "寅",
+            "branchIndex": 3,
+            "direction": "none",
+            "quotient": 2,
+            "remainder": 0,
+            "signedRemainder": 0
+          },
+          "reviewer": "A",
+          "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+          "ziwei": "卯"
+        }
+      },
+      "rowId": "bureau-6-day-12",
+      "source": {
+        "intermediate": {
+          "baseBranch": "寅",
+          "branchIndex": 3,
+          "direction": "none",
+          "quotient": 2,
+          "remainder": 0,
+          "signedRemainder": 0
+        },
+        "reviewer": "A",
+        "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+        "ziwei": "卯"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 6,
+        "lunarDay": 13,
+        "orderingKey": "6:13",
+        "rowId": "bureau-6-day-13",
+        "source": {
+          "intermediate": {
+            "baseBranch": "寅",
+            "branchIndex": 11,
+            "direction": "reverse",
+            "quotient": 3,
+            "remainder": 5,
+            "signedRemainder": -5
+          },
+          "reviewer": "A",
+          "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+          "ziwei": "亥"
+        }
+      },
+      "rowId": "bureau-6-day-13",
+      "source": {
+        "intermediate": {
+          "baseBranch": "寅",
+          "branchIndex": 11,
+          "direction": "reverse",
+          "quotient": 3,
+          "remainder": 5,
+          "signedRemainder": -5
+        },
+        "reviewer": "A",
+        "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+        "ziwei": "亥"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 6,
+        "lunarDay": 14,
+        "orderingKey": "6:14",
+        "rowId": "bureau-6-day-14",
+        "source": {
+          "intermediate": {
+            "baseBranch": "寅",
+            "branchIndex": 8,
+            "direction": "forward",
+            "quotient": 3,
+            "remainder": 4,
+            "signedRemainder": 4
+          },
+          "reviewer": "A",
+          "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+          "ziwei": "申"
+        }
+      },
+      "rowId": "bureau-6-day-14",
+      "source": {
+        "intermediate": {
+          "baseBranch": "寅",
+          "branchIndex": 8,
+          "direction": "forward",
+          "quotient": 3,
+          "remainder": 4,
+          "signedRemainder": 4
+        },
+        "reviewer": "A",
+        "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+        "ziwei": "申"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 6,
+        "lunarDay": 15,
+        "orderingKey": "6:15",
+        "rowId": "bureau-6-day-15",
+        "source": {
+          "intermediate": {
+            "baseBranch": "寅",
+            "branchIndex": 1,
+            "direction": "reverse",
+            "quotient": 3,
+            "remainder": 3,
+            "signedRemainder": -3
+          },
+          "reviewer": "A",
+          "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+          "ziwei": "丑"
+        }
+      },
+      "rowId": "bureau-6-day-15",
+      "source": {
+        "intermediate": {
+          "baseBranch": "寅",
+          "branchIndex": 1,
+          "direction": "reverse",
+          "quotient": 3,
+          "remainder": 3,
+          "signedRemainder": -3
+        },
+        "reviewer": "A",
+        "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+        "ziwei": "丑"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 6,
+        "lunarDay": 16,
+        "orderingKey": "6:16",
+        "rowId": "bureau-6-day-16",
+        "source": {
+          "intermediate": {
+            "baseBranch": "寅",
+            "branchIndex": 6,
+            "direction": "forward",
+            "quotient": 3,
+            "remainder": 2,
+            "signedRemainder": 2
+          },
+          "reviewer": "A",
+          "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+          "ziwei": "午"
+        }
+      },
+      "rowId": "bureau-6-day-16",
+      "source": {
+        "intermediate": {
+          "baseBranch": "寅",
+          "branchIndex": 6,
+          "direction": "forward",
+          "quotient": 3,
+          "remainder": 2,
+          "signedRemainder": 2
+        },
+        "reviewer": "A",
+        "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+        "ziwei": "午"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 6,
+        "lunarDay": 17,
+        "orderingKey": "6:17",
+        "rowId": "bureau-6-day-17",
+        "source": {
+          "intermediate": {
+            "baseBranch": "寅",
+            "branchIndex": 3,
+            "direction": "reverse",
+            "quotient": 3,
+            "remainder": 1,
+            "signedRemainder": -1
+          },
+          "reviewer": "A",
+          "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+          "ziwei": "卯"
+        }
+      },
+      "rowId": "bureau-6-day-17",
+      "source": {
+        "intermediate": {
+          "baseBranch": "寅",
+          "branchIndex": 3,
+          "direction": "reverse",
+          "quotient": 3,
+          "remainder": 1,
+          "signedRemainder": -1
+        },
+        "reviewer": "A",
+        "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+        "ziwei": "卯"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 6,
+        "lunarDay": 18,
+        "orderingKey": "6:18",
+        "rowId": "bureau-6-day-18",
+        "source": {
+          "intermediate": {
+            "baseBranch": "寅",
+            "branchIndex": 4,
+            "direction": "none",
+            "quotient": 3,
+            "remainder": 0,
+            "signedRemainder": 0
+          },
+          "reviewer": "A",
+          "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+          "ziwei": "辰"
+        }
+      },
+      "rowId": "bureau-6-day-18",
+      "source": {
+        "intermediate": {
+          "baseBranch": "寅",
+          "branchIndex": 4,
+          "direction": "none",
+          "quotient": 3,
+          "remainder": 0,
+          "signedRemainder": 0
+        },
+        "reviewer": "A",
+        "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+        "ziwei": "辰"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 6,
+        "lunarDay": 19,
+        "orderingKey": "6:19",
+        "rowId": "bureau-6-day-19",
+        "source": {
+          "intermediate": {
+            "baseBranch": "寅",
+            "branchIndex": 0,
+            "direction": "reverse",
+            "quotient": 4,
+            "remainder": 5,
+            "signedRemainder": -5
+          },
+          "reviewer": "A",
+          "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+          "ziwei": "子"
+        }
+      },
+      "rowId": "bureau-6-day-19",
+      "source": {
+        "intermediate": {
+          "baseBranch": "寅",
+          "branchIndex": 0,
+          "direction": "reverse",
+          "quotient": 4,
+          "remainder": 5,
+          "signedRemainder": -5
+        },
+        "reviewer": "A",
+        "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+        "ziwei": "子"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 6,
+        "lunarDay": 20,
+        "orderingKey": "6:20",
+        "rowId": "bureau-6-day-20",
+        "source": {
+          "intermediate": {
+            "baseBranch": "寅",
+            "branchIndex": 9,
+            "direction": "forward",
+            "quotient": 4,
+            "remainder": 4,
+            "signedRemainder": 4
+          },
+          "reviewer": "A",
+          "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+          "ziwei": "酉"
+        }
+      },
+      "rowId": "bureau-6-day-20",
+      "source": {
+        "intermediate": {
+          "baseBranch": "寅",
+          "branchIndex": 9,
+          "direction": "forward",
+          "quotient": 4,
+          "remainder": 4,
+          "signedRemainder": 4
+        },
+        "reviewer": "A",
+        "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+        "ziwei": "酉"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 6,
+        "lunarDay": 21,
+        "orderingKey": "6:21",
+        "rowId": "bureau-6-day-21",
+        "source": {
+          "intermediate": {
+            "baseBranch": "寅",
+            "branchIndex": 2,
+            "direction": "reverse",
+            "quotient": 4,
+            "remainder": 3,
+            "signedRemainder": -3
+          },
+          "reviewer": "A",
+          "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+          "ziwei": "寅"
+        }
+      },
+      "rowId": "bureau-6-day-21",
+      "source": {
+        "intermediate": {
+          "baseBranch": "寅",
+          "branchIndex": 2,
+          "direction": "reverse",
+          "quotient": 4,
+          "remainder": 3,
+          "signedRemainder": -3
+        },
+        "reviewer": "A",
+        "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+        "ziwei": "寅"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 6,
+        "lunarDay": 22,
+        "orderingKey": "6:22",
+        "rowId": "bureau-6-day-22",
+        "source": {
+          "intermediate": {
+            "baseBranch": "寅",
+            "branchIndex": 7,
+            "direction": "forward",
+            "quotient": 4,
+            "remainder": 2,
+            "signedRemainder": 2
+          },
+          "reviewer": "A",
+          "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+          "ziwei": "未"
+        }
+      },
+      "rowId": "bureau-6-day-22",
+      "source": {
+        "intermediate": {
+          "baseBranch": "寅",
+          "branchIndex": 7,
+          "direction": "forward",
+          "quotient": 4,
+          "remainder": 2,
+          "signedRemainder": 2
+        },
+        "reviewer": "A",
+        "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+        "ziwei": "未"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 6,
+        "lunarDay": 23,
+        "orderingKey": "6:23",
+        "rowId": "bureau-6-day-23",
+        "source": {
+          "intermediate": {
+            "baseBranch": "寅",
+            "branchIndex": 4,
+            "direction": "reverse",
+            "quotient": 4,
+            "remainder": 1,
+            "signedRemainder": -1
+          },
+          "reviewer": "A",
+          "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+          "ziwei": "辰"
+        }
+      },
+      "rowId": "bureau-6-day-23",
+      "source": {
+        "intermediate": {
+          "baseBranch": "寅",
+          "branchIndex": 4,
+          "direction": "reverse",
+          "quotient": 4,
+          "remainder": 1,
+          "signedRemainder": -1
+        },
+        "reviewer": "A",
+        "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+        "ziwei": "辰"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 6,
+        "lunarDay": 24,
+        "orderingKey": "6:24",
+        "rowId": "bureau-6-day-24",
+        "source": {
+          "intermediate": {
+            "baseBranch": "寅",
+            "branchIndex": 5,
+            "direction": "none",
+            "quotient": 4,
+            "remainder": 0,
+            "signedRemainder": 0
+          },
+          "reviewer": "A",
+          "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+          "ziwei": "巳"
+        }
+      },
+      "rowId": "bureau-6-day-24",
+      "source": {
+        "intermediate": {
+          "baseBranch": "寅",
+          "branchIndex": 5,
+          "direction": "none",
+          "quotient": 4,
+          "remainder": 0,
+          "signedRemainder": 0
+        },
+        "reviewer": "A",
+        "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+        "ziwei": "巳"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 6,
+        "lunarDay": 25,
+        "orderingKey": "6:25",
+        "rowId": "bureau-6-day-25",
+        "source": {
+          "intermediate": {
+            "baseBranch": "寅",
+            "branchIndex": 1,
+            "direction": "reverse",
+            "quotient": 5,
+            "remainder": 5,
+            "signedRemainder": -5
+          },
+          "reviewer": "A",
+          "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+          "ziwei": "丑"
+        }
+      },
+      "rowId": "bureau-6-day-25",
+      "source": {
+        "intermediate": {
+          "baseBranch": "寅",
+          "branchIndex": 1,
+          "direction": "reverse",
+          "quotient": 5,
+          "remainder": 5,
+          "signedRemainder": -5
+        },
+        "reviewer": "A",
+        "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+        "ziwei": "丑"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 6,
+        "lunarDay": 26,
+        "orderingKey": "6:26",
+        "rowId": "bureau-6-day-26",
+        "source": {
+          "intermediate": {
+            "baseBranch": "寅",
+            "branchIndex": 10,
+            "direction": "forward",
+            "quotient": 5,
+            "remainder": 4,
+            "signedRemainder": 4
+          },
+          "reviewer": "A",
+          "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+          "ziwei": "戌"
+        }
+      },
+      "rowId": "bureau-6-day-26",
+      "source": {
+        "intermediate": {
+          "baseBranch": "寅",
+          "branchIndex": 10,
+          "direction": "forward",
+          "quotient": 5,
+          "remainder": 4,
+          "signedRemainder": 4
+        },
+        "reviewer": "A",
+        "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+        "ziwei": "戌"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 6,
+        "lunarDay": 27,
+        "orderingKey": "6:27",
+        "rowId": "bureau-6-day-27",
+        "source": {
+          "intermediate": {
+            "baseBranch": "寅",
+            "branchIndex": 3,
+            "direction": "reverse",
+            "quotient": 5,
+            "remainder": 3,
+            "signedRemainder": -3
+          },
+          "reviewer": "A",
+          "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+          "ziwei": "卯"
+        }
+      },
+      "rowId": "bureau-6-day-27",
+      "source": {
+        "intermediate": {
+          "baseBranch": "寅",
+          "branchIndex": 3,
+          "direction": "reverse",
+          "quotient": 5,
+          "remainder": 3,
+          "signedRemainder": -3
+        },
+        "reviewer": "A",
+        "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+        "ziwei": "卯"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 6,
+        "lunarDay": 28,
+        "orderingKey": "6:28",
+        "rowId": "bureau-6-day-28",
+        "source": {
+          "intermediate": {
+            "baseBranch": "寅",
+            "branchIndex": 8,
+            "direction": "forward",
+            "quotient": 5,
+            "remainder": 2,
+            "signedRemainder": 2
+          },
+          "reviewer": "A",
+          "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+          "ziwei": "申"
+        }
+      },
+      "rowId": "bureau-6-day-28",
+      "source": {
+        "intermediate": {
+          "baseBranch": "寅",
+          "branchIndex": 8,
+          "direction": "forward",
+          "quotient": 5,
+          "remainder": 2,
+          "signedRemainder": 2
+        },
+        "reviewer": "A",
+        "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+        "ziwei": "申"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 6,
+        "lunarDay": 29,
+        "orderingKey": "6:29",
+        "rowId": "bureau-6-day-29",
+        "source": {
+          "intermediate": {
+            "baseBranch": "寅",
+            "branchIndex": 5,
+            "direction": "reverse",
+            "quotient": 5,
+            "remainder": 1,
+            "signedRemainder": -1
+          },
+          "reviewer": "A",
+          "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+          "ziwei": "巳"
+        }
+      },
+      "rowId": "bureau-6-day-29",
+      "source": {
+        "intermediate": {
+          "baseBranch": "寅",
+          "branchIndex": 5,
+          "direction": "reverse",
+          "quotient": 5,
+          "remainder": 1,
+          "signedRemainder": -1
+        },
+        "reviewer": "A",
+        "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+        "ziwei": "巳"
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 6,
+        "lunarDay": 30,
+        "orderingKey": "6:30",
+        "rowId": "bureau-6-day-30",
+        "source": {
+          "intermediate": {
+            "baseBranch": "寅",
+            "branchIndex": 6,
+            "direction": "none",
+            "quotient": 5,
+            "remainder": 0,
+            "signedRemainder": 0
+          },
+          "reviewer": "A",
+          "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+          "ziwei": "午"
+        }
+      },
+      "rowId": "bureau-6-day-30",
+      "source": {
+        "intermediate": {
+          "baseBranch": "寅",
+          "branchIndex": 6,
+          "direction": "none",
+          "quotient": 5,
+          "remainder": 0,
+          "signedRemainder": 0
+        },
+        "reviewer": "A",
+        "sourceRule": "p11 initial branch + p11 odd/even direction; p12 table cross-check",
+        "ziwei": "午"
+      }
+    }
+  ],
+  "sourceWitness": {
+    "gitInclusion": "forbidden",
+    "locators": [
+      {
+        "crop": {
+          "offset": {
+            "x": 300,
+            "y": 450
+          },
+          "sha256": "de2a7e4731060c44e0e306c7a3d53feb81fe6124b53606a933f582608ef39854",
+          "size": {
+            "height": 5200,
+            "width": 3900
+          },
+          "sourcePage": 11,
+          "tool": "sips"
+        },
+        "locator": "left scanned leaf / vertical rule prose columns / heading 起紫微五訣",
+        "pdfPage": 11,
+        "printedPage": "三十一",
+        "render": {
+          "dpi": 200,
+          "page": 11,
+          "sha256": "11c48aa6c900a44837497a40d0077e84549142127f325918a2529ee7b2f22d3b",
+          "tool": "pdftoppm"
+        },
+        "scope": "five bureau initial branches and direction prose",
+        "section": "起紫微五訣"
+      },
+      {
+        "crop": {
+          "offset": {
+            "x": 350,
+            "y": 250
+          },
+          "sha256": "deb4d93db8261259cdc679f30785f12f9d2b1c8990278ec56d1820f158c6a184",
+          "size": {
+            "height": 5700,
+            "width": 3000
+          },
+          "sourcePage": 12,
+          "tool": "sips"
+        },
+        "locator": "left scanned leaf / five-column table / rows 初一 through 三十",
+        "pdfPage": 12,
+        "printedPage": "三十三",
+        "render": {
+          "dpi": 200,
+          "page": 12,
+          "sha256": "7c42a484d327602a997f8148f22648f88825f7d461adcac391f7f710a3790d01",
+          "tool": "pdftoppm"
+        },
+        "scope": "five bureau by 30 lunar-day source table",
+        "section": "起紫微簡索表"
+      }
+    ],
+    "ocrStatus": "exploration_only_not_canonical",
+    "pdfEncrypted": false,
+    "pdfPageCount": 219,
+    "pdfPath": "/Users/softie/Downloads/命-南北山人_紫微斗数全书.pdf",
+    "pdfSha256": "4786a94ab454acdabf9716d7c0db4756dbcbde99a88bc45fda254863c1961023",
+    "readingBoundary": "visual scan only; no OCR or integrated output used to create source rows",
+    "sourceEditionLineage": "unresolved_source_identity"
+  },
+  "status": "independent_source_only_complete"
+}
