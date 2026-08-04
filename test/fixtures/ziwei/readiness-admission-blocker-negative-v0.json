@@ -1,0 +1,15 @@
+{
+  "schemaVersion": "ziwei-readiness-admission-blocker-negative-v0",
+  "purpose": "The executable negative checker mutates a deterministic positive audit for each forbidden admission shortcut.",
+  "cases": [
+    "blocked_occurrence_ready_promoted",
+    "claim_boundary_invented",
+    "unresolved_source_hidden",
+    "raw_text_factified",
+    "user_context_deleted",
+    "external_evidence_deleted",
+    "frequency_admission",
+    "blockers_forced_together",
+    "nondeterministic_sort"
+  ]
+}

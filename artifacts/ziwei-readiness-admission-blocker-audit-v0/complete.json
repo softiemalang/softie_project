@@ -1,0 +1,1259 @@
+{
+  "admissionStates": [
+    "blocked_external_evidence_required",
+    "blocked_claim_boundary_required",
+    "blocked_raw_text_misread_risk",
+    "eligible_occurrence_only_with_limits",
+    "eligible_after_structural_guard",
+    "excluded_currently",
+    "unresolved"
+  ],
+  "artifactIdentity": {
+    "artifactId": "ziwei-readiness-admission-blocker-audit-v0",
+    "artifactPayloadSha256": "82a97ef48146fe56e9da4cea531b37aaaa7854437aca314e1adda27cb1e6c3df",
+    "contractVersion": "artifact-identity-v1",
+    "generation": {
+      "baseHead": "034ea3015875d52643341613547aec583747976e",
+      "baseHeadSource": "git rev-parse HEAD at materialization",
+      "includedCommit": null,
+      "includedCommitSource": "unknown_at_generation; artifact may be included by a later commit"
+    },
+    "inputs": [
+      {
+        "byteSha256": "4a7f98de71ffa46c2468f3c0c7e482f32d4a2c9d38c252c574d17af9d5ca4730",
+        "path": "scripts/materialize-ziwei-occurrence-provenance-v0.mjs"
+      },
+      {
+        "byteSha256": "c379c3d364ea8bdc1062f7a59f2f1b8f83de4762489a86a520733d9d288917cf",
+        "path": "src/ziwei/externalZiweiFixtures.js"
+      },
+      {
+        "byteSha256": "afd4f2ef13da4a13f7dece79e801dab6867e5cd1ee30d2e588dce19935c9aaaa",
+        "path": "src/ziwei/palaceRelationRules.js"
+      },
+      {
+        "byteSha256": "e602ab8611e846b53b9c1ffed2d2dbcb5b77afd13973187ee40d748370846e76",
+        "path": "src/ziwei/transformationRules.js"
+      },
+      {
+        "byteSha256": "716875185d87da22ceef5f66f32899359642646367133f6c9f4bf87718bf130e",
+        "path": "src/ziwei/ziweiContract.js"
+      },
+      {
+        "byteSha256": "f809a56f6f36ab0d8f08a073e083ca0e2783170e8303cd14013d4a19648575c2",
+        "path": "test/fixtures/ziwei/benchmarkCases.js"
+      },
+      {
+        "byteSha256": "c78d3bc2e418ea81fc97061a5a011628b6ba674af9f4fef795a085f4dc381037",
+        "path": "test/fixtures/ziwei/knownCharts.js"
+      },
+      {
+        "byteSha256": "b79bb0c3c7105cd83563fcee59264d832372e6143b4c0bc19347a125e7dfa226",
+        "path": "test/fixtures/ziwei/starPlacementCharts.js"
+      }
+    ],
+    "materializer": {
+      "path": "scripts/materialize-ziwei-readiness-admission-blocker-audit-v0.mjs",
+      "version": "1.0.0"
+    }
+  },
+  "auditVersion": "1.0.0",
+  "baseline": {
+    "activation": "experimental",
+    "configurationMismatch": 2,
+    "conflationRisk": 19,
+    "externalFixtures": {
+      "pending": 6,
+      "verified": 0
+    },
+    "grounding": "not_safe_to_start",
+    "internalFixtures": "regression_only",
+    "occurrenceCount": 19,
+    "readiness": "not_safe_to_start",
+    "sourceIdentity": {
+      "total": 32,
+      "unresolved": 32
+    },
+    "stableClaimBoundary": 0,
+    "stableOccurrenceIds": 19
+  },
+  "basisHead": "034ea3015875d52643341613547aec583747976e",
+  "blockerDistribution": {
+    "blocked_claim_boundary_required": 3,
+    "blocked_external_evidence_required": 4,
+    "blocked_raw_text_misread_risk": 0,
+    "eligible_after_structural_guard": 4,
+    "eligible_occurrence_only_with_limits": 0,
+    "excluded_currently": 8,
+    "unresolved": 0
+  },
+  "categoryLists": {
+    "excludedCurrently": [
+      "ziwei-occ-2b792b2cac1c58ab",
+      "ziwei-occ-894fa6fa97b81dfd",
+      "ziwei-occ-a54cfa4de8051b41",
+      "ziwei-occ-b1d4bbca55c2007f",
+      "ziwei-occ-bb986540a877dcee",
+      "ziwei-occ-c4b8407cdc824d27",
+      "ziwei-occ-d31091d32f84777c",
+      "ziwei-occ-e70f01a8752ee8d2"
+    ],
+    "externalEvidenceRequired": [
+      "ziwei-occ-21d731586efc0e34",
+      "ziwei-occ-2b792b2cac1c58ab",
+      "ziwei-occ-2d961f3216f41e70",
+      "ziwei-occ-6e095d58a62d9b86",
+      "ziwei-occ-894fa6fa97b81dfd",
+      "ziwei-occ-a54cfa4de8051b41",
+      "ziwei-occ-acb0dce151f32dcb",
+      "ziwei-occ-b1d4bbca55c2007f",
+      "ziwei-occ-bb986540a877dcee",
+      "ziwei-occ-c4b8407cdc824d27",
+      "ziwei-occ-d31091d32f84777c",
+      "ziwei-occ-dd08863eb441bb65",
+      "ziwei-occ-e70f01a8752ee8d2",
+      "ziwei-occ-ed75580c000adb8f",
+      "ziwei-occ-f7017ade296bb707"
+    ],
+    "structuralGuardPossible": [
+      "ziwei-occ-2260aba6ed2163e3",
+      "ziwei-occ-a09e10a5495186b8",
+      "ziwei-occ-a72bdf60ef809b58",
+      "ziwei-occ-e73f469c5e35e072"
+    ]
+  },
+  "checker": "scripts/check-ziwei-readiness-admission-blocker-audit-v0.mjs",
+  "deterministicContract": {
+    "hashScopes": [
+      "canonical artifact payload",
+      "complete.json UTF-8 bytes including final LF"
+    ],
+    "occurrenceOrder": "lexicographic occurrenceId",
+    "rawText": "exact baseline text; no normalization",
+    "timestamps": "forbidden"
+  },
+  "invariants": [
+    "occurrences are never merged",
+    "source identity is never inferred",
+    "observed match and regression fixture are not independent verification",
+    "frequency and count never affect admission",
+    "raw text never becomes fact",
+    "user context is required for any application",
+    "blocker kinds remain distinct"
+  ],
+  "materializer": "scripts/materialize-ziwei-readiness-admission-blocker-audit-v0.mjs",
+  "negativeFixture": "test/fixtures/ziwei/readiness-admission-blocker-negative-v0.json",
+  "observedHead": "034ea3015875d52643341613547aec583747976e",
+  "occurrenceCount": 19,
+  "occurrences": [
+    {
+      "admission": {
+        "claimBoundaryWithoutProceeding": false,
+        "externalEvidenceRequired": true,
+        "minimumConditions": [
+          "immutable source edition and retrieval bytes",
+          "independent oracle and settings",
+          "field-level comparison with this occurrence kept separate"
+        ],
+        "mustNotAssume": [
+          "verified_fact",
+          "stable_claim",
+          "traditional_consensus",
+          "user_trait",
+          "life_or_future_outcome",
+          "importance_from_frequency"
+        ],
+        "primaryBlocker": "external_evidence_required",
+        "rawTextConsumptionRestriction": "literal archive/reference only; never state the label as a traditional fact or user attribute",
+        "state": "blocked_external_evidence_required",
+        "supportingLimitations": [
+          "source_identity_unresolved",
+          "external_fixture_pending",
+          "raw_text_misread_risk",
+          "claim_boundary_zero"
+        ],
+        "userContextDependency": "must not connect to a user until input, rule scope, and independently verified evidence are explicit"
+      },
+      "evidenceBoundary": {
+        "configurationMismatch": false,
+        "fixtureReferences": [
+          "fixture:star-placement:sample_water_2_bureau_day_1",
+          "fixture:star-placement:sample_wood_3_bureau_day_15",
+          "fixture:star-placement:sample_fire_6_bureau_day_22",
+          "fixture:external:ziwei-ext-table-four-transformations"
+        ],
+        "independentVerification": false,
+        "internalFixture": "regression_only",
+        "occurrenceOnly": true,
+        "rawTextVerifiedFact": false,
+        "sourceIdentity": "unresolved_source_identity",
+        "stableClaimId": null
+      },
+      "occurrenceId": "ziwei-occ-21d731586efc0e34",
+      "provenanceReference": {
+        "artifact": "ziwei-occurrence-level-provenance-v0",
+        "source": {
+          "exportName": "TRANSFORMATION_LABELS",
+          "file": "src/ziwei/transformationRules.js",
+          "location": "TRANSFORMATION_LABELS[lu].description",
+          "slot": "lu"
+        },
+        "sourceIdentityStatus": "unresolved_source_identity"
+      }
+    },
+    {
+      "admission": {
+        "claimBoundaryWithoutProceeding": true,
+        "externalEvidenceRequired": false,
+        "minimumConditions": [
+          "exact text and source location preserved",
+          "no paraphrase or claim ID",
+          "context-gated reference-only rendering",
+          "fixture status remains regression_only"
+        ],
+        "mustNotAssume": [
+          "verified_fact",
+          "stable_claim",
+          "traditional_consensus",
+          "user_trait",
+          "life_or_future_outcome",
+          "importance_from_frequency"
+        ],
+        "primaryBlocker": "structural_guard_required",
+        "rawTextConsumptionRestriction": "literal text only with an explicit occurrence/provenance label; no factual, traditional, predictive, or personal assertion",
+        "state": "eligible_after_structural_guard",
+        "supportingLimitations": [
+          "source_identity_unresolved",
+          "raw_text_is_not_fact",
+          "claim_boundary_zero",
+          "regression_only_fixture_context"
+        ],
+        "userContextDependency": "requires user-provided context for any discussion; absence of context means no interpretation or application"
+      },
+      "evidenceBoundary": {
+        "configurationMismatch": false,
+        "fixtureReferences": [
+          "fixture:known-chart:sample_1_lunar_5_hour_wu",
+          "fixture:known-chart:sample_2_lunar_1_hour_zi",
+          "fixture:known-chart:sample_3_leap_month_boundary",
+          "fixture:benchmark:case_a_exact_personality",
+          "fixture:benchmark:case_b_unknown_time_personality",
+          "fixture:benchmark:case_c_leap_month_relationship",
+          "fixture:benchmark:case_d_hua_ji_career",
+          "fixture:benchmark:case_e_timing_low_confidence"
+        ],
+        "independentVerification": false,
+        "internalFixture": "regression_only",
+        "occurrenceOnly": true,
+        "rawTextVerifiedFact": false,
+        "sourceIdentity": "unresolved_source_identity",
+        "stableClaimId": null
+      },
+      "occurrenceId": "ziwei-occ-2260aba6ed2163e3",
+      "provenanceReference": {
+        "artifact": "ziwei-occurrence-level-provenance-v0",
+        "source": {
+          "exportName": "ZIWEI_PALACE_DEFINITIONS",
+          "file": "src/ziwei/ziweiContract.js",
+          "location": "ZIWEI_PALACE_DEFINITIONS[id=career].description",
+          "slot": "career"
+        },
+        "sourceIdentityStatus": "unresolved_source_identity"
+      }
+    },
+    {
+      "admission": {
+        "claimBoundaryWithoutProceeding": false,
+        "externalEvidenceRequired": true,
+        "minimumConditions": [
+          "human-reviewed literal-use policy",
+          "user-context request and uncertainty disclosure",
+          "source-backed boundary and independent evidence before any meaning use"
+        ],
+        "mustNotAssume": [
+          "verified_fact",
+          "stable_claim",
+          "traditional_consensus",
+          "user_trait",
+          "life_or_future_outcome",
+          "importance_from_frequency"
+        ],
+        "primaryBlocker": "raw_text_misread_risk",
+        "rawTextConsumptionRestriction": "do not display as a standalone reference in the current admission path; retain only in audit evidence",
+        "state": "excluded_currently",
+        "supportingLimitations": [
+          "source_identity_unresolved",
+          "predictive_or_personal-reading-risk",
+          "claim_boundary_zero",
+          "regression_only_fixture_context"
+        ],
+        "userContextDependency": "materially dependent on user context and must not be inferred from occurrence, count, or chart placement"
+      },
+      "evidenceBoundary": {
+        "configurationMismatch": false,
+        "fixtureReferences": [
+          "fixture:known-chart:sample_1_lunar_5_hour_wu",
+          "fixture:known-chart:sample_2_lunar_1_hour_zi",
+          "fixture:known-chart:sample_3_leap_month_boundary",
+          "fixture:benchmark:case_a_exact_personality",
+          "fixture:benchmark:case_b_unknown_time_personality",
+          "fixture:benchmark:case_c_leap_month_relationship",
+          "fixture:benchmark:case_d_hua_ji_career",
+          "fixture:benchmark:case_e_timing_low_confidence"
+        ],
+        "independentVerification": false,
+        "internalFixture": "regression_only",
+        "occurrenceOnly": true,
+        "rawTextVerifiedFact": false,
+        "sourceIdentity": "unresolved_source_identity",
+        "stableClaimId": null
+      },
+      "occurrenceId": "ziwei-occ-2b792b2cac1c58ab",
+      "provenanceReference": {
+        "artifact": "ziwei-occurrence-level-provenance-v0",
+        "source": {
+          "exportName": "ZIWEI_PALACE_DEFINITIONS",
+          "file": "src/ziwei/ziweiContract.js",
+          "location": "ZIWEI_PALACE_DEFINITIONS[id=life].description",
+          "slot": "life"
+        },
+        "sourceIdentityStatus": "unresolved_source_identity"
+      }
+    },
+    {
+      "admission": {
+        "claimBoundaryWithoutProceeding": false,
+        "externalEvidenceRequired": true,
+        "minimumConditions": [
+          "explicit semantic unit and scope",
+          "source-backed sourceRefs",
+          "preserve each label and related palace list without merging"
+        ],
+        "mustNotAssume": [
+          "verified_fact",
+          "stable_claim",
+          "traditional_consensus",
+          "user_trait",
+          "life_or_future_outcome",
+          "importance_from_frequency"
+        ],
+        "primaryBlocker": "stable_claim_boundary_required",
+        "rawTextConsumptionRestriction": "do not paraphrase; may be shown only as an unlabeled local topic reference, not as a conclusion",
+        "state": "blocked_claim_boundary_required",
+        "supportingLimitations": [
+          "source_identity_unresolved",
+          "broad_topic_label",
+          "related-palace-structure-is-not-meaning",
+          "claim_boundary_zero"
+        ],
+        "userContextDependency": "requires an explicit user question and context scope; never infer a life domain or ranking"
+      },
+      "evidenceBoundary": {
+        "configurationMismatch": false,
+        "fixtureReferences": [
+          "fixture:benchmark:case_a_exact_personality",
+          "fixture:benchmark:case_b_unknown_time_personality",
+          "fixture:benchmark:case_c_leap_month_relationship",
+          "fixture:benchmark:case_d_hua_ji_career",
+          "fixture:benchmark:case_e_timing_low_confidence"
+        ],
+        "independentVerification": false,
+        "internalFixture": "regression_only",
+        "occurrenceOnly": true,
+        "rawTextVerifiedFact": false,
+        "sourceIdentity": "unresolved_source_identity",
+        "stableClaimId": null
+      },
+      "occurrenceId": "ziwei-occ-2d961f3216f41e70",
+      "provenanceReference": {
+        "artifact": "ziwei-occurrence-level-provenance-v0",
+        "source": {
+          "exportName": "TOPIC_PALACE_PATTERNS",
+          "file": "src/ziwei/palaceRelationRules.js",
+          "location": "TOPIC_PALACE_PATTERNS[relationshipPattern].label",
+          "slot": "relationshipPattern"
+        },
+        "sourceIdentityStatus": "unresolved_source_identity"
+      }
+    },
+    {
+      "admission": {
+        "claimBoundaryWithoutProceeding": false,
+        "externalEvidenceRequired": true,
+        "minimumConditions": [
+          "explicit semantic unit and scope",
+          "source-backed sourceRefs",
+          "preserve each label and related palace list without merging"
+        ],
+        "mustNotAssume": [
+          "verified_fact",
+          "stable_claim",
+          "traditional_consensus",
+          "user_trait",
+          "life_or_future_outcome",
+          "importance_from_frequency"
+        ],
+        "primaryBlocker": "stable_claim_boundary_required",
+        "rawTextConsumptionRestriction": "do not paraphrase; may be shown only as an unlabeled local topic reference, not as a conclusion",
+        "state": "blocked_claim_boundary_required",
+        "supportingLimitations": [
+          "source_identity_unresolved",
+          "broad_topic_label",
+          "related-palace-structure-is-not-meaning",
+          "claim_boundary_zero"
+        ],
+        "userContextDependency": "requires an explicit user question and context scope; never infer a life domain or ranking"
+      },
+      "evidenceBoundary": {
+        "configurationMismatch": false,
+        "fixtureReferences": [
+          "fixture:benchmark:case_a_exact_personality",
+          "fixture:benchmark:case_b_unknown_time_personality",
+          "fixture:benchmark:case_c_leap_month_relationship",
+          "fixture:benchmark:case_d_hua_ji_career",
+          "fixture:benchmark:case_e_timing_low_confidence"
+        ],
+        "independentVerification": false,
+        "internalFixture": "regression_only",
+        "occurrenceOnly": true,
+        "rawTextVerifiedFact": false,
+        "sourceIdentity": "unresolved_source_identity",
+        "stableClaimId": null
+      },
+      "occurrenceId": "ziwei-occ-6e095d58a62d9b86",
+      "provenanceReference": {
+        "artifact": "ziwei-occurrence-level-provenance-v0",
+        "source": {
+          "exportName": "TOPIC_PALACE_PATTERNS",
+          "file": "src/ziwei/palaceRelationRules.js",
+          "location": "TOPIC_PALACE_PATTERNS[careerPattern].label",
+          "slot": "careerPattern"
+        },
+        "sourceIdentityStatus": "unresolved_source_identity"
+      }
+    },
+    {
+      "admission": {
+        "claimBoundaryWithoutProceeding": false,
+        "externalEvidenceRequired": true,
+        "minimumConditions": [
+          "human-reviewed literal-use policy",
+          "user-context request and uncertainty disclosure",
+          "source-backed boundary and independent evidence before any meaning use"
+        ],
+        "mustNotAssume": [
+          "verified_fact",
+          "stable_claim",
+          "traditional_consensus",
+          "user_trait",
+          "life_or_future_outcome",
+          "importance_from_frequency"
+        ],
+        "primaryBlocker": "raw_text_misread_risk",
+        "rawTextConsumptionRestriction": "do not display as a standalone reference in the current admission path; retain only in audit evidence",
+        "state": "excluded_currently",
+        "supportingLimitations": [
+          "source_identity_unresolved",
+          "predictive_or_personal-reading-risk",
+          "claim_boundary_zero",
+          "regression_only_fixture_context"
+        ],
+        "userContextDependency": "materially dependent on user context and must not be inferred from occurrence, count, or chart placement"
+      },
+      "evidenceBoundary": {
+        "configurationMismatch": false,
+        "fixtureReferences": [
+          "fixture:known-chart:sample_1_lunar_5_hour_wu",
+          "fixture:known-chart:sample_2_lunar_1_hour_zi",
+          "fixture:known-chart:sample_3_leap_month_boundary",
+          "fixture:benchmark:case_a_exact_personality",
+          "fixture:benchmark:case_b_unknown_time_personality",
+          "fixture:benchmark:case_c_leap_month_relationship",
+          "fixture:benchmark:case_d_hua_ji_career",
+          "fixture:benchmark:case_e_timing_low_confidence"
+        ],
+        "independentVerification": false,
+        "internalFixture": "regression_only",
+        "occurrenceOnly": true,
+        "rawTextVerifiedFact": false,
+        "sourceIdentity": "unresolved_source_identity",
+        "stableClaimId": null
+      },
+      "occurrenceId": "ziwei-occ-894fa6fa97b81dfd",
+      "provenanceReference": {
+        "artifact": "ziwei-occurrence-level-provenance-v0",
+        "source": {
+          "exportName": "ZIWEI_PALACE_DEFINITIONS",
+          "file": "src/ziwei/ziweiContract.js",
+          "location": "ZIWEI_PALACE_DEFINITIONS[id=children].description",
+          "slot": "children"
+        },
+        "sourceIdentityStatus": "unresolved_source_identity"
+      }
+    },
+    {
+      "admission": {
+        "claimBoundaryWithoutProceeding": true,
+        "externalEvidenceRequired": false,
+        "minimumConditions": [
+          "exact text and source location preserved",
+          "no paraphrase or claim ID",
+          "context-gated reference-only rendering",
+          "fixture status remains regression_only"
+        ],
+        "mustNotAssume": [
+          "verified_fact",
+          "stable_claim",
+          "traditional_consensus",
+          "user_trait",
+          "life_or_future_outcome",
+          "importance_from_frequency"
+        ],
+        "primaryBlocker": "structural_guard_required",
+        "rawTextConsumptionRestriction": "literal text only with an explicit occurrence/provenance label; no factual, traditional, predictive, or personal assertion",
+        "state": "eligible_after_structural_guard",
+        "supportingLimitations": [
+          "source_identity_unresolved",
+          "raw_text_is_not_fact",
+          "claim_boundary_zero",
+          "regression_only_fixture_context"
+        ],
+        "userContextDependency": "requires user-provided context for any discussion; absence of context means no interpretation or application"
+      },
+      "evidenceBoundary": {
+        "configurationMismatch": false,
+        "fixtureReferences": [
+          "fixture:known-chart:sample_1_lunar_5_hour_wu",
+          "fixture:known-chart:sample_2_lunar_1_hour_zi",
+          "fixture:known-chart:sample_3_leap_month_boundary",
+          "fixture:benchmark:case_a_exact_personality",
+          "fixture:benchmark:case_b_unknown_time_personality",
+          "fixture:benchmark:case_c_leap_month_relationship",
+          "fixture:benchmark:case_d_hua_ji_career",
+          "fixture:benchmark:case_e_timing_low_confidence"
+        ],
+        "independentVerification": false,
+        "internalFixture": "regression_only",
+        "occurrenceOnly": true,
+        "rawTextVerifiedFact": false,
+        "sourceIdentity": "unresolved_source_identity",
+        "stableClaimId": null
+      },
+      "occurrenceId": "ziwei-occ-a09e10a5495186b8",
+      "provenanceReference": {
+        "artifact": "ziwei-occurrence-level-provenance-v0",
+        "source": {
+          "exportName": "ZIWEI_PALACE_DEFINITIONS",
+          "file": "src/ziwei/ziweiContract.js",
+          "location": "ZIWEI_PALACE_DEFINITIONS[id=siblings].description",
+          "slot": "siblings"
+        },
+        "sourceIdentityStatus": "unresolved_source_identity"
+      }
+    },
+    {
+      "admission": {
+        "claimBoundaryWithoutProceeding": false,
+        "externalEvidenceRequired": true,
+        "minimumConditions": [
+          "human-reviewed literal-use policy",
+          "user-context request and uncertainty disclosure",
+          "source-backed boundary and independent evidence before any meaning use"
+        ],
+        "mustNotAssume": [
+          "verified_fact",
+          "stable_claim",
+          "traditional_consensus",
+          "user_trait",
+          "life_or_future_outcome",
+          "importance_from_frequency"
+        ],
+        "primaryBlocker": "raw_text_misread_risk",
+        "rawTextConsumptionRestriction": "do not display as a standalone reference in the current admission path; retain only in audit evidence",
+        "state": "excluded_currently",
+        "supportingLimitations": [
+          "source_identity_unresolved",
+          "predictive_or_personal-reading-risk",
+          "claim_boundary_zero",
+          "regression_only_fixture_context"
+        ],
+        "userContextDependency": "materially dependent on user context and must not be inferred from occurrence, count, or chart placement"
+      },
+      "evidenceBoundary": {
+        "configurationMismatch": false,
+        "fixtureReferences": [
+          "fixture:known-chart:sample_1_lunar_5_hour_wu",
+          "fixture:known-chart:sample_2_lunar_1_hour_zi",
+          "fixture:known-chart:sample_3_leap_month_boundary",
+          "fixture:benchmark:case_a_exact_personality",
+          "fixture:benchmark:case_b_unknown_time_personality",
+          "fixture:benchmark:case_c_leap_month_relationship",
+          "fixture:benchmark:case_d_hua_ji_career",
+          "fixture:benchmark:case_e_timing_low_confidence"
+        ],
+        "independentVerification": false,
+        "internalFixture": "regression_only",
+        "occurrenceOnly": true,
+        "rawTextVerifiedFact": false,
+        "sourceIdentity": "unresolved_source_identity",
+        "stableClaimId": null
+      },
+      "occurrenceId": "ziwei-occ-a54cfa4de8051b41",
+      "provenanceReference": {
+        "artifact": "ziwei-occurrence-level-provenance-v0",
+        "source": {
+          "exportName": "ZIWEI_PALACE_DEFINITIONS",
+          "file": "src/ziwei/ziweiContract.js",
+          "location": "ZIWEI_PALACE_DEFINITIONS[id=health].description",
+          "slot": "health"
+        },
+        "sourceIdentityStatus": "unresolved_source_identity"
+      }
+    },
+    {
+      "admission": {
+        "claimBoundaryWithoutProceeding": true,
+        "externalEvidenceRequired": false,
+        "minimumConditions": [
+          "exact text and source location preserved",
+          "no paraphrase or claim ID",
+          "context-gated reference-only rendering",
+          "fixture status remains regression_only"
+        ],
+        "mustNotAssume": [
+          "verified_fact",
+          "stable_claim",
+          "traditional_consensus",
+          "user_trait",
+          "life_or_future_outcome",
+          "importance_from_frequency"
+        ],
+        "primaryBlocker": "structural_guard_required",
+        "rawTextConsumptionRestriction": "literal text only with an explicit occurrence/provenance label; no factual, traditional, predictive, or personal assertion",
+        "state": "eligible_after_structural_guard",
+        "supportingLimitations": [
+          "source_identity_unresolved",
+          "raw_text_is_not_fact",
+          "claim_boundary_zero",
+          "regression_only_fixture_context"
+        ],
+        "userContextDependency": "requires user-provided context for any discussion; absence of context means no interpretation or application"
+      },
+      "evidenceBoundary": {
+        "configurationMismatch": false,
+        "fixtureReferences": [
+          "fixture:known-chart:sample_1_lunar_5_hour_wu",
+          "fixture:known-chart:sample_2_lunar_1_hour_zi",
+          "fixture:known-chart:sample_3_leap_month_boundary",
+          "fixture:benchmark:case_a_exact_personality",
+          "fixture:benchmark:case_b_unknown_time_personality",
+          "fixture:benchmark:case_c_leap_month_relationship",
+          "fixture:benchmark:case_d_hua_ji_career",
+          "fixture:benchmark:case_e_timing_low_confidence"
+        ],
+        "independentVerification": false,
+        "internalFixture": "regression_only",
+        "occurrenceOnly": true,
+        "rawTextVerifiedFact": false,
+        "sourceIdentity": "unresolved_source_identity",
+        "stableClaimId": null
+      },
+      "occurrenceId": "ziwei-occ-a72bdf60ef809b58",
+      "provenanceReference": {
+        "artifact": "ziwei-occurrence-level-provenance-v0",
+        "source": {
+          "exportName": "ZIWEI_PALACE_DEFINITIONS",
+          "file": "src/ziwei/ziweiContract.js",
+          "location": "ZIWEI_PALACE_DEFINITIONS[id=friends].description",
+          "slot": "friends"
+        },
+        "sourceIdentityStatus": "unresolved_source_identity"
+      }
+    },
+    {
+      "admission": {
+        "claimBoundaryWithoutProceeding": false,
+        "externalEvidenceRequired": true,
+        "minimumConditions": [
+          "explicit semantic unit and scope",
+          "source-backed sourceRefs",
+          "preserve each label and related palace list without merging"
+        ],
+        "mustNotAssume": [
+          "verified_fact",
+          "stable_claim",
+          "traditional_consensus",
+          "user_trait",
+          "life_or_future_outcome",
+          "importance_from_frequency"
+        ],
+        "primaryBlocker": "stable_claim_boundary_required",
+        "rawTextConsumptionRestriction": "do not paraphrase; may be shown only as an unlabeled local topic reference, not as a conclusion",
+        "state": "blocked_claim_boundary_required",
+        "supportingLimitations": [
+          "source_identity_unresolved",
+          "broad_topic_label",
+          "related-palace-structure-is-not-meaning",
+          "claim_boundary_zero"
+        ],
+        "userContextDependency": "requires an explicit user question and context scope; never infer a life domain or ranking"
+      },
+      "evidenceBoundary": {
+        "configurationMismatch": false,
+        "fixtureReferences": [
+          "fixture:benchmark:case_a_exact_personality",
+          "fixture:benchmark:case_b_unknown_time_personality",
+          "fixture:benchmark:case_c_leap_month_relationship",
+          "fixture:benchmark:case_d_hua_ji_career",
+          "fixture:benchmark:case_e_timing_low_confidence"
+        ],
+        "independentVerification": false,
+        "internalFixture": "regression_only",
+        "occurrenceOnly": true,
+        "rawTextVerifiedFact": false,
+        "sourceIdentity": "unresolved_source_identity",
+        "stableClaimId": null
+      },
+      "occurrenceId": "ziwei-occ-acb0dce151f32dcb",
+      "provenanceReference": {
+        "artifact": "ziwei-occurrence-level-provenance-v0",
+        "source": {
+          "exportName": "TOPIC_PALACE_PATTERNS",
+          "file": "src/ziwei/palaceRelationRules.js",
+          "location": "TOPIC_PALACE_PATTERNS[wealthPattern].label",
+          "slot": "wealthPattern"
+        },
+        "sourceIdentityStatus": "unresolved_source_identity"
+      }
+    },
+    {
+      "admission": {
+        "claimBoundaryWithoutProceeding": false,
+        "externalEvidenceRequired": true,
+        "minimumConditions": [
+          "human-reviewed literal-use policy",
+          "user-context request and uncertainty disclosure",
+          "source-backed boundary and independent evidence before any meaning use"
+        ],
+        "mustNotAssume": [
+          "verified_fact",
+          "stable_claim",
+          "traditional_consensus",
+          "user_trait",
+          "life_or_future_outcome",
+          "importance_from_frequency"
+        ],
+        "primaryBlocker": "raw_text_misread_risk",
+        "rawTextConsumptionRestriction": "do not display as a standalone reference in the current admission path; retain only in audit evidence",
+        "state": "excluded_currently",
+        "supportingLimitations": [
+          "source_identity_unresolved",
+          "predictive_or_personal-reading-risk",
+          "claim_boundary_zero",
+          "regression_only_fixture_context"
+        ],
+        "userContextDependency": "materially dependent on user context and must not be inferred from occurrence, count, or chart placement"
+      },
+      "evidenceBoundary": {
+        "configurationMismatch": false,
+        "fixtureReferences": [
+          "fixture:known-chart:sample_1_lunar_5_hour_wu",
+          "fixture:known-chart:sample_2_lunar_1_hour_zi",
+          "fixture:known-chart:sample_3_leap_month_boundary",
+          "fixture:benchmark:case_a_exact_personality",
+          "fixture:benchmark:case_b_unknown_time_personality",
+          "fixture:benchmark:case_c_leap_month_relationship",
+          "fixture:benchmark:case_d_hua_ji_career",
+          "fixture:benchmark:case_e_timing_low_confidence"
+        ],
+        "independentVerification": false,
+        "internalFixture": "regression_only",
+        "occurrenceOnly": true,
+        "rawTextVerifiedFact": false,
+        "sourceIdentity": "unresolved_source_identity",
+        "stableClaimId": null
+      },
+      "occurrenceId": "ziwei-occ-b1d4bbca55c2007f",
+      "provenanceReference": {
+        "artifact": "ziwei-occurrence-level-provenance-v0",
+        "source": {
+          "exportName": "ZIWEI_PALACE_DEFINITIONS",
+          "file": "src/ziwei/ziweiContract.js",
+          "location": "ZIWEI_PALACE_DEFINITIONS[id=spouse].description",
+          "slot": "spouse"
+        },
+        "sourceIdentityStatus": "unresolved_source_identity"
+      }
+    },
+    {
+      "admission": {
+        "claimBoundaryWithoutProceeding": false,
+        "externalEvidenceRequired": true,
+        "minimumConditions": [
+          "human-reviewed literal-use policy",
+          "user-context request and uncertainty disclosure",
+          "source-backed boundary and independent evidence before any meaning use"
+        ],
+        "mustNotAssume": [
+          "verified_fact",
+          "stable_claim",
+          "traditional_consensus",
+          "user_trait",
+          "life_or_future_outcome",
+          "importance_from_frequency"
+        ],
+        "primaryBlocker": "raw_text_misread_risk",
+        "rawTextConsumptionRestriction": "do not display as a standalone reference in the current admission path; retain only in audit evidence",
+        "state": "excluded_currently",
+        "supportingLimitations": [
+          "source_identity_unresolved",
+          "predictive_or_personal-reading-risk",
+          "claim_boundary_zero",
+          "regression_only_fixture_context"
+        ],
+        "userContextDependency": "materially dependent on user context and must not be inferred from occurrence, count, or chart placement"
+      },
+      "evidenceBoundary": {
+        "configurationMismatch": false,
+        "fixtureReferences": [
+          "fixture:known-chart:sample_1_lunar_5_hour_wu",
+          "fixture:known-chart:sample_2_lunar_1_hour_zi",
+          "fixture:known-chart:sample_3_leap_month_boundary",
+          "fixture:benchmark:case_a_exact_personality",
+          "fixture:benchmark:case_b_unknown_time_personality",
+          "fixture:benchmark:case_c_leap_month_relationship",
+          "fixture:benchmark:case_d_hua_ji_career",
+          "fixture:benchmark:case_e_timing_low_confidence"
+        ],
+        "independentVerification": false,
+        "internalFixture": "regression_only",
+        "occurrenceOnly": true,
+        "rawTextVerifiedFact": false,
+        "sourceIdentity": "unresolved_source_identity",
+        "stableClaimId": null
+      },
+      "occurrenceId": "ziwei-occ-bb986540a877dcee",
+      "provenanceReference": {
+        "artifact": "ziwei-occurrence-level-provenance-v0",
+        "source": {
+          "exportName": "ZIWEI_PALACE_DEFINITIONS",
+          "file": "src/ziwei/ziweiContract.js",
+          "location": "ZIWEI_PALACE_DEFINITIONS[id=property].description",
+          "slot": "property"
+        },
+        "sourceIdentityStatus": "unresolved_source_identity"
+      }
+    },
+    {
+      "admission": {
+        "claimBoundaryWithoutProceeding": false,
+        "externalEvidenceRequired": true,
+        "minimumConditions": [
+          "human-reviewed literal-use policy",
+          "user-context request and uncertainty disclosure",
+          "source-backed boundary and independent evidence before any meaning use"
+        ],
+        "mustNotAssume": [
+          "verified_fact",
+          "stable_claim",
+          "traditional_consensus",
+          "user_trait",
+          "life_or_future_outcome",
+          "importance_from_frequency"
+        ],
+        "primaryBlocker": "raw_text_misread_risk",
+        "rawTextConsumptionRestriction": "do not display as a standalone reference in the current admission path; retain only in audit evidence",
+        "state": "excluded_currently",
+        "supportingLimitations": [
+          "source_identity_unresolved",
+          "predictive_or_personal-reading-risk",
+          "claim_boundary_zero",
+          "regression_only_fixture_context"
+        ],
+        "userContextDependency": "materially dependent on user context and must not be inferred from occurrence, count, or chart placement"
+      },
+      "evidenceBoundary": {
+        "configurationMismatch": false,
+        "fixtureReferences": [
+          "fixture:known-chart:sample_1_lunar_5_hour_wu",
+          "fixture:known-chart:sample_2_lunar_1_hour_zi",
+          "fixture:known-chart:sample_3_leap_month_boundary",
+          "fixture:benchmark:case_a_exact_personality",
+          "fixture:benchmark:case_b_unknown_time_personality",
+          "fixture:benchmark:case_c_leap_month_relationship",
+          "fixture:benchmark:case_d_hua_ji_career",
+          "fixture:benchmark:case_e_timing_low_confidence"
+        ],
+        "independentVerification": false,
+        "internalFixture": "regression_only",
+        "occurrenceOnly": true,
+        "rawTextVerifiedFact": false,
+        "sourceIdentity": "unresolved_source_identity",
+        "stableClaimId": null
+      },
+      "occurrenceId": "ziwei-occ-c4b8407cdc824d27",
+      "provenanceReference": {
+        "artifact": "ziwei-occurrence-level-provenance-v0",
+        "source": {
+          "exportName": "ZIWEI_PALACE_DEFINITIONS",
+          "file": "src/ziwei/ziweiContract.js",
+          "location": "ZIWEI_PALACE_DEFINITIONS[id=parents].description",
+          "slot": "parents"
+        },
+        "sourceIdentityStatus": "unresolved_source_identity"
+      }
+    },
+    {
+      "admission": {
+        "claimBoundaryWithoutProceeding": false,
+        "externalEvidenceRequired": true,
+        "minimumConditions": [
+          "human-reviewed literal-use policy",
+          "user-context request and uncertainty disclosure",
+          "source-backed boundary and independent evidence before any meaning use"
+        ],
+        "mustNotAssume": [
+          "verified_fact",
+          "stable_claim",
+          "traditional_consensus",
+          "user_trait",
+          "life_or_future_outcome",
+          "importance_from_frequency"
+        ],
+        "primaryBlocker": "raw_text_misread_risk",
+        "rawTextConsumptionRestriction": "do not display as a standalone reference in the current admission path; retain only in audit evidence",
+        "state": "excluded_currently",
+        "supportingLimitations": [
+          "source_identity_unresolved",
+          "predictive_or_personal-reading-risk",
+          "claim_boundary_zero",
+          "regression_only_fixture_context"
+        ],
+        "userContextDependency": "materially dependent on user context and must not be inferred from occurrence, count, or chart placement"
+      },
+      "evidenceBoundary": {
+        "configurationMismatch": false,
+        "fixtureReferences": [
+          "fixture:known-chart:sample_1_lunar_5_hour_wu",
+          "fixture:known-chart:sample_2_lunar_1_hour_zi",
+          "fixture:known-chart:sample_3_leap_month_boundary",
+          "fixture:benchmark:case_a_exact_personality",
+          "fixture:benchmark:case_b_unknown_time_personality",
+          "fixture:benchmark:case_c_leap_month_relationship",
+          "fixture:benchmark:case_d_hua_ji_career",
+          "fixture:benchmark:case_e_timing_low_confidence"
+        ],
+        "independentVerification": false,
+        "internalFixture": "regression_only",
+        "occurrenceOnly": true,
+        "rawTextVerifiedFact": false,
+        "sourceIdentity": "unresolved_source_identity",
+        "stableClaimId": null
+      },
+      "occurrenceId": "ziwei-occ-d31091d32f84777c",
+      "provenanceReference": {
+        "artifact": "ziwei-occurrence-level-provenance-v0",
+        "source": {
+          "exportName": "ZIWEI_PALACE_DEFINITIONS",
+          "file": "src/ziwei/ziweiContract.js",
+          "location": "ZIWEI_PALACE_DEFINITIONS[id=wealth].description",
+          "slot": "wealth"
+        },
+        "sourceIdentityStatus": "unresolved_source_identity"
+      }
+    },
+    {
+      "admission": {
+        "claimBoundaryWithoutProceeding": false,
+        "externalEvidenceRequired": true,
+        "minimumConditions": [
+          "immutable source edition and retrieval bytes",
+          "independent oracle and settings",
+          "field-level comparison with this occurrence kept separate"
+        ],
+        "mustNotAssume": [
+          "verified_fact",
+          "stable_claim",
+          "traditional_consensus",
+          "user_trait",
+          "life_or_future_outcome",
+          "importance_from_frequency"
+        ],
+        "primaryBlocker": "external_evidence_required",
+        "rawTextConsumptionRestriction": "literal archive/reference only; never state the label as a traditional fact or user attribute",
+        "state": "blocked_external_evidence_required",
+        "supportingLimitations": [
+          "source_identity_unresolved",
+          "external_fixture_pending",
+          "raw_text_misread_risk",
+          "claim_boundary_zero"
+        ],
+        "userContextDependency": "must not connect to a user until input, rule scope, and independently verified evidence are explicit"
+      },
+      "evidenceBoundary": {
+        "configurationMismatch": false,
+        "fixtureReferences": [
+          "fixture:star-placement:sample_water_2_bureau_day_1",
+          "fixture:star-placement:sample_wood_3_bureau_day_15",
+          "fixture:star-placement:sample_fire_6_bureau_day_22",
+          "fixture:external:ziwei-ext-table-four-transformations"
+        ],
+        "independentVerification": false,
+        "internalFixture": "regression_only",
+        "occurrenceOnly": true,
+        "rawTextVerifiedFact": false,
+        "sourceIdentity": "unresolved_source_identity",
+        "stableClaimId": null
+      },
+      "occurrenceId": "ziwei-occ-dd08863eb441bb65",
+      "provenanceReference": {
+        "artifact": "ziwei-occurrence-level-provenance-v0",
+        "source": {
+          "exportName": "TRANSFORMATION_LABELS",
+          "file": "src/ziwei/transformationRules.js",
+          "location": "TRANSFORMATION_LABELS[quan].description",
+          "slot": "quan"
+        },
+        "sourceIdentityStatus": "unresolved_source_identity"
+      }
+    },
+    {
+      "admission": {
+        "claimBoundaryWithoutProceeding": false,
+        "externalEvidenceRequired": true,
+        "minimumConditions": [
+          "human-reviewed literal-use policy",
+          "user-context request and uncertainty disclosure",
+          "source-backed boundary and independent evidence before any meaning use"
+        ],
+        "mustNotAssume": [
+          "verified_fact",
+          "stable_claim",
+          "traditional_consensus",
+          "user_trait",
+          "life_or_future_outcome",
+          "importance_from_frequency"
+        ],
+        "primaryBlocker": "raw_text_misread_risk",
+        "rawTextConsumptionRestriction": "do not display as a standalone reference in the current admission path; retain only in audit evidence",
+        "state": "excluded_currently",
+        "supportingLimitations": [
+          "source_identity_unresolved",
+          "predictive_or_personal-reading-risk",
+          "claim_boundary_zero",
+          "regression_only_fixture_context"
+        ],
+        "userContextDependency": "materially dependent on user context and must not be inferred from occurrence, count, or chart placement"
+      },
+      "evidenceBoundary": {
+        "configurationMismatch": false,
+        "fixtureReferences": [
+          "fixture:known-chart:sample_1_lunar_5_hour_wu",
+          "fixture:known-chart:sample_2_lunar_1_hour_zi",
+          "fixture:known-chart:sample_3_leap_month_boundary",
+          "fixture:benchmark:case_a_exact_personality",
+          "fixture:benchmark:case_b_unknown_time_personality",
+          "fixture:benchmark:case_c_leap_month_relationship",
+          "fixture:benchmark:case_d_hua_ji_career",
+          "fixture:benchmark:case_e_timing_low_confidence"
+        ],
+        "independentVerification": false,
+        "internalFixture": "regression_only",
+        "occurrenceOnly": true,
+        "rawTextVerifiedFact": false,
+        "sourceIdentity": "unresolved_source_identity",
+        "stableClaimId": null
+      },
+      "occurrenceId": "ziwei-occ-e70f01a8752ee8d2",
+      "provenanceReference": {
+        "artifact": "ziwei-occurrence-level-provenance-v0",
+        "source": {
+          "exportName": "ZIWEI_PALACE_DEFINITIONS",
+          "file": "src/ziwei/ziweiContract.js",
+          "location": "ZIWEI_PALACE_DEFINITIONS[id=travel].description",
+          "slot": "travel"
+        },
+        "sourceIdentityStatus": "unresolved_source_identity"
+      }
+    },
+    {
+      "admission": {
+        "claimBoundaryWithoutProceeding": true,
+        "externalEvidenceRequired": false,
+        "minimumConditions": [
+          "exact text and source location preserved",
+          "no paraphrase or claim ID",
+          "context-gated reference-only rendering",
+          "fixture status remains regression_only"
+        ],
+        "mustNotAssume": [
+          "verified_fact",
+          "stable_claim",
+          "traditional_consensus",
+          "user_trait",
+          "life_or_future_outcome",
+          "importance_from_frequency"
+        ],
+        "primaryBlocker": "structural_guard_required",
+        "rawTextConsumptionRestriction": "literal text only with an explicit occurrence/provenance label; no factual, traditional, predictive, or personal assertion",
+        "state": "eligible_after_structural_guard",
+        "supportingLimitations": [
+          "source_identity_unresolved",
+          "raw_text_is_not_fact",
+          "claim_boundary_zero",
+          "regression_only_fixture_context"
+        ],
+        "userContextDependency": "requires user-provided context for any discussion; absence of context means no interpretation or application"
+      },
+      "evidenceBoundary": {
+        "configurationMismatch": false,
+        "fixtureReferences": [
+          "fixture:known-chart:sample_1_lunar_5_hour_wu",
+          "fixture:known-chart:sample_2_lunar_1_hour_zi",
+          "fixture:known-chart:sample_3_leap_month_boundary",
+          "fixture:benchmark:case_a_exact_personality",
+          "fixture:benchmark:case_b_unknown_time_personality",
+          "fixture:benchmark:case_c_leap_month_relationship",
+          "fixture:benchmark:case_d_hua_ji_career",
+          "fixture:benchmark:case_e_timing_low_confidence"
+        ],
+        "independentVerification": false,
+        "internalFixture": "regression_only",
+        "occurrenceOnly": true,
+        "rawTextVerifiedFact": false,
+        "sourceIdentity": "unresolved_source_identity",
+        "stableClaimId": null
+      },
+      "occurrenceId": "ziwei-occ-e73f469c5e35e072",
+      "provenanceReference": {
+        "artifact": "ziwei-occurrence-level-provenance-v0",
+        "source": {
+          "exportName": "ZIWEI_PALACE_DEFINITIONS",
+          "file": "src/ziwei/ziweiContract.js",
+          "location": "ZIWEI_PALACE_DEFINITIONS[id=mind].description",
+          "slot": "mind"
+        },
+        "sourceIdentityStatus": "unresolved_source_identity"
+      }
+    },
+    {
+      "admission": {
+        "claimBoundaryWithoutProceeding": false,
+        "externalEvidenceRequired": true,
+        "minimumConditions": [
+          "immutable source edition and retrieval bytes",
+          "independent oracle and settings",
+          "field-level comparison with this occurrence kept separate"
+        ],
+        "mustNotAssume": [
+          "verified_fact",
+          "stable_claim",
+          "traditional_consensus",
+          "user_trait",
+          "life_or_future_outcome",
+          "importance_from_frequency"
+        ],
+        "primaryBlocker": "external_evidence_required",
+        "rawTextConsumptionRestriction": "literal archive/reference only; never state the label as a traditional fact or user attribute",
+        "state": "blocked_external_evidence_required",
+        "supportingLimitations": [
+          "source_identity_unresolved",
+          "external_fixture_pending",
+          "raw_text_misread_risk",
+          "claim_boundary_zero"
+        ],
+        "userContextDependency": "must not connect to a user until input, rule scope, and independently verified evidence are explicit"
+      },
+      "evidenceBoundary": {
+        "configurationMismatch": false,
+        "fixtureReferences": [
+          "fixture:star-placement:sample_water_2_bureau_day_1",
+          "fixture:star-placement:sample_wood_3_bureau_day_15",
+          "fixture:star-placement:sample_fire_6_bureau_day_22",
+          "fixture:external:ziwei-ext-table-four-transformations"
+        ],
+        "independentVerification": false,
+        "internalFixture": "regression_only",
+        "occurrenceOnly": true,
+        "rawTextVerifiedFact": false,
+        "sourceIdentity": "unresolved_source_identity",
+        "stableClaimId": null
+      },
+      "occurrenceId": "ziwei-occ-ed75580c000adb8f",
+      "provenanceReference": {
+        "artifact": "ziwei-occurrence-level-provenance-v0",
+        "source": {
+          "exportName": "TRANSFORMATION_LABELS",
+          "file": "src/ziwei/transformationRules.js",
+          "location": "TRANSFORMATION_LABELS[ke].description",
+          "slot": "ke"
+        },
+        "sourceIdentityStatus": "unresolved_source_identity"
+      }
+    },
+    {
+      "admission": {
+        "claimBoundaryWithoutProceeding": false,
+        "externalEvidenceRequired": true,
+        "minimumConditions": [
+          "immutable source edition and retrieval bytes",
+          "independent oracle and settings",
+          "field-level comparison with this occurrence kept separate"
+        ],
+        "mustNotAssume": [
+          "verified_fact",
+          "stable_claim",
+          "traditional_consensus",
+          "user_trait",
+          "life_or_future_outcome",
+          "importance_from_frequency"
+        ],
+        "primaryBlocker": "external_evidence_required",
+        "rawTextConsumptionRestriction": "literal archive/reference only; never state the label as a traditional fact or user attribute",
+        "state": "blocked_external_evidence_required",
+        "supportingLimitations": [
+          "source_identity_unresolved",
+          "external_fixture_pending",
+          "raw_text_misread_risk",
+          "claim_boundary_zero"
+        ],
+        "userContextDependency": "must not connect to a user until input, rule scope, and independently verified evidence are explicit"
+      },
+      "evidenceBoundary": {
+        "configurationMismatch": false,
+        "fixtureReferences": [
+          "fixture:star-placement:sample_water_2_bureau_day_1",
+          "fixture:star-placement:sample_wood_3_bureau_day_15",
+          "fixture:star-placement:sample_fire_6_bureau_day_22",
+          "fixture:external:ziwei-ext-table-four-transformations"
+        ],
+        "independentVerification": false,
+        "internalFixture": "regression_only",
+        "occurrenceOnly": true,
+        "rawTextVerifiedFact": false,
+        "sourceIdentity": "unresolved_source_identity",
+        "stableClaimId": null
+      },
+      "occurrenceId": "ziwei-occ-f7017ade296bb707",
+      "provenanceReference": {
+        "artifact": "ziwei-occurrence-level-provenance-v0",
+        "source": {
+          "exportName": "TRANSFORMATION_LABELS",
+          "file": "src/ziwei/transformationRules.js",
+          "location": "TRANSFORMATION_LABELS[ji].description",
+          "slot": "ji"
+        },
+        "sourceIdentityStatus": "unresolved_source_identity"
+      }
+    }
+  ],
+  "schemaVersion": "ziwei-readiness-admission-blocker-audit-v0",
+  "scope": "read-only admission blocker audit; no readiness, grounding, claim, interpretation, or activation implementation",
+  "structuralDecision": {
+    "canStartReadinessGroundingDesign": false,
+    "reason": "literal occurrence reference can be specified for four low-risk labels under structural guard, but claim-level readiness/grounding cannot start while source identity, independent evidence, and claim boundaries remain open",
+    "stableClaimBoundaryCount": 0,
+    "verdict": "not_safe_to_start"
+  },
+  "verdictToken": "ziwei_readiness_admission_audit_partial_unverified"
+}
