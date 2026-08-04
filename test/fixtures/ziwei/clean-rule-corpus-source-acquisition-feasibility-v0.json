@@ -1,0 +1,87 @@
+{
+  "schemaVersion": "ziwei-clean-rule-corpus-source-acquisition-feasibility-input-v0",
+  "accessedOn": "2026-08-04",
+  "basisHead": "3bbae92d81fa19107167b288c666f9dc19e2fdf3",
+  "officialEvidence": [
+    {
+      "evidenceKey": "google-books-about-and-record",
+      "sourceKey": "google-books-2000-dingwen-ming007",
+      "stableUrl": "https://books.google.com/books/about/%E7%B4%AB%E5%BE%AE%E6%96%97%E6%95%B8%E5%85%A8%E6%9B%B8_%E5%91%BD007.html?id=fo7VEAAAQBAJ",
+      "role": "official_service_record",
+      "observedFacts": ["record identifies 鼎文書局, 2000, 333 pages, ISBN 9786263503601", "public record does not expose a complete downloadable file", "Google Books describes preview, buy, and borrow paths; digital-content download is subject to payment and personal non-commercial restrictions"],
+      "acquisitionRoute": "buy_or_library_borrow_then_review_provider_terms",
+      "identity": "edition substantially identified; exact source pages and digital witness not identified",
+      "pageMap": "not available from public record",
+      "bytes": "not obtained; no hash claimed",
+      "rights": "provider terms limit downloaded digital content to authorized personal non-commercial use and prohibit distribution; repository evidence-storage permission is not established",
+      "accessedOn": "2026-08-04"
+    },
+    {
+      "evidenceKey": "ndltd-record-and-ncl-reader-faq",
+      "sourceKey": "ndltd-097cgu05121028-exchange-rate-study",
+      "stableUrl": "https://ndltd.ncl.edu.tw/cgi-bin/gs32/gsweb.cgi?o=dnclcdr&s=id%3D%22097CGU05121028%22.&searchmode=basic",
+      "secondaryOfficialUrl": "https://www.ncl.edu.tw/service-faqs?qcat=0Q063418271611073163",
+      "role": "official_thesis_record_and_library_access_policy",
+      "observedFacts": ["record identifies 王文華, 長庚大學, 2009, 79 pages and an electronic-full-text section", "public review encountered a verification gate and no thesis bytes were obtained", "NCL policy says holdings are for in-library use; special-copy/photograph requests require written application and approval, with page limits and fees"],
+      "acquisitionRoute": "authorized_portal_or_library_visit_and_possible_copy_request",
+      "identity": "thesis record identity partly closed; exact supplied file identity and cited primary editions unresolved",
+      "pageMap": "table-of-contents locations visible in record, source passages not independently page-mapped",
+      "bytes": "not obtained; no hash claimed",
+      "rights": "copyright-compliant use must follow NCL copying rules; internal repository storage permission for a complete thesis or source extracts is not established",
+      "accessedOn": "2026-08-04"
+    },
+    {
+      "evidenceKey": "ctext-page-and-faq",
+      "sourceKey": "ctext-ziwei-page-res-979714",
+      "stableUrl": "https://ctext.org/wiki.pl?if=gb&res=979714",
+      "secondaryOfficialUrl": "https://ctext.org/faq",
+      "role": "official_project_page_and_terms",
+      "observedFacts": ["page exposes URN ctp:wb979714, a stated base edition label 正統道藏本, and rule-like section headings", "CText permits private saving/printing and reasonable quotation but prohibits automated large-scale downloading", "CText says some content is public domain while users remain responsible for determining copyright status; site content may be modified or deleted"],
+      "acquisitionRoute": "public_page_review_only_with_manual_limited_capture",
+      "identity": "digital work identifier and claimed base label visible; page-image/printed-edition lineage is not closed",
+      "pageMap": "section anchors available; printed pages and immutable page-image map unavailable",
+      "bytes": "not obtained; no hash claimed",
+      "rights": "limited private/non-profit academic copying and quotation terms are visible, but complete corpus storage and reuse rights are not established",
+      "accessedOn": "2026-08-04"
+    }
+  ],
+  "alternatives": [
+    {
+      "alternativeKey": "japan-digital-archives-f1000000000000101426",
+      "stableUrl": "https://www.digital.archives.go.jp/das/meta/F1000000000000101426.html",
+      "institution": "Japan National Archives Digital Archive",
+      "title": "新鋟希夷陳先生紫微斗数全書",
+      "identity": "catalog result identifies a Ming printed edition (刊本, 明)",
+      "location": "catalog record; page map not publicly confirmed",
+      "file": "no public file identity or bytes confirmed; archive record review returned access failure in this environment",
+      "ruleExtractability": "candidate scope includes palace placement, five-element bureau, star placement, and explicit tables only; rule-bearing pages not reviewed",
+      "rights": "viewing/request procedure is indicated, but reproduction/storage terms were not confirmed from the public record",
+      "assessment": "application_required",
+      "admissible": false,
+      "reason": "Exact catalog identity is promising, but application/viewing and page-image/file/hash evidence remain open."
+    },
+    {
+      "alternativeKey": "wikisource-quanshu-oldid-850736",
+      "stableUrl": "https://zh.wikisource.org/w/index.php?title=%E7%B4%AB%E5%BE%AE%E9%AC%A5%E6%95%B8%E5%85%A8%E6%9B%B8&oldid=850736",
+      "institution": "Wikimedia Wikisource",
+      "title": "紫微斗數全書",
+      "identity": "fixed oldid labels the work 清朝 and exposes three volumes/section anchors, but not an exact printed witness",
+      "location": "卷一–卷三 and named section anchors; no original page map",
+      "file": "export links exist, but no bytes were obtained and the transcribed witness is not an immutable scan",
+      "ruleExtractability": "section headings suggest possible rule scope, but no source-backed deterministic seed is admitted without edition/page/file closure",
+      "rights": "page states public-domain material and Wikimedia CC BY-SA site terms with jurisdiction-specific moral-rights caveats; complete internal corpus reuse is not assumed",
+      "assessment": "rights_unclear",
+      "admissible": false,
+      "reason": "Public availability and a fixed revision do not close printed-edition lineage, page map, bytes, or complete reuse rights."
+    }
+  ],
+  "decision": {
+    "selectedAccessBlockedSourceKeysMustComeFromLedger": true,
+    "cleanSeedCandidateCount": 0,
+    "firstPilotSourceKey": null,
+    "stableClaimCount": 0,
+    "readiness": "not_safe_to_start",
+    "grounding": "blocked",
+    "activation": "experimental"
+  }
+}

@@ -11,6 +11,15 @@
     {"id": "access_bypass", "bypassUsed": true, "expectedCode": "access_restriction_bypass"},
     {"id": "legacy_occurrence_autolink", "legacyOccurrenceLink": "legacy-occ-001", "expectedCode": "legacy_occurrence_auto_link"},
     {"id": "readiness_grounding_activation_promotion", "readiness": "ready", "grounding": "grounded", "activation": "active", "expectedCode": "downstream_promotion"},
-    {"id": "nondeterministic_id_sort", "candidateId": "random-uuid", "sort": "insertion_order", "expectedCode": "nondeterministic_id_or_sort"}
+    {"id": "nondeterministic_id_sort", "candidateId": "random-uuid", "sort": "insertion_order", "expectedCode": "nondeterministic_id_or_sort"},
+    {"id": "checkout_head_only_stale", "checkoutHeadChanged": true, "inputChanged": false, "expectedCode": "checkout_head_only_not_stale"},
+    {"id": "base_head_deleted", "baseHeadExists": false, "expectedCode": "base_head_missing"},
+    {"id": "base_head_overwritten", "basisHeadOverwritten": true, "expectedCode": "historical_basis_head_overwritten"},
+    {"id": "input_hash_missing", "inputHash": null, "expectedCode": "input_hash_missing"},
+    {"id": "input_hash_mutated", "inputHashChanged": true, "expectedCode": "input_hash_mismatch"},
+    {"id": "payload_hash_mutated", "payloadHashChanged": true, "expectedCode": "payload_hash_mismatch"},
+    {"id": "version_mutated", "materializerVersionChanged": true, "expectedCode": "materializer_version_mismatch"},
+    {"id": "feasibility_promoted", "feasibilityStatus": "acquirable", "expectedCode": "feasibility_promotion"},
+    {"id": "included_commit_self_reference", "includedCommit": "3bbae92d81fa19107167b288c666f9dc19e2fdf3", "expectedCode": "included_commit_self_reference"}
   ]
 }

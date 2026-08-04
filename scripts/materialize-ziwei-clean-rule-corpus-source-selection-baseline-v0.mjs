@@ -14,7 +14,7 @@ import {
 export const SOURCE_SELECTION_SCHEMA = 'ziwei-clean-rule-corpus-source-selection-baseline-v0'
 export const SOURCE_SELECTION_VERDICT = 'ziwei_clean_rule_corpus_source_selection_partial_blocked'
 export const SOURCE_SELECTION_HEAD = '2595e087eaea4adb667a0280a677476aebcb80df'
-export const SOURCE_SELECTION_MATERIALIZER_VERSION = '0.1.0'
+export const SOURCE_SELECTION_MATERIALIZER_VERSION = '0.2.0'
 export const SOURCE_CANDIDATE_INPUT = 'test/fixtures/ziwei/clean-rule-corpus-source-candidates-v0.json'
 
 const sourceFiles = [
@@ -43,7 +43,6 @@ const contentClassPolicy = Object.fromEntries(CLEAN_CONTENT_CLASSES.map(contentC
 export async function materializeSourceSelection() {
   const root = resolve(new URL('..', import.meta.url).pathname)
   const baseHead = execFileSync('git', ['-c', 'core.fsmonitor=false', 'rev-parse', 'HEAD'], { cwd: root, encoding: 'utf8' }).trim()
-  if (baseHead !== SOURCE_SELECTION_HEAD) throw new Error(`source selection baseline requires HEAD ${SOURCE_SELECTION_HEAD}; observed ${baseHead}`)
   const input = JSON.parse(await readFile(resolve(root, SOURCE_CANDIDATE_INPUT), 'utf8'))
   const candidates = input.candidates.map(candidate => ({
     ...structuredClone(candidate),
@@ -107,7 +106,8 @@ export async function materializeSourceSelection() {
       timestamps: 'accessedOn is an explicit inventory field; generated time is forbidden',
       sourceTextNormalization: 'forbidden; no source text is stored',
       fileHashScope: 'candidate file identity is recorded only when directly evidenced; null is not upgraded',
-      repeatedMaterialization: 'complete.json bytes must be identical at fixed HEAD and input bytes',
+      repeatedMaterialization: 'complete.json bytes must be identical at fixed input bytes and materializer version; checkout HEAD is diagnostic only',
+      checkoutHead: 'not a stale criterion; generation.baseHead records the valid Git object used for this materialization',
     },
     materializer: 'scripts/materialize-ziwei-clean-rule-corpus-source-selection-baseline-v0.mjs',
     checker: 'scripts/check-ziwei-clean-rule-corpus-source-selection-baseline-v0.mjs',

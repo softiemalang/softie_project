@@ -1,6 +1,8 @@
 # Ziwei clean rule corpus source selection baseline v0
 
-기준 HEAD는 `2595e087eaea4adb667a0280a677476aebcb80df`이다. 이 문서는 clean rule corpus를 생성하지 않고, source admission 단위·후보 inventory·판정 경계를 고정한다. 조사 접근일은 `2026-08-04`이며, 공개 원문을 저장하지 않았다.
+역사적 source-selection 기준 HEAD는 `2595e087eaea4adb667a0280a677476aebcb80df`이다. 이 문서는 clean rule corpus를 생성하지 않고, source admission 단위·후보 inventory·판정 경계를 고정한다. 조사 접근일은 `2026-08-04`이며, 공개 원문을 저장하지 않았다.
+
+`artifact-identity-v1` migration에서 historical `basisHead`와 verdict/candidate payload는 보존하고, 현재 materialization의 유효 Git object는 `artifactIdentity.generation.baseHead`에 기록한다. `observedHead`는 진단 필드이며 checkout HEAD 차이는 stale 사유가 아니다. stale은 input byte SHA-256, canonical payload SHA-256, contract/materializer version, identity 누락·변조 및 base Git object 부재에서만 발생한다. `generation.includedCommit`은 self-reference를 막기 위해 `null`이다.
 
 ## 판정 계약
 
@@ -47,6 +49,6 @@ legacy occurrence를 source로 자동 연결하지 않으며, stable claim은 �
 - deterministic materializer: `scripts/materialize-ziwei-clean-rule-corpus-source-selection-baseline-v0.mjs`
 - checker: `scripts/check-ziwei-clean-rule-corpus-source-selection-baseline-v0.mjs`
 - negative fixture/checker: `test/fixtures/ziwei/clean-rule-corpus-source-selection-negative-v0.json`, `scripts/check-ziwei-clean-rule-corpus-source-selection-negative-v0.mjs`
-- artifact: `artifacts/ziwei-clean-rule-corpus-source-selection-baseline-v0/complete.json`
+- artifact: `artifacts/ziwei-clean-rule-corpus-source-selection-baseline-v0/complete.json` (`basisHead`는 historical 기준, `generation.baseHead`는 현재 유효 checkout)
 
 Artifact에는 실제 input byte identity와 payload SHA-256이 포함되며, 같은 HEAD/input에서 두 번 materialize한 `complete.json` byte가 같아야 한다. checker는 판본·위치 없는 admissible, catalog-only scan 주장, mirror/reprint 중복, 블로그/AI 무출처 승격, file/lineage 추정, interpretive prose claim 승격, 접근 제한 우회, legacy auto-link, downstream readiness/grounding/activation 승격, 비결정 ID/정렬을 fail-closed로 검사한다.

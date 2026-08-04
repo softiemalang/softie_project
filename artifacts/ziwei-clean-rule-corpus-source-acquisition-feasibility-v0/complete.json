@@ -1,0 +1,213 @@
+{
+  "accessedOn": "2026-08-04",
+  "acquisitionAssessments": {
+    "ctext-ziwei-page-res-979714": "rights_unclear",
+    "google-books-2000-dingwen-ming007": "application_required",
+    "ndltd-097cgu05121028-exchange-rate-study": "application_required"
+  },
+  "alternativeSeedAssessment": {
+    "admissibleCount": 0,
+    "evaluatedCount": 2,
+    "reason": "No alternative closes exact edition, rule-bearing location/page map, actual bytes/hash, and permitted storage together.",
+    "status": "blocked"
+  },
+  "alternatives": [
+    {
+      "admissible": false,
+      "alternativeKey": "japan-digital-archives-f1000000000000101426",
+      "assessment": "application_required",
+      "file": "no public file identity or bytes confirmed; archive record review returned access failure in this environment",
+      "identity": "catalog result identifies a Ming printed edition (刊本, 明)",
+      "institution": "Japan National Archives Digital Archive",
+      "location": "catalog record; page map not publicly confirmed",
+      "reason": "Exact catalog identity is promising, but application/viewing and page-image/file/hash evidence remain open.",
+      "rights": "viewing/request procedure is indicated, but reproduction/storage terms were not confirmed from the public record",
+      "ruleExtractability": "candidate scope includes palace placement, five-element bureau, star placement, and explicit tables only; rule-bearing pages not reviewed",
+      "stableUrl": "https://www.digital.archives.go.jp/das/meta/F1000000000000101426.html",
+      "title": "新鋟希夷陳先生紫微斗数全書"
+    },
+    {
+      "admissible": false,
+      "alternativeKey": "wikisource-quanshu-oldid-850736",
+      "assessment": "rights_unclear",
+      "file": "export links exist, but no bytes were obtained and the transcribed witness is not an immutable scan",
+      "identity": "fixed oldid labels the work 清朝 and exposes three volumes/section anchors, but not an exact printed witness",
+      "institution": "Wikimedia Wikisource",
+      "location": "卷一–卷三 and named section anchors; no original page map",
+      "reason": "Public availability and a fixed revision do not close printed-edition lineage, page map, bytes, or complete reuse rights.",
+      "rights": "page states public-domain material and Wikimedia CC BY-SA site terms with jurisdiction-specific moral-rights caveats; complete internal corpus reuse is not assumed",
+      "ruleExtractability": "section headings suggest possible rule scope, but no source-backed deterministic seed is admitted without edition/page/file closure",
+      "stableUrl": "https://zh.wikisource.org/w/index.php?title=%E7%B4%AB%E5%BE%AE%E9%AC%A5%E6%95%B8%E5%85%A8%E6%9B%B8&oldid=850736",
+      "title": "紫微斗數全書"
+    }
+  ],
+  "artifactIdentity": {
+    "artifactId": "ziwei-clean-rule-corpus-source-acquisition-feasibility-v0",
+    "artifactPayloadSha256": "139602802e1f9f5b6f42419765ac810c69a09ba00e7be4f09487e1400fee93d1",
+    "contractVersion": "artifact-identity-v1",
+    "generation": {
+      "baseHead": "3bbae92d81fa19107167b288c666f9dc19e2fdf3",
+      "baseHeadSource": "git rev-parse HEAD at materialization",
+      "includedCommit": null,
+      "includedCommitSource": "unknown_at_generation; artifact may be included by a later commit"
+    },
+    "inputs": [
+      {
+        "byteSha256": "52bb80010f0f9061b0ddd9549a218ee79d98e69cb953d8c53e2f5b4c77c1eee1",
+        "path": "src/ziwei/cleanRuleCorpusSourceSelection.js"
+      },
+      {
+        "byteSha256": "201846d3777a2e50d14b520ae35b204a15958496c72db72d6470b92a6041ddcf",
+        "path": "test/fixtures/ziwei/clean-rule-corpus-source-acquisition-feasibility-v0.json"
+      },
+      {
+        "byteSha256": "852f0c0904acd4ed97989af05b31075fe749afa9b40f0c265fe199b0289bc4b3",
+        "path": "test/fixtures/ziwei/clean-rule-corpus-source-candidates-v0.json"
+      }
+    ],
+    "materializer": {
+      "path": "scripts/materialize-ziwei-clean-rule-corpus-source-acquisition-feasibility-v0.mjs",
+      "version": "0.1.0"
+    }
+  },
+  "basisHead": "3bbae92d81fa19107167b288c666f9dc19e2fdf3",
+  "checker": "scripts/check-ziwei-clean-rule-corpus-source-acquisition-feasibility-v0.mjs",
+  "deterministicContract": {
+    "candidateSelection": "source-selection ledger verdict predicate only",
+    "generatedAt": "forbidden",
+    "ids": "stable sourceKey/alternativeKey only; no random identifiers",
+    "missingBytesNeverHashed": true,
+    "sorting": "sourceKey/alternativeKey lexicographic"
+  },
+  "downstreamBoundaries": {
+    "activation": "experimental",
+    "actualRuleCorpusGenerated": false,
+    "grounding": "blocked",
+    "interpretationGenerated": false,
+    "promptGenerated": false,
+    "rankingGenerated": false,
+    "readiness": "not_safe_to_start",
+    "stableClaimCount": 0
+  },
+  "materializer": "scripts/materialize-ziwei-clean-rule-corpus-source-acquisition-feasibility-v0.mjs",
+  "mechanicalSelection": {
+    "predicate": "candidate.verdict === 'access_blocked'",
+    "selectedSourceKeys": [
+      "ctext-ziwei-page-res-979714",
+      "google-books-2000-dingwen-ming007",
+      "ndltd-097cgu05121028-exchange-rate-study"
+    ],
+    "sourceSelectionLedger": "test/fixtures/ziwei/clean-rule-corpus-source-candidates-v0.json"
+  },
+  "negativeFixture": "test/fixtures/ziwei/clean-rule-corpus-source-acquisition-feasibility-negative-v0.json",
+  "observedHead": "3bbae92d81fa19107167b288c666f9dc19e2fdf3",
+  "officialEvidence": [
+    {
+      "accessedOn": "2026-08-04",
+      "acquisitionRoute": "public_page_review_only_with_manual_limited_capture",
+      "bytes": "not obtained; no hash claimed",
+      "evidenceKey": "ctext-page-and-faq",
+      "identity": "digital work identifier and claimed base label visible; page-image/printed-edition lineage is not closed",
+      "observedFacts": [
+        "page exposes URN ctp:wb979714, a stated base edition label 正統道藏本, and rule-like section headings",
+        "CText permits private saving/printing and reasonable quotation but prohibits automated large-scale downloading",
+        "CText says some content is public domain while users remain responsible for determining copyright status; site content may be modified or deleted"
+      ],
+      "pageMap": "section anchors available; printed pages and immutable page-image map unavailable",
+      "rights": "limited private/non-profit academic copying and quotation terms are visible, but complete corpus storage and reuse rights are not established",
+      "role": "official_project_page_and_terms",
+      "secondaryOfficialUrl": "https://ctext.org/faq",
+      "sourceKey": "ctext-ziwei-page-res-979714",
+      "stableUrl": "https://ctext.org/wiki.pl?if=gb&res=979714"
+    },
+    {
+      "accessedOn": "2026-08-04",
+      "acquisitionRoute": "buy_or_library_borrow_then_review_provider_terms",
+      "bytes": "not obtained; no hash claimed",
+      "evidenceKey": "google-books-about-and-record",
+      "identity": "edition substantially identified; exact source pages and digital witness not identified",
+      "observedFacts": [
+        "record identifies 鼎文書局, 2000, 333 pages, ISBN 9786263503601",
+        "public record does not expose a complete downloadable file",
+        "Google Books describes preview, buy, and borrow paths; digital-content download is subject to payment and personal non-commercial restrictions"
+      ],
+      "pageMap": "not available from public record",
+      "rights": "provider terms limit downloaded digital content to authorized personal non-commercial use and prohibit distribution; repository evidence-storage permission is not established",
+      "role": "official_service_record",
+      "sourceKey": "google-books-2000-dingwen-ming007",
+      "stableUrl": "https://books.google.com/books/about/%E7%B4%AB%E5%BE%AE%E6%96%97%E6%95%B8%E5%85%A8%E6%9B%B8_%E5%91%BD007.html?id=fo7VEAAAQBAJ"
+    },
+    {
+      "accessedOn": "2026-08-04",
+      "acquisitionRoute": "authorized_portal_or_library_visit_and_possible_copy_request",
+      "bytes": "not obtained; no hash claimed",
+      "evidenceKey": "ndltd-record-and-ncl-reader-faq",
+      "identity": "thesis record identity partly closed; exact supplied file identity and cited primary editions unresolved",
+      "observedFacts": [
+        "record identifies 王文華, 長庚大學, 2009, 79 pages and an electronic-full-text section",
+        "public review encountered a verification gate and no thesis bytes were obtained",
+        "NCL policy says holdings are for in-library use; special-copy/photograph requests require written application and approval, with page limits and fees"
+      ],
+      "pageMap": "table-of-contents locations visible in record, source passages not independently page-mapped",
+      "rights": "copyright-compliant use must follow NCL copying rules; internal repository storage permission for a complete thesis or source extracts is not established",
+      "role": "official_thesis_record_and_library_access_policy",
+      "secondaryOfficialUrl": "https://www.ncl.edu.tw/service-faqs?qcat=0Q063418271611073163",
+      "sourceKey": "ndltd-097cgu05121028-exchange-rate-study",
+      "stableUrl": "https://ndltd.ncl.edu.tw/cgi-bin/gs32/gsweb.cgi?o=dnclcdr&s=id%3D%22097CGU05121028%22.&searchmode=basic"
+    }
+  ],
+  "prohibitedActionsNotTaken": [
+    "download",
+    "login",
+    "account_creation",
+    "purchase",
+    "application",
+    "institution_contact",
+    "access_bypass",
+    "large_file_storage",
+    "rule_ingestion",
+    "claim_generation",
+    "grounding",
+    "activation"
+  ],
+  "schemaVersion": "ziwei-clean-rule-corpus-source-acquisition-feasibility-v0",
+  "scope": "official acquisition feasibility only; no source bytes, rule corpus, claims, grounding, or interpretation",
+  "sourceVerdicts": {
+    "ctext-ziwei-page-res-979714": {
+      "bytes": false,
+      "exactEdition": false,
+      "hash": false,
+      "nextStep": "rights clarification and manually captured witness review; no action taken",
+      "pageMap": false,
+      "rights": "limited quotation/private use; complete seed reuse unresolved",
+      "status": "rights_unclear"
+    },
+    "google-books-2000-dingwen-ming007": {
+      "bytes": false,
+      "exactEdition": true,
+      "hash": false,
+      "nextStep": "authorized purchase/borrow or publisher/library supply; no action taken",
+      "pageMap": false,
+      "rights": "limited_personal_noncommercial; repository_storage_unresolved",
+      "status": "application_required"
+    },
+    "ndltd-097cgu05121028-exchange-rate-study": {
+      "bytes": false,
+      "exactEdition": false,
+      "hash": false,
+      "nextStep": "authorized portal/library access or formal copy request; no action taken",
+      "pageMap": false,
+      "rights": "NCL access/copy conditions; repository_storage_unresolved",
+      "status": "application_required"
+    }
+  },
+  "verdictDefinitions": {
+    "access_blocked_frozen": "Public route is blocked or does not expose the required witness; no bypass or inferred access is allowed.",
+    "acquirable": "Exact edition, original/page image, reproducible page map, obtainable bytes/hash, and permitted storage/quotation are all evidenced.",
+    "acquirable_with_limits": "The same gates close with explicit narrow storage/quotation limits and no complete-text claim.",
+    "application_required": "A named institutional/provider application, authorized access, purchase/borrow, or in-person/copy process is required before the evidence can be closed.",
+    "identity_unresolved": "Edition, lineage, or witness identity remains unresolved.",
+    "rights_unclear": "Public access exists, but storage/reuse rights for the proposed evidence are not closed."
+  },
+  "verdictToken": "ziwei_clean_rule_corpus_source_acquisition_feasibility_partial_blocked"
+}

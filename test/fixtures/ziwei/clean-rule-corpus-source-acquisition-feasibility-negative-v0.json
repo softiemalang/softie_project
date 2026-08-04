@@ -1,0 +1,22 @@
+{
+  "schemaVersion": "ziwei-clean-rule-corpus-source-acquisition-feasibility-negative-v0",
+  "cases": [
+    {"id":"catalog_exists","kind":"catalog_record","status":"acquirable","expected":"catalog_existence_not_acquirable"},
+    {"id":"login_hidden","kind":"login_required","status":"acquirable","expected":"login_requirement_hidden"},
+    {"id":"paid_hidden","kind":"purchase_required","status":"acquirable","expected":"paid_requirement_hidden"},
+    {"id":"application_hidden","kind":"application_required","status":"acquirable","expected":"application_requirement_hidden"},
+    {"id":"rights_inferred","rights":"assumed","expected":"rights_inferred"},
+    {"id":"hash_without_bytes","bytes":false,"hash":true,"expected":"hash_without_bytes"},
+    {"id":"seed_without_page_map","seed":true,"pageMap":null,"expected":"seed_without_page_map"},
+    {"id":"unofficial_mirror","kind":"unofficial_mirror","status":"acquirable","expected":"unofficial_mirror_promoted"},
+    {"id":"blog","kind":"blog","status":"acquirable","expected":"blog_promoted"},
+    {"id":"ai_text","kind":"ai_generated","status":"acquirable","expected":"ai_text_promoted"},
+    {"id":"interpretive_prose","contentClass":"interpretive_prose","seed":true,"expected":"interpretive_prose_seed"},
+    {"id":"scope_expansion","selectedWithoutLedger":true,"expected":"candidate_scope_expanded"},
+    {"id":"rule_ingestion","ruleCorpus":true,"expected":"rule_ingestion_promoted"},
+    {"id":"claims","stableClaimCount":1,"expected":"claim_promoted"},
+    {"id":"grounding","grounding":"grounded","expected":"grounding_promoted"},
+    {"id":"random_id","id":"random-uuid","expected":"nondeterministic_id"},
+    {"id":"insertion_sort","sort":"insertion_order","expected":"nondeterministic_sort"}
+  ]
+}

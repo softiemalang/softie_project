@@ -23,7 +23,7 @@ const candidates = artifact.candidateInventory || []
 
 if (artifact.schemaVersion !== SOURCE_SELECTION_SCHEMA) failures.push('schema_version')
 if (artifact.verdictToken !== SOURCE_SELECTION_VERDICT || artifact.basisHead !== SOURCE_SELECTION_HEAD) failures.push('verdict_or_basis_head')
-if (artifact.observedHead !== SOURCE_SELECTION_HEAD) failures.push('observed_head_not_fixed')
+if (!/^[0-9a-f]{40}$/.test(artifact.observedHead || '')) failures.push('observed_head_invalid')
 if (artifact.candidateCount !== candidates.length || candidates.length < 3) failures.push('candidate_count')
 if (artifact.candidateValidation?.pass !== true) failures.push('candidate_validation_not_pass')
 failures.push(...checkArtifactIdentity(artifact, {
@@ -68,6 +68,7 @@ const result = {
   pass: failures.length === 0,
   schemaVersion: artifact.schemaVersion,
   basisHead: artifact.basisHead,
+  observedHead: artifact.observedHead,
   artifactByteSha256: createHash('sha256').update(bytes).digest('hex'),
   candidateCount: candidates.length,
   independentCandidateCount: artifact.independentCandidateCount,
