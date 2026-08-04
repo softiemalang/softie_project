@@ -1,0 +1,16 @@
+{
+  "schemaVersion": "ziwei-tianfu-placement-discrepancy-analysis-negative-v0",
+  "purpose": "Fail-closed mutation inventory for source-first Tianfu discrepancy evidence.",
+  "mutations": [
+    "source-first PDF/page/render hash tampering",
+    "table transpose/direction/glyph discrepancy concealment",
+    "partial candidate relation inspection",
+    "arbitrary permutation, row exception, or overfit",
+    "multiple exact fits reduced to one",
+    "prediction overwrites original values",
+    "forced 150-row reconcile or truth-lineage declaration",
+    "existing artifact/production/rule mutation",
+    "status promotion",
+    "nondeterministic ID/order/hash"
+  ]
+}

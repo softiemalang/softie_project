@@ -1,0 +1,187 @@
+{
+  "status": "source_review_complete_with_declared_limit",
+  "transcription": {
+    "modernCommentaryIngested": false,
+    "ocrStatus": "exploration_only_not_canonical",
+    "pages": [
+      {
+        "locator": "p13/right scanned leaf; central two-column table",
+        "pdfPage": 13,
+        "printedPage": "三十四",
+        "readingOrder": "vertical columns; table rows top-to-bottom; no transpose",
+        "scannedLeaf": "right",
+        "section": "甲六、安天府",
+        "table": {
+          "boundary": "12 drawn rows; diagonal header retained; no inferred cells",
+          "cells": [
+            {
+              "direction": "紫微 column top-to-bottom 子→亥; 天府 column top-to-bottom 辰→巳",
+              "glyphs": {
+                "天府": "辰",
+                "紫微": "子"
+              },
+              "locator": "p13/三十四/甲六-安天府/table/row-01",
+              "reading": "visual glyph, top-to-bottom",
+              "row": 1,
+              "transposition": false,
+              "unclearGlyph": null
+            },
+            {
+              "direction": "紫微 column top-to-bottom 子→亥; 天府 column top-to-bottom 辰→巳",
+              "glyphs": {
+                "天府": "卯",
+                "紫微": "丑"
+              },
+              "locator": "p13/三十四/甲六-安天府/table/row-02",
+              "reading": "visual glyph, top-to-bottom",
+              "row": 2,
+              "transposition": false,
+              "unclearGlyph": null
+            },
+            {
+              "direction": "紫微 column top-to-bottom 子→亥; 天府 column top-to-bottom 辰→巳",
+              "glyphs": {
+                "天府": "寅",
+                "紫微": "寅"
+              },
+              "locator": "p13/三十四/甲六-安天府/table/row-03",
+              "reading": "visual glyph, top-to-bottom",
+              "row": 3,
+              "transposition": false,
+              "unclearGlyph": null
+            },
+            {
+              "direction": "紫微 column top-to-bottom 子→亥; 天府 column top-to-bottom 辰→巳",
+              "glyphs": {
+                "天府": "丑",
+                "紫微": "卯"
+              },
+              "locator": "p13/三十四/甲六-安天府/table/row-04",
+              "reading": "visual glyph, top-to-bottom",
+              "row": 4,
+              "transposition": false,
+              "unclearGlyph": null
+            },
+            {
+              "direction": "紫微 column top-to-bottom 子→亥; 天府 column top-to-bottom 辰→巳",
+              "glyphs": {
+                "天府": "子",
+                "紫微": "辰"
+              },
+              "locator": "p13/三十四/甲六-安天府/table/row-05",
+              "reading": "visual glyph, top-to-bottom",
+              "row": 5,
+              "transposition": false,
+              "unclearGlyph": null
+            },
+            {
+              "direction": "紫微 column top-to-bottom 子→亥; 天府 column top-to-bottom 辰→巳",
+              "glyphs": {
+                "天府": "亥",
+                "紫微": "巳"
+              },
+              "locator": "p13/三十四/甲六-安天府/table/row-06",
+              "reading": "visual glyph, top-to-bottom",
+              "row": 6,
+              "transposition": false,
+              "unclearGlyph": null
+            },
+            {
+              "direction": "紫微 column top-to-bottom 子→亥; 天府 column top-to-bottom 辰→巳",
+              "glyphs": {
+                "天府": "戌",
+                "紫微": "午"
+              },
+              "locator": "p13/三十四/甲六-安天府/table/row-07",
+              "reading": "visual glyph, top-to-bottom",
+              "row": 7,
+              "transposition": false,
+              "unclearGlyph": null
+            },
+            {
+              "direction": "紫微 column top-to-bottom 子→亥; 天府 column top-to-bottom 辰→巳",
+              "glyphs": {
+                "天府": "酉",
+                "紫微": "未"
+              },
+              "locator": "p13/三十四/甲六-安天府/table/row-08",
+              "reading": "visual glyph, top-to-bottom",
+              "row": 8,
+              "transposition": false,
+              "unclearGlyph": null
+            },
+            {
+              "direction": "紫微 column top-to-bottom 子→亥; 天府 column top-to-bottom 辰→巳",
+              "glyphs": {
+                "天府": "申",
+                "紫微": "申"
+              },
+              "locator": "p13/三十四/甲六-安天府/table/row-09",
+              "reading": "visual glyph, top-to-bottom",
+              "row": 9,
+              "transposition": false,
+              "unclearGlyph": null
+            },
+            {
+              "direction": "紫微 column top-to-bottom 子→亥; 天府 column top-to-bottom 辰→巳",
+              "glyphs": {
+                "天府": "未",
+                "紫微": "酉"
+              },
+              "locator": "p13/三十四/甲六-安天府/table/row-10",
+              "reading": "visual glyph, top-to-bottom",
+              "row": 10,
+              "transposition": false,
+              "unclearGlyph": null
+            },
+            {
+              "direction": "紫微 column top-to-bottom 子→亥; 天府 column top-to-bottom 辰→巳",
+              "glyphs": {
+                "天府": "午",
+                "紫微": "戌"
+              },
+              "locator": "p13/三十四/甲六-安天府/table/row-11",
+              "reading": "visual glyph, top-to-bottom",
+              "row": 11,
+              "transposition": false,
+              "unclearGlyph": null
+            },
+            {
+              "direction": "紫微 column top-to-bottom 子→亥; 天府 column top-to-bottom 辰→巳",
+              "glyphs": {
+                "天府": "巳",
+                "紫微": "亥"
+              },
+              "locator": "p13/三十四/甲六-安天府/table/row-12",
+              "reading": "visual glyph, top-to-bottom",
+              "row": 12,
+              "transposition": false,
+              "unclearGlyph": null
+            }
+          ],
+          "headers": [
+            "天府",
+            "紫微"
+          ]
+        }
+      }
+    ],
+    "schemaVersion": "ziwei-tianfu-placement-discrepancy-analysis-v0-transcription-v0",
+    "sourcePageCount": 219,
+    "sourcePdfSha256": "4786a94ab454acdabf9716d7c0db4756dbcbde99a88bc45fda254863c1961023",
+    "sourceReview": "rendered visual review; OCR not used as canonical input; single-agent review, not independent human review",
+    "transcriptionId": "ziwei-tianfu-p13-s34-reconfirmed-transcription-v0",
+    "uncertainty": [
+      {
+        "field": "tableCells",
+        "note": "No glyph was left unresolved in this pass; this is not an independent human review.",
+        "status": "single_visual_review_second_review_pending"
+      },
+      {
+        "field": "editionLineage",
+        "note": "Digital witness identity is resolved; historical edition lineage is not promoted.",
+        "status": "unresolved_source_identity"
+      }
+    ]
+  }
+}

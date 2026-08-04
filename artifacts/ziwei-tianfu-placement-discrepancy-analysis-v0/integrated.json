@@ -1,0 +1,6780 @@
+{
+  "bureauDistribution": {
+    "2": 30,
+    "3": 30,
+    "4": 30,
+    "5": 30,
+    "6": 30
+  },
+  "dayDistribution": {
+    "1": 5,
+    "2": 5,
+    "3": 5,
+    "4": 5,
+    "5": 5,
+    "6": 5,
+    "7": 5,
+    "8": 5,
+    "9": 5,
+    "10": 5,
+    "11": 5,
+    "12": 5,
+    "13": 5,
+    "14": 5,
+    "15": 5,
+    "16": 5,
+    "17": 5,
+    "18": 5,
+    "19": 5,
+    "20": 5,
+    "21": 5,
+    "22": 5,
+    "23": 5,
+    "24": 5,
+    "25": 5,
+    "26": 5,
+    "27": 5,
+    "28": 5,
+    "29": 5,
+    "30": 5
+  },
+  "exactFitIds": [
+    "rotation-06",
+    "enum-relabel-in-00-out-06",
+    "enum-relabel-in-01-out-07",
+    "enum-relabel-in-02-out-08",
+    "enum-relabel-in-03-out-09",
+    "enum-relabel-in-04-out-10",
+    "enum-relabel-in-05-out-11",
+    "enum-relabel-in-06-out-00",
+    "enum-relabel-in-07-out-01",
+    "enum-relabel-in-08-out-02",
+    "enum-relabel-in-09-out-03",
+    "enum-relabel-in-10-out-04",
+    "enum-relabel-in-11-out-05",
+    "source-base-direction"
+  ],
+  "inputCount": 150,
+  "originalBaseline": {
+    "artifact": "artifacts/ziwei-tianfu-star-placement-clean-rule-seed-pilot-v0/complete.json",
+    "comparisonSha256": "ea69d97b369fd06455e5681585143455ebddaad620d46efeac4cb4bd7f491000",
+    "firstMismatch": "integrated-bureau-2-day-01",
+    "matchCount": 25,
+    "mismatchCount": 125
+  },
+  "predictionDoesNotOverwriteOriginal": true,
+  "relationResults": [
+    {
+      "candidateId": "identity",
+      "definition": "source = production",
+      "domain": "integrated",
+      "expectedRowCount": 150,
+      "family": "identity",
+      "firstFailure": {
+        "expectedBranch": "卯",
+        "predictedBranch": "酉",
+        "rowId": "integrated-bureau-2-day-01"
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "rotation-00",
+      "definition": "source = production + 0 (mod 12)",
+      "domain": "integrated",
+      "expectedRowCount": 150,
+      "family": "fixed_rotation_offset",
+      "firstFailure": {
+        "expectedBranch": "卯",
+        "predictedBranch": "酉",
+        "rowId": "integrated-bureau-2-day-01"
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "rotation-01",
+      "definition": "source = production + 1 (mod 12)",
+      "domain": "integrated",
+      "expectedRowCount": 150,
+      "family": "fixed_rotation_offset",
+      "firstFailure": {
+        "expectedBranch": "卯",
+        "predictedBranch": "戌",
+        "rowId": "integrated-bureau-2-day-01"
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "rotation-02",
+      "definition": "source = production + 2 (mod 12)",
+      "domain": "integrated",
+      "expectedRowCount": 150,
+      "family": "fixed_rotation_offset",
+      "firstFailure": {
+        "expectedBranch": "卯",
+        "predictedBranch": "亥",
+        "rowId": "integrated-bureau-2-day-01"
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "rotation-03",
+      "definition": "source = production + 3 (mod 12)",
+      "domain": "integrated",
+      "expectedRowCount": 150,
+      "family": "fixed_rotation_offset",
+      "firstFailure": {
+        "expectedBranch": "卯",
+        "predictedBranch": "子",
+        "rowId": "integrated-bureau-2-day-01"
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "rotation-04",
+      "definition": "source = production + 4 (mod 12)",
+      "domain": "integrated",
+      "expectedRowCount": 150,
+      "family": "fixed_rotation_offset",
+      "firstFailure": {
+        "expectedBranch": "卯",
+        "predictedBranch": "丑",
+        "rowId": "integrated-bureau-2-day-01"
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "rotation-05",
+      "definition": "source = production + 5 (mod 12)",
+      "domain": "integrated",
+      "expectedRowCount": 150,
+      "family": "fixed_rotation_offset",
+      "firstFailure": {
+        "expectedBranch": "卯",
+        "predictedBranch": "寅",
+        "rowId": "integrated-bureau-2-day-01"
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "rotation-06",
+      "definition": "source = production + 6 (mod 12)",
+      "domain": "integrated",
+      "expectedRowCount": 150,
+      "family": "fixed_rotation_offset",
+      "firstFailure": null,
+      "matchCount": 150,
+      "mismatchCount": 0,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "rotation-07",
+      "definition": "source = production + 7 (mod 12)",
+      "domain": "integrated",
+      "expectedRowCount": 150,
+      "family": "fixed_rotation_offset",
+      "firstFailure": {
+        "expectedBranch": "卯",
+        "predictedBranch": "辰",
+        "rowId": "integrated-bureau-2-day-01"
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "rotation-08",
+      "definition": "source = production + 8 (mod 12)",
+      "domain": "integrated",
+      "expectedRowCount": 150,
+      "family": "fixed_rotation_offset",
+      "firstFailure": {
+        "expectedBranch": "卯",
+        "predictedBranch": "巳",
+        "rowId": "integrated-bureau-2-day-01"
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "rotation-09",
+      "definition": "source = production + 9 (mod 12)",
+      "domain": "integrated",
+      "expectedRowCount": 150,
+      "family": "fixed_rotation_offset",
+      "firstFailure": {
+        "expectedBranch": "卯",
+        "predictedBranch": "午",
+        "rowId": "integrated-bureau-2-day-01"
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "rotation-10",
+      "definition": "source = production + 10 (mod 12)",
+      "domain": "integrated",
+      "expectedRowCount": 150,
+      "family": "fixed_rotation_offset",
+      "firstFailure": {
+        "expectedBranch": "卯",
+        "predictedBranch": "未",
+        "rowId": "integrated-bureau-2-day-01"
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "rotation-11",
+      "definition": "source = production + 11 (mod 12)",
+      "domain": "integrated",
+      "expectedRowCount": 150,
+      "family": "fixed_rotation_offset",
+      "firstFailure": {
+        "expectedBranch": "卯",
+        "predictedBranch": "申",
+        "rowId": "integrated-bureau-2-day-01"
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "reflection-rotation-00",
+      "definition": "source = 0 - production (mod 12)",
+      "domain": "integrated",
+      "expectedRowCount": 150,
+      "family": "reflection_rotation",
+      "firstFailure": {
+        "expectedBranch": "寅",
+        "predictedBranch": "辰",
+        "rowId": "integrated-bureau-2-day-02"
+      },
+      "matchCount": 25,
+      "mismatchCount": 125,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "reflection-rotation-01",
+      "definition": "source = 1 - production (mod 12)",
+      "domain": "integrated",
+      "expectedRowCount": 150,
+      "family": "reflection_rotation",
+      "firstFailure": {
+        "expectedBranch": "卯",
+        "predictedBranch": "辰",
+        "rowId": "integrated-bureau-2-day-01"
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "reflection-rotation-02",
+      "definition": "source = 2 - production (mod 12)",
+      "domain": "integrated",
+      "expectedRowCount": 150,
+      "family": "reflection_rotation",
+      "firstFailure": {
+        "expectedBranch": "卯",
+        "predictedBranch": "巳",
+        "rowId": "integrated-bureau-2-day-01"
+      },
+      "matchCount": 23,
+      "mismatchCount": 127,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "reflection-rotation-03",
+      "definition": "source = 3 - production (mod 12)",
+      "domain": "integrated",
+      "expectedRowCount": 150,
+      "family": "reflection_rotation",
+      "firstFailure": {
+        "expectedBranch": "卯",
+        "predictedBranch": "午",
+        "rowId": "integrated-bureau-2-day-01"
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "reflection-rotation-04",
+      "definition": "source = 4 - production (mod 12)",
+      "domain": "integrated",
+      "expectedRowCount": 150,
+      "family": "reflection_rotation",
+      "firstFailure": {
+        "expectedBranch": "卯",
+        "predictedBranch": "未",
+        "rowId": "integrated-bureau-2-day-01"
+      },
+      "matchCount": 25,
+      "mismatchCount": 125,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "reflection-rotation-05",
+      "definition": "source = 5 - production (mod 12)",
+      "domain": "integrated",
+      "expectedRowCount": 150,
+      "family": "reflection_rotation",
+      "firstFailure": {
+        "expectedBranch": "卯",
+        "predictedBranch": "申",
+        "rowId": "integrated-bureau-2-day-01"
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "reflection-rotation-06",
+      "definition": "source = 6 - production (mod 12)",
+      "domain": "integrated",
+      "expectedRowCount": 150,
+      "family": "reflection_rotation",
+      "firstFailure": {
+        "expectedBranch": "卯",
+        "predictedBranch": "酉",
+        "rowId": "integrated-bureau-2-day-01"
+      },
+      "matchCount": 26,
+      "mismatchCount": 124,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "reflection-rotation-07",
+      "definition": "source = 7 - production (mod 12)",
+      "domain": "integrated",
+      "expectedRowCount": 150,
+      "family": "reflection_rotation",
+      "firstFailure": {
+        "expectedBranch": "卯",
+        "predictedBranch": "戌",
+        "rowId": "integrated-bureau-2-day-01"
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "reflection-rotation-08",
+      "definition": "source = 8 - production (mod 12)",
+      "domain": "integrated",
+      "expectedRowCount": 150,
+      "family": "reflection_rotation",
+      "firstFailure": {
+        "expectedBranch": "卯",
+        "predictedBranch": "亥",
+        "rowId": "integrated-bureau-2-day-01"
+      },
+      "matchCount": 25,
+      "mismatchCount": 125,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "reflection-rotation-09",
+      "definition": "source = 9 - production (mod 12)",
+      "domain": "integrated",
+      "expectedRowCount": 150,
+      "family": "reflection_rotation",
+      "firstFailure": {
+        "expectedBranch": "卯",
+        "predictedBranch": "子",
+        "rowId": "integrated-bureau-2-day-01"
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "reflection-rotation-10",
+      "definition": "source = 10 - production (mod 12)",
+      "domain": "integrated",
+      "expectedRowCount": 150,
+      "family": "reflection_rotation",
+      "firstFailure": {
+        "expectedBranch": "卯",
+        "predictedBranch": "丑",
+        "rowId": "integrated-bureau-2-day-01"
+      },
+      "matchCount": 26,
+      "mismatchCount": 124,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "reflection-rotation-11",
+      "definition": "source = 11 - production (mod 12)",
+      "domain": "integrated",
+      "expectedRowCount": 150,
+      "family": "reflection_rotation",
+      "firstFailure": {
+        "expectedBranch": "卯",
+        "predictedBranch": "寅",
+        "rowId": "integrated-bureau-2-day-01"
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "inverse-mapping",
+      "definition": "source = inverse of production mapping over the 子=0..亥=11 enum",
+      "domain": "integrated",
+      "expectedRowCount": 150,
+      "family": "inverse_mapping",
+      "firstFailure": {
+        "expectedBranch": "卯",
+        "predictedBranch": "丑",
+        "rowId": "integrated-bureau-2-day-01"
+      },
+      "matchCount": 26,
+      "mismatchCount": 124,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-00-out-00",
+      "definition": "relabel input +0, output -0; source = production(relabelled input)",
+      "domain": "integrated",
+      "expectedRowCount": 150,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "卯",
+        "predictedBranch": "酉",
+        "rowId": "integrated-bureau-2-day-01"
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-00-out-01",
+      "definition": "relabel input +0, output -1; source = production(relabelled input)",
+      "domain": "integrated",
+      "expectedRowCount": 150,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "卯",
+        "predictedBranch": "申",
+        "rowId": "integrated-bureau-2-day-01"
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-00-out-02",
+      "definition": "relabel input +0, output -2; source = production(relabelled input)",
+      "domain": "integrated",
+      "expectedRowCount": 150,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "卯",
+        "predictedBranch": "未",
+        "rowId": "integrated-bureau-2-day-01"
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-00-out-03",
+      "definition": "relabel input +0, output -3; source = production(relabelled input)",
+      "domain": "integrated",
+      "expectedRowCount": 150,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "卯",
+        "predictedBranch": "午",
+        "rowId": "integrated-bureau-2-day-01"
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-00-out-04",
+      "definition": "relabel input +0, output -4; source = production(relabelled input)",
+      "domain": "integrated",
+      "expectedRowCount": 150,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "卯",
+        "predictedBranch": "巳",
+        "rowId": "integrated-bureau-2-day-01"
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-00-out-05",
+      "definition": "relabel input +0, output -5; source = production(relabelled input)",
+      "domain": "integrated",
+      "expectedRowCount": 150,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "卯",
+        "predictedBranch": "辰",
+        "rowId": "integrated-bureau-2-day-01"
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-00-out-06",
+      "definition": "relabel input +0, output -6; source = production(relabelled input)",
+      "domain": "integrated",
+      "expectedRowCount": 150,
+      "family": "enum_relabeling",
+      "firstFailure": null,
+      "matchCount": 150,
+      "mismatchCount": 0,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-00-out-07",
+      "definition": "relabel input +0, output -7; source = production(relabelled input)",
+      "domain": "integrated",
+      "expectedRowCount": 150,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "卯",
+        "predictedBranch": "寅",
+        "rowId": "integrated-bureau-2-day-01"
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-00-out-08",
+      "definition": "relabel input +0, output -8; source = production(relabelled input)",
+      "domain": "integrated",
+      "expectedRowCount": 150,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "卯",
+        "predictedBranch": "丑",
+        "rowId": "integrated-bureau-2-day-01"
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-00-out-09",
+      "definition": "relabel input +0, output -9; source = production(relabelled input)",
+      "domain": "integrated",
+      "expectedRowCount": 150,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "卯",
+        "predictedBranch": "子",
+        "rowId": "integrated-bureau-2-day-01"
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-00-out-10",
+      "definition": "relabel input +0, output -10; source = production(relabelled input)",
+      "domain": "integrated",
+      "expectedRowCount": 150,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "卯",
+        "predictedBranch": "亥",
+        "rowId": "integrated-bureau-2-day-01"
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-00-out-11",
+      "definition": "relabel input +0, output -11; source = production(relabelled input)",
+      "domain": "integrated",
+      "expectedRowCount": 150,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "卯",
+        "predictedBranch": "戌",
+        "rowId": "integrated-bureau-2-day-01"
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-01-out-00",
+      "definition": "relabel input +1, output -0; source = production(relabelled input)",
+      "domain": "integrated",
+      "expectedRowCount": 150,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "卯",
+        "predictedBranch": "戌",
+        "rowId": "integrated-bureau-2-day-01"
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-01-out-01",
+      "definition": "relabel input +1, output -1; source = production(relabelled input)",
+      "domain": "integrated",
+      "expectedRowCount": 150,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "卯",
+        "predictedBranch": "酉",
+        "rowId": "integrated-bureau-2-day-01"
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-01-out-02",
+      "definition": "relabel input +1, output -2; source = production(relabelled input)",
+      "domain": "integrated",
+      "expectedRowCount": 150,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "卯",
+        "predictedBranch": "申",
+        "rowId": "integrated-bureau-2-day-01"
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-01-out-03",
+      "definition": "relabel input +1, output -3; source = production(relabelled input)",
+      "domain": "integrated",
+      "expectedRowCount": 150,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "卯",
+        "predictedBranch": "未",
+        "rowId": "integrated-bureau-2-day-01"
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-01-out-04",
+      "definition": "relabel input +1, output -4; source = production(relabelled input)",
+      "domain": "integrated",
+      "expectedRowCount": 150,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "卯",
+        "predictedBranch": "午",
+        "rowId": "integrated-bureau-2-day-01"
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-01-out-05",
+      "definition": "relabel input +1, output -5; source = production(relabelled input)",
+      "domain": "integrated",
+      "expectedRowCount": 150,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "卯",
+        "predictedBranch": "巳",
+        "rowId": "integrated-bureau-2-day-01"
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-01-out-06",
+      "definition": "relabel input +1, output -6; source = production(relabelled input)",
+      "domain": "integrated",
+      "expectedRowCount": 150,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "卯",
+        "predictedBranch": "辰",
+        "rowId": "integrated-bureau-2-day-01"
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-01-out-07",
+      "definition": "relabel input +1, output -7; source = production(relabelled input)",
+      "domain": "integrated",
+      "expectedRowCount": 150,
+      "family": "enum_relabeling",
+      "firstFailure": null,
+      "matchCount": 150,
+      "mismatchCount": 0,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-01-out-08",
+      "definition": "relabel input +1, output -8; source = production(relabelled input)",
+      "domain": "integrated",
+      "expectedRowCount": 150,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "卯",
+        "predictedBranch": "寅",
+        "rowId": "integrated-bureau-2-day-01"
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-01-out-09",
+      "definition": "relabel input +1, output -9; source = production(relabelled input)",
+      "domain": "integrated",
+      "expectedRowCount": 150,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "卯",
+        "predictedBranch": "丑",
+        "rowId": "integrated-bureau-2-day-01"
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-01-out-10",
+      "definition": "relabel input +1, output -10; source = production(relabelled input)",
+      "domain": "integrated",
+      "expectedRowCount": 150,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "卯",
+        "predictedBranch": "子",
+        "rowId": "integrated-bureau-2-day-01"
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-01-out-11",
+      "definition": "relabel input +1, output -11; source = production(relabelled input)",
+      "domain": "integrated",
+      "expectedRowCount": 150,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "卯",
+        "predictedBranch": "亥",
+        "rowId": "integrated-bureau-2-day-01"
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-02-out-00",
+      "definition": "relabel input +2, output -0; source = production(relabelled input)",
+      "domain": "integrated",
+      "expectedRowCount": 150,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "卯",
+        "predictedBranch": "亥",
+        "rowId": "integrated-bureau-2-day-01"
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-02-out-01",
+      "definition": "relabel input +2, output -1; source = production(relabelled input)",
+      "domain": "integrated",
+      "expectedRowCount": 150,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "卯",
+        "predictedBranch": "戌",
+        "rowId": "integrated-bureau-2-day-01"
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-02-out-02",
+      "definition": "relabel input +2, output -2; source = production(relabelled input)",
+      "domain": "integrated",
+      "expectedRowCount": 150,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "卯",
+        "predictedBranch": "酉",
+        "rowId": "integrated-bureau-2-day-01"
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-02-out-03",
+      "definition": "relabel input +2, output -3; source = production(relabelled input)",
+      "domain": "integrated",
+      "expectedRowCount": 150,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "卯",
+        "predictedBranch": "申",
+        "rowId": "integrated-bureau-2-day-01"
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-02-out-04",
+      "definition": "relabel input +2, output -4; source = production(relabelled input)",
+      "domain": "integrated",
+      "expectedRowCount": 150,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "卯",
+        "predictedBranch": "未",
+        "rowId": "integrated-bureau-2-day-01"
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-02-out-05",
+      "definition": "relabel input +2, output -5; source = production(relabelled input)",
+      "domain": "integrated",
+      "expectedRowCount": 150,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "卯",
+        "predictedBranch": "午",
+        "rowId": "integrated-bureau-2-day-01"
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-02-out-06",
+      "definition": "relabel input +2, output -6; source = production(relabelled input)",
+      "domain": "integrated",
+      "expectedRowCount": 150,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "卯",
+        "predictedBranch": "巳",
+        "rowId": "integrated-bureau-2-day-01"
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-02-out-07",
+      "definition": "relabel input +2, output -7; source = production(relabelled input)",
+      "domain": "integrated",
+      "expectedRowCount": 150,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "卯",
+        "predictedBranch": "辰",
+        "rowId": "integrated-bureau-2-day-01"
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-02-out-08",
+      "definition": "relabel input +2, output -8; source = production(relabelled input)",
+      "domain": "integrated",
+      "expectedRowCount": 150,
+      "family": "enum_relabeling",
+      "firstFailure": null,
+      "matchCount": 150,
+      "mismatchCount": 0,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-02-out-09",
+      "definition": "relabel input +2, output -9; source = production(relabelled input)",
+      "domain": "integrated",
+      "expectedRowCount": 150,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "卯",
+        "predictedBranch": "寅",
+        "rowId": "integrated-bureau-2-day-01"
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-02-out-10",
+      "definition": "relabel input +2, output -10; source = production(relabelled input)",
+      "domain": "integrated",
+      "expectedRowCount": 150,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "卯",
+        "predictedBranch": "丑",
+        "rowId": "integrated-bureau-2-day-01"
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-02-out-11",
+      "definition": "relabel input +2, output -11; source = production(relabelled input)",
+      "domain": "integrated",
+      "expectedRowCount": 150,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "卯",
+        "predictedBranch": "子",
+        "rowId": "integrated-bureau-2-day-01"
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-03-out-00",
+      "definition": "relabel input +3, output -0; source = production(relabelled input)",
+      "domain": "integrated",
+      "expectedRowCount": 150,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "卯",
+        "predictedBranch": "子",
+        "rowId": "integrated-bureau-2-day-01"
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-03-out-01",
+      "definition": "relabel input +3, output -1; source = production(relabelled input)",
+      "domain": "integrated",
+      "expectedRowCount": 150,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "卯",
+        "predictedBranch": "亥",
+        "rowId": "integrated-bureau-2-day-01"
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-03-out-02",
+      "definition": "relabel input +3, output -2; source = production(relabelled input)",
+      "domain": "integrated",
+      "expectedRowCount": 150,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "卯",
+        "predictedBranch": "戌",
+        "rowId": "integrated-bureau-2-day-01"
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-03-out-03",
+      "definition": "relabel input +3, output -3; source = production(relabelled input)",
+      "domain": "integrated",
+      "expectedRowCount": 150,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "卯",
+        "predictedBranch": "酉",
+        "rowId": "integrated-bureau-2-day-01"
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-03-out-04",
+      "definition": "relabel input +3, output -4; source = production(relabelled input)",
+      "domain": "integrated",
+      "expectedRowCount": 150,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "卯",
+        "predictedBranch": "申",
+        "rowId": "integrated-bureau-2-day-01"
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-03-out-05",
+      "definition": "relabel input +3, output -5; source = production(relabelled input)",
+      "domain": "integrated",
+      "expectedRowCount": 150,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "卯",
+        "predictedBranch": "未",
+        "rowId": "integrated-bureau-2-day-01"
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-03-out-06",
+      "definition": "relabel input +3, output -6; source = production(relabelled input)",
+      "domain": "integrated",
+      "expectedRowCount": 150,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "卯",
+        "predictedBranch": "午",
+        "rowId": "integrated-bureau-2-day-01"
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-03-out-07",
+      "definition": "relabel input +3, output -7; source = production(relabelled input)",
+      "domain": "integrated",
+      "expectedRowCount": 150,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "卯",
+        "predictedBranch": "巳",
+        "rowId": "integrated-bureau-2-day-01"
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-03-out-08",
+      "definition": "relabel input +3, output -8; source = production(relabelled input)",
+      "domain": "integrated",
+      "expectedRowCount": 150,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "卯",
+        "predictedBranch": "辰",
+        "rowId": "integrated-bureau-2-day-01"
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-03-out-09",
+      "definition": "relabel input +3, output -9; source = production(relabelled input)",
+      "domain": "integrated",
+      "expectedRowCount": 150,
+      "family": "enum_relabeling",
+      "firstFailure": null,
+      "matchCount": 150,
+      "mismatchCount": 0,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-03-out-10",
+      "definition": "relabel input +3, output -10; source = production(relabelled input)",
+      "domain": "integrated",
+      "expectedRowCount": 150,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "卯",
+        "predictedBranch": "寅",
+        "rowId": "integrated-bureau-2-day-01"
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-03-out-11",
+      "definition": "relabel input +3, output -11; source = production(relabelled input)",
+      "domain": "integrated",
+      "expectedRowCount": 150,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "卯",
+        "predictedBranch": "丑",
+        "rowId": "integrated-bureau-2-day-01"
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-04-out-00",
+      "definition": "relabel input +4, output -0; source = production(relabelled input)",
+      "domain": "integrated",
+      "expectedRowCount": 150,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "卯",
+        "predictedBranch": "丑",
+        "rowId": "integrated-bureau-2-day-01"
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-04-out-01",
+      "definition": "relabel input +4, output -1; source = production(relabelled input)",
+      "domain": "integrated",
+      "expectedRowCount": 150,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "卯",
+        "predictedBranch": "子",
+        "rowId": "integrated-bureau-2-day-01"
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-04-out-02",
+      "definition": "relabel input +4, output -2; source = production(relabelled input)",
+      "domain": "integrated",
+      "expectedRowCount": 150,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "卯",
+        "predictedBranch": "亥",
+        "rowId": "integrated-bureau-2-day-01"
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-04-out-03",
+      "definition": "relabel input +4, output -3; source = production(relabelled input)",
+      "domain": "integrated",
+      "expectedRowCount": 150,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "卯",
+        "predictedBranch": "戌",
+        "rowId": "integrated-bureau-2-day-01"
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-04-out-04",
+      "definition": "relabel input +4, output -4; source = production(relabelled input)",
+      "domain": "integrated",
+      "expectedRowCount": 150,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "卯",
+        "predictedBranch": "酉",
+        "rowId": "integrated-bureau-2-day-01"
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-04-out-05",
+      "definition": "relabel input +4, output -5; source = production(relabelled input)",
+      "domain": "integrated",
+      "expectedRowCount": 150,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "卯",
+        "predictedBranch": "申",
+        "rowId": "integrated-bureau-2-day-01"
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-04-out-06",
+      "definition": "relabel input +4, output -6; source = production(relabelled input)",
+      "domain": "integrated",
+      "expectedRowCount": 150,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "卯",
+        "predictedBranch": "未",
+        "rowId": "integrated-bureau-2-day-01"
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-04-out-07",
+      "definition": "relabel input +4, output -7; source = production(relabelled input)",
+      "domain": "integrated",
+      "expectedRowCount": 150,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "卯",
+        "predictedBranch": "午",
+        "rowId": "integrated-bureau-2-day-01"
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-04-out-08",
+      "definition": "relabel input +4, output -8; source = production(relabelled input)",
+      "domain": "integrated",
+      "expectedRowCount": 150,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "卯",
+        "predictedBranch": "巳",
+        "rowId": "integrated-bureau-2-day-01"
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-04-out-09",
+      "definition": "relabel input +4, output -9; source = production(relabelled input)",
+      "domain": "integrated",
+      "expectedRowCount": 150,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "卯",
+        "predictedBranch": "辰",
+        "rowId": "integrated-bureau-2-day-01"
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-04-out-10",
+      "definition": "relabel input +4, output -10; source = production(relabelled input)",
+      "domain": "integrated",
+      "expectedRowCount": 150,
+      "family": "enum_relabeling",
+      "firstFailure": null,
+      "matchCount": 150,
+      "mismatchCount": 0,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-04-out-11",
+      "definition": "relabel input +4, output -11; source = production(relabelled input)",
+      "domain": "integrated",
+      "expectedRowCount": 150,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "卯",
+        "predictedBranch": "寅",
+        "rowId": "integrated-bureau-2-day-01"
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-05-out-00",
+      "definition": "relabel input +5, output -0; source = production(relabelled input)",
+      "domain": "integrated",
+      "expectedRowCount": 150,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "卯",
+        "predictedBranch": "寅",
+        "rowId": "integrated-bureau-2-day-01"
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-05-out-01",
+      "definition": "relabel input +5, output -1; source = production(relabelled input)",
+      "domain": "integrated",
+      "expectedRowCount": 150,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "卯",
+        "predictedBranch": "丑",
+        "rowId": "integrated-bureau-2-day-01"
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-05-out-02",
+      "definition": "relabel input +5, output -2; source = production(relabelled input)",
+      "domain": "integrated",
+      "expectedRowCount": 150,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "卯",
+        "predictedBranch": "子",
+        "rowId": "integrated-bureau-2-day-01"
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-05-out-03",
+      "definition": "relabel input +5, output -3; source = production(relabelled input)",
+      "domain": "integrated",
+      "expectedRowCount": 150,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "卯",
+        "predictedBranch": "亥",
+        "rowId": "integrated-bureau-2-day-01"
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-05-out-04",
+      "definition": "relabel input +5, output -4; source = production(relabelled input)",
+      "domain": "integrated",
+      "expectedRowCount": 150,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "卯",
+        "predictedBranch": "戌",
+        "rowId": "integrated-bureau-2-day-01"
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-05-out-05",
+      "definition": "relabel input +5, output -5; source = production(relabelled input)",
+      "domain": "integrated",
+      "expectedRowCount": 150,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "卯",
+        "predictedBranch": "酉",
+        "rowId": "integrated-bureau-2-day-01"
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-05-out-06",
+      "definition": "relabel input +5, output -6; source = production(relabelled input)",
+      "domain": "integrated",
+      "expectedRowCount": 150,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "卯",
+        "predictedBranch": "申",
+        "rowId": "integrated-bureau-2-day-01"
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-05-out-07",
+      "definition": "relabel input +5, output -7; source = production(relabelled input)",
+      "domain": "integrated",
+      "expectedRowCount": 150,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "卯",
+        "predictedBranch": "未",
+        "rowId": "integrated-bureau-2-day-01"
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-05-out-08",
+      "definition": "relabel input +5, output -8; source = production(relabelled input)",
+      "domain": "integrated",
+      "expectedRowCount": 150,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "卯",
+        "predictedBranch": "午",
+        "rowId": "integrated-bureau-2-day-01"
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-05-out-09",
+      "definition": "relabel input +5, output -9; source = production(relabelled input)",
+      "domain": "integrated",
+      "expectedRowCount": 150,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "卯",
+        "predictedBranch": "巳",
+        "rowId": "integrated-bureau-2-day-01"
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-05-out-10",
+      "definition": "relabel input +5, output -10; source = production(relabelled input)",
+      "domain": "integrated",
+      "expectedRowCount": 150,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "卯",
+        "predictedBranch": "辰",
+        "rowId": "integrated-bureau-2-day-01"
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-05-out-11",
+      "definition": "relabel input +5, output -11; source = production(relabelled input)",
+      "domain": "integrated",
+      "expectedRowCount": 150,
+      "family": "enum_relabeling",
+      "firstFailure": null,
+      "matchCount": 150,
+      "mismatchCount": 0,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-06-out-00",
+      "definition": "relabel input +6, output -0; source = production(relabelled input)",
+      "domain": "integrated",
+      "expectedRowCount": 150,
+      "family": "enum_relabeling",
+      "firstFailure": null,
+      "matchCount": 150,
+      "mismatchCount": 0,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-06-out-01",
+      "definition": "relabel input +6, output -1; source = production(relabelled input)",
+      "domain": "integrated",
+      "expectedRowCount": 150,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "卯",
+        "predictedBranch": "寅",
+        "rowId": "integrated-bureau-2-day-01"
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-06-out-02",
+      "definition": "relabel input +6, output -2; source = production(relabelled input)",
+      "domain": "integrated",
+      "expectedRowCount": 150,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "卯",
+        "predictedBranch": "丑",
+        "rowId": "integrated-bureau-2-day-01"
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-06-out-03",
+      "definition": "relabel input +6, output -3; source = production(relabelled input)",
+      "domain": "integrated",
+      "expectedRowCount": 150,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "卯",
+        "predictedBranch": "子",
+        "rowId": "integrated-bureau-2-day-01"
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-06-out-04",
+      "definition": "relabel input +6, output -4; source = production(relabelled input)",
+      "domain": "integrated",
+      "expectedRowCount": 150,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "卯",
+        "predictedBranch": "亥",
+        "rowId": "integrated-bureau-2-day-01"
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-06-out-05",
+      "definition": "relabel input +6, output -5; source = production(relabelled input)",
+      "domain": "integrated",
+      "expectedRowCount": 150,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "卯",
+        "predictedBranch": "戌",
+        "rowId": "integrated-bureau-2-day-01"
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-06-out-06",
+      "definition": "relabel input +6, output -6; source = production(relabelled input)",
+      "domain": "integrated",
+      "expectedRowCount": 150,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "卯",
+        "predictedBranch": "酉",
+        "rowId": "integrated-bureau-2-day-01"
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-06-out-07",
+      "definition": "relabel input +6, output -7; source = production(relabelled input)",
+      "domain": "integrated",
+      "expectedRowCount": 150,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "卯",
+        "predictedBranch": "申",
+        "rowId": "integrated-bureau-2-day-01"
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-06-out-08",
+      "definition": "relabel input +6, output -8; source = production(relabelled input)",
+      "domain": "integrated",
+      "expectedRowCount": 150,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "卯",
+        "predictedBranch": "未",
+        "rowId": "integrated-bureau-2-day-01"
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-06-out-09",
+      "definition": "relabel input +6, output -9; source = production(relabelled input)",
+      "domain": "integrated",
+      "expectedRowCount": 150,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "卯",
+        "predictedBranch": "午",
+        "rowId": "integrated-bureau-2-day-01"
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-06-out-10",
+      "definition": "relabel input +6, output -10; source = production(relabelled input)",
+      "domain": "integrated",
+      "expectedRowCount": 150,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "卯",
+        "predictedBranch": "巳",
+        "rowId": "integrated-bureau-2-day-01"
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-06-out-11",
+      "definition": "relabel input +6, output -11; source = production(relabelled input)",
+      "domain": "integrated",
+      "expectedRowCount": 150,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "卯",
+        "predictedBranch": "辰",
+        "rowId": "integrated-bureau-2-day-01"
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-07-out-00",
+      "definition": "relabel input +7, output -0; source = production(relabelled input)",
+      "domain": "integrated",
+      "expectedRowCount": 150,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "卯",
+        "predictedBranch": "辰",
+        "rowId": "integrated-bureau-2-day-01"
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-07-out-01",
+      "definition": "relabel input +7, output -1; source = production(relabelled input)",
+      "domain": "integrated",
+      "expectedRowCount": 150,
+      "family": "enum_relabeling",
+      "firstFailure": null,
+      "matchCount": 150,
+      "mismatchCount": 0,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-07-out-02",
+      "definition": "relabel input +7, output -2; source = production(relabelled input)",
+      "domain": "integrated",
+      "expectedRowCount": 150,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "卯",
+        "predictedBranch": "寅",
+        "rowId": "integrated-bureau-2-day-01"
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-07-out-03",
+      "definition": "relabel input +7, output -3; source = production(relabelled input)",
+      "domain": "integrated",
+      "expectedRowCount": 150,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "卯",
+        "predictedBranch": "丑",
+        "rowId": "integrated-bureau-2-day-01"
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-07-out-04",
+      "definition": "relabel input +7, output -4; source = production(relabelled input)",
+      "domain": "integrated",
+      "expectedRowCount": 150,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "卯",
+        "predictedBranch": "子",
+        "rowId": "integrated-bureau-2-day-01"
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-07-out-05",
+      "definition": "relabel input +7, output -5; source = production(relabelled input)",
+      "domain": "integrated",
+      "expectedRowCount": 150,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "卯",
+        "predictedBranch": "亥",
+        "rowId": "integrated-bureau-2-day-01"
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-07-out-06",
+      "definition": "relabel input +7, output -6; source = production(relabelled input)",
+      "domain": "integrated",
+      "expectedRowCount": 150,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "卯",
+        "predictedBranch": "戌",
+        "rowId": "integrated-bureau-2-day-01"
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-07-out-07",
+      "definition": "relabel input +7, output -7; source = production(relabelled input)",
+      "domain": "integrated",
+      "expectedRowCount": 150,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "卯",
+        "predictedBranch": "酉",
+        "rowId": "integrated-bureau-2-day-01"
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-07-out-08",
+      "definition": "relabel input +7, output -8; source = production(relabelled input)",
+      "domain": "integrated",
+      "expectedRowCount": 150,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "卯",
+        "predictedBranch": "申",
+        "rowId": "integrated-bureau-2-day-01"
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-07-out-09",
+      "definition": "relabel input +7, output -9; source = production(relabelled input)",
+      "domain": "integrated",
+      "expectedRowCount": 150,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "卯",
+        "predictedBranch": "未",
+        "rowId": "integrated-bureau-2-day-01"
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-07-out-10",
+      "definition": "relabel input +7, output -10; source = production(relabelled input)",
+      "domain": "integrated",
+      "expectedRowCount": 150,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "卯",
+        "predictedBranch": "午",
+        "rowId": "integrated-bureau-2-day-01"
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-07-out-11",
+      "definition": "relabel input +7, output -11; source = production(relabelled input)",
+      "domain": "integrated",
+      "expectedRowCount": 150,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "卯",
+        "predictedBranch": "巳",
+        "rowId": "integrated-bureau-2-day-01"
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-08-out-00",
+      "definition": "relabel input +8, output -0; source = production(relabelled input)",
+      "domain": "integrated",
+      "expectedRowCount": 150,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "卯",
+        "predictedBranch": "巳",
+        "rowId": "integrated-bureau-2-day-01"
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-08-out-01",
+      "definition": "relabel input +8, output -1; source = production(relabelled input)",
+      "domain": "integrated",
+      "expectedRowCount": 150,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "卯",
+        "predictedBranch": "辰",
+        "rowId": "integrated-bureau-2-day-01"
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-08-out-02",
+      "definition": "relabel input +8, output -2; source = production(relabelled input)",
+      "domain": "integrated",
+      "expectedRowCount": 150,
+      "family": "enum_relabeling",
+      "firstFailure": null,
+      "matchCount": 150,
+      "mismatchCount": 0,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-08-out-03",
+      "definition": "relabel input +8, output -3; source = production(relabelled input)",
+      "domain": "integrated",
+      "expectedRowCount": 150,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "卯",
+        "predictedBranch": "寅",
+        "rowId": "integrated-bureau-2-day-01"
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-08-out-04",
+      "definition": "relabel input +8, output -4; source = production(relabelled input)",
+      "domain": "integrated",
+      "expectedRowCount": 150,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "卯",
+        "predictedBranch": "丑",
+        "rowId": "integrated-bureau-2-day-01"
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-08-out-05",
+      "definition": "relabel input +8, output -5; source = production(relabelled input)",
+      "domain": "integrated",
+      "expectedRowCount": 150,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "卯",
+        "predictedBranch": "子",
+        "rowId": "integrated-bureau-2-day-01"
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-08-out-06",
+      "definition": "relabel input +8, output -6; source = production(relabelled input)",
+      "domain": "integrated",
+      "expectedRowCount": 150,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "卯",
+        "predictedBranch": "亥",
+        "rowId": "integrated-bureau-2-day-01"
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-08-out-07",
+      "definition": "relabel input +8, output -7; source = production(relabelled input)",
+      "domain": "integrated",
+      "expectedRowCount": 150,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "卯",
+        "predictedBranch": "戌",
+        "rowId": "integrated-bureau-2-day-01"
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-08-out-08",
+      "definition": "relabel input +8, output -8; source = production(relabelled input)",
+      "domain": "integrated",
+      "expectedRowCount": 150,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "卯",
+        "predictedBranch": "酉",
+        "rowId": "integrated-bureau-2-day-01"
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-08-out-09",
+      "definition": "relabel input +8, output -9; source = production(relabelled input)",
+      "domain": "integrated",
+      "expectedRowCount": 150,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "卯",
+        "predictedBranch": "申",
+        "rowId": "integrated-bureau-2-day-01"
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-08-out-10",
+      "definition": "relabel input +8, output -10; source = production(relabelled input)",
+      "domain": "integrated",
+      "expectedRowCount": 150,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "卯",
+        "predictedBranch": "未",
+        "rowId": "integrated-bureau-2-day-01"
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-08-out-11",
+      "definition": "relabel input +8, output -11; source = production(relabelled input)",
+      "domain": "integrated",
+      "expectedRowCount": 150,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "卯",
+        "predictedBranch": "午",
+        "rowId": "integrated-bureau-2-day-01"
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-09-out-00",
+      "definition": "relabel input +9, output -0; source = production(relabelled input)",
+      "domain": "integrated",
+      "expectedRowCount": 150,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "卯",
+        "predictedBranch": "午",
+        "rowId": "integrated-bureau-2-day-01"
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-09-out-01",
+      "definition": "relabel input +9, output -1; source = production(relabelled input)",
+      "domain": "integrated",
+      "expectedRowCount": 150,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "卯",
+        "predictedBranch": "巳",
+        "rowId": "integrated-bureau-2-day-01"
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-09-out-02",
+      "definition": "relabel input +9, output -2; source = production(relabelled input)",
+      "domain": "integrated",
+      "expectedRowCount": 150,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "卯",
+        "predictedBranch": "辰",
+        "rowId": "integrated-bureau-2-day-01"
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-09-out-03",
+      "definition": "relabel input +9, output -3; source = production(relabelled input)",
+      "domain": "integrated",
+      "expectedRowCount": 150,
+      "family": "enum_relabeling",
+      "firstFailure": null,
+      "matchCount": 150,
+      "mismatchCount": 0,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-09-out-04",
+      "definition": "relabel input +9, output -4; source = production(relabelled input)",
+      "domain": "integrated",
+      "expectedRowCount": 150,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "卯",
+        "predictedBranch": "寅",
+        "rowId": "integrated-bureau-2-day-01"
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-09-out-05",
+      "definition": "relabel input +9, output -5; source = production(relabelled input)",
+      "domain": "integrated",
+      "expectedRowCount": 150,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "卯",
+        "predictedBranch": "丑",
+        "rowId": "integrated-bureau-2-day-01"
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-09-out-06",
+      "definition": "relabel input +9, output -6; source = production(relabelled input)",
+      "domain": "integrated",
+      "expectedRowCount": 150,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "卯",
+        "predictedBranch": "子",
+        "rowId": "integrated-bureau-2-day-01"
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-09-out-07",
+      "definition": "relabel input +9, output -7; source = production(relabelled input)",
+      "domain": "integrated",
+      "expectedRowCount": 150,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "卯",
+        "predictedBranch": "亥",
+        "rowId": "integrated-bureau-2-day-01"
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-09-out-08",
+      "definition": "relabel input +9, output -8; source = production(relabelled input)",
+      "domain": "integrated",
+      "expectedRowCount": 150,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "卯",
+        "predictedBranch": "戌",
+        "rowId": "integrated-bureau-2-day-01"
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-09-out-09",
+      "definition": "relabel input +9, output -9; source = production(relabelled input)",
+      "domain": "integrated",
+      "expectedRowCount": 150,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "卯",
+        "predictedBranch": "酉",
+        "rowId": "integrated-bureau-2-day-01"
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-09-out-10",
+      "definition": "relabel input +9, output -10; source = production(relabelled input)",
+      "domain": "integrated",
+      "expectedRowCount": 150,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "卯",
+        "predictedBranch": "申",
+        "rowId": "integrated-bureau-2-day-01"
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-09-out-11",
+      "definition": "relabel input +9, output -11; source = production(relabelled input)",
+      "domain": "integrated",
+      "expectedRowCount": 150,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "卯",
+        "predictedBranch": "未",
+        "rowId": "integrated-bureau-2-day-01"
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-10-out-00",
+      "definition": "relabel input +10, output -0; source = production(relabelled input)",
+      "domain": "integrated",
+      "expectedRowCount": 150,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "卯",
+        "predictedBranch": "未",
+        "rowId": "integrated-bureau-2-day-01"
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-10-out-01",
+      "definition": "relabel input +10, output -1; source = production(relabelled input)",
+      "domain": "integrated",
+      "expectedRowCount": 150,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "卯",
+        "predictedBranch": "午",
+        "rowId": "integrated-bureau-2-day-01"
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-10-out-02",
+      "definition": "relabel input +10, output -2; source = production(relabelled input)",
+      "domain": "integrated",
+      "expectedRowCount": 150,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "卯",
+        "predictedBranch": "巳",
+        "rowId": "integrated-bureau-2-day-01"
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-10-out-03",
+      "definition": "relabel input +10, output -3; source = production(relabelled input)",
+      "domain": "integrated",
+      "expectedRowCount": 150,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "卯",
+        "predictedBranch": "辰",
+        "rowId": "integrated-bureau-2-day-01"
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-10-out-04",
+      "definition": "relabel input +10, output -4; source = production(relabelled input)",
+      "domain": "integrated",
+      "expectedRowCount": 150,
+      "family": "enum_relabeling",
+      "firstFailure": null,
+      "matchCount": 150,
+      "mismatchCount": 0,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-10-out-05",
+      "definition": "relabel input +10, output -5; source = production(relabelled input)",
+      "domain": "integrated",
+      "expectedRowCount": 150,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "卯",
+        "predictedBranch": "寅",
+        "rowId": "integrated-bureau-2-day-01"
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-10-out-06",
+      "definition": "relabel input +10, output -6; source = production(relabelled input)",
+      "domain": "integrated",
+      "expectedRowCount": 150,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "卯",
+        "predictedBranch": "丑",
+        "rowId": "integrated-bureau-2-day-01"
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-10-out-07",
+      "definition": "relabel input +10, output -7; source = production(relabelled input)",
+      "domain": "integrated",
+      "expectedRowCount": 150,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "卯",
+        "predictedBranch": "子",
+        "rowId": "integrated-bureau-2-day-01"
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-10-out-08",
+      "definition": "relabel input +10, output -8; source = production(relabelled input)",
+      "domain": "integrated",
+      "expectedRowCount": 150,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "卯",
+        "predictedBranch": "亥",
+        "rowId": "integrated-bureau-2-day-01"
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-10-out-09",
+      "definition": "relabel input +10, output -9; source = production(relabelled input)",
+      "domain": "integrated",
+      "expectedRowCount": 150,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "卯",
+        "predictedBranch": "戌",
+        "rowId": "integrated-bureau-2-day-01"
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-10-out-10",
+      "definition": "relabel input +10, output -10; source = production(relabelled input)",
+      "domain": "integrated",
+      "expectedRowCount": 150,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "卯",
+        "predictedBranch": "酉",
+        "rowId": "integrated-bureau-2-day-01"
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-10-out-11",
+      "definition": "relabel input +10, output -11; source = production(relabelled input)",
+      "domain": "integrated",
+      "expectedRowCount": 150,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "卯",
+        "predictedBranch": "申",
+        "rowId": "integrated-bureau-2-day-01"
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-11-out-00",
+      "definition": "relabel input +11, output -0; source = production(relabelled input)",
+      "domain": "integrated",
+      "expectedRowCount": 150,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "卯",
+        "predictedBranch": "申",
+        "rowId": "integrated-bureau-2-day-01"
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-11-out-01",
+      "definition": "relabel input +11, output -1; source = production(relabelled input)",
+      "domain": "integrated",
+      "expectedRowCount": 150,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "卯",
+        "predictedBranch": "未",
+        "rowId": "integrated-bureau-2-day-01"
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-11-out-02",
+      "definition": "relabel input +11, output -2; source = production(relabelled input)",
+      "domain": "integrated",
+      "expectedRowCount": 150,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "卯",
+        "predictedBranch": "午",
+        "rowId": "integrated-bureau-2-day-01"
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-11-out-03",
+      "definition": "relabel input +11, output -3; source = production(relabelled input)",
+      "domain": "integrated",
+      "expectedRowCount": 150,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "卯",
+        "predictedBranch": "巳",
+        "rowId": "integrated-bureau-2-day-01"
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-11-out-04",
+      "definition": "relabel input +11, output -4; source = production(relabelled input)",
+      "domain": "integrated",
+      "expectedRowCount": 150,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "卯",
+        "predictedBranch": "辰",
+        "rowId": "integrated-bureau-2-day-01"
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-11-out-05",
+      "definition": "relabel input +11, output -5; source = production(relabelled input)",
+      "domain": "integrated",
+      "expectedRowCount": 150,
+      "family": "enum_relabeling",
+      "firstFailure": null,
+      "matchCount": 150,
+      "mismatchCount": 0,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-11-out-06",
+      "definition": "relabel input +11, output -6; source = production(relabelled input)",
+      "domain": "integrated",
+      "expectedRowCount": 150,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "卯",
+        "predictedBranch": "寅",
+        "rowId": "integrated-bureau-2-day-01"
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-11-out-07",
+      "definition": "relabel input +11, output -7; source = production(relabelled input)",
+      "domain": "integrated",
+      "expectedRowCount": 150,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "卯",
+        "predictedBranch": "丑",
+        "rowId": "integrated-bureau-2-day-01"
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-11-out-08",
+      "definition": "relabel input +11, output -8; source = production(relabelled input)",
+      "domain": "integrated",
+      "expectedRowCount": 150,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "卯",
+        "predictedBranch": "子",
+        "rowId": "integrated-bureau-2-day-01"
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-11-out-09",
+      "definition": "relabel input +11, output -9; source = production(relabelled input)",
+      "domain": "integrated",
+      "expectedRowCount": 150,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "卯",
+        "predictedBranch": "亥",
+        "rowId": "integrated-bureau-2-day-01"
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-11-out-10",
+      "definition": "relabel input +11, output -10; source = production(relabelled input)",
+      "domain": "integrated",
+      "expectedRowCount": 150,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "卯",
+        "predictedBranch": "戌",
+        "rowId": "integrated-bureau-2-day-01"
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-11-out-11",
+      "definition": "relabel input +11, output -11; source = production(relabelled input)",
+      "domain": "integrated",
+      "expectedRowCount": 150,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "卯",
+        "predictedBranch": "酉",
+        "rowId": "integrated-bureau-2-day-01"
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "source-base-direction",
+      "definition": "source table base 辰(index 4), reverse direction: source = 4 - ziwei",
+      "domain": "integrated",
+      "expectedRowCount": 150,
+      "family": "source_base_direction",
+      "firstFailure": null,
+      "matchCount": 150,
+      "mismatchCount": 0,
+      "testedRowCount": 150
+    }
+  ],
+  "residualExceptionCount": 0,
+  "rows": [
+    {
+      "input": {
+        "bureauNumber": 2,
+        "lunarDay": 1
+      },
+      "orderingKey": "2:01",
+      "originalBaseline": {
+        "match": false,
+        "sourceBranch": "巳"
+      },
+      "prediction": {
+        "matchesSource": true,
+        "predictedBranch": "卯",
+        "relationId": "rotation-06"
+      },
+      "production": {
+        "branch": "酉",
+        "branchIndex": 9,
+        "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+        "ziweiBranch": "丑"
+      },
+      "rowId": "integrated-bureau-2-day-01",
+      "signedDistance": 6,
+      "source": {
+        "branch": "卯",
+        "branchIndex": 3
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 2,
+        "lunarDay": 2
+      },
+      "orderingKey": "2:02",
+      "originalBaseline": {
+        "match": false,
+        "sourceBranch": "午"
+      },
+      "prediction": {
+        "matchesSource": true,
+        "predictedBranch": "寅",
+        "relationId": "rotation-06"
+      },
+      "production": {
+        "branch": "申",
+        "branchIndex": 8,
+        "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+        "ziweiBranch": "寅"
+      },
+      "rowId": "integrated-bureau-2-day-02",
+      "signedDistance": 6,
+      "source": {
+        "branch": "寅",
+        "branchIndex": 2
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 2,
+        "lunarDay": 3
+      },
+      "orderingKey": "2:03",
+      "originalBaseline": {
+        "match": false,
+        "sourceBranch": "午"
+      },
+      "prediction": {
+        "matchesSource": true,
+        "predictedBranch": "寅",
+        "relationId": "rotation-06"
+      },
+      "production": {
+        "branch": "申",
+        "branchIndex": 8,
+        "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+        "ziweiBranch": "寅"
+      },
+      "rowId": "integrated-bureau-2-day-03",
+      "signedDistance": 6,
+      "source": {
+        "branch": "寅",
+        "branchIndex": 2
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 2,
+        "lunarDay": 4
+      },
+      "orderingKey": "2:04",
+      "originalBaseline": {
+        "match": true,
+        "sourceBranch": "未"
+      },
+      "prediction": {
+        "matchesSource": true,
+        "predictedBranch": "丑",
+        "relationId": "rotation-06"
+      },
+      "production": {
+        "branch": "未",
+        "branchIndex": 7,
+        "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+        "ziweiBranch": "卯"
+      },
+      "rowId": "integrated-bureau-2-day-04",
+      "signedDistance": 6,
+      "source": {
+        "branch": "丑",
+        "branchIndex": 1
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 2,
+        "lunarDay": 5
+      },
+      "orderingKey": "2:05",
+      "originalBaseline": {
+        "match": true,
+        "sourceBranch": "未"
+      },
+      "prediction": {
+        "matchesSource": true,
+        "predictedBranch": "丑",
+        "relationId": "rotation-06"
+      },
+      "production": {
+        "branch": "未",
+        "branchIndex": 7,
+        "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+        "ziweiBranch": "卯"
+      },
+      "rowId": "integrated-bureau-2-day-05",
+      "signedDistance": 6,
+      "source": {
+        "branch": "丑",
+        "branchIndex": 1
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 2,
+        "lunarDay": 6
+      },
+      "orderingKey": "2:06",
+      "originalBaseline": {
+        "match": false,
+        "sourceBranch": "申"
+      },
+      "prediction": {
+        "matchesSource": true,
+        "predictedBranch": "子",
+        "relationId": "rotation-06"
+      },
+      "production": {
+        "branch": "午",
+        "branchIndex": 6,
+        "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+        "ziweiBranch": "辰"
+      },
+      "rowId": "integrated-bureau-2-day-06",
+      "signedDistance": 6,
+      "source": {
+        "branch": "子",
+        "branchIndex": 0
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 2,
+        "lunarDay": 7
+      },
+      "orderingKey": "2:07",
+      "originalBaseline": {
+        "match": false,
+        "sourceBranch": "申"
+      },
+      "prediction": {
+        "matchesSource": true,
+        "predictedBranch": "子",
+        "relationId": "rotation-06"
+      },
+      "production": {
+        "branch": "午",
+        "branchIndex": 6,
+        "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+        "ziweiBranch": "辰"
+      },
+      "rowId": "integrated-bureau-2-day-07",
+      "signedDistance": 6,
+      "source": {
+        "branch": "子",
+        "branchIndex": 0
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 2,
+        "lunarDay": 8
+      },
+      "orderingKey": "2:08",
+      "originalBaseline": {
+        "match": false,
+        "sourceBranch": "酉"
+      },
+      "prediction": {
+        "matchesSource": true,
+        "predictedBranch": "亥",
+        "relationId": "rotation-06"
+      },
+      "production": {
+        "branch": "巳",
+        "branchIndex": 5,
+        "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+        "ziweiBranch": "巳"
+      },
+      "rowId": "integrated-bureau-2-day-08",
+      "signedDistance": 6,
+      "source": {
+        "branch": "亥",
+        "branchIndex": 11
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 2,
+        "lunarDay": 9
+      },
+      "orderingKey": "2:09",
+      "originalBaseline": {
+        "match": false,
+        "sourceBranch": "酉"
+      },
+      "prediction": {
+        "matchesSource": true,
+        "predictedBranch": "亥",
+        "relationId": "rotation-06"
+      },
+      "production": {
+        "branch": "巳",
+        "branchIndex": 5,
+        "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+        "ziweiBranch": "巳"
+      },
+      "rowId": "integrated-bureau-2-day-09",
+      "signedDistance": 6,
+      "source": {
+        "branch": "亥",
+        "branchIndex": 11
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 2,
+        "lunarDay": 10
+      },
+      "orderingKey": "2:10",
+      "originalBaseline": {
+        "match": false,
+        "sourceBranch": "戌"
+      },
+      "prediction": {
+        "matchesSource": true,
+        "predictedBranch": "戌",
+        "relationId": "rotation-06"
+      },
+      "production": {
+        "branch": "辰",
+        "branchIndex": 4,
+        "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+        "ziweiBranch": "午"
+      },
+      "rowId": "integrated-bureau-2-day-10",
+      "signedDistance": 6,
+      "source": {
+        "branch": "戌",
+        "branchIndex": 10
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 2,
+        "lunarDay": 11
+      },
+      "orderingKey": "2:11",
+      "originalBaseline": {
+        "match": false,
+        "sourceBranch": "戌"
+      },
+      "prediction": {
+        "matchesSource": true,
+        "predictedBranch": "戌",
+        "relationId": "rotation-06"
+      },
+      "production": {
+        "branch": "辰",
+        "branchIndex": 4,
+        "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+        "ziweiBranch": "午"
+      },
+      "rowId": "integrated-bureau-2-day-11",
+      "signedDistance": 6,
+      "source": {
+        "branch": "戌",
+        "branchIndex": 10
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 2,
+        "lunarDay": 12
+      },
+      "orderingKey": "2:12",
+      "originalBaseline": {
+        "match": false,
+        "sourceBranch": "亥"
+      },
+      "prediction": {
+        "matchesSource": true,
+        "predictedBranch": "酉",
+        "relationId": "rotation-06"
+      },
+      "production": {
+        "branch": "卯",
+        "branchIndex": 3,
+        "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+        "ziweiBranch": "未"
+      },
+      "rowId": "integrated-bureau-2-day-12",
+      "signedDistance": 6,
+      "source": {
+        "branch": "酉",
+        "branchIndex": 9
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 2,
+        "lunarDay": 13
+      },
+      "orderingKey": "2:13",
+      "originalBaseline": {
+        "match": false,
+        "sourceBranch": "亥"
+      },
+      "prediction": {
+        "matchesSource": true,
+        "predictedBranch": "酉",
+        "relationId": "rotation-06"
+      },
+      "production": {
+        "branch": "卯",
+        "branchIndex": 3,
+        "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+        "ziweiBranch": "未"
+      },
+      "rowId": "integrated-bureau-2-day-13",
+      "signedDistance": 6,
+      "source": {
+        "branch": "酉",
+        "branchIndex": 9
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 2,
+        "lunarDay": 14
+      },
+      "orderingKey": "2:14",
+      "originalBaseline": {
+        "match": false,
+        "sourceBranch": "子"
+      },
+      "prediction": {
+        "matchesSource": true,
+        "predictedBranch": "申",
+        "relationId": "rotation-06"
+      },
+      "production": {
+        "branch": "寅",
+        "branchIndex": 2,
+        "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+        "ziweiBranch": "申"
+      },
+      "rowId": "integrated-bureau-2-day-14",
+      "signedDistance": 6,
+      "source": {
+        "branch": "申",
+        "branchIndex": 8
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 2,
+        "lunarDay": 15
+      },
+      "orderingKey": "2:15",
+      "originalBaseline": {
+        "match": false,
+        "sourceBranch": "子"
+      },
+      "prediction": {
+        "matchesSource": true,
+        "predictedBranch": "申",
+        "relationId": "rotation-06"
+      },
+      "production": {
+        "branch": "寅",
+        "branchIndex": 2,
+        "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+        "ziweiBranch": "申"
+      },
+      "rowId": "integrated-bureau-2-day-15",
+      "signedDistance": 6,
+      "source": {
+        "branch": "申",
+        "branchIndex": 8
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 2,
+        "lunarDay": 16
+      },
+      "orderingKey": "2:16",
+      "originalBaseline": {
+        "match": true,
+        "sourceBranch": "丑"
+      },
+      "prediction": {
+        "matchesSource": true,
+        "predictedBranch": "未",
+        "relationId": "rotation-06"
+      },
+      "production": {
+        "branch": "丑",
+        "branchIndex": 1,
+        "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+        "ziweiBranch": "酉"
+      },
+      "rowId": "integrated-bureau-2-day-16",
+      "signedDistance": 6,
+      "source": {
+        "branch": "未",
+        "branchIndex": 7
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 2,
+        "lunarDay": 17
+      },
+      "orderingKey": "2:17",
+      "originalBaseline": {
+        "match": true,
+        "sourceBranch": "丑"
+      },
+      "prediction": {
+        "matchesSource": true,
+        "predictedBranch": "未",
+        "relationId": "rotation-06"
+      },
+      "production": {
+        "branch": "丑",
+        "branchIndex": 1,
+        "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+        "ziweiBranch": "酉"
+      },
+      "rowId": "integrated-bureau-2-day-17",
+      "signedDistance": 6,
+      "source": {
+        "branch": "未",
+        "branchIndex": 7
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 2,
+        "lunarDay": 18
+      },
+      "orderingKey": "2:18",
+      "originalBaseline": {
+        "match": false,
+        "sourceBranch": "寅"
+      },
+      "prediction": {
+        "matchesSource": true,
+        "predictedBranch": "午",
+        "relationId": "rotation-06"
+      },
+      "production": {
+        "branch": "子",
+        "branchIndex": 0,
+        "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+        "ziweiBranch": "戌"
+      },
+      "rowId": "integrated-bureau-2-day-18",
+      "signedDistance": 6,
+      "source": {
+        "branch": "午",
+        "branchIndex": 6
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 2,
+        "lunarDay": 19
+      },
+      "orderingKey": "2:19",
+      "originalBaseline": {
+        "match": false,
+        "sourceBranch": "寅"
+      },
+      "prediction": {
+        "matchesSource": true,
+        "predictedBranch": "午",
+        "relationId": "rotation-06"
+      },
+      "production": {
+        "branch": "子",
+        "branchIndex": 0,
+        "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+        "ziweiBranch": "戌"
+      },
+      "rowId": "integrated-bureau-2-day-19",
+      "signedDistance": 6,
+      "source": {
+        "branch": "午",
+        "branchIndex": 6
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 2,
+        "lunarDay": 20
+      },
+      "orderingKey": "2:20",
+      "originalBaseline": {
+        "match": false,
+        "sourceBranch": "卯"
+      },
+      "prediction": {
+        "matchesSource": true,
+        "predictedBranch": "巳",
+        "relationId": "rotation-06"
+      },
+      "production": {
+        "branch": "亥",
+        "branchIndex": 11,
+        "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+        "ziweiBranch": "亥"
+      },
+      "rowId": "integrated-bureau-2-day-20",
+      "signedDistance": 6,
+      "source": {
+        "branch": "巳",
+        "branchIndex": 5
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 2,
+        "lunarDay": 21
+      },
+      "orderingKey": "2:21",
+      "originalBaseline": {
+        "match": false,
+        "sourceBranch": "卯"
+      },
+      "prediction": {
+        "matchesSource": true,
+        "predictedBranch": "巳",
+        "relationId": "rotation-06"
+      },
+      "production": {
+        "branch": "亥",
+        "branchIndex": 11,
+        "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+        "ziweiBranch": "亥"
+      },
+      "rowId": "integrated-bureau-2-day-21",
+      "signedDistance": 6,
+      "source": {
+        "branch": "巳",
+        "branchIndex": 5
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 2,
+        "lunarDay": 22
+      },
+      "orderingKey": "2:22",
+      "originalBaseline": {
+        "match": false,
+        "sourceBranch": "辰"
+      },
+      "prediction": {
+        "matchesSource": true,
+        "predictedBranch": "辰",
+        "relationId": "rotation-06"
+      },
+      "production": {
+        "branch": "戌",
+        "branchIndex": 10,
+        "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+        "ziweiBranch": "子"
+      },
+      "rowId": "integrated-bureau-2-day-22",
+      "signedDistance": 6,
+      "source": {
+        "branch": "辰",
+        "branchIndex": 4
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 2,
+        "lunarDay": 23
+      },
+      "orderingKey": "2:23",
+      "originalBaseline": {
+        "match": false,
+        "sourceBranch": "辰"
+      },
+      "prediction": {
+        "matchesSource": true,
+        "predictedBranch": "辰",
+        "relationId": "rotation-06"
+      },
+      "production": {
+        "branch": "戌",
+        "branchIndex": 10,
+        "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+        "ziweiBranch": "子"
+      },
+      "rowId": "integrated-bureau-2-day-23",
+      "signedDistance": 6,
+      "source": {
+        "branch": "辰",
+        "branchIndex": 4
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 2,
+        "lunarDay": 24
+      },
+      "orderingKey": "2:24",
+      "originalBaseline": {
+        "match": false,
+        "sourceBranch": "巳"
+      },
+      "prediction": {
+        "matchesSource": true,
+        "predictedBranch": "卯",
+        "relationId": "rotation-06"
+      },
+      "production": {
+        "branch": "酉",
+        "branchIndex": 9,
+        "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+        "ziweiBranch": "丑"
+      },
+      "rowId": "integrated-bureau-2-day-24",
+      "signedDistance": 6,
+      "source": {
+        "branch": "卯",
+        "branchIndex": 3
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 2,
+        "lunarDay": 25
+      },
+      "orderingKey": "2:25",
+      "originalBaseline": {
+        "match": false,
+        "sourceBranch": "巳"
+      },
+      "prediction": {
+        "matchesSource": true,
+        "predictedBranch": "卯",
+        "relationId": "rotation-06"
+      },
+      "production": {
+        "branch": "酉",
+        "branchIndex": 9,
+        "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+        "ziweiBranch": "丑"
+      },
+      "rowId": "integrated-bureau-2-day-25",
+      "signedDistance": 6,
+      "source": {
+        "branch": "卯",
+        "branchIndex": 3
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 2,
+        "lunarDay": 26
+      },
+      "orderingKey": "2:26",
+      "originalBaseline": {
+        "match": false,
+        "sourceBranch": "午"
+      },
+      "prediction": {
+        "matchesSource": true,
+        "predictedBranch": "寅",
+        "relationId": "rotation-06"
+      },
+      "production": {
+        "branch": "申",
+        "branchIndex": 8,
+        "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+        "ziweiBranch": "寅"
+      },
+      "rowId": "integrated-bureau-2-day-26",
+      "signedDistance": 6,
+      "source": {
+        "branch": "寅",
+        "branchIndex": 2
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 2,
+        "lunarDay": 27
+      },
+      "orderingKey": "2:27",
+      "originalBaseline": {
+        "match": false,
+        "sourceBranch": "午"
+      },
+      "prediction": {
+        "matchesSource": true,
+        "predictedBranch": "寅",
+        "relationId": "rotation-06"
+      },
+      "production": {
+        "branch": "申",
+        "branchIndex": 8,
+        "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+        "ziweiBranch": "寅"
+      },
+      "rowId": "integrated-bureau-2-day-27",
+      "signedDistance": 6,
+      "source": {
+        "branch": "寅",
+        "branchIndex": 2
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 2,
+        "lunarDay": 28
+      },
+      "orderingKey": "2:28",
+      "originalBaseline": {
+        "match": true,
+        "sourceBranch": "未"
+      },
+      "prediction": {
+        "matchesSource": true,
+        "predictedBranch": "丑",
+        "relationId": "rotation-06"
+      },
+      "production": {
+        "branch": "未",
+        "branchIndex": 7,
+        "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+        "ziweiBranch": "卯"
+      },
+      "rowId": "integrated-bureau-2-day-28",
+      "signedDistance": 6,
+      "source": {
+        "branch": "丑",
+        "branchIndex": 1
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 2,
+        "lunarDay": 29
+      },
+      "orderingKey": "2:29",
+      "originalBaseline": {
+        "match": true,
+        "sourceBranch": "未"
+      },
+      "prediction": {
+        "matchesSource": true,
+        "predictedBranch": "丑",
+        "relationId": "rotation-06"
+      },
+      "production": {
+        "branch": "未",
+        "branchIndex": 7,
+        "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+        "ziweiBranch": "卯"
+      },
+      "rowId": "integrated-bureau-2-day-29",
+      "signedDistance": 6,
+      "source": {
+        "branch": "丑",
+        "branchIndex": 1
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 2,
+        "lunarDay": 30
+      },
+      "orderingKey": "2:30",
+      "originalBaseline": {
+        "match": false,
+        "sourceBranch": "申"
+      },
+      "prediction": {
+        "matchesSource": true,
+        "predictedBranch": "子",
+        "relationId": "rotation-06"
+      },
+      "production": {
+        "branch": "午",
+        "branchIndex": 6,
+        "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+        "ziweiBranch": "辰"
+      },
+      "rowId": "integrated-bureau-2-day-30",
+      "signedDistance": 6,
+      "source": {
+        "branch": "子",
+        "branchIndex": 0
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 3,
+        "lunarDay": 1
+      },
+      "orderingKey": "3:01",
+      "originalBaseline": {
+        "match": false,
+        "sourceBranch": "申"
+      },
+      "prediction": {
+        "matchesSource": true,
+        "predictedBranch": "子",
+        "relationId": "rotation-06"
+      },
+      "production": {
+        "branch": "午",
+        "branchIndex": 6,
+        "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+        "ziweiBranch": "辰"
+      },
+      "rowId": "integrated-bureau-3-day-01",
+      "signedDistance": 6,
+      "source": {
+        "branch": "子",
+        "branchIndex": 0
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 3,
+        "lunarDay": 2
+      },
+      "orderingKey": "3:02",
+      "originalBaseline": {
+        "match": false,
+        "sourceBranch": "巳"
+      },
+      "prediction": {
+        "matchesSource": true,
+        "predictedBranch": "卯",
+        "relationId": "rotation-06"
+      },
+      "production": {
+        "branch": "酉",
+        "branchIndex": 9,
+        "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+        "ziweiBranch": "丑"
+      },
+      "rowId": "integrated-bureau-3-day-02",
+      "signedDistance": 6,
+      "source": {
+        "branch": "卯",
+        "branchIndex": 3
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 3,
+        "lunarDay": 3
+      },
+      "orderingKey": "3:03",
+      "originalBaseline": {
+        "match": false,
+        "sourceBranch": "午"
+      },
+      "prediction": {
+        "matchesSource": true,
+        "predictedBranch": "寅",
+        "relationId": "rotation-06"
+      },
+      "production": {
+        "branch": "申",
+        "branchIndex": 8,
+        "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+        "ziweiBranch": "寅"
+      },
+      "rowId": "integrated-bureau-3-day-03",
+      "signedDistance": 6,
+      "source": {
+        "branch": "寅",
+        "branchIndex": 2
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 3,
+        "lunarDay": 4
+      },
+      "orderingKey": "3:04",
+      "originalBaseline": {
+        "match": false,
+        "sourceBranch": "酉"
+      },
+      "prediction": {
+        "matchesSource": true,
+        "predictedBranch": "亥",
+        "relationId": "rotation-06"
+      },
+      "production": {
+        "branch": "巳",
+        "branchIndex": 5,
+        "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+        "ziweiBranch": "巳"
+      },
+      "rowId": "integrated-bureau-3-day-04",
+      "signedDistance": 6,
+      "source": {
+        "branch": "亥",
+        "branchIndex": 11
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 3,
+        "lunarDay": 5
+      },
+      "orderingKey": "3:05",
+      "originalBaseline": {
+        "match": false,
+        "sourceBranch": "午"
+      },
+      "prediction": {
+        "matchesSource": true,
+        "predictedBranch": "寅",
+        "relationId": "rotation-06"
+      },
+      "production": {
+        "branch": "申",
+        "branchIndex": 8,
+        "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+        "ziweiBranch": "寅"
+      },
+      "rowId": "integrated-bureau-3-day-05",
+      "signedDistance": 6,
+      "source": {
+        "branch": "寅",
+        "branchIndex": 2
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 3,
+        "lunarDay": 6
+      },
+      "orderingKey": "3:06",
+      "originalBaseline": {
+        "match": true,
+        "sourceBranch": "未"
+      },
+      "prediction": {
+        "matchesSource": true,
+        "predictedBranch": "丑",
+        "relationId": "rotation-06"
+      },
+      "production": {
+        "branch": "未",
+        "branchIndex": 7,
+        "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+        "ziweiBranch": "卯"
+      },
+      "rowId": "integrated-bureau-3-day-06",
+      "signedDistance": 6,
+      "source": {
+        "branch": "丑",
+        "branchIndex": 1
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 3,
+        "lunarDay": 7
+      },
+      "orderingKey": "3:07",
+      "originalBaseline": {
+        "match": false,
+        "sourceBranch": "戌"
+      },
+      "prediction": {
+        "matchesSource": true,
+        "predictedBranch": "戌",
+        "relationId": "rotation-06"
+      },
+      "production": {
+        "branch": "辰",
+        "branchIndex": 4,
+        "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+        "ziweiBranch": "午"
+      },
+      "rowId": "integrated-bureau-3-day-07",
+      "signedDistance": 6,
+      "source": {
+        "branch": "戌",
+        "branchIndex": 10
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 3,
+        "lunarDay": 8
+      },
+      "orderingKey": "3:08",
+      "originalBaseline": {
+        "match": true,
+        "sourceBranch": "未"
+      },
+      "prediction": {
+        "matchesSource": true,
+        "predictedBranch": "丑",
+        "relationId": "rotation-06"
+      },
+      "production": {
+        "branch": "未",
+        "branchIndex": 7,
+        "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+        "ziweiBranch": "卯"
+      },
+      "rowId": "integrated-bureau-3-day-08",
+      "signedDistance": 6,
+      "source": {
+        "branch": "丑",
+        "branchIndex": 1
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 3,
+        "lunarDay": 9
+      },
+      "orderingKey": "3:09",
+      "originalBaseline": {
+        "match": false,
+        "sourceBranch": "申"
+      },
+      "prediction": {
+        "matchesSource": true,
+        "predictedBranch": "子",
+        "relationId": "rotation-06"
+      },
+      "production": {
+        "branch": "午",
+        "branchIndex": 6,
+        "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+        "ziweiBranch": "辰"
+      },
+      "rowId": "integrated-bureau-3-day-09",
+      "signedDistance": 6,
+      "source": {
+        "branch": "子",
+        "branchIndex": 0
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 3,
+        "lunarDay": 10
+      },
+      "orderingKey": "3:10",
+      "originalBaseline": {
+        "match": false,
+        "sourceBranch": "亥"
+      },
+      "prediction": {
+        "matchesSource": true,
+        "predictedBranch": "酉",
+        "relationId": "rotation-06"
+      },
+      "production": {
+        "branch": "卯",
+        "branchIndex": 3,
+        "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+        "ziweiBranch": "未"
+      },
+      "rowId": "integrated-bureau-3-day-10",
+      "signedDistance": 6,
+      "source": {
+        "branch": "酉",
+        "branchIndex": 9
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 3,
+        "lunarDay": 11
+      },
+      "orderingKey": "3:11",
+      "originalBaseline": {
+        "match": false,
+        "sourceBranch": "申"
+      },
+      "prediction": {
+        "matchesSource": true,
+        "predictedBranch": "子",
+        "relationId": "rotation-06"
+      },
+      "production": {
+        "branch": "午",
+        "branchIndex": 6,
+        "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+        "ziweiBranch": "辰"
+      },
+      "rowId": "integrated-bureau-3-day-11",
+      "signedDistance": 6,
+      "source": {
+        "branch": "子",
+        "branchIndex": 0
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 3,
+        "lunarDay": 12
+      },
+      "orderingKey": "3:12",
+      "originalBaseline": {
+        "match": false,
+        "sourceBranch": "酉"
+      },
+      "prediction": {
+        "matchesSource": true,
+        "predictedBranch": "亥",
+        "relationId": "rotation-06"
+      },
+      "production": {
+        "branch": "巳",
+        "branchIndex": 5,
+        "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+        "ziweiBranch": "巳"
+      },
+      "rowId": "integrated-bureau-3-day-12",
+      "signedDistance": 6,
+      "source": {
+        "branch": "亥",
+        "branchIndex": 11
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 3,
+        "lunarDay": 13
+      },
+      "orderingKey": "3:13",
+      "originalBaseline": {
+        "match": false,
+        "sourceBranch": "子"
+      },
+      "prediction": {
+        "matchesSource": true,
+        "predictedBranch": "申",
+        "relationId": "rotation-06"
+      },
+      "production": {
+        "branch": "寅",
+        "branchIndex": 2,
+        "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+        "ziweiBranch": "申"
+      },
+      "rowId": "integrated-bureau-3-day-13",
+      "signedDistance": 6,
+      "source": {
+        "branch": "申",
+        "branchIndex": 8
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 3,
+        "lunarDay": 14
+      },
+      "orderingKey": "3:14",
+      "originalBaseline": {
+        "match": false,
+        "sourceBranch": "酉"
+      },
+      "prediction": {
+        "matchesSource": true,
+        "predictedBranch": "亥",
+        "relationId": "rotation-06"
+      },
+      "production": {
+        "branch": "巳",
+        "branchIndex": 5,
+        "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+        "ziweiBranch": "巳"
+      },
+      "rowId": "integrated-bureau-3-day-14",
+      "signedDistance": 6,
+      "source": {
+        "branch": "亥",
+        "branchIndex": 11
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 3,
+        "lunarDay": 15
+      },
+      "orderingKey": "3:15",
+      "originalBaseline": {
+        "match": false,
+        "sourceBranch": "戌"
+      },
+      "prediction": {
+        "matchesSource": true,
+        "predictedBranch": "戌",
+        "relationId": "rotation-06"
+      },
+      "production": {
+        "branch": "辰",
+        "branchIndex": 4,
+        "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+        "ziweiBranch": "午"
+      },
+      "rowId": "integrated-bureau-3-day-15",
+      "signedDistance": 6,
+      "source": {
+        "branch": "戌",
+        "branchIndex": 10
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 3,
+        "lunarDay": 16
+      },
+      "orderingKey": "3:16",
+      "originalBaseline": {
+        "match": true,
+        "sourceBranch": "丑"
+      },
+      "prediction": {
+        "matchesSource": true,
+        "predictedBranch": "未",
+        "relationId": "rotation-06"
+      },
+      "production": {
+        "branch": "丑",
+        "branchIndex": 1,
+        "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+        "ziweiBranch": "酉"
+      },
+      "rowId": "integrated-bureau-3-day-16",
+      "signedDistance": 6,
+      "source": {
+        "branch": "未",
+        "branchIndex": 7
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 3,
+        "lunarDay": 17
+      },
+      "orderingKey": "3:17",
+      "originalBaseline": {
+        "match": false,
+        "sourceBranch": "戌"
+      },
+      "prediction": {
+        "matchesSource": true,
+        "predictedBranch": "戌",
+        "relationId": "rotation-06"
+      },
+      "production": {
+        "branch": "辰",
+        "branchIndex": 4,
+        "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+        "ziweiBranch": "午"
+      },
+      "rowId": "integrated-bureau-3-day-17",
+      "signedDistance": 6,
+      "source": {
+        "branch": "戌",
+        "branchIndex": 10
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 3,
+        "lunarDay": 18
+      },
+      "orderingKey": "3:18",
+      "originalBaseline": {
+        "match": false,
+        "sourceBranch": "亥"
+      },
+      "prediction": {
+        "matchesSource": true,
+        "predictedBranch": "酉",
+        "relationId": "rotation-06"
+      },
+      "production": {
+        "branch": "卯",
+        "branchIndex": 3,
+        "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+        "ziweiBranch": "未"
+      },
+      "rowId": "integrated-bureau-3-day-18",
+      "signedDistance": 6,
+      "source": {
+        "branch": "酉",
+        "branchIndex": 9
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 3,
+        "lunarDay": 19
+      },
+      "orderingKey": "3:19",
+      "originalBaseline": {
+        "match": false,
+        "sourceBranch": "寅"
+      },
+      "prediction": {
+        "matchesSource": true,
+        "predictedBranch": "午",
+        "relationId": "rotation-06"
+      },
+      "production": {
+        "branch": "子",
+        "branchIndex": 0,
+        "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+        "ziweiBranch": "戌"
+      },
+      "rowId": "integrated-bureau-3-day-19",
+      "signedDistance": 6,
+      "source": {
+        "branch": "午",
+        "branchIndex": 6
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 3,
+        "lunarDay": 20
+      },
+      "orderingKey": "3:20",
+      "originalBaseline": {
+        "match": false,
+        "sourceBranch": "亥"
+      },
+      "prediction": {
+        "matchesSource": true,
+        "predictedBranch": "酉",
+        "relationId": "rotation-06"
+      },
+      "production": {
+        "branch": "卯",
+        "branchIndex": 3,
+        "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+        "ziweiBranch": "未"
+      },
+      "rowId": "integrated-bureau-3-day-20",
+      "signedDistance": 6,
+      "source": {
+        "branch": "酉",
+        "branchIndex": 9
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 3,
+        "lunarDay": 21
+      },
+      "orderingKey": "3:21",
+      "originalBaseline": {
+        "match": false,
+        "sourceBranch": "子"
+      },
+      "prediction": {
+        "matchesSource": true,
+        "predictedBranch": "申",
+        "relationId": "rotation-06"
+      },
+      "production": {
+        "branch": "寅",
+        "branchIndex": 2,
+        "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+        "ziweiBranch": "申"
+      },
+      "rowId": "integrated-bureau-3-day-21",
+      "signedDistance": 6,
+      "source": {
+        "branch": "申",
+        "branchIndex": 8
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 3,
+        "lunarDay": 22
+      },
+      "orderingKey": "3:22",
+      "originalBaseline": {
+        "match": false,
+        "sourceBranch": "卯"
+      },
+      "prediction": {
+        "matchesSource": true,
+        "predictedBranch": "巳",
+        "relationId": "rotation-06"
+      },
+      "production": {
+        "branch": "亥",
+        "branchIndex": 11,
+        "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+        "ziweiBranch": "亥"
+      },
+      "rowId": "integrated-bureau-3-day-22",
+      "signedDistance": 6,
+      "source": {
+        "branch": "巳",
+        "branchIndex": 5
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 3,
+        "lunarDay": 23
+      },
+      "orderingKey": "3:23",
+      "originalBaseline": {
+        "match": false,
+        "sourceBranch": "子"
+      },
+      "prediction": {
+        "matchesSource": true,
+        "predictedBranch": "申",
+        "relationId": "rotation-06"
+      },
+      "production": {
+        "branch": "寅",
+        "branchIndex": 2,
+        "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+        "ziweiBranch": "申"
+      },
+      "rowId": "integrated-bureau-3-day-23",
+      "signedDistance": 6,
+      "source": {
+        "branch": "申",
+        "branchIndex": 8
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 3,
+        "lunarDay": 24
+      },
+      "orderingKey": "3:24",
+      "originalBaseline": {
+        "match": true,
+        "sourceBranch": "丑"
+      },
+      "prediction": {
+        "matchesSource": true,
+        "predictedBranch": "未",
+        "relationId": "rotation-06"
+      },
+      "production": {
+        "branch": "丑",
+        "branchIndex": 1,
+        "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+        "ziweiBranch": "酉"
+      },
+      "rowId": "integrated-bureau-3-day-24",
+      "signedDistance": 6,
+      "source": {
+        "branch": "未",
+        "branchIndex": 7
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 3,
+        "lunarDay": 25
+      },
+      "orderingKey": "3:25",
+      "originalBaseline": {
+        "match": false,
+        "sourceBranch": "辰"
+      },
+      "prediction": {
+        "matchesSource": true,
+        "predictedBranch": "辰",
+        "relationId": "rotation-06"
+      },
+      "production": {
+        "branch": "戌",
+        "branchIndex": 10,
+        "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+        "ziweiBranch": "子"
+      },
+      "rowId": "integrated-bureau-3-day-25",
+      "signedDistance": 6,
+      "source": {
+        "branch": "辰",
+        "branchIndex": 4
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 3,
+        "lunarDay": 26
+      },
+      "orderingKey": "3:26",
+      "originalBaseline": {
+        "match": true,
+        "sourceBranch": "丑"
+      },
+      "prediction": {
+        "matchesSource": true,
+        "predictedBranch": "未",
+        "relationId": "rotation-06"
+      },
+      "production": {
+        "branch": "丑",
+        "branchIndex": 1,
+        "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+        "ziweiBranch": "酉"
+      },
+      "rowId": "integrated-bureau-3-day-26",
+      "signedDistance": 6,
+      "source": {
+        "branch": "未",
+        "branchIndex": 7
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 3,
+        "lunarDay": 27
+      },
+      "orderingKey": "3:27",
+      "originalBaseline": {
+        "match": false,
+        "sourceBranch": "寅"
+      },
+      "prediction": {
+        "matchesSource": true,
+        "predictedBranch": "午",
+        "relationId": "rotation-06"
+      },
+      "production": {
+        "branch": "子",
+        "branchIndex": 0,
+        "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+        "ziweiBranch": "戌"
+      },
+      "rowId": "integrated-bureau-3-day-27",
+      "signedDistance": 6,
+      "source": {
+        "branch": "午",
+        "branchIndex": 6
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 3,
+        "lunarDay": 28
+      },
+      "orderingKey": "3:28",
+      "originalBaseline": {
+        "match": false,
+        "sourceBranch": "巳"
+      },
+      "prediction": {
+        "matchesSource": true,
+        "predictedBranch": "卯",
+        "relationId": "rotation-06"
+      },
+      "production": {
+        "branch": "酉",
+        "branchIndex": 9,
+        "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+        "ziweiBranch": "丑"
+      },
+      "rowId": "integrated-bureau-3-day-28",
+      "signedDistance": 6,
+      "source": {
+        "branch": "卯",
+        "branchIndex": 3
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 3,
+        "lunarDay": 29
+      },
+      "orderingKey": "3:29",
+      "originalBaseline": {
+        "match": false,
+        "sourceBranch": "寅"
+      },
+      "prediction": {
+        "matchesSource": true,
+        "predictedBranch": "午",
+        "relationId": "rotation-06"
+      },
+      "production": {
+        "branch": "子",
+        "branchIndex": 0,
+        "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+        "ziweiBranch": "戌"
+      },
+      "rowId": "integrated-bureau-3-day-29",
+      "signedDistance": 6,
+      "source": {
+        "branch": "午",
+        "branchIndex": 6
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 3,
+        "lunarDay": 30
+      },
+      "orderingKey": "3:30",
+      "originalBaseline": {
+        "match": false,
+        "sourceBranch": "卯"
+      },
+      "prediction": {
+        "matchesSource": true,
+        "predictedBranch": "巳",
+        "relationId": "rotation-06"
+      },
+      "production": {
+        "branch": "亥",
+        "branchIndex": 11,
+        "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+        "ziweiBranch": "亥"
+      },
+      "rowId": "integrated-bureau-3-day-30",
+      "signedDistance": 6,
+      "source": {
+        "branch": "巳",
+        "branchIndex": 5
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 4,
+        "lunarDay": 1
+      },
+      "orderingKey": "4:01",
+      "originalBaseline": {
+        "match": false,
+        "sourceBranch": "卯"
+      },
+      "prediction": {
+        "matchesSource": true,
+        "predictedBranch": "巳",
+        "relationId": "rotation-06"
+      },
+      "production": {
+        "branch": "亥",
+        "branchIndex": 11,
+        "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+        "ziweiBranch": "亥"
+      },
+      "rowId": "integrated-bureau-4-day-01",
+      "signedDistance": 6,
+      "source": {
+        "branch": "巳",
+        "branchIndex": 5
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 4,
+        "lunarDay": 2
+      },
+      "orderingKey": "4:02",
+      "originalBaseline": {
+        "match": false,
+        "sourceBranch": "申"
+      },
+      "prediction": {
+        "matchesSource": true,
+        "predictedBranch": "子",
+        "relationId": "rotation-06"
+      },
+      "production": {
+        "branch": "午",
+        "branchIndex": 6,
+        "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+        "ziweiBranch": "辰"
+      },
+      "rowId": "integrated-bureau-4-day-02",
+      "signedDistance": 6,
+      "source": {
+        "branch": "子",
+        "branchIndex": 0
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 4,
+        "lunarDay": 3
+      },
+      "orderingKey": "4:03",
+      "originalBaseline": {
+        "match": false,
+        "sourceBranch": "巳"
+      },
+      "prediction": {
+        "matchesSource": true,
+        "predictedBranch": "卯",
+        "relationId": "rotation-06"
+      },
+      "production": {
+        "branch": "酉",
+        "branchIndex": 9,
+        "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+        "ziweiBranch": "丑"
+      },
+      "rowId": "integrated-bureau-4-day-03",
+      "signedDistance": 6,
+      "source": {
+        "branch": "卯",
+        "branchIndex": 3
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 4,
+        "lunarDay": 4
+      },
+      "orderingKey": "4:04",
+      "originalBaseline": {
+        "match": false,
+        "sourceBranch": "午"
+      },
+      "prediction": {
+        "matchesSource": true,
+        "predictedBranch": "寅",
+        "relationId": "rotation-06"
+      },
+      "production": {
+        "branch": "申",
+        "branchIndex": 8,
+        "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+        "ziweiBranch": "寅"
+      },
+      "rowId": "integrated-bureau-4-day-04",
+      "signedDistance": 6,
+      "source": {
+        "branch": "寅",
+        "branchIndex": 2
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 4,
+        "lunarDay": 5
+      },
+      "orderingKey": "4:05",
+      "originalBaseline": {
+        "match": false,
+        "sourceBranch": "辰"
+      },
+      "prediction": {
+        "matchesSource": true,
+        "predictedBranch": "辰",
+        "relationId": "rotation-06"
+      },
+      "production": {
+        "branch": "戌",
+        "branchIndex": 10,
+        "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+        "ziweiBranch": "子"
+      },
+      "rowId": "integrated-bureau-4-day-05",
+      "signedDistance": 6,
+      "source": {
+        "branch": "辰",
+        "branchIndex": 4
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 4,
+        "lunarDay": 6
+      },
+      "orderingKey": "4:06",
+      "originalBaseline": {
+        "match": false,
+        "sourceBranch": "酉"
+      },
+      "prediction": {
+        "matchesSource": true,
+        "predictedBranch": "亥",
+        "relationId": "rotation-06"
+      },
+      "production": {
+        "branch": "巳",
+        "branchIndex": 5,
+        "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+        "ziweiBranch": "巳"
+      },
+      "rowId": "integrated-bureau-4-day-06",
+      "signedDistance": 6,
+      "source": {
+        "branch": "亥",
+        "branchIndex": 11
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 4,
+        "lunarDay": 7
+      },
+      "orderingKey": "4:07",
+      "originalBaseline": {
+        "match": false,
+        "sourceBranch": "午"
+      },
+      "prediction": {
+        "matchesSource": true,
+        "predictedBranch": "寅",
+        "relationId": "rotation-06"
+      },
+      "production": {
+        "branch": "申",
+        "branchIndex": 8,
+        "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+        "ziweiBranch": "寅"
+      },
+      "rowId": "integrated-bureau-4-day-07",
+      "signedDistance": 6,
+      "source": {
+        "branch": "寅",
+        "branchIndex": 2
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 4,
+        "lunarDay": 8
+      },
+      "orderingKey": "4:08",
+      "originalBaseline": {
+        "match": true,
+        "sourceBranch": "未"
+      },
+      "prediction": {
+        "matchesSource": true,
+        "predictedBranch": "丑",
+        "relationId": "rotation-06"
+      },
+      "production": {
+        "branch": "未",
+        "branchIndex": 7,
+        "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+        "ziweiBranch": "卯"
+      },
+      "rowId": "integrated-bureau-4-day-08",
+      "signedDistance": 6,
+      "source": {
+        "branch": "丑",
+        "branchIndex": 1
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 4,
+        "lunarDay": 9
+      },
+      "orderingKey": "4:09",
+      "originalBaseline": {
+        "match": false,
+        "sourceBranch": "巳"
+      },
+      "prediction": {
+        "matchesSource": true,
+        "predictedBranch": "卯",
+        "relationId": "rotation-06"
+      },
+      "production": {
+        "branch": "酉",
+        "branchIndex": 9,
+        "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+        "ziweiBranch": "丑"
+      },
+      "rowId": "integrated-bureau-4-day-09",
+      "signedDistance": 6,
+      "source": {
+        "branch": "卯",
+        "branchIndex": 3
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 4,
+        "lunarDay": 10
+      },
+      "orderingKey": "4:10",
+      "originalBaseline": {
+        "match": false,
+        "sourceBranch": "戌"
+      },
+      "prediction": {
+        "matchesSource": true,
+        "predictedBranch": "戌",
+        "relationId": "rotation-06"
+      },
+      "production": {
+        "branch": "辰",
+        "branchIndex": 4,
+        "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+        "ziweiBranch": "午"
+      },
+      "rowId": "integrated-bureau-4-day-10",
+      "signedDistance": 6,
+      "source": {
+        "branch": "戌",
+        "branchIndex": 10
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 4,
+        "lunarDay": 11
+      },
+      "orderingKey": "4:11",
+      "originalBaseline": {
+        "match": true,
+        "sourceBranch": "未"
+      },
+      "prediction": {
+        "matchesSource": true,
+        "predictedBranch": "丑",
+        "relationId": "rotation-06"
+      },
+      "production": {
+        "branch": "未",
+        "branchIndex": 7,
+        "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+        "ziweiBranch": "卯"
+      },
+      "rowId": "integrated-bureau-4-day-11",
+      "signedDistance": 6,
+      "source": {
+        "branch": "丑",
+        "branchIndex": 1
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 4,
+        "lunarDay": 12
+      },
+      "orderingKey": "4:12",
+      "originalBaseline": {
+        "match": false,
+        "sourceBranch": "申"
+      },
+      "prediction": {
+        "matchesSource": true,
+        "predictedBranch": "子",
+        "relationId": "rotation-06"
+      },
+      "production": {
+        "branch": "午",
+        "branchIndex": 6,
+        "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+        "ziweiBranch": "辰"
+      },
+      "rowId": "integrated-bureau-4-day-12",
+      "signedDistance": 6,
+      "source": {
+        "branch": "子",
+        "branchIndex": 0
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 4,
+        "lunarDay": 13
+      },
+      "orderingKey": "4:13",
+      "originalBaseline": {
+        "match": false,
+        "sourceBranch": "午"
+      },
+      "prediction": {
+        "matchesSource": true,
+        "predictedBranch": "寅",
+        "relationId": "rotation-06"
+      },
+      "production": {
+        "branch": "申",
+        "branchIndex": 8,
+        "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+        "ziweiBranch": "寅"
+      },
+      "rowId": "integrated-bureau-4-day-13",
+      "signedDistance": 6,
+      "source": {
+        "branch": "寅",
+        "branchIndex": 2
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 4,
+        "lunarDay": 14
+      },
+      "orderingKey": "4:14",
+      "originalBaseline": {
+        "match": false,
+        "sourceBranch": "亥"
+      },
+      "prediction": {
+        "matchesSource": true,
+        "predictedBranch": "酉",
+        "relationId": "rotation-06"
+      },
+      "production": {
+        "branch": "卯",
+        "branchIndex": 3,
+        "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+        "ziweiBranch": "未"
+      },
+      "rowId": "integrated-bureau-4-day-14",
+      "signedDistance": 6,
+      "source": {
+        "branch": "酉",
+        "branchIndex": 9
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 4,
+        "lunarDay": 15
+      },
+      "orderingKey": "4:15",
+      "originalBaseline": {
+        "match": false,
+        "sourceBranch": "申"
+      },
+      "prediction": {
+        "matchesSource": true,
+        "predictedBranch": "子",
+        "relationId": "rotation-06"
+      },
+      "production": {
+        "branch": "午",
+        "branchIndex": 6,
+        "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+        "ziweiBranch": "辰"
+      },
+      "rowId": "integrated-bureau-4-day-15",
+      "signedDistance": 6,
+      "source": {
+        "branch": "子",
+        "branchIndex": 0
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 4,
+        "lunarDay": 16
+      },
+      "orderingKey": "4:16",
+      "originalBaseline": {
+        "match": false,
+        "sourceBranch": "酉"
+      },
+      "prediction": {
+        "matchesSource": true,
+        "predictedBranch": "亥",
+        "relationId": "rotation-06"
+      },
+      "production": {
+        "branch": "巳",
+        "branchIndex": 5,
+        "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+        "ziweiBranch": "巳"
+      },
+      "rowId": "integrated-bureau-4-day-16",
+      "signedDistance": 6,
+      "source": {
+        "branch": "亥",
+        "branchIndex": 11
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 4,
+        "lunarDay": 17
+      },
+      "orderingKey": "4:17",
+      "originalBaseline": {
+        "match": true,
+        "sourceBranch": "未"
+      },
+      "prediction": {
+        "matchesSource": true,
+        "predictedBranch": "丑",
+        "relationId": "rotation-06"
+      },
+      "production": {
+        "branch": "未",
+        "branchIndex": 7,
+        "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+        "ziweiBranch": "卯"
+      },
+      "rowId": "integrated-bureau-4-day-17",
+      "signedDistance": 6,
+      "source": {
+        "branch": "丑",
+        "branchIndex": 1
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 4,
+        "lunarDay": 18
+      },
+      "orderingKey": "4:18",
+      "originalBaseline": {
+        "match": false,
+        "sourceBranch": "子"
+      },
+      "prediction": {
+        "matchesSource": true,
+        "predictedBranch": "申",
+        "relationId": "rotation-06"
+      },
+      "production": {
+        "branch": "寅",
+        "branchIndex": 2,
+        "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+        "ziweiBranch": "申"
+      },
+      "rowId": "integrated-bureau-4-day-18",
+      "signedDistance": 6,
+      "source": {
+        "branch": "申",
+        "branchIndex": 8
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 4,
+        "lunarDay": 19
+      },
+      "orderingKey": "4:19",
+      "originalBaseline": {
+        "match": false,
+        "sourceBranch": "酉"
+      },
+      "prediction": {
+        "matchesSource": true,
+        "predictedBranch": "亥",
+        "relationId": "rotation-06"
+      },
+      "production": {
+        "branch": "巳",
+        "branchIndex": 5,
+        "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+        "ziweiBranch": "巳"
+      },
+      "rowId": "integrated-bureau-4-day-19",
+      "signedDistance": 6,
+      "source": {
+        "branch": "亥",
+        "branchIndex": 11
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 4,
+        "lunarDay": 20
+      },
+      "orderingKey": "4:20",
+      "originalBaseline": {
+        "match": false,
+        "sourceBranch": "戌"
+      },
+      "prediction": {
+        "matchesSource": true,
+        "predictedBranch": "戌",
+        "relationId": "rotation-06"
+      },
+      "production": {
+        "branch": "辰",
+        "branchIndex": 4,
+        "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+        "ziweiBranch": "午"
+      },
+      "rowId": "integrated-bureau-4-day-20",
+      "signedDistance": 6,
+      "source": {
+        "branch": "戌",
+        "branchIndex": 10
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 4,
+        "lunarDay": 21
+      },
+      "orderingKey": "4:21",
+      "originalBaseline": {
+        "match": false,
+        "sourceBranch": "申"
+      },
+      "prediction": {
+        "matchesSource": true,
+        "predictedBranch": "子",
+        "relationId": "rotation-06"
+      },
+      "production": {
+        "branch": "午",
+        "branchIndex": 6,
+        "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+        "ziweiBranch": "辰"
+      },
+      "rowId": "integrated-bureau-4-day-21",
+      "signedDistance": 6,
+      "source": {
+        "branch": "子",
+        "branchIndex": 0
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 4,
+        "lunarDay": 22
+      },
+      "orderingKey": "4:22",
+      "originalBaseline": {
+        "match": true,
+        "sourceBranch": "丑"
+      },
+      "prediction": {
+        "matchesSource": true,
+        "predictedBranch": "未",
+        "relationId": "rotation-06"
+      },
+      "production": {
+        "branch": "丑",
+        "branchIndex": 1,
+        "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+        "ziweiBranch": "酉"
+      },
+      "rowId": "integrated-bureau-4-day-22",
+      "signedDistance": 6,
+      "source": {
+        "branch": "未",
+        "branchIndex": 7
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 4,
+        "lunarDay": 23
+      },
+      "orderingKey": "4:23",
+      "originalBaseline": {
+        "match": false,
+        "sourceBranch": "戌"
+      },
+      "prediction": {
+        "matchesSource": true,
+        "predictedBranch": "戌",
+        "relationId": "rotation-06"
+      },
+      "production": {
+        "branch": "辰",
+        "branchIndex": 4,
+        "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+        "ziweiBranch": "午"
+      },
+      "rowId": "integrated-bureau-4-day-23",
+      "signedDistance": 6,
+      "source": {
+        "branch": "戌",
+        "branchIndex": 10
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 4,
+        "lunarDay": 24
+      },
+      "orderingKey": "4:24",
+      "originalBaseline": {
+        "match": false,
+        "sourceBranch": "亥"
+      },
+      "prediction": {
+        "matchesSource": true,
+        "predictedBranch": "酉",
+        "relationId": "rotation-06"
+      },
+      "production": {
+        "branch": "卯",
+        "branchIndex": 3,
+        "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+        "ziweiBranch": "未"
+      },
+      "rowId": "integrated-bureau-4-day-24",
+      "signedDistance": 6,
+      "source": {
+        "branch": "酉",
+        "branchIndex": 9
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 4,
+        "lunarDay": 25
+      },
+      "orderingKey": "4:25",
+      "originalBaseline": {
+        "match": false,
+        "sourceBranch": "酉"
+      },
+      "prediction": {
+        "matchesSource": true,
+        "predictedBranch": "亥",
+        "relationId": "rotation-06"
+      },
+      "production": {
+        "branch": "巳",
+        "branchIndex": 5,
+        "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+        "ziweiBranch": "巳"
+      },
+      "rowId": "integrated-bureau-4-day-25",
+      "signedDistance": 6,
+      "source": {
+        "branch": "亥",
+        "branchIndex": 11
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 4,
+        "lunarDay": 26
+      },
+      "orderingKey": "4:26",
+      "originalBaseline": {
+        "match": false,
+        "sourceBranch": "寅"
+      },
+      "prediction": {
+        "matchesSource": true,
+        "predictedBranch": "午",
+        "relationId": "rotation-06"
+      },
+      "production": {
+        "branch": "子",
+        "branchIndex": 0,
+        "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+        "ziweiBranch": "戌"
+      },
+      "rowId": "integrated-bureau-4-day-26",
+      "signedDistance": 6,
+      "source": {
+        "branch": "午",
+        "branchIndex": 6
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 4,
+        "lunarDay": 27
+      },
+      "orderingKey": "4:27",
+      "originalBaseline": {
+        "match": false,
+        "sourceBranch": "亥"
+      },
+      "prediction": {
+        "matchesSource": true,
+        "predictedBranch": "酉",
+        "relationId": "rotation-06"
+      },
+      "production": {
+        "branch": "卯",
+        "branchIndex": 3,
+        "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+        "ziweiBranch": "未"
+      },
+      "rowId": "integrated-bureau-4-day-27",
+      "signedDistance": 6,
+      "source": {
+        "branch": "酉",
+        "branchIndex": 9
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 4,
+        "lunarDay": 28
+      },
+      "orderingKey": "4:28",
+      "originalBaseline": {
+        "match": false,
+        "sourceBranch": "子"
+      },
+      "prediction": {
+        "matchesSource": true,
+        "predictedBranch": "申",
+        "relationId": "rotation-06"
+      },
+      "production": {
+        "branch": "寅",
+        "branchIndex": 2,
+        "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+        "ziweiBranch": "申"
+      },
+      "rowId": "integrated-bureau-4-day-28",
+      "signedDistance": 6,
+      "source": {
+        "branch": "申",
+        "branchIndex": 8
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 4,
+        "lunarDay": 29
+      },
+      "orderingKey": "4:29",
+      "originalBaseline": {
+        "match": false,
+        "sourceBranch": "戌"
+      },
+      "prediction": {
+        "matchesSource": true,
+        "predictedBranch": "戌",
+        "relationId": "rotation-06"
+      },
+      "production": {
+        "branch": "辰",
+        "branchIndex": 4,
+        "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+        "ziweiBranch": "午"
+      },
+      "rowId": "integrated-bureau-4-day-29",
+      "signedDistance": 6,
+      "source": {
+        "branch": "戌",
+        "branchIndex": 10
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 4,
+        "lunarDay": 30
+      },
+      "orderingKey": "4:30",
+      "originalBaseline": {
+        "match": false,
+        "sourceBranch": "卯"
+      },
+      "prediction": {
+        "matchesSource": true,
+        "predictedBranch": "巳",
+        "relationId": "rotation-06"
+      },
+      "production": {
+        "branch": "亥",
+        "branchIndex": 11,
+        "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+        "ziweiBranch": "亥"
+      },
+      "rowId": "integrated-bureau-4-day-30",
+      "signedDistance": 6,
+      "source": {
+        "branch": "巳",
+        "branchIndex": 5
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 5,
+        "lunarDay": 1
+      },
+      "orderingKey": "5:01",
+      "originalBaseline": {
+        "match": false,
+        "sourceBranch": "戌"
+      },
+      "prediction": {
+        "matchesSource": true,
+        "predictedBranch": "戌",
+        "relationId": "rotation-06"
+      },
+      "production": {
+        "branch": "辰",
+        "branchIndex": 4,
+        "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+        "ziweiBranch": "午"
+      },
+      "rowId": "integrated-bureau-5-day-01",
+      "signedDistance": 6,
+      "source": {
+        "branch": "戌",
+        "branchIndex": 10
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 5,
+        "lunarDay": 2
+      },
+      "orderingKey": "5:02",
+      "originalBaseline": {
+        "match": false,
+        "sourceBranch": "卯"
+      },
+      "prediction": {
+        "matchesSource": true,
+        "predictedBranch": "巳",
+        "relationId": "rotation-06"
+      },
+      "production": {
+        "branch": "亥",
+        "branchIndex": 11,
+        "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+        "ziweiBranch": "亥"
+      },
+      "rowId": "integrated-bureau-5-day-02",
+      "signedDistance": 6,
+      "source": {
+        "branch": "巳",
+        "branchIndex": 5
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 5,
+        "lunarDay": 3
+      },
+      "orderingKey": "5:03",
+      "originalBaseline": {
+        "match": false,
+        "sourceBranch": "申"
+      },
+      "prediction": {
+        "matchesSource": true,
+        "predictedBranch": "子",
+        "relationId": "rotation-06"
+      },
+      "production": {
+        "branch": "午",
+        "branchIndex": 6,
+        "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+        "ziweiBranch": "辰"
+      },
+      "rowId": "integrated-bureau-5-day-03",
+      "signedDistance": 6,
+      "source": {
+        "branch": "子",
+        "branchIndex": 0
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 5,
+        "lunarDay": 4
+      },
+      "orderingKey": "5:04",
+      "originalBaseline": {
+        "match": false,
+        "sourceBranch": "巳"
+      },
+      "prediction": {
+        "matchesSource": true,
+        "predictedBranch": "卯",
+        "relationId": "rotation-06"
+      },
+      "production": {
+        "branch": "酉",
+        "branchIndex": 9,
+        "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+        "ziweiBranch": "丑"
+      },
+      "rowId": "integrated-bureau-5-day-04",
+      "signedDistance": 6,
+      "source": {
+        "branch": "卯",
+        "branchIndex": 3
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 5,
+        "lunarDay": 5
+      },
+      "orderingKey": "5:05",
+      "originalBaseline": {
+        "match": false,
+        "sourceBranch": "午"
+      },
+      "prediction": {
+        "matchesSource": true,
+        "predictedBranch": "寅",
+        "relationId": "rotation-06"
+      },
+      "production": {
+        "branch": "申",
+        "branchIndex": 8,
+        "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+        "ziweiBranch": "寅"
+      },
+      "rowId": "integrated-bureau-5-day-05",
+      "signedDistance": 6,
+      "source": {
+        "branch": "寅",
+        "branchIndex": 2
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 5,
+        "lunarDay": 6
+      },
+      "orderingKey": "5:06",
+      "originalBaseline": {
+        "match": false,
+        "sourceBranch": "亥"
+      },
+      "prediction": {
+        "matchesSource": true,
+        "predictedBranch": "酉",
+        "relationId": "rotation-06"
+      },
+      "production": {
+        "branch": "卯",
+        "branchIndex": 3,
+        "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+        "ziweiBranch": "未"
+      },
+      "rowId": "integrated-bureau-5-day-06",
+      "signedDistance": 6,
+      "source": {
+        "branch": "酉",
+        "branchIndex": 9
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 5,
+        "lunarDay": 7
+      },
+      "orderingKey": "5:07",
+      "originalBaseline": {
+        "match": false,
+        "sourceBranch": "辰"
+      },
+      "prediction": {
+        "matchesSource": true,
+        "predictedBranch": "辰",
+        "relationId": "rotation-06"
+      },
+      "production": {
+        "branch": "戌",
+        "branchIndex": 10,
+        "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+        "ziweiBranch": "子"
+      },
+      "rowId": "integrated-bureau-5-day-07",
+      "signedDistance": 6,
+      "source": {
+        "branch": "辰",
+        "branchIndex": 4
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 5,
+        "lunarDay": 8
+      },
+      "orderingKey": "5:08",
+      "originalBaseline": {
+        "match": false,
+        "sourceBranch": "酉"
+      },
+      "prediction": {
+        "matchesSource": true,
+        "predictedBranch": "亥",
+        "relationId": "rotation-06"
+      },
+      "production": {
+        "branch": "巳",
+        "branchIndex": 5,
+        "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+        "ziweiBranch": "巳"
+      },
+      "rowId": "integrated-bureau-5-day-08",
+      "signedDistance": 6,
+      "source": {
+        "branch": "亥",
+        "branchIndex": 11
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 5,
+        "lunarDay": 9
+      },
+      "orderingKey": "5:09",
+      "originalBaseline": {
+        "match": false,
+        "sourceBranch": "午"
+      },
+      "prediction": {
+        "matchesSource": true,
+        "predictedBranch": "寅",
+        "relationId": "rotation-06"
+      },
+      "production": {
+        "branch": "申",
+        "branchIndex": 8,
+        "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+        "ziweiBranch": "寅"
+      },
+      "rowId": "integrated-bureau-5-day-09",
+      "signedDistance": 6,
+      "source": {
+        "branch": "寅",
+        "branchIndex": 2
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 5,
+        "lunarDay": 10
+      },
+      "orderingKey": "5:10",
+      "originalBaseline": {
+        "match": true,
+        "sourceBranch": "未"
+      },
+      "prediction": {
+        "matchesSource": true,
+        "predictedBranch": "丑",
+        "relationId": "rotation-06"
+      },
+      "production": {
+        "branch": "未",
+        "branchIndex": 7,
+        "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+        "ziweiBranch": "卯"
+      },
+      "rowId": "integrated-bureau-5-day-10",
+      "signedDistance": 6,
+      "source": {
+        "branch": "丑",
+        "branchIndex": 1
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 5,
+        "lunarDay": 11
+      },
+      "orderingKey": "5:11",
+      "originalBaseline": {
+        "match": false,
+        "sourceBranch": "子"
+      },
+      "prediction": {
+        "matchesSource": true,
+        "predictedBranch": "申",
+        "relationId": "rotation-06"
+      },
+      "production": {
+        "branch": "寅",
+        "branchIndex": 2,
+        "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+        "ziweiBranch": "申"
+      },
+      "rowId": "integrated-bureau-5-day-11",
+      "signedDistance": 6,
+      "source": {
+        "branch": "申",
+        "branchIndex": 8
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 5,
+        "lunarDay": 12
+      },
+      "orderingKey": "5:12",
+      "originalBaseline": {
+        "match": false,
+        "sourceBranch": "巳"
+      },
+      "prediction": {
+        "matchesSource": true,
+        "predictedBranch": "卯",
+        "relationId": "rotation-06"
+      },
+      "production": {
+        "branch": "酉",
+        "branchIndex": 9,
+        "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+        "ziweiBranch": "丑"
+      },
+      "rowId": "integrated-bureau-5-day-12",
+      "signedDistance": 6,
+      "source": {
+        "branch": "卯",
+        "branchIndex": 3
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 5,
+        "lunarDay": 13
+      },
+      "orderingKey": "5:13",
+      "originalBaseline": {
+        "match": false,
+        "sourceBranch": "戌"
+      },
+      "prediction": {
+        "matchesSource": true,
+        "predictedBranch": "戌",
+        "relationId": "rotation-06"
+      },
+      "production": {
+        "branch": "辰",
+        "branchIndex": 4,
+        "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+        "ziweiBranch": "午"
+      },
+      "rowId": "integrated-bureau-5-day-13",
+      "signedDistance": 6,
+      "source": {
+        "branch": "戌",
+        "branchIndex": 10
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 5,
+        "lunarDay": 14
+      },
+      "orderingKey": "5:14",
+      "originalBaseline": {
+        "match": true,
+        "sourceBranch": "未"
+      },
+      "prediction": {
+        "matchesSource": true,
+        "predictedBranch": "丑",
+        "relationId": "rotation-06"
+      },
+      "production": {
+        "branch": "未",
+        "branchIndex": 7,
+        "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+        "ziweiBranch": "卯"
+      },
+      "rowId": "integrated-bureau-5-day-14",
+      "signedDistance": 6,
+      "source": {
+        "branch": "丑",
+        "branchIndex": 1
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 5,
+        "lunarDay": 15
+      },
+      "orderingKey": "5:15",
+      "originalBaseline": {
+        "match": false,
+        "sourceBranch": "申"
+      },
+      "prediction": {
+        "matchesSource": true,
+        "predictedBranch": "子",
+        "relationId": "rotation-06"
+      },
+      "production": {
+        "branch": "午",
+        "branchIndex": 6,
+        "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+        "ziweiBranch": "辰"
+      },
+      "rowId": "integrated-bureau-5-day-15",
+      "signedDistance": 6,
+      "source": {
+        "branch": "子",
+        "branchIndex": 0
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 5,
+        "lunarDay": 16
+      },
+      "orderingKey": "5:16",
+      "originalBaseline": {
+        "match": true,
+        "sourceBranch": "丑"
+      },
+      "prediction": {
+        "matchesSource": true,
+        "predictedBranch": "未",
+        "relationId": "rotation-06"
+      },
+      "production": {
+        "branch": "丑",
+        "branchIndex": 1,
+        "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+        "ziweiBranch": "酉"
+      },
+      "rowId": "integrated-bureau-5-day-16",
+      "signedDistance": 6,
+      "source": {
+        "branch": "未",
+        "branchIndex": 7
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 5,
+        "lunarDay": 17
+      },
+      "orderingKey": "5:17",
+      "originalBaseline": {
+        "match": false,
+        "sourceBranch": "午"
+      },
+      "prediction": {
+        "matchesSource": true,
+        "predictedBranch": "寅",
+        "relationId": "rotation-06"
+      },
+      "production": {
+        "branch": "申",
+        "branchIndex": 8,
+        "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+        "ziweiBranch": "寅"
+      },
+      "rowId": "integrated-bureau-5-day-17",
+      "signedDistance": 6,
+      "source": {
+        "branch": "寅",
+        "branchIndex": 2
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 5,
+        "lunarDay": 18
+      },
+      "orderingKey": "5:18",
+      "originalBaseline": {
+        "match": false,
+        "sourceBranch": "亥"
+      },
+      "prediction": {
+        "matchesSource": true,
+        "predictedBranch": "酉",
+        "relationId": "rotation-06"
+      },
+      "production": {
+        "branch": "卯",
+        "branchIndex": 3,
+        "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+        "ziweiBranch": "未"
+      },
+      "rowId": "integrated-bureau-5-day-18",
+      "signedDistance": 6,
+      "source": {
+        "branch": "酉",
+        "branchIndex": 9
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 5,
+        "lunarDay": 19
+      },
+      "orderingKey": "5:19",
+      "originalBaseline": {
+        "match": false,
+        "sourceBranch": "申"
+      },
+      "prediction": {
+        "matchesSource": true,
+        "predictedBranch": "子",
+        "relationId": "rotation-06"
+      },
+      "production": {
+        "branch": "午",
+        "branchIndex": 6,
+        "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+        "ziweiBranch": "辰"
+      },
+      "rowId": "integrated-bureau-5-day-19",
+      "signedDistance": 6,
+      "source": {
+        "branch": "子",
+        "branchIndex": 0
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 5,
+        "lunarDay": 20
+      },
+      "orderingKey": "5:20",
+      "originalBaseline": {
+        "match": false,
+        "sourceBranch": "酉"
+      },
+      "prediction": {
+        "matchesSource": true,
+        "predictedBranch": "亥",
+        "relationId": "rotation-06"
+      },
+      "production": {
+        "branch": "巳",
+        "branchIndex": 5,
+        "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+        "ziweiBranch": "巳"
+      },
+      "rowId": "integrated-bureau-5-day-20",
+      "signedDistance": 6,
+      "source": {
+        "branch": "亥",
+        "branchIndex": 11
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 5,
+        "lunarDay": 21
+      },
+      "orderingKey": "5:21",
+      "originalBaseline": {
+        "match": false,
+        "sourceBranch": "寅"
+      },
+      "prediction": {
+        "matchesSource": true,
+        "predictedBranch": "午",
+        "relationId": "rotation-06"
+      },
+      "production": {
+        "branch": "子",
+        "branchIndex": 0,
+        "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+        "ziweiBranch": "戌"
+      },
+      "rowId": "integrated-bureau-5-day-21",
+      "signedDistance": 6,
+      "source": {
+        "branch": "午",
+        "branchIndex": 6
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 5,
+        "lunarDay": 22
+      },
+      "orderingKey": "5:22",
+      "originalBaseline": {
+        "match": true,
+        "sourceBranch": "未"
+      },
+      "prediction": {
+        "matchesSource": true,
+        "predictedBranch": "丑",
+        "relationId": "rotation-06"
+      },
+      "production": {
+        "branch": "未",
+        "branchIndex": 7,
+        "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+        "ziweiBranch": "卯"
+      },
+      "rowId": "integrated-bureau-5-day-22",
+      "signedDistance": 6,
+      "source": {
+        "branch": "丑",
+        "branchIndex": 1
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 5,
+        "lunarDay": 23
+      },
+      "orderingKey": "5:23",
+      "originalBaseline": {
+        "match": false,
+        "sourceBranch": "子"
+      },
+      "prediction": {
+        "matchesSource": true,
+        "predictedBranch": "申",
+        "relationId": "rotation-06"
+      },
+      "production": {
+        "branch": "寅",
+        "branchIndex": 2,
+        "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+        "ziweiBranch": "申"
+      },
+      "rowId": "integrated-bureau-5-day-23",
+      "signedDistance": 6,
+      "source": {
+        "branch": "申",
+        "branchIndex": 8
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 5,
+        "lunarDay": 24
+      },
+      "orderingKey": "5:24",
+      "originalBaseline": {
+        "match": false,
+        "sourceBranch": "酉"
+      },
+      "prediction": {
+        "matchesSource": true,
+        "predictedBranch": "亥",
+        "relationId": "rotation-06"
+      },
+      "production": {
+        "branch": "巳",
+        "branchIndex": 5,
+        "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+        "ziweiBranch": "巳"
+      },
+      "rowId": "integrated-bureau-5-day-24",
+      "signedDistance": 6,
+      "source": {
+        "branch": "亥",
+        "branchIndex": 11
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 5,
+        "lunarDay": 25
+      },
+      "orderingKey": "5:25",
+      "originalBaseline": {
+        "match": false,
+        "sourceBranch": "戌"
+      },
+      "prediction": {
+        "matchesSource": true,
+        "predictedBranch": "戌",
+        "relationId": "rotation-06"
+      },
+      "production": {
+        "branch": "辰",
+        "branchIndex": 4,
+        "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+        "ziweiBranch": "午"
+      },
+      "rowId": "integrated-bureau-5-day-25",
+      "signedDistance": 6,
+      "source": {
+        "branch": "戌",
+        "branchIndex": 10
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 5,
+        "lunarDay": 26
+      },
+      "orderingKey": "5:26",
+      "originalBaseline": {
+        "match": false,
+        "sourceBranch": "卯"
+      },
+      "prediction": {
+        "matchesSource": true,
+        "predictedBranch": "巳",
+        "relationId": "rotation-06"
+      },
+      "production": {
+        "branch": "亥",
+        "branchIndex": 11,
+        "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+        "ziweiBranch": "亥"
+      },
+      "rowId": "integrated-bureau-5-day-26",
+      "signedDistance": 6,
+      "source": {
+        "branch": "巳",
+        "branchIndex": 5
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 5,
+        "lunarDay": 27
+      },
+      "orderingKey": "5:27",
+      "originalBaseline": {
+        "match": false,
+        "sourceBranch": "申"
+      },
+      "prediction": {
+        "matchesSource": true,
+        "predictedBranch": "子",
+        "relationId": "rotation-06"
+      },
+      "production": {
+        "branch": "午",
+        "branchIndex": 6,
+        "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+        "ziweiBranch": "辰"
+      },
+      "rowId": "integrated-bureau-5-day-27",
+      "signedDistance": 6,
+      "source": {
+        "branch": "子",
+        "branchIndex": 0
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 5,
+        "lunarDay": 28
+      },
+      "orderingKey": "5:28",
+      "originalBaseline": {
+        "match": true,
+        "sourceBranch": "丑"
+      },
+      "prediction": {
+        "matchesSource": true,
+        "predictedBranch": "未",
+        "relationId": "rotation-06"
+      },
+      "production": {
+        "branch": "丑",
+        "branchIndex": 1,
+        "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+        "ziweiBranch": "酉"
+      },
+      "rowId": "integrated-bureau-5-day-28",
+      "signedDistance": 6,
+      "source": {
+        "branch": "未",
+        "branchIndex": 7
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 5,
+        "lunarDay": 29
+      },
+      "orderingKey": "5:29",
+      "originalBaseline": {
+        "match": false,
+        "sourceBranch": "戌"
+      },
+      "prediction": {
+        "matchesSource": true,
+        "predictedBranch": "戌",
+        "relationId": "rotation-06"
+      },
+      "production": {
+        "branch": "辰",
+        "branchIndex": 4,
+        "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+        "ziweiBranch": "午"
+      },
+      "rowId": "integrated-bureau-5-day-29",
+      "signedDistance": 6,
+      "source": {
+        "branch": "戌",
+        "branchIndex": 10
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 5,
+        "lunarDay": 30
+      },
+      "orderingKey": "5:30",
+      "originalBaseline": {
+        "match": false,
+        "sourceBranch": "亥"
+      },
+      "prediction": {
+        "matchesSource": true,
+        "predictedBranch": "酉",
+        "relationId": "rotation-06"
+      },
+      "production": {
+        "branch": "卯",
+        "branchIndex": 3,
+        "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+        "ziweiBranch": "未"
+      },
+      "rowId": "integrated-bureau-5-day-30",
+      "signedDistance": 6,
+      "source": {
+        "branch": "酉",
+        "branchIndex": 9
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 6,
+        "lunarDay": 1
+      },
+      "orderingKey": "6:01",
+      "originalBaseline": {
+        "match": true,
+        "sourceBranch": "丑"
+      },
+      "prediction": {
+        "matchesSource": true,
+        "predictedBranch": "未",
+        "relationId": "rotation-06"
+      },
+      "production": {
+        "branch": "丑",
+        "branchIndex": 1,
+        "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+        "ziweiBranch": "酉"
+      },
+      "rowId": "integrated-bureau-6-day-01",
+      "signedDistance": 6,
+      "source": {
+        "branch": "未",
+        "branchIndex": 7
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 6,
+        "lunarDay": 2
+      },
+      "orderingKey": "6:02",
+      "originalBaseline": {
+        "match": false,
+        "sourceBranch": "戌"
+      },
+      "prediction": {
+        "matchesSource": true,
+        "predictedBranch": "戌",
+        "relationId": "rotation-06"
+      },
+      "production": {
+        "branch": "辰",
+        "branchIndex": 4,
+        "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+        "ziweiBranch": "午"
+      },
+      "rowId": "integrated-bureau-6-day-02",
+      "signedDistance": 6,
+      "source": {
+        "branch": "戌",
+        "branchIndex": 10
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 6,
+        "lunarDay": 3
+      },
+      "orderingKey": "6:03",
+      "originalBaseline": {
+        "match": false,
+        "sourceBranch": "卯"
+      },
+      "prediction": {
+        "matchesSource": true,
+        "predictedBranch": "巳",
+        "relationId": "rotation-06"
+      },
+      "production": {
+        "branch": "亥",
+        "branchIndex": 11,
+        "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+        "ziweiBranch": "亥"
+      },
+      "rowId": "integrated-bureau-6-day-03",
+      "signedDistance": 6,
+      "source": {
+        "branch": "巳",
+        "branchIndex": 5
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 6,
+        "lunarDay": 4
+      },
+      "orderingKey": "6:04",
+      "originalBaseline": {
+        "match": false,
+        "sourceBranch": "申"
+      },
+      "prediction": {
+        "matchesSource": true,
+        "predictedBranch": "子",
+        "relationId": "rotation-06"
+      },
+      "production": {
+        "branch": "午",
+        "branchIndex": 6,
+        "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+        "ziweiBranch": "辰"
+      },
+      "rowId": "integrated-bureau-6-day-04",
+      "signedDistance": 6,
+      "source": {
+        "branch": "子",
+        "branchIndex": 0
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 6,
+        "lunarDay": 5
+      },
+      "orderingKey": "6:05",
+      "originalBaseline": {
+        "match": false,
+        "sourceBranch": "巳"
+      },
+      "prediction": {
+        "matchesSource": true,
+        "predictedBranch": "卯",
+        "relationId": "rotation-06"
+      },
+      "production": {
+        "branch": "酉",
+        "branchIndex": 9,
+        "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+        "ziweiBranch": "丑"
+      },
+      "rowId": "integrated-bureau-6-day-05",
+      "signedDistance": 6,
+      "source": {
+        "branch": "卯",
+        "branchIndex": 3
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 6,
+        "lunarDay": 6
+      },
+      "orderingKey": "6:06",
+      "originalBaseline": {
+        "match": false,
+        "sourceBranch": "午"
+      },
+      "prediction": {
+        "matchesSource": true,
+        "predictedBranch": "寅",
+        "relationId": "rotation-06"
+      },
+      "production": {
+        "branch": "申",
+        "branchIndex": 8,
+        "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+        "ziweiBranch": "寅"
+      },
+      "rowId": "integrated-bureau-6-day-06",
+      "signedDistance": 6,
+      "source": {
+        "branch": "寅",
+        "branchIndex": 2
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 6,
+        "lunarDay": 7
+      },
+      "orderingKey": "6:07",
+      "originalBaseline": {
+        "match": false,
+        "sourceBranch": "寅"
+      },
+      "prediction": {
+        "matchesSource": true,
+        "predictedBranch": "午",
+        "relationId": "rotation-06"
+      },
+      "production": {
+        "branch": "子",
+        "branchIndex": 0,
+        "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+        "ziweiBranch": "戌"
+      },
+      "rowId": "integrated-bureau-6-day-07",
+      "signedDistance": 6,
+      "source": {
+        "branch": "午",
+        "branchIndex": 6
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 6,
+        "lunarDay": 8
+      },
+      "orderingKey": "6:08",
+      "originalBaseline": {
+        "match": false,
+        "sourceBranch": "亥"
+      },
+      "prediction": {
+        "matchesSource": true,
+        "predictedBranch": "酉",
+        "relationId": "rotation-06"
+      },
+      "production": {
+        "branch": "卯",
+        "branchIndex": 3,
+        "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+        "ziweiBranch": "未"
+      },
+      "rowId": "integrated-bureau-6-day-08",
+      "signedDistance": 6,
+      "source": {
+        "branch": "酉",
+        "branchIndex": 9
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 6,
+        "lunarDay": 9
+      },
+      "orderingKey": "6:09",
+      "originalBaseline": {
+        "match": false,
+        "sourceBranch": "辰"
+      },
+      "prediction": {
+        "matchesSource": true,
+        "predictedBranch": "辰",
+        "relationId": "rotation-06"
+      },
+      "production": {
+        "branch": "戌",
+        "branchIndex": 10,
+        "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+        "ziweiBranch": "子"
+      },
+      "rowId": "integrated-bureau-6-day-09",
+      "signedDistance": 6,
+      "source": {
+        "branch": "辰",
+        "branchIndex": 4
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 6,
+        "lunarDay": 10
+      },
+      "orderingKey": "6:10",
+      "originalBaseline": {
+        "match": false,
+        "sourceBranch": "酉"
+      },
+      "prediction": {
+        "matchesSource": true,
+        "predictedBranch": "亥",
+        "relationId": "rotation-06"
+      },
+      "production": {
+        "branch": "巳",
+        "branchIndex": 5,
+        "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+        "ziweiBranch": "巳"
+      },
+      "rowId": "integrated-bureau-6-day-10",
+      "signedDistance": 6,
+      "source": {
+        "branch": "亥",
+        "branchIndex": 11
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 6,
+        "lunarDay": 11
+      },
+      "orderingKey": "6:11",
+      "originalBaseline": {
+        "match": false,
+        "sourceBranch": "午"
+      },
+      "prediction": {
+        "matchesSource": true,
+        "predictedBranch": "寅",
+        "relationId": "rotation-06"
+      },
+      "production": {
+        "branch": "申",
+        "branchIndex": 8,
+        "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+        "ziweiBranch": "寅"
+      },
+      "rowId": "integrated-bureau-6-day-11",
+      "signedDistance": 6,
+      "source": {
+        "branch": "寅",
+        "branchIndex": 2
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 6,
+        "lunarDay": 12
+      },
+      "orderingKey": "6:12",
+      "originalBaseline": {
+        "match": true,
+        "sourceBranch": "未"
+      },
+      "prediction": {
+        "matchesSource": true,
+        "predictedBranch": "丑",
+        "relationId": "rotation-06"
+      },
+      "production": {
+        "branch": "未",
+        "branchIndex": 7,
+        "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+        "ziweiBranch": "卯"
+      },
+      "rowId": "integrated-bureau-6-day-12",
+      "signedDistance": 6,
+      "source": {
+        "branch": "丑",
+        "branchIndex": 1
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 6,
+        "lunarDay": 13
+      },
+      "orderingKey": "6:13",
+      "originalBaseline": {
+        "match": false,
+        "sourceBranch": "卯"
+      },
+      "prediction": {
+        "matchesSource": true,
+        "predictedBranch": "巳",
+        "relationId": "rotation-06"
+      },
+      "production": {
+        "branch": "亥",
+        "branchIndex": 11,
+        "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+        "ziweiBranch": "亥"
+      },
+      "rowId": "integrated-bureau-6-day-13",
+      "signedDistance": 6,
+      "source": {
+        "branch": "巳",
+        "branchIndex": 5
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 6,
+        "lunarDay": 14
+      },
+      "orderingKey": "6:14",
+      "originalBaseline": {
+        "match": false,
+        "sourceBranch": "子"
+      },
+      "prediction": {
+        "matchesSource": true,
+        "predictedBranch": "申",
+        "relationId": "rotation-06"
+      },
+      "production": {
+        "branch": "寅",
+        "branchIndex": 2,
+        "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+        "ziweiBranch": "申"
+      },
+      "rowId": "integrated-bureau-6-day-14",
+      "signedDistance": 6,
+      "source": {
+        "branch": "申",
+        "branchIndex": 8
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 6,
+        "lunarDay": 15
+      },
+      "orderingKey": "6:15",
+      "originalBaseline": {
+        "match": false,
+        "sourceBranch": "巳"
+      },
+      "prediction": {
+        "matchesSource": true,
+        "predictedBranch": "卯",
+        "relationId": "rotation-06"
+      },
+      "production": {
+        "branch": "酉",
+        "branchIndex": 9,
+        "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+        "ziweiBranch": "丑"
+      },
+      "rowId": "integrated-bureau-6-day-15",
+      "signedDistance": 6,
+      "source": {
+        "branch": "卯",
+        "branchIndex": 3
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 6,
+        "lunarDay": 16
+      },
+      "orderingKey": "6:16",
+      "originalBaseline": {
+        "match": false,
+        "sourceBranch": "戌"
+      },
+      "prediction": {
+        "matchesSource": true,
+        "predictedBranch": "戌",
+        "relationId": "rotation-06"
+      },
+      "production": {
+        "branch": "辰",
+        "branchIndex": 4,
+        "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+        "ziweiBranch": "午"
+      },
+      "rowId": "integrated-bureau-6-day-16",
+      "signedDistance": 6,
+      "source": {
+        "branch": "戌",
+        "branchIndex": 10
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 6,
+        "lunarDay": 17
+      },
+      "orderingKey": "6:17",
+      "originalBaseline": {
+        "match": true,
+        "sourceBranch": "未"
+      },
+      "prediction": {
+        "matchesSource": true,
+        "predictedBranch": "丑",
+        "relationId": "rotation-06"
+      },
+      "production": {
+        "branch": "未",
+        "branchIndex": 7,
+        "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+        "ziweiBranch": "卯"
+      },
+      "rowId": "integrated-bureau-6-day-17",
+      "signedDistance": 6,
+      "source": {
+        "branch": "丑",
+        "branchIndex": 1
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 6,
+        "lunarDay": 18
+      },
+      "orderingKey": "6:18",
+      "originalBaseline": {
+        "match": false,
+        "sourceBranch": "申"
+      },
+      "prediction": {
+        "matchesSource": true,
+        "predictedBranch": "子",
+        "relationId": "rotation-06"
+      },
+      "production": {
+        "branch": "午",
+        "branchIndex": 6,
+        "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+        "ziweiBranch": "辰"
+      },
+      "rowId": "integrated-bureau-6-day-18",
+      "signedDistance": 6,
+      "source": {
+        "branch": "子",
+        "branchIndex": 0
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 6,
+        "lunarDay": 19
+      },
+      "orderingKey": "6:19",
+      "originalBaseline": {
+        "match": false,
+        "sourceBranch": "辰"
+      },
+      "prediction": {
+        "matchesSource": true,
+        "predictedBranch": "辰",
+        "relationId": "rotation-06"
+      },
+      "production": {
+        "branch": "戌",
+        "branchIndex": 10,
+        "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+        "ziweiBranch": "子"
+      },
+      "rowId": "integrated-bureau-6-day-19",
+      "signedDistance": 6,
+      "source": {
+        "branch": "辰",
+        "branchIndex": 4
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 6,
+        "lunarDay": 20
+      },
+      "orderingKey": "6:20",
+      "originalBaseline": {
+        "match": true,
+        "sourceBranch": "丑"
+      },
+      "prediction": {
+        "matchesSource": true,
+        "predictedBranch": "未",
+        "relationId": "rotation-06"
+      },
+      "production": {
+        "branch": "丑",
+        "branchIndex": 1,
+        "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+        "ziweiBranch": "酉"
+      },
+      "rowId": "integrated-bureau-6-day-20",
+      "signedDistance": 6,
+      "source": {
+        "branch": "未",
+        "branchIndex": 7
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 6,
+        "lunarDay": 21
+      },
+      "orderingKey": "6:21",
+      "originalBaseline": {
+        "match": false,
+        "sourceBranch": "午"
+      },
+      "prediction": {
+        "matchesSource": true,
+        "predictedBranch": "寅",
+        "relationId": "rotation-06"
+      },
+      "production": {
+        "branch": "申",
+        "branchIndex": 8,
+        "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+        "ziweiBranch": "寅"
+      },
+      "rowId": "integrated-bureau-6-day-21",
+      "signedDistance": 6,
+      "source": {
+        "branch": "寅",
+        "branchIndex": 2
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 6,
+        "lunarDay": 22
+      },
+      "orderingKey": "6:22",
+      "originalBaseline": {
+        "match": false,
+        "sourceBranch": "亥"
+      },
+      "prediction": {
+        "matchesSource": true,
+        "predictedBranch": "酉",
+        "relationId": "rotation-06"
+      },
+      "production": {
+        "branch": "卯",
+        "branchIndex": 3,
+        "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+        "ziweiBranch": "未"
+      },
+      "rowId": "integrated-bureau-6-day-22",
+      "signedDistance": 6,
+      "source": {
+        "branch": "酉",
+        "branchIndex": 9
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 6,
+        "lunarDay": 23
+      },
+      "orderingKey": "6:23",
+      "originalBaseline": {
+        "match": false,
+        "sourceBranch": "申"
+      },
+      "prediction": {
+        "matchesSource": true,
+        "predictedBranch": "子",
+        "relationId": "rotation-06"
+      },
+      "production": {
+        "branch": "午",
+        "branchIndex": 6,
+        "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+        "ziweiBranch": "辰"
+      },
+      "rowId": "integrated-bureau-6-day-23",
+      "signedDistance": 6,
+      "source": {
+        "branch": "子",
+        "branchIndex": 0
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 6,
+        "lunarDay": 24
+      },
+      "orderingKey": "6:24",
+      "originalBaseline": {
+        "match": false,
+        "sourceBranch": "酉"
+      },
+      "prediction": {
+        "matchesSource": true,
+        "predictedBranch": "亥",
+        "relationId": "rotation-06"
+      },
+      "production": {
+        "branch": "巳",
+        "branchIndex": 5,
+        "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+        "ziweiBranch": "巳"
+      },
+      "rowId": "integrated-bureau-6-day-24",
+      "signedDistance": 6,
+      "source": {
+        "branch": "亥",
+        "branchIndex": 11
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 6,
+        "lunarDay": 25
+      },
+      "orderingKey": "6:25",
+      "originalBaseline": {
+        "match": false,
+        "sourceBranch": "巳"
+      },
+      "prediction": {
+        "matchesSource": true,
+        "predictedBranch": "卯",
+        "relationId": "rotation-06"
+      },
+      "production": {
+        "branch": "酉",
+        "branchIndex": 9,
+        "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+        "ziweiBranch": "丑"
+      },
+      "rowId": "integrated-bureau-6-day-25",
+      "signedDistance": 6,
+      "source": {
+        "branch": "卯",
+        "branchIndex": 3
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 6,
+        "lunarDay": 26
+      },
+      "orderingKey": "6:26",
+      "originalBaseline": {
+        "match": false,
+        "sourceBranch": "寅"
+      },
+      "prediction": {
+        "matchesSource": true,
+        "predictedBranch": "午",
+        "relationId": "rotation-06"
+      },
+      "production": {
+        "branch": "子",
+        "branchIndex": 0,
+        "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+        "ziweiBranch": "戌"
+      },
+      "rowId": "integrated-bureau-6-day-26",
+      "signedDistance": 6,
+      "source": {
+        "branch": "午",
+        "branchIndex": 6
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 6,
+        "lunarDay": 27
+      },
+      "orderingKey": "6:27",
+      "originalBaseline": {
+        "match": true,
+        "sourceBranch": "未"
+      },
+      "prediction": {
+        "matchesSource": true,
+        "predictedBranch": "丑",
+        "relationId": "rotation-06"
+      },
+      "production": {
+        "branch": "未",
+        "branchIndex": 7,
+        "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+        "ziweiBranch": "卯"
+      },
+      "rowId": "integrated-bureau-6-day-27",
+      "signedDistance": 6,
+      "source": {
+        "branch": "丑",
+        "branchIndex": 1
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 6,
+        "lunarDay": 28
+      },
+      "orderingKey": "6:28",
+      "originalBaseline": {
+        "match": false,
+        "sourceBranch": "子"
+      },
+      "prediction": {
+        "matchesSource": true,
+        "predictedBranch": "申",
+        "relationId": "rotation-06"
+      },
+      "production": {
+        "branch": "寅",
+        "branchIndex": 2,
+        "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+        "ziweiBranch": "申"
+      },
+      "rowId": "integrated-bureau-6-day-28",
+      "signedDistance": 6,
+      "source": {
+        "branch": "申",
+        "branchIndex": 8
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 6,
+        "lunarDay": 29
+      },
+      "orderingKey": "6:29",
+      "originalBaseline": {
+        "match": false,
+        "sourceBranch": "酉"
+      },
+      "prediction": {
+        "matchesSource": true,
+        "predictedBranch": "亥",
+        "relationId": "rotation-06"
+      },
+      "production": {
+        "branch": "巳",
+        "branchIndex": 5,
+        "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+        "ziweiBranch": "巳"
+      },
+      "rowId": "integrated-bureau-6-day-29",
+      "signedDistance": 6,
+      "source": {
+        "branch": "亥",
+        "branchIndex": 11
+      }
+    },
+    {
+      "input": {
+        "bureauNumber": 6,
+        "lunarDay": 30
+      },
+      "orderingKey": "6:30",
+      "originalBaseline": {
+        "match": false,
+        "sourceBranch": "戌"
+      },
+      "prediction": {
+        "matchesSource": true,
+        "predictedBranch": "戌",
+        "relationId": "rotation-06"
+      },
+      "production": {
+        "branch": "辰",
+        "branchIndex": 4,
+        "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+        "ziweiBranch": "午"
+      },
+      "rowId": "integrated-bureau-6-day-30",
+      "signedDistance": 6,
+      "source": {
+        "branch": "戌",
+        "branchIndex": 10
+      }
+    }
+  ]
+}

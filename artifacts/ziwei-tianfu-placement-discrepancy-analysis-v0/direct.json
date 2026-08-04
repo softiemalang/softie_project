@@ -1,0 +1,2749 @@
+{
+  "allCandidatesTested": 171,
+  "exactFitIds": [
+    "rotation-06",
+    "enum-relabel-in-00-out-06",
+    "enum-relabel-in-01-out-07",
+    "enum-relabel-in-02-out-08",
+    "enum-relabel-in-03-out-09",
+    "enum-relabel-in-04-out-10",
+    "enum-relabel-in-05-out-11",
+    "enum-relabel-in-06-out-00",
+    "enum-relabel-in-07-out-01",
+    "enum-relabel-in-08-out-02",
+    "enum-relabel-in-09-out-03",
+    "enum-relabel-in-10-out-04",
+    "enum-relabel-in-11-out-05",
+    "source-base-direction"
+  ],
+  "inputCount": 12,
+  "relationResults": [
+    {
+      "candidateId": "identity",
+      "definition": "source = production",
+      "domain": "direct",
+      "expectedRowCount": 12,
+      "family": "identity",
+      "firstFailure": {
+        "expectedBranch": "辰",
+        "predictedBranch": "戌",
+        "rowId": "ziwei-子-tianfu"
+      },
+      "matchCount": 0,
+      "mismatchCount": 12,
+      "testedRowCount": 12
+    },
+    {
+      "candidateId": "rotation-00",
+      "definition": "source = production + 0 (mod 12)",
+      "domain": "direct",
+      "expectedRowCount": 12,
+      "family": "fixed_rotation_offset",
+      "firstFailure": {
+        "expectedBranch": "辰",
+        "predictedBranch": "戌",
+        "rowId": "ziwei-子-tianfu"
+      },
+      "matchCount": 0,
+      "mismatchCount": 12,
+      "testedRowCount": 12
+    },
+    {
+      "candidateId": "rotation-01",
+      "definition": "source = production + 1 (mod 12)",
+      "domain": "direct",
+      "expectedRowCount": 12,
+      "family": "fixed_rotation_offset",
+      "firstFailure": {
+        "expectedBranch": "辰",
+        "predictedBranch": "亥",
+        "rowId": "ziwei-子-tianfu"
+      },
+      "matchCount": 0,
+      "mismatchCount": 12,
+      "testedRowCount": 12
+    },
+    {
+      "candidateId": "rotation-02",
+      "definition": "source = production + 2 (mod 12)",
+      "domain": "direct",
+      "expectedRowCount": 12,
+      "family": "fixed_rotation_offset",
+      "firstFailure": {
+        "expectedBranch": "辰",
+        "predictedBranch": "子",
+        "rowId": "ziwei-子-tianfu"
+      },
+      "matchCount": 0,
+      "mismatchCount": 12,
+      "testedRowCount": 12
+    },
+    {
+      "candidateId": "rotation-03",
+      "definition": "source = production + 3 (mod 12)",
+      "domain": "direct",
+      "expectedRowCount": 12,
+      "family": "fixed_rotation_offset",
+      "firstFailure": {
+        "expectedBranch": "辰",
+        "predictedBranch": "丑",
+        "rowId": "ziwei-子-tianfu"
+      },
+      "matchCount": 0,
+      "mismatchCount": 12,
+      "testedRowCount": 12
+    },
+    {
+      "candidateId": "rotation-04",
+      "definition": "source = production + 4 (mod 12)",
+      "domain": "direct",
+      "expectedRowCount": 12,
+      "family": "fixed_rotation_offset",
+      "firstFailure": {
+        "expectedBranch": "辰",
+        "predictedBranch": "寅",
+        "rowId": "ziwei-子-tianfu"
+      },
+      "matchCount": 0,
+      "mismatchCount": 12,
+      "testedRowCount": 12
+    },
+    {
+      "candidateId": "rotation-05",
+      "definition": "source = production + 5 (mod 12)",
+      "domain": "direct",
+      "expectedRowCount": 12,
+      "family": "fixed_rotation_offset",
+      "firstFailure": {
+        "expectedBranch": "辰",
+        "predictedBranch": "卯",
+        "rowId": "ziwei-子-tianfu"
+      },
+      "matchCount": 0,
+      "mismatchCount": 12,
+      "testedRowCount": 12
+    },
+    {
+      "candidateId": "rotation-06",
+      "definition": "source = production + 6 (mod 12)",
+      "domain": "direct",
+      "expectedRowCount": 12,
+      "family": "fixed_rotation_offset",
+      "firstFailure": null,
+      "matchCount": 12,
+      "mismatchCount": 0,
+      "testedRowCount": 12
+    },
+    {
+      "candidateId": "rotation-07",
+      "definition": "source = production + 7 (mod 12)",
+      "domain": "direct",
+      "expectedRowCount": 12,
+      "family": "fixed_rotation_offset",
+      "firstFailure": {
+        "expectedBranch": "辰",
+        "predictedBranch": "巳",
+        "rowId": "ziwei-子-tianfu"
+      },
+      "matchCount": 0,
+      "mismatchCount": 12,
+      "testedRowCount": 12
+    },
+    {
+      "candidateId": "rotation-08",
+      "definition": "source = production + 8 (mod 12)",
+      "domain": "direct",
+      "expectedRowCount": 12,
+      "family": "fixed_rotation_offset",
+      "firstFailure": {
+        "expectedBranch": "辰",
+        "predictedBranch": "午",
+        "rowId": "ziwei-子-tianfu"
+      },
+      "matchCount": 0,
+      "mismatchCount": 12,
+      "testedRowCount": 12
+    },
+    {
+      "candidateId": "rotation-09",
+      "definition": "source = production + 9 (mod 12)",
+      "domain": "direct",
+      "expectedRowCount": 12,
+      "family": "fixed_rotation_offset",
+      "firstFailure": {
+        "expectedBranch": "辰",
+        "predictedBranch": "未",
+        "rowId": "ziwei-子-tianfu"
+      },
+      "matchCount": 0,
+      "mismatchCount": 12,
+      "testedRowCount": 12
+    },
+    {
+      "candidateId": "rotation-10",
+      "definition": "source = production + 10 (mod 12)",
+      "domain": "direct",
+      "expectedRowCount": 12,
+      "family": "fixed_rotation_offset",
+      "firstFailure": {
+        "expectedBranch": "辰",
+        "predictedBranch": "申",
+        "rowId": "ziwei-子-tianfu"
+      },
+      "matchCount": 0,
+      "mismatchCount": 12,
+      "testedRowCount": 12
+    },
+    {
+      "candidateId": "rotation-11",
+      "definition": "source = production + 11 (mod 12)",
+      "domain": "direct",
+      "expectedRowCount": 12,
+      "family": "fixed_rotation_offset",
+      "firstFailure": {
+        "expectedBranch": "辰",
+        "predictedBranch": "酉",
+        "rowId": "ziwei-子-tianfu"
+      },
+      "matchCount": 0,
+      "mismatchCount": 12,
+      "testedRowCount": 12
+    },
+    {
+      "candidateId": "reflection-rotation-00",
+      "definition": "source = 0 - production (mod 12)",
+      "domain": "direct",
+      "expectedRowCount": 12,
+      "family": "reflection_rotation",
+      "firstFailure": {
+        "expectedBranch": "辰",
+        "predictedBranch": "寅",
+        "rowId": "ziwei-子-tianfu"
+      },
+      "matchCount": 2,
+      "mismatchCount": 10,
+      "testedRowCount": 12
+    },
+    {
+      "candidateId": "reflection-rotation-01",
+      "definition": "source = 1 - production (mod 12)",
+      "domain": "direct",
+      "expectedRowCount": 12,
+      "family": "reflection_rotation",
+      "firstFailure": {
+        "expectedBranch": "辰",
+        "predictedBranch": "卯",
+        "rowId": "ziwei-子-tianfu"
+      },
+      "matchCount": 0,
+      "mismatchCount": 12,
+      "testedRowCount": 12
+    },
+    {
+      "candidateId": "reflection-rotation-02",
+      "definition": "source = 2 - production (mod 12)",
+      "domain": "direct",
+      "expectedRowCount": 12,
+      "family": "reflection_rotation",
+      "firstFailure": {
+        "expectedBranch": "卯",
+        "predictedBranch": "巳",
+        "rowId": "ziwei-丑-tianfu"
+      },
+      "matchCount": 2,
+      "mismatchCount": 10,
+      "testedRowCount": 12
+    },
+    {
+      "candidateId": "reflection-rotation-03",
+      "definition": "source = 3 - production (mod 12)",
+      "domain": "direct",
+      "expectedRowCount": 12,
+      "family": "reflection_rotation",
+      "firstFailure": {
+        "expectedBranch": "辰",
+        "predictedBranch": "巳",
+        "rowId": "ziwei-子-tianfu"
+      },
+      "matchCount": 0,
+      "mismatchCount": 12,
+      "testedRowCount": 12
+    },
+    {
+      "candidateId": "reflection-rotation-04",
+      "definition": "source = 4 - production (mod 12)",
+      "domain": "direct",
+      "expectedRowCount": 12,
+      "family": "reflection_rotation",
+      "firstFailure": {
+        "expectedBranch": "辰",
+        "predictedBranch": "午",
+        "rowId": "ziwei-子-tianfu"
+      },
+      "matchCount": 2,
+      "mismatchCount": 10,
+      "testedRowCount": 12
+    },
+    {
+      "candidateId": "reflection-rotation-05",
+      "definition": "source = 5 - production (mod 12)",
+      "domain": "direct",
+      "expectedRowCount": 12,
+      "family": "reflection_rotation",
+      "firstFailure": {
+        "expectedBranch": "辰",
+        "predictedBranch": "未",
+        "rowId": "ziwei-子-tianfu"
+      },
+      "matchCount": 0,
+      "mismatchCount": 12,
+      "testedRowCount": 12
+    },
+    {
+      "candidateId": "reflection-rotation-06",
+      "definition": "source = 6 - production (mod 12)",
+      "domain": "direct",
+      "expectedRowCount": 12,
+      "family": "reflection_rotation",
+      "firstFailure": {
+        "expectedBranch": "辰",
+        "predictedBranch": "申",
+        "rowId": "ziwei-子-tianfu"
+      },
+      "matchCount": 2,
+      "mismatchCount": 10,
+      "testedRowCount": 12
+    },
+    {
+      "candidateId": "reflection-rotation-07",
+      "definition": "source = 7 - production (mod 12)",
+      "domain": "direct",
+      "expectedRowCount": 12,
+      "family": "reflection_rotation",
+      "firstFailure": {
+        "expectedBranch": "辰",
+        "predictedBranch": "酉",
+        "rowId": "ziwei-子-tianfu"
+      },
+      "matchCount": 0,
+      "mismatchCount": 12,
+      "testedRowCount": 12
+    },
+    {
+      "candidateId": "reflection-rotation-08",
+      "definition": "source = 8 - production (mod 12)",
+      "domain": "direct",
+      "expectedRowCount": 12,
+      "family": "reflection_rotation",
+      "firstFailure": {
+        "expectedBranch": "辰",
+        "predictedBranch": "戌",
+        "rowId": "ziwei-子-tianfu"
+      },
+      "matchCount": 2,
+      "mismatchCount": 10,
+      "testedRowCount": 12
+    },
+    {
+      "candidateId": "reflection-rotation-09",
+      "definition": "source = 9 - production (mod 12)",
+      "domain": "direct",
+      "expectedRowCount": 12,
+      "family": "reflection_rotation",
+      "firstFailure": {
+        "expectedBranch": "辰",
+        "predictedBranch": "亥",
+        "rowId": "ziwei-子-tianfu"
+      },
+      "matchCount": 0,
+      "mismatchCount": 12,
+      "testedRowCount": 12
+    },
+    {
+      "candidateId": "reflection-rotation-10",
+      "definition": "source = 10 - production (mod 12)",
+      "domain": "direct",
+      "expectedRowCount": 12,
+      "family": "reflection_rotation",
+      "firstFailure": {
+        "expectedBranch": "辰",
+        "predictedBranch": "子",
+        "rowId": "ziwei-子-tianfu"
+      },
+      "matchCount": 2,
+      "mismatchCount": 10,
+      "testedRowCount": 12
+    },
+    {
+      "candidateId": "reflection-rotation-11",
+      "definition": "source = 11 - production (mod 12)",
+      "domain": "direct",
+      "expectedRowCount": 12,
+      "family": "reflection_rotation",
+      "firstFailure": {
+        "expectedBranch": "辰",
+        "predictedBranch": "丑",
+        "rowId": "ziwei-子-tianfu"
+      },
+      "matchCount": 0,
+      "mismatchCount": 12,
+      "testedRowCount": 12
+    },
+    {
+      "candidateId": "inverse-mapping",
+      "definition": "source = inverse of production mapping over the 子=0..亥=11 enum",
+      "domain": "direct",
+      "expectedRowCount": 12,
+      "family": "inverse_mapping",
+      "firstFailure": {
+        "expectedBranch": "辰",
+        "predictedBranch": "子",
+        "rowId": "ziwei-子-tianfu"
+      },
+      "matchCount": 2,
+      "mismatchCount": 10,
+      "testedRowCount": 12
+    },
+    {
+      "candidateId": "enum-relabel-in-00-out-00",
+      "definition": "relabel input +0, output -0; source = production(relabelled input)",
+      "domain": "direct",
+      "expectedRowCount": 12,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "辰",
+        "predictedBranch": "戌",
+        "rowId": "ziwei-子-tianfu"
+      },
+      "matchCount": 0,
+      "mismatchCount": 12,
+      "testedRowCount": 12
+    },
+    {
+      "candidateId": "enum-relabel-in-00-out-01",
+      "definition": "relabel input +0, output -1; source = production(relabelled input)",
+      "domain": "direct",
+      "expectedRowCount": 12,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "辰",
+        "predictedBranch": "酉",
+        "rowId": "ziwei-子-tianfu"
+      },
+      "matchCount": 0,
+      "mismatchCount": 12,
+      "testedRowCount": 12
+    },
+    {
+      "candidateId": "enum-relabel-in-00-out-02",
+      "definition": "relabel input +0, output -2; source = production(relabelled input)",
+      "domain": "direct",
+      "expectedRowCount": 12,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "辰",
+        "predictedBranch": "申",
+        "rowId": "ziwei-子-tianfu"
+      },
+      "matchCount": 0,
+      "mismatchCount": 12,
+      "testedRowCount": 12
+    },
+    {
+      "candidateId": "enum-relabel-in-00-out-03",
+      "definition": "relabel input +0, output -3; source = production(relabelled input)",
+      "domain": "direct",
+      "expectedRowCount": 12,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "辰",
+        "predictedBranch": "未",
+        "rowId": "ziwei-子-tianfu"
+      },
+      "matchCount": 0,
+      "mismatchCount": 12,
+      "testedRowCount": 12
+    },
+    {
+      "candidateId": "enum-relabel-in-00-out-04",
+      "definition": "relabel input +0, output -4; source = production(relabelled input)",
+      "domain": "direct",
+      "expectedRowCount": 12,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "辰",
+        "predictedBranch": "午",
+        "rowId": "ziwei-子-tianfu"
+      },
+      "matchCount": 0,
+      "mismatchCount": 12,
+      "testedRowCount": 12
+    },
+    {
+      "candidateId": "enum-relabel-in-00-out-05",
+      "definition": "relabel input +0, output -5; source = production(relabelled input)",
+      "domain": "direct",
+      "expectedRowCount": 12,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "辰",
+        "predictedBranch": "巳",
+        "rowId": "ziwei-子-tianfu"
+      },
+      "matchCount": 0,
+      "mismatchCount": 12,
+      "testedRowCount": 12
+    },
+    {
+      "candidateId": "enum-relabel-in-00-out-06",
+      "definition": "relabel input +0, output -6; source = production(relabelled input)",
+      "domain": "direct",
+      "expectedRowCount": 12,
+      "family": "enum_relabeling",
+      "firstFailure": null,
+      "matchCount": 12,
+      "mismatchCount": 0,
+      "testedRowCount": 12
+    },
+    {
+      "candidateId": "enum-relabel-in-00-out-07",
+      "definition": "relabel input +0, output -7; source = production(relabelled input)",
+      "domain": "direct",
+      "expectedRowCount": 12,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "辰",
+        "predictedBranch": "卯",
+        "rowId": "ziwei-子-tianfu"
+      },
+      "matchCount": 0,
+      "mismatchCount": 12,
+      "testedRowCount": 12
+    },
+    {
+      "candidateId": "enum-relabel-in-00-out-08",
+      "definition": "relabel input +0, output -8; source = production(relabelled input)",
+      "domain": "direct",
+      "expectedRowCount": 12,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "辰",
+        "predictedBranch": "寅",
+        "rowId": "ziwei-子-tianfu"
+      },
+      "matchCount": 0,
+      "mismatchCount": 12,
+      "testedRowCount": 12
+    },
+    {
+      "candidateId": "enum-relabel-in-00-out-09",
+      "definition": "relabel input +0, output -9; source = production(relabelled input)",
+      "domain": "direct",
+      "expectedRowCount": 12,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "辰",
+        "predictedBranch": "丑",
+        "rowId": "ziwei-子-tianfu"
+      },
+      "matchCount": 0,
+      "mismatchCount": 12,
+      "testedRowCount": 12
+    },
+    {
+      "candidateId": "enum-relabel-in-00-out-10",
+      "definition": "relabel input +0, output -10; source = production(relabelled input)",
+      "domain": "direct",
+      "expectedRowCount": 12,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "辰",
+        "predictedBranch": "子",
+        "rowId": "ziwei-子-tianfu"
+      },
+      "matchCount": 0,
+      "mismatchCount": 12,
+      "testedRowCount": 12
+    },
+    {
+      "candidateId": "enum-relabel-in-00-out-11",
+      "definition": "relabel input +0, output -11; source = production(relabelled input)",
+      "domain": "direct",
+      "expectedRowCount": 12,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "辰",
+        "predictedBranch": "亥",
+        "rowId": "ziwei-子-tianfu"
+      },
+      "matchCount": 0,
+      "mismatchCount": 12,
+      "testedRowCount": 12
+    },
+    {
+      "candidateId": "enum-relabel-in-01-out-00",
+      "definition": "relabel input +1, output -0; source = production(relabelled input)",
+      "domain": "direct",
+      "expectedRowCount": 12,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "辰",
+        "predictedBranch": "亥",
+        "rowId": "ziwei-子-tianfu"
+      },
+      "matchCount": 0,
+      "mismatchCount": 12,
+      "testedRowCount": 12
+    },
+    {
+      "candidateId": "enum-relabel-in-01-out-01",
+      "definition": "relabel input +1, output -1; source = production(relabelled input)",
+      "domain": "direct",
+      "expectedRowCount": 12,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "辰",
+        "predictedBranch": "戌",
+        "rowId": "ziwei-子-tianfu"
+      },
+      "matchCount": 0,
+      "mismatchCount": 12,
+      "testedRowCount": 12
+    },
+    {
+      "candidateId": "enum-relabel-in-01-out-02",
+      "definition": "relabel input +1, output -2; source = production(relabelled input)",
+      "domain": "direct",
+      "expectedRowCount": 12,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "辰",
+        "predictedBranch": "酉",
+        "rowId": "ziwei-子-tianfu"
+      },
+      "matchCount": 0,
+      "mismatchCount": 12,
+      "testedRowCount": 12
+    },
+    {
+      "candidateId": "enum-relabel-in-01-out-03",
+      "definition": "relabel input +1, output -3; source = production(relabelled input)",
+      "domain": "direct",
+      "expectedRowCount": 12,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "辰",
+        "predictedBranch": "申",
+        "rowId": "ziwei-子-tianfu"
+      },
+      "matchCount": 0,
+      "mismatchCount": 12,
+      "testedRowCount": 12
+    },
+    {
+      "candidateId": "enum-relabel-in-01-out-04",
+      "definition": "relabel input +1, output -4; source = production(relabelled input)",
+      "domain": "direct",
+      "expectedRowCount": 12,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "辰",
+        "predictedBranch": "未",
+        "rowId": "ziwei-子-tianfu"
+      },
+      "matchCount": 0,
+      "mismatchCount": 12,
+      "testedRowCount": 12
+    },
+    {
+      "candidateId": "enum-relabel-in-01-out-05",
+      "definition": "relabel input +1, output -5; source = production(relabelled input)",
+      "domain": "direct",
+      "expectedRowCount": 12,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "辰",
+        "predictedBranch": "午",
+        "rowId": "ziwei-子-tianfu"
+      },
+      "matchCount": 0,
+      "mismatchCount": 12,
+      "testedRowCount": 12
+    },
+    {
+      "candidateId": "enum-relabel-in-01-out-06",
+      "definition": "relabel input +1, output -6; source = production(relabelled input)",
+      "domain": "direct",
+      "expectedRowCount": 12,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "辰",
+        "predictedBranch": "巳",
+        "rowId": "ziwei-子-tianfu"
+      },
+      "matchCount": 0,
+      "mismatchCount": 12,
+      "testedRowCount": 12
+    },
+    {
+      "candidateId": "enum-relabel-in-01-out-07",
+      "definition": "relabel input +1, output -7; source = production(relabelled input)",
+      "domain": "direct",
+      "expectedRowCount": 12,
+      "family": "enum_relabeling",
+      "firstFailure": null,
+      "matchCount": 12,
+      "mismatchCount": 0,
+      "testedRowCount": 12
+    },
+    {
+      "candidateId": "enum-relabel-in-01-out-08",
+      "definition": "relabel input +1, output -8; source = production(relabelled input)",
+      "domain": "direct",
+      "expectedRowCount": 12,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "辰",
+        "predictedBranch": "卯",
+        "rowId": "ziwei-子-tianfu"
+      },
+      "matchCount": 0,
+      "mismatchCount": 12,
+      "testedRowCount": 12
+    },
+    {
+      "candidateId": "enum-relabel-in-01-out-09",
+      "definition": "relabel input +1, output -9; source = production(relabelled input)",
+      "domain": "direct",
+      "expectedRowCount": 12,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "辰",
+        "predictedBranch": "寅",
+        "rowId": "ziwei-子-tianfu"
+      },
+      "matchCount": 0,
+      "mismatchCount": 12,
+      "testedRowCount": 12
+    },
+    {
+      "candidateId": "enum-relabel-in-01-out-10",
+      "definition": "relabel input +1, output -10; source = production(relabelled input)",
+      "domain": "direct",
+      "expectedRowCount": 12,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "辰",
+        "predictedBranch": "丑",
+        "rowId": "ziwei-子-tianfu"
+      },
+      "matchCount": 0,
+      "mismatchCount": 12,
+      "testedRowCount": 12
+    },
+    {
+      "candidateId": "enum-relabel-in-01-out-11",
+      "definition": "relabel input +1, output -11; source = production(relabelled input)",
+      "domain": "direct",
+      "expectedRowCount": 12,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "辰",
+        "predictedBranch": "子",
+        "rowId": "ziwei-子-tianfu"
+      },
+      "matchCount": 0,
+      "mismatchCount": 12,
+      "testedRowCount": 12
+    },
+    {
+      "candidateId": "enum-relabel-in-02-out-00",
+      "definition": "relabel input +2, output -0; source = production(relabelled input)",
+      "domain": "direct",
+      "expectedRowCount": 12,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "辰",
+        "predictedBranch": "子",
+        "rowId": "ziwei-子-tianfu"
+      },
+      "matchCount": 0,
+      "mismatchCount": 12,
+      "testedRowCount": 12
+    },
+    {
+      "candidateId": "enum-relabel-in-02-out-01",
+      "definition": "relabel input +2, output -1; source = production(relabelled input)",
+      "domain": "direct",
+      "expectedRowCount": 12,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "辰",
+        "predictedBranch": "亥",
+        "rowId": "ziwei-子-tianfu"
+      },
+      "matchCount": 0,
+      "mismatchCount": 12,
+      "testedRowCount": 12
+    },
+    {
+      "candidateId": "enum-relabel-in-02-out-02",
+      "definition": "relabel input +2, output -2; source = production(relabelled input)",
+      "domain": "direct",
+      "expectedRowCount": 12,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "辰",
+        "predictedBranch": "戌",
+        "rowId": "ziwei-子-tianfu"
+      },
+      "matchCount": 0,
+      "mismatchCount": 12,
+      "testedRowCount": 12
+    },
+    {
+      "candidateId": "enum-relabel-in-02-out-03",
+      "definition": "relabel input +2, output -3; source = production(relabelled input)",
+      "domain": "direct",
+      "expectedRowCount": 12,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "辰",
+        "predictedBranch": "酉",
+        "rowId": "ziwei-子-tianfu"
+      },
+      "matchCount": 0,
+      "mismatchCount": 12,
+      "testedRowCount": 12
+    },
+    {
+      "candidateId": "enum-relabel-in-02-out-04",
+      "definition": "relabel input +2, output -4; source = production(relabelled input)",
+      "domain": "direct",
+      "expectedRowCount": 12,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "辰",
+        "predictedBranch": "申",
+        "rowId": "ziwei-子-tianfu"
+      },
+      "matchCount": 0,
+      "mismatchCount": 12,
+      "testedRowCount": 12
+    },
+    {
+      "candidateId": "enum-relabel-in-02-out-05",
+      "definition": "relabel input +2, output -5; source = production(relabelled input)",
+      "domain": "direct",
+      "expectedRowCount": 12,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "辰",
+        "predictedBranch": "未",
+        "rowId": "ziwei-子-tianfu"
+      },
+      "matchCount": 0,
+      "mismatchCount": 12,
+      "testedRowCount": 12
+    },
+    {
+      "candidateId": "enum-relabel-in-02-out-06",
+      "definition": "relabel input +2, output -6; source = production(relabelled input)",
+      "domain": "direct",
+      "expectedRowCount": 12,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "辰",
+        "predictedBranch": "午",
+        "rowId": "ziwei-子-tianfu"
+      },
+      "matchCount": 0,
+      "mismatchCount": 12,
+      "testedRowCount": 12
+    },
+    {
+      "candidateId": "enum-relabel-in-02-out-07",
+      "definition": "relabel input +2, output -7; source = production(relabelled input)",
+      "domain": "direct",
+      "expectedRowCount": 12,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "辰",
+        "predictedBranch": "巳",
+        "rowId": "ziwei-子-tianfu"
+      },
+      "matchCount": 0,
+      "mismatchCount": 12,
+      "testedRowCount": 12
+    },
+    {
+      "candidateId": "enum-relabel-in-02-out-08",
+      "definition": "relabel input +2, output -8; source = production(relabelled input)",
+      "domain": "direct",
+      "expectedRowCount": 12,
+      "family": "enum_relabeling",
+      "firstFailure": null,
+      "matchCount": 12,
+      "mismatchCount": 0,
+      "testedRowCount": 12
+    },
+    {
+      "candidateId": "enum-relabel-in-02-out-09",
+      "definition": "relabel input +2, output -9; source = production(relabelled input)",
+      "domain": "direct",
+      "expectedRowCount": 12,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "辰",
+        "predictedBranch": "卯",
+        "rowId": "ziwei-子-tianfu"
+      },
+      "matchCount": 0,
+      "mismatchCount": 12,
+      "testedRowCount": 12
+    },
+    {
+      "candidateId": "enum-relabel-in-02-out-10",
+      "definition": "relabel input +2, output -10; source = production(relabelled input)",
+      "domain": "direct",
+      "expectedRowCount": 12,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "辰",
+        "predictedBranch": "寅",
+        "rowId": "ziwei-子-tianfu"
+      },
+      "matchCount": 0,
+      "mismatchCount": 12,
+      "testedRowCount": 12
+    },
+    {
+      "candidateId": "enum-relabel-in-02-out-11",
+      "definition": "relabel input +2, output -11; source = production(relabelled input)",
+      "domain": "direct",
+      "expectedRowCount": 12,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "辰",
+        "predictedBranch": "丑",
+        "rowId": "ziwei-子-tianfu"
+      },
+      "matchCount": 0,
+      "mismatchCount": 12,
+      "testedRowCount": 12
+    },
+    {
+      "candidateId": "enum-relabel-in-03-out-00",
+      "definition": "relabel input +3, output -0; source = production(relabelled input)",
+      "domain": "direct",
+      "expectedRowCount": 12,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "辰",
+        "predictedBranch": "丑",
+        "rowId": "ziwei-子-tianfu"
+      },
+      "matchCount": 0,
+      "mismatchCount": 12,
+      "testedRowCount": 12
+    },
+    {
+      "candidateId": "enum-relabel-in-03-out-01",
+      "definition": "relabel input +3, output -1; source = production(relabelled input)",
+      "domain": "direct",
+      "expectedRowCount": 12,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "辰",
+        "predictedBranch": "子",
+        "rowId": "ziwei-子-tianfu"
+      },
+      "matchCount": 0,
+      "mismatchCount": 12,
+      "testedRowCount": 12
+    },
+    {
+      "candidateId": "enum-relabel-in-03-out-02",
+      "definition": "relabel input +3, output -2; source = production(relabelled input)",
+      "domain": "direct",
+      "expectedRowCount": 12,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "辰",
+        "predictedBranch": "亥",
+        "rowId": "ziwei-子-tianfu"
+      },
+      "matchCount": 0,
+      "mismatchCount": 12,
+      "testedRowCount": 12
+    },
+    {
+      "candidateId": "enum-relabel-in-03-out-03",
+      "definition": "relabel input +3, output -3; source = production(relabelled input)",
+      "domain": "direct",
+      "expectedRowCount": 12,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "辰",
+        "predictedBranch": "戌",
+        "rowId": "ziwei-子-tianfu"
+      },
+      "matchCount": 0,
+      "mismatchCount": 12,
+      "testedRowCount": 12
+    },
+    {
+      "candidateId": "enum-relabel-in-03-out-04",
+      "definition": "relabel input +3, output -4; source = production(relabelled input)",
+      "domain": "direct",
+      "expectedRowCount": 12,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "辰",
+        "predictedBranch": "酉",
+        "rowId": "ziwei-子-tianfu"
+      },
+      "matchCount": 0,
+      "mismatchCount": 12,
+      "testedRowCount": 12
+    },
+    {
+      "candidateId": "enum-relabel-in-03-out-05",
+      "definition": "relabel input +3, output -5; source = production(relabelled input)",
+      "domain": "direct",
+      "expectedRowCount": 12,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "辰",
+        "predictedBranch": "申",
+        "rowId": "ziwei-子-tianfu"
+      },
+      "matchCount": 0,
+      "mismatchCount": 12,
+      "testedRowCount": 12
+    },
+    {
+      "candidateId": "enum-relabel-in-03-out-06",
+      "definition": "relabel input +3, output -6; source = production(relabelled input)",
+      "domain": "direct",
+      "expectedRowCount": 12,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "辰",
+        "predictedBranch": "未",
+        "rowId": "ziwei-子-tianfu"
+      },
+      "matchCount": 0,
+      "mismatchCount": 12,
+      "testedRowCount": 12
+    },
+    {
+      "candidateId": "enum-relabel-in-03-out-07",
+      "definition": "relabel input +3, output -7; source = production(relabelled input)",
+      "domain": "direct",
+      "expectedRowCount": 12,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "辰",
+        "predictedBranch": "午",
+        "rowId": "ziwei-子-tianfu"
+      },
+      "matchCount": 0,
+      "mismatchCount": 12,
+      "testedRowCount": 12
+    },
+    {
+      "candidateId": "enum-relabel-in-03-out-08",
+      "definition": "relabel input +3, output -8; source = production(relabelled input)",
+      "domain": "direct",
+      "expectedRowCount": 12,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "辰",
+        "predictedBranch": "巳",
+        "rowId": "ziwei-子-tianfu"
+      },
+      "matchCount": 0,
+      "mismatchCount": 12,
+      "testedRowCount": 12
+    },
+    {
+      "candidateId": "enum-relabel-in-03-out-09",
+      "definition": "relabel input +3, output -9; source = production(relabelled input)",
+      "domain": "direct",
+      "expectedRowCount": 12,
+      "family": "enum_relabeling",
+      "firstFailure": null,
+      "matchCount": 12,
+      "mismatchCount": 0,
+      "testedRowCount": 12
+    },
+    {
+      "candidateId": "enum-relabel-in-03-out-10",
+      "definition": "relabel input +3, output -10; source = production(relabelled input)",
+      "domain": "direct",
+      "expectedRowCount": 12,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "辰",
+        "predictedBranch": "卯",
+        "rowId": "ziwei-子-tianfu"
+      },
+      "matchCount": 0,
+      "mismatchCount": 12,
+      "testedRowCount": 12
+    },
+    {
+      "candidateId": "enum-relabel-in-03-out-11",
+      "definition": "relabel input +3, output -11; source = production(relabelled input)",
+      "domain": "direct",
+      "expectedRowCount": 12,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "辰",
+        "predictedBranch": "寅",
+        "rowId": "ziwei-子-tianfu"
+      },
+      "matchCount": 0,
+      "mismatchCount": 12,
+      "testedRowCount": 12
+    },
+    {
+      "candidateId": "enum-relabel-in-04-out-00",
+      "definition": "relabel input +4, output -0; source = production(relabelled input)",
+      "domain": "direct",
+      "expectedRowCount": 12,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "辰",
+        "predictedBranch": "寅",
+        "rowId": "ziwei-子-tianfu"
+      },
+      "matchCount": 0,
+      "mismatchCount": 12,
+      "testedRowCount": 12
+    },
+    {
+      "candidateId": "enum-relabel-in-04-out-01",
+      "definition": "relabel input +4, output -1; source = production(relabelled input)",
+      "domain": "direct",
+      "expectedRowCount": 12,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "辰",
+        "predictedBranch": "丑",
+        "rowId": "ziwei-子-tianfu"
+      },
+      "matchCount": 0,
+      "mismatchCount": 12,
+      "testedRowCount": 12
+    },
+    {
+      "candidateId": "enum-relabel-in-04-out-02",
+      "definition": "relabel input +4, output -2; source = production(relabelled input)",
+      "domain": "direct",
+      "expectedRowCount": 12,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "辰",
+        "predictedBranch": "子",
+        "rowId": "ziwei-子-tianfu"
+      },
+      "matchCount": 0,
+      "mismatchCount": 12,
+      "testedRowCount": 12
+    },
+    {
+      "candidateId": "enum-relabel-in-04-out-03",
+      "definition": "relabel input +4, output -3; source = production(relabelled input)",
+      "domain": "direct",
+      "expectedRowCount": 12,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "辰",
+        "predictedBranch": "亥",
+        "rowId": "ziwei-子-tianfu"
+      },
+      "matchCount": 0,
+      "mismatchCount": 12,
+      "testedRowCount": 12
+    },
+    {
+      "candidateId": "enum-relabel-in-04-out-04",
+      "definition": "relabel input +4, output -4; source = production(relabelled input)",
+      "domain": "direct",
+      "expectedRowCount": 12,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "辰",
+        "predictedBranch": "戌",
+        "rowId": "ziwei-子-tianfu"
+      },
+      "matchCount": 0,
+      "mismatchCount": 12,
+      "testedRowCount": 12
+    },
+    {
+      "candidateId": "enum-relabel-in-04-out-05",
+      "definition": "relabel input +4, output -5; source = production(relabelled input)",
+      "domain": "direct",
+      "expectedRowCount": 12,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "辰",
+        "predictedBranch": "酉",
+        "rowId": "ziwei-子-tianfu"
+      },
+      "matchCount": 0,
+      "mismatchCount": 12,
+      "testedRowCount": 12
+    },
+    {
+      "candidateId": "enum-relabel-in-04-out-06",
+      "definition": "relabel input +4, output -6; source = production(relabelled input)",
+      "domain": "direct",
+      "expectedRowCount": 12,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "辰",
+        "predictedBranch": "申",
+        "rowId": "ziwei-子-tianfu"
+      },
+      "matchCount": 0,
+      "mismatchCount": 12,
+      "testedRowCount": 12
+    },
+    {
+      "candidateId": "enum-relabel-in-04-out-07",
+      "definition": "relabel input +4, output -7; source = production(relabelled input)",
+      "domain": "direct",
+      "expectedRowCount": 12,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "辰",
+        "predictedBranch": "未",
+        "rowId": "ziwei-子-tianfu"
+      },
+      "matchCount": 0,
+      "mismatchCount": 12,
+      "testedRowCount": 12
+    },
+    {
+      "candidateId": "enum-relabel-in-04-out-08",
+      "definition": "relabel input +4, output -8; source = production(relabelled input)",
+      "domain": "direct",
+      "expectedRowCount": 12,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "辰",
+        "predictedBranch": "午",
+        "rowId": "ziwei-子-tianfu"
+      },
+      "matchCount": 0,
+      "mismatchCount": 12,
+      "testedRowCount": 12
+    },
+    {
+      "candidateId": "enum-relabel-in-04-out-09",
+      "definition": "relabel input +4, output -9; source = production(relabelled input)",
+      "domain": "direct",
+      "expectedRowCount": 12,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "辰",
+        "predictedBranch": "巳",
+        "rowId": "ziwei-子-tianfu"
+      },
+      "matchCount": 0,
+      "mismatchCount": 12,
+      "testedRowCount": 12
+    },
+    {
+      "candidateId": "enum-relabel-in-04-out-10",
+      "definition": "relabel input +4, output -10; source = production(relabelled input)",
+      "domain": "direct",
+      "expectedRowCount": 12,
+      "family": "enum_relabeling",
+      "firstFailure": null,
+      "matchCount": 12,
+      "mismatchCount": 0,
+      "testedRowCount": 12
+    },
+    {
+      "candidateId": "enum-relabel-in-04-out-11",
+      "definition": "relabel input +4, output -11; source = production(relabelled input)",
+      "domain": "direct",
+      "expectedRowCount": 12,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "辰",
+        "predictedBranch": "卯",
+        "rowId": "ziwei-子-tianfu"
+      },
+      "matchCount": 0,
+      "mismatchCount": 12,
+      "testedRowCount": 12
+    },
+    {
+      "candidateId": "enum-relabel-in-05-out-00",
+      "definition": "relabel input +5, output -0; source = production(relabelled input)",
+      "domain": "direct",
+      "expectedRowCount": 12,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "辰",
+        "predictedBranch": "卯",
+        "rowId": "ziwei-子-tianfu"
+      },
+      "matchCount": 0,
+      "mismatchCount": 12,
+      "testedRowCount": 12
+    },
+    {
+      "candidateId": "enum-relabel-in-05-out-01",
+      "definition": "relabel input +5, output -1; source = production(relabelled input)",
+      "domain": "direct",
+      "expectedRowCount": 12,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "辰",
+        "predictedBranch": "寅",
+        "rowId": "ziwei-子-tianfu"
+      },
+      "matchCount": 0,
+      "mismatchCount": 12,
+      "testedRowCount": 12
+    },
+    {
+      "candidateId": "enum-relabel-in-05-out-02",
+      "definition": "relabel input +5, output -2; source = production(relabelled input)",
+      "domain": "direct",
+      "expectedRowCount": 12,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "辰",
+        "predictedBranch": "丑",
+        "rowId": "ziwei-子-tianfu"
+      },
+      "matchCount": 0,
+      "mismatchCount": 12,
+      "testedRowCount": 12
+    },
+    {
+      "candidateId": "enum-relabel-in-05-out-03",
+      "definition": "relabel input +5, output -3; source = production(relabelled input)",
+      "domain": "direct",
+      "expectedRowCount": 12,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "辰",
+        "predictedBranch": "子",
+        "rowId": "ziwei-子-tianfu"
+      },
+      "matchCount": 0,
+      "mismatchCount": 12,
+      "testedRowCount": 12
+    },
+    {
+      "candidateId": "enum-relabel-in-05-out-04",
+      "definition": "relabel input +5, output -4; source = production(relabelled input)",
+      "domain": "direct",
+      "expectedRowCount": 12,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "辰",
+        "predictedBranch": "亥",
+        "rowId": "ziwei-子-tianfu"
+      },
+      "matchCount": 0,
+      "mismatchCount": 12,
+      "testedRowCount": 12
+    },
+    {
+      "candidateId": "enum-relabel-in-05-out-05",
+      "definition": "relabel input +5, output -5; source = production(relabelled input)",
+      "domain": "direct",
+      "expectedRowCount": 12,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "辰",
+        "predictedBranch": "戌",
+        "rowId": "ziwei-子-tianfu"
+      },
+      "matchCount": 0,
+      "mismatchCount": 12,
+      "testedRowCount": 12
+    },
+    {
+      "candidateId": "enum-relabel-in-05-out-06",
+      "definition": "relabel input +5, output -6; source = production(relabelled input)",
+      "domain": "direct",
+      "expectedRowCount": 12,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "辰",
+        "predictedBranch": "酉",
+        "rowId": "ziwei-子-tianfu"
+      },
+      "matchCount": 0,
+      "mismatchCount": 12,
+      "testedRowCount": 12
+    },
+    {
+      "candidateId": "enum-relabel-in-05-out-07",
+      "definition": "relabel input +5, output -7; source = production(relabelled input)",
+      "domain": "direct",
+      "expectedRowCount": 12,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "辰",
+        "predictedBranch": "申",
+        "rowId": "ziwei-子-tianfu"
+      },
+      "matchCount": 0,
+      "mismatchCount": 12,
+      "testedRowCount": 12
+    },
+    {
+      "candidateId": "enum-relabel-in-05-out-08",
+      "definition": "relabel input +5, output -8; source = production(relabelled input)",
+      "domain": "direct",
+      "expectedRowCount": 12,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "辰",
+        "predictedBranch": "未",
+        "rowId": "ziwei-子-tianfu"
+      },
+      "matchCount": 0,
+      "mismatchCount": 12,
+      "testedRowCount": 12
+    },
+    {
+      "candidateId": "enum-relabel-in-05-out-09",
+      "definition": "relabel input +5, output -9; source = production(relabelled input)",
+      "domain": "direct",
+      "expectedRowCount": 12,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "辰",
+        "predictedBranch": "午",
+        "rowId": "ziwei-子-tianfu"
+      },
+      "matchCount": 0,
+      "mismatchCount": 12,
+      "testedRowCount": 12
+    },
+    {
+      "candidateId": "enum-relabel-in-05-out-10",
+      "definition": "relabel input +5, output -10; source = production(relabelled input)",
+      "domain": "direct",
+      "expectedRowCount": 12,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "辰",
+        "predictedBranch": "巳",
+        "rowId": "ziwei-子-tianfu"
+      },
+      "matchCount": 0,
+      "mismatchCount": 12,
+      "testedRowCount": 12
+    },
+    {
+      "candidateId": "enum-relabel-in-05-out-11",
+      "definition": "relabel input +5, output -11; source = production(relabelled input)",
+      "domain": "direct",
+      "expectedRowCount": 12,
+      "family": "enum_relabeling",
+      "firstFailure": null,
+      "matchCount": 12,
+      "mismatchCount": 0,
+      "testedRowCount": 12
+    },
+    {
+      "candidateId": "enum-relabel-in-06-out-00",
+      "definition": "relabel input +6, output -0; source = production(relabelled input)",
+      "domain": "direct",
+      "expectedRowCount": 12,
+      "family": "enum_relabeling",
+      "firstFailure": null,
+      "matchCount": 12,
+      "mismatchCount": 0,
+      "testedRowCount": 12
+    },
+    {
+      "candidateId": "enum-relabel-in-06-out-01",
+      "definition": "relabel input +6, output -1; source = production(relabelled input)",
+      "domain": "direct",
+      "expectedRowCount": 12,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "辰",
+        "predictedBranch": "卯",
+        "rowId": "ziwei-子-tianfu"
+      },
+      "matchCount": 0,
+      "mismatchCount": 12,
+      "testedRowCount": 12
+    },
+    {
+      "candidateId": "enum-relabel-in-06-out-02",
+      "definition": "relabel input +6, output -2; source = production(relabelled input)",
+      "domain": "direct",
+      "expectedRowCount": 12,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "辰",
+        "predictedBranch": "寅",
+        "rowId": "ziwei-子-tianfu"
+      },
+      "matchCount": 0,
+      "mismatchCount": 12,
+      "testedRowCount": 12
+    },
+    {
+      "candidateId": "enum-relabel-in-06-out-03",
+      "definition": "relabel input +6, output -3; source = production(relabelled input)",
+      "domain": "direct",
+      "expectedRowCount": 12,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "辰",
+        "predictedBranch": "丑",
+        "rowId": "ziwei-子-tianfu"
+      },
+      "matchCount": 0,
+      "mismatchCount": 12,
+      "testedRowCount": 12
+    },
+    {
+      "candidateId": "enum-relabel-in-06-out-04",
+      "definition": "relabel input +6, output -4; source = production(relabelled input)",
+      "domain": "direct",
+      "expectedRowCount": 12,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "辰",
+        "predictedBranch": "子",
+        "rowId": "ziwei-子-tianfu"
+      },
+      "matchCount": 0,
+      "mismatchCount": 12,
+      "testedRowCount": 12
+    },
+    {
+      "candidateId": "enum-relabel-in-06-out-05",
+      "definition": "relabel input +6, output -5; source = production(relabelled input)",
+      "domain": "direct",
+      "expectedRowCount": 12,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "辰",
+        "predictedBranch": "亥",
+        "rowId": "ziwei-子-tianfu"
+      },
+      "matchCount": 0,
+      "mismatchCount": 12,
+      "testedRowCount": 12
+    },
+    {
+      "candidateId": "enum-relabel-in-06-out-06",
+      "definition": "relabel input +6, output -6; source = production(relabelled input)",
+      "domain": "direct",
+      "expectedRowCount": 12,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "辰",
+        "predictedBranch": "戌",
+        "rowId": "ziwei-子-tianfu"
+      },
+      "matchCount": 0,
+      "mismatchCount": 12,
+      "testedRowCount": 12
+    },
+    {
+      "candidateId": "enum-relabel-in-06-out-07",
+      "definition": "relabel input +6, output -7; source = production(relabelled input)",
+      "domain": "direct",
+      "expectedRowCount": 12,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "辰",
+        "predictedBranch": "酉",
+        "rowId": "ziwei-子-tianfu"
+      },
+      "matchCount": 0,
+      "mismatchCount": 12,
+      "testedRowCount": 12
+    },
+    {
+      "candidateId": "enum-relabel-in-06-out-08",
+      "definition": "relabel input +6, output -8; source = production(relabelled input)",
+      "domain": "direct",
+      "expectedRowCount": 12,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "辰",
+        "predictedBranch": "申",
+        "rowId": "ziwei-子-tianfu"
+      },
+      "matchCount": 0,
+      "mismatchCount": 12,
+      "testedRowCount": 12
+    },
+    {
+      "candidateId": "enum-relabel-in-06-out-09",
+      "definition": "relabel input +6, output -9; source = production(relabelled input)",
+      "domain": "direct",
+      "expectedRowCount": 12,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "辰",
+        "predictedBranch": "未",
+        "rowId": "ziwei-子-tianfu"
+      },
+      "matchCount": 0,
+      "mismatchCount": 12,
+      "testedRowCount": 12
+    },
+    {
+      "candidateId": "enum-relabel-in-06-out-10",
+      "definition": "relabel input +6, output -10; source = production(relabelled input)",
+      "domain": "direct",
+      "expectedRowCount": 12,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "辰",
+        "predictedBranch": "午",
+        "rowId": "ziwei-子-tianfu"
+      },
+      "matchCount": 0,
+      "mismatchCount": 12,
+      "testedRowCount": 12
+    },
+    {
+      "candidateId": "enum-relabel-in-06-out-11",
+      "definition": "relabel input +6, output -11; source = production(relabelled input)",
+      "domain": "direct",
+      "expectedRowCount": 12,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "辰",
+        "predictedBranch": "巳",
+        "rowId": "ziwei-子-tianfu"
+      },
+      "matchCount": 0,
+      "mismatchCount": 12,
+      "testedRowCount": 12
+    },
+    {
+      "candidateId": "enum-relabel-in-07-out-00",
+      "definition": "relabel input +7, output -0; source = production(relabelled input)",
+      "domain": "direct",
+      "expectedRowCount": 12,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "辰",
+        "predictedBranch": "巳",
+        "rowId": "ziwei-子-tianfu"
+      },
+      "matchCount": 0,
+      "mismatchCount": 12,
+      "testedRowCount": 12
+    },
+    {
+      "candidateId": "enum-relabel-in-07-out-01",
+      "definition": "relabel input +7, output -1; source = production(relabelled input)",
+      "domain": "direct",
+      "expectedRowCount": 12,
+      "family": "enum_relabeling",
+      "firstFailure": null,
+      "matchCount": 12,
+      "mismatchCount": 0,
+      "testedRowCount": 12
+    },
+    {
+      "candidateId": "enum-relabel-in-07-out-02",
+      "definition": "relabel input +7, output -2; source = production(relabelled input)",
+      "domain": "direct",
+      "expectedRowCount": 12,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "辰",
+        "predictedBranch": "卯",
+        "rowId": "ziwei-子-tianfu"
+      },
+      "matchCount": 0,
+      "mismatchCount": 12,
+      "testedRowCount": 12
+    },
+    {
+      "candidateId": "enum-relabel-in-07-out-03",
+      "definition": "relabel input +7, output -3; source = production(relabelled input)",
+      "domain": "direct",
+      "expectedRowCount": 12,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "辰",
+        "predictedBranch": "寅",
+        "rowId": "ziwei-子-tianfu"
+      },
+      "matchCount": 0,
+      "mismatchCount": 12,
+      "testedRowCount": 12
+    },
+    {
+      "candidateId": "enum-relabel-in-07-out-04",
+      "definition": "relabel input +7, output -4; source = production(relabelled input)",
+      "domain": "direct",
+      "expectedRowCount": 12,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "辰",
+        "predictedBranch": "丑",
+        "rowId": "ziwei-子-tianfu"
+      },
+      "matchCount": 0,
+      "mismatchCount": 12,
+      "testedRowCount": 12
+    },
+    {
+      "candidateId": "enum-relabel-in-07-out-05",
+      "definition": "relabel input +7, output -5; source = production(relabelled input)",
+      "domain": "direct",
+      "expectedRowCount": 12,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "辰",
+        "predictedBranch": "子",
+        "rowId": "ziwei-子-tianfu"
+      },
+      "matchCount": 0,
+      "mismatchCount": 12,
+      "testedRowCount": 12
+    },
+    {
+      "candidateId": "enum-relabel-in-07-out-06",
+      "definition": "relabel input +7, output -6; source = production(relabelled input)",
+      "domain": "direct",
+      "expectedRowCount": 12,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "辰",
+        "predictedBranch": "亥",
+        "rowId": "ziwei-子-tianfu"
+      },
+      "matchCount": 0,
+      "mismatchCount": 12,
+      "testedRowCount": 12
+    },
+    {
+      "candidateId": "enum-relabel-in-07-out-07",
+      "definition": "relabel input +7, output -7; source = production(relabelled input)",
+      "domain": "direct",
+      "expectedRowCount": 12,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "辰",
+        "predictedBranch": "戌",
+        "rowId": "ziwei-子-tianfu"
+      },
+      "matchCount": 0,
+      "mismatchCount": 12,
+      "testedRowCount": 12
+    },
+    {
+      "candidateId": "enum-relabel-in-07-out-08",
+      "definition": "relabel input +7, output -8; source = production(relabelled input)",
+      "domain": "direct",
+      "expectedRowCount": 12,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "辰",
+        "predictedBranch": "酉",
+        "rowId": "ziwei-子-tianfu"
+      },
+      "matchCount": 0,
+      "mismatchCount": 12,
+      "testedRowCount": 12
+    },
+    {
+      "candidateId": "enum-relabel-in-07-out-09",
+      "definition": "relabel input +7, output -9; source = production(relabelled input)",
+      "domain": "direct",
+      "expectedRowCount": 12,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "辰",
+        "predictedBranch": "申",
+        "rowId": "ziwei-子-tianfu"
+      },
+      "matchCount": 0,
+      "mismatchCount": 12,
+      "testedRowCount": 12
+    },
+    {
+      "candidateId": "enum-relabel-in-07-out-10",
+      "definition": "relabel input +7, output -10; source = production(relabelled input)",
+      "domain": "direct",
+      "expectedRowCount": 12,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "辰",
+        "predictedBranch": "未",
+        "rowId": "ziwei-子-tianfu"
+      },
+      "matchCount": 0,
+      "mismatchCount": 12,
+      "testedRowCount": 12
+    },
+    {
+      "candidateId": "enum-relabel-in-07-out-11",
+      "definition": "relabel input +7, output -11; source = production(relabelled input)",
+      "domain": "direct",
+      "expectedRowCount": 12,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "辰",
+        "predictedBranch": "午",
+        "rowId": "ziwei-子-tianfu"
+      },
+      "matchCount": 0,
+      "mismatchCount": 12,
+      "testedRowCount": 12
+    },
+    {
+      "candidateId": "enum-relabel-in-08-out-00",
+      "definition": "relabel input +8, output -0; source = production(relabelled input)",
+      "domain": "direct",
+      "expectedRowCount": 12,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "辰",
+        "predictedBranch": "午",
+        "rowId": "ziwei-子-tianfu"
+      },
+      "matchCount": 0,
+      "mismatchCount": 12,
+      "testedRowCount": 12
+    },
+    {
+      "candidateId": "enum-relabel-in-08-out-01",
+      "definition": "relabel input +8, output -1; source = production(relabelled input)",
+      "domain": "direct",
+      "expectedRowCount": 12,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "辰",
+        "predictedBranch": "巳",
+        "rowId": "ziwei-子-tianfu"
+      },
+      "matchCount": 0,
+      "mismatchCount": 12,
+      "testedRowCount": 12
+    },
+    {
+      "candidateId": "enum-relabel-in-08-out-02",
+      "definition": "relabel input +8, output -2; source = production(relabelled input)",
+      "domain": "direct",
+      "expectedRowCount": 12,
+      "family": "enum_relabeling",
+      "firstFailure": null,
+      "matchCount": 12,
+      "mismatchCount": 0,
+      "testedRowCount": 12
+    },
+    {
+      "candidateId": "enum-relabel-in-08-out-03",
+      "definition": "relabel input +8, output -3; source = production(relabelled input)",
+      "domain": "direct",
+      "expectedRowCount": 12,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "辰",
+        "predictedBranch": "卯",
+        "rowId": "ziwei-子-tianfu"
+      },
+      "matchCount": 0,
+      "mismatchCount": 12,
+      "testedRowCount": 12
+    },
+    {
+      "candidateId": "enum-relabel-in-08-out-04",
+      "definition": "relabel input +8, output -4; source = production(relabelled input)",
+      "domain": "direct",
+      "expectedRowCount": 12,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "辰",
+        "predictedBranch": "寅",
+        "rowId": "ziwei-子-tianfu"
+      },
+      "matchCount": 0,
+      "mismatchCount": 12,
+      "testedRowCount": 12
+    },
+    {
+      "candidateId": "enum-relabel-in-08-out-05",
+      "definition": "relabel input +8, output -5; source = production(relabelled input)",
+      "domain": "direct",
+      "expectedRowCount": 12,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "辰",
+        "predictedBranch": "丑",
+        "rowId": "ziwei-子-tianfu"
+      },
+      "matchCount": 0,
+      "mismatchCount": 12,
+      "testedRowCount": 12
+    },
+    {
+      "candidateId": "enum-relabel-in-08-out-06",
+      "definition": "relabel input +8, output -6; source = production(relabelled input)",
+      "domain": "direct",
+      "expectedRowCount": 12,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "辰",
+        "predictedBranch": "子",
+        "rowId": "ziwei-子-tianfu"
+      },
+      "matchCount": 0,
+      "mismatchCount": 12,
+      "testedRowCount": 12
+    },
+    {
+      "candidateId": "enum-relabel-in-08-out-07",
+      "definition": "relabel input +8, output -7; source = production(relabelled input)",
+      "domain": "direct",
+      "expectedRowCount": 12,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "辰",
+        "predictedBranch": "亥",
+        "rowId": "ziwei-子-tianfu"
+      },
+      "matchCount": 0,
+      "mismatchCount": 12,
+      "testedRowCount": 12
+    },
+    {
+      "candidateId": "enum-relabel-in-08-out-08",
+      "definition": "relabel input +8, output -8; source = production(relabelled input)",
+      "domain": "direct",
+      "expectedRowCount": 12,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "辰",
+        "predictedBranch": "戌",
+        "rowId": "ziwei-子-tianfu"
+      },
+      "matchCount": 0,
+      "mismatchCount": 12,
+      "testedRowCount": 12
+    },
+    {
+      "candidateId": "enum-relabel-in-08-out-09",
+      "definition": "relabel input +8, output -9; source = production(relabelled input)",
+      "domain": "direct",
+      "expectedRowCount": 12,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "辰",
+        "predictedBranch": "酉",
+        "rowId": "ziwei-子-tianfu"
+      },
+      "matchCount": 0,
+      "mismatchCount": 12,
+      "testedRowCount": 12
+    },
+    {
+      "candidateId": "enum-relabel-in-08-out-10",
+      "definition": "relabel input +8, output -10; source = production(relabelled input)",
+      "domain": "direct",
+      "expectedRowCount": 12,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "辰",
+        "predictedBranch": "申",
+        "rowId": "ziwei-子-tianfu"
+      },
+      "matchCount": 0,
+      "mismatchCount": 12,
+      "testedRowCount": 12
+    },
+    {
+      "candidateId": "enum-relabel-in-08-out-11",
+      "definition": "relabel input +8, output -11; source = production(relabelled input)",
+      "domain": "direct",
+      "expectedRowCount": 12,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "辰",
+        "predictedBranch": "未",
+        "rowId": "ziwei-子-tianfu"
+      },
+      "matchCount": 0,
+      "mismatchCount": 12,
+      "testedRowCount": 12
+    },
+    {
+      "candidateId": "enum-relabel-in-09-out-00",
+      "definition": "relabel input +9, output -0; source = production(relabelled input)",
+      "domain": "direct",
+      "expectedRowCount": 12,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "辰",
+        "predictedBranch": "未",
+        "rowId": "ziwei-子-tianfu"
+      },
+      "matchCount": 0,
+      "mismatchCount": 12,
+      "testedRowCount": 12
+    },
+    {
+      "candidateId": "enum-relabel-in-09-out-01",
+      "definition": "relabel input +9, output -1; source = production(relabelled input)",
+      "domain": "direct",
+      "expectedRowCount": 12,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "辰",
+        "predictedBranch": "午",
+        "rowId": "ziwei-子-tianfu"
+      },
+      "matchCount": 0,
+      "mismatchCount": 12,
+      "testedRowCount": 12
+    },
+    {
+      "candidateId": "enum-relabel-in-09-out-02",
+      "definition": "relabel input +9, output -2; source = production(relabelled input)",
+      "domain": "direct",
+      "expectedRowCount": 12,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "辰",
+        "predictedBranch": "巳",
+        "rowId": "ziwei-子-tianfu"
+      },
+      "matchCount": 0,
+      "mismatchCount": 12,
+      "testedRowCount": 12
+    },
+    {
+      "candidateId": "enum-relabel-in-09-out-03",
+      "definition": "relabel input +9, output -3; source = production(relabelled input)",
+      "domain": "direct",
+      "expectedRowCount": 12,
+      "family": "enum_relabeling",
+      "firstFailure": null,
+      "matchCount": 12,
+      "mismatchCount": 0,
+      "testedRowCount": 12
+    },
+    {
+      "candidateId": "enum-relabel-in-09-out-04",
+      "definition": "relabel input +9, output -4; source = production(relabelled input)",
+      "domain": "direct",
+      "expectedRowCount": 12,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "辰",
+        "predictedBranch": "卯",
+        "rowId": "ziwei-子-tianfu"
+      },
+      "matchCount": 0,
+      "mismatchCount": 12,
+      "testedRowCount": 12
+    },
+    {
+      "candidateId": "enum-relabel-in-09-out-05",
+      "definition": "relabel input +9, output -5; source = production(relabelled input)",
+      "domain": "direct",
+      "expectedRowCount": 12,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "辰",
+        "predictedBranch": "寅",
+        "rowId": "ziwei-子-tianfu"
+      },
+      "matchCount": 0,
+      "mismatchCount": 12,
+      "testedRowCount": 12
+    },
+    {
+      "candidateId": "enum-relabel-in-09-out-06",
+      "definition": "relabel input +9, output -6; source = production(relabelled input)",
+      "domain": "direct",
+      "expectedRowCount": 12,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "辰",
+        "predictedBranch": "丑",
+        "rowId": "ziwei-子-tianfu"
+      },
+      "matchCount": 0,
+      "mismatchCount": 12,
+      "testedRowCount": 12
+    },
+    {
+      "candidateId": "enum-relabel-in-09-out-07",
+      "definition": "relabel input +9, output -7; source = production(relabelled input)",
+      "domain": "direct",
+      "expectedRowCount": 12,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "辰",
+        "predictedBranch": "子",
+        "rowId": "ziwei-子-tianfu"
+      },
+      "matchCount": 0,
+      "mismatchCount": 12,
+      "testedRowCount": 12
+    },
+    {
+      "candidateId": "enum-relabel-in-09-out-08",
+      "definition": "relabel input +9, output -8; source = production(relabelled input)",
+      "domain": "direct",
+      "expectedRowCount": 12,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "辰",
+        "predictedBranch": "亥",
+        "rowId": "ziwei-子-tianfu"
+      },
+      "matchCount": 0,
+      "mismatchCount": 12,
+      "testedRowCount": 12
+    },
+    {
+      "candidateId": "enum-relabel-in-09-out-09",
+      "definition": "relabel input +9, output -9; source = production(relabelled input)",
+      "domain": "direct",
+      "expectedRowCount": 12,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "辰",
+        "predictedBranch": "戌",
+        "rowId": "ziwei-子-tianfu"
+      },
+      "matchCount": 0,
+      "mismatchCount": 12,
+      "testedRowCount": 12
+    },
+    {
+      "candidateId": "enum-relabel-in-09-out-10",
+      "definition": "relabel input +9, output -10; source = production(relabelled input)",
+      "domain": "direct",
+      "expectedRowCount": 12,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "辰",
+        "predictedBranch": "酉",
+        "rowId": "ziwei-子-tianfu"
+      },
+      "matchCount": 0,
+      "mismatchCount": 12,
+      "testedRowCount": 12
+    },
+    {
+      "candidateId": "enum-relabel-in-09-out-11",
+      "definition": "relabel input +9, output -11; source = production(relabelled input)",
+      "domain": "direct",
+      "expectedRowCount": 12,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "辰",
+        "predictedBranch": "申",
+        "rowId": "ziwei-子-tianfu"
+      },
+      "matchCount": 0,
+      "mismatchCount": 12,
+      "testedRowCount": 12
+    },
+    {
+      "candidateId": "enum-relabel-in-10-out-00",
+      "definition": "relabel input +10, output -0; source = production(relabelled input)",
+      "domain": "direct",
+      "expectedRowCount": 12,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "辰",
+        "predictedBranch": "申",
+        "rowId": "ziwei-子-tianfu"
+      },
+      "matchCount": 0,
+      "mismatchCount": 12,
+      "testedRowCount": 12
+    },
+    {
+      "candidateId": "enum-relabel-in-10-out-01",
+      "definition": "relabel input +10, output -1; source = production(relabelled input)",
+      "domain": "direct",
+      "expectedRowCount": 12,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "辰",
+        "predictedBranch": "未",
+        "rowId": "ziwei-子-tianfu"
+      },
+      "matchCount": 0,
+      "mismatchCount": 12,
+      "testedRowCount": 12
+    },
+    {
+      "candidateId": "enum-relabel-in-10-out-02",
+      "definition": "relabel input +10, output -2; source = production(relabelled input)",
+      "domain": "direct",
+      "expectedRowCount": 12,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "辰",
+        "predictedBranch": "午",
+        "rowId": "ziwei-子-tianfu"
+      },
+      "matchCount": 0,
+      "mismatchCount": 12,
+      "testedRowCount": 12
+    },
+    {
+      "candidateId": "enum-relabel-in-10-out-03",
+      "definition": "relabel input +10, output -3; source = production(relabelled input)",
+      "domain": "direct",
+      "expectedRowCount": 12,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "辰",
+        "predictedBranch": "巳",
+        "rowId": "ziwei-子-tianfu"
+      },
+      "matchCount": 0,
+      "mismatchCount": 12,
+      "testedRowCount": 12
+    },
+    {
+      "candidateId": "enum-relabel-in-10-out-04",
+      "definition": "relabel input +10, output -4; source = production(relabelled input)",
+      "domain": "direct",
+      "expectedRowCount": 12,
+      "family": "enum_relabeling",
+      "firstFailure": null,
+      "matchCount": 12,
+      "mismatchCount": 0,
+      "testedRowCount": 12
+    },
+    {
+      "candidateId": "enum-relabel-in-10-out-05",
+      "definition": "relabel input +10, output -5; source = production(relabelled input)",
+      "domain": "direct",
+      "expectedRowCount": 12,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "辰",
+        "predictedBranch": "卯",
+        "rowId": "ziwei-子-tianfu"
+      },
+      "matchCount": 0,
+      "mismatchCount": 12,
+      "testedRowCount": 12
+    },
+    {
+      "candidateId": "enum-relabel-in-10-out-06",
+      "definition": "relabel input +10, output -6; source = production(relabelled input)",
+      "domain": "direct",
+      "expectedRowCount": 12,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "辰",
+        "predictedBranch": "寅",
+        "rowId": "ziwei-子-tianfu"
+      },
+      "matchCount": 0,
+      "mismatchCount": 12,
+      "testedRowCount": 12
+    },
+    {
+      "candidateId": "enum-relabel-in-10-out-07",
+      "definition": "relabel input +10, output -7; source = production(relabelled input)",
+      "domain": "direct",
+      "expectedRowCount": 12,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "辰",
+        "predictedBranch": "丑",
+        "rowId": "ziwei-子-tianfu"
+      },
+      "matchCount": 0,
+      "mismatchCount": 12,
+      "testedRowCount": 12
+    },
+    {
+      "candidateId": "enum-relabel-in-10-out-08",
+      "definition": "relabel input +10, output -8; source = production(relabelled input)",
+      "domain": "direct",
+      "expectedRowCount": 12,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "辰",
+        "predictedBranch": "子",
+        "rowId": "ziwei-子-tianfu"
+      },
+      "matchCount": 0,
+      "mismatchCount": 12,
+      "testedRowCount": 12
+    },
+    {
+      "candidateId": "enum-relabel-in-10-out-09",
+      "definition": "relabel input +10, output -9; source = production(relabelled input)",
+      "domain": "direct",
+      "expectedRowCount": 12,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "辰",
+        "predictedBranch": "亥",
+        "rowId": "ziwei-子-tianfu"
+      },
+      "matchCount": 0,
+      "mismatchCount": 12,
+      "testedRowCount": 12
+    },
+    {
+      "candidateId": "enum-relabel-in-10-out-10",
+      "definition": "relabel input +10, output -10; source = production(relabelled input)",
+      "domain": "direct",
+      "expectedRowCount": 12,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "辰",
+        "predictedBranch": "戌",
+        "rowId": "ziwei-子-tianfu"
+      },
+      "matchCount": 0,
+      "mismatchCount": 12,
+      "testedRowCount": 12
+    },
+    {
+      "candidateId": "enum-relabel-in-10-out-11",
+      "definition": "relabel input +10, output -11; source = production(relabelled input)",
+      "domain": "direct",
+      "expectedRowCount": 12,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "辰",
+        "predictedBranch": "酉",
+        "rowId": "ziwei-子-tianfu"
+      },
+      "matchCount": 0,
+      "mismatchCount": 12,
+      "testedRowCount": 12
+    },
+    {
+      "candidateId": "enum-relabel-in-11-out-00",
+      "definition": "relabel input +11, output -0; source = production(relabelled input)",
+      "domain": "direct",
+      "expectedRowCount": 12,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "辰",
+        "predictedBranch": "酉",
+        "rowId": "ziwei-子-tianfu"
+      },
+      "matchCount": 0,
+      "mismatchCount": 12,
+      "testedRowCount": 12
+    },
+    {
+      "candidateId": "enum-relabel-in-11-out-01",
+      "definition": "relabel input +11, output -1; source = production(relabelled input)",
+      "domain": "direct",
+      "expectedRowCount": 12,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "辰",
+        "predictedBranch": "申",
+        "rowId": "ziwei-子-tianfu"
+      },
+      "matchCount": 0,
+      "mismatchCount": 12,
+      "testedRowCount": 12
+    },
+    {
+      "candidateId": "enum-relabel-in-11-out-02",
+      "definition": "relabel input +11, output -2; source = production(relabelled input)",
+      "domain": "direct",
+      "expectedRowCount": 12,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "辰",
+        "predictedBranch": "未",
+        "rowId": "ziwei-子-tianfu"
+      },
+      "matchCount": 0,
+      "mismatchCount": 12,
+      "testedRowCount": 12
+    },
+    {
+      "candidateId": "enum-relabel-in-11-out-03",
+      "definition": "relabel input +11, output -3; source = production(relabelled input)",
+      "domain": "direct",
+      "expectedRowCount": 12,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "辰",
+        "predictedBranch": "午",
+        "rowId": "ziwei-子-tianfu"
+      },
+      "matchCount": 0,
+      "mismatchCount": 12,
+      "testedRowCount": 12
+    },
+    {
+      "candidateId": "enum-relabel-in-11-out-04",
+      "definition": "relabel input +11, output -4; source = production(relabelled input)",
+      "domain": "direct",
+      "expectedRowCount": 12,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "辰",
+        "predictedBranch": "巳",
+        "rowId": "ziwei-子-tianfu"
+      },
+      "matchCount": 0,
+      "mismatchCount": 12,
+      "testedRowCount": 12
+    },
+    {
+      "candidateId": "enum-relabel-in-11-out-05",
+      "definition": "relabel input +11, output -5; source = production(relabelled input)",
+      "domain": "direct",
+      "expectedRowCount": 12,
+      "family": "enum_relabeling",
+      "firstFailure": null,
+      "matchCount": 12,
+      "mismatchCount": 0,
+      "testedRowCount": 12
+    },
+    {
+      "candidateId": "enum-relabel-in-11-out-06",
+      "definition": "relabel input +11, output -6; source = production(relabelled input)",
+      "domain": "direct",
+      "expectedRowCount": 12,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "辰",
+        "predictedBranch": "卯",
+        "rowId": "ziwei-子-tianfu"
+      },
+      "matchCount": 0,
+      "mismatchCount": 12,
+      "testedRowCount": 12
+    },
+    {
+      "candidateId": "enum-relabel-in-11-out-07",
+      "definition": "relabel input +11, output -7; source = production(relabelled input)",
+      "domain": "direct",
+      "expectedRowCount": 12,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "辰",
+        "predictedBranch": "寅",
+        "rowId": "ziwei-子-tianfu"
+      },
+      "matchCount": 0,
+      "mismatchCount": 12,
+      "testedRowCount": 12
+    },
+    {
+      "candidateId": "enum-relabel-in-11-out-08",
+      "definition": "relabel input +11, output -8; source = production(relabelled input)",
+      "domain": "direct",
+      "expectedRowCount": 12,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "辰",
+        "predictedBranch": "丑",
+        "rowId": "ziwei-子-tianfu"
+      },
+      "matchCount": 0,
+      "mismatchCount": 12,
+      "testedRowCount": 12
+    },
+    {
+      "candidateId": "enum-relabel-in-11-out-09",
+      "definition": "relabel input +11, output -9; source = production(relabelled input)",
+      "domain": "direct",
+      "expectedRowCount": 12,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "辰",
+        "predictedBranch": "子",
+        "rowId": "ziwei-子-tianfu"
+      },
+      "matchCount": 0,
+      "mismatchCount": 12,
+      "testedRowCount": 12
+    },
+    {
+      "candidateId": "enum-relabel-in-11-out-10",
+      "definition": "relabel input +11, output -10; source = production(relabelled input)",
+      "domain": "direct",
+      "expectedRowCount": 12,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "辰",
+        "predictedBranch": "亥",
+        "rowId": "ziwei-子-tianfu"
+      },
+      "matchCount": 0,
+      "mismatchCount": 12,
+      "testedRowCount": 12
+    },
+    {
+      "candidateId": "enum-relabel-in-11-out-11",
+      "definition": "relabel input +11, output -11; source = production(relabelled input)",
+      "domain": "direct",
+      "expectedRowCount": 12,
+      "family": "enum_relabeling",
+      "firstFailure": {
+        "expectedBranch": "辰",
+        "predictedBranch": "戌",
+        "rowId": "ziwei-子-tianfu"
+      },
+      "matchCount": 0,
+      "mismatchCount": 12,
+      "testedRowCount": 12
+    },
+    {
+      "candidateId": "source-base-direction",
+      "definition": "source table base 辰(index 4), reverse direction: source = 4 - ziwei",
+      "domain": "direct",
+      "expectedRowCount": 12,
+      "family": "source_base_direction",
+      "firstFailure": null,
+      "matchCount": 12,
+      "mismatchCount": 0,
+      "testedRowCount": 12
+    }
+  ],
+  "rows": [
+    {
+      "input": {
+        "ziweiBranch": "子"
+      },
+      "orderingKey": "00",
+      "production": {
+        "branch": "戌",
+        "branchIndex": 10,
+        "route": "calculateTianfuBranch(ziweiBranch) observed from production rule module",
+        "ziweiBranch": "子"
+      },
+      "rowId": "ziwei-子-tianfu",
+      "signedDistance": 6,
+      "source": {
+        "branch": "辰",
+        "branchIndex": 4
+      }
+    },
+    {
+      "input": {
+        "ziweiBranch": "丑"
+      },
+      "orderingKey": "01",
+      "production": {
+        "branch": "酉",
+        "branchIndex": 9,
+        "route": "calculateTianfuBranch(ziweiBranch) observed from production rule module",
+        "ziweiBranch": "丑"
+      },
+      "rowId": "ziwei-丑-tianfu",
+      "signedDistance": 6,
+      "source": {
+        "branch": "卯",
+        "branchIndex": 3
+      }
+    },
+    {
+      "input": {
+        "ziweiBranch": "寅"
+      },
+      "orderingKey": "02",
+      "production": {
+        "branch": "申",
+        "branchIndex": 8,
+        "route": "calculateTianfuBranch(ziweiBranch) observed from production rule module",
+        "ziweiBranch": "寅"
+      },
+      "rowId": "ziwei-寅-tianfu",
+      "signedDistance": 6,
+      "source": {
+        "branch": "寅",
+        "branchIndex": 2
+      }
+    },
+    {
+      "input": {
+        "ziweiBranch": "卯"
+      },
+      "orderingKey": "03",
+      "production": {
+        "branch": "未",
+        "branchIndex": 7,
+        "route": "calculateTianfuBranch(ziweiBranch) observed from production rule module",
+        "ziweiBranch": "卯"
+      },
+      "rowId": "ziwei-卯-tianfu",
+      "signedDistance": 6,
+      "source": {
+        "branch": "丑",
+        "branchIndex": 1
+      }
+    },
+    {
+      "input": {
+        "ziweiBranch": "辰"
+      },
+      "orderingKey": "04",
+      "production": {
+        "branch": "午",
+        "branchIndex": 6,
+        "route": "calculateTianfuBranch(ziweiBranch) observed from production rule module",
+        "ziweiBranch": "辰"
+      },
+      "rowId": "ziwei-辰-tianfu",
+      "signedDistance": 6,
+      "source": {
+        "branch": "子",
+        "branchIndex": 0
+      }
+    },
+    {
+      "input": {
+        "ziweiBranch": "巳"
+      },
+      "orderingKey": "05",
+      "production": {
+        "branch": "巳",
+        "branchIndex": 5,
+        "route": "calculateTianfuBranch(ziweiBranch) observed from production rule module",
+        "ziweiBranch": "巳"
+      },
+      "rowId": "ziwei-巳-tianfu",
+      "signedDistance": 6,
+      "source": {
+        "branch": "亥",
+        "branchIndex": 11
+      }
+    },
+    {
+      "input": {
+        "ziweiBranch": "午"
+      },
+      "orderingKey": "06",
+      "production": {
+        "branch": "辰",
+        "branchIndex": 4,
+        "route": "calculateTianfuBranch(ziweiBranch) observed from production rule module",
+        "ziweiBranch": "午"
+      },
+      "rowId": "ziwei-午-tianfu",
+      "signedDistance": 6,
+      "source": {
+        "branch": "戌",
+        "branchIndex": 10
+      }
+    },
+    {
+      "input": {
+        "ziweiBranch": "未"
+      },
+      "orderingKey": "07",
+      "production": {
+        "branch": "卯",
+        "branchIndex": 3,
+        "route": "calculateTianfuBranch(ziweiBranch) observed from production rule module",
+        "ziweiBranch": "未"
+      },
+      "rowId": "ziwei-未-tianfu",
+      "signedDistance": 6,
+      "source": {
+        "branch": "酉",
+        "branchIndex": 9
+      }
+    },
+    {
+      "input": {
+        "ziweiBranch": "申"
+      },
+      "orderingKey": "08",
+      "production": {
+        "branch": "寅",
+        "branchIndex": 2,
+        "route": "calculateTianfuBranch(ziweiBranch) observed from production rule module",
+        "ziweiBranch": "申"
+      },
+      "rowId": "ziwei-申-tianfu",
+      "signedDistance": 6,
+      "source": {
+        "branch": "申",
+        "branchIndex": 8
+      }
+    },
+    {
+      "input": {
+        "ziweiBranch": "酉"
+      },
+      "orderingKey": "09",
+      "production": {
+        "branch": "丑",
+        "branchIndex": 1,
+        "route": "calculateTianfuBranch(ziweiBranch) observed from production rule module",
+        "ziweiBranch": "酉"
+      },
+      "rowId": "ziwei-酉-tianfu",
+      "signedDistance": 6,
+      "source": {
+        "branch": "未",
+        "branchIndex": 7
+      }
+    },
+    {
+      "input": {
+        "ziweiBranch": "戌"
+      },
+      "orderingKey": "10",
+      "production": {
+        "branch": "子",
+        "branchIndex": 0,
+        "route": "calculateTianfuBranch(ziweiBranch) observed from production rule module",
+        "ziweiBranch": "戌"
+      },
+      "rowId": "ziwei-戌-tianfu",
+      "signedDistance": 6,
+      "source": {
+        "branch": "午",
+        "branchIndex": 6
+      }
+    },
+    {
+      "input": {
+        "ziweiBranch": "亥"
+      },
+      "orderingKey": "11",
+      "production": {
+        "branch": "亥",
+        "branchIndex": 11,
+        "route": "calculateTianfuBranch(ziweiBranch) observed from production rule module",
+        "ziweiBranch": "亥"
+      },
+      "rowId": "ziwei-亥-tianfu",
+      "signedDistance": 6,
+      "source": {
+        "branch": "巳",
+        "branchIndex": 5
+      }
+    }
+  ]
+}
