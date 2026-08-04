@@ -1,7 +1,79 @@
 {
+  "adversarialNegativeCoverage": [
+    {
+      "expected": "violation",
+      "id": "raw_text_only_extraction",
+      "observed": "record.occurrence.rawText is directly addressable"
+    },
+    {
+      "expected": "violation",
+      "id": "guard_occurrence_separate_consumption",
+      "observed": "record.guard and record.occurrence are separate public properties"
+    },
+    {
+      "expected": "violation",
+      "id": "stable_claim_or_verified_fact_promotion",
+      "observed": "isStableClaim or isVerifiedFact true"
+    },
+    {
+      "expected": "violation",
+      "id": "source_unresolved_hidden",
+      "observed": "sourceIdentity status changed from unresolved_source_identity"
+    },
+    {
+      "expected": "violation",
+      "id": "context_or_must_not_assume_missing",
+      "observed": "required context dependency or mustNotAssume removed"
+    },
+    {
+      "expected": "violation",
+      "id": "merge_or_representative_sentence",
+      "observed": "occurrence merge or representative sentence enabled"
+    },
+    {
+      "expected": "violation",
+      "id": "pilot_only_removed",
+      "observed": "pilot-only status or forbidden consumer flags removed"
+    },
+    {
+      "expected": "violation",
+      "id": "candidate_outside_four",
+      "observed": "record ID not in audit structuralGuardPossible"
+    },
+    {
+      "expected": "violation",
+      "id": "whole_readiness_expansion",
+      "observed": "readiness/grounding expanded beyond candidate scope"
+    },
+    {
+      "expected": "violation",
+      "id": "question_interpretation_advice_prompt",
+      "observed": "meaning or prompt field inserted"
+    },
+    {
+      "expected": "violation",
+      "id": "occurrence_guard_binding_replaced",
+      "observed": "binding occurrence ID or hash replaced"
+    },
+    {
+      "expected": "violation",
+      "id": "required_guard_partially_missing",
+      "observed": "required guard dependency removed"
+    },
+    {
+      "expected": "violation",
+      "id": "partial_admission_unit_serialization",
+      "observed": "guard or occurrence omitted from unit"
+    },
+    {
+      "expected": "violation",
+      "id": "self_referential_head_contract",
+      "observed": "includedCommit points to generation HEAD"
+    }
+  ],
   "artifactIdentity": {
-    "artifactId": "ziwei-structural-admission-guard-pilot-v0",
-    "artifactPayloadSha256": "85a4bc3b5a44070864d6f8102140fc424758528349077f7ae28d230017359c2d",
+    "artifactId": "ziwei-structural-admission-independent-acceptance-review-v0",
+    "artifactPayloadSha256": "14d6119b619d7f30f41786772c6fbe66de3f155375848acdcac9df7d930f718f",
     "contractVersion": "artifact-identity-v1",
     "generation": {
       "baseHead": "cf40bda8a2620e3b8074ece9b81303de9b13b9fb",
@@ -19,50 +91,50 @@
         "path": "artifacts/ziwei-readiness-admission-blocker-audit-v0/complete.json"
       },
       {
-        "byteSha256": "243980b71b60a43be1c02de9f4c02367577d0d005a257eeb52212be5ce791d98",
-        "path": "scripts/lib/ziwei-structural-admission-guard.mjs"
+        "byteSha256": "a56e3c0e54bc06bcf13082ff7f94300a11cd26a110ffd3f42e98b043a83f7b1d",
+        "path": "artifacts/ziwei-structural-admission-guard-pilot-v0/complete.json"
+      },
+      {
+        "byteSha256": "94872568cf4c7d56b354f5f8bb8cc2d0e406d96cba13c0980a4ef656177c9d60",
+        "path": "test/fixtures/ziwei/structural-admission-independent-acceptance-review-negative-v0.json"
       }
     ],
     "materializer": {
-      "path": "scripts/materialize-ziwei-structural-admission-guard-pilot-v0.mjs",
+      "path": "scripts/materialize-ziwei-structural-admission-independent-acceptance-review-v0.mjs",
       "version": "1.0.0"
     }
   },
+  "auditCandidateIds": [
+    "ziwei-occ-2260aba6ed2163e3",
+    "ziwei-occ-a09e10a5495186b8",
+    "ziwei-occ-a72bdf60ef809b58",
+    "ziwei-occ-e73f469c5e35e072"
+  ],
   "basisHead": "cf40bda8a2620e3b8074ece9b81303de9b13b9fb",
-  "checker": "scripts/check-ziwei-structural-admission-guard-pilot-v0.mjs",
-  "consumer": "scripts/lib/ziwei-structural-admission-guard.mjs",
-  "deterministicContract": {
-    "hashScopes": [
-      "canonical artifact payload",
-      "complete.json UTF-8 bytes including final LF"
-    ],
-    "occurrenceId": "preserved from audit/provenance",
-    "rawText": "exact provenance raw text; no normalization",
-    "recordOrder": "lexicographic occurrenceId",
-    "timestamps": "forbidden"
-  },
-  "globalBoundary": {
+  "boundaries": {
     "activation": "experimental",
+    "candidateScopeOnly": true,
+    "frequencyAsImportanceForbidden": true,
     "grounding": "not_safe_to_start",
+    "independentVerification": false,
+    "questionInterpretationAdviceRankingPromptAllowed": false,
+    "rawTextVerifiedFact": false,
     "readiness": "not_safe_to_start",
-    "reason": "pilot-only occurrence references do not close source identity, independent verification, or claim boundaries",
+    "sourceIdentity": "unresolved_source_identity",
     "stableClaimBoundary": 0,
+    "userContextDependencyPreserved": true,
     "wholeReadinessExpansionAllowed": false
   },
-  "invariants": [
-    "candidate IDs come only from audit categoryLists.structuralGuardPossible",
-    "records remain separate occurrences",
-    "raw text is never a verified fact",
-    "unresolved source identity is never hidden",
-    "frequency does not affect admission",
-    "no question, interpretation, advice, ranking, or prompt is generated"
+  "candidateCount": 4,
+  "candidateIds": [
+    "ziwei-occ-2260aba6ed2163e3",
+    "ziwei-occ-a09e10a5495186b8",
+    "ziwei-occ-a72bdf60ef809b58",
+    "ziwei-occ-e73f469c5e35e072"
   ],
-  "materializer": "scripts/materialize-ziwei-structural-admission-guard-pilot-v0.mjs",
-  "negativeFixture": "test/fixtures/ziwei/structural-admission-guard-pilot-negative-v0.json",
-  "occurrenceCount": 4,
-  "pilotVersion": "1.0.0",
-  "records": [
+  "candidateRecords": [
     {
+      "acceptance": "accepted_with_declared_limit",
       "admissionUnit": {
         "binding": {
           "guardSha256": "41af383e89fe2ed9fcae8faebcf4892bed4fc39d86898880214f47324c7a6773",
@@ -144,31 +216,10 @@
         "schemaVersion": "ziwei-structural-admission-unit-v1",
         "unitVersion": "1.0.0"
       },
-      "assessment": {
-        "additionalStructuralRestrictionRequired": false,
-        "auditState": "eligible_after_structural_guard",
-        "blockerBasis": {
-          "primary": "structural_guard_required",
-          "supporting": [
-            "source_identity_unresolved",
-            "raw_text_is_not_fact",
-            "claim_boundary_zero",
-            "regression_only_fixture_context"
-          ]
-        },
-        "pilotFailureFallback": "pilot_reblocked",
-        "result": "limited_admission_possible"
-      },
-      "auditReference": {
-        "artifact": "ziwei-readiness-admission-blocker-audit-v0",
-        "auditBasisHead": "034ea3015875d52643341613547aec583747976e",
-        "occurrenceId": "ziwei-occ-2260aba6ed2163e3",
-        "path": "artifacts/ziwei-readiness-admission-blocker-audit-v0/complete.json",
-        "selectedBy": "categoryLists.structuralGuardPossible"
-      },
-      "schemaVersion": "ziwei-structural-admission-guard-pilot-v0"
+      "occurrenceId": "ziwei-occ-2260aba6ed2163e3"
     },
     {
+      "acceptance": "accepted_with_declared_limit",
       "admissionUnit": {
         "binding": {
           "guardSha256": "41af383e89fe2ed9fcae8faebcf4892bed4fc39d86898880214f47324c7a6773",
@@ -250,31 +301,10 @@
         "schemaVersion": "ziwei-structural-admission-unit-v1",
         "unitVersion": "1.0.0"
       },
-      "assessment": {
-        "additionalStructuralRestrictionRequired": false,
-        "auditState": "eligible_after_structural_guard",
-        "blockerBasis": {
-          "primary": "structural_guard_required",
-          "supporting": [
-            "source_identity_unresolved",
-            "raw_text_is_not_fact",
-            "claim_boundary_zero",
-            "regression_only_fixture_context"
-          ]
-        },
-        "pilotFailureFallback": "pilot_reblocked",
-        "result": "limited_admission_possible"
-      },
-      "auditReference": {
-        "artifact": "ziwei-readiness-admission-blocker-audit-v0",
-        "auditBasisHead": "034ea3015875d52643341613547aec583747976e",
-        "occurrenceId": "ziwei-occ-a09e10a5495186b8",
-        "path": "artifacts/ziwei-readiness-admission-blocker-audit-v0/complete.json",
-        "selectedBy": "categoryLists.structuralGuardPossible"
-      },
-      "schemaVersion": "ziwei-structural-admission-guard-pilot-v0"
+      "occurrenceId": "ziwei-occ-a09e10a5495186b8"
     },
     {
+      "acceptance": "accepted_with_declared_limit",
       "admissionUnit": {
         "binding": {
           "guardSha256": "41af383e89fe2ed9fcae8faebcf4892bed4fc39d86898880214f47324c7a6773",
@@ -356,31 +386,10 @@
         "schemaVersion": "ziwei-structural-admission-unit-v1",
         "unitVersion": "1.0.0"
       },
-      "assessment": {
-        "additionalStructuralRestrictionRequired": false,
-        "auditState": "eligible_after_structural_guard",
-        "blockerBasis": {
-          "primary": "structural_guard_required",
-          "supporting": [
-            "source_identity_unresolved",
-            "raw_text_is_not_fact",
-            "claim_boundary_zero",
-            "regression_only_fixture_context"
-          ]
-        },
-        "pilotFailureFallback": "pilot_reblocked",
-        "result": "limited_admission_possible"
-      },
-      "auditReference": {
-        "artifact": "ziwei-readiness-admission-blocker-audit-v0",
-        "auditBasisHead": "034ea3015875d52643341613547aec583747976e",
-        "occurrenceId": "ziwei-occ-a72bdf60ef809b58",
-        "path": "artifacts/ziwei-readiness-admission-blocker-audit-v0/complete.json",
-        "selectedBy": "categoryLists.structuralGuardPossible"
-      },
-      "schemaVersion": "ziwei-structural-admission-guard-pilot-v0"
+      "occurrenceId": "ziwei-occ-a72bdf60ef809b58"
     },
     {
+      "acceptance": "accepted_with_declared_limit",
       "admissionUnit": {
         "binding": {
           "guardSha256": "41af383e89fe2ed9fcae8faebcf4892bed4fc39d86898880214f47324c7a6773",
@@ -462,60 +471,203 @@
         "schemaVersion": "ziwei-structural-admission-unit-v1",
         "unitVersion": "1.0.0"
       },
-      "assessment": {
-        "additionalStructuralRestrictionRequired": false,
-        "auditState": "eligible_after_structural_guard",
-        "blockerBasis": {
-          "primary": "structural_guard_required",
-          "supporting": [
-            "source_identity_unresolved",
-            "raw_text_is_not_fact",
-            "claim_boundary_zero",
-            "regression_only_fixture_context"
-          ]
-        },
-        "pilotFailureFallback": "pilot_reblocked",
-        "result": "limited_admission_possible"
-      },
-      "auditReference": {
-        "artifact": "ziwei-readiness-admission-blocker-audit-v0",
-        "auditBasisHead": "034ea3015875d52643341613547aec583747976e",
-        "occurrenceId": "ziwei-occ-e73f469c5e35e072",
-        "path": "artifacts/ziwei-readiness-admission-blocker-audit-v0/complete.json",
-        "selectedBy": "categoryLists.structuralGuardPossible"
-      },
-      "schemaVersion": "ziwei-structural-admission-guard-pilot-v0"
+      "occurrenceId": "ziwei-occ-e73f469c5e35e072"
     }
   ],
-  "resultDistribution": {
-    "additional_structural_restriction_required": 0,
-    "limited_admission_possible": 4,
-    "pilot_reblocked": 0
+  "checker": "scripts/check-ziwei-structural-admission-independent-acceptance-review-v0.mjs",
+  "currentHead": "cf40bda8a2620e3b8074ece9b81303de9b13b9fb",
+  "decision": {
+    "candidateLimitedDialogueMaterial": "rejected_unverified_source_identity",
+    "groundingSubsetStart": "blocked",
+    "reason": "atomic admission boundary accepted; source identity remains unresolved and no grounding consumer is implemented",
+    "reblockRequired": false,
+    "verdict": "accepted_with_declared_limit"
   },
-  "schemaVersion": "ziwei-structural-admission-guard-pilot-v0",
-  "scope": "isolated structural admission pilot; not readiness, grounding, interpretation, delivery, or activation",
-  "sourceAudit": {
-    "basisHead": "034ea3015875d52643341613547aec583747976e",
-    "occurrenceCount": 19,
-    "path": "artifacts/ziwei-readiness-admission-blocker-audit-v0/complete.json",
-    "schemaVersion": "ziwei-readiness-admission-blocker-audit-v0",
-    "selectedPath": "categoryLists.structuralGuardPossible"
+  "deterministicContract": {
+    "hashScopes": [
+      "canonical artifact payload",
+      "complete.json UTF-8 bytes including final LF"
+    ],
+    "inputBytes": "exact serialized artifacts",
+    "recordOrder": "lexicographic occurrenceId",
+    "timestamps": "forbidden"
   },
-  "sourceProvenance": {
-    "occurrenceCount": 19,
-    "path": "artifacts/ziwei-occurrence-level-provenance-v0/complete.json",
-    "schemaVersion": "ziwei-occurrence-level-provenance-v0",
-    "sourceIdentity": {
-      "composition": {
-        "declaredExternalFixtures": 6,
-        "localRuleOrCalculationSources": 7,
-        "meaningOccurrences": 19
-      },
-      "status": "unresolved_source_identity",
-      "total": 32,
-      "unresolved": 32
+  "findingDistribution": {
+    "accepted": 11,
+    "accepted_with_declared_limit": 5,
+    "gap": 0,
+    "not_applicable": 0,
+    "violation": 0
+  },
+  "findings": [
+    {
+      "evidence": "The four IDs equal the audit structuralGuardPossible list and no other source is used.",
+      "id": "candidate_selection_is_audit_derived",
+      "impact": "candidate IDs remain occurrence-scoped; this does not validate the audit rule itself.",
+      "reblockRequired": false,
+      "severity": "medium",
+      "status": "accepted_with_declared_limit"
     },
-    "stableClaimBoundary": 0
+    {
+      "evidence": "Four unique records are present and each has an independent finding.",
+      "id": "all_four_candidates_reviewed_once",
+      "impact": "No confidence or importance is inferred from the count.",
+      "reblockRequired": false,
+      "severity": "info",
+      "status": "accepted"
+    },
+    {
+      "evidence": "No rawText property exists outside the versioned admissionUnit; reference consumption returns only the validated unit.",
+      "id": "raw_text_only_extraction_blocked",
+      "impact": "The unit contains preserved raw text, but no raw-text-only reference contract is exposed.",
+      "reblockRequired": false,
+      "severity": "info",
+      "status": "accepted"
+    },
+    {
+      "evidence": "No top-level guard or occurrence payload exists; occurrence, provenance, and guard are bound inside one versioned unit.",
+      "id": "guard_occurrence_separation_blocked",
+      "impact": "Partial serialization or binding replacement must remain rejected.",
+      "reblockRequired": false,
+      "severity": "info",
+      "status": "accepted"
+    },
+    {
+      "evidence": "The artifact has pilot-only status and explicit false consumer expansion flags.",
+      "id": "pilot_only_label_cannot_be_promoted",
+      "impact": "The representation is not opaque, so downstream enforcement remains required.",
+      "reblockRequired": false,
+      "severity": "medium",
+      "status": "accepted_with_declared_limit"
+    },
+    {
+      "evidence": "All four records retain isStableClaim=false and rawText.isVerifiedFact=false.",
+      "id": "stable_claim_and_verified_fact_absent",
+      "impact": "This is a structural absence check, not a truth assessment.",
+      "reblockRequired": false,
+      "severity": "info",
+      "status": "accepted"
+    },
+    {
+      "evidence": "All four records retain unresolved_source_identity and independentVerification=false.",
+      "id": "source_unresolved_and_independent_verification_false",
+      "impact": "No source search, inference, or identity linkage was performed.",
+      "reblockRequired": false,
+      "severity": "info",
+      "status": "accepted"
+    },
+    {
+      "evidence": "userContextDependency and mustNotAssume prohibit user-trait, life, and future inference.",
+      "id": "personal_application_is_context_gated",
+      "impact": "This does not implement or authorize interpretation.",
+      "reblockRequired": false,
+      "severity": "info",
+      "status": "accepted"
+    },
+    {
+      "evidence": "Required negative-boundary fields are present in all records and merge/representative sentence flags are false.",
+      "id": "must_not_assume_context_and_merge_boundaries_present",
+      "impact": "Public object mutation means the boundary is declarative rather than tamper-resistant.",
+      "reblockRequired": false,
+      "severity": "medium",
+      "status": "accepted_with_declared_limit"
+    },
+    {
+      "evidence": "The review compares candidate IDs to the 19-occurrence audit set and finds exactly 4 selected IDs.",
+      "id": "candidate_scope_does_not_expand_to_remaining_15",
+      "impact": "The other 15 remain outside the review subset.",
+      "reblockRequired": false,
+      "severity": "info",
+      "status": "accepted"
+    },
+    {
+      "evidence": "Global readiness and grounding remain not_safe_to_start, stable claim boundary is zero, and expansion is false.",
+      "id": "pilot_result_does_not_expand_to_ziwei_readiness",
+      "impact": "No whole-system readiness conclusion is made.",
+      "reblockRequired": false,
+      "severity": "info",
+      "status": "accepted"
+    },
+    {
+      "evidence": "Review reads serialized pilot, audit, and provenance artifacts directly and uses independent structural assertions.",
+      "id": "builder_checker_shared_assumptions_are_not_reused",
+      "impact": "Independent from pilot code; it cannot establish the upstream audit rule is correct.",
+      "reblockRequired": false,
+      "severity": "medium",
+      "status": "accepted_with_declared_limit"
+    },
+    {
+      "evidence": "Input byte hashes and artifact payload identity are checked; repeated materialization is tested separately.",
+      "id": "input_payload_identity_and_repeatability",
+      "impact": "Freshness mismatch in the inherited pilot is recorded below.",
+      "reblockRequired": false,
+      "severity": "medium",
+      "status": "accepted_with_declared_limit"
+    },
+    {
+      "evidence": "Each input artifact has a valid artifact-identity-v1 base object, exact input byte hashes, payload hash, and materializer contract; differing historical base heads alone are not stale.",
+      "id": "pilot_and_audit_freshness_alignment",
+      "impact": "Identity proves artifact freshness against its declared generation inputs, not source truth or domain correctness.",
+      "reblockRequired": false,
+      "severity": "info",
+      "status": "accepted"
+    },
+    {
+      "evidence": "Review scope explicitly limits acceptance to structural and non-intervention boundaries.",
+      "id": "acceptance_is_not_fact_validation",
+      "impact": "No claim truth, traditional correctness, or independent factual verification is asserted.",
+      "reblockRequired": false,
+      "severity": "info",
+      "status": "accepted"
+    },
+    {
+      "evidence": "The raw-text and guard/occurrence bypasses are critical structural holes.",
+      "id": "grounding_subset_start_gate",
+      "impact": "Candidate-limited grounding subset must remain blocked until the consumer boundary is made enforceable.",
+      "reblockRequired": false,
+      "severity": "info",
+      "status": "accepted"
+    }
+  ],
+  "freshness": {
+    "aligned": true,
+    "auditBasisHead": "034ea3015875d52643341613547aec583747976e",
+    "currentHead": "cf40bda8a2620e3b8074ece9b81303de9b13b9fb",
+    "identityErrors": [
+      [],
+      [],
+      []
+    ],
+    "pilotBaseHead": "cf40bda8a2620e3b8074ece9b81303de9b13b9fb",
+    "provenanceBasisHead": "4b062131ae4f1f7b0932708809399b92dbe06469"
   },
-  "verdictToken": "ziwei_structural_admission_guard_pilot_partial_unverified"
+  "invariants": [
+    "no existing pilot/provenance/admission artifact is modified",
+    "four records remain occurrence-only and separate",
+    "no source is searched or inferred",
+    "acceptance is structural, not a truth guarantee",
+    "no user meaning, question, interpretation, advice, ranking, or prompt is generated"
+  ],
+  "materializer": "scripts/materialize-ziwei-structural-admission-independent-acceptance-review-v0.mjs",
+  "negativeFixture": "test/fixtures/ziwei/structural-admission-independent-acceptance-review-negative-v0.json",
+  "provenanceOccurrenceCount": 19,
+  "reviewMethod": {
+    "contentTruthValidation": false,
+    "independentFrom": [
+      "scripts/materialize-ziwei-structural-admission-guard-pilot-v0.mjs",
+      "scripts/check-ziwei-structural-admission-guard-pilot-v0.mjs"
+    ],
+    "inputMode": "serialized artifacts and direct runtime/object-shape inspection",
+    "selectionDerivation": "audit.categoryLists.structuralGuardPossible compared with pilot record IDs"
+  },
+  "reviewVersion": "1.0.0",
+  "schemaVersion": "ziwei-structural-admission-independent-acceptance-review-v0",
+  "scope": "independent adversarial structural acceptance review only; no readiness, grounding, interpretation, source validation, or activation implementation",
+  "sourceArtifacts": {
+    "audit": "artifacts/ziwei-readiness-admission-blocker-audit-v0/complete.json",
+    "negativeFixture": "test/fixtures/ziwei/structural-admission-independent-acceptance-review-negative-v0.json",
+    "pilot": "artifacts/ziwei-structural-admission-guard-pilot-v0/complete.json",
+    "provenance": "artifacts/ziwei-occurrence-level-provenance-v0/complete.json"
+  },
+  "verdictToken": "ziwei_structural_admission_guard_pilot_independent_review_partial_unverified"
 }

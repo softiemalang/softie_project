@@ -1,0 +1,20 @@
+{
+  "schemaVersion": "ziwei-structural-admission-independent-acceptance-review-negative-v0",
+  "purpose": "Adversarial cases that must remain detected by the independent review.",
+  "cases": [
+    {"id":"raw_text_only_extraction","expected":"violation","observed":"record.occurrence.rawText is directly addressable"},
+    {"id":"guard_occurrence_separate_consumption","expected":"violation","observed":"record.guard and record.occurrence are separate public properties"},
+    {"id":"stable_claim_or_verified_fact_promotion","expected":"violation","observed":"isStableClaim or isVerifiedFact true"},
+    {"id":"source_unresolved_hidden","expected":"violation","observed":"sourceIdentity status changed from unresolved_source_identity"},
+    {"id":"context_or_must_not_assume_missing","expected":"violation","observed":"required context dependency or mustNotAssume removed"},
+    {"id":"merge_or_representative_sentence","expected":"violation","observed":"occurrence merge or representative sentence enabled"},
+    {"id":"pilot_only_removed","expected":"violation","observed":"pilot-only status or forbidden consumer flags removed"},
+    {"id":"candidate_outside_four","expected":"violation","observed":"record ID not in audit structuralGuardPossible"},
+    {"id":"whole_readiness_expansion","expected":"violation","observed":"readiness/grounding expanded beyond candidate scope"},
+    {"id":"question_interpretation_advice_prompt","expected":"violation","observed":"meaning or prompt field inserted"},
+    {"id":"occurrence_guard_binding_replaced","expected":"violation","observed":"binding occurrence ID or hash replaced"},
+    {"id":"required_guard_partially_missing","expected":"violation","observed":"required guard dependency removed"},
+    {"id":"partial_admission_unit_serialization","expected":"violation","observed":"guard or occurrence omitted from unit"},
+    {"id":"self_referential_head_contract","expected":"violation","observed":"includedCommit points to generation HEAD"}
+  ]
+}

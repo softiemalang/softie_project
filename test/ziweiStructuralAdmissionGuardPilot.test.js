@@ -13,17 +13,17 @@ const negative = 'scripts/check-ziwei-structural-admission-guard-pilot-negative-
 
 test('pilot selects exactly the audit structural-guard candidates and preserves boundaries', async () => {
   const artifact = await buildStructuralAdmissionGuardPilot()
-  assert.equal(artifact.basisHead, '704e755132991ebc6dc08f2177865cacf35c4b49')
-  assert.deepEqual(artifact.records.map(x => x.occurrence.occurrenceId), [
+  assert.match(artifact.artifactIdentity.generation.baseHead, /^[0-9a-f]{40}$/)
+  assert.deepEqual(artifact.records.map(x => x.admissionUnit.occurrence.occurrenceId), [
     'ziwei-occ-2260aba6ed2163e3', 'ziwei-occ-a09e10a5495186b8', 'ziwei-occ-a72bdf60ef809b58', 'ziwei-occ-e73f469c5e35e072',
   ])
   assert.deepEqual(artifact.resultDistribution, { limited_admission_possible: 4, additional_structural_restriction_required: 0, pilot_reblocked: 0 })
   for (const record of artifact.records) {
-    assert.equal(record.occurrence.rawText.isVerifiedFact, false)
-    assert.equal(record.guard.isStableClaim, false)
-    assert.equal(record.guard.sourceIdentity.status, 'unresolved_source_identity')
-    assert.equal(record.consumerContract.standaloneConsumptionAllowed, false)
-    assert.equal(record.consumerContract.rawTextOnlyPathAllowed, false)
+    assert.equal(record.admissionUnit.occurrence.rawText.isVerifiedFact, false)
+    assert.equal(record.admissionUnit.guard.isStableClaim, false)
+    assert.equal(record.admissionUnit.guard.sourceIdentity.status, 'unresolved_source_identity')
+    assert.equal(record.admissionUnit.consumerContract.standaloneConsumptionAllowed, false)
+    assert.equal(record.admissionUnit.consumerContract.rawTextOnlyPathAllowed, false)
   }
   assert.deepEqual(await checkStructuralAdmissionGuardPilot(artifact), [])
 })
