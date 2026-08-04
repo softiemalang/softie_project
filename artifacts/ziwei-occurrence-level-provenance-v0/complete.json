@@ -1,0 +1,1983 @@
+{
+  "artifactIdentity": {
+    "artifactId": "ziwei-occurrence-level-provenance-v0",
+    "artifactPayloadSha256": "cadbdfd3ade29f90e35d2f401b6777dc9ac52dd3c8b7697fac09698c9bddf3a2",
+    "contractVersion": "artifact-identity-v1",
+    "generation": {
+      "baseHead": "4b062131ae4f1f7b0932708809399b92dbe06469",
+      "baseHeadSource": "git rev-parse HEAD at materialization",
+      "includedCommit": null,
+      "includedCommitSource": "unknown_at_generation; artifact may be included by a later commit"
+    },
+    "inputs": [
+      {
+        "byteSha256": "466c7774c3dc8ef89fb99345561db4bf5c1ec9fd786b5279fabcfa507e2bb224",
+        "path": "src/interpretationPrep/lunarConverter.js"
+      },
+      {
+        "byteSha256": "3f73716acf442f1717781d874872729c1c57d8b3e69498ae30284646297424fb",
+        "path": "src/interpretationPrep/threeSystemPrepPipeline.js"
+      },
+      {
+        "byteSha256": "c379c3d364ea8bdc1062f7a59f2f1b8f83de4762489a86a520733d9d288917cf",
+        "path": "src/ziwei/externalZiweiFixtures.js"
+      },
+      {
+        "byteSha256": "7af13da1e88dbe41e4a239d5359a0f49d05316235e668c7bd1302a3de8825144",
+        "path": "src/ziwei/fiveElementResolver.js"
+      },
+      {
+        "byteSha256": "40bfa66f576027a5ef77374257da895bbe714c331f6ded6e004048f246bc3c7a",
+        "path": "src/ziwei/minorStarResolver.js"
+      },
+      {
+        "byteSha256": "b7cdc5db61a1a70dae3a4a243b5bccc0c148488c4c8e9f81bcfc345e4e8a4be3",
+        "path": "src/ziwei/minorStarRules.js"
+      },
+      {
+        "byteSha256": "afd4f2ef13da4a13f7dece79e801dab6867e5cd1ee30d2e588dce19935c9aaaa",
+        "path": "src/ziwei/palaceRelationRules.js"
+      },
+      {
+        "byteSha256": "1edb93929e441b009e33abd8179e72cf5b216e7378a40813657ea52dc1a0759c",
+        "path": "src/ziwei/starPlacementRules.js"
+      },
+      {
+        "byteSha256": "c9797f2405df6afeb336226bcbff66e199e856d181e71e2317a9794dba0a6ad7",
+        "path": "src/ziwei/starResolver.js"
+      },
+      {
+        "byteSha256": "ec47b97109d514fb5317e1e0dfb9fb195fa77429ab2d451b3de9a97897babe9d",
+        "path": "src/ziwei/transformationResolver.js"
+      },
+      {
+        "byteSha256": "e602ab8611e846b53b9c1ffed2d2dbcb5b77afd13973187ee40d748370846e76",
+        "path": "src/ziwei/transformationRules.js"
+      },
+      {
+        "byteSha256": "716875185d87da22ceef5f66f32899359642646367133f6c9f4bf87718bf130e",
+        "path": "src/ziwei/ziweiContract.js"
+      },
+      {
+        "byteSha256": "633b3b3d586a5e9a2f7cf855fad1937cb6b4115ac4271c5bf8d7472d77ad9964",
+        "path": "src/ziwei/ziweiPalaceContext.js"
+      },
+      {
+        "byteSha256": "5336f15968b4c618d9b1248b0967deab22b778f48996cb60939ab19cabadf513",
+        "path": "src/ziwei/ziweiResolver.js"
+      },
+      {
+        "byteSha256": "f809a56f6f36ab0d8f08a073e083ca0e2783170e8303cd14013d4a19648575c2",
+        "path": "test/fixtures/ziwei/benchmarkCases.js"
+      },
+      {
+        "byteSha256": "c78d3bc2e418ea81fc97061a5a011628b6ba674af9f4fef795a085f4dc381037",
+        "path": "test/fixtures/ziwei/knownCharts.js"
+      },
+      {
+        "byteSha256": "b79bb0c3c7105cd83563fcee59264d832372e6143b4c0bc19347a125e7dfa226",
+        "path": "test/fixtures/ziwei/starPlacementCharts.js"
+      }
+    ],
+    "materializer": {
+      "path": "scripts/materialize-ziwei-occurrence-provenance-v0.mjs",
+      "version": "1.0.0"
+    }
+  },
+  "basisHead": "4b062131ae4f1f7b0932708809399b92dbe06469",
+  "checker": "scripts/check-ziwei-occurrence-provenance-v0.mjs",
+  "conflationRisk": {
+    "count": 19,
+    "ranking": "forbidden",
+    "status": "preserved"
+  },
+  "deterministicContract": {
+    "byteHash": "complete.json UTF-8 bytes including final LF",
+    "contentHash": "artifact-identity-v1 artifactPayloadSha256",
+    "occurrenceId": "sha256(source.file#source.exportName#source.slot), first 16 hex",
+    "occurrenceSort": "lexicographic occurrenceId",
+    "textPolicy": "exact raw text; no normalization",
+    "timestamps": "forbidden"
+  },
+  "evidenceIndex": {
+    "calculation:ziwei-calculation-build-palace-relations": {
+      "id": "ziwei-calculation-build-palace-relations",
+      "kind": "calculation",
+      "occurrenceIds": [
+        "ziwei-occ-2d961f3216f41e70",
+        "ziwei-occ-6e095d58a62d9b86",
+        "ziwei-occ-acb0dce151f32dcb"
+      ],
+      "sourceFile": "src/ziwei/palaceRelationRules.js",
+      "status": "occurrence_provenance_partial",
+      "verificationScope": "local calculation path; not independent verification"
+    },
+    "calculation:ziwei-calculation-interpretation-palace-contexts": {
+      "id": "ziwei-calculation-interpretation-palace-contexts",
+      "kind": "calculation",
+      "occurrenceIds": [
+        "ziwei-occ-2260aba6ed2163e3",
+        "ziwei-occ-2b792b2cac1c58ab",
+        "ziwei-occ-894fa6fa97b81dfd",
+        "ziwei-occ-a09e10a5495186b8",
+        "ziwei-occ-a54cfa4de8051b41",
+        "ziwei-occ-a72bdf60ef809b58",
+        "ziwei-occ-b1d4bbca55c2007f",
+        "ziwei-occ-bb986540a877dcee",
+        "ziwei-occ-c4b8407cdc824d27",
+        "ziwei-occ-d31091d32f84777c",
+        "ziwei-occ-e70f01a8752ee8d2",
+        "ziwei-occ-e73f469c5e35e072"
+      ],
+      "sourceFile": "src/ziwei/ziweiContract.js",
+      "status": "occurrence_provenance_partial",
+      "verificationScope": "local calculation path; not independent verification"
+    },
+    "calculation:ziwei-calculation-resolve-chart-palaces": {
+      "id": "ziwei-calculation-resolve-chart-palaces",
+      "kind": "calculation",
+      "occurrenceIds": [
+        "ziwei-occ-2260aba6ed2163e3",
+        "ziwei-occ-2b792b2cac1c58ab",
+        "ziwei-occ-894fa6fa97b81dfd",
+        "ziwei-occ-a09e10a5495186b8",
+        "ziwei-occ-a54cfa4de8051b41",
+        "ziwei-occ-a72bdf60ef809b58",
+        "ziwei-occ-b1d4bbca55c2007f",
+        "ziwei-occ-bb986540a877dcee",
+        "ziwei-occ-c4b8407cdc824d27",
+        "ziwei-occ-d31091d32f84777c",
+        "ziwei-occ-e70f01a8752ee8d2",
+        "ziwei-occ-e73f469c5e35e072"
+      ],
+      "sourceFile": "src/ziwei/ziweiContract.js",
+      "status": "occurrence_provenance_partial",
+      "verificationScope": "local calculation path; not independent verification"
+    },
+    "calculation:ziwei-calculation-resolve-transformations": {
+      "id": "ziwei-calculation-resolve-transformations",
+      "kind": "calculation",
+      "occurrenceIds": [
+        "ziwei-occ-21d731586efc0e34",
+        "ziwei-occ-dd08863eb441bb65",
+        "ziwei-occ-ed75580c000adb8f",
+        "ziwei-occ-f7017ade296bb707"
+      ],
+      "sourceFile": "src/ziwei/transformationRules.js",
+      "status": "occurrence_provenance_partial",
+      "verificationScope": "local calculation path; not independent verification"
+    },
+    "external_fixture:fixture:external:ziwei-ext-table-four-transformations": {
+      "id": "fixture:external:ziwei-ext-table-four-transformations",
+      "kind": "external_fixture",
+      "occurrenceIds": [
+        "ziwei-occ-21d731586efc0e34",
+        "ziwei-occ-dd08863eb441bb65",
+        "ziwei-occ-ed75580c000adb8f",
+        "ziwei-occ-f7017ade296bb707"
+      ],
+      "sourceFile": "src/ziwei/transformationRules.js",
+      "status": "not_independently_verified",
+      "verificationScope": "scoped observed match or pending review only"
+    },
+    "feature:ziwei-feature-palace-context": {
+      "id": "ziwei-feature-palace-context",
+      "kind": "feature",
+      "occurrenceIds": [
+        "ziwei-occ-2260aba6ed2163e3",
+        "ziwei-occ-2b792b2cac1c58ab",
+        "ziwei-occ-894fa6fa97b81dfd",
+        "ziwei-occ-a09e10a5495186b8",
+        "ziwei-occ-a54cfa4de8051b41",
+        "ziwei-occ-a72bdf60ef809b58",
+        "ziwei-occ-b1d4bbca55c2007f",
+        "ziwei-occ-bb986540a877dcee",
+        "ziwei-occ-c4b8407cdc824d27",
+        "ziwei-occ-d31091d32f84777c",
+        "ziwei-occ-e70f01a8752ee8d2",
+        "ziwei-occ-e73f469c5e35e072"
+      ],
+      "sourceFile": "src/ziwei/ziweiContract.js",
+      "status": "occurrence_provenance_partial",
+      "verificationScope": "local feature reference"
+    },
+    "feature:ziwei-feature-topic-pattern:careerPattern": {
+      "id": "ziwei-feature-topic-pattern:careerPattern",
+      "kind": "feature",
+      "occurrenceIds": [
+        "ziwei-occ-6e095d58a62d9b86"
+      ],
+      "sourceFile": "src/ziwei/palaceRelationRules.js",
+      "status": "occurrence_provenance_partial",
+      "verificationScope": "local feature reference"
+    },
+    "feature:ziwei-feature-topic-pattern:relationshipPattern": {
+      "id": "ziwei-feature-topic-pattern:relationshipPattern",
+      "kind": "feature",
+      "occurrenceIds": [
+        "ziwei-occ-2d961f3216f41e70"
+      ],
+      "sourceFile": "src/ziwei/palaceRelationRules.js",
+      "status": "occurrence_provenance_partial",
+      "verificationScope": "local feature reference"
+    },
+    "feature:ziwei-feature-topic-pattern:wealthPattern": {
+      "id": "ziwei-feature-topic-pattern:wealthPattern",
+      "kind": "feature",
+      "occurrenceIds": [
+        "ziwei-occ-acb0dce151f32dcb"
+      ],
+      "sourceFile": "src/ziwei/palaceRelationRules.js",
+      "status": "occurrence_provenance_partial",
+      "verificationScope": "local feature reference"
+    },
+    "feature:ziwei-feature-transformation-label:ji": {
+      "id": "ziwei-feature-transformation-label:ji",
+      "kind": "feature",
+      "occurrenceIds": [
+        "ziwei-occ-f7017ade296bb707"
+      ],
+      "sourceFile": "src/ziwei/transformationRules.js",
+      "status": "occurrence_provenance_partial",
+      "verificationScope": "local feature reference"
+    },
+    "feature:ziwei-feature-transformation-label:ke": {
+      "id": "ziwei-feature-transformation-label:ke",
+      "kind": "feature",
+      "occurrenceIds": [
+        "ziwei-occ-ed75580c000adb8f"
+      ],
+      "sourceFile": "src/ziwei/transformationRules.js",
+      "status": "occurrence_provenance_partial",
+      "verificationScope": "local feature reference"
+    },
+    "feature:ziwei-feature-transformation-label:lu": {
+      "id": "ziwei-feature-transformation-label:lu",
+      "kind": "feature",
+      "occurrenceIds": [
+        "ziwei-occ-21d731586efc0e34"
+      ],
+      "sourceFile": "src/ziwei/transformationRules.js",
+      "status": "occurrence_provenance_partial",
+      "verificationScope": "local feature reference"
+    },
+    "feature:ziwei-feature-transformation-label:quan": {
+      "id": "ziwei-feature-transformation-label:quan",
+      "kind": "feature",
+      "occurrenceIds": [
+        "ziwei-occ-dd08863eb441bb65"
+      ],
+      "sourceFile": "src/ziwei/transformationRules.js",
+      "status": "occurrence_provenance_partial",
+      "verificationScope": "local feature reference"
+    },
+    "fixture:fixture:benchmark:case_a_exact_personality": {
+      "id": "fixture:benchmark:case_a_exact_personality",
+      "kind": "fixture",
+      "occurrenceIds": [
+        "ziwei-occ-2260aba6ed2163e3",
+        "ziwei-occ-2b792b2cac1c58ab",
+        "ziwei-occ-2d961f3216f41e70",
+        "ziwei-occ-6e095d58a62d9b86",
+        "ziwei-occ-894fa6fa97b81dfd",
+        "ziwei-occ-a09e10a5495186b8",
+        "ziwei-occ-a54cfa4de8051b41",
+        "ziwei-occ-a72bdf60ef809b58",
+        "ziwei-occ-acb0dce151f32dcb",
+        "ziwei-occ-b1d4bbca55c2007f",
+        "ziwei-occ-bb986540a877dcee",
+        "ziwei-occ-c4b8407cdc824d27",
+        "ziwei-occ-d31091d32f84777c",
+        "ziwei-occ-e70f01a8752ee8d2",
+        "ziwei-occ-e73f469c5e35e072"
+      ],
+      "sourceFile": "src/ziwei/ziweiContract.js",
+      "status": "regression_only",
+      "verificationScope": "regression only"
+    },
+    "fixture:fixture:benchmark:case_b_unknown_time_personality": {
+      "id": "fixture:benchmark:case_b_unknown_time_personality",
+      "kind": "fixture",
+      "occurrenceIds": [
+        "ziwei-occ-2260aba6ed2163e3",
+        "ziwei-occ-2b792b2cac1c58ab",
+        "ziwei-occ-2d961f3216f41e70",
+        "ziwei-occ-6e095d58a62d9b86",
+        "ziwei-occ-894fa6fa97b81dfd",
+        "ziwei-occ-a09e10a5495186b8",
+        "ziwei-occ-a54cfa4de8051b41",
+        "ziwei-occ-a72bdf60ef809b58",
+        "ziwei-occ-acb0dce151f32dcb",
+        "ziwei-occ-b1d4bbca55c2007f",
+        "ziwei-occ-bb986540a877dcee",
+        "ziwei-occ-c4b8407cdc824d27",
+        "ziwei-occ-d31091d32f84777c",
+        "ziwei-occ-e70f01a8752ee8d2",
+        "ziwei-occ-e73f469c5e35e072"
+      ],
+      "sourceFile": "src/ziwei/ziweiContract.js",
+      "status": "regression_only",
+      "verificationScope": "regression only"
+    },
+    "fixture:fixture:benchmark:case_c_leap_month_relationship": {
+      "id": "fixture:benchmark:case_c_leap_month_relationship",
+      "kind": "fixture",
+      "occurrenceIds": [
+        "ziwei-occ-2260aba6ed2163e3",
+        "ziwei-occ-2b792b2cac1c58ab",
+        "ziwei-occ-2d961f3216f41e70",
+        "ziwei-occ-6e095d58a62d9b86",
+        "ziwei-occ-894fa6fa97b81dfd",
+        "ziwei-occ-a09e10a5495186b8",
+        "ziwei-occ-a54cfa4de8051b41",
+        "ziwei-occ-a72bdf60ef809b58",
+        "ziwei-occ-acb0dce151f32dcb",
+        "ziwei-occ-b1d4bbca55c2007f",
+        "ziwei-occ-bb986540a877dcee",
+        "ziwei-occ-c4b8407cdc824d27",
+        "ziwei-occ-d31091d32f84777c",
+        "ziwei-occ-e70f01a8752ee8d2",
+        "ziwei-occ-e73f469c5e35e072"
+      ],
+      "sourceFile": "src/ziwei/ziweiContract.js",
+      "status": "regression_only",
+      "verificationScope": "regression only"
+    },
+    "fixture:fixture:benchmark:case_d_hua_ji_career": {
+      "id": "fixture:benchmark:case_d_hua_ji_career",
+      "kind": "fixture",
+      "occurrenceIds": [
+        "ziwei-occ-2260aba6ed2163e3",
+        "ziwei-occ-2b792b2cac1c58ab",
+        "ziwei-occ-2d961f3216f41e70",
+        "ziwei-occ-6e095d58a62d9b86",
+        "ziwei-occ-894fa6fa97b81dfd",
+        "ziwei-occ-a09e10a5495186b8",
+        "ziwei-occ-a54cfa4de8051b41",
+        "ziwei-occ-a72bdf60ef809b58",
+        "ziwei-occ-acb0dce151f32dcb",
+        "ziwei-occ-b1d4bbca55c2007f",
+        "ziwei-occ-bb986540a877dcee",
+        "ziwei-occ-c4b8407cdc824d27",
+        "ziwei-occ-d31091d32f84777c",
+        "ziwei-occ-e70f01a8752ee8d2",
+        "ziwei-occ-e73f469c5e35e072"
+      ],
+      "sourceFile": "src/ziwei/ziweiContract.js",
+      "status": "regression_only",
+      "verificationScope": "regression only"
+    },
+    "fixture:fixture:benchmark:case_e_timing_low_confidence": {
+      "id": "fixture:benchmark:case_e_timing_low_confidence",
+      "kind": "fixture",
+      "occurrenceIds": [
+        "ziwei-occ-2260aba6ed2163e3",
+        "ziwei-occ-2b792b2cac1c58ab",
+        "ziwei-occ-2d961f3216f41e70",
+        "ziwei-occ-6e095d58a62d9b86",
+        "ziwei-occ-894fa6fa97b81dfd",
+        "ziwei-occ-a09e10a5495186b8",
+        "ziwei-occ-a54cfa4de8051b41",
+        "ziwei-occ-a72bdf60ef809b58",
+        "ziwei-occ-acb0dce151f32dcb",
+        "ziwei-occ-b1d4bbca55c2007f",
+        "ziwei-occ-bb986540a877dcee",
+        "ziwei-occ-c4b8407cdc824d27",
+        "ziwei-occ-d31091d32f84777c",
+        "ziwei-occ-e70f01a8752ee8d2",
+        "ziwei-occ-e73f469c5e35e072"
+      ],
+      "sourceFile": "src/ziwei/ziweiContract.js",
+      "status": "regression_only",
+      "verificationScope": "regression only"
+    },
+    "fixture:fixture:known-chart:sample_1_lunar_5_hour_wu": {
+      "id": "fixture:known-chart:sample_1_lunar_5_hour_wu",
+      "kind": "fixture",
+      "occurrenceIds": [
+        "ziwei-occ-2260aba6ed2163e3",
+        "ziwei-occ-2b792b2cac1c58ab",
+        "ziwei-occ-894fa6fa97b81dfd",
+        "ziwei-occ-a09e10a5495186b8",
+        "ziwei-occ-a54cfa4de8051b41",
+        "ziwei-occ-a72bdf60ef809b58",
+        "ziwei-occ-b1d4bbca55c2007f",
+        "ziwei-occ-bb986540a877dcee",
+        "ziwei-occ-c4b8407cdc824d27",
+        "ziwei-occ-d31091d32f84777c",
+        "ziwei-occ-e70f01a8752ee8d2",
+        "ziwei-occ-e73f469c5e35e072"
+      ],
+      "sourceFile": "src/ziwei/ziweiContract.js",
+      "status": "regression_only",
+      "verificationScope": "regression only"
+    },
+    "fixture:fixture:known-chart:sample_2_lunar_1_hour_zi": {
+      "id": "fixture:known-chart:sample_2_lunar_1_hour_zi",
+      "kind": "fixture",
+      "occurrenceIds": [
+        "ziwei-occ-2260aba6ed2163e3",
+        "ziwei-occ-2b792b2cac1c58ab",
+        "ziwei-occ-894fa6fa97b81dfd",
+        "ziwei-occ-a09e10a5495186b8",
+        "ziwei-occ-a54cfa4de8051b41",
+        "ziwei-occ-a72bdf60ef809b58",
+        "ziwei-occ-b1d4bbca55c2007f",
+        "ziwei-occ-bb986540a877dcee",
+        "ziwei-occ-c4b8407cdc824d27",
+        "ziwei-occ-d31091d32f84777c",
+        "ziwei-occ-e70f01a8752ee8d2",
+        "ziwei-occ-e73f469c5e35e072"
+      ],
+      "sourceFile": "src/ziwei/ziweiContract.js",
+      "status": "regression_only",
+      "verificationScope": "regression only"
+    },
+    "fixture:fixture:known-chart:sample_3_leap_month_boundary": {
+      "id": "fixture:known-chart:sample_3_leap_month_boundary",
+      "kind": "fixture",
+      "occurrenceIds": [
+        "ziwei-occ-2260aba6ed2163e3",
+        "ziwei-occ-2b792b2cac1c58ab",
+        "ziwei-occ-894fa6fa97b81dfd",
+        "ziwei-occ-a09e10a5495186b8",
+        "ziwei-occ-a54cfa4de8051b41",
+        "ziwei-occ-a72bdf60ef809b58",
+        "ziwei-occ-b1d4bbca55c2007f",
+        "ziwei-occ-bb986540a877dcee",
+        "ziwei-occ-c4b8407cdc824d27",
+        "ziwei-occ-d31091d32f84777c",
+        "ziwei-occ-e70f01a8752ee8d2",
+        "ziwei-occ-e73f469c5e35e072"
+      ],
+      "sourceFile": "src/ziwei/ziweiContract.js",
+      "status": "regression_only",
+      "verificationScope": "regression only"
+    },
+    "fixture:fixture:star-placement:sample_fire_6_bureau_day_22": {
+      "id": "fixture:star-placement:sample_fire_6_bureau_day_22",
+      "kind": "fixture",
+      "occurrenceIds": [
+        "ziwei-occ-21d731586efc0e34",
+        "ziwei-occ-dd08863eb441bb65",
+        "ziwei-occ-ed75580c000adb8f",
+        "ziwei-occ-f7017ade296bb707"
+      ],
+      "sourceFile": "src/ziwei/transformationRules.js",
+      "status": "regression_only",
+      "verificationScope": "regression only"
+    },
+    "fixture:fixture:star-placement:sample_water_2_bureau_day_1": {
+      "id": "fixture:star-placement:sample_water_2_bureau_day_1",
+      "kind": "fixture",
+      "occurrenceIds": [
+        "ziwei-occ-21d731586efc0e34",
+        "ziwei-occ-dd08863eb441bb65",
+        "ziwei-occ-ed75580c000adb8f",
+        "ziwei-occ-f7017ade296bb707"
+      ],
+      "sourceFile": "src/ziwei/transformationRules.js",
+      "status": "regression_only",
+      "verificationScope": "regression only"
+    },
+    "fixture:fixture:star-placement:sample_wood_3_bureau_day_15": {
+      "id": "fixture:star-placement:sample_wood_3_bureau_day_15",
+      "kind": "fixture",
+      "occurrenceIds": [
+        "ziwei-occ-21d731586efc0e34",
+        "ziwei-occ-dd08863eb441bb65",
+        "ziwei-occ-ed75580c000adb8f",
+        "ziwei-occ-f7017ade296bb707"
+      ],
+      "sourceFile": "src/ziwei/transformationRules.js",
+      "status": "regression_only",
+      "verificationScope": "regression only"
+    },
+    "rule:ziwei-rule-input-contract": {
+      "id": "ziwei-rule-input-contract",
+      "kind": "rule",
+      "occurrenceIds": [
+        "ziwei-occ-2260aba6ed2163e3",
+        "ziwei-occ-2b792b2cac1c58ab",
+        "ziwei-occ-894fa6fa97b81dfd",
+        "ziwei-occ-a09e10a5495186b8",
+        "ziwei-occ-a54cfa4de8051b41",
+        "ziwei-occ-a72bdf60ef809b58",
+        "ziwei-occ-b1d4bbca55c2007f",
+        "ziwei-occ-bb986540a877dcee",
+        "ziwei-occ-c4b8407cdc824d27",
+        "ziwei-occ-d31091d32f84777c",
+        "ziwei-occ-e70f01a8752ee8d2",
+        "ziwei-occ-e73f469c5e35e072"
+      ],
+      "sourceFile": "src/ziwei/ziweiContract.js",
+      "status": "occurrence_provenance_partial",
+      "verificationScope": "local rule path; not external truth"
+    },
+    "rule:ziwei-rule-palace-placement": {
+      "id": "ziwei-rule-palace-placement",
+      "kind": "rule",
+      "occurrenceIds": [
+        "ziwei-occ-2260aba6ed2163e3",
+        "ziwei-occ-2b792b2cac1c58ab",
+        "ziwei-occ-894fa6fa97b81dfd",
+        "ziwei-occ-a09e10a5495186b8",
+        "ziwei-occ-a54cfa4de8051b41",
+        "ziwei-occ-a72bdf60ef809b58",
+        "ziwei-occ-b1d4bbca55c2007f",
+        "ziwei-occ-bb986540a877dcee",
+        "ziwei-occ-c4b8407cdc824d27",
+        "ziwei-occ-d31091d32f84777c",
+        "ziwei-occ-e70f01a8752ee8d2",
+        "ziwei-occ-e73f469c5e35e072"
+      ],
+      "sourceFile": "src/ziwei/ziweiContract.js",
+      "status": "occurrence_provenance_partial",
+      "verificationScope": "local rule path; not external truth"
+    },
+    "rule:ziwei-rule-palace-relations": {
+      "id": "ziwei-rule-palace-relations",
+      "kind": "rule",
+      "occurrenceIds": [
+        "ziwei-occ-2d961f3216f41e70",
+        "ziwei-occ-6e095d58a62d9b86",
+        "ziwei-occ-acb0dce151f32dcb"
+      ],
+      "sourceFile": "src/ziwei/palaceRelationRules.js",
+      "status": "occurrence_provenance_partial",
+      "verificationScope": "local rule path; not external truth"
+    },
+    "rule:ziwei-rule-transformations": {
+      "id": "ziwei-rule-transformations",
+      "kind": "rule",
+      "occurrenceIds": [
+        "ziwei-occ-21d731586efc0e34",
+        "ziwei-occ-dd08863eb441bb65",
+        "ziwei-occ-ed75580c000adb8f",
+        "ziwei-occ-f7017ade296bb707"
+      ],
+      "sourceFile": "src/ziwei/transformationRules.js",
+      "status": "occurrence_provenance_partial",
+      "verificationScope": "local rule path; not external truth"
+    },
+    "source:src/ziwei/palaceRelationRules.js": {
+      "id": "src/ziwei/palaceRelationRules.js",
+      "kind": "source",
+      "occurrenceIds": [
+        "ziwei-occ-2d961f3216f41e70",
+        "ziwei-occ-6e095d58a62d9b86",
+        "ziwei-occ-acb0dce151f32dcb"
+      ],
+      "sourceFile": "src/ziwei/palaceRelationRules.js",
+      "status": "source_identity_unresolved",
+      "verificationScope": "repository bytes only"
+    },
+    "source:src/ziwei/transformationRules.js": {
+      "id": "src/ziwei/transformationRules.js",
+      "kind": "source",
+      "occurrenceIds": [
+        "ziwei-occ-21d731586efc0e34",
+        "ziwei-occ-dd08863eb441bb65",
+        "ziwei-occ-ed75580c000adb8f",
+        "ziwei-occ-f7017ade296bb707"
+      ],
+      "sourceFile": "src/ziwei/transformationRules.js",
+      "status": "source_identity_unresolved",
+      "verificationScope": "repository bytes only"
+    },
+    "source:src/ziwei/ziweiContract.js": {
+      "id": "src/ziwei/ziweiContract.js",
+      "kind": "source",
+      "occurrenceIds": [
+        "ziwei-occ-2260aba6ed2163e3",
+        "ziwei-occ-2b792b2cac1c58ab",
+        "ziwei-occ-894fa6fa97b81dfd",
+        "ziwei-occ-a09e10a5495186b8",
+        "ziwei-occ-a54cfa4de8051b41",
+        "ziwei-occ-a72bdf60ef809b58",
+        "ziwei-occ-b1d4bbca55c2007f",
+        "ziwei-occ-bb986540a877dcee",
+        "ziwei-occ-c4b8407cdc824d27",
+        "ziwei-occ-d31091d32f84777c",
+        "ziwei-occ-e70f01a8752ee8d2",
+        "ziwei-occ-e73f469c5e35e072"
+      ],
+      "sourceFile": "src/ziwei/ziweiContract.js",
+      "status": "source_identity_unresolved",
+      "verificationScope": "repository bytes only"
+    }
+  },
+  "evidenceKindCounts": {
+    "calculation": 4,
+    "external_fixture": 1,
+    "feature": 8,
+    "fixture": 11,
+    "rule": 4,
+    "source": 3
+  },
+  "fixturePolicy": {
+    "external": {
+      "pending": 6,
+      "scopedMatchExpansion": "forbidden",
+      "sourceIdentity": "unresolved_source_identity",
+      "status": "not_independently_verified",
+      "verified": 0
+    },
+    "internal": {
+      "count": 11,
+      "independentlyVerified": false,
+      "status": "regression_only"
+    }
+  },
+  "fixtureStatusInventory": [
+    {
+      "comparisonScope": "declared fixture fields only; no full-chart or system-wide claim",
+      "fixtureId": "ziwei-ext-chart-sample-classic-1-bureau",
+      "statuses": [
+        "configuration_mismatch",
+        "not_independently_verified",
+        "source_identity_unresolved"
+      ]
+    },
+    {
+      "comparisonScope": "declared fixture fields only; no full-chart or system-wide claim",
+      "fixtureId": "ziwei-ext-chart-sample-classic-1-mingshen",
+      "statuses": [
+        "configuration_mismatch",
+        "not_independently_verified",
+        "source_identity_unresolved"
+      ]
+    },
+    {
+      "comparisonScope": "declared fixture fields only; no full-chart or system-wide claim",
+      "fixtureId": "ziwei-ext-table-bureau-lookup",
+      "statuses": [
+        "not_independently_verified",
+        "source_identity_unresolved"
+      ]
+    },
+    {
+      "comparisonScope": "declared fixture fields only; no full-chart or system-wide claim",
+      "fixtureId": "ziwei-ext-table-four-transformations",
+      "statuses": [
+        "not_independently_verified",
+        "source_identity_unresolved"
+      ]
+    },
+    {
+      "comparisonScope": "declared fixture fields only; no full-chart or system-wide claim",
+      "fixtureId": "ziwei-ext-table-minor-stars",
+      "statuses": [
+        "not_independently_verified",
+        "source_identity_unresolved"
+      ]
+    },
+    {
+      "comparisonScope": "declared fixture fields only; no full-chart or system-wide claim",
+      "fixtureId": "ziwei-ext-table-ziwei-placement",
+      "statuses": [
+        "not_independently_verified",
+        "source_identity_unresolved"
+      ]
+    }
+  ],
+  "forbiddenTransformations": [
+    "raw_text_to_verified_fact",
+    "occurrence_to_stable_claim",
+    "different_occurrence_merge",
+    "frequency_ranking",
+    "scoped_match_to_system_verification",
+    "unresolved_source_hiding"
+  ],
+  "materializer": "scripts/materialize-ziwei-occurrence-provenance-v0.mjs",
+  "negativeFixture": "test/fixtures/ziwei/occurrence-provenance-negative-v0.json",
+  "observedHead": "4b062131ae4f1f7b0932708809399b92dbe06469",
+  "occurrences": [
+    {
+      "calculationReferences": [
+        "ziwei-calculation-resolve-transformations"
+      ],
+      "claimBoundary": {
+        "stableClaimBoundary": false,
+        "stableClaimId": null,
+        "status": "claim_grouping_blocked"
+      },
+      "conflationProhibition": {
+        "prohibited": true,
+        "reason": "원문·위치·규칙·source identity가 닫히기 전 대표 문장 또는 stable claim으로 병합 금지"
+      },
+      "evidenceReferences": [
+        "source:src/ziwei/transformationRules.js"
+      ],
+      "featureReferences": [
+        "ziwei-feature-transformation-label:lu"
+      ],
+      "fixtureReferences": [
+        "fixture:star-placement:sample_water_2_bureau_day_1",
+        "fixture:star-placement:sample_wood_3_bureau_day_15",
+        "fixture:star-placement:sample_fire_6_bureau_day_22",
+        "fixture:external:ziwei-ext-table-four-transformations"
+      ],
+      "occurrenceId": "ziwei-occ-21d731586efc0e34",
+      "provenanceCompleteness": "partial",
+      "rawText": {
+        "epistemicBoundary": "raw_meaning_candidate_only",
+        "isVerifiedFact": false,
+        "text": "재물, 유연함, 발전"
+      },
+      "ruleReferences": [
+        "ziwei-rule-transformations"
+      ],
+      "source": {
+        "exportName": "TRANSFORMATION_LABELS",
+        "file": "src/ziwei/transformationRules.js",
+        "location": "TRANSFORMATION_LABELS[lu].description",
+        "slot": "lu"
+      },
+      "sourceIdentity": {
+        "immutableExternalIdentity": null,
+        "status": "unresolved_source_identity"
+      },
+      "statuses": [
+        "occurrence_identified",
+        "occurrence_provenance_partial",
+        "source_identity_unresolved",
+        "claim_grouping_blocked"
+      ],
+      "unresolvedGaps": [
+        "external_source_location_missing",
+        "exact_edition_or_retrieval_identity_missing",
+        "independent_oracle_identity_missing"
+      ]
+    },
+    {
+      "calculationReferences": [
+        "ziwei-calculation-resolve-chart-palaces",
+        "ziwei-calculation-interpretation-palace-contexts"
+      ],
+      "claimBoundary": {
+        "stableClaimBoundary": false,
+        "stableClaimId": null,
+        "status": "claim_grouping_blocked"
+      },
+      "conflationProhibition": {
+        "prohibited": true,
+        "reason": "원문·위치·규칙·source identity가 닫히기 전 대표 문장 또는 stable claim으로 병합 금지"
+      },
+      "evidenceReferences": [
+        "source:src/ziwei/ziweiContract.js"
+      ],
+      "featureReferences": [
+        "ziwei-feature-palace-context"
+      ],
+      "fixtureReferences": [
+        "fixture:known-chart:sample_1_lunar_5_hour_wu",
+        "fixture:known-chart:sample_2_lunar_1_hour_zi",
+        "fixture:known-chart:sample_3_leap_month_boundary",
+        "fixture:benchmark:case_a_exact_personality",
+        "fixture:benchmark:case_b_unknown_time_personality",
+        "fixture:benchmark:case_c_leap_month_relationship",
+        "fixture:benchmark:case_d_hua_ji_career",
+        "fixture:benchmark:case_e_timing_low_confidence"
+      ],
+      "occurrenceId": "ziwei-occ-2260aba6ed2163e3",
+      "provenanceCompleteness": "partial",
+      "rawText": {
+        "epistemicBoundary": "raw_meaning_candidate_only",
+        "isVerifiedFact": false,
+        "text": "직업, 사회적 위치, 역량 발휘"
+      },
+      "ruleReferences": [
+        "ziwei-rule-input-contract",
+        "ziwei-rule-palace-placement"
+      ],
+      "source": {
+        "exportName": "ZIWEI_PALACE_DEFINITIONS",
+        "file": "src/ziwei/ziweiContract.js",
+        "location": "ZIWEI_PALACE_DEFINITIONS[id=career].description",
+        "slot": "career"
+      },
+      "sourceIdentity": {
+        "immutableExternalIdentity": null,
+        "status": "unresolved_source_identity"
+      },
+      "statuses": [
+        "occurrence_identified",
+        "occurrence_provenance_partial",
+        "source_identity_unresolved",
+        "claim_grouping_blocked"
+      ],
+      "unresolvedGaps": [
+        "external_source_location_missing",
+        "exact_edition_or_retrieval_identity_missing",
+        "independent_oracle_identity_missing"
+      ]
+    },
+    {
+      "calculationReferences": [
+        "ziwei-calculation-resolve-chart-palaces",
+        "ziwei-calculation-interpretation-palace-contexts"
+      ],
+      "claimBoundary": {
+        "stableClaimBoundary": false,
+        "stableClaimId": null,
+        "status": "claim_grouping_blocked"
+      },
+      "conflationProhibition": {
+        "prohibited": true,
+        "reason": "원문·위치·규칙·source identity가 닫히기 전 대표 문장 또는 stable claim으로 병합 금지"
+      },
+      "evidenceReferences": [
+        "source:src/ziwei/ziweiContract.js"
+      ],
+      "featureReferences": [
+        "ziwei-feature-palace-context"
+      ],
+      "fixtureReferences": [
+        "fixture:known-chart:sample_1_lunar_5_hour_wu",
+        "fixture:known-chart:sample_2_lunar_1_hour_zi",
+        "fixture:known-chart:sample_3_leap_month_boundary",
+        "fixture:benchmark:case_a_exact_personality",
+        "fixture:benchmark:case_b_unknown_time_personality",
+        "fixture:benchmark:case_c_leap_month_relationship",
+        "fixture:benchmark:case_d_hua_ji_career",
+        "fixture:benchmark:case_e_timing_low_confidence"
+      ],
+      "occurrenceId": "ziwei-occ-2b792b2cac1c58ab",
+      "provenanceCompleteness": "partial",
+      "rawText": {
+        "epistemicBoundary": "raw_meaning_candidate_only",
+        "isVerifiedFact": false,
+        "text": "본질적 기질, 운명의 총체적 바탕"
+      },
+      "ruleReferences": [
+        "ziwei-rule-input-contract",
+        "ziwei-rule-palace-placement"
+      ],
+      "source": {
+        "exportName": "ZIWEI_PALACE_DEFINITIONS",
+        "file": "src/ziwei/ziweiContract.js",
+        "location": "ZIWEI_PALACE_DEFINITIONS[id=life].description",
+        "slot": "life"
+      },
+      "sourceIdentity": {
+        "immutableExternalIdentity": null,
+        "status": "unresolved_source_identity"
+      },
+      "statuses": [
+        "occurrence_identified",
+        "occurrence_provenance_partial",
+        "source_identity_unresolved",
+        "claim_grouping_blocked"
+      ],
+      "unresolvedGaps": [
+        "external_source_location_missing",
+        "exact_edition_or_retrieval_identity_missing",
+        "independent_oracle_identity_missing"
+      ]
+    },
+    {
+      "calculationReferences": [
+        "ziwei-calculation-build-palace-relations"
+      ],
+      "claimBoundary": {
+        "stableClaimBoundary": false,
+        "stableClaimId": null,
+        "status": "claim_grouping_blocked"
+      },
+      "conflationProhibition": {
+        "prohibited": true,
+        "reason": "원문·위치·규칙·source identity가 닫히기 전 대표 문장 또는 stable claim으로 병합 금지"
+      },
+      "evidenceReferences": [
+        "source:src/ziwei/palaceRelationRules.js"
+      ],
+      "featureReferences": [
+        "ziwei-feature-topic-pattern:relationshipPattern"
+      ],
+      "fixtureReferences": [
+        "fixture:benchmark:case_a_exact_personality",
+        "fixture:benchmark:case_b_unknown_time_personality",
+        "fixture:benchmark:case_c_leap_month_relationship",
+        "fixture:benchmark:case_d_hua_ji_career",
+        "fixture:benchmark:case_e_timing_low_confidence"
+      ],
+      "occurrenceId": "ziwei-occ-2d961f3216f41e70",
+      "provenanceCompleteness": "partial",
+      "rawText": {
+        "epistemicBoundary": "raw_meaning_candidate_only",
+        "isVerifiedFact": false,
+        "text": "대인관계 및 배우자 소통 패턴"
+      },
+      "ruleReferences": [
+        "ziwei-rule-palace-relations"
+      ],
+      "source": {
+        "exportName": "TOPIC_PALACE_PATTERNS",
+        "file": "src/ziwei/palaceRelationRules.js",
+        "location": "TOPIC_PALACE_PATTERNS[relationshipPattern].label",
+        "slot": "relationshipPattern"
+      },
+      "sourceIdentity": {
+        "immutableExternalIdentity": null,
+        "status": "unresolved_source_identity"
+      },
+      "statuses": [
+        "occurrence_identified",
+        "occurrence_provenance_partial",
+        "source_identity_unresolved",
+        "claim_grouping_blocked"
+      ],
+      "unresolvedGaps": [
+        "external_source_location_missing",
+        "exact_edition_or_retrieval_identity_missing",
+        "independent_oracle_identity_missing"
+      ]
+    },
+    {
+      "calculationReferences": [
+        "ziwei-calculation-build-palace-relations"
+      ],
+      "claimBoundary": {
+        "stableClaimBoundary": false,
+        "stableClaimId": null,
+        "status": "claim_grouping_blocked"
+      },
+      "conflationProhibition": {
+        "prohibited": true,
+        "reason": "원문·위치·규칙·source identity가 닫히기 전 대표 문장 또는 stable claim으로 병합 금지"
+      },
+      "evidenceReferences": [
+        "source:src/ziwei/palaceRelationRules.js"
+      ],
+      "featureReferences": [
+        "ziwei-feature-topic-pattern:careerPattern"
+      ],
+      "fixtureReferences": [
+        "fixture:benchmark:case_a_exact_personality",
+        "fixture:benchmark:case_b_unknown_time_personality",
+        "fixture:benchmark:case_c_leap_month_relationship",
+        "fixture:benchmark:case_d_hua_ji_career",
+        "fixture:benchmark:case_e_timing_low_confidence"
+      ],
+      "occurrenceId": "ziwei-occ-6e095d58a62d9b86",
+      "provenanceCompleteness": "partial",
+      "rawText": {
+        "epistemicBoundary": "raw_meaning_candidate_only",
+        "isVerifiedFact": false,
+        "text": "직업 및 역량 개발 패턴"
+      },
+      "ruleReferences": [
+        "ziwei-rule-palace-relations"
+      ],
+      "source": {
+        "exportName": "TOPIC_PALACE_PATTERNS",
+        "file": "src/ziwei/palaceRelationRules.js",
+        "location": "TOPIC_PALACE_PATTERNS[careerPattern].label",
+        "slot": "careerPattern"
+      },
+      "sourceIdentity": {
+        "immutableExternalIdentity": null,
+        "status": "unresolved_source_identity"
+      },
+      "statuses": [
+        "occurrence_identified",
+        "occurrence_provenance_partial",
+        "source_identity_unresolved",
+        "claim_grouping_blocked"
+      ],
+      "unresolvedGaps": [
+        "external_source_location_missing",
+        "exact_edition_or_retrieval_identity_missing",
+        "independent_oracle_identity_missing"
+      ]
+    },
+    {
+      "calculationReferences": [
+        "ziwei-calculation-resolve-chart-palaces",
+        "ziwei-calculation-interpretation-palace-contexts"
+      ],
+      "claimBoundary": {
+        "stableClaimBoundary": false,
+        "stableClaimId": null,
+        "status": "claim_grouping_blocked"
+      },
+      "conflationProhibition": {
+        "prohibited": true,
+        "reason": "원문·위치·규칙·source identity가 닫히기 전 대표 문장 또는 stable claim으로 병합 금지"
+      },
+      "evidenceReferences": [
+        "source:src/ziwei/ziweiContract.js"
+      ],
+      "featureReferences": [
+        "ziwei-feature-palace-context"
+      ],
+      "fixtureReferences": [
+        "fixture:known-chart:sample_1_lunar_5_hour_wu",
+        "fixture:known-chart:sample_2_lunar_1_hour_zi",
+        "fixture:known-chart:sample_3_leap_month_boundary",
+        "fixture:benchmark:case_a_exact_personality",
+        "fixture:benchmark:case_b_unknown_time_personality",
+        "fixture:benchmark:case_c_leap_month_relationship",
+        "fixture:benchmark:case_d_hua_ji_career",
+        "fixture:benchmark:case_e_timing_low_confidence"
+      ],
+      "occurrenceId": "ziwei-occ-894fa6fa97b81dfd",
+      "provenanceCompleteness": "partial",
+      "rawText": {
+        "epistemicBoundary": "raw_meaning_candidate_only",
+        "isVerifiedFact": false,
+        "text": "자녀, 후배, 제자, 창작물"
+      },
+      "ruleReferences": [
+        "ziwei-rule-input-contract",
+        "ziwei-rule-palace-placement"
+      ],
+      "source": {
+        "exportName": "ZIWEI_PALACE_DEFINITIONS",
+        "file": "src/ziwei/ziweiContract.js",
+        "location": "ZIWEI_PALACE_DEFINITIONS[id=children].description",
+        "slot": "children"
+      },
+      "sourceIdentity": {
+        "immutableExternalIdentity": null,
+        "status": "unresolved_source_identity"
+      },
+      "statuses": [
+        "occurrence_identified",
+        "occurrence_provenance_partial",
+        "source_identity_unresolved",
+        "claim_grouping_blocked"
+      ],
+      "unresolvedGaps": [
+        "external_source_location_missing",
+        "exact_edition_or_retrieval_identity_missing",
+        "independent_oracle_identity_missing"
+      ]
+    },
+    {
+      "calculationReferences": [
+        "ziwei-calculation-resolve-chart-palaces",
+        "ziwei-calculation-interpretation-palace-contexts"
+      ],
+      "claimBoundary": {
+        "stableClaimBoundary": false,
+        "stableClaimId": null,
+        "status": "claim_grouping_blocked"
+      },
+      "conflationProhibition": {
+        "prohibited": true,
+        "reason": "원문·위치·규칙·source identity가 닫히기 전 대표 문장 또는 stable claim으로 병합 금지"
+      },
+      "evidenceReferences": [
+        "source:src/ziwei/ziweiContract.js"
+      ],
+      "featureReferences": [
+        "ziwei-feature-palace-context"
+      ],
+      "fixtureReferences": [
+        "fixture:known-chart:sample_1_lunar_5_hour_wu",
+        "fixture:known-chart:sample_2_lunar_1_hour_zi",
+        "fixture:known-chart:sample_3_leap_month_boundary",
+        "fixture:benchmark:case_a_exact_personality",
+        "fixture:benchmark:case_b_unknown_time_personality",
+        "fixture:benchmark:case_c_leap_month_relationship",
+        "fixture:benchmark:case_d_hua_ji_career",
+        "fixture:benchmark:case_e_timing_low_confidence"
+      ],
+      "occurrenceId": "ziwei-occ-a09e10a5495186b8",
+      "provenanceCompleteness": "partial",
+      "rawText": {
+        "epistemicBoundary": "raw_meaning_candidate_only",
+        "isVerifiedFact": false,
+        "text": "형제자매, 동료, 친밀한 지인 관계"
+      },
+      "ruleReferences": [
+        "ziwei-rule-input-contract",
+        "ziwei-rule-palace-placement"
+      ],
+      "source": {
+        "exportName": "ZIWEI_PALACE_DEFINITIONS",
+        "file": "src/ziwei/ziweiContract.js",
+        "location": "ZIWEI_PALACE_DEFINITIONS[id=siblings].description",
+        "slot": "siblings"
+      },
+      "sourceIdentity": {
+        "immutableExternalIdentity": null,
+        "status": "unresolved_source_identity"
+      },
+      "statuses": [
+        "occurrence_identified",
+        "occurrence_provenance_partial",
+        "source_identity_unresolved",
+        "claim_grouping_blocked"
+      ],
+      "unresolvedGaps": [
+        "external_source_location_missing",
+        "exact_edition_or_retrieval_identity_missing",
+        "independent_oracle_identity_missing"
+      ]
+    },
+    {
+      "calculationReferences": [
+        "ziwei-calculation-resolve-chart-palaces",
+        "ziwei-calculation-interpretation-palace-contexts"
+      ],
+      "claimBoundary": {
+        "stableClaimBoundary": false,
+        "stableClaimId": null,
+        "status": "claim_grouping_blocked"
+      },
+      "conflationProhibition": {
+        "prohibited": true,
+        "reason": "원문·위치·규칙·source identity가 닫히기 전 대표 문장 또는 stable claim으로 병합 금지"
+      },
+      "evidenceReferences": [
+        "source:src/ziwei/ziweiContract.js"
+      ],
+      "featureReferences": [
+        "ziwei-feature-palace-context"
+      ],
+      "fixtureReferences": [
+        "fixture:known-chart:sample_1_lunar_5_hour_wu",
+        "fixture:known-chart:sample_2_lunar_1_hour_zi",
+        "fixture:known-chart:sample_3_leap_month_boundary",
+        "fixture:benchmark:case_a_exact_personality",
+        "fixture:benchmark:case_b_unknown_time_personality",
+        "fixture:benchmark:case_c_leap_month_relationship",
+        "fixture:benchmark:case_d_hua_ji_career",
+        "fixture:benchmark:case_e_timing_low_confidence"
+      ],
+      "occurrenceId": "ziwei-occ-a54cfa4de8051b41",
+      "provenanceCompleteness": "partial",
+      "rawText": {
+        "epistemicBoundary": "raw_meaning_candidate_only",
+        "isVerifiedFact": false,
+        "text": "건강, 신체적 체질, 질병 유의점"
+      },
+      "ruleReferences": [
+        "ziwei-rule-input-contract",
+        "ziwei-rule-palace-placement"
+      ],
+      "source": {
+        "exportName": "ZIWEI_PALACE_DEFINITIONS",
+        "file": "src/ziwei/ziweiContract.js",
+        "location": "ZIWEI_PALACE_DEFINITIONS[id=health].description",
+        "slot": "health"
+      },
+      "sourceIdentity": {
+        "immutableExternalIdentity": null,
+        "status": "unresolved_source_identity"
+      },
+      "statuses": [
+        "occurrence_identified",
+        "occurrence_provenance_partial",
+        "source_identity_unresolved",
+        "claim_grouping_blocked"
+      ],
+      "unresolvedGaps": [
+        "external_source_location_missing",
+        "exact_edition_or_retrieval_identity_missing",
+        "independent_oracle_identity_missing"
+      ]
+    },
+    {
+      "calculationReferences": [
+        "ziwei-calculation-resolve-chart-palaces",
+        "ziwei-calculation-interpretation-palace-contexts"
+      ],
+      "claimBoundary": {
+        "stableClaimBoundary": false,
+        "stableClaimId": null,
+        "status": "claim_grouping_blocked"
+      },
+      "conflationProhibition": {
+        "prohibited": true,
+        "reason": "원문·위치·규칙·source identity가 닫히기 전 대표 문장 또는 stable claim으로 병합 금지"
+      },
+      "evidenceReferences": [
+        "source:src/ziwei/ziweiContract.js"
+      ],
+      "featureReferences": [
+        "ziwei-feature-palace-context"
+      ],
+      "fixtureReferences": [
+        "fixture:known-chart:sample_1_lunar_5_hour_wu",
+        "fixture:known-chart:sample_2_lunar_1_hour_zi",
+        "fixture:known-chart:sample_3_leap_month_boundary",
+        "fixture:benchmark:case_a_exact_personality",
+        "fixture:benchmark:case_b_unknown_time_personality",
+        "fixture:benchmark:case_c_leap_month_relationship",
+        "fixture:benchmark:case_d_hua_ji_career",
+        "fixture:benchmark:case_e_timing_low_confidence"
+      ],
+      "occurrenceId": "ziwei-occ-a72bdf60ef809b58",
+      "provenanceCompleteness": "partial",
+      "rawText": {
+        "epistemicBoundary": "raw_meaning_candidate_only",
+        "isVerifiedFact": false,
+        "text": "부하, 대중, 일반 인간관계"
+      },
+      "ruleReferences": [
+        "ziwei-rule-input-contract",
+        "ziwei-rule-palace-placement"
+      ],
+      "source": {
+        "exportName": "ZIWEI_PALACE_DEFINITIONS",
+        "file": "src/ziwei/ziweiContract.js",
+        "location": "ZIWEI_PALACE_DEFINITIONS[id=friends].description",
+        "slot": "friends"
+      },
+      "sourceIdentity": {
+        "immutableExternalIdentity": null,
+        "status": "unresolved_source_identity"
+      },
+      "statuses": [
+        "occurrence_identified",
+        "occurrence_provenance_partial",
+        "source_identity_unresolved",
+        "claim_grouping_blocked"
+      ],
+      "unresolvedGaps": [
+        "external_source_location_missing",
+        "exact_edition_or_retrieval_identity_missing",
+        "independent_oracle_identity_missing"
+      ]
+    },
+    {
+      "calculationReferences": [
+        "ziwei-calculation-build-palace-relations"
+      ],
+      "claimBoundary": {
+        "stableClaimBoundary": false,
+        "stableClaimId": null,
+        "status": "claim_grouping_blocked"
+      },
+      "conflationProhibition": {
+        "prohibited": true,
+        "reason": "원문·위치·규칙·source identity가 닫히기 전 대표 문장 또는 stable claim으로 병합 금지"
+      },
+      "evidenceReferences": [
+        "source:src/ziwei/palaceRelationRules.js"
+      ],
+      "featureReferences": [
+        "ziwei-feature-topic-pattern:wealthPattern"
+      ],
+      "fixtureReferences": [
+        "fixture:benchmark:case_a_exact_personality",
+        "fixture:benchmark:case_b_unknown_time_personality",
+        "fixture:benchmark:case_c_leap_month_relationship",
+        "fixture:benchmark:case_d_hua_ji_career",
+        "fixture:benchmark:case_e_timing_low_confidence"
+      ],
+      "occurrenceId": "ziwei-occ-acb0dce151f32dcb",
+      "provenanceCompleteness": "partial",
+      "rawText": {
+        "epistemicBoundary": "raw_meaning_candidate_only",
+        "isVerifiedFact": false,
+        "text": "재물 및 자산 관리 패턴"
+      },
+      "ruleReferences": [
+        "ziwei-rule-palace-relations"
+      ],
+      "source": {
+        "exportName": "TOPIC_PALACE_PATTERNS",
+        "file": "src/ziwei/palaceRelationRules.js",
+        "location": "TOPIC_PALACE_PATTERNS[wealthPattern].label",
+        "slot": "wealthPattern"
+      },
+      "sourceIdentity": {
+        "immutableExternalIdentity": null,
+        "status": "unresolved_source_identity"
+      },
+      "statuses": [
+        "occurrence_identified",
+        "occurrence_provenance_partial",
+        "source_identity_unresolved",
+        "claim_grouping_blocked"
+      ],
+      "unresolvedGaps": [
+        "external_source_location_missing",
+        "exact_edition_or_retrieval_identity_missing",
+        "independent_oracle_identity_missing"
+      ]
+    },
+    {
+      "calculationReferences": [
+        "ziwei-calculation-resolve-chart-palaces",
+        "ziwei-calculation-interpretation-palace-contexts"
+      ],
+      "claimBoundary": {
+        "stableClaimBoundary": false,
+        "stableClaimId": null,
+        "status": "claim_grouping_blocked"
+      },
+      "conflationProhibition": {
+        "prohibited": true,
+        "reason": "원문·위치·규칙·source identity가 닫히기 전 대표 문장 또는 stable claim으로 병합 금지"
+      },
+      "evidenceReferences": [
+        "source:src/ziwei/ziweiContract.js"
+      ],
+      "featureReferences": [
+        "ziwei-feature-palace-context"
+      ],
+      "fixtureReferences": [
+        "fixture:known-chart:sample_1_lunar_5_hour_wu",
+        "fixture:known-chart:sample_2_lunar_1_hour_zi",
+        "fixture:known-chart:sample_3_leap_month_boundary",
+        "fixture:benchmark:case_a_exact_personality",
+        "fixture:benchmark:case_b_unknown_time_personality",
+        "fixture:benchmark:case_c_leap_month_relationship",
+        "fixture:benchmark:case_d_hua_ji_career",
+        "fixture:benchmark:case_e_timing_low_confidence"
+      ],
+      "occurrenceId": "ziwei-occ-b1d4bbca55c2007f",
+      "provenanceCompleteness": "partial",
+      "rawText": {
+        "epistemicBoundary": "raw_meaning_candidate_only",
+        "isVerifiedFact": false,
+        "text": "배우자, 연인, 이성 인연"
+      },
+      "ruleReferences": [
+        "ziwei-rule-input-contract",
+        "ziwei-rule-palace-placement"
+      ],
+      "source": {
+        "exportName": "ZIWEI_PALACE_DEFINITIONS",
+        "file": "src/ziwei/ziweiContract.js",
+        "location": "ZIWEI_PALACE_DEFINITIONS[id=spouse].description",
+        "slot": "spouse"
+      },
+      "sourceIdentity": {
+        "immutableExternalIdentity": null,
+        "status": "unresolved_source_identity"
+      },
+      "statuses": [
+        "occurrence_identified",
+        "occurrence_provenance_partial",
+        "source_identity_unresolved",
+        "claim_grouping_blocked"
+      ],
+      "unresolvedGaps": [
+        "external_source_location_missing",
+        "exact_edition_or_retrieval_identity_missing",
+        "independent_oracle_identity_missing"
+      ]
+    },
+    {
+      "calculationReferences": [
+        "ziwei-calculation-resolve-chart-palaces",
+        "ziwei-calculation-interpretation-palace-contexts"
+      ],
+      "claimBoundary": {
+        "stableClaimBoundary": false,
+        "stableClaimId": null,
+        "status": "claim_grouping_blocked"
+      },
+      "conflationProhibition": {
+        "prohibited": true,
+        "reason": "원문·위치·규칙·source identity가 닫히기 전 대표 문장 또는 stable claim으로 병합 금지"
+      },
+      "evidenceReferences": [
+        "source:src/ziwei/ziweiContract.js"
+      ],
+      "featureReferences": [
+        "ziwei-feature-palace-context"
+      ],
+      "fixtureReferences": [
+        "fixture:known-chart:sample_1_lunar_5_hour_wu",
+        "fixture:known-chart:sample_2_lunar_1_hour_zi",
+        "fixture:known-chart:sample_3_leap_month_boundary",
+        "fixture:benchmark:case_a_exact_personality",
+        "fixture:benchmark:case_b_unknown_time_personality",
+        "fixture:benchmark:case_c_leap_month_relationship",
+        "fixture:benchmark:case_d_hua_ji_career",
+        "fixture:benchmark:case_e_timing_low_confidence"
+      ],
+      "occurrenceId": "ziwei-occ-bb986540a877dcee",
+      "provenanceCompleteness": "partial",
+      "rawText": {
+        "epistemicBoundary": "raw_meaning_candidate_only",
+        "isVerifiedFact": false,
+        "text": "부동산, 주거 환경, 가문 바탕"
+      },
+      "ruleReferences": [
+        "ziwei-rule-input-contract",
+        "ziwei-rule-palace-placement"
+      ],
+      "source": {
+        "exportName": "ZIWEI_PALACE_DEFINITIONS",
+        "file": "src/ziwei/ziweiContract.js",
+        "location": "ZIWEI_PALACE_DEFINITIONS[id=property].description",
+        "slot": "property"
+      },
+      "sourceIdentity": {
+        "immutableExternalIdentity": null,
+        "status": "unresolved_source_identity"
+      },
+      "statuses": [
+        "occurrence_identified",
+        "occurrence_provenance_partial",
+        "source_identity_unresolved",
+        "claim_grouping_blocked"
+      ],
+      "unresolvedGaps": [
+        "external_source_location_missing",
+        "exact_edition_or_retrieval_identity_missing",
+        "independent_oracle_identity_missing"
+      ]
+    },
+    {
+      "calculationReferences": [
+        "ziwei-calculation-resolve-chart-palaces",
+        "ziwei-calculation-interpretation-palace-contexts"
+      ],
+      "claimBoundary": {
+        "stableClaimBoundary": false,
+        "stableClaimId": null,
+        "status": "claim_grouping_blocked"
+      },
+      "conflationProhibition": {
+        "prohibited": true,
+        "reason": "원문·위치·규칙·source identity가 닫히기 전 대표 문장 또는 stable claim으로 병합 금지"
+      },
+      "evidenceReferences": [
+        "source:src/ziwei/ziweiContract.js"
+      ],
+      "featureReferences": [
+        "ziwei-feature-palace-context"
+      ],
+      "fixtureReferences": [
+        "fixture:known-chart:sample_1_lunar_5_hour_wu",
+        "fixture:known-chart:sample_2_lunar_1_hour_zi",
+        "fixture:known-chart:sample_3_leap_month_boundary",
+        "fixture:benchmark:case_a_exact_personality",
+        "fixture:benchmark:case_b_unknown_time_personality",
+        "fixture:benchmark:case_c_leap_month_relationship",
+        "fixture:benchmark:case_d_hua_ji_career",
+        "fixture:benchmark:case_e_timing_low_confidence"
+      ],
+      "occurrenceId": "ziwei-occ-c4b8407cdc824d27",
+      "provenanceCompleteness": "partial",
+      "rawText": {
+        "epistemicBoundary": "raw_meaning_candidate_only",
+        "isVerifiedFact": false,
+        "text": "부모, 윗사람, 덕망, 문서 운"
+      },
+      "ruleReferences": [
+        "ziwei-rule-input-contract",
+        "ziwei-rule-palace-placement"
+      ],
+      "source": {
+        "exportName": "ZIWEI_PALACE_DEFINITIONS",
+        "file": "src/ziwei/ziweiContract.js",
+        "location": "ZIWEI_PALACE_DEFINITIONS[id=parents].description",
+        "slot": "parents"
+      },
+      "sourceIdentity": {
+        "immutableExternalIdentity": null,
+        "status": "unresolved_source_identity"
+      },
+      "statuses": [
+        "occurrence_identified",
+        "occurrence_provenance_partial",
+        "source_identity_unresolved",
+        "claim_grouping_blocked"
+      ],
+      "unresolvedGaps": [
+        "external_source_location_missing",
+        "exact_edition_or_retrieval_identity_missing",
+        "independent_oracle_identity_missing"
+      ]
+    },
+    {
+      "calculationReferences": [
+        "ziwei-calculation-resolve-chart-palaces",
+        "ziwei-calculation-interpretation-palace-contexts"
+      ],
+      "claimBoundary": {
+        "stableClaimBoundary": false,
+        "stableClaimId": null,
+        "status": "claim_grouping_blocked"
+      },
+      "conflationProhibition": {
+        "prohibited": true,
+        "reason": "원문·위치·규칙·source identity가 닫히기 전 대표 문장 또는 stable claim으로 병합 금지"
+      },
+      "evidenceReferences": [
+        "source:src/ziwei/ziweiContract.js"
+      ],
+      "featureReferences": [
+        "ziwei-feature-palace-context"
+      ],
+      "fixtureReferences": [
+        "fixture:known-chart:sample_1_lunar_5_hour_wu",
+        "fixture:known-chart:sample_2_lunar_1_hour_zi",
+        "fixture:known-chart:sample_3_leap_month_boundary",
+        "fixture:benchmark:case_a_exact_personality",
+        "fixture:benchmark:case_b_unknown_time_personality",
+        "fixture:benchmark:case_c_leap_month_relationship",
+        "fixture:benchmark:case_d_hua_ji_career",
+        "fixture:benchmark:case_e_timing_low_confidence"
+      ],
+      "occurrenceId": "ziwei-occ-d31091d32f84777c",
+      "provenanceCompleteness": "partial",
+      "rawText": {
+        "epistemicBoundary": "raw_meaning_candidate_only",
+        "isVerifiedFact": false,
+        "text": "재물 운, 수입 및 지출 패턴"
+      },
+      "ruleReferences": [
+        "ziwei-rule-input-contract",
+        "ziwei-rule-palace-placement"
+      ],
+      "source": {
+        "exportName": "ZIWEI_PALACE_DEFINITIONS",
+        "file": "src/ziwei/ziweiContract.js",
+        "location": "ZIWEI_PALACE_DEFINITIONS[id=wealth].description",
+        "slot": "wealth"
+      },
+      "sourceIdentity": {
+        "immutableExternalIdentity": null,
+        "status": "unresolved_source_identity"
+      },
+      "statuses": [
+        "occurrence_identified",
+        "occurrence_provenance_partial",
+        "source_identity_unresolved",
+        "claim_grouping_blocked"
+      ],
+      "unresolvedGaps": [
+        "external_source_location_missing",
+        "exact_edition_or_retrieval_identity_missing",
+        "independent_oracle_identity_missing"
+      ]
+    },
+    {
+      "calculationReferences": [
+        "ziwei-calculation-resolve-transformations"
+      ],
+      "claimBoundary": {
+        "stableClaimBoundary": false,
+        "stableClaimId": null,
+        "status": "claim_grouping_blocked"
+      },
+      "conflationProhibition": {
+        "prohibited": true,
+        "reason": "원문·위치·규칙·source identity가 닫히기 전 대표 문장 또는 stable claim으로 병합 금지"
+      },
+      "evidenceReferences": [
+        "source:src/ziwei/transformationRules.js"
+      ],
+      "featureReferences": [
+        "ziwei-feature-transformation-label:quan"
+      ],
+      "fixtureReferences": [
+        "fixture:star-placement:sample_water_2_bureau_day_1",
+        "fixture:star-placement:sample_wood_3_bureau_day_15",
+        "fixture:star-placement:sample_fire_6_bureau_day_22",
+        "fixture:external:ziwei-ext-table-four-transformations"
+      ],
+      "occurrenceId": "ziwei-occ-dd08863eb441bb65",
+      "provenanceCompleteness": "partial",
+      "rawText": {
+        "epistemicBoundary": "raw_meaning_candidate_only",
+        "isVerifiedFact": false,
+        "text": "권력, 과감함, 영향력"
+      },
+      "ruleReferences": [
+        "ziwei-rule-transformations"
+      ],
+      "source": {
+        "exportName": "TRANSFORMATION_LABELS",
+        "file": "src/ziwei/transformationRules.js",
+        "location": "TRANSFORMATION_LABELS[quan].description",
+        "slot": "quan"
+      },
+      "sourceIdentity": {
+        "immutableExternalIdentity": null,
+        "status": "unresolved_source_identity"
+      },
+      "statuses": [
+        "occurrence_identified",
+        "occurrence_provenance_partial",
+        "source_identity_unresolved",
+        "claim_grouping_blocked"
+      ],
+      "unresolvedGaps": [
+        "external_source_location_missing",
+        "exact_edition_or_retrieval_identity_missing",
+        "independent_oracle_identity_missing"
+      ]
+    },
+    {
+      "calculationReferences": [
+        "ziwei-calculation-resolve-chart-palaces",
+        "ziwei-calculation-interpretation-palace-contexts"
+      ],
+      "claimBoundary": {
+        "stableClaimBoundary": false,
+        "stableClaimId": null,
+        "status": "claim_grouping_blocked"
+      },
+      "conflationProhibition": {
+        "prohibited": true,
+        "reason": "원문·위치·규칙·source identity가 닫히기 전 대표 문장 또는 stable claim으로 병합 금지"
+      },
+      "evidenceReferences": [
+        "source:src/ziwei/ziweiContract.js"
+      ],
+      "featureReferences": [
+        "ziwei-feature-palace-context"
+      ],
+      "fixtureReferences": [
+        "fixture:known-chart:sample_1_lunar_5_hour_wu",
+        "fixture:known-chart:sample_2_lunar_1_hour_zi",
+        "fixture:known-chart:sample_3_leap_month_boundary",
+        "fixture:benchmark:case_a_exact_personality",
+        "fixture:benchmark:case_b_unknown_time_personality",
+        "fixture:benchmark:case_c_leap_month_relationship",
+        "fixture:benchmark:case_d_hua_ji_career",
+        "fixture:benchmark:case_e_timing_low_confidence"
+      ],
+      "occurrenceId": "ziwei-occ-e70f01a8752ee8d2",
+      "provenanceCompleteness": "partial",
+      "rawText": {
+        "epistemicBoundary": "raw_meaning_candidate_only",
+        "isVerifiedFact": false,
+        "text": "대외 활동, 이동, 타향/해외 운"
+      },
+      "ruleReferences": [
+        "ziwei-rule-input-contract",
+        "ziwei-rule-palace-placement"
+      ],
+      "source": {
+        "exportName": "ZIWEI_PALACE_DEFINITIONS",
+        "file": "src/ziwei/ziweiContract.js",
+        "location": "ZIWEI_PALACE_DEFINITIONS[id=travel].description",
+        "slot": "travel"
+      },
+      "sourceIdentity": {
+        "immutableExternalIdentity": null,
+        "status": "unresolved_source_identity"
+      },
+      "statuses": [
+        "occurrence_identified",
+        "occurrence_provenance_partial",
+        "source_identity_unresolved",
+        "claim_grouping_blocked"
+      ],
+      "unresolvedGaps": [
+        "external_source_location_missing",
+        "exact_edition_or_retrieval_identity_missing",
+        "independent_oracle_identity_missing"
+      ]
+    },
+    {
+      "calculationReferences": [
+        "ziwei-calculation-resolve-chart-palaces",
+        "ziwei-calculation-interpretation-palace-contexts"
+      ],
+      "claimBoundary": {
+        "stableClaimBoundary": false,
+        "stableClaimId": null,
+        "status": "claim_grouping_blocked"
+      },
+      "conflationProhibition": {
+        "prohibited": true,
+        "reason": "원문·위치·규칙·source identity가 닫히기 전 대표 문장 또는 stable claim으로 병합 금지"
+      },
+      "evidenceReferences": [
+        "source:src/ziwei/ziweiContract.js"
+      ],
+      "featureReferences": [
+        "ziwei-feature-palace-context"
+      ],
+      "fixtureReferences": [
+        "fixture:known-chart:sample_1_lunar_5_hour_wu",
+        "fixture:known-chart:sample_2_lunar_1_hour_zi",
+        "fixture:known-chart:sample_3_leap_month_boundary",
+        "fixture:benchmark:case_a_exact_personality",
+        "fixture:benchmark:case_b_unknown_time_personality",
+        "fixture:benchmark:case_c_leap_month_relationship",
+        "fixture:benchmark:case_d_hua_ji_career",
+        "fixture:benchmark:case_e_timing_low_confidence"
+      ],
+      "occurrenceId": "ziwei-occ-e73f469c5e35e072",
+      "provenanceCompleteness": "partial",
+      "rawText": {
+        "epistemicBoundary": "raw_meaning_candidate_only",
+        "isVerifiedFact": false,
+        "text": "정신적 만족, 취향, 내면의 휴식"
+      },
+      "ruleReferences": [
+        "ziwei-rule-input-contract",
+        "ziwei-rule-palace-placement"
+      ],
+      "source": {
+        "exportName": "ZIWEI_PALACE_DEFINITIONS",
+        "file": "src/ziwei/ziweiContract.js",
+        "location": "ZIWEI_PALACE_DEFINITIONS[id=mind].description",
+        "slot": "mind"
+      },
+      "sourceIdentity": {
+        "immutableExternalIdentity": null,
+        "status": "unresolved_source_identity"
+      },
+      "statuses": [
+        "occurrence_identified",
+        "occurrence_provenance_partial",
+        "source_identity_unresolved",
+        "claim_grouping_blocked"
+      ],
+      "unresolvedGaps": [
+        "external_source_location_missing",
+        "exact_edition_or_retrieval_identity_missing",
+        "independent_oracle_identity_missing"
+      ]
+    },
+    {
+      "calculationReferences": [
+        "ziwei-calculation-resolve-transformations"
+      ],
+      "claimBoundary": {
+        "stableClaimBoundary": false,
+        "stableClaimId": null,
+        "status": "claim_grouping_blocked"
+      },
+      "conflationProhibition": {
+        "prohibited": true,
+        "reason": "원문·위치·규칙·source identity가 닫히기 전 대표 문장 또는 stable claim으로 병합 금지"
+      },
+      "evidenceReferences": [
+        "source:src/ziwei/transformationRules.js"
+      ],
+      "featureReferences": [
+        "ziwei-feature-transformation-label:ke"
+      ],
+      "fixtureReferences": [
+        "fixture:star-placement:sample_water_2_bureau_day_1",
+        "fixture:star-placement:sample_wood_3_bureau_day_15",
+        "fixture:star-placement:sample_fire_6_bureau_day_22",
+        "fixture:external:ziwei-ext-table-four-transformations"
+      ],
+      "occurrenceId": "ziwei-occ-ed75580c000adb8f",
+      "provenanceCompleteness": "partial",
+      "rawText": {
+        "epistemicBoundary": "raw_meaning_candidate_only",
+        "isVerifiedFact": false,
+        "text": "명예, 학문, 구원"
+      },
+      "ruleReferences": [
+        "ziwei-rule-transformations"
+      ],
+      "source": {
+        "exportName": "TRANSFORMATION_LABELS",
+        "file": "src/ziwei/transformationRules.js",
+        "location": "TRANSFORMATION_LABELS[ke].description",
+        "slot": "ke"
+      },
+      "sourceIdentity": {
+        "immutableExternalIdentity": null,
+        "status": "unresolved_source_identity"
+      },
+      "statuses": [
+        "occurrence_identified",
+        "occurrence_provenance_partial",
+        "source_identity_unresolved",
+        "claim_grouping_blocked"
+      ],
+      "unresolvedGaps": [
+        "external_source_location_missing",
+        "exact_edition_or_retrieval_identity_missing",
+        "independent_oracle_identity_missing"
+      ]
+    },
+    {
+      "calculationReferences": [
+        "ziwei-calculation-resolve-transformations"
+      ],
+      "claimBoundary": {
+        "stableClaimBoundary": false,
+        "stableClaimId": null,
+        "status": "claim_grouping_blocked"
+      },
+      "conflationProhibition": {
+        "prohibited": true,
+        "reason": "원문·위치·규칙·source identity가 닫히기 전 대표 문장 또는 stable claim으로 병합 금지"
+      },
+      "evidenceReferences": [
+        "source:src/ziwei/transformationRules.js"
+      ],
+      "featureReferences": [
+        "ziwei-feature-transformation-label:ji"
+      ],
+      "fixtureReferences": [
+        "fixture:star-placement:sample_water_2_bureau_day_1",
+        "fixture:star-placement:sample_wood_3_bureau_day_15",
+        "fixture:star-placement:sample_fire_6_bureau_day_22",
+        "fixture:external:ziwei-ext-table-four-transformations"
+      ],
+      "occurrenceId": "ziwei-occ-f7017ade296bb707",
+      "provenanceCompleteness": "partial",
+      "rawText": {
+        "epistemicBoundary": "raw_meaning_candidate_only",
+        "isVerifiedFact": false,
+        "text": "장애, 집착, 주의 요망"
+      },
+      "ruleReferences": [
+        "ziwei-rule-transformations"
+      ],
+      "source": {
+        "exportName": "TRANSFORMATION_LABELS",
+        "file": "src/ziwei/transformationRules.js",
+        "location": "TRANSFORMATION_LABELS[ji].description",
+        "slot": "ji"
+      },
+      "sourceIdentity": {
+        "immutableExternalIdentity": null,
+        "status": "unresolved_source_identity"
+      },
+      "statuses": [
+        "occurrence_identified",
+        "occurrence_provenance_partial",
+        "source_identity_unresolved",
+        "claim_grouping_blocked"
+      ],
+      "unresolvedGaps": [
+        "external_source_location_missing",
+        "exact_edition_or_retrieval_identity_missing",
+        "independent_oracle_identity_missing"
+      ]
+    }
+  ],
+  "provenanceCompletenessDistribution": {
+    "partial": 19
+  },
+  "readinessGroundingDecision": {
+    "grounding": "not_safe_to_start",
+    "occurrenceProvenance": "partial_unverified",
+    "readiness": "not_safe_to_start",
+    "reason": "occurrence provenance preserves uncertainty but does not close source identity, independent verification, or claim boundary"
+  },
+  "schemaVersion": "ziwei-occurrence-level-provenance-v0",
+  "scope": "occurrence-level provenance only; no claim, grouping, ranking, readiness, grounding, or activation",
+  "sourceByteEvidence": {
+    "src/interpretationPrep/lunarConverter.js": {
+      "byteSha256": "466c7774c3dc8ef89fb99345561db4bf5c1ec9fd786b5279fabcfa507e2bb224",
+      "scope": "actual repository file bytes"
+    },
+    "src/interpretationPrep/threeSystemPrepPipeline.js": {
+      "byteSha256": "3f73716acf442f1717781d874872729c1c57d8b3e69498ae30284646297424fb",
+      "scope": "actual repository file bytes"
+    },
+    "src/ziwei/externalZiweiFixtures.js": {
+      "byteSha256": "c379c3d364ea8bdc1062f7a59f2f1b8f83de4762489a86a520733d9d288917cf",
+      "scope": "actual repository file bytes"
+    },
+    "src/ziwei/fiveElementResolver.js": {
+      "byteSha256": "7af13da1e88dbe41e4a239d5359a0f49d05316235e668c7bd1302a3de8825144",
+      "scope": "actual repository file bytes"
+    },
+    "src/ziwei/minorStarResolver.js": {
+      "byteSha256": "40bfa66f576027a5ef77374257da895bbe714c331f6ded6e004048f246bc3c7a",
+      "scope": "actual repository file bytes"
+    },
+    "src/ziwei/minorStarRules.js": {
+      "byteSha256": "b7cdc5db61a1a70dae3a4a243b5bccc0c148488c4c8e9f81bcfc345e4e8a4be3",
+      "scope": "actual repository file bytes"
+    },
+    "src/ziwei/palaceRelationRules.js": {
+      "byteSha256": "afd4f2ef13da4a13f7dece79e801dab6867e5cd1ee30d2e588dce19935c9aaaa",
+      "scope": "actual repository file bytes"
+    },
+    "src/ziwei/starPlacementRules.js": {
+      "byteSha256": "1edb93929e441b009e33abd8179e72cf5b216e7378a40813657ea52dc1a0759c",
+      "scope": "actual repository file bytes"
+    },
+    "src/ziwei/starResolver.js": {
+      "byteSha256": "c9797f2405df6afeb336226bcbff66e199e856d181e71e2317a9794dba0a6ad7",
+      "scope": "actual repository file bytes"
+    },
+    "src/ziwei/transformationResolver.js": {
+      "byteSha256": "ec47b97109d514fb5317e1e0dfb9fb195fa77429ab2d451b3de9a97897babe9d",
+      "scope": "actual repository file bytes"
+    },
+    "src/ziwei/transformationRules.js": {
+      "byteSha256": "e602ab8611e846b53b9c1ffed2d2dbcb5b77afd13973187ee40d748370846e76",
+      "scope": "actual repository file bytes"
+    },
+    "src/ziwei/ziweiContract.js": {
+      "byteSha256": "716875185d87da22ceef5f66f32899359642646367133f6c9f4bf87718bf130e",
+      "scope": "actual repository file bytes"
+    },
+    "src/ziwei/ziweiPalaceContext.js": {
+      "byteSha256": "633b3b3d586a5e9a2f7cf855fad1937cb6b4115ac4271c5bf8d7472d77ad9964",
+      "scope": "actual repository file bytes"
+    },
+    "src/ziwei/ziweiResolver.js": {
+      "byteSha256": "5336f15968b4c618d9b1248b0967deab22b778f48996cb60939ab19cabadf513",
+      "scope": "actual repository file bytes"
+    },
+    "test/fixtures/ziwei/benchmarkCases.js": {
+      "byteSha256": "f809a56f6f36ab0d8f08a073e083ca0e2783170e8303cd14013d4a19648575c2",
+      "scope": "actual repository file bytes"
+    },
+    "test/fixtures/ziwei/knownCharts.js": {
+      "byteSha256": "c78d3bc2e418ea81fc97061a5a011628b6ba674af9f4fef795a085f4dc381037",
+      "scope": "actual repository file bytes"
+    },
+    "test/fixtures/ziwei/starPlacementCharts.js": {
+      "byteSha256": "b79bb0c3c7105cd83563fcee59264d832372e6143b4c0bc19347a125e7dfa226",
+      "scope": "actual repository file bytes"
+    }
+  },
+  "sourceIdentityDistribution": {
+    "unresolved_source_identity": 19
+  },
+  "sourceIdentityInventorySummary": {
+    "composition": {
+      "declaredExternalFixtures": 6,
+      "localRuleOrCalculationSources": 7,
+      "meaningOccurrences": 19
+    },
+    "status": "unresolved_source_identity",
+    "total": 32,
+    "unresolved": 32
+  },
+  "sourceStatuses": {
+    "src/interpretationPrep/lunarConverter.js": "source_identity_unresolved",
+    "src/interpretationPrep/threeSystemPrepPipeline.js": "source_identity_unresolved",
+    "src/ziwei/externalZiweiFixtures.js": "source_identity_unresolved",
+    "src/ziwei/fiveElementResolver.js": "source_identity_unresolved",
+    "src/ziwei/minorStarResolver.js": "source_identity_unresolved",
+    "src/ziwei/minorStarRules.js": "source_identity_unresolved",
+    "src/ziwei/palaceRelationRules.js": "source_identity_unresolved",
+    "src/ziwei/starPlacementRules.js": "source_identity_unresolved",
+    "src/ziwei/starResolver.js": "source_identity_unresolved",
+    "src/ziwei/transformationResolver.js": "source_identity_unresolved",
+    "src/ziwei/transformationRules.js": "source_identity_unresolved",
+    "src/ziwei/ziweiContract.js": "source_identity_unresolved",
+    "src/ziwei/ziweiPalaceContext.js": "source_identity_unresolved",
+    "src/ziwei/ziweiResolver.js": "source_identity_unresolved",
+    "test/fixtures/ziwei/benchmarkCases.js": "source_identity_unresolved",
+    "test/fixtures/ziwei/knownCharts.js": "source_identity_unresolved",
+    "test/fixtures/ziwei/starPlacementCharts.js": "source_identity_unresolved"
+  },
+  "stableClaimBoundary": {
+    "count": 0,
+    "stableClaimIds": [],
+    "status": "blocked"
+  },
+  "statusVocabulary": [
+    "occurrence_identified",
+    "occurrence_provenance_partial",
+    "source_identity_unresolved",
+    "regression_only",
+    "configuration_mismatch",
+    "not_independently_verified",
+    "claim_grouping_blocked"
+  ],
+  "verdictToken": "ziwei_occurrence_provenance_partial_unverified"
+}
