@@ -1,0 +1,18 @@
+{
+  "schemaVersion": "ziwei-structural-admission-guard-pilot-negative-v0",
+  "purpose": "Mutations applied by the executable negative checker to the positive pilot artifact.",
+  "cases": [
+    "candidate_outside_audit",
+    "stable_claim_promoted",
+    "verified_fact_promoted",
+    "source_unresolved_hidden",
+    "raw_text_only_consumer",
+    "must_not_assume_deleted",
+    "user_context_deleted",
+    "occurrences_merged",
+    "representative_sentence_added",
+    "question_interpretation_advice_ranking_prompt_added",
+    "whole_readiness_expanded",
+    "nondeterministic_id_or_sort"
+  ]
+}

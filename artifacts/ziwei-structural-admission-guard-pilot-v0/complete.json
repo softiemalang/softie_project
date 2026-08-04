@@ -1,0 +1,476 @@
+{
+  "artifactIdentity": {
+    "artifactId": "ziwei-structural-admission-guard-pilot-v0",
+    "artifactPayloadSha256": "e43e1fb437f7c35c95fe11ae4470701ad8f9954924f3809ad5b7a4d6e4cd78ba",
+    "contractVersion": "artifact-identity-v1",
+    "generation": {
+      "baseHead": "704e755132991ebc6dc08f2177865cacf35c4b49",
+      "baseHeadSource": "git rev-parse HEAD at materialization",
+      "includedCommit": null,
+      "includedCommitSource": "unknown_at_generation; artifact may be included by a later commit"
+    },
+    "inputs": [
+      {
+        "byteSha256": "1c34908635e49c722e841ff1184c8942bd399106368c41f60ca1a2304b06f1bf",
+        "path": "artifacts/ziwei-readiness-admission-blocker-audit-v0/complete.json"
+      },
+      {
+        "byteSha256": "2ae0923cd7b166fc2357c9deaf5a9f7d4d84901c406f64304391463fcc9a7dda",
+        "path": "scripts/lib/ziwei-structural-admission-guard.mjs"
+      },
+      {
+        "byteSha256": "4a7f98de71ffa46c2468f3c0c7e482f32d4a2c9d38c252c574d17af9d5ca4730",
+        "path": "scripts/materialize-ziwei-occurrence-provenance-v0.mjs"
+      }
+    ],
+    "materializer": {
+      "path": "scripts/materialize-ziwei-structural-admission-guard-pilot-v0.mjs",
+      "version": "1.0.0"
+    }
+  },
+  "basisHead": "704e755132991ebc6dc08f2177865cacf35c4b49",
+  "checker": "scripts/check-ziwei-structural-admission-guard-pilot-v0.mjs",
+  "consumer": "scripts/lib/ziwei-structural-admission-guard.mjs",
+  "deterministicContract": {
+    "hashScopes": [
+      "canonical artifact payload",
+      "complete.json UTF-8 bytes including final LF"
+    ],
+    "occurrenceId": "preserved from audit/provenance",
+    "rawText": "exact provenance raw text; no normalization",
+    "recordOrder": "lexicographic occurrenceId",
+    "timestamps": "forbidden"
+  },
+  "globalBoundary": {
+    "activation": "experimental",
+    "grounding": "not_safe_to_start",
+    "readiness": "not_safe_to_start",
+    "reason": "pilot-only occurrence references do not close source identity, independent verification, or claim boundaries",
+    "stableClaimBoundary": 0,
+    "wholeReadinessExpansionAllowed": false
+  },
+  "invariants": [
+    "candidate IDs come only from audit categoryLists.structuralGuardPossible",
+    "records remain separate occurrences",
+    "raw text is never a verified fact",
+    "unresolved source identity is never hidden",
+    "frequency does not affect admission",
+    "no question, interpretation, advice, ranking, or prompt is generated"
+  ],
+  "materializer": "scripts/materialize-ziwei-structural-admission-guard-pilot-v0.mjs",
+  "negativeFixture": "test/fixtures/ziwei/structural-admission-guard-pilot-negative-v0.json",
+  "occurrenceCount": 4,
+  "pilotVersion": "1.0.0",
+  "records": [
+    {
+      "assessment": {
+        "additionalStructuralRestrictionRequired": false,
+        "auditState": "eligible_after_structural_guard",
+        "blockerBasis": {
+          "primary": "structural_guard_required",
+          "supporting": [
+            "source_identity_unresolved",
+            "raw_text_is_not_fact",
+            "claim_boundary_zero",
+            "regression_only_fixture_context"
+          ]
+        },
+        "pilotFailureFallback": "pilot_reblocked",
+        "result": "limited_admission_possible"
+      },
+      "auditReference": {
+        "artifact": "ziwei-readiness-admission-blocker-audit-v0",
+        "auditBasisHead": "034ea3015875d52643341613547aec583747976e",
+        "occurrenceId": "ziwei-occ-2260aba6ed2163e3",
+        "path": "artifacts/ziwei-readiness-admission-blocker-audit-v0/complete.json",
+        "selectedBy": "categoryLists.structuralGuardPossible"
+      },
+      "consumerContract": {
+        "interpretationQuestionAdviceRankingPromptAllowed": false,
+        "rawTextOnlyPathAllowed": false,
+        "referencePath": "guard_and_occurrence_envelope_only",
+        "standaloneConsumptionAllowed": false,
+        "wholeReadinessExpansionAllowed": false
+      },
+      "guard": {
+        "admissionScope": "pilot_only_literal_occurrence_reference",
+        "blockedFallbackReason": "reblock if guard, provenance, source identity, user context, or literal-only boundary cannot be demonstrated",
+        "conflationProhibition": {
+          "occurrenceMerge": false,
+          "prohibited": true,
+          "reason": "occurrence remains independent; no stable claim or representative sentence",
+          "representativeSentence": false
+        },
+        "isStableClaim": false,
+        "mustNotAssume": [
+          "verified_fact",
+          "stable_claim",
+          "traditional_consensus",
+          "user_trait",
+          "life_or_future_outcome",
+          "importance_from_frequency"
+        ],
+        "rawTextConsumptionRestriction": "literal text only with an explicit occurrence/provenance label; no factual, traditional, predictive, or personal assertion",
+        "sourceIdentity": {
+          "immutableExternalIdentity": null,
+          "independentVerification": false,
+          "status": "unresolved_source_identity"
+        },
+        "standaloneConsumptionAllowed": false,
+        "status": "pilot_only_not_readiness_or_grounding",
+        "userContextDependency": "requires user-provided context for any discussion; absence of context means no interpretation or application"
+      },
+      "occurrence": {
+        "occurrenceId": "ziwei-occ-2260aba6ed2163e3",
+        "provenanceReference": {
+          "artifact": "ziwei-occurrence-level-provenance-v0",
+          "evidenceReferences": [
+            "source:src/ziwei/ziweiContract.js"
+          ],
+          "fixtureReferences": [
+            "fixture:known-chart:sample_1_lunar_5_hour_wu",
+            "fixture:known-chart:sample_2_lunar_1_hour_zi",
+            "fixture:known-chart:sample_3_leap_month_boundary",
+            "fixture:benchmark:case_a_exact_personality",
+            "fixture:benchmark:case_b_unknown_time_personality",
+            "fixture:benchmark:case_c_leap_month_relationship",
+            "fixture:benchmark:case_d_hua_ji_career",
+            "fixture:benchmark:case_e_timing_low_confidence"
+          ],
+          "occurrenceId": "ziwei-occ-2260aba6ed2163e3",
+          "source": {
+            "exportName": "ZIWEI_PALACE_DEFINITIONS",
+            "file": "src/ziwei/ziweiContract.js",
+            "location": "ZIWEI_PALACE_DEFINITIONS[id=career].description",
+            "slot": "career"
+          },
+          "sourceIdentity": {
+            "immutableExternalIdentity": null,
+            "status": "unresolved_source_identity"
+          }
+        },
+        "rawText": {
+          "epistemicBoundary": "raw_meaning_candidate_only",
+          "isVerifiedFact": false,
+          "text": "직업, 사회적 위치, 역량 발휘"
+        }
+      },
+      "schemaVersion": "ziwei-structural-admission-guard-pilot-v0"
+    },
+    {
+      "assessment": {
+        "additionalStructuralRestrictionRequired": false,
+        "auditState": "eligible_after_structural_guard",
+        "blockerBasis": {
+          "primary": "structural_guard_required",
+          "supporting": [
+            "source_identity_unresolved",
+            "raw_text_is_not_fact",
+            "claim_boundary_zero",
+            "regression_only_fixture_context"
+          ]
+        },
+        "pilotFailureFallback": "pilot_reblocked",
+        "result": "limited_admission_possible"
+      },
+      "auditReference": {
+        "artifact": "ziwei-readiness-admission-blocker-audit-v0",
+        "auditBasisHead": "034ea3015875d52643341613547aec583747976e",
+        "occurrenceId": "ziwei-occ-a09e10a5495186b8",
+        "path": "artifacts/ziwei-readiness-admission-blocker-audit-v0/complete.json",
+        "selectedBy": "categoryLists.structuralGuardPossible"
+      },
+      "consumerContract": {
+        "interpretationQuestionAdviceRankingPromptAllowed": false,
+        "rawTextOnlyPathAllowed": false,
+        "referencePath": "guard_and_occurrence_envelope_only",
+        "standaloneConsumptionAllowed": false,
+        "wholeReadinessExpansionAllowed": false
+      },
+      "guard": {
+        "admissionScope": "pilot_only_literal_occurrence_reference",
+        "blockedFallbackReason": "reblock if guard, provenance, source identity, user context, or literal-only boundary cannot be demonstrated",
+        "conflationProhibition": {
+          "occurrenceMerge": false,
+          "prohibited": true,
+          "reason": "occurrence remains independent; no stable claim or representative sentence",
+          "representativeSentence": false
+        },
+        "isStableClaim": false,
+        "mustNotAssume": [
+          "verified_fact",
+          "stable_claim",
+          "traditional_consensus",
+          "user_trait",
+          "life_or_future_outcome",
+          "importance_from_frequency"
+        ],
+        "rawTextConsumptionRestriction": "literal text only with an explicit occurrence/provenance label; no factual, traditional, predictive, or personal assertion",
+        "sourceIdentity": {
+          "immutableExternalIdentity": null,
+          "independentVerification": false,
+          "status": "unresolved_source_identity"
+        },
+        "standaloneConsumptionAllowed": false,
+        "status": "pilot_only_not_readiness_or_grounding",
+        "userContextDependency": "requires user-provided context for any discussion; absence of context means no interpretation or application"
+      },
+      "occurrence": {
+        "occurrenceId": "ziwei-occ-a09e10a5495186b8",
+        "provenanceReference": {
+          "artifact": "ziwei-occurrence-level-provenance-v0",
+          "evidenceReferences": [
+            "source:src/ziwei/ziweiContract.js"
+          ],
+          "fixtureReferences": [
+            "fixture:known-chart:sample_1_lunar_5_hour_wu",
+            "fixture:known-chart:sample_2_lunar_1_hour_zi",
+            "fixture:known-chart:sample_3_leap_month_boundary",
+            "fixture:benchmark:case_a_exact_personality",
+            "fixture:benchmark:case_b_unknown_time_personality",
+            "fixture:benchmark:case_c_leap_month_relationship",
+            "fixture:benchmark:case_d_hua_ji_career",
+            "fixture:benchmark:case_e_timing_low_confidence"
+          ],
+          "occurrenceId": "ziwei-occ-a09e10a5495186b8",
+          "source": {
+            "exportName": "ZIWEI_PALACE_DEFINITIONS",
+            "file": "src/ziwei/ziweiContract.js",
+            "location": "ZIWEI_PALACE_DEFINITIONS[id=siblings].description",
+            "slot": "siblings"
+          },
+          "sourceIdentity": {
+            "immutableExternalIdentity": null,
+            "status": "unresolved_source_identity"
+          }
+        },
+        "rawText": {
+          "epistemicBoundary": "raw_meaning_candidate_only",
+          "isVerifiedFact": false,
+          "text": "형제자매, 동료, 친밀한 지인 관계"
+        }
+      },
+      "schemaVersion": "ziwei-structural-admission-guard-pilot-v0"
+    },
+    {
+      "assessment": {
+        "additionalStructuralRestrictionRequired": false,
+        "auditState": "eligible_after_structural_guard",
+        "blockerBasis": {
+          "primary": "structural_guard_required",
+          "supporting": [
+            "source_identity_unresolved",
+            "raw_text_is_not_fact",
+            "claim_boundary_zero",
+            "regression_only_fixture_context"
+          ]
+        },
+        "pilotFailureFallback": "pilot_reblocked",
+        "result": "limited_admission_possible"
+      },
+      "auditReference": {
+        "artifact": "ziwei-readiness-admission-blocker-audit-v0",
+        "auditBasisHead": "034ea3015875d52643341613547aec583747976e",
+        "occurrenceId": "ziwei-occ-a72bdf60ef809b58",
+        "path": "artifacts/ziwei-readiness-admission-blocker-audit-v0/complete.json",
+        "selectedBy": "categoryLists.structuralGuardPossible"
+      },
+      "consumerContract": {
+        "interpretationQuestionAdviceRankingPromptAllowed": false,
+        "rawTextOnlyPathAllowed": false,
+        "referencePath": "guard_and_occurrence_envelope_only",
+        "standaloneConsumptionAllowed": false,
+        "wholeReadinessExpansionAllowed": false
+      },
+      "guard": {
+        "admissionScope": "pilot_only_literal_occurrence_reference",
+        "blockedFallbackReason": "reblock if guard, provenance, source identity, user context, or literal-only boundary cannot be demonstrated",
+        "conflationProhibition": {
+          "occurrenceMerge": false,
+          "prohibited": true,
+          "reason": "occurrence remains independent; no stable claim or representative sentence",
+          "representativeSentence": false
+        },
+        "isStableClaim": false,
+        "mustNotAssume": [
+          "verified_fact",
+          "stable_claim",
+          "traditional_consensus",
+          "user_trait",
+          "life_or_future_outcome",
+          "importance_from_frequency"
+        ],
+        "rawTextConsumptionRestriction": "literal text only with an explicit occurrence/provenance label; no factual, traditional, predictive, or personal assertion",
+        "sourceIdentity": {
+          "immutableExternalIdentity": null,
+          "independentVerification": false,
+          "status": "unresolved_source_identity"
+        },
+        "standaloneConsumptionAllowed": false,
+        "status": "pilot_only_not_readiness_or_grounding",
+        "userContextDependency": "requires user-provided context for any discussion; absence of context means no interpretation or application"
+      },
+      "occurrence": {
+        "occurrenceId": "ziwei-occ-a72bdf60ef809b58",
+        "provenanceReference": {
+          "artifact": "ziwei-occurrence-level-provenance-v0",
+          "evidenceReferences": [
+            "source:src/ziwei/ziweiContract.js"
+          ],
+          "fixtureReferences": [
+            "fixture:known-chart:sample_1_lunar_5_hour_wu",
+            "fixture:known-chart:sample_2_lunar_1_hour_zi",
+            "fixture:known-chart:sample_3_leap_month_boundary",
+            "fixture:benchmark:case_a_exact_personality",
+            "fixture:benchmark:case_b_unknown_time_personality",
+            "fixture:benchmark:case_c_leap_month_relationship",
+            "fixture:benchmark:case_d_hua_ji_career",
+            "fixture:benchmark:case_e_timing_low_confidence"
+          ],
+          "occurrenceId": "ziwei-occ-a72bdf60ef809b58",
+          "source": {
+            "exportName": "ZIWEI_PALACE_DEFINITIONS",
+            "file": "src/ziwei/ziweiContract.js",
+            "location": "ZIWEI_PALACE_DEFINITIONS[id=friends].description",
+            "slot": "friends"
+          },
+          "sourceIdentity": {
+            "immutableExternalIdentity": null,
+            "status": "unresolved_source_identity"
+          }
+        },
+        "rawText": {
+          "epistemicBoundary": "raw_meaning_candidate_only",
+          "isVerifiedFact": false,
+          "text": "부하, 대중, 일반 인간관계"
+        }
+      },
+      "schemaVersion": "ziwei-structural-admission-guard-pilot-v0"
+    },
+    {
+      "assessment": {
+        "additionalStructuralRestrictionRequired": false,
+        "auditState": "eligible_after_structural_guard",
+        "blockerBasis": {
+          "primary": "structural_guard_required",
+          "supporting": [
+            "source_identity_unresolved",
+            "raw_text_is_not_fact",
+            "claim_boundary_zero",
+            "regression_only_fixture_context"
+          ]
+        },
+        "pilotFailureFallback": "pilot_reblocked",
+        "result": "limited_admission_possible"
+      },
+      "auditReference": {
+        "artifact": "ziwei-readiness-admission-blocker-audit-v0",
+        "auditBasisHead": "034ea3015875d52643341613547aec583747976e",
+        "occurrenceId": "ziwei-occ-e73f469c5e35e072",
+        "path": "artifacts/ziwei-readiness-admission-blocker-audit-v0/complete.json",
+        "selectedBy": "categoryLists.structuralGuardPossible"
+      },
+      "consumerContract": {
+        "interpretationQuestionAdviceRankingPromptAllowed": false,
+        "rawTextOnlyPathAllowed": false,
+        "referencePath": "guard_and_occurrence_envelope_only",
+        "standaloneConsumptionAllowed": false,
+        "wholeReadinessExpansionAllowed": false
+      },
+      "guard": {
+        "admissionScope": "pilot_only_literal_occurrence_reference",
+        "blockedFallbackReason": "reblock if guard, provenance, source identity, user context, or literal-only boundary cannot be demonstrated",
+        "conflationProhibition": {
+          "occurrenceMerge": false,
+          "prohibited": true,
+          "reason": "occurrence remains independent; no stable claim or representative sentence",
+          "representativeSentence": false
+        },
+        "isStableClaim": false,
+        "mustNotAssume": [
+          "verified_fact",
+          "stable_claim",
+          "traditional_consensus",
+          "user_trait",
+          "life_or_future_outcome",
+          "importance_from_frequency"
+        ],
+        "rawTextConsumptionRestriction": "literal text only with an explicit occurrence/provenance label; no factual, traditional, predictive, or personal assertion",
+        "sourceIdentity": {
+          "immutableExternalIdentity": null,
+          "independentVerification": false,
+          "status": "unresolved_source_identity"
+        },
+        "standaloneConsumptionAllowed": false,
+        "status": "pilot_only_not_readiness_or_grounding",
+        "userContextDependency": "requires user-provided context for any discussion; absence of context means no interpretation or application"
+      },
+      "occurrence": {
+        "occurrenceId": "ziwei-occ-e73f469c5e35e072",
+        "provenanceReference": {
+          "artifact": "ziwei-occurrence-level-provenance-v0",
+          "evidenceReferences": [
+            "source:src/ziwei/ziweiContract.js"
+          ],
+          "fixtureReferences": [
+            "fixture:known-chart:sample_1_lunar_5_hour_wu",
+            "fixture:known-chart:sample_2_lunar_1_hour_zi",
+            "fixture:known-chart:sample_3_leap_month_boundary",
+            "fixture:benchmark:case_a_exact_personality",
+            "fixture:benchmark:case_b_unknown_time_personality",
+            "fixture:benchmark:case_c_leap_month_relationship",
+            "fixture:benchmark:case_d_hua_ji_career",
+            "fixture:benchmark:case_e_timing_low_confidence"
+          ],
+          "occurrenceId": "ziwei-occ-e73f469c5e35e072",
+          "source": {
+            "exportName": "ZIWEI_PALACE_DEFINITIONS",
+            "file": "src/ziwei/ziweiContract.js",
+            "location": "ZIWEI_PALACE_DEFINITIONS[id=mind].description",
+            "slot": "mind"
+          },
+          "sourceIdentity": {
+            "immutableExternalIdentity": null,
+            "status": "unresolved_source_identity"
+          }
+        },
+        "rawText": {
+          "epistemicBoundary": "raw_meaning_candidate_only",
+          "isVerifiedFact": false,
+          "text": "정신적 만족, 취향, 내면의 휴식"
+        }
+      },
+      "schemaVersion": "ziwei-structural-admission-guard-pilot-v0"
+    }
+  ],
+  "resultDistribution": {
+    "additional_structural_restriction_required": 0,
+    "limited_admission_possible": 4,
+    "pilot_reblocked": 0
+  },
+  "schemaVersion": "ziwei-structural-admission-guard-pilot-v0",
+  "scope": "isolated structural admission pilot; not readiness, grounding, interpretation, delivery, or activation",
+  "sourceAudit": {
+    "basisHead": "034ea3015875d52643341613547aec583747976e",
+    "occurrenceCount": 19,
+    "path": "artifacts/ziwei-readiness-admission-blocker-audit-v0/complete.json",
+    "schemaVersion": "ziwei-readiness-admission-blocker-audit-v0",
+    "selectedPath": "categoryLists.structuralGuardPossible"
+  },
+  "sourceProvenance": {
+    "occurrenceCount": 19,
+    "schemaVersion": "ziwei-occurrence-level-provenance-v0",
+    "sourceIdentity": {
+      "composition": {
+        "declaredExternalFixtures": 6,
+        "localRuleOrCalculationSources": 7,
+        "meaningOccurrences": 19
+      },
+      "status": "unresolved_source_identity",
+      "total": 32,
+      "unresolved": 32
+    },
+    "stableClaimBoundary": 0
+  },
+  "verdictToken": "ziwei_structural_admission_guard_pilot_partial_unverified"
+}
