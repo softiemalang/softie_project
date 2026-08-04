@@ -22,3 +22,7 @@ The first candidates are: 命宮/身宮定位 (pp. 4, 5, 8, 9), 五行局 table 
 Verdict: `source_witness_admissible_with_limits`.
 
 Downstream state is fixed at stable claim count 0, readiness `not_safe_to_start`, grounding `blocked`, and activation `experimental`. The PDF is evidence storage only and is forbidden from Git.
+
+## Identity replay boundary
+
+The materializer has two explicit call modes. `new` records the checkout HEAD as `artifactIdentity.generation.baseHead` and keeps `generation.includedCommit=null`; it is used only for a newly generated domain artifact. `historical_replay` reuses the recorded generation base from the committed artifact and never replaces it with the current checkout HEAD. A later checkout therefore does not stale a replay when the fixture input bytes, canonical payload, contract/materializer version, input set/order, sidecar, and recorded Git object remain identical. Input, payload, version, missing/extra/reordered input, sidecar, historical-basis mixing, and included-commit drift remain fail-closed.

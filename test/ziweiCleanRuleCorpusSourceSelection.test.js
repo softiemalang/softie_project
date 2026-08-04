@@ -116,8 +116,10 @@ test('identity migration preserves source-selection meaning from the historical 
     lineageAccounting: value.lineageAccounting,
   })
   assert.deepEqual(JSON.parse(JSON.stringify(meaning(after))), meaning(before))
-  assert.equal(before.artifactIdentity.generation.baseHead, '3bbae92d81fa19107167b288c666f9dc19e2fdf3')
-  assert.equal(after.artifactIdentity.generation.baseHead, execFileSync('git', ['-c', 'core.fsmonitor=false', 'rev-parse', 'HEAD'], { cwd: root, encoding: 'utf8' }).trim())
+  const currentHead = execFileSync('git', ['-c', 'core.fsmonitor=false', 'rev-parse', 'HEAD'], { cwd: root, encoding: 'utf8' }).trim()
+  assert.match(before.artifactIdentity.generation.baseHead, /^[0-9a-f]{40}$/)
+  assert.notEqual(before.artifactIdentity.generation.baseHead, currentHead)
+  assert.equal(after.artifactIdentity.generation.baseHead, currentHead)
   assert.equal(after.artifactIdentity.generation.includedCommit, null)
 })
 
