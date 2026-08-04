@@ -1,0 +1,19 @@
+{
+  "schemaVersion": "ziwei-five-element-bureau-clean-rule-seed-pilot-negative-v0",
+  "cases": [
+    {"id":"pdf-tamper","path":"sourceWitness.pdfSha256","value":"0000000000000000000000000000000000000000000000000000000000000000","finding":"pdf_hash_page_source_ref"},
+    {"id":"source-range-tamper","path":"sourceWitness.selectedRulePages","value":[9,11],"finding":"source_range"},
+    {"id":"ocr-promotion","path":"transcription.ocrStatus","value":"canonical","finding":"ocr_uncertainty_or_commentary"},
+    {"id":"uncertainty-auto-fix","path":"transcription.reviewerStatus","value":"reviewed_and_certain","finding":"ocr_uncertainty_or_commentary"},
+    {"id":"mixed-rule","path":"normalizedRule.sourceTranscriptionId","value":"other","finding":"transcription_normalization_mixing"},
+    {"id":"domain-omission","path":"normalizedRule.validDomain.cardinality","value":120,"finding":"domain_or_steps"},
+    {"id":"mapping-tamper","path":"normalizedRule.explicitMappings.水.enum","value":"fire_6","finding":"bureau_mapping_mutation"},
+    {"id":"production-reuse","path":"independence.sourceEvaluatorImportsProductionEngine","value":true,"finding":"production_evaluator_reuse"},
+    {"id":"mismatch-hidden","path":"comparison.matchCount","value":0,"finding":"mismatch_hidden_or_first_divergence"},
+    {"id":"commentary-ingestion","path":"transcription.modernCommentaryIngested","value":true,"finding":"ocr_uncertainty_or_commentary"},
+    {"id":"promotion","path":"boundaries.readiness","value":"ready","finding":"promotion_or_existing_artifact_change"},
+    {"id":"engine-modification","path":"boundaries.engineModified","value":true,"finding":"promotion_or_existing_artifact_change"},
+    {"id":"nondeterministic-order","swapFirstTwo":true,"finding":"duplicate_missing_or_order"},
+    {"id":"non-exhaustive","truncate":1439,"finding":"not_exhaustive_1440"}
+  ]
+}

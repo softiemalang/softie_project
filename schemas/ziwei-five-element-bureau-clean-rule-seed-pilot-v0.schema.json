@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "ziwei-five-element-bureau-clean-rule-seed-pilot-v0",
+  "type": "object",
+  "required": ["schemaVersion", "verdictToken", "basisHead", "sourceWitness", "transcription", "normalizedRule", "comparison", "artifactHashes", "boundaries"],
+  "properties": {
+    "schemaVersion": {"const": "ziwei-five-element-bureau-clean-rule-seed-pilot-v0"},
+    "verdictToken": {"enum": ["ziwei_five_element_bureau_seed_reconciled", "ziwei_five_element_bureau_seed_divergent", "ziwei_five_element_bureau_seed_partial", "ziwei_five_element_bureau_seed_blocked"]},
+    "basisHead": {"const": "d79ce08be2df491d19216308e44a8feee3f22291"},
+    "sourceWitness": {"type":"object","required":["witnessVerdict","pdfPageCount","pdfEncrypted","pdfSha256","gitInclusion"]},
+    "transcription": {"type":"object","required":["transcriptionId","sourceRefs","nayinPairs","uncertainty","ocrStatus"]},
+    "normalizedRule": {"type":"object","required":["schemaVersion","sourceTranscriptionId","inputs","validDomain","steps","explicitMappings"]},
+    "comparison": {"type":"object","required":["inputCount","expectedInputCount","rows","matchCount","mismatchCount","firstDivergence"]},
+    "artifactHashes": {"type":"object","required":["transcriptionSha256","normalizedRuleSha256","comparisonSha256"]},
+    "boundaries": {"type":"object","required":["stableClaimCount","readiness","grounding","activation","engineModified","ruleContractModified","existingMingShenArtifactModified","pdfStoredInGit"]}
+  }
+}

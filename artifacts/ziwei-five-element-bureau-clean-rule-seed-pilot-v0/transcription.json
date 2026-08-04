@@ -1,0 +1,206 @@
+{
+  "modernCommentaryIngested": false,
+  "nayinPairs": [
+    {
+      "ganzhiPair": "甲子乙丑",
+      "nayinName": "海中金"
+    },
+    {
+      "ganzhiPair": "丙寅丁卯",
+      "nayinName": "爐中火"
+    },
+    {
+      "ganzhiPair": "戊辰己巳",
+      "nayinName": "大林木"
+    },
+    {
+      "ganzhiPair": "庚午辛未",
+      "nayinName": "路旁土"
+    },
+    {
+      "ganzhiPair": "壬申癸酉",
+      "nayinName": "劍鋒金"
+    },
+    {
+      "ganzhiPair": "甲戌乙亥",
+      "nayinName": "山頭火"
+    },
+    {
+      "ganzhiPair": "丙子丁丑",
+      "nayinName": "澗下水"
+    },
+    {
+      "ganzhiPair": "戊寅己卯",
+      "nayinName": "城頭土"
+    },
+    {
+      "ganzhiPair": "庚辰辛巳",
+      "nayinName": "白蠟金"
+    },
+    {
+      "ganzhiPair": "壬午癸未",
+      "nayinName": "楊柳木"
+    },
+    {
+      "ganzhiPair": "甲申乙酉",
+      "nayinName": "泉中水"
+    },
+    {
+      "ganzhiPair": "丙戌丁亥",
+      "nayinName": "屋上土"
+    },
+    {
+      "ganzhiPair": "戊子己丑",
+      "nayinName": "霹靂火"
+    },
+    {
+      "ganzhiPair": "庚寅辛卯",
+      "nayinName": "松柏木"
+    },
+    {
+      "ganzhiPair": "壬辰癸巳",
+      "nayinName": "長流水"
+    },
+    {
+      "ganzhiPair": "甲午乙未",
+      "nayinName": "沙中金"
+    },
+    {
+      "ganzhiPair": "丙申丁酉",
+      "nayinName": "山下火"
+    },
+    {
+      "ganzhiPair": "戊戌己亥",
+      "nayinName": "平地木"
+    },
+    {
+      "ganzhiPair": "庚子辛丑",
+      "nayinName": "壁上土"
+    },
+    {
+      "ganzhiPair": "壬寅癸卯",
+      "nayinName": "金箔金"
+    },
+    {
+      "ganzhiPair": "甲辰乙巳",
+      "nayinName": "覆燈火"
+    },
+    {
+      "ganzhiPair": "丙午丁未",
+      "nayinName": "天河水"
+    },
+    {
+      "ganzhiPair": "戊申己酉",
+      "nayinName": "大驛土"
+    },
+    {
+      "ganzhiPair": "庚戌辛亥",
+      "nayinName": "釵釧金"
+    },
+    {
+      "ganzhiPair": "壬子癸丑",
+      "nayinName": "桑柘木"
+    },
+    {
+      "ganzhiPair": "甲寅乙卯",
+      "nayinName": "大溪水"
+    },
+    {
+      "ganzhiPair": "丙辰丁巳",
+      "nayinName": "沙中土"
+    },
+    {
+      "ganzhiPair": "戊午己未",
+      "nayinName": "天上火"
+    },
+    {
+      "ganzhiPair": "庚申辛酉",
+      "nayinName": "石榴木"
+    },
+    {
+      "ganzhiPair": "壬戌癸亥",
+      "nayinName": "大海水"
+    }
+  ],
+  "ocrStatus": "exploration_only_not_canonical",
+  "reviewerStatus": "single_human_review_complete_second_review_pending",
+  "schemaVersion": "ziwei-five-element-bureau-clean-rule-seed-pilot-v0-transcription-v0",
+  "sourcePdfSha256": "4786a94ab454acdabf9716d7c0db4756dbcbde99a88bc45fda254863c1961023",
+  "sourceRefs": [
+    {
+      "glyphPreservingText": "水二局、木三局、金四局、土五局、火六局; 將命宮的天干地支按照左例歌訣變成六十花甲五行納音",
+      "locator": "left scanned leaf; rule prose and 六十花甲納音 columns",
+      "pdfPage": 9,
+      "printedPage": "二十七",
+      "scope": "rule-bearing text",
+      "section": "十、定五行局"
+    },
+    {
+      "glyphPreservingText": "定五行局簡索表列左",
+      "locator": "right scanned leaf; 定五行局簡索表列左; 命宮天干地支 table",
+      "pdfPage": 10,
+      "printedPage": "二十八",
+      "scope": "auxiliary lookup-table structure; cell values are independently represented by the p9 Nayin transcription",
+      "section": "十二、定五行局",
+      "tableStructure": {
+        "axisLabel": "命宮天干地支",
+        "columnHeaders": [
+          "甲乙",
+          "丙丁",
+          "戊己",
+          "庚辛",
+          "壬癸"
+        ],
+        "direction": "drawn rows and columns retained; no transpose inferred",
+        "rowHeaders": [
+          "子",
+          "丑",
+          "寅",
+          "卯",
+          "辰",
+          "巳",
+          "午",
+          "未",
+          "申",
+          "酉",
+          "戌",
+          "亥"
+        ]
+      }
+    },
+    {
+      "glyphPreservingText": "水二局中初一丑、木三局中初一辰、金四局中初一辰、土五局中初一午、火六局中初一酉",
+      "locator": "left scanned leaf; 水二局、木三局、金四局、土五局、火六局 rows",
+      "pdfPage": 11,
+      "printedPage": "三十一",
+      "scope": "auxiliary order cross-check only",
+      "section": "起紫微五訣"
+    },
+    {
+      "glyphPreservingText": "水二局、木三局、金四局、土五局、火六局",
+      "locator": "left scanned leaf; 五行局 columns and 生日起例 table",
+      "pdfPage": 12,
+      "printedPage": "三十三",
+      "scope": "auxiliary table cross-check only",
+      "section": "起紫微簡索表"
+    }
+  ],
+  "transcriptionId": "ziwei-five-element-bureau-p9-p10-p11-p12-transcription-v0",
+  "uncertainty": [
+    {
+      "field": "nayinPairs",
+      "note": "Traditional glyphs are retained as read from the rendered witness; no OCR output is canonical.",
+      "status": "glyph_reading_pending_second_review"
+    },
+    {
+      "field": "tableDirection",
+      "note": "The page 10 table is recorded as a lookup structure; no transpose or silent row/column completion is applied.",
+      "status": "drawn_layout_preserved_not_inferred"
+    },
+    {
+      "field": "printedPage",
+      "note": "Printed folio labels are preserved per scanned leaf; no modern edition identity is inferred.",
+      "status": "page_label_observed"
+    }
+  ]
+}

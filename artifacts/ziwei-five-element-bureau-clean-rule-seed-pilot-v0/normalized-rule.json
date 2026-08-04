@@ -1,0 +1,91 @@
+{
+  "exclusions": [
+    "calendar conversion",
+    "leap-month resolution",
+    "interpretation",
+    "modern commentary",
+    "engine modification",
+    "claim promotion"
+  ],
+  "explicitMappings": {
+    "土": {
+      "enum": "earth_5",
+      "number": 5,
+      "traditionalName": "土五局"
+    },
+    "木": {
+      "enum": "wood_3",
+      "number": 3,
+      "traditionalName": "木三局"
+    },
+    "水": {
+      "enum": "water_2",
+      "number": 2,
+      "traditionalName": "水二局"
+    },
+    "火": {
+      "enum": "fire_6",
+      "number": 6,
+      "traditionalName": "火六局"
+    },
+    "金": {
+      "enum": "metal_4",
+      "number": 4,
+      "traditionalName": "金四局"
+    }
+  },
+  "formulas": {
+    "mingGongIndex": "(monthPalaceIndex-index(hourBranch)) mod 12",
+    "mingGongStem": "(index(yinStem)+index(mingGongBranch)-index(寅)) mod 10",
+    "monthPalaceIndex": "(index(寅)+lunarMonth-1) mod 12",
+    "yinStem": "甲己丙寅頭;乙庚戊寅頭;丙辛庚寅頭;丁壬壬寅頭;戊癸甲寅頭"
+  },
+  "inputs": {
+    "birthYearStem": [
+      "甲",
+      "乙",
+      "丙",
+      "丁",
+      "戊",
+      "己",
+      "庚",
+      "辛",
+      "壬",
+      "癸"
+    ],
+    "hourBranch": [
+      "子",
+      "丑",
+      "寅",
+      "卯",
+      "辰",
+      "巳",
+      "午",
+      "未",
+      "申",
+      "酉",
+      "戌",
+      "亥"
+    ],
+    "lunarMonth": "integer 1..12"
+  },
+  "normalizationBoundary": "source glyphs and table layout remain separate from formulas, enums, and production-name normalization",
+  "schemaVersion": "ziwei-five-element-bureau-clean-rule-seed-rule-v0",
+  "sourceTranscriptionId": "ziwei-five-element-bureau-p9-p10-p11-p12-transcription-v0",
+  "steps": [
+    "place lunar month from 寅 as month 1, forward by lunarMonth-1",
+    "from that month palace, count hourBranch backward to 命宮",
+    "from 寅, advance the year-stem-derived 寅宮 stem by the 命宮 branch offset",
+    "combine 命宮 stem and branch into a 六十花甲 key and lookup transcribed 納音",
+    "map 納音 element explicitly to 水二局/木三局/金四局/土五局/火六局 and enum"
+  ],
+  "validDomain": {
+    "cardinality": 1440,
+    "invalid": [
+      "unknown stem/branch",
+      "month outside 1..12",
+      "non-integer month"
+    ],
+    "leapMonthResolution": "excluded; lunar month is already resolved"
+  }
+}
