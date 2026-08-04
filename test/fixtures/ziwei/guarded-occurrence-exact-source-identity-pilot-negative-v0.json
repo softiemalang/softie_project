@@ -1,0 +1,15 @@
+{
+  "schemaVersion": "ziwei-guarded-occurrence-exact-source-identity-pilot-negative-v0",
+  "cases": [
+    {"id":"target-replacement-or-multiple","detects":"target replacement or multiple targets"},
+    {"id":"resolved-without-edition-page","detects":"resolved without edition/page"},
+    {"id":"reprint-as-original-scan","detects":"reprint mistaken for original scan"},
+    {"id":"url-only-immutable","detects":"URL-only immutable identity"},
+    {"id":"same-lineage-double-count","detects":"same-lineage double count"},
+    {"id":"hidden-drift-qualifier","detects":"hidden text drift or qualifier omission"},
+    {"id":"literature-as-truth","detects":"literature identity represented as truth"},
+    {"id":"stable-ready-grounded","detects":"stable claim/ready/grounded promotion"},
+    {"id":"fake-or-guessed-metadata","detects":"fake citation or guessed metadata"},
+    {"id":"nondeterministic-selection","detects":"nondeterministic selection/IDs/sort"}
+  ]
+}

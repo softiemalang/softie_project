@@ -1,0 +1,9 @@
+import { readFile } from 'node:fs/promises'
+import { buildPilotArtifact } from './materialize-ziwei-guarded-occurrence-exact-source-identity-pilot-v0.mjs'
+import { checkPilotArtifact } from './check-ziwei-guarded-occurrence-exact-source-identity-pilot-v0.mjs'
+const fixture = JSON.parse(await readFile(new URL('../test/fixtures/ziwei/guarded-occurrence-exact-source-identity-pilot-negative-v0.json', import.meta.url), 'utf8'))
+const clone = value => structuredClone(value)
+const mutate = (artifact, id) => { const x = clone(artifact); if (id === 'target-replacement-or-multiple') x.record.occurrenceId = 'ziwei-occ-e73f469c5e35e072'; if (id === 'resolved-without-edition-page') x.record.verdict = 'exact_source_identity_resolved'; if (id === 'reprint-as-original-scan') x.record.scanAssessment = { status: 'confirmed', fileUrl: 'https://ci.nii.ac.jp/ncid/BA73215996', immutableHash: 'guessed' }; if (id === 'url-only-immutable') x.record.scanAssessment.immutableHash = 'url-derived'; if (id === 'same-lineage-double-count') x.record.citationLineage.duplicateLineageNotIndependent = false; if (id === 'hidden-drift-qualifier') x.record.textComparison.omittedQualifier = []; if (id === 'literature-as-truth') x.record.boundaryEvidenceCandidate.notAStableClaim = false; if (id === 'stable-ready-grounded') x.globalBoundary.stableClaimCount = 1; if (id === 'fake-or-guessed-metadata') x.record.sourceIdentityInventory[0].url = 'https://blog.example.invalid/fake'; if (id === 'nondeterministic-selection') x.candidates.reverse(); return x }
+const findings = []
+for (const item of fixture.cases) { if (!(await checkPilotArtifact(mutate(await buildPilotArtifact(), item.id))).length) findings.push(item.detects) }
+console.log(JSON.stringify({ pass: findings.length === 0, findings, caseCount: fixture.cases.length }, null, 2)); if (findings.length) process.exitCode = 1

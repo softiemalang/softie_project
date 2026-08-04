@@ -1,0 +1,377 @@
+{
+  "accessDate": "2026-08-04",
+  "artifactIdentity": {
+    "artifactId": "ziwei-guarded-occurrence-exact-source-identity-pilot-v0",
+    "artifactPayloadSha256": "85c323bb23990e9c892f787ca92dbea385b6f52f128ccf69c73a4b7be358a829",
+    "contractVersion": "artifact-identity-v1",
+    "generation": {
+      "baseHead": "70a1ed69bc1d46ac70b283af7d722f01b47846b5",
+      "baseHeadSource": "git rev-parse HEAD at materialization",
+      "includedCommit": null,
+      "includedCommitSource": "unknown_at_generation; artifact may be included by a later commit"
+    },
+    "inputs": [
+      {
+        "byteSha256": "b9055430d45c8c554eef85c7bfe15961fb40477fd32b183c57241b889d1c59bb",
+        "path": "artifacts/ziwei-guarded-occurrence-source-evidence-hardening-v0/complete.json"
+      }
+    ],
+    "materializer": {
+      "path": "scripts/materialize-ziwei-guarded-occurrence-exact-source-identity-pilot-v0.mjs",
+      "version": "1.0.0"
+    }
+  },
+  "basisHead": "70a1ed69bc1d46ac70b283af7d722f01b47846b5",
+  "candidates": [
+    {
+      "occurrenceId": "ziwei-occ-2260aba6ed2163e3",
+      "rationale": "官祿 occurs as a named palace and in multiple conditional passages; exact local gloss remains broader than the text.",
+      "score": 8,
+      "scoreBreakdown": {
+        "editionOrScanCandidate": 2,
+        "mostSpecificTextAndLocation": 2,
+        "repositoryTextComparison": 2,
+        "reprintLineage": 2
+      }
+    },
+    {
+      "occurrenceId": "ziwei-occ-a09e10a5495186b8",
+      "rationale": "direct palace-name correspondence, but the added colleague/acquaintance wording lacks a matching passage.",
+      "score": 6,
+      "scoreBreakdown": {
+        "editionOrScanCandidate": 2,
+        "mostSpecificTextAndLocation": 1,
+        "repositoryTextComparison": 1,
+        "reprintLineage": 2
+      }
+    },
+    {
+      "occurrenceId": "ziwei-occ-a72bdf60ef809b58",
+      "rationale": "alias family is traceable, but the local social scope is not one closed classical configuration.",
+      "score": 6,
+      "scoreBreakdown": {
+        "editionOrScanCandidate": 2,
+        "mostSpecificTextAndLocation": 1,
+        "repositoryTextComparison": 1,
+        "reprintLineage": 2
+      }
+    },
+    {
+      "occurrenceId": "ziwei-occ-e73f469c5e35e072",
+      "rationale": "福德 appears in conditional wording, but the modern satisfaction/taste/rest gloss is not reproduced.",
+      "score": 6,
+      "scoreBreakdown": {
+        "editionOrScanCandidate": 2,
+        "mostSpecificTextAndLocation": 1,
+        "repositoryTextComparison": 1,
+        "reprintLineage": 2
+      }
+    }
+  ],
+  "checker": "scripts/check-ziwei-guarded-occurrence-exact-source-identity-pilot-v0.mjs",
+  "deterministicContract": {
+    "candidateOrder": "score descending then occurrenceId ascending",
+    "externalFileHash": "null when scan/file unavailable",
+    "rawText": "copied without modification",
+    "selectedId": "derived from existing four records only",
+    "timestamps": "fixed accessDate; generation timestamp forbidden"
+  },
+  "globalBoundary": {
+    "activation": "experimental",
+    "calculationChanged": false,
+    "grounding": "not_safe_to_start",
+    "groundingSubset": "blocked",
+    "readiness": "not_safe_to_start",
+    "stableClaimCount": 0,
+    "wholeZiweiExpansion": false
+  },
+  "inputByteEvidence": [
+    {
+      "path": "artifacts/ziwei-guarded-occurrence-source-evidence-hardening-v0/complete.json",
+      "scope": "actual repository bytes",
+      "sha256": "b9055430d45c8c554eef85c7bfe15961fb40477fd32b183c57241b889d1c59bb"
+    }
+  ],
+  "materializer": "scripts/materialize-ziwei-guarded-occurrence-exact-source-identity-pilot-v0.mjs",
+  "negativeContract": {
+    "detects": [
+      "target replacement or multiple targets",
+      "resolved without edition/page",
+      "reprint mistaken for original scan",
+      "URL-only immutable identity",
+      "same-lineage double count",
+      "hidden text drift or qualifier omission",
+      "literature identity represented as truth",
+      "stable claim/ready/grounded promotion",
+      "fake citation or guessed metadata",
+      "nondeterministic selection/IDs/sort"
+    ],
+    "fixture": "test/fixtures/ziwei/guarded-occurrence-exact-source-identity-pilot-negative-v0.json"
+  },
+  "observedHead": "70a1ed69bc1d46ac70b283af7d722f01b47846b5",
+  "record": {
+    "boundaryEvidenceCandidate": {
+      "basis": "官祿 palace name plus conditional source wording only",
+      "candidateId": "boundary-2260aba6ed2163e3",
+      "cannotSupport": [
+        "real-world truth",
+        "predictive validity",
+        "user application",
+        "stable claim",
+        "readiness",
+        "grounding"
+      ],
+      "notAStableClaim": true
+    },
+    "citationLineage": {
+      "duplicateLineageNotIndependent": true,
+      "edges": [
+        {
+          "from": "source-ncl-catalog",
+          "relation": "unproven_possible_edition_relation",
+          "to": "source-wikisource-quan-shu-volume-one"
+        },
+        {
+          "from": "source-cinii-1975-edition",
+          "relation": "unproven_later_reprint_relation",
+          "to": "source-wikisource-quan-shu-volume-one"
+        },
+        {
+          "from": "source-wikisource-quan-shu-volume-one",
+          "relation": "parallel_or_reprint_transcription; not_independent",
+          "to": "source-ctext-ziwei-volume-one"
+        },
+        {
+          "from": "source-mcu-taxonomy-paper",
+          "relation": "secondary_taxonomy_only",
+          "to": "source-wikisource-quan-shu-volume-one"
+        }
+      ],
+      "nodes": [
+        "source-ncl-catalog",
+        "source-cinii-1975-edition",
+        "source-wikisource-quan-shu-volume-one",
+        "source-ctext-ziwei-volume-one",
+        "source-mcu-taxonomy-paper"
+      ]
+    },
+    "currentEvidenceLedger": [
+      {
+        "correspondence": "direct_or_near_direct_textual occurrence; conditional and configuration-bound",
+        "evidenceId": "evidence-wikisource-quan-shu-volume-one",
+        "limitation": "does not establish the whole local Korean description or reality-based truth",
+        "match": "partial"
+      },
+      {
+        "correspondence": "palace name/alias correspondence",
+        "evidenceId": "evidence-ctext-ziwei-palace-index",
+        "limitation": "parallel source lineage; not independent corroboration",
+        "match": "partial"
+      },
+      {
+        "correspondence": "independent secondary taxonomy correspondence",
+        "evidenceId": "evidence-mcu-palace-taxonomy-paper",
+        "limitation": "does not establish the whole local Korean description or reality-based truth",
+        "match": "partial"
+      }
+    ],
+    "editionAssessment": {
+      "authorsEditors": [
+        "traditional attribution to 陳希夷 is recorded by catalogues; authorship is not independently resolved",
+        "羅洪先署名序 is visible in the transcription"
+      ],
+      "candidates": [
+        {
+          "edition": "影印本 / 正統道藏",
+          "evidenceId": "source-ncl-catalog",
+          "location": "catalog record, 1114 pages, 3 volumes",
+          "publicationPlace": "上海",
+          "year": "1923-1926"
+        },
+        {
+          "edition": "南北山人編註, 童彭年校梓",
+          "evidenceId": "source-cinii-1975-edition",
+          "location": "448 pages",
+          "publicationPlace": "台北",
+          "year": "1975"
+        }
+      ],
+      "status": "candidate_editions_not_linked_to_transcription",
+      "title": "紫微斗數全書 / 紫微斗數"
+    },
+    "guard": {
+      "activation": "experimental",
+      "grounding": "not_safe_to_start",
+      "guardMeaningUnchanged": true,
+      "provenanceMeaningUnchanged": true,
+      "rawTextMeaningUnchanged": true,
+      "readiness": "not_safe_to_start",
+      "stableClaim": false
+    },
+    "occurrenceId": "ziwei-occ-2260aba6ed2163e3",
+    "provenance": {
+      "existingSourceReferences": [
+        "source:src/ziwei/ziweiContract.js"
+      ],
+      "fixtureReferences": [
+        "fixture:known-chart:sample_1_lunar_5_hour_wu",
+        "fixture:known-chart:sample_2_lunar_1_hour_zi",
+        "fixture:known-chart:sample_3_leap_month_boundary",
+        "fixture:benchmark:case_a_exact_personality",
+        "fixture:benchmark:case_b_unknown_time_personality",
+        "fixture:benchmark:case_c_leap_month_relationship",
+        "fixture:benchmark:case_d_hua_ji_career",
+        "fixture:benchmark:case_e_timing_low_confidence"
+      ],
+      "guardStatus": "pilot_only_not_readiness_or_grounding",
+      "pilotArtifact": "artifacts/ziwei-structural-admission-guard-pilot-v0/complete.json",
+      "pilotSelection": "categoryLists.structuralGuardPossible",
+      "sourceIdentityBefore": {
+        "immutableExternalIdentity": null,
+        "independentVerification": false,
+        "status": "unresolved_source_identity"
+      }
+    },
+    "rawText": {
+      "epistemicBoundary": "raw_meaning_candidate_only",
+      "isVerifiedFact": false,
+      "source": {
+        "exportName": "ZIWEI_PALACE_DEFINITIONS",
+        "file": "src/ziwei/ziweiContract.js",
+        "location": "ZIWEI_PALACE_DEFINITIONS[id=career].description",
+        "slot": "career"
+      },
+      "text": "직업, 사회적 위치, 역량 발휘"
+    },
+    "scanAssessment": {
+      "fileSizeBytes": null,
+      "fileUrl": null,
+      "immutableHash": null,
+      "limitation": "URL and catalogue metadata do not establish immutable file identity.",
+      "pageReference": "No legally accessible scan/file identity linking the selected Wikisource text to either catalogue candidate was confirmed.",
+      "provider": null,
+      "status": "scan_unavailable"
+    },
+    "selectedPalace": {
+      "palace": "官祿宮",
+      "slot": "career"
+    },
+    "sourceIdentityInventory": [
+      {
+        "authorOrEditor": "traditional attribution; exact editor unresolved",
+        "edition": null,
+        "evidenceId": "source-wikisource-quan-shu-volume-one",
+        "file": null,
+        "fileSizeBytes": null,
+        "immutableHash": null,
+        "independence": "primary_text_candidate_not_edition_locked",
+        "location": "卷一: 斗數準繩 lines 296-323; 諸星問答論 lines 397-403, 424-444; page image not identified",
+        "relation": "textual transcription candidate; not proven to be a particular catalogued scan",
+        "role": "public transcription / text comparison",
+        "title": "紫微斗數全書/卷一",
+        "url": "https://zh.wikisource.org/zh-hant/%E7%B4%AB%E5%BE%AE%E6%96%97%E6%95%B8%E5%85%A8%E6%9B%B8/%E5%8D%B7%E4%B8%80",
+        "year": null
+      },
+      {
+        "authorOrEditor": "Chinese Text Project",
+        "edition": null,
+        "evidenceId": "source-ctext-ziwei-volume-one",
+        "file": null,
+        "fileSizeBytes": null,
+        "immutableHash": null,
+        "independence": "same_or_parallel_transcription_not_independent",
+        "location": "卷一 chapter page; OCR-matched textual edition, no scan identity for this occurrence",
+        "relation": "parallel/derived text lineage; not independent of the classical transcription",
+        "role": "parallel transcription / text comparison",
+        "title": "紫微斗數卷一",
+        "url": "https://ctext.org/wiki.pl?chapter=729141&if=en",
+        "year": null
+      },
+      {
+        "authorOrEditor": "not stated in catalogue record",
+        "edition": "影印本, 正統道藏, three volumes",
+        "evidenceId": "source-ncl-catalog",
+        "file": null,
+        "fileSizeBytes": null,
+        "immutableHash": null,
+        "independence": "bibliographic_record_not_textual_corroboration",
+        "location": "catalog record: Shanghai; 1 volume record of 1114 pages; holding China National Library; registration rarecatx0428879",
+        "relation": "catalogued facsimile candidate; no scan/file was retrieved and no identity link to Wikisource was proven",
+        "role": "library catalogue / edition candidate",
+        "title": "紫微斗數",
+        "url": "https://rbook.ncl.edu.tw/NCLSearch/Search/SearchDetail?HasImage=&SourceID=1&item=1b36e75d6cb348bcafa51089508d41ccfDI3ODUxNA2.T5_fvtPg0BL_gp0oecUpf3kBMYmGj_Zu9aAWwhejGlk_&page=3538",
+        "year": "1923-1926 (民國12-15)"
+      },
+      {
+        "authorOrEditor": "陳希夷 original; 南北山人編註; 校梓 童彭年",
+        "edition": "hardcover, publisher not stated",
+        "evidenceId": "source-cinii-1975-edition",
+        "file": null,
+        "fileSizeBytes": null,
+        "immutableHash": null,
+        "independence": "bibliographic_record_not_textual_corroboration",
+        "location": "Taipei; 448 pages; NII Books NCID BA73215996; Tokyo Metropolitan Central Library holding",
+        "relation": "catalogued later reprint candidate; not proven identical to public transcription",
+        "role": "library catalogue / reprint candidate",
+        "title": "紫微斗數全書",
+        "url": "https://ci.nii.ac.jp/ncid/BA73215996",
+        "year": "1975-08"
+      },
+      {
+        "authorOrEditor": "林聖芬",
+        "edition": "conference repository PDF",
+        "evidenceId": "source-mcu-taxonomy-paper",
+        "file": null,
+        "fileSizeBytes": null,
+        "immutableHash": null,
+        "independence": "independent_secondary_taxonomy_only",
+        "location": "PDF p. 1; twelve-palace taxonomy only",
+        "relation": "secondary taxonomy; does not establish the selected wording or edition",
+        "role": "academic secondary taxonomy",
+        "title": "紫微斗數主星曜代表人物圖像創作之初探",
+        "url": "https://web.sdsymposia.mcu.edu.tw/sites/default/files/u3/2020/A2/PAPER/A216_%E6%9E%97%E8%81%96%E8%8A%AC-%E7%B4%AB%E5%BE%AE%E斗數主星曜代表人物圖像創作之初探.pdf",
+        "year": "2020"
+      }
+    ],
+    "textComparison": {
+      "conditionalPhraseMatch": true,
+      "configurationMismatch": [
+        "star, brightness, trine/opposite, transformation, time and school settings are absent"
+      ],
+      "exactTextMatch": false,
+      "insufficientEvidence": true,
+      "normalizedTextMatch": false,
+      "omittedQualifier": [
+        "star identity and configuration",
+        "conditional polarity and qualifier",
+        "scope of career/social position/capability"
+      ],
+      "opposingEvidence": [
+        {
+          "observation": "the source contrasts 官星居於福地 and 福星居於官宮, showing conditional configuration rather than an unconditional career definition",
+          "sourceLocation": "卷一 斗數準繩 lines 296-300"
+        }
+      ],
+      "palaceOrStarAliasMatch": true,
+      "wordingDrift": [
+        "repository Korean gloss is not a translation of one located sentence",
+        "官祿 is used in source as a configuration-dependent palace reference"
+      ]
+    },
+    "verdict": "source_lineage_partial"
+  },
+  "schemaVersion": "ziwei-guarded-occurrence-exact-source-identity-pilot-v0",
+  "scope": "one occurrence; literature source identity only; no claim or readiness promotion",
+  "selection": {
+    "rejectedOccurrenceIds": [
+      "ziwei-occ-a09e10a5495186b8",
+      "ziwei-occ-a72bdf60ef809b58",
+      "ziwei-occ-e73f469c5e35e072"
+    ],
+    "rule": "descending sum of four evidence-axis scores, then occurrenceId ascending",
+    "selectedOccurrenceId": "ziwei-occ-2260aba6ed2163e3",
+    "selectedScore": 8
+  },
+  "sourceArtifact": "artifacts/ziwei-guarded-occurrence-source-evidence-hardening-v0/complete.json",
+  "verdictToken": "source_lineage_partial"
+}
