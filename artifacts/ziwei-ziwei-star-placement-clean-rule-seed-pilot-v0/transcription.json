@@ -1,0 +1,44 @@
+{
+  "modernCommentaryIngested": false,
+  "ocrStatus": "exploration_only_not_canonical",
+  "schemaVersion": "ziwei-ziwei-star-placement-clean-rule-seed-pilot-v0-transcription-v0",
+  "sourcePdfSha256": "4786a94ab454acdabf9716d7c0db4756dbcbde99a88bc45fda254863c1961023",
+  "sourceRefs": [
+    {
+      "glyphPreservingText": "起紫微五訣（按命宮五行局及本生日）水二局中初一丑；木三局中初一辰；金四局初一在亥；土五局中初一午；火六局中初一酉",
+      "locator": "left scanned leaf, vertical rule prose columns",
+      "pdfPage": 11,
+      "printedPage": "三十一",
+      "scope": "rule-bearing start points and direction prose",
+      "section": "起紫微五訣",
+      "tableDirection": "vertical prose read right-to-left; no transpose"
+    },
+    {
+      "glyphPreservingText": "水二局、木三局、金四局、土五局、火六局",
+      "locator": "left scanned leaf, 30 lunar-day rows and five bureau columns",
+      "pdfPage": 12,
+      "printedPage": "三十三",
+      "scope": "rule-bearing auxiliary lookup table; rows 初一 through 三十",
+      "section": "起紫微簡索表",
+      "tableDirection": "columns read right-to-left as drawn; day rows descend 1..30"
+    }
+  ],
+  "transcriptionId": "ziwei-star-placement-p11-p12-transcription-v0",
+  "uncertainty": [
+    {
+      "field": "page11.ruleProse",
+      "note": "Glyphs were read from rendered PDF pages; no OCR text is canonical.",
+      "status": "single_visual_review_second_review_pending"
+    },
+    {
+      "field": "page12.tableCells",
+      "note": "The table is preserved as a source boundary; normalized formula is not presented as a verbatim table replacement.",
+      "status": "layout_and_glyph_review_pending"
+    },
+    {
+      "field": "printedPage",
+      "note": "Printed folio labels are preserved without inferring modern edition identity.",
+      "status": "page_label_observed"
+    }
+  ]
+}

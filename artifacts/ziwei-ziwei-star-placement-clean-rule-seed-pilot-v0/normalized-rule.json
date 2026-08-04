@@ -1,0 +1,86 @@
+{
+  "arithmetic": {
+    "baseBranch": "寅",
+    "divisibleCase": "remainder=0; no directional correction",
+    "formula": "branchIndex=(index(寅)+quotient-1+signedRemainder) mod 12",
+    "nonDivisibleCase": "odd remainder reverse; even remainder forward",
+    "quotient": "floor((lunarDay + bureauNumber - 1) / bureauNumber)",
+    "remainder": "quotient * bureauNumber - lunarDay",
+    "signedRemainder": "reverse=-remainder; forward=+remainder"
+  },
+  "boundary": "Source transcription/formula is separate from production result normalization.",
+  "branchOrder": {
+    "indexConvention": "子=0 ... 亥=11",
+    "modulo": 12,
+    "traditional": [
+      "子",
+      "丑",
+      "寅",
+      "卯",
+      "辰",
+      "巳",
+      "午",
+      "未",
+      "申",
+      "酉",
+      "戌",
+      "亥"
+    ]
+  },
+  "excludedUpstream": [
+    "solar/lunar conversion",
+    "leap-month resolution",
+    "ming/shen palace resolution",
+    "year stem and hour branch"
+  ],
+  "input": {
+    "bureau": [
+      {
+        "engineEnum": "water_2",
+        "number": 2,
+        "traditionalName": "水二局"
+      },
+      {
+        "engineEnum": "wood_3",
+        "number": 3,
+        "traditionalName": "木三局"
+      },
+      {
+        "engineEnum": "metal_4",
+        "number": 4,
+        "traditionalName": "金四局"
+      },
+      {
+        "engineEnum": "earth_5",
+        "number": 5,
+        "traditionalName": "土五局"
+      },
+      {
+        "engineEnum": "fire_6",
+        "number": 6,
+        "traditionalName": "火六局"
+      }
+    ],
+    "lunarDay": "integer 1..30"
+  },
+  "mapping": {
+    "traditionalToEngine": {
+      "土五局": "earth_5",
+      "木三局": "wood_3",
+      "水二局": "water_2",
+      "火六局": "fire_6",
+      "紫微": "ziwei",
+      "金四局": "metal_4"
+    }
+  },
+  "output": {
+    "productionComparisonField": "majorStars[id=ziwei].palaceBranch",
+    "sourceTraditionalName": "紫微"
+  },
+  "schemaVersion": "ziwei-ziwei-star-placement-clean-rule-seed-rule-v0",
+  "sourceRequired": [
+    "already-resolved 五行局",
+    "already-resolved lunar day"
+  ],
+  "sourceTranscriptionId": "ziwei-star-placement-p11-p12-transcription-v0"
+}

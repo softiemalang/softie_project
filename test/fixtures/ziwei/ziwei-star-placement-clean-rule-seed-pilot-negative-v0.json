@@ -1,0 +1,1 @@
+{"schemaVersion":"ziwei-ziwei-star-placement-clean-rule-seed-pilot-negative-v0","purpose":"The executable negative checker mutates the accepted artifact to test fail-closed boundaries.","canonicalPromotion":"forbidden","productionEvaluatorReuse":"forbidden","otherStars":"forbidden"}
