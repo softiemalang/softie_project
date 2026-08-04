@@ -1,0 +1,731 @@
+{
+  "accessDate": "2026-08-04",
+  "artifactIdentity": {
+    "artifactId": "ziwei-guarded-occurrence-source-evidence-hardening-v0",
+    "artifactPayloadSha256": "9c31593fcf275b3506357cc96b36d386a016999cfc9c5cf25234deb0f37fd351",
+    "contractVersion": "artifact-identity-v1",
+    "generation": {
+      "baseHead": "ba3b516549afb98054033b778a07e241e2c13e83",
+      "baseHeadSource": "git rev-parse HEAD at materialization",
+      "includedCommit": null,
+      "includedCommitSource": "unknown_at_generation; artifact may be included by a later commit"
+    },
+    "inputs": [
+      {
+        "byteSha256": "a56e3c0e54bc06bcf13082ff7f94300a11cd26a110ffd3f42e98b043a83f7b1d",
+        "path": "artifacts/ziwei-structural-admission-guard-pilot-v0/complete.json"
+      },
+      {
+        "byteSha256": "716875185d87da22ceef5f66f32899359642646367133f6c9f4bf87718bf130e",
+        "path": "src/ziwei/ziweiContract.js"
+      }
+    ],
+    "materializer": {
+      "path": "scripts/materialize-ziwei-guarded-occurrence-source-evidence-hardening-v0.mjs",
+      "version": "1.0.0"
+    }
+  },
+  "basisHead": "ba3b516549afb98054033b778a07e241e2c13e83",
+  "calculationBoundary": {
+    "changed": false,
+    "existingFixtureReconciliation": "preserved; no new independent calculation claim",
+    "externalFixtureBytes": null
+  },
+  "checker": "scripts/check-ziwei-guarded-occurrence-source-evidence-hardening-v0.mjs",
+  "citationLineage": {
+    "duplicateSourcesNotCountedAsIndependent": true,
+    "lineage": {
+      "evidence-ctext-ziwei-palace-index": "parallel public taxonomy transcription; do not count independently from classic transcription",
+      "evidence-mcu-palace-taxonomy-paper": "independent secondary taxonomy only",
+      "evidence-wikisource-quan-shu-volume-one": "public transcription of classic candidate"
+    }
+  },
+  "deterministicContract": {
+    "evidenceOrder": "declared evidence ID order",
+    "hashes": [
+      "artifactPayloadSha256",
+      "complete.json UTF-8 bytes including final LF"
+    ],
+    "occurrenceId": "preserved from pilot; no manual replacement",
+    "rawText": "exact pilot bytes; no normalization",
+    "recordOrder": "lexicographic occurrenceId",
+    "timestamps": "accessDate fixed; generation timestamp forbidden"
+  },
+  "distribution": {
+    "boundaryEvidenceCandidateCount": 4,
+    "configuration_mismatch": 0,
+    "evidence_conflict": 0,
+    "independentCorroborationInsufficient": 4,
+    "source_identity_partial": 4,
+    "source_identity_resolved_and_independently_corrobated": 0,
+    "source_identity_resolved_evidence_partial": 0,
+    "source_identity_unresolved": 0
+  },
+  "globalBoundary": {
+    "activation": "experimental",
+    "grounding": "not_safe_to_start",
+    "groundingSubset": "blocked",
+    "readiness": "not_safe_to_start",
+    "reason": "source evidence does not establish stable claims, reality truth, user applicability, or readiness",
+    "stableClaimBoundary": 0,
+    "wholeSystemExpansion": false
+  },
+  "materializer": "scripts/materialize-ziwei-guarded-occurrence-source-evidence-hardening-v0.mjs",
+  "negativeContract": {
+    "detects": [
+      "target outside four",
+      "blog/republication promoted as independent original",
+      "duplicate source double-counted",
+      "resolved without edition/location",
+      "configuration mismatch or opposing evidence hidden",
+      "literature correspondence represented as reality truth",
+      "stable claim/ready/grounded promotion",
+      "fake citation",
+      "nondeterministic IDs/sort"
+    ],
+    "fixture": "test/fixtures/ziwei/guarded-occurrence-source-evidence-hardening-negative-v0.json"
+  },
+  "observedHead": "ba3b516549afb98054033b778a07e241e2c13e83",
+  "records": [
+    {
+      "boundaryEvidenceCandidates": [
+        {
+          "basis": "palace name/alias and conditional textual wording only",
+          "candidateId": "boundary-2260aba6ed2163e3",
+          "cannotSupport": [
+            "real-world truth",
+            "personality prediction",
+            "user application",
+            "ranking",
+            "grounding"
+          ],
+          "notAStableClaim": true,
+          "text": "palace-name-and-domain correspondence only"
+        }
+      ],
+      "calculationFixtureReconciliation": {
+        "comparedCalculation": "not applicable to semantic palace description; existing fixtures remain regression_only",
+        "fixtureReferencesPreserved": true,
+        "localCalculationChanged": false,
+        "reason": "no independent chart oracle or immutable external fixture bytes",
+        "result": "not_independently_verified"
+      },
+      "evidenceIds": [
+        "evidence-wikisource-quan-shu-volume-one",
+        "evidence-ctext-ziwei-palace-index",
+        "evidence-mcu-palace-taxonomy-paper"
+      ],
+      "evidenceLedger": [
+        {
+          "correspondence": "direct_or_near_direct_textual occurrence; conditional and configuration-bound",
+          "evidenceId": "evidence-wikisource-quan-shu-volume-one",
+          "limitation": "does not establish the whole local Korean description or reality-based truth",
+          "match": "partial"
+        },
+        {
+          "correspondence": "palace name/alias correspondence",
+          "evidenceId": "evidence-ctext-ziwei-palace-index",
+          "limitation": "parallel source lineage; not independent corroboration",
+          "match": "partial"
+        },
+        {
+          "correspondence": "independent secondary taxonomy correspondence",
+          "evidenceId": "evidence-mcu-palace-taxonomy-paper",
+          "limitation": "does not establish the whole local Korean description or reality-based truth",
+          "match": "partial"
+        }
+      ],
+      "guardPreservation": {
+        "activation": "experimental",
+        "grounding": "not_safe_to_start",
+        "guardMeaningUnchanged": true,
+        "provenanceMeaningUnchanged": true,
+        "rawTextMeaningUnchanged": true,
+        "readiness": "not_safe_to_start",
+        "stableClaim": false
+      },
+      "independentRuleCorroboration": {
+        "configuration": "palace alias only; star, brightness, trine/opposite, transformation, time and school settings absent",
+        "independentEvidenceIds": [
+          "evidence-mcu-palace-taxonomy-paper"
+        ],
+        "mismatch": null,
+        "opposingEvidence": [],
+        "sameRuleMatch": false,
+        "status": "insufficient_evidence",
+        "unresolvedReasons": [
+          "independent source confirms taxonomy but not exact semantic rule",
+          "no independently reproducible worked chart with identical configuration"
+        ]
+      },
+      "limits": [
+        "social position and capability wording is broader than cited text",
+        "no exact edition or page image",
+        "no independent worked chart for this semantic occurrence"
+      ],
+      "occurrenceId": "ziwei-occ-2260aba6ed2163e3",
+      "provenance": {
+        "existingSourceReferences": [
+          "source:src/ziwei/ziweiContract.js"
+        ],
+        "fixtureReferences": [
+          "fixture:known-chart:sample_1_lunar_5_hour_wu",
+          "fixture:known-chart:sample_2_lunar_1_hour_zi",
+          "fixture:known-chart:sample_3_leap_month_boundary",
+          "fixture:benchmark:case_a_exact_personality",
+          "fixture:benchmark:case_b_unknown_time_personality",
+          "fixture:benchmark:case_c_leap_month_relationship",
+          "fixture:benchmark:case_d_hua_ji_career",
+          "fixture:benchmark:case_e_timing_low_confidence"
+        ],
+        "guardStatus": "pilot_only_not_readiness_or_grounding",
+        "pilotArtifact": "artifacts/ziwei-structural-admission-guard-pilot-v0/complete.json",
+        "pilotSelection": "categoryLists.structuralGuardPossible",
+        "sourceIdentityBefore": {
+          "immutableExternalIdentity": null,
+          "independentVerification": false,
+          "status": "unresolved_source_identity"
+        }
+      },
+      "rawText": {
+        "epistemicBoundary": "raw_meaning_candidate_only",
+        "isVerifiedFact": false,
+        "source": {
+          "exportName": "ZIWEI_PALACE_DEFINITIONS",
+          "file": "src/ziwei/ziweiContract.js",
+          "location": "ZIWEI_PALACE_DEFINITIONS[id=career].description",
+          "slot": "career"
+        },
+        "text": "직업, 사회적 위치, 역량 발휘"
+      },
+      "ruleCorrespondence": {
+        "aliases": [
+          "事業宮"
+        ],
+        "conditions": [
+          "palace identity alone is insufficient; cited classic text is star/configuration conditional",
+          "local description contains a modern gloss whose scope is not fully reproduced by the evidence"
+        ],
+        "configurationAssessment": "configuration_match_for_palace_alias_only",
+        "localPalaceName": "官祿宮",
+        "localPalaceSlot": "career",
+        "mapping": "local career -> 官祿/事業; classic text associates 官祿 with conditional office/status rules",
+        "result": "insufficient_evidence"
+      },
+      "sourceIdentityAssessment": {
+        "authorOrEditor": "traditional attribution; exact editor unresolved",
+        "edition": null,
+        "location": "public repository URL and named section/line anchors recorded; exact edition/page image unresolved",
+        "originalTranslationReprintLineage": "public transcription/parallel datawiki and independent secondary taxonomy; same-source duplicates are not counted independently",
+        "status": "source_identity_partial",
+        "title": "紫微斗數全書",
+        "unresolvedReasons": [
+          "exact_edition_unresolved",
+          "immutable_retrieval_bytes_unavailable",
+          "original_author_editor_identity_not_closed"
+        ],
+        "year": null
+      },
+      "verdict": "source_identity_partial"
+    },
+    {
+      "boundaryEvidenceCandidates": [
+        {
+          "basis": "palace name/alias and conditional textual wording only",
+          "candidateId": "boundary-a09e10a5495186b8",
+          "cannotSupport": [
+            "real-world truth",
+            "personality prediction",
+            "user application",
+            "ranking",
+            "grounding"
+          ],
+          "notAStableClaim": true,
+          "text": "palace-name correspondence only"
+        }
+      ],
+      "calculationFixtureReconciliation": {
+        "comparedCalculation": "not applicable to semantic palace description; existing fixtures remain regression_only",
+        "fixtureReferencesPreserved": true,
+        "localCalculationChanged": false,
+        "reason": "no independent chart oracle or immutable external fixture bytes",
+        "result": "not_independently_verified"
+      },
+      "evidenceIds": [
+        "evidence-wikisource-quan-shu-volume-one",
+        "evidence-ctext-ziwei-palace-index",
+        "evidence-mcu-palace-taxonomy-paper"
+      ],
+      "evidenceLedger": [
+        {
+          "correspondence": "direct_or_near_direct_textual occurrence; conditional and configuration-bound",
+          "evidenceId": "evidence-wikisource-quan-shu-volume-one",
+          "limitation": "does not establish the whole local Korean description or reality-based truth",
+          "match": "partial"
+        },
+        {
+          "correspondence": "palace name/alias correspondence",
+          "evidenceId": "evidence-ctext-ziwei-palace-index",
+          "limitation": "parallel source lineage; not independent corroboration",
+          "match": "partial"
+        },
+        {
+          "correspondence": "independent secondary taxonomy correspondence",
+          "evidenceId": "evidence-mcu-palace-taxonomy-paper",
+          "limitation": "does not establish the whole local Korean description or reality-based truth",
+          "match": "partial"
+        }
+      ],
+      "guardPreservation": {
+        "activation": "experimental",
+        "grounding": "not_safe_to_start",
+        "guardMeaningUnchanged": true,
+        "provenanceMeaningUnchanged": true,
+        "rawTextMeaningUnchanged": true,
+        "readiness": "not_safe_to_start",
+        "stableClaim": false
+      },
+      "independentRuleCorroboration": {
+        "configuration": "palace alias only; star, brightness, trine/opposite, transformation, time and school settings absent",
+        "independentEvidenceIds": [
+          "evidence-mcu-palace-taxonomy-paper"
+        ],
+        "mismatch": null,
+        "opposingEvidence": [],
+        "sameRuleMatch": false,
+        "status": "insufficient_evidence",
+        "unresolvedReasons": [
+          "independent source confirms taxonomy but not exact semantic rule",
+          "no independently reproducible worked chart with identical configuration"
+        ]
+      },
+      "limits": [
+        "added colleague and close-acquaintance scope is not directly corroborated",
+        "no exact edition or page image",
+        "star/configuration conditions are absent"
+      ],
+      "occurrenceId": "ziwei-occ-a09e10a5495186b8",
+      "provenance": {
+        "existingSourceReferences": [
+          "source:src/ziwei/ziweiContract.js"
+        ],
+        "fixtureReferences": [
+          "fixture:known-chart:sample_1_lunar_5_hour_wu",
+          "fixture:known-chart:sample_2_lunar_1_hour_zi",
+          "fixture:known-chart:sample_3_leap_month_boundary",
+          "fixture:benchmark:case_a_exact_personality",
+          "fixture:benchmark:case_b_unknown_time_personality",
+          "fixture:benchmark:case_c_leap_month_relationship",
+          "fixture:benchmark:case_d_hua_ji_career",
+          "fixture:benchmark:case_e_timing_low_confidence"
+        ],
+        "guardStatus": "pilot_only_not_readiness_or_grounding",
+        "pilotArtifact": "artifacts/ziwei-structural-admission-guard-pilot-v0/complete.json",
+        "pilotSelection": "categoryLists.structuralGuardPossible",
+        "sourceIdentityBefore": {
+          "immutableExternalIdentity": null,
+          "independentVerification": false,
+          "status": "unresolved_source_identity"
+        }
+      },
+      "rawText": {
+        "epistemicBoundary": "raw_meaning_candidate_only",
+        "isVerifiedFact": false,
+        "source": {
+          "exportName": "ZIWEI_PALACE_DEFINITIONS",
+          "file": "src/ziwei/ziweiContract.js",
+          "location": "ZIWEI_PALACE_DEFINITIONS[id=siblings].description",
+          "slot": "siblings"
+        },
+        "text": "형제자매, 동료, 친밀한 지인 관계"
+      },
+      "ruleCorrespondence": {
+        "aliases": [],
+        "conditions": [
+          "palace identity alone is insufficient; cited classic text is star/configuration conditional",
+          "local description contains a modern gloss whose scope is not fully reproduced by the evidence"
+        ],
+        "configurationAssessment": "configuration_match_for_palace_alias_only",
+        "localPalaceName": "兄弟宮",
+        "localPalaceSlot": "siblings",
+        "mapping": "local siblings -> 兄弟; direct palace-name match, with no cited text for the added colleague/acquaintance scope",
+        "result": "insufficient_evidence"
+      },
+      "sourceIdentityAssessment": {
+        "authorOrEditor": "traditional attribution; exact editor unresolved",
+        "edition": null,
+        "location": "public repository URL and named section/line anchors recorded; exact edition/page image unresolved",
+        "originalTranslationReprintLineage": "public transcription/parallel datawiki and independent secondary taxonomy; same-source duplicates are not counted independently",
+        "status": "source_identity_partial",
+        "title": "紫微斗數全書",
+        "unresolvedReasons": [
+          "exact_edition_unresolved",
+          "immutable_retrieval_bytes_unavailable",
+          "original_author_editor_identity_not_closed"
+        ],
+        "year": null
+      },
+      "verdict": "source_identity_partial"
+    },
+    {
+      "boundaryEvidenceCandidates": [
+        {
+          "basis": "palace name/alias and conditional textual wording only",
+          "candidateId": "boundary-a72bdf60ef809b58",
+          "cannotSupport": [
+            "real-world truth",
+            "personality prediction",
+            "user application",
+            "ranking",
+            "grounding"
+          ],
+          "notAStableClaim": true,
+          "text": "alias correspondence; semantic scope unresolved"
+        }
+      ],
+      "calculationFixtureReconciliation": {
+        "comparedCalculation": "not applicable to semantic palace description; existing fixtures remain regression_only",
+        "fixtureReferencesPreserved": true,
+        "localCalculationChanged": false,
+        "reason": "no independent chart oracle or immutable external fixture bytes",
+        "result": "not_independently_verified"
+      },
+      "evidenceIds": [
+        "evidence-wikisource-quan-shu-volume-one",
+        "evidence-ctext-ziwei-palace-index",
+        "evidence-mcu-palace-taxonomy-paper"
+      ],
+      "evidenceLedger": [
+        {
+          "correspondence": "direct_or_near_direct_textual occurrence; conditional and configuration-bound",
+          "evidenceId": "evidence-wikisource-quan-shu-volume-one",
+          "limitation": "does not establish the whole local Korean description or reality-based truth",
+          "match": "partial"
+        },
+        {
+          "correspondence": "palace name/alias correspondence",
+          "evidenceId": "evidence-ctext-ziwei-palace-index",
+          "limitation": "parallel source lineage; not independent corroboration",
+          "match": "partial"
+        },
+        {
+          "correspondence": "independent secondary taxonomy correspondence",
+          "evidenceId": "evidence-mcu-palace-taxonomy-paper",
+          "limitation": "does not establish the whole local Korean description or reality-based truth",
+          "match": "partial"
+        }
+      ],
+      "guardPreservation": {
+        "activation": "experimental",
+        "grounding": "not_safe_to_start",
+        "guardMeaningUnchanged": true,
+        "provenanceMeaningUnchanged": true,
+        "rawTextMeaningUnchanged": true,
+        "readiness": "not_safe_to_start",
+        "stableClaim": false
+      },
+      "independentRuleCorroboration": {
+        "configuration": "palace alias only; star, brightness, trine/opposite, transformation, time and school settings absent",
+        "independentEvidenceIds": [
+          "evidence-mcu-palace-taxonomy-paper"
+        ],
+        "mismatch": null,
+        "opposingEvidence": [],
+        "sameRuleMatch": false,
+        "status": "insufficient_evidence",
+        "unresolvedReasons": [
+          "independent source confirms taxonomy but not exact semantic rule",
+          "no independently reproducible worked chart with identical configuration"
+        ]
+      },
+      "limits": [
+        "subordinates/public/general relationships are not one closed classical configuration",
+        "no exact edition or page image",
+        "classic wording is conditional and star-dependent"
+      ],
+      "occurrenceId": "ziwei-occ-a72bdf60ef809b58",
+      "provenance": {
+        "existingSourceReferences": [
+          "source:src/ziwei/ziweiContract.js"
+        ],
+        "fixtureReferences": [
+          "fixture:known-chart:sample_1_lunar_5_hour_wu",
+          "fixture:known-chart:sample_2_lunar_1_hour_zi",
+          "fixture:known-chart:sample_3_leap_month_boundary",
+          "fixture:benchmark:case_a_exact_personality",
+          "fixture:benchmark:case_b_unknown_time_personality",
+          "fixture:benchmark:case_c_leap_month_relationship",
+          "fixture:benchmark:case_d_hua_ji_career",
+          "fixture:benchmark:case_e_timing_low_confidence"
+        ],
+        "guardStatus": "pilot_only_not_readiness_or_grounding",
+        "pilotArtifact": "artifacts/ziwei-structural-admission-guard-pilot-v0/complete.json",
+        "pilotSelection": "categoryLists.structuralGuardPossible",
+        "sourceIdentityBefore": {
+          "immutableExternalIdentity": null,
+          "independentVerification": false,
+          "status": "unresolved_source_identity"
+        }
+      },
+      "rawText": {
+        "epistemicBoundary": "raw_meaning_candidate_only",
+        "isVerifiedFact": false,
+        "source": {
+          "exportName": "ZIWEI_PALACE_DEFINITIONS",
+          "file": "src/ziwei/ziweiContract.js",
+          "location": "ZIWEI_PALACE_DEFINITIONS[id=friends].description",
+          "slot": "friends"
+        },
+        "text": "부하, 대중, 일반 인간관계"
+      },
+      "ruleCorrespondence": {
+        "aliases": [
+          "僕役宮",
+          "交友宮"
+        ],
+        "conditions": [
+          "palace identity alone is insufficient; cited classic text is star/configuration conditional",
+          "local description contains a modern gloss whose scope is not fully reproduced by the evidence"
+        ],
+        "configurationAssessment": "configuration_match_for_palace_alias_only",
+        "localPalaceName": "奴僕宮",
+        "localPalaceSlot": "friends",
+        "mapping": "local friends -> 奴僕/僕役/交友 alias family; local label is not itself an independent rule source",
+        "result": "insufficient_evidence"
+      },
+      "sourceIdentityAssessment": {
+        "authorOrEditor": "traditional attribution; exact editor unresolved",
+        "edition": null,
+        "location": "public repository URL and named section/line anchors recorded; exact edition/page image unresolved",
+        "originalTranslationReprintLineage": "public transcription/parallel datawiki and independent secondary taxonomy; same-source duplicates are not counted independently",
+        "status": "source_identity_partial",
+        "title": "紫微斗數全書",
+        "unresolvedReasons": [
+          "exact_edition_unresolved",
+          "immutable_retrieval_bytes_unavailable",
+          "original_author_editor_identity_not_closed"
+        ],
+        "year": null
+      },
+      "verdict": "source_identity_partial"
+    },
+    {
+      "boundaryEvidenceCandidates": [
+        {
+          "basis": "palace name/alias and conditional textual wording only",
+          "candidateId": "boundary-e73f469c5e35e072",
+          "cannotSupport": [
+            "real-world truth",
+            "personality prediction",
+            "user application",
+            "ranking",
+            "grounding"
+          ],
+          "notAStableClaim": true,
+          "text": "palace-name correspondence only"
+        }
+      ],
+      "calculationFixtureReconciliation": {
+        "comparedCalculation": "not applicable to semantic palace description; existing fixtures remain regression_only",
+        "fixtureReferencesPreserved": true,
+        "localCalculationChanged": false,
+        "reason": "no independent chart oracle or immutable external fixture bytes",
+        "result": "not_independently_verified"
+      },
+      "evidenceIds": [
+        "evidence-wikisource-quan-shu-volume-one",
+        "evidence-ctext-ziwei-palace-index",
+        "evidence-mcu-palace-taxonomy-paper"
+      ],
+      "evidenceLedger": [
+        {
+          "correspondence": "direct_or_near_direct_textual occurrence; conditional and configuration-bound",
+          "evidenceId": "evidence-wikisource-quan-shu-volume-one",
+          "limitation": "does not establish the whole local Korean description or reality-based truth",
+          "match": "partial"
+        },
+        {
+          "correspondence": "palace name/alias correspondence",
+          "evidenceId": "evidence-ctext-ziwei-palace-index",
+          "limitation": "parallel source lineage; not independent corroboration",
+          "match": "partial"
+        },
+        {
+          "correspondence": "independent secondary taxonomy correspondence",
+          "evidenceId": "evidence-mcu-palace-taxonomy-paper",
+          "limitation": "does not establish the whole local Korean description or reality-based truth",
+          "match": "partial"
+        }
+      ],
+      "guardPreservation": {
+        "activation": "experimental",
+        "grounding": "not_safe_to_start",
+        "guardMeaningUnchanged": true,
+        "provenanceMeaningUnchanged": true,
+        "rawTextMeaningUnchanged": true,
+        "readiness": "not_safe_to_start",
+        "stableClaim": false
+      },
+      "independentRuleCorroboration": {
+        "configuration": "palace alias only; star, brightness, trine/opposite, transformation, time and school settings absent",
+        "independentEvidenceIds": [
+          "evidence-mcu-palace-taxonomy-paper"
+        ],
+        "mismatch": null,
+        "opposingEvidence": [],
+        "sameRuleMatch": false,
+        "status": "insufficient_evidence",
+        "unresolvedReasons": [
+          "independent source confirms taxonomy but not exact semantic rule",
+          "no independently reproducible worked chart with identical configuration"
+        ]
+      },
+      "limits": [
+        "mental satisfaction/taste/rest wording lacks exact independent citation",
+        "no exact edition or page image",
+        "no configuration or star conditions supplied"
+      ],
+      "occurrenceId": "ziwei-occ-e73f469c5e35e072",
+      "provenance": {
+        "existingSourceReferences": [
+          "source:src/ziwei/ziweiContract.js"
+        ],
+        "fixtureReferences": [
+          "fixture:known-chart:sample_1_lunar_5_hour_wu",
+          "fixture:known-chart:sample_2_lunar_1_hour_zi",
+          "fixture:known-chart:sample_3_leap_month_boundary",
+          "fixture:benchmark:case_a_exact_personality",
+          "fixture:benchmark:case_b_unknown_time_personality",
+          "fixture:benchmark:case_c_leap_month_relationship",
+          "fixture:benchmark:case_d_hua_ji_career",
+          "fixture:benchmark:case_e_timing_low_confidence"
+        ],
+        "guardStatus": "pilot_only_not_readiness_or_grounding",
+        "pilotArtifact": "artifacts/ziwei-structural-admission-guard-pilot-v0/complete.json",
+        "pilotSelection": "categoryLists.structuralGuardPossible",
+        "sourceIdentityBefore": {
+          "immutableExternalIdentity": null,
+          "independentVerification": false,
+          "status": "unresolved_source_identity"
+        }
+      },
+      "rawText": {
+        "epistemicBoundary": "raw_meaning_candidate_only",
+        "isVerifiedFact": false,
+        "source": {
+          "exportName": "ZIWEI_PALACE_DEFINITIONS",
+          "file": "src/ziwei/ziweiContract.js",
+          "location": "ZIWEI_PALACE_DEFINITIONS[id=mind].description",
+          "slot": "mind"
+        },
+        "text": "정신적 만족, 취향, 내면의 휴식"
+      },
+      "ruleCorrespondence": {
+        "aliases": [
+          "福壽宮"
+        ],
+        "conditions": [
+          "palace identity alone is insufficient; cited classic text is star/configuration conditional",
+          "local description contains a modern gloss whose scope is not fully reproduced by the evidence"
+        ],
+        "configurationAssessment": "configuration_match_for_palace_alias_only",
+        "localPalaceName": "福德宮",
+        "localPalaceSlot": "mind",
+        "mapping": "local mind -> 福德/福壽 alias family; cited classic text uses 福德 in conditional rules, not this complete modern gloss",
+        "result": "insufficient_evidence"
+      },
+      "sourceIdentityAssessment": {
+        "authorOrEditor": "traditional attribution; exact editor unresolved",
+        "edition": null,
+        "location": "public repository URL and named section/line anchors recorded; exact edition/page image unresolved",
+        "originalTranslationReprintLineage": "public transcription/parallel datawiki and independent secondary taxonomy; same-source duplicates are not counted independently",
+        "status": "source_identity_partial",
+        "title": "紫微斗數全書",
+        "unresolvedReasons": [
+          "exact_edition_unresolved",
+          "immutable_retrieval_bytes_unavailable",
+          "original_author_editor_identity_not_closed"
+        ],
+        "year": null
+      },
+      "verdict": "source_identity_partial"
+    }
+  ],
+  "schemaVersion": "ziwei-guarded-occurrence-source-evidence-hardening-v0",
+  "scope": "exactly four mechanically selected guarded occurrences; source evidence and claim-boundary review only",
+  "sourceByteEvidence": {
+    "artifacts/ziwei-structural-admission-guard-pilot-v0/complete.json": {
+      "scope": "actual repository bytes",
+      "sha256": "a56e3c0e54bc06bcf13082ff7f94300a11cd26a110ffd3f42e98b043a83f7b1d"
+    },
+    "src/ziwei/ziweiContract.js": {
+      "scope": "actual repository bytes",
+      "sha256": "716875185d87da22ceef5f66f32899359642646367133f6c9f4bf87718bf130e"
+    }
+  },
+  "sourceLineage": [
+    {
+      "accessed": "2026-08-04",
+      "authorOrEditor": "Chinese Text Project",
+      "edition": null,
+      "evidenceId": "evidence-ctext-ziwei-palace-index",
+      "evidenceType": "public_text_project",
+      "excerpt": "兄弟宮; 奴僕宮（又名僕役宮及交友宮）; 官祿宮（又名事業宮）; 福德宮（又名福壽宮）",
+      "immutableRetrievalHash": null,
+      "independence": "same_or_parallel_transcription_not_independent",
+      "location": "datawiki palace index; stable page anchor, no page image",
+      "role": "alias and twelve-palace correspondence only",
+      "title": "紫微斗數 (Zi Wei Dou Shu)",
+      "url": "https://ctext.org/datawiki.pl?if=gb&res=8418262",
+      "year": null
+    },
+    {
+      "accessed": "2026-08-04",
+      "authorOrEditor": "traditional attribution shown by repository; exact editor not established",
+      "edition": null,
+      "evidenceId": "evidence-wikisource-quan-shu-volume-one",
+      "evidenceType": "public_transcription_of_classic",
+      "excerpt": "惡星應八宮，奴僕無助。\n官祿遇紫府，富而且貴。\n福德遇空劫，奔走無力。\n天機兄弟主。\n為福德宮之主宰。",
+      "immutableRetrievalHash": null,
+      "independence": "primary_text_candidate_not_edition_locked",
+      "location": "卷一, 斗數準繩 / 斗數發微論 / 諸星問答論, stable HTML line locations 284-324, 392, 397-412, 438-444",
+      "role": "direct textual occurrence and conditional rule wording; not a modern palace definition",
+      "title": "紫微斗數全書/卷一",
+      "url": "https://zh.wikisource.org/zh/%E7%B4%AB%E5%BE%AE%E6%96%97%E6%95%B8%E5%85%A8%E6%9B%B8/%E5%8D%B7%E4%B8%80",
+      "year": null
+    },
+    {
+      "accessed": "2026-08-04",
+      "authorOrEditor": "林聖芬",
+      "edition": "conference PDF, repository copy",
+      "evidenceId": "evidence-mcu-palace-taxonomy-paper",
+      "evidenceType": "academic_institution_public_pdf",
+      "excerpt": "十二宮位包括：命宮、身宮、兄弟宮、夫妻宮、子女宮、財帛宮、疾厄宮、遷移宮、奴僕宮（交友宮）、官祿宮（事業宮）、田宅宮、福德宮（小命宮）、父母宮等。",
+      "immutableRetrievalHash": null,
+      "independence": "independent_secondary_taxonomy_only",
+      "location": "PDF p. 1 / section listing twelve palaces; repository pagination only",
+      "role": "independent secondary confirmation of palace names and aliases; no exact local description corroboration",
+      "title": "紫微斗數主星曜代表人物圖像創作之初探",
+      "url": "https://web.sdsymposia.mcu.edu.tw/sites/default/files/u3/2020/A2/PAPER/A216_%E6%9E%97%E8%81%96%E8%8A%AC-%E7%B4%AB%E5%BE%AE%E斗數主星曜代表人物圖像創作之初探.pdf",
+      "year": "2020"
+    }
+  ],
+  "targetSelection": {
+    "occurrenceCount": 4,
+    "occurrenceIds": [
+      "ziwei-occ-2260aba6ed2163e3",
+      "ziwei-occ-a09e10a5495186b8",
+      "ziwei-occ-a72bdf60ef809b58",
+      "ziwei-occ-e73f469c5e35e072"
+    ],
+    "selector": "records whose occurrence IDs equal audit categoryLists.structuralGuardPossible",
+    "sourceArtifact": "artifacts/ziwei-structural-admission-guard-pilot-v0/complete.json"
+  },
+  "unresolvedNextEvidence": [
+    "exact edition/editor/year and scan identity for 紫微斗數全書",
+    "immutable retrieval bytes/hash or library scan",
+    "independent rule source with exact palace semantic wording and conditions",
+    "independent worked chart reproducing identical palace/configuration settings"
+  ],
+  "verdictToken": "ziwei_guarded_occurrence_source_evidence_partial_unresolved"
+}

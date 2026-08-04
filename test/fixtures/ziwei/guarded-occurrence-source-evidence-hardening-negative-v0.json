@@ -1,0 +1,14 @@
+{
+  "schemaVersion": "ziwei-guarded-occurrence-source-evidence-hardening-negative-v0",
+  "cases": [
+    {"id":"target-outside-four","detects":"target outside four"},
+    {"id":"blog-promoted","detects":"blog/republication promoted as independent original"},
+    {"id":"duplicate-source-counted","detects":"duplicate source double-counted"},
+    {"id":"resolved-without-edition","detects":"resolved without edition/location"},
+    {"id":"configuration-hidden","detects":"configuration mismatch or opposing evidence hidden"},
+    {"id":"literature-as-truth","detects":"literature correspondence represented as reality truth"},
+    {"id":"stable-claim-promoted","detects":"stable claim/ready/grounded promotion"},
+    {"id":"fake-citation","detects":"fake citation"},
+    {"id":"nondeterministic-order","detects":"nondeterministic IDs/sort"}
+  ]
+}
