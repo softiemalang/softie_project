@@ -1,0 +1,301 @@
+{
+  "accessDate": "2026-08-04",
+  "artifactIdentity": {
+    "artifactId": "ziwei-selected-occurrence-public-scan-edition-linkage-follow-up-v0",
+    "artifactPayloadSha256": "89fb6c55e9ab675e97bc11bf25a86f088b6ef28709c6faa658310fa0ece591ad",
+    "contractVersion": "artifact-identity-v1",
+    "generation": {
+      "baseHead": "42632ff6eb8331b588f4b857c976036d0771a388",
+      "baseHeadSource": "git rev-parse HEAD at materialization",
+      "includedCommit": null,
+      "includedCommitSource": "unknown_at_generation; artifact may be included by a later commit"
+    },
+    "inputs": [
+      {
+        "byteSha256": "b9055430d45c8c554eef85c7bfe15961fb40477fd32b183c57241b889d1c59bb",
+        "path": "artifacts/ziwei-guarded-occurrence-source-evidence-hardening-v0/complete.json"
+      }
+    ],
+    "materializer": {
+      "path": "scripts/materialize-ziwei-selected-occurrence-public-scan-edition-linkage-follow-up-v0.mjs",
+      "version": "1.0.0"
+    }
+  },
+  "assessment": {
+    "finalVerdict": "public_scan_linkage_unresolved",
+    "legacySourceRecovery": "frozen",
+    "nextTrack": "clean Ziwei rule corpus",
+    "noFurtherScanRecommendation": true,
+    "unresolvedReasons": [
+      "NCL catalog-to-holding is resolved but public scan/page linkage is not exposed",
+      "CiNii catalog-to-holding is resolved but public scan/page linkage is not exposed",
+      "neither edition page can be compared to Wikisource",
+      "direct Wikisource-to-specific-edition genealogy remains unproven"
+    ]
+  },
+  "basisHead": "42632ff6eb8331b588f4b857c976036d0771a388",
+  "checker": "scripts/check-ziwei-selected-occurrence-public-scan-edition-linkage-follow-up-v0.mjs",
+  "deterministicContract": {
+    "editionOrder": "fixed NCL then CiNii order",
+    "externalFileHash": "null unless scan bytes are directly obtained",
+    "ids": "explicit stable catalog/holding IDs only",
+    "target": "ziwei-occ-2260aba6ed2163e3",
+    "timestamps": "fixed accessDate; generation timestamp forbidden"
+  },
+  "existingEvidenceLedger": [
+    {
+      "correspondence": "direct_or_near_direct_textual occurrence; conditional and configuration-bound",
+      "evidenceId": "evidence-wikisource-quan-shu-volume-one",
+      "limitation": "does not establish the whole local Korean description or reality-based truth",
+      "match": "partial"
+    },
+    {
+      "correspondence": "palace name/alias correspondence",
+      "evidenceId": "evidence-ctext-ziwei-palace-index",
+      "limitation": "parallel source lineage; not independent corroboration",
+      "match": "partial"
+    },
+    {
+      "correspondence": "independent secondary taxonomy correspondence",
+      "evidenceId": "evidence-mcu-palace-taxonomy-paper",
+      "limitation": "does not establish the whole local Korean description or reality-based truth",
+      "match": "partial"
+    }
+  ],
+  "globalBoundary": {
+    "activation": "experimental",
+    "grounding": "not_safe_to_start",
+    "groundingSubset": "blocked",
+    "guardChanged": false,
+    "interpretationCreated": false,
+    "provenanceChanged": false,
+    "rawTextChanged": false,
+    "readiness": "not_safe_to_start",
+    "scopeExpanded": false,
+    "stableClaimCount": 0,
+    "verifiedFactCount": 0
+  },
+  "immutableIdentity": {
+    "basis": "catalog URLs, dynamic HTML, and viewer absence do not identify immutable bytes",
+    "checksum": null,
+    "etag": null,
+    "fileSizeBytes": null,
+    "scanBytesObtained": false,
+    "sha256": null
+  },
+  "inputByteEvidence": [
+    {
+      "path": "artifacts/ziwei-guarded-occurrence-source-evidence-hardening-v0/complete.json",
+      "scope": "actual repository bytes",
+      "sha256": "b9055430d45c8c554eef85c7bfe15961fb40477fd32b183c57241b889d1c59bb"
+    }
+  ],
+  "linkageTrace": [
+    {
+      "catalog": {
+        "accessDate": "2026-08-04",
+        "edition": "影印本 / 正統道藏",
+        "provider": "NCL",
+        "publicationPlace": "上海",
+        "publicationYear": "1923-1926",
+        "recordId": "rarecatx0428879",
+        "stableUrl": "https://rbook.ncl.edu.tw/NCLSearch/Search/SearchDetail?HasImage=&SourceID=1&item=1b36e75d6cb348bcafa51089508d41ccfDI3ODUxNA2.T5_fvtPg0BL_gp0oecUpf3kBMYmGj_Zu9aAWwhejGlk_&page=3538"
+      },
+      "editionFamily": "ncl-1923-1926-shanghai-facsimile",
+      "editionVolumePage": {
+        "edition": "影印本 / 正統道藏",
+        "page": null,
+        "reason": "Catalog and holding are visible; no public viewer, fixed PDF, page image, or manifest linkage is exposed in the record.",
+        "status": "page_not_located",
+        "volume": "三卷 / 1冊（1114）"
+      },
+      "holding": {
+        "accessDate": "2026-08-04",
+        "itemId": "rarecatx0428879",
+        "provider": "中國國家圖書館",
+        "stableUrl": "https://rbook.ncl.edu.tw/NCLSearch/Search/SearchDetail?HasImage=&SourceID=1&item=1b36e75d6cb348bcafa51089508d41ccfDI3ODUxNA2.T5_fvtPg0BL_gp0oecUpf3kBMYmGj_Zu9aAWwhejGlk_&page=3538",
+        "status": "holding_resolved"
+      },
+      "publicAccessFinding": "Catalog and holding are visible; no public viewer, fixed PDF, page image, or manifest linkage is exposed in the record.",
+      "viewerFile": {
+        "accessDate": "2026-08-04",
+        "checksum": null,
+        "etag": null,
+        "fileSizeBytes": null,
+        "fileUrl": null,
+        "fileViewId": null,
+        "imageManifestUrl": null,
+        "status": "not_exposed_by_public_record",
+        "viewerUrl": null
+      },
+      "wikisourceTextLinkage": {
+        "exactMatch": false,
+        "normalizedMatch": false,
+        "reason": "No edition page or scan bytes were available for comparison.",
+        "sourceUrl": "https://zh.wikisource.org/zh-hant/%E7%B4%AB%E5%BE%AE%E6%96%97%E6%95%B8%E5%85%A8%E6%9B%B8/%E5%8D%B7%E4%B8%80",
+        "status": "lineage_insufficient"
+      }
+    },
+    {
+      "catalog": {
+        "accessDate": "2026-08-04",
+        "edition": "南北山人編註 / 童彭年校梓",
+        "provider": "CiNii Books",
+        "publicationPlace": "台北",
+        "publicationYear": "1975-08",
+        "recordId": "BA73215996",
+        "stableUrl": "https://ci.nii.ac.jp/ncid/BA73215996"
+      },
+      "editionFamily": "cinii-1975-taipei-reprint",
+      "editionVolumePage": {
+        "edition": "南北山人編註 / 童彭年校梓",
+        "page": null,
+        "reason": "Catalog and one library holding are visible; CiNii exposes an OPAC link only, not a public viewer, fixed PDF, page image, or manifest.",
+        "status": "page_not_located",
+        "volume": "448p"
+      },
+      "holding": {
+        "accessDate": "2026-08-04",
+        "itemId": "C1488||5002||75 400005729",
+        "provider": "東京都立中央図書館",
+        "stableUrl": "https://ci.nii.ac.jp/ncid/BA73215996",
+        "status": "holding_resolved"
+      },
+      "publicAccessFinding": "Catalog and one library holding are visible; CiNii exposes an OPAC link only, not a public viewer, fixed PDF, page image, or manifest.",
+      "viewerFile": {
+        "accessDate": "2026-08-04",
+        "checksum": null,
+        "etag": null,
+        "fileSizeBytes": null,
+        "fileUrl": null,
+        "fileViewId": null,
+        "imageManifestUrl": null,
+        "status": "not_exposed_by_public_record",
+        "viewerUrl": null
+      },
+      "wikisourceTextLinkage": {
+        "exactMatch": false,
+        "normalizedMatch": false,
+        "reason": "No edition page or scan bytes were available for comparison.",
+        "sourceUrl": "https://zh.wikisource.org/zh-hant/%E7%B4%AB%E5%BE%AE%E6%96%97%E6%95%B8%E5%85%A8%E6%9B%B8/%E5%8D%B7%E4%B8%80",
+        "status": "lineage_insufficient"
+      }
+    }
+  ],
+  "materializer": "scripts/materialize-ziwei-selected-occurrence-public-scan-edition-linkage-follow-up-v0.mjs",
+  "negativeContract": {
+    "detects": [
+      "scope expansion",
+      "catalog promoted to scan identity",
+      "viewer-only immutable bytes",
+      "resolved without page",
+      "Wikisource genealogy inference",
+      "hidden qualifier drift",
+      "stable/verified/ready/grounded promotion",
+      "fake hash or metadata",
+      "nondeterministic IDs or sort"
+    ],
+    "fixture": "test/fixtures/ziwei/selected-occurrence-public-scan-edition-linkage-follow-up-negative-v0.json"
+  },
+  "schemaVersion": "ziwei-selected-occurrence-public-scan-edition-linkage-follow-up-v0",
+  "scope": {
+    "editionFamilies": [
+      "ncl-1923-1926-shanghai-facsimile",
+      "cinii-1975-taipei-reprint"
+    ],
+    "expansion": "none",
+    "occurrenceIds": [
+      "ziwei-occ-2260aba6ed2163e3"
+    ]
+  },
+  "selectedOccurrence": {
+    "guard": {
+      "activation": "experimental",
+      "grounding": "not_safe_to_start",
+      "guardMeaningUnchanged": true,
+      "provenanceMeaningUnchanged": true,
+      "rawTextMeaningUnchanged": true,
+      "readiness": "not_safe_to_start",
+      "stableClaim": false
+    },
+    "occurrenceId": "ziwei-occ-2260aba6ed2163e3",
+    "provenance": {
+      "existingSourceReferences": [
+        "source:src/ziwei/ziweiContract.js"
+      ],
+      "fixtureReferences": [
+        "fixture:known-chart:sample_1_lunar_5_hour_wu",
+        "fixture:known-chart:sample_2_lunar_1_hour_zi",
+        "fixture:known-chart:sample_3_leap_month_boundary",
+        "fixture:benchmark:case_a_exact_personality",
+        "fixture:benchmark:case_b_unknown_time_personality",
+        "fixture:benchmark:case_c_leap_month_relationship",
+        "fixture:benchmark:case_d_hua_ji_career",
+        "fixture:benchmark:case_e_timing_low_confidence"
+      ],
+      "guardStatus": "pilot_only_not_readiness_or_grounding",
+      "pilotArtifact": "artifacts/ziwei-structural-admission-guard-pilot-v0/complete.json",
+      "pilotSelection": "categoryLists.structuralGuardPossible",
+      "sourceIdentityBefore": {
+        "immutableExternalIdentity": null,
+        "independentVerification": false,
+        "status": "unresolved_source_identity"
+      }
+    },
+    "rawText": {
+      "epistemicBoundary": "raw_meaning_candidate_only",
+      "isVerifiedFact": false,
+      "source": {
+        "exportName": "ZIWEI_PALACE_DEFINITIONS",
+        "file": "src/ziwei/ziweiContract.js",
+        "location": "ZIWEI_PALACE_DEFINITIONS[id=career].description",
+        "slot": "career"
+      },
+      "text": "직업, 사회적 위치, 역량 발휘"
+    },
+    "sourceIdentityAssessment": {
+      "authorOrEditor": "traditional attribution; exact editor unresolved",
+      "edition": null,
+      "location": "public repository URL and named section/line anchors recorded; exact edition/page image unresolved",
+      "originalTranslationReprintLineage": "public transcription/parallel datawiki and independent secondary taxonomy; same-source duplicates are not counted independently",
+      "status": "source_identity_partial",
+      "title": "紫微斗數全書",
+      "unresolvedReasons": [
+        "exact_edition_unresolved",
+        "immutable_retrieval_bytes_unavailable",
+        "original_author_editor_identity_not_closed"
+      ],
+      "year": null
+    }
+  },
+  "sourceArtifact": "artifacts/ziwei-guarded-occurrence-source-evidence-hardening-v0/complete.json",
+  "sourceRawTextAndGuardsCopied": true,
+  "textComparison": {
+    "cinii": {
+      "status": "not_comparable_without_page"
+    },
+    "ncl": {
+      "status": "not_comparable_without_page"
+    },
+    "wikisource": {
+      "exactMatch": false,
+      "normalizedMatch": false,
+      "observedCorrespondence": [
+        "官祿 palace-name occurrence",
+        "conditional star/configuration wording",
+        "partial star-question correspondence"
+      ],
+      "page": null,
+      "qualifierDifferences": [
+        "conditional polarity and configuration qualifiers are not equivalent to the local gloss",
+        "star identity and configuration are not present in the local text"
+      ],
+      "section": "卷一 / 斗數準繩 and 諸星問答論",
+      "status": "page_not_located_lineage_insufficient",
+      "wordingDrift": [
+        "직업, 사회적 위치, 역량 발휘 is broader than the located conditional classical wording"
+      ]
+    }
+  },
+  "verdictToken": "public_scan_linkage_unresolved"
+}

@@ -1,0 +1,14 @@
+{
+  "schemaVersion": "ziwei-selected-occurrence-public-scan-edition-linkage-follow-up-negative-v0",
+  "cases": [
+    {"id":"scope-expansion","detects":"target or edition-family scope expansion"},
+    {"id":"catalog-as-scan","detects":"catalog promoted to scan identity"},
+    {"id":"viewer-only-immutable","detects":"viewer URL only used for immutable bytes"},
+    {"id":"resolved-without-page","detects":"resolved without located page"},
+    {"id":"wikisource-genealogy","detects":"Wikisource to specific edition genealogy inferred"},
+    {"id":"hidden-qualifier-drift","detects":"qualifier or wording drift hidden"},
+    {"id":"promotion","detects":"stable claim, verified fact, ready, or grounded promotion"},
+    {"id":"fake-hash-metadata","detects":"fake hash or metadata"},
+    {"id":"nondeterministic-order","detects":"nondeterministic ID or ordering"}
+  ]
+}
