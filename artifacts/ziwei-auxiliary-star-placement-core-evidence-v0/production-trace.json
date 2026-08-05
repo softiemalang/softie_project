@@ -1,0 +1,52 @@
+{
+  "acceptedProductionInputs": [
+    "birthYearStem",
+    "lunarMonth",
+    "hourBranch",
+    "palaces"
+  ],
+  "actualCallPath": [
+    {
+      "call": "resolveMinorStars({ birthYearStem, lunarMonth: lunar.lMonth, hourBranch, palaces: chart.palaces })",
+      "file": "src/interpretationPrep/threeSystemPrepPipeline.js",
+      "lines": "181-186"
+    },
+    {
+      "call": "validation -> six lucky-star specs -> palace branch output",
+      "file": "src/ziwei/minorStarResolver.js",
+      "lines": "19-83"
+    }
+  ],
+  "basisHead": "f3ea287a4bb1b86cb10355facee3393448f2167e",
+  "ignoredOrUnavailableInputs": [
+    {
+      "input": "birthYearBranch",
+      "status": "not accepted by minorStarResolver; only upstream context has it"
+    }
+  ],
+  "implementedStars": [
+    "wenchang",
+    "wenqu",
+    "zuofu",
+    "youbi",
+    "tiankui",
+    "tianyue"
+  ],
+  "missingStars": [
+    "lucun",
+    "qingyang",
+    "tuoluo",
+    "huoxing",
+    "lingxing",
+    "dikong",
+    "dijie"
+  ],
+  "productionContract": {
+    "activationChanged": false,
+    "calculationChanged": false,
+    "groundingChanged": false,
+    "publicContractChanged": false,
+    "readinessChanged": false
+  },
+  "schemaVersion": "ziwei-auxiliary-star-placement-core-evidence-v0"
+}

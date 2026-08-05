@@ -1,0 +1,12 @@
+{
+  "schemaVersion": "ziwei-auxiliary-star-placement-core-evidence-v0-negative-v0",
+  "mutations": [
+    { "id": "locator", "expectedError": "locator", "path": ["files", "inventory", "locators", 0, "title"], "value": "tampered locator" },
+    { "id": "transcription", "expectedError": "transcription", "path": ["files", "transcription", "locators", 0, "directReading"], "value": "tampered transcription" },
+    { "id": "occurrence_row", "expectedError": "occurrence_row", "path": ["files", "occurrences", "sourceOccurrences", 0, "normalizedOutput"], "value": "寅" },
+    { "id": "verdict", "expectedError": "verdict", "path": ["artifact", "verdict"], "value": "exact_match" },
+    { "id": "source_ref", "expectedError": "source_ref", "path": ["files", "transcription", "tableTranscriptions", "nanbei-p15-printed-38-fire-bell-table", "sourceRef"], "value": "tampered-source-ref" },
+    { "id": "artifact_hash", "expectedError": "artifact_hash", "path": ["artifact", "artifactHashes", "inventory.json", "byteSha256"], "value": "0000000000000000000000000000000000000000000000000000000000000000" },
+    { "id": "dependency", "expectedError": "dependency", "path": ["files", "dependency-graph", "edges", 0, "relation"], "value": "tampered-dependency" }
+  ]
+}

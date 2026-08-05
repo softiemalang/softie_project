@@ -1,0 +1,106 @@
+{
+  "accounting": {
+    "derivedRowsRetainRootReference": true,
+    "derivedRules": [
+      "qingyang",
+      "tuoluo"
+    ],
+    "rootErrorsNotDoubleCounted": true,
+    "rootRule": "lucun"
+  },
+  "edges": [
+    {
+      "from": "lucun",
+      "relation": "source_root_plus_one_branch",
+      "sourceRefs": [
+        {
+          "pdfPage": 151,
+          "printedFolio": null,
+          "sourceId": "ming_nanyangtang",
+          "sourceRef": "ming-p151-qingyang-tuoluo"
+        },
+        {
+          "pdfPage": 15,
+          "printedFolio": "三十九",
+          "sourceId": "nanbei_shanren",
+          "sourceRef": "nanbei-p15-printed-39-lucun"
+        }
+      ],
+      "to": "qingyang"
+    },
+    {
+      "from": "lucun",
+      "relation": "source_root_minus_one_branch",
+      "sourceRefs": [
+        {
+          "pdfPage": 151,
+          "printedFolio": null,
+          "sourceId": "ming_nanyangtang",
+          "sourceRef": "ming-p151-qingyang-tuoluo"
+        },
+        {
+          "pdfPage": 15,
+          "printedFolio": "三十九",
+          "sourceId": "nanbei_shanren",
+          "sourceRef": "nanbei-p15-printed-39-lucun"
+        }
+      ],
+      "to": "tuoluo"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "wenchang",
+      "label": "文昌"
+    },
+    {
+      "id": "wenqu",
+      "label": "文曲"
+    },
+    {
+      "id": "zuofu",
+      "label": "左輔"
+    },
+    {
+      "id": "youbi",
+      "label": "右弼"
+    },
+    {
+      "id": "tiankui",
+      "label": "天魁"
+    },
+    {
+      "id": "tianyue",
+      "label": "天鉞"
+    },
+    {
+      "id": "lucun",
+      "label": "祿存"
+    },
+    {
+      "id": "qingyang",
+      "label": "擎羊"
+    },
+    {
+      "id": "tuoluo",
+      "label": "陀羅"
+    },
+    {
+      "id": "huoxing",
+      "label": "火星"
+    },
+    {
+      "id": "lingxing",
+      "label": "鈴星"
+    },
+    {
+      "id": "dikong",
+      "label": "地空"
+    },
+    {
+      "id": "dijie",
+      "label": "地劫"
+    }
+  ],
+  "schemaVersion": "ziwei-auxiliary-star-placement-core-evidence-v0"
+}

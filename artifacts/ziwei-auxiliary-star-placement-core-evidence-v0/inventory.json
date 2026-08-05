@@ -1,0 +1,203 @@
+{
+  "basisHead": "f3ea287a4bb1b86cb10355facee3393448f2167e",
+  "coverage": {
+    "canonicalTargetPages": [
+      "ming_nanyangtang:148",
+      "ming_nanyangtang:149",
+      "ming_nanyangtang:150",
+      "ming_nanyangtang:151",
+      "ming_nanyangtang:152",
+      "nanbei_shanren:14",
+      "nanbei_shanren:15",
+      "nanbei_shanren:16",
+      "nanbei_shanren:18"
+    ],
+    "fullPdfPageCount": {
+      "ming_nanyangtang": 528,
+      "nanbei_shanren": 219
+    },
+    "negativeSearchLocators": [
+      "ming-full-scan-fire-bell-not-located"
+    ],
+    "noPdfCopyOrRenderStored": true,
+    "renderTempRoot": "/private/tmp (outside repository)"
+  },
+  "locatorCount": 15,
+  "locators": [
+    {
+      "canonical": true,
+      "confidence": "medium",
+      "id": "ming-p148-wenchang-wenqu",
+      "pdfPage": 148,
+      "printedFolio": null,
+      "sourceId": "ming_nanyangtang",
+      "sourceRef": "ming-p148-wenchang-wenqu",
+      "title": "○安文昌文曲星訣"
+    },
+    {
+      "canonical": true,
+      "confidence": "medium",
+      "id": "ming-p149-zuofu-youbi",
+      "pdfPage": 149,
+      "printedFolio": null,
+      "sourceId": "ming_nanyangtang",
+      "sourceRef": "ming-p149-zuofu-youbi",
+      "title": "○安左輔右弼星訣"
+    },
+    {
+      "canonical": true,
+      "confidence": "high",
+      "id": "ming-p149-tiankui-tianyue",
+      "pdfPage": 149,
+      "printedFolio": null,
+      "sourceId": "ming_nanyangtang",
+      "sourceRef": "ming-p149-tiankui-tianyue",
+      "title": "○安天魁天鉞訣"
+    },
+    {
+      "canonical": true,
+      "confidence": "medium",
+      "id": "ming-p150-lucun",
+      "pdfPage": 150,
+      "printedFolio": null,
+      "sourceId": "ming_nanyangtang",
+      "sourceRef": "ming-p150-lucun",
+      "title": "○安祿存星訣"
+    },
+    {
+      "canonical": true,
+      "confidence": "high",
+      "id": "ming-p151-qingyang-tuoluo",
+      "pdfPage": 151,
+      "printedFolio": null,
+      "sourceId": "ming_nanyangtang",
+      "sourceRef": "ming-p151-qingyang-tuoluo",
+      "title": "○安擎羊陀羅二星訣"
+    },
+    {
+      "canonical": true,
+      "confidence": "high",
+      "id": "ming-p152-tiankong-dijie",
+      "pdfPage": 152,
+      "printedFolio": null,
+      "sourceId": "ming_nanyangtang",
+      "sourceRef": "ming-p152-tiankong-dijie",
+      "title": "○安天空地劫訣論本生時"
+    },
+    {
+      "canonical": false,
+      "confidence": "bounded_negative",
+      "id": "ming-full-scan-fire-bell-not-located",
+      "pdfPage": null,
+      "printedFolio": null,
+      "sourceId": "ming_nanyangtang",
+      "sourceRef": "ming-full-scan-fire-bell-not-located",
+      "title": "火星鈴星全卷搜索未定位"
+    },
+    {
+      "canonical": true,
+      "confidence": "high",
+      "id": "nanbei-p14-printed-37-fire-bell",
+      "pdfPage": 14,
+      "printedFolio": "三十七",
+      "sourceId": "nanbei_shanren",
+      "sourceRef": "nanbei-p14-printed-37-fire-bell",
+      "title": "○十六、安火星、鈴星二煞曜"
+    },
+    {
+      "canonical": true,
+      "confidence": "high",
+      "id": "nanbei-p14-printed-36-zuofu-youbi",
+      "pdfPage": 14,
+      "printedFolio": "三十六",
+      "sourceId": "nanbei_shanren",
+      "sourceRef": "nanbei-p14-printed-36-zuofu-youbi",
+      "title": "○九、安左輔、右弼二吉曜"
+    },
+    {
+      "canonical": true,
+      "confidence": "high",
+      "id": "nanbei-p15-printed-39-lucun",
+      "pdfPage": 15,
+      "printedFolio": "三十九",
+      "sourceId": "nanbei_shanren",
+      "sourceRef": "nanbei-p15-printed-39-lucun",
+      "title": "○二十一、起祿存及擎羊、陀羅二煞星"
+    },
+    {
+      "canonical": true,
+      "confidence": "high",
+      "id": "nanbei-p15-printed-38-wenchang-wenqu",
+      "pdfPage": 15,
+      "printedFolio": "三十八",
+      "sourceId": "nanbei_shanren",
+      "sourceRef": "nanbei-p15-printed-38-wenchang-wenqu",
+      "title": "○二十二、安文昌、文曲二曜"
+    },
+    {
+      "canonical": true,
+      "confidence": "high",
+      "id": "nanbei-p15-printed-38-fire-bell-table",
+      "pdfPage": 15,
+      "printedFolio": "三十八",
+      "sourceId": "nanbei_shanren",
+      "sourceRef": "nanbei-p15-printed-38-fire-bell-table",
+      "title": "安火、鈴二煞速檢表"
+    },
+    {
+      "canonical": true,
+      "confidence": "high",
+      "id": "nanbei-p16-printed-41-transformations",
+      "pdfPage": 16,
+      "printedFolio": "四十一",
+      "sourceId": "nanbei_shanren",
+      "sourceRef": "nanbei-p16-printed-41-transformations",
+      "title": "四化及相鄰說明"
+    },
+    {
+      "canonical": true,
+      "confidence": "high",
+      "id": "nanbei-p16-printed-40-tiankui-tianyue",
+      "pdfPage": 16,
+      "printedFolio": "四十",
+      "sourceId": "nanbei_shanren",
+      "sourceRef": "nanbei-p16-printed-40-tiankui-tianyue",
+      "title": "○二十三、安天魁、天鉞"
+    },
+    {
+      "canonical": true,
+      "confidence": "high",
+      "id": "nanbei-p18-printed-45-tiankong-dijie",
+      "pdfPage": 18,
+      "printedFolio": "四十五",
+      "sourceId": "nanbei_shanren",
+      "sourceRef": "nanbei-p18-printed-45-tiankong-dijie",
+      "title": "○二十六、安台輔、封誥、天空、地劫"
+    }
+  ],
+  "schemaVersion": "ziwei-auxiliary-star-placement-core-evidence-v0",
+  "sourceIdentity": {
+    "ming_nanyangtang": {
+      "actualByteSha256": "04e184c4a52cb042dc885c6ccc9135d94ab25de62007506198ee979a33e66bfc",
+      "encrypted": false,
+      "expectedByteSha256": "04e184c4a52cb042dc885c6ccc9135d94ab25de62007506198ee979a33e66bfc",
+      "id": "ming_nanyangtang",
+      "label": "明代南阳堂刊本",
+      "pageCount": 528,
+      "pathOutsideRepository": "/Users/softie/Downloads/新锓希夷陈先生紫微斗数全书.七卷.宋.陈抟撰.明.潘希尹补.明代南阳堂刊本.黑白版.pdf",
+      "readOnly": true,
+      "storedInGit": false
+    },
+    "nanbei_shanren": {
+      "actualByteSha256": "4786a94ab454acdabf9716d7c0db4756dbcbde99a88bc45fda254863c1961023",
+      "encrypted": false,
+      "expectedByteSha256": "4786a94ab454acdabf9716d7c0db4756dbcbde99a88bc45fda254863c1961023",
+      "id": "nanbei_shanren",
+      "label": "南北山人本",
+      "pageCount": 219,
+      "pathOutsideRepository": "/Users/softie/Downloads/命-南北山人_紫微斗数全书.pdf",
+      "readOnly": true,
+      "storedInGit": false
+    }
+  }
+}

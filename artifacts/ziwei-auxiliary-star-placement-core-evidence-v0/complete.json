@@ -1,0 +1,301 @@
+{
+  "artifactFiles": {
+    "comparison": "artifacts/ziwei-auxiliary-star-placement-core-evidence-v0/comparison.json",
+    "complete": "artifacts/ziwei-auxiliary-star-placement-core-evidence-v0/complete.json",
+    "conclusion": "artifacts/ziwei-auxiliary-star-placement-core-evidence-v0/conclusion.md",
+    "dependency-graph": "artifacts/ziwei-auxiliary-star-placement-core-evidence-v0/dependency-graph.json",
+    "inventory": "artifacts/ziwei-auxiliary-star-placement-core-evidence-v0/inventory.json",
+    "normalized-rules": "artifacts/ziwei-auxiliary-star-placement-core-evidence-v0/normalized-rules.json",
+    "occurrences": "artifacts/ziwei-auxiliary-star-placement-core-evidence-v0/occurrences.json",
+    "production-trace": "artifacts/ziwei-auxiliary-star-placement-core-evidence-v0/production-trace.json",
+    "transcription": "artifacts/ziwei-auxiliary-star-placement-core-evidence-v0/transcription.json",
+    "transform-search": "artifacts/ziwei-auxiliary-star-placement-core-evidence-v0/transform-search.json"
+  },
+  "artifactHashes": {
+    "comparison.json": {
+      "byteLength": 724787,
+      "byteSha256": "a11964b0ba30bf2a64307b78a2d4aee087983d013f218264ed9139ca8ae7a978",
+      "path": "artifacts/ziwei-auxiliary-star-placement-core-evidence-v0/comparison.json"
+    },
+    "dependency-graph.json": {
+      "byteLength": 2046,
+      "byteSha256": "0576e0f25d40f4b0694a78929e60ef289158c3905752bbe270c812b960bd2a0b",
+      "path": "artifacts/ziwei-auxiliary-star-placement-core-evidence-v0/dependency-graph.json"
+    },
+    "inventory.json": {
+      "byteLength": 6417,
+      "byteSha256": "a94ea51f9e36cebefae478cabad80a7da081ef4dd0553f0322dcbc208a34ddb6",
+      "path": "artifacts/ziwei-auxiliary-star-placement-core-evidence-v0/inventory.json"
+    },
+    "normalized-rules.json": {
+      "byteLength": 7993,
+      "byteSha256": "7dcc4871adf2f4a57fc53acdb2958f198ca1d3e4ef86a33fc9c6ce956cda2139",
+      "path": "artifacts/ziwei-auxiliary-star-placement-core-evidence-v0/normalized-rules.json"
+    },
+    "occurrences.json": {
+      "byteLength": 653121,
+      "byteSha256": "7260052c858245a2570eb320503ad57c0cd97cbb26b4184da383d4cb5cc86b2e",
+      "path": "artifacts/ziwei-auxiliary-star-placement-core-evidence-v0/occurrences.json"
+    },
+    "production-trace.json": {
+      "byteLength": 1245,
+      "byteSha256": "d03c8d64bd6122f6ac14b04311c8dd7ac08e18f0f5e00a6ce89a8f9da32d3798",
+      "path": "artifacts/ziwei-auxiliary-star-placement-core-evidence-v0/production-trace.json"
+    },
+    "transcription.json": {
+      "byteLength": 23817,
+      "byteSha256": "85661f0919c725335dcc48900c1ad3246d9e1cb00ec89f1de70517590f941377",
+      "path": "artifacts/ziwei-auxiliary-star-placement-core-evidence-v0/transcription.json"
+    },
+    "transform-search.json": {
+      "byteLength": 17115,
+      "byteSha256": "341c06c5f39fc3a5ac7b26bc922357d612abade23cbed838d4ac6e8ac1fcc7e0",
+      "path": "artifacts/ziwei-auxiliary-star-placement-core-evidence-v0/transform-search.json"
+    }
+  },
+  "artifactIdentity": {
+    "artifactId": "ziwei-auxiliary-star-placement-core-evidence-v0",
+    "artifactPayloadSha256": "fd41a2c25cb8b168b36fe0cc7f2271ce85717cc239fbb33b0134dee79e2525b4",
+    "contractVersion": "artifact-identity-v1",
+    "generation": {
+      "baseHead": "f3ea287a4bb1b86cb10355facee3393448f2167e",
+      "baseHeadSource": "git rev-parse HEAD at materialization",
+      "includedCommit": null,
+      "includedCommitSource": "unknown_at_generation; artifact may be included by a later commit"
+    },
+    "inputs": [
+      {
+        "byteSha256": "4f9a62f5f14086fa8a34f650a9167036df45bcb9586ade8b888feac353260d9b",
+        "path": "artifacts/ziwei-palace-coordinate-semantic-identity-v0/complete.json"
+      },
+      {
+        "byteSha256": "755f4433e5264f54dfc0c0243b844e0e8ed2825c1c91c5bddda18c8b97dafe02",
+        "path": "artifacts/ziwei-tianfu-representation-search-v1/complete.json"
+      },
+      {
+        "byteSha256": "1a1c242e12639c8611797369869fd7b1821e4a34d83bb9363293536201811ec3",
+        "path": "artifacts/ziwei-traditional-source-comparison-v0/complete.json"
+      },
+      {
+        "byteSha256": "bf3e6149eda8bd41e998cfb8abe32988af140cf349ef1f1c10868bf444dd473e",
+        "path": "artifacts/ziwei-twelve-major-star-placement-evidence-v0/complete.json"
+      },
+      {
+        "byteSha256": "127683a4ee1252f9273861eff1dc53e4a7283c8126208a680ff61061c11224b0",
+        "path": "src/artifactIdentity.js"
+      },
+      {
+        "byteSha256": "3f73716acf442f1717781d874872729c1c57d8b3e69498ae30284646297424fb",
+        "path": "src/interpretationPrep/threeSystemPrepPipeline.js"
+      },
+      {
+        "byteSha256": "40bfa66f576027a5ef77374257da895bbe714c331f6ded6e004048f246bc3c7a",
+        "path": "src/ziwei/minorStarResolver.js"
+      },
+      {
+        "byteSha256": "b7cdc5db61a1a70dae3a4a243b5bccc0c148488c4c8e9f81bcfc345e4e8a4be3",
+        "path": "src/ziwei/minorStarRules.js"
+      }
+    ],
+    "materializer": {
+      "path": "scripts/materialize-ziwei-auxiliary-star-placement-core-evidence-v0.mjs",
+      "version": "1.0.0"
+    }
+  },
+  "basisHead": "f3ea287a4bb1b86cb10355facee3393448f2167e",
+  "boundaries": {
+    "activation": "experimental",
+    "grounding": "blocked",
+    "predecessorOverwritten": false,
+    "productionDefectsFixed": false,
+    "productionEngineModified": false,
+    "publicContractModified": false,
+    "readiness": "not_safe_to_start",
+    "semanticPalaceIdentityChanged": false,
+    "sourcePromotion": false,
+    "stableClaimCount": 0
+  },
+  "comparisonSummary": {
+    "comparableCount": 136,
+    "exactMatchCount": 136,
+    "mismatchCount": 0,
+    "notComparableCount": 684,
+    "productionOutputNonNullCount": 136,
+    "rowCount": 820,
+    "sourceOutputNonNullCount": 532
+  },
+  "dependencySummary": {
+    "derivedRowsRetainRootReference": true,
+    "derivedRules": [
+      "qingyang",
+      "tuoluo"
+    ],
+    "rootErrorsNotDoubleCounted": true,
+    "rootRule": "lucun"
+  },
+  "generatedBy": "scripts/materialize-ziwei-auxiliary-star-placement-core-evidence-v0.mjs",
+  "observedHead": "f3ea287a4bb1b86cb10355facee3393448f2167e",
+  "occurrenceSummary": {
+    "production": 68,
+    "source": 820,
+    "sourceByEdition": {
+      "ming_nanyangtang": 410,
+      "nanbei_shanren": 410
+    }
+  },
+  "predecessorArtifacts": [
+    "artifacts/ziwei-traditional-source-comparison-v0/complete.json",
+    "artifacts/ziwei-tianfu-representation-search-v1/complete.json",
+    "artifacts/ziwei-twelve-major-star-placement-evidence-v0/complete.json",
+    "artifacts/ziwei-palace-coordinate-semantic-identity-v0/complete.json"
+  ],
+  "schemaVersion": "ziwei-auxiliary-star-placement-core-evidence-v0",
+  "sourceEvidence": {
+    "ocrPolicy": {
+      "allowed": true,
+      "canonicalDecisionSource": "direct_high_resolution_plate_reading",
+      "canonicalTranscription": false,
+      "role": "exploration_only_not_canonical"
+    },
+    "sourceIdentity": {
+      "ming_nanyangtang": {
+        "actualByteSha256": "04e184c4a52cb042dc885c6ccc9135d94ab25de62007506198ee979a33e66bfc",
+        "encrypted": false,
+        "expectedByteSha256": "04e184c4a52cb042dc885c6ccc9135d94ab25de62007506198ee979a33e66bfc",
+        "id": "ming_nanyangtang",
+        "label": "明代南阳堂刊本",
+        "pageCount": 528,
+        "pathOutsideRepository": "/Users/softie/Downloads/新锓希夷陈先生紫微斗数全书.七卷.宋.陈抟撰.明.潘希尹补.明代南阳堂刊本.黑白版.pdf",
+        "readOnly": true,
+        "storedInGit": false
+      },
+      "nanbei_shanren": {
+        "actualByteSha256": "4786a94ab454acdabf9716d7c0db4756dbcbde99a88bc45fda254863c1961023",
+        "encrypted": false,
+        "expectedByteSha256": "4786a94ab454acdabf9716d7c0db4756dbcbde99a88bc45fda254863c1961023",
+        "id": "nanbei_shanren",
+        "label": "南北山人本",
+        "pageCount": 219,
+        "pathOutsideRepository": "/Users/softie/Downloads/命-南北山人_紫微斗数全书.pdf",
+        "readOnly": true,
+        "storedInGit": false
+      }
+    },
+    "sourceRuleNamePreservation": {
+      "promotion": "forbidden",
+      "rawSource": "天空",
+      "requested": "地空"
+    }
+  },
+  "targetStars": [
+    {
+      "id": "wenchang",
+      "label": "文昌"
+    },
+    {
+      "id": "wenqu",
+      "label": "文曲"
+    },
+    {
+      "id": "zuofu",
+      "label": "左輔"
+    },
+    {
+      "id": "youbi",
+      "label": "右弼"
+    },
+    {
+      "id": "tiankui",
+      "label": "天魁"
+    },
+    {
+      "id": "tianyue",
+      "label": "天鉞"
+    },
+    {
+      "id": "lucun",
+      "label": "祿存"
+    },
+    {
+      "id": "qingyang",
+      "label": "擎羊"
+    },
+    {
+      "id": "tuoluo",
+      "label": "陀羅"
+    },
+    {
+      "id": "huoxing",
+      "label": "火星"
+    },
+    {
+      "id": "lingxing",
+      "label": "鈴星"
+    },
+    {
+      "id": "dikong",
+      "label": "地空"
+    },
+    {
+      "id": "dijie",
+      "label": "地劫"
+    }
+  ],
+  "transformationSummary": [
+    {
+      "candidateCount": 24,
+      "domainCount": 24,
+      "exactFitIds": [
+        "rotation_0"
+      ],
+      "minimalCounterexample": null,
+      "star": "wenchang"
+    },
+    {
+      "candidateCount": 24,
+      "domainCount": 24,
+      "exactFitIds": [
+        "rotation_0"
+      ],
+      "minimalCounterexample": null,
+      "star": "wenqu"
+    },
+    {
+      "candidateCount": 24,
+      "domainCount": 24,
+      "exactFitIds": [
+        "rotation_0"
+      ],
+      "minimalCounterexample": null,
+      "star": "zuofu"
+    },
+    {
+      "candidateCount": 24,
+      "domainCount": 24,
+      "exactFitIds": [
+        "rotation_0"
+      ],
+      "minimalCounterexample": null,
+      "star": "youbi"
+    },
+    {
+      "candidateCount": 24,
+      "domainCount": 20,
+      "exactFitIds": [
+        "rotation_0"
+      ],
+      "minimalCounterexample": null,
+      "star": "tiankui"
+    },
+    {
+      "candidateCount": 24,
+      "domainCount": 20,
+      "exactFitIds": [
+        "rotation_0"
+      ],
+      "minimalCounterexample": null,
+      "star": "tianyue"
+    }
+  ],
+  "verdict": "partial_ziwei_auxiliary_star_placement_evidence_with_explicit_blockers"
+}

@@ -1,0 +1,884 @@
+{
+  "fullPdfExploration": [
+    {
+      "lowResolutionRender": true,
+      "pageCountCovered": 528,
+      "pageRange": "1-528",
+      "renderedOutsideRepository": true,
+      "result": "completed",
+      "sourceId": "ming_nanyangtang"
+    },
+    {
+      "lowResolutionRender": true,
+      "pageCountCovered": 219,
+      "pageRange": "1-219",
+      "renderedOutsideRepository": true,
+      "result": "completed",
+      "sourceId": "nanbei_shanren"
+    }
+  ],
+  "locators": [
+    {
+      "canonical": true,
+      "confidence": "medium",
+      "directReading": "子時戌上起文昌；逆到生時是貴卿。文曲數從辰上起，順到生時是貴卿。",
+      "id": "ming-p148-wenchang-wenqu",
+      "pdfPage": 148,
+      "platePosition": "single_page_right_to_left_columns",
+      "printedFolio": null,
+      "readingMode": "direct_high_resolution_plate",
+      "sourceId": "ming_nanyangtang",
+      "title": "○安文昌文曲星訣",
+      "uncertainty": [
+        "版面右側缺損與墨斑，短句可直接辨認；印刷面數未在本 render 中可靠辨認。"
+      ]
+    },
+    {
+      "canonical": true,
+      "confidence": "medium",
+      "directReading": "左輔正月起於辰；右弼正月起於戌。",
+      "id": "ming-p149-zuofu-youbi",
+      "pdfPage": 149,
+      "platePosition": "single_page_right_to_left_columns",
+      "printedFolio": null,
+      "readingMode": "direct_high_resolution_plate",
+      "sourceId": "ming_nanyangtang",
+      "title": "○安左輔右弼星訣",
+      "uncertainty": [
+        "完整上下文中的個別字形受版面污損影響。"
+      ]
+    },
+    {
+      "canonical": true,
+      "confidence": "high",
+      "directReading": "甲戊庚牛羊，乙己鼠猴鄉，丙丁豬雞位，壬癸兔蛇藏，六辛逢虎馬。",
+      "id": "ming-p149-tiankui-tianyue",
+      "pdfPage": 149,
+      "platePosition": "single_page_right_to_left_columns",
+      "printedFolio": null,
+      "readingMode": "direct_high_resolution_plate",
+      "sourceId": "ming_nanyangtang",
+      "title": "○安天魁天鉞訣",
+      "uncertainty": [
+        "表格邊緣字形不作超出短句的推讀。"
+      ]
+    },
+    {
+      "canonical": true,
+      "confidence": "medium",
+      "directReading": "甲生祿存寅；乙生在卯；丙戊巳；丁己午；庚申；辛酉；壬亥；癸子。",
+      "id": "ming-p150-lucun",
+      "pdfPage": 150,
+      "platePosition": "single_page_right_to_left_columns",
+      "printedFolio": null,
+      "readingMode": "direct_high_resolution_plate",
+      "sourceId": "ming_nanyangtang",
+      "title": "○安祿存星訣",
+      "uncertainty": [
+        "頁面右側仍有相鄰星訣，採用可直接辨認的祿存短句。"
+      ]
+    },
+    {
+      "canonical": true,
+      "confidence": "high",
+      "directReading": "此二星隨祿存安之；祿前安擎羊，祿後安陀羅。",
+      "id": "ming-p151-qingyang-tuoluo",
+      "pdfPage": 151,
+      "platePosition": "single_page_right_to_left_columns",
+      "printedFolio": null,
+      "readingMode": "direct_high_resolution_plate",
+      "sourceId": "ming_nanyangtang",
+      "title": "○安擎羊陀羅二星訣",
+      "uncertainty": [
+        "前後一位關係以原文方向保存，未以生知常識補表。"
+      ]
+    },
+    {
+      "canonical": true,
+      "confidence": "high",
+      "directReading": "如子時生者劫空俱在亥宮。",
+      "id": "ming-p152-tiankong-dijie",
+      "pdfPage": 152,
+      "platePosition": "single_page_right_to_left_columns",
+      "printedFolio": null,
+      "readingMode": "direct_high_resolution_plate",
+      "sourceId": "ming_nanyangtang",
+      "title": "○安天空地劫訣論本生時",
+      "uncertainty": [
+        "原文星名為天空，不改寫為地空；其餘逐時順逆句僅在可直接辨認處採錄。"
+      ]
+    },
+    {
+      "canonical": false,
+      "confidence": "bounded_negative",
+      "directReading": "全卷低解像度逐頁探索與候選高解像度复核後，未定位可直接判讀的火星、鈴星独立規則表或完整規則句。",
+      "id": "ming-full-scan-fire-bell-not-located",
+      "pdfPage": null,
+      "platePosition": "full_528_page_scan",
+      "printedFolio": null,
+      "readingMode": "full_pdf_scan_negative_locator",
+      "sourceId": "ming_nanyangtang",
+      "title": "火星鈴星全卷搜索未定位",
+      "uncertainty": [
+        "負定位不是來源規則；不產生 Ming 火鈴 normalized output。"
+      ]
+    },
+    {
+      "canonical": true,
+      "confidence": "high",
+      "directReading": "火、鈴二星煞，為南斗十大殺將神（號煞神），為偏曜（又稱浮曜）。○安火、鈴二煞之訣，今載如下。",
+      "id": "nanbei-p14-printed-37-fire-bell",
+      "pdfPage": 14,
+      "platePosition": "left_leaf_right_to_left_columns",
+      "printedFolio": "三十七",
+      "readingMode": "direct_high_resolution_plate",
+      "sourceId": "nanbei_shanren",
+      "title": "○十六、安火星、鈴星二煞曜",
+      "uncertainty": [
+        "頁面為合葉 scan；表格在相鄰印刷面，方向以 leaf/plate 欄位分開記錄。"
+      ]
+    },
+    {
+      "canonical": true,
+      "confidence": "high",
+      "directReading": "從辰宮起正月，順數至生月，即係左輔星坐落之宮；再從戌宮起正月，逆數至生月，即係右弼星坐落之宮。",
+      "id": "nanbei-p14-printed-36-zuofu-youbi",
+      "pdfPage": 14,
+      "platePosition": "right_leaf_right_to_left_columns",
+      "printedFolio": "三十六",
+      "readingMode": "direct_high_resolution_plate",
+      "sourceId": "nanbei_shanren",
+      "title": "○九、安左輔、右弼二吉曜",
+      "uncertainty": [
+        "原頁文字中有解說行；表格與方向句共同作 canonical evidence。"
+      ]
+    },
+    {
+      "canonical": true,
+      "confidence": "high",
+      "directReading": "祿存又名天祿；甲祿到寅宮，乙祿到卯宮，丙戊祿在巳，丁己祿在午，庚祿申，辛祿酉，壬祿亥，癸祿子。祿前一位擎羊，祿後一位陀羅。",
+      "id": "nanbei-p15-printed-39-lucun",
+      "pdfPage": 15,
+      "platePosition": "left_leaf_right_to_left_columns",
+      "printedFolio": "三十九",
+      "readingMode": "direct_high_resolution_plate",
+      "sourceId": "nanbei_shanren",
+      "title": "○二十一、起祿存及擎羊、陀羅二煞星",
+      "uncertainty": [
+        "表頭與列方向以原表直接读取；derived relation 不取代 root rule。"
+      ]
+    },
+    {
+      "canonical": true,
+      "confidence": "high",
+      "directReading": "文昌、文曲二曜；表列生時、文昌、文曲十二行。",
+      "id": "nanbei-p15-printed-38-wenchang-wenqu",
+      "pdfPage": 15,
+      "platePosition": "right_leaf_right_to_left_columns",
+      "printedFolio": "三十八",
+      "readingMode": "direct_high_resolution_plate",
+      "sourceId": "nanbei_shanren",
+      "title": "○二十二、安文昌、文曲二曜",
+      "uncertainty": [
+        "正文多為性質解說，placement 以表格直接讀值。"
+      ]
+    },
+    {
+      "canonical": true,
+      "confidence": "high",
+      "directReading": "表頭為生年支與生時；四組各列鈴星、火星十二行。",
+      "id": "nanbei-p15-printed-38-fire-bell-table",
+      "pdfPage": 15,
+      "platePosition": "right_leaf_center_table",
+      "printedFolio": "三十八",
+      "readingMode": "direct_high_resolution_plate",
+      "sourceId": "nanbei_shanren",
+      "title": "安火、鈴二煞速檢表",
+      "uncertainty": [
+        "四組表頭採原版顛倒字序保留，normalized group key 使用十二支集合。"
+      ]
+    },
+    {
+      "canonical": true,
+      "confidence": "high",
+      "directReading": "本頁為四化與相鄰條文；非十三輔助星 placement evidence。",
+      "id": "nanbei-p16-printed-41-transformations",
+      "pdfPage": 16,
+      "platePosition": "left_leaf_right_to_left_columns",
+      "printedFolio": "四十一",
+      "readingMode": "direct_high_resolution_plate",
+      "sourceId": "nanbei_shanren",
+      "title": "四化及相鄰說明",
+      "uncertainty": [
+        "作為 full-scan 邊界確認，不納入規則輸出。"
+      ]
+    },
+    {
+      "canonical": true,
+      "confidence": "high",
+      "directReading": "甲戊庚牛羊，乙己鼠猴鄉，丙丁豬雞位，壬癸兔蛇藏，六辛逢虎馬，此是貴人鄉。",
+      "id": "nanbei-p16-printed-40-tiankui-tianyue",
+      "pdfPage": 16,
+      "platePosition": "right_leaf_right_to_left_columns",
+      "printedFolio": "四十",
+      "readingMode": "direct_high_resolution_plate",
+      "sourceId": "nanbei_shanren",
+      "title": "○二十三、安天魁、天鉞",
+      "uncertainty": [
+        "原表列天鉞、天魁與年干；表頭方向不以現代排版重排。"
+      ]
+    },
+    {
+      "canonical": true,
+      "confidence": "high",
+      "directReading": "天空、地劫二曜；表列生時、天空、地劫十二行。",
+      "id": "nanbei-p18-printed-45-tiankong-dijie",
+      "pdfPage": 18,
+      "platePosition": "left_leaf_left_table",
+      "printedFolio": "四十五",
+      "readingMode": "direct_high_resolution_plate",
+      "sourceId": "nanbei_shanren",
+      "title": "○二十六、安台輔、封誥、天空、地劫",
+      "uncertainty": [
+        "原文星名為天空；使用者目標的地空 alias 不在此處擅自升格為同一 canonical glyph。"
+      ]
+    }
+  ],
+  "ocrPolicy": {
+    "allowed": true,
+    "canonicalDecisionSource": "direct_high_resolution_plate_reading",
+    "canonicalTranscription": false,
+    "role": "exploration_only_not_canonical"
+  },
+  "predecessorArtifacts": [
+    "artifacts/ziwei-traditional-source-comparison-v0/complete.json",
+    "artifacts/ziwei-tianfu-representation-search-v1/complete.json",
+    "artifacts/ziwei-twelve-major-star-placement-evidence-v0/complete.json",
+    "artifacts/ziwei-palace-coordinate-semantic-identity-v0/complete.json"
+  ],
+  "schemaVersion": "ziwei-auxiliary-star-placement-core-evidence-v0",
+  "tableTranscriptions": {
+    "nanbei-p14-printed-36-zuofu-youbi": {
+      "columns": [
+        "右弼",
+        "左輔",
+        "生月"
+      ],
+      "pdfPage": 14,
+      "printedFolio": "三十六",
+      "readingOrder": "表頭按原版欄位保留",
+      "rows": [
+        {
+          "input": 1,
+          "youbi": "戌",
+          "zuofu": "辰"
+        },
+        {
+          "input": 2,
+          "youbi": "酉",
+          "zuofu": "巳"
+        },
+        {
+          "input": 3,
+          "youbi": "申",
+          "zuofu": "午"
+        },
+        {
+          "input": 4,
+          "youbi": "未",
+          "zuofu": "未"
+        },
+        {
+          "input": 5,
+          "youbi": "午",
+          "zuofu": "申"
+        },
+        {
+          "input": 6,
+          "youbi": "巳",
+          "zuofu": "酉"
+        },
+        {
+          "input": 7,
+          "youbi": "辰",
+          "zuofu": "戌"
+        },
+        {
+          "input": 8,
+          "youbi": "卯",
+          "zuofu": "亥"
+        },
+        {
+          "input": 9,
+          "youbi": "寅",
+          "zuofu": "子"
+        },
+        {
+          "input": 10,
+          "youbi": "丑",
+          "zuofu": "丑"
+        },
+        {
+          "input": 11,
+          "youbi": "子",
+          "zuofu": "寅"
+        },
+        {
+          "input": 12,
+          "youbi": "亥",
+          "zuofu": "卯"
+        }
+      ],
+      "sourceId": "nanbei_shanren",
+      "sourceRef": "nanbei-p14-printed-36-zuofu-youbi"
+    },
+    "nanbei-p15-printed-38-fire-bell-table": {
+      "columns": [
+        "鈴星",
+        "火星"
+      ],
+      "pdfPage": 15,
+      "printedFolio": "三十八",
+      "readingOrder": "四組從右至左；各組列鈴星、火星；生時自子至亥",
+      "rows": {
+        "亥卯未": [
+          {
+            "huoxing": "酉",
+            "input": "子",
+            "lingxing": "戌"
+          },
+          {
+            "huoxing": "戌",
+            "input": "丑",
+            "lingxing": "亥"
+          },
+          {
+            "huoxing": "亥",
+            "input": "寅",
+            "lingxing": "子"
+          },
+          {
+            "huoxing": "子",
+            "input": "卯",
+            "lingxing": "丑"
+          },
+          {
+            "huoxing": "丑",
+            "input": "辰",
+            "lingxing": "寅"
+          },
+          {
+            "huoxing": "寅",
+            "input": "巳",
+            "lingxing": "卯"
+          },
+          {
+            "huoxing": "卯",
+            "input": "午",
+            "lingxing": "辰"
+          },
+          {
+            "huoxing": "辰",
+            "input": "未",
+            "lingxing": "巳"
+          },
+          {
+            "huoxing": "巳",
+            "input": "申",
+            "lingxing": "午"
+          },
+          {
+            "huoxing": "午",
+            "input": "酉",
+            "lingxing": "未"
+          },
+          {
+            "huoxing": "未",
+            "input": "戌",
+            "lingxing": "申"
+          },
+          {
+            "huoxing": "申",
+            "input": "亥",
+            "lingxing": "酉"
+          }
+        ],
+        "寅午戌": [
+          {
+            "huoxing": "丑",
+            "input": "子",
+            "lingxing": "卯"
+          },
+          {
+            "huoxing": "寅",
+            "input": "丑",
+            "lingxing": "辰"
+          },
+          {
+            "huoxing": "卯",
+            "input": "寅",
+            "lingxing": "巳"
+          },
+          {
+            "huoxing": "辰",
+            "input": "卯",
+            "lingxing": "午"
+          },
+          {
+            "huoxing": "巳",
+            "input": "辰",
+            "lingxing": "未"
+          },
+          {
+            "huoxing": "午",
+            "input": "巳",
+            "lingxing": "申"
+          },
+          {
+            "huoxing": "未",
+            "input": "午",
+            "lingxing": "酉"
+          },
+          {
+            "huoxing": "申",
+            "input": "未",
+            "lingxing": "戌"
+          },
+          {
+            "huoxing": "酉",
+            "input": "申",
+            "lingxing": "亥"
+          },
+          {
+            "huoxing": "戌",
+            "input": "酉",
+            "lingxing": "子"
+          },
+          {
+            "huoxing": "亥",
+            "input": "戌",
+            "lingxing": "丑"
+          },
+          {
+            "huoxing": "子",
+            "input": "亥",
+            "lingxing": "寅"
+          }
+        ],
+        "巳酉丑": [
+          {
+            "huoxing": "戌",
+            "input": "子",
+            "lingxing": "卯"
+          },
+          {
+            "huoxing": "亥",
+            "input": "丑",
+            "lingxing": "辰"
+          },
+          {
+            "huoxing": "子",
+            "input": "寅",
+            "lingxing": "巳"
+          },
+          {
+            "huoxing": "丑",
+            "input": "卯",
+            "lingxing": "午"
+          },
+          {
+            "huoxing": "寅",
+            "input": "辰",
+            "lingxing": "未"
+          },
+          {
+            "huoxing": "卯",
+            "input": "巳",
+            "lingxing": "申"
+          },
+          {
+            "huoxing": "辰",
+            "input": "午",
+            "lingxing": "酉"
+          },
+          {
+            "huoxing": "巳",
+            "input": "未",
+            "lingxing": "戌"
+          },
+          {
+            "huoxing": "午",
+            "input": "申",
+            "lingxing": "亥"
+          },
+          {
+            "huoxing": "未",
+            "input": "酉",
+            "lingxing": "子"
+          },
+          {
+            "huoxing": "申",
+            "input": "戌",
+            "lingxing": "丑"
+          },
+          {
+            "huoxing": "酉",
+            "input": "亥",
+            "lingxing": "寅"
+          }
+        ],
+        "申子辰": [
+          {
+            "huoxing": "寅",
+            "input": "子",
+            "lingxing": "戌"
+          },
+          {
+            "huoxing": "卯",
+            "input": "丑",
+            "lingxing": "亥"
+          },
+          {
+            "huoxing": "辰",
+            "input": "寅",
+            "lingxing": "子"
+          },
+          {
+            "huoxing": "巳",
+            "input": "卯",
+            "lingxing": "丑"
+          },
+          {
+            "huoxing": "午",
+            "input": "辰",
+            "lingxing": "寅"
+          },
+          {
+            "huoxing": "未",
+            "input": "巳",
+            "lingxing": "卯"
+          },
+          {
+            "huoxing": "申",
+            "input": "午",
+            "lingxing": "辰"
+          },
+          {
+            "huoxing": "酉",
+            "input": "未",
+            "lingxing": "巳"
+          },
+          {
+            "huoxing": "戌",
+            "input": "申",
+            "lingxing": "午"
+          },
+          {
+            "huoxing": "亥",
+            "input": "酉",
+            "lingxing": "未"
+          },
+          {
+            "huoxing": "子",
+            "input": "戌",
+            "lingxing": "申"
+          },
+          {
+            "huoxing": "丑",
+            "input": "亥",
+            "lingxing": "酉"
+          }
+        ]
+      },
+      "sourceId": "nanbei_shanren",
+      "sourceRef": "nanbei-p15-printed-38-fire-bell-table"
+    },
+    "nanbei-p15-printed-38-wenchang-wenqu": {
+      "columns": [
+        "文曲",
+        "文昌",
+        "生時"
+      ],
+      "pdfPage": 15,
+      "printedFolio": "三十八",
+      "readingOrder": "表頭按原版欄位保留",
+      "rows": [
+        {
+          "input": "子",
+          "wenchang": "戌",
+          "wenqu": "辰"
+        },
+        {
+          "input": "丑",
+          "wenchang": "酉",
+          "wenqu": "巳"
+        },
+        {
+          "input": "寅",
+          "wenchang": "申",
+          "wenqu": "午"
+        },
+        {
+          "input": "卯",
+          "wenchang": "未",
+          "wenqu": "未"
+        },
+        {
+          "input": "辰",
+          "wenchang": "午",
+          "wenqu": "申"
+        },
+        {
+          "input": "巳",
+          "wenchang": "巳",
+          "wenqu": "酉"
+        },
+        {
+          "input": "午",
+          "wenchang": "辰",
+          "wenqu": "戌"
+        },
+        {
+          "input": "未",
+          "wenchang": "卯",
+          "wenqu": "亥"
+        },
+        {
+          "input": "申",
+          "wenchang": "寅",
+          "wenqu": "子"
+        },
+        {
+          "input": "酉",
+          "wenchang": "丑",
+          "wenqu": "丑"
+        },
+        {
+          "input": "戌",
+          "wenchang": "子",
+          "wenqu": "寅"
+        },
+        {
+          "input": "亥",
+          "wenchang": "亥",
+          "wenqu": "卯"
+        }
+      ],
+      "sourceId": "nanbei_shanren",
+      "sourceRef": "nanbei-p15-printed-38-wenchang-wenqu"
+    },
+    "nanbei-p15-printed-39-lucun": {
+      "columns": [
+        "陀羅",
+        "擎羊",
+        "祿存",
+        "年干"
+      ],
+      "pdfPage": 15,
+      "printedFolio": "三十九",
+      "readingOrder": "表頭按原版欄位保留；normalized output 在比較邊界使用",
+      "rows": [
+        {
+          "input": "甲",
+          "lucun": "寅",
+          "qingyang": "卯",
+          "tuoluo": "丑"
+        },
+        {
+          "input": "乙",
+          "lucun": "卯",
+          "qingyang": "辰",
+          "tuoluo": "寅"
+        },
+        {
+          "input": "丙",
+          "lucun": "巳",
+          "qingyang": "午",
+          "tuoluo": "辰"
+        },
+        {
+          "input": "丁",
+          "lucun": "午",
+          "qingyang": "未",
+          "tuoluo": "巳"
+        },
+        {
+          "input": "戊",
+          "lucun": "巳",
+          "qingyang": "午",
+          "tuoluo": "辰"
+        },
+        {
+          "input": "己",
+          "lucun": "午",
+          "qingyang": "未",
+          "tuoluo": "巳"
+        },
+        {
+          "input": "庚",
+          "lucun": "申",
+          "qingyang": "酉",
+          "tuoluo": "未"
+        },
+        {
+          "input": "辛",
+          "lucun": "酉",
+          "qingyang": "戌",
+          "tuoluo": "申"
+        },
+        {
+          "input": "壬",
+          "lucun": "亥",
+          "qingyang": "子",
+          "tuoluo": "戌"
+        },
+        {
+          "input": "癸",
+          "lucun": "子",
+          "qingyang": "丑",
+          "tuoluo": "亥"
+        }
+      ],
+      "sourceId": "nanbei_shanren",
+      "sourceRef": "nanbei-p15-printed-39-lucun"
+    },
+    "nanbei-p16-printed-40-tiankui-tianyue": {
+      "columns": [
+        "天鉞",
+        "天魁",
+        "年干"
+      ],
+      "pdfPage": 16,
+      "printedFolio": "四十",
+      "readingOrder": "表頭按原版欄位保留",
+      "rows": [
+        {
+          "input": "甲",
+          "tiankui": "丑",
+          "tianyue": "未"
+        },
+        {
+          "input": "乙",
+          "tiankui": "子",
+          "tianyue": "申"
+        },
+        {
+          "input": "丙",
+          "tiankui": "亥",
+          "tianyue": "酉"
+        },
+        {
+          "input": "丁",
+          "tiankui": "亥",
+          "tianyue": "酉"
+        },
+        {
+          "input": "戊",
+          "tiankui": "丑",
+          "tianyue": "未"
+        },
+        {
+          "input": "己",
+          "tiankui": "子",
+          "tianyue": "申"
+        },
+        {
+          "input": "庚",
+          "tiankui": "丑",
+          "tianyue": "未"
+        },
+        {
+          "input": "辛",
+          "tiankui": "午",
+          "tianyue": "寅"
+        },
+        {
+          "input": "壬",
+          "tiankui": "卯",
+          "tianyue": "巳"
+        },
+        {
+          "input": "癸",
+          "tiankui": "卯",
+          "tianyue": "巳"
+        }
+      ],
+      "sourceId": "nanbei_shanren",
+      "sourceRef": "nanbei-p16-printed-40-tiankui-tianyue"
+    },
+    "nanbei-p18-printed-45-tiankong-dijie": {
+      "columns": [
+        "地劫",
+        "天空",
+        "生時"
+      ],
+      "pdfPage": 18,
+      "printedFolio": "四十五",
+      "readingOrder": "表頭按原版欄位保留；天空 is source glyph",
+      "rows": [
+        {
+          "dijie": "亥",
+          "input": "子",
+          "tiankong": "亥"
+        },
+        {
+          "dijie": "子",
+          "input": "丑",
+          "tiankong": "戌"
+        },
+        {
+          "dijie": "丑",
+          "input": "寅",
+          "tiankong": "酉"
+        },
+        {
+          "dijie": "寅",
+          "input": "卯",
+          "tiankong": "申"
+        },
+        {
+          "dijie": "卯",
+          "input": "辰",
+          "tiankong": "未"
+        },
+        {
+          "dijie": "辰",
+          "input": "巳",
+          "tiankong": "午"
+        },
+        {
+          "dijie": "巳",
+          "input": "午",
+          "tiankong": "巳"
+        },
+        {
+          "dijie": "午",
+          "input": "未",
+          "tiankong": "辰"
+        },
+        {
+          "dijie": "未",
+          "input": "申",
+          "tiankong": "卯"
+        },
+        {
+          "dijie": "申",
+          "input": "酉",
+          "tiankong": "寅"
+        },
+        {
+          "dijie": "酉",
+          "input": "戌",
+          "tiankong": "丑"
+        },
+        {
+          "dijie": "戌",
+          "input": "亥",
+          "tiankong": "子"
+        }
+      ],
+      "sourceId": "nanbei_shanren",
+      "sourceRef": "nanbei-p18-printed-45-tiankong-dijie"
+    }
+  }
+}

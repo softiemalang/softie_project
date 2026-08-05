@@ -1,0 +1,7 @@
+{
+  "byteLength": 2046,
+  "byteSha256": "0576e0f25d40f4b0694a78929e60ef289158c3905752bbe270c812b960bd2a0b",
+  "path": "artifacts/ziwei-auxiliary-star-placement-core-evidence-v0/dependency-graph.json",
+  "schemaVersion": "artifact-integrity-sidecar-v1",
+  "source": "actual_output_bytes"
+}

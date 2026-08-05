@@ -1,0 +1,343 @@
+{
+  "branchCoordinate": {
+    "indexZero": "子",
+    "noSemanticPalaceIdentity": true,
+    "order": [
+      "子",
+      "丑",
+      "寅",
+      "卯",
+      "辰",
+      "巳",
+      "午",
+      "未",
+      "申",
+      "酉",
+      "戌",
+      "亥"
+    ]
+  },
+  "rules": [
+    {
+      "inputAxes": [
+        "hourBranch"
+      ],
+      "normalized": {
+        "wenchang": {
+          "anchor": "戌",
+          "direction": "reverse",
+          "step": "hourBranchIndex"
+        },
+        "wenqu": {
+          "anchor": "辰",
+          "direction": "forward",
+          "step": "hourBranchIndex"
+        }
+      },
+      "ruleId": "wenchang-wenqu",
+      "sourceRefs": [
+        {
+          "pdfPage": 148,
+          "printedFolio": null,
+          "sourceId": "ming_nanyangtang",
+          "sourceRef": "ming-p148-wenchang-wenqu"
+        },
+        {
+          "pdfPage": 15,
+          "printedFolio": "三十八",
+          "sourceId": "nanbei_shanren",
+          "sourceRef": "nanbei-p15-printed-38-wenchang-wenqu"
+        }
+      ],
+      "stars": [
+        "wenchang",
+        "wenqu"
+      ]
+    },
+    {
+      "inputAxes": [
+        "lunarMonth"
+      ],
+      "normalized": {
+        "youbi": {
+          "anchor": "戌",
+          "direction": "reverse",
+          "step": "lunarMonth-1"
+        },
+        "zuofu": {
+          "anchor": "辰",
+          "direction": "forward",
+          "step": "lunarMonth-1"
+        }
+      },
+      "ruleId": "zuofu-youbi",
+      "sourceRefs": [
+        {
+          "pdfPage": 149,
+          "printedFolio": null,
+          "sourceId": "ming_nanyangtang",
+          "sourceRef": "ming-p149-zuofu-youbi"
+        },
+        {
+          "pdfPage": 14,
+          "printedFolio": "三十六",
+          "sourceId": "nanbei_shanren",
+          "sourceRef": "nanbei-p14-printed-36-zuofu-youbi"
+        }
+      ],
+      "stars": [
+        "zuofu",
+        "youbi"
+      ]
+    },
+    {
+      "inputAxes": [
+        "birthYearStem"
+      ],
+      "normalized": {
+        "map": {
+          "丁": {
+            "tiankui": "亥",
+            "tianyue": "酉"
+          },
+          "丙": {
+            "tiankui": "亥",
+            "tianyue": "酉"
+          },
+          "乙": {
+            "tiankui": "子",
+            "tianyue": "申"
+          },
+          "壬": {
+            "tiankui": "卯",
+            "tianyue": "巳"
+          },
+          "己": {
+            "tiankui": "子",
+            "tianyue": "申"
+          },
+          "庚": {
+            "tiankui": "丑",
+            "tianyue": "未"
+          },
+          "戊": {
+            "tiankui": "丑",
+            "tianyue": "未"
+          },
+          "甲": {
+            "tiankui": "丑",
+            "tianyue": "未"
+          },
+          "癸": {
+            "tiankui": "卯",
+            "tianyue": "巳"
+          },
+          "辛": {
+            "tiankui": "午",
+            "tianyue": "寅"
+          }
+        }
+      },
+      "ruleId": "tiankui-tianyue",
+      "sourceRefs": [
+        {
+          "pdfPage": 149,
+          "printedFolio": null,
+          "sourceId": "ming_nanyangtang",
+          "sourceRef": "ming-p149-tiankui-tianyue"
+        },
+        {
+          "pdfPage": 16,
+          "printedFolio": "四十",
+          "sourceId": "nanbei_shanren",
+          "sourceRef": "nanbei-p16-printed-40-tiankui-tianyue"
+        }
+      ],
+      "stars": [
+        "tiankui",
+        "tianyue"
+      ]
+    },
+    {
+      "derivedRelations": [
+        {
+          "from": "lucun",
+          "relation": "forward_one_branch",
+          "to": "qingyang"
+        },
+        {
+          "from": "lucun",
+          "relation": "reverse_one_branch",
+          "to": "tuoluo"
+        }
+      ],
+      "inputAxes": [
+        "birthYearStem"
+      ],
+      "rootRule": {
+        "map": {
+          "丁": "午",
+          "丙": "巳",
+          "乙": "卯",
+          "壬": "亥",
+          "己": "午",
+          "庚": "申",
+          "戊": "巳",
+          "甲": "寅",
+          "癸": "子",
+          "辛": "酉"
+        },
+        "star": "lucun"
+      },
+      "ruleId": "lucun-qingyang-tuoluo",
+      "sourceRefs": [
+        {
+          "pdfPage": 150,
+          "printedFolio": null,
+          "sourceId": "ming_nanyangtang",
+          "sourceRef": "ming-p150-lucun"
+        },
+        {
+          "pdfPage": 151,
+          "printedFolio": null,
+          "sourceId": "ming_nanyangtang",
+          "sourceRef": "ming-p151-qingyang-tuoluo"
+        },
+        {
+          "pdfPage": 15,
+          "printedFolio": "三十九",
+          "sourceId": "nanbei_shanren",
+          "sourceRef": "nanbei-p15-printed-39-lucun"
+        }
+      ],
+      "stars": [
+        "lucun",
+        "qingyang",
+        "tuoluo"
+      ]
+    },
+    {
+      "editions": {
+        "ming_nanyangtang": {
+          "sourceRef": {
+            "pdfPage": null,
+            "printedFolio": null,
+            "sourceId": "ming_nanyangtang",
+            "sourceRef": "ming-full-scan-fire-bell-not-located"
+          },
+          "status": "source_rule_not_located"
+        },
+        "nanbei_shanren": {
+          "groupOffsets": {
+            "亥卯未": {
+              "huoxing": -3,
+              "lingxing": -2
+            },
+            "寅午戌": {
+              "huoxing": 1,
+              "lingxing": 3
+            },
+            "巳酉丑": {
+              "huoxing": -2,
+              "lingxing": 3
+            },
+            "申子辰": {
+              "huoxing": 2,
+              "lingxing": -2
+            }
+          },
+          "sourceRefs": [
+            {
+              "pdfPage": 14,
+              "printedFolio": "三十七",
+              "sourceId": "nanbei_shanren",
+              "sourceRef": "nanbei-p14-printed-37-fire-bell"
+            },
+            {
+              "pdfPage": 15,
+              "printedFolio": "三十八",
+              "sourceId": "nanbei_shanren",
+              "sourceRef": "nanbei-p15-printed-38-fire-bell-table"
+            }
+          ],
+          "status": "complete"
+        }
+      },
+      "inputAxes": [
+        "birthYearBranch",
+        "hourBranch"
+      ],
+      "ruleId": "huoxing-lingxing",
+      "sourceRefs": [
+        {
+          "pdfPage": null,
+          "printedFolio": null,
+          "sourceId": "ming_nanyangtang",
+          "sourceRef": "ming-full-scan-fire-bell-not-located"
+        },
+        {
+          "pdfPage": 14,
+          "printedFolio": "三十七",
+          "sourceId": "nanbei_shanren",
+          "sourceRef": "nanbei-p14-printed-37-fire-bell"
+        },
+        {
+          "pdfPage": 15,
+          "printedFolio": "三十八",
+          "sourceId": "nanbei_shanren",
+          "sourceRef": "nanbei-p15-printed-38-fire-bell-table"
+        }
+      ],
+      "stars": [
+        "huoxing",
+        "lingxing"
+      ]
+    },
+    {
+      "inputAxes": [
+        "hourBranch"
+      ],
+      "normalized": {
+        "dijie": {
+          "anchor": "亥",
+          "direction": "forward",
+          "step": "one_branch_before_hour"
+        },
+        "tiankong": {
+          "anchor": "亥",
+          "direction": "reverse",
+          "formula": "11-hourBranchIndex"
+        }
+      },
+      "requestedNameBoundary": {
+        "requested": "地空",
+        "source": "天空",
+        "status": "name_variant_preserved_not_promoted"
+      },
+      "ruleId": "dikong-dijie",
+      "sourceRefs": [
+        {
+          "pdfPage": 152,
+          "printedFolio": null,
+          "sourceId": "ming_nanyangtang",
+          "sourceRef": "ming-p152-tiankong-dijie"
+        },
+        {
+          "pdfPage": 18,
+          "printedFolio": "四十五",
+          "sourceId": "nanbei_shanren",
+          "sourceRef": "nanbei-p18-printed-45-tiankong-dijie"
+        }
+      ],
+      "sourceStarNames": {
+        "dijie": "地劫",
+        "dikong": "天空"
+      },
+      "stars": [
+        "dikong",
+        "dijie"
+      ]
+    }
+  ],
+  "schemaVersion": "ziwei-auxiliary-star-placement-core-evidence-v0"
+}

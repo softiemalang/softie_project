@@ -1,0 +1,808 @@
+{
+  "noUnlistedCandidateAxes": true,
+  "schemaVersion": "ziwei-auxiliary-star-placement-core-evidence-v0",
+  "searchSpace": [
+    "global_rotation_0..11",
+    "global_reflection_offset_0..11"
+  ],
+  "searches": [
+    {
+      "candidateCount": 24,
+      "candidates": [
+        {
+          "id": "rotation_0",
+          "kind": "rotation",
+          "offset": 0
+        },
+        {
+          "id": "rotation_1",
+          "kind": "rotation",
+          "offset": 1
+        },
+        {
+          "id": "rotation_2",
+          "kind": "rotation",
+          "offset": 2
+        },
+        {
+          "id": "rotation_3",
+          "kind": "rotation",
+          "offset": 3
+        },
+        {
+          "id": "rotation_4",
+          "kind": "rotation",
+          "offset": 4
+        },
+        {
+          "id": "rotation_5",
+          "kind": "rotation",
+          "offset": 5
+        },
+        {
+          "id": "rotation_6",
+          "kind": "rotation",
+          "offset": 6
+        },
+        {
+          "id": "rotation_7",
+          "kind": "rotation",
+          "offset": 7
+        },
+        {
+          "id": "rotation_8",
+          "kind": "rotation",
+          "offset": 8
+        },
+        {
+          "id": "rotation_9",
+          "kind": "rotation",
+          "offset": 9
+        },
+        {
+          "id": "rotation_10",
+          "kind": "rotation",
+          "offset": 10
+        },
+        {
+          "id": "rotation_11",
+          "kind": "rotation",
+          "offset": 11
+        },
+        {
+          "id": "reflection_0",
+          "kind": "reflection",
+          "offset": 0
+        },
+        {
+          "id": "reflection_1",
+          "kind": "reflection",
+          "offset": 1
+        },
+        {
+          "id": "reflection_2",
+          "kind": "reflection",
+          "offset": 2
+        },
+        {
+          "id": "reflection_3",
+          "kind": "reflection",
+          "offset": 3
+        },
+        {
+          "id": "reflection_4",
+          "kind": "reflection",
+          "offset": 4
+        },
+        {
+          "id": "reflection_5",
+          "kind": "reflection",
+          "offset": 5
+        },
+        {
+          "id": "reflection_6",
+          "kind": "reflection",
+          "offset": 6
+        },
+        {
+          "id": "reflection_7",
+          "kind": "reflection",
+          "offset": 7
+        },
+        {
+          "id": "reflection_8",
+          "kind": "reflection",
+          "offset": 8
+        },
+        {
+          "id": "reflection_9",
+          "kind": "reflection",
+          "offset": 9
+        },
+        {
+          "id": "reflection_10",
+          "kind": "reflection",
+          "offset": 10
+        },
+        {
+          "id": "reflection_11",
+          "kind": "reflection",
+          "offset": 11
+        }
+      ],
+      "caseSpecificAdjustmentsAllowed": false,
+      "domainCount": 24,
+      "exactFitIds": [
+        "rotation_0"
+      ],
+      "identityExactFit": true,
+      "minimalCounterexample": null,
+      "star": "wenchang"
+    },
+    {
+      "candidateCount": 24,
+      "candidates": [
+        {
+          "id": "rotation_0",
+          "kind": "rotation",
+          "offset": 0
+        },
+        {
+          "id": "rotation_1",
+          "kind": "rotation",
+          "offset": 1
+        },
+        {
+          "id": "rotation_2",
+          "kind": "rotation",
+          "offset": 2
+        },
+        {
+          "id": "rotation_3",
+          "kind": "rotation",
+          "offset": 3
+        },
+        {
+          "id": "rotation_4",
+          "kind": "rotation",
+          "offset": 4
+        },
+        {
+          "id": "rotation_5",
+          "kind": "rotation",
+          "offset": 5
+        },
+        {
+          "id": "rotation_6",
+          "kind": "rotation",
+          "offset": 6
+        },
+        {
+          "id": "rotation_7",
+          "kind": "rotation",
+          "offset": 7
+        },
+        {
+          "id": "rotation_8",
+          "kind": "rotation",
+          "offset": 8
+        },
+        {
+          "id": "rotation_9",
+          "kind": "rotation",
+          "offset": 9
+        },
+        {
+          "id": "rotation_10",
+          "kind": "rotation",
+          "offset": 10
+        },
+        {
+          "id": "rotation_11",
+          "kind": "rotation",
+          "offset": 11
+        },
+        {
+          "id": "reflection_0",
+          "kind": "reflection",
+          "offset": 0
+        },
+        {
+          "id": "reflection_1",
+          "kind": "reflection",
+          "offset": 1
+        },
+        {
+          "id": "reflection_2",
+          "kind": "reflection",
+          "offset": 2
+        },
+        {
+          "id": "reflection_3",
+          "kind": "reflection",
+          "offset": 3
+        },
+        {
+          "id": "reflection_4",
+          "kind": "reflection",
+          "offset": 4
+        },
+        {
+          "id": "reflection_5",
+          "kind": "reflection",
+          "offset": 5
+        },
+        {
+          "id": "reflection_6",
+          "kind": "reflection",
+          "offset": 6
+        },
+        {
+          "id": "reflection_7",
+          "kind": "reflection",
+          "offset": 7
+        },
+        {
+          "id": "reflection_8",
+          "kind": "reflection",
+          "offset": 8
+        },
+        {
+          "id": "reflection_9",
+          "kind": "reflection",
+          "offset": 9
+        },
+        {
+          "id": "reflection_10",
+          "kind": "reflection",
+          "offset": 10
+        },
+        {
+          "id": "reflection_11",
+          "kind": "reflection",
+          "offset": 11
+        }
+      ],
+      "caseSpecificAdjustmentsAllowed": false,
+      "domainCount": 24,
+      "exactFitIds": [
+        "rotation_0"
+      ],
+      "identityExactFit": true,
+      "minimalCounterexample": null,
+      "star": "wenqu"
+    },
+    {
+      "candidateCount": 24,
+      "candidates": [
+        {
+          "id": "rotation_0",
+          "kind": "rotation",
+          "offset": 0
+        },
+        {
+          "id": "rotation_1",
+          "kind": "rotation",
+          "offset": 1
+        },
+        {
+          "id": "rotation_2",
+          "kind": "rotation",
+          "offset": 2
+        },
+        {
+          "id": "rotation_3",
+          "kind": "rotation",
+          "offset": 3
+        },
+        {
+          "id": "rotation_4",
+          "kind": "rotation",
+          "offset": 4
+        },
+        {
+          "id": "rotation_5",
+          "kind": "rotation",
+          "offset": 5
+        },
+        {
+          "id": "rotation_6",
+          "kind": "rotation",
+          "offset": 6
+        },
+        {
+          "id": "rotation_7",
+          "kind": "rotation",
+          "offset": 7
+        },
+        {
+          "id": "rotation_8",
+          "kind": "rotation",
+          "offset": 8
+        },
+        {
+          "id": "rotation_9",
+          "kind": "rotation",
+          "offset": 9
+        },
+        {
+          "id": "rotation_10",
+          "kind": "rotation",
+          "offset": 10
+        },
+        {
+          "id": "rotation_11",
+          "kind": "rotation",
+          "offset": 11
+        },
+        {
+          "id": "reflection_0",
+          "kind": "reflection",
+          "offset": 0
+        },
+        {
+          "id": "reflection_1",
+          "kind": "reflection",
+          "offset": 1
+        },
+        {
+          "id": "reflection_2",
+          "kind": "reflection",
+          "offset": 2
+        },
+        {
+          "id": "reflection_3",
+          "kind": "reflection",
+          "offset": 3
+        },
+        {
+          "id": "reflection_4",
+          "kind": "reflection",
+          "offset": 4
+        },
+        {
+          "id": "reflection_5",
+          "kind": "reflection",
+          "offset": 5
+        },
+        {
+          "id": "reflection_6",
+          "kind": "reflection",
+          "offset": 6
+        },
+        {
+          "id": "reflection_7",
+          "kind": "reflection",
+          "offset": 7
+        },
+        {
+          "id": "reflection_8",
+          "kind": "reflection",
+          "offset": 8
+        },
+        {
+          "id": "reflection_9",
+          "kind": "reflection",
+          "offset": 9
+        },
+        {
+          "id": "reflection_10",
+          "kind": "reflection",
+          "offset": 10
+        },
+        {
+          "id": "reflection_11",
+          "kind": "reflection",
+          "offset": 11
+        }
+      ],
+      "caseSpecificAdjustmentsAllowed": false,
+      "domainCount": 24,
+      "exactFitIds": [
+        "rotation_0"
+      ],
+      "identityExactFit": true,
+      "minimalCounterexample": null,
+      "star": "zuofu"
+    },
+    {
+      "candidateCount": 24,
+      "candidates": [
+        {
+          "id": "rotation_0",
+          "kind": "rotation",
+          "offset": 0
+        },
+        {
+          "id": "rotation_1",
+          "kind": "rotation",
+          "offset": 1
+        },
+        {
+          "id": "rotation_2",
+          "kind": "rotation",
+          "offset": 2
+        },
+        {
+          "id": "rotation_3",
+          "kind": "rotation",
+          "offset": 3
+        },
+        {
+          "id": "rotation_4",
+          "kind": "rotation",
+          "offset": 4
+        },
+        {
+          "id": "rotation_5",
+          "kind": "rotation",
+          "offset": 5
+        },
+        {
+          "id": "rotation_6",
+          "kind": "rotation",
+          "offset": 6
+        },
+        {
+          "id": "rotation_7",
+          "kind": "rotation",
+          "offset": 7
+        },
+        {
+          "id": "rotation_8",
+          "kind": "rotation",
+          "offset": 8
+        },
+        {
+          "id": "rotation_9",
+          "kind": "rotation",
+          "offset": 9
+        },
+        {
+          "id": "rotation_10",
+          "kind": "rotation",
+          "offset": 10
+        },
+        {
+          "id": "rotation_11",
+          "kind": "rotation",
+          "offset": 11
+        },
+        {
+          "id": "reflection_0",
+          "kind": "reflection",
+          "offset": 0
+        },
+        {
+          "id": "reflection_1",
+          "kind": "reflection",
+          "offset": 1
+        },
+        {
+          "id": "reflection_2",
+          "kind": "reflection",
+          "offset": 2
+        },
+        {
+          "id": "reflection_3",
+          "kind": "reflection",
+          "offset": 3
+        },
+        {
+          "id": "reflection_4",
+          "kind": "reflection",
+          "offset": 4
+        },
+        {
+          "id": "reflection_5",
+          "kind": "reflection",
+          "offset": 5
+        },
+        {
+          "id": "reflection_6",
+          "kind": "reflection",
+          "offset": 6
+        },
+        {
+          "id": "reflection_7",
+          "kind": "reflection",
+          "offset": 7
+        },
+        {
+          "id": "reflection_8",
+          "kind": "reflection",
+          "offset": 8
+        },
+        {
+          "id": "reflection_9",
+          "kind": "reflection",
+          "offset": 9
+        },
+        {
+          "id": "reflection_10",
+          "kind": "reflection",
+          "offset": 10
+        },
+        {
+          "id": "reflection_11",
+          "kind": "reflection",
+          "offset": 11
+        }
+      ],
+      "caseSpecificAdjustmentsAllowed": false,
+      "domainCount": 24,
+      "exactFitIds": [
+        "rotation_0"
+      ],
+      "identityExactFit": true,
+      "minimalCounterexample": null,
+      "star": "youbi"
+    },
+    {
+      "candidateCount": 24,
+      "candidates": [
+        {
+          "id": "rotation_0",
+          "kind": "rotation",
+          "offset": 0
+        },
+        {
+          "id": "rotation_1",
+          "kind": "rotation",
+          "offset": 1
+        },
+        {
+          "id": "rotation_2",
+          "kind": "rotation",
+          "offset": 2
+        },
+        {
+          "id": "rotation_3",
+          "kind": "rotation",
+          "offset": 3
+        },
+        {
+          "id": "rotation_4",
+          "kind": "rotation",
+          "offset": 4
+        },
+        {
+          "id": "rotation_5",
+          "kind": "rotation",
+          "offset": 5
+        },
+        {
+          "id": "rotation_6",
+          "kind": "rotation",
+          "offset": 6
+        },
+        {
+          "id": "rotation_7",
+          "kind": "rotation",
+          "offset": 7
+        },
+        {
+          "id": "rotation_8",
+          "kind": "rotation",
+          "offset": 8
+        },
+        {
+          "id": "rotation_9",
+          "kind": "rotation",
+          "offset": 9
+        },
+        {
+          "id": "rotation_10",
+          "kind": "rotation",
+          "offset": 10
+        },
+        {
+          "id": "rotation_11",
+          "kind": "rotation",
+          "offset": 11
+        },
+        {
+          "id": "reflection_0",
+          "kind": "reflection",
+          "offset": 0
+        },
+        {
+          "id": "reflection_1",
+          "kind": "reflection",
+          "offset": 1
+        },
+        {
+          "id": "reflection_2",
+          "kind": "reflection",
+          "offset": 2
+        },
+        {
+          "id": "reflection_3",
+          "kind": "reflection",
+          "offset": 3
+        },
+        {
+          "id": "reflection_4",
+          "kind": "reflection",
+          "offset": 4
+        },
+        {
+          "id": "reflection_5",
+          "kind": "reflection",
+          "offset": 5
+        },
+        {
+          "id": "reflection_6",
+          "kind": "reflection",
+          "offset": 6
+        },
+        {
+          "id": "reflection_7",
+          "kind": "reflection",
+          "offset": 7
+        },
+        {
+          "id": "reflection_8",
+          "kind": "reflection",
+          "offset": 8
+        },
+        {
+          "id": "reflection_9",
+          "kind": "reflection",
+          "offset": 9
+        },
+        {
+          "id": "reflection_10",
+          "kind": "reflection",
+          "offset": 10
+        },
+        {
+          "id": "reflection_11",
+          "kind": "reflection",
+          "offset": 11
+        }
+      ],
+      "caseSpecificAdjustmentsAllowed": false,
+      "domainCount": 20,
+      "exactFitIds": [
+        "rotation_0"
+      ],
+      "identityExactFit": true,
+      "minimalCounterexample": null,
+      "star": "tiankui"
+    },
+    {
+      "candidateCount": 24,
+      "candidates": [
+        {
+          "id": "rotation_0",
+          "kind": "rotation",
+          "offset": 0
+        },
+        {
+          "id": "rotation_1",
+          "kind": "rotation",
+          "offset": 1
+        },
+        {
+          "id": "rotation_2",
+          "kind": "rotation",
+          "offset": 2
+        },
+        {
+          "id": "rotation_3",
+          "kind": "rotation",
+          "offset": 3
+        },
+        {
+          "id": "rotation_4",
+          "kind": "rotation",
+          "offset": 4
+        },
+        {
+          "id": "rotation_5",
+          "kind": "rotation",
+          "offset": 5
+        },
+        {
+          "id": "rotation_6",
+          "kind": "rotation",
+          "offset": 6
+        },
+        {
+          "id": "rotation_7",
+          "kind": "rotation",
+          "offset": 7
+        },
+        {
+          "id": "rotation_8",
+          "kind": "rotation",
+          "offset": 8
+        },
+        {
+          "id": "rotation_9",
+          "kind": "rotation",
+          "offset": 9
+        },
+        {
+          "id": "rotation_10",
+          "kind": "rotation",
+          "offset": 10
+        },
+        {
+          "id": "rotation_11",
+          "kind": "rotation",
+          "offset": 11
+        },
+        {
+          "id": "reflection_0",
+          "kind": "reflection",
+          "offset": 0
+        },
+        {
+          "id": "reflection_1",
+          "kind": "reflection",
+          "offset": 1
+        },
+        {
+          "id": "reflection_2",
+          "kind": "reflection",
+          "offset": 2
+        },
+        {
+          "id": "reflection_3",
+          "kind": "reflection",
+          "offset": 3
+        },
+        {
+          "id": "reflection_4",
+          "kind": "reflection",
+          "offset": 4
+        },
+        {
+          "id": "reflection_5",
+          "kind": "reflection",
+          "offset": 5
+        },
+        {
+          "id": "reflection_6",
+          "kind": "reflection",
+          "offset": 6
+        },
+        {
+          "id": "reflection_7",
+          "kind": "reflection",
+          "offset": 7
+        },
+        {
+          "id": "reflection_8",
+          "kind": "reflection",
+          "offset": 8
+        },
+        {
+          "id": "reflection_9",
+          "kind": "reflection",
+          "offset": 9
+        },
+        {
+          "id": "reflection_10",
+          "kind": "reflection",
+          "offset": 10
+        },
+        {
+          "id": "reflection_11",
+          "kind": "reflection",
+          "offset": 11
+        }
+      ],
+      "caseSpecificAdjustmentsAllowed": false,
+      "domainCount": 20,
+      "exactFitIds": [
+        "rotation_0"
+      ],
+      "identityExactFit": true,
+      "minimalCounterexample": null,
+      "star": "tianyue"
+    }
+  ]
+}

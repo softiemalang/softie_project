@@ -1,0 +1,7 @@
+{
+  "byteLength": 10146,
+  "byteSha256": "a0225432d4b43a7bf5b0d734b5c97ca529504f25f882307a900b54ebb7b48621",
+  "path": "artifacts/ziwei-auxiliary-star-placement-core-evidence-v0/complete.json",
+  "schemaVersion": "artifact-integrity-sidecar-v1",
+  "source": "actual_output_bytes"
+}
