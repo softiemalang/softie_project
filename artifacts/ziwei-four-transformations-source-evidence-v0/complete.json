@@ -1,0 +1,201 @@
+{
+  "artifactFiles": {
+    "comparison": "artifacts/ziwei-four-transformations-source-evidence-v0/comparison.json",
+    "complete": "artifacts/ziwei-four-transformations-source-evidence-v0/complete.json",
+    "conclusion": "artifacts/ziwei-four-transformations-source-evidence-v0/conclusion.md",
+    "dependency-graph": "artifacts/ziwei-four-transformations-source-evidence-v0/dependency-graph.json",
+    "inventory": "artifacts/ziwei-four-transformations-source-evidence-v0/inventory.json",
+    "normalized-rules": "artifacts/ziwei-four-transformations-source-evidence-v0/normalized-rules.json",
+    "occurrences": "artifacts/ziwei-four-transformations-source-evidence-v0/occurrences.json",
+    "production-trace": "artifacts/ziwei-four-transformations-source-evidence-v0/production-trace.json",
+    "transcription": "artifacts/ziwei-four-transformations-source-evidence-v0/transcription.json",
+    "validation": "artifacts/ziwei-four-transformations-source-evidence-v0/validation.json"
+  },
+  "artifactHashes": {
+    "comparison.json": {
+      "byteLength": 85974,
+      "byteSha256": "1bb8a8de51ea0008a45edb7409c2817e1dfc2a0ec58aa575b303cbc640dd0ae1",
+      "path": "artifacts/ziwei-four-transformations-source-evidence-v0/comparison.json"
+    },
+    "dependency-graph.json": {
+      "byteLength": 59344,
+      "byteSha256": "1a33e0fa38e19bad247cb5954712b6224d7e35d4c553a2e23e3fda84b85b4fbe",
+      "path": "artifacts/ziwei-four-transformations-source-evidence-v0/dependency-graph.json"
+    },
+    "inventory.json": {
+      "byteLength": 5049,
+      "byteSha256": "5a1a47306504d1e66dfc9187b3c5bd42b455d337ba5b706322bee244a0fac6fd",
+      "path": "artifacts/ziwei-four-transformations-source-evidence-v0/inventory.json"
+    },
+    "normalized-rules.json": {
+      "byteLength": 47254,
+      "byteSha256": "2ee44fe79b71c25748a2b0e82d9fe2430d0ee0bccce296d8c7bd53d92484a6db",
+      "path": "artifacts/ziwei-four-transformations-source-evidence-v0/normalized-rules.json"
+    },
+    "occurrences.json": {
+      "byteLength": 100709,
+      "byteSha256": "80ba7ffe36a606a5d81cfd7601be011a64354249950879b4f3db915e66ae8d0d",
+      "path": "artifacts/ziwei-four-transformations-source-evidence-v0/occurrences.json"
+    },
+    "production-trace.json": {
+      "byteLength": 43445,
+      "byteSha256": "0c1825a5201961432eb0a5ea0f47c8ca24f3d5934bae3db54c13428f6e5c5d6a",
+      "path": "artifacts/ziwei-four-transformations-source-evidence-v0/production-trace.json"
+    },
+    "transcription.json": {
+      "byteLength": 62016,
+      "byteSha256": "f5683f93d2e539949e06d5fb2ebcb05fccb57ecb5cc32a7f2c462c3f7d43b4e8",
+      "path": "artifacts/ziwei-four-transformations-source-evidence-v0/transcription.json"
+    },
+    "validation.json": {
+      "byteLength": 5408,
+      "byteSha256": "8ef7a53017751db6e466bcddf0014c23bc1326bbb559def3e50f1e17ef21eb7c",
+      "path": "artifacts/ziwei-four-transformations-source-evidence-v0/validation.json"
+    }
+  },
+  "artifactIdentity": {
+    "artifactId": "ziwei-four-transformations-source-evidence-v0",
+    "artifactPayloadSha256": "cfde3825c2d0dbb3817c43e799c816ba717eeb73f8d2d9e3ff4479ec7faeab6f",
+    "contractVersion": "artifact-identity-v1",
+    "generation": {
+      "baseHead": "6fc9db56fff7f453e87dd3425caab5b9058f2074",
+      "baseHeadSource": "git rev-parse HEAD at materialization",
+      "includedCommit": null,
+      "includedCommitSource": "unknown_at_generation; artifact may be included by a later commit"
+    },
+    "inputs": [
+      {
+        "byteSha256": "a0225432d4b43a7bf5b0d734b5c97ca529504f25f882307a900b54ebb7b48621",
+        "path": "artifacts/ziwei-auxiliary-star-placement-core-evidence-v0/complete.json"
+      },
+      {
+        "byteSha256": "1a1c242e12639c8611797369869fd7b1821e4a34d83bb9363293536201811ec3",
+        "path": "artifacts/ziwei-traditional-source-comparison-v0/complete.json"
+      },
+      {
+        "byteSha256": "1ddc893ed11d95305b2b2cc692d80edc2fcff4e77384183b2dff8ffa529fefde",
+        "path": "artifacts/ziwei-traditional-source-comparison-v0/transcription.json"
+      },
+      {
+        "byteSha256": "bf3e6149eda8bd41e998cfb8abe32988af140cf349ef1f1c10868bf444dd473e",
+        "path": "artifacts/ziwei-twelve-major-star-placement-evidence-v0/complete.json"
+      },
+      {
+        "byteSha256": "127683a4ee1252f9273861eff1dc53e4a7283c8126208a680ff61061c11224b0",
+        "path": "src/artifactIdentity.js"
+      },
+      {
+        "byteSha256": "3f73716acf442f1717781d874872729c1c57d8b3e69498ae30284646297424fb",
+        "path": "src/interpretationPrep/threeSystemPrepPipeline.js"
+      },
+      {
+        "byteSha256": "ec47b97109d514fb5317e1e0dfb9fb195fa77429ab2d451b3de9a97897babe9d",
+        "path": "src/ziwei/transformationResolver.js"
+      },
+      {
+        "byteSha256": "e602ab8611e846b53b9c1ffed2d2dbcb5b77afd13973187ee40d748370846e76",
+        "path": "src/ziwei/transformationRules.js"
+      }
+    ],
+    "materializer": {
+      "path": "scripts/materialize-ziwei-four-transformations-source-evidence-v0.mjs",
+      "version": "1.0.0"
+    },
+    "observedHead": "6fc9db56fff7f453e87dd3425caab5b9058f2074"
+  },
+  "basisHead": "6fc9db56fff7f453e87dd3425caab5b9058f2074",
+  "boundaries": {
+    "activation": "experimental",
+    "activationChanged": false,
+    "grounding": "blocked",
+    "groundingChanged": false,
+    "predecessorOverwritten": false,
+    "productionDefectsFixed": false,
+    "productionEngineModified": false,
+    "publicContractModified": false,
+    "readiness": "not_safe_to_start",
+    "readinessChanged": false,
+    "semanticIdentityPromotion": false,
+    "sourcePromotion": false,
+    "stableClaimCount": 0
+  },
+  "classificationValues": [
+    "exact_match",
+    "equivalent_representation_proven",
+    "substantive_rule_divergence_proven",
+    "transcription_defect_resolved",
+    "blocked_source_legibility",
+    "source_rule_not_located",
+    "implementation_only"
+  ],
+  "comparisonSummary": {
+    "blockedCount": 36,
+    "exactNormalizedMatchCount": 44,
+    "exactRawMatchCount": 44,
+    "mismatchCount": 0,
+    "productionOccurrenceCount": 40,
+    "rowCount": 80,
+    "sourceByEdition": {
+      "ming_nanyangtang": {
+        "blockedCount": 36,
+        "comparableCount": 4,
+        "mismatchCount": 0,
+        "normalizedMatchCount": 4,
+        "rawMatchCount": 4,
+        "sourceOccurrenceCount": 40
+      },
+      "nanbei_shanren": {
+        "blockedCount": 0,
+        "comparableCount": 40,
+        "mismatchCount": 0,
+        "normalizedMatchCount": 40,
+        "rawMatchCount": 40,
+        "sourceOccurrenceCount": 40
+      }
+    }
+  },
+  "generatedBy": "scripts/materialize-ziwei-four-transformations-source-evidence-v0.mjs",
+  "observedHeadPolicy": {
+    "canonicalFreshness": "artifact-identity-v1 baseHead/input/payload validation",
+    "currentHeadEqualityGate": false,
+    "observedHead": "stored under artifactIdentity.observedHead as diagnostic only"
+  },
+  "predecessorArtifacts": [
+    "artifacts/ziwei-traditional-source-comparison-v0/complete.json",
+    "artifacts/ziwei-traditional-source-comparison-v0/transcription.json"
+  ],
+  "schemaVersion": "ziwei-four-transformations-source-evidence-v0",
+  "sourceIdentity": {
+    "ming_nanyangtang": {
+      "actualByteSha256": "04e184c4a52cb042dc885c6ccc9135d94ab25de62007506198ee979a33e66bfc",
+      "encrypted": false,
+      "expectedByteSha256": "04e184c4a52cb042dc885c6ccc9135d94ab25de62007506198ee979a33e66bfc",
+      "id": "ming_nanyangtang",
+      "label": "明代南阳堂刊本",
+      "pageCount": 528,
+      "pathOutsideRepository": "/Users/softie/Downloads/新锓希夷陈先生紫微斗数全书.七卷.宋.陈抟撰.明.潘希尹补.明代南阳堂刊本.黑白版.pdf",
+      "readOnly": true,
+      "storedInGit": false
+    },
+    "nanbei_shanren": {
+      "actualByteSha256": "4786a94ab454acdabf9716d7c0db4756dbcbde99a88bc45fda254863c1961023",
+      "encrypted": false,
+      "expectedByteSha256": "4786a94ab454acdabf9716d7c0db4756dbcbde99a88bc45fda254863c1961023",
+      "id": "nanbei_shanren",
+      "label": "南北山人本",
+      "pageCount": 219,
+      "pathOutsideRepository": "/Users/softie/Downloads/命-南北山人_紫微斗数全书.pdf",
+      "readOnly": true,
+      "storedInGit": false
+    }
+  },
+  "sourceOccurrenceSummary": {
+    "production": 40,
+    "source": 80,
+    "sourceByEdition": {
+      "ming_nanyangtang": 40,
+      "nanbei_shanren": 40
+    }
+  },
+  "verdict": "partial_ziwei_four_transformations_evidence_with_explicit_blockers"
+}

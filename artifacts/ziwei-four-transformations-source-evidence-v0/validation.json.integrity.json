@@ -1,0 +1,7 @@
+{
+  "byteLength": 5408,
+  "byteSha256": "8ef7a53017751db6e466bcddf0014c23bc1326bbb559def3e50f1e17ef21eb7c",
+  "path": "artifacts/ziwei-four-transformations-source-evidence-v0/validation.json",
+  "schemaVersion": "artifact-integrity-sidecar-v1",
+  "source": "actual_output_bytes"
+}

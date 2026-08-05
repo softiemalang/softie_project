@@ -1,0 +1,2833 @@
+{
+  "crossEdition": [
+    {
+      "ming": "lianzhen",
+      "nanbei": "lianzhen",
+      "sourceRefs": [
+        {
+          "pdfPage": 152,
+          "printedFolio": null,
+          "sourceId": "ming_nanyangtang",
+          "sourceRef": "ming-p152-甲-four-transformations-example"
+        },
+        {
+          "pdfPage": 17,
+          "printedFolio": "四十二",
+          "sourceId": "nanbei_shanren",
+          "sourceRef": "nanbei-p17-printed-42-four-transformations-table"
+        }
+      ],
+      "stem": "甲",
+      "transformation": "hua_lu",
+      "verdict": "exact_match"
+    },
+    {
+      "ming": "pojun",
+      "nanbei": "pojun",
+      "sourceRefs": [
+        {
+          "pdfPage": 152,
+          "printedFolio": null,
+          "sourceId": "ming_nanyangtang",
+          "sourceRef": "ming-p152-甲-four-transformations-example"
+        },
+        {
+          "pdfPage": 17,
+          "printedFolio": "四十二",
+          "sourceId": "nanbei_shanren",
+          "sourceRef": "nanbei-p17-printed-42-four-transformations-table"
+        }
+      ],
+      "stem": "甲",
+      "transformation": "hua_quan",
+      "verdict": "exact_match"
+    },
+    {
+      "ming": "wugu",
+      "nanbei": "wugu",
+      "sourceRefs": [
+        {
+          "pdfPage": 152,
+          "printedFolio": null,
+          "sourceId": "ming_nanyangtang",
+          "sourceRef": "ming-p152-甲-four-transformations-example"
+        },
+        {
+          "pdfPage": 17,
+          "printedFolio": "四十二",
+          "sourceId": "nanbei_shanren",
+          "sourceRef": "nanbei-p17-printed-42-four-transformations-table"
+        }
+      ],
+      "stem": "甲",
+      "transformation": "hua_ke",
+      "verdict": "exact_match"
+    },
+    {
+      "ming": "taiyang",
+      "nanbei": "taiyang",
+      "sourceRefs": [
+        {
+          "pdfPage": 152,
+          "printedFolio": null,
+          "sourceId": "ming_nanyangtang",
+          "sourceRef": "ming-p152-甲-four-transformations-example"
+        },
+        {
+          "pdfPage": 17,
+          "printedFolio": "四十二",
+          "sourceId": "nanbei_shanren",
+          "sourceRef": "nanbei-p17-printed-42-four-transformations-table"
+        }
+      ],
+      "stem": "甲",
+      "transformation": "hua_ji",
+      "verdict": "exact_match"
+    },
+    {
+      "ming": null,
+      "nanbei": "tianji",
+      "sourceRefs": [
+        {
+          "pdfPage": null,
+          "printedFolio": null,
+          "sourceId": "ming_nanyangtang",
+          "sourceRef": "ming-full-scan-four-transformations-not-located"
+        },
+        {
+          "pdfPage": 17,
+          "printedFolio": "四十二",
+          "sourceId": "nanbei_shanren",
+          "sourceRef": "nanbei-p17-printed-42-four-transformations-table"
+        }
+      ],
+      "stem": "乙",
+      "transformation": "hua_lu",
+      "verdict": "source_rule_not_located"
+    },
+    {
+      "ming": null,
+      "nanbei": "tianliang",
+      "sourceRefs": [
+        {
+          "pdfPage": null,
+          "printedFolio": null,
+          "sourceId": "ming_nanyangtang",
+          "sourceRef": "ming-full-scan-four-transformations-not-located"
+        },
+        {
+          "pdfPage": 17,
+          "printedFolio": "四十二",
+          "sourceId": "nanbei_shanren",
+          "sourceRef": "nanbei-p17-printed-42-four-transformations-table"
+        }
+      ],
+      "stem": "乙",
+      "transformation": "hua_quan",
+      "verdict": "source_rule_not_located"
+    },
+    {
+      "ming": null,
+      "nanbei": "ziwei",
+      "sourceRefs": [
+        {
+          "pdfPage": null,
+          "printedFolio": null,
+          "sourceId": "ming_nanyangtang",
+          "sourceRef": "ming-full-scan-four-transformations-not-located"
+        },
+        {
+          "pdfPage": 17,
+          "printedFolio": "四十二",
+          "sourceId": "nanbei_shanren",
+          "sourceRef": "nanbei-p17-printed-42-four-transformations-table"
+        }
+      ],
+      "stem": "乙",
+      "transformation": "hua_ke",
+      "verdict": "source_rule_not_located"
+    },
+    {
+      "ming": null,
+      "nanbei": "taiyin",
+      "sourceRefs": [
+        {
+          "pdfPage": null,
+          "printedFolio": null,
+          "sourceId": "ming_nanyangtang",
+          "sourceRef": "ming-full-scan-four-transformations-not-located"
+        },
+        {
+          "pdfPage": 17,
+          "printedFolio": "四十二",
+          "sourceId": "nanbei_shanren",
+          "sourceRef": "nanbei-p17-printed-42-four-transformations-table"
+        }
+      ],
+      "stem": "乙",
+      "transformation": "hua_ji",
+      "verdict": "source_rule_not_located"
+    },
+    {
+      "ming": null,
+      "nanbei": "tiandong",
+      "sourceRefs": [
+        {
+          "pdfPage": null,
+          "printedFolio": null,
+          "sourceId": "ming_nanyangtang",
+          "sourceRef": "ming-full-scan-four-transformations-not-located"
+        },
+        {
+          "pdfPage": 17,
+          "printedFolio": "四十二",
+          "sourceId": "nanbei_shanren",
+          "sourceRef": "nanbei-p17-printed-42-four-transformations-table"
+        }
+      ],
+      "stem": "丙",
+      "transformation": "hua_lu",
+      "verdict": "source_rule_not_located"
+    },
+    {
+      "ming": null,
+      "nanbei": "tianji",
+      "sourceRefs": [
+        {
+          "pdfPage": null,
+          "printedFolio": null,
+          "sourceId": "ming_nanyangtang",
+          "sourceRef": "ming-full-scan-four-transformations-not-located"
+        },
+        {
+          "pdfPage": 17,
+          "printedFolio": "四十二",
+          "sourceId": "nanbei_shanren",
+          "sourceRef": "nanbei-p17-printed-42-four-transformations-table"
+        }
+      ],
+      "stem": "丙",
+      "transformation": "hua_quan",
+      "verdict": "source_rule_not_located"
+    },
+    {
+      "ming": null,
+      "nanbei": "wenchang",
+      "sourceRefs": [
+        {
+          "pdfPage": null,
+          "printedFolio": null,
+          "sourceId": "ming_nanyangtang",
+          "sourceRef": "ming-full-scan-four-transformations-not-located"
+        },
+        {
+          "pdfPage": 17,
+          "printedFolio": "四十二",
+          "sourceId": "nanbei_shanren",
+          "sourceRef": "nanbei-p17-printed-42-four-transformations-table"
+        }
+      ],
+      "stem": "丙",
+      "transformation": "hua_ke",
+      "verdict": "source_rule_not_located"
+    },
+    {
+      "ming": null,
+      "nanbei": "lianzhen",
+      "sourceRefs": [
+        {
+          "pdfPage": null,
+          "printedFolio": null,
+          "sourceId": "ming_nanyangtang",
+          "sourceRef": "ming-full-scan-four-transformations-not-located"
+        },
+        {
+          "pdfPage": 17,
+          "printedFolio": "四十二",
+          "sourceId": "nanbei_shanren",
+          "sourceRef": "nanbei-p17-printed-42-four-transformations-table"
+        }
+      ],
+      "stem": "丙",
+      "transformation": "hua_ji",
+      "verdict": "source_rule_not_located"
+    },
+    {
+      "ming": null,
+      "nanbei": "taiyin",
+      "sourceRefs": [
+        {
+          "pdfPage": null,
+          "printedFolio": null,
+          "sourceId": "ming_nanyangtang",
+          "sourceRef": "ming-full-scan-four-transformations-not-located"
+        },
+        {
+          "pdfPage": 17,
+          "printedFolio": "四十二",
+          "sourceId": "nanbei_shanren",
+          "sourceRef": "nanbei-p17-printed-42-four-transformations-table"
+        }
+      ],
+      "stem": "丁",
+      "transformation": "hua_lu",
+      "verdict": "source_rule_not_located"
+    },
+    {
+      "ming": null,
+      "nanbei": "tiandong",
+      "sourceRefs": [
+        {
+          "pdfPage": null,
+          "printedFolio": null,
+          "sourceId": "ming_nanyangtang",
+          "sourceRef": "ming-full-scan-four-transformations-not-located"
+        },
+        {
+          "pdfPage": 17,
+          "printedFolio": "四十二",
+          "sourceId": "nanbei_shanren",
+          "sourceRef": "nanbei-p17-printed-42-four-transformations-table"
+        }
+      ],
+      "stem": "丁",
+      "transformation": "hua_quan",
+      "verdict": "source_rule_not_located"
+    },
+    {
+      "ming": null,
+      "nanbei": "tianji",
+      "sourceRefs": [
+        {
+          "pdfPage": null,
+          "printedFolio": null,
+          "sourceId": "ming_nanyangtang",
+          "sourceRef": "ming-full-scan-four-transformations-not-located"
+        },
+        {
+          "pdfPage": 17,
+          "printedFolio": "四十二",
+          "sourceId": "nanbei_shanren",
+          "sourceRef": "nanbei-p17-printed-42-four-transformations-table"
+        }
+      ],
+      "stem": "丁",
+      "transformation": "hua_ke",
+      "verdict": "source_rule_not_located"
+    },
+    {
+      "ming": null,
+      "nanbei": "jumen",
+      "sourceRefs": [
+        {
+          "pdfPage": null,
+          "printedFolio": null,
+          "sourceId": "ming_nanyangtang",
+          "sourceRef": "ming-full-scan-four-transformations-not-located"
+        },
+        {
+          "pdfPage": 17,
+          "printedFolio": "四十二",
+          "sourceId": "nanbei_shanren",
+          "sourceRef": "nanbei-p17-printed-42-four-transformations-table"
+        }
+      ],
+      "stem": "丁",
+      "transformation": "hua_ji",
+      "verdict": "source_rule_not_located"
+    },
+    {
+      "ming": null,
+      "nanbei": "tanlang",
+      "sourceRefs": [
+        {
+          "pdfPage": null,
+          "printedFolio": null,
+          "sourceId": "ming_nanyangtang",
+          "sourceRef": "ming-full-scan-four-transformations-not-located"
+        },
+        {
+          "pdfPage": 17,
+          "printedFolio": "四十二",
+          "sourceId": "nanbei_shanren",
+          "sourceRef": "nanbei-p17-printed-42-four-transformations-table"
+        }
+      ],
+      "stem": "戊",
+      "transformation": "hua_lu",
+      "verdict": "source_rule_not_located"
+    },
+    {
+      "ming": null,
+      "nanbei": "taiyin",
+      "sourceRefs": [
+        {
+          "pdfPage": null,
+          "printedFolio": null,
+          "sourceId": "ming_nanyangtang",
+          "sourceRef": "ming-full-scan-four-transformations-not-located"
+        },
+        {
+          "pdfPage": 17,
+          "printedFolio": "四十二",
+          "sourceId": "nanbei_shanren",
+          "sourceRef": "nanbei-p17-printed-42-four-transformations-table"
+        }
+      ],
+      "stem": "戊",
+      "transformation": "hua_quan",
+      "verdict": "source_rule_not_located"
+    },
+    {
+      "ming": null,
+      "nanbei": "youbi",
+      "sourceRefs": [
+        {
+          "pdfPage": null,
+          "printedFolio": null,
+          "sourceId": "ming_nanyangtang",
+          "sourceRef": "ming-full-scan-four-transformations-not-located"
+        },
+        {
+          "pdfPage": 17,
+          "printedFolio": "四十二",
+          "sourceId": "nanbei_shanren",
+          "sourceRef": "nanbei-p17-printed-42-four-transformations-table"
+        }
+      ],
+      "stem": "戊",
+      "transformation": "hua_ke",
+      "verdict": "source_rule_not_located"
+    },
+    {
+      "ming": null,
+      "nanbei": "tianji",
+      "sourceRefs": [
+        {
+          "pdfPage": null,
+          "printedFolio": null,
+          "sourceId": "ming_nanyangtang",
+          "sourceRef": "ming-full-scan-four-transformations-not-located"
+        },
+        {
+          "pdfPage": 17,
+          "printedFolio": "四十二",
+          "sourceId": "nanbei_shanren",
+          "sourceRef": "nanbei-p17-printed-42-four-transformations-table"
+        }
+      ],
+      "stem": "戊",
+      "transformation": "hua_ji",
+      "verdict": "source_rule_not_located"
+    },
+    {
+      "ming": null,
+      "nanbei": "wugu",
+      "sourceRefs": [
+        {
+          "pdfPage": null,
+          "printedFolio": null,
+          "sourceId": "ming_nanyangtang",
+          "sourceRef": "ming-full-scan-four-transformations-not-located"
+        },
+        {
+          "pdfPage": 17,
+          "printedFolio": "四十二",
+          "sourceId": "nanbei_shanren",
+          "sourceRef": "nanbei-p17-printed-42-four-transformations-table"
+        }
+      ],
+      "stem": "己",
+      "transformation": "hua_lu",
+      "verdict": "source_rule_not_located"
+    },
+    {
+      "ming": null,
+      "nanbei": "tanlang",
+      "sourceRefs": [
+        {
+          "pdfPage": null,
+          "printedFolio": null,
+          "sourceId": "ming_nanyangtang",
+          "sourceRef": "ming-full-scan-four-transformations-not-located"
+        },
+        {
+          "pdfPage": 17,
+          "printedFolio": "四十二",
+          "sourceId": "nanbei_shanren",
+          "sourceRef": "nanbei-p17-printed-42-four-transformations-table"
+        }
+      ],
+      "stem": "己",
+      "transformation": "hua_quan",
+      "verdict": "source_rule_not_located"
+    },
+    {
+      "ming": null,
+      "nanbei": "tianliang",
+      "sourceRefs": [
+        {
+          "pdfPage": null,
+          "printedFolio": null,
+          "sourceId": "ming_nanyangtang",
+          "sourceRef": "ming-full-scan-four-transformations-not-located"
+        },
+        {
+          "pdfPage": 17,
+          "printedFolio": "四十二",
+          "sourceId": "nanbei_shanren",
+          "sourceRef": "nanbei-p17-printed-42-four-transformations-table"
+        }
+      ],
+      "stem": "己",
+      "transformation": "hua_ke",
+      "verdict": "source_rule_not_located"
+    },
+    {
+      "ming": null,
+      "nanbei": "wengu",
+      "sourceRefs": [
+        {
+          "pdfPage": null,
+          "printedFolio": null,
+          "sourceId": "ming_nanyangtang",
+          "sourceRef": "ming-full-scan-four-transformations-not-located"
+        },
+        {
+          "pdfPage": 17,
+          "printedFolio": "四十二",
+          "sourceId": "nanbei_shanren",
+          "sourceRef": "nanbei-p17-printed-42-four-transformations-table"
+        }
+      ],
+      "stem": "己",
+      "transformation": "hua_ji",
+      "verdict": "source_rule_not_located"
+    },
+    {
+      "ming": null,
+      "nanbei": "taiyang",
+      "sourceRefs": [
+        {
+          "pdfPage": null,
+          "printedFolio": null,
+          "sourceId": "ming_nanyangtang",
+          "sourceRef": "ming-full-scan-four-transformations-not-located"
+        },
+        {
+          "pdfPage": 17,
+          "printedFolio": "四十二",
+          "sourceId": "nanbei_shanren",
+          "sourceRef": "nanbei-p17-printed-42-four-transformations-table"
+        }
+      ],
+      "stem": "庚",
+      "transformation": "hua_lu",
+      "verdict": "source_rule_not_located"
+    },
+    {
+      "ming": null,
+      "nanbei": "wugu",
+      "sourceRefs": [
+        {
+          "pdfPage": null,
+          "printedFolio": null,
+          "sourceId": "ming_nanyangtang",
+          "sourceRef": "ming-full-scan-four-transformations-not-located"
+        },
+        {
+          "pdfPage": 17,
+          "printedFolio": "四十二",
+          "sourceId": "nanbei_shanren",
+          "sourceRef": "nanbei-p17-printed-42-four-transformations-table"
+        }
+      ],
+      "stem": "庚",
+      "transformation": "hua_quan",
+      "verdict": "source_rule_not_located"
+    },
+    {
+      "ming": null,
+      "nanbei": "taiyin",
+      "sourceRefs": [
+        {
+          "pdfPage": null,
+          "printedFolio": null,
+          "sourceId": "ming_nanyangtang",
+          "sourceRef": "ming-full-scan-four-transformations-not-located"
+        },
+        {
+          "pdfPage": 17,
+          "printedFolio": "四十二",
+          "sourceId": "nanbei_shanren",
+          "sourceRef": "nanbei-p17-printed-42-four-transformations-table"
+        }
+      ],
+      "stem": "庚",
+      "transformation": "hua_ke",
+      "verdict": "source_rule_not_located"
+    },
+    {
+      "ming": null,
+      "nanbei": "tiandong",
+      "sourceRefs": [
+        {
+          "pdfPage": null,
+          "printedFolio": null,
+          "sourceId": "ming_nanyangtang",
+          "sourceRef": "ming-full-scan-four-transformations-not-located"
+        },
+        {
+          "pdfPage": 17,
+          "printedFolio": "四十二",
+          "sourceId": "nanbei_shanren",
+          "sourceRef": "nanbei-p17-printed-42-four-transformations-table"
+        }
+      ],
+      "stem": "庚",
+      "transformation": "hua_ji",
+      "verdict": "source_rule_not_located"
+    },
+    {
+      "ming": null,
+      "nanbei": "jumen",
+      "sourceRefs": [
+        {
+          "pdfPage": null,
+          "printedFolio": null,
+          "sourceId": "ming_nanyangtang",
+          "sourceRef": "ming-full-scan-four-transformations-not-located"
+        },
+        {
+          "pdfPage": 17,
+          "printedFolio": "四十二",
+          "sourceId": "nanbei_shanren",
+          "sourceRef": "nanbei-p17-printed-42-four-transformations-table"
+        }
+      ],
+      "stem": "辛",
+      "transformation": "hua_lu",
+      "verdict": "source_rule_not_located"
+    },
+    {
+      "ming": null,
+      "nanbei": "taiyang",
+      "sourceRefs": [
+        {
+          "pdfPage": null,
+          "printedFolio": null,
+          "sourceId": "ming_nanyangtang",
+          "sourceRef": "ming-full-scan-four-transformations-not-located"
+        },
+        {
+          "pdfPage": 17,
+          "printedFolio": "四十二",
+          "sourceId": "nanbei_shanren",
+          "sourceRef": "nanbei-p17-printed-42-four-transformations-table"
+        }
+      ],
+      "stem": "辛",
+      "transformation": "hua_quan",
+      "verdict": "source_rule_not_located"
+    },
+    {
+      "ming": null,
+      "nanbei": "wengu",
+      "sourceRefs": [
+        {
+          "pdfPage": null,
+          "printedFolio": null,
+          "sourceId": "ming_nanyangtang",
+          "sourceRef": "ming-full-scan-four-transformations-not-located"
+        },
+        {
+          "pdfPage": 17,
+          "printedFolio": "四十二",
+          "sourceId": "nanbei_shanren",
+          "sourceRef": "nanbei-p17-printed-42-four-transformations-table"
+        }
+      ],
+      "stem": "辛",
+      "transformation": "hua_ke",
+      "verdict": "source_rule_not_located"
+    },
+    {
+      "ming": null,
+      "nanbei": "wenchang",
+      "sourceRefs": [
+        {
+          "pdfPage": null,
+          "printedFolio": null,
+          "sourceId": "ming_nanyangtang",
+          "sourceRef": "ming-full-scan-four-transformations-not-located"
+        },
+        {
+          "pdfPage": 17,
+          "printedFolio": "四十二",
+          "sourceId": "nanbei_shanren",
+          "sourceRef": "nanbei-p17-printed-42-four-transformations-table"
+        }
+      ],
+      "stem": "辛",
+      "transformation": "hua_ji",
+      "verdict": "source_rule_not_located"
+    },
+    {
+      "ming": null,
+      "nanbei": "tianliang",
+      "sourceRefs": [
+        {
+          "pdfPage": null,
+          "printedFolio": null,
+          "sourceId": "ming_nanyangtang",
+          "sourceRef": "ming-full-scan-four-transformations-not-located"
+        },
+        {
+          "pdfPage": 17,
+          "printedFolio": "四十二",
+          "sourceId": "nanbei_shanren",
+          "sourceRef": "nanbei-p17-printed-42-four-transformations-table"
+        }
+      ],
+      "stem": "壬",
+      "transformation": "hua_lu",
+      "verdict": "source_rule_not_located"
+    },
+    {
+      "ming": null,
+      "nanbei": "ziwei",
+      "sourceRefs": [
+        {
+          "pdfPage": null,
+          "printedFolio": null,
+          "sourceId": "ming_nanyangtang",
+          "sourceRef": "ming-full-scan-four-transformations-not-located"
+        },
+        {
+          "pdfPage": 17,
+          "printedFolio": "四十二",
+          "sourceId": "nanbei_shanren",
+          "sourceRef": "nanbei-p17-printed-42-four-transformations-table"
+        }
+      ],
+      "stem": "壬",
+      "transformation": "hua_quan",
+      "verdict": "source_rule_not_located"
+    },
+    {
+      "ming": null,
+      "nanbei": "tianfu",
+      "sourceRefs": [
+        {
+          "pdfPage": null,
+          "printedFolio": null,
+          "sourceId": "ming_nanyangtang",
+          "sourceRef": "ming-full-scan-four-transformations-not-located"
+        },
+        {
+          "pdfPage": 17,
+          "printedFolio": "四十二",
+          "sourceId": "nanbei_shanren",
+          "sourceRef": "nanbei-p17-printed-42-four-transformations-table"
+        }
+      ],
+      "stem": "壬",
+      "transformation": "hua_ke",
+      "verdict": "source_rule_not_located"
+    },
+    {
+      "ming": null,
+      "nanbei": "wugu",
+      "sourceRefs": [
+        {
+          "pdfPage": null,
+          "printedFolio": null,
+          "sourceId": "ming_nanyangtang",
+          "sourceRef": "ming-full-scan-four-transformations-not-located"
+        },
+        {
+          "pdfPage": 17,
+          "printedFolio": "四十二",
+          "sourceId": "nanbei_shanren",
+          "sourceRef": "nanbei-p17-printed-42-four-transformations-table"
+        }
+      ],
+      "stem": "壬",
+      "transformation": "hua_ji",
+      "verdict": "source_rule_not_located"
+    },
+    {
+      "ming": null,
+      "nanbei": "pojun",
+      "sourceRefs": [
+        {
+          "pdfPage": null,
+          "printedFolio": null,
+          "sourceId": "ming_nanyangtang",
+          "sourceRef": "ming-full-scan-four-transformations-not-located"
+        },
+        {
+          "pdfPage": 17,
+          "printedFolio": "四十二",
+          "sourceId": "nanbei_shanren",
+          "sourceRef": "nanbei-p17-printed-42-four-transformations-table"
+        }
+      ],
+      "stem": "癸",
+      "transformation": "hua_lu",
+      "verdict": "source_rule_not_located"
+    },
+    {
+      "ming": null,
+      "nanbei": "jumen",
+      "sourceRefs": [
+        {
+          "pdfPage": null,
+          "printedFolio": null,
+          "sourceId": "ming_nanyangtang",
+          "sourceRef": "ming-full-scan-four-transformations-not-located"
+        },
+        {
+          "pdfPage": 17,
+          "printedFolio": "四十二",
+          "sourceId": "nanbei_shanren",
+          "sourceRef": "nanbei-p17-printed-42-four-transformations-table"
+        }
+      ],
+      "stem": "癸",
+      "transformation": "hua_quan",
+      "verdict": "source_rule_not_located"
+    },
+    {
+      "ming": null,
+      "nanbei": "taiyin",
+      "sourceRefs": [
+        {
+          "pdfPage": null,
+          "printedFolio": null,
+          "sourceId": "ming_nanyangtang",
+          "sourceRef": "ming-full-scan-four-transformations-not-located"
+        },
+        {
+          "pdfPage": 17,
+          "printedFolio": "四十二",
+          "sourceId": "nanbei_shanren",
+          "sourceRef": "nanbei-p17-printed-42-four-transformations-table"
+        }
+      ],
+      "stem": "癸",
+      "transformation": "hua_ke",
+      "verdict": "source_rule_not_located"
+    },
+    {
+      "ming": null,
+      "nanbei": "tanlang",
+      "sourceRefs": [
+        {
+          "pdfPage": null,
+          "printedFolio": null,
+          "sourceId": "ming_nanyangtang",
+          "sourceRef": "ming-full-scan-four-transformations-not-located"
+        },
+        {
+          "pdfPage": 17,
+          "printedFolio": "四十二",
+          "sourceId": "nanbei_shanren",
+          "sourceRef": "nanbei-p17-printed-42-four-transformations-table"
+        }
+      ],
+      "stem": "癸",
+      "transformation": "hua_ji",
+      "verdict": "source_rule_not_located"
+    }
+  ],
+  "editionVerdicts": [
+    {
+      "edition": "ming_nanyangtang",
+      "stats": {
+        "blockedCount": 36,
+        "comparableCount": 4,
+        "mismatchCount": 0,
+        "normalizedMatchCount": 4,
+        "rawMatchCount": 4,
+        "sourceOccurrenceCount": 40
+      },
+      "verdict": "source_rule_not_located"
+    },
+    {
+      "edition": "nanbei_shanren",
+      "stats": {
+        "blockedCount": 0,
+        "comparableCount": 40,
+        "mismatchCount": 0,
+        "normalizedMatchCount": 40,
+        "rawMatchCount": 40,
+        "sourceOccurrenceCount": 40
+      },
+      "verdict": "exact_match"
+    }
+  ],
+  "minimumCounterexamples": [
+    {
+      "edition": "ming_nanyangtang",
+      "kind": "source_blocker",
+      "note": "first unlocated source cell; production value is retained but cannot be called a source match",
+      "sourceRef": "ming-full-scan-four-transformations-not-located",
+      "stem": "乙",
+      "transformation": "hua_lu"
+    }
+  ],
+  "rows": [
+    {
+      "comparable": true,
+      "comparisonId": "nanbei_shanren:甲:hua_lu",
+      "edition": "nanbei_shanren",
+      "minimalCounterexample": null,
+      "normalizedMatch": true,
+      "productionNormalizedStarId": "lianzhen",
+      "productionOccurrenceId": "production:甲:hua_lu",
+      "productionRawTargetLabel": "廉貞",
+      "rawMatch": true,
+      "sourceNormalizedStarId": "lianzhen",
+      "sourceRawTarget": "廉貞",
+      "sourceRefs": [
+        {
+          "pdfPage": 17,
+          "printedFolio": "四十二",
+          "sourceId": "nanbei_shanren",
+          "sourceRef": "nanbei-p17-printed-42-four-transformations-table"
+        }
+      ],
+      "stem": "甲",
+      "transformation": "hua_lu",
+      "verdict": "exact_match"
+    },
+    {
+      "comparable": true,
+      "comparisonId": "nanbei_shanren:甲:hua_quan",
+      "edition": "nanbei_shanren",
+      "minimalCounterexample": null,
+      "normalizedMatch": true,
+      "productionNormalizedStarId": "pojun",
+      "productionOccurrenceId": "production:甲:hua_quan",
+      "productionRawTargetLabel": "破軍",
+      "rawMatch": true,
+      "sourceNormalizedStarId": "pojun",
+      "sourceRawTarget": "破軍",
+      "sourceRefs": [
+        {
+          "pdfPage": 17,
+          "printedFolio": "四十二",
+          "sourceId": "nanbei_shanren",
+          "sourceRef": "nanbei-p17-printed-42-four-transformations-table"
+        }
+      ],
+      "stem": "甲",
+      "transformation": "hua_quan",
+      "verdict": "exact_match"
+    },
+    {
+      "comparable": true,
+      "comparisonId": "nanbei_shanren:甲:hua_ke",
+      "edition": "nanbei_shanren",
+      "minimalCounterexample": null,
+      "normalizedMatch": true,
+      "productionNormalizedStarId": "wugu",
+      "productionOccurrenceId": "production:甲:hua_ke",
+      "productionRawTargetLabel": "武曲",
+      "rawMatch": true,
+      "sourceNormalizedStarId": "wugu",
+      "sourceRawTarget": "武曲",
+      "sourceRefs": [
+        {
+          "pdfPage": 17,
+          "printedFolio": "四十二",
+          "sourceId": "nanbei_shanren",
+          "sourceRef": "nanbei-p17-printed-42-four-transformations-table"
+        }
+      ],
+      "stem": "甲",
+      "transformation": "hua_ke",
+      "verdict": "exact_match"
+    },
+    {
+      "comparable": true,
+      "comparisonId": "nanbei_shanren:甲:hua_ji",
+      "edition": "nanbei_shanren",
+      "minimalCounterexample": null,
+      "normalizedMatch": true,
+      "productionNormalizedStarId": "taiyang",
+      "productionOccurrenceId": "production:甲:hua_ji",
+      "productionRawTargetLabel": "太陽",
+      "rawMatch": true,
+      "sourceNormalizedStarId": "taiyang",
+      "sourceRawTarget": "太陽",
+      "sourceRefs": [
+        {
+          "pdfPage": 17,
+          "printedFolio": "四十二",
+          "sourceId": "nanbei_shanren",
+          "sourceRef": "nanbei-p17-printed-42-four-transformations-table"
+        }
+      ],
+      "stem": "甲",
+      "transformation": "hua_ji",
+      "verdict": "exact_match"
+    },
+    {
+      "comparable": true,
+      "comparisonId": "nanbei_shanren:乙:hua_lu",
+      "edition": "nanbei_shanren",
+      "minimalCounterexample": null,
+      "normalizedMatch": true,
+      "productionNormalizedStarId": "tianji",
+      "productionOccurrenceId": "production:乙:hua_lu",
+      "productionRawTargetLabel": "天機",
+      "rawMatch": true,
+      "sourceNormalizedStarId": "tianji",
+      "sourceRawTarget": "天機",
+      "sourceRefs": [
+        {
+          "pdfPage": 17,
+          "printedFolio": "四十二",
+          "sourceId": "nanbei_shanren",
+          "sourceRef": "nanbei-p17-printed-42-four-transformations-table"
+        }
+      ],
+      "stem": "乙",
+      "transformation": "hua_lu",
+      "verdict": "exact_match"
+    },
+    {
+      "comparable": true,
+      "comparisonId": "nanbei_shanren:乙:hua_quan",
+      "edition": "nanbei_shanren",
+      "minimalCounterexample": null,
+      "normalizedMatch": true,
+      "productionNormalizedStarId": "tianliang",
+      "productionOccurrenceId": "production:乙:hua_quan",
+      "productionRawTargetLabel": "天梁",
+      "rawMatch": true,
+      "sourceNormalizedStarId": "tianliang",
+      "sourceRawTarget": "天梁",
+      "sourceRefs": [
+        {
+          "pdfPage": 17,
+          "printedFolio": "四十二",
+          "sourceId": "nanbei_shanren",
+          "sourceRef": "nanbei-p17-printed-42-four-transformations-table"
+        }
+      ],
+      "stem": "乙",
+      "transformation": "hua_quan",
+      "verdict": "exact_match"
+    },
+    {
+      "comparable": true,
+      "comparisonId": "nanbei_shanren:乙:hua_ke",
+      "edition": "nanbei_shanren",
+      "minimalCounterexample": null,
+      "normalizedMatch": true,
+      "productionNormalizedStarId": "ziwei",
+      "productionOccurrenceId": "production:乙:hua_ke",
+      "productionRawTargetLabel": "紫微",
+      "rawMatch": true,
+      "sourceNormalizedStarId": "ziwei",
+      "sourceRawTarget": "紫微",
+      "sourceRefs": [
+        {
+          "pdfPage": 17,
+          "printedFolio": "四十二",
+          "sourceId": "nanbei_shanren",
+          "sourceRef": "nanbei-p17-printed-42-four-transformations-table"
+        }
+      ],
+      "stem": "乙",
+      "transformation": "hua_ke",
+      "verdict": "exact_match"
+    },
+    {
+      "comparable": true,
+      "comparisonId": "nanbei_shanren:乙:hua_ji",
+      "edition": "nanbei_shanren",
+      "minimalCounterexample": null,
+      "normalizedMatch": true,
+      "productionNormalizedStarId": "taiyin",
+      "productionOccurrenceId": "production:乙:hua_ji",
+      "productionRawTargetLabel": "太陰",
+      "rawMatch": true,
+      "sourceNormalizedStarId": "taiyin",
+      "sourceRawTarget": "太陰",
+      "sourceRefs": [
+        {
+          "pdfPage": 17,
+          "printedFolio": "四十二",
+          "sourceId": "nanbei_shanren",
+          "sourceRef": "nanbei-p17-printed-42-four-transformations-table"
+        }
+      ],
+      "stem": "乙",
+      "transformation": "hua_ji",
+      "verdict": "exact_match"
+    },
+    {
+      "comparable": true,
+      "comparisonId": "nanbei_shanren:丙:hua_lu",
+      "edition": "nanbei_shanren",
+      "minimalCounterexample": null,
+      "normalizedMatch": true,
+      "productionNormalizedStarId": "tiandong",
+      "productionOccurrenceId": "production:丙:hua_lu",
+      "productionRawTargetLabel": "天同",
+      "rawMatch": true,
+      "sourceNormalizedStarId": "tiandong",
+      "sourceRawTarget": "天同",
+      "sourceRefs": [
+        {
+          "pdfPage": 17,
+          "printedFolio": "四十二",
+          "sourceId": "nanbei_shanren",
+          "sourceRef": "nanbei-p17-printed-42-four-transformations-table"
+        }
+      ],
+      "stem": "丙",
+      "transformation": "hua_lu",
+      "verdict": "exact_match"
+    },
+    {
+      "comparable": true,
+      "comparisonId": "nanbei_shanren:丙:hua_quan",
+      "edition": "nanbei_shanren",
+      "minimalCounterexample": null,
+      "normalizedMatch": true,
+      "productionNormalizedStarId": "tianji",
+      "productionOccurrenceId": "production:丙:hua_quan",
+      "productionRawTargetLabel": "天機",
+      "rawMatch": true,
+      "sourceNormalizedStarId": "tianji",
+      "sourceRawTarget": "天機",
+      "sourceRefs": [
+        {
+          "pdfPage": 17,
+          "printedFolio": "四十二",
+          "sourceId": "nanbei_shanren",
+          "sourceRef": "nanbei-p17-printed-42-four-transformations-table"
+        }
+      ],
+      "stem": "丙",
+      "transformation": "hua_quan",
+      "verdict": "exact_match"
+    },
+    {
+      "comparable": true,
+      "comparisonId": "nanbei_shanren:丙:hua_ke",
+      "edition": "nanbei_shanren",
+      "minimalCounterexample": null,
+      "normalizedMatch": true,
+      "productionNormalizedStarId": "wenchang",
+      "productionOccurrenceId": "production:丙:hua_ke",
+      "productionRawTargetLabel": "文昌",
+      "rawMatch": true,
+      "sourceNormalizedStarId": "wenchang",
+      "sourceRawTarget": "文昌",
+      "sourceRefs": [
+        {
+          "pdfPage": 17,
+          "printedFolio": "四十二",
+          "sourceId": "nanbei_shanren",
+          "sourceRef": "nanbei-p17-printed-42-four-transformations-table"
+        }
+      ],
+      "stem": "丙",
+      "transformation": "hua_ke",
+      "verdict": "exact_match"
+    },
+    {
+      "comparable": true,
+      "comparisonId": "nanbei_shanren:丙:hua_ji",
+      "edition": "nanbei_shanren",
+      "minimalCounterexample": null,
+      "normalizedMatch": true,
+      "productionNormalizedStarId": "lianzhen",
+      "productionOccurrenceId": "production:丙:hua_ji",
+      "productionRawTargetLabel": "廉貞",
+      "rawMatch": true,
+      "sourceNormalizedStarId": "lianzhen",
+      "sourceRawTarget": "廉貞",
+      "sourceRefs": [
+        {
+          "pdfPage": 17,
+          "printedFolio": "四十二",
+          "sourceId": "nanbei_shanren",
+          "sourceRef": "nanbei-p17-printed-42-four-transformations-table"
+        }
+      ],
+      "stem": "丙",
+      "transformation": "hua_ji",
+      "verdict": "exact_match"
+    },
+    {
+      "comparable": true,
+      "comparisonId": "nanbei_shanren:丁:hua_lu",
+      "edition": "nanbei_shanren",
+      "minimalCounterexample": null,
+      "normalizedMatch": true,
+      "productionNormalizedStarId": "taiyin",
+      "productionOccurrenceId": "production:丁:hua_lu",
+      "productionRawTargetLabel": "太陰",
+      "rawMatch": true,
+      "sourceNormalizedStarId": "taiyin",
+      "sourceRawTarget": "太陰",
+      "sourceRefs": [
+        {
+          "pdfPage": 17,
+          "printedFolio": "四十二",
+          "sourceId": "nanbei_shanren",
+          "sourceRef": "nanbei-p17-printed-42-four-transformations-table"
+        }
+      ],
+      "stem": "丁",
+      "transformation": "hua_lu",
+      "verdict": "exact_match"
+    },
+    {
+      "comparable": true,
+      "comparisonId": "nanbei_shanren:丁:hua_quan",
+      "edition": "nanbei_shanren",
+      "minimalCounterexample": null,
+      "normalizedMatch": true,
+      "productionNormalizedStarId": "tiandong",
+      "productionOccurrenceId": "production:丁:hua_quan",
+      "productionRawTargetLabel": "天同",
+      "rawMatch": true,
+      "sourceNormalizedStarId": "tiandong",
+      "sourceRawTarget": "天同",
+      "sourceRefs": [
+        {
+          "pdfPage": 17,
+          "printedFolio": "四十二",
+          "sourceId": "nanbei_shanren",
+          "sourceRef": "nanbei-p17-printed-42-four-transformations-table"
+        }
+      ],
+      "stem": "丁",
+      "transformation": "hua_quan",
+      "verdict": "exact_match"
+    },
+    {
+      "comparable": true,
+      "comparisonId": "nanbei_shanren:丁:hua_ke",
+      "edition": "nanbei_shanren",
+      "minimalCounterexample": null,
+      "normalizedMatch": true,
+      "productionNormalizedStarId": "tianji",
+      "productionOccurrenceId": "production:丁:hua_ke",
+      "productionRawTargetLabel": "天機",
+      "rawMatch": true,
+      "sourceNormalizedStarId": "tianji",
+      "sourceRawTarget": "天機",
+      "sourceRefs": [
+        {
+          "pdfPage": 17,
+          "printedFolio": "四十二",
+          "sourceId": "nanbei_shanren",
+          "sourceRef": "nanbei-p17-printed-42-four-transformations-table"
+        }
+      ],
+      "stem": "丁",
+      "transformation": "hua_ke",
+      "verdict": "exact_match"
+    },
+    {
+      "comparable": true,
+      "comparisonId": "nanbei_shanren:丁:hua_ji",
+      "edition": "nanbei_shanren",
+      "minimalCounterexample": null,
+      "normalizedMatch": true,
+      "productionNormalizedStarId": "jumen",
+      "productionOccurrenceId": "production:丁:hua_ji",
+      "productionRawTargetLabel": "巨門",
+      "rawMatch": true,
+      "sourceNormalizedStarId": "jumen",
+      "sourceRawTarget": "巨門",
+      "sourceRefs": [
+        {
+          "pdfPage": 17,
+          "printedFolio": "四十二",
+          "sourceId": "nanbei_shanren",
+          "sourceRef": "nanbei-p17-printed-42-four-transformations-table"
+        }
+      ],
+      "stem": "丁",
+      "transformation": "hua_ji",
+      "verdict": "exact_match"
+    },
+    {
+      "comparable": true,
+      "comparisonId": "nanbei_shanren:戊:hua_lu",
+      "edition": "nanbei_shanren",
+      "minimalCounterexample": null,
+      "normalizedMatch": true,
+      "productionNormalizedStarId": "tanlang",
+      "productionOccurrenceId": "production:戊:hua_lu",
+      "productionRawTargetLabel": "貪狼",
+      "rawMatch": true,
+      "sourceNormalizedStarId": "tanlang",
+      "sourceRawTarget": "貪狼",
+      "sourceRefs": [
+        {
+          "pdfPage": 17,
+          "printedFolio": "四十二",
+          "sourceId": "nanbei_shanren",
+          "sourceRef": "nanbei-p17-printed-42-four-transformations-table"
+        }
+      ],
+      "stem": "戊",
+      "transformation": "hua_lu",
+      "verdict": "exact_match"
+    },
+    {
+      "comparable": true,
+      "comparisonId": "nanbei_shanren:戊:hua_quan",
+      "edition": "nanbei_shanren",
+      "minimalCounterexample": null,
+      "normalizedMatch": true,
+      "productionNormalizedStarId": "taiyin",
+      "productionOccurrenceId": "production:戊:hua_quan",
+      "productionRawTargetLabel": "太陰",
+      "rawMatch": true,
+      "sourceNormalizedStarId": "taiyin",
+      "sourceRawTarget": "太陰",
+      "sourceRefs": [
+        {
+          "pdfPage": 17,
+          "printedFolio": "四十二",
+          "sourceId": "nanbei_shanren",
+          "sourceRef": "nanbei-p17-printed-42-four-transformations-table"
+        }
+      ],
+      "stem": "戊",
+      "transformation": "hua_quan",
+      "verdict": "exact_match"
+    },
+    {
+      "comparable": true,
+      "comparisonId": "nanbei_shanren:戊:hua_ke",
+      "edition": "nanbei_shanren",
+      "minimalCounterexample": null,
+      "normalizedMatch": true,
+      "productionNormalizedStarId": "youbi",
+      "productionOccurrenceId": "production:戊:hua_ke",
+      "productionRawTargetLabel": "右弼",
+      "rawMatch": true,
+      "sourceNormalizedStarId": "youbi",
+      "sourceRawTarget": "右弼",
+      "sourceRefs": [
+        {
+          "pdfPage": 17,
+          "printedFolio": "四十二",
+          "sourceId": "nanbei_shanren",
+          "sourceRef": "nanbei-p17-printed-42-four-transformations-table"
+        }
+      ],
+      "stem": "戊",
+      "transformation": "hua_ke",
+      "verdict": "exact_match"
+    },
+    {
+      "comparable": true,
+      "comparisonId": "nanbei_shanren:戊:hua_ji",
+      "edition": "nanbei_shanren",
+      "minimalCounterexample": null,
+      "normalizedMatch": true,
+      "productionNormalizedStarId": "tianji",
+      "productionOccurrenceId": "production:戊:hua_ji",
+      "productionRawTargetLabel": "天機",
+      "rawMatch": true,
+      "sourceNormalizedStarId": "tianji",
+      "sourceRawTarget": "天機",
+      "sourceRefs": [
+        {
+          "pdfPage": 17,
+          "printedFolio": "四十二",
+          "sourceId": "nanbei_shanren",
+          "sourceRef": "nanbei-p17-printed-42-four-transformations-table"
+        }
+      ],
+      "stem": "戊",
+      "transformation": "hua_ji",
+      "verdict": "exact_match"
+    },
+    {
+      "comparable": true,
+      "comparisonId": "nanbei_shanren:己:hua_lu",
+      "edition": "nanbei_shanren",
+      "minimalCounterexample": null,
+      "normalizedMatch": true,
+      "productionNormalizedStarId": "wugu",
+      "productionOccurrenceId": "production:己:hua_lu",
+      "productionRawTargetLabel": "武曲",
+      "rawMatch": true,
+      "sourceNormalizedStarId": "wugu",
+      "sourceRawTarget": "武曲",
+      "sourceRefs": [
+        {
+          "pdfPage": 17,
+          "printedFolio": "四十二",
+          "sourceId": "nanbei_shanren",
+          "sourceRef": "nanbei-p17-printed-42-four-transformations-table"
+        }
+      ],
+      "stem": "己",
+      "transformation": "hua_lu",
+      "verdict": "exact_match"
+    },
+    {
+      "comparable": true,
+      "comparisonId": "nanbei_shanren:己:hua_quan",
+      "edition": "nanbei_shanren",
+      "minimalCounterexample": null,
+      "normalizedMatch": true,
+      "productionNormalizedStarId": "tanlang",
+      "productionOccurrenceId": "production:己:hua_quan",
+      "productionRawTargetLabel": "貪狼",
+      "rawMatch": true,
+      "sourceNormalizedStarId": "tanlang",
+      "sourceRawTarget": "貪狼",
+      "sourceRefs": [
+        {
+          "pdfPage": 17,
+          "printedFolio": "四十二",
+          "sourceId": "nanbei_shanren",
+          "sourceRef": "nanbei-p17-printed-42-four-transformations-table"
+        }
+      ],
+      "stem": "己",
+      "transformation": "hua_quan",
+      "verdict": "exact_match"
+    },
+    {
+      "comparable": true,
+      "comparisonId": "nanbei_shanren:己:hua_ke",
+      "edition": "nanbei_shanren",
+      "minimalCounterexample": null,
+      "normalizedMatch": true,
+      "productionNormalizedStarId": "tianliang",
+      "productionOccurrenceId": "production:己:hua_ke",
+      "productionRawTargetLabel": "天梁",
+      "rawMatch": true,
+      "sourceNormalizedStarId": "tianliang",
+      "sourceRawTarget": "天梁",
+      "sourceRefs": [
+        {
+          "pdfPage": 17,
+          "printedFolio": "四十二",
+          "sourceId": "nanbei_shanren",
+          "sourceRef": "nanbei-p17-printed-42-four-transformations-table"
+        }
+      ],
+      "stem": "己",
+      "transformation": "hua_ke",
+      "verdict": "exact_match"
+    },
+    {
+      "comparable": true,
+      "comparisonId": "nanbei_shanren:己:hua_ji",
+      "edition": "nanbei_shanren",
+      "minimalCounterexample": null,
+      "normalizedMatch": true,
+      "productionNormalizedStarId": "wengu",
+      "productionOccurrenceId": "production:己:hua_ji",
+      "productionRawTargetLabel": "文曲",
+      "rawMatch": true,
+      "sourceNormalizedStarId": "wengu",
+      "sourceRawTarget": "文曲",
+      "sourceRefs": [
+        {
+          "pdfPage": 17,
+          "printedFolio": "四十二",
+          "sourceId": "nanbei_shanren",
+          "sourceRef": "nanbei-p17-printed-42-four-transformations-table"
+        }
+      ],
+      "stem": "己",
+      "transformation": "hua_ji",
+      "verdict": "exact_match"
+    },
+    {
+      "comparable": true,
+      "comparisonId": "nanbei_shanren:庚:hua_lu",
+      "edition": "nanbei_shanren",
+      "minimalCounterexample": null,
+      "normalizedMatch": true,
+      "productionNormalizedStarId": "taiyang",
+      "productionOccurrenceId": "production:庚:hua_lu",
+      "productionRawTargetLabel": "太陽",
+      "rawMatch": true,
+      "sourceNormalizedStarId": "taiyang",
+      "sourceRawTarget": "太陽",
+      "sourceRefs": [
+        {
+          "pdfPage": 17,
+          "printedFolio": "四十二",
+          "sourceId": "nanbei_shanren",
+          "sourceRef": "nanbei-p17-printed-42-four-transformations-table"
+        }
+      ],
+      "stem": "庚",
+      "transformation": "hua_lu",
+      "verdict": "exact_match"
+    },
+    {
+      "comparable": true,
+      "comparisonId": "nanbei_shanren:庚:hua_quan",
+      "edition": "nanbei_shanren",
+      "minimalCounterexample": null,
+      "normalizedMatch": true,
+      "productionNormalizedStarId": "wugu",
+      "productionOccurrenceId": "production:庚:hua_quan",
+      "productionRawTargetLabel": "武曲",
+      "rawMatch": true,
+      "sourceNormalizedStarId": "wugu",
+      "sourceRawTarget": "武曲",
+      "sourceRefs": [
+        {
+          "pdfPage": 17,
+          "printedFolio": "四十二",
+          "sourceId": "nanbei_shanren",
+          "sourceRef": "nanbei-p17-printed-42-four-transformations-table"
+        }
+      ],
+      "stem": "庚",
+      "transformation": "hua_quan",
+      "verdict": "exact_match"
+    },
+    {
+      "comparable": true,
+      "comparisonId": "nanbei_shanren:庚:hua_ke",
+      "edition": "nanbei_shanren",
+      "minimalCounterexample": null,
+      "normalizedMatch": true,
+      "productionNormalizedStarId": "taiyin",
+      "productionOccurrenceId": "production:庚:hua_ke",
+      "productionRawTargetLabel": "太陰",
+      "rawMatch": true,
+      "sourceNormalizedStarId": "taiyin",
+      "sourceRawTarget": "太陰",
+      "sourceRefs": [
+        {
+          "pdfPage": 17,
+          "printedFolio": "四十二",
+          "sourceId": "nanbei_shanren",
+          "sourceRef": "nanbei-p17-printed-42-four-transformations-table"
+        }
+      ],
+      "stem": "庚",
+      "transformation": "hua_ke",
+      "verdict": "exact_match"
+    },
+    {
+      "comparable": true,
+      "comparisonId": "nanbei_shanren:庚:hua_ji",
+      "edition": "nanbei_shanren",
+      "minimalCounterexample": null,
+      "normalizedMatch": true,
+      "productionNormalizedStarId": "tiandong",
+      "productionOccurrenceId": "production:庚:hua_ji",
+      "productionRawTargetLabel": "天同",
+      "rawMatch": true,
+      "sourceNormalizedStarId": "tiandong",
+      "sourceRawTarget": "天同",
+      "sourceRefs": [
+        {
+          "pdfPage": 17,
+          "printedFolio": "四十二",
+          "sourceId": "nanbei_shanren",
+          "sourceRef": "nanbei-p17-printed-42-four-transformations-table"
+        }
+      ],
+      "stem": "庚",
+      "transformation": "hua_ji",
+      "verdict": "exact_match"
+    },
+    {
+      "comparable": true,
+      "comparisonId": "nanbei_shanren:辛:hua_lu",
+      "edition": "nanbei_shanren",
+      "minimalCounterexample": null,
+      "normalizedMatch": true,
+      "productionNormalizedStarId": "jumen",
+      "productionOccurrenceId": "production:辛:hua_lu",
+      "productionRawTargetLabel": "巨門",
+      "rawMatch": true,
+      "sourceNormalizedStarId": "jumen",
+      "sourceRawTarget": "巨門",
+      "sourceRefs": [
+        {
+          "pdfPage": 17,
+          "printedFolio": "四十二",
+          "sourceId": "nanbei_shanren",
+          "sourceRef": "nanbei-p17-printed-42-four-transformations-table"
+        }
+      ],
+      "stem": "辛",
+      "transformation": "hua_lu",
+      "verdict": "exact_match"
+    },
+    {
+      "comparable": true,
+      "comparisonId": "nanbei_shanren:辛:hua_quan",
+      "edition": "nanbei_shanren",
+      "minimalCounterexample": null,
+      "normalizedMatch": true,
+      "productionNormalizedStarId": "taiyang",
+      "productionOccurrenceId": "production:辛:hua_quan",
+      "productionRawTargetLabel": "太陽",
+      "rawMatch": true,
+      "sourceNormalizedStarId": "taiyang",
+      "sourceRawTarget": "太陽",
+      "sourceRefs": [
+        {
+          "pdfPage": 17,
+          "printedFolio": "四十二",
+          "sourceId": "nanbei_shanren",
+          "sourceRef": "nanbei-p17-printed-42-four-transformations-table"
+        }
+      ],
+      "stem": "辛",
+      "transformation": "hua_quan",
+      "verdict": "exact_match"
+    },
+    {
+      "comparable": true,
+      "comparisonId": "nanbei_shanren:辛:hua_ke",
+      "edition": "nanbei_shanren",
+      "minimalCounterexample": null,
+      "normalizedMatch": true,
+      "productionNormalizedStarId": "wengu",
+      "productionOccurrenceId": "production:辛:hua_ke",
+      "productionRawTargetLabel": "文曲",
+      "rawMatch": true,
+      "sourceNormalizedStarId": "wengu",
+      "sourceRawTarget": "文曲",
+      "sourceRefs": [
+        {
+          "pdfPage": 17,
+          "printedFolio": "四十二",
+          "sourceId": "nanbei_shanren",
+          "sourceRef": "nanbei-p17-printed-42-four-transformations-table"
+        }
+      ],
+      "stem": "辛",
+      "transformation": "hua_ke",
+      "verdict": "exact_match"
+    },
+    {
+      "comparable": true,
+      "comparisonId": "nanbei_shanren:辛:hua_ji",
+      "edition": "nanbei_shanren",
+      "minimalCounterexample": null,
+      "normalizedMatch": true,
+      "productionNormalizedStarId": "wenchang",
+      "productionOccurrenceId": "production:辛:hua_ji",
+      "productionRawTargetLabel": "文昌",
+      "rawMatch": true,
+      "sourceNormalizedStarId": "wenchang",
+      "sourceRawTarget": "文昌",
+      "sourceRefs": [
+        {
+          "pdfPage": 17,
+          "printedFolio": "四十二",
+          "sourceId": "nanbei_shanren",
+          "sourceRef": "nanbei-p17-printed-42-four-transformations-table"
+        }
+      ],
+      "stem": "辛",
+      "transformation": "hua_ji",
+      "verdict": "exact_match"
+    },
+    {
+      "comparable": true,
+      "comparisonId": "nanbei_shanren:壬:hua_lu",
+      "edition": "nanbei_shanren",
+      "minimalCounterexample": null,
+      "normalizedMatch": true,
+      "productionNormalizedStarId": "tianliang",
+      "productionOccurrenceId": "production:壬:hua_lu",
+      "productionRawTargetLabel": "天梁",
+      "rawMatch": true,
+      "sourceNormalizedStarId": "tianliang",
+      "sourceRawTarget": "天梁",
+      "sourceRefs": [
+        {
+          "pdfPage": 17,
+          "printedFolio": "四十二",
+          "sourceId": "nanbei_shanren",
+          "sourceRef": "nanbei-p17-printed-42-four-transformations-table"
+        }
+      ],
+      "stem": "壬",
+      "transformation": "hua_lu",
+      "verdict": "exact_match"
+    },
+    {
+      "comparable": true,
+      "comparisonId": "nanbei_shanren:壬:hua_quan",
+      "edition": "nanbei_shanren",
+      "minimalCounterexample": null,
+      "normalizedMatch": true,
+      "productionNormalizedStarId": "ziwei",
+      "productionOccurrenceId": "production:壬:hua_quan",
+      "productionRawTargetLabel": "紫微",
+      "rawMatch": true,
+      "sourceNormalizedStarId": "ziwei",
+      "sourceRawTarget": "紫微",
+      "sourceRefs": [
+        {
+          "pdfPage": 17,
+          "printedFolio": "四十二",
+          "sourceId": "nanbei_shanren",
+          "sourceRef": "nanbei-p17-printed-42-four-transformations-table"
+        }
+      ],
+      "stem": "壬",
+      "transformation": "hua_quan",
+      "verdict": "exact_match"
+    },
+    {
+      "comparable": true,
+      "comparisonId": "nanbei_shanren:壬:hua_ke",
+      "edition": "nanbei_shanren",
+      "minimalCounterexample": null,
+      "normalizedMatch": true,
+      "productionNormalizedStarId": "tianfu",
+      "productionOccurrenceId": "production:壬:hua_ke",
+      "productionRawTargetLabel": "天府",
+      "rawMatch": true,
+      "sourceNormalizedStarId": "tianfu",
+      "sourceRawTarget": "天府",
+      "sourceRefs": [
+        {
+          "pdfPage": 17,
+          "printedFolio": "四十二",
+          "sourceId": "nanbei_shanren",
+          "sourceRef": "nanbei-p17-printed-42-four-transformations-table"
+        }
+      ],
+      "stem": "壬",
+      "transformation": "hua_ke",
+      "verdict": "exact_match"
+    },
+    {
+      "comparable": true,
+      "comparisonId": "nanbei_shanren:壬:hua_ji",
+      "edition": "nanbei_shanren",
+      "minimalCounterexample": null,
+      "normalizedMatch": true,
+      "productionNormalizedStarId": "wugu",
+      "productionOccurrenceId": "production:壬:hua_ji",
+      "productionRawTargetLabel": "武曲",
+      "rawMatch": true,
+      "sourceNormalizedStarId": "wugu",
+      "sourceRawTarget": "武曲",
+      "sourceRefs": [
+        {
+          "pdfPage": 17,
+          "printedFolio": "四十二",
+          "sourceId": "nanbei_shanren",
+          "sourceRef": "nanbei-p17-printed-42-four-transformations-table"
+        }
+      ],
+      "stem": "壬",
+      "transformation": "hua_ji",
+      "verdict": "exact_match"
+    },
+    {
+      "comparable": true,
+      "comparisonId": "nanbei_shanren:癸:hua_lu",
+      "edition": "nanbei_shanren",
+      "minimalCounterexample": null,
+      "normalizedMatch": true,
+      "productionNormalizedStarId": "pojun",
+      "productionOccurrenceId": "production:癸:hua_lu",
+      "productionRawTargetLabel": "破軍",
+      "rawMatch": true,
+      "sourceNormalizedStarId": "pojun",
+      "sourceRawTarget": "破軍",
+      "sourceRefs": [
+        {
+          "pdfPage": 17,
+          "printedFolio": "四十二",
+          "sourceId": "nanbei_shanren",
+          "sourceRef": "nanbei-p17-printed-42-four-transformations-table"
+        }
+      ],
+      "stem": "癸",
+      "transformation": "hua_lu",
+      "verdict": "exact_match"
+    },
+    {
+      "comparable": true,
+      "comparisonId": "nanbei_shanren:癸:hua_quan",
+      "edition": "nanbei_shanren",
+      "minimalCounterexample": null,
+      "normalizedMatch": true,
+      "productionNormalizedStarId": "jumen",
+      "productionOccurrenceId": "production:癸:hua_quan",
+      "productionRawTargetLabel": "巨門",
+      "rawMatch": true,
+      "sourceNormalizedStarId": "jumen",
+      "sourceRawTarget": "巨門",
+      "sourceRefs": [
+        {
+          "pdfPage": 17,
+          "printedFolio": "四十二",
+          "sourceId": "nanbei_shanren",
+          "sourceRef": "nanbei-p17-printed-42-four-transformations-table"
+        }
+      ],
+      "stem": "癸",
+      "transformation": "hua_quan",
+      "verdict": "exact_match"
+    },
+    {
+      "comparable": true,
+      "comparisonId": "nanbei_shanren:癸:hua_ke",
+      "edition": "nanbei_shanren",
+      "minimalCounterexample": null,
+      "normalizedMatch": true,
+      "productionNormalizedStarId": "taiyin",
+      "productionOccurrenceId": "production:癸:hua_ke",
+      "productionRawTargetLabel": "太陰",
+      "rawMatch": true,
+      "sourceNormalizedStarId": "taiyin",
+      "sourceRawTarget": "太陰",
+      "sourceRefs": [
+        {
+          "pdfPage": 17,
+          "printedFolio": "四十二",
+          "sourceId": "nanbei_shanren",
+          "sourceRef": "nanbei-p17-printed-42-four-transformations-table"
+        }
+      ],
+      "stem": "癸",
+      "transformation": "hua_ke",
+      "verdict": "exact_match"
+    },
+    {
+      "comparable": true,
+      "comparisonId": "nanbei_shanren:癸:hua_ji",
+      "edition": "nanbei_shanren",
+      "minimalCounterexample": null,
+      "normalizedMatch": true,
+      "productionNormalizedStarId": "tanlang",
+      "productionOccurrenceId": "production:癸:hua_ji",
+      "productionRawTargetLabel": "貪狼",
+      "rawMatch": true,
+      "sourceNormalizedStarId": "tanlang",
+      "sourceRawTarget": "貪狼",
+      "sourceRefs": [
+        {
+          "pdfPage": 17,
+          "printedFolio": "四十二",
+          "sourceId": "nanbei_shanren",
+          "sourceRef": "nanbei-p17-printed-42-four-transformations-table"
+        }
+      ],
+      "stem": "癸",
+      "transformation": "hua_ji",
+      "verdict": "exact_match"
+    },
+    {
+      "comparable": true,
+      "comparisonId": "ming_nanyangtang:甲:hua_lu",
+      "edition": "ming_nanyangtang",
+      "minimalCounterexample": null,
+      "normalizedMatch": true,
+      "productionNormalizedStarId": "lianzhen",
+      "productionOccurrenceId": "production:甲:hua_lu",
+      "productionRawTargetLabel": "廉貞",
+      "rawMatch": true,
+      "sourceNormalizedStarId": "lianzhen",
+      "sourceRawTarget": "廉貞",
+      "sourceRefs": [
+        {
+          "pdfPage": 152,
+          "printedFolio": null,
+          "sourceId": "ming_nanyangtang",
+          "sourceRef": "ming-p152-甲-four-transformations-example"
+        }
+      ],
+      "stem": "甲",
+      "transformation": "hua_lu",
+      "verdict": "exact_match"
+    },
+    {
+      "comparable": true,
+      "comparisonId": "ming_nanyangtang:甲:hua_quan",
+      "edition": "ming_nanyangtang",
+      "minimalCounterexample": null,
+      "normalizedMatch": true,
+      "productionNormalizedStarId": "pojun",
+      "productionOccurrenceId": "production:甲:hua_quan",
+      "productionRawTargetLabel": "破軍",
+      "rawMatch": true,
+      "sourceNormalizedStarId": "pojun",
+      "sourceRawTarget": "破軍",
+      "sourceRefs": [
+        {
+          "pdfPage": 152,
+          "printedFolio": null,
+          "sourceId": "ming_nanyangtang",
+          "sourceRef": "ming-p152-甲-four-transformations-example"
+        }
+      ],
+      "stem": "甲",
+      "transformation": "hua_quan",
+      "verdict": "exact_match"
+    },
+    {
+      "comparable": true,
+      "comparisonId": "ming_nanyangtang:甲:hua_ke",
+      "edition": "ming_nanyangtang",
+      "minimalCounterexample": null,
+      "normalizedMatch": true,
+      "productionNormalizedStarId": "wugu",
+      "productionOccurrenceId": "production:甲:hua_ke",
+      "productionRawTargetLabel": "武曲",
+      "rawMatch": true,
+      "sourceNormalizedStarId": "wugu",
+      "sourceRawTarget": "武曲",
+      "sourceRefs": [
+        {
+          "pdfPage": 152,
+          "printedFolio": null,
+          "sourceId": "ming_nanyangtang",
+          "sourceRef": "ming-p152-甲-four-transformations-example"
+        }
+      ],
+      "stem": "甲",
+      "transformation": "hua_ke",
+      "verdict": "exact_match"
+    },
+    {
+      "comparable": true,
+      "comparisonId": "ming_nanyangtang:甲:hua_ji",
+      "edition": "ming_nanyangtang",
+      "minimalCounterexample": null,
+      "normalizedMatch": true,
+      "productionNormalizedStarId": "taiyang",
+      "productionOccurrenceId": "production:甲:hua_ji",
+      "productionRawTargetLabel": "太陽",
+      "rawMatch": true,
+      "sourceNormalizedStarId": "taiyang",
+      "sourceRawTarget": "太陽",
+      "sourceRefs": [
+        {
+          "pdfPage": 152,
+          "printedFolio": null,
+          "sourceId": "ming_nanyangtang",
+          "sourceRef": "ming-p152-甲-four-transformations-example"
+        }
+      ],
+      "stem": "甲",
+      "transformation": "hua_ji",
+      "verdict": "exact_match"
+    },
+    {
+      "comparable": false,
+      "comparisonId": "ming_nanyangtang:乙:hua_lu",
+      "edition": "ming_nanyangtang",
+      "minimalCounterexample": null,
+      "normalizedMatch": null,
+      "productionNormalizedStarId": "tianji",
+      "productionOccurrenceId": "production:乙:hua_lu",
+      "productionRawTargetLabel": "天機",
+      "rawMatch": null,
+      "sourceNormalizedStarId": null,
+      "sourceRawTarget": null,
+      "sourceRefs": [
+        {
+          "pdfPage": null,
+          "printedFolio": null,
+          "sourceId": "ming_nanyangtang",
+          "sourceRef": "ming-full-scan-four-transformations-not-located"
+        }
+      ],
+      "stem": "乙",
+      "transformation": "hua_lu",
+      "verdict": "source_rule_not_located"
+    },
+    {
+      "comparable": false,
+      "comparisonId": "ming_nanyangtang:乙:hua_quan",
+      "edition": "ming_nanyangtang",
+      "minimalCounterexample": null,
+      "normalizedMatch": null,
+      "productionNormalizedStarId": "tianliang",
+      "productionOccurrenceId": "production:乙:hua_quan",
+      "productionRawTargetLabel": "天梁",
+      "rawMatch": null,
+      "sourceNormalizedStarId": null,
+      "sourceRawTarget": null,
+      "sourceRefs": [
+        {
+          "pdfPage": null,
+          "printedFolio": null,
+          "sourceId": "ming_nanyangtang",
+          "sourceRef": "ming-full-scan-four-transformations-not-located"
+        }
+      ],
+      "stem": "乙",
+      "transformation": "hua_quan",
+      "verdict": "source_rule_not_located"
+    },
+    {
+      "comparable": false,
+      "comparisonId": "ming_nanyangtang:乙:hua_ke",
+      "edition": "ming_nanyangtang",
+      "minimalCounterexample": null,
+      "normalizedMatch": null,
+      "productionNormalizedStarId": "ziwei",
+      "productionOccurrenceId": "production:乙:hua_ke",
+      "productionRawTargetLabel": "紫微",
+      "rawMatch": null,
+      "sourceNormalizedStarId": null,
+      "sourceRawTarget": null,
+      "sourceRefs": [
+        {
+          "pdfPage": null,
+          "printedFolio": null,
+          "sourceId": "ming_nanyangtang",
+          "sourceRef": "ming-full-scan-four-transformations-not-located"
+        }
+      ],
+      "stem": "乙",
+      "transformation": "hua_ke",
+      "verdict": "source_rule_not_located"
+    },
+    {
+      "comparable": false,
+      "comparisonId": "ming_nanyangtang:乙:hua_ji",
+      "edition": "ming_nanyangtang",
+      "minimalCounterexample": null,
+      "normalizedMatch": null,
+      "productionNormalizedStarId": "taiyin",
+      "productionOccurrenceId": "production:乙:hua_ji",
+      "productionRawTargetLabel": "太陰",
+      "rawMatch": null,
+      "sourceNormalizedStarId": null,
+      "sourceRawTarget": null,
+      "sourceRefs": [
+        {
+          "pdfPage": null,
+          "printedFolio": null,
+          "sourceId": "ming_nanyangtang",
+          "sourceRef": "ming-full-scan-four-transformations-not-located"
+        }
+      ],
+      "stem": "乙",
+      "transformation": "hua_ji",
+      "verdict": "source_rule_not_located"
+    },
+    {
+      "comparable": false,
+      "comparisonId": "ming_nanyangtang:丙:hua_lu",
+      "edition": "ming_nanyangtang",
+      "minimalCounterexample": null,
+      "normalizedMatch": null,
+      "productionNormalizedStarId": "tiandong",
+      "productionOccurrenceId": "production:丙:hua_lu",
+      "productionRawTargetLabel": "天同",
+      "rawMatch": null,
+      "sourceNormalizedStarId": null,
+      "sourceRawTarget": null,
+      "sourceRefs": [
+        {
+          "pdfPage": null,
+          "printedFolio": null,
+          "sourceId": "ming_nanyangtang",
+          "sourceRef": "ming-full-scan-four-transformations-not-located"
+        }
+      ],
+      "stem": "丙",
+      "transformation": "hua_lu",
+      "verdict": "source_rule_not_located"
+    },
+    {
+      "comparable": false,
+      "comparisonId": "ming_nanyangtang:丙:hua_quan",
+      "edition": "ming_nanyangtang",
+      "minimalCounterexample": null,
+      "normalizedMatch": null,
+      "productionNormalizedStarId": "tianji",
+      "productionOccurrenceId": "production:丙:hua_quan",
+      "productionRawTargetLabel": "天機",
+      "rawMatch": null,
+      "sourceNormalizedStarId": null,
+      "sourceRawTarget": null,
+      "sourceRefs": [
+        {
+          "pdfPage": null,
+          "printedFolio": null,
+          "sourceId": "ming_nanyangtang",
+          "sourceRef": "ming-full-scan-four-transformations-not-located"
+        }
+      ],
+      "stem": "丙",
+      "transformation": "hua_quan",
+      "verdict": "source_rule_not_located"
+    },
+    {
+      "comparable": false,
+      "comparisonId": "ming_nanyangtang:丙:hua_ke",
+      "edition": "ming_nanyangtang",
+      "minimalCounterexample": null,
+      "normalizedMatch": null,
+      "productionNormalizedStarId": "wenchang",
+      "productionOccurrenceId": "production:丙:hua_ke",
+      "productionRawTargetLabel": "文昌",
+      "rawMatch": null,
+      "sourceNormalizedStarId": null,
+      "sourceRawTarget": null,
+      "sourceRefs": [
+        {
+          "pdfPage": null,
+          "printedFolio": null,
+          "sourceId": "ming_nanyangtang",
+          "sourceRef": "ming-full-scan-four-transformations-not-located"
+        }
+      ],
+      "stem": "丙",
+      "transformation": "hua_ke",
+      "verdict": "source_rule_not_located"
+    },
+    {
+      "comparable": false,
+      "comparisonId": "ming_nanyangtang:丙:hua_ji",
+      "edition": "ming_nanyangtang",
+      "minimalCounterexample": null,
+      "normalizedMatch": null,
+      "productionNormalizedStarId": "lianzhen",
+      "productionOccurrenceId": "production:丙:hua_ji",
+      "productionRawTargetLabel": "廉貞",
+      "rawMatch": null,
+      "sourceNormalizedStarId": null,
+      "sourceRawTarget": null,
+      "sourceRefs": [
+        {
+          "pdfPage": null,
+          "printedFolio": null,
+          "sourceId": "ming_nanyangtang",
+          "sourceRef": "ming-full-scan-four-transformations-not-located"
+        }
+      ],
+      "stem": "丙",
+      "transformation": "hua_ji",
+      "verdict": "source_rule_not_located"
+    },
+    {
+      "comparable": false,
+      "comparisonId": "ming_nanyangtang:丁:hua_lu",
+      "edition": "ming_nanyangtang",
+      "minimalCounterexample": null,
+      "normalizedMatch": null,
+      "productionNormalizedStarId": "taiyin",
+      "productionOccurrenceId": "production:丁:hua_lu",
+      "productionRawTargetLabel": "太陰",
+      "rawMatch": null,
+      "sourceNormalizedStarId": null,
+      "sourceRawTarget": null,
+      "sourceRefs": [
+        {
+          "pdfPage": null,
+          "printedFolio": null,
+          "sourceId": "ming_nanyangtang",
+          "sourceRef": "ming-full-scan-four-transformations-not-located"
+        }
+      ],
+      "stem": "丁",
+      "transformation": "hua_lu",
+      "verdict": "source_rule_not_located"
+    },
+    {
+      "comparable": false,
+      "comparisonId": "ming_nanyangtang:丁:hua_quan",
+      "edition": "ming_nanyangtang",
+      "minimalCounterexample": null,
+      "normalizedMatch": null,
+      "productionNormalizedStarId": "tiandong",
+      "productionOccurrenceId": "production:丁:hua_quan",
+      "productionRawTargetLabel": "天同",
+      "rawMatch": null,
+      "sourceNormalizedStarId": null,
+      "sourceRawTarget": null,
+      "sourceRefs": [
+        {
+          "pdfPage": null,
+          "printedFolio": null,
+          "sourceId": "ming_nanyangtang",
+          "sourceRef": "ming-full-scan-four-transformations-not-located"
+        }
+      ],
+      "stem": "丁",
+      "transformation": "hua_quan",
+      "verdict": "source_rule_not_located"
+    },
+    {
+      "comparable": false,
+      "comparisonId": "ming_nanyangtang:丁:hua_ke",
+      "edition": "ming_nanyangtang",
+      "minimalCounterexample": null,
+      "normalizedMatch": null,
+      "productionNormalizedStarId": "tianji",
+      "productionOccurrenceId": "production:丁:hua_ke",
+      "productionRawTargetLabel": "天機",
+      "rawMatch": null,
+      "sourceNormalizedStarId": null,
+      "sourceRawTarget": null,
+      "sourceRefs": [
+        {
+          "pdfPage": null,
+          "printedFolio": null,
+          "sourceId": "ming_nanyangtang",
+          "sourceRef": "ming-full-scan-four-transformations-not-located"
+        }
+      ],
+      "stem": "丁",
+      "transformation": "hua_ke",
+      "verdict": "source_rule_not_located"
+    },
+    {
+      "comparable": false,
+      "comparisonId": "ming_nanyangtang:丁:hua_ji",
+      "edition": "ming_nanyangtang",
+      "minimalCounterexample": null,
+      "normalizedMatch": null,
+      "productionNormalizedStarId": "jumen",
+      "productionOccurrenceId": "production:丁:hua_ji",
+      "productionRawTargetLabel": "巨門",
+      "rawMatch": null,
+      "sourceNormalizedStarId": null,
+      "sourceRawTarget": null,
+      "sourceRefs": [
+        {
+          "pdfPage": null,
+          "printedFolio": null,
+          "sourceId": "ming_nanyangtang",
+          "sourceRef": "ming-full-scan-four-transformations-not-located"
+        }
+      ],
+      "stem": "丁",
+      "transformation": "hua_ji",
+      "verdict": "source_rule_not_located"
+    },
+    {
+      "comparable": false,
+      "comparisonId": "ming_nanyangtang:戊:hua_lu",
+      "edition": "ming_nanyangtang",
+      "minimalCounterexample": null,
+      "normalizedMatch": null,
+      "productionNormalizedStarId": "tanlang",
+      "productionOccurrenceId": "production:戊:hua_lu",
+      "productionRawTargetLabel": "貪狼",
+      "rawMatch": null,
+      "sourceNormalizedStarId": null,
+      "sourceRawTarget": null,
+      "sourceRefs": [
+        {
+          "pdfPage": null,
+          "printedFolio": null,
+          "sourceId": "ming_nanyangtang",
+          "sourceRef": "ming-full-scan-four-transformations-not-located"
+        }
+      ],
+      "stem": "戊",
+      "transformation": "hua_lu",
+      "verdict": "source_rule_not_located"
+    },
+    {
+      "comparable": false,
+      "comparisonId": "ming_nanyangtang:戊:hua_quan",
+      "edition": "ming_nanyangtang",
+      "minimalCounterexample": null,
+      "normalizedMatch": null,
+      "productionNormalizedStarId": "taiyin",
+      "productionOccurrenceId": "production:戊:hua_quan",
+      "productionRawTargetLabel": "太陰",
+      "rawMatch": null,
+      "sourceNormalizedStarId": null,
+      "sourceRawTarget": null,
+      "sourceRefs": [
+        {
+          "pdfPage": null,
+          "printedFolio": null,
+          "sourceId": "ming_nanyangtang",
+          "sourceRef": "ming-full-scan-four-transformations-not-located"
+        }
+      ],
+      "stem": "戊",
+      "transformation": "hua_quan",
+      "verdict": "source_rule_not_located"
+    },
+    {
+      "comparable": false,
+      "comparisonId": "ming_nanyangtang:戊:hua_ke",
+      "edition": "ming_nanyangtang",
+      "minimalCounterexample": null,
+      "normalizedMatch": null,
+      "productionNormalizedStarId": "youbi",
+      "productionOccurrenceId": "production:戊:hua_ke",
+      "productionRawTargetLabel": "右弼",
+      "rawMatch": null,
+      "sourceNormalizedStarId": null,
+      "sourceRawTarget": null,
+      "sourceRefs": [
+        {
+          "pdfPage": null,
+          "printedFolio": null,
+          "sourceId": "ming_nanyangtang",
+          "sourceRef": "ming-full-scan-four-transformations-not-located"
+        }
+      ],
+      "stem": "戊",
+      "transformation": "hua_ke",
+      "verdict": "source_rule_not_located"
+    },
+    {
+      "comparable": false,
+      "comparisonId": "ming_nanyangtang:戊:hua_ji",
+      "edition": "ming_nanyangtang",
+      "minimalCounterexample": null,
+      "normalizedMatch": null,
+      "productionNormalizedStarId": "tianji",
+      "productionOccurrenceId": "production:戊:hua_ji",
+      "productionRawTargetLabel": "天機",
+      "rawMatch": null,
+      "sourceNormalizedStarId": null,
+      "sourceRawTarget": null,
+      "sourceRefs": [
+        {
+          "pdfPage": null,
+          "printedFolio": null,
+          "sourceId": "ming_nanyangtang",
+          "sourceRef": "ming-full-scan-four-transformations-not-located"
+        }
+      ],
+      "stem": "戊",
+      "transformation": "hua_ji",
+      "verdict": "source_rule_not_located"
+    },
+    {
+      "comparable": false,
+      "comparisonId": "ming_nanyangtang:己:hua_lu",
+      "edition": "ming_nanyangtang",
+      "minimalCounterexample": null,
+      "normalizedMatch": null,
+      "productionNormalizedStarId": "wugu",
+      "productionOccurrenceId": "production:己:hua_lu",
+      "productionRawTargetLabel": "武曲",
+      "rawMatch": null,
+      "sourceNormalizedStarId": null,
+      "sourceRawTarget": null,
+      "sourceRefs": [
+        {
+          "pdfPage": null,
+          "printedFolio": null,
+          "sourceId": "ming_nanyangtang",
+          "sourceRef": "ming-full-scan-four-transformations-not-located"
+        }
+      ],
+      "stem": "己",
+      "transformation": "hua_lu",
+      "verdict": "source_rule_not_located"
+    },
+    {
+      "comparable": false,
+      "comparisonId": "ming_nanyangtang:己:hua_quan",
+      "edition": "ming_nanyangtang",
+      "minimalCounterexample": null,
+      "normalizedMatch": null,
+      "productionNormalizedStarId": "tanlang",
+      "productionOccurrenceId": "production:己:hua_quan",
+      "productionRawTargetLabel": "貪狼",
+      "rawMatch": null,
+      "sourceNormalizedStarId": null,
+      "sourceRawTarget": null,
+      "sourceRefs": [
+        {
+          "pdfPage": null,
+          "printedFolio": null,
+          "sourceId": "ming_nanyangtang",
+          "sourceRef": "ming-full-scan-four-transformations-not-located"
+        }
+      ],
+      "stem": "己",
+      "transformation": "hua_quan",
+      "verdict": "source_rule_not_located"
+    },
+    {
+      "comparable": false,
+      "comparisonId": "ming_nanyangtang:己:hua_ke",
+      "edition": "ming_nanyangtang",
+      "minimalCounterexample": null,
+      "normalizedMatch": null,
+      "productionNormalizedStarId": "tianliang",
+      "productionOccurrenceId": "production:己:hua_ke",
+      "productionRawTargetLabel": "天梁",
+      "rawMatch": null,
+      "sourceNormalizedStarId": null,
+      "sourceRawTarget": null,
+      "sourceRefs": [
+        {
+          "pdfPage": null,
+          "printedFolio": null,
+          "sourceId": "ming_nanyangtang",
+          "sourceRef": "ming-full-scan-four-transformations-not-located"
+        }
+      ],
+      "stem": "己",
+      "transformation": "hua_ke",
+      "verdict": "source_rule_not_located"
+    },
+    {
+      "comparable": false,
+      "comparisonId": "ming_nanyangtang:己:hua_ji",
+      "edition": "ming_nanyangtang",
+      "minimalCounterexample": null,
+      "normalizedMatch": null,
+      "productionNormalizedStarId": "wengu",
+      "productionOccurrenceId": "production:己:hua_ji",
+      "productionRawTargetLabel": "文曲",
+      "rawMatch": null,
+      "sourceNormalizedStarId": null,
+      "sourceRawTarget": null,
+      "sourceRefs": [
+        {
+          "pdfPage": null,
+          "printedFolio": null,
+          "sourceId": "ming_nanyangtang",
+          "sourceRef": "ming-full-scan-four-transformations-not-located"
+        }
+      ],
+      "stem": "己",
+      "transformation": "hua_ji",
+      "verdict": "source_rule_not_located"
+    },
+    {
+      "comparable": false,
+      "comparisonId": "ming_nanyangtang:庚:hua_lu",
+      "edition": "ming_nanyangtang",
+      "minimalCounterexample": null,
+      "normalizedMatch": null,
+      "productionNormalizedStarId": "taiyang",
+      "productionOccurrenceId": "production:庚:hua_lu",
+      "productionRawTargetLabel": "太陽",
+      "rawMatch": null,
+      "sourceNormalizedStarId": null,
+      "sourceRawTarget": null,
+      "sourceRefs": [
+        {
+          "pdfPage": null,
+          "printedFolio": null,
+          "sourceId": "ming_nanyangtang",
+          "sourceRef": "ming-full-scan-four-transformations-not-located"
+        }
+      ],
+      "stem": "庚",
+      "transformation": "hua_lu",
+      "verdict": "source_rule_not_located"
+    },
+    {
+      "comparable": false,
+      "comparisonId": "ming_nanyangtang:庚:hua_quan",
+      "edition": "ming_nanyangtang",
+      "minimalCounterexample": null,
+      "normalizedMatch": null,
+      "productionNormalizedStarId": "wugu",
+      "productionOccurrenceId": "production:庚:hua_quan",
+      "productionRawTargetLabel": "武曲",
+      "rawMatch": null,
+      "sourceNormalizedStarId": null,
+      "sourceRawTarget": null,
+      "sourceRefs": [
+        {
+          "pdfPage": null,
+          "printedFolio": null,
+          "sourceId": "ming_nanyangtang",
+          "sourceRef": "ming-full-scan-four-transformations-not-located"
+        }
+      ],
+      "stem": "庚",
+      "transformation": "hua_quan",
+      "verdict": "source_rule_not_located"
+    },
+    {
+      "comparable": false,
+      "comparisonId": "ming_nanyangtang:庚:hua_ke",
+      "edition": "ming_nanyangtang",
+      "minimalCounterexample": null,
+      "normalizedMatch": null,
+      "productionNormalizedStarId": "taiyin",
+      "productionOccurrenceId": "production:庚:hua_ke",
+      "productionRawTargetLabel": "太陰",
+      "rawMatch": null,
+      "sourceNormalizedStarId": null,
+      "sourceRawTarget": null,
+      "sourceRefs": [
+        {
+          "pdfPage": null,
+          "printedFolio": null,
+          "sourceId": "ming_nanyangtang",
+          "sourceRef": "ming-full-scan-four-transformations-not-located"
+        }
+      ],
+      "stem": "庚",
+      "transformation": "hua_ke",
+      "verdict": "source_rule_not_located"
+    },
+    {
+      "comparable": false,
+      "comparisonId": "ming_nanyangtang:庚:hua_ji",
+      "edition": "ming_nanyangtang",
+      "minimalCounterexample": null,
+      "normalizedMatch": null,
+      "productionNormalizedStarId": "tiandong",
+      "productionOccurrenceId": "production:庚:hua_ji",
+      "productionRawTargetLabel": "天同",
+      "rawMatch": null,
+      "sourceNormalizedStarId": null,
+      "sourceRawTarget": null,
+      "sourceRefs": [
+        {
+          "pdfPage": null,
+          "printedFolio": null,
+          "sourceId": "ming_nanyangtang",
+          "sourceRef": "ming-full-scan-four-transformations-not-located"
+        }
+      ],
+      "stem": "庚",
+      "transformation": "hua_ji",
+      "verdict": "source_rule_not_located"
+    },
+    {
+      "comparable": false,
+      "comparisonId": "ming_nanyangtang:辛:hua_lu",
+      "edition": "ming_nanyangtang",
+      "minimalCounterexample": null,
+      "normalizedMatch": null,
+      "productionNormalizedStarId": "jumen",
+      "productionOccurrenceId": "production:辛:hua_lu",
+      "productionRawTargetLabel": "巨門",
+      "rawMatch": null,
+      "sourceNormalizedStarId": null,
+      "sourceRawTarget": null,
+      "sourceRefs": [
+        {
+          "pdfPage": null,
+          "printedFolio": null,
+          "sourceId": "ming_nanyangtang",
+          "sourceRef": "ming-full-scan-four-transformations-not-located"
+        }
+      ],
+      "stem": "辛",
+      "transformation": "hua_lu",
+      "verdict": "source_rule_not_located"
+    },
+    {
+      "comparable": false,
+      "comparisonId": "ming_nanyangtang:辛:hua_quan",
+      "edition": "ming_nanyangtang",
+      "minimalCounterexample": null,
+      "normalizedMatch": null,
+      "productionNormalizedStarId": "taiyang",
+      "productionOccurrenceId": "production:辛:hua_quan",
+      "productionRawTargetLabel": "太陽",
+      "rawMatch": null,
+      "sourceNormalizedStarId": null,
+      "sourceRawTarget": null,
+      "sourceRefs": [
+        {
+          "pdfPage": null,
+          "printedFolio": null,
+          "sourceId": "ming_nanyangtang",
+          "sourceRef": "ming-full-scan-four-transformations-not-located"
+        }
+      ],
+      "stem": "辛",
+      "transformation": "hua_quan",
+      "verdict": "source_rule_not_located"
+    },
+    {
+      "comparable": false,
+      "comparisonId": "ming_nanyangtang:辛:hua_ke",
+      "edition": "ming_nanyangtang",
+      "minimalCounterexample": null,
+      "normalizedMatch": null,
+      "productionNormalizedStarId": "wengu",
+      "productionOccurrenceId": "production:辛:hua_ke",
+      "productionRawTargetLabel": "文曲",
+      "rawMatch": null,
+      "sourceNormalizedStarId": null,
+      "sourceRawTarget": null,
+      "sourceRefs": [
+        {
+          "pdfPage": null,
+          "printedFolio": null,
+          "sourceId": "ming_nanyangtang",
+          "sourceRef": "ming-full-scan-four-transformations-not-located"
+        }
+      ],
+      "stem": "辛",
+      "transformation": "hua_ke",
+      "verdict": "source_rule_not_located"
+    },
+    {
+      "comparable": false,
+      "comparisonId": "ming_nanyangtang:辛:hua_ji",
+      "edition": "ming_nanyangtang",
+      "minimalCounterexample": null,
+      "normalizedMatch": null,
+      "productionNormalizedStarId": "wenchang",
+      "productionOccurrenceId": "production:辛:hua_ji",
+      "productionRawTargetLabel": "文昌",
+      "rawMatch": null,
+      "sourceNormalizedStarId": null,
+      "sourceRawTarget": null,
+      "sourceRefs": [
+        {
+          "pdfPage": null,
+          "printedFolio": null,
+          "sourceId": "ming_nanyangtang",
+          "sourceRef": "ming-full-scan-four-transformations-not-located"
+        }
+      ],
+      "stem": "辛",
+      "transformation": "hua_ji",
+      "verdict": "source_rule_not_located"
+    },
+    {
+      "comparable": false,
+      "comparisonId": "ming_nanyangtang:壬:hua_lu",
+      "edition": "ming_nanyangtang",
+      "minimalCounterexample": null,
+      "normalizedMatch": null,
+      "productionNormalizedStarId": "tianliang",
+      "productionOccurrenceId": "production:壬:hua_lu",
+      "productionRawTargetLabel": "天梁",
+      "rawMatch": null,
+      "sourceNormalizedStarId": null,
+      "sourceRawTarget": null,
+      "sourceRefs": [
+        {
+          "pdfPage": null,
+          "printedFolio": null,
+          "sourceId": "ming_nanyangtang",
+          "sourceRef": "ming-full-scan-four-transformations-not-located"
+        }
+      ],
+      "stem": "壬",
+      "transformation": "hua_lu",
+      "verdict": "source_rule_not_located"
+    },
+    {
+      "comparable": false,
+      "comparisonId": "ming_nanyangtang:壬:hua_quan",
+      "edition": "ming_nanyangtang",
+      "minimalCounterexample": null,
+      "normalizedMatch": null,
+      "productionNormalizedStarId": "ziwei",
+      "productionOccurrenceId": "production:壬:hua_quan",
+      "productionRawTargetLabel": "紫微",
+      "rawMatch": null,
+      "sourceNormalizedStarId": null,
+      "sourceRawTarget": null,
+      "sourceRefs": [
+        {
+          "pdfPage": null,
+          "printedFolio": null,
+          "sourceId": "ming_nanyangtang",
+          "sourceRef": "ming-full-scan-four-transformations-not-located"
+        }
+      ],
+      "stem": "壬",
+      "transformation": "hua_quan",
+      "verdict": "source_rule_not_located"
+    },
+    {
+      "comparable": false,
+      "comparisonId": "ming_nanyangtang:壬:hua_ke",
+      "edition": "ming_nanyangtang",
+      "minimalCounterexample": null,
+      "normalizedMatch": null,
+      "productionNormalizedStarId": "tianfu",
+      "productionOccurrenceId": "production:壬:hua_ke",
+      "productionRawTargetLabel": "天府",
+      "rawMatch": null,
+      "sourceNormalizedStarId": null,
+      "sourceRawTarget": null,
+      "sourceRefs": [
+        {
+          "pdfPage": null,
+          "printedFolio": null,
+          "sourceId": "ming_nanyangtang",
+          "sourceRef": "ming-full-scan-four-transformations-not-located"
+        }
+      ],
+      "stem": "壬",
+      "transformation": "hua_ke",
+      "verdict": "source_rule_not_located"
+    },
+    {
+      "comparable": false,
+      "comparisonId": "ming_nanyangtang:壬:hua_ji",
+      "edition": "ming_nanyangtang",
+      "minimalCounterexample": null,
+      "normalizedMatch": null,
+      "productionNormalizedStarId": "wugu",
+      "productionOccurrenceId": "production:壬:hua_ji",
+      "productionRawTargetLabel": "武曲",
+      "rawMatch": null,
+      "sourceNormalizedStarId": null,
+      "sourceRawTarget": null,
+      "sourceRefs": [
+        {
+          "pdfPage": null,
+          "printedFolio": null,
+          "sourceId": "ming_nanyangtang",
+          "sourceRef": "ming-full-scan-four-transformations-not-located"
+        }
+      ],
+      "stem": "壬",
+      "transformation": "hua_ji",
+      "verdict": "source_rule_not_located"
+    },
+    {
+      "comparable": false,
+      "comparisonId": "ming_nanyangtang:癸:hua_lu",
+      "edition": "ming_nanyangtang",
+      "minimalCounterexample": null,
+      "normalizedMatch": null,
+      "productionNormalizedStarId": "pojun",
+      "productionOccurrenceId": "production:癸:hua_lu",
+      "productionRawTargetLabel": "破軍",
+      "rawMatch": null,
+      "sourceNormalizedStarId": null,
+      "sourceRawTarget": null,
+      "sourceRefs": [
+        {
+          "pdfPage": null,
+          "printedFolio": null,
+          "sourceId": "ming_nanyangtang",
+          "sourceRef": "ming-full-scan-four-transformations-not-located"
+        }
+      ],
+      "stem": "癸",
+      "transformation": "hua_lu",
+      "verdict": "source_rule_not_located"
+    },
+    {
+      "comparable": false,
+      "comparisonId": "ming_nanyangtang:癸:hua_quan",
+      "edition": "ming_nanyangtang",
+      "minimalCounterexample": null,
+      "normalizedMatch": null,
+      "productionNormalizedStarId": "jumen",
+      "productionOccurrenceId": "production:癸:hua_quan",
+      "productionRawTargetLabel": "巨門",
+      "rawMatch": null,
+      "sourceNormalizedStarId": null,
+      "sourceRawTarget": null,
+      "sourceRefs": [
+        {
+          "pdfPage": null,
+          "printedFolio": null,
+          "sourceId": "ming_nanyangtang",
+          "sourceRef": "ming-full-scan-four-transformations-not-located"
+        }
+      ],
+      "stem": "癸",
+      "transformation": "hua_quan",
+      "verdict": "source_rule_not_located"
+    },
+    {
+      "comparable": false,
+      "comparisonId": "ming_nanyangtang:癸:hua_ke",
+      "edition": "ming_nanyangtang",
+      "minimalCounterexample": null,
+      "normalizedMatch": null,
+      "productionNormalizedStarId": "taiyin",
+      "productionOccurrenceId": "production:癸:hua_ke",
+      "productionRawTargetLabel": "太陰",
+      "rawMatch": null,
+      "sourceNormalizedStarId": null,
+      "sourceRawTarget": null,
+      "sourceRefs": [
+        {
+          "pdfPage": null,
+          "printedFolio": null,
+          "sourceId": "ming_nanyangtang",
+          "sourceRef": "ming-full-scan-four-transformations-not-located"
+        }
+      ],
+      "stem": "癸",
+      "transformation": "hua_ke",
+      "verdict": "source_rule_not_located"
+    },
+    {
+      "comparable": false,
+      "comparisonId": "ming_nanyangtang:癸:hua_ji",
+      "edition": "ming_nanyangtang",
+      "minimalCounterexample": null,
+      "normalizedMatch": null,
+      "productionNormalizedStarId": "tanlang",
+      "productionOccurrenceId": "production:癸:hua_ji",
+      "productionRawTargetLabel": "貪狼",
+      "rawMatch": null,
+      "sourceNormalizedStarId": null,
+      "sourceRawTarget": null,
+      "sourceRefs": [
+        {
+          "pdfPage": null,
+          "printedFolio": null,
+          "sourceId": "ming_nanyangtang",
+          "sourceRef": "ming-full-scan-four-transformations-not-located"
+        }
+      ],
+      "stem": "癸",
+      "transformation": "hua_ji",
+      "verdict": "source_rule_not_located"
+    }
+  ],
+  "schemaVersion": "ziwei-four-transformations-source-evidence-v0",
+  "sourceConflict": {
+    "note": "Ming 甲 direct example agrees with Nanbei 甲; Ming 乙–癸 cells remain unlocated, so absence is not a contradiction.",
+    "verdict": "no_substantive_source_conflict_proven"
+  },
+  "summary": {
+    "blockedCount": 36,
+    "exactNormalizedMatchCount": 44,
+    "exactRawMatchCount": 44,
+    "mismatchCount": 0,
+    "productionOccurrenceCount": 40,
+    "rowCount": 80,
+    "sourceByEdition": {
+      "ming_nanyangtang": {
+        "blockedCount": 36,
+        "comparableCount": 4,
+        "mismatchCount": 0,
+        "normalizedMatchCount": 4,
+        "rawMatchCount": 4,
+        "sourceOccurrenceCount": 40
+      },
+      "nanbei_shanren": {
+        "blockedCount": 0,
+        "comparableCount": 40,
+        "mismatchCount": 0,
+        "normalizedMatchCount": 40,
+        "rawMatchCount": 40,
+        "sourceOccurrenceCount": 40
+      }
+    }
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "byteLength": 59344,
+  "byteSha256": "1a33e0fa38e19bad247cb5954712b6224d7e35d4c553a2e23e3fda84b85b4fbe",
+  "path": "artifacts/ziwei-four-transformations-source-evidence-v0/dependency-graph.json",
+  "schemaVersion": "artifact-integrity-sidecar-v1",
+  "source": "actual_output_bytes"
+}

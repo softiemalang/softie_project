@@ -1,0 +1,232 @@
+{
+  "aliases": {
+    "allProductionTargetsCovered": true,
+    "explicitAliasCount": 16,
+    "noPostHocAliasAdded": true,
+    "rawGlyphsPreserved": true
+  },
+  "columnOrder": {
+    "ming": {
+      "observedSentenceOrder": [
+        "化祿",
+        "化權",
+        "化科",
+        "化忌"
+      ],
+      "result": "not_proven_for_乙_to_癸",
+      "scope": "甲_example_only",
+      "sentenceRef": {
+        "pdfPage": 152,
+        "printedFolio": null,
+        "sourceId": "ming_nanyangtang",
+        "sourceRef": "ming-p152-甲-four-transformations-example"
+      },
+      "titleRef": {
+        "pdfPage": 151,
+        "printedFolio": null,
+        "sourceId": "ming_nanyangtang",
+        "sourceRef": "ming-p151-four-transformations-title"
+      }
+    },
+    "nanbei": {
+      "normalizedComparisonOrder": [
+        "hua_lu",
+        "hua_quan",
+        "hua_ke",
+        "hua_ji"
+      ],
+      "result": "proved",
+      "sourceReadRightToLeft": [
+        "年干",
+        "化祿",
+        "化權",
+        "化科",
+        "化忌"
+      ],
+      "sourceRef": {
+        "pdfPage": 17,
+        "printedFolio": "四十二",
+        "sourceId": "nanbei_shanren",
+        "sourceRef": "nanbei-p17-printed-42-four-transformations-table"
+      },
+      "visualLeftToRight": [
+        "化忌",
+        "化科",
+        "化權",
+        "化祿",
+        "年干"
+      ]
+    }
+  },
+  "comparisonVerdictDistribution": {
+    "exact_match": 44,
+    "source_rule_not_located": 36
+  },
+  "finiteDivergenceReview": [
+    {
+      "axis": "row_or_column_reading_order",
+      "result": "Nanbei table and Ming 甲 sentence read in source order",
+      "reviewed": true
+    },
+    {
+      "axis": "stem_index_offset_or_order",
+      "result": "all rows retained in explicit 甲乙丙丁戊己庚辛壬癸 order",
+      "reviewed": true
+    },
+    {
+      "axis": "transformation_column_permutation",
+      "result": "Nanbei order proved; Ming 甲 sentence order agrees",
+      "reviewed": true
+    },
+    {
+      "axis": "source_abbreviation_variant_alias",
+      "result": "explicit_alias_table_only; no row-specific alias",
+      "reviewed": true
+    },
+    {
+      "axis": "transcription_defect",
+      "result": "predecessor_locator_correction_preserved_as_successor; no source cell overwritten",
+      "reviewed": true
+    },
+    {
+      "axis": "actual_edition_transmission_difference",
+      "result": "not_proven_due Ming coverage blocker",
+      "reviewed": true
+    }
+  ],
+  "invariants": {
+    "editionInvariants": {
+      "ming_nanyangtang": {
+        "duplicateWithinStem": [],
+        "duplicateWithinStemCount": 0,
+        "evaluatedRows": 4,
+        "evaluatedStemCount": 1,
+        "label": "ming_nanyangtang",
+        "status": "partial_blocked",
+        "targetDistribution": {
+          "lianzhen": 1,
+          "pojun": 1,
+          "taiyang": 1,
+          "wugu": 1
+        },
+        "totalRows": 40
+      },
+      "nanbei_shanren": {
+        "duplicateWithinStem": [],
+        "duplicateWithinStemCount": 0,
+        "evaluatedRows": 40,
+        "evaluatedStemCount": 10,
+        "label": "nanbei_shanren",
+        "status": "complete",
+        "targetDistribution": {
+          "jumen": 3,
+          "lianzhen": 2,
+          "pojun": 2,
+          "taiyang": 3,
+          "taiyin": 5,
+          "tanlang": 3,
+          "tiandong": 3,
+          "tianfu": 1,
+          "tianji": 4,
+          "tianliang": 3,
+          "wenchang": 2,
+          "wengu": 2,
+          "wugu": 4,
+          "youbi": 1,
+          "ziwei": 2
+        },
+        "totalRows": 40
+      }
+    },
+    "interpretation": "same-stem duplicate and cross-stem target multiplicity are measured only; no external normative rule is injected",
+    "noTraditionalInvariantAssumed": true,
+    "production": {
+      "duplicateWithinStem": [],
+      "duplicateWithinStemCount": 0,
+      "evaluatedRows": 40,
+      "evaluatedStemCount": 10,
+      "label": "production",
+      "status": "complete",
+      "targetDistribution": {
+        "jumen": 3,
+        "lianzhen": 2,
+        "pojun": 2,
+        "taiyang": 3,
+        "taiyin": 5,
+        "tanlang": 3,
+        "tiandong": 3,
+        "tianfu": 1,
+        "tianji": 4,
+        "tianliang": 3,
+        "wenchang": 2,
+        "wengu": 2,
+        "wugu": 4,
+        "youbi": 1,
+        "ziwei": 2
+      },
+      "totalRows": 40
+    },
+    "schemaVersion": "ziwei-four-transformations-source-evidence-v0"
+  },
+  "schemaVersion": "ziwei-four-transformations-source-evidence-v0",
+  "sourceCoverage": {
+    "actualSourceOccurrences": 80,
+    "allSourceCellsPreserved": true,
+    "byEdition": {
+      "ming_nanyangtang": 40,
+      "nanbei_shanren": 40
+    },
+    "requiredSourceOccurrences": 80
+  },
+  "stemOrder": {
+    "ming": [
+      "甲",
+      "乙",
+      "丙",
+      "丁",
+      "戊",
+      "己",
+      "庚",
+      "辛",
+      "壬",
+      "癸"
+    ],
+    "nanbei": [
+      "甲",
+      "乙",
+      "丙",
+      "丁",
+      "戊",
+      "己",
+      "庚",
+      "辛",
+      "壬",
+      "癸"
+    ],
+    "production": [
+      "甲",
+      "乙",
+      "丙",
+      "丁",
+      "戊",
+      "己",
+      "庚",
+      "辛",
+      "壬",
+      "癸"
+    ],
+    "required": [
+      "甲",
+      "乙",
+      "丙",
+      "丁",
+      "戊",
+      "己",
+      "庚",
+      "辛",
+      "壬",
+      "癸"
+    ],
+    "result": "proved_by_artifact_axis_and_rows"
+  }
+}

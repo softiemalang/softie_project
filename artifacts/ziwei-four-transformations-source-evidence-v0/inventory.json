@@ -1,0 +1,132 @@
+{
+  "basisHead": "6fc9db56fff7f453e87dd3425caab5b9058f2074",
+  "exploration": {
+    "fullPageCoverageVerified": true,
+    "imageFormat": "jpeg",
+    "method": "bundled Poppler pdftoppm low-resolution full-page render",
+    "ocr": {
+      "allowed": true,
+      "role": "exploration_only_not_canonical",
+      "usedForCanonicalDecision": false
+    },
+    "pageCoverage": {
+      "ming_nanyangtang": 528,
+      "nanbei_shanren": 219
+    },
+    "quality": 40,
+    "renderDpi": 24,
+    "renderedOutsideRepository": true,
+    "temporaryRenderRoot": "/private/tmp (random run directory, not stored)"
+  },
+  "locatorCount": 5,
+  "locators": [
+    {
+      "canonical": true,
+      "confidence": "high",
+      "directReading": "○安祿權科忌四星變化訣",
+      "id": "ming-p151-four-transformations-title",
+      "pdfPage": 151,
+      "platePosition": "single_page_vertical_columns_right_to_left",
+      "printedFolio": null,
+      "readingMode": "direct_high_resolution_plate",
+      "sourceId": "ming_nanyangtang",
+      "title": "○安祿權科忌四星變化訣",
+      "uncertainty": [
+        "印刷面數未在该页扫描边界内安全辨认。",
+        "正文在相邻页继续，标题本身不等于完整10干表。"
+      ],
+      "volume": "卷三"
+    },
+    {
+      "canonical": true,
+      "confidence": "high",
+      "directReading": "如甲生人廉貞化祿破軍化權武曲化科太陽化忌是也",
+      "id": "ming-p152-甲-four-transformations-example",
+      "pdfPage": 152,
+      "platePosition": "single_page_rightmost_vertical_column",
+      "printedFolio": null,
+      "readingMode": "direct_high_resolution_plate",
+      "sourceId": "ming_nanyangtang",
+      "title": "四化訣 adjacent 甲 example",
+      "uncertainty": [
+        "该直接句只闭合甲行；未将其推广到乙至癸。"
+      ],
+      "volume": "卷三"
+    },
+    {
+      "canonical": false,
+      "confidence": "not_located_after_full_scan",
+      "directReading": null,
+      "id": "ming-full-scan-four-transformations-not-located",
+      "pdfPage": null,
+      "platePosition": "full_528_page_low_resolution_render_plus_candidate_high_resolution_review",
+      "printedFolio": null,
+      "readingMode": "full_pdf_scan_negative_locator",
+      "sourceId": "ming_nanyangtang",
+      "title": "四化完整乙至癸表 full-scan negative locator",
+      "uncertainty": [
+        "这是否定定位而不是“来源不存在”的证明；不得合成缺失行。"
+      ],
+      "volume": null
+    },
+    {
+      "canonical": true,
+      "confidence": "medium",
+      "directReading": "四化（祿、權、科、忌）及相鄰說明；四化速檢表於次頁。",
+      "id": "nanbei-p16-printed-41-four-transformations-context",
+      "pdfPage": 16,
+      "platePosition": "left_scanned_leaf_vertical_columns_right_to_left",
+      "printedFolio": "四十一",
+      "readingMode": "direct_high_resolution_plate",
+      "sourceId": "nanbei_shanren",
+      "title": "四化 adjacent explanation and next-page table pointer",
+      "uncertainty": [
+        "局部邻接说明按可直接辨认的连续字串保留；不承担10×4赋值。"
+      ],
+      "volume": null
+    },
+    {
+      "canonical": true,
+      "confidence": "high",
+      "directReading": "年干｜化祿｜化權｜化科｜化忌；甲乙丙丁戊己庚辛壬癸十行",
+      "id": "nanbei-p17-printed-42-four-transformations-table",
+      "pdfPage": 17,
+      "platePosition": "right_scanned_leaf_table",
+      "printedFolio": "四十二",
+      "readingMode": "direct_high_resolution_plate",
+      "sourceId": "nanbei_shanren",
+      "title": "四化速檢表",
+      "uncertainty": [
+        "合葉 scan 的另一侧为印刷面四十三；本规则表位于右侧印刷面四十二。"
+      ],
+      "volume": null
+    }
+  ],
+  "renderBytesStoredInRepository": false,
+  "schemaVersion": "ziwei-four-transformations-source-evidence-v0",
+  "sourceIdentity": {
+    "ming_nanyangtang": {
+      "actualByteSha256": "04e184c4a52cb042dc885c6ccc9135d94ab25de62007506198ee979a33e66bfc",
+      "encrypted": false,
+      "expectedByteSha256": "04e184c4a52cb042dc885c6ccc9135d94ab25de62007506198ee979a33e66bfc",
+      "id": "ming_nanyangtang",
+      "label": "明代南阳堂刊本",
+      "pageCount": 528,
+      "pathOutsideRepository": "/Users/softie/Downloads/新锓希夷陈先生紫微斗数全书.七卷.宋.陈抟撰.明.潘希尹补.明代南阳堂刊本.黑白版.pdf",
+      "readOnly": true,
+      "storedInGit": false
+    },
+    "nanbei_shanren": {
+      "actualByteSha256": "4786a94ab454acdabf9716d7c0db4756dbcbde99a88bc45fda254863c1961023",
+      "encrypted": false,
+      "expectedByteSha256": "4786a94ab454acdabf9716d7c0db4756dbcbde99a88bc45fda254863c1961023",
+      "id": "nanbei_shanren",
+      "label": "南北山人本",
+      "pageCount": 219,
+      "pathOutsideRepository": "/Users/softie/Downloads/命-南北山人_紫微斗数全书.pdf",
+      "readOnly": true,
+      "storedInGit": false
+    }
+  },
+  "sourcePdfStoredInGit": false
+}

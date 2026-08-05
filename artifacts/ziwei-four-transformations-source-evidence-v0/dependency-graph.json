@@ -1,0 +1,1914 @@
+{
+  "dependencyBoundary": {
+    "calculationChanged": false,
+    "palacePlacementNotUsed": true,
+    "predecessorIdentityBlockedPropagated": true,
+    "semanticStarIdentityPromoted": false,
+    "sourceRefsRetained": true
+  },
+  "edges": [
+    {
+      "from": "transformation:甲:hua_lu",
+      "productionRef": [
+        {
+          "call": "resolveFourTransformations(birthYearStem)",
+          "file": "src/interpretationPrep/threeSystemPrepPipeline.js",
+          "lines": "180"
+        },
+        {
+          "call": "YEAR_STEM_TRANSFORMATIONS[birthYearStem]",
+          "file": "src/ziwei/transformationResolver.js",
+          "lines": "13-14"
+        },
+        {
+          "call": "stemMap.lu -> hua_lu",
+          "file": "src/ziwei/transformationResolver.js",
+          "lines": "28-35"
+        },
+        {
+          "call": "chart.transformations = transformationResult.transformations",
+          "file": "src/interpretationPrep/threeSystemPrepPipeline.js",
+          "lines": "198-200"
+        }
+      ],
+      "relation": "assigns_transformation_to_star",
+      "sourceRefs": [
+        {
+          "pdfPage": 17,
+          "printedFolio": "四十二",
+          "sourceId": "nanbei_shanren",
+          "sourceRef": "nanbei-p17-printed-42-four-transformations-table"
+        },
+        {
+          "pdfPage": 152,
+          "printedFolio": null,
+          "sourceId": "ming_nanyangtang",
+          "sourceRef": "ming-p152-甲-four-transformations-example"
+        }
+      ],
+      "stem": "甲",
+      "to": "lianzhen",
+      "transformation": "hua_lu"
+    },
+    {
+      "from": "transformation:甲:hua_quan",
+      "productionRef": [
+        {
+          "call": "resolveFourTransformations(birthYearStem)",
+          "file": "src/interpretationPrep/threeSystemPrepPipeline.js",
+          "lines": "180"
+        },
+        {
+          "call": "YEAR_STEM_TRANSFORMATIONS[birthYearStem]",
+          "file": "src/ziwei/transformationResolver.js",
+          "lines": "13-14"
+        },
+        {
+          "call": "stemMap.quan -> hua_quan",
+          "file": "src/ziwei/transformationResolver.js",
+          "lines": "36-43"
+        },
+        {
+          "call": "chart.transformations = transformationResult.transformations",
+          "file": "src/interpretationPrep/threeSystemPrepPipeline.js",
+          "lines": "198-200"
+        }
+      ],
+      "relation": "assigns_transformation_to_star",
+      "sourceRefs": [
+        {
+          "pdfPage": 17,
+          "printedFolio": "四十二",
+          "sourceId": "nanbei_shanren",
+          "sourceRef": "nanbei-p17-printed-42-four-transformations-table"
+        },
+        {
+          "pdfPage": 152,
+          "printedFolio": null,
+          "sourceId": "ming_nanyangtang",
+          "sourceRef": "ming-p152-甲-four-transformations-example"
+        }
+      ],
+      "stem": "甲",
+      "to": "pojun",
+      "transformation": "hua_quan"
+    },
+    {
+      "from": "transformation:甲:hua_ke",
+      "productionRef": [
+        {
+          "call": "resolveFourTransformations(birthYearStem)",
+          "file": "src/interpretationPrep/threeSystemPrepPipeline.js",
+          "lines": "180"
+        },
+        {
+          "call": "YEAR_STEM_TRANSFORMATIONS[birthYearStem]",
+          "file": "src/ziwei/transformationResolver.js",
+          "lines": "13-14"
+        },
+        {
+          "call": "stemMap.ke -> hua_ke",
+          "file": "src/ziwei/transformationResolver.js",
+          "lines": "44-51"
+        },
+        {
+          "call": "chart.transformations = transformationResult.transformations",
+          "file": "src/interpretationPrep/threeSystemPrepPipeline.js",
+          "lines": "198-200"
+        }
+      ],
+      "relation": "assigns_transformation_to_star",
+      "sourceRefs": [
+        {
+          "pdfPage": 17,
+          "printedFolio": "四十二",
+          "sourceId": "nanbei_shanren",
+          "sourceRef": "nanbei-p17-printed-42-four-transformations-table"
+        },
+        {
+          "pdfPage": 152,
+          "printedFolio": null,
+          "sourceId": "ming_nanyangtang",
+          "sourceRef": "ming-p152-甲-four-transformations-example"
+        }
+      ],
+      "stem": "甲",
+      "to": "wugu",
+      "transformation": "hua_ke"
+    },
+    {
+      "from": "transformation:甲:hua_ji",
+      "productionRef": [
+        {
+          "call": "resolveFourTransformations(birthYearStem)",
+          "file": "src/interpretationPrep/threeSystemPrepPipeline.js",
+          "lines": "180"
+        },
+        {
+          "call": "YEAR_STEM_TRANSFORMATIONS[birthYearStem]",
+          "file": "src/ziwei/transformationResolver.js",
+          "lines": "13-14"
+        },
+        {
+          "call": "stemMap.ji -> hua_ji",
+          "file": "src/ziwei/transformationResolver.js",
+          "lines": "52-59"
+        },
+        {
+          "call": "chart.transformations = transformationResult.transformations",
+          "file": "src/interpretationPrep/threeSystemPrepPipeline.js",
+          "lines": "198-200"
+        }
+      ],
+      "relation": "assigns_transformation_to_star",
+      "sourceRefs": [
+        {
+          "pdfPage": 17,
+          "printedFolio": "四十二",
+          "sourceId": "nanbei_shanren",
+          "sourceRef": "nanbei-p17-printed-42-four-transformations-table"
+        },
+        {
+          "pdfPage": 152,
+          "printedFolio": null,
+          "sourceId": "ming_nanyangtang",
+          "sourceRef": "ming-p152-甲-four-transformations-example"
+        }
+      ],
+      "stem": "甲",
+      "to": "taiyang",
+      "transformation": "hua_ji"
+    },
+    {
+      "from": "transformation:乙:hua_lu",
+      "productionRef": [
+        {
+          "call": "resolveFourTransformations(birthYearStem)",
+          "file": "src/interpretationPrep/threeSystemPrepPipeline.js",
+          "lines": "180"
+        },
+        {
+          "call": "YEAR_STEM_TRANSFORMATIONS[birthYearStem]",
+          "file": "src/ziwei/transformationResolver.js",
+          "lines": "13-14"
+        },
+        {
+          "call": "stemMap.lu -> hua_lu",
+          "file": "src/ziwei/transformationResolver.js",
+          "lines": "28-35"
+        },
+        {
+          "call": "chart.transformations = transformationResult.transformations",
+          "file": "src/interpretationPrep/threeSystemPrepPipeline.js",
+          "lines": "198-200"
+        }
+      ],
+      "relation": "assigns_transformation_to_star",
+      "sourceRefs": [
+        {
+          "pdfPage": 17,
+          "printedFolio": "四十二",
+          "sourceId": "nanbei_shanren",
+          "sourceRef": "nanbei-p17-printed-42-four-transformations-table"
+        },
+        {
+          "pdfPage": null,
+          "printedFolio": null,
+          "sourceId": "ming_nanyangtang",
+          "sourceRef": "ming-full-scan-four-transformations-not-located"
+        }
+      ],
+      "stem": "乙",
+      "to": "tianji",
+      "transformation": "hua_lu"
+    },
+    {
+      "from": "transformation:乙:hua_quan",
+      "productionRef": [
+        {
+          "call": "resolveFourTransformations(birthYearStem)",
+          "file": "src/interpretationPrep/threeSystemPrepPipeline.js",
+          "lines": "180"
+        },
+        {
+          "call": "YEAR_STEM_TRANSFORMATIONS[birthYearStem]",
+          "file": "src/ziwei/transformationResolver.js",
+          "lines": "13-14"
+        },
+        {
+          "call": "stemMap.quan -> hua_quan",
+          "file": "src/ziwei/transformationResolver.js",
+          "lines": "36-43"
+        },
+        {
+          "call": "chart.transformations = transformationResult.transformations",
+          "file": "src/interpretationPrep/threeSystemPrepPipeline.js",
+          "lines": "198-200"
+        }
+      ],
+      "relation": "assigns_transformation_to_star",
+      "sourceRefs": [
+        {
+          "pdfPage": 17,
+          "printedFolio": "四十二",
+          "sourceId": "nanbei_shanren",
+          "sourceRef": "nanbei-p17-printed-42-four-transformations-table"
+        },
+        {
+          "pdfPage": null,
+          "printedFolio": null,
+          "sourceId": "ming_nanyangtang",
+          "sourceRef": "ming-full-scan-four-transformations-not-located"
+        }
+      ],
+      "stem": "乙",
+      "to": "tianliang",
+      "transformation": "hua_quan"
+    },
+    {
+      "from": "transformation:乙:hua_ke",
+      "productionRef": [
+        {
+          "call": "resolveFourTransformations(birthYearStem)",
+          "file": "src/interpretationPrep/threeSystemPrepPipeline.js",
+          "lines": "180"
+        },
+        {
+          "call": "YEAR_STEM_TRANSFORMATIONS[birthYearStem]",
+          "file": "src/ziwei/transformationResolver.js",
+          "lines": "13-14"
+        },
+        {
+          "call": "stemMap.ke -> hua_ke",
+          "file": "src/ziwei/transformationResolver.js",
+          "lines": "44-51"
+        },
+        {
+          "call": "chart.transformations = transformationResult.transformations",
+          "file": "src/interpretationPrep/threeSystemPrepPipeline.js",
+          "lines": "198-200"
+        }
+      ],
+      "relation": "assigns_transformation_to_star",
+      "sourceRefs": [
+        {
+          "pdfPage": 17,
+          "printedFolio": "四十二",
+          "sourceId": "nanbei_shanren",
+          "sourceRef": "nanbei-p17-printed-42-four-transformations-table"
+        },
+        {
+          "pdfPage": null,
+          "printedFolio": null,
+          "sourceId": "ming_nanyangtang",
+          "sourceRef": "ming-full-scan-four-transformations-not-located"
+        }
+      ],
+      "stem": "乙",
+      "to": "ziwei",
+      "transformation": "hua_ke"
+    },
+    {
+      "from": "transformation:乙:hua_ji",
+      "productionRef": [
+        {
+          "call": "resolveFourTransformations(birthYearStem)",
+          "file": "src/interpretationPrep/threeSystemPrepPipeline.js",
+          "lines": "180"
+        },
+        {
+          "call": "YEAR_STEM_TRANSFORMATIONS[birthYearStem]",
+          "file": "src/ziwei/transformationResolver.js",
+          "lines": "13-14"
+        },
+        {
+          "call": "stemMap.ji -> hua_ji",
+          "file": "src/ziwei/transformationResolver.js",
+          "lines": "52-59"
+        },
+        {
+          "call": "chart.transformations = transformationResult.transformations",
+          "file": "src/interpretationPrep/threeSystemPrepPipeline.js",
+          "lines": "198-200"
+        }
+      ],
+      "relation": "assigns_transformation_to_star",
+      "sourceRefs": [
+        {
+          "pdfPage": 17,
+          "printedFolio": "四十二",
+          "sourceId": "nanbei_shanren",
+          "sourceRef": "nanbei-p17-printed-42-four-transformations-table"
+        },
+        {
+          "pdfPage": null,
+          "printedFolio": null,
+          "sourceId": "ming_nanyangtang",
+          "sourceRef": "ming-full-scan-four-transformations-not-located"
+        }
+      ],
+      "stem": "乙",
+      "to": "taiyin",
+      "transformation": "hua_ji"
+    },
+    {
+      "from": "transformation:丙:hua_lu",
+      "productionRef": [
+        {
+          "call": "resolveFourTransformations(birthYearStem)",
+          "file": "src/interpretationPrep/threeSystemPrepPipeline.js",
+          "lines": "180"
+        },
+        {
+          "call": "YEAR_STEM_TRANSFORMATIONS[birthYearStem]",
+          "file": "src/ziwei/transformationResolver.js",
+          "lines": "13-14"
+        },
+        {
+          "call": "stemMap.lu -> hua_lu",
+          "file": "src/ziwei/transformationResolver.js",
+          "lines": "28-35"
+        },
+        {
+          "call": "chart.transformations = transformationResult.transformations",
+          "file": "src/interpretationPrep/threeSystemPrepPipeline.js",
+          "lines": "198-200"
+        }
+      ],
+      "relation": "assigns_transformation_to_star",
+      "sourceRefs": [
+        {
+          "pdfPage": 17,
+          "printedFolio": "四十二",
+          "sourceId": "nanbei_shanren",
+          "sourceRef": "nanbei-p17-printed-42-four-transformations-table"
+        },
+        {
+          "pdfPage": null,
+          "printedFolio": null,
+          "sourceId": "ming_nanyangtang",
+          "sourceRef": "ming-full-scan-four-transformations-not-located"
+        }
+      ],
+      "stem": "丙",
+      "to": "tiandong",
+      "transformation": "hua_lu"
+    },
+    {
+      "from": "transformation:丙:hua_quan",
+      "productionRef": [
+        {
+          "call": "resolveFourTransformations(birthYearStem)",
+          "file": "src/interpretationPrep/threeSystemPrepPipeline.js",
+          "lines": "180"
+        },
+        {
+          "call": "YEAR_STEM_TRANSFORMATIONS[birthYearStem]",
+          "file": "src/ziwei/transformationResolver.js",
+          "lines": "13-14"
+        },
+        {
+          "call": "stemMap.quan -> hua_quan",
+          "file": "src/ziwei/transformationResolver.js",
+          "lines": "36-43"
+        },
+        {
+          "call": "chart.transformations = transformationResult.transformations",
+          "file": "src/interpretationPrep/threeSystemPrepPipeline.js",
+          "lines": "198-200"
+        }
+      ],
+      "relation": "assigns_transformation_to_star",
+      "sourceRefs": [
+        {
+          "pdfPage": 17,
+          "printedFolio": "四十二",
+          "sourceId": "nanbei_shanren",
+          "sourceRef": "nanbei-p17-printed-42-four-transformations-table"
+        },
+        {
+          "pdfPage": null,
+          "printedFolio": null,
+          "sourceId": "ming_nanyangtang",
+          "sourceRef": "ming-full-scan-four-transformations-not-located"
+        }
+      ],
+      "stem": "丙",
+      "to": "tianji",
+      "transformation": "hua_quan"
+    },
+    {
+      "from": "transformation:丙:hua_ke",
+      "productionRef": [
+        {
+          "call": "resolveFourTransformations(birthYearStem)",
+          "file": "src/interpretationPrep/threeSystemPrepPipeline.js",
+          "lines": "180"
+        },
+        {
+          "call": "YEAR_STEM_TRANSFORMATIONS[birthYearStem]",
+          "file": "src/ziwei/transformationResolver.js",
+          "lines": "13-14"
+        },
+        {
+          "call": "stemMap.ke -> hua_ke",
+          "file": "src/ziwei/transformationResolver.js",
+          "lines": "44-51"
+        },
+        {
+          "call": "chart.transformations = transformationResult.transformations",
+          "file": "src/interpretationPrep/threeSystemPrepPipeline.js",
+          "lines": "198-200"
+        }
+      ],
+      "relation": "assigns_transformation_to_star",
+      "sourceRefs": [
+        {
+          "pdfPage": 17,
+          "printedFolio": "四十二",
+          "sourceId": "nanbei_shanren",
+          "sourceRef": "nanbei-p17-printed-42-four-transformations-table"
+        },
+        {
+          "pdfPage": null,
+          "printedFolio": null,
+          "sourceId": "ming_nanyangtang",
+          "sourceRef": "ming-full-scan-four-transformations-not-located"
+        }
+      ],
+      "stem": "丙",
+      "to": "wenchang",
+      "transformation": "hua_ke"
+    },
+    {
+      "from": "transformation:丙:hua_ji",
+      "productionRef": [
+        {
+          "call": "resolveFourTransformations(birthYearStem)",
+          "file": "src/interpretationPrep/threeSystemPrepPipeline.js",
+          "lines": "180"
+        },
+        {
+          "call": "YEAR_STEM_TRANSFORMATIONS[birthYearStem]",
+          "file": "src/ziwei/transformationResolver.js",
+          "lines": "13-14"
+        },
+        {
+          "call": "stemMap.ji -> hua_ji",
+          "file": "src/ziwei/transformationResolver.js",
+          "lines": "52-59"
+        },
+        {
+          "call": "chart.transformations = transformationResult.transformations",
+          "file": "src/interpretationPrep/threeSystemPrepPipeline.js",
+          "lines": "198-200"
+        }
+      ],
+      "relation": "assigns_transformation_to_star",
+      "sourceRefs": [
+        {
+          "pdfPage": 17,
+          "printedFolio": "四十二",
+          "sourceId": "nanbei_shanren",
+          "sourceRef": "nanbei-p17-printed-42-four-transformations-table"
+        },
+        {
+          "pdfPage": null,
+          "printedFolio": null,
+          "sourceId": "ming_nanyangtang",
+          "sourceRef": "ming-full-scan-four-transformations-not-located"
+        }
+      ],
+      "stem": "丙",
+      "to": "lianzhen",
+      "transformation": "hua_ji"
+    },
+    {
+      "from": "transformation:丁:hua_lu",
+      "productionRef": [
+        {
+          "call": "resolveFourTransformations(birthYearStem)",
+          "file": "src/interpretationPrep/threeSystemPrepPipeline.js",
+          "lines": "180"
+        },
+        {
+          "call": "YEAR_STEM_TRANSFORMATIONS[birthYearStem]",
+          "file": "src/ziwei/transformationResolver.js",
+          "lines": "13-14"
+        },
+        {
+          "call": "stemMap.lu -> hua_lu",
+          "file": "src/ziwei/transformationResolver.js",
+          "lines": "28-35"
+        },
+        {
+          "call": "chart.transformations = transformationResult.transformations",
+          "file": "src/interpretationPrep/threeSystemPrepPipeline.js",
+          "lines": "198-200"
+        }
+      ],
+      "relation": "assigns_transformation_to_star",
+      "sourceRefs": [
+        {
+          "pdfPage": 17,
+          "printedFolio": "四十二",
+          "sourceId": "nanbei_shanren",
+          "sourceRef": "nanbei-p17-printed-42-four-transformations-table"
+        },
+        {
+          "pdfPage": null,
+          "printedFolio": null,
+          "sourceId": "ming_nanyangtang",
+          "sourceRef": "ming-full-scan-four-transformations-not-located"
+        }
+      ],
+      "stem": "丁",
+      "to": "taiyin",
+      "transformation": "hua_lu"
+    },
+    {
+      "from": "transformation:丁:hua_quan",
+      "productionRef": [
+        {
+          "call": "resolveFourTransformations(birthYearStem)",
+          "file": "src/interpretationPrep/threeSystemPrepPipeline.js",
+          "lines": "180"
+        },
+        {
+          "call": "YEAR_STEM_TRANSFORMATIONS[birthYearStem]",
+          "file": "src/ziwei/transformationResolver.js",
+          "lines": "13-14"
+        },
+        {
+          "call": "stemMap.quan -> hua_quan",
+          "file": "src/ziwei/transformationResolver.js",
+          "lines": "36-43"
+        },
+        {
+          "call": "chart.transformations = transformationResult.transformations",
+          "file": "src/interpretationPrep/threeSystemPrepPipeline.js",
+          "lines": "198-200"
+        }
+      ],
+      "relation": "assigns_transformation_to_star",
+      "sourceRefs": [
+        {
+          "pdfPage": 17,
+          "printedFolio": "四十二",
+          "sourceId": "nanbei_shanren",
+          "sourceRef": "nanbei-p17-printed-42-four-transformations-table"
+        },
+        {
+          "pdfPage": null,
+          "printedFolio": null,
+          "sourceId": "ming_nanyangtang",
+          "sourceRef": "ming-full-scan-four-transformations-not-located"
+        }
+      ],
+      "stem": "丁",
+      "to": "tiandong",
+      "transformation": "hua_quan"
+    },
+    {
+      "from": "transformation:丁:hua_ke",
+      "productionRef": [
+        {
+          "call": "resolveFourTransformations(birthYearStem)",
+          "file": "src/interpretationPrep/threeSystemPrepPipeline.js",
+          "lines": "180"
+        },
+        {
+          "call": "YEAR_STEM_TRANSFORMATIONS[birthYearStem]",
+          "file": "src/ziwei/transformationResolver.js",
+          "lines": "13-14"
+        },
+        {
+          "call": "stemMap.ke -> hua_ke",
+          "file": "src/ziwei/transformationResolver.js",
+          "lines": "44-51"
+        },
+        {
+          "call": "chart.transformations = transformationResult.transformations",
+          "file": "src/interpretationPrep/threeSystemPrepPipeline.js",
+          "lines": "198-200"
+        }
+      ],
+      "relation": "assigns_transformation_to_star",
+      "sourceRefs": [
+        {
+          "pdfPage": 17,
+          "printedFolio": "四十二",
+          "sourceId": "nanbei_shanren",
+          "sourceRef": "nanbei-p17-printed-42-four-transformations-table"
+        },
+        {
+          "pdfPage": null,
+          "printedFolio": null,
+          "sourceId": "ming_nanyangtang",
+          "sourceRef": "ming-full-scan-four-transformations-not-located"
+        }
+      ],
+      "stem": "丁",
+      "to": "tianji",
+      "transformation": "hua_ke"
+    },
+    {
+      "from": "transformation:丁:hua_ji",
+      "productionRef": [
+        {
+          "call": "resolveFourTransformations(birthYearStem)",
+          "file": "src/interpretationPrep/threeSystemPrepPipeline.js",
+          "lines": "180"
+        },
+        {
+          "call": "YEAR_STEM_TRANSFORMATIONS[birthYearStem]",
+          "file": "src/ziwei/transformationResolver.js",
+          "lines": "13-14"
+        },
+        {
+          "call": "stemMap.ji -> hua_ji",
+          "file": "src/ziwei/transformationResolver.js",
+          "lines": "52-59"
+        },
+        {
+          "call": "chart.transformations = transformationResult.transformations",
+          "file": "src/interpretationPrep/threeSystemPrepPipeline.js",
+          "lines": "198-200"
+        }
+      ],
+      "relation": "assigns_transformation_to_star",
+      "sourceRefs": [
+        {
+          "pdfPage": 17,
+          "printedFolio": "四十二",
+          "sourceId": "nanbei_shanren",
+          "sourceRef": "nanbei-p17-printed-42-four-transformations-table"
+        },
+        {
+          "pdfPage": null,
+          "printedFolio": null,
+          "sourceId": "ming_nanyangtang",
+          "sourceRef": "ming-full-scan-four-transformations-not-located"
+        }
+      ],
+      "stem": "丁",
+      "to": "jumen",
+      "transformation": "hua_ji"
+    },
+    {
+      "from": "transformation:戊:hua_lu",
+      "productionRef": [
+        {
+          "call": "resolveFourTransformations(birthYearStem)",
+          "file": "src/interpretationPrep/threeSystemPrepPipeline.js",
+          "lines": "180"
+        },
+        {
+          "call": "YEAR_STEM_TRANSFORMATIONS[birthYearStem]",
+          "file": "src/ziwei/transformationResolver.js",
+          "lines": "13-14"
+        },
+        {
+          "call": "stemMap.lu -> hua_lu",
+          "file": "src/ziwei/transformationResolver.js",
+          "lines": "28-35"
+        },
+        {
+          "call": "chart.transformations = transformationResult.transformations",
+          "file": "src/interpretationPrep/threeSystemPrepPipeline.js",
+          "lines": "198-200"
+        }
+      ],
+      "relation": "assigns_transformation_to_star",
+      "sourceRefs": [
+        {
+          "pdfPage": 17,
+          "printedFolio": "四十二",
+          "sourceId": "nanbei_shanren",
+          "sourceRef": "nanbei-p17-printed-42-four-transformations-table"
+        },
+        {
+          "pdfPage": null,
+          "printedFolio": null,
+          "sourceId": "ming_nanyangtang",
+          "sourceRef": "ming-full-scan-four-transformations-not-located"
+        }
+      ],
+      "stem": "戊",
+      "to": "tanlang",
+      "transformation": "hua_lu"
+    },
+    {
+      "from": "transformation:戊:hua_quan",
+      "productionRef": [
+        {
+          "call": "resolveFourTransformations(birthYearStem)",
+          "file": "src/interpretationPrep/threeSystemPrepPipeline.js",
+          "lines": "180"
+        },
+        {
+          "call": "YEAR_STEM_TRANSFORMATIONS[birthYearStem]",
+          "file": "src/ziwei/transformationResolver.js",
+          "lines": "13-14"
+        },
+        {
+          "call": "stemMap.quan -> hua_quan",
+          "file": "src/ziwei/transformationResolver.js",
+          "lines": "36-43"
+        },
+        {
+          "call": "chart.transformations = transformationResult.transformations",
+          "file": "src/interpretationPrep/threeSystemPrepPipeline.js",
+          "lines": "198-200"
+        }
+      ],
+      "relation": "assigns_transformation_to_star",
+      "sourceRefs": [
+        {
+          "pdfPage": 17,
+          "printedFolio": "四十二",
+          "sourceId": "nanbei_shanren",
+          "sourceRef": "nanbei-p17-printed-42-four-transformations-table"
+        },
+        {
+          "pdfPage": null,
+          "printedFolio": null,
+          "sourceId": "ming_nanyangtang",
+          "sourceRef": "ming-full-scan-four-transformations-not-located"
+        }
+      ],
+      "stem": "戊",
+      "to": "taiyin",
+      "transformation": "hua_quan"
+    },
+    {
+      "from": "transformation:戊:hua_ke",
+      "productionRef": [
+        {
+          "call": "resolveFourTransformations(birthYearStem)",
+          "file": "src/interpretationPrep/threeSystemPrepPipeline.js",
+          "lines": "180"
+        },
+        {
+          "call": "YEAR_STEM_TRANSFORMATIONS[birthYearStem]",
+          "file": "src/ziwei/transformationResolver.js",
+          "lines": "13-14"
+        },
+        {
+          "call": "stemMap.ke -> hua_ke",
+          "file": "src/ziwei/transformationResolver.js",
+          "lines": "44-51"
+        },
+        {
+          "call": "chart.transformations = transformationResult.transformations",
+          "file": "src/interpretationPrep/threeSystemPrepPipeline.js",
+          "lines": "198-200"
+        }
+      ],
+      "relation": "assigns_transformation_to_star",
+      "sourceRefs": [
+        {
+          "pdfPage": 17,
+          "printedFolio": "四十二",
+          "sourceId": "nanbei_shanren",
+          "sourceRef": "nanbei-p17-printed-42-four-transformations-table"
+        },
+        {
+          "pdfPage": null,
+          "printedFolio": null,
+          "sourceId": "ming_nanyangtang",
+          "sourceRef": "ming-full-scan-four-transformations-not-located"
+        }
+      ],
+      "stem": "戊",
+      "to": "youbi",
+      "transformation": "hua_ke"
+    },
+    {
+      "from": "transformation:戊:hua_ji",
+      "productionRef": [
+        {
+          "call": "resolveFourTransformations(birthYearStem)",
+          "file": "src/interpretationPrep/threeSystemPrepPipeline.js",
+          "lines": "180"
+        },
+        {
+          "call": "YEAR_STEM_TRANSFORMATIONS[birthYearStem]",
+          "file": "src/ziwei/transformationResolver.js",
+          "lines": "13-14"
+        },
+        {
+          "call": "stemMap.ji -> hua_ji",
+          "file": "src/ziwei/transformationResolver.js",
+          "lines": "52-59"
+        },
+        {
+          "call": "chart.transformations = transformationResult.transformations",
+          "file": "src/interpretationPrep/threeSystemPrepPipeline.js",
+          "lines": "198-200"
+        }
+      ],
+      "relation": "assigns_transformation_to_star",
+      "sourceRefs": [
+        {
+          "pdfPage": 17,
+          "printedFolio": "四十二",
+          "sourceId": "nanbei_shanren",
+          "sourceRef": "nanbei-p17-printed-42-four-transformations-table"
+        },
+        {
+          "pdfPage": null,
+          "printedFolio": null,
+          "sourceId": "ming_nanyangtang",
+          "sourceRef": "ming-full-scan-four-transformations-not-located"
+        }
+      ],
+      "stem": "戊",
+      "to": "tianji",
+      "transformation": "hua_ji"
+    },
+    {
+      "from": "transformation:己:hua_lu",
+      "productionRef": [
+        {
+          "call": "resolveFourTransformations(birthYearStem)",
+          "file": "src/interpretationPrep/threeSystemPrepPipeline.js",
+          "lines": "180"
+        },
+        {
+          "call": "YEAR_STEM_TRANSFORMATIONS[birthYearStem]",
+          "file": "src/ziwei/transformationResolver.js",
+          "lines": "13-14"
+        },
+        {
+          "call": "stemMap.lu -> hua_lu",
+          "file": "src/ziwei/transformationResolver.js",
+          "lines": "28-35"
+        },
+        {
+          "call": "chart.transformations = transformationResult.transformations",
+          "file": "src/interpretationPrep/threeSystemPrepPipeline.js",
+          "lines": "198-200"
+        }
+      ],
+      "relation": "assigns_transformation_to_star",
+      "sourceRefs": [
+        {
+          "pdfPage": 17,
+          "printedFolio": "四十二",
+          "sourceId": "nanbei_shanren",
+          "sourceRef": "nanbei-p17-printed-42-four-transformations-table"
+        },
+        {
+          "pdfPage": null,
+          "printedFolio": null,
+          "sourceId": "ming_nanyangtang",
+          "sourceRef": "ming-full-scan-four-transformations-not-located"
+        }
+      ],
+      "stem": "己",
+      "to": "wugu",
+      "transformation": "hua_lu"
+    },
+    {
+      "from": "transformation:己:hua_quan",
+      "productionRef": [
+        {
+          "call": "resolveFourTransformations(birthYearStem)",
+          "file": "src/interpretationPrep/threeSystemPrepPipeline.js",
+          "lines": "180"
+        },
+        {
+          "call": "YEAR_STEM_TRANSFORMATIONS[birthYearStem]",
+          "file": "src/ziwei/transformationResolver.js",
+          "lines": "13-14"
+        },
+        {
+          "call": "stemMap.quan -> hua_quan",
+          "file": "src/ziwei/transformationResolver.js",
+          "lines": "36-43"
+        },
+        {
+          "call": "chart.transformations = transformationResult.transformations",
+          "file": "src/interpretationPrep/threeSystemPrepPipeline.js",
+          "lines": "198-200"
+        }
+      ],
+      "relation": "assigns_transformation_to_star",
+      "sourceRefs": [
+        {
+          "pdfPage": 17,
+          "printedFolio": "四十二",
+          "sourceId": "nanbei_shanren",
+          "sourceRef": "nanbei-p17-printed-42-four-transformations-table"
+        },
+        {
+          "pdfPage": null,
+          "printedFolio": null,
+          "sourceId": "ming_nanyangtang",
+          "sourceRef": "ming-full-scan-four-transformations-not-located"
+        }
+      ],
+      "stem": "己",
+      "to": "tanlang",
+      "transformation": "hua_quan"
+    },
+    {
+      "from": "transformation:己:hua_ke",
+      "productionRef": [
+        {
+          "call": "resolveFourTransformations(birthYearStem)",
+          "file": "src/interpretationPrep/threeSystemPrepPipeline.js",
+          "lines": "180"
+        },
+        {
+          "call": "YEAR_STEM_TRANSFORMATIONS[birthYearStem]",
+          "file": "src/ziwei/transformationResolver.js",
+          "lines": "13-14"
+        },
+        {
+          "call": "stemMap.ke -> hua_ke",
+          "file": "src/ziwei/transformationResolver.js",
+          "lines": "44-51"
+        },
+        {
+          "call": "chart.transformations = transformationResult.transformations",
+          "file": "src/interpretationPrep/threeSystemPrepPipeline.js",
+          "lines": "198-200"
+        }
+      ],
+      "relation": "assigns_transformation_to_star",
+      "sourceRefs": [
+        {
+          "pdfPage": 17,
+          "printedFolio": "四十二",
+          "sourceId": "nanbei_shanren",
+          "sourceRef": "nanbei-p17-printed-42-four-transformations-table"
+        },
+        {
+          "pdfPage": null,
+          "printedFolio": null,
+          "sourceId": "ming_nanyangtang",
+          "sourceRef": "ming-full-scan-four-transformations-not-located"
+        }
+      ],
+      "stem": "己",
+      "to": "tianliang",
+      "transformation": "hua_ke"
+    },
+    {
+      "from": "transformation:己:hua_ji",
+      "productionRef": [
+        {
+          "call": "resolveFourTransformations(birthYearStem)",
+          "file": "src/interpretationPrep/threeSystemPrepPipeline.js",
+          "lines": "180"
+        },
+        {
+          "call": "YEAR_STEM_TRANSFORMATIONS[birthYearStem]",
+          "file": "src/ziwei/transformationResolver.js",
+          "lines": "13-14"
+        },
+        {
+          "call": "stemMap.ji -> hua_ji",
+          "file": "src/ziwei/transformationResolver.js",
+          "lines": "52-59"
+        },
+        {
+          "call": "chart.transformations = transformationResult.transformations",
+          "file": "src/interpretationPrep/threeSystemPrepPipeline.js",
+          "lines": "198-200"
+        }
+      ],
+      "relation": "assigns_transformation_to_star",
+      "sourceRefs": [
+        {
+          "pdfPage": 17,
+          "printedFolio": "四十二",
+          "sourceId": "nanbei_shanren",
+          "sourceRef": "nanbei-p17-printed-42-four-transformations-table"
+        },
+        {
+          "pdfPage": null,
+          "printedFolio": null,
+          "sourceId": "ming_nanyangtang",
+          "sourceRef": "ming-full-scan-four-transformations-not-located"
+        }
+      ],
+      "stem": "己",
+      "to": "wengu",
+      "transformation": "hua_ji"
+    },
+    {
+      "from": "transformation:庚:hua_lu",
+      "productionRef": [
+        {
+          "call": "resolveFourTransformations(birthYearStem)",
+          "file": "src/interpretationPrep/threeSystemPrepPipeline.js",
+          "lines": "180"
+        },
+        {
+          "call": "YEAR_STEM_TRANSFORMATIONS[birthYearStem]",
+          "file": "src/ziwei/transformationResolver.js",
+          "lines": "13-14"
+        },
+        {
+          "call": "stemMap.lu -> hua_lu",
+          "file": "src/ziwei/transformationResolver.js",
+          "lines": "28-35"
+        },
+        {
+          "call": "chart.transformations = transformationResult.transformations",
+          "file": "src/interpretationPrep/threeSystemPrepPipeline.js",
+          "lines": "198-200"
+        }
+      ],
+      "relation": "assigns_transformation_to_star",
+      "sourceRefs": [
+        {
+          "pdfPage": 17,
+          "printedFolio": "四十二",
+          "sourceId": "nanbei_shanren",
+          "sourceRef": "nanbei-p17-printed-42-four-transformations-table"
+        },
+        {
+          "pdfPage": null,
+          "printedFolio": null,
+          "sourceId": "ming_nanyangtang",
+          "sourceRef": "ming-full-scan-four-transformations-not-located"
+        }
+      ],
+      "stem": "庚",
+      "to": "taiyang",
+      "transformation": "hua_lu"
+    },
+    {
+      "from": "transformation:庚:hua_quan",
+      "productionRef": [
+        {
+          "call": "resolveFourTransformations(birthYearStem)",
+          "file": "src/interpretationPrep/threeSystemPrepPipeline.js",
+          "lines": "180"
+        },
+        {
+          "call": "YEAR_STEM_TRANSFORMATIONS[birthYearStem]",
+          "file": "src/ziwei/transformationResolver.js",
+          "lines": "13-14"
+        },
+        {
+          "call": "stemMap.quan -> hua_quan",
+          "file": "src/ziwei/transformationResolver.js",
+          "lines": "36-43"
+        },
+        {
+          "call": "chart.transformations = transformationResult.transformations",
+          "file": "src/interpretationPrep/threeSystemPrepPipeline.js",
+          "lines": "198-200"
+        }
+      ],
+      "relation": "assigns_transformation_to_star",
+      "sourceRefs": [
+        {
+          "pdfPage": 17,
+          "printedFolio": "四十二",
+          "sourceId": "nanbei_shanren",
+          "sourceRef": "nanbei-p17-printed-42-four-transformations-table"
+        },
+        {
+          "pdfPage": null,
+          "printedFolio": null,
+          "sourceId": "ming_nanyangtang",
+          "sourceRef": "ming-full-scan-four-transformations-not-located"
+        }
+      ],
+      "stem": "庚",
+      "to": "wugu",
+      "transformation": "hua_quan"
+    },
+    {
+      "from": "transformation:庚:hua_ke",
+      "productionRef": [
+        {
+          "call": "resolveFourTransformations(birthYearStem)",
+          "file": "src/interpretationPrep/threeSystemPrepPipeline.js",
+          "lines": "180"
+        },
+        {
+          "call": "YEAR_STEM_TRANSFORMATIONS[birthYearStem]",
+          "file": "src/ziwei/transformationResolver.js",
+          "lines": "13-14"
+        },
+        {
+          "call": "stemMap.ke -> hua_ke",
+          "file": "src/ziwei/transformationResolver.js",
+          "lines": "44-51"
+        },
+        {
+          "call": "chart.transformations = transformationResult.transformations",
+          "file": "src/interpretationPrep/threeSystemPrepPipeline.js",
+          "lines": "198-200"
+        }
+      ],
+      "relation": "assigns_transformation_to_star",
+      "sourceRefs": [
+        {
+          "pdfPage": 17,
+          "printedFolio": "四十二",
+          "sourceId": "nanbei_shanren",
+          "sourceRef": "nanbei-p17-printed-42-four-transformations-table"
+        },
+        {
+          "pdfPage": null,
+          "printedFolio": null,
+          "sourceId": "ming_nanyangtang",
+          "sourceRef": "ming-full-scan-four-transformations-not-located"
+        }
+      ],
+      "stem": "庚",
+      "to": "taiyin",
+      "transformation": "hua_ke"
+    },
+    {
+      "from": "transformation:庚:hua_ji",
+      "productionRef": [
+        {
+          "call": "resolveFourTransformations(birthYearStem)",
+          "file": "src/interpretationPrep/threeSystemPrepPipeline.js",
+          "lines": "180"
+        },
+        {
+          "call": "YEAR_STEM_TRANSFORMATIONS[birthYearStem]",
+          "file": "src/ziwei/transformationResolver.js",
+          "lines": "13-14"
+        },
+        {
+          "call": "stemMap.ji -> hua_ji",
+          "file": "src/ziwei/transformationResolver.js",
+          "lines": "52-59"
+        },
+        {
+          "call": "chart.transformations = transformationResult.transformations",
+          "file": "src/interpretationPrep/threeSystemPrepPipeline.js",
+          "lines": "198-200"
+        }
+      ],
+      "relation": "assigns_transformation_to_star",
+      "sourceRefs": [
+        {
+          "pdfPage": 17,
+          "printedFolio": "四十二",
+          "sourceId": "nanbei_shanren",
+          "sourceRef": "nanbei-p17-printed-42-four-transformations-table"
+        },
+        {
+          "pdfPage": null,
+          "printedFolio": null,
+          "sourceId": "ming_nanyangtang",
+          "sourceRef": "ming-full-scan-four-transformations-not-located"
+        }
+      ],
+      "stem": "庚",
+      "to": "tiandong",
+      "transformation": "hua_ji"
+    },
+    {
+      "from": "transformation:辛:hua_lu",
+      "productionRef": [
+        {
+          "call": "resolveFourTransformations(birthYearStem)",
+          "file": "src/interpretationPrep/threeSystemPrepPipeline.js",
+          "lines": "180"
+        },
+        {
+          "call": "YEAR_STEM_TRANSFORMATIONS[birthYearStem]",
+          "file": "src/ziwei/transformationResolver.js",
+          "lines": "13-14"
+        },
+        {
+          "call": "stemMap.lu -> hua_lu",
+          "file": "src/ziwei/transformationResolver.js",
+          "lines": "28-35"
+        },
+        {
+          "call": "chart.transformations = transformationResult.transformations",
+          "file": "src/interpretationPrep/threeSystemPrepPipeline.js",
+          "lines": "198-200"
+        }
+      ],
+      "relation": "assigns_transformation_to_star",
+      "sourceRefs": [
+        {
+          "pdfPage": 17,
+          "printedFolio": "四十二",
+          "sourceId": "nanbei_shanren",
+          "sourceRef": "nanbei-p17-printed-42-four-transformations-table"
+        },
+        {
+          "pdfPage": null,
+          "printedFolio": null,
+          "sourceId": "ming_nanyangtang",
+          "sourceRef": "ming-full-scan-four-transformations-not-located"
+        }
+      ],
+      "stem": "辛",
+      "to": "jumen",
+      "transformation": "hua_lu"
+    },
+    {
+      "from": "transformation:辛:hua_quan",
+      "productionRef": [
+        {
+          "call": "resolveFourTransformations(birthYearStem)",
+          "file": "src/interpretationPrep/threeSystemPrepPipeline.js",
+          "lines": "180"
+        },
+        {
+          "call": "YEAR_STEM_TRANSFORMATIONS[birthYearStem]",
+          "file": "src/ziwei/transformationResolver.js",
+          "lines": "13-14"
+        },
+        {
+          "call": "stemMap.quan -> hua_quan",
+          "file": "src/ziwei/transformationResolver.js",
+          "lines": "36-43"
+        },
+        {
+          "call": "chart.transformations = transformationResult.transformations",
+          "file": "src/interpretationPrep/threeSystemPrepPipeline.js",
+          "lines": "198-200"
+        }
+      ],
+      "relation": "assigns_transformation_to_star",
+      "sourceRefs": [
+        {
+          "pdfPage": 17,
+          "printedFolio": "四十二",
+          "sourceId": "nanbei_shanren",
+          "sourceRef": "nanbei-p17-printed-42-four-transformations-table"
+        },
+        {
+          "pdfPage": null,
+          "printedFolio": null,
+          "sourceId": "ming_nanyangtang",
+          "sourceRef": "ming-full-scan-four-transformations-not-located"
+        }
+      ],
+      "stem": "辛",
+      "to": "taiyang",
+      "transformation": "hua_quan"
+    },
+    {
+      "from": "transformation:辛:hua_ke",
+      "productionRef": [
+        {
+          "call": "resolveFourTransformations(birthYearStem)",
+          "file": "src/interpretationPrep/threeSystemPrepPipeline.js",
+          "lines": "180"
+        },
+        {
+          "call": "YEAR_STEM_TRANSFORMATIONS[birthYearStem]",
+          "file": "src/ziwei/transformationResolver.js",
+          "lines": "13-14"
+        },
+        {
+          "call": "stemMap.ke -> hua_ke",
+          "file": "src/ziwei/transformationResolver.js",
+          "lines": "44-51"
+        },
+        {
+          "call": "chart.transformations = transformationResult.transformations",
+          "file": "src/interpretationPrep/threeSystemPrepPipeline.js",
+          "lines": "198-200"
+        }
+      ],
+      "relation": "assigns_transformation_to_star",
+      "sourceRefs": [
+        {
+          "pdfPage": 17,
+          "printedFolio": "四十二",
+          "sourceId": "nanbei_shanren",
+          "sourceRef": "nanbei-p17-printed-42-four-transformations-table"
+        },
+        {
+          "pdfPage": null,
+          "printedFolio": null,
+          "sourceId": "ming_nanyangtang",
+          "sourceRef": "ming-full-scan-four-transformations-not-located"
+        }
+      ],
+      "stem": "辛",
+      "to": "wengu",
+      "transformation": "hua_ke"
+    },
+    {
+      "from": "transformation:辛:hua_ji",
+      "productionRef": [
+        {
+          "call": "resolveFourTransformations(birthYearStem)",
+          "file": "src/interpretationPrep/threeSystemPrepPipeline.js",
+          "lines": "180"
+        },
+        {
+          "call": "YEAR_STEM_TRANSFORMATIONS[birthYearStem]",
+          "file": "src/ziwei/transformationResolver.js",
+          "lines": "13-14"
+        },
+        {
+          "call": "stemMap.ji -> hua_ji",
+          "file": "src/ziwei/transformationResolver.js",
+          "lines": "52-59"
+        },
+        {
+          "call": "chart.transformations = transformationResult.transformations",
+          "file": "src/interpretationPrep/threeSystemPrepPipeline.js",
+          "lines": "198-200"
+        }
+      ],
+      "relation": "assigns_transformation_to_star",
+      "sourceRefs": [
+        {
+          "pdfPage": 17,
+          "printedFolio": "四十二",
+          "sourceId": "nanbei_shanren",
+          "sourceRef": "nanbei-p17-printed-42-four-transformations-table"
+        },
+        {
+          "pdfPage": null,
+          "printedFolio": null,
+          "sourceId": "ming_nanyangtang",
+          "sourceRef": "ming-full-scan-four-transformations-not-located"
+        }
+      ],
+      "stem": "辛",
+      "to": "wenchang",
+      "transformation": "hua_ji"
+    },
+    {
+      "from": "transformation:壬:hua_lu",
+      "productionRef": [
+        {
+          "call": "resolveFourTransformations(birthYearStem)",
+          "file": "src/interpretationPrep/threeSystemPrepPipeline.js",
+          "lines": "180"
+        },
+        {
+          "call": "YEAR_STEM_TRANSFORMATIONS[birthYearStem]",
+          "file": "src/ziwei/transformationResolver.js",
+          "lines": "13-14"
+        },
+        {
+          "call": "stemMap.lu -> hua_lu",
+          "file": "src/ziwei/transformationResolver.js",
+          "lines": "28-35"
+        },
+        {
+          "call": "chart.transformations = transformationResult.transformations",
+          "file": "src/interpretationPrep/threeSystemPrepPipeline.js",
+          "lines": "198-200"
+        }
+      ],
+      "relation": "assigns_transformation_to_star",
+      "sourceRefs": [
+        {
+          "pdfPage": 17,
+          "printedFolio": "四十二",
+          "sourceId": "nanbei_shanren",
+          "sourceRef": "nanbei-p17-printed-42-four-transformations-table"
+        },
+        {
+          "pdfPage": null,
+          "printedFolio": null,
+          "sourceId": "ming_nanyangtang",
+          "sourceRef": "ming-full-scan-four-transformations-not-located"
+        }
+      ],
+      "stem": "壬",
+      "to": "tianliang",
+      "transformation": "hua_lu"
+    },
+    {
+      "from": "transformation:壬:hua_quan",
+      "productionRef": [
+        {
+          "call": "resolveFourTransformations(birthYearStem)",
+          "file": "src/interpretationPrep/threeSystemPrepPipeline.js",
+          "lines": "180"
+        },
+        {
+          "call": "YEAR_STEM_TRANSFORMATIONS[birthYearStem]",
+          "file": "src/ziwei/transformationResolver.js",
+          "lines": "13-14"
+        },
+        {
+          "call": "stemMap.quan -> hua_quan",
+          "file": "src/ziwei/transformationResolver.js",
+          "lines": "36-43"
+        },
+        {
+          "call": "chart.transformations = transformationResult.transformations",
+          "file": "src/interpretationPrep/threeSystemPrepPipeline.js",
+          "lines": "198-200"
+        }
+      ],
+      "relation": "assigns_transformation_to_star",
+      "sourceRefs": [
+        {
+          "pdfPage": 17,
+          "printedFolio": "四十二",
+          "sourceId": "nanbei_shanren",
+          "sourceRef": "nanbei-p17-printed-42-four-transformations-table"
+        },
+        {
+          "pdfPage": null,
+          "printedFolio": null,
+          "sourceId": "ming_nanyangtang",
+          "sourceRef": "ming-full-scan-four-transformations-not-located"
+        }
+      ],
+      "stem": "壬",
+      "to": "ziwei",
+      "transformation": "hua_quan"
+    },
+    {
+      "from": "transformation:壬:hua_ke",
+      "productionRef": [
+        {
+          "call": "resolveFourTransformations(birthYearStem)",
+          "file": "src/interpretationPrep/threeSystemPrepPipeline.js",
+          "lines": "180"
+        },
+        {
+          "call": "YEAR_STEM_TRANSFORMATIONS[birthYearStem]",
+          "file": "src/ziwei/transformationResolver.js",
+          "lines": "13-14"
+        },
+        {
+          "call": "stemMap.ke -> hua_ke",
+          "file": "src/ziwei/transformationResolver.js",
+          "lines": "44-51"
+        },
+        {
+          "call": "chart.transformations = transformationResult.transformations",
+          "file": "src/interpretationPrep/threeSystemPrepPipeline.js",
+          "lines": "198-200"
+        }
+      ],
+      "relation": "assigns_transformation_to_star",
+      "sourceRefs": [
+        {
+          "pdfPage": 17,
+          "printedFolio": "四十二",
+          "sourceId": "nanbei_shanren",
+          "sourceRef": "nanbei-p17-printed-42-four-transformations-table"
+        },
+        {
+          "pdfPage": null,
+          "printedFolio": null,
+          "sourceId": "ming_nanyangtang",
+          "sourceRef": "ming-full-scan-four-transformations-not-located"
+        }
+      ],
+      "stem": "壬",
+      "to": "tianfu",
+      "transformation": "hua_ke"
+    },
+    {
+      "from": "transformation:壬:hua_ji",
+      "productionRef": [
+        {
+          "call": "resolveFourTransformations(birthYearStem)",
+          "file": "src/interpretationPrep/threeSystemPrepPipeline.js",
+          "lines": "180"
+        },
+        {
+          "call": "YEAR_STEM_TRANSFORMATIONS[birthYearStem]",
+          "file": "src/ziwei/transformationResolver.js",
+          "lines": "13-14"
+        },
+        {
+          "call": "stemMap.ji -> hua_ji",
+          "file": "src/ziwei/transformationResolver.js",
+          "lines": "52-59"
+        },
+        {
+          "call": "chart.transformations = transformationResult.transformations",
+          "file": "src/interpretationPrep/threeSystemPrepPipeline.js",
+          "lines": "198-200"
+        }
+      ],
+      "relation": "assigns_transformation_to_star",
+      "sourceRefs": [
+        {
+          "pdfPage": 17,
+          "printedFolio": "四十二",
+          "sourceId": "nanbei_shanren",
+          "sourceRef": "nanbei-p17-printed-42-four-transformations-table"
+        },
+        {
+          "pdfPage": null,
+          "printedFolio": null,
+          "sourceId": "ming_nanyangtang",
+          "sourceRef": "ming-full-scan-four-transformations-not-located"
+        }
+      ],
+      "stem": "壬",
+      "to": "wugu",
+      "transformation": "hua_ji"
+    },
+    {
+      "from": "transformation:癸:hua_lu",
+      "productionRef": [
+        {
+          "call": "resolveFourTransformations(birthYearStem)",
+          "file": "src/interpretationPrep/threeSystemPrepPipeline.js",
+          "lines": "180"
+        },
+        {
+          "call": "YEAR_STEM_TRANSFORMATIONS[birthYearStem]",
+          "file": "src/ziwei/transformationResolver.js",
+          "lines": "13-14"
+        },
+        {
+          "call": "stemMap.lu -> hua_lu",
+          "file": "src/ziwei/transformationResolver.js",
+          "lines": "28-35"
+        },
+        {
+          "call": "chart.transformations = transformationResult.transformations",
+          "file": "src/interpretationPrep/threeSystemPrepPipeline.js",
+          "lines": "198-200"
+        }
+      ],
+      "relation": "assigns_transformation_to_star",
+      "sourceRefs": [
+        {
+          "pdfPage": 17,
+          "printedFolio": "四十二",
+          "sourceId": "nanbei_shanren",
+          "sourceRef": "nanbei-p17-printed-42-four-transformations-table"
+        },
+        {
+          "pdfPage": null,
+          "printedFolio": null,
+          "sourceId": "ming_nanyangtang",
+          "sourceRef": "ming-full-scan-four-transformations-not-located"
+        }
+      ],
+      "stem": "癸",
+      "to": "pojun",
+      "transformation": "hua_lu"
+    },
+    {
+      "from": "transformation:癸:hua_quan",
+      "productionRef": [
+        {
+          "call": "resolveFourTransformations(birthYearStem)",
+          "file": "src/interpretationPrep/threeSystemPrepPipeline.js",
+          "lines": "180"
+        },
+        {
+          "call": "YEAR_STEM_TRANSFORMATIONS[birthYearStem]",
+          "file": "src/ziwei/transformationResolver.js",
+          "lines": "13-14"
+        },
+        {
+          "call": "stemMap.quan -> hua_quan",
+          "file": "src/ziwei/transformationResolver.js",
+          "lines": "36-43"
+        },
+        {
+          "call": "chart.transformations = transformationResult.transformations",
+          "file": "src/interpretationPrep/threeSystemPrepPipeline.js",
+          "lines": "198-200"
+        }
+      ],
+      "relation": "assigns_transformation_to_star",
+      "sourceRefs": [
+        {
+          "pdfPage": 17,
+          "printedFolio": "四十二",
+          "sourceId": "nanbei_shanren",
+          "sourceRef": "nanbei-p17-printed-42-four-transformations-table"
+        },
+        {
+          "pdfPage": null,
+          "printedFolio": null,
+          "sourceId": "ming_nanyangtang",
+          "sourceRef": "ming-full-scan-four-transformations-not-located"
+        }
+      ],
+      "stem": "癸",
+      "to": "jumen",
+      "transformation": "hua_quan"
+    },
+    {
+      "from": "transformation:癸:hua_ke",
+      "productionRef": [
+        {
+          "call": "resolveFourTransformations(birthYearStem)",
+          "file": "src/interpretationPrep/threeSystemPrepPipeline.js",
+          "lines": "180"
+        },
+        {
+          "call": "YEAR_STEM_TRANSFORMATIONS[birthYearStem]",
+          "file": "src/ziwei/transformationResolver.js",
+          "lines": "13-14"
+        },
+        {
+          "call": "stemMap.ke -> hua_ke",
+          "file": "src/ziwei/transformationResolver.js",
+          "lines": "44-51"
+        },
+        {
+          "call": "chart.transformations = transformationResult.transformations",
+          "file": "src/interpretationPrep/threeSystemPrepPipeline.js",
+          "lines": "198-200"
+        }
+      ],
+      "relation": "assigns_transformation_to_star",
+      "sourceRefs": [
+        {
+          "pdfPage": 17,
+          "printedFolio": "四十二",
+          "sourceId": "nanbei_shanren",
+          "sourceRef": "nanbei-p17-printed-42-four-transformations-table"
+        },
+        {
+          "pdfPage": null,
+          "printedFolio": null,
+          "sourceId": "ming_nanyangtang",
+          "sourceRef": "ming-full-scan-four-transformations-not-located"
+        }
+      ],
+      "stem": "癸",
+      "to": "taiyin",
+      "transformation": "hua_ke"
+    },
+    {
+      "from": "transformation:癸:hua_ji",
+      "productionRef": [
+        {
+          "call": "resolveFourTransformations(birthYearStem)",
+          "file": "src/interpretationPrep/threeSystemPrepPipeline.js",
+          "lines": "180"
+        },
+        {
+          "call": "YEAR_STEM_TRANSFORMATIONS[birthYearStem]",
+          "file": "src/ziwei/transformationResolver.js",
+          "lines": "13-14"
+        },
+        {
+          "call": "stemMap.ji -> hua_ji",
+          "file": "src/ziwei/transformationResolver.js",
+          "lines": "52-59"
+        },
+        {
+          "call": "chart.transformations = transformationResult.transformations",
+          "file": "src/interpretationPrep/threeSystemPrepPipeline.js",
+          "lines": "198-200"
+        }
+      ],
+      "relation": "assigns_transformation_to_star",
+      "sourceRefs": [
+        {
+          "pdfPage": 17,
+          "printedFolio": "四十二",
+          "sourceId": "nanbei_shanren",
+          "sourceRef": "nanbei-p17-printed-42-four-transformations-table"
+        },
+        {
+          "pdfPage": null,
+          "printedFolio": null,
+          "sourceId": "ming_nanyangtang",
+          "sourceRef": "ming-full-scan-four-transformations-not-located"
+        }
+      ],
+      "stem": "癸",
+      "to": "tanlang",
+      "transformation": "hua_ji"
+    }
+  ],
+  "nodes": [
+    {
+      "canonicalLabel": "巨門",
+      "id": "jumen",
+      "identityClass": "14_major_star",
+      "identityStatus": "blocked_propagated",
+      "sourceRefs": [
+        {
+          "artifact": "artifacts/ziwei-twelve-major-star-placement-evidence-v0/complete.json",
+          "claimStatus": "predecessor_identity_not_promoted"
+        }
+      ]
+    },
+    {
+      "canonicalLabel": "廉貞",
+      "id": "lianzhen",
+      "identityClass": "14_major_star",
+      "identityStatus": "blocked_propagated",
+      "sourceRefs": [
+        {
+          "artifact": "artifacts/ziwei-twelve-major-star-placement-evidence-v0/complete.json",
+          "claimStatus": "predecessor_identity_not_promoted"
+        }
+      ]
+    },
+    {
+      "canonicalLabel": "破軍",
+      "id": "pojun",
+      "identityClass": "14_major_star",
+      "identityStatus": "blocked_propagated",
+      "sourceRefs": [
+        {
+          "artifact": "artifacts/ziwei-twelve-major-star-placement-evidence-v0/complete.json",
+          "claimStatus": "predecessor_identity_not_promoted"
+        }
+      ]
+    },
+    {
+      "canonicalLabel": "太陽",
+      "id": "taiyang",
+      "identityClass": "14_major_star",
+      "identityStatus": "blocked_propagated",
+      "sourceRefs": [
+        {
+          "artifact": "artifacts/ziwei-twelve-major-star-placement-evidence-v0/complete.json",
+          "claimStatus": "predecessor_identity_not_promoted"
+        }
+      ]
+    },
+    {
+      "canonicalLabel": "太陰",
+      "id": "taiyin",
+      "identityClass": "14_major_star",
+      "identityStatus": "blocked_propagated",
+      "sourceRefs": [
+        {
+          "artifact": "artifacts/ziwei-twelve-major-star-placement-evidence-v0/complete.json",
+          "claimStatus": "predecessor_identity_not_promoted"
+        }
+      ]
+    },
+    {
+      "canonicalLabel": "貪狼",
+      "id": "tanlang",
+      "identityClass": "14_major_star",
+      "identityStatus": "blocked_propagated",
+      "sourceRefs": [
+        {
+          "artifact": "artifacts/ziwei-twelve-major-star-placement-evidence-v0/complete.json",
+          "claimStatus": "predecessor_identity_not_promoted"
+        }
+      ]
+    },
+    {
+      "canonicalLabel": "天同",
+      "id": "tiandong",
+      "identityClass": "14_major_star",
+      "identityStatus": "blocked_propagated",
+      "sourceRefs": [
+        {
+          "artifact": "artifacts/ziwei-twelve-major-star-placement-evidence-v0/complete.json",
+          "claimStatus": "predecessor_identity_not_promoted"
+        }
+      ]
+    },
+    {
+      "canonicalLabel": "天府",
+      "id": "tianfu",
+      "identityClass": "14_major_star",
+      "identityStatus": "blocked_propagated",
+      "sourceRefs": [
+        {
+          "artifact": "artifacts/ziwei-twelve-major-star-placement-evidence-v0/complete.json",
+          "claimStatus": "predecessor_identity_not_promoted"
+        }
+      ]
+    },
+    {
+      "canonicalLabel": "天機",
+      "id": "tianji",
+      "identityClass": "14_major_star",
+      "identityStatus": "blocked_propagated",
+      "sourceRefs": [
+        {
+          "artifact": "artifacts/ziwei-twelve-major-star-placement-evidence-v0/complete.json",
+          "claimStatus": "predecessor_identity_not_promoted"
+        }
+      ]
+    },
+    {
+      "canonicalLabel": "天梁",
+      "id": "tianliang",
+      "identityClass": "14_major_star",
+      "identityStatus": "blocked_propagated",
+      "sourceRefs": [
+        {
+          "artifact": "artifacts/ziwei-twelve-major-star-placement-evidence-v0/complete.json",
+          "claimStatus": "predecessor_identity_not_promoted"
+        }
+      ]
+    },
+    {
+      "canonicalLabel": "文昌",
+      "id": "wenchang",
+      "identityClass": "auxiliary_star",
+      "identityStatus": "blocked_propagated",
+      "sourceRefs": [
+        {
+          "artifact": "artifacts/ziwei-auxiliary-star-placement-core-evidence-v0/complete.json",
+          "claimStatus": "predecessor_identity_not_promoted"
+        }
+      ]
+    },
+    {
+      "canonicalLabel": "文曲",
+      "id": "wengu",
+      "identityClass": "auxiliary_star",
+      "identityStatus": "blocked_propagated",
+      "sourceRefs": [
+        {
+          "artifact": "artifacts/ziwei-auxiliary-star-placement-core-evidence-v0/complete.json",
+          "claimStatus": "predecessor_identity_not_promoted"
+        }
+      ]
+    },
+    {
+      "canonicalLabel": "武曲",
+      "id": "wugu",
+      "identityClass": "14_major_star",
+      "identityStatus": "blocked_propagated",
+      "sourceRefs": [
+        {
+          "artifact": "artifacts/ziwei-twelve-major-star-placement-evidence-v0/complete.json",
+          "claimStatus": "predecessor_identity_not_promoted"
+        }
+      ]
+    },
+    {
+      "canonicalLabel": "右弼",
+      "id": "youbi",
+      "identityClass": "auxiliary_star",
+      "identityStatus": "blocked_propagated",
+      "sourceRefs": [
+        {
+          "artifact": "artifacts/ziwei-auxiliary-star-placement-core-evidence-v0/complete.json",
+          "claimStatus": "predecessor_identity_not_promoted"
+        }
+      ]
+    },
+    {
+      "canonicalLabel": "紫微",
+      "id": "ziwei",
+      "identityClass": "14_major_star",
+      "identityStatus": "blocked_propagated",
+      "sourceRefs": [
+        {
+          "artifact": "artifacts/ziwei-twelve-major-star-placement-evidence-v0/complete.json",
+          "claimStatus": "predecessor_identity_not_promoted"
+        }
+      ]
+    }
+  ],
+  "schemaVersion": "ziwei-four-transformations-source-evidence-v0"
+}
