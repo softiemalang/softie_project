@@ -21,7 +21,7 @@ export async function checkArtifact(candidate, root = resolve(new URL('..', impo
   if (candidate.relationGraph.relations.some(x => !nodeIds.has(x.from) || !nodeIds.has(x.to) || !['supported_by','derived_from','exact_match','transform_equivalent','context_differs','blocked_by','unresolved_source'].includes(x.type))) errors.push('invalid_relation_dependency')
   if (candidate.evidenceSufficiencyReview.some(x => !claimIds.has(x.claimId)) || candidate.blockerRegistry.some(x => x.affectedClaims.some(id => !claimIds.has(id)))) errors.push('invalid_claim_dependency')
   for (const item of candidate.protectedInputs ?? []) { try { if (sha256(await readFile(resolve(root, item.path))) !== item.byteSha256) errors.push('protected_hash:' + item.path) } catch { errors.push('protected_missing:' + item.path) } }
-  const comparable = x => { const y = structuredClone(x); delete y.observedHead; delete y.artifactIdentity; return y }
+  const comparable = x => { const y = structuredClone(x); delete y.observedHead; delete y.artifactIdentity; if (y.gitProvenance) delete y.gitProvenance.observedHead; return y }
   if (canonicalJson(comparable(candidate)) !== canonicalJson(comparable(expected))) errors.push('materialized_content')
   errors.push(...checkArtifactIdentity(candidate, { root, artifactId: SCHEMA, materializerPath: 'scripts/materialize-' + SCHEMA + '.mjs', materializerVersion: MATERIALIZER_VERSION }))
   return [...new Set(errors)]
