@@ -12,7 +12,7 @@
 - checker: `scripts/check-ziwei-system-evidence-readiness-coverage-map-v0.mjs`
 - negative checker: `scripts/check-ziwei-system-evidence-readiness-coverage-map-negative-v0.mjs`
 - 보호 범위: `src/ziwei`, Ziwei tests/fixtures, 기존 `artifacts/ziwei-*` 참조 및 reconciliation 핵심 JSON
-- checker가 basis HEAD, path existence, protected hashes, enum, count, graph dangling edge, claim sourceRef, blocker link을 거부한다.
+- checker가 basis HEAD의 선언 identity·Git commit resolve·현재 observed HEAD ancestry, path existence, protected hashes, enum, count, graph dangling edge, claim sourceRef, blocker link을 거부한다. 현재 HEAD는 결과 identity가 아닌 실행 진단이며 basis HEAD와의 동일성을 요구하지 않는다.
 
 ## Interpretation boundary
 

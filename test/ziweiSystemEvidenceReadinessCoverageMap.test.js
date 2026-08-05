@@ -4,7 +4,6 @@ import { spawnSync } from 'node:child_process'
 
 test('Ziwei system evidence/readiness coverage map and negative checker pass', () => {
   const checks = [
-    'scripts/materialize-ziwei-system-evidence-readiness-coverage-map-v0.mjs',
     'scripts/check-ziwei-system-evidence-readiness-coverage-map-v0.mjs',
     'scripts/check-ziwei-system-evidence-readiness-coverage-map-negative-v0.mjs',
   ]

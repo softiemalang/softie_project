@@ -2,13 +2,20 @@
 import { createHash } from 'node:crypto'
 import { existsSync, readFileSync } from 'node:fs'
 import { resolve } from 'node:path'
-import { execFileSync } from 'node:child_process'
+import { execFileSync, spawnSync } from 'node:child_process'
 
 const root=resolve(new URL('..',import.meta.url).pathname), dir=resolve(root,'artifacts/ziwei-system-evidence-readiness-coverage-map-v0')
 const packet=JSON.parse(readFileSync(resolve(dir,'complete.json'))), sha=b=>createHash('sha256').update(b).digest('hex'), hash=p=>sha(readFileSync(resolve(root,p)))
 const errors=[]; const fail=(m)=>errors.push(m); const allowed={implementation:new Set(['absent','present_unverified','verified_within_scope']),source:new Set(['absent','unresolved','partial','direct_within_scope']),claimProvenance:new Set(['absent','partial','complete_within_scope']),readiness:new Set(['research_only','blocked','eligible_within_declared_scope'])}
 if(packet.schema!=='ziwei-system-evidence-readiness-coverage-map-v0') fail('schema')
-if(execFileSync('git',['-c','core.fsmonitor=false','rev-parse','HEAD'],{cwd:root,encoding:'utf8'}).trim()!==packet.basisHead) fail('basisHead stale')
+const observedHead=execFileSync('git',['-c','core.fsmonitor=false','rev-parse','HEAD'],{cwd:root,encoding:'utf8'}).trim()
+if(typeof packet.basisHead!=='string'||!/^[0-9a-f]{40}$/.test(packet.basisHead)) fail('basisHead malformed')
+else {
+  const basisObject=spawnSync('git',['-c','core.fsmonitor=false','cat-file','-e',`${packet.basisHead}^{commit}`],{cwd:root,encoding:'utf8'})
+  if(basisObject.status!==0) fail('basisHead unresolved')
+  const ancestry=spawnSync('git',['-c','core.fsmonitor=false','merge-base','--is-ancestor',packet.basisHead,observedHead],{cwd:root,encoding:'utf8'})
+  if(ancestry.status!==0) fail('basisHead non-ancestor')
+}
 for(const d of packet.domains){for(const k of Object.keys(allowed)) if(!allowed[k].has(d[k])) fail(`domain ${d.id} invalid ${k}`); for(const p of [...d.code,...d.tests,...d.artifacts]) if(!existsSync(resolve(root,p))) fail(`domain ${d.id} missing ${p}`)}
 const ids=new Set(packet.graph.nodes.map(n=>n.id)); for(const e of packet.graph.edges) {if(!ids.has(e.from)||!ids.has(e.to)) fail(`graph dangling ${e.from}->${e.to}`)}
 for(const d of packet.domains){if(!packet.claims.some(c=>c.domainId===d.id)) fail(`claim missing ${d.id}`); if(!packet.blockers.some(b=>b.id===d.blocker)) fail(`blocker missing ${d.id}`)}
