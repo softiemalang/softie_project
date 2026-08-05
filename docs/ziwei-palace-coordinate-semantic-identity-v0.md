@@ -52,3 +52,9 @@ Reviewers must decide whether p7 asserts palace names or only branch/compass pos
 Materializer: `scripts/materialize-ziwei-palace-coordinate-semantic-identity-v0.mjs`.
 Checker: `scripts/check-ziwei-palace-coordinate-semantic-identity-v0.mjs`.
 Negative checker: `scripts/check-ziwei-palace-coordinate-semantic-identity-negative-v0.mjs`.
+
+## Observed-head provenance decision
+
+In v0, `observedHead` is the explicit, immutable repository-observation provenance captured at first materialization; it is not the runtime checkout HEAD. The materializer now requires `--observed-head <40-hex-commit>`, verifies that the commit resolves, that `basisHead` is its ancestor or equal, and that it is an ancestor of or equal to the current checkout. Current HEAD is used only for this ancestry diagnostic and is never serialized. Reproduction of the committed packet therefore uses `--observed-head a4cbf12b0a79c443e823b552631ae9c505e0127d`.
+
+Decision note for future namespaces: runtime diagnostics must not enter canonical payloads. This v0 compatibility correction keeps the existing field and bytes unchanged; it does not create a new version or architecture.

@@ -10,7 +10,9 @@ const sha256 = bytes => createHash('sha256').update(bytes).digest('hex')
 const comparable = value => { const copy = structuredClone(value); delete copy.observedHead; delete copy.artifactIdentity; return copy }
 
 export async function checkArtifact(candidate, root = resolve(new URL('..', import.meta.url).pathname)) {
-  const expected = await buildArtifact(); const errors = []
+  const errors = []
+  let expected
+  try { expected = await buildArtifact({ observedHead: candidate.observedHead }) } catch (error) { errors.push(`observed_head_provenance:${error.message}`); return [...new Set(errors)] }
   if (candidate.schemaVersion !== SCHEMA || candidate.basisHead !== BASIS_HEAD || candidate.verdictToken !== 'complete_ziwei_palace_coordinate_semantic_identity_evidence_uncommitted') errors.push('identity_or_verdict')
   if (candidate.sourceWitnessIndex?.source?.pages !== 219 || candidate.sourceWitnessIndex.source.sha256 !== PDF_SHA256 || candidate.sourceWitnessIndex.source.actualBytesVerified !== true) errors.push('source_identity')
   if ((candidate.sourceWitnessIndex?.sourceRefs || []).length !== 5 || candidate.sourceWitnessIndex.sourceRefs.some(ref => !Number.isInteger(ref.page) || !ref.region?.bboxPx || ref.pdf?.sha256 !== PDF_SHA256)) errors.push('source_ref_page_region')

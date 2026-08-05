@@ -18,6 +18,15 @@ const stable = value => Array.isArray(value) ? value.map(stable) : value && type
 export const canonicalJson = value => `${JSON.stringify(stable(value), null, 2)}\n`
 const git = (root, args) => execFileSync('git', ['-c', 'core.fsmonitor=false', ...args], { cwd: root, encoding: 'utf8' }).trim()
 const fileHash = async (root, path) => sha256(await readFile(resolve(root, path)))
+const isCommit = value => typeof value === 'string' && /^[0-9a-f]{40}$/.test(value)
+
+export function validateObservedHead({ root, observedHead, currentHead = git(root, ['rev-parse', 'HEAD']) }) {
+  if (!isCommit(observedHead)) throw new Error('observedHead must be an explicit 40-hex commit')
+  try { git(root, ['cat-file', '-e', `${observedHead}^{commit}`]) } catch { throw new Error(`observedHead is not a resolvable commit: ${observedHead}`) }
+  try { git(root, ['merge-base', '--is-ancestor', BASIS_HEAD, observedHead]) } catch { throw new Error('basisHead must be an ancestor of or equal to observedHead') }
+  try { git(root, ['merge-base', '--is-ancestor', observedHead, currentHead]) } catch { throw new Error('observedHead must be an ancestor of or equal to current HEAD') }
+  return { observedHead, currentHead }
+}
 
 function candidates() {
   const out = [{ id: 'identity', family: 'identity', definition: 'source ordinal = production ordinal', predict: p => p }]
@@ -74,8 +83,10 @@ function compareCandidates(rows) {
   })
 }
 
-async function buildArtifact() {
+async function buildArtifact({ observedHead } = {}) {
   const root = resolve(new URL('..', import.meta.url).pathname)
+  const currentHead = git(root, ['rev-parse', 'HEAD'])
+  validateObservedHead({ root, observedHead, currentHead })
   const pdfBytes = await readFile(PDF)
   if (sha256(pdfBytes) !== PDF_SHA256) throw new Error('authoritative PDF SHA-256 mismatch')
   const rows = rowDomain(); const relationResults = compareCandidates(rows)
@@ -114,7 +125,7 @@ async function buildArtifact() {
     { need: 'edition and scan identity', keywords: ['書名 作者 版本 刊年 卷一','紫微斗數全書 南北山人'], minimumCapture: 'title/edition/folio or page metadata plus original scan bytes' },
   ], metadata: ['title','author/editor','edition/print year','repository/call number','volume','printed page/folio','scan settings','file SHA-256','access date'], accept: ['actual immutable scan bytes','page/folio identity','complete readable glyph/layout/table boundary','mapping independently reviewable'], reject: ['preview/catalog only','OCR only','partial crop hiding direction or labels','edition/source identity inferred','manual exception or normalized transcription'], order: ['P0 palace identity mapping','P0 source identity/edition linkage','P1 independent oracle comparison','P2 unresolved star rules'] }
   const handoff = { verdictToken: 'complete_ziwei_palace_coordinate_semantic_identity_evidence_uncommitted', humanReviewRequired: true, reviewQuestions: ['Does p7 diagram actually assert palace names or only branch/compass positions?','Does p8 use the same coordinate frame as the 12-palace semantic labels?','Can any exact transform be rejected or accepted semantically from the new witness without changing production?'], reviewerMustPreserve: ['raw branch/ordinal values','all 170 candidates and 150 rows','first divergences','sourceRefs and hashes','blocked semantic verdict'], forbidden: ['production choice','enum/API/schema change','readiness activation','confidence score','interpretation'] }
-  const artifactBase = { schemaVersion: SCHEMA, verdictToken: 'complete_ziwei_palace_coordinate_semantic_identity_evidence_uncommitted', basisHead: BASIS_HEAD, sourceWitnessIndex, repositoryConventionInventory: repositoryInventory, candidateMatrix, rows, claims, relationGraph, blockerRegistry, sourceAcquisitionBrief: acquisition, humanReviewHandoff: handoff, conclusions: { productionOrdinalToBranch: 'production uses caller/chart branch anchor plus 0..11 ordinal progression; no globally authoritative palace-name identity', sourceDiagram: 'p7 branch/diagram sequence recorded; palace-name meaning unresolved', mingShenSharedFrame: 'directly unresolved; p8 traversal evidence is only indirect support', rotation06: '150/150 numeric exact transform; simple coordinate re-expression cannot be promoted to semantic identity from current corpus', mathematicalStatus: ['150/150 full-row transform comparison', '0/150 raw Tianfu identity', 'first divergence preserved per candidate'], semanticStatus: 'blocked_semantic_identity_insufficient' }, readinessImpact: { stableClaimCount: 0, readiness: 'not_safe_to_start', grounding: 'blocked', activation: 'experimental', productionMutation: false, contractMutation: false }, immutableExistingBytes: [], materializer: `scripts/materialize-${SCHEMA}.mjs`, checker: `scripts/check-${SCHEMA}.mjs`, observedHead: git(root, ['rev-parse', 'HEAD']), deterministic: { generatedAt: 'forbidden', candidateCount: relationResults.length, rowCount: rows.length, hashes: 'UTF-8 bytes including final LF' } }
+  const artifactBase = { schemaVersion: SCHEMA, verdictToken: 'complete_ziwei_palace_coordinate_semantic_identity_evidence_uncommitted', basisHead: BASIS_HEAD, sourceWitnessIndex, repositoryConventionInventory: repositoryInventory, candidateMatrix, rows, claims, relationGraph, blockerRegistry, sourceAcquisitionBrief: acquisition, humanReviewHandoff: handoff, conclusions: { productionOrdinalToBranch: 'production uses caller/chart branch anchor plus 0..11 ordinal progression; no globally authoritative palace-name identity', sourceDiagram: 'p7 branch/diagram sequence recorded; palace-name meaning unresolved', mingShenSharedFrame: 'directly unresolved; p8 traversal evidence is only indirect support', rotation06: '150/150 numeric exact transform; simple coordinate re-expression cannot be promoted to semantic identity from current corpus', mathematicalStatus: ['150/150 full-row transform comparison', '0/150 raw Tianfu identity', 'first divergence preserved per candidate'], semanticStatus: 'blocked_semantic_identity_insufficient' }, readinessImpact: { stableClaimCount: 0, readiness: 'not_safe_to_start', grounding: 'blocked', activation: 'experimental', productionMutation: false, contractMutation: false }, immutableExistingBytes: [], materializer: `scripts/materialize-${SCHEMA}.mjs`, checker: `scripts/check-${SCHEMA}.mjs`, observedHead, deterministic: { generatedAt: 'forbidden', candidateCount: relationResults.length, rowCount: rows.length, hashes: 'UTF-8 bytes including final LF' } }
   const protectedPaths = ['src/ziwei/ziweiContract.js','src/ziwei/ziweiResolver.js','src/ziwei/starPlacementRules.js','src/ziwei/starResolver.js','src/ziwei/palaceRelationRules.js','artifacts/ziwei-major-star-coordinate-provenance-v0/complete.json','artifacts/ziwei-tianfu-convention-provenance-v0/complete.json','artifacts/ziwei-system-evidence-readiness-coverage-map-v0/complete.json']
   artifactBase.immutableExistingBytes = await Promise.all(protectedPaths.map(async path => ({ path, sha256: await fileHash(root, path) })))
   return attachArtifactIdentity(artifactBase, buildArtifactIdentity({ root, artifactId: SCHEMA, materializerPath: artifactBase.materializer, materializerVersion: MATERIALIZER_VERSION, baseHead: BASIS_HEAD, inputs: protectedPaths }))
@@ -122,9 +133,17 @@ async function buildArtifact() {
 
 export { buildArtifact, candidates }
 
+function parseCliArgs(argv) {
+  const observedIndex = argv.indexOf('--observed-head')
+  if (observedIndex < 0 || !argv[observedIndex + 1]) throw new Error('--observed-head <40-hex-commit> is required; current HEAD fallback is forbidden')
+  const positional = argv.filter((value, index) => index !== observedIndex && index !== observedIndex + 1)
+  if (positional.length > 1) throw new Error('only one output path is allowed')
+  return { observedHead: argv[observedIndex + 1], target: resolve(positional[0] || `artifacts/${SCHEMA}/complete.json`) }
+}
+
 if (process.argv[1] === new URL(import.meta.url).pathname) {
-  const target = resolve(process.argv[2] || `artifacts/${SCHEMA}/complete.json`)
-  const artifact = await buildArtifact(); const dir = dirname(target); await mkdir(dir, { recursive: true })
+  const { observedHead, target } = parseCliArgs(process.argv.slice(2))
+  const artifact = await buildArtifact({ observedHead }); const dir = dirname(target); await mkdir(dir, { recursive: true })
   const outputs = { complete: artifact, sourceWitnessIndex: artifact.sourceWitnessIndex, repositoryConventionInventory: artifact.repositoryConventionInventory, candidateMatrix: artifact.candidateMatrix, claimLedger: artifact.claims, relationGraph: artifact.relationGraph, blockerRegistry: artifact.blockerRegistry, sourceAcquisitionBrief: artifact.sourceAcquisitionBrief, humanReviewHandoff: artifact.humanReviewHandoff }
   for (const [name, value] of Object.entries(outputs)) { const bytes = Buffer.from(canonicalJson(value)); const path = name === 'complete' ? target : resolve(dir, `${name}.json`); await writeFile(path, bytes); await writeFile(`${path}.integrity.json`, `${JSON.stringify({ schemaVersion: SCHEMA, artifactByteSha256: sha256(bytes), artifactByteSha256Scope: 'UTF-8 bytes including final LF' }, null, 2)}\n`) }
   console.log(JSON.stringify({ verdict: artifact.verdictToken, sourceWitnessCount: sourceRefs.length, candidateCount: artifact.candidateMatrix.candidateCount, exactFitIds: artifact.candidateMatrix.exactFitIds, rawTianfuIdentity: `${artifact.rows.filter(x => x.rawEquality).length}/${artifact.rows.length}`, rotation06: artifact.candidateMatrix.relationResults.find(x => x.candidateId === 'rotation-06'), semantic: artifact.conclusions.semanticStatus }, null, 2))
