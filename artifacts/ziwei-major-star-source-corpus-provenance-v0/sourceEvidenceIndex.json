@@ -1,0 +1,174 @@
+{
+  "candidatePages": [
+    {
+      "classification": "candidate_coordinate_identity",
+      "locator": "PDF p3; prior candidate ledger: index locator; not direct rule",
+      "page": 3,
+      "readingLevel": "render_confirmed_targeted_candidate"
+    },
+    {
+      "classification": "candidate_coordinate_identity",
+      "locator": "PDF p7; prior candidate ledger: 十二宮冠蓋 diagram; branch/八卦 frame",
+      "page": 7,
+      "readingLevel": "render_confirmed_targeted_candidate"
+    },
+    {
+      "classification": "candidate_coordinate_identity",
+      "locator": "PDF p8; prior candidate ledger: 命/身 traversal rule",
+      "page": 8,
+      "readingLevel": "render_confirmed_targeted_candidate"
+    },
+    {
+      "classification": "candidate_coordinate_identity",
+      "locator": "PDF p10; prior candidate ledger: 命身 table structure; unresolved cells retained",
+      "page": 10,
+      "readingLevel": "render_confirmed_targeted_candidate"
+    },
+    {
+      "classification": "candidate_direct_rule",
+      "locator": "PDF p11; prior candidate ledger: 起紫微五訣",
+      "page": 11,
+      "readingLevel": "render_confirmed_targeted_candidate"
+    },
+    {
+      "classification": "candidate_direct_rule",
+      "locator": "PDF p12; prior candidate ledger: 起紫微簡索表",
+      "page": 12,
+      "readingLevel": "render_confirmed_targeted_candidate"
+    },
+    {
+      "classification": "candidate_direct_rule",
+      "locator": "PDF p13; prior candidate ledger: 甲六、安天府",
+      "page": 13,
+      "readingLevel": "render_confirmed_targeted_candidate"
+    }
+  ],
+  "contextPages": [
+    9,
+    14,
+    15,
+    16,
+    17
+  ],
+  "coverageGaps": [],
+  "screeningMethod": {
+    "finalClassification": "full visual render sweep with conservative admission only for p3,p7-p17",
+    "ocr": "exploration only; never admission",
+    "render": "pdftoppm 24 dpi every page",
+    "visualReview": "all 219 rendered pages reviewed directly; high-resolution spot checks retained for candidate and representative later pages"
+  },
+  "source": {
+    "actualBytesVerified": true,
+    "encrypted": false,
+    "pdfPageCount": 219,
+    "pdfPath": "/Users/softie/Downloads/命-南北山人_紫微斗数全书.pdf",
+    "pdfSha256": "4786a94ab454acdabf9716d7c0db4756dbcbde99a88bc45fda254863c1961023",
+    "requestedCorpusPageCount": 150,
+    "requestedScopeStatus": "mismatch_actual_source_has_219_pages; no pages silently omitted"
+  },
+  "sourceRows": [
+    {
+      "condition": "150/150 exact raw branch comparison retained from protected v0",
+      "id": "ziwei",
+      "pages": [
+        11,
+        12
+      ],
+      "sourceStatus": "direct_rule",
+      "status": "direct_rule"
+    },
+    {
+      "condition": "raw 0/150; rotation-06 150/150; residual 0; first divergence preserved",
+      "id": "tianfu",
+      "pages": [
+        13
+      ],
+      "sourceStatus": "direct_rule",
+      "status": "direct_rule"
+    },
+    {
+      "condition": "no admitted direct placement rule in the full 219-page visual sweep",
+      "id": "tianji",
+      "pages": [],
+      "sourceStatus": "source_unresolved",
+      "status": "source_unresolved"
+    },
+    {
+      "condition": "no admitted direct placement rule in the full 219-page visual sweep",
+      "id": "taiyang",
+      "pages": [],
+      "sourceStatus": "source_unresolved",
+      "status": "source_unresolved"
+    },
+    {
+      "condition": "no admitted direct placement rule in the full 219-page visual sweep",
+      "id": "wugu",
+      "pages": [],
+      "sourceStatus": "source_unresolved",
+      "status": "source_unresolved"
+    },
+    {
+      "condition": "no admitted direct placement rule in the full 219-page visual sweep",
+      "id": "tiandong",
+      "pages": [],
+      "sourceStatus": "source_unresolved",
+      "status": "source_unresolved"
+    },
+    {
+      "condition": "no admitted direct placement rule in the full 219-page visual sweep",
+      "id": "lianzhen",
+      "pages": [],
+      "sourceStatus": "source_unresolved",
+      "status": "source_unresolved"
+    },
+    {
+      "condition": "no admitted direct placement rule in the full 219-page visual sweep",
+      "id": "taiyin",
+      "pages": [],
+      "sourceStatus": "source_unresolved",
+      "status": "source_unresolved"
+    },
+    {
+      "condition": "no admitted direct placement rule in the full 219-page visual sweep",
+      "id": "tanlang",
+      "pages": [],
+      "sourceStatus": "source_unresolved",
+      "status": "source_unresolved"
+    },
+    {
+      "condition": "no admitted direct placement rule in the full 219-page visual sweep",
+      "id": "jumen",
+      "pages": [],
+      "sourceStatus": "source_unresolved",
+      "status": "source_unresolved"
+    },
+    {
+      "condition": "no admitted direct placement rule in the full 219-page visual sweep",
+      "id": "tianxiang",
+      "pages": [],
+      "sourceStatus": "source_unresolved",
+      "status": "source_unresolved"
+    },
+    {
+      "condition": "no admitted direct placement rule in the full 219-page visual sweep",
+      "id": "tianliang",
+      "pages": [],
+      "sourceStatus": "source_unresolved",
+      "status": "source_unresolved"
+    },
+    {
+      "condition": "no admitted direct placement rule in the full 219-page visual sweep",
+      "id": "qisha",
+      "pages": [],
+      "sourceStatus": "source_unresolved",
+      "status": "source_unresolved"
+    },
+    {
+      "condition": "no admitted direct placement rule in the full 219-page visual sweep",
+      "id": "pojun",
+      "pages": [],
+      "sourceStatus": "source_unresolved",
+      "status": "source_unresolved"
+    }
+  ]
+}

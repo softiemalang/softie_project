@@ -1,0 +1,3725 @@
+[
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 1,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "116bb72be026e4497b81f6d7497c63e23313621168bb97c0acc96513a8828517"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 2,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "51d1e24bf20f11c888ea7fd0b8614a84b41ca77a7a16a5da9b4764e4d64c1da2"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": "PDF p3; prior candidate ledger: index locator; not direct rule",
+    "confidence": "high",
+    "directReview": true,
+    "exclusionReason": null,
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 3,
+    "readingLevel": "render_confirmed_targeted_candidate",
+    "relevance": "index locator; not direct rule",
+    "relevanceClassification": "candidate_coordinate_identity",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "27eac5ac10086d68f5f6698172f7a0a3c5d5873e2eb33ec7a9585009710fc96f"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 4,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "0bc2f8e7bda61f8defffba0f492146d4ce26bef33dde6ad77ce33ab10f82fa61"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 5,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "a10206f8b549292db3d9e81da3b33c298c26d610e051d8259eb2e4ac4d0030d8"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 6,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "f1dec95bdca448e02ed649205eab69cae851429481b8b2e8b17f1ad1fe731e6d"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": "PDF p7; prior candidate ledger: 十二宮冠蓋 diagram; branch/八卦 frame",
+    "confidence": "high",
+    "directReview": true,
+    "exclusionReason": null,
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 7,
+    "readingLevel": "render_confirmed_targeted_candidate",
+    "relevance": "十二宮冠蓋 diagram; branch/八卦 frame",
+    "relevanceClassification": "candidate_coordinate_identity",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "1ef7faafd163a70ea40823d9e5dc7d38bcc0c6963d65f1726bfe2d4fcd50e611"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": "PDF p8; prior candidate ledger: 命/身 traversal rule",
+    "confidence": "high",
+    "directReview": true,
+    "exclusionReason": null,
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 8,
+    "readingLevel": "render_confirmed_targeted_candidate",
+    "relevance": "命/身 traversal rule",
+    "relevanceClassification": "candidate_coordinate_identity",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "763cc467b92951ece05b780518d7ff403d5945fd7d1d05167a8bc0b0f48e1104"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": "PDF p9; prior candidate ledger: 五行局 prerequisite; not a major-star placement rule",
+    "confidence": "high",
+    "directReview": true,
+    "exclusionReason": null,
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 9,
+    "readingLevel": "render_confirmed_targeted_candidate",
+    "relevance": "五行局 prerequisite; not a major-star placement rule",
+    "relevanceClassification": "context_only",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "fd22f9aad8daed58d4a8c8fcf0c49153ee838bd1883368ea4e9edb7cfb384067"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": "PDF p10; prior candidate ledger: 命身 table structure; unresolved cells retained",
+    "confidence": "high",
+    "directReview": true,
+    "exclusionReason": null,
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 10,
+    "readingLevel": "render_confirmed_targeted_candidate",
+    "relevance": "命身 table structure; unresolved cells retained",
+    "relevanceClassification": "candidate_coordinate_identity",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "f8e78bd7e41ab0aaaf5b96bee70e97544993bed25b582c63a6e65231aa082857"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": "PDF p11; prior candidate ledger: 起紫微五訣",
+    "confidence": "high",
+    "directReview": true,
+    "exclusionReason": null,
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 11,
+    "readingLevel": "render_confirmed_targeted_candidate",
+    "relevance": "起紫微五訣",
+    "relevanceClassification": "candidate_direct_rule",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "be9e63e5a283f68cbf023f0c1709bfd4f095eaf29fad955ee7376bdf470972cf"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": "PDF p12; prior candidate ledger: 起紫微簡索表",
+    "confidence": "high",
+    "directReview": true,
+    "exclusionReason": null,
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 12,
+    "readingLevel": "render_confirmed_targeted_candidate",
+    "relevance": "起紫微簡索表",
+    "relevanceClassification": "candidate_direct_rule",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "a79d28e7c3a6a9fd3f4291745cba03507a20e7d70ce2bc9c5821d0d97ea9d3b6"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": "PDF p13; prior candidate ledger: 甲六、安天府",
+    "confidence": "high",
+    "directReview": true,
+    "exclusionReason": null,
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 13,
+    "readingLevel": "render_confirmed_targeted_candidate",
+    "relevance": "甲六、安天府",
+    "relevanceClassification": "candidate_direct_rule",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "87d7ef5f59a7f5a41978fa897d2cecbf20098a86485d6d993f928b48f936591c"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": "PDF p14; prior candidate ledger: 安火星 and adjacent auxiliary-star material",
+    "confidence": "high",
+    "directReview": true,
+    "exclusionReason": null,
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 14,
+    "readingLevel": "render_confirmed_targeted_candidate",
+    "relevance": "安火星 and adjacent auxiliary-star material",
+    "relevanceClassification": "context_only",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "4ff2c1fe55db4ee3f47c990297921c60d0a59b4a0f529aba4e17ffec60885aa6"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": "PDF p15; prior candidate ledger: 左輔右弼 and adjacent auxiliary-star material",
+    "confidence": "high",
+    "directReview": true,
+    "exclusionReason": null,
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 15,
+    "readingLevel": "render_confirmed_targeted_candidate",
+    "relevance": "左輔右弼 and adjacent auxiliary-star material",
+    "relevanceClassification": "context_only",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "6365b79f04ece9ee1268babbb4ee5fbb65c5b32e3ce56e2b95cddb196d69cdc5"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": "PDF p16; prior candidate ledger: 天魁天鉞 and adjacent auxiliary-star material",
+    "confidence": "high",
+    "directReview": true,
+    "exclusionReason": null,
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 16,
+    "readingLevel": "render_confirmed_targeted_candidate",
+    "relevance": "天魁天鉞 and adjacent auxiliary-star material",
+    "relevanceClassification": "context_only",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "e973dad7a77108f08c8ab16f4e95fccfb17aa14a138968210a0c59d09825f6df"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": "PDF p17; prior candidate ledger: 四化 and adjacent commentary",
+    "confidence": "high",
+    "directReview": true,
+    "exclusionReason": null,
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 17,
+    "readingLevel": "render_confirmed_targeted_candidate",
+    "relevance": "四化 and adjacent commentary",
+    "relevanceClassification": "context_only",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "bfeabbaeef9811105877f3f06342e053eb04bf5cdcb54e01fcc0b0ce35f4251e"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 18,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "9958f6e45a0195557f9b19440f34492d57cf7a6c631671bc4e5a6813751668bb"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 19,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "87536b9a89bed4e516eda8fcd267b4e8352c20c4be2af45ad69622ec54ecb3e4"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 20,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "ba48365fae93a617497c8710341a56c4cba21a6c4ebc0e848ffa0c904febce51"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 21,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "2471cf572b46cac4734a232441a82d207c2c6e30eadcd77be34e19de8ecec72a"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 22,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "8da2b7235cf1eb78d0f07bd96e958c7e4bc9d7028bf833fe395cc66bbc800c50"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 23,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "23199322cb62794984be959d73560a3712ce0dab1b5054fdcf2b28b76a33926c"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 24,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "282d81545317ea88e3a4bd2b69b5f6905afdea8fc36cbff19b88fba04edbb4f7"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 25,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "09d20e7fee0b0d9ca3376c926e9a295688b3343618bcd453d2d1f16757235157"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 26,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "5b136c6b976909168025b70a3b8f8858f0bfb5842dd42709021fdee12647e93f"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 27,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "4b2a4436f11e824fb060c505aba5c1035b59a13a00f34f58a3515723fa4d619b"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 28,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "bc7b6a7206eaa252947bc9dedfe431457422b337ac185a8ea09ecca4c7a6a5da"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 29,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "687794160bd115e7e6ea8523c7b3fdbc29c71818439a7aec5d5c86cd238a720b"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 30,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "b13af58f0449c3ee2bc23fe1cc568582d75466f7dc642ee86ec3351c904e7cca"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 31,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "a34d6d522c24a6bb03f3b5e5bd63d4aee4460804eed8a5adf98abd04aa98802e"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 32,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "c9c15c8f8881ca3b4b4806484ba74036620eae4b10ca676e3256f22b693bd5e7"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 33,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "e18c4ddb9b363bd1dbc46aa6612e4b77096ec6f8751d68e167d514fc8987bae2"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 34,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "6672522141588c4d3fe055c639656b399334169c6da0ab7334f5b934085b27a0"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 35,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "f832cdf4740e51f1f3b389994914f703125e2cbcaa3bf6d34443f85583ad71c0"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 36,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "6c903fd3d1c5ea770afae1631b5affc3efff2cdfbe3d6a7e3fba96194fe20743"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 37,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "e7b3d5e05bbac574aa807092092b625f6d2e44371ada4c2f72e905915b41bbfd"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 38,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "c4a1791ac9a00305613e29c57384f6356db7405c8a0eb0c524a7bc23d35ea774"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 39,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "c6b3ce2105031bbdfa7fc5ea16d153a45c3cc7317367d554719ff0a58983c3e0"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 40,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "73ea825d838789f7430ea7c1ae2e144cbbf552189ee13494a881f39fabdb0d46"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 41,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "b8355cb3ca3f58f2b6c5e66d5d32ce5dfb3374668a7b07a5d4eac9a2bc6d1259"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 42,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "a6c427c229c2ae3853985a4d036ead5d0f4965ce7910c9e1eeaeda93bdd1eff3"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 43,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "31d03d7dea6dba8854fb95550ff121ef2febbf54b0b48915efe1af2a404587a5"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 44,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "d3f3e60d7a4c19463bf81fd305ea7518d02daadfecde96eeed26d6a6fb6eb049"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 45,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "355e0ec4725e90b94f7473234b378ba394a5972486c3425799c81a4ba0380793"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 46,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "099966791723218232a7799db516987bef60e6718deac1cf2401c86d0958b343"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 47,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "2af9b699ea19b4ff756ca874610cf6297c1b76e986833e755db0c63cf5737832"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 48,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "e532af4d1e569ae5dcb58d00adf3568ff27ee7fd64cb7139c321e27618f3bf79"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 49,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "e3c7a379a3e74dafd68ecb884323b573e02fb986d81de83328a7dce46e29a197"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 50,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "5c6c5e73dae7a427d6e5455841805cc6bb259ffa9d849a3ef99b9c191431e78f"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 51,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "dd24b96b0539ddae3e1edfd99c58e6f65059257c4ebe7367f0969d9d7cb1943d"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 52,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "c794e7071340ac73c9d0330425a93375b85e6395e8d98b81f2c307102f5c74ca"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 53,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "7b5d49bdee76591bbdda6ed72ee9acd1460dd5dfa4d32a97f307a3a500bb6406"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 54,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "ebc557120ea67fca878c2b77dd764b9a82dea89ca26cbb3a4ff3931d67d63055"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 55,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "2c79de7139ad4ed93c80b71eeecab4a8d2a01075643dce1503cf36dfca7f7613"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 56,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "0489bf739c0260d60e683e4b48dba3a4f125ff8fcf17012253f5d07d91066789"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 57,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "6ca572aef9f172031e81a5b10574d2201b7be091d166ffee5b9436b0d8c561d0"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 58,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "52733220de065a130b1899c7d7117b8571291a6cd8bba983356f46f84b34286d"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 59,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "f59faec862a18b6132be44ed975699527d6983b6bbc24ed72a3f937b5095c2aa"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 60,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "af5edcc318598551cf0102c9d92d6398bc9c607e1e230c2d79fa5676db0f2f73"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 61,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "b3c651502039331ec3508bd49ce16d623a5c2deaf7c859910ba5380d690f8de0"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 62,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "f38f630d5a0eab5496d5b2cdab671664f8fce27820547602a36349918c3619eb"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 63,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "10d60531a358c05c997fae54d2b95a487c72851172fbf1ad1ab70c59c4c95dda"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 64,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "3bd878f8c3c00a29e8f620eb46a56e7b0191d5b3d87cc75df540983122c6b075"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 65,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "50a24d9c69bb1a5ee400f24c51684edc07b3de54f9048d4bf58d164a283307de"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 66,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "13859bf76b8812861c81e75052c481b1adc78e7bbf5ece80bfd9f8baef4a5fbc"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 67,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "7352d80ce5ccfeeb72434d65ab09ad488b4d9eeba0d4e457988d6680e6b96a1a"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 68,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "12bbbd4ebdc4d26a0df7ea6d87bfd00fc661df640fc480970ced564618fad29a"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 69,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "dfbd1edc683a6a88aaaf708a3b77e3ab73b24043178fd22e0554b542568fe146"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 70,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "53f69c64f9e343f53e41567537db75cd481157562aca3c5b3fe53cbb98db5ae0"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 71,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "ba8ccca86d873b83cbf11ad57aed2e22e4faa299002cd2e3007c60958698a178"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 72,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "145477e64d62a9fe2ed2ec447424eb8e9488223920180f16c20c7eec86a2b51a"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 73,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "67b2a4d0ce8223fb1f835b6291cc341444e9957525f91aec99e9975185d1f23b"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 74,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "dd848f94b80ffad981b495167d70cfed2b84a73fede39b1a3c3a4168d8dde9b9"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 75,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "876fb032fd139fd767d7417f541b1b2e8b34c6e78fb6265c2ef0e430f121e4c5"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 76,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "6b12dbaac14dac4aeff5cc57462b97f367f1844130d48078b670812500dd0ba3"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 77,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "b6fd2fa4e4eceedc54823545310bb2586f51cfe6a267ddcce17ab14721756535"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 78,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "386c693d9a21e7725179283bf86ba1db0b032e568f91e4c2f2aeecd4a19ac6aa"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 79,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "fa359e0d95e999dc7deeb7fa8e4abeb7decc45c955e1361ee889e5bc75eb7e39"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 80,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "4eeb0f2171a30cc1377eadbf35a63344f9bec5181f3ec043bb2bcc5fa09e60b5"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 81,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "7bb74ff9695c205992091c5d2cff1c5ed9f56ebba43fd8367ca5d32784107135"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 82,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "2601d331b9667f173d10447bb756908620130744afa2e5affb51231102ceff30"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 83,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "2525f89d7c5dcd8f25af8305a2ca8d30219a7e9813999fe697db343a3b185d48"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 84,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "be6d9238c1d9daf078923065dce9401cec92bdd1f9f35731e99119c0faf9a0a5"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 85,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "9bca112a958a6bfad34e0e0f91f5230412d7025c532ae32dea7cc99a9d63b790"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 86,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "dba9424e9969a8dd49293254d1927697771eac7ea71996468e37934e8a7147f7"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 87,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "d16b24290ab8a973367df5f4279bbb8a7d09f9f52e5d5151826903625de70e15"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 88,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "4074699bad299c3182af4998f0ad4cf484d2f818a496bc09c83e95886a2d9297"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 89,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "16371e058e27a9be4fe1a2bfbefa0a170c7cf9f3fd1215eb520fea0780898e97"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 90,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "9dfa3680011aca4833fb3954031dcede0fc4a51415a0cd68ce5ec0278f276332"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 91,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "82e2a66d9d7da1917ce7dd0b2993b2327e6e2d0c9ba3d5c7178d22796ab6238e"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 92,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "e22833cfb49b175d917eee4cd8de3240119807d1087f2591df3fb9ec23ec3c98"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 93,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "5f4cbd7fd6e369848d57250ea8c1b0bb339b985085bd4548b04aca57f26a5189"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 94,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "677b5559830358233573459ce8b12d0b60a9a021ca3d0314af4305579ae4c6c2"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 95,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "1244678038c3e2494567b37a70b80c5dd0fec3a4417a1226c3047a46da5667e6"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 96,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "2dbfbfc2a88362d9dcf70bd72f5961158d3fdc0e5f8e6a3493d924f4b8c47f5e"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 97,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "eabc42a8a0c0ac97595cc427abfee7c7b7dcf01047b9f9e0367ae81100b39ef6"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 98,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "cb33408e3cfaf9c97bbf76315ee789c425bd573c4f98ed48948e0c24cbecaf47"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 99,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "26bee0a762cdaa71665d11febe46dc44bee1f7253d156e2345797c0ec873a1a9"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 100,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "dbc54c9913b30ac2ca08733e7862313a25ed8e197cba9450ff7195bd3df4f19b"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 101,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "1c9bcf30c591784f113f18c0a1b553ebf17eb736799e30d1425317520ede9704"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 102,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "018ff61b7ffc28de2bcd9272c96faabbff54ade44559cd14f6b707ee6ba568ea"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 103,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "831ad2d914af7c292a62f609d72e223fc375a07af72c75fe6401514f3c244c54"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 104,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "9b1eeb1106231f4cdce093d1a478cd7200dcb1596563de27278bf0d15ec6b199"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 105,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "1e364aa82aa799d6b7fb203aef748a589d318909b82e896a9e6f3a18a2b8a983"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 106,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "7ce1de72635b1cc7cb88912086da1e037d7ee0b13738ff43c30a1a8db86424dd"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 107,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "9aca048c0af4310a0b7f2aa0a021bf9f80beb679d72f9d0e3be20822f1f5391e"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 108,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "2cd27cfc270db2219c5d7a62f30f5241dbe42f4cd578ef201d579974bdd44ea3"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 109,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "e7df3ae30ec2ce9d29cfd1df711f083ac13726accdd0714c7315ec9882e332f5"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 110,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "66db093d5aa8bc7095f923b822491d5e112b7dbca459c861597044a40f9d5972"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 111,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "325cd5d9411afc7ae6b402d8bda28ad0670d307b24b88ede66bc1afb5d43b530"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 112,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "db09f3cc84e70466b8f5136dcb77368db590bf7272e2945e6fb21d703d678b7f"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 113,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "5fa5e3f5ef020ead6c94ba1726f8f9876107e83a6353e2e24fccd88e3196a7d6"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 114,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "fbbdc9a071a22a49ffedb56b227a1f62c0ca32f8091dcd836e1a282e374d1e76"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 115,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "cae578056a3d876a5a94270c17150fd77b56be15b30f018cbee642dd04f987e9"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 116,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "c63a63ad7e59e06275eda7ceb63bb2279257dfe161feac20f1f073da748b2bd1"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 117,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "8bdfcf71a284953a24dba0f0f239d595394776fea96c82efbe1b31f7facb640d"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 118,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "193f0792e64b5e63bcdaccfd82cdc858b690f9061caba270022fe0823948423b"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 119,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "e6911da47b5b11cf10c744d0ed4c67c917543a88f0bca638408bb7d252fc7024"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 120,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "0cd99d90d66bd68f4ccf52d3c99ed83fef58edef24610cd1f6b600b42c16541c"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 121,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "66d73b85a453e117e45f38f9d468160b4539d06e1c95d8be359c43510e701bca"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 122,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "f7cfcc65d396164304b62aba53fee0c3c8fe0c53d0ca0c44cf8b67a4e850ee9b"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 123,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "bca8145db5b1acc2a5fc014f1643f08d18189b804c5277857208125c524f7329"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 124,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "654dd3f04325738410b7e7e2733bb2a1077c9e2161ceb92636704d7982cb749e"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 125,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "78dd40c35c94acc80e15bf72339689448fdb0f4e753a1e97d164d16321878327"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 126,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "e9b561275147e10b3bbcbb14d457bc7c20011a41c7d81ec35eee6e32b61ba9a4"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 127,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "86eceadd2b340ca8dc8c36a5497c5c543c2d4c19ce71ed5367172d752ef2fa86"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 128,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "df74697425ccc1707ccd0f71c94fb0f8d5ac5d2783b74ffdab19463e30964bdf"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 129,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "04237553121b2020593663b9f1fe3b492617f6d9434d20dd4cbbe8274a43ddbb"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 130,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "ddd0c326eddd16d4ba74e6fb666ddb49941f62171c4436c5d0abb3ba277302b4"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 131,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "f27b1670f5fe915b46508f32f7ca0eb47d8606711160aa9d322d886b0406d63d"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 132,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "5f36767c4c8c9d8e396a683f19d5f10e94a45dc456215d081cf9458dfe742feb"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 133,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "e3195c07e62244519d6bc4d8704ec70986446b79ad08d6e7930daa8c0d18070a"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 134,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "f1fd61bb5b71fafdfcce20f82af8658b26c53acb4024468069afa3c845e23b9d"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 135,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "94cbb27b51ae70d69891c42dd62e882d65e4c733eb5356ee15d89992af19fe51"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 136,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "c8a33ca05e823e916dea799a5492ff9b8a3039820800463aca28c83f0753993a"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 137,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "576e10ee779d1f7e8d7bc1087858d215324308f8b6515dfb2674bb7c985f5c27"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 138,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "95ac4b0f5a01828d7d3cf01515899d6181330a30ba4a2c1def48b23b451effd8"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 139,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "3749df97de962fe6b87b4ae77f618c04cbc41f6632ff9385343474838346935a"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 140,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "44aedb0fc012078f62fc16bac647f1511285ced3d68cb4061fba6ca0630b028f"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 141,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "e5dd702268971749e0d935fa83636c04c244e42597d37e7c8681084c83504b47"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 142,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "464a335b8fa09490a8c9cff91fa4d92234d4a4e0e7d9eefc73627d6c4dc46e09"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 143,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "f6ad2eccb81b01cfeebd4aa0c70a9e8ae642f48489140a19d233c078a242eefc"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 144,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "e865b1e00b4e3f2ccf09089776929e41a57946407aa3685351f01a320dfb22dc"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 145,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "48b829d0af1a782693284f842b7a1ed71b4893ab22cd1fb4ee9117f4f21c4dcc"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 146,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "4dc0668f68b5c974f54c8c4e94a0d1647ee79be28d414a4a254a81f213e330f6"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 147,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "1179e9f647c7ab5c881a06ea746859f1e22f3288ebeedcabe5c8c8b4e91034d0"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 148,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "2c0e26cdc57f51ee4f801d17eb6c97ab0be1997535a8c45a4031ea8a3fb87cfb"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 149,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "d230620e1c1dc0eb3e39fcc748be55cfbd9f3e106ab76c88b118d46ac760bc80"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 150,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "d53c85a5416c1d5bf96782d33bbb1da4ee31c0e57d33e30049461e335f348d75"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 151,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "68fb2683e8549970005e0c5b15468d6f0ef8f57c7bdf9474f33458da229f7b10"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 152,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "97b47f00f31a4966deb61e6c9c49c596cd1c3247389604f1ffc3b728dbc9a01b"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 153,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "b7519b234db61973eb7182868e8b173929498f2a068eeaee72eb8742ba99e9ee"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 154,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "efb00e8dcd44ff33a14b566a92d097420043200d0ed38ac4e4d5abfedfaed394"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 155,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "63a4aa265708d1bd70e3f27c116f8d8bbf1e7ef145e431213bcbd47af163bd95"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 156,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "838e9d434457bb5c0917caf6a54e1fa6c7bd0fc8dcbbcae4ac6945d8824e5ee8"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 157,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "36fc03080a11c34a4622d2b00c2124ba59fc0b5a6df9b735c1072616bbdcaa08"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 158,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "eff31cbf88145d0a66250ab6fb02fea0a6830448a9272519559809513468696b"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 159,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "f441e6741fbf85300617a80c7cc10bc84e24aa713c9f2b31ff3cea4138c97907"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 160,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "3be2bbd0b216f1d3eadcf8cfb37e8466c58c8f48ec65372edf9d2d4b9821b21e"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 161,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "9b9587a0547bcd35137599023dcc17130263466ab98f1a29dca99ef73703c87b"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 162,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "3c8e31c6d5dc4ff128a29ba25906fdd769960f95b0ebf3c51d1f86999d426b6e"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 163,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "8e9f5e34b6eb213dd16fc2df7ba1fba733eac34b445e6de5a350ade87511bee7"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 164,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "b79e3fd692f47034c48a41c9799bb5175fde11eb3cd2edb5fdf7be2f3aed9468"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 165,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "e31419c6eb9cb92a104879f9944d89217bed17c8d8700cef5b012eb5cf436684"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 166,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "ac63d34b36ad53aae2b98838d98df815e3db2de26ef67e06c1f691074ca3621e"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 167,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "617e88921ae1d457babcda3e05b75ced8ddf1332ea508d4ca9096fb29893b1a3"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 168,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "acbfd364e988fc4962a6c3a5a1f1f32fc896ddf178eb2d99bd7d83eeac26f9c5"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 169,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "1455f39bc32c0b263c985f19dda63d78ae6fcc50f22291f249f969ce78da99b3"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 170,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "c6f36af10315c2f4869b9559858d4f15170a4a87e92abe678e62748dcb55fb3b"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 171,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "60c39a8d38cd52bbf9b19307e1583ba96930dd9c0472ddc4e078d38e9114ca81"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 172,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "58d5fecfa67d900b840c7a4f3f786d6b150e8e40312b3c06b6d2c82ee8802af4"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 173,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "d8e96c8c2c3aa80f6c0cb9b6060631b5c16153c75c9bb80e24fc281c33e4bdbe"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 174,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "0af5adcca12dbe896a77a17c1a6a08a9b9a66b45ad85bdda283d10876013373c"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 175,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "f96241e79520079c7a39f075b48a8863a1e37285ee68625e6516d24ea6143590"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 176,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "c5995a11252bef87b93fbc94e338bff65b1f0fe71b102d66decfc5f33c1d0278"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 177,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "303cb222ce36f0637747d4f9c6e73b62370d396243c7e12950252414dc4eee07"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 178,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "0456d81e5c60f8d95e240ccf552d58cb48e24ea84a63e082fd02c00b44565aa5"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 179,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "2e64440b1030f06e754907f1270f81b35a9038f0118feffba3a69c660d3c8d21"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 180,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "e1440b6574f20a9d176e8a1dbce57a0df1295e0e43999223b4c58a0f16d8dfe9"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 181,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "690d91f099c64e617698a002afe3b379e28de29d5d1018db118e4516ace7f170"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 182,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "a3cf74e57483c510c726ef1c6ccf082ce56a0cd590e709bdfd830c02aaad8c60"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 183,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "95a2e1403ea2219e6187f6423454a06c53cc7de0c39d911458965d191b5ff023"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 184,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "1990bb5c6b3fe96b514f6fb6ea2db3b43efdf8b2d7779e75fa116e8ad1535f92"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 185,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "ef865677ace8ecc229a81d1a878f670eebb2b684c26c5391b6822a4b233970cd"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 186,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "4d4a98e637649757b83f8dc0304799bf55fe17df97ef5764e4c00b1c7df292c7"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 187,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "169df392585c1f88efa6e22523cf417b526f37c1e1add6e35dfdeb616e5984fc"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 188,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "e27f54fddf12bec908106fd260a1c6e0f1b8bdfa3213e148fb2a5f5d7545068a"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 189,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "2b5a935412895901287dd31d4fb3b355d6cae85a0310796762a6623011eb04fb"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 190,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "9c9f84998b34edc55f225792304c6d037cea406207b2f4442fc2b392b3a7ea20"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 191,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "a4fabf88524ffd92517f0026f7191c8ef5e3b45468c7a2c4d70a8574c6e8cb87"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 192,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "5cbfe725508f6584f16fe32b3de31b289dd5eaf6777b7febc46c0ff09a69e3f0"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 193,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "6e3291279add099cf2984df8f1678dccca8c559a39bec76abb2ce84d5ab0ee46"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 194,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "6c4ededd01990e15cea3b223f5bfe395c4907cbd691e082284b76fc8ef45f1e4"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 195,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "c6ab9532adcf1c8109e7212f57c739e48f83d1336d88f27d2d1c503bb7df4290"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 196,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "c3b23b4c29adf0e4afe35c197074670bec38d95e0730f2df6ec1bb7232b7544a"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 197,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "2bf2549d0d857a39c1c632e267a7bb866c5f3ad68cd8d30028335da7e2a6a1c3"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 198,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "91cb77051a6bb89dbcf98a9500a6d83e117891154563a16ff9d24d761b604c41"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 199,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "8e1e1e7b1d017cd44f44bd5672c093b63d7dec6d7309c20058138e5ce0e232ec"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 200,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "6e192e5015cdae4561051be1c5d6301d6201a00ce9dff4ac5cce841a077a7874"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 201,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "4f9d16ed878f89aad178c97569f7f1b2c3a5945ad042cdf19d3ecb7db3b03cf8"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 202,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "35356e527d55c4ffd22038091d9d0aab2ef3ac8eac7c524998fe2e1676da61dc"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 203,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "82db051fc671c1174dbeba24afa856a58069710cbc22d307ce46eca639821e5c"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 204,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "6220d88b5e9d910f08008f9a4a67a5c33f3fd2b3ab364f5bf8ca0fda912d028f"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 205,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "e1e52436a3eec5857195e3ee1fbe938b7b2072d20d23784a710234548d943f7e"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 206,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "777a675d987f0bd02d6d39f3588c1e066362ba17516f68b3de9bfbef63086585"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 207,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "529d5efdbb89c888275b8c1da4eb53a2b10d435ba0aa3f58db0f0de66e70d2ae"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 208,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "3832b73172556069500ba9c16672a0d3c73727630cb828d8531eb137e1270116"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 209,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "ff100388d2b9e35df8e94c2b10cfad5c1fcd970a270dbab40377e8fad4dc5e7c"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 210,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "720594eca2e1e17019c55ed69364ff08750dac58787b0397be07fc111b08fb04"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 211,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "e8d14c80252d786a9bec9f99b4d87e7e6679a11c894563ab87ebf640328df33a"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 212,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "4a4e81451bb2a8b24b261e560522f1861b381796573daaef6014848380d64262"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 213,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "0450c2f3f3362d2969e2e02d471453fcd3132bde476f5a5874922f7e9b5fc43b"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 214,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "828121281f1544a2c8b0de0444e43493b1370c79a16241392748a0bc2a5dd89a"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 215,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "c0fee68882359e1d621ddae24c5201e75a88c900dec8679c449f3eee790a6949"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 216,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "6cfcb8793028aba6186345fdb9258a4393ac35c30287e8243712a549e0b4616c"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 217,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "eea5e44765c5fd04f6cfacf57649cdc03f2972c95c49559804d7e3029d420524"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 218,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "e78ba07cf80ff1c3dd4d6732ca7058c3c45e0dbcfb8be76d1ff7976b8dac643d"
+    },
+    "screeningStatus": "screened"
+  },
+  {
+    "candidateLocator": null,
+    "confidence": "medium",
+    "directReview": true,
+    "exclusionReason": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "ocrRole": "not_used_as_admission_evidence",
+    "page": 219,
+    "readingLevel": "visual_render_reviewed_no_admitted_rule",
+    "relevance": "visual render review completed; no direct major-star placement or coordinate-identity rule admitted",
+    "relevanceClassification": "no_relevant_evidence",
+    "renderEvidence": {
+      "dpi": 24,
+      "method": "pdftoppm",
+      "sha256": "4a5023c430438fd86ec4b5675efa29adca4cda1832b99dcdc70f42204cc16fd9"
+    },
+    "screeningStatus": "screened"
+  }
+]

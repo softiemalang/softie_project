@@ -1,0 +1,8 @@
+{
+  "action": "continue_blocked",
+  "conventionBlocker": "palace_semantic_identity_unresolved",
+  "productionChoice": "not performed",
+  "readinessImpact": "not_safe_to_start / blocked / experimental",
+  "sourceRuleDirectCount": 2,
+  "sourceUnresolvedCount": 12
+}
