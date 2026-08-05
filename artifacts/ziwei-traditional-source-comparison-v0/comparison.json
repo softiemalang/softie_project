@@ -1,0 +1,1235 @@
+{
+  "domains": {
+    "fiveElementBureau": {
+      "inputCount": 1440,
+      "matchCount": 1440,
+      "mismatchCount": 0,
+      "rows": [
+        {
+          "input": {
+            "birthYearStem": "甲",
+            "hourBranch": "子",
+            "lunarMonth": 1
+          },
+          "match": true,
+          "productionOutput": {
+            "element": "화",
+            "id": "fire_6",
+            "name": "화육국",
+            "number": 6
+          },
+          "sourceOutput": {
+            "element": "火",
+            "enum": "fire_6",
+            "number": 6,
+            "traditionalName": "火六局"
+          }
+        },
+        {
+          "input": {
+            "birthYearStem": "乙",
+            "hourBranch": "巳",
+            "lunarMonth": 5
+          },
+          "match": true,
+          "productionOutput": {
+            "element": "화",
+            "id": "fire_6",
+            "name": "화육국",
+            "number": 6
+          },
+          "sourceOutput": {
+            "element": "火",
+            "enum": "fire_6",
+            "number": 6,
+            "traditionalName": "火六局"
+          }
+        },
+        {
+          "input": {
+            "birthYearStem": "辛",
+            "hourBranch": "申",
+            "lunarMonth": 9
+          },
+          "match": true,
+          "productionOutput": {
+            "element": "목",
+            "id": "wood_3",
+            "name": "목삼국",
+            "number": 3
+          },
+          "sourceOutput": {
+            "element": "木",
+            "enum": "wood_3",
+            "number": 3,
+            "traditionalName": "木三局"
+          }
+        },
+        {
+          "input": {
+            "birthYearStem": "癸",
+            "hourBranch": "亥",
+            "lunarMonth": 12
+          },
+          "match": true,
+          "productionOutput": {
+            "element": "수",
+            "id": "water_2",
+            "name": "수이국",
+            "number": 2
+          },
+          "sourceOutput": {
+            "element": "水",
+            "enum": "water_2",
+            "number": 2,
+            "traditionalName": "水二局"
+          }
+        }
+      ]
+    },
+    "mingShen": {
+      "inputCount": 144,
+      "matchCount": 144,
+      "mismatchCount": 0,
+      "rows": [
+        {
+          "input": {
+            "hourBranch": "子",
+            "lunarMonth": 1
+          },
+          "match": true,
+          "productionOutput": {
+            "mingGong": "寅",
+            "shenGong": "寅"
+          },
+          "sourceOutput": {
+            "hourBranch": "子",
+            "lunarMonth": 1,
+            "mingGong": {
+              "branch": "寅",
+              "branchIndex": 2,
+              "engineId": "life",
+              "traditionalName": "命宮"
+            },
+            "monthStartBranch": "寅",
+            "shenGong": {
+              "branch": "寅",
+              "branchIndex": 2,
+              "engineId": "shen",
+              "traditionalName": "身宮"
+            }
+          }
+        },
+        {
+          "input": {
+            "hourBranch": "卯",
+            "lunarMonth": 4
+          },
+          "match": true,
+          "productionOutput": {
+            "mingGong": "寅",
+            "shenGong": "申"
+          },
+          "sourceOutput": {
+            "hourBranch": "卯",
+            "lunarMonth": 4,
+            "mingGong": {
+              "branch": "寅",
+              "branchIndex": 2,
+              "engineId": "life",
+              "traditionalName": "命宮"
+            },
+            "monthStartBranch": "巳",
+            "shenGong": {
+              "branch": "申",
+              "branchIndex": 8,
+              "engineId": "shen",
+              "traditionalName": "身宮"
+            }
+          }
+        },
+        {
+          "input": {
+            "hourBranch": "午",
+            "lunarMonth": 8
+          },
+          "match": true,
+          "productionOutput": {
+            "mingGong": "卯",
+            "shenGong": "卯"
+          },
+          "sourceOutput": {
+            "hourBranch": "午",
+            "lunarMonth": 8,
+            "mingGong": {
+              "branch": "卯",
+              "branchIndex": 3,
+              "engineId": "life",
+              "traditionalName": "命宮"
+            },
+            "monthStartBranch": "酉",
+            "shenGong": {
+              "branch": "卯",
+              "branchIndex": 3,
+              "engineId": "shen",
+              "traditionalName": "身宮"
+            }
+          }
+        },
+        {
+          "input": {
+            "hourBranch": "亥",
+            "lunarMonth": 12
+          },
+          "match": true,
+          "productionOutput": {
+            "mingGong": "寅",
+            "shenGong": "子"
+          },
+          "sourceOutput": {
+            "hourBranch": "亥",
+            "lunarMonth": 12,
+            "mingGong": {
+              "branch": "寅",
+              "branchIndex": 2,
+              "engineId": "life",
+              "traditionalName": "命宮"
+            },
+            "monthStartBranch": "丑",
+            "shenGong": {
+              "branch": "子",
+              "branchIndex": 0,
+              "engineId": "shen",
+              "traditionalName": "身宮"
+            }
+          }
+        }
+      ]
+    },
+    "tianfu": {
+      "inputCount": 150,
+      "matchCount": 25,
+      "mismatchCount": 125,
+      "rows": [
+        {
+          "input": {
+            "ziweiBranch": "子"
+          },
+          "match": false,
+          "productionOutput": {
+            "branch": "戌"
+          },
+          "sourceOutput": {
+            "branch": "辰",
+            "engineStarId": "tianfu",
+            "traditionalName": "天府"
+          }
+        },
+        {
+          "input": {
+            "ziweiBranch": "丑"
+          },
+          "match": false,
+          "productionOutput": {
+            "branch": "酉"
+          },
+          "sourceOutput": {
+            "branch": "巳",
+            "engineStarId": "tianfu",
+            "traditionalName": "天府"
+          }
+        },
+        {
+          "input": {
+            "ziweiBranch": "寅"
+          },
+          "match": false,
+          "productionOutput": {
+            "branch": "申"
+          },
+          "sourceOutput": {
+            "branch": "午",
+            "engineStarId": "tianfu",
+            "traditionalName": "天府"
+          }
+        },
+        {
+          "input": {
+            "ziweiBranch": "卯"
+          },
+          "match": true,
+          "productionOutput": {
+            "branch": "未"
+          },
+          "sourceOutput": {
+            "branch": "未",
+            "engineStarId": "tianfu",
+            "traditionalName": "天府"
+          }
+        },
+        {
+          "input": {
+            "ziweiBranch": "辰"
+          },
+          "match": false,
+          "productionOutput": {
+            "branch": "午"
+          },
+          "sourceOutput": {
+            "branch": "申",
+            "engineStarId": "tianfu",
+            "traditionalName": "天府"
+          }
+        },
+        {
+          "input": {
+            "ziweiBranch": "巳"
+          },
+          "match": false,
+          "productionOutput": {
+            "branch": "巳"
+          },
+          "sourceOutput": {
+            "branch": "酉",
+            "engineStarId": "tianfu",
+            "traditionalName": "天府"
+          }
+        },
+        {
+          "input": {
+            "ziweiBranch": "午"
+          },
+          "match": false,
+          "productionOutput": {
+            "branch": "辰"
+          },
+          "sourceOutput": {
+            "branch": "戌",
+            "engineStarId": "tianfu",
+            "traditionalName": "天府"
+          }
+        },
+        {
+          "input": {
+            "ziweiBranch": "未"
+          },
+          "match": false,
+          "productionOutput": {
+            "branch": "卯"
+          },
+          "sourceOutput": {
+            "branch": "亥",
+            "engineStarId": "tianfu",
+            "traditionalName": "天府"
+          }
+        },
+        {
+          "input": {
+            "ziweiBranch": "申"
+          },
+          "match": false,
+          "productionOutput": {
+            "branch": "寅"
+          },
+          "sourceOutput": {
+            "branch": "子",
+            "engineStarId": "tianfu",
+            "traditionalName": "天府"
+          }
+        },
+        {
+          "input": {
+            "ziweiBranch": "酉"
+          },
+          "match": true,
+          "productionOutput": {
+            "branch": "丑"
+          },
+          "sourceOutput": {
+            "branch": "丑",
+            "engineStarId": "tianfu",
+            "traditionalName": "天府"
+          }
+        },
+        {
+          "input": {
+            "ziweiBranch": "戌"
+          },
+          "match": false,
+          "productionOutput": {
+            "branch": "子"
+          },
+          "sourceOutput": {
+            "branch": "寅",
+            "engineStarId": "tianfu",
+            "traditionalName": "天府"
+          }
+        },
+        {
+          "input": {
+            "ziweiBranch": "亥"
+          },
+          "match": false,
+          "productionOutput": {
+            "branch": "亥"
+          },
+          "sourceOutput": {
+            "branch": "卯",
+            "engineStarId": "tianfu",
+            "traditionalName": "天府"
+          }
+        }
+      ]
+    },
+    "ziwei": {
+      "inputCount": 150,
+      "matchCount": 150,
+      "mismatchCount": 0,
+      "rows": [
+        {
+          "input": {
+            "bureau": "水二局",
+            "lunarDay": 1
+          },
+          "match": true,
+          "productionOutput": {
+            "branch": "丑"
+          },
+          "sourceOutput": {
+            "branch": "丑",
+            "engineStarId": "ziwei",
+            "traditionalName": "紫微"
+          }
+        },
+        {
+          "input": {
+            "bureau": "木三局",
+            "lunarDay": 14
+          },
+          "match": true,
+          "productionOutput": {
+            "branch": "巳"
+          },
+          "sourceOutput": {
+            "branch": "巳",
+            "engineStarId": "ziwei",
+            "traditionalName": "紫微"
+          }
+        },
+        {
+          "input": {
+            "bureau": "金四局",
+            "lunarDay": 23
+          },
+          "match": true,
+          "productionOutput": {
+            "branch": "午"
+          },
+          "sourceOutput": {
+            "branch": "午",
+            "engineStarId": "ziwei",
+            "traditionalName": "紫微"
+          }
+        },
+        {
+          "input": {
+            "bureau": "土五局",
+            "lunarDay": 30
+          },
+          "match": true,
+          "productionOutput": {
+            "branch": "未"
+          },
+          "sourceOutput": {
+            "branch": "未",
+            "engineStarId": "ziwei",
+            "traditionalName": "紫微"
+          }
+        },
+        {
+          "input": {
+            "bureau": "火六局",
+            "lunarDay": 17
+          },
+          "match": true,
+          "productionOutput": {
+            "branch": "卯"
+          },
+          "sourceOutput": {
+            "branch": "卯",
+            "engineStarId": "ziwei",
+            "traditionalName": "紫微"
+          }
+        }
+      ]
+    }
+  },
+  "representativeFixture": {
+    "fixture": {
+      "fiveElementBureau": [
+        {
+          "birthYearStem": "甲",
+          "hourBranch": "子",
+          "lunarMonth": 1
+        },
+        {
+          "birthYearStem": "乙",
+          "hourBranch": "巳",
+          "lunarMonth": 5
+        },
+        {
+          "birthYearStem": "辛",
+          "hourBranch": "申",
+          "lunarMonth": 9
+        },
+        {
+          "birthYearStem": "癸",
+          "hourBranch": "亥",
+          "lunarMonth": 12
+        }
+      ],
+      "mingShen": [
+        {
+          "hourBranch": "子",
+          "lunarMonth": 1
+        },
+        {
+          "hourBranch": "卯",
+          "lunarMonth": 4
+        },
+        {
+          "hourBranch": "午",
+          "lunarMonth": 8
+        },
+        {
+          "hourBranch": "亥",
+          "lunarMonth": 12
+        }
+      ],
+      "purpose": "Representative deterministic inputs only; not a claim of source truth.",
+      "schemaVersion": "ziwei-traditional-source-comparison-v0-fixture-v0",
+      "tianfu": [
+        {
+          "ziweiBranch": "子"
+        },
+        {
+          "ziweiBranch": "丑"
+        },
+        {
+          "ziweiBranch": "寅"
+        },
+        {
+          "ziweiBranch": "卯"
+        },
+        {
+          "ziweiBranch": "辰"
+        },
+        {
+          "ziweiBranch": "巳"
+        },
+        {
+          "ziweiBranch": "午"
+        },
+        {
+          "ziweiBranch": "未"
+        },
+        {
+          "ziweiBranch": "申"
+        },
+        {
+          "ziweiBranch": "酉"
+        },
+        {
+          "ziweiBranch": "戌"
+        },
+        {
+          "ziweiBranch": "亥"
+        }
+      ],
+      "ziwei": [
+        {
+          "bureau": "水二局",
+          "lunarDay": 1
+        },
+        {
+          "bureau": "木三局",
+          "lunarDay": 14
+        },
+        {
+          "bureau": "金四局",
+          "lunarDay": 23
+        },
+        {
+          "bureau": "土五局",
+          "lunarDay": 30
+        },
+        {
+          "bureau": "火六局",
+          "lunarDay": 17
+        }
+      ]
+    },
+    "path": "test/fixtures/ziwei/traditional-source-comparison-v0.json"
+  },
+  "rules": [
+    {
+      "comparisonNote": "两版起点/方向语句以不同表述表达同一已独立复核的 144-row placement boundary。",
+      "comparisonStatus": "equivalent_representation",
+      "implementation": {
+        "files": [
+          "src/ziwei/ziweiResolver.js",
+          "src/ziwei/mingShenCleanRuleSeedPilot.js"
+        ],
+        "present": true,
+        "status": "exact_144_of_144"
+      },
+      "label": "安身命·起五寅",
+      "ruleId": "ming-shen-palace",
+      "sourceRefs": {
+        "ming": {
+          "confidence": "visually_bounded_single_review",
+          "glyphPreservingText": "大抵入命俱從寅上起正月順數至本生月止；[其餘列文保留待二次校讀]",
+          "locator": "PDF p145, right-side volume heading and rule columns",
+          "pdfPage": 145,
+          "printedFolio": null,
+          "readingOrder": "vertical columns right-to-left",
+          "section": "○安身命例",
+          "source": "ming",
+          "uncertainty": [
+            "後続文字在当前裁切中未完整保留，未作补写。"
+          ],
+          "volume": "卷三"
+        },
+        "nanbei": {
+          "confidence": "human_readable_single_review",
+          "glyphPreservingText": "寅正巳順數生月逢。生月起子兩頭通。逆至生時為命宮。順到生時即安身。",
+          "locator": "PDF p8, left scanned leaf, rule columns",
+          "pdfPage": 8,
+          "printedFolio": "二十五",
+          "readingOrder": "vertical columns right-to-left",
+          "section": "九、定命、身二宮",
+          "source": "nanbei",
+          "uncertainty": [
+            "第二复核未完成。"
+          ],
+          "volume": null
+        }
+      }
+    },
+    {
+      "comparisonNote": "实现有循环，但明代页的宫位方向与南北山人对应页尚未达到原文级闭合。",
+      "comparisonStatus": "unreadable",
+      "implementation": {
+        "files": [
+          "src/ziwei/ziweiResolver.js",
+          "src/ziwei/ziweiContract.js"
+        ],
+        "present": true,
+        "status": "palace_loop_present"
+      },
+      "label": "安十二宮",
+      "ruleId": "twelve-palaces",
+      "sourceRefs": {
+        "ming": {
+          "confidence": "heading_readable_body_unreadable",
+          "glyphPreservingText": "○安十二宮；[正文未在本轮完整转写]",
+          "locator": "PDF p153, section heading and vertical prose",
+          "pdfPage": 153,
+          "printedFolio": null,
+          "readingOrder": "vertical columns right-to-left",
+          "section": "○安十二宮",
+          "source": "ming",
+          "uncertainty": [
+            "正文与宫位图方向未完成逐字复核。"
+          ],
+          "volume": "卷三"
+        },
+        "nanbei": {
+          "confidence": "unreadable",
+          "glyphPreservingText": null,
+          "locator": null,
+          "pdfPage": null,
+          "printedFolio": null,
+          "readingOrder": "not_asserted",
+          "section": "十二宮·宫位顺序",
+          "source": "nanbei",
+          "uncertainty": [
+            "本轮南北山人定位窗口未取得可确认的同题原文页，不能将未定位当作缺失。"
+          ],
+          "volume": null
+        }
+      }
+    },
+    {
+      "comparisonNote": "五行局独立 evaluator 与当前 resolver 在 1440 个代表域输入上相同；不改变生产契约。",
+      "comparisonStatus": "exact_match",
+      "implementation": {
+        "files": [
+          "src/ziwei/fiveElementResolver.js",
+          "src/ziwei/fiveElementBureauCleanRuleSeedPilot.js"
+        ],
+        "present": true,
+        "status": "exact_1440_of_1440"
+      },
+      "label": "五行局",
+      "ruleId": "five-element-bureau",
+      "sourceRefs": {
+        "ming": {
+          "confidence": "table_boundary_readable",
+          "glyphPreservingText": "水二局；木三局；金四局；土五局；火六局",
+          "locator": "PDF p168–171, drawn bureau tables; p168 木三局, p169 水二局, p170 火六局, p171 土五局",
+          "pdfPage": 168,
+          "printedFolio": null,
+          "readingOrder": "drawn table axes retained; no transpose inferred",
+          "section": "五行局表",
+          "source": "ming",
+          "uncertainty": [
+            "局部 folio label 不在当前裁切中，表格单元格仍需独立逐格复核。"
+          ],
+          "volume": "卷三"
+        },
+        "nanbei": {
+          "confidence": "human_readable_single_review",
+          "glyphPreservingText": "水二局、木三局、金四局、土五局、火六局；[纳音列按原 artifact 保留]",
+          "locator": "PDF p9 left leaf; prose and 六十花甲納音 columns",
+          "pdfPage": 9,
+          "printedFolio": "二十七",
+          "readingOrder": "vertical prose right-to-left; table not transposed",
+          "section": "十、定五行局",
+          "source": "nanbei",
+          "uncertainty": [
+            "表格二次复核未完成。"
+          ],
+          "volume": null
+        }
+      }
+    },
+    {
+      "comparisonNote": "现有 Nanbei source-seed 与实现的 150-row 结果一致；明代表格只记为未完整转写。",
+      "comparisonStatus": "exact_match",
+      "implementation": {
+        "files": [
+          "src/ziwei/starPlacementRules.js",
+          "src/ziwei/ziweiStarPlacementCleanRuleSeedPilot.js"
+        ],
+        "present": true,
+        "status": "exact_150_of_150_against_nanbei_seed"
+      },
+      "label": "紫微",
+      "ruleId": "ziwei-placement",
+      "sourceRefs": {
+        "ming": {
+          "confidence": "table_present_not_fully_transcribed",
+          "glyphPreservingText": "[起紫微表：表格边界可见，逐格转写未完成]",
+          "locator": "PDF p168–171, bureau/day table region; exact 30-day glyph cells not promoted",
+          "pdfPage": 168,
+          "printedFolio": null,
+          "readingOrder": "drawn table; orientation preserved, semantic axis not promoted",
+          "section": "五行局/起紫微表",
+          "source": "ming",
+          "uncertainty": [
+            "不能以标准算法补写明代版单元格。"
+          ],
+          "volume": "卷三"
+        },
+        "nanbei": {
+          "confidence": "human_readable_single_review",
+          "glyphPreservingText": "水二局中初一丑；木三局中初一辰；金四局中初一辰；土五局中初一午；火六局中初一酉",
+          "locator": "PDF p11 left leaf; vertical rule prose and start-point table",
+          "pdfPage": 11,
+          "printedFolio": "三十一",
+          "readingOrder": "vertical prose right-to-left; table rows descend",
+          "section": "起紫微五訣",
+          "source": "nanbei",
+          "uncertainty": [
+            "金四局起点在既有 pilot 与当前 scan read 有一处需二次复核，保留原字段不改写。"
+          ],
+          "volume": null
+        }
+      }
+    },
+    {
+      "comparisonNote": "Nanbei source table 与当前天府公式直接身份不一致；既有分析仅记录 rotation-06 数值关系，未提升为语义等价。",
+      "comparisonStatus": "substantive_divergence",
+      "implementation": {
+        "files": [
+          "src/ziwei/starPlacementRules.js"
+        ],
+        "present": true,
+        "status": "direct_150_row_relation_differs"
+      },
+      "label": "天府",
+      "ruleId": "tianfu-placement",
+      "sourceRefs": {
+        "ming": {
+          "confidence": "heading_readable_body_unreadable",
+          "glyphPreservingText": "○安南北斗諸星訣；[天府单独表未在本轮完整转写]",
+          "locator": "PDF p147–148, 南北斗 heading and adjacent columns",
+          "pdfPage": 147,
+          "printedFolio": null,
+          "readingOrder": "vertical columns right-to-left",
+          "section": "○安南北斗諸星訣",
+          "source": "ming",
+          "uncertainty": [
+            "不能用南北山人表反推明代表。"
+          ],
+          "volume": "卷三"
+        },
+        "nanbei": {
+          "confidence": "table_boundary_readable",
+          "glyphPreservingText": "安天府；天府/紫微双列 12 行表，原单元格逐行保留在既有 source pilot",
+          "locator": "PDF p13 right leaf; 12-row drawn table",
+          "pdfPage": 13,
+          "printedFolio": "三十四",
+          "readingOrder": "drawn two-column table top-to-bottom; no transpose",
+          "section": "十六、安天府",
+          "source": "nanbei",
+          "uncertainty": [
+            "版本谱系与语义宫位同一性未提升。"
+          ],
+          "volume": null
+        }
+      }
+    },
+    {
+      "comparisonNote": "两版都已定位到相关星表上下文，但尚无逐星、逐格、独立复核的闭合证据。",
+      "comparisonStatus": "unreadable",
+      "implementation": {
+        "files": [
+          "src/ziwei/starResolver.js",
+          "src/ziwei/starPlacementRules.js"
+        ],
+        "present": true,
+        "status": "implemented_unverified"
+      },
+      "label": "南北斗14主星",
+      "ruleId": "south-north-fourteen-major-stars",
+      "sourceRefs": {
+        "ming": {
+          "confidence": "heading_readable_body_unreadable",
+          "glyphPreservingText": "○安南北斗諸星訣；[14星逐星位置未完整转写]",
+          "locator": "PDF p147–148, heading and multi-column star text",
+          "pdfPage": 147,
+          "printedFolio": null,
+          "readingOrder": "vertical columns right-to-left",
+          "section": "○安南北斗諸星訣",
+          "source": "ming",
+          "uncertainty": [
+            "星名、次序与图式的逐项映射未完成。"
+          ],
+          "volume": "卷三"
+        },
+        "nanbei": {
+          "confidence": "table_present_not_fully_transcribed",
+          "glyphPreservingText": "[星表可见，未把星名位置扩写为现代规范]",
+          "locator": "PDF p13 left/right leaves; star table context",
+          "pdfPage": 13,
+          "printedFolio": "三十四",
+          "readingOrder": "drawn table; orientation retained",
+          "section": "安南北斗·安天府",
+          "source": "nanbei",
+          "uncertainty": [
+            "不能把图表布局推导成唯一语义坐标。"
+          ],
+          "volume": null
+        }
+      }
+    },
+    {
+      "comparisonNote": "已有实现不能替代两版原文证据。",
+      "comparisonStatus": "unreadable",
+      "implementation": {
+        "files": [
+          "src/ziwei/minorStarRules.js"
+        ],
+        "present": true,
+        "status": "implementation_only_for_this_comparison"
+      },
+      "label": "文昌文曲",
+      "ruleId": "wenchang-wenqu",
+      "sourceRefs": {
+        "ming": {
+          "confidence": "heading_readable_body_unreadable",
+          "glyphPreservingText": "○安文昌文曲星訣；[正文未完整转写]",
+          "locator": "PDF p148, section heading and vertical rule columns",
+          "pdfPage": 148,
+          "printedFolio": null,
+          "readingOrder": "vertical columns right-to-left",
+          "section": "○安文昌文曲星訣",
+          "source": "ming",
+          "uncertainty": [
+            "方向和起点未从完整原文逐字闭合。"
+          ],
+          "volume": "卷三"
+        },
+        "nanbei": {
+          "confidence": "unreadable",
+          "glyphPreservingText": null,
+          "locator": null,
+          "pdfPage": null,
+          "printedFolio": null,
+          "readingOrder": "not_asserted",
+          "section": "文昌文曲",
+          "source": "nanbei",
+          "uncertainty": [
+            "南北山人本轮 p8–p13 source window 未确认同题规则页。"
+          ],
+          "volume": null
+        }
+      }
+    },
+    {
+      "comparisonNote": "明代局部规则可读，南北山人对应页与当前实现的三方闭合尚未完成。",
+      "comparisonStatus": "unreadable",
+      "implementation": {
+        "files": [
+          "src/ziwei/minorStarRules.js"
+        ],
+        "present": true,
+        "status": "implementation_only_for_this_comparison"
+      },
+      "label": "左輔右弼",
+      "ruleId": "zuofu-youbi",
+      "sourceRefs": {
+        "ming": {
+          "confidence": "visually_bounded_single_review",
+          "glyphPreservingText": "左輔正月起於辰順至生月；右弼正月宮尋戌逆至生月；[余文保留]",
+          "locator": "PDF p149 right/middle columns",
+          "pdfPage": 149,
+          "printedFolio": null,
+          "readingOrder": "vertical columns right-to-left",
+          "section": "左輔右弼诀",
+          "source": "ming",
+          "uncertainty": [
+            "个别字形和后续条件未二次复核。"
+          ],
+          "volume": "卷三"
+        },
+        "nanbei": {
+          "confidence": "unreadable",
+          "glyphPreservingText": null,
+          "locator": null,
+          "pdfPage": null,
+          "printedFolio": null,
+          "readingOrder": "not_asserted",
+          "section": "左輔右弼",
+          "source": "nanbei",
+          "uncertainty": [
+            "南北山人本轮 p8–p13 source window 未确认同题规则页。"
+          ],
+          "volume": null
+        }
+      }
+    },
+    {
+      "comparisonNote": "当前 map 不能作为 source transcription。",
+      "comparisonStatus": "unreadable",
+      "implementation": {
+        "files": [
+          "src/ziwei/minorStarRules.js"
+        ],
+        "present": true,
+        "status": "implementation_only_for_this_comparison"
+      },
+      "label": "天魁天鉞",
+      "ruleId": "tiankui-tianyue",
+      "sourceRefs": {
+        "ming": {
+          "confidence": "heading_readable_body_unreadable",
+          "glyphPreservingText": "○安天魁天鉞訣；[甲戊庚牛羊、乙己鼠猴等列文未在本轮全量转写]",
+          "locator": "PDF p149 left/middle columns",
+          "pdfPage": 149,
+          "printedFolio": null,
+          "readingOrder": "vertical columns right-to-left",
+          "section": "○安天魁天鉞訣",
+          "source": "ming",
+          "uncertainty": [
+            "干年映射未以完整原文表确证。"
+          ],
+          "volume": "卷三"
+        },
+        "nanbei": {
+          "confidence": "unreadable",
+          "glyphPreservingText": null,
+          "locator": null,
+          "pdfPage": null,
+          "printedFolio": null,
+          "readingOrder": "not_asserted",
+          "section": "天魁天鉞",
+          "source": "nanbei",
+          "uncertainty": [
+            "南北山人本轮 p8–p13 source window 未确认同题规则页。"
+          ],
+          "volume": null
+        }
+      }
+    },
+    {
+      "comparisonNote": "明代标题可见但未完整转写；当前实现未覆盖该整组，不能把缺实现当作版本差异。",
+      "comparisonStatus": "unreadable",
+      "implementation": {
+        "files": [
+          "src/ziwei/minorStarRules.js"
+        ],
+        "present": false,
+        "status": "not_present_in_current_minor_rule_module"
+      },
+      "label": "禄存·擎羊陀羅·火鈴",
+      "ruleId": "lucun-qingyang-tuoluo-huoling",
+      "sourceRefs": {
+        "ming": {
+          "confidence": "heading_readable_body_unreadable",
+          "glyphPreservingText": "○安祿存星訣；○安火鈴二星訣；[擎羊陀羅相关列未完整转写]",
+          "locator": "PDF p150–151, section headings and rule columns",
+          "pdfPage": 150,
+          "printedFolio": null,
+          "readingOrder": "vertical columns right-to-left",
+          "section": "○安祿存星訣 / ○安火鈴二星訣",
+          "source": "ming",
+          "uncertainty": [
+            "受损处与连续栏位需高分辨率二次复核。"
+          ],
+          "volume": "卷三"
+        },
+        "nanbei": {
+          "confidence": "unreadable",
+          "glyphPreservingText": null,
+          "locator": null,
+          "pdfPage": null,
+          "printedFolio": null,
+          "readingOrder": "not_asserted",
+          "section": "禄存·擎羊陀羅·火鈴",
+          "source": "nanbei",
+          "uncertainty": [
+            "南北山人本轮 p8–p13 source window 未确认同题规则页。"
+          ],
+          "volume": null
+        }
+      }
+    },
+    {
+      "comparisonNote": "已有实现存在，但来源版逐干证据尚未闭合。",
+      "comparisonStatus": "unreadable",
+      "implementation": {
+        "files": [
+          "src/ziwei/transformationRules.js",
+          "src/ziwei/transformationResolver.js"
+        ],
+        "present": true,
+        "status": "implementation_only_for_this_comparison"
+      },
+      "label": "禄权科忌",
+      "ruleId": "four-transformations",
+      "sourceRefs": {
+        "ming": {
+          "confidence": "heading_readable_body_unreadable",
+          "glyphPreservingText": "○安祿權科忌四星變化訣；[四干逐项列文未完整转写]",
+          "locator": "PDF p151, section heading and transformation columns",
+          "pdfPage": 151,
+          "printedFolio": null,
+          "readingOrder": "vertical columns right-to-left",
+          "section": "○安祿權科忌四星變化訣",
+          "source": "ming",
+          "uncertainty": [
+            "不能以现行 map 补作明代逐字转写。"
+          ],
+          "volume": "卷三"
+        },
+        "nanbei": {
+          "confidence": "unreadable",
+          "glyphPreservingText": null,
+          "locator": null,
+          "pdfPage": null,
+          "printedFolio": null,
+          "readingOrder": "not_asserted",
+          "section": "禄权科忌",
+          "source": "nanbei",
+          "uncertainty": [
+            "南北山人本轮 p8–p13 source window 未确认同题规则页。"
+          ],
+          "volume": null
+        }
+      }
+    },
+    {
+      "comparisonNote": "不得从实现缺口推断版间缺失。",
+      "comparisonStatus": "unreadable",
+      "implementation": {
+        "files": [
+          "src/ziwei/minorStarRules.js"
+        ],
+        "present": false,
+        "status": "not_present_in_current_minor_rule_module"
+      },
+      "label": "天空地劫",
+      "ruleId": "tiankong-dijie",
+      "sourceRefs": {
+        "ming": {
+          "confidence": "heading_readable_body_unreadable",
+          "glyphPreservingText": "○安天空地劫訣；[正文未完整转写]",
+          "locator": "PDF p152, section heading and vertical rule columns",
+          "pdfPage": 152,
+          "printedFolio": null,
+          "readingOrder": "vertical columns right-to-left",
+          "section": "○安天空地劫訣",
+          "source": "ming",
+          "uncertainty": [
+            "起点与方向未完成逐字复核。"
+          ],
+          "volume": "卷三"
+        },
+        "nanbei": {
+          "confidence": "unreadable",
+          "glyphPreservingText": null,
+          "locator": null,
+          "pdfPage": null,
+          "printedFolio": null,
+          "readingOrder": "not_asserted",
+          "section": "天空地劫",
+          "source": "nanbei",
+          "uncertainty": [
+            "南北山人本轮 p8–p13 source window 未确认同题规则页。"
+          ],
+          "volume": null
+        }
+      }
+    },
+    {
+      "comparisonNote": "后续需按权3目录和全本逐页寻检，现不推断。",
+      "comparisonStatus": "unreadable",
+      "implementation": {
+        "files": [
+          "src/ziwei"
+        ],
+        "present": false,
+        "status": "not_located_in_current_implementation"
+      },
+      "label": "命主·身主",
+      "ruleId": "mingzhu-shenzhu",
+      "sourceRefs": {
+        "ming": {
+          "confidence": "unreadable",
+          "glyphPreservingText": null,
+          "locator": null,
+          "pdfPage": null,
+          "printedFolio": null,
+          "readingOrder": "not_asserted",
+          "section": "命主·身主",
+          "source": "ming",
+          "uncertainty": [
+            "权3本轮逐页定位未取得可安全转写的完整题名与规则正文。"
+          ],
+          "volume": null
+        },
+        "nanbei": {
+          "confidence": "unreadable",
+          "glyphPreservingText": null,
+          "locator": null,
+          "pdfPage": null,
+          "printedFolio": null,
+          "readingOrder": "not_asserted",
+          "section": "命主·身主",
+          "source": "nanbei",
+          "uncertainty": [
+            "南北山人本轮 p8–p13 source window 未确认同题规则页。"
+          ],
+          "volume": null
+        }
+      }
+    },
+    {
+      "comparisonNote": "当前实现未形成可核验限法；图式存在但尚未安全转写。",
+      "comparisonStatus": "implementation_only",
+      "implementation": {
+        "files": [
+          "src/ziwei"
+        ],
+        "present": false,
+        "status": "not_located_in_current_implementation"
+      },
+      "label": "大限·小限",
+      "ruleId": "major-minor-limits",
+      "sourceRefs": {
+        "ming": {
+          "confidence": "unreadable",
+          "glyphPreservingText": "[限图可见；题名与起算规则未完整转写]",
+          "locator": "PDF p173–176, chart and adjacent columns; exact heading not safely isolated",
+          "pdfPage": 173,
+          "printedFolio": null,
+          "readingOrder": "not asserted",
+          "section": "限图/限法相关页面",
+          "source": "ming",
+          "uncertainty": [
+            "图式方向、起算点、男女阴阳条件未从整页闭合。"
+          ],
+          "volume": "卷三"
+        },
+        "nanbei": {
+          "confidence": "unreadable",
+          "glyphPreservingText": null,
+          "locator": null,
+          "pdfPage": null,
+          "printedFolio": null,
+          "readingOrder": "not_asserted",
+          "section": "大限·小限",
+          "source": "nanbei",
+          "uncertainty": [
+            "南北山人本轮 p8–p13 source window 未确认同题规则页。"
+          ],
+          "volume": null
+        }
+      }
+    },
+    {
+      "comparisonNote": "表头证据保留，逐星强弱不能以现行实现或通行表补齐。",
+      "comparisonStatus": "unreadable",
+      "implementation": {
+        "files": [
+          "src/ziwei"
+        ],
+        "present": false,
+        "status": "not_located_in_current_implementation"
+      },
+      "label": "庙旺落陷",
+      "ruleId": "brightness",
+      "sourceRefs": {
+        "ming": {
+          "confidence": "table_labels_readable",
+          "glyphPreservingText": "廟；旺；得地；利益；平和；不得地；落陷",
+          "locator": "PDF p175–176, table rows 庙旺得地利益平和不得地落陷",
+          "pdfPage": 175,
+          "printedFolio": null,
+          "readingOrder": "drawn table; cell direction not promoted",
+          "section": "星曜强弱表",
+          "source": "ming",
+          "uncertainty": [
+            "逐星表格单元格尚未完整转写。"
+          ],
+          "volume": "卷三"
+        },
+        "nanbei": {
+          "confidence": "unreadable",
+          "glyphPreservingText": null,
+          "locator": null,
+          "pdfPage": null,
+          "printedFolio": null,
+          "readingOrder": "not_asserted",
+          "section": "庙旺落陷",
+          "source": "nanbei",
+          "uncertainty": [
+            "南北山人本轮 p8–p13 source window 未确认同题规则页。"
+          ],
+          "volume": null
+        }
+      }
+    }
+  ],
+  "statusCounts": {
+    "equivalent_representation": 1,
+    "exact_match": 2,
+    "implementation_only": 1,
+    "missing_in_edition": 0,
+    "substantive_divergence": 1,
+    "unreadable": 10
+  }
+}

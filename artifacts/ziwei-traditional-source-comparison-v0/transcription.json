@@ -1,0 +1,607 @@
+{
+  "ocrStatus": "exploration_only_not_canonical",
+  "rules": [
+    {
+      "label": "安身命·起五寅",
+      "preservation": [
+        "original glyphs retained where visually bounded",
+        "unreadable/uncertain fields remain null or bracketed",
+        "PDF page and printed folio are separate fields",
+        "no source PDF bytes are copied into the repository"
+      ],
+      "ruleId": "ming-shen-palace",
+      "sourceRefs": {
+        "ming": {
+          "confidence": "visually_bounded_single_review",
+          "glyphPreservingText": "大抵入命俱從寅上起正月順數至本生月止；[其餘列文保留待二次校讀]",
+          "locator": "PDF p145, right-side volume heading and rule columns",
+          "pdfPage": 145,
+          "printedFolio": null,
+          "readingOrder": "vertical columns right-to-left",
+          "section": "○安身命例",
+          "source": "ming",
+          "uncertainty": [
+            "後続文字在当前裁切中未完整保留，未作补写。"
+          ],
+          "volume": "卷三"
+        },
+        "nanbei": {
+          "confidence": "human_readable_single_review",
+          "glyphPreservingText": "寅正巳順數生月逢。生月起子兩頭通。逆至生時為命宮。順到生時即安身。",
+          "locator": "PDF p8, left scanned leaf, rule columns",
+          "pdfPage": 8,
+          "printedFolio": "二十五",
+          "readingOrder": "vertical columns right-to-left",
+          "section": "九、定命、身二宮",
+          "source": "nanbei",
+          "uncertainty": [
+            "第二复核未完成。"
+          ],
+          "volume": null
+        }
+      }
+    },
+    {
+      "label": "安十二宮",
+      "preservation": [
+        "original glyphs retained where visually bounded",
+        "unreadable/uncertain fields remain null or bracketed",
+        "PDF page and printed folio are separate fields",
+        "no source PDF bytes are copied into the repository"
+      ],
+      "ruleId": "twelve-palaces",
+      "sourceRefs": {
+        "ming": {
+          "confidence": "heading_readable_body_unreadable",
+          "glyphPreservingText": "○安十二宮；[正文未在本轮完整转写]",
+          "locator": "PDF p153, section heading and vertical prose",
+          "pdfPage": 153,
+          "printedFolio": null,
+          "readingOrder": "vertical columns right-to-left",
+          "section": "○安十二宮",
+          "source": "ming",
+          "uncertainty": [
+            "正文与宫位图方向未完成逐字复核。"
+          ],
+          "volume": "卷三"
+        },
+        "nanbei": {
+          "confidence": "unreadable",
+          "glyphPreservingText": null,
+          "locator": null,
+          "pdfPage": null,
+          "printedFolio": null,
+          "readingOrder": "not_asserted",
+          "section": "十二宮·宫位顺序",
+          "source": "nanbei",
+          "uncertainty": [
+            "本轮南北山人定位窗口未取得可确认的同题原文页，不能将未定位当作缺失。"
+          ],
+          "volume": null
+        }
+      }
+    },
+    {
+      "label": "五行局",
+      "preservation": [
+        "original glyphs retained where visually bounded",
+        "unreadable/uncertain fields remain null or bracketed",
+        "PDF page and printed folio are separate fields",
+        "no source PDF bytes are copied into the repository"
+      ],
+      "ruleId": "five-element-bureau",
+      "sourceRefs": {
+        "ming": {
+          "confidence": "table_boundary_readable",
+          "glyphPreservingText": "水二局；木三局；金四局；土五局；火六局",
+          "locator": "PDF p168–171, drawn bureau tables; p168 木三局, p169 水二局, p170 火六局, p171 土五局",
+          "pdfPage": 168,
+          "printedFolio": null,
+          "readingOrder": "drawn table axes retained; no transpose inferred",
+          "section": "五行局表",
+          "source": "ming",
+          "uncertainty": [
+            "局部 folio label 不在当前裁切中，表格单元格仍需独立逐格复核。"
+          ],
+          "volume": "卷三"
+        },
+        "nanbei": {
+          "confidence": "human_readable_single_review",
+          "glyphPreservingText": "水二局、木三局、金四局、土五局、火六局；[纳音列按原 artifact 保留]",
+          "locator": "PDF p9 left leaf; prose and 六十花甲納音 columns",
+          "pdfPage": 9,
+          "printedFolio": "二十七",
+          "readingOrder": "vertical prose right-to-left; table not transposed",
+          "section": "十、定五行局",
+          "source": "nanbei",
+          "uncertainty": [
+            "表格二次复核未完成。"
+          ],
+          "volume": null
+        }
+      }
+    },
+    {
+      "label": "紫微",
+      "preservation": [
+        "original glyphs retained where visually bounded",
+        "unreadable/uncertain fields remain null or bracketed",
+        "PDF page and printed folio are separate fields",
+        "no source PDF bytes are copied into the repository"
+      ],
+      "ruleId": "ziwei-placement",
+      "sourceRefs": {
+        "ming": {
+          "confidence": "table_present_not_fully_transcribed",
+          "glyphPreservingText": "[起紫微表：表格边界可见，逐格转写未完成]",
+          "locator": "PDF p168–171, bureau/day table region; exact 30-day glyph cells not promoted",
+          "pdfPage": 168,
+          "printedFolio": null,
+          "readingOrder": "drawn table; orientation preserved, semantic axis not promoted",
+          "section": "五行局/起紫微表",
+          "source": "ming",
+          "uncertainty": [
+            "不能以标准算法补写明代版单元格。"
+          ],
+          "volume": "卷三"
+        },
+        "nanbei": {
+          "confidence": "human_readable_single_review",
+          "glyphPreservingText": "水二局中初一丑；木三局中初一辰；金四局中初一辰；土五局中初一午；火六局中初一酉",
+          "locator": "PDF p11 left leaf; vertical rule prose and start-point table",
+          "pdfPage": 11,
+          "printedFolio": "三十一",
+          "readingOrder": "vertical prose right-to-left; table rows descend",
+          "section": "起紫微五訣",
+          "source": "nanbei",
+          "uncertainty": [
+            "金四局起点在既有 pilot 与当前 scan read 有一处需二次复核，保留原字段不改写。"
+          ],
+          "volume": null
+        }
+      }
+    },
+    {
+      "label": "天府",
+      "preservation": [
+        "original glyphs retained where visually bounded",
+        "unreadable/uncertain fields remain null or bracketed",
+        "PDF page and printed folio are separate fields",
+        "no source PDF bytes are copied into the repository"
+      ],
+      "ruleId": "tianfu-placement",
+      "sourceRefs": {
+        "ming": {
+          "confidence": "heading_readable_body_unreadable",
+          "glyphPreservingText": "○安南北斗諸星訣；[天府单独表未在本轮完整转写]",
+          "locator": "PDF p147–148, 南北斗 heading and adjacent columns",
+          "pdfPage": 147,
+          "printedFolio": null,
+          "readingOrder": "vertical columns right-to-left",
+          "section": "○安南北斗諸星訣",
+          "source": "ming",
+          "uncertainty": [
+            "不能用南北山人表反推明代表。"
+          ],
+          "volume": "卷三"
+        },
+        "nanbei": {
+          "confidence": "table_boundary_readable",
+          "glyphPreservingText": "安天府；天府/紫微双列 12 行表，原单元格逐行保留在既有 source pilot",
+          "locator": "PDF p13 right leaf; 12-row drawn table",
+          "pdfPage": 13,
+          "printedFolio": "三十四",
+          "readingOrder": "drawn two-column table top-to-bottom; no transpose",
+          "section": "十六、安天府",
+          "source": "nanbei",
+          "uncertainty": [
+            "版本谱系与语义宫位同一性未提升。"
+          ],
+          "volume": null
+        }
+      }
+    },
+    {
+      "label": "南北斗14主星",
+      "preservation": [
+        "original glyphs retained where visually bounded",
+        "unreadable/uncertain fields remain null or bracketed",
+        "PDF page and printed folio are separate fields",
+        "no source PDF bytes are copied into the repository"
+      ],
+      "ruleId": "south-north-fourteen-major-stars",
+      "sourceRefs": {
+        "ming": {
+          "confidence": "heading_readable_body_unreadable",
+          "glyphPreservingText": "○安南北斗諸星訣；[14星逐星位置未完整转写]",
+          "locator": "PDF p147–148, heading and multi-column star text",
+          "pdfPage": 147,
+          "printedFolio": null,
+          "readingOrder": "vertical columns right-to-left",
+          "section": "○安南北斗諸星訣",
+          "source": "ming",
+          "uncertainty": [
+            "星名、次序与图式的逐项映射未完成。"
+          ],
+          "volume": "卷三"
+        },
+        "nanbei": {
+          "confidence": "table_present_not_fully_transcribed",
+          "glyphPreservingText": "[星表可见，未把星名位置扩写为现代规范]",
+          "locator": "PDF p13 left/right leaves; star table context",
+          "pdfPage": 13,
+          "printedFolio": "三十四",
+          "readingOrder": "drawn table; orientation retained",
+          "section": "安南北斗·安天府",
+          "source": "nanbei",
+          "uncertainty": [
+            "不能把图表布局推导成唯一语义坐标。"
+          ],
+          "volume": null
+        }
+      }
+    },
+    {
+      "label": "文昌文曲",
+      "preservation": [
+        "original glyphs retained where visually bounded",
+        "unreadable/uncertain fields remain null or bracketed",
+        "PDF page and printed folio are separate fields",
+        "no source PDF bytes are copied into the repository"
+      ],
+      "ruleId": "wenchang-wenqu",
+      "sourceRefs": {
+        "ming": {
+          "confidence": "heading_readable_body_unreadable",
+          "glyphPreservingText": "○安文昌文曲星訣；[正文未完整转写]",
+          "locator": "PDF p148, section heading and vertical rule columns",
+          "pdfPage": 148,
+          "printedFolio": null,
+          "readingOrder": "vertical columns right-to-left",
+          "section": "○安文昌文曲星訣",
+          "source": "ming",
+          "uncertainty": [
+            "方向和起点未从完整原文逐字闭合。"
+          ],
+          "volume": "卷三"
+        },
+        "nanbei": {
+          "confidence": "unreadable",
+          "glyphPreservingText": null,
+          "locator": null,
+          "pdfPage": null,
+          "printedFolio": null,
+          "readingOrder": "not_asserted",
+          "section": "文昌文曲",
+          "source": "nanbei",
+          "uncertainty": [
+            "南北山人本轮 p8–p13 source window 未确认同题规则页。"
+          ],
+          "volume": null
+        }
+      }
+    },
+    {
+      "label": "左輔右弼",
+      "preservation": [
+        "original glyphs retained where visually bounded",
+        "unreadable/uncertain fields remain null or bracketed",
+        "PDF page and printed folio are separate fields",
+        "no source PDF bytes are copied into the repository"
+      ],
+      "ruleId": "zuofu-youbi",
+      "sourceRefs": {
+        "ming": {
+          "confidence": "visually_bounded_single_review",
+          "glyphPreservingText": "左輔正月起於辰順至生月；右弼正月宮尋戌逆至生月；[余文保留]",
+          "locator": "PDF p149 right/middle columns",
+          "pdfPage": 149,
+          "printedFolio": null,
+          "readingOrder": "vertical columns right-to-left",
+          "section": "左輔右弼诀",
+          "source": "ming",
+          "uncertainty": [
+            "个别字形和后续条件未二次复核。"
+          ],
+          "volume": "卷三"
+        },
+        "nanbei": {
+          "confidence": "unreadable",
+          "glyphPreservingText": null,
+          "locator": null,
+          "pdfPage": null,
+          "printedFolio": null,
+          "readingOrder": "not_asserted",
+          "section": "左輔右弼",
+          "source": "nanbei",
+          "uncertainty": [
+            "南北山人本轮 p8–p13 source window 未确认同题规则页。"
+          ],
+          "volume": null
+        }
+      }
+    },
+    {
+      "label": "天魁天鉞",
+      "preservation": [
+        "original glyphs retained where visually bounded",
+        "unreadable/uncertain fields remain null or bracketed",
+        "PDF page and printed folio are separate fields",
+        "no source PDF bytes are copied into the repository"
+      ],
+      "ruleId": "tiankui-tianyue",
+      "sourceRefs": {
+        "ming": {
+          "confidence": "heading_readable_body_unreadable",
+          "glyphPreservingText": "○安天魁天鉞訣；[甲戊庚牛羊、乙己鼠猴等列文未在本轮全量转写]",
+          "locator": "PDF p149 left/middle columns",
+          "pdfPage": 149,
+          "printedFolio": null,
+          "readingOrder": "vertical columns right-to-left",
+          "section": "○安天魁天鉞訣",
+          "source": "ming",
+          "uncertainty": [
+            "干年映射未以完整原文表确证。"
+          ],
+          "volume": "卷三"
+        },
+        "nanbei": {
+          "confidence": "unreadable",
+          "glyphPreservingText": null,
+          "locator": null,
+          "pdfPage": null,
+          "printedFolio": null,
+          "readingOrder": "not_asserted",
+          "section": "天魁天鉞",
+          "source": "nanbei",
+          "uncertainty": [
+            "南北山人本轮 p8–p13 source window 未确认同题规则页。"
+          ],
+          "volume": null
+        }
+      }
+    },
+    {
+      "label": "禄存·擎羊陀羅·火鈴",
+      "preservation": [
+        "original glyphs retained where visually bounded",
+        "unreadable/uncertain fields remain null or bracketed",
+        "PDF page and printed folio are separate fields",
+        "no source PDF bytes are copied into the repository"
+      ],
+      "ruleId": "lucun-qingyang-tuoluo-huoling",
+      "sourceRefs": {
+        "ming": {
+          "confidence": "heading_readable_body_unreadable",
+          "glyphPreservingText": "○安祿存星訣；○安火鈴二星訣；[擎羊陀羅相关列未完整转写]",
+          "locator": "PDF p150–151, section headings and rule columns",
+          "pdfPage": 150,
+          "printedFolio": null,
+          "readingOrder": "vertical columns right-to-left",
+          "section": "○安祿存星訣 / ○安火鈴二星訣",
+          "source": "ming",
+          "uncertainty": [
+            "受损处与连续栏位需高分辨率二次复核。"
+          ],
+          "volume": "卷三"
+        },
+        "nanbei": {
+          "confidence": "unreadable",
+          "glyphPreservingText": null,
+          "locator": null,
+          "pdfPage": null,
+          "printedFolio": null,
+          "readingOrder": "not_asserted",
+          "section": "禄存·擎羊陀羅·火鈴",
+          "source": "nanbei",
+          "uncertainty": [
+            "南北山人本轮 p8–p13 source window 未确认同题规则页。"
+          ],
+          "volume": null
+        }
+      }
+    },
+    {
+      "label": "禄权科忌",
+      "preservation": [
+        "original glyphs retained where visually bounded",
+        "unreadable/uncertain fields remain null or bracketed",
+        "PDF page and printed folio are separate fields",
+        "no source PDF bytes are copied into the repository"
+      ],
+      "ruleId": "four-transformations",
+      "sourceRefs": {
+        "ming": {
+          "confidence": "heading_readable_body_unreadable",
+          "glyphPreservingText": "○安祿權科忌四星變化訣；[四干逐项列文未完整转写]",
+          "locator": "PDF p151, section heading and transformation columns",
+          "pdfPage": 151,
+          "printedFolio": null,
+          "readingOrder": "vertical columns right-to-left",
+          "section": "○安祿權科忌四星變化訣",
+          "source": "ming",
+          "uncertainty": [
+            "不能以现行 map 补作明代逐字转写。"
+          ],
+          "volume": "卷三"
+        },
+        "nanbei": {
+          "confidence": "unreadable",
+          "glyphPreservingText": null,
+          "locator": null,
+          "pdfPage": null,
+          "printedFolio": null,
+          "readingOrder": "not_asserted",
+          "section": "禄权科忌",
+          "source": "nanbei",
+          "uncertainty": [
+            "南北山人本轮 p8–p13 source window 未确认同题规则页。"
+          ],
+          "volume": null
+        }
+      }
+    },
+    {
+      "label": "天空地劫",
+      "preservation": [
+        "original glyphs retained where visually bounded",
+        "unreadable/uncertain fields remain null or bracketed",
+        "PDF page and printed folio are separate fields",
+        "no source PDF bytes are copied into the repository"
+      ],
+      "ruleId": "tiankong-dijie",
+      "sourceRefs": {
+        "ming": {
+          "confidence": "heading_readable_body_unreadable",
+          "glyphPreservingText": "○安天空地劫訣；[正文未完整转写]",
+          "locator": "PDF p152, section heading and vertical rule columns",
+          "pdfPage": 152,
+          "printedFolio": null,
+          "readingOrder": "vertical columns right-to-left",
+          "section": "○安天空地劫訣",
+          "source": "ming",
+          "uncertainty": [
+            "起点与方向未完成逐字复核。"
+          ],
+          "volume": "卷三"
+        },
+        "nanbei": {
+          "confidence": "unreadable",
+          "glyphPreservingText": null,
+          "locator": null,
+          "pdfPage": null,
+          "printedFolio": null,
+          "readingOrder": "not_asserted",
+          "section": "天空地劫",
+          "source": "nanbei",
+          "uncertainty": [
+            "南北山人本轮 p8–p13 source window 未确认同题规则页。"
+          ],
+          "volume": null
+        }
+      }
+    },
+    {
+      "label": "命主·身主",
+      "preservation": [
+        "original glyphs retained where visually bounded",
+        "unreadable/uncertain fields remain null or bracketed",
+        "PDF page and printed folio are separate fields",
+        "no source PDF bytes are copied into the repository"
+      ],
+      "ruleId": "mingzhu-shenzhu",
+      "sourceRefs": {
+        "ming": {
+          "confidence": "unreadable",
+          "glyphPreservingText": null,
+          "locator": null,
+          "pdfPage": null,
+          "printedFolio": null,
+          "readingOrder": "not_asserted",
+          "section": "命主·身主",
+          "source": "ming",
+          "uncertainty": [
+            "权3本轮逐页定位未取得可安全转写的完整题名与规则正文。"
+          ],
+          "volume": null
+        },
+        "nanbei": {
+          "confidence": "unreadable",
+          "glyphPreservingText": null,
+          "locator": null,
+          "pdfPage": null,
+          "printedFolio": null,
+          "readingOrder": "not_asserted",
+          "section": "命主·身主",
+          "source": "nanbei",
+          "uncertainty": [
+            "南北山人本轮 p8–p13 source window 未确认同题规则页。"
+          ],
+          "volume": null
+        }
+      }
+    },
+    {
+      "label": "大限·小限",
+      "preservation": [
+        "original glyphs retained where visually bounded",
+        "unreadable/uncertain fields remain null or bracketed",
+        "PDF page and printed folio are separate fields",
+        "no source PDF bytes are copied into the repository"
+      ],
+      "ruleId": "major-minor-limits",
+      "sourceRefs": {
+        "ming": {
+          "confidence": "unreadable",
+          "glyphPreservingText": "[限图可见；题名与起算规则未完整转写]",
+          "locator": "PDF p173–176, chart and adjacent columns; exact heading not safely isolated",
+          "pdfPage": 173,
+          "printedFolio": null,
+          "readingOrder": "not asserted",
+          "section": "限图/限法相关页面",
+          "source": "ming",
+          "uncertainty": [
+            "图式方向、起算点、男女阴阳条件未从整页闭合。"
+          ],
+          "volume": "卷三"
+        },
+        "nanbei": {
+          "confidence": "unreadable",
+          "glyphPreservingText": null,
+          "locator": null,
+          "pdfPage": null,
+          "printedFolio": null,
+          "readingOrder": "not_asserted",
+          "section": "大限·小限",
+          "source": "nanbei",
+          "uncertainty": [
+            "南北山人本轮 p8–p13 source window 未确认同题规则页。"
+          ],
+          "volume": null
+        }
+      }
+    },
+    {
+      "label": "庙旺落陷",
+      "preservation": [
+        "original glyphs retained where visually bounded",
+        "unreadable/uncertain fields remain null or bracketed",
+        "PDF page and printed folio are separate fields",
+        "no source PDF bytes are copied into the repository"
+      ],
+      "ruleId": "brightness",
+      "sourceRefs": {
+        "ming": {
+          "confidence": "table_labels_readable",
+          "glyphPreservingText": "廟；旺；得地；利益；平和；不得地；落陷",
+          "locator": "PDF p175–176, table rows 庙旺得地利益平和不得地落陷",
+          "pdfPage": 175,
+          "printedFolio": null,
+          "readingOrder": "drawn table; cell direction not promoted",
+          "section": "星曜强弱表",
+          "source": "ming",
+          "uncertainty": [
+            "逐星表格单元格尚未完整转写。"
+          ],
+          "volume": "卷三"
+        },
+        "nanbei": {
+          "confidence": "unreadable",
+          "glyphPreservingText": null,
+          "locator": null,
+          "pdfPage": null,
+          "printedFolio": null,
+          "readingOrder": "not_asserted",
+          "section": "庙旺落陷",
+          "source": "nanbei",
+          "uncertainty": [
+            "南北山人本轮 p8–p13 source window 未确认同题规则页。"
+          ],
+          "volume": null
+        }
+      }
+    }
+  ],
+  "schemaVersion": "ziwei-traditional-source-comparison-v0-transcription-v0",
+  "sourceImagesAreCanonical": true
+}

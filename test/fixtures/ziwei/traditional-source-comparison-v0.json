@@ -1,0 +1,37 @@
+{
+  "schemaVersion": "ziwei-traditional-source-comparison-v0-fixture-v0",
+  "purpose": "Representative deterministic inputs only; not a claim of source truth.",
+  "mingShen": [
+    { "lunarMonth": 1, "hourBranch": "子" },
+    { "lunarMonth": 4, "hourBranch": "卯" },
+    { "lunarMonth": 8, "hourBranch": "午" },
+    { "lunarMonth": 12, "hourBranch": "亥" }
+  ],
+  "fiveElementBureau": [
+    { "birthYearStem": "甲", "lunarMonth": 1, "hourBranch": "子" },
+    { "birthYearStem": "乙", "lunarMonth": 5, "hourBranch": "巳" },
+    { "birthYearStem": "辛", "lunarMonth": 9, "hourBranch": "申" },
+    { "birthYearStem": "癸", "lunarMonth": 12, "hourBranch": "亥" }
+  ],
+  "ziwei": [
+    { "bureau": "水二局", "lunarDay": 1 },
+    { "bureau": "木三局", "lunarDay": 14 },
+    { "bureau": "金四局", "lunarDay": 23 },
+    { "bureau": "土五局", "lunarDay": 30 },
+    { "bureau": "火六局", "lunarDay": 17 }
+  ],
+  "tianfu": [
+    { "ziweiBranch": "子" },
+    { "ziweiBranch": "丑" },
+    { "ziweiBranch": "寅" },
+    { "ziweiBranch": "卯" },
+    { "ziweiBranch": "辰" },
+    { "ziweiBranch": "巳" },
+    { "ziweiBranch": "午" },
+    { "ziweiBranch": "未" },
+    { "ziweiBranch": "申" },
+    { "ziweiBranch": "酉" },
+    { "ziweiBranch": "戌" },
+    { "ziweiBranch": "亥" }
+  ]
+}

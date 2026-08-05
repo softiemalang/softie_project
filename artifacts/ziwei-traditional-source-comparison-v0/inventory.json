@@ -1,0 +1,168 @@
+{
+  "generatedFromActualBytes": true,
+  "schemaVersion": "ziwei-traditional-source-comparison-v0-inventory-v0",
+  "sources": [
+    {
+      "editionIdentity": {
+        "declaredLineage": "明代南阳堂刊本系谱之影印本（用户提供名称）",
+        "historicalIdentityStatus": "file identity verified; historical lineage not independently promoted",
+        "juanBoundaries": [
+          {
+            "endLocator": "p76 immediately before PDF outline 卷二 -> p77",
+            "pdfPages": [
+              9,
+              76
+            ],
+            "startLocator": "PDF outline 卷一 -> p9; right-side 卷之一 heading",
+            "volume": "卷一"
+          },
+          {
+            "endLocator": "p144 immediately before PDF outline 卷三 -> p145",
+            "pdfPages": [
+              77,
+              144
+            ],
+            "startLocator": "PDF outline 卷二 -> p77; right-side 卷之二 heading",
+            "volume": "卷二"
+          },
+          {
+            "blankOrBoundaryPages": [
+              255,
+              256,
+              257,
+              258
+            ],
+            "contentPages": [
+              145,
+              254
+            ],
+            "endLocator": "p258 blank immediately before PDF outline 卷四 -> p259",
+            "pdfPages": [
+              145,
+              258
+            ],
+            "startLocator": "PDF outline 卷三 -> p145; right-side 新鍥希夷陳先生紫微斗數全書卷之三 and ○安身命例",
+            "volume": "卷三"
+          },
+          {
+            "endLocator": "p312 五卷終 witness immediately before p313",
+            "pdfPages": [
+              259,
+              312
+            ],
+            "startLocator": "PDF outline 卷四 -> p259; right-side 卷之四 heading",
+            "volume": "卷四"
+          },
+          {
+            "endLocator": "p382 五卷終 witness immediately before p383",
+            "pdfPages": [
+              313,
+              382
+            ],
+            "startLocator": "PDF outline 卷五 -> p313; right-side 卷之五 heading",
+            "volume": "卷五"
+          },
+          {
+            "endLocator": "p496 immediately before PDF outline 卷七 -> p497",
+            "pdfPages": [
+              383,
+              496
+            ],
+            "startLocator": "PDF outline 卷六 -> p383",
+            "volume": "卷六"
+          },
+          {
+            "endLocator": "PDF p528 final page",
+            "pdfPages": [
+              497,
+              528
+            ],
+            "startLocator": "PDF outline 卷七 -> p497",
+            "volume": "卷七"
+          }
+        ],
+        "pdfOutlineVolumeStarts": [
+          {
+            "pdfPage": 9,
+            "volume": "卷一"
+          },
+          {
+            "pdfPage": 77,
+            "volume": "卷二"
+          },
+          {
+            "pdfPage": 145,
+            "volume": "卷三"
+          },
+          {
+            "pdfPage": 259,
+            "volume": "卷四"
+          },
+          {
+            "pdfPage": 313,
+            "volume": "卷五"
+          },
+          {
+            "pdfPage": 383,
+            "volume": "卷六"
+          },
+          {
+            "pdfPage": 497,
+            "volume": "卷七"
+          }
+        ]
+      },
+      "file": {
+        "actualFileName": "新锓希夷陈先生紫微斗数全书.七卷.宋.陈抟撰.明.潘希尹补.明代南阳堂刊本.黑白版.pdf",
+        "encrypted": false,
+        "kind": "original_pdf",
+        "path": "/Users/softie/Downloads/新锓希夷陈先生紫微斗数全书.七卷.宋.陈抟撰.明.潘希尹补.明代南阳堂刊本.黑白版.pdf",
+        "pdfPageCount": 528,
+        "readOnly": true,
+        "sha256": "04e184c4a52cb042dc885c6ccc9135d94ab25de62007506198ee979a33e66bfc",
+        "sizeBytes": 36201526,
+        "storedInGit": false
+      },
+      "sourceId": "ming",
+      "title": "《新锓希夷陈先生紫微斗数全书》"
+    },
+    {
+      "editionIdentity": {
+        "declaredLineage": "南北山人编辑本（用户提供名称）",
+        "historicalIdentityStatus": "digital file identity verified; source lineage and historical edition relationship not promoted",
+        "reviewedWindow": {
+          "pdfPages": [
+            8,
+            13
+          ],
+          "printedFolios": [
+            "二十五",
+            "二十六",
+            "二十七",
+            "二十八",
+            "二十九",
+            "三十",
+            "三十一",
+            "三十二",
+            "三十三",
+            "三十四"
+          ]
+        },
+        "structure": "219-page annotated comparison edition; not mapped to Ming juan boundaries"
+      },
+      "file": {
+        "actualFileName": "命-南北山人_紫微斗数全书.pdf",
+        "encrypted": false,
+        "kind": "original_pdf",
+        "path": "/Users/softie/Downloads/命-南北山人_紫微斗数全书.pdf",
+        "pdfPageCount": 219,
+        "readOnly": true,
+        "sha256": "4786a94ab454acdabf9716d7c0db4756dbcbde99a88bc45fda254863c1961023",
+        "sizeBytes": 35515645,
+        "storedInGit": false
+      },
+      "sourceId": "nanbei",
+      "title": "《命-南北山人_紫微斗数全书》"
+    }
+  ]
+}
