@@ -1,0 +1,99 @@
+{
+  "absenceOfAuthority": {
+    "conclusion": "Git history establishes when the integrated rule entered this repository, not why a traditional source means the same palace.",
+    "palaceCoordinateConventionCitationInGit": false,
+    "sourceEditionCitationInGit": false,
+    "sourcePageCitationInGit": false
+  },
+  "currentFiles": [
+    {
+      "path": "src/ziwei/starPlacementRules.js",
+      "sha256": "1edb93929e441b009e33abd8179e72cf5b216e7378a40813657ea52dc1a0759c",
+      "symbols": [
+        {
+          "lines": "9-15",
+          "name": "STAR_PLACEMENT_RULESET",
+          "tianfuMethod": "opposite_yin_shen_axis"
+        },
+        {
+          "expression": "(10 - ziweiIndex + 1200) % 12",
+          "lines": "47-52",
+          "name": "calculateTianfuBranch"
+        },
+        {
+          "lines": "17-17",
+          "name": "BRANCHES",
+          "order": "子,丑,寅,卯,辰,巳,午,未,申,酉,戌,亥"
+        }
+      ]
+    },
+    {
+      "path": "src/ziwei/starResolver.js",
+      "sha256": "c9797f2405df6afeb336226bcbff66e199e856d181e71e2317a9794dba0a6ad7",
+      "symbols": [
+        {
+          "callPath": "resolve14MajorStars -> calculateTianfuBranch -> TIANFU_SERIES_OFFSETS -> majorStars[id=tianfu].palaceBranch",
+          "lines": "17-100",
+          "name": "resolve14MajorStars"
+        },
+        {
+          "expression": "calculateTianfuBranch(ziweiBranch)",
+          "lines": "42-43",
+          "name": "tianfuCall"
+        },
+        {
+          "lines": "70-87",
+          "name": "tianfuSeries",
+          "offset": 0,
+          "outputField": "palaceBranch"
+        }
+      ]
+    }
+  ],
+  "currentHead": "75ce8619fd087699919bae14989813f551b87667",
+  "history": [
+    {
+      "blobs": [
+        {
+          "blob": "cacdd3cc7bbaf5dbbcf8da15075a69747cd5b406",
+          "path": "src/ziwei/starPlacementRules.js",
+          "sha256": "1edb93929e441b009e33abd8179e72cf5b216e7378a40813657ea52dc1a0759c"
+        },
+        {
+          "blob": "5debd06fb1808f11db0458094fe0fb5dd9fa827d",
+          "path": "src/ziwei/starResolver.js",
+          "sha256": "55210a770dfbe328385dca99bfba9baedbbb928d6278f8d74f6645142151c409"
+        }
+      ],
+      "change": "initial introduction of rule module, resolver, traditional_v1 marker, opposite_yin_shen_axis label, and (10 - ziweiIndex) formula",
+      "commit": "7d2fb8fccc65ab34efea93ea2d16f94fb526417c",
+      "date": "2026-07-25T20:10:24+09:00",
+      "evidenceRole": "repository provenance only; not traditional authority",
+      "paths": [
+        "src/ziwei/starPlacementRules.js",
+        "src/ziwei/starResolver.js"
+      ],
+      "sourceCitation": "none in commit, source file, or introduced blob",
+      "subject": "feat: implement Phase Ziwei-2B major star placement engine and starPlacementRules with traditional_v1 versioning"
+    },
+    {
+      "blobs": [
+        {
+          "afterBlob": "287c5f9dbecd011f49b2c796baf297c782f0033b",
+          "afterSha256": "c9797f2405df6afeb336226bcbff66e199e856d181e71e2317a9794dba0a6ad7",
+          "beforeBlob": "5debd06fb1808f11db0458094fe0fb5dd9fa827d",
+          "path": "src/ziwei/starResolver.js"
+        }
+      ],
+      "change": "removed default inputs and added numeric/range validation plus failed response; no Tianfu formula or enum change",
+      "commit": "1b30485389c3ffd1e65751220d2b7ac7db6000fd",
+      "date": "2026-07-27T08:53:38+09:00",
+      "evidenceRole": "repository provenance only",
+      "paths": [
+        "src/ziwei/starResolver.js"
+      ],
+      "sourceCitation": "none",
+      "subject": "fix: harden saju and ziwei integration contracts"
+    }
+  ]
+}
