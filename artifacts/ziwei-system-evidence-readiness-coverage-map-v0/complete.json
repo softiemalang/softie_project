@@ -1,0 +1,2457 @@
+{
+  "namespace": "ziwei-system-evidence-readiness-coverage-map-v0",
+  "schema": "ziwei-system-evidence-readiness-coverage-map-v0",
+  "version": "0.1.0",
+  "basisHead": "d344e315a0e24d0a0a1a2dde5e7972d8e21a26f7",
+  "scope": {
+    "externalSearch": false,
+    "newSourceAdoption": false,
+    "productionMutation": false,
+    "readinessMutation": false,
+    "protectedNamespace": "ziwei-major-star-claim-readiness-reconciliation-v0"
+  },
+  "statusVocabulary": {
+    "implementation": [
+      "absent",
+      "present_unverified",
+      "verified_within_scope"
+    ],
+    "source": [
+      "absent",
+      "unresolved",
+      "partial",
+      "direct_within_scope"
+    ],
+    "claimProvenance": [
+      "absent",
+      "partial",
+      "complete_within_scope"
+    ],
+    "readiness": [
+      "research_only",
+      "blocked",
+      "eligible_within_declared_scope"
+    ]
+  },
+  "counts": {
+    "domains": 13,
+    "claims": 13,
+    "evidence": 63,
+    "blockers": 7,
+    "backlog": 7,
+    "graphNodes": 103,
+    "graphEdges": 150,
+    "acquisitionPlans": 4
+  },
+  "domains": [
+    {
+      "id": "input-calendar-time",
+      "label": "음력·시각 입력과 경계",
+      "implementation": "present_unverified",
+      "source": "partial",
+      "claimProvenance": "partial",
+      "readiness": "blocked",
+      "code": [
+        "src/ziwei/ziweiResolver.js",
+        "src/ziwei/ziweiContract.js"
+      ],
+      "tests": [
+        "test/ziweiResolver.test.js",
+        "test/ziweiCoreContract.test.js"
+      ],
+      "artifacts": [
+        "artifacts/ziwei-readiness-baseline-v1/complete.json"
+      ],
+      "dependsOn": [],
+      "blocker": "blocker-calendar-time-source-identity",
+      "impact": "음력 변환·윤달·자시 경계가 이후 모든 계산 입력을 막는다."
+    },
+    {
+      "id": "ming-shen",
+      "label": "명궁·신궁",
+      "implementation": "verified_within_scope",
+      "source": "direct_within_scope",
+      "claimProvenance": "complete_within_scope",
+      "readiness": "blocked",
+      "code": [
+        "src/ziwei/ziweiResolver.js",
+        "src/ziwei/mingShenCleanRuleSeedPilot.js"
+      ],
+      "tests": [
+        "test/ziweiMingShenCleanRuleSeedPilot.test.js",
+        "test/ziweiMingShenSeedAcceptance.test.js",
+        "test/ziweiResolver.test.js"
+      ],
+      "artifacts": [
+        "artifacts/ziwei-ming-shen-seed-acceptance-v0/complete.json",
+        "artifacts/ziwei-ming-shen-clean-rule-seed-pilot-v0/complete.json"
+      ],
+      "dependsOn": [
+        "input-calendar-time"
+      ],
+      "blocker": "blocker-calendar-time-source-identity",
+      "impact": "명반 좌표의 출발점이며 오행국·궁 포국에 fan-out된다."
+    },
+    {
+      "id": "five-element-bureau",
+      "label": "오행국",
+      "implementation": "verified_within_scope",
+      "source": "direct_within_scope",
+      "claimProvenance": "complete_within_scope",
+      "readiness": "blocked",
+      "code": [
+        "src/ziwei/fiveElementResolver.js",
+        "src/ziwei/fiveElementBureauCleanRuleSeedPilot.js"
+      ],
+      "tests": [
+        "test/ziweiFiveElementBureauCleanRuleSeedPilot.test.js",
+        "test/ziweiFiveElementBureauSeedAcceptance.test.js",
+        "test/ziweiResolver.test.js"
+      ],
+      "artifacts": [
+        "artifacts/ziwei-five-element-bureau-clean-rule-seed-acceptance-v0/complete.json",
+        "artifacts/ziwei-five-element-bureau-clean-rule-seed-pilot-v0/complete.json"
+      ],
+      "dependsOn": [
+        "ming-shen"
+      ],
+      "blocker": "blocker-calendar-time-source-identity",
+      "impact": "자미 배치의 bureau/day 입력을 제공한다."
+    },
+    {
+      "id": "palace-layout",
+      "label": "12궁·궁간·궁 포국",
+      "implementation": "present_unverified",
+      "source": "unresolved",
+      "claimProvenance": "partial",
+      "readiness": "blocked",
+      "code": [
+        "src/ziwei/ziweiContract.js",
+        "src/ziwei/ziweiPalaceContext.js",
+        "src/ziwei/palaceRelationRules.js"
+      ],
+      "tests": [
+        "test/ziweiContract.test.js",
+        "test/ziweiCoreContract.test.js",
+        "test/ziweiPipeline.test.js"
+      ],
+      "artifacts": [
+        "artifacts/ziwei-readiness-baseline-v1/complete.json"
+      ],
+      "dependsOn": [
+        "ming-shen"
+      ],
+      "blocker": "blocker-palace-semantic-identity",
+      "impact": "좌표 토큰을 궁 의미로 읽는 downstream 경계가 막힌다."
+    },
+    {
+      "id": "ziwei-tianfu-placement",
+      "label": "자미·천부 placement chain",
+      "implementation": "verified_within_scope",
+      "source": "direct_within_scope",
+      "claimProvenance": "complete_within_scope",
+      "readiness": "blocked",
+      "code": [
+        "src/ziwei/starPlacementRules.js",
+        "src/ziwei/ziweiStarPlacementCleanRuleSeedPilot.js",
+        "src/ziwei/tianfuStarPlacementCleanRuleSeedPilot.js",
+        "src/ziwei/tianfuPlacementDiscrepancyRelations.js"
+      ],
+      "tests": [
+        "test/ziweiZiweiStarPlacementCleanRuleSeedPilot.test.js",
+        "test/ziweiZiweiStarPlacementAcceptance.test.js",
+        "test/ziweiTianfuStarPlacementCleanRuleSeedPilot.test.js",
+        "test/ziweiTianfuConventionProvenance.test.js",
+        "test/ziweiZixingTianfuSourceChain.test.js"
+      ],
+      "artifacts": [
+        "artifacts/ziwei-zixing-tianfu-source-chain-v0/complete.json",
+        "artifacts/ziwei-tianfu-convention-provenance-v0/complete.json",
+        "artifacts/ziwei-ziwei-star-placement-clean-rule-seed-acceptance-v0/complete.json"
+      ],
+      "dependsOn": [
+        "five-element-bureau",
+        "palace-layout"
+      ],
+      "blocker": "blocker-palace-semantic-identity",
+      "impact": "14주성 계열의 coordinate-to-palace 승격을 막는다."
+    },
+    {
+      "id": "fourteen-major-stars",
+      "label": "14주성 reconciliation",
+      "implementation": "verified_within_scope",
+      "source": "partial",
+      "claimProvenance": "complete_within_scope",
+      "readiness": "blocked",
+      "code": [
+        "src/ziwei/starResolver.js",
+        "src/ziwei/starPlacementRules.js"
+      ],
+      "tests": [
+        "test/ziweiMajorStarClaimReadinessReconciliation.test.js",
+        "test/ziweiMajorStarCoordinateProvenance.test.js",
+        "test/ziweiMajorStarSourceCorpusProvenance.test.js"
+      ],
+      "artifacts": [
+        "artifacts/ziwei-major-star-claim-readiness-reconciliation-v0/complete.json",
+        "artifacts/ziwei-major-star-coordinate-provenance-v0/complete.json",
+        "artifacts/ziwei-major-star-source-corpus-provenance-v0/complete.json"
+      ],
+      "dependsOn": [
+        "ziwei-tianfu-placement",
+        "palace-layout"
+      ],
+      "blocker": "blocker-palace-semantic-identity",
+      "impact": "봉인된 reconciliation은 authoritative evidence로 연결되며 재판정하지 않는다."
+    },
+    {
+      "id": "four-transformations",
+      "label": "사화",
+      "implementation": "present_unverified",
+      "source": "partial",
+      "claimProvenance": "partial",
+      "readiness": "blocked",
+      "code": [
+        "src/ziwei/transformationRules.js",
+        "src/ziwei/transformationResolver.js"
+      ],
+      "tests": [
+        "test/transformationAndMinor.test.js",
+        "test/ziweiCoreContract.test.js",
+        "test/ziweiPipeline.test.js"
+      ],
+      "artifacts": [
+        "artifacts/ziwei-readiness-baseline-v1/complete.json"
+      ],
+      "dependsOn": [
+        "fourteen-major-stars"
+      ],
+      "blocker": "blocker-four-transform-source-witness",
+      "impact": "연도 천간→주성 사화의 독립 근거가 없으면 해석 payload로 갈 수 없다."
+    },
+    {
+      "id": "minor-stars",
+      "label": "보조성·6길성",
+      "implementation": "present_unverified",
+      "source": "partial",
+      "claimProvenance": "partial",
+      "readiness": "blocked",
+      "code": [
+        "src/ziwei/minorStarRules.js",
+        "src/ziwei/minorStarResolver.js"
+      ],
+      "tests": [
+        "test/transformationAndMinor.test.js",
+        "test/ziweiCoreContract.test.js",
+        "test/ziweiQualityBenchmark.test.js"
+      ],
+      "artifacts": [
+        "artifacts/ziwei-readiness-baseline-v1/complete.json"
+      ],
+      "dependsOn": [
+        "ming-shen",
+        "input-calendar-time"
+      ],
+      "blocker": "blocker-minor-star-source-witness",
+      "impact": "보조성 결과는 계산되지만 source identity와 외부 oracle이 없다."
+    },
+    {
+      "id": "palace-relations",
+      "label": "대궁·삼방사정·topic 관계",
+      "implementation": "present_unverified",
+      "source": "unresolved",
+      "claimProvenance": "partial",
+      "readiness": "blocked",
+      "code": [
+        "src/ziwei/palaceRelationRules.js",
+        "src/ziwei/ziweiPalaceContext.js"
+      ],
+      "tests": [
+        "test/ziweiPipeline.test.js",
+        "test/ziweiContract.test.js",
+        "test/ziweiPromptSafetyContract.test.js"
+      ],
+      "artifacts": [
+        "artifacts/ziwei-readiness-baseline-v1/complete.json"
+      ],
+      "dependsOn": [
+        "palace-layout",
+        "fourteen-major-stars",
+        "minor-stars",
+        "four-transformations"
+      ],
+      "blocker": "blocker-palace-semantic-identity",
+      "impact": "관계 구조는 계산되지만 의미 claim으로 승격되지 않는다."
+    },
+    {
+      "id": "decade-year-fortune",
+      "label": "대운·세운·운 시계열",
+      "implementation": "absent",
+      "source": "absent",
+      "claimProvenance": "absent",
+      "readiness": "research_only",
+      "code": [
+        "src/ziwei/ziweiContract.js"
+      ],
+      "tests": [
+        "test/ziweiContract.test.js"
+      ],
+      "artifacts": [
+        "artifacts/ziwei-readiness-baseline-v1/complete.json"
+      ],
+      "dependsOn": [
+        "input-calendar-time",
+        "palace-layout"
+      ],
+      "blocker": "blocker-timing-domain-absent",
+      "impact": "자미두수 시간축은 production 계산 범위 밖이며 구현을 임의 추가하지 않는다."
+    },
+    {
+      "id": "fixture-external-validation",
+      "label": "fixture·외부 대조",
+      "implementation": "present_unverified",
+      "source": "partial",
+      "claimProvenance": "partial",
+      "readiness": "blocked",
+      "code": [
+        "src/ziwei/externalZiweiFixtures.js"
+      ],
+      "tests": [
+        "test/ziweiFixtureReconciliation.test.js",
+        "test/ziweiQualityBenchmark.test.js",
+        "test/externalValidationRunner.test.js"
+      ],
+      "artifacts": [
+        "artifacts/ziwei-fixture-reconciliation-v1/complete.json",
+        "artifacts/ziwei-readiness-baseline-v1/complete.json"
+      ],
+      "dependsOn": [
+        "fourteen-major-stars",
+        "four-transformations",
+        "minor-stars"
+      ],
+      "blocker": "blocker-external-oracle-identity",
+      "impact": "observed match는 independent verification이 아니다."
+    },
+    {
+      "id": "source-claim-provenance",
+      "label": "source identity·claim provenance",
+      "implementation": "present_unverified",
+      "source": "partial",
+      "claimProvenance": "partial",
+      "readiness": "blocked",
+      "code": [
+        "src/ziwei/cleanRuleCorpusSourceSelection.js"
+      ],
+      "tests": [
+        "test/ziweiOccurrenceProvenance.test.js",
+        "test/ziweiSourceIdentityClaimBoundaryAudit.test.js",
+        "test/ziweiReadinessAdmissionBlockerAudit.test.js"
+      ],
+      "artifacts": [
+        "artifacts/ziwei-occurrence-level-provenance-v0/complete.json",
+        "artifacts/ziwei-source-identity-claim-boundary-audit-v1/complete.json",
+        "artifacts/ziwei-readiness-admission-blocker-audit-v0/complete.json"
+      ],
+      "dependsOn": [
+        "fixture-external-validation"
+      ],
+      "blocker": "blocker-source-identity-unresolved",
+      "impact": "raw occurrence와 stable claim의 경계를 보존하며 grounding을 막는다."
+    },
+    {
+      "id": "readiness-activation-boundary",
+      "label": "readiness·grounding·activation",
+      "implementation": "present_unverified",
+      "source": "partial",
+      "claimProvenance": "partial",
+      "readiness": "blocked",
+      "code": [
+        "src/ziwei/ziweiContract.js",
+        "src/interpretationPrep/ziweiPromptAdapter.js"
+      ],
+      "tests": [
+        "test/ziweiReadinessBaseline.test.js",
+        "test/ziweiPromptSafetyContract.test.js",
+        "test/ziweiStructuralAdmissionGuardPilot.test.js"
+      ],
+      "artifacts": [
+        "artifacts/ziwei-readiness-baseline-v1/complete.json",
+        "artifacts/ziwei-readiness-admission-blocker-audit-v0/complete.json",
+        "artifacts/ziwei-major-star-claim-readiness-reconciliation-v0/layeredReadiness.json"
+      ],
+      "dependsOn": [
+        "source-claim-provenance",
+        "palace-relations"
+      ],
+      "blocker": "blocker-source-identity-unresolved",
+      "impact": "계산 결과가 있어도 interpretation/activation은 blocked로 유지된다."
+    }
+  ],
+  "claims": [
+    {
+      "id": "claim-input-calendar-time",
+      "domainId": "input-calendar-time",
+      "target": "음력·시각 입력과 경계",
+      "sourceRefs": [
+        "evidence-fcd08a4a2ef88074",
+        "evidence-ec6296fabb119a1c",
+        "evidence-f724298f859cc648"
+      ],
+      "readiness": "blocked",
+      "bounded": "coverage inventory only; no semantic truth promotion"
+    },
+    {
+      "id": "claim-ming-shen",
+      "domainId": "ming-shen",
+      "target": "명궁·신궁",
+      "sourceRefs": [
+        "evidence-fcd08a4a2ef88074",
+        "evidence-ccfb6817afc70a32",
+        "evidence-88e8697f855c61b6",
+        "evidence-0560b0dab490bcb7"
+      ],
+      "readiness": "blocked",
+      "bounded": "coverage inventory only; no semantic truth promotion"
+    },
+    {
+      "id": "claim-five-element-bureau",
+      "domainId": "five-element-bureau",
+      "target": "오행국",
+      "sourceRefs": [
+        "evidence-ea77688c792f5d8d",
+        "evidence-f4bf5e2bb49729f7",
+        "evidence-370f41c1123483ea",
+        "evidence-4b1aa52e7e69779f"
+      ],
+      "readiness": "blocked",
+      "bounded": "coverage inventory only; no semantic truth promotion"
+    },
+    {
+      "id": "claim-palace-layout",
+      "domainId": "palace-layout",
+      "target": "12궁·궁간·궁 포국",
+      "sourceRefs": [
+        "evidence-ec6296fabb119a1c",
+        "evidence-5254e56cf43b83aa",
+        "evidence-e12a128d18bbe6ff",
+        "evidence-f724298f859cc648"
+      ],
+      "readiness": "blocked",
+      "bounded": "coverage inventory only; no semantic truth promotion"
+    },
+    {
+      "id": "claim-ziwei-tianfu-placement",
+      "domainId": "ziwei-tianfu-placement",
+      "target": "자미·천부 placement chain",
+      "sourceRefs": [
+        "evidence-92b778e866476d0d",
+        "evidence-29411107a791767d",
+        "evidence-e29455d7f85c6209",
+        "evidence-22c2f31fd76f649a",
+        "evidence-f419220629b8e9cd",
+        "evidence-ed79c12314110aeb",
+        "evidence-950a1eef9cb45c96"
+      ],
+      "readiness": "blocked",
+      "bounded": "coverage inventory only; no semantic truth promotion"
+    },
+    {
+      "id": "claim-fourteen-major-stars",
+      "domainId": "fourteen-major-stars",
+      "target": "14주성 reconciliation",
+      "sourceRefs": [
+        "evidence-82a90de6b5451fb1",
+        "evidence-92b778e866476d0d",
+        "evidence-b4782ca75a418486",
+        "evidence-62cfb9b2edc01ef2",
+        "evidence-3c26a30d542986f8"
+      ],
+      "readiness": "blocked",
+      "bounded": "coverage inventory only; no semantic truth promotion"
+    },
+    {
+      "id": "claim-four-transformations",
+      "domainId": "four-transformations",
+      "target": "사화",
+      "sourceRefs": [
+        "evidence-f5f61dfd4f9d0ca4",
+        "evidence-b4575766d43f3685",
+        "evidence-f724298f859cc648"
+      ],
+      "readiness": "blocked",
+      "bounded": "coverage inventory only; no semantic truth promotion"
+    },
+    {
+      "id": "claim-minor-stars",
+      "domainId": "minor-stars",
+      "target": "보조성·6길성",
+      "sourceRefs": [
+        "evidence-a68101856b2ec351",
+        "evidence-0128ec88f86f4c92",
+        "evidence-f724298f859cc648"
+      ],
+      "readiness": "blocked",
+      "bounded": "coverage inventory only; no semantic truth promotion"
+    },
+    {
+      "id": "claim-palace-relations",
+      "domainId": "palace-relations",
+      "target": "대궁·삼방사정·topic 관계",
+      "sourceRefs": [
+        "evidence-e12a128d18bbe6ff",
+        "evidence-5254e56cf43b83aa",
+        "evidence-f724298f859cc648"
+      ],
+      "readiness": "blocked",
+      "bounded": "coverage inventory only; no semantic truth promotion"
+    },
+    {
+      "id": "claim-decade-year-fortune",
+      "domainId": "decade-year-fortune",
+      "target": "대운·세운·운 시계열",
+      "sourceRefs": [
+        "evidence-ec6296fabb119a1c",
+        "evidence-f724298f859cc648"
+      ],
+      "readiness": "research_only",
+      "bounded": "coverage inventory only; no semantic truth promotion"
+    },
+    {
+      "id": "claim-fixture-external-validation",
+      "domainId": "fixture-external-validation",
+      "target": "fixture·외부 대조",
+      "sourceRefs": [
+        "evidence-ff808732e6ed7149",
+        "evidence-0edc06196258fc33",
+        "evidence-f724298f859cc648"
+      ],
+      "readiness": "blocked",
+      "bounded": "coverage inventory only; no semantic truth promotion"
+    },
+    {
+      "id": "claim-source-claim-provenance",
+      "domainId": "source-claim-provenance",
+      "target": "source identity·claim provenance",
+      "sourceRefs": [
+        "evidence-9b66b10223c206d0",
+        "evidence-946b4a0c9d9e4892",
+        "evidence-cacc792cf1d214a2",
+        "evidence-2749e68248d5eb82"
+      ],
+      "readiness": "blocked",
+      "bounded": "coverage inventory only; no semantic truth promotion"
+    },
+    {
+      "id": "claim-readiness-activation-boundary",
+      "domainId": "readiness-activation-boundary",
+      "target": "readiness·grounding·activation",
+      "sourceRefs": [
+        "evidence-ec6296fabb119a1c",
+        "evidence-1ed5b31440f2078c",
+        "evidence-f724298f859cc648",
+        "evidence-2749e68248d5eb82",
+        "evidence-d7560f409b4a1067"
+      ],
+      "readiness": "blocked",
+      "bounded": "coverage inventory only; no semantic truth promotion"
+    }
+  ],
+  "evidence": [
+    {
+      "id": "evidence-fcd08a4a2ef88074",
+      "path": "src/ziwei/ziweiResolver.js",
+      "role": "inventory_actual_byte_reference",
+      "sha256": "5336f15968b4c618d9b1248b0967deab22b778f48996cb60939ab19cabadf513"
+    },
+    {
+      "id": "evidence-ec6296fabb119a1c",
+      "path": "src/ziwei/ziweiContract.js",
+      "role": "inventory_actual_byte_reference",
+      "sha256": "716875185d87da22ceef5f66f32899359642646367133f6c9f4bf87718bf130e"
+    },
+    {
+      "id": "evidence-a654bfdff3e05955",
+      "path": "test/ziweiResolver.test.js",
+      "role": "inventory_actual_byte_reference",
+      "sha256": "46bb9c66d698d39922f372c271981f025549be8cbcef7e5476da77a24ef37511"
+    },
+    {
+      "id": "evidence-0e986907e9e3425b",
+      "path": "test/ziweiCoreContract.test.js",
+      "role": "inventory_actual_byte_reference",
+      "sha256": "a58f7f4de37dfeb77a82cc373781eb5c0bb87b38de2ca080ef2326cfbf9971e9"
+    },
+    {
+      "id": "evidence-f724298f859cc648",
+      "path": "artifacts/ziwei-readiness-baseline-v1/complete.json",
+      "role": "inventory_actual_byte_reference",
+      "sha256": "a20c6b25c6fb8844f93f534dfb91923bf78f1a74e24393e5b1c41a5deb773a2f"
+    },
+    {
+      "id": "evidence-ccfb6817afc70a32",
+      "path": "src/ziwei/mingShenCleanRuleSeedPilot.js",
+      "role": "inventory_actual_byte_reference",
+      "sha256": "84cc19ba2d6027f5b0c07747c6763fa5553935337230089c740395b121b89a0e"
+    },
+    {
+      "id": "evidence-5f0cf13e817597e7",
+      "path": "test/ziweiMingShenCleanRuleSeedPilot.test.js",
+      "role": "inventory_actual_byte_reference",
+      "sha256": "9cb98aaaf822b400eb244743b23c35817b2b356dd1b4ebc1df80ed5554bf4e14"
+    },
+    {
+      "id": "evidence-2c8a23aefc7f18ec",
+      "path": "test/ziweiMingShenSeedAcceptance.test.js",
+      "role": "inventory_actual_byte_reference",
+      "sha256": "619f5ca096108c41e02f44a9324cff925788d8ebf8ce46b514fba1265a0fd3ef"
+    },
+    {
+      "id": "evidence-88e8697f855c61b6",
+      "path": "artifacts/ziwei-ming-shen-seed-acceptance-v0/complete.json",
+      "role": "inventory_actual_byte_reference",
+      "sha256": "65b20d4d28179e57f680f22ecf9e1c3d335ca27276f7d8a8681b09097458ea79"
+    },
+    {
+      "id": "evidence-0560b0dab490bcb7",
+      "path": "artifacts/ziwei-ming-shen-clean-rule-seed-pilot-v0/complete.json",
+      "role": "inventory_actual_byte_reference",
+      "sha256": "f3668b02f953f37b9245e320f65b914ad8ed471cce40f08fa27d070834c6bce1"
+    },
+    {
+      "id": "evidence-ea77688c792f5d8d",
+      "path": "src/ziwei/fiveElementResolver.js",
+      "role": "inventory_actual_byte_reference",
+      "sha256": "7af13da1e88dbe41e4a239d5359a0f49d05316235e668c7bd1302a3de8825144"
+    },
+    {
+      "id": "evidence-f4bf5e2bb49729f7",
+      "path": "src/ziwei/fiveElementBureauCleanRuleSeedPilot.js",
+      "role": "inventory_actual_byte_reference",
+      "sha256": "f01c9104abfb9d5218dc563ac94cd1c9d88f8823546a51bc6ce3ac82b2a1424d"
+    },
+    {
+      "id": "evidence-6903df68511a9600",
+      "path": "test/ziweiFiveElementBureauCleanRuleSeedPilot.test.js",
+      "role": "inventory_actual_byte_reference",
+      "sha256": "dd85cb0e7410f4ba9f8fd71f284899dfb79374ff64ae09f4f9ef8fd92174a70c"
+    },
+    {
+      "id": "evidence-c8a6c0d0ec76762a",
+      "path": "test/ziweiFiveElementBureauSeedAcceptance.test.js",
+      "role": "inventory_actual_byte_reference",
+      "sha256": "0e5bd9efcf0bf6fc3eea9f18dd48f745262ed17259331e4ddfab106196cd5c7a"
+    },
+    {
+      "id": "evidence-370f41c1123483ea",
+      "path": "artifacts/ziwei-five-element-bureau-clean-rule-seed-acceptance-v0/complete.json",
+      "role": "inventory_actual_byte_reference",
+      "sha256": "d98f8cdac11ca3e4ed310009aaaf9db02ef96be2182de09282d1c51563f570a0"
+    },
+    {
+      "id": "evidence-4b1aa52e7e69779f",
+      "path": "artifacts/ziwei-five-element-bureau-clean-rule-seed-pilot-v0/complete.json",
+      "role": "inventory_actual_byte_reference",
+      "sha256": "64fa0e94595bbaf59a4e31b21ab8f78643ff27afbe7a3218df8a2507f897f878"
+    },
+    {
+      "id": "evidence-5254e56cf43b83aa",
+      "path": "src/ziwei/ziweiPalaceContext.js",
+      "role": "inventory_actual_byte_reference",
+      "sha256": "633b3b3d586a5e9a2f7cf855fad1937cb6b4115ac4271c5bf8d7472d77ad9964"
+    },
+    {
+      "id": "evidence-e12a128d18bbe6ff",
+      "path": "src/ziwei/palaceRelationRules.js",
+      "role": "inventory_actual_byte_reference",
+      "sha256": "afd4f2ef13da4a13f7dece79e801dab6867e5cd1ee30d2e588dce19935c9aaaa"
+    },
+    {
+      "id": "evidence-700d12219cfba927",
+      "path": "test/ziweiContract.test.js",
+      "role": "inventory_actual_byte_reference",
+      "sha256": "26e51f2063a146f5a44e3dfb8b58a93fef81f1a9586c7b0b88b9ed2a45d0846f"
+    },
+    {
+      "id": "evidence-6dd0f90850581b61",
+      "path": "test/ziweiPipeline.test.js",
+      "role": "inventory_actual_byte_reference",
+      "sha256": "805745cad6a6c15e06a156a504ad6172296d0b309348c2e1db2432ccab6125cc"
+    },
+    {
+      "id": "evidence-92b778e866476d0d",
+      "path": "src/ziwei/starPlacementRules.js",
+      "role": "inventory_actual_byte_reference",
+      "sha256": "1edb93929e441b009e33abd8179e72cf5b216e7378a40813657ea52dc1a0759c"
+    },
+    {
+      "id": "evidence-29411107a791767d",
+      "path": "src/ziwei/ziweiStarPlacementCleanRuleSeedPilot.js",
+      "role": "inventory_actual_byte_reference",
+      "sha256": "bdfc1c29143022eaa2531a3af4ab7ec3844bdf0868b5b27b0d3497c5c4f650d2"
+    },
+    {
+      "id": "evidence-e29455d7f85c6209",
+      "path": "src/ziwei/tianfuStarPlacementCleanRuleSeedPilot.js",
+      "role": "inventory_actual_byte_reference",
+      "sha256": "d4394a26dc381401a9ae93a6a55668af051e3ad4877266e96c89d58c85357430"
+    },
+    {
+      "id": "evidence-22c2f31fd76f649a",
+      "path": "src/ziwei/tianfuPlacementDiscrepancyRelations.js",
+      "role": "inventory_actual_byte_reference",
+      "sha256": "bb9665ede35e94fa086b7ded511737ac6b4fadc968a5b33ee4f051cc7d49b9df"
+    },
+    {
+      "id": "evidence-0b33bf3c684e0bb5",
+      "path": "test/ziweiZiweiStarPlacementCleanRuleSeedPilot.test.js",
+      "role": "inventory_actual_byte_reference",
+      "sha256": "f000e10801a3c3eef70d05baa7a7a9fb4e0f6138ece18b5424ad30cf62ddc591"
+    },
+    {
+      "id": "evidence-cc1eee27cb8c5933",
+      "path": "test/ziweiZiweiStarPlacementAcceptance.test.js",
+      "role": "inventory_actual_byte_reference",
+      "sha256": "d5007fb9c5557561c6900954e18b7c934a64e100e8289bc9a690ecca231d9812"
+    },
+    {
+      "id": "evidence-d1acf3da9270cf3c",
+      "path": "test/ziweiTianfuStarPlacementCleanRuleSeedPilot.test.js",
+      "role": "inventory_actual_byte_reference",
+      "sha256": "d0110a5e6e9e2bb06592822f4f630a988c7e83d82e7b7a9a92e2c948457b65f8"
+    },
+    {
+      "id": "evidence-e85266c064288ef7",
+      "path": "test/ziweiTianfuConventionProvenance.test.js",
+      "role": "inventory_actual_byte_reference",
+      "sha256": "e2804cc53f5160983ae7f835532d2ee4f18a6926dc017f65225c5acb289c9ae3"
+    },
+    {
+      "id": "evidence-aa6c1c2e3d38b019",
+      "path": "test/ziweiZixingTianfuSourceChain.test.js",
+      "role": "inventory_actual_byte_reference",
+      "sha256": "d4955db4f2669bd0d873bd048a50236a88730de91bef6b6c5b0b86f5c8c604f0"
+    },
+    {
+      "id": "evidence-f419220629b8e9cd",
+      "path": "artifacts/ziwei-zixing-tianfu-source-chain-v0/complete.json",
+      "role": "inventory_actual_byte_reference",
+      "sha256": "fd46f81cd50becd5f2f5f1c31e98968e447ab11393a0b267ed362022852db43e"
+    },
+    {
+      "id": "evidence-ed79c12314110aeb",
+      "path": "artifacts/ziwei-tianfu-convention-provenance-v0/complete.json",
+      "role": "inventory_actual_byte_reference",
+      "sha256": "f93cb1ca021ed8c267dd8a22c16aac76e5f505c760ac4b9fd52904bfd687d5a2"
+    },
+    {
+      "id": "evidence-950a1eef9cb45c96",
+      "path": "artifacts/ziwei-ziwei-star-placement-clean-rule-seed-acceptance-v0/complete.json",
+      "role": "inventory_actual_byte_reference",
+      "sha256": "6c07ae4084ae1957c5082bdf2fc6cfeb9c9af35e02c404be74ce53532960c953"
+    },
+    {
+      "id": "evidence-82a90de6b5451fb1",
+      "path": "src/ziwei/starResolver.js",
+      "role": "inventory_actual_byte_reference",
+      "sha256": "c9797f2405df6afeb336226bcbff66e199e856d181e71e2317a9794dba0a6ad7"
+    },
+    {
+      "id": "evidence-bde776598a188819",
+      "path": "test/ziweiMajorStarClaimReadinessReconciliation.test.js",
+      "role": "inventory_actual_byte_reference",
+      "sha256": "15893c905fbff61df7580c2567659b87a2df3b910ae9eacf05ddcebbfcec6981"
+    },
+    {
+      "id": "evidence-4baeadde46d51f48",
+      "path": "test/ziweiMajorStarCoordinateProvenance.test.js",
+      "role": "inventory_actual_byte_reference",
+      "sha256": "fa8ffdb4501c789be14f46141022ca4cafe663e8dc11cd13febaa7cdaed02483"
+    },
+    {
+      "id": "evidence-b5f44575cc448d24",
+      "path": "test/ziweiMajorStarSourceCorpusProvenance.test.js",
+      "role": "inventory_actual_byte_reference",
+      "sha256": "30e6df5c2877bc76f39656aeb88d63f89980ac07fd581d4f4199554cc2f08111"
+    },
+    {
+      "id": "evidence-b4782ca75a418486",
+      "path": "artifacts/ziwei-major-star-claim-readiness-reconciliation-v0/complete.json",
+      "role": "inventory_actual_byte_reference",
+      "sha256": "ff1874ebe1c0ed825defc1b6710a6a25cde1ed755f9fe83bdfa9296bc0890104"
+    },
+    {
+      "id": "evidence-62cfb9b2edc01ef2",
+      "path": "artifacts/ziwei-major-star-coordinate-provenance-v0/complete.json",
+      "role": "inventory_actual_byte_reference",
+      "sha256": "b928eb54c0dff947a7d8d3b02d013bffa68d6e9c6fa4f9b100ca10c56c73445b"
+    },
+    {
+      "id": "evidence-3c26a30d542986f8",
+      "path": "artifacts/ziwei-major-star-source-corpus-provenance-v0/complete.json",
+      "role": "inventory_actual_byte_reference",
+      "sha256": "6220cdeedec43510358c9f10477771244f374b85844477575576efb36766fdaa"
+    },
+    {
+      "id": "evidence-f5f61dfd4f9d0ca4",
+      "path": "src/ziwei/transformationRules.js",
+      "role": "inventory_actual_byte_reference",
+      "sha256": "e602ab8611e846b53b9c1ffed2d2dbcb5b77afd13973187ee40d748370846e76"
+    },
+    {
+      "id": "evidence-b4575766d43f3685",
+      "path": "src/ziwei/transformationResolver.js",
+      "role": "inventory_actual_byte_reference",
+      "sha256": "ec47b97109d514fb5317e1e0dfb9fb195fa77429ab2d451b3de9a97897babe9d"
+    },
+    {
+      "id": "evidence-42bf8be0a93eeb6e",
+      "path": "test/transformationAndMinor.test.js",
+      "role": "inventory_actual_byte_reference",
+      "sha256": "61478fc918cb0f8bac3ff68867e036aa6b274c82e1acbdd975c65327bb08a083"
+    },
+    {
+      "id": "evidence-a68101856b2ec351",
+      "path": "src/ziwei/minorStarRules.js",
+      "role": "inventory_actual_byte_reference",
+      "sha256": "b7cdc5db61a1a70dae3a4a243b5bccc0c148488c4c8e9f81bcfc345e4e8a4be3"
+    },
+    {
+      "id": "evidence-0128ec88f86f4c92",
+      "path": "src/ziwei/minorStarResolver.js",
+      "role": "inventory_actual_byte_reference",
+      "sha256": "40bfa66f576027a5ef77374257da895bbe714c331f6ded6e004048f246bc3c7a"
+    },
+    {
+      "id": "evidence-50c9381b9fb0fc7c",
+      "path": "test/ziweiQualityBenchmark.test.js",
+      "role": "inventory_actual_byte_reference",
+      "sha256": "9a4b5284da2af11d7c53f24e46e9f8d68e3d7fda7d3b0c53b1a88e88b3cddbf5"
+    },
+    {
+      "id": "evidence-59054a4879b48215",
+      "path": "test/ziweiPromptSafetyContract.test.js",
+      "role": "inventory_actual_byte_reference",
+      "sha256": "c3fbf19d4d93e6e39edd1b445e7375cb6c41bc03d39954654e7c5d2182465b2e"
+    },
+    {
+      "id": "evidence-ff808732e6ed7149",
+      "path": "src/ziwei/externalZiweiFixtures.js",
+      "role": "inventory_actual_byte_reference",
+      "sha256": "c379c3d364ea8bdc1062f7a59f2f1b8f83de4762489a86a520733d9d288917cf"
+    },
+    {
+      "id": "evidence-e3cf8a07d890b438",
+      "path": "test/ziweiFixtureReconciliation.test.js",
+      "role": "inventory_actual_byte_reference",
+      "sha256": "397ac31dce507ee74a73438faba259f71e36f6713c80d0eea5ceb8659b514479"
+    },
+    {
+      "id": "evidence-4ebd4187a51d8fa2",
+      "path": "test/externalValidationRunner.test.js",
+      "role": "inventory_actual_byte_reference",
+      "sha256": "4de5478db198e4620072b9f2f993beb8f14e454dac1f7b8de640b4ee549b2b41"
+    },
+    {
+      "id": "evidence-0edc06196258fc33",
+      "path": "artifacts/ziwei-fixture-reconciliation-v1/complete.json",
+      "role": "inventory_actual_byte_reference",
+      "sha256": "e9c903b9d0e29691c9ce03009cb37413df9563dbcd78097e1f12626ab83e874c"
+    },
+    {
+      "id": "evidence-9b66b10223c206d0",
+      "path": "src/ziwei/cleanRuleCorpusSourceSelection.js",
+      "role": "inventory_actual_byte_reference",
+      "sha256": "52bb80010f0f9061b0ddd9549a218ee79d98e69cb953d8c53e2f5b4c77c1eee1"
+    },
+    {
+      "id": "evidence-f87e9ca1552f1b77",
+      "path": "test/ziweiOccurrenceProvenance.test.js",
+      "role": "inventory_actual_byte_reference",
+      "sha256": "801c1a20f76ab5701845363f87cd90fa3563d12287418e51c722a25a8cd9e3c5"
+    },
+    {
+      "id": "evidence-b81e5379f88c5cda",
+      "path": "test/ziweiSourceIdentityClaimBoundaryAudit.test.js",
+      "role": "inventory_actual_byte_reference",
+      "sha256": "8d41af4b4dd11a6b2387cb3ca66cfa0eb86f956061db18974b02387e35adcd6e"
+    },
+    {
+      "id": "evidence-0c32cd15c10bd966",
+      "path": "test/ziweiReadinessAdmissionBlockerAudit.test.js",
+      "role": "inventory_actual_byte_reference",
+      "sha256": "411d386049a5148c7dab65e9ffa8f0ecc37eb2059b058b22858dff4de2a2cc8c"
+    },
+    {
+      "id": "evidence-946b4a0c9d9e4892",
+      "path": "artifacts/ziwei-occurrence-level-provenance-v0/complete.json",
+      "role": "inventory_actual_byte_reference",
+      "sha256": "ac9ba86a4ef211a785006823e01cfb7df2c8b548c0cf6848ea525a579d8dfa95"
+    },
+    {
+      "id": "evidence-cacc792cf1d214a2",
+      "path": "artifacts/ziwei-source-identity-claim-boundary-audit-v1/complete.json",
+      "role": "inventory_actual_byte_reference",
+      "sha256": "73cbc533d5c8897ff2452e50edec4b311bd2075f43215dd36f2d0cf8797d9840"
+    },
+    {
+      "id": "evidence-2749e68248d5eb82",
+      "path": "artifacts/ziwei-readiness-admission-blocker-audit-v0/complete.json",
+      "role": "inventory_actual_byte_reference",
+      "sha256": "1c34908635e49c722e841ff1184c8942bd399106368c41f60ca1a2304b06f1bf"
+    },
+    {
+      "id": "evidence-1ed5b31440f2078c",
+      "path": "src/interpretationPrep/ziweiPromptAdapter.js",
+      "role": "inventory_actual_byte_reference",
+      "sha256": "6c0e59de0363a07a0bc9342e161e9b7d70747f1dd0077ee61b2a1149571a9a2f"
+    },
+    {
+      "id": "evidence-34c3076fad7d57a9",
+      "path": "test/ziweiReadinessBaseline.test.js",
+      "role": "inventory_actual_byte_reference",
+      "sha256": "5205197927f23e643046a719978bcb75ce816c6bee6b85be9f5f63cf8f070e9a"
+    },
+    {
+      "id": "evidence-3a6efb8428ec1b11",
+      "path": "test/ziweiStructuralAdmissionGuardPilot.test.js",
+      "role": "inventory_actual_byte_reference",
+      "sha256": "7c9a647b0df7a9cd3613c566603c1dde608334cc09b758de47fd6b55fec090be"
+    },
+    {
+      "id": "evidence-d7560f409b4a1067",
+      "path": "artifacts/ziwei-major-star-claim-readiness-reconciliation-v0/layeredReadiness.json",
+      "role": "inventory_actual_byte_reference",
+      "sha256": "2f683163e5db83f5e05491976e431253d80954e402f6e6bf8c7682565971e42d"
+    },
+    {
+      "id": "evidence-96feb8988c5d3ba2",
+      "path": "artifacts/ziwei-major-star-claim-readiness-reconciliation-v0/claimLedger.json",
+      "role": "inventory_actual_byte_reference",
+      "sha256": "a66d9eb363d7b4de319f28cc8bbf6c74111da4eb3cbf14ebccc8cd74a502c83b"
+    },
+    {
+      "id": "evidence-180ea5be52d63616",
+      "path": "artifacts/ziwei-major-star-claim-readiness-reconciliation-v0/blockerRegistry.json",
+      "role": "inventory_actual_byte_reference",
+      "sha256": "877571538c554fff601d5fb72b07eeb2b28a209ec036c1a115c89aa26735aa0d"
+    }
+  ],
+  "blockers": [
+    {
+      "id": "blocker-calendar-time-source-identity",
+      "priority": "P0",
+      "title": "음력·윤달·자시 입력 source identity/독립 대조 부재",
+      "affectedDomains": [
+        "input-calendar-time",
+        "ming-shen",
+        "five-element-bureau"
+      ],
+      "resolution": "입력 변환 규칙과 경계의 immutable source witness 및 independent oracle",
+      "sourcePaths": [
+        "src/ziwei/ziweiResolver.js",
+        "src/ziwei/ziweiContract.js"
+      ],
+      "sourceRefs": [
+        "evidence-fcd08a4a2ef88074",
+        "evidence-ec6296fabb119a1c"
+      ]
+    },
+    {
+      "id": "blocker-palace-semantic-identity",
+      "priority": "P0",
+      "title": "branch/ordinal 좌표와 궁 의미의 authoritative mapping 부재",
+      "affectedDomains": [
+        "palace-layout",
+        "ziwei-tianfu-placement",
+        "fourteen-major-stars",
+        "palace-relations"
+      ],
+      "resolution": "source와 production 양쪽에 동일한 branch·궁 label·ordinal mapping을 직접 증거화",
+      "sourcePaths": [
+        "src/ziwei/ziweiContract.js",
+        "artifacts/ziwei-major-star-claim-readiness-reconciliation-v0/complete.json"
+      ],
+      "sourceRefs": [
+        "evidence-ec6296fabb119a1c",
+        "evidence-b4782ca75a418486"
+      ]
+    },
+    {
+      "id": "blocker-source-identity-unresolved",
+      "priority": "P0",
+      "title": "occurrence source identity와 stable claim boundary 미해결",
+      "affectedDomains": [
+        "source-claim-provenance",
+        "readiness-activation-boundary"
+      ],
+      "resolution": "scan/page/folio/edition/hash와 occurrence-level provenance를 claim gate에 연결",
+      "sourcePaths": [
+        "src/ziwei/cleanRuleCorpusSourceSelection.js",
+        "artifacts/ziwei-occurrence-level-provenance-v0/complete.json"
+      ],
+      "sourceRefs": [
+        "evidence-9b66b10223c206d0",
+        "evidence-946b4a0c9d9e4892"
+      ]
+    },
+    {
+      "id": "blocker-external-oracle-identity",
+      "priority": "P1",
+      "title": "외부 fixture의 독립 oracle/source identity 부재",
+      "affectedDomains": [
+        "fixture-external-validation"
+      ],
+      "resolution": "판본·원문·촬영 byte와 evaluator independence를 확보",
+      "sourcePaths": [
+        "src/ziwei/externalZiweiFixtures.js",
+        "artifacts/ziwei-fixture-reconciliation-v1/complete.json"
+      ],
+      "sourceRefs": [
+        "evidence-ff808732e6ed7149",
+        "evidence-0edc06196258fc33"
+      ]
+    },
+    {
+      "id": "blocker-four-transform-source-witness",
+      "priority": "P1",
+      "title": "사화 표의 직접 source witness 부재",
+      "affectedDomains": [
+        "four-transformations"
+      ],
+      "resolution": "10 천간×4 사화 표의 page/folio/table witness",
+      "sourcePaths": [
+        "src/ziwei/transformationRules.js"
+      ],
+      "sourceRefs": [
+        "evidence-f5f61dfd4f9d0ca4"
+      ]
+    },
+    {
+      "id": "blocker-minor-star-source-witness",
+      "priority": "P1",
+      "title": "6길성·보조성 규칙의 직접 source witness 부재",
+      "affectedDomains": [
+        "minor-stars"
+      ],
+      "resolution": "각 보조성 규칙표와 입력 경계의 page/folio witness",
+      "sourcePaths": [
+        "src/ziwei/minorStarRules.js"
+      ],
+      "sourceRefs": [
+        "evidence-a68101856b2ec351"
+      ]
+    },
+    {
+      "id": "blocker-timing-domain-absent",
+      "priority": "P2",
+      "title": "대운·세운 계산 구현·fixture·외부 대조 부재",
+      "affectedDomains": [
+        "decade-year-fortune"
+      ],
+      "resolution": "정의된 production contract, fixture, independent oracle이 모두 필요",
+      "sourcePaths": [
+        "src/ziwei/ziweiContract.js"
+      ],
+      "sourceRefs": [
+        "evidence-ec6296fabb119a1c"
+      ]
+    }
+  ],
+  "backlog": [
+    {
+      "id": "backlog-p0-palace-identity",
+      "priority": "P0",
+      "blockerId": "blocker-palace-semantic-identity",
+      "dependsOn": [
+        "blocker-calendar-time-source-identity"
+      ],
+      "rationale": "fan-out 4개 domain과 14주성 의미 승격을 막으며 safety boundary가 높다.",
+      "nextUnit": "궁 label/ordinal/branch shared mapping witness"
+    },
+    {
+      "id": "backlog-p0-source-claim-boundary",
+      "priority": "P0",
+      "blockerId": "blocker-source-identity-unresolved",
+      "dependsOn": [
+        "blocker-external-oracle-identity"
+      ],
+      "rationale": "모든 source-backed claim과 activation gate의 공통 기반이다.",
+      "nextUnit": "occurrence identity와 claim boundary audit 재검토"
+    },
+    {
+      "id": "backlog-p1-external-oracle",
+      "priority": "P1",
+      "blockerId": "blocker-external-oracle-identity",
+      "dependsOn": [
+        "backlog-p0-source-claim-boundary"
+      ],
+      "rationale": "새 판본/원문 확보로 직접 해소 가능하며 fixture domain을 unblock한다.",
+      "nextUnit": "외부 chart/table oracle source acquisition"
+    },
+    {
+      "id": "backlog-p1-four-transform",
+      "priority": "P1",
+      "blockerId": "blocker-four-transform-source-witness",
+      "dependsOn": [
+        "backlog-p0-source-claim-boundary"
+      ],
+      "rationale": "규칙표 원문 확보로 직접 해소 가능하다.",
+      "nextUnit": "사화 표 witness"
+    },
+    {
+      "id": "backlog-p1-minor-stars",
+      "priority": "P1",
+      "blockerId": "blocker-minor-star-source-witness",
+      "dependsOn": [
+        "backlog-p0-source-claim-boundary"
+      ],
+      "rationale": "보조성 규칙표 원문 확보로 직접 해소 가능하다.",
+      "nextUnit": "6길성 규칙 witness"
+    },
+    {
+      "id": "backlog-p2-timing",
+      "priority": "P2",
+      "blockerId": "blocker-timing-domain-absent",
+      "dependsOn": [
+        "backlog-p0-palace-identity"
+      ],
+      "rationale": "구현·fixture·외부 대조가 모두 필요하며 source-only로 끝나지 않는다.",
+      "nextUnit": "대운·세운 contract decision point"
+    },
+    {
+      "id": "backlog-deferred-production-selection",
+      "priority": "Deferred",
+      "blockerId": "blocker-palace-semantic-identity",
+      "dependsOn": [
+        "backlog-p0-palace-identity"
+      ],
+      "rationale": "production 선택·계약 변경이 필요하므로 자료 조사와 분리한다.",
+      "nextUnit": "명시적 production decision 이후"
+    }
+  ],
+  "acquisition": [
+    {
+      "id": "acq-palace-identity",
+      "backlogId": "backlog-p0-palace-identity",
+      "targetClaim": "claim-palace-coordinate-semantic-identity",
+      "rules": "12궁 명칭·궁순·branch/ordinal 대응과 명궁·신궁 표시 도식",
+      "keywords": [
+        "紫微斗數 十二宮 宮位 地支",
+        "命宮 身宮 十二宮 表",
+        "자미두수 12궁 궁위 지지"
+      ],
+      "evidence": "동일 판본의 원문 page/folio 촬영 또는 무손실 scan crop; transcription은 exploration_only_not_canonical",
+      "minimumScope": "mapping을 완전히 보여주는 연속 leaf와 앞뒤 판본/서지 page",
+      "metadata": "title, edition/print year, repository/call number, page/folio, scan settings, file SHA-256",
+      "accept": "glyph/layout/table boundary가 판독되고 source identity와 actual bytes가 보존됨",
+      "reject": "preview-only, catalog-only, OCR-only, source identity 추정, mapping 일부만 보이는 crop"
+    },
+    {
+      "id": "acq-external-oracle",
+      "backlogId": "backlog-p1-external-oracle",
+      "targetClaim": "claim-external-fixture-independent-oracle",
+      "rules": "chart/table expected outputs와 source method disclosure",
+      "keywords": [
+        "紫微斗數 命盤 表格 起紫微 安天府",
+        "紫微斗數 四化 六吉星 表",
+        "자미두수 명반 자미 천부 사화 보조성"
+      ],
+      "evidence": "원문 table/chart scan과 독립 evaluator가 재현할 수 있는 sourceRefs",
+      "minimumScope": "각 expected field를 포함한 전체 표/명반 1개와 경계 사례",
+      "metadata": "판본·소장처·folio/page·촬영일·render/crop·hash",
+      "accept": "production과 분리된 evaluator가 동일 input/output을 재현",
+      "reject": "동일 lineage의 중복 웹 전사, 수동 입력만, hash/folio 없는 이미지"
+    },
+    {
+      "id": "acq-four-transform",
+      "backlogId": "backlog-p1-four-transform",
+      "targetClaim": "claim-four-transformations-source-rule",
+      "rules": "10 천간별 화록·화권·화과·화기의 40 cell 표",
+      "keywords": [
+        "紫微斗數 四化表 十天干",
+        "四化 甲 廉貞 破軍 武曲 太陽",
+        "자미두수 사화 표 천간"
+      ],
+      "evidence": "표 전체가 보이는 immutable scan/photo와 cell locator",
+      "minimumScope": "표 제목/범위와 10행×4열 전체 및 판본 metadata",
+      "metadata": "title, edition, page/folio, scan resolution, file SHA-256",
+      "accept": "40 cell과 star glyph를 직접 확인 가능",
+      "reject": "일부 천간·요약 블로그·OCR만"
+    },
+    {
+      "id": "acq-minor-stars",
+      "backlogId": "backlog-p1-minor-stars",
+      "targetClaim": "claim-minor-star-rules",
+      "rules": "6길성 및 각 입력(년간·월·시지)별 배치 규칙표",
+      "keywords": [
+        "紫微斗數 六吉星 安左輔 右弼 文昌 文曲 天魁 天鉞",
+        "자미두수 6길성 배치 표"
+      ],
+      "evidence": "각 규칙과 경계가 함께 보이는 원문 scan/photo",
+      "minimumScope": "6성 전체와 입력축 설명을 포함한 연속 page/folio 범위",
+      "metadata": "판본·page/folio·촬영/render·hash",
+      "accept": "입력 domain과 출력 branch를 source에서 직접 연결",
+      "reject": "star name list only, 독립 source identity 없는 전사"
+    }
+  ],
+  "graph": {
+    "nodes": [
+      {
+        "id": "domain-input-calendar-time",
+        "kind": "domain"
+      },
+      {
+        "id": "domain-ming-shen",
+        "kind": "domain"
+      },
+      {
+        "id": "domain-five-element-bureau",
+        "kind": "domain"
+      },
+      {
+        "id": "domain-palace-layout",
+        "kind": "domain"
+      },
+      {
+        "id": "domain-ziwei-tianfu-placement",
+        "kind": "domain"
+      },
+      {
+        "id": "domain-fourteen-major-stars",
+        "kind": "domain"
+      },
+      {
+        "id": "domain-four-transformations",
+        "kind": "domain"
+      },
+      {
+        "id": "domain-minor-stars",
+        "kind": "domain"
+      },
+      {
+        "id": "domain-palace-relations",
+        "kind": "domain"
+      },
+      {
+        "id": "domain-decade-year-fortune",
+        "kind": "domain"
+      },
+      {
+        "id": "domain-fixture-external-validation",
+        "kind": "domain"
+      },
+      {
+        "id": "domain-source-claim-provenance",
+        "kind": "domain"
+      },
+      {
+        "id": "domain-readiness-activation-boundary",
+        "kind": "domain"
+      },
+      {
+        "id": "claim-input-calendar-time",
+        "kind": "claim"
+      },
+      {
+        "id": "claim-ming-shen",
+        "kind": "claim"
+      },
+      {
+        "id": "claim-five-element-bureau",
+        "kind": "claim"
+      },
+      {
+        "id": "claim-palace-layout",
+        "kind": "claim"
+      },
+      {
+        "id": "claim-ziwei-tianfu-placement",
+        "kind": "claim"
+      },
+      {
+        "id": "claim-fourteen-major-stars",
+        "kind": "claim"
+      },
+      {
+        "id": "claim-four-transformations",
+        "kind": "claim"
+      },
+      {
+        "id": "claim-minor-stars",
+        "kind": "claim"
+      },
+      {
+        "id": "claim-palace-relations",
+        "kind": "claim"
+      },
+      {
+        "id": "claim-decade-year-fortune",
+        "kind": "claim"
+      },
+      {
+        "id": "claim-fixture-external-validation",
+        "kind": "claim"
+      },
+      {
+        "id": "claim-source-claim-provenance",
+        "kind": "claim"
+      },
+      {
+        "id": "claim-readiness-activation-boundary",
+        "kind": "claim"
+      },
+      {
+        "id": "evidence-fcd08a4a2ef88074",
+        "kind": "evidence"
+      },
+      {
+        "id": "evidence-ec6296fabb119a1c",
+        "kind": "evidence"
+      },
+      {
+        "id": "evidence-a654bfdff3e05955",
+        "kind": "evidence"
+      },
+      {
+        "id": "evidence-0e986907e9e3425b",
+        "kind": "evidence"
+      },
+      {
+        "id": "evidence-f724298f859cc648",
+        "kind": "evidence"
+      },
+      {
+        "id": "evidence-ccfb6817afc70a32",
+        "kind": "evidence"
+      },
+      {
+        "id": "evidence-5f0cf13e817597e7",
+        "kind": "evidence"
+      },
+      {
+        "id": "evidence-2c8a23aefc7f18ec",
+        "kind": "evidence"
+      },
+      {
+        "id": "evidence-88e8697f855c61b6",
+        "kind": "evidence"
+      },
+      {
+        "id": "evidence-0560b0dab490bcb7",
+        "kind": "evidence"
+      },
+      {
+        "id": "evidence-ea77688c792f5d8d",
+        "kind": "evidence"
+      },
+      {
+        "id": "evidence-f4bf5e2bb49729f7",
+        "kind": "evidence"
+      },
+      {
+        "id": "evidence-6903df68511a9600",
+        "kind": "evidence"
+      },
+      {
+        "id": "evidence-c8a6c0d0ec76762a",
+        "kind": "evidence"
+      },
+      {
+        "id": "evidence-370f41c1123483ea",
+        "kind": "evidence"
+      },
+      {
+        "id": "evidence-4b1aa52e7e69779f",
+        "kind": "evidence"
+      },
+      {
+        "id": "evidence-5254e56cf43b83aa",
+        "kind": "evidence"
+      },
+      {
+        "id": "evidence-e12a128d18bbe6ff",
+        "kind": "evidence"
+      },
+      {
+        "id": "evidence-700d12219cfba927",
+        "kind": "evidence"
+      },
+      {
+        "id": "evidence-6dd0f90850581b61",
+        "kind": "evidence"
+      },
+      {
+        "id": "evidence-92b778e866476d0d",
+        "kind": "evidence"
+      },
+      {
+        "id": "evidence-29411107a791767d",
+        "kind": "evidence"
+      },
+      {
+        "id": "evidence-e29455d7f85c6209",
+        "kind": "evidence"
+      },
+      {
+        "id": "evidence-22c2f31fd76f649a",
+        "kind": "evidence"
+      },
+      {
+        "id": "evidence-0b33bf3c684e0bb5",
+        "kind": "evidence"
+      },
+      {
+        "id": "evidence-cc1eee27cb8c5933",
+        "kind": "evidence"
+      },
+      {
+        "id": "evidence-d1acf3da9270cf3c",
+        "kind": "evidence"
+      },
+      {
+        "id": "evidence-e85266c064288ef7",
+        "kind": "evidence"
+      },
+      {
+        "id": "evidence-aa6c1c2e3d38b019",
+        "kind": "evidence"
+      },
+      {
+        "id": "evidence-f419220629b8e9cd",
+        "kind": "evidence"
+      },
+      {
+        "id": "evidence-ed79c12314110aeb",
+        "kind": "evidence"
+      },
+      {
+        "id": "evidence-950a1eef9cb45c96",
+        "kind": "evidence"
+      },
+      {
+        "id": "evidence-82a90de6b5451fb1",
+        "kind": "evidence"
+      },
+      {
+        "id": "evidence-bde776598a188819",
+        "kind": "evidence"
+      },
+      {
+        "id": "evidence-4baeadde46d51f48",
+        "kind": "evidence"
+      },
+      {
+        "id": "evidence-b5f44575cc448d24",
+        "kind": "evidence"
+      },
+      {
+        "id": "evidence-b4782ca75a418486",
+        "kind": "evidence"
+      },
+      {
+        "id": "evidence-62cfb9b2edc01ef2",
+        "kind": "evidence"
+      },
+      {
+        "id": "evidence-3c26a30d542986f8",
+        "kind": "evidence"
+      },
+      {
+        "id": "evidence-f5f61dfd4f9d0ca4",
+        "kind": "evidence"
+      },
+      {
+        "id": "evidence-b4575766d43f3685",
+        "kind": "evidence"
+      },
+      {
+        "id": "evidence-42bf8be0a93eeb6e",
+        "kind": "evidence"
+      },
+      {
+        "id": "evidence-a68101856b2ec351",
+        "kind": "evidence"
+      },
+      {
+        "id": "evidence-0128ec88f86f4c92",
+        "kind": "evidence"
+      },
+      {
+        "id": "evidence-50c9381b9fb0fc7c",
+        "kind": "evidence"
+      },
+      {
+        "id": "evidence-59054a4879b48215",
+        "kind": "evidence"
+      },
+      {
+        "id": "evidence-ff808732e6ed7149",
+        "kind": "evidence"
+      },
+      {
+        "id": "evidence-e3cf8a07d890b438",
+        "kind": "evidence"
+      },
+      {
+        "id": "evidence-4ebd4187a51d8fa2",
+        "kind": "evidence"
+      },
+      {
+        "id": "evidence-0edc06196258fc33",
+        "kind": "evidence"
+      },
+      {
+        "id": "evidence-9b66b10223c206d0",
+        "kind": "evidence"
+      },
+      {
+        "id": "evidence-f87e9ca1552f1b77",
+        "kind": "evidence"
+      },
+      {
+        "id": "evidence-b81e5379f88c5cda",
+        "kind": "evidence"
+      },
+      {
+        "id": "evidence-0c32cd15c10bd966",
+        "kind": "evidence"
+      },
+      {
+        "id": "evidence-946b4a0c9d9e4892",
+        "kind": "evidence"
+      },
+      {
+        "id": "evidence-cacc792cf1d214a2",
+        "kind": "evidence"
+      },
+      {
+        "id": "evidence-2749e68248d5eb82",
+        "kind": "evidence"
+      },
+      {
+        "id": "evidence-1ed5b31440f2078c",
+        "kind": "evidence"
+      },
+      {
+        "id": "evidence-34c3076fad7d57a9",
+        "kind": "evidence"
+      },
+      {
+        "id": "evidence-3a6efb8428ec1b11",
+        "kind": "evidence"
+      },
+      {
+        "id": "evidence-d7560f409b4a1067",
+        "kind": "evidence"
+      },
+      {
+        "id": "evidence-96feb8988c5d3ba2",
+        "kind": "evidence"
+      },
+      {
+        "id": "evidence-180ea5be52d63616",
+        "kind": "evidence"
+      },
+      {
+        "id": "blocker-calendar-time-source-identity",
+        "kind": "blocker"
+      },
+      {
+        "id": "blocker-palace-semantic-identity",
+        "kind": "blocker"
+      },
+      {
+        "id": "blocker-source-identity-unresolved",
+        "kind": "blocker"
+      },
+      {
+        "id": "blocker-external-oracle-identity",
+        "kind": "blocker"
+      },
+      {
+        "id": "blocker-four-transform-source-witness",
+        "kind": "blocker"
+      },
+      {
+        "id": "blocker-minor-star-source-witness",
+        "kind": "blocker"
+      },
+      {
+        "id": "blocker-timing-domain-absent",
+        "kind": "blocker"
+      },
+      {
+        "id": "backlog-p0-palace-identity",
+        "kind": "backlog"
+      },
+      {
+        "id": "backlog-p0-source-claim-boundary",
+        "kind": "backlog"
+      },
+      {
+        "id": "backlog-p1-external-oracle",
+        "kind": "backlog"
+      },
+      {
+        "id": "backlog-p1-four-transform",
+        "kind": "backlog"
+      },
+      {
+        "id": "backlog-p1-minor-stars",
+        "kind": "backlog"
+      },
+      {
+        "id": "backlog-p2-timing",
+        "kind": "backlog"
+      },
+      {
+        "id": "backlog-deferred-production-selection",
+        "kind": "backlog"
+      }
+    ],
+    "edges": [
+      {
+        "from": "domain-input-calendar-time",
+        "to": "claim-input-calendar-time",
+        "type": "has_claim"
+      },
+      {
+        "from": "domain-input-calendar-time",
+        "to": "evidence-fcd08a4a2ef88074",
+        "type": "implemented_by"
+      },
+      {
+        "from": "domain-input-calendar-time",
+        "to": "evidence-ec6296fabb119a1c",
+        "type": "implemented_by"
+      },
+      {
+        "from": "domain-input-calendar-time",
+        "to": "evidence-a654bfdff3e05955",
+        "type": "tested_by"
+      },
+      {
+        "from": "domain-input-calendar-time",
+        "to": "evidence-0e986907e9e3425b",
+        "type": "tested_by"
+      },
+      {
+        "from": "claim-input-calendar-time",
+        "to": "evidence-f724298f859cc648",
+        "type": "authoritative_artifact"
+      },
+      {
+        "from": "domain-input-calendar-time",
+        "to": "blocker-calendar-time-source-identity",
+        "type": "blocked_by"
+      },
+      {
+        "from": "domain-input-calendar-time",
+        "to": "domain-ming-shen",
+        "type": "dependency"
+      },
+      {
+        "from": "domain-ming-shen",
+        "to": "claim-ming-shen",
+        "type": "has_claim"
+      },
+      {
+        "from": "domain-ming-shen",
+        "to": "evidence-fcd08a4a2ef88074",
+        "type": "implemented_by"
+      },
+      {
+        "from": "domain-ming-shen",
+        "to": "evidence-ccfb6817afc70a32",
+        "type": "implemented_by"
+      },
+      {
+        "from": "domain-ming-shen",
+        "to": "evidence-5f0cf13e817597e7",
+        "type": "tested_by"
+      },
+      {
+        "from": "domain-ming-shen",
+        "to": "evidence-2c8a23aefc7f18ec",
+        "type": "tested_by"
+      },
+      {
+        "from": "domain-ming-shen",
+        "to": "evidence-a654bfdff3e05955",
+        "type": "tested_by"
+      },
+      {
+        "from": "claim-ming-shen",
+        "to": "evidence-88e8697f855c61b6",
+        "type": "authoritative_artifact"
+      },
+      {
+        "from": "claim-ming-shen",
+        "to": "evidence-0560b0dab490bcb7",
+        "type": "authoritative_artifact"
+      },
+      {
+        "from": "domain-ming-shen",
+        "to": "blocker-calendar-time-source-identity",
+        "type": "blocked_by"
+      },
+      {
+        "from": "domain-ming-shen",
+        "to": "domain-five-element-bureau",
+        "type": "dependency"
+      },
+      {
+        "from": "domain-five-element-bureau",
+        "to": "claim-five-element-bureau",
+        "type": "has_claim"
+      },
+      {
+        "from": "domain-five-element-bureau",
+        "to": "evidence-ea77688c792f5d8d",
+        "type": "implemented_by"
+      },
+      {
+        "from": "domain-five-element-bureau",
+        "to": "evidence-f4bf5e2bb49729f7",
+        "type": "implemented_by"
+      },
+      {
+        "from": "domain-five-element-bureau",
+        "to": "evidence-6903df68511a9600",
+        "type": "tested_by"
+      },
+      {
+        "from": "domain-five-element-bureau",
+        "to": "evidence-c8a6c0d0ec76762a",
+        "type": "tested_by"
+      },
+      {
+        "from": "domain-five-element-bureau",
+        "to": "evidence-a654bfdff3e05955",
+        "type": "tested_by"
+      },
+      {
+        "from": "claim-five-element-bureau",
+        "to": "evidence-370f41c1123483ea",
+        "type": "authoritative_artifact"
+      },
+      {
+        "from": "claim-five-element-bureau",
+        "to": "evidence-4b1aa52e7e69779f",
+        "type": "authoritative_artifact"
+      },
+      {
+        "from": "domain-five-element-bureau",
+        "to": "blocker-calendar-time-source-identity",
+        "type": "blocked_by"
+      },
+      {
+        "from": "domain-ming-shen",
+        "to": "domain-palace-layout",
+        "type": "dependency"
+      },
+      {
+        "from": "domain-palace-layout",
+        "to": "claim-palace-layout",
+        "type": "has_claim"
+      },
+      {
+        "from": "domain-palace-layout",
+        "to": "evidence-ec6296fabb119a1c",
+        "type": "implemented_by"
+      },
+      {
+        "from": "domain-palace-layout",
+        "to": "evidence-5254e56cf43b83aa",
+        "type": "implemented_by"
+      },
+      {
+        "from": "domain-palace-layout",
+        "to": "evidence-e12a128d18bbe6ff",
+        "type": "implemented_by"
+      },
+      {
+        "from": "domain-palace-layout",
+        "to": "evidence-700d12219cfba927",
+        "type": "tested_by"
+      },
+      {
+        "from": "domain-palace-layout",
+        "to": "evidence-0e986907e9e3425b",
+        "type": "tested_by"
+      },
+      {
+        "from": "domain-palace-layout",
+        "to": "evidence-6dd0f90850581b61",
+        "type": "tested_by"
+      },
+      {
+        "from": "claim-palace-layout",
+        "to": "evidence-f724298f859cc648",
+        "type": "authoritative_artifact"
+      },
+      {
+        "from": "domain-palace-layout",
+        "to": "blocker-palace-semantic-identity",
+        "type": "blocked_by"
+      },
+      {
+        "from": "domain-five-element-bureau",
+        "to": "domain-ziwei-tianfu-placement",
+        "type": "dependency"
+      },
+      {
+        "from": "domain-palace-layout",
+        "to": "domain-ziwei-tianfu-placement",
+        "type": "dependency"
+      },
+      {
+        "from": "domain-ziwei-tianfu-placement",
+        "to": "claim-ziwei-tianfu-placement",
+        "type": "has_claim"
+      },
+      {
+        "from": "domain-ziwei-tianfu-placement",
+        "to": "evidence-92b778e866476d0d",
+        "type": "implemented_by"
+      },
+      {
+        "from": "domain-ziwei-tianfu-placement",
+        "to": "evidence-29411107a791767d",
+        "type": "implemented_by"
+      },
+      {
+        "from": "domain-ziwei-tianfu-placement",
+        "to": "evidence-e29455d7f85c6209",
+        "type": "implemented_by"
+      },
+      {
+        "from": "domain-ziwei-tianfu-placement",
+        "to": "evidence-22c2f31fd76f649a",
+        "type": "implemented_by"
+      },
+      {
+        "from": "domain-ziwei-tianfu-placement",
+        "to": "evidence-0b33bf3c684e0bb5",
+        "type": "tested_by"
+      },
+      {
+        "from": "domain-ziwei-tianfu-placement",
+        "to": "evidence-cc1eee27cb8c5933",
+        "type": "tested_by"
+      },
+      {
+        "from": "domain-ziwei-tianfu-placement",
+        "to": "evidence-d1acf3da9270cf3c",
+        "type": "tested_by"
+      },
+      {
+        "from": "domain-ziwei-tianfu-placement",
+        "to": "evidence-e85266c064288ef7",
+        "type": "tested_by"
+      },
+      {
+        "from": "domain-ziwei-tianfu-placement",
+        "to": "evidence-aa6c1c2e3d38b019",
+        "type": "tested_by"
+      },
+      {
+        "from": "claim-ziwei-tianfu-placement",
+        "to": "evidence-f419220629b8e9cd",
+        "type": "authoritative_artifact"
+      },
+      {
+        "from": "claim-ziwei-tianfu-placement",
+        "to": "evidence-ed79c12314110aeb",
+        "type": "authoritative_artifact"
+      },
+      {
+        "from": "claim-ziwei-tianfu-placement",
+        "to": "evidence-950a1eef9cb45c96",
+        "type": "authoritative_artifact"
+      },
+      {
+        "from": "domain-ziwei-tianfu-placement",
+        "to": "blocker-palace-semantic-identity",
+        "type": "blocked_by"
+      },
+      {
+        "from": "domain-ziwei-tianfu-placement",
+        "to": "domain-fourteen-major-stars",
+        "type": "dependency"
+      },
+      {
+        "from": "domain-palace-layout",
+        "to": "domain-fourteen-major-stars",
+        "type": "dependency"
+      },
+      {
+        "from": "domain-fourteen-major-stars",
+        "to": "claim-fourteen-major-stars",
+        "type": "has_claim"
+      },
+      {
+        "from": "domain-fourteen-major-stars",
+        "to": "evidence-82a90de6b5451fb1",
+        "type": "implemented_by"
+      },
+      {
+        "from": "domain-fourteen-major-stars",
+        "to": "evidence-92b778e866476d0d",
+        "type": "implemented_by"
+      },
+      {
+        "from": "domain-fourteen-major-stars",
+        "to": "evidence-bde776598a188819",
+        "type": "tested_by"
+      },
+      {
+        "from": "domain-fourteen-major-stars",
+        "to": "evidence-4baeadde46d51f48",
+        "type": "tested_by"
+      },
+      {
+        "from": "domain-fourteen-major-stars",
+        "to": "evidence-b5f44575cc448d24",
+        "type": "tested_by"
+      },
+      {
+        "from": "claim-fourteen-major-stars",
+        "to": "evidence-b4782ca75a418486",
+        "type": "authoritative_artifact"
+      },
+      {
+        "from": "claim-fourteen-major-stars",
+        "to": "evidence-62cfb9b2edc01ef2",
+        "type": "authoritative_artifact"
+      },
+      {
+        "from": "claim-fourteen-major-stars",
+        "to": "evidence-3c26a30d542986f8",
+        "type": "authoritative_artifact"
+      },
+      {
+        "from": "domain-fourteen-major-stars",
+        "to": "blocker-palace-semantic-identity",
+        "type": "blocked_by"
+      },
+      {
+        "from": "domain-fourteen-major-stars",
+        "to": "domain-four-transformations",
+        "type": "dependency"
+      },
+      {
+        "from": "domain-four-transformations",
+        "to": "claim-four-transformations",
+        "type": "has_claim"
+      },
+      {
+        "from": "domain-four-transformations",
+        "to": "evidence-f5f61dfd4f9d0ca4",
+        "type": "implemented_by"
+      },
+      {
+        "from": "domain-four-transformations",
+        "to": "evidence-b4575766d43f3685",
+        "type": "implemented_by"
+      },
+      {
+        "from": "domain-four-transformations",
+        "to": "evidence-42bf8be0a93eeb6e",
+        "type": "tested_by"
+      },
+      {
+        "from": "domain-four-transformations",
+        "to": "evidence-0e986907e9e3425b",
+        "type": "tested_by"
+      },
+      {
+        "from": "domain-four-transformations",
+        "to": "evidence-6dd0f90850581b61",
+        "type": "tested_by"
+      },
+      {
+        "from": "claim-four-transformations",
+        "to": "evidence-f724298f859cc648",
+        "type": "authoritative_artifact"
+      },
+      {
+        "from": "domain-four-transformations",
+        "to": "blocker-four-transform-source-witness",
+        "type": "blocked_by"
+      },
+      {
+        "from": "domain-ming-shen",
+        "to": "domain-minor-stars",
+        "type": "dependency"
+      },
+      {
+        "from": "domain-input-calendar-time",
+        "to": "domain-minor-stars",
+        "type": "dependency"
+      },
+      {
+        "from": "domain-minor-stars",
+        "to": "claim-minor-stars",
+        "type": "has_claim"
+      },
+      {
+        "from": "domain-minor-stars",
+        "to": "evidence-a68101856b2ec351",
+        "type": "implemented_by"
+      },
+      {
+        "from": "domain-minor-stars",
+        "to": "evidence-0128ec88f86f4c92",
+        "type": "implemented_by"
+      },
+      {
+        "from": "domain-minor-stars",
+        "to": "evidence-42bf8be0a93eeb6e",
+        "type": "tested_by"
+      },
+      {
+        "from": "domain-minor-stars",
+        "to": "evidence-0e986907e9e3425b",
+        "type": "tested_by"
+      },
+      {
+        "from": "domain-minor-stars",
+        "to": "evidence-50c9381b9fb0fc7c",
+        "type": "tested_by"
+      },
+      {
+        "from": "claim-minor-stars",
+        "to": "evidence-f724298f859cc648",
+        "type": "authoritative_artifact"
+      },
+      {
+        "from": "domain-minor-stars",
+        "to": "blocker-minor-star-source-witness",
+        "type": "blocked_by"
+      },
+      {
+        "from": "domain-palace-layout",
+        "to": "domain-palace-relations",
+        "type": "dependency"
+      },
+      {
+        "from": "domain-fourteen-major-stars",
+        "to": "domain-palace-relations",
+        "type": "dependency"
+      },
+      {
+        "from": "domain-minor-stars",
+        "to": "domain-palace-relations",
+        "type": "dependency"
+      },
+      {
+        "from": "domain-four-transformations",
+        "to": "domain-palace-relations",
+        "type": "dependency"
+      },
+      {
+        "from": "domain-palace-relations",
+        "to": "claim-palace-relations",
+        "type": "has_claim"
+      },
+      {
+        "from": "domain-palace-relations",
+        "to": "evidence-e12a128d18bbe6ff",
+        "type": "implemented_by"
+      },
+      {
+        "from": "domain-palace-relations",
+        "to": "evidence-5254e56cf43b83aa",
+        "type": "implemented_by"
+      },
+      {
+        "from": "domain-palace-relations",
+        "to": "evidence-6dd0f90850581b61",
+        "type": "tested_by"
+      },
+      {
+        "from": "domain-palace-relations",
+        "to": "evidence-700d12219cfba927",
+        "type": "tested_by"
+      },
+      {
+        "from": "domain-palace-relations",
+        "to": "evidence-59054a4879b48215",
+        "type": "tested_by"
+      },
+      {
+        "from": "claim-palace-relations",
+        "to": "evidence-f724298f859cc648",
+        "type": "authoritative_artifact"
+      },
+      {
+        "from": "domain-palace-relations",
+        "to": "blocker-palace-semantic-identity",
+        "type": "blocked_by"
+      },
+      {
+        "from": "domain-input-calendar-time",
+        "to": "domain-decade-year-fortune",
+        "type": "dependency"
+      },
+      {
+        "from": "domain-palace-layout",
+        "to": "domain-decade-year-fortune",
+        "type": "dependency"
+      },
+      {
+        "from": "domain-decade-year-fortune",
+        "to": "claim-decade-year-fortune",
+        "type": "has_claim"
+      },
+      {
+        "from": "domain-decade-year-fortune",
+        "to": "evidence-ec6296fabb119a1c",
+        "type": "implemented_by"
+      },
+      {
+        "from": "domain-decade-year-fortune",
+        "to": "evidence-700d12219cfba927",
+        "type": "tested_by"
+      },
+      {
+        "from": "claim-decade-year-fortune",
+        "to": "evidence-f724298f859cc648",
+        "type": "authoritative_artifact"
+      },
+      {
+        "from": "domain-decade-year-fortune",
+        "to": "blocker-timing-domain-absent",
+        "type": "blocked_by"
+      },
+      {
+        "from": "domain-fourteen-major-stars",
+        "to": "domain-fixture-external-validation",
+        "type": "dependency"
+      },
+      {
+        "from": "domain-four-transformations",
+        "to": "domain-fixture-external-validation",
+        "type": "dependency"
+      },
+      {
+        "from": "domain-minor-stars",
+        "to": "domain-fixture-external-validation",
+        "type": "dependency"
+      },
+      {
+        "from": "domain-fixture-external-validation",
+        "to": "claim-fixture-external-validation",
+        "type": "has_claim"
+      },
+      {
+        "from": "domain-fixture-external-validation",
+        "to": "evidence-ff808732e6ed7149",
+        "type": "implemented_by"
+      },
+      {
+        "from": "domain-fixture-external-validation",
+        "to": "evidence-e3cf8a07d890b438",
+        "type": "tested_by"
+      },
+      {
+        "from": "domain-fixture-external-validation",
+        "to": "evidence-50c9381b9fb0fc7c",
+        "type": "tested_by"
+      },
+      {
+        "from": "domain-fixture-external-validation",
+        "to": "evidence-4ebd4187a51d8fa2",
+        "type": "tested_by"
+      },
+      {
+        "from": "claim-fixture-external-validation",
+        "to": "evidence-0edc06196258fc33",
+        "type": "authoritative_artifact"
+      },
+      {
+        "from": "claim-fixture-external-validation",
+        "to": "evidence-f724298f859cc648",
+        "type": "authoritative_artifact"
+      },
+      {
+        "from": "domain-fixture-external-validation",
+        "to": "blocker-external-oracle-identity",
+        "type": "blocked_by"
+      },
+      {
+        "from": "domain-fixture-external-validation",
+        "to": "domain-source-claim-provenance",
+        "type": "dependency"
+      },
+      {
+        "from": "domain-source-claim-provenance",
+        "to": "claim-source-claim-provenance",
+        "type": "has_claim"
+      },
+      {
+        "from": "domain-source-claim-provenance",
+        "to": "evidence-9b66b10223c206d0",
+        "type": "implemented_by"
+      },
+      {
+        "from": "domain-source-claim-provenance",
+        "to": "evidence-f87e9ca1552f1b77",
+        "type": "tested_by"
+      },
+      {
+        "from": "domain-source-claim-provenance",
+        "to": "evidence-b81e5379f88c5cda",
+        "type": "tested_by"
+      },
+      {
+        "from": "domain-source-claim-provenance",
+        "to": "evidence-0c32cd15c10bd966",
+        "type": "tested_by"
+      },
+      {
+        "from": "claim-source-claim-provenance",
+        "to": "evidence-946b4a0c9d9e4892",
+        "type": "authoritative_artifact"
+      },
+      {
+        "from": "claim-source-claim-provenance",
+        "to": "evidence-cacc792cf1d214a2",
+        "type": "authoritative_artifact"
+      },
+      {
+        "from": "claim-source-claim-provenance",
+        "to": "evidence-2749e68248d5eb82",
+        "type": "authoritative_artifact"
+      },
+      {
+        "from": "domain-source-claim-provenance",
+        "to": "blocker-source-identity-unresolved",
+        "type": "blocked_by"
+      },
+      {
+        "from": "domain-source-claim-provenance",
+        "to": "domain-readiness-activation-boundary",
+        "type": "dependency"
+      },
+      {
+        "from": "domain-palace-relations",
+        "to": "domain-readiness-activation-boundary",
+        "type": "dependency"
+      },
+      {
+        "from": "domain-readiness-activation-boundary",
+        "to": "claim-readiness-activation-boundary",
+        "type": "has_claim"
+      },
+      {
+        "from": "domain-readiness-activation-boundary",
+        "to": "evidence-ec6296fabb119a1c",
+        "type": "implemented_by"
+      },
+      {
+        "from": "domain-readiness-activation-boundary",
+        "to": "evidence-1ed5b31440f2078c",
+        "type": "implemented_by"
+      },
+      {
+        "from": "domain-readiness-activation-boundary",
+        "to": "evidence-34c3076fad7d57a9",
+        "type": "tested_by"
+      },
+      {
+        "from": "domain-readiness-activation-boundary",
+        "to": "evidence-59054a4879b48215",
+        "type": "tested_by"
+      },
+      {
+        "from": "domain-readiness-activation-boundary",
+        "to": "evidence-3a6efb8428ec1b11",
+        "type": "tested_by"
+      },
+      {
+        "from": "claim-readiness-activation-boundary",
+        "to": "evidence-f724298f859cc648",
+        "type": "authoritative_artifact"
+      },
+      {
+        "from": "claim-readiness-activation-boundary",
+        "to": "evidence-2749e68248d5eb82",
+        "type": "authoritative_artifact"
+      },
+      {
+        "from": "claim-readiness-activation-boundary",
+        "to": "evidence-d7560f409b4a1067",
+        "type": "authoritative_artifact"
+      },
+      {
+        "from": "domain-readiness-activation-boundary",
+        "to": "blocker-source-identity-unresolved",
+        "type": "blocked_by"
+      },
+      {
+        "from": "blocker-calendar-time-source-identity",
+        "to": "backlog-p0-palace-identity",
+        "type": "backlog_dependency"
+      },
+      {
+        "from": "blocker-external-oracle-identity",
+        "to": "backlog-p0-source-claim-boundary",
+        "type": "backlog_dependency"
+      },
+      {
+        "from": "backlog-p0-source-claim-boundary",
+        "to": "backlog-p1-external-oracle",
+        "type": "backlog_dependency"
+      },
+      {
+        "from": "backlog-p0-source-claim-boundary",
+        "to": "backlog-p1-four-transform",
+        "type": "backlog_dependency"
+      },
+      {
+        "from": "backlog-p0-source-claim-boundary",
+        "to": "backlog-p1-minor-stars",
+        "type": "backlog_dependency"
+      },
+      {
+        "from": "backlog-p0-palace-identity",
+        "to": "backlog-p2-timing",
+        "type": "backlog_dependency"
+      },
+      {
+        "from": "backlog-p0-palace-identity",
+        "to": "backlog-deferred-production-selection",
+        "type": "backlog_dependency"
+      },
+      {
+        "from": "blocker-palace-semantic-identity",
+        "to": "backlog-p0-palace-identity",
+        "type": "backlog_resolution"
+      },
+      {
+        "from": "blocker-source-identity-unresolved",
+        "to": "backlog-p0-source-claim-boundary",
+        "type": "backlog_resolution"
+      },
+      {
+        "from": "blocker-external-oracle-identity",
+        "to": "backlog-p1-external-oracle",
+        "type": "backlog_resolution"
+      },
+      {
+        "from": "blocker-four-transform-source-witness",
+        "to": "backlog-p1-four-transform",
+        "type": "backlog_resolution"
+      },
+      {
+        "from": "blocker-minor-star-source-witness",
+        "to": "backlog-p1-minor-stars",
+        "type": "backlog_resolution"
+      },
+      {
+        "from": "blocker-timing-domain-absent",
+        "to": "backlog-p2-timing",
+        "type": "backlog_resolution"
+      },
+      {
+        "from": "blocker-palace-semantic-identity",
+        "to": "backlog-deferred-production-selection",
+        "type": "backlog_resolution"
+      }
+    ]
+  },
+  "authoritativeLinks": {
+    "majorStarReconciliation": "artifacts/ziwei-major-star-claim-readiness-reconciliation-v0/complete.json",
+    "tianfuConvention": "artifacts/ziwei-tianfu-convention-provenance-v0/complete.json",
+    "sourceIdentityAudit": "artifacts/ziwei-source-identity-claim-boundary-audit-v1/complete.json"
+  },
+  "protectedActualBytes": {
+    "src/ziwei/ziweiResolver.js": "5336f15968b4c618d9b1248b0967deab22b778f48996cb60939ab19cabadf513",
+    "src/ziwei/ziweiContract.js": "716875185d87da22ceef5f66f32899359642646367133f6c9f4bf87718bf130e",
+    "test/ziweiResolver.test.js": "46bb9c66d698d39922f372c271981f025549be8cbcef7e5476da77a24ef37511",
+    "test/ziweiCoreContract.test.js": "a58f7f4de37dfeb77a82cc373781eb5c0bb87b38de2ca080ef2326cfbf9971e9",
+    "artifacts/ziwei-readiness-baseline-v1/complete.json": "a20c6b25c6fb8844f93f534dfb91923bf78f1a74e24393e5b1c41a5deb773a2f",
+    "src/ziwei/mingShenCleanRuleSeedPilot.js": "84cc19ba2d6027f5b0c07747c6763fa5553935337230089c740395b121b89a0e",
+    "test/ziweiMingShenCleanRuleSeedPilot.test.js": "9cb98aaaf822b400eb244743b23c35817b2b356dd1b4ebc1df80ed5554bf4e14",
+    "test/ziweiMingShenSeedAcceptance.test.js": "619f5ca096108c41e02f44a9324cff925788d8ebf8ce46b514fba1265a0fd3ef",
+    "artifacts/ziwei-ming-shen-seed-acceptance-v0/complete.json": "65b20d4d28179e57f680f22ecf9e1c3d335ca27276f7d8a8681b09097458ea79",
+    "artifacts/ziwei-ming-shen-clean-rule-seed-pilot-v0/complete.json": "f3668b02f953f37b9245e320f65b914ad8ed471cce40f08fa27d070834c6bce1",
+    "src/ziwei/fiveElementResolver.js": "7af13da1e88dbe41e4a239d5359a0f49d05316235e668c7bd1302a3de8825144",
+    "src/ziwei/fiveElementBureauCleanRuleSeedPilot.js": "f01c9104abfb9d5218dc563ac94cd1c9d88f8823546a51bc6ce3ac82b2a1424d",
+    "test/ziweiFiveElementBureauCleanRuleSeedPilot.test.js": "dd85cb0e7410f4ba9f8fd71f284899dfb79374ff64ae09f4f9ef8fd92174a70c",
+    "test/ziweiFiveElementBureauSeedAcceptance.test.js": "0e5bd9efcf0bf6fc3eea9f18dd48f745262ed17259331e4ddfab106196cd5c7a",
+    "artifacts/ziwei-five-element-bureau-clean-rule-seed-acceptance-v0/complete.json": "d98f8cdac11ca3e4ed310009aaaf9db02ef96be2182de09282d1c51563f570a0",
+    "artifacts/ziwei-five-element-bureau-clean-rule-seed-pilot-v0/complete.json": "64fa0e94595bbaf59a4e31b21ab8f78643ff27afbe7a3218df8a2507f897f878",
+    "src/ziwei/ziweiPalaceContext.js": "633b3b3d586a5e9a2f7cf855fad1937cb6b4115ac4271c5bf8d7472d77ad9964",
+    "src/ziwei/palaceRelationRules.js": "afd4f2ef13da4a13f7dece79e801dab6867e5cd1ee30d2e588dce19935c9aaaa",
+    "test/ziweiContract.test.js": "26e51f2063a146f5a44e3dfb8b58a93fef81f1a9586c7b0b88b9ed2a45d0846f",
+    "test/ziweiPipeline.test.js": "805745cad6a6c15e06a156a504ad6172296d0b309348c2e1db2432ccab6125cc",
+    "src/ziwei/starPlacementRules.js": "1edb93929e441b009e33abd8179e72cf5b216e7378a40813657ea52dc1a0759c",
+    "src/ziwei/ziweiStarPlacementCleanRuleSeedPilot.js": "bdfc1c29143022eaa2531a3af4ab7ec3844bdf0868b5b27b0d3497c5c4f650d2",
+    "src/ziwei/tianfuStarPlacementCleanRuleSeedPilot.js": "d4394a26dc381401a9ae93a6a55668af051e3ad4877266e96c89d58c85357430",
+    "src/ziwei/tianfuPlacementDiscrepancyRelations.js": "bb9665ede35e94fa086b7ded511737ac6b4fadc968a5b33ee4f051cc7d49b9df",
+    "test/ziweiZiweiStarPlacementCleanRuleSeedPilot.test.js": "f000e10801a3c3eef70d05baa7a7a9fb4e0f6138ece18b5424ad30cf62ddc591",
+    "test/ziweiZiweiStarPlacementAcceptance.test.js": "d5007fb9c5557561c6900954e18b7c934a64e100e8289bc9a690ecca231d9812",
+    "test/ziweiTianfuStarPlacementCleanRuleSeedPilot.test.js": "d0110a5e6e9e2bb06592822f4f630a988c7e83d82e7b7a9a92e2c948457b65f8",
+    "test/ziweiTianfuConventionProvenance.test.js": "e2804cc53f5160983ae7f835532d2ee4f18a6926dc017f65225c5acb289c9ae3",
+    "test/ziweiZixingTianfuSourceChain.test.js": "d4955db4f2669bd0d873bd048a50236a88730de91bef6b6c5b0b86f5c8c604f0",
+    "artifacts/ziwei-zixing-tianfu-source-chain-v0/complete.json": "fd46f81cd50becd5f2f5f1c31e98968e447ab11393a0b267ed362022852db43e",
+    "artifacts/ziwei-tianfu-convention-provenance-v0/complete.json": "f93cb1ca021ed8c267dd8a22c16aac76e5f505c760ac4b9fd52904bfd687d5a2",
+    "artifacts/ziwei-ziwei-star-placement-clean-rule-seed-acceptance-v0/complete.json": "6c07ae4084ae1957c5082bdf2fc6cfeb9c9af35e02c404be74ce53532960c953",
+    "src/ziwei/starResolver.js": "c9797f2405df6afeb336226bcbff66e199e856d181e71e2317a9794dba0a6ad7",
+    "test/ziweiMajorStarClaimReadinessReconciliation.test.js": "15893c905fbff61df7580c2567659b87a2df3b910ae9eacf05ddcebbfcec6981",
+    "test/ziweiMajorStarCoordinateProvenance.test.js": "fa8ffdb4501c789be14f46141022ca4cafe663e8dc11cd13febaa7cdaed02483",
+    "test/ziweiMajorStarSourceCorpusProvenance.test.js": "30e6df5c2877bc76f39656aeb88d63f89980ac07fd581d4f4199554cc2f08111",
+    "artifacts/ziwei-major-star-claim-readiness-reconciliation-v0/complete.json": "ff1874ebe1c0ed825defc1b6710a6a25cde1ed755f9fe83bdfa9296bc0890104",
+    "artifacts/ziwei-major-star-coordinate-provenance-v0/complete.json": "b928eb54c0dff947a7d8d3b02d013bffa68d6e9c6fa4f9b100ca10c56c73445b",
+    "artifacts/ziwei-major-star-source-corpus-provenance-v0/complete.json": "6220cdeedec43510358c9f10477771244f374b85844477575576efb36766fdaa",
+    "src/ziwei/transformationRules.js": "e602ab8611e846b53b9c1ffed2d2dbcb5b77afd13973187ee40d748370846e76",
+    "src/ziwei/transformationResolver.js": "ec47b97109d514fb5317e1e0dfb9fb195fa77429ab2d451b3de9a97897babe9d",
+    "test/transformationAndMinor.test.js": "61478fc918cb0f8bac3ff68867e036aa6b274c82e1acbdd975c65327bb08a083",
+    "src/ziwei/minorStarRules.js": "b7cdc5db61a1a70dae3a4a243b5bccc0c148488c4c8e9f81bcfc345e4e8a4be3",
+    "src/ziwei/minorStarResolver.js": "40bfa66f576027a5ef77374257da895bbe714c331f6ded6e004048f246bc3c7a",
+    "test/ziweiQualityBenchmark.test.js": "9a4b5284da2af11d7c53f24e46e9f8d68e3d7fda7d3b0c53b1a88e88b3cddbf5",
+    "test/ziweiPromptSafetyContract.test.js": "c3fbf19d4d93e6e39edd1b445e7375cb6c41bc03d39954654e7c5d2182465b2e",
+    "src/ziwei/externalZiweiFixtures.js": "c379c3d364ea8bdc1062f7a59f2f1b8f83de4762489a86a520733d9d288917cf",
+    "test/ziweiFixtureReconciliation.test.js": "397ac31dce507ee74a73438faba259f71e36f6713c80d0eea5ceb8659b514479",
+    "test/externalValidationRunner.test.js": "4de5478db198e4620072b9f2f993beb8f14e454dac1f7b8de640b4ee549b2b41",
+    "artifacts/ziwei-fixture-reconciliation-v1/complete.json": "e9c903b9d0e29691c9ce03009cb37413df9563dbcd78097e1f12626ab83e874c",
+    "src/ziwei/cleanRuleCorpusSourceSelection.js": "52bb80010f0f9061b0ddd9549a218ee79d98e69cb953d8c53e2f5b4c77c1eee1",
+    "test/ziweiOccurrenceProvenance.test.js": "801c1a20f76ab5701845363f87cd90fa3563d12287418e51c722a25a8cd9e3c5",
+    "test/ziweiSourceIdentityClaimBoundaryAudit.test.js": "8d41af4b4dd11a6b2387cb3ca66cfa0eb86f956061db18974b02387e35adcd6e",
+    "test/ziweiReadinessAdmissionBlockerAudit.test.js": "411d386049a5148c7dab65e9ffa8f0ecc37eb2059b058b22858dff4de2a2cc8c",
+    "artifacts/ziwei-occurrence-level-provenance-v0/complete.json": "ac9ba86a4ef211a785006823e01cfb7df2c8b548c0cf6848ea525a579d8dfa95",
+    "artifacts/ziwei-source-identity-claim-boundary-audit-v1/complete.json": "73cbc533d5c8897ff2452e50edec4b311bd2075f43215dd36f2d0cf8797d9840",
+    "artifacts/ziwei-readiness-admission-blocker-audit-v0/complete.json": "1c34908635e49c722e841ff1184c8942bd399106368c41f60ca1a2304b06f1bf",
+    "src/interpretationPrep/ziweiPromptAdapter.js": "6c0e59de0363a07a0bc9342e161e9b7d70747f1dd0077ee61b2a1149571a9a2f",
+    "test/ziweiReadinessBaseline.test.js": "5205197927f23e643046a719978bcb75ce816c6bee6b85be9f5f63cf8f070e9a",
+    "test/ziweiStructuralAdmissionGuardPilot.test.js": "7c9a647b0df7a9cd3613c566603c1dde608334cc09b758de47fd6b55fec090be",
+    "artifacts/ziwei-major-star-claim-readiness-reconciliation-v0/layeredReadiness.json": "2f683163e5db83f5e05491976e431253d80954e402f6e6bf8c7682565971e42d",
+    "artifacts/ziwei-major-star-claim-readiness-reconciliation-v0/claimLedger.json": "a66d9eb363d7b4de319f28cc8bbf6c74111da4eb3cbf14ebccc8cd74a502c83b",
+    "artifacts/ziwei-major-star-claim-readiness-reconciliation-v0/blockerRegistry.json": "877571538c554fff601d5fb72b07eeb2b28a209ec036c1a115c89aa26735aa0d"
+  },
+  "handoff": {
+    "coverage": "13 domains; implementation present/verified only within local declared scope; source and claim provenance remain partial/unresolved in most domains; readiness is blocked or research_only.",
+    "largestBlocker": "blocker-palace-semantic-identity plus blocker-source-identity-unresolved",
+    "nextThree": [
+      "궁 coordinate-semantic identity witness",
+      "occurrence source identity/claim boundary audit",
+      "외부 독립 oracle 및 사화/보조성 source witness"
+    ],
+    "sourceNeededWhen": "P0 identity/claim boundary is reviewed and a user-sourced immutable scan can satisfy the acquisition acceptance criteria.",
+    "verdict": "complete_ziwei_system_evidence_readiness_coverage_map_uncommitted"
+  },
+  "negativeContract": {
+    "mutations": [
+      "domain implementation status",
+      "backlog priority",
+      "graph dependency",
+      "claim sourceRefs",
+      "domain readiness"
+    ],
+    "expected": "checker rejects every mutation"
+  }
+}
