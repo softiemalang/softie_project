@@ -12,6 +12,9 @@ const mutations = [
   ['rotation coverage', x => { x.comparison.byStar.find(row => row.starId === 'taiyin').normalizedMatchCount = 299 }],
   ['candidate axis', x => { x.transformationSearch.axes.rotations = [0] }],
   ['semantic boundary', x => { x.promotionBoundary.semanticIdentity = 'proven' }],
+  ['input byte identity', x => { x.artifactIdentity.inputs[0].byteSha256 = '1'.repeat(64) }],
+  ['generation base identity', x => { x.artifactIdentity.generation.baseHead = '0'.repeat(40) }],
+  ['self-referential included commit', x => { x.artifactIdentity.generation.includedCommit = x.artifactIdentity.generation.baseHead }],
   ['artifact identity', x => { x.artifactIdentity.artifactPayloadSha256 = '0'.repeat(64) }],
 ]
 

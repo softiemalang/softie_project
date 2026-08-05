@@ -35,6 +35,10 @@ Ziwei-series results are raw exact for all 5 × 150 observations per edition. Ti
 
 The finite search records rotations 0–11, same/reverse traversal, affine reflection, branch-base shifts 0–11, four page/table reading orders, zero-/one-based index conventions, and the three root-convention labels. Exact-fit candidates and non-fit counterexamples are materialized; no candidate is selected by manually tuning an individual case. The first raw Tianfu counterexample is retained in `minimumCounterexamples`.
 
+## Artifact identity and validation boundary
+
+`basisHead` and `artifactIdentity.generation.baseHead` preserve the historical materialization basis; neither is required to equal the checkout HEAD that later contains the artifact. `observedHead` is diagnostic checkout provenance only. The materializer therefore does not gate on current HEAD, and the checker relies on the shared `artifact-identity-v1` contract: the base commit must remain a resolvable Git object, while actual input bytes, materializer/schema version, normalized payload hash, and `includedCommit: null` remain fixed. A later artifact-including commit or unrelated commit is valid; an input/source identity or payload change is stale/invalid. The CLI checker also verifies `complete.json.integrity.json` against the actual artifact bytes.
+
 ## Validation and boundary
 
 The materializer is run twice and the output bytes must match. The positive checker validates PDF identity, page/encryption metadata, 150-row and 3,600-occurrence coverage, sourceRefs and codeRefs, normalized rules, finite search, verdict boundaries, artifact identity, and byte-equivalent re-materialization. The negative checker mutates required hashes, rows, rules, references, counts, search axes, semantic boundary, and artifact identity and requires every mutation to fail.

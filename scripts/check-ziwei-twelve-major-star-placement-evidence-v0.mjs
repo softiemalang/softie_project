@@ -6,7 +6,12 @@ import { TARGET_STARS } from '../src/ziwei/twelveMajorStarPlacementEvidence.js'
 import { BASIS_HEAD, MATERIALIZER_VERSION, SCHEMA, buildArtifact, canonicalJson } from './materialize-ziwei-twelve-major-star-placement-evidence-v0.mjs'
 
 const sha256 = bytes => createHash('sha256').update(bytes).digest('hex')
-export async function checkArtifact(candidate, root = resolve(new URL('..', import.meta.url).pathname)) {
+const checkIntegritySidecar = (sidecar, bytes) => [
+  ...(sidecar?.schemaVersion === SCHEMA ? [] : ['integrity sidecar schema mismatch']),
+  ...(sidecar?.artifactByteSha256 === sha256(bytes) ? [] : ['integrity sidecar byte hash mismatch']),
+  ...(sidecar?.artifactByteSha256Scope === 'UTF-8 bytes including final LF' ? [] : ['integrity sidecar hash scope mismatch']),
+]
+export async function checkArtifact(candidate, root = resolve(new URL('..', import.meta.url).pathname), sidecar = null, artifactBytes = null) {
   const expected = await buildArtifact(); const errors = []
   if (candidate.schemaVersion !== SCHEMA || candidate.basisHead !== BASIS_HEAD || candidate.verdictToken !== 'complete_ziwei_twelve_major_star_placement_evidence_without_promotion') errors.push('identity_or_verdict')
   if (candidate.source?.editions?.mingNanyang?.actualSha256 !== '04e184c4a52cb042dc885c6ccc9135d94ab25de62007506198ee979a33e66bfc' || candidate.source?.editions?.nanbeishanren?.actualSha256 !== '4786a94ab454acdabf9716d7c0db4756dbcbde99a88bc45fda254863c1961023') errors.push('pdf_identity')
@@ -25,7 +30,8 @@ export async function checkArtifact(candidate, root = resolve(new URL('..', impo
   for (const item of candidate.source.editions ? [] : []) errors.push(item)
   const identityErrors = checkArtifactIdentity(candidate, { root, artifactId: SCHEMA, materializerPath: `scripts/materialize-${SCHEMA}.mjs`, materializerVersion: MATERIALIZER_VERSION })
   errors.push(...identityErrors)
+  if (sidecar) errors.push(...checkIntegritySidecar(sidecar, artifactBytes))
   return [...new Set(errors)]
 }
 
-if (process.argv[1] === new URL(import.meta.url).pathname) { const path = resolve(process.argv[2] || `artifacts/${SCHEMA}/complete.json`); const candidate = JSON.parse(await readFile(path, 'utf8')); const failures = await checkArtifact(candidate); console.log(JSON.stringify({ pass: failures.length === 0, failures, artifactByteSha256: sha256(await readFile(path)) }, null, 2)); if (failures.length) process.exitCode = 1 }
+if (process.argv[1] === new URL(import.meta.url).pathname) { const path = resolve(process.argv[2] || `artifacts/${SCHEMA}/complete.json`); const bytes = await readFile(path); const candidate = JSON.parse(bytes); let sidecar = null; try { sidecar = JSON.parse(await readFile(`${path}.integrity.json`, 'utf8')) } catch { /* CLI artifact packages must carry their sidecar */ } const failures = await checkArtifact(candidate, undefined, sidecar ?? {}, bytes); console.log(JSON.stringify({ pass: failures.length === 0, failures, artifactByteSha256: sha256(bytes) }, null, 2)); if (failures.length) process.exitCode = 1 }

@@ -138,7 +138,6 @@ function searchSummary(rows, occurrencesByStar) {
 }
 
 export async function buildArtifact() {
-  if (git(['rev-parse', 'HEAD']) !== BASIS_HEAD) throw new Error(`basis HEAD mismatch; expected ${BASIS_HEAD}`)
   const pdfs = { mingNanyang: await verifyPdf(MING_PDF, PDF_IDENTITIES.mingNanyang), nanbeishanren: await verifyPdf(NB_PDF, PDF_IDENTITIES.nanbeishanren) }
   const files = [
     { path: 'src/ziwei/starPlacementRules.js', sha256: await currentSha('src/ziwei/starPlacementRules.js'), symbols: ['calculateZiweiBranch:22-42', 'calculateTianfuBranch:47-52', 'ZIWEI_SERIES_OFFSETS:56-63', 'TIANFU_SERIES_OFFSETS:67-75'] },
