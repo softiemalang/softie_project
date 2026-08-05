@@ -1,0 +1,24 @@
+{
+  "blockers": [
+    "blocker-direct-rule-absent",
+    "blocker-palace-semantic-identity"
+  ],
+  "conclusions": [
+    "14 placement claims are normalized at coordinate-evidence level only.",
+    "紫微 is exact within scope; 天府 has a verified transform with unresolved semantics; 12 stars remain source-unresolved.",
+    "219/219 corpus review has gap 0 and does not create direct rules for the 12 unresolved stars."
+  ],
+  "mustNotDo": [
+    "interpretation",
+    "ranking or weighting",
+    "production rule change",
+    "API/schema/readiness/grounding/activation change"
+  ],
+  "requiredBeforeProductionChoice": [
+    "direct rules for 12 unresolved stars",
+    "shared palace label/ordinal correspondence",
+    "independent semantic review",
+    "explicit authorized production decision"
+  ],
+  "verdictToken": "complete_ziwei_major_star_claim_readiness_reconciliation_evidence_uncommitted"
+}

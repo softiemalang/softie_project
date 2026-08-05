@@ -1,0 +1,106 @@
+[
+  {
+    "artifactRef": {
+      "byteSha256": "a20c6b25c6fb8844f93f534dfb91923bf78f1a74e24393e5b1c41a5deb773a2f",
+      "id": "artifact-readiness-baseline",
+      "locator": null,
+      "path": "artifacts/ziwei-readiness-baseline-v1/complete.json"
+    },
+    "assertion": "ziwei_readiness_baseline_partial_unverified",
+    "evidenceClass": "readiness_assertion",
+    "id": "ev-readiness-baseline",
+    "scope": "baseline only; not star truth"
+  },
+  {
+    "artifactRef": {
+      "byteSha256": "6220cdeedec43510358c9f10477771244f374b85844477575576efb36766fdaa",
+      "id": "artifact-source-corpus",
+      "locator": null,
+      "path": "artifacts/ziwei-major-star-source-corpus-provenance-v0/complete.json"
+    },
+    "assertion": "219/219 direct review; gap 0",
+    "evidenceClass": "source_corpus_provenance",
+    "id": "ev-source-corpus-219-pages",
+    "source": {
+      "gap": 0,
+      "ocr": "exploration_only_not_canonical",
+      "pageCount": 219,
+      "pdfSha256": "4786a94ab454acdabf9716d7c0db4756dbcbde99a88bc45fda254863c1961023",
+      "reviewedPages": 219
+    }
+  },
+  {
+    "artifactRef": {
+      "byteSha256": "b928eb54c0dff947a7d8d3b02d013bffa68d6e9c6fa4f9b100ca10c56c73445b",
+      "id": "artifact-coordinate-provenance",
+      "locator": null,
+      "path": "artifacts/ziwei-major-star-coordinate-provenance-v0/complete.json"
+    },
+    "assertion": "紫微 150/150 raw; 天府 0/150 raw and 150/150 rotation-06 residual 0",
+    "evidenceClass": "coordinate_provenance",
+    "id": "ev-coordinate-provenance"
+  },
+  {
+    "artifactRef": {
+      "byteSha256": "2b3858b69711bd4ec97c02324a4d26865a894879806b8be1e87878ccb5ac8acd",
+      "id": "artifact-tianfu-discrepancy",
+      "locator": null,
+      "path": "artifacts/ziwei-tianfu-placement-discrepancy-analysis-v0/complete.json"
+    },
+    "assertion": "existing baseline 25 match / 125 mismatch; first divergence integrated-bureau-2-day-01",
+    "evidenceClass": "discrepancy_analysis",
+    "id": "ev-tianfu-discrepancy"
+  },
+  {
+    "artifactRef": {
+      "byteSha256": "fd46f81cd50becd5f2f5f1c31e98968e447ab11393a0b267ed362022852db43e",
+      "id": "artifact-source-chain",
+      "locator": null,
+      "path": "artifacts/ziwei-zixing-tianfu-source-chain-v0/complete.json"
+    },
+    "assertion": "150-row 紫微→天府 chain; exact Ziwei and transform-equivalent Tianfu",
+    "evidenceClass": "source_chain",
+    "id": "ev-source-chain"
+  },
+  {
+    "artifactRef": {
+      "byteSha256": "f93cb1ca021ed8c267dd8a22c16aac76e5f505c760ac4b9fd52904bfd687d5a2",
+      "id": "artifact-tianfu-convention",
+      "locator": null,
+      "path": "artifacts/ziwei-tianfu-convention-provenance-v0/complete.json"
+    },
+    "assertion": "rotation-06 and source-base-direction each 150/150; semantic identity unresolved",
+    "evidenceClass": "convention_provenance",
+    "id": "ev-convention"
+  },
+  {
+    "artifactRef": {
+      "byteSha256": "1edb93929e441b009e33abd8179e72cf5b216e7378a40813657ea52dc1a0759c",
+      "id": "production-star-placement-rules",
+      "locator": "calculateZiweiBranch; calculateTianfuBranch; star offsets",
+      "path": "src/ziwei/starPlacementRules.js"
+    },
+    "evidenceClass": "calculation_git_provenance",
+    "id": "ev-production-rule"
+  },
+  {
+    "artifactRef": {
+      "byteSha256": "c9797f2405df6afeb336226bcbff66e199e856d181e71e2317a9794dba0a6ad7",
+      "id": "production-star-resolver",
+      "locator": "resolve14MajorStars; palace lookup by branch",
+      "path": "src/ziwei/starResolver.js"
+    },
+    "evidenceClass": "calculation_git_provenance",
+    "id": "ev-production-resolver"
+  },
+  {
+    "artifactRef": {
+      "byteSha256": "716875185d87da22ceef5f66f32899359642646367133f6c9f4bf87718bf130e",
+      "id": "production-palace-contract",
+      "locator": "ZIWEI_PALACE_DEFINITIONS",
+      "path": "src/ziwei/ziweiContract.js"
+    },
+    "evidenceClass": "semantic_coordinate_boundary",
+    "id": "ev-palace-contract"
+  }
+]

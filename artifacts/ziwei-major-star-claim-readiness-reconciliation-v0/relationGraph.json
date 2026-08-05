@@ -1,0 +1,237 @@
+{
+  "nodeIds": [
+    "source-corpus-219-pages",
+    "source-pdf-pages-11-12",
+    "source-pdf-pages-13",
+    "ev-readiness-baseline",
+    "ev-source-corpus-219-pages",
+    "ev-coordinate-provenance",
+    "ev-tianfu-discrepancy",
+    "ev-source-chain",
+    "ev-convention",
+    "ev-production-rule",
+    "ev-production-resolver",
+    "ev-palace-contract",
+    "context-integrated-baseline-v0",
+    "context-tianfu-neutral-raw-v0",
+    "context-tianfu-rotation-06-v0",
+    "context-source-corpus-direct-review-v0",
+    "context-major-star-coordinate-domain-v0",
+    "claim-major-star-placement-ziwei",
+    "claim-major-star-placement-tianji",
+    "claim-major-star-placement-taiyang",
+    "claim-major-star-placement-wugu",
+    "claim-major-star-placement-tiandong",
+    "claim-major-star-placement-lianzhen",
+    "claim-major-star-placement-tianfu",
+    "claim-major-star-placement-taiyin",
+    "claim-major-star-placement-tanlang",
+    "claim-major-star-placement-jumen",
+    "claim-major-star-placement-tianxiang",
+    "claim-major-star-placement-tianliang",
+    "claim-major-star-placement-qisai",
+    "claim-major-star-placement-pojun",
+    "blocker-direct-rule-absent",
+    "blocker-palace-semantic-identity"
+  ],
+  "relations": [
+    {
+      "from": "ev-readiness-baseline",
+      "id": "relation-baseline-supported-by",
+      "to": "context-integrated-baseline-v0",
+      "type": "supported_by"
+    },
+    {
+      "from": "ev-source-corpus-219-pages",
+      "id": "relation-corpus-supported-by",
+      "to": "context-source-corpus-direct-review-v0",
+      "type": "supported_by"
+    },
+    {
+      "from": "claim-major-star-placement-ziwei",
+      "id": "relation-ziwei-exact",
+      "to": "ev-coordinate-provenance",
+      "type": "exact_match"
+    },
+    {
+      "from": "claim-major-star-placement-ziwei",
+      "id": "relation-ziwei-derived",
+      "to": "ev-source-corpus-219-pages",
+      "type": "derived_from"
+    },
+    {
+      "from": "claim-major-star-placement-tianfu",
+      "id": "relation-tianfu-transform",
+      "to": "ev-convention",
+      "type": "transform_equivalent"
+    },
+    {
+      "from": "claim-major-star-placement-tianfu",
+      "id": "relation-tianfu-context",
+      "to": "context-integrated-baseline-v0",
+      "type": "context_differs"
+    },
+    {
+      "from": "claim-major-star-placement-tianfu",
+      "id": "relation-tianfu-derived",
+      "to": "ev-source-chain",
+      "type": "derived_from"
+    },
+    {
+      "from": "claim-major-star-placement-tianji",
+      "id": "relation-claim-major-star-placement-tianji-unresolved",
+      "to": "blocker-direct-rule-absent",
+      "type": "unresolved_source"
+    },
+    {
+      "from": "claim-major-star-placement-taiyang",
+      "id": "relation-claim-major-star-placement-taiyang-unresolved",
+      "to": "blocker-direct-rule-absent",
+      "type": "unresolved_source"
+    },
+    {
+      "from": "claim-major-star-placement-wugu",
+      "id": "relation-claim-major-star-placement-wugu-unresolved",
+      "to": "blocker-direct-rule-absent",
+      "type": "unresolved_source"
+    },
+    {
+      "from": "claim-major-star-placement-tiandong",
+      "id": "relation-claim-major-star-placement-tiandong-unresolved",
+      "to": "blocker-direct-rule-absent",
+      "type": "unresolved_source"
+    },
+    {
+      "from": "claim-major-star-placement-lianzhen",
+      "id": "relation-claim-major-star-placement-lianzhen-unresolved",
+      "to": "blocker-direct-rule-absent",
+      "type": "unresolved_source"
+    },
+    {
+      "from": "claim-major-star-placement-taiyin",
+      "id": "relation-claim-major-star-placement-taiyin-unresolved",
+      "to": "blocker-direct-rule-absent",
+      "type": "unresolved_source"
+    },
+    {
+      "from": "claim-major-star-placement-tanlang",
+      "id": "relation-claim-major-star-placement-tanlang-unresolved",
+      "to": "blocker-direct-rule-absent",
+      "type": "unresolved_source"
+    },
+    {
+      "from": "claim-major-star-placement-jumen",
+      "id": "relation-claim-major-star-placement-jumen-unresolved",
+      "to": "blocker-direct-rule-absent",
+      "type": "unresolved_source"
+    },
+    {
+      "from": "claim-major-star-placement-tianxiang",
+      "id": "relation-claim-major-star-placement-tianxiang-unresolved",
+      "to": "blocker-direct-rule-absent",
+      "type": "unresolved_source"
+    },
+    {
+      "from": "claim-major-star-placement-tianliang",
+      "id": "relation-claim-major-star-placement-tianliang-unresolved",
+      "to": "blocker-direct-rule-absent",
+      "type": "unresolved_source"
+    },
+    {
+      "from": "claim-major-star-placement-qisai",
+      "id": "relation-claim-major-star-placement-qisai-unresolved",
+      "to": "blocker-direct-rule-absent",
+      "type": "unresolved_source"
+    },
+    {
+      "from": "claim-major-star-placement-pojun",
+      "id": "relation-claim-major-star-placement-pojun-unresolved",
+      "to": "blocker-direct-rule-absent",
+      "type": "unresolved_source"
+    },
+    {
+      "from": "claim-major-star-placement-ziwei",
+      "id": "relation-claim-major-star-placement-ziwei-semantic-block",
+      "to": "blocker-palace-semantic-identity",
+      "type": "blocked_by"
+    },
+    {
+      "from": "claim-major-star-placement-tianji",
+      "id": "relation-claim-major-star-placement-tianji-semantic-block",
+      "to": "blocker-palace-semantic-identity",
+      "type": "blocked_by"
+    },
+    {
+      "from": "claim-major-star-placement-taiyang",
+      "id": "relation-claim-major-star-placement-taiyang-semantic-block",
+      "to": "blocker-palace-semantic-identity",
+      "type": "blocked_by"
+    },
+    {
+      "from": "claim-major-star-placement-wugu",
+      "id": "relation-claim-major-star-placement-wugu-semantic-block",
+      "to": "blocker-palace-semantic-identity",
+      "type": "blocked_by"
+    },
+    {
+      "from": "claim-major-star-placement-tiandong",
+      "id": "relation-claim-major-star-placement-tiandong-semantic-block",
+      "to": "blocker-palace-semantic-identity",
+      "type": "blocked_by"
+    },
+    {
+      "from": "claim-major-star-placement-lianzhen",
+      "id": "relation-claim-major-star-placement-lianzhen-semantic-block",
+      "to": "blocker-palace-semantic-identity",
+      "type": "blocked_by"
+    },
+    {
+      "from": "claim-major-star-placement-tianfu",
+      "id": "relation-claim-major-star-placement-tianfu-semantic-block",
+      "to": "blocker-palace-semantic-identity",
+      "type": "blocked_by"
+    },
+    {
+      "from": "claim-major-star-placement-taiyin",
+      "id": "relation-claim-major-star-placement-taiyin-semantic-block",
+      "to": "blocker-palace-semantic-identity",
+      "type": "blocked_by"
+    },
+    {
+      "from": "claim-major-star-placement-tanlang",
+      "id": "relation-claim-major-star-placement-tanlang-semantic-block",
+      "to": "blocker-palace-semantic-identity",
+      "type": "blocked_by"
+    },
+    {
+      "from": "claim-major-star-placement-jumen",
+      "id": "relation-claim-major-star-placement-jumen-semantic-block",
+      "to": "blocker-palace-semantic-identity",
+      "type": "blocked_by"
+    },
+    {
+      "from": "claim-major-star-placement-tianxiang",
+      "id": "relation-claim-major-star-placement-tianxiang-semantic-block",
+      "to": "blocker-palace-semantic-identity",
+      "type": "blocked_by"
+    },
+    {
+      "from": "claim-major-star-placement-tianliang",
+      "id": "relation-claim-major-star-placement-tianliang-semantic-block",
+      "to": "blocker-palace-semantic-identity",
+      "type": "blocked_by"
+    },
+    {
+      "from": "claim-major-star-placement-qisai",
+      "id": "relation-claim-major-star-placement-qisai-semantic-block",
+      "to": "blocker-palace-semantic-identity",
+      "type": "blocked_by"
+    },
+    {
+      "from": "claim-major-star-placement-pojun",
+      "id": "relation-claim-major-star-placement-pojun-semantic-block",
+      "to": "blocker-palace-semantic-identity",
+      "type": "blocked_by"
+    }
+  ]
+}

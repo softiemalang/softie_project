@@ -1,0 +1,100 @@
+[
+  {
+    "claimId": "claim-major-star-placement-ziwei",
+    "notEligibleForInterpretation": true,
+    "reviewNote": "150/150 exact raw branch comparison within recorded coordinate context.",
+    "status": "evidence_sufficient_within_scope",
+    "sufficientWithinScope": true
+  },
+  {
+    "claimId": "claim-major-star-placement-tianji",
+    "notEligibleForInterpretation": true,
+    "reviewNote": "No admitted direct source rule in the reviewed 219-page corpus; no placement claim is promoted.",
+    "status": "source_scope_exhausted_unresolved",
+    "sufficientWithinScope": false
+  },
+  {
+    "claimId": "claim-major-star-placement-taiyang",
+    "notEligibleForInterpretation": true,
+    "reviewNote": "No admitted direct source rule in the reviewed 219-page corpus; no placement claim is promoted.",
+    "status": "source_scope_exhausted_unresolved",
+    "sufficientWithinScope": false
+  },
+  {
+    "claimId": "claim-major-star-placement-wugu",
+    "notEligibleForInterpretation": true,
+    "reviewNote": "No admitted direct source rule in the reviewed 219-page corpus; no placement claim is promoted.",
+    "status": "source_scope_exhausted_unresolved",
+    "sufficientWithinScope": false
+  },
+  {
+    "claimId": "claim-major-star-placement-tiandong",
+    "notEligibleForInterpretation": true,
+    "reviewNote": "No admitted direct source rule in the reviewed 219-page corpus; no placement claim is promoted.",
+    "status": "source_scope_exhausted_unresolved",
+    "sufficientWithinScope": false
+  },
+  {
+    "claimId": "claim-major-star-placement-lianzhen",
+    "notEligibleForInterpretation": true,
+    "reviewNote": "No admitted direct source rule in the reviewed 219-page corpus; no placement claim is promoted.",
+    "status": "source_scope_exhausted_unresolved",
+    "sufficientWithinScope": false
+  },
+  {
+    "claimId": "claim-major-star-placement-tianfu",
+    "notEligibleForInterpretation": true,
+    "reviewNote": "150/150 transform relation with residual 0; raw identity and palace semantics remain unresolved.",
+    "status": "transform_verified_semantics_unresolved",
+    "sufficientWithinScope": false
+  },
+  {
+    "claimId": "claim-major-star-placement-taiyin",
+    "notEligibleForInterpretation": true,
+    "reviewNote": "No admitted direct source rule in the reviewed 219-page corpus; no placement claim is promoted.",
+    "status": "source_scope_exhausted_unresolved",
+    "sufficientWithinScope": false
+  },
+  {
+    "claimId": "claim-major-star-placement-tanlang",
+    "notEligibleForInterpretation": true,
+    "reviewNote": "No admitted direct source rule in the reviewed 219-page corpus; no placement claim is promoted.",
+    "status": "source_scope_exhausted_unresolved",
+    "sufficientWithinScope": false
+  },
+  {
+    "claimId": "claim-major-star-placement-jumen",
+    "notEligibleForInterpretation": true,
+    "reviewNote": "No admitted direct source rule in the reviewed 219-page corpus; no placement claim is promoted.",
+    "status": "source_scope_exhausted_unresolved",
+    "sufficientWithinScope": false
+  },
+  {
+    "claimId": "claim-major-star-placement-tianxiang",
+    "notEligibleForInterpretation": true,
+    "reviewNote": "No admitted direct source rule in the reviewed 219-page corpus; no placement claim is promoted.",
+    "status": "source_scope_exhausted_unresolved",
+    "sufficientWithinScope": false
+  },
+  {
+    "claimId": "claim-major-star-placement-tianliang",
+    "notEligibleForInterpretation": true,
+    "reviewNote": "No admitted direct source rule in the reviewed 219-page corpus; no placement claim is promoted.",
+    "status": "source_scope_exhausted_unresolved",
+    "sufficientWithinScope": false
+  },
+  {
+    "claimId": "claim-major-star-placement-qisai",
+    "notEligibleForInterpretation": true,
+    "reviewNote": "No admitted direct source rule in the reviewed 219-page corpus; no placement claim is promoted.",
+    "status": "source_scope_exhausted_unresolved",
+    "sufficientWithinScope": false
+  },
+  {
+    "claimId": "claim-major-star-placement-pojun",
+    "notEligibleForInterpretation": true,
+    "reviewNote": "No admitted direct source rule in the reviewed 219-page corpus; no placement claim is promoted.",
+    "status": "source_scope_exhausted_unresolved",
+    "sufficientWithinScope": false
+  }
+]

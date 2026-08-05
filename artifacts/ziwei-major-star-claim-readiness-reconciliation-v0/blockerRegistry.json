@@ -1,0 +1,48 @@
+[
+  {
+    "affectedClaims": [
+      "claim-major-star-placement-tianji",
+      "claim-major-star-placement-taiyang",
+      "claim-major-star-placement-wugu",
+      "claim-major-star-placement-tiandong",
+      "claim-major-star-placement-lianzhen",
+      "claim-major-star-placement-taiyin",
+      "claim-major-star-placement-tanlang",
+      "claim-major-star-placement-jumen",
+      "claim-major-star-placement-tianxiang",
+      "claim-major-star-placement-tianliang",
+      "claim-major-star-placement-qisai",
+      "claim-major-star-placement-pojun"
+    ],
+    "category": "source_rule",
+    "id": "blocker-direct-rule-absent",
+    "requiredEvidence": "immutable source witness for each star rule with page/folio/table locator and actual-byte identity",
+    "resolutionCondition": "independent review confirms exact rule shape, inputs, outputs, and boundaries",
+    "title": "12 major stars lack an admitted direct original-text rule",
+    "whyNoBypass": "production offsets and indirect dependencies cannot substitute for direct source rule evidence"
+  },
+  {
+    "affectedClaims": [
+      "claim-major-star-placement-ziwei",
+      "claim-major-star-placement-tianji",
+      "claim-major-star-placement-taiyang",
+      "claim-major-star-placement-wugu",
+      "claim-major-star-placement-tiandong",
+      "claim-major-star-placement-lianzhen",
+      "claim-major-star-placement-tianfu",
+      "claim-major-star-placement-taiyin",
+      "claim-major-star-placement-tanlang",
+      "claim-major-star-placement-jumen",
+      "claim-major-star-placement-tianxiang",
+      "claim-major-star-placement-tianliang",
+      "claim-major-star-placement-qisai",
+      "claim-major-star-placement-pojun"
+    ],
+    "category": "semantic_coordinate",
+    "id": "blocker-palace-semantic-identity",
+    "requiredEvidence": "authoritative shared mapping between source branch tokens, palace labels, and repository ordinal/branch coordinates",
+    "resolutionCondition": "same mapping independently evidenced for source and production contexts",
+    "title": "palace label/ordinal identity evidence is absent",
+    "whyNoBypass": "numeric exactness or a transform does not establish that tokens name the same palace"
+  }
+]

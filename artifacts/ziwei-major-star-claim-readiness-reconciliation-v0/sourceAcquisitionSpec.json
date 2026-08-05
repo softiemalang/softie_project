@@ -1,0 +1,28 @@
+{
+  "editionComparison": [
+    "same input domain and row ordering",
+    "page/folio alignment",
+    "glyph and table orientation review",
+    "actual retrieved bytes and hash",
+    "preserve disagreement by edition/context"
+  ],
+  "externalSearch": "not performed",
+  "palaceCorrespondence": [
+    "source branch label to palace label",
+    "palace label to repository ordinal",
+    "branch token to production palace branch",
+    "direction/base conventions"
+  ],
+  "requiredDocumentTypes": [
+    "immutable scan/page-image witness",
+    "edition/title/author/editor/lineage record",
+    "page/folio/section locator",
+    "independent reviewer record"
+  ],
+  "requiredRuleForms": [
+    "explicit star-to-branch table",
+    "algorithmic progression with base/direction",
+    "input/output domain and boundary cases",
+    "relationship rule only when explicitly stated"
+  ]
+}

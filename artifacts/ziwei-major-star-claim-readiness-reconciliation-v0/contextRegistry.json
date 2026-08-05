@@ -1,0 +1,47 @@
+[
+  {
+    "count": {
+      "match": 25,
+      "mismatch": 125
+    },
+    "definition": "existing production comparison; preserved independently",
+    "denominator": 150,
+    "firstDivergence": "integrated-bureau-2-day-01",
+    "key": "integrated-baseline-v0"
+  },
+  {
+    "count": {
+      "exact": 0,
+      "mismatch": 150
+    },
+    "definition": "source and integrated branch ordinals without transform",
+    "denominator": 150,
+    "key": "tianfu-neutral-raw-v0"
+  },
+  {
+    "count": {
+      "residual": 0,
+      "transformEquivalent": 150
+    },
+    "definition": "source Tianfu ordinal = integrated Tianfu ordinal + 6 mod 12",
+    "denominator": 150,
+    "key": "tianfu-rotation-06-v0"
+  },
+  {
+    "count": {
+      "gap": 0,
+      "reviewed": 219
+    },
+    "definition": "all PDF pages reviewed; no page silently omitted",
+    "denominator": 219,
+    "key": "source-corpus-direct-review-v0"
+  },
+  {
+    "count": {
+      "rows": 150
+    },
+    "definition": "bureau 2..6 x lunar day 1..30, bureau then day",
+    "denominator": 150,
+    "key": "major-star-coordinate-domain-v0"
+  }
+]

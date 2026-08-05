@@ -1,0 +1,20 @@
+{
+  "activation": "experimental",
+  "calculation": "implemented_unverified",
+  "claim": "claim_level_packet_only; no stable truth claim promotion",
+  "grounding": "blocked",
+  "localResearchAudit": "allowed_within_coordinate_and_provenance_scope",
+  "mutationBoundary": {
+    "apiSchema": false,
+    "baseline": false,
+    "enum": false,
+    "existingReadiness": false,
+    "productionRule": false,
+    "tolerance": false
+  },
+  "productionSelection": "not_performed",
+  "relation": "implemented_unverified",
+  "semantic": "blocked_semantic_identity_insufficient",
+  "source": "partial_unverified",
+  "userInterpretation": "forbidden"
+}

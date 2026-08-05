@@ -1,0 +1,1241 @@
+{
+  "artifactIdentity": {
+    "artifactId": "ziwei-major-star-claim-readiness-reconciliation-v0",
+    "artifactPayloadSha256": "91c4d5f6757046c0602ebdfc347976bbfaafe751f287b843f6a167d1d1ccab4e",
+    "contractVersion": "artifact-identity-v1",
+    "generation": {
+      "baseHead": "77a17e7b25b330da7b339a1d92338bb53077218f",
+      "baseHeadSource": "git rev-parse HEAD at materialization",
+      "includedCommit": null,
+      "includedCommitSource": "unknown_at_generation; artifact may be included by a later commit"
+    },
+    "inputs": [
+      {
+        "byteSha256": "b928eb54c0dff947a7d8d3b02d013bffa68d6e9c6fa4f9b100ca10c56c73445b",
+        "path": "artifacts/ziwei-major-star-coordinate-provenance-v0/complete.json"
+      },
+      {
+        "byteSha256": "6220cdeedec43510358c9f10477771244f374b85844477575576efb36766fdaa",
+        "path": "artifacts/ziwei-major-star-source-corpus-provenance-v0/complete.json"
+      },
+      {
+        "byteSha256": "a20c6b25c6fb8844f93f534dfb91923bf78f1a74e24393e5b1c41a5deb773a2f",
+        "path": "artifacts/ziwei-readiness-baseline-v1/complete.json"
+      },
+      {
+        "byteSha256": "f93cb1ca021ed8c267dd8a22c16aac76e5f505c760ac4b9fd52904bfd687d5a2",
+        "path": "artifacts/ziwei-tianfu-convention-provenance-v0/complete.json"
+      },
+      {
+        "byteSha256": "2b3858b69711bd4ec97c02324a4d26865a894879806b8be1e87878ccb5ac8acd",
+        "path": "artifacts/ziwei-tianfu-placement-discrepancy-analysis-v0/complete.json"
+      },
+      {
+        "byteSha256": "fd46f81cd50becd5f2f5f1c31e98968e447ab11393a0b267ed362022852db43e",
+        "path": "artifacts/ziwei-zixing-tianfu-source-chain-v0/complete.json"
+      },
+      {
+        "byteSha256": "1edb93929e441b009e33abd8179e72cf5b216e7378a40813657ea52dc1a0759c",
+        "path": "src/ziwei/starPlacementRules.js"
+      },
+      {
+        "byteSha256": "c9797f2405df6afeb336226bcbff66e199e856d181e71e2317a9794dba0a6ad7",
+        "path": "src/ziwei/starResolver.js"
+      },
+      {
+        "byteSha256": "716875185d87da22ceef5f66f32899359642646367133f6c9f4bf87718bf130e",
+        "path": "src/ziwei/ziweiContract.js"
+      }
+    ],
+    "materializer": {
+      "path": "scripts/materialize-ziwei-major-star-claim-readiness-reconciliation-v0.mjs",
+      "version": "0.1.0"
+    }
+  },
+  "basisHead": "77a17e7b25b330da7b339a1d92338bb53077218f",
+  "blockerRegistry": [
+    {
+      "affectedClaims": [
+        "claim-major-star-placement-tianji",
+        "claim-major-star-placement-taiyang",
+        "claim-major-star-placement-wugu",
+        "claim-major-star-placement-tiandong",
+        "claim-major-star-placement-lianzhen",
+        "claim-major-star-placement-taiyin",
+        "claim-major-star-placement-tanlang",
+        "claim-major-star-placement-jumen",
+        "claim-major-star-placement-tianxiang",
+        "claim-major-star-placement-tianliang",
+        "claim-major-star-placement-qisai",
+        "claim-major-star-placement-pojun"
+      ],
+      "category": "source_rule",
+      "id": "blocker-direct-rule-absent",
+      "requiredEvidence": "immutable source witness for each star rule with page/folio/table locator and actual-byte identity",
+      "resolutionCondition": "independent review confirms exact rule shape, inputs, outputs, and boundaries",
+      "title": "12 major stars lack an admitted direct original-text rule",
+      "whyNoBypass": "production offsets and indirect dependencies cannot substitute for direct source rule evidence"
+    },
+    {
+      "affectedClaims": [
+        "claim-major-star-placement-ziwei",
+        "claim-major-star-placement-tianji",
+        "claim-major-star-placement-taiyang",
+        "claim-major-star-placement-wugu",
+        "claim-major-star-placement-tiandong",
+        "claim-major-star-placement-lianzhen",
+        "claim-major-star-placement-tianfu",
+        "claim-major-star-placement-taiyin",
+        "claim-major-star-placement-tanlang",
+        "claim-major-star-placement-jumen",
+        "claim-major-star-placement-tianxiang",
+        "claim-major-star-placement-tianliang",
+        "claim-major-star-placement-qisai",
+        "claim-major-star-placement-pojun"
+      ],
+      "category": "semantic_coordinate",
+      "id": "blocker-palace-semantic-identity",
+      "requiredEvidence": "authoritative shared mapping between source branch tokens, palace labels, and repository ordinal/branch coordinates",
+      "resolutionCondition": "same mapping independently evidenced for source and production contexts",
+      "title": "palace label/ordinal identity evidence is absent",
+      "whyNoBypass": "numeric exactness or a transform does not establish that tokens name the same palace"
+    }
+  ],
+  "checker": "scripts/check-ziwei-major-star-claim-readiness-reconciliation-v0.mjs",
+  "claims": [
+    {
+      "artifactRefs": [
+        "ev-source-corpus-219-pages",
+        "ev-coordinate-provenance",
+        "ev-production-rule",
+        "ev-production-resolver"
+      ],
+      "blockers": [
+        "blocker-palace-semantic-identity"
+      ],
+      "boundedAssertion": "150/150 exact raw branch comparison within recorded coordinate context.",
+      "calculationGitProvenance": [
+        "ev-production-rule",
+        "ev-production-resolver"
+      ],
+      "contextKey": "ziwei-major-star-placement-150-row-coordinate-v0",
+      "evidenceClass": "direct_coordinate_or_transform_relation",
+      "evidenceStatus": "evidence_sufficient_within_scope",
+      "id": "claim-major-star-placement-ziwei",
+      "predicate": "has_placement_rule_evidence",
+      "readinessImpact": "not_eligible_for_interpretation",
+      "sourceRefs": [
+        "source-pdf-pages-11-12"
+      ],
+      "subject": {
+        "starId": "ziwei",
+        "traditionalName": "자미"
+      },
+      "valueDomain": {
+        "enum": "子=0..亥=11",
+        "kind": "earthly_branch_coordinate",
+        "semantics": "coordinate token only; palace identity not implied"
+      }
+    },
+    {
+      "artifactRefs": [
+        "ev-source-corpus-219-pages",
+        "ev-coordinate-provenance",
+        "ev-production-rule",
+        "ev-production-resolver"
+      ],
+      "blockers": [
+        "blocker-direct-rule-absent",
+        "blocker-palace-semantic-identity"
+      ],
+      "boundedAssertion": "No admitted direct source rule in the reviewed 219-page corpus; no placement claim is promoted.",
+      "calculationGitProvenance": [
+        "ev-production-rule",
+        "ev-production-resolver"
+      ],
+      "contextKey": "ziwei-major-star-placement-150-row-coordinate-v0",
+      "evidenceClass": "source_scope_inventory_negative",
+      "evidenceStatus": "source_scope_exhausted_unresolved",
+      "id": "claim-major-star-placement-tianji",
+      "predicate": "has_placement_rule_evidence",
+      "readinessImpact": "not_eligible_for_interpretation",
+      "sourceRefs": [
+        "source-corpus-219-pages"
+      ],
+      "subject": {
+        "starId": "tianji",
+        "traditionalName": "천기"
+      },
+      "valueDomain": {
+        "enum": "子=0..亥=11",
+        "kind": "earthly_branch_coordinate",
+        "semantics": "coordinate token only; palace identity not implied"
+      }
+    },
+    {
+      "artifactRefs": [
+        "ev-source-corpus-219-pages",
+        "ev-coordinate-provenance",
+        "ev-production-rule",
+        "ev-production-resolver"
+      ],
+      "blockers": [
+        "blocker-direct-rule-absent",
+        "blocker-palace-semantic-identity"
+      ],
+      "boundedAssertion": "No admitted direct source rule in the reviewed 219-page corpus; no placement claim is promoted.",
+      "calculationGitProvenance": [
+        "ev-production-rule",
+        "ev-production-resolver"
+      ],
+      "contextKey": "ziwei-major-star-placement-150-row-coordinate-v0",
+      "evidenceClass": "source_scope_inventory_negative",
+      "evidenceStatus": "source_scope_exhausted_unresolved",
+      "id": "claim-major-star-placement-taiyang",
+      "predicate": "has_placement_rule_evidence",
+      "readinessImpact": "not_eligible_for_interpretation",
+      "sourceRefs": [
+        "source-corpus-219-pages"
+      ],
+      "subject": {
+        "starId": "taiyang",
+        "traditionalName": "태양"
+      },
+      "valueDomain": {
+        "enum": "子=0..亥=11",
+        "kind": "earthly_branch_coordinate",
+        "semantics": "coordinate token only; palace identity not implied"
+      }
+    },
+    {
+      "artifactRefs": [
+        "ev-source-corpus-219-pages",
+        "ev-coordinate-provenance",
+        "ev-production-rule",
+        "ev-production-resolver"
+      ],
+      "blockers": [
+        "blocker-direct-rule-absent",
+        "blocker-palace-semantic-identity"
+      ],
+      "boundedAssertion": "No admitted direct source rule in the reviewed 219-page corpus; no placement claim is promoted.",
+      "calculationGitProvenance": [
+        "ev-production-rule",
+        "ev-production-resolver"
+      ],
+      "contextKey": "ziwei-major-star-placement-150-row-coordinate-v0",
+      "evidenceClass": "source_scope_inventory_negative",
+      "evidenceStatus": "source_scope_exhausted_unresolved",
+      "id": "claim-major-star-placement-wugu",
+      "predicate": "has_placement_rule_evidence",
+      "readinessImpact": "not_eligible_for_interpretation",
+      "sourceRefs": [
+        "source-corpus-219-pages"
+      ],
+      "subject": {
+        "starId": "wugu",
+        "traditionalName": "무곡"
+      },
+      "valueDomain": {
+        "enum": "子=0..亥=11",
+        "kind": "earthly_branch_coordinate",
+        "semantics": "coordinate token only; palace identity not implied"
+      }
+    },
+    {
+      "artifactRefs": [
+        "ev-source-corpus-219-pages",
+        "ev-coordinate-provenance",
+        "ev-production-rule",
+        "ev-production-resolver"
+      ],
+      "blockers": [
+        "blocker-direct-rule-absent",
+        "blocker-palace-semantic-identity"
+      ],
+      "boundedAssertion": "No admitted direct source rule in the reviewed 219-page corpus; no placement claim is promoted.",
+      "calculationGitProvenance": [
+        "ev-production-rule",
+        "ev-production-resolver"
+      ],
+      "contextKey": "ziwei-major-star-placement-150-row-coordinate-v0",
+      "evidenceClass": "source_scope_inventory_negative",
+      "evidenceStatus": "source_scope_exhausted_unresolved",
+      "id": "claim-major-star-placement-tiandong",
+      "predicate": "has_placement_rule_evidence",
+      "readinessImpact": "not_eligible_for_interpretation",
+      "sourceRefs": [
+        "source-corpus-219-pages"
+      ],
+      "subject": {
+        "starId": "tiandong",
+        "traditionalName": "천동"
+      },
+      "valueDomain": {
+        "enum": "子=0..亥=11",
+        "kind": "earthly_branch_coordinate",
+        "semantics": "coordinate token only; palace identity not implied"
+      }
+    },
+    {
+      "artifactRefs": [
+        "ev-source-corpus-219-pages",
+        "ev-coordinate-provenance",
+        "ev-production-rule",
+        "ev-production-resolver"
+      ],
+      "blockers": [
+        "blocker-direct-rule-absent",
+        "blocker-palace-semantic-identity"
+      ],
+      "boundedAssertion": "No admitted direct source rule in the reviewed 219-page corpus; no placement claim is promoted.",
+      "calculationGitProvenance": [
+        "ev-production-rule",
+        "ev-production-resolver"
+      ],
+      "contextKey": "ziwei-major-star-placement-150-row-coordinate-v0",
+      "evidenceClass": "source_scope_inventory_negative",
+      "evidenceStatus": "source_scope_exhausted_unresolved",
+      "id": "claim-major-star-placement-lianzhen",
+      "predicate": "has_placement_rule_evidence",
+      "readinessImpact": "not_eligible_for_interpretation",
+      "sourceRefs": [
+        "source-corpus-219-pages"
+      ],
+      "subject": {
+        "starId": "lianzhen",
+        "traditionalName": "염정"
+      },
+      "valueDomain": {
+        "enum": "子=0..亥=11",
+        "kind": "earthly_branch_coordinate",
+        "semantics": "coordinate token only; palace identity not implied"
+      }
+    },
+    {
+      "artifactRefs": [
+        "ev-source-corpus-219-pages",
+        "ev-coordinate-provenance",
+        "ev-tianfu-discrepancy",
+        "ev-source-chain",
+        "ev-convention",
+        "ev-production-rule",
+        "ev-production-resolver"
+      ],
+      "blockers": [
+        "blocker-palace-semantic-identity"
+      ],
+      "boundedAssertion": "150/150 transform relation with residual 0; raw identity and palace semantics remain unresolved.",
+      "calculationGitProvenance": [
+        "ev-production-rule",
+        "ev-production-resolver"
+      ],
+      "contextKey": "ziwei-major-star-placement-150-row-coordinate-v0",
+      "evidenceClass": "direct_coordinate_or_transform_relation",
+      "evidenceStatus": "transform_verified_semantics_unresolved",
+      "id": "claim-major-star-placement-tianfu",
+      "predicate": "has_placement_rule_evidence",
+      "readinessImpact": "not_eligible_for_interpretation",
+      "sourceRefs": [
+        "source-pdf-pages-13"
+      ],
+      "subject": {
+        "starId": "tianfu",
+        "traditionalName": "천부"
+      },
+      "valueDomain": {
+        "enum": "子=0..亥=11",
+        "kind": "earthly_branch_coordinate",
+        "semantics": "coordinate token only; palace identity not implied"
+      }
+    },
+    {
+      "artifactRefs": [
+        "ev-source-corpus-219-pages",
+        "ev-coordinate-provenance",
+        "ev-production-rule",
+        "ev-production-resolver"
+      ],
+      "blockers": [
+        "blocker-direct-rule-absent",
+        "blocker-palace-semantic-identity"
+      ],
+      "boundedAssertion": "No admitted direct source rule in the reviewed 219-page corpus; no placement claim is promoted.",
+      "calculationGitProvenance": [
+        "ev-production-rule",
+        "ev-production-resolver"
+      ],
+      "contextKey": "ziwei-major-star-placement-150-row-coordinate-v0",
+      "evidenceClass": "source_scope_inventory_negative",
+      "evidenceStatus": "source_scope_exhausted_unresolved",
+      "id": "claim-major-star-placement-taiyin",
+      "predicate": "has_placement_rule_evidence",
+      "readinessImpact": "not_eligible_for_interpretation",
+      "sourceRefs": [
+        "source-corpus-219-pages"
+      ],
+      "subject": {
+        "starId": "taiyin",
+        "traditionalName": "태음"
+      },
+      "valueDomain": {
+        "enum": "子=0..亥=11",
+        "kind": "earthly_branch_coordinate",
+        "semantics": "coordinate token only; palace identity not implied"
+      }
+    },
+    {
+      "artifactRefs": [
+        "ev-source-corpus-219-pages",
+        "ev-coordinate-provenance",
+        "ev-production-rule",
+        "ev-production-resolver"
+      ],
+      "blockers": [
+        "blocker-direct-rule-absent",
+        "blocker-palace-semantic-identity"
+      ],
+      "boundedAssertion": "No admitted direct source rule in the reviewed 219-page corpus; no placement claim is promoted.",
+      "calculationGitProvenance": [
+        "ev-production-rule",
+        "ev-production-resolver"
+      ],
+      "contextKey": "ziwei-major-star-placement-150-row-coordinate-v0",
+      "evidenceClass": "source_scope_inventory_negative",
+      "evidenceStatus": "source_scope_exhausted_unresolved",
+      "id": "claim-major-star-placement-tanlang",
+      "predicate": "has_placement_rule_evidence",
+      "readinessImpact": "not_eligible_for_interpretation",
+      "sourceRefs": [
+        "source-corpus-219-pages"
+      ],
+      "subject": {
+        "starId": "tanlang",
+        "traditionalName": "탐랑"
+      },
+      "valueDomain": {
+        "enum": "子=0..亥=11",
+        "kind": "earthly_branch_coordinate",
+        "semantics": "coordinate token only; palace identity not implied"
+      }
+    },
+    {
+      "artifactRefs": [
+        "ev-source-corpus-219-pages",
+        "ev-coordinate-provenance",
+        "ev-production-rule",
+        "ev-production-resolver"
+      ],
+      "blockers": [
+        "blocker-direct-rule-absent",
+        "blocker-palace-semantic-identity"
+      ],
+      "boundedAssertion": "No admitted direct source rule in the reviewed 219-page corpus; no placement claim is promoted.",
+      "calculationGitProvenance": [
+        "ev-production-rule",
+        "ev-production-resolver"
+      ],
+      "contextKey": "ziwei-major-star-placement-150-row-coordinate-v0",
+      "evidenceClass": "source_scope_inventory_negative",
+      "evidenceStatus": "source_scope_exhausted_unresolved",
+      "id": "claim-major-star-placement-jumen",
+      "predicate": "has_placement_rule_evidence",
+      "readinessImpact": "not_eligible_for_interpretation",
+      "sourceRefs": [
+        "source-corpus-219-pages"
+      ],
+      "subject": {
+        "starId": "jumen",
+        "traditionalName": "거문"
+      },
+      "valueDomain": {
+        "enum": "子=0..亥=11",
+        "kind": "earthly_branch_coordinate",
+        "semantics": "coordinate token only; palace identity not implied"
+      }
+    },
+    {
+      "artifactRefs": [
+        "ev-source-corpus-219-pages",
+        "ev-coordinate-provenance",
+        "ev-production-rule",
+        "ev-production-resolver"
+      ],
+      "blockers": [
+        "blocker-direct-rule-absent",
+        "blocker-palace-semantic-identity"
+      ],
+      "boundedAssertion": "No admitted direct source rule in the reviewed 219-page corpus; no placement claim is promoted.",
+      "calculationGitProvenance": [
+        "ev-production-rule",
+        "ev-production-resolver"
+      ],
+      "contextKey": "ziwei-major-star-placement-150-row-coordinate-v0",
+      "evidenceClass": "source_scope_inventory_negative",
+      "evidenceStatus": "source_scope_exhausted_unresolved",
+      "id": "claim-major-star-placement-tianxiang",
+      "predicate": "has_placement_rule_evidence",
+      "readinessImpact": "not_eligible_for_interpretation",
+      "sourceRefs": [
+        "source-corpus-219-pages"
+      ],
+      "subject": {
+        "starId": "tianxiang",
+        "traditionalName": "천상"
+      },
+      "valueDomain": {
+        "enum": "子=0..亥=11",
+        "kind": "earthly_branch_coordinate",
+        "semantics": "coordinate token only; palace identity not implied"
+      }
+    },
+    {
+      "artifactRefs": [
+        "ev-source-corpus-219-pages",
+        "ev-coordinate-provenance",
+        "ev-production-rule",
+        "ev-production-resolver"
+      ],
+      "blockers": [
+        "blocker-direct-rule-absent",
+        "blocker-palace-semantic-identity"
+      ],
+      "boundedAssertion": "No admitted direct source rule in the reviewed 219-page corpus; no placement claim is promoted.",
+      "calculationGitProvenance": [
+        "ev-production-rule",
+        "ev-production-resolver"
+      ],
+      "contextKey": "ziwei-major-star-placement-150-row-coordinate-v0",
+      "evidenceClass": "source_scope_inventory_negative",
+      "evidenceStatus": "source_scope_exhausted_unresolved",
+      "id": "claim-major-star-placement-tianliang",
+      "predicate": "has_placement_rule_evidence",
+      "readinessImpact": "not_eligible_for_interpretation",
+      "sourceRefs": [
+        "source-corpus-219-pages"
+      ],
+      "subject": {
+        "starId": "tianliang",
+        "traditionalName": "천량"
+      },
+      "valueDomain": {
+        "enum": "子=0..亥=11",
+        "kind": "earthly_branch_coordinate",
+        "semantics": "coordinate token only; palace identity not implied"
+      }
+    },
+    {
+      "artifactRefs": [
+        "ev-source-corpus-219-pages",
+        "ev-coordinate-provenance",
+        "ev-production-rule",
+        "ev-production-resolver"
+      ],
+      "blockers": [
+        "blocker-direct-rule-absent",
+        "blocker-palace-semantic-identity"
+      ],
+      "boundedAssertion": "No admitted direct source rule in the reviewed 219-page corpus; no placement claim is promoted.",
+      "calculationGitProvenance": [
+        "ev-production-rule",
+        "ev-production-resolver"
+      ],
+      "contextKey": "ziwei-major-star-placement-150-row-coordinate-v0",
+      "evidenceClass": "source_scope_inventory_negative",
+      "evidenceStatus": "source_scope_exhausted_unresolved",
+      "id": "claim-major-star-placement-qisai",
+      "predicate": "has_placement_rule_evidence",
+      "readinessImpact": "not_eligible_for_interpretation",
+      "sourceRefs": [
+        "source-corpus-219-pages"
+      ],
+      "subject": {
+        "starId": "qisai",
+        "traditionalName": "칠살"
+      },
+      "valueDomain": {
+        "enum": "子=0..亥=11",
+        "kind": "earthly_branch_coordinate",
+        "semantics": "coordinate token only; palace identity not implied"
+      }
+    },
+    {
+      "artifactRefs": [
+        "ev-source-corpus-219-pages",
+        "ev-coordinate-provenance",
+        "ev-production-rule",
+        "ev-production-resolver"
+      ],
+      "blockers": [
+        "blocker-direct-rule-absent",
+        "blocker-palace-semantic-identity"
+      ],
+      "boundedAssertion": "No admitted direct source rule in the reviewed 219-page corpus; no placement claim is promoted.",
+      "calculationGitProvenance": [
+        "ev-production-rule",
+        "ev-production-resolver"
+      ],
+      "contextKey": "ziwei-major-star-placement-150-row-coordinate-v0",
+      "evidenceClass": "source_scope_inventory_negative",
+      "evidenceStatus": "source_scope_exhausted_unresolved",
+      "id": "claim-major-star-placement-pojun",
+      "predicate": "has_placement_rule_evidence",
+      "readinessImpact": "not_eligible_for_interpretation",
+      "sourceRefs": [
+        "source-corpus-219-pages"
+      ],
+      "subject": {
+        "starId": "pojun",
+        "traditionalName": "파군"
+      },
+      "valueDomain": {
+        "enum": "子=0..亥=11",
+        "kind": "earthly_branch_coordinate",
+        "semantics": "coordinate token only; palace identity not implied"
+      }
+    }
+  ],
+  "contextRegistry": [
+    {
+      "count": {
+        "match": 25,
+        "mismatch": 125
+      },
+      "definition": "existing production comparison; preserved independently",
+      "denominator": 150,
+      "firstDivergence": "integrated-bureau-2-day-01",
+      "key": "integrated-baseline-v0"
+    },
+    {
+      "count": {
+        "exact": 0,
+        "mismatch": 150
+      },
+      "definition": "source and integrated branch ordinals without transform",
+      "denominator": 150,
+      "key": "tianfu-neutral-raw-v0"
+    },
+    {
+      "count": {
+        "residual": 0,
+        "transformEquivalent": 150
+      },
+      "definition": "source Tianfu ordinal = integrated Tianfu ordinal + 6 mod 12",
+      "denominator": 150,
+      "key": "tianfu-rotation-06-v0"
+    },
+    {
+      "count": {
+        "gap": 0,
+        "reviewed": 219
+      },
+      "definition": "all PDF pages reviewed; no page silently omitted",
+      "denominator": 219,
+      "key": "source-corpus-direct-review-v0"
+    },
+    {
+      "count": {
+        "rows": 150
+      },
+      "definition": "bureau 2..6 x lunar day 1..30, bureau then day",
+      "denominator": 150,
+      "key": "major-star-coordinate-domain-v0"
+    }
+  ],
+  "deterministic": {
+    "canonicalBytes": "UTF-8 JSON with final LF and recursively sorted object keys",
+    "claimOrder": "corpus inventory order",
+    "generatedAt": "forbidden",
+    "values": "copied or bounded from input artifacts; no post-hoc fitting"
+  },
+  "evidenceInventory": [
+    {
+      "artifactRef": {
+        "byteSha256": "a20c6b25c6fb8844f93f534dfb91923bf78f1a74e24393e5b1c41a5deb773a2f",
+        "id": "artifact-readiness-baseline",
+        "locator": null,
+        "path": "artifacts/ziwei-readiness-baseline-v1/complete.json"
+      },
+      "assertion": "ziwei_readiness_baseline_partial_unverified",
+      "evidenceClass": "readiness_assertion",
+      "id": "ev-readiness-baseline",
+      "scope": "baseline only; not star truth"
+    },
+    {
+      "artifactRef": {
+        "byteSha256": "6220cdeedec43510358c9f10477771244f374b85844477575576efb36766fdaa",
+        "id": "artifact-source-corpus",
+        "locator": null,
+        "path": "artifacts/ziwei-major-star-source-corpus-provenance-v0/complete.json"
+      },
+      "assertion": "219/219 direct review; gap 0",
+      "evidenceClass": "source_corpus_provenance",
+      "id": "ev-source-corpus-219-pages",
+      "source": {
+        "gap": 0,
+        "ocr": "exploration_only_not_canonical",
+        "pageCount": 219,
+        "pdfSha256": "4786a94ab454acdabf9716d7c0db4756dbcbde99a88bc45fda254863c1961023",
+        "reviewedPages": 219
+      }
+    },
+    {
+      "artifactRef": {
+        "byteSha256": "b928eb54c0dff947a7d8d3b02d013bffa68d6e9c6fa4f9b100ca10c56c73445b",
+        "id": "artifact-coordinate-provenance",
+        "locator": null,
+        "path": "artifacts/ziwei-major-star-coordinate-provenance-v0/complete.json"
+      },
+      "assertion": "紫微 150/150 raw; 天府 0/150 raw and 150/150 rotation-06 residual 0",
+      "evidenceClass": "coordinate_provenance",
+      "id": "ev-coordinate-provenance"
+    },
+    {
+      "artifactRef": {
+        "byteSha256": "2b3858b69711bd4ec97c02324a4d26865a894879806b8be1e87878ccb5ac8acd",
+        "id": "artifact-tianfu-discrepancy",
+        "locator": null,
+        "path": "artifacts/ziwei-tianfu-placement-discrepancy-analysis-v0/complete.json"
+      },
+      "assertion": "existing baseline 25 match / 125 mismatch; first divergence integrated-bureau-2-day-01",
+      "evidenceClass": "discrepancy_analysis",
+      "id": "ev-tianfu-discrepancy"
+    },
+    {
+      "artifactRef": {
+        "byteSha256": "fd46f81cd50becd5f2f5f1c31e98968e447ab11393a0b267ed362022852db43e",
+        "id": "artifact-source-chain",
+        "locator": null,
+        "path": "artifacts/ziwei-zixing-tianfu-source-chain-v0/complete.json"
+      },
+      "assertion": "150-row 紫微→天府 chain; exact Ziwei and transform-equivalent Tianfu",
+      "evidenceClass": "source_chain",
+      "id": "ev-source-chain"
+    },
+    {
+      "artifactRef": {
+        "byteSha256": "f93cb1ca021ed8c267dd8a22c16aac76e5f505c760ac4b9fd52904bfd687d5a2",
+        "id": "artifact-tianfu-convention",
+        "locator": null,
+        "path": "artifacts/ziwei-tianfu-convention-provenance-v0/complete.json"
+      },
+      "assertion": "rotation-06 and source-base-direction each 150/150; semantic identity unresolved",
+      "evidenceClass": "convention_provenance",
+      "id": "ev-convention"
+    },
+    {
+      "artifactRef": {
+        "byteSha256": "1edb93929e441b009e33abd8179e72cf5b216e7378a40813657ea52dc1a0759c",
+        "id": "production-star-placement-rules",
+        "locator": "calculateZiweiBranch; calculateTianfuBranch; star offsets",
+        "path": "src/ziwei/starPlacementRules.js"
+      },
+      "evidenceClass": "calculation_git_provenance",
+      "id": "ev-production-rule"
+    },
+    {
+      "artifactRef": {
+        "byteSha256": "c9797f2405df6afeb336226bcbff66e199e856d181e71e2317a9794dba0a6ad7",
+        "id": "production-star-resolver",
+        "locator": "resolve14MajorStars; palace lookup by branch",
+        "path": "src/ziwei/starResolver.js"
+      },
+      "evidenceClass": "calculation_git_provenance",
+      "id": "ev-production-resolver"
+    },
+    {
+      "artifactRef": {
+        "byteSha256": "716875185d87da22ceef5f66f32899359642646367133f6c9f4bf87718bf130e",
+        "id": "production-palace-contract",
+        "locator": "ZIWEI_PALACE_DEFINITIONS",
+        "path": "src/ziwei/ziweiContract.js"
+      },
+      "evidenceClass": "semantic_coordinate_boundary",
+      "id": "ev-palace-contract"
+    }
+  ],
+  "evidenceSufficiencyReview": [
+    {
+      "claimId": "claim-major-star-placement-ziwei",
+      "notEligibleForInterpretation": true,
+      "reviewNote": "150/150 exact raw branch comparison within recorded coordinate context.",
+      "status": "evidence_sufficient_within_scope",
+      "sufficientWithinScope": true
+    },
+    {
+      "claimId": "claim-major-star-placement-tianji",
+      "notEligibleForInterpretation": true,
+      "reviewNote": "No admitted direct source rule in the reviewed 219-page corpus; no placement claim is promoted.",
+      "status": "source_scope_exhausted_unresolved",
+      "sufficientWithinScope": false
+    },
+    {
+      "claimId": "claim-major-star-placement-taiyang",
+      "notEligibleForInterpretation": true,
+      "reviewNote": "No admitted direct source rule in the reviewed 219-page corpus; no placement claim is promoted.",
+      "status": "source_scope_exhausted_unresolved",
+      "sufficientWithinScope": false
+    },
+    {
+      "claimId": "claim-major-star-placement-wugu",
+      "notEligibleForInterpretation": true,
+      "reviewNote": "No admitted direct source rule in the reviewed 219-page corpus; no placement claim is promoted.",
+      "status": "source_scope_exhausted_unresolved",
+      "sufficientWithinScope": false
+    },
+    {
+      "claimId": "claim-major-star-placement-tiandong",
+      "notEligibleForInterpretation": true,
+      "reviewNote": "No admitted direct source rule in the reviewed 219-page corpus; no placement claim is promoted.",
+      "status": "source_scope_exhausted_unresolved",
+      "sufficientWithinScope": false
+    },
+    {
+      "claimId": "claim-major-star-placement-lianzhen",
+      "notEligibleForInterpretation": true,
+      "reviewNote": "No admitted direct source rule in the reviewed 219-page corpus; no placement claim is promoted.",
+      "status": "source_scope_exhausted_unresolved",
+      "sufficientWithinScope": false
+    },
+    {
+      "claimId": "claim-major-star-placement-tianfu",
+      "notEligibleForInterpretation": true,
+      "reviewNote": "150/150 transform relation with residual 0; raw identity and palace semantics remain unresolved.",
+      "status": "transform_verified_semantics_unresolved",
+      "sufficientWithinScope": false
+    },
+    {
+      "claimId": "claim-major-star-placement-taiyin",
+      "notEligibleForInterpretation": true,
+      "reviewNote": "No admitted direct source rule in the reviewed 219-page corpus; no placement claim is promoted.",
+      "status": "source_scope_exhausted_unresolved",
+      "sufficientWithinScope": false
+    },
+    {
+      "claimId": "claim-major-star-placement-tanlang",
+      "notEligibleForInterpretation": true,
+      "reviewNote": "No admitted direct source rule in the reviewed 219-page corpus; no placement claim is promoted.",
+      "status": "source_scope_exhausted_unresolved",
+      "sufficientWithinScope": false
+    },
+    {
+      "claimId": "claim-major-star-placement-jumen",
+      "notEligibleForInterpretation": true,
+      "reviewNote": "No admitted direct source rule in the reviewed 219-page corpus; no placement claim is promoted.",
+      "status": "source_scope_exhausted_unresolved",
+      "sufficientWithinScope": false
+    },
+    {
+      "claimId": "claim-major-star-placement-tianxiang",
+      "notEligibleForInterpretation": true,
+      "reviewNote": "No admitted direct source rule in the reviewed 219-page corpus; no placement claim is promoted.",
+      "status": "source_scope_exhausted_unresolved",
+      "sufficientWithinScope": false
+    },
+    {
+      "claimId": "claim-major-star-placement-tianliang",
+      "notEligibleForInterpretation": true,
+      "reviewNote": "No admitted direct source rule in the reviewed 219-page corpus; no placement claim is promoted.",
+      "status": "source_scope_exhausted_unresolved",
+      "sufficientWithinScope": false
+    },
+    {
+      "claimId": "claim-major-star-placement-qisai",
+      "notEligibleForInterpretation": true,
+      "reviewNote": "No admitted direct source rule in the reviewed 219-page corpus; no placement claim is promoted.",
+      "status": "source_scope_exhausted_unresolved",
+      "sufficientWithinScope": false
+    },
+    {
+      "claimId": "claim-major-star-placement-pojun",
+      "notEligibleForInterpretation": true,
+      "reviewNote": "No admitted direct source rule in the reviewed 219-page corpus; no placement claim is promoted.",
+      "status": "source_scope_exhausted_unresolved",
+      "sufficientWithinScope": false
+    }
+  ],
+  "gitProvenance": {
+    "basisHead": "77a17e7b25b330da7b339a1d92338bb53077218f",
+    "observedHead": "77a17e7b25b330da7b339a1d92338bb53077218f",
+    "productionRuleOrigin": "7d2fb8fccc65ab34efea93ea2d16f94fb526417c",
+    "sourceAuthority": false
+  },
+  "humanReviewHandoff": {
+    "blockers": [
+      "blocker-direct-rule-absent",
+      "blocker-palace-semantic-identity"
+    ],
+    "conclusions": [
+      "14 placement claims are normalized at coordinate-evidence level only.",
+      "紫微 is exact within scope; 天府 has a verified transform with unresolved semantics; 12 stars remain source-unresolved.",
+      "219/219 corpus review has gap 0 and does not create direct rules for the 12 unresolved stars."
+    ],
+    "mustNotDo": [
+      "interpretation",
+      "ranking or weighting",
+      "production rule change",
+      "API/schema/readiness/grounding/activation change"
+    ],
+    "requiredBeforeProductionChoice": [
+      "direct rules for 12 unresolved stars",
+      "shared palace label/ordinal correspondence",
+      "independent semantic review",
+      "explicit authorized production decision"
+    ],
+    "verdictToken": "complete_ziwei_major_star_claim_readiness_reconciliation_evidence_uncommitted"
+  },
+  "layeredReadiness": {
+    "activation": "experimental",
+    "calculation": "implemented_unverified",
+    "claim": "claim_level_packet_only; no stable truth claim promotion",
+    "grounding": "blocked",
+    "localResearchAudit": "allowed_within_coordinate_and_provenance_scope",
+    "mutationBoundary": {
+      "apiSchema": false,
+      "baseline": false,
+      "enum": false,
+      "existingReadiness": false,
+      "productionRule": false,
+      "tolerance": false
+    },
+    "productionSelection": "not_performed",
+    "relation": "implemented_unverified",
+    "semantic": "blocked_semantic_identity_insufficient",
+    "source": "partial_unverified",
+    "userInterpretation": "forbidden"
+  },
+  "materializer": "scripts/materialize-ziwei-major-star-claim-readiness-reconciliation-v0.mjs",
+  "protectedInputs": [
+    {
+      "byteSha256": "a20c6b25c6fb8844f93f534dfb91923bf78f1a74e24393e5b1c41a5deb773a2f",
+      "path": "artifacts/ziwei-readiness-baseline-v1/complete.json"
+    },
+    {
+      "byteSha256": "6220cdeedec43510358c9f10477771244f374b85844477575576efb36766fdaa",
+      "path": "artifacts/ziwei-major-star-source-corpus-provenance-v0/complete.json"
+    },
+    {
+      "byteSha256": "b928eb54c0dff947a7d8d3b02d013bffa68d6e9c6fa4f9b100ca10c56c73445b",
+      "path": "artifacts/ziwei-major-star-coordinate-provenance-v0/complete.json"
+    },
+    {
+      "byteSha256": "2b3858b69711bd4ec97c02324a4d26865a894879806b8be1e87878ccb5ac8acd",
+      "path": "artifacts/ziwei-tianfu-placement-discrepancy-analysis-v0/complete.json"
+    },
+    {
+      "byteSha256": "fd46f81cd50becd5f2f5f1c31e98968e447ab11393a0b267ed362022852db43e",
+      "path": "artifacts/ziwei-zixing-tianfu-source-chain-v0/complete.json"
+    },
+    {
+      "byteSha256": "f93cb1ca021ed8c267dd8a22c16aac76e5f505c760ac4b9fd52904bfd687d5a2",
+      "path": "artifacts/ziwei-tianfu-convention-provenance-v0/complete.json"
+    },
+    {
+      "byteSha256": "1edb93929e441b009e33abd8179e72cf5b216e7378a40813657ea52dc1a0759c",
+      "path": "src/ziwei/starPlacementRules.js"
+    },
+    {
+      "byteSha256": "c9797f2405df6afeb336226bcbff66e199e856d181e71e2317a9794dba0a6ad7",
+      "path": "src/ziwei/starResolver.js"
+    },
+    {
+      "byteSha256": "716875185d87da22ceef5f66f32899359642646367133f6c9f4bf87718bf130e",
+      "path": "src/ziwei/ziweiContract.js"
+    }
+  ],
+  "relationGraph": {
+    "nodeIds": [
+      "source-corpus-219-pages",
+      "source-pdf-pages-11-12",
+      "source-pdf-pages-13",
+      "ev-readiness-baseline",
+      "ev-source-corpus-219-pages",
+      "ev-coordinate-provenance",
+      "ev-tianfu-discrepancy",
+      "ev-source-chain",
+      "ev-convention",
+      "ev-production-rule",
+      "ev-production-resolver",
+      "ev-palace-contract",
+      "context-integrated-baseline-v0",
+      "context-tianfu-neutral-raw-v0",
+      "context-tianfu-rotation-06-v0",
+      "context-source-corpus-direct-review-v0",
+      "context-major-star-coordinate-domain-v0",
+      "claim-major-star-placement-ziwei",
+      "claim-major-star-placement-tianji",
+      "claim-major-star-placement-taiyang",
+      "claim-major-star-placement-wugu",
+      "claim-major-star-placement-tiandong",
+      "claim-major-star-placement-lianzhen",
+      "claim-major-star-placement-tianfu",
+      "claim-major-star-placement-taiyin",
+      "claim-major-star-placement-tanlang",
+      "claim-major-star-placement-jumen",
+      "claim-major-star-placement-tianxiang",
+      "claim-major-star-placement-tianliang",
+      "claim-major-star-placement-qisai",
+      "claim-major-star-placement-pojun",
+      "blocker-direct-rule-absent",
+      "blocker-palace-semantic-identity"
+    ],
+    "relations": [
+      {
+        "from": "ev-readiness-baseline",
+        "id": "relation-baseline-supported-by",
+        "to": "context-integrated-baseline-v0",
+        "type": "supported_by"
+      },
+      {
+        "from": "ev-source-corpus-219-pages",
+        "id": "relation-corpus-supported-by",
+        "to": "context-source-corpus-direct-review-v0",
+        "type": "supported_by"
+      },
+      {
+        "from": "claim-major-star-placement-ziwei",
+        "id": "relation-ziwei-exact",
+        "to": "ev-coordinate-provenance",
+        "type": "exact_match"
+      },
+      {
+        "from": "claim-major-star-placement-ziwei",
+        "id": "relation-ziwei-derived",
+        "to": "ev-source-corpus-219-pages",
+        "type": "derived_from"
+      },
+      {
+        "from": "claim-major-star-placement-tianfu",
+        "id": "relation-tianfu-transform",
+        "to": "ev-convention",
+        "type": "transform_equivalent"
+      },
+      {
+        "from": "claim-major-star-placement-tianfu",
+        "id": "relation-tianfu-context",
+        "to": "context-integrated-baseline-v0",
+        "type": "context_differs"
+      },
+      {
+        "from": "claim-major-star-placement-tianfu",
+        "id": "relation-tianfu-derived",
+        "to": "ev-source-chain",
+        "type": "derived_from"
+      },
+      {
+        "from": "claim-major-star-placement-tianji",
+        "id": "relation-claim-major-star-placement-tianji-unresolved",
+        "to": "blocker-direct-rule-absent",
+        "type": "unresolved_source"
+      },
+      {
+        "from": "claim-major-star-placement-taiyang",
+        "id": "relation-claim-major-star-placement-taiyang-unresolved",
+        "to": "blocker-direct-rule-absent",
+        "type": "unresolved_source"
+      },
+      {
+        "from": "claim-major-star-placement-wugu",
+        "id": "relation-claim-major-star-placement-wugu-unresolved",
+        "to": "blocker-direct-rule-absent",
+        "type": "unresolved_source"
+      },
+      {
+        "from": "claim-major-star-placement-tiandong",
+        "id": "relation-claim-major-star-placement-tiandong-unresolved",
+        "to": "blocker-direct-rule-absent",
+        "type": "unresolved_source"
+      },
+      {
+        "from": "claim-major-star-placement-lianzhen",
+        "id": "relation-claim-major-star-placement-lianzhen-unresolved",
+        "to": "blocker-direct-rule-absent",
+        "type": "unresolved_source"
+      },
+      {
+        "from": "claim-major-star-placement-taiyin",
+        "id": "relation-claim-major-star-placement-taiyin-unresolved",
+        "to": "blocker-direct-rule-absent",
+        "type": "unresolved_source"
+      },
+      {
+        "from": "claim-major-star-placement-tanlang",
+        "id": "relation-claim-major-star-placement-tanlang-unresolved",
+        "to": "blocker-direct-rule-absent",
+        "type": "unresolved_source"
+      },
+      {
+        "from": "claim-major-star-placement-jumen",
+        "id": "relation-claim-major-star-placement-jumen-unresolved",
+        "to": "blocker-direct-rule-absent",
+        "type": "unresolved_source"
+      },
+      {
+        "from": "claim-major-star-placement-tianxiang",
+        "id": "relation-claim-major-star-placement-tianxiang-unresolved",
+        "to": "blocker-direct-rule-absent",
+        "type": "unresolved_source"
+      },
+      {
+        "from": "claim-major-star-placement-tianliang",
+        "id": "relation-claim-major-star-placement-tianliang-unresolved",
+        "to": "blocker-direct-rule-absent",
+        "type": "unresolved_source"
+      },
+      {
+        "from": "claim-major-star-placement-qisai",
+        "id": "relation-claim-major-star-placement-qisai-unresolved",
+        "to": "blocker-direct-rule-absent",
+        "type": "unresolved_source"
+      },
+      {
+        "from": "claim-major-star-placement-pojun",
+        "id": "relation-claim-major-star-placement-pojun-unresolved",
+        "to": "blocker-direct-rule-absent",
+        "type": "unresolved_source"
+      },
+      {
+        "from": "claim-major-star-placement-ziwei",
+        "id": "relation-claim-major-star-placement-ziwei-semantic-block",
+        "to": "blocker-palace-semantic-identity",
+        "type": "blocked_by"
+      },
+      {
+        "from": "claim-major-star-placement-tianji",
+        "id": "relation-claim-major-star-placement-tianji-semantic-block",
+        "to": "blocker-palace-semantic-identity",
+        "type": "blocked_by"
+      },
+      {
+        "from": "claim-major-star-placement-taiyang",
+        "id": "relation-claim-major-star-placement-taiyang-semantic-block",
+        "to": "blocker-palace-semantic-identity",
+        "type": "blocked_by"
+      },
+      {
+        "from": "claim-major-star-placement-wugu",
+        "id": "relation-claim-major-star-placement-wugu-semantic-block",
+        "to": "blocker-palace-semantic-identity",
+        "type": "blocked_by"
+      },
+      {
+        "from": "claim-major-star-placement-tiandong",
+        "id": "relation-claim-major-star-placement-tiandong-semantic-block",
+        "to": "blocker-palace-semantic-identity",
+        "type": "blocked_by"
+      },
+      {
+        "from": "claim-major-star-placement-lianzhen",
+        "id": "relation-claim-major-star-placement-lianzhen-semantic-block",
+        "to": "blocker-palace-semantic-identity",
+        "type": "blocked_by"
+      },
+      {
+        "from": "claim-major-star-placement-tianfu",
+        "id": "relation-claim-major-star-placement-tianfu-semantic-block",
+        "to": "blocker-palace-semantic-identity",
+        "type": "blocked_by"
+      },
+      {
+        "from": "claim-major-star-placement-taiyin",
+        "id": "relation-claim-major-star-placement-taiyin-semantic-block",
+        "to": "blocker-palace-semantic-identity",
+        "type": "blocked_by"
+      },
+      {
+        "from": "claim-major-star-placement-tanlang",
+        "id": "relation-claim-major-star-placement-tanlang-semantic-block",
+        "to": "blocker-palace-semantic-identity",
+        "type": "blocked_by"
+      },
+      {
+        "from": "claim-major-star-placement-jumen",
+        "id": "relation-claim-major-star-placement-jumen-semantic-block",
+        "to": "blocker-palace-semantic-identity",
+        "type": "blocked_by"
+      },
+      {
+        "from": "claim-major-star-placement-tianxiang",
+        "id": "relation-claim-major-star-placement-tianxiang-semantic-block",
+        "to": "blocker-palace-semantic-identity",
+        "type": "blocked_by"
+      },
+      {
+        "from": "claim-major-star-placement-tianliang",
+        "id": "relation-claim-major-star-placement-tianliang-semantic-block",
+        "to": "blocker-palace-semantic-identity",
+        "type": "blocked_by"
+      },
+      {
+        "from": "claim-major-star-placement-qisai",
+        "id": "relation-claim-major-star-placement-qisai-semantic-block",
+        "to": "blocker-palace-semantic-identity",
+        "type": "blocked_by"
+      },
+      {
+        "from": "claim-major-star-placement-pojun",
+        "id": "relation-claim-major-star-placement-pojun-semantic-block",
+        "to": "blocker-palace-semantic-identity",
+        "type": "blocked_by"
+      }
+    ]
+  },
+  "schemaVersion": "ziwei-major-star-claim-readiness-reconciliation-v0",
+  "sourceAcquisitionSpec": {
+    "editionComparison": [
+      "same input domain and row ordering",
+      "page/folio alignment",
+      "glyph and table orientation review",
+      "actual retrieved bytes and hash",
+      "preserve disagreement by edition/context"
+    ],
+    "externalSearch": "not performed",
+    "palaceCorrespondence": [
+      "source branch label to palace label",
+      "palace label to repository ordinal",
+      "branch token to production palace branch",
+      "direction/base conventions"
+    ],
+    "requiredDocumentTypes": [
+      "immutable scan/page-image witness",
+      "edition/title/author/editor/lineage record",
+      "page/folio/section locator",
+      "independent reviewer record"
+    ],
+    "requiredRuleForms": [
+      "explicit star-to-branch table",
+      "algorithmic progression with base/direction",
+      "input/output domain and boundary cases",
+      "relationship rule only when explicitly stated"
+    ]
+  },
+  "sourceReferences": [
+    {
+      "id": "source-corpus-219-pages",
+      "kind": "source_witness",
+      "pageCount": 219,
+      "pdfSha256": "4786a94ab454acdabf9716d7c0db4756dbcbde99a88bc45fda254863c1961023",
+      "scope": "219/219 direct review; gap 0"
+    },
+    {
+      "canonicalText": false,
+      "id": "source-pdf-pages-11-12",
+      "kind": "source_locator",
+      "locator": "PDF p11 三十一 起紫微五訣; p12 三十三 起紫微簡索表",
+      "pages": [
+        11,
+        12
+      ]
+    },
+    {
+      "canonicalText": false,
+      "id": "source-pdf-pages-13",
+      "kind": "source_locator",
+      "locator": "PDF p13 三十四 甲六、安天府, right scanned leaf",
+      "pages": [
+        13
+      ]
+    }
+  ],
+  "verdictToken": "complete_ziwei_major_star_claim_readiness_reconciliation_evidence_uncommitted"
+}
