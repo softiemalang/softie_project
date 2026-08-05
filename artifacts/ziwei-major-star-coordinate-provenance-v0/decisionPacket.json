@@ -1,0 +1,35 @@
+{
+  "activation": "experimental",
+  "contractChanged": false,
+  "grounding": "blocked",
+  "impact": "No production choice is made; all 14 stars remain unavailable for semantic promotion.",
+  "options": [
+    {
+      "action": "retain integrated",
+      "effect": "preserves current numeric engine and keeps semantic blocker; no migration",
+      "id": "retain",
+      "requiredEvidence": "palace identity authority before promotion"
+    },
+    {
+      "action": "replace with source rules",
+      "effect": "would alter Tianfu root and all dependent series; requires approved rule migration and fresh baseline",
+      "id": "replace",
+      "requiredEvidence": "source rules for all affected stars plus shared coordinate identity"
+    },
+    {
+      "action": "add compatibility layer",
+      "effect": "would preserve both raw systems but requires explicit schema/alias authorization; not implemented",
+      "id": "compatibility-layer",
+      "requiredEvidence": "contract design and consumer audit"
+    },
+    {
+      "action": "continue blocked",
+      "effect": "no rule or contract mutation; acquire palace identity and unresolved-star source evidence",
+      "id": "continue-blocked",
+      "requiredEvidence": "new admissible source witness and independent review"
+    }
+  ],
+  "productionRuleChanged": false,
+  "readiness": "not_safe_to_start",
+  "stableClaimCount": 0
+}

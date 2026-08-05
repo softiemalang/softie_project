@@ -1,0 +1,80 @@
+{
+  "encrypted": false,
+  "locators": [
+    {
+      "id": "source-p11-five-jue",
+      "identityEvidence": "branch progression only; no 命宮/十二宮 label mapping",
+      "locator": "PDF p11 / printed 三十一 / 起紫微五訣",
+      "pages": [
+        11
+      ],
+      "reading": "五行局별 初一 위치와 순행·역행을 지지 branch 순서로 읽음",
+      "render": {
+        "file": "p11.png",
+        "sha256": "e10b1b30c7928b2cc8e3afcbf3efec3c8d0cbdc9434233a939677869b8402201",
+        "targetHalf": "left"
+      },
+      "role": "direct_coordinate_progression"
+    },
+    {
+      "id": "source-p12-jian-suo",
+      "identityEvidence": "branch tokens and progression only; palace semantic identity not stated",
+      "locator": "PDF p12 / printed 三十三 / 起紫微簡索表",
+      "pages": [
+        12
+      ],
+      "reading": "五行局 열 × 初一..三十 행의 150개 紫微 결과를 표 방향 그대로 전사",
+      "render": {
+        "file": "p12.png",
+        "sha256": "0cc8f8a56ce4b839f300a141f8fe9aa6f035801fda0e7464a3acab0e8af363b1",
+        "targetHalf": "left"
+      },
+      "role": "direct_lookup_table"
+    },
+    {
+      "id": "source-p13-tianfu",
+      "identityEvidence": "source table gives star-to-branch tokens; no shared palace-coordinate declaration",
+      "locator": "PDF p13 / printed 三十四 / 甲六、安天府 / right scanned leaf",
+      "pages": [
+        13
+      ],
+      "reading": "紫微→天府 two-column table, top-to-bottom source transcription",
+      "render": {
+        "crop": "right-page bounding crop; 4000x5000 at offset x=4300,y=500",
+        "cropSha256": "8f0bc209cac98a38fdd2bdfa0166151ae3ffcb1ee20b77c5a11636d12e05c274",
+        "file": "p13-013.png",
+        "sha256": "4fa29afdbc09f8c7bff9c1e510aef603a47c9dd60fa5d2fc78c26baa5e444df9"
+      },
+      "role": "direct_lookup_table"
+    },
+    {
+      "id": "source-p8-p10-ming-shen",
+      "identityEvidence": "supports traversal vocabulary but does not establish branch token = production palace identity",
+      "locator": "PDF p8/p10 / printed 二十五/二十九",
+      "pages": [
+        8,
+        10
+      ],
+      "reading": "寅起月、命宮逆數、身宮順數 and branch order used by existing source pilot",
+      "render": null,
+      "role": "indirect_coordinate_progression"
+    }
+  ],
+  "ocr": "exploration_only_not_canonical",
+  "pdfPageCount": 219,
+  "pdfPath": "/Users/softie/Downloads/命-南北山人_紫微斗数全书.pdf",
+  "pdfSha256": "4786a94ab454acdabf9716d7c0db4756dbcbde99a88bc45fda254863c1961023",
+  "renderAndCropHashes": "preserved from prior source artifacts; PDF/render not copied into Git",
+  "sourceArtifacts": [
+    {
+      "artifactByteSha256": "6c07ae4084ae1957c5082bdf2fc6cfeb9c9af35e02c404be74ce53532960c953",
+      "path": "artifacts/ziwei-ziwei-star-placement-clean-rule-seed-acceptance-v0/complete.json",
+      "verdictToken": "ziwei_ziwei_star_placement_seed_accepted_with_declared_limits"
+    },
+    {
+      "artifactByteSha256": "2b3858b69711bd4ec97c02324a4d26865a894879806b8be1e87878ccb5ac8acd",
+      "path": "artifacts/ziwei-tianfu-placement-discrepancy-analysis-v0/complete.json",
+      "verdictToken": "ziwei_tianfu_source_reconfirmed_relation_identified"
+    }
+  ]
+}

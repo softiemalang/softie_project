@@ -1,0 +1,6071 @@
+{
+  "domain": {
+    "bureaus": [
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "lunarDays": [
+      1,
+      30
+    ],
+    "ordering": "bureau ascending then lunarDay ascending",
+    "rowCount": 150
+  },
+  "otherStars": {
+    "materializedIntegratedRows": 150,
+    "perStarRows": 150,
+    "rawValuesPreserved": true,
+    "status": "source_unresolved"
+  },
+  "roots": {
+    "tianfu": {
+      "firstDivergence": "bureau-2-day-01",
+      "rawMatchCount": 0,
+      "rawMismatchCount": 150,
+      "relation": {
+        "candidateCount": 170,
+        "results": [
+          {
+            "candidateId": "identity",
+            "exact": false,
+            "family": "identity",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "rotation-01",
+            "exact": false,
+            "family": "fixed_rotation",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "rotation-02",
+            "exact": false,
+            "family": "fixed_rotation",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "rotation-03",
+            "exact": false,
+            "family": "fixed_rotation",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "rotation-04",
+            "exact": false,
+            "family": "fixed_rotation",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "rotation-05",
+            "exact": false,
+            "family": "fixed_rotation",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "rotation-06",
+            "exact": true,
+            "family": "fixed_rotation",
+            "matchCount": 150,
+            "mismatchCount": 0,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "rotation-07",
+            "exact": false,
+            "family": "fixed_rotation",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "rotation-08",
+            "exact": false,
+            "family": "fixed_rotation",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "rotation-09",
+            "exact": false,
+            "family": "fixed_rotation",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "rotation-10",
+            "exact": false,
+            "family": "fixed_rotation",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "rotation-11",
+            "exact": false,
+            "family": "fixed_rotation",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "reflection-rotation-00",
+            "exact": false,
+            "family": "reflection_rotation",
+            "matchCount": 25,
+            "mismatchCount": 125,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "reflection-rotation-01",
+            "exact": false,
+            "family": "reflection_rotation",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "reflection-rotation-02",
+            "exact": false,
+            "family": "reflection_rotation",
+            "matchCount": 23,
+            "mismatchCount": 127,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "reflection-rotation-03",
+            "exact": false,
+            "family": "reflection_rotation",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "reflection-rotation-04",
+            "exact": false,
+            "family": "reflection_rotation",
+            "matchCount": 25,
+            "mismatchCount": 125,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "reflection-rotation-05",
+            "exact": false,
+            "family": "reflection_rotation",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "reflection-rotation-06",
+            "exact": false,
+            "family": "reflection_rotation",
+            "matchCount": 26,
+            "mismatchCount": 124,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "reflection-rotation-07",
+            "exact": false,
+            "family": "reflection_rotation",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "reflection-rotation-08",
+            "exact": false,
+            "family": "reflection_rotation",
+            "matchCount": 25,
+            "mismatchCount": 125,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "reflection-rotation-09",
+            "exact": false,
+            "family": "reflection_rotation",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "reflection-rotation-10",
+            "exact": false,
+            "family": "reflection_rotation",
+            "matchCount": 26,
+            "mismatchCount": 124,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "reflection-rotation-11",
+            "exact": false,
+            "family": "reflection_rotation",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "inverse-mapping",
+            "exact": false,
+            "family": "inverse_mapping",
+            "matchCount": 26,
+            "mismatchCount": 124,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-00-out-00",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-00-out-01",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-00-out-02",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-00-out-03",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-00-out-04",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-00-out-05",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-00-out-06",
+            "exact": true,
+            "family": "enum_relabel",
+            "matchCount": 150,
+            "mismatchCount": 0,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-00-out-07",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-00-out-08",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-00-out-09",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-00-out-10",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-00-out-11",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-01-out-00",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-01-out-01",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-01-out-02",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-01-out-03",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-01-out-04",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-01-out-05",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-01-out-06",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-01-out-07",
+            "exact": true,
+            "family": "enum_relabel",
+            "matchCount": 150,
+            "mismatchCount": 0,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-01-out-08",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-01-out-09",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-01-out-10",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-01-out-11",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-02-out-00",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-02-out-01",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-02-out-02",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-02-out-03",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-02-out-04",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-02-out-05",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-02-out-06",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-02-out-07",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-02-out-08",
+            "exact": true,
+            "family": "enum_relabel",
+            "matchCount": 150,
+            "mismatchCount": 0,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-02-out-09",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-02-out-10",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-02-out-11",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-03-out-00",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-03-out-01",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-03-out-02",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-03-out-03",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-03-out-04",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-03-out-05",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-03-out-06",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-03-out-07",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-03-out-08",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-03-out-09",
+            "exact": true,
+            "family": "enum_relabel",
+            "matchCount": 150,
+            "mismatchCount": 0,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-03-out-10",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-03-out-11",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-04-out-00",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-04-out-01",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-04-out-02",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-04-out-03",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-04-out-04",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-04-out-05",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-04-out-06",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-04-out-07",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-04-out-08",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-04-out-09",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-04-out-10",
+            "exact": true,
+            "family": "enum_relabel",
+            "matchCount": 150,
+            "mismatchCount": 0,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-04-out-11",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-05-out-00",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-05-out-01",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-05-out-02",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-05-out-03",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-05-out-04",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-05-out-05",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-05-out-06",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-05-out-07",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-05-out-08",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-05-out-09",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-05-out-10",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-05-out-11",
+            "exact": true,
+            "family": "enum_relabel",
+            "matchCount": 150,
+            "mismatchCount": 0,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-06-out-00",
+            "exact": true,
+            "family": "enum_relabel",
+            "matchCount": 150,
+            "mismatchCount": 0,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-06-out-01",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-06-out-02",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-06-out-03",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-06-out-04",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-06-out-05",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-06-out-06",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-06-out-07",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-06-out-08",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-06-out-09",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-06-out-10",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-06-out-11",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-07-out-00",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-07-out-01",
+            "exact": true,
+            "family": "enum_relabel",
+            "matchCount": 150,
+            "mismatchCount": 0,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-07-out-02",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-07-out-03",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-07-out-04",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-07-out-05",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-07-out-06",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-07-out-07",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-07-out-08",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-07-out-09",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-07-out-10",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-07-out-11",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-08-out-00",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-08-out-01",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-08-out-02",
+            "exact": true,
+            "family": "enum_relabel",
+            "matchCount": 150,
+            "mismatchCount": 0,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-08-out-03",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-08-out-04",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-08-out-05",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-08-out-06",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-08-out-07",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-08-out-08",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-08-out-09",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-08-out-10",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-08-out-11",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-09-out-00",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-09-out-01",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-09-out-02",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-09-out-03",
+            "exact": true,
+            "family": "enum_relabel",
+            "matchCount": 150,
+            "mismatchCount": 0,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-09-out-04",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-09-out-05",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-09-out-06",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-09-out-07",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-09-out-08",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-09-out-09",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-09-out-10",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-09-out-11",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-10-out-00",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-10-out-01",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-10-out-02",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-10-out-03",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-10-out-04",
+            "exact": true,
+            "family": "enum_relabel",
+            "matchCount": 150,
+            "mismatchCount": 0,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-10-out-05",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-10-out-06",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-10-out-07",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-10-out-08",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-10-out-09",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-10-out-10",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-10-out-11",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-11-out-00",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-11-out-01",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-11-out-02",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-11-out-03",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-11-out-04",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-11-out-05",
+            "exact": true,
+            "family": "enum_relabel",
+            "matchCount": 150,
+            "mismatchCount": 0,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-11-out-06",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-11-out-07",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-11-out-08",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-11-out-09",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-11-out-10",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-11-out-11",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "source-base-direction",
+            "exact": true,
+            "family": "source_base_direction",
+            "matchCount": 150,
+            "mismatchCount": 0,
+            "testedRowCount": 150
+          }
+        ]
+      },
+      "rotation06MatchCount": 150,
+      "rotation06ResidualCount": 0,
+      "rows": [
+        {
+          "input": {
+            "bureauNumber": 2,
+            "lunarDay": 22
+          },
+          "integrated": "戌",
+          "rawEquality": false,
+          "rotation06": true,
+          "rowId": "bureau-2-day-22",
+          "source": "辰"
+        },
+        {
+          "input": {
+            "bureauNumber": 2,
+            "lunarDay": 23
+          },
+          "integrated": "戌",
+          "rawEquality": false,
+          "rotation06": true,
+          "rowId": "bureau-2-day-23",
+          "source": "辰"
+        },
+        {
+          "input": {
+            "bureauNumber": 3,
+            "lunarDay": 25
+          },
+          "integrated": "戌",
+          "rawEquality": false,
+          "rotation06": true,
+          "rowId": "bureau-3-day-25",
+          "source": "辰"
+        },
+        {
+          "input": {
+            "bureauNumber": 4,
+            "lunarDay": 5
+          },
+          "integrated": "戌",
+          "rawEquality": false,
+          "rotation06": true,
+          "rowId": "bureau-4-day-05",
+          "source": "辰"
+        },
+        {
+          "input": {
+            "bureauNumber": 5,
+            "lunarDay": 7
+          },
+          "integrated": "戌",
+          "rawEquality": false,
+          "rotation06": true,
+          "rowId": "bureau-5-day-07",
+          "source": "辰"
+        },
+        {
+          "input": {
+            "bureauNumber": 6,
+            "lunarDay": 9
+          },
+          "integrated": "戌",
+          "rawEquality": false,
+          "rotation06": true,
+          "rowId": "bureau-6-day-09",
+          "source": "辰"
+        },
+        {
+          "input": {
+            "bureauNumber": 6,
+            "lunarDay": 19
+          },
+          "integrated": "戌",
+          "rawEquality": false,
+          "rotation06": true,
+          "rowId": "bureau-6-day-19",
+          "source": "辰"
+        },
+        {
+          "input": {
+            "bureauNumber": 2,
+            "lunarDay": 1
+          },
+          "integrated": "酉",
+          "rawEquality": false,
+          "rotation06": true,
+          "rowId": "bureau-2-day-01",
+          "source": "卯"
+        },
+        {
+          "input": {
+            "bureauNumber": 2,
+            "lunarDay": 24
+          },
+          "integrated": "酉",
+          "rawEquality": false,
+          "rotation06": true,
+          "rowId": "bureau-2-day-24",
+          "source": "卯"
+        },
+        {
+          "input": {
+            "bureauNumber": 2,
+            "lunarDay": 25
+          },
+          "integrated": "酉",
+          "rawEquality": false,
+          "rotation06": true,
+          "rowId": "bureau-2-day-25",
+          "source": "卯"
+        },
+        {
+          "input": {
+            "bureauNumber": 3,
+            "lunarDay": 2
+          },
+          "integrated": "酉",
+          "rawEquality": false,
+          "rotation06": true,
+          "rowId": "bureau-3-day-02",
+          "source": "卯"
+        },
+        {
+          "input": {
+            "bureauNumber": 3,
+            "lunarDay": 28
+          },
+          "integrated": "酉",
+          "rawEquality": false,
+          "rotation06": true,
+          "rowId": "bureau-3-day-28",
+          "source": "卯"
+        },
+        {
+          "input": {
+            "bureauNumber": 4,
+            "lunarDay": 3
+          },
+          "integrated": "酉",
+          "rawEquality": false,
+          "rotation06": true,
+          "rowId": "bureau-4-day-03",
+          "source": "卯"
+        },
+        {
+          "input": {
+            "bureauNumber": 4,
+            "lunarDay": 9
+          },
+          "integrated": "酉",
+          "rawEquality": false,
+          "rotation06": true,
+          "rowId": "bureau-4-day-09",
+          "source": "卯"
+        },
+        {
+          "input": {
+            "bureauNumber": 5,
+            "lunarDay": 4
+          },
+          "integrated": "酉",
+          "rawEquality": false,
+          "rotation06": true,
+          "rowId": "bureau-5-day-04",
+          "source": "卯"
+        },
+        {
+          "input": {
+            "bureauNumber": 5,
+            "lunarDay": 12
+          },
+          "integrated": "酉",
+          "rawEquality": false,
+          "rotation06": true,
+          "rowId": "bureau-5-day-12",
+          "source": "卯"
+        },
+        {
+          "input": {
+            "bureauNumber": 6,
+            "lunarDay": 5
+          },
+          "integrated": "酉",
+          "rawEquality": false,
+          "rotation06": true,
+          "rowId": "bureau-6-day-05",
+          "source": "卯"
+        },
+        {
+          "input": {
+            "bureauNumber": 6,
+            "lunarDay": 15
+          },
+          "integrated": "酉",
+          "rawEquality": false,
+          "rotation06": true,
+          "rowId": "bureau-6-day-15",
+          "source": "卯"
+        },
+        {
+          "input": {
+            "bureauNumber": 6,
+            "lunarDay": 25
+          },
+          "integrated": "酉",
+          "rawEquality": false,
+          "rotation06": true,
+          "rowId": "bureau-6-day-25",
+          "source": "卯"
+        },
+        {
+          "input": {
+            "bureauNumber": 2,
+            "lunarDay": 2
+          },
+          "integrated": "申",
+          "rawEquality": false,
+          "rotation06": true,
+          "rowId": "bureau-2-day-02",
+          "source": "寅"
+        },
+        {
+          "input": {
+            "bureauNumber": 2,
+            "lunarDay": 3
+          },
+          "integrated": "申",
+          "rawEquality": false,
+          "rotation06": true,
+          "rowId": "bureau-2-day-03",
+          "source": "寅"
+        },
+        {
+          "input": {
+            "bureauNumber": 2,
+            "lunarDay": 26
+          },
+          "integrated": "申",
+          "rawEquality": false,
+          "rotation06": true,
+          "rowId": "bureau-2-day-26",
+          "source": "寅"
+        },
+        {
+          "input": {
+            "bureauNumber": 2,
+            "lunarDay": 27
+          },
+          "integrated": "申",
+          "rawEquality": false,
+          "rotation06": true,
+          "rowId": "bureau-2-day-27",
+          "source": "寅"
+        },
+        {
+          "input": {
+            "bureauNumber": 3,
+            "lunarDay": 3
+          },
+          "integrated": "申",
+          "rawEquality": false,
+          "rotation06": true,
+          "rowId": "bureau-3-day-03",
+          "source": "寅"
+        },
+        {
+          "input": {
+            "bureauNumber": 3,
+            "lunarDay": 5
+          },
+          "integrated": "申",
+          "rawEquality": false,
+          "rotation06": true,
+          "rowId": "bureau-3-day-05",
+          "source": "寅"
+        },
+        {
+          "input": {
+            "bureauNumber": 4,
+            "lunarDay": 4
+          },
+          "integrated": "申",
+          "rawEquality": false,
+          "rotation06": true,
+          "rowId": "bureau-4-day-04",
+          "source": "寅"
+        },
+        {
+          "input": {
+            "bureauNumber": 4,
+            "lunarDay": 7
+          },
+          "integrated": "申",
+          "rawEquality": false,
+          "rotation06": true,
+          "rowId": "bureau-4-day-07",
+          "source": "寅"
+        },
+        {
+          "input": {
+            "bureauNumber": 4,
+            "lunarDay": 13
+          },
+          "integrated": "申",
+          "rawEquality": false,
+          "rotation06": true,
+          "rowId": "bureau-4-day-13",
+          "source": "寅"
+        },
+        {
+          "input": {
+            "bureauNumber": 5,
+            "lunarDay": 5
+          },
+          "integrated": "申",
+          "rawEquality": false,
+          "rotation06": true,
+          "rowId": "bureau-5-day-05",
+          "source": "寅"
+        },
+        {
+          "input": {
+            "bureauNumber": 5,
+            "lunarDay": 9
+          },
+          "integrated": "申",
+          "rawEquality": false,
+          "rotation06": true,
+          "rowId": "bureau-5-day-09",
+          "source": "寅"
+        },
+        {
+          "input": {
+            "bureauNumber": 5,
+            "lunarDay": 17
+          },
+          "integrated": "申",
+          "rawEquality": false,
+          "rotation06": true,
+          "rowId": "bureau-5-day-17",
+          "source": "寅"
+        },
+        {
+          "input": {
+            "bureauNumber": 6,
+            "lunarDay": 6
+          },
+          "integrated": "申",
+          "rawEquality": false,
+          "rotation06": true,
+          "rowId": "bureau-6-day-06",
+          "source": "寅"
+        },
+        {
+          "input": {
+            "bureauNumber": 6,
+            "lunarDay": 11
+          },
+          "integrated": "申",
+          "rawEquality": false,
+          "rotation06": true,
+          "rowId": "bureau-6-day-11",
+          "source": "寅"
+        },
+        {
+          "input": {
+            "bureauNumber": 6,
+            "lunarDay": 21
+          },
+          "integrated": "申",
+          "rawEquality": false,
+          "rotation06": true,
+          "rowId": "bureau-6-day-21",
+          "source": "寅"
+        },
+        {
+          "input": {
+            "bureauNumber": 2,
+            "lunarDay": 4
+          },
+          "integrated": "未",
+          "rawEquality": false,
+          "rotation06": true,
+          "rowId": "bureau-2-day-04",
+          "source": "丑"
+        },
+        {
+          "input": {
+            "bureauNumber": 2,
+            "lunarDay": 5
+          },
+          "integrated": "未",
+          "rawEquality": false,
+          "rotation06": true,
+          "rowId": "bureau-2-day-05",
+          "source": "丑"
+        },
+        {
+          "input": {
+            "bureauNumber": 2,
+            "lunarDay": 28
+          },
+          "integrated": "未",
+          "rawEquality": false,
+          "rotation06": true,
+          "rowId": "bureau-2-day-28",
+          "source": "丑"
+        },
+        {
+          "input": {
+            "bureauNumber": 2,
+            "lunarDay": 29
+          },
+          "integrated": "未",
+          "rawEquality": false,
+          "rotation06": true,
+          "rowId": "bureau-2-day-29",
+          "source": "丑"
+        },
+        {
+          "input": {
+            "bureauNumber": 3,
+            "lunarDay": 6
+          },
+          "integrated": "未",
+          "rawEquality": false,
+          "rotation06": true,
+          "rowId": "bureau-3-day-06",
+          "source": "丑"
+        },
+        {
+          "input": {
+            "bureauNumber": 3,
+            "lunarDay": 8
+          },
+          "integrated": "未",
+          "rawEquality": false,
+          "rotation06": true,
+          "rowId": "bureau-3-day-08",
+          "source": "丑"
+        },
+        {
+          "input": {
+            "bureauNumber": 4,
+            "lunarDay": 8
+          },
+          "integrated": "未",
+          "rawEquality": false,
+          "rotation06": true,
+          "rowId": "bureau-4-day-08",
+          "source": "丑"
+        },
+        {
+          "input": {
+            "bureauNumber": 4,
+            "lunarDay": 11
+          },
+          "integrated": "未",
+          "rawEquality": false,
+          "rotation06": true,
+          "rowId": "bureau-4-day-11",
+          "source": "丑"
+        },
+        {
+          "input": {
+            "bureauNumber": 4,
+            "lunarDay": 17
+          },
+          "integrated": "未",
+          "rawEquality": false,
+          "rotation06": true,
+          "rowId": "bureau-4-day-17",
+          "source": "丑"
+        },
+        {
+          "input": {
+            "bureauNumber": 5,
+            "lunarDay": 10
+          },
+          "integrated": "未",
+          "rawEquality": false,
+          "rotation06": true,
+          "rowId": "bureau-5-day-10",
+          "source": "丑"
+        },
+        {
+          "input": {
+            "bureauNumber": 5,
+            "lunarDay": 14
+          },
+          "integrated": "未",
+          "rawEquality": false,
+          "rotation06": true,
+          "rowId": "bureau-5-day-14",
+          "source": "丑"
+        },
+        {
+          "input": {
+            "bureauNumber": 5,
+            "lunarDay": 22
+          },
+          "integrated": "未",
+          "rawEquality": false,
+          "rotation06": true,
+          "rowId": "bureau-5-day-22",
+          "source": "丑"
+        },
+        {
+          "input": {
+            "bureauNumber": 6,
+            "lunarDay": 12
+          },
+          "integrated": "未",
+          "rawEquality": false,
+          "rotation06": true,
+          "rowId": "bureau-6-day-12",
+          "source": "丑"
+        },
+        {
+          "input": {
+            "bureauNumber": 6,
+            "lunarDay": 17
+          },
+          "integrated": "未",
+          "rawEquality": false,
+          "rotation06": true,
+          "rowId": "bureau-6-day-17",
+          "source": "丑"
+        },
+        {
+          "input": {
+            "bureauNumber": 6,
+            "lunarDay": 27
+          },
+          "integrated": "未",
+          "rawEquality": false,
+          "rotation06": true,
+          "rowId": "bureau-6-day-27",
+          "source": "丑"
+        },
+        {
+          "input": {
+            "bureauNumber": 2,
+            "lunarDay": 6
+          },
+          "integrated": "午",
+          "rawEquality": false,
+          "rotation06": true,
+          "rowId": "bureau-2-day-06",
+          "source": "子"
+        },
+        {
+          "input": {
+            "bureauNumber": 2,
+            "lunarDay": 7
+          },
+          "integrated": "午",
+          "rawEquality": false,
+          "rotation06": true,
+          "rowId": "bureau-2-day-07",
+          "source": "子"
+        },
+        {
+          "input": {
+            "bureauNumber": 2,
+            "lunarDay": 30
+          },
+          "integrated": "午",
+          "rawEquality": false,
+          "rotation06": true,
+          "rowId": "bureau-2-day-30",
+          "source": "子"
+        },
+        {
+          "input": {
+            "bureauNumber": 3,
+            "lunarDay": 1
+          },
+          "integrated": "午",
+          "rawEquality": false,
+          "rotation06": true,
+          "rowId": "bureau-3-day-01",
+          "source": "子"
+        },
+        {
+          "input": {
+            "bureauNumber": 3,
+            "lunarDay": 9
+          },
+          "integrated": "午",
+          "rawEquality": false,
+          "rotation06": true,
+          "rowId": "bureau-3-day-09",
+          "source": "子"
+        },
+        {
+          "input": {
+            "bureauNumber": 3,
+            "lunarDay": 11
+          },
+          "integrated": "午",
+          "rawEquality": false,
+          "rotation06": true,
+          "rowId": "bureau-3-day-11",
+          "source": "子"
+        },
+        {
+          "input": {
+            "bureauNumber": 4,
+            "lunarDay": 2
+          },
+          "integrated": "午",
+          "rawEquality": false,
+          "rotation06": true,
+          "rowId": "bureau-4-day-02",
+          "source": "子"
+        },
+        {
+          "input": {
+            "bureauNumber": 4,
+            "lunarDay": 12
+          },
+          "integrated": "午",
+          "rawEquality": false,
+          "rotation06": true,
+          "rowId": "bureau-4-day-12",
+          "source": "子"
+        },
+        {
+          "input": {
+            "bureauNumber": 4,
+            "lunarDay": 15
+          },
+          "integrated": "午",
+          "rawEquality": false,
+          "rotation06": true,
+          "rowId": "bureau-4-day-15",
+          "source": "子"
+        },
+        {
+          "input": {
+            "bureauNumber": 4,
+            "lunarDay": 21
+          },
+          "integrated": "午",
+          "rawEquality": false,
+          "rotation06": true,
+          "rowId": "bureau-4-day-21",
+          "source": "子"
+        },
+        {
+          "input": {
+            "bureauNumber": 5,
+            "lunarDay": 3
+          },
+          "integrated": "午",
+          "rawEquality": false,
+          "rotation06": true,
+          "rowId": "bureau-5-day-03",
+          "source": "子"
+        },
+        {
+          "input": {
+            "bureauNumber": 5,
+            "lunarDay": 15
+          },
+          "integrated": "午",
+          "rawEquality": false,
+          "rotation06": true,
+          "rowId": "bureau-5-day-15",
+          "source": "子"
+        },
+        {
+          "input": {
+            "bureauNumber": 5,
+            "lunarDay": 19
+          },
+          "integrated": "午",
+          "rawEquality": false,
+          "rotation06": true,
+          "rowId": "bureau-5-day-19",
+          "source": "子"
+        },
+        {
+          "input": {
+            "bureauNumber": 5,
+            "lunarDay": 27
+          },
+          "integrated": "午",
+          "rawEquality": false,
+          "rotation06": true,
+          "rowId": "bureau-5-day-27",
+          "source": "子"
+        },
+        {
+          "input": {
+            "bureauNumber": 6,
+            "lunarDay": 4
+          },
+          "integrated": "午",
+          "rawEquality": false,
+          "rotation06": true,
+          "rowId": "bureau-6-day-04",
+          "source": "子"
+        },
+        {
+          "input": {
+            "bureauNumber": 6,
+            "lunarDay": 18
+          },
+          "integrated": "午",
+          "rawEquality": false,
+          "rotation06": true,
+          "rowId": "bureau-6-day-18",
+          "source": "子"
+        },
+        {
+          "input": {
+            "bureauNumber": 6,
+            "lunarDay": 23
+          },
+          "integrated": "午",
+          "rawEquality": false,
+          "rotation06": true,
+          "rowId": "bureau-6-day-23",
+          "source": "子"
+        },
+        {
+          "input": {
+            "bureauNumber": 2,
+            "lunarDay": 8
+          },
+          "integrated": "巳",
+          "rawEquality": false,
+          "rotation06": true,
+          "rowId": "bureau-2-day-08",
+          "source": "亥"
+        },
+        {
+          "input": {
+            "bureauNumber": 2,
+            "lunarDay": 9
+          },
+          "integrated": "巳",
+          "rawEquality": false,
+          "rotation06": true,
+          "rowId": "bureau-2-day-09",
+          "source": "亥"
+        },
+        {
+          "input": {
+            "bureauNumber": 3,
+            "lunarDay": 4
+          },
+          "integrated": "巳",
+          "rawEquality": false,
+          "rotation06": true,
+          "rowId": "bureau-3-day-04",
+          "source": "亥"
+        },
+        {
+          "input": {
+            "bureauNumber": 3,
+            "lunarDay": 12
+          },
+          "integrated": "巳",
+          "rawEquality": false,
+          "rotation06": true,
+          "rowId": "bureau-3-day-12",
+          "source": "亥"
+        },
+        {
+          "input": {
+            "bureauNumber": 3,
+            "lunarDay": 14
+          },
+          "integrated": "巳",
+          "rawEquality": false,
+          "rotation06": true,
+          "rowId": "bureau-3-day-14",
+          "source": "亥"
+        },
+        {
+          "input": {
+            "bureauNumber": 4,
+            "lunarDay": 6
+          },
+          "integrated": "巳",
+          "rawEquality": false,
+          "rotation06": true,
+          "rowId": "bureau-4-day-06",
+          "source": "亥"
+        },
+        {
+          "input": {
+            "bureauNumber": 4,
+            "lunarDay": 16
+          },
+          "integrated": "巳",
+          "rawEquality": false,
+          "rotation06": true,
+          "rowId": "bureau-4-day-16",
+          "source": "亥"
+        },
+        {
+          "input": {
+            "bureauNumber": 4,
+            "lunarDay": 19
+          },
+          "integrated": "巳",
+          "rawEquality": false,
+          "rotation06": true,
+          "rowId": "bureau-4-day-19",
+          "source": "亥"
+        },
+        {
+          "input": {
+            "bureauNumber": 4,
+            "lunarDay": 25
+          },
+          "integrated": "巳",
+          "rawEquality": false,
+          "rotation06": true,
+          "rowId": "bureau-4-day-25",
+          "source": "亥"
+        },
+        {
+          "input": {
+            "bureauNumber": 5,
+            "lunarDay": 8
+          },
+          "integrated": "巳",
+          "rawEquality": false,
+          "rotation06": true,
+          "rowId": "bureau-5-day-08",
+          "source": "亥"
+        },
+        {
+          "input": {
+            "bureauNumber": 5,
+            "lunarDay": 20
+          },
+          "integrated": "巳",
+          "rawEquality": false,
+          "rotation06": true,
+          "rowId": "bureau-5-day-20",
+          "source": "亥"
+        },
+        {
+          "input": {
+            "bureauNumber": 5,
+            "lunarDay": 24
+          },
+          "integrated": "巳",
+          "rawEquality": false,
+          "rotation06": true,
+          "rowId": "bureau-5-day-24",
+          "source": "亥"
+        },
+        {
+          "input": {
+            "bureauNumber": 6,
+            "lunarDay": 10
+          },
+          "integrated": "巳",
+          "rawEquality": false,
+          "rotation06": true,
+          "rowId": "bureau-6-day-10",
+          "source": "亥"
+        },
+        {
+          "input": {
+            "bureauNumber": 6,
+            "lunarDay": 24
+          },
+          "integrated": "巳",
+          "rawEquality": false,
+          "rotation06": true,
+          "rowId": "bureau-6-day-24",
+          "source": "亥"
+        },
+        {
+          "input": {
+            "bureauNumber": 6,
+            "lunarDay": 29
+          },
+          "integrated": "巳",
+          "rawEquality": false,
+          "rotation06": true,
+          "rowId": "bureau-6-day-29",
+          "source": "亥"
+        },
+        {
+          "input": {
+            "bureauNumber": 2,
+            "lunarDay": 10
+          },
+          "integrated": "辰",
+          "rawEquality": false,
+          "rotation06": true,
+          "rowId": "bureau-2-day-10",
+          "source": "戌"
+        },
+        {
+          "input": {
+            "bureauNumber": 2,
+            "lunarDay": 11
+          },
+          "integrated": "辰",
+          "rawEquality": false,
+          "rotation06": true,
+          "rowId": "bureau-2-day-11",
+          "source": "戌"
+        },
+        {
+          "input": {
+            "bureauNumber": 3,
+            "lunarDay": 7
+          },
+          "integrated": "辰",
+          "rawEquality": false,
+          "rotation06": true,
+          "rowId": "bureau-3-day-07",
+          "source": "戌"
+        },
+        {
+          "input": {
+            "bureauNumber": 3,
+            "lunarDay": 15
+          },
+          "integrated": "辰",
+          "rawEquality": false,
+          "rotation06": true,
+          "rowId": "bureau-3-day-15",
+          "source": "戌"
+        },
+        {
+          "input": {
+            "bureauNumber": 3,
+            "lunarDay": 17
+          },
+          "integrated": "辰",
+          "rawEquality": false,
+          "rotation06": true,
+          "rowId": "bureau-3-day-17",
+          "source": "戌"
+        },
+        {
+          "input": {
+            "bureauNumber": 4,
+            "lunarDay": 10
+          },
+          "integrated": "辰",
+          "rawEquality": false,
+          "rotation06": true,
+          "rowId": "bureau-4-day-10",
+          "source": "戌"
+        },
+        {
+          "input": {
+            "bureauNumber": 4,
+            "lunarDay": 20
+          },
+          "integrated": "辰",
+          "rawEquality": false,
+          "rotation06": true,
+          "rowId": "bureau-4-day-20",
+          "source": "戌"
+        },
+        {
+          "input": {
+            "bureauNumber": 4,
+            "lunarDay": 23
+          },
+          "integrated": "辰",
+          "rawEquality": false,
+          "rotation06": true,
+          "rowId": "bureau-4-day-23",
+          "source": "戌"
+        },
+        {
+          "input": {
+            "bureauNumber": 4,
+            "lunarDay": 29
+          },
+          "integrated": "辰",
+          "rawEquality": false,
+          "rotation06": true,
+          "rowId": "bureau-4-day-29",
+          "source": "戌"
+        },
+        {
+          "input": {
+            "bureauNumber": 5,
+            "lunarDay": 1
+          },
+          "integrated": "辰",
+          "rawEquality": false,
+          "rotation06": true,
+          "rowId": "bureau-5-day-01",
+          "source": "戌"
+        },
+        {
+          "input": {
+            "bureauNumber": 5,
+            "lunarDay": 13
+          },
+          "integrated": "辰",
+          "rawEquality": false,
+          "rotation06": true,
+          "rowId": "bureau-5-day-13",
+          "source": "戌"
+        },
+        {
+          "input": {
+            "bureauNumber": 5,
+            "lunarDay": 25
+          },
+          "integrated": "辰",
+          "rawEquality": false,
+          "rotation06": true,
+          "rowId": "bureau-5-day-25",
+          "source": "戌"
+        },
+        {
+          "input": {
+            "bureauNumber": 5,
+            "lunarDay": 29
+          },
+          "integrated": "辰",
+          "rawEquality": false,
+          "rotation06": true,
+          "rowId": "bureau-5-day-29",
+          "source": "戌"
+        },
+        {
+          "input": {
+            "bureauNumber": 6,
+            "lunarDay": 2
+          },
+          "integrated": "辰",
+          "rawEquality": false,
+          "rotation06": true,
+          "rowId": "bureau-6-day-02",
+          "source": "戌"
+        },
+        {
+          "input": {
+            "bureauNumber": 6,
+            "lunarDay": 16
+          },
+          "integrated": "辰",
+          "rawEquality": false,
+          "rotation06": true,
+          "rowId": "bureau-6-day-16",
+          "source": "戌"
+        },
+        {
+          "input": {
+            "bureauNumber": 6,
+            "lunarDay": 30
+          },
+          "integrated": "辰",
+          "rawEquality": false,
+          "rotation06": true,
+          "rowId": "bureau-6-day-30",
+          "source": "戌"
+        },
+        {
+          "input": {
+            "bureauNumber": 2,
+            "lunarDay": 12
+          },
+          "integrated": "卯",
+          "rawEquality": false,
+          "rotation06": true,
+          "rowId": "bureau-2-day-12",
+          "source": "酉"
+        },
+        {
+          "input": {
+            "bureauNumber": 2,
+            "lunarDay": 13
+          },
+          "integrated": "卯",
+          "rawEquality": false,
+          "rotation06": true,
+          "rowId": "bureau-2-day-13",
+          "source": "酉"
+        },
+        {
+          "input": {
+            "bureauNumber": 3,
+            "lunarDay": 10
+          },
+          "integrated": "卯",
+          "rawEquality": false,
+          "rotation06": true,
+          "rowId": "bureau-3-day-10",
+          "source": "酉"
+        },
+        {
+          "input": {
+            "bureauNumber": 3,
+            "lunarDay": 18
+          },
+          "integrated": "卯",
+          "rawEquality": false,
+          "rotation06": true,
+          "rowId": "bureau-3-day-18",
+          "source": "酉"
+        },
+        {
+          "input": {
+            "bureauNumber": 3,
+            "lunarDay": 20
+          },
+          "integrated": "卯",
+          "rawEquality": false,
+          "rotation06": true,
+          "rowId": "bureau-3-day-20",
+          "source": "酉"
+        },
+        {
+          "input": {
+            "bureauNumber": 4,
+            "lunarDay": 14
+          },
+          "integrated": "卯",
+          "rawEquality": false,
+          "rotation06": true,
+          "rowId": "bureau-4-day-14",
+          "source": "酉"
+        },
+        {
+          "input": {
+            "bureauNumber": 4,
+            "lunarDay": 24
+          },
+          "integrated": "卯",
+          "rawEquality": false,
+          "rotation06": true,
+          "rowId": "bureau-4-day-24",
+          "source": "酉"
+        },
+        {
+          "input": {
+            "bureauNumber": 4,
+            "lunarDay": 27
+          },
+          "integrated": "卯",
+          "rawEquality": false,
+          "rotation06": true,
+          "rowId": "bureau-4-day-27",
+          "source": "酉"
+        },
+        {
+          "input": {
+            "bureauNumber": 5,
+            "lunarDay": 6
+          },
+          "integrated": "卯",
+          "rawEquality": false,
+          "rotation06": true,
+          "rowId": "bureau-5-day-06",
+          "source": "酉"
+        },
+        {
+          "input": {
+            "bureauNumber": 5,
+            "lunarDay": 18
+          },
+          "integrated": "卯",
+          "rawEquality": false,
+          "rotation06": true,
+          "rowId": "bureau-5-day-18",
+          "source": "酉"
+        },
+        {
+          "input": {
+            "bureauNumber": 5,
+            "lunarDay": 30
+          },
+          "integrated": "卯",
+          "rawEquality": false,
+          "rotation06": true,
+          "rowId": "bureau-5-day-30",
+          "source": "酉"
+        },
+        {
+          "input": {
+            "bureauNumber": 6,
+            "lunarDay": 8
+          },
+          "integrated": "卯",
+          "rawEquality": false,
+          "rotation06": true,
+          "rowId": "bureau-6-day-08",
+          "source": "酉"
+        },
+        {
+          "input": {
+            "bureauNumber": 6,
+            "lunarDay": 22
+          },
+          "integrated": "卯",
+          "rawEquality": false,
+          "rotation06": true,
+          "rowId": "bureau-6-day-22",
+          "source": "酉"
+        },
+        {
+          "input": {
+            "bureauNumber": 2,
+            "lunarDay": 14
+          },
+          "integrated": "寅",
+          "rawEquality": false,
+          "rotation06": true,
+          "rowId": "bureau-2-day-14",
+          "source": "申"
+        },
+        {
+          "input": {
+            "bureauNumber": 2,
+            "lunarDay": 15
+          },
+          "integrated": "寅",
+          "rawEquality": false,
+          "rotation06": true,
+          "rowId": "bureau-2-day-15",
+          "source": "申"
+        },
+        {
+          "input": {
+            "bureauNumber": 3,
+            "lunarDay": 13
+          },
+          "integrated": "寅",
+          "rawEquality": false,
+          "rotation06": true,
+          "rowId": "bureau-3-day-13",
+          "source": "申"
+        },
+        {
+          "input": {
+            "bureauNumber": 3,
+            "lunarDay": 21
+          },
+          "integrated": "寅",
+          "rawEquality": false,
+          "rotation06": true,
+          "rowId": "bureau-3-day-21",
+          "source": "申"
+        },
+        {
+          "input": {
+            "bureauNumber": 3,
+            "lunarDay": 23
+          },
+          "integrated": "寅",
+          "rawEquality": false,
+          "rotation06": true,
+          "rowId": "bureau-3-day-23",
+          "source": "申"
+        },
+        {
+          "input": {
+            "bureauNumber": 4,
+            "lunarDay": 18
+          },
+          "integrated": "寅",
+          "rawEquality": false,
+          "rotation06": true,
+          "rowId": "bureau-4-day-18",
+          "source": "申"
+        },
+        {
+          "input": {
+            "bureauNumber": 4,
+            "lunarDay": 28
+          },
+          "integrated": "寅",
+          "rawEquality": false,
+          "rotation06": true,
+          "rowId": "bureau-4-day-28",
+          "source": "申"
+        },
+        {
+          "input": {
+            "bureauNumber": 5,
+            "lunarDay": 11
+          },
+          "integrated": "寅",
+          "rawEquality": false,
+          "rotation06": true,
+          "rowId": "bureau-5-day-11",
+          "source": "申"
+        },
+        {
+          "input": {
+            "bureauNumber": 5,
+            "lunarDay": 23
+          },
+          "integrated": "寅",
+          "rawEquality": false,
+          "rotation06": true,
+          "rowId": "bureau-5-day-23",
+          "source": "申"
+        },
+        {
+          "input": {
+            "bureauNumber": 6,
+            "lunarDay": 14
+          },
+          "integrated": "寅",
+          "rawEquality": false,
+          "rotation06": true,
+          "rowId": "bureau-6-day-14",
+          "source": "申"
+        },
+        {
+          "input": {
+            "bureauNumber": 6,
+            "lunarDay": 28
+          },
+          "integrated": "寅",
+          "rawEquality": false,
+          "rotation06": true,
+          "rowId": "bureau-6-day-28",
+          "source": "申"
+        },
+        {
+          "input": {
+            "bureauNumber": 2,
+            "lunarDay": 16
+          },
+          "integrated": "丑",
+          "rawEquality": false,
+          "rotation06": true,
+          "rowId": "bureau-2-day-16",
+          "source": "未"
+        },
+        {
+          "input": {
+            "bureauNumber": 2,
+            "lunarDay": 17
+          },
+          "integrated": "丑",
+          "rawEquality": false,
+          "rotation06": true,
+          "rowId": "bureau-2-day-17",
+          "source": "未"
+        },
+        {
+          "input": {
+            "bureauNumber": 3,
+            "lunarDay": 16
+          },
+          "integrated": "丑",
+          "rawEquality": false,
+          "rotation06": true,
+          "rowId": "bureau-3-day-16",
+          "source": "未"
+        },
+        {
+          "input": {
+            "bureauNumber": 3,
+            "lunarDay": 24
+          },
+          "integrated": "丑",
+          "rawEquality": false,
+          "rotation06": true,
+          "rowId": "bureau-3-day-24",
+          "source": "未"
+        },
+        {
+          "input": {
+            "bureauNumber": 3,
+            "lunarDay": 26
+          },
+          "integrated": "丑",
+          "rawEquality": false,
+          "rotation06": true,
+          "rowId": "bureau-3-day-26",
+          "source": "未"
+        },
+        {
+          "input": {
+            "bureauNumber": 4,
+            "lunarDay": 22
+          },
+          "integrated": "丑",
+          "rawEquality": false,
+          "rotation06": true,
+          "rowId": "bureau-4-day-22",
+          "source": "未"
+        },
+        {
+          "input": {
+            "bureauNumber": 5,
+            "lunarDay": 16
+          },
+          "integrated": "丑",
+          "rawEquality": false,
+          "rotation06": true,
+          "rowId": "bureau-5-day-16",
+          "source": "未"
+        },
+        {
+          "input": {
+            "bureauNumber": 5,
+            "lunarDay": 28
+          },
+          "integrated": "丑",
+          "rawEquality": false,
+          "rotation06": true,
+          "rowId": "bureau-5-day-28",
+          "source": "未"
+        },
+        {
+          "input": {
+            "bureauNumber": 6,
+            "lunarDay": 1
+          },
+          "integrated": "丑",
+          "rawEquality": false,
+          "rotation06": true,
+          "rowId": "bureau-6-day-01",
+          "source": "未"
+        },
+        {
+          "input": {
+            "bureauNumber": 6,
+            "lunarDay": 20
+          },
+          "integrated": "丑",
+          "rawEquality": false,
+          "rotation06": true,
+          "rowId": "bureau-6-day-20",
+          "source": "未"
+        },
+        {
+          "input": {
+            "bureauNumber": 2,
+            "lunarDay": 18
+          },
+          "integrated": "子",
+          "rawEquality": false,
+          "rotation06": true,
+          "rowId": "bureau-2-day-18",
+          "source": "午"
+        },
+        {
+          "input": {
+            "bureauNumber": 2,
+            "lunarDay": 19
+          },
+          "integrated": "子",
+          "rawEquality": false,
+          "rotation06": true,
+          "rowId": "bureau-2-day-19",
+          "source": "午"
+        },
+        {
+          "input": {
+            "bureauNumber": 3,
+            "lunarDay": 19
+          },
+          "integrated": "子",
+          "rawEquality": false,
+          "rotation06": true,
+          "rowId": "bureau-3-day-19",
+          "source": "午"
+        },
+        {
+          "input": {
+            "bureauNumber": 3,
+            "lunarDay": 27
+          },
+          "integrated": "子",
+          "rawEquality": false,
+          "rotation06": true,
+          "rowId": "bureau-3-day-27",
+          "source": "午"
+        },
+        {
+          "input": {
+            "bureauNumber": 3,
+            "lunarDay": 29
+          },
+          "integrated": "子",
+          "rawEquality": false,
+          "rotation06": true,
+          "rowId": "bureau-3-day-29",
+          "source": "午"
+        },
+        {
+          "input": {
+            "bureauNumber": 4,
+            "lunarDay": 26
+          },
+          "integrated": "子",
+          "rawEquality": false,
+          "rotation06": true,
+          "rowId": "bureau-4-day-26",
+          "source": "午"
+        },
+        {
+          "input": {
+            "bureauNumber": 5,
+            "lunarDay": 21
+          },
+          "integrated": "子",
+          "rawEquality": false,
+          "rotation06": true,
+          "rowId": "bureau-5-day-21",
+          "source": "午"
+        },
+        {
+          "input": {
+            "bureauNumber": 6,
+            "lunarDay": 7
+          },
+          "integrated": "子",
+          "rawEquality": false,
+          "rotation06": true,
+          "rowId": "bureau-6-day-07",
+          "source": "午"
+        },
+        {
+          "input": {
+            "bureauNumber": 6,
+            "lunarDay": 26
+          },
+          "integrated": "子",
+          "rawEquality": false,
+          "rotation06": true,
+          "rowId": "bureau-6-day-26",
+          "source": "午"
+        },
+        {
+          "input": {
+            "bureauNumber": 2,
+            "lunarDay": 20
+          },
+          "integrated": "亥",
+          "rawEquality": false,
+          "rotation06": true,
+          "rowId": "bureau-2-day-20",
+          "source": "巳"
+        },
+        {
+          "input": {
+            "bureauNumber": 2,
+            "lunarDay": 21
+          },
+          "integrated": "亥",
+          "rawEquality": false,
+          "rotation06": true,
+          "rowId": "bureau-2-day-21",
+          "source": "巳"
+        },
+        {
+          "input": {
+            "bureauNumber": 3,
+            "lunarDay": 22
+          },
+          "integrated": "亥",
+          "rawEquality": false,
+          "rotation06": true,
+          "rowId": "bureau-3-day-22",
+          "source": "巳"
+        },
+        {
+          "input": {
+            "bureauNumber": 3,
+            "lunarDay": 30
+          },
+          "integrated": "亥",
+          "rawEquality": false,
+          "rotation06": true,
+          "rowId": "bureau-3-day-30",
+          "source": "巳"
+        },
+        {
+          "input": {
+            "bureauNumber": 4,
+            "lunarDay": 1
+          },
+          "integrated": "亥",
+          "rawEquality": false,
+          "rotation06": true,
+          "rowId": "bureau-4-day-01",
+          "source": "巳"
+        },
+        {
+          "input": {
+            "bureauNumber": 4,
+            "lunarDay": 30
+          },
+          "integrated": "亥",
+          "rawEquality": false,
+          "rotation06": true,
+          "rowId": "bureau-4-day-30",
+          "source": "巳"
+        },
+        {
+          "input": {
+            "bureauNumber": 5,
+            "lunarDay": 2
+          },
+          "integrated": "亥",
+          "rawEquality": false,
+          "rotation06": true,
+          "rowId": "bureau-5-day-02",
+          "source": "巳"
+        },
+        {
+          "input": {
+            "bureauNumber": 5,
+            "lunarDay": 26
+          },
+          "integrated": "亥",
+          "rawEquality": false,
+          "rotation06": true,
+          "rowId": "bureau-5-day-26",
+          "source": "巳"
+        },
+        {
+          "input": {
+            "bureauNumber": 6,
+            "lunarDay": 3
+          },
+          "integrated": "亥",
+          "rawEquality": false,
+          "rotation06": true,
+          "rowId": "bureau-6-day-03",
+          "source": "巳"
+        },
+        {
+          "input": {
+            "bureauNumber": 6,
+            "lunarDay": 13
+          },
+          "integrated": "亥",
+          "rawEquality": false,
+          "rotation06": true,
+          "rowId": "bureau-6-day-13",
+          "source": "巳"
+        }
+      ]
+    },
+    "ziwei": {
+      "firstDivergence": null,
+      "rawMatchCount": 150,
+      "rawMismatchCount": 0,
+      "relation": {
+        "candidateCount": 170,
+        "results": [
+          {
+            "candidateId": "identity",
+            "exact": true,
+            "family": "identity",
+            "matchCount": 150,
+            "mismatchCount": 0,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "rotation-01",
+            "exact": false,
+            "family": "fixed_rotation",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "rotation-02",
+            "exact": false,
+            "family": "fixed_rotation",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "rotation-03",
+            "exact": false,
+            "family": "fixed_rotation",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "rotation-04",
+            "exact": false,
+            "family": "fixed_rotation",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "rotation-05",
+            "exact": false,
+            "family": "fixed_rotation",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "rotation-06",
+            "exact": false,
+            "family": "fixed_rotation",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "rotation-07",
+            "exact": false,
+            "family": "fixed_rotation",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "rotation-08",
+            "exact": false,
+            "family": "fixed_rotation",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "rotation-09",
+            "exact": false,
+            "family": "fixed_rotation",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "rotation-10",
+            "exact": false,
+            "family": "fixed_rotation",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "rotation-11",
+            "exact": false,
+            "family": "fixed_rotation",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "reflection-rotation-00",
+            "exact": false,
+            "family": "reflection_rotation",
+            "matchCount": 23,
+            "mismatchCount": 127,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "reflection-rotation-01",
+            "exact": false,
+            "family": "reflection_rotation",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "reflection-rotation-02",
+            "exact": false,
+            "family": "reflection_rotation",
+            "matchCount": 25,
+            "mismatchCount": 125,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "reflection-rotation-03",
+            "exact": false,
+            "family": "reflection_rotation",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "reflection-rotation-04",
+            "exact": false,
+            "family": "reflection_rotation",
+            "matchCount": 26,
+            "mismatchCount": 124,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "reflection-rotation-05",
+            "exact": false,
+            "family": "reflection_rotation",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "reflection-rotation-06",
+            "exact": false,
+            "family": "reflection_rotation",
+            "matchCount": 25,
+            "mismatchCount": 125,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "reflection-rotation-07",
+            "exact": false,
+            "family": "reflection_rotation",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "reflection-rotation-08",
+            "exact": false,
+            "family": "reflection_rotation",
+            "matchCount": 26,
+            "mismatchCount": 124,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "reflection-rotation-09",
+            "exact": false,
+            "family": "reflection_rotation",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "reflection-rotation-10",
+            "exact": false,
+            "family": "reflection_rotation",
+            "matchCount": 25,
+            "mismatchCount": 125,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "reflection-rotation-11",
+            "exact": false,
+            "family": "reflection_rotation",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "inverse-mapping",
+            "exact": false,
+            "family": "inverse_mapping",
+            "matchCount": 25,
+            "mismatchCount": 125,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-00-out-00",
+            "exact": true,
+            "family": "enum_relabel",
+            "matchCount": 150,
+            "mismatchCount": 0,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-00-out-01",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-00-out-02",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-00-out-03",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-00-out-04",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-00-out-05",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-00-out-06",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-00-out-07",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-00-out-08",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-00-out-09",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-00-out-10",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-00-out-11",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-01-out-00",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-01-out-01",
+            "exact": true,
+            "family": "enum_relabel",
+            "matchCount": 150,
+            "mismatchCount": 0,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-01-out-02",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-01-out-03",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-01-out-04",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-01-out-05",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-01-out-06",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-01-out-07",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-01-out-08",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-01-out-09",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-01-out-10",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-01-out-11",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-02-out-00",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-02-out-01",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-02-out-02",
+            "exact": true,
+            "family": "enum_relabel",
+            "matchCount": 150,
+            "mismatchCount": 0,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-02-out-03",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-02-out-04",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-02-out-05",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-02-out-06",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-02-out-07",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-02-out-08",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-02-out-09",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-02-out-10",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-02-out-11",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-03-out-00",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-03-out-01",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-03-out-02",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-03-out-03",
+            "exact": true,
+            "family": "enum_relabel",
+            "matchCount": 150,
+            "mismatchCount": 0,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-03-out-04",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-03-out-05",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-03-out-06",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-03-out-07",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-03-out-08",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-03-out-09",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-03-out-10",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-03-out-11",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-04-out-00",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-04-out-01",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-04-out-02",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-04-out-03",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-04-out-04",
+            "exact": true,
+            "family": "enum_relabel",
+            "matchCount": 150,
+            "mismatchCount": 0,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-04-out-05",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-04-out-06",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-04-out-07",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-04-out-08",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-04-out-09",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-04-out-10",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-04-out-11",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-05-out-00",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-05-out-01",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-05-out-02",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-05-out-03",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-05-out-04",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-05-out-05",
+            "exact": true,
+            "family": "enum_relabel",
+            "matchCount": 150,
+            "mismatchCount": 0,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-05-out-06",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-05-out-07",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-05-out-08",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-05-out-09",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-05-out-10",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-05-out-11",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-06-out-00",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-06-out-01",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-06-out-02",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-06-out-03",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-06-out-04",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-06-out-05",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-06-out-06",
+            "exact": true,
+            "family": "enum_relabel",
+            "matchCount": 150,
+            "mismatchCount": 0,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-06-out-07",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-06-out-08",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-06-out-09",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-06-out-10",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-06-out-11",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-07-out-00",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-07-out-01",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-07-out-02",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-07-out-03",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-07-out-04",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-07-out-05",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-07-out-06",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-07-out-07",
+            "exact": true,
+            "family": "enum_relabel",
+            "matchCount": 150,
+            "mismatchCount": 0,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-07-out-08",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-07-out-09",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-07-out-10",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-07-out-11",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-08-out-00",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-08-out-01",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-08-out-02",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-08-out-03",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-08-out-04",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-08-out-05",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-08-out-06",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-08-out-07",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-08-out-08",
+            "exact": true,
+            "family": "enum_relabel",
+            "matchCount": 150,
+            "mismatchCount": 0,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-08-out-09",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-08-out-10",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-08-out-11",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-09-out-00",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-09-out-01",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-09-out-02",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-09-out-03",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-09-out-04",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-09-out-05",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-09-out-06",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-09-out-07",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-09-out-08",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-09-out-09",
+            "exact": true,
+            "family": "enum_relabel",
+            "matchCount": 150,
+            "mismatchCount": 0,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-09-out-10",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-09-out-11",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-10-out-00",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-10-out-01",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-10-out-02",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-10-out-03",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-10-out-04",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-10-out-05",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-10-out-06",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-10-out-07",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-10-out-08",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-10-out-09",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-10-out-10",
+            "exact": true,
+            "family": "enum_relabel",
+            "matchCount": 150,
+            "mismatchCount": 0,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-10-out-11",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-11-out-00",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-11-out-01",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-11-out-02",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-11-out-03",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-11-out-04",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-11-out-05",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-11-out-06",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-11-out-07",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-11-out-08",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-11-out-09",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-11-out-10",
+            "exact": false,
+            "family": "enum_relabel",
+            "matchCount": 0,
+            "mismatchCount": 150,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "enum-relabel-in-11-out-11",
+            "exact": true,
+            "family": "enum_relabel",
+            "matchCount": 150,
+            "mismatchCount": 0,
+            "testedRowCount": 150
+          },
+          {
+            "candidateId": "source-base-direction",
+            "exact": false,
+            "family": "source_base_direction",
+            "matchCount": 26,
+            "mismatchCount": 124,
+            "testedRowCount": 150
+          }
+        ]
+      },
+      "rows": [
+        {
+          "input": {
+            "bureau": "水二局",
+            "bureauNumber": 2,
+            "lunarDay": 1
+          },
+          "integrated": "丑",
+          "rawEquality": true,
+          "rowId": "bureau-2-day-01",
+          "source": "丑"
+        },
+        {
+          "input": {
+            "bureau": "水二局",
+            "bureauNumber": 2,
+            "lunarDay": 2
+          },
+          "integrated": "寅",
+          "rawEquality": true,
+          "rowId": "bureau-2-day-02",
+          "source": "寅"
+        },
+        {
+          "input": {
+            "bureau": "水二局",
+            "bureauNumber": 2,
+            "lunarDay": 3
+          },
+          "integrated": "寅",
+          "rawEquality": true,
+          "rowId": "bureau-2-day-03",
+          "source": "寅"
+        },
+        {
+          "input": {
+            "bureau": "水二局",
+            "bureauNumber": 2,
+            "lunarDay": 4
+          },
+          "integrated": "卯",
+          "rawEquality": true,
+          "rowId": "bureau-2-day-04",
+          "source": "卯"
+        },
+        {
+          "input": {
+            "bureau": "水二局",
+            "bureauNumber": 2,
+            "lunarDay": 5
+          },
+          "integrated": "卯",
+          "rawEquality": true,
+          "rowId": "bureau-2-day-05",
+          "source": "卯"
+        },
+        {
+          "input": {
+            "bureau": "水二局",
+            "bureauNumber": 2,
+            "lunarDay": 6
+          },
+          "integrated": "辰",
+          "rawEquality": true,
+          "rowId": "bureau-2-day-06",
+          "source": "辰"
+        },
+        {
+          "input": {
+            "bureau": "水二局",
+            "bureauNumber": 2,
+            "lunarDay": 7
+          },
+          "integrated": "辰",
+          "rawEquality": true,
+          "rowId": "bureau-2-day-07",
+          "source": "辰"
+        },
+        {
+          "input": {
+            "bureau": "水二局",
+            "bureauNumber": 2,
+            "lunarDay": 8
+          },
+          "integrated": "巳",
+          "rawEquality": true,
+          "rowId": "bureau-2-day-08",
+          "source": "巳"
+        },
+        {
+          "input": {
+            "bureau": "水二局",
+            "bureauNumber": 2,
+            "lunarDay": 9
+          },
+          "integrated": "巳",
+          "rawEquality": true,
+          "rowId": "bureau-2-day-09",
+          "source": "巳"
+        },
+        {
+          "input": {
+            "bureau": "水二局",
+            "bureauNumber": 2,
+            "lunarDay": 10
+          },
+          "integrated": "午",
+          "rawEquality": true,
+          "rowId": "bureau-2-day-10",
+          "source": "午"
+        },
+        {
+          "input": {
+            "bureau": "水二局",
+            "bureauNumber": 2,
+            "lunarDay": 11
+          },
+          "integrated": "午",
+          "rawEquality": true,
+          "rowId": "bureau-2-day-11",
+          "source": "午"
+        },
+        {
+          "input": {
+            "bureau": "水二局",
+            "bureauNumber": 2,
+            "lunarDay": 12
+          },
+          "integrated": "未",
+          "rawEquality": true,
+          "rowId": "bureau-2-day-12",
+          "source": "未"
+        },
+        {
+          "input": {
+            "bureau": "水二局",
+            "bureauNumber": 2,
+            "lunarDay": 13
+          },
+          "integrated": "未",
+          "rawEquality": true,
+          "rowId": "bureau-2-day-13",
+          "source": "未"
+        },
+        {
+          "input": {
+            "bureau": "水二局",
+            "bureauNumber": 2,
+            "lunarDay": 14
+          },
+          "integrated": "申",
+          "rawEquality": true,
+          "rowId": "bureau-2-day-14",
+          "source": "申"
+        },
+        {
+          "input": {
+            "bureau": "水二局",
+            "bureauNumber": 2,
+            "lunarDay": 15
+          },
+          "integrated": "申",
+          "rawEquality": true,
+          "rowId": "bureau-2-day-15",
+          "source": "申"
+        },
+        {
+          "input": {
+            "bureau": "水二局",
+            "bureauNumber": 2,
+            "lunarDay": 16
+          },
+          "integrated": "酉",
+          "rawEquality": true,
+          "rowId": "bureau-2-day-16",
+          "source": "酉"
+        },
+        {
+          "input": {
+            "bureau": "水二局",
+            "bureauNumber": 2,
+            "lunarDay": 17
+          },
+          "integrated": "酉",
+          "rawEquality": true,
+          "rowId": "bureau-2-day-17",
+          "source": "酉"
+        },
+        {
+          "input": {
+            "bureau": "水二局",
+            "bureauNumber": 2,
+            "lunarDay": 18
+          },
+          "integrated": "戌",
+          "rawEquality": true,
+          "rowId": "bureau-2-day-18",
+          "source": "戌"
+        },
+        {
+          "input": {
+            "bureau": "水二局",
+            "bureauNumber": 2,
+            "lunarDay": 19
+          },
+          "integrated": "戌",
+          "rawEquality": true,
+          "rowId": "bureau-2-day-19",
+          "source": "戌"
+        },
+        {
+          "input": {
+            "bureau": "水二局",
+            "bureauNumber": 2,
+            "lunarDay": 20
+          },
+          "integrated": "亥",
+          "rawEquality": true,
+          "rowId": "bureau-2-day-20",
+          "source": "亥"
+        },
+        {
+          "input": {
+            "bureau": "水二局",
+            "bureauNumber": 2,
+            "lunarDay": 21
+          },
+          "integrated": "亥",
+          "rawEquality": true,
+          "rowId": "bureau-2-day-21",
+          "source": "亥"
+        },
+        {
+          "input": {
+            "bureau": "水二局",
+            "bureauNumber": 2,
+            "lunarDay": 22
+          },
+          "integrated": "子",
+          "rawEquality": true,
+          "rowId": "bureau-2-day-22",
+          "source": "子"
+        },
+        {
+          "input": {
+            "bureau": "水二局",
+            "bureauNumber": 2,
+            "lunarDay": 23
+          },
+          "integrated": "子",
+          "rawEquality": true,
+          "rowId": "bureau-2-day-23",
+          "source": "子"
+        },
+        {
+          "input": {
+            "bureau": "水二局",
+            "bureauNumber": 2,
+            "lunarDay": 24
+          },
+          "integrated": "丑",
+          "rawEquality": true,
+          "rowId": "bureau-2-day-24",
+          "source": "丑"
+        },
+        {
+          "input": {
+            "bureau": "水二局",
+            "bureauNumber": 2,
+            "lunarDay": 25
+          },
+          "integrated": "丑",
+          "rawEquality": true,
+          "rowId": "bureau-2-day-25",
+          "source": "丑"
+        },
+        {
+          "input": {
+            "bureau": "水二局",
+            "bureauNumber": 2,
+            "lunarDay": 26
+          },
+          "integrated": "寅",
+          "rawEquality": true,
+          "rowId": "bureau-2-day-26",
+          "source": "寅"
+        },
+        {
+          "input": {
+            "bureau": "水二局",
+            "bureauNumber": 2,
+            "lunarDay": 27
+          },
+          "integrated": "寅",
+          "rawEquality": true,
+          "rowId": "bureau-2-day-27",
+          "source": "寅"
+        },
+        {
+          "input": {
+            "bureau": "水二局",
+            "bureauNumber": 2,
+            "lunarDay": 28
+          },
+          "integrated": "卯",
+          "rawEquality": true,
+          "rowId": "bureau-2-day-28",
+          "source": "卯"
+        },
+        {
+          "input": {
+            "bureau": "水二局",
+            "bureauNumber": 2,
+            "lunarDay": 29
+          },
+          "integrated": "卯",
+          "rawEquality": true,
+          "rowId": "bureau-2-day-29",
+          "source": "卯"
+        },
+        {
+          "input": {
+            "bureau": "水二局",
+            "bureauNumber": 2,
+            "lunarDay": 30
+          },
+          "integrated": "辰",
+          "rawEquality": true,
+          "rowId": "bureau-2-day-30",
+          "source": "辰"
+        },
+        {
+          "input": {
+            "bureau": "木三局",
+            "bureauNumber": 3,
+            "lunarDay": 1
+          },
+          "integrated": "辰",
+          "rawEquality": true,
+          "rowId": "bureau-3-day-01",
+          "source": "辰"
+        },
+        {
+          "input": {
+            "bureau": "木三局",
+            "bureauNumber": 3,
+            "lunarDay": 2
+          },
+          "integrated": "丑",
+          "rawEquality": true,
+          "rowId": "bureau-3-day-02",
+          "source": "丑"
+        },
+        {
+          "input": {
+            "bureau": "木三局",
+            "bureauNumber": 3,
+            "lunarDay": 3
+          },
+          "integrated": "寅",
+          "rawEquality": true,
+          "rowId": "bureau-3-day-03",
+          "source": "寅"
+        },
+        {
+          "input": {
+            "bureau": "木三局",
+            "bureauNumber": 3,
+            "lunarDay": 4
+          },
+          "integrated": "巳",
+          "rawEquality": true,
+          "rowId": "bureau-3-day-04",
+          "source": "巳"
+        },
+        {
+          "input": {
+            "bureau": "木三局",
+            "bureauNumber": 3,
+            "lunarDay": 5
+          },
+          "integrated": "寅",
+          "rawEquality": true,
+          "rowId": "bureau-3-day-05",
+          "source": "寅"
+        },
+        {
+          "input": {
+            "bureau": "木三局",
+            "bureauNumber": 3,
+            "lunarDay": 6
+          },
+          "integrated": "卯",
+          "rawEquality": true,
+          "rowId": "bureau-3-day-06",
+          "source": "卯"
+        },
+        {
+          "input": {
+            "bureau": "木三局",
+            "bureauNumber": 3,
+            "lunarDay": 7
+          },
+          "integrated": "午",
+          "rawEquality": true,
+          "rowId": "bureau-3-day-07",
+          "source": "午"
+        },
+        {
+          "input": {
+            "bureau": "木三局",
+            "bureauNumber": 3,
+            "lunarDay": 8
+          },
+          "integrated": "卯",
+          "rawEquality": true,
+          "rowId": "bureau-3-day-08",
+          "source": "卯"
+        },
+        {
+          "input": {
+            "bureau": "木三局",
+            "bureauNumber": 3,
+            "lunarDay": 9
+          },
+          "integrated": "辰",
+          "rawEquality": true,
+          "rowId": "bureau-3-day-09",
+          "source": "辰"
+        },
+        {
+          "input": {
+            "bureau": "木三局",
+            "bureauNumber": 3,
+            "lunarDay": 10
+          },
+          "integrated": "未",
+          "rawEquality": true,
+          "rowId": "bureau-3-day-10",
+          "source": "未"
+        },
+        {
+          "input": {
+            "bureau": "木三局",
+            "bureauNumber": 3,
+            "lunarDay": 11
+          },
+          "integrated": "辰",
+          "rawEquality": true,
+          "rowId": "bureau-3-day-11",
+          "source": "辰"
+        },
+        {
+          "input": {
+            "bureau": "木三局",
+            "bureauNumber": 3,
+            "lunarDay": 12
+          },
+          "integrated": "巳",
+          "rawEquality": true,
+          "rowId": "bureau-3-day-12",
+          "source": "巳"
+        },
+        {
+          "input": {
+            "bureau": "木三局",
+            "bureauNumber": 3,
+            "lunarDay": 13
+          },
+          "integrated": "申",
+          "rawEquality": true,
+          "rowId": "bureau-3-day-13",
+          "source": "申"
+        },
+        {
+          "input": {
+            "bureau": "木三局",
+            "bureauNumber": 3,
+            "lunarDay": 14
+          },
+          "integrated": "巳",
+          "rawEquality": true,
+          "rowId": "bureau-3-day-14",
+          "source": "巳"
+        },
+        {
+          "input": {
+            "bureau": "木三局",
+            "bureauNumber": 3,
+            "lunarDay": 15
+          },
+          "integrated": "午",
+          "rawEquality": true,
+          "rowId": "bureau-3-day-15",
+          "source": "午"
+        },
+        {
+          "input": {
+            "bureau": "木三局",
+            "bureauNumber": 3,
+            "lunarDay": 16
+          },
+          "integrated": "酉",
+          "rawEquality": true,
+          "rowId": "bureau-3-day-16",
+          "source": "酉"
+        },
+        {
+          "input": {
+            "bureau": "木三局",
+            "bureauNumber": 3,
+            "lunarDay": 17
+          },
+          "integrated": "午",
+          "rawEquality": true,
+          "rowId": "bureau-3-day-17",
+          "source": "午"
+        },
+        {
+          "input": {
+            "bureau": "木三局",
+            "bureauNumber": 3,
+            "lunarDay": 18
+          },
+          "integrated": "未",
+          "rawEquality": true,
+          "rowId": "bureau-3-day-18",
+          "source": "未"
+        },
+        {
+          "input": {
+            "bureau": "木三局",
+            "bureauNumber": 3,
+            "lunarDay": 19
+          },
+          "integrated": "戌",
+          "rawEquality": true,
+          "rowId": "bureau-3-day-19",
+          "source": "戌"
+        },
+        {
+          "input": {
+            "bureau": "木三局",
+            "bureauNumber": 3,
+            "lunarDay": 20
+          },
+          "integrated": "未",
+          "rawEquality": true,
+          "rowId": "bureau-3-day-20",
+          "source": "未"
+        },
+        {
+          "input": {
+            "bureau": "木三局",
+            "bureauNumber": 3,
+            "lunarDay": 21
+          },
+          "integrated": "申",
+          "rawEquality": true,
+          "rowId": "bureau-3-day-21",
+          "source": "申"
+        },
+        {
+          "input": {
+            "bureau": "木三局",
+            "bureauNumber": 3,
+            "lunarDay": 22
+          },
+          "integrated": "亥",
+          "rawEquality": true,
+          "rowId": "bureau-3-day-22",
+          "source": "亥"
+        },
+        {
+          "input": {
+            "bureau": "木三局",
+            "bureauNumber": 3,
+            "lunarDay": 23
+          },
+          "integrated": "申",
+          "rawEquality": true,
+          "rowId": "bureau-3-day-23",
+          "source": "申"
+        },
+        {
+          "input": {
+            "bureau": "木三局",
+            "bureauNumber": 3,
+            "lunarDay": 24
+          },
+          "integrated": "酉",
+          "rawEquality": true,
+          "rowId": "bureau-3-day-24",
+          "source": "酉"
+        },
+        {
+          "input": {
+            "bureau": "木三局",
+            "bureauNumber": 3,
+            "lunarDay": 25
+          },
+          "integrated": "子",
+          "rawEquality": true,
+          "rowId": "bureau-3-day-25",
+          "source": "子"
+        },
+        {
+          "input": {
+            "bureau": "木三局",
+            "bureauNumber": 3,
+            "lunarDay": 26
+          },
+          "integrated": "酉",
+          "rawEquality": true,
+          "rowId": "bureau-3-day-26",
+          "source": "酉"
+        },
+        {
+          "input": {
+            "bureau": "木三局",
+            "bureauNumber": 3,
+            "lunarDay": 27
+          },
+          "integrated": "戌",
+          "rawEquality": true,
+          "rowId": "bureau-3-day-27",
+          "source": "戌"
+        },
+        {
+          "input": {
+            "bureau": "木三局",
+            "bureauNumber": 3,
+            "lunarDay": 28
+          },
+          "integrated": "丑",
+          "rawEquality": true,
+          "rowId": "bureau-3-day-28",
+          "source": "丑"
+        },
+        {
+          "input": {
+            "bureau": "木三局",
+            "bureauNumber": 3,
+            "lunarDay": 29
+          },
+          "integrated": "戌",
+          "rawEquality": true,
+          "rowId": "bureau-3-day-29",
+          "source": "戌"
+        },
+        {
+          "input": {
+            "bureau": "木三局",
+            "bureauNumber": 3,
+            "lunarDay": 30
+          },
+          "integrated": "亥",
+          "rawEquality": true,
+          "rowId": "bureau-3-day-30",
+          "source": "亥"
+        },
+        {
+          "input": {
+            "bureau": "金四局",
+            "bureauNumber": 4,
+            "lunarDay": 1
+          },
+          "integrated": "亥",
+          "rawEquality": true,
+          "rowId": "bureau-4-day-01",
+          "source": "亥"
+        },
+        {
+          "input": {
+            "bureau": "金四局",
+            "bureauNumber": 4,
+            "lunarDay": 2
+          },
+          "integrated": "辰",
+          "rawEquality": true,
+          "rowId": "bureau-4-day-02",
+          "source": "辰"
+        },
+        {
+          "input": {
+            "bureau": "金四局",
+            "bureauNumber": 4,
+            "lunarDay": 3
+          },
+          "integrated": "丑",
+          "rawEquality": true,
+          "rowId": "bureau-4-day-03",
+          "source": "丑"
+        },
+        {
+          "input": {
+            "bureau": "金四局",
+            "bureauNumber": 4,
+            "lunarDay": 4
+          },
+          "integrated": "寅",
+          "rawEquality": true,
+          "rowId": "bureau-4-day-04",
+          "source": "寅"
+        },
+        {
+          "input": {
+            "bureau": "金四局",
+            "bureauNumber": 4,
+            "lunarDay": 5
+          },
+          "integrated": "子",
+          "rawEquality": true,
+          "rowId": "bureau-4-day-05",
+          "source": "子"
+        },
+        {
+          "input": {
+            "bureau": "金四局",
+            "bureauNumber": 4,
+            "lunarDay": 6
+          },
+          "integrated": "巳",
+          "rawEquality": true,
+          "rowId": "bureau-4-day-06",
+          "source": "巳"
+        },
+        {
+          "input": {
+            "bureau": "金四局",
+            "bureauNumber": 4,
+            "lunarDay": 7
+          },
+          "integrated": "寅",
+          "rawEquality": true,
+          "rowId": "bureau-4-day-07",
+          "source": "寅"
+        },
+        {
+          "input": {
+            "bureau": "金四局",
+            "bureauNumber": 4,
+            "lunarDay": 8
+          },
+          "integrated": "卯",
+          "rawEquality": true,
+          "rowId": "bureau-4-day-08",
+          "source": "卯"
+        },
+        {
+          "input": {
+            "bureau": "金四局",
+            "bureauNumber": 4,
+            "lunarDay": 9
+          },
+          "integrated": "丑",
+          "rawEquality": true,
+          "rowId": "bureau-4-day-09",
+          "source": "丑"
+        },
+        {
+          "input": {
+            "bureau": "金四局",
+            "bureauNumber": 4,
+            "lunarDay": 10
+          },
+          "integrated": "午",
+          "rawEquality": true,
+          "rowId": "bureau-4-day-10",
+          "source": "午"
+        },
+        {
+          "input": {
+            "bureau": "金四局",
+            "bureauNumber": 4,
+            "lunarDay": 11
+          },
+          "integrated": "卯",
+          "rawEquality": true,
+          "rowId": "bureau-4-day-11",
+          "source": "卯"
+        },
+        {
+          "input": {
+            "bureau": "金四局",
+            "bureauNumber": 4,
+            "lunarDay": 12
+          },
+          "integrated": "辰",
+          "rawEquality": true,
+          "rowId": "bureau-4-day-12",
+          "source": "辰"
+        },
+        {
+          "input": {
+            "bureau": "金四局",
+            "bureauNumber": 4,
+            "lunarDay": 13
+          },
+          "integrated": "寅",
+          "rawEquality": true,
+          "rowId": "bureau-4-day-13",
+          "source": "寅"
+        },
+        {
+          "input": {
+            "bureau": "金四局",
+            "bureauNumber": 4,
+            "lunarDay": 14
+          },
+          "integrated": "未",
+          "rawEquality": true,
+          "rowId": "bureau-4-day-14",
+          "source": "未"
+        },
+        {
+          "input": {
+            "bureau": "金四局",
+            "bureauNumber": 4,
+            "lunarDay": 15
+          },
+          "integrated": "辰",
+          "rawEquality": true,
+          "rowId": "bureau-4-day-15",
+          "source": "辰"
+        },
+        {
+          "input": {
+            "bureau": "金四局",
+            "bureauNumber": 4,
+            "lunarDay": 16
+          },
+          "integrated": "巳",
+          "rawEquality": true,
+          "rowId": "bureau-4-day-16",
+          "source": "巳"
+        },
+        {
+          "input": {
+            "bureau": "金四局",
+            "bureauNumber": 4,
+            "lunarDay": 17
+          },
+          "integrated": "卯",
+          "rawEquality": true,
+          "rowId": "bureau-4-day-17",
+          "source": "卯"
+        },
+        {
+          "input": {
+            "bureau": "金四局",
+            "bureauNumber": 4,
+            "lunarDay": 18
+          },
+          "integrated": "申",
+          "rawEquality": true,
+          "rowId": "bureau-4-day-18",
+          "source": "申"
+        },
+        {
+          "input": {
+            "bureau": "金四局",
+            "bureauNumber": 4,
+            "lunarDay": 19
+          },
+          "integrated": "巳",
+          "rawEquality": true,
+          "rowId": "bureau-4-day-19",
+          "source": "巳"
+        },
+        {
+          "input": {
+            "bureau": "金四局",
+            "bureauNumber": 4,
+            "lunarDay": 20
+          },
+          "integrated": "午",
+          "rawEquality": true,
+          "rowId": "bureau-4-day-20",
+          "source": "午"
+        },
+        {
+          "input": {
+            "bureau": "金四局",
+            "bureauNumber": 4,
+            "lunarDay": 21
+          },
+          "integrated": "辰",
+          "rawEquality": true,
+          "rowId": "bureau-4-day-21",
+          "source": "辰"
+        },
+        {
+          "input": {
+            "bureau": "金四局",
+            "bureauNumber": 4,
+            "lunarDay": 22
+          },
+          "integrated": "酉",
+          "rawEquality": true,
+          "rowId": "bureau-4-day-22",
+          "source": "酉"
+        },
+        {
+          "input": {
+            "bureau": "金四局",
+            "bureauNumber": 4,
+            "lunarDay": 23
+          },
+          "integrated": "午",
+          "rawEquality": true,
+          "rowId": "bureau-4-day-23",
+          "source": "午"
+        },
+        {
+          "input": {
+            "bureau": "金四局",
+            "bureauNumber": 4,
+            "lunarDay": 24
+          },
+          "integrated": "未",
+          "rawEquality": true,
+          "rowId": "bureau-4-day-24",
+          "source": "未"
+        },
+        {
+          "input": {
+            "bureau": "金四局",
+            "bureauNumber": 4,
+            "lunarDay": 25
+          },
+          "integrated": "巳",
+          "rawEquality": true,
+          "rowId": "bureau-4-day-25",
+          "source": "巳"
+        },
+        {
+          "input": {
+            "bureau": "金四局",
+            "bureauNumber": 4,
+            "lunarDay": 26
+          },
+          "integrated": "戌",
+          "rawEquality": true,
+          "rowId": "bureau-4-day-26",
+          "source": "戌"
+        },
+        {
+          "input": {
+            "bureau": "金四局",
+            "bureauNumber": 4,
+            "lunarDay": 27
+          },
+          "integrated": "未",
+          "rawEquality": true,
+          "rowId": "bureau-4-day-27",
+          "source": "未"
+        },
+        {
+          "input": {
+            "bureau": "金四局",
+            "bureauNumber": 4,
+            "lunarDay": 28
+          },
+          "integrated": "申",
+          "rawEquality": true,
+          "rowId": "bureau-4-day-28",
+          "source": "申"
+        },
+        {
+          "input": {
+            "bureau": "金四局",
+            "bureauNumber": 4,
+            "lunarDay": 29
+          },
+          "integrated": "午",
+          "rawEquality": true,
+          "rowId": "bureau-4-day-29",
+          "source": "午"
+        },
+        {
+          "input": {
+            "bureau": "金四局",
+            "bureauNumber": 4,
+            "lunarDay": 30
+          },
+          "integrated": "亥",
+          "rawEquality": true,
+          "rowId": "bureau-4-day-30",
+          "source": "亥"
+        },
+        {
+          "input": {
+            "bureau": "土五局",
+            "bureauNumber": 5,
+            "lunarDay": 1
+          },
+          "integrated": "午",
+          "rawEquality": true,
+          "rowId": "bureau-5-day-01",
+          "source": "午"
+        },
+        {
+          "input": {
+            "bureau": "土五局",
+            "bureauNumber": 5,
+            "lunarDay": 2
+          },
+          "integrated": "亥",
+          "rawEquality": true,
+          "rowId": "bureau-5-day-02",
+          "source": "亥"
+        },
+        {
+          "input": {
+            "bureau": "土五局",
+            "bureauNumber": 5,
+            "lunarDay": 3
+          },
+          "integrated": "辰",
+          "rawEquality": true,
+          "rowId": "bureau-5-day-03",
+          "source": "辰"
+        },
+        {
+          "input": {
+            "bureau": "土五局",
+            "bureauNumber": 5,
+            "lunarDay": 4
+          },
+          "integrated": "丑",
+          "rawEquality": true,
+          "rowId": "bureau-5-day-04",
+          "source": "丑"
+        },
+        {
+          "input": {
+            "bureau": "土五局",
+            "bureauNumber": 5,
+            "lunarDay": 5
+          },
+          "integrated": "寅",
+          "rawEquality": true,
+          "rowId": "bureau-5-day-05",
+          "source": "寅"
+        },
+        {
+          "input": {
+            "bureau": "土五局",
+            "bureauNumber": 5,
+            "lunarDay": 6
+          },
+          "integrated": "未",
+          "rawEquality": true,
+          "rowId": "bureau-5-day-06",
+          "source": "未"
+        },
+        {
+          "input": {
+            "bureau": "土五局",
+            "bureauNumber": 5,
+            "lunarDay": 7
+          },
+          "integrated": "子",
+          "rawEquality": true,
+          "rowId": "bureau-5-day-07",
+          "source": "子"
+        },
+        {
+          "input": {
+            "bureau": "土五局",
+            "bureauNumber": 5,
+            "lunarDay": 8
+          },
+          "integrated": "巳",
+          "rawEquality": true,
+          "rowId": "bureau-5-day-08",
+          "source": "巳"
+        },
+        {
+          "input": {
+            "bureau": "土五局",
+            "bureauNumber": 5,
+            "lunarDay": 9
+          },
+          "integrated": "寅",
+          "rawEquality": true,
+          "rowId": "bureau-5-day-09",
+          "source": "寅"
+        },
+        {
+          "input": {
+            "bureau": "土五局",
+            "bureauNumber": 5,
+            "lunarDay": 10
+          },
+          "integrated": "卯",
+          "rawEquality": true,
+          "rowId": "bureau-5-day-10",
+          "source": "卯"
+        },
+        {
+          "input": {
+            "bureau": "土五局",
+            "bureauNumber": 5,
+            "lunarDay": 11
+          },
+          "integrated": "申",
+          "rawEquality": true,
+          "rowId": "bureau-5-day-11",
+          "source": "申"
+        },
+        {
+          "input": {
+            "bureau": "土五局",
+            "bureauNumber": 5,
+            "lunarDay": 12
+          },
+          "integrated": "丑",
+          "rawEquality": true,
+          "rowId": "bureau-5-day-12",
+          "source": "丑"
+        },
+        {
+          "input": {
+            "bureau": "土五局",
+            "bureauNumber": 5,
+            "lunarDay": 13
+          },
+          "integrated": "午",
+          "rawEquality": true,
+          "rowId": "bureau-5-day-13",
+          "source": "午"
+        },
+        {
+          "input": {
+            "bureau": "土五局",
+            "bureauNumber": 5,
+            "lunarDay": 14
+          },
+          "integrated": "卯",
+          "rawEquality": true,
+          "rowId": "bureau-5-day-14",
+          "source": "卯"
+        },
+        {
+          "input": {
+            "bureau": "土五局",
+            "bureauNumber": 5,
+            "lunarDay": 15
+          },
+          "integrated": "辰",
+          "rawEquality": true,
+          "rowId": "bureau-5-day-15",
+          "source": "辰"
+        },
+        {
+          "input": {
+            "bureau": "土五局",
+            "bureauNumber": 5,
+            "lunarDay": 16
+          },
+          "integrated": "酉",
+          "rawEquality": true,
+          "rowId": "bureau-5-day-16",
+          "source": "酉"
+        },
+        {
+          "input": {
+            "bureau": "土五局",
+            "bureauNumber": 5,
+            "lunarDay": 17
+          },
+          "integrated": "寅",
+          "rawEquality": true,
+          "rowId": "bureau-5-day-17",
+          "source": "寅"
+        },
+        {
+          "input": {
+            "bureau": "土五局",
+            "bureauNumber": 5,
+            "lunarDay": 18
+          },
+          "integrated": "未",
+          "rawEquality": true,
+          "rowId": "bureau-5-day-18",
+          "source": "未"
+        },
+        {
+          "input": {
+            "bureau": "土五局",
+            "bureauNumber": 5,
+            "lunarDay": 19
+          },
+          "integrated": "辰",
+          "rawEquality": true,
+          "rowId": "bureau-5-day-19",
+          "source": "辰"
+        },
+        {
+          "input": {
+            "bureau": "土五局",
+            "bureauNumber": 5,
+            "lunarDay": 20
+          },
+          "integrated": "巳",
+          "rawEquality": true,
+          "rowId": "bureau-5-day-20",
+          "source": "巳"
+        },
+        {
+          "input": {
+            "bureau": "土五局",
+            "bureauNumber": 5,
+            "lunarDay": 21
+          },
+          "integrated": "戌",
+          "rawEquality": true,
+          "rowId": "bureau-5-day-21",
+          "source": "戌"
+        },
+        {
+          "input": {
+            "bureau": "土五局",
+            "bureauNumber": 5,
+            "lunarDay": 22
+          },
+          "integrated": "卯",
+          "rawEquality": true,
+          "rowId": "bureau-5-day-22",
+          "source": "卯"
+        },
+        {
+          "input": {
+            "bureau": "土五局",
+            "bureauNumber": 5,
+            "lunarDay": 23
+          },
+          "integrated": "申",
+          "rawEquality": true,
+          "rowId": "bureau-5-day-23",
+          "source": "申"
+        },
+        {
+          "input": {
+            "bureau": "土五局",
+            "bureauNumber": 5,
+            "lunarDay": 24
+          },
+          "integrated": "巳",
+          "rawEquality": true,
+          "rowId": "bureau-5-day-24",
+          "source": "巳"
+        },
+        {
+          "input": {
+            "bureau": "土五局",
+            "bureauNumber": 5,
+            "lunarDay": 25
+          },
+          "integrated": "午",
+          "rawEquality": true,
+          "rowId": "bureau-5-day-25",
+          "source": "午"
+        },
+        {
+          "input": {
+            "bureau": "土五局",
+            "bureauNumber": 5,
+            "lunarDay": 26
+          },
+          "integrated": "亥",
+          "rawEquality": true,
+          "rowId": "bureau-5-day-26",
+          "source": "亥"
+        },
+        {
+          "input": {
+            "bureau": "土五局",
+            "bureauNumber": 5,
+            "lunarDay": 27
+          },
+          "integrated": "辰",
+          "rawEquality": true,
+          "rowId": "bureau-5-day-27",
+          "source": "辰"
+        },
+        {
+          "input": {
+            "bureau": "土五局",
+            "bureauNumber": 5,
+            "lunarDay": 28
+          },
+          "integrated": "酉",
+          "rawEquality": true,
+          "rowId": "bureau-5-day-28",
+          "source": "酉"
+        },
+        {
+          "input": {
+            "bureau": "土五局",
+            "bureauNumber": 5,
+            "lunarDay": 29
+          },
+          "integrated": "午",
+          "rawEquality": true,
+          "rowId": "bureau-5-day-29",
+          "source": "午"
+        },
+        {
+          "input": {
+            "bureau": "土五局",
+            "bureauNumber": 5,
+            "lunarDay": 30
+          },
+          "integrated": "未",
+          "rawEquality": true,
+          "rowId": "bureau-5-day-30",
+          "source": "未"
+        },
+        {
+          "input": {
+            "bureau": "火六局",
+            "bureauNumber": 6,
+            "lunarDay": 1
+          },
+          "integrated": "酉",
+          "rawEquality": true,
+          "rowId": "bureau-6-day-01",
+          "source": "酉"
+        },
+        {
+          "input": {
+            "bureau": "火六局",
+            "bureauNumber": 6,
+            "lunarDay": 2
+          },
+          "integrated": "午",
+          "rawEquality": true,
+          "rowId": "bureau-6-day-02",
+          "source": "午"
+        },
+        {
+          "input": {
+            "bureau": "火六局",
+            "bureauNumber": 6,
+            "lunarDay": 3
+          },
+          "integrated": "亥",
+          "rawEquality": true,
+          "rowId": "bureau-6-day-03",
+          "source": "亥"
+        },
+        {
+          "input": {
+            "bureau": "火六局",
+            "bureauNumber": 6,
+            "lunarDay": 4
+          },
+          "integrated": "辰",
+          "rawEquality": true,
+          "rowId": "bureau-6-day-04",
+          "source": "辰"
+        },
+        {
+          "input": {
+            "bureau": "火六局",
+            "bureauNumber": 6,
+            "lunarDay": 5
+          },
+          "integrated": "丑",
+          "rawEquality": true,
+          "rowId": "bureau-6-day-05",
+          "source": "丑"
+        },
+        {
+          "input": {
+            "bureau": "火六局",
+            "bureauNumber": 6,
+            "lunarDay": 6
+          },
+          "integrated": "寅",
+          "rawEquality": true,
+          "rowId": "bureau-6-day-06",
+          "source": "寅"
+        },
+        {
+          "input": {
+            "bureau": "火六局",
+            "bureauNumber": 6,
+            "lunarDay": 7
+          },
+          "integrated": "戌",
+          "rawEquality": true,
+          "rowId": "bureau-6-day-07",
+          "source": "戌"
+        },
+        {
+          "input": {
+            "bureau": "火六局",
+            "bureauNumber": 6,
+            "lunarDay": 8
+          },
+          "integrated": "未",
+          "rawEquality": true,
+          "rowId": "bureau-6-day-08",
+          "source": "未"
+        },
+        {
+          "input": {
+            "bureau": "火六局",
+            "bureauNumber": 6,
+            "lunarDay": 9
+          },
+          "integrated": "子",
+          "rawEquality": true,
+          "rowId": "bureau-6-day-09",
+          "source": "子"
+        },
+        {
+          "input": {
+            "bureau": "火六局",
+            "bureauNumber": 6,
+            "lunarDay": 10
+          },
+          "integrated": "巳",
+          "rawEquality": true,
+          "rowId": "bureau-6-day-10",
+          "source": "巳"
+        },
+        {
+          "input": {
+            "bureau": "火六局",
+            "bureauNumber": 6,
+            "lunarDay": 11
+          },
+          "integrated": "寅",
+          "rawEquality": true,
+          "rowId": "bureau-6-day-11",
+          "source": "寅"
+        },
+        {
+          "input": {
+            "bureau": "火六局",
+            "bureauNumber": 6,
+            "lunarDay": 12
+          },
+          "integrated": "卯",
+          "rawEquality": true,
+          "rowId": "bureau-6-day-12",
+          "source": "卯"
+        },
+        {
+          "input": {
+            "bureau": "火六局",
+            "bureauNumber": 6,
+            "lunarDay": 13
+          },
+          "integrated": "亥",
+          "rawEquality": true,
+          "rowId": "bureau-6-day-13",
+          "source": "亥"
+        },
+        {
+          "input": {
+            "bureau": "火六局",
+            "bureauNumber": 6,
+            "lunarDay": 14
+          },
+          "integrated": "申",
+          "rawEquality": true,
+          "rowId": "bureau-6-day-14",
+          "source": "申"
+        },
+        {
+          "input": {
+            "bureau": "火六局",
+            "bureauNumber": 6,
+            "lunarDay": 15
+          },
+          "integrated": "丑",
+          "rawEquality": true,
+          "rowId": "bureau-6-day-15",
+          "source": "丑"
+        },
+        {
+          "input": {
+            "bureau": "火六局",
+            "bureauNumber": 6,
+            "lunarDay": 16
+          },
+          "integrated": "午",
+          "rawEquality": true,
+          "rowId": "bureau-6-day-16",
+          "source": "午"
+        },
+        {
+          "input": {
+            "bureau": "火六局",
+            "bureauNumber": 6,
+            "lunarDay": 17
+          },
+          "integrated": "卯",
+          "rawEquality": true,
+          "rowId": "bureau-6-day-17",
+          "source": "卯"
+        },
+        {
+          "input": {
+            "bureau": "火六局",
+            "bureauNumber": 6,
+            "lunarDay": 18
+          },
+          "integrated": "辰",
+          "rawEquality": true,
+          "rowId": "bureau-6-day-18",
+          "source": "辰"
+        },
+        {
+          "input": {
+            "bureau": "火六局",
+            "bureauNumber": 6,
+            "lunarDay": 19
+          },
+          "integrated": "子",
+          "rawEquality": true,
+          "rowId": "bureau-6-day-19",
+          "source": "子"
+        },
+        {
+          "input": {
+            "bureau": "火六局",
+            "bureauNumber": 6,
+            "lunarDay": 20
+          },
+          "integrated": "酉",
+          "rawEquality": true,
+          "rowId": "bureau-6-day-20",
+          "source": "酉"
+        },
+        {
+          "input": {
+            "bureau": "火六局",
+            "bureauNumber": 6,
+            "lunarDay": 21
+          },
+          "integrated": "寅",
+          "rawEquality": true,
+          "rowId": "bureau-6-day-21",
+          "source": "寅"
+        },
+        {
+          "input": {
+            "bureau": "火六局",
+            "bureauNumber": 6,
+            "lunarDay": 22
+          },
+          "integrated": "未",
+          "rawEquality": true,
+          "rowId": "bureau-6-day-22",
+          "source": "未"
+        },
+        {
+          "input": {
+            "bureau": "火六局",
+            "bureauNumber": 6,
+            "lunarDay": 23
+          },
+          "integrated": "辰",
+          "rawEquality": true,
+          "rowId": "bureau-6-day-23",
+          "source": "辰"
+        },
+        {
+          "input": {
+            "bureau": "火六局",
+            "bureauNumber": 6,
+            "lunarDay": 24
+          },
+          "integrated": "巳",
+          "rawEquality": true,
+          "rowId": "bureau-6-day-24",
+          "source": "巳"
+        },
+        {
+          "input": {
+            "bureau": "火六局",
+            "bureauNumber": 6,
+            "lunarDay": 25
+          },
+          "integrated": "丑",
+          "rawEquality": true,
+          "rowId": "bureau-6-day-25",
+          "source": "丑"
+        },
+        {
+          "input": {
+            "bureau": "火六局",
+            "bureauNumber": 6,
+            "lunarDay": 26
+          },
+          "integrated": "戌",
+          "rawEquality": true,
+          "rowId": "bureau-6-day-26",
+          "source": "戌"
+        },
+        {
+          "input": {
+            "bureau": "火六局",
+            "bureauNumber": 6,
+            "lunarDay": 27
+          },
+          "integrated": "卯",
+          "rawEquality": true,
+          "rowId": "bureau-6-day-27",
+          "source": "卯"
+        },
+        {
+          "input": {
+            "bureau": "火六局",
+            "bureauNumber": 6,
+            "lunarDay": 28
+          },
+          "integrated": "申",
+          "rawEquality": true,
+          "rowId": "bureau-6-day-28",
+          "source": "申"
+        },
+        {
+          "input": {
+            "bureau": "火六局",
+            "bureauNumber": 6,
+            "lunarDay": 29
+          },
+          "integrated": "巳",
+          "rawEquality": true,
+          "rowId": "bureau-6-day-29",
+          "source": "巳"
+        },
+        {
+          "input": {
+            "bureau": "火六局",
+            "bureauNumber": 6,
+            "lunarDay": 30
+          },
+          "integrated": "午",
+          "rawEquality": true,
+          "rowId": "bureau-6-day-30",
+          "source": "午"
+        }
+      ]
+    }
+  }
+}

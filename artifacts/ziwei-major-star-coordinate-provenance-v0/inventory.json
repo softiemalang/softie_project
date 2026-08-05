@@ -1,0 +1,226 @@
+[
+  {
+    "comparison": {
+      "coverage": "150/150 exact raw branch comparison",
+      "semanticVerdict": "blocked_semantic_identity_insufficient",
+      "status": "coordinate_only"
+    },
+    "dependency": "ziwei",
+    "integratedOffset": 0,
+    "readinessImpact": "blocked_by_coordinate_identity_or_missing_source_rule",
+    "series": "ziwei",
+    "sourceLocator": "source-p11-five-jue + source-p12-jian-suo",
+    "sourceRule": "base 寅; quotient/remainder; odd remainder reverse, even forward; 150-row table",
+    "sourceRuleStatus": "direct_rule",
+    "starId": "ziwei",
+    "traditionalName": "자미"
+  },
+  {
+    "comparison": {
+      "coverage": "0/150 comparable source rows",
+      "semanticVerdict": "source_unresolved",
+      "status": "source_unresolved"
+    },
+    "dependency": "ziwei",
+    "integratedOffset": -1,
+    "readinessImpact": "blocked_by_coordinate_identity_or_missing_source_rule",
+    "series": "ziwei",
+    "sourceLocator": null,
+    "sourceRule": null,
+    "sourceRuleStatus": "source_unresolved",
+    "starId": "tianji",
+    "traditionalName": "천기"
+  },
+  {
+    "comparison": {
+      "coverage": "0/150 comparable source rows",
+      "semanticVerdict": "source_unresolved",
+      "status": "source_unresolved"
+    },
+    "dependency": "ziwei",
+    "integratedOffset": -3,
+    "readinessImpact": "blocked_by_coordinate_identity_or_missing_source_rule",
+    "series": "ziwei",
+    "sourceLocator": null,
+    "sourceRule": null,
+    "sourceRuleStatus": "source_unresolved",
+    "starId": "taiyang",
+    "traditionalName": "태양"
+  },
+  {
+    "comparison": {
+      "coverage": "0/150 comparable source rows",
+      "semanticVerdict": "source_unresolved",
+      "status": "source_unresolved"
+    },
+    "dependency": "ziwei",
+    "integratedOffset": -4,
+    "readinessImpact": "blocked_by_coordinate_identity_or_missing_source_rule",
+    "series": "ziwei",
+    "sourceLocator": null,
+    "sourceRule": null,
+    "sourceRuleStatus": "source_unresolved",
+    "starId": "wugu",
+    "traditionalName": "무곡"
+  },
+  {
+    "comparison": {
+      "coverage": "0/150 comparable source rows",
+      "semanticVerdict": "source_unresolved",
+      "status": "source_unresolved"
+    },
+    "dependency": "ziwei",
+    "integratedOffset": -5,
+    "readinessImpact": "blocked_by_coordinate_identity_or_missing_source_rule",
+    "series": "ziwei",
+    "sourceLocator": null,
+    "sourceRule": null,
+    "sourceRuleStatus": "source_unresolved",
+    "starId": "tiandong",
+    "traditionalName": "천동"
+  },
+  {
+    "comparison": {
+      "coverage": "0/150 comparable source rows",
+      "semanticVerdict": "source_unresolved",
+      "status": "source_unresolved"
+    },
+    "dependency": "ziwei",
+    "integratedOffset": -8,
+    "readinessImpact": "blocked_by_coordinate_identity_or_missing_source_rule",
+    "series": "ziwei",
+    "sourceLocator": null,
+    "sourceRule": null,
+    "sourceRuleStatus": "source_unresolved",
+    "starId": "lianzhen",
+    "traditionalName": "염정"
+  },
+  {
+    "comparison": {
+      "coverage": "12-row source table; 150/150 full-domain transform relation",
+      "semanticVerdict": "blocked_semantic_identity_insufficient",
+      "status": "coordinate_only"
+    },
+    "dependency": "tianfu",
+    "integratedOffset": 0,
+    "readinessImpact": "blocked_by_coordinate_identity_or_missing_source_rule",
+    "series": "tianfu",
+    "sourceLocator": "source-p13-tianfu",
+    "sourceRule": "source table: 紫微 子..亥 -> 天府 辰..巳; normalized output = mod(4 - input)",
+    "sourceRuleStatus": "direct_rule",
+    "starId": "tianfu",
+    "traditionalName": "천부"
+  },
+  {
+    "comparison": {
+      "coverage": "0/150 comparable source rows",
+      "semanticVerdict": "source_unresolved",
+      "status": "source_unresolved"
+    },
+    "dependency": "tianfu",
+    "integratedOffset": 1,
+    "readinessImpact": "blocked_by_coordinate_identity_or_missing_source_rule",
+    "series": "tianfu",
+    "sourceLocator": null,
+    "sourceRule": null,
+    "sourceRuleStatus": "source_unresolved",
+    "starId": "taiyin",
+    "traditionalName": "태음"
+  },
+  {
+    "comparison": {
+      "coverage": "0/150 comparable source rows",
+      "semanticVerdict": "source_unresolved",
+      "status": "source_unresolved"
+    },
+    "dependency": "tianfu",
+    "integratedOffset": 2,
+    "readinessImpact": "blocked_by_coordinate_identity_or_missing_source_rule",
+    "series": "tianfu",
+    "sourceLocator": null,
+    "sourceRule": null,
+    "sourceRuleStatus": "source_unresolved",
+    "starId": "tanlang",
+    "traditionalName": "탐랑"
+  },
+  {
+    "comparison": {
+      "coverage": "0/150 comparable source rows",
+      "semanticVerdict": "source_unresolved",
+      "status": "source_unresolved"
+    },
+    "dependency": "tianfu",
+    "integratedOffset": 3,
+    "readinessImpact": "blocked_by_coordinate_identity_or_missing_source_rule",
+    "series": "tianfu",
+    "sourceLocator": null,
+    "sourceRule": null,
+    "sourceRuleStatus": "source_unresolved",
+    "starId": "jumen",
+    "traditionalName": "거문"
+  },
+  {
+    "comparison": {
+      "coverage": "0/150 comparable source rows",
+      "semanticVerdict": "source_unresolved",
+      "status": "source_unresolved"
+    },
+    "dependency": "tianfu",
+    "integratedOffset": 4,
+    "readinessImpact": "blocked_by_coordinate_identity_or_missing_source_rule",
+    "series": "tianfu",
+    "sourceLocator": null,
+    "sourceRule": null,
+    "sourceRuleStatus": "source_unresolved",
+    "starId": "tianxiang",
+    "traditionalName": "천상"
+  },
+  {
+    "comparison": {
+      "coverage": "0/150 comparable source rows",
+      "semanticVerdict": "source_unresolved",
+      "status": "source_unresolved"
+    },
+    "dependency": "tianfu",
+    "integratedOffset": 5,
+    "readinessImpact": "blocked_by_coordinate_identity_or_missing_source_rule",
+    "series": "tianfu",
+    "sourceLocator": null,
+    "sourceRule": null,
+    "sourceRuleStatus": "source_unresolved",
+    "starId": "tianliang",
+    "traditionalName": "천량"
+  },
+  {
+    "comparison": {
+      "coverage": "0/150 comparable source rows",
+      "semanticVerdict": "source_unresolved",
+      "status": "source_unresolved"
+    },
+    "dependency": "tianfu",
+    "integratedOffset": 6,
+    "readinessImpact": "blocked_by_coordinate_identity_or_missing_source_rule",
+    "series": "tianfu",
+    "sourceLocator": null,
+    "sourceRule": null,
+    "sourceRuleStatus": "source_unresolved",
+    "starId": "qisai",
+    "traditionalName": "칠살"
+  },
+  {
+    "comparison": {
+      "coverage": "0/150 comparable source rows",
+      "semanticVerdict": "source_unresolved",
+      "status": "source_unresolved"
+    },
+    "dependency": "tianfu",
+    "integratedOffset": 10,
+    "readinessImpact": "blocked_by_coordinate_identity_or_missing_source_rule",
+    "series": "tianfu",
+    "sourceLocator": null,
+    "sourceRule": null,
+    "sourceRuleStatus": "source_unresolved",
+    "starId": "pojun",
+    "traditionalName": "파군"
+  }
+]
