@@ -1,0 +1,4052 @@
+[
+  {
+    "input": {
+      "bureauNumber": 2,
+      "lunarDay": 1
+    },
+    "legacyPredecessor": {
+      "tianfuBranch": "巳",
+      "tianfuIndex": 5
+    },
+    "legacyRawEquality": false,
+    "orderingKey": "2:01",
+    "production": {
+      "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+      "tianfuBranch": "酉",
+      "tianfuIndex": 9,
+      "ziweiBranch": "丑"
+    },
+    "rawEquality": false,
+    "rotation06Equality": true,
+    "rowId": "integrated-bureau-2-day-01",
+    "source": {
+      "table": "corrected-successor",
+      "tianfuBranch": "卯",
+      "tianfuIndex": 3,
+      "ziweiBranch": "丑"
+    }
+  },
+  {
+    "input": {
+      "bureauNumber": 2,
+      "lunarDay": 2
+    },
+    "legacyPredecessor": {
+      "tianfuBranch": "午",
+      "tianfuIndex": 6
+    },
+    "legacyRawEquality": false,
+    "orderingKey": "2:02",
+    "production": {
+      "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+      "tianfuBranch": "申",
+      "tianfuIndex": 8,
+      "ziweiBranch": "寅"
+    },
+    "rawEquality": false,
+    "rotation06Equality": true,
+    "rowId": "integrated-bureau-2-day-02",
+    "source": {
+      "table": "corrected-successor",
+      "tianfuBranch": "寅",
+      "tianfuIndex": 2,
+      "ziweiBranch": "寅"
+    }
+  },
+  {
+    "input": {
+      "bureauNumber": 2,
+      "lunarDay": 3
+    },
+    "legacyPredecessor": {
+      "tianfuBranch": "午",
+      "tianfuIndex": 6
+    },
+    "legacyRawEquality": false,
+    "orderingKey": "2:03",
+    "production": {
+      "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+      "tianfuBranch": "申",
+      "tianfuIndex": 8,
+      "ziweiBranch": "寅"
+    },
+    "rawEquality": false,
+    "rotation06Equality": true,
+    "rowId": "integrated-bureau-2-day-03",
+    "source": {
+      "table": "corrected-successor",
+      "tianfuBranch": "寅",
+      "tianfuIndex": 2,
+      "ziweiBranch": "寅"
+    }
+  },
+  {
+    "input": {
+      "bureauNumber": 2,
+      "lunarDay": 4
+    },
+    "legacyPredecessor": {
+      "tianfuBranch": "未",
+      "tianfuIndex": 7
+    },
+    "legacyRawEquality": true,
+    "orderingKey": "2:04",
+    "production": {
+      "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+      "tianfuBranch": "未",
+      "tianfuIndex": 7,
+      "ziweiBranch": "卯"
+    },
+    "rawEquality": false,
+    "rotation06Equality": true,
+    "rowId": "integrated-bureau-2-day-04",
+    "source": {
+      "table": "corrected-successor",
+      "tianfuBranch": "丑",
+      "tianfuIndex": 1,
+      "ziweiBranch": "卯"
+    }
+  },
+  {
+    "input": {
+      "bureauNumber": 2,
+      "lunarDay": 5
+    },
+    "legacyPredecessor": {
+      "tianfuBranch": "未",
+      "tianfuIndex": 7
+    },
+    "legacyRawEquality": true,
+    "orderingKey": "2:05",
+    "production": {
+      "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+      "tianfuBranch": "未",
+      "tianfuIndex": 7,
+      "ziweiBranch": "卯"
+    },
+    "rawEquality": false,
+    "rotation06Equality": true,
+    "rowId": "integrated-bureau-2-day-05",
+    "source": {
+      "table": "corrected-successor",
+      "tianfuBranch": "丑",
+      "tianfuIndex": 1,
+      "ziweiBranch": "卯"
+    }
+  },
+  {
+    "input": {
+      "bureauNumber": 2,
+      "lunarDay": 6
+    },
+    "legacyPredecessor": {
+      "tianfuBranch": "申",
+      "tianfuIndex": 8
+    },
+    "legacyRawEquality": false,
+    "orderingKey": "2:06",
+    "production": {
+      "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+      "tianfuBranch": "午",
+      "tianfuIndex": 6,
+      "ziweiBranch": "辰"
+    },
+    "rawEquality": false,
+    "rotation06Equality": true,
+    "rowId": "integrated-bureau-2-day-06",
+    "source": {
+      "table": "corrected-successor",
+      "tianfuBranch": "子",
+      "tianfuIndex": 0,
+      "ziweiBranch": "辰"
+    }
+  },
+  {
+    "input": {
+      "bureauNumber": 2,
+      "lunarDay": 7
+    },
+    "legacyPredecessor": {
+      "tianfuBranch": "申",
+      "tianfuIndex": 8
+    },
+    "legacyRawEquality": false,
+    "orderingKey": "2:07",
+    "production": {
+      "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+      "tianfuBranch": "午",
+      "tianfuIndex": 6,
+      "ziweiBranch": "辰"
+    },
+    "rawEquality": false,
+    "rotation06Equality": true,
+    "rowId": "integrated-bureau-2-day-07",
+    "source": {
+      "table": "corrected-successor",
+      "tianfuBranch": "子",
+      "tianfuIndex": 0,
+      "ziweiBranch": "辰"
+    }
+  },
+  {
+    "input": {
+      "bureauNumber": 2,
+      "lunarDay": 8
+    },
+    "legacyPredecessor": {
+      "tianfuBranch": "酉",
+      "tianfuIndex": 9
+    },
+    "legacyRawEquality": false,
+    "orderingKey": "2:08",
+    "production": {
+      "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+      "tianfuBranch": "巳",
+      "tianfuIndex": 5,
+      "ziweiBranch": "巳"
+    },
+    "rawEquality": false,
+    "rotation06Equality": true,
+    "rowId": "integrated-bureau-2-day-08",
+    "source": {
+      "table": "corrected-successor",
+      "tianfuBranch": "亥",
+      "tianfuIndex": 11,
+      "ziweiBranch": "巳"
+    }
+  },
+  {
+    "input": {
+      "bureauNumber": 2,
+      "lunarDay": 9
+    },
+    "legacyPredecessor": {
+      "tianfuBranch": "酉",
+      "tianfuIndex": 9
+    },
+    "legacyRawEquality": false,
+    "orderingKey": "2:09",
+    "production": {
+      "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+      "tianfuBranch": "巳",
+      "tianfuIndex": 5,
+      "ziweiBranch": "巳"
+    },
+    "rawEquality": false,
+    "rotation06Equality": true,
+    "rowId": "integrated-bureau-2-day-09",
+    "source": {
+      "table": "corrected-successor",
+      "tianfuBranch": "亥",
+      "tianfuIndex": 11,
+      "ziweiBranch": "巳"
+    }
+  },
+  {
+    "input": {
+      "bureauNumber": 2,
+      "lunarDay": 10
+    },
+    "legacyPredecessor": {
+      "tianfuBranch": "戌",
+      "tianfuIndex": 10
+    },
+    "legacyRawEquality": false,
+    "orderingKey": "2:10",
+    "production": {
+      "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+      "tianfuBranch": "辰",
+      "tianfuIndex": 4,
+      "ziweiBranch": "午"
+    },
+    "rawEquality": false,
+    "rotation06Equality": true,
+    "rowId": "integrated-bureau-2-day-10",
+    "source": {
+      "table": "corrected-successor",
+      "tianfuBranch": "戌",
+      "tianfuIndex": 10,
+      "ziweiBranch": "午"
+    }
+  },
+  {
+    "input": {
+      "bureauNumber": 2,
+      "lunarDay": 11
+    },
+    "legacyPredecessor": {
+      "tianfuBranch": "戌",
+      "tianfuIndex": 10
+    },
+    "legacyRawEquality": false,
+    "orderingKey": "2:11",
+    "production": {
+      "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+      "tianfuBranch": "辰",
+      "tianfuIndex": 4,
+      "ziweiBranch": "午"
+    },
+    "rawEquality": false,
+    "rotation06Equality": true,
+    "rowId": "integrated-bureau-2-day-11",
+    "source": {
+      "table": "corrected-successor",
+      "tianfuBranch": "戌",
+      "tianfuIndex": 10,
+      "ziweiBranch": "午"
+    }
+  },
+  {
+    "input": {
+      "bureauNumber": 2,
+      "lunarDay": 12
+    },
+    "legacyPredecessor": {
+      "tianfuBranch": "亥",
+      "tianfuIndex": 11
+    },
+    "legacyRawEquality": false,
+    "orderingKey": "2:12",
+    "production": {
+      "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+      "tianfuBranch": "卯",
+      "tianfuIndex": 3,
+      "ziweiBranch": "未"
+    },
+    "rawEquality": false,
+    "rotation06Equality": true,
+    "rowId": "integrated-bureau-2-day-12",
+    "source": {
+      "table": "corrected-successor",
+      "tianfuBranch": "酉",
+      "tianfuIndex": 9,
+      "ziweiBranch": "未"
+    }
+  },
+  {
+    "input": {
+      "bureauNumber": 2,
+      "lunarDay": 13
+    },
+    "legacyPredecessor": {
+      "tianfuBranch": "亥",
+      "tianfuIndex": 11
+    },
+    "legacyRawEquality": false,
+    "orderingKey": "2:13",
+    "production": {
+      "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+      "tianfuBranch": "卯",
+      "tianfuIndex": 3,
+      "ziweiBranch": "未"
+    },
+    "rawEquality": false,
+    "rotation06Equality": true,
+    "rowId": "integrated-bureau-2-day-13",
+    "source": {
+      "table": "corrected-successor",
+      "tianfuBranch": "酉",
+      "tianfuIndex": 9,
+      "ziweiBranch": "未"
+    }
+  },
+  {
+    "input": {
+      "bureauNumber": 2,
+      "lunarDay": 14
+    },
+    "legacyPredecessor": {
+      "tianfuBranch": "子",
+      "tianfuIndex": 0
+    },
+    "legacyRawEquality": false,
+    "orderingKey": "2:14",
+    "production": {
+      "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+      "tianfuBranch": "寅",
+      "tianfuIndex": 2,
+      "ziweiBranch": "申"
+    },
+    "rawEquality": false,
+    "rotation06Equality": true,
+    "rowId": "integrated-bureau-2-day-14",
+    "source": {
+      "table": "corrected-successor",
+      "tianfuBranch": "申",
+      "tianfuIndex": 8,
+      "ziweiBranch": "申"
+    }
+  },
+  {
+    "input": {
+      "bureauNumber": 2,
+      "lunarDay": 15
+    },
+    "legacyPredecessor": {
+      "tianfuBranch": "子",
+      "tianfuIndex": 0
+    },
+    "legacyRawEquality": false,
+    "orderingKey": "2:15",
+    "production": {
+      "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+      "tianfuBranch": "寅",
+      "tianfuIndex": 2,
+      "ziweiBranch": "申"
+    },
+    "rawEquality": false,
+    "rotation06Equality": true,
+    "rowId": "integrated-bureau-2-day-15",
+    "source": {
+      "table": "corrected-successor",
+      "tianfuBranch": "申",
+      "tianfuIndex": 8,
+      "ziweiBranch": "申"
+    }
+  },
+  {
+    "input": {
+      "bureauNumber": 2,
+      "lunarDay": 16
+    },
+    "legacyPredecessor": {
+      "tianfuBranch": "丑",
+      "tianfuIndex": 1
+    },
+    "legacyRawEquality": true,
+    "orderingKey": "2:16",
+    "production": {
+      "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+      "tianfuBranch": "丑",
+      "tianfuIndex": 1,
+      "ziweiBranch": "酉"
+    },
+    "rawEquality": false,
+    "rotation06Equality": true,
+    "rowId": "integrated-bureau-2-day-16",
+    "source": {
+      "table": "corrected-successor",
+      "tianfuBranch": "未",
+      "tianfuIndex": 7,
+      "ziweiBranch": "酉"
+    }
+  },
+  {
+    "input": {
+      "bureauNumber": 2,
+      "lunarDay": 17
+    },
+    "legacyPredecessor": {
+      "tianfuBranch": "丑",
+      "tianfuIndex": 1
+    },
+    "legacyRawEquality": true,
+    "orderingKey": "2:17",
+    "production": {
+      "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+      "tianfuBranch": "丑",
+      "tianfuIndex": 1,
+      "ziweiBranch": "酉"
+    },
+    "rawEquality": false,
+    "rotation06Equality": true,
+    "rowId": "integrated-bureau-2-day-17",
+    "source": {
+      "table": "corrected-successor",
+      "tianfuBranch": "未",
+      "tianfuIndex": 7,
+      "ziweiBranch": "酉"
+    }
+  },
+  {
+    "input": {
+      "bureauNumber": 2,
+      "lunarDay": 18
+    },
+    "legacyPredecessor": {
+      "tianfuBranch": "寅",
+      "tianfuIndex": 2
+    },
+    "legacyRawEquality": false,
+    "orderingKey": "2:18",
+    "production": {
+      "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+      "tianfuBranch": "子",
+      "tianfuIndex": 0,
+      "ziweiBranch": "戌"
+    },
+    "rawEquality": false,
+    "rotation06Equality": true,
+    "rowId": "integrated-bureau-2-day-18",
+    "source": {
+      "table": "corrected-successor",
+      "tianfuBranch": "午",
+      "tianfuIndex": 6,
+      "ziweiBranch": "戌"
+    }
+  },
+  {
+    "input": {
+      "bureauNumber": 2,
+      "lunarDay": 19
+    },
+    "legacyPredecessor": {
+      "tianfuBranch": "寅",
+      "tianfuIndex": 2
+    },
+    "legacyRawEquality": false,
+    "orderingKey": "2:19",
+    "production": {
+      "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+      "tianfuBranch": "子",
+      "tianfuIndex": 0,
+      "ziweiBranch": "戌"
+    },
+    "rawEquality": false,
+    "rotation06Equality": true,
+    "rowId": "integrated-bureau-2-day-19",
+    "source": {
+      "table": "corrected-successor",
+      "tianfuBranch": "午",
+      "tianfuIndex": 6,
+      "ziweiBranch": "戌"
+    }
+  },
+  {
+    "input": {
+      "bureauNumber": 2,
+      "lunarDay": 20
+    },
+    "legacyPredecessor": {
+      "tianfuBranch": "卯",
+      "tianfuIndex": 3
+    },
+    "legacyRawEquality": false,
+    "orderingKey": "2:20",
+    "production": {
+      "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+      "tianfuBranch": "亥",
+      "tianfuIndex": 11,
+      "ziweiBranch": "亥"
+    },
+    "rawEquality": false,
+    "rotation06Equality": true,
+    "rowId": "integrated-bureau-2-day-20",
+    "source": {
+      "table": "corrected-successor",
+      "tianfuBranch": "巳",
+      "tianfuIndex": 5,
+      "ziweiBranch": "亥"
+    }
+  },
+  {
+    "input": {
+      "bureauNumber": 2,
+      "lunarDay": 21
+    },
+    "legacyPredecessor": {
+      "tianfuBranch": "卯",
+      "tianfuIndex": 3
+    },
+    "legacyRawEquality": false,
+    "orderingKey": "2:21",
+    "production": {
+      "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+      "tianfuBranch": "亥",
+      "tianfuIndex": 11,
+      "ziweiBranch": "亥"
+    },
+    "rawEquality": false,
+    "rotation06Equality": true,
+    "rowId": "integrated-bureau-2-day-21",
+    "source": {
+      "table": "corrected-successor",
+      "tianfuBranch": "巳",
+      "tianfuIndex": 5,
+      "ziweiBranch": "亥"
+    }
+  },
+  {
+    "input": {
+      "bureauNumber": 2,
+      "lunarDay": 22
+    },
+    "legacyPredecessor": {
+      "tianfuBranch": "辰",
+      "tianfuIndex": 4
+    },
+    "legacyRawEquality": false,
+    "orderingKey": "2:22",
+    "production": {
+      "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+      "tianfuBranch": "戌",
+      "tianfuIndex": 10,
+      "ziweiBranch": "子"
+    },
+    "rawEquality": false,
+    "rotation06Equality": true,
+    "rowId": "integrated-bureau-2-day-22",
+    "source": {
+      "table": "corrected-successor",
+      "tianfuBranch": "辰",
+      "tianfuIndex": 4,
+      "ziweiBranch": "子"
+    }
+  },
+  {
+    "input": {
+      "bureauNumber": 2,
+      "lunarDay": 23
+    },
+    "legacyPredecessor": {
+      "tianfuBranch": "辰",
+      "tianfuIndex": 4
+    },
+    "legacyRawEquality": false,
+    "orderingKey": "2:23",
+    "production": {
+      "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+      "tianfuBranch": "戌",
+      "tianfuIndex": 10,
+      "ziweiBranch": "子"
+    },
+    "rawEquality": false,
+    "rotation06Equality": true,
+    "rowId": "integrated-bureau-2-day-23",
+    "source": {
+      "table": "corrected-successor",
+      "tianfuBranch": "辰",
+      "tianfuIndex": 4,
+      "ziweiBranch": "子"
+    }
+  },
+  {
+    "input": {
+      "bureauNumber": 2,
+      "lunarDay": 24
+    },
+    "legacyPredecessor": {
+      "tianfuBranch": "巳",
+      "tianfuIndex": 5
+    },
+    "legacyRawEquality": false,
+    "orderingKey": "2:24",
+    "production": {
+      "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+      "tianfuBranch": "酉",
+      "tianfuIndex": 9,
+      "ziweiBranch": "丑"
+    },
+    "rawEquality": false,
+    "rotation06Equality": true,
+    "rowId": "integrated-bureau-2-day-24",
+    "source": {
+      "table": "corrected-successor",
+      "tianfuBranch": "卯",
+      "tianfuIndex": 3,
+      "ziweiBranch": "丑"
+    }
+  },
+  {
+    "input": {
+      "bureauNumber": 2,
+      "lunarDay": 25
+    },
+    "legacyPredecessor": {
+      "tianfuBranch": "巳",
+      "tianfuIndex": 5
+    },
+    "legacyRawEquality": false,
+    "orderingKey": "2:25",
+    "production": {
+      "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+      "tianfuBranch": "酉",
+      "tianfuIndex": 9,
+      "ziweiBranch": "丑"
+    },
+    "rawEquality": false,
+    "rotation06Equality": true,
+    "rowId": "integrated-bureau-2-day-25",
+    "source": {
+      "table": "corrected-successor",
+      "tianfuBranch": "卯",
+      "tianfuIndex": 3,
+      "ziweiBranch": "丑"
+    }
+  },
+  {
+    "input": {
+      "bureauNumber": 2,
+      "lunarDay": 26
+    },
+    "legacyPredecessor": {
+      "tianfuBranch": "午",
+      "tianfuIndex": 6
+    },
+    "legacyRawEquality": false,
+    "orderingKey": "2:26",
+    "production": {
+      "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+      "tianfuBranch": "申",
+      "tianfuIndex": 8,
+      "ziweiBranch": "寅"
+    },
+    "rawEquality": false,
+    "rotation06Equality": true,
+    "rowId": "integrated-bureau-2-day-26",
+    "source": {
+      "table": "corrected-successor",
+      "tianfuBranch": "寅",
+      "tianfuIndex": 2,
+      "ziweiBranch": "寅"
+    }
+  },
+  {
+    "input": {
+      "bureauNumber": 2,
+      "lunarDay": 27
+    },
+    "legacyPredecessor": {
+      "tianfuBranch": "午",
+      "tianfuIndex": 6
+    },
+    "legacyRawEquality": false,
+    "orderingKey": "2:27",
+    "production": {
+      "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+      "tianfuBranch": "申",
+      "tianfuIndex": 8,
+      "ziweiBranch": "寅"
+    },
+    "rawEquality": false,
+    "rotation06Equality": true,
+    "rowId": "integrated-bureau-2-day-27",
+    "source": {
+      "table": "corrected-successor",
+      "tianfuBranch": "寅",
+      "tianfuIndex": 2,
+      "ziweiBranch": "寅"
+    }
+  },
+  {
+    "input": {
+      "bureauNumber": 2,
+      "lunarDay": 28
+    },
+    "legacyPredecessor": {
+      "tianfuBranch": "未",
+      "tianfuIndex": 7
+    },
+    "legacyRawEquality": true,
+    "orderingKey": "2:28",
+    "production": {
+      "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+      "tianfuBranch": "未",
+      "tianfuIndex": 7,
+      "ziweiBranch": "卯"
+    },
+    "rawEquality": false,
+    "rotation06Equality": true,
+    "rowId": "integrated-bureau-2-day-28",
+    "source": {
+      "table": "corrected-successor",
+      "tianfuBranch": "丑",
+      "tianfuIndex": 1,
+      "ziweiBranch": "卯"
+    }
+  },
+  {
+    "input": {
+      "bureauNumber": 2,
+      "lunarDay": 29
+    },
+    "legacyPredecessor": {
+      "tianfuBranch": "未",
+      "tianfuIndex": 7
+    },
+    "legacyRawEquality": true,
+    "orderingKey": "2:29",
+    "production": {
+      "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+      "tianfuBranch": "未",
+      "tianfuIndex": 7,
+      "ziweiBranch": "卯"
+    },
+    "rawEquality": false,
+    "rotation06Equality": true,
+    "rowId": "integrated-bureau-2-day-29",
+    "source": {
+      "table": "corrected-successor",
+      "tianfuBranch": "丑",
+      "tianfuIndex": 1,
+      "ziweiBranch": "卯"
+    }
+  },
+  {
+    "input": {
+      "bureauNumber": 2,
+      "lunarDay": 30
+    },
+    "legacyPredecessor": {
+      "tianfuBranch": "申",
+      "tianfuIndex": 8
+    },
+    "legacyRawEquality": false,
+    "orderingKey": "2:30",
+    "production": {
+      "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+      "tianfuBranch": "午",
+      "tianfuIndex": 6,
+      "ziweiBranch": "辰"
+    },
+    "rawEquality": false,
+    "rotation06Equality": true,
+    "rowId": "integrated-bureau-2-day-30",
+    "source": {
+      "table": "corrected-successor",
+      "tianfuBranch": "子",
+      "tianfuIndex": 0,
+      "ziweiBranch": "辰"
+    }
+  },
+  {
+    "input": {
+      "bureauNumber": 3,
+      "lunarDay": 1
+    },
+    "legacyPredecessor": {
+      "tianfuBranch": "申",
+      "tianfuIndex": 8
+    },
+    "legacyRawEquality": false,
+    "orderingKey": "3:01",
+    "production": {
+      "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+      "tianfuBranch": "午",
+      "tianfuIndex": 6,
+      "ziweiBranch": "辰"
+    },
+    "rawEquality": false,
+    "rotation06Equality": true,
+    "rowId": "integrated-bureau-3-day-01",
+    "source": {
+      "table": "corrected-successor",
+      "tianfuBranch": "子",
+      "tianfuIndex": 0,
+      "ziweiBranch": "辰"
+    }
+  },
+  {
+    "input": {
+      "bureauNumber": 3,
+      "lunarDay": 2
+    },
+    "legacyPredecessor": {
+      "tianfuBranch": "巳",
+      "tianfuIndex": 5
+    },
+    "legacyRawEquality": false,
+    "orderingKey": "3:02",
+    "production": {
+      "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+      "tianfuBranch": "酉",
+      "tianfuIndex": 9,
+      "ziweiBranch": "丑"
+    },
+    "rawEquality": false,
+    "rotation06Equality": true,
+    "rowId": "integrated-bureau-3-day-02",
+    "source": {
+      "table": "corrected-successor",
+      "tianfuBranch": "卯",
+      "tianfuIndex": 3,
+      "ziweiBranch": "丑"
+    }
+  },
+  {
+    "input": {
+      "bureauNumber": 3,
+      "lunarDay": 3
+    },
+    "legacyPredecessor": {
+      "tianfuBranch": "午",
+      "tianfuIndex": 6
+    },
+    "legacyRawEquality": false,
+    "orderingKey": "3:03",
+    "production": {
+      "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+      "tianfuBranch": "申",
+      "tianfuIndex": 8,
+      "ziweiBranch": "寅"
+    },
+    "rawEquality": false,
+    "rotation06Equality": true,
+    "rowId": "integrated-bureau-3-day-03",
+    "source": {
+      "table": "corrected-successor",
+      "tianfuBranch": "寅",
+      "tianfuIndex": 2,
+      "ziweiBranch": "寅"
+    }
+  },
+  {
+    "input": {
+      "bureauNumber": 3,
+      "lunarDay": 4
+    },
+    "legacyPredecessor": {
+      "tianfuBranch": "酉",
+      "tianfuIndex": 9
+    },
+    "legacyRawEquality": false,
+    "orderingKey": "3:04",
+    "production": {
+      "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+      "tianfuBranch": "巳",
+      "tianfuIndex": 5,
+      "ziweiBranch": "巳"
+    },
+    "rawEquality": false,
+    "rotation06Equality": true,
+    "rowId": "integrated-bureau-3-day-04",
+    "source": {
+      "table": "corrected-successor",
+      "tianfuBranch": "亥",
+      "tianfuIndex": 11,
+      "ziweiBranch": "巳"
+    }
+  },
+  {
+    "input": {
+      "bureauNumber": 3,
+      "lunarDay": 5
+    },
+    "legacyPredecessor": {
+      "tianfuBranch": "午",
+      "tianfuIndex": 6
+    },
+    "legacyRawEquality": false,
+    "orderingKey": "3:05",
+    "production": {
+      "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+      "tianfuBranch": "申",
+      "tianfuIndex": 8,
+      "ziweiBranch": "寅"
+    },
+    "rawEquality": false,
+    "rotation06Equality": true,
+    "rowId": "integrated-bureau-3-day-05",
+    "source": {
+      "table": "corrected-successor",
+      "tianfuBranch": "寅",
+      "tianfuIndex": 2,
+      "ziweiBranch": "寅"
+    }
+  },
+  {
+    "input": {
+      "bureauNumber": 3,
+      "lunarDay": 6
+    },
+    "legacyPredecessor": {
+      "tianfuBranch": "未",
+      "tianfuIndex": 7
+    },
+    "legacyRawEquality": true,
+    "orderingKey": "3:06",
+    "production": {
+      "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+      "tianfuBranch": "未",
+      "tianfuIndex": 7,
+      "ziweiBranch": "卯"
+    },
+    "rawEquality": false,
+    "rotation06Equality": true,
+    "rowId": "integrated-bureau-3-day-06",
+    "source": {
+      "table": "corrected-successor",
+      "tianfuBranch": "丑",
+      "tianfuIndex": 1,
+      "ziweiBranch": "卯"
+    }
+  },
+  {
+    "input": {
+      "bureauNumber": 3,
+      "lunarDay": 7
+    },
+    "legacyPredecessor": {
+      "tianfuBranch": "戌",
+      "tianfuIndex": 10
+    },
+    "legacyRawEquality": false,
+    "orderingKey": "3:07",
+    "production": {
+      "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+      "tianfuBranch": "辰",
+      "tianfuIndex": 4,
+      "ziweiBranch": "午"
+    },
+    "rawEquality": false,
+    "rotation06Equality": true,
+    "rowId": "integrated-bureau-3-day-07",
+    "source": {
+      "table": "corrected-successor",
+      "tianfuBranch": "戌",
+      "tianfuIndex": 10,
+      "ziweiBranch": "午"
+    }
+  },
+  {
+    "input": {
+      "bureauNumber": 3,
+      "lunarDay": 8
+    },
+    "legacyPredecessor": {
+      "tianfuBranch": "未",
+      "tianfuIndex": 7
+    },
+    "legacyRawEquality": true,
+    "orderingKey": "3:08",
+    "production": {
+      "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+      "tianfuBranch": "未",
+      "tianfuIndex": 7,
+      "ziweiBranch": "卯"
+    },
+    "rawEquality": false,
+    "rotation06Equality": true,
+    "rowId": "integrated-bureau-3-day-08",
+    "source": {
+      "table": "corrected-successor",
+      "tianfuBranch": "丑",
+      "tianfuIndex": 1,
+      "ziweiBranch": "卯"
+    }
+  },
+  {
+    "input": {
+      "bureauNumber": 3,
+      "lunarDay": 9
+    },
+    "legacyPredecessor": {
+      "tianfuBranch": "申",
+      "tianfuIndex": 8
+    },
+    "legacyRawEquality": false,
+    "orderingKey": "3:09",
+    "production": {
+      "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+      "tianfuBranch": "午",
+      "tianfuIndex": 6,
+      "ziweiBranch": "辰"
+    },
+    "rawEquality": false,
+    "rotation06Equality": true,
+    "rowId": "integrated-bureau-3-day-09",
+    "source": {
+      "table": "corrected-successor",
+      "tianfuBranch": "子",
+      "tianfuIndex": 0,
+      "ziweiBranch": "辰"
+    }
+  },
+  {
+    "input": {
+      "bureauNumber": 3,
+      "lunarDay": 10
+    },
+    "legacyPredecessor": {
+      "tianfuBranch": "亥",
+      "tianfuIndex": 11
+    },
+    "legacyRawEquality": false,
+    "orderingKey": "3:10",
+    "production": {
+      "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+      "tianfuBranch": "卯",
+      "tianfuIndex": 3,
+      "ziweiBranch": "未"
+    },
+    "rawEquality": false,
+    "rotation06Equality": true,
+    "rowId": "integrated-bureau-3-day-10",
+    "source": {
+      "table": "corrected-successor",
+      "tianfuBranch": "酉",
+      "tianfuIndex": 9,
+      "ziweiBranch": "未"
+    }
+  },
+  {
+    "input": {
+      "bureauNumber": 3,
+      "lunarDay": 11
+    },
+    "legacyPredecessor": {
+      "tianfuBranch": "申",
+      "tianfuIndex": 8
+    },
+    "legacyRawEquality": false,
+    "orderingKey": "3:11",
+    "production": {
+      "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+      "tianfuBranch": "午",
+      "tianfuIndex": 6,
+      "ziweiBranch": "辰"
+    },
+    "rawEquality": false,
+    "rotation06Equality": true,
+    "rowId": "integrated-bureau-3-day-11",
+    "source": {
+      "table": "corrected-successor",
+      "tianfuBranch": "子",
+      "tianfuIndex": 0,
+      "ziweiBranch": "辰"
+    }
+  },
+  {
+    "input": {
+      "bureauNumber": 3,
+      "lunarDay": 12
+    },
+    "legacyPredecessor": {
+      "tianfuBranch": "酉",
+      "tianfuIndex": 9
+    },
+    "legacyRawEquality": false,
+    "orderingKey": "3:12",
+    "production": {
+      "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+      "tianfuBranch": "巳",
+      "tianfuIndex": 5,
+      "ziweiBranch": "巳"
+    },
+    "rawEquality": false,
+    "rotation06Equality": true,
+    "rowId": "integrated-bureau-3-day-12",
+    "source": {
+      "table": "corrected-successor",
+      "tianfuBranch": "亥",
+      "tianfuIndex": 11,
+      "ziweiBranch": "巳"
+    }
+  },
+  {
+    "input": {
+      "bureauNumber": 3,
+      "lunarDay": 13
+    },
+    "legacyPredecessor": {
+      "tianfuBranch": "子",
+      "tianfuIndex": 0
+    },
+    "legacyRawEquality": false,
+    "orderingKey": "3:13",
+    "production": {
+      "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+      "tianfuBranch": "寅",
+      "tianfuIndex": 2,
+      "ziweiBranch": "申"
+    },
+    "rawEquality": false,
+    "rotation06Equality": true,
+    "rowId": "integrated-bureau-3-day-13",
+    "source": {
+      "table": "corrected-successor",
+      "tianfuBranch": "申",
+      "tianfuIndex": 8,
+      "ziweiBranch": "申"
+    }
+  },
+  {
+    "input": {
+      "bureauNumber": 3,
+      "lunarDay": 14
+    },
+    "legacyPredecessor": {
+      "tianfuBranch": "酉",
+      "tianfuIndex": 9
+    },
+    "legacyRawEquality": false,
+    "orderingKey": "3:14",
+    "production": {
+      "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+      "tianfuBranch": "巳",
+      "tianfuIndex": 5,
+      "ziweiBranch": "巳"
+    },
+    "rawEquality": false,
+    "rotation06Equality": true,
+    "rowId": "integrated-bureau-3-day-14",
+    "source": {
+      "table": "corrected-successor",
+      "tianfuBranch": "亥",
+      "tianfuIndex": 11,
+      "ziweiBranch": "巳"
+    }
+  },
+  {
+    "input": {
+      "bureauNumber": 3,
+      "lunarDay": 15
+    },
+    "legacyPredecessor": {
+      "tianfuBranch": "戌",
+      "tianfuIndex": 10
+    },
+    "legacyRawEquality": false,
+    "orderingKey": "3:15",
+    "production": {
+      "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+      "tianfuBranch": "辰",
+      "tianfuIndex": 4,
+      "ziweiBranch": "午"
+    },
+    "rawEquality": false,
+    "rotation06Equality": true,
+    "rowId": "integrated-bureau-3-day-15",
+    "source": {
+      "table": "corrected-successor",
+      "tianfuBranch": "戌",
+      "tianfuIndex": 10,
+      "ziweiBranch": "午"
+    }
+  },
+  {
+    "input": {
+      "bureauNumber": 3,
+      "lunarDay": 16
+    },
+    "legacyPredecessor": {
+      "tianfuBranch": "丑",
+      "tianfuIndex": 1
+    },
+    "legacyRawEquality": true,
+    "orderingKey": "3:16",
+    "production": {
+      "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+      "tianfuBranch": "丑",
+      "tianfuIndex": 1,
+      "ziweiBranch": "酉"
+    },
+    "rawEquality": false,
+    "rotation06Equality": true,
+    "rowId": "integrated-bureau-3-day-16",
+    "source": {
+      "table": "corrected-successor",
+      "tianfuBranch": "未",
+      "tianfuIndex": 7,
+      "ziweiBranch": "酉"
+    }
+  },
+  {
+    "input": {
+      "bureauNumber": 3,
+      "lunarDay": 17
+    },
+    "legacyPredecessor": {
+      "tianfuBranch": "戌",
+      "tianfuIndex": 10
+    },
+    "legacyRawEquality": false,
+    "orderingKey": "3:17",
+    "production": {
+      "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+      "tianfuBranch": "辰",
+      "tianfuIndex": 4,
+      "ziweiBranch": "午"
+    },
+    "rawEquality": false,
+    "rotation06Equality": true,
+    "rowId": "integrated-bureau-3-day-17",
+    "source": {
+      "table": "corrected-successor",
+      "tianfuBranch": "戌",
+      "tianfuIndex": 10,
+      "ziweiBranch": "午"
+    }
+  },
+  {
+    "input": {
+      "bureauNumber": 3,
+      "lunarDay": 18
+    },
+    "legacyPredecessor": {
+      "tianfuBranch": "亥",
+      "tianfuIndex": 11
+    },
+    "legacyRawEquality": false,
+    "orderingKey": "3:18",
+    "production": {
+      "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+      "tianfuBranch": "卯",
+      "tianfuIndex": 3,
+      "ziweiBranch": "未"
+    },
+    "rawEquality": false,
+    "rotation06Equality": true,
+    "rowId": "integrated-bureau-3-day-18",
+    "source": {
+      "table": "corrected-successor",
+      "tianfuBranch": "酉",
+      "tianfuIndex": 9,
+      "ziweiBranch": "未"
+    }
+  },
+  {
+    "input": {
+      "bureauNumber": 3,
+      "lunarDay": 19
+    },
+    "legacyPredecessor": {
+      "tianfuBranch": "寅",
+      "tianfuIndex": 2
+    },
+    "legacyRawEquality": false,
+    "orderingKey": "3:19",
+    "production": {
+      "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+      "tianfuBranch": "子",
+      "tianfuIndex": 0,
+      "ziweiBranch": "戌"
+    },
+    "rawEquality": false,
+    "rotation06Equality": true,
+    "rowId": "integrated-bureau-3-day-19",
+    "source": {
+      "table": "corrected-successor",
+      "tianfuBranch": "午",
+      "tianfuIndex": 6,
+      "ziweiBranch": "戌"
+    }
+  },
+  {
+    "input": {
+      "bureauNumber": 3,
+      "lunarDay": 20
+    },
+    "legacyPredecessor": {
+      "tianfuBranch": "亥",
+      "tianfuIndex": 11
+    },
+    "legacyRawEquality": false,
+    "orderingKey": "3:20",
+    "production": {
+      "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+      "tianfuBranch": "卯",
+      "tianfuIndex": 3,
+      "ziweiBranch": "未"
+    },
+    "rawEquality": false,
+    "rotation06Equality": true,
+    "rowId": "integrated-bureau-3-day-20",
+    "source": {
+      "table": "corrected-successor",
+      "tianfuBranch": "酉",
+      "tianfuIndex": 9,
+      "ziweiBranch": "未"
+    }
+  },
+  {
+    "input": {
+      "bureauNumber": 3,
+      "lunarDay": 21
+    },
+    "legacyPredecessor": {
+      "tianfuBranch": "子",
+      "tianfuIndex": 0
+    },
+    "legacyRawEquality": false,
+    "orderingKey": "3:21",
+    "production": {
+      "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+      "tianfuBranch": "寅",
+      "tianfuIndex": 2,
+      "ziweiBranch": "申"
+    },
+    "rawEquality": false,
+    "rotation06Equality": true,
+    "rowId": "integrated-bureau-3-day-21",
+    "source": {
+      "table": "corrected-successor",
+      "tianfuBranch": "申",
+      "tianfuIndex": 8,
+      "ziweiBranch": "申"
+    }
+  },
+  {
+    "input": {
+      "bureauNumber": 3,
+      "lunarDay": 22
+    },
+    "legacyPredecessor": {
+      "tianfuBranch": "卯",
+      "tianfuIndex": 3
+    },
+    "legacyRawEquality": false,
+    "orderingKey": "3:22",
+    "production": {
+      "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+      "tianfuBranch": "亥",
+      "tianfuIndex": 11,
+      "ziweiBranch": "亥"
+    },
+    "rawEquality": false,
+    "rotation06Equality": true,
+    "rowId": "integrated-bureau-3-day-22",
+    "source": {
+      "table": "corrected-successor",
+      "tianfuBranch": "巳",
+      "tianfuIndex": 5,
+      "ziweiBranch": "亥"
+    }
+  },
+  {
+    "input": {
+      "bureauNumber": 3,
+      "lunarDay": 23
+    },
+    "legacyPredecessor": {
+      "tianfuBranch": "子",
+      "tianfuIndex": 0
+    },
+    "legacyRawEquality": false,
+    "orderingKey": "3:23",
+    "production": {
+      "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+      "tianfuBranch": "寅",
+      "tianfuIndex": 2,
+      "ziweiBranch": "申"
+    },
+    "rawEquality": false,
+    "rotation06Equality": true,
+    "rowId": "integrated-bureau-3-day-23",
+    "source": {
+      "table": "corrected-successor",
+      "tianfuBranch": "申",
+      "tianfuIndex": 8,
+      "ziweiBranch": "申"
+    }
+  },
+  {
+    "input": {
+      "bureauNumber": 3,
+      "lunarDay": 24
+    },
+    "legacyPredecessor": {
+      "tianfuBranch": "丑",
+      "tianfuIndex": 1
+    },
+    "legacyRawEquality": true,
+    "orderingKey": "3:24",
+    "production": {
+      "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+      "tianfuBranch": "丑",
+      "tianfuIndex": 1,
+      "ziweiBranch": "酉"
+    },
+    "rawEquality": false,
+    "rotation06Equality": true,
+    "rowId": "integrated-bureau-3-day-24",
+    "source": {
+      "table": "corrected-successor",
+      "tianfuBranch": "未",
+      "tianfuIndex": 7,
+      "ziweiBranch": "酉"
+    }
+  },
+  {
+    "input": {
+      "bureauNumber": 3,
+      "lunarDay": 25
+    },
+    "legacyPredecessor": {
+      "tianfuBranch": "辰",
+      "tianfuIndex": 4
+    },
+    "legacyRawEquality": false,
+    "orderingKey": "3:25",
+    "production": {
+      "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+      "tianfuBranch": "戌",
+      "tianfuIndex": 10,
+      "ziweiBranch": "子"
+    },
+    "rawEquality": false,
+    "rotation06Equality": true,
+    "rowId": "integrated-bureau-3-day-25",
+    "source": {
+      "table": "corrected-successor",
+      "tianfuBranch": "辰",
+      "tianfuIndex": 4,
+      "ziweiBranch": "子"
+    }
+  },
+  {
+    "input": {
+      "bureauNumber": 3,
+      "lunarDay": 26
+    },
+    "legacyPredecessor": {
+      "tianfuBranch": "丑",
+      "tianfuIndex": 1
+    },
+    "legacyRawEquality": true,
+    "orderingKey": "3:26",
+    "production": {
+      "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+      "tianfuBranch": "丑",
+      "tianfuIndex": 1,
+      "ziweiBranch": "酉"
+    },
+    "rawEquality": false,
+    "rotation06Equality": true,
+    "rowId": "integrated-bureau-3-day-26",
+    "source": {
+      "table": "corrected-successor",
+      "tianfuBranch": "未",
+      "tianfuIndex": 7,
+      "ziweiBranch": "酉"
+    }
+  },
+  {
+    "input": {
+      "bureauNumber": 3,
+      "lunarDay": 27
+    },
+    "legacyPredecessor": {
+      "tianfuBranch": "寅",
+      "tianfuIndex": 2
+    },
+    "legacyRawEquality": false,
+    "orderingKey": "3:27",
+    "production": {
+      "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+      "tianfuBranch": "子",
+      "tianfuIndex": 0,
+      "ziweiBranch": "戌"
+    },
+    "rawEquality": false,
+    "rotation06Equality": true,
+    "rowId": "integrated-bureau-3-day-27",
+    "source": {
+      "table": "corrected-successor",
+      "tianfuBranch": "午",
+      "tianfuIndex": 6,
+      "ziweiBranch": "戌"
+    }
+  },
+  {
+    "input": {
+      "bureauNumber": 3,
+      "lunarDay": 28
+    },
+    "legacyPredecessor": {
+      "tianfuBranch": "巳",
+      "tianfuIndex": 5
+    },
+    "legacyRawEquality": false,
+    "orderingKey": "3:28",
+    "production": {
+      "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+      "tianfuBranch": "酉",
+      "tianfuIndex": 9,
+      "ziweiBranch": "丑"
+    },
+    "rawEquality": false,
+    "rotation06Equality": true,
+    "rowId": "integrated-bureau-3-day-28",
+    "source": {
+      "table": "corrected-successor",
+      "tianfuBranch": "卯",
+      "tianfuIndex": 3,
+      "ziweiBranch": "丑"
+    }
+  },
+  {
+    "input": {
+      "bureauNumber": 3,
+      "lunarDay": 29
+    },
+    "legacyPredecessor": {
+      "tianfuBranch": "寅",
+      "tianfuIndex": 2
+    },
+    "legacyRawEquality": false,
+    "orderingKey": "3:29",
+    "production": {
+      "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+      "tianfuBranch": "子",
+      "tianfuIndex": 0,
+      "ziweiBranch": "戌"
+    },
+    "rawEquality": false,
+    "rotation06Equality": true,
+    "rowId": "integrated-bureau-3-day-29",
+    "source": {
+      "table": "corrected-successor",
+      "tianfuBranch": "午",
+      "tianfuIndex": 6,
+      "ziweiBranch": "戌"
+    }
+  },
+  {
+    "input": {
+      "bureauNumber": 3,
+      "lunarDay": 30
+    },
+    "legacyPredecessor": {
+      "tianfuBranch": "卯",
+      "tianfuIndex": 3
+    },
+    "legacyRawEquality": false,
+    "orderingKey": "3:30",
+    "production": {
+      "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+      "tianfuBranch": "亥",
+      "tianfuIndex": 11,
+      "ziweiBranch": "亥"
+    },
+    "rawEquality": false,
+    "rotation06Equality": true,
+    "rowId": "integrated-bureau-3-day-30",
+    "source": {
+      "table": "corrected-successor",
+      "tianfuBranch": "巳",
+      "tianfuIndex": 5,
+      "ziweiBranch": "亥"
+    }
+  },
+  {
+    "input": {
+      "bureauNumber": 4,
+      "lunarDay": 1
+    },
+    "legacyPredecessor": {
+      "tianfuBranch": "卯",
+      "tianfuIndex": 3
+    },
+    "legacyRawEquality": false,
+    "orderingKey": "4:01",
+    "production": {
+      "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+      "tianfuBranch": "亥",
+      "tianfuIndex": 11,
+      "ziweiBranch": "亥"
+    },
+    "rawEquality": false,
+    "rotation06Equality": true,
+    "rowId": "integrated-bureau-4-day-01",
+    "source": {
+      "table": "corrected-successor",
+      "tianfuBranch": "巳",
+      "tianfuIndex": 5,
+      "ziweiBranch": "亥"
+    }
+  },
+  {
+    "input": {
+      "bureauNumber": 4,
+      "lunarDay": 2
+    },
+    "legacyPredecessor": {
+      "tianfuBranch": "申",
+      "tianfuIndex": 8
+    },
+    "legacyRawEquality": false,
+    "orderingKey": "4:02",
+    "production": {
+      "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+      "tianfuBranch": "午",
+      "tianfuIndex": 6,
+      "ziweiBranch": "辰"
+    },
+    "rawEquality": false,
+    "rotation06Equality": true,
+    "rowId": "integrated-bureau-4-day-02",
+    "source": {
+      "table": "corrected-successor",
+      "tianfuBranch": "子",
+      "tianfuIndex": 0,
+      "ziweiBranch": "辰"
+    }
+  },
+  {
+    "input": {
+      "bureauNumber": 4,
+      "lunarDay": 3
+    },
+    "legacyPredecessor": {
+      "tianfuBranch": "巳",
+      "tianfuIndex": 5
+    },
+    "legacyRawEquality": false,
+    "orderingKey": "4:03",
+    "production": {
+      "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+      "tianfuBranch": "酉",
+      "tianfuIndex": 9,
+      "ziweiBranch": "丑"
+    },
+    "rawEquality": false,
+    "rotation06Equality": true,
+    "rowId": "integrated-bureau-4-day-03",
+    "source": {
+      "table": "corrected-successor",
+      "tianfuBranch": "卯",
+      "tianfuIndex": 3,
+      "ziweiBranch": "丑"
+    }
+  },
+  {
+    "input": {
+      "bureauNumber": 4,
+      "lunarDay": 4
+    },
+    "legacyPredecessor": {
+      "tianfuBranch": "午",
+      "tianfuIndex": 6
+    },
+    "legacyRawEquality": false,
+    "orderingKey": "4:04",
+    "production": {
+      "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+      "tianfuBranch": "申",
+      "tianfuIndex": 8,
+      "ziweiBranch": "寅"
+    },
+    "rawEquality": false,
+    "rotation06Equality": true,
+    "rowId": "integrated-bureau-4-day-04",
+    "source": {
+      "table": "corrected-successor",
+      "tianfuBranch": "寅",
+      "tianfuIndex": 2,
+      "ziweiBranch": "寅"
+    }
+  },
+  {
+    "input": {
+      "bureauNumber": 4,
+      "lunarDay": 5
+    },
+    "legacyPredecessor": {
+      "tianfuBranch": "辰",
+      "tianfuIndex": 4
+    },
+    "legacyRawEquality": false,
+    "orderingKey": "4:05",
+    "production": {
+      "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+      "tianfuBranch": "戌",
+      "tianfuIndex": 10,
+      "ziweiBranch": "子"
+    },
+    "rawEquality": false,
+    "rotation06Equality": true,
+    "rowId": "integrated-bureau-4-day-05",
+    "source": {
+      "table": "corrected-successor",
+      "tianfuBranch": "辰",
+      "tianfuIndex": 4,
+      "ziweiBranch": "子"
+    }
+  },
+  {
+    "input": {
+      "bureauNumber": 4,
+      "lunarDay": 6
+    },
+    "legacyPredecessor": {
+      "tianfuBranch": "酉",
+      "tianfuIndex": 9
+    },
+    "legacyRawEquality": false,
+    "orderingKey": "4:06",
+    "production": {
+      "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+      "tianfuBranch": "巳",
+      "tianfuIndex": 5,
+      "ziweiBranch": "巳"
+    },
+    "rawEquality": false,
+    "rotation06Equality": true,
+    "rowId": "integrated-bureau-4-day-06",
+    "source": {
+      "table": "corrected-successor",
+      "tianfuBranch": "亥",
+      "tianfuIndex": 11,
+      "ziweiBranch": "巳"
+    }
+  },
+  {
+    "input": {
+      "bureauNumber": 4,
+      "lunarDay": 7
+    },
+    "legacyPredecessor": {
+      "tianfuBranch": "午",
+      "tianfuIndex": 6
+    },
+    "legacyRawEquality": false,
+    "orderingKey": "4:07",
+    "production": {
+      "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+      "tianfuBranch": "申",
+      "tianfuIndex": 8,
+      "ziweiBranch": "寅"
+    },
+    "rawEquality": false,
+    "rotation06Equality": true,
+    "rowId": "integrated-bureau-4-day-07",
+    "source": {
+      "table": "corrected-successor",
+      "tianfuBranch": "寅",
+      "tianfuIndex": 2,
+      "ziweiBranch": "寅"
+    }
+  },
+  {
+    "input": {
+      "bureauNumber": 4,
+      "lunarDay": 8
+    },
+    "legacyPredecessor": {
+      "tianfuBranch": "未",
+      "tianfuIndex": 7
+    },
+    "legacyRawEquality": true,
+    "orderingKey": "4:08",
+    "production": {
+      "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+      "tianfuBranch": "未",
+      "tianfuIndex": 7,
+      "ziweiBranch": "卯"
+    },
+    "rawEquality": false,
+    "rotation06Equality": true,
+    "rowId": "integrated-bureau-4-day-08",
+    "source": {
+      "table": "corrected-successor",
+      "tianfuBranch": "丑",
+      "tianfuIndex": 1,
+      "ziweiBranch": "卯"
+    }
+  },
+  {
+    "input": {
+      "bureauNumber": 4,
+      "lunarDay": 9
+    },
+    "legacyPredecessor": {
+      "tianfuBranch": "巳",
+      "tianfuIndex": 5
+    },
+    "legacyRawEquality": false,
+    "orderingKey": "4:09",
+    "production": {
+      "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+      "tianfuBranch": "酉",
+      "tianfuIndex": 9,
+      "ziweiBranch": "丑"
+    },
+    "rawEquality": false,
+    "rotation06Equality": true,
+    "rowId": "integrated-bureau-4-day-09",
+    "source": {
+      "table": "corrected-successor",
+      "tianfuBranch": "卯",
+      "tianfuIndex": 3,
+      "ziweiBranch": "丑"
+    }
+  },
+  {
+    "input": {
+      "bureauNumber": 4,
+      "lunarDay": 10
+    },
+    "legacyPredecessor": {
+      "tianfuBranch": "戌",
+      "tianfuIndex": 10
+    },
+    "legacyRawEquality": false,
+    "orderingKey": "4:10",
+    "production": {
+      "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+      "tianfuBranch": "辰",
+      "tianfuIndex": 4,
+      "ziweiBranch": "午"
+    },
+    "rawEquality": false,
+    "rotation06Equality": true,
+    "rowId": "integrated-bureau-4-day-10",
+    "source": {
+      "table": "corrected-successor",
+      "tianfuBranch": "戌",
+      "tianfuIndex": 10,
+      "ziweiBranch": "午"
+    }
+  },
+  {
+    "input": {
+      "bureauNumber": 4,
+      "lunarDay": 11
+    },
+    "legacyPredecessor": {
+      "tianfuBranch": "未",
+      "tianfuIndex": 7
+    },
+    "legacyRawEquality": true,
+    "orderingKey": "4:11",
+    "production": {
+      "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+      "tianfuBranch": "未",
+      "tianfuIndex": 7,
+      "ziweiBranch": "卯"
+    },
+    "rawEquality": false,
+    "rotation06Equality": true,
+    "rowId": "integrated-bureau-4-day-11",
+    "source": {
+      "table": "corrected-successor",
+      "tianfuBranch": "丑",
+      "tianfuIndex": 1,
+      "ziweiBranch": "卯"
+    }
+  },
+  {
+    "input": {
+      "bureauNumber": 4,
+      "lunarDay": 12
+    },
+    "legacyPredecessor": {
+      "tianfuBranch": "申",
+      "tianfuIndex": 8
+    },
+    "legacyRawEquality": false,
+    "orderingKey": "4:12",
+    "production": {
+      "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+      "tianfuBranch": "午",
+      "tianfuIndex": 6,
+      "ziweiBranch": "辰"
+    },
+    "rawEquality": false,
+    "rotation06Equality": true,
+    "rowId": "integrated-bureau-4-day-12",
+    "source": {
+      "table": "corrected-successor",
+      "tianfuBranch": "子",
+      "tianfuIndex": 0,
+      "ziweiBranch": "辰"
+    }
+  },
+  {
+    "input": {
+      "bureauNumber": 4,
+      "lunarDay": 13
+    },
+    "legacyPredecessor": {
+      "tianfuBranch": "午",
+      "tianfuIndex": 6
+    },
+    "legacyRawEquality": false,
+    "orderingKey": "4:13",
+    "production": {
+      "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+      "tianfuBranch": "申",
+      "tianfuIndex": 8,
+      "ziweiBranch": "寅"
+    },
+    "rawEquality": false,
+    "rotation06Equality": true,
+    "rowId": "integrated-bureau-4-day-13",
+    "source": {
+      "table": "corrected-successor",
+      "tianfuBranch": "寅",
+      "tianfuIndex": 2,
+      "ziweiBranch": "寅"
+    }
+  },
+  {
+    "input": {
+      "bureauNumber": 4,
+      "lunarDay": 14
+    },
+    "legacyPredecessor": {
+      "tianfuBranch": "亥",
+      "tianfuIndex": 11
+    },
+    "legacyRawEquality": false,
+    "orderingKey": "4:14",
+    "production": {
+      "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+      "tianfuBranch": "卯",
+      "tianfuIndex": 3,
+      "ziweiBranch": "未"
+    },
+    "rawEquality": false,
+    "rotation06Equality": true,
+    "rowId": "integrated-bureau-4-day-14",
+    "source": {
+      "table": "corrected-successor",
+      "tianfuBranch": "酉",
+      "tianfuIndex": 9,
+      "ziweiBranch": "未"
+    }
+  },
+  {
+    "input": {
+      "bureauNumber": 4,
+      "lunarDay": 15
+    },
+    "legacyPredecessor": {
+      "tianfuBranch": "申",
+      "tianfuIndex": 8
+    },
+    "legacyRawEquality": false,
+    "orderingKey": "4:15",
+    "production": {
+      "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+      "tianfuBranch": "午",
+      "tianfuIndex": 6,
+      "ziweiBranch": "辰"
+    },
+    "rawEquality": false,
+    "rotation06Equality": true,
+    "rowId": "integrated-bureau-4-day-15",
+    "source": {
+      "table": "corrected-successor",
+      "tianfuBranch": "子",
+      "tianfuIndex": 0,
+      "ziweiBranch": "辰"
+    }
+  },
+  {
+    "input": {
+      "bureauNumber": 4,
+      "lunarDay": 16
+    },
+    "legacyPredecessor": {
+      "tianfuBranch": "酉",
+      "tianfuIndex": 9
+    },
+    "legacyRawEquality": false,
+    "orderingKey": "4:16",
+    "production": {
+      "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+      "tianfuBranch": "巳",
+      "tianfuIndex": 5,
+      "ziweiBranch": "巳"
+    },
+    "rawEquality": false,
+    "rotation06Equality": true,
+    "rowId": "integrated-bureau-4-day-16",
+    "source": {
+      "table": "corrected-successor",
+      "tianfuBranch": "亥",
+      "tianfuIndex": 11,
+      "ziweiBranch": "巳"
+    }
+  },
+  {
+    "input": {
+      "bureauNumber": 4,
+      "lunarDay": 17
+    },
+    "legacyPredecessor": {
+      "tianfuBranch": "未",
+      "tianfuIndex": 7
+    },
+    "legacyRawEquality": true,
+    "orderingKey": "4:17",
+    "production": {
+      "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+      "tianfuBranch": "未",
+      "tianfuIndex": 7,
+      "ziweiBranch": "卯"
+    },
+    "rawEquality": false,
+    "rotation06Equality": true,
+    "rowId": "integrated-bureau-4-day-17",
+    "source": {
+      "table": "corrected-successor",
+      "tianfuBranch": "丑",
+      "tianfuIndex": 1,
+      "ziweiBranch": "卯"
+    }
+  },
+  {
+    "input": {
+      "bureauNumber": 4,
+      "lunarDay": 18
+    },
+    "legacyPredecessor": {
+      "tianfuBranch": "子",
+      "tianfuIndex": 0
+    },
+    "legacyRawEquality": false,
+    "orderingKey": "4:18",
+    "production": {
+      "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+      "tianfuBranch": "寅",
+      "tianfuIndex": 2,
+      "ziweiBranch": "申"
+    },
+    "rawEquality": false,
+    "rotation06Equality": true,
+    "rowId": "integrated-bureau-4-day-18",
+    "source": {
+      "table": "corrected-successor",
+      "tianfuBranch": "申",
+      "tianfuIndex": 8,
+      "ziweiBranch": "申"
+    }
+  },
+  {
+    "input": {
+      "bureauNumber": 4,
+      "lunarDay": 19
+    },
+    "legacyPredecessor": {
+      "tianfuBranch": "酉",
+      "tianfuIndex": 9
+    },
+    "legacyRawEquality": false,
+    "orderingKey": "4:19",
+    "production": {
+      "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+      "tianfuBranch": "巳",
+      "tianfuIndex": 5,
+      "ziweiBranch": "巳"
+    },
+    "rawEquality": false,
+    "rotation06Equality": true,
+    "rowId": "integrated-bureau-4-day-19",
+    "source": {
+      "table": "corrected-successor",
+      "tianfuBranch": "亥",
+      "tianfuIndex": 11,
+      "ziweiBranch": "巳"
+    }
+  },
+  {
+    "input": {
+      "bureauNumber": 4,
+      "lunarDay": 20
+    },
+    "legacyPredecessor": {
+      "tianfuBranch": "戌",
+      "tianfuIndex": 10
+    },
+    "legacyRawEquality": false,
+    "orderingKey": "4:20",
+    "production": {
+      "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+      "tianfuBranch": "辰",
+      "tianfuIndex": 4,
+      "ziweiBranch": "午"
+    },
+    "rawEquality": false,
+    "rotation06Equality": true,
+    "rowId": "integrated-bureau-4-day-20",
+    "source": {
+      "table": "corrected-successor",
+      "tianfuBranch": "戌",
+      "tianfuIndex": 10,
+      "ziweiBranch": "午"
+    }
+  },
+  {
+    "input": {
+      "bureauNumber": 4,
+      "lunarDay": 21
+    },
+    "legacyPredecessor": {
+      "tianfuBranch": "申",
+      "tianfuIndex": 8
+    },
+    "legacyRawEquality": false,
+    "orderingKey": "4:21",
+    "production": {
+      "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+      "tianfuBranch": "午",
+      "tianfuIndex": 6,
+      "ziweiBranch": "辰"
+    },
+    "rawEquality": false,
+    "rotation06Equality": true,
+    "rowId": "integrated-bureau-4-day-21",
+    "source": {
+      "table": "corrected-successor",
+      "tianfuBranch": "子",
+      "tianfuIndex": 0,
+      "ziweiBranch": "辰"
+    }
+  },
+  {
+    "input": {
+      "bureauNumber": 4,
+      "lunarDay": 22
+    },
+    "legacyPredecessor": {
+      "tianfuBranch": "丑",
+      "tianfuIndex": 1
+    },
+    "legacyRawEquality": true,
+    "orderingKey": "4:22",
+    "production": {
+      "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+      "tianfuBranch": "丑",
+      "tianfuIndex": 1,
+      "ziweiBranch": "酉"
+    },
+    "rawEquality": false,
+    "rotation06Equality": true,
+    "rowId": "integrated-bureau-4-day-22",
+    "source": {
+      "table": "corrected-successor",
+      "tianfuBranch": "未",
+      "tianfuIndex": 7,
+      "ziweiBranch": "酉"
+    }
+  },
+  {
+    "input": {
+      "bureauNumber": 4,
+      "lunarDay": 23
+    },
+    "legacyPredecessor": {
+      "tianfuBranch": "戌",
+      "tianfuIndex": 10
+    },
+    "legacyRawEquality": false,
+    "orderingKey": "4:23",
+    "production": {
+      "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+      "tianfuBranch": "辰",
+      "tianfuIndex": 4,
+      "ziweiBranch": "午"
+    },
+    "rawEquality": false,
+    "rotation06Equality": true,
+    "rowId": "integrated-bureau-4-day-23",
+    "source": {
+      "table": "corrected-successor",
+      "tianfuBranch": "戌",
+      "tianfuIndex": 10,
+      "ziweiBranch": "午"
+    }
+  },
+  {
+    "input": {
+      "bureauNumber": 4,
+      "lunarDay": 24
+    },
+    "legacyPredecessor": {
+      "tianfuBranch": "亥",
+      "tianfuIndex": 11
+    },
+    "legacyRawEquality": false,
+    "orderingKey": "4:24",
+    "production": {
+      "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+      "tianfuBranch": "卯",
+      "tianfuIndex": 3,
+      "ziweiBranch": "未"
+    },
+    "rawEquality": false,
+    "rotation06Equality": true,
+    "rowId": "integrated-bureau-4-day-24",
+    "source": {
+      "table": "corrected-successor",
+      "tianfuBranch": "酉",
+      "tianfuIndex": 9,
+      "ziweiBranch": "未"
+    }
+  },
+  {
+    "input": {
+      "bureauNumber": 4,
+      "lunarDay": 25
+    },
+    "legacyPredecessor": {
+      "tianfuBranch": "酉",
+      "tianfuIndex": 9
+    },
+    "legacyRawEquality": false,
+    "orderingKey": "4:25",
+    "production": {
+      "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+      "tianfuBranch": "巳",
+      "tianfuIndex": 5,
+      "ziweiBranch": "巳"
+    },
+    "rawEquality": false,
+    "rotation06Equality": true,
+    "rowId": "integrated-bureau-4-day-25",
+    "source": {
+      "table": "corrected-successor",
+      "tianfuBranch": "亥",
+      "tianfuIndex": 11,
+      "ziweiBranch": "巳"
+    }
+  },
+  {
+    "input": {
+      "bureauNumber": 4,
+      "lunarDay": 26
+    },
+    "legacyPredecessor": {
+      "tianfuBranch": "寅",
+      "tianfuIndex": 2
+    },
+    "legacyRawEquality": false,
+    "orderingKey": "4:26",
+    "production": {
+      "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+      "tianfuBranch": "子",
+      "tianfuIndex": 0,
+      "ziweiBranch": "戌"
+    },
+    "rawEquality": false,
+    "rotation06Equality": true,
+    "rowId": "integrated-bureau-4-day-26",
+    "source": {
+      "table": "corrected-successor",
+      "tianfuBranch": "午",
+      "tianfuIndex": 6,
+      "ziweiBranch": "戌"
+    }
+  },
+  {
+    "input": {
+      "bureauNumber": 4,
+      "lunarDay": 27
+    },
+    "legacyPredecessor": {
+      "tianfuBranch": "亥",
+      "tianfuIndex": 11
+    },
+    "legacyRawEquality": false,
+    "orderingKey": "4:27",
+    "production": {
+      "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+      "tianfuBranch": "卯",
+      "tianfuIndex": 3,
+      "ziweiBranch": "未"
+    },
+    "rawEquality": false,
+    "rotation06Equality": true,
+    "rowId": "integrated-bureau-4-day-27",
+    "source": {
+      "table": "corrected-successor",
+      "tianfuBranch": "酉",
+      "tianfuIndex": 9,
+      "ziweiBranch": "未"
+    }
+  },
+  {
+    "input": {
+      "bureauNumber": 4,
+      "lunarDay": 28
+    },
+    "legacyPredecessor": {
+      "tianfuBranch": "子",
+      "tianfuIndex": 0
+    },
+    "legacyRawEquality": false,
+    "orderingKey": "4:28",
+    "production": {
+      "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+      "tianfuBranch": "寅",
+      "tianfuIndex": 2,
+      "ziweiBranch": "申"
+    },
+    "rawEquality": false,
+    "rotation06Equality": true,
+    "rowId": "integrated-bureau-4-day-28",
+    "source": {
+      "table": "corrected-successor",
+      "tianfuBranch": "申",
+      "tianfuIndex": 8,
+      "ziweiBranch": "申"
+    }
+  },
+  {
+    "input": {
+      "bureauNumber": 4,
+      "lunarDay": 29
+    },
+    "legacyPredecessor": {
+      "tianfuBranch": "戌",
+      "tianfuIndex": 10
+    },
+    "legacyRawEquality": false,
+    "orderingKey": "4:29",
+    "production": {
+      "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+      "tianfuBranch": "辰",
+      "tianfuIndex": 4,
+      "ziweiBranch": "午"
+    },
+    "rawEquality": false,
+    "rotation06Equality": true,
+    "rowId": "integrated-bureau-4-day-29",
+    "source": {
+      "table": "corrected-successor",
+      "tianfuBranch": "戌",
+      "tianfuIndex": 10,
+      "ziweiBranch": "午"
+    }
+  },
+  {
+    "input": {
+      "bureauNumber": 4,
+      "lunarDay": 30
+    },
+    "legacyPredecessor": {
+      "tianfuBranch": "卯",
+      "tianfuIndex": 3
+    },
+    "legacyRawEquality": false,
+    "orderingKey": "4:30",
+    "production": {
+      "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+      "tianfuBranch": "亥",
+      "tianfuIndex": 11,
+      "ziweiBranch": "亥"
+    },
+    "rawEquality": false,
+    "rotation06Equality": true,
+    "rowId": "integrated-bureau-4-day-30",
+    "source": {
+      "table": "corrected-successor",
+      "tianfuBranch": "巳",
+      "tianfuIndex": 5,
+      "ziweiBranch": "亥"
+    }
+  },
+  {
+    "input": {
+      "bureauNumber": 5,
+      "lunarDay": 1
+    },
+    "legacyPredecessor": {
+      "tianfuBranch": "戌",
+      "tianfuIndex": 10
+    },
+    "legacyRawEquality": false,
+    "orderingKey": "5:01",
+    "production": {
+      "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+      "tianfuBranch": "辰",
+      "tianfuIndex": 4,
+      "ziweiBranch": "午"
+    },
+    "rawEquality": false,
+    "rotation06Equality": true,
+    "rowId": "integrated-bureau-5-day-01",
+    "source": {
+      "table": "corrected-successor",
+      "tianfuBranch": "戌",
+      "tianfuIndex": 10,
+      "ziweiBranch": "午"
+    }
+  },
+  {
+    "input": {
+      "bureauNumber": 5,
+      "lunarDay": 2
+    },
+    "legacyPredecessor": {
+      "tianfuBranch": "卯",
+      "tianfuIndex": 3
+    },
+    "legacyRawEquality": false,
+    "orderingKey": "5:02",
+    "production": {
+      "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+      "tianfuBranch": "亥",
+      "tianfuIndex": 11,
+      "ziweiBranch": "亥"
+    },
+    "rawEquality": false,
+    "rotation06Equality": true,
+    "rowId": "integrated-bureau-5-day-02",
+    "source": {
+      "table": "corrected-successor",
+      "tianfuBranch": "巳",
+      "tianfuIndex": 5,
+      "ziweiBranch": "亥"
+    }
+  },
+  {
+    "input": {
+      "bureauNumber": 5,
+      "lunarDay": 3
+    },
+    "legacyPredecessor": {
+      "tianfuBranch": "申",
+      "tianfuIndex": 8
+    },
+    "legacyRawEquality": false,
+    "orderingKey": "5:03",
+    "production": {
+      "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+      "tianfuBranch": "午",
+      "tianfuIndex": 6,
+      "ziweiBranch": "辰"
+    },
+    "rawEquality": false,
+    "rotation06Equality": true,
+    "rowId": "integrated-bureau-5-day-03",
+    "source": {
+      "table": "corrected-successor",
+      "tianfuBranch": "子",
+      "tianfuIndex": 0,
+      "ziweiBranch": "辰"
+    }
+  },
+  {
+    "input": {
+      "bureauNumber": 5,
+      "lunarDay": 4
+    },
+    "legacyPredecessor": {
+      "tianfuBranch": "巳",
+      "tianfuIndex": 5
+    },
+    "legacyRawEquality": false,
+    "orderingKey": "5:04",
+    "production": {
+      "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+      "tianfuBranch": "酉",
+      "tianfuIndex": 9,
+      "ziweiBranch": "丑"
+    },
+    "rawEquality": false,
+    "rotation06Equality": true,
+    "rowId": "integrated-bureau-5-day-04",
+    "source": {
+      "table": "corrected-successor",
+      "tianfuBranch": "卯",
+      "tianfuIndex": 3,
+      "ziweiBranch": "丑"
+    }
+  },
+  {
+    "input": {
+      "bureauNumber": 5,
+      "lunarDay": 5
+    },
+    "legacyPredecessor": {
+      "tianfuBranch": "午",
+      "tianfuIndex": 6
+    },
+    "legacyRawEquality": false,
+    "orderingKey": "5:05",
+    "production": {
+      "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+      "tianfuBranch": "申",
+      "tianfuIndex": 8,
+      "ziweiBranch": "寅"
+    },
+    "rawEquality": false,
+    "rotation06Equality": true,
+    "rowId": "integrated-bureau-5-day-05",
+    "source": {
+      "table": "corrected-successor",
+      "tianfuBranch": "寅",
+      "tianfuIndex": 2,
+      "ziweiBranch": "寅"
+    }
+  },
+  {
+    "input": {
+      "bureauNumber": 5,
+      "lunarDay": 6
+    },
+    "legacyPredecessor": {
+      "tianfuBranch": "亥",
+      "tianfuIndex": 11
+    },
+    "legacyRawEquality": false,
+    "orderingKey": "5:06",
+    "production": {
+      "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+      "tianfuBranch": "卯",
+      "tianfuIndex": 3,
+      "ziweiBranch": "未"
+    },
+    "rawEquality": false,
+    "rotation06Equality": true,
+    "rowId": "integrated-bureau-5-day-06",
+    "source": {
+      "table": "corrected-successor",
+      "tianfuBranch": "酉",
+      "tianfuIndex": 9,
+      "ziweiBranch": "未"
+    }
+  },
+  {
+    "input": {
+      "bureauNumber": 5,
+      "lunarDay": 7
+    },
+    "legacyPredecessor": {
+      "tianfuBranch": "辰",
+      "tianfuIndex": 4
+    },
+    "legacyRawEquality": false,
+    "orderingKey": "5:07",
+    "production": {
+      "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+      "tianfuBranch": "戌",
+      "tianfuIndex": 10,
+      "ziweiBranch": "子"
+    },
+    "rawEquality": false,
+    "rotation06Equality": true,
+    "rowId": "integrated-bureau-5-day-07",
+    "source": {
+      "table": "corrected-successor",
+      "tianfuBranch": "辰",
+      "tianfuIndex": 4,
+      "ziweiBranch": "子"
+    }
+  },
+  {
+    "input": {
+      "bureauNumber": 5,
+      "lunarDay": 8
+    },
+    "legacyPredecessor": {
+      "tianfuBranch": "酉",
+      "tianfuIndex": 9
+    },
+    "legacyRawEquality": false,
+    "orderingKey": "5:08",
+    "production": {
+      "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+      "tianfuBranch": "巳",
+      "tianfuIndex": 5,
+      "ziweiBranch": "巳"
+    },
+    "rawEquality": false,
+    "rotation06Equality": true,
+    "rowId": "integrated-bureau-5-day-08",
+    "source": {
+      "table": "corrected-successor",
+      "tianfuBranch": "亥",
+      "tianfuIndex": 11,
+      "ziweiBranch": "巳"
+    }
+  },
+  {
+    "input": {
+      "bureauNumber": 5,
+      "lunarDay": 9
+    },
+    "legacyPredecessor": {
+      "tianfuBranch": "午",
+      "tianfuIndex": 6
+    },
+    "legacyRawEquality": false,
+    "orderingKey": "5:09",
+    "production": {
+      "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+      "tianfuBranch": "申",
+      "tianfuIndex": 8,
+      "ziweiBranch": "寅"
+    },
+    "rawEquality": false,
+    "rotation06Equality": true,
+    "rowId": "integrated-bureau-5-day-09",
+    "source": {
+      "table": "corrected-successor",
+      "tianfuBranch": "寅",
+      "tianfuIndex": 2,
+      "ziweiBranch": "寅"
+    }
+  },
+  {
+    "input": {
+      "bureauNumber": 5,
+      "lunarDay": 10
+    },
+    "legacyPredecessor": {
+      "tianfuBranch": "未",
+      "tianfuIndex": 7
+    },
+    "legacyRawEquality": true,
+    "orderingKey": "5:10",
+    "production": {
+      "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+      "tianfuBranch": "未",
+      "tianfuIndex": 7,
+      "ziweiBranch": "卯"
+    },
+    "rawEquality": false,
+    "rotation06Equality": true,
+    "rowId": "integrated-bureau-5-day-10",
+    "source": {
+      "table": "corrected-successor",
+      "tianfuBranch": "丑",
+      "tianfuIndex": 1,
+      "ziweiBranch": "卯"
+    }
+  },
+  {
+    "input": {
+      "bureauNumber": 5,
+      "lunarDay": 11
+    },
+    "legacyPredecessor": {
+      "tianfuBranch": "子",
+      "tianfuIndex": 0
+    },
+    "legacyRawEquality": false,
+    "orderingKey": "5:11",
+    "production": {
+      "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+      "tianfuBranch": "寅",
+      "tianfuIndex": 2,
+      "ziweiBranch": "申"
+    },
+    "rawEquality": false,
+    "rotation06Equality": true,
+    "rowId": "integrated-bureau-5-day-11",
+    "source": {
+      "table": "corrected-successor",
+      "tianfuBranch": "申",
+      "tianfuIndex": 8,
+      "ziweiBranch": "申"
+    }
+  },
+  {
+    "input": {
+      "bureauNumber": 5,
+      "lunarDay": 12
+    },
+    "legacyPredecessor": {
+      "tianfuBranch": "巳",
+      "tianfuIndex": 5
+    },
+    "legacyRawEquality": false,
+    "orderingKey": "5:12",
+    "production": {
+      "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+      "tianfuBranch": "酉",
+      "tianfuIndex": 9,
+      "ziweiBranch": "丑"
+    },
+    "rawEquality": false,
+    "rotation06Equality": true,
+    "rowId": "integrated-bureau-5-day-12",
+    "source": {
+      "table": "corrected-successor",
+      "tianfuBranch": "卯",
+      "tianfuIndex": 3,
+      "ziweiBranch": "丑"
+    }
+  },
+  {
+    "input": {
+      "bureauNumber": 5,
+      "lunarDay": 13
+    },
+    "legacyPredecessor": {
+      "tianfuBranch": "戌",
+      "tianfuIndex": 10
+    },
+    "legacyRawEquality": false,
+    "orderingKey": "5:13",
+    "production": {
+      "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+      "tianfuBranch": "辰",
+      "tianfuIndex": 4,
+      "ziweiBranch": "午"
+    },
+    "rawEquality": false,
+    "rotation06Equality": true,
+    "rowId": "integrated-bureau-5-day-13",
+    "source": {
+      "table": "corrected-successor",
+      "tianfuBranch": "戌",
+      "tianfuIndex": 10,
+      "ziweiBranch": "午"
+    }
+  },
+  {
+    "input": {
+      "bureauNumber": 5,
+      "lunarDay": 14
+    },
+    "legacyPredecessor": {
+      "tianfuBranch": "未",
+      "tianfuIndex": 7
+    },
+    "legacyRawEquality": true,
+    "orderingKey": "5:14",
+    "production": {
+      "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+      "tianfuBranch": "未",
+      "tianfuIndex": 7,
+      "ziweiBranch": "卯"
+    },
+    "rawEquality": false,
+    "rotation06Equality": true,
+    "rowId": "integrated-bureau-5-day-14",
+    "source": {
+      "table": "corrected-successor",
+      "tianfuBranch": "丑",
+      "tianfuIndex": 1,
+      "ziweiBranch": "卯"
+    }
+  },
+  {
+    "input": {
+      "bureauNumber": 5,
+      "lunarDay": 15
+    },
+    "legacyPredecessor": {
+      "tianfuBranch": "申",
+      "tianfuIndex": 8
+    },
+    "legacyRawEquality": false,
+    "orderingKey": "5:15",
+    "production": {
+      "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+      "tianfuBranch": "午",
+      "tianfuIndex": 6,
+      "ziweiBranch": "辰"
+    },
+    "rawEquality": false,
+    "rotation06Equality": true,
+    "rowId": "integrated-bureau-5-day-15",
+    "source": {
+      "table": "corrected-successor",
+      "tianfuBranch": "子",
+      "tianfuIndex": 0,
+      "ziweiBranch": "辰"
+    }
+  },
+  {
+    "input": {
+      "bureauNumber": 5,
+      "lunarDay": 16
+    },
+    "legacyPredecessor": {
+      "tianfuBranch": "丑",
+      "tianfuIndex": 1
+    },
+    "legacyRawEquality": true,
+    "orderingKey": "5:16",
+    "production": {
+      "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+      "tianfuBranch": "丑",
+      "tianfuIndex": 1,
+      "ziweiBranch": "酉"
+    },
+    "rawEquality": false,
+    "rotation06Equality": true,
+    "rowId": "integrated-bureau-5-day-16",
+    "source": {
+      "table": "corrected-successor",
+      "tianfuBranch": "未",
+      "tianfuIndex": 7,
+      "ziweiBranch": "酉"
+    }
+  },
+  {
+    "input": {
+      "bureauNumber": 5,
+      "lunarDay": 17
+    },
+    "legacyPredecessor": {
+      "tianfuBranch": "午",
+      "tianfuIndex": 6
+    },
+    "legacyRawEquality": false,
+    "orderingKey": "5:17",
+    "production": {
+      "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+      "tianfuBranch": "申",
+      "tianfuIndex": 8,
+      "ziweiBranch": "寅"
+    },
+    "rawEquality": false,
+    "rotation06Equality": true,
+    "rowId": "integrated-bureau-5-day-17",
+    "source": {
+      "table": "corrected-successor",
+      "tianfuBranch": "寅",
+      "tianfuIndex": 2,
+      "ziweiBranch": "寅"
+    }
+  },
+  {
+    "input": {
+      "bureauNumber": 5,
+      "lunarDay": 18
+    },
+    "legacyPredecessor": {
+      "tianfuBranch": "亥",
+      "tianfuIndex": 11
+    },
+    "legacyRawEquality": false,
+    "orderingKey": "5:18",
+    "production": {
+      "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+      "tianfuBranch": "卯",
+      "tianfuIndex": 3,
+      "ziweiBranch": "未"
+    },
+    "rawEquality": false,
+    "rotation06Equality": true,
+    "rowId": "integrated-bureau-5-day-18",
+    "source": {
+      "table": "corrected-successor",
+      "tianfuBranch": "酉",
+      "tianfuIndex": 9,
+      "ziweiBranch": "未"
+    }
+  },
+  {
+    "input": {
+      "bureauNumber": 5,
+      "lunarDay": 19
+    },
+    "legacyPredecessor": {
+      "tianfuBranch": "申",
+      "tianfuIndex": 8
+    },
+    "legacyRawEquality": false,
+    "orderingKey": "5:19",
+    "production": {
+      "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+      "tianfuBranch": "午",
+      "tianfuIndex": 6,
+      "ziweiBranch": "辰"
+    },
+    "rawEquality": false,
+    "rotation06Equality": true,
+    "rowId": "integrated-bureau-5-day-19",
+    "source": {
+      "table": "corrected-successor",
+      "tianfuBranch": "子",
+      "tianfuIndex": 0,
+      "ziweiBranch": "辰"
+    }
+  },
+  {
+    "input": {
+      "bureauNumber": 5,
+      "lunarDay": 20
+    },
+    "legacyPredecessor": {
+      "tianfuBranch": "酉",
+      "tianfuIndex": 9
+    },
+    "legacyRawEquality": false,
+    "orderingKey": "5:20",
+    "production": {
+      "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+      "tianfuBranch": "巳",
+      "tianfuIndex": 5,
+      "ziweiBranch": "巳"
+    },
+    "rawEquality": false,
+    "rotation06Equality": true,
+    "rowId": "integrated-bureau-5-day-20",
+    "source": {
+      "table": "corrected-successor",
+      "tianfuBranch": "亥",
+      "tianfuIndex": 11,
+      "ziweiBranch": "巳"
+    }
+  },
+  {
+    "input": {
+      "bureauNumber": 5,
+      "lunarDay": 21
+    },
+    "legacyPredecessor": {
+      "tianfuBranch": "寅",
+      "tianfuIndex": 2
+    },
+    "legacyRawEquality": false,
+    "orderingKey": "5:21",
+    "production": {
+      "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+      "tianfuBranch": "子",
+      "tianfuIndex": 0,
+      "ziweiBranch": "戌"
+    },
+    "rawEquality": false,
+    "rotation06Equality": true,
+    "rowId": "integrated-bureau-5-day-21",
+    "source": {
+      "table": "corrected-successor",
+      "tianfuBranch": "午",
+      "tianfuIndex": 6,
+      "ziweiBranch": "戌"
+    }
+  },
+  {
+    "input": {
+      "bureauNumber": 5,
+      "lunarDay": 22
+    },
+    "legacyPredecessor": {
+      "tianfuBranch": "未",
+      "tianfuIndex": 7
+    },
+    "legacyRawEquality": true,
+    "orderingKey": "5:22",
+    "production": {
+      "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+      "tianfuBranch": "未",
+      "tianfuIndex": 7,
+      "ziweiBranch": "卯"
+    },
+    "rawEquality": false,
+    "rotation06Equality": true,
+    "rowId": "integrated-bureau-5-day-22",
+    "source": {
+      "table": "corrected-successor",
+      "tianfuBranch": "丑",
+      "tianfuIndex": 1,
+      "ziweiBranch": "卯"
+    }
+  },
+  {
+    "input": {
+      "bureauNumber": 5,
+      "lunarDay": 23
+    },
+    "legacyPredecessor": {
+      "tianfuBranch": "子",
+      "tianfuIndex": 0
+    },
+    "legacyRawEquality": false,
+    "orderingKey": "5:23",
+    "production": {
+      "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+      "tianfuBranch": "寅",
+      "tianfuIndex": 2,
+      "ziweiBranch": "申"
+    },
+    "rawEquality": false,
+    "rotation06Equality": true,
+    "rowId": "integrated-bureau-5-day-23",
+    "source": {
+      "table": "corrected-successor",
+      "tianfuBranch": "申",
+      "tianfuIndex": 8,
+      "ziweiBranch": "申"
+    }
+  },
+  {
+    "input": {
+      "bureauNumber": 5,
+      "lunarDay": 24
+    },
+    "legacyPredecessor": {
+      "tianfuBranch": "酉",
+      "tianfuIndex": 9
+    },
+    "legacyRawEquality": false,
+    "orderingKey": "5:24",
+    "production": {
+      "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+      "tianfuBranch": "巳",
+      "tianfuIndex": 5,
+      "ziweiBranch": "巳"
+    },
+    "rawEquality": false,
+    "rotation06Equality": true,
+    "rowId": "integrated-bureau-5-day-24",
+    "source": {
+      "table": "corrected-successor",
+      "tianfuBranch": "亥",
+      "tianfuIndex": 11,
+      "ziweiBranch": "巳"
+    }
+  },
+  {
+    "input": {
+      "bureauNumber": 5,
+      "lunarDay": 25
+    },
+    "legacyPredecessor": {
+      "tianfuBranch": "戌",
+      "tianfuIndex": 10
+    },
+    "legacyRawEquality": false,
+    "orderingKey": "5:25",
+    "production": {
+      "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+      "tianfuBranch": "辰",
+      "tianfuIndex": 4,
+      "ziweiBranch": "午"
+    },
+    "rawEquality": false,
+    "rotation06Equality": true,
+    "rowId": "integrated-bureau-5-day-25",
+    "source": {
+      "table": "corrected-successor",
+      "tianfuBranch": "戌",
+      "tianfuIndex": 10,
+      "ziweiBranch": "午"
+    }
+  },
+  {
+    "input": {
+      "bureauNumber": 5,
+      "lunarDay": 26
+    },
+    "legacyPredecessor": {
+      "tianfuBranch": "卯",
+      "tianfuIndex": 3
+    },
+    "legacyRawEquality": false,
+    "orderingKey": "5:26",
+    "production": {
+      "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+      "tianfuBranch": "亥",
+      "tianfuIndex": 11,
+      "ziweiBranch": "亥"
+    },
+    "rawEquality": false,
+    "rotation06Equality": true,
+    "rowId": "integrated-bureau-5-day-26",
+    "source": {
+      "table": "corrected-successor",
+      "tianfuBranch": "巳",
+      "tianfuIndex": 5,
+      "ziweiBranch": "亥"
+    }
+  },
+  {
+    "input": {
+      "bureauNumber": 5,
+      "lunarDay": 27
+    },
+    "legacyPredecessor": {
+      "tianfuBranch": "申",
+      "tianfuIndex": 8
+    },
+    "legacyRawEquality": false,
+    "orderingKey": "5:27",
+    "production": {
+      "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+      "tianfuBranch": "午",
+      "tianfuIndex": 6,
+      "ziweiBranch": "辰"
+    },
+    "rawEquality": false,
+    "rotation06Equality": true,
+    "rowId": "integrated-bureau-5-day-27",
+    "source": {
+      "table": "corrected-successor",
+      "tianfuBranch": "子",
+      "tianfuIndex": 0,
+      "ziweiBranch": "辰"
+    }
+  },
+  {
+    "input": {
+      "bureauNumber": 5,
+      "lunarDay": 28
+    },
+    "legacyPredecessor": {
+      "tianfuBranch": "丑",
+      "tianfuIndex": 1
+    },
+    "legacyRawEquality": true,
+    "orderingKey": "5:28",
+    "production": {
+      "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+      "tianfuBranch": "丑",
+      "tianfuIndex": 1,
+      "ziweiBranch": "酉"
+    },
+    "rawEquality": false,
+    "rotation06Equality": true,
+    "rowId": "integrated-bureau-5-day-28",
+    "source": {
+      "table": "corrected-successor",
+      "tianfuBranch": "未",
+      "tianfuIndex": 7,
+      "ziweiBranch": "酉"
+    }
+  },
+  {
+    "input": {
+      "bureauNumber": 5,
+      "lunarDay": 29
+    },
+    "legacyPredecessor": {
+      "tianfuBranch": "戌",
+      "tianfuIndex": 10
+    },
+    "legacyRawEquality": false,
+    "orderingKey": "5:29",
+    "production": {
+      "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+      "tianfuBranch": "辰",
+      "tianfuIndex": 4,
+      "ziweiBranch": "午"
+    },
+    "rawEquality": false,
+    "rotation06Equality": true,
+    "rowId": "integrated-bureau-5-day-29",
+    "source": {
+      "table": "corrected-successor",
+      "tianfuBranch": "戌",
+      "tianfuIndex": 10,
+      "ziweiBranch": "午"
+    }
+  },
+  {
+    "input": {
+      "bureauNumber": 5,
+      "lunarDay": 30
+    },
+    "legacyPredecessor": {
+      "tianfuBranch": "亥",
+      "tianfuIndex": 11
+    },
+    "legacyRawEquality": false,
+    "orderingKey": "5:30",
+    "production": {
+      "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+      "tianfuBranch": "卯",
+      "tianfuIndex": 3,
+      "ziweiBranch": "未"
+    },
+    "rawEquality": false,
+    "rotation06Equality": true,
+    "rowId": "integrated-bureau-5-day-30",
+    "source": {
+      "table": "corrected-successor",
+      "tianfuBranch": "酉",
+      "tianfuIndex": 9,
+      "ziweiBranch": "未"
+    }
+  },
+  {
+    "input": {
+      "bureauNumber": 6,
+      "lunarDay": 1
+    },
+    "legacyPredecessor": {
+      "tianfuBranch": "丑",
+      "tianfuIndex": 1
+    },
+    "legacyRawEquality": true,
+    "orderingKey": "6:01",
+    "production": {
+      "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+      "tianfuBranch": "丑",
+      "tianfuIndex": 1,
+      "ziweiBranch": "酉"
+    },
+    "rawEquality": false,
+    "rotation06Equality": true,
+    "rowId": "integrated-bureau-6-day-01",
+    "source": {
+      "table": "corrected-successor",
+      "tianfuBranch": "未",
+      "tianfuIndex": 7,
+      "ziweiBranch": "酉"
+    }
+  },
+  {
+    "input": {
+      "bureauNumber": 6,
+      "lunarDay": 2
+    },
+    "legacyPredecessor": {
+      "tianfuBranch": "戌",
+      "tianfuIndex": 10
+    },
+    "legacyRawEquality": false,
+    "orderingKey": "6:02",
+    "production": {
+      "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+      "tianfuBranch": "辰",
+      "tianfuIndex": 4,
+      "ziweiBranch": "午"
+    },
+    "rawEquality": false,
+    "rotation06Equality": true,
+    "rowId": "integrated-bureau-6-day-02",
+    "source": {
+      "table": "corrected-successor",
+      "tianfuBranch": "戌",
+      "tianfuIndex": 10,
+      "ziweiBranch": "午"
+    }
+  },
+  {
+    "input": {
+      "bureauNumber": 6,
+      "lunarDay": 3
+    },
+    "legacyPredecessor": {
+      "tianfuBranch": "卯",
+      "tianfuIndex": 3
+    },
+    "legacyRawEquality": false,
+    "orderingKey": "6:03",
+    "production": {
+      "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+      "tianfuBranch": "亥",
+      "tianfuIndex": 11,
+      "ziweiBranch": "亥"
+    },
+    "rawEquality": false,
+    "rotation06Equality": true,
+    "rowId": "integrated-bureau-6-day-03",
+    "source": {
+      "table": "corrected-successor",
+      "tianfuBranch": "巳",
+      "tianfuIndex": 5,
+      "ziweiBranch": "亥"
+    }
+  },
+  {
+    "input": {
+      "bureauNumber": 6,
+      "lunarDay": 4
+    },
+    "legacyPredecessor": {
+      "tianfuBranch": "申",
+      "tianfuIndex": 8
+    },
+    "legacyRawEquality": false,
+    "orderingKey": "6:04",
+    "production": {
+      "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+      "tianfuBranch": "午",
+      "tianfuIndex": 6,
+      "ziweiBranch": "辰"
+    },
+    "rawEquality": false,
+    "rotation06Equality": true,
+    "rowId": "integrated-bureau-6-day-04",
+    "source": {
+      "table": "corrected-successor",
+      "tianfuBranch": "子",
+      "tianfuIndex": 0,
+      "ziweiBranch": "辰"
+    }
+  },
+  {
+    "input": {
+      "bureauNumber": 6,
+      "lunarDay": 5
+    },
+    "legacyPredecessor": {
+      "tianfuBranch": "巳",
+      "tianfuIndex": 5
+    },
+    "legacyRawEquality": false,
+    "orderingKey": "6:05",
+    "production": {
+      "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+      "tianfuBranch": "酉",
+      "tianfuIndex": 9,
+      "ziweiBranch": "丑"
+    },
+    "rawEquality": false,
+    "rotation06Equality": true,
+    "rowId": "integrated-bureau-6-day-05",
+    "source": {
+      "table": "corrected-successor",
+      "tianfuBranch": "卯",
+      "tianfuIndex": 3,
+      "ziweiBranch": "丑"
+    }
+  },
+  {
+    "input": {
+      "bureauNumber": 6,
+      "lunarDay": 6
+    },
+    "legacyPredecessor": {
+      "tianfuBranch": "午",
+      "tianfuIndex": 6
+    },
+    "legacyRawEquality": false,
+    "orderingKey": "6:06",
+    "production": {
+      "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+      "tianfuBranch": "申",
+      "tianfuIndex": 8,
+      "ziweiBranch": "寅"
+    },
+    "rawEquality": false,
+    "rotation06Equality": true,
+    "rowId": "integrated-bureau-6-day-06",
+    "source": {
+      "table": "corrected-successor",
+      "tianfuBranch": "寅",
+      "tianfuIndex": 2,
+      "ziweiBranch": "寅"
+    }
+  },
+  {
+    "input": {
+      "bureauNumber": 6,
+      "lunarDay": 7
+    },
+    "legacyPredecessor": {
+      "tianfuBranch": "寅",
+      "tianfuIndex": 2
+    },
+    "legacyRawEquality": false,
+    "orderingKey": "6:07",
+    "production": {
+      "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+      "tianfuBranch": "子",
+      "tianfuIndex": 0,
+      "ziweiBranch": "戌"
+    },
+    "rawEquality": false,
+    "rotation06Equality": true,
+    "rowId": "integrated-bureau-6-day-07",
+    "source": {
+      "table": "corrected-successor",
+      "tianfuBranch": "午",
+      "tianfuIndex": 6,
+      "ziweiBranch": "戌"
+    }
+  },
+  {
+    "input": {
+      "bureauNumber": 6,
+      "lunarDay": 8
+    },
+    "legacyPredecessor": {
+      "tianfuBranch": "亥",
+      "tianfuIndex": 11
+    },
+    "legacyRawEquality": false,
+    "orderingKey": "6:08",
+    "production": {
+      "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+      "tianfuBranch": "卯",
+      "tianfuIndex": 3,
+      "ziweiBranch": "未"
+    },
+    "rawEquality": false,
+    "rotation06Equality": true,
+    "rowId": "integrated-bureau-6-day-08",
+    "source": {
+      "table": "corrected-successor",
+      "tianfuBranch": "酉",
+      "tianfuIndex": 9,
+      "ziweiBranch": "未"
+    }
+  },
+  {
+    "input": {
+      "bureauNumber": 6,
+      "lunarDay": 9
+    },
+    "legacyPredecessor": {
+      "tianfuBranch": "辰",
+      "tianfuIndex": 4
+    },
+    "legacyRawEquality": false,
+    "orderingKey": "6:09",
+    "production": {
+      "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+      "tianfuBranch": "戌",
+      "tianfuIndex": 10,
+      "ziweiBranch": "子"
+    },
+    "rawEquality": false,
+    "rotation06Equality": true,
+    "rowId": "integrated-bureau-6-day-09",
+    "source": {
+      "table": "corrected-successor",
+      "tianfuBranch": "辰",
+      "tianfuIndex": 4,
+      "ziweiBranch": "子"
+    }
+  },
+  {
+    "input": {
+      "bureauNumber": 6,
+      "lunarDay": 10
+    },
+    "legacyPredecessor": {
+      "tianfuBranch": "酉",
+      "tianfuIndex": 9
+    },
+    "legacyRawEquality": false,
+    "orderingKey": "6:10",
+    "production": {
+      "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+      "tianfuBranch": "巳",
+      "tianfuIndex": 5,
+      "ziweiBranch": "巳"
+    },
+    "rawEquality": false,
+    "rotation06Equality": true,
+    "rowId": "integrated-bureau-6-day-10",
+    "source": {
+      "table": "corrected-successor",
+      "tianfuBranch": "亥",
+      "tianfuIndex": 11,
+      "ziweiBranch": "巳"
+    }
+  },
+  {
+    "input": {
+      "bureauNumber": 6,
+      "lunarDay": 11
+    },
+    "legacyPredecessor": {
+      "tianfuBranch": "午",
+      "tianfuIndex": 6
+    },
+    "legacyRawEquality": false,
+    "orderingKey": "6:11",
+    "production": {
+      "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+      "tianfuBranch": "申",
+      "tianfuIndex": 8,
+      "ziweiBranch": "寅"
+    },
+    "rawEquality": false,
+    "rotation06Equality": true,
+    "rowId": "integrated-bureau-6-day-11",
+    "source": {
+      "table": "corrected-successor",
+      "tianfuBranch": "寅",
+      "tianfuIndex": 2,
+      "ziweiBranch": "寅"
+    }
+  },
+  {
+    "input": {
+      "bureauNumber": 6,
+      "lunarDay": 12
+    },
+    "legacyPredecessor": {
+      "tianfuBranch": "未",
+      "tianfuIndex": 7
+    },
+    "legacyRawEquality": true,
+    "orderingKey": "6:12",
+    "production": {
+      "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+      "tianfuBranch": "未",
+      "tianfuIndex": 7,
+      "ziweiBranch": "卯"
+    },
+    "rawEquality": false,
+    "rotation06Equality": true,
+    "rowId": "integrated-bureau-6-day-12",
+    "source": {
+      "table": "corrected-successor",
+      "tianfuBranch": "丑",
+      "tianfuIndex": 1,
+      "ziweiBranch": "卯"
+    }
+  },
+  {
+    "input": {
+      "bureauNumber": 6,
+      "lunarDay": 13
+    },
+    "legacyPredecessor": {
+      "tianfuBranch": "卯",
+      "tianfuIndex": 3
+    },
+    "legacyRawEquality": false,
+    "orderingKey": "6:13",
+    "production": {
+      "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+      "tianfuBranch": "亥",
+      "tianfuIndex": 11,
+      "ziweiBranch": "亥"
+    },
+    "rawEquality": false,
+    "rotation06Equality": true,
+    "rowId": "integrated-bureau-6-day-13",
+    "source": {
+      "table": "corrected-successor",
+      "tianfuBranch": "巳",
+      "tianfuIndex": 5,
+      "ziweiBranch": "亥"
+    }
+  },
+  {
+    "input": {
+      "bureauNumber": 6,
+      "lunarDay": 14
+    },
+    "legacyPredecessor": {
+      "tianfuBranch": "子",
+      "tianfuIndex": 0
+    },
+    "legacyRawEquality": false,
+    "orderingKey": "6:14",
+    "production": {
+      "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+      "tianfuBranch": "寅",
+      "tianfuIndex": 2,
+      "ziweiBranch": "申"
+    },
+    "rawEquality": false,
+    "rotation06Equality": true,
+    "rowId": "integrated-bureau-6-day-14",
+    "source": {
+      "table": "corrected-successor",
+      "tianfuBranch": "申",
+      "tianfuIndex": 8,
+      "ziweiBranch": "申"
+    }
+  },
+  {
+    "input": {
+      "bureauNumber": 6,
+      "lunarDay": 15
+    },
+    "legacyPredecessor": {
+      "tianfuBranch": "巳",
+      "tianfuIndex": 5
+    },
+    "legacyRawEquality": false,
+    "orderingKey": "6:15",
+    "production": {
+      "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+      "tianfuBranch": "酉",
+      "tianfuIndex": 9,
+      "ziweiBranch": "丑"
+    },
+    "rawEquality": false,
+    "rotation06Equality": true,
+    "rowId": "integrated-bureau-6-day-15",
+    "source": {
+      "table": "corrected-successor",
+      "tianfuBranch": "卯",
+      "tianfuIndex": 3,
+      "ziweiBranch": "丑"
+    }
+  },
+  {
+    "input": {
+      "bureauNumber": 6,
+      "lunarDay": 16
+    },
+    "legacyPredecessor": {
+      "tianfuBranch": "戌",
+      "tianfuIndex": 10
+    },
+    "legacyRawEquality": false,
+    "orderingKey": "6:16",
+    "production": {
+      "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+      "tianfuBranch": "辰",
+      "tianfuIndex": 4,
+      "ziweiBranch": "午"
+    },
+    "rawEquality": false,
+    "rotation06Equality": true,
+    "rowId": "integrated-bureau-6-day-16",
+    "source": {
+      "table": "corrected-successor",
+      "tianfuBranch": "戌",
+      "tianfuIndex": 10,
+      "ziweiBranch": "午"
+    }
+  },
+  {
+    "input": {
+      "bureauNumber": 6,
+      "lunarDay": 17
+    },
+    "legacyPredecessor": {
+      "tianfuBranch": "未",
+      "tianfuIndex": 7
+    },
+    "legacyRawEquality": true,
+    "orderingKey": "6:17",
+    "production": {
+      "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+      "tianfuBranch": "未",
+      "tianfuIndex": 7,
+      "ziweiBranch": "卯"
+    },
+    "rawEquality": false,
+    "rotation06Equality": true,
+    "rowId": "integrated-bureau-6-day-17",
+    "source": {
+      "table": "corrected-successor",
+      "tianfuBranch": "丑",
+      "tianfuIndex": 1,
+      "ziweiBranch": "卯"
+    }
+  },
+  {
+    "input": {
+      "bureauNumber": 6,
+      "lunarDay": 18
+    },
+    "legacyPredecessor": {
+      "tianfuBranch": "申",
+      "tianfuIndex": 8
+    },
+    "legacyRawEquality": false,
+    "orderingKey": "6:18",
+    "production": {
+      "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+      "tianfuBranch": "午",
+      "tianfuIndex": 6,
+      "ziweiBranch": "辰"
+    },
+    "rawEquality": false,
+    "rotation06Equality": true,
+    "rowId": "integrated-bureau-6-day-18",
+    "source": {
+      "table": "corrected-successor",
+      "tianfuBranch": "子",
+      "tianfuIndex": 0,
+      "ziweiBranch": "辰"
+    }
+  },
+  {
+    "input": {
+      "bureauNumber": 6,
+      "lunarDay": 19
+    },
+    "legacyPredecessor": {
+      "tianfuBranch": "辰",
+      "tianfuIndex": 4
+    },
+    "legacyRawEquality": false,
+    "orderingKey": "6:19",
+    "production": {
+      "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+      "tianfuBranch": "戌",
+      "tianfuIndex": 10,
+      "ziweiBranch": "子"
+    },
+    "rawEquality": false,
+    "rotation06Equality": true,
+    "rowId": "integrated-bureau-6-day-19",
+    "source": {
+      "table": "corrected-successor",
+      "tianfuBranch": "辰",
+      "tianfuIndex": 4,
+      "ziweiBranch": "子"
+    }
+  },
+  {
+    "input": {
+      "bureauNumber": 6,
+      "lunarDay": 20
+    },
+    "legacyPredecessor": {
+      "tianfuBranch": "丑",
+      "tianfuIndex": 1
+    },
+    "legacyRawEquality": true,
+    "orderingKey": "6:20",
+    "production": {
+      "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+      "tianfuBranch": "丑",
+      "tianfuIndex": 1,
+      "ziweiBranch": "酉"
+    },
+    "rawEquality": false,
+    "rotation06Equality": true,
+    "rowId": "integrated-bureau-6-day-20",
+    "source": {
+      "table": "corrected-successor",
+      "tianfuBranch": "未",
+      "tianfuIndex": 7,
+      "ziweiBranch": "酉"
+    }
+  },
+  {
+    "input": {
+      "bureauNumber": 6,
+      "lunarDay": 21
+    },
+    "legacyPredecessor": {
+      "tianfuBranch": "午",
+      "tianfuIndex": 6
+    },
+    "legacyRawEquality": false,
+    "orderingKey": "6:21",
+    "production": {
+      "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+      "tianfuBranch": "申",
+      "tianfuIndex": 8,
+      "ziweiBranch": "寅"
+    },
+    "rawEquality": false,
+    "rotation06Equality": true,
+    "rowId": "integrated-bureau-6-day-21",
+    "source": {
+      "table": "corrected-successor",
+      "tianfuBranch": "寅",
+      "tianfuIndex": 2,
+      "ziweiBranch": "寅"
+    }
+  },
+  {
+    "input": {
+      "bureauNumber": 6,
+      "lunarDay": 22
+    },
+    "legacyPredecessor": {
+      "tianfuBranch": "亥",
+      "tianfuIndex": 11
+    },
+    "legacyRawEquality": false,
+    "orderingKey": "6:22",
+    "production": {
+      "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+      "tianfuBranch": "卯",
+      "tianfuIndex": 3,
+      "ziweiBranch": "未"
+    },
+    "rawEquality": false,
+    "rotation06Equality": true,
+    "rowId": "integrated-bureau-6-day-22",
+    "source": {
+      "table": "corrected-successor",
+      "tianfuBranch": "酉",
+      "tianfuIndex": 9,
+      "ziweiBranch": "未"
+    }
+  },
+  {
+    "input": {
+      "bureauNumber": 6,
+      "lunarDay": 23
+    },
+    "legacyPredecessor": {
+      "tianfuBranch": "申",
+      "tianfuIndex": 8
+    },
+    "legacyRawEquality": false,
+    "orderingKey": "6:23",
+    "production": {
+      "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+      "tianfuBranch": "午",
+      "tianfuIndex": 6,
+      "ziweiBranch": "辰"
+    },
+    "rawEquality": false,
+    "rotation06Equality": true,
+    "rowId": "integrated-bureau-6-day-23",
+    "source": {
+      "table": "corrected-successor",
+      "tianfuBranch": "子",
+      "tianfuIndex": 0,
+      "ziweiBranch": "辰"
+    }
+  },
+  {
+    "input": {
+      "bureauNumber": 6,
+      "lunarDay": 24
+    },
+    "legacyPredecessor": {
+      "tianfuBranch": "酉",
+      "tianfuIndex": 9
+    },
+    "legacyRawEquality": false,
+    "orderingKey": "6:24",
+    "production": {
+      "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+      "tianfuBranch": "巳",
+      "tianfuIndex": 5,
+      "ziweiBranch": "巳"
+    },
+    "rawEquality": false,
+    "rotation06Equality": true,
+    "rowId": "integrated-bureau-6-day-24",
+    "source": {
+      "table": "corrected-successor",
+      "tianfuBranch": "亥",
+      "tianfuIndex": 11,
+      "ziweiBranch": "巳"
+    }
+  },
+  {
+    "input": {
+      "bureauNumber": 6,
+      "lunarDay": 25
+    },
+    "legacyPredecessor": {
+      "tianfuBranch": "巳",
+      "tianfuIndex": 5
+    },
+    "legacyRawEquality": false,
+    "orderingKey": "6:25",
+    "production": {
+      "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+      "tianfuBranch": "酉",
+      "tianfuIndex": 9,
+      "ziweiBranch": "丑"
+    },
+    "rawEquality": false,
+    "rotation06Equality": true,
+    "rowId": "integrated-bureau-6-day-25",
+    "source": {
+      "table": "corrected-successor",
+      "tianfuBranch": "卯",
+      "tianfuIndex": 3,
+      "ziweiBranch": "丑"
+    }
+  },
+  {
+    "input": {
+      "bureauNumber": 6,
+      "lunarDay": 26
+    },
+    "legacyPredecessor": {
+      "tianfuBranch": "寅",
+      "tianfuIndex": 2
+    },
+    "legacyRawEquality": false,
+    "orderingKey": "6:26",
+    "production": {
+      "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+      "tianfuBranch": "子",
+      "tianfuIndex": 0,
+      "ziweiBranch": "戌"
+    },
+    "rawEquality": false,
+    "rotation06Equality": true,
+    "rowId": "integrated-bureau-6-day-26",
+    "source": {
+      "table": "corrected-successor",
+      "tianfuBranch": "午",
+      "tianfuIndex": 6,
+      "ziweiBranch": "戌"
+    }
+  },
+  {
+    "input": {
+      "bureauNumber": 6,
+      "lunarDay": 27
+    },
+    "legacyPredecessor": {
+      "tianfuBranch": "未",
+      "tianfuIndex": 7
+    },
+    "legacyRawEquality": true,
+    "orderingKey": "6:27",
+    "production": {
+      "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+      "tianfuBranch": "未",
+      "tianfuIndex": 7,
+      "ziweiBranch": "卯"
+    },
+    "rawEquality": false,
+    "rotation06Equality": true,
+    "rowId": "integrated-bureau-6-day-27",
+    "source": {
+      "table": "corrected-successor",
+      "tianfuBranch": "丑",
+      "tianfuIndex": 1,
+      "ziweiBranch": "卯"
+    }
+  },
+  {
+    "input": {
+      "bureauNumber": 6,
+      "lunarDay": 28
+    },
+    "legacyPredecessor": {
+      "tianfuBranch": "子",
+      "tianfuIndex": 0
+    },
+    "legacyRawEquality": false,
+    "orderingKey": "6:28",
+    "production": {
+      "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+      "tianfuBranch": "寅",
+      "tianfuIndex": 2,
+      "ziweiBranch": "申"
+    },
+    "rawEquality": false,
+    "rotation06Equality": true,
+    "rowId": "integrated-bureau-6-day-28",
+    "source": {
+      "table": "corrected-successor",
+      "tianfuBranch": "申",
+      "tianfuIndex": 8,
+      "ziweiBranch": "申"
+    }
+  },
+  {
+    "input": {
+      "bureauNumber": 6,
+      "lunarDay": 29
+    },
+    "legacyPredecessor": {
+      "tianfuBranch": "酉",
+      "tianfuIndex": 9
+    },
+    "legacyRawEquality": false,
+    "orderingKey": "6:29",
+    "production": {
+      "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+      "tianfuBranch": "巳",
+      "tianfuIndex": 5,
+      "ziweiBranch": "巳"
+    },
+    "rawEquality": false,
+    "rotation06Equality": true,
+    "rowId": "integrated-bureau-6-day-29",
+    "source": {
+      "table": "corrected-successor",
+      "tianfuBranch": "亥",
+      "tianfuIndex": 11,
+      "ziweiBranch": "巳"
+    }
+  },
+  {
+    "input": {
+      "bureauNumber": 6,
+      "lunarDay": 30
+    },
+    "legacyPredecessor": {
+      "tianfuBranch": "戌",
+      "tianfuIndex": 10
+    },
+    "legacyRawEquality": false,
+    "orderingKey": "6:30",
+    "production": {
+      "route": "resolve14MajorStars -> majorStars[id=tianfu].palaceBranch",
+      "tianfuBranch": "辰",
+      "tianfuIndex": 4,
+      "ziweiBranch": "午"
+    },
+    "rawEquality": false,
+    "rotation06Equality": true,
+    "rowId": "integrated-bureau-6-day-30",
+    "source": {
+      "table": "corrected-successor",
+      "tianfuBranch": "戌",
+      "tianfuIndex": 10,
+      "ziweiBranch": "午"
+    }
+  }
+]

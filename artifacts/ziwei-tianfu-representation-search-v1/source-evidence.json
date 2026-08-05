@@ -1,0 +1,368 @@
+{
+  "renderContract": {
+    "dpi": 240,
+    "output": "temporary PNG only; source PDFs and rendered PNGs are not stored in Git",
+    "pages": {
+      "ming": [
+        {
+          "dpi": 240,
+          "pdfPage": 145,
+          "sha256": "1958dbb4618f0e8f359192c133de1e5f62c83cc3793dfb5aca176530615b64e4",
+          "sourceId": "ming",
+          "temporary": true,
+          "tool": "pdftoppm"
+        },
+        {
+          "dpi": 240,
+          "pdfPage": 146,
+          "sha256": "46246eddda33486548eb00fe30d748bac9ecf06b995b56ee7e32c349f9757914",
+          "sourceId": "ming",
+          "temporary": true,
+          "tool": "pdftoppm"
+        },
+        {
+          "dpi": 240,
+          "pdfPage": 147,
+          "sha256": "40a279a15a604ccbcbca6f25c0eb6380c4ae7b3bda02739cc6523be4ecd2fda5",
+          "sourceId": "ming",
+          "temporary": true,
+          "tool": "pdftoppm"
+        },
+        {
+          "dpi": 240,
+          "pdfPage": 148,
+          "sha256": "a2fab6b0eeffeb980164982dd0f8a9383275486d750a548576f72a7f2e22a8fc",
+          "sourceId": "ming",
+          "temporary": true,
+          "tool": "pdftoppm"
+        },
+        {
+          "dpi": 240,
+          "pdfPage": 149,
+          "sha256": "6a3283eced56855a86e919a87056ba612b322a41d0d74379f706ffd8db5a00b1",
+          "sourceId": "ming",
+          "temporary": true,
+          "tool": "pdftoppm"
+        },
+        {
+          "dpi": 240,
+          "pdfPage": 150,
+          "sha256": "c89f33bcd6613db782228cf651e6061ab863da3c8ef1151ddb6539c49621cf06",
+          "sourceId": "ming",
+          "temporary": true,
+          "tool": "pdftoppm"
+        },
+        {
+          "dpi": 240,
+          "pdfPage": 151,
+          "sha256": "d2fbb9cf302fa5e8b199575a6c009566e33e484a5b7e6682dab3097a995a6571",
+          "sourceId": "ming",
+          "temporary": true,
+          "tool": "pdftoppm"
+        },
+        {
+          "dpi": 240,
+          "pdfPage": 168,
+          "sha256": "fca8626baf0d081e1a7a6c1cf63d497a4c2a3e563d79dd939a498fdc6e0cbe66",
+          "sourceId": "ming",
+          "temporary": true,
+          "tool": "pdftoppm"
+        },
+        {
+          "dpi": 240,
+          "pdfPage": 169,
+          "sha256": "526f41cfd5bef87dd76c12754aa7091912daeb3be6d67a775fa2b8106cb6ea3d",
+          "sourceId": "ming",
+          "temporary": true,
+          "tool": "pdftoppm"
+        },
+        {
+          "dpi": 240,
+          "pdfPage": 170,
+          "sha256": "b0abc94adf91cfb2e3add98b31e525627265536fd7171c29b11c882102b299c6",
+          "sourceId": "ming",
+          "temporary": true,
+          "tool": "pdftoppm"
+        },
+        {
+          "dpi": 240,
+          "pdfPage": 171,
+          "sha256": "5968e4f8cef9d9f2262e784b385971a60fd2cda49cce3b81f06cf407ad8d935a",
+          "sourceId": "ming",
+          "temporary": true,
+          "tool": "pdftoppm"
+        },
+        {
+          "dpi": 240,
+          "pdfPage": 172,
+          "sha256": "280a6c22ee445670ae23426c7f57b47327ec91a5eb468ae870bdcfc93a147dd7",
+          "sourceId": "ming",
+          "temporary": true,
+          "tool": "pdftoppm"
+        }
+      ],
+      "nanbei": [
+        {
+          "dpi": 240,
+          "pdfPage": 11,
+          "sha256": "42eacce2a3ae35bee661c32a98b0b6b1daac6c89b43c63e8e7ec9f219d2e4864",
+          "sourceId": "nanbei",
+          "temporary": true,
+          "tool": "pdftoppm"
+        },
+        {
+          "dpi": 240,
+          "pdfPage": 13,
+          "sha256": "0f83e21b3e71955c5bec81aded4331de3f95aa8decf1490fcb64b9bef36762af",
+          "sourceId": "nanbei",
+          "temporary": true,
+          "tool": "pdftoppm"
+        }
+      ]
+    },
+    "tool": "pdftoppm"
+  },
+  "sourceIdentity": {
+    "ming": {
+      "encrypted": false,
+      "path": "/Users/softie/Downloads/新锓希夷陈先生紫微斗数全书.七卷.宋.陈抟撰.明.潘希尹补.明代南阳堂刊本.黑白版.pdf",
+      "pdfPageCount": 528,
+      "readOnly": true,
+      "sha256": "04e184c4a52cb042dc885c6ccc9135d94ab25de62007506198ee979a33e66bfc",
+      "storedInGit": false
+    },
+    "nanbei": {
+      "encrypted": false,
+      "path": "/Users/softie/Downloads/命-南北山人_紫微斗数全书.pdf",
+      "pdfPageCount": 219,
+      "readOnly": true,
+      "sha256": "4786a94ab454acdabf9716d7c0db4756dbcbde99a88bc45fda254863c1961023",
+      "storedInGit": false
+    }
+  },
+  "transcription": {
+    "ming": {
+      "locators": [
+        {
+          "glyphPreservingText": "○安南北斗諸星訣",
+          "pdfPage": 147,
+          "printedFolio": null,
+          "readingOrder": "vertical columns right-to-left",
+          "section": "○安南北斗諸星訣",
+          "status": "heading_readable_body_not_safely_closed"
+        },
+        {
+          "glyphPreservingText": "起紫微五訣",
+          "pdfPages": [
+            168,
+            169,
+            170,
+            171
+          ],
+          "printedFolio": null,
+          "readingOrder": "drawn table; panel order retained",
+          "section": "起紫微五訣 / 五行局 drawn tables",
+          "status": "Ziwei diagram context readable; no paired Tianfu 12-row table safely isolated"
+        },
+        {
+          "diagram": {
+            "anchors": {
+              "explicit": {
+                "tianfu": "卯",
+                "ziwei": "丑"
+              },
+              "samePalaces": [
+                "寅",
+                "申"
+              ]
+            },
+            "boundary": "outer square and internal palace boundaries preserved; diagonal connector lines preserved",
+            "branchRing": [
+              "巳",
+              "午",
+              "未",
+              "申",
+              "酉",
+              "戌",
+              "亥",
+              "子",
+              "丑",
+              "寅",
+              "卯",
+              "辰"
+            ],
+            "branchRingDirection": "clockwise along the drawn perimeter; no page-side or canonical origin is assumed",
+            "sourceEquation": "tianfu = mod(4 - ziwei) under 子=0..亥=11; constrained by the visual same-palace anchors and the explicit 丑→卯 example"
+          },
+          "glyphPreservingText": "安天府圖；天府惟寅申二宮；紫府同宮；如紫居丑則府居卯矣",
+          "pdfPage": 172,
+          "printedFolio": null,
+          "readingOrder": "vertical prose right-to-left; drawn square perimeter retained; branch labels read clockwise from the top-left corner",
+          "section": "安天府圖",
+          "status": "source-rule anchors visually closed; connector lines retained as diagram evidence and not flattened into fabricated cells",
+          "visualReview": {
+            "dpi": [
+              420,
+              600
+            ],
+            "output": "temporary PNG only; canonical evidence remains the PDF page image",
+            "tool": "pdftoppm"
+          }
+        }
+      ],
+      "uncertainty": [
+        "The p172 connector geometry is preserved as drawn evidence rather than normalized into a synthetic 12-row cell table; the rule anchors and branch ring are visually legible."
+      ]
+    },
+    "nanbei": {
+      "locator": {
+        "pdfPage": 13,
+        "printedFolio": "三十四",
+        "readingOrder": "vertical prose right-to-left; table rows top-to-bottom",
+        "scannedLeaf": "right",
+        "section": "甲六、安天府",
+        "visualReview": {
+          "dpi": [
+            420
+          ],
+          "output": "temporary PNG only; canonical evidence remains the PDF page image",
+          "tool": "pdftoppm"
+        }
+      },
+      "prose": {
+        "confidence": "visually_bounded_excerpt",
+        "glyphPreservingText": "安天府；天府為南斗星君；[中略]；局定生日逆佈紫微行；[後続列文未完整逐字閉合]"
+      },
+      "table": {
+        "base": {
+          "input": "子",
+          "inputOrdinal": 0,
+          "output": "辰",
+          "outputOrdinal": 4
+        },
+        "boundary": "12 drawn rows; diagonal header preserved; no inferred cells",
+        "cells": [
+          {
+            "glyphs": {
+              "天府": "辰",
+              "紫微": "子"
+            },
+            "locator": "p13/三十四/甲六-安天府/table/row-01",
+            "row": 1,
+            "unclearGlyph": null
+          },
+          {
+            "glyphs": {
+              "天府": "卯",
+              "紫微": "丑"
+            },
+            "locator": "p13/三十四/甲六-安天府/table/row-02",
+            "row": 2,
+            "unclearGlyph": null
+          },
+          {
+            "glyphs": {
+              "天府": "寅",
+              "紫微": "寅"
+            },
+            "locator": "p13/三十四/甲六-安天府/table/row-03",
+            "row": 3,
+            "unclearGlyph": null
+          },
+          {
+            "glyphs": {
+              "天府": "丑",
+              "紫微": "卯"
+            },
+            "locator": "p13/三十四/甲六-安天府/table/row-04",
+            "row": 4,
+            "unclearGlyph": null
+          },
+          {
+            "glyphs": {
+              "天府": "子",
+              "紫微": "辰"
+            },
+            "locator": "p13/三十四/甲六-安天府/table/row-05",
+            "row": 5,
+            "unclearGlyph": null
+          },
+          {
+            "glyphs": {
+              "天府": "亥",
+              "紫微": "巳"
+            },
+            "locator": "p13/三十四/甲六-安天府/table/row-06",
+            "row": 6,
+            "unclearGlyph": null
+          },
+          {
+            "glyphs": {
+              "天府": "戌",
+              "紫微": "午"
+            },
+            "locator": "p13/三十四/甲六-安天府/table/row-07",
+            "row": 7,
+            "unclearGlyph": null
+          },
+          {
+            "glyphs": {
+              "天府": "酉",
+              "紫微": "未"
+            },
+            "locator": "p13/三十四/甲六-安天府/table/row-08",
+            "row": 8,
+            "unclearGlyph": null
+          },
+          {
+            "glyphs": {
+              "天府": "申",
+              "紫微": "申"
+            },
+            "locator": "p13/三十四/甲六-安天府/table/row-09",
+            "row": 9,
+            "unclearGlyph": null
+          },
+          {
+            "glyphs": {
+              "天府": "未",
+              "紫微": "酉"
+            },
+            "locator": "p13/三十四/甲六-安天府/table/row-10",
+            "row": 10,
+            "unclearGlyph": null
+          },
+          {
+            "glyphs": {
+              "天府": "午",
+              "紫微": "戌"
+            },
+            "locator": "p13/三十四/甲六-安天府/table/row-11",
+            "row": 11,
+            "unclearGlyph": null
+          },
+          {
+            "glyphs": {
+              "天府": "巳",
+              "紫微": "亥"
+            },
+            "locator": "p13/三十四/甲六-安天府/table/row-12",
+            "row": 12,
+            "unclearGlyph": null
+          }
+        ],
+        "direction": "紫微 top-to-bottom +1; 天府 top-to-bottom -1",
+        "headers": [
+          "天府",
+          "紫微"
+        ],
+        "sourceEquation": "tianfu = mod(4 - ziwei) under 子=0..亥=11"
+      },
+      "uncertainty": [
+        "The digital witness identity is verified; historical edition lineage and palace-semantic identity are not promoted."
+      ]
+    },
+    "ocrStatus": "exploration_only_not_canonical",
+    "sourceImagesAreCanonical": true
+  }
+}
