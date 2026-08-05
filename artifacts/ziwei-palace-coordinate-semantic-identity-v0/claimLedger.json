@@ -1,0 +1,53 @@
+[
+  {
+    "id": "direct_source_witness",
+    "semanticLimit": "does not establish palace semantic identity",
+    "sourceRefs": [
+      "source-p7-shi-er-gong-guan-gai",
+      "source-p8-ming-shen-rule",
+      "source-p11-ziwei-five-jue",
+      "source-p12-ziwei-jian-suo",
+      "source-p13-tianfu-table"
+    ],
+    "statement": "p7/p8/p11-p13 provide page-region witnesses for branch labels, diagram positions, traversal wording, and star-to-branch tables.",
+    "status": "evidence_sufficient_within_scope"
+  },
+  {
+    "evidence": [
+      "src/ziwei/ziweiContract.js",
+      "src/ziwei/ziweiResolver.js",
+      "src/ziwei/starPlacementRules.js",
+      "src/ziwei/starResolver.js",
+      "src/ziwei/ziweiPalaceContext.js",
+      "src/ziwei/palaceRelationRules.js",
+      "src/ziwei/externalZiweiFixtures.js",
+      "artifacts/ziwei-major-star-coordinate-provenance-v0/complete.json",
+      "artifacts/ziwei-tianfu-convention-provenance-v0/complete.json",
+      "artifacts/ziwei-system-evidence-readiness-coverage-map-v0/complete.json"
+    ],
+    "id": "repository_convention",
+    "semanticLimit": "repository convention is not traditional authority",
+    "statement": "Production exposes ordinal 0..11, default palace names, branch-anchored resolution, and positional relation arithmetic.",
+    "status": "repository_convention_only"
+  },
+  {
+    "evidence": [
+      "candidateMatrix.relationResults"
+    ],
+    "id": "exact_transform",
+    "semanticLimit": "transform equivalence is not semantic identity",
+    "statement": "Across all 150 related Tianfu rows, rotation-06 and source-base-direction are exact numeric transforms.",
+    "status": "exact_transform_only"
+  },
+  {
+    "evidence": [
+      "sourceWitnessIndex.sourceRefs",
+      "repositoryInventory",
+      "candidateMatrix"
+    ],
+    "id": "semantic_identity",
+    "semanticLimit": "must remain unresolved",
+    "statement": "No admitted witness directly maps source branch/diagram positions to production palace names and ordinal semantics.",
+    "status": "blocked_semantic_identity_insufficient"
+  }
+]

@@ -1,0 +1,21 @@
+[
+  {
+    "acceptance": "immutable scan/page/folio witness with readable glyphs and complete mapping; no OCR-only or preview-only evidence",
+    "affected": [
+      "palace-layout",
+      "ming-shen",
+      "tianfu-placement",
+      "fourteen-major-stars",
+      "palace-relations"
+    ],
+    "decision": "continue_blocked",
+    "id": "blocker-palace-semantic-identity",
+    "priority": "P0",
+    "required": "authoritative shared mapping of 12 palace names, branches, diagram slots, ordinal/order, and direction",
+    "sourceRefs": [
+      "source-p7-shi-er-gong-guan-gai",
+      "source-p8-ming-shen-rule"
+    ],
+    "status": "blocked"
+  }
+]

@@ -1,0 +1,96 @@
+[
+  {
+    "facts": [
+      "12 definitions",
+      "defaultIndex 0..11",
+      "no branch-to-palace map"
+    ],
+    "path": "src/ziwei/ziweiContract.js",
+    "role": "production palace enum/name/defaultIndex",
+    "sha256": "716875185d87da22ceef5f66f32899359642646367133f6c9f4bf87718bf130e"
+  },
+  {
+    "facts": [
+      "mingGong branch anchor",
+      "shenGong branch marker",
+      "palaces index increments branch ordinal",
+      "comment says clockwise"
+    ],
+    "path": "src/ziwei/ziweiResolver.js",
+    "role": "production chart layout",
+    "sha256": "5336f15968b4c618d9b1248b0967deab22b778f48996cb60939ab19cabadf513"
+  },
+  {
+    "facts": [
+      "BRANCHES 子..亥",
+      "Tianfu mod(10 - ziwei)",
+      "series offsets"
+    ],
+    "path": "src/ziwei/starPlacementRules.js",
+    "role": "production star coordinate rules",
+    "sha256": "1edb93929e441b009e33abd8179e72cf5b216e7378a40813657ea52dc1a0759c"
+  },
+  {
+    "facts": [
+      "palace lookup matches caller-provided palaces by branch",
+      "does not define canonical branch-to-palace identity"
+    ],
+    "path": "src/ziwei/starResolver.js",
+    "role": "production consumer lookup",
+    "sha256": "c9797f2405df6afeb336226bcbff66e199e856d181e71e2317a9794dba0a6ad7"
+  },
+  {
+    "facts": [
+      "array index drives opposite/trine context"
+    ],
+    "path": "src/ziwei/ziweiPalaceContext.js",
+    "role": "production positional consumer",
+    "sha256": "633b3b3d586a5e9a2f7cf855fad1937cb6b4115ac4271c5bf8d7472d77ad9964"
+  },
+  {
+    "facts": [
+      "opposite +6",
+      "trine +4,+8"
+    ],
+    "path": "src/ziwei/palaceRelationRules.js",
+    "role": "production positional relation rules",
+    "sha256": "afd4f2ef13da4a13f7dece79e801dab6867e5cd1ee30d2e588dce19935c9aaaa"
+  },
+  {
+    "facts": [
+      "edition pending exact review",
+      "not admitted as independent source identity"
+    ],
+    "path": "src/ziwei/externalZiweiFixtures.js",
+    "role": "fixture source metadata",
+    "sha256": "c379c3d364ea8bdc1062f7a59f2f1b8f83de4762489a86a520733d9d288917cf"
+  },
+  {
+    "facts": [
+      "source/integrated contexts separated",
+      "semantic identity unresolved"
+    ],
+    "path": "artifacts/ziwei-major-star-coordinate-provenance-v0/complete.json",
+    "role": "prior coordinate evidence",
+    "sha256": "b928eb54c0dff947a7d8d3b02d013bffa68d6e9c6fa4f9b100ca10c56c73445b"
+  },
+  {
+    "facts": [
+      "rotation-06 150/150",
+      "source-base-direction 150/150",
+      "raw divergence preserved"
+    ],
+    "path": "artifacts/ziwei-tianfu-convention-provenance-v0/complete.json",
+    "role": "prior Tianfu transform evidence",
+    "sha256": "f93cb1ca021ed8c267dd8a22c16aac76e5f505c760ac4b9fd52904bfd687d5a2"
+  },
+  {
+    "facts": [
+      "P0 palace semantic identity blocker",
+      "readiness blocked"
+    ],
+    "path": "artifacts/ziwei-system-evidence-readiness-coverage-map-v0/complete.json",
+    "role": "coverage/blocker map",
+    "sha256": "ced877e178ec80c04f6ef70090c0962533e32d410528af9de006ace18a82226f"
+  }
+]

@@ -1,0 +1,2205 @@
+{
+  "candidateCount": 170,
+  "domain": {
+    "bureaus": [
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "lunarDays": [
+      1,
+      30
+    ],
+    "ordering": "bureau ascending then lunarDay ascending",
+    "rowCount": 150
+  },
+  "eliminationRule": "exact requires all 150 rows; no sample inference",
+  "exactFitIds": [
+    "rotation-06",
+    "enum-relabel-in-00-out-06",
+    "enum-relabel-in-01-out-07",
+    "enum-relabel-in-02-out-08",
+    "enum-relabel-in-03-out-09",
+    "enum-relabel-in-04-out-10",
+    "enum-relabel-in-05-out-11",
+    "enum-relabel-in-06-out-00",
+    "enum-relabel-in-07-out-01",
+    "enum-relabel-in-08-out-02",
+    "enum-relabel-in-09-out-03",
+    "enum-relabel-in-10-out-04",
+    "enum-relabel-in-11-out-05",
+    "source-base-direction"
+  ],
+  "relationResults": [
+    {
+      "candidateId": "identity",
+      "definition": "source ordinal = production ordinal",
+      "exact": false,
+      "family": "identity",
+      "firstDivergence": {
+        "rowId": "bureau-2-day-01",
+        "rowIndex": 0
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "rotation-01",
+      "definition": "source = production + 1 (mod 12)",
+      "exact": false,
+      "family": "fixed_rotation",
+      "firstDivergence": {
+        "rowId": "bureau-2-day-01",
+        "rowIndex": 0
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "rotation-02",
+      "definition": "source = production + 2 (mod 12)",
+      "exact": false,
+      "family": "fixed_rotation",
+      "firstDivergence": {
+        "rowId": "bureau-2-day-01",
+        "rowIndex": 0
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "rotation-03",
+      "definition": "source = production + 3 (mod 12)",
+      "exact": false,
+      "family": "fixed_rotation",
+      "firstDivergence": {
+        "rowId": "bureau-2-day-01",
+        "rowIndex": 0
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "rotation-04",
+      "definition": "source = production + 4 (mod 12)",
+      "exact": false,
+      "family": "fixed_rotation",
+      "firstDivergence": {
+        "rowId": "bureau-2-day-01",
+        "rowIndex": 0
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "rotation-05",
+      "definition": "source = production + 5 (mod 12)",
+      "exact": false,
+      "family": "fixed_rotation",
+      "firstDivergence": {
+        "rowId": "bureau-2-day-01",
+        "rowIndex": 0
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "rotation-06",
+      "definition": "source = production + 6 (mod 12)",
+      "exact": true,
+      "family": "fixed_rotation",
+      "firstDivergence": null,
+      "matchCount": 150,
+      "mismatchCount": 0,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "rotation-07",
+      "definition": "source = production + 7 (mod 12)",
+      "exact": false,
+      "family": "fixed_rotation",
+      "firstDivergence": {
+        "rowId": "bureau-2-day-01",
+        "rowIndex": 0
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "rotation-08",
+      "definition": "source = production + 8 (mod 12)",
+      "exact": false,
+      "family": "fixed_rotation",
+      "firstDivergence": {
+        "rowId": "bureau-2-day-01",
+        "rowIndex": 0
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "rotation-09",
+      "definition": "source = production + 9 (mod 12)",
+      "exact": false,
+      "family": "fixed_rotation",
+      "firstDivergence": {
+        "rowId": "bureau-2-day-01",
+        "rowIndex": 0
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "rotation-10",
+      "definition": "source = production + 10 (mod 12)",
+      "exact": false,
+      "family": "fixed_rotation",
+      "firstDivergence": {
+        "rowId": "bureau-2-day-01",
+        "rowIndex": 0
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "rotation-11",
+      "definition": "source = production + 11 (mod 12)",
+      "exact": false,
+      "family": "fixed_rotation",
+      "firstDivergence": {
+        "rowId": "bureau-2-day-01",
+        "rowIndex": 0
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "reflection-rotation-00",
+      "definition": "source = 0 - production (mod 12)",
+      "exact": false,
+      "family": "reflection_rotation",
+      "firstDivergence": {
+        "rowId": "bureau-2-day-02",
+        "rowIndex": 1
+      },
+      "matchCount": 25,
+      "mismatchCount": 125,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "reflection-rotation-01",
+      "definition": "source = 1 - production (mod 12)",
+      "exact": false,
+      "family": "reflection_rotation",
+      "firstDivergence": {
+        "rowId": "bureau-2-day-01",
+        "rowIndex": 0
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "reflection-rotation-02",
+      "definition": "source = 2 - production (mod 12)",
+      "exact": false,
+      "family": "reflection_rotation",
+      "firstDivergence": {
+        "rowId": "bureau-2-day-01",
+        "rowIndex": 0
+      },
+      "matchCount": 23,
+      "mismatchCount": 127,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "reflection-rotation-03",
+      "definition": "source = 3 - production (mod 12)",
+      "exact": false,
+      "family": "reflection_rotation",
+      "firstDivergence": {
+        "rowId": "bureau-2-day-01",
+        "rowIndex": 0
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "reflection-rotation-04",
+      "definition": "source = 4 - production (mod 12)",
+      "exact": false,
+      "family": "reflection_rotation",
+      "firstDivergence": {
+        "rowId": "bureau-2-day-01",
+        "rowIndex": 0
+      },
+      "matchCount": 25,
+      "mismatchCount": 125,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "reflection-rotation-05",
+      "definition": "source = 5 - production (mod 12)",
+      "exact": false,
+      "family": "reflection_rotation",
+      "firstDivergence": {
+        "rowId": "bureau-2-day-01",
+        "rowIndex": 0
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "reflection-rotation-06",
+      "definition": "source = 6 - production (mod 12)",
+      "exact": false,
+      "family": "reflection_rotation",
+      "firstDivergence": {
+        "rowId": "bureau-2-day-01",
+        "rowIndex": 0
+      },
+      "matchCount": 26,
+      "mismatchCount": 124,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "reflection-rotation-07",
+      "definition": "source = 7 - production (mod 12)",
+      "exact": false,
+      "family": "reflection_rotation",
+      "firstDivergence": {
+        "rowId": "bureau-2-day-01",
+        "rowIndex": 0
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "reflection-rotation-08",
+      "definition": "source = 8 - production (mod 12)",
+      "exact": false,
+      "family": "reflection_rotation",
+      "firstDivergence": {
+        "rowId": "bureau-2-day-01",
+        "rowIndex": 0
+      },
+      "matchCount": 25,
+      "mismatchCount": 125,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "reflection-rotation-09",
+      "definition": "source = 9 - production (mod 12)",
+      "exact": false,
+      "family": "reflection_rotation",
+      "firstDivergence": {
+        "rowId": "bureau-2-day-01",
+        "rowIndex": 0
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "reflection-rotation-10",
+      "definition": "source = 10 - production (mod 12)",
+      "exact": false,
+      "family": "reflection_rotation",
+      "firstDivergence": {
+        "rowId": "bureau-2-day-01",
+        "rowIndex": 0
+      },
+      "matchCount": 26,
+      "mismatchCount": 124,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "reflection-rotation-11",
+      "definition": "source = 11 - production (mod 12)",
+      "exact": false,
+      "family": "reflection_rotation",
+      "firstDivergence": {
+        "rowId": "bureau-2-day-01",
+        "rowIndex": 0
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "inverse-mapping",
+      "definition": "source = 10 - production (mod 12)",
+      "exact": false,
+      "family": "inverse_mapping",
+      "firstDivergence": {
+        "rowId": "bureau-2-day-01",
+        "rowIndex": 0
+      },
+      "matchCount": 26,
+      "mismatchCount": 124,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-00-out-00",
+      "definition": "relabel input +0, output -0",
+      "exact": false,
+      "family": "enum_relabel",
+      "firstDivergence": {
+        "rowId": "bureau-2-day-01",
+        "rowIndex": 0
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-00-out-01",
+      "definition": "relabel input +0, output -1",
+      "exact": false,
+      "family": "enum_relabel",
+      "firstDivergence": {
+        "rowId": "bureau-2-day-01",
+        "rowIndex": 0
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-00-out-02",
+      "definition": "relabel input +0, output -2",
+      "exact": false,
+      "family": "enum_relabel",
+      "firstDivergence": {
+        "rowId": "bureau-2-day-01",
+        "rowIndex": 0
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-00-out-03",
+      "definition": "relabel input +0, output -3",
+      "exact": false,
+      "family": "enum_relabel",
+      "firstDivergence": {
+        "rowId": "bureau-2-day-01",
+        "rowIndex": 0
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-00-out-04",
+      "definition": "relabel input +0, output -4",
+      "exact": false,
+      "family": "enum_relabel",
+      "firstDivergence": {
+        "rowId": "bureau-2-day-01",
+        "rowIndex": 0
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-00-out-05",
+      "definition": "relabel input +0, output -5",
+      "exact": false,
+      "family": "enum_relabel",
+      "firstDivergence": {
+        "rowId": "bureau-2-day-01",
+        "rowIndex": 0
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-00-out-06",
+      "definition": "relabel input +0, output -6",
+      "exact": true,
+      "family": "enum_relabel",
+      "firstDivergence": null,
+      "matchCount": 150,
+      "mismatchCount": 0,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-00-out-07",
+      "definition": "relabel input +0, output -7",
+      "exact": false,
+      "family": "enum_relabel",
+      "firstDivergence": {
+        "rowId": "bureau-2-day-01",
+        "rowIndex": 0
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-00-out-08",
+      "definition": "relabel input +0, output -8",
+      "exact": false,
+      "family": "enum_relabel",
+      "firstDivergence": {
+        "rowId": "bureau-2-day-01",
+        "rowIndex": 0
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-00-out-09",
+      "definition": "relabel input +0, output -9",
+      "exact": false,
+      "family": "enum_relabel",
+      "firstDivergence": {
+        "rowId": "bureau-2-day-01",
+        "rowIndex": 0
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-00-out-10",
+      "definition": "relabel input +0, output -10",
+      "exact": false,
+      "family": "enum_relabel",
+      "firstDivergence": {
+        "rowId": "bureau-2-day-01",
+        "rowIndex": 0
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-00-out-11",
+      "definition": "relabel input +0, output -11",
+      "exact": false,
+      "family": "enum_relabel",
+      "firstDivergence": {
+        "rowId": "bureau-2-day-01",
+        "rowIndex": 0
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-01-out-00",
+      "definition": "relabel input +1, output -0",
+      "exact": false,
+      "family": "enum_relabel",
+      "firstDivergence": {
+        "rowId": "bureau-2-day-01",
+        "rowIndex": 0
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-01-out-01",
+      "definition": "relabel input +1, output -1",
+      "exact": false,
+      "family": "enum_relabel",
+      "firstDivergence": {
+        "rowId": "bureau-2-day-01",
+        "rowIndex": 0
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-01-out-02",
+      "definition": "relabel input +1, output -2",
+      "exact": false,
+      "family": "enum_relabel",
+      "firstDivergence": {
+        "rowId": "bureau-2-day-01",
+        "rowIndex": 0
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-01-out-03",
+      "definition": "relabel input +1, output -3",
+      "exact": false,
+      "family": "enum_relabel",
+      "firstDivergence": {
+        "rowId": "bureau-2-day-01",
+        "rowIndex": 0
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-01-out-04",
+      "definition": "relabel input +1, output -4",
+      "exact": false,
+      "family": "enum_relabel",
+      "firstDivergence": {
+        "rowId": "bureau-2-day-01",
+        "rowIndex": 0
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-01-out-05",
+      "definition": "relabel input +1, output -5",
+      "exact": false,
+      "family": "enum_relabel",
+      "firstDivergence": {
+        "rowId": "bureau-2-day-01",
+        "rowIndex": 0
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-01-out-06",
+      "definition": "relabel input +1, output -6",
+      "exact": false,
+      "family": "enum_relabel",
+      "firstDivergence": {
+        "rowId": "bureau-2-day-01",
+        "rowIndex": 0
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-01-out-07",
+      "definition": "relabel input +1, output -7",
+      "exact": true,
+      "family": "enum_relabel",
+      "firstDivergence": null,
+      "matchCount": 150,
+      "mismatchCount": 0,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-01-out-08",
+      "definition": "relabel input +1, output -8",
+      "exact": false,
+      "family": "enum_relabel",
+      "firstDivergence": {
+        "rowId": "bureau-2-day-01",
+        "rowIndex": 0
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-01-out-09",
+      "definition": "relabel input +1, output -9",
+      "exact": false,
+      "family": "enum_relabel",
+      "firstDivergence": {
+        "rowId": "bureau-2-day-01",
+        "rowIndex": 0
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-01-out-10",
+      "definition": "relabel input +1, output -10",
+      "exact": false,
+      "family": "enum_relabel",
+      "firstDivergence": {
+        "rowId": "bureau-2-day-01",
+        "rowIndex": 0
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-01-out-11",
+      "definition": "relabel input +1, output -11",
+      "exact": false,
+      "family": "enum_relabel",
+      "firstDivergence": {
+        "rowId": "bureau-2-day-01",
+        "rowIndex": 0
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-02-out-00",
+      "definition": "relabel input +2, output -0",
+      "exact": false,
+      "family": "enum_relabel",
+      "firstDivergence": {
+        "rowId": "bureau-2-day-01",
+        "rowIndex": 0
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-02-out-01",
+      "definition": "relabel input +2, output -1",
+      "exact": false,
+      "family": "enum_relabel",
+      "firstDivergence": {
+        "rowId": "bureau-2-day-01",
+        "rowIndex": 0
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-02-out-02",
+      "definition": "relabel input +2, output -2",
+      "exact": false,
+      "family": "enum_relabel",
+      "firstDivergence": {
+        "rowId": "bureau-2-day-01",
+        "rowIndex": 0
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-02-out-03",
+      "definition": "relabel input +2, output -3",
+      "exact": false,
+      "family": "enum_relabel",
+      "firstDivergence": {
+        "rowId": "bureau-2-day-01",
+        "rowIndex": 0
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-02-out-04",
+      "definition": "relabel input +2, output -4",
+      "exact": false,
+      "family": "enum_relabel",
+      "firstDivergence": {
+        "rowId": "bureau-2-day-01",
+        "rowIndex": 0
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-02-out-05",
+      "definition": "relabel input +2, output -5",
+      "exact": false,
+      "family": "enum_relabel",
+      "firstDivergence": {
+        "rowId": "bureau-2-day-01",
+        "rowIndex": 0
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-02-out-06",
+      "definition": "relabel input +2, output -6",
+      "exact": false,
+      "family": "enum_relabel",
+      "firstDivergence": {
+        "rowId": "bureau-2-day-01",
+        "rowIndex": 0
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-02-out-07",
+      "definition": "relabel input +2, output -7",
+      "exact": false,
+      "family": "enum_relabel",
+      "firstDivergence": {
+        "rowId": "bureau-2-day-01",
+        "rowIndex": 0
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-02-out-08",
+      "definition": "relabel input +2, output -8",
+      "exact": true,
+      "family": "enum_relabel",
+      "firstDivergence": null,
+      "matchCount": 150,
+      "mismatchCount": 0,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-02-out-09",
+      "definition": "relabel input +2, output -9",
+      "exact": false,
+      "family": "enum_relabel",
+      "firstDivergence": {
+        "rowId": "bureau-2-day-01",
+        "rowIndex": 0
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-02-out-10",
+      "definition": "relabel input +2, output -10",
+      "exact": false,
+      "family": "enum_relabel",
+      "firstDivergence": {
+        "rowId": "bureau-2-day-01",
+        "rowIndex": 0
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-02-out-11",
+      "definition": "relabel input +2, output -11",
+      "exact": false,
+      "family": "enum_relabel",
+      "firstDivergence": {
+        "rowId": "bureau-2-day-01",
+        "rowIndex": 0
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-03-out-00",
+      "definition": "relabel input +3, output -0",
+      "exact": false,
+      "family": "enum_relabel",
+      "firstDivergence": {
+        "rowId": "bureau-2-day-01",
+        "rowIndex": 0
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-03-out-01",
+      "definition": "relabel input +3, output -1",
+      "exact": false,
+      "family": "enum_relabel",
+      "firstDivergence": {
+        "rowId": "bureau-2-day-01",
+        "rowIndex": 0
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-03-out-02",
+      "definition": "relabel input +3, output -2",
+      "exact": false,
+      "family": "enum_relabel",
+      "firstDivergence": {
+        "rowId": "bureau-2-day-01",
+        "rowIndex": 0
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-03-out-03",
+      "definition": "relabel input +3, output -3",
+      "exact": false,
+      "family": "enum_relabel",
+      "firstDivergence": {
+        "rowId": "bureau-2-day-01",
+        "rowIndex": 0
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-03-out-04",
+      "definition": "relabel input +3, output -4",
+      "exact": false,
+      "family": "enum_relabel",
+      "firstDivergence": {
+        "rowId": "bureau-2-day-01",
+        "rowIndex": 0
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-03-out-05",
+      "definition": "relabel input +3, output -5",
+      "exact": false,
+      "family": "enum_relabel",
+      "firstDivergence": {
+        "rowId": "bureau-2-day-01",
+        "rowIndex": 0
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-03-out-06",
+      "definition": "relabel input +3, output -6",
+      "exact": false,
+      "family": "enum_relabel",
+      "firstDivergence": {
+        "rowId": "bureau-2-day-01",
+        "rowIndex": 0
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-03-out-07",
+      "definition": "relabel input +3, output -7",
+      "exact": false,
+      "family": "enum_relabel",
+      "firstDivergence": {
+        "rowId": "bureau-2-day-01",
+        "rowIndex": 0
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-03-out-08",
+      "definition": "relabel input +3, output -8",
+      "exact": false,
+      "family": "enum_relabel",
+      "firstDivergence": {
+        "rowId": "bureau-2-day-01",
+        "rowIndex": 0
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-03-out-09",
+      "definition": "relabel input +3, output -9",
+      "exact": true,
+      "family": "enum_relabel",
+      "firstDivergence": null,
+      "matchCount": 150,
+      "mismatchCount": 0,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-03-out-10",
+      "definition": "relabel input +3, output -10",
+      "exact": false,
+      "family": "enum_relabel",
+      "firstDivergence": {
+        "rowId": "bureau-2-day-01",
+        "rowIndex": 0
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-03-out-11",
+      "definition": "relabel input +3, output -11",
+      "exact": false,
+      "family": "enum_relabel",
+      "firstDivergence": {
+        "rowId": "bureau-2-day-01",
+        "rowIndex": 0
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-04-out-00",
+      "definition": "relabel input +4, output -0",
+      "exact": false,
+      "family": "enum_relabel",
+      "firstDivergence": {
+        "rowId": "bureau-2-day-01",
+        "rowIndex": 0
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-04-out-01",
+      "definition": "relabel input +4, output -1",
+      "exact": false,
+      "family": "enum_relabel",
+      "firstDivergence": {
+        "rowId": "bureau-2-day-01",
+        "rowIndex": 0
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-04-out-02",
+      "definition": "relabel input +4, output -2",
+      "exact": false,
+      "family": "enum_relabel",
+      "firstDivergence": {
+        "rowId": "bureau-2-day-01",
+        "rowIndex": 0
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-04-out-03",
+      "definition": "relabel input +4, output -3",
+      "exact": false,
+      "family": "enum_relabel",
+      "firstDivergence": {
+        "rowId": "bureau-2-day-01",
+        "rowIndex": 0
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-04-out-04",
+      "definition": "relabel input +4, output -4",
+      "exact": false,
+      "family": "enum_relabel",
+      "firstDivergence": {
+        "rowId": "bureau-2-day-01",
+        "rowIndex": 0
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-04-out-05",
+      "definition": "relabel input +4, output -5",
+      "exact": false,
+      "family": "enum_relabel",
+      "firstDivergence": {
+        "rowId": "bureau-2-day-01",
+        "rowIndex": 0
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-04-out-06",
+      "definition": "relabel input +4, output -6",
+      "exact": false,
+      "family": "enum_relabel",
+      "firstDivergence": {
+        "rowId": "bureau-2-day-01",
+        "rowIndex": 0
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-04-out-07",
+      "definition": "relabel input +4, output -7",
+      "exact": false,
+      "family": "enum_relabel",
+      "firstDivergence": {
+        "rowId": "bureau-2-day-01",
+        "rowIndex": 0
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-04-out-08",
+      "definition": "relabel input +4, output -8",
+      "exact": false,
+      "family": "enum_relabel",
+      "firstDivergence": {
+        "rowId": "bureau-2-day-01",
+        "rowIndex": 0
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-04-out-09",
+      "definition": "relabel input +4, output -9",
+      "exact": false,
+      "family": "enum_relabel",
+      "firstDivergence": {
+        "rowId": "bureau-2-day-01",
+        "rowIndex": 0
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-04-out-10",
+      "definition": "relabel input +4, output -10",
+      "exact": true,
+      "family": "enum_relabel",
+      "firstDivergence": null,
+      "matchCount": 150,
+      "mismatchCount": 0,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-04-out-11",
+      "definition": "relabel input +4, output -11",
+      "exact": false,
+      "family": "enum_relabel",
+      "firstDivergence": {
+        "rowId": "bureau-2-day-01",
+        "rowIndex": 0
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-05-out-00",
+      "definition": "relabel input +5, output -0",
+      "exact": false,
+      "family": "enum_relabel",
+      "firstDivergence": {
+        "rowId": "bureau-2-day-01",
+        "rowIndex": 0
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-05-out-01",
+      "definition": "relabel input +5, output -1",
+      "exact": false,
+      "family": "enum_relabel",
+      "firstDivergence": {
+        "rowId": "bureau-2-day-01",
+        "rowIndex": 0
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-05-out-02",
+      "definition": "relabel input +5, output -2",
+      "exact": false,
+      "family": "enum_relabel",
+      "firstDivergence": {
+        "rowId": "bureau-2-day-01",
+        "rowIndex": 0
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-05-out-03",
+      "definition": "relabel input +5, output -3",
+      "exact": false,
+      "family": "enum_relabel",
+      "firstDivergence": {
+        "rowId": "bureau-2-day-01",
+        "rowIndex": 0
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-05-out-04",
+      "definition": "relabel input +5, output -4",
+      "exact": false,
+      "family": "enum_relabel",
+      "firstDivergence": {
+        "rowId": "bureau-2-day-01",
+        "rowIndex": 0
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-05-out-05",
+      "definition": "relabel input +5, output -5",
+      "exact": false,
+      "family": "enum_relabel",
+      "firstDivergence": {
+        "rowId": "bureau-2-day-01",
+        "rowIndex": 0
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-05-out-06",
+      "definition": "relabel input +5, output -6",
+      "exact": false,
+      "family": "enum_relabel",
+      "firstDivergence": {
+        "rowId": "bureau-2-day-01",
+        "rowIndex": 0
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-05-out-07",
+      "definition": "relabel input +5, output -7",
+      "exact": false,
+      "family": "enum_relabel",
+      "firstDivergence": {
+        "rowId": "bureau-2-day-01",
+        "rowIndex": 0
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-05-out-08",
+      "definition": "relabel input +5, output -8",
+      "exact": false,
+      "family": "enum_relabel",
+      "firstDivergence": {
+        "rowId": "bureau-2-day-01",
+        "rowIndex": 0
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-05-out-09",
+      "definition": "relabel input +5, output -9",
+      "exact": false,
+      "family": "enum_relabel",
+      "firstDivergence": {
+        "rowId": "bureau-2-day-01",
+        "rowIndex": 0
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-05-out-10",
+      "definition": "relabel input +5, output -10",
+      "exact": false,
+      "family": "enum_relabel",
+      "firstDivergence": {
+        "rowId": "bureau-2-day-01",
+        "rowIndex": 0
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-05-out-11",
+      "definition": "relabel input +5, output -11",
+      "exact": true,
+      "family": "enum_relabel",
+      "firstDivergence": null,
+      "matchCount": 150,
+      "mismatchCount": 0,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-06-out-00",
+      "definition": "relabel input +6, output -0",
+      "exact": true,
+      "family": "enum_relabel",
+      "firstDivergence": null,
+      "matchCount": 150,
+      "mismatchCount": 0,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-06-out-01",
+      "definition": "relabel input +6, output -1",
+      "exact": false,
+      "family": "enum_relabel",
+      "firstDivergence": {
+        "rowId": "bureau-2-day-01",
+        "rowIndex": 0
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-06-out-02",
+      "definition": "relabel input +6, output -2",
+      "exact": false,
+      "family": "enum_relabel",
+      "firstDivergence": {
+        "rowId": "bureau-2-day-01",
+        "rowIndex": 0
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-06-out-03",
+      "definition": "relabel input +6, output -3",
+      "exact": false,
+      "family": "enum_relabel",
+      "firstDivergence": {
+        "rowId": "bureau-2-day-01",
+        "rowIndex": 0
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-06-out-04",
+      "definition": "relabel input +6, output -4",
+      "exact": false,
+      "family": "enum_relabel",
+      "firstDivergence": {
+        "rowId": "bureau-2-day-01",
+        "rowIndex": 0
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-06-out-05",
+      "definition": "relabel input +6, output -5",
+      "exact": false,
+      "family": "enum_relabel",
+      "firstDivergence": {
+        "rowId": "bureau-2-day-01",
+        "rowIndex": 0
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-06-out-06",
+      "definition": "relabel input +6, output -6",
+      "exact": false,
+      "family": "enum_relabel",
+      "firstDivergence": {
+        "rowId": "bureau-2-day-01",
+        "rowIndex": 0
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-06-out-07",
+      "definition": "relabel input +6, output -7",
+      "exact": false,
+      "family": "enum_relabel",
+      "firstDivergence": {
+        "rowId": "bureau-2-day-01",
+        "rowIndex": 0
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-06-out-08",
+      "definition": "relabel input +6, output -8",
+      "exact": false,
+      "family": "enum_relabel",
+      "firstDivergence": {
+        "rowId": "bureau-2-day-01",
+        "rowIndex": 0
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-06-out-09",
+      "definition": "relabel input +6, output -9",
+      "exact": false,
+      "family": "enum_relabel",
+      "firstDivergence": {
+        "rowId": "bureau-2-day-01",
+        "rowIndex": 0
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-06-out-10",
+      "definition": "relabel input +6, output -10",
+      "exact": false,
+      "family": "enum_relabel",
+      "firstDivergence": {
+        "rowId": "bureau-2-day-01",
+        "rowIndex": 0
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-06-out-11",
+      "definition": "relabel input +6, output -11",
+      "exact": false,
+      "family": "enum_relabel",
+      "firstDivergence": {
+        "rowId": "bureau-2-day-01",
+        "rowIndex": 0
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-07-out-00",
+      "definition": "relabel input +7, output -0",
+      "exact": false,
+      "family": "enum_relabel",
+      "firstDivergence": {
+        "rowId": "bureau-2-day-01",
+        "rowIndex": 0
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-07-out-01",
+      "definition": "relabel input +7, output -1",
+      "exact": true,
+      "family": "enum_relabel",
+      "firstDivergence": null,
+      "matchCount": 150,
+      "mismatchCount": 0,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-07-out-02",
+      "definition": "relabel input +7, output -2",
+      "exact": false,
+      "family": "enum_relabel",
+      "firstDivergence": {
+        "rowId": "bureau-2-day-01",
+        "rowIndex": 0
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-07-out-03",
+      "definition": "relabel input +7, output -3",
+      "exact": false,
+      "family": "enum_relabel",
+      "firstDivergence": {
+        "rowId": "bureau-2-day-01",
+        "rowIndex": 0
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-07-out-04",
+      "definition": "relabel input +7, output -4",
+      "exact": false,
+      "family": "enum_relabel",
+      "firstDivergence": {
+        "rowId": "bureau-2-day-01",
+        "rowIndex": 0
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-07-out-05",
+      "definition": "relabel input +7, output -5",
+      "exact": false,
+      "family": "enum_relabel",
+      "firstDivergence": {
+        "rowId": "bureau-2-day-01",
+        "rowIndex": 0
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-07-out-06",
+      "definition": "relabel input +7, output -6",
+      "exact": false,
+      "family": "enum_relabel",
+      "firstDivergence": {
+        "rowId": "bureau-2-day-01",
+        "rowIndex": 0
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-07-out-07",
+      "definition": "relabel input +7, output -7",
+      "exact": false,
+      "family": "enum_relabel",
+      "firstDivergence": {
+        "rowId": "bureau-2-day-01",
+        "rowIndex": 0
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-07-out-08",
+      "definition": "relabel input +7, output -8",
+      "exact": false,
+      "family": "enum_relabel",
+      "firstDivergence": {
+        "rowId": "bureau-2-day-01",
+        "rowIndex": 0
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-07-out-09",
+      "definition": "relabel input +7, output -9",
+      "exact": false,
+      "family": "enum_relabel",
+      "firstDivergence": {
+        "rowId": "bureau-2-day-01",
+        "rowIndex": 0
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-07-out-10",
+      "definition": "relabel input +7, output -10",
+      "exact": false,
+      "family": "enum_relabel",
+      "firstDivergence": {
+        "rowId": "bureau-2-day-01",
+        "rowIndex": 0
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-07-out-11",
+      "definition": "relabel input +7, output -11",
+      "exact": false,
+      "family": "enum_relabel",
+      "firstDivergence": {
+        "rowId": "bureau-2-day-01",
+        "rowIndex": 0
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-08-out-00",
+      "definition": "relabel input +8, output -0",
+      "exact": false,
+      "family": "enum_relabel",
+      "firstDivergence": {
+        "rowId": "bureau-2-day-01",
+        "rowIndex": 0
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-08-out-01",
+      "definition": "relabel input +8, output -1",
+      "exact": false,
+      "family": "enum_relabel",
+      "firstDivergence": {
+        "rowId": "bureau-2-day-01",
+        "rowIndex": 0
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-08-out-02",
+      "definition": "relabel input +8, output -2",
+      "exact": true,
+      "family": "enum_relabel",
+      "firstDivergence": null,
+      "matchCount": 150,
+      "mismatchCount": 0,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-08-out-03",
+      "definition": "relabel input +8, output -3",
+      "exact": false,
+      "family": "enum_relabel",
+      "firstDivergence": {
+        "rowId": "bureau-2-day-01",
+        "rowIndex": 0
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-08-out-04",
+      "definition": "relabel input +8, output -4",
+      "exact": false,
+      "family": "enum_relabel",
+      "firstDivergence": {
+        "rowId": "bureau-2-day-01",
+        "rowIndex": 0
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-08-out-05",
+      "definition": "relabel input +8, output -5",
+      "exact": false,
+      "family": "enum_relabel",
+      "firstDivergence": {
+        "rowId": "bureau-2-day-01",
+        "rowIndex": 0
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-08-out-06",
+      "definition": "relabel input +8, output -6",
+      "exact": false,
+      "family": "enum_relabel",
+      "firstDivergence": {
+        "rowId": "bureau-2-day-01",
+        "rowIndex": 0
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-08-out-07",
+      "definition": "relabel input +8, output -7",
+      "exact": false,
+      "family": "enum_relabel",
+      "firstDivergence": {
+        "rowId": "bureau-2-day-01",
+        "rowIndex": 0
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-08-out-08",
+      "definition": "relabel input +8, output -8",
+      "exact": false,
+      "family": "enum_relabel",
+      "firstDivergence": {
+        "rowId": "bureau-2-day-01",
+        "rowIndex": 0
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-08-out-09",
+      "definition": "relabel input +8, output -9",
+      "exact": false,
+      "family": "enum_relabel",
+      "firstDivergence": {
+        "rowId": "bureau-2-day-01",
+        "rowIndex": 0
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-08-out-10",
+      "definition": "relabel input +8, output -10",
+      "exact": false,
+      "family": "enum_relabel",
+      "firstDivergence": {
+        "rowId": "bureau-2-day-01",
+        "rowIndex": 0
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-08-out-11",
+      "definition": "relabel input +8, output -11",
+      "exact": false,
+      "family": "enum_relabel",
+      "firstDivergence": {
+        "rowId": "bureau-2-day-01",
+        "rowIndex": 0
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-09-out-00",
+      "definition": "relabel input +9, output -0",
+      "exact": false,
+      "family": "enum_relabel",
+      "firstDivergence": {
+        "rowId": "bureau-2-day-01",
+        "rowIndex": 0
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-09-out-01",
+      "definition": "relabel input +9, output -1",
+      "exact": false,
+      "family": "enum_relabel",
+      "firstDivergence": {
+        "rowId": "bureau-2-day-01",
+        "rowIndex": 0
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-09-out-02",
+      "definition": "relabel input +9, output -2",
+      "exact": false,
+      "family": "enum_relabel",
+      "firstDivergence": {
+        "rowId": "bureau-2-day-01",
+        "rowIndex": 0
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-09-out-03",
+      "definition": "relabel input +9, output -3",
+      "exact": true,
+      "family": "enum_relabel",
+      "firstDivergence": null,
+      "matchCount": 150,
+      "mismatchCount": 0,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-09-out-04",
+      "definition": "relabel input +9, output -4",
+      "exact": false,
+      "family": "enum_relabel",
+      "firstDivergence": {
+        "rowId": "bureau-2-day-01",
+        "rowIndex": 0
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-09-out-05",
+      "definition": "relabel input +9, output -5",
+      "exact": false,
+      "family": "enum_relabel",
+      "firstDivergence": {
+        "rowId": "bureau-2-day-01",
+        "rowIndex": 0
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-09-out-06",
+      "definition": "relabel input +9, output -6",
+      "exact": false,
+      "family": "enum_relabel",
+      "firstDivergence": {
+        "rowId": "bureau-2-day-01",
+        "rowIndex": 0
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-09-out-07",
+      "definition": "relabel input +9, output -7",
+      "exact": false,
+      "family": "enum_relabel",
+      "firstDivergence": {
+        "rowId": "bureau-2-day-01",
+        "rowIndex": 0
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-09-out-08",
+      "definition": "relabel input +9, output -8",
+      "exact": false,
+      "family": "enum_relabel",
+      "firstDivergence": {
+        "rowId": "bureau-2-day-01",
+        "rowIndex": 0
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-09-out-09",
+      "definition": "relabel input +9, output -9",
+      "exact": false,
+      "family": "enum_relabel",
+      "firstDivergence": {
+        "rowId": "bureau-2-day-01",
+        "rowIndex": 0
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-09-out-10",
+      "definition": "relabel input +9, output -10",
+      "exact": false,
+      "family": "enum_relabel",
+      "firstDivergence": {
+        "rowId": "bureau-2-day-01",
+        "rowIndex": 0
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-09-out-11",
+      "definition": "relabel input +9, output -11",
+      "exact": false,
+      "family": "enum_relabel",
+      "firstDivergence": {
+        "rowId": "bureau-2-day-01",
+        "rowIndex": 0
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-10-out-00",
+      "definition": "relabel input +10, output -0",
+      "exact": false,
+      "family": "enum_relabel",
+      "firstDivergence": {
+        "rowId": "bureau-2-day-01",
+        "rowIndex": 0
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-10-out-01",
+      "definition": "relabel input +10, output -1",
+      "exact": false,
+      "family": "enum_relabel",
+      "firstDivergence": {
+        "rowId": "bureau-2-day-01",
+        "rowIndex": 0
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-10-out-02",
+      "definition": "relabel input +10, output -2",
+      "exact": false,
+      "family": "enum_relabel",
+      "firstDivergence": {
+        "rowId": "bureau-2-day-01",
+        "rowIndex": 0
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-10-out-03",
+      "definition": "relabel input +10, output -3",
+      "exact": false,
+      "family": "enum_relabel",
+      "firstDivergence": {
+        "rowId": "bureau-2-day-01",
+        "rowIndex": 0
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-10-out-04",
+      "definition": "relabel input +10, output -4",
+      "exact": true,
+      "family": "enum_relabel",
+      "firstDivergence": null,
+      "matchCount": 150,
+      "mismatchCount": 0,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-10-out-05",
+      "definition": "relabel input +10, output -5",
+      "exact": false,
+      "family": "enum_relabel",
+      "firstDivergence": {
+        "rowId": "bureau-2-day-01",
+        "rowIndex": 0
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-10-out-06",
+      "definition": "relabel input +10, output -6",
+      "exact": false,
+      "family": "enum_relabel",
+      "firstDivergence": {
+        "rowId": "bureau-2-day-01",
+        "rowIndex": 0
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-10-out-07",
+      "definition": "relabel input +10, output -7",
+      "exact": false,
+      "family": "enum_relabel",
+      "firstDivergence": {
+        "rowId": "bureau-2-day-01",
+        "rowIndex": 0
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-10-out-08",
+      "definition": "relabel input +10, output -8",
+      "exact": false,
+      "family": "enum_relabel",
+      "firstDivergence": {
+        "rowId": "bureau-2-day-01",
+        "rowIndex": 0
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-10-out-09",
+      "definition": "relabel input +10, output -9",
+      "exact": false,
+      "family": "enum_relabel",
+      "firstDivergence": {
+        "rowId": "bureau-2-day-01",
+        "rowIndex": 0
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-10-out-10",
+      "definition": "relabel input +10, output -10",
+      "exact": false,
+      "family": "enum_relabel",
+      "firstDivergence": {
+        "rowId": "bureau-2-day-01",
+        "rowIndex": 0
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-10-out-11",
+      "definition": "relabel input +10, output -11",
+      "exact": false,
+      "family": "enum_relabel",
+      "firstDivergence": {
+        "rowId": "bureau-2-day-01",
+        "rowIndex": 0
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-11-out-00",
+      "definition": "relabel input +11, output -0",
+      "exact": false,
+      "family": "enum_relabel",
+      "firstDivergence": {
+        "rowId": "bureau-2-day-01",
+        "rowIndex": 0
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-11-out-01",
+      "definition": "relabel input +11, output -1",
+      "exact": false,
+      "family": "enum_relabel",
+      "firstDivergence": {
+        "rowId": "bureau-2-day-01",
+        "rowIndex": 0
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-11-out-02",
+      "definition": "relabel input +11, output -2",
+      "exact": false,
+      "family": "enum_relabel",
+      "firstDivergence": {
+        "rowId": "bureau-2-day-01",
+        "rowIndex": 0
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-11-out-03",
+      "definition": "relabel input +11, output -3",
+      "exact": false,
+      "family": "enum_relabel",
+      "firstDivergence": {
+        "rowId": "bureau-2-day-01",
+        "rowIndex": 0
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-11-out-04",
+      "definition": "relabel input +11, output -4",
+      "exact": false,
+      "family": "enum_relabel",
+      "firstDivergence": {
+        "rowId": "bureau-2-day-01",
+        "rowIndex": 0
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-11-out-05",
+      "definition": "relabel input +11, output -5",
+      "exact": true,
+      "family": "enum_relabel",
+      "firstDivergence": null,
+      "matchCount": 150,
+      "mismatchCount": 0,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-11-out-06",
+      "definition": "relabel input +11, output -6",
+      "exact": false,
+      "family": "enum_relabel",
+      "firstDivergence": {
+        "rowId": "bureau-2-day-01",
+        "rowIndex": 0
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-11-out-07",
+      "definition": "relabel input +11, output -7",
+      "exact": false,
+      "family": "enum_relabel",
+      "firstDivergence": {
+        "rowId": "bureau-2-day-01",
+        "rowIndex": 0
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-11-out-08",
+      "definition": "relabel input +11, output -8",
+      "exact": false,
+      "family": "enum_relabel",
+      "firstDivergence": {
+        "rowId": "bureau-2-day-01",
+        "rowIndex": 0
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-11-out-09",
+      "definition": "relabel input +11, output -9",
+      "exact": false,
+      "family": "enum_relabel",
+      "firstDivergence": {
+        "rowId": "bureau-2-day-01",
+        "rowIndex": 0
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-11-out-10",
+      "definition": "relabel input +11, output -10",
+      "exact": false,
+      "family": "enum_relabel",
+      "firstDivergence": {
+        "rowId": "bureau-2-day-01",
+        "rowIndex": 0
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "enum-relabel-in-11-out-11",
+      "definition": "relabel input +11, output -11",
+      "exact": false,
+      "family": "enum_relabel",
+      "firstDivergence": {
+        "rowId": "bureau-2-day-01",
+        "rowIndex": 0
+      },
+      "matchCount": 0,
+      "mismatchCount": 150,
+      "testedRowCount": 150
+    },
+    {
+      "candidateId": "source-base-direction",
+      "definition": "source = mod(4 - integrated Ziwei ordinal)",
+      "exact": true,
+      "family": "source_base_direction",
+      "firstDivergence": null,
+      "matchCount": 150,
+      "mismatchCount": 0,
+      "testedRowCount": 150
+    }
+  ]
+}

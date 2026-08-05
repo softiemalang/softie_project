@@ -1,0 +1,111 @@
+{
+  "edges": [
+    {
+      "from": "source-p7-shi-er-gong-guan-gai",
+      "relation": "supports",
+      "to": "direct_source_witness"
+    },
+    {
+      "from": "source-p8-ming-shen-rule",
+      "relation": "supports",
+      "to": "direct_source_witness"
+    },
+    {
+      "from": "source-p11-ziwei-five-jue",
+      "relation": "supports",
+      "to": "direct_source_witness"
+    },
+    {
+      "from": "source-p12-ziwei-jian-suo",
+      "relation": "supports",
+      "to": "direct_source_witness"
+    },
+    {
+      "from": "source-p13-tianfu-table",
+      "relation": "supports",
+      "to": "direct_source_witness"
+    },
+    {
+      "from": "src/ziwei/ziweiContract.js",
+      "relation": "supports",
+      "to": "repository_convention"
+    },
+    {
+      "from": "src/ziwei/ziweiResolver.js",
+      "relation": "supports",
+      "to": "repository_convention"
+    },
+    {
+      "from": "src/ziwei/starPlacementRules.js",
+      "relation": "supports",
+      "to": "repository_convention"
+    },
+    {
+      "from": "src/ziwei/starResolver.js",
+      "relation": "supports",
+      "to": "repository_convention"
+    },
+    {
+      "from": "src/ziwei/ziweiPalaceContext.js",
+      "relation": "supports",
+      "to": "repository_convention"
+    },
+    {
+      "from": "src/ziwei/palaceRelationRules.js",
+      "relation": "supports",
+      "to": "repository_convention"
+    },
+    {
+      "from": "src/ziwei/externalZiweiFixtures.js",
+      "relation": "supports",
+      "to": "repository_convention"
+    },
+    {
+      "from": "artifacts/ziwei-major-star-coordinate-provenance-v0/complete.json",
+      "relation": "supports",
+      "to": "repository_convention"
+    },
+    {
+      "from": "artifacts/ziwei-tianfu-convention-provenance-v0/complete.json",
+      "relation": "supports",
+      "to": "repository_convention"
+    },
+    {
+      "from": "artifacts/ziwei-system-evidence-readiness-coverage-map-v0/complete.json",
+      "relation": "supports",
+      "to": "repository_convention"
+    },
+    {
+      "from": "exact_transform",
+      "relation": "does_not_promote",
+      "to": "semantic_identity"
+    },
+    {
+      "from": "semantic_identity",
+      "relation": "blocked_by",
+      "to": "blocker-palace-semantic-identity"
+    }
+  ],
+  "nodes": [
+    "direct_source_witness",
+    "repository_convention",
+    "exact_transform",
+    "semantic_identity",
+    "source-p7-shi-er-gong-guan-gai",
+    "source-p8-ming-shen-rule",
+    "source-p11-ziwei-five-jue",
+    "source-p12-ziwei-jian-suo",
+    "source-p13-tianfu-table",
+    "src/ziwei/ziweiContract.js",
+    "src/ziwei/ziweiResolver.js",
+    "src/ziwei/starPlacementRules.js",
+    "src/ziwei/starResolver.js",
+    "src/ziwei/ziweiPalaceContext.js",
+    "src/ziwei/palaceRelationRules.js",
+    "src/ziwei/externalZiweiFixtures.js",
+    "artifacts/ziwei-major-star-coordinate-provenance-v0/complete.json",
+    "artifacts/ziwei-tianfu-convention-provenance-v0/complete.json",
+    "artifacts/ziwei-system-evidence-readiness-coverage-map-v0/complete.json",
+    "blocker-palace-semantic-identity"
+  ]
+}

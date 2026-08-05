@@ -1,0 +1,23 @@
+{
+  "forbidden": [
+    "production choice",
+    "enum/API/schema change",
+    "readiness activation",
+    "confidence score",
+    "interpretation"
+  ],
+  "humanReviewRequired": true,
+  "reviewQuestions": [
+    "Does p7 diagram actually assert palace names or only branch/compass positions?",
+    "Does p8 use the same coordinate frame as the 12-palace semantic labels?",
+    "Can any exact transform be rejected or accepted semantically from the new witness without changing production?"
+  ],
+  "reviewerMustPreserve": [
+    "raw branch/ordinal values",
+    "all 170 candidates and 150 rows",
+    "first divergences",
+    "sourceRefs and hashes",
+    "blocked semantic verdict"
+  ],
+  "verdictToken": "complete_ziwei_palace_coordinate_semantic_identity_evidence_uncommitted"
+}

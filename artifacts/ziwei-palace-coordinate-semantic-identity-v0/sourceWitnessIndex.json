@@ -1,0 +1,143 @@
+{
+  "diagram": {
+    "clockwiseSequence": [
+      "巳",
+      "午",
+      "未",
+      "申",
+      "酉",
+      "戌",
+      "亥",
+      "子",
+      "丑",
+      "寅",
+      "卯",
+      "辰"
+    ],
+    "positionBasis": "p7 observed perimeter slots",
+    "semanticIdentity": "unresolved"
+  },
+  "priorScreening": {
+    "screenedPages": 219,
+    "screeningModified": false,
+    "sourceCorpusArtifact": "artifacts/ziwei-major-star-source-corpus-provenance-v0/complete.json"
+  },
+  "source": {
+    "actualBytesVerified": true,
+    "pages": 219,
+    "path": "/Users/softie/Documents/命-南北山人_紫微斗数全书.pdf",
+    "sha256": "4786a94ab454acdabf9716d7c0db4756dbcbde99a88bc45fda254863c1961023"
+  },
+  "sourceRefs": [
+    {
+      "id": "source-p7-shi-er-gong-guan-gai",
+      "identityEvidence": "branch labels and diagram positions only; no palace-name mapping",
+      "page": 7,
+      "pdf": {
+        "pages": 219,
+        "path": "/Users/softie/Documents/命-南北山人_紫微斗数全书.pdf",
+        "sha256": "4786a94ab454acdabf9716d7c0db4756dbcbde99a88bc45fda254863c1961023"
+      },
+      "reading": "12-cell perimeter diagram visibly labels 巳午未申 / 酉戌 / 亥子丑寅 / 卯辰; clockwise physical sequence is recorded without assigning palace names.",
+      "region": {
+        "bboxPx": {
+          "height": 2040,
+          "width": 1840,
+          "x": 2460,
+          "y": 290
+        },
+        "renderDpi": 110,
+        "renderedFileSha256": "ebbdcf1a35d21e0fcf4339182af2df3ad290c279b8627bab9dc7f80156083bac"
+      },
+      "role": "direct_diagram_witness"
+    },
+    {
+      "id": "source-p8-ming-shen-rule",
+      "identityEvidence": "direction and branch traversal only; no shared semantic identity",
+      "page": 8,
+      "pdf": {
+        "pages": 219,
+        "path": "/Users/softie/Documents/命-南北山人_紫微斗数全书.pdf",
+        "sha256": "4786a94ab454acdabf9716d7c0db4756dbcbde99a88bc45fda254863c1961023"
+      },
+      "reading": "命宮逆數 and 身宮順數 are legible from 寅起月 wording; branch traversal vocabulary is retained.",
+      "region": {
+        "bboxPx": {
+          "height": 2700,
+          "width": 2060,
+          "x": 180,
+          "y": 180
+        },
+        "renderDpi": 110,
+        "renderedFileSha256": "d740c6ed5191e516f40ee61bda7f95ff2081954b21b091c22bee9c0249e8acea"
+      },
+      "role": "direct_traversal_witness"
+    },
+    {
+      "id": "source-p11-ziwei-five-jue",
+      "identityEvidence": "star-to-branch coordinate rule; no palace-name mapping",
+      "page": 11,
+      "pdf": {
+        "pages": 219,
+        "path": "/Users/softie/Documents/命-南北山人_紫微斗数全书.pdf",
+        "sha256": "4786a94ab454acdabf9716d7c0db4756dbcbde99a88bc45fda254863c1961023"
+      },
+      "reading": "起紫微五訣 gives 寅 base and branch progression rules.",
+      "region": {
+        "bboxPx": {
+          "height": 2850,
+          "width": 2050,
+          "x": 170,
+          "y": 140
+        },
+        "renderDpi": 110,
+        "renderedFileSha256": "3768f215e3736ebb1e06d76fb93fa8c304b09c74fac480d14c41aafe7f9355e9"
+      },
+      "role": "direct_star_coordinate_witness"
+    },
+    {
+      "id": "source-p12-ziwei-jian-suo",
+      "identityEvidence": "lookup values and table direction only; no shared semantic identity",
+      "page": 12,
+      "pdf": {
+        "pages": 219,
+        "path": "/Users/softie/Documents/命-南北山人_紫微斗数全书.pdf",
+        "sha256": "4786a94ab454acdabf9716d7c0db4756dbcbde99a88bc45fda254863c1961023"
+      },
+      "reading": "起紫微簡索表 supplies the 5 bureaus × 30 days = 150-row Ziwei branch table.",
+      "region": {
+        "bboxPx": {
+          "height": 2900,
+          "width": 2050,
+          "x": 190,
+          "y": 120
+        },
+        "renderDpi": 110,
+        "renderedFileSha256": "e22ec2dab2d1b2c82df72e030cb7a254e65f5372e8a6a2ac7aa00634c9e06d9d"
+      },
+      "role": "direct_lookup_table_witness"
+    },
+    {
+      "id": "source-p13-tianfu-table",
+      "identityEvidence": "star-to-branch coordinate rule; no shared palace-name mapping",
+      "page": 13,
+      "pdf": {
+        "pages": 219,
+        "path": "/Users/softie/Documents/命-南北山人_紫微斗数全书.pdf",
+        "sha256": "4786a94ab454acdabf9716d7c0db4756dbcbde99a88bc45fda254863c1961023"
+      },
+      "reading": "甲六、安天府 gives the 12-row 紫微→天府 branch table in source-table order.",
+      "region": {
+        "bboxPx": {
+          "height": 2750,
+          "width": 1900,
+          "x": 2420,
+          "y": 180
+        },
+        "renderDpi": 110,
+        "renderedFileSha256": "97542bc948edb8e9f0c0dcfd316940cc5d2cf04001006e54ab38ea8422aeeddd"
+      },
+      "role": "direct_lookup_table_witness"
+    }
+  ]
+}

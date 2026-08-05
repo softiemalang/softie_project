@@ -1,0 +1,62 @@
+{
+  "accept": [
+    "actual immutable scan bytes",
+    "page/folio identity",
+    "complete readable glyph/layout/table boundary",
+    "mapping independently reviewable"
+  ],
+  "metadata": [
+    "title",
+    "author/editor",
+    "edition/print year",
+    "repository/call number",
+    "volume",
+    "printed page/folio",
+    "scan settings",
+    "file SHA-256",
+    "access date"
+  ],
+  "order": [
+    "P0 palace identity mapping",
+    "P0 source identity/edition linkage",
+    "P1 independent oracle comparison",
+    "P2 unresolved star rules"
+  ],
+  "priority": "P0",
+  "reject": [
+    "preview/catalog only",
+    "OCR only",
+    "partial crop hiding direction or labels",
+    "edition/source identity inferred",
+    "manual exception or normalized transcription"
+  ],
+  "requestedMaterial": [
+    {
+      "keywords": [
+        "紫微斗數 十二宮 宮位 地支",
+        "十二宮冠蓋 宮名",
+        "命宮 身宮 十二宮 表"
+      ],
+      "minimumCapture": "complete p7 diagram plus adjacent explanatory leaf; all 12 cells and labels in one continuous capture",
+      "need": "12궁 label-to-branch correspondence"
+    },
+    {
+      "keywords": [
+        "定命身二宮",
+        "命宮逆數 身宮順數",
+        "寅起月"
+      ],
+      "minimumCapture": "complete p8 rule text and any diagram/table defining the same coordinate frame",
+      "need": "命宮·身宮 anchor and direction"
+    },
+    {
+      "keywords": [
+        "書名 作者 版本 刊年 卷一",
+        "紫微斗數全書 南北山人"
+      ],
+      "minimumCapture": "title/edition/folio or page metadata plus original scan bytes",
+      "need": "edition and scan identity"
+    }
+  ],
+  "target": "palace coordinate semantic identity"
+}
