@@ -1,0 +1,85 @@
+{
+  "fields": [
+    {
+      "id": "intakeId",
+      "label": "고정 intake 식별자",
+      "required": true,
+      "userSupplied": true
+    },
+    {
+      "id": "sourceIdentity",
+      "label": "소장처/기관·원본 URL 또는 서가/청구기호·원본 파일명",
+      "required": true,
+      "userSupplied": true
+    },
+    {
+      "id": "titleAuthor",
+      "label": "서명·저자/편자·권책",
+      "required": true,
+      "userSupplied": true
+    },
+    {
+      "id": "edition",
+      "label": "판본·간행/인쇄 연도·판권/간기·언어",
+      "required": true,
+      "userSupplied": true
+    },
+    {
+      "id": "location",
+      "label": "도서관/고서점/아카이브 위치·열람/다운로드 위치·쪽/엽",
+      "required": true,
+      "userSupplied": true
+    },
+    {
+      "id": "discoveryText",
+      "label": "발견한 원문 문구(보이는 대로, 정규화 금지)",
+      "required": true,
+      "userSupplied": true
+    },
+    {
+      "id": "diagramDirection",
+      "label": "도식 방향·위/아래·시계/반시계·화살표와 그 주어",
+      "required": true,
+      "userSupplied": true
+    },
+    {
+      "id": "correspondence",
+      "label": "지지↔궁명↔diagram slot↔ordinal↔기산점↔순역 대응",
+      "required": true,
+      "userSupplied": true
+    },
+    {
+      "id": "captureFiles",
+      "label": "촬영/다운로드 원본 파일명·파일 목록·각 파일 SHA-256(가능하면)",
+      "required": true,
+      "userSupplied": true
+    },
+    {
+      "id": "digitalMetadata",
+      "label": "URL·소장처·파일명·페이지 수·다운로드 시각·bytes hash",
+      "required": false,
+      "userSupplied": true
+    },
+    {
+      "id": "uncertainties",
+      "label": "읽기 불명 glyph·잘림·판본/identity·방향·연결 미확정 사항",
+      "required": true,
+      "userSupplied": true
+    },
+    {
+      "id": "triage",
+      "label": "candidate/promising/review_ready/potentially_sufficient/rejected 및 근거",
+      "required": true,
+      "userSupplied": true
+    }
+  ],
+  "forbidden": [
+    "OCR-only submission",
+    "invented citation/page/edition",
+    "normalized transcription replacing image",
+    "confidence score",
+    "semantic acceptance verdict"
+  ],
+  "formVersion": "0.1.0",
+  "oneRecordPerMaterial": true
+}

@@ -1,0 +1,83 @@
+{
+  "requiredTargetCount": 5,
+  "sourceRefClosure": true,
+  "targets": [
+    {
+      "acceptance": "directly readable source witness connects all five fields; no inferred label assignment",
+      "connection": "palace name ↔ branch ↔ diagram position ↔ ordinal ↔ direction",
+      "id": "palace_names",
+      "label": "12궁명",
+      "requiredWitness": [
+        "main_text_sentence",
+        "table",
+        "rule_formula",
+        "original_diagram",
+        "edition_note"
+      ],
+      "sourceRefs": [
+        "source-p7-shi-er-gong-guan-gai",
+        "source-p8-ming-shen-rule"
+      ]
+    },
+    {
+      "acceptance": "all relevant branch glyphs and their order are visible in context",
+      "connection": "branch token ↔ named palace and physical slot",
+      "id": "earthly_branches",
+      "label": "子丑寅… 지지",
+      "requiredWitness": [
+        "main_text_sentence",
+        "table",
+        "original_diagram"
+      ],
+      "sourceRefs": [
+        "source-p7-shi-er-gong-guan-gai",
+        "source-p11-ziwei-five-jue",
+        "source-p12-ziwei-jian-suo"
+      ]
+    },
+    {
+      "acceptance": "complete diagram boundary, orientation and all 12 cells are reviewable",
+      "connection": "palace/branch label ↔ physical diagram slot",
+      "id": "diagram_positions",
+      "label": "도식 실제 위치",
+      "requiredWitness": [
+        "original_diagram",
+        "edition_note"
+      ],
+      "sourceRefs": [
+        "source-p7-shi-er-gong-guan-gai"
+      ]
+    },
+    {
+      "acceptance": "starting point and counting/order are stated, not reconstructed from output",
+      "connection": "declared starting point ↔ ordinal/order",
+      "id": "ordinal_origin",
+      "label": "ordinal·기산점",
+      "requiredWitness": [
+        "main_text_sentence",
+        "table",
+        "rule_formula"
+      ],
+      "sourceRefs": [
+        "source-p8-ming-shen-rule",
+        "source-p11-ziwei-five-jue",
+        "source-p12-ziwei-jian-suo"
+      ]
+    },
+    {
+      "acceptance": "direction words/arrows and their subject are visible in the same witness context",
+      "connection": "named operation ↔ direction/order",
+      "id": "direction",
+      "label": "순행·역행 방향",
+      "requiredWitness": [
+        "main_text_sentence",
+        "rule_formula",
+        "original_diagram"
+      ],
+      "sourceRefs": [
+        "source-p8-ming-shen-rule",
+        "source-p12-ziwei-jian-suo"
+      ]
+    }
+  ]
+}

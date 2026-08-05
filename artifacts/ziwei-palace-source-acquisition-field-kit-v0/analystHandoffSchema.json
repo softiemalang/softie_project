@@ -1,0 +1,55 @@
+{
+  "analystConstraints": [
+    "preserve raw glyphs/layout and occurrence-level observations",
+    "do not select identity/rotation/production rule",
+    "do not alter sealed packet",
+    "report conflicts without reconciliation",
+    "human review required"
+  ],
+  "outputBoundary": {
+    "allowed": [
+      "analyst review packet",
+      "bounded sourceRefs",
+      "provenance audit"
+    ],
+    "forbidden": [
+      "source adoption",
+      "production change",
+      "readiness/grounding/activation change",
+      "interpretation/ranking/LLM"
+    ]
+  },
+  "required": [
+    "kitVersion",
+    "intakeRecord",
+    "sourceIdentity",
+    "edition",
+    "location",
+    "witnessFiles",
+    "targetCoverage",
+    "rawObservedText",
+    "diagramDirection",
+    "correspondence",
+    "uncertainties",
+    "triage"
+  ],
+  "schema": "ziwei-palace-source-acquisition-analyst-handoff-v0",
+  "targetCoverage": {
+    "each": [
+      "targetId",
+      "status",
+      "intakeFieldRefs",
+      "sourceRefBasis"
+    ]
+  },
+  "witnessFiles": {
+    "each": [
+      "fileName",
+      "kind",
+      "byteSha256",
+      "pageOrFolio",
+      "captureScope",
+      "uneditedOriginal"
+    ]
+  }
+}

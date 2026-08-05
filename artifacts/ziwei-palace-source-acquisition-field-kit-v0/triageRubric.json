@@ -1,0 +1,26 @@
+{
+  "levels": [
+    {
+      "id": "candidate",
+      "rule": "키워드만 관련; witness/판본 identity 미확보"
+    },
+    {
+      "id": "promising",
+      "rule": "연결 요소 일부 존재; identity 또는 문맥이 아직 부족"
+    },
+    {
+      "id": "review_ready",
+      "rule": "판본 identity와 필요한 문맥·전체 면을 확보했으나 다섯 요소 직접 연결은 미심사"
+    },
+    {
+      "id": "potentially_sufficient",
+      "rule": "다섯 연결 요소를 직접 이어주는 witness가 있어 human review에 제출 가능; 채택 아님"
+    },
+    {
+      "id": "rejected",
+      "rule": "출처 불명, 재작성 도식, OCR-only, 잘린 표, 방향·기산점 부재 등"
+    }
+  ],
+  "purpose": "수색 진행 상태를 표시하는 operational triage이며 confidence 점수나 원문 채택 판정이 아니다.",
+  "transitionGuard": "level은 intake 증거의 보유 상태만 표현하며 semantic truth/readiness/production으로 승격하지 않는다."
+}

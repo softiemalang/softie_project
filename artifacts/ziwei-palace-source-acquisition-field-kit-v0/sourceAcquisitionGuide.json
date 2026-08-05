@@ -1,0 +1,175 @@
+{
+  "acquisitionSteps": [
+    "도서관/고서점/온라인 아카이브에서 canonical term으로 찾는다.",
+    "발견 즉시 표지·서명/저자·판권/간기·목차를 먼저 촬영한다.",
+    "대상 면은 전체 면, 앞뒤 문맥, 페이지/엽 번호를 포함해 촬영한다.",
+    "표·도식의 선·화살표·방향·기산점이 프레임 안에 있도록 한다.",
+    "디지털 자료는 원본 URL/소장처, 파일명, 페이지 수, 다운로드 시각을 기록하고 가능하면 실제 다운로드 bytes의 SHA-256을 계산한다.",
+    "원본 bytes와 촬영 파일을 변경하지 않고 intake form을 채운다."
+  ],
+  "fiveConnections": [
+    {
+      "acceptance": "directly readable source witness connects all five fields; no inferred label assignment",
+      "connection": "palace name ↔ branch ↔ diagram position ↔ ordinal ↔ direction",
+      "id": "palace_names",
+      "label": "12궁명"
+    },
+    {
+      "acceptance": "all relevant branch glyphs and their order are visible in context",
+      "connection": "branch token ↔ named palace and physical slot",
+      "id": "earthly_branches",
+      "label": "子丑寅… 지지"
+    },
+    {
+      "acceptance": "complete diagram boundary, orientation and all 12 cells are reviewable",
+      "connection": "palace/branch label ↔ physical diagram slot",
+      "id": "diagram_positions",
+      "label": "도식 실제 위치"
+    },
+    {
+      "acceptance": "starting point and counting/order are stated, not reconstructed from output",
+      "connection": "declared starting point ↔ ordinal/order",
+      "id": "ordinal_origin",
+      "label": "ordinal·기산점"
+    },
+    {
+      "acceptance": "direction words/arrows and their subject are visible in the same witness context",
+      "connection": "named operation ↔ direction/order",
+      "id": "direction",
+      "label": "순행·역행 방향"
+    }
+  ],
+  "minimumCapture": [
+    "cover",
+    "title_author",
+    "copyright_colophon",
+    "table_of_contents",
+    "target_page_full",
+    "adjacent_context_before_after",
+    "page_or_folio_marker"
+  ],
+  "rejection": [
+    "catalog/preview만",
+    "OCR·전사만",
+    "잘린 도식·표·라벨",
+    "출처 identity를 추측한 캡처",
+    "방향·기산점 없는 결과표",
+    "재작성/정규화한 도식"
+  ],
+  "scope": "수색·촬영·기록만 수행한다. 원문 채택, production 선택, readiness/grounding/activation 변경은 하지 않는다.",
+  "search": {
+    "families": [
+      {
+        "id": "palace-mapping",
+        "terms": [
+          "紫微斗數 十二宮 宮位 地支",
+          "十二宮冠蓋 宮名",
+          "命宮 身宮 十二宮 表"
+        ],
+        "variants": {
+          "korean_hanja": [
+            "紫微斗數 十二宮 宮位 地支",
+            "十二宮冠蓋 宮名",
+            "命宮 身宮 十二宮 表"
+          ],
+          "simplified": [
+            "紫微斗数 十二宫 宫位 地支",
+            "十二宫冠盖 宫名",
+            "命宫 身宫 十二宫 表"
+          ],
+          "traditional": [
+            "紫微斗數 十二宮 宮位 地支",
+            "十二宮冠蓋 宮名",
+            "命宮 身宮 十二宮 表"
+          ]
+        }
+      },
+      {
+        "id": "ming-shen-direction",
+        "terms": [
+          "定命身二宮",
+          "命宮逆數 身宮順數",
+          "寅起月"
+        ],
+        "variants": {
+          "korean_hanja": [
+            "定命身二宮",
+            "命宮逆數 身宮順數",
+            "寅起月"
+          ],
+          "simplified": [
+            "定命身二宫",
+            "命宫逆数 身宫顺数",
+            "寅起月"
+          ],
+          "traditional": [
+            "定命身二宮",
+            "命宮逆數 身宮順數",
+            "寅起月"
+          ]
+        }
+      },
+      {
+        "id": "edition-identity",
+        "terms": [
+          "書名 作者 版本 刊年 卷一",
+          "紫微斗數全書 南北山人"
+        ],
+        "variants": {
+          "korean_hanja": [
+            "書名 作者 版本 刊年 卷一",
+            "紫微斗數全書 南北山人"
+          ],
+          "simplified": [
+            "书名 作者 版本 刊年 卷一",
+            "紫微斗数全书 南北山人"
+          ],
+          "traditional": [
+            "書名 作者 版本 刊年 卷一",
+            "紫微斗數全書 南北山人"
+          ]
+        }
+      }
+    ],
+    "rule": "terms는 기존 sealed packet의 sourceAcquisitionBrief.requestedMaterial에서만 materialize한다.",
+    "ungroundedVariants": [
+      {
+        "language": "korean_spoken_or_translated",
+        "reason": "기존 packet에 해당 번역어가 없어 자동 생성하지 않음",
+        "status": "requires_human_definition"
+      }
+    ]
+  },
+  "witnessTypes": [
+    {
+      "evidenceClass": "candidate_source_witness",
+      "id": "main_text_sentence",
+      "label": "본문 문장",
+      "use": "원문 문장이 연결 관계를 직접 말하는 면"
+    },
+    {
+      "evidenceClass": "candidate_source_witness",
+      "id": "table",
+      "label": "표",
+      "use": "12행/12칸 또는 대응 관계가 잘리지 않은 표"
+    },
+    {
+      "evidenceClass": "candidate_source_witness",
+      "id": "rule_formula",
+      "label": "가결",
+      "use": "방향·기산점·순역을 명시하는 규칙/가결"
+    },
+    {
+      "evidenceClass": "candidate_source_witness",
+      "id": "original_diagram",
+      "label": "원도식",
+      "use": "전체 도식의 실제 위치·방향·경계"
+    },
+    {
+      "evidenceClass": "candidate_source_witness",
+      "id": "edition_note",
+      "label": "판본 주석",
+      "use": "서명·저자·판권/간기·권책·쪽/엽 식별"
+    }
+  ]
+}
