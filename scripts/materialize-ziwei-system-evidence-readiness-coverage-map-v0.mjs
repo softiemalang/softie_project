@@ -1,18 +1,33 @@
 #!/usr/bin/env node
-import { execFileSync } from 'node:child_process'
+import { execFileSync, spawnSync } from 'node:child_process'
 import { createHash } from 'node:crypto'
 import { existsSync, readFileSync, mkdirSync, writeFileSync } from 'node:fs'
 import { dirname, resolve } from 'node:path'
 
 const root = resolve(new URL('..', import.meta.url).pathname)
 const namespace = 'ziwei-system-evidence-readiness-coverage-map-v0'
-const outDir = resolve(root, 'artifacts', namespace)
-const completePath = resolve(outDir, 'complete.json')
-const integrityPath = resolve(outDir, 'complete.json.integrity.json')
+const defaultOutDir = resolve(root, 'artifacts', namespace)
 const sha256 = bytes => createHash('sha256').update(bytes).digest('hex')
 const jsonHash = value => sha256(Buffer.from(JSON.stringify(value)))
 const fileHash = relative => sha256(readFileSync(resolve(root, relative)))
-const head = execFileSync('git', ['-c', 'core.fsmonitor=false', 'rev-parse', 'HEAD'], { cwd: root, encoding: 'utf8' }).trim()
+const args = process.argv.slice(2)
+const readOption = name => {
+  const index = args.indexOf(name)
+  return index < 0 ? null : args[index + 1] || null
+}
+const basisHead = readOption('--basis-head')
+const outDir = resolve(root, readOption('--output-dir') || defaultOutDir)
+const observedHead = execFileSync('git', ['-c', 'core.fsmonitor=false', 'rev-parse', 'HEAD'], { cwd: root, encoding: 'utf8' }).trim()
+const failInput = message => { console.error(`materializer input error: ${message}`); process.exit(1) }
+if (args.includes('--help')) { console.log(`usage: node scripts/materialize-${namespace}.mjs --basis-head <40-hex-commit> [--output-dir <path>]`); process.exit(0) }
+if (!basisHead) failInput('--basis-head is required; current HEAD fallback is forbidden')
+if (!/^[0-9a-f]{40}$/.test(basisHead)) failInput('--basis-head must be a 40-character lowercase SHA-1')
+const basisObject = spawnSync('git', ['-c', 'core.fsmonitor=false', 'cat-file', '-e', `${basisHead}^{commit}`], { cwd: root, encoding: 'utf8' })
+if (basisObject.status !== 0) failInput('--basis-head does not resolve to a Git commit')
+const ancestry = spawnSync('git', ['-c', 'core.fsmonitor=false', 'merge-base', '--is-ancestor', basisHead, observedHead], { cwd: root, encoding: 'utf8' })
+if (ancestry.status !== 0) failInput('--basis-head is not an ancestor of the current HEAD')
+const completePath = resolve(outDir, 'complete.json')
+const integrityPath = resolve(outDir, 'complete.json.integrity.json')
 
 const ref = (path, role) => ({ path, role, sha256: fileHash(path) })
 const existingArtifact = path => ref(path, 'existing_artifact_authoritative_reference')
@@ -96,7 +111,7 @@ const graphEdges = [
 ]
 
 const complete = {
-  namespace, schema:'ziwei-system-evidence-readiness-coverage-map-v0', version:'0.1.0', basisHead:head,
+  namespace, schema:'ziwei-system-evidence-readiness-coverage-map-v0', version:'0.1.0', basisHead,
   scope:{externalSearch:false,newSourceAdoption:false,productionMutation:false,readinessMutation:false,protectedNamespace:'ziwei-major-star-claim-readiness-reconciliation-v0'},
   statusVocabulary:{implementation:['absent','present_unverified','verified_within_scope'],source:['absent','unresolved','partial','direct_within_scope'],claimProvenance:['absent','partial','complete_within_scope'],readiness:['research_only','blocked','eligible_within_declared_scope']},
   counts:{domains:domains.length,claims:claims.length,evidence:evidence.length,blockers:blockers.length,backlog:backlog.length,graphNodes:graphNodes.length,graphEdges:graphEdges.length,acquisitionPlans:acquisition.length},
@@ -110,5 +125,5 @@ const complete = {
 mkdirSync(outDir,{recursive:true})
 const serialized = `${JSON.stringify(complete,null,2)}\n`
 writeFileSync(completePath,serialized)
-writeFileSync(integrityPath,`${JSON.stringify({path:'complete.json',sha256:sha256(Buffer.from(serialized)),basisHead:head},null,2)}\n`)
+writeFileSync(integrityPath,`${JSON.stringify({path:'complete.json',sha256:sha256(Buffer.from(serialized)),basisHead},null,2)}\n`)
 console.log(`materialized ${namespace}: ${jsonHash(complete)}`)
