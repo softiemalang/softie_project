@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { navigate } from '../lib/router'
 import { getCurrentSession } from '../lib/auth'
 import { deleteReservation, getReservationById, saveReservation } from './api'
@@ -33,6 +33,14 @@ export function ReservationEditorPage({
   const [isLoading, setIsLoading] = useState(mode === 'edit')
   const [isSaving, setIsSaving] = useState(false)
   const [loadedReservation, setLoadedReservation] = useState(null)
+  const editorEntryKey = mode === 'edit' ? `edit:${reservationId || ''}` : 'create'
+  const lastScrolledEntryKeyRef = useRef(null)
+
+  useEffect(() => {
+    if (lastScrolledEntryKeyRef.current === editorEntryKey) return
+    lastScrolledEntryKeyRef.current = editorEntryKey
+    window.scrollTo({ top: 0, left: 0, behavior: 'auto' })
+  }, [editorEntryKey])
 
   useEffect(() => {
     if (mode !== 'edit' || !reservationId) return
