@@ -1,0 +1,81 @@
+{
+  "edges": [
+    {
+      "from": "source.nanbei.life_body",
+      "to": "comparison.life_body"
+    },
+    {
+      "from": "source.nanyang.life_body",
+      "to": "comparison.life_body"
+    },
+    {
+      "from": "production.resolveZiweiChart",
+      "to": "comparison.life_body"
+    },
+    {
+      "from": "source.nanbei.ming_zhu",
+      "to": "comparison.rulers"
+    },
+    {
+      "from": "source.nanbei.shen_zhu",
+      "to": "comparison.rulers"
+    },
+    {
+      "from": "source.nanyang.rulers",
+      "to": "comparison.rulers"
+    },
+    {
+      "from": "production.ruler_fields",
+      "to": "comparison.rulers"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "source.nanbei.life_body",
+      "kind": "source_rule",
+      "state": "direct_visible_rule"
+    },
+    {
+      "id": "source.nanbei.ming_zhu",
+      "kind": "source_table",
+      "state": "direct_visible_table"
+    },
+    {
+      "id": "source.nanbei.shen_zhu",
+      "kind": "source_table",
+      "state": "direct_visible_table"
+    },
+    {
+      "id": "source.nanyang.life_body",
+      "kind": "source_rule",
+      "state": "direct_visible_rule"
+    },
+    {
+      "id": "source.nanyang.rulers",
+      "kind": "source_rule",
+      "state": "not_located"
+    },
+    {
+      "id": "production.resolveZiweiChart",
+      "kind": "production_entry",
+      "state": "implemented"
+    },
+    {
+      "id": "production.ruler_fields",
+      "kind": "production_output",
+      "state": "absent"
+    },
+    {
+      "id": "comparison.life_body",
+      "kind": "comparison",
+      "state": "comparable"
+    },
+    {
+      "id": "comparison.rulers",
+      "kind": "comparison",
+      "state": "blocked_not_comparable"
+    }
+  ],
+  "schemaVersion": "ziwei-life-body-palace-ruler-source-evidence-v0-dependency-graph-v0",
+  "semanticPromotion": "blocked; this graph records rule/evidence dependencies only"
+}

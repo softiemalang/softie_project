@@ -1,0 +1,177 @@
+{
+  "lifeBody": {
+    "branchOrder": {
+      "indexConvention": "子=0, 丑=1, 寅=2, ... 亥=11",
+      "modulo": 12,
+      "values": [
+        "子",
+        "丑",
+        "寅",
+        "卯",
+        "辰",
+        "巳",
+        "午",
+        "未",
+        "申",
+        "酉",
+        "戌",
+        "亥"
+      ]
+    },
+    "hourPlacement": {
+      "bodyDirection": "+1",
+      "formula": "命宮=monthPalace-hourIndex; 身宮=monthPalace+hourIndex",
+      "lifeDirection": "-1",
+      "startAtMonthPalace": true,
+      "startLabel": "子"
+    },
+    "monthPlacement": {
+      "direction": "+1",
+      "firstLunarMonth": 1,
+      "formula": "(index(寅)+lunarMonth-1) mod 12",
+      "startBranch": "寅"
+    },
+    "outputBoundary": {
+      "mappingStatus": "comparison-boundary-only; no production contract change",
+      "命宮": "life",
+      "身宮": "shen"
+    },
+    "sourceRefs": [
+      "nanbei-p8-folio-25-life-body-rule",
+      "nanyang-p145-life-body-rule"
+    ]
+  },
+  "nanbeiRulers": {
+    "mingZhu": {
+      "input": "命宮地支",
+      "output": "命主星",
+      "table": {
+        "丑": "巨門",
+        "亥": "巨門",
+        "午": "破軍",
+        "卯": "文曲",
+        "子": "貪狼",
+        "寅": "祿存",
+        "巳": "武曲",
+        "戌": "祿存",
+        "未": "武曲",
+        "申": "廉貞",
+        "辰": "廉貞",
+        "酉": "文曲"
+      }
+    },
+    "shenZhu": {
+      "input": "本生年支",
+      "output": "身主星",
+      "table": {
+        "丑": "天相",
+        "亥": "天機",
+        "午": "火星",
+        "卯": "天同",
+        "子": "火星",
+        "寅": "天梁",
+        "巳": "天機",
+        "戌": "文昌",
+        "未": "天相",
+        "申": "天梁",
+        "辰": "文昌",
+        "酉": "天同"
+      }
+    },
+    "sourceQualification": "direct visible table in Nanbei source; no cross-edition identity claim",
+    "sourceRefs": [
+      "nanbei-p23-folio-55-mingzhu-table",
+      "nanbei-p24-folio-56-shenzhu-table"
+    ]
+  },
+  "nanyangRulers": {
+    "mingZhu": {
+      "groupedRaw": [
+        "貪狼子宮",
+        "巨門亥丑宮",
+        "祿存寅戌宮",
+        "文曲卯酉宮",
+        "廉貞申辰宮",
+        "武曲未巳宮",
+        "破軍午宮"
+      ],
+      "input": "命宮地支",
+      "output": "命主星",
+      "table": {
+        "丑": "巨門",
+        "亥": "巨門",
+        "午": "破軍",
+        "卯": "文曲",
+        "子": "貪狼",
+        "寅": "祿存",
+        "巳": "武曲",
+        "戌": "祿存",
+        "未": "武曲",
+        "申": "廉貞",
+        "辰": "廉貞",
+        "酉": "文曲"
+      }
+    },
+    "shenZhu": {
+      "aliasPolicy": {
+        "天同星": {
+          "canonicalStarId": "tiandong",
+          "status": "explicit_name_plus_star_suffix"
+        },
+        "天梁星": {
+          "canonicalStarId": "tianliang",
+          "status": "explicit_name_plus_star_suffix"
+        },
+        "天機主": {
+          "canonicalStarId": "tianji",
+          "status": "explicit_name_plus_role_suffix"
+        },
+        "天相星": {
+          "canonicalStarId": "tianxiang",
+          "status": "explicit_name_plus_star_suffix"
+        },
+        "文昌星": {
+          "canonicalStarId": "wenchang",
+          "status": "explicit_name_plus_star_suffix"
+        },
+        "火鈴星": {
+          "canonicalStarId": null,
+          "note": "surface contains 火 and 鈴 and is not silently reduced to 火星",
+          "status": "blocked_ambiguous_compound_surface"
+        }
+      },
+      "groupedRaw": [
+        "子午人火鈴星",
+        "辰戌人文昌星",
+        "丑未人天相星",
+        "巳亥人天機主",
+        "寅申人天梁星",
+        "卯酉人天同星"
+      ],
+      "input": "本生年支",
+      "output": "身主星 surface",
+      "table": {
+        "丑": "天相星",
+        "亥": "天機主",
+        "午": "火鈴星",
+        "卯": "天同星",
+        "子": "火鈴星",
+        "寅": "天梁星",
+        "巳": "天機主",
+        "戌": "文昌星",
+        "未": "天相星",
+        "申": "天梁星",
+        "辰": "文昌星",
+        "酉": "天同星"
+      }
+    },
+    "sourceQualification": "direct visible tables in Nanyang source; surface variants remain separate from canonical IDs",
+    "sourceRefs": [
+      "nanyang-p159-mingzhu-groups",
+      "nanyang-p160-mingzhu-note",
+      "nanyang-p160-shenzhu-groups"
+    ],
+    "status": "direct_visible_tables_with_surface_alias_boundaries"
+  },
+  "schemaVersion": "ziwei-life-body-palace-ruler-source-rule-v0"
+}

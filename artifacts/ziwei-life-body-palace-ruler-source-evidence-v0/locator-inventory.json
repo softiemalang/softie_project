@@ -1,0 +1,175 @@
+{
+  "blockers": [
+    {
+      "editionId": "production",
+      "id": "production-ruler-fields-absent",
+      "nextEvidence": "如要实现须另行授权 production/public contract 变更；本工单不修改。",
+      "statement": "resolveZiweiChart 仅输出 chart.mingGong 与 chart.shenGong；当前 contract 没有命主·身主字段或推导调用。",
+      "status": "blocked",
+      "verdict": "implementation_only"
+    }
+  ],
+  "editions": [
+    {
+      "editionId": "nanyangtang",
+      "label": "明代南阳堂刊本",
+      "locators": [
+        {
+          "claims": [
+            "安命主",
+            "安身主"
+          ],
+          "pdfPage": 5,
+          "printedFolio": null,
+          "section": "目录",
+          "status": "heading_only"
+        },
+        {
+          "claims": [
+            "寅起正月",
+            "命逆",
+            "身顺"
+          ],
+          "pdfPage": 145,
+          "printedFolio": null,
+          "section": "○安身命例",
+          "status": "direct_rule"
+        },
+        {
+          "claims": [
+            "貪狼子宮",
+            "巨門亥丑宮",
+            "祿存寅戌宮",
+            "文曲卯酉宮",
+            "廉貞申辰宮",
+            "武曲未巳宮",
+            "破軍午宮"
+          ],
+          "pdfPage": 159,
+          "printedFolio": null,
+          "section": "○安命主",
+          "status": "direct_table"
+        },
+        {
+          "claims": [
+            "子午人火鈴星",
+            "辰戌人文昌星",
+            "丑未人天相星",
+            "巳亥人天機主",
+            "寅申人天梁星",
+            "卯酉人天同星"
+          ],
+          "pdfPage": 160,
+          "printedFolio": null,
+          "section": "○安身主",
+          "status": "direct_table"
+        }
+      ],
+      "pdf": {
+        "byteLength": 36201526,
+        "encrypted": "no",
+        "fullPageScreening": {
+          "coverage": "all declared PDF pages rendered and counted; direct canonical strings remain visual-review-only",
+          "dpi": 32,
+          "outputPolicy": "external_temp_only; render bytes not stored in Git",
+          "renderedPageCount": 528,
+          "tool": "bundled pdftoppm"
+        },
+        "pageCount": 528,
+        "path": "/Users/softie/Downloads/新锓希夷陈先生紫微斗数全书.七卷.宋.陈抟撰.明.潘希尹补.明代南阳堂刊本.黑白版.pdf",
+        "pdfInfo": [
+          "Title:           ",
+          "Subject:         书格（shuge.org）整理发布",
+          "Keywords:        日本内阁文库藏\r",
+          "https://www.digital.archives.go.jp/das/meta/F1000000000000101426",
+          "Creator:         PDFPatcher 0.6.2.3572",
+          "Producer:        iTextSharp™ 5.5.14-SNAPSHOT ©2000-2019 iText Group NV (AGPL-version)",
+          "CreationDate:    Sun Mar 22 15:45:36 2020 KST",
+          "ModDate:         Sun Mar 22 15:51:18 2020 KST",
+          "Custom Metadata: no",
+          "Metadata Stream: yes",
+          "Tagged:          no",
+          "UserProperties:  no",
+          "Suspects:        no",
+          "Form:            none",
+          "JavaScript:      no",
+          "Pages:           528",
+          "Encrypted:       no",
+          "Page size:       702.48 x 1015.44 pts",
+          "Page rot:        0",
+          "File size:       36201526 bytes",
+          "Optimized:       no",
+          "PDF version:     1.5"
+        ],
+        "sha256": "04e184c4a52cb042dc885c6ccc9135d94ab25de62007506198ee979a33e66bfc"
+      },
+      "rulerStatus": "direct_tables_located"
+    },
+    {
+      "editionId": "nanbei",
+      "label": "南北山人本",
+      "locators": [
+        {
+          "pdfPage": 8,
+          "printedFolio": "二十五",
+          "section": "九、定命、身二宮",
+          "status": "direct_rule"
+        },
+        {
+          "pdfPage": 23,
+          "printedFolio": "五十五",
+          "section": "命主表",
+          "status": "direct_table"
+        },
+        {
+          "pdfPage": 24,
+          "printedFolio": "五十六",
+          "section": "安身主",
+          "status": "direct_table"
+        }
+      ],
+      "pdf": {
+        "byteLength": 35515645,
+        "encrypted": "no",
+        "fullPageScreening": {
+          "coverage": "all declared PDF pages rendered and counted; direct canonical strings remain visual-review-only",
+          "dpi": 32,
+          "outputPolicy": "external_temp_only; render bytes not stored in Git",
+          "renderedPageCount": 219,
+          "tool": "bundled pdftoppm"
+        },
+        "pageCount": 219,
+        "path": "/Users/softie/Downloads/命-南北山人_紫微斗数全书.pdf",
+        "pdfInfo": [
+          "Producer:        iOS Version 15.0 (Build 19A346) Quartz PDFContext",
+          "CreationDate:    Fri Sep 24 13:21:02 2021 KST",
+          "ModDate:         Fri Sep 24 13:21:02 2021 KST",
+          "Custom Metadata: no",
+          "Metadata Stream: no",
+          "Tagged:          no",
+          "UserProperties:  no",
+          "Suspects:        no",
+          "Form:            none",
+          "JavaScript:      no",
+          "Pages:           219",
+          "Encrypted:       no",
+          "Page size:       1505 x 2182 pts",
+          "Page rot:        0",
+          "File size:       35515645 bytes",
+          "Optimized:       no",
+          "PDF version:     1.3"
+        ],
+        "sha256": "4786a94ab454acdabf9716d7c0db4756dbcbde99a88bc45fda254863c1961023"
+      },
+      "rulerStatus": "direct_tables_located"
+    }
+  ],
+  "schemaVersion": "ziwei-life-body-palace-ruler-source-evidence-v0-locator-inventory-v0",
+  "searchPolicy": {
+    "ocrStatus": "exploration_only_not_canonical",
+    "pageNumbersArePdfPagesUnlessPrintedFolioIsExplicit": "pdf page labels are 1-based; printed folio is recorded only when visibly read",
+    "rawScanBytesStoredInGit": false,
+    "sourceIdentityRequired": true,
+    "visualReviewTool": "bundled pdftoppm + local image inspection"
+  }
+}

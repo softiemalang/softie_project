@@ -1,0 +1,93 @@
+{
+  "occurrences": [
+    {
+      "editionId": "nanbei",
+      "occurrenceId": "nanbei-p23-folio-55-mingzhu-table",
+      "pdfPage": 23,
+      "printedFolio": "五十五",
+      "rawText": "命主表左页；表头可读为 命主 / 星名 / 命宮。十二行按命宮支列出貪狼、巨門、祿存、文曲、廉貞、武曲、破軍、武曲、廉貞、文曲、祿存、巨門。",
+      "section": "命主表",
+      "uncertainty": [
+        "表格以扫描页版面为准；未把现代命主术语解释混入原文。"
+      ]
+    },
+    {
+      "editionId": "nanbei",
+      "occurrenceId": "nanbei-p24-folio-56-shenzhu-table",
+      "pdfPage": 24,
+      "printedFolio": "五十六",
+      "rawText": "身主表右页；表头可读为 身主 / 星名 / 本生年支。十二行按子丑寅卯辰巳午未申酉戌亥列出火星、天相、天梁、天同、文昌、天機、火星、天相、天梁、天同、文昌、天機。",
+      "section": "安身主",
+      "uncertainty": [
+        "表格以扫描页版面为准；未把现代星名别名或语义解释混入原文。"
+      ]
+    },
+    {
+      "editionId": "nanbei",
+      "occurrenceId": "nanbei-p8-folio-25-life-body-rule",
+      "pdfPage": 8,
+      "printedFolio": "二十五",
+      "rawText": "命宮上的口訣直接给出寅起正月、顺数生月、生月起子、逆至生时为命宮、顺到生时即安身的方向与起点。",
+      "section": "九、定命、身二宮",
+      "uncertainty": [
+        "首句中“巳/順”的字形保留为原始阅读不确定性；归一化仅采用解释列中可确认的起点、方向和终点机制。"
+      ]
+    },
+    {
+      "editionId": "nanyangtang",
+      "occurrenceId": "nanyang-p5-ruler-headings",
+      "pdfPage": 5,
+      "rawText": "目录页直接可读 安命主、安身主。",
+      "section": "目录",
+      "uncertainty": [
+        "目录不给出正文页码；它只能证明题名出现，不能证明规则正文。"
+      ]
+    },
+    {
+      "editionId": "nanyangtang",
+      "occurrenceId": "nanyang-p145-life-body-rule",
+      "pdfPage": 145,
+      "rawText": "大抵入命俱從寅上起正月順數至本生月止；后续列文给出逆至本生时安命、顺至本生时安身的命身例。",
+      "section": "○安身命例",
+      "uncertainty": [
+        "本条为命身规则 witness，不扩展为南阳堂本命主·身主表。"
+      ]
+    },
+    {
+      "editionId": "nanyangtang",
+      "occurrenceId": "nanyang-p159-mingzhu-groups",
+      "pdfPage": 159,
+      "printedFolio": null,
+      "rawText": "直接可读的分组表：貪狼子宮；巨門亥丑宮；祿存寅戌宮；文曲卯酉宮；廉貞申辰宮；武曲未巳宮；破軍午宮。",
+      "section": "○安命主",
+      "uncertainty": [
+        "PDF page 159 的印刷面数在当前扫描边缘未安全读出；分组内枝序按原始 glyph 顺序保留，比较展开只在 branch boundary 进行。"
+      ]
+    },
+    {
+      "editionId": "nanyangtang",
+      "occurrenceId": "nanyang-p160-mingzhu-note",
+      "pdfPage": 160,
+      "printedFolio": null,
+      "rawText": "尋貪狼星即命主也。",
+      "section": "命主邻接说明",
+      "uncertainty": [
+        "这是命主说明句，不把“尋貪狼星”误扩展为 production 的星位计算。"
+      ]
+    },
+    {
+      "editionId": "nanyangtang",
+      "occurrenceId": "nanyang-p160-shenzhu-groups",
+      "pdfPage": 160,
+      "printedFolio": null,
+      "rawText": "直接可读的分组表：子午人火鈴星；辰戌人文昌星；丑未人天相星；巳亥人天機主；寅申人天梁星；卯酉人天同星。",
+      "section": "○安身主",
+      "uncertainty": [
+        "火鈴星与南北山人本火星不是无条件同名；天機主含角色后缀；两类 surface alias 不在 source boundary 被静默合并。"
+      ]
+    }
+  ],
+  "ocrStatus": "exploration_only_not_canonical",
+  "reviewerStatus": "single_visual_review_complete_for_nanbei_and_nanyang_ruler_locators;_surface_aliases_preserved",
+  "schemaVersion": "ziwei-life-body-palace-ruler-source-evidence-v0-transcription-v0"
+}
