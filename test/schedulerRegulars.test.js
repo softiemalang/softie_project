@@ -39,7 +39,7 @@ const REGULAR = {
   is_active: true,
 }
 
-const migration = await readFile('supabase/migrations/20260806090000_add_scheduler_regulars.sql', 'utf8')
+const migration = await readFile('supabase/migrations/20260806042651_add_scheduler_regulars.sql', 'utf8')
 
 test('regular name and phone normalization is deterministic and preserves leading zeroes', () => {
   assert.equal(normalizeRegularName('  Ｈｏｎｇ\tＧｉｌｄｏｎｇ  '), 'hong gildong')
