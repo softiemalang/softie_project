@@ -1,0 +1,36 @@
+{
+  "predecessorArtifacts": [
+    "artifacts/ziwei-four-transformations-source-evidence-v0/complete.json",
+    "artifacts/ziwei-four-transformations-source-evidence-v0/transcription.json"
+  ],
+  "schemaVersion": "ziwei-ming-four-transformations-source-scope-v1",
+  "sourceIdentity": {
+    "ming_nanyangtang": {
+      "actualByteSha256": "04e184c4a52cb042dc885c6ccc9135d94ab25de62007506198ee979a33e66bfc",
+      "byteLength": 36201526,
+      "encrypted": false,
+      "expectedByteSha256": "04e184c4a52cb042dc885c6ccc9135d94ab25de62007506198ee979a33e66bfc",
+      "id": "ming_nanyangtang",
+      "label": "明代南阳堂刊本（当前基准扫描）",
+      "pageCount": 528,
+      "pageSize": "702.48 x 1015.44 pts",
+      "pathOutsideRepository": "/Users/softie/Downloads/新锓希夷陈先生紫微斗数全书.七卷.宋.陈抟撰.明.潘希尹补.明代南阳堂刊本.黑白版.pdf",
+      "readOnly": true,
+      "storedInGit": false
+    },
+    "nanbei_shanren": {
+      "actualByteSha256": "4786a94ab454acdabf9716d7c0db4756dbcbde99a88bc45fda254863c1961023",
+      "byteLength": 35515645,
+      "encrypted": false,
+      "expectedByteSha256": "4786a94ab454acdabf9716d7c0db4756dbcbde99a88bc45fda254863c1961023",
+      "id": "nanbei_shanren",
+      "label": "南北山人本（比较 witness）",
+      "pageCount": 219,
+      "pageSize": "1505 x 2182 pts",
+      "pathOutsideRepository": "/Users/softie/Downloads/命-南北山人_紫微斗数全书.pdf",
+      "readOnly": true,
+      "storedInGit": false
+    }
+  },
+  "sourcePdfStoredInGit": false
+}

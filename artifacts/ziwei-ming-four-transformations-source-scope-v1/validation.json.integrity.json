@@ -1,0 +1,7 @@
+{
+  "byteLength": 1252,
+  "byteSha256": "738737ba542be3a699226f4aa49c64b70d91677bfe88636f05a608494c45fe33",
+  "path": "artifacts/ziwei-ming-four-transformations-source-scope-v1/validation.json",
+  "schemaVersion": "artifact-integrity-sidecar-v1",
+  "source": "actual_output_bytes"
+}

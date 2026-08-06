@@ -1,0 +1,49 @@
+{
+  "boundaries": {
+    "activationChanged": false,
+    "groundingChanged": false,
+    "predecessorOverwritten": false,
+    "productionCalculationChanged": false,
+    "publicContractChanged": false,
+    "readinessChanged": false,
+    "semanticIdentityPromoted": false,
+    "sourcePromoted": false,
+    "stableClaimCreated": false
+  },
+  "comparison": {
+    "comparable": 44,
+    "exact": 44,
+    "mismatches": 0,
+    "total": 80,
+    "unlocatedNotMismatch": 36
+  },
+  "schemaVersion": "ziwei-ming-four-transformations-source-scope-v1",
+  "sourceIdentity": {
+    "comparisonPdfVerified": true,
+    "currentPdfVerified": true,
+    "externalManifestsHashRecorded": true
+  },
+  "tierValidation": {
+    "officialSameWitnessRetained": true,
+    "sourceTierRequiredForCanonical": "A",
+    "tierAIndependentAlternateCopyCount": 0,
+    "tierBOrCUsedToFillMing": false
+  },
+  "topology": {
+    "coreRange": [
+      145,
+      160
+    ],
+    "exactDuplicateGroupCount": 0,
+    "focusedPages": 26,
+    "fullScanPageCount": 528,
+    "result": "current_core_range_structurally_reviewed"
+  },
+  "transcription": {
+    "allBlockedNullsPreserved": true,
+    "directMingCells": 4,
+    "directNanbeiCells": 40,
+    "mingBlockedCells": 36,
+    "ocrCanonical": false
+  }
+}

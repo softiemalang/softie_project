@@ -1,0 +1,60 @@
+{
+  "constraints": [
+    "웹 OCR·검색 snippet·현대 표는 명대본 canonical transcription이 아님",
+    "독립 Tier A 확보 전 36셀은 blocker 유지",
+    "production/공개 계약/readiness/activation/source promotion 변경 금지"
+  ],
+  "items": [
+    {
+      "canonicalCriteria": [
+        "기관/소장번호와 원본 catalog 연결",
+        "실물 또는 독립 스캔의 판식·권차·판심·어미 일치",
+        "원본 이미지 파일 hash와 다운로드 시각",
+        "페이지가 아닌 printed folio/leaf locator 보존"
+      ],
+      "edition": "新鋟希夷陳先生紫微斗数全書, 明刊南阳堂/葆和堂 계열, 七卷",
+      "material": "독립 명대 남양당본 원판면 스캔",
+      "priority": "P0",
+      "priorityReason": "동일 판본 복본이 甲 단일 예시인지 직접 증명하는 유일한 Tier A 경로",
+      "requiredLeaves": [
+        "卷三 安祿權科忌四星變化訣 주변의 제목·앞뒤 엽",
+        "乙–癸가 있을 가능성이 있는 인접 권·엽",
+        "책 전체 표지·권수·판심·어미·엽차 확인면"
+      ],
+      "requiredPhrase": "安祿權科忌四星變化訣; 如甲生人廉貞化祿破軍化權武曲化科太陽化忌是也; 乙生人"
+    },
+    {
+      "canonicalCriteria": [
+        "manifest URL·canvas ID·파일 hash",
+        "현재 PDF와 같은 witness인지 별도 복본인지 명시",
+        "접근 제한을 우회하지 않고 공식 endpoint 사용"
+      ],
+      "edition": "新鋟希夷陳先生紫微斗数全書",
+      "material": "국립공문서관 내각문고 공식 원판 JP2/IIIF 원본",
+      "priority": "P1",
+      "priorityReason": "현재 PDF derivative의 원 witness를 완결성 있게 재현하고 split/omission을 판정",
+      "requiredLeaves": [
+        "冊次1 canvas 76과 양옆 canvas",
+        "冊次1 전체 129 canvas",
+        "冊次2 전체 137 canvas"
+      ],
+      "requiredPhrase": "p151/p152 대응 펼침면의 제목·甲 예시와 그 다음 본문"
+    },
+    {
+      "canonicalCriteria": [
+        "판본 연대·편집·원문/전사 구분",
+        "명대본 직접 전사로 승격 금지"
+      ],
+      "edition": "同書 또는 紫微斗數全集 계열",
+      "material": "후대 영인·전사·현대 정리본",
+      "priority": "P2",
+      "priorityReason": "탐색·이체자 교차확인만 수행",
+      "requiredLeaves": [
+        "四化 표 또는 乙–癸 문장"
+      ],
+      "requiredPhrase": "乙生人; 化祿; 化權; 化科; 化忌"
+    }
+  ],
+  "requiredIfBlocked": true,
+  "schemaVersion": "ziwei-ming-four-transformations-source-scope-v1"
+}

@@ -1,0 +1,180 @@
+{
+  "artifactFiles": {
+    "candidate-witnesses": "artifacts/ziwei-ming-four-transformations-source-scope-v1/candidate-witnesses.json",
+    "comparison": "artifacts/ziwei-ming-four-transformations-source-scope-v1/comparison.json",
+    "complete": "artifacts/ziwei-ming-four-transformations-source-scope-v1/complete.json",
+    "conclusion": "artifacts/ziwei-ming-four-transformations-source-scope-v1/conclusion.md",
+    "direct-transcription": "artifacts/ziwei-ming-four-transformations-source-scope-v1/direct-transcription.json",
+    "inventory": "artifacts/ziwei-ming-four-transformations-source-scope-v1/inventory.json",
+    "production-trace": "artifacts/ziwei-ming-four-transformations-source-scope-v1/production-trace.json",
+    "resolution-matrix": "artifacts/ziwei-ming-four-transformations-source-scope-v1/resolution-matrix.json",
+    "scan-topology": "artifacts/ziwei-ming-four-transformations-source-scope-v1/scan-topology.json",
+    "source-acquisition-field-kit": "artifacts/ziwei-ming-four-transformations-source-scope-v1/source-acquisition-field-kit.json",
+    "validation": "artifacts/ziwei-ming-four-transformations-source-scope-v1/validation.json"
+  },
+  "artifactHashes": {
+    "candidate-witnesses.json": {
+      "byteLength": 7181,
+      "byteSha256": "a343196dd47cc17725b0cdfa7c7440d83e29c373278ca82a9a57893591c8bdb6",
+      "path": "artifacts/ziwei-ming-four-transformations-source-scope-v1/candidate-witnesses.json"
+    },
+    "comparison.json": {
+      "byteLength": 79131,
+      "byteSha256": "0d3bbd829e91df8dcb44e8fcc9fdb1c3c3299ee0a9f78b2ee1c8e508d2bbca9a",
+      "path": "artifacts/ziwei-ming-four-transformations-source-scope-v1/comparison.json"
+    },
+    "conclusion.md": {
+      "byteLength": 3202,
+      "byteSha256": "c2c0dffc6725fe040140907aadf49c1710f76dbf891e3fd5601c5a4ae2fda71b",
+      "path": "artifacts/ziwei-ming-four-transformations-source-scope-v1/conclusion.md"
+    },
+    "direct-transcription.json": {
+      "byteLength": 79911,
+      "byteSha256": "4c035c699518eed447c78644ca76a218721500c4e608a1eec31ed292e749f43f",
+      "path": "artifacts/ziwei-ming-four-transformations-source-scope-v1/direct-transcription.json"
+    },
+    "inventory.json": {
+      "byteLength": 1558,
+      "byteSha256": "544523d3de0a0751ea76e091538322c23dd4b869377188389ac13b5b08b132f8",
+      "path": "artifacts/ziwei-ming-four-transformations-source-scope-v1/inventory.json"
+    },
+    "production-trace.json": {
+      "byteLength": 14885,
+      "byteSha256": "689de01d71b4f234907f0745b6a3b53ebc65cfa176601a57d98337e8428897b8",
+      "path": "artifacts/ziwei-ming-four-transformations-source-scope-v1/production-trace.json"
+    },
+    "resolution-matrix.json": {
+      "byteLength": 36202,
+      "byteSha256": "5e125055443eda7364e998f9a326448d093a9e922e7a4134ef47de925ecee196",
+      "path": "artifacts/ziwei-ming-four-transformations-source-scope-v1/resolution-matrix.json"
+    },
+    "scan-topology.json": {
+      "byteLength": 47014,
+      "byteSha256": "7d51de0aa381c0b7b139e2b3207b0d04a51486eec190e75eb5eb3c61572fdb7e",
+      "path": "artifacts/ziwei-ming-four-transformations-source-scope-v1/scan-topology.json"
+    },
+    "source-acquisition-field-kit.json": {
+      "byteLength": 2681,
+      "byteSha256": "2b57cf72f5c1c9d0da3adb6b8826550bd8a51c8d67b37c569bf22485d0a371c5",
+      "path": "artifacts/ziwei-ming-four-transformations-source-scope-v1/source-acquisition-field-kit.json"
+    },
+    "validation.json": {
+      "byteLength": 1252,
+      "byteSha256": "738737ba542be3a699226f4aa49c64b70d91677bfe88636f05a608494c45fe33",
+      "path": "artifacts/ziwei-ming-four-transformations-source-scope-v1/validation.json"
+    }
+  },
+  "artifactIdentity": {
+    "artifactId": "ziwei-ming-four-transformations-source-scope-v1",
+    "artifactPayloadSha256": "573f7685bdb64929a60b7b632c8ae077d3b2c5196a48890228446e80d0536d8a",
+    "contractVersion": "artifact-identity-v1",
+    "generation": {
+      "baseHead": "5f44be9c9921637458ca7d211da3504e3ab985c9",
+      "baseHeadSource": "git rev-parse HEAD at materialization",
+      "includedCommit": null,
+      "includedCommitSource": "unknown_at_generation; artifact may be included by a later commit"
+    },
+    "inputs": [
+      {
+        "byteSha256": "498031f3137169571f2f67e37cfaf21aa0f52aec6f1341b2e2fb6960e8918672",
+        "path": "artifacts/ziwei-four-transformations-source-evidence-v0/complete.json"
+      },
+      {
+        "byteSha256": "f5683f93d2e539949e06d5fb2ebcb05fccb57ecb5cc32a7f2c462c3f7d43b4e8",
+        "path": "artifacts/ziwei-four-transformations-source-evidence-v0/transcription.json"
+      },
+      {
+        "byteSha256": "127683a4ee1252f9273861eff1dc53e4a7283c8126208a680ff61061c11224b0",
+        "path": "src/artifactIdentity.js"
+      },
+      {
+        "byteSha256": "ec47b97109d514fb5317e1e0dfb9fb195fa77429ab2d451b3de9a97897babe9d",
+        "path": "src/ziwei/transformationResolver.js"
+      },
+      {
+        "byteSha256": "e602ab8611e846b53b9c1ffed2d2dbcb5b77afd13973187ee40d748370846e76",
+        "path": "src/ziwei/transformationRules.js"
+      }
+    ],
+    "materializer": {
+      "path": "scripts/materialize-ziwei-ming-four-transformations-source-scope-v1.mjs",
+      "version": "1.0.0"
+    },
+    "observedHead": "5f44be9c9921637458ca7d211da3504e3ab985c9"
+  },
+  "basisHead": "5f44be9c9921637458ca7d211da3504e3ab985c9",
+  "boundaries": {
+    "activationChanged": false,
+    "groundingChanged": false,
+    "predecessorOverwritten": false,
+    "productionEngineModified": false,
+    "publicContractModified": false,
+    "readinessChanged": false,
+    "semanticIdentityPromotion": false,
+    "sourcePromotion": false,
+    "stableClaimCount": 0
+  },
+  "comparisonSummary": {
+    "comparableCount": 44,
+    "exactNormalizedMatchCount": 44,
+    "exactRawMatchCount": 44,
+    "mingDirectComparableCount": 4,
+    "mismatchCount": 0,
+    "nanbeiComparableCount": 40,
+    "productionValuesCopiedIntoMingBlockedCells": false,
+    "sourceRuleNotLocatedCount": 36,
+    "totalCells": 80
+  },
+  "generatedBy": "scripts/materialize-ziwei-ming-four-transformations-source-scope-v1.mjs",
+  "observedHeadPolicy": {
+    "currentHeadEqualityGate": false,
+    "observedHead": "artifactIdentity.observedHead is diagnostic only; it is never a current-HEAD equality gate"
+  },
+  "predecessorArtifacts": [
+    "artifacts/ziwei-four-transformations-source-evidence-v0/complete.json",
+    "artifacts/ziwei-four-transformations-source-evidence-v0/transcription.json"
+  ],
+  "resolutionSummary": {
+    "blocker": "independent_tier_a_witness_unavailable",
+    "directlyResolved": 0,
+    "mismatches": 0,
+    "sourceRuleNotLocated": 36,
+    "total": 36
+  },
+  "schemaVersion": "ziwei-ming-four-transformations-source-scope-v1",
+  "sourceIdentity": {
+    "ming_nanyangtang": {
+      "actualByteSha256": "04e184c4a52cb042dc885c6ccc9135d94ab25de62007506198ee979a33e66bfc",
+      "byteLength": 36201526,
+      "encrypted": false,
+      "expectedByteSha256": "04e184c4a52cb042dc885c6ccc9135d94ab25de62007506198ee979a33e66bfc",
+      "id": "ming_nanyangtang",
+      "label": "明代南阳堂刊本（当前基准扫描）",
+      "pageCount": 528,
+      "pageSize": "702.48 x 1015.44 pts",
+      "pathOutsideRepository": "/Users/softie/Downloads/新锓希夷陈先生紫微斗数全书.七卷.宋.陈抟撰.明.潘希尹补.明代南阳堂刊本.黑白版.pdf",
+      "readOnly": true,
+      "storedInGit": false
+    },
+    "nanbei_shanren": {
+      "actualByteSha256": "4786a94ab454acdabf9716d7c0db4756dbcbde99a88bc45fda254863c1961023",
+      "byteLength": 35515645,
+      "encrypted": false,
+      "expectedByteSha256": "4786a94ab454acdabf9716d7c0db4756dbcbde99a88bc45fda254863c1961023",
+      "id": "nanbei_shanren",
+      "label": "南北山人本（比较 witness）",
+      "pageCount": 219,
+      "pageSize": "1505 x 2182 pts",
+      "pathOutsideRepository": "/Users/softie/Downloads/命-南北山人_紫微斗数全书.pdf",
+      "readOnly": true,
+      "storedInGit": false
+    }
+  },
+  "sourceOccurrenceSummary": {
+    "mingBlocked": 36,
+    "mingDirect": 4,
+    "nanbeiDirect": 40,
+    "production": 40
+  },
+  "verdict": "blocked_ziwei_ming_four_transformations_tier_a_witness_unavailable"
+}

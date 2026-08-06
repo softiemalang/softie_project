@@ -1,0 +1,7 @@
+{
+  "byteLength": 7181,
+  "byteSha256": "a343196dd47cc17725b0cdfa7c7440d83e29c373278ca82a9a57893591c8bdb6",
+  "path": "artifacts/ziwei-ming-four-transformations-source-scope-v1/candidate-witnesses.json",
+  "schemaVersion": "artifact-integrity-sidecar-v1",
+  "source": "actual_output_bytes"
+}
