@@ -3,6 +3,8 @@ import { readFile } from 'node:fs/promises'
 import test from 'node:test'
 import {
   applyAutomaticRegularMatch,
+  findAutomaticRegularMatch,
+  findRebookingMatch,
   findRegularMatch,
   isValidRegularPhoneLast4,
   normalizeRegularName,
@@ -40,6 +42,7 @@ const REGULAR = {
 }
 
 const migration = await readFile('supabase/migrations/20260806042651_add_scheduler_regulars.sql', 'utf8')
+const saveMigration = await readFile('supabase/migrations/20260806053840_scheduler_regular_save_rpc.sql', 'utf8')
 
 test('regular name and phone normalization is deterministic and preserves leading zeroes', () => {
   assert.equal(normalizeRegularName('  Ｈｏｎｇ\tＧｉｌｄｏｎｇ  '), 'hong gildong')
@@ -76,6 +79,34 @@ test('automatic selection adds the existing regular tag and link only for an exa
   assert.equal(unmatched.regularId, null)
 })
 
+test('rebooking matching uses exact normalized identity, excludes the current reservation, and keeps leading zeroes', () => {
+  const previousReservation = {
+    id: 'reservation-1',
+    customer_name: ' 홍길동 ',
+    regular_phone_last4: '0032',
+    created_at: '2026-08-05T00:00:00.000Z',
+  }
+  const currentReservation = { ...previousReservation, id: 'reservation-2' }
+
+  assert.equal(findRebookingMatch([currentReservation, previousReservation], '홍길동', '0032', 'reservation-2'), previousReservation)
+  assert.equal(findRebookingMatch([previousReservation], '홍길동', '0032', 'reservation-1'), null)
+  assert.equal(findRebookingMatch([previousReservation], '홍길동', '0033'), null)
+  assert.equal(findRebookingMatch([previousReservation], '다른 이름', '0032'), null)
+  assert.equal(findRebookingMatch([previousReservation], '홍길동', ''), null)
+
+  const result = findAutomaticRegularMatch([], [previousReservation], '홍길동', '0032')
+  assert.equal(result.source, 'rebooking')
+  assert.equal(result.regularId, null)
+
+  const selected = applyAutomaticRegularMatch(
+    { ...BASE_FORM, customerName: '홍길동', phoneLast4: '0032' },
+    [],
+    [previousReservation],
+  )
+  assert.deepEqual(selected.tags, ['other'])
+  assert.equal(selected.regularId, null)
+})
+
 test('manual tag selection wins over automatic results and clears the list link', () => {
   const auto = applyAutomaticRegularMatch({ ...BASE_FORM, customerName: '홍길동', phoneLast4: '0032' }, [REGULAR])
   const manuallyCleared = toggleRegularTag(auto)
@@ -107,6 +138,7 @@ test('lookup failure does not erase an existing tag, while a successful re-match
 
   const matched = reconcileRegularSelection({ ...restored, customerName: '홍길동', phoneLast4: '0032' }, {
     activeRegulars: [REGULAR],
+    savedReservations: [],
     lookupStatus: 'ready',
     identityChanged: true,
     manualOverride: false,
@@ -132,6 +164,7 @@ test('edit form restores saved number, regular link, and tags before identity ch
   assert.equal(restored.phoneLast4, '0032')
   assert.equal(restored.regularId, 'regular-1')
   assert.deepEqual(restored.tags, ['other'])
+  assert.equal(buildReservationPayload({ ...BASE_FORM, tags: ['other'], regularId: 'regular-1', phoneLast4: '' }).regular_id, null)
 
   const draft = createReservationDraft('2026-08-06')
   assert.equal(draft.phoneLast4, '')
@@ -146,4 +179,17 @@ test('migration contract scopes regulars, prevents active duplicates, and safely
   assert.match(migration, /alter table public\.scheduler_regulars enable row level security/)
   assert.match(migration, /auth\.uid\(\)\)::text = owner_key/)
   assert.doesNotMatch(migration, /is_regular/)
+})
+
+test('atomic regular save migration derives owner, reuses or creates safely, and has no separate regular state', () => {
+  assert.match(saveMigration, /create or replace function public\.save_scheduler_reservation_with_regular\(/)
+  assert.match(saveMigration, /security invoker/)
+  assert.match(saveMigration, /v_owner_key text := \(select auth\.uid\(\)\)::text/)
+  assert.match(saveMigration, /when unique_violation/)
+  assert.match(saveMigration, /set is_active = true/)
+  assert.match(saveMigration, /insert into public\.reservations/)
+  assert.match(saveMigration, /update public\.reservations/)
+  assert.match(saveMigration, /revoke execute on function/)
+  assert.match(saveMigration, /grant execute on function[\s\S]*to authenticated/)
+  assert.doesNotMatch(saveMigration, /is_regular/)
 })

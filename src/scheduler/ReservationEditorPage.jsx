@@ -1,7 +1,14 @@
 import { useEffect, useRef, useState } from 'react'
 import { navigate } from '../lib/router'
 import { getCurrentSession } from '../lib/auth'
-import { deleteReservation, getReservationById, listActiveRegulars, saveReservation } from './api'
+import {
+  deleteReservation,
+  getReservationById,
+  listActiveRegulars,
+  listSamePhoneReservations,
+  saveReservation,
+  saveReservationWithRegular,
+} from './api'
 import { SCHEDULER_BRANCHES, SCHEDULER_TAGS } from './constants'
 import {
   buildReservationPayload,
@@ -41,10 +48,13 @@ export function ReservationEditorPage({
   const [loadedReservation, setLoadedReservation] = useState(null)
   const [activeRegulars, setActiveRegulars] = useState(null)
   const [regularLookupStatus, setRegularLookupStatus] = useState('idle')
+  const [samePhoneReservations, setSamePhoneReservations] = useState([])
+  const [rebookingLookupStatus, setRebookingLookupStatus] = useState('idle')
   const editorEntryKey = mode === 'edit' ? `edit:${reservationId || ''}` : 'create'
   const lastScrolledEntryKeyRef = useRef(null)
   const identityChangedRef = useRef(false)
   const manualRegularOverrideRef = useRef(false)
+  const rebookingLookupGenerationRef = useRef(0)
 
   useEffect(() => {
     if (lastScrolledEntryKeyRef.current === editorEntryKey) return
@@ -57,6 +67,8 @@ export function ReservationEditorPage({
     manualRegularOverrideRef.current = false
     setActiveRegulars(null)
     setRegularLookupStatus('loading')
+    setSamePhoneReservations([])
+    setRebookingLookupStatus('ready')
     let cancelled = false
 
     Promise.resolve()
@@ -81,16 +93,52 @@ export function ReservationEditorPage({
   }, [editorEntryKey, effectiveOwnerKey])
 
   useEffect(() => {
-    if (regularLookupStatus !== 'ready' || !activeRegulars || !identityChangedRef.current) return
+    if (!identityChangedRef.current) return
+
+    const normalizedPhone = formValues.phoneLast4
+    if (!/^[0-9]{4}$/.test(normalizedPhone)) {
+      rebookingLookupGenerationRef.current += 1
+      setSamePhoneReservations([])
+      setRebookingLookupStatus('ready')
+      return
+    }
+
+    const generation = rebookingLookupGenerationRef.current + 1
+    rebookingLookupGenerationRef.current = generation
+    let cancelled = false
+    setRebookingLookupStatus('loading')
+
+    listSamePhoneReservations(effectiveOwnerKey, normalizedPhone, reservationId)
+      .then((rows) => {
+        if (cancelled || rebookingLookupGenerationRef.current !== generation) return
+        setSamePhoneReservations(rows)
+        setRebookingLookupStatus('ready')
+      })
+      .catch((error) => {
+        if (cancelled || rebookingLookupGenerationRef.current !== generation) return
+        console.warn('재예약 단서를 불러오지 못했어요:', error)
+        setSamePhoneReservations([])
+        setRebookingLookupStatus('error')
+      })
+
+    return () => {
+      cancelled = true
+    }
+  }, [effectiveOwnerKey, formValues.phoneLast4, reservationId])
+
+  useEffect(() => {
+    if (regularLookupStatus !== 'ready' || !activeRegulars || rebookingLookupStatus !== 'ready' || !identityChangedRef.current) return
     if (manualRegularOverrideRef.current) return
 
     setFormValues((current) => reconcileRegularSelection(current, {
       activeRegulars,
+      savedReservations: samePhoneReservations,
+      currentReservationId: reservationId,
       lookupStatus: regularLookupStatus,
       identityChanged: true,
       manualOverride: false,
     }))
-  }, [activeRegulars, regularLookupStatus])
+  }, [activeRegulars, regularLookupStatus, rebookingLookupStatus, samePhoneReservations, reservationId])
 
   useEffect(() => {
     if (mode !== 'edit' || !reservationId) return
@@ -106,6 +154,10 @@ export function ReservationEditorPage({
           return
         }
         setLoadedReservation(row)
+        // A legacy/manual `other` tag without a link is an explicit saved
+        // choice. Preserve it while the user fills in a number so the next
+        // save can promote and link it atomically.
+        manualRegularOverrideRef.current = row.tags?.includes(REGULAR_TAG_VALUE) && !row.regular_id
         setFormValues(mapReservationToFormValues(row))
         setStatus('')
       } catch (error) {
@@ -144,7 +196,9 @@ export function ReservationEditorPage({
         const next = { ...current, phoneLast4: normalized }
         return reconcileRegularSelection(next, {
           activeRegulars,
-          lookupStatus: regularLookupStatus,
+          savedReservations: samePhoneReservations,
+          currentReservationId: reservationId,
+          lookupStatus: regularLookupStatus === 'ready' && rebookingLookupStatus === 'ready' ? 'ready' : regularLookupStatus,
           identityChanged: true,
           manualOverride: manualRegularOverrideRef.current,
         })
@@ -156,7 +210,9 @@ export function ReservationEditorPage({
         const next = { ...current, customerName: value }
         return reconcileRegularSelection(next, {
           activeRegulars,
-          lookupStatus: regularLookupStatus,
+          savedReservations: samePhoneReservations,
+          currentReservationId: reservationId,
+          lookupStatus: regularLookupStatus === 'ready' && rebookingLookupStatus === 'ready' ? 'ready' : regularLookupStatus,
           identityChanged: true,
           manualOverride: manualRegularOverrideRef.current,
         })
@@ -196,7 +252,14 @@ export function ReservationEditorPage({
 
     setIsSaving(true)
     try {
-      const saved = await saveReservation(buildReservationPayload(formValues), reservationId, effectiveOwnerKey)
+      const payload = buildReservationPayload(formValues)
+      const hasCompleteRegularSelection = payload.tags.includes(REGULAR_TAG_VALUE)
+        && /^[0-9]{4}$/.test(payload.regular_phone_last4 || '')
+      const canEnsureRegular = manualRegularOverrideRef.current
+        || (regularLookupStatus === 'ready' && rebookingLookupStatus === 'ready')
+      const saved = hasCompleteRegularSelection && canEnsureRegular
+        ? await saveReservationWithRegular(payload, reservationId)
+        : await saveReservation(payload, reservationId, effectiveOwnerKey)
 
       let googleSyncError = false
 

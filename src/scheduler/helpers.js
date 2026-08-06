@@ -82,7 +82,9 @@ export function buildReservationPayload(formValues) {
     warning_offset_minutes: Math.min(durationMinutes, Math.max(0, warningOffsetMinutes)),
     tags: formValues.tags,
     regular_phone_last4: regularPhoneLast4 || null,
-    regular_id: formValues.tags.includes(REGULAR_TAG_VALUE) ? (formValues.regularId || null) : null,
+    regular_id: formValues.tags.includes(REGULAR_TAG_VALUE) && isValidRegularPhoneLast4(regularPhoneLast4) && regularPhoneLast4
+      ? (formValues.regularId || null)
+      : null,
     notes_text: formValues.notesText.trim(),
   }
 }

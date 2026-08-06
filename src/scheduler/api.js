@@ -92,6 +92,26 @@ export async function listActiveRegulars(ownerKey) {
   return data || []
 }
 
+export async function listSamePhoneReservations(ownerKey, phoneLast4, excludedReservationId = null) {
+  ensureSupabase()
+  if (!ownerKey || !/^[0-9]{4}$/.test(String(phoneLast4 || ''))) return []
+
+  let query = supabase
+    .from('reservations')
+    .select('id, customer_name, regular_phone_last4, created_at')
+    .eq('owner_key', ownerKey)
+    .eq('regular_phone_last4', phoneLast4)
+
+  if (excludedReservationId) query = query.neq('id', excludedReservationId)
+
+  const { data, error } = await query
+    .order('created_at', { ascending: true })
+    .order('id', { ascending: true })
+
+  if (error) throw new Error(error.message)
+  return data || []
+}
+
 export async function saveReservation(payload, reservationId, ownerKey) {
   ensureSupabase()
   const safePayload = buildOwnedReservationPayload(payload, ownerKey)
@@ -113,6 +133,30 @@ export async function saveReservation(payload, reservationId, ownerKey) {
     .from('reservations')
     .insert(safePayload)
     .select('*')
+    .single()
+
+  if (error) throw new Error(error.message)
+  return normalizeReservationRow(data)
+}
+
+export async function saveReservationWithRegular(payload, reservationId) {
+  ensureSupabase()
+
+  const { data, error } = await supabase
+    .rpc('save_scheduler_reservation_with_regular', {
+      p_reservation_id: reservationId || null,
+      p_reservation_date: payload.reservation_date,
+      p_branch: payload.branch,
+      p_room: payload.room,
+      p_customer_name: payload.customer_name,
+      p_start_at: payload.start_at,
+      p_duration_minutes: payload.duration_minutes,
+      p_end_at: payload.end_at,
+      p_warning_offset_minutes: payload.warning_offset_minutes,
+      p_tags: payload.tags || [],
+      p_regular_phone_last4: payload.regular_phone_last4,
+      p_notes_text: payload.notes_text || '',
+    })
     .single()
 
   if (error) throw new Error(error.message)
