@@ -77,6 +77,21 @@ export async function getReservationById(id, ownerKey) {
   return normalizeReservationRow(data)
 }
 
+export async function listActiveRegulars(ownerKey) {
+  ensureSupabase()
+  if (!ownerKey) return []
+
+  const { data, error } = await supabase
+    .from('scheduler_regulars')
+    .select('id, display_name, name_key, phone_last4, is_active')
+    .eq('owner_key', ownerKey)
+    .eq('is_active', true)
+    .order('display_name', { ascending: true })
+
+  if (error) throw new Error(error.message)
+  return data || []
+}
+
 export async function saveReservation(payload, reservationId, ownerKey) {
   ensureSupabase()
   const safePayload = buildOwnedReservationPayload(payload, ownerKey)

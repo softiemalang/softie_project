@@ -10,6 +10,7 @@ import {
 } from './constants.js'
 import { sortSchedulerEvents } from './rules.js'
 import { addMinutes, combineLocalDateTime, formatTime, normalizeHourTime, toIsoFromLocal, toLocalDateInputValue, toLocalTimeInputValue } from './time.js'
+import { isValidRegularPhoneLast4, normalizeRegularPhoneLast4, REGULAR_TAG_VALUE } from './regularMatching.js'
 
 export function getTagMeta(tag) {
   return SCHEDULER_TAGS.find((item) => item.value === tag) || { value: tag, shortLabel: tag, fullLabel: tag }
@@ -33,6 +34,8 @@ export function createReservationDraft(initialReservationDate = null) {
     durationHours: DEFAULT_DURATION_MINUTES / 60,
     warningOffsetMinutes: DEFAULT_WARNING_OFFSET,
     tags: [],
+    phoneLast4: '',
+    regularId: null,
     notesText: '',
   }
 }
@@ -53,6 +56,8 @@ export function mapReservationToFormValues(reservation) {
         ? 15
         : DEFAULT_WARNING_OFFSET,
     tags: reservation.tags || [],
+    phoneLast4: reservation.regular_phone_last4 || '',
+    regularId: reservation.regular_id || null,
     notesText: reservation.notes_text || '',
   }
 }
@@ -64,6 +69,7 @@ export function buildReservationPayload(formValues) {
   const durationMinutes = durationHours * 60
   const warningOffsetMinutes = Number(formValues.warningOffsetMinutes) === 15 ? 15 : DEFAULT_WARNING_OFFSET
   const endAt = addMinutes(startAt, durationMinutes)
+  const regularPhoneLast4 = normalizeRegularPhoneLast4(formValues.phoneLast4)
 
   return {
     reservation_date: formValues.reservationDate,
@@ -75,6 +81,8 @@ export function buildReservationPayload(formValues) {
     end_at: endAt.toISOString(),
     warning_offset_minutes: Math.min(durationMinutes, Math.max(0, warningOffsetMinutes)),
     tags: formValues.tags,
+    regular_phone_last4: regularPhoneLast4 || null,
+    regular_id: formValues.tags.includes(REGULAR_TAG_VALUE) ? (formValues.regularId || null) : null,
     notes_text: formValues.notesText.trim(),
   }
 }
@@ -91,6 +99,8 @@ export function validateReservationForm(formValues) {
   if (!getRoomsForBranch(formValues.branch).includes(formValues.room)) return '선택한 지점에 맞는 룸을 선택해 주세요.'
   if (!formValues.customerName.trim()) return '예약자 이름을 입력해 주세요.'
   if (!formValues.startTime) return '시작 시간을 입력해 주세요.'
+
+  if (!isValidRegularPhoneLast4(formValues.phoneLast4 || '')) return '번호는 숫자 4자리로 입력해 주세요.'
 
   const durationHours = Number(formValues.durationHours)
   if (!durationHours || durationHours < 1) return '이용 시간은 1시간 이상으로 입력해 주세요.'

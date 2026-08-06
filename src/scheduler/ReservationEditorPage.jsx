@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { navigate } from '../lib/router'
 import { getCurrentSession } from '../lib/auth'
-import { deleteReservation, getReservationById, saveReservation } from './api'
+import { deleteReservation, getReservationById, listActiveRegulars, saveReservation } from './api'
 import { SCHEDULER_BRANCHES, SCHEDULER_TAGS } from './constants'
 import {
   buildReservationPayload,
@@ -10,6 +10,12 @@ import {
   mapReservationToFormValues,
   validateReservationForm,
 } from './helpers'
+import {
+  normalizeRegularPhoneLast4,
+  reconcileRegularSelection,
+  REGULAR_TAG_VALUE,
+  toggleRegularTag,
+} from './regularMatching'
 import {
   appendGoogleSheetsLog,
   createGoogleCalendarEvent,
@@ -33,14 +39,58 @@ export function ReservationEditorPage({
   const [isLoading, setIsLoading] = useState(mode === 'edit')
   const [isSaving, setIsSaving] = useState(false)
   const [loadedReservation, setLoadedReservation] = useState(null)
+  const [activeRegulars, setActiveRegulars] = useState(null)
+  const [regularLookupStatus, setRegularLookupStatus] = useState('idle')
   const editorEntryKey = mode === 'edit' ? `edit:${reservationId || ''}` : 'create'
   const lastScrolledEntryKeyRef = useRef(null)
+  const identityChangedRef = useRef(false)
+  const manualRegularOverrideRef = useRef(false)
 
   useEffect(() => {
     if (lastScrolledEntryKeyRef.current === editorEntryKey) return
     lastScrolledEntryKeyRef.current = editorEntryKey
     window.scrollTo({ top: 0, left: 0, behavior: 'auto' })
   }, [editorEntryKey])
+
+  useEffect(() => {
+    identityChangedRef.current = false
+    manualRegularOverrideRef.current = false
+    setActiveRegulars(null)
+    setRegularLookupStatus('loading')
+    let cancelled = false
+
+    Promise.resolve()
+      .then(() => listActiveRegulars(effectiveOwnerKey))
+      .then((rows) => {
+        if (cancelled) return
+        setActiveRegulars(rows)
+        setRegularLookupStatus('ready')
+      })
+      .catch((error) => {
+        if (cancelled) return
+        // Regular lookup is an optional enhancement. Reservation editing and
+        // saving remain available, and existing tags are left untouched.
+        console.warn('단골 명단을 불러오지 못했어요:', error)
+        setActiveRegulars(null)
+        setRegularLookupStatus('error')
+      })
+
+    return () => {
+      cancelled = true
+    }
+  }, [editorEntryKey, effectiveOwnerKey])
+
+  useEffect(() => {
+    if (regularLookupStatus !== 'ready' || !activeRegulars || !identityChangedRef.current) return
+    if (manualRegularOverrideRef.current) return
+
+    setFormValues((current) => reconcileRegularSelection(current, {
+      activeRegulars,
+      lookupStatus: regularLookupStatus,
+      identityChanged: true,
+      manualOverride: false,
+    }))
+  }, [activeRegulars, regularLookupStatus])
 
   useEffect(() => {
     if (mode !== 'edit' || !reservationId) return
@@ -87,7 +137,50 @@ export function ReservationEditorPage({
         return { ...current, startTime: normalizeHourTime(value) }
       }
 
+      if (field === 'phoneLast4') {
+        const normalized = normalizeRegularPhoneLast4(value)
+        if (current.phoneLast4 === normalized) return current
+        identityChangedRef.current = true
+        const next = { ...current, phoneLast4: normalized }
+        return reconcileRegularSelection(next, {
+          activeRegulars,
+          lookupStatus: regularLookupStatus,
+          identityChanged: true,
+          manualOverride: manualRegularOverrideRef.current,
+        })
+      }
+
+      if (field === 'customerName') {
+        if (current.customerName === value) return current
+        identityChangedRef.current = true
+        const next = { ...current, customerName: value }
+        return reconcileRegularSelection(next, {
+          activeRegulars,
+          lookupStatus: regularLookupStatus,
+          identityChanged: true,
+          manualOverride: manualRegularOverrideRef.current,
+        })
+      }
+
       return { ...current, [field]: value }
+    })
+  }
+
+  function handleTagToggle(tagValue) {
+    if (tagValue === REGULAR_TAG_VALUE) {
+      manualRegularOverrideRef.current = true
+      setFormValues((current) => toggleRegularTag(current))
+      return
+    }
+
+    setFormValues((current) => {
+      const isActive = current.tags.includes(tagValue)
+      return {
+        ...current,
+        tags: isActive
+          ? current.tags.filter((item) => item !== tagValue)
+          : [...current.tags, tagValue],
+      }
     })
   }
 
@@ -155,6 +248,8 @@ export function ReservationEditorPage({
 
       if (googleSyncError) {
         if (mode === 'create') {
+          identityChangedRef.current = false
+          manualRegularOverrideRef.current = false
           setFormValues(createReservationDraft(formValues.reservationDate))
           window.scrollTo({ top: 0, behavior: 'smooth' })
         }
@@ -163,6 +258,8 @@ export function ReservationEditorPage({
         if (mode === 'edit') {
           navigate(`/scheduler/${saved.id}`)
         } else {
+          identityChangedRef.current = false
+          manualRegularOverrideRef.current = false
           setFormValues(createReservationDraft(formValues.reservationDate))
           window.scrollTo({ top: 0, behavior: 'smooth' })
         }
@@ -288,6 +385,18 @@ export function ReservationEditorPage({
               />
             </label>
 
+            <label className="scheduler-primary-field">
+              <span className="scheduler-parent-label">번호</span>
+              <input
+                type="text"
+                inputMode="numeric"
+                maxLength={4}
+                value={formValues.phoneLast4}
+                onChange={(event) => updateField('phoneLast4', event.target.value)}
+                placeholder="뒤 4자리"
+              />
+            </label>
+
             <div className="scheduler-two-up scheduler-primary-field-row">
               <NativePickerField
                 label="시작 시간"
@@ -366,14 +475,7 @@ export function ReservationEditorPage({
                       key={tag.value}
                       type="button"
                       className={`scheduler-chip ${isActive ? 'active' : ''}`}
-                      onClick={() =>
-                        updateField(
-                          'tags',
-                          isActive
-                            ? formValues.tags.filter((item) => item !== tag.value)
-                            : [...formValues.tags, tag.value],
-                        )
-                      }
+                      onClick={() => handleTagToggle(tag.value)}
                       data-text={tag.shortLabel}
                     >
                       {tag.shortLabel}
