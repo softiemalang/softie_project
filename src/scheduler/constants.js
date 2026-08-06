@@ -2,7 +2,7 @@ export const SCHEDULER_TAGS = [
   { value: 'extra_headcount', shortLabel: '인원+', fullLabel: '추가 인원' },
   { value: 'in_ear', shortLabel: '인이어', fullLabel: '인이어' },
   { value: 'MTR', shortLabel: 'MTR', fullLabel: 'MTR' },
-  { value: 'other', shortLabel: '기타', fullLabel: '기타' },
+  { value: 'other', shortLabel: '단골', fullLabel: '단골' },
 ]
 
 export const SCHEDULER_BRANCHES = ['신촌점', '연대점', '사당1호점', '사당2호점']
