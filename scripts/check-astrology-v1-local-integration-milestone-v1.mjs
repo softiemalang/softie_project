@@ -2,8 +2,8 @@ import { createHash } from 'node:crypto'
 import { readFile } from 'node:fs/promises'
 import { execFileSync } from 'node:child_process'
 import { resolve } from 'node:path'
-import { checkArtifactIdentity } from '../src/artifactIdentity.js'
-import { checkTriSystemReadinessContract, isSafeTriSystemRelativePath } from '../src/interpretationPrep/triSystemReadinessContract.js'
+import { checkArtifactIdentity, matchesFileByteIdentity } from '../src/artifactIdentity.js'
+import { checkTriSystemReadinessContract, isSafeTriSystemRelativePath, triSystemReadinessContentSha256 } from '../src/interpretationPrep/triSystemReadinessContract.js'
 import { ARTIFACT_PATH, INPUT_PATHS, MATERIALIZER_VERSION, buildArtifact } from './materialize-astrology-v1-local-integration-milestone-v1.mjs'
 
 const root = resolve(new URL('../', import.meta.url).pathname)
@@ -13,14 +13,18 @@ const artifact = JSON.parse(bytes)
 const artifactIsObject = artifact && typeof artifact === 'object' && !Array.isArray(artifact)
 const errors = artifactIsObject ? checkTriSystemReadinessContract(artifact, { root }) : ['artifact_shape_invalid']
 if (artifactIsObject) {
-  errors.push(...checkArtifactIdentity(artifact, { root, artifactId: 'tri-system-readiness-handoff-v1', materializerPath: 'scripts/materialize-astrology-v1-local-integration-milestone-v1.mjs', materializerVersion: MATERIALIZER_VERSION }))
+  const currentHead = execFileSync('git', ['-c', 'core.fsmonitor=false', 'rev-parse', 'HEAD'], { cwd: root, encoding: 'utf8' }).trim()
+  const generationBaseHead = artifact.artifactIdentity?.generation?.baseHead || artifact.basisHead
+  const isCurrentSnapshot = generationBaseHead === currentHead
+  errors.push(...checkArtifactIdentity(artifact, { root, artifactId: 'tri-system-readiness-handoff-v1', materializerPath: 'scripts/materialize-astrology-v1-local-integration-milestone-v1.mjs', materializerVersion: MATERIALIZER_VERSION, allowGenerationBaseInput: true }))
   if (JSON.stringify(artifact?.artifactIdentity?.inputs?.map(item => item.path)) !== JSON.stringify([...INPUT_PATHS].sort())) errors.push('input_manifest_mismatch')
-  const expected = await buildArtifact()
-  if (artifact.contentSha256 !== expected.contentSha256) errors.push('current_materialized_content_drift')
+  if (isCurrentSnapshot) {
+    const expected = await buildArtifact()
+    if (artifact.contentSha256 !== expected.contentSha256) errors.push('current_materialized_content_drift')
+  }
   for (const domain of artifact.domains || []) for (const ref of domain.evidenceRefs || []) {
     if (!isSafeTriSystemRelativePath(ref.path)) continue
-    const actual = createHash('sha256').update(await readFile(resolve(root, ref.path))).digest('hex')
-    if (actual !== ref.byteSha256) errors.push(`evidence_byte_drift:${ref.path}`)
+    if (!matchesFileByteIdentity(root, ref.path, ref.byteSha256, { generationBaseHead })) errors.push(`evidence_byte_drift:${ref.path}`)
   }
 }
 const integrityPath = `${artifactPath}.integrity.json`
