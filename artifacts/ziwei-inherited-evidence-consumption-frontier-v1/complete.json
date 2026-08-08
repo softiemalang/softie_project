@@ -1,0 +1,1671 @@
+{
+  "admissionDecision": {
+    "canPromoteStableClaims": false,
+    "canStartReadinessGrounding": false,
+    "nextOwner": "Flash/user source hunt for calendar/time identity, independent oracle, timing domain, remaining life/body legibility, and Tianfu semantic authority; Luna for additive evidence maintenance only",
+    "reason": "Two direct-rule blockers are consumed at bounded claim scope. Remaining blockers require new source identity, independent oracle, semantic authority, implementation, or higher-legibility evidence.",
+    "status": "frontier_reached"
+  },
+  "artifactIdentity": {
+    "artifactId": "ziwei-inherited-evidence-consumption-frontier-v1",
+    "artifactPayloadSha256": "76cc94a465b1493740a14792bcdf8c06b9fde7951507cf00f1a3fb9f92c60cc4",
+    "contractVersion": "artifact-identity-v1",
+    "generation": {
+      "baseHead": "2e09c7d77d2d80d87e40c440f88d82b773dd46ed",
+      "baseHeadSource": "git rev-parse HEAD at materialization",
+      "includedCommit": null,
+      "includedCommitSource": "unknown_at_generation; artifact may be included by a later commit"
+    },
+    "inputs": [
+      {
+        "byteSha256": "8df1e6430b09f7277c6db1c7b9749d0b560bce69b692876ffe6cea4e5f52e647",
+        "path": "../malang_lab/documents/_agent-output/ziwei-frontier-source-acquisition-v1/blocker-evidence-crosswalk.json"
+      },
+      {
+        "byteSha256": "42d22345599bd0f8789e50b0f1f8d66a83bb71c9ee1acfd4a60c3d1010f8f1d9",
+        "path": "../malang_lab/documents/_agent-output/ziwei-frontier-source-acquisition-v1/blocker-source-status-map.jsonl"
+      },
+      {
+        "byteSha256": "cabce02a97f9c1784b03ff9384ed63b54324ec16b10c1a6e732bd0bb64076dd2",
+        "path": "../malang_lab/documents/_agent-output/ziwei-frontier-source-acquisition-v1/direct-observation-ledger.jsonl"
+      },
+      {
+        "byteSha256": "32283af58708edf504d63c8436dec9a08ef724a6eb525e4e741d3e82510f4fc3",
+        "path": "../malang_lab/documents/_agent-output/ziwei-frontier-source-acquisition-v1/manifest.json"
+      },
+      {
+        "byteSha256": "5369b32c5535a4d7ca52044bea6ee2c3b48ded9ffb85c4ff86c278e7a0115558",
+        "path": "../malang_lab/documents/_agent-output/ziwei-frontier-source-acquisition-v1/source-witness-packets.jsonl"
+      },
+      {
+        "byteSha256": "a11964b0ba30bf2a64307b78a2d4aee087983d013f218264ed9139ca8ae7a978",
+        "path": "artifacts/ziwei-auxiliary-star-placement-core-evidence-v0/comparison.json"
+      },
+      {
+        "byteSha256": "a0225432d4b43a7bf5b0d734b5c97ca529504f25f882307a900b54ebb7b48621",
+        "path": "artifacts/ziwei-auxiliary-star-placement-core-evidence-v0/complete.json"
+      },
+      {
+        "byteSha256": "7260052c858245a2570eb320503ad57c0cd97cbb26b4184da383d4cb5cc86b2e",
+        "path": "artifacts/ziwei-auxiliary-star-placement-core-evidence-v0/occurrences.json"
+      },
+      {
+        "byteSha256": "d03c8d64bd6122f6ac14b04311c8dd7ac08e18f0f5e00a6ce89a8f9da32d3798",
+        "path": "artifacts/ziwei-auxiliary-star-placement-core-evidence-v0/production-trace.json"
+      },
+      {
+        "byteSha256": "1c34908635e49c722e841ff1184c8942bd399106368c41f60ca1a2304b06f1bf",
+        "path": "artifacts/ziwei-readiness-admission-blocker-audit-v0/complete.json"
+      },
+      {
+        "byteSha256": "28cea1e8eabad6d28d9849a05bdbe9a012a1bdbf1dc585de01d5fc109ec553a4",
+        "path": "artifacts/ziwei-structural-admission-frontier-v1/complete.json"
+      },
+      {
+        "byteSha256": "f93cb1ca021ed8c267dd8a22c16aac76e5f505c760ac4b9fd52904bfd687d5a2",
+        "path": "artifacts/ziwei-tianfu-convention-provenance-v0/complete.json"
+      },
+      {
+        "byteSha256": "bf3e6149eda8bd41e998cfb8abe32988af140cf349ef1f1c10868bf444dd473e",
+        "path": "artifacts/ziwei-twelve-major-star-placement-evidence-v0/complete.json"
+      },
+      {
+        "byteSha256": "6b2c80e8ca6ee23333829409f1121dd25e373328d2773d18ca13240c7de959e1",
+        "path": "scripts/check-ziwei-auxiliary-star-placement-core-evidence-v0.mjs"
+      },
+      {
+        "byteSha256": "a149192202823b49074d94fd50148617865b840df4c9aef262a9c68676946d1b",
+        "path": "scripts/check-ziwei-tianfu-convention-provenance-v0.mjs"
+      },
+      {
+        "byteSha256": "95a4a7594764778255cacdd421c2d73f2dce5227db78cc2229a1e8a728f93d62",
+        "path": "scripts/check-ziwei-twelve-major-star-placement-evidence-v0.mjs"
+      },
+      {
+        "byteSha256": "278f6029a0b8d62bbf59788c3fe4a0df4b0b7eb0cd7623e3be680aa76ae80be8",
+        "path": "scripts/materialize-ziwei-auxiliary-star-placement-core-evidence-v0.mjs"
+      },
+      {
+        "byteSha256": "f7b3d05a3e95e08acfa05bb34da2d6c5880f806f3bd235d6c4d791adc59dc47c",
+        "path": "scripts/materialize-ziwei-tianfu-convention-provenance-v0.mjs"
+      },
+      {
+        "byteSha256": "04807dbff563a7effabd833a618de0fda10c1851f6fea5401c6c98001691544f",
+        "path": "scripts/materialize-ziwei-twelve-major-star-placement-evidence-v0.mjs"
+      },
+      {
+        "byteSha256": "8fa063daac82b29b2d34beb83697ce88b1fb516bd51371b8af5149f35e23665d",
+        "path": "src/interpretationPrep/threeSystemPrepPipeline.js"
+      },
+      {
+        "byteSha256": "40bfa66f576027a5ef77374257da895bbe714c331f6ded6e004048f246bc3c7a",
+        "path": "src/ziwei/minorStarResolver.js"
+      },
+      {
+        "byteSha256": "b7cdc5db61a1a70dae3a4a243b5bccc0c148488c4c8e9f81bcfc345e4e8a4be3",
+        "path": "src/ziwei/minorStarRules.js"
+      },
+      {
+        "byteSha256": "9391a7b881ca6c96e534b1e0695be9d318b306f33ecb88f5c69613707cdbfdc3",
+        "path": "src/ziwei/starPlacementRules.js"
+      },
+      {
+        "byteSha256": "66cb732b754eef78e56e9874f9502d4674049988576eda71c56f455e8fd2fa98",
+        "path": "src/ziwei/starResolver.js"
+      }
+    ],
+    "materializer": {
+      "path": "scripts/materialize-ziwei-inherited-evidence-consumption-frontier-v1.mjs",
+      "version": "1.0.0"
+    }
+  },
+  "basisHead": "2e09c7d77d2d80d87e40c440f88d82b773dd46ed",
+  "blockers": [
+    {
+      "affectedDomains": [
+        "input-calendar-time",
+        "ming-shen",
+        "five-element-bureau"
+      ],
+      "currentDisposition": "Inherited evidence was reviewed but does not close this blocker.",
+      "disposition": "No existing evidence closes this blocker at current HEAD.",
+      "id": "blocker-calendar-time-source-identity",
+      "priority": "P0",
+      "resolution": "입력 변환 규칙과 경계의 immutable source witness 및 independent oracle",
+      "sourcePaths": [
+        "src/ziwei/ziweiResolver.js",
+        "src/ziwei/ziweiContract.js"
+      ],
+      "sourceRefs": [
+        "evidence-fcd08a4a2ef88074",
+        "evidence-ec6296fabb119a1c"
+      ],
+      "startingStatus": "still_blocked",
+      "status": "still_blocked",
+      "title": "음력·윤달·자시 입력 source identity/독립 대조 부재"
+    },
+    {
+      "affectedDomains": [
+        "source-claim-provenance",
+        "readiness-activation-boundary"
+      ],
+      "currentDisposition": "Inherited evidence was reviewed but does not close this blocker.",
+      "disposition": "No existing evidence closes this blocker at current HEAD.",
+      "id": "blocker-source-identity-unresolved",
+      "priority": "P0",
+      "resolution": "scan/page/folio/edition/hash와 occurrence-level provenance를 claim gate에 연결",
+      "sourcePaths": [
+        "src/ziwei/cleanRuleCorpusSourceSelection.js",
+        "artifacts/ziwei-occurrence-level-provenance-v0/complete.json"
+      ],
+      "sourceRefs": [
+        "evidence-9b66b10223c206d0",
+        "evidence-946b4a0c9d9e4892"
+      ],
+      "startingStatus": "still_blocked",
+      "status": "still_blocked",
+      "title": "occurrence source identity와 stable claim boundary 미해결"
+    },
+    {
+      "affectedDomains": [
+        "fixture-external-validation"
+      ],
+      "currentDisposition": "Inherited evidence was reviewed but does not close this blocker.",
+      "disposition": "No existing evidence closes this blocker at current HEAD.",
+      "id": "blocker-external-oracle-identity",
+      "priority": "P1",
+      "resolution": "판본·원문·촬영 byte와 evaluator independence를 확보",
+      "sourcePaths": [
+        "src/ziwei/externalZiweiFixtures.js",
+        "artifacts/ziwei-fixture-reconciliation-v1/complete.json"
+      ],
+      "sourceRefs": [
+        "evidence-ff808732e6ed7149",
+        "evidence-0edc06196258fc33"
+      ],
+      "startingStatus": "still_blocked",
+      "status": "still_blocked",
+      "title": "외부 fixture의 독립 oracle/source identity 부재"
+    },
+    {
+      "affectedDomains": [
+        "four-transformations"
+      ],
+      "currentDisposition": "Inherited evidence was reviewed but does not close this blocker.",
+      "disposition": "No existing evidence closes this blocker at current HEAD.",
+      "id": "blocker-four-transform-source-witness",
+      "priority": "P1",
+      "resolution": "10 천간×4 사화 표의 page/folio/table witness",
+      "sourcePaths": [
+        "src/ziwei/transformationRules.js"
+      ],
+      "sourceRefs": [
+        "evidence-f5f61dfd4f9d0ca4"
+      ],
+      "startingStatus": "still_blocked",
+      "status": "still_blocked",
+      "title": "사화 표의 직접 source witness 부재"
+    },
+    {
+      "affectedDomains": [
+        "minor-stars"
+      ],
+      "currentDisposition": "Resolved for the six production-implemented lucky-star rules only; seven unimplemented auxiliary-star rules remain outside scope.",
+      "disposition": "No existing evidence closes this blocker at current HEAD.",
+      "id": "blocker-minor-star-source-witness",
+      "priority": "P1",
+      "resolution": "각 보조성 규칙표와 입력 경계의 page/folio witness",
+      "resolvedClaimScope": "six implemented lucky stars only",
+      "sourcePaths": [
+        "src/ziwei/minorStarRules.js"
+      ],
+      "sourceRefs": [
+        "evidence-a68101856b2ec351"
+      ],
+      "startingStatus": "still_blocked",
+      "status": "resolved_with_existing_evidence",
+      "title": "6길성·보조성 규칙의 직접 source witness 부재"
+    },
+    {
+      "affectedDomains": [
+        "decade-year-fortune"
+      ],
+      "currentDisposition": "Inherited evidence was reviewed but does not close this blocker.",
+      "disposition": "No existing evidence closes this blocker at current HEAD.",
+      "id": "blocker-timing-domain-absent",
+      "priority": "P2",
+      "resolution": "정의된 production contract, fixture, independent oracle이 모두 필요",
+      "sourcePaths": [
+        "src/ziwei/ziweiContract.js"
+      ],
+      "sourceRefs": [
+        "evidence-ec6296fabb119a1c"
+      ],
+      "startingStatus": "still_blocked",
+      "status": "still_blocked",
+      "title": "대운·세운 계산 구현·fixture·외부 대조 부재"
+    },
+    {
+      "affectedDomains": [
+        "fourteen-major-stars"
+      ],
+      "currentDisposition": "Resolved for direct relative rules of all 12 non-root stars; Tianfu raw anchor and semantic authority remain separate blockers.",
+      "id": "blocker-12-major-star-direct-rules",
+      "priority": "P0",
+      "reason": "The reviewed source corpus has no admitted direct rule for those 12 stars; production offsets cannot substitute for a direct witness.",
+      "requiredEvidence": "immutable page/folio/table witness for each rule with edition identity and actual bytes",
+      "resolvedClaimScope": "12 non-root relative placement rules; root/semantic identity kept separate",
+      "sourceRefs": [
+        "artifacts/ziwei-major-star-claim-readiness-reconciliation-v0/complete.json"
+      ],
+      "startingStatus": "still_blocked",
+      "status": "resolved_with_existing_evidence",
+      "title": "12 non-root major-star direct rules remain source-unresolved"
+    },
+    {
+      "affectedDomains": [
+        "ziwei-tianfu-placement",
+        "fourteen-major-stars"
+      ],
+      "currentDisposition": "Inherited evidence was reviewed but does not close this blocker.",
+      "id": "blocker-tianfu-raw-formula-contradiction",
+      "priority": "P0",
+      "reason": "Current code exposes both conventions, but the source-authority choice is not resolved by compatibility or arithmetic relation.",
+      "requiredEvidence": "direct historical source interpretation or explicit authorized semantic authority decision",
+      "sourceRefs": [
+        "../malang_lab/documents/_agent-output/ziwei-tianfu-raw-contradiction-provenance-audit-v1/audit-manifest.json"
+      ],
+      "startingStatus": "still_blocked",
+      "status": "still_blocked",
+      "title": "Tianfu source Chen anchor and legacy Xu anchor remain raw-contradictory"
+    },
+    {
+      "affectedDomains": [
+        "ziwei-tianfu-placement",
+        "palace-layout"
+      ],
+      "currentDisposition": "Inherited evidence was reviewed but does not close this blocker.",
+      "id": "blocker-tianfu-rotation06-semantic-authority",
+      "priority": "P0",
+      "reason": "150/150 transform equivalence explains outputs but does not prove that the two conventions name the same semantic palace or that one is authoritative.",
+      "requiredEvidence": "source witness that directly establishes the coordinate convention and its semantic mapping",
+      "sourceRefs": [
+        "../malang_lab/documents/_agent-output/ziwei-palace-coordinate-identity-audit-v1/correction-manifest.json"
+      ],
+      "startingStatus": "still_blocked",
+      "status": "still_blocked",
+      "title": "rotation-06 is a known relation, not source identity"
+    },
+    {
+      "affectedDomains": [
+        "ming-shen"
+      ],
+      "currentDisposition": "Inherited evidence was reviewed but does not close this blocker.",
+      "id": "blocker-life-body-ruler-source-legibility",
+      "observedCounts": {
+        "blockedAmbiguousRows": 24,
+        "rows": 144
+      },
+      "priority": "P1",
+      "reason": "Existing life/body/ruler evidence records 120 comparable rows and 24 blocked ambiguous compound surfaces; no glyph guessing is permitted.",
+      "requiredEvidence": "higher-legibility source witness or independent reading for the 24 blocked rows",
+      "sourceRefs": [
+        "artifacts/ziwei-life-body-palace-ruler-source-evidence-v0/complete.json"
+      ],
+      "startingStatus": "still_blocked",
+      "status": "still_blocked",
+      "title": "24/144 身主 source surfaces remain ambiguous"
+    }
+  ],
+  "checker": "scripts/check-ziwei-inherited-evidence-consumption-frontier-v1.mjs",
+  "claims": [
+    {
+      "blockerIds": [],
+      "id": "claim-major-star-placement-ziwei",
+      "note": "Root and dynamic coordinate evidence remain bounded; no readiness promotion.",
+      "series": "root",
+      "status": "structural_baseline_preserved",
+      "subject": "ziwei"
+    },
+    {
+      "blockerIds": [],
+      "id": "claim-major-star-placement-tianji",
+      "readiness": "blocked",
+      "series": "ziwei",
+      "sourceVsImplementation": "exact_match",
+      "status": "resolved_with_existing_evidence",
+      "subject": "tianji"
+    },
+    {
+      "blockerIds": [],
+      "id": "claim-major-star-placement-taiyang",
+      "readiness": "blocked",
+      "series": "ziwei",
+      "sourceVsImplementation": "exact_match",
+      "status": "resolved_with_existing_evidence",
+      "subject": "taiyang"
+    },
+    {
+      "blockerIds": [],
+      "id": "claim-major-star-placement-wugu",
+      "readiness": "blocked",
+      "series": "ziwei",
+      "sourceVsImplementation": "exact_match",
+      "status": "resolved_with_existing_evidence",
+      "subject": "wugu"
+    },
+    {
+      "blockerIds": [],
+      "id": "claim-major-star-placement-tiandong",
+      "readiness": "blocked",
+      "series": "ziwei",
+      "sourceVsImplementation": "exact_match",
+      "status": "resolved_with_existing_evidence",
+      "subject": "tiandong"
+    },
+    {
+      "blockerIds": [],
+      "id": "claim-major-star-placement-lianzhen",
+      "readiness": "blocked",
+      "series": "ziwei",
+      "sourceVsImplementation": "exact_match",
+      "status": "resolved_with_existing_evidence",
+      "subject": "lianzhen"
+    },
+    {
+      "blockerIds": [
+        "blocker-tianfu-raw-formula-contradiction",
+        "blocker-tianfu-rotation06-semantic-authority"
+      ],
+      "id": "claim-major-star-placement-taiyin",
+      "readiness": "blocked",
+      "series": "tianfu",
+      "sourceVsImplementation": "equivalent_representation_proven",
+      "status": "partially_resolved_with_existing_evidence",
+      "subject": "taiyin"
+    },
+    {
+      "blockerIds": [
+        "blocker-tianfu-raw-formula-contradiction",
+        "blocker-tianfu-rotation06-semantic-authority"
+      ],
+      "id": "claim-major-star-placement-tanlang",
+      "readiness": "blocked",
+      "series": "tianfu",
+      "sourceVsImplementation": "equivalent_representation_proven",
+      "status": "partially_resolved_with_existing_evidence",
+      "subject": "tanlang"
+    },
+    {
+      "blockerIds": [
+        "blocker-tianfu-raw-formula-contradiction",
+        "blocker-tianfu-rotation06-semantic-authority"
+      ],
+      "id": "claim-major-star-placement-jumen",
+      "readiness": "blocked",
+      "series": "tianfu",
+      "sourceVsImplementation": "equivalent_representation_proven",
+      "status": "partially_resolved_with_existing_evidence",
+      "subject": "jumen"
+    },
+    {
+      "blockerIds": [
+        "blocker-tianfu-raw-formula-contradiction",
+        "blocker-tianfu-rotation06-semantic-authority"
+      ],
+      "id": "claim-major-star-placement-tianxiang",
+      "readiness": "blocked",
+      "series": "tianfu",
+      "sourceVsImplementation": "equivalent_representation_proven",
+      "status": "partially_resolved_with_existing_evidence",
+      "subject": "tianxiang"
+    },
+    {
+      "blockerIds": [
+        "blocker-tianfu-raw-formula-contradiction",
+        "blocker-tianfu-rotation06-semantic-authority"
+      ],
+      "id": "claim-major-star-placement-tianliang",
+      "readiness": "blocked",
+      "series": "tianfu",
+      "sourceVsImplementation": "equivalent_representation_proven",
+      "status": "partially_resolved_with_existing_evidence",
+      "subject": "tianliang"
+    },
+    {
+      "blockerIds": [
+        "blocker-tianfu-raw-formula-contradiction",
+        "blocker-tianfu-rotation06-semantic-authority"
+      ],
+      "id": "claim-major-star-placement-qisai",
+      "readiness": "blocked",
+      "series": "tianfu",
+      "sourceVsImplementation": "equivalent_representation_proven",
+      "status": "partially_resolved_with_existing_evidence",
+      "subject": "qisai"
+    },
+    {
+      "blockerIds": [
+        "blocker-tianfu-raw-formula-contradiction",
+        "blocker-tianfu-rotation06-semantic-authority"
+      ],
+      "id": "claim-major-star-placement-pojun",
+      "readiness": "blocked",
+      "series": "tianfu",
+      "sourceVsImplementation": "equivalent_representation_proven",
+      "status": "partially_resolved_with_existing_evidence",
+      "subject": "pojun"
+    },
+    {
+      "blockerIds": [
+        "blocker-tianfu-raw-formula-contradiction",
+        "blocker-tianfu-rotation06-semantic-authority"
+      ],
+      "id": "claim-major-star-placement-tianfu",
+      "note": "Legacy/source_aligned modes are preserved; raw source identity remains unresolved.",
+      "series": "root",
+      "status": "partially_resolved_with_existing_evidence",
+      "subject": "tianfu"
+    }
+  ],
+  "counts": {
+    "endingBlockers": 8,
+    "majorNonRootClaims": 12,
+    "minorClaims": 6,
+    "packets": 3,
+    "resolvedBlockers": 2,
+    "startingBlockers": 10,
+    "stillBlocked": 8,
+    "trackedBlockers": 10
+  },
+  "currentHead": "2e09c7d77d2d80d87e40c440f88d82b773dd46ed",
+  "deterministic": {
+    "blockerOrdering": "predecessor frontier order",
+    "generatedAt": "forbidden",
+    "hashes": "artifact identity uses actual input bytes",
+    "packetOrdering": "fixed packet declaration order",
+    "sourceAndProductionSeparate": true
+  },
+  "majorStarCoverage": {
+    "allTwelveDirectWitnesses": true,
+    "byStar": [
+      {
+        "productionImplementation": {
+          "codeRefs": [
+            "src/ziwei/starPlacementRules.js:56-63",
+            "src/ziwei/starResolver.js:50-67"
+          ],
+          "consumerRefs": [
+            "src/ziwei/starResolver.js:17-100"
+          ]
+        },
+        "relativeRuleMatch": {
+          "normalizedMatchCount": 300,
+          "rawMatchCount": 300,
+          "sourceRelationship": "direct_relative_rule_match",
+          "testedOccurrences": 300,
+          "verdict": "exact_match"
+        },
+        "semanticBoundary": "coordinate-relative rule only; palace semantics and readiness remain blocked",
+        "series": "ziwei",
+        "sourceObservation": {
+          "directRuleStatus": "direct_witness_acquired",
+          "inheritedObservationRefs": [
+            "OBS-NANBEI-P11-01",
+            "OBS-NANBEI-P14-01",
+            "OBS-NANBEI-P15-01"
+          ],
+          "sourceRefs": [
+            "source.nanbeishanren.locators.nb-p13-sanshiwu-series-rule",
+            "source.mingNanyang.locators.ming-p148-series-rule"
+          ],
+          "sourceRuleEvidence": "p14 紫微星系順逆例"
+        },
+        "starId": "tianji"
+      },
+      {
+        "productionImplementation": {
+          "codeRefs": [
+            "src/ziwei/starPlacementRules.js:56-63",
+            "src/ziwei/starResolver.js:50-67"
+          ],
+          "consumerRefs": [
+            "src/ziwei/starResolver.js:17-100"
+          ]
+        },
+        "relativeRuleMatch": {
+          "normalizedMatchCount": 300,
+          "rawMatchCount": 300,
+          "sourceRelationship": "direct_relative_rule_match",
+          "testedOccurrences": 300,
+          "verdict": "exact_match"
+        },
+        "semanticBoundary": "coordinate-relative rule only; palace semantics and readiness remain blocked",
+        "series": "ziwei",
+        "sourceObservation": {
+          "directRuleStatus": "direct_witness_acquired",
+          "inheritedObservationRefs": [
+            "OBS-NANBEI-P11-01",
+            "OBS-NANBEI-P14-01",
+            "OBS-NANBEI-P15-01"
+          ],
+          "sourceRefs": [
+            "source.nanbeishanren.locators.nb-p13-sanshiwu-series-rule",
+            "source.mingNanyang.locators.ming-p148-series-rule"
+          ],
+          "sourceRuleEvidence": "p14 紫微星系順逆例"
+        },
+        "starId": "taiyang"
+      },
+      {
+        "productionImplementation": {
+          "codeRefs": [
+            "src/ziwei/starPlacementRules.js:56-63",
+            "src/ziwei/starResolver.js:50-67"
+          ],
+          "consumerRefs": [
+            "src/ziwei/starResolver.js:17-100"
+          ]
+        },
+        "relativeRuleMatch": {
+          "normalizedMatchCount": 300,
+          "rawMatchCount": 300,
+          "sourceRelationship": "direct_relative_rule_match",
+          "testedOccurrences": 300,
+          "verdict": "exact_match"
+        },
+        "semanticBoundary": "coordinate-relative rule only; palace semantics and readiness remain blocked",
+        "series": "ziwei",
+        "sourceObservation": {
+          "directRuleStatus": "direct_witness_acquired",
+          "inheritedObservationRefs": [
+            "OBS-NANBEI-P11-01",
+            "OBS-NANBEI-P14-01",
+            "OBS-NANBEI-P15-01"
+          ],
+          "sourceRefs": [
+            "source.nanbeishanren.locators.nb-p13-sanshiwu-series-rule",
+            "source.mingNanyang.locators.ming-p148-series-rule"
+          ],
+          "sourceRuleEvidence": "p14 紫微星系順逆例"
+        },
+        "starId": "wugu"
+      },
+      {
+        "productionImplementation": {
+          "codeRefs": [
+            "src/ziwei/starPlacementRules.js:56-63",
+            "src/ziwei/starResolver.js:50-67"
+          ],
+          "consumerRefs": [
+            "src/ziwei/starResolver.js:17-100"
+          ]
+        },
+        "relativeRuleMatch": {
+          "normalizedMatchCount": 300,
+          "rawMatchCount": 300,
+          "sourceRelationship": "direct_relative_rule_match",
+          "testedOccurrences": 300,
+          "verdict": "exact_match"
+        },
+        "semanticBoundary": "coordinate-relative rule only; palace semantics and readiness remain blocked",
+        "series": "ziwei",
+        "sourceObservation": {
+          "directRuleStatus": "direct_witness_acquired",
+          "inheritedObservationRefs": [
+            "OBS-NANBEI-P11-01",
+            "OBS-NANBEI-P14-01",
+            "OBS-NANBEI-P15-01"
+          ],
+          "sourceRefs": [
+            "source.nanbeishanren.locators.nb-p13-sanshiwu-series-rule",
+            "source.mingNanyang.locators.ming-p148-series-rule"
+          ],
+          "sourceRuleEvidence": "p14 紫微星系順逆例"
+        },
+        "starId": "tiandong"
+      },
+      {
+        "productionImplementation": {
+          "codeRefs": [
+            "src/ziwei/starPlacementRules.js:56-63",
+            "src/ziwei/starResolver.js:50-67"
+          ],
+          "consumerRefs": [
+            "src/ziwei/starResolver.js:17-100"
+          ]
+        },
+        "relativeRuleMatch": {
+          "normalizedMatchCount": 300,
+          "rawMatchCount": 300,
+          "sourceRelationship": "direct_relative_rule_match",
+          "testedOccurrences": 300,
+          "verdict": "exact_match"
+        },
+        "semanticBoundary": "coordinate-relative rule only; palace semantics and readiness remain blocked",
+        "series": "ziwei",
+        "sourceObservation": {
+          "directRuleStatus": "direct_witness_acquired",
+          "inheritedObservationRefs": [
+            "OBS-NANBEI-P11-01",
+            "OBS-NANBEI-P14-01",
+            "OBS-NANBEI-P15-01"
+          ],
+          "sourceRefs": [
+            "source.nanbeishanren.locators.nb-p13-sanshiwu-series-rule",
+            "source.mingNanyang.locators.ming-p148-series-rule"
+          ],
+          "sourceRuleEvidence": "p14 紫微星系順逆例"
+        },
+        "starId": "lianzhen"
+      },
+      {
+        "productionImplementation": {
+          "codeRefs": [
+            "src/ziwei/starPlacementRules.js:67-75",
+            "src/ziwei/starResolver.js:70-87"
+          ],
+          "consumerRefs": [
+            "src/ziwei/starResolver.js:17-100"
+          ]
+        },
+        "relativeRuleMatch": {
+          "normalizedMatchCount": 300,
+          "rawMatchCount": 0,
+          "sourceRelationship": "transcription_defect_resolved_in_successor; semantic_identity_not_promoted",
+          "testedOccurrences": 300,
+          "verdict": "equivalent_representation_proven"
+        },
+        "semanticBoundary": "tianfu raw anchor and semantic authority remain unresolved",
+        "series": "tianfu",
+        "sourceObservation": {
+          "directRuleStatus": "direct_witness_acquired",
+          "inheritedObservationRefs": [
+            "OBS-NANBEI-P11-01",
+            "OBS-NANBEI-P14-01",
+            "OBS-NANBEI-P15-01"
+          ],
+          "sourceRefs": [
+            "source.nanbeishanren.locators.nb-p13-sanshisi-tianfu-root",
+            "source.mingNanyang.locators.ming-p148-series-rule"
+          ],
+          "sourceRuleEvidence": "p15 天府星系順逆例"
+        },
+        "starId": "taiyin"
+      },
+      {
+        "productionImplementation": {
+          "codeRefs": [
+            "src/ziwei/starPlacementRules.js:67-75",
+            "src/ziwei/starResolver.js:70-87"
+          ],
+          "consumerRefs": [
+            "src/ziwei/starResolver.js:17-100"
+          ]
+        },
+        "relativeRuleMatch": {
+          "normalizedMatchCount": 300,
+          "rawMatchCount": 0,
+          "sourceRelationship": "transcription_defect_resolved_in_successor; semantic_identity_not_promoted",
+          "testedOccurrences": 300,
+          "verdict": "equivalent_representation_proven"
+        },
+        "semanticBoundary": "tianfu raw anchor and semantic authority remain unresolved",
+        "series": "tianfu",
+        "sourceObservation": {
+          "directRuleStatus": "direct_witness_acquired",
+          "inheritedObservationRefs": [
+            "OBS-NANBEI-P11-01",
+            "OBS-NANBEI-P14-01",
+            "OBS-NANBEI-P15-01"
+          ],
+          "sourceRefs": [
+            "source.nanbeishanren.locators.nb-p13-sanshisi-tianfu-root",
+            "source.mingNanyang.locators.ming-p148-series-rule"
+          ],
+          "sourceRuleEvidence": "p15 天府星系順逆例"
+        },
+        "starId": "tanlang"
+      },
+      {
+        "productionImplementation": {
+          "codeRefs": [
+            "src/ziwei/starPlacementRules.js:67-75",
+            "src/ziwei/starResolver.js:70-87"
+          ],
+          "consumerRefs": [
+            "src/ziwei/starResolver.js:17-100"
+          ]
+        },
+        "relativeRuleMatch": {
+          "normalizedMatchCount": 300,
+          "rawMatchCount": 0,
+          "sourceRelationship": "transcription_defect_resolved_in_successor; semantic_identity_not_promoted",
+          "testedOccurrences": 300,
+          "verdict": "equivalent_representation_proven"
+        },
+        "semanticBoundary": "tianfu raw anchor and semantic authority remain unresolved",
+        "series": "tianfu",
+        "sourceObservation": {
+          "directRuleStatus": "direct_witness_acquired",
+          "inheritedObservationRefs": [
+            "OBS-NANBEI-P11-01",
+            "OBS-NANBEI-P14-01",
+            "OBS-NANBEI-P15-01"
+          ],
+          "sourceRefs": [
+            "source.nanbeishanren.locators.nb-p13-sanshisi-tianfu-root",
+            "source.mingNanyang.locators.ming-p148-series-rule"
+          ],
+          "sourceRuleEvidence": "p15 天府星系順逆例"
+        },
+        "starId": "jumen"
+      },
+      {
+        "productionImplementation": {
+          "codeRefs": [
+            "src/ziwei/starPlacementRules.js:67-75",
+            "src/ziwei/starResolver.js:70-87"
+          ],
+          "consumerRefs": [
+            "src/ziwei/starResolver.js:17-100"
+          ]
+        },
+        "relativeRuleMatch": {
+          "normalizedMatchCount": 300,
+          "rawMatchCount": 0,
+          "sourceRelationship": "transcription_defect_resolved_in_successor; semantic_identity_not_promoted",
+          "testedOccurrences": 300,
+          "verdict": "equivalent_representation_proven"
+        },
+        "semanticBoundary": "tianfu raw anchor and semantic authority remain unresolved",
+        "series": "tianfu",
+        "sourceObservation": {
+          "directRuleStatus": "direct_witness_acquired",
+          "inheritedObservationRefs": [
+            "OBS-NANBEI-P11-01",
+            "OBS-NANBEI-P14-01",
+            "OBS-NANBEI-P15-01"
+          ],
+          "sourceRefs": [
+            "source.nanbeishanren.locators.nb-p13-sanshisi-tianfu-root",
+            "source.mingNanyang.locators.ming-p148-series-rule"
+          ],
+          "sourceRuleEvidence": "p15 天府星系順逆例"
+        },
+        "starId": "tianxiang"
+      },
+      {
+        "productionImplementation": {
+          "codeRefs": [
+            "src/ziwei/starPlacementRules.js:67-75",
+            "src/ziwei/starResolver.js:70-87"
+          ],
+          "consumerRefs": [
+            "src/ziwei/starResolver.js:17-100"
+          ]
+        },
+        "relativeRuleMatch": {
+          "normalizedMatchCount": 300,
+          "rawMatchCount": 0,
+          "sourceRelationship": "transcription_defect_resolved_in_successor; semantic_identity_not_promoted",
+          "testedOccurrences": 300,
+          "verdict": "equivalent_representation_proven"
+        },
+        "semanticBoundary": "tianfu raw anchor and semantic authority remain unresolved",
+        "series": "tianfu",
+        "sourceObservation": {
+          "directRuleStatus": "direct_witness_acquired",
+          "inheritedObservationRefs": [
+            "OBS-NANBEI-P11-01",
+            "OBS-NANBEI-P14-01",
+            "OBS-NANBEI-P15-01"
+          ],
+          "sourceRefs": [
+            "source.nanbeishanren.locators.nb-p13-sanshisi-tianfu-root",
+            "source.mingNanyang.locators.ming-p148-series-rule"
+          ],
+          "sourceRuleEvidence": "p15 天府星系順逆例"
+        },
+        "starId": "tianliang"
+      },
+      {
+        "productionImplementation": {
+          "codeRefs": [
+            "src/ziwei/starPlacementRules.js:67-75",
+            "src/ziwei/starResolver.js:70-87"
+          ],
+          "consumerRefs": [
+            "src/ziwei/starResolver.js:17-100"
+          ]
+        },
+        "relativeRuleMatch": {
+          "normalizedMatchCount": 300,
+          "rawMatchCount": 0,
+          "sourceRelationship": "transcription_defect_resolved_in_successor; semantic_identity_not_promoted",
+          "testedOccurrences": 300,
+          "verdict": "equivalent_representation_proven"
+        },
+        "semanticBoundary": "tianfu raw anchor and semantic authority remain unresolved",
+        "series": "tianfu",
+        "sourceObservation": {
+          "directRuleStatus": "direct_witness_acquired",
+          "inheritedObservationRefs": [
+            "OBS-NANBEI-P11-01",
+            "OBS-NANBEI-P14-01",
+            "OBS-NANBEI-P15-01"
+          ],
+          "sourceRefs": [
+            "source.nanbeishanren.locators.nb-p13-sanshisi-tianfu-root",
+            "source.mingNanyang.locators.ming-p148-series-rule"
+          ],
+          "sourceRuleEvidence": "p15 天府星系順逆例"
+        },
+        "starId": "qisai"
+      },
+      {
+        "productionImplementation": {
+          "codeRefs": [
+            "src/ziwei/starPlacementRules.js:67-75",
+            "src/ziwei/starResolver.js:70-87"
+          ],
+          "consumerRefs": [
+            "src/ziwei/starResolver.js:17-100"
+          ]
+        },
+        "relativeRuleMatch": {
+          "normalizedMatchCount": 300,
+          "rawMatchCount": 0,
+          "sourceRelationship": "transcription_defect_resolved_in_successor; semantic_identity_not_promoted",
+          "testedOccurrences": 300,
+          "verdict": "equivalent_representation_proven"
+        },
+        "semanticBoundary": "tianfu raw anchor and semantic authority remain unresolved",
+        "series": "tianfu",
+        "sourceObservation": {
+          "directRuleStatus": "direct_witness_acquired",
+          "inheritedObservationRefs": [
+            "OBS-NANBEI-P11-01",
+            "OBS-NANBEI-P14-01",
+            "OBS-NANBEI-P15-01"
+          ],
+          "sourceRefs": [
+            "source.nanbeishanren.locators.nb-p13-sanshisi-tianfu-root",
+            "source.mingNanyang.locators.ming-p148-series-rule"
+          ],
+          "sourceRuleEvidence": "p15 天府星系順逆例"
+        },
+        "starId": "pojun"
+      }
+    ],
+    "checker": "scripts/check-ziwei-twelve-major-star-placement-evidence-v0.mjs",
+    "claimScope": "12 non-root relative placement rules; root/semantic identity kept separate",
+    "materializer": "scripts/materialize-ziwei-twelve-major-star-placement-evidence-v0.mjs",
+    "sourceVsImplementationBoundary": "source observation, deterministic rule match, coordinate relation, semantic authority, and readiness are distinct fields",
+    "tianfuSeries": {
+      "normalizedRows": 1050,
+      "rawRows": 0,
+      "starCount": 7,
+      "status": "relative_rule_match_with_semantic_authority_blocked"
+    },
+    "ziweiSeries": {
+      "rawExactRows": 750,
+      "starCount": 5,
+      "status": "direct_relative_rule_match"
+    }
+  },
+  "materializer": "scripts/materialize-ziwei-inherited-evidence-consumption-frontier-v1.mjs",
+  "minorStarCoverage": {
+    "allSixExact": true,
+    "byStar": [
+      {
+        "inheritedObservationRefs": [
+          "OBS-NANBEI-P17-01",
+          "OBS-NANBEI-P19-01"
+        ],
+        "label": "文昌",
+        "productionImplementation": {
+          "codeRefs": [
+            "src/ziwei/minorStarRules.js:26-33",
+            "src/ziwei/minorStarResolver.js:39-47"
+          ],
+          "consumerRefs": [
+            "src/interpretationPrep/threeSystemPrepPipeline.js:181-186",
+            "src/ziwei/minorStarResolver.js:19-83"
+          ],
+          "currentRuleSet": "traditional_v1",
+          "productionRowCount": 12
+        },
+        "productionMatch": {
+          "editionVerdicts": [
+            {
+              "edition": "ming_nanyangtang",
+              "productionOccurrences": 12,
+              "sourceOccurrences": 12,
+              "sourceRefs": [
+                "ming-p148-wenchang-wenqu"
+              ],
+              "verdict": "exact_match"
+            },
+            {
+              "edition": "nanbei_shanren",
+              "productionOccurrences": 12,
+              "sourceOccurrences": 12,
+              "sourceRefs": [
+                "nanbei-p15-printed-38-wenchang-wenqu"
+              ],
+              "verdict": "exact_match"
+            }
+          ],
+          "evidenceClass": "implementation_regression_against_source_cells; not semantic_authority",
+          "exactMatch": true
+        },
+        "sourceObservation": {
+          "sourceCellCount": 24,
+          "sourceRefs": [
+            "ming-p148-wenchang-wenqu",
+            "nanbei-p15-printed-38-wenchang-wenqu"
+          ],
+          "status": "primary_source_direct_observation; inherited_only"
+        },
+        "starId": "wenchang"
+      },
+      {
+        "inheritedObservationRefs": [
+          "OBS-NANBEI-P17-01",
+          "OBS-NANBEI-P19-01"
+        ],
+        "label": "文曲",
+        "productionImplementation": {
+          "codeRefs": [
+            "src/ziwei/minorStarRules.js:35-40",
+            "src/ziwei/minorStarResolver.js:39-47"
+          ],
+          "consumerRefs": [
+            "src/interpretationPrep/threeSystemPrepPipeline.js:181-186",
+            "src/ziwei/minorStarResolver.js:19-83"
+          ],
+          "currentRuleSet": "traditional_v1",
+          "productionRowCount": 12
+        },
+        "productionMatch": {
+          "editionVerdicts": [
+            {
+              "edition": "ming_nanyangtang",
+              "productionOccurrences": 12,
+              "sourceOccurrences": 12,
+              "sourceRefs": [
+                "ming-p148-wenchang-wenqu"
+              ],
+              "verdict": "exact_match"
+            },
+            {
+              "edition": "nanbei_shanren",
+              "productionOccurrences": 12,
+              "sourceOccurrences": 12,
+              "sourceRefs": [
+                "nanbei-p15-printed-38-wenchang-wenqu"
+              ],
+              "verdict": "exact_match"
+            }
+          ],
+          "evidenceClass": "implementation_regression_against_source_cells; not semantic_authority",
+          "exactMatch": true
+        },
+        "sourceObservation": {
+          "sourceCellCount": 24,
+          "sourceRefs": [
+            "ming-p148-wenchang-wenqu",
+            "nanbei-p15-printed-38-wenchang-wenqu"
+          ],
+          "status": "primary_source_direct_observation; inherited_only"
+        },
+        "starId": "wenqu"
+      },
+      {
+        "inheritedObservationRefs": [
+          "OBS-NANBEI-P17-01",
+          "OBS-NANBEI-P19-01"
+        ],
+        "label": "左輔",
+        "productionImplementation": {
+          "codeRefs": [
+            "src/ziwei/minorStarRules.js:15-21",
+            "src/ziwei/minorStarResolver.js:34-38"
+          ],
+          "consumerRefs": [
+            "src/interpretationPrep/threeSystemPrepPipeline.js:181-186",
+            "src/ziwei/minorStarResolver.js:19-83"
+          ],
+          "currentRuleSet": "traditional_v1",
+          "productionRowCount": 12
+        },
+        "productionMatch": {
+          "editionVerdicts": [
+            {
+              "edition": "ming_nanyangtang",
+              "productionOccurrences": 12,
+              "sourceOccurrences": 12,
+              "sourceRefs": [
+                "ming-p149-zuofu-youbi"
+              ],
+              "verdict": "exact_match"
+            },
+            {
+              "edition": "nanbei_shanren",
+              "productionOccurrences": 12,
+              "sourceOccurrences": 12,
+              "sourceRefs": [
+                "nanbei-p14-printed-36-zuofu-youbi"
+              ],
+              "verdict": "exact_match"
+            }
+          ],
+          "evidenceClass": "implementation_regression_against_source_cells; not semantic_authority",
+          "exactMatch": true
+        },
+        "sourceObservation": {
+          "sourceCellCount": 24,
+          "sourceRefs": [
+            "ming-p149-zuofu-youbi",
+            "nanbei-p14-printed-36-zuofu-youbi"
+          ],
+          "status": "primary_source_direct_observation; inherited_only"
+        },
+        "starId": "zuofu"
+      },
+      {
+        "inheritedObservationRefs": [
+          "OBS-NANBEI-P17-01",
+          "OBS-NANBEI-P19-01"
+        ],
+        "label": "右弼",
+        "productionImplementation": {
+          "codeRefs": [
+            "src/ziwei/minorStarRules.js:22-24",
+            "src/ziwei/minorStarResolver.js:34-38"
+          ],
+          "consumerRefs": [
+            "src/interpretationPrep/threeSystemPrepPipeline.js:181-186",
+            "src/ziwei/minorStarResolver.js:19-83"
+          ],
+          "currentRuleSet": "traditional_v1",
+          "productionRowCount": 12
+        },
+        "productionMatch": {
+          "editionVerdicts": [
+            {
+              "edition": "ming_nanyangtang",
+              "productionOccurrences": 12,
+              "sourceOccurrences": 12,
+              "sourceRefs": [
+                "ming-p149-zuofu-youbi"
+              ],
+              "verdict": "exact_match"
+            },
+            {
+              "edition": "nanbei_shanren",
+              "productionOccurrences": 12,
+              "sourceOccurrences": 12,
+              "sourceRefs": [
+                "nanbei-p14-printed-36-zuofu-youbi"
+              ],
+              "verdict": "exact_match"
+            }
+          ],
+          "evidenceClass": "implementation_regression_against_source_cells; not semantic_authority",
+          "exactMatch": true
+        },
+        "sourceObservation": {
+          "sourceCellCount": 24,
+          "sourceRefs": [
+            "ming-p149-zuofu-youbi",
+            "nanbei-p14-printed-36-zuofu-youbi"
+          ],
+          "status": "primary_source_direct_observation; inherited_only"
+        },
+        "starId": "youbi"
+      },
+      {
+        "inheritedObservationRefs": [
+          "OBS-NANBEI-P17-01",
+          "OBS-NANBEI-P19-01"
+        ],
+        "label": "天魁",
+        "productionImplementation": {
+          "codeRefs": [
+            "src/ziwei/minorStarRules.js:44-57",
+            "src/ziwei/minorStarResolver.js:50-56"
+          ],
+          "consumerRefs": [
+            "src/interpretationPrep/threeSystemPrepPipeline.js:181-186",
+            "src/ziwei/minorStarResolver.js:19-83"
+          ],
+          "currentRuleSet": "traditional_v1",
+          "productionRowCount": 10
+        },
+        "productionMatch": {
+          "editionVerdicts": [
+            {
+              "edition": "ming_nanyangtang",
+              "productionOccurrences": 10,
+              "sourceOccurrences": 10,
+              "sourceRefs": [
+                "ming-p149-tiankui-tianyue"
+              ],
+              "verdict": "exact_match"
+            },
+            {
+              "edition": "nanbei_shanren",
+              "productionOccurrences": 10,
+              "sourceOccurrences": 10,
+              "sourceRefs": [
+                "nanbei-p16-printed-40-tiankui-tianyue"
+              ],
+              "verdict": "exact_match"
+            }
+          ],
+          "evidenceClass": "implementation_regression_against_source_cells; not semantic_authority",
+          "exactMatch": true
+        },
+        "sourceObservation": {
+          "sourceCellCount": 20,
+          "sourceRefs": [
+            "ming-p149-tiankui-tianyue",
+            "nanbei-p16-printed-40-tiankui-tianyue"
+          ],
+          "status": "primary_source_direct_observation; inherited_only"
+        },
+        "starId": "tiankui"
+      },
+      {
+        "inheritedObservationRefs": [
+          "OBS-NANBEI-P17-01",
+          "OBS-NANBEI-P19-01"
+        ],
+        "label": "天鉞",
+        "productionImplementation": {
+          "codeRefs": [
+            "src/ziwei/minorStarRules.js:44-57",
+            "src/ziwei/minorStarResolver.js:50-56"
+          ],
+          "consumerRefs": [
+            "src/interpretationPrep/threeSystemPrepPipeline.js:181-186",
+            "src/ziwei/minorStarResolver.js:19-83"
+          ],
+          "currentRuleSet": "traditional_v1",
+          "productionRowCount": 10
+        },
+        "productionMatch": {
+          "editionVerdicts": [
+            {
+              "edition": "ming_nanyangtang",
+              "productionOccurrences": 10,
+              "sourceOccurrences": 10,
+              "sourceRefs": [
+                "ming-p149-tiankui-tianyue"
+              ],
+              "verdict": "exact_match"
+            },
+            {
+              "edition": "nanbei_shanren",
+              "productionOccurrences": 10,
+              "sourceOccurrences": 10,
+              "sourceRefs": [
+                "nanbei-p16-printed-40-tiankui-tianyue"
+              ],
+              "verdict": "exact_match"
+            }
+          ],
+          "evidenceClass": "implementation_regression_against_source_cells; not semantic_authority",
+          "exactMatch": true
+        },
+        "sourceObservation": {
+          "sourceCellCount": 20,
+          "sourceRefs": [
+            "ming-p149-tiankui-tianyue",
+            "nanbei-p16-printed-40-tiankui-tianyue"
+          ],
+          "status": "primary_source_direct_observation; inherited_only"
+        },
+        "starId": "tianyue"
+      }
+    ],
+    "checker": "scripts/check-ziwei-auxiliary-star-placement-core-evidence-v0.mjs",
+    "claimScope": "six implemented lucky stars only",
+    "materializer": "scripts/materialize-ziwei-auxiliary-star-placement-core-evidence-v0.mjs",
+    "uncoveredBoundary": "unimplemented auxiliary stars and calendar/time input identity remain outside this resolved claim scope",
+    "uncoveredProductionStars": [
+      "lucun",
+      "qingyang",
+      "tuoluo",
+      "huoxing",
+      "lingxing",
+      "dikong",
+      "dijie"
+    ]
+  },
+  "packetEvidence": [
+    {
+      "groundingStatus": "luna_ready_additive_only",
+      "packetId": "PKT-MINOR-STARS-V1",
+      "provenanceClass": "inherited_direct_observation",
+      "safeActionForLuna": "src/ziwei/minorStarRules.js에 원전 조문 출처 주석 태깅 및 비파괴적(additive) checker/materializer 검증 태스크 수행",
+      "status": "direct_witness_acquired",
+      "targetBlockerId": "blocker-minor-star-source-witness",
+      "unresolvedBoundary": "보조성 산출 입력인 음력/시간 경계의 만세력 판본 조문 미확보",
+      "witnesses": [
+        {
+          "inheritedObservationProvenance": {
+            "exactTranscriptionMatches": [
+              "OBS-NANBEI-P17-01"
+            ],
+            "newlyObservedThisTask": false,
+            "observationClass": [
+              "inherited_direct_observation"
+            ],
+            "observationIds": [
+              "OBS-NANBEI-P17-01"
+            ],
+            "observedVsInherited": [
+              "inherited"
+            ],
+            "provenance": "inherited_from_atlas_audit_v1"
+          },
+          "sourceLocator": {
+            "heading": "安天魁天鉞星訣",
+            "pdfPage": 17,
+            "sourceFile": "命-南北山人_紫微斗数全书.pdf",
+            "sourceSha256": "4786a94ab454acdabf9716d7c0db4756dbcbde99a88bc45fda254863c1961023",
+            "transcription": "甲戊庚牛羊 乙己鼠猴鄉 丙丁豬雞位 壬癸兔蛇藏 六辛逢馬虎"
+          }
+        },
+        {
+          "inheritedObservationProvenance": {
+            "exactTranscriptionMatches": [
+              "OBS-NANBEI-P19-01"
+            ],
+            "newlyObservedThisTask": false,
+            "observationClass": [
+              "inherited_direct_observation"
+            ],
+            "observationIds": [
+              "OBS-NANBEI-P19-01"
+            ],
+            "observedVsInherited": [
+              "inherited"
+            ],
+            "provenance": "inherited_from_atlas_audit_v1"
+          },
+          "sourceLocator": {
+            "heading": "安左輔右弼文昌文曲星訣",
+            "pdfPage": 19,
+            "sourceFile": "命-南北山人_紫微斗数全书.pdf",
+            "sourceSha256": "4786a94ab454acdabf9716d7c0db4756dbcbde99a88bc45fda254863c1961023",
+            "transcription": "左輔辰上順連月 右弼戌上逆連月 文昌戌上逆行時 文曲辰上順行時"
+          }
+        }
+      ]
+    },
+    {
+      "groundingStatus": "luna_ready_additive_only",
+      "packetId": "PKT-12-MAJOR-STARS-V1",
+      "provenanceClass": "inherited_direct_observation",
+      "safeActionForLuna": "src/ziwei/starPlacementRules.js에 14주성 배치 조문 근거 태깅 및 additive check 커버리지 업데이트",
+      "status": "direct_witness_acquired",
+      "targetBlockerId": "blocker-12-major-star-direct-rules",
+      "unresolvedBoundary": "천부계 anchor 모순 및 12개 non-root 주성 direct rule의 시맨틱 승격 경계",
+      "witnesses": [
+        {
+          "inheritedObservationProvenance": {
+            "exactTranscriptionMatches": [
+              "OBS-NANBEI-P11-01"
+            ],
+            "newlyObservedThisTask": false,
+            "observationClass": [
+              "inherited_direct_observation"
+            ],
+            "observationIds": [
+              "OBS-NANBEI-P11-01"
+            ],
+            "observedVsInherited": [
+              "inherited"
+            ],
+            "provenance": "inherited_from_atlas_audit_v1"
+          },
+          "sourceLocator": {
+            "heading": "起紫微五訣",
+            "pdfPage": 11,
+            "sourceFile": "命-南北山人_紫微斗数全书.pdf",
+            "sourceSha256": "4786a94ab454acdabf9716d7c0db4756dbcbde99a88bc45fda254863c1961023",
+            "transcription": "水二局丑上起 木三局辰上起 金四局亥上起 土五局午上起 火六局酉上起"
+          }
+        },
+        {
+          "inheritedObservationProvenance": {
+            "exactTranscriptionMatches": [
+              "OBS-NANBEI-P14-01"
+            ],
+            "newlyObservedThisTask": false,
+            "observationClass": [
+              "inherited_direct_observation"
+            ],
+            "observationIds": [
+              "OBS-NANBEI-P14-01"
+            ],
+            "observedVsInherited": [
+              "inherited"
+            ],
+            "provenance": "inherited_from_atlas_audit_v1"
+          },
+          "sourceLocator": {
+            "heading": "紫微星系順逆例",
+            "pdfPage": 14,
+            "sourceFile": "命-南北山人_紫微斗数全书.pdf",
+            "sourceSha256": "4786a94ab454acdabf9716d7c0db4756dbcbde99a88bc45fda254863c1961023",
+            "transcription": "紫微 逆行 天機 太微 太陽 武曲 天同 廉貞"
+          }
+        },
+        {
+          "inheritedObservationProvenance": {
+            "exactTranscriptionMatches": [
+              "OBS-NANBEI-P15-01"
+            ],
+            "newlyObservedThisTask": false,
+            "observationClass": [
+              "inherited_direct_observation"
+            ],
+            "observationIds": [
+              "OBS-NANBEI-P15-01"
+            ],
+            "observedVsInherited": [
+              "inherited"
+            ],
+            "provenance": "inherited_from_atlas_audit_v1"
+          },
+          "sourceLocator": {
+            "heading": "天府星系順逆例",
+            "pdfPage": 15,
+            "sourceFile": "命-南北山人_紫微斗数全书.pdf",
+            "sourceSha256": "4786a94ab454acdabf9716d7c0db4756dbcbde99a88bc45fda254863c1961023",
+            "transcription": "天府 順行 太陰 貪狼 巨門 天相 天梁 七殺 破軍"
+          }
+        }
+      ]
+    },
+    {
+      "groundingStatus": "luna_ready_dual_mode",
+      "packetId": "PKT-TIANFU-RAW-CONTRADICTION-V1",
+      "provenanceClass": "inherited_direct_observation",
+      "safeActionForLuna": "ziwei-tianfu-compatibility-implementation-design-v1에 따른 dual-mode tianfu engine (source_aligned vs legacy) materializer 마이그레이션 적용 준비",
+      "status": "conflicting_witnesses",
+      "targetBlockerId": "blocker-tianfu-raw-formula-contradiction",
+      "unresolvedBoundary": "원전 辰軸 Anchor vs 레거시 戌軸 Anchor raw contradiction 및 rotation-06 시맨틱 권위 미해결",
+      "witnesses": [
+        {
+          "inheritedObservationProvenance": {
+            "exactTranscriptionMatches": [
+              "OBS-NANBEI-P13-01"
+            ],
+            "newlyObservedThisTask": false,
+            "observationClass": [
+              "inherited_direct_observation"
+            ],
+            "observationIds": [
+              "OBS-NANBEI-P13-01",
+              "OBS-NANBEI-P13-02"
+            ],
+            "observedVsInherited": [
+              "inherited"
+            ],
+            "provenance": "inherited_from_atlas_audit_v1"
+          },
+          "sourceLocator": {
+            "heading": "安天府星訣",
+            "pdfPage": 13,
+            "sourceFile": "命-南北山人_紫微斗数全书.pdf",
+            "sourceSha256": "4786a94ab454acdabf9716d7c0db4756dbcbde99a88bc45fda254863c1961023",
+            "transcription": "紫微在子 天府在辰 逆行一宮 天府順行一宮 辰戌對沖 寅申自對"
+          }
+        }
+      ]
+    }
+  ],
+  "predecessor": {
+    "artifact": "artifacts/ziwei-structural-admission-frontier-v1/complete.json",
+    "historicalArtifactRewritten": false,
+    "predecessorBasisHead": "0967789e2a4780f41a045e8ea0148d2eb7198af0",
+    "predecessorCurrentHead": "0967789e2a4780f41a045e8ea0148d2eb7198af0",
+    "predecessorWasHistoricalAtThisCheckout": true
+  },
+  "readinessBeforeAfter": {
+    "after": {
+      "activation": "experimental",
+      "change": "evidence classification and blocker cross-reference only; no readiness promotion",
+      "grounding": "blocked",
+      "productionSelection": "not_performed",
+      "readiness": "not_safe_to_start",
+      "stableClaimBoundary": 0
+    },
+    "before": {
+      "activation": "experimental",
+      "grounding": "blocked",
+      "productionSelection": "not_performed",
+      "readiness": "not_safe_to_start",
+      "stableClaimBoundary": 0
+    }
+  },
+  "readinessSource": {
+    "artifact": "artifacts/ziwei-readiness-admission-blocker-audit-v0/complete.json",
+    "stableClaimBoundary": 0,
+    "verdict": "not_safe_to_start"
+  },
+  "resolvedWithExistingEvidence": [
+    "six implemented lucky-star direct witnesses and exact source/production regression within the declared scope",
+    "12 non-root major-star direct relative rules, with Tianfu semantic authority kept separate",
+    "inherited packet-to-ledger-to-canonical-source-artifact cross-reference for all three packets"
+  ],
+  "schemaVersion": "ziwei-inherited-evidence-consumption-frontier-v1",
+  "scope": {
+    "activationMutation": false,
+    "historicalArtifactsRewritten": false,
+    "inheritedObservationPagesNewlyObserved": 0,
+    "networkOrSourceAcquisition": false,
+    "productionRuleMutation": false,
+    "readinessMutation": false,
+    "semanticAuthorityDecision": false
+  },
+  "sourceIdentity": {
+    "currentCanonicalEvidence": [
+      {
+        "artifact": "artifacts/ziwei-auxiliary-star-placement-core-evidence-v0/complete.json",
+        "identities": {
+          "ming_nanyangtang": {
+            "actualByteSha256": "04e184c4a52cb042dc885c6ccc9135d94ab25de62007506198ee979a33e66bfc",
+            "encrypted": false,
+            "expectedByteSha256": "04e184c4a52cb042dc885c6ccc9135d94ab25de62007506198ee979a33e66bfc",
+            "id": "ming_nanyangtang",
+            "label": "明代南阳堂刊本",
+            "pageCount": 528,
+            "pathOutsideRepository": "/Users/softie/Downloads/新锓希夷陈先生紫微斗数全书.七卷.宋.陈抟撰.明.潘希尹补.明代南阳堂刊本.黑白版.pdf",
+            "readOnly": true,
+            "storedInGit": false
+          },
+          "nanbei_shanren": {
+            "actualByteSha256": "4786a94ab454acdabf9716d7c0db4756dbcbde99a88bc45fda254863c1961023",
+            "encrypted": false,
+            "expectedByteSha256": "4786a94ab454acdabf9716d7c0db4756dbcbde99a88bc45fda254863c1961023",
+            "id": "nanbei_shanren",
+            "label": "南北山人本",
+            "pageCount": 219,
+            "pathOutsideRepository": "/Users/softie/Downloads/命-南北山人_紫微斗数全书.pdf",
+            "readOnly": true,
+            "storedInGit": false
+          }
+        }
+      },
+      {
+        "artifact": "artifacts/ziwei-twelve-major-star-placement-evidence-v0/complete.json",
+        "identities": {
+          "mingNanyang": {
+            "access": "read_only_external_pdf",
+            "actualSha256": "04e184c4a52cb042dc885c6ccc9135d94ab25de62007506198ee979a33e66bfc",
+            "byteLength": 36201526,
+            "encrypted": false,
+            "expectedSha256": "04e184c4a52cb042dc885c6ccc9135d94ab25de62007506198ee979a33e66bfc",
+            "fileSize": null,
+            "identityVerified": true,
+            "pageCount": 528,
+            "path": "/Users/softie/Downloads/新锓希夷陈先生紫微斗数全书.七卷.宋.陈抟撰.明.潘希尹补.明代南阳堂刊本.黑白版.pdf",
+            "pdfVersion": "1.5"
+          },
+          "nanbeishanren": {
+            "access": "read_only_external_pdf",
+            "actualSha256": "4786a94ab454acdabf9716d7c0db4756dbcbde99a88bc45fda254863c1961023",
+            "byteLength": 35515645,
+            "encrypted": false,
+            "expectedSha256": "4786a94ab454acdabf9716d7c0db4756dbcbde99a88bc45fda254863c1961023",
+            "fileSize": null,
+            "identityVerified": true,
+            "pageCount": 219,
+            "path": "/Users/softie/Downloads/命-南北山人_紫微斗数全书.pdf",
+            "pdfVersion": "1.3"
+          }
+        }
+      }
+    ],
+    "handoffManifest": "../malang_lab/documents/_agent-output/ziwei-frontier-source-acquisition-v1/manifest.json",
+    "inheritedPrimarySources": [
+      {
+        "fileName": "命-南北山人_紫微斗数全书.pdf",
+        "inheritedDirectPagesCount": 33,
+        "pdfPageCount": 219,
+        "sha256": "4786a94ab454acdabf9716d7c0db4756dbcbde99a88bc45fda254863c1961023"
+      },
+      {
+        "fileName": "新锓希夷陈先生紫微斗数全书.七卷.宋.陈抟撰.明.潘希尹补.明代南阳堂刊本.黑白版.pdf",
+        "inheritedDirectPagesCount": 28,
+        "pdfPageCount": 528,
+        "sha256": "04e184c4a52cb042dc885c6ccc9135d94ab25de62007506198ee979a33e66bfc"
+      }
+    ],
+    "sourceByteIdentityRole": "declared SHA-256 identity is preserved; source bytes are not copied or promoted by this artifact"
+  },
+  "sourceVsImplementation": {
+    "coordinateRepresentationRelation": "Tianfu rotation-06 only",
+    "deterministicRuleMatch": "current production resolver outputs against canonical evidence artifacts",
+    "implementationRegression": "existing source-evidence checkers/materializers and current code call paths",
+    "primarySourceDirectObservation": "packet witness locators and inherited ledger observations",
+    "readinessAdmission": "blocked; stable claim boundary remains zero",
+    "semanticAuthority": "unresolved where source convention and semantic palace identity are not established"
+  },
+  "stillBlocked": [
+    "blocker-calendar-time-source-identity",
+    "blocker-source-identity-unresolved",
+    "blocker-external-oracle-identity",
+    "blocker-four-transform-source-witness",
+    "blocker-timing-domain-absent",
+    "blocker-tianfu-raw-formula-contradiction",
+    "blocker-tianfu-rotation06-semantic-authority",
+    "blocker-life-body-ruler-source-legibility"
+  ],
+  "tianfuRawContradiction": {
+    "allowedUse": [
+      "raw contradiction evidence",
+      "source_aligned opt-in regression",
+      "rotation-06 coordinate relation"
+    ],
+    "compatibility": {
+      "domain": {
+        "bureauNumbers": [
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "lunarDays": [
+          1,
+          30
+        ],
+        "rowCount": 150
+      },
+      "evidenceClass": "deterministic_calculation_and_repository_regression_only",
+      "knownRelation": {
+        "matchedRows": 150,
+        "residualRows": 0,
+        "transform": "rotation-06"
+      },
+      "legacyDefault": {
+        "expected": 150,
+        "rows": 150,
+        "status": "regression_preserved"
+      },
+      "modes": {
+        "default": "legacy",
+        "legacy": {
+          "mode": "legacy",
+          "tianfuFormula": "(10-Z)%12",
+          "tianfuMethod": "opposite_yin_shen_axis"
+        },
+        "productionSelection": "unchanged; no production mode selection was made",
+        "source_aligned": {
+          "mode": "source_aligned",
+          "tianfuFormula": "(4-Z)%12",
+          "tianfuMethod": "opposite_chen_xu_axis"
+        }
+      },
+      "rawComparison": {
+        "legacyMatchRows": 0,
+        "sourceAlignedMatchRows": 150
+      },
+      "semanticAuthority": "unresolved",
+      "sourceObservationBoundary": {
+        "sourceTableRole": "source-derived local witness; not an independent authority by itself",
+        "sourceTableRows": 12
+      },
+      "tianfuSeriesPropagation": {
+        "allEightRowsExact": true,
+        "shiftRowsByStar": {
+          "jumen": 150,
+          "pojun": 150,
+          "qisai": 150,
+          "taiyin": 150,
+          "tanlang": 150,
+          "tianfu": 150,
+          "tianliang": 150,
+          "tianxiang": 150
+        }
+      }
+    },
+    "forbiddenUse": [
+      "semantic authority promotion",
+      "production default change",
+      "readiness promotion"
+    ],
+    "implementationRefs": [
+      "src/ziwei/starPlacementRules.js:11-75",
+      "src/ziwei/starResolver.js:17-100",
+      "test/ziweiTianfuCompatibilityMode.test.js",
+      "scripts/materialize-ziwei-tianfu-convention-provenance-v0.mjs",
+      "scripts/check-ziwei-tianfu-convention-provenance-v0.mjs"
+    ],
+    "legacyConvention": {
+      "anchor": "戌",
+      "formula": "(10-Z)%12",
+      "status": "production_default_legacy"
+    },
+    "packetRefs": [
+      "OBS-NANBEI-P13-01",
+      "OBS-NANBEI-P13-02"
+    ],
+    "rawContradictionPreserved": true,
+    "semanticAuthority": "unresolved",
+    "sourceConvention": {
+      "anchor": "辰",
+      "formula": "(4-Z)%12",
+      "status": "inherited_direct_observation"
+    }
+  },
+  "verdictToken": "complete_ziwei_inherited_evidence_consumed_frontier_advanced_uncommitted"
+}
