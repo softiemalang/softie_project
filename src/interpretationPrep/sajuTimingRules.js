@@ -1,5 +1,5 @@
 import { analyzeNatalStructure, analyzePeriodPillar, getBranchMainStem, getTenGod } from '../saju/engine/core.js'
-import { BRANCHES, ELEMENTS, STEMS, YIN_YANG } from '../saju/engine/constants.js'
+import { BRANCHES, ELEMENTS, STEMS, STEM_YIN_YANG } from '../saju/engine/constants.js'
 import { calculateFourPillars } from '../saju/engine/fourPillars.js'
 import { getAdjacentBaziMonthBoundary } from '../saju/engine/solarTerms.js'
 import { calculateBranchGroupRelations, calculateBranchPairRelations, calculatePeriodBranchRelations } from './sajuRelationRules.js'
@@ -82,7 +82,7 @@ export function getTwelveStage(dayStem, branch) {
   const startIndex = BRANCHES.indexOf(startBranch)
   const branchIndex = BRANCHES.indexOf(branch)
   if (startIndex < 0 || branchIndex < 0) return null
-  const direction = YIN_YANG[dayStem] === '양' ? 1 : -1
+  const direction = STEM_YIN_YANG[dayStem] === '양' ? 1 : -1
   const offset = ((branchIndex - startIndex) * direction % 12 + 12) % 12
   return TWELVE_STAGES[offset]
 }
@@ -151,7 +151,7 @@ export function calculateStartAge(distanceMinutes) {
 }
 
 function calculateDaYunSingle(input, pillars, natalAnalysis, calculationOptions, targetDate, sourceLabel) {
-  const yearYinYang = YIN_YANG[pillars.year.stem]
+  const yearYinYang = STEM_YIN_YANG[pillars.year.stem]
   const forward = (input.gender === 'male' && yearYinYang === '양')
     || (input.gender === 'female' && yearYinYang === '음')
   const direction = forward ? 'forward' : 'backward'

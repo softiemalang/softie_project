@@ -1,0 +1,1755 @@
+{
+  "acquisitionPackets": [
+    {
+      "boundary": "packet is an acquisition request; it does not establish a source, claim support, readiness, or activation",
+      "claimIds": [
+        "saju.natal.unknown-birth-time"
+      ],
+      "conflictCriteria": [
+        "source requires an hour pillar despite missing time",
+        "source uses a different candidate or day-boundary policy"
+      ],
+      "implementationCoefficients": [
+        "candidate_required status",
+        "00:00/12:00/23:59 candidate sampling",
+        "local solar-time correction"
+      ],
+      "locatorStatus": "not_observed",
+      "packetId": "saju-source-packet-core-candidate-boundary-v0",
+      "prioritySourceCandidates": [
+        "classical birth-time and 子時 convention text",
+        "a documented modern calendar/命理 standard"
+      ],
+      "requiredPrinciple": "A source must state what is and is not determined when birth time is unavailable; it must not be used to prove the repository candidate policy.",
+      "requiredSupportSentence": "The observed source must explicitly support the claimed boundary and its treatment of uncertainty, not merely mention twelve hours or 子時.",
+      "searchAnchors": [
+        "時辰",
+        "子時",
+        "出生時刻",
+        "不詳",
+        "候選"
+      ],
+      "sourceAuthorityStatus": "candidate_only_not_observed",
+      "sourceBytesObserved": false,
+      "subject": "unknown birth time, omitted hour pillar, and preserved candidate outputs"
+    },
+    {
+      "boundary": "packet is an acquisition request; it does not establish a source, claim support, readiness, or activation",
+      "claimIds": [
+        "saju.natal.element-absence",
+        "saju.natal.element-emphasis.목",
+        "saju.natal.element-emphasis.수",
+        "saju.natal.element-emphasis.토",
+        "saju.natal.element-emphasis.화"
+      ],
+      "conflictCriteria": [
+        "surface-only and hidden-stem counts are merged",
+        "seasonal weight is treated as a literal occurrence count",
+        "element mapping differs"
+      ],
+      "implementationCoefficients": [
+        "seasonal weights in SEASONAL_ELEMENT_WEIGHTS",
+        "rounding to two decimals",
+        "surface versus weighted output fields"
+      ],
+      "locatorStatus": "not_observed",
+      "packetId": "saju-source-packet-core-element-distribution-v0",
+      "prioritySourceCandidates": [
+        "classical 五行/干支 rule text",
+        "an identified edition of a standard 子平 manual"
+      ],
+      "requiredPrinciple": "A source must define element attribution for stems/branches and whether absence or emphasis is surface-only or includes hidden stems and seasonal weighting.",
+      "requiredSupportSentence": "The observed source must define the same counting scope as the claim; a general statement that the five elements exist is insufficient.",
+      "searchAnchors": [
+        "五行",
+        "天干",
+        "地支",
+        "藏干",
+        "旺衰",
+        "缺"
+      ],
+      "sourceAuthorityStatus": "candidate_only_not_observed",
+      "sourceBytesObserved": false,
+      "subject": "surface five-element attribution, absence, and repeated-element counts"
+    },
+    {
+      "boundary": "packet is an acquisition request; it does not establish a source, claim support, readiness, or activation",
+      "claimIds": [
+        "saju.natal.day-master"
+      ],
+      "conflictCriteria": [
+        "立春 versus lunar-new-year year boundary",
+        "civil midnight versus 子初/solar-midnight boundary",
+        "standard versus apparent solar time",
+        "different hour-stem sequence"
+      ],
+      "implementationCoefficients": [
+        "Meeus/NOAA solar-longitude approximation",
+        "Asia/Seoul and 135-degree meridian",
+        "equation-of-time correction",
+        "1970-01-01 day-cycle anchor",
+        "20-minute uncertainty window"
+      ],
+      "locatorStatus": "not_observed",
+      "packetId": "saju-source-packet-core-four-pillars-v0",
+      "prioritySourceCandidates": [
+        "identified edition of a classical 子平 text",
+        "identified calendar/almanac standard for the astronomical calendar layer"
+      ],
+      "requiredPrinciple": "A source must state the relevant sexagenary-cycle, solar-term month, day-boundary, hour-stem, and polarity conventions for the exact claim.",
+      "requiredSupportSentence": "The observed source must prescribe the same convention and input scope; a matching output alone cannot support the rule claim.",
+      "searchAnchors": [
+        "六十甲子",
+        "立春",
+        "月建",
+        "五虎遁",
+        "五鼠遁",
+        "子初",
+        "日界"
+      ],
+      "sourceAuthorityStatus": "candidate_only_not_observed",
+      "sourceBytesObserved": false,
+      "subject": "year/month/day/hour pillar derivation and day-master identity"
+    },
+    {
+      "boundary": "packet is an acquisition request; it does not establish a source, claim support, readiness, or activation",
+      "claimIds": [
+        "saju.natal.ten-god-repeat.겁재",
+        "saju.natal.ten-god-repeat.비견",
+        "saju.natal.ten-god-repeat.식신",
+        "saju.natal.ten-god-repeat.정관",
+        "saju.natal.ten-god-repeat.정재",
+        "saju.natal.ten-god-repeat.편관",
+        "saju.natal.ten-god-repeat.편재"
+      ],
+      "conflictCriteria": [
+        "same/opposite polarity is reversed",
+        "hidden stems are counted as visible occurrences",
+        "branch main stem is substituted without an explicit rule"
+      ],
+      "implementationCoefficients": [
+        "HIDDEN_STEMS weights",
+        "branch-main-stem projection",
+        "visible/hidden output separation"
+      ],
+      "locatorStatus": "not_observed",
+      "packetId": "saju-source-packet-core-ten-god-distribution-v0",
+      "prioritySourceCandidates": [
+        "identified edition of a classical 十神/子平 rule text"
+      ],
+      "requiredPrinciple": "A source must define ten-god relationships from generating/controlling cycles and stem polarity, including how hidden stems are treated.",
+      "requiredSupportSentence": "The observed source must support the exact polarity-sensitive mapping and counting scope; a list of ten-god names is insufficient.",
+      "searchAnchors": [
+        "十神",
+        "比肩",
+        "劫財",
+        "食神",
+        "傷官",
+        "財星",
+        "官殺",
+        "印星"
+      ],
+      "sourceAuthorityStatus": "candidate_only_not_observed",
+      "sourceBytesObserved": false,
+      "subject": "ten-god mapping, visible counts, and hidden-stem ten-god counts"
+    },
+    {
+      "boundary": "packet is an acquisition request; it does not establish a source, claim support, readiness, or activation",
+      "claimIds": [
+        "saju.natal.branch-relation.day-hour-육합",
+        "saju.natal.branch-relation.day-hour-충",
+        "saju.natal.branch-relation.day-hour-파",
+        "saju.natal.branch-relation.day-hour-형",
+        "saju.natal.branch-relation.half-trine-목-year-day",
+        "saju.natal.branch-relation.half-trine-수-day-hour",
+        "saju.natal.branch-relation.half-trine-수-month-hour",
+        "saju.natal.branch-relation.month-day-육합",
+        "saju.natal.branch-relation.month-day-충",
+        "saju.natal.branch-relation.month-day-파",
+        "saju.natal.branch-relation.month-day-형",
+        "saju.natal.branch-relation.month-hour-육합",
+        "saju.natal.branch-relation.month-hour-충",
+        "saju.natal.branch-relation.month-hour-형",
+        "saju.natal.branch-relation.year-day-육합",
+        "saju.natal.branch-relation.year-day-충",
+        "saju.natal.branch-relation.year-day-파",
+        "saju.natal.branch-relation.year-hour-육합",
+        "saju.natal.branch-relation.year-hour-충",
+        "saju.natal.branch-relation.year-hour-파",
+        "saju.natal.branch-relation.year-hour-형",
+        "saju.natal.branch-relation.year-month-육합",
+        "saju.natal.branch-relation.year-month-파",
+        "saju.natal.branch-relation.year-month-형"
+      ],
+      "conflictCriteria": [
+        "pair/group membership differs",
+        "害 or 破 is silently omitted",
+        "relation existence is treated as strength or outcome"
+      ],
+      "implementationCoefficients": [
+        "fixed pair tables",
+        "sorted-pair normalization",
+        "adjacency/establishment and transformation gates"
+      ],
+      "locatorStatus": "not_observed",
+      "packetId": "saju-source-packet-rule-branch-relations-v0",
+      "prioritySourceCandidates": [
+        "identified edition of a classical 地支 relations text",
+        "identified technical table with edition and locator"
+      ],
+      "requiredPrinciple": "A source must enumerate the exact branch relation pairs/groups and distinguish existence from establishment, transformation, strength, and interpretation.",
+      "requiredSupportSentence": "The observed source must contain the exact pair/group relation needed by each claim, with no inference from a modern summary table.",
+      "searchAnchors": [
+        "六合",
+        "六沖",
+        "六破",
+        "三刑",
+        "三合",
+        "半合",
+        "刑沖合害"
+      ],
+      "sourceAuthorityStatus": "candidate_only_not_observed",
+      "sourceBytesObserved": false,
+      "subject": "六合, 沖, 破, 刑, 半合, and 三合 relation lookup"
+    },
+    {
+      "boundary": "packet is an acquisition request; it does not establish a source, claim support, readiness, or activation",
+      "claimIds": [
+        "saju.natal.experimental.gyeokguk"
+      ],
+      "conflictCriteria": [
+        "透干 priority differs",
+        "本氣 fallback is rejected",
+        "special/following structure is treated as a regular structure"
+      ],
+      "implementationCoefficients": [
+        "JIJANGAN_MAP projection order",
+        "regular-structure fallback",
+        "special-structure candidate threshold"
+      ],
+      "locatorStatus": "not_observed",
+      "packetId": "saju-source-packet-rule-gyeokguk-v0",
+      "prioritySourceCandidates": [
+        "《子平真詮》 candidate only",
+        "another identified 格局 treatise candidate only"
+      ],
+      "requiredPrinciple": "A source must state how month-branch hidden stems, 투간 priority, 본氣 fallback, and regular/special structures determine a named 格局.",
+      "requiredSupportSentence": "The observed source must support the exact month branch, hidden-stem priority, and named result for the claim occurrence.",
+      "searchAnchors": [
+        "格局",
+        "月令",
+        "透干",
+        "本氣",
+        "正格",
+        "變格",
+        "從格"
+      ],
+      "sourceAuthorityStatus": "candidate_only_not_observed",
+      "sourceBytesObserved": false,
+      "subject": "month-branch hidden-stem projection and 정격/격국 inference"
+    },
+    {
+      "boundary": "packet is an acquisition request; it does not establish a source, claim support, readiness, or activation",
+      "claimIds": [
+        "saju.natal.experimental.shinsal-summary"
+      ],
+      "conflictCriteria": [
+        "reference axis changes from day stem to year branch or another axis",
+        "mapping table differs",
+        "presence is treated as an outcome or intensity claim"
+      ],
+      "implementationCoefficients": [
+        "fixed mapping tables",
+        "position labels",
+        "six-core-shinsal scope"
+      ],
+      "locatorStatus": "not_observed",
+      "packetId": "saju-source-packet-rule-shinsal-v0",
+      "prioritySourceCandidates": [
+        "《三命通會》 candidate only",
+        "identified edition of a shinsal table candidate only"
+      ],
+      "requiredPrinciple": "A source must define each named shinsal mapping, its reference stem/branch, and the exact positional rule used by the claim.",
+      "requiredSupportSentence": "The observed source must provide the exact mapping and reference axis for each named shinsal; a modern label or interpretation is not enough.",
+      "searchAnchors": [
+        "天乙貴人",
+        "華蓋",
+        "空亡",
+        "羊刃",
+        "壬癸巳卯",
+        "甲卯乙辰"
+      ],
+      "sourceAuthorityStatus": "candidate_only_not_observed",
+      "sourceBytesObserved": false,
+      "subject": "천을귀인, 화개살, 공망, 양인살 profile mapping"
+    },
+    {
+      "boundary": "packet is an acquisition request; it does not establish a source, claim support, readiness, or activation",
+      "claimIds": [
+        "saju.natal.experimental.strength-quantitative"
+      ],
+      "conflictCriteria": [
+        "hidden-stem roots are required but omitted",
+        "seasonal strength is weighted differently",
+        "a qualitative principle is converted to a numeric score without source support"
+      ],
+      "implementationCoefficients": [
+        "surface-support score",
+        "0-100 scaling",
+        "weighted element thresholds",
+        "includesHiddenStemRoots=false"
+      ],
+      "locatorStatus": "not_observed",
+      "packetId": "saju-source-packet-rule-strength-v0",
+      "prioritySourceCandidates": [
+        "《滴天髓》 candidate only",
+        "identified edition of a strength/balance treatise candidate only"
+      ],
+      "requiredPrinciple": "A source must define 得令, 得地, 生扶, 通根, seasonal strength, and how they may or may not be combined into a strength conclusion.",
+      "requiredSupportSentence": "The observed source must support the exact strength method or explicitly distinguish it from the repository heuristic; no classical source can be assumed to endorse the coefficient.",
+      "searchAnchors": [
+        "旺衰",
+        "得令",
+        "得地",
+        "得勢",
+        "通根",
+        "身強",
+        "身弱"
+      ],
+      "sourceAuthorityStatus": "candidate_only_not_observed",
+      "sourceBytesObserved": false,
+      "subject": "day-master strength and surface-support heuristic"
+    },
+    {
+      "boundary": "packet is an acquisition request; it does not establish a source, claim support, readiness, or activation",
+      "claimIds": [
+        "saju.timing.active-da-yun"
+      ],
+      "conflictCriteria": [
+        "direction rule differs by sex/year polarity",
+        "start-age conversion differs",
+        "十二運 direction differs for yin stems",
+        "period month stepping differs"
+      ],
+      "implementationCoefficients": [
+        "3일=1년, 1일=4개월, 2시간=10일 conversion",
+        "numerical adjacent-boundary solver",
+        "target-date sampling at 00:00/12:00/23:59",
+        "candidate merge policy"
+      ],
+      "locatorStatus": "not_observed",
+      "packetId": "saju-source-packet-rule-timing-v0",
+      "prioritySourceCandidates": [
+        "identified edition of a classical 大運/十二運星 rule text",
+        "identified modern almanac standard candidate only"
+      ],
+      "requiredPrinciple": "A source must state direction, adjacent-term selection, start-age conversion, period pillar stepping, and twelve-stage polarity direction.",
+      "requiredSupportSentence": "The observed source must support each claimed timing convention and its boundary; an output date or current-cycle match is not sufficient.",
+      "searchAnchors": [
+        "大運",
+        "順行",
+        "逆行",
+        "起運",
+        "三日一歲",
+        "十二運",
+        "長生"
+      ],
+      "sourceAuthorityStatus": "candidate_only_not_observed",
+      "sourceBytesObserved": false,
+      "subject": "대운 direction/start age and 세운·월운·일진/12운성 derivation"
+    },
+    {
+      "boundary": "packet is an acquisition request; it does not establish a source, claim support, readiness, or activation",
+      "claimIds": [
+        "saju.natal.experimental.yongshin"
+      ],
+      "conflictCriteria": [
+        "억부 and 조후 precedence differs",
+        "candidate is selected from a different strength method",
+        "candidate is presented as deterministic personal advice"
+      ],
+      "implementationCoefficients": [
+        "surface-strength dependency",
+        "resource/self helpful-element heuristic",
+        "candidate confidence labels"
+      ],
+      "locatorStatus": "not_observed",
+      "packetId": "saju-source-packet-rule-yongshin-v0",
+      "prioritySourceCandidates": [
+        "identified edition of an 억부/조후 treatise candidate only",
+        "《滴天髓》 candidate only"
+      ],
+      "requiredPrinciple": "A source must state the conditions and precedence for 억부, 조후, 용신, and 희신 selection for the exact chart structure.",
+      "requiredSupportSentence": "The observed source must support the named candidate and selection precedence for the exact chart, not merely the general idea of balancing elements.",
+      "searchAnchors": [
+        "用神",
+        "喜神",
+        "抑扶",
+        "調候",
+        "身弱用印",
+        "身強"
+      ],
+      "sourceAuthorityStatus": "candidate_only_not_observed",
+      "sourceBytesObserved": false,
+      "subject": "억부/조후 candidate yongshin and heeshin selection"
+    }
+  ],
+  "artifactIdentity": {
+    "artifactId": "saju-v1-local-frontier-v0",
+    "artifactPayloadSha256": "ce5943fc3847ab3b3e4da91994c3fbae7a03170d8f08dbd4965167bd498f5138",
+    "contractVersion": "artifact-identity-v1",
+    "generation": {
+      "baseHead": "9bf27518632e709cf22aa7babc43f277e59f962d",
+      "baseHeadSource": "git rev-parse HEAD at materialization",
+      "includedCommit": null,
+      "includedCommitSource": "unknown_at_generation; artifact may be included by a later commit"
+    },
+    "inputs": [
+      {
+        "byteSha256": "2682c922353f9c2a5e38ea8767a68f99b458cca86efacd4b5d9a7f1916598ef2",
+        "path": "artifacts/saju-claim-provenance-v0.json"
+      },
+      {
+        "byteSha256": "b66ae99950668b2b01ca0bcf0e73e420fda6798780a947e1ae34798e7e84dbce",
+        "path": "scripts/materialize-saju-v1-local-frontier-v0.mjs"
+      },
+      {
+        "byteSha256": "6d8de4820a01a69ed2feaf50f5213d92128d8a21b72134a05f5c22fbe30aa061",
+        "path": "src/interpretationPrep/sajuAdapter.js"
+      },
+      {
+        "byteSha256": "b4bcfad0764467713f4476a69e1a08295d9d2eef2c2f2d79c8258a6d3474ff05",
+        "path": "src/interpretationPrep/sajuProfileRules.js"
+      },
+      {
+        "byteSha256": "2b7b6a40430f2a4f2ebdb7a26722a0a4461f287aa1267877714debd0b9e4a8ec",
+        "path": "src/interpretationPrep/sajuTimingRules.js"
+      },
+      {
+        "byteSha256": "44e8983cbe9b098d1e9f423fb14fcdf3f9533a26c2534529b9003eae9a8956c3",
+        "path": "src/interpretationPrep/sajuV1LocalFrontier.js"
+      },
+      {
+        "byteSha256": "71dd30808f45a88043e101985e06a0196cc72423a30a4243910cb7c265f6b4e7",
+        "path": "src/saju/engine/constants.js"
+      },
+      {
+        "byteSha256": "e39f4b442f95e57523af526f67ed4cd2fb0ee93599efafe8b8eacf2bdbeeb124",
+        "path": "src/saju/engine/core.js"
+      }
+    ],
+    "materializer": {
+      "path": "scripts/materialize-saju-v1-local-frontier-v0.mjs",
+      "version": "0.1.0"
+    }
+  },
+  "claims": [
+    {
+      "acquisitionPacketIds": [
+        "saju-source-packet-rule-branch-relations-v0"
+      ],
+      "category": "structure",
+      "claimId": "saju.natal.branch-relation.day-hour-육합",
+      "claimText": "현재 기준 원국의 일지·시지에서 육합 관계가 고정 규칙표로 조회된다. 성립 강도나 길흉은 판정하지 않는다.",
+      "classicalVerification": "not_established",
+      "localCalculation": {
+        "calculationRefCount": 1,
+        "externalEvidenceRefs": [],
+        "fixtureRefs": [],
+        "occurrenceCount": 1,
+        "provenanceCompleteness": "unverified",
+        "status": "observed_in_repository_calculation",
+        "verificationStatus": "unverified"
+      },
+      "sourceBoundary": {
+        "sourceIdentityStatus": "unresolved_source_identity",
+        "traditionalSourceRefs": [
+          "source.traditional.saju.rule.branch-relations"
+        ],
+        "unresolvedGaps": [
+          "traditional rule author/edition/locator and source byte identity are not established"
+        ]
+      },
+      "taxonomyReason": "implementation output and local fixtures exist, but the attributable classical rule/source identity is unresolved",
+      "taxonomyState": "source_unresolved"
+    },
+    {
+      "acquisitionPacketIds": [
+        "saju-source-packet-rule-branch-relations-v0"
+      ],
+      "category": "structure",
+      "claimId": "saju.natal.branch-relation.day-hour-충",
+      "claimText": "현재 기준 원국의 일지·시지에서 충 관계가 고정 규칙표로 조회된다. 성립 강도나 길흉은 판정하지 않는다.",
+      "classicalVerification": "not_established",
+      "localCalculation": {
+        "calculationRefCount": 1,
+        "externalEvidenceRefs": [],
+        "fixtureRefs": [],
+        "occurrenceCount": 1,
+        "provenanceCompleteness": "unverified",
+        "status": "observed_in_repository_calculation",
+        "verificationStatus": "unverified"
+      },
+      "sourceBoundary": {
+        "sourceIdentityStatus": "unresolved_source_identity",
+        "traditionalSourceRefs": [
+          "source.traditional.saju.rule.branch-relations"
+        ],
+        "unresolvedGaps": [
+          "traditional rule author/edition/locator and source byte identity are not established"
+        ]
+      },
+      "taxonomyReason": "implementation output and local fixtures exist, but the attributable classical rule/source identity is unresolved",
+      "taxonomyState": "source_unresolved"
+    },
+    {
+      "acquisitionPacketIds": [
+        "saju-source-packet-rule-branch-relations-v0"
+      ],
+      "category": "structure",
+      "claimId": "saju.natal.branch-relation.day-hour-파",
+      "claimText": "현재 기준 원국의 일지·시지에서 파 관계가 고정 규칙표로 조회된다. 성립 강도나 길흉은 판정하지 않는다.",
+      "classicalVerification": "not_established",
+      "localCalculation": {
+        "calculationRefCount": 1,
+        "externalEvidenceRefs": [],
+        "fixtureRefs": [],
+        "occurrenceCount": 1,
+        "provenanceCompleteness": "unverified",
+        "status": "observed_in_repository_calculation",
+        "verificationStatus": "unverified"
+      },
+      "sourceBoundary": {
+        "sourceIdentityStatus": "unresolved_source_identity",
+        "traditionalSourceRefs": [
+          "source.traditional.saju.rule.branch-relations"
+        ],
+        "unresolvedGaps": [
+          "traditional rule author/edition/locator and source byte identity are not established"
+        ]
+      },
+      "taxonomyReason": "implementation output and local fixtures exist, but the attributable classical rule/source identity is unresolved",
+      "taxonomyState": "source_unresolved"
+    },
+    {
+      "acquisitionPacketIds": [
+        "saju-source-packet-rule-branch-relations-v0"
+      ],
+      "category": "structure",
+      "claimId": "saju.natal.branch-relation.day-hour-형",
+      "claimText": "현재 기준 원국의 일지·시지에서 형 관계가 고정 규칙표로 조회된다. 성립 강도나 길흉은 판정하지 않는다.",
+      "classicalVerification": "not_established",
+      "localCalculation": {
+        "calculationRefCount": 1,
+        "externalEvidenceRefs": [],
+        "fixtureRefs": [],
+        "occurrenceCount": 1,
+        "provenanceCompleteness": "unverified",
+        "status": "observed_in_repository_calculation",
+        "verificationStatus": "unverified"
+      },
+      "sourceBoundary": {
+        "sourceIdentityStatus": "unresolved_source_identity",
+        "traditionalSourceRefs": [
+          "source.traditional.saju.rule.branch-relations"
+        ],
+        "unresolvedGaps": [
+          "traditional rule author/edition/locator and source byte identity are not established"
+        ]
+      },
+      "taxonomyReason": "implementation output and local fixtures exist, but the attributable classical rule/source identity is unresolved",
+      "taxonomyState": "source_unresolved"
+    },
+    {
+      "acquisitionPacketIds": [
+        "saju-source-packet-rule-branch-relations-v0"
+      ],
+      "category": "structure",
+      "claimId": "saju.natal.branch-relation.half-trine-목-year-day",
+      "claimText": "현재 기준 원국의 연지·일지에서 반합 관계가 고정 규칙표로 조회된다. 성립 강도나 길흉은 판정하지 않는다.",
+      "classicalVerification": "not_established",
+      "localCalculation": {
+        "calculationRefCount": 1,
+        "externalEvidenceRefs": [],
+        "fixtureRefs": [],
+        "occurrenceCount": 1,
+        "provenanceCompleteness": "unverified",
+        "status": "observed_in_repository_calculation",
+        "verificationStatus": "unverified"
+      },
+      "sourceBoundary": {
+        "sourceIdentityStatus": "unresolved_source_identity",
+        "traditionalSourceRefs": [
+          "source.traditional.saju.rule.branch-relations"
+        ],
+        "unresolvedGaps": [
+          "traditional rule author/edition/locator and source byte identity are not established"
+        ]
+      },
+      "taxonomyReason": "implementation output and local fixtures exist, but the attributable classical rule/source identity is unresolved",
+      "taxonomyState": "source_unresolved"
+    },
+    {
+      "acquisitionPacketIds": [
+        "saju-source-packet-rule-branch-relations-v0"
+      ],
+      "category": "structure",
+      "claimId": "saju.natal.branch-relation.half-trine-수-day-hour",
+      "claimText": "현재 기준 원국의 일지·시지에서 반합 관계가 고정 규칙표로 조회된다. 성립 강도나 길흉은 판정하지 않는다.",
+      "classicalVerification": "not_established",
+      "localCalculation": {
+        "calculationRefCount": 1,
+        "externalEvidenceRefs": [],
+        "fixtureRefs": [],
+        "occurrenceCount": 1,
+        "provenanceCompleteness": "unverified",
+        "status": "observed_in_repository_calculation",
+        "verificationStatus": "unverified"
+      },
+      "sourceBoundary": {
+        "sourceIdentityStatus": "unresolved_source_identity",
+        "traditionalSourceRefs": [
+          "source.traditional.saju.rule.branch-relations"
+        ],
+        "unresolvedGaps": [
+          "traditional rule author/edition/locator and source byte identity are not established"
+        ]
+      },
+      "taxonomyReason": "implementation output and local fixtures exist, but the attributable classical rule/source identity is unresolved",
+      "taxonomyState": "source_unresolved"
+    },
+    {
+      "acquisitionPacketIds": [
+        "saju-source-packet-rule-branch-relations-v0"
+      ],
+      "category": "structure",
+      "claimId": "saju.natal.branch-relation.half-trine-수-month-hour",
+      "claimText": "현재 기준 원국의 월지·시지에서 반합 관계가 고정 규칙표로 조회된다. 성립 강도나 길흉은 판정하지 않는다.",
+      "classicalVerification": "not_established",
+      "localCalculation": {
+        "calculationRefCount": 1,
+        "externalEvidenceRefs": [],
+        "fixtureRefs": [],
+        "occurrenceCount": 1,
+        "provenanceCompleteness": "unverified",
+        "status": "observed_in_repository_calculation",
+        "verificationStatus": "unverified"
+      },
+      "sourceBoundary": {
+        "sourceIdentityStatus": "unresolved_source_identity",
+        "traditionalSourceRefs": [
+          "source.traditional.saju.rule.branch-relations"
+        ],
+        "unresolvedGaps": [
+          "traditional rule author/edition/locator and source byte identity are not established"
+        ]
+      },
+      "taxonomyReason": "implementation output and local fixtures exist, but the attributable classical rule/source identity is unresolved",
+      "taxonomyState": "source_unresolved"
+    },
+    {
+      "acquisitionPacketIds": [
+        "saju-source-packet-rule-branch-relations-v0"
+      ],
+      "category": "structure",
+      "claimId": "saju.natal.branch-relation.month-day-육합",
+      "claimText": "현재 기준 원국의 월지·일지에서 육합 관계가 고정 규칙표로 조회된다. 성립 강도나 길흉은 판정하지 않는다.",
+      "classicalVerification": "not_established",
+      "localCalculation": {
+        "calculationRefCount": 2,
+        "externalEvidenceRefs": [],
+        "fixtureRefs": [],
+        "occurrenceCount": 2,
+        "provenanceCompleteness": "unverified",
+        "status": "observed_in_repository_calculation",
+        "verificationStatus": "unverified"
+      },
+      "sourceBoundary": {
+        "sourceIdentityStatus": "unresolved_source_identity",
+        "traditionalSourceRefs": [
+          "source.traditional.saju.rule.branch-relations"
+        ],
+        "unresolvedGaps": [
+          "traditional rule author/edition/locator and source byte identity are not established"
+        ]
+      },
+      "taxonomyReason": "implementation output and local fixtures exist, but the attributable classical rule/source identity is unresolved",
+      "taxonomyState": "source_unresolved"
+    },
+    {
+      "acquisitionPacketIds": [
+        "saju-source-packet-rule-branch-relations-v0"
+      ],
+      "category": "structure",
+      "claimId": "saju.natal.branch-relation.month-day-충",
+      "claimText": "현재 기준 원국의 월지·일지에서 충 관계가 고정 규칙표로 조회된다. 성립 강도나 길흉은 판정하지 않는다.",
+      "classicalVerification": "not_established",
+      "localCalculation": {
+        "calculationRefCount": 1,
+        "externalEvidenceRefs": [],
+        "fixtureRefs": [],
+        "occurrenceCount": 1,
+        "provenanceCompleteness": "unverified",
+        "status": "observed_in_repository_calculation",
+        "verificationStatus": "unverified"
+      },
+      "sourceBoundary": {
+        "sourceIdentityStatus": "unresolved_source_identity",
+        "traditionalSourceRefs": [
+          "source.traditional.saju.rule.branch-relations"
+        ],
+        "unresolvedGaps": [
+          "traditional rule author/edition/locator and source byte identity are not established"
+        ]
+      },
+      "taxonomyReason": "implementation output and local fixtures exist, but the attributable classical rule/source identity is unresolved",
+      "taxonomyState": "source_unresolved"
+    },
+    {
+      "acquisitionPacketIds": [
+        "saju-source-packet-rule-branch-relations-v0"
+      ],
+      "category": "structure",
+      "claimId": "saju.natal.branch-relation.month-day-파",
+      "claimText": "현재 기준 원국의 월지·일지에서 파 관계가 고정 규칙표로 조회된다. 성립 강도나 길흉은 판정하지 않는다.",
+      "classicalVerification": "not_established",
+      "localCalculation": {
+        "calculationRefCount": 1,
+        "externalEvidenceRefs": [],
+        "fixtureRefs": [],
+        "occurrenceCount": 1,
+        "provenanceCompleteness": "unverified",
+        "status": "observed_in_repository_calculation",
+        "verificationStatus": "unverified"
+      },
+      "sourceBoundary": {
+        "sourceIdentityStatus": "unresolved_source_identity",
+        "traditionalSourceRefs": [
+          "source.traditional.saju.rule.branch-relations"
+        ],
+        "unresolvedGaps": [
+          "traditional rule author/edition/locator and source byte identity are not established"
+        ]
+      },
+      "taxonomyReason": "implementation output and local fixtures exist, but the attributable classical rule/source identity is unresolved",
+      "taxonomyState": "source_unresolved"
+    },
+    {
+      "acquisitionPacketIds": [
+        "saju-source-packet-rule-branch-relations-v0"
+      ],
+      "category": "structure",
+      "claimId": "saju.natal.branch-relation.month-day-형",
+      "claimText": "현재 기준 원국의 월지·일지에서 형 관계가 고정 규칙표로 조회된다. 성립 강도나 길흉은 판정하지 않는다.",
+      "classicalVerification": "not_established",
+      "localCalculation": {
+        "calculationRefCount": 2,
+        "externalEvidenceRefs": [],
+        "fixtureRefs": [],
+        "occurrenceCount": 2,
+        "provenanceCompleteness": "unverified",
+        "status": "observed_in_repository_calculation",
+        "verificationStatus": "unverified"
+      },
+      "sourceBoundary": {
+        "sourceIdentityStatus": "unresolved_source_identity",
+        "traditionalSourceRefs": [
+          "source.traditional.saju.rule.branch-relations"
+        ],
+        "unresolvedGaps": [
+          "traditional rule author/edition/locator and source byte identity are not established"
+        ]
+      },
+      "taxonomyReason": "implementation output and local fixtures exist, but the attributable classical rule/source identity is unresolved",
+      "taxonomyState": "source_unresolved"
+    },
+    {
+      "acquisitionPacketIds": [
+        "saju-source-packet-rule-branch-relations-v0"
+      ],
+      "category": "structure",
+      "claimId": "saju.natal.branch-relation.month-hour-육합",
+      "claimText": "현재 기준 원국의 월지·시지에서 육합 관계가 고정 규칙표로 조회된다. 성립 강도나 길흉은 판정하지 않는다.",
+      "classicalVerification": "not_established",
+      "localCalculation": {
+        "calculationRefCount": 1,
+        "externalEvidenceRefs": [],
+        "fixtureRefs": [],
+        "occurrenceCount": 1,
+        "provenanceCompleteness": "unverified",
+        "status": "observed_in_repository_calculation",
+        "verificationStatus": "unverified"
+      },
+      "sourceBoundary": {
+        "sourceIdentityStatus": "unresolved_source_identity",
+        "traditionalSourceRefs": [
+          "source.traditional.saju.rule.branch-relations"
+        ],
+        "unresolvedGaps": [
+          "traditional rule author/edition/locator and source byte identity are not established"
+        ]
+      },
+      "taxonomyReason": "implementation output and local fixtures exist, but the attributable classical rule/source identity is unresolved",
+      "taxonomyState": "source_unresolved"
+    },
+    {
+      "acquisitionPacketIds": [
+        "saju-source-packet-rule-branch-relations-v0"
+      ],
+      "category": "structure",
+      "claimId": "saju.natal.branch-relation.month-hour-충",
+      "claimText": "현재 기준 원국의 월지·시지에서 충 관계가 고정 규칙표로 조회된다. 성립 강도나 길흉은 판정하지 않는다.",
+      "classicalVerification": "not_established",
+      "localCalculation": {
+        "calculationRefCount": 1,
+        "externalEvidenceRefs": [],
+        "fixtureRefs": [],
+        "occurrenceCount": 1,
+        "provenanceCompleteness": "unverified",
+        "status": "observed_in_repository_calculation",
+        "verificationStatus": "unverified"
+      },
+      "sourceBoundary": {
+        "sourceIdentityStatus": "unresolved_source_identity",
+        "traditionalSourceRefs": [
+          "source.traditional.saju.rule.branch-relations"
+        ],
+        "unresolvedGaps": [
+          "traditional rule author/edition/locator and source byte identity are not established"
+        ]
+      },
+      "taxonomyReason": "implementation output and local fixtures exist, but the attributable classical rule/source identity is unresolved",
+      "taxonomyState": "source_unresolved"
+    },
+    {
+      "acquisitionPacketIds": [
+        "saju-source-packet-rule-branch-relations-v0"
+      ],
+      "category": "structure",
+      "claimId": "saju.natal.branch-relation.month-hour-형",
+      "claimText": "현재 기준 원국의 월지·시지에서 형 관계가 고정 규칙표로 조회된다. 성립 강도나 길흉은 판정하지 않는다.",
+      "classicalVerification": "not_established",
+      "localCalculation": {
+        "calculationRefCount": 2,
+        "externalEvidenceRefs": [],
+        "fixtureRefs": [],
+        "occurrenceCount": 2,
+        "provenanceCompleteness": "unverified",
+        "status": "observed_in_repository_calculation",
+        "verificationStatus": "unverified"
+      },
+      "sourceBoundary": {
+        "sourceIdentityStatus": "unresolved_source_identity",
+        "traditionalSourceRefs": [
+          "source.traditional.saju.rule.branch-relations"
+        ],
+        "unresolvedGaps": [
+          "traditional rule author/edition/locator and source byte identity are not established"
+        ]
+      },
+      "taxonomyReason": "implementation output and local fixtures exist, but the attributable classical rule/source identity is unresolved",
+      "taxonomyState": "source_unresolved"
+    },
+    {
+      "acquisitionPacketIds": [
+        "saju-source-packet-rule-branch-relations-v0"
+      ],
+      "category": "structure",
+      "claimId": "saju.natal.branch-relation.year-day-육합",
+      "claimText": "현재 기준 원국의 연지·일지에서 육합 관계가 고정 규칙표로 조회된다. 성립 강도나 길흉은 판정하지 않는다.",
+      "classicalVerification": "not_established",
+      "localCalculation": {
+        "calculationRefCount": 2,
+        "externalEvidenceRefs": [],
+        "fixtureRefs": [],
+        "occurrenceCount": 2,
+        "provenanceCompleteness": "unverified",
+        "status": "observed_in_repository_calculation",
+        "verificationStatus": "unverified"
+      },
+      "sourceBoundary": {
+        "sourceIdentityStatus": "unresolved_source_identity",
+        "traditionalSourceRefs": [
+          "source.traditional.saju.rule.branch-relations"
+        ],
+        "unresolvedGaps": [
+          "traditional rule author/edition/locator and source byte identity are not established"
+        ]
+      },
+      "taxonomyReason": "implementation output and local fixtures exist, but the attributable classical rule/source identity is unresolved",
+      "taxonomyState": "source_unresolved"
+    },
+    {
+      "acquisitionPacketIds": [
+        "saju-source-packet-rule-branch-relations-v0"
+      ],
+      "category": "structure",
+      "claimId": "saju.natal.branch-relation.year-day-충",
+      "claimText": "현재 기준 원국의 연지·일지에서 충 관계가 고정 규칙표로 조회된다. 성립 강도나 길흉은 판정하지 않는다.",
+      "classicalVerification": "not_established",
+      "localCalculation": {
+        "calculationRefCount": 1,
+        "externalEvidenceRefs": [],
+        "fixtureRefs": [],
+        "occurrenceCount": 1,
+        "provenanceCompleteness": "unverified",
+        "status": "observed_in_repository_calculation",
+        "verificationStatus": "unverified"
+      },
+      "sourceBoundary": {
+        "sourceIdentityStatus": "unresolved_source_identity",
+        "traditionalSourceRefs": [
+          "source.traditional.saju.rule.branch-relations"
+        ],
+        "unresolvedGaps": [
+          "traditional rule author/edition/locator and source byte identity are not established"
+        ]
+      },
+      "taxonomyReason": "implementation output and local fixtures exist, but the attributable classical rule/source identity is unresolved",
+      "taxonomyState": "source_unresolved"
+    },
+    {
+      "acquisitionPacketIds": [
+        "saju-source-packet-rule-branch-relations-v0"
+      ],
+      "category": "structure",
+      "claimId": "saju.natal.branch-relation.year-day-파",
+      "claimText": "현재 기준 원국의 연지·일지에서 파 관계가 고정 규칙표로 조회된다. 성립 강도나 길흉은 판정하지 않는다.",
+      "classicalVerification": "not_established",
+      "localCalculation": {
+        "calculationRefCount": 2,
+        "externalEvidenceRefs": [],
+        "fixtureRefs": [],
+        "occurrenceCount": 2,
+        "provenanceCompleteness": "unverified",
+        "status": "observed_in_repository_calculation",
+        "verificationStatus": "unverified"
+      },
+      "sourceBoundary": {
+        "sourceIdentityStatus": "unresolved_source_identity",
+        "traditionalSourceRefs": [
+          "source.traditional.saju.rule.branch-relations"
+        ],
+        "unresolvedGaps": [
+          "traditional rule author/edition/locator and source byte identity are not established"
+        ]
+      },
+      "taxonomyReason": "implementation output and local fixtures exist, but the attributable classical rule/source identity is unresolved",
+      "taxonomyState": "source_unresolved"
+    },
+    {
+      "acquisitionPacketIds": [
+        "saju-source-packet-rule-branch-relations-v0"
+      ],
+      "category": "structure",
+      "claimId": "saju.natal.branch-relation.year-hour-육합",
+      "claimText": "현재 기준 원국의 연지·시지에서 육합 관계가 고정 규칙표로 조회된다. 성립 강도나 길흉은 판정하지 않는다.",
+      "classicalVerification": "not_established",
+      "localCalculation": {
+        "calculationRefCount": 1,
+        "externalEvidenceRefs": [],
+        "fixtureRefs": [],
+        "occurrenceCount": 1,
+        "provenanceCompleteness": "unverified",
+        "status": "observed_in_repository_calculation",
+        "verificationStatus": "unverified"
+      },
+      "sourceBoundary": {
+        "sourceIdentityStatus": "unresolved_source_identity",
+        "traditionalSourceRefs": [
+          "source.traditional.saju.rule.branch-relations"
+        ],
+        "unresolvedGaps": [
+          "traditional rule author/edition/locator and source byte identity are not established"
+        ]
+      },
+      "taxonomyReason": "implementation output and local fixtures exist, but the attributable classical rule/source identity is unresolved",
+      "taxonomyState": "source_unresolved"
+    },
+    {
+      "acquisitionPacketIds": [
+        "saju-source-packet-rule-branch-relations-v0"
+      ],
+      "category": "structure",
+      "claimId": "saju.natal.branch-relation.year-hour-충",
+      "claimText": "현재 기준 원국의 연지·시지에서 충 관계가 고정 규칙표로 조회된다. 성립 강도나 길흉은 판정하지 않는다.",
+      "classicalVerification": "not_established",
+      "localCalculation": {
+        "calculationRefCount": 4,
+        "externalEvidenceRefs": [],
+        "fixtureRefs": [],
+        "occurrenceCount": 4,
+        "provenanceCompleteness": "unverified",
+        "status": "observed_in_repository_calculation",
+        "verificationStatus": "unverified"
+      },
+      "sourceBoundary": {
+        "sourceIdentityStatus": "unresolved_source_identity",
+        "traditionalSourceRefs": [
+          "source.traditional.saju.rule.branch-relations"
+        ],
+        "unresolvedGaps": [
+          "traditional rule author/edition/locator and source byte identity are not established"
+        ]
+      },
+      "taxonomyReason": "implementation output and local fixtures exist, but the attributable classical rule/source identity is unresolved",
+      "taxonomyState": "source_unresolved"
+    },
+    {
+      "acquisitionPacketIds": [
+        "saju-source-packet-rule-branch-relations-v0"
+      ],
+      "category": "structure",
+      "claimId": "saju.natal.branch-relation.year-hour-파",
+      "claimText": "현재 기준 원국의 연지·시지에서 파 관계가 고정 규칙표로 조회된다. 성립 강도나 길흉은 판정하지 않는다.",
+      "classicalVerification": "not_established",
+      "localCalculation": {
+        "calculationRefCount": 1,
+        "externalEvidenceRefs": [],
+        "fixtureRefs": [],
+        "occurrenceCount": 1,
+        "provenanceCompleteness": "unverified",
+        "status": "observed_in_repository_calculation",
+        "verificationStatus": "unverified"
+      },
+      "sourceBoundary": {
+        "sourceIdentityStatus": "unresolved_source_identity",
+        "traditionalSourceRefs": [
+          "source.traditional.saju.rule.branch-relations"
+        ],
+        "unresolvedGaps": [
+          "traditional rule author/edition/locator and source byte identity are not established"
+        ]
+      },
+      "taxonomyReason": "implementation output and local fixtures exist, but the attributable classical rule/source identity is unresolved",
+      "taxonomyState": "source_unresolved"
+    },
+    {
+      "acquisitionPacketIds": [
+        "saju-source-packet-rule-branch-relations-v0"
+      ],
+      "category": "structure",
+      "claimId": "saju.natal.branch-relation.year-hour-형",
+      "claimText": "현재 기준 원국의 연지·시지에서 형 관계가 고정 규칙표로 조회된다. 성립 강도나 길흉은 판정하지 않는다.",
+      "classicalVerification": "not_established",
+      "localCalculation": {
+        "calculationRefCount": 2,
+        "externalEvidenceRefs": [],
+        "fixtureRefs": [],
+        "occurrenceCount": 2,
+        "provenanceCompleteness": "unverified",
+        "status": "observed_in_repository_calculation",
+        "verificationStatus": "unverified"
+      },
+      "sourceBoundary": {
+        "sourceIdentityStatus": "unresolved_source_identity",
+        "traditionalSourceRefs": [
+          "source.traditional.saju.rule.branch-relations"
+        ],
+        "unresolvedGaps": [
+          "traditional rule author/edition/locator and source byte identity are not established"
+        ]
+      },
+      "taxonomyReason": "implementation output and local fixtures exist, but the attributable classical rule/source identity is unresolved",
+      "taxonomyState": "source_unresolved"
+    },
+    {
+      "acquisitionPacketIds": [
+        "saju-source-packet-rule-branch-relations-v0"
+      ],
+      "category": "structure",
+      "claimId": "saju.natal.branch-relation.year-month-육합",
+      "claimText": "현재 기준 원국의 연지·월지에서 육합 관계가 고정 규칙표로 조회된다. 성립 강도나 길흉은 판정하지 않는다.",
+      "classicalVerification": "not_established",
+      "localCalculation": {
+        "calculationRefCount": 2,
+        "externalEvidenceRefs": [],
+        "fixtureRefs": [],
+        "occurrenceCount": 2,
+        "provenanceCompleteness": "unverified",
+        "status": "observed_in_repository_calculation",
+        "verificationStatus": "unverified"
+      },
+      "sourceBoundary": {
+        "sourceIdentityStatus": "unresolved_source_identity",
+        "traditionalSourceRefs": [
+          "source.traditional.saju.rule.branch-relations"
+        ],
+        "unresolvedGaps": [
+          "traditional rule author/edition/locator and source byte identity are not established"
+        ]
+      },
+      "taxonomyReason": "implementation output and local fixtures exist, but the attributable classical rule/source identity is unresolved",
+      "taxonomyState": "source_unresolved"
+    },
+    {
+      "acquisitionPacketIds": [
+        "saju-source-packet-rule-branch-relations-v0"
+      ],
+      "category": "structure",
+      "claimId": "saju.natal.branch-relation.year-month-파",
+      "claimText": "현재 기준 원국의 연지·월지에서 파 관계가 고정 규칙표로 조회된다. 성립 강도나 길흉은 판정하지 않는다.",
+      "classicalVerification": "not_established",
+      "localCalculation": {
+        "calculationRefCount": 4,
+        "externalEvidenceRefs": [],
+        "fixtureRefs": [],
+        "occurrenceCount": 4,
+        "provenanceCompleteness": "unverified",
+        "status": "observed_in_repository_calculation",
+        "verificationStatus": "unverified"
+      },
+      "sourceBoundary": {
+        "sourceIdentityStatus": "unresolved_source_identity",
+        "traditionalSourceRefs": [
+          "source.traditional.saju.rule.branch-relations"
+        ],
+        "unresolvedGaps": [
+          "traditional rule author/edition/locator and source byte identity are not established"
+        ]
+      },
+      "taxonomyReason": "implementation output and local fixtures exist, but the attributable classical rule/source identity is unresolved",
+      "taxonomyState": "source_unresolved"
+    },
+    {
+      "acquisitionPacketIds": [
+        "saju-source-packet-rule-branch-relations-v0"
+      ],
+      "category": "structure",
+      "claimId": "saju.natal.branch-relation.year-month-형",
+      "claimText": "현재 기준 원국의 연지·월지에서 형 관계가 고정 규칙표로 조회된다. 성립 강도나 길흉은 판정하지 않는다.",
+      "classicalVerification": "not_established",
+      "localCalculation": {
+        "calculationRefCount": 1,
+        "externalEvidenceRefs": [],
+        "fixtureRefs": [],
+        "occurrenceCount": 1,
+        "provenanceCompleteness": "unverified",
+        "status": "observed_in_repository_calculation",
+        "verificationStatus": "unverified"
+      },
+      "sourceBoundary": {
+        "sourceIdentityStatus": "unresolved_source_identity",
+        "traditionalSourceRefs": [
+          "source.traditional.saju.rule.branch-relations"
+        ],
+        "unresolvedGaps": [
+          "traditional rule author/edition/locator and source byte identity are not established"
+        ]
+      },
+      "taxonomyReason": "implementation output and local fixtures exist, but the attributable classical rule/source identity is unresolved",
+      "taxonomyState": "source_unresolved"
+    },
+    {
+      "acquisitionPacketIds": [
+        "saju-source-packet-core-four-pillars-v0"
+      ],
+      "category": "identity",
+      "claimId": "saju.natal.day-master",
+      "claimText": "원국의 기준점은 계 일간이며 음양은 음, 오행은 수이다.",
+      "classicalVerification": "not_established",
+      "localCalculation": {
+        "calculationRefCount": 11,
+        "externalEvidenceRefs": [
+          "evidence.external.saju-ext-hko-2026-02-01-day-pillar"
+        ],
+        "fixtureRefs": [
+          "fixture.internal.val-lunar-leap",
+          "fixture.internal.val-lunar-normal",
+          "fixture.internal.val-solar-normal"
+        ],
+        "occurrenceCount": 11,
+        "provenanceCompleteness": "provenance_partial",
+        "status": "observed_in_repository_calculation",
+        "verificationStatus": "unverified"
+      },
+      "sourceBoundary": {
+        "sourceIdentityStatus": "unresolved_source_identity",
+        "traditionalSourceRefs": [
+          "source.traditional.saju.core.four-pillars"
+        ],
+        "unresolvedGaps": [
+          "internal fixture is not independent external verification",
+          "traditional rule author/edition/locator and source byte identity are not established"
+        ]
+      },
+      "taxonomyReason": "a scoped external fixture matches a limited field, but the claim remains unverified and its rule source is unresolved",
+      "taxonomyState": "partially_supported"
+    },
+    {
+      "acquisitionPacketIds": [
+        "saju-source-packet-core-element-distribution-v0"
+      ],
+      "category": "identity",
+      "claimId": "saju.natal.element-absence",
+      "claimText": "천간과 지지의 단순 분포에는 금 오행이 나타나지 않는다. 지장간과 계절 가중치까지 없다는 뜻은 아니다.",
+      "classicalVerification": "not_established",
+      "localCalculation": {
+        "calculationRefCount": 12,
+        "externalEvidenceRefs": [],
+        "fixtureRefs": [],
+        "occurrenceCount": 9,
+        "provenanceCompleteness": "unverified",
+        "status": "observed_in_repository_calculation",
+        "verificationStatus": "unverified"
+      },
+      "sourceBoundary": {
+        "sourceIdentityStatus": "unresolved_source_identity",
+        "traditionalSourceRefs": [
+          "source.traditional.saju.core.element-distribution"
+        ],
+        "unresolvedGaps": [
+          "traditional rule author/edition/locator and source byte identity are not established"
+        ]
+      },
+      "taxonomyReason": "implementation output and local fixtures exist, but the attributable classical rule/source identity is unresolved",
+      "taxonomyState": "source_unresolved"
+    },
+    {
+      "acquisitionPacketIds": [
+        "saju-source-packet-core-element-distribution-v0"
+      ],
+      "category": "identity",
+      "claimId": "saju.natal.element-emphasis.목",
+      "claimText": "천간과 지지 8글자의 단순 분포에서 목 오행이 4회로 가장 많이 나타난다.",
+      "classicalVerification": "not_established",
+      "localCalculation": {
+        "calculationRefCount": 1,
+        "externalEvidenceRefs": [],
+        "fixtureRefs": [],
+        "occurrenceCount": 1,
+        "provenanceCompleteness": "unverified",
+        "status": "observed_in_repository_calculation",
+        "verificationStatus": "unverified"
+      },
+      "sourceBoundary": {
+        "sourceIdentityStatus": "unresolved_source_identity",
+        "traditionalSourceRefs": [
+          "source.traditional.saju.core.element-distribution"
+        ],
+        "unresolvedGaps": [
+          "traditional rule author/edition/locator and source byte identity are not established"
+        ]
+      },
+      "taxonomyReason": "implementation output and local fixtures exist, but the attributable classical rule/source identity is unresolved",
+      "taxonomyState": "source_unresolved"
+    },
+    {
+      "acquisitionPacketIds": [
+        "saju-source-packet-core-element-distribution-v0"
+      ],
+      "category": "identity",
+      "claimId": "saju.natal.element-emphasis.수",
+      "claimText": "천간과 지지 8글자의 단순 분포에서 수 오행이 4회로 가장 많이 나타난다.",
+      "classicalVerification": "not_established",
+      "localCalculation": {
+        "calculationRefCount": 1,
+        "externalEvidenceRefs": [],
+        "fixtureRefs": [],
+        "occurrenceCount": 1,
+        "provenanceCompleteness": "unverified",
+        "status": "observed_in_repository_calculation",
+        "verificationStatus": "unverified"
+      },
+      "sourceBoundary": {
+        "sourceIdentityStatus": "unresolved_source_identity",
+        "traditionalSourceRefs": [
+          "source.traditional.saju.core.element-distribution"
+        ],
+        "unresolvedGaps": [
+          "traditional rule author/edition/locator and source byte identity are not established"
+        ]
+      },
+      "taxonomyReason": "implementation output and local fixtures exist, but the attributable classical rule/source identity is unresolved",
+      "taxonomyState": "source_unresolved"
+    },
+    {
+      "acquisitionPacketIds": [
+        "saju-source-packet-core-element-distribution-v0"
+      ],
+      "category": "identity",
+      "claimId": "saju.natal.element-emphasis.토",
+      "claimText": "천간과 지지 8글자의 단순 분포에서 토 오행이 4회로 가장 많이 나타난다.",
+      "classicalVerification": "not_established",
+      "localCalculation": {
+        "calculationRefCount": 4,
+        "externalEvidenceRefs": [],
+        "fixtureRefs": [],
+        "occurrenceCount": 4,
+        "provenanceCompleteness": "unverified",
+        "status": "observed_in_repository_calculation",
+        "verificationStatus": "unverified"
+      },
+      "sourceBoundary": {
+        "sourceIdentityStatus": "unresolved_source_identity",
+        "traditionalSourceRefs": [
+          "source.traditional.saju.core.element-distribution"
+        ],
+        "unresolvedGaps": [
+          "traditional rule author/edition/locator and source byte identity are not established"
+        ]
+      },
+      "taxonomyReason": "implementation output and local fixtures exist, but the attributable classical rule/source identity is unresolved",
+      "taxonomyState": "source_unresolved"
+    },
+    {
+      "acquisitionPacketIds": [
+        "saju-source-packet-core-element-distribution-v0"
+      ],
+      "category": "identity",
+      "claimId": "saju.natal.element-emphasis.화",
+      "claimText": "천간과 지지 8글자의 단순 분포에서 화 오행이 4회로 가장 많이 나타난다.",
+      "classicalVerification": "not_established",
+      "localCalculation": {
+        "calculationRefCount": 5,
+        "externalEvidenceRefs": [],
+        "fixtureRefs": [],
+        "occurrenceCount": 5,
+        "provenanceCompleteness": "unverified",
+        "status": "observed_in_repository_calculation",
+        "verificationStatus": "unverified"
+      },
+      "sourceBoundary": {
+        "sourceIdentityStatus": "unresolved_source_identity",
+        "traditionalSourceRefs": [
+          "source.traditional.saju.core.element-distribution"
+        ],
+        "unresolvedGaps": [
+          "traditional rule author/edition/locator and source byte identity are not established"
+        ]
+      },
+      "taxonomyReason": "implementation output and local fixtures exist, but the attributable classical rule/source identity is unresolved",
+      "taxonomyState": "source_unresolved"
+    },
+    {
+      "acquisitionPacketIds": [
+        "saju-source-packet-rule-gyeokguk-v0"
+      ],
+      "category": "experimental",
+      "claimId": "saju.natal.experimental.gyeokguk",
+      "claimText": "원국의 격국 추론 결과는 정관격(정격)이다. 천간에 투출한 지장간 글자가 없어, 월지 진의 본기인 무의 십성을 기준으로 격국을 형성함.",
+      "classicalVerification": "not_established",
+      "localCalculation": {
+        "calculationRefCount": 8,
+        "externalEvidenceRefs": [],
+        "fixtureRefs": [],
+        "occurrenceCount": 8,
+        "provenanceCompleteness": "rule_implemented_source_unresolved",
+        "status": "observed_in_repository_calculation",
+        "verificationStatus": "unverified"
+      },
+      "sourceBoundary": {
+        "sourceIdentityStatus": "unresolved_source_identity",
+        "traditionalSourceRefs": [
+          "source.traditional.saju.rule.profile-gyeokguk"
+        ],
+        "unresolvedGaps": [
+          "traditional rule author/edition/locator and source byte identity are not established"
+        ]
+      },
+      "taxonomyReason": "claim is explicitly experimental and cannot be promoted to a canonical calculation or classical claim",
+      "taxonomyState": "interpretation_noncanonical"
+    },
+    {
+      "acquisitionPacketIds": [
+        "saju-source-packet-rule-shinsal-v0"
+      ],
+      "category": "experimental",
+      "claimId": "saju.natal.experimental.shinsal-summary",
+      "claimText": "원국 분석 결과 천을귀인(일지), 화개살(연지), 공망(시지), 양인살(연지)가 작용하는 기운으로 나타난다.",
+      "classicalVerification": "not_established",
+      "localCalculation": {
+        "calculationRefCount": 8,
+        "externalEvidenceRefs": [],
+        "fixtureRefs": [],
+        "occurrenceCount": 8,
+        "provenanceCompleteness": "rule_implemented_source_unresolved",
+        "status": "observed_in_repository_calculation",
+        "verificationStatus": "unverified"
+      },
+      "sourceBoundary": {
+        "sourceIdentityStatus": "unresolved_source_identity",
+        "traditionalSourceRefs": [
+          "source.traditional.saju.rule.profile-shinsal"
+        ],
+        "unresolvedGaps": [
+          "traditional rule author/edition/locator and source byte identity are not established"
+        ]
+      },
+      "taxonomyReason": "claim is explicitly experimental and cannot be promoted to a canonical calculation or classical claim",
+      "taxonomyState": "interpretation_noncanonical"
+    },
+    {
+      "acquisitionPacketIds": [
+        "saju-source-packet-rule-strength-v0"
+      ],
+      "category": "experimental",
+      "claimId": "saju.natal.experimental.strength-quantitative",
+      "claimText": "표면 생조 기반 휴리스틱 정량 평가 결과 득령 실패, 득지 실패, 표면 생조 기둥 연주·월주·일주 등으로 단순 득점 합산 0점을 기록하여 신약 (Weak)에 해당함. (주의: 본 점수는 지장간 통근 관계를 종합 점수에 직접 산입하지 않고 득령·득지 및 단순 표면 생조에 가중치를 둔 단순 지표입니다. 실제 지장간 통근 정보는 하단 독립 영역을 참조바랍니다.)",
+      "classicalVerification": "not_established",
+      "localCalculation": {
+        "calculationRefCount": 8,
+        "externalEvidenceRefs": [],
+        "fixtureRefs": [],
+        "occurrenceCount": 8,
+        "provenanceCompleteness": "rule_implemented_source_unresolved",
+        "status": "observed_in_repository_calculation",
+        "verificationStatus": "unverified"
+      },
+      "sourceBoundary": {
+        "sourceIdentityStatus": "unresolved_source_identity",
+        "traditionalSourceRefs": [
+          "source.traditional.saju.rule.profile-strength"
+        ],
+        "unresolvedGaps": [
+          "traditional rule author/edition/locator and source byte identity are not established"
+        ]
+      },
+      "taxonomyReason": "claim is explicitly experimental and cannot be promoted to a canonical calculation or classical claim",
+      "taxonomyState": "interpretation_noncanonical"
+    },
+    {
+      "acquisitionPacketIds": [
+        "saju-source-packet-rule-yongshin-v0"
+      ],
+      "category": "experimental",
+      "claimId": "saju.natal.experimental.yongshin",
+      "claimText": "[표면 생조 휴리스틱 기반] 일주가 약하므로 일간을 직접 생조해주는 인성을 용신으로, 힘을 실어주는 비겁을 희신으로 삼아 균형을 맞춥니다. ",
+      "classicalVerification": "not_established",
+      "localCalculation": {
+        "calculationRefCount": 8,
+        "externalEvidenceRefs": [],
+        "fixtureRefs": [],
+        "occurrenceCount": 8,
+        "provenanceCompleteness": "rule_implemented_source_unresolved",
+        "status": "observed_in_repository_calculation",
+        "verificationStatus": "unverified"
+      },
+      "sourceBoundary": {
+        "sourceIdentityStatus": "unresolved_source_identity",
+        "traditionalSourceRefs": [
+          "source.traditional.saju.rule.profile-yongshin"
+        ],
+        "unresolvedGaps": [
+          "traditional rule author/edition/locator and source byte identity are not established"
+        ]
+      },
+      "taxonomyReason": "claim is explicitly experimental and cannot be promoted to a canonical calculation or classical claim",
+      "taxonomyState": "interpretation_noncanonical"
+    },
+    {
+      "acquisitionPacketIds": [
+        "saju-source-packet-core-ten-god-distribution-v0"
+      ],
+      "category": "money",
+      "claimId": "saju.natal.ten-god-repeat.겁재",
+      "claimText": "표면 십성 배치에서 겁재가 2회 반복된다.",
+      "classicalVerification": "not_established",
+      "localCalculation": {
+        "calculationRefCount": 2,
+        "externalEvidenceRefs": [],
+        "fixtureRefs": [],
+        "occurrenceCount": 2,
+        "provenanceCompleteness": "unverified",
+        "status": "observed_in_repository_calculation",
+        "verificationStatus": "unverified"
+      },
+      "sourceBoundary": {
+        "sourceIdentityStatus": "unresolved_source_identity",
+        "traditionalSourceRefs": [
+          "source.traditional.saju.core.ten-god-distribution"
+        ],
+        "unresolvedGaps": [
+          "traditional rule author/edition/locator and source byte identity are not established"
+        ]
+      },
+      "taxonomyReason": "implementation output and local fixtures exist, but the attributable classical rule/source identity is unresolved",
+      "taxonomyState": "source_unresolved"
+    },
+    {
+      "acquisitionPacketIds": [
+        "saju-source-packet-core-ten-god-distribution-v0"
+      ],
+      "category": "identity",
+      "claimId": "saju.natal.ten-god-repeat.비견",
+      "claimText": "표면 십성 배치에서 비견이 2회 반복된다.",
+      "classicalVerification": "not_established",
+      "localCalculation": {
+        "calculationRefCount": 1,
+        "externalEvidenceRefs": [],
+        "fixtureRefs": [],
+        "occurrenceCount": 1,
+        "provenanceCompleteness": "unverified",
+        "status": "observed_in_repository_calculation",
+        "verificationStatus": "unverified"
+      },
+      "sourceBoundary": {
+        "sourceIdentityStatus": "unresolved_source_identity",
+        "traditionalSourceRefs": [
+          "source.traditional.saju.core.ten-god-distribution"
+        ],
+        "unresolvedGaps": [
+          "traditional rule author/edition/locator and source byte identity are not established"
+        ]
+      },
+      "taxonomyReason": "implementation output and local fixtures exist, but the attributable classical rule/source identity is unresolved",
+      "taxonomyState": "source_unresolved"
+    },
+    {
+      "acquisitionPacketIds": [
+        "saju-source-packet-core-ten-god-distribution-v0"
+      ],
+      "category": "social",
+      "claimId": "saju.natal.ten-god-repeat.식신",
+      "claimText": "표면 십성 배치에서 식신이 2회 반복된다.",
+      "classicalVerification": "not_established",
+      "localCalculation": {
+        "calculationRefCount": 3,
+        "externalEvidenceRefs": [],
+        "fixtureRefs": [],
+        "occurrenceCount": 3,
+        "provenanceCompleteness": "unverified",
+        "status": "observed_in_repository_calculation",
+        "verificationStatus": "unverified"
+      },
+      "sourceBoundary": {
+        "sourceIdentityStatus": "unresolved_source_identity",
+        "traditionalSourceRefs": [
+          "source.traditional.saju.core.ten-god-distribution"
+        ],
+        "unresolvedGaps": [
+          "traditional rule author/edition/locator and source byte identity are not established"
+        ]
+      },
+      "taxonomyReason": "implementation output and local fixtures exist, but the attributable classical rule/source identity is unresolved",
+      "taxonomyState": "source_unresolved"
+    },
+    {
+      "acquisitionPacketIds": [
+        "saju-source-packet-core-ten-god-distribution-v0"
+      ],
+      "category": "career",
+      "claimId": "saju.natal.ten-god-repeat.정관",
+      "claimText": "표면 십성 배치에서 정관이 4회 반복된다.",
+      "classicalVerification": "not_established",
+      "localCalculation": {
+        "calculationRefCount": 1,
+        "externalEvidenceRefs": [],
+        "fixtureRefs": [],
+        "occurrenceCount": 1,
+        "provenanceCompleteness": "unverified",
+        "status": "observed_in_repository_calculation",
+        "verificationStatus": "unverified"
+      },
+      "sourceBoundary": {
+        "sourceIdentityStatus": "unresolved_source_identity",
+        "traditionalSourceRefs": [
+          "source.traditional.saju.core.ten-god-distribution"
+        ],
+        "unresolvedGaps": [
+          "traditional rule author/edition/locator and source byte identity are not established"
+        ]
+      },
+      "taxonomyReason": "implementation output and local fixtures exist, but the attributable classical rule/source identity is unresolved",
+      "taxonomyState": "source_unresolved"
+    },
+    {
+      "acquisitionPacketIds": [
+        "saju-source-packet-core-ten-god-distribution-v0"
+      ],
+      "category": "money",
+      "claimId": "saju.natal.ten-god-repeat.정재",
+      "claimText": "표면 십성 배치에서 정재가 2회 반복된다.",
+      "classicalVerification": "not_established",
+      "localCalculation": {
+        "calculationRefCount": 2,
+        "externalEvidenceRefs": [],
+        "fixtureRefs": [],
+        "occurrenceCount": 2,
+        "provenanceCompleteness": "unverified",
+        "status": "observed_in_repository_calculation",
+        "verificationStatus": "unverified"
+      },
+      "sourceBoundary": {
+        "sourceIdentityStatus": "unresolved_source_identity",
+        "traditionalSourceRefs": [
+          "source.traditional.saju.core.ten-god-distribution"
+        ],
+        "unresolvedGaps": [
+          "traditional rule author/edition/locator and source byte identity are not established"
+        ]
+      },
+      "taxonomyReason": "implementation output and local fixtures exist, but the attributable classical rule/source identity is unresolved",
+      "taxonomyState": "source_unresolved"
+    },
+    {
+      "acquisitionPacketIds": [
+        "saju-source-packet-core-ten-god-distribution-v0"
+      ],
+      "category": "career",
+      "claimId": "saju.natal.ten-god-repeat.편관",
+      "claimText": "표면 십성 배치에서 편관이 3회 반복된다.",
+      "classicalVerification": "not_established",
+      "localCalculation": {
+        "calculationRefCount": 4,
+        "externalEvidenceRefs": [],
+        "fixtureRefs": [],
+        "occurrenceCount": 4,
+        "provenanceCompleteness": "unverified",
+        "status": "observed_in_repository_calculation",
+        "verificationStatus": "unverified"
+      },
+      "sourceBoundary": {
+        "sourceIdentityStatus": "unresolved_source_identity",
+        "traditionalSourceRefs": [
+          "source.traditional.saju.core.ten-god-distribution"
+        ],
+        "unresolvedGaps": [
+          "traditional rule author/edition/locator and source byte identity are not established"
+        ]
+      },
+      "taxonomyReason": "implementation output and local fixtures exist, but the attributable classical rule/source identity is unresolved",
+      "taxonomyState": "source_unresolved"
+    },
+    {
+      "acquisitionPacketIds": [
+        "saju-source-packet-core-ten-god-distribution-v0"
+      ],
+      "category": "money",
+      "claimId": "saju.natal.ten-god-repeat.편재",
+      "claimText": "표면 십성 배치에서 편재가 2회 반복된다.",
+      "classicalVerification": "not_established",
+      "localCalculation": {
+        "calculationRefCount": 2,
+        "externalEvidenceRefs": [],
+        "fixtureRefs": [],
+        "occurrenceCount": 2,
+        "provenanceCompleteness": "unverified",
+        "status": "observed_in_repository_calculation",
+        "verificationStatus": "unverified"
+      },
+      "sourceBoundary": {
+        "sourceIdentityStatus": "unresolved_source_identity",
+        "traditionalSourceRefs": [
+          "source.traditional.saju.core.ten-god-distribution"
+        ],
+        "unresolvedGaps": [
+          "traditional rule author/edition/locator and source byte identity are not established"
+        ]
+      },
+      "taxonomyReason": "implementation output and local fixtures exist, but the attributable classical rule/source identity is unresolved",
+      "taxonomyState": "source_unresolved"
+    },
+    {
+      "acquisitionPacketIds": [
+        "saju-source-packet-core-candidate-boundary-v0"
+      ],
+      "category": "identity",
+      "claimId": "saju.natal.unknown-birth-time",
+      "claimText": "출생시각이 없어 시주는 계산에서 제외했다. 현재 규칙에서는 일주 후보가 임진·계사이며 하나로 확정하지 않는다.",
+      "classicalVerification": "not_established",
+      "localCalculation": {
+        "calculationRefCount": 1,
+        "externalEvidenceRefs": [
+          "evidence.external.saju-ext-hko-2026-02-01-day-pillar"
+        ],
+        "fixtureRefs": [],
+        "occurrenceCount": 1,
+        "provenanceCompleteness": "unverified",
+        "status": "observed_in_repository_calculation",
+        "verificationStatus": "unverified"
+      },
+      "sourceBoundary": {
+        "sourceIdentityStatus": "unresolved_source_identity",
+        "traditionalSourceRefs": [
+          "source.traditional.saju.core.candidate-boundary"
+        ],
+        "unresolvedGaps": [
+          "traditional rule author/edition/locator and source byte identity are not established"
+        ]
+      },
+      "taxonomyReason": "claim depends on an explicit repository boundary/coefficient policy whose classical authority is unresolved",
+      "taxonomyState": "implementation_policy_only"
+    },
+    {
+      "acquisitionPacketIds": [
+        "saju-source-packet-rule-timing-v0"
+      ],
+      "category": "timing",
+      "claimId": "saju.timing.active-da-yun",
+      "claimText": "2026-07-21 기준으로 2022-10-20부터 시작한 신축 대운 구간에 해당한다.",
+      "classicalVerification": "not_established",
+      "localCalculation": {
+        "calculationRefCount": 10,
+        "externalEvidenceRefs": [],
+        "fixtureRefs": [],
+        "occurrenceCount": 10,
+        "provenanceCompleteness": "unverified",
+        "status": "observed_in_repository_calculation",
+        "verificationStatus": "unverified"
+      },
+      "sourceBoundary": {
+        "sourceIdentityStatus": "unresolved_source_identity",
+        "traditionalSourceRefs": [
+          "source.traditional.saju.rule.timing"
+        ],
+        "unresolvedGaps": [
+          "traditional rule author/edition/locator and source byte identity are not established"
+        ]
+      },
+      "taxonomyReason": "claim depends on an explicit repository boundary/coefficient policy whose classical authority is unresolved",
+      "taxonomyState": "implementation_policy_only"
+    }
+  ],
+  "contentSha256": "9cb3475e3f5a3a724c7b654ea5d25abe2ef16f64a2cf039fa3b62cd30e4a50ce",
+  "frontierConclusion": {
+    "activation": "unchanged_experimental_or_blocked",
+    "grounding": "unchanged_unverified",
+    "localEvidenceExhausted": true,
+    "readiness": "unchanged_blocked",
+    "remainingBlockers": [
+      "external primary/classical source observation and identity",
+      "independent calendar/time oracle for broader coverage",
+      "user-selected interpretation policy where applicable",
+      "explicit production/readiness approval"
+    ]
+  },
+  "frontierVersion": "0.1.0",
+  "schemaVersion": "saju-v1-local-frontier-v0",
+  "scope": {
+    "activationMutation": false,
+    "canonicalClaimArtifact": "artifacts/saju-claim-provenance-v0.json",
+    "canonicalClaimCount": 43,
+    "canonicalOccurrenceCount": 126,
+    "classicalClaimPromotion": false,
+    "historicalArtifactRewrite": false,
+    "interpretationGeneration": false,
+    "networkOrSourceAcquisition": false,
+    "readinessMutation": false
+  },
+  "system": "saju",
+  "taxonomy": {
+    "definitions": {
+      "implementation_policy_only": "claim is a repository coefficient, boundary, or normalization policy; classical principle and implementation choice remain separate",
+      "interpretation_noncanonical": "claim is explicitly experimental or interpretation-adjacent and is outside canonical calculation truth",
+      "locally_supported": "independent local evidence supports the claim within a declared non-classical scope; count is zero here because local implementation/fixtures are not independent truth evidence",
+      "partially_supported": "only a scoped field-level external match exists; the claim remains unverified",
+      "source_unresolved": "claim subject is implemented/observed locally but required attributable source identity is absent"
+    },
+    "distribution": {
+      "implementation_policy_only": 2,
+      "interpretation_noncanonical": 4,
+      "locally_supported": 0,
+      "partially_supported": 1,
+      "source_unresolved": 36
+    },
+    "states": [
+      "locally_supported",
+      "partially_supported",
+      "source_unresolved",
+      "implementation_policy_only",
+      "interpretation_noncanonical"
+    ]
+  },
+  "verdictToken": "partial_saju_v1_local_frontier_advanced_uncommitted"
+}

@@ -1,4 +1,4 @@
-import { ELEMENTS, RELATIONSHIPS, YIN_YANG, STEMS, BRANCHES, HIDDEN_STEMS, SEASONAL_ELEMENT_WEIGHTS, TRINE_GROUPS, BRANCH_RELATION_PAIRS } from './constants.js'
+import { ELEMENTS, RELATIONSHIPS, STEM_YIN_YANG, STEMS, BRANCHES, HIDDEN_STEMS, SEASONAL_ELEMENT_WEIGHTS, TRINE_GROUPS, BRANCH_RELATION_PAIRS } from './constants.js'
 import { calculateFourPillars } from './fourPillars.js'
 
 /**
@@ -12,11 +12,11 @@ export function derivePillars(birthDate, birthTime) {
 /**
  * 일간(Day Master)과 대상 천간/지지의 십성(Ten Gods)을 계산합니다.
  */
-export function getTenGod(dayMasterStem, targetStemOrBranch) {
+export function getTenGod(dayMasterStem, targetStem) {
   const meElement = ELEMENTS[dayMasterStem]
-  const meYinYang = YIN_YANG[dayMasterStem]
-  const targetElement = ELEMENTS[targetStemOrBranch]
-  const targetYinYang = YIN_YANG[targetStemOrBranch]
+  const meYinYang = STEM_YIN_YANG[dayMasterStem]
+  const targetElement = ELEMENTS[targetStem]
+  const targetYinYang = STEM_YIN_YANG[targetStem]
 
   if (!meElement || !targetElement) return null
 

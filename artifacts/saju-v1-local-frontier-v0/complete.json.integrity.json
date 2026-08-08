@@ -1,0 +1,7 @@
+{
+  "artifactByteSha256": "ea9d5d25369d7c50eea9d8a9185001a9ec924ee67314cec1198869331a41f0c7",
+  "artifactPath": "artifacts/saju-v1-local-frontier-v0/complete.json",
+  "byteLength": 74989,
+  "hashScope": "exact UTF-8 bytes of complete.json including final LF",
+  "schemaVersion": "saju-v1-local-frontier-v0-integrity-v0"
+}

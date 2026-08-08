@@ -5,7 +5,7 @@ import { buildExportPayload, exportPayloadToMarkdown, prepareInterpretationData,
 import { calculateBranchGroupRelations, calculateNatalBranchRelations, calculateNatalStemRelations } from './sajuRelationRules.js'
 import { addCalendarAge, calculateStartAge, getTwelveStage } from './sajuTimingRules.js'
 import { DEFAULT_INPUT, DEFAULT_PROFILES, KOREA_REFERENCE_CITIES } from './schema.js'
-import { determineGyeokguk } from './sajuProfileRules.js'
+import { BRANCH_YIN_YANG_MAP, determineGyeokguk, STEM_YIN_YANG_MAP, YIN_YANG_MAP } from './sajuProfileRules.js'
 import { lunar2solar } from './lunarConverter.js'
 import { EXTERNAL_VALIDATION_FIXTURES } from '../saju/engine/externalValidationFixtures.js'
 
@@ -191,6 +191,8 @@ test('12운성 uses the fixed yang-forward and yin-backward table', () => {
   assert.equal(getTwelveStage('갑', '묘'), '제왕')
   assert.equal(getTwelveStage('을', '오'), '장생')
   assert.equal(getTwelveStage('을', '사'), '목욕')
+  assert.equal(getTwelveStage('신', '자'), '장생')
+  assert.equal(getTwelveStage('신', '축'), '양')
 })
 
 test('원국과 기간의 지지 십성은 모두 본기 지장간을 기준으로 한다', () => {
@@ -198,6 +200,28 @@ test('원국과 기간의 지지 십성은 모두 본기 지장간을 기준으�
   assert.equal(getTenGod('계', getBranchMainStem('자')), '비견')
   assert.equal(getBranchMainStem('오'), '정')
   assert.equal(getTenGod('계', getBranchMainStem('오')), '편재')
+  assert.equal(getTenGod('계', '신'), '편인')
+  assert.equal(STEM_YIN_YANG_MAP['신'], '음')
+  assert.equal(BRANCH_YIN_YANG_MAP['신'], '양')
+  assert.equal(YIN_YANG_MAP['신'], '음')
+})
+
+test('신 stem polarity stays distinct from 신 branch polarity in metadata and 대운 direction', () => {
+  const dayMasterResult = prepareInterpretationData({
+    ...FIXED_INPUT,
+    birthDate: '1981-01-03',
+    gender: 'male',
+  }, DEFAULT_PROFILES)
+  const yearStemResult = prepareInterpretationData({
+    ...FIXED_INPUT,
+    birthDate: '1981-04-21',
+    gender: 'male',
+  }, DEFAULT_PROFILES)
+
+  assert.equal(dayMasterResult.systems.saju.raw.dayMaster.stem, '신')
+  assert.equal(dayMasterResult.systems.saju.raw.dayMaster.yinYang, '음')
+  assert.equal(yearStemResult.systems.saju.raw.pillars.year.stem, '신')
+  assert.equal(yearStemResult.systems.saju.raw.timing.daYun.directionLabel, '역행')
 })
 
 test('대운 기산 환산 keeps the selected 3-day rule at year month and day precision', () => {

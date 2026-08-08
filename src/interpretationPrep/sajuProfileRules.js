@@ -9,10 +9,17 @@ export const ELEMENTS_MAP = {
   '자': '수', '축': '토', '인': '목', '묘': '목', '진': '토', '사': '화', '오': '화', '미': '토', '신': '금', '유': '금', '술': '토', '해': '수'
 }
 
-export const YIN_YANG_MAP = {
+export const STEM_YIN_YANG_MAP = Object.freeze({
   '갑': '양', '을': '음', '병': '양', '정': '음', '무': '양', '기': '음', '경': '양', '신': '음', '임': '양', '계': '음',
+})
+
+export const BRANCH_YIN_YANG_MAP = Object.freeze({
   '자': '양', '축': '음', '인': '양', '묘': '음', '진': '양', '사': '음', '오': '양', '미': '음', '신': '양', '유': '음', '술': '양', '해': '음'
-}
+})
+
+// Existing profile consumers use this lookup for stems; keep it as a
+// compatibility export while making the shared 신 glyph unambiguous.
+export const YIN_YANG_MAP = STEM_YIN_YANG_MAP
 
 // 지장간의 단일 진실 공급원은 core engine의 가중치 표다.
 // 프로필 규칙에서 필요한 여기·중기·본기 형태로만 투영한다.

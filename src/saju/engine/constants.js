@@ -59,12 +59,19 @@ export const ELEMENTS = {
   '해': '수', '자': '수'
 }
 
-export const YIN_YANG = {
+export const STEM_YIN_YANG = Object.freeze({
   '갑': '양', '병': '양', '무': '양', '경': '양', '임': '양',
   '을': '음', '정': '음', '기': '음', '신': '음', '계': '음',
+})
+
+export const BRANCH_YIN_YANG = Object.freeze({
   '자': '양', '인': '양', '진': '양', '오': '양', '신': '양', '술': '양',
   '축': '음', '묘': '음', '사': '음', '미': '음', '유': '음', '해': '음'
-}
+})
+
+// Existing consumers use this lookup for stems. Keep the export while making
+// the stem/branch distinction explicit for glyphs shared by both lists.
+export const YIN_YANG = STEM_YIN_YANG
 
 export const TEN_GODS = {
   '비견': { description: '나와 같은 오행, 같은 음양' },

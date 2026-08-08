@@ -5,7 +5,7 @@ import {
   SAJU_ENGINE_VERSION,
 } from '../saju/engine/fourPillars.js'
 import { getAdjacentBaziMonthBoundary } from '../saju/engine/solarTerms.js'
-import { ELEMENTS, YIN_YANG } from '../saju/engine/constants.js'
+import { ELEMENTS, STEM_YIN_YANG } from '../saju/engine/constants.js'
 import { getKoreaReferenceCity, KOREA_REFERENCE_CITIES, SAJU_ADAPTER_VERSION, resolveStateContract } from './schema.js'
 import { attachValidationMetadata } from './validationMetadata.js'
 import { calculateNatalBranchRelations, calculateNatalStemRelations } from './sajuRelationRules.js'
@@ -1128,7 +1128,7 @@ export function calculateSajuSystem(input, profile) {
     pillars: rawPillars,
     dayMaster: {
       stem: analysis.dayMaster,
-      yinYang: YIN_YANG[analysis.dayMaster],
+      yinYang: STEM_YIN_YANG[analysis.dayMaster],
       element: ELEMENTS[analysis.dayMaster],
       candidates: dayMasterCandidates,
     },
