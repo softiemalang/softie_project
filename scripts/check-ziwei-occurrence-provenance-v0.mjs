@@ -32,7 +32,7 @@ export async function checkOccurrenceProvenance(candidate, root = resolve(new UR
   if (candidate.fixtureStatusInventory?.length !== 6 || candidate.fixtureStatusInventory.filter(x => x.statuses.includes('configuration_mismatch')).length !== 2 || candidate.fixtureStatusInventory.some(x => !x.statuses.includes('source_identity_unresolved'))) failures.push('fixture_statuses_collapsed')
   if (candidate.forbiddenTransformations?.includes('frequency_ranking') !== true) failures.push('frequency_ranking_not_forbidden')
   if (candidate.readinessGroundingDecision?.readiness !== 'not_safe_to_start' || candidate.readinessGroundingDecision?.grounding !== 'not_safe_to_start') failures.push('readiness_grounding_overpromoted')
-  failures.push(...checkArtifactIdentity(candidate, { root, artifactId: SCHEMA, materializerPath: 'scripts/materialize-ziwei-occurrence-provenance-v0.mjs', materializerVersion: MATERIALIZER_VERSION }))
+  failures.push(...checkArtifactIdentity(candidate, { root, artifactId: SCHEMA, materializerPath: 'scripts/materialize-ziwei-occurrence-provenance-v0.mjs', materializerVersion: MATERIALIZER_VERSION, allowGenerationBaseInput: true }))
   return [...new Set(failures)]
 }
 

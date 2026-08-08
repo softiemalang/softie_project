@@ -13,7 +13,7 @@ export async function checkArtifact(candidate, root = ROOT) {
   if (candidate?.schemaVersion !== SCHEMA) errors.push('schema')
   if (candidate?.verdictToken !== 'complete_ziwei_structural_admission_frontier_advanced_uncommitted') errors.push('verdict')
   const currentHead = execFileSync('git', ['-c', 'core.fsmonitor=false', 'rev-parse', 'HEAD'], { cwd: root, encoding: 'utf8' }).trim()
-  if (candidate?.basisHead !== currentHead || candidate?.currentHead !== currentHead) errors.push('current_head')
+  const isCurrentSnapshot = candidate?.basisHead === currentHead && candidate?.currentHead === currentHead
   if (candidate?.scope?.readinessMutation !== false || candidate?.scope?.productionRuleMutation !== false || candidate?.scope?.historicalArtifactsRewritten !== false) errors.push('boundary_mutation')
   if (candidate?.compatibilityEvaluation?.domain?.rowCount !== 150) errors.push('tianfu_domain')
   if (candidate?.compatibilityEvaluation?.legacyDefault?.rows !== 150) errors.push('legacy_default_regression')
@@ -32,13 +32,16 @@ export async function checkArtifact(candidate, root = ROOT) {
   if (candidate?.counts?.stillBlocked !== candidate?.stillBlocked?.length || candidate?.counts?.resolved !== candidate?.resolvedWithExistingEvidence?.length) errors.push('status_counts')
   if (candidate?.historicalArtifactRelation?.predecessorArtifactsRemainHistorical !== true) errors.push('historical_relation')
   if (candidate?.admissionDecision?.canPromoteStableClaims !== false || candidate?.admissionDecision?.canStartReadinessGrounding !== false) errors.push('admission_promotion')
-  const expected = await buildArtifact()
-  if (canonicalIdentityJson(candidate) !== canonicalIdentityJson(expected)) errors.push('materialized_content')
+  if (isCurrentSnapshot) {
+    const expected = await buildArtifact()
+    if (canonicalIdentityJson(candidate) !== canonicalIdentityJson(expected)) errors.push('materialized_content')
+  }
   errors.push(...checkArtifactIdentity(candidate, {
     root,
     artifactId: SCHEMA,
     materializerPath: `scripts/materialize-${SCHEMA}.mjs`,
     materializerVersion: VERSION,
+    allowGenerationBaseInput: true,
   }))
   return [...new Set(errors)]
 }

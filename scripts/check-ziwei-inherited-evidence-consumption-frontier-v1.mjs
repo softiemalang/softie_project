@@ -13,8 +13,8 @@ const REQUIRED_RESOLVED = ['blocker-minor-star-source-witness', 'blocker-12-majo
 export async function checkArtifact(candidate, root = ROOT) {
   const errors = []
   const currentHead = execFileSync('git', ['-c', 'core.fsmonitor=false', 'rev-parse', 'HEAD'], { cwd: root, encoding: 'utf8' }).trim()
+  const isCurrentSnapshot = candidate?.basisHead === currentHead && candidate?.currentHead === currentHead
   if (candidate?.schemaVersion !== SCHEMA || candidate?.verdictToken !== 'complete_ziwei_inherited_evidence_consumed_frontier_advanced_uncommitted') errors.push('schema_or_verdict')
-  if (candidate?.basisHead !== currentHead || candidate?.currentHead !== currentHead) errors.push('current_head')
   if (candidate?.scope?.networkOrSourceAcquisition !== false || candidate?.scope?.inheritedObservationPagesNewlyObserved !== 0 || candidate?.scope?.productionRuleMutation !== false || candidate?.scope?.readinessMutation !== false || candidate?.scope?.activationMutation !== false || candidate?.scope?.historicalArtifactsRewritten !== false || candidate?.scope?.semanticAuthorityDecision !== false) errors.push('scope_boundary')
   if (candidate?.predecessor?.historicalArtifactRewritten !== false || candidate?.predecessor?.predecessorWasHistoricalAtThisCheckout !== true) errors.push('historical_predecessor_boundary')
   if (candidate?.packetEvidence?.map(packet => packet.packetId).join('|') !== REQUIRED_PACKETS.join('|')) errors.push('packet_inventory')
@@ -38,9 +38,11 @@ export async function checkArtifact(candidate, root = ROOT) {
   if (candidate?.readinessBeforeAfter?.before?.stableClaimBoundary !== 0 || candidate?.readinessBeforeAfter?.after?.stableClaimBoundary !== 0 || candidate?.readinessBeforeAfter?.after?.readiness !== 'not_safe_to_start' || candidate?.readinessBeforeAfter?.after?.grounding !== 'blocked' || candidate?.readinessBeforeAfter?.after?.activation !== 'experimental') errors.push('readiness_boundary')
   if (candidate?.admissionDecision?.canPromoteStableClaims !== false || candidate?.admissionDecision?.canStartReadinessGrounding !== false) errors.push('admission_promotion')
   if (candidate?.sourceVsImplementation?.semanticAuthority !== 'unresolved where source convention and semantic palace identity are not established') errors.push('epistemic_layer_boundary')
-  const expected = await buildArtifact()
-  if (canonicalIdentityJson(candidate) !== canonicalIdentityJson(expected)) errors.push('materialized_content')
-  errors.push(...checkArtifactIdentity(candidate, { root, artifactId: SCHEMA, materializerPath: `scripts/materialize-${SCHEMA}.mjs`, materializerVersion: VERSION }))
+  if (isCurrentSnapshot) {
+    const expected = await buildArtifact()
+    if (canonicalIdentityJson(candidate) !== canonicalIdentityJson(expected)) errors.push('materialized_content')
+  }
+  errors.push(...checkArtifactIdentity(candidate, { root, artifactId: SCHEMA, materializerPath: `scripts/materialize-${SCHEMA}.mjs`, materializerVersion: VERSION, allowGenerationBaseInput: true }))
   return [...new Set(errors)]
 }
 

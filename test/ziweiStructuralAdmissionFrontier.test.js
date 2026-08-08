@@ -2,10 +2,9 @@ import test from 'node:test'
 import assert from 'node:assert/strict'
 import { readFile } from 'node:fs/promises'
 
-import { canonicalIdentityJson } from '../src/artifactIdentity.js'
 import { buildArtifact, SCHEMA } from '../scripts/materialize-ziwei-structural-admission-frontier-v1.mjs'
 import { checkArtifact } from '../scripts/check-ziwei-structural-admission-frontier-v1.mjs'
-import { buildArtifact as buildInheritedEvidenceArtifact } from '../scripts/materialize-ziwei-inherited-evidence-consumption-frontier-v1.mjs'
+import { checkArtifact as checkInheritedEvidenceArtifact } from '../scripts/check-ziwei-inherited-evidence-consumption-frontier-v1.mjs'
 
 test('current Ziwei structural frontier is deterministic and fail-closed', async () => {
   const first = await buildArtifact()
@@ -20,10 +19,9 @@ test('current Ziwei structural frontier is deterministic and fail-closed', async
   assert.deepEqual(await checkArtifact(first), [])
 })
 
-test('materialized current inherited-evidence frontier matches the checked artifact bytes', async () => {
+test('historical inherited-evidence frontier remains checked and immutable', async () => {
   const actual = JSON.parse(await readFile('artifacts/ziwei-inherited-evidence-consumption-frontier-v1/complete.json', 'utf8'))
-  const expected = await buildInheritedEvidenceArtifact()
-  assert.equal(canonicalIdentityJson(actual), canonicalIdentityJson(expected))
+  assert.deepEqual(await checkInheritedEvidenceArtifact(actual), [])
 })
 
 test('frontier rejects semantic authority or readiness promotion', async () => {

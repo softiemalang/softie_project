@@ -36,7 +36,7 @@ export async function checkAdmissionAudit(candidate, root = resolve(new URL('..'
   if (candidate.categoryLists?.externalEvidenceRequired?.length !== 15) failures.push('external_list')
   if (candidate.categoryLists?.excludedCurrently?.length !== 8) failures.push('excluded_list')
   if (candidate.structuralDecision?.canStartReadinessGroundingDesign !== false) failures.push('readiness_grounding_overpromoted')
-  failures.push(...checkArtifactIdentity(candidate, { root, artifactId: SCHEMA, materializerPath: 'scripts/materialize-ziwei-readiness-admission-blocker-audit-v0.mjs', materializerVersion: MATERIALIZER_VERSION }))
+  failures.push(...checkArtifactIdentity(candidate, { root, artifactId: SCHEMA, materializerPath: 'scripts/materialize-ziwei-readiness-admission-blocker-audit-v0.mjs', materializerVersion: MATERIALIZER_VERSION, allowGenerationBaseInput: true }))
   return [...new Set(failures)]
 }
 

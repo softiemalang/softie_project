@@ -4,7 +4,7 @@ import { execFileSync } from 'node:child_process'
 import { SAJU_EXTERNAL_FIXTURES } from '../src/saju/engine/externalValidationFixtures.js'
 import { SAJU_VALIDATION_FIXTURE_VERSION, sajuValidationFixtures } from '../src/interpretationPrep/fixtures/sajuValidationFixtures.js'
 import { runExternalValidationSuite } from '../src/interpretationPrep/externalValidationRunner.js'
-import { checkArtifactIdentity } from '../src/artifactIdentity.js'
+import { checkArtifactIdentity, matchesFileByteIdentity } from '../src/artifactIdentity.js'
 
 const root = new URL('../', import.meta.url).pathname
 const artifactPath = new URL('../artifacts/saju-verification-reconciliation-v1.json', import.meta.url).pathname
@@ -16,7 +16,7 @@ const externalRun = runExternalValidationSuite()
 const fail = (message) => errors.push(message)
 
 if (artifact.schemaVersion !== 'saju-verification-reconciliation-v1') fail('schemaVersion mismatch')
-for (const error of checkArtifactIdentity(artifact, { root, artifactId: 'saju-verification-reconciliation-v1', materializerPath: 'scripts/migrate-saju-reconciliation-identity-v1.mjs', materializerVersion: '1.1.0' })) fail(error)
+for (const error of checkArtifactIdentity(artifact, { root, artifactId: 'saju-verification-reconciliation-v1', materializerPath: 'scripts/migrate-saju-reconciliation-identity-v1.mjs', materializerVersion: '1.1.0', allowGenerationBaseInput: true })) fail(error)
 if (artifact.verdictToken !== 'saju_scoped_external_matches_but_claim_level_verification_unproven') fail('unexpected verdictToken')
 if (artifact.counts.internalRegressionFixtures !== sajuValidationFixtures.length) fail('internal fixture count drift')
 if (artifact.counts.internalRegressionOnly !== sajuValidationFixtures.filter((fixture) => fixture.verificationStatus === 'regression_only').length) fail('regression_only count drift')
@@ -30,7 +30,7 @@ if (artifact.externalComparison.finalJudgementWhenFullSuiteRuns !== externalRun.
 
 for (const entry of artifact.sourceIdentityInventory) {
   const bytes = fs.readFileSync(new URL(`../${entry.path}`, import.meta.url))
-  if (sha256(bytes) !== entry.sha256) fail(`source hash drift: ${entry.path}`)
+  if (!matchesFileByteIdentity(root, entry.path, entry.sha256, { generationBaseHead: artifact.artifactIdentity?.generation?.baseHead })) fail(`source hash drift: ${entry.path}`)
 }
 
 const fixtureIds = new Set(SAJU_EXTERNAL_FIXTURES.map((fixture) => fixture.fixtureId))

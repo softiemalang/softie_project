@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict'
 import test from 'node:test'
+import { execFileSync } from 'node:child_process'
 import fs from 'node:fs'
 import { resolve } from 'node:path'
 import { buildArtifact } from '../scripts/materialize-saju-v1-local-frontier-v0.mjs'
@@ -31,4 +32,12 @@ test('Saju v1 local frontier materialization is byte-stable and rejects promotio
   const promoted = structuredClone(artifact)
   promoted.claims[0].classicalVerification = 'verified'
   assert.ok(checkSajuV1LocalFrontier(promoted, provenance).includes('claim promotion or taxonomy violation'))
+})
+
+test('historical Saju v1 frontier snapshot is accepted without current-HEAD rewriting', () => {
+  const output = execFileSync(process.execPath, ['scripts/check-saju-v1-local-frontier-v0.mjs'], { cwd: root, encoding: 'utf8' })
+  const result = JSON.parse(output)
+  assert.equal(result.status, 'pass')
+  assert.equal(result.historicalSnapshotAccepted, true)
+  assert.equal(result.claimCount, 43)
 })
