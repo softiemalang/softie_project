@@ -12,6 +12,8 @@ scratch/actualLlmResponseReport.json
 # DE405 canonical v2 native build artifacts
 /tools/de405-cspice-runner/build/
 /tools/de405-jpl-reader/build/
+/tools/de405-type2-strategy-c-integration/build/
+/tools/de405-type2-strategy-c-center-chain-integration/build/
 /tools/de405-jpl-reader/fixtures/testeph.f
 /tools/de405-jpl-reader/fixtures/lnxp1600p2200.405
 /JPLEPH
