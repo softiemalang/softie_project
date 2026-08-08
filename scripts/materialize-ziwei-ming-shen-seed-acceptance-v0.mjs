@@ -5,11 +5,13 @@ import { dirname, resolve } from 'node:path'
 import { attachArtifactIdentity, buildArtifactIdentity } from '../src/artifactIdentity.js'
 import { evaluateSourceMingShen, enumerateSourceInputs, TRADITIONAL_BRANCH_ORDER } from '../src/ziwei/mingShenCleanRuleSeedPilot.js'
 import { resolveZiweiChart } from '../src/ziwei/ziweiResolver.js'
+import { getPdfSourceMetadata, resolvePdfSourcePathSync } from './lib/pdf-source-resolver.mjs'
 
 export const SCHEMA = 'ziwei-ming-shen-seed-acceptance-v0'
 export const MATERIALIZER_VERSION = '0.1.0'
 export const BASIS_HEAD = '32cc3ac45f94e40fbcda70c63d0d2d4b8509112c'
-export const SOURCE_PDF = '/Users/softie/Downloads/命-南北山人_紫微斗数全书.pdf'
+export const SOURCE_PDF = getPdfSourceMetadata('nanbei_quanbao_219p').historicalMetadataPath
+export const SOURCE_PDF_ACCESS = resolvePdfSourcePathSync('nanbei_quanbao_219p')
 export const SOURCE_PDF_SHA256 = '4786a94ab454acdabf9716d7c0db4756dbcbde99a88bc45fda254863c1961023'
 export const SOURCE_FIRST_DRAFT_SHA256 = 'b84f435047c9792bbad2f1af92a6f2b5cd4b3372d1d674c34f15185754956375'
 export const PILOT = {
@@ -55,7 +57,7 @@ function compareRows() {
 
 export async function buildAcceptanceArtifact() {
   const root = resolve(new URL('..', import.meta.url).pathname)
-  const pdfBytes = await readFile(SOURCE_PDF)
+  const pdfBytes = await readFile(SOURCE_PDF_ACCESS)
   if (sha256(pdfBytes) !== SOURCE_PDF_SHA256) throw new Error('source_pdf_sha256_mismatch')
   const rows = compareRows(); const mismatches = rows.filter(row => !row.match)
   const comparison = { schemaVersion: `${SCHEMA}-comparison-v0`, inputCount: rows.length, expectedInputCount: 144, ordering: 'lunarMonth ascending 1..12, then TRADITIONAL_BRANCH_ORDER', rows, matchCount: rows.length - mismatches.length, mismatchCount: mismatches.length, firstDivergence: mismatches[0] || null }

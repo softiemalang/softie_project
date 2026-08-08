@@ -2,7 +2,7 @@ import { createHash } from 'node:crypto'
 import { readFile } from 'node:fs/promises'
 import { resolve } from 'node:path'
 import { checkArtifactIdentity } from '../src/artifactIdentity.js'
-import { buildPilotArtifact, canonicalJson, SCHEMA, BASIS_HEAD, MATERIALIZER_VERSION, SOURCE_PDF_SHA256, SOURCE_PDF } from './materialize-ziwei-ziwei-star-placement-clean-rule-seed-pilot-v0.mjs'
+import { buildPilotArtifact, canonicalJson, SCHEMA, BASIS_HEAD, MATERIALIZER_VERSION, SOURCE_PDF_SHA256, SOURCE_PDF_ACCESS } from './materialize-ziwei-ziwei-star-placement-clean-rule-seed-pilot-v0.mjs'
 const hash = bytes => createHash('sha256').update(bytes).digest('hex')
 export async function checkPilotArtifact(candidate, root = process.cwd()) {
   const expected = await buildPilotArtifact(); const errors = []
@@ -23,7 +23,7 @@ export async function checkPilotArtifact(candidate, root = process.cwd()) {
   const comparable = value => { const copy = structuredClone(value); delete copy.observedHead; delete copy.artifactIdentity; return copy }
   if (canonicalJson(comparable(candidate)) !== canonicalJson(comparable(rebuilt))) errors.push('materialized_content')
   errors.push(...checkArtifactIdentity(candidate, { root, artifactId: SCHEMA, materializerPath: `scripts/materialize-${SCHEMA}.mjs`, materializerVersion: MATERIALIZER_VERSION }))
-  const pdf = await readFile(SOURCE_PDF); if (hash(pdf) !== SOURCE_PDF_SHA256) errors.push('pdf_reverification')
+  const pdf = await readFile(SOURCE_PDF_ACCESS); if (hash(pdf) !== SOURCE_PDF_SHA256) errors.push('pdf_reverification')
   return errors
 }
 if (process.argv[1] === new URL(import.meta.url).pathname) { const candidate=JSON.parse(await readFile(resolve(process.argv[2] || `artifacts/${SCHEMA}/complete.json`),'utf8')); const errors=await checkPilotArtifact(candidate); if (errors.length) { console.error(JSON.stringify({errors},null,2)); process.exitCode=1 } else console.log(JSON.stringify({valid:true,pdfReverified:true,inputCount:150},null,2)) }

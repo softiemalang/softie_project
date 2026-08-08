@@ -10,6 +10,7 @@ import {
   canonicalIdentityJson,
 } from '../src/artifactIdentity.js'
 import { resolveFourTransformations } from '../src/ziwei/transformationResolver.js'
+import { resolvePdfSourcePathSync } from './lib/pdf-source-resolver.mjs'
 
 export const SCHEMA = 'ziwei-ming-four-transformations-source-scope-v1'
 export const MATERIALIZER_VERSION = '1.0.0'
@@ -80,9 +81,10 @@ const OFFICIAL = Object.freeze({
 })
 
 function pdfIdentity(source) {
-  if (!existsSync(source.path)) throw new Error(`source_pdf_missing:${source.path}`)
-  const bytes = readFileSync(source.path)
-  const info = execFileSync(PDFINFO, [source.path], { encoding: 'utf8' })
+  const accessPath = resolvePdfSourcePathSync(source.id === 'ming_nanyangtang' ? 'nanyangtang_quanbao_528p' : 'nanbei_quanbao_219p')
+  if (!existsSync(accessPath)) throw new Error(`source_pdf_missing:${accessPath}`)
+  const bytes = readFileSync(accessPath)
+  const info = execFileSync(PDFINFO, [accessPath], { encoding: 'utf8' })
   const pages = Number(info.match(/^Pages:\s+(\d+)/m)?.[1] || 0)
   const encrypted = (info.match(/^Encrypted:\s+(.+)/m)?.[1] || '').trim().toLowerCase() !== 'no'
   const pageSize = info.match(/^Page size:\s+(.+)$/m)?.[1]?.trim() || null
@@ -139,7 +141,8 @@ function sourceRows() {
 
 function renderPages(source, from, to, dpi, quality, root, prefix) {
   const outputPrefix = resolve(root, prefix)
-  execFileSync(PDFTOPPM, ['-f', String(from), '-l', String(to), '-r', String(dpi), '-jpeg', '-jpegopt', `quality=${quality}`, source.path, outputPrefix], { stdio: 'ignore' })
+  const accessPath = resolvePdfSourcePathSync(source.id === 'ming_nanyangtang' ? 'nanyangtang_quanbao_528p' : 'nanbei_quanbao_219p')
+  execFileSync(PDFTOPPM, ['-f', String(from), '-l', String(to), '-r', String(dpi), '-jpeg', '-jpegopt', `quality=${quality}`, accessPath, outputPrefix], { stdio: 'ignore' })
   const name = prefix.split('/').at(-1)
   const files = readdirSync(root).filter(file => file.startsWith(name) && file.endsWith('.jpg')).sort((a, b) => Number(a.match(/(\d+)\.jpg$/)?.[1]) - Number(b.match(/(\d+)\.jpg$/)?.[1]))
   return files.map(file => {

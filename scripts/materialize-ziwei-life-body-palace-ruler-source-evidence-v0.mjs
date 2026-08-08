@@ -6,14 +6,17 @@ import { dirname, resolve } from 'node:path'
 import { attachArtifactIdentity, buildArtifactIdentity } from '../src/artifactIdentity.js'
 import { evaluateCandidateLifeBody, evaluateSourceLifeBody, enumerateLifeBodyInputs, enumerateRulerInputs, NANYANG_MINGZHU_BY_MING_GONG, NANYANG_SHENZHU_SURFACE_BY_BIRTH_YEAR_BRANCH, NANBEI_MINGZHU_BY_MING_GONG, NANBEI_SHENZHU_BY_BIRTH_YEAR_BRANCH, SOURCE_RULE_SCHEMA, TRADITIONAL_BRANCH_ORDER } from '../src/ziwei/lifeBodyPalaceRulerSourceEvidence.js'
 import { resolveZiweiChart } from '../src/ziwei/ziweiResolver.js'
+import { getPdfSourceMetadata, resolvePdfSourcePathSync } from './lib/pdf-source-resolver.mjs'
 
 export const SCHEMA = 'ziwei-life-body-palace-ruler-source-evidence-v0'
 export const VERDICT = 'complete_ziwei_life_body_palace_and_ruler_evidence_without_promotion'
 export const MATERIALIZER_VERSION = '0.2.0'
 export const BASIS_HEAD = '5c45c4f880cea7d69e38120492d14640da9a9117'
-export const MING_PDF = '/Users/softie/Downloads/新锓希夷陈先生紫微斗数全书.七卷.宋.陈抟撰.明.潘希尹补.明代南阳堂刊本.黑白版.pdf'
+export const MING_PDF = resolvePdfSourcePathSync('nanyangtang_quanbao_528p')
+export const MING_PDF_METADATA = getPdfSourceMetadata('nanyangtang_quanbao_528p').historicalMetadataPath
 export const MING_PDF_SHA256 = '04e184c4a52cb042dc885c6ccc9135d94ab25de62007506198ee979a33e66bfc'
-export const NANBEI_PDF = '/Users/softie/Downloads/命-南北山人_紫微斗数全书.pdf'
+export const NANBEI_PDF = resolvePdfSourcePathSync('nanbei_quanbao_219p')
+export const NANBEI_PDF_METADATA = getPdfSourceMetadata('nanbei_quanbao_219p').historicalMetadataPath
 export const NANBEI_PDF_SHA256 = '4786a94ab454acdabf9716d7c0db4756dbcbde99a88bc45fda254863c1961023'
 export const PDFINFO = '/Users/softie/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/override/pdfinfo'
 export const FULL_PAGE_SCREENING = Object.freeze({
@@ -37,7 +40,8 @@ function inspectPdf(path, expectedSha256, expectedPageCount) {
   const encrypted = info.match(/^Encrypted:\s+(.+)$/m)?.[1]?.trim().toLowerCase() || 'unknown'
   if (pageCount !== expectedPageCount) throw new Error(`source_pdf_page_count_mismatch:${path}:${pageCount}`)
   if (encrypted !== 'no') throw new Error(`source_pdf_encryption_not_no:${path}:${encrypted}`)
-  return { path, sha256: actualSha256, byteLength: bytes.length, pageCount, encrypted, pdfInfo: info.split('\n').filter(Boolean) }
+  const metadataPath = path === MING_PDF ? MING_PDF_METADATA : path === NANBEI_PDF ? NANBEI_PDF_METADATA : path
+  return { path: metadataPath, sha256: actualSha256, byteLength: bytes.length, pageCount, encrypted, pdfInfo: info.split('\n').filter(Boolean) }
 }
 
 function requireReadable(path) {

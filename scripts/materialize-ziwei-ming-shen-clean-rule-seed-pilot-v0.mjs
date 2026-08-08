@@ -5,12 +5,14 @@ import { dirname, resolve } from 'node:path'
 import { attachArtifactIdentity, buildArtifactIdentity } from '../src/artifactIdentity.js'
 import { enumerateSourceInputs, SOURCE_RULE_SCHEMA, TRADITIONAL_BRANCH_ORDER } from '../src/ziwei/mingShenCleanRuleSeedPilot.js'
 import { resolveZiweiChart } from '../src/ziwei/ziweiResolver.js'
+import { getPdfSourceMetadata, resolvePdfSourcePathSync } from './lib/pdf-source-resolver.mjs'
 
 export const SCHEMA = 'ziwei-ming-shen-clean-rule-seed-pilot-v0'
 export const VERDICT = 'ziwei_ming_shen_clean_rule_seed_reconciled'
 export const MATERIALIZER_VERSION = '0.1.0'
 export const BASIS_HEAD = 'c949669201c2b4c11de4dfdec9eb739cdba6ce38'
-export const SOURCE_PDF = '/Users/softie/Downloads/命-南北山人_紫微斗数全书.pdf'
+export const SOURCE_PDF = getPdfSourceMetadata('nanbei_quanbao_219p').historicalMetadataPath
+export const SOURCE_PDF_ACCESS = resolvePdfSourcePathSync('nanbei_quanbao_219p')
 export const SOURCE_PDF_SHA256 = '4786a94ab454acdabf9716d7c0db4756dbcbde99a88bc45fda254863c1961023'
 const sha256 = bytes => createHash('sha256').update(bytes).digest('hex')
 const stable = value => Array.isArray(value) ? value.map(stable) : value && typeof value === 'object' ? Object.fromEntries(Object.keys(value).sort().map(k => [k, stable(value[k])])) : value
@@ -53,7 +55,7 @@ function engineResult(lunarMonth, hourBranch) {
 
 export async function buildPilotArtifact() {
   const root = resolve(new URL('..', import.meta.url).pathname)
-  const pdf = await readFile(SOURCE_PDF)
+  const pdf = await readFile(SOURCE_PDF_ACCESS)
   const actualPdfSha256 = sha256(pdf)
   if (actualPdfSha256 !== SOURCE_PDF_SHA256) throw new Error(`source_pdf_sha256_mismatch:${actualPdfSha256}`)
   const sourceRows = enumerateSourceInputs()

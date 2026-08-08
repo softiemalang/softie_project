@@ -2,7 +2,7 @@ import { createHash } from 'node:crypto'
 import { readFile, readFileSync } from 'node:fs'
 import { resolve } from 'node:path'
 import { checkArtifactIdentity } from '../src/artifactIdentity.js'
-import { buildChainArtifact, canonicalJson, BASIS_HEAD, MATERIALIZER_VERSION, SCHEMA, SOURCE_PDF, SOURCE_PDF_SHA256 } from './materialize-ziwei-zixing-tianfu-source-chain-v0.mjs'
+import { buildChainArtifact, canonicalJson, BASIS_HEAD, MATERIALIZER_VERSION, SCHEMA, SOURCE_PDF_ACCESS, SOURCE_PDF_SHA256 } from './materialize-ziwei-zixing-tianfu-source-chain-v0.mjs'
 
 const sha256 = bytes => createHash('sha256').update(bytes).digest('hex')
 export async function checkChainArtifact(candidate, root = resolve(new URL('..', import.meta.url).pathname)) {
@@ -21,7 +21,7 @@ export async function checkChainArtifact(candidate, root = resolve(new URL('..',
   if (candidate.preservedPriorTianfu?.integratedOriginalBaseline?.matchCount !== 25 || candidate.preservedPriorTianfu.integratedOriginalBaseline.mismatchCount !== 125) errors.push('prior_baseline_mutation')
   if (candidate.boundaries?.stableClaimCount !== 0 || candidate.boundaries.readiness !== 'not_safe_to_start' || candidate.boundaries.grounding !== 'blocked' || candidate.boundaries.activation !== 'experimental' || candidate.boundaries.productionModified !== false || candidate.boundaries.ruleContractModified !== false || candidate.boundaries.existingArtifactsModified !== false) errors.push('status_or_authority_promotion')
   for (const item of candidate.immutableExistingBytes ?? []) { try { if (sha256(readFileSync(resolve(root, item.path))) !== item.sha256) errors.push(`immutable_existing:${item.path}`) } catch { errors.push(`immutable_missing:${item.path}`) } }
-  try { if (sha256(await (await import('node:fs/promises')).readFile(SOURCE_PDF)) !== SOURCE_PDF_SHA256) errors.push('actual_pdf_hash') } catch { errors.push('source_pdf_unavailable') }
+  try { if (sha256(await (await import('node:fs/promises')).readFile(SOURCE_PDF_ACCESS)) !== SOURCE_PDF_SHA256) errors.push('actual_pdf_hash') } catch { errors.push('source_pdf_unavailable') }
   const comparable = value => { const copy = structuredClone(value); delete copy.observedHead; delete copy.artifactIdentity; return copy }
   if (canonicalJson(comparable(candidate)) !== canonicalJson(comparable(expected))) errors.push('materialized_content')
   errors.push(...checkArtifactIdentity(candidate, { root, artifactId: SCHEMA, materializerPath: `scripts/materialize-${SCHEMA}.mjs`, materializerVersion: MATERIALIZER_VERSION }))

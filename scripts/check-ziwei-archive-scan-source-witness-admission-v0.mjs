@@ -4,6 +4,7 @@ import { execFileSync } from 'node:child_process'
 import { resolve } from 'node:path'
 import { checkArtifactIdentity } from '../src/artifactIdentity.js'
 import { BASIS_HEAD, INPUT, SCHEMA, VERDICT, VERSION } from './materialize-ziwei-archive-scan-source-witness-admission-v0.mjs'
+import { resolvePdfSourcePathSync } from './lib/pdf-source-resolver.mjs'
 
 export function checkArchiveScanSourceWitness(artifact, { pdfBytes = null, root = process.cwd(), integrityArtifactByteSha256 = null, historicalArtifact = null } = {}) {
   const failures = []; const witness = artifact?.digitalWitness || {}
@@ -36,6 +37,8 @@ const stable = value => Array.isArray(value)
     ? Object.fromEntries(Object.keys(value).sort().map(key => [key, stable(value[key])]))
     : value
 const canonicalArtifactBytes = artifact => Buffer.from(`${JSON.stringify(stable(artifact), null, 2)}\n`)
+
+if (process.argv[1] === new URL(import.meta.url).pathname && process.argv[3]) process.argv[3] = resolvePdfSourcePathSync('nanbei_quanbao_219p', { explicitPath: process.argv[3], argv: [] })
 
 if (process.argv[1] === new URL(import.meta.url).pathname) {
   const root = resolve(new URL('..', import.meta.url).pathname); const path = resolve(process.argv[2] || 'artifacts/ziwei-archive-scan-source-witness-admission-v0/complete.json'); const artifact = JSON.parse(await readFile(path,'utf8')); const pdfPath = process.argv[3]; const pdfBytes = pdfPath ? await readFile(pdfPath) : null; const sidecarPath = `${path}.integrity.json`; const sidecar = JSON.parse(await readFile(sidecarPath, 'utf8')); const failures = checkArchiveScanSourceWitness(artifact,{pdfBytes,root,integrityArtifactByteSha256:sidecar.artifactByteSha256}); const bytes=await readFile(path)

@@ -6,6 +6,7 @@ import { resolve } from 'node:path'
 
 import { attachArtifactIdentity, buildArtifactIdentity, canonicalIdentityJson } from '../src/artifactIdentity.js'
 import { resolveMinorStars } from '../src/ziwei/minorStarResolver.js'
+import { resolvePdfSourcePathSync } from './lib/pdf-source-resolver.mjs'
 
 export const SCHEMA = 'ziwei-auxiliary-star-placement-core-evidence-v0'
 export const MATERIALIZER_VERSION = '1.0.0'
@@ -44,10 +45,11 @@ const same = (a, b) => JSON.stringify(a) === JSON.stringify(b)
 const rel = (path) => path.replace(`${ROOT}/`, '')
 
 function pdfIdentity(source) {
-  if (!existsSync(source.path)) throw new Error(`source PDF unavailable:${source.path}`)
-  const bytes = readFileSync(source.path)
+  const accessPath = resolvePdfSourcePathSync(source.id === 'ming_nanyangtang' ? 'nanyangtang_quanbao_528p' : 'nanbei_quanbao_219p')
+  if (!existsSync(accessPath)) throw new Error(`source PDF unavailable:${accessPath}`)
+  const bytes = readFileSync(accessPath)
   const actualHash = sha256(bytes)
-  const info = execFileSync(POPPLER_PDFINFO, [source.path], { encoding: 'utf8' })
+  const info = execFileSync(POPPLER_PDFINFO, [accessPath], { encoding: 'utf8' })
   const pages = Number(info.match(/^Pages:\s+(\d+)/m)?.[1] || 0)
   const encrypted = /^Encrypted:\s+(yes|no)/m.exec(info)?.[1] === 'yes'
   if (actualHash !== source.sha256) throw new Error(`source PDF hash mismatch:${source.id}`)

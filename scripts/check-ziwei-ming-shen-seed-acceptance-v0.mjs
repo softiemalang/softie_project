@@ -2,7 +2,7 @@ import { createHash } from 'node:crypto'
 import { readFile } from 'node:fs/promises'
 import { readFileSync } from 'node:fs'
 import { resolve } from 'node:path'
-import { buildAcceptanceArtifact, canonicalJson, BASIS_HEAD, MATERIALIZER_VERSION, SCHEMA, SOURCE_PDF, SOURCE_PDF_SHA256, PILOT } from './materialize-ziwei-ming-shen-seed-acceptance-v0.mjs'
+import { buildAcceptanceArtifact, canonicalJson, BASIS_HEAD, MATERIALIZER_VERSION, SCHEMA, SOURCE_PDF_ACCESS, SOURCE_PDF_SHA256, PILOT } from './materialize-ziwei-ming-shen-seed-acceptance-v0.mjs'
 import { TRADITIONAL_BRANCH_ORDER } from '../src/ziwei/mingShenCleanRuleSeedPilot.js'
 import { checkArtifactIdentity } from '../src/artifactIdentity.js'
 const sha256 = bytes => createHash('sha256').update(bytes).digest('hex')
@@ -27,7 +27,7 @@ export async function checkAcceptanceArtifact(candidate, root = resolve(new URL(
   if (candidate.comparison?.matchCount !== 144 || candidate.comparison?.mismatchCount !== 0 || candidate.comparison?.firstDivergence !== null) errors.push('comparison_not_144_144')
   if (!same(candidate.acceptance?.pilotImmutability?.expectedHashes, PILOT) || !same(candidate.acceptance?.pilotImmutability?.actualHashes, PILOT) || candidate.acceptance?.pilotImmutability?.unchanged !== true) errors.push('pilot_hash_immutability')
   for (const [key, value] of Object.entries(files)) { const name = key === 'reviewerB' ? 'reviewer-b' : key; try { const bytes = await readFile(resolve(root, `artifacts/${SCHEMA}/${name}.json`)); if (sha256(bytes) !== candidate.artifactHashes?.[`${key}Sha256`] || !same(JSON.parse(bytes), value)) errors.push(`artifact_file:${name}`) } catch { errors.push(`artifact_file_missing:${name}`) } }
-  if (sha256(await readFile(SOURCE_PDF)) !== SOURCE_PDF_SHA256) errors.push('actual_pdf_hash')
+  if (sha256(await readFile(SOURCE_PDF_ACCESS)) !== SOURCE_PDF_SHA256) errors.push('actual_pdf_hash')
   const sourceEvaluator = readFileSync(resolve(root, 'src/ziwei/mingShenCleanRuleSeedPilot.js'), 'utf8'); if (sourceEvaluator.includes('ziweiResolver')) errors.push('source_evaluator_imports_production')
   if (candidate.independence?.sourceEvaluatorImportsProduction !== false) errors.push('source_evaluator_reuse')
   if (candidate.materializer !== `scripts/materialize-${SCHEMA}.mjs` || candidate.checker !== `scripts/check-${SCHEMA}.mjs`) errors.push('materializer_checker_identity')

@@ -6,11 +6,13 @@ import { attachArtifactIdentity, buildArtifactIdentity } from '../src/artifactId
 import { enumerateSourceInputs } from '../src/ziwei/ziweiStarPlacementCleanRuleSeedPilot.js'
 import { resolve14MajorStars } from '../src/ziwei/starResolver.js'
 import { branchAt, branchIndex, enumerateRelationCandidates, evaluateReconfirmedSource } from '../src/ziwei/tianfuPlacementDiscrepancyRelations.js'
+import { getPdfSourceMetadata, resolvePdfSourcePathSync } from './lib/pdf-source-resolver.mjs'
 
 export const SCHEMA = 'ziwei-zixing-tianfu-source-chain-v0'
 export const BASIS_HEAD = '8f0ee7bd8d5b6f3b6a4f293bd54a879c0aef82ef'
 export const MATERIALIZER_VERSION = '0.1.0'
-export const SOURCE_PDF = '/Users/softie/Downloads/命-南北山人_紫微斗数全书.pdf'
+export const SOURCE_PDF = getPdfSourceMetadata('nanbei_quanbao_219p').historicalMetadataPath
+export const SOURCE_PDF_ACCESS = resolvePdfSourcePathSync('nanbei_quanbao_219p')
 export const SOURCE_PDF_SHA256 = '4786a94ab454acdabf9716d7c0db4756dbcbde99a88bc45fda254863c1961023'
 const sha256 = bytes => createHash('sha256').update(bytes).digest('hex')
 const stable = value => Array.isArray(value) ? value.map(stable) : value && typeof value === 'object' ? Object.fromEntries(Object.keys(value).sort().map(key => [key, stable(value[key])])) : value
@@ -44,7 +46,7 @@ const rowsFor = (kind, rows) => enumerateRelationCandidates().map(candidate => {
 })
 
 export async function buildChainArtifact() {
-  const root = resolve(new URL('..', import.meta.url).pathname); const pdf = await readFile(SOURCE_PDF); if (sha256(pdf) !== SOURCE_PDF_SHA256) throw new Error('source_pdf_sha256_mismatch')
+  const root = resolve(new URL('..', import.meta.url).pathname); const pdf = await readFile(SOURCE_PDF_ACCESS); if (sha256(pdf) !== SOURCE_PDF_SHA256) throw new Error('source_pdf_sha256_mismatch')
   const aRows = inputs().map(row => { const s = enumerateSourceInputs().find(x => x.rowId === row.rowId); return { ...row, source: sourceA({ ziwei: s.output.branch, intermediate: s.intermediate }) } })
   const bRows = aRows.map(row => ({ ...row, source: sourceBRow(row), sourceIntermediate: sourceB(row) }))
   const reviewerA = { status: 'independent_source_only_complete', generatedFrom: ['p11', 'p12'], sourceWitness, rows: aRows.map(row => ({ rowId: row.rowId, input: row, source: row.source })) }

@@ -6,6 +6,7 @@ import { attachArtifactIdentity, buildArtifactIdentity } from '../src/artifactId
 import { resolve14MajorStars } from '../src/ziwei/starResolver.js'
 import { enumerateSourceInputs, evaluateSourceZiweiStarPlacement } from '../src/ziwei/ziweiStarPlacementCleanRuleSeedPilot.js'
 import { BRANCHES as TIANFU_BRANCHES, evaluateReconfirmedSource } from '../src/ziwei/tianfuPlacementDiscrepancyRelations.js'
+import { getPdfSourceMetadata, resolvePdfSourcePathSync } from './lib/pdf-source-resolver.mjs'
 import {
   BRANCHES,
   SEARCH_AXES,
@@ -23,8 +24,10 @@ import {
 export const SCHEMA = 'ziwei-twelve-major-star-placement-evidence-v0'
 export const BASIS_HEAD = '64e63e99d04708013c5e480baf4b7782ed5c2c44'
 export const MATERIALIZER_VERSION = '0.1.0'
-export const MING_PDF = '/Users/softie/Downloads/新锓希夷陈先生紫微斗数全书.七卷.宋.陈抟撰.明.潘希尹补.明代南阳堂刊本.黑白版.pdf'
-export const NB_PDF = '/Users/softie/Downloads/命-南北山人_紫微斗数全书.pdf'
+export const MING_PDF = getPdfSourceMetadata('nanyangtang_quanbao_528p').historicalMetadataPath
+export const MING_PDF_ACCESS = resolvePdfSourcePathSync('nanyangtang_quanbao_528p')
+export const NB_PDF = getPdfSourceMetadata('nanbei_quanbao_219p').historicalMetadataPath
+export const NB_PDF_ACCESS = resolvePdfSourcePathSync('nanbei_quanbao_219p')
 export const PDF_IDENTITIES = Object.freeze({
   mingNanyang: { path: MING_PDF, byteSha256: '04e184c4a52cb042dc885c6ccc9135d94ab25de62007506198ee979a33e66bfc', pageCount: 528, encrypted: false },
   nanbeishanren: { path: NB_PDF, byteSha256: '4786a94ab454acdabf9716d7c0db4756dbcbde99a88bc45fda254863c1961023', pageCount: 219, encrypted: false },
@@ -50,7 +53,7 @@ async function verifyPdf(path, expected) {
   const info = parsePdfInfo(path)
   if (actualHash !== expected.byteSha256) throw new Error(`source identity mismatch: ${path}`)
   if (info.pageCount !== expected.pageCount || info.encrypted !== expected.encrypted) throw new Error(`source metadata mismatch: ${path}`)
-  return { path, expectedSha256: expected.byteSha256, actualSha256: actualHash, byteLength: bytes.length, ...info, identityVerified: true, access: 'read_only_external_pdf' }
+  return { path: expected.path, expectedSha256: expected.byteSha256, actualSha256: actualHash, byteLength: bytes.length, ...info, identityVerified: true, access: 'read_only_external_pdf' }
 }
 
 const sourceLocator = (id, editionId, pdfPage, printedPage, printedPageStatus, leafDirection, context, evidenceKind, readingOrder, sourceRef, render) => ({ id, editionId, pdfPage, printedPage, printedPageStatus, leafDirection, context, evidenceKind, readingOrder, sourceRef, render })
@@ -138,7 +141,7 @@ function searchSummary(rows, occurrencesByStar) {
 }
 
 export async function buildArtifact() {
-  const pdfs = { mingNanyang: await verifyPdf(MING_PDF, PDF_IDENTITIES.mingNanyang), nanbeishanren: await verifyPdf(NB_PDF, PDF_IDENTITIES.nanbeishanren) }
+  const pdfs = { mingNanyang: await verifyPdf(MING_PDF_ACCESS, PDF_IDENTITIES.mingNanyang), nanbeishanren: await verifyPdf(NB_PDF_ACCESS, PDF_IDENTITIES.nanbeishanren) }
   const files = [
     { path: 'src/ziwei/starPlacementRules.js', sha256: await currentSha('src/ziwei/starPlacementRules.js'), symbols: ['calculateZiweiBranch:22-42', 'calculateTianfuBranch:47-52', 'ZIWEI_SERIES_OFFSETS:56-63', 'TIANFU_SERIES_OFFSETS:67-75'] },
     { path: 'src/ziwei/starResolver.js', sha256: await currentSha('src/ziwei/starResolver.js'), symbols: ['resolve14MajorStars:17-100', 'rootCalls:42-43', 'ziweiLoop:50-67', 'tianfuLoop:70-87'] },

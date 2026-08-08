@@ -2,7 +2,7 @@ import { createHash } from 'node:crypto'
 import { readFile } from 'node:fs/promises'
 import { readFileSync } from 'node:fs'
 import { resolve } from 'node:path'
-import { buildDiscrepancyArtifact, canonicalJson, BASIS_HEAD, MATERIALIZER_VERSION, SCHEMA, SOURCE_PDF, SOURCE_PDF_SHA256 } from './materialize-ziwei-tianfu-placement-discrepancy-analysis-v0.mjs'
+import { buildDiscrepancyArtifact, canonicalJson, BASIS_HEAD, MATERIALIZER_VERSION, SCHEMA, SOURCE_PDF_ACCESS, SOURCE_PDF_SHA256 } from './materialize-ziwei-tianfu-placement-discrepancy-analysis-v0.mjs'
 import { checkArtifactIdentity } from '../src/artifactIdentity.js'
 
 const sha256 = bytes => createHash('sha256').update(bytes).digest('hex')
@@ -23,7 +23,7 @@ export async function checkDiscrepancyArtifact(candidate, root = resolve(new URL
   if (candidate.boundaries?.stableClaimCount !== 0 || candidate.boundaries?.readiness !== 'not_safe_to_start' || candidate.boundaries?.grounding !== 'blocked' || candidate.boundaries?.activation !== 'experimental' || candidate.boundaries?.truthLineageDeclared !== false || candidate.boundaries?.productionModified !== false || candidate.boundaries?.ruleContractModified !== false || candidate.boundaries?.existingArtifactsModified !== false) errors.push('status_or_authority_promotion')
   if (!same(candidate.reviewerA, expected.reviewerA) || !same(candidate.reviewerB, expected.reviewerB) || !same(candidate.abComparison, expected.abComparison) || !same(candidate.direct, expected.direct) || !same(candidate.integrated, expected.integrated)) errors.push('materialized_content')
   for (const item of candidate.immutableExistingBytes ?? []) { try { if (sha256(readFileSync(resolve(root, item.path))) !== item.sha256) errors.push(`immutable_existing:${item.path}`) } catch { errors.push(`immutable_missing:${item.path}`) } }
-  try { if (sha256(await readFile(SOURCE_PDF)) !== SOURCE_PDF_SHA256) errors.push('actual_pdf_hash') } catch { errors.push('source_pdf_unavailable') }
+  try { if (sha256(await readFile(SOURCE_PDF_ACCESS)) !== SOURCE_PDF_SHA256) errors.push('actual_pdf_hash') } catch { errors.push('source_pdf_unavailable') }
   errors.push(...checkArtifactIdentity(candidate, { root, artifactId: SCHEMA, materializerPath: `scripts/materialize-${SCHEMA}.mjs`, materializerVersion: MATERIALIZER_VERSION }))
   return [...new Set(errors)]
 }

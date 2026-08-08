@@ -13,6 +13,7 @@ import {
   YEAR_STEM_TRANSFORMATIONS,
 } from '../src/ziwei/transformationRules.js'
 import { resolveFourTransformations } from '../src/ziwei/transformationResolver.js'
+import { resolvePdfSourcePathSync } from './lib/pdf-source-resolver.mjs'
 
 export const SCHEMA = 'ziwei-four-transformations-source-evidence-v0'
 export const MATERIALIZER_VERSION = '1.0.0'
@@ -130,9 +131,10 @@ const MING_DIRECT_ROWS = Object.freeze({
 })
 
 function pdfIdentity(source) {
-  if (!existsSync(source.path)) throw new Error(`source_pdf_missing:${source.path}`)
-  const bytes = readFileSync(source.path)
-  const info = execFileSync(PDFINFO, [source.path], { encoding: 'utf8' })
+  const accessPath = resolvePdfSourcePathSync(source.id === 'ming_nanyangtang' ? 'nanyangtang_quanbao_528p' : 'nanbei_quanbao_219p')
+  if (!existsSync(accessPath)) throw new Error(`source_pdf_missing:${accessPath}`)
+  const bytes = readFileSync(accessPath)
+  const info = execFileSync(PDFINFO, [accessPath], { encoding: 'utf8' })
   const pages = Number(info.match(/^Pages:\s+(\d+)/m)?.[1] || 0)
   const encrypted = (info.match(/^Encrypted:\s+(.+)/m)?.[1] || '').trim().toLowerCase() !== 'no'
   const actual = { id: source.id, label: source.label, pathOutsideRepository: source.path, actualByteSha256: sha256(bytes), expectedByteSha256: source.sha256, pageCount: pages, encrypted, readOnly: true, storedInGit: false }

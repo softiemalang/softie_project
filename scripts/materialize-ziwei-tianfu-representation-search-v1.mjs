@@ -4,6 +4,7 @@ import { mkdir, mkdtemp, readFile, rm, writeFile } from 'node:fs/promises'
 import { dirname, resolve } from 'node:path'
 import { attachArtifactIdentity, buildArtifactIdentity } from '../src/artifactIdentity.js'
 import { resolve14MajorStars } from '../src/ziwei/starResolver.js'
+import { getPdfSourceMetadata, resolvePdfSourcePathSync } from './lib/pdf-source-resolver.mjs'
 import {
   BRANCHES,
   CORRECTED_SOURCE_TABLE,
@@ -19,8 +20,10 @@ import {
 export const SCHEMA = REPRESENTATION_SEARCH_SCHEMA
 export const BASIS_HEAD = '5eff7e964776f89cfdb3284d15f164159497b53e'
 export const MATERIALIZER_VERSION = '0.2.1'
-export const MING_PDF = '/Users/softie/Downloads/新锓希夷陈先生紫微斗数全书.七卷.宋.陈抟撰.明.潘希尹补.明代南阳堂刊本.黑白版.pdf'
-export const NANBEI_PDF = '/Users/softie/Downloads/命-南北山人_紫微斗数全书.pdf'
+export const MING_PDF = getPdfSourceMetadata('nanyangtang_quanbao_528p').historicalMetadataPath
+export const MING_PDF_ACCESS = resolvePdfSourcePathSync('nanyangtang_quanbao_528p')
+export const NANBEI_PDF = getPdfSourceMetadata('nanbei_quanbao_219p').historicalMetadataPath
+export const NANBEI_PDF_ACCESS = resolvePdfSourcePathSync('nanbei_quanbao_219p')
 export const MING_SHA256 = '04e184c4a52cb042dc885c6ccc9135d94ab25de62007506198ee979a33e66bfc'
 export const NANBEI_SHA256 = '4786a94ab454acdabf9716d7c0db4756dbcbde99a88bc45fda254863c1961023'
 const MING_PAGES = [145, 146, 147, 148, 149, 150, 151, 168, 169, 170, 171, 172]
@@ -37,14 +40,14 @@ export const canonicalJson = value => `${JSON.stringify(stable(value), null, 2)}
 const gitHead = root => execFileSync('git', ['-c', 'core.fsmonitor=false', 'rev-parse', 'HEAD'], { cwd: root, encoding: 'utf8' }).trim()
 const fileSha = async path => sha256(await readFile(path))
 
-function inspectPdf(path, expectedSha256, expectedPages) {
+function inspectPdf(path, expectedSha256, expectedPages, metadataPath = path) {
   const bytes = execFileSync('shasum', ['-a', '256', path], { encoding: 'utf8' })
   const actualSha256 = bytes.trim().split(/\s+/)[0]
   const info = execFileSync(PDFINFO, [path], { encoding: 'utf8' })
   const pages = Number(info.match(/^Pages:\s+(\d+)/m)?.[1])
   const encrypted = (info.match(/^Encrypted:\s+(.+)/m)?.[1] || '').trim().toLowerCase() !== 'no'
   if (actualSha256 !== expectedSha256 || pages !== expectedPages || encrypted) throw new Error(`pdf_identity_mismatch:${path}:${JSON.stringify({ actualSha256, pages, encrypted })}`)
-  return { path, sha256: actualSha256, pdfPageCount: pages, encrypted, readOnly: true, storedInGit: false }
+  return { path: metadataPath, sha256: actualSha256, pdfPageCount: pages, encrypted, readOnly: true, storedInGit: false }
 }
 
 async function renderPages(path, pages, sourceId) {
@@ -167,9 +170,9 @@ function conclusionMarkdown(artifact) {
 
 export async function buildArtifact() {
   const root = resolve(new URL('..', import.meta.url).pathname)
-  const ming = inspectPdf(MING_PDF, MING_SHA256, 528)
-  const nanbei = inspectPdf(NANBEI_PDF, NANBEI_SHA256, 219)
-  const [mingRenders, nanbeiRenders] = await Promise.all([renderPages(MING_PDF, MING_PAGES, 'ming'), renderPages(NANBEI_PDF, NANBEI_PAGES, 'nanbei')])
+  const ming = inspectPdf(MING_PDF_ACCESS, MING_SHA256, 528, MING_PDF)
+  const nanbei = inspectPdf(NANBEI_PDF_ACCESS, NANBEI_SHA256, 219, NANBEI_PDF)
+  const [mingRenders, nanbeiRenders] = await Promise.all([renderPages(MING_PDF_ACCESS, MING_PAGES, 'ming'), renderPages(NANBEI_PDF_ACCESS, NANBEI_PAGES, 'nanbei')])
   const predecessorCompletePath = resolve(root, `${PREDECESSOR}/complete.json`)
   const predecessorTranscriptionPath = resolve(root, `${PREDECESSOR}/transcription.json`)
   const predecessorComparisonPath = resolve(root, `${PREDECESSOR}/comparison.json`)

@@ -6,11 +6,13 @@ import { join, resolve, dirname } from 'node:path'
 import { buildArtifact as buildPrior } from './materialize-ziwei-major-star-coordinate-provenance-v0.mjs'
 import { resolve14MajorStars } from '../src/ziwei/starResolver.js'
 import { attachArtifactIdentity, buildArtifactIdentity } from '../src/artifactIdentity.js'
+import { getPdfSourceMetadata, resolvePdfSourcePathSync } from './lib/pdf-source-resolver.mjs'
 
 export const SCHEMA = 'ziwei-major-star-source-corpus-provenance-v0'
 export const BASIS_HEAD = '8dac3d5eba26c3c092c6e75b23782a98b5d093f3'
 export const MATERIALIZER_VERSION = '0.1.0'
-const PDF = '/Users/softie/Downloads/命-南北山人_紫微斗数全书.pdf'
+const PDF = getPdfSourceMetadata('nanbei_quanbao_219p').historicalMetadataPath
+const PDF_ACCESS = resolvePdfSourcePathSync('nanbei_quanbao_219p')
 const PDF_SHA256 = '4786a94ab454acdabf9716d7c0db4756dbcbde99a88bc45fda254863c1961023'
 const PAGE_COUNT = 219
 const sha256 = bytes => createHash('sha256').update(bytes).digest('hex')
@@ -54,7 +56,7 @@ function renderHashes() {
   const dir = mkdtempSync(join(tmpdir(), 'ziwei-corpus-pages-'))
   try {
     const prefix = join(dir, 'page')
-    execFileSync('pdftoppm', ['-png', '-r', '24', '-f', '1', '-l', String(PAGE_COUNT), PDF, prefix], { stdio: 'ignore' })
+    execFileSync('pdftoppm', ['-png', '-r', '24', '-f', '1', '-l', String(PAGE_COUNT), PDF_ACCESS, prefix], { stdio: 'ignore' })
     const files = readdirSync(dir).filter(x => x.endsWith('.png')).sort()
     if (files.length !== PAGE_COUNT) throw new Error(`expected ${PAGE_COUNT} renders, got ${files.length}`)
     return files.map((file, index) => ({ page: index + 1, render: { method: 'pdftoppm', dpi: 24, sha256: sha256(readFileSync(join(dir, file))) } }))
@@ -101,7 +103,7 @@ export async function buildArtifact() {
   const gaps = pages.filter(x => x.relevanceClassification === 'unreadable_or_uncertain')
   const pageCounts = Object.fromEntries(['candidate_direct_rule','candidate_coordinate_identity','context_only','no_relevant_evidence','unreadable_or_uncertain'].map(k => [k, pages.filter(x => x.relevanceClassification === k).length]))
   const evidenceIndex = {
-    source: { pdfPath: PDF, pdfSha256: PDF_SHA256, pdfPageCount: PAGE_COUNT, encrypted: false, actualBytesVerified: fileSha(PDF) === PDF_SHA256, requestedCorpusPageCount: 150, requestedScopeStatus: 'mismatch_actual_source_has_219_pages; no pages silently omitted' },
+    source: { pdfPath: PDF, pdfSha256: PDF_SHA256, pdfPageCount: PAGE_COUNT, encrypted: false, actualBytesVerified: fileSha(PDF_ACCESS) === PDF_SHA256, requestedCorpusPageCount: 150, requestedScopeStatus: 'mismatch_actual_source_has_219_pages; no pages silently omitted' },
     screeningMethod: { render: 'pdftoppm 24 dpi every page', visualReview: 'all 219 rendered pages reviewed directly; high-resolution spot checks retained for candidate and representative later pages', ocr: 'exploration only; never admission', finalClassification: 'full visual render sweep with conservative admission only for p3,p7-p17' },
     candidatePages: candidates.map(x => ({ page: x.page, classification: x.relevanceClassification, locator: x.candidateLocator, readingLevel: x.readingLevel })),
     contextPages: context.map(x => x.page),

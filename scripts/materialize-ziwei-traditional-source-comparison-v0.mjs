@@ -11,11 +11,14 @@ import { evaluateSourceTianfuPlacement, enumerateSourceInputs as enumerateTianfu
 import { resolveZiweiChart } from '../src/ziwei/ziweiResolver.js'
 import { resolveFiveElementBureau } from '../src/ziwei/fiveElementResolver.js'
 import { calculateZiweiBranch, calculateTianfuBranch } from '../src/ziwei/starPlacementRules.js'
+import { getPdfSourceMetadata, resolvePdfSourcePathSync } from './lib/pdf-source-resolver.mjs'
 
 export const SCHEMA = 'ziwei-traditional-source-comparison-v0'
 export const MATERIALIZER_VERSION = '0.1.0'
-export const MING_PDF = '/Users/softie/Downloads/新锓希夷陈先生紫微斗数全书.七卷.宋.陈抟撰.明.潘希尹补.明代南阳堂刊本.黑白版.pdf'
-export const NANBEI_PDF = '/Users/softie/Downloads/命-南北山人_紫微斗数全书.pdf'
+export const MING_PDF = getPdfSourceMetadata('nanyangtang_quanbao_528p').historicalMetadataPath
+export const MING_PDF_ACCESS = resolvePdfSourcePathSync('nanyangtang_quanbao_528p')
+export const NANBEI_PDF = getPdfSourceMetadata('nanbei_quanbao_219p').historicalMetadataPath
+export const NANBEI_PDF_ACCESS = resolvePdfSourcePathSync('nanbei_quanbao_219p')
 const PDFINFO = '/Users/softie/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/override/pdfinfo'
 const FIXTURE_PATH = 'test/fixtures/ziwei/traditional-source-comparison-v0.json'
 const MING_SHA = '04e184c4a52cb042dc885c6ccc9135d94ab25de62007506198ee979a33e66bfc'
@@ -93,8 +96,8 @@ function compareTianfu(rows) {
 export async function buildArtifact() {
   const root = resolve(new URL('..', import.meta.url).pathname)
   const fixture = JSON.parse(await readFile(resolve(root, FIXTURE_PATH), 'utf8'))
-  const ming = inspectPdf(MING_PDF, { sha256: MING_SHA, pdfPageCount: 528 })
-  const nanbei = inspectPdf(NANBEI_PDF, { sha256: NANBEI_SHA, pdfPageCount: 219 })
+  const ming = inspectPdf(MING_PDF_ACCESS, { sha256: MING_SHA, pdfPageCount: 528 })
+  const nanbei = inspectPdf(NANBEI_PDF_ACCESS, { sha256: NANBEI_SHA, pdfPageCount: 219 })
   const mingShenDomain = enumerateMingShen().map(source => { const engine = resolveZiweiChart({ birthYearStem: '甲', lunarMonth: source.lunarMonth, hourBranch: source.hourBranch }).chart; return source.mingGong.branch === engine.mingGong.branch && source.shenGong.branch === engine.shenGong.branch })
   const fiveDomain = enumerateFiveElement().map(source => { const sourceResult = source.output; const chart = resolveZiweiChart(source.input).chart; const production = resolveFiveElementBureau(source.input.birthYearStem, chart.mingGong.branch); return sourceResult.enum === production?.id })
   const ziweiDomain = enumerateZiwei().map(source => source.output.branch === calculateZiweiBranch(source.input.bureauNumber, source.input.lunarDay))

@@ -5,6 +5,7 @@ import { resolve } from 'node:path'
 
 import { checkArtifactIdentity } from '../src/artifactIdentity.js'
 import { ARTIFACT_DIR, BASIS_HEAD, MATERIALIZER_PATH, MATERIALIZER_VERSION, PDF_SOURCES, SCHEMA } from './materialize-ziwei-ming-four-transformations-source-scope-v1.mjs'
+import { resolvePdfSourcePathSync } from './lib/pdf-source-resolver.mjs'
 
 const ROOT = resolve(new URL('..', import.meta.url).pathname)
 const PDFINFO = '/Users/softie/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/override/pdfinfo'
@@ -40,8 +41,9 @@ function validateSourceIdentity(errors, inventory) {
     push(errors, Boolean(recorded), 'source identity missing:' + source.id)
     if (!recorded) continue
     try {
-      const bytes = readFileSync(source.path)
-      const info = execFileSync(PDFINFO, [source.path], { encoding: 'utf8' })
+      const accessPath = resolvePdfSourcePathSync(source.id === 'ming_nanyangtang' ? 'nanyangtang_quanbao_528p' : 'nanbei_quanbao_219p')
+      const bytes = readFileSync(accessPath)
+      const info = execFileSync(PDFINFO, [accessPath], { encoding: 'utf8' })
       const pages = Number(info.match(/^Pages:\s+(\d+)/m)?.[1] || 0)
       const encrypted = (info.match(/^Encrypted:\s+(.+)/m)?.[1] || '').trim().toLowerCase() !== 'no'
       push(errors, sha256(bytes) === source.sha256 && recorded.actualByteSha256 === source.sha256 && recorded.fileHash === undefined, 'source hash mismatch:' + source.id)

@@ -5,11 +5,13 @@ import { dirname, resolve } from 'node:path'
 import { attachArtifactIdentity, buildArtifactIdentity } from '../src/artifactIdentity.js'
 import { BRANCHES, SOURCE_TABLE, SOURCE_RULE_SCHEMA, enumerateSourceInputs, evaluateSourceTianfuPlacement } from '../src/ziwei/tianfuStarPlacementCleanRuleSeedPilot.js'
 import { resolve14MajorStars } from '../src/ziwei/starResolver.js'
+import { getPdfSourceMetadata, resolvePdfSourcePathSync } from './lib/pdf-source-resolver.mjs'
 
 export const SCHEMA = 'ziwei-tianfu-star-placement-clean-rule-seed-pilot-v0'
 export const BASIS_HEAD = 'e73b6f0c0ee380a05318e1af96b4e190ed1335ed'
 export const MATERIALIZER_VERSION = '0.1.0'
-export const SOURCE_PDF = '/Users/softie/Downloads/命-南北山人_紫微斗数全书.pdf'
+export const SOURCE_PDF = getPdfSourceMetadata('nanbei_quanbao_219p').historicalMetadataPath
+export const SOURCE_PDF_ACCESS = resolvePdfSourcePathSync('nanbei_quanbao_219p')
 export const SOURCE_PDF_SHA256 = '4786a94ab454acdabf9716d7c0db4756dbcbde99a88bc45fda254863c1961023'
 const sha256 = bytes => createHash('sha256').update(bytes).digest('hex')
 const stable = value => Array.isArray(value) ? value.map(stable) : value && typeof value === 'object' ? Object.fromEntries(Object.keys(value).sort().map(key => [key, stable(value[key])])) : value
@@ -38,7 +40,7 @@ const integratedRows = upstreamRows().map(({ bureauNumber, lunarDay }) => { cons
 const summarize = (rows, domain) => { const mismatches = rows.filter(row => !row.match); const distribution = field => Object.fromEntries(BRANCHES.map(branch => [branch, rows.filter(row => row[field]?.branch === branch).length])); return { domain, inputCount: rows.length, expectedInputCount: rows.length, missingCount: 0, duplicateRowIdCount: new Set(rows.map(row => row.rowId)).size === rows.length ? 0 : rows.length - new Set(rows.map(row => row.rowId)).size, rows, matchCount: rows.filter(row => row.match).length, mismatchCount: mismatches.length, firstDivergence: mismatches[0] ?? null, sourceBranchDistribution: distribution('sourceDerived'), productionBranchDistribution: distribution('productionEngine'), mismatchCausesPreserved: ['transcription_or_table_direction','basis_or_progression_or_index','production_adapter','edition_or_source_variant','production_engine_implementation','comparison_configuration'] } }
 
 export async function buildPilotArtifact() {
-  const root = resolve(new URL('..', import.meta.url).pathname); const pdf = await readFile(SOURCE_PDF); const actualPdfSha256 = sha256(pdf); if (actualPdfSha256 !== SOURCE_PDF_SHA256) throw new Error(`source_pdf_sha256_mismatch:${actualPdfSha256}`)
+  const root = resolve(new URL('..', import.meta.url).pathname); const pdf = await readFile(SOURCE_PDF_ACCESS); const actualPdfSha256 = sha256(pdf); if (actualPdfSha256 !== SOURCE_PDF_SHA256) throw new Error(`source_pdf_sha256_mismatch:${actualPdfSha256}`)
   const direct = summarize(directRows.map(row => ({ ...row, sourceDerived: row.output, productionEngine: null, match: true, comparisonStatus: 'source_only_complete', divergence: null })), 'direct')
   const integrated = summarize(integratedRows, 'integrated')
   const rows = [...direct.rows, ...integrated.rows]; const mismatches = integrated.rows.filter(row => !row.match); const verdictToken = mismatches.length ? 'ziwei_tianfu_star_placement_seed_divergent' : 'ziwei_tianfu_star_placement_seed_reconciled'

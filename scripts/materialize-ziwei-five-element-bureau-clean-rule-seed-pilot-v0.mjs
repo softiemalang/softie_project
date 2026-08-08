@@ -5,11 +5,13 @@ import { dirname, resolve } from 'node:path'
 import { attachArtifactIdentity, buildArtifactIdentity } from '../src/artifactIdentity.js'
 import { BRANCHES, BUREAU_ENUMS, SOURCE_NAYIN_PAIRS, SOURCE_RULE_SCHEMA, STEMS, enumerateSourceInputs } from '../src/ziwei/fiveElementBureauCleanRuleSeedPilot.js'
 import { resolveZiweiChart } from '../src/ziwei/ziweiResolver.js'
+import { getPdfSourceMetadata, resolvePdfSourcePathSync } from './lib/pdf-source-resolver.mjs'
 
 export const SCHEMA = 'ziwei-five-element-bureau-clean-rule-seed-pilot-v0'
 export const MATERIALIZER_VERSION = '0.1.0'
 export const BASIS_HEAD = 'd79ce08be2df491d19216308e44a8feee3f22291'
-export const SOURCE_PDF = '/Users/softie/Downloads/命-南北山人_紫微斗数全书.pdf'
+export const SOURCE_PDF = getPdfSourceMetadata('nanbei_quanbao_219p').historicalMetadataPath
+export const SOURCE_PDF_ACCESS = resolvePdfSourcePathSync('nanbei_quanbao_219p')
 export const SOURCE_PDF_SHA256 = '4786a94ab454acdabf9716d7c0db4756dbcbde99a88bc45fda254863c1961023'
 const sha256 = bytes => createHash('sha256').update(bytes).digest('hex')
 const stable = value => Array.isArray(value) ? value.map(stable) : value && typeof value === 'object' ? Object.fromEntries(Object.keys(value).sort().map(k => [k, stable(value[k])])) : value
@@ -51,7 +53,7 @@ const NORMALIZED_RULE = {
 const productionCanonical = bureau => bureau && ({ enum: ({ 수이국: 'water_2', 목삼국: 'wood_3', 금사국: 'metal_4', 토오국: 'earth_5', 화육국: 'fire_6' })[bureau.name], traditionalName: ({ 수이국: '水二局', 목삼국: '木三局', 금사국: '金四局', 토오국: '土五局', 화육국: '火六局' })[bureau.name], element: bureau.element === '수' ? '水' : bureau.element === '목' ? '木' : bureau.element === '금' ? '金' : bureau.element === '토' ? '土' : bureau.element === '화' ? '火' : null, number: bureau.number, raw: bureau })
 
 export async function buildPilotArtifact() {
-  const root = resolve(new URL('..', import.meta.url).pathname); const pdf = await readFile(SOURCE_PDF); const actualPdfSha256 = sha256(pdf)
+  const root = resolve(new URL('..', import.meta.url).pathname); const pdf = await readFile(SOURCE_PDF_ACCESS); const actualPdfSha256 = sha256(pdf)
   if (actualPdfSha256 !== SOURCE_PDF_SHA256) throw new Error(`source_pdf_sha256_mismatch:${actualPdfSha256}`)
   const sourceRows = enumerateSourceInputs(); const rows = sourceRows.map(source => { const production = resolveZiweiChart(source.input).chart.fiveElementsBureau; const p = productionCanonical(production); const sourceResult = source.output; const fields = ['enum', 'traditionalName', 'element', 'number']; const mismatchFields = fields.filter(field => sourceResult[field] !== p[field]); const row = { rowId: source.rowId, orderingKey: source.orderingKey, input: source.input, intermediate: source.intermediate, sourceDerived: sourceResult, productionEngine: p, match: mismatchFields.length === 0, divergence: mismatchFields.length ? { fields: mismatchFields, possibleCauses: ['transcription_or_table_direction', 'stem_branch_or_palace_boundary', 'nayin_or_mapping_interpretation', 'edition_rule_variant', 'production_engine_implementation', 'comparison_configuration'] } : null }; return row })
   const mismatches = rows.filter(row => !row.match); const comparison = { schemaVersion: `${SCHEMA}-comparison-v0`, inputCount: rows.length, expectedInputCount: 1440, distribution: Object.fromEntries(['water_2', 'wood_3', 'metal_4', 'earth_5', 'fire_6'].map(enumName => [enumName, rows.filter(row => row.sourceDerived.enum === enumName).length])), rows, matchCount: rows.filter(row => row.match).length, mismatchCount: mismatches.length, firstDivergence: mismatches[0] || null, mismatchDistribution: { byField: Object.fromEntries(['enum', 'traditionalName', 'element', 'number'].map(field => [field, mismatches.filter(row => row.divergence?.fields.includes(field)).length])) } }

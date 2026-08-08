@@ -3,8 +3,9 @@ import { readFile, readFileSync } from 'node:fs'
 import { resolve } from 'node:path'
 import { buildArtifact, canonicalJson, BASIS_HEAD, MATERIALIZER_VERSION, SCHEMA } from './materialize-ziwei-palace-coordinate-semantic-identity-v0.mjs'
 import { checkArtifactIdentity } from '../src/artifactIdentity.js'
+import { resolvePdfSourcePathSync } from './lib/pdf-source-resolver.mjs'
 
-const PDF = '/Users/softie/Documents/命-南北山人_紫微斗数全书.pdf'
+const PDF = resolvePdfSourcePathSync('nanbei_quanbao_219p')
 const PDF_SHA256 = '4786a94ab454acdabf9716d7c0db4756dbcbde99a88bc45fda254863c1961023'
 const sha256 = bytes => createHash('sha256').update(bytes).digest('hex')
 const comparable = value => { const copy = structuredClone(value); delete copy.observedHead; delete copy.artifactIdentity; return copy }

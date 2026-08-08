@@ -2,7 +2,7 @@ import { createHash } from 'node:crypto'
 import { readFile, readFileSync } from 'node:fs'
 import { resolve } from 'node:path'
 import { checkArtifactIdentity } from '../src/artifactIdentity.js'
-import { buildAcceptanceArtifact, canonicalJson, BASIS_HEAD, MATERIALIZER_VERSION, PILOT_HASHES, SCHEMA, SOURCE_PDF, SOURCE_PDF_SHA256 } from './materialize-ziwei-five-element-bureau-clean-rule-seed-acceptance-v0.mjs'
+import { buildAcceptanceArtifact, canonicalJson, BASIS_HEAD, MATERIALIZER_VERSION, PILOT_HASHES, SCHEMA, SOURCE_PDF_ACCESS, SOURCE_PDF_SHA256 } from './materialize-ziwei-five-element-bureau-clean-rule-seed-acceptance-v0.mjs'
 
 const sha256 = bytes => createHash('sha256').update(bytes).digest('hex')
 const same = (a, b) => canonicalJson(a) === canonicalJson(b)
@@ -28,7 +28,7 @@ export async function checkAcceptanceArtifact(candidate, root = resolve(new URL(
   if (candidate.comparison?.matchCount !== 1440 || candidate.comparison?.mismatchCount !== 0 || candidate.comparison?.firstDivergence !== null) errors.push('comparison_not_1440_1440')
   if (!same(candidate.acceptance?.pilotImmutability?.expectedHashes, PILOT_HASHES) || !same(candidate.acceptance?.pilotImmutability?.actualHashes, PILOT_HASHES) || candidate.acceptance?.pilotImmutability?.unchanged !== true) errors.push('pilot_hash_immutability')
   for (const [key, value] of Object.entries(files)) { const name = key === 'reviewerB' ? 'reviewer-b' : key; try { const bytes = readFileSync(resolve(root, `artifacts/${SCHEMA}/${name}.json`)); if (sha256(bytes) !== candidate.artifactHashes?.[`${key}Sha256`] || !same(JSON.parse(bytes), value)) errors.push(`artifact_file:${name}`) } catch { errors.push(`artifact_file_missing:${name}`) } }
-  try { if (sha256(readFileSync(SOURCE_PDF)) !== SOURCE_PDF_SHA256) errors.push('actual_pdf_hash') } catch { errors.push('source_pdf_unavailable') }
+  try { if (sha256(readFileSync(SOURCE_PDF_ACCESS)) !== SOURCE_PDF_SHA256) errors.push('actual_pdf_hash') } catch { errors.push('source_pdf_unavailable') }
   const sourceEvaluator = readFileSync(resolve(root, 'src/ziwei/fiveElementBureauCleanRuleSeedPilot.js'), 'utf8'); if (sourceEvaluator.includes('ziweiResolver') || sourceEvaluator.includes('fiveElementResolver')) errors.push('source_evaluator_reuse')
   if (candidate.independence?.sourceEvaluatorImportsProduction !== false || candidate.independence?.sourceEvaluatorCopiesProductionTable !== false) errors.push('production_evaluator_reuse')
   if (candidate.materializer !== `scripts/materialize-${SCHEMA}.mjs` || candidate.checker !== `scripts/check-${SCHEMA}.mjs`) errors.push('materializer_checker_identity')

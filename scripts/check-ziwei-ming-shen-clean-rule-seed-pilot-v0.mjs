@@ -4,7 +4,7 @@ import { readFileSync } from 'node:fs'
 import { resolve } from 'node:path'
 import { checkArtifactIdentity } from '../src/artifactIdentity.js'
 import { TRADITIONAL_BRANCH_ORDER } from '../src/ziwei/mingShenCleanRuleSeedPilot.js'
-import { buildPilotArtifact, canonicalJson, SCHEMA, BASIS_HEAD, MATERIALIZER_VERSION, SOURCE_PDF, SOURCE_PDF_SHA256 } from './materialize-ziwei-ming-shen-clean-rule-seed-pilot-v0.mjs'
+import { buildPilotArtifact, canonicalJson, SCHEMA, BASIS_HEAD, MATERIALIZER_VERSION, SOURCE_PDF_ACCESS, SOURCE_PDF_SHA256 } from './materialize-ziwei-ming-shen-clean-rule-seed-pilot-v0.mjs'
 
 const sha256 = bytes => createHash('sha256').update(bytes).digest('hex')
 const same = (a, b) => canonicalJson(a) === canonicalJson(b)
@@ -50,7 +50,7 @@ export async function checkPilotArtifact(candidate, root = resolve(new URL('..',
       if (sha256(bytes) !== expectedHash || !same(JSON.parse(bytes), value)) errors.push(`artifact_file:${name}`)
     } catch { errors.push(`artifact_file_missing:${name}`) }
   }
-  try { if (sha256(await readFile(SOURCE_PDF)) !== SOURCE_PDF_SHA256) errors.push('actual_pdf_hash') } catch { errors.push('source_pdf_unavailable') }
+  try { if (sha256(await readFile(SOURCE_PDF_ACCESS)) !== SOURCE_PDF_SHA256) errors.push('actual_pdf_hash') } catch { errors.push('source_pdf_unavailable') }
   errors.push(...checkArtifactIdentity(candidate, { root, artifactId: SCHEMA, materializerPath: `scripts/materialize-${SCHEMA}.mjs`, materializerVersion: MATERIALIZER_VERSION }))
   return [...new Set(errors)]
 }

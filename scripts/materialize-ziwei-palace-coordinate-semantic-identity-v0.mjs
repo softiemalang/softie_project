@@ -6,11 +6,13 @@ import { attachArtifactIdentity, buildArtifactIdentity } from '../src/artifactId
 import { ZIWEI_PALACE_DEFINITIONS } from '../src/ziwei/ziweiContract.js'
 import { resolve14MajorStars } from '../src/ziwei/starResolver.js'
 import { BRANCHES, RECONFIRMED_SOURCE_TABLE } from '../src/ziwei/tianfuPlacementDiscrepancyRelations.js'
+import { getPdfSourceMetadata, resolvePdfSourcePathSync } from './lib/pdf-source-resolver.mjs'
 
 export const SCHEMA = 'ziwei-palace-coordinate-semantic-identity-v0'
 export const BASIS_HEAD = 'a4cbf12b0a79c443e823b552631ae9c505e0127d'
 export const MATERIALIZER_VERSION = '0.1.0'
-const PDF = '/Users/softie/Documents/命-南北山人_紫微斗数全书.pdf'
+const PDF = getPdfSourceMetadata('nanbei_quanbao_219p').historicalMetadataPath
+const PDF_ACCESS = resolvePdfSourcePathSync('nanbei_quanbao_219p')
 const PDF_SHA256 = '4786a94ab454acdabf9716d7c0db4756dbcbde99a88bc45fda254863c1961023'
 const mod = n => (n % 12 + 12) % 12
 const sha256 = bytes => createHash('sha256').update(bytes).digest('hex')
@@ -87,7 +89,7 @@ async function buildArtifact({ observedHead } = {}) {
   const root = resolve(new URL('..', import.meta.url).pathname)
   const currentHead = git(root, ['rev-parse', 'HEAD'])
   validateObservedHead({ root, observedHead, currentHead })
-  const pdfBytes = await readFile(PDF)
+  const pdfBytes = await readFile(PDF_ACCESS)
   if (sha256(pdfBytes) !== PDF_SHA256) throw new Error('authoritative PDF SHA-256 mismatch')
   const rows = rowDomain(); const relationResults = compareCandidates(rows)
   const exactFitIds = relationResults.filter(x => x.exact).map(x => x.candidateId)

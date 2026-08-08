@@ -4,7 +4,7 @@ import { readFileSync } from 'node:fs'
 import { resolve } from 'node:path'
 import { checkArtifactIdentity } from '../src/artifactIdentity.js'
 import { BRANCHES, SOURCE_RULE_SCHEMA, STEMS } from '../src/ziwei/fiveElementBureauCleanRuleSeedPilot.js'
-import { buildPilotArtifact, canonicalJson, BASIS_HEAD, MATERIALIZER_VERSION, SCHEMA, SOURCE_PDF, SOURCE_PDF_SHA256 } from './materialize-ziwei-five-element-bureau-clean-rule-seed-pilot-v0.mjs'
+import { buildPilotArtifact, canonicalJson, BASIS_HEAD, MATERIALIZER_VERSION, SCHEMA, SOURCE_PDF_ACCESS, SOURCE_PDF_SHA256 } from './materialize-ziwei-five-element-bureau-clean-rule-seed-pilot-v0.mjs'
 
 const sha256 = bytes => createHash('sha256').update(bytes).digest('hex')
 const same = (a, b) => canonicalJson(a) === canonicalJson(b)
@@ -33,7 +33,7 @@ export async function checkPilotArtifact(candidate, root = resolve(new URL('..',
   if (candidate.boundaries?.stableClaimCount !== 0 || candidate.boundaries?.readiness !== 'not_safe_to_start' || candidate.boundaries?.grounding !== 'blocked' || candidate.boundaries?.activation !== 'experimental' || candidate.boundaries?.engineModified !== false || candidate.boundaries?.ruleContractModified !== false || candidate.boundaries?.existingMingShenArtifactModified !== false || candidate.boundaries?.pdfStoredInGit !== false) errors.push('promotion_or_existing_artifact_change')
   if (!same(candidate.transcription, expected.transcription) || !same(candidate.normalizedRule, expected.normalizedRule) || !same(candidate.comparison, expected.comparison) || !same(candidate.artifactHashes, expected.artifactHashes)) errors.push('artifact_not_reproducible')
   for (const [name, value, expectedHash] of [['transcription.json', candidate.transcription, candidate.artifactHashes?.transcriptionSha256], ['normalized-rule.json', candidate.normalizedRule, candidate.artifactHashes?.normalizedRuleSha256], ['comparison.json', candidate.comparison, candidate.artifactHashes?.comparisonSha256]]) { try { const bytes = await readFile(resolve(root, `artifacts/${SCHEMA}/${name}`)); if (sha256(bytes) !== expectedHash || !same(JSON.parse(bytes), value)) errors.push(`artifact_file:${name}`) } catch { errors.push(`artifact_file_missing:${name}`) } }
-  try { if (sha256(await readFile(SOURCE_PDF)) !== SOURCE_PDF_SHA256) errors.push('actual_pdf_hash') } catch { errors.push('source_pdf_unavailable') }
+  try { if (sha256(await readFile(SOURCE_PDF_ACCESS)) !== SOURCE_PDF_SHA256) errors.push('actual_pdf_hash') } catch { errors.push('source_pdf_unavailable') }
   errors.push(...checkArtifactIdentity(candidate, { root, artifactId: SCHEMA, materializerPath: `scripts/materialize-${SCHEMA}.mjs`, materializerVersion: MATERIALIZER_VERSION }))
   return [...new Set(errors)]
 }

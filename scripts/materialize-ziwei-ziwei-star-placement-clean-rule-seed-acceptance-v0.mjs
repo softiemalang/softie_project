@@ -5,11 +5,13 @@ import { dirname, resolve } from 'node:path'
 import { attachArtifactIdentity, buildArtifactIdentity } from '../src/artifactIdentity.js'
 import { BUREAUS, BRANCHES, enumerateSourceInputs } from '../src/ziwei/ziweiStarPlacementCleanRuleSeedPilot.js'
 import { resolve14MajorStars } from '../src/ziwei/starResolver.js'
+import { getPdfSourceMetadata, resolvePdfSourcePathSync } from './lib/pdf-source-resolver.mjs'
 
 export const SCHEMA = 'ziwei-ziwei-star-placement-clean-rule-seed-acceptance-v0'
 export const BASIS_HEAD = '1718885bf785cf57388b62b51783230ab303691c'
 export const MATERIALIZER_VERSION = '0.1.0'
-export const SOURCE_PDF = '/Users/softie/Downloads/命-南北山人_紫微斗数全书.pdf'
+export const SOURCE_PDF = getPdfSourceMetadata('nanbei_quanbao_219p').historicalMetadataPath
+export const SOURCE_PDF_ACCESS = resolvePdfSourcePathSync('nanbei_quanbao_219p')
 export const SOURCE_PDF_SHA256 = '4786a94ab454acdabf9716d7c0db4756dbcbde99a88bc45fda254863c1961023'
 export const PILOT_HASHES = {
   transcriptionSha256: 'b6f6a43a0f11761e0e88f52cc36c73a28ba3977c68327861cbf7176d50932c05',
@@ -47,7 +49,7 @@ const production = source => { const stars = resolve14MajorStars({ bureauNumber:
 const compare = () => enumerateSourceInputs().map(source => { const actual = production(source); const match = actual.branch === source.output.branch && actual.starId === source.output.engineStarId; return { rowId: source.rowId, orderingKey: source.orderingKey, input: source.input, intermediate: source.intermediate, sourceEvaluator: source.output, productionEvaluator: actual, match, divergence: match ? null : { fields: ['branch'], classification: 'rule-semantic discrepancy', possibleCauses: ['source transcription', 'table direction', 'quotient/remainder boundary', 'progression/index', 'production implementation'] } } })
 
 export async function buildAcceptanceArtifact() {
-  const root = resolve(new URL('..', import.meta.url).pathname); const pdf = await readFile(SOURCE_PDF); if (hash(pdf) !== SOURCE_PDF_SHA256) throw new Error('source_pdf_sha256_mismatch')
+  const root = resolve(new URL('..', import.meta.url).pathname); const pdf = await readFile(SOURCE_PDF_ACCESS); if (hash(pdf) !== SOURCE_PDF_SHA256) throw new Error('source_pdf_sha256_mismatch')
   const pilotDir = resolve(root, 'artifacts/ziwei-ziwei-star-placement-clean-rule-seed-pilot-v0'); const actualPilotHashes = {}; for (const [key, name] of [['transcriptionSha256','transcription.json'], ['normalizedRuleSha256','normalized-rule.json'], ['comparisonSha256','comparison.json']]) { actualPilotHashes[key] = hash(await readFile(resolve(pilotDir, name))); if (actualPilotHashes[key] !== PILOT_HASHES[key]) throw new Error(`pilot_hash_changed:${key}`) }
   const rows = compare(); const mismatches = rows.filter(row => !row.match); const branchDistribution = Object.fromEntries(BRANCHES.map(branch => [branch, rows.filter(row => row.sourceEvaluator.branch === branch).length]));
   const comparison = { schemaVersion: `${SCHEMA}-comparison-v0`, inputCount: rows.length, expectedInputCount: 150, rows, ordering: 'bureauNumber ascending 2..6, lunarDay ascending 1..30', deterministicRowId: 'source evaluator input-derived rowId', deterministicOrdering: true, matchCount: rows.length - mismatches.length, mismatchCount: mismatches.length, firstDivergence: mismatches[0] ?? null, missingCount: 150 - rows.length, duplicateRowIdCount: rows.length - new Set(rows.map(row => row.rowId)).size, branchDistribution }
