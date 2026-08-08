@@ -21,7 +21,7 @@ export async function checkArtifact(candidate, root = resolve(new URL('..', impo
   }
   if (candidate.comparison?.domains?.mingShen?.matchCount !== 144 || candidate.comparison?.domains?.fiveElementBureau?.matchCount !== 1440 || candidate.comparison?.domains?.ziwei?.matchCount !== 150 || candidate.comparison?.domains?.tianfu?.matchCount !== 25) errors.push('domain_result_drift')
   if (canonicalJson(candidate.sourceInventory) !== canonicalJson(expected.sourceInventory) || canonicalJson(candidate.transcription) !== canonicalJson(expected.transcription) || canonicalJson(candidate.comparison) !== canonicalJson(expected.comparison)) errors.push('reproduction_drift')
-  errors.push(...checkArtifactIdentity(candidate, { root, artifactId: SCHEMA, materializerPath: `scripts/materialize-${SCHEMA}.mjs`, materializerVersion: MATERIALIZER_VERSION }))
+  errors.push(...checkArtifactIdentity(candidate, { root, artifactId: SCHEMA, materializerPath: `scripts/materialize-${SCHEMA}.mjs`, materializerVersion: MATERIALIZER_VERSION, allowGenerationBaseInput: true }))
   return [...new Set(errors)]
 }
 

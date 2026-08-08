@@ -16,6 +16,25 @@ export function fileByteIdentity(root, path) {
   return { path, byteSha256: sha256(readFileSync(`${root}/${path}`)) }
 }
 
+export function fileByteSha256AtGitCommit(root, commit, path) {
+  return sha256(execFileSync('git', ['-c', 'core.fsmonitor=false', 'show', `${commit}:${path}`], { cwd: root }))
+}
+
+export function matchesFileByteIdentity(root, path, expectedSha256, { generationBaseHead } = {}) {
+  try {
+    if (fileByteIdentity(root, path).byteSha256 === expectedSha256) return true
+  } catch {
+    // The historical replay check below is authoritative when explicitly enabled.
+  }
+
+  if (!generationBaseHead) return false
+  try {
+    return fileByteSha256AtGitCommit(root, generationBaseHead, path) === expectedSha256
+  } catch {
+    return false
+  }
+}
+
 export function artifactPayloadWithoutIdentity(artifact) {
   const payload = structuredClone(artifact)
   delete payload.artifactIdentity
@@ -26,7 +45,7 @@ export function artifactPayloadSha256(artifact) {
   return sha256(canonicalIdentityJson(artifactPayloadWithoutIdentity(artifact)))
 }
 
-export function buildArtifactIdentity({ root, artifactId, materializerPath, materializerVersion, baseHead, inputs = [] }) {
+export function buildArtifactIdentity({ root, artifactId, materializerPath, materializerVersion, baseHead, inputs = [], inputBytesByPath = {} }) {
   if (!/^[0-9a-f]{40}$/.test(baseHead || '')) throw new Error(`invalid generation base HEAD for ${artifactId}`)
   return {
     contractVersion: ARTIFACT_IDENTITY_CONTRACT_VERSION,
@@ -37,7 +56,7 @@ export function buildArtifactIdentity({ root, artifactId, materializerPath, mate
       includedCommit: null,
       includedCommitSource: 'unknown_at_generation; artifact may be included by a later commit',
     },
-    inputs: inputs.map((path) => fileByteIdentity(root, path)).sort((a, b) => a.path.localeCompare(b.path)),
+    inputs: inputs.map((path) => ({ path, byteSha256: inputBytesByPath[path] ? sha256(inputBytesByPath[path]) : fileByteIdentity(root, path).byteSha256 })).sort((a, b) => a.path.localeCompare(b.path)),
     materializer: { path: materializerPath, version: materializerVersion },
   }
 }
@@ -48,7 +67,7 @@ export function attachArtifactIdentity(payload, identity) {
   return artifact
 }
 
-export function checkArtifactIdentity(artifact, { root, artifactId, materializerPath, materializerVersion, allowCurrentHeadDifference = true } = {}) {
+export function checkArtifactIdentity(artifact, { root, artifactId, materializerPath, materializerVersion, allowCurrentHeadDifference = true, allowGenerationBaseInput = false } = {}) {
   const errors = []
   const identity = artifact?.artifactIdentity
   if (!identity || identity.contractVersion !== ARTIFACT_IDENTITY_CONTRACT_VERSION) errors.push('identity contract version mismatch')
@@ -62,10 +81,10 @@ export function checkArtifactIdentity(artifact, { root, artifactId, materializer
   if (identity?.generation?.includedCommit !== null || identity?.generation?.includedCommitSource !== 'unknown_at_generation; artifact may be included by a later commit') errors.push('included commit must remain unknown at generation')
   if (identity?.artifactPayloadSha256 !== artifactPayloadSha256(artifact)) errors.push('artifact payload identity mismatch')
   for (const input of identity?.inputs || []) {
-    try {
-      const actual = fileByteIdentity(root, input.path).byteSha256
-      if (input.byteSha256 !== actual) errors.push(`input byte identity mismatch:${input.path}`)
-    } catch { errors.push(`input missing:${input.path}`) }
+    const matches = matchesFileByteIdentity(root, input.path, input.byteSha256, {
+      generationBaseHead: allowGenerationBaseInput ? identity?.generation?.baseHead : undefined,
+    })
+    if (!matches) errors.push(`input byte identity mismatch:${input.path}`)
   }
   if (!identity?.inputs?.length) errors.push('input provenance missing')
   return errors

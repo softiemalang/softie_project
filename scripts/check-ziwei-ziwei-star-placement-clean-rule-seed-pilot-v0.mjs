@@ -22,7 +22,7 @@ export async function checkPilotArtifact(candidate, root = process.cwd()) {
   // Compare the stable payload while preserving and validating the stored generation.baseHead/payload hash.
   const comparable = value => { const copy = structuredClone(value); delete copy.observedHead; delete copy.artifactIdentity; return copy }
   if (canonicalJson(comparable(candidate)) !== canonicalJson(comparable(rebuilt))) errors.push('materialized_content')
-  errors.push(...checkArtifactIdentity(candidate, { root, artifactId: SCHEMA, materializerPath: `scripts/materialize-${SCHEMA}.mjs`, materializerVersion: MATERIALIZER_VERSION }))
+  errors.push(...checkArtifactIdentity(candidate, { root, artifactId: SCHEMA, materializerPath: `scripts/materialize-${SCHEMA}.mjs`, materializerVersion: MATERIALIZER_VERSION, allowGenerationBaseInput: true }))
   const pdf = await readFile(SOURCE_PDF_ACCESS); if (hash(pdf) !== SOURCE_PDF_SHA256) errors.push('pdf_reverification')
   return errors
 }

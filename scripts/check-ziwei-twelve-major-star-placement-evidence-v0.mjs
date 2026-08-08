@@ -28,7 +28,7 @@ export async function checkArtifact(candidate, root = resolve(new URL('..', impo
   const comparable = value => { const copy = structuredClone(value); delete copy.artifactIdentity; delete copy.observedHead; return copy }
   if (canonicalJson(comparable(candidate)) !== canonicalJson(comparable(expected))) errors.push('materialized_content')
   for (const item of candidate.source.editions ? [] : []) errors.push(item)
-  const identityErrors = checkArtifactIdentity(candidate, { root, artifactId: SCHEMA, materializerPath: `scripts/materialize-${SCHEMA}.mjs`, materializerVersion: MATERIALIZER_VERSION })
+  const identityErrors = checkArtifactIdentity(candidate, { root, artifactId: SCHEMA, materializerPath: `scripts/materialize-${SCHEMA}.mjs`, materializerVersion: MATERIALIZER_VERSION, allowGenerationBaseInput: true })
   errors.push(...identityErrors)
   if (sidecar) errors.push(...checkIntegritySidecar(sidecar, artifactBytes))
   return [...new Set(errors)]

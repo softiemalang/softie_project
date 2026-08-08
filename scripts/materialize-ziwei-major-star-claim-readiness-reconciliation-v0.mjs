@@ -28,10 +28,13 @@ const INPUTS = {
 }
 const PDF_SHA256 = '4786a94ab454acdabf9716d7c0db4756dbcbde99a88bc45fda254863c1961023'
 
-export async function buildArtifact() {
+export async function buildArtifact({ inputSource = 'current' } = {}) {
   const root = rootOf()
-  const bytes = Object.fromEntries(await Promise.all(Object.values(INPUTS).map(async path => [path, await readFile(resolve(root, path))])))
-  const [baseline, corpus] = await Promise.all([readJson(root, INPUTS.baseline), readJson(root, INPUTS.corpus)])
+  const bytes = Object.fromEntries(await Promise.all(Object.values(INPUTS).map(async path => {
+    if (inputSource === 'generation_base') return [path, execFileSync('git', ['-c', 'core.fsmonitor=false', 'show', `${BASIS_HEAD}:${path}`], { cwd: root })]
+    return [path, await readFile(resolve(root, path))]
+  })))
+  const [baseline, corpus] = [JSON.parse(bytes[INPUTS.baseline].toString('utf8')), JSON.parse(bytes[INPUTS.corpus].toString('utf8'))]
   const evidenceInventory = [
     { id: 'ev-readiness-baseline', evidenceClass: 'readiness_assertion', artifactRef: ref('artifact-readiness-baseline', INPUTS.baseline, bytes[INPUTS.baseline]), assertion: baseline.verdictToken, scope: 'baseline only; not star truth' },
     { id: 'ev-source-corpus-219-pages', evidenceClass: 'source_corpus_provenance', artifactRef: ref('artifact-source-corpus', INPUTS.corpus, bytes[INPUTS.corpus]), assertion: '219/219 direct review; gap 0', source: { pdfSha256: PDF_SHA256, pageCount: 219, reviewedPages: 219, gap: 0, ocr: 'exploration_only_not_canonical' } },
@@ -93,7 +96,7 @@ export async function buildArtifact() {
   const handoff = { verdictToken: 'complete_ziwei_major_star_claim_readiness_reconciliation_evidence_uncommitted', conclusions: ['14 placement claims are normalized at coordinate-evidence level only.', '紫微 is exact within scope; 天府 has a verified transform with unresolved semantics; 12 stars remain source-unresolved.', '219/219 corpus review has gap 0 and does not create direct rules for the 12 unresolved stars.'], blockers: blockers.map(x => x.id), requiredBeforeProductionChoice: ['direct rules for 12 unresolved stars', 'shared palace label/ordinal correspondence', 'independent semantic review', 'explicit authorized production decision'], mustNotDo: ['interpretation', 'ranking or weighting', 'production rule change', 'API/schema/readiness/grounding/activation change'] }
   const sourceAcquisitionSpec = { externalSearch: 'not performed', requiredDocumentTypes: ['immutable scan/page-image witness', 'edition/title/author/editor/lineage record', 'page/folio/section locator', 'independent reviewer record'], requiredRuleForms: ['explicit star-to-branch table', 'algorithmic progression with base/direction', 'input/output domain and boundary cases', 'relationship rule only when explicitly stated'], palaceCorrespondence: ['source branch label to palace label', 'palace label to repository ordinal', 'branch token to production palace branch', 'direction/base conventions'], editionComparison: ['same input domain and row ordering', 'page/folio alignment', 'glyph and table orientation review', 'actual retrieved bytes and hash', 'preserve disagreement by edition/context'] }
   const base = { schemaVersion: SCHEMA, verdictToken: handoff.verdictToken, basisHead: BASIS_HEAD, sourceReferences, evidenceInventory, contextRegistry, claims, evidenceSufficiencyReview: claims.map(c => ({ claimId: c.id, status: c.evidenceStatus, sufficientWithinScope: c.evidenceStatus === 'evidence_sufficient_within_scope', notEligibleForInterpretation: true, reviewNote: c.boundedAssertion })), relationGraph: { nodeIds: [...sourceReferences.map(x => x.id), ...evidenceInventory.map(x => x.id), ...contextRegistry.map(x => `context-${x.key}`), ...claims.map(x => x.id), ...blockers.map(x => x.id)], relations }, blockerRegistry: blockers, layeredReadiness: readiness, humanReviewHandoff: handoff, sourceAcquisitionSpec, protectedInputs: Object.values(INPUTS).map(path => ({ path, byteSha256: sha256(bytes[path]) })), gitProvenance: { basisHead: BASIS_HEAD, observedHead: git(root, ['rev-parse', 'HEAD']), productionRuleOrigin: '7d2fb8fccc65ab34efea93ea2d16f94fb526417c', sourceAuthority: false }, deterministic: { generatedAt: 'forbidden', canonicalBytes: 'UTF-8 JSON with final LF and recursively sorted object keys', claimOrder: 'corpus inventory order', values: 'copied or bounded from input artifacts; no post-hoc fitting' }, materializer: `scripts/materialize-${SCHEMA}.mjs`, checker: `scripts/check-${SCHEMA}.mjs` }
-  return attachArtifactIdentity(base, buildArtifactIdentity({ root, artifactId: SCHEMA, materializerPath: base.materializer, materializerVersion: MATERIALIZER_VERSION, baseHead: BASIS_HEAD, inputs: Object.values(INPUTS) }))
+  return attachArtifactIdentity(base, buildArtifactIdentity({ root, artifactId: SCHEMA, materializerPath: base.materializer, materializerVersion: MATERIALIZER_VERSION, baseHead: BASIS_HEAD, inputs: Object.values(INPUTS), inputBytesByPath: bytes }))
 }
 
 if (process.argv[1] === new URL(import.meta.url).pathname) {

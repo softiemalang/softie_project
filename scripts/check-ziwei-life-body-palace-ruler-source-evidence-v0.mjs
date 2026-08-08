@@ -52,7 +52,7 @@ export async function checkArtifact(candidate, root = resolve(new URL('..', impo
   }
   const sourceEvaluator = readFileSync(resolve(root, 'src/ziwei/lifeBodyPalaceRulerSourceEvidence.js'), 'utf8')
   if (sourceEvaluator.includes('ziweiResolver')) errors.push('source_evaluator_imports_production')
-  errors.push(...checkArtifactIdentity(candidate, { root, artifactId: SCHEMA, materializerPath: `scripts/materialize-${SCHEMA}.mjs`, materializerVersion: MATERIALIZER_VERSION }))
+  errors.push(...checkArtifactIdentity(candidate, { root, artifactId: SCHEMA, materializerPath: `scripts/materialize-${SCHEMA}.mjs`, materializerVersion: MATERIALIZER_VERSION, allowGenerationBaseInput: true }))
   return [...new Set(errors)]
 }
 

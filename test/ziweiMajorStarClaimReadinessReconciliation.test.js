@@ -12,6 +12,6 @@ test('major-star reconciliation materializes deterministically and checks clean'
 })
 test('materialized packet is byte-identical to checked artifact', async () => {
   const actual = JSON.parse(await readFile('artifacts/ziwei-major-star-claim-readiness-reconciliation-v0/complete.json', 'utf8'))
-  const expected = await buildArtifact()
+  const expected = await buildArtifact({ inputSource: 'generation_base' })
   assert.deepEqual(stablePacket(actual), stablePacket(expected))
 })

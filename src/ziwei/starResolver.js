@@ -8,18 +8,48 @@ import {
   STAR_PLACEMENT_RULESET,
   calculateZiweiBranch,
   calculateTianfuBranch,
+  getTianfuModeConvention,
   ZIWEI_SERIES_OFFSETS,
   TIANFU_SERIES_OFFSETS,
 } from './starPlacementRules.js'
 
 const BRANCHES = ['子', '丑', '寅', '卯', '辰', '巳', '午', '未', '申', '酉', '戌', '亥']
 
+const buildStarPlacementMeta = (convention) => ({
+  ruleSetVersion: STAR_PLACEMENT_RULESET.version,
+  ziweiMethod: STAR_PLACEMENT_RULESET.ziweiMethod,
+  tianfuMode: convention.mode,
+  tianfuMethod: convention.tianfuMethod,
+  tianfuFormula: convention.tianfuFormula,
+})
+
 export function resolve14MajorStars(params = {}) {
   const {
     bureauNumber,
     lunarDay,
     palaces = [],
+    tianfuMode,
   } = params || {}
+
+  let tianfuConvention
+  try {
+    tianfuConvention = getTianfuModeConvention(tianfuMode)
+  } catch {
+    return {
+      ziweiBranch: null,
+      tianfuBranch: null,
+      majorStars: [],
+      status: 'failed',
+      reason: 'invalid_tianfu_mode',
+      starPlacementMeta: {
+        ruleSetVersion: STAR_PLACEMENT_RULESET.version,
+        ziweiMethod: STAR_PLACEMENT_RULESET.ziweiMethod,
+        tianfuMode: null,
+        tianfuMethod: null,
+        tianfuFormula: null,
+      },
+    }
+  }
 
   const isValidBureau = typeof bureauNumber === 'number' && Number.isInteger(bureauNumber) && bureauNumber >= 2 && bureauNumber <= 6
   const isValidLunarDay = typeof lunarDay === 'number' && Number.isInteger(lunarDay) && lunarDay >= 1 && lunarDay <= 30
@@ -31,16 +61,12 @@ export function resolve14MajorStars(params = {}) {
       majorStars: [],
       status: 'failed',
       reason: 'missing_or_invalid_input',
-      starPlacementMeta: {
-        ruleSetVersion: STAR_PLACEMENT_RULESET.version,
-        ziweiMethod: STAR_PLACEMENT_RULESET.ziweiMethod,
-        tianfuMethod: STAR_PLACEMENT_RULESET.tianfuMethod,
-      },
+      starPlacementMeta: buildStarPlacementMeta(tianfuConvention),
     }
   }
 
   const ziweiBranch = calculateZiweiBranch(bureauNumber, lunarDay)
-  const tianfuBranch = calculateTianfuBranch(ziweiBranch)
+  const tianfuBranch = calculateTianfuBranch(ziweiBranch, { tianfuMode: tianfuConvention.mode })
 
   const ziweiIndex = BRANCHES.indexOf(ziweiBranch)
   const tianfuIndex = BRANCHES.indexOf(tianfuBranch)
@@ -91,10 +117,6 @@ export function resolve14MajorStars(params = {}) {
     ziweiBranch,
     tianfuBranch,
     majorStars,
-    starPlacementMeta: {
-      ruleSetVersion: STAR_PLACEMENT_RULESET.version,
-      ziweiMethod: STAR_PLACEMENT_RULESET.ziweiMethod,
-      tianfuMethod: STAR_PLACEMENT_RULESET.tianfuMethod,
-    },
+    starPlacementMeta: buildStarPlacementMeta(tianfuConvention),
   }
 }

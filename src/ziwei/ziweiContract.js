@@ -109,6 +109,7 @@ export function createZiweiCalculationContext(params = {}) {
       inputStatus,
       interpretationStatus,
       warnings: Array.isArray(calculationMeta.warnings) ? calculationMeta.warnings : [],
+      majorStarPlacement: calculationMeta.majorStarPlacement || null,
       ruleSetVersions: calculationMeta.ruleSetVersions || {},
     },
 

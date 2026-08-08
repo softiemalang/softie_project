@@ -2,7 +2,7 @@ import { createHash } from 'node:crypto'
 import { readFileSync } from 'node:fs'
 import { resolve } from 'node:path'
 import { buildArtifact, canonicalJson, BASIS_HEAD, MATERIALIZER_VERSION, SCHEMA } from './materialize-ziwei-major-star-source-corpus-provenance-v0.mjs'
-import { checkArtifactIdentity } from '../src/artifactIdentity.js'
+import { checkArtifactIdentity, matchesFileByteIdentity } from '../src/artifactIdentity.js'
 const sha256 = bytes => createHash('sha256').update(bytes).digest('hex')
 export async function checkArtifact(candidate, root = resolve(new URL('..', import.meta.url).pathname)) {
   const expected = await buildArtifact(); const errors = []
@@ -21,12 +21,11 @@ export async function checkArtifact(candidate, root = resolve(new URL('..', impo
   if (candidate.decisionPacket?.sourceRuleDirectCount !== 2 || candidate.decisionPacket?.sourceUnresolvedCount !== 12) errors.push('decision_boundary')
   if (candidate.dependencyGraph?.conventionBlocker?.palaceIdentity !== 'unresolved') errors.push('semantic_promoted')
   for (const item of candidate.protectedBytes || []) {
-    const actual = sha256(readFileSync(resolve(root, item.path)))
-    if (actual !== item.workingSha256 || actual !== item.gitHeadSha256) errors.push(`protected_bytes:${item.path}`)
+    if (!matchesFileByteIdentity(root, item.path, item.gitHeadSha256, { generationBaseHead: candidate.artifactIdentity?.generation?.baseHead })) errors.push(`protected_bytes:${item.path}`)
   }
   const clean = value => { const clone = structuredClone(value); delete clone.observedHead; delete clone.artifactIdentity; return clone }
   if (canonicalJson(clean(candidate)) !== canonicalJson(clean(expected))) errors.push('materialized_content')
-  errors.push(...checkArtifactIdentity(candidate, { root, artifactId: SCHEMA, materializerPath: `scripts/materialize-${SCHEMA}.mjs`, materializerVersion: MATERIALIZER_VERSION }))
+  errors.push(...checkArtifactIdentity(candidate, { root, artifactId: SCHEMA, materializerPath: `scripts/materialize-${SCHEMA}.mjs`, materializerVersion: MATERIALIZER_VERSION, allowGenerationBaseInput: true }))
   return [...new Set(errors)]
 }
 if (process.argv[1] === new URL(import.meta.url).pathname) { const candidate = JSON.parse(readFileSync(resolve(process.argv[2] || `artifacts/${SCHEMA}/complete.json`), 'utf8')); const failures = await checkArtifact(candidate); console.log(JSON.stringify({ pass: failures.length === 0, failures }, null, 2)); if (failures.length) process.exitCode = 1 }

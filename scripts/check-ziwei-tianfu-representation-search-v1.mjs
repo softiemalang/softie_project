@@ -26,7 +26,7 @@ export async function checkRepresentationSearchArtifact(candidate, root = resolv
   if (candidate.subverdicts?.predecessorTranscription !== 'transcription_defect_resolved' || candidate.subverdicts?.nanbeiVsProduction !== 'equivalent_representation_proven' || candidate.subverdicts?.mingVsNanbei !== 'equivalent_representation_proven' || candidate.subverdicts?.overall !== 'equivalent_representation_proven') errors.push('subverdict_boundary')
   if (candidate.implementationImpact?.changed !== false || (candidate.implementationImpact?.filesChanged?.length ?? -1) !== 0) errors.push('implementation_impact')
   if (canonicalJson(candidate.sourceEvidence) !== canonicalJson(expected.sourceEvidence) || canonicalJson(candidate.correction) !== canonicalJson(expected.correction) || canonicalJson(candidate.predecessor) !== canonicalJson(expected.predecessor) || canonicalJson(candidate.search) !== canonicalJson(expected.search) || canonicalJson(candidate.rows) !== canonicalJson(expected.rows) || canonicalJson(candidate.artifactHashes) !== canonicalJson(expected.artifactHashes)) errors.push('materialized_content')
-  errors.push(...checkArtifactIdentity(candidate, { root, artifactId: SCHEMA, materializerPath: `scripts/materialize-${SCHEMA}.mjs`, materializerVersion: MATERIALIZER_VERSION }))
+  errors.push(...checkArtifactIdentity(candidate, { root, artifactId: SCHEMA, materializerPath: `scripts/materialize-${SCHEMA}.mjs`, materializerVersion: MATERIALIZER_VERSION, allowGenerationBaseInput: true }))
   return [...new Set(errors)]
 }
 

@@ -31,7 +31,7 @@ export async function checkAcceptanceArtifact(candidate, root = resolve(new URL(
   const sourceEvaluator = readFileSync(resolve(root, 'src/ziwei/mingShenCleanRuleSeedPilot.js'), 'utf8'); if (sourceEvaluator.includes('ziweiResolver')) errors.push('source_evaluator_imports_production')
   if (candidate.independence?.sourceEvaluatorImportsProduction !== false) errors.push('source_evaluator_reuse')
   if (candidate.materializer !== `scripts/materialize-${SCHEMA}.mjs` || candidate.checker !== `scripts/check-${SCHEMA}.mjs`) errors.push('materializer_checker_identity')
-  errors.push(...checkArtifactIdentity(candidate, { root, artifactId: SCHEMA, materializerPath: `scripts/materialize-${SCHEMA}.mjs`, materializerVersion: MATERIALIZER_VERSION }))
+  errors.push(...checkArtifactIdentity(candidate, { root, artifactId: SCHEMA, materializerPath: `scripts/materialize-${SCHEMA}.mjs`, materializerVersion: MATERIALIZER_VERSION, allowGenerationBaseInput: true }))
   if (!same(candidate.reviewerB, expected.reviewerB) || !same(candidate.discrepancies, expected.discrepancies) || !same(candidate.comparison, expected.comparison) || !same(candidate.acceptance, expected.acceptance)) errors.push('artifact_not_reproducible')
   return [...new Set(errors)]
 }

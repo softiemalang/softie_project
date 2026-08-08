@@ -61,9 +61,9 @@ function deriveFindings({ pilot, audit, provenance, currentHead, root }) {
   const wholeSafe = pilot.globalBoundary?.stableClaimBoundary === 0 && pilot.globalBoundary?.readiness === 'not_safe_to_start' && pilot.globalBoundary?.grounding === 'not_safe_to_start' && pilot.globalBoundary?.wholeReadinessExpansionAllowed === false
   const scopeSafe = candidateIds.length === 4 && unique.size === 4 && JSON.stringify(ids(candidateIds)) === JSON.stringify(auditIds) && audit.occurrenceCount === 19 && provenance.occurrences?.length === 19
   const identityErrors = [
-    checkArtifactIdentity(pilot, { root, artifactId: 'ziwei-structural-admission-guard-pilot-v0', materializerPath: 'scripts/materialize-ziwei-structural-admission-guard-pilot-v0.mjs', materializerVersion: '1.0.0' }),
-    checkArtifactIdentity(audit, { root, artifactId: audit.artifactIdentity?.artifactId, materializerPath: 'scripts/materialize-ziwei-readiness-admission-blocker-audit-v0.mjs', materializerVersion: audit.artifactIdentity?.materializer?.version }),
-    checkArtifactIdentity(provenance, { root, artifactId: provenance.artifactIdentity?.artifactId, materializerPath: 'scripts/materialize-ziwei-occurrence-provenance-v0.mjs', materializerVersion: provenance.artifactIdentity?.materializer?.version }),
+    checkArtifactIdentity(pilot, { root, artifactId: 'ziwei-structural-admission-guard-pilot-v0', materializerPath: 'scripts/materialize-ziwei-structural-admission-guard-pilot-v0.mjs', materializerVersion: '1.0.0', allowGenerationBaseInput: true }),
+    checkArtifactIdentity(audit, { root, artifactId: audit.artifactIdentity?.artifactId, materializerPath: 'scripts/materialize-ziwei-readiness-admission-blocker-audit-v0.mjs', materializerVersion: audit.artifactIdentity?.materializer?.version, allowGenerationBaseInput: true }),
+    checkArtifactIdentity(provenance, { root, artifactId: provenance.artifactIdentity?.artifactId, materializerPath: 'scripts/materialize-ziwei-occurrence-provenance-v0.mjs', materializerVersion: provenance.artifactIdentity?.materializer?.version, allowGenerationBaseInput: true }),
   ]
   const fresh = identityErrors.every(errors => errors.length === 0)
   const splitBoundary = pilot.records.some(record => Object.hasOwn(record, 'occurrence') || Object.hasOwn(record, 'guard'))
@@ -99,9 +99,9 @@ export async function buildIndependentAcceptanceReview() {
   ])
   const currentHead = execFileSync('git', ['-c', 'core.fsmonitor=false', 'rev-parse', 'HEAD'], { cwd: root, encoding: 'utf8' }).trim()
   const identityErrors = [
-    checkArtifactIdentity(pilot, { root, artifactId: 'ziwei-structural-admission-guard-pilot-v0', materializerPath: 'scripts/materialize-ziwei-structural-admission-guard-pilot-v0.mjs', materializerVersion: '1.0.0' }),
-    checkArtifactIdentity(audit, { root, artifactId: audit.artifactIdentity?.artifactId, materializerPath: 'scripts/materialize-ziwei-readiness-admission-blocker-audit-v0.mjs', materializerVersion: audit.artifactIdentity?.materializer?.version }),
-    checkArtifactIdentity(provenance, { root, artifactId: provenance.artifactIdentity?.artifactId, materializerPath: 'scripts/materialize-ziwei-occurrence-provenance-v0.mjs', materializerVersion: provenance.artifactIdentity?.materializer?.version }),
+    checkArtifactIdentity(pilot, { root, artifactId: 'ziwei-structural-admission-guard-pilot-v0', materializerPath: 'scripts/materialize-ziwei-structural-admission-guard-pilot-v0.mjs', materializerVersion: '1.0.0', allowGenerationBaseInput: true }),
+    checkArtifactIdentity(audit, { root, artifactId: audit.artifactIdentity?.artifactId, materializerPath: 'scripts/materialize-ziwei-readiness-admission-blocker-audit-v0.mjs', materializerVersion: audit.artifactIdentity?.materializer?.version, allowGenerationBaseInput: true }),
+    checkArtifactIdentity(provenance, { root, artifactId: provenance.artifactIdentity?.artifactId, materializerPath: 'scripts/materialize-ziwei-occurrence-provenance-v0.mjs', materializerVersion: provenance.artifactIdentity?.materializer?.version, allowGenerationBaseInput: true }),
   ]
   const fresh = identityErrors.every(errors => errors.length === 0)
   const splitBoundary = pilot.records.some(record => Object.hasOwn(record, 'occurrence') || Object.hasOwn(record, 'guard'))

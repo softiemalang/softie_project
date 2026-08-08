@@ -117,7 +117,7 @@ function buildUnavailableZiweiSystem(reason, verificationStatus = 'insufficient_
   }
 }
 
-function buildZiweiSystem(baseResult, profiles) {
+function buildZiweiSystem(baseResult, profiles, { tianfuMode } = {}) {
   const normalized = baseResult.input.normalized
   const sajuRaw = baseResult.systems.saju?.raw
 
@@ -176,6 +176,7 @@ function buildZiweiSystem(baseResult, profiles) {
     bureauNumber,
     lunarDay: lunar.lDay,
     palaces: chart.palaces,
+    tianfuMode,
   })
   const transformationResult = resolveFourTransformations(birthYearStem)
   const minorResult = resolveMinorStars({
@@ -247,6 +248,7 @@ function buildZiweiSystem(baseResult, profiles) {
       inputStatus: 'valid',
       interpretationStatus,
       warnings,
+      majorStarPlacement: majorResult.starPlacementMeta,
       ruleSetVersions: {
         palace: ruleSet.profileVersion,
         majorStars: majorResult.starPlacementMeta.ruleSetVersion,
@@ -338,11 +340,11 @@ function buildAstrologySystem(profiles) {
   }
 }
 
-export function prepareThreeSystemInterpretationData(input, profiles = DEFAULT_PROFILES) {
+export function prepareThreeSystemInterpretationData(input, profiles = DEFAULT_PROFILES, options = {}) {
   const baseResult = prepareInterpretationData(input, profiles)
   const systems = {
     saju: buildSajuSystem(baseResult),
-    ziwei: buildZiweiSystem(baseResult, profiles),
+    ziwei: buildZiweiSystem(baseResult, profiles, options),
     astrology: buildAstrologySystem(profiles),
   }
   const unifiedContext = createUnifiedInterpretationContext(systems)

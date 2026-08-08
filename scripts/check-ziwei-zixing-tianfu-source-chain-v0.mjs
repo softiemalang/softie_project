@@ -1,7 +1,7 @@
 import { createHash } from 'node:crypto'
 import { readFile, readFileSync } from 'node:fs'
 import { resolve } from 'node:path'
-import { checkArtifactIdentity } from '../src/artifactIdentity.js'
+import { checkArtifactIdentity, matchesFileByteIdentity } from '../src/artifactIdentity.js'
 import { buildChainArtifact, canonicalJson, BASIS_HEAD, MATERIALIZER_VERSION, SCHEMA, SOURCE_PDF_ACCESS, SOURCE_PDF_SHA256 } from './materialize-ziwei-zixing-tianfu-source-chain-v0.mjs'
 
 const sha256 = bytes => createHash('sha256').update(bytes).digest('hex')
@@ -20,11 +20,11 @@ export async function checkChainArtifact(candidate, root = resolve(new URL('..',
   if (!candidate.relations.ziwei.exactFitIds.includes('identity') || !candidate.relations.tianfu.exactFitIds.includes('rotation-06') || candidate.relations.transformCoverage.rotation06.residualRows !== 0 || candidate.relations.transformCoverage.rotation06.matchedRows !== 150) errors.push('transform_coverage')
   if (candidate.preservedPriorTianfu?.integratedOriginalBaseline?.matchCount !== 25 || candidate.preservedPriorTianfu.integratedOriginalBaseline.mismatchCount !== 125) errors.push('prior_baseline_mutation')
   if (candidate.boundaries?.stableClaimCount !== 0 || candidate.boundaries.readiness !== 'not_safe_to_start' || candidate.boundaries.grounding !== 'blocked' || candidate.boundaries.activation !== 'experimental' || candidate.boundaries.productionModified !== false || candidate.boundaries.ruleContractModified !== false || candidate.boundaries.existingArtifactsModified !== false) errors.push('status_or_authority_promotion')
-  for (const item of candidate.immutableExistingBytes ?? []) { try { if (sha256(readFileSync(resolve(root, item.path))) !== item.sha256) errors.push(`immutable_existing:${item.path}`) } catch { errors.push(`immutable_missing:${item.path}`) } }
+  for (const item of candidate.immutableExistingBytes ?? []) { if (!matchesFileByteIdentity(root, item.path, item.sha256, { generationBaseHead: candidate.artifactIdentity?.generation?.baseHead })) errors.push(`immutable_existing:${item.path}`) }
   try { if (sha256(await (await import('node:fs/promises')).readFile(SOURCE_PDF_ACCESS)) !== SOURCE_PDF_SHA256) errors.push('actual_pdf_hash') } catch { errors.push('source_pdf_unavailable') }
   const comparable = value => { const copy = structuredClone(value); delete copy.observedHead; delete copy.artifactIdentity; return copy }
   if (canonicalJson(comparable(candidate)) !== canonicalJson(comparable(expected))) errors.push('materialized_content')
-  errors.push(...checkArtifactIdentity(candidate, { root, artifactId: SCHEMA, materializerPath: `scripts/materialize-${SCHEMA}.mjs`, materializerVersion: MATERIALIZER_VERSION }))
+  errors.push(...checkArtifactIdentity(candidate, { root, artifactId: SCHEMA, materializerPath: `scripts/materialize-${SCHEMA}.mjs`, materializerVersion: MATERIALIZER_VERSION, allowGenerationBaseInput: true }))
   return [...new Set(errors)]
 }
 if (process.argv[1] === new URL(import.meta.url).pathname) { const candidate = JSON.parse(await (await import('node:fs/promises')).readFile(resolve(process.argv[2] || `artifacts/${SCHEMA}/complete.json`), 'utf8')); const errors = await checkChainArtifact(candidate); console.log(JSON.stringify({ pass: errors.length === 0, failures: errors }, null, 2)); if (errors.length) process.exitCode = 1 }

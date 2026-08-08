@@ -16,6 +16,35 @@ export const STAR_PLACEMENT_RULESET = {
 
 const BRANCHES = ['子', '丑', '寅', '卯', '辰', '巳', '午', '未', '申', '酉', '戌', '亥']
 
+export const TIANFU_MODES = Object.freeze({
+  LEGACY: 'legacy',
+  SOURCE_ALIGNED: 'source_aligned',
+})
+
+export const TIANFU_MODE_CONVENTIONS = Object.freeze({
+  [TIANFU_MODES.LEGACY]: Object.freeze({
+    tianfuMethod: 'opposite_yin_shen_axis',
+    tianfuFormula: '(10-Z)%12',
+  }),
+  [TIANFU_MODES.SOURCE_ALIGNED]: Object.freeze({
+    tianfuMethod: 'opposite_chen_xu_axis',
+    tianfuFormula: '(4-Z)%12',
+  }),
+})
+
+export function resolveTianfuMode(tianfuMode) {
+  if (tianfuMode === undefined) return TIANFU_MODES.LEGACY
+  if (!Object.values(TIANFU_MODES).includes(tianfuMode)) {
+    throw new RangeError(`invalid_tianfu_mode:${String(tianfuMode)}`)
+  }
+  return tianfuMode
+}
+
+export function getTianfuModeConvention(tianfuMode) {
+  const mode = resolveTianfuMode(tianfuMode)
+  return { mode, ...TIANFU_MODE_CONVENTIONS[mode] }
+}
+
 /**
  * 오행국 수(bureauNumber: 2~6)와 음력 일(lunarDay: 1~30)을 이용해 자미성 지지를 산출
  */
@@ -42,12 +71,20 @@ export function calculateZiweiBranch(bureauNumber, lunarDay) {
 }
 
 /**
- * 자미성 지지 위치를 기준으로 寅-申 대칭축에 위치한 천부성 지지를 산출
+ * 자미성 지지 위치를 기준으로 선택된 Tianfu compatibility convention의
+ * 대칭축에 위치한 천부성 지지를 산출한다.
  */
-export function calculateTianfuBranch(ziweiBranch) {
+export function calculateTianfuBranch(ziweiBranch, options = {}) {
+  if (options === null || typeof options !== 'object' || Array.isArray(options)) {
+    throw new TypeError('invalid_tianfu_mode_options')
+  }
+
+  const tianfuMode = resolveTianfuMode(options.tianfuMode)
   const ziweiIndex = BRANCHES.indexOf(ziweiBranch) !== -1 ? BRANCHES.indexOf(ziweiBranch) : 2
-  // 寅宮(2) + 申宮(8) = 10 -> (10 - ziweiIndex) mod 12
-  const tianfuIndex = (10 - ziweiIndex + 1200) % 12
+  const anchorSum = tianfuMode === TIANFU_MODES.SOURCE_ALIGNED ? 4 : 10
+  // legacy: 寅宮(2) + 申宮(8) = 10 -> (10 - ziweiIndex) mod 12
+  // source_aligned: source convention uses 辰宮(4) -> (4 - ziweiIndex) mod 12
+  const tianfuIndex = (anchorSum - ziweiIndex + 1200) % 12
   return BRANCHES[tianfuIndex]
 }
 

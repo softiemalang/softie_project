@@ -164,7 +164,7 @@ export function checkArtifact(root = ROOT) {
   try { documents = loadDocuments(root) } catch (error) { return [`artifact load failed:${error.message}`] }
   errors.push(...validatePayload(documents))
   validateSourceIdentity(errors, documents.inventory)
-  const identityErrors = checkArtifactIdentity(documents.complete, { root, artifactId: SCHEMA, materializerPath: MATERIALIZER_PATH, materializerVersion: MATERIALIZER_VERSION })
+  const identityErrors = checkArtifactIdentity(documents.complete, { root, artifactId: SCHEMA, materializerPath: MATERIALIZER_PATH, materializerVersion: MATERIALIZER_VERSION, allowGenerationBaseInput: true })
   errors.push(...identityErrors)
   validateSidecars(errors, documents, root)
   return errors

@@ -2,7 +2,7 @@ import { createHash } from 'node:crypto'
 import { readFile } from 'node:fs/promises'
 import { readFileSync } from 'node:fs'
 import { resolve } from 'node:path'
-import { checkArtifactIdentity } from '../src/artifactIdentity.js'
+import { checkArtifactIdentity, matchesFileByteIdentity } from '../src/artifactIdentity.js'
 import { buildPilotArtifact, canonicalJson, BASIS_HEAD, MATERIALIZER_VERSION, SCHEMA, SOURCE_PDF_ACCESS, SOURCE_PDF_SHA256 } from './materialize-ziwei-tianfu-star-placement-clean-rule-seed-pilot-v0.mjs'
 const sha256 = bytes => createHash('sha256').update(bytes).digest('hex')
 const same = (a, b) => canonicalJson(a) === canonicalJson(b)
@@ -22,9 +22,9 @@ export async function checkPilotArtifact(candidate, root = resolve(new URL('..',
   if (candidate.boundaries?.stableClaimCount !== 0 || candidate.boundaries?.readiness !== 'not_safe_to_start' || candidate.boundaries?.grounding !== 'blocked' || candidate.boundaries?.activation !== 'experimental' || candidate.boundaries?.engineModified !== false || candidate.boundaries?.ruleContractModified !== false || candidate.boundaries?.pdfStoredInGit !== false || candidate.boundaries?.otherStarsIncluded !== false) errors.push('promotion_or_scope')
   if (!same(candidate.transcription, expected.transcription) || !same(candidate.normalizedRule, expected.normalizedRule) || !same(candidate.comparison, expected.comparison)) errors.push('materialized_content')
   for (const [name, value, expectedHash] of [['transcription.json', candidate.transcription, candidate.artifactHashes?.transcriptionSha256], ['normalized-rule.json', candidate.normalizedRule, candidate.artifactHashes?.normalizedRuleSha256], ['comparison.json', candidate.comparison, candidate.artifactHashes?.comparisonSha256]]) { try { const bytes = readFileSync(resolve(root, `artifacts/${SCHEMA}/${name}`)); if (sha256(bytes) !== expectedHash || !same(JSON.parse(bytes), value)) errors.push(`artifact_file:${name}`) } catch { errors.push(`artifact_file:${name}`) } }
-  for (const item of candidate.immutableExistingBytes ?? []) { try { if (sha256(readFileSync(resolve(root, item.path))) !== item.sha256) errors.push(`immutable_existing:${item.path}`) } catch { errors.push(`immutable_missing:${item.path}`) } }
+  for (const item of candidate.immutableExistingBytes ?? []) { if (!matchesFileByteIdentity(root, item.path, item.sha256, { generationBaseHead: candidate.artifactIdentity?.generation?.baseHead })) errors.push(`immutable_existing:${item.path}`) }
   try { if (sha256(await readFile(SOURCE_PDF_ACCESS)) !== SOURCE_PDF_SHA256) errors.push('actual_pdf_hash') } catch { errors.push('source_pdf_unavailable') }
-  errors.push(...checkArtifactIdentity(candidate, { root, artifactId: SCHEMA, materializerPath: `scripts/materialize-${SCHEMA}.mjs`, materializerVersion: MATERIALIZER_VERSION }))
+  errors.push(...checkArtifactIdentity(candidate, { root, artifactId: SCHEMA, materializerPath: `scripts/materialize-${SCHEMA}.mjs`, materializerVersion: MATERIALIZER_VERSION, allowGenerationBaseInput: true }))
   return [...new Set(errors)]
 }
 if (process.argv[1] === new URL(import.meta.url).pathname) { const path = resolve(process.argv[2] || `artifacts/${SCHEMA}/complete.json`); const bytes = await readFile(path); const artifact = JSON.parse(bytes); const failures = await checkPilotArtifact(artifact); console.log(JSON.stringify({ pass: failures.length === 0, verdict: artifact.verdictToken, directCount: artifact.comparison?.domains?.direct?.inputCount, integratedCount: artifact.comparison?.domains?.integrated?.inputCount, matchCount: artifact.comparison?.matchCount, mismatchCount: artifact.comparison?.mismatchCount, artifactByteSha256: sha256(bytes), failures }, null, 2)); if (failures.length) process.exitCode = 1 }

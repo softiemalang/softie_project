@@ -82,7 +82,7 @@ export function checkBundle(bundle, root = ROOT) {
   const graph = files['dependency-graph']
   if (!same(graph?.accounting, expected.files['dependency-graph'].accounting) || graph?.edges?.length !== 2) errors.push('dependency')
 
-  errors.push(...checkArtifactIdentity(artifact, { root, artifactId: SCHEMA, materializerPath: MATERIALIZER_PATH, materializerVersion: MATERIALIZER_VERSION }))
+  errors.push(...checkArtifactIdentity(artifact, { root, artifactId: SCHEMA, materializerPath: MATERIALIZER_PATH, materializerVersion: MATERIALIZER_VERSION, allowGenerationBaseInput: true }))
   return [...new Set(errors)]
 }
 

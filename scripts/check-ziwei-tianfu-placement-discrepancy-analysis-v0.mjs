@@ -3,7 +3,7 @@ import { readFile } from 'node:fs/promises'
 import { readFileSync } from 'node:fs'
 import { resolve } from 'node:path'
 import { buildDiscrepancyArtifact, canonicalJson, BASIS_HEAD, MATERIALIZER_VERSION, SCHEMA, SOURCE_PDF_ACCESS, SOURCE_PDF_SHA256 } from './materialize-ziwei-tianfu-placement-discrepancy-analysis-v0.mjs'
-import { checkArtifactIdentity } from '../src/artifactIdentity.js'
+import { checkArtifactIdentity, matchesFileByteIdentity } from '../src/artifactIdentity.js'
 
 const sha256 = bytes => createHash('sha256').update(bytes).digest('hex')
 const same = (a, b) => canonicalJson(a) === canonicalJson(b)
@@ -22,9 +22,9 @@ export async function checkDiscrepancyArtifact(candidate, root = resolve(new URL
   if (candidate.integrated?.predictionDoesNotOverwriteOriginal !== true || candidate.integrated?.residualExceptionCount !== 0) errors.push('prediction_overwrite_or_forced_reconcile')
   if (candidate.boundaries?.stableClaimCount !== 0 || candidate.boundaries?.readiness !== 'not_safe_to_start' || candidate.boundaries?.grounding !== 'blocked' || candidate.boundaries?.activation !== 'experimental' || candidate.boundaries?.truthLineageDeclared !== false || candidate.boundaries?.productionModified !== false || candidate.boundaries?.ruleContractModified !== false || candidate.boundaries?.existingArtifactsModified !== false) errors.push('status_or_authority_promotion')
   if (!same(candidate.reviewerA, expected.reviewerA) || !same(candidate.reviewerB, expected.reviewerB) || !same(candidate.abComparison, expected.abComparison) || !same(candidate.direct, expected.direct) || !same(candidate.integrated, expected.integrated)) errors.push('materialized_content')
-  for (const item of candidate.immutableExistingBytes ?? []) { try { if (sha256(readFileSync(resolve(root, item.path))) !== item.sha256) errors.push(`immutable_existing:${item.path}`) } catch { errors.push(`immutable_missing:${item.path}`) } }
+  for (const item of candidate.immutableExistingBytes ?? []) { if (!matchesFileByteIdentity(root, item.path, item.sha256, { generationBaseHead: candidate.artifactIdentity?.generation?.baseHead })) errors.push(`immutable_existing:${item.path}`) }
   try { if (sha256(await readFile(SOURCE_PDF_ACCESS)) !== SOURCE_PDF_SHA256) errors.push('actual_pdf_hash') } catch { errors.push('source_pdf_unavailable') }
-  errors.push(...checkArtifactIdentity(candidate, { root, artifactId: SCHEMA, materializerPath: `scripts/materialize-${SCHEMA}.mjs`, materializerVersion: MATERIALIZER_VERSION }))
+  errors.push(...checkArtifactIdentity(candidate, { root, artifactId: SCHEMA, materializerPath: `scripts/materialize-${SCHEMA}.mjs`, materializerVersion: MATERIALIZER_VERSION, allowGenerationBaseInput: true }))
   return [...new Set(errors)]
 }
 if (process.argv[1] === new URL(import.meta.url).pathname) { const path = resolve(process.argv[2] || `artifacts/${SCHEMA}/complete.json`); const artifact = JSON.parse(await readFile(path, 'utf8')); const failures = await checkDiscrepancyArtifact(artifact); console.log(JSON.stringify({ pass: failures.length === 0, verdict: artifact.verdictToken, failures }, null, 2)); if (failures.length) process.exitCode = 1 }

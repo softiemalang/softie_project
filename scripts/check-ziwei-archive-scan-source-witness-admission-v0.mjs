@@ -27,7 +27,7 @@ export function checkArchiveScanSourceWitness(artifact, { pdfBytes = null, root 
   }
   if (historicalArtifact && artifact.artifactIdentity?.generation?.baseHead !== historicalArtifact.artifactIdentity?.generation?.baseHead) failures.push('historical_generation_base_mismatch')
   try { execFileSync('git',['-c','core.fsmonitor=false','cat-file','-e',`${artifact.basisHead}^{commit}`],{cwd:root,stdio:'ignore'}) } catch { failures.push('basis_head_missing') }
-  failures.push(...checkArtifactIdentity(artifact,{root,artifactId:SCHEMA,materializerPath:'scripts/materialize-ziwei-archive-scan-source-witness-admission-v0.mjs',materializerVersion:VERSION}))
+  failures.push(...checkArtifactIdentity(artifact,{root,artifactId:SCHEMA,materializerPath:'scripts/materialize-ziwei-archive-scan-source-witness-admission-v0.mjs',materializerVersion:VERSION,allowGenerationBaseInput:true}))
   return [...new Set(failures)]
 }
 

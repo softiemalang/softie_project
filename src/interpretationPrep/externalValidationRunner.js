@@ -269,7 +269,7 @@ export function compareSajuFixture(fixture) {
 /**
  * 단일 Ziwei Fixture 대조 수행 (의미 기반 성명 대조)
  */
-export function compareZiweiFixture(fixture) {
+export function compareZiweiFixture(fixture, { tianfuMode } = {}) {
   validateFixtureProvenance(fixture)
 
   if (
@@ -295,6 +295,7 @@ export function compareZiweiFixture(fixture) {
   }
 
   const fields = []
+  let starPlacementProvenance = null
 
   if (fixture.referenceType === 'ruleset_table_reference') {
     if (fixture.expected.bureauNumber !== undefined) {
@@ -329,7 +330,9 @@ export function compareZiweiFixture(fixture) {
         bureauNumber: fixture.input.bureauNumber,
         lunarDay: fixture.input.lunarDay,
         palaces: dummyPalaces,
+        tianfuMode,
       })
+      starPlacementProvenance = starsRes.starPlacementMeta
 
       const ziweiStar = starsRes.majorStars ? starsRes.majorStars.find((s) => s.id === 'ziwei') : null
       const actualBranch = ziweiStar ? ziweiStar.palaceBranch : null
@@ -472,6 +475,7 @@ export function compareZiweiFixture(fixture) {
     source: fixture.source,
     isExcludedFromValidationCount: false,
     declaredReviewStatus: fixture.declaredReviewStatus,
+    starPlacementProvenance,
     observedComparison: {
       overallStatus,
       comparedFieldsCount: totalCount,
@@ -619,9 +623,9 @@ export function buildFixtureSummary(results, systemName) {
 /**
  * 전체 외부 검증 픽스처 비교 실행 및 observed / verified 분리 집계
  */
-export function runExternalValidationSuite() {
+export function runExternalValidationSuite({ tianfuMode } = {}) {
   const sajuResults = SAJU_EXTERNAL_FIXTURES.map(compareSajuFixture)
-  const ziweiResults = ZIWEI_EXTERNAL_FIXTURES.map(compareZiweiFixture)
+  const ziweiResults = ZIWEI_EXTERNAL_FIXTURES.map((fixture) => compareZiweiFixture(fixture, { tianfuMode }))
 
   const sajuSummary = buildFixtureSummary(sajuResults, 'saju')
   const ziweiSummary = buildFixtureSummary(ziweiResults, 'ziwei')
