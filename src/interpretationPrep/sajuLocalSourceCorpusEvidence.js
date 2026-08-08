@@ -1,0 +1,126 @@
+export const SAJU_LOCAL_SOURCE_CORPUS_SCHEMA = 'saju-local-source-corpus-observation-v1'
+export const SAJU_LOCAL_SOURCE_CORPUS_VERSION = '1.0.0'
+export const SAJU_LOCAL_SOURCE_CORPUS_ROOT = '/Users/softie/Documents/malang_lab/documents'
+
+export const SAJU_LOCAL_SOURCE_DOCUMENTS = Object.freeze([
+  {
+    sourceId: 'saju-source-ziping-zhenquan',
+    fileName: '子平真诠-沈孝瞻原著.pdf',
+    observedTitle: '《子平真诠》',
+    observedAttribution: '沈孝瞻原著（封面/标题页标识）',
+    sourceForm: 'modern_typeset_local_export',
+    pageCount: 27,
+    byteLength: 580320,
+    expectedByteSha256: '449336b5e35aa6811b0462093d0175c45a0add44065bf2d3845cff75981db692',
+    editionIdentity: 'unresolved_edition',
+  },
+  {
+    sourceId: 'saju-source-ditian-sui',
+    fileName: '滴天髓.pdf',
+    observedTitle: '《滴天髓》',
+    observedAttribution: '刘基（导出页标识）',
+    sourceForm: 'derived_typeset_export_with_linked_attribution',
+    pageCount: 158,
+    byteLength: 8694949,
+    expectedByteSha256: '6285805c91b79f1b5bccdfce1cdab1d7ec684731160b4191a25e8f1d23c229dd',
+    editionIdentity: 'unresolved_edition',
+  },
+  {
+    sourceId: 'saju-source-yuanhai-ziping',
+    fileName: '淵海子平.pdf',
+    observedTitle: '《淵海子平》',
+    observedAttribution: '杨淙（导出页标识）',
+    sourceForm: 'web_text_export_with_explicit_source_warning',
+    pageCount: 202,
+    byteLength: 2710282,
+    expectedByteSha256: 'c6225b78d9d49282c5699b63315018a1e17ebf091c50ce4feb3dab465ec25a12',
+    editionIdentity: 'unresolved_edition',
+  },
+  {
+    sourceId: 'saju-source-qiongtong-baojian',
+    fileName: '穷通宝鉴.pdf',
+    observedTitle: '《穷通宝鉴》',
+    observedAttribution: null,
+    sourceForm: 'modern_typeset_local_export',
+    pageCount: 92,
+    byteLength: 1547911,
+    expectedByteSha256: '36d54cdc995d203fdceafcb52b2a0d4f57093ab1765c532db5418b46a96c4b19',
+    editionIdentity: 'unresolved_edition',
+  },
+  {
+    sourceId: 'saju-source-sanming-tonghui',
+    fileName: '三命通會.pdf',
+    observedTitle: '《三命通會》',
+    observedAttribution: '万民英（导出页标识；书前说明仍需独立书目核验）',
+    sourceForm: 'web_text_export_with_public_domain_notice',
+    pageCount: 370,
+    byteLength: 7601079,
+    expectedByteSha256: 'f09bce7c6dbe1e222746ad8c97f49d132ed4e8da6d3c1d0399b0824b3794593f',
+    editionIdentity: 'unresolved_edition',
+  },
+])
+
+const observation = (observationId, sourceId, pdfPage, printedPage, heading, claimPacketIds, observedScope) => ({
+  observationId,
+  sourceId,
+  locator: {
+    pdfPage,
+    printedPage,
+    heading,
+    pageLocatorStatus: 'direct_visual_scan_reviewed',
+  },
+  claimPacketIds,
+  observedScope,
+  evidenceLayers: {
+    directObservation: 'visible page heading and adjacent prose reviewed from the PDF render',
+    inheritedEvidence: 'not_used',
+    inference: 'heading and nearby prose are a candidate locator for the linked packet; repository coefficients and semantic claim scope are not inferred from this observation',
+    unresolved: [
+      'source edition and transmission history are not established',
+      'independent alternate witness is not supplied',
+      'full claim-specific rule scope and conflict review are not complete',
+    ],
+  },
+  admission: {
+    status: 'local_observation_admitted_with_limits',
+    canonicalTranscription: false,
+    claimVerification: 'not_promoted',
+    independentAuthority: 'not_established',
+    allowedUse: 'locator_candidate_only',
+  },
+})
+
+export const SAJU_LOCAL_SOURCE_OBSERVATIONS = Object.freeze([
+  observation('ziping-p2-stems-branches', 'saju-source-ziping-zhenquan', 2, '2', '一、论十干十二支', ['saju-source-packet-core-element-distribution-v0', 'saju-source-packet-core-four-pillars-v0'], 'visible discussion of yin-yang, five elements, heavenly stems, and earthly branches'),
+  observation('ziping-p5-branch-relations', 'saju-source-ziping-zhenquan', 5, '5', '七、论刑冲会合解法', ['saju-source-packet-rule-branch-relations-v0'], 'visible discussion of 刑、冲、会、合 and examples'),
+  observation('ziping-p6-yongshin', 'saju-source-ziping-zhenquan', 6, '6', '八、论用神', ['saju-source-packet-rule-yongshin-v0'], 'visible discussion of 用神 and its relationship to month command and the four pillars'),
+  observation('ziping-p26-miscellaneous-structures', 'saju-source-ziping-zhenquan', 26, '26', '四十七、论杂格', ['saju-source-packet-rule-gyeokguk-v0'], 'visible discussion of miscellaneous structures and selection conditions'),
+  observation('ditian-p2-through-heaven', 'saju-source-ditian-sui', 2, '2', '通天论', ['saju-source-packet-core-element-distribution-v0', 'saju-source-packet-core-four-pillars-v0'], 'visible discussion of five phases, day stem, and the heaven/earth/human element framing'),
+  observation('ditian-p3-yang-yin-and-qi', 'saju-source-ditian-sui', 3, '3', '五阳皆阳内为最 / 五阴皆阴癸为至', ['saju-source-packet-core-four-pillars-v0', 'saju-source-packet-rule-strength-v0'], 'visible polarity and qi/勢 discussion for stems'),
+  observation('ditian-p4-wood-season', 'saju-source-ditian-sui', 4, '4', '甲木', ['saju-source-packet-rule-strength-v0', 'saju-source-packet-rule-yongshin-v0'], 'visible day-stem seasonal and support discussion under 甲木'),
+  observation('ditian-p5-fire-season', 'saju-source-ditian-sui', 5, '5', '丙火 / 丁火', ['saju-source-packet-rule-strength-v0', 'saju-source-packet-rule-yongshin-v0'], 'visible day-stem seasonal discussion under 丙火 and 丁火'),
+  observation('ditian-p6-earth-season', 'saju-source-ditian-sui', 6, '6', '戊土 / 己土', ['saju-source-packet-rule-strength-v0', 'saju-source-packet-rule-yongshin-v0'], 'visible day-stem seasonal discussion under 戊土 and 己土'),
+  observation('yuanhai-p2-ten-stems', 'saju-source-yuanhai-ziping', 2, '2', '基础 / 五干属阳，喜合', ['saju-source-packet-core-ten-god-distribution-v0'], 'visible stem-polarity and ten-god example lines'),
+  observation('yuanhai-p4-hidden-stems', 'saju-source-yuanhai-ziping', 4, '4', '论天干地支暗藏总诀', ['saju-source-packet-core-element-distribution-v0', 'saju-source-packet-core-ten-god-distribution-v0'], 'visible hidden-stem summary and monthly branch content'),
+  observation('yuanhai-p6-day-as-host', 'saju-source-yuanhai-ziping', 6, '6', '论日为主', ['saju-source-packet-core-four-pillars-v0', 'saju-source-packet-rule-strength-v0'], 'visible day-as-host and month/day/hour relation discussion'),
+  observation('yuanhai-p7-month-command', 'saju-source-yuanhai-ziping', 7, '7', '论月令', ['saju-source-packet-core-four-pillars-v0', 'saju-source-packet-rule-yongshin-v0'], 'visible month-command and support discussion'),
+  observation('yuanhai-p8-year-fortune', 'saju-source-yuanhai-ziping', 8, '8', '论太岁吉凶', ['saju-source-packet-core-four-pillars-v0'], 'visible year-position and fortune discussion; not treated as a complete timing rule'),
+  observation('qiongtong-p2-five-phases', 'saju-source-qiongtong-baojian', 2, '2', '五行总论', ['saju-source-packet-core-element-distribution-v0', 'saju-source-packet-rule-strength-v0'], 'visible five-phase generation/control and seasonal-use framing'),
+  observation('qiongtong-p3-stem-section', 'saju-source-qiongtong-baojian', 3, '3', '十干分论 / 论木', ['saju-source-packet-core-element-distribution-v0', 'saju-source-packet-rule-strength-v0'], 'visible ten-stem and seasonal 木 discussion'),
+  observation('qiongtong-p4-wood-months', 'saju-source-qiongtong-baojian', 4, '4', '论甲木 / 三春甲木', ['saju-source-packet-rule-strength-v0', 'saju-source-packet-rule-yongshin-v0'], 'visible month-specific 甲木 support and 用神-like selection discussion'),
+  observation('qiongtong-p7-summer-wood', 'saju-source-qiongtong-baojian', 7, '7', '三夏甲木', ['saju-source-packet-rule-strength-v0', 'saju-source-packet-rule-yongshin-v0'], 'visible seasonal 甲木 and 用神 discussion'),
+  observation('sanming-p4-generation', 'saju-source-sanming-tonghui', 4, '4', '论五行生成', ['saju-source-packet-core-element-distribution-v0'], 'visible five-phase generation ordering and numerical presentation'),
+  observation('sanming-p5-control', 'saju-source-sanming-tonghui', 5, '5', '论五行生克', ['saju-source-packet-core-element-distribution-v0'], 'visible five-phase generation/control and directional presentation'),
+  observation('sanming-p6-stems-branches', 'saju-source-sanming-tonghui', 6, '6', '论支干源流', ['saju-source-packet-core-four-pillars-v0', 'saju-source-packet-core-element-distribution-v0'], 'visible stems/branches origin and calendrical framing'),
+])
+
+export const SAJU_LOCAL_SOURCE_ADMISSION_BOUNDARY = Object.freeze({
+  sourceIdentity: 'local_file_bytes_verified_edition_unresolved',
+  directObservation: 'admitted_with_limits',
+  inheritedEvidence: 'not_used_as_direct_observation',
+  inference: 'packet_locator_candidate_only',
+  claimVerification: 'not_promoted',
+  independentAuthority: 'not_established',
+  readiness: 'blocked_unchanged',
+  activation: 'blocked_unchanged',
+})

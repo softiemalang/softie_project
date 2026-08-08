@@ -1,0 +1,7 @@
+{
+  "artifactByteSha256": "d44bc228515da7bc492472b31e0faf53d7a54721f26c0e9643312d9182f6c5e3",
+  "artifactPath": "artifacts/saju-local-source-corpus-observation-v1/complete.json",
+  "byteLength": 44661,
+  "hashScope": "exact UTF-8 bytes of complete.json including final LF",
+  "schemaVersion": "saju-local-source-corpus-observation-v1-integrity-v1"
+}

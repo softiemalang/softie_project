@@ -173,6 +173,29 @@ function formatScope(calculationResult = {}) {
   ].join('\n')
 }
 
+export function formatEvidenceBoundary(boundary = {}) {
+  const source = boundary.sourceEvidence || {}
+  const calculation = boundary.calculation || {}
+  const relations = boundary.deterministicRelations || {}
+  const interpretation = boundary.interpretation || {}
+  return [
+    '#### Evidence boundary',
+    `- 계산 사실: ${calculation.status || 'not_available'}`,
+    `- source/provenance: ${source.status || 'not_available'} · 독립 권위 ${source.independentAuthority || '미상'} · claim 검증 ${source.claimVerification || '미상'}`,
+    `- deterministic relation: ${relations.status || 'not_available'} · semantic equivalence ${relations.semanticEquivalence || '미상'}`,
+    `- 해석: ${interpretation.status || '미상'} · 개인 의미 ${interpretation.personalMeaning || '미상'} · 사용자 맥락 ${interpretation.userContext || '미상'}`,
+    `- 논리적 참조: ${[...(calculation.refs || []), ...(relations.refs || [])].join(' / ') || '없음'}`,
+    `- 경계 사유: ${source.reason || '별도 사유 없음'}`,
+  ].join('\n')
+}
+
+export function formatEvidenceBoundarySummary(boundary = {}) {
+  const source = boundary.sourceEvidence || {}
+  const calculation = boundary.calculation || {}
+  const interpretation = boundary.interpretation || {}
+  return `- 근거 경계: 계산 ${calculation.status || 'not_available'} / source\/provenance ${source.status || 'not_available'} / 독립 권위 ${source.independentAuthority || '미상'} / 해석 ${interpretation.status || '미상'} / 개인 의미 ${interpretation.personalMeaning || '미상'}`
+}
+
 export function formatSajuFull(system = {}) {
   const calculationResult = system.calculationResult || {}
   const raw = calculationResult.raw || {}
@@ -191,6 +214,7 @@ export function formatSajuFull(system = {}) {
       '- 지장간: 후보별 상이함 (아래 후보 비교 항목 참조)',
       '- 천간 관계: 후보 확인 필요 (단일 확정 관계 없음)',
       '- 지지 관계: 후보 확인 필요 (단일 확정 관계 없음)',
+      formatEvidenceBoundary(system.evidenceBoundary),
       '',
       '#### 후보·불확실성',
       formatCandidates(raw, context),
@@ -212,6 +236,7 @@ export function formatSajuFull(system = {}) {
     '### 사주 · 실제 계산 근거',
     `- 상태: ${system.status || 'available'} / 검증 ${system.verificationStatus || '미상'} / 신뢰도 ${system.confidence || '미상'}`,
     `- RuleSet/엔진: ${calculationResult.engine?.profile?.profileVersion || calculationResult.engine?.sourceEngine || '현재 사주 엔진 프로필'} / 운 흐름 ${raw.timing?.ruleVersion || '버전 미상'}`,
+    formatEvidenceBoundary(system.evidenceBoundary),
     `- 원국: ${formatSajuPillars(raw, context)}`,
     `- 일간: ${raw.dayMaster?.stem || context.candidateSetConsensus?.factual?.dayMaster || '후보 확인 필요'}`,
     formatMap('오행 표면 분포', raw.elements?.counts),
@@ -274,6 +299,7 @@ export function formatZiweiFull(system = {}) {
     return [
       '### 자미두수 · 사용 불가',
       `- 상태: ${system.status || 'unavailable'} / 검증 ${system.verificationStatus || '미상'}`,
+      formatEvidenceBoundary(system.evidenceBoundary),
       `- 사유: ${(system.warnings || []).join(' / ') || '계산 자료 없음'}`,
     ].join('\n')
   }
@@ -286,6 +312,7 @@ export function formatZiweiFull(system = {}) {
     '### 자미두수 · 고정 RuleSet 기반 실험적 계산',
     `- 상태: ${system.status} / 검증 ${system.verificationStatus} / 신뢰도 ${system.confidence} (독립 외부 명반 대조 전)`,
     `- RuleSet: ${calculation.input?.ruleSet?.profileVersion || 'ziwei-fixed-ruleset-experimental-v1'} / ${compactJson(calculation.calculationMeta?.ruleSetVersions || {})}`,
+    formatEvidenceBoundary(system.evidenceBoundary),
     `- 음력 파생 입력: ${lunar.lunarYear || calculation.input?.calendarBasis?.lunarYear || '미상'}년 ${lunar.lunarMonth || calculation.input?.lunarMonth || '미상'}월 ${lunar.lunarDay || calculation.input?.calendarBasis?.lunarDay || '미상'}일${lunar.isLeapMonth ? ' 윤달' : ''}`,
     `- 연간·연지·시지: ${calculation.input?.birthYearStem || '미상'}${calculation.input?.birthYearBranch || '미상'} / ${calculation.input?.hourBranch || '미상'}시`,
     `- 명궁·신궁: ${chart.mingGong?.branch || '미상'}宮 / ${chart.shenGong?.branch || '미상'}宮`,
@@ -333,6 +360,7 @@ export function formatTopicEvidence({ result, unifiedContext, topic = 'general' 
 
   const sections = [
     `### 사주 · ${TOPIC_LABELS[topic] || TOPIC_LABELS.general} Feature`,
+    formatEvidenceBoundarySummary(sajuSystem.evidenceBoundary),
     sajuFeatureText,
   ]
 
@@ -383,6 +411,7 @@ export function formatTopicEvidence({ result, unifiedContext, topic = 'general' 
 
   sections.push(
     `### 자미두수 · ${TOPIC_LABELS[topic] || TOPIC_LABELS.general} Palace Context`,
+    formatEvidenceBoundarySummary(ziweiSystem.evidenceBoundary),
     formatZiweiTopic(ziweiSystem, topic),
   )
   return sections.join('\n')

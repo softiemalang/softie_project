@@ -10,6 +10,7 @@ import {
   TOPIC_LABELS,
   formatSajuFull,
   formatSajuPillars,
+  formatEvidenceBoundarySummary,
   formatTopicEvidence,
   formatZiweiFull,
 } from './handoffFormatters.js'
@@ -132,7 +133,10 @@ function ziweiQuickFacts(unifiedContext) {
 
 function astrologyStatus(unifiedContext) {
   const system = unifiedContext.systems?.astrology || {}
-  return `- 서양 점성학: ${system.status || 'simulation_blocked'} · 검증된 천문력 Adapter 미연결로 계산값 미포함`
+  return [
+    `- 서양 점성학: ${system.status || 'simulation_blocked'} · 검증된 천문력 Adapter 미연결로 계산값 미포함`,
+    formatEvidenceBoundarySummary(system.evidenceBoundary),
+  ].join('\n')
 }
 
 export function buildChatHandoffPackage(configOrUnified = {}, legacyQuestion = '', legacyTopic = 'general') {
@@ -209,7 +213,9 @@ export function buildChatHandoffPackage(configOrUnified = {}, legacyQuestion = '
     `- 질문: "${question}"`,
     `- 주제: ${topicLabel}`,
     sajuQuickFacts(unifiedContext, result),
+    formatEvidenceBoundarySummary(sajuSystem.evidenceBoundary),
     ziweiQuickFacts(unifiedContext),
+    formatEvidenceBoundarySummary(ziweiSystem.evidenceBoundary),
     astrologyStatus(unifiedContext),
     '- 요청: 제공된 값과 상태만 사용하고 후보·Experimental·미지원 경계를 유지해 대화를 시작해주세요.',
   ].join('\n')
@@ -233,7 +239,9 @@ export function buildChatHandoffPackage(configOrUnified = {}, legacyQuestion = '
     `- 질문 요약: ${PRIVACY_QUESTION_SUMMARY[topicCategory] || PRIVACY_QUESTION_SUMMARY.general}`,
     '- 이름·정확한 생년월일시·출생지·내부 식별자는 포함하지 않음',
     sajuQuickFacts(unifiedContext, result),
+    formatEvidenceBoundarySummary(sajuSystem.evidenceBoundary),
     ziweiQuickFacts(unifiedContext),
+    formatEvidenceBoundarySummary(ziweiSystem.evidenceBoundary),
     astrologyStatus(unifiedContext),
     '- 요청: 제공된 익명 계산 근거만 사용하고, 개인정보를 추측하거나 요청하지 말아주세요.',
   ].join('\n')

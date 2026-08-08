@@ -1,0 +1,1041 @@
+{
+  "admissionReview": {
+    "directObservation": "admitted_with_limits",
+    "inference": "packet_locator_candidate_only",
+    "inheritedEvidence": "not_used_as_direct_observation",
+    "unresolved": [
+      "all five local files have verified current bytes but edition identity remains unresolved",
+      "modern/web-derived exports and source warnings prevent treating the files as independent primary authority",
+      "no claim-level source sentence has been promoted to repository rule authority",
+      "no cross-edition conflict winner or independent oracle was selected"
+    ]
+  },
+  "artifactIdentity": {
+    "artifactId": "saju-local-source-corpus-observation-v1",
+    "artifactPayloadSha256": "d5f2f259dd897daf3c4cf22ca988cc855e14ff6ed25d10c0c9c2b043cd4ab53f",
+    "contractVersion": "artifact-identity-v1",
+    "generation": {
+      "baseHead": "3adf0dd3c404c9b444436fa6c429725d861c748e",
+      "baseHeadSource": "git rev-parse HEAD at materialization",
+      "includedCommit": null,
+      "includedCommitSource": "unknown_at_generation; artifact may be included by a later commit"
+    },
+    "inputs": [
+      {
+        "byteSha256": "ea9d5d25369d7c50eea9d8a9185001a9ec924ee67314cec1198869331a41f0c7",
+        "path": "artifacts/saju-v1-local-frontier-v0/complete.json"
+      },
+      {
+        "byteSha256": "3322d7b2f6e7aadb9a81fa225650e042074c916eb1329d3a75afd7a13e6c7200",
+        "path": "scripts/materialize-saju-local-source-corpus-observation-v1.mjs"
+      },
+      {
+        "byteSha256": "3375b3cff9f88dd8fc6b22cab9a8025136cdf6089ae650e50690793635b215cd",
+        "path": "src/interpretationPrep/sajuLocalSourceCorpusEvidence.js"
+      }
+    ],
+    "materializer": {
+      "path": "scripts/materialize-saju-local-source-corpus-observation-v1.mjs",
+      "version": "1.0.0"
+    }
+  },
+  "basisHead": "3adf0dd3c404c9b444436fa6c429725d861c748e",
+  "canonicalBaseline": {
+    "byteSha256": "ea9d5d25369d7c50eea9d8a9185001a9ec924ee67314cec1198869331a41f0c7",
+    "claimCount": 43,
+    "classicalVerification": "not_established_unchanged",
+    "historicalArtifactRewritten": false,
+    "occurrenceCount": 126,
+    "path": "artifacts/saju-v1-local-frontier-v0/complete.json"
+  },
+  "claimPacketCoverage": [
+    {
+      "claimIds": [
+        "saju.natal.unknown-birth-time"
+      ],
+      "claimVerification": "not_promoted",
+      "observationIds": [],
+      "observedLocatorCount": 0,
+      "packetId": "saju-source-packet-core-candidate-boundary-v0",
+      "sourceIdentityStatus": "local_file_bytes_verified_edition_unresolved",
+      "status": "not_observed_in_this_milestone",
+      "subject": "unknown birth time, omitted hour pillar, and preserved candidate outputs"
+    },
+    {
+      "claimIds": [
+        "saju.natal.element-absence",
+        "saju.natal.element-emphasis.목",
+        "saju.natal.element-emphasis.수",
+        "saju.natal.element-emphasis.토",
+        "saju.natal.element-emphasis.화"
+      ],
+      "claimVerification": "not_promoted",
+      "observationIds": [
+        "ditian-p2-through-heaven",
+        "qiongtong-p2-five-phases",
+        "qiongtong-p3-stem-section",
+        "sanming-p4-generation",
+        "sanming-p5-control",
+        "sanming-p6-stems-branches",
+        "yuanhai-p4-hidden-stems",
+        "ziping-p2-stems-branches"
+      ],
+      "observedLocatorCount": 8,
+      "packetId": "saju-source-packet-core-element-distribution-v0",
+      "sourceIdentityStatus": "local_file_bytes_verified_edition_unresolved",
+      "status": "locator_candidates_observed_with_limits",
+      "subject": "surface five-element attribution, absence, and repeated-element counts"
+    },
+    {
+      "claimIds": [
+        "saju.natal.day-master"
+      ],
+      "claimVerification": "not_promoted",
+      "observationIds": [
+        "ditian-p2-through-heaven",
+        "ditian-p3-yang-yin-and-qi",
+        "sanming-p6-stems-branches",
+        "yuanhai-p6-day-as-host",
+        "yuanhai-p7-month-command",
+        "yuanhai-p8-year-fortune",
+        "ziping-p2-stems-branches"
+      ],
+      "observedLocatorCount": 7,
+      "packetId": "saju-source-packet-core-four-pillars-v0",
+      "sourceIdentityStatus": "local_file_bytes_verified_edition_unresolved",
+      "status": "locator_candidates_observed_with_limits",
+      "subject": "year/month/day/hour pillar derivation and day-master identity"
+    },
+    {
+      "claimIds": [
+        "saju.natal.ten-god-repeat.겁재",
+        "saju.natal.ten-god-repeat.비견",
+        "saju.natal.ten-god-repeat.식신",
+        "saju.natal.ten-god-repeat.정관",
+        "saju.natal.ten-god-repeat.정재",
+        "saju.natal.ten-god-repeat.편관",
+        "saju.natal.ten-god-repeat.편재"
+      ],
+      "claimVerification": "not_promoted",
+      "observationIds": [
+        "yuanhai-p2-ten-stems",
+        "yuanhai-p4-hidden-stems"
+      ],
+      "observedLocatorCount": 2,
+      "packetId": "saju-source-packet-core-ten-god-distribution-v0",
+      "sourceIdentityStatus": "local_file_bytes_verified_edition_unresolved",
+      "status": "locator_candidates_observed_with_limits",
+      "subject": "ten-god mapping, visible counts, and hidden-stem ten-god counts"
+    },
+    {
+      "claimIds": [
+        "saju.natal.branch-relation.day-hour-육합",
+        "saju.natal.branch-relation.day-hour-충",
+        "saju.natal.branch-relation.day-hour-파",
+        "saju.natal.branch-relation.day-hour-형",
+        "saju.natal.branch-relation.half-trine-목-year-day",
+        "saju.natal.branch-relation.half-trine-수-day-hour",
+        "saju.natal.branch-relation.half-trine-수-month-hour",
+        "saju.natal.branch-relation.month-day-육합",
+        "saju.natal.branch-relation.month-day-충",
+        "saju.natal.branch-relation.month-day-파",
+        "saju.natal.branch-relation.month-day-형",
+        "saju.natal.branch-relation.month-hour-육합",
+        "saju.natal.branch-relation.month-hour-충",
+        "saju.natal.branch-relation.month-hour-형",
+        "saju.natal.branch-relation.year-day-육합",
+        "saju.natal.branch-relation.year-day-충",
+        "saju.natal.branch-relation.year-day-파",
+        "saju.natal.branch-relation.year-hour-육합",
+        "saju.natal.branch-relation.year-hour-충",
+        "saju.natal.branch-relation.year-hour-파",
+        "saju.natal.branch-relation.year-hour-형",
+        "saju.natal.branch-relation.year-month-육합",
+        "saju.natal.branch-relation.year-month-파",
+        "saju.natal.branch-relation.year-month-형"
+      ],
+      "claimVerification": "not_promoted",
+      "observationIds": [
+        "ziping-p5-branch-relations"
+      ],
+      "observedLocatorCount": 1,
+      "packetId": "saju-source-packet-rule-branch-relations-v0",
+      "sourceIdentityStatus": "local_file_bytes_verified_edition_unresolved",
+      "status": "locator_candidates_observed_with_limits",
+      "subject": "六合, 沖, 破, 刑, 半合, and 三合 relation lookup"
+    },
+    {
+      "claimIds": [
+        "saju.natal.experimental.gyeokguk"
+      ],
+      "claimVerification": "not_promoted",
+      "observationIds": [
+        "ziping-p26-miscellaneous-structures"
+      ],
+      "observedLocatorCount": 1,
+      "packetId": "saju-source-packet-rule-gyeokguk-v0",
+      "sourceIdentityStatus": "local_file_bytes_verified_edition_unresolved",
+      "status": "locator_candidates_observed_with_limits",
+      "subject": "month-branch hidden-stem projection and 정격/격국 inference"
+    },
+    {
+      "claimIds": [
+        "saju.natal.experimental.shinsal-summary"
+      ],
+      "claimVerification": "not_promoted",
+      "observationIds": [],
+      "observedLocatorCount": 0,
+      "packetId": "saju-source-packet-rule-shinsal-v0",
+      "sourceIdentityStatus": "local_file_bytes_verified_edition_unresolved",
+      "status": "not_observed_in_this_milestone",
+      "subject": "천을귀인, 화개살, 공망, 양인살 profile mapping"
+    },
+    {
+      "claimIds": [
+        "saju.natal.experimental.strength-quantitative"
+      ],
+      "claimVerification": "not_promoted",
+      "observationIds": [
+        "ditian-p3-yang-yin-and-qi",
+        "ditian-p4-wood-season",
+        "ditian-p5-fire-season",
+        "ditian-p6-earth-season",
+        "qiongtong-p2-five-phases",
+        "qiongtong-p3-stem-section",
+        "qiongtong-p4-wood-months",
+        "qiongtong-p7-summer-wood",
+        "yuanhai-p6-day-as-host"
+      ],
+      "observedLocatorCount": 9,
+      "packetId": "saju-source-packet-rule-strength-v0",
+      "sourceIdentityStatus": "local_file_bytes_verified_edition_unresolved",
+      "status": "locator_candidates_observed_with_limits",
+      "subject": "day-master strength and surface-support heuristic"
+    },
+    {
+      "claimIds": [
+        "saju.timing.active-da-yun"
+      ],
+      "claimVerification": "not_promoted",
+      "observationIds": [],
+      "observedLocatorCount": 0,
+      "packetId": "saju-source-packet-rule-timing-v0",
+      "sourceIdentityStatus": "local_file_bytes_verified_edition_unresolved",
+      "status": "not_observed_in_this_milestone",
+      "subject": "대운 direction/start age and 세운·월운·일진/12운성 derivation"
+    },
+    {
+      "claimIds": [
+        "saju.natal.experimental.yongshin"
+      ],
+      "claimVerification": "not_promoted",
+      "observationIds": [
+        "ditian-p4-wood-season",
+        "ditian-p5-fire-season",
+        "ditian-p6-earth-season",
+        "qiongtong-p4-wood-months",
+        "qiongtong-p7-summer-wood",
+        "yuanhai-p7-month-command",
+        "ziping-p6-yongshin"
+      ],
+      "observedLocatorCount": 7,
+      "packetId": "saju-source-packet-rule-yongshin-v0",
+      "sourceIdentityStatus": "local_file_bytes_verified_edition_unresolved",
+      "status": "locator_candidates_observed_with_limits",
+      "subject": "억부/조후 candidate yongshin and heeshin selection"
+    }
+  ],
+  "contentSha256": "5737be718061a0454da2e67effeba04ad509d6c963e92b131ad682838c1e12ca",
+  "corpus": {
+    "documents": [
+      {
+        "byteLength": 580320,
+        "byteObservation": "actual_local_file_bytes_sha256",
+        "byteSha256": "449336b5e35aa6811b0462093d0175c45a0add44065bf2d3845cff75981db692",
+        "corpusRoot": "/Users/softie/Documents/malang_lab/documents",
+        "editionIdentity": "unresolved_edition",
+        "expectedByteSha256": "449336b5e35aa6811b0462093d0175c45a0add44065bf2d3845cff75981db692",
+        "fileName": "子平真诠-沈孝瞻原著.pdf",
+        "observedAttribution": "沈孝瞻原著（封面/标题页标识）",
+        "observedTitle": "《子平真诠》",
+        "pageCount": 27,
+        "pageCountObserved": 27,
+        "sourceForm": "modern_typeset_local_export",
+        "sourceId": "saju-source-ziping-zhenquan"
+      },
+      {
+        "byteLength": 8694949,
+        "byteObservation": "actual_local_file_bytes_sha256",
+        "byteSha256": "6285805c91b79f1b5bccdfce1cdab1d7ec684731160b4191a25e8f1d23c229dd",
+        "corpusRoot": "/Users/softie/Documents/malang_lab/documents",
+        "editionIdentity": "unresolved_edition",
+        "expectedByteSha256": "6285805c91b79f1b5bccdfce1cdab1d7ec684731160b4191a25e8f1d23c229dd",
+        "fileName": "滴天髓.pdf",
+        "observedAttribution": "刘基（导出页标识）",
+        "observedTitle": "《滴天髓》",
+        "pageCount": 158,
+        "pageCountObserved": 158,
+        "sourceForm": "derived_typeset_export_with_linked_attribution",
+        "sourceId": "saju-source-ditian-sui"
+      },
+      {
+        "byteLength": 2710282,
+        "byteObservation": "actual_local_file_bytes_sha256",
+        "byteSha256": "c6225b78d9d49282c5699b63315018a1e17ebf091c50ce4feb3dab465ec25a12",
+        "corpusRoot": "/Users/softie/Documents/malang_lab/documents",
+        "editionIdentity": "unresolved_edition",
+        "expectedByteSha256": "c6225b78d9d49282c5699b63315018a1e17ebf091c50ce4feb3dab465ec25a12",
+        "fileName": "淵海子平.pdf",
+        "observedAttribution": "杨淙（导出页标识）",
+        "observedTitle": "《淵海子平》",
+        "pageCount": 202,
+        "pageCountObserved": 202,
+        "sourceForm": "web_text_export_with_explicit_source_warning",
+        "sourceId": "saju-source-yuanhai-ziping"
+      },
+      {
+        "byteLength": 1547911,
+        "byteObservation": "actual_local_file_bytes_sha256",
+        "byteSha256": "36d54cdc995d203fdceafcb52b2a0d4f57093ab1765c532db5418b46a96c4b19",
+        "corpusRoot": "/Users/softie/Documents/malang_lab/documents",
+        "editionIdentity": "unresolved_edition",
+        "expectedByteSha256": "36d54cdc995d203fdceafcb52b2a0d4f57093ab1765c532db5418b46a96c4b19",
+        "fileName": "穷通宝鉴.pdf",
+        "observedAttribution": null,
+        "observedTitle": "《穷通宝鉴》",
+        "pageCount": 92,
+        "pageCountObserved": 92,
+        "sourceForm": "modern_typeset_local_export",
+        "sourceId": "saju-source-qiongtong-baojian"
+      },
+      {
+        "byteLength": 7601079,
+        "byteObservation": "actual_local_file_bytes_sha256",
+        "byteSha256": "f09bce7c6dbe1e222746ad8c97f49d132ed4e8da6d3c1d0399b0824b3794593f",
+        "corpusRoot": "/Users/softie/Documents/malang_lab/documents",
+        "editionIdentity": "unresolved_edition",
+        "expectedByteSha256": "f09bce7c6dbe1e222746ad8c97f49d132ed4e8da6d3c1d0399b0824b3794593f",
+        "fileName": "三命通會.pdf",
+        "observedAttribution": "万民英（导出页标识；书前说明仍需独立书目核验）",
+        "observedTitle": "《三命通會》",
+        "pageCount": 370,
+        "pageCountObserved": 370,
+        "sourceForm": "web_text_export_with_public_domain_notice",
+        "sourceId": "saju-source-sanming-tonghui"
+      }
+    ],
+    "inventoryScope": "five_prioritized_saju_texts_named_by_the_work_order",
+    "root": "/Users/softie/Documents/malang_lab/documents"
+  },
+  "observationMethod": {
+    "directVisualReview": true,
+    "ocrCanonical": false,
+    "renderProvenance": {
+      "layoutAndGlyphUncertainty": "headings and nearby prose were visually legible; full-body transcription, table-cell boundaries, and edition-level glyph authority were not admitted",
+      "outputFormat": "jpeg",
+      "renderBytesRetained": false,
+      "renderHash": "not_retained; reproducible from source byte hash and render command",
+      "renderer": "pdftoppm",
+      "rendererVersion": "26.05.0",
+      "scaleTo": 1400
+    },
+    "renderedPageLocator": "PDF page and printed page are retained separately",
+    "scanFirst": true,
+    "sourceEvidenceAdmission": {
+      "activation": "blocked_unchanged",
+      "claimVerification": "not_promoted",
+      "directObservation": "admitted_with_limits",
+      "independentAuthority": "not_established",
+      "inference": "packet_locator_candidate_only",
+      "inheritedEvidence": "not_used_as_direct_observation",
+      "readiness": "blocked_unchanged",
+      "sourceIdentity": "local_file_bytes_verified_edition_unresolved"
+    }
+  },
+  "observations": [
+    {
+      "admission": {
+        "allowedUse": "locator_candidate_only",
+        "canonicalTranscription": false,
+        "claimVerification": "not_promoted",
+        "independentAuthority": "not_established",
+        "status": "local_observation_admitted_with_limits"
+      },
+      "claimPacketIds": [
+        "saju-source-packet-core-element-distribution-v0",
+        "saju-source-packet-core-four-pillars-v0"
+      ],
+      "evidenceLayers": {
+        "directObservation": "visible page heading and adjacent prose reviewed from the PDF render",
+        "inference": "heading and nearby prose are a candidate locator for the linked packet; repository coefficients and semantic claim scope are not inferred from this observation",
+        "inheritedEvidence": "not_used",
+        "unresolved": [
+          "source edition and transmission history are not established",
+          "independent alternate witness is not supplied",
+          "full claim-specific rule scope and conflict review are not complete"
+        ]
+      },
+      "locator": {
+        "heading": "一、论十干十二支",
+        "pageLocatorStatus": "direct_visual_scan_reviewed",
+        "pdfPage": 2,
+        "printedPage": "2"
+      },
+      "observationId": "ziping-p2-stems-branches",
+      "observedScope": "visible discussion of yin-yang, five elements, heavenly stems, and earthly branches",
+      "sourceId": "saju-source-ziping-zhenquan"
+    },
+    {
+      "admission": {
+        "allowedUse": "locator_candidate_only",
+        "canonicalTranscription": false,
+        "claimVerification": "not_promoted",
+        "independentAuthority": "not_established",
+        "status": "local_observation_admitted_with_limits"
+      },
+      "claimPacketIds": [
+        "saju-source-packet-rule-branch-relations-v0"
+      ],
+      "evidenceLayers": {
+        "directObservation": "visible page heading and adjacent prose reviewed from the PDF render",
+        "inference": "heading and nearby prose are a candidate locator for the linked packet; repository coefficients and semantic claim scope are not inferred from this observation",
+        "inheritedEvidence": "not_used",
+        "unresolved": [
+          "source edition and transmission history are not established",
+          "independent alternate witness is not supplied",
+          "full claim-specific rule scope and conflict review are not complete"
+        ]
+      },
+      "locator": {
+        "heading": "七、论刑冲会合解法",
+        "pageLocatorStatus": "direct_visual_scan_reviewed",
+        "pdfPage": 5,
+        "printedPage": "5"
+      },
+      "observationId": "ziping-p5-branch-relations",
+      "observedScope": "visible discussion of 刑、冲、会、合 and examples",
+      "sourceId": "saju-source-ziping-zhenquan"
+    },
+    {
+      "admission": {
+        "allowedUse": "locator_candidate_only",
+        "canonicalTranscription": false,
+        "claimVerification": "not_promoted",
+        "independentAuthority": "not_established",
+        "status": "local_observation_admitted_with_limits"
+      },
+      "claimPacketIds": [
+        "saju-source-packet-rule-yongshin-v0"
+      ],
+      "evidenceLayers": {
+        "directObservation": "visible page heading and adjacent prose reviewed from the PDF render",
+        "inference": "heading and nearby prose are a candidate locator for the linked packet; repository coefficients and semantic claim scope are not inferred from this observation",
+        "inheritedEvidence": "not_used",
+        "unresolved": [
+          "source edition and transmission history are not established",
+          "independent alternate witness is not supplied",
+          "full claim-specific rule scope and conflict review are not complete"
+        ]
+      },
+      "locator": {
+        "heading": "八、论用神",
+        "pageLocatorStatus": "direct_visual_scan_reviewed",
+        "pdfPage": 6,
+        "printedPage": "6"
+      },
+      "observationId": "ziping-p6-yongshin",
+      "observedScope": "visible discussion of 用神 and its relationship to month command and the four pillars",
+      "sourceId": "saju-source-ziping-zhenquan"
+    },
+    {
+      "admission": {
+        "allowedUse": "locator_candidate_only",
+        "canonicalTranscription": false,
+        "claimVerification": "not_promoted",
+        "independentAuthority": "not_established",
+        "status": "local_observation_admitted_with_limits"
+      },
+      "claimPacketIds": [
+        "saju-source-packet-rule-gyeokguk-v0"
+      ],
+      "evidenceLayers": {
+        "directObservation": "visible page heading and adjacent prose reviewed from the PDF render",
+        "inference": "heading and nearby prose are a candidate locator for the linked packet; repository coefficients and semantic claim scope are not inferred from this observation",
+        "inheritedEvidence": "not_used",
+        "unresolved": [
+          "source edition and transmission history are not established",
+          "independent alternate witness is not supplied",
+          "full claim-specific rule scope and conflict review are not complete"
+        ]
+      },
+      "locator": {
+        "heading": "四十七、论杂格",
+        "pageLocatorStatus": "direct_visual_scan_reviewed",
+        "pdfPage": 26,
+        "printedPage": "26"
+      },
+      "observationId": "ziping-p26-miscellaneous-structures",
+      "observedScope": "visible discussion of miscellaneous structures and selection conditions",
+      "sourceId": "saju-source-ziping-zhenquan"
+    },
+    {
+      "admission": {
+        "allowedUse": "locator_candidate_only",
+        "canonicalTranscription": false,
+        "claimVerification": "not_promoted",
+        "independentAuthority": "not_established",
+        "status": "local_observation_admitted_with_limits"
+      },
+      "claimPacketIds": [
+        "saju-source-packet-core-element-distribution-v0",
+        "saju-source-packet-core-four-pillars-v0"
+      ],
+      "evidenceLayers": {
+        "directObservation": "visible page heading and adjacent prose reviewed from the PDF render",
+        "inference": "heading and nearby prose are a candidate locator for the linked packet; repository coefficients and semantic claim scope are not inferred from this observation",
+        "inheritedEvidence": "not_used",
+        "unresolved": [
+          "source edition and transmission history are not established",
+          "independent alternate witness is not supplied",
+          "full claim-specific rule scope and conflict review are not complete"
+        ]
+      },
+      "locator": {
+        "heading": "通天论",
+        "pageLocatorStatus": "direct_visual_scan_reviewed",
+        "pdfPage": 2,
+        "printedPage": "2"
+      },
+      "observationId": "ditian-p2-through-heaven",
+      "observedScope": "visible discussion of five phases, day stem, and the heaven/earth/human element framing",
+      "sourceId": "saju-source-ditian-sui"
+    },
+    {
+      "admission": {
+        "allowedUse": "locator_candidate_only",
+        "canonicalTranscription": false,
+        "claimVerification": "not_promoted",
+        "independentAuthority": "not_established",
+        "status": "local_observation_admitted_with_limits"
+      },
+      "claimPacketIds": [
+        "saju-source-packet-core-four-pillars-v0",
+        "saju-source-packet-rule-strength-v0"
+      ],
+      "evidenceLayers": {
+        "directObservation": "visible page heading and adjacent prose reviewed from the PDF render",
+        "inference": "heading and nearby prose are a candidate locator for the linked packet; repository coefficients and semantic claim scope are not inferred from this observation",
+        "inheritedEvidence": "not_used",
+        "unresolved": [
+          "source edition and transmission history are not established",
+          "independent alternate witness is not supplied",
+          "full claim-specific rule scope and conflict review are not complete"
+        ]
+      },
+      "locator": {
+        "heading": "五阳皆阳内为最 / 五阴皆阴癸为至",
+        "pageLocatorStatus": "direct_visual_scan_reviewed",
+        "pdfPage": 3,
+        "printedPage": "3"
+      },
+      "observationId": "ditian-p3-yang-yin-and-qi",
+      "observedScope": "visible polarity and qi/勢 discussion for stems",
+      "sourceId": "saju-source-ditian-sui"
+    },
+    {
+      "admission": {
+        "allowedUse": "locator_candidate_only",
+        "canonicalTranscription": false,
+        "claimVerification": "not_promoted",
+        "independentAuthority": "not_established",
+        "status": "local_observation_admitted_with_limits"
+      },
+      "claimPacketIds": [
+        "saju-source-packet-rule-strength-v0",
+        "saju-source-packet-rule-yongshin-v0"
+      ],
+      "evidenceLayers": {
+        "directObservation": "visible page heading and adjacent prose reviewed from the PDF render",
+        "inference": "heading and nearby prose are a candidate locator for the linked packet; repository coefficients and semantic claim scope are not inferred from this observation",
+        "inheritedEvidence": "not_used",
+        "unresolved": [
+          "source edition and transmission history are not established",
+          "independent alternate witness is not supplied",
+          "full claim-specific rule scope and conflict review are not complete"
+        ]
+      },
+      "locator": {
+        "heading": "甲木",
+        "pageLocatorStatus": "direct_visual_scan_reviewed",
+        "pdfPage": 4,
+        "printedPage": "4"
+      },
+      "observationId": "ditian-p4-wood-season",
+      "observedScope": "visible day-stem seasonal and support discussion under 甲木",
+      "sourceId": "saju-source-ditian-sui"
+    },
+    {
+      "admission": {
+        "allowedUse": "locator_candidate_only",
+        "canonicalTranscription": false,
+        "claimVerification": "not_promoted",
+        "independentAuthority": "not_established",
+        "status": "local_observation_admitted_with_limits"
+      },
+      "claimPacketIds": [
+        "saju-source-packet-rule-strength-v0",
+        "saju-source-packet-rule-yongshin-v0"
+      ],
+      "evidenceLayers": {
+        "directObservation": "visible page heading and adjacent prose reviewed from the PDF render",
+        "inference": "heading and nearby prose are a candidate locator for the linked packet; repository coefficients and semantic claim scope are not inferred from this observation",
+        "inheritedEvidence": "not_used",
+        "unresolved": [
+          "source edition and transmission history are not established",
+          "independent alternate witness is not supplied",
+          "full claim-specific rule scope and conflict review are not complete"
+        ]
+      },
+      "locator": {
+        "heading": "丙火 / 丁火",
+        "pageLocatorStatus": "direct_visual_scan_reviewed",
+        "pdfPage": 5,
+        "printedPage": "5"
+      },
+      "observationId": "ditian-p5-fire-season",
+      "observedScope": "visible day-stem seasonal discussion under 丙火 and 丁火",
+      "sourceId": "saju-source-ditian-sui"
+    },
+    {
+      "admission": {
+        "allowedUse": "locator_candidate_only",
+        "canonicalTranscription": false,
+        "claimVerification": "not_promoted",
+        "independentAuthority": "not_established",
+        "status": "local_observation_admitted_with_limits"
+      },
+      "claimPacketIds": [
+        "saju-source-packet-rule-strength-v0",
+        "saju-source-packet-rule-yongshin-v0"
+      ],
+      "evidenceLayers": {
+        "directObservation": "visible page heading and adjacent prose reviewed from the PDF render",
+        "inference": "heading and nearby prose are a candidate locator for the linked packet; repository coefficients and semantic claim scope are not inferred from this observation",
+        "inheritedEvidence": "not_used",
+        "unresolved": [
+          "source edition and transmission history are not established",
+          "independent alternate witness is not supplied",
+          "full claim-specific rule scope and conflict review are not complete"
+        ]
+      },
+      "locator": {
+        "heading": "戊土 / 己土",
+        "pageLocatorStatus": "direct_visual_scan_reviewed",
+        "pdfPage": 6,
+        "printedPage": "6"
+      },
+      "observationId": "ditian-p6-earth-season",
+      "observedScope": "visible day-stem seasonal discussion under 戊土 and 己土",
+      "sourceId": "saju-source-ditian-sui"
+    },
+    {
+      "admission": {
+        "allowedUse": "locator_candidate_only",
+        "canonicalTranscription": false,
+        "claimVerification": "not_promoted",
+        "independentAuthority": "not_established",
+        "status": "local_observation_admitted_with_limits"
+      },
+      "claimPacketIds": [
+        "saju-source-packet-core-ten-god-distribution-v0"
+      ],
+      "evidenceLayers": {
+        "directObservation": "visible page heading and adjacent prose reviewed from the PDF render",
+        "inference": "heading and nearby prose are a candidate locator for the linked packet; repository coefficients and semantic claim scope are not inferred from this observation",
+        "inheritedEvidence": "not_used",
+        "unresolved": [
+          "source edition and transmission history are not established",
+          "independent alternate witness is not supplied",
+          "full claim-specific rule scope and conflict review are not complete"
+        ]
+      },
+      "locator": {
+        "heading": "基础 / 五干属阳，喜合",
+        "pageLocatorStatus": "direct_visual_scan_reviewed",
+        "pdfPage": 2,
+        "printedPage": "2"
+      },
+      "observationId": "yuanhai-p2-ten-stems",
+      "observedScope": "visible stem-polarity and ten-god example lines",
+      "sourceId": "saju-source-yuanhai-ziping"
+    },
+    {
+      "admission": {
+        "allowedUse": "locator_candidate_only",
+        "canonicalTranscription": false,
+        "claimVerification": "not_promoted",
+        "independentAuthority": "not_established",
+        "status": "local_observation_admitted_with_limits"
+      },
+      "claimPacketIds": [
+        "saju-source-packet-core-element-distribution-v0",
+        "saju-source-packet-core-ten-god-distribution-v0"
+      ],
+      "evidenceLayers": {
+        "directObservation": "visible page heading and adjacent prose reviewed from the PDF render",
+        "inference": "heading and nearby prose are a candidate locator for the linked packet; repository coefficients and semantic claim scope are not inferred from this observation",
+        "inheritedEvidence": "not_used",
+        "unresolved": [
+          "source edition and transmission history are not established",
+          "independent alternate witness is not supplied",
+          "full claim-specific rule scope and conflict review are not complete"
+        ]
+      },
+      "locator": {
+        "heading": "论天干地支暗藏总诀",
+        "pageLocatorStatus": "direct_visual_scan_reviewed",
+        "pdfPage": 4,
+        "printedPage": "4"
+      },
+      "observationId": "yuanhai-p4-hidden-stems",
+      "observedScope": "visible hidden-stem summary and monthly branch content",
+      "sourceId": "saju-source-yuanhai-ziping"
+    },
+    {
+      "admission": {
+        "allowedUse": "locator_candidate_only",
+        "canonicalTranscription": false,
+        "claimVerification": "not_promoted",
+        "independentAuthority": "not_established",
+        "status": "local_observation_admitted_with_limits"
+      },
+      "claimPacketIds": [
+        "saju-source-packet-core-four-pillars-v0",
+        "saju-source-packet-rule-strength-v0"
+      ],
+      "evidenceLayers": {
+        "directObservation": "visible page heading and adjacent prose reviewed from the PDF render",
+        "inference": "heading and nearby prose are a candidate locator for the linked packet; repository coefficients and semantic claim scope are not inferred from this observation",
+        "inheritedEvidence": "not_used",
+        "unresolved": [
+          "source edition and transmission history are not established",
+          "independent alternate witness is not supplied",
+          "full claim-specific rule scope and conflict review are not complete"
+        ]
+      },
+      "locator": {
+        "heading": "论日为主",
+        "pageLocatorStatus": "direct_visual_scan_reviewed",
+        "pdfPage": 6,
+        "printedPage": "6"
+      },
+      "observationId": "yuanhai-p6-day-as-host",
+      "observedScope": "visible day-as-host and month/day/hour relation discussion",
+      "sourceId": "saju-source-yuanhai-ziping"
+    },
+    {
+      "admission": {
+        "allowedUse": "locator_candidate_only",
+        "canonicalTranscription": false,
+        "claimVerification": "not_promoted",
+        "independentAuthority": "not_established",
+        "status": "local_observation_admitted_with_limits"
+      },
+      "claimPacketIds": [
+        "saju-source-packet-core-four-pillars-v0",
+        "saju-source-packet-rule-yongshin-v0"
+      ],
+      "evidenceLayers": {
+        "directObservation": "visible page heading and adjacent prose reviewed from the PDF render",
+        "inference": "heading and nearby prose are a candidate locator for the linked packet; repository coefficients and semantic claim scope are not inferred from this observation",
+        "inheritedEvidence": "not_used",
+        "unresolved": [
+          "source edition and transmission history are not established",
+          "independent alternate witness is not supplied",
+          "full claim-specific rule scope and conflict review are not complete"
+        ]
+      },
+      "locator": {
+        "heading": "论月令",
+        "pageLocatorStatus": "direct_visual_scan_reviewed",
+        "pdfPage": 7,
+        "printedPage": "7"
+      },
+      "observationId": "yuanhai-p7-month-command",
+      "observedScope": "visible month-command and support discussion",
+      "sourceId": "saju-source-yuanhai-ziping"
+    },
+    {
+      "admission": {
+        "allowedUse": "locator_candidate_only",
+        "canonicalTranscription": false,
+        "claimVerification": "not_promoted",
+        "independentAuthority": "not_established",
+        "status": "local_observation_admitted_with_limits"
+      },
+      "claimPacketIds": [
+        "saju-source-packet-core-four-pillars-v0"
+      ],
+      "evidenceLayers": {
+        "directObservation": "visible page heading and adjacent prose reviewed from the PDF render",
+        "inference": "heading and nearby prose are a candidate locator for the linked packet; repository coefficients and semantic claim scope are not inferred from this observation",
+        "inheritedEvidence": "not_used",
+        "unresolved": [
+          "source edition and transmission history are not established",
+          "independent alternate witness is not supplied",
+          "full claim-specific rule scope and conflict review are not complete"
+        ]
+      },
+      "locator": {
+        "heading": "论太岁吉凶",
+        "pageLocatorStatus": "direct_visual_scan_reviewed",
+        "pdfPage": 8,
+        "printedPage": "8"
+      },
+      "observationId": "yuanhai-p8-year-fortune",
+      "observedScope": "visible year-position and fortune discussion; not treated as a complete timing rule",
+      "sourceId": "saju-source-yuanhai-ziping"
+    },
+    {
+      "admission": {
+        "allowedUse": "locator_candidate_only",
+        "canonicalTranscription": false,
+        "claimVerification": "not_promoted",
+        "independentAuthority": "not_established",
+        "status": "local_observation_admitted_with_limits"
+      },
+      "claimPacketIds": [
+        "saju-source-packet-core-element-distribution-v0",
+        "saju-source-packet-rule-strength-v0"
+      ],
+      "evidenceLayers": {
+        "directObservation": "visible page heading and adjacent prose reviewed from the PDF render",
+        "inference": "heading and nearby prose are a candidate locator for the linked packet; repository coefficients and semantic claim scope are not inferred from this observation",
+        "inheritedEvidence": "not_used",
+        "unresolved": [
+          "source edition and transmission history are not established",
+          "independent alternate witness is not supplied",
+          "full claim-specific rule scope and conflict review are not complete"
+        ]
+      },
+      "locator": {
+        "heading": "五行总论",
+        "pageLocatorStatus": "direct_visual_scan_reviewed",
+        "pdfPage": 2,
+        "printedPage": "2"
+      },
+      "observationId": "qiongtong-p2-five-phases",
+      "observedScope": "visible five-phase generation/control and seasonal-use framing",
+      "sourceId": "saju-source-qiongtong-baojian"
+    },
+    {
+      "admission": {
+        "allowedUse": "locator_candidate_only",
+        "canonicalTranscription": false,
+        "claimVerification": "not_promoted",
+        "independentAuthority": "not_established",
+        "status": "local_observation_admitted_with_limits"
+      },
+      "claimPacketIds": [
+        "saju-source-packet-core-element-distribution-v0",
+        "saju-source-packet-rule-strength-v0"
+      ],
+      "evidenceLayers": {
+        "directObservation": "visible page heading and adjacent prose reviewed from the PDF render",
+        "inference": "heading and nearby prose are a candidate locator for the linked packet; repository coefficients and semantic claim scope are not inferred from this observation",
+        "inheritedEvidence": "not_used",
+        "unresolved": [
+          "source edition and transmission history are not established",
+          "independent alternate witness is not supplied",
+          "full claim-specific rule scope and conflict review are not complete"
+        ]
+      },
+      "locator": {
+        "heading": "十干分论 / 论木",
+        "pageLocatorStatus": "direct_visual_scan_reviewed",
+        "pdfPage": 3,
+        "printedPage": "3"
+      },
+      "observationId": "qiongtong-p3-stem-section",
+      "observedScope": "visible ten-stem and seasonal 木 discussion",
+      "sourceId": "saju-source-qiongtong-baojian"
+    },
+    {
+      "admission": {
+        "allowedUse": "locator_candidate_only",
+        "canonicalTranscription": false,
+        "claimVerification": "not_promoted",
+        "independentAuthority": "not_established",
+        "status": "local_observation_admitted_with_limits"
+      },
+      "claimPacketIds": [
+        "saju-source-packet-rule-strength-v0",
+        "saju-source-packet-rule-yongshin-v0"
+      ],
+      "evidenceLayers": {
+        "directObservation": "visible page heading and adjacent prose reviewed from the PDF render",
+        "inference": "heading and nearby prose are a candidate locator for the linked packet; repository coefficients and semantic claim scope are not inferred from this observation",
+        "inheritedEvidence": "not_used",
+        "unresolved": [
+          "source edition and transmission history are not established",
+          "independent alternate witness is not supplied",
+          "full claim-specific rule scope and conflict review are not complete"
+        ]
+      },
+      "locator": {
+        "heading": "论甲木 / 三春甲木",
+        "pageLocatorStatus": "direct_visual_scan_reviewed",
+        "pdfPage": 4,
+        "printedPage": "4"
+      },
+      "observationId": "qiongtong-p4-wood-months",
+      "observedScope": "visible month-specific 甲木 support and 用神-like selection discussion",
+      "sourceId": "saju-source-qiongtong-baojian"
+    },
+    {
+      "admission": {
+        "allowedUse": "locator_candidate_only",
+        "canonicalTranscription": false,
+        "claimVerification": "not_promoted",
+        "independentAuthority": "not_established",
+        "status": "local_observation_admitted_with_limits"
+      },
+      "claimPacketIds": [
+        "saju-source-packet-rule-strength-v0",
+        "saju-source-packet-rule-yongshin-v0"
+      ],
+      "evidenceLayers": {
+        "directObservation": "visible page heading and adjacent prose reviewed from the PDF render",
+        "inference": "heading and nearby prose are a candidate locator for the linked packet; repository coefficients and semantic claim scope are not inferred from this observation",
+        "inheritedEvidence": "not_used",
+        "unresolved": [
+          "source edition and transmission history are not established",
+          "independent alternate witness is not supplied",
+          "full claim-specific rule scope and conflict review are not complete"
+        ]
+      },
+      "locator": {
+        "heading": "三夏甲木",
+        "pageLocatorStatus": "direct_visual_scan_reviewed",
+        "pdfPage": 7,
+        "printedPage": "7"
+      },
+      "observationId": "qiongtong-p7-summer-wood",
+      "observedScope": "visible seasonal 甲木 and 用神 discussion",
+      "sourceId": "saju-source-qiongtong-baojian"
+    },
+    {
+      "admission": {
+        "allowedUse": "locator_candidate_only",
+        "canonicalTranscription": false,
+        "claimVerification": "not_promoted",
+        "independentAuthority": "not_established",
+        "status": "local_observation_admitted_with_limits"
+      },
+      "claimPacketIds": [
+        "saju-source-packet-core-element-distribution-v0"
+      ],
+      "evidenceLayers": {
+        "directObservation": "visible page heading and adjacent prose reviewed from the PDF render",
+        "inference": "heading and nearby prose are a candidate locator for the linked packet; repository coefficients and semantic claim scope are not inferred from this observation",
+        "inheritedEvidence": "not_used",
+        "unresolved": [
+          "source edition and transmission history are not established",
+          "independent alternate witness is not supplied",
+          "full claim-specific rule scope and conflict review are not complete"
+        ]
+      },
+      "locator": {
+        "heading": "论五行生成",
+        "pageLocatorStatus": "direct_visual_scan_reviewed",
+        "pdfPage": 4,
+        "printedPage": "4"
+      },
+      "observationId": "sanming-p4-generation",
+      "observedScope": "visible five-phase generation ordering and numerical presentation",
+      "sourceId": "saju-source-sanming-tonghui"
+    },
+    {
+      "admission": {
+        "allowedUse": "locator_candidate_only",
+        "canonicalTranscription": false,
+        "claimVerification": "not_promoted",
+        "independentAuthority": "not_established",
+        "status": "local_observation_admitted_with_limits"
+      },
+      "claimPacketIds": [
+        "saju-source-packet-core-element-distribution-v0"
+      ],
+      "evidenceLayers": {
+        "directObservation": "visible page heading and adjacent prose reviewed from the PDF render",
+        "inference": "heading and nearby prose are a candidate locator for the linked packet; repository coefficients and semantic claim scope are not inferred from this observation",
+        "inheritedEvidence": "not_used",
+        "unresolved": [
+          "source edition and transmission history are not established",
+          "independent alternate witness is not supplied",
+          "full claim-specific rule scope and conflict review are not complete"
+        ]
+      },
+      "locator": {
+        "heading": "论五行生克",
+        "pageLocatorStatus": "direct_visual_scan_reviewed",
+        "pdfPage": 5,
+        "printedPage": "5"
+      },
+      "observationId": "sanming-p5-control",
+      "observedScope": "visible five-phase generation/control and directional presentation",
+      "sourceId": "saju-source-sanming-tonghui"
+    },
+    {
+      "admission": {
+        "allowedUse": "locator_candidate_only",
+        "canonicalTranscription": false,
+        "claimVerification": "not_promoted",
+        "independentAuthority": "not_established",
+        "status": "local_observation_admitted_with_limits"
+      },
+      "claimPacketIds": [
+        "saju-source-packet-core-four-pillars-v0",
+        "saju-source-packet-core-element-distribution-v0"
+      ],
+      "evidenceLayers": {
+        "directObservation": "visible page heading and adjacent prose reviewed from the PDF render",
+        "inference": "heading and nearby prose are a candidate locator for the linked packet; repository coefficients and semantic claim scope are not inferred from this observation",
+        "inheritedEvidence": "not_used",
+        "unresolved": [
+          "source edition and transmission history are not established",
+          "independent alternate witness is not supplied",
+          "full claim-specific rule scope and conflict review are not complete"
+        ]
+      },
+      "locator": {
+        "heading": "论支干源流",
+        "pageLocatorStatus": "direct_visual_scan_reviewed",
+        "pdfPage": 6,
+        "printedPage": "6"
+      },
+      "observationId": "sanming-p6-stems-branches",
+      "observedScope": "visible stems/branches origin and calendrical framing",
+      "sourceId": "saju-source-sanming-tonghui"
+    }
+  ],
+  "readiness": {
+    "availableForInterpretation": false,
+    "productionActivation": "blocked",
+    "reason": "local locator observation improves provenance but does not establish edition, semantic equivalence, or independent verification",
+    "stableClaimBoundary": 0,
+    "status": "blocked_unchanged"
+  },
+  "schemaVersion": "saju-local-source-corpus-observation-v1",
+  "scope": {
+    "activationMutation": false,
+    "claimPromotion": false,
+    "historicalArtifactsRewritten": false,
+    "localCorpusRead": true,
+    "networkOrSourceAcquisition": false,
+    "readinessMutation": false,
+    "repositoryOnly": true
+  },
+  "verdictToken": "partial_saju_local_source_corpus_observation_advanced_uncommitted",
+  "version": "1.0.0"
+}

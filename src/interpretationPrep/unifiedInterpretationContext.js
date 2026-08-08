@@ -6,6 +6,8 @@
  * into another system's causal language.
  */
 
+import { createEvidenceBoundary } from './evidenceBoundary.js'
+
 const SYSTEM_IDS = ['saju', 'ziwei', 'astrology']
 const CONFIDENCE_RANK = { low: 1, medium: 2, high: 3 }
 
@@ -75,6 +77,40 @@ function defaultInterpretationStatus(system, availableForChat) {
   return 'candidate_only'
 }
 
+function runtimeEvidenceBoundary(system, supplied) {
+  const calculationResult = supplied.calculationResult || null
+  const context = supplied.interpretationContext || supplied.context || supplied
+  const hasCalculation = Boolean(calculationResult?.raw || calculationResult?.chart || supplied.raw || context?.candidateSetConsensus)
+  const relationStatus = system === 'saju'
+    ? (calculationResult?.raw?.stemRelations || calculationResult?.raw?.branchRelations || supplied.raw?.stemRelations
+      ? 'present_in_calculation_context'
+      : 'not_available')
+    : system === 'ziwei'
+      ? (calculationResult?.chart?.palaces?.length || context?.palaceContexts ? 'present_in_calculation_context' : 'not_available')
+      : 'not_available'
+
+  const sourceEvidenceStatus = system === 'astrology' && !supplied.availableForChat
+    ? 'not_available'
+    : 'unverified'
+  const sourceEvidenceReason = system === 'saju'
+    ? '로컬 계산과 구현 규칙은 존재하지만 고전 source identity와 독립 권위는 확정되지 않았습니다.'
+    : system === 'ziwei'
+      ? '고정 RuleSet 계산은 보존하지만 source/oracle/semantic authority는 독립적으로 확정되지 않았습니다.'
+      : supplied.availableForChat
+        ? '계산 Context는 제공되지만 이 handoff boundary는 독립 source authority를 주장하지 않습니다.'
+        : '검증된 천문력 Adapter 계산이 이 prep pipeline에 연결되지 않았습니다.'
+
+  return createEvidenceBoundary({
+    system,
+    calculationStatus: hasCalculation ? 'calculated' : 'not_available',
+    sourceEvidenceStatus,
+    sourceEvidenceReason,
+    deterministicRelationStatus: relationStatus,
+    sourceRefs: [`systems.${system}.calculationResult`, `systems.${system}.interpretationContext`, `systems.${system}.warnings`],
+    relationRefs: relationStatus === 'present_in_calculation_context' ? [`systems.${system}.deterministicRelations`] : [],
+  })
+}
+
 function normalizeSystem(system, value = {}) {
   const supplied = value || {}
   if (isDescriptor(supplied)) {
@@ -102,6 +138,7 @@ function normalizeSystem(system, value = {}) {
       sourceDerivation: supplied.sourceDerivation || null,
       adapterContract: supplied.adapterContract || null,
       supportScope: supplied.supportScope || null,
+      evidenceBoundary: supplied.evidenceBoundary || runtimeEvidenceBoundary(system, supplied),
     }
   }
 
@@ -131,6 +168,7 @@ function normalizeSystem(system, value = {}) {
       ...(supplied.interpretationWarnings || []),
       ...(supplied.warnings || []),
     ],
+    evidenceBoundary: supplied.evidenceBoundary || runtimeEvidenceBoundary(system, supplied),
   }
 }
 
