@@ -1,0 +1,1117 @@
+{
+  "admissionDecision": {
+    "canPromoteStableClaims": false,
+    "canStartReadinessGrounding": false,
+    "nextOwner": "Flash/source acquisition for source witnesses and semantic authority; Luna for additive checker/materializer updates only",
+    "reason": "Existing evidence closes structural coordinate/compatibility representation gaps, but source authority, independent oracle, claim boundary, and direct rule gaps remain.",
+    "status": "frontier_reached"
+  },
+  "artifactIdentity": {
+    "artifactId": "ziwei-structural-admission-frontier-v1",
+    "artifactPayloadSha256": "c4cc7f61d80c4fb2494c9c3ece3b7adc596daafc0e85b8de9cd0346917f7d763",
+    "contractVersion": "artifact-identity-v1",
+    "generation": {
+      "baseHead": "0967789e2a4780f41a045e8ea0148d2eb7198af0",
+      "baseHeadSource": "git rev-parse HEAD at materialization",
+      "includedCommit": null,
+      "includedCommitSource": "unknown_at_generation; artifact may be included by a later commit"
+    },
+    "inputs": [
+      {
+        "byteSha256": "b0982786376ee079d54a4f5eb7c7640fcf0eca9e7ff5e39cb22e352f9907686a",
+        "path": "../malang_lab/documents/_agent-output/ziwei-artifact-canonicality-supersession-index-v1/canonical-artifact-map.json"
+      },
+      {
+        "byteSha256": "b056debd865ba133be981bba409247215495ddde4e82c25b49ee4fc5a8a8ef6f",
+        "path": "../malang_lab/documents/_agent-output/ziwei-artifact-canonicality-supersession-index-v1/supersession-graph.json"
+      },
+      {
+        "byteSha256": "ab6dea0de018890875cdc9c5e12773fe1514e4cc77d4694e7c9d146f517c2bac",
+        "path": "../malang_lab/documents/_agent-output/ziwei-deterministic-rule-divergence-sweep-v1-correction/correction-manifest.json"
+      },
+      {
+        "byteSha256": "6dd06a99831a8b36bcaf87ff2778fe9b34c8fe484a9b0f2b824f9b472d8940c4",
+        "path": "../malang_lab/documents/_agent-output/ziwei-palace-coordinate-identity-audit-v1/correction-manifest.json"
+      },
+      {
+        "byteSha256": "0a6fc8c71d188d5e32729a427361e39bd47352e21befa60f9172d6af13d8b4da",
+        "path": "../malang_lab/documents/_agent-output/ziwei-tianfu-compatibility-implementation-design-v1/design-manifest.json"
+      },
+      {
+        "byteSha256": "327c82d4c00635380e814ba0104788a65dc03dd05cb0074b9aa22a50a251267e",
+        "path": "../malang_lab/documents/_agent-output/ziwei-tianfu-raw-contradiction-provenance-audit-v1/audit-manifest.json"
+      },
+      {
+        "byteSha256": "3b15f34329808a9544cf38500d1d2f945e35fb11622eabeca619a0a655c6ee9e",
+        "path": "artifacts/ziwei-life-body-palace-ruler-source-evidence-v0/complete.json"
+      },
+      {
+        "byteSha256": "ff1874ebe1c0ed825defc1b6710a6a25cde1ed755f9fe83bdfa9296bc0890104",
+        "path": "artifacts/ziwei-major-star-claim-readiness-reconciliation-v0/complete.json"
+      },
+      {
+        "byteSha256": "1c34908635e49c722e841ff1184c8942bd399106368c41f60ca1a2304b06f1bf",
+        "path": "artifacts/ziwei-readiness-admission-blocker-audit-v0/complete.json"
+      },
+      {
+        "byteSha256": "0651b264e95c7b9eb370acc151759cd7edca7762d0b35235b74a28ef39d15eb9",
+        "path": "artifacts/ziwei-structural-admission-independent-acceptance-review-v0/complete.json"
+      },
+      {
+        "byteSha256": "ced877e178ec80c04f6ef70090c0962533e32d410528af9de006ace18a82226f",
+        "path": "artifacts/ziwei-system-evidence-readiness-coverage-map-v0/complete.json"
+      },
+      {
+        "byteSha256": "f93cb1ca021ed8c267dd8a22c16aac76e5f505c760ac4b9fd52904bfd687d5a2",
+        "path": "artifacts/ziwei-tianfu-convention-provenance-v0/complete.json"
+      },
+      {
+        "byteSha256": "9391a7b881ca6c96e534b1e0695be9d318b306f33ecb88f5c69613707cdbfdc3",
+        "path": "src/ziwei/starPlacementRules.js"
+      },
+      {
+        "byteSha256": "66cb732b754eef78e56e9874f9502d4674049988576eda71c56f455e8fd2fa98",
+        "path": "src/ziwei/starResolver.js"
+      },
+      {
+        "byteSha256": "bb9665ede35e94fa086b7ded511737ac6b4fadc968a5b33ee4f051cc7d49b9df",
+        "path": "src/ziwei/tianfuPlacementDiscrepancyRelations.js"
+      },
+      {
+        "byteSha256": "c3b2940cac98c10561acd855a9e239af20444985b6393f4f7062826484c20b37",
+        "path": "src/ziwei/ziweiContract.js"
+      },
+      {
+        "byteSha256": "5336f15968b4c618d9b1248b0967deab22b778f48996cb60939ab19cabadf513",
+        "path": "src/ziwei/ziweiResolver.js"
+      },
+      {
+        "byteSha256": "968b9f82d125e19f6e90a8d1a8b232de257af84a479e220862a416eef3437904",
+        "path": "test/ziweiTianfuCompatibilityMode.test.js"
+      }
+    ],
+    "materializer": {
+      "path": "scripts/materialize-ziwei-structural-admission-frontier-v1.mjs",
+      "version": "1.0.0"
+    }
+  },
+  "basisHead": "0967789e2a4780f41a045e8ea0148d2eb7198af0",
+  "blockers": [
+    {
+      "affectedDomains": [
+        "input-calendar-time",
+        "ming-shen",
+        "five-element-bureau"
+      ],
+      "disposition": "No existing evidence closes this blocker at current HEAD.",
+      "id": "blocker-calendar-time-source-identity",
+      "priority": "P0",
+      "resolution": "입력 변환 규칙과 경계의 immutable source witness 및 independent oracle",
+      "sourcePaths": [
+        "src/ziwei/ziweiResolver.js",
+        "src/ziwei/ziweiContract.js"
+      ],
+      "sourceRefs": [
+        "evidence-fcd08a4a2ef88074",
+        "evidence-ec6296fabb119a1c"
+      ],
+      "status": "still_blocked",
+      "title": "음력·윤달·자시 입력 source identity/독립 대조 부재"
+    },
+    {
+      "affectedDomains": [
+        "source-claim-provenance",
+        "readiness-activation-boundary"
+      ],
+      "disposition": "No existing evidence closes this blocker at current HEAD.",
+      "id": "blocker-source-identity-unresolved",
+      "priority": "P0",
+      "resolution": "scan/page/folio/edition/hash와 occurrence-level provenance를 claim gate에 연결",
+      "sourcePaths": [
+        "src/ziwei/cleanRuleCorpusSourceSelection.js",
+        "artifacts/ziwei-occurrence-level-provenance-v0/complete.json"
+      ],
+      "sourceRefs": [
+        "evidence-9b66b10223c206d0",
+        "evidence-946b4a0c9d9e4892"
+      ],
+      "status": "still_blocked",
+      "title": "occurrence source identity와 stable claim boundary 미해결"
+    },
+    {
+      "affectedDomains": [
+        "fixture-external-validation"
+      ],
+      "disposition": "No existing evidence closes this blocker at current HEAD.",
+      "id": "blocker-external-oracle-identity",
+      "priority": "P1",
+      "resolution": "판본·원문·촬영 byte와 evaluator independence를 확보",
+      "sourcePaths": [
+        "src/ziwei/externalZiweiFixtures.js",
+        "artifacts/ziwei-fixture-reconciliation-v1/complete.json"
+      ],
+      "sourceRefs": [
+        "evidence-ff808732e6ed7149",
+        "evidence-0edc06196258fc33"
+      ],
+      "status": "still_blocked",
+      "title": "외부 fixture의 독립 oracle/source identity 부재"
+    },
+    {
+      "affectedDomains": [
+        "four-transformations"
+      ],
+      "disposition": "No existing evidence closes this blocker at current HEAD.",
+      "id": "blocker-four-transform-source-witness",
+      "priority": "P1",
+      "resolution": "10 천간×4 사화 표의 page/folio/table witness",
+      "sourcePaths": [
+        "src/ziwei/transformationRules.js"
+      ],
+      "sourceRefs": [
+        "evidence-f5f61dfd4f9d0ca4"
+      ],
+      "status": "still_blocked",
+      "title": "사화 표의 직접 source witness 부재"
+    },
+    {
+      "affectedDomains": [
+        "minor-stars"
+      ],
+      "disposition": "No existing evidence closes this blocker at current HEAD.",
+      "id": "blocker-minor-star-source-witness",
+      "priority": "P1",
+      "resolution": "각 보조성 규칙표와 입력 경계의 page/folio witness",
+      "sourcePaths": [
+        "src/ziwei/minorStarRules.js"
+      ],
+      "sourceRefs": [
+        "evidence-a68101856b2ec351"
+      ],
+      "status": "still_blocked",
+      "title": "6길성·보조성 규칙의 직접 source witness 부재"
+    },
+    {
+      "affectedDomains": [
+        "decade-year-fortune"
+      ],
+      "disposition": "No existing evidence closes this blocker at current HEAD.",
+      "id": "blocker-timing-domain-absent",
+      "priority": "P2",
+      "resolution": "정의된 production contract, fixture, independent oracle이 모두 필요",
+      "sourcePaths": [
+        "src/ziwei/ziweiContract.js"
+      ],
+      "sourceRefs": [
+        "evidence-ec6296fabb119a1c"
+      ],
+      "status": "still_blocked",
+      "title": "대운·세운 계산 구현·fixture·외부 대조 부재"
+    },
+    {
+      "affectedDomains": [
+        "fourteen-major-stars"
+      ],
+      "id": "blocker-12-major-star-direct-rules",
+      "priority": "P0",
+      "reason": "The reviewed source corpus has no admitted direct rule for those 12 stars; production offsets cannot substitute for a direct witness.",
+      "requiredEvidence": "immutable page/folio/table witness for each rule with edition identity and actual bytes",
+      "sourceRefs": [
+        "artifacts/ziwei-major-star-claim-readiness-reconciliation-v0/complete.json"
+      ],
+      "status": "still_blocked",
+      "title": "12 non-root major-star direct rules remain source-unresolved"
+    },
+    {
+      "affectedDomains": [
+        "ziwei-tianfu-placement",
+        "fourteen-major-stars"
+      ],
+      "id": "blocker-tianfu-raw-formula-contradiction",
+      "priority": "P0",
+      "reason": "Current code exposes both conventions, but the source-authority choice is not resolved by compatibility or arithmetic relation.",
+      "requiredEvidence": "direct historical source interpretation or explicit authorized semantic authority decision",
+      "sourceRefs": [
+        "../malang_lab/documents/_agent-output/ziwei-tianfu-raw-contradiction-provenance-audit-v1/audit-manifest.json"
+      ],
+      "status": "still_blocked",
+      "title": "Tianfu source Chen anchor and legacy Xu anchor remain raw-contradictory"
+    },
+    {
+      "affectedDomains": [
+        "ziwei-tianfu-placement",
+        "palace-layout"
+      ],
+      "id": "blocker-tianfu-rotation06-semantic-authority",
+      "priority": "P0",
+      "reason": "150/150 transform equivalence explains outputs but does not prove that the two conventions name the same semantic palace or that one is authoritative.",
+      "requiredEvidence": "source witness that directly establishes the coordinate convention and its semantic mapping",
+      "sourceRefs": [
+        "../malang_lab/documents/_agent-output/ziwei-palace-coordinate-identity-audit-v1/correction-manifest.json"
+      ],
+      "status": "still_blocked",
+      "title": "rotation-06 is a known relation, not source identity"
+    },
+    {
+      "affectedDomains": [
+        "ming-shen"
+      ],
+      "id": "blocker-life-body-ruler-source-legibility",
+      "observedCounts": {
+        "blockedAmbiguousRows": 24,
+        "rows": 144
+      },
+      "priority": "P1",
+      "reason": "Existing life/body/ruler evidence records 120 comparable rows and 24 blocked ambiguous compound surfaces; no glyph guessing is permitted.",
+      "requiredEvidence": "higher-legibility source witness or independent reading for the 24 blocked rows",
+      "sourceRefs": [
+        "artifacts/ziwei-life-body-palace-ruler-source-evidence-v0/complete.json"
+      ],
+      "status": "still_blocked",
+      "title": "24/144 身主 source surfaces remain ambiguous"
+    }
+  ],
+  "checker": "scripts/check-ziwei-structural-admission-frontier-v1.mjs",
+  "compatibilityEvaluation": {
+    "domain": {
+      "bureauNumbers": [
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "lunarDays": [
+        1,
+        30
+      ],
+      "rowCount": 150
+    },
+    "evidenceClass": "deterministic_calculation_and_repository_regression_only",
+    "knownRelation": {
+      "matchedRows": 150,
+      "residualRows": 0,
+      "transform": "rotation-06"
+    },
+    "legacyDefault": {
+      "expected": 150,
+      "rows": 150,
+      "status": "regression_preserved"
+    },
+    "modes": {
+      "default": "legacy",
+      "legacy": {
+        "mode": "legacy",
+        "tianfuFormula": "(10-Z)%12",
+        "tianfuMethod": "opposite_yin_shen_axis"
+      },
+      "productionSelection": "unchanged; no production mode selection was made",
+      "source_aligned": {
+        "mode": "source_aligned",
+        "tianfuFormula": "(4-Z)%12",
+        "tianfuMethod": "opposite_chen_xu_axis"
+      }
+    },
+    "rawComparison": {
+      "legacyMatchRows": 0,
+      "sourceAlignedMatchRows": 150
+    },
+    "semanticAuthority": "unresolved",
+    "sourceObservationBoundary": {
+      "sourceTableRole": "source-derived local witness; not an independent authority by itself",
+      "sourceTableRows": 12
+    },
+    "tianfuSeriesPropagation": {
+      "allEightRowsExact": true,
+      "shiftRowsByStar": {
+        "jumen": 150,
+        "pojun": 150,
+        "qisai": 150,
+        "taiyin": 150,
+        "tanlang": 150,
+        "tianfu": 150,
+        "tianliang": 150,
+        "tianxiang": 150
+      }
+    }
+  },
+  "counts": {
+    "blockers": 10,
+    "domains": 13,
+    "evidence": 4,
+    "majorStarClaims": 14,
+    "occurrenceRecords": 19,
+    "resolved": 4,
+    "stillBlocked": 10
+  },
+  "currentHead": "0967789e2a4780f41a045e8ea0148d2eb7198af0",
+  "deterministic": {
+    "generatedAt": "forbidden",
+    "hashes": "actual bytes and canonical JSON including final LF",
+    "rowOrdering": "fixed bureau/day and lunarMonth/hour matrices",
+    "values": "computed from current bytes and copied bounded evidence; no post-hoc fitting"
+  },
+  "domains": [
+    {
+      "artifacts": [
+        "artifacts/ziwei-readiness-baseline-v1/complete.json"
+      ],
+      "blockingLayers": [
+        "blocker-calendar-time-source-identity",
+        "readiness"
+      ],
+      "claimProvenance": "partial",
+      "code": [
+        "src/ziwei/ziweiResolver.js",
+        "src/ziwei/ziweiContract.js"
+      ],
+      "dependsOn": [],
+      "id": "input-calendar-time",
+      "impact": "음력 변환·윤달·자시 경계가 이후 모든 계산 입력을 막는다.",
+      "implementation": "present_unverified",
+      "label": "음력·시각 입력과 경계",
+      "readiness": "blocked",
+      "source": "partial",
+      "statusLayer": "current_structural_frontier",
+      "structuralStatus": "still_blocked",
+      "tests": [
+        "test/ziweiResolver.test.js",
+        "test/ziweiCoreContract.test.js"
+      ]
+    },
+    {
+      "artifacts": [
+        "artifacts/ziwei-ming-shen-seed-acceptance-v0/complete.json",
+        "artifacts/ziwei-ming-shen-clean-rule-seed-pilot-v0/complete.json"
+      ],
+      "blockingLayers": [
+        "input_source_identity",
+        "claim_provenance",
+        "readiness"
+      ],
+      "claimProvenance": "complete_within_scope",
+      "code": [
+        "src/ziwei/ziweiResolver.js",
+        "src/ziwei/mingShenCleanRuleSeedPilot.js"
+      ],
+      "dependsOn": [
+        "input-calendar-time"
+      ],
+      "id": "ming-shen",
+      "impact": "명반 좌표의 출발점이며 오행국·궁 포국에 fan-out된다.",
+      "implementation": "verified_within_scope",
+      "label": "명궁·신궁",
+      "readiness": "blocked",
+      "source": "direct_within_scope",
+      "statusLayer": "current_structural_frontier",
+      "structuralStatus": "resolved_with_existing_evidence",
+      "tests": [
+        "test/ziweiMingShenCleanRuleSeedPilot.test.js",
+        "test/ziweiMingShenSeedAcceptance.test.js",
+        "test/ziweiResolver.test.js"
+      ]
+    },
+    {
+      "artifacts": [
+        "artifacts/ziwei-five-element-bureau-clean-rule-seed-acceptance-v0/complete.json",
+        "artifacts/ziwei-five-element-bureau-clean-rule-seed-pilot-v0/complete.json"
+      ],
+      "blockingLayers": [
+        "input_source_identity",
+        "claim_provenance",
+        "readiness"
+      ],
+      "claimProvenance": "complete_within_scope",
+      "code": [
+        "src/ziwei/fiveElementResolver.js",
+        "src/ziwei/fiveElementBureauCleanRuleSeedPilot.js"
+      ],
+      "dependsOn": [
+        "ming-shen"
+      ],
+      "id": "five-element-bureau",
+      "impact": "자미 배치의 bureau/day 입력을 제공한다.",
+      "implementation": "verified_within_scope",
+      "label": "오행국",
+      "readiness": "blocked",
+      "source": "direct_within_scope",
+      "statusLayer": "current_structural_frontier",
+      "structuralStatus": "resolved_with_existing_evidence",
+      "tests": [
+        "test/ziweiFiveElementBureauCleanRuleSeedPilot.test.js",
+        "test/ziweiFiveElementBureauSeedAcceptance.test.js",
+        "test/ziweiResolver.test.js"
+      ]
+    },
+    {
+      "artifacts": [
+        "artifacts/ziwei-readiness-baseline-v1/complete.json"
+      ],
+      "blockingLayers": [
+        "input_source_identity",
+        "claim_provenance",
+        "readiness"
+      ],
+      "claimProvenance": "partial",
+      "code": [
+        "src/ziwei/ziweiContract.js",
+        "src/ziwei/ziweiPalaceContext.js",
+        "src/ziwei/palaceRelationRules.js"
+      ],
+      "dependsOn": [
+        "ming-shen"
+      ],
+      "id": "palace-layout",
+      "impact": "좌표 토큰을 궁 의미로 읽는 downstream 경계가 막힌다.",
+      "implementation": "present_unverified",
+      "label": "12궁·궁간·궁 포국",
+      "readiness": "blocked",
+      "source": "unresolved",
+      "statusLayer": "current_structural_frontier",
+      "structuralStatus": "resolved_with_existing_evidence",
+      "tests": [
+        "test/ziweiContract.test.js",
+        "test/ziweiCoreContract.test.js",
+        "test/ziweiPipeline.test.js"
+      ]
+    },
+    {
+      "artifacts": [
+        "artifacts/ziwei-zixing-tianfu-source-chain-v0/complete.json",
+        "artifacts/ziwei-tianfu-convention-provenance-v0/complete.json",
+        "artifacts/ziwei-ziwei-star-placement-clean-rule-seed-acceptance-v0/complete.json"
+      ],
+      "blockingLayers": [
+        "tianfu_raw_formula_identity",
+        "tianfu_rotation06_semantic_authority",
+        "source_identity",
+        "readiness"
+      ],
+      "claimProvenance": "complete_within_scope",
+      "code": [
+        "src/ziwei/starPlacementRules.js",
+        "src/ziwei/ziweiStarPlacementCleanRuleSeedPilot.js",
+        "src/ziwei/tianfuStarPlacementCleanRuleSeedPilot.js",
+        "src/ziwei/tianfuPlacementDiscrepancyRelations.js"
+      ],
+      "dependsOn": [
+        "five-element-bureau",
+        "palace-layout"
+      ],
+      "id": "ziwei-tianfu-placement",
+      "impact": "14주성 계열의 coordinate-to-palace 승격을 막는다.",
+      "implementation": "verified_within_scope",
+      "label": "자미·천부 placement chain",
+      "readiness": "blocked",
+      "source": "direct_within_scope",
+      "statusLayer": "current_structural_frontier",
+      "structuralStatus": "partially_resolved_with_existing_evidence",
+      "tests": [
+        "test/ziweiZiweiStarPlacementCleanRuleSeedPilot.test.js",
+        "test/ziweiZiweiStarPlacementAcceptance.test.js",
+        "test/ziweiTianfuStarPlacementCleanRuleSeedPilot.test.js",
+        "test/ziweiTianfuConventionProvenance.test.js",
+        "test/ziweiZixingTianfuSourceChain.test.js"
+      ]
+    },
+    {
+      "artifacts": [
+        "artifacts/ziwei-major-star-claim-readiness-reconciliation-v0/complete.json",
+        "artifacts/ziwei-major-star-coordinate-provenance-v0/complete.json",
+        "artifacts/ziwei-major-star-source-corpus-provenance-v0/complete.json"
+      ],
+      "blockingLayers": [
+        "12_direct_star_rules",
+        "tianfu_semantic_authority",
+        "source_identity",
+        "readiness"
+      ],
+      "claimProvenance": "complete_within_scope",
+      "code": [
+        "src/ziwei/starResolver.js",
+        "src/ziwei/starPlacementRules.js"
+      ],
+      "dependsOn": [
+        "ziwei-tianfu-placement",
+        "palace-layout"
+      ],
+      "id": "fourteen-major-stars",
+      "impact": "봉인된 reconciliation은 authoritative evidence로 연결되며 재판정하지 않는다.",
+      "implementation": "verified_within_scope",
+      "label": "14주성 reconciliation",
+      "readiness": "blocked",
+      "source": "partial",
+      "statusLayer": "current_structural_frontier",
+      "structuralStatus": "partially_resolved_with_existing_evidence",
+      "tests": [
+        "test/ziweiMajorStarClaimReadinessReconciliation.test.js",
+        "test/ziweiMajorStarCoordinateProvenance.test.js",
+        "test/ziweiMajorStarSourceCorpusProvenance.test.js"
+      ]
+    },
+    {
+      "artifacts": [
+        "artifacts/ziwei-readiness-baseline-v1/complete.json"
+      ],
+      "blockingLayers": [
+        "blocker-four-transform-source-witness",
+        "readiness"
+      ],
+      "claimProvenance": "partial",
+      "code": [
+        "src/ziwei/transformationRules.js",
+        "src/ziwei/transformationResolver.js"
+      ],
+      "dependsOn": [
+        "fourteen-major-stars"
+      ],
+      "id": "four-transformations",
+      "impact": "연도 천간→주성 사화의 독립 근거가 없으면 해석 payload로 갈 수 없다.",
+      "implementation": "present_unverified",
+      "label": "사화",
+      "readiness": "blocked",
+      "source": "partial",
+      "statusLayer": "current_structural_frontier",
+      "structuralStatus": "still_blocked",
+      "tests": [
+        "test/transformationAndMinor.test.js",
+        "test/ziweiCoreContract.test.js",
+        "test/ziweiPipeline.test.js"
+      ]
+    },
+    {
+      "artifacts": [
+        "artifacts/ziwei-readiness-baseline-v1/complete.json"
+      ],
+      "blockingLayers": [
+        "blocker-minor-star-source-witness",
+        "readiness"
+      ],
+      "claimProvenance": "partial",
+      "code": [
+        "src/ziwei/minorStarRules.js",
+        "src/ziwei/minorStarResolver.js"
+      ],
+      "dependsOn": [
+        "ming-shen",
+        "input-calendar-time"
+      ],
+      "id": "minor-stars",
+      "impact": "보조성 결과는 계산되지만 source identity와 외부 oracle이 없다.",
+      "implementation": "present_unverified",
+      "label": "보조성·6길성",
+      "readiness": "blocked",
+      "source": "partial",
+      "statusLayer": "current_structural_frontier",
+      "structuralStatus": "still_blocked",
+      "tests": [
+        "test/transformationAndMinor.test.js",
+        "test/ziweiCoreContract.test.js",
+        "test/ziweiQualityBenchmark.test.js"
+      ]
+    },
+    {
+      "artifacts": [
+        "artifacts/ziwei-readiness-baseline-v1/complete.json"
+      ],
+      "blockingLayers": [
+        "relation_source_witness",
+        "claim_provenance",
+        "readiness"
+      ],
+      "claimProvenance": "partial",
+      "code": [
+        "src/ziwei/palaceRelationRules.js",
+        "src/ziwei/ziweiPalaceContext.js"
+      ],
+      "dependsOn": [
+        "palace-layout",
+        "fourteen-major-stars",
+        "minor-stars",
+        "four-transformations"
+      ],
+      "id": "palace-relations",
+      "impact": "관계 구조는 계산되지만 의미 claim으로 승격되지 않는다.",
+      "implementation": "present_unverified",
+      "label": "대궁·삼방사정·topic 관계",
+      "readiness": "blocked",
+      "source": "unresolved",
+      "statusLayer": "current_structural_frontier",
+      "structuralStatus": "partially_resolved_with_existing_evidence",
+      "tests": [
+        "test/ziweiPipeline.test.js",
+        "test/ziweiContract.test.js",
+        "test/ziweiPromptSafetyContract.test.js"
+      ]
+    },
+    {
+      "artifacts": [
+        "artifacts/ziwei-readiness-baseline-v1/complete.json"
+      ],
+      "blockingLayers": [
+        "blocker-timing-domain-absent",
+        "readiness"
+      ],
+      "claimProvenance": "absent",
+      "code": [
+        "src/ziwei/ziweiContract.js"
+      ],
+      "dependsOn": [
+        "input-calendar-time",
+        "palace-layout"
+      ],
+      "id": "decade-year-fortune",
+      "impact": "자미두수 시간축은 production 계산 범위 밖이며 구현을 임의 추가하지 않는다.",
+      "implementation": "absent",
+      "label": "대운·세운·운 시계열",
+      "readiness": "research_only",
+      "source": "absent",
+      "statusLayer": "current_structural_frontier",
+      "structuralStatus": "not_implemented",
+      "tests": [
+        "test/ziweiContract.test.js"
+      ]
+    },
+    {
+      "artifacts": [
+        "artifacts/ziwei-fixture-reconciliation-v1/complete.json",
+        "artifacts/ziwei-readiness-baseline-v1/complete.json"
+      ],
+      "blockingLayers": [
+        "blocker-external-oracle-identity",
+        "readiness"
+      ],
+      "claimProvenance": "partial",
+      "code": [
+        "src/ziwei/externalZiweiFixtures.js"
+      ],
+      "dependsOn": [
+        "fourteen-major-stars",
+        "four-transformations",
+        "minor-stars"
+      ],
+      "id": "fixture-external-validation",
+      "impact": "observed match는 independent verification이 아니다.",
+      "implementation": "present_unverified",
+      "label": "fixture·외부 대조",
+      "readiness": "blocked",
+      "source": "partial",
+      "statusLayer": "current_structural_frontier",
+      "structuralStatus": "still_blocked",
+      "tests": [
+        "test/ziweiFixtureReconciliation.test.js",
+        "test/ziweiQualityBenchmark.test.js",
+        "test/externalValidationRunner.test.js"
+      ]
+    },
+    {
+      "artifacts": [
+        "artifacts/ziwei-occurrence-level-provenance-v0/complete.json",
+        "artifacts/ziwei-source-identity-claim-boundary-audit-v1/complete.json",
+        "artifacts/ziwei-readiness-admission-blocker-audit-v0/complete.json"
+      ],
+      "blockingLayers": [
+        "blocker-source-identity-unresolved",
+        "readiness"
+      ],
+      "claimProvenance": "partial",
+      "code": [
+        "src/ziwei/cleanRuleCorpusSourceSelection.js"
+      ],
+      "dependsOn": [
+        "fixture-external-validation"
+      ],
+      "id": "source-claim-provenance",
+      "impact": "raw occurrence와 stable claim의 경계를 보존하며 grounding을 막는다.",
+      "implementation": "present_unverified",
+      "label": "source identity·claim provenance",
+      "readiness": "blocked",
+      "source": "partial",
+      "statusLayer": "current_structural_frontier",
+      "structuralStatus": "still_blocked",
+      "tests": [
+        "test/ziweiOccurrenceProvenance.test.js",
+        "test/ziweiSourceIdentityClaimBoundaryAudit.test.js",
+        "test/ziweiReadinessAdmissionBlockerAudit.test.js"
+      ]
+    },
+    {
+      "artifacts": [
+        "artifacts/ziwei-readiness-baseline-v1/complete.json",
+        "artifacts/ziwei-readiness-admission-blocker-audit-v0/complete.json",
+        "artifacts/ziwei-major-star-claim-readiness-reconciliation-v0/layeredReadiness.json"
+      ],
+      "blockingLayers": [
+        "blocker-source-identity-unresolved",
+        "readiness"
+      ],
+      "claimProvenance": "partial",
+      "code": [
+        "src/ziwei/ziweiContract.js",
+        "src/interpretationPrep/ziweiPromptAdapter.js"
+      ],
+      "dependsOn": [
+        "source-claim-provenance",
+        "palace-relations"
+      ],
+      "id": "readiness-activation-boundary",
+      "impact": "계산 결과가 있어도 interpretation/activation은 blocked로 유지된다.",
+      "implementation": "present_unverified",
+      "label": "readiness·grounding·activation",
+      "readiness": "blocked",
+      "source": "partial",
+      "statusLayer": "current_structural_frontier",
+      "structuralStatus": "still_blocked",
+      "tests": [
+        "test/ziweiReadinessBaseline.test.js",
+        "test/ziweiPromptSafetyContract.test.js",
+        "test/ziweiStructuralAdmissionGuardPilot.test.js"
+      ]
+    }
+  ],
+  "dynamicPalaceIdentity": {
+    "allPalaceRows": 144,
+    "contract": "dynamic Ming/Shen placement plus 12-palace relative sequence; static branch-to-palace identity not required",
+    "domain": {
+      "hourBranches": [
+        "子",
+        "丑",
+        "寅",
+        "卯",
+        "辰",
+        "巳",
+        "午",
+        "未",
+        "申",
+        "酉",
+        "戌",
+        "亥"
+      ],
+      "lunarMonths": [
+        1,
+        12
+      ],
+      "rowCount": 144
+    },
+    "evidenceClass": "deterministic_calculation_and_repository_regression_plus_existing_source_correction",
+    "exactRows": 144,
+    "status": "supported_in_audited_scope"
+  },
+  "evidence": [
+    {
+      "assertion": "legacy default is preserved and source_aligned matches the existing source-derived table across 150 rows.",
+      "id": "evidence-current-tianfu-compatibility",
+      "layer": "repository_regression_evidence",
+      "refs": [
+        "src/ziwei/ziweiResolver.js",
+        "src/ziwei/ziweiContract.js",
+        "src/ziwei/starPlacementRules.js",
+        "src/ziwei/starResolver.js",
+        "src/ziwei/tianfuPlacementDiscrepancyRelations.js",
+        "test/ziweiTianfuCompatibilityMode.test.js"
+      ],
+      "status": "resolved_with_existing_evidence"
+    },
+    {
+      "assertion": "dynamic Ming/Shen and 12-palace relative identity is supported in the directly audited scope; static branch identity is not required.",
+      "id": "evidence-dynamic-palace-identity",
+      "layer": "representation_coordinate_equivalence",
+      "refs": [
+        "src/ziwei/ziweiResolver.js",
+        "src/ziwei/ziweiContract.js",
+        "../malang_lab/documents/_agent-output/ziwei-palace-coordinate-identity-audit-v1/correction-manifest.json"
+      ],
+      "status": "resolved_with_existing_evidence"
+    },
+    {
+      "assertion": "Chen versus Xu raw outputs remain contradictory; rotation-06 is retained only as a relation.",
+      "id": "evidence-tianfu-raw-contradiction",
+      "layer": "primary_source_observation_and_semantic_identity",
+      "refs": [
+        "../malang_lab/documents/_agent-output/ziwei-tianfu-raw-contradiction-provenance-audit-v1/audit-manifest.json",
+        "artifacts/ziwei-tianfu-convention-provenance-v0/complete.json"
+      ],
+      "status": "still_blocked"
+    },
+    {
+      "assertion": "19 occurrence-level records remain separate from stable claims; four limited structural occurrences do not start readiness or grounding.",
+      "id": "evidence-occurrence-boundary",
+      "layer": "structural_admission",
+      "refs": [
+        "artifacts/ziwei-readiness-admission-blocker-audit-v0/complete.json",
+        "artifacts/ziwei-structural-admission-independent-acceptance-review-v0/complete.json"
+      ],
+      "status": "still_blocked"
+    }
+  ],
+  "evidenceLayers": {
+    "deterministicCalculation": "current repository execution only",
+    "primarySourceObservation": "bounded to existing local research packets and their declared page/hash scope",
+    "provenanceCompleteness": "partial; occurrence/source identities remain bounded",
+    "repositoryRegression": "current tests and current code bytes",
+    "representationEquivalence": "dynamic coordinate identity and rotation-06 relation kept separate",
+    "semanticSourceIdentity": "blocked for Tianfu authority and unresolved stars",
+    "structuralAdmission": "partial; only structural coordinate/compatibility gaps closed"
+  },
+  "historicalArtifactRelation": {
+    "currentArtifact": "ziwei-structural-admission-frontier-v1",
+    "inputs": [
+      {
+        "byteSha256": "ced877e178ec80c04f6ef70090c0962533e32d410528af9de006ace18a82226f",
+        "path": "artifacts/ziwei-system-evidence-readiness-coverage-map-v0/complete.json",
+        "relation": "historical_or_predecessor_evidence; not current readiness"
+      },
+      {
+        "byteSha256": "1c34908635e49c722e841ff1184c8942bd399106368c41f60ca1a2304b06f1bf",
+        "path": "artifacts/ziwei-readiness-admission-blocker-audit-v0/complete.json",
+        "relation": "historical_or_predecessor_evidence; not current readiness"
+      },
+      {
+        "byteSha256": "ff1874ebe1c0ed825defc1b6710a6a25cde1ed755f9fe83bdfa9296bc0890104",
+        "path": "artifacts/ziwei-major-star-claim-readiness-reconciliation-v0/complete.json",
+        "relation": "historical_or_predecessor_evidence; not current readiness"
+      },
+      {
+        "byteSha256": "f93cb1ca021ed8c267dd8a22c16aac76e5f505c760ac4b9fd52904bfd687d5a2",
+        "path": "artifacts/ziwei-tianfu-convention-provenance-v0/complete.json",
+        "relation": "historical_or_predecessor_evidence; not current readiness"
+      },
+      {
+        "byteSha256": "0651b264e95c7b9eb370acc151759cd7edca7762d0b35235b74a28ef39d15eb9",
+        "path": "artifacts/ziwei-structural-admission-independent-acceptance-review-v0/complete.json",
+        "relation": "historical_or_predecessor_evidence; not current readiness"
+      },
+      {
+        "byteSha256": "3b15f34329808a9544cf38500d1d2f945e35fb11622eabeca619a0a655c6ee9e",
+        "path": "artifacts/ziwei-life-body-palace-ruler-source-evidence-v0/complete.json",
+        "relation": "historical_or_predecessor_evidence; not current readiness"
+      }
+    ],
+    "predecessorArtifactsRemainHistorical": true,
+    "staleCheckerObservations": [
+      "major-star coordinate v0 rejects current star resolver bytes because it predates the compatibility mode; this is preserved as historical artifact behavior",
+      "readiness admission v0 has a historical input byte mismatch after current contract changes",
+      "major-star source corpus checker requires an explicit PDF source and was not used for this frontier"
+    ]
+  },
+  "majorStarClaims": [
+    {
+      "blockerIds": [],
+      "id": "claim-major-star-placement-ziwei",
+      "note": "150/150 exact coordinate evidence; dynamic palace contract supported in audited scope.",
+      "readiness": "blocked",
+      "structuralStatus": "resolved_with_existing_evidence",
+      "subject": "ziwei"
+    },
+    {
+      "blockerIds": [
+        "blocker-tianfu-raw-formula-contradiction",
+        "blocker-tianfu-rotation06-semantic-authority"
+      ],
+      "id": "claim-major-star-placement-tianfu",
+      "note": "legacy/source_aligned are both implemented; raw source identity remains unresolved.",
+      "readiness": "blocked",
+      "structuralStatus": "partially_resolved_with_existing_evidence",
+      "subject": "tianfu"
+    },
+    {
+      "blockerIds": [
+        "blocker-12-major-star-direct-rules"
+      ],
+      "id": "claim-major-star-placement-tianji",
+      "note": "No admitted direct source rule in the reviewed corpus or semantic authority for promotion.",
+      "readiness": "blocked",
+      "structuralStatus": "still_blocked",
+      "subject": "tianji"
+    },
+    {
+      "blockerIds": [
+        "blocker-12-major-star-direct-rules"
+      ],
+      "id": "claim-major-star-placement-taiyang",
+      "note": "No admitted direct source rule in the reviewed corpus or semantic authority for promotion.",
+      "readiness": "blocked",
+      "structuralStatus": "still_blocked",
+      "subject": "taiyang"
+    },
+    {
+      "blockerIds": [
+        "blocker-12-major-star-direct-rules"
+      ],
+      "id": "claim-major-star-placement-wugu",
+      "note": "No admitted direct source rule in the reviewed corpus or semantic authority for promotion.",
+      "readiness": "blocked",
+      "structuralStatus": "still_blocked",
+      "subject": "wugu"
+    },
+    {
+      "blockerIds": [
+        "blocker-12-major-star-direct-rules"
+      ],
+      "id": "claim-major-star-placement-tiandong",
+      "note": "No admitted direct source rule in the reviewed corpus or semantic authority for promotion.",
+      "readiness": "blocked",
+      "structuralStatus": "still_blocked",
+      "subject": "tiandong"
+    },
+    {
+      "blockerIds": [
+        "blocker-12-major-star-direct-rules"
+      ],
+      "id": "claim-major-star-placement-lianzhen",
+      "note": "No admitted direct source rule in the reviewed corpus or semantic authority for promotion.",
+      "readiness": "blocked",
+      "structuralStatus": "still_blocked",
+      "subject": "lianzhen"
+    },
+    {
+      "blockerIds": [
+        "blocker-12-major-star-direct-rules",
+        "blocker-tianfu-rotation06-semantic-authority"
+      ],
+      "id": "claim-major-star-placement-taiyin",
+      "note": "No admitted direct source rule in the reviewed corpus or semantic authority for promotion.",
+      "readiness": "blocked",
+      "structuralStatus": "still_blocked",
+      "subject": "taiyin"
+    },
+    {
+      "blockerIds": [
+        "blocker-12-major-star-direct-rules",
+        "blocker-tianfu-rotation06-semantic-authority"
+      ],
+      "id": "claim-major-star-placement-tanlang",
+      "note": "No admitted direct source rule in the reviewed corpus or semantic authority for promotion.",
+      "readiness": "blocked",
+      "structuralStatus": "still_blocked",
+      "subject": "tanlang"
+    },
+    {
+      "blockerIds": [
+        "blocker-12-major-star-direct-rules",
+        "blocker-tianfu-rotation06-semantic-authority"
+      ],
+      "id": "claim-major-star-placement-jumen",
+      "note": "No admitted direct source rule in the reviewed corpus or semantic authority for promotion.",
+      "readiness": "blocked",
+      "structuralStatus": "still_blocked",
+      "subject": "jumen"
+    },
+    {
+      "blockerIds": [
+        "blocker-12-major-star-direct-rules",
+        "blocker-tianfu-rotation06-semantic-authority"
+      ],
+      "id": "claim-major-star-placement-tianxiang",
+      "note": "No admitted direct source rule in the reviewed corpus or semantic authority for promotion.",
+      "readiness": "blocked",
+      "structuralStatus": "still_blocked",
+      "subject": "tianxiang"
+    },
+    {
+      "blockerIds": [
+        "blocker-12-major-star-direct-rules",
+        "blocker-tianfu-rotation06-semantic-authority"
+      ],
+      "id": "claim-major-star-placement-tianliang",
+      "note": "No admitted direct source rule in the reviewed corpus or semantic authority for promotion.",
+      "readiness": "blocked",
+      "structuralStatus": "still_blocked",
+      "subject": "tianliang"
+    },
+    {
+      "blockerIds": [
+        "blocker-12-major-star-direct-rules",
+        "blocker-tianfu-rotation06-semantic-authority"
+      ],
+      "id": "claim-major-star-placement-qisai",
+      "note": "No admitted direct source rule in the reviewed corpus or semantic authority for promotion.",
+      "readiness": "blocked",
+      "structuralStatus": "still_blocked",
+      "subject": "qisai"
+    },
+    {
+      "blockerIds": [
+        "blocker-12-major-star-direct-rules",
+        "blocker-tianfu-rotation06-semantic-authority"
+      ],
+      "id": "claim-major-star-placement-pojun",
+      "note": "No admitted direct source rule in the reviewed corpus or semantic authority for promotion.",
+      "readiness": "blocked",
+      "structuralStatus": "still_blocked",
+      "subject": "pojun"
+    }
+  ],
+  "materializer": "scripts/materialize-ziwei-structural-admission-frontier-v1.mjs",
+  "occurrenceAdmission": {
+    "blockerDistribution": {
+      "blocked_claim_boundary_required": 3,
+      "blocked_external_evidence_required": 4,
+      "blocked_raw_text_misread_risk": 0,
+      "eligible_after_structural_guard": 4,
+      "eligible_occurrence_only_with_limits": 0,
+      "excluded_currently": 8,
+      "unresolved": 0
+    },
+    "occurrenceCount": 19,
+    "readinessStart": false,
+    "sourceArtifact": "artifacts/ziwei-readiness-admission-blocker-audit-v0/complete.json",
+    "sourceArtifactBasisHead": "034ea3015875d52643341613547aec583747976e",
+    "stableClaimBoundaryCount": 0,
+    "status": "historical_occurrence_inventory_reused_without_promotion",
+    "verdict": "not_safe_to_start"
+  },
+  "readinessBeforeAfter": {
+    "after": {
+      "activation": "experimental",
+      "change": "structural evidence classification only; no readiness promotion",
+      "grounding": "blocked",
+      "productionSelection": "not_performed",
+      "readiness": "not_safe_to_start",
+      "stableClaimBoundary": 0
+    },
+    "before": {
+      "activation": "experimental",
+      "grounding": "blocked",
+      "productionSelection": "not_performed",
+      "readiness": "not_safe_to_start",
+      "stableClaimBoundary": 0
+    }
+  },
+  "resolvedWithExistingEvidence": [
+    "dynamic Ming/Shen and 12-palace relative coordinate identity in the audited scope",
+    "Tianfu legacy/source_aligned compatibility implementation and explicit legacy default",
+    "150-row source_aligned reproduction and rotation-06 relation as deterministic evidence",
+    "precise separation of raw source observation, transform relation, and semantic authority in the current frontier"
+  ],
+  "schemaVersion": "ziwei-structural-admission-frontier-v1",
+  "scope": {
+    "activationMutation": false,
+    "externalSearch": false,
+    "externalSourceAcquisition": false,
+    "historicalArtifactsRewritten": false,
+    "interpretationMeaningChanged": false,
+    "productionRuleMutation": false,
+    "readinessMutation": false
+  },
+  "sourceProvenance": {
+    "canonicalityIndex": "../malang_lab/documents/_agent-output/ziwei-artifact-canonicality-supersession-index-v1/canonical-artifact-map.json",
+    "correctionPrecedence": "../malang_lab/documents/_agent-output/ziwei-palace-coordinate-identity-audit-v1/correction-manifest.json",
+    "ocr": "exploration_only_not_canonical",
+    "sourceIdentityStatus": "partial_and_bounded",
+    "tianfuSemanticAuthority": "unresolved"
+  },
+  "stillBlocked": [
+    "blocker-calendar-time-source-identity",
+    "blocker-source-identity-unresolved",
+    "blocker-external-oracle-identity",
+    "blocker-four-transform-source-witness",
+    "blocker-minor-star-source-witness",
+    "blocker-timing-domain-absent",
+    "blocker-12-major-star-direct-rules",
+    "blocker-tianfu-raw-formula-contradiction",
+    "blocker-tianfu-rotation06-semantic-authority",
+    "blocker-life-body-ruler-source-legibility"
+  ],
+  "verdictToken": "complete_ziwei_structural_admission_frontier_advanced_uncommitted"
+}
