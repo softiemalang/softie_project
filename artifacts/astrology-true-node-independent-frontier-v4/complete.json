@@ -1,0 +1,341 @@
+{
+  "schemaVersion": "astrology-true-node-independent-frontier-v4",
+  "verdictToken": "complete_western_true_node_independent_oracle_frontier_exhausted_uncommitted",
+  "availability": "research_only",
+  "access": {
+    "branch": "main",
+    "currentHead": "a7dc1cd384516cffc14eace29b5f10defdf67c24",
+    "originMainHead": "a7dc1cd384516cffc14eace29b5f10defdf67c24",
+    "expectedBaselineHead": "a7dc1cd384516cffc14eace29b5f10defdf67c24",
+    "externalInspectionAt": "2026-08-09T06:26:47Z",
+    "externalAccess": "read_only"
+  },
+  "scope": {
+    "productionSemanticPromotion": false,
+    "productionProviderChanged": false,
+    "toleranceChanged": false,
+    "readinessChanged": false,
+    "activationChanged": false,
+    "deployOrRemoteMutation": false,
+    "historicalArtifactsRewritten": false,
+    "unrelatedUntrackedPreserved": [
+      "-.jpg"
+    ]
+  },
+  "productionContractAudit": {
+    "status": "not_defined_for_true_node",
+    "finding": "The repository has no production True Node provider. true_node and mean_node are explicit unsupported bodies; the legacy resolver is a date-seed simulation and is not an astronomical source.",
+    "fields": {
+      "ascendingNode": {
+        "status": "name_only",
+        "observed": "lunar ascending / north node by identifier and research docs",
+        "authority": "unresolved"
+      },
+      "nodeType": {
+        "status": "name_only",
+        "observed": "true_node is separate from mean_node in the unsupported list",
+        "authority": "unresolved"
+      },
+      "center": {
+        "status": "repository_default_only",
+        "observed": "geocentric chart default",
+        "authority": "unresolved_for_true_node"
+      },
+      "zodiac": {
+        "status": "repository_default_only",
+        "observed": "tropical chart default",
+        "authority": "unresolved_for_true_node"
+      },
+      "referencePlaneFrameEquinox": {
+        "status": "research_only",
+        "observed": "candidate uses mean ecliptic/equinox of date; Swiss and Horizons expose additional frame choices",
+        "authority": "unresolved_for_production"
+      },
+      "timeScaleEpoch": {
+        "status": "general_contract_only",
+        "observed": "TT requires explicit TT-UTC and UT1 requires explicit DUT1; research corpus uses TDB with paired synthetic TT",
+        "authority": "unresolved_for_true_node"
+      },
+      "apparentGeometricCorrections": {
+        "status": "research_only",
+        "observed": "Swiss flags and Horizons geometric VEC_CORR=NONE were compared; no production choice exists",
+        "authority": "unresolved_for_production"
+      },
+      "longitudeNormalization": {
+        "status": "candidate_only",
+        "observed": "[0,360) normalization exists in the isolated candidate",
+        "authority": "unresolved_for_production"
+      },
+      "tolerance": {
+        "status": "none_declared",
+        "observed": "all True Node comparisons remain diagnostic-only",
+        "authority": "no_acceptance_tolerance_authorized"
+      }
+    },
+    "evidenceRefs": [
+      "src/astrology/astrologyRuleCore.js:31-40",
+      "src/astrology/astrologyContract.js:7-14",
+      "src/astrology/astrologyTimeScales.js:18-123",
+      "src/astrology/planetResolver.js:42-73",
+      "docs/astrology-true-node-reference.md:6-20"
+    ]
+  },
+  "oracleFrontier": [
+    {
+      "candidate": "Swiss SE_TRUE_NODE",
+      "independence": "comparison_reference_only",
+      "sameQuantity": "observed Swiss target, but it is the quantity under explanation",
+      "authority": "not_independent",
+      "blocker": "No independent semantic bridge to a production contract; source/license boundary remains separate."
+    },
+    {
+      "candidate": "local DE405 state-derived osculating node",
+      "independence": "independent_algorithm_path_but_shared_candidate_data",
+      "sameQuantity": "explicit geometric geocentric osculating construction",
+      "authority": "not_established",
+      "blocker": "The derivation is a repository candidate, not proof that production True Node means this exact state/frame/correction combination."
+    },
+    {
+      "candidate": "CSPICE DE405 overlap",
+      "independence": "same_kernel_control",
+      "sameQuantity": "same state-derived candidate quantity",
+      "authority": "not_independent",
+      "blocker": "The SPK contains the same DE405 family/input lineage; wrapper diversity does not create independent data authority."
+    },
+    {
+      "candidate": "NASA/JPL Horizons DE441 vectors and OM",
+      "independence": "same_family_corroboration",
+      "sameQuantity": "geometric geocentric state and osculating OM, not direct tropical/date True Node",
+      "authority": "raw_physical_quantity_only",
+      "blocker": "DE441 is JPL-family corroboration, and OM reference-plane/equinox semantics do not by themselves bridge to the product contract."
+    },
+    {
+      "candidate": "ERFA/SOFA eraMoon98",
+      "independence": "independent_analytic_negative_control",
+      "sameQuantity": "geocentric Moon position/velocity from Meeus model; node is a repository derivation",
+      "authority": "not_precision_authority",
+      "blocker": "Official source documents RMS 2.9 arcsec and worst 18.3 arcsec geocentric direction error versus ELP/MPP02; it has no canonical True Node output."
+    },
+    {
+      "candidate": "Astrolog 8.00 Matrix-only",
+      "independence": "independent_build_path_when_features_disabled",
+      "sameQuantity": "own true-node-labelled approximation",
+      "authority": "not_established",
+      "blocker": "ComputeLunar uses a short perturbation series; it is not a documented high-precision semantic authority and the GPL-2.0-or-later source is not a production dependency."
+    },
+    {
+      "candidate": "local Skyfield 1.53 with DE440",
+      "independence": "same_family_wrapper_corroboration",
+      "sameQuantity": "DE440 geocentric state only; no direct True Node API",
+      "authority": "not_independent_authority",
+      "blocker": "The 134-row state comparison to Horizons DE441 is a JPL-family/data corroboration; Skyfield/jplephem wrapper diversity does not establish semantic identity.",
+      "observedComparison": {
+        "rowCount": 134,
+        "horizonsDe441PositionNormMaxKm": 0.011970024595391352,
+        "horizonsDe441VelocityNormMaxKmPerSecond": 3.325526311864916e-8
+      },
+      "source": {
+        "pathOutsideRepository": "/Users/softie/Documents/spotify_server/fortune/database/astronomy/de440.bsp",
+        "sha256": "a4ce9bf9b3282becc9f4b2ac3cebe03a2ae7599981aabd7265fd8482fff7c4b5",
+        "wrapper": "Skyfield 1.53 / jplephem 2.23",
+        "observationCommand": "read-only Skyfield DE440 state versus preserved Horizons DE441 vectors"
+      }
+    },
+    {
+      "candidate": "Astronomy Engine",
+      "independence": "independent_library",
+      "sameQuantity": "Moon node event time, not instantaneous longitude",
+      "authority": "not_applicable",
+      "blocker": "Official API exposes ascending/descending Moon ecliptic-plane crossing events but no instantaneous tropical/date True Node longitude."
+    },
+    {
+      "candidate": "USNO NOVAS",
+      "independence": "independent_astrometry_library",
+      "sameQuantity": "general positions/velocities and transformations, no direct True Node field found",
+      "authority": "not_applicable_as_direct_oracle",
+      "blocker": "Using NOVAS to derive a node would create another derived implementation and still require the unresolved semantic bridge."
+    }
+  ],
+  "corpus": {
+    "inheritedDe405Swiss": {
+      "rowCount": 7342,
+      "maxAbsoluteDifferenceArcseconds": 18.635712528976,
+      "p50AbsoluteDifferenceArcseconds": 11.664927884066856,
+      "p95AbsoluteDifferenceArcseconds": 17.304343789919585,
+      "p99AbsoluteDifferenceArcseconds": 18.14221476925013,
+      "coverage": "synthetic TDB grid",
+      "boundaryRows": 4,
+      "result": "diagnostic_only_no_tolerance_pass"
+    },
+    "horizonsErfa": {
+      "rowCount": 134,
+      "horizonsDateVsSwissMeanFrameMaxArcseconds": 1.6422761457306478,
+      "horizonsDateVsLocalDe405MaxArcseconds": 0.11627137882896932,
+      "horizonsElementVectorConsistencyMaxArcseconds": 8.185452315956354e-10,
+      "erfaMoon98VsSwissMaxArcseconds": 72.20445804505289,
+      "coverage": "134 deterministic points spanning the inherited 1900-2101 DE405 service interval; expanded raw-oracle sample, not a full sweep",
+      "result": "diagnostic_only_no_tolerance_pass"
+    },
+    "boundedDiagnostics": {
+      "frameMeanEquinoxMaxArcseconds": 1.8031521231023362,
+      "frameDefaultMaxArcseconds": 18.635712528976,
+      "lightTimeEffectMaxArcseconds": 0.014527895200444618,
+      "result": "hypothesis_evidence_only"
+    },
+    "Astrolog": {
+      "rows": 3,
+      "repeatBuildSha256Matched": true,
+      "trueNodeReferenceAccepted": false,
+      "result": "raw_observation_only"
+    }
+  },
+  "externalSources": [
+    {
+      "title": "Swiss Ephemeris: Lunar and Planetary Nodes and Apsides",
+      "url": "https://www.astro.com/swisseph-download/doc/swisseph.pdf",
+      "accessedAt": "2026-08-09T06:26:47Z",
+      "role": "true-node definition corroboration only"
+    },
+    {
+      "title": "Swiss Ephemeris Programmer's Manual",
+      "url": "https://www.astro.com/swisseph/swephprg.pdf",
+      "accessedAt": "2026-08-09T06:26:47Z",
+      "role": "flags/body metadata and convention corroboration only"
+    },
+    {
+      "title": "NASA/JPL Horizons Manual",
+      "url": "https://ssd.jpl.nasa.gov/horizons/manual.html",
+      "accessedAt": "2026-08-09T06:26:47Z",
+      "role": "official state/oscillating-element quantity and frame provenance"
+    },
+    {
+      "title": "ERFA eraMoon98 source",
+      "url": "https://raw.githubusercontent.com/liberfa/erfa/master/src/moon98.c",
+      "accessedAt": "2026-08-09T06:26:47Z",
+      "role": "independent analytic accuracy boundary"
+    },
+    {
+      "title": "Astronomy Engine public C API",
+      "url": "https://raw.githubusercontent.com/cosinekitty/astronomy/master/source/c/astronomy.h",
+      "accessedAt": "2026-08-09T06:26:47Z",
+      "role": "official API surface audit; event node only"
+    },
+    {
+      "title": "USNO NOVAS information",
+      "url": "https://aa.usno.navy.mil/software/novas_info",
+      "accessedAt": "2026-08-09T06:26:47Z",
+      "role": "official general astrometry API audit; no direct True Node field"
+    },
+    {
+      "title": "Astrolog pinned source",
+      "url": "https://github.com/CruiserOne/Astrolog/tree/5bf172ea231c4b6ea3d7e09ca307571354a41e8a",
+      "accessedAt": "2026-08-09T06:26:47Z",
+      "role": "source/build audit; GPL Matrix approximation"
+    }
+  ],
+  "readinessBoundary": {
+    "independentTrueNodeReference": "pending",
+    "authorityFrontier": "exhausted_under_current_permissions",
+    "qualification": "blocked_semantic_identity_insufficient",
+    "productionProviderChanged": false,
+    "activationChanged": false,
+    "toleranceChanged": false,
+    "interpretationEligibility": "unchanged_blocked_by_existing_contracts",
+    "remainingBlockers": [
+      "production True Node semantic is not implemented or contractually defined",
+      "no independent high-precision implementation or dataset directly exposes the same complete quantity",
+      "frame/equinox/time-scale/correction equivalence is unresolved",
+      "a production dependency decision would require licensing and policy review"
+    ],
+    "requiredNextEvidence": "A source-backed, license-usable independent implementation or dataset must directly define and emit the same geocentric tropical instantaneous True Node, or an independent adjudication must formally bridge the JPL osculating OM/state construction to that contract."
+  },
+  "provenance": {
+    "materializerPath": "scripts/materialize-astrology-true-node-independent-frontier-v4.mjs",
+    "sourceFiles": [
+      {
+        "path": "src/astrology/astrologyContract.js",
+        "sizeBytes": 3792,
+        "sha256": "360d8a774f9d774d94607b5faaf2bdeee20b2b1db2592af3f8c4b2681f15d851"
+      },
+      {
+        "path": "src/astrology/astrologyRuleCore.js",
+        "sizeBytes": 8075,
+        "sha256": "3f1867d2f3f32d919683c6679ffc2a4984a0d7f7e27902fd978e3921038dbd07"
+      },
+      {
+        "path": "src/astrology/astrologyTimeScales.js",
+        "sizeBytes": 4103,
+        "sha256": "9c6a7ac711cb205f4eda01e619556ef27debabd57a1d8970d70b047b82650fd9"
+      },
+      {
+        "path": "src/astrology/planetResolver.js",
+        "sizeBytes": 1788,
+        "sha256": "b48db30fe27d597b1461ee5d27a7be68893a4b1451ac89017dd6f4a2dfe0d914"
+      },
+      {
+        "path": "spikes/astrology-true-node-independent/README.md",
+        "sizeBytes": 2140,
+        "sha256": "92a2376dc94a5977d64fcf7e8b00e8cf6c2681b9d5c25fb6a9dc7f3a01d38ba6"
+      },
+      {
+        "path": "spikes/astrology-independent-reference/README.md",
+        "sizeBytes": 1550,
+        "sha256": "535b8119a1a5c2752ed8454c613a34506d947879af67581eb392ae852c29fc8c"
+      },
+      {
+        "path": "spikes/astrology-independent-reference/fixtures/manifest.json",
+        "sizeBytes": 1044,
+        "sha256": "d6a79d905ebb9c995dcfd67c4fb5205c58a6e64532ea094008e5b432d04ec3e8"
+      },
+      {
+        "path": "docs/astrology-true-node-reference.md",
+        "sizeBytes": 4016,
+        "sha256": "a261b82982a3fbe61ff3cbce7401acecc8701c53bd21b7d9cb8cee428fe97c22"
+      },
+      {
+        "path": "docs/astrology-true-node-independent-frontier-v3.md",
+        "sizeBytes": 6958,
+        "sha256": "1a8562e51a0ae0761b26627bac314282d5c9b920f3442480d28fc6482f31b95b"
+      },
+      {
+        "path": "artifacts/astrology-true-node-independent-v0/complete.json",
+        "sizeBytes": 4859965,
+        "sha256": "12619dce2fc65cc0e1620b51935014ac87bee3551bc94bdd9a4ec15af3099b15"
+      },
+      {
+        "path": "artifacts/astrology-true-node-horizons-erfa-v2/complete.json",
+        "sizeBytes": 244115,
+        "sha256": "2527d8599fe49820304d002c4ce62b70765f3d7ef2e390784fc3af5ea8bda7b6"
+      },
+      {
+        "path": "artifacts/astrology-true-node-frame-diagnostic-v1/complete.json",
+        "sizeBytes": 4051862,
+        "sha256": "95114e021d4a732ada0e04dfde9f207e06e05728f03b79bf3a7de393ec3077b0"
+      },
+      {
+        "path": "artifacts/astrology-true-node-light-time-diagnostic-v1/complete.json",
+        "sizeBytes": 103536,
+        "sha256": "3d145ca57a8a2c73b7fdb4abbbc1fb41abdbd971fc9e13a685a06365efcd61f6"
+      },
+      {
+        "path": "test/astrologyTrueNodeIndependent.test.js",
+        "sizeBytes": 7199,
+        "sha256": "ce1a312202e27954e916289b9276876ef5dea1082736b8edf20d1b60d3026722"
+      }
+    ],
+    "generatedWithoutNetwork": true,
+    "externalSourcesReadOnly": true,
+    "historicalInputArtifactHashes": {
+      "independentV0": "12619dce2fc65cc0e1620b51935014ac87bee3551bc94bdd9a4ec15af3099b15",
+      "horizonsErfaV2": "2527d8599fe49820304d002c4ce62b70765f3d7ef2e390784fc3af5ea8bda7b6",
+      "frameDiagnosticV1": "95114e021d4a732ada0e04dfde9f207e06e05728f03b79bf3a7de393ec3077b0",
+      "lightTimeDiagnosticV1": "3d145ca57a8a2c73b7fdb4abbbc1fb41abdbd971fc9e13a685a06365efcd61f6"
+    },
+    "productionUnsupportedEvidence": {
+      "trueNodeListed": true,
+      "meanNodeListed": true,
+      "legacySimulationMarked": true
+    }
+  },
+  "payloadCanonicalSha256": "3489cd661bb1b345327105acdac4360eeb373ef07b022944d7aad345d74d5add"
+}

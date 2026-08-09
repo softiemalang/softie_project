@@ -2,6 +2,7 @@ import assert from 'node:assert/strict'
 import { readFileSync } from 'node:fs'
 import test from 'node:test'
 import { angularDifferenceDegrees, deriveOsculatingLunarNodeLongitude } from '../spikes/astrology-true-node-independent/src/trueNodeCandidate.js'
+import { checkFrontierArtifact } from '../scripts/check-astrology-true-node-independent-frontier-v4.mjs'
 
 const j2000MoonState = [
   -291608.38845719636, -266716.82923742401, -76102.481323201602,
@@ -81,4 +82,24 @@ test('light-time diagnostic remains local convention evidence', () => {
   assert.equal(artifact.comparison.lightTimeEffectSummary.maxAbsoluteDifferenceArcseconds, 0.014527895200444618)
   assert.equal(artifact.comparison.truePositionFlagsSummary.maxAbsoluteDifferenceArcseconds, 1.6396008296851505)
   assert.equal(artifact.readinessBoundary.independentTrueNodeReference, 'pending')
+})
+
+test('v4 frontier ledger verifies contract decomposition, exhausted candidates, and preserved inputs', () => {
+  const artifact = JSON.parse(readFileSync('artifacts/astrology-true-node-independent-frontier-v4/complete.json', 'utf8'))
+  assert.deepEqual(checkFrontierArtifact(artifact).errors, [])
+  assert.equal(artifact.productionContractAudit.status, 'not_defined_for_true_node')
+  assert.equal(artifact.readinessBoundary.authorityFrontier, 'exhausted_under_current_permissions')
+  assert.equal(artifact.readinessBoundary.independentTrueNodeReference, 'pending')
+  assert.equal(artifact.scope.activationChanged, false)
+})
+
+test('v4 frontier checker rejects a promoted verdict or mutated input identity', () => {
+  const artifact = JSON.parse(readFileSync('artifacts/astrology-true-node-independent-frontier-v4/complete.json', 'utf8'))
+  const verdictMutation = structuredClone(artifact)
+  verdictMutation.verdictToken = 'production_true_node_ready'
+  assert.equal(checkFrontierArtifact(verdictMutation).pass, false)
+
+  const hashMutation = structuredClone(artifact)
+  hashMutation.provenance.sourceFiles[0].sha256 = '0'.repeat(64)
+  assert.equal(checkFrontierArtifact(hashMutation).pass, false)
 })
