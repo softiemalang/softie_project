@@ -1,0 +1,2297 @@
+{
+  "cases": [
+    {
+      "actual": -1,
+      "analysis": {
+        "rootCause": "implementation_guard_rejects_valid_lunar_1900_month_1_days_before_31",
+        "semanticEquivalence": "date-only contract"
+      },
+      "caseId": "kasi-1900-02-01-lunar-to-solar",
+      "category": "semantic_mismatch",
+      "input": {
+        "day": 2,
+        "isLeapMonth": false,
+        "month": 1,
+        "year": 1900
+      },
+      "kind": "lunar_to_solar",
+      "oracle": {
+        "solarDate": "1900-02-01"
+      },
+      "sourceId": "kasi-monthly-lunisolar"
+    },
+    {
+      "actual": -1,
+      "analysis": {
+        "rootCause": "implementation_guard_rejects_valid_lunar_1900_month_1_days_before_31",
+        "semanticEquivalence": "date-only contract"
+      },
+      "caseId": "kasi-1900-02-02-lunar-to-solar",
+      "category": "semantic_mismatch",
+      "input": {
+        "day": 3,
+        "isLeapMonth": false,
+        "month": 1,
+        "year": 1900
+      },
+      "kind": "lunar_to_solar",
+      "oracle": {
+        "solarDate": "1900-02-02"
+      },
+      "sourceId": "kasi-monthly-lunisolar"
+    },
+    {
+      "actual": -1,
+      "analysis": {
+        "rootCause": "implementation_guard_rejects_valid_lunar_1900_month_1_days_before_31",
+        "semanticEquivalence": "date-only contract"
+      },
+      "caseId": "kasi-1900-02-03-lunar-to-solar",
+      "category": "semantic_mismatch",
+      "input": {
+        "day": 4,
+        "isLeapMonth": false,
+        "month": 1,
+        "year": 1900
+      },
+      "kind": "lunar_to_solar",
+      "oracle": {
+        "solarDate": "1900-02-03"
+      },
+      "sourceId": "kasi-monthly-lunisolar"
+    },
+    {
+      "actual": -1,
+      "analysis": {
+        "rootCause": "implementation_guard_rejects_valid_lunar_1900_month_1_days_before_31",
+        "semanticEquivalence": "date-only contract"
+      },
+      "caseId": "kasi-1900-02-04-lunar-to-solar",
+      "category": "semantic_mismatch",
+      "input": {
+        "day": 5,
+        "isLeapMonth": false,
+        "month": 1,
+        "year": 1900
+      },
+      "kind": "lunar_to_solar",
+      "oracle": {
+        "solarDate": "1900-02-04"
+      },
+      "sourceId": "kasi-monthly-lunisolar"
+    },
+    {
+      "actual": -1,
+      "analysis": {
+        "rootCause": "implementation_guard_rejects_valid_lunar_1900_month_1_days_before_31",
+        "semanticEquivalence": "date-only contract"
+      },
+      "caseId": "kasi-1900-02-05-lunar-to-solar",
+      "category": "semantic_mismatch",
+      "input": {
+        "day": 6,
+        "isLeapMonth": false,
+        "month": 1,
+        "year": 1900
+      },
+      "kind": "lunar_to_solar",
+      "oracle": {
+        "solarDate": "1900-02-05"
+      },
+      "sourceId": "kasi-monthly-lunisolar"
+    },
+    {
+      "actual": -1,
+      "analysis": {
+        "rootCause": "implementation_guard_rejects_valid_lunar_1900_month_1_days_before_31",
+        "semanticEquivalence": "date-only contract"
+      },
+      "caseId": "kasi-1900-02-06-lunar-to-solar",
+      "category": "semantic_mismatch",
+      "input": {
+        "day": 7,
+        "isLeapMonth": false,
+        "month": 1,
+        "year": 1900
+      },
+      "kind": "lunar_to_solar",
+      "oracle": {
+        "solarDate": "1900-02-06"
+      },
+      "sourceId": "kasi-monthly-lunisolar"
+    },
+    {
+      "actual": -1,
+      "analysis": {
+        "rootCause": "implementation_guard_rejects_valid_lunar_1900_month_1_days_before_31",
+        "semanticEquivalence": "date-only contract"
+      },
+      "caseId": "kasi-1900-02-07-lunar-to-solar",
+      "category": "semantic_mismatch",
+      "input": {
+        "day": 8,
+        "isLeapMonth": false,
+        "month": 1,
+        "year": 1900
+      },
+      "kind": "lunar_to_solar",
+      "oracle": {
+        "solarDate": "1900-02-07"
+      },
+      "sourceId": "kasi-monthly-lunisolar"
+    },
+    {
+      "actual": -1,
+      "analysis": {
+        "rootCause": "implementation_guard_rejects_valid_lunar_1900_month_1_days_before_31",
+        "semanticEquivalence": "date-only contract"
+      },
+      "caseId": "kasi-1900-02-08-lunar-to-solar",
+      "category": "semantic_mismatch",
+      "input": {
+        "day": 9,
+        "isLeapMonth": false,
+        "month": 1,
+        "year": 1900
+      },
+      "kind": "lunar_to_solar",
+      "oracle": {
+        "solarDate": "1900-02-08"
+      },
+      "sourceId": "kasi-monthly-lunisolar"
+    },
+    {
+      "actual": -1,
+      "analysis": {
+        "rootCause": "implementation_guard_rejects_valid_lunar_1900_month_1_days_before_31",
+        "semanticEquivalence": "date-only contract"
+      },
+      "caseId": "kasi-1900-02-09-lunar-to-solar",
+      "category": "semantic_mismatch",
+      "input": {
+        "day": 10,
+        "isLeapMonth": false,
+        "month": 1,
+        "year": 1900
+      },
+      "kind": "lunar_to_solar",
+      "oracle": {
+        "solarDate": "1900-02-09"
+      },
+      "sourceId": "kasi-monthly-lunisolar"
+    },
+    {
+      "actual": -1,
+      "analysis": {
+        "rootCause": "implementation_guard_rejects_valid_lunar_1900_month_1_days_before_31",
+        "semanticEquivalence": "date-only contract"
+      },
+      "caseId": "kasi-1900-02-10-lunar-to-solar",
+      "category": "semantic_mismatch",
+      "input": {
+        "day": 11,
+        "isLeapMonth": false,
+        "month": 1,
+        "year": 1900
+      },
+      "kind": "lunar_to_solar",
+      "oracle": {
+        "solarDate": "1900-02-10"
+      },
+      "sourceId": "kasi-monthly-lunisolar"
+    },
+    {
+      "actual": -1,
+      "analysis": {
+        "rootCause": "implementation_guard_rejects_valid_lunar_1900_month_1_days_before_31",
+        "semanticEquivalence": "date-only contract"
+      },
+      "caseId": "kasi-1900-02-11-lunar-to-solar",
+      "category": "semantic_mismatch",
+      "input": {
+        "day": 12,
+        "isLeapMonth": false,
+        "month": 1,
+        "year": 1900
+      },
+      "kind": "lunar_to_solar",
+      "oracle": {
+        "solarDate": "1900-02-11"
+      },
+      "sourceId": "kasi-monthly-lunisolar"
+    },
+    {
+      "actual": -1,
+      "analysis": {
+        "rootCause": "implementation_guard_rejects_valid_lunar_1900_month_1_days_before_31",
+        "semanticEquivalence": "date-only contract"
+      },
+      "caseId": "kasi-1900-02-12-lunar-to-solar",
+      "category": "semantic_mismatch",
+      "input": {
+        "day": 13,
+        "isLeapMonth": false,
+        "month": 1,
+        "year": 1900
+      },
+      "kind": "lunar_to_solar",
+      "oracle": {
+        "solarDate": "1900-02-12"
+      },
+      "sourceId": "kasi-monthly-lunisolar"
+    },
+    {
+      "actual": -1,
+      "analysis": {
+        "rootCause": "implementation_guard_rejects_valid_lunar_1900_month_1_days_before_31",
+        "semanticEquivalence": "date-only contract"
+      },
+      "caseId": "kasi-1900-02-13-lunar-to-solar",
+      "category": "semantic_mismatch",
+      "input": {
+        "day": 14,
+        "isLeapMonth": false,
+        "month": 1,
+        "year": 1900
+      },
+      "kind": "lunar_to_solar",
+      "oracle": {
+        "solarDate": "1900-02-13"
+      },
+      "sourceId": "kasi-monthly-lunisolar"
+    },
+    {
+      "actual": -1,
+      "analysis": {
+        "rootCause": "implementation_guard_rejects_valid_lunar_1900_month_1_days_before_31",
+        "semanticEquivalence": "date-only contract"
+      },
+      "caseId": "kasi-1900-02-14-lunar-to-solar",
+      "category": "semantic_mismatch",
+      "input": {
+        "day": 15,
+        "isLeapMonth": false,
+        "month": 1,
+        "year": 1900
+      },
+      "kind": "lunar_to_solar",
+      "oracle": {
+        "solarDate": "1900-02-14"
+      },
+      "sourceId": "kasi-monthly-lunisolar"
+    },
+    {
+      "actual": -1,
+      "analysis": {
+        "rootCause": "implementation_guard_rejects_valid_lunar_1900_month_1_days_before_31",
+        "semanticEquivalence": "date-only contract"
+      },
+      "caseId": "kasi-1900-02-15-lunar-to-solar",
+      "category": "semantic_mismatch",
+      "input": {
+        "day": 16,
+        "isLeapMonth": false,
+        "month": 1,
+        "year": 1900
+      },
+      "kind": "lunar_to_solar",
+      "oracle": {
+        "solarDate": "1900-02-15"
+      },
+      "sourceId": "kasi-monthly-lunisolar"
+    },
+    {
+      "actual": -1,
+      "analysis": {
+        "rootCause": "implementation_guard_rejects_valid_lunar_1900_month_1_days_before_31",
+        "semanticEquivalence": "date-only contract"
+      },
+      "caseId": "kasi-1900-02-16-lunar-to-solar",
+      "category": "semantic_mismatch",
+      "input": {
+        "day": 17,
+        "isLeapMonth": false,
+        "month": 1,
+        "year": 1900
+      },
+      "kind": "lunar_to_solar",
+      "oracle": {
+        "solarDate": "1900-02-16"
+      },
+      "sourceId": "kasi-monthly-lunisolar"
+    },
+    {
+      "actual": -1,
+      "analysis": {
+        "rootCause": "implementation_guard_rejects_valid_lunar_1900_month_1_days_before_31",
+        "semanticEquivalence": "date-only contract"
+      },
+      "caseId": "kasi-1900-02-17-lunar-to-solar",
+      "category": "semantic_mismatch",
+      "input": {
+        "day": 18,
+        "isLeapMonth": false,
+        "month": 1,
+        "year": 1900
+      },
+      "kind": "lunar_to_solar",
+      "oracle": {
+        "solarDate": "1900-02-17"
+      },
+      "sourceId": "kasi-monthly-lunisolar"
+    },
+    {
+      "actual": -1,
+      "analysis": {
+        "rootCause": "implementation_guard_rejects_valid_lunar_1900_month_1_days_before_31",
+        "semanticEquivalence": "date-only contract"
+      },
+      "caseId": "kasi-1900-02-18-lunar-to-solar",
+      "category": "semantic_mismatch",
+      "input": {
+        "day": 19,
+        "isLeapMonth": false,
+        "month": 1,
+        "year": 1900
+      },
+      "kind": "lunar_to_solar",
+      "oracle": {
+        "solarDate": "1900-02-18"
+      },
+      "sourceId": "kasi-monthly-lunisolar"
+    },
+    {
+      "actual": -1,
+      "analysis": {
+        "rootCause": "implementation_guard_rejects_valid_lunar_1900_month_1_days_before_31",
+        "semanticEquivalence": "date-only contract"
+      },
+      "caseId": "kasi-1900-02-19-lunar-to-solar",
+      "category": "semantic_mismatch",
+      "input": {
+        "day": 20,
+        "isLeapMonth": false,
+        "month": 1,
+        "year": 1900
+      },
+      "kind": "lunar_to_solar",
+      "oracle": {
+        "solarDate": "1900-02-19"
+      },
+      "sourceId": "kasi-monthly-lunisolar"
+    },
+    {
+      "actual": -1,
+      "analysis": {
+        "rootCause": "implementation_guard_rejects_valid_lunar_1900_month_1_days_before_31",
+        "semanticEquivalence": "date-only contract"
+      },
+      "caseId": "kasi-1900-02-20-lunar-to-solar",
+      "category": "semantic_mismatch",
+      "input": {
+        "day": 21,
+        "isLeapMonth": false,
+        "month": 1,
+        "year": 1900
+      },
+      "kind": "lunar_to_solar",
+      "oracle": {
+        "solarDate": "1900-02-20"
+      },
+      "sourceId": "kasi-monthly-lunisolar"
+    },
+    {
+      "actual": -1,
+      "analysis": {
+        "rootCause": "implementation_guard_rejects_valid_lunar_1900_month_1_days_before_31",
+        "semanticEquivalence": "date-only contract"
+      },
+      "caseId": "kasi-1900-02-21-lunar-to-solar",
+      "category": "semantic_mismatch",
+      "input": {
+        "day": 22,
+        "isLeapMonth": false,
+        "month": 1,
+        "year": 1900
+      },
+      "kind": "lunar_to_solar",
+      "oracle": {
+        "solarDate": "1900-02-21"
+      },
+      "sourceId": "kasi-monthly-lunisolar"
+    },
+    {
+      "actual": -1,
+      "analysis": {
+        "rootCause": "implementation_guard_rejects_valid_lunar_1900_month_1_days_before_31",
+        "semanticEquivalence": "date-only contract"
+      },
+      "caseId": "kasi-1900-02-22-lunar-to-solar",
+      "category": "semantic_mismatch",
+      "input": {
+        "day": 23,
+        "isLeapMonth": false,
+        "month": 1,
+        "year": 1900
+      },
+      "kind": "lunar_to_solar",
+      "oracle": {
+        "solarDate": "1900-02-22"
+      },
+      "sourceId": "kasi-monthly-lunisolar"
+    },
+    {
+      "actual": -1,
+      "analysis": {
+        "rootCause": "implementation_guard_rejects_valid_lunar_1900_month_1_days_before_31",
+        "semanticEquivalence": "date-only contract"
+      },
+      "caseId": "kasi-1900-02-23-lunar-to-solar",
+      "category": "semantic_mismatch",
+      "input": {
+        "day": 24,
+        "isLeapMonth": false,
+        "month": 1,
+        "year": 1900
+      },
+      "kind": "lunar_to_solar",
+      "oracle": {
+        "solarDate": "1900-02-23"
+      },
+      "sourceId": "kasi-monthly-lunisolar"
+    },
+    {
+      "actual": -1,
+      "analysis": {
+        "rootCause": "implementation_guard_rejects_valid_lunar_1900_month_1_days_before_31",
+        "semanticEquivalence": "date-only contract"
+      },
+      "caseId": "kasi-1900-02-24-lunar-to-solar",
+      "category": "semantic_mismatch",
+      "input": {
+        "day": 25,
+        "isLeapMonth": false,
+        "month": 1,
+        "year": 1900
+      },
+      "kind": "lunar_to_solar",
+      "oracle": {
+        "solarDate": "1900-02-24"
+      },
+      "sourceId": "kasi-monthly-lunisolar"
+    },
+    {
+      "actual": -1,
+      "analysis": {
+        "rootCause": "implementation_guard_rejects_valid_lunar_1900_month_1_days_before_31",
+        "semanticEquivalence": "date-only contract"
+      },
+      "caseId": "kasi-1900-02-25-lunar-to-solar",
+      "category": "semantic_mismatch",
+      "input": {
+        "day": 26,
+        "isLeapMonth": false,
+        "month": 1,
+        "year": 1900
+      },
+      "kind": "lunar_to_solar",
+      "oracle": {
+        "solarDate": "1900-02-25"
+      },
+      "sourceId": "kasi-monthly-lunisolar"
+    },
+    {
+      "actual": -1,
+      "analysis": {
+        "rootCause": "implementation_guard_rejects_valid_lunar_1900_month_1_days_before_31",
+        "semanticEquivalence": "date-only contract"
+      },
+      "caseId": "kasi-1900-02-26-lunar-to-solar",
+      "category": "semantic_mismatch",
+      "input": {
+        "day": 27,
+        "isLeapMonth": false,
+        "month": 1,
+        "year": 1900
+      },
+      "kind": "lunar_to_solar",
+      "oracle": {
+        "solarDate": "1900-02-26"
+      },
+      "sourceId": "kasi-monthly-lunisolar"
+    },
+    {
+      "actual": -1,
+      "analysis": {
+        "rootCause": "implementation_guard_rejects_valid_lunar_1900_month_1_days_before_31",
+        "semanticEquivalence": "date-only contract"
+      },
+      "caseId": "kasi-1900-02-27-lunar-to-solar",
+      "category": "semantic_mismatch",
+      "input": {
+        "day": 28,
+        "isLeapMonth": false,
+        "month": 1,
+        "year": 1900
+      },
+      "kind": "lunar_to_solar",
+      "oracle": {
+        "solarDate": "1900-02-27"
+      },
+      "sourceId": "kasi-monthly-lunisolar"
+    },
+    {
+      "actual": -1,
+      "analysis": {
+        "rootCause": "implementation_guard_rejects_valid_lunar_1900_month_1_days_before_31",
+        "semanticEquivalence": "date-only contract"
+      },
+      "caseId": "kasi-1900-02-28-lunar-to-solar",
+      "category": "semantic_mismatch",
+      "input": {
+        "day": 29,
+        "isLeapMonth": false,
+        "month": 1,
+        "year": 1900
+      },
+      "kind": "lunar_to_solar",
+      "oracle": {
+        "solarDate": "1900-02-28"
+      },
+      "sourceId": "kasi-monthly-lunisolar"
+    },
+    {
+      "actual": {
+        "productionBoundarySet": [
+          315,
+          345,
+          15,
+          45,
+          75,
+          105,
+          135,
+          165,
+          195,
+          225,
+          255,
+          285
+        ]
+      },
+      "analysis": {
+        "rootCause": "production_engine_exposes_only_12_bazi_month_entry_longitudes; 12 intermediate terms are not direct production boundary outputs",
+        "semanticEquivalence": "not_applicable"
+      },
+      "caseId": "hko-2026-02-production-scope",
+      "category": "oracle_scope_insufficient",
+      "input": {
+        "longitudeDegrees": 300,
+        "termName": "대한",
+        "year": 2026
+      },
+      "kind": "intermediate_solar_term_scope",
+      "oracle": {
+        "displayPrecision": "minute",
+        "hktDateTime": "2026-01-20 09:45",
+        "id": "hko-2026-02",
+        "kind": "intermediate_term",
+        "longitudeDegrees": 300,
+        "termIndex": 2,
+        "termName": "대한",
+        "timezone": "Asia/Hong_Kong",
+        "utcIso": "2026-01-20T01:45:00.000Z",
+        "utcOffsetMinutes": 480,
+        "year": 2026
+      },
+      "sourceId": "hko-24-solar-terms-xml"
+    },
+    {
+      "actual": {
+        "productionBoundarySet": [
+          315,
+          345,
+          15,
+          45,
+          75,
+          105,
+          135,
+          165,
+          195,
+          225,
+          255,
+          285
+        ]
+      },
+      "analysis": {
+        "rootCause": "production_engine_exposes_only_12_bazi_month_entry_longitudes; 12 intermediate terms are not direct production boundary outputs",
+        "semanticEquivalence": "not_applicable"
+      },
+      "caseId": "hko-2026-04-production-scope",
+      "category": "oracle_scope_insufficient",
+      "input": {
+        "longitudeDegrees": 330,
+        "termName": "우수",
+        "year": 2026
+      },
+      "kind": "intermediate_solar_term_scope",
+      "oracle": {
+        "displayPrecision": "minute",
+        "hktDateTime": "2026-02-18 23:52",
+        "id": "hko-2026-04",
+        "kind": "intermediate_term",
+        "longitudeDegrees": 330,
+        "termIndex": 4,
+        "termName": "우수",
+        "timezone": "Asia/Hong_Kong",
+        "utcIso": "2026-02-18T15:52:00.000Z",
+        "utcOffsetMinutes": 480,
+        "year": 2026
+      },
+      "sourceId": "hko-24-solar-terms-xml"
+    },
+    {
+      "actual": {
+        "productionBoundarySet": [
+          315,
+          345,
+          15,
+          45,
+          75,
+          105,
+          135,
+          165,
+          195,
+          225,
+          255,
+          285
+        ]
+      },
+      "analysis": {
+        "rootCause": "production_engine_exposes_only_12_bazi_month_entry_longitudes; 12 intermediate terms are not direct production boundary outputs",
+        "semanticEquivalence": "not_applicable"
+      },
+      "caseId": "hko-2026-06-production-scope",
+      "category": "oracle_scope_insufficient",
+      "input": {
+        "longitudeDegrees": 0,
+        "termName": "춘분",
+        "year": 2026
+      },
+      "kind": "intermediate_solar_term_scope",
+      "oracle": {
+        "displayPrecision": "minute",
+        "hktDateTime": "2026-03-20 22:46",
+        "id": "hko-2026-06",
+        "kind": "intermediate_term",
+        "longitudeDegrees": 0,
+        "termIndex": 6,
+        "termName": "춘분",
+        "timezone": "Asia/Hong_Kong",
+        "utcIso": "2026-03-20T14:46:00.000Z",
+        "utcOffsetMinutes": 480,
+        "year": 2026
+      },
+      "sourceId": "hko-24-solar-terms-xml"
+    },
+    {
+      "actual": {
+        "productionBoundarySet": [
+          315,
+          345,
+          15,
+          45,
+          75,
+          105,
+          135,
+          165,
+          195,
+          225,
+          255,
+          285
+        ]
+      },
+      "analysis": {
+        "rootCause": "production_engine_exposes_only_12_bazi_month_entry_longitudes; 12 intermediate terms are not direct production boundary outputs",
+        "semanticEquivalence": "not_applicable"
+      },
+      "caseId": "hko-2026-08-production-scope",
+      "category": "oracle_scope_insufficient",
+      "input": {
+        "longitudeDegrees": 30,
+        "termName": "곡우",
+        "year": 2026
+      },
+      "kind": "intermediate_solar_term_scope",
+      "oracle": {
+        "displayPrecision": "minute",
+        "hktDateTime": "2026-04-20 09:39",
+        "id": "hko-2026-08",
+        "kind": "intermediate_term",
+        "longitudeDegrees": 30,
+        "termIndex": 8,
+        "termName": "곡우",
+        "timezone": "Asia/Hong_Kong",
+        "utcIso": "2026-04-20T01:39:00.000Z",
+        "utcOffsetMinutes": 480,
+        "year": 2026
+      },
+      "sourceId": "hko-24-solar-terms-xml"
+    },
+    {
+      "actual": {
+        "productionBoundarySet": [
+          315,
+          345,
+          15,
+          45,
+          75,
+          105,
+          135,
+          165,
+          195,
+          225,
+          255,
+          285
+        ]
+      },
+      "analysis": {
+        "rootCause": "production_engine_exposes_only_12_bazi_month_entry_longitudes; 12 intermediate terms are not direct production boundary outputs",
+        "semanticEquivalence": "not_applicable"
+      },
+      "caseId": "hko-2026-10-production-scope",
+      "category": "oracle_scope_insufficient",
+      "input": {
+        "longitudeDegrees": 60,
+        "termName": "소만",
+        "year": 2026
+      },
+      "kind": "intermediate_solar_term_scope",
+      "oracle": {
+        "displayPrecision": "minute",
+        "hktDateTime": "2026-05-21 08:37",
+        "id": "hko-2026-10",
+        "kind": "intermediate_term",
+        "longitudeDegrees": 60,
+        "termIndex": 10,
+        "termName": "소만",
+        "timezone": "Asia/Hong_Kong",
+        "utcIso": "2026-05-21T00:37:00.000Z",
+        "utcOffsetMinutes": 480,
+        "year": 2026
+      },
+      "sourceId": "hko-24-solar-terms-xml"
+    },
+    {
+      "actual": {
+        "productionBoundarySet": [
+          315,
+          345,
+          15,
+          45,
+          75,
+          105,
+          135,
+          165,
+          195,
+          225,
+          255,
+          285
+        ]
+      },
+      "analysis": {
+        "rootCause": "production_engine_exposes_only_12_bazi_month_entry_longitudes; 12 intermediate terms are not direct production boundary outputs",
+        "semanticEquivalence": "not_applicable"
+      },
+      "caseId": "hko-2026-12-production-scope",
+      "category": "oracle_scope_insufficient",
+      "input": {
+        "longitudeDegrees": 90,
+        "termName": "하지",
+        "year": 2026
+      },
+      "kind": "intermediate_solar_term_scope",
+      "oracle": {
+        "displayPrecision": "minute",
+        "hktDateTime": "2026-06-21 16:25",
+        "id": "hko-2026-12",
+        "kind": "intermediate_term",
+        "longitudeDegrees": 90,
+        "termIndex": 12,
+        "termName": "하지",
+        "timezone": "Asia/Hong_Kong",
+        "utcIso": "2026-06-21T08:25:00.000Z",
+        "utcOffsetMinutes": 480,
+        "year": 2026
+      },
+      "sourceId": "hko-24-solar-terms-xml"
+    },
+    {
+      "actual": {
+        "productionBoundarySet": [
+          315,
+          345,
+          15,
+          45,
+          75,
+          105,
+          135,
+          165,
+          195,
+          225,
+          255,
+          285
+        ]
+      },
+      "analysis": {
+        "rootCause": "production_engine_exposes_only_12_bazi_month_entry_longitudes; 12 intermediate terms are not direct production boundary outputs",
+        "semanticEquivalence": "not_applicable"
+      },
+      "caseId": "hko-2026-14-production-scope",
+      "category": "oracle_scope_insufficient",
+      "input": {
+        "longitudeDegrees": 120,
+        "termName": "대서",
+        "year": 2026
+      },
+      "kind": "intermediate_solar_term_scope",
+      "oracle": {
+        "displayPrecision": "minute",
+        "hktDateTime": "2026-07-23 03:13",
+        "id": "hko-2026-14",
+        "kind": "intermediate_term",
+        "longitudeDegrees": 120,
+        "termIndex": 14,
+        "termName": "대서",
+        "timezone": "Asia/Hong_Kong",
+        "utcIso": "2026-07-22T19:13:00.000Z",
+        "utcOffsetMinutes": 480,
+        "year": 2026
+      },
+      "sourceId": "hko-24-solar-terms-xml"
+    },
+    {
+      "actual": {
+        "productionBoundarySet": [
+          315,
+          345,
+          15,
+          45,
+          75,
+          105,
+          135,
+          165,
+          195,
+          225,
+          255,
+          285
+        ]
+      },
+      "analysis": {
+        "rootCause": "production_engine_exposes_only_12_bazi_month_entry_longitudes; 12 intermediate terms are not direct production boundary outputs",
+        "semanticEquivalence": "not_applicable"
+      },
+      "caseId": "hko-2026-16-production-scope",
+      "category": "oracle_scope_insufficient",
+      "input": {
+        "longitudeDegrees": 150,
+        "termName": "처서",
+        "year": 2026
+      },
+      "kind": "intermediate_solar_term_scope",
+      "oracle": {
+        "displayPrecision": "minute",
+        "hktDateTime": "2026-08-23 10:19",
+        "id": "hko-2026-16",
+        "kind": "intermediate_term",
+        "longitudeDegrees": 150,
+        "termIndex": 16,
+        "termName": "처서",
+        "timezone": "Asia/Hong_Kong",
+        "utcIso": "2026-08-23T02:19:00.000Z",
+        "utcOffsetMinutes": 480,
+        "year": 2026
+      },
+      "sourceId": "hko-24-solar-terms-xml"
+    },
+    {
+      "actual": {
+        "productionBoundarySet": [
+          315,
+          345,
+          15,
+          45,
+          75,
+          105,
+          135,
+          165,
+          195,
+          225,
+          255,
+          285
+        ]
+      },
+      "analysis": {
+        "rootCause": "production_engine_exposes_only_12_bazi_month_entry_longitudes; 12 intermediate terms are not direct production boundary outputs",
+        "semanticEquivalence": "not_applicable"
+      },
+      "caseId": "hko-2026-18-production-scope",
+      "category": "oracle_scope_insufficient",
+      "input": {
+        "longitudeDegrees": 180,
+        "termName": "추분",
+        "year": 2026
+      },
+      "kind": "intermediate_solar_term_scope",
+      "oracle": {
+        "displayPrecision": "minute",
+        "hktDateTime": "2026-09-23 08:05",
+        "id": "hko-2026-18",
+        "kind": "intermediate_term",
+        "longitudeDegrees": 180,
+        "termIndex": 18,
+        "termName": "추분",
+        "timezone": "Asia/Hong_Kong",
+        "utcIso": "2026-09-23T00:05:00.000Z",
+        "utcOffsetMinutes": 480,
+        "year": 2026
+      },
+      "sourceId": "hko-24-solar-terms-xml"
+    },
+    {
+      "actual": {
+        "productionBoundarySet": [
+          315,
+          345,
+          15,
+          45,
+          75,
+          105,
+          135,
+          165,
+          195,
+          225,
+          255,
+          285
+        ]
+      },
+      "analysis": {
+        "rootCause": "production_engine_exposes_only_12_bazi_month_entry_longitudes; 12 intermediate terms are not direct production boundary outputs",
+        "semanticEquivalence": "not_applicable"
+      },
+      "caseId": "hko-2026-20-production-scope",
+      "category": "oracle_scope_insufficient",
+      "input": {
+        "longitudeDegrees": 210,
+        "termName": "상강",
+        "year": 2026
+      },
+      "kind": "intermediate_solar_term_scope",
+      "oracle": {
+        "displayPrecision": "minute",
+        "hktDateTime": "2026-10-23 17:38",
+        "id": "hko-2026-20",
+        "kind": "intermediate_term",
+        "longitudeDegrees": 210,
+        "termIndex": 20,
+        "termName": "상강",
+        "timezone": "Asia/Hong_Kong",
+        "utcIso": "2026-10-23T09:38:00.000Z",
+        "utcOffsetMinutes": 480,
+        "year": 2026
+      },
+      "sourceId": "hko-24-solar-terms-xml"
+    },
+    {
+      "actual": {
+        "productionBoundarySet": [
+          315,
+          345,
+          15,
+          45,
+          75,
+          105,
+          135,
+          165,
+          195,
+          225,
+          255,
+          285
+        ]
+      },
+      "analysis": {
+        "rootCause": "production_engine_exposes_only_12_bazi_month_entry_longitudes; 12 intermediate terms are not direct production boundary outputs",
+        "semanticEquivalence": "not_applicable"
+      },
+      "caseId": "hko-2026-22-production-scope",
+      "category": "oracle_scope_insufficient",
+      "input": {
+        "longitudeDegrees": 240,
+        "termName": "소설",
+        "year": 2026
+      },
+      "kind": "intermediate_solar_term_scope",
+      "oracle": {
+        "displayPrecision": "minute",
+        "hktDateTime": "2026-11-22 15:23",
+        "id": "hko-2026-22",
+        "kind": "intermediate_term",
+        "longitudeDegrees": 240,
+        "termIndex": 22,
+        "termName": "소설",
+        "timezone": "Asia/Hong_Kong",
+        "utcIso": "2026-11-22T07:23:00.000Z",
+        "utcOffsetMinutes": 480,
+        "year": 2026
+      },
+      "sourceId": "hko-24-solar-terms-xml"
+    },
+    {
+      "actual": {
+        "productionBoundarySet": [
+          315,
+          345,
+          15,
+          45,
+          75,
+          105,
+          135,
+          165,
+          195,
+          225,
+          255,
+          285
+        ]
+      },
+      "analysis": {
+        "rootCause": "production_engine_exposes_only_12_bazi_month_entry_longitudes; 12 intermediate terms are not direct production boundary outputs",
+        "semanticEquivalence": "not_applicable"
+      },
+      "caseId": "hko-2026-24-production-scope",
+      "category": "oracle_scope_insufficient",
+      "input": {
+        "longitudeDegrees": 270,
+        "termName": "동지",
+        "year": 2026
+      },
+      "kind": "intermediate_solar_term_scope",
+      "oracle": {
+        "displayPrecision": "minute",
+        "hktDateTime": "2026-12-22 04:50",
+        "id": "hko-2026-24",
+        "kind": "intermediate_term",
+        "longitudeDegrees": 270,
+        "termIndex": 24,
+        "termName": "동지",
+        "timezone": "Asia/Hong_Kong",
+        "utcIso": "2026-12-21T20:50:00.000Z",
+        "utcOffsetMinutes": 480,
+        "year": 2026
+      },
+      "sourceId": "hko-24-solar-terms-xml"
+    },
+    {
+      "actual": {
+        "productionBoundarySet": [
+          315,
+          345,
+          15,
+          45,
+          75,
+          105,
+          135,
+          165,
+          195,
+          225,
+          255,
+          285
+        ]
+      },
+      "analysis": {
+        "rootCause": "production_engine_exposes_only_12_bazi_month_entry_longitudes; 12 intermediate terms are not direct production boundary outputs",
+        "semanticEquivalence": "not_applicable"
+      },
+      "caseId": "hko-2027-02-production-scope",
+      "category": "oracle_scope_insufficient",
+      "input": {
+        "longitudeDegrees": 300,
+        "termName": "대한",
+        "year": 2027
+      },
+      "kind": "intermediate_solar_term_scope",
+      "oracle": {
+        "displayPrecision": "minute",
+        "hktDateTime": "2027-01-20 15:30",
+        "id": "hko-2027-02",
+        "kind": "intermediate_term",
+        "longitudeDegrees": 300,
+        "termIndex": 2,
+        "termName": "대한",
+        "timezone": "Asia/Hong_Kong",
+        "utcIso": "2027-01-20T07:30:00.000Z",
+        "utcOffsetMinutes": 480,
+        "year": 2027
+      },
+      "sourceId": "hko-24-solar-terms-xml"
+    },
+    {
+      "actual": {
+        "productionBoundarySet": [
+          315,
+          345,
+          15,
+          45,
+          75,
+          105,
+          135,
+          165,
+          195,
+          225,
+          255,
+          285
+        ]
+      },
+      "analysis": {
+        "rootCause": "production_engine_exposes_only_12_bazi_month_entry_longitudes; 12 intermediate terms are not direct production boundary outputs",
+        "semanticEquivalence": "not_applicable"
+      },
+      "caseId": "hko-2027-04-production-scope",
+      "category": "oracle_scope_insufficient",
+      "input": {
+        "longitudeDegrees": 330,
+        "termName": "우수",
+        "year": 2027
+      },
+      "kind": "intermediate_solar_term_scope",
+      "oracle": {
+        "displayPrecision": "minute",
+        "hktDateTime": "2027-02-19 05:33",
+        "id": "hko-2027-04",
+        "kind": "intermediate_term",
+        "longitudeDegrees": 330,
+        "termIndex": 4,
+        "termName": "우수",
+        "timezone": "Asia/Hong_Kong",
+        "utcIso": "2027-02-18T21:33:00.000Z",
+        "utcOffsetMinutes": 480,
+        "year": 2027
+      },
+      "sourceId": "hko-24-solar-terms-xml"
+    },
+    {
+      "actual": {
+        "productionBoundarySet": [
+          315,
+          345,
+          15,
+          45,
+          75,
+          105,
+          135,
+          165,
+          195,
+          225,
+          255,
+          285
+        ]
+      },
+      "analysis": {
+        "rootCause": "production_engine_exposes_only_12_bazi_month_entry_longitudes; 12 intermediate terms are not direct production boundary outputs",
+        "semanticEquivalence": "not_applicable"
+      },
+      "caseId": "hko-2027-06-production-scope",
+      "category": "oracle_scope_insufficient",
+      "input": {
+        "longitudeDegrees": 0,
+        "termName": "춘분",
+        "year": 2027
+      },
+      "kind": "intermediate_solar_term_scope",
+      "oracle": {
+        "displayPrecision": "minute",
+        "hktDateTime": "2027-03-21 04:25",
+        "id": "hko-2027-06",
+        "kind": "intermediate_term",
+        "longitudeDegrees": 0,
+        "termIndex": 6,
+        "termName": "춘분",
+        "timezone": "Asia/Hong_Kong",
+        "utcIso": "2027-03-20T20:25:00.000Z",
+        "utcOffsetMinutes": 480,
+        "year": 2027
+      },
+      "sourceId": "hko-24-solar-terms-xml"
+    },
+    {
+      "actual": {
+        "productionBoundarySet": [
+          315,
+          345,
+          15,
+          45,
+          75,
+          105,
+          135,
+          165,
+          195,
+          225,
+          255,
+          285
+        ]
+      },
+      "analysis": {
+        "rootCause": "production_engine_exposes_only_12_bazi_month_entry_longitudes; 12 intermediate terms are not direct production boundary outputs",
+        "semanticEquivalence": "not_applicable"
+      },
+      "caseId": "hko-2027-08-production-scope",
+      "category": "oracle_scope_insufficient",
+      "input": {
+        "longitudeDegrees": 30,
+        "termName": "곡우",
+        "year": 2027
+      },
+      "kind": "intermediate_solar_term_scope",
+      "oracle": {
+        "displayPrecision": "minute",
+        "hktDateTime": "2027-04-20 15:18",
+        "id": "hko-2027-08",
+        "kind": "intermediate_term",
+        "longitudeDegrees": 30,
+        "termIndex": 8,
+        "termName": "곡우",
+        "timezone": "Asia/Hong_Kong",
+        "utcIso": "2027-04-20T07:18:00.000Z",
+        "utcOffsetMinutes": 480,
+        "year": 2027
+      },
+      "sourceId": "hko-24-solar-terms-xml"
+    },
+    {
+      "actual": {
+        "productionBoundarySet": [
+          315,
+          345,
+          15,
+          45,
+          75,
+          105,
+          135,
+          165,
+          195,
+          225,
+          255,
+          285
+        ]
+      },
+      "analysis": {
+        "rootCause": "production_engine_exposes_only_12_bazi_month_entry_longitudes; 12 intermediate terms are not direct production boundary outputs",
+        "semanticEquivalence": "not_applicable"
+      },
+      "caseId": "hko-2027-10-production-scope",
+      "category": "oracle_scope_insufficient",
+      "input": {
+        "longitudeDegrees": 60,
+        "termName": "소만",
+        "year": 2027
+      },
+      "kind": "intermediate_solar_term_scope",
+      "oracle": {
+        "displayPrecision": "minute",
+        "hktDateTime": "2027-05-21 14:18",
+        "id": "hko-2027-10",
+        "kind": "intermediate_term",
+        "longitudeDegrees": 60,
+        "termIndex": 10,
+        "termName": "소만",
+        "timezone": "Asia/Hong_Kong",
+        "utcIso": "2027-05-21T06:18:00.000Z",
+        "utcOffsetMinutes": 480,
+        "year": 2027
+      },
+      "sourceId": "hko-24-solar-terms-xml"
+    },
+    {
+      "actual": {
+        "productionBoundarySet": [
+          315,
+          345,
+          15,
+          45,
+          75,
+          105,
+          135,
+          165,
+          195,
+          225,
+          255,
+          285
+        ]
+      },
+      "analysis": {
+        "rootCause": "production_engine_exposes_only_12_bazi_month_entry_longitudes; 12 intermediate terms are not direct production boundary outputs",
+        "semanticEquivalence": "not_applicable"
+      },
+      "caseId": "hko-2027-12-production-scope",
+      "category": "oracle_scope_insufficient",
+      "input": {
+        "longitudeDegrees": 90,
+        "termName": "하지",
+        "year": 2027
+      },
+      "kind": "intermediate_solar_term_scope",
+      "oracle": {
+        "displayPrecision": "minute",
+        "hktDateTime": "2027-06-21 22:11",
+        "id": "hko-2027-12",
+        "kind": "intermediate_term",
+        "longitudeDegrees": 90,
+        "termIndex": 12,
+        "termName": "하지",
+        "timezone": "Asia/Hong_Kong",
+        "utcIso": "2027-06-21T14:11:00.000Z",
+        "utcOffsetMinutes": 480,
+        "year": 2027
+      },
+      "sourceId": "hko-24-solar-terms-xml"
+    },
+    {
+      "actual": {
+        "productionBoundarySet": [
+          315,
+          345,
+          15,
+          45,
+          75,
+          105,
+          135,
+          165,
+          195,
+          225,
+          255,
+          285
+        ]
+      },
+      "analysis": {
+        "rootCause": "production_engine_exposes_only_12_bazi_month_entry_longitudes; 12 intermediate terms are not direct production boundary outputs",
+        "semanticEquivalence": "not_applicable"
+      },
+      "caseId": "hko-2027-14-production-scope",
+      "category": "oracle_scope_insufficient",
+      "input": {
+        "longitudeDegrees": 120,
+        "termName": "대서",
+        "year": 2027
+      },
+      "kind": "intermediate_solar_term_scope",
+      "oracle": {
+        "displayPrecision": "minute",
+        "hktDateTime": "2027-07-23 09:05",
+        "id": "hko-2027-14",
+        "kind": "intermediate_term",
+        "longitudeDegrees": 120,
+        "termIndex": 14,
+        "termName": "대서",
+        "timezone": "Asia/Hong_Kong",
+        "utcIso": "2027-07-23T01:05:00.000Z",
+        "utcOffsetMinutes": 480,
+        "year": 2027
+      },
+      "sourceId": "hko-24-solar-terms-xml"
+    },
+    {
+      "actual": {
+        "productionBoundarySet": [
+          315,
+          345,
+          15,
+          45,
+          75,
+          105,
+          135,
+          165,
+          195,
+          225,
+          255,
+          285
+        ]
+      },
+      "analysis": {
+        "rootCause": "production_engine_exposes_only_12_bazi_month_entry_longitudes; 12 intermediate terms are not direct production boundary outputs",
+        "semanticEquivalence": "not_applicable"
+      },
+      "caseId": "hko-2027-16-production-scope",
+      "category": "oracle_scope_insufficient",
+      "input": {
+        "longitudeDegrees": 150,
+        "termName": "처서",
+        "year": 2027
+      },
+      "kind": "intermediate_solar_term_scope",
+      "oracle": {
+        "displayPrecision": "minute",
+        "hktDateTime": "2027-08-23 16:14",
+        "id": "hko-2027-16",
+        "kind": "intermediate_term",
+        "longitudeDegrees": 150,
+        "termIndex": 16,
+        "termName": "처서",
+        "timezone": "Asia/Hong_Kong",
+        "utcIso": "2027-08-23T08:14:00.000Z",
+        "utcOffsetMinutes": 480,
+        "year": 2027
+      },
+      "sourceId": "hko-24-solar-terms-xml"
+    },
+    {
+      "actual": {
+        "productionBoundarySet": [
+          315,
+          345,
+          15,
+          45,
+          75,
+          105,
+          135,
+          165,
+          195,
+          225,
+          255,
+          285
+        ]
+      },
+      "analysis": {
+        "rootCause": "production_engine_exposes_only_12_bazi_month_entry_longitudes; 12 intermediate terms are not direct production boundary outputs",
+        "semanticEquivalence": "not_applicable"
+      },
+      "caseId": "hko-2027-18-production-scope",
+      "category": "oracle_scope_insufficient",
+      "input": {
+        "longitudeDegrees": 180,
+        "termName": "추분",
+        "year": 2027
+      },
+      "kind": "intermediate_solar_term_scope",
+      "oracle": {
+        "displayPrecision": "minute",
+        "hktDateTime": "2027-09-23 14:02",
+        "id": "hko-2027-18",
+        "kind": "intermediate_term",
+        "longitudeDegrees": 180,
+        "termIndex": 18,
+        "termName": "추분",
+        "timezone": "Asia/Hong_Kong",
+        "utcIso": "2027-09-23T06:02:00.000Z",
+        "utcOffsetMinutes": 480,
+        "year": 2027
+      },
+      "sourceId": "hko-24-solar-terms-xml"
+    },
+    {
+      "actual": {
+        "productionBoundarySet": [
+          315,
+          345,
+          15,
+          45,
+          75,
+          105,
+          135,
+          165,
+          195,
+          225,
+          255,
+          285
+        ]
+      },
+      "analysis": {
+        "rootCause": "production_engine_exposes_only_12_bazi_month_entry_longitudes; 12 intermediate terms are not direct production boundary outputs",
+        "semanticEquivalence": "not_applicable"
+      },
+      "caseId": "hko-2027-20-production-scope",
+      "category": "oracle_scope_insufficient",
+      "input": {
+        "longitudeDegrees": 210,
+        "termName": "상강",
+        "year": 2027
+      },
+      "kind": "intermediate_solar_term_scope",
+      "oracle": {
+        "displayPrecision": "minute",
+        "hktDateTime": "2027-10-23 23:33",
+        "id": "hko-2027-20",
+        "kind": "intermediate_term",
+        "longitudeDegrees": 210,
+        "termIndex": 20,
+        "termName": "상강",
+        "timezone": "Asia/Hong_Kong",
+        "utcIso": "2027-10-23T15:33:00.000Z",
+        "utcOffsetMinutes": 480,
+        "year": 2027
+      },
+      "sourceId": "hko-24-solar-terms-xml"
+    },
+    {
+      "actual": {
+        "productionBoundarySet": [
+          315,
+          345,
+          15,
+          45,
+          75,
+          105,
+          135,
+          165,
+          195,
+          225,
+          255,
+          285
+        ]
+      },
+      "analysis": {
+        "rootCause": "production_engine_exposes_only_12_bazi_month_entry_longitudes; 12 intermediate terms are not direct production boundary outputs",
+        "semanticEquivalence": "not_applicable"
+      },
+      "caseId": "hko-2027-22-production-scope",
+      "category": "oracle_scope_insufficient",
+      "input": {
+        "longitudeDegrees": 240,
+        "termName": "소설",
+        "year": 2027
+      },
+      "kind": "intermediate_solar_term_scope",
+      "oracle": {
+        "displayPrecision": "minute",
+        "hktDateTime": "2027-11-22 21:16",
+        "id": "hko-2027-22",
+        "kind": "intermediate_term",
+        "longitudeDegrees": 240,
+        "termIndex": 22,
+        "termName": "소설",
+        "timezone": "Asia/Hong_Kong",
+        "utcIso": "2027-11-22T13:16:00.000Z",
+        "utcOffsetMinutes": 480,
+        "year": 2027
+      },
+      "sourceId": "hko-24-solar-terms-xml"
+    },
+    {
+      "actual": {
+        "productionBoundarySet": [
+          315,
+          345,
+          15,
+          45,
+          75,
+          105,
+          135,
+          165,
+          195,
+          225,
+          255,
+          285
+        ]
+      },
+      "analysis": {
+        "rootCause": "production_engine_exposes_only_12_bazi_month_entry_longitudes; 12 intermediate terms are not direct production boundary outputs",
+        "semanticEquivalence": "not_applicable"
+      },
+      "caseId": "hko-2027-24-production-scope",
+      "category": "oracle_scope_insufficient",
+      "input": {
+        "longitudeDegrees": 270,
+        "termName": "동지",
+        "year": 2027
+      },
+      "kind": "intermediate_solar_term_scope",
+      "oracle": {
+        "displayPrecision": "minute",
+        "hktDateTime": "2027-12-22 10:42",
+        "id": "hko-2027-24",
+        "kind": "intermediate_term",
+        "longitudeDegrees": 270,
+        "termIndex": 24,
+        "termName": "동지",
+        "timezone": "Asia/Hong_Kong",
+        "utcIso": "2027-12-22T02:42:00.000Z",
+        "utcOffsetMinutes": 480,
+        "year": 2027
+      },
+      "sourceId": "hko-24-solar-terms-xml"
+    },
+    {
+      "actual": {
+        "productionBoundarySet": [
+          315,
+          345,
+          15,
+          45,
+          75,
+          105,
+          135,
+          165,
+          195,
+          225,
+          255,
+          285
+        ]
+      },
+      "analysis": {
+        "rootCause": "production_engine_exposes_only_12_bazi_month_entry_longitudes; 12 intermediate terms are not direct production boundary outputs",
+        "semanticEquivalence": "not_applicable"
+      },
+      "caseId": "hko-2028-02-production-scope",
+      "category": "oracle_scope_insufficient",
+      "input": {
+        "longitudeDegrees": 300,
+        "termName": "대한",
+        "year": 2028
+      },
+      "kind": "intermediate_solar_term_scope",
+      "oracle": {
+        "displayPrecision": "minute",
+        "hktDateTime": "2028-01-20 21:22",
+        "id": "hko-2028-02",
+        "kind": "intermediate_term",
+        "longitudeDegrees": 300,
+        "termIndex": 2,
+        "termName": "대한",
+        "timezone": "Asia/Hong_Kong",
+        "utcIso": "2028-01-20T13:22:00.000Z",
+        "utcOffsetMinutes": 480,
+        "year": 2028
+      },
+      "sourceId": "hko-24-solar-terms-xml"
+    },
+    {
+      "actual": {
+        "productionBoundarySet": [
+          315,
+          345,
+          15,
+          45,
+          75,
+          105,
+          135,
+          165,
+          195,
+          225,
+          255,
+          285
+        ]
+      },
+      "analysis": {
+        "rootCause": "production_engine_exposes_only_12_bazi_month_entry_longitudes; 12 intermediate terms are not direct production boundary outputs",
+        "semanticEquivalence": "not_applicable"
+      },
+      "caseId": "hko-2028-04-production-scope",
+      "category": "oracle_scope_insufficient",
+      "input": {
+        "longitudeDegrees": 330,
+        "termName": "우수",
+        "year": 2028
+      },
+      "kind": "intermediate_solar_term_scope",
+      "oracle": {
+        "displayPrecision": "minute",
+        "hktDateTime": "2028-02-19 11:26",
+        "id": "hko-2028-04",
+        "kind": "intermediate_term",
+        "longitudeDegrees": 330,
+        "termIndex": 4,
+        "termName": "우수",
+        "timezone": "Asia/Hong_Kong",
+        "utcIso": "2028-02-19T03:26:00.000Z",
+        "utcOffsetMinutes": 480,
+        "year": 2028
+      },
+      "sourceId": "hko-24-solar-terms-xml"
+    },
+    {
+      "actual": {
+        "productionBoundarySet": [
+          315,
+          345,
+          15,
+          45,
+          75,
+          105,
+          135,
+          165,
+          195,
+          225,
+          255,
+          285
+        ]
+      },
+      "analysis": {
+        "rootCause": "production_engine_exposes_only_12_bazi_month_entry_longitudes; 12 intermediate terms are not direct production boundary outputs",
+        "semanticEquivalence": "not_applicable"
+      },
+      "caseId": "hko-2028-06-production-scope",
+      "category": "oracle_scope_insufficient",
+      "input": {
+        "longitudeDegrees": 0,
+        "termName": "춘분",
+        "year": 2028
+      },
+      "kind": "intermediate_solar_term_scope",
+      "oracle": {
+        "displayPrecision": "minute",
+        "hktDateTime": "2028-03-20 10:17",
+        "id": "hko-2028-06",
+        "kind": "intermediate_term",
+        "longitudeDegrees": 0,
+        "termIndex": 6,
+        "termName": "춘분",
+        "timezone": "Asia/Hong_Kong",
+        "utcIso": "2028-03-20T02:17:00.000Z",
+        "utcOffsetMinutes": 480,
+        "year": 2028
+      },
+      "sourceId": "hko-24-solar-terms-xml"
+    },
+    {
+      "actual": {
+        "productionBoundarySet": [
+          315,
+          345,
+          15,
+          45,
+          75,
+          105,
+          135,
+          165,
+          195,
+          225,
+          255,
+          285
+        ]
+      },
+      "analysis": {
+        "rootCause": "production_engine_exposes_only_12_bazi_month_entry_longitudes; 12 intermediate terms are not direct production boundary outputs",
+        "semanticEquivalence": "not_applicable"
+      },
+      "caseId": "hko-2028-08-production-scope",
+      "category": "oracle_scope_insufficient",
+      "input": {
+        "longitudeDegrees": 30,
+        "termName": "곡우",
+        "year": 2028
+      },
+      "kind": "intermediate_solar_term_scope",
+      "oracle": {
+        "displayPrecision": "minute",
+        "hktDateTime": "2028-04-19 21:09",
+        "id": "hko-2028-08",
+        "kind": "intermediate_term",
+        "longitudeDegrees": 30,
+        "termIndex": 8,
+        "termName": "곡우",
+        "timezone": "Asia/Hong_Kong",
+        "utcIso": "2028-04-19T13:09:00.000Z",
+        "utcOffsetMinutes": 480,
+        "year": 2028
+      },
+      "sourceId": "hko-24-solar-terms-xml"
+    },
+    {
+      "actual": {
+        "productionBoundarySet": [
+          315,
+          345,
+          15,
+          45,
+          75,
+          105,
+          135,
+          165,
+          195,
+          225,
+          255,
+          285
+        ]
+      },
+      "analysis": {
+        "rootCause": "production_engine_exposes_only_12_bazi_month_entry_longitudes; 12 intermediate terms are not direct production boundary outputs",
+        "semanticEquivalence": "not_applicable"
+      },
+      "caseId": "hko-2028-10-production-scope",
+      "category": "oracle_scope_insufficient",
+      "input": {
+        "longitudeDegrees": 60,
+        "termName": "소만",
+        "year": 2028
+      },
+      "kind": "intermediate_solar_term_scope",
+      "oracle": {
+        "displayPrecision": "minute",
+        "hktDateTime": "2028-05-20 20:10",
+        "id": "hko-2028-10",
+        "kind": "intermediate_term",
+        "longitudeDegrees": 60,
+        "termIndex": 10,
+        "termName": "소만",
+        "timezone": "Asia/Hong_Kong",
+        "utcIso": "2028-05-20T12:10:00.000Z",
+        "utcOffsetMinutes": 480,
+        "year": 2028
+      },
+      "sourceId": "hko-24-solar-terms-xml"
+    },
+    {
+      "actual": {
+        "productionBoundarySet": [
+          315,
+          345,
+          15,
+          45,
+          75,
+          105,
+          135,
+          165,
+          195,
+          225,
+          255,
+          285
+        ]
+      },
+      "analysis": {
+        "rootCause": "production_engine_exposes_only_12_bazi_month_entry_longitudes; 12 intermediate terms are not direct production boundary outputs",
+        "semanticEquivalence": "not_applicable"
+      },
+      "caseId": "hko-2028-12-production-scope",
+      "category": "oracle_scope_insufficient",
+      "input": {
+        "longitudeDegrees": 90,
+        "termName": "하지",
+        "year": 2028
+      },
+      "kind": "intermediate_solar_term_scope",
+      "oracle": {
+        "displayPrecision": "minute",
+        "hktDateTime": "2028-06-21 04:02",
+        "id": "hko-2028-12",
+        "kind": "intermediate_term",
+        "longitudeDegrees": 90,
+        "termIndex": 12,
+        "termName": "하지",
+        "timezone": "Asia/Hong_Kong",
+        "utcIso": "2028-06-20T20:02:00.000Z",
+        "utcOffsetMinutes": 480,
+        "year": 2028
+      },
+      "sourceId": "hko-24-solar-terms-xml"
+    },
+    {
+      "actual": {
+        "productionBoundarySet": [
+          315,
+          345,
+          15,
+          45,
+          75,
+          105,
+          135,
+          165,
+          195,
+          225,
+          255,
+          285
+        ]
+      },
+      "analysis": {
+        "rootCause": "production_engine_exposes_only_12_bazi_month_entry_longitudes; 12 intermediate terms are not direct production boundary outputs",
+        "semanticEquivalence": "not_applicable"
+      },
+      "caseId": "hko-2028-14-production-scope",
+      "category": "oracle_scope_insufficient",
+      "input": {
+        "longitudeDegrees": 120,
+        "termName": "대서",
+        "year": 2028
+      },
+      "kind": "intermediate_solar_term_scope",
+      "oracle": {
+        "displayPrecision": "minute",
+        "hktDateTime": "2028-07-22 14:54",
+        "id": "hko-2028-14",
+        "kind": "intermediate_term",
+        "longitudeDegrees": 120,
+        "termIndex": 14,
+        "termName": "대서",
+        "timezone": "Asia/Hong_Kong",
+        "utcIso": "2028-07-22T06:54:00.000Z",
+        "utcOffsetMinutes": 480,
+        "year": 2028
+      },
+      "sourceId": "hko-24-solar-terms-xml"
+    },
+    {
+      "actual": {
+        "productionBoundarySet": [
+          315,
+          345,
+          15,
+          45,
+          75,
+          105,
+          135,
+          165,
+          195,
+          225,
+          255,
+          285
+        ]
+      },
+      "analysis": {
+        "rootCause": "production_engine_exposes_only_12_bazi_month_entry_longitudes; 12 intermediate terms are not direct production boundary outputs",
+        "semanticEquivalence": "not_applicable"
+      },
+      "caseId": "hko-2028-16-production-scope",
+      "category": "oracle_scope_insufficient",
+      "input": {
+        "longitudeDegrees": 150,
+        "termName": "처서",
+        "year": 2028
+      },
+      "kind": "intermediate_solar_term_scope",
+      "oracle": {
+        "displayPrecision": "minute",
+        "hktDateTime": "2028-08-22 22:01",
+        "id": "hko-2028-16",
+        "kind": "intermediate_term",
+        "longitudeDegrees": 150,
+        "termIndex": 16,
+        "termName": "처서",
+        "timezone": "Asia/Hong_Kong",
+        "utcIso": "2028-08-22T14:01:00.000Z",
+        "utcOffsetMinutes": 480,
+        "year": 2028
+      },
+      "sourceId": "hko-24-solar-terms-xml"
+    },
+    {
+      "actual": {
+        "productionBoundarySet": [
+          315,
+          345,
+          15,
+          45,
+          75,
+          105,
+          135,
+          165,
+          195,
+          225,
+          255,
+          285
+        ]
+      },
+      "analysis": {
+        "rootCause": "production_engine_exposes_only_12_bazi_month_entry_longitudes; 12 intermediate terms are not direct production boundary outputs",
+        "semanticEquivalence": "not_applicable"
+      },
+      "caseId": "hko-2028-18-production-scope",
+      "category": "oracle_scope_insufficient",
+      "input": {
+        "longitudeDegrees": 180,
+        "termName": "추분",
+        "year": 2028
+      },
+      "kind": "intermediate_solar_term_scope",
+      "oracle": {
+        "displayPrecision": "minute",
+        "hktDateTime": "2028-09-22 19:45",
+        "id": "hko-2028-18",
+        "kind": "intermediate_term",
+        "longitudeDegrees": 180,
+        "termIndex": 18,
+        "termName": "추분",
+        "timezone": "Asia/Hong_Kong",
+        "utcIso": "2028-09-22T11:45:00.000Z",
+        "utcOffsetMinutes": 480,
+        "year": 2028
+      },
+      "sourceId": "hko-24-solar-terms-xml"
+    },
+    {
+      "actual": {
+        "productionBoundarySet": [
+          315,
+          345,
+          15,
+          45,
+          75,
+          105,
+          135,
+          165,
+          195,
+          225,
+          255,
+          285
+        ]
+      },
+      "analysis": {
+        "rootCause": "production_engine_exposes_only_12_bazi_month_entry_longitudes; 12 intermediate terms are not direct production boundary outputs",
+        "semanticEquivalence": "not_applicable"
+      },
+      "caseId": "hko-2028-20-production-scope",
+      "category": "oracle_scope_insufficient",
+      "input": {
+        "longitudeDegrees": 210,
+        "termName": "상강",
+        "year": 2028
+      },
+      "kind": "intermediate_solar_term_scope",
+      "oracle": {
+        "displayPrecision": "minute",
+        "hktDateTime": "2028-10-23 05:13",
+        "id": "hko-2028-20",
+        "kind": "intermediate_term",
+        "longitudeDegrees": 210,
+        "termIndex": 20,
+        "termName": "상강",
+        "timezone": "Asia/Hong_Kong",
+        "utcIso": "2028-10-22T21:13:00.000Z",
+        "utcOffsetMinutes": 480,
+        "year": 2028
+      },
+      "sourceId": "hko-24-solar-terms-xml"
+    },
+    {
+      "actual": {
+        "productionBoundarySet": [
+          315,
+          345,
+          15,
+          45,
+          75,
+          105,
+          135,
+          165,
+          195,
+          225,
+          255,
+          285
+        ]
+      },
+      "analysis": {
+        "rootCause": "production_engine_exposes_only_12_bazi_month_entry_longitudes; 12 intermediate terms are not direct production boundary outputs",
+        "semanticEquivalence": "not_applicable"
+      },
+      "caseId": "hko-2028-22-production-scope",
+      "category": "oracle_scope_insufficient",
+      "input": {
+        "longitudeDegrees": 240,
+        "termName": "소설",
+        "year": 2028
+      },
+      "kind": "intermediate_solar_term_scope",
+      "oracle": {
+        "displayPrecision": "minute",
+        "hktDateTime": "2028-11-22 02:54",
+        "id": "hko-2028-22",
+        "kind": "intermediate_term",
+        "longitudeDegrees": 240,
+        "termIndex": 22,
+        "termName": "소설",
+        "timezone": "Asia/Hong_Kong",
+        "utcIso": "2028-11-21T18:54:00.000Z",
+        "utcOffsetMinutes": 480,
+        "year": 2028
+      },
+      "sourceId": "hko-24-solar-terms-xml"
+    },
+    {
+      "actual": {
+        "productionBoundarySet": [
+          315,
+          345,
+          15,
+          45,
+          75,
+          105,
+          135,
+          165,
+          195,
+          225,
+          255,
+          285
+        ]
+      },
+      "analysis": {
+        "rootCause": "production_engine_exposes_only_12_bazi_month_entry_longitudes; 12 intermediate terms are not direct production boundary outputs",
+        "semanticEquivalence": "not_applicable"
+      },
+      "caseId": "hko-2028-24-production-scope",
+      "category": "oracle_scope_insufficient",
+      "input": {
+        "longitudeDegrees": 270,
+        "termName": "동지",
+        "year": 2028
+      },
+      "kind": "intermediate_solar_term_scope",
+      "oracle": {
+        "displayPrecision": "minute",
+        "hktDateTime": "2028-12-21 16:20",
+        "id": "hko-2028-24",
+        "kind": "intermediate_term",
+        "longitudeDegrees": 270,
+        "termIndex": 24,
+        "termName": "동지",
+        "timezone": "Asia/Hong_Kong",
+        "utcIso": "2028-12-21T08:20:00.000Z",
+        "utcOffsetMinutes": 480,
+        "year": 2028
+      },
+      "sourceId": "hko-24-solar-terms-xml"
+    },
+    {
+      "actual": {
+        "assessment": {
+          "alternativeInput": null,
+          "alternativePillars": null,
+          "changedPillars": [],
+          "reason": "1961-08-10 이전 서울 표준시·서머타임 이력은 현재 계산에 직접 반영하지 않음",
+          "requiresVerification": true,
+          "status": "historical_offset_unverified"
+        },
+        "status": "historical_offset_unverified"
+      },
+      "analysis": {
+        "rootCause": "engine_fail_closed_historical_offset_scope_gap; it does not claim to resolve the IANA transition",
+        "semanticEquivalence": "civil-time rule is directly observed but production support is intentionally unresolved"
+      },
+      "caseId": "tz-rok-1951-dst-start",
+      "category": "semantic_mismatch",
+      "input": {
+        "birthDate": "1951-05-06",
+        "birthTime": "00:30",
+        "timezone": "Asia/Seoul"
+      },
+      "kind": "historical_seoul_timezone",
+      "oracle": {
+        "kind": "dst_gap",
+        "sourceRule": "ROK 1951 only May 6 0:00 1:00 D",
+        "utcOffsetAfterMinutes": 600,
+        "utcOffsetBeforeMinutes": 540
+      },
+      "sourceId": "iana-tzdb-2026c-asia-seoul"
+    },
+    {
+      "actual": {
+        "assessment": {
+          "alternativeInput": null,
+          "alternativePillars": null,
+          "changedPillars": [],
+          "reason": "1961-08-10 이전 서울 표준시·서머타임 이력은 현재 계산에 직접 반영하지 않음",
+          "requiresVerification": true,
+          "status": "historical_offset_unverified"
+        },
+        "status": "historical_offset_unverified"
+      },
+      "analysis": {
+        "rootCause": "engine_fail_closed_historical_offset_scope_gap; it does not claim to resolve the IANA transition",
+        "semanticEquivalence": "civil-time rule is directly observed but production support is intentionally unresolved"
+      },
+      "caseId": "tz-seoul-1954-offset-change",
+      "category": "semantic_mismatch",
+      "input": {
+        "birthDate": "1954-03-21",
+        "birthTime": "12:00",
+        "timezone": "Asia/Seoul"
+      },
+      "kind": "historical_seoul_timezone",
+      "oracle": {
+        "kind": "standard_offset_change",
+        "sourceRule": "Asia/Seoul 9:00 -> 8:30 on 1954-03-21",
+        "utcOffsetAfterMinutes": 510,
+        "utcOffsetBeforeMinutes": 540
+      },
+      "sourceId": "iana-tzdb-2026c-asia-seoul"
+    },
+    {
+      "actual": {
+        "productionUses": "solar-term month boundary and solar-midnight/solar-time options"
+      },
+      "analysis": {
+        "rootCause": "date_only_oracle_cannot_adjudicate_instant_sensitive_bazi_year_month_boundary",
+        "semanticEquivalence": "unresolved"
+      },
+      "caseId": "contract-kasi-sexagenary-month-year-time-semantics",
+      "category": "authority_unresolved",
+      "input": {
+        "engineInput": "date plus local time",
+        "sourceOutput": "date-only row"
+      },
+      "kind": "instant_sensitive_sexagenary_semantics",
+      "oracle": {
+        "limitation": "KASI monthly row has no time-of-day/time-scale field"
+      },
+      "sourceId": "kasi-monthly-lunisolar"
+    },
+    {
+      "actual": {
+        "dayBoundaryRule": "solar-midnight-split-zi",
+        "rollDayAtZiHour": false,
+        "ziHourStart": "23:00"
+      },
+      "analysis": {
+        "rootCause": "calendar_oracle_cannot_authorize_classical_saju_day_boundary_policy",
+        "semanticEquivalence": "not an astronomical calendar fact"
+      },
+      "caseId": "contract-zi-night-day-boundary-rule",
+      "category": "authority_unresolved",
+      "input": {
+        "profile": {
+          "dayBoundaryRule": "solar-midnight-split-zi",
+          "id": "softie-kst-apparent-solar-v1",
+          "solarTime": "longitude correction + NOAA equation of time when enabled",
+          "standardMeridianDegrees": 135,
+          "timezone": "Asia/Seoul",
+          "ziHourStart": "23:00"
+        }
+      },
+      "kind": "zi_hour_day_boundary",
+      "oracle": {
+        "limitation": "official calendar services do not state the Saju school choice between midnight, 야자시, 조자시, or solar-midnight rules"
+      },
+      "sourceId": "kasi-monthly-lunisolar"
+    },
+    {
+      "actual": {
+        "solarTime": "longitude correction + NOAA equation of time when enabled",
+        "standardMeridianDegrees": 135
+      },
+      "analysis": {
+        "rootCause": "standard_time_authority_is_not_saju_solar_time_rule_authority",
+        "semanticEquivalence": "policy unresolved"
+      },
+      "caseId": "contract-solar-time-location-policy",
+      "category": "authority_unresolved",
+      "input": {
+        "profile": {
+          "dayBoundaryRule": "solar-midnight-split-zi",
+          "id": "softie-kst-apparent-solar-v1",
+          "solarTime": "longitude correction + NOAA equation of time when enabled",
+          "standardMeridianDegrees": 135,
+          "timezone": "Asia/Seoul",
+          "ziHourStart": "23:00"
+        }
+      },
+      "kind": "solar_time_policy",
+      "oracle": {
+        "limitation": "KRISS establishes standard time, not the product policy for longitude correction, equation of time, or true-solar-time adoption"
+      },
+      "sourceId": "kriss-utc-kris-kst"
+    }
+  ],
+  "comparisonSchemaVersion": "saju-p0-calendar-oracle-v1-comparison",
+  "schemaVersion": "saju-p0-calendar-oracle-v1-exceptions",
+  "summary": {
+    "categoryCounts": {
+      "authority_unresolved": 3,
+      "oracle_scope_insufficient": 36,
+      "semantic_mismatch": 30
+    },
+    "exceptionCount": 69
+  }
+}

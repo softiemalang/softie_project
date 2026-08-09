@@ -1,0 +1,348 @@
+{
+  "blocker": {
+    "boundedFrontierVerdict": "calendar_input_contract_advanced_with_declared_limits",
+    "id": "saju-b-calendar-boundaries",
+    "predecessorStatus": "still_blocked",
+    "priority": "P0",
+    "readinessAndProduction": "unchanged_blocked"
+  },
+  "comparisonArtifact": {
+    "byteLength": 1461522,
+    "path": "artifacts/saju-p0-calendar-oracle-v1/comparison.json",
+    "sha256": "32082662240be84cbf906debe6e2c4686c594e15dc5440817bdda097fe23f549",
+    "summary": {
+      "authorityUnresolvedIds": [
+        "contract-kasi-sexagenary-month-year-time-semantics",
+        "contract-zi-night-day-boundary-rule",
+        "contract-solar-time-location-policy"
+      ],
+      "caseCount": 1456,
+      "categoryCounts": {
+        "authority_unresolved": 3,
+        "exact_match": 1358,
+        "oracle_scope_insufficient": 36,
+        "semantic_mismatch": 30,
+        "within_defined_tolerance": 29
+      },
+      "exceptionCount": 69,
+      "mismatchIds": [
+        "kasi-1900-02-01-lunar-to-solar",
+        "kasi-1900-02-02-lunar-to-solar",
+        "kasi-1900-02-03-lunar-to-solar",
+        "kasi-1900-02-04-lunar-to-solar",
+        "kasi-1900-02-05-lunar-to-solar",
+        "kasi-1900-02-06-lunar-to-solar",
+        "kasi-1900-02-07-lunar-to-solar",
+        "kasi-1900-02-08-lunar-to-solar",
+        "kasi-1900-02-09-lunar-to-solar",
+        "kasi-1900-02-10-lunar-to-solar",
+        "kasi-1900-02-11-lunar-to-solar",
+        "kasi-1900-02-12-lunar-to-solar",
+        "kasi-1900-02-13-lunar-to-solar",
+        "kasi-1900-02-14-lunar-to-solar",
+        "kasi-1900-02-15-lunar-to-solar",
+        "kasi-1900-02-16-lunar-to-solar",
+        "kasi-1900-02-17-lunar-to-solar",
+        "kasi-1900-02-18-lunar-to-solar",
+        "kasi-1900-02-19-lunar-to-solar",
+        "kasi-1900-02-20-lunar-to-solar",
+        "kasi-1900-02-21-lunar-to-solar",
+        "kasi-1900-02-22-lunar-to-solar",
+        "kasi-1900-02-23-lunar-to-solar",
+        "kasi-1900-02-24-lunar-to-solar",
+        "kasi-1900-02-25-lunar-to-solar",
+        "kasi-1900-02-26-lunar-to-solar",
+        "kasi-1900-02-27-lunar-to-solar",
+        "kasi-1900-02-28-lunar-to-solar",
+        "tz-rok-1951-dst-start",
+        "tz-seoul-1954-offset-change"
+      ],
+      "scopeInsufficientIds": [
+        "hko-2026-02-production-scope",
+        "hko-2026-04-production-scope",
+        "hko-2026-06-production-scope",
+        "hko-2026-08-production-scope",
+        "hko-2026-10-production-scope",
+        "hko-2026-12-production-scope",
+        "hko-2026-14-production-scope",
+        "hko-2026-16-production-scope",
+        "hko-2026-18-production-scope",
+        "hko-2026-20-production-scope",
+        "hko-2026-22-production-scope",
+        "hko-2026-24-production-scope",
+        "hko-2027-02-production-scope",
+        "hko-2027-04-production-scope",
+        "hko-2027-06-production-scope",
+        "hko-2027-08-production-scope",
+        "hko-2027-10-production-scope",
+        "hko-2027-12-production-scope",
+        "hko-2027-14-production-scope",
+        "hko-2027-16-production-scope",
+        "hko-2027-18-production-scope",
+        "hko-2027-20-production-scope",
+        "hko-2027-22-production-scope",
+        "hko-2027-24-production-scope",
+        "hko-2028-02-production-scope",
+        "hko-2028-04-production-scope",
+        "hko-2028-06-production-scope",
+        "hko-2028-08-production-scope",
+        "hko-2028-10-production-scope",
+        "hko-2028-12-production-scope",
+        "hko-2028-14-production-scope",
+        "hko-2028-16-production-scope",
+        "hko-2028-18-production-scope",
+        "hko-2028-20-production-scope",
+        "hko-2028-22-production-scope",
+        "hko-2028-24-production-scope"
+      ]
+    }
+  },
+  "deterministic": {
+    "canonicalJsonLf": true,
+    "comparisonSort": "stable case order from source capture order; object keys recursively sorted",
+    "inputsAreVersionedCaptures": true,
+    "networkFetchDuringMaterialization": false,
+    "sourceAcquisitionPerformedDuringMaterialization": false
+  },
+  "engineInputs": [
+    {
+      "byteLength": 7824,
+      "path": "src/saju/engine/fourPillars.js",
+      "sha256": "27f71a0bbad8476895766c29c42bec1f95ddeb0b5fec3171c56e19265e936cc7"
+    },
+    {
+      "byteLength": 6297,
+      "path": "src/saju/engine/solarTerms.js",
+      "sha256": "5dcab28d38a3b51182fb984abbd1461934a348213b5d53cee9828e0f04b02f56"
+    },
+    {
+      "byteLength": 6960,
+      "path": "src/interpretationPrep/lunarConverter.js",
+      "sha256": "466c7774c3dc8ef89fb99345561db4bf5c1ec9fd786b5279fabcfa507e2bb224"
+    },
+    {
+      "byteLength": 65293,
+      "path": "src/interpretationPrep/sajuAdapter.js",
+      "sha256": "6d8de4820a01a69ed2feaf50f5213d92128d8a21b72134a05f5c22fbe30aa061"
+    },
+    {
+      "byteLength": 13050,
+      "path": "src/saju/engine/externalValidationFixtures.js",
+      "sha256": "4a80715252cdce10a64f78a9c5ca206b4e98b6c141c74695d8592eb4d6c165ea"
+    }
+  ],
+  "exceptionArtifact": {
+    "byteLength": 63534,
+    "path": "artifacts/saju-p0-calendar-oracle-v1/exceptions.json",
+    "sha256": "3cb9fd2cadc0abaf64cfcebf56441d2ea417c71f5c6025b9a5e6cd60e8732f0a",
+    "summary": {
+      "categoryCounts": {
+        "authority_unresolved": 3,
+        "oracle_scope_insufficient": 36,
+        "semantic_mismatch": 30
+      },
+      "exceptionCount": 69
+    }
+  },
+  "materializer": {
+    "path": "scripts/materialize-saju-p0-calendar-oracle-v1.mjs",
+    "version": "1.0.0"
+  },
+  "oracleInventorySummary": [
+    {
+      "id": "kasi-monthly-lunisolar",
+      "independence": "External institutional service; implementation/data lineage is not disclosed on the queried page, so it is an official observation source but not a qualified independent implementation.",
+      "institution": "한국천문연구원 (KASI)",
+      "license": "No blanket bulk-extraction or redistribution permission was established for the service; retain only derived research rows and response hashes.",
+      "role": "official_lunisolar_date_service",
+      "semanticEquivalence": "Lunar date and leap marker are equivalent to the date-only converter contract. Sexagenary month/year labels are not used as proof of an instant-sensitive Bazi boundary because the response has no time-of-day."
+    },
+    {
+      "id": "kasi-astronomical-almanac-2026",
+      "independence": "Official national almanac; method lineage for the displayed page is not inferred from a catalog locator.",
+      "institution": "한국천문연구원 (KASI)",
+      "license": "The KASI almanac record states that only original images are provided and unauthorized reproduction/redistribution is not allowed; raw PDF is not stored in the repository artifact.",
+      "role": "official_almanac_locator_and_rights_control",
+      "semanticEquivalence": "Locator/authority evidence only in this work order; no machine comparison rows admitted."
+    },
+    {
+      "id": "kasi-astronomical-certificate-channel",
+      "independence": "Official KASI certificate channel; no output was received in this work order.",
+      "institution": "한국천문연구원 (KASI)",
+      "license": "Request/reproduction conditions were not sufficient to admit a reusable bulk corpus in this pass.",
+      "role": "official_certificate_request_channel",
+      "semanticEquivalence": "Potentially strong for exact requested rows, but oracle scope is insufficient without a received certificate and its method/time metadata."
+    },
+    {
+      "id": "hko-24-solar-terms-xml",
+      "independence": "Independent endpoint and implementation from this repository. HKO is not independent of USNO/HMNAO for source-data lineage because HKO explicitly discloses that dependency.",
+      "institution": "Hong Kong Observatory (HKO)",
+      "license": "Public service/PDF access was confirmed, but a blanket raw-output redistribution license was not established; retain normalized rows and response hashes only.",
+      "role": "official_24_solar_term_event_service",
+      "semanticEquivalence": "Event longitude and civil-time output are comparable to the repository apparent-geocentric solar-longitude root, but the HKO XML does not fully expose the repository frame/ephemeris/time-scale contract."
+    },
+    {
+      "id": "usno-seasons-api",
+      "independence": "Independent endpoint from this repository, but same-family corroboration with HKO is limited because HKO explicitly cites USNO/HMNAO data.",
+      "institution": "U.S. Naval Observatory Astronomical Applications Department",
+      "license": "Public API access confirmed; specific redistribution terms for retained response data were not separately established.",
+      "role": "official_equinox_solstice_control",
+      "semanticEquivalence": "Equinox/solstice rows correspond to the 0/90/180/270 degree subset of HKO terms; they do not authorize extrapolation to the other 20 terms."
+    },
+    {
+      "id": "kriss-utc-kris-kst",
+      "independence": "Independent national time-standard authority, not an astrology-rule authority.",
+      "institution": "한국표준과학연구원 (KRISS)",
+      "license": "KRISS synchronization service has use restrictions; no bulk time-service reuse was admitted.",
+      "role": "official_current_time_standard_authority",
+      "semanticEquivalence": "Supports the current +09:00 conversion contract only; it does not settle pre-1961 Seoul offsets, DST rules, or 子時 policy."
+    },
+    {
+      "id": "iana-tzdb-2026c-asia-seoul",
+      "independence": "Independent civil-time rule source from the repository and from KASI/HKO astronomical calculations; not independent of its own historical source citations.",
+      "institution": "Internet Assigned Numbers Authority (IANA) Time Zone Database",
+      "license": "IANA tzdb LICENSE states that, unless specified otherwise, code and data are public domain; some code files are BSD-3-Clause. The asia data used here is treated as public-domain data under that file.",
+      "role": "historical_civil_time_zone_rule_source",
+      "semanticEquivalence": "Directly equivalent to the civil timezone transition/status contract, not to the Saju school choice of solar time, day rollover, or 야자시."
+    }
+  ],
+  "protectedBaselineCheck": {
+    "current": [
+      {
+        "byteLength": 214374,
+        "path": "-.jpg",
+        "sha256": "26896bdc877cd977a5e2e88abc1d7409d021a0ee1ffaacd708ad1dd3f987843f"
+      },
+      {
+        "byteLength": 1197757,
+        "path": "artifacts/saju-claim-provenance-v0.json",
+        "sha256": "2682c922353f9c2a5e38ea8767a68f99b458cca86efacd4b5d9a7f1916598ef2"
+      },
+      {
+        "byteLength": 256411,
+        "path": "artifacts/saju-readiness-grounding-v0.json",
+        "sha256": "bb2143056c5267bbb286b52d2c86419fbd5de605a14fc431d2060c0689cadc88"
+      },
+      {
+        "byteLength": 74989,
+        "path": "artifacts/saju-v1-local-frontier-v0/complete.json",
+        "sha256": "ea9d5d25369d7c50eea9d8a9185001a9ec924ee67314cec1198869331a41f0c7"
+      },
+      {
+        "byteLength": 7824,
+        "path": "src/saju/engine/fourPillars.js",
+        "sha256": "27f71a0bbad8476895766c29c42bec1f95ddeb0b5fec3171c56e19265e936cc7"
+      },
+      {
+        "byteLength": 6297,
+        "path": "src/saju/engine/solarTerms.js",
+        "sha256": "5dcab28d38a3b51182fb984abbd1461934a348213b5d53cee9828e0f04b02f56"
+      },
+      {
+        "byteLength": 6960,
+        "path": "src/interpretationPrep/lunarConverter.js",
+        "sha256": "466c7774c3dc8ef89fb99345561db4bf5c1ec9fd786b5279fabcfa507e2bb224"
+      },
+      {
+        "byteLength": 65293,
+        "path": "src/interpretationPrep/sajuAdapter.js",
+        "sha256": "6d8de4820a01a69ed2feaf50f5213d92128d8a21b72134a05f5c22fbe30aa061"
+      },
+      {
+        "byteLength": 13050,
+        "path": "src/saju/engine/externalValidationFixtures.js",
+        "sha256": "4a80715252cdce10a64f78a9c5ca206b4e98b6c141c74695d8592eb4d6c165ea"
+      }
+    ],
+    "declared": [
+      {
+        "byteLength": 214374,
+        "path": "-.jpg",
+        "sha256": "26896bdc877cd977a5e2e88abc1d7409d021a0ee1ffaacd708ad1dd3f987843f"
+      },
+      {
+        "byteLength": 1197757,
+        "path": "artifacts/saju-claim-provenance-v0.json",
+        "sha256": "2682c922353f9c2a5e38ea8767a68f99b458cca86efacd4b5d9a7f1916598ef2"
+      },
+      {
+        "byteLength": 256411,
+        "path": "artifacts/saju-readiness-grounding-v0.json",
+        "sha256": "bb2143056c5267bbb286b52d2c86419fbd5de605a14fc431d2060c0689cadc88"
+      },
+      {
+        "byteLength": 74989,
+        "path": "artifacts/saju-v1-local-frontier-v0/complete.json",
+        "sha256": "ea9d5d25369d7c50eea9d8a9185001a9ec924ee67314cec1198869331a41f0c7"
+      },
+      {
+        "byteLength": 7824,
+        "path": "src/saju/engine/fourPillars.js",
+        "sha256": "27f71a0bbad8476895766c29c42bec1f95ddeb0b5fec3171c56e19265e936cc7"
+      },
+      {
+        "byteLength": 6297,
+        "path": "src/saju/engine/solarTerms.js",
+        "sha256": "5dcab28d38a3b51182fb984abbd1461934a348213b5d53cee9828e0f04b02f56"
+      },
+      {
+        "byteLength": 6960,
+        "path": "src/interpretationPrep/lunarConverter.js",
+        "sha256": "466c7774c3dc8ef89fb99345561db4bf5c1ec9fd786b5279fabcfa507e2bb224"
+      },
+      {
+        "byteLength": 65293,
+        "path": "src/interpretationPrep/sajuAdapter.js",
+        "sha256": "6d8de4820a01a69ed2feaf50f5213d92128d8a21b72134a05f5c22fbe30aa061"
+      },
+      {
+        "byteLength": 13050,
+        "path": "src/saju/engine/externalValidationFixtures.js",
+        "sha256": "4a80715252cdce10a64f78a9c5ca206b4e98b6c141c74695d8592eb4d6c165ea"
+      }
+    ],
+    "mismatches": [],
+    "pass": true
+  },
+  "readinessBoundary": {
+    "availableForInterpretation": false,
+    "claimLevelClassicalVerification": "unchanged_0",
+    "externalEvidence": "scoped_calendar_input_evidence_only",
+    "noAutomaticPromotion": true,
+    "productionActivation": "blocked",
+    "remainingAuthorityGaps": [
+      "KASI bulk/reuse terms and method disclosure",
+      "KASI almanac page-image rows not admitted",
+      "HKO/USNO shared family and incomplete frame/time-scale bridge",
+      "pre-1961 Asia/Seoul production scope",
+      "Saju day-boundary/야자시/true-solar-time policy authority",
+      "independent full 1901-2100 machine-readable corpus"
+    ]
+  },
+  "schemaVersion": "saju-p0-calendar-oracle-v1",
+  "scope": {
+    "branch": "main",
+    "claimPromotion": false,
+    "commit": false,
+    "currentHead": "b4d063c6f2e8972e8735b53687d43fdc9643fee8",
+    "deploy": false,
+    "existingUntrackedPreserved": [
+      "-.jpg"
+    ],
+    "expectedHead": "b4d063c6f2e8972e8735b53687d43fdc9643fee8",
+    "originMainHead": "b4d063c6f2e8972e8735b53687d43fdc9643fee8",
+    "productionActivation": false,
+    "push": false,
+    "readinessPromotion": false,
+    "remoteDatabaseMutation": false
+  },
+  "sourceOfTruth": {
+    "corpusByteSha256": "4fb51f1b530078e1339006f54de1f793540f1ced4efb25c72817f89ae8eeacb0",
+    "corpusPath": "artifacts/saju-p0-calendar-oracle-v1/corpus.json",
+    "repositoryBasis": "current local main checkout at exact expected HEAD; existing evidence/readiness/artifacts are read-only inputs",
+    "sourceCaptureDate": "2026-08-09",
+    "sourceInventoryByteSha256": "f4ac0b5c9b50553a08fab29f171530891caf073c7df9d2fb0995dfad2054cb4a",
+    "sourceInventoryPath": "artifacts/saju-p0-calendar-oracle-v1/sourceInventory.json"
+  },
+  "verdictToken": "complete_saju_p0_calendar_oracle_frontier_exhausted_uncommitted"
+}

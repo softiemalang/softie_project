@@ -1,0 +1,582 @@
+{
+  "capturedAt": "2026-08-09",
+  "captures": [
+    {
+      "request": {
+        "body": "search_year=1900&search_month=02&search_dp=1&search_check=G",
+        "method": "POST",
+        "url": "https://astro.kasi.re.kr/life/pageView/5"
+      },
+      "response": {
+        "byteLength": 45229,
+        "parsedRowCount": 28,
+        "sha256": "e1f58b7c2c990dfc68992c7b41d5bdf5c86cd9bebea307e3fb3831be56d8e47c"
+      },
+      "sourceId": "kasi-monthly-lunisolar"
+    },
+    {
+      "request": {
+        "body": "search_year=1951&search_month=01&search_dp=1&search_check=G",
+        "method": "POST",
+        "url": "https://astro.kasi.re.kr/life/pageView/5"
+      },
+      "response": {
+        "byteLength": 46657,
+        "parsedRowCount": 31,
+        "sha256": "82da28b4a9b5df9cebf48595f53a7f32b7324a2b1e04e7581b8fe7f3bb0859ae"
+      },
+      "sourceId": "kasi-monthly-lunisolar"
+    },
+    {
+      "request": {
+        "body": "search_year=1951&search_month=05&search_dp=1&search_check=G",
+        "method": "POST",
+        "url": "https://astro.kasi.re.kr/life/pageView/5"
+      },
+      "response": {
+        "byteLength": 46657,
+        "parsedRowCount": 31,
+        "sha256": "02fa817d4a7b3462152d70fdb749001a959d7f434f8ba24ccb0370408ae96ada"
+      },
+      "sourceId": "kasi-monthly-lunisolar"
+    },
+    {
+      "request": {
+        "body": "search_year=1960&search_month=06&search_dp=1&search_check=G",
+        "method": "POST",
+        "url": "https://astro.kasi.re.kr/life/pageView/5"
+      },
+      "response": {
+        "byteLength": 46181,
+        "parsedRowCount": 30,
+        "sha256": "364deb2c41988128bbeb93737efa19fe5e9120af98e7a3255d8b597848bb9639"
+      },
+      "sourceId": "kasi-monthly-lunisolar"
+    },
+    {
+      "request": {
+        "body": "search_year=1960&search_month=07&search_dp=1&search_check=G",
+        "method": "POST",
+        "url": "https://astro.kasi.re.kr/life/pageView/5"
+      },
+      "response": {
+        "byteLength": 46537,
+        "parsedRowCount": 31,
+        "sha256": "4b27b4e3ed1cf88d0dcb7d6c835ef6bafa9e4dc433020cc2733354368139610b"
+      },
+      "sourceId": "kasi-monthly-lunisolar"
+    },
+    {
+      "request": {
+        "body": "search_year=1984&search_month=11&search_dp=1&search_check=G",
+        "method": "POST",
+        "url": "https://astro.kasi.re.kr/life/pageView/5"
+      },
+      "response": {
+        "byteLength": 46062,
+        "parsedRowCount": 30,
+        "sha256": "521c5e0275bff0e289de4f5ef2e8f54dc9b15ddc74ea8173e36d3612c454bc97"
+      },
+      "sourceId": "kasi-monthly-lunisolar"
+    },
+    {
+      "request": {
+        "body": "search_year=1995&search_month=01&search_dp=1&search_check=G",
+        "method": "POST",
+        "url": "https://astro.kasi.re.kr/life/pageView/5"
+      },
+      "response": {
+        "byteLength": 46657,
+        "parsedRowCount": 31,
+        "sha256": "39c955044664eb0295344885669dc4a2db897c3a4874a54056b37fcbd368a6e3"
+      },
+      "sourceId": "kasi-monthly-lunisolar"
+    },
+    {
+      "request": {
+        "body": "search_year=2023&search_month=03&search_dp=1&search_check=G",
+        "method": "POST",
+        "url": "https://astro.kasi.re.kr/life/pageView/5"
+      },
+      "response": {
+        "byteLength": 46507,
+        "parsedRowCount": 31,
+        "sha256": "514a111a3eb503519c98019913bcab480378db12d1ea9740b06ff703aeeaed96"
+      },
+      "sourceId": "kasi-monthly-lunisolar"
+    },
+    {
+      "request": {
+        "body": "search_year=2023&search_month=04&search_dp=1&search_check=G",
+        "method": "POST",
+        "url": "https://astro.kasi.re.kr/life/pageView/5"
+      },
+      "response": {
+        "byteLength": 45896,
+        "parsedRowCount": 30,
+        "sha256": "3a1f2a91a401b57a8176b459ae808f0ea98da08c00b9af900b9570e6cc63e51b"
+      },
+      "sourceId": "kasi-monthly-lunisolar"
+    },
+    {
+      "request": {
+        "body": "search_year=2025&search_month=01&search_dp=1&search_check=G",
+        "method": "POST",
+        "url": "https://astro.kasi.re.kr/life/pageView/5"
+      },
+      "response": {
+        "byteLength": 46657,
+        "parsedRowCount": 31,
+        "sha256": "17447625774b5ed97d76999201fd3168ec537d2e1d965c6cfca673bf245160ac"
+      },
+      "sourceId": "kasi-monthly-lunisolar"
+    },
+    {
+      "request": {
+        "body": "search_year=2025&search_month=10&search_dp=1&search_check=G",
+        "method": "POST",
+        "url": "https://astro.kasi.re.kr/life/pageView/5"
+      },
+      "response": {
+        "byteLength": 46658,
+        "parsedRowCount": 31,
+        "sha256": "9c767d1e1dad639c38bbbefc6caafc6917bafa6bd9cbeed1af4297bf6b84d597"
+      },
+      "sourceId": "kasi-monthly-lunisolar"
+    },
+    {
+      "request": {
+        "body": "search_year=2026&search_month=02&search_dp=1&search_check=G",
+        "method": "POST",
+        "url": "https://astro.kasi.re.kr/life/pageView/5"
+      },
+      "response": {
+        "byteLength": 45229,
+        "parsedRowCount": 28,
+        "sha256": "6d40aa5b39afbb28b0649e096fd08d9da6d88c6a9b6f0c854f5c2245edb0efe3"
+      },
+      "sourceId": "kasi-monthly-lunisolar"
+    },
+    {
+      "request": {
+        "body": "search_year=2026&search_month=04&search_dp=1&search_check=G",
+        "method": "POST",
+        "url": "https://astro.kasi.re.kr/life/pageView/5"
+      },
+      "response": {
+        "byteLength": 46181,
+        "parsedRowCount": 30,
+        "sha256": "1fa560ba63632c1bca613115d4e9f1f62d135b5c230ca71b0c49084bc760fd79"
+      },
+      "sourceId": "kasi-monthly-lunisolar"
+    },
+    {
+      "request": {
+        "body": "search_year=2031&search_month=04&search_dp=1&search_check=G",
+        "method": "POST",
+        "url": "https://astro.kasi.re.kr/life/pageView/5"
+      },
+      "response": {
+        "byteLength": 46046,
+        "parsedRowCount": 30,
+        "sha256": "955ff00a76163365a70860f38466e5232c494c2ddd67bcb632f3c77045394ed6"
+      },
+      "sourceId": "kasi-monthly-lunisolar"
+    },
+    {
+      "request": {
+        "body": "search_year=2050&search_month=12&search_dp=1&search_check=G",
+        "method": "POST",
+        "url": "https://astro.kasi.re.kr/life/pageView/5"
+      },
+      "response": {
+        "byteLength": 46658,
+        "parsedRowCount": 31,
+        "sha256": "ff77e8f7b88f9716279591fd0219e32652731d3eefa80b504ffe246c6bb815eb"
+      },
+      "sourceId": "kasi-monthly-lunisolar"
+    },
+    {
+      "request": {
+        "method": "GET",
+        "url": "https://www.hko.gov.hk/en/gts/astronomy/data/files/24SolarTerms_2026.xml"
+      },
+      "response": {
+        "byteLength": 1180,
+        "parsedRowCount": 24,
+        "sha256": "3af98679f43d4d689941c55ba2a19f146ff111a6dff681235dc2b7110974ac74"
+      },
+      "sourceId": "hko-24-solar-terms-xml"
+    },
+    {
+      "request": {
+        "method": "GET",
+        "url": "https://www.hko.gov.hk/en/gts/astronomy/data/files/24SolarTerms_2027.xml"
+      },
+      "response": {
+        "byteLength": 1180,
+        "parsedRowCount": 24,
+        "sha256": "26f81a300bff724af49b80ad72c30e3cb48c9a5c35b3413308752dd75870ee37"
+      },
+      "sourceId": "hko-24-solar-terms-xml"
+    },
+    {
+      "request": {
+        "method": "GET",
+        "url": "https://www.hko.gov.hk/en/gts/astronomy/data/files/24SolarTerms_2028.xml"
+      },
+      "response": {
+        "byteLength": 1180,
+        "parsedRowCount": 24,
+        "sha256": "abebf8813ee7ac60d520fe4655d903287ed2faf7dc78e561dd702e81f6af2d95"
+      },
+      "sourceId": "hko-24-solar-terms-xml"
+    },
+    {
+      "request": {
+        "method": "GET",
+        "url": "https://aa.usno.navy.mil/api/seasons?year=2026"
+      },
+      "response": {
+        "apiVersion": "4.0.1",
+        "byteLength": 827,
+        "parsedRowCount": 4,
+        "sha256": "6d62dcd6de55cc5b9cf94df813844bda6750a2438098256e6826e56bcf5c22c4"
+      },
+      "sourceId": "usno-seasons-api"
+    },
+    {
+      "request": {
+        "method": "GET",
+        "url": "https://aa.usno.navy.mil/api/seasons?year=2027"
+      },
+      "response": {
+        "apiVersion": "4.0.1",
+        "byteLength": 827,
+        "parsedRowCount": 4,
+        "sha256": "1a0c001621026c30979abb78c5036f43b9234b1000640db588a12cffbc0f6310"
+      },
+      "sourceId": "usno-seasons-api"
+    },
+    {
+      "request": {
+        "method": "GET",
+        "url": "https://aa.usno.navy.mil/api/seasons?year=2028"
+      },
+      "response": {
+        "apiVersion": "4.0.1",
+        "byteLength": 827,
+        "parsedRowCount": 4,
+        "sha256": "5b021f3139ac79fca8e26e571faee646d6597bfa6093d188ebc580326a20d68f"
+      },
+      "sourceId": "usno-seasons-api"
+    },
+    {
+      "request": {
+        "method": "GET",
+        "url": "https://data.iana.org/time-zones/tzdb-2026c/asia"
+      },
+      "response": {
+        "byteLength": 192871,
+        "selectedLineCount": 18,
+        "selectedLines": [
+          "Rule\tROK\t1948\tonly\t-\tJun\t 1\t 0:00\t1:00\tD",
+          "Rule\tROK\t1948\tonly\t-\tSep\t12\t24:00\t0\tS",
+          "Rule\tROK\t1949\tonly\t-\tApr\t 3\t 0:00\t1:00\tD",
+          "Rule\tROK\t1949\t1951\t-\tSep\tSat>=7\t24:00\t0\tS",
+          "Rule\tROK\t1950\tonly\t-\tApr\t 1\t 0:00\t1:00\tD",
+          "Rule\tROK\t1951\tonly\t-\tMay\t 6\t 0:00\t1:00\tD",
+          "Rule\tROK\t1955\tonly\t-\tMay\t 5\t 0:00\t1:00\tD",
+          "Rule\tROK\t1955\tonly\t-\tSep\t 8\t24:00\t0\tS",
+          "Rule\tROK\t1956\tonly\t-\tMay\t20\t 0:00\t1:00\tD",
+          "Rule\tROK\t1956\tonly\t-\tSep\t29\t24:00\t0\tS",
+          "Rule\tROK\t1957\t1960\t-\tMay\tSun>=1\t 0:00\t1:00\tD",
+          "Rule\tROK\t1957\t1960\t-\tSep\tSat>=17\t24:00\t0\tS",
+          "Rule\tROK\t1987\t1988\t-\tMay\tSun>=8\t 2:00\t1:00\tD",
+          "Rule\tROK\t1987\t1988\t-\tOct\tSun>=8\t 3:00\t0\tS",
+          "Zone\tAsia/Seoul\t8:27:52\t-\tLMT\t1908 Apr  1",
+          "\t\t\t8:30\t-\tKST\t1912 Jan  1",
+          "\t\t\t8:30\tROK\tK%sT\t1961 Aug 10",
+          "\t\t\t8:30\t-\tKST\t1912 Jan  1"
+        ],
+        "sha256": "cd12fe2bd64a02d808fd34abb92f08f19e5da20133a1c6c347d11171c00d9e1c"
+      },
+      "sourceId": "iana-tzdb-2026c-asia-seoul"
+    },
+    {
+      "request": {
+        "method": "GET",
+        "url": "https://www.kasi.re.kr/kor/publication/post/publication?clsf_cd=pub005"
+      },
+      "response": {
+        "byteLength": 62917,
+        "rawRetained": false,
+        "sha256": "7e7f78174262ae9b5ef8b8bf9d25752e4a6829fe1fe960887da00b98072ddbef"
+      },
+      "sourceId": "kasi-astronomical-almanac-2026"
+    },
+    {
+      "request": {
+        "method": "GET",
+        "url": "https://www.kasi.re.kr/kor/publication/pageView/131"
+      },
+      "response": {
+        "byteLength": 52290,
+        "rawRetained": false,
+        "sha256": "e83191801eb7965a1531b4113909d4d6e5e973ec4bb40a9b080a4fd330054a01"
+      },
+      "sourceId": "kasi-astronomical-certificate-channel"
+    },
+    {
+      "request": {
+        "method": "GET",
+        "url": "https://www.kriss.re.kr/board.es?bid=0031&mid=a10603000000"
+      },
+      "response": {
+        "byteLength": 66841,
+        "rawRetained": false,
+        "sha256": "c542953f4009c552eb88f7e5296e4ab2f818ba1f74d57cbcb1143ab32e10b124"
+      },
+      "sourceId": "kriss-utc-kris-kst"
+    },
+    {
+      "request": {
+        "method": "GET",
+        "url": "https://www.kasi.re.kr/file/1762136558729_1.pdf"
+      },
+      "response": {
+        "byteLength": 24635185,
+        "mimeType": "application/pdf",
+        "pageCount": 232,
+        "rawRetained": false,
+        "sha256": "c192b67d54f4a39481dcfd0e76d74ab7131d52630a41ea0a73f25988cc4b958b",
+        "visualObservation": "cover and PDF metadata inspected; no text-layer rows admitted"
+      },
+      "sourceId": "kasi-astronomical-almanac-2026"
+    }
+  ],
+  "protectedBaseline": [
+    {
+      "byteLength": 214374,
+      "path": "-.jpg",
+      "sha256": "26896bdc877cd977a5e2e88abc1d7409d021a0ee1ffaacd708ad1dd3f987843f"
+    },
+    {
+      "byteLength": 1197757,
+      "path": "artifacts/saju-claim-provenance-v0.json",
+      "sha256": "2682c922353f9c2a5e38ea8767a68f99b458cca86efacd4b5d9a7f1916598ef2"
+    },
+    {
+      "byteLength": 256411,
+      "path": "artifacts/saju-readiness-grounding-v0.json",
+      "sha256": "bb2143056c5267bbb286b52d2c86419fbd5de605a14fc431d2060c0689cadc88"
+    },
+    {
+      "byteLength": 74989,
+      "path": "artifacts/saju-v1-local-frontier-v0/complete.json",
+      "sha256": "ea9d5d25369d7c50eea9d8a9185001a9ec924ee67314cec1198869331a41f0c7"
+    },
+    {
+      "byteLength": 7824,
+      "path": "src/saju/engine/fourPillars.js",
+      "sha256": "27f71a0bbad8476895766c29c42bec1f95ddeb0b5fec3171c56e19265e936cc7"
+    },
+    {
+      "byteLength": 6297,
+      "path": "src/saju/engine/solarTerms.js",
+      "sha256": "5dcab28d38a3b51182fb984abbd1461934a348213b5d53cee9828e0f04b02f56"
+    },
+    {
+      "byteLength": 6960,
+      "path": "src/interpretationPrep/lunarConverter.js",
+      "sha256": "466c7774c3dc8ef89fb99345561db4bf5c1ec9fd786b5279fabcfa507e2bb224"
+    },
+    {
+      "byteLength": 65293,
+      "path": "src/interpretationPrep/sajuAdapter.js",
+      "sha256": "6d8de4820a01a69ed2feaf50f5213d92128d8a21b72134a05f5c22fbe30aa061"
+    },
+    {
+      "byteLength": 13050,
+      "path": "src/saju/engine/externalValidationFixtures.js",
+      "sha256": "4a80715252cdce10a64f78a9c5ca206b4e98b6c141c74695d8592eb4d6c165ea"
+    }
+  ],
+  "rawRetentionPolicy": "Actual response byte hashes and derived rows are retained. KASI almanac raw PDF and all raw HTML/XML/API response bodies are not copied into the repository; source URLs, request identity, response hashes, parsed rows and rights limits remain separate.",
+  "schemaVersion": "saju-p0-calendar-oracle-source-inventory-v1",
+  "sources": [
+    {
+      "calendarDefinition": "KASI page states Gregorian and Julian calendar views and a public input range of -59-02 through 2050-12.",
+      "coverage": {
+        "declaredServiceRange": "-59-02 through 2050-12",
+        "observedYears": [
+          1900,
+          1951,
+          1960,
+          1984,
+          1995,
+          2023,
+          2025,
+          2026,
+          2031,
+          2050
+        ]
+      },
+      "id": "kasi-monthly-lunisolar",
+      "independence": "External institutional service; implementation/data lineage is not disclosed on the queried page, so it is an official observation source but not a qualified independent implementation.",
+      "institution": "한국천문연구원 (KASI)",
+      "license": "No blanket bulk-extraction or redistribution permission was established for the service; retain only derived research rows and response hashes.",
+      "meaning": "Gregorian calendar date to Korean lunisolar date, leap-month marker, and displayed sexagenary date labels.",
+      "request": {
+        "contentType": "application/x-www-form-urlencoded",
+        "fields": [
+          "search_year",
+          "search_month",
+          "search_dp=1",
+          "search_check=G"
+        ],
+        "method": "POST"
+      },
+      "role": "official_lunisolar_date_service",
+      "semanticEquivalence": "Lunar date and leap marker are equivalent to the date-only converter contract. Sexagenary month/year labels are not used as proof of an instant-sensitive Bazi boundary because the response has no time-of-day.",
+      "timeBasis": "date-only civil calendar row; response does not state a time-of-day, timezone, or time scale for the row.",
+      "title": "월별 음양력",
+      "urls": [
+        "https://astro.kasi.re.kr/life/pageView/5"
+      ]
+    },
+    {
+      "calendarDefinition": "Annual Korean astronomical almanac with 24-term and calendar material.",
+      "coverage": {
+        "declaredYear": 2026,
+        "pageCount": 232
+      },
+      "id": "kasi-astronomical-almanac-2026",
+      "independence": "Official national almanac; method lineage for the displayed page is not inferred from a catalog locator.",
+      "institution": "한국천문연구원 (KASI)",
+      "license": "The KASI almanac record states that only original images are provided and unauthorized reproduction/redistribution is not allowed; raw PDF is not stored in the repository artifact.",
+      "meaning": "Official Korean astronomical almanac locator; the retrieved PDF is an image-based publication.",
+      "role": "official_almanac_locator_and_rights_control",
+      "semanticEquivalence": "Locator/authority evidence only in this work order; no machine comparison rows admitted.",
+      "timeBasis": "Almanac page identity is official; exact page-level event rows were not admitted to this corpus because the PDF has no text layer and its page notes prohibit unauthorized republication.",
+      "title": "한국천문연구원 2026년 역서",
+      "urls": [
+        "https://www.kasi.re.kr/kor/publication/post/publication?clsf_cd=pub005",
+        "https://www.kasi.re.kr/file/1762136558729_1.pdf"
+      ]
+    },
+    {
+      "calendarDefinition": "Date-specific official evidence by request; not an openly downloadable bulk corpus.",
+      "coverage": {
+        "publicAccess": "request_and_fee"
+      },
+      "id": "kasi-astronomical-certificate-channel",
+      "independence": "Official KASI certificate channel; no output was received in this work order.",
+      "institution": "한국천문연구원 (KASI)",
+      "license": "Request/reproduction conditions were not sufficient to admit a reusable bulk corpus in this pass.",
+      "meaning": "Official request channel for date-specific calendar and astronomical certificates.",
+      "role": "official_certificate_request_channel",
+      "semanticEquivalence": "Potentially strong for exact requested rows, but oracle scope is insufficient without a received certificate and its method/time metadata.",
+      "timeBasis": "Per-request output semantics and certificate metadata would need to be retained for a future admitted certificate packet.",
+      "title": "음양력 대조증명서 및 천문정보자료 신청",
+      "urls": [
+        "https://www.kasi.re.kr/kor/publication/pageView/131"
+      ]
+    },
+    {
+      "calendarDefinition": "HKO defines the 24 terms as 24 equal 15-degree ecliptic longitude sectors; the Bazi production boundary uses only the 12 30-degree month-entry longitudes.",
+      "coverage": {
+        "observedRows": 72,
+        "observedYears": [
+          2026,
+          2027,
+          2028
+        ],
+        "publicServiceScope": "current year and following two years on the page"
+      },
+      "id": "hko-24-solar-terms-xml",
+      "independence": "Independent endpoint and implementation from this repository. HKO is not independent of USNO/HMNAO for source-data lineage because HKO explicitly discloses that dependency.",
+      "institution": "Hong Kong Observatory (HKO)",
+      "license": "Public service/PDF access was confirmed, but a blanket raw-output redistribution license was not established; retain normalized rows and response hashes only.",
+      "meaning": "Twenty-four solar-term event dates and displayed clock times; terms are 15-degree ecliptic longitude sectors.",
+      "request": {
+        "method": "GET",
+        "template": "https://www.hko.gov.hk/en/gts/astronomy/data/files/24SolarTerms_{year}.xml"
+      },
+      "role": "official_24_solar_term_event_service",
+      "semanticEquivalence": "Event longitude and civil-time output are comparable to the repository apparent-geocentric solar-longitude root, but the HKO XML does not fully expose the repository frame/ephemeris/time-scale contract.",
+      "timeBasis": "Displayed Hong Kong Time (HKT, UTC+08:00); XML precision is one minute. HKO notes that the astronomical data are based on HM Nautical Almanac Office and USNO data.",
+      "title": "Date and Time of the 24 Solar Terms XML service",
+      "urls": [
+        "https://www.hko.gov.hk/en/gts/astronomy/Solar_Term.htm"
+      ]
+    },
+    {
+      "calendarDefinition": "Season events only; does not provide all 24 solar terms or lunar conversion.",
+      "coverage": {
+        "declaredYears": "1700-2100 inclusive",
+        "observedRows": 12,
+        "observedYears": [
+          2026,
+          2027,
+          2028
+        ]
+      },
+      "id": "usno-seasons-api",
+      "independence": "Independent endpoint from this repository, but same-family corroboration with HKO is limited because HKO explicitly cites USNO/HMNAO data.",
+      "institution": "U.S. Naval Observatory Astronomical Applications Department",
+      "license": "Public API access confirmed; specific redistribution terms for retained response data were not separately established.",
+      "meaning": "Equinox and solstice event times in UTC, with API version metadata.",
+      "request": {
+        "method": "GET",
+        "template": "https://aa.usno.navy.mil/api/seasons?year={year}"
+      },
+      "role": "official_equinox_solstice_control",
+      "semanticEquivalence": "Equinox/solstice rows correspond to the 0/90/180/270 degree subset of HKO terms; they do not authorize extrapolation to the other 20 terms.",
+      "timeBasis": "UTC when tz is omitted; one-minute displayed precision.",
+      "title": "Earth's Seasons API",
+      "urls": [
+        "https://aa.usno.navy.mil/data/api.html",
+        "https://aa.usno.navy.mil/api/seasons?year={year}"
+      ]
+    },
+    {
+      "calendarDefinition": "No lunar or solar-term definition.",
+      "coverage": {
+        "scope": "current standard-time relationship"
+      },
+      "id": "kriss-utc-kris-kst",
+      "independence": "Independent national time-standard authority, not an astrology-rule authority.",
+      "institution": "한국표준과학연구원 (KRISS)",
+      "license": "KRISS synchronization service has use restrictions; no bulk time-service reuse was admitted.",
+      "meaning": "Official time-standard relationship: current KST is UTC+09:00 and UTC(KRIS) is maintained by KRISS.",
+      "role": "official_current_time_standard_authority",
+      "semanticEquivalence": "Supports the current +09:00 conversion contract only; it does not settle pre-1961 Seoul offsets, DST rules, or 子時 policy.",
+      "timeBasis": "UTC(KRIS), UTC, and current KST relationship; this is time-standard authority, not historical civil-time transition data.",
+      "title": "UTC(KRIS) and Korean Standard Time documentation",
+      "urls": [
+        "https://www.kriss.re.kr/board.es?bid=0031&mid=a10603000000"
+      ]
+    },
+    {
+      "calendarDefinition": "No lunar or solar-term definition.",
+      "coverage": {
+        "asiaSeoul": "1900 onward in the source lines; explicit ROK rules 1948-1960 and 1987-1988",
+        "sourceRelease": "2026c"
+      },
+      "id": "iana-tzdb-2026c-asia-seoul",
+      "independence": "Independent civil-time rule source from the repository and from KASI/HKO astronomical calculations; not independent of its own historical source citations.",
+      "institution": "Internet Assigned Numbers Authority (IANA) Time Zone Database",
+      "license": "IANA tzdb LICENSE states that, unless specified otherwise, code and data are public domain; some code files are BSD-3-Clause. The asia data used here is treated as public-domain data under that file.",
+      "meaning": "Versioned Asia/Seoul historical standard offsets and ROK daylight-saving transition rules.",
+      "role": "historical_civil_time_zone_rule_source",
+      "semanticEquivalence": "Directly equivalent to the civil timezone transition/status contract, not to the Saju school choice of solar time, day rollover, or 야자시.",
+      "timeBasis": "Local civil time transition rules, UTC offsets, and named DST transitions; not astronomical event time.",
+      "title": "tzdb 2026c asia source",
+      "urls": [
+        "https://data.iana.org/time-zones/tzdb-2026c/asia",
+        "https://data.iana.org/time-zones/tzdb-2026c/LICENSE"
+      ]
+    }
+  ]
+}
