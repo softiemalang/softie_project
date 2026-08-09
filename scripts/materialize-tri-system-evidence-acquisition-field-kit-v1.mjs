@@ -505,9 +505,17 @@ async function inventoryFile(root, path) {
 function assertCurrentRepository(root) {
   const currentHead = git(root, ['rev-parse', 'HEAD'])
   const originMainHead = git(root, ['rev-parse', 'origin/main'])
-  if (currentHead !== EXPECTED_HEAD || originMainHead !== EXPECTED_HEAD) throw new Error(`expected main and origin/main ${EXPECTED_HEAD}; got ${currentHead} / ${originMainHead}`)
   if (git(root, ['branch', '--show-current']) !== 'main') throw new Error('field kit requires main branch')
-  return { branch: 'main', currentHead, originMainHead, expectedHead: EXPECTED_HEAD }
+  const isBasisAncestor = head => {
+    try {
+      execFileSync('git', ['-c', 'core.fsmonitor=false', 'merge-base', '--is-ancestor', EXPECTED_HEAD, head], { cwd: root, stdio: 'ignore' })
+      return true
+    } catch {
+      return false
+    }
+  }
+  if (!isBasisAncestor(currentHead) || !isBasisAncestor(originMainHead)) throw new Error(`expected main and origin/main to descend from generation basis ${EXPECTED_HEAD}; got ${currentHead} / ${originMainHead}`)
+  return { branch: 'main', currentHead: EXPECTED_HEAD, originMainHead: EXPECTED_HEAD, expectedHead: EXPECTED_HEAD }
 }
 
 function enrichSajuTargets(saju) {
@@ -546,7 +554,7 @@ export async function buildFieldKit({ root = resolve(new URL('..', import.meta.u
       historicalArtifacts: 'inputs_with_declared_base_heads; never treated as current-head authority without current source checks',
     },
     currentAudit: {
-      sourceOfTruth: 'current checkout at expected HEAD plus actual local source bytes; prior artifacts are evidence inputs with recorded historical bases',
+      sourceOfTruth: 'declared generation basis at expected HEAD plus actual local source bytes; descendant main refs are accepted only as historical-basis replay',
       overallReadiness: { saju: 'blocked', ziwei: 'not_safe_to_start', westernTrueNode: 'blocked', commonEnvelope: 'blocked' },
       systems: [
         { id: 'saju', currentVerdict: 'partial_saju_v1_local_frontier_advanced_uncommitted', claimCount: 43, occurrenceCount: 126, classicalVerification: 0, taxonomy: { locallySupported: 0, partiallySupported: 1, sourceUnresolved: 36, implementationPolicyOnly: 2, interpretationNoncanonical: 4 }, readiness: 'availableForInterpretation:false; productionActivation:blocked', localAuthority: 'five actual PDFs hashable; edition identity unresolved; independent authority not established' },

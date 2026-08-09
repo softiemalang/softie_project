@@ -286,7 +286,7 @@
       "westernTrueNode": "blocked",
       "ziwei": "not_safe_to_start"
     },
-    "sourceOfTruth": "current checkout at expected HEAD plus actual local source bytes; prior artifacts are evidence inputs with recorded historical bases",
+    "sourceOfTruth": "declared generation basis at expected HEAD plus actual local source bytes; descendant main refs are accepted only as historical-basis replay",
     "systems": [
       {
         "claimCount": 43,

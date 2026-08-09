@@ -2,7 +2,7 @@
 
 <!-- schema=tri-system-evidence-acquisition-field-kit-v1 verdict=complete_tri_system_evidence_acquisition_field_kit_exhausted_uncommitted head=c327167ad490e808815cda3fe52e06304ca09c52 -->
 
-기준 checkout은 `main`이며 `HEAD == origin/main == c327167ad490e808815cda3fe52e06304ca09c52`이다. 이 문서는 현재 코드와 실제 local bytes를 읽어 외부 acquisition action으로 변환한 운영용 kit이다. 기존 artifact·readiness·production rule은 변경하지 않았다. 전체 기계 판정과 원문 카드의 단일 source는 [complete.json](../artifacts/tri-system-evidence-acquisition-field-kit-v1/complete.json)이다.
+생성 기준 checkout은 `main`이며 generation basis는 `c327167ad490e808815cda3fe52e06304ca09c52`이다. 이후 `main`/`origin/main`이 이 basis의 descendant가 된 checkout에서도 source input bytes가 동일하면 artifact를 historical-basis replay로 재검증한다. 이 문서는 현재 코드와 실제 local bytes를 읽어 외부 acquisition action으로 변환한 운영용 kit이다. 기존 artifact·readiness·production rule은 변경하지 않았다. 전체 기계 판정과 원문 카드의 단일 source는 [complete.json](../artifacts/tri-system-evidence-acquisition-field-kit-v1/complete.json)이다.
 
 ## 판정 요약
 
@@ -27,7 +27,7 @@
 - acquisition 성공은 claim/readiness/grounding/activation/production을 자동 승격하지 않는다.
 - 모든 target의 production 예상 변화는 `unchanged`로 남는다.
 - `-.jpg`는 unrelated untracked file로 보존한다.
-- staging, commit, push, deploy, remote DB, production activation은 이 work order에서 수행하지 않는다.
+- 이 artifact는 acquisition planning 결과이며 readiness/grounding/activation/production을 자동 변경하거나 deploy·remote DB·production activation을 수행하지 않는다. Git publication은 별도 repository operation으로 관리한다.
 
 ## 이미 보유한 자료 inventory
 
