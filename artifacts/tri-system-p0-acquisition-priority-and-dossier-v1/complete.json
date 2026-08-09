@@ -1,0 +1,1649 @@
+{
+  "comparisonContract": {
+    "criteria": [
+      "blocker importance",
+      "multi-blocker leverage",
+      "non-duplication against held material",
+      "authority potential",
+      "actual acquisition feasibility",
+      "free/public access",
+      "catalog/scan certainty",
+      "license/reuse",
+      "deterministic evidence linkage",
+      "wrong-material risk"
+    ],
+    "scale": "0–5; higher is better. wrongMaterialRisk means lower risk. Scores are acquisition-planning judgments, not readiness or claim evidence.",
+    "scoreFormula": "sum(metric / 5 * weight), one decimal; sort descending then target ID",
+    "weights": {
+      "acquisition": 8,
+      "authority": 12,
+      "blockerImportance": 15,
+      "deterministicLinkage": 5,
+      "freeAccess": 8,
+      "leverage": 15,
+      "licenseReuse": 12,
+      "nonDuplication": 15,
+      "scanCertainty": 6,
+      "wrongMaterialRisk": 4
+    }
+  },
+  "currentAudit": {
+    "existingUntrackedPreserved": [
+      "-.jpg"
+    ],
+    "p0Count": 8,
+    "p0Systems": {
+      "saju": 2,
+      "western": 2,
+      "ziwei": 4
+    },
+    "readinessPromotionBoundary": "unchanged; this artifact cannot advance readiness, claim, evidence authority, activation or production"
+  },
+  "deterministic": {
+    "actualByteHashes": true,
+    "canonicalFinalLf": true,
+    "generatedAt": null,
+    "networkFetch": false,
+    "sourceAcquisitionPerformed": false
+  },
+  "heldMaterialCheck": {
+    "actualBytes": {
+      "byteLength": 36201526,
+      "byteSha256": "04e184c4a52cb042dc885c6ccc9135d94ab25de62007506198ee979a33e66bfc",
+      "exists": true,
+      "path": "/Users/softie/Documents/malang_lab/documents/新锓希夷陈先生紫微斗数全书.七卷.宋.陈抟撰.明.潘希尹补.明代南阳堂刊本.黑白版.pdf"
+    },
+    "predecessorRecord": {
+      "authorityStatus": "observed_bytes_only",
+      "byteLength": 36201526,
+      "byteSha256": "04e184c4a52cb042dc885c6ccc9135d94ab25de62007506198ee979a33e66bfc",
+      "id": "ziwei-local-nanyangtang-528p",
+      "pageCount": 528,
+      "path": "/Users/softie/Documents/malang_lab/documents/新锓希夷陈先生紫微斗数全书.七卷.宋.陈抟撰.明.潘希尹补.明代南阳堂刊本.黑白版.pdf",
+      "reuse": "high-leverage candidate for identity-linked review; not a new independent witness by itself",
+      "system": "ziwei"
+    },
+    "role": "comparison/identity-linkage only; not an independent official witness"
+  },
+  "materializer": {
+    "path": "scripts/materialize-tri-system-p0-acquisition-priority-and-dossier-v1.mjs",
+    "version": "1.0.0"
+  },
+  "priorityDecision": {
+    "decisionRule": "rank only after all eight P0 targets were reconstructed and scored on the same ten criteria; no famous-title or P0-label shortcut",
+    "rank1": "ZIWEI-P0-PALACE-SEMANTIC-WITNESS",
+    "rank2": "SAJU-P0-CALENDAR-ORACLE",
+    "rank3": "ZIWEI-P0-CLAIM-SOURCE-IDENTITY",
+    "runnerUps": [
+      "SAJU-P0-CALENDAR-ORACLE",
+      "ZIWEI-P0-CLAIM-SOURCE-IDENTITY"
+    ],
+    "selectedReason": "selected: best combination of multi-blocker leverage, official identity, public scan route, and immediate page-image → deterministic semantic-review linkage"
+  },
+  "rankedP0Targets": [
+    {
+      "accept": [
+        "all five connections are directly visible in a readable witness",
+        "source and production coordinate frames are explicitly compared, not inferred",
+        "cross-edition disagreement is preserved and human review is recorded"
+      ],
+      "blockerIds": [
+        "blocker-palace-semantic-identity",
+        "blocker-source-identity-unresolved",
+        "blocker-tianfu-rotation06-semantic-authority"
+      ],
+      "candidateStatus": "action_required",
+      "claimIds": [
+        "claim-major-star-placement-all",
+        "claim-ming-shen-coordinate-frame",
+        "claim-palace-name-branch-ordinal"
+      ],
+      "confidence": "high",
+      "currentGap": "local Nanbei pages show branch diagrams and traversal wording but no shared palace-name mapping; Nanyangtang identity is catalog-linkable but not yet admitted.",
+      "difficulty": "high",
+      "expectedChange": {
+        "claim": "palace coordinate claim can become human-review-ready then scoped supported, never automatically verified",
+        "production": "unchanged",
+        "readiness": "semantic blocker may move to pending adjudication; readiness remains not_safe_to_start until native gates pass"
+      },
+      "highLeverage": true,
+      "id": "ZIWEI-P0-PALACE-SEMANTIC-WITNESS",
+      "licensing": {
+        "access": "official public scan; second witness may be restricted",
+        "policyDecision": "human semantic adjudication required",
+        "rights": "official metadata says CC0 for the NARA item; verify image-level terms and second witness rights"
+      },
+      "locator": {
+        "capture": [
+          "full diagram boundary and orientation",
+          "all 12 labels and branches",
+          "direction arrows/words and subject",
+          "page/folio and edition identity"
+        ],
+        "requiredSections": [
+          "十二宮冠蓋 or equivalent 12-palace diagram",
+          "定命身二宮 / 寅起月 / 命宮逆數·身宮順數",
+          "紫微五訣/安紫微/安天府 tables where branch and ordinal are explicit"
+        ]
+      },
+      "material": {
+        "idealSet": [
+          "two independently catalogued editions with aligned page/folio review",
+          "explicit statement of the same coordinate frame used by production or a human adjudication packet that rejects equivalence",
+          "CC0/openly redistributable page-image bytes"
+        ],
+        "minimumSet": [
+          "official Nanyangtang scan page images linked to F1000000000000101426",
+          "one complete readable diagram/table that directly connects 12 palace names, branch glyphs, physical slots and ordinal/base/direction",
+          "cover/title/colophon/volume/folio metadata"
+        ],
+        "namedTargets": [
+          "National Archives of Japan F1000000000000101426 / file 1078787 (already local candidate; authority-link and page capture action)",
+          "independent second catalogued witness, not a mirror of the local PDF"
+        ]
+      },
+      "notDuplicateOf": [
+        "ziwei-local-nanbei-219p",
+        "ziwei-local-nanyangtang-528p"
+      ],
+      "priority": "P0",
+      "priorityAudit": {
+        "acquisition": 4,
+        "acquisitionFeasibility": "medium-high: official record and viewer/item routes are located; remote image access still needs user confirmation",
+        "authority": 5,
+        "authorityPotential": "very high: specific institutional Ming print record with collection, call number and volume metadata",
+        "blockerImportance": 5,
+        "deterministicLinkage": 5,
+        "deterministicLinkageAssessment": "very high: actual image bytes → page/leaf/hash → glyph/layout/source observation → bounded coordinate comparison",
+        "freeAccess": 3,
+        "freeAccessAssessment": "medium: catalog metadata is CC0/public but viewer and page-level image terms are not fully confirmed",
+        "heldOverlap": "Nanbei and Nanyangtang bytes are retained as negative/comparison evidence; NARA item acquisition is an identity-link/admission action, not duplicate reacquisition",
+        "leverage": 5,
+        "licenseReuse": 3,
+        "licenseReuseAssessment": "medium: CC0 metadata is promising, image-level terms and derivative redistribution remain separate",
+        "nextFrontier": "complete 12-palace semantic mapping and human adjudication of source vs production coordinate frames",
+        "nonDuplication": 5,
+        "notes": "공식 기관의 특정 明刊本 record와 image/item 경로가 있고 하나의 witness가 palace/source/Tianfu 경계를 함께 검사하게 한다. viewer의 館内限定閲覧 표시는 무료 원본 다운로드를 아직 확정하지 않는다.",
+        "scanCertainty": 4,
+        "scanCertaintyAssessment": "high route certainty, medium target-leaf certainty: official image/item path exists but exact semantic leaf is unreviewed",
+        "selectionReason": "selected: best combination of multi-blocker leverage, official identity, public scan route, and immediate page-image → deterministic semantic-review linkage",
+        "weightedScore": 88.4,
+        "wrongMaterialRisk": 4,
+        "wrongMaterialRiskAssessment": "low-medium with exact title/call-number/edition checks; high if generic modern reprints are accepted"
+      },
+      "provenanceChecks": [
+        "download original archive bytes, record file URI/catalog ID/page/folio and hash",
+        "verify CC0/terms separately from semantic authority",
+        "keep raw glyph/layout and page images"
+      ],
+      "purpose": "close the actual semantic edge palace-name ↔ branch ↔ diagram slot ↔ production ordinal; rotation-06 arithmetic is not enough.",
+      "rationale": "highest-leverage Ziwei action: one direct coordinate witness affects palaces, major-star interpretation and Tianfu rotation boundary.",
+      "reject": [
+        "rotation-06 numerical fit",
+        "OCR/transcription without scan",
+        "partial/cropped diagram",
+        "catalog metadata without target pages",
+        "palace labels assigned from modern convention"
+      ],
+      "sourceRefs": [
+        "source-japan-archives-ziwei-nanyangtang",
+        "ziwei-palace-semantic-source-frontier-v1"
+      ],
+      "system": "ziwei",
+      "verificationPlan": [
+        "materialize Ziwei palace semantic source frontier successor with current observed head",
+        "run palace source acquisition and negative checkers",
+        "compare current production coordinates without changing them",
+        "retain stableClaimCount 0 until review closes"
+      ]
+    },
+    {
+      "accept": [
+        "official provider identity and exact coverage are recorded",
+        "boundary cases are returned by the same defined calendar/time semantics as the input contract",
+        "an independent oracle or certificate covers at least the first/last and adversarial leap/boundary rows",
+        "raw outputs and terms-of-use are retained"
+      ],
+      "blockerIds": [
+        "saju-b-calendar-boundaries"
+      ],
+      "candidateStatus": "action_required",
+      "claimIds": [
+        "saju.natal.day-master",
+        "saju.natal.unknown-birth-time"
+      ],
+      "confidence": "high",
+      "currentGap": "repository has local calendar code and internal fixtures; the broad official 1901-2100 external comparison and source identity are not admitted.",
+      "difficulty": "medium-high",
+      "expectedChange": {
+        "claim": "calendar/date claims may gain scoped independent evidence",
+        "production": "unchanged until explicit policy gate",
+        "readiness": "input verification can advance for covered rows; classical claim and activation gates remain separate"
+      },
+      "highLeverage": true,
+      "id": "SAJU-P0-CALENDAR-ORACLE",
+      "licensing": {
+        "access": "KASI public service plus request/fee certificate; KRISS public documentation with service-use restrictions",
+        "policyDecision": "coverage and reuse decision required",
+        "rights": "bulk extraction and commercial reuse require written confirmation"
+      },
+      "locator": {
+        "capture": [
+          "input date/time and location",
+          "calendar system and time scale",
+          "returned lunar date, sexagenary date and leap marker",
+          "service/version/output evidence"
+        ],
+        "requiredSections": [
+          "exact date/time rows around 입춘 and all 24 terms",
+          "leap-month transitions",
+          "midnight/子時 boundary rows",
+          "historical timezone/DST rows"
+        ]
+      },
+      "material": {
+        "idealSet": [
+          "machine-readable or page-image official 1901-2100 calendar corpus",
+          "KASI or another national observatory method note plus independent oracle with version/hash",
+          "explicit historical timezone/DST and solar-term boundary tables"
+        ],
+        "minimumSet": [
+          "KASI date-specific lunar/solar and leap-month evidence for boundary fixtures",
+          "official 24절기/역서 output with timezone/epoch metadata",
+          "independent standard-time record for KST/UTC conversion"
+        ],
+        "namedTargets": [
+          "KASI 월별 음양력 service and official certificate request channel",
+          "KRISS UTC(KRIS)/KST standard-time documentation"
+        ]
+      },
+      "notDuplicateOf": [
+        "local lunar converter and internal regression fixtures"
+      ],
+      "packetIds": [
+        "saju-source-packet-core-four-pillars-v0",
+        "saju-source-packet-core-candidate-boundary-v0"
+      ],
+      "priority": "P0",
+      "priorityAudit": {
+        "acquisition": 4,
+        "acquisitionFeasibility": "high for individual rows; low-medium for a broad corpus",
+        "authority": 5,
+        "authorityPotential": "high: KASI is the national astronomy institution and the service declares its calendar range",
+        "blockerImportance": 5,
+        "deterministicLinkage": 5,
+        "deterministicLinkageAssessment": "high: request/response row, input timezone and output hash map directly to fixtures",
+        "freeAccess": 4,
+        "freeAccessAssessment": "medium-high for public query, not confirmed for bulk/download",
+        "heldOverlap": "local calendar code and internal fixtures are not external authority; KASI rows would be new observations",
+        "leverage": 5,
+        "licenseReuse": 2,
+        "licenseReuseAssessment": "low-medium: bulk extraction/commercial reuse terms require confirmation",
+        "nextFrontier": "boundary fixture pack plus independent oracle/certificate and terms",
+        "nonDuplication": 5,
+        "notes": "KASI의 공식 공개 질의는 즉시 boundary row를 만들 수 있고 Saju/Ziwei upstream에 재사용되지만, 1901–2100 corpus와 재사용 권리는 미확정이다.",
+        "scanCertainty": 2,
+        "scanCertaintyAssessment": "low-medium: web rows are observable but not a page-image corpus",
+        "selectionReason": "runner_up_1: strongest shared upstream oracle and easy boundary-row acquisition, but no pinned broad corpus or reuse permission",
+        "weightedScore": 85.2,
+        "wrongMaterialRisk": 4,
+        "wrongMaterialRiskAssessment": "low-medium if calendar system, timezone and coverage are recorded"
+      },
+      "provenanceChecks": [
+        "record institution, endpoint/request, access date, coverage, output bytes/hash and terms",
+        "distinguish official observation/data from repository algorithm and from Saju interpretation",
+        "retain failures and out-of-scope rows"
+      ],
+      "purpose": "separate astronomical/calendar correctness from the classical rule text and test the repository solar-term, lunar, leap-month, historical-time and day-boundary assumptions.",
+      "rationale": "calendar errors contaminate Saju and Ziwei inputs, so this is the strongest shared upstream evidence after edition identity.",
+      "reject": [
+        "a consumer calendar app or unversioned web screenshot",
+        "a result with no timezone/calendar-system metadata",
+        "KASI 2050-limited service silently extrapolated to 2100",
+        "matching output without independent provenance"
+      ],
+      "sourceRefs": [
+        "source-kasi-ephemeris-certificate",
+        "source-kasi-lunar-calendar",
+        "source-kriss-utc-korea"
+      ],
+      "system": "saju",
+      "verificationPlan": [
+        "materialize a calendar fixture reconciliation artifact",
+        "run lunar converter and Saju external validation checkers with before/after counts",
+        "do not alter boundary coefficients or fixture expectations merely to match"
+      ]
+    },
+    {
+      "accept": [
+        "each occurrence has source identity and actual-byte hash",
+        "mirror/reprint lineage is marked and not double-counted",
+        "claim merge is independently reviewed"
+      ],
+      "blockerIds": [
+        "blocker-source-identity-unresolved"
+      ],
+      "candidateStatus": "action_required",
+      "claimIds": [
+        "claim-occurrence-source-identity",
+        "claim-stable-claim-boundary"
+      ],
+      "confidence": "high",
+      "currentGap": "occurrence provenance and stable claim boundary remain unresolved; current local evidence is observation-limited.",
+      "difficulty": "high",
+      "expectedChange": {
+        "claim": "occurrence provenance can become reviewable; stable claim remains 0 until adjudication",
+        "production": "unchanged",
+        "readiness": "grounding remains blocked"
+      },
+      "highLeverage": true,
+      "id": "ZIWEI-P0-CLAIM-SOURCE-IDENTITY",
+      "licensing": {
+        "access": "mixed",
+        "policyDecision": "per-source permission check",
+        "rights": "depends on each institution; catalog is not license"
+      },
+      "locator": {
+        "capture": [
+          "unedited bytes, page images, raw transcription, OCR only as locator"
+        ],
+        "requiredSections": [
+          "title/author/editor/colophon",
+          "occurrence page and adjacent pages",
+          "table/diagram headers and page/folio markers"
+        ]
+      },
+      "material": {
+        "idealSet": [
+          "independent edition lineage report and duplicate/mirror detection",
+          "reviewer sign-off for each occurrence before any claim merge"
+        ],
+        "minimumSet": [
+          "catalog/holding identity, edition, volume/folio/page and actual bytes for each source occurrence",
+          "raw glyph capture and source-page context",
+          "claim/occurrence mapping that preserves unresolved and excluded rows"
+        ],
+        "namedTargets": [
+          "NARA F1000000000000101426 for the already-held Nanyangtang candidate; source-specific catalog records for all additional witnesses"
+        ]
+      },
+      "notDuplicateOf": [
+        "existing occurrence-level provenance artifact and local PDFs"
+      ],
+      "priority": "P0",
+      "priorityAudit": {
+        "acquisition": 4,
+        "acquisitionFeasibility": "medium-high bundled with palace witness, lower as a separate search",
+        "authority": 5,
+        "authorityPotential": "very high if NARA leaf identity and a non-clone second witness are admitted",
+        "blockerImportance": 5,
+        "deterministicLinkage": 4,
+        "deterministicLinkageAssessment": "high for occurrence→edition/leaf/hash, lower for automatic claim merge",
+        "freeAccess": 3,
+        "freeAccessAssessment": "medium and subject to NARA viewer/image terms",
+        "heldOverlap": "existing occurrence provenance and local PDFs are precisely the material whose lineage must be audited; new NARA witness overlaps the selected target",
+        "leverage": 5,
+        "licenseReuse": 3,
+        "licenseReuseAssessment": "medium; preserve source terms separately from semantic authority",
+        "nextFrontier": "lineage and duplicate matrix, stable-claim boundary review, unresolved/excluded rows",
+        "nonDuplication": 4,
+        "notes": "모든 occurrence의 provenance gate지만, 새 자료의 직접 내용보다 edition-lineage·duplicate review가 핵심이라 palace target의 identity capture와 중복된다.",
+        "scanCertainty": 4,
+        "scanCertaintyAssessment": "high for official route, medium for complete occurrence-relevant leaves",
+        "selectionReason": "not_selected",
+        "weightedScore": 84.4,
+        "wrongMaterialRisk": 4,
+        "wrongMaterialRiskAssessment": "medium: mirrors/reprints can look like independent occurrences"
+      },
+      "provenanceChecks": [
+        "record catalog ID, edition/lineage, page/folio, byte hash and capture scope",
+        "preserve raw and normalized forms separately",
+        "no source adoption in intake"
+      ],
+      "purpose": "turn “a source occurrence exists” into an auditable identity edge without inventing stable claims.",
+      "rationale": "this is the provenance gate beneath all Ziwei rule claims.",
+      "reject": [
+        "title-page-only identity",
+        "OCR-only text",
+        "same scan counted as two witnesses",
+        "confidence score substituted for identity"
+      ],
+      "sourceRefs": [
+        "source-japan-archives-ziwei-nanyangtang",
+        "ziwei-palace-source-acquisition-field-kit-v0"
+      ],
+      "system": "ziwei",
+      "verificationPlan": [
+        "feed source observations to Ziwei occurrence/admission checkers",
+        "run negative fixtures for hidden unresolved source and invented claim boundary",
+        "retain stableClaimCount 0 until admitted"
+      ]
+    },
+    {
+      "accept": [
+        "same input yields reproducible output under explicitly declared calendar/time semantics",
+        "leap-month and boundary cases are covered",
+        "oracle independence and license/access are recorded"
+      ],
+      "blockerIds": [
+        "blocker-calendar-time-source-identity",
+        "blocker-external-oracle-identity"
+      ],
+      "candidateStatus": "action_required",
+      "claimIds": [
+        "claim-lunar-leap-month",
+        "claim-ming-shen-input",
+        "claim-zi-time-boundary"
+      ],
+      "confidence": "high",
+      "currentGap": "Ziwei input contract records conversion status but no independent source identity or oracle; candidate paths fail closed.",
+      "difficulty": "medium-high",
+      "expectedChange": {
+        "claim": "input calendar claims may become scoped externally supported",
+        "production": "unchanged",
+        "readiness": "input blocker can close only for covered semantics; overall Ziwei remains blocked until rule/semantic gates"
+      },
+      "highLeverage": true,
+      "id": "ZIWEI-P0-CALENDAR-TIME-ORACLE",
+      "licensing": {
+        "access": "KASI public/request; bulk terms unresolved",
+        "policyDecision": "coverage and reuse decision required",
+        "rights": "written confirmation required for bulk or production reuse"
+      },
+      "locator": {
+        "capture": [
+          "raw request/response",
+          "service/version/coverage",
+          "all warnings and out-of-scope rows"
+        ],
+        "requiredSections": [
+          "leap-month row, lunar date, sexagenary date, exact time and timezone",
+          "day rollover and 子時 boundary",
+          "source calendar system and epoch"
+        ]
+      },
+      "material": {
+        "idealSet": [
+          "full boundary corpus spanning leap months, solar-term crossings and day rollover",
+          "source-backed Korean/Chinese calendar convention comparison",
+          "license-usable oracle with deterministic command and pinned data"
+        ],
+        "minimumSet": [
+          "KASI or national-observatory lunar/leap-month rows for the exact Ziwei fixture dates",
+          "independent calendar implementation/version and raw output",
+          "explicit local-time/UTC/子時 boundary inputs"
+        ],
+        "namedTargets": [
+          "KASI official lunar-solar service/certificate channel; local Ziwei fixtures are input cases, not authority"
+        ]
+      },
+      "notDuplicateOf": [
+        "local solar2lunar path and six external-looking fixtures"
+      ],
+      "priority": "P0",
+      "priorityAudit": {
+        "acquisition": 4,
+        "acquisitionFeasibility": "high for exact public rows; medium for independent versioned oracle",
+        "authority": 5,
+        "authorityPotential": "high for calendar observation, not for Ziwei rule semantics",
+        "blockerImportance": 4,
+        "deterministicLinkage": 5,
+        "deterministicLinkageAssessment": "high for exact request/response and boundary fixture reconciliation",
+        "freeAccess": 4,
+        "freeAccessAssessment": "medium-high for query service, unresolved for bulk",
+        "heldOverlap": "local solar2lunar path and six external-looking fixtures exist but are not independent authority; evidence would overlap SAJU calendar rows",
+        "leverage": 5,
+        "licenseReuse": 2,
+        "licenseReuseAssessment": "low-medium: service terms and bulk reuse unresolved",
+        "nextFrontier": "Ziwei fixture reconciliation with independent implementation/version and raw outputs",
+        "nonDuplication": 4,
+        "notes": "두 blocker를 건드리지만 SAJU calendar target과 실질적으로 같은 KASI evidence를 재사용한다. palace semantic witness보다 source identity frontier를 덜 전진시킨다.",
+        "scanCertainty": 2,
+        "scanCertaintyAssessment": "low-medium: service output rather than scan corpus",
+        "selectionReason": "runner_up_2: shared upstream value, but it substantially overlaps the Saju calendar target and does not address source/coordinate semantics",
+        "weightedScore": 79.2,
+        "wrongMaterialRisk": 4,
+        "wrongMaterialRiskAssessment": "low-medium if time scale, timezone, epoch and leap marker are retained"
+      },
+      "provenanceChecks": [
+        "hash raw oracle output and source/version",
+        "separate calendar evidence from palace/star rules",
+        "retain mismatch and excluded cases"
+      ],
+      "purpose": "prevent calendar conversion and time-boundary uncertainty from being mistaken for Ziwei rule agreement.",
+      "rationale": "Ziwei and Saju share upstream calendar risk; independent coverage has more leverage than another chart screenshot.",
+      "reject": [
+        "same local converter wrapped differently",
+        "calendar screenshot with no input/timezone",
+        "unversioned commercial app",
+        "one normal-date match"
+      ],
+      "sourceRefs": [
+        "source-kasi-ephemeris-certificate",
+        "source-kasi-lunar-calendar"
+      ],
+      "system": "ziwei",
+      "verificationPlan": [
+        "materialize fixture reconciliation with current source identity",
+        "run Ziwei fixture and readiness checkers",
+        "do not promote observed matches to verified"
+      ]
+    },
+    {
+      "accept": [
+        "every semantic field is explicitly fixed and the same quantity is named in source and oracle",
+        "event time is not conflated with instantaneous longitude",
+        "review records dissent and unresolved fields"
+      ],
+      "blockerIds": [
+        "western-b-frame-time-correction-bridge",
+        "western-b-production-contract"
+      ],
+      "candidateStatus": "action_required",
+      "claimIds": [
+        "astrology.true-node"
+      ],
+      "confidence": "high",
+      "currentGap": "production has no True Node provider; research candidates disagree or are only derived state quantities.",
+      "difficulty": "very_high",
+      "expectedChange": {
+        "claim": "definition fields can become source-backed and reviewable",
+        "production": "unchanged",
+        "readiness": "production semantic blocker may move to adjudication; activation remains blocked"
+      },
+      "highLeverage": true,
+      "id": "WESTERN-P0-SEMANTIC-ADJUDICATION",
+      "licensing": {
+        "access": "Swiss/JPL docs public; product-owner adjudication not yet obtained",
+        "policyDecision": "semantic product policy required",
+        "rights": "documentation citation is not code/data deployment permission"
+      },
+      "locator": {
+        "capture": [
+          "verbatim definition, version/date, coordinate settings, corrections, output field and motion semantics"
+        ],
+        "requiredSections": [
+          "Swiss PDF §2.2.2 True Node pp.17-18/PDF p.20-21",
+          "JPL Horizons geometric/apparent, ecliptic of date/J2000, TDB and osculating elements sections",
+          "provider contract field definitions"
+        ]
+      },
+      "material": {
+        "idealSet": [
+          "formal technical specification from the product/provider owner plus an independent astronomical adjudication",
+          "test vectors at frame/time/correction boundaries with raw source settings"
+        ],
+        "minimumSet": [
+          "source-backed definition that fixes mean/true/osculating, ascending-node convention, center, ecliptic/frame/equinox, time scale and geometric/apparent corrections",
+          "explicit statement whether the value is instantaneous longitude or crossing-event time",
+          "independent reviewer or paper bridging the definition to the implementation"
+        ],
+        "namedTargets": [
+          "Swiss official True Node documentation as definition baseline, plus an independent adjudication of its semantic bridge; JPL Horizons manual is supporting frame/state evidence only"
+        ]
+      },
+      "notDuplicateOf": [
+        "existing Swiss/JPL/DE405 diagnostic artifacts and docs"
+      ],
+      "priority": "P0",
+      "priorityAudit": {
+        "acquisition": 2,
+        "acquisitionFeasibility": "low-medium: public manuals are easy, cross-source human/product decision is not",
+        "authority": 4,
+        "authorityPotential": "high for technical definitions, insufficient alone for product policy",
+        "blockerImportance": 5,
+        "deterministicLinkage": 2,
+        "deterministicLinkageAssessment": "medium-low until semantic fields are fixed; no tolerance or provider choice allowed",
+        "freeAccess": 4,
+        "freeAccessAssessment": "medium-high for documentation",
+        "heldOverlap": "Swiss/JPL/DE405/Horizons diagnostics are already held; new work is contract adjudication, not duplicate numeric comparison",
+        "leverage": 4,
+        "licenseReuse": 3,
+        "licenseReuseAssessment": "medium: documentation access differs from code/data deployment rights",
+        "nextFrontier": "complete semantic contract and independent adjudication record",
+        "nonDuplication": 5,
+        "notes": "Swiss/JPL 기술문서는 공개지만 서로 다른 양의 정의를 조정하는 human/product contract가 필요해 자료 하나로 deterministic frontier가 닫히지 않는다.",
+        "scanCertainty": 5,
+        "scanCertaintyAssessment": "high for PDFs/manuals, not for a single same-quantity contract",
+        "selectionReason": "not_selected",
+        "weightedScore": 78,
+        "wrongMaterialRisk": 2,
+        "wrongMaterialRiskAssessment": "high: state vector, event time and instantaneous longitude are easily conflated"
+      },
+      "provenanceChecks": [
+        "pin document edition/source hash and data settings",
+        "separate source definition, calculation and interpretation",
+        "record provider/implementation independence"
+      ],
+      "purpose": "turn the product’s name-only True Node field into a complete, reviewable semantic contract.",
+      "rationale": "without semantic identity, numeric oracle acquisition cannot be evaluated.",
+      "reject": [
+        "Swiss name alone",
+        "close numeric residual",
+        "JPL state/OM without node contract",
+        "frame choice inferred from current code"
+      ],
+      "sourceRefs": [
+        "source-jpl-horizons-manual",
+        "source-swiss-true-node-manual"
+      ],
+      "system": "western",
+      "verificationPlan": [
+        "materialize a semantic contract evidence packet",
+        "run Western True Node boundary and independent-frontier checkers",
+        "do not add provider or tolerance"
+      ]
+    },
+    {
+      "accept": [
+        "source explicitly states base/direction/coordinate meaning",
+        "same rule is attributable to an edition and independently reviewed",
+        "conflict is reported if editions differ"
+      ],
+      "blockerIds": [
+        "blocker-tianfu-raw-formula-contradiction",
+        "blocker-tianfu-rotation06-semantic-authority"
+      ],
+      "candidateStatus": "action_required",
+      "claimIds": [
+        "claim-tianfu-coordinate-convention",
+        "claim-tianfu-placement"
+      ],
+      "confidence": "high",
+      "currentGap": "both conventions remain available in code; arithmetic 150/150 fit does not establish source authority.",
+      "difficulty": "very_high",
+      "expectedChange": {
+        "claim": "Tianfu source convention may move from unresolved to reviewed with declared limits",
+        "production": "unchanged until authorized",
+        "readiness": "semantic authority may advance only through explicit human gate"
+      },
+      "highLeverage": true,
+      "id": "ZIWEI-P0-TIANFU-CONVENTION",
+      "licensing": {
+        "access": "NARA public candidate plus possible restricted second edition",
+        "policyDecision": "authorized semantic authority decision required",
+        "rights": "CC0 metadata for NARA; verify page-image reuse and second-edition rights"
+      },
+      "locator": {
+        "capture": [
+          "raw glyphs, table orientation, branch sequence, formula and page/folio"
+        ],
+        "requiredSections": [
+          "安紫微/安天府, 紫微五訣, Tianfu star placement table/formula",
+          "base branch and direction words"
+        ]
+      },
+      "material": {
+        "idealSet": [
+          "multiple premodern page-image witnesses with colophon/folio identity",
+          "formal adjudication of Chen-anchor versus Xu-anchor and a preserved disagreement packet"
+        ],
+        "minimumSet": [
+          "direct source page that states Tianfu anchor/base branch and counting direction",
+          "same witness context showing whether branch labels are palace names or coordinate slots",
+          "one independent edition comparison"
+        ],
+        "namedTargets": [
+          "NARA Nanyangtang scan pages for 安天府/紫微五訣; second catalogued edition if the page is absent or ambiguous"
+        ]
+      },
+      "notDuplicateOf": [
+        "existing Tianfu representation search, discrepancy and rotation artifacts"
+      ],
+      "priority": "P0",
+      "priorityAudit": {
+        "acquisition": 3,
+        "acquisitionFeasibility": "medium: likely same NARA item but target formula leaves are not yet confirmed",
+        "authority": 5,
+        "authorityPotential": "high if the Ming witness directly states 安紫微/安天府 coordinate meaning",
+        "blockerImportance": 5,
+        "deterministicLinkage": 4,
+        "deterministicLinkageAssessment": "high for raw table rows, low for semantic choice without human review",
+        "freeAccess": 3,
+        "freeAccessAssessment": "medium and unresolved at image level",
+        "heldOverlap": "existing Tianfu representation, discrepancy and rotation artifacts already cover numeric relations; new material must be source authority, not another transform",
+        "leverage": 4,
+        "licenseReuse": 3,
+        "licenseReuseAssessment": "medium pending image terms",
+        "nextFrontier": "source-stated Tianfu base/direction/coordinate meaning and disagreement-preserving provenance",
+        "nonDuplication": 4,
+        "notes": "같은 NARA witness가 유력하지만 formula와 coordinate semantics가 실제로 함께 드러나는지 불명확하고, 잘못된 재편집본을 고를 위험이 높다.",
+        "scanCertainty": 3,
+        "scanCertaintyAssessment": "medium: NARA route exists, exact readable formula/table pages unknown",
+        "selectionReason": "not_selected",
+        "weightedScore": 77,
+        "wrongMaterialRisk": 2,
+        "wrongMaterialRiskAssessment": "high: modern convention tables and output-fit artifacts can be mistaken for authority"
+      },
+      "provenanceChecks": [
+        "hash source pages and record edition lineage",
+        "preserve both formulas and first divergence",
+        "no production selection at intake"
+      ],
+      "purpose": "resolve raw formula contradiction and decide whether rotation-06 is a semantic identity or only an output transform.",
+      "rationale": "one witness can address both formula contradiction and rotation-06 semantic overreach.",
+      "reject": [
+        "legacy/source-aligned output match",
+        "rotation-only proof",
+        "modern resolver output",
+        "unattributed transcription"
+      ],
+      "sourceRefs": [
+        "source-japan-archives-ziwei-nanyangtang"
+      ],
+      "system": "ziwei",
+      "verificationPlan": [
+        "materialize Tianfu convention provenance successor",
+        "run discrepancy and negative checkers",
+        "keep legacy default and readiness/activation unchanged"
+      ]
+    },
+    {
+      "accept": [
+        "institution/catalog identity matches title, author/editor, volume/page or folio and the retrieved bytes",
+        "target rule is directly readable in the page image with enough context to identify inputs, outputs and scope",
+        "independent witness is not merely a mirror, OCR, web transcription or modern table copied from the local file",
+        "edition disagreement is preserved rather than silently reconciled"
+      ],
+      "blockerIds": [
+        "saju-b-core-rule-scope",
+        "saju-b-source-identity"
+      ],
+      "candidateStatus": "action_required",
+      "claimIds": [
+        "saju.natal.branch-relation.day-hour-육합",
+        "saju.natal.branch-relation.day-hour-충",
+        "saju.natal.branch-relation.day-hour-파",
+        "saju.natal.branch-relation.day-hour-형",
+        "saju.natal.branch-relation.half-trine-목-year-day",
+        "saju.natal.branch-relation.half-trine-수-day-hour",
+        "saju.natal.branch-relation.half-trine-수-month-hour",
+        "saju.natal.branch-relation.month-day-육합",
+        "saju.natal.branch-relation.month-day-충",
+        "saju.natal.branch-relation.month-day-파",
+        "saju.natal.branch-relation.month-day-형",
+        "saju.natal.branch-relation.month-hour-육합",
+        "saju.natal.branch-relation.month-hour-충",
+        "saju.natal.branch-relation.month-hour-형",
+        "saju.natal.branch-relation.year-day-육합",
+        "saju.natal.branch-relation.year-day-충",
+        "saju.natal.branch-relation.year-day-파",
+        "saju.natal.branch-relation.year-hour-육합",
+        "saju.natal.branch-relation.year-hour-충",
+        "saju.natal.branch-relation.year-hour-파",
+        "saju.natal.branch-relation.year-hour-형",
+        "saju.natal.branch-relation.year-month-육합",
+        "saju.natal.branch-relation.year-month-파",
+        "saju.natal.branch-relation.year-month-형",
+        "saju.natal.day-master",
+        "saju.natal.element-absence",
+        "saju.natal.element-emphasis.목",
+        "saju.natal.element-emphasis.수",
+        "saju.natal.element-emphasis.토",
+        "saju.natal.element-emphasis.화",
+        "saju.natal.experimental.gyeokguk",
+        "saju.natal.experimental.strength-quantitative",
+        "saju.natal.experimental.yongshin",
+        "saju.natal.ten-god-repeat.겁재",
+        "saju.natal.ten-god-repeat.비견",
+        "saju.natal.ten-god-repeat.식신",
+        "saju.natal.ten-god-repeat.정관",
+        "saju.natal.ten-god-repeat.정재",
+        "saju.natal.ten-god-repeat.편관",
+        "saju.natal.ten-god-repeat.편재"
+      ],
+      "confidence": "medium",
+      "currentGap": "Five local PDFs have actual byte hashes and locator observations, but all remain edition_unresolved; claim-level classical verification is 0.",
+      "difficulty": "high",
+      "expectedChange": {
+        "claim": "source_unresolved may become partially_supported only for directly witnessed fields after review",
+        "production": "unchanged",
+        "readiness": "stable claim boundary may advance only by an explicit native Saju gate; availableForInterpretation remains false by default"
+      },
+      "highLeverage": true,
+      "id": "SAJU-P0-IDENTITY-WITNESS",
+      "licensing": {
+        "access": "mixed: restricted/paid catalog candidates plus possible public scan",
+        "policyDecision": "human review required",
+        "rights": "catalog access is not redistribution permission; request page-image/reproduction rights before storing or publishing"
+      },
+      "locator": {
+        "capture": [
+          "page/folio number",
+          "exact original sentence/table text as visible",
+          "surface/hidden-stem scope",
+          "author/editor/edition/colophon context"
+        ],
+        "requiredSections": [
+          "子平真詮 p2 一、論十干十二支; p5 七、論刑沖會合解法; p26 格局/雜格 candidate section",
+          "淵海子平 p2 十干, p4 藏干, p6 日主/日為主, p7 月令, p8 行運",
+          "滴天髓 p2-6 and 穷通宝鉴 seasonal sections",
+          "三命通會 element/神煞 sections"
+        ]
+      },
+      "material": {
+        "idealSet": [
+          "a catalog-linked historical or critical edition for each rule family",
+          "two non-clone witnesses with page/folio alignment and a preserved disagreement matrix",
+          "unrestricted or explicitly permitted page-image bytes"
+        ],
+        "minimumSet": [
+          "catalog record/holding identity for the exact local title",
+          "cover/title/author/editor/colophon pages",
+          "full-page images of the local observed sections plus adjacent context",
+          "one separately identified witness for at least 子平真詮 or 三命通會"
+        ],
+        "namedTargets": [
+          "NDL 000001683371 / PID 12282002 for 子平真詮 identity lead",
+          "NDL 027985956 HR511-L127 for 三命通会 明朝版 comparison lead",
+          "official/cultural-heritage catalog or scan of a premodern witness if the NDL modern editions cannot expose the required pages"
+        ]
+      },
+      "notDuplicateOf": [
+        "saju-local-ziping-zhenquan",
+        "saju-local-ditian-sui",
+        "saju-local-yuanhai-ziping",
+        "saju-local-qiongtong-baojian",
+        "saju-local-sanming-tonghui"
+      ],
+      "packetIds": [
+        "saju-source-packet-core-four-pillars-v0",
+        "saju-source-packet-core-element-distribution-v0",
+        "saju-source-packet-core-ten-god-distribution-v0",
+        "saju-source-packet-rule-branch-relations-v0",
+        "saju-source-packet-rule-gyeokguk-v0",
+        "saju-source-packet-rule-strength-v0",
+        "saju-source-packet-rule-yongshin-v0"
+      ],
+      "priority": "P0",
+      "priorityAudit": {
+        "acquisition": 2,
+        "acquisitionFeasibility": "low-medium: library request, paid copy or physical access likely",
+        "authority": 2,
+        "authorityPotential": "medium: NDL records are confirmed but the immediately visible candidates are modern/restricted rather than free historical scans",
+        "blockerImportance": 5,
+        "deterministicLinkage": 5,
+        "deterministicLinkageAssessment": "high after receipt: full-page hash and exact rule locator can feed Saju observation/checkers",
+        "freeAccess": 1,
+        "freeAccessAssessment": "low: no confirmed free public page-image route",
+        "heldOverlap": "five local Saju PDFs are locator/comparison material only; acquisition must add catalog identity and a non-clone witness",
+        "leverage": 5,
+        "licenseReuse": 2,
+        "licenseReuseAssessment": "low-medium: copying/republication requires institution or publisher permission",
+        "nextFrontier": "edition identity, direct rule witness, non-clone disagreement matrix",
+        "nonDuplication": 3,
+        "notes": "두 개의 P0 blocker와 7개 rule packet에 걸치지만, 현재 후보가 도서관 제한/유료·현대판이며 직접 scan 확보가 불확실하다.",
+        "scanCertainty": 2,
+        "scanCertaintyAssessment": "low-medium: catalog records exist, target rule pages and scan lineage are not closed",
+        "selectionReason": "not_selected",
+        "weightedScore": 63.2,
+        "wrongMaterialRisk": 3,
+        "wrongMaterialRiskAssessment": "medium-high risk: same-title modern editions and local exports are easy to mistake for classical witnesses"
+      },
+      "provenanceChecks": [
+        "record institution, catalog ID, call number, title, author/editor, edition/date, volume/folio/page and retrieval URL",
+        "hash original downloaded bytes and retain unedited capture",
+        "compare local PDF hash and page topology; do not call a match an independent witness without lineage review"
+      ],
+      "purpose": "close edition/transmission identity and provide direct rule witnesses without treating a local export or modern transcription as an independent original.",
+      "rationale": "single highest-leverage Saju action: identity plus direct rule coverage can support most core packets, while the independent witness prevents re-counting the five local exports.",
+      "reject": [
+        "catalog title without page image or colophon",
+        "OCR-only or modern summary table",
+        "same local export mirrored under another URL",
+        "a page that lists terms but does not state the rule scope",
+        "numeric agreement used as proof of semantic identity"
+      ],
+      "sourceRefs": [
+        "source-ctext-saju-pages",
+        "source-ndl-sanming-ming-edition",
+        "source-ndl-ziping-original-commentary"
+      ],
+      "system": "saju",
+      "verificationPlan": [
+        "materialize source observation packet with actual page-image hashes and exact locators",
+        "run Saju source-claim observation and five-classics checkers",
+        "keep source observation, deterministic relation and semantic equivalence as separate edges",
+        "do not change Saju readiness or production code automatically"
+      ]
+    },
+    {
+      "accept": [
+        "direct same quantity is documented, reproducible and license-usable",
+        "independence is from the target provider/data lineage, not just wrapper diversity",
+        "raw oracle bytes and settings are retained"
+      ],
+      "blockerIds": [
+        "western-b-independent-same-semantic-oracle"
+      ],
+      "candidateStatus": "action_required",
+      "claimIds": [
+        "astrology.true-node"
+      ],
+      "confidence": "high",
+      "currentGap": "Swiss is the comparison target; DE405/CSPICE/Horizons are same-family or derived diagnostics; ERFA/Astronomy Engine do not expose the direct field.",
+      "difficulty": "very_high",
+      "expectedChange": {
+        "claim": "independent oracle status may move pending → qualified only after semantic and license review",
+        "production": "unchanged",
+        "readiness": "True Node production/interpretation remains blocked unless all native gates pass"
+      },
+      "highLeverage": true,
+      "id": "WESTERN-P0-INDEPENDENT-DIRECT-ORACLE",
+      "licensing": {
+        "access": "no confirmed direct same-semantic license-usable candidate located; candidate search remains open",
+        "policyDecision": "user/provider choice required",
+        "rights": "must obtain written redistribution terms before production consideration"
+      },
+      "locator": {
+        "capture": [
+          "raw outputs and settings, source archive hash, license text, independence statement"
+        ],
+        "requiredSections": [
+          "API/output field named True Node/ascending lunar node",
+          "center/frame/equinox/time scale/correction metadata",
+          "release/license/source algorithm and data lineage"
+        ]
+      },
+      "material": {
+        "idealSet": [
+          "two independent implementations or one authoritative dataset plus independent implementation",
+          "coverage across 1900-2101 and boundary rows with frame/time/correction metadata",
+          "formal comparison to Swiss only after same-semantic contract is fixed"
+        ],
+        "minimumSet": [
+          "independently authored implementation or dataset that directly emits the same complete geocentric tropical instantaneous True Node",
+          "pinned source/version/data release, reproducible command and raw outputs",
+          "license that permits local evaluation and clearly states production redistribution conditions"
+        ],
+        "namedTargets": [
+          "seek a source-backed direct True Node provider/API with license-usable distribution; Astronomy Engine is a license-usable near-miss because it exposes Moon positions/events but not this field; Astrolog is held and GPL approximation, not a target to adopt"
+        ]
+      },
+      "notDuplicateOf": [
+        "Swiss SE_TRUE_NODE outputs, DE405/CSPICE/DE441 overlap, ERFA, Astronomy Engine and Astrolog diagnostics"
+      ],
+      "priority": "P0",
+      "priorityAudit": {
+        "acquisition": 1,
+        "acquisitionFeasibility": "very low under current search; likely requires new provider or user-supplied source",
+        "authority": 1,
+        "authorityPotential": "unknown-low: no confirmed direct same-semantic candidate found",
+        "blockerImportance": 5,
+        "deterministicLinkage": 2,
+        "deterministicLinkageAssessment": "medium only after semantic contract and pinned release exist",
+        "freeAccess": 1,
+        "freeAccessAssessment": "low/unknown",
+        "heldOverlap": "Swiss, DE405/CSPICE, Horizons, ERFA, Astronomy Engine and Astrolog are known near-misses/diagnostics and must not be reacquired as the missing oracle",
+        "leverage": 3,
+        "licenseReuse": 1,
+        "licenseReuseAssessment": "low/unknown until exact source/data license is obtained",
+        "nextFrontier": "direct output field, independent lineage, pinned source/data, license, boundary corpus",
+        "nonDuplication": 5,
+        "notes": "현재 확인된 direct same-semantic candidate가 없고 known near-miss만 있다. 탐색 가치는 크지만 지금 사용자가 바로 확보할 수 있는 target은 아니다.",
+        "scanCertainty": 1,
+        "scanCertaintyAssessment": "low: target is software/data, not a catalog scan",
+        "selectionReason": "not_selected",
+        "weightedScore": 51,
+        "wrongMaterialRisk": 1,
+        "wrongMaterialRiskAssessment": "very high: a numerically close near-miss can be mislabeled independent authority"
+      },
+      "provenanceChecks": [
+        "hash source/release/data and record evaluator lineage",
+        "test exact quantity identity before residual comparison",
+        "preserve no-match/unsupported outcomes"
+      ],
+      "purpose": "supply the missing same-semantic independent oracle, not merely another state-vector wrapper or event calculator.",
+      "rationale": "this is the irreducible Western frontier; known near-misses are explicitly not reacquisition targets.",
+      "reject": [
+        "Moon node crossing event time only",
+        "state-derived local implementation with no semantic bridge",
+        "same JPL family labelled independent",
+        "GPL/unknown license without policy approval",
+        "numeric closeness alone"
+      ],
+      "sourceRefs": [
+        "source-astrolog-pinned",
+        "source-astronomy-engine",
+        "source-jpl-horizons-manual",
+        "source-swiss-true-node-manual"
+      ],
+      "system": "western",
+      "verificationPlan": [
+        "extend isolated Western frontier artifact with direct-oracle intake",
+        "run source/license/independence checker and 134-row/boundary comparisons",
+        "keep independentTrueNodeReference pending until all gates pass"
+      ]
+    }
+  ],
+  "researchCandidates": [
+    {
+      "access": "catalog/record confirmed; viewer search result says 館内限定閲覧 and page-level second-use setting must be rechecked",
+      "doesNotSupport": [
+        "target leaf content before visual review",
+        "automatic palace semantic closure",
+        "automatic CC0 claim for every image derivative"
+      ],
+      "evidenceNote": "Official catalog identity is confirmed; full semantic witness remains unobserved in this research pass.",
+      "freeViewOrDownload": "not_confirmed",
+      "id": "nara-ziwei-record",
+      "identity": "請求番号 子０６０－０００１; 明刊本; 選者 陳搏（宋）; 補訂者 潘希尹（明）; 7巻; 2冊; 紅葉山文庫; 公開; metadata CC0",
+      "institution": "国立公文書館デジタルアーカイブ / National Archives of Japan",
+      "role": "official_catalog_identity",
+      "status": "confirmed",
+      "supports": [
+        "edition/source identity lead",
+        "official image route lead",
+        "rights metadata lead"
+      ],
+      "system": "ziwei",
+      "title": "新鋟希夷陳先生紫微斗数全書",
+      "urls": [
+        "https://www.digital.archives.go.jp/das/meta/F1000000000000101426.html",
+        "https://www.digital.archives.go.jp/file/1078787"
+      ]
+    },
+    {
+      "access": "official viewer route exists; the indexed viewer is marked 館内限定閲覧, so remote free page download is not closed",
+      "doesNotSupport": [
+        "exact leaf numbers for requested sections until page review",
+        "independent second witness"
+      ],
+      "evidenceNote": "Strong route candidate, not a confirmed target-page witness.",
+      "freeViewOrDownload": "uncertain",
+      "id": "nara-ziwei-volume-one-viewer",
+      "identity": "item 4468520; 子０６０－０００１-0001; viewer exposes image/content-download controls in the indexed page",
+      "institution": "National Archives of Japan Digital Archive",
+      "role": "official_scan_route",
+      "status": "strong_candidate",
+      "supports": [
+        "page-level acquisition route if user can access viewer/download"
+      ],
+      "system": "ziwei",
+      "title": "新鋟希夷陳先生紫微斗数全書１",
+      "urls": [
+        "https://www.digital.archives.go.jp/img/4468520",
+        "https://www.digital.archives.go.jp/item/4468520"
+      ]
+    },
+    {
+      "access": "already held locally; provenance is not sufficient for independent authority admission",
+      "doesNotSupport": [
+        "official original status",
+        "independent witness status",
+        "page-level CC0 conclusion"
+      ],
+      "evidenceNote": "Do not count this PDF as a second witness merely because its embedded metadata names NARA.",
+      "freeViewOrDownload": "held_not_authority",
+      "id": "held-nanyangtang-pdf",
+      "identity": "528 pages; local byte SHA-256 is recorded; PDF producer/subject are derivative metadata, not official source identity",
+      "institution": "local held bytes; PDF metadata points to 书格 and NARA record",
+      "role": "held_comparison_only",
+      "status": "weak_candidate",
+      "supports": [
+        "comparison locators p148/p172 and file-level identity-linkage investigation"
+      ],
+      "system": "ziwei",
+      "title": "新锓希夷陈先生紫微斗数全书.七卷.宋.陈抟撰.明.潘希尹补.明代南阳堂刊本.黑白版.pdf",
+      "urls": [
+        "https://www.digital.archives.go.jp/das/meta/F1000000000000101426.html"
+      ]
+    },
+    {
+      "access": "free public text",
+      "doesNotSupport": [
+        "scan identity",
+        "edition/leaf witness",
+        "independent authority"
+      ],
+      "evidenceNote": "Useful only to locate terms; OCR/transcription is not canonical evidence.",
+      "freeViewOrDownload": "free_text_only",
+      "id": "wikisource-ziwei-text",
+      "identity": "text mirror with a stated Qing/public-domain framing; source scan lineage is not established",
+      "institution": "Wikisource",
+      "role": "search_locator_only",
+      "status": "weak_candidate",
+      "supports": [
+        "search terms and chapter headings"
+      ],
+      "system": "ziwei",
+      "title": "紫微斗數全書",
+      "urls": [
+        "https://zh.wikisource.org/wiki/紫微斗數全書"
+      ]
+    },
+    {
+      "access": "free public web text",
+      "doesNotSupport": [
+        "direct page-image witness",
+        "independent edition identity",
+        "semantic authority"
+      ],
+      "evidenceNote": "Locator assistance only; do not promote its summary or transcription.",
+      "freeViewOrDownload": "free_text_only",
+      "id": "ctext-ziwei-locator",
+      "identity": "public text/context page; underlying edition and scan lineage for the target witness are not closed",
+      "institution": "Chinese Text Project",
+      "role": "secondary_locator",
+      "status": "weak_candidate",
+      "supports": [
+        "chapter terminology and search expansion"
+      ],
+      "system": "ziwei",
+      "title": "紫微斗數 / 紫微斗數全書 context",
+      "urls": [
+        "https://ctext.org/datawiki.pl?if=gb&res=8418262"
+      ]
+    },
+    {
+      "access": "bibliographic/limited preview only",
+      "doesNotSupport": [
+        "historical NARA witness",
+        "independent source admission"
+      ],
+      "evidenceNote": "Reject as the selected target unless a separate edition-comparison question is explicitly authorized.",
+      "freeViewOrDownload": "not_free_full_scan",
+      "id": "google-books-ziwei-modern-edition",
+      "identity": "1985, 494p or other modern editions appear under the same title; not the NARA 明刊本 witness",
+      "institution": "Google Books bibliographic previews",
+      "role": "confusion_control",
+      "status": "weak_candidate",
+      "supports": [
+        "edition confusion detection"
+      ],
+      "system": "ziwei",
+      "title": "紫微斗數全書 (modern reprints/preview records)",
+      "urls": [
+        "https://books.google.com/books/about/紫微斗數全書.html?id=OrgFzQEACAAJ"
+      ]
+    },
+    {
+      "access": "public query service",
+      "doesNotSupport": [
+        "1901–2100 corpus by implication",
+        "bulk reuse license",
+        "classical rule authority"
+      ],
+      "evidenceNote": "Shared upstream candidate; not the selected dossier target.",
+      "freeViewOrDownload": "public_query_not_bulk_download",
+      "id": "kasi-calendar-service",
+      "identity": "official public service; indexed page states input range -59년 02월 to 2050년 12월 and returns lunar/sexagenary rows",
+      "institution": "한국천문연구원 (KASI)",
+      "role": "official_calendar_locator",
+      "status": "confirmed",
+      "supports": [
+        "exact boundary fixture observation"
+      ],
+      "system": "saju+ziwei",
+      "title": "월별 음양력",
+      "urls": [
+        "https://astro.kasi.re.kr/life/pageView/5"
+      ]
+    },
+    {
+      "access": "library/registered-user restricted; overseas personal transmission not available per indexed record",
+      "doesNotSupport": [
+        "free public page images",
+        "independent classical witness by itself"
+      ],
+      "evidenceNote": "Confirmed catalog, poor immediate acquisition fit.",
+      "freeViewOrDownload": "not_free_public",
+      "id": "ndl-ziping-catalog",
+      "identity": "武田考玄; 秀央社; 1983.10; HR511-201; 2冊; image/jp2; NDL digital collection",
+      "institution": "国立国会図書館 (NDL)",
+      "role": "restricted_catalog_candidate",
+      "status": "confirmed",
+      "supports": [
+        "Saju edition identity lead"
+      ],
+      "system": "saju",
+      "title": "原本子平真詮考玄評註 上",
+      "urls": [
+        "https://ndlsearch.ndl.go.jp/books/R100000039-I12282002"
+      ]
+    },
+    {
+      "access": "physical/paid modern edition with library holdings",
+      "doesNotSupport": [
+        "free scan",
+        "unmediated Ming original witness"
+      ],
+      "evidenceNote": "Catalog-confirmed but not a free scan and not automatically the historical edition it names.",
+      "freeViewOrDownload": "not_free_public",
+      "id": "ndl-sanming-catalog",
+      "identity": "萬民英; 鈴木基弘訳; 東洋書院; 2017.2; HR511-L127; 866p; ¥27000; paper",
+      "institution": "国立国会図書館 (NDL)",
+      "role": "restricted_catalog_candidate",
+      "status": "confirmed",
+      "supports": [
+        "Saju edition locator"
+      ],
+      "system": "saju",
+      "title": "三命通会 : 明朝版",
+      "urls": [
+        "https://ndlsearch.ndl.go.jp/en/books/R100000002-I027985956"
+      ]
+    },
+    {
+      "access": "public PDF",
+      "doesNotSupport": [
+        "independent oracle against Swiss",
+        "production license decision"
+      ],
+      "evidenceNote": "Public technical source, not an independent direct oracle.",
+      "freeViewOrDownload": "public_documentation",
+      "id": "swiss-true-node-manual",
+      "identity": "official project documentation; True Node section is a definition/implementation reference",
+      "institution": "Astrodienst Swiss Ephemeris project",
+      "role": "technical_definition_candidate",
+      "status": "confirmed",
+      "supports": [
+        "semantic contract fields and implementation description"
+      ],
+      "system": "western",
+      "title": "Swiss Ephemeris documentation",
+      "urls": [
+        "https://www.astro.com/swisseph-download/doc/swisseph.pdf"
+      ]
+    },
+    {
+      "access": "public web manual/service",
+      "doesNotSupport": [
+        "direct complete geocentric tropical instantaneous True Node field"
+      ],
+      "evidenceNote": "Official and useful, but explicitly a supporting technical near-miss.",
+      "freeViewOrDownload": "public_documentation",
+      "id": "jpl-horizons-manual",
+      "identity": "official manual; documents TDB, ecliptic/equinox and osculating-element outputs",
+      "institution": "NASA/JPL Solar System Dynamics",
+      "role": "technical_near_miss",
+      "status": "confirmed",
+      "supports": [
+        "frame/time/state diagnostic fields"
+      ],
+      "system": "western",
+      "title": "Horizons System Manual",
+      "urls": [
+        "https://ssd.jpl.nasa.gov/horizons/manual.html"
+      ]
+    }
+  ],
+  "schemaVersion": "tri-system-p0-acquisition-priority-and-dossier-v1",
+  "scope": {
+    "branch": "main",
+    "claimPromotion": false,
+    "commit": false,
+    "currentHead": "ee833c0607650897aa76ae7a3b3636337e291117",
+    "deploy": false,
+    "expectedHead": "ee833c0607650897aa76ae7a3b3636337e291117",
+    "originMainHead": "ee833c0607650897aa76ae7a3b3636337e291117",
+    "productionActivation": false,
+    "push": false,
+    "readinessPromotion": false,
+    "remoteDatabaseMutation": false,
+    "unrelatedUntrackedPreserved": [
+      "-.jpg"
+    ]
+  },
+  "selectedDossier": {
+    "acceptCriteria": [
+      "NARA identity fields, retrieved item/leaf route, page/folio marker and actual bytes agree; no title-only admission",
+      "glyphs/layout/table boundaries are directly readable at full-page scale",
+      "the witness directly connects the required semantic edges, or every split leaf and cross-reference is captured so a reviewer can reconstruct the connection",
+      "the file lineage is documented and any second witness is demonstrably non-clone",
+      "authority, observation, licensing and semantic interpretation are separate intake fields"
+    ],
+    "accessDecision": {
+      "catalog": "confirmed_public_record",
+      "freeDownload": "not_confirmed: catalog metadata says CC0, but viewer/page-level reuse/download must be checked on the actual item",
+      "ideal": "direct archive page/JP2 bytes with item-level and image-level terms preserved, plus an independently catalogued second witness",
+      "practicalMinimum": "user obtains official viewer page images or permitted high-resolution copies, even if only for private review; do not assume redistribution rights",
+      "remoteFreeView": "not_confirmed: indexed viewer says 館内限定閲覧"
+    },
+    "actualCandidateRefs": [
+      "nara-ziwei-record",
+      "nara-ziwei-volume-one-viewer",
+      "held-nanyangtang-pdf",
+      "wikisource-ziwei-text",
+      "ctext-ziwei-locator",
+      "google-books-ziwei-modern-edition"
+    ],
+    "blockerIds": [
+      "blocker-palace-semantic-identity",
+      "blocker-source-identity-unresolved",
+      "blocker-tianfu-rotation06-semantic-authority"
+    ],
+    "cloneAndReprintRules": [
+      "a file hash proves byte identity only; identical page images or identical defects prove shared lineage, not independence",
+      "embedded NARA URL/subject in a PDF is locator evidence, not proof the bytes were downloaded from NARA",
+      "modern transcription, OCR and a reprint can be retained as navigation aids but never counted as independent witnesses",
+      "a second witness must have its own catalog identity and demonstrably different provenance before disagreement counting"
+    ],
+    "exactMaterialType": "catalog-linked historical/critical page-image witness; a readable scan is required, not OCR or a modern transcription",
+    "fileChecksOnReceipt": {
+      "bibliography": [
+        "institution",
+        "record/item/file ID",
+        "call number",
+        "title",
+        "author/editor",
+        "era/edition",
+        "volume/book count",
+        "language",
+        "folio/page markers",
+        "terms/rights"
+      ],
+      "hash": "SHA-256 the exact unedited downloaded bytes; hash each extracted/rendered target page only as a derivative",
+      "integrity": "retain original bytes and a manifest; never normalize away glyph/layout evidence before review",
+      "metadata": [
+        "title",
+        "author/creator",
+        "publisher/collection",
+        "creation/modification metadata",
+        "producer/derivative tool",
+        "encryption",
+        "file size",
+        "MIME/container",
+        "download URL and timestamp"
+      ],
+      "pageCount": "record PDF page count and separately record printed folio/leaf count; do not equate them"
+    },
+    "idealStrongestMaterial": [
+      "lossless/high-resolution NARA page images with a stable item/leaf identifier and explicit image-level reuse terms",
+      "a second non-clone catalogued edition with cover/colophon and aligned target leaves",
+      "a preserved disagreement matrix for palace-name order, branch order, 命宮·身宮 direction, and 紫微→天府 relation",
+      "reviewer-confirmed source/production coordinate comparison, with no compatibility transform chosen automatically"
+    ],
+    "knownComparisonLocators": [
+      {
+        "page": "PDF p7",
+        "printedLeaf": "not recorded in current packet",
+        "purpose": "12-cell branch diagram; existing negative evidence says palace labels are not visible",
+        "section": "十二宮冠蓋",
+        "source": "held Nanbei comparison PDF; not the target authority"
+      },
+      {
+        "page": "PDF p8",
+        "printedLeaf": "not recorded in current packet",
+        "purpose": "寅起月 / 命宮逆數 / 身宮順數 traversal vocabulary",
+        "section": "定命、身二宮",
+        "source": "held Nanbei comparison PDF; not the target authority"
+      },
+      {
+        "page": "PDF p10",
+        "printedLeaf": "not recorded in current packet",
+        "purpose": "candidate anchor/table context",
+        "section": "命宮·身宮·五行局",
+        "source": "held Nanbei comparison PDF; not the target authority"
+      },
+      {
+        "page": "PDF p11–p12",
+        "printedLeaf": "三十一 / 三十三",
+        "purpose": "紫微 branch/ordinal table context",
+        "section": "起紫微五訣 / 起紫微簡索表",
+        "source": "held Nanbei comparison PDF; not the target authority"
+      },
+      {
+        "page": "PDF p13",
+        "printedLeaf": "三十四",
+        "purpose": "12-row 紫微→天府 table; existing evidence is relation/table order only",
+        "section": "甲六、安天府",
+        "source": "held Nanbei comparison PDF; not the target authority"
+      },
+      {
+        "page": "PDF p148 and p172",
+        "printedLeaf": "printed page not legible in current direct capture",
+        "purpose": "search-start hints only; verify against official NARA leaf identity",
+        "section": "紫微/天府 series and 安天府圖",
+        "source": "held Nanyangtang derivative PDF; not an accepted official locator"
+      },
+      {
+        "page": "leaf/item number must be captured from volume item 4468520",
+        "printedLeaf": "not yet confirmed; do not guess",
+        "purpose": "full acceptance requires exact archive leaf IDs after the user obtains the images",
+        "section": "search visually for the headings below",
+        "source": "official NARA candidate"
+      }
+    ],
+    "lunaNextGoalVerificationPlan": [
+      "obtain the official NARA volume/item page images or permitted copies and record exact leaf IDs before interpreting content",
+      "materialize a successor Ziwei source-observation packet from actual bytes, page count, metadata and page-image hashes",
+      "run check-ziwei-archive-scan-source-witness-admission-v0.mjs and check-ziwei-palace-semantic-source-frontier-v1.mjs; preserve all negative findings",
+      "run the existing palace-source-acquisition-field-kit checker and source-identity claim-boundary checker with the new intake refs",
+      "compare the direct source rows with current production coordinates as a diagnostic only; do not select rotation-06 or modify legacy behavior",
+      "write a human adjudication record that separately classifies direct witness, deterministic relation, semantic interpretation and license"
+    ],
+    "minimumAcceptableMaterial": [
+      "official NARA record identity capture and the exact volume/item route",
+      "complete, readable target leaf images, not a cropped diagram",
+      "cover/title/author-editor/edition/volume or folio context",
+      "target pages that visibly connect palace labels, branch glyphs, diagram slots, ordinal/base and direction; if the witness separates them, capture every linked leaf and its adjacency",
+      "original image/PDF bytes or permitted page captures with page/leaf identifiers and SHA-256"
+    ],
+    "mustBeVisible": [
+      "all 12 palace names or an explicit linked table that names them",
+      "all 12 branch glyphs and their physical diagram slots",
+      "orientation/order plus any ordinal/base statement, especially 寅起月",
+      "命宮逆數 and 身宮順數 with a clear subject and starting point",
+      "where claimed for Tianfu, 安紫微/安天府, 12-row relation, base branch, direction and whether the coordinate is semantic palace or raw slot",
+      "page/leaf marker and surrounding source context; no hidden table edge or crop"
+    ],
+    "noAutomaticPromotion": [
+      "claim promotion",
+      "stableClaimCount",
+      "readiness",
+      "grounding",
+      "activation",
+      "production coordinates",
+      "legacy/source-aligned default",
+      "deploy or remote state"
+    ],
+    "postAcquisitionBlockerAdvance": [
+      {
+        "blockerId": "blocker-source-identity-unresolved",
+        "boundedAdvance": "source identity observation may become review-ready; stable claim boundary remains open",
+        "condition": "catalog/edition/leaf/bytes lineage is complete"
+      },
+      {
+        "blockerId": "blocker-palace-semantic-identity",
+        "boundedAdvance": "may move to pending human adjudication or scoped support; never automatic verified/readiness",
+        "condition": "all palace-name ↔ branch ↔ slot ↔ ordinal/direction edges are directly visible and semantically reviewed"
+      },
+      {
+        "blockerId": "blocker-tianfu-rotation06-semantic-authority",
+        "boundedAdvance": "formula/source authority discrepancy can be adjudicated; production convention remains unchanged until explicit decision",
+        "condition": "source directly states the Tianfu relation and its coordinate meaning, not only a numeric table match"
+      }
+    ],
+    "preferredInstitutionAndCatalogIdentity": {
+      "fileId": "1078787",
+      "institution": "国立公文書館デジタルアーカイブ / National Archives of Japan",
+      "preferredRoute": "record → file → volume item/viewer; retain the exact image/leaf URL returned by the archive",
+      "recordId": "F1000000000000101426",
+      "volumeOneItem": "4468520"
+    },
+    "rejectCriteria": [
+      "catalog record without target page images or exact leaf IDs",
+      "OCR, transcription, modern commentary or numeric rotation fit used as the witness",
+      "cropped/partial diagram that hides labels, arrows, subject or table boundary",
+      "same local 528-page derivative presented as an independent NARA witness",
+      "modern reprint or title match without 明刊本/潘希尹/七巻二冊 identity evidence",
+      "CC0 metadata treated as proof that every downloaded image derivative may be redistributed",
+      "source/production semantic equivalence inferred from the repository’s `rotation-06` output"
+    ],
+    "requiredBibliography": {
+      "callNumber": "子０６０－０００１",
+      "collection": "内閣文庫・漢書・子の部",
+      "era": "明刊本",
+      "formerHolder": "紅葉山文庫",
+      "language": "中文",
+      "physicalUnits": "二冊",
+      "publication": "刊本, 明",
+      "selector": "陳搏（宋） / 潘希尹（明） attribution exactly as the NARA record; do not reduce this to generic 紫微斗數全書",
+      "titleSimplified": "新鋟希夷陳先生紫微斗数全書",
+      "titleTraditional": "新鋟希夷陳先生紫微斗數全書",
+      "volume": "七巻"
+    },
+    "searchAndCaptureTerms": {
+      "ChineseSimplified": [
+        "十二宫冠盖",
+        "定命身二宫",
+        "命宫逆数",
+        "身宫顺数",
+        "寅起月",
+        "紫微五诀",
+        "安紫微",
+        "安天府",
+        "安天府图"
+      ],
+      "ChineseTraditional": [
+        "十二宮冠蓋",
+        "定命身二宮",
+        "命宮逆數",
+        "身宮順數",
+        "寅起月",
+        "紫微五訣",
+        "安紫微",
+        "安天府",
+        "安天府圖",
+        "命宮",
+        "身宮",
+        "兄弟",
+        "夫妻",
+        "子女",
+        "財帛",
+        "疾厄",
+        "遷移",
+        "僕役",
+        "官祿",
+        "田宅",
+        "福德",
+        "父母"
+      ],
+      "English": [
+        "\"Xin kan Xi Yi Chen xiansheng Ziwei doushu quanshu\"",
+        "National Archives of Japan Ziwei Dou Shu",
+        "Ming printed edition Ziwei dou shu quanshu Pan Xiyin",
+        "palace branch diagram 命宮 身宮"
+      ],
+      "Japanese": [
+        "新鋟希夷陳先生紫微斗数全書",
+        "内閣文庫 子060-0001",
+        "紫微斗数全書 明刊本",
+        "潘希尹 補訂",
+        "陳搏 紫微斗数"
+      ],
+      "Korean": [
+        "자미두수 전서 명간본 남양당",
+        "자미두수 십이궁 관개 명궁 신궁",
+        "명궁 역수 신궁 순수",
+        "안자미 안천부 원문 스캔"
+      ],
+      "avoidConfusions": [
+        "南北山人編註 modern/repaired reprint",
+        "1984/1985/2000/2008/2025 commercial modern editions",
+        "Wikisource/CTP transcription",
+        "Shuge or Internet Archive derivative PDF without source lineage",
+        "OCR-only text, cropped diagram, screenshot without item/leaf identity",
+        "a second URL serving identical local PDF bytes"
+      ],
+      "editionKeywords": [
+        "明刊本",
+        "七巻",
+        "二冊",
+        "新鋟",
+        "潘希尹補訂",
+        "内閣文庫",
+        "子０６０－０００１",
+        "紅葉山文庫",
+        "嘉靖",
+        "原刻/影印",
+        "卷一/卷二"
+      ],
+      "institutionQueries": [
+        "site:digital.archives.go.jp \"F1000000000000101426\"",
+        "site:digital.archives.go.jp \"子０６０－０００１\"",
+        "site:ndlsearch.ndl.go.jp 紫微斗数全書",
+        "site:rarebooks.ncl.edu.tw 紫微斗數全書",
+        "site:archive.org/details 紫微斗數全書 原本 scan"
+      ]
+    },
+    "system": "ziwei",
+    "targetId": "ZIWEI-P0-PALACE-SEMANTIC-WITNESS",
+    "wrongEditionDiscrimination": [
+      "require the exact long title and attribution pair; generic 紫微斗數全書 is insufficient",
+      "require NARA call number 子０６０－０００１, 明刊本, 7巻, 2冊 and collection metadata",
+      "check cover,序/跋/刊記/colophon, volume markers and leaf topology against the catalog",
+      "record any modern punctuation, annotations, repairs, simplified glyphs or re-pagination as a derivative layer",
+      "do not use a same-title 1980s/2000s/2025 commercial edition as a Ming witness"
+    ]
+  },
+  "sourceOfTruth": {
+    "currentRepositoryBasis": "ee833c0607650897aa76ae7a3b3636337e291117",
+    "method": "P0 list and blocker mapping are copied from the current predecessor artifact; priority scores and dossier are additive successor data",
+    "predecessorFieldKit": {
+      "byteSha256": "22f4198092b88ea50d0018d53fc6c69c62903ec6f6b7d4ff472be2757aa2ad7d",
+      "p0ReconstructedIds": [
+        "ZIWEI-P0-PALACE-SEMANTIC-WITNESS",
+        "SAJU-P0-CALENDAR-ORACLE",
+        "ZIWEI-P0-CLAIM-SOURCE-IDENTITY",
+        "ZIWEI-P0-CALENDAR-TIME-ORACLE",
+        "WESTERN-P0-SEMANTIC-ADJUDICATION",
+        "ZIWEI-P0-TIANFU-CONVENTION",
+        "SAJU-P0-IDENTITY-WITNESS",
+        "WESTERN-P0-INDEPENDENT-DIRECT-ORACLE"
+      ],
+      "path": "artifacts/tri-system-evidence-acquisition-field-kit-v1/complete.json",
+      "predecessorDocumentSha256": "9f407ddef74227234de0fd8a03b7682ee2ccf1f23e7cd7b4d8f827e33c70968d",
+      "predecessorGenerationBasis": "c327167ad490e808815cda3fe52e06304ca09c52",
+      "predecessorVerdict": "complete_tri_system_evidence_acquisition_field_kit_exhausted_uncommitted"
+    },
+    "sourceInputs": [
+      {
+        "byteLength": 115332,
+        "byteSha256": "22f4198092b88ea50d0018d53fc6c69c62903ec6f6b7d4ff472be2757aa2ad7d",
+        "exists": true,
+        "path": "artifacts/tri-system-evidence-acquisition-field-kit-v1/complete.json"
+      },
+      {
+        "byteLength": 30885,
+        "byteSha256": "9f407ddef74227234de0fd8a03b7682ee2ccf1f23e7cd7b4d8f827e33c70968d",
+        "exists": true,
+        "path": "docs/tri-system-evidence-acquisition-field-kit-v1.md"
+      },
+      {
+        "byteLength": 6826,
+        "byteSha256": "f9b3bcc4c86990cd53e4f24a31114b4de5a0129932091657b9dbb82b740239bb",
+        "exists": true,
+        "path": "docs/ziwei-palace-coordinate-semantic-identity-v0.md"
+      },
+      {
+        "byteLength": 9509,
+        "byteSha256": "0c7f00f3d64bc1b78b90ebc31e755928e051b8138218a3238b2c5c25c18c9d5d",
+        "exists": true,
+        "path": "docs/astrology-v1-external-evidence-frontier-v1.md"
+      }
+    ]
+  },
+  "verdictToken": "complete_tri_system_p0_acquisition_priority_and_dossier_exhausted_uncommitted",
+  "verificationContract": {
+    "confirmedMeans": "official identity or technical source fact was observed in an institutional record/manual; it does not mean target content was accepted",
+    "promotionBoundary": {
+      "automaticActivation": false,
+      "automaticClaimPromotion": false,
+      "automaticEvidencePromotion": false,
+      "automaticProductionChange": false,
+      "automaticReadinessPromotion": false,
+      "humanReviewRequired": true
+    },
+    "requiredPostAcquisitionSeparation": [
+      "authority",
+      "direct observation",
+      "deterministic relation",
+      "semantic interpretation",
+      "license/reuse"
+    ],
+    "strongCandidateMeans": "institutional route plausibly exposes target material but exact page/leaf/terms remain unconfirmed",
+    "weakCandidateMeans": "text mirror, derivative, modern edition or locator only; never a source witness"
+  }
+}
