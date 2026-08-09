@@ -1,0 +1,7 @@
+{
+  "artifactByteSha256": "8f1b729f0aa2f2197bd1b1ecbb3c030f33a34d64d2d43a91cafd6c4cc1191b1f",
+  "artifactPath": "artifacts/saju-source-claim-observation-v1/complete.json",
+  "byteLength": 7571,
+  "hashScope": "exact UTF-8 bytes of complete.json including final LF",
+  "schemaVersion": "saju-source-claim-observation-v1-integrity-v1"
+}

@@ -1,0 +1,166 @@
+{
+  "artifactIdentity": {
+    "artifactId": "saju-source-claim-observation-v1",
+    "artifactPayloadSha256": "506b37285d34eb124be4641b2b9cad533341e8df881d1a730c4896f43172862f",
+    "contractVersion": "artifact-identity-v1",
+    "generation": {
+      "baseHead": "9030bcd5adf63550c5a936651456e9d0cee64c42",
+      "baseHeadSource": "git rev-parse HEAD at materialization",
+      "includedCommit": null,
+      "includedCommitSource": "unknown_at_generation; artifact may be included by a later commit"
+    },
+    "inputs": [
+      {
+        "byteSha256": "d44bc228515da7bc492472b31e0faf53d7a54721f26c0e9643312d9182f6c5e3",
+        "path": "artifacts/saju-local-source-corpus-observation-v1/complete.json"
+      },
+      {
+        "byteSha256": "580475662ff6668a6ce07643cf9399b83ee7d7f01115773f760f1d4c36b5bc1c",
+        "path": "scripts/materialize-saju-source-claim-observation-v1.mjs"
+      },
+      {
+        "byteSha256": "3375b3cff9f88dd8fc6b22cab9a8025136cdf6089ae650e50690793635b215cd",
+        "path": "src/interpretationPrep/sajuLocalSourceCorpusEvidence.js"
+      }
+    ],
+    "materializer": {
+      "path": "scripts/materialize-saju-source-claim-observation-v1.mjs",
+      "version": "1.0.0"
+    }
+  },
+  "basisHead": "9030bcd5adf63550c5a936651456e9d0cee64c42",
+  "claimBoundary": {
+    "conflictWinner": "not_selected",
+    "linkedPacket": "saju-source-packet-rule-branch-relations-v0",
+    "observedClaimCount": 23,
+    "readinessImpact": "blocked_unchanged",
+    "repositoryRuleSelection": "not_performed",
+    "stableClaimCount": 0
+  },
+  "contentSha256": "bcb6d316fd7d21e0f84ca0120c91df82fcb957ecabb283199b8f8792003ee5dd",
+  "observationMethod": {
+    "directVisualReview": true,
+    "ocrCanonical": false,
+    "render": {
+      "commandTemplate": "pdftoppm -f 5 -l 5 -r 180 -jpeg -singlefile <source-pdf> <scratch-output-prefix>",
+      "layoutAndGlyphUncertainty": "sentence glyphs were visually legible; example tables and full edition transmission were not admitted",
+      "outputFormat": "jpeg",
+      "page": 5,
+      "renderBytesRetained": false,
+      "renderer": "pdftoppm",
+      "rendererVersion": "26.05.0"
+    },
+    "scanFirst": true,
+    "transcriptionMethod": "manual_visual_transcription_from_rendered_page"
+  },
+  "observations": [
+    {
+      "admission": {
+        "allowedUse": "source-locator-and-transcription-candidate_only",
+        "canonicalTranscription": false,
+        "claimVerification": "not_promoted",
+        "independentAuthority": "not_established",
+        "status": "local_direct_observation_admitted_with_limits"
+      },
+      "claimIds": [
+        "saju.natal.branch-relation.day-hour-육합",
+        "saju.natal.branch-relation.day-hour-충",
+        "saju.natal.branch-relation.day-hour-파",
+        "saju.natal.branch-relation.day-hour-형",
+        "saju.natal.branch-relation.half-trine-목-year-day",
+        "saju.natal.branch-relation.half-trine-수-day-hour",
+        "saju.natal.branch-relation.half-trine-수-month-hour",
+        "saju.natal.branch-relation.month-day-육합",
+        "saju.natal.branch-relation.month-day-충",
+        "saju.natal.branch-relation.month-day-파",
+        "saju.natal.branch-relation.month-day-형",
+        "saju.natal.branch-relation.month-hour-육합",
+        "saju.natal.branch-relation.month-hour-충",
+        "saju.natal.branch-relation.month-hour-형",
+        "saju.natal.branch-relation.year-day-육합",
+        "saju.natal.branch-relation.year-day-충",
+        "saju.natal.branch-relation.year-day-파",
+        "saju.natal.branch-relation.year-hour-육합",
+        "saju.natal.branch-relation.year-hour-충",
+        "saju.natal.branch-relation.year-hour-파",
+        "saju.natal.branch-relation.year-month-육합",
+        "saju.natal.branch-relation.year-month-파",
+        "saju.natal.branch-relation.year-month-형"
+      ],
+      "claimPacketId": "saju-source-packet-rule-branch-relations-v0",
+      "directObservation": {
+        "exampleTablesPresent": true,
+        "exampleTablesTranscription": "not_admitted_due_layout_and_table-cell_boundary_uncertainty",
+        "transcription": "刑者，三刑也，子卯巳申寅之类也。\n冲者，六冲也，子午卯酉之类是也。\n会者，三会也，申子辰之类是也。\n合者，六合也，子与丑合之类是也。\n此皆以地支宫分而言，系对射之意也。\n三方为会，朋友之意也。并对为合，比邻之意也。",
+        "transcriptionStatus": "direct_observation_candidate_not_canonical_source_text",
+        "visibleDefinitionScope": [
+          "刑",
+          "冲",
+          "会",
+          "合",
+          "三方",
+          "并对"
+        ],
+        "visibleHeading": true
+      },
+      "evidenceLayers": {
+        "deterministicRelation": "the observation names the relation categories represented in the page; it does not validate repository lookup outputs",
+        "directObservation": "rendered page heading and the adjacent definition sentences were visually reviewed",
+        "inference": "the visible sentences are a candidate source locator for the linked branch-relation packet, not a complete rule or semantic authority",
+        "inheritedEvidence": "the predecessor locator is referenced only as provenance and was not used as a direct observation",
+        "interpretation": "not_created",
+        "unresolved": [
+          "local PDF edition identity and transmission history remain unresolved",
+          "no independent alternate witness or claim-level edition linkage is admitted",
+          "example-table transcription and full relation coverage remain outside this observation"
+        ]
+      },
+      "locator": {
+        "heading": "七、论刑冲会合解法",
+        "pageLocatorStatus": "direct_visual_scan_reviewed",
+        "pdfPage": 5,
+        "printedPage": "5"
+      },
+      "observationId": "ziping-p5-branch-relation-definitions-direct-transcription",
+      "sourceId": "saju-source-ziping-zhenquan"
+    }
+  ],
+  "predecessor": {
+    "artifact": "artifacts/saju-local-source-corpus-observation-v1/complete.json",
+    "byteSha256": "d44bc228515da7bc492472b31e0faf53d7a54721f26c0e9643312d9182f6c5e3",
+    "historicalArtifactRewritten": false,
+    "schemaVersion": "saju-local-source-corpus-observation-v1"
+  },
+  "readiness": {
+    "availableForInterpretation": false,
+    "productionActivation": "blocked",
+    "reason": "direct page observation improves source provenance but does not establish edition identity, complete claim support, semantic equivalence, or independent verification",
+    "stableClaimBoundary": 0,
+    "status": "blocked_unchanged"
+  },
+  "schemaVersion": "saju-source-claim-observation-v1",
+  "scope": {
+    "activationMutation": false,
+    "claimPromotion": false,
+    "historicalArtifactsRewritten": false,
+    "localCorpusRead": true,
+    "manualVisualTranscription": true,
+    "networkOrSourceAcquisition": false,
+    "ocrCanonical": false,
+    "productionRuleMutation": false,
+    "readinessMutation": false,
+    "repositoryOnly": true
+  },
+  "sourceIdentity": {
+    "byteLength": 580320,
+    "byteSha256": "449336b5e35aa6811b0462093d0175c45a0add44065bf2d3845cff75981db692",
+    "corpusRoot": "/Users/softie/Documents/malang_lab/documents",
+    "editionIdentity": "unresolved_edition",
+    "fileName": "子平真诠-沈孝瞻原著.pdf",
+    "pageCountObserved": 27,
+    "sourceForm": "modern_typeset_local_export",
+    "sourceId": "saju-source-ziping-zhenquan"
+  },
+  "verdictToken": "partial_saju_source_claim_observation_advanced_uncommitted",
+  "version": "1.0.0"
+}
