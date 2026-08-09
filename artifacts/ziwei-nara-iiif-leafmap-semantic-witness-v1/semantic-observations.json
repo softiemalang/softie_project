@@ -1,0 +1,138 @@
+{
+  "completeBindingCount": 0,
+  "conclusion": "The two NARA IIIF volumes exhaust the publicly reachable leaf-map reconnaissance frontier used here, but they do not close the semantic identity boundary. No source rule, numeric transform, local visual match, or same-record agreement is promoted to production authority.",
+  "lineage": {
+    "catalogRecord": "F1000000000000101426",
+    "independentWitness": false,
+    "reason": "NARA v1 and v2 are the two volumes of the same catalog record; local Nanyang is a derivative comparison target, not a third independent semantic oracle.",
+    "sameEditionVolumePair": true,
+    "sameRecord": true
+  },
+  "observations": [
+    {
+      "doesNotSupport": [
+        "independent_edition_semantic_authority",
+        "production_activation"
+      ],
+      "id": "local-nanyang-chart-anchors",
+      "observation": "the local derivative contains the same visible families of bureau, 安天府, branch/day, transformation, and natal-chart material at the deterministic mapped pages; visual correspondence does not make this catalog volume pair an independent witness.",
+      "review": "bundled pdftoppm at 110 dpi",
+      "scope": "local Nanyang PDF pages 167, 172, 175, 382-405 selected anchors",
+      "supports": [
+        "local_nara_sequence_concordance"
+      ]
+    },
+    {
+      "doesNotSupport": [
+        "complete_palace_name_to_branch_binding",
+        "production_ordinal_anchor"
+      ],
+      "id": "nara-v1-c84-c86-bureau-charts",
+      "observation": "五行局 and branch/day chart grids are visible; they show chart cells and branch/day tokens but do not give a complete 12-palace-name legend bound to production ordinals.",
+      "review": "native direct plus whole-volume 1200px locator",
+      "scope": "nara-v1 leaf 84-86",
+      "supports": [
+        "bureau_chart_surface",
+        "branch_and_slot_surface"
+      ]
+    },
+    {
+      "doesNotSupport": [
+        "palace_name_to_branch_mapping",
+        "cycle_orientation_to_production_ordinal"
+      ],
+      "id": "nara-v1-c87-c88-tianfu-branch-tables",
+      "observation": "安天府圖, branch columns, and 祿科權忌/table material are directly visible; the same frame does not establish all 12 palace labels, a production enum, or an accepted orientation.",
+      "review": "native direct plus whole-volume 1200px locator",
+      "scope": "nara-v1 leaf 87-88",
+      "supports": [
+        "tianfu_chart_surface",
+        "branch_table_surface"
+      ]
+    },
+    {
+      "doesNotSupport": [
+        "complete_12_palace_semantics",
+        "semantic_authority"
+      ],
+      "id": "nara-v1-c89-c92-rule-examples",
+      "observation": "rule/example prose and tables continue, but no complete shared semantic coordinate frame is visible.",
+      "review": "native direct plus whole-volume 1200px locator",
+      "scope": "nara-v1 leaf 89-92",
+      "supports": [
+        "rule_example_surface"
+      ]
+    },
+    {
+      "doesNotSupport": [
+        "independent_oracle",
+        "complete_palace_name_to_branch_binding"
+      ],
+      "id": "nara-v2-c64-c80-chart-run",
+      "observation": "repeated natal-chart grids contain 命之 headings, names, bureau values, branch/day tokens, and stars; they are examples rather than a complete palace-name/branch/slot legend.",
+      "review": "native direct selected leaves plus whole-volume 1200px locator",
+      "scope": "nara-v2 leaf 64-80",
+      "supports": [
+        "repeated_chart_surface",
+        "cross-volume-textual-correspondence_candidate"
+      ]
+    }
+  ],
+  "productionMutation": false,
+  "representationRelations": {
+    "rotation06": {
+      "matchedRows": 150,
+      "naraSupport": false,
+      "semanticAuthority": false,
+      "status": "representation_only",
+      "testedRows": 150
+    },
+    "sourceBaseDirection": {
+      "matchedRows": 150,
+      "naraSupport": false,
+      "semanticAuthority": false,
+      "status": "representation_only",
+      "testedRows": 150
+    }
+  },
+  "requiredBindingCount": 12,
+  "requirements": [
+    {
+      "id": "palace_names_all_12",
+      "status": "not_complete"
+    },
+    {
+      "id": "palace_name_to_branch",
+      "status": "not_established"
+    },
+    {
+      "id": "palace_name_to_physical_slot",
+      "status": "not_established"
+    },
+    {
+      "id": "physical_slot_to_production_ordinal",
+      "status": "not_established"
+    },
+    {
+      "id": "ming_shen_start_and_direction",
+      "status": "not_established_by_NARA_leafmap"
+    },
+    {
+      "id": "cycle_order_and_orientation",
+      "status": "not_established"
+    },
+    {
+      "id": "production_ordinal_anchor",
+      "status": "not_located"
+    },
+    {
+      "id": "cross_edition_semantic_identity",
+      "status": "not_established"
+    },
+    {
+      "id": "all_12_bindings_complete",
+      "status": "not_complete"
+    }
+  ],
+  "status": "blocked_semantic_identity_insufficient"
+}

@@ -1,0 +1,2706 @@
+{
+  "captureProfile": "full/1200,/0/native.jpg for all-leaf locator; full/max/0/native.jpg for selected native review; originals remain outside repository",
+  "dimensions": {
+    "height": 4750,
+    "width": 6300
+  },
+  "presentationApi": "IIIF Presentation 2",
+  "volumes": [
+    {
+      "canvasNumberStart": 102812178400,
+      "captureIndexPath": "/private/tmp/ziwei-nara-iiif-20260809/4468520-capture-index.json",
+      "captureIndexSha256": "9df8a1635d77cc4f21b23f4eca6d88d728a46f7af8f70359b7774af257553ddc",
+      "entries": [
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812178400",
+          "canvasLabel": "C102812178400",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812178400/iiif/M2019050811103249305_0001.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 1,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812178400/iiif/M2019050811103249305_0001.jp2/full/max/0/native.jpg",
+          "stableIndex": 0
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812178500",
+          "canvasLabel": "C102812178500",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812178500/iiif/M2019050811103249305_0002.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 2,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812178500/iiif/M2019050811103249305_0002.jp2/full/max/0/native.jpg",
+          "stableIndex": 1
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812178600",
+          "canvasLabel": "C102812178600",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812178600/iiif/M2019050811103249305_0003.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 3,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812178600/iiif/M2019050811103249305_0003.jp2/full/max/0/native.jpg",
+          "stableIndex": 2
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812178700",
+          "canvasLabel": "C102812178700",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812178700/iiif/M2019050811103249305_0004.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 4,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812178700/iiif/M2019050811103249305_0004.jp2/full/max/0/native.jpg",
+          "stableIndex": 3
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812178800",
+          "canvasLabel": "C102812178800",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812178800/iiif/M2019050811103249305_0005.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 5,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812178800/iiif/M2019050811103249305_0005.jp2/full/max/0/native.jpg",
+          "stableIndex": 4
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812178900",
+          "canvasLabel": "C102812178900",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812178900/iiif/M2019050811103249305_0006.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 6,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812178900/iiif/M2019050811103249305_0006.jp2/full/max/0/native.jpg",
+          "stableIndex": 5
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812179000",
+          "canvasLabel": "C102812179000",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812179000/iiif/M2019050811103249305_0007.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 7,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812179000/iiif/M2019050811103249305_0007.jp2/full/max/0/native.jpg",
+          "stableIndex": 6
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812179100",
+          "canvasLabel": "C102812179100",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812179100/iiif/M2019050811103249305_0008.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 8,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812179100/iiif/M2019050811103249305_0008.jp2/full/max/0/native.jpg",
+          "stableIndex": 7
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812179200",
+          "canvasLabel": "C102812179200",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812179200/iiif/M2019050811103249305_0009.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 9,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812179200/iiif/M2019050811103249305_0009.jp2/full/max/0/native.jpg",
+          "stableIndex": 8
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812179300",
+          "canvasLabel": "C102812179300",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812179300/iiif/M2019050811103249305_0010.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 10,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812179300/iiif/M2019050811103249305_0010.jp2/full/max/0/native.jpg",
+          "stableIndex": 9
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812179400",
+          "canvasLabel": "C102812179400",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812179400/iiif/M2019050811103249305_0011.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 11,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812179400/iiif/M2019050811103249305_0011.jp2/full/max/0/native.jpg",
+          "stableIndex": 10
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812179500",
+          "canvasLabel": "C102812179500",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812179500/iiif/M2019050811103249305_0012.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 12,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812179500/iiif/M2019050811103249305_0012.jp2/full/max/0/native.jpg",
+          "stableIndex": 11
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812179600",
+          "canvasLabel": "C102812179600",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812179600/iiif/M2019050811103249305_0013.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 13,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812179600/iiif/M2019050811103249305_0013.jp2/full/max/0/native.jpg",
+          "stableIndex": 12
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812179700",
+          "canvasLabel": "C102812179700",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812179700/iiif/M2019050811103249305_0014.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 14,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812179700/iiif/M2019050811103249305_0014.jp2/full/max/0/native.jpg",
+          "stableIndex": 13
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812179800",
+          "canvasLabel": "C102812179800",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812179800/iiif/M2019050811103249305_0015.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 15,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812179800/iiif/M2019050811103249305_0015.jp2/full/max/0/native.jpg",
+          "stableIndex": 14
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812179900",
+          "canvasLabel": "C102812179900",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812179900/iiif/M2019050811103249305_0016.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 16,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812179900/iiif/M2019050811103249305_0016.jp2/full/max/0/native.jpg",
+          "stableIndex": 15
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812180000",
+          "canvasLabel": "C102812180000",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812180000/iiif/M2019050811103249305_0017.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 17,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812180000/iiif/M2019050811103249305_0017.jp2/full/max/0/native.jpg",
+          "stableIndex": 16
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812180100",
+          "canvasLabel": "C102812180100",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812180100/iiif/M2019050811103249305_0018.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 18,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812180100/iiif/M2019050811103249305_0018.jp2/full/max/0/native.jpg",
+          "stableIndex": 17
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812180200",
+          "canvasLabel": "C102812180200",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812180200/iiif/M2019050811103249305_0019.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 19,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812180200/iiif/M2019050811103249305_0019.jp2/full/max/0/native.jpg",
+          "stableIndex": 18
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812180300",
+          "canvasLabel": "C102812180300",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812180300/iiif/M2019050811103249305_0020.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 20,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812180300/iiif/M2019050811103249305_0020.jp2/full/max/0/native.jpg",
+          "stableIndex": 19
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812180400",
+          "canvasLabel": "C102812180400",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812180400/iiif/M2019050811103249305_0021.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 21,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812180400/iiif/M2019050811103249305_0021.jp2/full/max/0/native.jpg",
+          "stableIndex": 20
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812180500",
+          "canvasLabel": "C102812180500",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812180500/iiif/M2019050811103249305_0022.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 22,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812180500/iiif/M2019050811103249305_0022.jp2/full/max/0/native.jpg",
+          "stableIndex": 21
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812180600",
+          "canvasLabel": "C102812180600",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812180600/iiif/M2019050811103249305_0023.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 23,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812180600/iiif/M2019050811103249305_0023.jp2/full/max/0/native.jpg",
+          "stableIndex": 22
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812180700",
+          "canvasLabel": "C102812180700",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812180700/iiif/M2019050811103249305_0024.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 24,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812180700/iiif/M2019050811103249305_0024.jp2/full/max/0/native.jpg",
+          "stableIndex": 23
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812180800",
+          "canvasLabel": "C102812180800",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812180800/iiif/M2019050811103249305_0025.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 25,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812180800/iiif/M2019050811103249305_0025.jp2/full/max/0/native.jpg",
+          "stableIndex": 24
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812180900",
+          "canvasLabel": "C102812180900",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812180900/iiif/M2019050811103249305_0026.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 26,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812180900/iiif/M2019050811103249305_0026.jp2/full/max/0/native.jpg",
+          "stableIndex": 25
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812181000",
+          "canvasLabel": "C102812181000",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812181000/iiif/M2019050811103249305_0027.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 27,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812181000/iiif/M2019050811103249305_0027.jp2/full/max/0/native.jpg",
+          "stableIndex": 26
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812181100",
+          "canvasLabel": "C102812181100",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812181100/iiif/M2019050811103249305_0028.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 28,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812181100/iiif/M2019050811103249305_0028.jp2/full/max/0/native.jpg",
+          "stableIndex": 27
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812181200",
+          "canvasLabel": "C102812181200",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812181200/iiif/M2019050811103249305_0029.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 29,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812181200/iiif/M2019050811103249305_0029.jp2/full/max/0/native.jpg",
+          "stableIndex": 28
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812181300",
+          "canvasLabel": "C102812181300",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812181300/iiif/M2019050811103249305_0030.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 30,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812181300/iiif/M2019050811103249305_0030.jp2/full/max/0/native.jpg",
+          "stableIndex": 29
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812181400",
+          "canvasLabel": "C102812181400",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812181400/iiif/M2019050811103249305_0031.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 31,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812181400/iiif/M2019050811103249305_0031.jp2/full/max/0/native.jpg",
+          "stableIndex": 30
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812181500",
+          "canvasLabel": "C102812181500",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812181500/iiif/M2019050811103249305_0032.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 32,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812181500/iiif/M2019050811103249305_0032.jp2/full/max/0/native.jpg",
+          "stableIndex": 31
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812181600",
+          "canvasLabel": "C102812181600",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812181600/iiif/M2019050811103249305_0033.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 33,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812181600/iiif/M2019050811103249305_0033.jp2/full/max/0/native.jpg",
+          "stableIndex": 32
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812181700",
+          "canvasLabel": "C102812181700",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812181700/iiif/M2019050811103249305_0034.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 34,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812181700/iiif/M2019050811103249305_0034.jp2/full/max/0/native.jpg",
+          "stableIndex": 33
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812181800",
+          "canvasLabel": "C102812181800",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812181800/iiif/M2019050811103249305_0035.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 35,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812181800/iiif/M2019050811103249305_0035.jp2/full/max/0/native.jpg",
+          "stableIndex": 34
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812181900",
+          "canvasLabel": "C102812181900",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812181900/iiif/M2019050811103249305_0036.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 36,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812181900/iiif/M2019050811103249305_0036.jp2/full/max/0/native.jpg",
+          "stableIndex": 35
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812182000",
+          "canvasLabel": "C102812182000",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812182000/iiif/M2019050811103249305_0037.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 37,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812182000/iiif/M2019050811103249305_0037.jp2/full/max/0/native.jpg",
+          "stableIndex": 36
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812182100",
+          "canvasLabel": "C102812182100",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812182100/iiif/M2019050811103249305_0038.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 38,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812182100/iiif/M2019050811103249305_0038.jp2/full/max/0/native.jpg",
+          "stableIndex": 37
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812182200",
+          "canvasLabel": "C102812182200",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812182200/iiif/M2019050811103249305_0039.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 39,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812182200/iiif/M2019050811103249305_0039.jp2/full/max/0/native.jpg",
+          "stableIndex": 38
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812182300",
+          "canvasLabel": "C102812182300",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812182300/iiif/M2019050811103249305_0040.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 40,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812182300/iiif/M2019050811103249305_0040.jp2/full/max/0/native.jpg",
+          "stableIndex": 39
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812182400",
+          "canvasLabel": "C102812182400",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812182400/iiif/M2019050811103249305_0041.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 41,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812182400/iiif/M2019050811103249305_0041.jp2/full/max/0/native.jpg",
+          "stableIndex": 40
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812182500",
+          "canvasLabel": "C102812182500",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812182500/iiif/M2019050811103249305_0042.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 42,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812182500/iiif/M2019050811103249305_0042.jp2/full/max/0/native.jpg",
+          "stableIndex": 41
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812182600",
+          "canvasLabel": "C102812182600",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812182600/iiif/M2019050811103249305_0043.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 43,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812182600/iiif/M2019050811103249305_0043.jp2/full/max/0/native.jpg",
+          "stableIndex": 42
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812182700",
+          "canvasLabel": "C102812182700",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812182700/iiif/M2019050811103249305_0044.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 44,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812182700/iiif/M2019050811103249305_0044.jp2/full/max/0/native.jpg",
+          "stableIndex": 43
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812182800",
+          "canvasLabel": "C102812182800",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812182800/iiif/M2019050811103249305_0045.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 45,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812182800/iiif/M2019050811103249305_0045.jp2/full/max/0/native.jpg",
+          "stableIndex": 44
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812182900",
+          "canvasLabel": "C102812182900",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812182900/iiif/M2019050811103249305_0046.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 46,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812182900/iiif/M2019050811103249305_0046.jp2/full/max/0/native.jpg",
+          "stableIndex": 45
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812183000",
+          "canvasLabel": "C102812183000",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812183000/iiif/M2019050811103249305_0047.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 47,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812183000/iiif/M2019050811103249305_0047.jp2/full/max/0/native.jpg",
+          "stableIndex": 46
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812183100",
+          "canvasLabel": "C102812183100",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812183100/iiif/M2019050811103249305_0048.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 48,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812183100/iiif/M2019050811103249305_0048.jp2/full/max/0/native.jpg",
+          "stableIndex": 47
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812183200",
+          "canvasLabel": "C102812183200",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812183200/iiif/M2019050811103249305_0049.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 49,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812183200/iiif/M2019050811103249305_0049.jp2/full/max/0/native.jpg",
+          "stableIndex": 48
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812183300",
+          "canvasLabel": "C102812183300",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812183300/iiif/M2019050811103249305_0050.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 50,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812183300/iiif/M2019050811103249305_0050.jp2/full/max/0/native.jpg",
+          "stableIndex": 49
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812183400",
+          "canvasLabel": "C102812183400",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812183400/iiif/M2019050811103249305_0051.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 51,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812183400/iiif/M2019050811103249305_0051.jp2/full/max/0/native.jpg",
+          "stableIndex": 50
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812183500",
+          "canvasLabel": "C102812183500",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812183500/iiif/M2019050811103249305_0052.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 52,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812183500/iiif/M2019050811103249305_0052.jp2/full/max/0/native.jpg",
+          "stableIndex": 51
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812183600",
+          "canvasLabel": "C102812183600",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812183600/iiif/M2019050811103249305_0053.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 53,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812183600/iiif/M2019050811103249305_0053.jp2/full/max/0/native.jpg",
+          "stableIndex": 52
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812183700",
+          "canvasLabel": "C102812183700",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812183700/iiif/M2019050811103249305_0054.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 54,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812183700/iiif/M2019050811103249305_0054.jp2/full/max/0/native.jpg",
+          "stableIndex": 53
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812183800",
+          "canvasLabel": "C102812183800",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812183800/iiif/M2019050811103249305_0055.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 55,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812183800/iiif/M2019050811103249305_0055.jp2/full/max/0/native.jpg",
+          "stableIndex": 54
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812183900",
+          "canvasLabel": "C102812183900",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812183900/iiif/M2019050811103249305_0056.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 56,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812183900/iiif/M2019050811103249305_0056.jp2/full/max/0/native.jpg",
+          "stableIndex": 55
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812184000",
+          "canvasLabel": "C102812184000",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812184000/iiif/M2019050811103249305_0057.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 57,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812184000/iiif/M2019050811103249305_0057.jp2/full/max/0/native.jpg",
+          "stableIndex": 56
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812184100",
+          "canvasLabel": "C102812184100",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812184100/iiif/M2019050811103249305_0058.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 58,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812184100/iiif/M2019050811103249305_0058.jp2/full/max/0/native.jpg",
+          "stableIndex": 57
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812184200",
+          "canvasLabel": "C102812184200",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812184200/iiif/M2019050811103249305_0059.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 59,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812184200/iiif/M2019050811103249305_0059.jp2/full/max/0/native.jpg",
+          "stableIndex": 58
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812184300",
+          "canvasLabel": "C102812184300",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812184300/iiif/M2019050811103249305_0060.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 60,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812184300/iiif/M2019050811103249305_0060.jp2/full/max/0/native.jpg",
+          "stableIndex": 59
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812184400",
+          "canvasLabel": "C102812184400",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812184400/iiif/M2019050811103249305_0061.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 61,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812184400/iiif/M2019050811103249305_0061.jp2/full/max/0/native.jpg",
+          "stableIndex": 60
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812184500",
+          "canvasLabel": "C102812184500",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812184500/iiif/M2019050811103249305_0062.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 62,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812184500/iiif/M2019050811103249305_0062.jp2/full/max/0/native.jpg",
+          "stableIndex": 61
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812184600",
+          "canvasLabel": "C102812184600",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812184600/iiif/M2019050811103249305_0063.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 63,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812184600/iiif/M2019050811103249305_0063.jp2/full/max/0/native.jpg",
+          "stableIndex": 62
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812184700",
+          "canvasLabel": "C102812184700",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812184700/iiif/M2019050811103249305_0064.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 64,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812184700/iiif/M2019050811103249305_0064.jp2/full/max/0/native.jpg",
+          "stableIndex": 63
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812184800",
+          "canvasLabel": "C102812184800",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812184800/iiif/M2019050811103249305_0065.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 65,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812184800/iiif/M2019050811103249305_0065.jp2/full/max/0/native.jpg",
+          "stableIndex": 64
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812184900",
+          "canvasLabel": "C102812184900",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812184900/iiif/M2019050811103249305_0066.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 66,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812184900/iiif/M2019050811103249305_0066.jp2/full/max/0/native.jpg",
+          "stableIndex": 65
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812185000",
+          "canvasLabel": "C102812185000",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812185000/iiif/M2019050811103249305_0067.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 67,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812185000/iiif/M2019050811103249305_0067.jp2/full/max/0/native.jpg",
+          "stableIndex": 66
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812185100",
+          "canvasLabel": "C102812185100",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812185100/iiif/M2019050811103249305_0068.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 68,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812185100/iiif/M2019050811103249305_0068.jp2/full/max/0/native.jpg",
+          "stableIndex": 67
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812185200",
+          "canvasLabel": "C102812185200",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812185200/iiif/M2019050811103249305_0069.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 69,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812185200/iiif/M2019050811103249305_0069.jp2/full/max/0/native.jpg",
+          "stableIndex": 68
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812185300",
+          "canvasLabel": "C102812185300",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812185300/iiif/M2019050811103249305_0070.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 70,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812185300/iiif/M2019050811103249305_0070.jp2/full/max/0/native.jpg",
+          "stableIndex": 69
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812185400",
+          "canvasLabel": "C102812185400",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812185400/iiif/M2019050811103249305_0071.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 71,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812185400/iiif/M2019050811103249305_0071.jp2/full/max/0/native.jpg",
+          "stableIndex": 70
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812185500",
+          "canvasLabel": "C102812185500",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812185500/iiif/M2019050811103249305_0072.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 72,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812185500/iiif/M2019050811103249305_0072.jp2/full/max/0/native.jpg",
+          "stableIndex": 71
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812185600",
+          "canvasLabel": "C102812185600",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812185600/iiif/M2019050811103249305_0073.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 73,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812185600/iiif/M2019050811103249305_0073.jp2/full/max/0/native.jpg",
+          "stableIndex": 72
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812185700",
+          "canvasLabel": "C102812185700",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812185700/iiif/M2019050811103249305_0074.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 74,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812185700/iiif/M2019050811103249305_0074.jp2/full/max/0/native.jpg",
+          "stableIndex": 73
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812185800",
+          "canvasLabel": "C102812185800",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812185800/iiif/M2019050811103249305_0075.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 75,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812185800/iiif/M2019050811103249305_0075.jp2/full/max/0/native.jpg",
+          "stableIndex": 74
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812185900",
+          "canvasLabel": "C102812185900",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812185900/iiif/M2019050811103249305_0076.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 76,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812185900/iiif/M2019050811103249305_0076.jp2/full/max/0/native.jpg",
+          "stableIndex": 75
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812186000",
+          "canvasLabel": "C102812186000",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812186000/iiif/M2019050811103249305_0077.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 77,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812186000/iiif/M2019050811103249305_0077.jp2/full/max/0/native.jpg",
+          "stableIndex": 76
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812186100",
+          "canvasLabel": "C102812186100",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812186100/iiif/M2019050811103249305_0078.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 78,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812186100/iiif/M2019050811103249305_0078.jp2/full/max/0/native.jpg",
+          "stableIndex": 77
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812186200",
+          "canvasLabel": "C102812186200",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812186200/iiif/M2019050811103249305_0079.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 79,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812186200/iiif/M2019050811103249305_0079.jp2/full/max/0/native.jpg",
+          "stableIndex": 78
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812186300",
+          "canvasLabel": "C102812186300",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812186300/iiif/M2019050811103249305_0080.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 80,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812186300/iiif/M2019050811103249305_0080.jp2/full/max/0/native.jpg",
+          "stableIndex": 79
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812186400",
+          "canvasLabel": "C102812186400",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812186400/iiif/M2019050811103249305_0081.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 81,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812186400/iiif/M2019050811103249305_0081.jp2/full/max/0/native.jpg",
+          "stableIndex": 80
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812186500",
+          "canvasLabel": "C102812186500",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812186500/iiif/M2019050811103249305_0082.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 82,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812186500/iiif/M2019050811103249305_0082.jp2/full/max/0/native.jpg",
+          "stableIndex": 81
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812186600",
+          "canvasLabel": "C102812186600",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812186600/iiif/M2019050811103249305_0083.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 83,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812186600/iiif/M2019050811103249305_0083.jp2/full/max/0/native.jpg",
+          "stableIndex": 82
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812186700",
+          "canvasLabel": "C102812186700",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812186700/iiif/M2019050811103249305_0084.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 84,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812186700/iiif/M2019050811103249305_0084.jp2/full/max/0/native.jpg",
+          "stableIndex": 83
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812186800",
+          "canvasLabel": "C102812186800",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812186800/iiif/M2019050811103249305_0085.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 85,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812186800/iiif/M2019050811103249305_0085.jp2/full/max/0/native.jpg",
+          "stableIndex": 84
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812186900",
+          "canvasLabel": "C102812186900",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812186900/iiif/M2019050811103249305_0086.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 86,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812186900/iiif/M2019050811103249305_0086.jp2/full/max/0/native.jpg",
+          "stableIndex": 85
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812187000",
+          "canvasLabel": "C102812187000",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812187000/iiif/M2019050811103249305_0087.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 87,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812187000/iiif/M2019050811103249305_0087.jp2/full/max/0/native.jpg",
+          "stableIndex": 86
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812187100",
+          "canvasLabel": "C102812187100",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812187100/iiif/M2019050811103249305_0088.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 88,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812187100/iiif/M2019050811103249305_0088.jp2/full/max/0/native.jpg",
+          "stableIndex": 87
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812187200",
+          "canvasLabel": "C102812187200",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812187200/iiif/M2019050811103249305_0089.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 89,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812187200/iiif/M2019050811103249305_0089.jp2/full/max/0/native.jpg",
+          "stableIndex": 88
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812187300",
+          "canvasLabel": "C102812187300",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812187300/iiif/M2019050811103249305_0090.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 90,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812187300/iiif/M2019050811103249305_0090.jp2/full/max/0/native.jpg",
+          "stableIndex": 89
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812187400",
+          "canvasLabel": "C102812187400",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812187400/iiif/M2019050811103249305_0091.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 91,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812187400/iiif/M2019050811103249305_0091.jp2/full/max/0/native.jpg",
+          "stableIndex": 90
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812187500",
+          "canvasLabel": "C102812187500",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812187500/iiif/M2019050811103249305_0092.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 92,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812187500/iiif/M2019050811103249305_0092.jp2/full/max/0/native.jpg",
+          "stableIndex": 91
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812187600",
+          "canvasLabel": "C102812187600",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812187600/iiif/M2019050811103249305_0093.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 93,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812187600/iiif/M2019050811103249305_0093.jp2/full/max/0/native.jpg",
+          "stableIndex": 92
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812187700",
+          "canvasLabel": "C102812187700",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812187700/iiif/M2019050811103249305_0094.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 94,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812187700/iiif/M2019050811103249305_0094.jp2/full/max/0/native.jpg",
+          "stableIndex": 93
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812187800",
+          "canvasLabel": "C102812187800",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812187800/iiif/M2019050811103249305_0095.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 95,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812187800/iiif/M2019050811103249305_0095.jp2/full/max/0/native.jpg",
+          "stableIndex": 94
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812187900",
+          "canvasLabel": "C102812187900",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812187900/iiif/M2019050811103249305_0096.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 96,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812187900/iiif/M2019050811103249305_0096.jp2/full/max/0/native.jpg",
+          "stableIndex": 95
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812188000",
+          "canvasLabel": "C102812188000",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812188000/iiif/M2019050811103249305_0097.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 97,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812188000/iiif/M2019050811103249305_0097.jp2/full/max/0/native.jpg",
+          "stableIndex": 96
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812188100",
+          "canvasLabel": "C102812188100",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812188100/iiif/M2019050811103249305_0098.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 98,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812188100/iiif/M2019050811103249305_0098.jp2/full/max/0/native.jpg",
+          "stableIndex": 97
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812188200",
+          "canvasLabel": "C102812188200",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812188200/iiif/M2019050811103249305_0099.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 99,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812188200/iiif/M2019050811103249305_0099.jp2/full/max/0/native.jpg",
+          "stableIndex": 98
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812188300",
+          "canvasLabel": "C102812188300",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812188300/iiif/M2019050811103249305_0100.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 100,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812188300/iiif/M2019050811103249305_0100.jp2/full/max/0/native.jpg",
+          "stableIndex": 99
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812188400",
+          "canvasLabel": "C102812188400",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812188400/iiif/M2019050811103249305_0101.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 101,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812188400/iiif/M2019050811103249305_0101.jp2/full/max/0/native.jpg",
+          "stableIndex": 100
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812188500",
+          "canvasLabel": "C102812188500",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812188500/iiif/M2019050811103249305_0102.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 102,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812188500/iiif/M2019050811103249305_0102.jp2/full/max/0/native.jpg",
+          "stableIndex": 101
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812188600",
+          "canvasLabel": "C102812188600",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812188600/iiif/M2019050811103249305_0103.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 103,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812188600/iiif/M2019050811103249305_0103.jp2/full/max/0/native.jpg",
+          "stableIndex": 102
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812188700",
+          "canvasLabel": "C102812188700",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812188700/iiif/M2019050811103249305_0104.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 104,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812188700/iiif/M2019050811103249305_0104.jp2/full/max/0/native.jpg",
+          "stableIndex": 103
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812188800",
+          "canvasLabel": "C102812188800",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812188800/iiif/M2019050811103249305_0105.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 105,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812188800/iiif/M2019050811103249305_0105.jp2/full/max/0/native.jpg",
+          "stableIndex": 104
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812188900",
+          "canvasLabel": "C102812188900",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812188900/iiif/M2019050811103249305_0106.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 106,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812188900/iiif/M2019050811103249305_0106.jp2/full/max/0/native.jpg",
+          "stableIndex": 105
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812189000",
+          "canvasLabel": "C102812189000",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812189000/iiif/M2019050811103249305_0107.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 107,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812189000/iiif/M2019050811103249305_0107.jp2/full/max/0/native.jpg",
+          "stableIndex": 106
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812189100",
+          "canvasLabel": "C102812189100",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812189100/iiif/M2019050811103249305_0108.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 108,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812189100/iiif/M2019050811103249305_0108.jp2/full/max/0/native.jpg",
+          "stableIndex": 107
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812189200",
+          "canvasLabel": "C102812189200",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812189200/iiif/M2019050811103249305_0109.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 109,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812189200/iiif/M2019050811103249305_0109.jp2/full/max/0/native.jpg",
+          "stableIndex": 108
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812189300",
+          "canvasLabel": "C102812189300",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812189300/iiif/M2019050811103249305_0110.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 110,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812189300/iiif/M2019050811103249305_0110.jp2/full/max/0/native.jpg",
+          "stableIndex": 109
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812189400",
+          "canvasLabel": "C102812189400",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812189400/iiif/M2019050811103249305_0111.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 111,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812189400/iiif/M2019050811103249305_0111.jp2/full/max/0/native.jpg",
+          "stableIndex": 110
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812189500",
+          "canvasLabel": "C102812189500",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812189500/iiif/M2019050811103249305_0112.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 112,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812189500/iiif/M2019050811103249305_0112.jp2/full/max/0/native.jpg",
+          "stableIndex": 111
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812189600",
+          "canvasLabel": "C102812189600",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812189600/iiif/M2019050811103249305_0113.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 113,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812189600/iiif/M2019050811103249305_0113.jp2/full/max/0/native.jpg",
+          "stableIndex": 112
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812189700",
+          "canvasLabel": "C102812189700",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812189700/iiif/M2019050811103249305_0114.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 114,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812189700/iiif/M2019050811103249305_0114.jp2/full/max/0/native.jpg",
+          "stableIndex": 113
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812189800",
+          "canvasLabel": "C102812189800",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812189800/iiif/M2019050811103249305_0115.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 115,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812189800/iiif/M2019050811103249305_0115.jp2/full/max/0/native.jpg",
+          "stableIndex": 114
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812189900",
+          "canvasLabel": "C102812189900",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812189900/iiif/M2019050811103249305_0116.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 116,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812189900/iiif/M2019050811103249305_0116.jp2/full/max/0/native.jpg",
+          "stableIndex": 115
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812190000",
+          "canvasLabel": "C102812190000",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812190000/iiif/M2019050811103249305_0117.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 117,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812190000/iiif/M2019050811103249305_0117.jp2/full/max/0/native.jpg",
+          "stableIndex": 116
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812190100",
+          "canvasLabel": "C102812190100",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812190100/iiif/M2019050811103249305_0118.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 118,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812190100/iiif/M2019050811103249305_0118.jp2/full/max/0/native.jpg",
+          "stableIndex": 117
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812190200",
+          "canvasLabel": "C102812190200",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812190200/iiif/M2019050811103249305_0119.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 119,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812190200/iiif/M2019050811103249305_0119.jp2/full/max/0/native.jpg",
+          "stableIndex": 118
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812190300",
+          "canvasLabel": "C102812190300",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812190300/iiif/M2019050811103249305_0120.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 120,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812190300/iiif/M2019050811103249305_0120.jp2/full/max/0/native.jpg",
+          "stableIndex": 119
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812190400",
+          "canvasLabel": "C102812190400",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812190400/iiif/M2019050811103249305_0121.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 121,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812190400/iiif/M2019050811103249305_0121.jp2/full/max/0/native.jpg",
+          "stableIndex": 120
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812190500",
+          "canvasLabel": "C102812190500",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812190500/iiif/M2019050811103249305_0122.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 122,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812190500/iiif/M2019050811103249305_0122.jp2/full/max/0/native.jpg",
+          "stableIndex": 121
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812190600",
+          "canvasLabel": "C102812190600",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812190600/iiif/M2019050811103249305_0123.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 123,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812190600/iiif/M2019050811103249305_0123.jp2/full/max/0/native.jpg",
+          "stableIndex": 122
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812190700",
+          "canvasLabel": "C102812190700",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812190700/iiif/M2019050811103249305_0124.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 124,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812190700/iiif/M2019050811103249305_0124.jp2/full/max/0/native.jpg",
+          "stableIndex": 123
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812190800",
+          "canvasLabel": "C102812190800",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812190800/iiif/M2019050811103249305_0125.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 125,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812190800/iiif/M2019050811103249305_0125.jp2/full/max/0/native.jpg",
+          "stableIndex": 124
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812190900",
+          "canvasLabel": "C102812190900",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812190900/iiif/M2019050811103249305_0126.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 126,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812190900/iiif/M2019050811103249305_0126.jp2/full/max/0/native.jpg",
+          "stableIndex": 125
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812191000",
+          "canvasLabel": "C102812191000",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812191000/iiif/M2019050811103249305_0127.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 127,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812191000/iiif/M2019050811103249305_0127.jp2/full/max/0/native.jpg",
+          "stableIndex": 126
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812191100",
+          "canvasLabel": "C102812191100",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812191100/iiif/M2019050811103249305_0128.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 128,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812191100/iiif/M2019050811103249305_0128.jp2/full/max/0/native.jpg",
+          "stableIndex": 127
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812191200",
+          "canvasLabel": "C102812191200",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812191200/iiif/M2019050811103249305_0129.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 129,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812191200/iiif/M2019050811103249305_0129.jp2/full/max/0/native.jpg",
+          "stableIndex": 128
+        }
+      ],
+      "firstCanvasId": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812178400",
+      "imageBase": "da12",
+      "imagePrefix": "M2019050811103249305",
+      "itemId": "4468520",
+      "label": "新鋟希夷陳先生紫微斗数全書１",
+      "lastCanvasId": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812191200",
+      "leafCount": 129,
+      "manifestByteLength": 117876,
+      "manifestSha256": "732991ca47aefc323e2095a93202fd301421ad8b92994c63caae2a94acf75af",
+      "manifestUrl": "https://www.digital.archives.go.jp/api/iiif/4468520/manifest.json",
+      "volumeId": "nara-v1"
+    },
+    {
+      "canvasNumberStart": 102812191300,
+      "captureIndexPath": "/private/tmp/ziwei-nara-iiif-20260809/4469314-capture-index.json",
+      "captureIndexSha256": "4634e033df8ae5ae3470164b97ff0e8da4511b9fa438e127896bc1eb6e2f48ec",
+      "entries": [
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812191300",
+          "canvasLabel": "C102812191300",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812191300/iiif/M2019050811103949308_0001.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 1,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812191300/iiif/M2019050811103949308_0001.jp2/full/max/0/native.jpg",
+          "stableIndex": 0
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812191400",
+          "canvasLabel": "C102812191400",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812191400/iiif/M2019050811103949308_0002.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 2,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812191400/iiif/M2019050811103949308_0002.jp2/full/max/0/native.jpg",
+          "stableIndex": 1
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812191500",
+          "canvasLabel": "C102812191500",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812191500/iiif/M2019050811103949308_0003.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 3,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812191500/iiif/M2019050811103949308_0003.jp2/full/max/0/native.jpg",
+          "stableIndex": 2
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812191600",
+          "canvasLabel": "C102812191600",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812191600/iiif/M2019050811103949308_0004.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 4,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812191600/iiif/M2019050811103949308_0004.jp2/full/max/0/native.jpg",
+          "stableIndex": 3
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812191700",
+          "canvasLabel": "C102812191700",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812191700/iiif/M2019050811103949308_0005.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 5,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812191700/iiif/M2019050811103949308_0005.jp2/full/max/0/native.jpg",
+          "stableIndex": 4
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812191800",
+          "canvasLabel": "C102812191800",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812191800/iiif/M2019050811103949308_0006.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 6,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812191800/iiif/M2019050811103949308_0006.jp2/full/max/0/native.jpg",
+          "stableIndex": 5
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812191900",
+          "canvasLabel": "C102812191900",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812191900/iiif/M2019050811103949308_0007.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 7,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812191900/iiif/M2019050811103949308_0007.jp2/full/max/0/native.jpg",
+          "stableIndex": 6
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812192000",
+          "canvasLabel": "C102812192000",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812192000/iiif/M2019050811103949308_0008.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 8,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812192000/iiif/M2019050811103949308_0008.jp2/full/max/0/native.jpg",
+          "stableIndex": 7
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812192100",
+          "canvasLabel": "C102812192100",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812192100/iiif/M2019050811103949308_0009.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 9,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812192100/iiif/M2019050811103949308_0009.jp2/full/max/0/native.jpg",
+          "stableIndex": 8
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812192200",
+          "canvasLabel": "C102812192200",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812192200/iiif/M2019050811103949308_0010.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 10,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812192200/iiif/M2019050811103949308_0010.jp2/full/max/0/native.jpg",
+          "stableIndex": 9
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812192300",
+          "canvasLabel": "C102812192300",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812192300/iiif/M2019050811103949308_0011.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 11,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812192300/iiif/M2019050811103949308_0011.jp2/full/max/0/native.jpg",
+          "stableIndex": 10
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812192400",
+          "canvasLabel": "C102812192400",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812192400/iiif/M2019050811103949308_0012.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 12,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812192400/iiif/M2019050811103949308_0012.jp2/full/max/0/native.jpg",
+          "stableIndex": 11
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812192500",
+          "canvasLabel": "C102812192500",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812192500/iiif/M2019050811103949308_0013.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 13,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812192500/iiif/M2019050811103949308_0013.jp2/full/max/0/native.jpg",
+          "stableIndex": 12
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812192600",
+          "canvasLabel": "C102812192600",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812192600/iiif/M2019050811103949308_0014.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 14,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812192600/iiif/M2019050811103949308_0014.jp2/full/max/0/native.jpg",
+          "stableIndex": 13
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812192700",
+          "canvasLabel": "C102812192700",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812192700/iiif/M2019050811103949308_0015.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 15,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812192700/iiif/M2019050811103949308_0015.jp2/full/max/0/native.jpg",
+          "stableIndex": 14
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812192800",
+          "canvasLabel": "C102812192800",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812192800/iiif/M2019050811103949308_0016.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 16,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812192800/iiif/M2019050811103949308_0016.jp2/full/max/0/native.jpg",
+          "stableIndex": 15
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812192900",
+          "canvasLabel": "C102812192900",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812192900/iiif/M2019050811103949308_0017.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 17,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812192900/iiif/M2019050811103949308_0017.jp2/full/max/0/native.jpg",
+          "stableIndex": 16
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812193000",
+          "canvasLabel": "C102812193000",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812193000/iiif/M2019050811103949308_0018.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 18,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812193000/iiif/M2019050811103949308_0018.jp2/full/max/0/native.jpg",
+          "stableIndex": 17
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812193100",
+          "canvasLabel": "C102812193100",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812193100/iiif/M2019050811103949308_0019.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 19,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812193100/iiif/M2019050811103949308_0019.jp2/full/max/0/native.jpg",
+          "stableIndex": 18
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812193200",
+          "canvasLabel": "C102812193200",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812193200/iiif/M2019050811103949308_0020.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 20,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812193200/iiif/M2019050811103949308_0020.jp2/full/max/0/native.jpg",
+          "stableIndex": 19
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812193300",
+          "canvasLabel": "C102812193300",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812193300/iiif/M2019050811103949308_0021.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 21,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812193300/iiif/M2019050811103949308_0021.jp2/full/max/0/native.jpg",
+          "stableIndex": 20
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812193400",
+          "canvasLabel": "C102812193400",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812193400/iiif/M2019050811103949308_0022.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 22,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812193400/iiif/M2019050811103949308_0022.jp2/full/max/0/native.jpg",
+          "stableIndex": 21
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812193500",
+          "canvasLabel": "C102812193500",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812193500/iiif/M2019050811103949308_0023.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 23,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812193500/iiif/M2019050811103949308_0023.jp2/full/max/0/native.jpg",
+          "stableIndex": 22
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812193600",
+          "canvasLabel": "C102812193600",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812193600/iiif/M2019050811103949308_0024.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 24,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812193600/iiif/M2019050811103949308_0024.jp2/full/max/0/native.jpg",
+          "stableIndex": 23
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812193700",
+          "canvasLabel": "C102812193700",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812193700/iiif/M2019050811103949308_0025.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 25,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812193700/iiif/M2019050811103949308_0025.jp2/full/max/0/native.jpg",
+          "stableIndex": 24
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812193800",
+          "canvasLabel": "C102812193800",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812193800/iiif/M2019050811103949308_0026.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 26,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812193800/iiif/M2019050811103949308_0026.jp2/full/max/0/native.jpg",
+          "stableIndex": 25
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812193900",
+          "canvasLabel": "C102812193900",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812193900/iiif/M2019050811103949308_0027.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 27,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812193900/iiif/M2019050811103949308_0027.jp2/full/max/0/native.jpg",
+          "stableIndex": 26
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812194000",
+          "canvasLabel": "C102812194000",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812194000/iiif/M2019050811103949308_0028.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 28,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812194000/iiif/M2019050811103949308_0028.jp2/full/max/0/native.jpg",
+          "stableIndex": 27
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812194100",
+          "canvasLabel": "C102812194100",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812194100/iiif/M2019050811103949308_0029.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 29,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812194100/iiif/M2019050811103949308_0029.jp2/full/max/0/native.jpg",
+          "stableIndex": 28
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812194200",
+          "canvasLabel": "C102812194200",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812194200/iiif/M2019050811103949308_0030.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 30,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812194200/iiif/M2019050811103949308_0030.jp2/full/max/0/native.jpg",
+          "stableIndex": 29
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812194300",
+          "canvasLabel": "C102812194300",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812194300/iiif/M2019050811103949308_0031.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 31,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812194300/iiif/M2019050811103949308_0031.jp2/full/max/0/native.jpg",
+          "stableIndex": 30
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812194400",
+          "canvasLabel": "C102812194400",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812194400/iiif/M2019050811103949308_0032.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 32,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812194400/iiif/M2019050811103949308_0032.jp2/full/max/0/native.jpg",
+          "stableIndex": 31
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812194500",
+          "canvasLabel": "C102812194500",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812194500/iiif/M2019050811103949308_0033.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 33,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812194500/iiif/M2019050811103949308_0033.jp2/full/max/0/native.jpg",
+          "stableIndex": 32
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812194600",
+          "canvasLabel": "C102812194600",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812194600/iiif/M2019050811103949308_0034.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 34,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812194600/iiif/M2019050811103949308_0034.jp2/full/max/0/native.jpg",
+          "stableIndex": 33
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812194700",
+          "canvasLabel": "C102812194700",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812194700/iiif/M2019050811103949308_0035.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 35,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812194700/iiif/M2019050811103949308_0035.jp2/full/max/0/native.jpg",
+          "stableIndex": 34
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812194800",
+          "canvasLabel": "C102812194800",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812194800/iiif/M2019050811103949308_0036.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 36,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812194800/iiif/M2019050811103949308_0036.jp2/full/max/0/native.jpg",
+          "stableIndex": 35
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812194900",
+          "canvasLabel": "C102812194900",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812194900/iiif/M2019050811103949308_0037.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 37,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812194900/iiif/M2019050811103949308_0037.jp2/full/max/0/native.jpg",
+          "stableIndex": 36
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812195000",
+          "canvasLabel": "C102812195000",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812195000/iiif/M2019050811103949308_0038.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 38,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812195000/iiif/M2019050811103949308_0038.jp2/full/max/0/native.jpg",
+          "stableIndex": 37
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812195100",
+          "canvasLabel": "C102812195100",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812195100/iiif/M2019050811103949308_0039.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 39,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812195100/iiif/M2019050811103949308_0039.jp2/full/max/0/native.jpg",
+          "stableIndex": 38
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812195200",
+          "canvasLabel": "C102812195200",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812195200/iiif/M2019050811103949308_0040.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 40,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812195200/iiif/M2019050811103949308_0040.jp2/full/max/0/native.jpg",
+          "stableIndex": 39
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812195300",
+          "canvasLabel": "C102812195300",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812195300/iiif/M2019050811103949308_0041.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 41,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812195300/iiif/M2019050811103949308_0041.jp2/full/max/0/native.jpg",
+          "stableIndex": 40
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812195400",
+          "canvasLabel": "C102812195400",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812195400/iiif/M2019050811103949308_0042.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 42,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812195400/iiif/M2019050811103949308_0042.jp2/full/max/0/native.jpg",
+          "stableIndex": 41
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812195500",
+          "canvasLabel": "C102812195500",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812195500/iiif/M2019050811103949308_0043.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 43,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812195500/iiif/M2019050811103949308_0043.jp2/full/max/0/native.jpg",
+          "stableIndex": 42
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812195600",
+          "canvasLabel": "C102812195600",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812195600/iiif/M2019050811103949308_0044.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 44,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812195600/iiif/M2019050811103949308_0044.jp2/full/max/0/native.jpg",
+          "stableIndex": 43
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812195700",
+          "canvasLabel": "C102812195700",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812195700/iiif/M2019050811103949308_0045.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 45,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812195700/iiif/M2019050811103949308_0045.jp2/full/max/0/native.jpg",
+          "stableIndex": 44
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812195800",
+          "canvasLabel": "C102812195800",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812195800/iiif/M2019050811103949308_0046.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 46,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812195800/iiif/M2019050811103949308_0046.jp2/full/max/0/native.jpg",
+          "stableIndex": 45
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812195900",
+          "canvasLabel": "C102812195900",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812195900/iiif/M2019050811103949308_0047.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 47,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812195900/iiif/M2019050811103949308_0047.jp2/full/max/0/native.jpg",
+          "stableIndex": 46
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812196000",
+          "canvasLabel": "C102812196000",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812196000/iiif/M2019050811103949308_0048.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 48,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812196000/iiif/M2019050811103949308_0048.jp2/full/max/0/native.jpg",
+          "stableIndex": 47
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812196100",
+          "canvasLabel": "C102812196100",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812196100/iiif/M2019050811103949308_0049.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 49,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812196100/iiif/M2019050811103949308_0049.jp2/full/max/0/native.jpg",
+          "stableIndex": 48
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812196200",
+          "canvasLabel": "C102812196200",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812196200/iiif/M2019050811103949308_0050.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 50,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812196200/iiif/M2019050811103949308_0050.jp2/full/max/0/native.jpg",
+          "stableIndex": 49
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812196300",
+          "canvasLabel": "C102812196300",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812196300/iiif/M2019050811103949308_0051.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 51,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812196300/iiif/M2019050811103949308_0051.jp2/full/max/0/native.jpg",
+          "stableIndex": 50
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812196400",
+          "canvasLabel": "C102812196400",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812196400/iiif/M2019050811103949308_0052.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 52,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812196400/iiif/M2019050811103949308_0052.jp2/full/max/0/native.jpg",
+          "stableIndex": 51
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812196500",
+          "canvasLabel": "C102812196500",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812196500/iiif/M2019050811103949308_0053.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 53,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812196500/iiif/M2019050811103949308_0053.jp2/full/max/0/native.jpg",
+          "stableIndex": 52
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812196600",
+          "canvasLabel": "C102812196600",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812196600/iiif/M2019050811103949308_0054.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 54,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812196600/iiif/M2019050811103949308_0054.jp2/full/max/0/native.jpg",
+          "stableIndex": 53
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812196700",
+          "canvasLabel": "C102812196700",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812196700/iiif/M2019050811103949308_0055.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 55,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812196700/iiif/M2019050811103949308_0055.jp2/full/max/0/native.jpg",
+          "stableIndex": 54
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812196800",
+          "canvasLabel": "C102812196800",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812196800/iiif/M2019050811103949308_0056.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 56,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812196800/iiif/M2019050811103949308_0056.jp2/full/max/0/native.jpg",
+          "stableIndex": 55
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812196900",
+          "canvasLabel": "C102812196900",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812196900/iiif/M2019050811103949308_0057.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 57,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812196900/iiif/M2019050811103949308_0057.jp2/full/max/0/native.jpg",
+          "stableIndex": 56
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812197000",
+          "canvasLabel": "C102812197000",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812197000/iiif/M2019050811103949308_0058.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 58,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812197000/iiif/M2019050811103949308_0058.jp2/full/max/0/native.jpg",
+          "stableIndex": 57
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812197100",
+          "canvasLabel": "C102812197100",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812197100/iiif/M2019050811103949308_0059.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 59,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812197100/iiif/M2019050811103949308_0059.jp2/full/max/0/native.jpg",
+          "stableIndex": 58
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812197200",
+          "canvasLabel": "C102812197200",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812197200/iiif/M2019050811103949308_0060.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 60,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812197200/iiif/M2019050811103949308_0060.jp2/full/max/0/native.jpg",
+          "stableIndex": 59
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812197300",
+          "canvasLabel": "C102812197300",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812197300/iiif/M2019050811103949308_0061.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 61,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812197300/iiif/M2019050811103949308_0061.jp2/full/max/0/native.jpg",
+          "stableIndex": 60
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812197400",
+          "canvasLabel": "C102812197400",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812197400/iiif/M2019050811103949308_0062.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 62,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812197400/iiif/M2019050811103949308_0062.jp2/full/max/0/native.jpg",
+          "stableIndex": 61
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812197500",
+          "canvasLabel": "C102812197500",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812197500/iiif/M2019050811103949308_0063.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 63,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812197500/iiif/M2019050811103949308_0063.jp2/full/max/0/native.jpg",
+          "stableIndex": 62
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812197600",
+          "canvasLabel": "C102812197600",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812197600/iiif/M2019050811103949308_0064.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 64,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812197600/iiif/M2019050811103949308_0064.jp2/full/max/0/native.jpg",
+          "stableIndex": 63
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812197700",
+          "canvasLabel": "C102812197700",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812197700/iiif/M2019050811103949308_0065.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 65,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812197700/iiif/M2019050811103949308_0065.jp2/full/max/0/native.jpg",
+          "stableIndex": 64
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812197800",
+          "canvasLabel": "C102812197800",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812197800/iiif/M2019050811103949308_0066.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 66,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812197800/iiif/M2019050811103949308_0066.jp2/full/max/0/native.jpg",
+          "stableIndex": 65
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812197900",
+          "canvasLabel": "C102812197900",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812197900/iiif/M2019050811103949308_0067.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 67,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812197900/iiif/M2019050811103949308_0067.jp2/full/max/0/native.jpg",
+          "stableIndex": 66
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812198000",
+          "canvasLabel": "C102812198000",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812198000/iiif/M2019050811103949308_0068.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 68,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812198000/iiif/M2019050811103949308_0068.jp2/full/max/0/native.jpg",
+          "stableIndex": 67
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812198100",
+          "canvasLabel": "C102812198100",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812198100/iiif/M2019050811103949308_0069.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 69,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812198100/iiif/M2019050811103949308_0069.jp2/full/max/0/native.jpg",
+          "stableIndex": 68
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812198200",
+          "canvasLabel": "C102812198200",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812198200/iiif/M2019050811103949308_0070.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 70,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812198200/iiif/M2019050811103949308_0070.jp2/full/max/0/native.jpg",
+          "stableIndex": 69
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812198300",
+          "canvasLabel": "C102812198300",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812198300/iiif/M2019050811103949308_0071.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 71,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812198300/iiif/M2019050811103949308_0071.jp2/full/max/0/native.jpg",
+          "stableIndex": 70
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812198400",
+          "canvasLabel": "C102812198400",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812198400/iiif/M2019050811103949308_0072.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 72,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812198400/iiif/M2019050811103949308_0072.jp2/full/max/0/native.jpg",
+          "stableIndex": 71
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812198500",
+          "canvasLabel": "C102812198500",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812198500/iiif/M2019050811103949308_0073.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 73,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812198500/iiif/M2019050811103949308_0073.jp2/full/max/0/native.jpg",
+          "stableIndex": 72
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812198600",
+          "canvasLabel": "C102812198600",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812198600/iiif/M2019050811103949308_0074.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 74,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812198600/iiif/M2019050811103949308_0074.jp2/full/max/0/native.jpg",
+          "stableIndex": 73
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812198700",
+          "canvasLabel": "C102812198700",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812198700/iiif/M2019050811103949308_0075.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 75,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812198700/iiif/M2019050811103949308_0075.jp2/full/max/0/native.jpg",
+          "stableIndex": 74
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812198800",
+          "canvasLabel": "C102812198800",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812198800/iiif/M2019050811103949308_0076.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 76,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812198800/iiif/M2019050811103949308_0076.jp2/full/max/0/native.jpg",
+          "stableIndex": 75
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812198900",
+          "canvasLabel": "C102812198900",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812198900/iiif/M2019050811103949308_0077.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 77,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812198900/iiif/M2019050811103949308_0077.jp2/full/max/0/native.jpg",
+          "stableIndex": 76
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812199000",
+          "canvasLabel": "C102812199000",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812199000/iiif/M2019050811103949308_0078.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 78,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812199000/iiif/M2019050811103949308_0078.jp2/full/max/0/native.jpg",
+          "stableIndex": 77
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812199100",
+          "canvasLabel": "C102812199100",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812199100/iiif/M2019050811103949308_0079.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 79,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812199100/iiif/M2019050811103949308_0079.jp2/full/max/0/native.jpg",
+          "stableIndex": 78
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812199200",
+          "canvasLabel": "C102812199200",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812199200/iiif/M2019050811103949308_0080.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 80,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812199200/iiif/M2019050811103949308_0080.jp2/full/max/0/native.jpg",
+          "stableIndex": 79
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812199300",
+          "canvasLabel": "C102812199300",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812199300/iiif/M2019050811103949308_0081.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 81,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812199300/iiif/M2019050811103949308_0081.jp2/full/max/0/native.jpg",
+          "stableIndex": 80
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812199400",
+          "canvasLabel": "C102812199400",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812199400/iiif/M2019050811103949308_0082.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 82,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812199400/iiif/M2019050811103949308_0082.jp2/full/max/0/native.jpg",
+          "stableIndex": 81
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812199500",
+          "canvasLabel": "C102812199500",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812199500/iiif/M2019050811103949308_0083.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 83,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812199500/iiif/M2019050811103949308_0083.jp2/full/max/0/native.jpg",
+          "stableIndex": 82
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812199600",
+          "canvasLabel": "C102812199600",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812199600/iiif/M2019050811103949308_0084.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 84,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812199600/iiif/M2019050811103949308_0084.jp2/full/max/0/native.jpg",
+          "stableIndex": 83
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812199700",
+          "canvasLabel": "C102812199700",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812199700/iiif/M2019050811103949308_0085.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 85,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812199700/iiif/M2019050811103949308_0085.jp2/full/max/0/native.jpg",
+          "stableIndex": 84
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812199800",
+          "canvasLabel": "C102812199800",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812199800/iiif/M2019050811103949308_0086.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 86,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812199800/iiif/M2019050811103949308_0086.jp2/full/max/0/native.jpg",
+          "stableIndex": 85
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812199900",
+          "canvasLabel": "C102812199900",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812199900/iiif/M2019050811103949308_0087.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 87,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812199900/iiif/M2019050811103949308_0087.jp2/full/max/0/native.jpg",
+          "stableIndex": 86
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812200000",
+          "canvasLabel": "C102812200000",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812200000/iiif/M2019050811103949308_0088.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 88,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812200000/iiif/M2019050811103949308_0088.jp2/full/max/0/native.jpg",
+          "stableIndex": 87
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812200100",
+          "canvasLabel": "C102812200100",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812200100/iiif/M2019050811103949308_0089.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 89,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812200100/iiif/M2019050811103949308_0089.jp2/full/max/0/native.jpg",
+          "stableIndex": 88
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812200200",
+          "canvasLabel": "C102812200200",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812200200/iiif/M2019050811103949308_0090.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 90,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812200200/iiif/M2019050811103949308_0090.jp2/full/max/0/native.jpg",
+          "stableIndex": 89
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812200300",
+          "canvasLabel": "C102812200300",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812200300/iiif/M2019050811103949308_0091.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 91,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812200300/iiif/M2019050811103949308_0091.jp2/full/max/0/native.jpg",
+          "stableIndex": 90
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812200400",
+          "canvasLabel": "C102812200400",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812200400/iiif/M2019050811103949308_0092.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 92,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812200400/iiif/M2019050811103949308_0092.jp2/full/max/0/native.jpg",
+          "stableIndex": 91
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812200500",
+          "canvasLabel": "C102812200500",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812200500/iiif/M2019050811103949308_0093.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 93,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812200500/iiif/M2019050811103949308_0093.jp2/full/max/0/native.jpg",
+          "stableIndex": 92
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812200600",
+          "canvasLabel": "C102812200600",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812200600/iiif/M2019050811103949308_0094.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 94,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812200600/iiif/M2019050811103949308_0094.jp2/full/max/0/native.jpg",
+          "stableIndex": 93
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812200700",
+          "canvasLabel": "C102812200700",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812200700/iiif/M2019050811103949308_0095.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 95,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812200700/iiif/M2019050811103949308_0095.jp2/full/max/0/native.jpg",
+          "stableIndex": 94
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812200800",
+          "canvasLabel": "C102812200800",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812200800/iiif/M2019050811103949308_0096.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 96,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812200800/iiif/M2019050811103949308_0096.jp2/full/max/0/native.jpg",
+          "stableIndex": 95
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812200900",
+          "canvasLabel": "C102812200900",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812200900/iiif/M2019050811103949308_0097.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 97,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812200900/iiif/M2019050811103949308_0097.jp2/full/max/0/native.jpg",
+          "stableIndex": 96
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812201000",
+          "canvasLabel": "C102812201000",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812201000/iiif/M2019050811103949308_0098.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 98,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812201000/iiif/M2019050811103949308_0098.jp2/full/max/0/native.jpg",
+          "stableIndex": 97
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812201100",
+          "canvasLabel": "C102812201100",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812201100/iiif/M2019050811103949308_0099.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 99,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812201100/iiif/M2019050811103949308_0099.jp2/full/max/0/native.jpg",
+          "stableIndex": 98
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812201200",
+          "canvasLabel": "C102812201200",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812201200/iiif/M2019050811103949308_0100.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 100,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812201200/iiif/M2019050811103949308_0100.jp2/full/max/0/native.jpg",
+          "stableIndex": 99
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812201300",
+          "canvasLabel": "C102812201300",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812201300/iiif/M2019050811103949308_0101.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 101,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812201300/iiif/M2019050811103949308_0101.jp2/full/max/0/native.jpg",
+          "stableIndex": 100
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812201400",
+          "canvasLabel": "C102812201400",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812201400/iiif/M2019050811103949308_0102.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 102,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812201400/iiif/M2019050811103949308_0102.jp2/full/max/0/native.jpg",
+          "stableIndex": 101
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812201500",
+          "canvasLabel": "C102812201500",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812201500/iiif/M2019050811103949308_0103.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 103,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812201500/iiif/M2019050811103949308_0103.jp2/full/max/0/native.jpg",
+          "stableIndex": 102
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812201600",
+          "canvasLabel": "C102812201600",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812201600/iiif/M2019050811103949308_0104.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 104,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812201600/iiif/M2019050811103949308_0104.jp2/full/max/0/native.jpg",
+          "stableIndex": 103
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812201700",
+          "canvasLabel": "C102812201700",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812201700/iiif/M2019050811103949308_0105.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 105,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812201700/iiif/M2019050811103949308_0105.jp2/full/max/0/native.jpg",
+          "stableIndex": 104
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812201800",
+          "canvasLabel": "C102812201800",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812201800/iiif/M2019050811103949308_0106.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 106,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812201800/iiif/M2019050811103949308_0106.jp2/full/max/0/native.jpg",
+          "stableIndex": 105
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812201900",
+          "canvasLabel": "C102812201900",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812201900/iiif/M2019050811103949308_0107.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 107,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812201900/iiif/M2019050811103949308_0107.jp2/full/max/0/native.jpg",
+          "stableIndex": 106
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812202000",
+          "canvasLabel": "C102812202000",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812202000/iiif/M2019050811103949308_0108.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 108,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812202000/iiif/M2019050811103949308_0108.jp2/full/max/0/native.jpg",
+          "stableIndex": 107
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812202100",
+          "canvasLabel": "C102812202100",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812202100/iiif/M2019050811103949308_0109.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 109,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812202100/iiif/M2019050811103949308_0109.jp2/full/max/0/native.jpg",
+          "stableIndex": 108
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812202200",
+          "canvasLabel": "C102812202200",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812202200/iiif/M2019050811103949308_0110.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 110,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812202200/iiif/M2019050811103949308_0110.jp2/full/max/0/native.jpg",
+          "stableIndex": 109
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812202300",
+          "canvasLabel": "C102812202300",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812202300/iiif/M2019050811103949308_0111.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 111,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812202300/iiif/M2019050811103949308_0111.jp2/full/max/0/native.jpg",
+          "stableIndex": 110
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812202400",
+          "canvasLabel": "C102812202400",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812202400/iiif/M2019050811103949308_0112.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 112,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812202400/iiif/M2019050811103949308_0112.jp2/full/max/0/native.jpg",
+          "stableIndex": 111
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812202500",
+          "canvasLabel": "C102812202500",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812202500/iiif/M2019050811103949308_0113.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 113,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812202500/iiif/M2019050811103949308_0113.jp2/full/max/0/native.jpg",
+          "stableIndex": 112
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812202600",
+          "canvasLabel": "C102812202600",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812202600/iiif/M2019050811103949308_0114.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 114,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812202600/iiif/M2019050811103949308_0114.jp2/full/max/0/native.jpg",
+          "stableIndex": 113
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812202700",
+          "canvasLabel": "C102812202700",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812202700/iiif/M2019050811103949308_0115.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 115,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812202700/iiif/M2019050811103949308_0115.jp2/full/max/0/native.jpg",
+          "stableIndex": 114
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812202800",
+          "canvasLabel": "C102812202800",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812202800/iiif/M2019050811103949308_0116.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 116,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812202800/iiif/M2019050811103949308_0116.jp2/full/max/0/native.jpg",
+          "stableIndex": 115
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812202900",
+          "canvasLabel": "C102812202900",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812202900/iiif/M2019050811103949308_0117.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 117,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812202900/iiif/M2019050811103949308_0117.jp2/full/max/0/native.jpg",
+          "stableIndex": 116
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812203000",
+          "canvasLabel": "C102812203000",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812203000/iiif/M2019050811103949308_0118.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 118,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812203000/iiif/M2019050811103949308_0118.jp2/full/max/0/native.jpg",
+          "stableIndex": 117
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812203100",
+          "canvasLabel": "C102812203100",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812203100/iiif/M2019050811103949308_0119.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 119,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812203100/iiif/M2019050811103949308_0119.jp2/full/max/0/native.jpg",
+          "stableIndex": 118
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812203200",
+          "canvasLabel": "C102812203200",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812203200/iiif/M2019050811103949308_0120.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 120,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812203200/iiif/M2019050811103949308_0120.jp2/full/max/0/native.jpg",
+          "stableIndex": 119
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812203300",
+          "canvasLabel": "C102812203300",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812203300/iiif/M2019050811103949308_0121.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 121,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812203300/iiif/M2019050811103949308_0121.jp2/full/max/0/native.jpg",
+          "stableIndex": 120
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812203400",
+          "canvasLabel": "C102812203400",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812203400/iiif/M2019050811103949308_0122.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 122,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812203400/iiif/M2019050811103949308_0122.jp2/full/max/0/native.jpg",
+          "stableIndex": 121
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812203500",
+          "canvasLabel": "C102812203500",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812203500/iiif/M2019050811103949308_0123.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 123,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812203500/iiif/M2019050811103949308_0123.jp2/full/max/0/native.jpg",
+          "stableIndex": 122
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812203600",
+          "canvasLabel": "C102812203600",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812203600/iiif/M2019050811103949308_0124.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 124,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812203600/iiif/M2019050811103949308_0124.jp2/full/max/0/native.jpg",
+          "stableIndex": 123
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812203700",
+          "canvasLabel": "C102812203700",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812203700/iiif/M2019050811103949308_0125.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 125,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812203700/iiif/M2019050811103949308_0125.jp2/full/max/0/native.jpg",
+          "stableIndex": 124
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812203800",
+          "canvasLabel": "C102812203800",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812203800/iiif/M2019050811103949308_0126.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 126,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812203800/iiif/M2019050811103949308_0126.jp2/full/max/0/native.jpg",
+          "stableIndex": 125
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812203900",
+          "canvasLabel": "C102812203900",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812203900/iiif/M2019050811103949308_0127.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 127,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812203900/iiif/M2019050811103949308_0127.jp2/full/max/0/native.jpg",
+          "stableIndex": 126
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812204000",
+          "canvasLabel": "C102812204000",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812204000/iiif/M2019050811103949308_0128.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 128,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812204000/iiif/M2019050811103949308_0128.jp2/full/max/0/native.jpg",
+          "stableIndex": 127
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812204100",
+          "canvasLabel": "C102812204100",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812204100/iiif/M2019050811103949308_0129.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 129,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812204100/iiif/M2019050811103949308_0129.jp2/full/max/0/native.jpg",
+          "stableIndex": 128
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812204200",
+          "canvasLabel": "C102812204200",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812204200/iiif/M2019050811103949308_0130.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 130,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812204200/iiif/M2019050811103949308_0130.jp2/full/max/0/native.jpg",
+          "stableIndex": 129
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812204300",
+          "canvasLabel": "C102812204300",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812204300/iiif/M2019050811103949308_0131.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 131,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812204300/iiif/M2019050811103949308_0131.jp2/full/max/0/native.jpg",
+          "stableIndex": 130
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812204400",
+          "canvasLabel": "C102812204400",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812204400/iiif/M2019050811103949308_0132.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 132,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812204400/iiif/M2019050811103949308_0132.jp2/full/max/0/native.jpg",
+          "stableIndex": 131
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812204500",
+          "canvasLabel": "C102812204500",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812204500/iiif/M2019050811103949308_0133.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 133,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812204500/iiif/M2019050811103949308_0133.jp2/full/max/0/native.jpg",
+          "stableIndex": 132
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812204600",
+          "canvasLabel": "C102812204600",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812204600/iiif/M2019050811103949308_0134.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 134,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812204600/iiif/M2019050811103949308_0134.jp2/full/max/0/native.jpg",
+          "stableIndex": 133
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812204700",
+          "canvasLabel": "C102812204700",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812204700/iiif/M2019050811103949308_0135.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 135,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812204700/iiif/M2019050811103949308_0135.jp2/full/max/0/native.jpg",
+          "stableIndex": 134
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812204800",
+          "canvasLabel": "C102812204800",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812204800/iiif/M2019050811103949308_0136.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 136,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812204800/iiif/M2019050811103949308_0136.jp2/full/max/0/native.jpg",
+          "stableIndex": 135
+        },
+        {
+          "canvasHeight": 4750,
+          "canvasId": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812204900",
+          "canvasLabel": "C102812204900",
+          "canvasWidth": 6300,
+          "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812204900/iiif/M2019050811103949308_0137.jp2/full/1200,/0/native.jpg",
+          "leafOrdinal": 137,
+          "nativeImageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812204900/iiif/M2019050811103949308_0137.jp2/full/max/0/native.jpg",
+          "stableIndex": 136
+        }
+      ],
+      "firstCanvasId": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812191300",
+      "imageBase": "da12",
+      "imagePrefix": "M2019050811103949308",
+      "itemId": "4469314",
+      "label": "新鋟希夷陳先生紫微斗数全書２",
+      "lastCanvasId": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812204900",
+      "leafCount": 137,
+      "manifestByteLength": 125132,
+      "manifestSha256": "3f167e1280527e1c672a72d7ef060c299ce9dffad1f362ddba04575da3df1560",
+      "manifestUrl": "https://www.digital.archives.go.jp/api/iiif/4469314/manifest.json",
+      "volumeId": "nara-v2"
+    }
+  ]
+}

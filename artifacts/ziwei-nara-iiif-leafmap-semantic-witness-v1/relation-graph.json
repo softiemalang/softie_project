@@ -1,0 +1,4770 @@
+{
+  "edges": [
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812178400",
+      "relation": "probable_correspondence",
+      "side": "visualLeft",
+      "to": "local-pdf-page:1"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812178500",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:2"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812178500",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:3"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812178600",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:4"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812178600",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:5"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812178700",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:6"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812178700",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:7"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812178800",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:8"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812178800",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:9"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812178900",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:10"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812178900",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:11"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812179000",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:12"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812179000",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:13"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812179100",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:14"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812179100",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:15"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812179200",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:16"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812179200",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:17"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812179300",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:18"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812179300",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:19"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812179400",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:20"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812179400",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:21"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812179500",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:22"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812179500",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:23"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812179600",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:24"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812179600",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:25"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812179700",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:26"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812179700",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:27"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812179800",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:28"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812179800",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:29"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812179900",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:30"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812179900",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:31"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812180000",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:32"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812180000",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:33"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812180100",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:34"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812180100",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:35"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812180200",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:36"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812180200",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:37"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812180300",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:38"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812180300",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:39"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812180400",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:40"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812180400",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:41"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812180500",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:42"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812180500",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:43"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812180600",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:44"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812180600",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:45"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812180700",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:46"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812180700",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:47"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812180800",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:48"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812180800",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:49"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812180900",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:50"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812180900",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:51"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812181000",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:52"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812181000",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:53"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812181100",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:54"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812181100",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:55"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812181200",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:56"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812181200",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:57"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812181300",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:58"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812181300",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:59"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812181400",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:60"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812181400",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:61"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812181500",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:62"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812181500",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:63"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812181600",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:64"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812181600",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:65"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812181700",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:66"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812181700",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:67"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812181800",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:68"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812181800",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:69"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812181900",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:70"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812181900",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:71"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812182000",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:72"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812182000",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:73"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812182100",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:74"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812182100",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:75"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812182200",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:76"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812182200",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:77"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812182300",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:78"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812182300",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:79"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812182400",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:80"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812182400",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:81"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812182500",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:82"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812182500",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:83"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812182600",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:84"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812182600",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:85"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812182700",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:86"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812182700",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:87"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812182800",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:88"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812182800",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:89"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812182900",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:90"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812182900",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:91"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812183000",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:92"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812183000",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:93"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812183100",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:94"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812183100",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:95"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812183200",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:96"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812183200",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:97"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812183300",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:98"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812183300",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:99"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812183400",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:100"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812183400",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:101"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812183500",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:102"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812183500",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:103"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812183600",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:104"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812183600",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:105"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812183700",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:106"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812183700",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:107"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812183800",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:108"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812183800",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:109"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812183900",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:110"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812183900",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:111"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812184000",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:112"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812184000",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:113"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812184100",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:114"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812184100",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:115"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812184200",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:116"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812184200",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:117"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812184300",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:118"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812184300",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:119"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812184400",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:120"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812184400",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:121"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812184500",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:122"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812184500",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:123"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812184600",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:124"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812184600",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:125"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812184700",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:126"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812184700",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:127"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812184800",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:128"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812184800",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:129"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812184900",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:130"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812184900",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:131"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812185000",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:132"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812185000",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:133"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812185100",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:134"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812185100",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:135"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812185200",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:136"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812185200",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:137"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812185300",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:138"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812185300",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:139"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812185400",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:140"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812185400",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:141"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812185500",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:142"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812185500",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:143"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812185600",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:144"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812185600",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:145"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812185700",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:146"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812185700",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:147"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812185800",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:148"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812185800",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:149"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812185900",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:150"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812185900",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:151"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812186000",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:152"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812186000",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:153"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812186100",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:154"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812186100",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:155"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812186200",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:156"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812186200",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:157"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812186300",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:158"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812186300",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:159"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812186400",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:160"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812186400",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:161"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812186500",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:162"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812186500",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:163"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812186600",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:164"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812186600",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:165"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812186700",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:166"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812186700",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:167"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812186800",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:168"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812186800",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:169"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812186900",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:170"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812186900",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:171"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812187000",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:172"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812187000",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:173"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812187100",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:174"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812187100",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:175"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812187200",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:176"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812187200",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:177"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812187300",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:178"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812187300",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:179"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812187400",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:180"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812187400",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:181"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812187500",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:182"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812187500",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:183"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812187600",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:184"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812187600",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:185"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812187700",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:186"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812187700",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:187"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812187800",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:188"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812187800",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:189"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812187900",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:190"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812187900",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:191"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812188000",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:192"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812188000",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:193"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812188100",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:194"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812188100",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:195"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812188200",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:196"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812188200",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:197"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812188300",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:198"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812188300",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:199"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812188400",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:200"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812188400",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:201"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812188500",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:202"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812188500",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:203"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812188600",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:204"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812188600",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:205"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812188700",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:206"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812188700",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:207"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812188800",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:208"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812188800",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:209"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812188900",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:210"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812188900",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:211"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812189000",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:212"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812189000",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:213"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812189100",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:214"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812189100",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:215"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812189200",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:216"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812189200",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:217"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812189300",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:218"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812189300",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:219"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812189400",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:220"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812189400",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:221"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812189500",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:222"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812189500",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:223"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812189600",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:224"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812189600",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:225"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812189700",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:226"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812189700",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:227"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812189800",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:228"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812189800",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:229"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812189900",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:230"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812189900",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:231"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812190000",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:232"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812190000",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:233"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812190100",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:234"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812190100",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:235"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812190200",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:236"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812190200",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:237"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812190300",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:238"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812190300",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:239"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812190400",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:240"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812190400",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:241"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812190500",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:242"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812190500",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:243"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812190600",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:244"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812190600",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:245"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812190700",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:246"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812190700",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:247"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812190800",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:248"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812190800",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:249"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812190900",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:250"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812190900",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:251"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812191000",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:252"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812191000",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:253"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812191100",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:254"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812191100",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:255"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812191200",
+      "relation": "probable_correspondence",
+      "side": "visualRight",
+      "to": "local-pdf-page:256"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812191300",
+      "relation": "probable_correspondence",
+      "side": "visualLeft",
+      "to": "local-pdf-page:257"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812191300",
+      "relation": "probable_correspondence",
+      "side": "visualRight",
+      "to": "local-pdf-page:258"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812191400",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:259"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812191500",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:260"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812191500",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:261"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812191600",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:262"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812191600",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:263"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812191700",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:264"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812191700",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:265"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812191800",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:266"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812191800",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:267"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812191900",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:268"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812191900",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:269"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812192000",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:270"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812192000",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:271"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812192100",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:272"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812192100",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:273"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812192200",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:274"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812192200",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:275"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812192300",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:276"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812192300",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:277"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812192400",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:278"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812192400",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:279"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812192500",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:280"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812192500",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:281"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812192600",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:282"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812192600",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:283"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812192700",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:284"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812192700",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:285"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812192800",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:286"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812192800",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:287"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812192900",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:288"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812192900",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:289"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812193000",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:290"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812193000",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:291"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812193100",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:292"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812193100",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:293"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812193200",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:294"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812193200",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:295"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812193300",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:296"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812193300",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:297"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812193400",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:298"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812193400",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:299"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812193500",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:300"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812193500",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:301"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812193600",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:302"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812193600",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:303"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812193700",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:304"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812193700",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:305"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812193800",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:306"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812193800",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:307"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812193900",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:308"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812193900",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:309"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812194000",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:310"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812194000",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:311"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812194100",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:312"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812194100",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:313"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812194200",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:314"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812194200",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:315"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812194300",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:316"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812194300",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:317"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812194400",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:318"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812194400",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:319"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812194500",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:320"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812194500",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:321"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812194600",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:322"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812194600",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:323"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812194700",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:324"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812194700",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:325"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812194800",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:326"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812194800",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:327"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812194900",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:328"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812194900",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:329"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812195000",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:330"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812195000",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:331"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812195100",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:332"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812195100",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:333"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812195200",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:334"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812195200",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:335"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812195300",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:336"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812195300",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:337"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812195400",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:338"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812195400",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:339"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812195500",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:340"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812195500",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:341"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812195600",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:342"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812195600",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:343"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812195700",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:344"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812195700",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:345"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812195800",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:346"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812195800",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:347"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812195900",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:348"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812195900",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:349"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812196000",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:350"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812196000",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:351"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812196100",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:352"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812196100",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:353"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812196200",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:354"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812196200",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:355"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812196300",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:356"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812196300",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:357"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812196400",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:358"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812196400",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:359"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812196500",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:360"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812196500",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:361"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812196600",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:362"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812196600",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:363"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812196700",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:364"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812196700",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:365"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812196800",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:366"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812196800",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:367"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812196900",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:368"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812196900",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:369"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812197000",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:370"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812197000",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:371"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812197100",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:372"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812197100",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:373"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812197200",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:374"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812197200",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:375"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812197300",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:376"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812197300",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:377"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812197400",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:378"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812197400",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:379"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812197500",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:380"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812197500",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:381"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812197600",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:382"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812197600",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:383"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812197700",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:384"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812197700",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:385"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812197800",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:386"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812197800",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:387"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812197900",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:388"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812197900",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:389"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812198000",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:390"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812198000",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:391"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812198100",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:392"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812198100",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:393"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812198200",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:394"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812198200",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:395"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812198300",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:396"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812198300",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:397"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812198400",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:398"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812198400",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:399"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812198500",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:400"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812198500",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:401"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812198600",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:402"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812198600",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:403"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812198700",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:404"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812198700",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:405"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812198800",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:406"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812198800",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:407"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812198900",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:408"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812198900",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:409"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812199000",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:410"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812199000",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:411"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812199100",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:412"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812199100",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:413"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812199200",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:414"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812199200",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:415"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812199300",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:416"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812199300",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:417"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812199400",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:418"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812199400",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:419"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812199500",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:420"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812199500",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:421"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812199600",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:422"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812199600",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:423"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812199700",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:424"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812199700",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:425"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812199800",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:426"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812199800",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:427"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812199900",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:428"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812199900",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:429"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812200000",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:430"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812200000",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:431"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812200100",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:432"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812200100",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:433"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812200200",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:434"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812200200",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:435"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812200300",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:436"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812200300",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:437"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812200400",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:438"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812200400",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:439"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812200500",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:440"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812200500",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:441"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812200600",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:442"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812200600",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:443"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812200700",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:444"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812200700",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:445"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812200800",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:446"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812200800",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:447"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812200900",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:448"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812200900",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:449"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812201000",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:450"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812201000",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:451"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812201100",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:452"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812201100",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:453"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812201200",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:454"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812201200",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:455"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812201300",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:456"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812201300",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:457"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812201400",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:458"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812201400",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:459"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812201500",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:460"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812201500",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:461"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812201600",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:462"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812201600",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:463"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812201700",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:464"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812201700",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:465"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812201800",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:466"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812201800",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:467"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812201900",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:468"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812201900",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:469"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812202000",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:470"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812202000",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:471"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812202100",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:472"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812202100",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:473"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812202200",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:474"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812202200",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:475"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812202300",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:476"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812202300",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:477"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812202400",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:478"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812202400",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:479"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812202500",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:480"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812202500",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:481"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812202600",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:482"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812202600",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:483"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812202700",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:484"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812202700",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:485"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812202800",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:486"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812202800",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:487"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812202900",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:488"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812202900",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:489"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812203000",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:490"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812203000",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:491"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812203100",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:492"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812203100",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:493"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812203200",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:494"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812203200",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:495"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812203300",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:496"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812203300",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:497"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812203400",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:498"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812203400",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:499"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812203500",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:500"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812203500",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:501"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812203600",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:502"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812203600",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:503"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812203700",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:504"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812203700",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:505"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812203800",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:506"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812203800",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:507"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812203900",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:508"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812203900",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:509"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812204000",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:510"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812204000",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:511"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812204100",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:512"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812204100",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:513"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812204200",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:514"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812204200",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:515"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812204300",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:516"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812204300",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:517"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812204400",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:518"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812204400",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:519"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812204500",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:520"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812204500",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:521"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812204600",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:522"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812204600",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:523"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812204700",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:524"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812204700",
+      "relation": "same_text_different_capture",
+      "side": "visualLeft",
+      "to": "local-pdf-page:525"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812204800",
+      "relation": "same_text_different_capture",
+      "side": "visualRight",
+      "to": "local-pdf-page:526"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812204800",
+      "relation": "probable_correspondence",
+      "side": "visualLeft",
+      "to": "local-pdf-page:527"
+    },
+    {
+      "from": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812204900",
+      "relation": "probable_correspondence",
+      "side": "visualRight",
+      "to": "local-pdf-page:528"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812178400",
+      "kind": "nara-canvas",
+      "leafOrdinal": 1,
+      "volumeId": "nara-v1"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812178500",
+      "kind": "nara-canvas",
+      "leafOrdinal": 2,
+      "volumeId": "nara-v1"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812178600",
+      "kind": "nara-canvas",
+      "leafOrdinal": 3,
+      "volumeId": "nara-v1"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812178700",
+      "kind": "nara-canvas",
+      "leafOrdinal": 4,
+      "volumeId": "nara-v1"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812178800",
+      "kind": "nara-canvas",
+      "leafOrdinal": 5,
+      "volumeId": "nara-v1"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812178900",
+      "kind": "nara-canvas",
+      "leafOrdinal": 6,
+      "volumeId": "nara-v1"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812179000",
+      "kind": "nara-canvas",
+      "leafOrdinal": 7,
+      "volumeId": "nara-v1"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812179100",
+      "kind": "nara-canvas",
+      "leafOrdinal": 8,
+      "volumeId": "nara-v1"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812179200",
+      "kind": "nara-canvas",
+      "leafOrdinal": 9,
+      "volumeId": "nara-v1"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812179300",
+      "kind": "nara-canvas",
+      "leafOrdinal": 10,
+      "volumeId": "nara-v1"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812179400",
+      "kind": "nara-canvas",
+      "leafOrdinal": 11,
+      "volumeId": "nara-v1"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812179500",
+      "kind": "nara-canvas",
+      "leafOrdinal": 12,
+      "volumeId": "nara-v1"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812179600",
+      "kind": "nara-canvas",
+      "leafOrdinal": 13,
+      "volumeId": "nara-v1"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812179700",
+      "kind": "nara-canvas",
+      "leafOrdinal": 14,
+      "volumeId": "nara-v1"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812179800",
+      "kind": "nara-canvas",
+      "leafOrdinal": 15,
+      "volumeId": "nara-v1"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812179900",
+      "kind": "nara-canvas",
+      "leafOrdinal": 16,
+      "volumeId": "nara-v1"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812180000",
+      "kind": "nara-canvas",
+      "leafOrdinal": 17,
+      "volumeId": "nara-v1"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812180100",
+      "kind": "nara-canvas",
+      "leafOrdinal": 18,
+      "volumeId": "nara-v1"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812180200",
+      "kind": "nara-canvas",
+      "leafOrdinal": 19,
+      "volumeId": "nara-v1"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812180300",
+      "kind": "nara-canvas",
+      "leafOrdinal": 20,
+      "volumeId": "nara-v1"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812180400",
+      "kind": "nara-canvas",
+      "leafOrdinal": 21,
+      "volumeId": "nara-v1"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812180500",
+      "kind": "nara-canvas",
+      "leafOrdinal": 22,
+      "volumeId": "nara-v1"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812180600",
+      "kind": "nara-canvas",
+      "leafOrdinal": 23,
+      "volumeId": "nara-v1"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812180700",
+      "kind": "nara-canvas",
+      "leafOrdinal": 24,
+      "volumeId": "nara-v1"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812180800",
+      "kind": "nara-canvas",
+      "leafOrdinal": 25,
+      "volumeId": "nara-v1"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812180900",
+      "kind": "nara-canvas",
+      "leafOrdinal": 26,
+      "volumeId": "nara-v1"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812181000",
+      "kind": "nara-canvas",
+      "leafOrdinal": 27,
+      "volumeId": "nara-v1"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812181100",
+      "kind": "nara-canvas",
+      "leafOrdinal": 28,
+      "volumeId": "nara-v1"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812181200",
+      "kind": "nara-canvas",
+      "leafOrdinal": 29,
+      "volumeId": "nara-v1"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812181300",
+      "kind": "nara-canvas",
+      "leafOrdinal": 30,
+      "volumeId": "nara-v1"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812181400",
+      "kind": "nara-canvas",
+      "leafOrdinal": 31,
+      "volumeId": "nara-v1"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812181500",
+      "kind": "nara-canvas",
+      "leafOrdinal": 32,
+      "volumeId": "nara-v1"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812181600",
+      "kind": "nara-canvas",
+      "leafOrdinal": 33,
+      "volumeId": "nara-v1"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812181700",
+      "kind": "nara-canvas",
+      "leafOrdinal": 34,
+      "volumeId": "nara-v1"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812181800",
+      "kind": "nara-canvas",
+      "leafOrdinal": 35,
+      "volumeId": "nara-v1"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812181900",
+      "kind": "nara-canvas",
+      "leafOrdinal": 36,
+      "volumeId": "nara-v1"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812182000",
+      "kind": "nara-canvas",
+      "leafOrdinal": 37,
+      "volumeId": "nara-v1"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812182100",
+      "kind": "nara-canvas",
+      "leafOrdinal": 38,
+      "volumeId": "nara-v1"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812182200",
+      "kind": "nara-canvas",
+      "leafOrdinal": 39,
+      "volumeId": "nara-v1"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812182300",
+      "kind": "nara-canvas",
+      "leafOrdinal": 40,
+      "volumeId": "nara-v1"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812182400",
+      "kind": "nara-canvas",
+      "leafOrdinal": 41,
+      "volumeId": "nara-v1"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812182500",
+      "kind": "nara-canvas",
+      "leafOrdinal": 42,
+      "volumeId": "nara-v1"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812182600",
+      "kind": "nara-canvas",
+      "leafOrdinal": 43,
+      "volumeId": "nara-v1"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812182700",
+      "kind": "nara-canvas",
+      "leafOrdinal": 44,
+      "volumeId": "nara-v1"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812182800",
+      "kind": "nara-canvas",
+      "leafOrdinal": 45,
+      "volumeId": "nara-v1"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812182900",
+      "kind": "nara-canvas",
+      "leafOrdinal": 46,
+      "volumeId": "nara-v1"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812183000",
+      "kind": "nara-canvas",
+      "leafOrdinal": 47,
+      "volumeId": "nara-v1"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812183100",
+      "kind": "nara-canvas",
+      "leafOrdinal": 48,
+      "volumeId": "nara-v1"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812183200",
+      "kind": "nara-canvas",
+      "leafOrdinal": 49,
+      "volumeId": "nara-v1"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812183300",
+      "kind": "nara-canvas",
+      "leafOrdinal": 50,
+      "volumeId": "nara-v1"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812183400",
+      "kind": "nara-canvas",
+      "leafOrdinal": 51,
+      "volumeId": "nara-v1"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812183500",
+      "kind": "nara-canvas",
+      "leafOrdinal": 52,
+      "volumeId": "nara-v1"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812183600",
+      "kind": "nara-canvas",
+      "leafOrdinal": 53,
+      "volumeId": "nara-v1"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812183700",
+      "kind": "nara-canvas",
+      "leafOrdinal": 54,
+      "volumeId": "nara-v1"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812183800",
+      "kind": "nara-canvas",
+      "leafOrdinal": 55,
+      "volumeId": "nara-v1"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812183900",
+      "kind": "nara-canvas",
+      "leafOrdinal": 56,
+      "volumeId": "nara-v1"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812184000",
+      "kind": "nara-canvas",
+      "leafOrdinal": 57,
+      "volumeId": "nara-v1"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812184100",
+      "kind": "nara-canvas",
+      "leafOrdinal": 58,
+      "volumeId": "nara-v1"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812184200",
+      "kind": "nara-canvas",
+      "leafOrdinal": 59,
+      "volumeId": "nara-v1"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812184300",
+      "kind": "nara-canvas",
+      "leafOrdinal": 60,
+      "volumeId": "nara-v1"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812184400",
+      "kind": "nara-canvas",
+      "leafOrdinal": 61,
+      "volumeId": "nara-v1"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812184500",
+      "kind": "nara-canvas",
+      "leafOrdinal": 62,
+      "volumeId": "nara-v1"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812184600",
+      "kind": "nara-canvas",
+      "leafOrdinal": 63,
+      "volumeId": "nara-v1"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812184700",
+      "kind": "nara-canvas",
+      "leafOrdinal": 64,
+      "volumeId": "nara-v1"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812184800",
+      "kind": "nara-canvas",
+      "leafOrdinal": 65,
+      "volumeId": "nara-v1"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812184900",
+      "kind": "nara-canvas",
+      "leafOrdinal": 66,
+      "volumeId": "nara-v1"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812185000",
+      "kind": "nara-canvas",
+      "leafOrdinal": 67,
+      "volumeId": "nara-v1"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812185100",
+      "kind": "nara-canvas",
+      "leafOrdinal": 68,
+      "volumeId": "nara-v1"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812185200",
+      "kind": "nara-canvas",
+      "leafOrdinal": 69,
+      "volumeId": "nara-v1"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812185300",
+      "kind": "nara-canvas",
+      "leafOrdinal": 70,
+      "volumeId": "nara-v1"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812185400",
+      "kind": "nara-canvas",
+      "leafOrdinal": 71,
+      "volumeId": "nara-v1"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812185500",
+      "kind": "nara-canvas",
+      "leafOrdinal": 72,
+      "volumeId": "nara-v1"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812185600",
+      "kind": "nara-canvas",
+      "leafOrdinal": 73,
+      "volumeId": "nara-v1"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812185700",
+      "kind": "nara-canvas",
+      "leafOrdinal": 74,
+      "volumeId": "nara-v1"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812185800",
+      "kind": "nara-canvas",
+      "leafOrdinal": 75,
+      "volumeId": "nara-v1"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812185900",
+      "kind": "nara-canvas",
+      "leafOrdinal": 76,
+      "volumeId": "nara-v1"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812186000",
+      "kind": "nara-canvas",
+      "leafOrdinal": 77,
+      "volumeId": "nara-v1"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812186100",
+      "kind": "nara-canvas",
+      "leafOrdinal": 78,
+      "volumeId": "nara-v1"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812186200",
+      "kind": "nara-canvas",
+      "leafOrdinal": 79,
+      "volumeId": "nara-v1"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812186300",
+      "kind": "nara-canvas",
+      "leafOrdinal": 80,
+      "volumeId": "nara-v1"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812186400",
+      "kind": "nara-canvas",
+      "leafOrdinal": 81,
+      "volumeId": "nara-v1"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812186500",
+      "kind": "nara-canvas",
+      "leafOrdinal": 82,
+      "volumeId": "nara-v1"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812186600",
+      "kind": "nara-canvas",
+      "leafOrdinal": 83,
+      "volumeId": "nara-v1"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812186700",
+      "kind": "nara-canvas",
+      "leafOrdinal": 84,
+      "volumeId": "nara-v1"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812186800",
+      "kind": "nara-canvas",
+      "leafOrdinal": 85,
+      "volumeId": "nara-v1"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812186900",
+      "kind": "nara-canvas",
+      "leafOrdinal": 86,
+      "volumeId": "nara-v1"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812187000",
+      "kind": "nara-canvas",
+      "leafOrdinal": 87,
+      "volumeId": "nara-v1"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812187100",
+      "kind": "nara-canvas",
+      "leafOrdinal": 88,
+      "volumeId": "nara-v1"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812187200",
+      "kind": "nara-canvas",
+      "leafOrdinal": 89,
+      "volumeId": "nara-v1"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812187300",
+      "kind": "nara-canvas",
+      "leafOrdinal": 90,
+      "volumeId": "nara-v1"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812187400",
+      "kind": "nara-canvas",
+      "leafOrdinal": 91,
+      "volumeId": "nara-v1"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812187500",
+      "kind": "nara-canvas",
+      "leafOrdinal": 92,
+      "volumeId": "nara-v1"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812187600",
+      "kind": "nara-canvas",
+      "leafOrdinal": 93,
+      "volumeId": "nara-v1"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812187700",
+      "kind": "nara-canvas",
+      "leafOrdinal": 94,
+      "volumeId": "nara-v1"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812187800",
+      "kind": "nara-canvas",
+      "leafOrdinal": 95,
+      "volumeId": "nara-v1"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812187900",
+      "kind": "nara-canvas",
+      "leafOrdinal": 96,
+      "volumeId": "nara-v1"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812188000",
+      "kind": "nara-canvas",
+      "leafOrdinal": 97,
+      "volumeId": "nara-v1"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812188100",
+      "kind": "nara-canvas",
+      "leafOrdinal": 98,
+      "volumeId": "nara-v1"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812188200",
+      "kind": "nara-canvas",
+      "leafOrdinal": 99,
+      "volumeId": "nara-v1"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812188300",
+      "kind": "nara-canvas",
+      "leafOrdinal": 100,
+      "volumeId": "nara-v1"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812188400",
+      "kind": "nara-canvas",
+      "leafOrdinal": 101,
+      "volumeId": "nara-v1"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812188500",
+      "kind": "nara-canvas",
+      "leafOrdinal": 102,
+      "volumeId": "nara-v1"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812188600",
+      "kind": "nara-canvas",
+      "leafOrdinal": 103,
+      "volumeId": "nara-v1"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812188700",
+      "kind": "nara-canvas",
+      "leafOrdinal": 104,
+      "volumeId": "nara-v1"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812188800",
+      "kind": "nara-canvas",
+      "leafOrdinal": 105,
+      "volumeId": "nara-v1"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812188900",
+      "kind": "nara-canvas",
+      "leafOrdinal": 106,
+      "volumeId": "nara-v1"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812189000",
+      "kind": "nara-canvas",
+      "leafOrdinal": 107,
+      "volumeId": "nara-v1"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812189100",
+      "kind": "nara-canvas",
+      "leafOrdinal": 108,
+      "volumeId": "nara-v1"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812189200",
+      "kind": "nara-canvas",
+      "leafOrdinal": 109,
+      "volumeId": "nara-v1"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812189300",
+      "kind": "nara-canvas",
+      "leafOrdinal": 110,
+      "volumeId": "nara-v1"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812189400",
+      "kind": "nara-canvas",
+      "leafOrdinal": 111,
+      "volumeId": "nara-v1"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812189500",
+      "kind": "nara-canvas",
+      "leafOrdinal": 112,
+      "volumeId": "nara-v1"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812189600",
+      "kind": "nara-canvas",
+      "leafOrdinal": 113,
+      "volumeId": "nara-v1"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812189700",
+      "kind": "nara-canvas",
+      "leafOrdinal": 114,
+      "volumeId": "nara-v1"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812189800",
+      "kind": "nara-canvas",
+      "leafOrdinal": 115,
+      "volumeId": "nara-v1"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812189900",
+      "kind": "nara-canvas",
+      "leafOrdinal": 116,
+      "volumeId": "nara-v1"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812190000",
+      "kind": "nara-canvas",
+      "leafOrdinal": 117,
+      "volumeId": "nara-v1"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812190100",
+      "kind": "nara-canvas",
+      "leafOrdinal": 118,
+      "volumeId": "nara-v1"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812190200",
+      "kind": "nara-canvas",
+      "leafOrdinal": 119,
+      "volumeId": "nara-v1"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812190300",
+      "kind": "nara-canvas",
+      "leafOrdinal": 120,
+      "volumeId": "nara-v1"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812190400",
+      "kind": "nara-canvas",
+      "leafOrdinal": 121,
+      "volumeId": "nara-v1"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812190500",
+      "kind": "nara-canvas",
+      "leafOrdinal": 122,
+      "volumeId": "nara-v1"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812190600",
+      "kind": "nara-canvas",
+      "leafOrdinal": 123,
+      "volumeId": "nara-v1"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812190700",
+      "kind": "nara-canvas",
+      "leafOrdinal": 124,
+      "volumeId": "nara-v1"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812190800",
+      "kind": "nara-canvas",
+      "leafOrdinal": 125,
+      "volumeId": "nara-v1"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812190900",
+      "kind": "nara-canvas",
+      "leafOrdinal": 126,
+      "volumeId": "nara-v1"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812191000",
+      "kind": "nara-canvas",
+      "leafOrdinal": 127,
+      "volumeId": "nara-v1"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812191100",
+      "kind": "nara-canvas",
+      "leafOrdinal": 128,
+      "volumeId": "nara-v1"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812191200",
+      "kind": "nara-canvas",
+      "leafOrdinal": 129,
+      "volumeId": "nara-v1"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812191300",
+      "kind": "nara-canvas",
+      "leafOrdinal": 1,
+      "volumeId": "nara-v2"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812191400",
+      "kind": "nara-canvas",
+      "leafOrdinal": 2,
+      "volumeId": "nara-v2"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812191500",
+      "kind": "nara-canvas",
+      "leafOrdinal": 3,
+      "volumeId": "nara-v2"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812191600",
+      "kind": "nara-canvas",
+      "leafOrdinal": 4,
+      "volumeId": "nara-v2"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812191700",
+      "kind": "nara-canvas",
+      "leafOrdinal": 5,
+      "volumeId": "nara-v2"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812191800",
+      "kind": "nara-canvas",
+      "leafOrdinal": 6,
+      "volumeId": "nara-v2"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812191900",
+      "kind": "nara-canvas",
+      "leafOrdinal": 7,
+      "volumeId": "nara-v2"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812192000",
+      "kind": "nara-canvas",
+      "leafOrdinal": 8,
+      "volumeId": "nara-v2"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812192100",
+      "kind": "nara-canvas",
+      "leafOrdinal": 9,
+      "volumeId": "nara-v2"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812192200",
+      "kind": "nara-canvas",
+      "leafOrdinal": 10,
+      "volumeId": "nara-v2"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812192300",
+      "kind": "nara-canvas",
+      "leafOrdinal": 11,
+      "volumeId": "nara-v2"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812192400",
+      "kind": "nara-canvas",
+      "leafOrdinal": 12,
+      "volumeId": "nara-v2"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812192500",
+      "kind": "nara-canvas",
+      "leafOrdinal": 13,
+      "volumeId": "nara-v2"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812192600",
+      "kind": "nara-canvas",
+      "leafOrdinal": 14,
+      "volumeId": "nara-v2"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812192700",
+      "kind": "nara-canvas",
+      "leafOrdinal": 15,
+      "volumeId": "nara-v2"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812192800",
+      "kind": "nara-canvas",
+      "leafOrdinal": 16,
+      "volumeId": "nara-v2"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812192900",
+      "kind": "nara-canvas",
+      "leafOrdinal": 17,
+      "volumeId": "nara-v2"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812193000",
+      "kind": "nara-canvas",
+      "leafOrdinal": 18,
+      "volumeId": "nara-v2"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812193100",
+      "kind": "nara-canvas",
+      "leafOrdinal": 19,
+      "volumeId": "nara-v2"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812193200",
+      "kind": "nara-canvas",
+      "leafOrdinal": 20,
+      "volumeId": "nara-v2"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812193300",
+      "kind": "nara-canvas",
+      "leafOrdinal": 21,
+      "volumeId": "nara-v2"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812193400",
+      "kind": "nara-canvas",
+      "leafOrdinal": 22,
+      "volumeId": "nara-v2"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812193500",
+      "kind": "nara-canvas",
+      "leafOrdinal": 23,
+      "volumeId": "nara-v2"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812193600",
+      "kind": "nara-canvas",
+      "leafOrdinal": 24,
+      "volumeId": "nara-v2"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812193700",
+      "kind": "nara-canvas",
+      "leafOrdinal": 25,
+      "volumeId": "nara-v2"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812193800",
+      "kind": "nara-canvas",
+      "leafOrdinal": 26,
+      "volumeId": "nara-v2"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812193900",
+      "kind": "nara-canvas",
+      "leafOrdinal": 27,
+      "volumeId": "nara-v2"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812194000",
+      "kind": "nara-canvas",
+      "leafOrdinal": 28,
+      "volumeId": "nara-v2"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812194100",
+      "kind": "nara-canvas",
+      "leafOrdinal": 29,
+      "volumeId": "nara-v2"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812194200",
+      "kind": "nara-canvas",
+      "leafOrdinal": 30,
+      "volumeId": "nara-v2"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812194300",
+      "kind": "nara-canvas",
+      "leafOrdinal": 31,
+      "volumeId": "nara-v2"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812194400",
+      "kind": "nara-canvas",
+      "leafOrdinal": 32,
+      "volumeId": "nara-v2"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812194500",
+      "kind": "nara-canvas",
+      "leafOrdinal": 33,
+      "volumeId": "nara-v2"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812194600",
+      "kind": "nara-canvas",
+      "leafOrdinal": 34,
+      "volumeId": "nara-v2"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812194700",
+      "kind": "nara-canvas",
+      "leafOrdinal": 35,
+      "volumeId": "nara-v2"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812194800",
+      "kind": "nara-canvas",
+      "leafOrdinal": 36,
+      "volumeId": "nara-v2"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812194900",
+      "kind": "nara-canvas",
+      "leafOrdinal": 37,
+      "volumeId": "nara-v2"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812195000",
+      "kind": "nara-canvas",
+      "leafOrdinal": 38,
+      "volumeId": "nara-v2"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812195100",
+      "kind": "nara-canvas",
+      "leafOrdinal": 39,
+      "volumeId": "nara-v2"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812195200",
+      "kind": "nara-canvas",
+      "leafOrdinal": 40,
+      "volumeId": "nara-v2"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812195300",
+      "kind": "nara-canvas",
+      "leafOrdinal": 41,
+      "volumeId": "nara-v2"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812195400",
+      "kind": "nara-canvas",
+      "leafOrdinal": 42,
+      "volumeId": "nara-v2"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812195500",
+      "kind": "nara-canvas",
+      "leafOrdinal": 43,
+      "volumeId": "nara-v2"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812195600",
+      "kind": "nara-canvas",
+      "leafOrdinal": 44,
+      "volumeId": "nara-v2"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812195700",
+      "kind": "nara-canvas",
+      "leafOrdinal": 45,
+      "volumeId": "nara-v2"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812195800",
+      "kind": "nara-canvas",
+      "leafOrdinal": 46,
+      "volumeId": "nara-v2"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812195900",
+      "kind": "nara-canvas",
+      "leafOrdinal": 47,
+      "volumeId": "nara-v2"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812196000",
+      "kind": "nara-canvas",
+      "leafOrdinal": 48,
+      "volumeId": "nara-v2"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812196100",
+      "kind": "nara-canvas",
+      "leafOrdinal": 49,
+      "volumeId": "nara-v2"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812196200",
+      "kind": "nara-canvas",
+      "leafOrdinal": 50,
+      "volumeId": "nara-v2"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812196300",
+      "kind": "nara-canvas",
+      "leafOrdinal": 51,
+      "volumeId": "nara-v2"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812196400",
+      "kind": "nara-canvas",
+      "leafOrdinal": 52,
+      "volumeId": "nara-v2"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812196500",
+      "kind": "nara-canvas",
+      "leafOrdinal": 53,
+      "volumeId": "nara-v2"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812196600",
+      "kind": "nara-canvas",
+      "leafOrdinal": 54,
+      "volumeId": "nara-v2"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812196700",
+      "kind": "nara-canvas",
+      "leafOrdinal": 55,
+      "volumeId": "nara-v2"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812196800",
+      "kind": "nara-canvas",
+      "leafOrdinal": 56,
+      "volumeId": "nara-v2"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812196900",
+      "kind": "nara-canvas",
+      "leafOrdinal": 57,
+      "volumeId": "nara-v2"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812197000",
+      "kind": "nara-canvas",
+      "leafOrdinal": 58,
+      "volumeId": "nara-v2"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812197100",
+      "kind": "nara-canvas",
+      "leafOrdinal": 59,
+      "volumeId": "nara-v2"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812197200",
+      "kind": "nara-canvas",
+      "leafOrdinal": 60,
+      "volumeId": "nara-v2"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812197300",
+      "kind": "nara-canvas",
+      "leafOrdinal": 61,
+      "volumeId": "nara-v2"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812197400",
+      "kind": "nara-canvas",
+      "leafOrdinal": 62,
+      "volumeId": "nara-v2"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812197500",
+      "kind": "nara-canvas",
+      "leafOrdinal": 63,
+      "volumeId": "nara-v2"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812197600",
+      "kind": "nara-canvas",
+      "leafOrdinal": 64,
+      "volumeId": "nara-v2"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812197700",
+      "kind": "nara-canvas",
+      "leafOrdinal": 65,
+      "volumeId": "nara-v2"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812197800",
+      "kind": "nara-canvas",
+      "leafOrdinal": 66,
+      "volumeId": "nara-v2"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812197900",
+      "kind": "nara-canvas",
+      "leafOrdinal": 67,
+      "volumeId": "nara-v2"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812198000",
+      "kind": "nara-canvas",
+      "leafOrdinal": 68,
+      "volumeId": "nara-v2"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812198100",
+      "kind": "nara-canvas",
+      "leafOrdinal": 69,
+      "volumeId": "nara-v2"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812198200",
+      "kind": "nara-canvas",
+      "leafOrdinal": 70,
+      "volumeId": "nara-v2"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812198300",
+      "kind": "nara-canvas",
+      "leafOrdinal": 71,
+      "volumeId": "nara-v2"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812198400",
+      "kind": "nara-canvas",
+      "leafOrdinal": 72,
+      "volumeId": "nara-v2"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812198500",
+      "kind": "nara-canvas",
+      "leafOrdinal": 73,
+      "volumeId": "nara-v2"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812198600",
+      "kind": "nara-canvas",
+      "leafOrdinal": 74,
+      "volumeId": "nara-v2"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812198700",
+      "kind": "nara-canvas",
+      "leafOrdinal": 75,
+      "volumeId": "nara-v2"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812198800",
+      "kind": "nara-canvas",
+      "leafOrdinal": 76,
+      "volumeId": "nara-v2"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812198900",
+      "kind": "nara-canvas",
+      "leafOrdinal": 77,
+      "volumeId": "nara-v2"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812199000",
+      "kind": "nara-canvas",
+      "leafOrdinal": 78,
+      "volumeId": "nara-v2"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812199100",
+      "kind": "nara-canvas",
+      "leafOrdinal": 79,
+      "volumeId": "nara-v2"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812199200",
+      "kind": "nara-canvas",
+      "leafOrdinal": 80,
+      "volumeId": "nara-v2"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812199300",
+      "kind": "nara-canvas",
+      "leafOrdinal": 81,
+      "volumeId": "nara-v2"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812199400",
+      "kind": "nara-canvas",
+      "leafOrdinal": 82,
+      "volumeId": "nara-v2"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812199500",
+      "kind": "nara-canvas",
+      "leafOrdinal": 83,
+      "volumeId": "nara-v2"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812199600",
+      "kind": "nara-canvas",
+      "leafOrdinal": 84,
+      "volumeId": "nara-v2"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812199700",
+      "kind": "nara-canvas",
+      "leafOrdinal": 85,
+      "volumeId": "nara-v2"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812199800",
+      "kind": "nara-canvas",
+      "leafOrdinal": 86,
+      "volumeId": "nara-v2"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812199900",
+      "kind": "nara-canvas",
+      "leafOrdinal": 87,
+      "volumeId": "nara-v2"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812200000",
+      "kind": "nara-canvas",
+      "leafOrdinal": 88,
+      "volumeId": "nara-v2"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812200100",
+      "kind": "nara-canvas",
+      "leafOrdinal": 89,
+      "volumeId": "nara-v2"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812200200",
+      "kind": "nara-canvas",
+      "leafOrdinal": 90,
+      "volumeId": "nara-v2"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812200300",
+      "kind": "nara-canvas",
+      "leafOrdinal": 91,
+      "volumeId": "nara-v2"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812200400",
+      "kind": "nara-canvas",
+      "leafOrdinal": 92,
+      "volumeId": "nara-v2"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812200500",
+      "kind": "nara-canvas",
+      "leafOrdinal": 93,
+      "volumeId": "nara-v2"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812200600",
+      "kind": "nara-canvas",
+      "leafOrdinal": 94,
+      "volumeId": "nara-v2"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812200700",
+      "kind": "nara-canvas",
+      "leafOrdinal": 95,
+      "volumeId": "nara-v2"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812200800",
+      "kind": "nara-canvas",
+      "leafOrdinal": 96,
+      "volumeId": "nara-v2"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812200900",
+      "kind": "nara-canvas",
+      "leafOrdinal": 97,
+      "volumeId": "nara-v2"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812201000",
+      "kind": "nara-canvas",
+      "leafOrdinal": 98,
+      "volumeId": "nara-v2"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812201100",
+      "kind": "nara-canvas",
+      "leafOrdinal": 99,
+      "volumeId": "nara-v2"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812201200",
+      "kind": "nara-canvas",
+      "leafOrdinal": 100,
+      "volumeId": "nara-v2"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812201300",
+      "kind": "nara-canvas",
+      "leafOrdinal": 101,
+      "volumeId": "nara-v2"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812201400",
+      "kind": "nara-canvas",
+      "leafOrdinal": 102,
+      "volumeId": "nara-v2"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812201500",
+      "kind": "nara-canvas",
+      "leafOrdinal": 103,
+      "volumeId": "nara-v2"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812201600",
+      "kind": "nara-canvas",
+      "leafOrdinal": 104,
+      "volumeId": "nara-v2"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812201700",
+      "kind": "nara-canvas",
+      "leafOrdinal": 105,
+      "volumeId": "nara-v2"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812201800",
+      "kind": "nara-canvas",
+      "leafOrdinal": 106,
+      "volumeId": "nara-v2"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812201900",
+      "kind": "nara-canvas",
+      "leafOrdinal": 107,
+      "volumeId": "nara-v2"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812202000",
+      "kind": "nara-canvas",
+      "leafOrdinal": 108,
+      "volumeId": "nara-v2"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812202100",
+      "kind": "nara-canvas",
+      "leafOrdinal": 109,
+      "volumeId": "nara-v2"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812202200",
+      "kind": "nara-canvas",
+      "leafOrdinal": 110,
+      "volumeId": "nara-v2"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812202300",
+      "kind": "nara-canvas",
+      "leafOrdinal": 111,
+      "volumeId": "nara-v2"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812202400",
+      "kind": "nara-canvas",
+      "leafOrdinal": 112,
+      "volumeId": "nara-v2"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812202500",
+      "kind": "nara-canvas",
+      "leafOrdinal": 113,
+      "volumeId": "nara-v2"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812202600",
+      "kind": "nara-canvas",
+      "leafOrdinal": 114,
+      "volumeId": "nara-v2"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812202700",
+      "kind": "nara-canvas",
+      "leafOrdinal": 115,
+      "volumeId": "nara-v2"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812202800",
+      "kind": "nara-canvas",
+      "leafOrdinal": 116,
+      "volumeId": "nara-v2"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812202900",
+      "kind": "nara-canvas",
+      "leafOrdinal": 117,
+      "volumeId": "nara-v2"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812203000",
+      "kind": "nara-canvas",
+      "leafOrdinal": 118,
+      "volumeId": "nara-v2"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812203100",
+      "kind": "nara-canvas",
+      "leafOrdinal": 119,
+      "volumeId": "nara-v2"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812203200",
+      "kind": "nara-canvas",
+      "leafOrdinal": 120,
+      "volumeId": "nara-v2"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812203300",
+      "kind": "nara-canvas",
+      "leafOrdinal": 121,
+      "volumeId": "nara-v2"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812203400",
+      "kind": "nara-canvas",
+      "leafOrdinal": 122,
+      "volumeId": "nara-v2"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812203500",
+      "kind": "nara-canvas",
+      "leafOrdinal": 123,
+      "volumeId": "nara-v2"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812203600",
+      "kind": "nara-canvas",
+      "leafOrdinal": 124,
+      "volumeId": "nara-v2"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812203700",
+      "kind": "nara-canvas",
+      "leafOrdinal": 125,
+      "volumeId": "nara-v2"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812203800",
+      "kind": "nara-canvas",
+      "leafOrdinal": 126,
+      "volumeId": "nara-v2"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812203900",
+      "kind": "nara-canvas",
+      "leafOrdinal": 127,
+      "volumeId": "nara-v2"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812204000",
+      "kind": "nara-canvas",
+      "leafOrdinal": 128,
+      "volumeId": "nara-v2"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812204100",
+      "kind": "nara-canvas",
+      "leafOrdinal": 129,
+      "volumeId": "nara-v2"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812204200",
+      "kind": "nara-canvas",
+      "leafOrdinal": 130,
+      "volumeId": "nara-v2"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812204300",
+      "kind": "nara-canvas",
+      "leafOrdinal": 131,
+      "volumeId": "nara-v2"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812204400",
+      "kind": "nara-canvas",
+      "leafOrdinal": 132,
+      "volumeId": "nara-v2"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812204500",
+      "kind": "nara-canvas",
+      "leafOrdinal": 133,
+      "volumeId": "nara-v2"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812204600",
+      "kind": "nara-canvas",
+      "leafOrdinal": 134,
+      "volumeId": "nara-v2"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812204700",
+      "kind": "nara-canvas",
+      "leafOrdinal": 135,
+      "volumeId": "nara-v2"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812204800",
+      "kind": "nara-canvas",
+      "leafOrdinal": 136,
+      "volumeId": "nara-v2"
+    },
+    {
+      "id": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812204900",
+      "kind": "nara-canvas",
+      "leafOrdinal": 137,
+      "volumeId": "nara-v2"
+    }
+  ]
+}
