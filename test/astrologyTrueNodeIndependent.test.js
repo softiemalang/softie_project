@@ -58,3 +58,27 @@ test('Horizons and ERFA frontier artifact preserves oracle independence boundari
   assert.equal(artifact.comparison.summaries.horizonsDateVsSwiss.maxAbsoluteDifferenceArcseconds, 1.0702176164159027)
   assert.equal(artifact.comparison.summaries.erfaMoon98VsSwiss.maxAbsoluteDifferenceArcseconds, 28.92438340040826)
 })
+
+test('expanded Horizons corpus preserves raw provenance and semantic blocking', () => {
+  const artifact = JSON.parse(readFileSync('artifacts/astrology-true-node-horizons-erfa-v2/complete.json', 'utf8'))
+  assert.equal(artifact.schemaVersion, 'astrology-true-node-horizons-erfa-frontier-v2')
+  assert.equal(artifact.corpus.rowCount, 134)
+  assert.deepEqual(artifact.corpus.historicalSampleIndices, [0, 440, 1354, 2367, 3670, 5000, 6000, 7341])
+  assert.equal(artifact.sourceIdentity.horizons.rawFiles.filter((file) => file.kind === 'VECTORS').length, 3)
+  assert.equal(artifact.sourceIdentity.horizons.rawFiles.filter((file) => file.kind === 'ELEMENTS').length, 3)
+  assert.equal(artifact.oracleAssessment.horizons.independence, 'same_family_corroboration')
+  assert.equal(artifact.comparison.summaries.horizonsDateVsSwiss.maxAbsoluteDifferenceArcseconds, 1.6422761457306478)
+  assert.equal(artifact.comparison.summaries.horizonsDateVsLocalDe405.maxAbsoluteDifferenceArcseconds, 0.11627137882896932)
+  assert.equal(artifact.readinessBoundary.independentTrueNodeReference, 'pending')
+})
+
+test('light-time diagnostic remains local convention evidence', () => {
+  const artifact = JSON.parse(readFileSync('artifacts/astrology-true-node-light-time-diagnostic-v1/complete.json', 'utf8'))
+  assert.equal(artifact.schemaVersion, 'astrology-true-node-light-time-diagnostic-v1')
+  assert.equal(artifact.comparison.numericStatus, 'diagnostic_only_no_tolerance_pass')
+  assert.equal(artifact.sourceIdentity.swissReference.defaultFlags, 322)
+  assert.equal(artifact.sourceIdentity.swissReference.truePositionFlags, 338)
+  assert.equal(artifact.comparison.lightTimeEffectSummary.maxAbsoluteDifferenceArcseconds, 0.014527895200444618)
+  assert.equal(artifact.comparison.truePositionFlagsSummary.maxAbsoluteDifferenceArcseconds, 1.6396008296851505)
+  assert.equal(artifact.readinessBoundary.independentTrueNodeReference, 'pending')
+})

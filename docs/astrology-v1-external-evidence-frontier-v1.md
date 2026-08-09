@@ -49,19 +49,22 @@ boundaries remain blocked; no Ziwei readiness promotion.
 |---|---|---|
 | [Swiss Ephemeris: Lunar and Planetary Nodes and Apsides](https://www.astro.com/swisseph-download/doc/swisseph.pdf) | Section 3, pp. 18-19: traditional true lunar node is described as the osculating node of the momentary lunar orbit, with ecliptic/nutation distinctions and a JPL-derived comparison discussion. | Definition corroboration, not an independent raw oracle because the local comparison reference is Swiss. |
 | [Swiss Ephemeris Programmer's Manual](https://www.astro.com/swisseph/swephprg.pdf) | Flag table pp. 15-17 documents `SEFLG_NONUT=64` as no nutation / mean equinox of date; the body table identifies `SE_TRUE_NODE=11`. | Convention metadata admitted to the research diagnostic only. |
-| [NASA/JPL Horizons manual](https://ssd.jpl.nasa.gov/horizons/manual.html) and [Horizons API documentation](https://ssd-api.jpl.nasa.gov/doc/horizons.html) | Section 2/API parameter docs cover geometric osculating elements, JDTDB epochs, `OM`, ICRF vectors, `VEC_CORR=NONE`, and reference-plane choices. A bounded eight-row raw DE441 VECTORS/ELEMENTS corpus is preserved in `artifacts/astrology-true-node-horizons-erfa-v1/complete.json`. | Direct raw public observation admitted as same-family JPL corroboration only; transport TLS verification was explicitly bypassed for the local certificate-chain limitation, so independent authority and production equivalence remain unresolved. |
+| [NASA/JPL Horizons manual](https://ssd.jpl.nasa.gov/horizons/manual.html) and [Horizons API documentation](https://ssd-api.jpl.nasa.gov/doc/horizons.html) | Section 2/API parameter docs cover geometric osculating elements, JDTDB epochs, `OM`, ICRF vectors, `VEC_CORR=NONE`, and reference-plane choices. The historical eight-row witness remains in `artifacts/astrology-true-node-horizons-erfa-v1/complete.json`; the expanded 134-row raw DE441 VECTORS/ELEMENTS corpus is in `artifacts/astrology-true-node-horizons-erfa-v2/complete.json`. | Direct raw public observation admitted as same-family JPL corroboration only; transport TLS verification was explicitly bypassed for the local certificate-chain limitation, so independent authority and production equivalence remain unresolved. |
 
-The successor artifacts `artifacts/astrology-true-node-frame-diagnostic-v1/complete.json`
-and `artifacts/astrology-true-node-horizons-erfa-v1/complete.json`
-compares the inherited JPL state-derived candidate with Swiss flags
+The successor artifacts `artifacts/astrology-true-node-frame-diagnostic-v1/complete.json`,
+`artifacts/astrology-true-node-horizons-erfa-v2/complete.json`, and
+`artifacts/astrology-true-node-light-time-diagnostic-v1/complete.json`
+compare the inherited JPL state-derived candidate with Swiss flags
 `2 | 64 | 256 = 322`, matching the candidate's mean-equinox/no-nutation frame.
 The prior default comparison reached 18.635712528976 arcsec maximum; the
 frame-matched diagnostic reaches 1.8031521231023362 arcsec maximum. The raw
-Horizons DE441 vector-derived candidate differs from Swiss by at most
-1.0702176164159027 arcsec on the eight-row corpus and from the local DE405
-candidate by at most 0.11465191983006662 arcsec. This is a bounded convention
-and same-family corroboration result, not a semantic-identity or tolerance
-pass.
+Horizons DE441 vector-derived candidate differs from Swiss mean-equinox/no-
+nutation by at most 1.6422761457306478 arcsec on the expanded corpus and from
+the local DE405 candidate by at most 0.11627137882896932 arcsec. The explicit
+Swiss `SEFLG_TRUEPOS` light-time diagnostic changes the same-engine result by
+at most 0.014527895200444618 arcsec, so it is insufficient to explain the
+residual. This is a bounded convention and same-family corroboration result,
+not a semantic-identity or tolerance pass.
 The preserved v0 artifact is not rewritten. `independentTrueNodeReference`
 remains `pending`, production remains unsupported, and activation remains
 false.

@@ -10,6 +10,7 @@ const root = resolve(dirname(fileURLToPath(import.meta.url)), '..')
 const artifactPath = resolve(process.env.DE405_TRUE_NODE_HORIZONS_OUTPUT || resolve(root, 'artifacts/astrology-true-node-horizons-erfa-v1/complete.json'))
 const inputPath = resolve(process.env.DE405_TRUE_NODE_HORIZONS_INPUT || resolve(root, 'artifacts/astrology-true-node-independent-v0/complete.json'))
 const framePath = resolve(process.env.DE405_TRUE_NODE_HORIZONS_FRAME_INPUT || resolve(root, 'artifacts/astrology-true-node-frame-diagnostic-v1/complete.json'))
+const expectedSchemaVersion = process.env.DE405_TRUE_NODE_HORIZONS_EXPECTED_SCHEMA || 'astrology-true-node-horizons-erfa-frontier-v1'
 
 function fail(message) {
   throw new Error(message)
@@ -93,7 +94,7 @@ if (!existsSync(artifactPath)) fail(`artifact missing: ${artifactPath}`)
 const artifact = readJson(artifactPath)
 const input = readJson(inputPath)
 const frame = readJson(framePath)
-if (artifact.schemaVersion !== 'astrology-true-node-horizons-erfa-frontier-v1') fail('schemaVersion mismatch')
+if (artifact.schemaVersion !== expectedSchemaVersion) fail(`schemaVersion mismatch: expected ${expectedSchemaVersion}`)
 if (artifact.payloadCanonicalSha256 !== canonicalSha256(Object.fromEntries(Object.entries(artifact).filter(([key]) => key !== 'payloadCanonicalSha256')))) fail('artifact canonical hash mismatch')
 if (artifact.availability !== 'available' || artifact.purpose !== 'research_only') fail('research-only availability boundary changed')
 if (artifact.comparison.numericStatus !== 'diagnostic_only_no_tolerance_pass') fail('numeric result promoted')
@@ -112,17 +113,24 @@ for (const file of artifact.sourceIdentity.swissReference.files) {
   if (!existsSync(path) || !lstatSync(path).isFile() || sha256File(path) !== file.sha256) fail(`Swiss artifact hash drift: ${file.path}`)
 }
 
-const vectorFile = resolve(root, artifact.sourceIdentity.horizons.rawFiles.find((file) => file.kind === 'VECTORS').path)
-const elementFile = resolve(root, artifact.sourceIdentity.horizons.rawFiles.find((file) => file.kind === 'ELEMENTS').path)
-if (!existsSync(vectorFile) || !existsSync(elementFile)) fail('Horizons raw file missing')
+const vectorFiles = artifact.sourceIdentity.horizons.rawFiles.filter((file) => file.kind === 'VECTORS')
+const elementFiles = artifact.sourceIdentity.horizons.rawFiles.filter((file) => file.kind === 'ELEMENTS')
+if (vectorFiles.length === 0 || elementFiles.length === 0) fail('Horizons raw file missing')
 for (const file of artifact.sourceIdentity.horizons.rawFiles) {
   const path = resolve(root, file.path)
   if (file.sizeBytes !== readFileSync(path).byteLength || file.sha256 !== sha256File(path)) fail(`Horizons raw byte identity drift: ${file.path}`)
 }
-const vectorRaw = parseHorizonsRaw(vectorFile, 'vectors')
-const elementRaw = parseHorizonsRaw(elementFile, 'elements')
-if (vectorRaw.response.signature?.version !== artifact.sourceIdentity.horizons.apiSignature?.version) fail('Horizons API signature drift')
-if (vectorRaw.header !== artifact.sourceIdentity.horizons.rawResponseHeaders.vectors || elementRaw.header !== artifact.sourceIdentity.horizons.rawResponseHeaders.elements) fail('Horizons raw response header drift')
+const vectorRaw = vectorFiles.map((file) => parseHorizonsRaw(resolve(root, file.path), 'vectors'))
+const elementRaw = elementFiles.map((file) => parseHorizonsRaw(resolve(root, file.path), 'elements'))
+for (const raw of [...vectorRaw, ...elementRaw]) if (raw.response.signature?.version !== artifact.sourceIdentity.horizons.apiSignature?.version) fail('Horizons API signature drift')
+const expectedVectorHeaders = artifact.sourceIdentity.horizons.rawResponseHeaders.vectors
+const expectedElementHeaders = artifact.sourceIdentity.horizons.rawResponseHeaders.elements
+const actualVectorHeaders = vectorRaw.map((raw) => raw.header)
+const actualElementHeaders = elementRaw.map((raw) => raw.header)
+if (JSON.stringify(Array.isArray(expectedVectorHeaders) ? expectedVectorHeaders : [expectedVectorHeaders]) !== JSON.stringify(actualVectorHeaders)) fail('Horizons vector response header drift')
+if (JSON.stringify(Array.isArray(expectedElementHeaders) ? expectedElementHeaders : [expectedElementHeaders]) !== JSON.stringify(actualElementHeaders)) fail('Horizons element response header drift')
+const vectorRows = vectorRaw.flatMap((raw) => raw.rows)
+const elementRows = elementRaw.flatMap((raw) => raw.rows)
 
 const sampleIndices = artifact.corpus.sampleIndices
 const rows = artifact.comparison.rows
@@ -136,16 +144,16 @@ for (const [index, row] of rows.entries()) {
   if (!inputRow || !frameRow || row.index !== sampleIndices[index] || row.sampleId !== expectedId) fail(`sample ordering mismatch at ${index}`)
   if (row.jdTdb !== inputRow.jdTdb || row.jdTt !== inputRow.jdTt || row.jdUt !== inputRow.jdUt) fail(`inherited epoch mismatch at ${row.sampleId}`)
   if (row.localDe405CandidateLongitudeDegrees !== inputRow.candidateLongitudeDegrees || row.swissMeanEquinoxTrueNodeLongitudeDegrees !== frameRow.swissMeanEquinoxTrueNodeLongitudeDegrees) fail(`inherited longitude mismatch at ${row.sampleId}`)
-  if (Math.abs(vectorRaw.rows[index].jdTdb - row.jdTdb) > 1e-9 || Math.abs(elementRaw.rows[index].jdTdb - row.jdTdb) > 1e-9) fail(`raw epoch mismatch at ${row.sampleId}`)
+  if (Math.abs(vectorRows[index].jdTdb - row.jdTdb) > 1e-9 || Math.abs(elementRows[index].jdTdb - row.jdTdb) > 1e-9) fail(`raw epoch mismatch at ${row.sampleId}`)
   if (!Array.isArray(row.horizonsVectorStateJ2000KmKmPerSec) || row.horizonsVectorStateJ2000KmKmPerSec.length !== 6 || row.horizonsVectorStateJ2000KmKmPerSec.some((value) => !finite(value))) fail(`Horizons state invalid at ${row.sampleId}`)
   if (!Array.isArray(row.erfaMoon98StateJ2000KmKmPerSec) || row.erfaMoon98StateJ2000KmKmPerSec.length !== 6 || row.erfaMoon98StateJ2000KmKmPerSec.some((value) => !finite(value))) fail(`ERFA state invalid at ${row.sampleId}`)
-  if (row.horizonsVectorStateJ2000KmKmPerSec.some((value, stateIndex) => value !== vectorRaw.rows[index].state[stateIndex])) fail(`Horizons state/raw mismatch at ${row.sampleId}`)
+  if (row.horizonsVectorStateJ2000KmKmPerSec.some((value, stateIndex) => value !== vectorRows[index].state[stateIndex])) fail(`Horizons state/raw mismatch at ${row.sampleId}`)
   const horizonsDate = deriveOsculatingLunarNodeLongitude({ stateJ2000KmKmPerSec: row.horizonsVectorStateJ2000KmKmPerSec, jdTt: row.jdTt })
   const erfaDate = deriveOsculatingLunarNodeLongitude({ stateJ2000KmKmPerSec: row.erfaMoon98StateJ2000KmKmPerSec, jdTt: row.jdTt })
   if (horizonsDate.availability !== 'available' || erfaDate.availability !== 'available') fail(`derived state unavailable at ${row.sampleId}`)
   if (horizonsDate.longitudeDegrees !== row.horizonsDateMeanEclipticCandidateLongitudeDegrees || erfaDate.longitudeDegrees !== row.erfaMoon98DateMeanEclipticCandidateLongitudeDegrees) fail(`derived longitude drift at ${row.sampleId}`)
   if (deriveJ2000EclipticNodeLongitude(row.horizonsVectorStateJ2000KmKmPerSec) !== row.horizonsVectorJ2000EclipticNodeLongitudeDegrees) fail(`J2000 node derivation drift at ${row.sampleId}`)
-  if (row.horizonsElementJ2000EclipticAscendingNodeLongitudeDegrees !== elementRaw.rows[index].om) fail(`Horizons OM mismatch at ${row.sampleId}`)
+  if (row.horizonsElementJ2000EclipticAscendingNodeLongitudeDegrees !== elementRows[index].om) fail(`Horizons OM mismatch at ${row.sampleId}`)
   const expected = {
     horizonsElementVectorDifferenceArcseconds: absoluteArcseconds(row.horizonsVectorJ2000EclipticNodeLongitudeDegrees, row.horizonsElementJ2000EclipticAscendingNodeLongitudeDegrees),
     localDe405VsSwissAbsoluteDifferenceArcseconds: absoluteArcseconds(row.localDe405CandidateLongitudeDegrees, row.swissMeanEquinoxTrueNodeLongitudeDegrees),
@@ -153,12 +161,17 @@ for (const [index, row] of rows.entries()) {
     erfaMoon98VsSwissAbsoluteDifferenceArcseconds: absoluteArcseconds(row.erfaMoon98DateMeanEclipticCandidateLongitudeDegrees, row.swissMeanEquinoxTrueNodeLongitudeDegrees),
     horizonsDateVsLocalDe405AbsoluteDifferenceArcseconds: absoluteArcseconds(row.horizonsDateMeanEclipticCandidateLongitudeDegrees, row.localDe405CandidateLongitudeDegrees),
   }
+  if (expectedSchemaVersion === 'astrology-true-node-horizons-erfa-frontier-v2') {
+    if (!finite(row.swissDefaultTrueNodeLongitudeDegrees)) fail(`Swiss default longitude missing at ${row.sampleId}`)
+    expected.horizonsDateVsSwissDefaultAbsoluteDifferenceArcseconds = absoluteArcseconds(row.horizonsDateMeanEclipticCandidateLongitudeDegrees, row.swissDefaultTrueNodeLongitudeDegrees)
+  }
   for (const [field, value] of Object.entries(expected)) if (row[field] !== value) fail(`derived comparison mismatch ${field} at ${row.sampleId}`)
 }
 
 for (const [name, field] of Object.entries({
   localDe405VsSwiss: 'localDe405VsSwissAbsoluteDifferenceArcseconds',
   horizonsDateVsSwiss: 'horizonsDateVsSwissAbsoluteDifferenceArcseconds',
+  ...(expectedSchemaVersion === 'astrology-true-node-horizons-erfa-frontier-v2' ? { horizonsDateVsSwissDefault: 'horizonsDateVsSwissDefaultAbsoluteDifferenceArcseconds' } : {}),
   erfaMoon98VsSwiss: 'erfaMoon98VsSwissAbsoluteDifferenceArcseconds',
   horizonsDateVsLocalDe405: 'horizonsDateVsLocalDe405AbsoluteDifferenceArcseconds',
   horizonsElementVectorConsistency: 'horizonsElementVectorDifferenceArcseconds',

@@ -17,7 +17,11 @@ const vectorRawPath = join(artifactDirectory, 'horizons-vectors.json')
 const elementsRawPath = join(artifactDirectory, 'horizons-elements.json')
 const horizonsApiUrl = 'https://ssd.jpl.nasa.gov/api/horizons.api'
 const accessDate = '2026-08-09'
-const sampleIndices = [0, 440, 1354, 2367, 3670, 5000, 6000, 7341]
+const defaultSampleIndices = [0, 440, 1354, 2367, 3670, 5000, 6000, 7341]
+const sampleIndices = (process.env.DE405_TRUE_NODE_HORIZONS_SAMPLE_INDICES || defaultSampleIndices.join(','))
+  .split(',')
+  .map((value) => Number(value.trim()))
+const schemaVersion = process.env.DE405_TRUE_NODE_HORIZONS_SCHEMA_VERSION || 'astrology-true-node-horizons-erfa-frontier-v1'
 const J2000 = 2451545.0
 const DAY_SECONDS = 86400
 const AU_KM = 149597870.7
@@ -77,6 +81,10 @@ function loadArtifact(path, schemaVersion) {
   return artifact
 }
 
+if (sampleIndices.length === 0 || sampleIndices.some((index) => !Number.isInteger(index) || index < 0) || new Set(sampleIndices).size !== sampleIndices.length) {
+  fail('sample indices must be unique non-negative integers')
+}
+
 function requestParams(kind, tlist) {
   const common = {
     format: 'json',
@@ -120,6 +128,26 @@ function loadRawResponse(path, inputEnv, params) {
   mkdirSync(dirname(path), { recursive: true })
   writeFileSync(path, bytes)
   return { bytes, response: JSON.parse(bytes.toString('utf8')) }
+}
+
+function loadRawResponseSet(path, inputEnv, kind, tlist) {
+  const configuredInput = process.env[inputEnv]
+  const chunkSize = 64
+  const tlistChunks = []
+  for (let index = 0; index < tlist.length; index += chunkSize) tlistChunks.push(tlist.slice(index, index + chunkSize))
+  if (configuredInput || tlistChunks.length === 1) {
+    const single = loadRawResponse(path, inputEnv, requestParams(kind, tlist))
+    return { responses: [single.response], rawFiles: [{ path, bytes: single.bytes }] }
+  }
+
+  const extension = '.json'
+  const stem = path.endsWith(extension) ? path.slice(0, -extension.length) : path
+  const chunks = tlistChunks.map((chunk, index) => {
+    const chunkPath = `${stem}-${String(index).padStart(3, '0')}${extension}`
+    const loaded = loadRawResponse(chunkPath, '', requestParams(kind, chunk))
+    return { path: chunkPath, bytes: loaded.bytes, response: loaded.response }
+  })
+  return { responses: chunks.map((chunk) => chunk.response), rawFiles: chunks.map(({ path: chunkPath, bytes }) => ({ path: chunkPath, bytes })) }
 }
 
 function validateHorizonsResponse(response, kind) {
@@ -219,12 +247,12 @@ const selectedRows = sampleIndices.map((index) => {
   return { ...row, swissMeanEquinoxTrueNodeLongitudeDegrees: frameRow.swissMeanEquinoxTrueNodeLongitudeDegrees }
 })
 const tlist = selectedRows.map((row) => row.jdTdb)
-const vectorsRaw = loadRawResponse(vectorRawPath, 'DE405_TRUE_NODE_HORIZONS_VECTORS_RAW_INPUT', requestParams('vectors', tlist))
-const elementsRaw = loadRawResponse(elementsRawPath, 'DE405_TRUE_NODE_HORIZONS_ELEMENTS_RAW_INPUT', requestParams('elements', tlist))
-validateHorizonsResponse(vectorsRaw.response, 'vectors')
-validateHorizonsResponse(elementsRaw.response, 'elements')
-const vectorRows = parseCsvRows(vectorsRaw.response, 'vectors')
-const elementRows = parseCsvRows(elementsRaw.response, 'elements')
+const vectorsRaw = loadRawResponseSet(vectorRawPath, 'DE405_TRUE_NODE_HORIZONS_VECTORS_RAW_INPUT', 'vectors', tlist)
+const elementsRaw = loadRawResponseSet(elementsRawPath, 'DE405_TRUE_NODE_HORIZONS_ELEMENTS_RAW_INPUT', 'elements', tlist)
+for (const response of vectorsRaw.responses) validateHorizonsResponse(response, 'vectors')
+for (const response of elementsRaw.responses) validateHorizonsResponse(response, 'elements')
+const vectorRows = vectorsRaw.responses.flatMap((response) => parseCsvRows(response, 'vectors'))
+const elementRows = elementsRaw.responses.flatMap((response) => parseCsvRows(response, 'elements'))
 if (vectorRows.length !== selectedRows.length || elementRows.length !== selectedRows.length) fail('Horizons row count mismatch')
 for (const [index, row] of selectedRows.entries()) {
   if (Math.abs(vectorRows[index].jdTdb - row.jdTdb) > 1e-9 || Math.abs(elementRows[index].jdTdb - row.jdTdb) > 1e-9) fail(`Horizons epoch mismatch at ${row.sampleId}`)
@@ -253,10 +281,12 @@ const rows = selectedRows.map((inputRow, index) => {
     horizonsElementJ2000EclipticAscendingNodeLongitudeDegrees: elementRow.longitudeAscendingNodeJ2000Degrees,
     horizonsElementVectorDifferenceArcseconds: absoluteArcseconds(horizonsJ2000, elementRow.longitudeAscendingNodeJ2000Degrees),
     horizonsDateMeanEclipticCandidateLongitudeDegrees: horizonsDate.longitudeDegrees,
+    swissDefaultTrueNodeLongitudeDegrees: inputRow.swissTrueNodeLongitudeDegrees,
     erfaMoon98StateJ2000KmKmPerSec: erfaState,
     erfaMoon98DateMeanEclipticCandidateLongitudeDegrees: erfaDate.longitudeDegrees,
     localDe405VsSwissAbsoluteDifferenceArcseconds: absoluteArcseconds(inputRow.candidateLongitudeDegrees, inputRow.swissMeanEquinoxTrueNodeLongitudeDegrees),
     horizonsDateVsSwissAbsoluteDifferenceArcseconds: absoluteArcseconds(horizonsDate.longitudeDegrees, inputRow.swissMeanEquinoxTrueNodeLongitudeDegrees),
+    horizonsDateVsSwissDefaultAbsoluteDifferenceArcseconds: absoluteArcseconds(horizonsDate.longitudeDegrees, inputRow.swissTrueNodeLongitudeDegrees),
     erfaMoon98VsSwissAbsoluteDifferenceArcseconds: absoluteArcseconds(erfaDate.longitudeDegrees, inputRow.swissMeanEquinoxTrueNodeLongitudeDegrees),
     horizonsDateVsLocalDe405AbsoluteDifferenceArcseconds: absoluteArcseconds(horizonsDate.longitudeDegrees, inputRow.candidateLongitudeDegrees),
   }
@@ -269,7 +299,7 @@ for (const file of swissFiles) {
 }
 
 const payload = {
-  schemaVersion: 'astrology-true-node-horizons-erfa-frontier-v1',
+  schemaVersion,
   availability: 'available',
   purpose: 'research_only',
   evidenceBoundary: {
@@ -287,22 +317,30 @@ const payload = {
   corpus: {
     rowCount: rows.length,
     sampleIndices,
-    coverage: 'eight deterministic points spanning the inherited 1900-2101 DE405 service interval; not a full raw-oracle sweep',
+    coverage: rows.length === defaultSampleIndices.length
+      ? 'eight deterministic points spanning the inherited 1900-2101 DE405 service interval; not a full raw-oracle sweep'
+      : `${rows.length} deterministic points spanning the inherited 1900-2101 DE405 service interval; expanded raw-oracle sample, not a full sweep`,
+    historicalSampleIndices: defaultSampleIndices,
     epochs: 'Horizons vectors/elements requested at JDTDB; local date-frame transforms use the inherited paired TT value; no historical UTC conversion is asserted',
   },
   sourceIdentity: {
     horizons: {
       provider: 'NASA/JPL Solar System Dynamics Horizons API',
       apiUrl: horizonsApiUrl,
-      apiSignature: { ...vectorsRaw.response.signature },
-      rawResponseHeaders: { vectors: responseHeader(vectorsRaw.response), elements: responseHeader(elementsRaw.response) },
+      accessDate,
+      apiSignature: { ...vectorsRaw.responses[0].signature },
+      rawResponseHeaders: {
+        vectors: vectorsRaw.responses.length === 1 ? responseHeader(vectorsRaw.responses[0]) : vectorsRaw.responses.map(responseHeader),
+        elements: elementsRaw.responses.length === 1 ? responseHeader(elementsRaw.responses[0]) : elementsRaw.responses.map(responseHeader),
+      },
       target: 'Moon (301)',
       center: 'Earth (399)',
       sourceFamily: 'DE441',
       rawFiles: [
-        { path: relative(root, vectorRawPath), kind: 'VECTORS', sizeBytes: vectorsRaw.bytes.byteLength, sha256: sha256Bytes(vectorsRaw.bytes) },
-        { path: relative(root, elementsRawPath), kind: 'ELEMENTS', sizeBytes: elementsRaw.bytes.byteLength, sha256: sha256Bytes(elementsRaw.bytes) },
+        ...vectorsRaw.rawFiles.map(({ path, bytes }) => ({ path: relative(root, path), kind: 'VECTORS', sizeBytes: bytes.byteLength, sha256: sha256Bytes(bytes) })),
+        ...elementsRaw.rawFiles.map(({ path, bytes }) => ({ path: relative(root, path), kind: 'ELEMENTS', sizeBytes: bytes.byteLength, sha256: sha256Bytes(bytes) })),
       ],
+      sampleSelection: { indices: sampleIndices, selectionPolicy: 'explicit_sorted_input_indices_preserve_historical_eight' },
       vectorQuery: requestParams('vectors', tlist),
       elementQuery: requestParams('elements', tlist),
       outputSemantics: { vectors: 'geometric ICRF Cartesian state, JDTDB, km and km/s, VEC_CORR=NONE', elements: 'geometric osculating elements, JDTDB, ecliptic of J2000.0, OM=longitude of ascending node, no corrections' },
@@ -328,7 +366,7 @@ const payload = {
     { id: 'node-definition-algebra', status: 'bounded_supported', observation: 'Swiss lunar_osc_elem uses the geocentric Moon state and tangent/ecliptic-plane intersection; this is algebraically direction-equivalent to k x (r x v) when the z velocity is nonzero.', admission: 'source_inspection_and_deterministic_derivation_not_semantic_identity' },
     { id: 'tt-ut', status: 'insufficient', observation: 'The inherited argument-shift diagnostic changes Swiss by at most 0.687765504426352 arcsec, below the inherited 18.635712528976 arcsec maximum.', admission: 'local_diagnostic_only' },
     { id: 'nutation-and-equinox', status: 'major_contributor', observation: 'The inherited 7342-row mean-equinox/no-nutation comparison reduces the maximum from 18.635712528976 to 1.8031521231023362 arcsec.', admission: 'local_diagnostic_only' },
-    { id: 'swiss-default-vondrak-2011', status: 'supported_as_remaining_frame_hypothesis', observation: 'Pinned Swiss source inspection shows the default Vondrak-2011 precession/obliquity path; a bounded eight-row DE441 state experiment materially lowers several IAU-2006 residuals but does not uniformly eliminate them.', admission: 'direct_source_inspection_plus_local_experiment_not_authority' },
+    { id: 'swiss-default-vondrak-2011', status: 'supported_as_remaining_frame_hypothesis', observation: `Pinned Swiss source inspection shows the default Vondrak-2011 precession/obliquity path; the expanded ${rows.length}-row DE441 state corpus still requires a bounded local reconstruction experiment and does not authorize semantic identity.`, admission: 'direct_source_inspection_plus_local_experiment_not_authority' },
     { id: 'light-time', status: 'insufficient_alone', observation: 'Swiss source applies a Moon light-time correction unless SEFLG_TRUEPOS is set; its source comment bounds the node effect at milliarcsecond scale, so it cannot alone explain the former multi-arcsecond frame residual.', admission: 'official_source_inspection' },
   ],
   comparison: {
@@ -337,6 +375,7 @@ const payload = {
     summaries: {
       localDe405VsSwiss: summarize(rows, 'localDe405VsSwissAbsoluteDifferenceArcseconds'),
       horizonsDateVsSwiss: summarize(rows, 'horizonsDateVsSwissAbsoluteDifferenceArcseconds'),
+      horizonsDateVsSwissDefault: summarize(rows, 'horizonsDateVsSwissDefaultAbsoluteDifferenceArcseconds'),
       erfaMoon98VsSwiss: summarize(rows, 'erfaMoon98VsSwissAbsoluteDifferenceArcseconds'),
       horizonsDateVsLocalDe405: summarize(rows, 'horizonsDateVsLocalDe405AbsoluteDifferenceArcseconds'),
       horizonsElementVectorConsistency: summarize(rows, 'horizonsElementVectorDifferenceArcseconds'),
