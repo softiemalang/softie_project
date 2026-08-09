@@ -1,0 +1,132 @@
+{
+  "alreadyHeld": [
+    {
+      "authorityStatus": "observed_bytes_only",
+      "byteLength": 580320,
+      "byteSha256": "449336b5e35aa6811b0462093d0175c45a0add44065bf2d3845cff75981db692",
+      "id": "saju-local-ziping-zhenquan",
+      "pageCount": 27,
+      "path": "/Users/softie/Documents/malang_lab/documents/子平真诠-沈孝瞻原著.pdf",
+      "reuse": "compare target sections and identity metadata; do not count as an independent witness",
+      "system": "saju"
+    },
+    {
+      "authorityStatus": "observed_bytes_only",
+      "byteLength": 8694949,
+      "byteSha256": "6285805c91b79f1b5bccdfce1cdab1d7ec684731160b4191a25e8f1d23c229dd",
+      "id": "saju-local-ditian-sui",
+      "pageCount": 158,
+      "path": "/Users/softie/Documents/malang_lab/documents/滴天髓.pdf",
+      "reuse": "strength and yongshin locator candidate only",
+      "system": "saju"
+    },
+    {
+      "authorityStatus": "observed_bytes_only",
+      "byteLength": 2710282,
+      "byteSha256": "c6225b78d9d49282c5699b63315018a1e17ebf091c50ce4feb3dab465ec25a12",
+      "id": "saju-local-yuanhai-ziping",
+      "pageCount": 202,
+      "path": "/Users/softie/Documents/malang_lab/documents/淵海子平.pdf",
+      "reuse": "ten-god and hidden-stem locator candidate only",
+      "system": "saju"
+    },
+    {
+      "authorityStatus": "observed_bytes_only",
+      "byteLength": 1547911,
+      "byteSha256": "36d54cdc995d203fdceafcb52b2a0d4f57093ab1765c532db5418b46a96c4b19",
+      "id": "saju-local-qiongtong-baojian",
+      "pageCount": 92,
+      "path": "/Users/softie/Documents/malang_lab/documents/穷通宝鉴.pdf",
+      "reuse": "seasonal-strength locator candidate only",
+      "system": "saju"
+    },
+    {
+      "authorityStatus": "observed_bytes_only",
+      "byteLength": 7601079,
+      "byteSha256": "f09bce7c6dbe1e222746ad8c97f49d132ed4e8da6d3c1d0399b0824b3794593f",
+      "id": "saju-local-sanming-tonghui",
+      "pageCount": 370,
+      "path": "/Users/softie/Documents/malang_lab/documents/三命通會.pdf",
+      "reuse": "five-elements and shinsal locator candidate only",
+      "system": "saju"
+    },
+    {
+      "authorityStatus": "observed_bytes_only",
+      "byteLength": 35515645,
+      "byteSha256": "4786a94ab454acdabf9716d7c0db4756dbcbde99a88bc45fda254863c1961023",
+      "id": "ziwei-local-nanbei-219p",
+      "pageCount": 219,
+      "path": "/Users/softie/Documents/命-南北山人_紫微斗数全书.pdf",
+      "reuse": "retain p4, p7, p8, p10 observations; do not infer palace semantic identity",
+      "system": "ziwei"
+    },
+    {
+      "authorityStatus": "observed_bytes_only",
+      "byteLength": 36201526,
+      "byteSha256": "04e184c4a52cb042dc885c6ccc9135d94ab25de62007506198ee979a33e66bfc",
+      "id": "ziwei-local-nanyangtang-528p",
+      "pageCount": 528,
+      "path": "/Users/softie/Documents/malang_lab/documents/新锓希夷陈先生紫微斗数全书.七卷.宋.陈抟撰.明.潘希尹补.明代南阳堂刊本.黑白版.pdf",
+      "reuse": "high-leverage candidate for identity-linked review; not a new independent witness by itself",
+      "system": "ziwei"
+    }
+  ],
+  "duplicateAvoidance": [
+    "do not reacquire the five local Saju PDFs as if they were independent witnesses",
+    "do not count Nanbei/Nanyangtang mirrors or reprints twice without lineage",
+    "do not count Swiss/DE405/CSPICE/Horizons wrappers as independent True Node authority",
+    "do not reacquire resolved six-lucky-star and twelve-non-root relative-rule scope"
+  ],
+  "heldButAuthorityInsufficient": [
+    {
+      "id": "saju-local-observation-artifacts",
+      "paths": [
+        "artifacts/saju-local-source-corpus-observation-v1/complete.json",
+        "artifacts/saju-five-classics-grounding-v0/complete.json"
+      ],
+      "reason": "direct observations and locator candidates exist; edition identity, independent witness and semantic equivalence remain open",
+      "system": "saju"
+    },
+    {
+      "id": "ziwei-local-source-witness-artifacts",
+      "paths": [
+        "artifacts/ziwei-palace-semantic-source-frontier-v1/complete.json",
+        "artifacts/ziwei-inherited-evidence-consumption-frontier-v1/complete.json"
+      ],
+      "reason": "page observations and transforms exist; palace semantics, Tianfu authority, independent oracle and claim boundary remain open",
+      "system": "ziwei"
+    },
+    {
+      "id": "western-local-diagnostics",
+      "paths": [
+        "artifacts/astrology-true-node-independent-frontier-v4/complete.json",
+        "artifacts/astrology-true-node-horizons-erfa-v2/complete.json",
+        "artifacts/astrology-true-node-frame-diagnostic-v1/complete.json"
+      ],
+      "reason": "rich numeric/frame diagnostics exist; they do not prove same semantic quantity or licensing",
+      "system": "western"
+    }
+  ],
+  "notHeldOrNotConfirmed": [
+    {
+      "id": "saju-official-1901-2100-calendar-corpus",
+      "reason": "KASI public service is range-limited in the observed page and bulk/reuse terms are unresolved",
+      "system": "saju"
+    },
+    {
+      "id": "ziwei-independent-second-palace-witness",
+      "reason": "no independent non-clone witness with complete readable mapping has been admitted",
+      "system": "ziwei"
+    },
+    {
+      "id": "western-direct-same-semantic-oracle",
+      "reason": "no confirmed license-usable direct oracle located; known candidates are near-misses or target quantity itself",
+      "system": "western"
+    },
+    {
+      "id": "western-license-written-decision",
+      "reason": "AGPL/professional choice and deployment-scope confirmation are pending",
+      "system": "western"
+    }
+  ]
+}

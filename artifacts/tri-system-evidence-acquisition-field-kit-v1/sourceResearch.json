@@ -1,0 +1,222 @@
+[
+  {
+    "access": "public web service; displayed range is -59 to 2050-12, so 2051-2100 coverage must be requested or sourced separately",
+    "authorityRole": "official calendar-service and institutional policy locator",
+    "doesNotSupport": [
+      "classical Saju rule authority",
+      "automatic 1901-2100 bulk-data license",
+      "missing-birth-time policy"
+    ],
+    "id": "source-kasi-lunar-calendar",
+    "institution": "한국천문연구원 (KASI)",
+    "license": "service terms and reuse rights for bulk extraction are not established; do not mirror data without confirmation",
+    "locator": "https://astro.kasi.re.kr/life/pageView/5",
+    "status": "confirmed_official_locator",
+    "supports": [
+      "lunar-solar correspondence locator",
+      "leap-month observations",
+      "sexagenary date display"
+    ],
+    "system": "saju",
+    "title": "한국천문연구원 월별 음양력 / 역과시간 자료"
+  },
+  {
+    "access": "request and fee; not an openly downloadable corpus",
+    "authorityRole": "official request channel for lunar-solar and astronomical certificate data",
+    "doesNotSupport": [
+      "sexagenary hour-stem convention",
+      "classical text transmission identity"
+    ],
+    "id": "source-kasi-ephemeris-certificate",
+    "institution": "한국천문연구원 (KASI)",
+    "license": "individual certificate use is described; bulk/commercial redistribution requires written confirmation",
+    "locator": "https://www.kasi.re.kr/kor/publication/pageView/131",
+    "status": "confirmed_official_locator",
+    "supports": [
+      "auditable date-specific calendar evidence",
+      "official request provenance"
+    ],
+    "system": "saju",
+    "title": "음양력 대조증명서 및 천문정보자료 신청"
+  },
+  {
+    "access": "public institutional documentation; operational service terms apply",
+    "authorityRole": "official Korean standard-time reference",
+    "doesNotSupport": [
+      "true-solar-time astrology rule",
+      "classical 子時 boundary semantics"
+    ],
+    "id": "source-kriss-utc-korea",
+    "institution": "한국표준과학연구원 (KRISS)",
+    "license": "not a blanket license for copying or reselling the synchronization service",
+    "locator": "https://www.kriss.re.kr/board.es?bid=0031&mid=a10603000000",
+    "status": "confirmed_official_locator",
+    "supports": [
+      "UTC(KRIS) and KST relationship",
+      "time-scale provenance"
+    ],
+    "system": "saju",
+    "title": "대한민국표준시 / UTC(KRIS)"
+  },
+  {
+    "access": "catalog confirmed; digital view is library/registered-user restricted; physical holdings exist",
+    "authorityRole": "catalog identity and access locator, not a freely reusable original scan",
+    "catalogIdentity": "NDL BibID 000001683371; call no. HR511-201; digital PID 12282002",
+    "doesNotSupport": [
+      "unrestricted redistribution",
+      "independent witness until its textual relation to the local export is documented"
+    ],
+    "id": "source-ndl-ziping-original-commentary",
+    "institution": "国立国会図書館 (National Diet Library)",
+    "license": "library access is not a reproduction license; obtain permitted page images or copies through NDL rules",
+    "locator": "https://ndlsearch.ndl.go.jp/books/R100000002-I000001683371",
+    "status": "confirmed_catalog_candidate",
+    "supports": [
+      "edition and author/editor identity",
+      "candidate pages for 格局/用神/行運 comparison"
+    ],
+    "system": "saju",
+    "title": "原本子平真詮考玄評註"
+  },
+  {
+    "access": "physical/paid modern edition; NDL and cooperating-library holdings",
+    "authorityRole": "catalog identity for a modern reprint explicitly titled 明朝版",
+    "catalogIdentity": "NDL BibID 027985956; call no. HR511-L127; 866p; 東洋書院 2017",
+    "doesNotSupport": [
+      "proof that the local 370-page export is the same edition",
+      "open-license scan"
+    ],
+    "id": "source-ndl-sanming-ming-edition",
+    "institution": "国立国会図書館 (National Diet Library)",
+    "license": "commercial edition; page-image capture and redistribution require permission",
+    "locator": "https://ndlsearch.ndl.go.jp/books/R100000002-I027985956",
+    "status": "confirmed_catalog_candidate",
+    "supports": [
+      "edition comparison and 明朝版 identity lead",
+      "rules/sections to compare with local export"
+    ],
+    "system": "saju",
+    "title": "三命通会 : 明朝版"
+  },
+  {
+    "access": "public web text and linked image context",
+    "authorityRole": "search and section locator only; project states OCR is a draft from a base scan",
+    "doesNotSupport": [
+      "OCR-only claim verification",
+      "edition identity without the linked base scan and catalog record"
+    ],
+    "id": "source-ctext-saju-pages",
+    "institution": "Chinese Text Project",
+    "license": "project/text reuse terms must be checked per page; OCR text is not accepted as the source image",
+    "locator": "https://ctext.org/wiki.pl?chapter=548506&if=gb",
+    "status": "confirmed_project_locator_candidate",
+    "supports": [
+      "chapter/section search anchors",
+      "candidate phrase discovery"
+    ],
+    "system": "saju",
+    "title": "中國哲學書電子化計劃 pages for 三命通會, 淵海子平, 子平真詮評注"
+  },
+  {
+    "access": "public; catalog says 公開 and image download is available",
+    "authorityRole": "official catalog identity, public scan locator and CC0 metadata",
+    "catalogIdentity": "F1000000000000101426; call no. 子060-0001; 明刊本; 7卷; 2冊; selected 陳搏（宋）/潘希尹（明）",
+    "doesNotSupport": [
+      "automatic semantic mapping",
+      "agreement with production ordinal without page-level review"
+    ],
+    "id": "source-japan-archives-ziwei-nanyangtang",
+    "imageLocator": "https://www.digital.archives.go.jp/file/1078787",
+    "institution": "国立公文書館デジタルアーカイブ / National Archives of Japan",
+    "license": "catalog metadata says CC0; verify the downloaded image file and any page-level terms before redistribution",
+    "locator": "https://www.digital.archives.go.jp/das/meta/F1000000000000101426.html",
+    "status": "confirmed_official_open_scan_locator",
+    "supports": [
+      "edition identity and page-image witness acquisition",
+      "palace/branch/major-star/transformation page search"
+    ],
+    "system": "ziwei",
+    "title": "新鋟希夷陳先生紫微斗数全書"
+  },
+  {
+    "access": "public PDF",
+    "authorityRole": "Swiss True Node definition and implementation-description source; not independent of the target quantity",
+    "catalogIdentity": "official PDF, section 2.2.2 True Node, printed pp. 17-18 / PDF p. 20-21",
+    "doesNotSupport": [
+      "independent oracle status",
+      "permission to deploy Swiss code/data"
+    ],
+    "id": "source-swiss-true-node-manual",
+    "institution": "Astrodienst Swiss Ephemeris project",
+    "license": "documentation access is public; code/data licensing remains dual-license and separate",
+    "locator": "https://www.astro.com/swisseph-download/doc/swisseph.pdf",
+    "status": "confirmed_official_technical_source",
+    "supports": [
+      "traditional osculating-node semantic description",
+      "JPL/Swiss precision comparison statement"
+    ],
+    "system": "western",
+    "title": "Swiss Ephemeris 2.10 Lunar and Planetary Nodes and Apsides"
+  },
+  {
+    "access": "public web manual and service",
+    "authorityRole": "official state-vector, frame, time-scale and osculating-element source; not a direct product True Node field",
+    "doesNotSupport": [
+      "Swiss SE_TRUE_NODE equivalence",
+      "direct tropical True Node longitude"
+    ],
+    "id": "source-jpl-horizons-manual",
+    "institution": "NASA Jet Propulsion Laboratory Solar System Dynamics",
+    "license": "manual/service terms and JPL data redistribution rules must be checked for retained output",
+    "locator": "https://ssd.jpl.nasa.gov/horizons/manual.html",
+    "status": "confirmed_official_technical_source",
+    "supports": [
+      "geometric versus apparent",
+      "ecliptic of date/J2000",
+      "TDB and osculating OM/state semantics",
+      "DE441 provenance"
+    ],
+    "system": "western",
+    "title": "Horizons System Manual"
+  },
+  {
+    "access": "public repository; MIT license is exposed by the repository",
+    "authorityRole": "independent open-source event/position library; near-miss, not a direct True Node oracle",
+    "catalogIdentity": "official repository default branch/release metadata must be pinned at intake",
+    "doesNotSupport": [
+      "instantaneous True Node longitude API",
+      "semantic bridge to SE_TRUE_NODE"
+    ],
+    "id": "source-astronomy-engine",
+    "institution": "Cosine Kitty project",
+    "license": "MIT candidate, but verify exact pinned release and third-party model notices",
+    "locator": "https://github.com/cosinekitty/astronomy",
+    "status": "confirmed_open_source_near_miss",
+    "supports": [
+      "independent Moon state and coordinate transforms",
+      "license-usable derivation building block"
+    ],
+    "system": "western",
+    "title": "Astronomy Engine"
+  },
+  {
+    "access": "public source; local raw fixtures and build audit already held",
+    "authorityRole": "independent labelled approximation observed locally; not production authority",
+    "catalogIdentity": "commit 5bf172ea231c4b6ea3d7e09ca307571354a41e8a",
+    "doesNotSupport": [
+      "high-precision semantic authority",
+      "license-compatible production dependency under current policy"
+    ],
+    "id": "source-astrolog-pinned",
+    "institution": "CruiserOne / Astrolog",
+    "license": "GPL-2.0-or-later; not adopted as a product dependency",
+    "locator": "https://github.com/CruiserOne/Astrolog/tree/5bf172ea231c4b6ea3d7e09ca307571354a41e8a",
+    "status": "held_local_near_miss",
+    "supports": [
+      "independent algorithm-path diagnostic",
+      "label/approximation observation"
+    ],
+    "system": "western",
+    "title": "Astrolog 8.00 Matrix-only pinned source"
+  }
+]

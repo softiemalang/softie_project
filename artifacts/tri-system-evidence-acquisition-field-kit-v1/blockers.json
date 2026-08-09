@@ -1,0 +1,272 @@
+[
+  {
+    "claimIds": [
+      "saju.natal.branch-relation.day-hour-육합",
+      "saju.natal.branch-relation.day-hour-충",
+      "saju.natal.branch-relation.day-hour-파",
+      "saju.natal.branch-relation.day-hour-형",
+      "saju.natal.branch-relation.half-trine-목-year-day",
+      "saju.natal.branch-relation.half-trine-수-day-hour",
+      "saju.natal.branch-relation.half-trine-수-month-hour",
+      "saju.natal.branch-relation.month-day-육합",
+      "saju.natal.branch-relation.month-day-충",
+      "saju.natal.branch-relation.month-day-파",
+      "saju.natal.branch-relation.month-day-형",
+      "saju.natal.branch-relation.month-hour-육합",
+      "saju.natal.branch-relation.month-hour-충",
+      "saju.natal.branch-relation.month-hour-형",
+      "saju.natal.branch-relation.year-day-육합",
+      "saju.natal.branch-relation.year-day-충",
+      "saju.natal.branch-relation.year-day-파",
+      "saju.natal.branch-relation.year-hour-육합",
+      "saju.natal.branch-relation.year-hour-충",
+      "saju.natal.branch-relation.year-hour-파",
+      "saju.natal.branch-relation.year-hour-형",
+      "saju.natal.branch-relation.year-month-육합",
+      "saju.natal.branch-relation.year-month-파",
+      "saju.natal.branch-relation.year-month-형",
+      "saju.natal.day-master",
+      "saju.natal.element-absence",
+      "saju.natal.element-emphasis.목",
+      "saju.natal.element-emphasis.수",
+      "saju.natal.element-emphasis.토",
+      "saju.natal.element-emphasis.화",
+      "saju.natal.experimental.gyeokguk",
+      "saju.natal.experimental.strength-quantitative",
+      "saju.natal.experimental.yongshin",
+      "saju.natal.ten-god-repeat.겁재",
+      "saju.natal.ten-god-repeat.비견",
+      "saju.natal.ten-god-repeat.식신",
+      "saju.natal.ten-god-repeat.정관",
+      "saju.natal.ten-god-repeat.정재",
+      "saju.natal.ten-god-repeat.편관",
+      "saju.natal.ten-god-repeat.편재"
+    ],
+    "id": "saju-b-source-identity",
+    "packetIds": [
+      "saju-source-packet-core-four-pillars-v0",
+      "saju-source-packet-core-element-distribution-v0",
+      "saju-source-packet-core-ten-god-distribution-v0",
+      "saju-source-packet-rule-branch-relations-v0",
+      "saju-source-packet-rule-gyeokguk-v0",
+      "saju-source-packet-rule-strength-v0",
+      "saju-source-packet-rule-yongshin-v0"
+    ],
+    "priority": "P0",
+    "status": "still_blocked",
+    "title": "판본·전승 identity와 claim-level source authority 미해결"
+  },
+  {
+    "claimIds": [
+      "saju.natal.branch-relation.day-hour-육합",
+      "saju.natal.branch-relation.day-hour-충",
+      "saju.natal.branch-relation.day-hour-파",
+      "saju.natal.branch-relation.day-hour-형",
+      "saju.natal.branch-relation.half-trine-목-year-day",
+      "saju.natal.branch-relation.half-trine-수-day-hour",
+      "saju.natal.branch-relation.half-trine-수-month-hour",
+      "saju.natal.branch-relation.month-day-육합",
+      "saju.natal.branch-relation.month-day-충",
+      "saju.natal.branch-relation.month-day-파",
+      "saju.natal.branch-relation.month-day-형",
+      "saju.natal.branch-relation.month-hour-육합",
+      "saju.natal.branch-relation.month-hour-충",
+      "saju.natal.branch-relation.month-hour-형",
+      "saju.natal.branch-relation.year-day-육합",
+      "saju.natal.branch-relation.year-day-충",
+      "saju.natal.branch-relation.year-day-파",
+      "saju.natal.branch-relation.year-hour-육합",
+      "saju.natal.branch-relation.year-hour-충",
+      "saju.natal.branch-relation.year-hour-파",
+      "saju.natal.branch-relation.year-hour-형",
+      "saju.natal.branch-relation.year-month-육합",
+      "saju.natal.branch-relation.year-month-파",
+      "saju.natal.branch-relation.year-month-형",
+      "saju.natal.day-master",
+      "saju.natal.element-absence",
+      "saju.natal.element-emphasis.목",
+      "saju.natal.element-emphasis.수",
+      "saju.natal.element-emphasis.토",
+      "saju.natal.element-emphasis.화",
+      "saju.natal.experimental.gyeokguk",
+      "saju.natal.experimental.strength-quantitative",
+      "saju.natal.experimental.yongshin",
+      "saju.natal.ten-god-repeat.겁재",
+      "saju.natal.ten-god-repeat.비견",
+      "saju.natal.ten-god-repeat.식신",
+      "saju.natal.ten-god-repeat.정관",
+      "saju.natal.ten-god-repeat.정재",
+      "saju.natal.ten-god-repeat.편관",
+      "saju.natal.ten-god-repeat.편재"
+    ],
+    "id": "saju-b-core-rule-scope",
+    "packetIds": [
+      "saju-source-packet-core-four-pillars-v0",
+      "saju-source-packet-core-element-distribution-v0",
+      "saju-source-packet-core-ten-god-distribution-v0",
+      "saju-source-packet-rule-branch-relations-v0",
+      "saju-source-packet-rule-gyeokguk-v0",
+      "saju-source-packet-rule-strength-v0",
+      "saju-source-packet-rule-yongshin-v0"
+    ],
+    "priority": "P0",
+    "status": "still_blocked",
+    "title": "고전 직접 규칙과 현재 계산 scope의 correspondence 미해결"
+  },
+  {
+    "claimIds": [
+      "saju.natal.day-master",
+      "saju.natal.unknown-birth-time"
+    ],
+    "id": "saju-b-calendar-boundaries",
+    "packetIds": [
+      "saju-source-packet-core-four-pillars-v0",
+      "saju-source-packet-core-candidate-boundary-v0"
+    ],
+    "priority": "P0",
+    "status": "still_blocked",
+    "title": "절기·음력·윤달·자시·역사 표준시 independent oracle 부재"
+  },
+  {
+    "claimIds": [
+      "saju.natal.unknown-birth-time"
+    ],
+    "id": "saju-b-missing-time-rule",
+    "packetIds": [
+      "saju-source-packet-core-candidate-boundary-v0"
+    ],
+    "priority": "P1",
+    "status": "still_blocked",
+    "title": "출생시각 미상 candidate boundary 직접 규칙/정책 부재"
+  },
+  {
+    "claimIds": [
+      "saju.timing.active-da-yun"
+    ],
+    "id": "saju-b-timing-rule",
+    "packetIds": [
+      "saju-source-packet-rule-timing-v0"
+    ],
+    "priority": "P1",
+    "status": "still_blocked",
+    "title": "대운 direction·起運·十二運 직접 규칙과 oracle 부재"
+  },
+  {
+    "claimIds": [
+      "saju.natal.experimental.gyeokguk",
+      "saju.natal.experimental.strength-quantitative",
+      "saju.natal.experimental.yongshin"
+    ],
+    "id": "saju-b-heuristic-semantic-equivalence",
+    "packetIds": [
+      "saju-source-packet-rule-gyeokguk-v0",
+      "saju-source-packet-rule-strength-v0",
+      "saju-source-packet-rule-yongshin-v0"
+    ],
+    "priority": "P1",
+    "status": "still_blocked",
+    "title": "질적 고전 서술과 strength·格局·用神 numerical heuristic semantic equivalence 미해결"
+  },
+  {
+    "claimIds": [
+      "saju.natal.experimental.shinsal-summary"
+    ],
+    "id": "saju-b-shinsal-rule",
+    "packetIds": [
+      "saju-source-packet-rule-shinsal-v0"
+    ],
+    "priority": "P1",
+    "status": "still_blocked",
+    "title": "신살 reference axis와 direct mapping witness 부재"
+  },
+  {
+    "id": "blocker-calendar-time-source-identity",
+    "priority": "P0",
+    "status": "still_blocked",
+    "title": "음력·윤달·자시 입력 source identity/독립 대조 부재"
+  },
+  {
+    "id": "blocker-source-identity-unresolved",
+    "priority": "P0",
+    "status": "still_blocked",
+    "title": "occurrence source identity와 stable claim boundary 미해결"
+  },
+  {
+    "id": "blocker-external-oracle-identity",
+    "priority": "P1",
+    "status": "still_blocked",
+    "title": "외부 fixture의 독립 oracle/source identity 부재"
+  },
+  {
+    "id": "blocker-four-transform-source-witness",
+    "priority": "P1",
+    "status": "still_blocked",
+    "title": "사화 10×4 표의 직접 source witness 부재"
+  },
+  {
+    "id": "blocker-timing-domain-absent",
+    "priority": "P2",
+    "status": "still_blocked",
+    "title": "대운·세운 timing domain 구현·fixture·외부 대조 부재"
+  },
+  {
+    "id": "blocker-tianfu-raw-formula-contradiction",
+    "priority": "P0",
+    "status": "still_blocked",
+    "title": "Tianfu raw formula contradiction"
+  },
+  {
+    "id": "blocker-tianfu-rotation06-semantic-authority",
+    "priority": "P0",
+    "status": "still_blocked",
+    "title": "rotation-06 is relation, not semantic authority"
+  },
+  {
+    "id": "blocker-life-body-ruler-source-legibility",
+    "priority": "P1",
+    "status": "still_blocked",
+    "title": "24/144 身主 source surfaces remain ambiguous"
+  },
+  {
+    "id": "blocker-palace-semantic-identity",
+    "priority": "P0",
+    "status": "still_blocked",
+    "title": "palace label/branch/ordinal semantic identity absent"
+  },
+  {
+    "id": "blocker-minor-star-source-witness",
+    "priority": "P1",
+    "status": "resolved_with_existing_evidence",
+    "title": "six implemented lucky-star rules resolved only within declared scope"
+  },
+  {
+    "id": "blocker-12-major-star-direct-rules",
+    "priority": "P0",
+    "status": "resolved_with_existing_evidence",
+    "title": "12 non-root relative major-star rules resolved only within declared scope"
+  },
+  {
+    "id": "western-b-production-contract",
+    "priority": "P0",
+    "status": "still_blocked",
+    "title": "production True Node semantic contract not defined"
+  },
+  {
+    "id": "western-b-independent-same-semantic-oracle",
+    "priority": "P0",
+    "status": "still_blocked",
+    "title": "same-semantic independent high-precision oracle absent"
+  },
+  {
+    "id": "western-b-frame-time-correction-bridge",
+    "priority": "P0",
+    "status": "still_blocked",
+    "title": "center/frame/equinox/time-scale/correction bridge unresolved"
+  },
+  {
+    "id": "western-b-license-policy",
+    "priority": "P1",
+    "status": "still_blocked",
+    "title": "license and redistribution policy unresolved"
+  }
+]
