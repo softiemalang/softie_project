@@ -1,0 +1,603 @@
+{
+  "schemaVersion": "astrology-true-node-horizons-erfa-frontier-v1",
+  "availability": "available",
+  "purpose": "research_only",
+  "evidenceBoundary": {
+    "directPrimarySourceObservation": "The preserved raw NASA/JPL Horizons API responses are direct observations of geometric geocentric Moon vectors and osculating elements from the public API.",
+    "sameFamilyCorroboration": "Horizons identifies the response source as DE441. The local candidate uses DE405, so the service path is distinct but the JPL DE family is not independent of the local ephemeris lineage.",
+    "independentAnalyticCorroboration": "ERFA/SOFA moon98 is a separate analytic implementation with a separate BSD-licensed code path; its documented accuracy is insufficient for True Node authority and it is admitted only as a negative control.",
+    "deterministicDerivation": "Node longitudes are derived from the raw state vectors by the existing cross-product candidate and an explicit J2000 ecliptic rotation; the Horizons OM/vector check is a raw-output consistency diagnostic.",
+    "inference": "The Horizons corpus tests whether a distinct JPL service path materially changes the local residual, while the source-defined Swiss default precession model remains a separate frame hypothesis.",
+    "unresolved": "No independent high-precision semantic True Node authority has been established. TLS verification was explicitly bypassed for this read-only public request, exact Swiss source checkout/license packaging remains open, and no production or readiness decision is authorized."
+  },
+  "inputArtifacts": {
+    "de405Candidate": {
+      "path": "artifacts/astrology-true-node-independent-v0/complete.json",
+      "sha256": "12619dce2fc65cc0e1620b51935014ac87bee3551bc94bdd9a4ec15af3099b15",
+      "schemaVersion": "astrology-true-node-independent-frontier-v0",
+      "role": "inherited_candidate_only"
+    },
+    "swissFrameDiagnostic": {
+      "path": "artifacts/astrology-true-node-frame-diagnostic-v1/complete.json",
+      "sha256": "95114e021d4a732ada0e04dfde9f207e06e05728f03b79bf3a7de393ec3077b0",
+      "schemaVersion": "astrology-true-node-frame-diagnostic-v1",
+      "role": "mean_equinox_no_nutation_reference_only"
+    }
+  },
+  "corpus": {
+    "rowCount": 8,
+    "sampleIndices": [
+      0,
+      440,
+      1354,
+      2367,
+      3670,
+      5000,
+      6000,
+      7341
+    ],
+    "coverage": "eight deterministic points spanning the inherited 1900-2101 DE405 service interval; not a full raw-oracle sweep",
+    "epochs": "Horizons vectors/elements requested at JDTDB; local date-frame transforms use the inherited paired TT value; no historical UTC conversion is asserted"
+  },
+  "sourceIdentity": {
+    "horizons": {
+      "provider": "NASA/JPL Solar System Dynamics Horizons API",
+      "apiUrl": "https://ssd.jpl.nasa.gov/api/horizons.api",
+      "apiSignature": {
+        "source": "NASA/JPL Horizons API",
+        "version": "1.2"
+      },
+      "rawResponseHeaders": {
+        "vectors": "Sat Aug  8 17:07:26 2026 Pasadena, USA      / Horizons",
+        "elements": "Sat Aug  8 17:11:51 2026 Pasadena, USA      / Horizons"
+      },
+      "target": "Moon (301)",
+      "center": "Earth (399)",
+      "sourceFamily": "DE441",
+      "rawFiles": [
+        {
+          "path": "artifacts/astrology-true-node-horizons-erfa-v1/horizons-vectors.json",
+          "kind": "VECTORS",
+          "sizeBytes": 6529,
+          "sha256": "007839da4b1b39cfb9890a3972a476d85a0980c4bca0d3eed53ec451f035f5de"
+        },
+        {
+          "path": "artifacts/astrology-true-node-horizons-erfa-v1/horizons-elements.json",
+          "kind": "ELEMENTS",
+          "sizeBytes": 8354,
+          "sha256": "6b2f58934c07a4c07b9748ce06c5f3af95a6e8cb39905572ad9b5c050d6e4a93"
+        }
+      ],
+      "vectorQuery": {
+        "format": "json",
+        "COMMAND": "'301'",
+        "OBJ_DATA": "NO",
+        "MAKE_EPHEM": "YES",
+        "CENTER": "'500@399'",
+        "TLIST_TYPE": "JD",
+        "TLIST": "2415020.5 2419420.5 2428560.5 2438690.5 2451720.5 2465020.5 2475020.5 2488430.5",
+        "TIME_TYPE": "TDB",
+        "OUT_UNITS": "KM-S",
+        "CSV_FORMAT": "YES",
+        "EPHEM_TYPE": "VECTORS",
+        "REF_PLANE": "FRAME",
+        "REF_SYSTEM": "ICRF",
+        "VEC_TABLE": "2",
+        "VEC_CORR": "NONE",
+        "VEC_LABELS": "YES"
+      },
+      "elementQuery": {
+        "format": "json",
+        "COMMAND": "'301'",
+        "OBJ_DATA": "NO",
+        "MAKE_EPHEM": "YES",
+        "CENTER": "'500@399'",
+        "TLIST_TYPE": "JD",
+        "TLIST": "2415020.5 2419420.5 2428560.5 2438690.5 2451720.5 2465020.5 2475020.5 2488430.5",
+        "TIME_TYPE": "TDB",
+        "OUT_UNITS": "KM-S",
+        "CSV_FORMAT": "YES",
+        "EPHEM_TYPE": "ELEMENTS",
+        "REF_PLANE": "ECLIPTIC",
+        "REF_SYSTEM": "ICRF",
+        "ELM_LABELS": "YES"
+      },
+      "outputSemantics": {
+        "vectors": "geometric ICRF Cartesian state, JDTDB, km and km/s, VEC_CORR=NONE",
+        "elements": "geometric osculating elements, JDTDB, ecliptic of J2000.0, OM=longitude of ascending node, no corrections"
+      },
+      "transport": {
+        "method": "curl",
+        "tlsVerification": "disabled_explicitly_for_local_certificate_chain",
+        "credentialUsed": false,
+        "rawResponseAdmission": "direct_bytes_with_transport_limitation"
+      },
+      "role": "same_family_jpl_service_corroboration_not_independent_authority"
+    },
+    "swissReference": {
+      "engineVersion": "2.10.03",
+      "files": [
+        {
+          "path": "spikes/astrology-swiss-wasm/generated/build-a/swiss-spike.mjs",
+          "sizeBytes": 65742,
+          "sha256": "812ead5aaeaca552ba465595b42ee959ffb3e224d428afde2f7afe14164c882f"
+        },
+        {
+          "path": "spikes/astrology-swiss-wasm/generated/build-a/swiss-spike.wasm",
+          "sizeBytes": 385469,
+          "sha256": "bcf9303cacde2451ae7e6c934b338259e560fabefe7f6cb5a7f89763ba9f551b"
+        },
+        {
+          "path": "spikes/astrology-swiss-wasm/generated/build-a/swiss-spike.data",
+          "sizeBytes": 1788832,
+          "sha256": "0bd5378a32a7c39ee513650d7b2f732c7adcb2a9326ae62c52925f329f072ab3"
+        }
+      ],
+      "target": "SE_TRUE_NODE=11",
+      "effectiveFlags": 322,
+      "frame": "mean equinox of date, no nutation, speed requested",
+      "role": "comparison_reference_only"
+    },
+    "swissSource": {
+      "repository": "https://github.com/aloistr/swisseph",
+      "commit": "59ac051b5a5812c684973ca0fcedb1c8c3e9c5dc",
+      "officialSourceInspection": "lunar_osc_elem, swi_plan_for_osc_elem, swi_ldp_peps and default Vondrak-2011 model were read locally; source checkout is not copied into this repository artifact"
+    },
+    "erfa": {
+      "project": "ERFA / PyERFA",
+      "sourceRepository": "https://github.com/liberfa/erfa",
+      "sourceFile": "src/moon98.c",
+      "officialSourceUrl": "https://raw.githubusercontent.com/liberfa/erfa/master/src/moon98.c",
+      "license": "BSD-3-Clause",
+      "runtime": {
+        "python": "3.9.6",
+        "pyerfaVersion": "2.0.1.5",
+        "module": "erfa.moon98"
+      },
+      "role": "independent_analytic_negative_control_not_high_precision_authority"
+    },
+    "publicDocumentation": [
+      {
+        "title": "Swiss Ephemeris Documentation: Lunar and Planetary Nodes and Apsides",
+        "provider": "Astrodienst / Swiss Ephemeris",
+        "url": "https://www.astro.com/swisseph-download/doc/swisseph.pdf",
+        "accessDate": "2026-08-09",
+        "locator": "section 3, pp. 18-19",
+        "admission": "definition_corroboration_only"
+      },
+      {
+        "title": "Swiss Ephemeris Programmer's Manual",
+        "provider": "Astrodienst / Swiss Ephemeris",
+        "url": "https://www.astro.com/swisseph/swephprg.pdf",
+        "accessDate": "2026-08-09",
+        "locator": "SEFLG_NONUT and SE_TRUE_NODE tables",
+        "admission": "convention_metadata_only"
+      },
+      {
+        "title": "NASA/JPL Horizons API documentation",
+        "provider": "NASA/JPL Solar System Dynamics",
+        "url": "https://ssd-api.jpl.nasa.gov/doc/horizons.html",
+        "accessDate": "2026-08-09",
+        "locator": "EPHEM_TYPE, REF_PLANE, TIME_TYPE, VEC_CORR and VEC_TABLE parameters",
+        "admission": "raw_oracle_interface_provenance"
+      },
+      {
+        "title": "ERFA moon98 source",
+        "provider": "IAU SOFA-derived ERFA",
+        "url": "https://raw.githubusercontent.com/liberfa/erfa/master/src/moon98.c",
+        "accessDate": "2026-08-09",
+        "locator": "eraMoon98 documentation and implementation header",
+        "admission": "independent_algorithm_accuracy_boundary"
+      }
+    ]
+  },
+  "oracleAssessment": {
+    "horizons": {
+      "independence": "same_family_corroboration",
+      "positive": [
+        "distinct public service endpoint",
+        "raw state and element output",
+        "DE441 versus local DE405"
+      ],
+      "limitingFacts": [
+        "same JPL DE ephemeris family",
+        "not a direct Swiss-equivalent True Node field",
+        "transport certificate verification unverified"
+      ]
+    },
+    "erfaMoon98": {
+      "independence": "independent_analytic_negative_control",
+      "positive": [
+        "separate ERFA/SOFA implementation and data model",
+        "does not call Swiss or local DE405"
+      ],
+      "limitingFacts": [
+        "official source documents arcsecond-to-tens-of-arcseconds Moon accuracy",
+        "not a canonical True Node output",
+        "not suitable for semantic authority"
+      ]
+    },
+    "swiss": {
+      "independence": "comparison_reference_only",
+      "limitingFacts": [
+        "the local result is the quantity being explained, not an independent oracle"
+      ]
+    }
+  },
+  "hypotheses": [
+    {
+      "id": "node-definition-algebra",
+      "status": "bounded_supported",
+      "observation": "Swiss lunar_osc_elem uses the geocentric Moon state and tangent/ecliptic-plane intersection; this is algebraically direction-equivalent to k x (r x v) when the z velocity is nonzero.",
+      "admission": "source_inspection_and_deterministic_derivation_not_semantic_identity"
+    },
+    {
+      "id": "tt-ut",
+      "status": "insufficient",
+      "observation": "The inherited argument-shift diagnostic changes Swiss by at most 0.687765504426352 arcsec, below the inherited 18.635712528976 arcsec maximum.",
+      "admission": "local_diagnostic_only"
+    },
+    {
+      "id": "nutation-and-equinox",
+      "status": "major_contributor",
+      "observation": "The inherited 7342-row mean-equinox/no-nutation comparison reduces the maximum from 18.635712528976 to 1.8031521231023362 arcsec.",
+      "admission": "local_diagnostic_only"
+    },
+    {
+      "id": "swiss-default-vondrak-2011",
+      "status": "supported_as_remaining_frame_hypothesis",
+      "observation": "Pinned Swiss source inspection shows the default Vondrak-2011 precession/obliquity path; a bounded eight-row DE441 state experiment materially lowers several IAU-2006 residuals but does not uniformly eliminate them.",
+      "admission": "direct_source_inspection_plus_local_experiment_not_authority"
+    },
+    {
+      "id": "light-time",
+      "status": "insufficient_alone",
+      "observation": "Swiss source applies a Moon light-time correction unless SEFLG_TRUEPOS is set; its source comment bounds the node effect at milliarcsecond scale, so it cannot alone explain the former multi-arcsecond frame residual.",
+      "admission": "official_source_inspection"
+    }
+  ],
+  "comparison": {
+    "numericStatus": "diagnostic_only_no_tolerance_pass",
+    "rows": [
+      {
+        "index": 0,
+        "sampleId": "true-node-00000",
+        "jdTdb": 2415020.5,
+        "jdTt": 2415020.5000000005,
+        "jdUt": 2415020.49925713,
+        "localDe405CandidateLongitudeDegrees": 260.263728208515,
+        "swissMeanEquinoxTrueNodeLongitudeDegrees": 260.2635191991562,
+        "horizonsVectorStateJ2000KmKmPerSec": [
+          24464.93173227516,
+          -339984.248695202,
+          -139725.2435346273,
+          1.060165899691096,
+          0.0703118713207549,
+          0.1339249838448065
+        ],
+        "horizonsVectorJ2000EclipticNodeLongitudeDegrees": 261.8018460084781,
+        "horizonsElementJ2000EclipticAscendingNodeLongitudeDegrees": 261.801846008478,
+        "horizonsElementVectorDifferenceArcseconds": 4.092726157978177e-10,
+        "horizonsDateMeanEclipticCandidateLongitudeDegrees": 260.2637068252171,
+        "erfaMoon98StateJ2000KmKmPerSec": [
+          24468.005526870005,
+          -339985.99704072875,
+          -139725.48498929854,
+          1.0601572613943557,
+          0.07028853189579909,
+          0.13393133938145438
+        ],
+        "erfaMoon98DateMeanEclipticCandidateLongitudeDegrees": 260.26535146820794,
+        "localDe405VsSwissAbsoluteDifferenceArcseconds": 0.7524336914684682,
+        "horizonsDateVsSwissAbsoluteDifferenceArcseconds": 0.6754538196219073,
+        "erfaMoon98VsSwissAbsoluteDifferenceArcseconds": 6.5961685863385355,
+        "horizonsDateVsLocalDe405AbsoluteDifferenceArcseconds": 0.07697987225583347
+      },
+      {
+        "index": 440,
+        "sampleId": "true-node-00440",
+        "jdTdb": 2419420.5,
+        "jdTt": 2419420.499999995,
+        "jdUt": 2419420.4992571245,
+        "localDe405CandidateLongitudeDegrees": 26.12324255700429,
+        "swissMeanEquinoxTrueNodeLongitudeDegrees": 26.12344036937381,
+        "horizonsVectorStateJ2000KmKmPerSec": [
+          162921.6139038872,
+          -325979.7836301879,
+          -179781.2741988267,
+          0.8868782545907358,
+          0.367020175527226,
+          0.154102507965729
+        ],
+        "horizonsVectorJ2000EclipticNodeLongitudeDegrees": 27.281380251862288,
+        "horizonsElementJ2000EclipticAscendingNodeLongitudeDegrees": 27.28138025186227,
+        "horizonsElementVectorDifferenceArcseconds": 0,
+        "horizonsDateMeanEclipticCandidateLongitudeDegrees": 26.123213198517476,
+        "erfaMoon98StateJ2000KmKmPerSec": [
+          162925.33499941957,
+          -325975.53212975845,
+          -179779.44452356966,
+          0.8869242553708817,
+          0.36705134042679566,
+          0.15410426833353952
+        ],
+        "erfaMoon98DateMeanEclipticCandidateLongitudeDegrees": 26.130762153489343,
+        "localDe405VsSwissAbsoluteDifferenceArcseconds": 0.7121245301732415,
+        "horizonsDateVsSwissAbsoluteDifferenceArcseconds": 0.8178150827006903,
+        "erfaMoon98VsSwissAbsoluteDifferenceArcseconds": 26.35842281601981,
+        "horizonsDateVsLocalDe405AbsoluteDifferenceArcseconds": 0.10569055252744874
+      },
+      {
+        "index": 1354,
+        "sampleId": "true-node-01354",
+        "jdTdb": 2428560.5,
+        "jdTt": 2428560.499999992,
+        "jdUt": 2428560.4992571217,
+        "localDe405CandidateLongitudeDegrees": 263.61763419980633,
+        "swissMeanEquinoxTrueNodeLongitudeDegrees": 263.61760782237064,
+        "horizonsVectorStateJ2000KmKmPerSec": [
+          -248498.0012238817,
+          271479.8269277309,
+          90761.33005615877,
+          -0.8114924411557051,
+          -0.569999328472297,
+          -0.3204453500657536
+        ],
+        "horizonsVectorJ2000EclipticNodeLongitudeDegrees": 264.5875703414291,
+        "horizonsElementJ2000EclipticAscendingNodeLongitudeDegrees": 264.5875703414291,
+        "horizonsElementVectorDifferenceArcseconds": 0,
+        "horizonsDateMeanEclipticCandidateLongitudeDegrees": 263.617622561969,
+        "erfaMoon98StateJ2000KmKmPerSec": [
+          -248494.28662580447,
+          271475.94832950766,
+          90758.19332876844,
+          -0.8115135121869488,
+          -0.5700214010243912,
+          -0.32044651271307023
+        ],
+        "erfaMoon98DateMeanEclipticCandidateLongitudeDegrees": 263.6113722575234,
+        "localDe405VsSwissAbsoluteDifferenceArcseconds": 0.09495876847722684,
+        "horizonsDateVsSwissAbsoluteDifferenceArcseconds": 0.053062553979543736,
+        "erfaMoon98VsSwissAbsoluteDifferenceArcseconds": 22.448033449927607,
+        "horizonsDateVsLocalDe405AbsoluteDifferenceArcseconds": 0.041896214497683104
+      },
+      {
+        "index": 2367,
+        "sampleId": "true-node-02367",
+        "jdTdb": 2438690.5,
+        "jdTt": 2438690.500000018,
+        "jdUt": 2438690.499257148,
+        "localDe405CandidateLongitudeDegrees": 84.40860663219678,
+        "swissMeanEquinoxTrueNodeLongitudeDegrees": 84.40865639708227,
+        "horizonsVectorStateJ2000KmKmPerSec": [
+          281375.3707723744,
+          224699.3746131951,
+          72219.91570385265,
+          -0.7054296012668985,
+          0.7124730529026142,
+          0.3842536819511498
+        ],
+        "horizonsVectorJ2000EclipticNodeLongitudeDegrees": 84.84878421101337,
+        "horizonsElementJ2000EclipticAscendingNodeLongitudeDegrees": 84.84878421101332,
+        "horizonsElementVectorDifferenceArcseconds": 0,
+        "horizonsDateMeanEclipticCandidateLongitudeDegrees": 84.40859253905074,
+        "erfaMoon98StateJ2000KmKmPerSec": [
+          281376.40514979546,
+          224698.42241540545,
+          72216.27714702745,
+          -0.7054490235767754,
+          0.7125164984747442,
+          0.38427178418714625
+        ],
+        "erfaMoon98DateMeanEclipticCandidateLongitudeDegrees": 84.41337851290126,
+        "localDe405VsSwissAbsoluteDifferenceArcseconds": 0.1791535877600836,
+        "horizonsDateVsSwissAbsoluteDifferenceArcseconds": 0.22988891369095654,
+        "erfaMoon98VsSwissAbsoluteDifferenceArcseconds": 16.999616948578478,
+        "horizonsDateVsLocalDe405AbsoluteDifferenceArcseconds": 0.05073532593087293
+      },
+      {
+        "index": 3670,
+        "sampleId": "true-node-03670",
+        "jdTdb": 2451720.5,
+        "jdTt": 2451720.4999999967,
+        "jdUt": 2451720.4992571264,
+        "localDe405CandidateLongitudeDegrees": 114.7855690427649,
+        "swissMeanEquinoxTrueNodeLongitudeDegrees": 114.78560810305068,
+        "horizonsVectorStateJ2000KmKmPerSec": [
+          386220.3445132121,
+          33220.90163833775,
+          -21747.42227831953,
+          -0.1232399109544059,
+          0.9291951867473758,
+          0.3719668225660023
+        ],
+        "horizonsVectorJ2000EclipticNodeLongitudeDegrees": 114.77960380319678,
+        "horizonsElementJ2000EclipticAscendingNodeLongitudeDegrees": 114.7796038031967,
+        "horizonsElementVectorDifferenceArcseconds": 4.092726157978177e-10,
+        "horizonsDateMeanEclipticCandidateLongitudeDegrees": 114.78556690727942,
+        "erfaMoon98StateJ2000KmKmPerSec": [
+          386223.96563126834,
+          33220.49508816318,
+          -21747.168797431917,
+          -0.12321714499016821,
+          0.9291534577825074,
+          0.37196175825319366
+        ],
+        "erfaMoon98DateMeanEclipticCandidateLongitudeDegrees": 114.77883322294315,
+        "localDe405VsSwissAbsoluteDifferenceArcseconds": 0.14061702872822934,
+        "horizonsDateVsSwissAbsoluteDifferenceArcseconds": 0.14830477648501983,
+        "erfaMoon98VsSwissAbsoluteDifferenceArcseconds": 24.38956838705053,
+        "horizonsDateVsLocalDe405AbsoluteDifferenceArcseconds": 0.007687747756790486
+      },
+      {
+        "index": 5000,
+        "sampleId": "true-node-05000",
+        "jdTdb": 2465020.5,
+        "jdTt": 2465020.5000000126,
+        "jdUt": 2465020.499257142,
+        "localDe405CandidateLongitudeDegrees": 130.45717069585112,
+        "swissMeanEquinoxTrueNodeLongitudeDegrees": 130.457290013768,
+        "horizonsVectorStateJ2000KmKmPerSec": [
+          194229.3291830883,
+          -324897.4891218446,
+          -133419.6503013007,
+          0.8662310072574845,
+          0.4401434177949332,
+          0.09892576258587084
+        ],
+        "horizonsVectorJ2000EclipticNodeLongitudeDegrees": 129.9802070190804,
+        "horizonsElementJ2000EclipticAscendingNodeLongitudeDegrees": 129.9802070190804,
+        "horizonsElementVectorDifferenceArcseconds": 0,
+        "horizonsDateMeanEclipticCandidateLongitudeDegrees": 130.4571806687719,
+        "erfaMoon98StateJ2000KmKmPerSec": [
+          194231.91961259372,
+          -324893.8897640157,
+          -133417.40802512554,
+          0.8662295385853646,
+          0.44015771864474335,
+          0.09892656298796573
+        ],
+        "erfaMoon98DateMeanEclipticCandidateLongitudeDegrees": 130.45827138845453,
+        "localDe405VsSwissAbsoluteDifferenceArcseconds": 0.42954450073011685,
+        "horizonsDateVsSwissAbsoluteDifferenceArcseconds": 0.3936419858746376,
+        "erfaMoon98VsSwissAbsoluteDifferenceArcseconds": 3.532948871361441,
+        "horizonsDateVsLocalDe405AbsoluteDifferenceArcseconds": 0.03590251485547924
+      },
+      {
+        "index": 6000,
+        "sampleId": "true-node-06000",
+        "jdTdb": 2475020.5,
+        "jdTt": 2475020.499999981,
+        "jdUt": 2475020.4992571105,
+        "localDe405CandidateLongitudeDegrees": 323.2380388528986,
+        "swissMeanEquinoxTrueNodeLongitudeDegrees": 323.23789710837923,
+        "horizonsVectorStateJ2000KmKmPerSec": [
+          233622.7410335719,
+          -291725.260719915,
+          -137409.1000899664,
+          0.8208524681198003,
+          0.4570310694064169,
+          0.2883111549715737
+        ],
+        "horizonsVectorJ2000EclipticNodeLongitudeDegrees": 322.28963682864105,
+        "horizonsElementJ2000EclipticAscendingNodeLongitudeDegrees": 322.2896368286411,
+        "horizonsElementVectorDifferenceArcseconds": 0,
+        "horizonsDateMeanEclipticCandidateLongitudeDegrees": 323.23806085215926,
+        "erfaMoon98StateJ2000KmKmPerSec": [
+          233619.39255133414,
+          -291730.9148379411,
+          -137412.05050294852,
+          0.820856680328679,
+          0.45702921050441775,
+          0.2883278454316747
+        ],
+        "erfaMoon98DateMeanEclipticCandidateLongitudeDegrees": 323.23493747156954,
+        "localDe405VsSwissAbsoluteDifferenceArcseconds": 0.51028026982749,
+        "horizonsDateVsSwissAbsoluteDifferenceArcseconds": 0.5894776081277087,
+        "erfaMoon98VsSwissAbsoluteDifferenceArcseconds": 10.654692514890485,
+        "horizonsDateVsLocalDe405AbsoluteDifferenceArcseconds": 0.07919733830021869
+      },
+      {
+        "index": 7341,
+        "sampleId": "true-node-07341",
+        "jdTdb": 2488430.5,
+        "jdTt": 2488430.500000003,
+        "jdUt": 2488430.4992571324,
+        "localDe405CandidateLongitudeDegrees": 330.4974615765857,
+        "swissMeanEquinoxTrueNodeLongitudeDegrees": 330.49719614167003,
+        "horizonsVectorStateJ2000KmKmPerSec": [
+          -216279.7561310379,
+          -252758.8535292186,
+          -144403.2184759767,
+          0.8806921188793474,
+          -0.5756388469639242,
+          -0.2580487783667029
+        ],
+        "horizonsVectorJ2000EclipticNodeLongitudeDegrees": 329.0222162598486,
+        "horizonsElementJ2000EclipticAscendingNodeLongitudeDegrees": 329.0222162598486,
+        "horizonsElementVectorDifferenceArcseconds": 0,
+        "horizonsDateMeanEclipticCandidateLongitudeDegrees": 330.4974934243412,
+        "erfaMoon98StateJ2000KmKmPerSec": [
+          -216264.55339690702,
+          -252763.19477902644,
+          -144406.64185669532,
+          0.8807054424324806,
+          -0.5756508875171288,
+          -0.25803901161400916
+        ],
+        "erfaMoon98DateMeanEclipticCandidateLongitudeDegrees": 330.4891615907255,
+        "localDe405VsSwissAbsoluteDifferenceArcseconds": 0.9555656965858361,
+        "horizonsDateVsSwissAbsoluteDifferenceArcseconds": 1.0702176164159027,
+        "erfaMoon98VsSwissAbsoluteDifferenceArcseconds": 28.92438340040826,
+        "horizonsDateVsLocalDe405AbsoluteDifferenceArcseconds": 0.11465191983006662
+      }
+    ],
+    "summaries": {
+      "localDe405VsSwiss": {
+        "rowCount": 8,
+        "maxAbsoluteDifferenceArcseconds": 0.9555656965858361,
+        "maxDifferenceSampleId": "true-node-07341",
+        "p50AbsoluteDifferenceArcseconds": 0.42954450073011685,
+        "p95AbsoluteDifferenceArcseconds": 0.7524336914684682,
+        "p99AbsoluteDifferenceArcseconds": 0.7524336914684682,
+        "minAbsoluteDifferenceArcseconds": 0.09495876847722684,
+        "tolerancePolicy": "diagnostic_only_no_acceptance_tolerance"
+      },
+      "horizonsDateVsSwiss": {
+        "rowCount": 8,
+        "maxAbsoluteDifferenceArcseconds": 1.0702176164159027,
+        "maxDifferenceSampleId": "true-node-07341",
+        "p50AbsoluteDifferenceArcseconds": 0.3936419858746376,
+        "p95AbsoluteDifferenceArcseconds": 0.8178150827006903,
+        "p99AbsoluteDifferenceArcseconds": 0.8178150827006903,
+        "minAbsoluteDifferenceArcseconds": 0.053062553979543736,
+        "tolerancePolicy": "diagnostic_only_no_acceptance_tolerance"
+      },
+      "erfaMoon98VsSwiss": {
+        "rowCount": 8,
+        "maxAbsoluteDifferenceArcseconds": 28.92438340040826,
+        "maxDifferenceSampleId": "true-node-07341",
+        "p50AbsoluteDifferenceArcseconds": 16.999616948578478,
+        "p95AbsoluteDifferenceArcseconds": 26.35842281601981,
+        "p99AbsoluteDifferenceArcseconds": 26.35842281601981,
+        "minAbsoluteDifferenceArcseconds": 3.532948871361441,
+        "tolerancePolicy": "diagnostic_only_no_acceptance_tolerance"
+      },
+      "horizonsDateVsLocalDe405": {
+        "rowCount": 8,
+        "maxAbsoluteDifferenceArcseconds": 0.11465191983006662,
+        "maxDifferenceSampleId": "true-node-07341",
+        "p50AbsoluteDifferenceArcseconds": 0.05073532593087293,
+        "p95AbsoluteDifferenceArcseconds": 0.10569055252744874,
+        "p99AbsoluteDifferenceArcseconds": 0.10569055252744874,
+        "minAbsoluteDifferenceArcseconds": 0.007687747756790486,
+        "tolerancePolicy": "diagnostic_only_no_acceptance_tolerance"
+      },
+      "horizonsElementVectorConsistency": {
+        "rowCount": 8,
+        "maxAbsoluteDifferenceArcseconds": 4.092726157978177e-10,
+        "maxDifferenceSampleId": "true-node-00000",
+        "p50AbsoluteDifferenceArcseconds": 0,
+        "p95AbsoluteDifferenceArcseconds": 4.092726157978177e-10,
+        "p99AbsoluteDifferenceArcseconds": 4.092726157978177e-10,
+        "minAbsoluteDifferenceArcseconds": 0,
+        "tolerancePolicy": "diagnostic_only_no_acceptance_tolerance"
+      }
+    }
+  },
+  "readinessBoundary": {
+    "independentTrueNodeReference": "pending",
+    "qualification": "blocked_semantic_identity_insufficient",
+    "productionProviderChanged": false,
+    "activationChanged": false,
+    "toleranceChanged": false,
+    "interpretationEligibility": "unchanged_blocked_by_existing_contracts"
+  },
+  "provenance": {
+    "materializerPath": "scripts/materialize-astrology-true-node-horizons-erfa-v1.mjs",
+    "materializerSha256": "6c1de457a8383a345b9a8158b897159bbd4606878e69a1bd7acb2959942fbd42",
+    "generatedWithoutCredentials": true,
+    "generatedFromPinnedRawInputsWhenProvided": true
+  },
+  "payloadCanonicalSha256": "f0f5f321ef473e54af1e2e4dd0061a093e5cea0c7efbfecf0d3e18f9643b0ac1"
+}

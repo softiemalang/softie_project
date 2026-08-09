@@ -49,14 +49,19 @@ boundaries remain blocked; no Ziwei readiness promotion.
 |---|---|---|
 | [Swiss Ephemeris: Lunar and Planetary Nodes and Apsides](https://www.astro.com/swisseph-download/doc/swisseph.pdf) | Section 3, pp. 18-19: traditional true lunar node is described as the osculating node of the momentary lunar orbit, with ecliptic/nutation distinctions and a JPL-derived comparison discussion. | Definition corroboration, not an independent raw oracle because the local comparison reference is Swiss. |
 | [Swiss Ephemeris Programmer's Manual](https://www.astro.com/swisseph/swephprg.pdf) | Flag table pp. 15-17 documents `SEFLG_NONUT=64` as no nutation / mean equinox of date; the body table identifies `SE_TRUE_NODE=11`. | Convention metadata admitted to the research diagnostic only. |
-| [NASA/JPL Horizons manual](https://ssd.jpl.nasa.gov/horizons/manual.html) | Section 2 documents instantaneous osculating elements, JDTDB epochs, and `OM` as longitude of ascending node. | Independent oracle lead only; no raw Horizons result was acquired because the available transport path was certificate-blocked and the browser tool rejected the complex API query. |
+| [NASA/JPL Horizons manual](https://ssd.jpl.nasa.gov/horizons/manual.html) and [Horizons API documentation](https://ssd-api.jpl.nasa.gov/doc/horizons.html) | Section 2/API parameter docs cover geometric osculating elements, JDTDB epochs, `OM`, ICRF vectors, `VEC_CORR=NONE`, and reference-plane choices. A bounded eight-row raw DE441 VECTORS/ELEMENTS corpus is preserved in `artifacts/astrology-true-node-horizons-erfa-v1/complete.json`. | Direct raw public observation admitted as same-family JPL corroboration only; transport TLS verification was explicitly bypassed for the local certificate-chain limitation, so independent authority and production equivalence remain unresolved. |
 
-The successor artifact `artifacts/astrology-true-node-frame-diagnostic-v1/complete.json`
+The successor artifacts `artifacts/astrology-true-node-frame-diagnostic-v1/complete.json`
+and `artifacts/astrology-true-node-horizons-erfa-v1/complete.json`
 compares the inherited JPL state-derived candidate with Swiss flags
 `2 | 64 | 256 = 322`, matching the candidate's mean-equinox/no-nutation frame.
 The prior default comparison reached 18.635712528976 arcsec maximum; the
-frame-matched diagnostic reaches 1.8031521231023362 arcsec maximum. This is a
-bounded convention inference, not a semantic-identity or tolerance pass.
+frame-matched diagnostic reaches 1.8031521231023362 arcsec maximum. The raw
+Horizons DE441 vector-derived candidate differs from Swiss by at most
+1.0702176164159027 arcsec on the eight-row corpus and from the local DE405
+candidate by at most 0.11465191983006662 arcsec. This is a bounded convention
+and same-family corroboration result, not a semantic-identity or tolerance
+pass.
 The preserved v0 artifact is not rewritten. `independentTrueNodeReference`
 remains `pending`, production remains unsupported, and activation remains
 false.
@@ -67,7 +72,7 @@ false.
 |---|---|---|---|
 | Saju | Public scan/catalog/text candidates identified; no claim-level local or external locator admitted | Unchanged partial/blocked | Edition-linked page images or a source witness with exact book/chapter/page/folio, transcription review, and semantic claim adjudication; separate human/product policy for modern coefficients |
 | Ziwei | Official catalog identity/rights metadata and text-mirror corroboration added; direct visual recheck preserves the unresolved cells | Unchanged partial/blocked | Legible high-resolution page images for Nanyang p. 151-152 or an independently reviewable witness; human adjudication of conflicting Tianfu convention and source authority |
-| Western | Official definition/convention documentation and a reproducible frame diagnostic added | `independentTrueNodeReference: pending`; no production/readiness promotion | Independent raw True Node oracle or JPL Horizons corpus with exact convention/time-scale equivalence, source/version/license evidence, and human/product activation approval |
+| Western | Official definition/convention documentation, a reproducible frame diagnostic, and a bounded raw Horizons DE441 plus ERFA negative-control artifact added | `independentTrueNodeReference: pending`; no production/readiness promotion | High-precision independent semantic oracle, TLS-verified/full-corpus acquisition, exact convention/time-scale equivalence, source/version/license evidence, and human/product activation approval |
 
 Further generic search without the blocked scan images, raw oracle output, or
 edition-linked claim locators would repeat catalog/text corroboration rather

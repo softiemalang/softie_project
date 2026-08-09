@@ -43,3 +43,18 @@ test('comparison artifact preserves worst divergence and diagnostic boundaries',
   assert.ok(diagnostic.swissReferenceArgumentShiftArcseconds.max.value < artifact.comparison.summary.maxAbsoluteDifferenceArcseconds)
   assert.equal(artifact.firstDivergenceClassification.conventionBoundary.classification, 'frame_and_node_definition_equivalence_unresolved')
 })
+
+test('Horizons and ERFA frontier artifact preserves oracle independence boundaries', () => {
+  const artifact = JSON.parse(readFileSync('artifacts/astrology-true-node-horizons-erfa-v1/complete.json', 'utf8'))
+  assert.equal(artifact.schemaVersion, 'astrology-true-node-horizons-erfa-frontier-v1')
+  assert.equal(artifact.purpose, 'research_only')
+  assert.equal(artifact.sourceIdentity.horizons.sourceFamily, 'DE441')
+  assert.equal(artifact.sourceIdentity.horizons.transport.tlsVerification, 'disabled_explicitly_for_local_certificate_chain')
+  assert.equal(artifact.oracleAssessment.horizons.independence, 'same_family_corroboration')
+  assert.equal(artifact.oracleAssessment.erfaMoon98.independence, 'independent_analytic_negative_control')
+  assert.equal(artifact.readinessBoundary.independentTrueNodeReference, 'pending')
+  assert.equal(artifact.readinessBoundary.activationChanged, false)
+  assert.equal(artifact.comparison.summaries.horizonsElementVectorConsistency.maxAbsoluteDifferenceArcseconds, 4.092726157978177e-10)
+  assert.equal(artifact.comparison.summaries.horizonsDateVsSwiss.maxAbsoluteDifferenceArcseconds, 1.0702176164159027)
+  assert.equal(artifact.comparison.summaries.erfaMoon98VsSwiss.maxAbsoluteDifferenceArcseconds, 28.92438340040826)
+})
