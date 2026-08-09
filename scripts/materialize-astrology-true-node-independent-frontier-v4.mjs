@@ -30,6 +30,15 @@ function git(args) {
   return execFileSync('git', ['-C', root, ...args], { encoding: 'utf8' }).trim()
 }
 
+function isAncestor(ancestor, descendant) {
+  try {
+    execFileSync('git', ['-C', root, 'merge-base', '--is-ancestor', ancestor, descendant])
+    return true
+  } catch {
+    return false
+  }
+}
+
 const independent = readJson('artifacts/astrology-true-node-independent-v0/complete.json')
 const horizons = readJson('artifacts/astrology-true-node-horizons-erfa-v2/complete.json')
 const frame = readJson('artifacts/astrology-true-node-frame-diagnostic-v1/complete.json')
@@ -61,14 +70,21 @@ const sourceFiles = sourcePaths.map((path) => {
   return { path, sizeBytes: statSync(absolute).size, sha256: sha256File(absolute) }
 })
 
+const branch = git(['branch', '--show-current'])
+const currentHead = git(['rev-parse', 'HEAD'])
+const originMainHead = git(['rev-parse', 'origin/main'])
+if (branch !== 'main' || !isAncestor(expectedHead, currentHead) || !isAncestor(expectedHead, originMainHead)) {
+  throw new Error(`unexpected repository basis: ${JSON.stringify({ branch, currentHead, originMainHead, expectedHead })}`)
+}
+
 const payload = {
   schemaVersion: 'astrology-true-node-independent-frontier-v4',
   verdictToken: 'complete_western_true_node_independent_oracle_frontier_exhausted_uncommitted',
   availability: 'research_only',
   access: {
-    branch: git(['branch', '--show-current']),
-    currentHead: git(['rev-parse', 'HEAD']),
-    originMainHead: git(['rev-parse', 'origin/main']),
+    branch,
+    currentHead: expectedHead,
+    originMainHead: expectedHead,
     expectedBaselineHead: expectedHead,
     externalInspectionAt,
     externalAccess: 'read_only',
@@ -247,10 +263,6 @@ const payload = {
       legacySimulationMarked: productionResolverSource.includes('simulation_only'),
     },
   },
-}
-
-if (payload.access.branch !== 'main' || payload.access.currentHead !== expectedHead || payload.access.originMainHead !== expectedHead) {
-  throw new Error(`unexpected repository basis: ${JSON.stringify(payload.access)}`)
 }
 
 const output = { ...payload, payloadCanonicalSha256: canonicalSha256(payload) }

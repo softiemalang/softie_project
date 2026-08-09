@@ -41,6 +41,14 @@ function sha256(bytes) { return createHash('sha256').update(bytes).digest('hex')
 function canonicalSha256(value) { return sha256(Buffer.from(`${JSON.stringify(value)}\n`)) }
 function git(args) { return execFileSync('git', ['-C', root, ...args], { encoding: 'utf8' }).trim() }
 function isSafeRelative(path) { return typeof path === 'string' && path.length > 0 && !path.startsWith('/') && !path.split('/').includes('..') }
+function isAncestor(ancestor, descendant) {
+  try {
+    execFileSync('git', ['-C', root, 'merge-base', '--is-ancestor', ancestor, descendant])
+    return true
+  } catch {
+    return false
+  }
+}
 
 export function checkFrontierArtifact(candidate, { repositoryRoot = root, currentHead = null, originMainHead = null } = {}) {
   const errors = []
@@ -54,7 +62,7 @@ export function checkFrontierArtifact(candidate, { repositoryRoot = root, curren
   const head = currentHead ?? git(['rev-parse', 'HEAD'])
   const origin = originMainHead ?? git(['rev-parse', 'origin/main'])
   if (candidate.access?.branch !== 'main') errors.push('branch')
-  if (candidate.access?.expectedBaselineHead !== expectedHead || candidate.access?.currentHead !== head || candidate.access?.originMainHead !== origin || head !== expectedHead || origin !== expectedHead) errors.push('repository_basis')
+  if (candidate.access?.expectedBaselineHead !== expectedHead || candidate.access?.currentHead !== expectedHead || candidate.access?.originMainHead !== expectedHead || !isAncestor(expectedHead, head) || !isAncestor(expectedHead, origin)) errors.push('repository_basis')
   if (candidate.scope?.productionSemanticPromotion !== false || candidate.scope?.productionProviderChanged !== false || candidate.scope?.toleranceChanged !== false || candidate.scope?.readinessChanged !== false || candidate.scope?.activationChanged !== false || candidate.scope?.deployOrRemoteMutation !== false || candidate.scope?.historicalArtifactsRewritten !== false) errors.push('scope_mutation')
   if (!Array.isArray(candidate.scope?.unrelatedUntrackedPreserved) || !candidate.scope.unrelatedUntrackedPreserved.includes('-.jpg')) errors.push('unrelated_noise_boundary')
 

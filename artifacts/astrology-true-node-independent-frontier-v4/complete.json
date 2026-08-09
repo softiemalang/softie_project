@@ -319,8 +319,8 @@
       },
       {
         "path": "test/astrologyTrueNodeIndependent.test.js",
-        "sizeBytes": 7199,
-        "sha256": "ce1a312202e27954e916289b9276876ef5dea1082736b8edf20d1b60d3026722"
+        "sizeBytes": 7482,
+        "sha256": "ea496d90b392ab8a2a08e3a3197f981aa0078a87c45f06325698dd6d61e29068"
       }
     ],
     "generatedWithoutNetwork": true,
@@ -337,5 +337,5 @@
       "legacySimulationMarked": true
     }
   },
-  "payloadCanonicalSha256": "3489cd661bb1b345327105acdac4360eeb373ef07b022944d7aad345d74d5add"
+  "payloadCanonicalSha256": "912381458497e7cd396107c78964139b892d5ee7a3e22be13fbc513167288864"
 }

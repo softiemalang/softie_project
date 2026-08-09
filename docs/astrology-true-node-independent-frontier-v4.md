@@ -28,8 +28,11 @@ The nine requested fields therefore remain separated:
 | normalization | isolated candidate normalizes to `[0,360)` | no production contract |
 | tolerance | no acceptance tolerance is declared | no tolerance authorization |
 
-This is deliberately not a semantic guess. The artifact records the exact source
-hashes and the unsupported production boundary:
+This is deliberately not a semantic guess. The artifact records the declared
+generation baseline, exact source hashes, and unsupported production boundary.
+The checker accepts a later `main`/`origin/main` checkout only when it is a
+descendant of the declared baseline and all recorded source bytes still match;
+this keeps the immutable artifact reproducible after its commit is created:
 
 ```sh
 node scripts/materialize-astrology-true-node-independent-frontier-v4.mjs

@@ -103,3 +103,8 @@ test('v4 frontier checker rejects a promoted verdict or mutated input identity',
   hashMutation.provenance.sourceFiles[0].sha256 = '0'.repeat(64)
   assert.equal(checkFrontierArtifact(hashMutation).pass, false)
 })
+
+test('v4 frontier remains checkable after its declared baseline advances by commit', () => {
+  const artifact = JSON.parse(readFileSync('artifacts/astrology-true-node-independent-frontier-v4/complete.json', 'utf8'))
+  assert.deepEqual(checkFrontierArtifact(artifact).errors, [])
+})
