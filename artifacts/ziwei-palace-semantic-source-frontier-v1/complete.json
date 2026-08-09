@@ -1,0 +1,420 @@
+{
+  "artifactIdentity": {
+    "artifactId": "ziwei-palace-semantic-source-frontier-v1",
+    "artifactPayloadSha256": "fb5362b44f88970409035c70652b6e24946ca32ef55a968ae83274b5593ed23b",
+    "contractVersion": "artifact-identity-v1",
+    "generation": {
+      "baseHead": "45ceb1d27143ed4d61487e2dce0dfc35ef872d1b",
+      "baseHeadSource": "git rev-parse HEAD at materialization",
+      "includedCommit": null,
+      "includedCommitSource": "unknown_at_generation; artifact may be included by a later commit"
+    },
+    "inputs": [
+      {
+        "byteSha256": "3b15f34329808a9544cf38500d1d2f945e35fb11622eabeca619a0a655c6ee9e",
+        "path": "artifacts/ziwei-life-body-palace-ruler-source-evidence-v0/complete.json"
+      },
+      {
+        "byteSha256": "4f9a62f5f14086fa8a34f650a9167036df45bcb9586ade8b888feac353260d9b",
+        "path": "artifacts/ziwei-palace-coordinate-semantic-identity-v0/complete.json"
+      },
+      {
+        "byteSha256": "ced877e178ec80c04f6ef70090c0962533e32d410528af9de006ace18a82226f",
+        "path": "artifacts/ziwei-system-evidence-readiness-coverage-map-v0/complete.json"
+      },
+      {
+        "byteSha256": "0fa41489bc40d0fe0069b819cb6c48e35b311feaeedd10711b8168189a7bfc67",
+        "path": "scripts/lib/pdf-source-resolver.mjs"
+      },
+      {
+        "byteSha256": "3ae76835ccd16897c15b2ed547f166343bc883594d044b29e18fccc7d09ee441",
+        "path": "src/artifactIdentity.js"
+      },
+      {
+        "byteSha256": "afd4f2ef13da4a13f7dece79e801dab6867e5cd1ee30d2e588dce19935c9aaaa",
+        "path": "src/ziwei/palaceRelationRules.js"
+      },
+      {
+        "byteSha256": "c3b2940cac98c10561acd855a9e239af20444985b6393f4f7062826484c20b37",
+        "path": "src/ziwei/ziweiContract.js"
+      },
+      {
+        "byteSha256": "5336f15968b4c618d9b1248b0967deab22b778f48996cb60939ab19cabadf513",
+        "path": "src/ziwei/ziweiResolver.js"
+      }
+    ],
+    "materializer": {
+      "path": "scripts/materialize-ziwei-palace-semantic-source-frontier-v1.mjs",
+      "version": "1.0.0"
+    }
+  },
+  "basisHead": "45ceb1d27143ed4d61487e2dce0dfc35ef872d1b",
+  "boundaries": {
+    "activation": "experimental",
+    "branchDiagramIsNotPalaceIdentity": true,
+    "crossEditionAgreementIsNotSemanticIdentity": true,
+    "existingArtifactsModified": false,
+    "grounding": "blocked",
+    "interpretationGenerated": false,
+    "numericAgreementIsNotSemanticAuthority": true,
+    "pdfStoredInGit": false,
+    "productionRuleModified": false,
+    "publicContractModified": false,
+    "readiness": "not_safe_to_start",
+    "readinessModified": false,
+    "renderStoredInGit": false,
+    "sourcePresenceIsNotClaimVerification": true,
+    "stableClaimCount": 0,
+    "titlePageIsNotTextualAuthority": true
+  },
+  "claims": [
+    {
+      "evidence": {
+        "observations": [
+          "nanbei-p1-title",
+          "nanyang-p1-title",
+          "nanyang-p2-title-imprint"
+        ],
+        "sourceWitnesses": [
+          "nanbei",
+          "nanyangtang"
+        ]
+      },
+      "id": "scan_witness_identity",
+      "semanticLimit": "visible title/print identity is not complete edition lineage or textual authority",
+      "statement": "두 허용 PDF의 실제 bytes, page count, encryption 상태와 표지/편집·刊本 표면 문자열을 확인했다.",
+      "status": "direct_within_scope"
+    },
+    {
+      "evidence": {
+        "observations": [
+          "nanbei-p4-branch-trigram-diagram",
+          "nanbei-p7-twelve-cell-diagram"
+        ]
+      },
+      "id": "branch_diagram_observation",
+      "semanticLimit": "branch slots are not palace-name semantics",
+      "statement": "Nanbei p4와 p7에서 지지·도식 칸을 직접 관찰했다.",
+      "status": "direct_within_scope"
+    },
+    {
+      "evidence": {
+        "observations": [
+          "nanbei-p8-ming-shen-rule"
+        ]
+      },
+      "id": "ming_shen_traversal_observation",
+      "semanticLimit": "traversal rule does not identify all 12 palace labels or production ordinal meaning",
+      "statement": "Nanbei p8에서 명궁·신궁의 기점과 순·역수 어휘를 직접 관찰했다.",
+      "status": "direct_within_scope"
+    },
+    {
+      "evidence": {
+        "observations": [
+          "nanbei-p4-branch-trigram-diagram",
+          "nanbei-p7-twelve-cell-diagram",
+          "nanbei-p8-ming-shen-rule",
+          "nanbei-p10-ming-shen-bureau-table"
+        ],
+        "predecessor": {
+          "artifacts/ziwei-life-body-palace-ruler-source-evidence-v0/complete.json": "3b15f34329808a9544cf38500d1d2f945e35fb11622eabeca619a0a655c6ee9e",
+          "artifacts/ziwei-palace-coordinate-semantic-identity-v0/complete.json": "4f9a62f5f14086fa8a34f650a9167036df45bcb9586ade8b888feac353260d9b",
+          "artifacts/ziwei-system-evidence-readiness-coverage-map-v0/complete.json": "ced877e178ec80c04f6ef70090c0962533e32d410528af9de006ace18a82226f",
+          "src/ziwei/palaceRelationRules.js": "afd4f2ef13da4a13f7dece79e801dab6867e5cd1ee30d2e588dce19935c9aaaa",
+          "src/ziwei/ziweiContract.js": "c3b2940cac98c10561acd855a9e239af20444985b6393f4f7062826484c20b37",
+          "src/ziwei/ziweiResolver.js": "5336f15968b4c618d9b1248b0967deab22b778f48996cb60939ab19cabadf513"
+        }
+      },
+      "id": "palace_semantic_identity",
+      "semanticLimit": "must remain unresolved; no numeric transform or circular production comparison may promote it",
+      "statement": "현재 허용 원전의 직접 검토 범위는 지지/도식 슬롯/명신 방향을 보여주지만 궁명↔지지↔production ordinal의 shared semantic mapping을 보여주지 않는다.",
+      "status": "blocked_semantic_identity_insufficient"
+    },
+    {
+      "evidence": {
+        "observations": [
+          "nanbei-p1-title",
+          "nanyang-p1-title",
+          "nanyang-p2-title-imprint"
+        ],
+        "sourceWitnesses": [
+          "nanbei",
+          "nanyangtang"
+        ]
+      },
+      "id": "cross_edition_semantic_identity",
+      "semanticLimit": "requires an independently reviewable shared mapping witness",
+      "statement": "두 PDF의 visible title/print identity는 확인되지만 같은 semantic coordinate convention 또는 edition lineage를 직접 증명하지 않는다.",
+      "status": "blocked_cross_edition_identity_unresolved"
+    },
+    {
+      "evidence": {
+        "predecessor": {
+          "artifacts/ziwei-life-body-palace-ruler-source-evidence-v0/complete.json": "3b15f34329808a9544cf38500d1d2f945e35fb11622eabeca619a0a655c6ee9e",
+          "artifacts/ziwei-palace-coordinate-semantic-identity-v0/complete.json": "4f9a62f5f14086fa8a34f650a9167036df45bcb9586ade8b888feac353260d9b",
+          "artifacts/ziwei-system-evidence-readiness-coverage-map-v0/complete.json": "ced877e178ec80c04f6ef70090c0962533e32d410528af9de006ace18a82226f",
+          "src/ziwei/palaceRelationRules.js": "afd4f2ef13da4a13f7dece79e801dab6867e5cd1ee30d2e588dce19935c9aaaa",
+          "src/ziwei/ziweiContract.js": "c3b2940cac98c10561acd855a9e239af20444985b6393f4f7062826484c20b37",
+          "src/ziwei/ziweiResolver.js": "5336f15968b4c618d9b1248b0967deab22b778f48996cb60939ab19cabadf513"
+        },
+        "repositoryConvention": [
+          "src/ziwei/ziweiContract.js",
+          "src/ziwei/ziweiResolver.js"
+        ]
+      },
+      "id": "production_source_authority",
+      "semanticLimit": "no readiness, interpretation, or production activation",
+      "statement": "source presence, page identity, visual observations, repository conventions, and prior numeric transforms remain separate; no production semantic authority is established.",
+      "status": "blocked_source_authority_not_established"
+    }
+  ],
+  "deterministicContract": {
+    "finalLf": true,
+    "generatedAt": "forbidden",
+    "ordering": "lexicographic observation and claim IDs",
+    "sourceBytes": "actual bytes read and hashed",
+    "visualReview": "full-page PNG hashes from external 110 dpi pdftoppm review"
+  },
+  "frontierAssessment": {
+    "closedWithinScope": [
+      "actual PDF byte identity",
+      "page count and encryption metadata",
+      "visible title/editor/print surface identity",
+      "direct observation of branch/diagram/traversal evidence"
+    ],
+    "investigated": [
+      "scan/title identity",
+      "branch diagram coordinate",
+      "12-cell palace diagram",
+      "命宮·身宮 traversal",
+      "命宮·身宮·五行局 table",
+      "cross-edition source identity"
+    ],
+    "nextRequiredEvidence": "one readable, immutable, edition-identified witness that directly binds all 12 palace names to branches/diagram slots and states the same coordinate frame used by production; independent oracle remains separate",
+    "stillBlocked": [
+      "palace name to branch mapping",
+      "source diagram to production ordinal semantic equivalence",
+      "cross-edition semantic identity",
+      "textual authority for production interpretation"
+    ]
+  },
+  "materializer": "scripts/materialize-ziwei-palace-semantic-source-frontier-v1.mjs",
+  "observedHead": "45ceb1d27143ed4d61487e2dce0dfc35ef872d1b",
+  "predecessorProtection": {
+    "artifacts/ziwei-life-body-palace-ruler-source-evidence-v0/complete.json": "3b15f34329808a9544cf38500d1d2f945e35fb11622eabeca619a0a655c6ee9e",
+    "artifacts/ziwei-palace-coordinate-semantic-identity-v0/complete.json": "4f9a62f5f14086fa8a34f650a9167036df45bcb9586ade8b888feac353260d9b",
+    "artifacts/ziwei-system-evidence-readiness-coverage-map-v0/complete.json": "ced877e178ec80c04f6ef70090c0962533e32d410528af9de006ace18a82226f",
+    "src/ziwei/palaceRelationRules.js": "afd4f2ef13da4a13f7dece79e801dab6867e5cd1ee30d2e588dce19935c9aaaa",
+    "src/ziwei/ziweiContract.js": "c3b2940cac98c10561acd855a9e239af20444985b6393f4f7062826484c20b37",
+    "src/ziwei/ziweiResolver.js": "5336f15968b4c618d9b1248b0967deab22b778f48996cb60939ab19cabadf513"
+  },
+  "schemaVersion": "ziwei-palace-semantic-source-frontier-v1",
+  "sourceObservations": [
+    {
+      "doesNotSupport": [
+        "edition_lineage_beyond_visible_page",
+        "palace_semantic_mapping"
+      ],
+      "editionId": "nanbei",
+      "id": "nanbei-p1-title",
+      "pdfPage": 1,
+      "reading": "표지에서 紫微斗數全書, 南北山人, 陳希夷先生 등의 표면 title/editor 문자열을 직접 읽었다.",
+      "role": "title_page_identity",
+      "supports": [
+        "title_surface_identity"
+      ],
+      "visualReview": {
+        "dpi": 110,
+        "fullPagePngSha256": "bb81c99d73fc9c5c569bd97e0b2e7482249de291d0d1de12a4b6e8e09e51504f",
+        "renderStorage": "external_temp_only_not_in_git",
+        "tool": "bundled pdftoppm"
+      }
+    },
+    {
+      "doesNotSupport": [
+        "palace_name_to_branch_mapping",
+        "production_ordinal_semantic_identity"
+      ],
+      "editionId": "nanbei",
+      "id": "nanbei-p10-ming-shen-bureau-table",
+      "pdfPage": 10,
+      "reading": "命宮地支·生時와 五行局을 연결하는 표 및 命宮/身宮 지지 표기가 보인다. 12궁명 전체와 production palace enum의 대응은 보이지 않는다.",
+      "role": "branch_bureau_table_witness",
+      "supports": [
+        "branch_input_and_bureau_table_observation"
+      ],
+      "visualReview": {
+        "dpi": 110,
+        "fullPagePngSha256": "2e16be712ffffa3de884b95afbf1fc5837a5c59a801114ecea4c2365d0192ffb",
+        "renderStorage": "external_temp_only_not_in_git",
+        "tool": "bundled pdftoppm"
+      }
+    },
+    {
+      "doesNotSupport": [
+        "palace_name_to_branch_mapping",
+        "production_ordinal_semantic_identity"
+      ],
+      "editionId": "nanbei",
+      "id": "nanbei-p4-branch-trigram-diagram",
+      "pdfPage": 4,
+      "reading": "命盤構成 도식의 외곽에 지지와 팔괘/방위 표기가 보인다. 궁명 12개와 production ordinal의 대응표는 보이지 않는다.",
+      "role": "branch_diagram_witness",
+      "supports": [
+        "branch_and_diagram_position_observation"
+      ],
+      "visualReview": {
+        "dpi": 110,
+        "fullPagePngSha256": "2f60195d77ba98b922132367c7f8c01587133a07850dbc0414a17ed2e09b8e4b",
+        "renderStorage": "external_temp_only_not_in_git",
+        "tool": "bundled pdftoppm"
+      }
+    },
+    {
+      "doesNotSupport": [
+        "palace_name_to_branch_mapping",
+        "shared_source_production_coordinate_frame"
+      ],
+      "editionId": "nanbei",
+      "id": "nanbei-p7-twelve-cell-diagram",
+      "pdfPage": 7,
+      "reading": "十二宮冠蓋 도식은 12칸과 巳午未申 / 酉戌 / 亥子丑寅 / 卯辰 지지 표기를 보인다. 칸별 命·兄弟·夫妻 등 궁명은 보이지 않는다.",
+      "role": "twelve_cell_branch_diagram_witness",
+      "supports": [
+        "twelve_cell_branch_slot_observation"
+      ],
+      "visualReview": {
+        "dpi": 110,
+        "fullPagePngSha256": "ebbdcf1a35d21e0fcf4339182af2df3ad290c279b8627bab9dc7f80156083bac",
+        "renderStorage": "external_temp_only_not_in_git",
+        "tool": "bundled pdftoppm"
+      }
+    },
+    {
+      "doesNotSupport": [
+        "12_palace_name_semantics",
+        "shared_diagram_to_production_ordinal_mapping"
+      ],
+      "editionId": "nanbei",
+      "id": "nanbei-p8-ming-shen-rule",
+      "pdfPage": 8,
+      "reading": "九、定命、身二宮에서 寅起正月, 生月 순수, 命宮 역수, 身宮 순수의 방향·기점 설명을 직접 읽었다.",
+      "role": "ming_shen_traversal_witness",
+      "supports": [
+        "ming_shen_branch_traversal_rule"
+      ],
+      "visualReview": {
+        "dpi": 110,
+        "fullPagePngSha256": "d740c6ed5191e516f40ee61bda7f95ff2081954b21b091c22bee9c0249e8acea",
+        "renderStorage": "external_temp_only_not_in_git",
+        "tool": "bundled pdftoppm"
+      }
+    },
+    {
+      "doesNotSupport": [
+        "edition_lineage_beyond_visible_page",
+        "palace_semantic_mapping"
+      ],
+      "editionId": "nanyangtang",
+      "id": "nanyang-p1-title",
+      "pdfPage": 1,
+      "reading": "표지에서 紫微斗數全書 표면 title을 직접 읽었다.",
+      "role": "title_page_identity",
+      "supports": [
+        "title_surface_identity"
+      ],
+      "visualReview": {
+        "dpi": 110,
+        "fullPagePngSha256": "3d59ff59aa8be6bd189277ac287f6f61590b5066add5d701f27bbdb07442e79c",
+        "renderStorage": "external_temp_only_not_in_git",
+        "tool": "bundled pdftoppm"
+      }
+    },
+    {
+      "doesNotSupport": [
+        "complete_bibliographic_lineage",
+        "palace_semantic_mapping"
+      ],
+      "editionId": "nanyangtang",
+      "id": "nanyang-p2-title-imprint",
+      "pdfPage": 2,
+      "reading": "본문 앞면에서 陳抟先生, 南陽堂刊本 계열의 표면 title/editor·刊本 문자열을 직접 읽었다.",
+      "role": "title_editor_identity",
+      "supports": [
+        "visible_editor_or_print_identity"
+      ],
+      "visualReview": {
+        "dpi": 110,
+        "fullPagePngSha256": "90a878b4db1644f885593fdfdaccd6cae38f280201adaf34860c599fb46f6e8a",
+        "renderStorage": "external_temp_only_not_in_git",
+        "tool": "bundled pdftoppm"
+      }
+    }
+  ],
+  "sourceWitnesses": [
+    {
+      "byteLength": 35515645,
+      "editionId": "nanbei",
+      "encrypted": "no",
+      "label": "命-南北山人_紫微斗数全书.pdf",
+      "pageCount": 219,
+      "path": "/Users/softie/Documents/命-南北山人_紫微斗数全书.pdf",
+      "pdfInfo": [
+        "Producer:        iOS Version 15.0 (Build 19A346) Quartz PDFContext",
+        "CreationDate:    Fri Sep 24 13:21:02 2021 KST",
+        "ModDate:         Fri Sep 24 13:21:02 2021 KST",
+        "Custom Metadata: no",
+        "Metadata Stream: no",
+        "Tagged:          no",
+        "UserProperties:  no",
+        "Suspects:        no",
+        "Form:            none",
+        "JavaScript:      no",
+        "Pages:           219",
+        "Encrypted:       no",
+        "Page size:       1505 x 2182 pts",
+        "Page rot:        0",
+        "File size:       35515645 bytes",
+        "Optimized:       no",
+        "PDF version:     1.3"
+      ],
+      "sha256": "4786a94ab454acdabf9716d7c0db4756dbcbde99a88bc45fda254863c1961023",
+      "sourceId": "nanbei_quanbao_219p"
+    },
+    {
+      "byteLength": 36201526,
+      "editionId": "nanyangtang",
+      "encrypted": "no",
+      "label": "新锓希夷陈先生紫微斗数全书…明代南阳堂刊本…pdf",
+      "pageCount": 528,
+      "path": "/Users/softie/Documents/malang_lab/documents/新锓希夷陈先生紫微斗数全书.七卷.宋.陈抟撰.明.潘希尹补.明代南阳堂刊本.黑白版.pdf",
+      "pdfInfo": [
+        "Title:           ",
+        "Subject:         书格（shuge.org）整理发布",
+        "Keywords:        日本内阁文库藏\r",
+        "https://www.digital.archives.go.jp/das/meta/F1000000000000101426",
+        "Creator:         PDFPatcher 0.6.2.3572",
+        "Producer:        iTextSharp™ 5.5.14-SNAPSHOT ©2000-2019 iText Group NV (AGPL-version)",
+        "CreationDate:    Sun Mar 22 15:45:36 2020 KST",
+        "ModDate:         Sun Mar 22 15:51:18 2020 KST",
+        "Custom Metadata: no",
+        "Metadata Stream: yes",
+        "Tagged:          no",
+        "UserProperties:  no",
+        "Suspects:        no",
+        "Form:            none",
+        "JavaScript:      no",
+        "Pages:           528",
+        "Encrypted:       no",
+        "Page size:       702.48 x 1015.44 pts",
+        "Page rot:        0",
+        "File size:       36201526 bytes",
+        "Optimized:       no",
+        "PDF version:     1.5"
+      ],
+      "sha256": "04e184c4a52cb042dc885c6ccc9135d94ab25de62007506198ee979a33e66bfc",
+      "sourceId": "nanyangtang_quanbao_528p"
+    }
+  ],
+  "verdictToken": "partial_ziwei_palace_source_authority_with_semantic_identity_blocker"
+}

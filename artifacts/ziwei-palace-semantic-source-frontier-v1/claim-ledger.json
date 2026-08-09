@@ -1,0 +1,101 @@
+[
+  {
+    "evidence": {
+      "observations": [
+        "nanbei-p1-title",
+        "nanyang-p1-title",
+        "nanyang-p2-title-imprint"
+      ],
+      "sourceWitnesses": [
+        "nanbei",
+        "nanyangtang"
+      ]
+    },
+    "id": "scan_witness_identity",
+    "semanticLimit": "visible title/print identity is not complete edition lineage or textual authority",
+    "statement": "두 허용 PDF의 실제 bytes, page count, encryption 상태와 표지/편집·刊本 표면 문자열을 확인했다.",
+    "status": "direct_within_scope"
+  },
+  {
+    "evidence": {
+      "observations": [
+        "nanbei-p4-branch-trigram-diagram",
+        "nanbei-p7-twelve-cell-diagram"
+      ]
+    },
+    "id": "branch_diagram_observation",
+    "semanticLimit": "branch slots are not palace-name semantics",
+    "statement": "Nanbei p4와 p7에서 지지·도식 칸을 직접 관찰했다.",
+    "status": "direct_within_scope"
+  },
+  {
+    "evidence": {
+      "observations": [
+        "nanbei-p8-ming-shen-rule"
+      ]
+    },
+    "id": "ming_shen_traversal_observation",
+    "semanticLimit": "traversal rule does not identify all 12 palace labels or production ordinal meaning",
+    "statement": "Nanbei p8에서 명궁·신궁의 기점과 순·역수 어휘를 직접 관찰했다.",
+    "status": "direct_within_scope"
+  },
+  {
+    "evidence": {
+      "observations": [
+        "nanbei-p4-branch-trigram-diagram",
+        "nanbei-p7-twelve-cell-diagram",
+        "nanbei-p8-ming-shen-rule",
+        "nanbei-p10-ming-shen-bureau-table"
+      ],
+      "predecessor": {
+        "artifacts/ziwei-life-body-palace-ruler-source-evidence-v0/complete.json": "3b15f34329808a9544cf38500d1d2f945e35fb11622eabeca619a0a655c6ee9e",
+        "artifacts/ziwei-palace-coordinate-semantic-identity-v0/complete.json": "4f9a62f5f14086fa8a34f650a9167036df45bcb9586ade8b888feac353260d9b",
+        "artifacts/ziwei-system-evidence-readiness-coverage-map-v0/complete.json": "ced877e178ec80c04f6ef70090c0962533e32d410528af9de006ace18a82226f",
+        "src/ziwei/palaceRelationRules.js": "afd4f2ef13da4a13f7dece79e801dab6867e5cd1ee30d2e588dce19935c9aaaa",
+        "src/ziwei/ziweiContract.js": "c3b2940cac98c10561acd855a9e239af20444985b6393f4f7062826484c20b37",
+        "src/ziwei/ziweiResolver.js": "5336f15968b4c618d9b1248b0967deab22b778f48996cb60939ab19cabadf513"
+      }
+    },
+    "id": "palace_semantic_identity",
+    "semanticLimit": "must remain unresolved; no numeric transform or circular production comparison may promote it",
+    "statement": "현재 허용 원전의 직접 검토 범위는 지지/도식 슬롯/명신 방향을 보여주지만 궁명↔지지↔production ordinal의 shared semantic mapping을 보여주지 않는다.",
+    "status": "blocked_semantic_identity_insufficient"
+  },
+  {
+    "evidence": {
+      "observations": [
+        "nanbei-p1-title",
+        "nanyang-p1-title",
+        "nanyang-p2-title-imprint"
+      ],
+      "sourceWitnesses": [
+        "nanbei",
+        "nanyangtang"
+      ]
+    },
+    "id": "cross_edition_semantic_identity",
+    "semanticLimit": "requires an independently reviewable shared mapping witness",
+    "statement": "두 PDF의 visible title/print identity는 확인되지만 같은 semantic coordinate convention 또는 edition lineage를 직접 증명하지 않는다.",
+    "status": "blocked_cross_edition_identity_unresolved"
+  },
+  {
+    "evidence": {
+      "predecessor": {
+        "artifacts/ziwei-life-body-palace-ruler-source-evidence-v0/complete.json": "3b15f34329808a9544cf38500d1d2f945e35fb11622eabeca619a0a655c6ee9e",
+        "artifacts/ziwei-palace-coordinate-semantic-identity-v0/complete.json": "4f9a62f5f14086fa8a34f650a9167036df45bcb9586ade8b888feac353260d9b",
+        "artifacts/ziwei-system-evidence-readiness-coverage-map-v0/complete.json": "ced877e178ec80c04f6ef70090c0962533e32d410528af9de006ace18a82226f",
+        "src/ziwei/palaceRelationRules.js": "afd4f2ef13da4a13f7dece79e801dab6867e5cd1ee30d2e588dce19935c9aaaa",
+        "src/ziwei/ziweiContract.js": "c3b2940cac98c10561acd855a9e239af20444985b6393f4f7062826484c20b37",
+        "src/ziwei/ziweiResolver.js": "5336f15968b4c618d9b1248b0967deab22b778f48996cb60939ab19cabadf513"
+      },
+      "repositoryConvention": [
+        "src/ziwei/ziweiContract.js",
+        "src/ziwei/ziweiResolver.js"
+      ]
+    },
+    "id": "production_source_authority",
+    "semanticLimit": "no readiness, interpretation, or production activation",
+    "statement": "source presence, page identity, visual observations, repository conventions, and prior numeric transforms remain separate; no production semantic authority is established.",
+    "status": "blocked_source_authority_not_established"
+  }
+]

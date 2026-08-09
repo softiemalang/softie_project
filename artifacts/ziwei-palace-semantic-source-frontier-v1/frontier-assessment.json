@@ -1,0 +1,23 @@
+{
+  "closedWithinScope": [
+    "actual PDF byte identity",
+    "page count and encryption metadata",
+    "visible title/editor/print surface identity",
+    "direct observation of branch/diagram/traversal evidence"
+  ],
+  "investigated": [
+    "scan/title identity",
+    "branch diagram coordinate",
+    "12-cell palace diagram",
+    "命宮·身宮 traversal",
+    "命宮·身宮·五行局 table",
+    "cross-edition source identity"
+  ],
+  "nextRequiredEvidence": "one readable, immutable, edition-identified witness that directly binds all 12 palace names to branches/diagram slots and states the same coordinate frame used by production; independent oracle remains separate",
+  "stillBlocked": [
+    "palace name to branch mapping",
+    "source diagram to production ordinal semantic equivalence",
+    "cross-edition semantic identity",
+    "textual authority for production interpretation"
+  ]
+}
