@@ -1,0 +1,7 @@
+{
+  "artifactByteSha256": "aaee0710bc855f00c459767c2ea07bd8e8d25ef9052c4f145ffb513c78426138",
+  "artifactPath": "artifacts/saju-five-classics-grounding-v0/complete.json",
+  "byteLength": 138892,
+  "hashScope": "exact UTF-8 bytes of complete.json including final LF",
+  "schemaVersion": "saju-five-classics-claim-grounding-v0-integrity-v1"
+}

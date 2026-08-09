@@ -1,0 +1,2721 @@
+{
+  "admissionBoundary": {
+    "activation": "blocked_unchanged",
+    "claimRelation": "claim_level_scope_assessment_only",
+    "claimVerification": "not_promoted",
+    "directObservation": "admitted_with_limits",
+    "independentAuthority": "not_established",
+    "readiness": "blocked_unchanged",
+    "semanticEquivalence": "not_established",
+    "sourceIdentity": "local_file_bytes_verified_edition_unresolved",
+    "transcription": "candidate_not_canonical_source_text"
+  },
+  "artifactIdentity": {
+    "artifactId": "saju-five-classics-claim-grounding-v0",
+    "artifactPayloadSha256": "7c98eb9fa0d98c6e463155b2cc1c8e275efbeaa22ce297aab4bcf5f544c92f49",
+    "contractVersion": "artifact-identity-v1",
+    "generation": {
+      "baseHead": "fe72879a257aaf9dc2fc441206c875c17280e245",
+      "baseHeadSource": "git rev-parse HEAD at materialization",
+      "includedCommit": null,
+      "includedCommitSource": "unknown_at_generation; artifact may be included by a later commit"
+    },
+    "inputs": [
+      {
+        "byteSha256": "bb2143056c5267bbb286b52d2c86419fbd5de605a14fc431d2060c0689cadc88",
+        "path": "artifacts/saju-readiness-grounding-v0.json"
+      },
+      {
+        "byteSha256": "ea9d5d25369d7c50eea9d8a9185001a9ec924ee67314cec1198869331a41f0c7",
+        "path": "artifacts/saju-v1-local-frontier-v0/complete.json"
+      },
+      {
+        "byteSha256": "529b1d7fe981fa48c40d3c2cbfc29a8cb12db85b81767abc5da30685b5c31c95",
+        "path": "scripts/materialize-saju-five-classics-grounding-v0.mjs"
+      },
+      {
+        "byteSha256": "59bbad0968cd21f39ad014b65417aaccb4b40ba0447bca25743a80c19e175aee",
+        "path": "src/interpretationPrep/sajuFiveClassicsGroundingEvidence.js"
+      },
+      {
+        "byteSha256": "3375b3cff9f88dd8fc6b22cab9a8025136cdf6089ae650e50690793635b215cd",
+        "path": "src/interpretationPrep/sajuLocalSourceCorpusEvidence.js"
+      }
+    ],
+    "materializer": {
+      "path": "scripts/materialize-saju-five-classics-grounding-v0.mjs",
+      "version": "0.1.0"
+    }
+  },
+  "baseline": {
+    "canonicalFrontierArtifact": {
+      "byteSha256": "ea9d5d25369d7c50eea9d8a9185001a9ec924ee67314cec1198869331a41f0c7",
+      "claimCount": 43,
+      "historicalArtifactRewritten": false,
+      "occurrenceCount": 126,
+      "path": "artifacts/saju-v1-local-frontier-v0/complete.json"
+    },
+    "readiness": {
+      "availableForInterpretation": false,
+      "byteSha256": "bb2143056c5267bbb286b52d2c86419fbd5de605a14fc431d2060c0689cadc88",
+      "claimCount": 43,
+      "integrationStatus": "not_connected",
+      "occurrenceCount": 126,
+      "path": "artifacts/saju-readiness-grounding-v0.json",
+      "serviceEligibility": "blocked",
+      "statusDistribution": {
+        "provenance_partial": 1,
+        "rule_implemented_source_unresolved": 4,
+        "unverified": 38
+      }
+    }
+  },
+  "basisHead": "fe72879a257aaf9dc2fc441206c875c17280e245",
+  "claimGrounding": [
+    {
+      "category": "structure",
+      "claimId": "saju.natal.branch-relation.day-hour-육합",
+      "claimText": "현재 기준 원국의 일지·시지에서 육합 관계가 고정 규칙표로 조회된다. 성립 강도나 길흉은 판정하지 않는다.",
+      "claimVerification": "not_promoted",
+      "deterministicBoundary": "calculation_output_and_implemented_rule_remain_separate_from_classical_source_observation",
+      "groundingStatus": "partial_support",
+      "packetId": "saju-source-packet-rule-branch-relations-v0",
+      "relationBasis": "Definitions and selected examples are directly observed, but complete claim-level tables and all repository relation types are not established.",
+      "researchUnitIds": [
+        "five-classics.branch-relations.ziping-p5"
+      ],
+      "semanticEquivalence": "not_established",
+      "sourceIdentityStatus": "local_file_bytes_verified_edition_unresolved",
+      "sourceObservationIds": [
+        "ziping-p5-branch-relations-definition-and-examples"
+      ],
+      "sourceRefs": [
+        "saju-source-ziping-zhenquan",
+        "source-observation:ziping-p5-branch-relations-definition-and-examples"
+      ],
+      "unresolved": [
+        "source edition identity and transmission history remain unresolved",
+        "direct observation is not independent authority or claim verification",
+        "Definitions and selected examples are directly observed, but complete claim-level tables and all repository relation types are not established."
+      ]
+    },
+    {
+      "category": "structure",
+      "claimId": "saju.natal.branch-relation.day-hour-충",
+      "claimText": "현재 기준 원국의 일지·시지에서 충 관계가 고정 규칙표로 조회된다. 성립 강도나 길흉은 판정하지 않는다.",
+      "claimVerification": "not_promoted",
+      "deterministicBoundary": "calculation_output_and_implemented_rule_remain_separate_from_classical_source_observation",
+      "groundingStatus": "partial_support",
+      "packetId": "saju-source-packet-rule-branch-relations-v0",
+      "relationBasis": "Definitions and selected examples are directly observed, but complete claim-level tables and all repository relation types are not established.",
+      "researchUnitIds": [
+        "five-classics.branch-relations.ziping-p5"
+      ],
+      "semanticEquivalence": "not_established",
+      "sourceIdentityStatus": "local_file_bytes_verified_edition_unresolved",
+      "sourceObservationIds": [
+        "ziping-p5-branch-relations-definition-and-examples"
+      ],
+      "sourceRefs": [
+        "saju-source-ziping-zhenquan",
+        "source-observation:ziping-p5-branch-relations-definition-and-examples"
+      ],
+      "unresolved": [
+        "source edition identity and transmission history remain unresolved",
+        "direct observation is not independent authority or claim verification",
+        "Definitions and selected examples are directly observed, but complete claim-level tables and all repository relation types are not established."
+      ]
+    },
+    {
+      "category": "structure",
+      "claimId": "saju.natal.branch-relation.day-hour-파",
+      "claimText": "현재 기준 원국의 일지·시지에서 파 관계가 고정 규칙표로 조회된다. 성립 강도나 길흉은 판정하지 않는다.",
+      "claimVerification": "not_promoted",
+      "deterministicBoundary": "calculation_output_and_implemented_rule_remain_separate_from_classical_source_observation",
+      "groundingStatus": "partial_support",
+      "packetId": "saju-source-packet-rule-branch-relations-v0",
+      "relationBasis": "Definitions and selected examples are directly observed, but complete claim-level tables and all repository relation types are not established.",
+      "researchUnitIds": [
+        "five-classics.branch-relations.ziping-p5"
+      ],
+      "semanticEquivalence": "not_established",
+      "sourceIdentityStatus": "local_file_bytes_verified_edition_unresolved",
+      "sourceObservationIds": [
+        "ziping-p5-branch-relations-definition-and-examples"
+      ],
+      "sourceRefs": [
+        "saju-source-ziping-zhenquan",
+        "source-observation:ziping-p5-branch-relations-definition-and-examples"
+      ],
+      "unresolved": [
+        "source edition identity and transmission history remain unresolved",
+        "direct observation is not independent authority or claim verification",
+        "Definitions and selected examples are directly observed, but complete claim-level tables and all repository relation types are not established."
+      ]
+    },
+    {
+      "category": "structure",
+      "claimId": "saju.natal.branch-relation.day-hour-형",
+      "claimText": "현재 기준 원국의 일지·시지에서 형 관계가 고정 규칙표로 조회된다. 성립 강도나 길흉은 판정하지 않는다.",
+      "claimVerification": "not_promoted",
+      "deterministicBoundary": "calculation_output_and_implemented_rule_remain_separate_from_classical_source_observation",
+      "groundingStatus": "partial_support",
+      "packetId": "saju-source-packet-rule-branch-relations-v0",
+      "relationBasis": "Definitions and selected examples are directly observed, but complete claim-level tables and all repository relation types are not established.",
+      "researchUnitIds": [
+        "five-classics.branch-relations.ziping-p5"
+      ],
+      "semanticEquivalence": "not_established",
+      "sourceIdentityStatus": "local_file_bytes_verified_edition_unresolved",
+      "sourceObservationIds": [
+        "ziping-p5-branch-relations-definition-and-examples"
+      ],
+      "sourceRefs": [
+        "saju-source-ziping-zhenquan",
+        "source-observation:ziping-p5-branch-relations-definition-and-examples"
+      ],
+      "unresolved": [
+        "source edition identity and transmission history remain unresolved",
+        "direct observation is not independent authority or claim verification",
+        "Definitions and selected examples are directly observed, but complete claim-level tables and all repository relation types are not established."
+      ]
+    },
+    {
+      "category": "structure",
+      "claimId": "saju.natal.branch-relation.half-trine-목-year-day",
+      "claimText": "현재 기준 원국의 연지·일지에서 반합 관계가 고정 규칙표로 조회된다. 성립 강도나 길흉은 판정하지 않는다.",
+      "claimVerification": "not_promoted",
+      "deterministicBoundary": "calculation_output_and_implemented_rule_remain_separate_from_classical_source_observation",
+      "groundingStatus": "partial_support",
+      "packetId": "saju-source-packet-rule-branch-relations-v0",
+      "relationBasis": "Definitions and selected examples are directly observed, but complete claim-level tables and all repository relation types are not established.",
+      "researchUnitIds": [
+        "five-classics.branch-relations.ziping-p5"
+      ],
+      "semanticEquivalence": "not_established",
+      "sourceIdentityStatus": "local_file_bytes_verified_edition_unresolved",
+      "sourceObservationIds": [
+        "ziping-p5-branch-relations-definition-and-examples"
+      ],
+      "sourceRefs": [
+        "saju-source-ziping-zhenquan",
+        "source-observation:ziping-p5-branch-relations-definition-and-examples"
+      ],
+      "unresolved": [
+        "source edition identity and transmission history remain unresolved",
+        "direct observation is not independent authority or claim verification",
+        "Definitions and selected examples are directly observed, but complete claim-level tables and all repository relation types are not established."
+      ]
+    },
+    {
+      "category": "structure",
+      "claimId": "saju.natal.branch-relation.half-trine-수-day-hour",
+      "claimText": "현재 기준 원국의 일지·시지에서 반합 관계가 고정 규칙표로 조회된다. 성립 강도나 길흉은 판정하지 않는다.",
+      "claimVerification": "not_promoted",
+      "deterministicBoundary": "calculation_output_and_implemented_rule_remain_separate_from_classical_source_observation",
+      "groundingStatus": "partial_support",
+      "packetId": "saju-source-packet-rule-branch-relations-v0",
+      "relationBasis": "Definitions and selected examples are directly observed, but complete claim-level tables and all repository relation types are not established.",
+      "researchUnitIds": [
+        "five-classics.branch-relations.ziping-p5"
+      ],
+      "semanticEquivalence": "not_established",
+      "sourceIdentityStatus": "local_file_bytes_verified_edition_unresolved",
+      "sourceObservationIds": [
+        "ziping-p5-branch-relations-definition-and-examples"
+      ],
+      "sourceRefs": [
+        "saju-source-ziping-zhenquan",
+        "source-observation:ziping-p5-branch-relations-definition-and-examples"
+      ],
+      "unresolved": [
+        "source edition identity and transmission history remain unresolved",
+        "direct observation is not independent authority or claim verification",
+        "Definitions and selected examples are directly observed, but complete claim-level tables and all repository relation types are not established."
+      ]
+    },
+    {
+      "category": "structure",
+      "claimId": "saju.natal.branch-relation.half-trine-수-month-hour",
+      "claimText": "현재 기준 원국의 월지·시지에서 반합 관계가 고정 규칙표로 조회된다. 성립 강도나 길흉은 판정하지 않는다.",
+      "claimVerification": "not_promoted",
+      "deterministicBoundary": "calculation_output_and_implemented_rule_remain_separate_from_classical_source_observation",
+      "groundingStatus": "partial_support",
+      "packetId": "saju-source-packet-rule-branch-relations-v0",
+      "relationBasis": "Definitions and selected examples are directly observed, but complete claim-level tables and all repository relation types are not established.",
+      "researchUnitIds": [
+        "five-classics.branch-relations.ziping-p5"
+      ],
+      "semanticEquivalence": "not_established",
+      "sourceIdentityStatus": "local_file_bytes_verified_edition_unresolved",
+      "sourceObservationIds": [
+        "ziping-p5-branch-relations-definition-and-examples"
+      ],
+      "sourceRefs": [
+        "saju-source-ziping-zhenquan",
+        "source-observation:ziping-p5-branch-relations-definition-and-examples"
+      ],
+      "unresolved": [
+        "source edition identity and transmission history remain unresolved",
+        "direct observation is not independent authority or claim verification",
+        "Definitions and selected examples are directly observed, but complete claim-level tables and all repository relation types are not established."
+      ]
+    },
+    {
+      "category": "structure",
+      "claimId": "saju.natal.branch-relation.month-day-육합",
+      "claimText": "현재 기준 원국의 월지·일지에서 육합 관계가 고정 규칙표로 조회된다. 성립 강도나 길흉은 판정하지 않는다.",
+      "claimVerification": "not_promoted",
+      "deterministicBoundary": "calculation_output_and_implemented_rule_remain_separate_from_classical_source_observation",
+      "groundingStatus": "partial_support",
+      "packetId": "saju-source-packet-rule-branch-relations-v0",
+      "relationBasis": "Definitions and selected examples are directly observed, but complete claim-level tables and all repository relation types are not established.",
+      "researchUnitIds": [
+        "five-classics.branch-relations.ziping-p5"
+      ],
+      "semanticEquivalence": "not_established",
+      "sourceIdentityStatus": "local_file_bytes_verified_edition_unresolved",
+      "sourceObservationIds": [
+        "ziping-p5-branch-relations-definition-and-examples"
+      ],
+      "sourceRefs": [
+        "saju-source-ziping-zhenquan",
+        "source-observation:ziping-p5-branch-relations-definition-and-examples"
+      ],
+      "unresolved": [
+        "source edition identity and transmission history remain unresolved",
+        "direct observation is not independent authority or claim verification",
+        "Definitions and selected examples are directly observed, but complete claim-level tables and all repository relation types are not established."
+      ]
+    },
+    {
+      "category": "structure",
+      "claimId": "saju.natal.branch-relation.month-day-충",
+      "claimText": "현재 기준 원국의 월지·일지에서 충 관계가 고정 규칙표로 조회된다. 성립 강도나 길흉은 판정하지 않는다.",
+      "claimVerification": "not_promoted",
+      "deterministicBoundary": "calculation_output_and_implemented_rule_remain_separate_from_classical_source_observation",
+      "groundingStatus": "partial_support",
+      "packetId": "saju-source-packet-rule-branch-relations-v0",
+      "relationBasis": "Definitions and selected examples are directly observed, but complete claim-level tables and all repository relation types are not established.",
+      "researchUnitIds": [
+        "five-classics.branch-relations.ziping-p5"
+      ],
+      "semanticEquivalence": "not_established",
+      "sourceIdentityStatus": "local_file_bytes_verified_edition_unresolved",
+      "sourceObservationIds": [
+        "ziping-p5-branch-relations-definition-and-examples"
+      ],
+      "sourceRefs": [
+        "saju-source-ziping-zhenquan",
+        "source-observation:ziping-p5-branch-relations-definition-and-examples"
+      ],
+      "unresolved": [
+        "source edition identity and transmission history remain unresolved",
+        "direct observation is not independent authority or claim verification",
+        "Definitions and selected examples are directly observed, but complete claim-level tables and all repository relation types are not established."
+      ]
+    },
+    {
+      "category": "structure",
+      "claimId": "saju.natal.branch-relation.month-day-파",
+      "claimText": "현재 기준 원국의 월지·일지에서 파 관계가 고정 규칙표로 조회된다. 성립 강도나 길흉은 판정하지 않는다.",
+      "claimVerification": "not_promoted",
+      "deterministicBoundary": "calculation_output_and_implemented_rule_remain_separate_from_classical_source_observation",
+      "groundingStatus": "partial_support",
+      "packetId": "saju-source-packet-rule-branch-relations-v0",
+      "relationBasis": "Definitions and selected examples are directly observed, but complete claim-level tables and all repository relation types are not established.",
+      "researchUnitIds": [
+        "five-classics.branch-relations.ziping-p5"
+      ],
+      "semanticEquivalence": "not_established",
+      "sourceIdentityStatus": "local_file_bytes_verified_edition_unresolved",
+      "sourceObservationIds": [
+        "ziping-p5-branch-relations-definition-and-examples"
+      ],
+      "sourceRefs": [
+        "saju-source-ziping-zhenquan",
+        "source-observation:ziping-p5-branch-relations-definition-and-examples"
+      ],
+      "unresolved": [
+        "source edition identity and transmission history remain unresolved",
+        "direct observation is not independent authority or claim verification",
+        "Definitions and selected examples are directly observed, but complete claim-level tables and all repository relation types are not established."
+      ]
+    },
+    {
+      "category": "structure",
+      "claimId": "saju.natal.branch-relation.month-day-형",
+      "claimText": "현재 기준 원국의 월지·일지에서 형 관계가 고정 규칙표로 조회된다. 성립 강도나 길흉은 판정하지 않는다.",
+      "claimVerification": "not_promoted",
+      "deterministicBoundary": "calculation_output_and_implemented_rule_remain_separate_from_classical_source_observation",
+      "groundingStatus": "partial_support",
+      "packetId": "saju-source-packet-rule-branch-relations-v0",
+      "relationBasis": "Definitions and selected examples are directly observed, but complete claim-level tables and all repository relation types are not established.",
+      "researchUnitIds": [
+        "five-classics.branch-relations.ziping-p5"
+      ],
+      "semanticEquivalence": "not_established",
+      "sourceIdentityStatus": "local_file_bytes_verified_edition_unresolved",
+      "sourceObservationIds": [
+        "ziping-p5-branch-relations-definition-and-examples"
+      ],
+      "sourceRefs": [
+        "saju-source-ziping-zhenquan",
+        "source-observation:ziping-p5-branch-relations-definition-and-examples"
+      ],
+      "unresolved": [
+        "source edition identity and transmission history remain unresolved",
+        "direct observation is not independent authority or claim verification",
+        "Definitions and selected examples are directly observed, but complete claim-level tables and all repository relation types are not established."
+      ]
+    },
+    {
+      "category": "structure",
+      "claimId": "saju.natal.branch-relation.month-hour-육합",
+      "claimText": "현재 기준 원국의 월지·시지에서 육합 관계가 고정 규칙표로 조회된다. 성립 강도나 길흉은 판정하지 않는다.",
+      "claimVerification": "not_promoted",
+      "deterministicBoundary": "calculation_output_and_implemented_rule_remain_separate_from_classical_source_observation",
+      "groundingStatus": "partial_support",
+      "packetId": "saju-source-packet-rule-branch-relations-v0",
+      "relationBasis": "Definitions and selected examples are directly observed, but complete claim-level tables and all repository relation types are not established.",
+      "researchUnitIds": [
+        "five-classics.branch-relations.ziping-p5"
+      ],
+      "semanticEquivalence": "not_established",
+      "sourceIdentityStatus": "local_file_bytes_verified_edition_unresolved",
+      "sourceObservationIds": [
+        "ziping-p5-branch-relations-definition-and-examples"
+      ],
+      "sourceRefs": [
+        "saju-source-ziping-zhenquan",
+        "source-observation:ziping-p5-branch-relations-definition-and-examples"
+      ],
+      "unresolved": [
+        "source edition identity and transmission history remain unresolved",
+        "direct observation is not independent authority or claim verification",
+        "Definitions and selected examples are directly observed, but complete claim-level tables and all repository relation types are not established."
+      ]
+    },
+    {
+      "category": "structure",
+      "claimId": "saju.natal.branch-relation.month-hour-충",
+      "claimText": "현재 기준 원국의 월지·시지에서 충 관계가 고정 규칙표로 조회된다. 성립 강도나 길흉은 판정하지 않는다.",
+      "claimVerification": "not_promoted",
+      "deterministicBoundary": "calculation_output_and_implemented_rule_remain_separate_from_classical_source_observation",
+      "groundingStatus": "partial_support",
+      "packetId": "saju-source-packet-rule-branch-relations-v0",
+      "relationBasis": "Definitions and selected examples are directly observed, but complete claim-level tables and all repository relation types are not established.",
+      "researchUnitIds": [
+        "five-classics.branch-relations.ziping-p5"
+      ],
+      "semanticEquivalence": "not_established",
+      "sourceIdentityStatus": "local_file_bytes_verified_edition_unresolved",
+      "sourceObservationIds": [
+        "ziping-p5-branch-relations-definition-and-examples"
+      ],
+      "sourceRefs": [
+        "saju-source-ziping-zhenquan",
+        "source-observation:ziping-p5-branch-relations-definition-and-examples"
+      ],
+      "unresolved": [
+        "source edition identity and transmission history remain unresolved",
+        "direct observation is not independent authority or claim verification",
+        "Definitions and selected examples are directly observed, but complete claim-level tables and all repository relation types are not established."
+      ]
+    },
+    {
+      "category": "structure",
+      "claimId": "saju.natal.branch-relation.month-hour-형",
+      "claimText": "현재 기준 원국의 월지·시지에서 형 관계가 고정 규칙표로 조회된다. 성립 강도나 길흉은 판정하지 않는다.",
+      "claimVerification": "not_promoted",
+      "deterministicBoundary": "calculation_output_and_implemented_rule_remain_separate_from_classical_source_observation",
+      "groundingStatus": "partial_support",
+      "packetId": "saju-source-packet-rule-branch-relations-v0",
+      "relationBasis": "Definitions and selected examples are directly observed, but complete claim-level tables and all repository relation types are not established.",
+      "researchUnitIds": [
+        "five-classics.branch-relations.ziping-p5"
+      ],
+      "semanticEquivalence": "not_established",
+      "sourceIdentityStatus": "local_file_bytes_verified_edition_unresolved",
+      "sourceObservationIds": [
+        "ziping-p5-branch-relations-definition-and-examples"
+      ],
+      "sourceRefs": [
+        "saju-source-ziping-zhenquan",
+        "source-observation:ziping-p5-branch-relations-definition-and-examples"
+      ],
+      "unresolved": [
+        "source edition identity and transmission history remain unresolved",
+        "direct observation is not independent authority or claim verification",
+        "Definitions and selected examples are directly observed, but complete claim-level tables and all repository relation types are not established."
+      ]
+    },
+    {
+      "category": "structure",
+      "claimId": "saju.natal.branch-relation.year-day-육합",
+      "claimText": "현재 기준 원국의 연지·일지에서 육합 관계가 고정 규칙표로 조회된다. 성립 강도나 길흉은 판정하지 않는다.",
+      "claimVerification": "not_promoted",
+      "deterministicBoundary": "calculation_output_and_implemented_rule_remain_separate_from_classical_source_observation",
+      "groundingStatus": "partial_support",
+      "packetId": "saju-source-packet-rule-branch-relations-v0",
+      "relationBasis": "Definitions and selected examples are directly observed, but complete claim-level tables and all repository relation types are not established.",
+      "researchUnitIds": [
+        "five-classics.branch-relations.ziping-p5"
+      ],
+      "semanticEquivalence": "not_established",
+      "sourceIdentityStatus": "local_file_bytes_verified_edition_unresolved",
+      "sourceObservationIds": [
+        "ziping-p5-branch-relations-definition-and-examples"
+      ],
+      "sourceRefs": [
+        "saju-source-ziping-zhenquan",
+        "source-observation:ziping-p5-branch-relations-definition-and-examples"
+      ],
+      "unresolved": [
+        "source edition identity and transmission history remain unresolved",
+        "direct observation is not independent authority or claim verification",
+        "Definitions and selected examples are directly observed, but complete claim-level tables and all repository relation types are not established."
+      ]
+    },
+    {
+      "category": "structure",
+      "claimId": "saju.natal.branch-relation.year-day-충",
+      "claimText": "현재 기준 원국의 연지·일지에서 충 관계가 고정 규칙표로 조회된다. 성립 강도나 길흉은 판정하지 않는다.",
+      "claimVerification": "not_promoted",
+      "deterministicBoundary": "calculation_output_and_implemented_rule_remain_separate_from_classical_source_observation",
+      "groundingStatus": "partial_support",
+      "packetId": "saju-source-packet-rule-branch-relations-v0",
+      "relationBasis": "Definitions and selected examples are directly observed, but complete claim-level tables and all repository relation types are not established.",
+      "researchUnitIds": [
+        "five-classics.branch-relations.ziping-p5"
+      ],
+      "semanticEquivalence": "not_established",
+      "sourceIdentityStatus": "local_file_bytes_verified_edition_unresolved",
+      "sourceObservationIds": [
+        "ziping-p5-branch-relations-definition-and-examples"
+      ],
+      "sourceRefs": [
+        "saju-source-ziping-zhenquan",
+        "source-observation:ziping-p5-branch-relations-definition-and-examples"
+      ],
+      "unresolved": [
+        "source edition identity and transmission history remain unresolved",
+        "direct observation is not independent authority or claim verification",
+        "Definitions and selected examples are directly observed, but complete claim-level tables and all repository relation types are not established."
+      ]
+    },
+    {
+      "category": "structure",
+      "claimId": "saju.natal.branch-relation.year-day-파",
+      "claimText": "현재 기준 원국의 연지·일지에서 파 관계가 고정 규칙표로 조회된다. 성립 강도나 길흉은 판정하지 않는다.",
+      "claimVerification": "not_promoted",
+      "deterministicBoundary": "calculation_output_and_implemented_rule_remain_separate_from_classical_source_observation",
+      "groundingStatus": "partial_support",
+      "packetId": "saju-source-packet-rule-branch-relations-v0",
+      "relationBasis": "Definitions and selected examples are directly observed, but complete claim-level tables and all repository relation types are not established.",
+      "researchUnitIds": [
+        "five-classics.branch-relations.ziping-p5"
+      ],
+      "semanticEquivalence": "not_established",
+      "sourceIdentityStatus": "local_file_bytes_verified_edition_unresolved",
+      "sourceObservationIds": [
+        "ziping-p5-branch-relations-definition-and-examples"
+      ],
+      "sourceRefs": [
+        "saju-source-ziping-zhenquan",
+        "source-observation:ziping-p5-branch-relations-definition-and-examples"
+      ],
+      "unresolved": [
+        "source edition identity and transmission history remain unresolved",
+        "direct observation is not independent authority or claim verification",
+        "Definitions and selected examples are directly observed, but complete claim-level tables and all repository relation types are not established."
+      ]
+    },
+    {
+      "category": "structure",
+      "claimId": "saju.natal.branch-relation.year-hour-육합",
+      "claimText": "현재 기준 원국의 연지·시지에서 육합 관계가 고정 규칙표로 조회된다. 성립 강도나 길흉은 판정하지 않는다.",
+      "claimVerification": "not_promoted",
+      "deterministicBoundary": "calculation_output_and_implemented_rule_remain_separate_from_classical_source_observation",
+      "groundingStatus": "partial_support",
+      "packetId": "saju-source-packet-rule-branch-relations-v0",
+      "relationBasis": "Definitions and selected examples are directly observed, but complete claim-level tables and all repository relation types are not established.",
+      "researchUnitIds": [
+        "five-classics.branch-relations.ziping-p5"
+      ],
+      "semanticEquivalence": "not_established",
+      "sourceIdentityStatus": "local_file_bytes_verified_edition_unresolved",
+      "sourceObservationIds": [
+        "ziping-p5-branch-relations-definition-and-examples"
+      ],
+      "sourceRefs": [
+        "saju-source-ziping-zhenquan",
+        "source-observation:ziping-p5-branch-relations-definition-and-examples"
+      ],
+      "unresolved": [
+        "source edition identity and transmission history remain unresolved",
+        "direct observation is not independent authority or claim verification",
+        "Definitions and selected examples are directly observed, but complete claim-level tables and all repository relation types are not established."
+      ]
+    },
+    {
+      "category": "structure",
+      "claimId": "saju.natal.branch-relation.year-hour-충",
+      "claimText": "현재 기준 원국의 연지·시지에서 충 관계가 고정 규칙표로 조회된다. 성립 강도나 길흉은 판정하지 않는다.",
+      "claimVerification": "not_promoted",
+      "deterministicBoundary": "calculation_output_and_implemented_rule_remain_separate_from_classical_source_observation",
+      "groundingStatus": "partial_support",
+      "packetId": "saju-source-packet-rule-branch-relations-v0",
+      "relationBasis": "Definitions and selected examples are directly observed, but complete claim-level tables and all repository relation types are not established.",
+      "researchUnitIds": [
+        "five-classics.branch-relations.ziping-p5"
+      ],
+      "semanticEquivalence": "not_established",
+      "sourceIdentityStatus": "local_file_bytes_verified_edition_unresolved",
+      "sourceObservationIds": [
+        "ziping-p5-branch-relations-definition-and-examples"
+      ],
+      "sourceRefs": [
+        "saju-source-ziping-zhenquan",
+        "source-observation:ziping-p5-branch-relations-definition-and-examples"
+      ],
+      "unresolved": [
+        "source edition identity and transmission history remain unresolved",
+        "direct observation is not independent authority or claim verification",
+        "Definitions and selected examples are directly observed, but complete claim-level tables and all repository relation types are not established."
+      ]
+    },
+    {
+      "category": "structure",
+      "claimId": "saju.natal.branch-relation.year-hour-파",
+      "claimText": "현재 기준 원국의 연지·시지에서 파 관계가 고정 규칙표로 조회된다. 성립 강도나 길흉은 판정하지 않는다.",
+      "claimVerification": "not_promoted",
+      "deterministicBoundary": "calculation_output_and_implemented_rule_remain_separate_from_classical_source_observation",
+      "groundingStatus": "partial_support",
+      "packetId": "saju-source-packet-rule-branch-relations-v0",
+      "relationBasis": "Definitions and selected examples are directly observed, but complete claim-level tables and all repository relation types are not established.",
+      "researchUnitIds": [
+        "five-classics.branch-relations.ziping-p5"
+      ],
+      "semanticEquivalence": "not_established",
+      "sourceIdentityStatus": "local_file_bytes_verified_edition_unresolved",
+      "sourceObservationIds": [
+        "ziping-p5-branch-relations-definition-and-examples"
+      ],
+      "sourceRefs": [
+        "saju-source-ziping-zhenquan",
+        "source-observation:ziping-p5-branch-relations-definition-and-examples"
+      ],
+      "unresolved": [
+        "source edition identity and transmission history remain unresolved",
+        "direct observation is not independent authority or claim verification",
+        "Definitions and selected examples are directly observed, but complete claim-level tables and all repository relation types are not established."
+      ]
+    },
+    {
+      "category": "structure",
+      "claimId": "saju.natal.branch-relation.year-hour-형",
+      "claimText": "현재 기준 원국의 연지·시지에서 형 관계가 고정 규칙표로 조회된다. 성립 강도나 길흉은 판정하지 않는다.",
+      "claimVerification": "not_promoted",
+      "deterministicBoundary": "calculation_output_and_implemented_rule_remain_separate_from_classical_source_observation",
+      "groundingStatus": "partial_support",
+      "packetId": "saju-source-packet-rule-branch-relations-v0",
+      "relationBasis": "Definitions and selected examples are directly observed, but complete claim-level tables and all repository relation types are not established.",
+      "researchUnitIds": [
+        "five-classics.branch-relations.ziping-p5"
+      ],
+      "semanticEquivalence": "not_established",
+      "sourceIdentityStatus": "local_file_bytes_verified_edition_unresolved",
+      "sourceObservationIds": [
+        "ziping-p5-branch-relations-definition-and-examples"
+      ],
+      "sourceRefs": [
+        "saju-source-ziping-zhenquan",
+        "source-observation:ziping-p5-branch-relations-definition-and-examples"
+      ],
+      "unresolved": [
+        "source edition identity and transmission history remain unresolved",
+        "direct observation is not independent authority or claim verification",
+        "Definitions and selected examples are directly observed, but complete claim-level tables and all repository relation types are not established."
+      ]
+    },
+    {
+      "category": "structure",
+      "claimId": "saju.natal.branch-relation.year-month-육합",
+      "claimText": "현재 기준 원국의 연지·월지에서 육합 관계가 고정 규칙표로 조회된다. 성립 강도나 길흉은 판정하지 않는다.",
+      "claimVerification": "not_promoted",
+      "deterministicBoundary": "calculation_output_and_implemented_rule_remain_separate_from_classical_source_observation",
+      "groundingStatus": "partial_support",
+      "packetId": "saju-source-packet-rule-branch-relations-v0",
+      "relationBasis": "Definitions and selected examples are directly observed, but complete claim-level tables and all repository relation types are not established.",
+      "researchUnitIds": [
+        "five-classics.branch-relations.ziping-p5"
+      ],
+      "semanticEquivalence": "not_established",
+      "sourceIdentityStatus": "local_file_bytes_verified_edition_unresolved",
+      "sourceObservationIds": [
+        "ziping-p5-branch-relations-definition-and-examples"
+      ],
+      "sourceRefs": [
+        "saju-source-ziping-zhenquan",
+        "source-observation:ziping-p5-branch-relations-definition-and-examples"
+      ],
+      "unresolved": [
+        "source edition identity and transmission history remain unresolved",
+        "direct observation is not independent authority or claim verification",
+        "Definitions and selected examples are directly observed, but complete claim-level tables and all repository relation types are not established."
+      ]
+    },
+    {
+      "category": "structure",
+      "claimId": "saju.natal.branch-relation.year-month-파",
+      "claimText": "현재 기준 원국의 연지·월지에서 파 관계가 고정 규칙표로 조회된다. 성립 강도나 길흉은 판정하지 않는다.",
+      "claimVerification": "not_promoted",
+      "deterministicBoundary": "calculation_output_and_implemented_rule_remain_separate_from_classical_source_observation",
+      "groundingStatus": "partial_support",
+      "packetId": "saju-source-packet-rule-branch-relations-v0",
+      "relationBasis": "Definitions and selected examples are directly observed, but complete claim-level tables and all repository relation types are not established.",
+      "researchUnitIds": [
+        "five-classics.branch-relations.ziping-p5"
+      ],
+      "semanticEquivalence": "not_established",
+      "sourceIdentityStatus": "local_file_bytes_verified_edition_unresolved",
+      "sourceObservationIds": [
+        "ziping-p5-branch-relations-definition-and-examples"
+      ],
+      "sourceRefs": [
+        "saju-source-ziping-zhenquan",
+        "source-observation:ziping-p5-branch-relations-definition-and-examples"
+      ],
+      "unresolved": [
+        "source edition identity and transmission history remain unresolved",
+        "direct observation is not independent authority or claim verification",
+        "Definitions and selected examples are directly observed, but complete claim-level tables and all repository relation types are not established."
+      ]
+    },
+    {
+      "category": "structure",
+      "claimId": "saju.natal.branch-relation.year-month-형",
+      "claimText": "현재 기준 원국의 연지·월지에서 형 관계가 고정 규칙표로 조회된다. 성립 강도나 길흉은 판정하지 않는다.",
+      "claimVerification": "not_promoted",
+      "deterministicBoundary": "calculation_output_and_implemented_rule_remain_separate_from_classical_source_observation",
+      "groundingStatus": "partial_support",
+      "packetId": "saju-source-packet-rule-branch-relations-v0",
+      "relationBasis": "Definitions and selected examples are directly observed, but complete claim-level tables and all repository relation types are not established.",
+      "researchUnitIds": [
+        "five-classics.branch-relations.ziping-p5"
+      ],
+      "semanticEquivalence": "not_established",
+      "sourceIdentityStatus": "local_file_bytes_verified_edition_unresolved",
+      "sourceObservationIds": [
+        "ziping-p5-branch-relations-definition-and-examples"
+      ],
+      "sourceRefs": [
+        "saju-source-ziping-zhenquan",
+        "source-observation:ziping-p5-branch-relations-definition-and-examples"
+      ],
+      "unresolved": [
+        "source edition identity and transmission history remain unresolved",
+        "direct observation is not independent authority or claim verification",
+        "Definitions and selected examples are directly observed, but complete claim-level tables and all repository relation types are not established."
+      ]
+    },
+    {
+      "category": "identity",
+      "claimId": "saju.natal.day-master",
+      "claimText": "원국의 기준점은 계 일간이며 음양은 음, 오행은 수이다.",
+      "claimVerification": "not_promoted",
+      "deterministicBoundary": "calculation_output_and_implemented_rule_remain_separate_from_classical_source_observation",
+      "groundingStatus": "partial_support",
+      "packetId": "saju-source-packet-core-four-pillars-v0",
+      "relationBasis": "Day-as-host and stems/branches framing are observed, but the repository calendar and time-boundary algorithm is not source-established.",
+      "researchUnitIds": [
+        "five-classics.day-master-and-month-command.yuanhai-p6-p7",
+        "five-classics.element-generation-and-branch-origin.sanming-p4-p6",
+        "five-classics.four-pillars-and-hour-stem.sanming-p65-p70"
+      ],
+      "semanticEquivalence": "not_established",
+      "sourceIdentityStatus": "local_file_bytes_verified_edition_unresolved",
+      "sourceObservationIds": [
+        "sanming-p4-element-generation",
+        "sanming-p5-element-generation-control",
+        "sanming-p6-stem-branch-origin",
+        "sanming-p65-human-element-and-month-command",
+        "sanming-p66-seasonal-hidden-stem-service",
+        "sanming-p69-month-hour-method",
+        "sanming-p70-year-month-day-hour",
+        "yuanhai-p6-day-as-host",
+        "yuanhai-p7-month-command"
+      ],
+      "sourceRefs": [
+        "saju-source-sanming-tonghui",
+        "saju-source-yuanhai-ziping",
+        "source-observation:sanming-p4-element-generation",
+        "source-observation:sanming-p5-element-generation-control",
+        "source-observation:sanming-p6-stem-branch-origin",
+        "source-observation:sanming-p65-human-element-and-month-command",
+        "source-observation:sanming-p66-seasonal-hidden-stem-service",
+        "source-observation:sanming-p69-month-hour-method",
+        "source-observation:sanming-p70-year-month-day-hour",
+        "source-observation:yuanhai-p6-day-as-host",
+        "source-observation:yuanhai-p7-month-command"
+      ],
+      "unresolved": [
+        "source edition identity and transmission history remain unresolved",
+        "direct observation is not independent authority or claim verification",
+        "Day-as-host and stems/branches framing are observed, but the repository calendar and time-boundary algorithm is not source-established."
+      ]
+    },
+    {
+      "category": "identity",
+      "claimId": "saju.natal.element-absence",
+      "claimText": "천간과 지지의 단순 분포에는 금 오행이 나타나지 않는다. 지장간과 계절 가중치까지 없다는 뜻은 아니다.",
+      "claimVerification": "not_promoted",
+      "deterministicBoundary": "calculation_output_and_implemented_rule_remain_separate_from_classical_source_observation",
+      "groundingStatus": "partial_support_with_scope_tension",
+      "packetId": "saju-source-packet-core-element-distribution-v0",
+      "relationBasis": "Element naming and seasonal/hidden-stem context are observed, but the exact surface-only count and absence semantics are not source-established.",
+      "researchUnitIds": [
+        "five-classics.seasonal-element-and-yongshin.qiongtong-p2-p4-p7",
+        "five-classics.element-generation-and-branch-origin.sanming-p4-p6",
+        "five-classics.hidden-stems-and-ten-gods.yuanhai-p4"
+      ],
+      "semanticEquivalence": "not_established",
+      "sourceIdentityStatus": "local_file_bytes_verified_edition_unresolved",
+      "sourceObservationIds": [
+        "qiongtong-p2-five-phase-number-and-season",
+        "qiongtong-p4-spring-jia-wood",
+        "qiongtong-p7-summer-jia-wood",
+        "sanming-p4-element-generation",
+        "sanming-p5-element-generation-control",
+        "sanming-p6-stem-branch-origin",
+        "yuanhai-p4-hidden-stems-and-ten-god-labels"
+      ],
+      "sourceRefs": [
+        "saju-source-qiongtong-baojian",
+        "saju-source-sanming-tonghui",
+        "saju-source-yuanhai-ziping",
+        "source-observation:qiongtong-p2-five-phase-number-and-season",
+        "source-observation:qiongtong-p4-spring-jia-wood",
+        "source-observation:qiongtong-p7-summer-jia-wood",
+        "source-observation:sanming-p4-element-generation",
+        "source-observation:sanming-p5-element-generation-control",
+        "source-observation:sanming-p6-stem-branch-origin",
+        "source-observation:yuanhai-p4-hidden-stems-and-ten-god-labels"
+      ],
+      "unresolved": [
+        "source edition identity and transmission history remain unresolved",
+        "direct observation is not independent authority or claim verification",
+        "Element naming and seasonal/hidden-stem context are observed, but the exact surface-only count and absence semantics are not source-established."
+      ]
+    },
+    {
+      "category": "identity",
+      "claimId": "saju.natal.element-emphasis.목",
+      "claimText": "천간과 지지 8글자의 단순 분포에서 목 오행이 4회로 가장 많이 나타난다.",
+      "claimVerification": "not_promoted",
+      "deterministicBoundary": "calculation_output_and_implemented_rule_remain_separate_from_classical_source_observation",
+      "groundingStatus": "partial_support_with_scope_tension",
+      "packetId": "saju-source-packet-core-element-distribution-v0",
+      "relationBasis": "Element naming and seasonal/hidden-stem context are observed, but the exact surface-only count and absence semantics are not source-established.",
+      "researchUnitIds": [
+        "five-classics.seasonal-element-and-yongshin.qiongtong-p2-p4-p7",
+        "five-classics.element-generation-and-branch-origin.sanming-p4-p6",
+        "five-classics.hidden-stems-and-ten-gods.yuanhai-p4"
+      ],
+      "semanticEquivalence": "not_established",
+      "sourceIdentityStatus": "local_file_bytes_verified_edition_unresolved",
+      "sourceObservationIds": [
+        "qiongtong-p2-five-phase-number-and-season",
+        "qiongtong-p4-spring-jia-wood",
+        "qiongtong-p7-summer-jia-wood",
+        "sanming-p4-element-generation",
+        "sanming-p5-element-generation-control",
+        "sanming-p6-stem-branch-origin",
+        "yuanhai-p4-hidden-stems-and-ten-god-labels"
+      ],
+      "sourceRefs": [
+        "saju-source-qiongtong-baojian",
+        "saju-source-sanming-tonghui",
+        "saju-source-yuanhai-ziping",
+        "source-observation:qiongtong-p2-five-phase-number-and-season",
+        "source-observation:qiongtong-p4-spring-jia-wood",
+        "source-observation:qiongtong-p7-summer-jia-wood",
+        "source-observation:sanming-p4-element-generation",
+        "source-observation:sanming-p5-element-generation-control",
+        "source-observation:sanming-p6-stem-branch-origin",
+        "source-observation:yuanhai-p4-hidden-stems-and-ten-god-labels"
+      ],
+      "unresolved": [
+        "source edition identity and transmission history remain unresolved",
+        "direct observation is not independent authority or claim verification",
+        "Element naming and seasonal/hidden-stem context are observed, but the exact surface-only count and absence semantics are not source-established."
+      ]
+    },
+    {
+      "category": "identity",
+      "claimId": "saju.natal.element-emphasis.수",
+      "claimText": "천간과 지지 8글자의 단순 분포에서 수 오행이 4회로 가장 많이 나타난다.",
+      "claimVerification": "not_promoted",
+      "deterministicBoundary": "calculation_output_and_implemented_rule_remain_separate_from_classical_source_observation",
+      "groundingStatus": "partial_support_with_scope_tension",
+      "packetId": "saju-source-packet-core-element-distribution-v0",
+      "relationBasis": "Element naming and seasonal/hidden-stem context are observed, but the exact surface-only count and absence semantics are not source-established.",
+      "researchUnitIds": [
+        "five-classics.seasonal-element-and-yongshin.qiongtong-p2-p4-p7",
+        "five-classics.element-generation-and-branch-origin.sanming-p4-p6",
+        "five-classics.hidden-stems-and-ten-gods.yuanhai-p4"
+      ],
+      "semanticEquivalence": "not_established",
+      "sourceIdentityStatus": "local_file_bytes_verified_edition_unresolved",
+      "sourceObservationIds": [
+        "qiongtong-p2-five-phase-number-and-season",
+        "qiongtong-p4-spring-jia-wood",
+        "qiongtong-p7-summer-jia-wood",
+        "sanming-p4-element-generation",
+        "sanming-p5-element-generation-control",
+        "sanming-p6-stem-branch-origin",
+        "yuanhai-p4-hidden-stems-and-ten-god-labels"
+      ],
+      "sourceRefs": [
+        "saju-source-qiongtong-baojian",
+        "saju-source-sanming-tonghui",
+        "saju-source-yuanhai-ziping",
+        "source-observation:qiongtong-p2-five-phase-number-and-season",
+        "source-observation:qiongtong-p4-spring-jia-wood",
+        "source-observation:qiongtong-p7-summer-jia-wood",
+        "source-observation:sanming-p4-element-generation",
+        "source-observation:sanming-p5-element-generation-control",
+        "source-observation:sanming-p6-stem-branch-origin",
+        "source-observation:yuanhai-p4-hidden-stems-and-ten-god-labels"
+      ],
+      "unresolved": [
+        "source edition identity and transmission history remain unresolved",
+        "direct observation is not independent authority or claim verification",
+        "Element naming and seasonal/hidden-stem context are observed, but the exact surface-only count and absence semantics are not source-established."
+      ]
+    },
+    {
+      "category": "identity",
+      "claimId": "saju.natal.element-emphasis.토",
+      "claimText": "천간과 지지 8글자의 단순 분포에서 토 오행이 4회로 가장 많이 나타난다.",
+      "claimVerification": "not_promoted",
+      "deterministicBoundary": "calculation_output_and_implemented_rule_remain_separate_from_classical_source_observation",
+      "groundingStatus": "partial_support_with_scope_tension",
+      "packetId": "saju-source-packet-core-element-distribution-v0",
+      "relationBasis": "Element naming and seasonal/hidden-stem context are observed, but the exact surface-only count and absence semantics are not source-established.",
+      "researchUnitIds": [
+        "five-classics.seasonal-element-and-yongshin.qiongtong-p2-p4-p7",
+        "five-classics.element-generation-and-branch-origin.sanming-p4-p6",
+        "five-classics.hidden-stems-and-ten-gods.yuanhai-p4"
+      ],
+      "semanticEquivalence": "not_established",
+      "sourceIdentityStatus": "local_file_bytes_verified_edition_unresolved",
+      "sourceObservationIds": [
+        "qiongtong-p2-five-phase-number-and-season",
+        "qiongtong-p4-spring-jia-wood",
+        "qiongtong-p7-summer-jia-wood",
+        "sanming-p4-element-generation",
+        "sanming-p5-element-generation-control",
+        "sanming-p6-stem-branch-origin",
+        "yuanhai-p4-hidden-stems-and-ten-god-labels"
+      ],
+      "sourceRefs": [
+        "saju-source-qiongtong-baojian",
+        "saju-source-sanming-tonghui",
+        "saju-source-yuanhai-ziping",
+        "source-observation:qiongtong-p2-five-phase-number-and-season",
+        "source-observation:qiongtong-p4-spring-jia-wood",
+        "source-observation:qiongtong-p7-summer-jia-wood",
+        "source-observation:sanming-p4-element-generation",
+        "source-observation:sanming-p5-element-generation-control",
+        "source-observation:sanming-p6-stem-branch-origin",
+        "source-observation:yuanhai-p4-hidden-stems-and-ten-god-labels"
+      ],
+      "unresolved": [
+        "source edition identity and transmission history remain unresolved",
+        "direct observation is not independent authority or claim verification",
+        "Element naming and seasonal/hidden-stem context are observed, but the exact surface-only count and absence semantics are not source-established."
+      ]
+    },
+    {
+      "category": "identity",
+      "claimId": "saju.natal.element-emphasis.화",
+      "claimText": "천간과 지지 8글자의 단순 분포에서 화 오행이 4회로 가장 많이 나타난다.",
+      "claimVerification": "not_promoted",
+      "deterministicBoundary": "calculation_output_and_implemented_rule_remain_separate_from_classical_source_observation",
+      "groundingStatus": "partial_support_with_scope_tension",
+      "packetId": "saju-source-packet-core-element-distribution-v0",
+      "relationBasis": "Element naming and seasonal/hidden-stem context are observed, but the exact surface-only count and absence semantics are not source-established.",
+      "researchUnitIds": [
+        "five-classics.seasonal-element-and-yongshin.qiongtong-p2-p4-p7",
+        "five-classics.element-generation-and-branch-origin.sanming-p4-p6",
+        "five-classics.hidden-stems-and-ten-gods.yuanhai-p4"
+      ],
+      "semanticEquivalence": "not_established",
+      "sourceIdentityStatus": "local_file_bytes_verified_edition_unresolved",
+      "sourceObservationIds": [
+        "qiongtong-p2-five-phase-number-and-season",
+        "qiongtong-p4-spring-jia-wood",
+        "qiongtong-p7-summer-jia-wood",
+        "sanming-p4-element-generation",
+        "sanming-p5-element-generation-control",
+        "sanming-p6-stem-branch-origin",
+        "yuanhai-p4-hidden-stems-and-ten-god-labels"
+      ],
+      "sourceRefs": [
+        "saju-source-qiongtong-baojian",
+        "saju-source-sanming-tonghui",
+        "saju-source-yuanhai-ziping",
+        "source-observation:qiongtong-p2-five-phase-number-and-season",
+        "source-observation:qiongtong-p4-spring-jia-wood",
+        "source-observation:qiongtong-p7-summer-jia-wood",
+        "source-observation:sanming-p4-element-generation",
+        "source-observation:sanming-p5-element-generation-control",
+        "source-observation:sanming-p6-stem-branch-origin",
+        "source-observation:yuanhai-p4-hidden-stems-and-ten-god-labels"
+      ],
+      "unresolved": [
+        "source edition identity and transmission history remain unresolved",
+        "direct observation is not independent authority or claim verification",
+        "Element naming and seasonal/hidden-stem context are observed, but the exact surface-only count and absence semantics are not source-established."
+      ]
+    },
+    {
+      "category": "experimental",
+      "claimId": "saju.natal.experimental.gyeokguk",
+      "claimText": "원국의 격국 추론 결과는 정관격(정격)이다. 천간에 투출한 지장간 글자가 없어, 월지 진의 본기인 무의 십성을 기준으로 격국을 형성함.",
+      "claimVerification": "not_promoted",
+      "deterministicBoundary": "calculation_output_and_implemented_rule_remain_separate_from_classical_source_observation",
+      "groundingStatus": "partial_support",
+      "packetId": "saju-source-packet-rule-gyeokguk-v0",
+      "relationBasis": "用神/month-command and 雜格 conditions are observed, but exact repository projection and experimental output are not established.",
+      "researchUnitIds": [
+        "five-classics.yongshin-and-gyeokguk.ziping-p6-p26"
+      ],
+      "semanticEquivalence": "not_established",
+      "sourceIdentityStatus": "local_file_bytes_verified_edition_unresolved",
+      "sourceObservationIds": [
+        "ziping-p26-miscellaneous-structures",
+        "ziping-p6-yongshin-month-command"
+      ],
+      "sourceRefs": [
+        "saju-source-ziping-zhenquan",
+        "source-observation:ziping-p26-miscellaneous-structures",
+        "source-observation:ziping-p6-yongshin-month-command"
+      ],
+      "unresolved": [
+        "source edition identity and transmission history remain unresolved",
+        "direct observation is not independent authority or claim verification",
+        "用神/month-command and 雜格 conditions are observed, but exact repository projection and experimental output are not established."
+      ]
+    },
+    {
+      "category": "experimental",
+      "claimId": "saju.natal.experimental.shinsal-summary",
+      "claimText": "원국 분석 결과 천을귀인(일지), 화개살(연지), 공망(시지), 양인살(연지)가 작용하는 기운으로 나타난다.",
+      "claimVerification": "not_promoted",
+      "deterministicBoundary": "calculation_output_and_implemented_rule_remain_separate_from_classical_source_observation",
+      "groundingStatus": "source_unresolved",
+      "packetId": "saju-source-packet-rule-shinsal-v0",
+      "relationBasis": "No directly reviewed page in the allowed local material establishes the exact reference axis and mapping for the repository shinsal set.",
+      "researchUnitIds": [],
+      "semanticEquivalence": "not_established",
+      "sourceIdentityStatus": "local_file_bytes_verified_edition_unresolved",
+      "sourceObservationIds": [],
+      "sourceRefs": [],
+      "unresolved": [
+        "source edition identity and transmission history remain unresolved",
+        "direct observation is not independent authority or claim verification",
+        "No directly reviewed page in the allowed local material establishes the exact reference axis and mapping for the repository shinsal set."
+      ]
+    },
+    {
+      "category": "experimental",
+      "claimId": "saju.natal.experimental.strength-quantitative",
+      "claimText": "표면 생조 기반 휴리스틱 정량 평가 결과 득령 실패, 득지 실패, 표면 생조 기둥 연주·월주·일주 등으로 단순 득점 합산 0점을 기록하여 신약 (Weak)에 해당함. (주의: 본 점수는 지장간 통근 관계를 종합 점수에 직접 산입하지 않고 득령·득지 및 단순 표면 생조에 가중치를 둔 단순 지표입니다. 실제 지장간 통근 정보는 하단 독립 영역을 참조바랍니다.)",
+      "claimVerification": "not_promoted",
+      "deterministicBoundary": "calculation_output_and_implemented_rule_remain_separate_from_classical_source_observation",
+      "groundingStatus": "partial_support_with_scope_tension",
+      "packetId": "saju-source-packet-rule-strength-v0",
+      "relationBasis": "Qualitative seasonal/support language is observed, while the repository numeric heuristic remains implementation policy only.",
+      "researchUnitIds": [
+        "five-classics.day-master-and-month-command.yuanhai-p6-p7",
+        "five-classics.seasonal-strength.ditian-p4",
+        "five-classics.seasonal-element-and-yongshin.qiongtong-p2-p4-p7"
+      ],
+      "semanticEquivalence": "not_established",
+      "sourceIdentityStatus": "local_file_bytes_verified_edition_unresolved",
+      "sourceObservationIds": [
+        "ditian-p4-jia-wood-seasonal-conditions",
+        "qiongtong-p2-five-phase-number-and-season",
+        "qiongtong-p4-spring-jia-wood",
+        "qiongtong-p7-summer-jia-wood",
+        "yuanhai-p6-day-as-host",
+        "yuanhai-p7-month-command"
+      ],
+      "sourceRefs": [
+        "saju-source-ditian-sui",
+        "saju-source-qiongtong-baojian",
+        "saju-source-yuanhai-ziping",
+        "source-observation:ditian-p4-jia-wood-seasonal-conditions",
+        "source-observation:qiongtong-p2-five-phase-number-and-season",
+        "source-observation:qiongtong-p4-spring-jia-wood",
+        "source-observation:qiongtong-p7-summer-jia-wood",
+        "source-observation:yuanhai-p6-day-as-host",
+        "source-observation:yuanhai-p7-month-command"
+      ],
+      "unresolved": [
+        "source edition identity and transmission history remain unresolved",
+        "direct observation is not independent authority or claim verification",
+        "Qualitative seasonal/support language is observed, while the repository numeric heuristic remains implementation policy only."
+      ]
+    },
+    {
+      "category": "experimental",
+      "claimId": "saju.natal.experimental.yongshin",
+      "claimText": "[표면 생조 휴리스틱 기반] 일주가 약하므로 일간을 직접 생조해주는 인성을 용신으로, 힘을 실어주는 비겁을 희신으로 삼아 균형을 맞춥니다. ",
+      "claimVerification": "not_promoted",
+      "deterministicBoundary": "calculation_output_and_implemented_rule_remain_separate_from_classical_source_observation",
+      "groundingStatus": "partial_support_with_scope_tension",
+      "packetId": "saju-source-packet-rule-yongshin-v0",
+      "relationBasis": "Use-selection vocabulary and conditional seasonal material are observed, but the repository heuristic candidate and precedence are not source-established.",
+      "researchUnitIds": [
+        "five-classics.day-master-and-month-command.yuanhai-p6-p7",
+        "five-classics.seasonal-strength.ditian-p4",
+        "five-classics.seasonal-element-and-yongshin.qiongtong-p2-p4-p7",
+        "five-classics.yongshin-and-gyeokguk.ziping-p6-p26"
+      ],
+      "semanticEquivalence": "not_established",
+      "sourceIdentityStatus": "local_file_bytes_verified_edition_unresolved",
+      "sourceObservationIds": [
+        "ditian-p4-jia-wood-seasonal-conditions",
+        "qiongtong-p2-five-phase-number-and-season",
+        "qiongtong-p4-spring-jia-wood",
+        "qiongtong-p7-summer-jia-wood",
+        "yuanhai-p6-day-as-host",
+        "yuanhai-p7-month-command",
+        "ziping-p26-miscellaneous-structures",
+        "ziping-p6-yongshin-month-command"
+      ],
+      "sourceRefs": [
+        "saju-source-ditian-sui",
+        "saju-source-qiongtong-baojian",
+        "saju-source-yuanhai-ziping",
+        "saju-source-ziping-zhenquan",
+        "source-observation:ditian-p4-jia-wood-seasonal-conditions",
+        "source-observation:qiongtong-p2-five-phase-number-and-season",
+        "source-observation:qiongtong-p4-spring-jia-wood",
+        "source-observation:qiongtong-p7-summer-jia-wood",
+        "source-observation:yuanhai-p6-day-as-host",
+        "source-observation:yuanhai-p7-month-command",
+        "source-observation:ziping-p26-miscellaneous-structures",
+        "source-observation:ziping-p6-yongshin-month-command"
+      ],
+      "unresolved": [
+        "source edition identity and transmission history remain unresolved",
+        "direct observation is not independent authority or claim verification",
+        "Use-selection vocabulary and conditional seasonal material are observed, but the repository heuristic candidate and precedence are not source-established."
+      ]
+    },
+    {
+      "category": "money",
+      "claimId": "saju.natal.ten-god-repeat.겁재",
+      "claimText": "표면 십성 배치에서 겁재가 2회 반복된다.",
+      "claimVerification": "not_promoted",
+      "deterministicBoundary": "calculation_output_and_implemented_rule_remain_separate_from_classical_source_observation",
+      "groundingStatus": "partial_support",
+      "packetId": "saju-source-packet-core-ten-god-distribution-v0",
+      "relationBasis": "Named ten-god and hidden-stem material is observed, but exact polarity mapping and counting scope are not source-established.",
+      "researchUnitIds": [
+        "five-classics.hidden-stems-and-ten-gods.yuanhai-p4"
+      ],
+      "semanticEquivalence": "not_established",
+      "sourceIdentityStatus": "local_file_bytes_verified_edition_unresolved",
+      "sourceObservationIds": [
+        "yuanhai-p4-hidden-stems-and-ten-god-labels"
+      ],
+      "sourceRefs": [
+        "saju-source-yuanhai-ziping",
+        "source-observation:yuanhai-p4-hidden-stems-and-ten-god-labels"
+      ],
+      "unresolved": [
+        "source edition identity and transmission history remain unresolved",
+        "direct observation is not independent authority or claim verification",
+        "Named ten-god and hidden-stem material is observed, but exact polarity mapping and counting scope are not source-established."
+      ]
+    },
+    {
+      "category": "identity",
+      "claimId": "saju.natal.ten-god-repeat.비견",
+      "claimText": "표면 십성 배치에서 비견이 2회 반복된다.",
+      "claimVerification": "not_promoted",
+      "deterministicBoundary": "calculation_output_and_implemented_rule_remain_separate_from_classical_source_observation",
+      "groundingStatus": "partial_support",
+      "packetId": "saju-source-packet-core-ten-god-distribution-v0",
+      "relationBasis": "Named ten-god and hidden-stem material is observed, but exact polarity mapping and counting scope are not source-established.",
+      "researchUnitIds": [
+        "five-classics.hidden-stems-and-ten-gods.yuanhai-p4"
+      ],
+      "semanticEquivalence": "not_established",
+      "sourceIdentityStatus": "local_file_bytes_verified_edition_unresolved",
+      "sourceObservationIds": [
+        "yuanhai-p4-hidden-stems-and-ten-god-labels"
+      ],
+      "sourceRefs": [
+        "saju-source-yuanhai-ziping",
+        "source-observation:yuanhai-p4-hidden-stems-and-ten-god-labels"
+      ],
+      "unresolved": [
+        "source edition identity and transmission history remain unresolved",
+        "direct observation is not independent authority or claim verification",
+        "Named ten-god and hidden-stem material is observed, but exact polarity mapping and counting scope are not source-established."
+      ]
+    },
+    {
+      "category": "social",
+      "claimId": "saju.natal.ten-god-repeat.식신",
+      "claimText": "표면 십성 배치에서 식신이 2회 반복된다.",
+      "claimVerification": "not_promoted",
+      "deterministicBoundary": "calculation_output_and_implemented_rule_remain_separate_from_classical_source_observation",
+      "groundingStatus": "partial_support",
+      "packetId": "saju-source-packet-core-ten-god-distribution-v0",
+      "relationBasis": "Named ten-god and hidden-stem material is observed, but exact polarity mapping and counting scope are not source-established.",
+      "researchUnitIds": [
+        "five-classics.hidden-stems-and-ten-gods.yuanhai-p4"
+      ],
+      "semanticEquivalence": "not_established",
+      "sourceIdentityStatus": "local_file_bytes_verified_edition_unresolved",
+      "sourceObservationIds": [
+        "yuanhai-p4-hidden-stems-and-ten-god-labels"
+      ],
+      "sourceRefs": [
+        "saju-source-yuanhai-ziping",
+        "source-observation:yuanhai-p4-hidden-stems-and-ten-god-labels"
+      ],
+      "unresolved": [
+        "source edition identity and transmission history remain unresolved",
+        "direct observation is not independent authority or claim verification",
+        "Named ten-god and hidden-stem material is observed, but exact polarity mapping and counting scope are not source-established."
+      ]
+    },
+    {
+      "category": "career",
+      "claimId": "saju.natal.ten-god-repeat.정관",
+      "claimText": "표면 십성 배치에서 정관이 4회 반복된다.",
+      "claimVerification": "not_promoted",
+      "deterministicBoundary": "calculation_output_and_implemented_rule_remain_separate_from_classical_source_observation",
+      "groundingStatus": "partial_support",
+      "packetId": "saju-source-packet-core-ten-god-distribution-v0",
+      "relationBasis": "Named ten-god and hidden-stem material is observed, but exact polarity mapping and counting scope are not source-established.",
+      "researchUnitIds": [
+        "five-classics.hidden-stems-and-ten-gods.yuanhai-p4"
+      ],
+      "semanticEquivalence": "not_established",
+      "sourceIdentityStatus": "local_file_bytes_verified_edition_unresolved",
+      "sourceObservationIds": [
+        "yuanhai-p4-hidden-stems-and-ten-god-labels"
+      ],
+      "sourceRefs": [
+        "saju-source-yuanhai-ziping",
+        "source-observation:yuanhai-p4-hidden-stems-and-ten-god-labels"
+      ],
+      "unresolved": [
+        "source edition identity and transmission history remain unresolved",
+        "direct observation is not independent authority or claim verification",
+        "Named ten-god and hidden-stem material is observed, but exact polarity mapping and counting scope are not source-established."
+      ]
+    },
+    {
+      "category": "money",
+      "claimId": "saju.natal.ten-god-repeat.정재",
+      "claimText": "표면 십성 배치에서 정재가 2회 반복된다.",
+      "claimVerification": "not_promoted",
+      "deterministicBoundary": "calculation_output_and_implemented_rule_remain_separate_from_classical_source_observation",
+      "groundingStatus": "partial_support",
+      "packetId": "saju-source-packet-core-ten-god-distribution-v0",
+      "relationBasis": "Named ten-god and hidden-stem material is observed, but exact polarity mapping and counting scope are not source-established.",
+      "researchUnitIds": [
+        "five-classics.hidden-stems-and-ten-gods.yuanhai-p4"
+      ],
+      "semanticEquivalence": "not_established",
+      "sourceIdentityStatus": "local_file_bytes_verified_edition_unresolved",
+      "sourceObservationIds": [
+        "yuanhai-p4-hidden-stems-and-ten-god-labels"
+      ],
+      "sourceRefs": [
+        "saju-source-yuanhai-ziping",
+        "source-observation:yuanhai-p4-hidden-stems-and-ten-god-labels"
+      ],
+      "unresolved": [
+        "source edition identity and transmission history remain unresolved",
+        "direct observation is not independent authority or claim verification",
+        "Named ten-god and hidden-stem material is observed, but exact polarity mapping and counting scope are not source-established."
+      ]
+    },
+    {
+      "category": "career",
+      "claimId": "saju.natal.ten-god-repeat.편관",
+      "claimText": "표면 십성 배치에서 편관이 3회 반복된다.",
+      "claimVerification": "not_promoted",
+      "deterministicBoundary": "calculation_output_and_implemented_rule_remain_separate_from_classical_source_observation",
+      "groundingStatus": "partial_support",
+      "packetId": "saju-source-packet-core-ten-god-distribution-v0",
+      "relationBasis": "Named ten-god and hidden-stem material is observed, but exact polarity mapping and counting scope are not source-established.",
+      "researchUnitIds": [
+        "five-classics.hidden-stems-and-ten-gods.yuanhai-p4"
+      ],
+      "semanticEquivalence": "not_established",
+      "sourceIdentityStatus": "local_file_bytes_verified_edition_unresolved",
+      "sourceObservationIds": [
+        "yuanhai-p4-hidden-stems-and-ten-god-labels"
+      ],
+      "sourceRefs": [
+        "saju-source-yuanhai-ziping",
+        "source-observation:yuanhai-p4-hidden-stems-and-ten-god-labels"
+      ],
+      "unresolved": [
+        "source edition identity and transmission history remain unresolved",
+        "direct observation is not independent authority or claim verification",
+        "Named ten-god and hidden-stem material is observed, but exact polarity mapping and counting scope are not source-established."
+      ]
+    },
+    {
+      "category": "money",
+      "claimId": "saju.natal.ten-god-repeat.편재",
+      "claimText": "표면 십성 배치에서 편재가 2회 반복된다.",
+      "claimVerification": "not_promoted",
+      "deterministicBoundary": "calculation_output_and_implemented_rule_remain_separate_from_classical_source_observation",
+      "groundingStatus": "partial_support",
+      "packetId": "saju-source-packet-core-ten-god-distribution-v0",
+      "relationBasis": "Named ten-god and hidden-stem material is observed, but exact polarity mapping and counting scope are not source-established.",
+      "researchUnitIds": [
+        "five-classics.hidden-stems-and-ten-gods.yuanhai-p4"
+      ],
+      "semanticEquivalence": "not_established",
+      "sourceIdentityStatus": "local_file_bytes_verified_edition_unresolved",
+      "sourceObservationIds": [
+        "yuanhai-p4-hidden-stems-and-ten-god-labels"
+      ],
+      "sourceRefs": [
+        "saju-source-yuanhai-ziping",
+        "source-observation:yuanhai-p4-hidden-stems-and-ten-god-labels"
+      ],
+      "unresolved": [
+        "source edition identity and transmission history remain unresolved",
+        "direct observation is not independent authority or claim verification",
+        "Named ten-god and hidden-stem material is observed, but exact polarity mapping and counting scope are not source-established."
+      ]
+    },
+    {
+      "category": "identity",
+      "claimId": "saju.natal.unknown-birth-time",
+      "claimText": "출생시각이 없어 시주는 계산에서 제외했다. 현재 규칙에서는 일주 후보가 임진·계사이며 하나로 확정하지 않는다.",
+      "claimVerification": "not_promoted",
+      "deterministicBoundary": "calculation_output_and_implemented_rule_remain_separate_from_classical_source_observation",
+      "groundingStatus": "source_unresolved",
+      "packetId": "saju-source-packet-core-candidate-boundary-v0",
+      "relationBasis": "No directly observed sentence in the reviewed pages prescribes the repository missing-time candidate policy or its day-boundary handling.",
+      "researchUnitIds": [],
+      "semanticEquivalence": "not_established",
+      "sourceIdentityStatus": "local_file_bytes_verified_edition_unresolved",
+      "sourceObservationIds": [],
+      "sourceRefs": [],
+      "unresolved": [
+        "source edition identity and transmission history remain unresolved",
+        "direct observation is not independent authority or claim verification",
+        "No directly observed sentence in the reviewed pages prescribes the repository missing-time candidate policy or its day-boundary handling."
+      ]
+    },
+    {
+      "category": "timing",
+      "claimId": "saju.timing.active-da-yun",
+      "claimText": "2026-07-21 기준으로 2022-10-20부터 시작한 신축 대운 구간에 해당한다.",
+      "claimVerification": "not_promoted",
+      "deterministicBoundary": "calculation_output_and_implemented_rule_remain_separate_from_classical_source_observation",
+      "groundingStatus": "not_supporting_exact_timing",
+      "packetId": "saju-source-packet-rule-timing-v0",
+      "relationBasis": "取運-related text is observed, but no reviewed sentence prescribes the repository direction/start-age/active-cycle contract.",
+      "researchUnitIds": [
+        "five-classics.timing-exact-boundary.ziping-p25"
+      ],
+      "semanticEquivalence": "not_established",
+      "sourceIdentityStatus": "local_file_bytes_verified_edition_unresolved",
+      "sourceObservationIds": [
+        "ziping-p25-jianlu-yuejie-take-luck"
+      ],
+      "sourceRefs": [
+        "saju-source-ziping-zhenquan",
+        "source-observation:ziping-p25-jianlu-yuejie-take-luck"
+      ],
+      "unresolved": [
+        "source edition identity and transmission history remain unresolved",
+        "direct observation is not independent authority or claim verification",
+        "取運-related text is observed, but no reviewed sentence prescribes the repository direction/start-age/active-cycle contract."
+      ]
+    }
+  ],
+  "contentSha256": "8a10e4cadf6f4db23f4d366374a822231bd20dff7ea30000e7cf7af5d5a07c6b",
+  "corpus": {
+    "documents": [
+      {
+        "byteLength": 580320,
+        "byteObservation": "actual_local_file_bytes_sha256",
+        "byteSha256": "449336b5e35aa6811b0462093d0175c45a0add44065bf2d3845cff75981db692",
+        "corpusRoot": "/Users/softie/Documents/malang_lab/documents",
+        "editionIdentity": "unresolved_edition",
+        "expectedByteSha256": "449336b5e35aa6811b0462093d0175c45a0add44065bf2d3845cff75981db692",
+        "fileName": "子平真诠-沈孝瞻原著.pdf",
+        "observedAttribution": "沈孝瞻原著（封面/标题页标识）",
+        "observedTitle": "《子平真诠》",
+        "pageCount": 27,
+        "pageCountObserved": 27,
+        "sourceForm": "modern_typeset_local_export",
+        "sourceId": "saju-source-ziping-zhenquan"
+      },
+      {
+        "byteLength": 8694949,
+        "byteObservation": "actual_local_file_bytes_sha256",
+        "byteSha256": "6285805c91b79f1b5bccdfce1cdab1d7ec684731160b4191a25e8f1d23c229dd",
+        "corpusRoot": "/Users/softie/Documents/malang_lab/documents",
+        "editionIdentity": "unresolved_edition",
+        "expectedByteSha256": "6285805c91b79f1b5bccdfce1cdab1d7ec684731160b4191a25e8f1d23c229dd",
+        "fileName": "滴天髓.pdf",
+        "observedAttribution": "刘基（导出页标识）",
+        "observedTitle": "《滴天髓》",
+        "pageCount": 158,
+        "pageCountObserved": 158,
+        "sourceForm": "derived_typeset_export_with_linked_attribution",
+        "sourceId": "saju-source-ditian-sui"
+      },
+      {
+        "byteLength": 2710282,
+        "byteObservation": "actual_local_file_bytes_sha256",
+        "byteSha256": "c6225b78d9d49282c5699b63315018a1e17ebf091c50ce4feb3dab465ec25a12",
+        "corpusRoot": "/Users/softie/Documents/malang_lab/documents",
+        "editionIdentity": "unresolved_edition",
+        "expectedByteSha256": "c6225b78d9d49282c5699b63315018a1e17ebf091c50ce4feb3dab465ec25a12",
+        "fileName": "淵海子平.pdf",
+        "observedAttribution": "杨淙（导出页标识）",
+        "observedTitle": "《淵海子平》",
+        "pageCount": 202,
+        "pageCountObserved": 202,
+        "sourceForm": "web_text_export_with_explicit_source_warning",
+        "sourceId": "saju-source-yuanhai-ziping"
+      },
+      {
+        "byteLength": 1547911,
+        "byteObservation": "actual_local_file_bytes_sha256",
+        "byteSha256": "36d54cdc995d203fdceafcb52b2a0d4f57093ab1765c532db5418b46a96c4b19",
+        "corpusRoot": "/Users/softie/Documents/malang_lab/documents",
+        "editionIdentity": "unresolved_edition",
+        "expectedByteSha256": "36d54cdc995d203fdceafcb52b2a0d4f57093ab1765c532db5418b46a96c4b19",
+        "fileName": "穷通宝鉴.pdf",
+        "observedAttribution": null,
+        "observedTitle": "《穷通宝鉴》",
+        "pageCount": 92,
+        "pageCountObserved": 92,
+        "sourceForm": "modern_typeset_local_export",
+        "sourceId": "saju-source-qiongtong-baojian"
+      },
+      {
+        "byteLength": 7601079,
+        "byteObservation": "actual_local_file_bytes_sha256",
+        "byteSha256": "f09bce7c6dbe1e222746ad8c97f49d132ed4e8da6d3c1d0399b0824b3794593f",
+        "corpusRoot": "/Users/softie/Documents/malang_lab/documents",
+        "editionIdentity": "unresolved_edition",
+        "expectedByteSha256": "f09bce7c6dbe1e222746ad8c97f49d132ed4e8da6d3c1d0399b0824b3794593f",
+        "fileName": "三命通會.pdf",
+        "observedAttribution": "万民英（导出页标识；书前说明仍需独立书目核验）",
+        "observedTitle": "《三命通會》",
+        "pageCount": 370,
+        "pageCountObserved": 370,
+        "sourceForm": "web_text_export_with_public_domain_notice",
+        "sourceId": "saju-source-sanming-tonghui"
+      }
+    ],
+    "editionAuthority": "unresolved_for_all_five_documents",
+    "inventoryScope": "five_prioritized_saju_texts_named_by_the_work_order",
+    "root": "/Users/softie/Documents/malang_lab/documents"
+  },
+  "frontier": {
+    "claimCountAssessed": 43,
+    "groundingStatusDistribution": {
+      "not_supporting_exact_timing": 1,
+      "partial_support": 33,
+      "partial_support_with_scope_tension": 7,
+      "source_unresolved": 2
+    },
+    "localAdvance": "claim_level_relation_and_scope_assessment_completed_for_all_current_canonical_claims",
+    "nextFrontier": [
+      {
+        "blocker": "direct source sentence for missing-time candidate policy and day-boundary treatment is not present in the reviewed pages",
+        "packetId": "saju-source-packet-core-candidate-boundary-v0",
+        "status": "blocked"
+      },
+      {
+        "blocker": "exact source locator and reference-axis mapping for the repository shinsal set remain unavailable in the reviewed local pages",
+        "packetId": "saju-source-packet-rule-shinsal-v0",
+        "status": "blocked"
+      },
+      {
+        "blocker": "the observed 取運 material does not specify the repository direction/start-age/active-cycle contract",
+        "packetId": "saju-source-packet-rule-timing-v0",
+        "status": "blocked"
+      },
+      {
+        "blocker": "edition identity, transmission history, independent alternate witness, and semantic authority remain unresolved for all five local files",
+        "packetId": "all_packets",
+        "status": "blocked"
+      }
+    ],
+    "occurrenceCountPreserved": 126,
+    "stableClaimPromotionCount": 0
+  },
+  "packetAssessments": {
+    "saju-source-packet-core-candidate-boundary-v0": {
+      "claimIds": [
+        "saju.natal.unknown-birth-time"
+      ],
+      "packetId": "saju-source-packet-core-candidate-boundary-v0",
+      "reason": "No directly observed sentence in the reviewed pages prescribes the repository missing-time candidate policy or its day-boundary handling.",
+      "status": "source_unresolved",
+      "unitIds": []
+    },
+    "saju-source-packet-core-element-distribution-v0": {
+      "claimIds": [
+        "saju.natal.element-absence",
+        "saju.natal.element-emphasis.목",
+        "saju.natal.element-emphasis.수",
+        "saju.natal.element-emphasis.토",
+        "saju.natal.element-emphasis.화"
+      ],
+      "packetId": "saju-source-packet-core-element-distribution-v0",
+      "reason": "Element naming and seasonal/hidden-stem context are observed, but the exact surface-only count and absence semantics are not source-established.",
+      "status": "partial_support_with_scope_tension",
+      "unitIds": [
+        "five-classics.seasonal-element-and-yongshin.qiongtong-p2-p4-p7",
+        "five-classics.element-generation-and-branch-origin.sanming-p4-p6",
+        "five-classics.hidden-stems-and-ten-gods.yuanhai-p4"
+      ]
+    },
+    "saju-source-packet-core-four-pillars-v0": {
+      "claimIds": [
+        "saju.natal.day-master"
+      ],
+      "packetId": "saju-source-packet-core-four-pillars-v0",
+      "reason": "Day-as-host and stems/branches framing are observed, but the repository calendar and time-boundary algorithm is not source-established.",
+      "status": "partial_support",
+      "unitIds": [
+        "five-classics.day-master-and-month-command.yuanhai-p6-p7",
+        "five-classics.element-generation-and-branch-origin.sanming-p4-p6",
+        "five-classics.four-pillars-and-hour-stem.sanming-p65-p70"
+      ]
+    },
+    "saju-source-packet-core-ten-god-distribution-v0": {
+      "claimIds": [
+        "saju.natal.ten-god-repeat.겁재",
+        "saju.natal.ten-god-repeat.비견",
+        "saju.natal.ten-god-repeat.식신",
+        "saju.natal.ten-god-repeat.정관",
+        "saju.natal.ten-god-repeat.정재",
+        "saju.natal.ten-god-repeat.편관",
+        "saju.natal.ten-god-repeat.편재"
+      ],
+      "packetId": "saju-source-packet-core-ten-god-distribution-v0",
+      "reason": "Named ten-god and hidden-stem material is observed, but exact polarity mapping and counting scope are not source-established.",
+      "status": "partial_support",
+      "unitIds": [
+        "five-classics.hidden-stems-and-ten-gods.yuanhai-p4"
+      ]
+    },
+    "saju-source-packet-rule-branch-relations-v0": {
+      "claimIds": [
+        "saju.natal.branch-relation.day-hour-육합",
+        "saju.natal.branch-relation.day-hour-충",
+        "saju.natal.branch-relation.day-hour-파",
+        "saju.natal.branch-relation.day-hour-형",
+        "saju.natal.branch-relation.half-trine-목-year-day",
+        "saju.natal.branch-relation.half-trine-수-day-hour",
+        "saju.natal.branch-relation.half-trine-수-month-hour",
+        "saju.natal.branch-relation.month-day-육합",
+        "saju.natal.branch-relation.month-day-충",
+        "saju.natal.branch-relation.month-day-파",
+        "saju.natal.branch-relation.month-day-형",
+        "saju.natal.branch-relation.month-hour-육합",
+        "saju.natal.branch-relation.month-hour-충",
+        "saju.natal.branch-relation.month-hour-형",
+        "saju.natal.branch-relation.year-day-육합",
+        "saju.natal.branch-relation.year-day-충",
+        "saju.natal.branch-relation.year-day-파",
+        "saju.natal.branch-relation.year-hour-육합",
+        "saju.natal.branch-relation.year-hour-충",
+        "saju.natal.branch-relation.year-hour-파",
+        "saju.natal.branch-relation.year-hour-형",
+        "saju.natal.branch-relation.year-month-육합",
+        "saju.natal.branch-relation.year-month-파",
+        "saju.natal.branch-relation.year-month-형"
+      ],
+      "packetId": "saju-source-packet-rule-branch-relations-v0",
+      "reason": "Definitions and selected examples are directly observed, but complete claim-level tables and all repository relation types are not established.",
+      "status": "partial_support",
+      "unitIds": [
+        "five-classics.branch-relations.ziping-p5"
+      ]
+    },
+    "saju-source-packet-rule-gyeokguk-v0": {
+      "claimIds": [
+        "saju.natal.experimental.gyeokguk"
+      ],
+      "packetId": "saju-source-packet-rule-gyeokguk-v0",
+      "reason": "用神/month-command and 雜格 conditions are observed, but exact repository projection and experimental output are not established.",
+      "status": "partial_support",
+      "unitIds": [
+        "five-classics.yongshin-and-gyeokguk.ziping-p6-p26"
+      ]
+    },
+    "saju-source-packet-rule-shinsal-v0": {
+      "claimIds": [
+        "saju.natal.experimental.shinsal-summary"
+      ],
+      "packetId": "saju-source-packet-rule-shinsal-v0",
+      "reason": "No directly reviewed page in the allowed local material establishes the exact reference axis and mapping for the repository shinsal set.",
+      "status": "source_unresolved",
+      "unitIds": []
+    },
+    "saju-source-packet-rule-strength-v0": {
+      "claimIds": [
+        "saju.natal.experimental.strength-quantitative"
+      ],
+      "packetId": "saju-source-packet-rule-strength-v0",
+      "reason": "Qualitative seasonal/support language is observed, while the repository numeric heuristic remains implementation policy only.",
+      "status": "partial_support_with_scope_tension",
+      "unitIds": [
+        "five-classics.day-master-and-month-command.yuanhai-p6-p7",
+        "five-classics.seasonal-strength.ditian-p4",
+        "five-classics.seasonal-element-and-yongshin.qiongtong-p2-p4-p7"
+      ]
+    },
+    "saju-source-packet-rule-timing-v0": {
+      "claimIds": [
+        "saju.timing.active-da-yun"
+      ],
+      "packetId": "saju-source-packet-rule-timing-v0",
+      "reason": "取運-related text is observed, but no reviewed sentence prescribes the repository direction/start-age/active-cycle contract.",
+      "status": "not_supporting_exact_timing",
+      "unitIds": [
+        "five-classics.timing-exact-boundary.ziping-p25"
+      ]
+    },
+    "saju-source-packet-rule-yongshin-v0": {
+      "claimIds": [
+        "saju.natal.experimental.yongshin"
+      ],
+      "packetId": "saju-source-packet-rule-yongshin-v0",
+      "reason": "Use-selection vocabulary and conditional seasonal material are observed, but the repository heuristic candidate and precedence are not source-established.",
+      "status": "partial_support_with_scope_tension",
+      "unitIds": [
+        "five-classics.day-master-and-month-command.yuanhai-p6-p7",
+        "five-classics.seasonal-strength.ditian-p4",
+        "five-classics.seasonal-element-and-yongshin.qiongtong-p2-p4-p7",
+        "five-classics.yongshin-and-gyeokguk.ziping-p6-p26"
+      ]
+    }
+  },
+  "provenanceObservations": [
+    {
+      "consequence": "source_warning_preserved; no edition authority or independent primary status",
+      "locator": {
+        "heading": "source warning block",
+        "pageLocatorStatus": "direct_visual_scan_reviewed",
+        "pdfPage": 2,
+        "printedPage": "2"
+      },
+      "provenanceObservationId": "yuanhai-p2-source-warning",
+      "sourceId": "saju-source-yuanhai-ziping",
+      "visibleText": [
+        "此作品来源不明，或因未经查证而存有疑虑处。"
+      ]
+    },
+    {
+      "consequence": "web_export_provenance_preserved; no edition authority or independent primary status",
+      "locator": {
+        "heading": "cover/export note",
+        "pageLocatorStatus": "direct_visual_scan_reviewed",
+        "pdfPage": 1,
+        "printedPage": "1"
+      },
+      "provenanceObservationId": "qiongtong-p1-wikisource-export",
+      "sourceId": "saju-source-qiongtong-baojian",
+      "visibleText": [
+        "以2026年8月4日从维基文库导出"
+      ]
+    },
+    {
+      "consequence": "authorship/transmission caveat preserved; no edition authority or independent primary status",
+      "locator": {
+        "heading": "editorial provenance note",
+        "pageLocatorStatus": "direct_visual_scan_reviewed",
+        "pdfPage": 2,
+        "printedPage": "2"
+      },
+      "provenanceObservationId": "sanming-p2-editorial-caveat",
+      "sourceId": "saju-source-sanming-tonghui",
+      "visibleText": [
+        "不著撰人名氏。卷首但题曰青吾山人。",
+        "外间未曾窥见，遂误信依托之本，固未足以为病也。"
+      ]
+    },
+    {
+      "consequence": "web-derived attribution preserved; no edition authority or independent primary status",
+      "locator": {
+        "heading": "web attribution and linked source block",
+        "pageLocatorStatus": "direct_visual_scan_reviewed",
+        "pdfPage": 2,
+        "printedPage": "2"
+      },
+      "provenanceObservationId": "ditian-p2-web-attribution",
+      "sourceId": "saju-source-ditian-sui",
+      "visibleText": [
+        "作者：刘基",
+        "滴天髓辑要"
+      ]
+    },
+    {
+      "consequence": "modern typeset local export observed; bibliographic edition identity remains unresolved",
+      "locator": {
+        "heading": "一、论十干十二支",
+        "pageLocatorStatus": "direct_visual_scan_reviewed",
+        "pdfPage": 2,
+        "printedPage": "2"
+      },
+      "provenanceObservationId": "ziping-p2-modern-export-title",
+      "sourceId": "saju-source-ziping-zhenquan",
+      "visibleText": [
+        "子平真诠-沈孝瞻原著"
+      ]
+    }
+  ],
+  "readiness": {
+    "after": {
+      "availableForInterpretation": false,
+      "integrationStatus": "not_connected",
+      "productionActivation": "blocked",
+      "reason": "claim-level source relation assessment advances provenance and scope knowledge but does not establish edition identity, semantic equivalence, or independent verification",
+      "serviceEligibility": "blocked",
+      "stableClaimBoundary": 0,
+      "status": "blocked_unchanged"
+    },
+    "before": {
+      "availableForInterpretation": false,
+      "byteSha256": "bb2143056c5267bbb286b52d2c86419fbd5de605a14fc431d2060c0689cadc88",
+      "claimCount": 43,
+      "integrationStatus": "not_connected",
+      "occurrenceCount": 126,
+      "path": "artifacts/saju-readiness-grounding-v0.json",
+      "serviceEligibility": "blocked",
+      "statusDistribution": {
+        "provenance_partial": 1,
+        "rule_implemented_source_unresolved": 4,
+        "unverified": 38
+      }
+    }
+  },
+  "researchUnits": [
+    {
+      "observations": [
+        {
+          "admission": {
+            "activation": "blocked_unchanged",
+            "allowedUse": "claim-relation-and-locator-candidate_only",
+            "canonicalTranscription": false,
+            "claimVerification": "not_promoted",
+            "directObservation": "admitted_with_limits",
+            "independentAuthority": "not_established",
+            "inference": "packet_locator_candidate_only",
+            "inheritedEvidence": "not_used_as_direct_observation",
+            "readiness": "blocked_unchanged",
+            "sourceIdentity": "local_file_bytes_verified_edition_unresolved",
+            "status": "local_direct_observation_admitted_with_limits"
+          },
+          "locator": {
+            "heading": "七、论刑冲会合解法",
+            "pageLocatorStatus": "direct_visual_scan_reviewed",
+            "pdfPage": 5,
+            "printedPage": "5"
+          },
+          "observationId": "ziping-p5-branch-relations-definition-and-examples",
+          "observationMethod": {
+            "directVisualReview": true,
+            "ocrCanonical": false,
+            "render": {
+              "commandTemplate": "pdftoppm -f <pdfPage> -l <pdfPage> -r 180 -jpeg -singlefile <source-pdf> <scratch-output-prefix>",
+              "outputFormat": "jpeg",
+              "renderBytesRetained": false,
+              "renderHash": "not_retained; reproducible from source byte hash and render command",
+              "renderer": "pdftoppm",
+              "rendererVersion": "26.05.0"
+            },
+            "scanFirst": true,
+            "sourceByteIdentity": "verified_by_current_local_file_sha256",
+            "transcriptionStatus": "direct_visual_observation_candidate_not_canonical_source_text"
+          },
+          "sourceId": "saju-source-ziping-zhenquan",
+          "visibleText": [
+            "刑者，三刑也，子卯巳申寅之类也。",
+            "冲者，六冲也，子午卯酉之类是也。",
+            "会者，三会也，申子辰之类是也。",
+            "合者，六合也，子与丑合之类是也。",
+            "此皆以地支宫分而言，系对射之意也。三方为会，朋友之意也。并对为合，比邻之意也。",
+            "八字支中，刑冲俱非美事，而三合六合，可以解之。"
+          ]
+        }
+      ],
+      "packetIds": [
+        "saju-source-packet-rule-branch-relations-v0"
+      ],
+      "relationAssessment": {
+        "authorityBoundary": "edition_identity_unresolved_and_independent_authority_not_established",
+        "doesNotSupport": [
+          "the complete repository relation tables for all current branch-relation claim IDs",
+          "the repository half-trine and 破 entries, which are not established by the observed sentences",
+          "the chart-specific relation occurrences or any strength, transformation, or outcome conclusion"
+        ],
+        "status": "partial_support",
+        "supports": [
+          "the observed page names and distinguishes 刑、冲、会、合",
+          "the observed examples include 子卯/巳申寅 for 三刑, 子午/卯酉 for 六冲, 申子辰 for 三会, and 子丑 for 六合",
+          "the page distinguishes three-direction 会 from opposite-pair 合 in its visible prose"
+        ],
+        "tension": "The page discusses relation resolution in examples, while the repository claim text deliberately reports lookup existence only; no semantic resolution is imported."
+      },
+      "researchUnitId": "five-classics.branch-relations.ziping-p5",
+      "title": "子平真詮 p.5 刑沖會合 definition and example scope"
+    },
+    {
+      "observations": [
+        {
+          "admission": {
+            "activation": "blocked_unchanged",
+            "allowedUse": "claim-relation-and-locator-candidate_only",
+            "canonicalTranscription": false,
+            "claimVerification": "not_promoted",
+            "directObservation": "admitted_with_limits",
+            "independentAuthority": "not_established",
+            "inference": "packet_locator_candidate_only",
+            "inheritedEvidence": "not_used_as_direct_observation",
+            "readiness": "blocked_unchanged",
+            "sourceIdentity": "local_file_bytes_verified_edition_unresolved",
+            "status": "local_direct_observation_admitted_with_limits"
+          },
+          "locator": {
+            "heading": "论日为主",
+            "pageLocatorStatus": "direct_visual_scan_reviewed",
+            "pdfPage": 6,
+            "printedPage": "6"
+          },
+          "observationId": "yuanhai-p6-day-as-host",
+          "observationMethod": {
+            "directVisualReview": true,
+            "ocrCanonical": false,
+            "render": {
+              "commandTemplate": "pdftoppm -f <pdfPage> -l <pdfPage> -r 180 -jpeg -singlefile <source-pdf> <scratch-output-prefix>",
+              "outputFormat": "jpeg",
+              "renderBytesRetained": false,
+              "renderHash": "not_retained; reproducible from source byte hash and render command",
+              "renderer": "pdftoppm",
+              "rendererVersion": "26.05.0"
+            },
+            "scanFirst": true,
+            "sourceByteIdentity": "verified_by_current_local_file_sha256",
+            "transcriptionStatus": "direct_visual_observation_candidate_not_canonical_source_text"
+          },
+          "sourceId": "saju-source-yuanhai-ziping",
+          "visibleText": [
+            "取日干为主，以年为根，以月为苗，以日为花，以时为果；以生旺死绝休囚制化，决人一生休咎。",
+            "以日为主，年为本，月为提纲，时为辅佐。"
+          ]
+        },
+        {
+          "admission": {
+            "activation": "blocked_unchanged",
+            "allowedUse": "claim-relation-and-locator-candidate_only",
+            "canonicalTranscription": false,
+            "claimVerification": "not_promoted",
+            "directObservation": "admitted_with_limits",
+            "independentAuthority": "not_established",
+            "inference": "packet_locator_candidate_only",
+            "inheritedEvidence": "not_used_as_direct_observation",
+            "readiness": "blocked_unchanged",
+            "sourceIdentity": "local_file_bytes_verified_edition_unresolved",
+            "status": "local_direct_observation_admitted_with_limits"
+          },
+          "locator": {
+            "heading": "论月令",
+            "pageLocatorStatus": "direct_visual_scan_reviewed",
+            "pdfPage": 7,
+            "printedPage": "7"
+          },
+          "observationId": "yuanhai-p7-month-command",
+          "observationMethod": {
+            "directVisualReview": true,
+            "ocrCanonical": false,
+            "render": {
+              "commandTemplate": "pdftoppm -f <pdfPage> -l <pdfPage> -r 180 -jpeg -singlefile <source-pdf> <scratch-output-prefix>",
+              "outputFormat": "jpeg",
+              "renderBytesRetained": false,
+              "renderHash": "not_retained; reproducible from source byte hash and render command",
+              "renderer": "pdftoppm",
+              "rendererVersion": "26.05.0"
+            },
+            "scanFirst": true,
+            "sourceByteIdentity": "verified_by_current_local_file_sha256",
+            "transcriptionStatus": "direct_visual_observation_candidate_not_canonical_source_text"
+          },
+          "sourceId": "saju-source-yuanhai-ziping",
+          "visibleText": [
+            "以日为主，大要看日加临于甚度，或身旺？或身弱？又看地支有何格局？",
+            "月为提纲，带官星印绶，则慷慨聪明、见识高人。",
+            "假令月令有用神，得父母力。"
+          ]
+        }
+      ],
+      "packetIds": [
+        "saju-source-packet-core-four-pillars-v0",
+        "saju-source-packet-rule-strength-v0",
+        "saju-source-packet-rule-yongshin-v0"
+      ],
+      "relationAssessment": {
+        "authorityBoundary": "source_warning_present_and_edition_identity_unresolved",
+        "doesNotSupport": [
+          "the repository astronomical day-pillar calculation, solar-term solver, day-boundary policy, or hour-stem algorithm",
+          "a deterministic numerical strength score or a user-specific yongshin result"
+        ],
+        "status": "partial_support",
+        "supports": [
+          "day stem/day pillar as the organizing subject of a chart",
+          "the structural roles of year, month, and hour in the observed prose",
+          "month command as a relevant framing for strength and use selection"
+        ],
+        "tension": "The observed prose includes interpretive life-outcome language; this artifact records only the structural day/month framing and creates no interpretation."
+      },
+      "researchUnitId": "five-classics.day-master-and-month-command.yuanhai-p6-p7",
+      "title": "淵海子平 p.6–7 day-as-host and month-command framing"
+    },
+    {
+      "observations": [
+        {
+          "admission": {
+            "activation": "blocked_unchanged",
+            "allowedUse": "claim-relation-and-locator-candidate_only",
+            "canonicalTranscription": false,
+            "claimVerification": "not_promoted",
+            "directObservation": "admitted_with_limits",
+            "independentAuthority": "not_established",
+            "inference": "packet_locator_candidate_only",
+            "inheritedEvidence": "not_used_as_direct_observation",
+            "readiness": "blocked_unchanged",
+            "sourceIdentity": "local_file_bytes_verified_edition_unresolved",
+            "status": "local_direct_observation_admitted_with_limits"
+          },
+          "locator": {
+            "heading": "论天干地支暗藏总诀",
+            "pageLocatorStatus": "direct_visual_scan_reviewed",
+            "pdfPage": 4,
+            "printedPage": "4"
+          },
+          "observationId": "yuanhai-p4-hidden-stems-and-ten-god-labels",
+          "observationMethod": {
+            "directVisualReview": true,
+            "ocrCanonical": false,
+            "render": {
+              "commandTemplate": "pdftoppm -f <pdfPage> -l <pdfPage> -r 180 -jpeg -singlefile <source-pdf> <scratch-output-prefix>",
+              "outputFormat": "jpeg",
+              "renderBytesRetained": false,
+              "renderHash": "not_retained; reproducible from source byte hash and render command",
+              "renderer": "pdftoppm",
+              "rendererVersion": "26.05.0"
+            },
+            "scanFirst": true,
+            "sourceByteIdentity": "verified_by_current_local_file_sha256",
+            "transcriptionStatus": "direct_visual_observation_candidate_not_canonical_source_text"
+          },
+          "sourceId": "saju-source-yuanhai-ziping",
+          "visibleText": [
+            "见辛：为偏官、七杀、官鬼、媒人。",
+            "见壬：为印绶、正人、君子、忌杀。",
+            "见癸：为倒食、偏印、枭神、剋母。",
+            "立春念三丙火用，餘日甲木旺提纲。"
+          ]
+        }
+      ],
+      "packetIds": [
+        "saju-source-packet-core-element-distribution-v0",
+        "saju-source-packet-core-ten-god-distribution-v0"
+      ],
+      "relationAssessment": {
+        "authorityBoundary": "source_warning_present_and_edition_identity_unresolved",
+        "doesNotSupport": [
+          "the repository exact polarity-sensitive mapping for every ten-god label",
+          "the repository visible-versus-hidden counting scope or branch-main-stem projection",
+          "the chart-specific repeated-count claims"
+        ],
+        "status": "partial_support",
+        "supports": [
+          "the observed source uses named ten-god labels and presents them in relation to stem material",
+          "the observed page is explicitly headed as a hidden-stem summary",
+          "the page includes seasonal/month framing adjacent to the hidden-stem material"
+        ],
+        "tension": "The visible source uses multiple traditional labels and contextual language; label presence is not treated as a one-to-one proof of the repository count fields."
+      },
+      "researchUnitId": "five-classics.hidden-stems-and-ten-gods.yuanhai-p4",
+      "title": "淵海子平 p.4 hidden-stem and ten-god label scope"
+    },
+    {
+      "observations": [
+        {
+          "admission": {
+            "activation": "blocked_unchanged",
+            "allowedUse": "claim-relation-and-locator-candidate_only",
+            "canonicalTranscription": false,
+            "claimVerification": "not_promoted",
+            "directObservation": "admitted_with_limits",
+            "independentAuthority": "not_established",
+            "inference": "packet_locator_candidate_only",
+            "inheritedEvidence": "not_used_as_direct_observation",
+            "readiness": "blocked_unchanged",
+            "sourceIdentity": "local_file_bytes_verified_edition_unresolved",
+            "status": "local_direct_observation_admitted_with_limits"
+          },
+          "locator": {
+            "heading": "论人元司事",
+            "pageLocatorStatus": "direct_visual_scan_reviewed",
+            "pdfPage": 65,
+            "printedPage": "65"
+          },
+          "observationId": "sanming-p65-human-element-and-month-command",
+          "observationMethod": {
+            "directVisualReview": true,
+            "ocrCanonical": false,
+            "render": {
+              "commandTemplate": "pdftoppm -f <pdfPage> -l <pdfPage> -r 180 -jpeg -singlefile <source-pdf> <scratch-output-prefix>",
+              "outputFormat": "jpeg",
+              "renderBytesRetained": false,
+              "renderHash": "not_retained; reproducible from source byte hash and render command",
+              "renderer": "pdftoppm",
+              "rendererVersion": "26.05.0"
+            },
+            "scanFirst": true,
+            "sourceByteIdentity": "verified_by_current_local_file_sha256",
+            "transcriptionStatus": "direct_visual_observation_candidate_not_canonical_source_text"
+          },
+          "sourceId": "saju-source-sanming-tonghui",
+          "visibleText": [
+            "谓之人元，名为司事之神，以命术言之为月令。",
+            "天元，主禄，谓之天元；重浊者为十二支，主身，谓之地元。"
+          ]
+        },
+        {
+          "admission": {
+            "activation": "blocked_unchanged",
+            "allowedUse": "claim-relation-and-locator-candidate_only",
+            "canonicalTranscription": false,
+            "claimVerification": "not_promoted",
+            "directObservation": "admitted_with_limits",
+            "independentAuthority": "not_established",
+            "inference": "packet_locator_candidate_only",
+            "inheritedEvidence": "not_used_as_direct_observation",
+            "readiness": "blocked_unchanged",
+            "sourceIdentity": "local_file_bytes_verified_edition_unresolved",
+            "status": "local_direct_observation_admitted_with_limits"
+          },
+          "locator": {
+            "heading": "论四时节气",
+            "pageLocatorStatus": "direct_visual_scan_reviewed",
+            "pdfPage": 66,
+            "printedPage": "66"
+          },
+          "observationId": "sanming-p66-seasonal-hidden-stem-service",
+          "observationMethod": {
+            "directVisualReview": true,
+            "ocrCanonical": false,
+            "render": {
+              "commandTemplate": "pdftoppm -f <pdfPage> -l <pdfPage> -r 180 -jpeg -singlefile <source-pdf> <scratch-output-prefix>",
+              "outputFormat": "jpeg",
+              "renderBytesRetained": false,
+              "renderHash": "not_retained; reproducible from source byte hash and render command",
+              "renderer": "pdftoppm",
+              "rendererVersion": "26.05.0"
+            },
+            "scanFirst": true,
+            "sourceByteIdentity": "verified_by_current_local_file_sha256",
+            "transcriptionStatus": "direct_visual_observation_candidate_not_canonical_source_text"
+          },
+          "sourceId": "saju-source-sanming-tonghui",
+          "visibleText": [
+            "正月建寅，寅中有艮土用事五日，丙火长生五日，甲木二十日。",
+            "此十二支按十二月各藏五行为人元，以配四时则春暖秋凉冬寒夏热，如环无端，终而复始，岁功毕而成一年。"
+          ]
+        },
+        {
+          "admission": {
+            "activation": "blocked_unchanged",
+            "allowedUse": "claim-relation-and-locator-candidate_only",
+            "canonicalTranscription": false,
+            "claimVerification": "not_promoted",
+            "directObservation": "admitted_with_limits",
+            "independentAuthority": "not_established",
+            "inference": "packet_locator_candidate_only",
+            "inheritedEvidence": "not_used_as_direct_observation",
+            "readiness": "blocked_unchanged",
+            "sourceIdentity": "local_file_bytes_verified_edition_unresolved",
+            "status": "local_direct_observation_admitted_with_limits"
+          },
+          "locator": {
+            "heading": "论造化时",
+            "pageLocatorStatus": "direct_visual_scan_reviewed",
+            "pdfPage": 69,
+            "printedPage": "69"
+          },
+          "observationId": "sanming-p69-month-hour-method",
+          "observationMethod": {
+            "directVisualReview": true,
+            "ocrCanonical": false,
+            "render": {
+              "commandTemplate": "pdftoppm -f <pdfPage> -l <pdfPage> -r 180 -jpeg -singlefile <source-pdf> <scratch-output-prefix>",
+              "outputFormat": "jpeg",
+              "renderBytesRetained": false,
+              "renderHash": "not_retained; reproducible from source byte hash and render command",
+              "renderer": "pdftoppm",
+              "rendererVersion": "26.05.0"
+            },
+            "scanFirst": true,
+            "sourceByteIdentity": "verified_by_current_local_file_sha256",
+            "transcriptionStatus": "direct_visual_observation_candidate_not_canonical_source_text"
+          },
+          "sourceId": "saju-source-sanming-tonghui",
+          "visibleText": [
+            "凡论人命，年月日時排成四柱，逢月从年，逢时从日，则以年为本，逢时从日，则以日为主。",
+            "时如甲子日子时生人即甲己，还加甲，便知子时乃甲子，丑时乃乙丑，顺行十二时。",
+            "月时之法，取天干合数，阴阳之配也。既取合数，自生化数，月则取生，时则取克。"
+          ]
+        },
+        {
+          "admission": {
+            "activation": "blocked_unchanged",
+            "allowedUse": "claim-relation-and-locator-candidate_only",
+            "canonicalTranscription": false,
+            "claimVerification": "not_promoted",
+            "directObservation": "admitted_with_limits",
+            "independentAuthority": "not_established",
+            "inference": "packet_locator_candidate_only",
+            "inheritedEvidence": "not_used_as_direct_observation",
+            "readiness": "blocked_unchanged",
+            "sourceIdentity": "local_file_bytes_verified_edition_unresolved",
+            "status": "local_direct_observation_admitted_with_limits"
+          },
+          "locator": {
+            "heading": "论年月日時",
+            "pageLocatorStatus": "direct_visual_scan_reviewed",
+            "pdfPage": 70,
+            "printedPage": "70"
+          },
+          "observationId": "sanming-p70-year-month-day-hour",
+          "observationMethod": {
+            "directVisualReview": true,
+            "ocrCanonical": false,
+            "render": {
+              "commandTemplate": "pdftoppm -f <pdfPage> -l <pdfPage> -r 180 -jpeg -singlefile <source-pdf> <scratch-output-prefix>",
+              "outputFormat": "jpeg",
+              "renderBytesRetained": false,
+              "renderHash": "not_retained; reproducible from source byte hash and render command",
+              "renderer": "pdftoppm",
+              "rendererVersion": "26.05.0"
+            },
+            "scanFirst": true,
+            "sourceByteIdentity": "verified_by_current_local_file_sha256",
+            "transcriptionStatus": "direct_visual_observation_candidate_not_canonical_source_text"
+          },
+          "sourceId": "saju-source-sanming-tonghui",
+          "visibleText": [
+            "凡论人命，年月日時排成四柱，逢月从年，则以年为本，逢时从日，则以日为主。古法以年看，子平以日看，本此。",
+            "大率以年则统乎一岁，月则该乎三十，而时日为得之。"
+          ]
+        }
+      ],
+      "packetIds": [
+        "saju-source-packet-core-four-pillars-v0"
+      ],
+      "relationAssessment": {
+        "authorityBoundary": "web_derived_export_with_editorial_provenance_limits_and_edition_identity_unresolved",
+        "doesNotSupport": [
+          "the repository astronomical solar-longitude approximation, 135-degree meridian, equation-of-time correction, or 20-minute uncertainty window",
+          "the repository civil/solar-midnight day-boundary choice as a resolved authority",
+          "the repository exact implementation output for any chart occurrence"
+        ],
+        "status": "partial_support",
+        "supports": [
+          "the observed source explicitly frames a chart as year/month/day/hour four pillars",
+          "the observed source names 人元/司事 and gives month-specific hidden-stem service intervals",
+          "the observed source gives a visible month-from-year and hour-from-day stem procedure, including 子时 and sequential hour stems",
+          "the observed source explicitly states a day-as-host framing in the year/month/day/hour discussion"
+        ],
+        "tension": "The observed classical convention is a direct rule witness for a bounded calendar-rule scope, but its edition identity and relationship to the repository astronomical layer remain unresolved."
+      },
+      "researchUnitId": "five-classics.four-pillars-and-hour-stem.sanming-p65-p70",
+      "title": "三命通會 p.65–70 人元、四時節氣、月時法 and 四柱 framing"
+    },
+    {
+      "observations": [
+        {
+          "admission": {
+            "activation": "blocked_unchanged",
+            "allowedUse": "claim-relation-and-locator-candidate_only",
+            "canonicalTranscription": false,
+            "claimVerification": "not_promoted",
+            "directObservation": "admitted_with_limits",
+            "independentAuthority": "not_established",
+            "inference": "packet_locator_candidate_only",
+            "inheritedEvidence": "not_used_as_direct_observation",
+            "readiness": "blocked_unchanged",
+            "sourceIdentity": "local_file_bytes_verified_edition_unresolved",
+            "status": "local_direct_observation_admitted_with_limits"
+          },
+          "locator": {
+            "heading": "天干论 / 甲木",
+            "pageLocatorStatus": "direct_visual_scan_reviewed",
+            "pdfPage": 4,
+            "printedPage": "4"
+          },
+          "observationId": "ditian-p4-jia-wood-seasonal-conditions",
+          "observationMethod": {
+            "directVisualReview": true,
+            "ocrCanonical": false,
+            "render": {
+              "commandTemplate": "pdftoppm -f <pdfPage> -l <pdfPage> -r 180 -jpeg -singlefile <source-pdf> <scratch-output-prefix>",
+              "outputFormat": "jpeg",
+              "renderBytesRetained": false,
+              "renderHash": "not_retained; reproducible from source byte hash and render command",
+              "renderer": "pdftoppm",
+              "rendererVersion": "26.05.0"
+            },
+            "scanFirst": true,
+            "sourceByteIdentity": "verified_by_current_local_file_sha256",
+            "transcriptionStatus": "direct_visual_observation_candidate_not_canonical_source_text"
+          },
+          "sourceId": "saju-source-ditian-sui",
+          "visibleText": [
+            "五阳得阳之气，即能成其阳刚，不畏财煞之势；五阴得阴之气，即能成其阴顺。",
+            "甲木参天，脱胎要火，春不容金，秋不容土，火炽乘龙，水荡骑虎，地润天和，植立千古。",
+            "旺木得火而愈敷荣，生於春，则助火而不能容金也。"
+          ]
+        }
+      ],
+      "packetIds": [
+        "saju-source-packet-rule-strength-v0",
+        "saju-source-packet-rule-yongshin-v0"
+      ],
+      "relationAssessment": {
+        "authorityBoundary": "web_derived_export_attribution_observed_and_edition_identity_unresolved",
+        "doesNotSupport": [
+          "the repository 0–100 strength score, threshold labels, or surface-only coefficient",
+          "the repository choice to exclude hidden-stem roots from the quantitative score",
+          "a deterministic yongshin or heeshin result for a chart occurrence"
+        ],
+        "status": "partial_support",
+        "supports": [
+          "qualitative seasonal and qi/勢 distinctions for a day-stem discussion",
+          "the source links conditions and supporting elements to 甲木 in an observed section"
+        ],
+        "tension": "Qualitative source principles and a repository numeric heuristic are different evidence layers; no coefficient is inferred from the verse."
+      },
+      "researchUnitId": "five-classics.seasonal-strength.ditian-p4",
+      "title": "滴天髓 p.4 qualitative seasonal strength and 甲木 conditions"
+    },
+    {
+      "observations": [
+        {
+          "admission": {
+            "activation": "blocked_unchanged",
+            "allowedUse": "claim-relation-and-locator-candidate_only",
+            "canonicalTranscription": false,
+            "claimVerification": "not_promoted",
+            "directObservation": "admitted_with_limits",
+            "independentAuthority": "not_established",
+            "inference": "packet_locator_candidate_only",
+            "inheritedEvidence": "not_used_as_direct_observation",
+            "readiness": "blocked_unchanged",
+            "sourceIdentity": "local_file_bytes_verified_edition_unresolved",
+            "status": "local_direct_observation_admitted_with_limits"
+          },
+          "locator": {
+            "heading": "五行总论",
+            "pageLocatorStatus": "direct_visual_scan_reviewed",
+            "pdfPage": 2,
+            "printedPage": "2"
+          },
+          "observationId": "qiongtong-p2-five-phase-number-and-season",
+          "observationMethod": {
+            "directVisualReview": true,
+            "ocrCanonical": false,
+            "render": {
+              "commandTemplate": "pdftoppm -f <pdfPage> -l <pdfPage> -r 180 -jpeg -singlefile <source-pdf> <scratch-output-prefix>",
+              "outputFormat": "jpeg",
+              "renderBytesRetained": false,
+              "renderHash": "not_retained; reproducible from source byte hash and render command",
+              "renderer": "pdftoppm",
+              "rendererVersion": "26.05.0"
+            },
+            "scanFirst": true,
+            "sourceByteIdentity": "verified_by_current_local_file_sha256",
+            "transcriptionStatus": "direct_visual_observation_candidate_not_canonical_source_text"
+          },
+          "sourceId": "saju-source-qiongtong-baojian",
+          "visibleText": [
+            "五行者，本乎天地之间而不穷者也，故谓之行。",
+            "其数则水一、火二、木三、金四、土五。生旺加倍，死绝减半。"
+          ]
+        },
+        {
+          "admission": {
+            "activation": "blocked_unchanged",
+            "allowedUse": "claim-relation-and-locator-candidate_only",
+            "canonicalTranscription": false,
+            "claimVerification": "not_promoted",
+            "directObservation": "admitted_with_limits",
+            "independentAuthority": "not_established",
+            "inference": "packet_locator_candidate_only",
+            "inheritedEvidence": "not_used_as_direct_observation",
+            "readiness": "blocked_unchanged",
+            "sourceIdentity": "local_file_bytes_verified_edition_unresolved",
+            "status": "local_direct_observation_admitted_with_limits"
+          },
+          "locator": {
+            "heading": "论甲木 / 三春甲木",
+            "pageLocatorStatus": "direct_visual_scan_reviewed",
+            "pdfPage": 4,
+            "printedPage": "4"
+          },
+          "observationId": "qiongtong-p4-spring-jia-wood",
+          "observationMethod": {
+            "directVisualReview": true,
+            "ocrCanonical": false,
+            "render": {
+              "commandTemplate": "pdftoppm -f <pdfPage> -l <pdfPage> -r 180 -jpeg -singlefile <source-pdf> <scratch-output-prefix>",
+              "outputFormat": "jpeg",
+              "renderBytesRetained": false,
+              "renderHash": "not_retained; reproducible from source byte hash and render command",
+              "renderer": "pdftoppm",
+              "rendererVersion": "26.05.0"
+            },
+            "scanFirst": true,
+            "sourceByteIdentity": "verified_by_current_local_file_sha256",
+            "transcriptionStatus": "direct_visual_observation_candidate_not_canonical_source_text"
+          },
+          "sourceId": "saju-source-qiongtong-baojian",
+          "visibleText": [
+            "春月之木，渐有生长之象。初春犹有余寒，当以火温暖，则有舒畅之美，水多变枯，有损精神。",
+            "重见生旺，必用庚金斵削，可成栋梁。"
+          ]
+        },
+        {
+          "admission": {
+            "activation": "blocked_unchanged",
+            "allowedUse": "claim-relation-and-locator-candidate_only",
+            "canonicalTranscription": false,
+            "claimVerification": "not_promoted",
+            "directObservation": "admitted_with_limits",
+            "independentAuthority": "not_established",
+            "inference": "packet_locator_candidate_only",
+            "inheritedEvidence": "not_used_as_direct_observation",
+            "readiness": "blocked_unchanged",
+            "sourceIdentity": "local_file_bytes_verified_edition_unresolved",
+            "status": "local_direct_observation_admitted_with_limits"
+          },
+          "locator": {
+            "heading": "三夏甲木",
+            "pageLocatorStatus": "direct_visual_scan_reviewed",
+            "pdfPage": 7,
+            "printedPage": "7"
+          },
+          "observationId": "qiongtong-p7-summer-jia-wood",
+          "observationMethod": {
+            "directVisualReview": true,
+            "ocrCanonical": false,
+            "render": {
+              "commandTemplate": "pdftoppm -f <pdfPage> -l <pdfPage> -r 180 -jpeg -singlefile <source-pdf> <scratch-output-prefix>",
+              "outputFormat": "jpeg",
+              "renderBytesRetained": false,
+              "renderHash": "not_retained; reproducible from source byte hash and render command",
+              "renderer": "pdftoppm",
+              "rendererVersion": "26.05.0"
+            },
+            "scanFirst": true,
+            "sourceByteIdentity": "verified_by_current_local_file_sha256",
+            "transcriptionStatus": "direct_visual_observation_candidate_not_canonical_source_text"
+          },
+          "sourceId": "saju-source-qiongtong-baojian",
+          "visibleText": [
+            "五六月用丁火，虽运行北地，不致于死。",
+            "凡用神太多，不宜克制，须泄之为妙。"
+          ]
+        }
+      ],
+      "packetIds": [
+        "saju-source-packet-core-element-distribution-v0",
+        "saju-source-packet-rule-strength-v0",
+        "saju-source-packet-rule-yongshin-v0"
+      ],
+      "relationAssessment": {
+        "authorityBoundary": "modern_local_export_with_wiki_source_and_edition_identity_unresolved",
+        "doesNotSupport": [
+          "the repository exact seasonal coefficient table or its rounding behavior",
+          "the repository separation of surface counts from weighted counts as a source-prescribed rule",
+          "the repository chart-specific yongshin candidate or any personal interpretation"
+        ],
+        "status": "partial_support_with_scope_tension",
+        "supports": [
+          "the source presents element categories and a seasonal adjustment statement",
+          "the source presents month-specific 甲木 conditions and named 用神-like choices"
+        ],
+        "tension": "The observed seasonal adjustment language is not the same as the repository surface-count fields; the difference is retained as a scope tension, not merged."
+      },
+      "researchUnitId": "five-classics.seasonal-element-and-yongshin.qiongtong-p2-p4-p7",
+      "title": "窮通寶鑑 p.2, p.4, p.7 seasonal element weighting and 用神 scope"
+    },
+    {
+      "observations": [
+        {
+          "admission": {
+            "activation": "blocked_unchanged",
+            "allowedUse": "claim-relation-and-locator-candidate_only",
+            "canonicalTranscription": false,
+            "claimVerification": "not_promoted",
+            "directObservation": "admitted_with_limits",
+            "independentAuthority": "not_established",
+            "inference": "packet_locator_candidate_only",
+            "inheritedEvidence": "not_used_as_direct_observation",
+            "readiness": "blocked_unchanged",
+            "sourceIdentity": "local_file_bytes_verified_edition_unresolved",
+            "status": "local_direct_observation_admitted_with_limits"
+          },
+          "locator": {
+            "heading": "论五行生成",
+            "pageLocatorStatus": "direct_visual_scan_reviewed",
+            "pdfPage": 4,
+            "printedPage": "4"
+          },
+          "observationId": "sanming-p4-element-generation",
+          "observationMethod": {
+            "directVisualReview": true,
+            "ocrCanonical": false,
+            "render": {
+              "commandTemplate": "pdftoppm -f <pdfPage> -l <pdfPage> -r 180 -jpeg -singlefile <source-pdf> <scratch-output-prefix>",
+              "outputFormat": "jpeg",
+              "renderBytesRetained": false,
+              "renderHash": "not_retained; reproducible from source byte hash and render command",
+              "renderer": "pdftoppm",
+              "rendererVersion": "26.05.0"
+            },
+            "scanFirst": true,
+            "sourceByteIdentity": "verified_by_current_local_file_sha256",
+            "transcriptionStatus": "direct_visual_observation_candidate_not_canonical_source_text"
+          },
+          "sourceId": "saju-source-sanming-tonghui",
+          "visibleText": [
+            "一曰水，二曰火，三曰木，四曰金，五曰土者，咸有所自也。"
+          ]
+        },
+        {
+          "admission": {
+            "activation": "blocked_unchanged",
+            "allowedUse": "claim-relation-and-locator-candidate_only",
+            "canonicalTranscription": false,
+            "claimVerification": "not_promoted",
+            "directObservation": "admitted_with_limits",
+            "independentAuthority": "not_established",
+            "inference": "packet_locator_candidate_only",
+            "inheritedEvidence": "not_used_as_direct_observation",
+            "readiness": "blocked_unchanged",
+            "sourceIdentity": "local_file_bytes_verified_edition_unresolved",
+            "status": "local_direct_observation_admitted_with_limits"
+          },
+          "locator": {
+            "heading": "论五行生克",
+            "pageLocatorStatus": "direct_visual_scan_reviewed",
+            "pdfPage": 5,
+            "printedPage": "5"
+          },
+          "observationId": "sanming-p5-element-generation-control",
+          "observationMethod": {
+            "directVisualReview": true,
+            "ocrCanonical": false,
+            "render": {
+              "commandTemplate": "pdftoppm -f <pdfPage> -l <pdfPage> -r 180 -jpeg -singlefile <source-pdf> <scratch-output-prefix>",
+              "outputFormat": "jpeg",
+              "renderBytesRetained": false,
+              "renderHash": "not_retained; reproducible from source byte hash and render command",
+              "renderer": "pdftoppm",
+              "rendererVersion": "26.05.0"
+            },
+            "scanFirst": true,
+            "sourceByteIdentity": "verified_by_current_local_file_sha256",
+            "transcriptionStatus": "direct_visual_observation_candidate_not_canonical_source_text"
+          },
+          "sourceId": "saju-source-sanming-tonghui",
+          "visibleText": [
+            "五行相生相克，其理昭然。十干十二支、五运六气、岁月日時皆自此立，更相为用。"
+          ]
+        },
+        {
+          "admission": {
+            "activation": "blocked_unchanged",
+            "allowedUse": "claim-relation-and-locator-candidate_only",
+            "canonicalTranscription": false,
+            "claimVerification": "not_promoted",
+            "directObservation": "admitted_with_limits",
+            "independentAuthority": "not_established",
+            "inference": "packet_locator_candidate_only",
+            "inheritedEvidence": "not_used_as_direct_observation",
+            "readiness": "blocked_unchanged",
+            "sourceIdentity": "local_file_bytes_verified_edition_unresolved",
+            "status": "local_direct_observation_admitted_with_limits"
+          },
+          "locator": {
+            "heading": "论支干源流",
+            "pageLocatorStatus": "direct_visual_scan_reviewed",
+            "pdfPage": 6,
+            "printedPage": "6"
+          },
+          "observationId": "sanming-p6-stem-branch-origin",
+          "observationMethod": {
+            "directVisualReview": true,
+            "ocrCanonical": false,
+            "render": {
+              "commandTemplate": "pdftoppm -f <pdfPage> -l <pdfPage> -r 180 -jpeg -singlefile <source-pdf> <scratch-output-prefix>",
+              "outputFormat": "jpeg",
+              "renderBytesRetained": false,
+              "renderHash": "not_retained; reproducible from source byte hash and render command",
+              "renderer": "pdftoppm",
+              "rendererVersion": "26.05.0"
+            },
+            "scanFirst": true,
+            "sourceByteIdentity": "verified_by_current_local_file_sha256",
+            "transcriptionStatus": "direct_visual_observation_candidate_not_canonical_source_text"
+          },
+          "sourceId": "saju-source-sanming-tonghui",
+          "visibleText": [
+            "大干犹木之干，强而为阳；支犹木之枝，弱而为阴。",
+            "首君以天地既分之后，先有天而后有地，由是气化而人生焉，故天皇氏一姓十三人，继盘古氏以治。"
+          ]
+        }
+      ],
+      "packetIds": [
+        "saju-source-packet-core-element-distribution-v0",
+        "saju-source-packet-core-four-pillars-v0"
+      ],
+      "relationAssessment": {
+        "authorityBoundary": "web_derived_export_with_editorial_provenance_limits_and_edition_identity_unresolved",
+        "doesNotSupport": [
+          "the repository exact calendrical anchor, solar-term boundary, or hour-stem calculation",
+          "surface/hidden count semantics or chart-specific element absence claims"
+        ],
+        "status": "partial_support",
+        "supports": [
+          "basic element naming and generation/control framing",
+          "a visible connection between stems/branches and the element framework"
+        ],
+        "tension": "The page uses cosmological and numerical exposition; this is not treated as a direct specification of the repository calendar implementation."
+      },
+      "researchUnitId": "five-classics.element-generation-and-branch-origin.sanming-p4-p6",
+      "title": "三命通會 p.4–6 element generation/control and stem-branch framing"
+    },
+    {
+      "observations": [
+        {
+          "admission": {
+            "activation": "blocked_unchanged",
+            "allowedUse": "claim-relation-and-locator-candidate_only",
+            "canonicalTranscription": false,
+            "claimVerification": "not_promoted",
+            "directObservation": "admitted_with_limits",
+            "independentAuthority": "not_established",
+            "inference": "packet_locator_candidate_only",
+            "inheritedEvidence": "not_used_as_direct_observation",
+            "readiness": "blocked_unchanged",
+            "sourceIdentity": "local_file_bytes_verified_edition_unresolved",
+            "status": "local_direct_observation_admitted_with_limits"
+          },
+          "locator": {
+            "heading": "八、论用神",
+            "pageLocatorStatus": "direct_visual_scan_reviewed",
+            "pdfPage": 6,
+            "printedPage": "6"
+          },
+          "observationId": "ziping-p6-yongshin-month-command",
+          "observationMethod": {
+            "directVisualReview": true,
+            "ocrCanonical": false,
+            "render": {
+              "commandTemplate": "pdftoppm -f <pdfPage> -l <pdfPage> -r 180 -jpeg -singlefile <source-pdf> <scratch-output-prefix>",
+              "outputFormat": "jpeg",
+              "renderBytesRetained": false,
+              "renderHash": "not_retained; reproducible from source byte hash and render command",
+              "renderer": "pdftoppm",
+              "rendererVersion": "26.05.0"
+            },
+            "scanFirst": true,
+            "sourceByteIdentity": "verified_by_current_local_file_sha256",
+            "transcriptionStatus": "direct_visual_observation_candidate_not_canonical_source_text"
+          },
+          "sourceId": "saju-source-ziping-zhenquan",
+          "visibleText": [
+            "八字用神，专求月令，以日干配月令地支，而生克不同，格局分焉。",
+            "财官印食，此用神之善而顺用之者也；煞伤枭刃，此用神之不善而逆用之者也。"
+          ]
+        },
+        {
+          "admission": {
+            "activation": "blocked_unchanged",
+            "allowedUse": "claim-relation-and-locator-candidate_only",
+            "canonicalTranscription": false,
+            "claimVerification": "not_promoted",
+            "directObservation": "admitted_with_limits",
+            "independentAuthority": "not_established",
+            "inference": "packet_locator_candidate_only",
+            "inheritedEvidence": "not_used_as_direct_observation",
+            "readiness": "blocked_unchanged",
+            "sourceIdentity": "local_file_bytes_verified_edition_unresolved",
+            "status": "local_direct_observation_admitted_with_limits"
+          },
+          "locator": {
+            "heading": "四十七、论杂格",
+            "pageLocatorStatus": "direct_visual_scan_reviewed",
+            "pdfPage": 26,
+            "printedPage": "26"
+          },
+          "observationId": "ziping-p26-miscellaneous-structures",
+          "observationMethod": {
+            "directVisualReview": true,
+            "ocrCanonical": false,
+            "render": {
+              "commandTemplate": "pdftoppm -f <pdfPage> -l <pdfPage> -r 180 -jpeg -singlefile <source-pdf> <scratch-output-prefix>",
+              "outputFormat": "jpeg",
+              "renderBytesRetained": false,
+              "renderHash": "not_retained; reproducible from source byte hash and render command",
+              "renderer": "pdftoppm",
+              "rendererVersion": "26.05.0"
+            },
+            "scanFirst": true,
+            "sourceByteIdentity": "verified_by_current_local_file_sha256",
+            "transcriptionStatus": "direct_visual_observation_candidate_not_canonical_source_text"
+          },
+          "sourceId": "saju-source-ziping-zhenquan",
+          "visibleText": [
+            "杂格者，月令无用，以外格而用之，其格甚多，故谓之杂。",
+            "大约要干头无官无煞，方成格。",
+            "有化气取格者，要化出之物，得时乘令，四支局全。"
+          ]
+        }
+      ],
+      "packetIds": [
+        "saju-source-packet-rule-gyeokguk-v0",
+        "saju-source-packet-rule-yongshin-v0"
+      ],
+      "relationAssessment": {
+        "authorityBoundary": "modern_typeset_local_export_and_edition_identity_unresolved",
+        "doesNotSupport": [
+          "the repository exact hidden-stem projection order or experimental named output",
+          "the repository yongshin heuristic or a claim-level chart result"
+        ],
+        "status": "partial_support",
+        "supports": [
+          "用神 is visibly tied to month command in the observed source",
+          "the source distinguishes a miscellaneous/external structure from ordinary month-command use"
+        ],
+        "tension": "The observed rule text is conditional and structure-specific; the repository experimental labels remain noncanonical and are not promoted."
+      },
+      "researchUnitId": "five-classics.yongshin-and-gyeokguk.ziping-p6-p26",
+      "title": "子平真詮 p.6 and p.26 用神/雜格 rule-scope comparison"
+    },
+    {
+      "observations": [
+        {
+          "admission": {
+            "activation": "blocked_unchanged",
+            "allowedUse": "claim-relation-and-locator-candidate_only",
+            "canonicalTranscription": false,
+            "claimVerification": "not_promoted",
+            "directObservation": "admitted_with_limits",
+            "independentAuthority": "not_established",
+            "inference": "packet_locator_candidate_only",
+            "inheritedEvidence": "not_used_as_direct_observation",
+            "readiness": "blocked_unchanged",
+            "sourceIdentity": "local_file_bytes_verified_edition_unresolved",
+            "status": "local_direct_observation_admitted_with_limits"
+          },
+          "locator": {
+            "heading": "四十五、论建禄月劫",
+            "pageLocatorStatus": "direct_visual_scan_reviewed",
+            "pdfPage": 25,
+            "printedPage": "25"
+          },
+          "observationId": "ziping-p25-jianlu-yuejie-take-luck",
+          "observationMethod": {
+            "directVisualReview": true,
+            "ocrCanonical": false,
+            "render": {
+              "commandTemplate": "pdftoppm -f <pdfPage> -l <pdfPage> -r 180 -jpeg -singlefile <source-pdf> <scratch-output-prefix>",
+              "outputFormat": "jpeg",
+              "renderBytesRetained": false,
+              "renderHash": "not_retained; reproducible from source byte hash and render command",
+              "renderer": "pdftoppm",
+              "rendererVersion": "26.05.0"
+            },
+            "scanFirst": true,
+            "sourceByteIdentity": "verified_by_current_local_file_sha256",
+            "transcriptionStatus": "direct_visual_observation_candidate_not_canonical_source_text"
+          },
+          "sourceId": "saju-source-ziping-zhenquan",
+          "visibleText": [
+            "建禄者，月建逢禄堂也，禄即是劫。",
+            "建禄与月劫，可同一格，不必分分，皆以透天干，别取财官煞食为用。"
+          ]
+        }
+      ],
+      "packetIds": [
+        "saju-source-packet-rule-timing-v0"
+      ],
+      "relationAssessment": {
+        "authorityBoundary": "edition_identity_unresolved",
+        "doesNotSupport": [
+          "the repository direction rule, adjacent-term selection, 三日一歲 conversion, start-age date, or active-cycle claim"
+        ],
+        "status": "not_supporting_exact_timing",
+        "supports": [
+          "the observed page has a visible 取運-related heading and discusses structure-dependent use"
+        ],
+        "tension": "A visible 取運 heading is not evidence for the repository timing algorithm; the timing packet remains source-unresolved."
+      },
+      "researchUnitId": "five-classics.timing-exact-boundary.ziping-p25",
+      "title": "timing frontier check: 子平真詮 p.25 contains 取運 material but not the required start-age contract"
+    }
+  ],
+  "schemaVersion": "saju-five-classics-claim-grounding-v0",
+  "scope": {
+    "activationMutation": false,
+    "claimLevelRelationAssessment": true,
+    "claimPromotion": false,
+    "directVisualReview": true,
+    "historicalArtifactRewrite": false,
+    "interpretationGeneration": false,
+    "localCorpusRead": true,
+    "networkOrSourceAcquisition": false,
+    "ocrCanonical": false,
+    "productionRuleMutation": false,
+    "readinessMutation": false,
+    "repositoryOnly": true
+  },
+  "verdictToken": "partial_saju_five_classics_claim_grounding_frontier_advanced_uncommitted",
+  "version": "0.1.0"
+}
