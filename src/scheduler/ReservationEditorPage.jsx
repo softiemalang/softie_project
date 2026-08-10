@@ -79,7 +79,7 @@ export function ReservationEditorPage({
 
   function handleBack() {
     if (actionLockRef.current) return
-    navigate(backPath)
+    navigate(backPath, { viewTransition: true })
   }
 
   useEffect(() => {

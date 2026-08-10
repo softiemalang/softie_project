@@ -71,6 +71,7 @@
   --ag-content-utility: 860px;
   --ag-content-wide: 1180px;
   --ag-duration-fast: 180ms;
+  --ag-view-transition-easing: cubic-bezier(0.23, 1, 0.32, 1);
 
   /* Selective iOS 27 interaction primitives; the warm visual language remains primary. */
   --ios27-selective-touch-target: 44px;
@@ -294,6 +295,33 @@
     transition-duration: 0.01ms !important;
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
+  }
+}
+
+/* Scheduler route continuity pilot: only explicit router opt-ins use this. */
+@supports (view-transition-name: none) {
+  .scheduler-auth-gated {
+    view-transition-name: scheduler-route;
+  }
+
+  ::view-transition-group(scheduler-route),
+  ::view-transition-image-pair(scheduler-route) {
+    animation: none;
+  }
+
+  ::view-transition-old(scheduler-route),
+  ::view-transition-new(scheduler-route) {
+    animation-duration: var(--ag-duration-fast);
+    animation-timing-function: var(--ag-view-transition-easing);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(scheduler-route),
+  ::view-transition-image-pair(scheduler-route),
+  ::view-transition-old(scheduler-route),
+  ::view-transition-new(scheduler-route) {
+    animation-duration: 0.01ms !important;
   }
 }
 
