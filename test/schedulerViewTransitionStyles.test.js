@@ -10,11 +10,20 @@ const pilotBlock = styles.match(
 test('scheduler View Transition timing is route-scoped and isolated from the fast token', () => {
   assert.ok(pilotBlock, 'scheduler View Transition pilot CSS should remain present')
   assert.match(styles, /--ag-duration-fast:\s*180ms;/)
-  assert.match(styles, /--ag-scheduler-route-transition-duration:\s*220ms;/)
+  assert.match(styles, /--ag-scheduler-route-transition-old-duration:\s*180ms;/)
+  assert.match(styles, /--ag-scheduler-route-transition-new-duration:\s*240ms;/)
   assert.match(styles, /--ag-scheduler-route-transition-easing:\s*cubic-bezier\(0\.23, 1, 0\.32, 1\);/)
   assert.match(pilotBlock, /\.scheduler-auth-gated\s*\{[\s\S]*?view-transition-name:\s*scheduler-route;/)
-  assert.match(pilotBlock, /animation-duration:\s*var\(--ag-scheduler-route-transition-duration\);/)
-  assert.match(pilotBlock, /animation-timing-function:\s*var\(--ag-scheduler-route-transition-easing\);/)
+  assert.match(
+    pilotBlock,
+    /::view-transition-old\(scheduler-route\)[\s\S]*?animation-duration:\s*var\(--ag-scheduler-route-transition-old-duration\);[\s\S]*?animation-timing-function:\s*var\(--ag-scheduler-route-transition-easing\);/,
+  )
+  assert.match(
+    pilotBlock,
+    /::view-transition-new\(scheduler-route\)[\s\S]*?animation-duration:\s*var\(--ag-scheduler-route-transition-new-duration\);[\s\S]*?animation-timing-function:\s*var\(--ag-scheduler-route-transition-easing\);/,
+  )
+  assert.match(pilotBlock, /::view-transition-group\(scheduler-route\),[\s\S]*?animation:\s*none;/)
+  assert.match(pilotBlock, /::view-transition-image-pair\(scheduler-route\)[\s\S]*?animation:\s*none;/)
   assert.doesNotMatch(pilotBlock, /var\(--ag-duration-fast\)/)
 })
 
