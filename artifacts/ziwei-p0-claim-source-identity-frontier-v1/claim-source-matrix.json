@@ -1,0 +1,857 @@
+[
+  {
+    "authority": "institutional/catalog identity and direct observation do not by themselves establish semantic/source authority",
+    "claimId": "claim-palace-name-branch-ordinal",
+    "claimRelation": "direct_observation_supports_partial_diagram_and_chart_surface_only",
+    "directObservation": "present_but_bounded",
+    "editionLineage": "must not merge same-record scans; independent physical witness candidates remain separate",
+    "family": "palace_semantics",
+    "independence": "Toyo is independent_physical_witness_candidate; NARA pair/local derivative remain non-independent",
+    "label": "12 palace names ↔ source branch glyphs ↔ production ordinal/physical slot",
+    "leafPageBinding": "direct leaf/page locator exists for bounded surface; complete claim binding absent",
+    "notes": "No witness closes all 12 names, branch glyphs, physical slots, ordinal, base direction, and production enum in one readable source context.",
+    "observationIds": [
+      "obs-nanbei-p7",
+      "obs-nanbei-p8",
+      "obs-nara-v1-84-86",
+      "obs-nara-v1-89-92",
+      "obs-nara-v2-64-80",
+      "obs-toyo-0007",
+      "obs-toyo-0015",
+      "obs-toyo-0017",
+      "obs-toyo-0085",
+      "obs-toyo-0088"
+    ],
+    "readinessImpact": "readiness_remains_not_safe_to_start; no interpretation or activation promotion",
+    "sourceIdentity": "row-level_source_identity_not_fully_closed",
+    "sourceIds": [
+      "src-nanbei-pdf",
+      "src-nanyangtang-pdf",
+      "src-nara-4468520",
+      "src-nara-4469314",
+      "src-toyo-1646"
+    ],
+    "status": "direct_observation_bounded"
+  },
+  {
+    "authority": "institutional/catalog identity and direct observation do not by themselves establish semantic/source authority",
+    "claimId": "claim-ming-shen-coordinate-frame",
+    "claimRelation": "direct_observation_supports_traversal_surface_not_semantic_coordinate_identity",
+    "directObservation": "present_but_bounded",
+    "editionLineage": "must not merge same-record scans; independent physical witness candidates remain separate",
+    "family": "palace_semantics",
+    "independence": "Toyo is independent_physical_witness_candidate; NARA pair/local derivative remain non-independent",
+    "label": "命宮/身宮 traversal and coordinate frame",
+    "leafPageBinding": "direct leaf/page locator exists for bounded surface; complete claim binding absent",
+    "notes": "寅起正月, 命逆, 身順 and related tables are observed, but the semantic map to production palace names/ordinal remains unresolved.",
+    "observationIds": [
+      "obs-nanbei-p8",
+      "obs-nanyang-p145",
+      "obs-nanyang-p159-160",
+      "obs-toyo-0007",
+      "obs-toyo-0014"
+    ],
+    "readinessImpact": "readiness_remains_not_safe_to_start; no interpretation or activation promotion",
+    "sourceIdentity": "row-level_source_identity_not_fully_closed",
+    "sourceIds": [
+      "src-nanbei-pdf",
+      "src-nanyangtang-pdf",
+      "src-toyo-1646"
+    ],
+    "status": "direct_observation_bounded"
+  },
+  {
+    "authority": "institutional/catalog identity and direct observation do not by themselves establish semantic/source authority",
+    "claimId": "claim-12-palace-diagram-semantics",
+    "claimRelation": "does_not_close_complete_semantic_diagram",
+    "directObservation": "present_but_bounded",
+    "editionLineage": "must not merge same-record scans; independent physical witness candidates remain separate",
+    "family": "palace_semantics",
+    "independence": "Toyo is independent_physical_witness_candidate; NARA pair/local derivative remain non-independent",
+    "label": "complete 12-palace diagram with names, branches, slots, and direction",
+    "leafPageBinding": "direct leaf/page locator exists for bounded surface; complete claim binding absent",
+    "notes": "Observed charts are examples or partial tables; no complete admissible semantic legend was found.",
+    "observationIds": [
+      "obs-nara-v1-87-88",
+      "obs-nara-v1-89-92",
+      "obs-nara-v2-64-80",
+      "obs-toyo-0017",
+      "obs-toyo-0085",
+      "obs-toyo-0088"
+    ],
+    "readinessImpact": "readiness_remains_not_safe_to_start; no interpretation or activation promotion",
+    "sourceIdentity": "row-level_source_identity_not_fully_closed",
+    "sourceIds": [
+      "src-nara-4468520",
+      "src-nara-4469314",
+      "src-toyo-1646"
+    ],
+    "status": "direct_observation_bounded"
+  },
+  {
+    "authority": "institutional/catalog identity and direct observation do not by themselves establish semantic/source authority",
+    "claimId": "claim-major-star-placement-ziwei",
+    "claimRelation": "direct_observation_supports_numeric_or_star_surface_only",
+    "directObservation": "present_but_bounded",
+    "editionLineage": "must not merge same-record scans; independent physical witness candidates remain separate",
+    "family": "major_star_placement",
+    "independence": "Toyo is independent_physical_witness_candidate; NARA pair/local derivative remain non-independent",
+    "label": "紫微 placement",
+    "leafPageBinding": "direct leaf/page locator exists for bounded surface; complete claim binding absent",
+    "notes": "紫微 is present in the local/visual source surface or chart context, but a row-level original-text placement rule with resolved edition, page/folio, and semantic coordinate authority is not admitted.",
+    "observationIds": [
+      "obs-nanbei-p11-13",
+      "obs-nara-v1-84-86",
+      "obs-nara-v1-89-92",
+      "obs-nara-v2-64-80",
+      "obs-toyo-0004",
+      "obs-toyo-0008",
+      "obs-toyo-0085",
+      "obs-toyo-0088"
+    ],
+    "readinessImpact": "readiness_remains_not_safe_to_start; no interpretation or activation promotion",
+    "sourceIdentity": "row-level_source_identity_not_fully_closed",
+    "sourceIds": [
+      "src-nanbei-pdf",
+      "src-nanyangtang-pdf",
+      "src-nara-4468520",
+      "src-nara-4469314",
+      "src-toyo-1646"
+    ],
+    "status": "direct_observation_bounded"
+  },
+  {
+    "authority": "institutional/catalog identity and direct observation do not by themselves establish semantic/source authority",
+    "claimId": "claim-major-star-placement-tianji",
+    "claimRelation": "direct_observation_supports_numeric_or_star_surface_only",
+    "directObservation": "present_but_bounded",
+    "editionLineage": "must not merge same-record scans; independent physical witness candidates remain separate",
+    "family": "major_star_placement",
+    "independence": "Toyo is independent_physical_witness_candidate; NARA pair/local derivative remain non-independent",
+    "label": "天機 placement",
+    "leafPageBinding": "direct leaf/page locator exists for bounded surface; complete claim binding absent",
+    "notes": "天機 is present in the local/visual source surface or chart context, but a row-level original-text placement rule with resolved edition, page/folio, and semantic coordinate authority is not admitted.",
+    "observationIds": [
+      "obs-nanbei-p11-13",
+      "obs-nara-v1-84-86",
+      "obs-nara-v1-89-92",
+      "obs-nara-v2-64-80",
+      "obs-toyo-0004",
+      "obs-toyo-0008",
+      "obs-toyo-0085",
+      "obs-toyo-0088"
+    ],
+    "readinessImpact": "readiness_remains_not_safe_to_start; no interpretation or activation promotion",
+    "sourceIdentity": "row-level_source_identity_not_fully_closed",
+    "sourceIds": [
+      "src-nanbei-pdf",
+      "src-nanyangtang-pdf",
+      "src-nara-4468520",
+      "src-nara-4469314",
+      "src-toyo-1646"
+    ],
+    "status": "direct_observation_bounded"
+  },
+  {
+    "authority": "institutional/catalog identity and direct observation do not by themselves establish semantic/source authority",
+    "claimId": "claim-major-star-placement-taiyang",
+    "claimRelation": "direct_observation_supports_numeric_or_star_surface_only",
+    "directObservation": "present_but_bounded",
+    "editionLineage": "must not merge same-record scans; independent physical witness candidates remain separate",
+    "family": "major_star_placement",
+    "independence": "Toyo is independent_physical_witness_candidate; NARA pair/local derivative remain non-independent",
+    "label": "太陽 placement",
+    "leafPageBinding": "direct leaf/page locator exists for bounded surface; complete claim binding absent",
+    "notes": "太陽 is present in the local/visual source surface or chart context, but a row-level original-text placement rule with resolved edition, page/folio, and semantic coordinate authority is not admitted.",
+    "observationIds": [
+      "obs-nanbei-p11-13",
+      "obs-nara-v1-84-86",
+      "obs-nara-v1-89-92",
+      "obs-nara-v2-64-80",
+      "obs-toyo-0004",
+      "obs-toyo-0008",
+      "obs-toyo-0085",
+      "obs-toyo-0088"
+    ],
+    "readinessImpact": "readiness_remains_not_safe_to_start; no interpretation or activation promotion",
+    "sourceIdentity": "row-level_source_identity_not_fully_closed",
+    "sourceIds": [
+      "src-nanbei-pdf",
+      "src-nanyangtang-pdf",
+      "src-nara-4468520",
+      "src-nara-4469314",
+      "src-toyo-1646"
+    ],
+    "status": "direct_observation_bounded"
+  },
+  {
+    "authority": "institutional/catalog identity and direct observation do not by themselves establish semantic/source authority",
+    "claimId": "claim-major-star-placement-wugu",
+    "claimRelation": "direct_observation_supports_numeric_or_star_surface_only",
+    "directObservation": "present_but_bounded",
+    "editionLineage": "must not merge same-record scans; independent physical witness candidates remain separate",
+    "family": "major_star_placement",
+    "independence": "Toyo is independent_physical_witness_candidate; NARA pair/local derivative remain non-independent",
+    "label": "武曲 placement",
+    "leafPageBinding": "direct leaf/page locator exists for bounded surface; complete claim binding absent",
+    "notes": "武曲 is present in the local/visual source surface or chart context, but a row-level original-text placement rule with resolved edition, page/folio, and semantic coordinate authority is not admitted.",
+    "observationIds": [
+      "obs-nanbei-p11-13",
+      "obs-nara-v1-84-86",
+      "obs-nara-v1-89-92",
+      "obs-nara-v2-64-80",
+      "obs-toyo-0004",
+      "obs-toyo-0008",
+      "obs-toyo-0085",
+      "obs-toyo-0088"
+    ],
+    "readinessImpact": "readiness_remains_not_safe_to_start; no interpretation or activation promotion",
+    "sourceIdentity": "row-level_source_identity_not_fully_closed",
+    "sourceIds": [
+      "src-nanbei-pdf",
+      "src-nanyangtang-pdf",
+      "src-nara-4468520",
+      "src-nara-4469314",
+      "src-toyo-1646"
+    ],
+    "status": "direct_observation_bounded"
+  },
+  {
+    "authority": "institutional/catalog identity and direct observation do not by themselves establish semantic/source authority",
+    "claimId": "claim-major-star-placement-tiandong",
+    "claimRelation": "direct_observation_supports_numeric_or_star_surface_only",
+    "directObservation": "present_but_bounded",
+    "editionLineage": "must not merge same-record scans; independent physical witness candidates remain separate",
+    "family": "major_star_placement",
+    "independence": "Toyo is independent_physical_witness_candidate; NARA pair/local derivative remain non-independent",
+    "label": "天同 placement",
+    "leafPageBinding": "direct leaf/page locator exists for bounded surface; complete claim binding absent",
+    "notes": "天同 is present in the local/visual source surface or chart context, but a row-level original-text placement rule with resolved edition, page/folio, and semantic coordinate authority is not admitted.",
+    "observationIds": [
+      "obs-nanbei-p11-13",
+      "obs-nara-v1-84-86",
+      "obs-nara-v1-89-92",
+      "obs-nara-v2-64-80",
+      "obs-toyo-0004",
+      "obs-toyo-0008",
+      "obs-toyo-0085",
+      "obs-toyo-0088"
+    ],
+    "readinessImpact": "readiness_remains_not_safe_to_start; no interpretation or activation promotion",
+    "sourceIdentity": "row-level_source_identity_not_fully_closed",
+    "sourceIds": [
+      "src-nanbei-pdf",
+      "src-nanyangtang-pdf",
+      "src-nara-4468520",
+      "src-nara-4469314",
+      "src-toyo-1646"
+    ],
+    "status": "direct_observation_bounded"
+  },
+  {
+    "authority": "institutional/catalog identity and direct observation do not by themselves establish semantic/source authority",
+    "claimId": "claim-major-star-placement-lianzhen",
+    "claimRelation": "direct_observation_supports_numeric_or_star_surface_only",
+    "directObservation": "present_but_bounded",
+    "editionLineage": "must not merge same-record scans; independent physical witness candidates remain separate",
+    "family": "major_star_placement",
+    "independence": "Toyo is independent_physical_witness_candidate; NARA pair/local derivative remain non-independent",
+    "label": "廉貞 placement",
+    "leafPageBinding": "direct leaf/page locator exists for bounded surface; complete claim binding absent",
+    "notes": "廉貞 is present in the local/visual source surface or chart context, but a row-level original-text placement rule with resolved edition, page/folio, and semantic coordinate authority is not admitted.",
+    "observationIds": [
+      "obs-nanbei-p11-13",
+      "obs-nara-v1-84-86",
+      "obs-nara-v1-89-92",
+      "obs-nara-v2-64-80",
+      "obs-toyo-0004",
+      "obs-toyo-0008",
+      "obs-toyo-0085",
+      "obs-toyo-0088"
+    ],
+    "readinessImpact": "readiness_remains_not_safe_to_start; no interpretation or activation promotion",
+    "sourceIdentity": "row-level_source_identity_not_fully_closed",
+    "sourceIds": [
+      "src-nanbei-pdf",
+      "src-nanyangtang-pdf",
+      "src-nara-4468520",
+      "src-nara-4469314",
+      "src-toyo-1646"
+    ],
+    "status": "direct_observation_bounded"
+  },
+  {
+    "authority": "institutional/catalog identity and direct observation do not by themselves establish semantic/source authority",
+    "claimId": "claim-major-star-placement-tianfu",
+    "claimRelation": "direct_observation_supports_numeric_or_star_surface_only",
+    "directObservation": "present_but_bounded",
+    "editionLineage": "must not merge same-record scans; independent physical witness candidates remain separate",
+    "family": "major_star_placement",
+    "independence": "Toyo is independent_physical_witness_candidate; NARA pair/local derivative remain non-independent",
+    "label": "天府 placement",
+    "leafPageBinding": "direct leaf/page locator exists for bounded surface; complete claim binding absent",
+    "notes": "天府 is present in the local/visual source surface or chart context, but a row-level original-text placement rule with resolved edition, page/folio, and semantic coordinate authority is not admitted.",
+    "observationIds": [
+      "obs-nanbei-p11-13",
+      "obs-nara-v1-84-86",
+      "obs-nara-v1-89-92",
+      "obs-nara-v2-64-80",
+      "obs-toyo-0004",
+      "obs-toyo-0008",
+      "obs-toyo-0085",
+      "obs-toyo-0088"
+    ],
+    "readinessImpact": "readiness_remains_not_safe_to_start; no interpretation or activation promotion",
+    "sourceIdentity": "row-level_source_identity_not_fully_closed",
+    "sourceIds": [
+      "src-nanbei-pdf",
+      "src-nanyangtang-pdf",
+      "src-nara-4468520",
+      "src-nara-4469314",
+      "src-toyo-1646"
+    ],
+    "status": "direct_observation_bounded"
+  },
+  {
+    "authority": "institutional/catalog identity and direct observation do not by themselves establish semantic/source authority",
+    "claimId": "claim-major-star-placement-taiyin",
+    "claimRelation": "direct_observation_supports_numeric_or_star_surface_only",
+    "directObservation": "present_but_bounded",
+    "editionLineage": "must not merge same-record scans; independent physical witness candidates remain separate",
+    "family": "major_star_placement",
+    "independence": "Toyo is independent_physical_witness_candidate; NARA pair/local derivative remain non-independent",
+    "label": "太陰 placement",
+    "leafPageBinding": "direct leaf/page locator exists for bounded surface; complete claim binding absent",
+    "notes": "太陰 is present in the local/visual source surface or chart context, but a row-level original-text placement rule with resolved edition, page/folio, and semantic coordinate authority is not admitted.",
+    "observationIds": [
+      "obs-nanbei-p11-13",
+      "obs-nara-v1-84-86",
+      "obs-nara-v1-89-92",
+      "obs-nara-v2-64-80",
+      "obs-toyo-0004",
+      "obs-toyo-0008",
+      "obs-toyo-0085",
+      "obs-toyo-0088"
+    ],
+    "readinessImpact": "readiness_remains_not_safe_to_start; no interpretation or activation promotion",
+    "sourceIdentity": "row-level_source_identity_not_fully_closed",
+    "sourceIds": [
+      "src-nanbei-pdf",
+      "src-nanyangtang-pdf",
+      "src-nara-4468520",
+      "src-nara-4469314",
+      "src-toyo-1646"
+    ],
+    "status": "direct_observation_bounded"
+  },
+  {
+    "authority": "institutional/catalog identity and direct observation do not by themselves establish semantic/source authority",
+    "claimId": "claim-major-star-placement-tanlang",
+    "claimRelation": "direct_observation_supports_numeric_or_star_surface_only",
+    "directObservation": "present_but_bounded",
+    "editionLineage": "must not merge same-record scans; independent physical witness candidates remain separate",
+    "family": "major_star_placement",
+    "independence": "Toyo is independent_physical_witness_candidate; NARA pair/local derivative remain non-independent",
+    "label": "貪狼 placement",
+    "leafPageBinding": "direct leaf/page locator exists for bounded surface; complete claim binding absent",
+    "notes": "貪狼 is present in the local/visual source surface or chart context, but a row-level original-text placement rule with resolved edition, page/folio, and semantic coordinate authority is not admitted.",
+    "observationIds": [
+      "obs-nanbei-p11-13",
+      "obs-nara-v1-84-86",
+      "obs-nara-v1-89-92",
+      "obs-nara-v2-64-80",
+      "obs-toyo-0004",
+      "obs-toyo-0008",
+      "obs-toyo-0085",
+      "obs-toyo-0088"
+    ],
+    "readinessImpact": "readiness_remains_not_safe_to_start; no interpretation or activation promotion",
+    "sourceIdentity": "row-level_source_identity_not_fully_closed",
+    "sourceIds": [
+      "src-nanbei-pdf",
+      "src-nanyangtang-pdf",
+      "src-nara-4468520",
+      "src-nara-4469314",
+      "src-toyo-1646"
+    ],
+    "status": "direct_observation_bounded"
+  },
+  {
+    "authority": "institutional/catalog identity and direct observation do not by themselves establish semantic/source authority",
+    "claimId": "claim-major-star-placement-jumen",
+    "claimRelation": "direct_observation_supports_numeric_or_star_surface_only",
+    "directObservation": "present_but_bounded",
+    "editionLineage": "must not merge same-record scans; independent physical witness candidates remain separate",
+    "family": "major_star_placement",
+    "independence": "Toyo is independent_physical_witness_candidate; NARA pair/local derivative remain non-independent",
+    "label": "巨門 placement",
+    "leafPageBinding": "direct leaf/page locator exists for bounded surface; complete claim binding absent",
+    "notes": "巨門 is present in the local/visual source surface or chart context, but a row-level original-text placement rule with resolved edition, page/folio, and semantic coordinate authority is not admitted.",
+    "observationIds": [
+      "obs-nanbei-p11-13",
+      "obs-nara-v1-84-86",
+      "obs-nara-v1-89-92",
+      "obs-nara-v2-64-80",
+      "obs-toyo-0004",
+      "obs-toyo-0008",
+      "obs-toyo-0085",
+      "obs-toyo-0088"
+    ],
+    "readinessImpact": "readiness_remains_not_safe_to_start; no interpretation or activation promotion",
+    "sourceIdentity": "row-level_source_identity_not_fully_closed",
+    "sourceIds": [
+      "src-nanbei-pdf",
+      "src-nanyangtang-pdf",
+      "src-nara-4468520",
+      "src-nara-4469314",
+      "src-toyo-1646"
+    ],
+    "status": "direct_observation_bounded"
+  },
+  {
+    "authority": "institutional/catalog identity and direct observation do not by themselves establish semantic/source authority",
+    "claimId": "claim-major-star-placement-tianxiang",
+    "claimRelation": "direct_observation_supports_numeric_or_star_surface_only",
+    "directObservation": "present_but_bounded",
+    "editionLineage": "must not merge same-record scans; independent physical witness candidates remain separate",
+    "family": "major_star_placement",
+    "independence": "Toyo is independent_physical_witness_candidate; NARA pair/local derivative remain non-independent",
+    "label": "天相 placement",
+    "leafPageBinding": "direct leaf/page locator exists for bounded surface; complete claim binding absent",
+    "notes": "天相 is present in the local/visual source surface or chart context, but a row-level original-text placement rule with resolved edition, page/folio, and semantic coordinate authority is not admitted.",
+    "observationIds": [
+      "obs-nanbei-p11-13",
+      "obs-nara-v1-84-86",
+      "obs-nara-v1-89-92",
+      "obs-nara-v2-64-80",
+      "obs-toyo-0004",
+      "obs-toyo-0008",
+      "obs-toyo-0085",
+      "obs-toyo-0088"
+    ],
+    "readinessImpact": "readiness_remains_not_safe_to_start; no interpretation or activation promotion",
+    "sourceIdentity": "row-level_source_identity_not_fully_closed",
+    "sourceIds": [
+      "src-nanbei-pdf",
+      "src-nanyangtang-pdf",
+      "src-nara-4468520",
+      "src-nara-4469314",
+      "src-toyo-1646"
+    ],
+    "status": "direct_observation_bounded"
+  },
+  {
+    "authority": "institutional/catalog identity and direct observation do not by themselves establish semantic/source authority",
+    "claimId": "claim-major-star-placement-tianliang",
+    "claimRelation": "direct_observation_supports_numeric_or_star_surface_only",
+    "directObservation": "present_but_bounded",
+    "editionLineage": "must not merge same-record scans; independent physical witness candidates remain separate",
+    "family": "major_star_placement",
+    "independence": "Toyo is independent_physical_witness_candidate; NARA pair/local derivative remain non-independent",
+    "label": "天梁 placement",
+    "leafPageBinding": "direct leaf/page locator exists for bounded surface; complete claim binding absent",
+    "notes": "天梁 is present in the local/visual source surface or chart context, but a row-level original-text placement rule with resolved edition, page/folio, and semantic coordinate authority is not admitted.",
+    "observationIds": [
+      "obs-nanbei-p11-13",
+      "obs-nara-v1-84-86",
+      "obs-nara-v1-89-92",
+      "obs-nara-v2-64-80",
+      "obs-toyo-0004",
+      "obs-toyo-0008",
+      "obs-toyo-0085",
+      "obs-toyo-0088"
+    ],
+    "readinessImpact": "readiness_remains_not_safe_to_start; no interpretation or activation promotion",
+    "sourceIdentity": "row-level_source_identity_not_fully_closed",
+    "sourceIds": [
+      "src-nanbei-pdf",
+      "src-nanyangtang-pdf",
+      "src-nara-4468520",
+      "src-nara-4469314",
+      "src-toyo-1646"
+    ],
+    "status": "direct_observation_bounded"
+  },
+  {
+    "authority": "institutional/catalog identity and direct observation do not by themselves establish semantic/source authority",
+    "claimId": "claim-major-star-placement-qisha",
+    "claimRelation": "direct_observation_supports_numeric_or_star_surface_only",
+    "directObservation": "present_but_bounded",
+    "editionLineage": "must not merge same-record scans; independent physical witness candidates remain separate",
+    "family": "major_star_placement",
+    "independence": "Toyo is independent_physical_witness_candidate; NARA pair/local derivative remain non-independent",
+    "label": "七殺 placement",
+    "leafPageBinding": "direct leaf/page locator exists for bounded surface; complete claim binding absent",
+    "notes": "七殺 is present in the local/visual source surface or chart context, but a row-level original-text placement rule with resolved edition, page/folio, and semantic coordinate authority is not admitted.",
+    "observationIds": [
+      "obs-nanbei-p11-13",
+      "obs-nara-v1-84-86",
+      "obs-nara-v1-89-92",
+      "obs-nara-v2-64-80",
+      "obs-toyo-0004",
+      "obs-toyo-0008",
+      "obs-toyo-0085",
+      "obs-toyo-0088"
+    ],
+    "readinessImpact": "readiness_remains_not_safe_to_start; no interpretation or activation promotion",
+    "sourceIdentity": "row-level_source_identity_not_fully_closed",
+    "sourceIds": [
+      "src-nanbei-pdf",
+      "src-nanyangtang-pdf",
+      "src-nara-4468520",
+      "src-nara-4469314",
+      "src-toyo-1646"
+    ],
+    "status": "direct_observation_bounded"
+  },
+  {
+    "authority": "institutional/catalog identity and direct observation do not by themselves establish semantic/source authority",
+    "claimId": "claim-major-star-placement-pojun",
+    "claimRelation": "direct_observation_supports_numeric_or_star_surface_only",
+    "directObservation": "present_but_bounded",
+    "editionLineage": "must not merge same-record scans; independent physical witness candidates remain separate",
+    "family": "major_star_placement",
+    "independence": "Toyo is independent_physical_witness_candidate; NARA pair/local derivative remain non-independent",
+    "label": "破軍 placement",
+    "leafPageBinding": "direct leaf/page locator exists for bounded surface; complete claim binding absent",
+    "notes": "破軍 is present in the local/visual source surface or chart context, but a row-level original-text placement rule with resolved edition, page/folio, and semantic coordinate authority is not admitted.",
+    "observationIds": [
+      "obs-nanbei-p11-13",
+      "obs-nara-v1-84-86",
+      "obs-nara-v1-89-92",
+      "obs-nara-v2-64-80",
+      "obs-toyo-0004",
+      "obs-toyo-0008",
+      "obs-toyo-0085",
+      "obs-toyo-0088"
+    ],
+    "readinessImpact": "readiness_remains_not_safe_to_start; no interpretation or activation promotion",
+    "sourceIdentity": "row-level_source_identity_not_fully_closed",
+    "sourceIds": [
+      "src-nanbei-pdf",
+      "src-nanyangtang-pdf",
+      "src-nara-4468520",
+      "src-nara-4469314",
+      "src-toyo-1646"
+    ],
+    "status": "direct_observation_bounded"
+  },
+  {
+    "authority": "institutional/catalog identity and direct observation do not by themselves establish semantic/source authority",
+    "claimId": "claim-tianfu-anchor-direction",
+    "claimRelation": "direct_observation_supports_tianfu_surface_but_not_unique_convention",
+    "directObservation": "present_but_bounded",
+    "editionLineage": "must not merge same-record scans; independent physical witness candidates remain separate",
+    "family": "tianfu_convention",
+    "independence": "Toyo is independent_physical_witness_candidate; NARA pair/local derivative remain non-independent",
+    "label": "Tianfu anchor/base direction",
+    "leafPageBinding": "direct leaf/page locator exists for bounded surface; complete claim binding absent",
+    "notes": "Both legacy and source-aligned code modes remain; observed 安天府 surfaces do not adjudicate the production anchor without a complete semantic coordinate frame.",
+    "observationIds": [
+      "obs-nanbei-p11-13",
+      "obs-nara-v1-87-88",
+      "obs-toyo-0004",
+      "obs-toyo-0008"
+    ],
+    "readinessImpact": "readiness_remains_not_safe_to_start; no interpretation or activation promotion",
+    "sourceIdentity": "row-level_source_identity_not_fully_closed",
+    "sourceIds": [
+      "src-nanbei-pdf",
+      "src-nanyangtang-pdf",
+      "src-nara-4468520",
+      "src-toyo-1646"
+    ],
+    "status": "direct_observation_bounded"
+  },
+  {
+    "authority": "institutional/catalog identity and direct observation do not by themselves establish semantic/source authority",
+    "claimId": "claim-tianfu-placement",
+    "claimRelation": "numeric_relation_or_formula_surface_only",
+    "directObservation": "present_but_bounded",
+    "editionLineage": "must not merge same-record scans; independent physical witness candidates remain separate",
+    "family": "tianfu_convention",
+    "independence": "Toyo is independent_physical_witness_candidate; NARA pair/local derivative remain non-independent",
+    "label": "Tianfu placement relation",
+    "leafPageBinding": "direct leaf/page locator exists for bounded surface; complete claim binding absent",
+    "notes": "150/150 rotation/coordinate agreement is retained as deterministic representation evidence only; it is not source or semantic authority.",
+    "observationIds": [
+      "obs-nanbei-p11-13",
+      "obs-nara-v1-87-88",
+      "obs-toyo-0008"
+    ],
+    "readinessImpact": "readiness_remains_not_safe_to_start; no interpretation or activation promotion",
+    "sourceIdentity": "row-level_source_identity_not_fully_closed",
+    "sourceIds": [
+      "src-nanbei-pdf",
+      "src-nara-4468520",
+      "src-toyo-1646"
+    ],
+    "status": "direct_observation_bounded"
+  },
+  {
+    "authority": "institutional/catalog identity and direct observation do not by themselves establish semantic/source authority",
+    "claimId": "claim-tianfu-rotation06-semantic",
+    "claimRelation": "representation_only_not_semantic_authority",
+    "directObservation": "present_but_bounded",
+    "editionLineage": "must not merge same-record scans; independent physical witness candidates remain separate",
+    "family": "tianfu_convention",
+    "independence": "Toyo is independent_physical_witness_candidate; NARA pair/local derivative remain non-independent",
+    "label": "rotation-06 semantic/source authority",
+    "leafPageBinding": "direct leaf/page locator exists for bounded surface; complete claim binding absent",
+    "notes": "rotation-06 is explicitly kept separate from source identity, semantic palace meaning, readiness, and activation.",
+    "observationIds": [
+      "obs-nara-v1-87-88",
+      "obs-nara-v2-64-80",
+      "obs-toyo-0008"
+    ],
+    "readinessImpact": "readiness_remains_not_safe_to_start; no interpretation or activation promotion",
+    "sourceIdentity": "row-level_source_identity_not_fully_closed",
+    "sourceIds": [
+      "src-nara-4468520",
+      "src-nara-4469314",
+      "src-toyo-1646"
+    ],
+    "status": "representation_only"
+  },
+  {
+    "authority": "institutional/catalog identity and direct observation do not by themselves establish semantic/source authority",
+    "claimId": "claim-auxiliary-star-placement-six-lucky",
+    "claimRelation": "direct_observation_supports_auxiliary_vocabulary_not_full_rule_witness",
+    "directObservation": "present_but_bounded",
+    "editionLineage": "must not merge same-record scans; independent physical witness candidates remain separate",
+    "family": "auxiliary_stars",
+    "independence": "Toyo is independent_physical_witness_candidate; NARA pair/local derivative remain non-independent",
+    "label": "六吉星 placement",
+    "leafPageBinding": "direct leaf/page locator exists for bounded surface; complete claim binding absent",
+    "notes": "The Toyo pages directly show auxiliary-star vocabulary such as 左右輔弼, but do not close every placement function and identity.",
+    "observationIds": [
+      "obs-nanbei-p11-13",
+      "obs-nanyang-p159-160",
+      "obs-toyo-0004",
+      "obs-toyo-0014"
+    ],
+    "readinessImpact": "readiness_remains_not_safe_to_start; no interpretation or activation promotion",
+    "sourceIdentity": "row-level_source_identity_not_fully_closed",
+    "sourceIds": [
+      "src-nanbei-pdf",
+      "src-nanyangtang-pdf",
+      "src-toyo-1646"
+    ],
+    "status": "direct_observation_bounded"
+  },
+  {
+    "authority": "institutional/catalog identity and direct observation do not by themselves establish semantic/source authority",
+    "claimId": "claim-auxiliary-star-placement-core",
+    "claimRelation": "local_rule_and_source_surface_not_semantic_authority",
+    "directObservation": "present_but_bounded",
+    "editionLineage": "must not merge same-record scans; independent physical witness candidates remain separate",
+    "family": "auxiliary_stars",
+    "independence": "Toyo is independent_physical_witness_candidate; NARA pair/local derivative remain non-independent",
+    "label": "core auxiliary-star resolver rules",
+    "leafPageBinding": "direct leaf/page locator exists for bounded surface; complete claim binding absent",
+    "notes": "Existing comparable rows and source surfaces remain evidence-limited; no rule promotion occurs.",
+    "observationIds": [
+      "obs-nanbei-p11-13",
+      "obs-toyo-0004",
+      "obs-toyo-0014"
+    ],
+    "readinessImpact": "readiness_remains_not_safe_to_start; no interpretation or activation promotion",
+    "sourceIdentity": "row-level_source_identity_not_fully_closed",
+    "sourceIds": [
+      "src-nanbei-pdf",
+      "src-nanyangtang-pdf",
+      "src-toyo-1646"
+    ],
+    "status": "direct_observation_bounded"
+  },
+  {
+    "authority": "institutional/catalog identity and direct observation do not by themselves establish semantic/source authority",
+    "claimId": "claim-four-transformations-10x4",
+    "claimRelation": "direct_observation_supports_four_transform_vocabulary_not_complete_10x4_table",
+    "directObservation": "present_but_bounded",
+    "editionLineage": "must not merge same-record scans; independent physical witness candidates remain separate",
+    "family": "four_transformations",
+    "independence": "Toyo is independent_physical_witness_candidate; NARA pair/local derivative remain non-independent",
+    "label": "10 heavenly stems × 四化 mapping",
+    "leafPageBinding": "direct leaf/page locator exists for bounded surface; complete claim binding absent",
+    "notes": "祿/權/科/忌 and 化祿/化權/化科/化忌 are visible, but no complete source-identified 10×4 table with edition/leaf/context was admitted.",
+    "observationIds": [
+      "obs-nara-v1-87-88",
+      "obs-toyo-0018"
+    ],
+    "readinessImpact": "readiness_remains_not_safe_to_start; no interpretation or activation promotion",
+    "sourceIdentity": "row-level_source_identity_not_fully_closed",
+    "sourceIds": [
+      "src-nanbei-pdf",
+      "src-nanyangtang-pdf",
+      "src-nara-4468520",
+      "src-toyo-1646"
+    ],
+    "status": "direct_observation_bounded"
+  },
+  {
+    "authority": "institutional/catalog identity and direct observation do not by themselves establish semantic/source authority",
+    "claimId": "claim-four-transform-lu",
+    "claimRelation": "direct_observation_supports_label_surface_only",
+    "directObservation": "present_but_bounded",
+    "editionLineage": "must not merge same-record scans; independent physical witness candidates remain separate",
+    "family": "four_transformations",
+    "independence": "Toyo is independent_physical_witness_candidate; NARA pair/local derivative remain non-independent",
+    "label": "化祿",
+    "leafPageBinding": "direct leaf/page locator exists for bounded surface; complete claim binding absent",
+    "notes": "化祿 label is directly observed, but label occurrence is not a complete stem-by-stem source rule.",
+    "observationIds": [
+      "obs-nara-v1-87-88",
+      "obs-toyo-0018"
+    ],
+    "readinessImpact": "readiness_remains_not_safe_to_start; no interpretation or activation promotion",
+    "sourceIdentity": "row-level_source_identity_not_fully_closed",
+    "sourceIds": [
+      "src-nara-4468520",
+      "src-toyo-1646"
+    ],
+    "status": "direct_observation_bounded"
+  },
+  {
+    "authority": "institutional/catalog identity and direct observation do not by themselves establish semantic/source authority",
+    "claimId": "claim-four-transform-quan",
+    "claimRelation": "direct_observation_supports_label_surface_only",
+    "directObservation": "present_but_bounded",
+    "editionLineage": "must not merge same-record scans; independent physical witness candidates remain separate",
+    "family": "four_transformations",
+    "independence": "Toyo is independent_physical_witness_candidate; NARA pair/local derivative remain non-independent",
+    "label": "化權",
+    "leafPageBinding": "direct leaf/page locator exists for bounded surface; complete claim binding absent",
+    "notes": "化權 label is directly observed, but label occurrence is not a complete stem-by-stem source rule.",
+    "observationIds": [
+      "obs-nara-v1-87-88",
+      "obs-toyo-0018"
+    ],
+    "readinessImpact": "readiness_remains_not_safe_to_start; no interpretation or activation promotion",
+    "sourceIdentity": "row-level_source_identity_not_fully_closed",
+    "sourceIds": [
+      "src-nara-4468520",
+      "src-toyo-1646"
+    ],
+    "status": "direct_observation_bounded"
+  },
+  {
+    "authority": "institutional/catalog identity and direct observation do not by themselves establish semantic/source authority",
+    "claimId": "claim-four-transform-ke",
+    "claimRelation": "direct_observation_supports_label_surface_only",
+    "directObservation": "present_but_bounded",
+    "editionLineage": "must not merge same-record scans; independent physical witness candidates remain separate",
+    "family": "four_transformations",
+    "independence": "Toyo is independent_physical_witness_candidate; NARA pair/local derivative remain non-independent",
+    "label": "化科",
+    "leafPageBinding": "direct leaf/page locator exists for bounded surface; complete claim binding absent",
+    "notes": "化科 label is directly observed, but label occurrence is not a complete stem-by-stem source rule.",
+    "observationIds": [
+      "obs-nara-v1-87-88",
+      "obs-toyo-0018"
+    ],
+    "readinessImpact": "readiness_remains_not_safe_to_start; no interpretation or activation promotion",
+    "sourceIdentity": "row-level_source_identity_not_fully_closed",
+    "sourceIds": [
+      "src-nara-4468520",
+      "src-toyo-1646"
+    ],
+    "status": "direct_observation_bounded"
+  },
+  {
+    "authority": "institutional/catalog identity and direct observation do not by themselves establish semantic/source authority",
+    "claimId": "claim-four-transform-ji",
+    "claimRelation": "direct_observation_supports_label_surface_only",
+    "directObservation": "present_but_bounded",
+    "editionLineage": "must not merge same-record scans; independent physical witness candidates remain separate",
+    "family": "four_transformations",
+    "independence": "Toyo is independent_physical_witness_candidate; NARA pair/local derivative remain non-independent",
+    "label": "化忌",
+    "leafPageBinding": "direct leaf/page locator exists for bounded surface; complete claim binding absent",
+    "notes": "化忌 label is directly observed, but label occurrence is not a complete stem-by-stem source rule.",
+    "observationIds": [
+      "obs-nara-v1-87-88",
+      "obs-toyo-0018"
+    ],
+    "readinessImpact": "readiness_remains_not_safe_to_start; no interpretation or activation promotion",
+    "sourceIdentity": "row-level_source_identity_not_fully_closed",
+    "sourceIds": [
+      "src-nara-4468520",
+      "src-toyo-1646"
+    ],
+    "status": "direct_observation_bounded"
+  },
+  {
+    "authority": "institutional/catalog identity and direct observation do not by themselves establish semantic/source authority",
+    "claimId": "claim-life-body-palace-ruler",
+    "claimRelation": "direct_observation_supports_selected_rule_rows_only",
+    "directObservation": "present_but_bounded",
+    "editionLineage": "must not merge same-record scans; independent physical witness candidates remain separate",
+    "family": "life_body_rulers",
+    "independence": "Toyo is independent_physical_witness_candidate; NARA pair/local derivative remain non-independent",
+    "label": "命主/身主 and life/body ruler tables",
+    "leafPageBinding": "direct leaf/page locator exists for bounded surface; complete claim binding absent",
+    "notes": "Selected direct pages exist, but source/edition identity and full row-level closure remain incomplete.",
+    "observationIds": [
+      "obs-nanyang-p5",
+      "obs-nanyang-p145",
+      "obs-nanyang-p159-160",
+      "obs-toyo-0007",
+      "obs-toyo-0014"
+    ],
+    "readinessImpact": "readiness_remains_not_safe_to_start; no interpretation or activation promotion",
+    "sourceIdentity": "row-level_source_identity_not_fully_closed",
+    "sourceIds": [
+      "src-nanyangtang-pdf",
+      "src-toyo-1646"
+    ],
+    "status": "direct_observation_bounded"
+  },
+  {
+    "authority": "institutional/catalog identity and direct observation do not by themselves establish semantic/source authority",
+    "claimId": "claim-life-body-ruler-24-ambiguous-rows",
+    "claimRelation": "unresolved_row_level_source_identity",
+    "directObservation": "present_but_bounded",
+    "editionLineage": "must not merge same-record scans; independent physical witness candidates remain separate",
+    "family": "life_body_rulers",
+    "independence": "Toyo is independent_physical_witness_candidate; NARA pair/local derivative remain non-independent",
+    "label": "24 ambiguous life/body ruler rows",
+    "leafPageBinding": "direct leaf/page locator exists for bounded surface; complete claim binding absent",
+    "notes": "The existing 120/144 comparable boundary is preserved; 24 ambiguous rows remain blocked.",
+    "observationIds": [
+      "obs-nanyang-p159-160",
+      "obs-toyo-0014"
+    ],
+    "readinessImpact": "readiness_remains_not_safe_to_start; no interpretation or activation promotion",
+    "sourceIdentity": "row-level_source_identity_not_fully_closed",
+    "sourceIds": [
+      "src-nanyangtang-pdf",
+      "src-toyo-1646"
+    ],
+    "status": "direct_observation_bounded"
+  },
+  {
+    "authority": "institutional/catalog identity and direct observation do not by themselves establish semantic/source authority",
+    "claimId": "claim-ziwei-input-calendar-time",
+    "claimRelation": "unsupported_external_source_identity",
+    "directObservation": "present_but_bounded",
+    "editionLineage": "must not merge same-record scans; independent physical witness candidates remain separate",
+    "family": "calendar_input",
+    "independence": "not_established_or_same_lineage_only",
+    "label": "calendar/time source identity used before Ziwei calculation",
+    "leafPageBinding": "direct leaf/page locator exists for bounded surface; complete claim binding absent",
+    "notes": "Local execution and source prose do not establish an independent calendar/time edition or oracle identity.",
+    "observationIds": [
+      "obs-nanbei-p8",
+      "obs-nanyang-p145"
+    ],
+    "readinessImpact": "readiness_remains_not_safe_to_start; no interpretation or activation promotion",
+    "sourceIdentity": "row-level_source_identity_not_fully_closed",
+    "sourceIds": [
+      "src-nanbei-pdf",
+      "src-nanyangtang-pdf",
+      "src-ctext"
+    ],
+    "status": "unsupported"
+  }
+]

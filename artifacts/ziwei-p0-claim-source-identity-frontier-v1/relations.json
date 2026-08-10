@@ -1,0 +1,1782 @@
+{
+  "relationPolicy": {
+    "claimSourceAxis": "claim ↔ source ↔ edition/lineage ↔ leaf/page ↔ direct observation ↔ independence ↔ authority",
+    "mergePolicy": "same source/mirror/record never double-counted; title match never merges",
+    "promotionPolicy": "partial/direct/numeric evidence cannot promote stable claim, semantic authority, readiness, interpretation, or activation"
+  },
+  "relations": [
+    {
+      "authority": "institutional_catalog_link_only_for_derivative; semantic_authority_not_established",
+      "claimId": "claim-major-star-placement-lianzhen",
+      "directObservation": "no_matching_selected_observation",
+      "editionLineage": "same_catalog_record_candidate_as_nara; not_independent",
+      "independence": "not_independent_same_record_derivative_candidate",
+      "observationIds": [],
+      "promotion": "not_admitted_to_stable_claim_or_readiness",
+      "relationId": "relation-023b6d70ac650729",
+      "relationStatus": "direct_observation_supports_numeric_or_star_surface_only",
+      "sourceId": "src-nanyangtang-pdf",
+      "sourceIdentityStatus": "identity_not_fully_closed"
+    },
+    {
+      "authority": "institutional_catalog_link_only_for_derivative; semantic_authority_not_established",
+      "claimId": "claim-tianfu-anchor-direction",
+      "directObservation": "no_matching_selected_observation",
+      "editionLineage": "same_catalog_record_candidate_as_nara; not_independent",
+      "independence": "not_independent_same_record_derivative_candidate",
+      "observationIds": [],
+      "promotion": "not_admitted_to_stable_claim_or_readiness",
+      "relationId": "relation-042a4ad54dfc8383",
+      "relationStatus": "direct_observation_supports_tianfu_surface_but_not_unique_convention",
+      "sourceId": "src-nanyangtang-pdf",
+      "sourceIdentityStatus": "identity_not_fully_closed"
+    },
+    {
+      "authority": "institutional_catalog_link_only_for_derivative; semantic_authority_not_established",
+      "claimId": "claim-auxiliary-star-placement-core",
+      "directObservation": "no_matching_selected_observation",
+      "editionLineage": "same_catalog_record_candidate_as_nara; not_independent",
+      "independence": "not_independent_same_record_derivative_candidate",
+      "observationIds": [],
+      "promotion": "not_admitted_to_stable_claim_or_readiness",
+      "relationId": "relation-05537739ea94a59c",
+      "relationStatus": "local_rule_and_source_surface_not_semantic_authority",
+      "sourceId": "src-nanyangtang-pdf",
+      "sourceIdentityStatus": "identity_not_fully_closed"
+    },
+    {
+      "authority": "institutional_item_identity_and_direct_observation_bounded; semantic_authority_not_established",
+      "claimId": "claim-palace-name-branch-ordinal",
+      "directObservation": "yes_bounded",
+      "editionLineage": "same_record_as_nara_4469314",
+      "independence": "not_independent_same_record_volume_pair",
+      "observationIds": [
+        "obs-nara-v1-84-86",
+        "obs-nara-v1-89-92"
+      ],
+      "promotion": "not_admitted_to_stable_claim_or_readiness",
+      "relationId": "relation-0558742750532db9",
+      "relationStatus": "direct_observation_supports_partial_diagram_and_chart_surface_only",
+      "sourceId": "src-nara-4468520",
+      "sourceIdentityStatus": "identity_not_fully_closed"
+    },
+    {
+      "authority": "institutional_item_identity_and_direct_observation_bounded; semantic_authority_not_established",
+      "claimId": "claim-major-star-placement-pojun",
+      "directObservation": "yes_bounded",
+      "editionLineage": "same_record_as_nara_4468520",
+      "independence": "not_independent_same_record_volume_pair",
+      "observationIds": [
+        "obs-nara-v2-64-80"
+      ],
+      "promotion": "not_admitted_to_stable_claim_or_readiness",
+      "relationId": "relation-098a1c9dabd8e2cc",
+      "relationStatus": "direct_observation_supports_numeric_or_star_surface_only",
+      "sourceId": "src-nara-4469314",
+      "sourceIdentityStatus": "identity_not_fully_closed"
+    },
+    {
+      "authority": "institutional_catalog_link_only_for_derivative; semantic_authority_not_established",
+      "claimId": "claim-major-star-placement-tianji",
+      "directObservation": "no_matching_selected_observation",
+      "editionLineage": "same_catalog_record_candidate_as_nara; not_independent",
+      "independence": "not_independent_same_record_derivative_candidate",
+      "observationIds": [],
+      "promotion": "not_admitted_to_stable_claim_or_readiness",
+      "relationId": "relation-103781e8c7ecbf74",
+      "relationStatus": "direct_observation_supports_numeric_or_star_surface_only",
+      "sourceId": "src-nanyangtang-pdf",
+      "sourceIdentityStatus": "identity_not_fully_closed"
+    },
+    {
+      "authority": "institutional_item_identity_and_direct_observation_bounded; semantic_authority_not_established",
+      "claimId": "claim-major-star-placement-tanlang",
+      "directObservation": "yes_bounded",
+      "editionLineage": "same_record_as_nara_4469314",
+      "independence": "not_independent_same_record_volume_pair",
+      "observationIds": [
+        "obs-nara-v1-84-86",
+        "obs-nara-v1-89-92"
+      ],
+      "promotion": "not_admitted_to_stable_claim_or_readiness",
+      "relationId": "relation-106c8c9d6532399d",
+      "relationStatus": "direct_observation_supports_numeric_or_star_surface_only",
+      "sourceId": "src-nara-4468520",
+      "sourceIdentityStatus": "identity_not_fully_closed"
+    },
+    {
+      "authority": "institutional_catalog_link_only_for_derivative; semantic_authority_not_established",
+      "claimId": "claim-major-star-placement-tanlang",
+      "directObservation": "no_matching_selected_observation",
+      "editionLineage": "same_catalog_record_candidate_as_nara; not_independent",
+      "independence": "not_independent_same_record_derivative_candidate",
+      "observationIds": [],
+      "promotion": "not_admitted_to_stable_claim_or_readiness",
+      "relationId": "relation-1326a3f6cbcb8634",
+      "relationStatus": "direct_observation_supports_numeric_or_star_surface_only",
+      "sourceId": "src-nanyangtang-pdf",
+      "sourceIdentityStatus": "identity_not_fully_closed"
+    },
+    {
+      "authority": "institutional_item_identity_and_direct_observation_bounded; semantic_authority_not_established",
+      "claimId": "claim-major-star-placement-tianliang",
+      "directObservation": "yes_bounded",
+      "editionLineage": "same_record_as_nara_4468520",
+      "independence": "not_independent_same_record_volume_pair",
+      "observationIds": [
+        "obs-nara-v2-64-80"
+      ],
+      "promotion": "not_admitted_to_stable_claim_or_readiness",
+      "relationId": "relation-198900b6930de5a8",
+      "relationStatus": "direct_observation_supports_numeric_or_star_surface_only",
+      "sourceId": "src-nara-4469314",
+      "sourceIdentityStatus": "identity_not_fully_closed"
+    },
+    {
+      "authority": "institutional_catalog_link_only_for_derivative; semantic_authority_not_established",
+      "claimId": "claim-major-star-placement-ziwei",
+      "directObservation": "no_matching_selected_observation",
+      "editionLineage": "same_catalog_record_candidate_as_nara; not_independent",
+      "independence": "not_independent_same_record_derivative_candidate",
+      "observationIds": [],
+      "promotion": "not_admitted_to_stable_claim_or_readiness",
+      "relationId": "relation-1c1c5e2f82b9306a",
+      "relationStatus": "direct_observation_supports_numeric_or_star_surface_only",
+      "sourceId": "src-nanyangtang-pdf",
+      "sourceIdentityStatus": "identity_not_fully_closed"
+    },
+    {
+      "authority": "institutional_item_identity_and_direct_observation_bounded; semantic_authority_not_established",
+      "claimId": "claim-major-star-placement-taiyin",
+      "directObservation": "yes_bounded",
+      "editionLineage": "same_record_as_nara_4468520",
+      "independence": "not_independent_same_record_volume_pair",
+      "observationIds": [
+        "obs-nara-v2-64-80"
+      ],
+      "promotion": "not_admitted_to_stable_claim_or_readiness",
+      "relationId": "relation-1d6c524e5fada28a",
+      "relationStatus": "direct_observation_supports_numeric_or_star_surface_only",
+      "sourceId": "src-nara-4469314",
+      "sourceIdentityStatus": "identity_not_fully_closed"
+    },
+    {
+      "authority": "institutional_item_identity_and_direct_observation_bounded; semantic_authority_not_established",
+      "claimId": "claim-tianfu-anchor-direction",
+      "directObservation": "yes_bounded",
+      "editionLineage": "same_record_as_nara_4469314",
+      "independence": "not_independent_same_record_volume_pair",
+      "observationIds": [
+        "obs-nara-v1-87-88"
+      ],
+      "promotion": "not_admitted_to_stable_claim_or_readiness",
+      "relationId": "relation-1ec3f994279fcd23",
+      "relationStatus": "direct_observation_supports_tianfu_surface_but_not_unique_convention",
+      "sourceId": "src-nara-4468520",
+      "sourceIdentityStatus": "identity_not_fully_closed"
+    },
+    {
+      "authority": "source_presence_and_direct_observation_only; semantic_authority_not_established",
+      "claimId": "claim-ziwei-input-calendar-time",
+      "directObservation": "yes_bounded",
+      "editionLineage": "unresolved_local_scan_lineage",
+      "independence": "not_established",
+      "observationIds": [
+        "obs-nanbei-p8"
+      ],
+      "promotion": "not_admitted_to_stable_claim_or_readiness",
+      "relationId": "relation-1fbbf95a54ac9ab8",
+      "relationStatus": "unsupported_external_source_identity",
+      "sourceId": "src-nanbei-pdf",
+      "sourceIdentityStatus": "identity_not_fully_closed"
+    },
+    {
+      "authority": "institutional_item_identity_and_direct_observation_bounded; semantic_authority_not_established",
+      "claimId": "claim-major-star-placement-pojun",
+      "directObservation": "yes_bounded",
+      "editionLineage": "same_record_as_nara_4469314",
+      "independence": "not_independent_same_record_volume_pair",
+      "observationIds": [
+        "obs-nara-v1-84-86",
+        "obs-nara-v1-89-92"
+      ],
+      "promotion": "not_admitted_to_stable_claim_or_readiness",
+      "relationId": "relation-209f7a790e4e8d8c",
+      "relationStatus": "direct_observation_supports_numeric_or_star_surface_only",
+      "sourceId": "src-nara-4468520",
+      "sourceIdentityStatus": "identity_not_fully_closed"
+    },
+    {
+      "authority": "institutional_item_identity_and_direct_observation_bounded; semantic_authority_not_established",
+      "claimId": "claim-major-star-placement-tiandong",
+      "directObservation": "yes_bounded",
+      "editionLineage": "same_record_as_nara_4469314",
+      "independence": "not_independent_same_record_volume_pair",
+      "observationIds": [
+        "obs-nara-v1-84-86",
+        "obs-nara-v1-89-92"
+      ],
+      "promotion": "not_admitted_to_stable_claim_or_readiness",
+      "relationId": "relation-21bbc09a55c41e38",
+      "relationStatus": "direct_observation_supports_numeric_or_star_surface_only",
+      "sourceId": "src-nara-4468520",
+      "sourceIdentityStatus": "identity_not_fully_closed"
+    },
+    {
+      "authority": "institutional_item_identity_and_direct_observation_bounded; semantic_authority_not_established",
+      "claimId": "claim-major-star-placement-ziwei",
+      "directObservation": "yes_bounded",
+      "editionLineage": "same_record_as_nara_4468520",
+      "independence": "not_independent_same_record_volume_pair",
+      "observationIds": [
+        "obs-nara-v2-64-80"
+      ],
+      "promotion": "not_admitted_to_stable_claim_or_readiness",
+      "relationId": "relation-24f2709aaf3c6865",
+      "relationStatus": "direct_observation_supports_numeric_or_star_surface_only",
+      "sourceId": "src-nara-4469314",
+      "sourceIdentityStatus": "identity_not_fully_closed"
+    },
+    {
+      "authority": "institutional_catalog_link_only_for_derivative; semantic_authority_not_established",
+      "claimId": "claim-palace-name-branch-ordinal",
+      "directObservation": "no_matching_selected_observation",
+      "editionLineage": "same_catalog_record_candidate_as_nara; not_independent",
+      "independence": "not_independent_same_record_derivative_candidate",
+      "observationIds": [],
+      "promotion": "not_admitted_to_stable_claim_or_readiness",
+      "relationId": "relation-2f1625fed509a5c1",
+      "relationStatus": "direct_observation_supports_partial_diagram_and_chart_surface_only",
+      "sourceId": "src-nanyangtang-pdf",
+      "sourceIdentityStatus": "identity_not_fully_closed"
+    },
+    {
+      "authority": "institutional_catalog_link_only_for_derivative; semantic_authority_not_established",
+      "claimId": "claim-major-star-placement-tiandong",
+      "directObservation": "no_matching_selected_observation",
+      "editionLineage": "same_catalog_record_candidate_as_nara; not_independent",
+      "independence": "not_independent_same_record_derivative_candidate",
+      "observationIds": [],
+      "promotion": "not_admitted_to_stable_claim_or_readiness",
+      "relationId": "relation-32affecbd59592b4",
+      "relationStatus": "direct_observation_supports_numeric_or_star_surface_only",
+      "sourceId": "src-nanyangtang-pdf",
+      "sourceIdentityStatus": "identity_not_fully_closed"
+    },
+    {
+      "authority": "institutional_catalog_link_only_for_derivative; semantic_authority_not_established",
+      "claimId": "claim-four-transformations-10x4",
+      "directObservation": "no_matching_selected_observation",
+      "editionLineage": "same_catalog_record_candidate_as_nara; not_independent",
+      "independence": "not_independent_same_record_derivative_candidate",
+      "observationIds": [],
+      "promotion": "not_admitted_to_stable_claim_or_readiness",
+      "relationId": "relation-3314047e9c60dc3f",
+      "relationStatus": "direct_observation_supports_four_transform_vocabulary_not_complete_10x4_table",
+      "sourceId": "src-nanyangtang-pdf",
+      "sourceIdentityStatus": "identity_not_fully_closed"
+    },
+    {
+      "authority": "institutional_item_identity_and_direct_observation_bounded; semantic_authority_not_established",
+      "claimId": "claim-four-transform-ji",
+      "directObservation": "yes_bounded",
+      "editionLineage": "same_record_as_nara_4469314",
+      "independence": "not_independent_same_record_volume_pair",
+      "observationIds": [
+        "obs-nara-v1-87-88"
+      ],
+      "promotion": "not_admitted_to_stable_claim_or_readiness",
+      "relationId": "relation-34cbe3f44ab4c433",
+      "relationStatus": "direct_observation_supports_label_surface_only",
+      "sourceId": "src-nara-4468520",
+      "sourceIdentityStatus": "identity_not_fully_closed"
+    },
+    {
+      "authority": "institutional_item_identity_and_direct_observation_bounded; semantic_authority_not_established",
+      "claimId": "claim-major-star-placement-tianxiang",
+      "directObservation": "yes_bounded",
+      "editionLineage": "same_record_as_nara_4469314",
+      "independence": "not_independent_same_record_volume_pair",
+      "observationIds": [
+        "obs-nara-v1-84-86",
+        "obs-nara-v1-89-92"
+      ],
+      "promotion": "not_admitted_to_stable_claim_or_readiness",
+      "relationId": "relation-3914f622e4d12260",
+      "relationStatus": "direct_observation_supports_numeric_or_star_surface_only",
+      "sourceId": "src-nara-4468520",
+      "sourceIdentityStatus": "identity_not_fully_closed"
+    },
+    {
+      "authority": "institutional_collection_identity_plus_direct_observation_bounded; edition_and_semantic_authority_unresolved",
+      "claimId": "claim-major-star-placement-wugu",
+      "directObservation": "yes_bounded",
+      "editionLineage": "distinct_physical_witness_candidate_from_nara; textual_lineage_unresolved",
+      "independence": "independent_physical_witness_candidate_not_admitted_as_independent_oracle",
+      "observationIds": [
+        "obs-toyo-0004",
+        "obs-toyo-0008",
+        "obs-toyo-0085",
+        "obs-toyo-0088"
+      ],
+      "promotion": "not_admitted_to_stable_claim_or_readiness",
+      "relationId": "relation-39b6885d5c398a84",
+      "relationStatus": "direct_observation_supports_numeric_or_star_surface_only",
+      "sourceId": "src-toyo-1646",
+      "sourceIdentityStatus": "identity_not_fully_closed"
+    },
+    {
+      "authority": "source_presence_and_direct_observation_only; semantic_authority_not_established",
+      "claimId": "claim-major-star-placement-pojun",
+      "directObservation": "yes_bounded",
+      "editionLineage": "unresolved_local_scan_lineage",
+      "independence": "not_established",
+      "observationIds": [
+        "obs-nanbei-p11-13"
+      ],
+      "promotion": "not_admitted_to_stable_claim_or_readiness",
+      "relationId": "relation-3f236a8ca515ff18",
+      "relationStatus": "direct_observation_supports_numeric_or_star_surface_only",
+      "sourceId": "src-nanbei-pdf",
+      "sourceIdentityStatus": "identity_not_fully_closed"
+    },
+    {
+      "authority": "institutional_item_identity_and_direct_observation_bounded; semantic_authority_not_established",
+      "claimId": "claim-tianfu-placement",
+      "directObservation": "yes_bounded",
+      "editionLineage": "same_record_as_nara_4469314",
+      "independence": "not_independent_same_record_volume_pair",
+      "observationIds": [
+        "obs-nara-v1-87-88"
+      ],
+      "promotion": "not_admitted_to_stable_claim_or_readiness",
+      "relationId": "relation-41449545d3d07078",
+      "relationStatus": "numeric_relation_or_formula_surface_only",
+      "sourceId": "src-nara-4468520",
+      "sourceIdentityStatus": "identity_not_fully_closed"
+    },
+    {
+      "authority": "institutional_collection_identity_plus_direct_observation_bounded; edition_and_semantic_authority_unresolved",
+      "claimId": "claim-major-star-placement-tianfu",
+      "directObservation": "yes_bounded",
+      "editionLineage": "distinct_physical_witness_candidate_from_nara; textual_lineage_unresolved",
+      "independence": "independent_physical_witness_candidate_not_admitted_as_independent_oracle",
+      "observationIds": [
+        "obs-toyo-0004",
+        "obs-toyo-0008",
+        "obs-toyo-0085",
+        "obs-toyo-0088"
+      ],
+      "promotion": "not_admitted_to_stable_claim_or_readiness",
+      "relationId": "relation-418f535df44447a9",
+      "relationStatus": "direct_observation_supports_numeric_or_star_surface_only",
+      "sourceId": "src-toyo-1646",
+      "sourceIdentityStatus": "identity_not_fully_closed"
+    },
+    {
+      "authority": "institutional_collection_identity_plus_direct_observation_bounded; edition_and_semantic_authority_unresolved",
+      "claimId": "claim-12-palace-diagram-semantics",
+      "directObservation": "yes_bounded",
+      "editionLineage": "distinct_physical_witness_candidate_from_nara; textual_lineage_unresolved",
+      "independence": "independent_physical_witness_candidate_not_admitted_as_independent_oracle",
+      "observationIds": [
+        "obs-toyo-0017",
+        "obs-toyo-0085",
+        "obs-toyo-0088"
+      ],
+      "promotion": "not_admitted_to_stable_claim_or_readiness",
+      "relationId": "relation-42dff61d32b28126",
+      "relationStatus": "does_not_close_complete_semantic_diagram",
+      "sourceId": "src-toyo-1646",
+      "sourceIdentityStatus": "identity_not_fully_closed"
+    },
+    {
+      "authority": "institutional_catalog_link_only_for_derivative; semantic_authority_not_established",
+      "claimId": "claim-major-star-placement-jumen",
+      "directObservation": "no_matching_selected_observation",
+      "editionLineage": "same_catalog_record_candidate_as_nara; not_independent",
+      "independence": "not_independent_same_record_derivative_candidate",
+      "observationIds": [],
+      "promotion": "not_admitted_to_stable_claim_or_readiness",
+      "relationId": "relation-44c80c467e737e5c",
+      "relationStatus": "direct_observation_supports_numeric_or_star_surface_only",
+      "sourceId": "src-nanyangtang-pdf",
+      "sourceIdentityStatus": "identity_not_fully_closed"
+    },
+    {
+      "authority": "institutional_item_identity_and_direct_observation_bounded; semantic_authority_not_established",
+      "claimId": "claim-major-star-placement-jumen",
+      "directObservation": "yes_bounded",
+      "editionLineage": "same_record_as_nara_4468520",
+      "independence": "not_independent_same_record_volume_pair",
+      "observationIds": [
+        "obs-nara-v2-64-80"
+      ],
+      "promotion": "not_admitted_to_stable_claim_or_readiness",
+      "relationId": "relation-45dc5e2753645876",
+      "relationStatus": "direct_observation_supports_numeric_or_star_surface_only",
+      "sourceId": "src-nara-4469314",
+      "sourceIdentityStatus": "identity_not_fully_closed"
+    },
+    {
+      "authority": "source_presence_and_direct_observation_only; semantic_authority_not_established",
+      "claimId": "claim-major-star-placement-taiyang",
+      "directObservation": "yes_bounded",
+      "editionLineage": "unresolved_local_scan_lineage",
+      "independence": "not_established",
+      "observationIds": [
+        "obs-nanbei-p11-13"
+      ],
+      "promotion": "not_admitted_to_stable_claim_or_readiness",
+      "relationId": "relation-49e44eb0c9b91707",
+      "relationStatus": "direct_observation_supports_numeric_or_star_surface_only",
+      "sourceId": "src-nanbei-pdf",
+      "sourceIdentityStatus": "identity_not_fully_closed"
+    },
+    {
+      "authority": "institutional_collection_identity_plus_direct_observation_bounded; edition_and_semantic_authority_unresolved",
+      "claimId": "claim-ming-shen-coordinate-frame",
+      "directObservation": "yes_bounded",
+      "editionLineage": "distinct_physical_witness_candidate_from_nara; textual_lineage_unresolved",
+      "independence": "independent_physical_witness_candidate_not_admitted_as_independent_oracle",
+      "observationIds": [
+        "obs-toyo-0007",
+        "obs-toyo-0014"
+      ],
+      "promotion": "not_admitted_to_stable_claim_or_readiness",
+      "relationId": "relation-4ad93cb4d7277397",
+      "relationStatus": "direct_observation_supports_traversal_surface_not_semantic_coordinate_identity",
+      "sourceId": "src-toyo-1646",
+      "sourceIdentityStatus": "identity_not_fully_closed"
+    },
+    {
+      "authority": "institutional_catalog_link_only_for_derivative; semantic_authority_not_established",
+      "claimId": "claim-ming-shen-coordinate-frame",
+      "directObservation": "yes_bounded",
+      "editionLineage": "same_catalog_record_candidate_as_nara; not_independent",
+      "independence": "not_independent_same_record_derivative_candidate",
+      "observationIds": [
+        "obs-nanyang-p145",
+        "obs-nanyang-p159-160"
+      ],
+      "promotion": "not_admitted_to_stable_claim_or_readiness",
+      "relationId": "relation-4f1219df61344625",
+      "relationStatus": "direct_observation_supports_traversal_surface_not_semantic_coordinate_identity",
+      "sourceId": "src-nanyangtang-pdf",
+      "sourceIdentityStatus": "identity_not_fully_closed"
+    },
+    {
+      "authority": "institutional_collection_identity_plus_direct_observation_bounded; edition_and_semantic_authority_unresolved",
+      "claimId": "claim-auxiliary-star-placement-core",
+      "directObservation": "yes_bounded",
+      "editionLineage": "distinct_physical_witness_candidate_from_nara; textual_lineage_unresolved",
+      "independence": "independent_physical_witness_candidate_not_admitted_as_independent_oracle",
+      "observationIds": [
+        "obs-toyo-0004",
+        "obs-toyo-0014"
+      ],
+      "promotion": "not_admitted_to_stable_claim_or_readiness",
+      "relationId": "relation-511f001615b213e3",
+      "relationStatus": "local_rule_and_source_surface_not_semantic_authority",
+      "sourceId": "src-toyo-1646",
+      "sourceIdentityStatus": "identity_not_fully_closed"
+    },
+    {
+      "authority": "institutional_item_identity_and_direct_observation_bounded; semantic_authority_not_established",
+      "claimId": "claim-major-star-placement-qisha",
+      "directObservation": "yes_bounded",
+      "editionLineage": "same_record_as_nara_4469314",
+      "independence": "not_independent_same_record_volume_pair",
+      "observationIds": [
+        "obs-nara-v1-84-86",
+        "obs-nara-v1-89-92"
+      ],
+      "promotion": "not_admitted_to_stable_claim_or_readiness",
+      "relationId": "relation-54b99ba039828800",
+      "relationStatus": "direct_observation_supports_numeric_or_star_surface_only",
+      "sourceId": "src-nara-4468520",
+      "sourceIdentityStatus": "identity_not_fully_closed"
+    },
+    {
+      "authority": "source_presence_and_direct_observation_only; semantic_authority_not_established",
+      "claimId": "claim-major-star-placement-tianliang",
+      "directObservation": "yes_bounded",
+      "editionLineage": "unresolved_local_scan_lineage",
+      "independence": "not_established",
+      "observationIds": [
+        "obs-nanbei-p11-13"
+      ],
+      "promotion": "not_admitted_to_stable_claim_or_readiness",
+      "relationId": "relation-58faedb0b26ee3fe",
+      "relationStatus": "direct_observation_supports_numeric_or_star_surface_only",
+      "sourceId": "src-nanbei-pdf",
+      "sourceIdentityStatus": "identity_not_fully_closed"
+    },
+    {
+      "authority": "institutional_item_identity_and_direct_observation_bounded; semantic_authority_not_established",
+      "claimId": "claim-major-star-placement-lianzhen",
+      "directObservation": "yes_bounded",
+      "editionLineage": "same_record_as_nara_4468520",
+      "independence": "not_independent_same_record_volume_pair",
+      "observationIds": [
+        "obs-nara-v2-64-80"
+      ],
+      "promotion": "not_admitted_to_stable_claim_or_readiness",
+      "relationId": "relation-5a27e66c08213150",
+      "relationStatus": "direct_observation_supports_numeric_or_star_surface_only",
+      "sourceId": "src-nara-4469314",
+      "sourceIdentityStatus": "identity_not_fully_closed"
+    },
+    {
+      "authority": "source_presence_and_direct_observation_only; semantic_authority_not_established",
+      "claimId": "claim-auxiliary-star-placement-six-lucky",
+      "directObservation": "yes_bounded",
+      "editionLineage": "unresolved_local_scan_lineage",
+      "independence": "not_established",
+      "observationIds": [
+        "obs-nanbei-p11-13"
+      ],
+      "promotion": "not_admitted_to_stable_claim_or_readiness",
+      "relationId": "relation-5c5939699ecef5c0",
+      "relationStatus": "direct_observation_supports_auxiliary_vocabulary_not_full_rule_witness",
+      "sourceId": "src-nanbei-pdf",
+      "sourceIdentityStatus": "identity_not_fully_closed"
+    },
+    {
+      "authority": "institutional_catalog_link_only_for_derivative; semantic_authority_not_established",
+      "claimId": "claim-major-star-placement-tianliang",
+      "directObservation": "no_matching_selected_observation",
+      "editionLineage": "same_catalog_record_candidate_as_nara; not_independent",
+      "independence": "not_independent_same_record_derivative_candidate",
+      "observationIds": [],
+      "promotion": "not_admitted_to_stable_claim_or_readiness",
+      "relationId": "relation-5ccaecdc50e3e3c0",
+      "relationStatus": "direct_observation_supports_numeric_or_star_surface_only",
+      "sourceId": "src-nanyangtang-pdf",
+      "sourceIdentityStatus": "identity_not_fully_closed"
+    },
+    {
+      "authority": "source_presence_and_direct_observation_only; semantic_authority_not_established",
+      "claimId": "claim-major-star-placement-tianji",
+      "directObservation": "yes_bounded",
+      "editionLineage": "unresolved_local_scan_lineage",
+      "independence": "not_established",
+      "observationIds": [
+        "obs-nanbei-p11-13"
+      ],
+      "promotion": "not_admitted_to_stable_claim_or_readiness",
+      "relationId": "relation-5e57dc7108b5dc2e",
+      "relationStatus": "direct_observation_supports_numeric_or_star_surface_only",
+      "sourceId": "src-nanbei-pdf",
+      "sourceIdentityStatus": "identity_not_fully_closed"
+    },
+    {
+      "authority": "institutional_item_identity_and_direct_observation_bounded; semantic_authority_not_established",
+      "claimId": "claim-major-star-placement-tianfu",
+      "directObservation": "yes_bounded",
+      "editionLineage": "same_record_as_nara_4468520",
+      "independence": "not_independent_same_record_volume_pair",
+      "observationIds": [
+        "obs-nara-v2-64-80"
+      ],
+      "promotion": "not_admitted_to_stable_claim_or_readiness",
+      "relationId": "relation-61d8b5dcc2046d67",
+      "relationStatus": "direct_observation_supports_numeric_or_star_surface_only",
+      "sourceId": "src-nara-4469314",
+      "sourceIdentityStatus": "identity_not_fully_closed"
+    },
+    {
+      "authority": "institutional_item_identity_and_direct_observation_bounded; semantic_authority_not_established",
+      "claimId": "claim-major-star-placement-tiandong",
+      "directObservation": "yes_bounded",
+      "editionLineage": "same_record_as_nara_4468520",
+      "independence": "not_independent_same_record_volume_pair",
+      "observationIds": [
+        "obs-nara-v2-64-80"
+      ],
+      "promotion": "not_admitted_to_stable_claim_or_readiness",
+      "relationId": "relation-627b72d8ffe0ab26",
+      "relationStatus": "direct_observation_supports_numeric_or_star_surface_only",
+      "sourceId": "src-nara-4469314",
+      "sourceIdentityStatus": "identity_not_fully_closed"
+    },
+    {
+      "authority": "institutional_item_identity_and_direct_observation_bounded; semantic_authority_not_established",
+      "claimId": "claim-major-star-placement-tanlang",
+      "directObservation": "yes_bounded",
+      "editionLineage": "same_record_as_nara_4468520",
+      "independence": "not_independent_same_record_volume_pair",
+      "observationIds": [
+        "obs-nara-v2-64-80"
+      ],
+      "promotion": "not_admitted_to_stable_claim_or_readiness",
+      "relationId": "relation-67318fe648a810ee",
+      "relationStatus": "direct_observation_supports_numeric_or_star_surface_only",
+      "sourceId": "src-nara-4469314",
+      "sourceIdentityStatus": "identity_not_fully_closed"
+    },
+    {
+      "authority": "institutional_collection_identity_plus_direct_observation_bounded; edition_and_semantic_authority_unresolved",
+      "claimId": "claim-major-star-placement-lianzhen",
+      "directObservation": "yes_bounded",
+      "editionLineage": "distinct_physical_witness_candidate_from_nara; textual_lineage_unresolved",
+      "independence": "independent_physical_witness_candidate_not_admitted_as_independent_oracle",
+      "observationIds": [
+        "obs-toyo-0004",
+        "obs-toyo-0008",
+        "obs-toyo-0085",
+        "obs-toyo-0088"
+      ],
+      "promotion": "not_admitted_to_stable_claim_or_readiness",
+      "relationId": "relation-67f8b5360e91f783",
+      "relationStatus": "direct_observation_supports_numeric_or_star_surface_only",
+      "sourceId": "src-toyo-1646",
+      "sourceIdentityStatus": "identity_not_fully_closed"
+    },
+    {
+      "authority": "institutional_item_identity_and_direct_observation_bounded; semantic_authority_not_established",
+      "claimId": "claim-12-palace-diagram-semantics",
+      "directObservation": "yes_bounded",
+      "editionLineage": "same_record_as_nara_4468520",
+      "independence": "not_independent_same_record_volume_pair",
+      "observationIds": [
+        "obs-nara-v2-64-80"
+      ],
+      "promotion": "not_admitted_to_stable_claim_or_readiness",
+      "relationId": "relation-68263d1d6d67f519",
+      "relationStatus": "does_not_close_complete_semantic_diagram",
+      "sourceId": "src-nara-4469314",
+      "sourceIdentityStatus": "identity_not_fully_closed"
+    },
+    {
+      "authority": "institutional_catalog_link_only_for_derivative; semantic_authority_not_established",
+      "claimId": "claim-life-body-palace-ruler",
+      "directObservation": "yes_bounded",
+      "editionLineage": "same_catalog_record_candidate_as_nara; not_independent",
+      "independence": "not_independent_same_record_derivative_candidate",
+      "observationIds": [
+        "obs-nanyang-p5",
+        "obs-nanyang-p145",
+        "obs-nanyang-p159-160"
+      ],
+      "promotion": "not_admitted_to_stable_claim_or_readiness",
+      "relationId": "relation-68a0d06488acc4e0",
+      "relationStatus": "direct_observation_supports_selected_rule_rows_only",
+      "sourceId": "src-nanyangtang-pdf",
+      "sourceIdentityStatus": "identity_not_fully_closed"
+    },
+    {
+      "authority": "institutional_collection_identity_plus_direct_observation_bounded; edition_and_semantic_authority_unresolved",
+      "claimId": "claim-four-transformations-10x4",
+      "directObservation": "yes_bounded",
+      "editionLineage": "distinct_physical_witness_candidate_from_nara; textual_lineage_unresolved",
+      "independence": "independent_physical_witness_candidate_not_admitted_as_independent_oracle",
+      "observationIds": [
+        "obs-toyo-0018"
+      ],
+      "promotion": "not_admitted_to_stable_claim_or_readiness",
+      "relationId": "relation-6a74088418ab7a5f",
+      "relationStatus": "direct_observation_supports_four_transform_vocabulary_not_complete_10x4_table",
+      "sourceId": "src-toyo-1646",
+      "sourceIdentityStatus": "identity_not_fully_closed"
+    },
+    {
+      "authority": "institutional_item_identity_and_direct_observation_bounded; semantic_authority_not_established",
+      "claimId": "claim-major-star-placement-qisha",
+      "directObservation": "yes_bounded",
+      "editionLineage": "same_record_as_nara_4468520",
+      "independence": "not_independent_same_record_volume_pair",
+      "observationIds": [
+        "obs-nara-v2-64-80"
+      ],
+      "promotion": "not_admitted_to_stable_claim_or_readiness",
+      "relationId": "relation-6b04262ebb7ddfff",
+      "relationStatus": "direct_observation_supports_numeric_or_star_surface_only",
+      "sourceId": "src-nara-4469314",
+      "sourceIdentityStatus": "identity_not_fully_closed"
+    },
+    {
+      "authority": "institutional_collection_identity_plus_direct_observation_bounded; edition_and_semantic_authority_unresolved",
+      "claimId": "claim-four-transform-ke",
+      "directObservation": "yes_bounded",
+      "editionLineage": "distinct_physical_witness_candidate_from_nara; textual_lineage_unresolved",
+      "independence": "independent_physical_witness_candidate_not_admitted_as_independent_oracle",
+      "observationIds": [
+        "obs-toyo-0018"
+      ],
+      "promotion": "not_admitted_to_stable_claim_or_readiness",
+      "relationId": "relation-6c3175d12a32fc30",
+      "relationStatus": "direct_observation_supports_label_surface_only",
+      "sourceId": "src-toyo-1646",
+      "sourceIdentityStatus": "identity_not_fully_closed"
+    },
+    {
+      "authority": "institutional_item_identity_and_direct_observation_bounded; semantic_authority_not_established",
+      "claimId": "claim-major-star-placement-lianzhen",
+      "directObservation": "yes_bounded",
+      "editionLineage": "same_record_as_nara_4469314",
+      "independence": "not_independent_same_record_volume_pair",
+      "observationIds": [
+        "obs-nara-v1-84-86",
+        "obs-nara-v1-89-92"
+      ],
+      "promotion": "not_admitted_to_stable_claim_or_readiness",
+      "relationId": "relation-6d4a5e34518b1f38",
+      "relationStatus": "direct_observation_supports_numeric_or_star_surface_only",
+      "sourceId": "src-nara-4468520",
+      "sourceIdentityStatus": "identity_not_fully_closed"
+    },
+    {
+      "authority": "institutional_catalog_link_only_for_derivative; semantic_authority_not_established",
+      "claimId": "claim-major-star-placement-pojun",
+      "directObservation": "no_matching_selected_observation",
+      "editionLineage": "same_catalog_record_candidate_as_nara; not_independent",
+      "independence": "not_independent_same_record_derivative_candidate",
+      "observationIds": [],
+      "promotion": "not_admitted_to_stable_claim_or_readiness",
+      "relationId": "relation-6f16646e268b01d9",
+      "relationStatus": "direct_observation_supports_numeric_or_star_surface_only",
+      "sourceId": "src-nanyangtang-pdf",
+      "sourceIdentityStatus": "identity_not_fully_closed"
+    },
+    {
+      "authority": "institutional_catalog_link_only_for_derivative; semantic_authority_not_established",
+      "claimId": "claim-major-star-placement-tianfu",
+      "directObservation": "no_matching_selected_observation",
+      "editionLineage": "same_catalog_record_candidate_as_nara; not_independent",
+      "independence": "not_independent_same_record_derivative_candidate",
+      "observationIds": [],
+      "promotion": "not_admitted_to_stable_claim_or_readiness",
+      "relationId": "relation-7394d494320a3ba0",
+      "relationStatus": "direct_observation_supports_numeric_or_star_surface_only",
+      "sourceId": "src-nanyangtang-pdf",
+      "sourceIdentityStatus": "identity_not_fully_closed"
+    },
+    {
+      "authority": "source_presence_and_direct_observation_only; semantic_authority_not_established",
+      "claimId": "claim-major-star-placement-taiyin",
+      "directObservation": "yes_bounded",
+      "editionLineage": "unresolved_local_scan_lineage",
+      "independence": "not_established",
+      "observationIds": [
+        "obs-nanbei-p11-13"
+      ],
+      "promotion": "not_admitted_to_stable_claim_or_readiness",
+      "relationId": "relation-74b0aa38a25ce29c",
+      "relationStatus": "direct_observation_supports_numeric_or_star_surface_only",
+      "sourceId": "src-nanbei-pdf",
+      "sourceIdentityStatus": "identity_not_fully_closed"
+    },
+    {
+      "authority": "institutional_item_identity_and_direct_observation_bounded; semantic_authority_not_established",
+      "claimId": "claim-four-transform-ke",
+      "directObservation": "yes_bounded",
+      "editionLineage": "same_record_as_nara_4469314",
+      "independence": "not_independent_same_record_volume_pair",
+      "observationIds": [
+        "obs-nara-v1-87-88"
+      ],
+      "promotion": "not_admitted_to_stable_claim_or_readiness",
+      "relationId": "relation-74e38fbaa27e7248",
+      "relationStatus": "direct_observation_supports_label_surface_only",
+      "sourceId": "src-nara-4468520",
+      "sourceIdentityStatus": "identity_not_fully_closed"
+    },
+    {
+      "authority": "institutional_item_identity_and_direct_observation_bounded; semantic_authority_not_established",
+      "claimId": "claim-major-star-placement-tianxiang",
+      "directObservation": "yes_bounded",
+      "editionLineage": "same_record_as_nara_4468520",
+      "independence": "not_independent_same_record_volume_pair",
+      "observationIds": [
+        "obs-nara-v2-64-80"
+      ],
+      "promotion": "not_admitted_to_stable_claim_or_readiness",
+      "relationId": "relation-74f135b3fc5dc6fe",
+      "relationStatus": "direct_observation_supports_numeric_or_star_surface_only",
+      "sourceId": "src-nara-4469314",
+      "sourceIdentityStatus": "identity_not_fully_closed"
+    },
+    {
+      "authority": "institutional_collection_identity_plus_direct_observation_bounded; edition_and_semantic_authority_unresolved",
+      "claimId": "claim-tianfu-placement",
+      "directObservation": "yes_bounded",
+      "editionLineage": "distinct_physical_witness_candidate_from_nara; textual_lineage_unresolved",
+      "independence": "independent_physical_witness_candidate_not_admitted_as_independent_oracle",
+      "observationIds": [
+        "obs-toyo-0008"
+      ],
+      "promotion": "not_admitted_to_stable_claim_or_readiness",
+      "relationId": "relation-7783415906d74119",
+      "relationStatus": "numeric_relation_or_formula_surface_only",
+      "sourceId": "src-toyo-1646",
+      "sourceIdentityStatus": "identity_not_fully_closed"
+    },
+    {
+      "authority": "institutional_item_identity_and_direct_observation_bounded; semantic_authority_not_established",
+      "claimId": "claim-major-star-placement-wugu",
+      "directObservation": "yes_bounded",
+      "editionLineage": "same_record_as_nara_4468520",
+      "independence": "not_independent_same_record_volume_pair",
+      "observationIds": [
+        "obs-nara-v2-64-80"
+      ],
+      "promotion": "not_admitted_to_stable_claim_or_readiness",
+      "relationId": "relation-7956afd656146657",
+      "relationStatus": "direct_observation_supports_numeric_or_star_surface_only",
+      "sourceId": "src-nara-4469314",
+      "sourceIdentityStatus": "identity_not_fully_closed"
+    },
+    {
+      "authority": "institutional_collection_identity_plus_direct_observation_bounded; edition_and_semantic_authority_unresolved",
+      "claimId": "claim-major-star-placement-taiyin",
+      "directObservation": "yes_bounded",
+      "editionLineage": "distinct_physical_witness_candidate_from_nara; textual_lineage_unresolved",
+      "independence": "independent_physical_witness_candidate_not_admitted_as_independent_oracle",
+      "observationIds": [
+        "obs-toyo-0004",
+        "obs-toyo-0008",
+        "obs-toyo-0085",
+        "obs-toyo-0088"
+      ],
+      "promotion": "not_admitted_to_stable_claim_or_readiness",
+      "relationId": "relation-79a8d458de0253f3",
+      "relationStatus": "direct_observation_supports_numeric_or_star_surface_only",
+      "sourceId": "src-toyo-1646",
+      "sourceIdentityStatus": "identity_not_fully_closed"
+    },
+    {
+      "authority": "institutional_item_identity_and_direct_observation_bounded; semantic_authority_not_established",
+      "claimId": "claim-four-transformations-10x4",
+      "directObservation": "yes_bounded",
+      "editionLineage": "same_record_as_nara_4469314",
+      "independence": "not_independent_same_record_volume_pair",
+      "observationIds": [
+        "obs-nara-v1-87-88"
+      ],
+      "promotion": "not_admitted_to_stable_claim_or_readiness",
+      "relationId": "relation-7c32960e3cf3a9e3",
+      "relationStatus": "direct_observation_supports_four_transform_vocabulary_not_complete_10x4_table",
+      "sourceId": "src-nara-4468520",
+      "sourceIdentityStatus": "identity_not_fully_closed"
+    },
+    {
+      "authority": "institutional_collection_identity_plus_direct_observation_bounded; edition_and_semantic_authority_unresolved",
+      "claimId": "claim-palace-name-branch-ordinal",
+      "directObservation": "yes_bounded",
+      "editionLineage": "distinct_physical_witness_candidate_from_nara; textual_lineage_unresolved",
+      "independence": "independent_physical_witness_candidate_not_admitted_as_independent_oracle",
+      "observationIds": [
+        "obs-toyo-0007",
+        "obs-toyo-0015",
+        "obs-toyo-0017",
+        "obs-toyo-0085",
+        "obs-toyo-0088"
+      ],
+      "promotion": "not_admitted_to_stable_claim_or_readiness",
+      "relationId": "relation-7e113c800205f2fc",
+      "relationStatus": "direct_observation_supports_partial_diagram_and_chart_surface_only",
+      "sourceId": "src-toyo-1646",
+      "sourceIdentityStatus": "identity_not_fully_closed"
+    },
+    {
+      "authority": "institutional_collection_identity_plus_direct_observation_bounded; edition_and_semantic_authority_unresolved",
+      "claimId": "claim-major-star-placement-taiyang",
+      "directObservation": "yes_bounded",
+      "editionLineage": "distinct_physical_witness_candidate_from_nara; textual_lineage_unresolved",
+      "independence": "independent_physical_witness_candidate_not_admitted_as_independent_oracle",
+      "observationIds": [
+        "obs-toyo-0004",
+        "obs-toyo-0008",
+        "obs-toyo-0085",
+        "obs-toyo-0088"
+      ],
+      "promotion": "not_admitted_to_stable_claim_or_readiness",
+      "relationId": "relation-7edec076b62063dd",
+      "relationStatus": "direct_observation_supports_numeric_or_star_surface_only",
+      "sourceId": "src-toyo-1646",
+      "sourceIdentityStatus": "identity_not_fully_closed"
+    },
+    {
+      "authority": "institutional_item_identity_and_direct_observation_bounded; semantic_authority_not_established",
+      "claimId": "claim-four-transform-lu",
+      "directObservation": "yes_bounded",
+      "editionLineage": "same_record_as_nara_4469314",
+      "independence": "not_independent_same_record_volume_pair",
+      "observationIds": [
+        "obs-nara-v1-87-88"
+      ],
+      "promotion": "not_admitted_to_stable_claim_or_readiness",
+      "relationId": "relation-7f1b8384d3bdb662",
+      "relationStatus": "direct_observation_supports_label_surface_only",
+      "sourceId": "src-nara-4468520",
+      "sourceIdentityStatus": "identity_not_fully_closed"
+    },
+    {
+      "authority": "institutional_collection_identity_plus_direct_observation_bounded; edition_and_semantic_authority_unresolved",
+      "claimId": "claim-major-star-placement-ziwei",
+      "directObservation": "yes_bounded",
+      "editionLineage": "distinct_physical_witness_candidate_from_nara; textual_lineage_unresolved",
+      "independence": "independent_physical_witness_candidate_not_admitted_as_independent_oracle",
+      "observationIds": [
+        "obs-toyo-0004",
+        "obs-toyo-0008",
+        "obs-toyo-0085",
+        "obs-toyo-0088"
+      ],
+      "promotion": "not_admitted_to_stable_claim_or_readiness",
+      "relationId": "relation-80c701828b7952ff",
+      "relationStatus": "direct_observation_supports_numeric_or_star_surface_only",
+      "sourceId": "src-toyo-1646",
+      "sourceIdentityStatus": "identity_not_fully_closed"
+    },
+    {
+      "authority": "institutional_item_identity_and_direct_observation_bounded; semantic_authority_not_established",
+      "claimId": "claim-major-star-placement-taiyang",
+      "directObservation": "yes_bounded",
+      "editionLineage": "same_record_as_nara_4468520",
+      "independence": "not_independent_same_record_volume_pair",
+      "observationIds": [
+        "obs-nara-v2-64-80"
+      ],
+      "promotion": "not_admitted_to_stable_claim_or_readiness",
+      "relationId": "relation-81afee62eb713fdf",
+      "relationStatus": "direct_observation_supports_numeric_or_star_surface_only",
+      "sourceId": "src-nara-4469314",
+      "sourceIdentityStatus": "identity_not_fully_closed"
+    },
+    {
+      "authority": "institutional_collection_identity_plus_direct_observation_bounded; edition_and_semantic_authority_unresolved",
+      "claimId": "claim-major-star-placement-jumen",
+      "directObservation": "yes_bounded",
+      "editionLineage": "distinct_physical_witness_candidate_from_nara; textual_lineage_unresolved",
+      "independence": "independent_physical_witness_candidate_not_admitted_as_independent_oracle",
+      "observationIds": [
+        "obs-toyo-0004",
+        "obs-toyo-0008",
+        "obs-toyo-0085",
+        "obs-toyo-0088"
+      ],
+      "promotion": "not_admitted_to_stable_claim_or_readiness",
+      "relationId": "relation-82e8cd7f806c7376",
+      "relationStatus": "direct_observation_supports_numeric_or_star_surface_only",
+      "sourceId": "src-toyo-1646",
+      "sourceIdentityStatus": "identity_not_fully_closed"
+    },
+    {
+      "authority": "institutional_collection_identity_plus_direct_observation_bounded; edition_and_semantic_authority_unresolved",
+      "claimId": "claim-life-body-palace-ruler",
+      "directObservation": "yes_bounded",
+      "editionLineage": "distinct_physical_witness_candidate_from_nara; textual_lineage_unresolved",
+      "independence": "independent_physical_witness_candidate_not_admitted_as_independent_oracle",
+      "observationIds": [
+        "obs-toyo-0007",
+        "obs-toyo-0014"
+      ],
+      "promotion": "not_admitted_to_stable_claim_or_readiness",
+      "relationId": "relation-845000751a44233e",
+      "relationStatus": "direct_observation_supports_selected_rule_rows_only",
+      "sourceId": "src-toyo-1646",
+      "sourceIdentityStatus": "identity_not_fully_closed"
+    },
+    {
+      "authority": "source_presence_and_direct_observation_only; semantic_authority_not_established",
+      "claimId": "claim-ming-shen-coordinate-frame",
+      "directObservation": "yes_bounded",
+      "editionLineage": "unresolved_local_scan_lineage",
+      "independence": "not_established",
+      "observationIds": [
+        "obs-nanbei-p8"
+      ],
+      "promotion": "not_admitted_to_stable_claim_or_readiness",
+      "relationId": "relation-8f0c9a7b48e524f2",
+      "relationStatus": "direct_observation_supports_traversal_surface_not_semantic_coordinate_identity",
+      "sourceId": "src-nanbei-pdf",
+      "sourceIdentityStatus": "identity_not_fully_closed"
+    },
+    {
+      "authority": "institutional_item_identity_and_direct_observation_bounded; semantic_authority_not_established",
+      "claimId": "claim-four-transform-quan",
+      "directObservation": "yes_bounded",
+      "editionLineage": "same_record_as_nara_4469314",
+      "independence": "not_independent_same_record_volume_pair",
+      "observationIds": [
+        "obs-nara-v1-87-88"
+      ],
+      "promotion": "not_admitted_to_stable_claim_or_readiness",
+      "relationId": "relation-912235ad39a1da98",
+      "relationStatus": "direct_observation_supports_label_surface_only",
+      "sourceId": "src-nara-4468520",
+      "sourceIdentityStatus": "identity_not_fully_closed"
+    },
+    {
+      "authority": "source_presence_and_direct_observation_only; semantic_authority_not_established",
+      "claimId": "claim-major-star-placement-ziwei",
+      "directObservation": "yes_bounded",
+      "editionLineage": "unresolved_local_scan_lineage",
+      "independence": "not_established",
+      "observationIds": [
+        "obs-nanbei-p11-13"
+      ],
+      "promotion": "not_admitted_to_stable_claim_or_readiness",
+      "relationId": "relation-9b3d9346e6ba06c4",
+      "relationStatus": "direct_observation_supports_numeric_or_star_surface_only",
+      "sourceId": "src-nanbei-pdf",
+      "sourceIdentityStatus": "identity_not_fully_closed"
+    },
+    {
+      "authority": "institutional_collection_identity_plus_direct_observation_bounded; edition_and_semantic_authority_unresolved",
+      "claimId": "claim-four-transform-quan",
+      "directObservation": "yes_bounded",
+      "editionLineage": "distinct_physical_witness_candidate_from_nara; textual_lineage_unresolved",
+      "independence": "independent_physical_witness_candidate_not_admitted_as_independent_oracle",
+      "observationIds": [
+        "obs-toyo-0018"
+      ],
+      "promotion": "not_admitted_to_stable_claim_or_readiness",
+      "relationId": "relation-9ceaee72c010474c",
+      "relationStatus": "direct_observation_supports_label_surface_only",
+      "sourceId": "src-toyo-1646",
+      "sourceIdentityStatus": "identity_not_fully_closed"
+    },
+    {
+      "authority": "institutional_collection_identity_plus_direct_observation_bounded; edition_and_semantic_authority_unresolved",
+      "claimId": "claim-four-transform-lu",
+      "directObservation": "yes_bounded",
+      "editionLineage": "distinct_physical_witness_candidate_from_nara; textual_lineage_unresolved",
+      "independence": "independent_physical_witness_candidate_not_admitted_as_independent_oracle",
+      "observationIds": [
+        "obs-toyo-0018"
+      ],
+      "promotion": "not_admitted_to_stable_claim_or_readiness",
+      "relationId": "relation-9e4a44a1a0b15258",
+      "relationStatus": "direct_observation_supports_label_surface_only",
+      "sourceId": "src-toyo-1646",
+      "sourceIdentityStatus": "identity_not_fully_closed"
+    },
+    {
+      "authority": "institutional_item_identity_and_direct_observation_bounded; semantic_authority_not_established",
+      "claimId": "claim-major-star-placement-tianji",
+      "directObservation": "yes_bounded",
+      "editionLineage": "same_record_as_nara_4468520",
+      "independence": "not_independent_same_record_volume_pair",
+      "observationIds": [
+        "obs-nara-v2-64-80"
+      ],
+      "promotion": "not_admitted_to_stable_claim_or_readiness",
+      "relationId": "relation-9eb92a8de7958e5e",
+      "relationStatus": "direct_observation_supports_numeric_or_star_surface_only",
+      "sourceId": "src-nara-4469314",
+      "sourceIdentityStatus": "identity_not_fully_closed"
+    },
+    {
+      "authority": "source_presence_and_direct_observation_only; semantic_authority_not_established",
+      "claimId": "claim-auxiliary-star-placement-core",
+      "directObservation": "yes_bounded",
+      "editionLineage": "unresolved_local_scan_lineage",
+      "independence": "not_established",
+      "observationIds": [
+        "obs-nanbei-p11-13"
+      ],
+      "promotion": "not_admitted_to_stable_claim_or_readiness",
+      "relationId": "relation-a391f108cf81721a",
+      "relationStatus": "local_rule_and_source_surface_not_semantic_authority",
+      "sourceId": "src-nanbei-pdf",
+      "sourceIdentityStatus": "identity_not_fully_closed"
+    },
+    {
+      "authority": "institutional_item_identity_and_direct_observation_bounded; semantic_authority_not_established",
+      "claimId": "claim-major-star-placement-taiyin",
+      "directObservation": "yes_bounded",
+      "editionLineage": "same_record_as_nara_4469314",
+      "independence": "not_independent_same_record_volume_pair",
+      "observationIds": [
+        "obs-nara-v1-84-86",
+        "obs-nara-v1-89-92"
+      ],
+      "promotion": "not_admitted_to_stable_claim_or_readiness",
+      "relationId": "relation-a8d7e54cc9391360",
+      "relationStatus": "direct_observation_supports_numeric_or_star_surface_only",
+      "sourceId": "src-nara-4468520",
+      "sourceIdentityStatus": "identity_not_fully_closed"
+    },
+    {
+      "authority": "institutional_item_identity_and_direct_observation_bounded; semantic_authority_not_established",
+      "claimId": "claim-tianfu-rotation06-semantic",
+      "directObservation": "yes_bounded",
+      "editionLineage": "same_record_as_nara_4468520",
+      "independence": "not_independent_same_record_volume_pair",
+      "observationIds": [
+        "obs-nara-v2-64-80"
+      ],
+      "promotion": "not_admitted_to_stable_claim_or_readiness",
+      "relationId": "relation-aacc51c0b1bcd69e",
+      "relationStatus": "representation_only_not_semantic_authority",
+      "sourceId": "src-nara-4469314",
+      "sourceIdentityStatus": "identity_not_fully_closed"
+    },
+    {
+      "authority": "institutional_catalog_link_only_for_derivative; semantic_authority_not_established",
+      "claimId": "claim-major-star-placement-qisha",
+      "directObservation": "no_matching_selected_observation",
+      "editionLineage": "same_catalog_record_candidate_as_nara; not_independent",
+      "independence": "not_independent_same_record_derivative_candidate",
+      "observationIds": [],
+      "promotion": "not_admitted_to_stable_claim_or_readiness",
+      "relationId": "relation-ab90ec97779d60c1",
+      "relationStatus": "direct_observation_supports_numeric_or_star_surface_only",
+      "sourceId": "src-nanyangtang-pdf",
+      "sourceIdentityStatus": "identity_not_fully_closed"
+    },
+    {
+      "authority": "institutional_catalog_link_only_for_derivative; semantic_authority_not_established",
+      "claimId": "claim-major-star-placement-taiyin",
+      "directObservation": "no_matching_selected_observation",
+      "editionLineage": "same_catalog_record_candidate_as_nara; not_independent",
+      "independence": "not_independent_same_record_derivative_candidate",
+      "observationIds": [],
+      "promotion": "not_admitted_to_stable_claim_or_readiness",
+      "relationId": "relation-acea62dac7902e01",
+      "relationStatus": "direct_observation_supports_numeric_or_star_surface_only",
+      "sourceId": "src-nanyangtang-pdf",
+      "sourceIdentityStatus": "identity_not_fully_closed"
+    },
+    {
+      "authority": "institutional_catalog_link_only_for_derivative; semantic_authority_not_established",
+      "claimId": "claim-auxiliary-star-placement-six-lucky",
+      "directObservation": "yes_bounded",
+      "editionLineage": "same_catalog_record_candidate_as_nara; not_independent",
+      "independence": "not_independent_same_record_derivative_candidate",
+      "observationIds": [
+        "obs-nanyang-p159-160"
+      ],
+      "promotion": "not_admitted_to_stable_claim_or_readiness",
+      "relationId": "relation-ad9e63b9975cbccb",
+      "relationStatus": "direct_observation_supports_auxiliary_vocabulary_not_full_rule_witness",
+      "sourceId": "src-nanyangtang-pdf",
+      "sourceIdentityStatus": "identity_not_fully_closed"
+    },
+    {
+      "authority": "source_presence_and_direct_observation_only; semantic_authority_not_established",
+      "claimId": "claim-major-star-placement-tanlang",
+      "directObservation": "yes_bounded",
+      "editionLineage": "unresolved_local_scan_lineage",
+      "independence": "not_established",
+      "observationIds": [
+        "obs-nanbei-p11-13"
+      ],
+      "promotion": "not_admitted_to_stable_claim_or_readiness",
+      "relationId": "relation-ae619ea4f0c7e723",
+      "relationStatus": "direct_observation_supports_numeric_or_star_surface_only",
+      "sourceId": "src-nanbei-pdf",
+      "sourceIdentityStatus": "identity_not_fully_closed"
+    },
+    {
+      "authority": "source_presence_and_direct_observation_only; semantic_authority_not_established",
+      "claimId": "claim-major-star-placement-lianzhen",
+      "directObservation": "yes_bounded",
+      "editionLineage": "unresolved_local_scan_lineage",
+      "independence": "not_established",
+      "observationIds": [
+        "obs-nanbei-p11-13"
+      ],
+      "promotion": "not_admitted_to_stable_claim_or_readiness",
+      "relationId": "relation-ae71f8b7de17f00a",
+      "relationStatus": "direct_observation_supports_numeric_or_star_surface_only",
+      "sourceId": "src-nanbei-pdf",
+      "sourceIdentityStatus": "identity_not_fully_closed"
+    },
+    {
+      "authority": "institutional_item_identity_and_direct_observation_bounded; semantic_authority_not_established",
+      "claimId": "claim-major-star-placement-tianliang",
+      "directObservation": "yes_bounded",
+      "editionLineage": "same_record_as_nara_4469314",
+      "independence": "not_independent_same_record_volume_pair",
+      "observationIds": [
+        "obs-nara-v1-84-86",
+        "obs-nara-v1-89-92"
+      ],
+      "promotion": "not_admitted_to_stable_claim_or_readiness",
+      "relationId": "relation-ae7ee32e12de455f",
+      "relationStatus": "direct_observation_supports_numeric_or_star_surface_only",
+      "sourceId": "src-nara-4468520",
+      "sourceIdentityStatus": "identity_not_fully_closed"
+    },
+    {
+      "authority": "source_presence_and_direct_observation_only; semantic_authority_not_established",
+      "claimId": "claim-major-star-placement-tianxiang",
+      "directObservation": "yes_bounded",
+      "editionLineage": "unresolved_local_scan_lineage",
+      "independence": "not_established",
+      "observationIds": [
+        "obs-nanbei-p11-13"
+      ],
+      "promotion": "not_admitted_to_stable_claim_or_readiness",
+      "relationId": "relation-af98868ceac4688d",
+      "relationStatus": "direct_observation_supports_numeric_or_star_surface_only",
+      "sourceId": "src-nanbei-pdf",
+      "sourceIdentityStatus": "identity_not_fully_closed"
+    },
+    {
+      "authority": "institutional_catalog_link_only_for_derivative; semantic_authority_not_established",
+      "claimId": "claim-life-body-ruler-24-ambiguous-rows",
+      "directObservation": "yes_bounded",
+      "editionLineage": "same_catalog_record_candidate_as_nara; not_independent",
+      "independence": "not_independent_same_record_derivative_candidate",
+      "observationIds": [
+        "obs-nanyang-p159-160"
+      ],
+      "promotion": "not_admitted_to_stable_claim_or_readiness",
+      "relationId": "relation-b3ba6122c9fc078f",
+      "relationStatus": "unresolved_row_level_source_identity",
+      "sourceId": "src-nanyangtang-pdf",
+      "sourceIdentityStatus": "identity_not_fully_closed"
+    },
+    {
+      "authority": "institutional_item_identity_and_direct_observation_bounded; semantic_authority_not_established",
+      "claimId": "claim-12-palace-diagram-semantics",
+      "directObservation": "yes_bounded",
+      "editionLineage": "same_record_as_nara_4469314",
+      "independence": "not_independent_same_record_volume_pair",
+      "observationIds": [
+        "obs-nara-v1-87-88",
+        "obs-nara-v1-89-92"
+      ],
+      "promotion": "not_admitted_to_stable_claim_or_readiness",
+      "relationId": "relation-b7667b9ff0d56b54",
+      "relationStatus": "does_not_close_complete_semantic_diagram",
+      "sourceId": "src-nara-4468520",
+      "sourceIdentityStatus": "identity_not_fully_closed"
+    },
+    {
+      "authority": "institutional_catalog_link_only_for_derivative; semantic_authority_not_established",
+      "claimId": "claim-ziwei-input-calendar-time",
+      "directObservation": "yes_bounded",
+      "editionLineage": "same_catalog_record_candidate_as_nara; not_independent",
+      "independence": "not_independent_same_record_derivative_candidate",
+      "observationIds": [
+        "obs-nanyang-p145"
+      ],
+      "promotion": "not_admitted_to_stable_claim_or_readiness",
+      "relationId": "relation-b8eb92eb8d13a53a",
+      "relationStatus": "unsupported_external_source_identity",
+      "sourceId": "src-nanyangtang-pdf",
+      "sourceIdentityStatus": "identity_not_fully_closed"
+    },
+    {
+      "authority": "institutional_catalog_link_only_for_derivative; semantic_authority_not_established",
+      "claimId": "claim-major-star-placement-tianxiang",
+      "directObservation": "no_matching_selected_observation",
+      "editionLineage": "same_catalog_record_candidate_as_nara; not_independent",
+      "independence": "not_independent_same_record_derivative_candidate",
+      "observationIds": [],
+      "promotion": "not_admitted_to_stable_claim_or_readiness",
+      "relationId": "relation-baf31c3bb6a021f2",
+      "relationStatus": "direct_observation_supports_numeric_or_star_surface_only",
+      "sourceId": "src-nanyangtang-pdf",
+      "sourceIdentityStatus": "identity_not_fully_closed"
+    },
+    {
+      "authority": "institutional_item_identity_and_direct_observation_bounded; semantic_authority_not_established",
+      "claimId": "claim-major-star-placement-tianji",
+      "directObservation": "yes_bounded",
+      "editionLineage": "same_record_as_nara_4469314",
+      "independence": "not_independent_same_record_volume_pair",
+      "observationIds": [
+        "obs-nara-v1-84-86",
+        "obs-nara-v1-89-92"
+      ],
+      "promotion": "not_admitted_to_stable_claim_or_readiness",
+      "relationId": "relation-bb68a715589b8c13",
+      "relationStatus": "direct_observation_supports_numeric_or_star_surface_only",
+      "sourceId": "src-nara-4468520",
+      "sourceIdentityStatus": "identity_not_fully_closed"
+    },
+    {
+      "authority": "institutional_item_identity_and_direct_observation_bounded; semantic_authority_not_established",
+      "claimId": "claim-palace-name-branch-ordinal",
+      "directObservation": "yes_bounded",
+      "editionLineage": "same_record_as_nara_4468520",
+      "independence": "not_independent_same_record_volume_pair",
+      "observationIds": [
+        "obs-nara-v2-64-80"
+      ],
+      "promotion": "not_admitted_to_stable_claim_or_readiness",
+      "relationId": "relation-bcef682e145808d4",
+      "relationStatus": "direct_observation_supports_partial_diagram_and_chart_surface_only",
+      "sourceId": "src-nara-4469314",
+      "sourceIdentityStatus": "identity_not_fully_closed"
+    },
+    {
+      "authority": "institutional_item_identity_and_direct_observation_bounded; semantic_authority_not_established",
+      "claimId": "claim-major-star-placement-wugu",
+      "directObservation": "yes_bounded",
+      "editionLineage": "same_record_as_nara_4469314",
+      "independence": "not_independent_same_record_volume_pair",
+      "observationIds": [
+        "obs-nara-v1-84-86",
+        "obs-nara-v1-89-92"
+      ],
+      "promotion": "not_admitted_to_stable_claim_or_readiness",
+      "relationId": "relation-c14fff6c29e48f05",
+      "relationStatus": "direct_observation_supports_numeric_or_star_surface_only",
+      "sourceId": "src-nara-4468520",
+      "sourceIdentityStatus": "identity_not_fully_closed"
+    },
+    {
+      "authority": "institutional_item_identity_and_direct_observation_bounded; semantic_authority_not_established",
+      "claimId": "claim-tianfu-rotation06-semantic",
+      "directObservation": "yes_bounded",
+      "editionLineage": "same_record_as_nara_4469314",
+      "independence": "not_independent_same_record_volume_pair",
+      "observationIds": [
+        "obs-nara-v1-87-88"
+      ],
+      "promotion": "not_admitted_to_stable_claim_or_readiness",
+      "relationId": "relation-c318f495bd53dce4",
+      "relationStatus": "representation_only_not_semantic_authority",
+      "sourceId": "src-nara-4468520",
+      "sourceIdentityStatus": "identity_not_fully_closed"
+    },
+    {
+      "authority": "source_presence_and_direct_observation_only; semantic_authority_not_established",
+      "claimId": "claim-major-star-placement-tianfu",
+      "directObservation": "yes_bounded",
+      "editionLineage": "unresolved_local_scan_lineage",
+      "independence": "not_established",
+      "observationIds": [
+        "obs-nanbei-p11-13"
+      ],
+      "promotion": "not_admitted_to_stable_claim_or_readiness",
+      "relationId": "relation-c677149cae4b0232",
+      "relationStatus": "direct_observation_supports_numeric_or_star_surface_only",
+      "sourceId": "src-nanbei-pdf",
+      "sourceIdentityStatus": "identity_not_fully_closed"
+    },
+    {
+      "authority": "institutional_collection_identity_plus_direct_observation_bounded; edition_and_semantic_authority_unresolved",
+      "claimId": "claim-major-star-placement-pojun",
+      "directObservation": "yes_bounded",
+      "editionLineage": "distinct_physical_witness_candidate_from_nara; textual_lineage_unresolved",
+      "independence": "independent_physical_witness_candidate_not_admitted_as_independent_oracle",
+      "observationIds": [
+        "obs-toyo-0004",
+        "obs-toyo-0008",
+        "obs-toyo-0085",
+        "obs-toyo-0088"
+      ],
+      "promotion": "not_admitted_to_stable_claim_or_readiness",
+      "relationId": "relation-c71f1bf85ef5335e",
+      "relationStatus": "direct_observation_supports_numeric_or_star_surface_only",
+      "sourceId": "src-toyo-1646",
+      "sourceIdentityStatus": "identity_not_fully_closed"
+    },
+    {
+      "authority": "source_presence_and_direct_observation_only; semantic_authority_not_established",
+      "claimId": "claim-palace-name-branch-ordinal",
+      "directObservation": "yes_bounded",
+      "editionLineage": "unresolved_local_scan_lineage",
+      "independence": "not_established",
+      "observationIds": [
+        "obs-nanbei-p7",
+        "obs-nanbei-p8"
+      ],
+      "promotion": "not_admitted_to_stable_claim_or_readiness",
+      "relationId": "relation-c85d650c430c4330",
+      "relationStatus": "direct_observation_supports_partial_diagram_and_chart_surface_only",
+      "sourceId": "src-nanbei-pdf",
+      "sourceIdentityStatus": "identity_not_fully_closed"
+    },
+    {
+      "authority": "source_presence_and_direct_observation_only; semantic_authority_not_established",
+      "claimId": "claim-major-star-placement-tiandong",
+      "directObservation": "yes_bounded",
+      "editionLineage": "unresolved_local_scan_lineage",
+      "independence": "not_established",
+      "observationIds": [
+        "obs-nanbei-p11-13"
+      ],
+      "promotion": "not_admitted_to_stable_claim_or_readiness",
+      "relationId": "relation-c9e228325f25d0e4",
+      "relationStatus": "direct_observation_supports_numeric_or_star_surface_only",
+      "sourceId": "src-nanbei-pdf",
+      "sourceIdentityStatus": "identity_not_fully_closed"
+    },
+    {
+      "authority": "source_presence_and_direct_observation_only; semantic_authority_not_established",
+      "claimId": "claim-tianfu-anchor-direction",
+      "directObservation": "yes_bounded",
+      "editionLineage": "unresolved_local_scan_lineage",
+      "independence": "not_established",
+      "observationIds": [
+        "obs-nanbei-p11-13"
+      ],
+      "promotion": "not_admitted_to_stable_claim_or_readiness",
+      "relationId": "relation-cc9cd3a915e9252a",
+      "relationStatus": "direct_observation_supports_tianfu_surface_but_not_unique_convention",
+      "sourceId": "src-nanbei-pdf",
+      "sourceIdentityStatus": "identity_not_fully_closed"
+    },
+    {
+      "authority": "institutional_item_identity_and_direct_observation_bounded; semantic_authority_not_established",
+      "claimId": "claim-major-star-placement-taiyang",
+      "directObservation": "yes_bounded",
+      "editionLineage": "same_record_as_nara_4469314",
+      "independence": "not_independent_same_record_volume_pair",
+      "observationIds": [
+        "obs-nara-v1-84-86",
+        "obs-nara-v1-89-92"
+      ],
+      "promotion": "not_admitted_to_stable_claim_or_readiness",
+      "relationId": "relation-cf697e938ca68f2b",
+      "relationStatus": "direct_observation_supports_numeric_or_star_surface_only",
+      "sourceId": "src-nara-4468520",
+      "sourceIdentityStatus": "identity_not_fully_closed"
+    },
+    {
+      "authority": "institutional_collection_identity_plus_direct_observation_bounded; edition_and_semantic_authority_unresolved",
+      "claimId": "claim-tianfu-anchor-direction",
+      "directObservation": "yes_bounded",
+      "editionLineage": "distinct_physical_witness_candidate_from_nara; textual_lineage_unresolved",
+      "independence": "independent_physical_witness_candidate_not_admitted_as_independent_oracle",
+      "observationIds": [
+        "obs-toyo-0004",
+        "obs-toyo-0008"
+      ],
+      "promotion": "not_admitted_to_stable_claim_or_readiness",
+      "relationId": "relation-d35e616a2cd05491",
+      "relationStatus": "direct_observation_supports_tianfu_surface_but_not_unique_convention",
+      "sourceId": "src-toyo-1646",
+      "sourceIdentityStatus": "identity_not_fully_closed"
+    },
+    {
+      "authority": "source_presence_and_direct_observation_only; semantic_authority_not_established",
+      "claimId": "claim-major-star-placement-jumen",
+      "directObservation": "yes_bounded",
+      "editionLineage": "unresolved_local_scan_lineage",
+      "independence": "not_established",
+      "observationIds": [
+        "obs-nanbei-p11-13"
+      ],
+      "promotion": "not_admitted_to_stable_claim_or_readiness",
+      "relationId": "relation-d7e23515ea11a9cd",
+      "relationStatus": "direct_observation_supports_numeric_or_star_surface_only",
+      "sourceId": "src-nanbei-pdf",
+      "sourceIdentityStatus": "identity_not_fully_closed"
+    },
+    {
+      "authority": "institutional_collection_identity_plus_direct_observation_bounded; edition_and_semantic_authority_unresolved",
+      "claimId": "claim-major-star-placement-tanlang",
+      "directObservation": "yes_bounded",
+      "editionLineage": "distinct_physical_witness_candidate_from_nara; textual_lineage_unresolved",
+      "independence": "independent_physical_witness_candidate_not_admitted_as_independent_oracle",
+      "observationIds": [
+        "obs-toyo-0004",
+        "obs-toyo-0008",
+        "obs-toyo-0085",
+        "obs-toyo-0088"
+      ],
+      "promotion": "not_admitted_to_stable_claim_or_readiness",
+      "relationId": "relation-dbac6c36de870df2",
+      "relationStatus": "direct_observation_supports_numeric_or_star_surface_only",
+      "sourceId": "src-toyo-1646",
+      "sourceIdentityStatus": "identity_not_fully_closed"
+    },
+    {
+      "authority": "institutional_collection_identity_plus_direct_observation_bounded; edition_and_semantic_authority_unresolved",
+      "claimId": "claim-auxiliary-star-placement-six-lucky",
+      "directObservation": "yes_bounded",
+      "editionLineage": "distinct_physical_witness_candidate_from_nara; textual_lineage_unresolved",
+      "independence": "independent_physical_witness_candidate_not_admitted_as_independent_oracle",
+      "observationIds": [
+        "obs-toyo-0004",
+        "obs-toyo-0014"
+      ],
+      "promotion": "not_admitted_to_stable_claim_or_readiness",
+      "relationId": "relation-de23879caed39e28",
+      "relationStatus": "direct_observation_supports_auxiliary_vocabulary_not_full_rule_witness",
+      "sourceId": "src-toyo-1646",
+      "sourceIdentityStatus": "identity_not_fully_closed"
+    },
+    {
+      "authority": "institutional_item_identity_and_direct_observation_bounded; semantic_authority_not_established",
+      "claimId": "claim-major-star-placement-ziwei",
+      "directObservation": "yes_bounded",
+      "editionLineage": "same_record_as_nara_4469314",
+      "independence": "not_independent_same_record_volume_pair",
+      "observationIds": [
+        "obs-nara-v1-84-86",
+        "obs-nara-v1-89-92"
+      ],
+      "promotion": "not_admitted_to_stable_claim_or_readiness",
+      "relationId": "relation-df100911f86b11e0",
+      "relationStatus": "direct_observation_supports_numeric_or_star_surface_only",
+      "sourceId": "src-nara-4468520",
+      "sourceIdentityStatus": "identity_not_fully_closed"
+    },
+    {
+      "authority": "institutional_catalog_link_only_for_derivative; semantic_authority_not_established",
+      "claimId": "claim-major-star-placement-taiyang",
+      "directObservation": "no_matching_selected_observation",
+      "editionLineage": "same_catalog_record_candidate_as_nara; not_independent",
+      "independence": "not_independent_same_record_derivative_candidate",
+      "observationIds": [],
+      "promotion": "not_admitted_to_stable_claim_or_readiness",
+      "relationId": "relation-dfe9ee5fce4ad88e",
+      "relationStatus": "direct_observation_supports_numeric_or_star_surface_only",
+      "sourceId": "src-nanyangtang-pdf",
+      "sourceIdentityStatus": "identity_not_fully_closed"
+    },
+    {
+      "authority": "institutional_catalog_link_only_for_derivative; semantic_authority_not_established",
+      "claimId": "claim-major-star-placement-wugu",
+      "directObservation": "no_matching_selected_observation",
+      "editionLineage": "same_catalog_record_candidate_as_nara; not_independent",
+      "independence": "not_independent_same_record_derivative_candidate",
+      "observationIds": [],
+      "promotion": "not_admitted_to_stable_claim_or_readiness",
+      "relationId": "relation-e4fc07a40bb96f33",
+      "relationStatus": "direct_observation_supports_numeric_or_star_surface_only",
+      "sourceId": "src-nanyangtang-pdf",
+      "sourceIdentityStatus": "identity_not_fully_closed"
+    },
+    {
+      "authority": "institutional_item_identity_and_direct_observation_bounded; semantic_authority_not_established",
+      "claimId": "claim-major-star-placement-jumen",
+      "directObservation": "yes_bounded",
+      "editionLineage": "same_record_as_nara_4469314",
+      "independence": "not_independent_same_record_volume_pair",
+      "observationIds": [
+        "obs-nara-v1-84-86",
+        "obs-nara-v1-89-92"
+      ],
+      "promotion": "not_admitted_to_stable_claim_or_readiness",
+      "relationId": "relation-e62b75f852565b0c",
+      "relationStatus": "direct_observation_supports_numeric_or_star_surface_only",
+      "sourceId": "src-nara-4468520",
+      "sourceIdentityStatus": "identity_not_fully_closed"
+    },
+    {
+      "authority": "institutional_collection_identity_plus_direct_observation_bounded; edition_and_semantic_authority_unresolved",
+      "claimId": "claim-major-star-placement-tiandong",
+      "directObservation": "yes_bounded",
+      "editionLineage": "distinct_physical_witness_candidate_from_nara; textual_lineage_unresolved",
+      "independence": "independent_physical_witness_candidate_not_admitted_as_independent_oracle",
+      "observationIds": [
+        "obs-toyo-0004",
+        "obs-toyo-0008",
+        "obs-toyo-0085",
+        "obs-toyo-0088"
+      ],
+      "promotion": "not_admitted_to_stable_claim_or_readiness",
+      "relationId": "relation-e7626672150c86b9",
+      "relationStatus": "direct_observation_supports_numeric_or_star_surface_only",
+      "sourceId": "src-toyo-1646",
+      "sourceIdentityStatus": "identity_not_fully_closed"
+    },
+    {
+      "authority": "institutional_collection_identity_plus_direct_observation_bounded; edition_and_semantic_authority_unresolved",
+      "claimId": "claim-major-star-placement-qisha",
+      "directObservation": "yes_bounded",
+      "editionLineage": "distinct_physical_witness_candidate_from_nara; textual_lineage_unresolved",
+      "independence": "independent_physical_witness_candidate_not_admitted_as_independent_oracle",
+      "observationIds": [
+        "obs-toyo-0004",
+        "obs-toyo-0008",
+        "obs-toyo-0085",
+        "obs-toyo-0088"
+      ],
+      "promotion": "not_admitted_to_stable_claim_or_readiness",
+      "relationId": "relation-e76dd1cc5e3bf4d3",
+      "relationStatus": "direct_observation_supports_numeric_or_star_surface_only",
+      "sourceId": "src-toyo-1646",
+      "sourceIdentityStatus": "identity_not_fully_closed"
+    },
+    {
+      "authority": "institutional_collection_identity_plus_direct_observation_bounded; edition_and_semantic_authority_unresolved",
+      "claimId": "claim-major-star-placement-tianliang",
+      "directObservation": "yes_bounded",
+      "editionLineage": "distinct_physical_witness_candidate_from_nara; textual_lineage_unresolved",
+      "independence": "independent_physical_witness_candidate_not_admitted_as_independent_oracle",
+      "observationIds": [
+        "obs-toyo-0004",
+        "obs-toyo-0008",
+        "obs-toyo-0085",
+        "obs-toyo-0088"
+      ],
+      "promotion": "not_admitted_to_stable_claim_or_readiness",
+      "relationId": "relation-e996229301eb7f5b",
+      "relationStatus": "direct_observation_supports_numeric_or_star_surface_only",
+      "sourceId": "src-toyo-1646",
+      "sourceIdentityStatus": "identity_not_fully_closed"
+    },
+    {
+      "authority": "institutional_collection_identity_plus_direct_observation_bounded; edition_and_semantic_authority_unresolved",
+      "claimId": "claim-major-star-placement-tianji",
+      "directObservation": "yes_bounded",
+      "editionLineage": "distinct_physical_witness_candidate_from_nara; textual_lineage_unresolved",
+      "independence": "independent_physical_witness_candidate_not_admitted_as_independent_oracle",
+      "observationIds": [
+        "obs-toyo-0004",
+        "obs-toyo-0008",
+        "obs-toyo-0085",
+        "obs-toyo-0088"
+      ],
+      "promotion": "not_admitted_to_stable_claim_or_readiness",
+      "relationId": "relation-ea67e429c11c610e",
+      "relationStatus": "direct_observation_supports_numeric_or_star_surface_only",
+      "sourceId": "src-toyo-1646",
+      "sourceIdentityStatus": "identity_not_fully_closed"
+    },
+    {
+      "authority": "institutional_collection_identity_plus_direct_observation_bounded; edition_and_semantic_authority_unresolved",
+      "claimId": "claim-major-star-placement-tianxiang",
+      "directObservation": "yes_bounded",
+      "editionLineage": "distinct_physical_witness_candidate_from_nara; textual_lineage_unresolved",
+      "independence": "independent_physical_witness_candidate_not_admitted_as_independent_oracle",
+      "observationIds": [
+        "obs-toyo-0004",
+        "obs-toyo-0008",
+        "obs-toyo-0085",
+        "obs-toyo-0088"
+      ],
+      "promotion": "not_admitted_to_stable_claim_or_readiness",
+      "relationId": "relation-ebca464b26822149",
+      "relationStatus": "direct_observation_supports_numeric_or_star_surface_only",
+      "sourceId": "src-toyo-1646",
+      "sourceIdentityStatus": "identity_not_fully_closed"
+    },
+    {
+      "authority": "institutional_collection_identity_plus_direct_observation_bounded; edition_and_semantic_authority_unresolved",
+      "claimId": "claim-tianfu-rotation06-semantic",
+      "directObservation": "yes_bounded",
+      "editionLineage": "distinct_physical_witness_candidate_from_nara; textual_lineage_unresolved",
+      "independence": "independent_physical_witness_candidate_not_admitted_as_independent_oracle",
+      "observationIds": [
+        "obs-toyo-0008"
+      ],
+      "promotion": "not_admitted_to_stable_claim_or_readiness",
+      "relationId": "relation-ef8c0126135aa8d7",
+      "relationStatus": "representation_only_not_semantic_authority",
+      "sourceId": "src-toyo-1646",
+      "sourceIdentityStatus": "identity_not_fully_closed"
+    },
+    {
+      "authority": "institutional_item_identity_and_direct_observation_bounded; semantic_authority_not_established",
+      "claimId": "claim-major-star-placement-tianfu",
+      "directObservation": "yes_bounded",
+      "editionLineage": "same_record_as_nara_4469314",
+      "independence": "not_independent_same_record_volume_pair",
+      "observationIds": [
+        "obs-nara-v1-84-86",
+        "obs-nara-v1-89-92"
+      ],
+      "promotion": "not_admitted_to_stable_claim_or_readiness",
+      "relationId": "relation-f072a84c7c729da2",
+      "relationStatus": "direct_observation_supports_numeric_or_star_surface_only",
+      "sourceId": "src-nara-4468520",
+      "sourceIdentityStatus": "identity_not_fully_closed"
+    },
+    {
+      "authority": "source_presence_and_direct_observation_only; semantic_authority_not_established",
+      "claimId": "claim-four-transformations-10x4",
+      "directObservation": "no_matching_selected_observation",
+      "editionLineage": "unresolved_local_scan_lineage",
+      "independence": "not_established",
+      "observationIds": [],
+      "promotion": "not_admitted_to_stable_claim_or_readiness",
+      "relationId": "relation-f1e0fb1ae9b03a60",
+      "relationStatus": "direct_observation_supports_four_transform_vocabulary_not_complete_10x4_table",
+      "sourceId": "src-nanbei-pdf",
+      "sourceIdentityStatus": "identity_not_fully_closed"
+    },
+    {
+      "authority": "institutional_collection_identity_plus_direct_observation_bounded; edition_and_semantic_authority_unresolved",
+      "claimId": "claim-four-transform-ji",
+      "directObservation": "yes_bounded",
+      "editionLineage": "distinct_physical_witness_candidate_from_nara; textual_lineage_unresolved",
+      "independence": "independent_physical_witness_candidate_not_admitted_as_independent_oracle",
+      "observationIds": [
+        "obs-toyo-0018"
+      ],
+      "promotion": "not_admitted_to_stable_claim_or_readiness",
+      "relationId": "relation-f62de25067d460cb",
+      "relationStatus": "direct_observation_supports_label_surface_only",
+      "sourceId": "src-toyo-1646",
+      "sourceIdentityStatus": "identity_not_fully_closed"
+    },
+    {
+      "authority": "institutional_collection_identity_plus_direct_observation_bounded; edition_and_semantic_authority_unresolved",
+      "claimId": "claim-life-body-ruler-24-ambiguous-rows",
+      "directObservation": "yes_bounded",
+      "editionLineage": "distinct_physical_witness_candidate_from_nara; textual_lineage_unresolved",
+      "independence": "independent_physical_witness_candidate_not_admitted_as_independent_oracle",
+      "observationIds": [
+        "obs-toyo-0014"
+      ],
+      "promotion": "not_admitted_to_stable_claim_or_readiness",
+      "relationId": "relation-f636769cd9a91d5b",
+      "relationStatus": "unresolved_row_level_source_identity",
+      "sourceId": "src-toyo-1646",
+      "sourceIdentityStatus": "identity_not_fully_closed"
+    },
+    {
+      "authority": "source_presence_and_direct_observation_only; semantic_authority_not_established",
+      "claimId": "claim-major-star-placement-qisha",
+      "directObservation": "yes_bounded",
+      "editionLineage": "unresolved_local_scan_lineage",
+      "independence": "not_established",
+      "observationIds": [
+        "obs-nanbei-p11-13"
+      ],
+      "promotion": "not_admitted_to_stable_claim_or_readiness",
+      "relationId": "relation-f893841cb0a72ec7",
+      "relationStatus": "direct_observation_supports_numeric_or_star_surface_only",
+      "sourceId": "src-nanbei-pdf",
+      "sourceIdentityStatus": "identity_not_fully_closed"
+    },
+    {
+      "authority": "source_presence_and_direct_observation_only; semantic_authority_not_established",
+      "claimId": "claim-tianfu-placement",
+      "directObservation": "yes_bounded",
+      "editionLineage": "unresolved_local_scan_lineage",
+      "independence": "not_established",
+      "observationIds": [
+        "obs-nanbei-p11-13"
+      ],
+      "promotion": "not_admitted_to_stable_claim_or_readiness",
+      "relationId": "relation-fd659363c698e50a",
+      "relationStatus": "numeric_relation_or_formula_surface_only",
+      "sourceId": "src-nanbei-pdf",
+      "sourceIdentityStatus": "identity_not_fully_closed"
+    },
+    {
+      "authority": "locator_only_not_direct_observation",
+      "claimId": "claim-ziwei-input-calendar-time",
+      "directObservation": "no_catalog_or_locator_only",
+      "editionLineage": "unresolved",
+      "independence": "not_established",
+      "observationIds": [],
+      "promotion": "not_admitted_to_stable_claim_or_readiness",
+      "relationId": "relation-fefb722582b21b7e",
+      "relationStatus": "unsupported_external_source_identity",
+      "sourceId": "src-ctext",
+      "sourceIdentityStatus": "catalog_or_locator_only"
+    },
+    {
+      "authority": "source_presence_and_direct_observation_only; semantic_authority_not_established",
+      "claimId": "claim-major-star-placement-wugu",
+      "directObservation": "yes_bounded",
+      "editionLineage": "unresolved_local_scan_lineage",
+      "independence": "not_established",
+      "observationIds": [
+        "obs-nanbei-p11-13"
+      ],
+      "promotion": "not_admitted_to_stable_claim_or_readiness",
+      "relationId": "relation-ffc97ee1ef9f2d3e",
+      "relationStatus": "direct_observation_supports_numeric_or_star_surface_only",
+      "sourceId": "src-nanbei-pdf",
+      "sourceIdentityStatus": "identity_not_fully_closed"
+    }
+  ]
+}

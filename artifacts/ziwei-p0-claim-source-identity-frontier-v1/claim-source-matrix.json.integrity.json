@@ -1,0 +1,6 @@
+{
+  "byteScope": "UTF-8 JSON bytes including final LF",
+  "byteSha256": "683e48543d63e6ba8d46a0b99c613ae7d9f8360cefdd6be080055956c8beaae9",
+  "path": "artifacts/ziwei-p0-claim-source-identity-frontier-v1/claim-source-matrix.json",
+  "schemaVersion": "ziwei-p0-claim-source-identity-frontier-v1"
+}

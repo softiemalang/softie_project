@@ -1,0 +1,85 @@
+{
+  "blockerPolicy": {
+    "frontierConclusion": "publicly resolvable source/witness frontier was exhausted at the access boundaries recorded here",
+    "statusMeaning": "blocked and needs_human_review remain unresolved; no unsupported row is silently omitted"
+  },
+  "blockers": [
+    {
+      "id": "blocker-source-identity-unresolved",
+      "reason": "Every occurrence still needs exact edition/lineage, volume/folio/page or leaf, actual retrieval bytes where applicable, and a claim-boundary decision. Toyo adds a distinct physical candidate but does not close its date/lineage/authority.",
+      "requiredForPromotion": true,
+      "resolution": "preserve unresolved until exact requested human/collection evidence is supplied",
+      "status": "blocked"
+    },
+    {
+      "id": "blocker-palace-semantic-identity",
+      "reason": "No public witness reviewed provides one complete readable map of all 12 names, branch glyphs, physical slots, ordinal, base direction, and production enum.",
+      "requiredForPromotion": true,
+      "resolution": "preserve unresolved until exact requested human/collection evidence is supplied",
+      "status": "blocked"
+    },
+    {
+      "id": "blocker-direct-rule-absent",
+      "reason": "The 14 major-star source surfaces and charts do not supply an admitted row-level original-text placement rule for every star with closed identity and semantics.",
+      "requiredForPromotion": true,
+      "resolution": "preserve unresolved until exact requested human/collection evidence is supplied",
+      "status": "blocked"
+    },
+    {
+      "id": "blocker-tianfu-raw-formula-contradiction",
+      "reason": "Legacy and source-aligned Tianfu conventions remain in code; observed 安天府 surfaces do not uniquely adjudicate the production convention.",
+      "requiredForPromotion": true,
+      "resolution": "preserve unresolved until exact requested human/collection evidence is supplied",
+      "status": "blocked"
+    },
+    {
+      "id": "blocker-tianfu-rotation06-semantic-authority",
+      "reason": "rotation-06 numeric relation is representation-only and never source/semantic authority.",
+      "requiredForPromotion": true,
+      "resolution": "preserve unresolved until exact requested human/collection evidence is supplied",
+      "status": "blocked"
+    },
+    {
+      "id": "blocker-auxiliary-star-source-witness",
+      "reason": "Auxiliary-star vocabulary and selected tables are visible, but a complete independently identified rule witness is absent.",
+      "requiredForPromotion": true,
+      "resolution": "preserve unresolved until exact requested human/collection evidence is supplied",
+      "status": "blocked"
+    },
+    {
+      "id": "blocker-four-transform-source-witness",
+      "reason": "四化 labels are directly visible, but a complete 10-stem × 4 source table with edition/leaf/context and authority is absent.",
+      "requiredForPromotion": true,
+      "resolution": "preserve unresolved until exact requested human/collection evidence is supplied",
+      "status": "blocked"
+    },
+    {
+      "id": "blocker-life-body-ruler-source-legibility",
+      "reason": "Selected 命主/身主 pages are direct observations; 24 ambiguous rows and source identity remain unresolved.",
+      "requiredForPromotion": true,
+      "resolution": "preserve unresolved until exact requested human/collection evidence is supplied",
+      "status": "blocked"
+    },
+    {
+      "id": "blocker-independent-external-oracle",
+      "reason": "No independently reproduced external calculation/oracle with exact source identity and settings is admitted.",
+      "requiredForPromotion": true,
+      "resolution": "preserve unresolved until exact requested human/collection evidence is supplied",
+      "status": "blocked"
+    },
+    {
+      "id": "blocker-calendar-time-source-identity",
+      "reason": "Calendar/time source identity is not closed for the input boundary and is not promoted by local execution.",
+      "requiredForPromotion": true,
+      "resolution": "preserve unresolved until exact requested human/collection evidence is supplied",
+      "status": "blocked"
+    },
+    {
+      "id": "blocker-image-reuse-rights",
+      "reason": "NARA metadata/public viewer and Toyo/AKS public images were inspected read-only; image reuse/license permission is not treated as repository inclusion authority.",
+      "requiredForPromotion": true,
+      "resolution": "preserve unresolved until exact requested human/collection evidence is supplied",
+      "status": "needs_human_review"
+    }
+  ]
+}
