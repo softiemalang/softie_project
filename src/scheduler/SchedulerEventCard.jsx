@@ -3,6 +3,8 @@ import { getTagMeta } from './helpers'
 
 export function SchedulerEventCard({ item, onToggleDone, isSaving }) {
   const reservation = item.reservation || {}
+  const isDone = item.status === 'done'
+  const statusActionLabel = isDone ? '완료 취소' : '완료'
   const urgencyText = item.status === 'done' || item.relativeTimingEnabled === false
     ? ''
     : item.isOverdue
@@ -14,7 +16,7 @@ export function SchedulerEventCard({ item, onToggleDone, isSaving }) {
     'scheduler-event-card',
     `event-${item.event_type}`,
     item.memo_snapshot ? 'has-note' : '',
-    item.status === 'done' ? 'done' : '',
+    isDone ? 'done' : '',
     item.isOverdue ? 'overdue' : '',
     item.isUpcomingSoon ? 'upcoming' : '',
   ]
@@ -22,7 +24,7 @@ export function SchedulerEventCard({ item, onToggleDone, isSaving }) {
     .join(' ')
 
   return (
-    <article className={cardClassName}>
+    <article className={cardClassName} aria-busy={isSaving}>
       <div className="scheduler-event-summary">
         <div className="scheduler-event-time-block">
           <strong>{item.timeLabel}</strong>
@@ -47,12 +49,14 @@ export function SchedulerEventCard({ item, onToggleDone, isSaving }) {
         <div className="scheduler-event-action-buttons">
           <button
             type="button"
-            className={item.status === 'done' ? 'scheduler-action-button secondary' : 'scheduler-action-button'}
+            className={isDone ? 'scheduler-action-button secondary' : 'scheduler-action-button'}
             disabled={isSaving}
+            aria-label={isSaving ? `${statusActionLabel} 처리 중` : statusActionLabel}
+            aria-pressed={isDone}
             onClick={() => onToggleDone(item)}
           >
             <span className="scheduler-action-button-visual">
-              {item.status === 'done' ? '완료 취소' : '완료'}
+              {statusActionLabel}
             </span>
           </button>
           <button
