@@ -1,0 +1,289 @@
+{
+  "externalResearchBoundary": {
+    "localSketchPathIsExplicit": true,
+    "noExternalAcquisitionDuringMaterialization": true,
+    "officialOriginalityClaim": false,
+    "officialPagesObserved": [
+      "https://developer.apple.com/design/human-interface-guidelines/motion",
+      "https://developer.apple.com/design/human-interface-guidelines/accessibility",
+      "https://developer.apple.com/help/app-store-connect/manage-app-accessibility/reduced-motion-evaluation-criteria",
+      "https://developer.apple.com/videos/play/wwdc2018/803/",
+      "https://developer.apple.com/support/downloads/terms/apple-design-resources/Apple-Design-Resources-License-20230621-English.pdf"
+    ]
+  },
+  "provenanceTiers": [
+    {
+      "admission": "Direct observation only; official originality and reuse rights remain separate checks",
+      "code": "apple_official_artifact",
+      "id": "T1",
+      "name": "Apple official artifact"
+    },
+    {
+      "admission": "Skill translation of Apple concepts; never conflated with Apple primary guidance",
+      "code": "apple_derived_guidance",
+      "id": "T2",
+      "name": "Apple-derived guidance"
+    },
+    {
+      "admission": "Emil-style web practice; never treated as Apple authority",
+      "code": "independent_design_engineering_guidance",
+      "id": "T3",
+      "name": "Independent design-engineering guidance"
+    },
+    {
+      "admission": "Current DESIGN.md or deliberately observed implementation value",
+      "code": "softie_house_rule",
+      "id": "T4",
+      "name": "Softie house rule"
+    },
+    {
+      "admission": "Pilot hypothesis only; requires product and device validation",
+      "code": "proposed_candidate",
+      "id": "T5",
+      "name": "Proposed candidate"
+    }
+  ],
+  "repositoryInputIdentities": [
+    {
+      "byteLength": 12039,
+      "byteSha256": "f1dd85901c74c49ca5e1c81d3db57a9b7aba41b2bd49eb5c2c84114035bdb55d",
+      "id": "AGENTS.md",
+      "path": "AGENTS.md"
+    },
+    {
+      "byteLength": 30445,
+      "byteSha256": "15da2799083244bce17635b942a86824ce2d5b52056bf0f90775fe03f9b26610",
+      "id": "DESIGN.md",
+      "path": "DESIGN.md"
+    },
+    {
+      "byteLength": 76945,
+      "byteSha256": "59253767726e30e622fe17cd6db641407efa17bcd0ab1c66934298ecc1706110",
+      "id": "design-qa.md",
+      "path": "design-qa.md"
+    },
+    {
+      "byteLength": 136382,
+      "byteSha256": "b41649dbe652136a252466f97b95199ba45e904fde2becde68cfd2732f2fc6c5",
+      "id": "src/styles.css",
+      "path": "src/styles.css"
+    },
+    {
+      "byteLength": 7323,
+      "byteSha256": "f68948834540568f186b2cc9c2d7b967ef01258079490d936655a84538db2a76",
+      "id": "src/App.jsx",
+      "path": "src/App.jsx"
+    },
+    {
+      "byteLength": 347,
+      "byteSha256": "5a3b75b894d3596a12a3b4811e2c09483b1c4bb4cc1119bec8df8c16c0baadcb",
+      "id": "src/components/LazyRoute.jsx",
+      "path": "src/components/LazyRoute.jsx"
+    },
+    {
+      "byteLength": 2469,
+      "byteSha256": "bbd4be43c90c29b48ffc8475e8e8d77743e74e37ba744397788e7b842ddf5053",
+      "id": "src/lib/router.js",
+      "path": "src/lib/router.js"
+    },
+    {
+      "byteLength": 4173,
+      "byteSha256": "306811825b7f3c25e3d41d51e1ea2fd5c29ecb38f20309356435f9d885118577",
+      "id": "src/scheduler/SchedulerApp.jsx",
+      "path": "src/scheduler/SchedulerApp.jsx"
+    },
+    {
+      "byteLength": 9261,
+      "byteSha256": "cb7ef527ae3c31aaa07551e3a0ec42606409a6af6aba1fadeb7fbc2c8db0f74c",
+      "id": "src/scheduler/SchedulerAuthGate.jsx",
+      "path": "src/scheduler/SchedulerAuthGate.jsx"
+    },
+    {
+      "byteLength": 35038,
+      "byteSha256": "4a92300b825ac4d6385439212aff29b28e28b392dc2e4884d3cce8ccb4d4a368",
+      "id": "src/scheduler/TodaySchedulerPage.jsx",
+      "path": "src/scheduler/TodaySchedulerPage.jsx"
+    },
+    {
+      "byteLength": 1535,
+      "byteSha256": "3861472c680e8c8f9e9f3ce5bfa52583f245b221bf1d20a91a5e703f4bffef74",
+      "id": "src/scheduler/SchedulerEventSection.jsx",
+      "path": "src/scheduler/SchedulerEventSection.jsx"
+    },
+    {
+      "byteLength": 2900,
+      "byteSha256": "0d31f73caf0547c84f2494604a3e7caa1322a7344556581441ab3b55433e495f",
+      "id": "src/scheduler/SchedulerEventCard.jsx",
+      "path": "src/scheduler/SchedulerEventCard.jsx"
+    },
+    {
+      "byteLength": 24189,
+      "byteSha256": "d65904643d3c5936536e919bc35e5aae99216f1cfe9ecc11658187e4b134b239",
+      "id": "src/scheduler/ReservationEditorPage.jsx",
+      "path": "src/scheduler/ReservationEditorPage.jsx"
+    },
+    {
+      "byteLength": 3765,
+      "byteSha256": "fbded5e87af0369271f1ab5a5622056fa842aa01dfaa61a8d84c2e5fa57ca86a",
+      "id": "src/scheduler/RoomStatusPage.jsx",
+      "path": "src/scheduler/RoomStatusPage.jsx"
+    },
+    {
+      "byteLength": 51832,
+      "byteSha256": "58f1aea79c4172b3e8872f9aac063bff4b7e40d1917bd8b6579560323c1adf98",
+      "id": "src/interpretationPrep/interpretationPrep.css",
+      "path": "src/interpretationPrep/interpretationPrep.css"
+    },
+    {
+      "byteLength": 9151,
+      "byteSha256": "d9a49309f279bfb50322eb3bcdf53f4dc846986c74589d884a9f0475729b078b",
+      "id": "src/interpretationPrep/components/ChatHandoffCard.jsx",
+      "path": "src/interpretationPrep/components/ChatHandoffCard.jsx"
+    },
+    {
+      "byteLength": 22715,
+      "byteSha256": "11840b24a11d7f94f39c6aaab074750ae4e4de4ef54ee4b1dd97e16ebd485e61",
+      "id": ".agents/skills/apple-design/SKILL.md",
+      "path": ".agents/skills/apple-design/SKILL.md"
+    },
+    {
+      "byteLength": 11527,
+      "byteSha256": "2a99870e61971553c0af3185a194c0e557f33aaa81e0422ca2fcec52195a4341",
+      "id": ".agents/skills/animate/SKILL.md",
+      "path": ".agents/skills/animate/SKILL.md"
+    },
+    {
+      "byteLength": 8108,
+      "byteSha256": "61cf8ac0c4c8e1f63385298c546b16c65ca9aec34abddcd04e821c16712d671d",
+      "id": ".agents/skills/review-animations/SKILL.md",
+      "path": ".agents/skills/review-animations/SKILL.md"
+    },
+    {
+      "byteLength": 8847,
+      "byteSha256": "45d47c02b33ef924331a3064b579b68402e52c5393322c1de6071421a6085fc7",
+      "id": "src/artifactIdentity.js",
+      "path": "src/artifactIdentity.js"
+    },
+    {
+      "byteLength": 69083,
+      "byteSha256": "a2ad9b1fe03dd97099e7ee405751295796cda0e58fd902e8092d7e3f795317ee",
+      "id": "scripts/materialize-design-reference-audit-v1.mjs",
+      "path": "scripts/materialize-design-reference-audit-v1.mjs"
+    }
+  ],
+  "schemaVersion": "design-reference-source-ledger-v1",
+  "sources": [
+    {
+      "accessMode": "local_byte_access",
+      "authority": "Local Apple-named Sketch package, direct structural observation only",
+      "authorityBoundary": "Local filename and document metadata do not independently prove official originality or grant reuse rights",
+      "byteLength": 153010206,
+      "error": null,
+      "id": "SRC-APPLE-KIT-IOS27",
+      "observedArchive": {
+        "entryCount": 206,
+        "format": "Sketch ZIP archive",
+        "jsonEntryCount": 37,
+        "packageDirectories": [
+          "fonts",
+          "images",
+          "pages",
+          "previews"
+        ],
+        "pageEntryCount": 34,
+        "topLevelEntries": [
+          "document.json",
+          "meta.json",
+          "user.json"
+        ]
+      },
+      "path": "/Users/softie/Documents/softie_design/Apple iOS 27 UI Kit.sketch",
+      "reuseBoundary": "No Apple asset, font, image, or Template Content was copied into the repository",
+      "role": "Directly observed component geometry, styles, typography samples, and loading indicator structure",
+      "sourceByteSha256": "5941547509b49a3756667905f18492dfdf4e59a977de1deacccfcf7ff94ac295",
+      "status": "direct_observation_accessible",
+      "tier": "apple_official_artifact",
+      "title": "Apple iOS 27 UI Kit.sketch"
+    },
+    {
+      "accessMode": "official_web_observation_2026-08-11",
+      "id": "SRC-APPLE-HIG-MOTION",
+      "role": "Official guidance on purposeful, brief, realistic, optional, and interruptible motion",
+      "tier": "apple_official_primary_guidance",
+      "title": "Apple Human Interface Guidelines: Motion",
+      "url": "https://developer.apple.com/design/human-interface-guidelines/motion"
+    },
+    {
+      "accessMode": "official_web_observation_2026-08-11",
+      "id": "SRC-APPLE-HIG-ACCESSIBILITY",
+      "role": "Official control sizing, spacing, and accessibility baseline",
+      "tier": "apple_official_primary_guidance",
+      "title": "Apple Human Interface Guidelines: Accessibility",
+      "url": "https://developer.apple.com/design/human-interface-guidelines/accessibility"
+    },
+    {
+      "accessMode": "official_web_observation_2026-08-11",
+      "id": "SRC-APPLE-REDUCED-MOTION",
+      "role": "Official reduced-motion substitutions for scaling, spinning, depth, parallax, and animated blur",
+      "tier": "apple_official_primary_guidance",
+      "title": "Apple reduced-motion evaluation criteria",
+      "url": "https://developer.apple.com/help/app-store-connect/manage-app-accessibility/reduced-motion-evaluation-criteria"
+    },
+    {
+      "accessMode": "official_web_observation_2026-08-11",
+      "id": "SRC-APPLE-WWDC18-FLUID",
+      "role": "Official presentation on touch-down feedback, continuous tracking, response, springs, and momentum",
+      "tier": "apple_official_primary_guidance",
+      "title": "WWDC18: Designing Fluid Interfaces",
+      "url": "https://developer.apple.com/videos/play/wwdc2018/803/"
+    },
+    {
+      "accessMode": "official_web_observation_2026-08-11",
+      "id": "SRC-APPLE-DESIGN-RESOURCES-LICENSE",
+      "role": "Rights boundary for Apple Design Resources, Template Content, and font reuse",
+      "tier": "apple_official_license_context",
+      "title": "Apple Design Resources License Agreement",
+      "url": "https://developer.apple.com/support/downloads/terms/apple-design-resources/Apple-Design-Resources-License-20230621-English.pdf"
+    },
+    {
+      "accessMode": "local_repository_read",
+      "id": "SRC-SKILL-APPLE-DESIGN",
+      "path": ".agents/skills/apple-design/SKILL.md",
+      "role": "A local translation of Apple interaction and motion concepts; not an Apple primary source",
+      "tier": "apple_derived_guidance",
+      "title": "Installed apple-design skill"
+    },
+    {
+      "accessMode": "local_repository_read",
+      "id": "SRC-SKILL-ANIMATE",
+      "path": ".agents/skills/animate/SKILL.md",
+      "role": "Emil Kowalski-style web animation construction guidance, including role-based duration and easing ranges",
+      "tier": "independent_design_engineering_guidance",
+      "title": "Installed animate skill"
+    },
+    {
+      "accessMode": "local_repository_read",
+      "id": "SRC-SKILL-REVIEW-ANIMATIONS",
+      "path": ".agents/skills/review-animations/SKILL.md",
+      "role": "Emil Kowalski-style animation review rubric; review guidance, not product authority",
+      "tier": "independent_design_engineering_guidance",
+      "title": "Installed review-animations skill"
+    },
+    {
+      "accessMode": "local_repository_read",
+      "id": "SRC-SOFTIE-DESIGN",
+      "path": "DESIGN.md",
+      "role": "Repository source of truth for new or explicitly redesigned Softie surfaces",
+      "tier": "softie_house_rule",
+      "title": "Softie DESIGN.md"
+    },
+    {
+      "accessMode": "local_repository_read",
+      "id": "SRC-SOFTIE-CODE",
+      "path": "src/styles.css",
+      "role": "Observed implementation behavior and local code values; not automatically normative",
+      "tier": "softie_house_rule_observed_code",
+      "title": "Softie UI/CSS and scheduler implementation"
+    }
+  ]
+}

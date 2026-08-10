@@ -1,0 +1,113 @@
+{
+  "nonRules": [
+    "Numeric agreement does not establish source authority.",
+    "A skill value does not become Apple official because its prose cites Apple concepts.",
+    "A Softie token does not become industry standard because it resembles an external range.",
+    "Local Sketch metadata does not establish licensing or official originality.",
+    "A component frame is not a runtime animation contract."
+  ],
+  "rules": [
+    {
+      "from": [
+        "OBS-APPLE-PROGRESS-SPINNER-SIZES",
+        "OBS-APPLE-LOADING-ROW"
+      ],
+      "id": "LIN-001",
+      "independent": false,
+      "note": "Apple artifact geometry is one lineage and does not become a Softie token by numeric similarity",
+      "relation": "direct_observation_to_candidate",
+      "to": [
+        "candidate_scheduler_loading_indicator"
+      ]
+    },
+    {
+      "from": [
+        "OBS-SOFTIE-DURATION-FAST"
+      ],
+      "id": "LIN-002",
+      "independent": false,
+      "note": "180ms is Softie-owned",
+      "relation": "house_rule_adoption",
+      "to": [
+        "softie_motion_baseline"
+      ]
+    },
+    {
+      "from": [
+        "OBS-SOFTIE-EASING-STANDARD"
+      ],
+      "id": "LIN-003",
+      "independent": false,
+      "note": "ease is Softie-owned; do not attribute it to Apple or Emil",
+      "relation": "house_rule_adoption",
+      "to": [
+        "softie_motion_baseline"
+      ]
+    },
+    {
+      "from": [
+        "OBS-EMIL-PRESS-RANGE",
+        "OBS-EMIL-ROLE-RANGES",
+        "OBS-EMIL-EASING-ROLES"
+      ],
+      "id": "LIN-004",
+      "independent": true,
+      "note": "Useful comparator for a web pilot, not authority over repository rules",
+      "relation": "independent_guidance_to_candidate",
+      "to": [
+        "pilot_duration_easing_roles"
+      ]
+    },
+    {
+      "from": [
+        "OBS-APPLE-DERIVED-SPRING"
+      ],
+      "id": "LIN-005",
+      "independent": false,
+      "note": "The skill is an interpretation layer over Apple guidance",
+      "relation": "derived_guidance_to_reference",
+      "to": [
+        "pilot_gesture_spring"
+      ]
+    },
+    {
+      "from": [
+        "OBS-SOFTIE-TOUCH-TARGET",
+        "OBS-APPLE-HIG-TOUCH"
+      ],
+      "id": "LIN-006",
+      "independent": true,
+      "note": "Compatible outcomes are not merged provenance",
+      "relation": "parallel_compatible_evidence",
+      "to": [
+        "touch_target_compatibility"
+      ]
+    },
+    {
+      "from": [
+        "OBS-SOFTIE-GLASS-TOKENS",
+        "OBS-APPLE-MATERIAL-STYLE-KEYS"
+      ],
+      "id": "LIN-007",
+      "independent": true,
+      "note": "Blur, saturation, depth, and distortion are not interchangeable material semantics",
+      "relation": "parallel_reference_only",
+      "to": [
+        "material_pilot_reference"
+      ]
+    },
+    {
+      "from": [
+        "OBS-APPLE-MOTION-METADATA"
+      ],
+      "id": "LIN-008",
+      "independent": false,
+      "note": "No motion fields observed in archive JSON; no Apple motion number is admitted from this artifact",
+      "relation": "negative_observation",
+      "to": [
+        "motion_duration_easing_authority"
+      ]
+    }
+  ],
+  "schemaVersion": "design-reference-provenance-lineage-v1"
+}

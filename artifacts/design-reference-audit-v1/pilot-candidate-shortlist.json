@@ -1,0 +1,94 @@
+{
+  "candidates": [
+    {
+      "area": "async_loading_loaded_reveal",
+      "candidateConstraints": [
+        "transform/opacity only if motion is used",
+        "no layout property animation",
+        "under 200ms candidate envelope",
+        "preserve reduced-motion static/dissolve alternative",
+        "do not hide a stale date/filter result"
+      ],
+      "failureCriteria": [
+        "empty state appears loaded before data arrives",
+        "motion delays scanning or action",
+        "content jumps",
+        "reduced motion loses state meaning",
+        "refetch makes old cards look fresh"
+      ],
+      "id": "PILOT-01",
+      "implementation": "Not implemented in this work unit",
+      "rank": 1,
+      "recommendation": "recommended",
+      "scope": "First empty-state Today fetch only: retain the existing loading state, add at most one stable inline cue or a single content reveal after successful data arrival; no stagger, no refetch animation, no API/data-flow change",
+      "status": "candidate_for_pilot",
+      "successCriteria": [
+        "waiting is distinguishable from genuinely empty",
+        "first event is readable immediately after arrival",
+        "no observable layout jump or delayed action",
+        "reduced-motion users receive equivalent state information",
+        "no stale refetch content is falsely presented as newly loaded"
+      ],
+      "surface": "Scheduler Today event list"
+    },
+    {
+      "area": "tap_press_feedback",
+      "candidateConstraints": [
+        "touch-down feedback must be immediate",
+        "keep activation on release",
+        "avoid scale reducing hit target perception",
+        "respect hover/pointer-fine gating",
+        "reduced motion keeps clear pressed state without continuous motion"
+      ],
+      "failureCriteria": [
+        "press feels delayed or bouncy",
+        "button appears to move under the finger",
+        "hover style leaks to touch",
+        "focus or reduced-motion state is obscured"
+      ],
+      "id": "PILOT-02",
+      "implementation": "Not implemented in this work unit",
+      "rank": 2,
+      "recommendation": "recommended_if_loading_pilot_is_accepted",
+      "scope": "One existing 44px action family with no business/data change; compare current 160-180ms feedback against a role-specific short press candidate",
+      "status": "candidate_for_pilot",
+      "successCriteria": [
+        "press is perceived before release",
+        "no accidental activation increase",
+        "visual weight remains coherent with existing tokens",
+        "keyboard/focus behavior unchanged"
+      ],
+      "surface": "One high-frequency Scheduler action family"
+    },
+    {
+      "area": "modal_sheet_popover",
+      "candidateConstraints": [
+        "focus restoration is a hard gate",
+        "scrim must communicate modality",
+        "no Apple asset/font reuse",
+        "do not stack extra translucent layers"
+      ],
+      "failureCriteria": [
+        "focus is lost",
+        "sheet feels detached from trigger",
+        "backdrop harms contrast",
+        "reduced motion removes modality cue"
+      ],
+      "id": "PILOT-03",
+      "implementation": "Not implemented in this work unit",
+      "rank": 3,
+      "recommendation": "recommended_later",
+      "scope": "Existing sheet interaction named by DESIGN.md as the first iOS-style pilot; test focus, backdrop, entry/exit origin, keyboard, and reduced motion without changing memo data semantics",
+      "status": "candidate_for_pilot",
+      "successCriteria": [
+        "open/close origin is spatially legible",
+        "keyboard focus is reliable",
+        "backdrop and escape behavior remain clear",
+        "reduced motion preserves modal hierarchy"
+      ],
+      "surface": "Home Memo sheet"
+    }
+  ],
+  "schemaVersion": "design-reference-pilot-candidate-shortlist-v1",
+  "selectionRule": "Prioritize high-frequency, low-data-risk, reversible experiments with observable success criteria; no candidate is adopted by this artifact"
+}

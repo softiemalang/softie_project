@@ -1,0 +1,37 @@
+{
+  "artifactId": "design-reference-audit-v1",
+  "completeArtifactPath": "artifacts/design-reference-audit-v1/complete.json",
+  "files": {
+    "artifacts/design-reference-audit-v1/complete.json": {
+      "byteLength": 4638226,
+      "byteSha256": "b8848d01cf663ae1c432612f3852175a0cde4e589d0914d408bbdfc26373f527",
+      "hashScope": "exact UTF-8 file bytes including final LF"
+    },
+    "artifacts/design-reference-audit-v1/conflict-compatibility-matrix.json": {
+      "byteLength": 9106,
+      "byteSha256": "1c99c871e53a700a0d0dfab01c68e0c7729df91daf7101aef2b61f5c2cb2c57b",
+      "hashScope": "exact UTF-8 file bytes including final LF"
+    },
+    "artifacts/design-reference-audit-v1/observation-value-ledger.json": {
+      "byteLength": 196488,
+      "byteSha256": "26eda8128697eeb4d0207141001fdb0f98e57c233cb34b63b26ca58c3ec8f1e4",
+      "hashScope": "exact UTF-8 file bytes including final LF"
+    },
+    "artifacts/design-reference-audit-v1/pilot-candidate-shortlist.json": {
+      "byteLength": 4007,
+      "byteSha256": "7febb78d8903b69f18246abeb8522a58088cfdbe6bb5ad8e7f3ce92387e674cc",
+      "hashScope": "exact UTF-8 file bytes including final LF"
+    },
+    "artifacts/design-reference-audit-v1/provenance-lineage.json": {
+      "byteLength": 3179,
+      "byteSha256": "76ef1dedf067855bc39ce6ad0d0ab0e4c64ee7673b0ed8e67237d452822d1884",
+      "hashScope": "exact UTF-8 file bytes including final LF"
+    },
+    "artifacts/design-reference-audit-v1/source-reference-ledger.json": {
+      "byteLength": 11582,
+      "byteSha256": "7887d6d0641a41f2a69834a3ad9ec809312d2cad4a02f605e8ce87b427fca80a",
+      "hashScope": "exact UTF-8 file bytes including final LF"
+    }
+  },
+  "schemaVersion": "design-reference-audit-integrity-v1"
+}

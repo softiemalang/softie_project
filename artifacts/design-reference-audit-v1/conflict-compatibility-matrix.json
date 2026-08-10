@@ -1,0 +1,169 @@
+{
+  "rows": [
+    {
+      "area": "tap_press_feedback",
+      "conflict": "Partial: Softie 180ms house baseline is slightly slower than the independent 100-160ms press reference; Apple sources support immediate feedback but give no matching local numeric token",
+      "externalEvidence": [
+        "OBS-APPLE-HIG-TOUCH",
+        "OBS-EMIL-PRESS-RANGE"
+      ],
+      "id": "MAT-01",
+      "recommendation": "Pilot one high-frequency Scheduler action family only; preserve hit area and data behavior; compare immediate touch-down clarity and accidental activation",
+      "recommendedStatus": "candidate_for_pilot",
+      "risk": "low_to_medium_visual_weight_and_inconsistent_families",
+      "softieCurrentState": "Scheduler action family has small press scale and 160ms custom ease-out in scoped code; generic primary/secondary actions use 180ms ease; legacy rules remain mixed",
+      "value": "high_frequency_high_value"
+    },
+    {
+      "area": "route_page_transition",
+      "conflict": "Partial: platform/browser support and fallback visual continuity are unverified; Softie route curve is not proven Apple or Emil lineage",
+      "externalEvidence": [
+        "SRC-APPLE-HIG-MOTION",
+        "SRC-SKILL-APPLE-DESIGN",
+        "OBS-EMIL-EASING-ROLES"
+      ],
+      "id": "MAT-02",
+      "recommendation": "Keep selective opt-in; verify on supported browser and physical device before any wider adoption",
+      "recommendedStatus": "reference_only",
+      "risk": "medium_platform_support_and_context_loss",
+      "softieCurrentState": "View Transitions are explicit opt-in and skipped for reduced motion; route fallback is a generic light loading shell",
+      "value": "medium"
+    },
+    {
+      "area": "async_loading_loaded_reveal",
+      "conflict": "Partial: direct loading-row geometry is useful reference, but stale-content semantics and layout stability are product-specific",
+      "externalEvidence": [
+        "OBS-APPLE-LOADING-ROW",
+        "SRC-APPLE-HIG-MOTION",
+        "OBS-EMIL-ROLE-RANGES"
+      ],
+      "id": "MAT-03",
+      "recommendation": "Yes, as a minimal inline loading cue/reveal pilot scoped to the first empty Today event fetch; do not animate stale refetches until semantics are explicit",
+      "recommendedStatus": "candidate_for_pilot",
+      "risk": "medium_stale_content_confusion_or_layout_shift",
+      "softieCurrentState": "TodaySchedulerPage uses message-based loading; first two empty sections hide the loading text, refetch retains old events, and no content-entry reveal exists",
+      "value": "high_frequency_high_value"
+    },
+    {
+      "area": "modal_sheet_popover",
+      "conflict": "Compatible in intent; timing, detent, and material reuse rights remain unverified",
+      "externalEvidence": [
+        "SRC-APPLE-HIG-MOTION",
+        "SRC-SKILL-APPLE-DESIGN",
+        "OBS-EMIL-ROLE-RANGES"
+      ],
+      "id": "MAT-04",
+      "recommendation": "Use existing Home Memo sheet as a later focused pilot after loading cue; validate focus restoration, keyboard, backdrop, and reduced motion",
+      "recommendedStatus": "candidate_for_pilot",
+      "risk": "medium_accessibility_and_focus_regression",
+      "softieCurrentState": "Memo sheet and scheduler modal/sheet flows include focus/escape/scrim/material behavior; DESIGN.md names Memo sheet as first iOS-style pilot",
+      "value": "medium"
+    },
+    {
+      "area": "drag_gesture_spring",
+      "conflict": "Not applicable to current admitted scope; no Apple Kit runtime motion fields observed",
+      "externalEvidence": [
+        "SRC-APPLE-WWDC18-FLUID",
+        "SRC-SKILL-APPLE-DESIGN"
+      ],
+      "id": "MAT-05",
+      "recommendation": "Do not introduce a spring experiment without a real direct-manipulation surface and device test plan",
+      "recommendedStatus": "not_applicable",
+      "risk": "high_complexity_and_interruption_risk",
+      "softieCurrentState": "No active production Scheduler drag/spring surface was admitted in this audit",
+      "value": "low_current_value"
+    },
+    {
+      "area": "reduced_motion",
+      "conflict": "Conflict/partial: Softie often suppresses to near-zero duration, while guidance favors preserving status/hierarchy with dissolve/highlight/static alternatives",
+      "externalEvidence": [
+        "SRC-APPLE-REDUCED-MOTION",
+        "SRC-SKILL-APPLE-DESIGN",
+        "SRC-SKILL-ANIMATE"
+      ],
+      "id": "MAT-06",
+      "recommendation": "Treat as an audit gate for every pilot; do not claim repository-wide adoption until all relevant paths are verified",
+      "recommendedStatus": "reference_only",
+      "risk": "medium_inconsistent_semantics",
+      "softieCurrentState": "Reduced-motion rules exist for atmospheric/view-transition paths and some component animations; legacy transitions and at least one animation path remain outside a complete contract",
+      "value": "high_accessibility_value"
+    },
+    {
+      "area": "opacity_transform",
+      "conflict": "Partial: principle is compatible; implementation is not normalized and some transitions can animate layout/property changes",
+      "externalEvidence": [
+        "SRC-SKILL-APPLE-DESIGN",
+        "SRC-SKILL-ANIMATE",
+        "SRC-SKILL-REVIEW-ANIMATIONS"
+      ],
+      "id": "MAT-07",
+      "recommendation": "Use transform/opacity as a pilot constraint, not a retrofit mandate",
+      "recommendedStatus": "reference_only",
+      "risk": "medium_performance_and_layout_motion",
+      "softieCurrentState": "Motion commonly uses transform/opacity, but legacy transition-all/property-specific transitions and width progress transitions remain",
+      "value": "medium"
+    },
+    {
+      "area": "progress_loading_indicators",
+      "conflict": "No direct conflict; Apple artifact supplies reference geometry but no runtime duration/easing authority",
+      "externalEvidence": [
+        "OBS-APPLE-PROGRESS-SPINNER-SIZES",
+        "OBS-APPLE-PROGRESS-SPINNER-OPACITY",
+        "OBS-APPLE-LOADING-ROW"
+      ],
+      "id": "MAT-08",
+      "recommendation": "Prefer a clear textual or structural state cue in the loading pilot; do not copy spinner assets or infer rotation timing",
+      "recommendedStatus": "reference_only",
+      "risk": "medium_ambiguity_if_added_without_state_contract",
+      "softieCurrentState": "Scheduler mostly exposes text loading/empty states; no admitted spinner token or progress component contract",
+      "value": "medium_only_when_wait_is_long"
+    },
+    {
+      "area": "material_glass_depth",
+      "conflict": "Partial/conflict: shared visual vocabulary exists, but Apple material metadata, Softie blur/saturation tokens, and asset rights are separate",
+      "externalEvidence": [
+        "OBS-APPLE-MATERIAL-STYLE-KEYS",
+        "SRC-SKILL-APPLE-DESIGN",
+        "SRC-APPLE-DESIGN-RESOURCES-LICENSE"
+      ],
+      "id": "MAT-09",
+      "recommendation": "Use Apple material observations for vocabulary only; preserve Softie tokens and do not copy Template Content",
+      "recommendedStatus": "reference_only",
+      "risk": "high_contrast_readability_and_license_misuse",
+      "softieCurrentState": "Selective glass hierarchy is documented; implementation also has undocumented liquid variants, nested glass, and service-card material divergence",
+      "value": "medium"
+    },
+    {
+      "area": "touch_target_spacing_component_sizing",
+      "conflict": "Compatible for Scheduler; partial conflict in interpretation-prep exceptions and because Apple pt geometry is not a Softie px token",
+      "externalEvidence": [
+        "OBS-APPLE-HIG-TOUCH",
+        "OBS-APPLE-TOGGLE-SEGMENTED-SLIDER-TOOLBAR",
+        "OBS-APPLE-BUTTON-HEIGHTS"
+      ],
+      "id": "MAT-10",
+      "recommendation": "Keep the existing 44px Softie rule as the authority; treat Apple sizes as reference and audit exceptions separately",
+      "recommendedStatus": "adopted",
+      "risk": "low_to_medium_density_or_touch_regression",
+      "softieCurrentState": "44px outer targets with 30-36px compact visuals are explicit in Scheduler; some interpretation-prep controls are 40px/36px exceptions",
+      "value": "high_accessibility_and_operational_value"
+    },
+    {
+      "area": "duration_easing_roles",
+      "conflict": "Conflict/uncertainty: Apple Kit archive has no observed timing metadata; independent role ranges differ by purpose; code is mixed",
+      "externalEvidence": [
+        "OBS-EMIL-PRESS-RANGE",
+        "OBS-EMIL-ROLE-RANGES",
+        "OBS-EMIL-EASING-ROLES",
+        "OBS-APPLE-MOTION-METADATA"
+      ],
+      "id": "MAT-11",
+      "recommendation": "Pilot role-specific values in one surface only; do not rewrite global tokens or fix unrelated aliases during this audit",
+      "recommendedStatus": "candidate_for_pilot",
+      "risk": "medium_inconsistent_tempo_and_invalid_css_aliases",
+      "softieCurrentState": "DESIGN.md adopts 180ms ease for basic transitions; code contains raw 100-450ms values, custom curves, and undefined transition aliases in interpretation prep",
+      "value": "high_cross_surface_value"
+    }
+  ],
+  "schemaVersion": "design-reference-conflict-compatibility-matrix-v1"
+}
