@@ -71,8 +71,7 @@
   --ag-content-utility: 860px;
   --ag-content-wide: 1180px;
   --ag-duration-fast: 180ms;
-  --ag-scheduler-route-transition-old-duration: 180ms;
-  --ag-scheduler-route-transition-new-duration: 240ms;
+  --ag-scheduler-route-transition-duration: 230ms;
   --ag-scheduler-route-transition-easing: cubic-bezier(0.23, 1, 0.32, 1);
 
   /* Selective iOS 27 interaction primitives; the warm visual language remains primary. */
@@ -300,8 +299,44 @@
   }
 }
 
-/* Scheduler route continuity pilot: only explicit router opt-ins use this. */
+/*
+ * Scheduler route-local Soft Page Handoff v0.
+ *
+ * This intentionally stays outside DESIGN.md's global motion defaults until
+ * the route has received real-device review. It is opacity-only: the old
+ * snapshot holds through 35%, the new snapshot starts at 42%, and the old
+ * snapshot is gone by 55%. The 42% -> 55% handoff is about 30ms of overlap
+ * within the shared 230ms duration, keeping the scene change legible without
+ * turning it into a slow cross-dissolve.
+ */
 @supports (view-transition-name: none) {
+  @keyframes scheduler-route-old-handoff {
+    0%,
+    35% {
+      opacity: 1;
+    }
+
+    55%,
+    100% {
+      opacity: 0;
+    }
+  }
+
+  @keyframes scheduler-route-new-handoff {
+    0%,
+    42% {
+      opacity: 0;
+    }
+
+    65% {
+      opacity: 0.94;
+    }
+
+    100% {
+      opacity: 1;
+    }
+  }
+
   .scheduler-auth-gated {
     view-transition-name: scheduler-route;
   }
@@ -312,13 +347,19 @@
   }
 
   ::view-transition-old(scheduler-route) {
-    animation-duration: var(--ag-scheduler-route-transition-old-duration);
+    animation-name: scheduler-route-old-handoff;
+    animation-duration: var(--ag-scheduler-route-transition-duration);
     animation-timing-function: var(--ag-scheduler-route-transition-easing);
+    animation-fill-mode: both;
+    mix-blend-mode: normal;
   }
 
   ::view-transition-new(scheduler-route) {
-    animation-duration: var(--ag-scheduler-route-transition-new-duration);
+    animation-name: scheduler-route-new-handoff;
+    animation-duration: var(--ag-scheduler-route-transition-duration);
     animation-timing-function: var(--ag-scheduler-route-transition-easing);
+    animation-fill-mode: both;
+    mix-blend-mode: normal;
   }
 }
 

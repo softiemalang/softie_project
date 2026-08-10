@@ -106,7 +106,10 @@ export function SchedulerApp({
         <button
           type="button"
           className="scheduler-fab-button"
-          onClick={() => navigate(`/scheduler/new?date=${encodeURIComponent(schedulerViewState.date || toLocalDateInputValue())}`)}
+          onClick={() => navigate(
+            `/scheduler/new?date=${encodeURIComponent(schedulerViewState.date || toLocalDateInputValue())}`,
+            { viewTransition: true },
+          )}
           aria-label="새 일정 추가"
         >
           <span className="scheduler-fab-icon" aria-hidden="true">+</span>
