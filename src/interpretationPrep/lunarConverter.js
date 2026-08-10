@@ -196,7 +196,11 @@ export function lunar2solar(y, m, d, isLeapMonth) {
   if (isLeapMonth && lMonth !== m) {
     return -1;
   }
-  if ((y === 2100 && m === 12 && d > 1) || (y === 1900 && m === 1 && d < 31)) {
+  // The lower bound of 1900-01-31 is a solar2lunar input boundary. In the
+  // lunar coordinate system, lunar 1900-01-01 is that first supported date.
+  // Keep the upper guard because lunar 2100-12-02 would convert beyond the
+  // table-backed solar range (2100-12-31).
+  if (y === 2100 && m === 12 && d > 1) {
     return -1;
   }
 

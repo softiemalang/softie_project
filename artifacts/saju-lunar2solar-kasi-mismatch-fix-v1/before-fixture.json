@@ -1,0 +1,611 @@
+{
+  "caseIds": [
+    "kasi-1900-02-01-lunar-to-solar",
+    "kasi-1900-02-02-lunar-to-solar",
+    "kasi-1900-02-03-lunar-to-solar",
+    "kasi-1900-02-04-lunar-to-solar",
+    "kasi-1900-02-05-lunar-to-solar",
+    "kasi-1900-02-06-lunar-to-solar",
+    "kasi-1900-02-07-lunar-to-solar",
+    "kasi-1900-02-08-lunar-to-solar",
+    "kasi-1900-02-09-lunar-to-solar",
+    "kasi-1900-02-10-lunar-to-solar",
+    "kasi-1900-02-11-lunar-to-solar",
+    "kasi-1900-02-12-lunar-to-solar",
+    "kasi-1900-02-13-lunar-to-solar",
+    "kasi-1900-02-14-lunar-to-solar",
+    "kasi-1900-02-15-lunar-to-solar",
+    "kasi-1900-02-16-lunar-to-solar",
+    "kasi-1900-02-17-lunar-to-solar",
+    "kasi-1900-02-18-lunar-to-solar",
+    "kasi-1900-02-19-lunar-to-solar",
+    "kasi-1900-02-20-lunar-to-solar",
+    "kasi-1900-02-21-lunar-to-solar",
+    "kasi-1900-02-22-lunar-to-solar",
+    "kasi-1900-02-23-lunar-to-solar",
+    "kasi-1900-02-24-lunar-to-solar",
+    "kasi-1900-02-25-lunar-to-solar",
+    "kasi-1900-02-26-lunar-to-solar",
+    "kasi-1900-02-27-lunar-to-solar",
+    "kasi-1900-02-28-lunar-to-solar"
+  ],
+  "cases": [
+    {
+      "before": {
+        "actual": -1,
+        "analysis": {
+          "rootCause": "implementation_guard_rejects_valid_lunar_1900_month_1_days_before_31",
+          "semanticEquivalence": "date-only contract"
+        },
+        "category": "semantic_mismatch"
+      },
+      "caseId": "kasi-1900-02-01-lunar-to-solar",
+      "input": {
+        "day": 2,
+        "isLeapMonth": false,
+        "month": 1,
+        "year": 1900
+      },
+      "oracle": {
+        "solarDate": "1900-02-01"
+      }
+    },
+    {
+      "before": {
+        "actual": -1,
+        "analysis": {
+          "rootCause": "implementation_guard_rejects_valid_lunar_1900_month_1_days_before_31",
+          "semanticEquivalence": "date-only contract"
+        },
+        "category": "semantic_mismatch"
+      },
+      "caseId": "kasi-1900-02-02-lunar-to-solar",
+      "input": {
+        "day": 3,
+        "isLeapMonth": false,
+        "month": 1,
+        "year": 1900
+      },
+      "oracle": {
+        "solarDate": "1900-02-02"
+      }
+    },
+    {
+      "before": {
+        "actual": -1,
+        "analysis": {
+          "rootCause": "implementation_guard_rejects_valid_lunar_1900_month_1_days_before_31",
+          "semanticEquivalence": "date-only contract"
+        },
+        "category": "semantic_mismatch"
+      },
+      "caseId": "kasi-1900-02-03-lunar-to-solar",
+      "input": {
+        "day": 4,
+        "isLeapMonth": false,
+        "month": 1,
+        "year": 1900
+      },
+      "oracle": {
+        "solarDate": "1900-02-03"
+      }
+    },
+    {
+      "before": {
+        "actual": -1,
+        "analysis": {
+          "rootCause": "implementation_guard_rejects_valid_lunar_1900_month_1_days_before_31",
+          "semanticEquivalence": "date-only contract"
+        },
+        "category": "semantic_mismatch"
+      },
+      "caseId": "kasi-1900-02-04-lunar-to-solar",
+      "input": {
+        "day": 5,
+        "isLeapMonth": false,
+        "month": 1,
+        "year": 1900
+      },
+      "oracle": {
+        "solarDate": "1900-02-04"
+      }
+    },
+    {
+      "before": {
+        "actual": -1,
+        "analysis": {
+          "rootCause": "implementation_guard_rejects_valid_lunar_1900_month_1_days_before_31",
+          "semanticEquivalence": "date-only contract"
+        },
+        "category": "semantic_mismatch"
+      },
+      "caseId": "kasi-1900-02-05-lunar-to-solar",
+      "input": {
+        "day": 6,
+        "isLeapMonth": false,
+        "month": 1,
+        "year": 1900
+      },
+      "oracle": {
+        "solarDate": "1900-02-05"
+      }
+    },
+    {
+      "before": {
+        "actual": -1,
+        "analysis": {
+          "rootCause": "implementation_guard_rejects_valid_lunar_1900_month_1_days_before_31",
+          "semanticEquivalence": "date-only contract"
+        },
+        "category": "semantic_mismatch"
+      },
+      "caseId": "kasi-1900-02-06-lunar-to-solar",
+      "input": {
+        "day": 7,
+        "isLeapMonth": false,
+        "month": 1,
+        "year": 1900
+      },
+      "oracle": {
+        "solarDate": "1900-02-06"
+      }
+    },
+    {
+      "before": {
+        "actual": -1,
+        "analysis": {
+          "rootCause": "implementation_guard_rejects_valid_lunar_1900_month_1_days_before_31",
+          "semanticEquivalence": "date-only contract"
+        },
+        "category": "semantic_mismatch"
+      },
+      "caseId": "kasi-1900-02-07-lunar-to-solar",
+      "input": {
+        "day": 8,
+        "isLeapMonth": false,
+        "month": 1,
+        "year": 1900
+      },
+      "oracle": {
+        "solarDate": "1900-02-07"
+      }
+    },
+    {
+      "before": {
+        "actual": -1,
+        "analysis": {
+          "rootCause": "implementation_guard_rejects_valid_lunar_1900_month_1_days_before_31",
+          "semanticEquivalence": "date-only contract"
+        },
+        "category": "semantic_mismatch"
+      },
+      "caseId": "kasi-1900-02-08-lunar-to-solar",
+      "input": {
+        "day": 9,
+        "isLeapMonth": false,
+        "month": 1,
+        "year": 1900
+      },
+      "oracle": {
+        "solarDate": "1900-02-08"
+      }
+    },
+    {
+      "before": {
+        "actual": -1,
+        "analysis": {
+          "rootCause": "implementation_guard_rejects_valid_lunar_1900_month_1_days_before_31",
+          "semanticEquivalence": "date-only contract"
+        },
+        "category": "semantic_mismatch"
+      },
+      "caseId": "kasi-1900-02-09-lunar-to-solar",
+      "input": {
+        "day": 10,
+        "isLeapMonth": false,
+        "month": 1,
+        "year": 1900
+      },
+      "oracle": {
+        "solarDate": "1900-02-09"
+      }
+    },
+    {
+      "before": {
+        "actual": -1,
+        "analysis": {
+          "rootCause": "implementation_guard_rejects_valid_lunar_1900_month_1_days_before_31",
+          "semanticEquivalence": "date-only contract"
+        },
+        "category": "semantic_mismatch"
+      },
+      "caseId": "kasi-1900-02-10-lunar-to-solar",
+      "input": {
+        "day": 11,
+        "isLeapMonth": false,
+        "month": 1,
+        "year": 1900
+      },
+      "oracle": {
+        "solarDate": "1900-02-10"
+      }
+    },
+    {
+      "before": {
+        "actual": -1,
+        "analysis": {
+          "rootCause": "implementation_guard_rejects_valid_lunar_1900_month_1_days_before_31",
+          "semanticEquivalence": "date-only contract"
+        },
+        "category": "semantic_mismatch"
+      },
+      "caseId": "kasi-1900-02-11-lunar-to-solar",
+      "input": {
+        "day": 12,
+        "isLeapMonth": false,
+        "month": 1,
+        "year": 1900
+      },
+      "oracle": {
+        "solarDate": "1900-02-11"
+      }
+    },
+    {
+      "before": {
+        "actual": -1,
+        "analysis": {
+          "rootCause": "implementation_guard_rejects_valid_lunar_1900_month_1_days_before_31",
+          "semanticEquivalence": "date-only contract"
+        },
+        "category": "semantic_mismatch"
+      },
+      "caseId": "kasi-1900-02-12-lunar-to-solar",
+      "input": {
+        "day": 13,
+        "isLeapMonth": false,
+        "month": 1,
+        "year": 1900
+      },
+      "oracle": {
+        "solarDate": "1900-02-12"
+      }
+    },
+    {
+      "before": {
+        "actual": -1,
+        "analysis": {
+          "rootCause": "implementation_guard_rejects_valid_lunar_1900_month_1_days_before_31",
+          "semanticEquivalence": "date-only contract"
+        },
+        "category": "semantic_mismatch"
+      },
+      "caseId": "kasi-1900-02-13-lunar-to-solar",
+      "input": {
+        "day": 14,
+        "isLeapMonth": false,
+        "month": 1,
+        "year": 1900
+      },
+      "oracle": {
+        "solarDate": "1900-02-13"
+      }
+    },
+    {
+      "before": {
+        "actual": -1,
+        "analysis": {
+          "rootCause": "implementation_guard_rejects_valid_lunar_1900_month_1_days_before_31",
+          "semanticEquivalence": "date-only contract"
+        },
+        "category": "semantic_mismatch"
+      },
+      "caseId": "kasi-1900-02-14-lunar-to-solar",
+      "input": {
+        "day": 15,
+        "isLeapMonth": false,
+        "month": 1,
+        "year": 1900
+      },
+      "oracle": {
+        "solarDate": "1900-02-14"
+      }
+    },
+    {
+      "before": {
+        "actual": -1,
+        "analysis": {
+          "rootCause": "implementation_guard_rejects_valid_lunar_1900_month_1_days_before_31",
+          "semanticEquivalence": "date-only contract"
+        },
+        "category": "semantic_mismatch"
+      },
+      "caseId": "kasi-1900-02-15-lunar-to-solar",
+      "input": {
+        "day": 16,
+        "isLeapMonth": false,
+        "month": 1,
+        "year": 1900
+      },
+      "oracle": {
+        "solarDate": "1900-02-15"
+      }
+    },
+    {
+      "before": {
+        "actual": -1,
+        "analysis": {
+          "rootCause": "implementation_guard_rejects_valid_lunar_1900_month_1_days_before_31",
+          "semanticEquivalence": "date-only contract"
+        },
+        "category": "semantic_mismatch"
+      },
+      "caseId": "kasi-1900-02-16-lunar-to-solar",
+      "input": {
+        "day": 17,
+        "isLeapMonth": false,
+        "month": 1,
+        "year": 1900
+      },
+      "oracle": {
+        "solarDate": "1900-02-16"
+      }
+    },
+    {
+      "before": {
+        "actual": -1,
+        "analysis": {
+          "rootCause": "implementation_guard_rejects_valid_lunar_1900_month_1_days_before_31",
+          "semanticEquivalence": "date-only contract"
+        },
+        "category": "semantic_mismatch"
+      },
+      "caseId": "kasi-1900-02-17-lunar-to-solar",
+      "input": {
+        "day": 18,
+        "isLeapMonth": false,
+        "month": 1,
+        "year": 1900
+      },
+      "oracle": {
+        "solarDate": "1900-02-17"
+      }
+    },
+    {
+      "before": {
+        "actual": -1,
+        "analysis": {
+          "rootCause": "implementation_guard_rejects_valid_lunar_1900_month_1_days_before_31",
+          "semanticEquivalence": "date-only contract"
+        },
+        "category": "semantic_mismatch"
+      },
+      "caseId": "kasi-1900-02-18-lunar-to-solar",
+      "input": {
+        "day": 19,
+        "isLeapMonth": false,
+        "month": 1,
+        "year": 1900
+      },
+      "oracle": {
+        "solarDate": "1900-02-18"
+      }
+    },
+    {
+      "before": {
+        "actual": -1,
+        "analysis": {
+          "rootCause": "implementation_guard_rejects_valid_lunar_1900_month_1_days_before_31",
+          "semanticEquivalence": "date-only contract"
+        },
+        "category": "semantic_mismatch"
+      },
+      "caseId": "kasi-1900-02-19-lunar-to-solar",
+      "input": {
+        "day": 20,
+        "isLeapMonth": false,
+        "month": 1,
+        "year": 1900
+      },
+      "oracle": {
+        "solarDate": "1900-02-19"
+      }
+    },
+    {
+      "before": {
+        "actual": -1,
+        "analysis": {
+          "rootCause": "implementation_guard_rejects_valid_lunar_1900_month_1_days_before_31",
+          "semanticEquivalence": "date-only contract"
+        },
+        "category": "semantic_mismatch"
+      },
+      "caseId": "kasi-1900-02-20-lunar-to-solar",
+      "input": {
+        "day": 21,
+        "isLeapMonth": false,
+        "month": 1,
+        "year": 1900
+      },
+      "oracle": {
+        "solarDate": "1900-02-20"
+      }
+    },
+    {
+      "before": {
+        "actual": -1,
+        "analysis": {
+          "rootCause": "implementation_guard_rejects_valid_lunar_1900_month_1_days_before_31",
+          "semanticEquivalence": "date-only contract"
+        },
+        "category": "semantic_mismatch"
+      },
+      "caseId": "kasi-1900-02-21-lunar-to-solar",
+      "input": {
+        "day": 22,
+        "isLeapMonth": false,
+        "month": 1,
+        "year": 1900
+      },
+      "oracle": {
+        "solarDate": "1900-02-21"
+      }
+    },
+    {
+      "before": {
+        "actual": -1,
+        "analysis": {
+          "rootCause": "implementation_guard_rejects_valid_lunar_1900_month_1_days_before_31",
+          "semanticEquivalence": "date-only contract"
+        },
+        "category": "semantic_mismatch"
+      },
+      "caseId": "kasi-1900-02-22-lunar-to-solar",
+      "input": {
+        "day": 23,
+        "isLeapMonth": false,
+        "month": 1,
+        "year": 1900
+      },
+      "oracle": {
+        "solarDate": "1900-02-22"
+      }
+    },
+    {
+      "before": {
+        "actual": -1,
+        "analysis": {
+          "rootCause": "implementation_guard_rejects_valid_lunar_1900_month_1_days_before_31",
+          "semanticEquivalence": "date-only contract"
+        },
+        "category": "semantic_mismatch"
+      },
+      "caseId": "kasi-1900-02-23-lunar-to-solar",
+      "input": {
+        "day": 24,
+        "isLeapMonth": false,
+        "month": 1,
+        "year": 1900
+      },
+      "oracle": {
+        "solarDate": "1900-02-23"
+      }
+    },
+    {
+      "before": {
+        "actual": -1,
+        "analysis": {
+          "rootCause": "implementation_guard_rejects_valid_lunar_1900_month_1_days_before_31",
+          "semanticEquivalence": "date-only contract"
+        },
+        "category": "semantic_mismatch"
+      },
+      "caseId": "kasi-1900-02-24-lunar-to-solar",
+      "input": {
+        "day": 25,
+        "isLeapMonth": false,
+        "month": 1,
+        "year": 1900
+      },
+      "oracle": {
+        "solarDate": "1900-02-24"
+      }
+    },
+    {
+      "before": {
+        "actual": -1,
+        "analysis": {
+          "rootCause": "implementation_guard_rejects_valid_lunar_1900_month_1_days_before_31",
+          "semanticEquivalence": "date-only contract"
+        },
+        "category": "semantic_mismatch"
+      },
+      "caseId": "kasi-1900-02-25-lunar-to-solar",
+      "input": {
+        "day": 26,
+        "isLeapMonth": false,
+        "month": 1,
+        "year": 1900
+      },
+      "oracle": {
+        "solarDate": "1900-02-25"
+      }
+    },
+    {
+      "before": {
+        "actual": -1,
+        "analysis": {
+          "rootCause": "implementation_guard_rejects_valid_lunar_1900_month_1_days_before_31",
+          "semanticEquivalence": "date-only contract"
+        },
+        "category": "semantic_mismatch"
+      },
+      "caseId": "kasi-1900-02-26-lunar-to-solar",
+      "input": {
+        "day": 27,
+        "isLeapMonth": false,
+        "month": 1,
+        "year": 1900
+      },
+      "oracle": {
+        "solarDate": "1900-02-26"
+      }
+    },
+    {
+      "before": {
+        "actual": -1,
+        "analysis": {
+          "rootCause": "implementation_guard_rejects_valid_lunar_1900_month_1_days_before_31",
+          "semanticEquivalence": "date-only contract"
+        },
+        "category": "semantic_mismatch"
+      },
+      "caseId": "kasi-1900-02-27-lunar-to-solar",
+      "input": {
+        "day": 28,
+        "isLeapMonth": false,
+        "month": 1,
+        "year": 1900
+      },
+      "oracle": {
+        "solarDate": "1900-02-27"
+      }
+    },
+    {
+      "before": {
+        "actual": -1,
+        "analysis": {
+          "rootCause": "implementation_guard_rejects_valid_lunar_1900_month_1_days_before_31",
+          "semanticEquivalence": "date-only contract"
+        },
+        "category": "semantic_mismatch"
+      },
+      "caseId": "kasi-1900-02-28-lunar-to-solar",
+      "input": {
+        "day": 29,
+        "isLeapMonth": false,
+        "month": 1,
+        "year": 1900
+      },
+      "oracle": {
+        "solarDate": "1900-02-28"
+      }
+    }
+  ],
+  "rootCause": "implementation_guard_rejects_valid_lunar_1900_month_1_days_before_31",
+  "schemaVersion": "saju-lunar2solar-kasi-mismatch-fix-v1-before-fixture",
+  "sourceArtifact": "artifacts/saju-p0-calendar-oracle-v1/comparison.json",
+  "sourceContract": "immutable v1 comparison capture; no live API re-query",
+  "summary": {
+    "caseCount": 28,
+    "lunarDayRange": [
+      2,
+      29
+    ],
+    "lunarMonth": 1,
+    "lunarYear": 1900,
+    "solarDateRange": [
+      "1900-02-01",
+      "1900-02-28"
+    ]
+  }
+}

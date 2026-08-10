@@ -1,0 +1,82 @@
+{
+  "authorityBoundary": {
+    "claimPromotion": false,
+    "note": "date-only calendar conversion evidence does not authorize 子時, 야자시/day boundary, true-solar-time, or other Saju semantic policy changes",
+    "preservedAuthorityUnresolvedIds": [
+      "contract-kasi-sexagenary-month-year-time-semantics",
+      "contract-zi-night-day-boundary-rule",
+      "contract-solar-time-location-policy"
+    ],
+    "preservedTimezoneMismatchIds": [
+      "tz-rok-1951-dst-start",
+      "tz-seoul-1954-offset-change"
+    ],
+    "productionActivation": false,
+    "readinessPromotion": false
+  },
+  "evidence": {
+    "afterComparison": "artifacts/saju-lunar2solar-kasi-mismatch-fix-v1/comparison.json",
+    "beforeFixture": "artifacts/saju-lunar2solar-kasi-mismatch-fix-v1/before-fixture.json",
+    "delta": "artifacts/saju-lunar2solar-kasi-mismatch-fix-v1/delta.json",
+    "frontier": "artifacts/saju-lunar2solar-kasi-mismatch-fix-v1/frontier.json",
+    "newMismatchCount": 0,
+    "predecessorCaseCount": 1456,
+    "resolvedKnownMismatchCount": 28
+  },
+  "externalLineageReferences": [
+    "https://www.npmjs.com/package/solarlunar",
+    "https://gist.github.com/suattop/b9c33cbd2d70e22c296fdfae7fe1e9b1",
+    "https://app.unpkg.com/solarlunar@3.1.0/files/dist/solarlunar.cjs"
+  ],
+  "implementation": {
+    "baseCalculation": "Date.UTC(1900, 1, 30) plus (offset + day - 31) yields lunar 1900-01-01 at solar 1900-01-31; no overflow occurs for the lower boundary",
+    "preservedGuards": [
+      "solar2lunar solar minimum 1900-01-31",
+      "lunar2solar lunar maximum 2100-12-01",
+      "table-backed year range 1900-2100",
+      "month/leap-month/day validation"
+    ],
+    "productionChange": "remove only the 1900 lunar lower-bound clause from lunar2solar",
+    "unsupportedRangePolicy": "return -1 outside the table-backed solar interval 1900-01-31 through 2100-12-31; do not extrapolate into 1899 or 2101"
+  },
+  "rootCause": {
+    "coordinateError": "31 is the Gregorian solar anchor day, not a lunar month-1 day limit; lunar 1900-01-01 is the first supported lunar input and lunar month 1 has 29 days",
+    "firstIntroducedCommit": "92d3f7ae2c19c8a8f4c183664946e085519ae973",
+    "firstIntroducedCommitDate": "2026-07-22T19:06:06+09:00",
+    "guardOriginEvidence": "the copied solarlunar family uses the same parameter-range condition and labels it as the maximum boundary; its 1900 lower-bound clause is valid for solar2lunar but misapplied when copied into lunar2solar",
+    "historyFinding": "lunarConverter.js was introduced in that commit; git history has no earlier implementation or narrower rationale for the condition",
+    "originalGuard": "(y === 2100 && m === 12 && d > 1) || (y === 1900 && m === 1 && d < 31)",
+    "productionPath": "src/interpretationPrep/lunarConverter.js",
+    "why28": "the immutable KASI v1 capture contains lunar 1900-01-02 through 1900-01-29, mapping to solar 1900-02-01 through 1900-02-28; every one was rejected before calculation"
+  },
+  "schemaVersion": "saju-lunar2solar-kasi-mismatch-fix-v1-report",
+  "support": {
+    "kasiValidatedRange": {
+      "caseCount": 28,
+      "lunarDayRange": [
+        2,
+        29
+      ],
+      "lunarMonth": 1,
+      "lunarYear": 1900,
+      "solarDateRange": [
+        "1900-02-01",
+        "1900-02-28"
+      ]
+    },
+    "solarRange": {
+      "lowerBoundMeaning": "solar2lunar accepts the first solar date whose lunar table anchor is lunar 1900-01-01; lunar2solar accepts that lunar anchor directly",
+      "lunarMaximumInclusive": "2100-12-01",
+      "lunarMinimumInclusive": "1900-01-01",
+      "solarMaximumInclusive": "2100-12-31",
+      "solarMinimumInclusive": "1900-01-31",
+      "upperBoundMeaning": "the table has lunar year 2100, but only lunar 2100-12-01 maps inside the solar 2100 maximum; later lunar dates would overflow into 2101"
+    },
+    "tableEntryCount": 201,
+    "tableYears": [
+      1900,
+      2100
+    ]
+  },
+  "title": "KASI lunar2solar 1900 lower-bound mismatch root cause and implementation fix"
+}

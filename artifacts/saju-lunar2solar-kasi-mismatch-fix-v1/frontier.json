@@ -1,0 +1,982 @@
+{
+  "firstMismatchBoundary": {
+    "after": {
+      "actual": {
+        "solarDate": "1900-02-01",
+        "solarDay": 1,
+        "solarMonth": 2,
+        "solarYear": 1900
+      },
+      "category": "exact_match"
+    },
+    "before": {
+      "actual": -1,
+      "category": "semantic_mismatch"
+    },
+    "caseId": "kasi-1900-02-01-lunar-to-solar"
+  },
+  "frontierVerdict": "closed_for_table_backed_solar_range_and_adjacent_lunar_boundaries",
+  "probes": [
+    {
+      "actual": -1,
+      "expectedStatus": "unsupported",
+      "id": "solar-before-lower-bound",
+      "input": {
+        "day": 30,
+        "month": 1,
+        "year": 1900
+      },
+      "kind": "solar_to_lunar"
+    },
+    {
+      "actual": {
+        "isLeap": false,
+        "lDay": 1,
+        "lMonth": 1,
+        "lYear": 1900
+      },
+      "expectedStatus": "supported",
+      "id": "solar-lower-bound",
+      "input": {
+        "day": 31,
+        "month": 1,
+        "year": 1900
+      },
+      "kind": "solar_to_lunar"
+    },
+    {
+      "actual": {
+        "isLeap": false,
+        "lDay": 2,
+        "lMonth": 1,
+        "lYear": 1900
+      },
+      "expectedStatus": "supported",
+      "id": "solar-first-kasi-row",
+      "input": {
+        "day": 1,
+        "month": 2,
+        "year": 1900
+      },
+      "kind": "solar_to_lunar"
+    },
+    {
+      "actual": {
+        "solarDate": "1900-01-31",
+        "solarDay": 31,
+        "solarMonth": 1,
+        "solarYear": 1900
+      },
+      "expectedStatus": "supported",
+      "id": "lunar-first-supported-date",
+      "input": {
+        "day": 1,
+        "isLeapMonth": false,
+        "month": 1,
+        "year": 1900
+      },
+      "kind": "lunar_to_solar"
+    },
+    {
+      "actual": {
+        "solarDate": "1900-02-01",
+        "solarDay": 1,
+        "solarMonth": 2,
+        "solarYear": 1900
+      },
+      "expectedStatus": "supported",
+      "id": "lunar-first-kasi-row",
+      "input": {
+        "day": 2,
+        "isLeapMonth": false,
+        "month": 1,
+        "year": 1900
+      },
+      "kind": "lunar_to_solar"
+    },
+    {
+      "actual": {
+        "solarDate": "1900-02-28",
+        "solarDay": 28,
+        "solarMonth": 2,
+        "solarYear": 1900
+      },
+      "expectedStatus": "supported",
+      "id": "lunar-first-month-last-day",
+      "input": {
+        "day": 29,
+        "isLeapMonth": false,
+        "month": 1,
+        "year": 1900
+      },
+      "kind": "lunar_to_solar"
+    },
+    {
+      "actual": -1,
+      "expectedStatus": "unsupported",
+      "id": "lunar-first-month-overflow-day",
+      "input": {
+        "day": 30,
+        "isLeapMonth": false,
+        "month": 1,
+        "year": 1900
+      },
+      "kind": "lunar_to_solar"
+    },
+    {
+      "actual": -1,
+      "expectedStatus": "unsupported",
+      "id": "lunar-before-lower-bound",
+      "input": {
+        "day": 30,
+        "isLeapMonth": false,
+        "month": 12,
+        "year": 1899
+      },
+      "kind": "lunar_to_solar"
+    },
+    {
+      "actual": {
+        "solarDate": "1900-03-01",
+        "solarDay": 1,
+        "solarMonth": 3,
+        "solarYear": 1900
+      },
+      "expectedStatus": "supported",
+      "id": "lunar-second-month-start",
+      "input": {
+        "day": 1,
+        "isLeapMonth": false,
+        "month": 2,
+        "year": 1900
+      },
+      "kind": "lunar_to_solar"
+    },
+    {
+      "actual": {
+        "solarDate": "1900-08-25",
+        "solarDay": 25,
+        "solarMonth": 8,
+        "solarYear": 1900
+      },
+      "expectedStatus": "supported",
+      "id": "lunar-1900-leap-month-start",
+      "input": {
+        "day": 1,
+        "isLeapMonth": false,
+        "month": 8,
+        "year": 1900
+      },
+      "kind": "lunar_to_solar"
+    },
+    {
+      "actual": {
+        "solarDate": "1900-09-24",
+        "solarDay": 24,
+        "solarMonth": 9,
+        "solarYear": 1900
+      },
+      "expectedStatus": "supported",
+      "id": "lunar-1900-leap-month-day-start",
+      "input": {
+        "day": 1,
+        "isLeapMonth": true,
+        "month": 8,
+        "year": 1900
+      },
+      "kind": "lunar_to_solar"
+    },
+    {
+      "actual": {
+        "solarDate": "1900-10-22",
+        "solarDay": 22,
+        "solarMonth": 10,
+        "solarYear": 1900
+      },
+      "expectedStatus": "supported",
+      "id": "lunar-1900-leap-month-last-day",
+      "input": {
+        "day": 29,
+        "isLeapMonth": true,
+        "month": 8,
+        "year": 1900
+      },
+      "kind": "lunar_to_solar"
+    },
+    {
+      "actual": -1,
+      "expectedStatus": "unsupported",
+      "id": "lunar-1900-leap-month-overflow-day",
+      "input": {
+        "day": 30,
+        "isLeapMonth": true,
+        "month": 8,
+        "year": 1900
+      },
+      "kind": "lunar_to_solar"
+    },
+    {
+      "actual": -1,
+      "expectedStatus": "unsupported",
+      "id": "lunar-invalid-leap-month",
+      "input": {
+        "day": 1,
+        "isLeapMonth": true,
+        "month": 7,
+        "year": 1900
+      },
+      "kind": "lunar_to_solar"
+    },
+    {
+      "actual": {
+        "solarDate": "2100-12-31",
+        "solarDay": 31,
+        "solarMonth": 12,
+        "solarYear": 2100
+      },
+      "expectedStatus": "supported",
+      "id": "lunar-upper-bound",
+      "input": {
+        "day": 1,
+        "isLeapMonth": false,
+        "month": 12,
+        "year": 2100
+      },
+      "kind": "lunar_to_solar"
+    },
+    {
+      "actual": -1,
+      "expectedStatus": "unsupported",
+      "id": "lunar-after-upper-bound",
+      "input": {
+        "day": 2,
+        "isLeapMonth": false,
+        "month": 12,
+        "year": 2100
+      },
+      "kind": "lunar_to_solar"
+    },
+    {
+      "actual": -1,
+      "expectedStatus": "unsupported",
+      "id": "lunar-after-table-year",
+      "input": {
+        "day": 1,
+        "isLeapMonth": false,
+        "month": 1,
+        "year": 2101
+      },
+      "kind": "lunar_to_solar"
+    },
+    {
+      "actual": {
+        "isLeap": false,
+        "lDay": 1,
+        "lMonth": 12,
+        "lYear": 2100
+      },
+      "expectedStatus": "supported",
+      "id": "solar-upper-bound",
+      "input": {
+        "day": 31,
+        "month": 12,
+        "year": 2100
+      },
+      "kind": "solar_to_lunar"
+    },
+    {
+      "actual": -1,
+      "expectedStatus": "unsupported",
+      "id": "solar-after-upper-bound",
+      "input": {
+        "day": 1,
+        "month": 1,
+        "year": 2101
+      },
+      "kind": "solar_to_lunar"
+    },
+    {
+      "actual": -1,
+      "expectedStatus": "unsupported",
+      "id": "lunar-1900-month-1-day-0",
+      "input": {
+        "day": 0,
+        "isLeapMonth": false,
+        "month": 1,
+        "year": 1900
+      },
+      "kind": "lunar_to_solar"
+    },
+    {
+      "actual": {
+        "solarDate": "1900-01-31",
+        "solarDay": 31,
+        "solarMonth": 1,
+        "solarYear": 1900
+      },
+      "expectedStatus": "supported",
+      "id": "lunar-1900-month-1-day-1",
+      "input": {
+        "day": 1,
+        "isLeapMonth": false,
+        "month": 1,
+        "year": 1900
+      },
+      "kind": "lunar_to_solar"
+    },
+    {
+      "actual": {
+        "solarDate": "1900-02-01",
+        "solarDay": 1,
+        "solarMonth": 2,
+        "solarYear": 1900
+      },
+      "expectedStatus": "supported",
+      "id": "lunar-1900-month-1-day-2",
+      "input": {
+        "day": 2,
+        "isLeapMonth": false,
+        "month": 1,
+        "year": 1900
+      },
+      "kind": "lunar_to_solar"
+    },
+    {
+      "actual": {
+        "solarDate": "1900-02-02",
+        "solarDay": 2,
+        "solarMonth": 2,
+        "solarYear": 1900
+      },
+      "expectedStatus": "supported",
+      "id": "lunar-1900-month-1-day-3",
+      "input": {
+        "day": 3,
+        "isLeapMonth": false,
+        "month": 1,
+        "year": 1900
+      },
+      "kind": "lunar_to_solar"
+    },
+    {
+      "actual": {
+        "solarDate": "1900-02-03",
+        "solarDay": 3,
+        "solarMonth": 2,
+        "solarYear": 1900
+      },
+      "expectedStatus": "supported",
+      "id": "lunar-1900-month-1-day-4",
+      "input": {
+        "day": 4,
+        "isLeapMonth": false,
+        "month": 1,
+        "year": 1900
+      },
+      "kind": "lunar_to_solar"
+    },
+    {
+      "actual": {
+        "solarDate": "1900-02-04",
+        "solarDay": 4,
+        "solarMonth": 2,
+        "solarYear": 1900
+      },
+      "expectedStatus": "supported",
+      "id": "lunar-1900-month-1-day-5",
+      "input": {
+        "day": 5,
+        "isLeapMonth": false,
+        "month": 1,
+        "year": 1900
+      },
+      "kind": "lunar_to_solar"
+    },
+    {
+      "actual": {
+        "solarDate": "1900-02-05",
+        "solarDay": 5,
+        "solarMonth": 2,
+        "solarYear": 1900
+      },
+      "expectedStatus": "supported",
+      "id": "lunar-1900-month-1-day-6",
+      "input": {
+        "day": 6,
+        "isLeapMonth": false,
+        "month": 1,
+        "year": 1900
+      },
+      "kind": "lunar_to_solar"
+    },
+    {
+      "actual": {
+        "solarDate": "1900-02-06",
+        "solarDay": 6,
+        "solarMonth": 2,
+        "solarYear": 1900
+      },
+      "expectedStatus": "supported",
+      "id": "lunar-1900-month-1-day-7",
+      "input": {
+        "day": 7,
+        "isLeapMonth": false,
+        "month": 1,
+        "year": 1900
+      },
+      "kind": "lunar_to_solar"
+    },
+    {
+      "actual": {
+        "solarDate": "1900-02-07",
+        "solarDay": 7,
+        "solarMonth": 2,
+        "solarYear": 1900
+      },
+      "expectedStatus": "supported",
+      "id": "lunar-1900-month-1-day-8",
+      "input": {
+        "day": 8,
+        "isLeapMonth": false,
+        "month": 1,
+        "year": 1900
+      },
+      "kind": "lunar_to_solar"
+    },
+    {
+      "actual": {
+        "solarDate": "1900-02-08",
+        "solarDay": 8,
+        "solarMonth": 2,
+        "solarYear": 1900
+      },
+      "expectedStatus": "supported",
+      "id": "lunar-1900-month-1-day-9",
+      "input": {
+        "day": 9,
+        "isLeapMonth": false,
+        "month": 1,
+        "year": 1900
+      },
+      "kind": "lunar_to_solar"
+    },
+    {
+      "actual": {
+        "solarDate": "1900-02-09",
+        "solarDay": 9,
+        "solarMonth": 2,
+        "solarYear": 1900
+      },
+      "expectedStatus": "supported",
+      "id": "lunar-1900-month-1-day-10",
+      "input": {
+        "day": 10,
+        "isLeapMonth": false,
+        "month": 1,
+        "year": 1900
+      },
+      "kind": "lunar_to_solar"
+    },
+    {
+      "actual": {
+        "solarDate": "1900-02-10",
+        "solarDay": 10,
+        "solarMonth": 2,
+        "solarYear": 1900
+      },
+      "expectedStatus": "supported",
+      "id": "lunar-1900-month-1-day-11",
+      "input": {
+        "day": 11,
+        "isLeapMonth": false,
+        "month": 1,
+        "year": 1900
+      },
+      "kind": "lunar_to_solar"
+    },
+    {
+      "actual": {
+        "solarDate": "1900-02-11",
+        "solarDay": 11,
+        "solarMonth": 2,
+        "solarYear": 1900
+      },
+      "expectedStatus": "supported",
+      "id": "lunar-1900-month-1-day-12",
+      "input": {
+        "day": 12,
+        "isLeapMonth": false,
+        "month": 1,
+        "year": 1900
+      },
+      "kind": "lunar_to_solar"
+    },
+    {
+      "actual": {
+        "solarDate": "1900-02-12",
+        "solarDay": 12,
+        "solarMonth": 2,
+        "solarYear": 1900
+      },
+      "expectedStatus": "supported",
+      "id": "lunar-1900-month-1-day-13",
+      "input": {
+        "day": 13,
+        "isLeapMonth": false,
+        "month": 1,
+        "year": 1900
+      },
+      "kind": "lunar_to_solar"
+    },
+    {
+      "actual": {
+        "solarDate": "1900-02-13",
+        "solarDay": 13,
+        "solarMonth": 2,
+        "solarYear": 1900
+      },
+      "expectedStatus": "supported",
+      "id": "lunar-1900-month-1-day-14",
+      "input": {
+        "day": 14,
+        "isLeapMonth": false,
+        "month": 1,
+        "year": 1900
+      },
+      "kind": "lunar_to_solar"
+    },
+    {
+      "actual": {
+        "solarDate": "1900-02-14",
+        "solarDay": 14,
+        "solarMonth": 2,
+        "solarYear": 1900
+      },
+      "expectedStatus": "supported",
+      "id": "lunar-1900-month-1-day-15",
+      "input": {
+        "day": 15,
+        "isLeapMonth": false,
+        "month": 1,
+        "year": 1900
+      },
+      "kind": "lunar_to_solar"
+    },
+    {
+      "actual": {
+        "solarDate": "1900-02-15",
+        "solarDay": 15,
+        "solarMonth": 2,
+        "solarYear": 1900
+      },
+      "expectedStatus": "supported",
+      "id": "lunar-1900-month-1-day-16",
+      "input": {
+        "day": 16,
+        "isLeapMonth": false,
+        "month": 1,
+        "year": 1900
+      },
+      "kind": "lunar_to_solar"
+    },
+    {
+      "actual": {
+        "solarDate": "1900-02-16",
+        "solarDay": 16,
+        "solarMonth": 2,
+        "solarYear": 1900
+      },
+      "expectedStatus": "supported",
+      "id": "lunar-1900-month-1-day-17",
+      "input": {
+        "day": 17,
+        "isLeapMonth": false,
+        "month": 1,
+        "year": 1900
+      },
+      "kind": "lunar_to_solar"
+    },
+    {
+      "actual": {
+        "solarDate": "1900-02-17",
+        "solarDay": 17,
+        "solarMonth": 2,
+        "solarYear": 1900
+      },
+      "expectedStatus": "supported",
+      "id": "lunar-1900-month-1-day-18",
+      "input": {
+        "day": 18,
+        "isLeapMonth": false,
+        "month": 1,
+        "year": 1900
+      },
+      "kind": "lunar_to_solar"
+    },
+    {
+      "actual": {
+        "solarDate": "1900-02-18",
+        "solarDay": 18,
+        "solarMonth": 2,
+        "solarYear": 1900
+      },
+      "expectedStatus": "supported",
+      "id": "lunar-1900-month-1-day-19",
+      "input": {
+        "day": 19,
+        "isLeapMonth": false,
+        "month": 1,
+        "year": 1900
+      },
+      "kind": "lunar_to_solar"
+    },
+    {
+      "actual": {
+        "solarDate": "1900-02-19",
+        "solarDay": 19,
+        "solarMonth": 2,
+        "solarYear": 1900
+      },
+      "expectedStatus": "supported",
+      "id": "lunar-1900-month-1-day-20",
+      "input": {
+        "day": 20,
+        "isLeapMonth": false,
+        "month": 1,
+        "year": 1900
+      },
+      "kind": "lunar_to_solar"
+    },
+    {
+      "actual": {
+        "solarDate": "1900-02-20",
+        "solarDay": 20,
+        "solarMonth": 2,
+        "solarYear": 1900
+      },
+      "expectedStatus": "supported",
+      "id": "lunar-1900-month-1-day-21",
+      "input": {
+        "day": 21,
+        "isLeapMonth": false,
+        "month": 1,
+        "year": 1900
+      },
+      "kind": "lunar_to_solar"
+    },
+    {
+      "actual": {
+        "solarDate": "1900-02-21",
+        "solarDay": 21,
+        "solarMonth": 2,
+        "solarYear": 1900
+      },
+      "expectedStatus": "supported",
+      "id": "lunar-1900-month-1-day-22",
+      "input": {
+        "day": 22,
+        "isLeapMonth": false,
+        "month": 1,
+        "year": 1900
+      },
+      "kind": "lunar_to_solar"
+    },
+    {
+      "actual": {
+        "solarDate": "1900-02-22",
+        "solarDay": 22,
+        "solarMonth": 2,
+        "solarYear": 1900
+      },
+      "expectedStatus": "supported",
+      "id": "lunar-1900-month-1-day-23",
+      "input": {
+        "day": 23,
+        "isLeapMonth": false,
+        "month": 1,
+        "year": 1900
+      },
+      "kind": "lunar_to_solar"
+    },
+    {
+      "actual": {
+        "solarDate": "1900-02-23",
+        "solarDay": 23,
+        "solarMonth": 2,
+        "solarYear": 1900
+      },
+      "expectedStatus": "supported",
+      "id": "lunar-1900-month-1-day-24",
+      "input": {
+        "day": 24,
+        "isLeapMonth": false,
+        "month": 1,
+        "year": 1900
+      },
+      "kind": "lunar_to_solar"
+    },
+    {
+      "actual": {
+        "solarDate": "1900-02-24",
+        "solarDay": 24,
+        "solarMonth": 2,
+        "solarYear": 1900
+      },
+      "expectedStatus": "supported",
+      "id": "lunar-1900-month-1-day-25",
+      "input": {
+        "day": 25,
+        "isLeapMonth": false,
+        "month": 1,
+        "year": 1900
+      },
+      "kind": "lunar_to_solar"
+    },
+    {
+      "actual": {
+        "solarDate": "1900-02-25",
+        "solarDay": 25,
+        "solarMonth": 2,
+        "solarYear": 1900
+      },
+      "expectedStatus": "supported",
+      "id": "lunar-1900-month-1-day-26",
+      "input": {
+        "day": 26,
+        "isLeapMonth": false,
+        "month": 1,
+        "year": 1900
+      },
+      "kind": "lunar_to_solar"
+    },
+    {
+      "actual": {
+        "solarDate": "1900-02-26",
+        "solarDay": 26,
+        "solarMonth": 2,
+        "solarYear": 1900
+      },
+      "expectedStatus": "supported",
+      "id": "lunar-1900-month-1-day-27",
+      "input": {
+        "day": 27,
+        "isLeapMonth": false,
+        "month": 1,
+        "year": 1900
+      },
+      "kind": "lunar_to_solar"
+    },
+    {
+      "actual": {
+        "solarDate": "1900-02-27",
+        "solarDay": 27,
+        "solarMonth": 2,
+        "solarYear": 1900
+      },
+      "expectedStatus": "supported",
+      "id": "lunar-1900-month-1-day-28",
+      "input": {
+        "day": 28,
+        "isLeapMonth": false,
+        "month": 1,
+        "year": 1900
+      },
+      "kind": "lunar_to_solar"
+    },
+    {
+      "actual": {
+        "solarDate": "1900-02-28",
+        "solarDay": 28,
+        "solarMonth": 2,
+        "solarYear": 1900
+      },
+      "expectedStatus": "supported",
+      "id": "lunar-1900-month-1-day-29",
+      "input": {
+        "day": 29,
+        "isLeapMonth": false,
+        "month": 1,
+        "year": 1900
+      },
+      "kind": "lunar_to_solar"
+    },
+    {
+      "actual": -1,
+      "expectedStatus": "unsupported",
+      "id": "lunar-1900-month-1-day-30",
+      "input": {
+        "day": 30,
+        "isLeapMonth": false,
+        "month": 1,
+        "year": 1900
+      },
+      "kind": "lunar_to_solar"
+    },
+    {
+      "actual": -1,
+      "expectedStatus": "unsupported",
+      "id": "lunar-1900-month-1-day-31",
+      "input": {
+        "day": 31,
+        "isLeapMonth": false,
+        "month": 1,
+        "year": 1900
+      },
+      "kind": "lunar_to_solar"
+    }
+  ],
+  "roundTrips": [
+    {
+      "id": "round-trip-lower-bound",
+      "input": {
+        "day": 31,
+        "month": 1,
+        "year": 1900
+      },
+      "lunarToSolar": {
+        "solarDate": "1900-01-31",
+        "solarDay": 31,
+        "solarMonth": 1,
+        "solarYear": 1900
+      },
+      "roundTripExact": true,
+      "solarToLunar": {
+        "isLeap": false,
+        "lDay": 1,
+        "lMonth": 1,
+        "lYear": 1900
+      }
+    },
+    {
+      "id": "round-trip-first-kasi-row",
+      "input": {
+        "day": 1,
+        "month": 2,
+        "year": 1900
+      },
+      "lunarToSolar": {
+        "solarDate": "1900-02-01",
+        "solarDay": 1,
+        "solarMonth": 2,
+        "solarYear": 1900
+      },
+      "roundTripExact": true,
+      "solarToLunar": {
+        "isLeap": false,
+        "lDay": 2,
+        "lMonth": 1,
+        "lYear": 1900
+      }
+    },
+    {
+      "id": "round-trip-first-month-last-day",
+      "input": {
+        "day": 28,
+        "month": 2,
+        "year": 1900
+      },
+      "lunarToSolar": {
+        "solarDate": "1900-02-28",
+        "solarDay": 28,
+        "solarMonth": 2,
+        "solarYear": 1900
+      },
+      "roundTripExact": true,
+      "solarToLunar": {
+        "isLeap": false,
+        "lDay": 29,
+        "lMonth": 1,
+        "lYear": 1900
+      }
+    },
+    {
+      "id": "round-trip-leap-month-normal",
+      "input": {
+        "day": 1,
+        "month": 9,
+        "year": 1900
+      },
+      "lunarToSolar": {
+        "solarDate": "1900-09-01",
+        "solarDay": 1,
+        "solarMonth": 9,
+        "solarYear": 1900
+      },
+      "roundTripExact": true,
+      "solarToLunar": {
+        "isLeap": false,
+        "lDay": 8,
+        "lMonth": 8,
+        "lYear": 1900
+      }
+    },
+    {
+      "id": "round-trip-leap-month-leap",
+      "input": {
+        "day": 1,
+        "month": 10,
+        "year": 1900
+      },
+      "lunarToSolar": {
+        "solarDate": "1900-10-01",
+        "solarDay": 1,
+        "solarMonth": 10,
+        "solarYear": 1900
+      },
+      "roundTripExact": true,
+      "solarToLunar": {
+        "isLeap": true,
+        "lDay": 8,
+        "lMonth": 8,
+        "lYear": 1900
+      }
+    },
+    {
+      "id": "round-trip-upper-bound",
+      "input": {
+        "day": 31,
+        "month": 12,
+        "year": 2100
+      },
+      "lunarToSolar": {
+        "solarDate": "2100-12-31",
+        "solarDay": 31,
+        "solarMonth": 12,
+        "solarYear": 2100
+      },
+      "roundTripExact": true,
+      "solarToLunar": {
+        "isLeap": false,
+        "lDay": 1,
+        "lMonth": 12,
+        "lYear": 2100
+      }
+    }
+  ],
+  "schemaVersion": "saju-lunar2solar-kasi-mismatch-fix-v1-frontier",
+  "semanticRange": {
+    "lowerBoundMeaning": "solar2lunar accepts the first solar date whose lunar table anchor is lunar 1900-01-01; lunar2solar accepts that lunar anchor directly",
+    "lunarMaximumInclusive": "2100-12-01",
+    "lunarMinimumInclusive": "1900-01-01",
+    "solarMaximumInclusive": "2100-12-31",
+    "solarMinimumInclusive": "1900-01-31",
+    "upperBoundMeaning": "the table has lunar year 2100, but only lunar 2100-12-01 maps inside the solar 2100 maximum; later lunar dates would overflow into 2101"
+  },
+  "supportSweep": {
+    "caseCount": 73384,
+    "failureCount": 0,
+    "failures": [],
+    "solarDateRange": [
+      "1900-01-31",
+      "2100-12-31"
+    ]
+  },
+  "table": {
+    "entryCount": 201,
+    "firstTableYear": 1900,
+    "lastTableYear": 2100,
+    "lunar1900LeapDays": 29,
+    "lunar1900LeapMonth": 8,
+    "lunar1900Month1Days": 29
+  }
+}

@@ -1,0 +1,253 @@
+{
+  "beforeFixture": {
+    "path": "artifacts/saju-lunar2solar-kasi-mismatch-fix-v1/before-fixture.json",
+    "summary": {
+      "caseCount": 28,
+      "lunarDayRange": [
+        2,
+        29
+      ],
+      "lunarMonth": 1,
+      "lunarYear": 1900,
+      "solarDateRange": [
+        "1900-02-01",
+        "1900-02-28"
+      ]
+    }
+  },
+  "delta": {
+    "path": "artifacts/saju-lunar2solar-kasi-mismatch-fix-v1/delta.json",
+    "summary": {
+      "changedCaseCount": 28,
+      "newMismatchCount": 0,
+      "preservedMismatchCount": 2,
+      "resolvedKnownGuardMismatchCount": 28,
+      "v1KnownGuardMismatchCount": 28
+    }
+  },
+  "deterministic": {
+    "canonicalJsonLf": true,
+    "inputsAreVersionedCaptures": true,
+    "materializerVersion": "1.0.0",
+    "networkFetchDuringMaterialization": false,
+    "sameV1CorpusCaseIdentity": true,
+    "sourceAcquisitionPerformedDuringMaterialization": false
+  },
+  "frontier": {
+    "path": "artifacts/saju-lunar2solar-kasi-mismatch-fix-v1/frontier.json",
+    "supportSweep": {
+      "caseCount": 73384,
+      "failureCount": 0,
+      "failures": [],
+      "solarDateRange": [
+        "1900-01-31",
+        "2100-12-31"
+      ]
+    },
+    "verdict": "closed_for_table_backed_solar_range_and_adjacent_lunar_boundaries"
+  },
+  "implementationInput": {
+    "byteLength": 7193,
+    "path": "src/interpretationPrep/lunarConverter.js",
+    "sha256": "641047f5593d9ceab81b33cc23f7df1fa221a2ab2d6da96223fe8fefbd2e9ffd"
+  },
+  "outputPaths": [
+    "artifacts/saju-lunar2solar-kasi-mismatch-fix-v1/before-fixture.json",
+    "artifacts/saju-lunar2solar-kasi-mismatch-fix-v1/comparison.json",
+    "artifacts/saju-lunar2solar-kasi-mismatch-fix-v1/delta.json",
+    "artifacts/saju-lunar2solar-kasi-mismatch-fix-v1/frontier.json",
+    "artifacts/saju-lunar2solar-kasi-mismatch-fix-v1/report.json",
+    "artifacts/saju-lunar2solar-kasi-mismatch-fix-v1/complete.json"
+  ],
+  "predecessor": {
+    "artifactDir": "artifacts/saju-p0-calendar-oracle-v1",
+    "corpusByteSha256": "4fb51f1b530078e1339006f54de1f793540f1ced4efb25c72817f89ae8eeacb0",
+    "corpusPath": "artifacts/saju-p0-calendar-oracle-v1/corpus.json",
+    "schemaVersion": "saju-p0-calendar-oracle-v1",
+    "sourceInventoryByteSha256": "f4ac0b5c9b50553a08fab29f171530891caf073c7df9d2fb0995dfad2054cb4a",
+    "v1ArtifactBaseline": [
+      {
+        "byteLength": 23701,
+        "expectedByteLength": 23701,
+        "expectedSha256": "f4ac0b5c9b50553a08fab29f171530891caf073c7df9d2fb0995dfad2054cb4a",
+        "path": "artifacts/saju-p0-calendar-oracle-v1/sourceInventory.json",
+        "preserved": true,
+        "sha256": "f4ac0b5c9b50553a08fab29f171530891caf073c7df9d2fb0995dfad2054cb4a"
+      },
+      {
+        "byteLength": 240,
+        "expectedByteLength": 240,
+        "expectedSha256": "e412f5711e70170d05671028dbf967935d5d54a8ac9d9b9e32be75d183c142e1",
+        "path": "artifacts/saju-p0-calendar-oracle-v1/sourceInventory.json.integrity.json",
+        "preserved": true,
+        "sha256": "e412f5711e70170d05671028dbf967935d5d54a8ac9d9b9e32be75d183c142e1"
+      },
+      {
+        "byteLength": 234279,
+        "expectedByteLength": 234279,
+        "expectedSha256": "4fb51f1b530078e1339006f54de1f793540f1ced4efb25c72817f89ae8eeacb0",
+        "path": "artifacts/saju-p0-calendar-oracle-v1/corpus.json",
+        "preserved": true,
+        "sha256": "4fb51f1b530078e1339006f54de1f793540f1ced4efb25c72817f89ae8eeacb0"
+      },
+      {
+        "byteLength": 232,
+        "expectedByteLength": 232,
+        "expectedSha256": "fcd831c2e536175dc4207a55791873f1f76420ea352a5457732d28446be6419e",
+        "path": "artifacts/saju-p0-calendar-oracle-v1/corpus.json.integrity.json",
+        "preserved": true,
+        "sha256": "fcd831c2e536175dc4207a55791873f1f76420ea352a5457732d28446be6419e"
+      },
+      {
+        "byteLength": 1461522,
+        "expectedByteLength": 1461522,
+        "expectedSha256": "32082662240be84cbf906debe6e2c4686c594e15dc5440817bdda097fe23f549",
+        "path": "artifacts/saju-p0-calendar-oracle-v1/comparison.json",
+        "preserved": true,
+        "sha256": "32082662240be84cbf906debe6e2c4686c594e15dc5440817bdda097fe23f549"
+      },
+      {
+        "byteLength": 237,
+        "expectedByteLength": 237,
+        "expectedSha256": "aff8a8d4cc31c06df08d71ceeb694558ec50aa614610849a3aab80620a0bd627",
+        "path": "artifacts/saju-p0-calendar-oracle-v1/comparison.json.integrity.json",
+        "preserved": true,
+        "sha256": "aff8a8d4cc31c06df08d71ceeb694558ec50aa614610849a3aab80620a0bd627"
+      },
+      {
+        "byteLength": 63534,
+        "expectedByteLength": 63534,
+        "expectedSha256": "3cb9fd2cadc0abaf64cfcebf56441d2ea417c71f5c6025b9a5e6cd60e8732f0a",
+        "path": "artifacts/saju-p0-calendar-oracle-v1/exceptions.json",
+        "preserved": true,
+        "sha256": "3cb9fd2cadc0abaf64cfcebf56441d2ea417c71f5c6025b9a5e6cd60e8732f0a"
+      },
+      {
+        "byteLength": 235,
+        "expectedByteLength": 235,
+        "expectedSha256": "ab0fde1a9d8bab601a1e6b3489e27066713f0805bbeca95f0c01d2d027959272",
+        "path": "artifacts/saju-p0-calendar-oracle-v1/exceptions.json.integrity.json",
+        "preserved": true,
+        "sha256": "ab0fde1a9d8bab601a1e6b3489e27066713f0805bbeca95f0c01d2d027959272"
+      },
+      {
+        "byteLength": 15455,
+        "expectedByteLength": 15455,
+        "expectedSha256": "eec7ad3d35b3164f27beead3f7154781705faa4206df2532fc08eb4aa67c720e",
+        "path": "artifacts/saju-p0-calendar-oracle-v1/complete.json",
+        "preserved": true,
+        "sha256": "eec7ad3d35b3164f27beead3f7154781705faa4206df2532fc08eb4aa67c720e"
+      },
+      {
+        "byteLength": 233,
+        "expectedByteLength": 233,
+        "expectedSha256": "cf5b74f90f81fa20ae27774c057228de2157ea04ade7bba4dfbd8fb5974385b1",
+        "path": "artifacts/saju-p0-calendar-oracle-v1/complete.json.integrity.json",
+        "preserved": true,
+        "sha256": "cf5b74f90f81fa20ae27774c057228de2157ea04ade7bba4dfbd8fb5974385b1"
+      }
+    ],
+    "v1ArtifactBytesPreserved": true,
+    "v1FixedHeadDrift": {
+      "classification": "pre_existing_historical_artifact_drift; v1 files are not rewritten",
+      "currentCheckoutHead": "18be2ff336ef8084566b64724da6dccfb9f76054",
+      "expectedInV1Artifact": "b4d063c6f2e8972e8735b53687d43fdc9643fee8"
+    }
+  },
+  "readinessBoundary": {
+    "authorityUnresolvedIds": [
+      "contract-kasi-sexagenary-month-year-time-semantics",
+      "contract-zi-night-day-boundary-rule",
+      "contract-solar-time-location-policy"
+    ],
+    "availableForInterpretation": false,
+    "noAutomaticPromotion": true,
+    "predecessorStatus": "still_blocked",
+    "productionActivation": "blocked",
+    "timezoneMismatchIds": [
+      "tz-rok-1951-dst-start",
+      "tz-seoul-1954-offset-change"
+    ],
+    "unchangedFromV1": true
+  },
+  "rootCauseReport": "artifacts/saju-lunar2solar-kasi-mismatch-fix-v1/report.json",
+  "schemaVersion": "saju-lunar2solar-kasi-mismatch-fix-v1",
+  "scope": {
+    "branch": "main",
+    "claimPromotion": false,
+    "commit": false,
+    "currentHead": "18be2ff336ef8084566b64724da6dccfb9f76054",
+    "deploy": false,
+    "existingUntrackedPreserved": [
+      "-.jpg"
+    ],
+    "expectedHead": "18be2ff336ef8084566b64724da6dccfb9f76054",
+    "originMainHead": "18be2ff336ef8084566b64724da6dccfb9f76054",
+    "productionActivation": false,
+    "push": false,
+    "readinessPromotion": false,
+    "remoteDatabaseMutation": false
+  },
+  "successorComparison": {
+    "path": "artifacts/saju-lunar2solar-kasi-mismatch-fix-v1/comparison.json",
+    "summary": {
+      "authorityUnresolvedIds": [
+        "contract-kasi-sexagenary-month-year-time-semantics",
+        "contract-zi-night-day-boundary-rule",
+        "contract-solar-time-location-policy"
+      ],
+      "caseCount": 1456,
+      "categoryCounts": {
+        "authority_unresolved": 3,
+        "exact_match": 1386,
+        "oracle_scope_insufficient": 36,
+        "semantic_mismatch": 2,
+        "within_defined_tolerance": 29
+      },
+      "exceptionCount": 41,
+      "mismatchIds": [
+        "tz-rok-1951-dst-start",
+        "tz-seoul-1954-offset-change"
+      ],
+      "scopeInsufficientIds": [
+        "hko-2026-02-production-scope",
+        "hko-2026-04-production-scope",
+        "hko-2026-06-production-scope",
+        "hko-2026-08-production-scope",
+        "hko-2026-10-production-scope",
+        "hko-2026-12-production-scope",
+        "hko-2026-14-production-scope",
+        "hko-2026-16-production-scope",
+        "hko-2026-18-production-scope",
+        "hko-2026-20-production-scope",
+        "hko-2026-22-production-scope",
+        "hko-2026-24-production-scope",
+        "hko-2027-02-production-scope",
+        "hko-2027-04-production-scope",
+        "hko-2027-06-production-scope",
+        "hko-2027-08-production-scope",
+        "hko-2027-10-production-scope",
+        "hko-2027-12-production-scope",
+        "hko-2027-14-production-scope",
+        "hko-2027-16-production-scope",
+        "hko-2027-18-production-scope",
+        "hko-2027-20-production-scope",
+        "hko-2027-22-production-scope",
+        "hko-2027-24-production-scope",
+        "hko-2028-02-production-scope",
+        "hko-2028-04-production-scope",
+        "hko-2028-06-production-scope",
+        "hko-2028-08-production-scope",
+        "hko-2028-10-production-scope",
+        "hko-2028-12-production-scope",
+        "hko-2028-14-production-scope",
+        "hko-2028-16-production-scope",
+        "hko-2028-18-production-scope",
+        "hko-2028-20-production-scope",
+        "hko-2028-22-production-scope",
+        "hko-2028-24-production-scope"
+      ]
+    }
+  },
+  "verdictToken": "complete_saju_lunar2solar_kasi_mismatch_fix_frontier_exhausted_uncommitted"
+}
