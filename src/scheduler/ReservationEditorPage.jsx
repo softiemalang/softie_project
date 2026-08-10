@@ -43,8 +43,9 @@ export function ReservationEditorPage({
 }) {
   const [formValues, setFormValues] = useState(() => createReservationDraft(initialReservationDate))
   const [status, setStatus] = useState('')
+  const [statusTone, setStatusTone] = useState('info')
   const [isLoading, setIsLoading] = useState(mode === 'edit')
-  const [isSaving, setIsSaving] = useState(false)
+  const [busyAction, setBusyAction] = useState(null)
   const [loadedReservation, setLoadedReservation] = useState(null)
   const [activeRegulars, setActiveRegulars] = useState(null)
   const [regularLookupStatus, setRegularLookupStatus] = useState('idle')
@@ -55,6 +56,31 @@ export function ReservationEditorPage({
   const identityChangedRef = useRef(false)
   const manualRegularOverrideRef = useRef(false)
   const rebookingLookupGenerationRef = useRef(0)
+  const actionLockRef = useRef(null)
+
+  const isBusy = busyAction !== null
+
+  function setEditorStatus(message, tone = 'info') {
+    setStatus(message)
+    setStatusTone(tone)
+  }
+
+  function beginAction(action) {
+    if (actionLockRef.current) return false
+    actionLockRef.current = action
+    setBusyAction(action)
+    return true
+  }
+
+  function endAction() {
+    actionLockRef.current = null
+    setBusyAction(null)
+  }
+
+  function handleBack() {
+    if (actionLockRef.current) return
+    navigate(backPath)
+  }
 
   useEffect(() => {
     if (lastScrolledEntryKeyRef.current === editorEntryKey) return
@@ -65,6 +91,7 @@ export function ReservationEditorPage({
   useEffect(() => {
     identityChangedRef.current = false
     manualRegularOverrideRef.current = false
+    setEditorStatus('')
     setActiveRegulars(null)
     setRegularLookupStatus('loading')
     setSamePhoneReservations([])
@@ -150,7 +177,7 @@ export function ReservationEditorPage({
         const row = await getReservationById(reservationId, effectiveOwnerKey)
         if (cancelled) return
         if (!row) {
-          setStatus('예약을 찾지 못했어요.')
+          setEditorStatus('예약을 찾지 못했어요. 목록으로 돌아가 다시 확인해 주세요.', 'error')
           return
         }
         setLoadedReservation(row)
@@ -159,9 +186,11 @@ export function ReservationEditorPage({
         // save can promote and link it atomically.
         manualRegularOverrideRef.current = row.tags?.includes(REGULAR_TAG_VALUE) && !row.regular_id
         setFormValues(mapReservationToFormValues(row))
-        setStatus('')
+        setEditorStatus('')
       } catch (error) {
-        if (!cancelled) setStatus(error.message)
+        if (!cancelled) {
+          setEditorStatus(error?.message || '예약을 불러오지 못했어요. 목록으로 돌아가 다시 시도해 주세요.', 'error')
+        }
       } finally {
         if (!cancelled) setIsLoading(false)
       }
@@ -246,11 +275,12 @@ export function ReservationEditorPage({
     event.preventDefault()
     const validationMessage = validateReservationForm(formValues)
     if (validationMessage) {
-      setStatus(validationMessage)
+      setEditorStatus(validationMessage, 'error')
       return
     }
 
-    setIsSaving(true)
+    if (!beginAction('saving')) return
+    setEditorStatus('')
     try {
       const payload = buildReservationPayload(formValues)
       const hasCompleteRegularSelection = payload.tags.includes(REGULAR_TAG_VALUE)
@@ -316,7 +346,7 @@ export function ReservationEditorPage({
           setFormValues(createReservationDraft(formValues.reservationDate))
           window.scrollTo({ top: 0, behavior: 'smooth' })
         }
-        setStatus('예약은 저장되었으나, Google 캘린더 동기화에 실패했습니다.')
+        setEditorStatus('예약은 저장되었으나, Google 캘린더 동기화에 실패했습니다. Google 연결을 확인해 주세요.', 'warning')
       } else {
         if (mode === 'edit') {
           navigate(`/scheduler/${saved.id}`)
@@ -326,21 +356,22 @@ export function ReservationEditorPage({
           setFormValues(createReservationDraft(formValues.reservationDate))
           window.scrollTo({ top: 0, behavior: 'smooth' })
         }
-        setStatus('저장했어요.')
+        setEditorStatus('저장했어요.', 'success')
       }
     } catch (error) {
-      setStatus(error.message)
+      setEditorStatus(error?.message || '저장하지 못했어요. 입력을 확인한 뒤 다시 시도해 주세요.', 'error')
     } finally {
-      setIsSaving(false)
+      endAction()
     }
   }
 
   async function handleDelete() {
-    if (!reservationId) return
+    if (!reservationId || actionLockRef.current) return
     const shouldDelete = window.confirm('이 예약과 연결된 작업 3개를 함께 삭제할까요?')
     if (!shouldDelete) return
 
-    setIsSaving(true)
+    if (!beginAction('deleting')) return
+    setEditorStatus('')
 
     try {
       if (googleConnected && loadedReservation?.google_event_id) {
@@ -358,41 +389,61 @@ export function ReservationEditorPage({
       navigate(backPath)
     } catch (error) {
       console.error('[handleDelete] Delete flow failed:', error)
-      setStatus(error.message || '예약 삭제 중 오류가 발생했습니다.')
-      setIsSaving(false)
+      setEditorStatus(error?.message || '예약을 삭제하지 못했어요. 다시 시도해 주세요.', 'error')
+    } finally {
+      endAction()
     }
   }
 
   return (
     <div className="scheduler-shell scheduler-editor-page">
 
-      <section className="scheduler-panel scheduler-editor-card" style={{ paddingTop: '1rem' }}>
-        <div className="scheduler-section-head" style={{ marginBottom: '0.4rem' }}>
-          <div />
-          <button type="button" className="scheduler-back-button" onClick={() => navigate(backPath)}>
+      <section className="scheduler-panel scheduler-editor-card">
+        <div className="scheduler-editor-header">
+          <div className="scheduler-editor-heading">
+            <p className="scheduler-section-label">{mode === 'edit' ? '예약 편집' : '새 예약'}</p>
+            <h1 className="scheduler-editor-title">{mode === 'edit' ? '예약 수정' : '예약 만들기'}</h1>
+          </div>
+          <button type="button" className="scheduler-back-button" onClick={handleBack} disabled={isBusy}>
             ← 돌아가기
           </button>
         </div>
 
-        {status && <p className="status">{status}</p>}
+        {status && (
+          <p
+            className={`status scheduler-editor-status is-${statusTone}`}
+            role={statusTone === 'error' ? 'alert' : 'status'}
+            aria-live={statusTone === 'error' ? 'assertive' : 'polite'}
+            aria-atomic="true"
+          >
+            {status}
+          </p>
+        )}
+
+        {isBusy ? (
+          <span className="visually-hidden" role="status" aria-live="polite">
+            {busyAction === 'deleting' ? '예약 삭제 중입니다.' : '예약 저장 중입니다.'}
+          </span>
+        ) : null}
 
         {isLoading ? (
-          <p className="subtle">불러오는 중...</p>
+          <p className="subtle scheduler-editor-loading" role="status" aria-live="polite">예약 불러오는 중...</p>
         ) : (
-          <form className="scheduler-form" onSubmit={handleSubmit}>
-            <NativePickerField
-              label="예약 날짜"
-              type="date"
-              value={formValues.reservationDate}
-              placeholder="날짜 선택"
-              formatter={formatSchedulerDate}
-              onChange={(event) => updateField('reservationDate', event.target.value)}
-            />
+          <form className="scheduler-form" onSubmit={handleSubmit} aria-busy={isBusy}>
+            <fieldset className="scheduler-editor-fieldset" disabled={isBusy}>
+              <NativePickerField
+                label="예약 날짜"
+                type="date"
+                value={formValues.reservationDate}
+                placeholder="날짜 선택"
+                formatter={formatSchedulerDate}
+                onChange={(event) => updateField('reservationDate', event.target.value)}
+              />
 
             <div className="scheduler-two-up scheduler-primary-field-row">
               <div className="scheduler-primary-field">
                 <span className="scheduler-parent-label">지점</span>
-                <div className="scheduler-branch-option-row" role="radiogroup" aria-label="지점 선택">
+                <div className="scheduler-branch-option-row" role="group" aria-label="지점 선택">
                   {SCHEDULER_BRANCHES.map((branch) => {
                     const isActive = formValues.branch === branch
                     return (
@@ -417,7 +468,7 @@ export function ReservationEditorPage({
                   {!formValues.branch ? (
                     <div className="scheduler-room-picker-empty">지점을 먼저 선택</div>
                   ) : (
-                    <div className="scheduler-room-option-row" role="radiogroup" aria-label="룸 선택">
+                    <div className="scheduler-room-option-row" role="group" aria-label="룸 선택">
                       {availableRooms.map((room) => {
                         const isActive = formValues.room === room
                         return (
@@ -445,6 +496,7 @@ export function ReservationEditorPage({
                 value={formValues.customerName}
                 onChange={(event) => updateField('customerName', event.target.value)}
                 placeholder="예약자 또는 팀명"
+                enterKeyHint="next"
               />
             </label>
 
@@ -457,6 +509,7 @@ export function ReservationEditorPage({
                 value={formValues.phoneLast4}
                 onChange={(event) => updateField('phoneLast4', event.target.value)}
                 placeholder="뒤 4자리"
+                enterKeyHint="next"
               />
             </label>
 
@@ -481,6 +534,7 @@ export function ReservationEditorPage({
                     inputMode="numeric"
                     value={formValues.durationHours}
                     onChange={(event) => updateField('durationHours', event.target.value)}
+                    enterKeyHint="next"
                   />
                 </label>
 
@@ -506,7 +560,7 @@ export function ReservationEditorPage({
 
             <div className="scheduler-warning-offset-field scheduler-form-section">
               <span className="scheduler-parent-label">퇴실등 시점</span>
-              <div className="scheduler-warning-offset-row" role="radiogroup" aria-label="퇴실등 시점 선택">
+              <div className="scheduler-warning-offset-row" role="group" aria-label="퇴실등 시점 선택">
                 {[
                   ['10', '10분 전'],
                   ['15', '15분 전'],
@@ -539,6 +593,7 @@ export function ReservationEditorPage({
                       type="button"
                       className={`scheduler-chip ${isActive ? 'active' : ''}`}
                       onClick={() => handleTagToggle(tag.value)}
+                      aria-pressed={isActive}
                       data-text={tag.shortLabel}
                     >
                       {tag.shortLabel}
@@ -555,19 +610,32 @@ export function ReservationEditorPage({
                 value={formValues.notesText}
                 onChange={(event) => updateField('notesText', event.target.value)}
                 placeholder="예: 6명 / 인이어 2세트 / MTR 요청"
+                enterKeyHint="done"
               />
             </label>
 
             <div className="scheduler-form-actions">
-              <button type="submit" disabled={isSaving}>
-                {isSaving ? '저장 중...' : mode === 'edit' ? '수정 저장' : '예약 만들기'}
+              <button
+                type="submit"
+                className="scheduler-editor-save-button"
+                disabled={isBusy}
+                aria-busy={busyAction === 'saving'}
+              >
+                {busyAction === 'saving' ? '저장 중...' : mode === 'edit' ? '수정 저장' : '예약 만들기'}
               </button>
               {mode === 'edit' ? (
-                <button type="button" className="danger-button" onClick={handleDelete} disabled={isSaving}>
-                  삭제
+                <button
+                  type="button"
+                  className="danger-button scheduler-editor-delete-button"
+                  onClick={handleDelete}
+                  disabled={isBusy}
+                  aria-busy={busyAction === 'deleting'}
+                >
+                  {busyAction === 'deleting' ? '삭제 중...' : '예약 삭제'}
                 </button>
               ) : null}
             </div>
+            </fieldset>
           </form>
         )}
       </section>

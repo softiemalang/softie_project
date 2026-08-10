@@ -5036,6 +5036,110 @@ textarea {
   -webkit-backdrop-filter: blur(10px) saturate(106%) !important;
 }
 
+.scheduler-theme-shell .scheduler-editor-page .scheduler-editor-header {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: start;
+  gap: var(--scheduler-gap-md);
+  margin-bottom: var(--scheduler-gap-lg);
+}
+
+.scheduler-theme-shell .scheduler-editor-page .scheduler-editor-heading {
+  min-width: 0;
+}
+
+.scheduler-theme-shell .scheduler-editor-page .scheduler-editor-title {
+  margin: 0.18rem 0 0;
+  color: var(--ag-text);
+  font-size: clamp(1.3rem, 5vw, 1.7rem);
+  font-weight: var(--scheduler-type-display-weight);
+  line-height: 1.08;
+  letter-spacing: -0.028em;
+}
+
+.scheduler-theme-shell .scheduler-editor-page .scheduler-editor-fieldset {
+  display: grid;
+  gap: var(--scheduler-form-block-gap);
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.scheduler-theme-shell .scheduler-editor-page .scheduler-editor-loading {
+  margin: 0;
+  padding: 0.2rem var(--scheduler-content-inset);
+}
+
+.scheduler-theme-shell .scheduler-editor-page .scheduler-editor-status {
+  margin: 0 0 var(--scheduler-gap-md);
+  color: var(--ag-text-muted);
+  background: var(--ag-surface-operational);
+  border-color: var(--ag-line);
+}
+
+.scheduler-theme-shell .scheduler-editor-page .scheduler-editor-status.is-success {
+  color: var(--ag-success);
+  background: var(--ag-success-soft);
+  border-color: rgba(184, 200, 165, 0.3);
+}
+
+.scheduler-theme-shell .scheduler-editor-page .scheduler-editor-status.is-warning {
+  color: var(--ag-warning);
+  background: var(--ag-warning-soft);
+  border-color: rgba(214, 179, 126, 0.3);
+}
+
+.scheduler-theme-shell .scheduler-editor-page .scheduler-editor-status.is-error {
+  color: var(--ag-danger);
+  background: var(--ag-danger-soft);
+  border-color: rgba(215, 160, 160, 0.3);
+}
+
+.scheduler-theme-shell .scheduler-editor-page .scheduler-back-button,
+.scheduler-theme-shell .scheduler-editor-page .scheduler-chip,
+.scheduler-theme-shell .scheduler-editor-page .scheduler-room-option,
+.scheduler-theme-shell .scheduler-editor-page .scheduler-form-actions > button {
+  touch-action: manipulation;
+  transition: transform 160ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.scheduler-theme-shell .scheduler-editor-page .scheduler-back-button:active:not(:disabled),
+.scheduler-theme-shell .scheduler-editor-page .scheduler-chip:active:not(:disabled),
+.scheduler-theme-shell .scheduler-editor-page .scheduler-room-option:active:not(:disabled),
+.scheduler-theme-shell .scheduler-editor-page .scheduler-form-actions > button:active:not(:disabled) {
+  transform: scale(0.985) !important;
+}
+
+.scheduler-theme-shell .scheduler-editor-page .scheduler-native-picker-shell {
+  touch-action: manipulation;
+}
+
+.scheduler-theme-shell .scheduler-editor-page .scheduler-native-picker-display {
+  cursor: pointer;
+}
+
+.scheduler-theme-shell .scheduler-editor-page .scheduler-editor-save-button {
+  min-width: 8.5rem;
+}
+
+.scheduler-theme-shell .scheduler-editor-page .scheduler-editor-delete-button {
+  min-width: 7.5rem;
+}
+
+.scheduler-theme-shell .scheduler-editor-page .scheduler-native-picker-shell:active .scheduler-native-picker-display {
+  background: var(--scheduler-surface-selected);
+  border-color: var(--scheduler-line-selected);
+}
+
+.scheduler-theme-shell .scheduler-editor-page .scheduler-editor-fieldset:disabled,
+.scheduler-theme-shell .scheduler-editor-page .scheduler-editor-fieldset:disabled input,
+.scheduler-theme-shell .scheduler-editor-page .scheduler-editor-fieldset:disabled select,
+.scheduler-theme-shell .scheduler-editor-page .scheduler-editor-fieldset:disabled textarea,
+.scheduler-theme-shell .scheduler-editor-page .scheduler-editor-fieldset:disabled button {
+  cursor: wait;
+}
+
 .scheduler-theme-shell .scheduler-primary-info-card {
   background: var(--ag-surface-glass-strong);
   border-color: var(--scheduler-line-soft);
