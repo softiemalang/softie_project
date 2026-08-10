@@ -1,0 +1,55 @@
+{
+  "forbidden": [
+    "OCR-only submission",
+    "invented edition/date/page",
+    "normalized redraw replacing image",
+    "confidence score as authority",
+    "semantic acceptance verdict by field collector",
+    "production/readiness/activation mutation"
+  ],
+  "oneRecordPerCandidateMaterial": true,
+  "required": [
+    "intakeId",
+    "sourceInstitutionOrHolder",
+    "stableItemIdOrCallNumber",
+    "rawTitleAttribution",
+    "editionOrUnresolved",
+    "volumeFolioPage",
+    "originalFileList",
+    "actualByteSha256",
+    "captureScope",
+    "rawObservedGlyphs",
+    "currentTargetIds",
+    "currentBlockerIds",
+    "uncertainties",
+    "triageStatus"
+  ],
+  "requiredPerObservation": [
+    "observationId",
+    "targetId",
+    "sourceRef",
+    "pageOrFolio",
+    "directVisualStatus",
+    "rawTextOrGlyph",
+    "layoutOrDiagramNotes",
+    "whatItEstablishes",
+    "whatItDoesNotEstablish"
+  ],
+  "requiredPerRelation": [
+    "currentRelationIdOrPlannedRelationLabel",
+    "fromObservationIds",
+    "claimIds",
+    "blockerIds",
+    "promotionStatus",
+    "independenceStatus",
+    "authorityStatus"
+  ],
+  "triageStatuses": [
+    "candidate",
+    "promising",
+    "review_ready",
+    "potentially_sufficient",
+    "rejected",
+    "needs_human_review"
+  ]
+}

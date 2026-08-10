@@ -1,0 +1,102 @@
+{
+  "firstActions": [
+    {
+      "accept": [
+        "A human can read every palace name and branch glyph from the original image without reconstructing missing labels.",
+        "The same witness states or visibly encodes which slot is the base/ordinal origin and which operation proceeds forward or reverse."
+      ],
+      "find": [
+        "one source-identified page or adjacent page set with all 12 palace names and all 12 branch glyphs",
+        "complete diagram boundary with physical slots visible",
+        "the source statement, arrows, or table that names ordinal/base point and forward/reverse direction"
+      ],
+      "priority": "P0",
+      "rank": 1,
+      "reject": [
+        "OCR-only, normalized redraw, cropped diagram, or chart output without source rule context",
+        "partial labels, a single example, or a branch ring without palace-name/ordinal/direction binding"
+      ],
+      "targetId": "acq-palace-semantic-map-and-coordinate-witness"
+    },
+    {
+      "accept": [
+        "The institution or physical holder and item identity are independently recorded; a title string alone is insufficient.",
+        "The actual witness bytes or unedited supplied capture are hash-bound, and each claim occurrence has a page/folio locator."
+      ],
+      "find": [
+        "cover or title leaf with the raw title and attribution",
+        "contents/volume or fascicle identification",
+        "copyright, colophon, publication, or manuscript-identifying leaf when present"
+      ],
+      "priority": "P0",
+      "rank": 2,
+      "reject": [
+        "catalog metadata, preview, OCR, transcription, mirror URL, or local filename without a physical-witness link",
+        "NARA volume 1 and volume 2 counted as independent witnesses"
+      ],
+      "targetId": "acq-distinct-witness-identity-lineage"
+    },
+    {
+      "accept": [
+        "The rule names what the branch token denotes and which direction/anchor is applied.",
+        "The observed rows make the competing formulas distinguishable without reverse-engineering output."
+      ],
+      "find": [
+        "readable 安天府 or equivalent anchor/direction rule",
+        "branch-token meaning and coordinate frame",
+        "enough worked rows/examples to distinguish mod(4 - Z) from mod(10 - Z)"
+      ],
+      "priority": "P0",
+      "rank": 3,
+      "reject": [
+        "rotation-06 exact fit alone",
+        "formula inferred from production output or a chart with no rule subject"
+      ],
+      "targetId": "acq-tianfu-anchor-direction-adjudicator"
+    },
+    {
+      "accept": [
+        "All 40 cells and both axis orders are directly reviewable.",
+        "The witness has source identity and lineage sufficient to assess independence from held scans."
+      ],
+      "find": [
+        "all ten stems 甲乙丙丁戊己庚辛壬癸",
+        "all four columns 化祿 化權 化科 化忌 in declared order",
+        "all 40 cells directly visible or source-contextually closed"
+      ],
+      "priority": "P1",
+      "rank": 4,
+      "reject": [
+        "Nanbei 40/40 merely recopied",
+        "Nanyang 36 missing cells filled from current engine"
+      ],
+      "targetId": "acq-independent-complete-four-transform-table"
+    },
+    {
+      "accept": [
+        "The evaluator does not import the production engine, its fixtures, or the same source data without disclosure.",
+        "The same cohort and exact settings produce field-level outputs with reproducible identity."
+      ],
+      "find": [
+        "independent implementation and version",
+        "independent source/ruleset identity",
+        "exact input settings and same cohort"
+      ],
+      "priority": "P1",
+      "rank": 5,
+      "reject": [
+        "wrapper around the production resolver",
+        "fixture-only or screenshot-only result"
+      ],
+      "targetId": "acq-independent-ziwei-oracle"
+    }
+  ],
+  "heldDoNotReacquire": [
+    "Nanbei 219p and Nanyangtang 528p local PDFs are already hash-verified inputs.",
+    "NARA 4468520/4469314 are a same-record pair, not independent witnesses.",
+    "TOYO_1646 reviewed 23 leaves are a physical candidate boundary, not authority."
+  ],
+  "rights": "Public access, catalog metadata, HTTP 200, and CC0 metadata do not by themselves authorize image reuse.",
+  "rule": "Read the current boundary first. Capture raw source/identity. Do not close a blocker or promote a claim in the field.",
+  "title": "Ziwei P0 evidence acquisition — next field actions"
+}

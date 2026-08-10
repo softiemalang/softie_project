@@ -1,0 +1,818 @@
+{
+  "artifactIdentity": {
+    "artifactId": "ziwei-p0-toyo-1646-extended-observation-v0",
+    "artifactPayloadSha256": "18a27185baea861c6c879e593ecaf7f23951774713bb8c20046c7badb3e91233",
+    "contractVersion": "artifact-identity-v1",
+    "generation": {
+      "baseHead": "2d5eb3bb7cde79bcb6a671969280987ffe536965",
+      "baseHeadSource": "git rev-parse HEAD at materialization",
+      "includedCommit": null,
+      "includedCommitSource": "unknown_at_generation; artifact may be included by a later commit"
+    },
+    "inputs": [
+      {
+        "byteSha256": "4ce5b13c486913adf051e7abfcb9f451bf81f51f2b7d6fa01ca494fa2423004d",
+        "path": "artifacts/ziwei-p0-claim-source-identity-frontier-v1/complete.json"
+      },
+      {
+        "byteSha256": "af511a727566c52611a251f1b2597a22f9dc4bb3c806514d91535e95832f949c",
+        "path": "artifacts/ziwei-p0-claim-source-identity-frontier-v1/source-lineage-inventory.json"
+      },
+      {
+        "byteSha256": "819d71555928439cd7db29124cb2493e8d5b46b2b4fdc64b8a82aa2f25f67b9f",
+        "path": "scripts/materialize-ziwei-p0-toyo-1646-extended-observation-v0.mjs"
+      },
+      {
+        "byteSha256": "45d47c02b33ef924331a3064b579b68402e52c5393322c1de6071421a6085fc7",
+        "path": "src/artifactIdentity.js"
+      }
+    ],
+    "materializer": {
+      "path": "scripts/materialize-ziwei-p0-toyo-1646-extended-observation-v0.mjs",
+      "version": "1.0.0"
+    }
+  },
+  "basisHead": "2d5eb3bb7cde79bcb6a671969280987ffe536965",
+  "branch": "main",
+  "checker": "scripts/check-ziwei-p0-toyo-1646-extended-observation-v0.mjs",
+  "deterministicContract": {
+    "generatedAt": "forbidden",
+    "hashes": "actual JPEG bytes, SHA-256, UTF-8 JSON including final LF",
+    "ids": "stable explicit leaf-based IDs",
+    "imageOrder": "leaf ascending order across the 15 predecessor rows and 8 new rows",
+    "network": "forbidden_during_materialization",
+    "sourceCache": "explicit env path only; every required byte is hash-checked; missing/mismatched bytes fail closed",
+    "visualReviewBoundary": "OCR/transcription is locator-only; direct page review is bounded surface evidence"
+  },
+  "expectedHead": "2d5eb3bb7cde79bcb6a671969280987ffe536965",
+  "externalEvidence": {
+    "acquisition": "no acquisition performed; only preexisting explicitly configured local cache bytes were read",
+    "cacheConfiguration": {
+      "fileNamePattern": "ziwei-toyo-1646-{leaf}.jpg",
+      "repositoryStorage": "forbidden",
+      "requiredEnv": "TOYO_1646_CACHE_DIR"
+    },
+    "cacheScope": "all 23 pre-existing TOYO JPEG files present in the explicit cache were hash-checked; viewer leaves outside this cache were not acquired",
+    "historicalHashReconciliation": [
+      {
+        "actualCacheSha256": "3f315cfc53f1a97417e7212e6c0cbbc6d01cf4831e3853e825969c2f75aeae6e",
+        "decision": "preserve_historical_record_and_actual_bytes_in_parallel; do_not_rewrite_predecessor",
+        "leaf": "0085",
+        "predecessorRecordedSha256": "3f315cfc53f1a97417e7212e6c0cbbc6d01cf4831e3853e825969c2f75ae6e"
+      }
+    ],
+    "imageCount": 23,
+    "newImageCount": 8,
+    "predecessorImageCount": 15,
+    "reviewedFiles": [
+      {
+        "byteLength": 864745,
+        "byteSha256": "501490341c3c95533a900c5f3642208e029cb1aa7ada62859aa085940907e2e2",
+        "cachePathIsNotStored": true,
+        "fileName": "ziwei-toyo-1646-0001.jpg",
+        "leaf": "0001",
+        "predecessorHashStatus": "matches",
+        "predecessorRecordedSha256": "501490341c3c95533a900c5f3642208e029cb1aa7ada62859aa085940907e2e2",
+        "reviewOrigin": "predecessor_visual_review_hash_rechecked"
+      },
+      {
+        "byteLength": 637558,
+        "byteSha256": "bfd73c7fbf7d23e7551dfff62d8195b4cb5c7a46350344a163ddcb53dae4950d",
+        "cachePathIsNotStored": true,
+        "fileName": "ziwei-toyo-1646-0002.jpg",
+        "leaf": "0002",
+        "predecessorHashStatus": "new_expected_hash_match",
+        "predecessorRecordedSha256": null,
+        "reviewOrigin": "new_visual_review_in_this_packet"
+      },
+      {
+        "byteLength": 809250,
+        "byteSha256": "c80a3a73b8ce9f3cf9ace261acc0ebc367d019ac671569dc295752a058739ea6",
+        "cachePathIsNotStored": true,
+        "fileName": "ziwei-toyo-1646-0003.jpg",
+        "leaf": "0003",
+        "predecessorHashStatus": "matches",
+        "predecessorRecordedSha256": "c80a3a73b8ce9f3cf9ace261acc0ebc367d019ac671569dc295752a058739ea6",
+        "reviewOrigin": "predecessor_visual_review_hash_rechecked"
+      },
+      {
+        "byteLength": 914517,
+        "byteSha256": "f3cf2bd1b9e6b663417363130532b1de4c688e434f9e65c021a79ef34cb39b42",
+        "cachePathIsNotStored": true,
+        "fileName": "ziwei-toyo-1646-0004.jpg",
+        "leaf": "0004",
+        "predecessorHashStatus": "matches",
+        "predecessorRecordedSha256": "f3cf2bd1b9e6b663417363130532b1de4c688e434f9e65c021a79ef34cb39b42",
+        "reviewOrigin": "predecessor_visual_review_hash_rechecked"
+      },
+      {
+        "byteLength": 1035361,
+        "byteSha256": "0079a78503695db7392a7d3e493657cbdbe3978e2a37b5c28864b1ddc5cbd73d",
+        "cachePathIsNotStored": true,
+        "fileName": "ziwei-toyo-1646-0005.jpg",
+        "leaf": "0005",
+        "predecessorHashStatus": "matches",
+        "predecessorRecordedSha256": "0079a78503695db7392a7d3e493657cbdbe3978e2a37b5c28864b1ddc5cbd73d",
+        "reviewOrigin": "predecessor_visual_review_hash_rechecked"
+      },
+      {
+        "byteLength": 1076532,
+        "byteSha256": "95670b53dbebfc7d6e249cd4797a8569c90dd282dd9a25e3044cda679cb9081f",
+        "cachePathIsNotStored": true,
+        "fileName": "ziwei-toyo-1646-0006.jpg",
+        "leaf": "0006",
+        "predecessorHashStatus": "matches",
+        "predecessorRecordedSha256": "95670b53dbebfc7d6e249cd4797a8569c90dd282dd9a25e3044cda679cb9081f",
+        "reviewOrigin": "predecessor_visual_review_hash_rechecked"
+      },
+      {
+        "byteLength": 1257621,
+        "byteSha256": "7b7885d713e9acfc450d8d6f16e02fd9e26e81f3578f08981606fdadeae580f7",
+        "cachePathIsNotStored": true,
+        "fileName": "ziwei-toyo-1646-0007.jpg",
+        "leaf": "0007",
+        "predecessorHashStatus": "matches",
+        "predecessorRecordedSha256": "7b7885d713e9acfc450d8d6f16e02fd9e26e81f3578f08981606fdadeae580f7",
+        "reviewOrigin": "predecessor_visual_review_hash_rechecked"
+      },
+      {
+        "byteLength": 1239387,
+        "byteSha256": "533ad5547ece951074f4e56f078fe16f58abff974c13879be39bff35471ad639",
+        "cachePathIsNotStored": true,
+        "fileName": "ziwei-toyo-1646-0008.jpg",
+        "leaf": "0008",
+        "predecessorHashStatus": "matches",
+        "predecessorRecordedSha256": "533ad5547ece951074f4e56f078fe16f58abff974c13879be39bff35471ad639",
+        "reviewOrigin": "predecessor_visual_review_hash_rechecked"
+      },
+      {
+        "byteLength": 1185675,
+        "byteSha256": "662a05d52293266d081697301185ed4f2d306e415f930ce5352a522b73e81d96",
+        "cachePathIsNotStored": true,
+        "fileName": "ziwei-toyo-1646-0009.jpg",
+        "leaf": "0009",
+        "predecessorHashStatus": "new_expected_hash_match",
+        "predecessorRecordedSha256": null,
+        "reviewOrigin": "new_visual_review_in_this_packet"
+      },
+      {
+        "byteLength": 979845,
+        "byteSha256": "e6868cfacfb4f35eb5d747fede10c1b15f8738fb51a78804bf8930f9bb7cb2de",
+        "cachePathIsNotStored": true,
+        "fileName": "ziwei-toyo-1646-0010.jpg",
+        "leaf": "0010",
+        "predecessorHashStatus": "new_expected_hash_match",
+        "predecessorRecordedSha256": null,
+        "reviewOrigin": "new_visual_review_in_this_packet"
+      },
+      {
+        "byteLength": 966829,
+        "byteSha256": "a773d0c75da7618e28dc41f64e177681b322e1444923f0e5d476dc0169dbfc21",
+        "cachePathIsNotStored": true,
+        "fileName": "ziwei-toyo-1646-0011.jpg",
+        "leaf": "0011",
+        "predecessorHashStatus": "new_expected_hash_match",
+        "predecessorRecordedSha256": null,
+        "reviewOrigin": "new_visual_review_in_this_packet"
+      },
+      {
+        "byteLength": 1106127,
+        "byteSha256": "1c37cddd5d20f42291f1b3c803db0acdfeadd1c3688b5fd368a64ffc5827c442",
+        "cachePathIsNotStored": true,
+        "fileName": "ziwei-toyo-1646-0012.jpg",
+        "leaf": "0012",
+        "predecessorHashStatus": "new_expected_hash_match",
+        "predecessorRecordedSha256": null,
+        "reviewOrigin": "new_visual_review_in_this_packet"
+      },
+      {
+        "byteLength": 1151647,
+        "byteSha256": "f4bb070b72ea34751ff725d57215113da2a28a208c4bd8af2d29d78629a4344e",
+        "cachePathIsNotStored": true,
+        "fileName": "ziwei-toyo-1646-0013.jpg",
+        "leaf": "0013",
+        "predecessorHashStatus": "new_expected_hash_match",
+        "predecessorRecordedSha256": null,
+        "reviewOrigin": "new_visual_review_in_this_packet"
+      },
+      {
+        "byteLength": 1143274,
+        "byteSha256": "f20dbf5821dfc04c9acf5cccaf9a2e48102bf01362e08f6e35aa7ad0578b33f5",
+        "cachePathIsNotStored": true,
+        "fileName": "ziwei-toyo-1646-0014.jpg",
+        "leaf": "0014",
+        "predecessorHashStatus": "matches",
+        "predecessorRecordedSha256": "f20dbf5821dfc04c9acf5cccaf9a2e48102bf01362e08f6e35aa7ad0578b33f5",
+        "reviewOrigin": "predecessor_visual_review_hash_rechecked"
+      },
+      {
+        "byteLength": 1070014,
+        "byteSha256": "5ff55d85b36ab4f1699662f42d1b5e1ef5bdff356c7e7dc2c6381db0c69ea081",
+        "cachePathIsNotStored": true,
+        "fileName": "ziwei-toyo-1646-0015.jpg",
+        "leaf": "0015",
+        "predecessorHashStatus": "matches",
+        "predecessorRecordedSha256": "5ff55d85b36ab4f1699662f42d1b5e1ef5bdff356c7e7dc2c6381db0c69ea081",
+        "reviewOrigin": "predecessor_visual_review_hash_rechecked"
+      },
+      {
+        "byteLength": 1055019,
+        "byteSha256": "0e0f0cadfbceeceb317f92210116f54c80b8b6e74a729f92e7e39a162444bf76",
+        "cachePathIsNotStored": true,
+        "fileName": "ziwei-toyo-1646-0016.jpg",
+        "leaf": "0016",
+        "predecessorHashStatus": "matches",
+        "predecessorRecordedSha256": "0e0f0cadfbceeceb317f92210116f54c80b8b6e74a729f92e7e39a162444bf76",
+        "reviewOrigin": "predecessor_visual_review_hash_rechecked"
+      },
+      {
+        "byteLength": 1105514,
+        "byteSha256": "15b7f6b9a7956a3611c5a5243054dd01cd62ce540d19a28d6b6f8e92dcd6d52b",
+        "cachePathIsNotStored": true,
+        "fileName": "ziwei-toyo-1646-0017.jpg",
+        "leaf": "0017",
+        "predecessorHashStatus": "matches",
+        "predecessorRecordedSha256": "15b7f6b9a7956a3611c5a5243054dd01cd62ce540d19a28d6b6f8e92dcd6d52b",
+        "reviewOrigin": "predecessor_visual_review_hash_rechecked"
+      },
+      {
+        "byteLength": 1027490,
+        "byteSha256": "29ba3d0b47f100bb39875ff00ba9788155382799d5eddfd6a2216823273b4907",
+        "cachePathIsNotStored": true,
+        "fileName": "ziwei-toyo-1646-0018.jpg",
+        "leaf": "0018",
+        "predecessorHashStatus": "matches",
+        "predecessorRecordedSha256": "29ba3d0b47f100bb39875ff00ba9788155382799d5eddfd6a2216823273b4907",
+        "reviewOrigin": "predecessor_visual_review_hash_rechecked"
+      },
+      {
+        "byteLength": 1060614,
+        "byteSha256": "fff3ef3b969c7123799ce2c5bcdf2603910a89af12e6ef337fff1f3bbffd6b97",
+        "cachePathIsNotStored": true,
+        "fileName": "ziwei-toyo-1646-0019.jpg",
+        "leaf": "0019",
+        "predecessorHashStatus": "new_expected_hash_match",
+        "predecessorRecordedSha256": null,
+        "reviewOrigin": "new_visual_review_in_this_packet"
+      },
+      {
+        "byteLength": 1067287,
+        "byteSha256": "f36911b907fbdc07943f2bd6fb2b175ca6a08b32d349684f62824535353ceb05",
+        "cachePathIsNotStored": true,
+        "fileName": "ziwei-toyo-1646-0020.jpg",
+        "leaf": "0020",
+        "predecessorHashStatus": "new_expected_hash_match",
+        "predecessorRecordedSha256": null,
+        "reviewOrigin": "new_visual_review_in_this_packet"
+      },
+      {
+        "byteLength": 936688,
+        "byteSha256": "3f315cfc53f1a97417e7212e6c0cbbc6d01cf4831e3853e825969c2f75aeae6e",
+        "cachePathIsNotStored": true,
+        "fileName": "ziwei-toyo-1646-0085.jpg",
+        "leaf": "0085",
+        "predecessorHashStatus": "historical_record_mismatch_preserved",
+        "predecessorRecordedSha256": "3f315cfc53f1a97417e7212e6c0cbbc6d01cf4831e3853e825969c2f75ae6e",
+        "reviewOrigin": "predecessor_visual_review_hash_rechecked"
+      },
+      {
+        "byteLength": 978720,
+        "byteSha256": "faddc5476318e9e815f71e7956e3c6610c4768b22b4d7367be0678c9dc7a4d07",
+        "cachePathIsNotStored": true,
+        "fileName": "ziwei-toyo-1646-0088.jpg",
+        "leaf": "0088",
+        "predecessorHashStatus": "matches",
+        "predecessorRecordedSha256": "faddc5476318e9e815f71e7956e3c6610c4768b22b4d7367be0678c9dc7a4d07",
+        "reviewOrigin": "predecessor_visual_review_hash_rechecked"
+      },
+      {
+        "byteLength": 911621,
+        "byteSha256": "94642024f3f58239fb771f49b1f94bb9ac58a03644a6e7918ce09a48c01f0dda",
+        "cachePathIsNotStored": true,
+        "fileName": "ziwei-toyo-1646-0100.jpg",
+        "leaf": "0100",
+        "predecessorHashStatus": "matches",
+        "predecessorRecordedSha256": "94642024f3f58239fb771f49b1f94bb9ac58a03644a6e7918ce09a48c01f0dda",
+        "reviewOrigin": "predecessor_visual_review_hash_rechecked"
+      }
+    ],
+    "sourceId": "src-toyo-1646"
+  },
+  "impact": {
+    "activation": "experimental_only",
+    "addedObservationCount": 8,
+    "addedRelationCount": 8,
+    "additiveCoverage": {
+      "blockerCount": 11,
+      "claimCount": 30,
+      "observationCount": 34,
+      "relationCount": 124,
+      "sourceCount": 13
+    },
+    "blockersClosed": [],
+    "blockersStillBlocked": [
+      "blocker-auxiliary-star-source-witness",
+      "blocker-calendar-time-source-identity",
+      "blocker-direct-rule-absent",
+      "blocker-four-transform-source-witness",
+      "blocker-image-reuse-rights",
+      "blocker-independent-external-oracle",
+      "blocker-life-body-ruler-source-legibility",
+      "blocker-palace-semantic-identity",
+      "blocker-source-identity-unresolved",
+      "blocker-tianfu-raw-formula-contradiction",
+      "blocker-tianfu-rotation06-semantic-authority"
+    ],
+    "claimsAdded": 0,
+    "combinedExternalImageObservationCount": 23,
+    "conclusion": "The extra leaves improve bounded direct observation of the same physical candidate but do not close any P0/P1 source identity, independence, semantic mapping, authority, oracle, or reuse blocker.",
+    "grounding": "blocked",
+    "impactedBlockers": [
+      "blocker-auxiliary-star-source-witness",
+      "blocker-direct-rule-absent",
+      "blocker-four-transform-source-witness",
+      "blocker-life-body-ruler-source-legibility",
+      "blocker-palace-semantic-identity",
+      "blocker-source-identity-unresolved",
+      "blocker-tianfu-raw-formula-contradiction",
+      "blocker-tianfu-rotation06-semantic-authority"
+    ],
+    "independentWitnessesAdmitted": 0,
+    "predecessorCoverage": {
+      "blockerCount": 11,
+      "claimCount": 30,
+      "observationCount": 26,
+      "relationCount": 116,
+      "sourceCount": 13
+    },
+    "readiness": "not_safe_to_start",
+    "rotation06": "representation_only",
+    "semanticAuthorityCount": 0,
+    "sourcesAdded": 0,
+    "stableClaimCount": 0
+  },
+  "materializer": "scripts/materialize-ziwei-p0-toyo-1646-extended-observation-v0.mjs",
+  "negativeChecker": "scripts/check-ziwei-p0-toyo-1646-extended-observation-v0-negative-v0.mjs",
+  "negativeContract": {
+    "rejectedMutations": [
+      "semantic authority promotion",
+      "independent witness admission",
+      "source image storage",
+      "cache hash mutation",
+      "invented printed folio",
+      "OCR canonical promotion",
+      "blocker closure",
+      "readiness promotion",
+      "predecessor boundary damage",
+      "generated timestamp"
+    ]
+  },
+  "observations": [
+    {
+      "detail": "The physical spread and holding marks are visible, but no readable rule, table, colophon, or semantic coordinate legend is present on this leaf.",
+      "directObservationStatus": "visual_page_review",
+      "imageSha256": "bfd73c7fbf7d23e7551dfff62d8195b4cb5c7a46350344a163ddcb53dae4950d",
+      "locator": "viewer image 0002",
+      "observationId": "obs-toyo-1646-extended-0002",
+      "observationMode": "actual_public_jpeg_bytes_visually_reviewed; not OCR authority",
+      "printedFolio": null,
+      "semanticScope": "bounded_surface_only; no complete production palace mapping inferred",
+      "sourceId": "src-toyo-1646",
+      "surface": "opening/blank spread",
+      "transcriptionRole": "locator_only"
+    },
+    {
+      "detail": "Named stars, branch/year tokens, and dense rule/example prose are directly visible; the page does not state a complete edition identity or a 12-palace coordinate binding.",
+      "directObservationStatus": "visual_page_review",
+      "imageSha256": "662a05d52293266d081697301185ed4f2d306e415f930ce5352a522b73e81d96",
+      "locator": "viewer image 0009",
+      "observationId": "obs-toyo-1646-extended-0009",
+      "observationMode": "actual_public_jpeg_bytes_visually_reviewed; not OCR authority",
+      "printedFolio": null,
+      "semanticScope": "bounded_surface_only; no complete production palace mapping inferred",
+      "sourceId": "src-toyo-1646",
+      "surface": "named-star and branch/year prose",
+      "transcriptionRole": "locator_only"
+    },
+    {
+      "detail": "Multiple star headings, branch/year sequences, and 流年 annotations are visually present; this is a bounded star/table surface, not a complete placement-rule witness or palace legend.",
+      "directObservationStatus": "visual_page_review",
+      "imageSha256": "e6868cfacfb4f35eb5d747fede10c1b15f8738fb51a78804bf8930f9bb7cb2de",
+      "locator": "viewer image 0010",
+      "observationId": "obs-toyo-1646-extended-0010",
+      "observationMode": "actual_public_jpeg_bytes_visually_reviewed; not OCR authority",
+      "printedFolio": null,
+      "semanticScope": "bounded_surface_only; no complete production palace mapping inferred",
+      "sourceId": "src-toyo-1646",
+      "surface": "star-to-branch/year table surface",
+      "transcriptionRole": "locator_only"
+    },
+    {
+      "detail": "Named-star columns with branch/year sequences and 流年 notes are directly observable; no source-identified general rule covering the production contract is visible.",
+      "directObservationStatus": "visual_page_review",
+      "imageSha256": "a773d0c75da7618e28dc41f64e177681b322e1444923f0e5d476dc0169dbfc21",
+      "locator": "viewer image 0011",
+      "observationId": "obs-toyo-1646-extended-0011",
+      "observationMode": "actual_public_jpeg_bytes_visually_reviewed; not OCR authority",
+      "printedFolio": null,
+      "semanticScope": "bounded_surface_only; no complete production palace mapping inferred",
+      "sourceId": "src-toyo-1646",
+      "surface": "named-star columns and 流年 notes",
+      "transcriptionRole": "locator_only"
+    },
+    {
+      "detail": "Palace/branch-labelled prose, branch sequences, and star or rule examples are visible; the leaf does not bind all twelve palace names to physical slots, ordinal, and traversal direction.",
+      "directObservationStatus": "visual_page_review",
+      "imageSha256": "1c37cddd5d20f42291f1b3c803db0acdfeadd1c3688b5fd368a64ffc5827c442",
+      "locator": "viewer image 0012",
+      "observationId": "obs-toyo-1646-extended-0012",
+      "observationMode": "actual_public_jpeg_bytes_visually_reviewed; not OCR authority",
+      "printedFolio": null,
+      "semanticScope": "bounded_surface_only; no complete production palace mapping inferred",
+      "sourceId": "src-toyo-1646",
+      "surface": "palace/branch and star prose",
+      "transcriptionRole": "locator_only"
+    },
+    {
+      "detail": "Named stars, branch/year references, and rule or interpretive prose are directly visible; no complete 10-stem × 4 transformation table or semantic coordinate frame is established.",
+      "directObservationStatus": "visual_page_review",
+      "imageSha256": "f4bb070b72ea34751ff725d57215113da2a28a208c4bd8af2d29d78629a4344e",
+      "locator": "viewer image 0013",
+      "observationId": "obs-toyo-1646-extended-0013",
+      "observationMode": "actual_public_jpeg_bytes_visually_reviewed; not OCR authority",
+      "printedFolio": null,
+      "semanticScope": "bounded_surface_only; no complete production palace mapping inferred",
+      "sourceId": "src-toyo-1646",
+      "surface": "dense named-star and rule prose",
+      "transcriptionRole": "locator_only"
+    },
+    {
+      "detail": "The 形性賦 heading and star-character/appearance descriptions are directly visible; interpretive prose is not a placement rule, palace identity witness, or semantic authority decision.",
+      "directObservationStatus": "visual_page_review",
+      "imageSha256": "fff3ef3b969c7123799ce2c5bcdf2603910a89af12e6ef337fff1f3bbffd6b97",
+      "locator": "viewer image 0019",
+      "observationId": "obs-toyo-1646-extended-0019",
+      "observationMode": "actual_public_jpeg_bytes_visually_reviewed; not OCR authority",
+      "printedFolio": null,
+      "semanticScope": "bounded_surface_only; no complete production palace mapping inferred",
+      "sourceId": "src-toyo-1646",
+      "surface": "形性賦 interpretive star prose",
+      "transcriptionRole": "locator_only"
+    },
+    {
+      "detail": "The 星垣論 heading and star-property prose are directly visible; this page supplies textual surface only and does not close edition lineage, palace coordinates, or rule authority.",
+      "directObservationStatus": "visual_page_review",
+      "imageSha256": "f36911b907fbdc07943f2bd6fb2b175ca6a08b32d349684f62824535353ceb05",
+      "locator": "viewer image 0020",
+      "observationId": "obs-toyo-1646-extended-0020",
+      "observationMode": "actual_public_jpeg_bytes_visually_reviewed; not OCR authority",
+      "printedFolio": null,
+      "semanticScope": "bounded_surface_only; no complete production palace mapping inferred",
+      "sourceId": "src-toyo-1646",
+      "surface": "星垣論 and star-property prose",
+      "transcriptionRole": "locator_only"
+    }
+  ],
+  "observedHead": "2d5eb3bb7cde79bcb6a671969280987ffe536965",
+  "originMainHead": "2d5eb3bb7cde79bcb6a671969280987ffe536965",
+  "predecessor": {
+    "byteSha256": "4ce5b13c486913adf051e7abfcb9f451bf81f51f2b7d6fa01ca494fa2423004d",
+    "claimBoundary": {
+      "catalogOnlyIsNotDirectObservation": true,
+      "directObservationIsNotSourceAuthority": true,
+      "interpretationEligibleClaimCount": 0,
+      "numericRelationIsNotSemanticAuthority": true,
+      "productionActivationCount": 0,
+      "rotation06": "representation_only",
+      "sameLineageIsNotIndependent": true,
+      "semanticAuthorityCount": 0,
+      "stableClaimCount": 0,
+      "unresolvedClaimCount": 30,
+      "unsupportedPreserved": true
+    },
+    "coverage": {
+      "allRequiredFamiliesCovered": true,
+      "blockerCount": 11,
+      "claimCount": 30,
+      "claimStatusDistribution": {
+        "direct_observation_bounded": 28,
+        "representation_only": 1,
+        "unsupported": 1
+      },
+      "observationCount": 26,
+      "relationCount": 116,
+      "relationStatusDistribution": {
+        "direct_observation_supports_auxiliary_vocabulary_not_full_rule_witness": 3,
+        "direct_observation_supports_four_transform_vocabulary_not_complete_10x4_table": 4,
+        "direct_observation_supports_label_surface_only": 8,
+        "direct_observation_supports_numeric_or_star_surface_only": 70,
+        "direct_observation_supports_partial_diagram_and_chart_surface_only": 5,
+        "direct_observation_supports_selected_rule_rows_only": 2,
+        "direct_observation_supports_tianfu_surface_but_not_unique_convention": 4,
+        "direct_observation_supports_traversal_surface_not_semantic_coordinate_identity": 3,
+        "does_not_close_complete_semantic_diagram": 3,
+        "local_rule_and_source_surface_not_semantic_authority": 3,
+        "numeric_relation_or_formula_surface_only": 3,
+        "representation_only_not_semantic_authority": 3,
+        "unresolved_row_level_source_identity": 2,
+        "unsupported_external_source_identity": 3
+      },
+      "requiredFamilies": [
+        "palace_semantics",
+        "major_star_placement",
+        "tianfu_convention",
+        "auxiliary_stars",
+        "four_transformations",
+        "life_body_rulers",
+        "calendar_input"
+      ],
+      "researchUnitCount": 7,
+      "sourceCount": 13,
+      "sourceObservationDistribution": {
+        "catalog_only": 6,
+        "transcription_locator_only": 2,
+        "visual_direct_review_of_actual_public_jpeg_bytes; images kept outside_repository": 1,
+        "visual_native_iiif_leaf_review_all_129_leaves_recorded_in_predecessor": 1,
+        "visual_native_iiif_leaf_review_all_137_leaves_recorded_in_predecessor": 1,
+        "visual_page_review_recorded_in_predecessor_artifacts": 2
+      },
+      "targetP0": [
+        "ZIWEI-P0-CLAIM-SOURCE-IDENTITY",
+        "ZIWEI-P0-PALACE-SEMANTIC-WITNESS",
+        "ZIWEI-P0-TIANFU-CONVENTION"
+      ],
+      "targetP1IncludedForClaimCoverage": [
+        "ZIWEI-P1-FOUR-TRANSFORMATIONS",
+        "ZIWEI-P1-LIFE-BODY-LEGIBILITY"
+      ]
+    },
+    "lineageByteSha256": "af511a727566c52611a251f1b2597a22f9dc4bb3c806514d91535e95832f949c",
+    "lineagePath": "artifacts/ziwei-p0-claim-source-identity-frontier-v1/source-lineage-inventory.json",
+    "path": "artifacts/ziwei-p0-claim-source-identity-frontier-v1/complete.json",
+    "readinessImpact": {
+      "activation": "experimental_only",
+      "existingClaimBoundariesPromoted": false,
+      "existingProductionArtifactsModified": false,
+      "existingReadinessArtifactsModified": false,
+      "grounding": "blocked",
+      "readiness": "not_safe_to_start"
+    },
+    "reviewedImageSha256": {
+      "0001": "501490341c3c95533a900c5f3642208e029cb1aa7ada62859aa085940907e2e2",
+      "0003": "c80a3a73b8ce9f3cf9ace261acc0ebc367d019ac671569dc295752a058739ea6",
+      "0004": "f3cf2bd1b9e6b663417363130532b1de4c688e434f9e65c021a79ef34cb39b42",
+      "0005": "0079a78503695db7392a7d3e493657cbdbe3978e2a37b5c28864b1ddc5cbd73d",
+      "0006": "95670b53dbebfc7d6e249cd4797a8569c90dd282dd9a25e3044cda679cb9081f",
+      "0007": "7b7885d713e9acfc450d8d6f16e02fd9e26e81f3578f08981606fdadeae580f7",
+      "0008": "533ad5547ece951074f4e56f078fe16f58abff974c13879be39bff35471ad639",
+      "0014": "f20dbf5821dfc04c9acf5cccaf9a2e48102bf01362e08f6e35aa7ad0578b33f5",
+      "0015": "5ff55d85b36ab4f1699662f42d1b5e1ef5bdff356c7e7dc2c6381db0c69ea081",
+      "0016": "0e0f0cadfbceeceb317f92210116f54c80b8b6e74a729f92e7e39a162444bf76",
+      "0017": "15b7f6b9a7956a3611c5a5243054dd01cd62ce540d19a28d6b6f8e92dcd6d52b",
+      "0018": "29ba3d0b47f100bb39875ff00ba9788155382799d5eddfd6a2216823273b4907",
+      "0085": "3f315cfc53f1a97417e7212e6c0cbbc6d01cf4831e3853e825969c2f75ae6e",
+      "0088": "faddc5476318e9e815f71e7956e3c6610c4768b22b4d7367be0678c9dc7a4d07",
+      "0100": "94642024f3f58239fb771f49b1f94bb9ac58a03644a6e7918ce09a48c01f0dda"
+    },
+    "verdictToken": "complete_ziwei_p0_claim_source_identity_frontier_exhausted_uncommitted"
+  },
+  "preservation": {
+    "claimBoundaryPromoted": false,
+    "externalAcquisitionPerformed": false,
+    "historicalPredecessorBytesRewritten": false,
+    "networkUsedDuringMaterialization": false,
+    "predecessorArtifactChanged": false,
+    "productionChanged": false,
+    "readinessChanged": false,
+    "sourceImagesStoredInGit": false,
+    "timestampsUsed": false,
+    "untrackedDashJpgPreserved": true
+  },
+  "relations": [
+    {
+      "authority": "institutional_collection_identity_plus_direct_observation_bounded; edition_lineage_and_semantic_authority_unresolved",
+      "blockerIds": [
+        "blocker-source-identity-unresolved",
+        "blocker-palace-semantic-identity"
+      ],
+      "claimIds": [
+        "claim-source-identity-frontier"
+      ],
+      "doesNotEstablish": [
+        "exact_edition_or_date",
+        "textual_lineage_to_NARA_or_local_PDF",
+        "complete_12_palace_semantic_mapping",
+        "independent_oracle",
+        "image_reuse_permission"
+      ],
+      "evidenceScope": "actual_jpeg_bytes_visually_reviewed_with_leaf_locator_and_hash",
+      "independence": "independent_physical_witness_candidate_not_admitted_as_independent_oracle",
+      "observationId": "obs-toyo-1646-extended-0002",
+      "promotion": "not_admitted_to_stable_claim_source_authority_readiness_or_activation",
+      "relationId": "relation-toyo-1646-extended-0002",
+      "relationStatus": "direct_observation_extends_physical_candidate_surface_not_semantic_authority",
+      "sourceId": "src-toyo-1646"
+    },
+    {
+      "authority": "institutional_collection_identity_plus_direct_observation_bounded; edition_lineage_and_semantic_authority_unresolved",
+      "blockerIds": [
+        "blocker-source-identity-unresolved",
+        "blocker-direct-rule-absent",
+        "blocker-palace-semantic-identity"
+      ],
+      "claimIds": [
+        "claim-major-star-placement-ziwei",
+        "claim-major-star-placement-tianfu"
+      ],
+      "doesNotEstablish": [
+        "exact_edition_or_date",
+        "textual_lineage_to_NARA_or_local_PDF",
+        "complete_12_palace_semantic_mapping",
+        "independent_oracle",
+        "image_reuse_permission"
+      ],
+      "evidenceScope": "actual_jpeg_bytes_visually_reviewed_with_leaf_locator_and_hash",
+      "independence": "independent_physical_witness_candidate_not_admitted_as_independent_oracle",
+      "observationId": "obs-toyo-1646-extended-0009",
+      "promotion": "not_admitted_to_stable_claim_source_authority_readiness_or_activation",
+      "relationId": "relation-toyo-1646-extended-0009",
+      "relationStatus": "direct_observation_extends_physical_candidate_surface_not_semantic_authority",
+      "sourceId": "src-toyo-1646"
+    },
+    {
+      "authority": "institutional_collection_identity_plus_direct_observation_bounded; edition_lineage_and_semantic_authority_unresolved",
+      "blockerIds": [
+        "blocker-source-identity-unresolved",
+        "blocker-direct-rule-absent",
+        "blocker-life-body-ruler-source-legibility"
+      ],
+      "claimIds": [
+        "claim-major-star-placement-ziwei",
+        "claim-major-star-placement-tianfu",
+        "claim-life-body-palace-ruler"
+      ],
+      "doesNotEstablish": [
+        "exact_edition_or_date",
+        "textual_lineage_to_NARA_or_local_PDF",
+        "complete_12_palace_semantic_mapping",
+        "independent_oracle",
+        "image_reuse_permission"
+      ],
+      "evidenceScope": "actual_jpeg_bytes_visually_reviewed_with_leaf_locator_and_hash",
+      "independence": "independent_physical_witness_candidate_not_admitted_as_independent_oracle",
+      "observationId": "obs-toyo-1646-extended-0010",
+      "promotion": "not_admitted_to_stable_claim_source_authority_readiness_or_activation",
+      "relationId": "relation-toyo-1646-extended-0010",
+      "relationStatus": "direct_observation_extends_physical_candidate_surface_not_semantic_authority",
+      "sourceId": "src-toyo-1646"
+    },
+    {
+      "authority": "institutional_collection_identity_plus_direct_observation_bounded; edition_lineage_and_semantic_authority_unresolved",
+      "blockerIds": [
+        "blocker-source-identity-unresolved",
+        "blocker-direct-rule-absent",
+        "blocker-auxiliary-star-source-witness"
+      ],
+      "claimIds": [
+        "claim-major-star-placement-ziwei",
+        "claim-auxiliary-star-placement-core"
+      ],
+      "doesNotEstablish": [
+        "exact_edition_or_date",
+        "textual_lineage_to_NARA_or_local_PDF",
+        "complete_12_palace_semantic_mapping",
+        "independent_oracle",
+        "image_reuse_permission"
+      ],
+      "evidenceScope": "actual_jpeg_bytes_visually_reviewed_with_leaf_locator_and_hash",
+      "independence": "independent_physical_witness_candidate_not_admitted_as_independent_oracle",
+      "observationId": "obs-toyo-1646-extended-0011",
+      "promotion": "not_admitted_to_stable_claim_source_authority_readiness_or_activation",
+      "relationId": "relation-toyo-1646-extended-0011",
+      "relationStatus": "direct_observation_extends_physical_candidate_surface_not_semantic_authority",
+      "sourceId": "src-toyo-1646"
+    },
+    {
+      "authority": "institutional_collection_identity_plus_direct_observation_bounded; edition_lineage_and_semantic_authority_unresolved",
+      "blockerIds": [
+        "blocker-source-identity-unresolved",
+        "blocker-palace-semantic-identity",
+        "blocker-direct-rule-absent",
+        "blocker-tianfu-raw-formula-contradiction"
+      ],
+      "claimIds": [
+        "claim-palace-name-branch-ordinal",
+        "claim-12-palace-diagram-semantics",
+        "claim-major-star-placement-tianfu"
+      ],
+      "doesNotEstablish": [
+        "exact_edition_or_date",
+        "textual_lineage_to_NARA_or_local_PDF",
+        "complete_12_palace_semantic_mapping",
+        "independent_oracle",
+        "image_reuse_permission"
+      ],
+      "evidenceScope": "actual_jpeg_bytes_visually_reviewed_with_leaf_locator_and_hash",
+      "independence": "independent_physical_witness_candidate_not_admitted_as_independent_oracle",
+      "observationId": "obs-toyo-1646-extended-0012",
+      "promotion": "not_admitted_to_stable_claim_source_authority_readiness_or_activation",
+      "relationId": "relation-toyo-1646-extended-0012",
+      "relationStatus": "direct_observation_extends_physical_candidate_surface_not_semantic_authority",
+      "sourceId": "src-toyo-1646"
+    },
+    {
+      "authority": "institutional_collection_identity_plus_direct_observation_bounded; edition_lineage_and_semantic_authority_unresolved",
+      "blockerIds": [
+        "blocker-source-identity-unresolved",
+        "blocker-four-transform-source-witness",
+        "blocker-auxiliary-star-source-witness",
+        "blocker-life-body-ruler-source-legibility"
+      ],
+      "claimIds": [
+        "claim-four-transformations-10x4",
+        "claim-auxiliary-star-placement-core",
+        "claim-life-body-ruler-24-ambiguous-rows"
+      ],
+      "doesNotEstablish": [
+        "exact_edition_or_date",
+        "textual_lineage_to_NARA_or_local_PDF",
+        "complete_12_palace_semantic_mapping",
+        "independent_oracle",
+        "image_reuse_permission"
+      ],
+      "evidenceScope": "actual_jpeg_bytes_visually_reviewed_with_leaf_locator_and_hash",
+      "independence": "independent_physical_witness_candidate_not_admitted_as_independent_oracle",
+      "observationId": "obs-toyo-1646-extended-0013",
+      "promotion": "not_admitted_to_stable_claim_source_authority_readiness_or_activation",
+      "relationId": "relation-toyo-1646-extended-0013",
+      "relationStatus": "direct_observation_extends_physical_candidate_surface_not_semantic_authority",
+      "sourceId": "src-toyo-1646"
+    },
+    {
+      "authority": "institutional_collection_identity_plus_direct_observation_bounded; edition_lineage_and_semantic_authority_unresolved",
+      "blockerIds": [
+        "blocker-source-identity-unresolved",
+        "blocker-direct-rule-absent",
+        "blocker-auxiliary-star-source-witness"
+      ],
+      "claimIds": [
+        "claim-major-star-placement-ziwei",
+        "claim-auxiliary-star-placement-core"
+      ],
+      "doesNotEstablish": [
+        "exact_edition_or_date",
+        "textual_lineage_to_NARA_or_local_PDF",
+        "complete_12_palace_semantic_mapping",
+        "independent_oracle",
+        "image_reuse_permission"
+      ],
+      "evidenceScope": "actual_jpeg_bytes_visually_reviewed_with_leaf_locator_and_hash",
+      "independence": "independent_physical_witness_candidate_not_admitted_as_independent_oracle",
+      "observationId": "obs-toyo-1646-extended-0019",
+      "promotion": "not_admitted_to_stable_claim_source_authority_readiness_or_activation",
+      "relationId": "relation-toyo-1646-extended-0019",
+      "relationStatus": "direct_observation_extends_physical_candidate_surface_not_semantic_authority",
+      "sourceId": "src-toyo-1646"
+    },
+    {
+      "authority": "institutional_collection_identity_plus_direct_observation_bounded; edition_lineage_and_semantic_authority_unresolved",
+      "blockerIds": [
+        "blocker-source-identity-unresolved",
+        "blocker-tianfu-raw-formula-contradiction",
+        "blocker-tianfu-rotation06-semantic-authority",
+        "blocker-palace-semantic-identity"
+      ],
+      "claimIds": [
+        "claim-major-star-placement-tianfu",
+        "claim-tianfu-anchor-direction",
+        "claim-palace-name-branch-ordinal"
+      ],
+      "doesNotEstablish": [
+        "exact_edition_or_date",
+        "textual_lineage_to_NARA_or_local_PDF",
+        "complete_12_palace_semantic_mapping",
+        "independent_oracle",
+        "image_reuse_permission"
+      ],
+      "evidenceScope": "actual_jpeg_bytes_visually_reviewed_with_leaf_locator_and_hash",
+      "independence": "independent_physical_witness_candidate_not_admitted_as_independent_oracle",
+      "observationId": "obs-toyo-1646-extended-0020",
+      "promotion": "not_admitted_to_stable_claim_source_authority_readiness_or_activation",
+      "relationId": "relation-toyo-1646-extended-0020",
+      "relationStatus": "direct_observation_extends_physical_candidate_surface_not_semantic_authority",
+      "sourceId": "src-toyo-1646"
+    }
+  ],
+  "schemaVersion": "ziwei-p0-toyo-1646-extended-observation-v0",
+  "scope": "additive_visual_review_of_preexisting_toyo_1646_cache_images_for_ziwei_p0_source_identity",
+  "sourceAssessment": {
+    "afterReviewIndependence": "independent_physical_witness_candidate_not_admitted_as_independent_oracle",
+    "predecessorIndependence": "independent_physical_witness_candidate_not_admitted_as_independent_oracle",
+    "promotionDecision": "retain candidate-only status",
+    "reuseRights": "public viewer access observed; image reuse permission not established; no image stored in Git",
+    "semanticAuthority": "not_established",
+    "sourceId": "src-toyo-1646",
+    "sourceIdentity": "collection/item route and image bytes are identified; date, colophon, edition and textual lineage remain unresolved"
+  },
+  "verdictToken": "complete_ziwei_p0_toyo_1646_extended_observation_bounded_unresolved"
+}

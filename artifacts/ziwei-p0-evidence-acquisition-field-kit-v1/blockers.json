@@ -1,0 +1,230 @@
+[
+  {
+    "boundaryClass": "acquisition_evidence_boundary",
+    "closureDecision": "requires_new_or_reclassified_evidence_and_human_review",
+    "currentEvidenceBoundary": "local_pdf_bytes_and_catalog/image_candidates_reconciled; exact edition_lineage_authority remains open",
+    "currentEvidenceRefs": [
+      "artifacts/ziwei-p0-toyo-1646-extended-observation-v0/complete.json",
+      "artifacts/ziwei-four-transformations-source-evidence-v0/complete.json",
+      "artifacts/ziwei-life-body-palace-ruler-source-evidence-v0/complete.json"
+    ],
+    "currentObservationIds": [
+      "obs-local-major-star-rule-surfaces",
+      "obs-local-auxiliary-rule-surfaces",
+      "obs-local-four-transformations-nanbei-table",
+      "obs-local-four-transformations-ming-partial",
+      "obs-local-life-body-ruler-surfaces"
+    ],
+    "id": "blocker-source-identity-unresolved",
+    "mappedTargetIds": [
+      "acq-distinct-witness-identity-lineage",
+      "acq-palace-semantic-map-and-coordinate-witness",
+      "acq-tianfu-anchor-direction-adjudicator",
+      "acq-complete-14-major-star-placement-witness",
+      "acq-complete-auxiliary-star-rule-witness",
+      "acq-independent-complete-four-transform-table",
+      "acq-shen-zhu-compound-surface"
+    ],
+    "noAutomaticClosure": true,
+    "priority": "P0",
+    "status": "blocked",
+    "title": "blocker-source-identity-unresolved"
+  },
+  {
+    "boundaryClass": "acquisition_evidence_boundary",
+    "closureDecision": "requires_new_or_reclassified_evidence_and_human_review",
+    "currentEvidenceBoundary": "partial diagrams, traversal prose, NARA charts, and TOYO pages reviewed; no complete 12-way semantic binding",
+    "currentEvidenceRefs": [
+      "artifacts/ziwei-p0-toyo-1646-extended-observation-v0/complete.json",
+      "artifacts/ziwei-tianfu-convention-provenance-v0/complete.json"
+    ],
+    "currentObservationIds": [
+      "obs-local-tianfu-rule-surfaces"
+    ],
+    "id": "blocker-palace-semantic-identity",
+    "mappedTargetIds": [
+      "acq-palace-semantic-map-and-coordinate-witness"
+    ],
+    "noAutomaticClosure": true,
+    "priority": "P0",
+    "status": "blocked",
+    "title": "blocker-palace-semantic-identity"
+  },
+  {
+    "boundaryClass": "acquisition_evidence_boundary",
+    "closureDecision": "requires_new_or_reclassified_evidence_and_human_review",
+    "currentEvidenceBoundary": "14-star source surfaces and deterministic comparisons consumed; complete row-level source rule identity remains open",
+    "currentEvidenceRefs": [
+      "artifacts/ziwei-twelve-major-star-placement-evidence-v0/complete.json",
+      "artifacts/ziwei-major-star-source-corpus-provenance-v0/complete.json"
+    ],
+    "currentObservationIds": [
+      "obs-local-major-star-rule-surfaces"
+    ],
+    "id": "blocker-direct-rule-absent",
+    "mappedTargetIds": [
+      "acq-tianfu-anchor-direction-adjudicator",
+      "acq-complete-14-major-star-placement-witness"
+    ],
+    "noAutomaticClosure": true,
+    "priority": "P0",
+    "status": "blocked",
+    "title": "blocker-direct-rule-absent"
+  },
+  {
+    "boundaryClass": "acquisition_evidence_boundary",
+    "closureDecision": "requires_new_or_reclassified_evidence_and_human_review",
+    "currentEvidenceBoundary": "Nanbei root table, Nanyang series/diagram surfaces, legacy and source_aligned modes all preserved; no convention adjudicated",
+    "currentEvidenceRefs": [
+      "artifacts/ziwei-tianfu-convention-provenance-v0/complete.json",
+      "artifacts/ziwei-tianfu-representation-search-v1/complete.json"
+    ],
+    "currentObservationIds": [
+      "obs-local-tianfu-rule-surfaces"
+    ],
+    "id": "blocker-tianfu-raw-formula-contradiction",
+    "mappedTargetIds": [
+      "acq-tianfu-anchor-direction-adjudicator"
+    ],
+    "noAutomaticClosure": true,
+    "priority": "P0",
+    "status": "blocked",
+    "title": "blocker-tianfu-raw-formula-contradiction"
+  },
+  {
+    "boundaryClass": "acquisition_evidence_boundary",
+    "closureDecision": "requires_new_or_reclassified_evidence_and_human_review",
+    "currentEvidenceBoundary": "identity 0/150 and rotation-06 150/150 are retained as separate numeric relations; semantic equivalence is blocked",
+    "currentEvidenceRefs": [
+      "artifacts/ziwei-tianfu-convention-provenance-v0/complete.json",
+      "artifacts/ziwei-p0-toyo-1646-extended-observation-v0/complete.json"
+    ],
+    "currentObservationIds": [
+      "obs-local-tianfu-rule-surfaces"
+    ],
+    "id": "blocker-tianfu-rotation06-semantic-authority",
+    "mappedTargetIds": [
+      "acq-palace-semantic-map-and-coordinate-witness",
+      "acq-tianfu-anchor-direction-adjudicator"
+    ],
+    "noAutomaticClosure": true,
+    "priority": "P0",
+    "status": "blocked",
+    "title": "blocker-tianfu-rotation06-semantic-authority"
+  },
+  {
+    "boundaryClass": "acquisition_evidence_boundary",
+    "closureDecision": "requires_new_or_reclassified_evidence_and_human_review",
+    "currentEvidenceBoundary": "13 auxiliary surfaces, 136/136 comparable matches, and 684 non-comparable rows reconciled; full independent rule witness absent",
+    "currentEvidenceRefs": [
+      "artifacts/ziwei-auxiliary-star-placement-core-evidence-v0/complete.json",
+      "artifacts/ziwei-auxiliary-star-placement-core-evidence-v0/comparison.json"
+    ],
+    "currentObservationIds": [
+      "obs-local-auxiliary-rule-surfaces"
+    ],
+    "id": "blocker-auxiliary-star-source-witness",
+    "mappedTargetIds": [
+      "acq-complete-auxiliary-star-rule-witness"
+    ],
+    "noAutomaticClosure": true,
+    "priority": "P1",
+    "status": "blocked",
+    "title": "blocker-auxiliary-star-source-witness"
+  },
+  {
+    "boundaryClass": "acquisition_evidence_boundary",
+    "closureDecision": "requires_new_or_reclassified_evidence_and_human_review",
+    "currentEvidenceBoundary": "new_local_frontier_consumed: Nanbei 40/40 direct cells; Nanyang 4/40 direct cells and 36 explicit unlocated cells",
+    "currentEvidenceRefs": [
+      "artifacts/ziwei-four-transformations-source-evidence-v0/complete.json",
+      "artifacts/ziwei-four-transformations-source-evidence-v0/comparison.json"
+    ],
+    "currentObservationIds": [
+      "obs-local-four-transformations-nanbei-table",
+      "obs-local-four-transformations-ming-partial"
+    ],
+    "id": "blocker-four-transform-source-witness",
+    "mappedTargetIds": [
+      "acq-independent-complete-four-transform-table"
+    ],
+    "noAutomaticClosure": true,
+    "priority": "P1",
+    "status": "blocked",
+    "title": "blocker-four-transform-source-witness"
+  },
+  {
+    "boundaryClass": "acquisition_evidence_boundary",
+    "closureDecision": "requires_new_or_reclassified_evidence_and_human_review",
+    "currentEvidenceBoundary": "life/body 144/144 exact; 命主 144/144; 身主 120/144 comparable with 24 blocked",
+    "currentEvidenceRefs": [
+      "artifacts/ziwei-life-body-palace-ruler-source-evidence-v0/complete.json",
+      "artifacts/ziwei-life-body-palace-ruler-source-evidence-v0/comparison.json"
+    ],
+    "currentObservationIds": [
+      "obs-local-life-body-ruler-surfaces"
+    ],
+    "id": "blocker-life-body-ruler-source-legibility",
+    "mappedTargetIds": [
+      "acq-shen-zhu-compound-surface"
+    ],
+    "noAutomaticClosure": true,
+    "priority": "P1",
+    "status": "blocked",
+    "title": "blocker-life-body-ruler-source-legibility"
+  },
+  {
+    "boundaryClass": "acquisition_evidence_boundary",
+    "closureDecision": "requires_new_or_reclassified_evidence_and_human_review",
+    "currentEvidenceBoundary": "six declared fixtures remain pending; independently verified 0; internal fixtures remain regression_only",
+    "currentEvidenceRefs": [
+      "artifacts/ziwei-fixture-reconciliation-v1/complete.json",
+      "artifacts/ziwei-p0-toyo-1646-extended-observation-v0/complete.json"
+    ],
+    "currentObservationIds": [],
+    "id": "blocker-independent-external-oracle",
+    "mappedTargetIds": [
+      "acq-independent-ziwei-oracle"
+    ],
+    "noAutomaticClosure": true,
+    "priority": "P1",
+    "status": "blocked",
+    "title": "blocker-independent-external-oracle"
+  },
+  {
+    "boundaryClass": "acquisition_evidence_boundary",
+    "closureDecision": "requires_new_or_reclassified_evidence_and_human_review",
+    "currentEvidenceBoundary": "Ziwei input contract and local calculations are available, but no exact calendar/time source identity closes leap-month, timezone, solar-time, or 子時 boundary",
+    "currentEvidenceRefs": [
+      "artifacts/ziwei-fixture-reconciliation-v1/complete.json",
+      "artifacts/ziwei-p0-toyo-1646-extended-observation-v0/complete.json"
+    ],
+    "currentObservationIds": [],
+    "id": "blocker-calendar-time-source-identity",
+    "mappedTargetIds": [
+      "acq-calendar-time-input-authority"
+    ],
+    "noAutomaticClosure": true,
+    "priority": "P1",
+    "status": "blocked",
+    "title": "blocker-calendar-time-source-identity"
+  },
+  {
+    "boundaryClass": "human_policy_boundary",
+    "closureDecision": "needs_human_review",
+    "currentEvidenceBoundary": "public viewer/catalog access and read-only local PDF/JPEG review recorded; image-level repository reuse permission remains absent",
+    "currentEvidenceRefs": [
+      "artifacts/ziwei-p0-toyo-1646-extended-observation-v0/complete.json",
+      "artifacts/ziwei-four-transformations-source-evidence-v0/complete.json"
+    ],
+    "currentObservationIds": [],
+    "id": "blocker-image-reuse-rights",
+    "mappedTargetIds": [
+      "review-image-level-reuse-permission"
+    ],
+    "noAutomaticClosure": true,
+    "priority": "P2",
+    "status": "needs_human_review",
+    "title": "blocker-image-reuse-rights"
+  }
+]

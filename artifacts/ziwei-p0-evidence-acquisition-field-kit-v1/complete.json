@@ -1,0 +1,2394 @@
+{
+  "artifactIdentity": {
+    "artifactId": "ziwei-p0-evidence-acquisition-field-kit-v1",
+    "artifactPayloadSha256": "ca84d950b07bb310801edce4df212f554d8cb33fe275504a727549207495540c",
+    "contractVersion": "artifact-identity-v1",
+    "generation": {
+      "baseHead": "2d5eb3bb7cde79bcb6a671969280987ffe536965",
+      "baseHeadSource": "git rev-parse HEAD at materialization",
+      "includedCommit": null,
+      "includedCommitSource": "unknown_at_generation; artifact may be included by a later commit"
+    },
+    "inputs": [
+      {
+        "byteSha256": "26896bdc877cd977a5e2e88abc1d7409d021a0ee1ffaacd708ad1dd3f987843f",
+        "path": "-.jpg"
+      },
+      {
+        "byteSha256": "a11964b0ba30bf2a64307b78a2d4aee087983d013f218264ed9139ca8ae7a978",
+        "path": "artifacts/ziwei-auxiliary-star-placement-core-evidence-v0/comparison.json"
+      },
+      {
+        "byteSha256": "a0225432d4b43a7bf5b0d734b5c97ca529504f25f882307a900b54ebb7b48621",
+        "path": "artifacts/ziwei-auxiliary-star-placement-core-evidence-v0/complete.json"
+      },
+      {
+        "byteSha256": "e9c903b9d0e29691c9ce03009cb37413df9563dbcd78097e1f12626ab83e874c",
+        "path": "artifacts/ziwei-fixture-reconciliation-v1/complete.json"
+      },
+      {
+        "byteSha256": "1bb8a8de51ea0008a45edb7409c2817e1dfc2a0ec58aa575b303cbc640dd0ae1",
+        "path": "artifacts/ziwei-four-transformations-source-evidence-v0/comparison.json"
+      },
+      {
+        "byteSha256": "498031f3137169571f2f67e37cfaf21aa0f52aec6f1341b2e2fb6960e8918672",
+        "path": "artifacts/ziwei-four-transformations-source-evidence-v0/complete.json"
+      },
+      {
+        "byteSha256": "b5b40052d66d3f9c351d21ac05e0a6abd66b2473267cc5282d08c3c592b303fc",
+        "path": "artifacts/ziwei-life-body-palace-ruler-source-evidence-v0/comparison.json"
+      },
+      {
+        "byteSha256": "3b15f34329808a9544cf38500d1d2f945e35fb11622eabeca619a0a655c6ee9e",
+        "path": "artifacts/ziwei-life-body-palace-ruler-source-evidence-v0/complete.json"
+      },
+      {
+        "byteSha256": "6220cdeedec43510358c9f10477771244f374b85844477575576efb36766fdaa",
+        "path": "artifacts/ziwei-major-star-source-corpus-provenance-v0/complete.json"
+      },
+      {
+        "byteSha256": "8c7f4b678a37e2486abdebf786a45444068f14387a536b925182872d8461641f",
+        "path": "artifacts/ziwei-nara-iiif-leafmap-semantic-witness-v1/complete.json"
+      },
+      {
+        "byteSha256": "4ce5b13c486913adf051e7abfcb9f451bf81f51f2b7d6fa01ca494fa2423004d",
+        "path": "artifacts/ziwei-p0-claim-source-identity-frontier-v1/complete.json"
+      },
+      {
+        "byteSha256": "9a7c4e1f2bed43b88a4ce8d3f2e2b14deda6ea2da31998c7aaa5f663574b5c9b",
+        "path": "artifacts/ziwei-p0-local-frontier-reconciliation-v1/complete.json"
+      },
+      {
+        "byteSha256": "4ce1f40e45b357699de3b153dabaeb7e395961d6aa9253a457ff75c8042c0583",
+        "path": "artifacts/ziwei-p0-palace-semantic-witness-acquisition-route-v1/complete.json"
+      },
+      {
+        "byteSha256": "6928d53567b886e591d100dc70619f5dd44770bf46ed0586c7fe377b53ffd41d",
+        "path": "artifacts/ziwei-p0-toyo-1646-extended-observation-v0/complete.json"
+      },
+      {
+        "byteSha256": "4f9a62f5f14086fa8a34f650a9167036df45bcb9586ade8b888feac353260d9b",
+        "path": "artifacts/ziwei-palace-coordinate-semantic-identity-v0/complete.json"
+      },
+      {
+        "byteSha256": "49cce3fda159a1b5956d8a6d3dfa45b6eb8045e80664703df9bb1fcb96ee74b1",
+        "path": "artifacts/ziwei-palace-source-acquisition-field-kit-v0/complete.json"
+      },
+      {
+        "byteSha256": "f93cb1ca021ed8c267dd8a22c16aac76e5f505c760ac4b9fd52904bfd687d5a2",
+        "path": "artifacts/ziwei-tianfu-convention-provenance-v0/complete.json"
+      },
+      {
+        "byteSha256": "755f4433e5264f54dfc0c0243b844e0e8ed2825c1c91c5bddda18c8b97dafe02",
+        "path": "artifacts/ziwei-tianfu-representation-search-v1/complete.json"
+      },
+      {
+        "byteSha256": "bf3e6149eda8bd41e998cfb8abe32988af140cf349ef1f1c10868bf444dd473e",
+        "path": "artifacts/ziwei-twelve-major-star-placement-evidence-v0/complete.json"
+      },
+      {
+        "byteSha256": "c07f03b8b6ecae41ad9281eb4b02544d01da7f486a78990c23a12405fd854131",
+        "path": "docs/ziwei-p0-claim-source-identity-frontier-v1.md"
+      },
+      {
+        "byteSha256": "0f48b8ca74c7a45b8e9e2d6e99297f6ba7a719317d82259b0bf011606fefff2b",
+        "path": "docs/ziwei-p0-local-frontier-reconciliation-v1.md"
+      },
+      {
+        "byteSha256": "76d328365b638a66faed2e188a83f38976e4a7cb4ae498991136842d496b1db0",
+        "path": "docs/ziwei-p0-palace-semantic-witness-acquisition-route-v1.md"
+      },
+      {
+        "byteSha256": "179021450f8b6dd825247bf3f243c29f1cc00eaad2d3a78c04dab46faad48cfc",
+        "path": "docs/ziwei-p0-toyo-1646-extended-observation-v0.md"
+      },
+      {
+        "byteSha256": "30350f892ccd9da97386c3996bd510dcbecc54807455b738ce24fa3f10827e7e",
+        "path": "docs/ziwei-palace-source-acquisition-field-kit-v0.md"
+      },
+      {
+        "byteSha256": "ee2b665909fe7c963eca5ef7d8af3ca44813f3f50171bb26decda7134c2b3509",
+        "path": "scripts/materialize-ziwei-p0-evidence-acquisition-field-kit-v1.mjs"
+      },
+      {
+        "byteSha256": "45d47c02b33ef924331a3064b579b68402e52c5393322c1de6071421a6085fc7",
+        "path": "src/artifactIdentity.js"
+      }
+    ],
+    "materializer": {
+      "path": "scripts/materialize-ziwei-p0-evidence-acquisition-field-kit-v1.mjs",
+      "version": "1.0.0"
+    }
+  },
+  "blockers": [
+    {
+      "boundaryClass": "acquisition_evidence_boundary",
+      "closureDecision": "requires_new_or_reclassified_evidence_and_human_review",
+      "currentEvidenceBoundary": "local_pdf_bytes_and_catalog/image_candidates_reconciled; exact edition_lineage_authority remains open",
+      "currentEvidenceRefs": [
+        "artifacts/ziwei-p0-toyo-1646-extended-observation-v0/complete.json",
+        "artifacts/ziwei-four-transformations-source-evidence-v0/complete.json",
+        "artifacts/ziwei-life-body-palace-ruler-source-evidence-v0/complete.json"
+      ],
+      "currentObservationIds": [
+        "obs-local-major-star-rule-surfaces",
+        "obs-local-auxiliary-rule-surfaces",
+        "obs-local-four-transformations-nanbei-table",
+        "obs-local-four-transformations-ming-partial",
+        "obs-local-life-body-ruler-surfaces"
+      ],
+      "id": "blocker-source-identity-unresolved",
+      "mappedTargetIds": [
+        "acq-distinct-witness-identity-lineage",
+        "acq-palace-semantic-map-and-coordinate-witness",
+        "acq-tianfu-anchor-direction-adjudicator",
+        "acq-complete-14-major-star-placement-witness",
+        "acq-complete-auxiliary-star-rule-witness",
+        "acq-independent-complete-four-transform-table",
+        "acq-shen-zhu-compound-surface"
+      ],
+      "noAutomaticClosure": true,
+      "priority": "P0",
+      "status": "blocked",
+      "title": "blocker-source-identity-unresolved"
+    },
+    {
+      "boundaryClass": "acquisition_evidence_boundary",
+      "closureDecision": "requires_new_or_reclassified_evidence_and_human_review",
+      "currentEvidenceBoundary": "partial diagrams, traversal prose, NARA charts, and TOYO pages reviewed; no complete 12-way semantic binding",
+      "currentEvidenceRefs": [
+        "artifacts/ziwei-p0-toyo-1646-extended-observation-v0/complete.json",
+        "artifacts/ziwei-tianfu-convention-provenance-v0/complete.json"
+      ],
+      "currentObservationIds": [
+        "obs-local-tianfu-rule-surfaces"
+      ],
+      "id": "blocker-palace-semantic-identity",
+      "mappedTargetIds": [
+        "acq-palace-semantic-map-and-coordinate-witness"
+      ],
+      "noAutomaticClosure": true,
+      "priority": "P0",
+      "status": "blocked",
+      "title": "blocker-palace-semantic-identity"
+    },
+    {
+      "boundaryClass": "acquisition_evidence_boundary",
+      "closureDecision": "requires_new_or_reclassified_evidence_and_human_review",
+      "currentEvidenceBoundary": "14-star source surfaces and deterministic comparisons consumed; complete row-level source rule identity remains open",
+      "currentEvidenceRefs": [
+        "artifacts/ziwei-twelve-major-star-placement-evidence-v0/complete.json",
+        "artifacts/ziwei-major-star-source-corpus-provenance-v0/complete.json"
+      ],
+      "currentObservationIds": [
+        "obs-local-major-star-rule-surfaces"
+      ],
+      "id": "blocker-direct-rule-absent",
+      "mappedTargetIds": [
+        "acq-tianfu-anchor-direction-adjudicator",
+        "acq-complete-14-major-star-placement-witness"
+      ],
+      "noAutomaticClosure": true,
+      "priority": "P0",
+      "status": "blocked",
+      "title": "blocker-direct-rule-absent"
+    },
+    {
+      "boundaryClass": "acquisition_evidence_boundary",
+      "closureDecision": "requires_new_or_reclassified_evidence_and_human_review",
+      "currentEvidenceBoundary": "Nanbei root table, Nanyang series/diagram surfaces, legacy and source_aligned modes all preserved; no convention adjudicated",
+      "currentEvidenceRefs": [
+        "artifacts/ziwei-tianfu-convention-provenance-v0/complete.json",
+        "artifacts/ziwei-tianfu-representation-search-v1/complete.json"
+      ],
+      "currentObservationIds": [
+        "obs-local-tianfu-rule-surfaces"
+      ],
+      "id": "blocker-tianfu-raw-formula-contradiction",
+      "mappedTargetIds": [
+        "acq-tianfu-anchor-direction-adjudicator"
+      ],
+      "noAutomaticClosure": true,
+      "priority": "P0",
+      "status": "blocked",
+      "title": "blocker-tianfu-raw-formula-contradiction"
+    },
+    {
+      "boundaryClass": "acquisition_evidence_boundary",
+      "closureDecision": "requires_new_or_reclassified_evidence_and_human_review",
+      "currentEvidenceBoundary": "identity 0/150 and rotation-06 150/150 are retained as separate numeric relations; semantic equivalence is blocked",
+      "currentEvidenceRefs": [
+        "artifacts/ziwei-tianfu-convention-provenance-v0/complete.json",
+        "artifacts/ziwei-p0-toyo-1646-extended-observation-v0/complete.json"
+      ],
+      "currentObservationIds": [
+        "obs-local-tianfu-rule-surfaces"
+      ],
+      "id": "blocker-tianfu-rotation06-semantic-authority",
+      "mappedTargetIds": [
+        "acq-palace-semantic-map-and-coordinate-witness",
+        "acq-tianfu-anchor-direction-adjudicator"
+      ],
+      "noAutomaticClosure": true,
+      "priority": "P0",
+      "status": "blocked",
+      "title": "blocker-tianfu-rotation06-semantic-authority"
+    },
+    {
+      "boundaryClass": "acquisition_evidence_boundary",
+      "closureDecision": "requires_new_or_reclassified_evidence_and_human_review",
+      "currentEvidenceBoundary": "13 auxiliary surfaces, 136/136 comparable matches, and 684 non-comparable rows reconciled; full independent rule witness absent",
+      "currentEvidenceRefs": [
+        "artifacts/ziwei-auxiliary-star-placement-core-evidence-v0/complete.json",
+        "artifacts/ziwei-auxiliary-star-placement-core-evidence-v0/comparison.json"
+      ],
+      "currentObservationIds": [
+        "obs-local-auxiliary-rule-surfaces"
+      ],
+      "id": "blocker-auxiliary-star-source-witness",
+      "mappedTargetIds": [
+        "acq-complete-auxiliary-star-rule-witness"
+      ],
+      "noAutomaticClosure": true,
+      "priority": "P1",
+      "status": "blocked",
+      "title": "blocker-auxiliary-star-source-witness"
+    },
+    {
+      "boundaryClass": "acquisition_evidence_boundary",
+      "closureDecision": "requires_new_or_reclassified_evidence_and_human_review",
+      "currentEvidenceBoundary": "new_local_frontier_consumed: Nanbei 40/40 direct cells; Nanyang 4/40 direct cells and 36 explicit unlocated cells",
+      "currentEvidenceRefs": [
+        "artifacts/ziwei-four-transformations-source-evidence-v0/complete.json",
+        "artifacts/ziwei-four-transformations-source-evidence-v0/comparison.json"
+      ],
+      "currentObservationIds": [
+        "obs-local-four-transformations-nanbei-table",
+        "obs-local-four-transformations-ming-partial"
+      ],
+      "id": "blocker-four-transform-source-witness",
+      "mappedTargetIds": [
+        "acq-independent-complete-four-transform-table"
+      ],
+      "noAutomaticClosure": true,
+      "priority": "P1",
+      "status": "blocked",
+      "title": "blocker-four-transform-source-witness"
+    },
+    {
+      "boundaryClass": "acquisition_evidence_boundary",
+      "closureDecision": "requires_new_or_reclassified_evidence_and_human_review",
+      "currentEvidenceBoundary": "life/body 144/144 exact; 命主 144/144; 身主 120/144 comparable with 24 blocked",
+      "currentEvidenceRefs": [
+        "artifacts/ziwei-life-body-palace-ruler-source-evidence-v0/complete.json",
+        "artifacts/ziwei-life-body-palace-ruler-source-evidence-v0/comparison.json"
+      ],
+      "currentObservationIds": [
+        "obs-local-life-body-ruler-surfaces"
+      ],
+      "id": "blocker-life-body-ruler-source-legibility",
+      "mappedTargetIds": [
+        "acq-shen-zhu-compound-surface"
+      ],
+      "noAutomaticClosure": true,
+      "priority": "P1",
+      "status": "blocked",
+      "title": "blocker-life-body-ruler-source-legibility"
+    },
+    {
+      "boundaryClass": "acquisition_evidence_boundary",
+      "closureDecision": "requires_new_or_reclassified_evidence_and_human_review",
+      "currentEvidenceBoundary": "six declared fixtures remain pending; independently verified 0; internal fixtures remain regression_only",
+      "currentEvidenceRefs": [
+        "artifacts/ziwei-fixture-reconciliation-v1/complete.json",
+        "artifacts/ziwei-p0-toyo-1646-extended-observation-v0/complete.json"
+      ],
+      "currentObservationIds": [],
+      "id": "blocker-independent-external-oracle",
+      "mappedTargetIds": [
+        "acq-independent-ziwei-oracle"
+      ],
+      "noAutomaticClosure": true,
+      "priority": "P1",
+      "status": "blocked",
+      "title": "blocker-independent-external-oracle"
+    },
+    {
+      "boundaryClass": "acquisition_evidence_boundary",
+      "closureDecision": "requires_new_or_reclassified_evidence_and_human_review",
+      "currentEvidenceBoundary": "Ziwei input contract and local calculations are available, but no exact calendar/time source identity closes leap-month, timezone, solar-time, or 子時 boundary",
+      "currentEvidenceRefs": [
+        "artifacts/ziwei-fixture-reconciliation-v1/complete.json",
+        "artifacts/ziwei-p0-toyo-1646-extended-observation-v0/complete.json"
+      ],
+      "currentObservationIds": [],
+      "id": "blocker-calendar-time-source-identity",
+      "mappedTargetIds": [
+        "acq-calendar-time-input-authority"
+      ],
+      "noAutomaticClosure": true,
+      "priority": "P1",
+      "status": "blocked",
+      "title": "blocker-calendar-time-source-identity"
+    },
+    {
+      "boundaryClass": "human_policy_boundary",
+      "closureDecision": "needs_human_review",
+      "currentEvidenceBoundary": "public viewer/catalog access and read-only local PDF/JPEG review recorded; image-level repository reuse permission remains absent",
+      "currentEvidenceRefs": [
+        "artifacts/ziwei-p0-toyo-1646-extended-observation-v0/complete.json",
+        "artifacts/ziwei-four-transformations-source-evidence-v0/complete.json"
+      ],
+      "currentObservationIds": [],
+      "id": "blocker-image-reuse-rights",
+      "mappedTargetIds": [
+        "review-image-level-reuse-permission"
+      ],
+      "noAutomaticClosure": true,
+      "priority": "P2",
+      "status": "needs_human_review",
+      "title": "blocker-image-reuse-rights"
+    }
+  ],
+  "candidateWitnessClasses": [
+    {
+      "acceptance": "physical identity, lineage, direct visual content, and exact locators all survive review",
+      "id": "distinct-physical-witness",
+      "independence": "must be compared against NARA same-record pair, Nanyang derivative, Nanbei, and TOYO candidate; distinct URLs do not prove independence",
+      "material": "institution-identified old-book/manuscript witness with title/colophon/target leaves and actual bytes",
+      "rejection": "same-record duplicate, mirror, derivative without lineage, catalog-only record",
+      "use": "preferred for palace semantic, Tianfu, and source identity gates"
+    },
+    {
+      "acceptance": "image scope, permission scope, source identity, and target page are explicit",
+      "id": "institution-supplied-native-or-rights-cleared-scan",
+      "independence": "rights clearance does not make a witness independent; lineage remains a separate field",
+      "material": "native file or holder-supplied reproduction with permission scope and byte/hash provenance",
+      "rejection": "public endpoint, catalog license, or HTTP access treated as image permission",
+      "use": "alternative when a complete semantic/rule page is known but public image reuse is restricted"
+    },
+    {
+      "acceptance": "replayable output with disclosed shared dependencies",
+      "id": "independent-executable-oracle",
+      "independence": "must not be the production resolver or an undisclosed wrapper around the same fixtures/source",
+      "material": "versioned implementation, ruleset, exact settings, field-level output, runner, and immutable hash",
+      "rejection": "screenshot, internal fixture, or numeric match without semantic field mapping",
+      "use": "corroboration for the same cohort after source/input identity is fixed"
+    },
+    {
+      "acceptance": "exact cohort conversion is reproducible from immutable release or hash",
+      "id": "versioned-calendar-time-source",
+      "independence": "must be independent of the Ziwei production resolver and disclose shared services",
+      "material": "versioned calendar/time data or reproducible service with leap/timezone/solar-time/子時 policy",
+      "rejection": "unversioned date result or a local conversion silently reused as authority",
+      "use": "separate input-source boundary for the oracle and exact Ziwei cohort"
+    }
+  ],
+  "checker": "scripts/check-ziwei-p0-evidence-acquisition-field-kit-v1.mjs",
+  "claimImpact": {
+    "currentClaimCount": 30,
+    "interpretationEligibleClaims": 0,
+    "noClaimPromotionByIntake": true,
+    "rightsTargetResolvesClaimIds": [],
+    "semanticAuthorityCount": 0,
+    "sourceIdentityTargetResolvesClaimIds": [],
+    "stableClaimCount": 0,
+    "targetLinksAreConditional": true
+  },
+  "currentAudit": {
+    "claimIds": [
+      "claim-palace-name-branch-ordinal",
+      "claim-ming-shen-coordinate-frame",
+      "claim-12-palace-diagram-semantics",
+      "claim-major-star-placement-ziwei",
+      "claim-major-star-placement-tianji",
+      "claim-major-star-placement-taiyang",
+      "claim-major-star-placement-wugu",
+      "claim-major-star-placement-tiandong",
+      "claim-major-star-placement-lianzhen",
+      "claim-major-star-placement-tianfu",
+      "claim-major-star-placement-taiyin",
+      "claim-major-star-placement-tanlang",
+      "claim-major-star-placement-jumen",
+      "claim-major-star-placement-tianxiang",
+      "claim-major-star-placement-tianliang",
+      "claim-major-star-placement-qisha",
+      "claim-major-star-placement-pojun",
+      "claim-tianfu-anchor-direction",
+      "claim-tianfu-placement",
+      "claim-tianfu-rotation06-semantic",
+      "claim-auxiliary-star-placement-six-lucky",
+      "claim-auxiliary-star-placement-core",
+      "claim-four-transformations-10x4",
+      "claim-four-transform-lu",
+      "claim-four-transform-quan",
+      "claim-four-transform-ke",
+      "claim-four-transform-ji",
+      "claim-life-body-palace-ruler",
+      "claim-life-body-ruler-24-ambiguous-rows",
+      "claim-ziwei-input-calendar-time"
+    ],
+    "frontierArtifact": {
+      "byteSha256": "9a7c4e1f2bed43b88a4ce8d3f2e2b14deda6ea2da31998c7aaa5f663574b5c9b",
+      "path": "artifacts/ziwei-p0-local-frontier-reconciliation-v1/complete.json"
+    },
+    "graph": {
+      "blockers": 11,
+      "claims": 30,
+      "observations": 40,
+      "relations": 130,
+      "semanticAuthority": 0,
+      "sources": 13,
+      "stableClaims": 0
+    },
+    "keyEvidenceBoundaries": [
+      {
+        "id": "nara-leaf-concordance",
+        "observed": "528 local pages vs 532 NARA side slots",
+        "result": "522 same_text_different_capture; 6 probable_correspondence; 4 unresolved; 0 exact_same_leaf; complete semantic binding 0/12",
+        "sourcePath": "artifacts/ziwei-nara-iiif-leafmap-semantic-witness-v1/complete.json"
+      },
+      {
+        "id": "toyo-1646",
+        "observed": "23 actual-byte JPEG observations including 8 additive leaves",
+        "result": "physical candidate only; no edition/lineage/semantic authority/rights closure",
+        "sourcePath": "artifacts/ziwei-p0-toyo-1646-extended-observation-v0/complete.json"
+      },
+      {
+        "id": "four-transformations",
+        "observed": "Nanbei 40/40; Nanyang 4/40 direct and 36 unlocated",
+        "result": "local table evidence only; no source authority or independent corroboration",
+        "sourcePath": "artifacts/ziwei-p0-local-frontier-reconciliation-v1/complete.json"
+      },
+      {
+        "id": "life-body-rulers",
+        "observed": "life/body 144/144; 命主 144/144; 身主 120/144 comparable and 24 blocked",
+        "result": "24-row compound surface remains blocked; production ruler fields absent",
+        "sourcePath": "artifacts/ziwei-p0-local-frontier-reconciliation-v1/complete.json"
+      },
+      {
+        "id": "tianfu",
+        "observed": "identity 0/150; rotation-06 150/150",
+        "result": "representation-only; semantic authority blocked",
+        "sourcePath": "artifacts/ziwei-p0-local-frontier-reconciliation-v1/complete.json"
+      },
+      {
+        "id": "source-authority",
+        "observed": "30 claims, 13 sources, 40 observations, 130 relations",
+        "result": "stable claims 0; semantic authority 0; all 10 evidence blockers remain blocked and rights is needs_human_review",
+        "sourcePath": "artifacts/ziwei-p0-local-frontier-reconciliation-v1/complete.json"
+      }
+    ],
+    "originalArtifact": {
+      "byteSha256": "4ce5b13c486913adf051e7abfcb9f451bf81f51f2b7d6fa01ca494fa2423004d",
+      "path": "artifacts/ziwei-p0-claim-source-identity-frontier-v1/complete.json"
+    },
+    "predecessorChain": [
+      {
+        "byteSha256": "4ce5b13c486913adf051e7abfcb9f451bf81f51f2b7d6fa01ca494fa2423004d",
+        "path": "artifacts/ziwei-p0-claim-source-identity-frontier-v1/complete.json",
+        "schemaVersion": "ziwei-p0-claim-source-identity-frontier-v1"
+      },
+      {
+        "byteSha256": "6928d53567b886e591d100dc70619f5dd44770bf46ed0586c7fe377b53ffd41d",
+        "path": "artifacts/ziwei-p0-toyo-1646-extended-observation-v0/complete.json",
+        "schemaVersion": "ziwei-p0-toyo-1646-extended-observation-v0"
+      },
+      {
+        "byteSha256": "9a7c4e1f2bed43b88a4ce8d3f2e2b14deda6ea2da31998c7aaa5f663574b5c9b",
+        "path": "artifacts/ziwei-p0-local-frontier-reconciliation-v1/complete.json",
+        "schemaVersion": "ziwei-p0-local-frontier-reconciliation-v1"
+      }
+    ],
+    "relationIds": [
+      "relation-local-major-star-rule-surfaces",
+      "relation-local-tianfu-rule-surfaces",
+      "relation-local-auxiliary-rule-surfaces",
+      "relation-local-four-transformations-nanbei-table",
+      "relation-local-four-transformations-ming-partial",
+      "relation-local-life-body-ruler-surfaces"
+    ],
+    "sourceInventory": {
+      "heldButAuthorityInsufficient": [
+        {
+          "action": "do_not_reacquire; use for identity/lineage comparison only",
+          "boundary": "direct rule/table observations; edition lineage and semantic authority unresolved",
+          "byteLength": 35515645,
+          "byteSha256": "4786a94ab454acdabf9716d7c0db4756dbcbde99a88bc45fda254863c1961023",
+          "id": "held-nanbei-pdf",
+          "kind": "local_pdf",
+          "pageCount": 219,
+          "sourceIds": [
+            "src-nanbei-pdf"
+          ],
+          "status": "held_but_authority_insufficient"
+        },
+        {
+          "action": "do_not_reacquire_or_count_as_independent; preserve explicit unlocated rows",
+          "boundary": "same-record derivative candidate; Nanyang 四化 4/40 direct, 36 unlocated; 24 身主 rows blocked",
+          "byteLength": 36201526,
+          "byteSha256": "04e184c4a52cb042dc885c6ccc9135d94ab25de62007506198ee979a33e66bfc",
+          "id": "held-nanyangtang-pdf",
+          "kind": "local_pdf",
+          "pageCount": 528,
+          "sourceIds": [
+            "src-nanyangtang-pdf"
+          ],
+          "status": "held_but_authority_insufficient"
+        },
+        {
+          "action": "do_not_reacquire as an independent pair; seek only distinct witness or explicit rights/native-file decision",
+          "boundary": "public manifests/images and 528↔532 side concordance are access/representation evidence; same catalog record and 0/12 complete semantic binding",
+          "id": "held-nara-volume-pair",
+          "kind": "official_iiif_route",
+          "sourceIds": [
+            "src-nara-4468520",
+            "src-nara-4469314"
+          ],
+          "status": "held_but_authority_insufficient"
+        },
+        {
+          "action": "do_not reacquire reviewed leaves; inspect identity/semantic gaps or request holder-supplied material only when necessary",
+          "boundary": "23 actual-byte visual observations; physical candidate only; date/colophon/lineage/rights unresolved",
+          "id": "held-toyo-1646-cache",
+          "imageCount": 23,
+          "kind": "public_jpeg_cache_review",
+          "newImageCount": 8,
+          "sourceIds": [
+            "src-toyo-1646"
+          ],
+          "status": "held_but_authority_insufficient"
+        },
+        {
+          "action": "do_not request the same already-materialized observations again",
+          "boundary": "major/auxiliary/Tianfu/four-transform/life-body artifacts are local observation and relation evidence, not source authority",
+          "id": "held-existing-rule-artifacts",
+          "kind": "repository_evidence_artifacts",
+          "sourceIds": [
+            "src-nanbei-pdf",
+            "src-nanyangtang-pdf"
+          ],
+          "status": "held_but_authority_insufficient"
+        }
+      ],
+      "locatorOnlyOrNotAdmitted": [
+        {
+          "boundary": "phrase/section locator; OCR/text is not canonical visual evidence",
+          "id": "ctext-and-public-text",
+          "status": "locator_only_or_not_admitted"
+        },
+        {
+          "boundary": "150/150 numeric relation; semantic identity 0/150",
+          "id": "rotation-06",
+          "status": "representation_only"
+        },
+        {
+          "boundary": "six pending; independent oracle 0",
+          "id": "internal-fixtures",
+          "status": "regression_only"
+        }
+      ],
+      "missingOrHumanBoundary": [
+        {
+          "id": "distinct-complete-semantic-witness",
+          "status": "not_admitted",
+          "targetIds": [
+            "acq-palace-semantic-map-and-coordinate-witness"
+          ]
+        },
+        {
+          "id": "independent-complete-rule-witnesses",
+          "status": "not_admitted",
+          "targetIds": [
+            "acq-tianfu-anchor-direction-adjudicator",
+            "acq-complete-14-major-star-placement-witness",
+            "acq-complete-auxiliary-star-rule-witness",
+            "acq-independent-complete-four-transform-table",
+            "acq-shen-zhu-compound-surface"
+          ]
+        },
+        {
+          "id": "independent-oracle-and-calendar",
+          "status": "not_admitted",
+          "targetIds": [
+            "acq-independent-ziwei-oracle",
+            "acq-calendar-time-input-authority"
+          ]
+        },
+        {
+          "id": "image-reuse-decision",
+          "status": "needs_human_review",
+          "targetIds": [
+            "review-image-level-reuse-permission"
+          ]
+        }
+      ],
+      "routeHashes": {
+        "naraLeafmapArtifactSha256": "8c7f4b678a37e2486abdebf786a45444068f14387a536b925182872d8461641f",
+        "naraLeafmapVerdict": "complete_ziwei_nara_iiif_leafmap_semantic_witness_frontier_exhausted_uncommitted",
+        "naraRouteArtifactSha256": "4ce1f40e45b357699de3b153dabaeb7e395961d6aa9253a457ff75c8042c0583",
+        "naraRouteVerdict": "complete_ziwei_p0_palace_semantic_witness_acquisition_route_exhausted_uncommitted"
+      }
+    },
+    "sourceOfTruth": "current local checkout plus actual bytes recorded by predecessor artifacts; no external acquisition in this materializer",
+    "statuses": {
+      "activation": "experimental_only",
+      "grounding": "blocked",
+      "independentWitnessesAdmitted": 0,
+      "readiness": "not_safe_to_start",
+      "rotation06": "representation_only",
+      "sourceAuthorityPromoted": false
+    },
+    "toyoArtifact": {
+      "byteSha256": "6928d53567b886e591d100dc70619f5dd44770bf46ed0586c7fe377b53ffd41d",
+      "path": "artifacts/ziwei-p0-toyo-1646-extended-observation-v0/complete.json"
+    }
+  },
+  "deterministicContract": {
+    "currentHeadObservation": "diagnostic only; stable-content comparisons ignore volatile repository observation fields",
+    "generatedAt": "forbidden",
+    "inputBytes": "actual repository bytes SHA-256; untracked predecessor bytes are explicit inputs",
+    "noExternalAcquisition": true,
+    "noImplicitSourceSearch": true,
+    "ordering": "stable key order; blocker order follows current predecessor; target order is priority rank; arrays preserve declared meaning unless documented sorted",
+    "timestamps": "forbidden"
+  },
+  "highLeverageMission": {
+    "first": [
+      "acq-palace-semantic-map-and-coordinate-witness",
+      "acq-distinct-witness-identity-lineage",
+      "acq-tianfu-anchor-direction-adjudicator"
+    ],
+    "reason": "A distinct, identity-documented witness containing a complete palace map plus an explicit Tianfu anchor can address the semantic layer and the highest-fanout identity gate in one acquisition packet.",
+    "reasonSecond": "These have broad claim fan-out, but table/oracle agreement remains subordinate to semantic identity and source lineage.",
+    "reasonSeparate": "Calendar, the 24-row compound surface, and rights are different layers; do not let a semantic witness silently close them.",
+    "second": [
+      "acq-independent-complete-four-transform-table",
+      "acq-independent-ziwei-oracle",
+      "acq-complete-14-major-star-placement-witness"
+    ],
+    "separate": [
+      "acq-calendar-time-input-authority",
+      "acq-shen-zhu-compound-surface",
+      "review-image-level-reuse-permission"
+    ]
+  },
+  "humanReviewBoundary": {
+    "imageReuseRights": "blocker-image-reuse-rights remains needs_human_review; no source image is stored by this field kit",
+    "prohibitedActions": [
+      "production activation",
+      "readiness/grounding promotion",
+      "remote DB/deploy",
+      "source acquisition by this materializer"
+    ],
+    "requiredFor": [
+      "source identity/lineage",
+      "semantic identity",
+      "independence",
+      "authority",
+      "image reuse rights",
+      "any proposed claim or blocker status change"
+    ]
+  },
+  "intakeSchema": {
+    "forbidden": [
+      "OCR-only submission",
+      "invented edition/date/page",
+      "normalized redraw replacing image",
+      "confidence score as authority",
+      "semantic acceptance verdict by field collector",
+      "production/readiness/activation mutation"
+    ],
+    "oneRecordPerCandidateMaterial": true,
+    "required": [
+      "intakeId",
+      "sourceInstitutionOrHolder",
+      "stableItemIdOrCallNumber",
+      "rawTitleAttribution",
+      "editionOrUnresolved",
+      "volumeFolioPage",
+      "originalFileList",
+      "actualByteSha256",
+      "captureScope",
+      "rawObservedGlyphs",
+      "currentTargetIds",
+      "currentBlockerIds",
+      "uncertainties",
+      "triageStatus"
+    ],
+    "requiredPerObservation": [
+      "observationId",
+      "targetId",
+      "sourceRef",
+      "pageOrFolio",
+      "directVisualStatus",
+      "rawTextOrGlyph",
+      "layoutOrDiagramNotes",
+      "whatItEstablishes",
+      "whatItDoesNotEstablish"
+    ],
+    "requiredPerRelation": [
+      "currentRelationIdOrPlannedRelationLabel",
+      "fromObservationIds",
+      "claimIds",
+      "blockerIds",
+      "promotionStatus",
+      "independenceStatus",
+      "authorityStatus"
+    ],
+    "triageStatuses": [
+      "candidate",
+      "promising",
+      "review_ready",
+      "potentially_sufficient",
+      "rejected",
+      "needs_human_review"
+    ]
+  },
+  "materializer": "scripts/materialize-ziwei-p0-evidence-acquisition-field-kit-v1.mjs",
+  "negativeChecker": "scripts/check-ziwei-p0-evidence-acquisition-field-kit-v1-negative-v0.mjs",
+  "negativeContract": {
+    "rejects": [
+      "wrong blocker-to-target mapping",
+      "claim link to a target outside its declared evidence layer",
+      "source authority or semantic authority promotion",
+      "independent witness admission for same-record NARA pair",
+      "rotation-06 semantic promotion from numeric fit",
+      "Nanbei/Nanyang missing-cell or 24-row boundary erasure",
+      "OCR/catalog/HTTP/CC0 shortcut",
+      "image-rights target resolving semantic claims",
+      "readiness/grounding/activation/production mutation",
+      "source image/PDF storage or external acquisition",
+      "protected -.jpg loss",
+      "generated timestamp"
+    ]
+  },
+  "preservation": {
+    "commitPerformed": false,
+    "deployPerformed": false,
+    "existingAcquisitionKitRewritten": false,
+    "externalAcquisitionPerformed": false,
+    "networkUsedDuringMaterialization": false,
+    "predecessorArtifactsRewritten": false,
+    "protectedDashJpg": {
+      "byteSha256": "26896bdc877cd977a5e2e88abc1d7409d021a0ee1ffaacd708ad1dd3f987843f",
+      "exists": true,
+      "path": "-.jpg"
+    },
+    "pushPerformed": false,
+    "remoteDatabaseChanged": false,
+    "sourceImagesStoredInGit": false,
+    "sourcePdfsStoredInGit": false
+  },
+  "priorityMatrix": [
+    {
+      "blockerIds": [
+        "blocker-source-identity-unresolved",
+        "blocker-palace-semantic-identity",
+        "blocker-tianfu-rotation06-semantic-authority"
+      ],
+      "canCombineWith": [
+        "acq-distinct-witness-identity-lineage",
+        "acq-tianfu-anchor-direction-adjudicator"
+      ],
+      "highLeverageReason": "Highest semantic-authority value and high fan-out: this is the first field target to prioritize, while identity capture is collected in the same visit.",
+      "priority": "P0",
+      "priorityRank": 1,
+      "targetId": "acq-palace-semantic-map-and-coordinate-witness"
+    },
+    {
+      "blockerIds": [
+        "blocker-source-identity-unresolved"
+      ],
+      "canCombineWith": [
+        "acq-palace-semantic-map-and-coordinate-witness",
+        "acq-tianfu-anchor-direction-adjudicator",
+        "acq-complete-14-major-star-placement-witness",
+        "acq-independent-complete-four-transform-table"
+      ],
+      "highLeverageReason": "This is a cross-cutting P0 gate. It should be completed during the same visit as a semantic/rule target, not mistaken for a semantic result by itself.",
+      "priority": "P0",
+      "priorityRank": 2,
+      "targetId": "acq-distinct-witness-identity-lineage"
+    },
+    {
+      "blockerIds": [
+        "blocker-source-identity-unresolved",
+        "blocker-direct-rule-absent",
+        "blocker-tianfu-raw-formula-contradiction",
+        "blocker-tianfu-rotation06-semantic-authority"
+      ],
+      "canCombineWith": [
+        "acq-distinct-witness-identity-lineage",
+        "acq-palace-semantic-map-and-coordinate-witness"
+      ],
+      "highLeverageReason": "High semantic value and fan-out into Tianfu, major-star placement, and rotation-06; it can be combined with the semantic-map target in one high-quality witness.",
+      "priority": "P0",
+      "priorityRank": 3,
+      "targetId": "acq-tianfu-anchor-direction-adjudicator"
+    },
+    {
+      "blockerIds": [
+        "blocker-source-identity-unresolved",
+        "blocker-four-transform-source-witness"
+      ],
+      "canCombineWith": [],
+      "highLeverageReason": "High fan-out across five claims and an exact local 40/40 boundary makes this a strong early P1 after semantic/identity work.",
+      "priority": "P1",
+      "priorityRank": 4,
+      "targetId": "acq-independent-complete-four-transform-table"
+    },
+    {
+      "blockerIds": [
+        "blocker-independent-external-oracle"
+      ],
+      "canCombineWith": [],
+      "highLeverageReason": "Broad diagnostic fan-out, but intentionally below semantic witnesses because corroboration cannot manufacture source meaning.",
+      "priority": "P1",
+      "priorityRank": 5,
+      "targetId": "acq-independent-ziwei-oracle"
+    },
+    {
+      "blockerIds": [
+        "blocker-source-identity-unresolved",
+        "blocker-direct-rule-absent"
+      ],
+      "canCombineWith": [],
+      "highLeverageReason": "P1 because the semantic map and Tianfu convention are upstream; once those are resolved this target supplies broad star-rule coverage.",
+      "priority": "P1",
+      "priorityRank": 6,
+      "targetId": "acq-complete-14-major-star-placement-witness"
+    },
+    {
+      "blockerIds": [
+        "blocker-calendar-time-source-identity"
+      ],
+      "canCombineWith": [],
+      "highLeverageReason": "P1 prerequisite for a meaningful oracle comparison, but it cannot resolve textual/semantic Ziwei rules.",
+      "priority": "P1",
+      "priorityRank": 7,
+      "targetId": "acq-calendar-time-input-authority"
+    },
+    {
+      "blockerIds": [
+        "blocker-source-identity-unresolved",
+        "blocker-auxiliary-star-source-witness"
+      ],
+      "canCombineWith": [],
+      "highLeverageReason": "P1 with lower semantic fan-out than the map/Tianfu targets; the raw-name boundaries make this target non-substitutable.",
+      "priority": "P1",
+      "priorityRank": 8,
+      "targetId": "acq-complete-auxiliary-star-rule-witness"
+    },
+    {
+      "blockerIds": [
+        "blocker-source-identity-unresolved",
+        "blocker-life-body-ruler-source-legibility"
+      ],
+      "canCombineWith": [],
+      "highLeverageReason": "P1 but narrowly scoped: the blocker is actionable and non-substitutable, yet it has less fan-out than semantic identity or 四化.",
+      "priority": "P1",
+      "priorityRank": 9,
+      "targetId": "acq-shen-zhu-compound-surface"
+    },
+    {
+      "blockerIds": [
+        "blocker-image-reuse-rights"
+      ],
+      "canCombineWith": [],
+      "highLeverageReason": "P2 because it does not resolve a semantic blocker, but it is a hard policy boundary for any future image retention.",
+      "priority": "P2",
+      "priorityRank": 10,
+      "targetId": "review-image-level-reuse-permission"
+    }
+  ],
+  "relationImpact": {
+    "currentRelationIds": [
+      "relation-local-major-star-rule-surfaces",
+      "relation-local-tianfu-rule-surfaces",
+      "relation-local-auxiliary-rule-surfaces",
+      "relation-local-four-transformations-nanbei-table",
+      "relation-local-four-transformations-ming-partial",
+      "relation-local-life-body-ruler-surfaces"
+    ],
+    "futureRelationsRequireDirectObservationAndHumanReview": true,
+    "numericAgreementIsNotSemanticAuthority": true,
+    "plannedRelationsAreNotCurrentEvidence": true,
+    "sameLineageIsNotIndependent": true
+  },
+  "schemaVersion": "ziwei-p0-evidence-acquisition-field-kit-v1",
+  "scope": {
+    "activationChanged": false,
+    "branch": "main",
+    "commitPerformed": false,
+    "currentHead": "2d5eb3bb7cde79bcb6a671969280987ffe536965",
+    "deployPerformed": false,
+    "existingAcquisitionKit": "ziwei-palace-source-acquisition-field-kit-v0 remains historical single-blocker predecessor; this v1 is additive and covers all 11 current blockers",
+    "externalAcquisitionPerformed": false,
+    "groundingChanged": false,
+    "independentWitnessesAdmitted": 0,
+    "networkUsedDuringMaterialization": false,
+    "originMainHead": "2d5eb3bb7cde79bcb6a671969280987ffe536965",
+    "predecessorArtifacts": "read-only inputs; never overwritten",
+    "productionChanged": false,
+    "protectedUntrackedPreserved": [
+      "-.jpg"
+    ],
+    "purpose": "read-only Ziwei P0 external-evidence acquisition planning from the reconciled local frontier",
+    "pushPerformed": false,
+    "readinessChanged": false,
+    "remoteDatabaseChanged": false,
+    "semanticAuthorityPromoted": false,
+    "sourceAuthorityPromoted": false
+  },
+  "separationInvariants": [
+    "direct observation is not textual identity",
+    "textual identity is not representation equivalence",
+    "representation equivalence is not physical-witness independence",
+    "physical-witness independence is not semantic identity",
+    "semantic identity is not authority",
+    "source presence, OCR, fixtures, and numeric agreement do not promote claims or readiness",
+    "rights/access is a separate human/policy layer"
+  ],
+  "targets": [
+    {
+      "acceptanceCriteria": [
+        "The institution or physical holder and item identity are independently recorded; a title string alone is insufficient.",
+        "The actual witness bytes or unedited supplied capture are hash-bound, and each claim occurrence has a page/folio locator.",
+        "Edition/date is stated only when directly supported by the witness or institution; an inferred date is recorded as unresolved.",
+        "Lineage explicitly separates NARA same-record volumes, the Nanyang derivative, Nanbei, and TOYO; independence is not inferred from different URLs.",
+        "The packet preserves raw glyphs and unresolved colophon/identity fields for later human review."
+      ],
+      "affectedClaimIds": [
+        "claim-palace-name-branch-ordinal",
+        "claim-ming-shen-coordinate-frame",
+        "claim-12-palace-diagram-semantics",
+        "claim-major-star-placement-ziwei",
+        "claim-major-star-placement-tianji",
+        "claim-major-star-placement-taiyang",
+        "claim-major-star-placement-wugu",
+        "claim-major-star-placement-tiandong",
+        "claim-major-star-placement-lianzhen",
+        "claim-major-star-placement-tianfu",
+        "claim-major-star-placement-taiyin",
+        "claim-major-star-placement-tanlang",
+        "claim-major-star-placement-jumen",
+        "claim-major-star-placement-tianxiang",
+        "claim-major-star-placement-tianliang",
+        "claim-major-star-placement-qisha",
+        "claim-major-star-placement-pojun",
+        "claim-tianfu-anchor-direction",
+        "claim-tianfu-placement",
+        "claim-tianfu-rotation06-semantic",
+        "claim-auxiliary-star-placement-six-lucky",
+        "claim-auxiliary-star-placement-core",
+        "claim-four-transformations-10x4",
+        "claim-four-transform-lu",
+        "claim-four-transform-quan",
+        "claim-four-transform-ke",
+        "claim-four-transform-ji",
+        "claim-life-body-palace-ruler",
+        "claim-life-body-ruler-24-ambiguous-rows",
+        "claim-ziwei-input-calendar-time"
+      ],
+      "affectedRelationIds": [
+        "relation-local-major-star-rule-surfaces",
+        "relation-local-tianfu-rule-surfaces",
+        "relation-local-auxiliary-rule-surfaces",
+        "relation-local-four-transformations-nanbei-table",
+        "relation-local-four-transformations-ming-partial",
+        "relation-local-life-body-ruler-surfaces"
+      ],
+      "blockerIds": [
+        "blocker-source-identity-unresolved"
+      ],
+      "closure": {
+        "automatic": false,
+        "canCloseOnlyWhen": [
+          "one concrete witness passes the identity, physical-witness, byte, locator, and lineage gates",
+          "the relevant semantic/rule target is also directly observed; identity alone does not close a content blocker"
+        ],
+        "doesNotClose": [
+          "palace semantic identity",
+          "Tianfu convention",
+          "rule completeness",
+          "oracle",
+          "calendar",
+          "image reuse rights"
+        ],
+        "futureRelationContract": "source_identity_attachment_not_yet_created",
+        "humanReviewRequired": true
+      },
+      "currentEvidenceRefs": [
+        "artifacts/ziwei-p0-claim-source-identity-frontier-v1/complete.json",
+        "artifacts/ziwei-p0-toyo-1646-extended-observation-v0/complete.json",
+        "artifacts/ziwei-p0-local-frontier-reconciliation-v1/complete.json",
+        "artifacts/ziwei-p0-palace-semantic-witness-acquisition-route-v1/complete.json"
+      ],
+      "currentGap": "Nanbei/Nanyangtang bytes and NARA/TOYO catalog routes are held, but exact edition, colophon/date, leaf-level identity, and transmission relation are not closed.",
+      "currentRelationIds": [
+        "relation-local-major-star-rule-surfaces",
+        "relation-local-tianfu-rule-surfaces",
+        "relation-local-auxiliary-rule-surfaces",
+        "relation-local-four-transformations-nanbei-table",
+        "relation-local-four-transformations-ming-partial",
+        "relation-local-life-body-ruler-surfaces"
+      ],
+      "id": "acq-distinct-witness-identity-lineage",
+      "licensing": {
+        "access": "public access, catalog access, and supplied physical copies are separate fields",
+        "policyDecision": "held material may be reviewed read-only; repository redistribution remains human review",
+        "rights": "record image-level terms separately; do not assume catalog or endpoint terms permit repository retention"
+      },
+      "licensingNote": "Image reuse is intentionally not part of identity acceptance.",
+      "locator": {
+        "capture": [
+          "cover",
+          "title/attribution",
+          "contents",
+          "colophon or absence",
+          "target leaf full frame",
+          "adjacent context",
+          "page/folio marker"
+        ],
+        "required": [
+          "title leaf",
+          "edition/colophon",
+          "volume/fascicle",
+          "target page or folio",
+          "line or table region"
+        ]
+      },
+      "material": {
+        "idealSet": [
+          "institution-confirmed physical-witness description and scan provenance",
+          "explicit comparison against NARA 4468520/4469314, Nanyangtang, Nanbei, and TOYO_1646",
+          "written lineage statement distinguishing same-record volume pairs, derivative scans, and distinct witnesses"
+        ],
+        "minimumSet": [
+          "cover or title leaf with the raw title and attribution",
+          "contents/volume or fascicle identification",
+          "copyright, colophon, publication, or manuscript-identifying leaf when present",
+          "every target leaf as an unedited original image/PDF plus page or folio locator",
+          "institution, call number or stable item identifier, original URL or physical holding",
+          "actual source bytes and SHA-256; never only a local filename"
+        ]
+      },
+      "notDuplicateOf": [
+        "src-nanbei-pdf",
+        "src-nanyangtang-pdf",
+        "src-nara-4468520",
+        "src-nara-4469314",
+        "src-toyo-1646",
+        "artifacts/ziwei-p0-claim-source-identity-frontier-v1/complete.json"
+      ],
+      "priority": "P0",
+      "priorityRank": 2,
+      "purpose": "Close the identity gate for a concrete candidate without turning catalog metadata into semantic authority.",
+      "rationale": "This is a cross-cutting P0 gate. It should be completed during the same visit as a semantic/rule target, not mistaken for a semantic result by itself.",
+      "rejectionCriteria": [
+        "catalog metadata, preview, OCR, transcription, mirror URL, or local filename without a physical-witness link",
+        "NARA volume 1 and volume 2 counted as independent witnesses",
+        "same text or numeric agreement used to infer edition identity or authority",
+        "missing target leaf, page/folio locator, or mutable/unverifiable source bytes"
+      ],
+      "resolvesClaimIds": [],
+      "search": {
+        "alreadyHeldNearMisses": [
+          "Nanbei 219-page local PDF: held and hash-verified, authority/lineage insufficient; do not reacquire as new evidence.",
+          "Nanyangtang 528-page local PDF: held and hash-verified, same-record derivative candidate; do not count as independent.",
+          "NARA 4468520 and 4469314: same catalog record volume pair; not an independent pair.",
+          "TOYO_1646: distinct physical candidate with 23 reviewed cache leaves, but date/colophon/lineage/rights remain open."
+        ],
+        "canonicalTerms": [
+          "紫微斗數全書",
+          "新鋟希夷陳先生紫微斗數全書",
+          "TOYO_1646",
+          "安天府圖",
+          "四化速檢表",
+          "命主",
+          "身主"
+        ],
+        "channels": [
+          "institutional catalog",
+          "digital archive item record",
+          "library physical holding",
+          "rights-cleared scan supplied by the holder"
+        ]
+      },
+      "sourceRefs": [
+        "docs/ziwei-p0-claim-source-identity-frontier-v1.md",
+        "docs/ziwei-p0-toyo-1646-extended-observation-v0.md",
+        "docs/ziwei-p0-local-frontier-reconciliation-v1.md"
+      ],
+      "status": "action_required",
+      "title": "source identity, physical witness, and lineage packet",
+      "verificationPlan": [
+        "hash actual bytes and verify page/folio locators against the visible leaf",
+        "compare lineage metadata without merging same-record or derivative witnesses",
+        "create an additive source-identity evidence packet; do not modify predecessor artifacts",
+        "run negative checks for title-only identity, same-record independence, and invented edition/date"
+      ]
+    },
+    {
+      "acceptanceCriteria": [
+        "A human can read every palace name and branch glyph from the original image without reconstructing missing labels.",
+        "The same witness states or visibly encodes which slot is the base/ordinal origin and which operation proceeds forward or reverse.",
+        "The diagram’s physical orientation and all twelve cells are visible; an isolated branch ring or one chart example is insufficient.",
+        "The source identity and lineage are recorded separately from the semantic observation.",
+        "Any mapping to a production enum is marked as a proposed relation requiring human semantic review, not silently adopted."
+      ],
+      "affectedClaimIds": [
+        "claim-palace-name-branch-ordinal",
+        "claim-ming-shen-coordinate-frame",
+        "claim-12-palace-diagram-semantics",
+        "claim-tianfu-rotation06-semantic"
+      ],
+      "affectedRelationIds": [
+        "relation-local-tianfu-rule-surfaces"
+      ],
+      "blockerIds": [
+        "blocker-source-identity-unresolved",
+        "blocker-palace-semantic-identity",
+        "blocker-tianfu-rotation06-semantic-authority"
+      ],
+      "closure": {
+        "automatic": false,
+        "canCloseOnlyWhen": [
+          "all five connections are directly readable in the declared source context",
+          "identity/lineage and semantic review both pass"
+        ],
+        "doesNotClose": [
+          "Tianfu raw formula choice unless the same witness also states its anchor/direction rule",
+          "14-star or auxiliary completeness",
+          "image reuse rights"
+        ],
+        "futureRelationContract": "semantic_palace_map_observation_not_yet_created",
+        "humanReviewRequired": true
+      },
+      "currentEvidenceRefs": [
+        "artifacts/ziwei-p0-local-frontier-reconciliation-v1/complete.json",
+        "artifacts/ziwei-p0-palace-semantic-witness-acquisition-route-v1/complete.json",
+        "artifacts/ziwei-nara-iiif-leafmap-semantic-witness-v1/complete.json",
+        "artifacts/ziwei-palace-source-acquisition-field-kit-v0/complete.json"
+      ],
+      "currentGap": "The NARA concordance has 0/12 complete bindings; TOYO pages and existing diagrams show bounded surfaces but no complete admissible mapping.",
+      "currentRelationIds": [
+        "relation-local-tianfu-rule-surfaces"
+      ],
+      "id": "acq-palace-semantic-map-and-coordinate-witness",
+      "licensing": {
+        "access": "public viewer or library access proves access only",
+        "policyDecision": "review page images outside Git unless rights-cleared",
+        "rights": "image retention, crop/render reuse, and repository redistribution require separate terms"
+      },
+      "locator": {
+        "capture": [
+          "full page",
+          "diagram boundary",
+          "adjacent rule text",
+          "page/folio marker",
+          "title/identity context"
+        ],
+        "required": [
+          "full diagram",
+          "all twelve labels",
+          "branch ring or branch labels",
+          "ordinal/base point",
+          "direction subject",
+          "edition/folio"
+        ]
+      },
+      "material": {
+        "idealSet": [
+          "palace name ↔ branch ↔ slot ↔ ordinal ↔ base direction ↔ operation subject in the same visual context",
+          "a second physically distinct witness or explicit transmission relation for the semantic map",
+          "a readable Tianfu coordinate label in the same frame"
+        ],
+        "minimumSet": [
+          "one source-identified page or adjacent page set with all 12 palace names and all 12 branch glyphs",
+          "complete diagram boundary with physical slots visible",
+          "the source statement, arrows, or table that names ordinal/base point and forward/reverse direction",
+          "edition identity packet from acq-distinct-witness-identity-lineage"
+        ]
+      },
+      "notDuplicateOf": [
+        "artifacts/ziwei-palace-source-acquisition-field-kit-v0/complete.json",
+        "artifacts/ziwei-nara-iiif-leafmap-semantic-witness-v1/complete.json",
+        "rotation-06"
+      ],
+      "priority": "P0",
+      "priorityRank": 1,
+      "purpose": "Resolve the missing semantic binding between palace names, branch glyphs, physical diagram slots, ordinal, and traversal direction.",
+      "rationale": "Highest semantic-authority value and high fan-out: this is the first field target to prioritize, while identity capture is collected in the same visit.",
+      "rejectionCriteria": [
+        "OCR-only, normalized redraw, cropped diagram, or chart output without source rule context",
+        "partial labels, a single example, or a branch ring without palace-name/ordinal/direction binding",
+        "rotation-06 numeric exact fit treated as semantic identity",
+        "NARA same-record volume pair or Nanyang derivative treated as independent corroboration"
+      ],
+      "resolvesClaimIds": [
+        "claim-palace-name-branch-ordinal",
+        "claim-ming-shen-coordinate-frame",
+        "claim-12-palace-diagram-semantics",
+        "claim-tianfu-rotation06-semantic"
+      ],
+      "search": {
+        "alreadyHeldNearMisses": [
+          "NARA canvas 87 安天府圖 and canvas 88 table: held route, but not a complete 12-way semantic binding.",
+          "Nanbei p7/p8 and Nanyang p145/p159–160: held bounded diagrams/traversal surfaces; do not request them again as new evidence.",
+          "TOYO_1646 pages 0002/0009–0013/0019–0020: held visual observations without the required complete map."
+        ],
+        "canonicalTerms": [
+          "紫微斗數 十二宮 宮位 地支",
+          "十二宮冠蓋 宮名",
+          "命宮 身宮 十二宮 表",
+          "定命身二宮",
+          "命宮逆數 身宮順數",
+          "寅起月"
+        ],
+        "channels": [
+          "library scan or physical folio",
+          "institutional digital archive",
+          "catalog-linked manuscript viewer"
+        ]
+      },
+      "sourceRefs": [
+        "docs/ziwei-p0-palace-semantic-witness-acquisition-route-v1.md",
+        "docs/ziwei-palace-source-acquisition-field-kit-v0.md",
+        "docs/ziwei-p0-local-frontier-reconciliation-v1.md"
+      ],
+      "status": "action_required",
+      "title": "complete 12-palace semantic map and coordinate frame",
+      "verificationPlan": [
+        "visual review by a second analyst",
+        "record raw glyph/layout and exact page/folio",
+        "compare against existing bounded observations without overwriting them",
+        "run negative checks for partial-map and rotation-only promotion"
+      ]
+    },
+    {
+      "acceptanceCriteria": [
+        "The rule names what the branch token denotes and which direction/anchor is applied.",
+        "The observed rows make the competing formulas distinguishable without reverse-engineering output.",
+        "The witness identity and lineage are explicit; numeric agreement is retained only as a relation.",
+        "A human reviewer can state exactly which semantic claim is supported and which remains open."
+      ],
+      "affectedClaimIds": [
+        "claim-tianfu-anchor-direction",
+        "claim-tianfu-placement",
+        "claim-major-star-placement-tianfu",
+        "claim-tianfu-rotation06-semantic"
+      ],
+      "affectedRelationIds": [
+        "relation-local-tianfu-rule-surfaces",
+        "relation-local-major-star-rule-surfaces"
+      ],
+      "blockerIds": [
+        "blocker-source-identity-unresolved",
+        "blocker-direct-rule-absent",
+        "blocker-tianfu-raw-formula-contradiction",
+        "blocker-tianfu-rotation06-semantic-authority"
+      ],
+      "closure": {
+        "automatic": false,
+        "canCloseOnlyWhen": [
+          "a readable source rule and its semantic coordinate frame survive identity/lineage review",
+          "legacy/source-aligned choice is made by source semantics, not numeric fit"
+        ],
+        "doesNotClose": [
+          "all 14-star rules",
+          "auxiliary-star rules",
+          "calendar/time source",
+          "reuse rights"
+        ],
+        "futureRelationContract": "tianfu_source_rule_and_semantic_frame_not_yet_created",
+        "humanReviewRequired": true
+      },
+      "currentEvidenceRefs": [
+        "artifacts/ziwei-p0-local-frontier-reconciliation-v1/complete.json",
+        "artifacts/ziwei-tianfu-convention-provenance-v0/complete.json",
+        "artifacts/ziwei-tianfu-representation-search-v1/complete.json"
+      ],
+      "currentGap": "Tianfu identity is 0/150 while rotation-06 is 150/150 as a representation relation; the source anchor, direction, and branch-token semantics do not select a convention.",
+      "currentRelationIds": [
+        "relation-local-tianfu-rule-surfaces",
+        "relation-local-major-star-rule-surfaces"
+      ],
+      "id": "acq-tianfu-anchor-direction-adjudicator",
+      "licensing": {
+        "access": "access and authority are separate",
+        "policyDecision": "human review required before any source image enters Git",
+        "rights": "retain source images only under explicit terms"
+      },
+      "locator": {
+        "capture": [
+          "full rule page",
+          "diagram/table",
+          "adjacent explanatory text",
+          "identity leaves"
+        ],
+        "required": [
+          "安天府 heading or rule",
+          "anchor branch",
+          "direction subject",
+          "formula or worked examples",
+          "page/folio and edition"
+        ]
+      },
+      "material": {
+        "idealSet": [
+          "distinct physical witness with colophon or institution-confirmed lineage",
+          "same page set also states palace/branch/slot semantics",
+          "raw rule text and diagram retained side by side"
+        ],
+        "minimumSet": [
+          "readable 安天府 or equivalent anchor/direction rule",
+          "branch-token meaning and coordinate frame",
+          "enough worked rows/examples to distinguish mod(4 - Z) from mod(10 - Z)",
+          "identity/lineage packet"
+        ]
+      },
+      "notDuplicateOf": [
+        "rotation-06",
+        "artifacts/ziwei-tianfu-convention-provenance-v0/complete.json",
+        "artifacts/ziwei-tianfu-representation-search-v1/complete.json"
+      ],
+      "priority": "P0",
+      "priorityRank": 3,
+      "purpose": "Adjudicate the legacy versus source-aligned Tianfu convention without using a numeric transform as a semantic decision.",
+      "rationale": "High semantic value and fan-out into Tianfu, major-star placement, and rotation-06; it can be combined with the semantic-map target in one high-quality witness.",
+      "rejectionCriteria": [
+        "rotation-06 exact fit alone",
+        "formula inferred from production output or a chart with no rule subject",
+        "same-record NARA pair counted as independent",
+        "OCR or normalized formula without the image context"
+      ],
+      "resolvesClaimIds": [
+        "claim-tianfu-anchor-direction",
+        "claim-tianfu-placement",
+        "claim-major-star-placement-tianfu",
+        "claim-tianfu-rotation06-semantic"
+      ],
+      "search": {
+        "alreadyHeldNearMisses": [
+          "Nanbei p13/printed folio 三十四 and Nanyang p148/p172 are held formula/diagram surfaces; they do not adjudicate.",
+          "NARA same-record pair is not an independent second witness.",
+          "source_aligned and legacy engine modes are comparison controls, not source evidence."
+        ],
+        "canonicalTerms": [
+          "安天府",
+          "安天府圖",
+          "天府",
+          "紫微斗數全書"
+        ],
+        "channels": [
+          "source-identified old-book scan",
+          "library physical folio",
+          "institutional archive viewer"
+        ]
+      },
+      "sourceRefs": [
+        "docs/ziwei-p0-local-frontier-reconciliation-v1.md",
+        "docs/ziwei-p0-claim-source-identity-frontier-v1.md"
+      ],
+      "status": "action_required",
+      "title": "Tianfu anchor/direction witness that distinguishes the two formulas",
+      "verificationPlan": [
+        "direct visual transcription with raw glyphs",
+        "independent reviewer checks anchor/direction subject",
+        "recompute both formulas only as diagnostic comparison",
+        "negative-check numeric-only promotion"
+      ]
+    },
+    {
+      "acceptanceCriteria": [
+        "All 14 production stars have directly locatable, input-bound source rules.",
+        "The coordinate frame and any root/relative distinction are explicit.",
+        "The source is not the production resolver or a fixture derived from it.",
+        "The result records conflicts instead of selecting a winner during acquisition."
+      ],
+      "affectedClaimIds": [
+        "claim-major-star-placement-ziwei",
+        "claim-major-star-placement-tianji",
+        "claim-major-star-placement-taiyang",
+        "claim-major-star-placement-wugu",
+        "claim-major-star-placement-tiandong",
+        "claim-major-star-placement-lianzhen",
+        "claim-major-star-placement-tianfu",
+        "claim-major-star-placement-taiyin",
+        "claim-major-star-placement-tanlang",
+        "claim-major-star-placement-jumen",
+        "claim-major-star-placement-tianxiang",
+        "claim-major-star-placement-tianliang",
+        "claim-major-star-placement-qisha",
+        "claim-major-star-placement-pojun"
+      ],
+      "affectedRelationIds": [
+        "relation-local-major-star-rule-surfaces"
+      ],
+      "blockerIds": [
+        "blocker-source-identity-unresolved",
+        "blocker-direct-rule-absent"
+      ],
+      "closure": {
+        "automatic": false,
+        "canCloseOnlyWhen": [
+          "every production star rule and coordinate relation passes direct-review and identity gates"
+        ],
+        "doesNotClose": [
+          "auxiliary stars",
+          "four transformations",
+          "readiness/activation"
+        ],
+        "futureRelationContract": "complete_14_star_source_rule_not_yet_created",
+        "humanReviewRequired": true
+      },
+      "currentEvidenceRefs": [
+        "artifacts/ziwei-p0-local-frontier-reconciliation-v1/complete.json",
+        "artifacts/ziwei-twelve-major-star-placement-evidence-v0/complete.json",
+        "artifacts/ziwei-major-star-source-corpus-provenance-v0/complete.json"
+      ],
+      "currentGap": "14-star surfaces and comparisons exist, but complete row-level source rule identity and semantic coordinate authority are absent.",
+      "currentRelationIds": [
+        "relation-local-major-star-rule-surfaces"
+      ],
+      "id": "acq-complete-14-major-star-placement-witness",
+      "licensing": {
+        "access": "catalog/scan access recorded separately",
+        "policyDecision": "source images remain external until rights review",
+        "rights": "image reuse terms required for repository retention"
+      },
+      "locator": {
+        "capture": [
+          "complete table or page set",
+          "adjacent prose",
+          "identity leaves",
+          "worked example"
+        ],
+        "required": [
+          "rule heading",
+          "input/table axes",
+          "all 14 stars",
+          "coordinate frame",
+          "edition/page/folio"
+        ]
+      },
+      "material": {
+        "idealSet": [
+          "independent physical witness or explicit transmission comparison",
+          "worked examples covering boundary cases and Tianfu convention",
+          "raw rule names preserved for every star"
+        ],
+        "minimumSet": [
+          "source-identified rule pages covering both 紫微系 and 天府系",
+          "input axes, anchor, direction, and all 14 star outputs",
+          "root and relative rules separated",
+          "page/folio and actual bytes"
+        ]
+      },
+      "notDuplicateOf": [
+        "artifacts/ziwei-twelve-major-star-placement-evidence-v0/complete.json",
+        "artifacts/ziwei-major-star-source-corpus-provenance-v0/complete.json"
+      ],
+      "priority": "P1",
+      "priorityRank": 6,
+      "purpose": "Replace bounded star-surface and numeric comparison evidence with complete input-bound source rules for the production 14-star domain.",
+      "rationale": "P1 because the semantic map and Tianfu convention are upstream; once those are resolved this target supplies broad star-rule coverage.",
+      "rejectionCriteria": [
+        "relative verse or output match without complete input rule",
+        "only one star series or selected rows",
+        "normalized aliases or inferred missing rows",
+        "catalog-only or OCR-only source"
+      ],
+      "resolvesClaimIds": [
+        "claim-major-star-placement-ziwei",
+        "claim-major-star-placement-tianji",
+        "claim-major-star-placement-taiyang",
+        "claim-major-star-placement-wugu",
+        "claim-major-star-placement-tiandong",
+        "claim-major-star-placement-lianzhen",
+        "claim-major-star-placement-tianfu",
+        "claim-major-star-placement-taiyin",
+        "claim-major-star-placement-tanlang",
+        "claim-major-star-placement-jumen",
+        "claim-major-star-placement-tianxiang",
+        "claim-major-star-placement-tianliang",
+        "claim-major-star-placement-qisha",
+        "claim-major-star-placement-pojun"
+      ],
+      "search": {
+        "alreadyHeldNearMisses": [
+          "Nanbei p11–p13 and Nanyang p148/p172 are bounded local surfaces, not a complete new witness.",
+          "TOYO named-star pages are locator observations only."
+        ],
+        "canonicalTerms": [
+          "紫微系",
+          "天府系",
+          "紫微",
+          "天府",
+          "安紫微",
+          "安天府"
+        ],
+        "channels": [
+          "library scan",
+          "catalog-linked old-book image",
+          "institution-supplied reproduction"
+        ]
+      },
+      "sourceRefs": [
+        "docs/ziwei-p0-local-frontier-reconciliation-v1.md",
+        "docs/ziwei-p0-claim-source-identity-frontier-v1.md"
+      ],
+      "status": "action_required",
+      "title": "complete source-identified 14-major-star placement rules",
+      "verificationPlan": [
+        "row-by-row source observation packet",
+        "independent witness/lineage audit",
+        "negative-check missing-row fill and production-output substitution"
+      ]
+    },
+    {
+      "acceptanceCriteria": [
+        "Every production auxiliary rule is directly locatable with its input relation.",
+        "Raw names and ambiguous compounds remain exact; aliases are a separate relation, not a normalized replacement.",
+        "Rows not present remain null/unlocated and are not filled from the engine.",
+        "The source identity and independence decision are explicit."
+      ],
+      "affectedClaimIds": [
+        "claim-auxiliary-star-placement-six-lucky",
+        "claim-auxiliary-star-placement-core",
+        "claim-life-body-ruler-24-ambiguous-rows"
+      ],
+      "affectedRelationIds": [
+        "relation-local-auxiliary-rule-surfaces"
+      ],
+      "blockerIds": [
+        "blocker-source-identity-unresolved",
+        "blocker-auxiliary-star-source-witness"
+      ],
+      "closure": {
+        "automatic": false,
+        "canCloseOnlyWhen": [
+          "all target production rows and name boundaries are directly reviewed",
+          "source identity/lineage and independence are separately accepted"
+        ],
+        "doesNotClose": [
+          "life/body 24-row ruler blocker unless the same page directly resolves that separate surface",
+          "semantic palace identity"
+        ],
+        "futureRelationContract": "complete_auxiliary_source_rules_not_yet_created",
+        "humanReviewRequired": true
+      },
+      "currentEvidenceRefs": [
+        "artifacts/ziwei-p0-local-frontier-reconciliation-v1/complete.json",
+        "artifacts/ziwei-auxiliary-star-placement-core-evidence-v0/complete.json",
+        "artifacts/ziwei-auxiliary-star-placement-core-evidence-v0/comparison.json"
+      ],
+      "currentGap": "13 source surfaces and 136/136 comparable local rows are bounded; 684 rows are non-comparable and a complete independent witness is absent.",
+      "currentRelationIds": [
+        "relation-local-auxiliary-rule-surfaces"
+      ],
+      "id": "acq-complete-auxiliary-star-rule-witness",
+      "licensing": {
+        "access": "source access does not imply reuse",
+        "policyDecision": "keep images outside Git pending human rights review",
+        "rights": "raw page-image retention requires explicit terms"
+      },
+      "locator": {
+        "capture": [
+          "full rule table",
+          "adjacent prose",
+          "identity leaves",
+          "ambiguous glyph close-up without replacing the original"
+        ],
+        "required": [
+          "star heading",
+          "input axis",
+          "complete rows",
+          "raw glyph",
+          "page/folio"
+        ]
+      },
+      "material": {
+        "idealSet": [
+          "same-witness alias table or explicit textual relation for 天空/地空",
+          "explicit treatment of 火星, 鈴星, and 火鈴星 rather than normalization",
+          "independent transmission comparison"
+        ],
+        "minimumSet": [
+          "complete rule pages for the production auxiliary-star set: 文昌 文曲 左輔 右弼 天魁 天鉞 祿存 擎羊 陀羅 火星 鈴星 地空 地劫",
+          "raw source glyphs including 天空 versus requested 地空",
+          "input axes, anchor, and direction for each rule",
+          "edition/page/folio and actual bytes"
+        ]
+      },
+      "notDuplicateOf": [
+        "artifacts/ziwei-auxiliary-star-placement-core-evidence-v0/complete.json",
+        "artifacts/ziwei-auxiliary-star-placement-core-evidence-v0/comparison.json"
+      ],
+      "priority": "P1",
+      "priorityRank": 8,
+      "purpose": "Resolve the incomplete auxiliary-star source surface while preserving aliases and ambiguous glyphs as separate observations.",
+      "rationale": "P1 with lower semantic fan-out than the map/Tianfu targets; the raw-name boundaries make this target non-substitutable.",
+      "rejectionCriteria": [
+        "six-star subset presented as complete",
+        "136 matches treated as authority",
+        "天空 silently rewritten as 地空",
+        "火鈴星 reduced to 火星",
+        "missing rows inferred from current production output"
+      ],
+      "resolvesClaimIds": [
+        "claim-auxiliary-star-placement-six-lucky",
+        "claim-auxiliary-star-placement-core"
+      ],
+      "search": {
+        "alreadyHeldNearMisses": [
+          "Nanbei p14–p18 and Nanyang p148–p152 are already held surfaces; do not relabel them as a complete independent witness.",
+          "The Nanyang full-scan negative locator for Fire/Bell is an explicit unlocated boundary, not missing data to fill."
+        ],
+        "canonicalTerms": [
+          "文昌",
+          "文曲",
+          "左輔",
+          "右弼",
+          "天魁",
+          "天鉞",
+          "祿存",
+          "擎羊",
+          "陀羅",
+          "火星",
+          "鈴星",
+          "天空",
+          "地空",
+          "地劫"
+        ],
+        "channels": [
+          "source-identified scan",
+          "library physical folio",
+          "institutional reproduction"
+        ]
+      },
+      "sourceRefs": [
+        "docs/ziwei-p0-local-frontier-reconciliation-v1.md",
+        "docs/ziwei-p0-claim-source-identity-frontier-v1.md"
+      ],
+      "status": "action_required",
+      "title": "complete auxiliary-star rule witness with raw-name boundaries",
+      "verificationPlan": [
+        "raw observation table with alias/non-alias flags",
+        "row-count and missing-row checks",
+        "negative-check glyph normalization and completeness fabrication"
+      ]
+    },
+    {
+      "acceptanceCriteria": [
+        "All 40 cells and both axis orders are directly reviewable.",
+        "The witness has source identity and lineage sufficient to assess independence from held scans.",
+        "Raw glyphs and table layout are preserved; normalization is a separate comparison layer.",
+        "A future relation can state exactly which rows are observed, corroborated, or unresolved."
+      ],
+      "affectedClaimIds": [
+        "claim-four-transformations-10x4",
+        "claim-four-transform-lu",
+        "claim-four-transform-quan",
+        "claim-four-transform-ke",
+        "claim-four-transform-ji"
+      ],
+      "affectedRelationIds": [
+        "relation-local-four-transformations-nanbei-table",
+        "relation-local-four-transformations-ming-partial"
+      ],
+      "blockerIds": [
+        "blocker-source-identity-unresolved",
+        "blocker-four-transform-source-witness"
+      ],
+      "closure": {
+        "automatic": false,
+        "canCloseOnlyWhen": [
+          "all 40 cells and lineage/independence gates pass direct review",
+          "source authority is reviewed separately from exact comparison"
+        ],
+        "doesNotClose": [
+          "calendar/time input",
+          "palace semantic identity",
+          "image reuse rights"
+        ],
+        "futureRelationContract": "complete_four_transform_source_table_not_yet_created",
+        "humanReviewRequired": true
+      },
+      "currentEvidenceRefs": [
+        "artifacts/ziwei-p0-local-frontier-reconciliation-v1/complete.json",
+        "artifacts/ziwei-four-transformations-source-evidence-v0/complete.json",
+        "artifacts/ziwei-four-transformations-source-evidence-v0/comparison.json"
+      ],
+      "currentGap": "Nanbei has directly observed 40/40 cells but no authority/independent corroboration; Nanyang has 4/40 direct cells and 36 explicit unlocated cells.",
+      "currentRelationIds": [
+        "relation-local-four-transformations-nanbei-table",
+        "relation-local-four-transformations-ming-partial"
+      ],
+      "id": "acq-independent-complete-four-transform-table",
+      "licensing": {
+        "access": "source page access and table authority are separate",
+        "policyDecision": "retain only hashes/locators until rights are clear",
+        "rights": "written image reuse terms needed for repository storage"
+      },
+      "locator": {
+        "capture": [
+          "whole table",
+          "header and footer",
+          "adjacent rule text",
+          "identity leaves"
+        ],
+        "required": [
+          "table title",
+          "stem order",
+          "four-column order",
+          "all 40 cells",
+          "edition/page/folio"
+        ]
+      },
+      "material": {
+        "idealSet": [
+          "distinct physical witness not derived from Nanyang/NARA same-record lineage",
+          "explicit comparison against Nanbei without copying its values",
+          "complete surrounding heading and table boundary"
+        ],
+        "minimumSet": [
+          "all ten stems 甲乙丙丁戊己庚辛壬癸",
+          "all four columns 化祿 化權 化科 化忌 in declared order",
+          "all 40 cells directly visible or source-contextually closed",
+          "edition/date/volume/folio and actual bytes"
+        ]
+      },
+      "notDuplicateOf": [
+        "artifacts/ziwei-four-transformations-source-evidence-v0/complete.json",
+        "artifacts/ziwei-four-transformations-source-evidence-v0/comparison.json",
+        "src-nanbei-pdf",
+        "src-nanyangtang-pdf"
+      ],
+      "priority": "P1",
+      "priorityRank": 4,
+      "purpose": "Obtain a complete source-identified 四化 table beyond the held Nanbei 40/40 local surface and Nanyang 4/40 direct cells.",
+      "rationale": "High fan-out across five claims and an exact local 40/40 boundary makes this a strong early P1 after semantic/identity work.",
+      "rejectionCriteria": [
+        "Nanbei 40/40 merely recopied",
+        "Nanyang 36 missing cells filled from current engine",
+        "same-record NARA pair counted as independent",
+        "OCR/modern chart/table without physical witness",
+        "numeric agreement without source rule identity"
+      ],
+      "resolvesClaimIds": [
+        "claim-four-transformations-10x4",
+        "claim-four-transform-lu",
+        "claim-four-transform-quan",
+        "claim-four-transform-ke",
+        "claim-four-transform-ji"
+      ],
+      "search": {
+        "alreadyHeldNearMisses": [
+          "Nanbei p17/printed folio 四十二 is already the complete local table; it is not an acquisition target again.",
+          "Nanyang p151–p152 and its 36 unlocated cells remain explicit; do not synthesize the missing rows.",
+          "NARA volume pair is same-record, not independent."
+        ],
+        "canonicalTerms": [
+          "四化速檢表",
+          "化祿",
+          "化權",
+          "化科",
+          "化忌",
+          "甲乙丙丁戊己庚辛壬癸"
+        ],
+        "channels": [
+          "library scan",
+          "catalog-linked old-book image",
+          "rights-cleared institutional reproduction"
+        ]
+      },
+      "sourceRefs": [
+        "docs/ziwei-p0-local-frontier-reconciliation-v1.md",
+        "docs/ziwei-p0-claim-source-identity-frontier-v1.md"
+      ],
+      "status": "action_required",
+      "title": "independent or rights-cleared complete 10×4 四化 table",
+      "verificationPlan": [
+        "40-cell direct observation matrix",
+        "stable row/column order check",
+        "independence/lineage check",
+        "negative-check missing-cell inference and authority promotion"
+      ]
+    },
+    {
+      "acceptanceCriteria": [
+        "All 24 blocked rows are directly readable or explicitly resolved by a source rule.",
+        "火鈴星 is preserved as the source surface unless the source itself explicitly separates it.",
+        "The packet keeps life/body, 命主, 身主, and production-field presence as separate layers.",
+        "No production ruler field is added by the acquisition packet."
+      ],
+      "affectedClaimIds": [
+        "claim-life-body-palace-ruler",
+        "claim-life-body-ruler-24-ambiguous-rows"
+      ],
+      "affectedRelationIds": [
+        "relation-local-life-body-ruler-surfaces"
+      ],
+      "blockerIds": [
+        "blocker-source-identity-unresolved",
+        "blocker-life-body-ruler-source-legibility"
+      ],
+      "closure": {
+        "automatic": false,
+        "canCloseOnlyWhen": [
+          "the 24-row source surface and identity/lineage pass review"
+        ],
+        "doesNotClose": [
+          "production ruler fields",
+          "auxiliary-star authority in general",
+          "readiness/activation"
+        ],
+        "futureRelationContract": "shen_zhu_24_row_source_observation_not_yet_created",
+        "humanReviewRequired": true
+      },
+      "currentEvidenceRefs": [
+        "artifacts/ziwei-p0-local-frontier-reconciliation-v1/complete.json",
+        "artifacts/ziwei-life-body-palace-ruler-source-evidence-v0/complete.json",
+        "artifacts/ziwei-life-body-palace-ruler-source-evidence-v0/comparison.json"
+      ],
+      "currentGap": "Life/body and 命主 are exhaustive in the local comparison; 身主 is comparable for 120/144 and blocked for 24 rows where the Nanyang surface reads 火鈴星.",
+      "currentRelationIds": [
+        "relation-local-life-body-ruler-surfaces"
+      ],
+      "id": "acq-shen-zhu-compound-surface",
+      "licensing": {
+        "access": "higher resolution may require library or holder action",
+        "policyDecision": "human review before storage or redistribution",
+        "rights": "permission for supplied page images is separate"
+      },
+      "locator": {
+        "capture": [
+          "full table",
+          "ambiguous line at native resolution",
+          "adjacent context",
+          "identity leaves"
+        ],
+        "required": [
+          "身主 heading",
+          "24-row boundary",
+          "input axes",
+          "raw star surface",
+          "page/folio"
+        ]
+      },
+      "material": {
+        "idealSet": [
+          "both Nanbei and Nanyang surfaces retained side by side",
+          "source statement linking input to 身主 rather than only a result table",
+          "explicit treatment of any compound-star name"
+        ],
+        "minimumSet": [
+          "high-resolution or institution-identified page containing the full 身主 table/rule",
+          "all 24 previously blocked input rows and the source surface that determines them",
+          "raw 火鈴星/火星 glyph distinction",
+          "edition/page/folio and actual bytes"
+        ]
+      },
+      "notDuplicateOf": [
+        "artifacts/ziwei-life-body-palace-ruler-source-evidence-v0/complete.json",
+        "artifacts/ziwei-life-body-palace-ruler-source-evidence-v0/comparison.json"
+      ],
+      "priority": "P1",
+      "priorityRank": 9,
+      "purpose": "Resolve the exact unreadable/ambiguous source surface without reducing 火鈴星 to 火星 or changing the production contract.",
+      "rationale": "P1 but narrowly scoped: the blocker is actionable and non-substitutable, yet it has less fan-out than semantic identity or 四化.",
+      "rejectionCriteria": [
+        "120/144 presented as complete",
+        "火鈴星 silently normalized to 火星",
+        "production output used to fill source rows",
+        "OCR-only or cropped unreadable compound glyph"
+      ],
+      "resolvesClaimIds": [
+        "claim-life-body-palace-ruler",
+        "claim-life-body-ruler-24-ambiguous-rows"
+      ],
+      "search": {
+        "alreadyHeldNearMisses": [
+          "Nanbei p23–p24 and Nanyang p145/p159–p160 are already consumed; the 24-row boundary must not be erased.",
+          "The existing 120/144 comparable rows do not authorize the remaining 24."
+        ],
+        "canonicalTerms": [
+          "命主",
+          "身主",
+          "火鈴星",
+          "火星",
+          "鈴星"
+        ],
+        "channels": [
+          "higher-resolution archive scan",
+          "library physical folio",
+          "rights-cleared reproduction from holder"
+        ]
+      },
+      "sourceRefs": [
+        "docs/ziwei-p0-local-frontier-reconciliation-v1.md",
+        "docs/ziwei-p0-claim-source-identity-frontier-v1.md"
+      ],
+      "status": "action_required",
+      "title": "higher-resolution 身主 witness for the 24 火鈴星 rows",
+      "verificationPlan": [
+        "24-row completeness check",
+        "raw glyph visual review",
+        "negative-check alias reduction and row elision",
+        "keep production contract unchanged"
+      ]
+    },
+    {
+      "acceptanceCriteria": [
+        "The evaluator does not import the production engine, its fixtures, or the same source data without disclosure.",
+        "The same cohort and exact settings produce field-level outputs with reproducible identity.",
+        "Shared source/ruleset dependencies are disclosed; agreement is labeled corroboration, not semantic authority.",
+        "The output can be replayed or byte/hash verified."
+      ],
+      "affectedClaimIds": [
+        "claim-ziwei-input-calendar-time",
+        "claim-major-star-placement-ziwei",
+        "claim-major-star-placement-tianji",
+        "claim-major-star-placement-taiyang",
+        "claim-major-star-placement-wugu",
+        "claim-major-star-placement-tiandong",
+        "claim-major-star-placement-lianzhen",
+        "claim-major-star-placement-tianfu",
+        "claim-major-star-placement-taiyin",
+        "claim-major-star-placement-tanlang",
+        "claim-major-star-placement-jumen",
+        "claim-major-star-placement-tianxiang",
+        "claim-major-star-placement-tianliang",
+        "claim-major-star-placement-qisha",
+        "claim-major-star-placement-pojun",
+        "claim-tianfu-anchor-direction",
+        "claim-tianfu-placement",
+        "claim-four-transformations-10x4",
+        "claim-four-transform-lu",
+        "claim-four-transform-quan",
+        "claim-four-transform-ke",
+        "claim-four-transform-ji"
+      ],
+      "affectedRelationIds": [
+        "relation-local-major-star-rule-surfaces",
+        "relation-local-tianfu-rule-surfaces",
+        "relation-local-four-transformations-nanbei-table",
+        "relation-local-four-transformations-ming-partial"
+      ],
+      "blockerIds": [
+        "blocker-independent-external-oracle"
+      ],
+      "closure": {
+        "automatic": false,
+        "canCloseOnlyWhen": [
+          "independent evaluator, source lineage, settings, output, and runner are reviewed",
+          "corroboration is kept as a separate relation from source authority"
+        ],
+        "doesNotClose": [
+          "source identity",
+          "semantic palace identity",
+          "readiness/activation automatically"
+        ],
+        "futureRelationContract": "independent_oracle_corroboration_not_yet_created",
+        "humanReviewRequired": true
+      },
+      "currentEvidenceRefs": [
+        "artifacts/ziwei-p0-local-frontier-reconciliation-v1/complete.json",
+        "artifacts/ziwei-fixture-reconciliation-v1/complete.json"
+      ],
+      "currentGap": "Six declared fixtures remain pending; internal fixture matches are regression evidence and independent verification is 0.",
+      "currentRelationIds": [
+        "relation-local-major-star-rule-surfaces",
+        "relation-local-tianfu-rule-surfaces",
+        "relation-local-four-transformations-nanbei-table",
+        "relation-local-four-transformations-ming-partial"
+      ],
+      "id": "acq-independent-ziwei-oracle",
+      "licensing": {
+        "access": "public executable access is not a license for redistribution",
+        "policyDecision": "human review required before using output as durable evidence",
+        "rights": "record source/license and output retention terms"
+      },
+      "locator": {
+        "capture": [
+          "source release or repository ref",
+          "configuration",
+          "raw output",
+          "execution log",
+          "license terms"
+        ],
+        "required": [
+          "implementation/version",
+          "ruleset/source",
+          "input fixture",
+          "output file/hash",
+          "runner/version",
+          "field mapping"
+        ]
+      },
+      "material": {
+        "idealSet": [
+          "reproducible command or published executable",
+          "license and redistribution terms",
+          "explicit behavior for calendar/time, leap month, timezone, 子時, and convention variants",
+          "independent maintainer or data lineage"
+        ],
+        "minimumSet": [
+          "independent implementation and version",
+          "independent source/ruleset identity",
+          "exact input settings and same cohort",
+          "field-level output for palace, stars, Tianfu, and 四化 where supported",
+          "immutable source/output bytes or stable hashes",
+          "runner/environment provenance"
+        ]
+      },
+      "notDuplicateOf": [
+        "artifacts/ziwei-fixture-reconciliation-v1/complete.json",
+        "src/ziwei/ziweiResolver.js"
+      ],
+      "priority": "P1",
+      "priorityRank": 5,
+      "purpose": "Supply independent corroboration for the same cohort while keeping it separate from source semantic authority and local regression fixtures.",
+      "rationale": "Broad diagnostic fan-out, but intentionally below semantic witnesses because corroboration cannot manufacture source meaning.",
+      "rejectionCriteria": [
+        "wrapper around the production resolver",
+        "fixture-only or screenshot-only result",
+        "numeric match without field semantics/configuration",
+        "undisclosed shared source or mutable endpoint",
+        "oracle used to fill missing source rows"
+      ],
+      "resolvesClaimIds": [
+        "claim-ziwei-input-calendar-time",
+        "claim-major-star-placement-ziwei",
+        "claim-major-star-placement-tianji",
+        "claim-major-star-placement-taiyang",
+        "claim-major-star-placement-wugu",
+        "claim-major-star-placement-tiandong",
+        "claim-major-star-placement-lianzhen",
+        "claim-major-star-placement-tianfu",
+        "claim-major-star-placement-taiyin",
+        "claim-major-star-placement-tanlang",
+        "claim-major-star-placement-jumen",
+        "claim-major-star-placement-tianxiang",
+        "claim-major-star-placement-tianliang",
+        "claim-major-star-placement-qisha",
+        "claim-major-star-placement-pojun",
+        "claim-tianfu-anchor-direction",
+        "claim-tianfu-placement",
+        "claim-four-transformations-10x4",
+        "claim-four-transform-lu",
+        "claim-four-transform-quan",
+        "claim-four-transform-ke",
+        "claim-four-transform-ji"
+      ],
+      "search": {
+        "alreadyHeldNearMisses": [
+          "internal fixtures, current resolver, and local comparison artifacts are not independent oracle evidence.",
+          "NARA/Nanbei/Nanyang numeric matches are source observations, not an executable oracle."
+        ],
+        "canonicalTerms": [
+          "independent Ziwei calculator",
+          "紫微斗數 排盤",
+          "命宮 身宮 安紫微 安天府 四化"
+        ],
+        "channels": [
+          "independent published software",
+          "reproducible research artifact",
+          "institutional calculation service with versioned output"
+        ]
+      },
+      "sourceRefs": [
+        "docs/ziwei-p0-local-frontier-reconciliation-v1.md",
+        "docs/ziwei-p0-claim-source-identity-frontier-v1.md"
+      ],
+      "status": "action_required",
+      "title": "independent executable Ziwei oracle or reproducible calculation",
+      "verificationPlan": [
+        "independent-run replay",
+        "field-level diff with local outputs",
+        "shared-dependency audit",
+        "negative-check fixture/production reuse and promotion"
+      ]
+    },
+    {
+      "acceptanceCriteria": [
+        "The source defines or exposes every input field used by the Ziwei cohort.",
+        "Boundary cases are represented, especially leap month, midnight/子時, timezone, and solar-time policy.",
+        "Retrieval/version/bytes and exact input-output rows are reproducible.",
+        "The source is not the production Ziwei resolver."
+      ],
+      "affectedClaimIds": [
+        "claim-ziwei-input-calendar-time"
+      ],
+      "affectedRelationIds": [],
+      "blockerIds": [
+        "blocker-calendar-time-source-identity"
+      ],
+      "closure": {
+        "automatic": false,
+        "canCloseOnlyWhen": [
+          "all input fields and boundary policies are source-identified for the exact cohort"
+        ],
+        "doesNotClose": [
+          "Ziwei rule/source authority",
+          "independent executable oracle unless the same target separately satisfies its runner contract"
+        ],
+        "futureRelationContract": "calendar_time_input_provenance_not_yet_created",
+        "humanReviewRequired": true
+      },
+      "currentEvidenceRefs": [
+        "artifacts/ziwei-p0-local-frontier-reconciliation-v1/complete.json",
+        "artifacts/ziwei-fixture-reconciliation-v1/complete.json"
+      ],
+      "currentGap": "Local input contracts and calculations exist, but no exact independent calendar/time source identity closes leap-month, timezone, solar-time, or 子時 boundary behavior.",
+      "currentRelationIds": [],
+      "id": "acq-calendar-time-input-authority",
+      "licensing": {
+        "access": "public service access and bulk/reuse permission are separate",
+        "policyDecision": "keep raw external data out of Git unless authorized",
+        "rights": "confirm terms before copying tables or service output"
+      },
+      "locator": {
+        "capture": [
+          "source release",
+          "exact cohort output",
+          "configuration",
+          "terms/license"
+        ],
+        "required": [
+          "release/version",
+          "date conversion record",
+          "leap status",
+          "timezone",
+          "hour boundary",
+          "retrieval/source bytes"
+        ]
+      },
+      "material": {
+        "idealSet": [
+          "institutional provenance and published method",
+          "independent second calendar source for boundary cases",
+          "explicit true-solar-time policy if used"
+        ],
+        "minimumSet": [
+          "versioned calendar table or reproducible service",
+          "immutable release/retrieval bytes or stable hash",
+          "timezone and locale",
+          "leap-month rule",
+          "day and hour boundary/子時 rule",
+          "exact cohort conversions from Gregorian input to lunar/date/hour fields"
+        ]
+      },
+      "notDuplicateOf": [
+        "artifacts/ziwei-fixture-reconciliation-v1/complete.json",
+        "artifacts/ziwei-p0-local-frontier-reconciliation-v1/complete.json"
+      ],
+      "priority": "P1",
+      "priorityRank": 7,
+      "purpose": "Close the input identity boundary for lunar conversion, leap-month status, timezone/solar-time policy, and 子時/hour-branch handling.",
+      "rationale": "P1 prerequisite for a meaningful oracle comparison, but it cannot resolve textual/semantic Ziwei rules.",
+      "rejectionCriteria": [
+        "unversioned web result",
+        "date-only table with no hour/timezone policy",
+        "local conversion output treated as independent source",
+        "missing leap or 子時 boundary",
+        "OCR/transcription substituted for actual table"
+      ],
+      "resolvesClaimIds": [
+        "claim-ziwei-input-calendar-time"
+      ],
+      "search": {
+        "alreadyHeldNearMisses": [
+          "Nanbei/Nanyang text and local conversion facts are not an independent calendar oracle.",
+          "Saju calendar artifacts cannot be silently reused as Ziwei source authority without matching the input contract."
+        ],
+        "canonicalTerms": [
+          "음양력",
+          "陰曆",
+          "農曆",
+          "子時",
+          "timezone",
+          "true solar time"
+        ],
+        "channels": [
+          "official calendar institution",
+          "versioned ephemeris/calendar data",
+          "reproducible published service"
+        ]
+      },
+      "sourceRefs": [
+        "docs/ziwei-p0-local-frontier-reconciliation-v1.md",
+        "docs/ziwei-p0-claim-source-identity-frontier-v1.md"
+      ],
+      "status": "action_required",
+      "title": "authoritative calendar/time input source",
+      "verificationPlan": [
+        "cohort conversion replay",
+        "boundary-case matrix",
+        "version/hash check",
+        "negative-check same-service circularity and missing-field acceptance"
+      ]
+    },
+    {
+      "acceptanceCriteria": [
+        "A human rights decision identifies the exact item/image scope and permitted actions.",
+        "Repository retention, derivative render/crop, redistribution, and attribution conditions are explicit or explicitly denied.",
+        "Rights status is stored separately from source authority and semantic identity.",
+        "If permission is absent, the decision remains needs_human_review and images stay outside Git."
+      ],
+      "affectedClaimIds": [
+        "claim-palace-name-branch-ordinal",
+        "claim-ming-shen-coordinate-frame",
+        "claim-12-palace-diagram-semantics",
+        "claim-major-star-placement-ziwei",
+        "claim-major-star-placement-tianji",
+        "claim-major-star-placement-taiyang",
+        "claim-major-star-placement-wugu",
+        "claim-major-star-placement-tiandong",
+        "claim-major-star-placement-lianzhen",
+        "claim-major-star-placement-tianfu",
+        "claim-major-star-placement-taiyin",
+        "claim-major-star-placement-tanlang",
+        "claim-major-star-placement-jumen",
+        "claim-major-star-placement-tianxiang",
+        "claim-major-star-placement-tianliang",
+        "claim-major-star-placement-qisha",
+        "claim-major-star-placement-pojun",
+        "claim-tianfu-anchor-direction",
+        "claim-tianfu-placement",
+        "claim-tianfu-rotation06-semantic",
+        "claim-auxiliary-star-placement-six-lucky",
+        "claim-auxiliary-star-placement-core",
+        "claim-four-transformations-10x4",
+        "claim-four-transform-lu",
+        "claim-four-transform-quan",
+        "claim-four-transform-ke",
+        "claim-four-transform-ji",
+        "claim-life-body-palace-ruler",
+        "claim-life-body-ruler-24-ambiguous-rows",
+        "claim-ziwei-input-calendar-time"
+      ],
+      "affectedRelationIds": [
+        "relation-local-major-star-rule-surfaces",
+        "relation-local-tianfu-rule-surfaces",
+        "relation-local-auxiliary-rule-surfaces",
+        "relation-local-four-transformations-nanbei-table",
+        "relation-local-four-transformations-ming-partial",
+        "relation-local-life-body-ruler-surfaces"
+      ],
+      "blockerIds": [
+        "blocker-image-reuse-rights"
+      ],
+      "closure": {
+        "automatic": false,
+        "canCloseOnlyWhen": [
+          "a human/policy reviewer records item-level permission or denial",
+          "the decision is not used to promote semantic authority or readiness"
+        ],
+        "doesNotClose": [
+          "any semantic claim",
+          "source identity",
+          "independence",
+          "readiness/activation"
+        ],
+        "futureRelationContract": "rights_decision_not_yet_created",
+        "humanReviewRequired": true
+      },
+      "currentEvidenceRefs": [
+        "artifacts/ziwei-p0-toyo-1646-extended-observation-v0/complete.json",
+        "artifacts/ziwei-p0-palace-semantic-witness-acquisition-route-v1/complete.json",
+        "artifacts/ziwei-p0-local-frontier-reconciliation-v1/complete.json"
+      ],
+      "currentGap": "Public viewer/catalog access and read-only review are recorded, but repository redistribution, derivative crops/renders, and retention terms are not established.",
+      "currentRelationIds": [
+        "relation-local-major-star-rule-surfaces",
+        "relation-local-tianfu-rule-surfaces",
+        "relation-local-auxiliary-rule-surfaces",
+        "relation-local-four-transformations-nanbei-table",
+        "relation-local-four-transformations-ming-partial",
+        "relation-local-life-body-ruler-surfaces"
+      ],
+      "id": "review-image-level-reuse-permission",
+      "licensing": {
+        "access": "access is not permission",
+        "policyDecision": "human/policy boundary; no automatic acquisition or Git storage",
+        "rights": "written item/image-level decision required"
+      },
+      "locator": {
+        "capture": [
+          "terms page or letter",
+          "item record",
+          "permission date only in human record, not deterministic artifact"
+        ],
+        "required": [
+          "item identifier",
+          "terms URL or written permission",
+          "image scope",
+          "derivative scope",
+          "retention/redistribution condition"
+        ]
+      },
+      "material": {
+        "idealSet": [
+          "explicit duration, attribution, and downstream license conditions",
+          "separate terms for NARA, TOYO/AKS, and any library-supplied image"
+        ],
+        "minimumSet": [
+          "written item/image-level terms or a rights-cleared scan supplied by the holder",
+          "scope covering repository retention, redistribution, crops/renders, and derivative artifacts",
+          "item IDs and exact image/file scope",
+          "contact/institution decision record if terms are not public"
+        ]
+      },
+      "notDuplicateOf": [
+        "artifacts/ziwei-palace-source-acquisition-field-kit-v0/complete.json",
+        "artifacts/ziwei-p0-palace-semantic-witness-acquisition-route-v1/complete.json"
+      ],
+      "priority": "P2",
+      "priorityRank": 10,
+      "purpose": "Resolve the rights boundary separately from source access, semantic usefulness, authority, and witness independence.",
+      "rationale": "P2 because it does not resolve a semantic blocker, but it is a hard policy boundary for any future image retention.",
+      "rejectionCriteria": [
+        "public URL, catalog CC0 metadata, HTTP 200, or viewer access treated as image permission",
+        "permission for metadata assumed to cover page images",
+        "rights language omitted or generalized across distinct institutions/items",
+        "image copied into the repository before decision"
+      ],
+      "resolvesClaimIds": [],
+      "search": {
+        "alreadyHeldNearMisses": [
+          "NARA public endpoint/metadata and viewer access are access evidence only.",
+          "TOYO/AKS viewer access and local read-only JPEG review do not grant repository image rights."
+        ],
+        "canonicalTerms": [
+          "secondary use",
+          "image reuse",
+          "館内限定閲覧",
+          "repository redistribution",
+          "derivative crop"
+        ],
+        "channels": [
+          "institution rights page",
+          "item-level license/terms",
+          "written holder permission"
+        ]
+      },
+      "sourceRefs": [
+        "docs/ziwei-p0-palace-semantic-witness-acquisition-route-v1.md",
+        "docs/ziwei-p0-toyo-1646-extended-observation-v0.md",
+        "docs/ziwei-p0-local-frontier-reconciliation-v1.md"
+      ],
+      "status": "human_policy_review",
+      "title": "image-level reuse and retention decision",
+      "verificationPlan": [
+        "human review of terms",
+        "scope-match item IDs to captured bytes",
+        "negative-check HTTP/catalog/CC0 shortcut and repository image storage"
+      ]
+    }
+  ],
+  "verdictToken": "complete_ziwei_p0_evidence_acquisition_field_kit_uncommitted"
+}

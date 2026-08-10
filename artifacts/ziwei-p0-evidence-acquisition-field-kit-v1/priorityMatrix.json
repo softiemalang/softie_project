@@ -1,0 +1,122 @@
+[
+  {
+    "blockerIds": [
+      "blocker-source-identity-unresolved",
+      "blocker-palace-semantic-identity",
+      "blocker-tianfu-rotation06-semantic-authority"
+    ],
+    "canCombineWith": [
+      "acq-distinct-witness-identity-lineage",
+      "acq-tianfu-anchor-direction-adjudicator"
+    ],
+    "highLeverageReason": "Highest semantic-authority value and high fan-out: this is the first field target to prioritize, while identity capture is collected in the same visit.",
+    "priority": "P0",
+    "priorityRank": 1,
+    "targetId": "acq-palace-semantic-map-and-coordinate-witness"
+  },
+  {
+    "blockerIds": [
+      "blocker-source-identity-unresolved"
+    ],
+    "canCombineWith": [
+      "acq-palace-semantic-map-and-coordinate-witness",
+      "acq-tianfu-anchor-direction-adjudicator",
+      "acq-complete-14-major-star-placement-witness",
+      "acq-independent-complete-four-transform-table"
+    ],
+    "highLeverageReason": "This is a cross-cutting P0 gate. It should be completed during the same visit as a semantic/rule target, not mistaken for a semantic result by itself.",
+    "priority": "P0",
+    "priorityRank": 2,
+    "targetId": "acq-distinct-witness-identity-lineage"
+  },
+  {
+    "blockerIds": [
+      "blocker-source-identity-unresolved",
+      "blocker-direct-rule-absent",
+      "blocker-tianfu-raw-formula-contradiction",
+      "blocker-tianfu-rotation06-semantic-authority"
+    ],
+    "canCombineWith": [
+      "acq-distinct-witness-identity-lineage",
+      "acq-palace-semantic-map-and-coordinate-witness"
+    ],
+    "highLeverageReason": "High semantic value and fan-out into Tianfu, major-star placement, and rotation-06; it can be combined with the semantic-map target in one high-quality witness.",
+    "priority": "P0",
+    "priorityRank": 3,
+    "targetId": "acq-tianfu-anchor-direction-adjudicator"
+  },
+  {
+    "blockerIds": [
+      "blocker-source-identity-unresolved",
+      "blocker-four-transform-source-witness"
+    ],
+    "canCombineWith": [],
+    "highLeverageReason": "High fan-out across five claims and an exact local 40/40 boundary makes this a strong early P1 after semantic/identity work.",
+    "priority": "P1",
+    "priorityRank": 4,
+    "targetId": "acq-independent-complete-four-transform-table"
+  },
+  {
+    "blockerIds": [
+      "blocker-independent-external-oracle"
+    ],
+    "canCombineWith": [],
+    "highLeverageReason": "Broad diagnostic fan-out, but intentionally below semantic witnesses because corroboration cannot manufacture source meaning.",
+    "priority": "P1",
+    "priorityRank": 5,
+    "targetId": "acq-independent-ziwei-oracle"
+  },
+  {
+    "blockerIds": [
+      "blocker-source-identity-unresolved",
+      "blocker-direct-rule-absent"
+    ],
+    "canCombineWith": [],
+    "highLeverageReason": "P1 because the semantic map and Tianfu convention are upstream; once those are resolved this target supplies broad star-rule coverage.",
+    "priority": "P1",
+    "priorityRank": 6,
+    "targetId": "acq-complete-14-major-star-placement-witness"
+  },
+  {
+    "blockerIds": [
+      "blocker-calendar-time-source-identity"
+    ],
+    "canCombineWith": [],
+    "highLeverageReason": "P1 prerequisite for a meaningful oracle comparison, but it cannot resolve textual/semantic Ziwei rules.",
+    "priority": "P1",
+    "priorityRank": 7,
+    "targetId": "acq-calendar-time-input-authority"
+  },
+  {
+    "blockerIds": [
+      "blocker-source-identity-unresolved",
+      "blocker-auxiliary-star-source-witness"
+    ],
+    "canCombineWith": [],
+    "highLeverageReason": "P1 with lower semantic fan-out than the map/Tianfu targets; the raw-name boundaries make this target non-substitutable.",
+    "priority": "P1",
+    "priorityRank": 8,
+    "targetId": "acq-complete-auxiliary-star-rule-witness"
+  },
+  {
+    "blockerIds": [
+      "blocker-source-identity-unresolved",
+      "blocker-life-body-ruler-source-legibility"
+    ],
+    "canCombineWith": [],
+    "highLeverageReason": "P1 but narrowly scoped: the blocker is actionable and non-substitutable, yet it has less fan-out than semantic identity or 四化.",
+    "priority": "P1",
+    "priorityRank": 9,
+    "targetId": "acq-shen-zhu-compound-surface"
+  },
+  {
+    "blockerIds": [
+      "blocker-image-reuse-rights"
+    ],
+    "canCombineWith": [],
+    "highLeverageReason": "P2 because it does not resolve a semantic blocker, but it is a hard policy boundary for any future image retention.",
+    "priority": "P2",
+    "priorityRank": 10,
+    "targetId": "review-image-level-reuse-permission"
+  }
+]
