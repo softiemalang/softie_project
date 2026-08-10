@@ -18,6 +18,7 @@ failures.push(...checkArtifactIdentity(artifact, {
   artifactId: AUDIT_SCHEMA,
   materializerPath: 'scripts/materialize-ziwei-source-identity-claim-boundary-audit-v1.mjs',
   materializerVersion: AUDIT_MATERIALIZER_VERSION,
+  allowGenerationBaseInput: true,
 }))
 if (artifact.meaningCandidateOccurrenceInventory?.length !== 19) failures.push('meaning_occurrence_count')
 if (artifact.claimBoundaryVocabulary?.distribution?.['stable claim boundary'] !== 0) failures.push('stable_claim_overpromoted')

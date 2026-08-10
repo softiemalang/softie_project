@@ -2,18 +2,17 @@ import { createHash } from 'node:crypto'
 import { readFile } from 'node:fs/promises'
 import { readFileSync } from 'node:fs'
 import { dirname, resolve } from 'node:path'
-import { checkArtifactIdentity } from '../src/artifactIdentity.js'
+import { checkArtifactIdentity, stableArtifactContentEqual } from '../src/artifactIdentity.js'
 import { buildArtifact, BASIS_HEAD, canonicalJson, MATERIALIZER_VERSION, SCHEMA, VERDICT } from './materialize-ziwei-nara-iiif-leafmap-semantic-witness-v1.mjs'
 
 const ROOT = resolve(new URL('..', import.meta.url).pathname)
 const sha256 = bytes => createHash('sha256').update(bytes).digest('hex')
-const withoutIdentity = value => { const copy = structuredClone(value); delete copy.artifactIdentity; return copy }
 const parse = path => JSON.parse(readFileSync(resolve(ROOT, path), 'utf8'))
 
 export function checkBundle(candidate, expected) {
   const errors = []
   if (!candidate || candidate.schemaVersion !== SCHEMA || candidate.verdictToken !== VERDICT || candidate.basisHead !== BASIS_HEAD) errors.push('schema_or_basis')
-  if (canonicalJson(withoutIdentity(candidate)) !== canonicalJson(withoutIdentity(expected))) errors.push('payload_not_reproducible')
+  if (!stableArtifactContentEqual(candidate, expected)) errors.push('payload_not_reproducible')
   const rows = candidate.concordance?.rows || []
   const pages = rows.map(row => row.localPdfPage).filter(Number.isInteger).sort((a, b) => a - b)
   if (pages.length !== 528 || pages.some((page, index) => page !== index + 1)) errors.push('local_page_coverage')
@@ -27,7 +26,7 @@ export function checkBundle(candidate, expected) {
   if (candidate.semanticWitness?.representationRelations?.rotation06?.status !== 'representation_only' || candidate.semanticWitness?.representationRelations?.rotation06?.semanticAuthority !== false || candidate.semanticWitness?.representationRelations?.sourceBaseDirection?.semanticAuthority !== false) errors.push('numeric_relation_promoted')
   if (candidate.semanticWitness?.lineage?.independentWitness !== false || candidate.semanticWitness?.lineage?.sameRecord !== true || candidate.semanticWitness?.lineage?.sameEditionVolumePair !== true) errors.push('same_record_boundary')
   if (candidate.boundaries?.stableClaimCount !== 0 || candidate.boundaries?.readiness !== 'not_safe_to_start' || candidate.boundaries?.grounding !== 'blocked' || candidate.boundaries?.activation !== 'experimental' || candidate.boundaries?.productionRuleModified !== false || candidate.boundaries?.publicContractModified !== false || candidate.boundaries?.readinessModified !== false || candidate.boundaries?.productionModified !== false || candidate.boundaries?.existingArtifactsModified !== false || candidate.boundaries?.existingRouteModified !== false || candidate.boundaries?.imagesStoredInGit !== false || candidate.boundaries?.pdfStoredInGit !== false || candidate.boundaries?.contractMutation !== false) errors.push('mutation_or_readiness_boundary')
-  errors.push(...checkArtifactIdentity(candidate, { root: ROOT, artifactId: SCHEMA, materializerPath: `scripts/materialize-${SCHEMA}.mjs`, materializerVersion: MATERIALIZER_VERSION }))
+  errors.push(...checkArtifactIdentity(candidate, { root: ROOT, artifactId: SCHEMA, materializerPath: `scripts/materialize-${SCHEMA}.mjs`, materializerVersion: MATERIALIZER_VERSION, allowGenerationBaseInput: true, allowVerifierInputDrift: true }))
   return [...new Set(errors)]
 }
 

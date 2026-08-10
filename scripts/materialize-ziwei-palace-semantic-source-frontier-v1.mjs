@@ -3,7 +3,7 @@ import { execFileSync } from 'node:child_process'
 import { mkdir, readFile, writeFile } from 'node:fs/promises'
 import { readFileSync } from 'node:fs'
 import { dirname, resolve } from 'node:path'
-import { attachArtifactIdentity, buildArtifactIdentity } from '../src/artifactIdentity.js'
+import { attachArtifactIdentity, buildArtifactIdentity, checkHistoricalRepositoryBasis } from '../src/artifactIdentity.js'
 import { getPdfSourceMetadata, resolvePdfSourcePathSync } from './lib/pdf-source-resolver.mjs'
 
 export const SCHEMA = 'ziwei-palace-semantic-source-frontier-v1'
@@ -82,7 +82,8 @@ function buildClaims(sourceWitnesses, sourceObservations, predecessorHashes) {
 export async function buildArtifact() {
   const root = resolve(new URL('..', import.meta.url).pathname)
   const observedHead = execFileSync('git', ['-c', 'core.fsmonitor=false', 'rev-parse', 'HEAD'], { cwd: root, encoding: 'utf8' }).trim()
-  if (observedHead !== BASIS_HEAD) throw new Error(`unexpected_observed_head:${observedHead}`)
+  const basis = checkHistoricalRepositoryBasis(root, BASIS_HEAD)
+  if (basis.errors.length) throw new Error(`historical repository basis invalid:${basis.errors.join(',')}`)
   const sourceWitnesses = [inspectPdf(NANBEI), inspectPdf(NANYANG)]
   const sourceObservations = observations()
   const predecessorPaths = [

@@ -3,7 +3,7 @@ import { execFileSync } from 'node:child_process'
 import { mkdir, writeFile } from 'node:fs/promises'
 import { readFileSync } from 'node:fs'
 import { dirname, resolve } from 'node:path'
-import { attachArtifactIdentity, buildArtifactIdentity } from '../src/artifactIdentity.js'
+import { attachArtifactIdentity, buildArtifactIdentity, checkHistoricalRepositoryBasis } from '../src/artifactIdentity.js'
 import { getPdfSourceMetadata, resolvePdfSourcePathSync } from './lib/pdf-source-resolver.mjs'
 
 export const SCHEMA = 'ziwei-nara-iiif-leafmap-semantic-witness-v1'
@@ -193,7 +193,8 @@ function predecessorProtection() {
 
 export async function buildArtifact() {
   const observedHead = execFileSync('git', ['-c', 'core.fsmonitor=false', 'rev-parse', 'HEAD'], { cwd: ROOT, encoding: 'utf8' }).trim()
-  if (observedHead !== BASIS_HEAD) throw new Error(`unexpected_observed_head:${observedHead}`)
+  const basis = checkHistoricalRepositoryBasis(ROOT, BASIS_HEAD)
+  if (basis.errors.length) throw new Error(`historical repository basis invalid:${basis.errors.join(',')}`)
   const localPdf = inspectLocalPdf()
   const manifestIndex = VOLUMES.map(volume => ({ ...volume, entries: buildManifestIndex(volume.volumeId) }))
   const concordance = buildConcordance()

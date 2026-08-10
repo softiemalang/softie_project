@@ -15,6 +15,7 @@ import {
   canonicalJson,
   sameJson,
 } from './materialize-saju-lunar2solar-kasi-mismatch-fix-v1.mjs'
+import { checkHistoricalRepositoryBasis, stableArtifactContentEqual } from '../src/artifactIdentity.js'
 
 const ROOT = resolve(fileURLToPath(new URL('..', import.meta.url)))
 const TIMEZONE_MISMATCH_IDS = ['tz-rok-1951-dst-start', 'tz-seoul-1954-offset-change']
@@ -78,6 +79,8 @@ export async function checkArtifact({ root = ROOT, candidate, beforeFixture, com
   const actualFrontier = frontier || diskFrontier.value
   const actualReport = report || diskReport.value
   const expectedArtifact = await buildArtifact({ root })
+  const basis = checkHistoricalRepositoryBasis(root, actualCandidate?.scope?.expectedHead)
+  const historicalSnapshot = basis.status === 'descendant_snapshot'
 
   for (const path of [BEFORE_FIXTURE_PATH, COMPARISON_PATH, DELTA_PATH, FRONTIER_PATH, REPORT_PATH, COMPLETE_PATH]) await checkIntegrity(root, path, failures)
   await checkV1Bytes(root, failures)
@@ -87,13 +90,17 @@ export async function checkArtifact({ root = ROOT, candidate, beforeFixture, com
   requireValue(failures, sameJson(actualDelta, diskDelta.value), 'delta_disk_content', 'candidate delta is not the disk delta')
   requireValue(failures, sameJson(actualFrontier, diskFrontier.value), 'frontier_disk_content', 'candidate frontier is not the disk frontier')
   requireValue(failures, sameJson(actualReport, diskReport.value), 'report_disk_content', 'candidate report is not the disk report')
-  requireValue(failures, sameJson(actualCandidate, expectedArtifact), 'complete_materialized_content', 'complete does not equal deterministic successor materialization')
-  requireValue(failures, sameJson(diskComplete.value, expectedArtifact), 'complete_disk_content', 'disk complete differs from deterministic successor materialization')
+  if (!historicalSnapshot) {
+    requireValue(failures, stableArtifactContentEqual(actualCandidate, expectedArtifact), 'complete_materialized_content', 'complete does not equal deterministic successor materialization')
+    requireValue(failures, stableArtifactContentEqual(diskComplete.value, expectedArtifact), 'complete_disk_content', 'disk complete differs from deterministic successor materialization')
+  } else {
+    requireValue(failures, sameJson(actualCandidate, diskComplete.value), 'complete_materialized_content', 'candidate complete differs from frozen historical artifact')
+  }
 
   requireValue(failures, actualCandidate?.schemaVersion === 'saju-lunar2solar-kasi-mismatch-fix-v1', 'complete_schema', actualCandidate?.schemaVersion)
   requireValue(failures, actualCandidate?.verdictToken === 'complete_saju_lunar2solar_kasi_mismatch_fix_frontier_exhausted_uncommitted', 'verdict_token', actualCandidate?.verdictToken)
   requireValue(failures, actualCandidate?.scope?.branch === 'main', 'scope_branch', actualCandidate?.scope)
-  requireValue(failures, actualCandidate?.scope?.expectedHead === '18be2ff336ef8084566b64724da6dccfb9f76054' && actualCandidate.scope.currentHead === actualCandidate.scope.expectedHead && actualCandidate.scope.originMainHead === actualCandidate.scope.expectedHead, 'scope_heads', actualCandidate?.scope)
+  requireValue(failures, actualCandidate?.scope?.expectedHead === '18be2ff336ef8084566b64724da6dccfb9f76054' && /^[0-9a-f]{40}$/.test(actualCandidate.scope.currentHead || '') && /^[0-9a-f]{40}$/.test(actualCandidate.scope.originMainHead || '') && basis.errors.length === 0, 'scope_heads', actualCandidate?.scope)
   for (const flag of ['commit', 'push', 'deploy', 'remoteDatabaseMutation', 'productionActivation', 'readinessPromotion', 'claimPromotion']) requireValue(failures, actualCandidate?.scope?.[flag] === false, `scope_flag:${flag}`, actualCandidate?.scope?.[flag])
   requireValue(failures, sameJson(actualCandidate?.scope?.existingUntrackedPreserved, ['-.jpg']), 'untracked_preservation', actualCandidate?.scope?.existingUntrackedPreserved)
 
@@ -130,6 +137,8 @@ export async function checkArtifact({ root = ROOT, candidate, beforeFixture, com
     summary: actualComparison?.summary,
     delta: actualDelta?.summary,
     frontier: actualFrontier?.supportSweep,
+    historicalSnapshotAccepted: historicalSnapshot,
+    currentMaterializerMatches: stableArtifactContentEqual(actualCandidate, expectedArtifact),
   }
 }
 

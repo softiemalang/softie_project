@@ -4,6 +4,7 @@ import { execFileSync } from 'node:child_process'
 import { existsSync, readFileSync, statSync } from 'node:fs'
 import { resolve, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
+import { checkHistoricalRepositoryBasis } from '../src/artifactIdentity.js'
 
 const root = resolve(new URL('..', import.meta.url).pathname)
 const artifactPath = resolve(process.env.TRUE_NODE_FRONTIER_V4_INPUT || join(root, 'artifacts/astrology-true-node-independent-frontier-v4/complete.json'))
@@ -61,8 +62,9 @@ export function checkFrontierArtifact(candidate, { repositoryRoot = root, curren
 
   const head = currentHead ?? git(['rev-parse', 'HEAD'])
   const origin = originMainHead ?? git(['rev-parse', 'origin/main'])
+  const repositoryBasis = checkHistoricalRepositoryBasis(repositoryRoot, expectedHead)
   if (candidate.access?.branch !== 'main') errors.push('branch')
-  if (candidate.access?.expectedBaselineHead !== expectedHead || candidate.access?.currentHead !== expectedHead || candidate.access?.originMainHead !== expectedHead || !isAncestor(expectedHead, head) || !isAncestor(expectedHead, origin)) errors.push('repository_basis')
+  if (candidate.access?.expectedBaselineHead !== expectedHead || candidate.access?.currentHead !== expectedHead || candidate.access?.originMainHead !== expectedHead || repositoryBasis.errors.length || !isAncestor(expectedHead, head) || !isAncestor(expectedHead, origin)) errors.push('repository_basis')
   if (candidate.scope?.productionSemanticPromotion !== false || candidate.scope?.productionProviderChanged !== false || candidate.scope?.toleranceChanged !== false || candidate.scope?.readinessChanged !== false || candidate.scope?.activationChanged !== false || candidate.scope?.deployOrRemoteMutation !== false || candidate.scope?.historicalArtifactsRewritten !== false) errors.push('scope_mutation')
   if (!Array.isArray(candidate.scope?.unrelatedUntrackedPreserved) || !candidate.scope.unrelatedUntrackedPreserved.includes('-.jpg')) errors.push('unrelated_noise_boundary')
 

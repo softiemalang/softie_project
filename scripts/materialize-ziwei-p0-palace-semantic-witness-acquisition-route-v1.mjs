@@ -3,6 +3,7 @@ import { execFileSync } from 'node:child_process'
 import { existsSync } from 'node:fs'
 import { mkdir, readFile, writeFile } from 'node:fs/promises'
 import { resolve } from 'node:path'
+import { checkHistoricalRepositoryBasis } from '../src/artifactIdentity.js'
 
 export const SCHEMA = 'ziwei-p0-palace-semantic-witness-acquisition-route-v1'
 export const VERDICT = 'complete_ziwei_p0_palace_semantic_witness_acquisition_route_exhausted_uncommitted'
@@ -245,7 +246,8 @@ const assertCurrentRepository = root => {
   const currentHead = git(root, ['rev-parse', 'HEAD'])
   const originMainHead = git(root, ['rev-parse', 'origin/main'])
   if (branch !== 'main') throw new Error(`expected main, got ${branch}`)
-  if (currentHead !== EXPECTED_HEAD || originMainHead !== EXPECTED_HEAD) throw new Error(`repository basis drift: ${currentHead}/${originMainHead}`)
+  const basis = checkHistoricalRepositoryBasis(root, EXPECTED_HEAD)
+  if (basis.errors.length) throw new Error(`historical repository basis invalid: ${basis.errors.join(',')}; got ${currentHead}/${originMainHead}`)
   return {
     branch,
     currentHead,

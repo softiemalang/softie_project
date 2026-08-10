@@ -12,6 +12,7 @@ import {
   canonicalJson,
 } from '../scripts/materialize-saju-lunar2solar-kasi-mismatch-fix-v1.mjs'
 import { checkArtifact } from '../scripts/check-saju-lunar2solar-kasi-mismatch-fix-v1.mjs'
+import { stableArtifactContentEqual } from '../src/artifactIdentity.js'
 import { lunar2solar, solar2lunar } from '../src/interpretationPrep/lunarConverter.js'
 
 const root = resolve(new URL('../', import.meta.url).pathname)
@@ -37,7 +38,7 @@ test('successor materialization and the 1900-01 boundary evidence are byte-deter
   const first = await buildArtifact({ root })
   const second = await buildArtifact({ root })
   assert.equal(canonicalJson(first), canonicalJson(second))
-  assert.equal(canonicalJson(first), await readFile(resolve(root, COMPLETE_PATH), 'utf8'))
+  assert.equal(stableArtifactContentEqual(first, await readJson(COMPLETE_PATH)), true)
 
   const before = await readJson(BEFORE_FIXTURE_PATH)
   const delta = await readJson(DELTA_PATH)

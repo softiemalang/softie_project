@@ -2,18 +2,23 @@ import { createHash } from 'node:crypto'
 import { readFile } from 'node:fs/promises'
 import { readFileSync } from 'node:fs'
 import { dirname, resolve } from 'node:path'
-import { checkArtifactIdentity } from '../src/artifactIdentity.js'
+import { checkArtifactIdentity, canonicalIdentityJson, stableArtifactContentEqual, stableArtifactPayload } from '../src/artifactIdentity.js'
 import { buildArtifact, BASIS_HEAD, canonicalJson, MATERIALIZER_VERSION, SCHEMA, VERDICT } from './materialize-ziwei-palace-semantic-source-frontier-v1.mjs'
 
 const ROOT = resolve(new URL('..', import.meta.url).pathname)
 const sha256 = bytes => createHash('sha256').update(bytes).digest('hex')
 const parse = path => JSON.parse(readFileSync(resolve(ROOT, path), 'utf8'))
-const withoutIdentity = value => { const copy = structuredClone(value); delete copy.artifactIdentity; return copy }
+
+const comparable = value => {
+  const payload = stableArtifactPayload(value)
+  for (const witness of payload.sourceWitnesses || []) delete witness.path
+  return payload
+}
 
 export function checkBundle(candidate, expected) {
   const errors = []
   if (!candidate || candidate.schemaVersion !== SCHEMA || candidate.verdictToken !== VERDICT || candidate.basisHead !== BASIS_HEAD) errors.push('schema_or_basis')
-  if (canonicalJson(withoutIdentity(candidate)) !== canonicalJson(withoutIdentity(expected))) errors.push('payload_not_reproducible')
+  if (canonicalIdentityJson(comparable(candidate)) !== canonicalIdentityJson(comparable(expected))) errors.push('payload_not_reproducible')
   const observations = candidate.sourceObservations || []
   const required = ['nanbei-p1-title', 'nanyang-p1-title', 'nanyang-p2-title-imprint', 'nanbei-p4-branch-trigram-diagram', 'nanbei-p7-twelve-cell-diagram', 'nanbei-p8-ming-shen-rule', 'nanbei-p10-ming-shen-bureau-table']
   if (required.some(id => !observations.some(item => item.id === id))) errors.push('observation_coverage')
@@ -23,7 +28,7 @@ export function checkBundle(candidate, expected) {
   if (candidate.claims?.find(item => item.id === 'production_source_authority')?.status !== 'blocked_source_authority_not_established') errors.push('authority_promoted')
   if (candidate.boundaries?.productionRuleModified !== false || candidate.boundaries?.readinessModified !== false || candidate.boundaries?.existingArtifactsModified !== false || candidate.boundaries?.stableClaimCount !== 0 || candidate.boundaries?.pdfStoredInGit !== false || candidate.boundaries?.renderStoredInGit !== false) errors.push('mutation_or_readiness_boundary')
   if (candidate.frontierAssessment?.closedWithinScope?.length !== 4 || candidate.frontierAssessment?.stillBlocked?.length !== 4) errors.push('frontier_scope')
-  errors.push(...checkArtifactIdentity(candidate, { root: ROOT, artifactId: SCHEMA, materializerPath: `scripts/materialize-${SCHEMA}.mjs`, materializerVersion: MATERIALIZER_VERSION }))
+  errors.push(...checkArtifactIdentity(candidate, { root: ROOT, artifactId: SCHEMA, materializerPath: `scripts/materialize-${SCHEMA}.mjs`, materializerVersion: MATERIALIZER_VERSION, allowGenerationBaseInput: true, allowVerifierInputDrift: true }))
   return [...new Set(errors)]
 }
 

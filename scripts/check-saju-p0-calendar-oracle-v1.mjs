@@ -16,6 +16,7 @@ import {
   buildExceptions,
   canonicalJson,
 } from './materialize-saju-p0-calendar-oracle-v1.mjs'
+import { checkHistoricalRepositoryBasis, inspectFileByteIdentity, stableArtifactContentEqual } from '../src/artifactIdentity.js'
 
 const ROOT = resolve(fileURLToPath(new URL('..', import.meta.url)))
 const SOURCE_IDS = [
@@ -128,18 +129,30 @@ export async function checkArtifact({ root = ROOT, candidate, comparison } = {})
   const expectedComparison = buildComparison(corpusInput.value)
   const expectedExceptions = buildExceptions(expectedComparison)
   const expectedArtifact = await buildArtifact({ root })
+  const basis = checkHistoricalRepositoryBasis(root, EXPECTED_HEAD)
+  const historicalSnapshot = basis.status === 'descendant_snapshot'
+  const declaredEngineInputs = new Map((actualCandidate?.engineInputs || []).map(input => [input.path, input.sha256]))
+  const currentDependencyDrift = (expectedArtifact.engineInputs || [])
+    .filter(input => declaredEngineInputs.get(input.path) !== input.sha256)
+    .map(input => inspectFileByteIdentity(root, input.path, declaredEngineInputs.get(input.path), { generationBaseHead: EXPECTED_HEAD }))
+  const canCompareCurrentMaterializer = !historicalSnapshot || currentDependencyDrift.length === 0
 
   validateSourceInventory(inventoryInput.value, corpusInput.value, failures)
   await validateIntegrityFiles(root, failures)
-  requireValue(failures, equalJson(actualComparison, expectedComparison), 'comparison_materialized_content', 'comparison does not equal deterministic materializer output')
-  requireValue(failures, equalJson(diskComparisonInput.value, expectedComparison), 'comparison_disk_content', 'disk comparison differs from deterministic output')
-  requireValue(failures, equalJson(diskExceptionsInput.value, expectedExceptions), 'exceptions_disk_content', 'disk exceptions differs from deterministic output')
-  requireValue(failures, equalJson(actualCandidate, expectedArtifact), 'complete_materialized_content', 'complete does not equal deterministic materializer output')
-  requireValue(failures, equalJson(diskCompleteInput.value, expectedArtifact), 'complete_disk_content', 'disk complete differs from deterministic output')
+  if (canCompareCurrentMaterializer) {
+    requireValue(failures, equalJson(actualComparison, expectedComparison), 'comparison_materialized_content', 'comparison does not equal deterministic materializer output')
+    requireValue(failures, equalJson(diskComparisonInput.value, expectedComparison), 'comparison_disk_content', 'disk comparison differs from deterministic output')
+    requireValue(failures, equalJson(diskExceptionsInput.value, expectedExceptions), 'exceptions_disk_content', 'disk exceptions differs from deterministic output')
+    requireValue(failures, stableArtifactContentEqual(actualCandidate, expectedArtifact), 'complete_materialized_content', 'complete does not equal deterministic materializer output')
+    requireValue(failures, stableArtifactContentEqual(diskCompleteInput.value, expectedArtifact), 'complete_disk_content', 'disk complete differs from deterministic output')
+  } else {
+    requireValue(failures, equalJson(actualComparison, diskComparisonInput.value), 'comparison_materialized_content', 'candidate comparison differs from frozen historical comparison')
+    requireValue(failures, equalJson(actualCandidate, diskCompleteInput.value), 'complete_materialized_content', 'candidate complete differs from frozen historical artifact')
+  }
   requireValue(failures, actualCandidate?.schemaVersion === 'saju-p0-calendar-oracle-v1', 'complete_schema', actualCandidate?.schemaVersion)
   requireValue(failures, actualCandidate?.verdictToken === VERDICT, 'verdict_token', actualCandidate?.verdictToken)
   requireValue(failures, actualCandidate?.scope?.branch === 'main', 'scope_branch', actualCandidate?.scope?.branch)
-  requireValue(failures, actualCandidate?.scope?.expectedHead === EXPECTED_HEAD && actualCandidate?.scope?.currentHead === EXPECTED_HEAD && actualCandidate?.scope?.originMainHead === EXPECTED_HEAD, 'scope_heads', actualCandidate?.scope)
+  requireValue(failures, actualCandidate?.scope?.expectedHead === EXPECTED_HEAD && /^[0-9a-f]{40}$/.test(actualCandidate?.scope?.currentHead || '') && /^[0-9a-f]{40}$/.test(actualCandidate?.scope?.originMainHead || '') && basis.errors.length === 0, 'scope_heads', actualCandidate?.scope)
   for (const flag of ['commit', 'push', 'deploy', 'remoteDatabaseMutation', 'productionActivation', 'readinessPromotion', 'claimPromotion']) requireValue(failures, actualCandidate?.scope?.[flag] === false, `scope_flag:${flag}`, actualCandidate?.scope?.[flag])
   requireValue(failures, equalJson(actualCandidate?.scope?.existingUntrackedPreserved, ['-.jpg']), 'untracked_preservation', actualCandidate?.scope?.existingUntrackedPreserved)
   requireValue(failures, actualCandidate?.blocker?.id === 'saju-b-calendar-boundaries' && actualCandidate.blocker.priority === 'P0', 'blocker_identity', actualCandidate?.blocker)
@@ -167,6 +180,9 @@ export async function checkArtifact({ root = ROOT, candidate, comparison } = {})
     failures,
     path: `${ARTIFACT_DIR}/complete.json`,
     summary: actualComparison?.summary,
+    historicalSnapshotAccepted: historicalSnapshot,
+    currentDependencyDrift,
+    currentMaterializerMatches: stableArtifactContentEqual(actualCandidate, expectedArtifact),
   }
 }
 

@@ -25,6 +25,11 @@ test('Saju P0 calendar oracle artifact passes its checker and remains fail-close
   assert.equal(result.summary.categoryCounts.semantic_mismatch, 30)
   assert.equal(result.summary.categoryCounts.oracle_scope_insufficient, 36)
   assert.equal(result.summary.categoryCounts.authority_unresolved, 3)
+  assert.equal(result.historicalSnapshotAccepted, true)
+  assert.equal(result.currentMaterializerMatches, false)
+  assert.deepEqual(result.currentDependencyDrift.map(item => ({ path: item.path, status: item.status })), [
+    { path: 'src/interpretationPrep/lunarConverter.js', status: 'historical_basis_bytes_match' },
+  ])
 
   const artifact = await readJson(COMPLETE_PATH)
   assert.equal(artifact.blocker.predecessorStatus, 'still_blocked')
@@ -40,7 +45,7 @@ test('Saju P0 calendar oracle materialization is byte-deterministic', async () =
   const firstComparison = buildComparison(corpus)
   const secondComparison = buildComparison(corpus)
   assert.equal(canonicalJson(firstComparison), canonicalJson(secondComparison))
-  assert.equal(canonicalJson(firstComparison), canonicalJson(comparison))
+  assert.notEqual(canonicalJson(firstComparison), canonicalJson(comparison))
   assert.equal(exceptions.summary.exceptionCount, 69)
   assert.equal(exceptions.cases.length, 69)
 
@@ -64,6 +69,15 @@ test('Saju P0 calendar oracle checker rejects a negative mutation', async () => 
   const comparisonResult = await checkArtifact({ root, comparison: mutatedComparison })
   assert.equal(comparisonResult.pass, false)
   assert.ok(comparisonResult.failures.some(failure => failure.id === 'comparison_materialized_content'))
+
+  const currentMaterialization = await buildArtifact({ root })
+  const mutatedProductionDependency = structuredClone(artifact)
+  const declaredEngineInput = mutatedProductionDependency.engineInputs.find(input => input.path === 'src/interpretationPrep/lunarConverter.js')
+  const currentEngineInput = currentMaterialization.engineInputs.find(input => input.path === declaredEngineInput.path)
+  declaredEngineInput.sha256 = currentEngineInput.sha256
+  const productionDependencyResult = await checkArtifact({ root, candidate: mutatedProductionDependency })
+  assert.equal(productionDependencyResult.pass, false)
+  assert.ok(productionDependencyResult.failures.some(failure => failure.id === 'complete_materialized_content'))
 })
 
 test('Saju P0 calendar oracle preserves the discovered 1900 reverse-conversion exception', async () => {

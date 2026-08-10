@@ -16,6 +16,7 @@ failures.push(...checkArtifactIdentity(artifact, {
   artifactId: SCHEMA_VERSION,
   materializerPath: 'scripts/materialize-ziwei-fixture-reconciliation-v1.mjs',
   materializerVersion: MATERIALIZER_VERSION,
+  allowGenerationBaseInput: true,
 }))
 if (artifact.fixtures?.length !== 6) failures.push('fixture_count')
 if (artifact.beforeAfter?.after?.verified !== 0) failures.push('verified_fixture_promoted')

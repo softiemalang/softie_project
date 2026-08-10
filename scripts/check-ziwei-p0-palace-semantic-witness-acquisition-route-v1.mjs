@@ -10,6 +10,7 @@ import {
   SCHEMA,
   VERDICT,
 } from './materialize-ziwei-p0-palace-semantic-witness-acquisition-route-v1.mjs'
+import { checkHistoricalRepositoryBasis, stableArtifactContentEqual } from '../src/artifactIdentity.js'
 
 const sha256 = bytes => createHash('sha256').update(bytes).digest('hex')
 const asArray = value => Array.isArray(value) ? value : []
@@ -26,7 +27,8 @@ export async function checkArtifact(candidate, { root = resolve(new URL('..', im
   }
   if (!candidate || typeof candidate !== 'object' || Array.isArray(candidate)) return ['artifact_not_object']
   if (candidate.schemaVersion !== SCHEMA || candidate.verdictToken !== VERDICT) errors.push('identity_or_verdict')
-  if (candidate.scope?.branch !== 'main' || candidate.scope?.currentHead !== EXPECTED_HEAD || candidate.scope?.originMainHead !== EXPECTED_HEAD || candidate.scope?.expectedHead !== EXPECTED_HEAD) errors.push('repository_basis')
+  const basis = checkHistoricalRepositoryBasis(root, EXPECTED_HEAD)
+  if (candidate.scope?.branch !== 'main' || candidate.scope?.expectedHead !== EXPECTED_HEAD || !/^[0-9a-f]{40}$/.test(candidate.scope?.currentHead || '') || !/^[0-9a-f]{40}$/.test(candidate.scope?.originMainHead || '') || basis.errors.length) errors.push('repository_basis')
   for (const field of ['staging', 'commit', 'push', 'deploy', 'remoteDatabaseMutation']) if (candidate.scope?.[field] !== false) errors.push(`mutation:${field}`)
   if (!asArray(candidate.scope?.unrelatedUntrackedPreserved).includes('-.jpg')) errors.push('untracked_preservation')
 
@@ -78,7 +80,7 @@ export async function checkArtifact(candidate, { root = resolve(new URL('..', im
   const actualInputs = candidate.sourceOfTruth?.sourceInputs
   if (canonicalJson(actualInputs) !== canonicalJson(expectedInputs)) errors.push('source_input_inventory')
   if (candidate.sourceOfTruth?.currentRepositoryBasis !== EXPECTED_HEAD) errors.push('source_basis')
-  if (canonicalJson(candidate) !== canonicalJson(expected)) errors.push('materialized_content')
+  if (!stableArtifactContentEqual(candidate, expected)) errors.push('materialized_content')
   return [...new Set(errors)]
 }
 

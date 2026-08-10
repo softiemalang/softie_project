@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict'
 import test from 'node:test'
 import { readFileSync } from 'node:fs'
-import { artifactPayloadSha256, checkArtifactIdentity } from '../src/artifactIdentity.js'
+import { artifactPayloadSha256, checkArtifactIdentity, checkHistoricalRepositoryBasis, fileByteIdentity, inspectFileByteIdentity, stableArtifactContentEqual } from '../src/artifactIdentity.js'
 
 const root = process.cwd()
 const inventory = JSON.parse(readFileSync('artifacts/tri-system-readiness-v1/inventory.json', 'utf8'))
@@ -35,4 +35,38 @@ test('input changes are checked independently of HEAD freshness', () => {
   candidate.artifactIdentity.inputs[0].byteSha256 = '1'.repeat(64)
   candidate.artifactIdentity.artifactPayloadSha256 = artifactPayloadSha256(candidate)
   assert.match(checkArtifactIdentity(candidate, options).join('\n'), /input byte identity mismatch/)
+})
+
+test('historical repository basis accepts a verified descendant without erasing provenance', () => {
+  const basis = checkHistoricalRepositoryBasis(root, inventory.artifactIdentity.generation.baseHead)
+  assert.equal(basis.errors.length, 0)
+  assert.equal(basis.status, 'descendant_snapshot')
+  assert.notEqual(basis.currentHead, inventory.artifactIdentity.generation.baseHead)
+
+  const input = fileByteIdentity(root, 'src/artifactIdentity.js')
+  const inspected = inspectFileByteIdentity(root, input.path, input.byteSha256, {
+    generationBaseHead: inventory.artifactIdentity.generation.baseHead,
+  })
+  assert.equal(inspected.currentMatches, true)
+  assert.equal(inspected.status, 'current_bytes_match')
+})
+
+test('historical basis mutation is rejected by ancestry verification', () => {
+  const mutated = structuredClone(inventory)
+  mutated.artifactIdentity.generation.baseHead = '0'.repeat(40)
+  const result = checkHistoricalRepositoryBasis(root, mutated.artifactIdentity.generation.baseHead)
+  assert.ok(result.errors.includes('basis_commit_not_found'))
+  assert.ok(result.errors.includes('basis_not_ancestor_of_current_head'))
+  assert.ok(result.errors.includes('basis_not_ancestor_of_origin_main'))
+})
+
+test('stable artifact content ignores repository diagnostics but rejects payload mutation', () => {
+  const historical = { basisHead: 'a'.repeat(40), observedHead: 'b'.repeat(40), scope: { currentHead: 'c'.repeat(40), originMainHead: 'd'.repeat(40) }, value: { count: 1 } }
+  const descendant = structuredClone(historical)
+  descendant.observedHead = 'e'.repeat(40)
+  descendant.scope.currentHead = 'f'.repeat(40)
+  descendant.scope.originMainHead = '0'.repeat(40)
+  assert.equal(stableArtifactContentEqual(historical, descendant), true)
+  descendant.value.count = 2
+  assert.equal(stableArtifactContentEqual(historical, descendant), false)
 })

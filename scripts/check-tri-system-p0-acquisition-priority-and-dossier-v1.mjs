@@ -2,6 +2,7 @@ import { createHash } from 'node:crypto'
 import { readFile } from 'node:fs/promises'
 import { resolve } from 'node:path'
 import { buildArtifact, canonicalJson, EXPECTED_HEAD, SCHEMA, VERDICT, ARTIFACT_PATH, SOURCE_FIELD_KIT_PATH } from './materialize-tri-system-p0-acquisition-priority-and-dossier-v1.mjs'
+import { checkHistoricalRepositoryBasis, stableArtifactContentEqual } from '../src/artifactIdentity.js'
 
 const sha256 = bytes => createHash('sha256').update(bytes).digest('hex')
 const asArray = value => Array.isArray(value) ? value : []
@@ -19,7 +20,8 @@ export async function checkArtifact(candidate, { root = resolve(new URL('..', im
   }
   if (!candidate || typeof candidate !== 'object' || Array.isArray(candidate)) return ['artifact_not_object']
   if (candidate.schemaVersion !== SCHEMA || candidate.verdictToken !== VERDICT) errors.push('identity_or_verdict')
-  if (candidate.scope?.branch !== 'main' || candidate.scope?.currentHead !== EXPECTED_HEAD || candidate.scope?.originMainHead !== EXPECTED_HEAD || candidate.scope?.expectedHead !== EXPECTED_HEAD) errors.push('repository_basis')
+  const basis = checkHistoricalRepositoryBasis(root, EXPECTED_HEAD)
+  if (candidate.scope?.branch !== 'main' || candidate.scope?.expectedHead !== EXPECTED_HEAD || !/^[0-9a-f]{40}$/.test(candidate.scope?.currentHead || '') || !/^[0-9a-f]{40}$/.test(candidate.scope?.originMainHead || '') || basis.errors.length) errors.push('repository_basis')
   for (const field of ['productionActivation', 'readinessPromotion', 'claimPromotion', 'deploy', 'remoteDatabaseMutation', 'commit', 'push']) if (candidate.scope?.[field] !== false) errors.push(`mutation_or_promotion:${field}`)
   if (!asArray(candidate.scope?.unrelatedUntrackedPreserved).includes('-.jpg')) errors.push('untracked_jpg_not_preserved')
 
@@ -75,7 +77,7 @@ export async function checkArtifact(candidate, { root = resolve(new URL('..', im
   if (candidate.deterministic?.generatedAt !== null || candidate.deterministic?.networkFetch !== false || candidate.deterministic?.sourceAcquisitionPerformed !== false) errors.push('deterministic_boundary')
   const heldHash = candidate.heldMaterialCheck?.actualBytes?.byteSha256
   if (!/^[a-f0-9]{64}$/.test(heldHash || '')) errors.push('held_actual_hash_missing')
-  if (canonicalJson(candidate) !== canonicalJson(expected)) errors.push('materialized_content')
+  if (!stableArtifactContentEqual(candidate, expected)) errors.push('materialized_content')
   return [...new Set(errors)]
 }
 

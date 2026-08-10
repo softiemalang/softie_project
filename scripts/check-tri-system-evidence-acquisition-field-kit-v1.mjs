@@ -3,11 +3,11 @@ import { readFile } from 'node:fs/promises'
 import { resolve } from 'node:path'
 import {
   buildFieldKit,
-  canonicalJson,
   EXPECTED_HEAD,
   SCHEMA,
   VERDICT,
 } from './materialize-tri-system-evidence-acquisition-field-kit-v1.mjs'
+import { checkHistoricalRepositoryBasis, stableArtifactContentEqual } from '../src/artifactIdentity.js'
 
 const sha256 = bytes => createHash('sha256').update(bytes).digest('hex')
 const REQUIRED_TARGET_FIELDS = [
@@ -32,7 +32,8 @@ export async function checkArtifact(candidate, { root = resolve(new URL('..', im
   }
   if (!candidate || typeof candidate !== 'object' || Array.isArray(candidate)) return ['artifact_not_object']
   if (candidate.schemaVersion !== SCHEMA || candidate.verdictToken !== VERDICT) errors.push('identity_or_verdict')
-  if (candidate.scope?.branch !== 'main' || candidate.scope?.expectedHead !== EXPECTED_HEAD || candidate.scope?.currentHead !== EXPECTED_HEAD || candidate.scope?.originMainHead !== EXPECTED_HEAD) errors.push('repository_basis')
+  const repositoryBasis = checkHistoricalRepositoryBasis(root, EXPECTED_HEAD)
+  if (candidate.scope?.branch !== 'main' || candidate.scope?.expectedHead !== EXPECTED_HEAD || !/^[0-9a-f]{40}$/.test(candidate.scope?.currentHead || '') || !/^[0-9a-f]{40}$/.test(candidate.scope?.originMainHead || '') || repositoryBasis.errors.length) errors.push('repository_basis')
   for (const field of ['productionActivation', 'deploy', 'remoteDatabaseMutation', 'commit', 'push']) if (candidate.scope?.[field] !== false) errors.push(`mutation:${field}`)
   if (!asArray(candidate.scope?.unrelatedUntrackedPreserved).includes('-.jpg')) errors.push('unrelated_untracked_not_preserved')
 
@@ -77,7 +78,7 @@ export async function checkArtifact(candidate, { root = resolve(new URL('..', im
   if (candidate.verificationContract?.promotionBoundary?.automaticReadinessPromotion !== false || candidate.verificationContract?.promotionBoundary?.automaticProductionPromotion !== false || candidate.verificationContract?.promotionBoundary?.automaticClaimPromotion !== false || candidate.verificationContract?.promotionBoundary?.humanReviewRequired !== true) errors.push('promotion_contract')
   if (!/authority|observation|licens/i.test(JSON.stringify(candidate.verificationContract?.requiredPerTarget || []))) errors.push('authority_observation_license_boundary')
   if (!/not.*propagat|blocked evidence|numeric agreement/i.test(JSON.stringify(candidate.currentAudit?.invariants || []))) errors.push('readiness_invariants')
-  if (canonicalJson(candidate) !== canonicalJson(expected)) errors.push('materialized_content')
+  if (!stableArtifactContentEqual(candidate, expected)) errors.push('materialized_content')
   return [...new Set(errors)]
 }
 
