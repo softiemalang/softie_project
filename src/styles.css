@@ -71,7 +71,8 @@
   --ag-content-utility: 860px;
   --ag-content-wide: 1180px;
   --ag-duration-fast: 180ms;
-  --ag-view-transition-easing: cubic-bezier(0.23, 1, 0.32, 1);
+  --ag-scheduler-route-transition-duration: 220ms;
+  --ag-scheduler-route-transition-easing: cubic-bezier(0.23, 1, 0.32, 1);
 
   /* Selective iOS 27 interaction primitives; the warm visual language remains primary. */
   --ios27-selective-touch-target: 44px;
@@ -311,8 +312,8 @@
 
   ::view-transition-old(scheduler-route),
   ::view-transition-new(scheduler-route) {
-    animation-duration: var(--ag-duration-fast);
-    animation-timing-function: var(--ag-view-transition-easing);
+    animation-duration: var(--ag-scheduler-route-transition-duration);
+    animation-timing-function: var(--ag-scheduler-route-transition-easing);
   }
 }
 
