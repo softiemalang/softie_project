@@ -1,0 +1,184 @@
+{
+  "baselineHead": "52df5f9ac7d3309140b076711de0fc008ae4db82",
+  "observations": [
+    {
+      "mutationInThisBatch": false,
+      "observationId": "OBS-PRESS-SCHEDULER-ACTION-PILOT",
+      "sourceRefs": [
+        {
+          "byteLength": 137956,
+          "byteSha256": "9842a212d4f9c04d4930f0d286b0857a1df5e5844c300f205d4c96226e2b8250",
+          "kind": "working_tree_text",
+          "lineEnd": 5755,
+          "lineStart": 5753,
+          "path": "src/styles.css",
+          "quote": "transition:\n    transform 160ms cubic-bezier(0.23, 1, 0.32, 1),\n    opacity var(--ag-duration-fast) ease;"
+        },
+        {
+          "byteLength": 137956,
+          "byteSha256": "9842a212d4f9c04d4930f0d286b0857a1df5e5844c300f205d4c96226e2b8250",
+          "kind": "working_tree_text",
+          "lineEnd": 5759,
+          "lineStart": 5758,
+          "path": "src/styles.css",
+          "quote": ".scheduler-theme-shell .scheduler-action-button:active:not(:disabled) {\n  transform: scale(0.97);"
+        },
+        {
+          "byteLength": 2900,
+          "byteSha256": "0d31f73caf0547c84f2494604a3e7caa1322a7344556581441ab3b55433e495f",
+          "kind": "working_tree_text",
+          "lineEnd": 52,
+          "lineStart": 52,
+          "path": "src/scheduler/SchedulerEventCard.jsx",
+          "quote": "className={isDone ? 'scheduler-action-button secondary' : 'scheduler-action-button'}"
+        }
+      ],
+      "surface": "Scheduler event action family"
+    },
+    {
+      "mutationInThisBatch": true,
+      "observationId": "OBS-HOVER-CAPABILITY-ADOPTION",
+      "sourceRefs": [
+        {
+          "byteLength": 137956,
+          "byteSha256": "9842a212d4f9c04d4930f0d286b0857a1df5e5844c300f205d4c96226e2b8250",
+          "kind": "working_tree_text",
+          "lineEnd": 205,
+          "lineStart": 204,
+          "path": "src/styles.css",
+          "quote": "@media (hover: hover) and (pointer: fine) {\n  .ag-primary-action:hover"
+        },
+        {
+          "byteLength": 137956,
+          "byteSha256": "9842a212d4f9c04d4930f0d286b0857a1df5e5844c300f205d4c96226e2b8250",
+          "kind": "working_tree_text",
+          "lineEnd": 3290,
+          "lineStart": 3289,
+          "path": "src/styles.css",
+          "quote": "@media (hover: hover) and (pointer: fine) {\n  .home-shell.ag-shell .service-card:hover"
+        }
+      ],
+      "surface": "Atmospheric primary/secondary actions and Home service cards"
+    },
+    {
+      "mutationInThisBatch": true,
+      "observationId": "OBS-REDUCED-MOTION-FEEDBACK-PRESERVATION",
+      "sourceRefs": [
+        {
+          "byteLength": 137956,
+          "byteSha256": "9842a212d4f9c04d4930f0d286b0857a1df5e5844c300f205d4c96226e2b8250",
+          "kind": "working_tree_text",
+          "lineEnd": 5869,
+          "lineStart": 5868,
+          "path": "src/styles.css",
+          "quote": ".home-shell.ag-shell .service-card:active {\n    transform: none;"
+        },
+        {
+          "byteLength": 137956,
+          "byteSha256": "9842a212d4f9c04d4930f0d286b0857a1df5e5844c300f205d4c96226e2b8250",
+          "kind": "working_tree_text",
+          "lineEnd": 5879,
+          "lineStart": 5878,
+          "path": "src/styles.css",
+          "quote": ".scheduler-theme-shell .scheduler-action-button:active:not(:disabled) .scheduler-action-button-visual {\n    opacity: 0.86;"
+        },
+        {
+          "byteLength": 16592,
+          "byteSha256": "a494c92401ba9a7ccad4ae416a0976c29c0a6b84dc45fe524faa7a8963ef1d09",
+          "kind": "working_tree_text",
+          "lineEnd": 206,
+          "lineStart": 202,
+          "path": "src/rehearsals/rehearsals.css",
+          "quote": "@media (prefers-reduced-motion: reduce) {\n  .rehearsal-modal {\n    animation: none;\n    transform: translate(-50%, -50%);\n    opacity: 1;"
+        }
+      ],
+      "surface": "Home service card, Scheduler event action, and Rehearsal modal representative families"
+    },
+    {
+      "mutationInThisBatch": false,
+      "observationId": "OBS-HOME-MEMO-GLASS-OVERLAY-HOLD",
+      "sourceRefs": [
+        {
+          "byteLength": 137956,
+          "byteSha256": "9842a212d4f9c04d4930f0d286b0857a1df5e5844c300f205d4c96226e2b8250",
+          "kind": "working_tree_text",
+          "lineEnd": 3339,
+          "lineStart": 3339,
+          "path": "src/styles.css",
+          "quote": ".home-memo-backdrop {"
+        },
+        {
+          "byteLength": 137956,
+          "byteSha256": "9842a212d4f9c04d4930f0d286b0857a1df5e5844c300f205d4c96226e2b8250",
+          "kind": "working_tree_text",
+          "lineEnd": 3391,
+          "lineStart": 3388,
+          "path": "src/styles.css",
+          "quote": ".home-memo-sheet.ios27-selective-sheet {\n  padding: 1rem;\n  border-radius: var(--ios27-selective-sheet-radius);\n  transform: none;"
+        },
+        {
+          "byteLength": 12079,
+          "byteSha256": "0410635ab2060f60b7e70a668dd1f74d3385c70da40cd16c6c5600055a78410d",
+          "kind": "working_tree_text",
+          "lineEnd": 286,
+          "lineStart": 286,
+          "path": "src/pages/HomePage.jsx",
+          "quote": "className=\"home-memo-sheet ios27-selective-sheet softie-liquid-glass\""
+        }
+      ],
+      "surface": "Home Softie Memo modal sheet"
+    },
+    {
+      "boundary": "Current self-animated glass exception is recorded, not adopted as an overlay recipe or generalized token; changing its lifecycle requires a separate work order.",
+      "mutationInThisBatch": false,
+      "observationId": "OBS-SCHEDULER-SYNC-TOAST-GLASS-EXCEPTION",
+      "sourceRefs": [
+        {
+          "byteLength": 137956,
+          "byteSha256": "9842a212d4f9c04d4930f0d286b0857a1df5e5844c300f205d4c96226e2b8250",
+          "kind": "working_tree_text",
+          "lineEnd": 5853,
+          "lineStart": 5850,
+          "path": "src/styles.css",
+          "quote": "backdrop-filter: blur(12px) saturate(108%) brightness(0.96);\n  -webkit-backdrop-filter: blur(12px) saturate(108%) brightness(0.96);\n  pointer-events: none;\n  animation: scheduler-sync-toast-in 180ms ease-out both;"
+        },
+        {
+          "byteLength": 137956,
+          "byteSha256": "9842a212d4f9c04d4930f0d286b0857a1df5e5844c300f205d4c96226e2b8250",
+          "kind": "working_tree_text",
+          "lineEnd": 5868,
+          "lineStart": 5867,
+          "path": "src/styles.css",
+          "quote": "@media (prefers-reduced-motion: reduce) {\n  .home-shell.ag-shell .service-card:active"
+        }
+      ],
+      "surface": "Scheduler sync status toast"
+    },
+    {
+      "mutationInThisBatch": true,
+      "observationId": "OBS-ROLE-SCOPED-TOKENS",
+      "sourceRefs": [
+        {
+          "byteLength": 33249,
+          "byteSha256": "6363d87019412896cd6e2a6194667532a8bbd9bf9fad82766e6b576bd0f734d5",
+          "kind": "working_tree_text",
+          "lineEnd": 314,
+          "lineStart": 314,
+          "path": "DESIGN.md",
+          "quote": "`180ms ease`는 기존의 빠른 일반 전환 baseline이며 모든 interaction role의 보편 duration/easing이 아닙니다."
+        },
+        {
+          "byteLength": 33249,
+          "byteSha256": "6363d87019412896cd6e2a6194667532a8bbd9bf9fad82766e6b576bd0f734d5",
+          "kind": "working_tree_text",
+          "lineEnd": 326,
+          "lineStart": 326,
+          "path": "DESIGN.md",
+          "quote": "이 `200ms`는 `async content enter / conditional content swap` 역할에 한정된 Softie house rule이며 다른 interaction 유형의 전역 duration 기본값이 아닙니다."
+        }
+      ],
+      "surface": "Shared motion tokens and preserved roles"
+    }
+  ],
+  "schemaVersion": "softie-interaction-implementation-observation-ledger-v1"
+}

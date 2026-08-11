@@ -1,0 +1,167 @@
+{
+  "allowedDecisions": [
+    "adopt",
+    "pilot",
+    "hold",
+    "reject",
+    "not_applicable"
+  ],
+  "frontiers": [
+    {
+      "blockers": [
+        "BLK-PRESS-DEVICE-FEEL"
+      ],
+      "claim": "High-frequency custom buttons need immediate pressed-state feedback without changing release/click activation semantics.",
+      "decision": "pilot",
+      "designPromotion": "purpose_and_semantic_boundary_only; exact 160ms/scale(0.97)/curve not promoted",
+      "evidence": {
+        "adjacent_role_evidence": [
+          "SRC-SKILL-APPLE-DERIVED",
+          "SRC-EMIL10-CORPUS"
+        ],
+        "direct_evidence": [
+          "SRC-APPLE-HIG-BUTTONS",
+          "SRC-APPLE-WWDC18-FLUID"
+        ],
+        "product_device_evidence": [],
+        "softie_house_evidence": [
+          "SRC-SOFTIE-DESIGN",
+          "OBS-PRESS-SCHEDULER-ACTION-PILOT"
+        ]
+      },
+      "frontierId": "FRONTIER-PRESS-FEEDBACK",
+      "surfaces": [
+        "Scheduler event completion/edit action family"
+      ]
+    },
+    {
+      "blockers": [],
+      "claim": "Hover-only visual effects are gated to a primary hover-capable fine pointer and never carry unique information.",
+      "decision": "adopt",
+      "designPromotion": "role contract promoted; existing visual values unchanged",
+      "evidence": {
+        "adjacent_role_evidence": [
+          "SRC-APPLE-HIG-MOTION",
+          "SRC-EMIL10-CORPUS"
+        ],
+        "direct_evidence": [
+          "SRC-W3C-MEDIA-QUERIES-4"
+        ],
+        "product_device_evidence": [],
+        "softie_house_evidence": [
+          "SRC-SOFTIE-DESIGN",
+          "OBS-HOVER-CAPABILITY-ADOPTION"
+        ]
+      },
+      "frontierId": "FRONTIER-HOVER-POINTER-GATING",
+      "surfaces": [
+        "Atmospheric common actions",
+        "Home service cards"
+      ]
+    },
+    {
+      "blockers": [
+        "BLK-OVERLAY-GLASS-COMPOSITING",
+        "BLK-OVERLAY-EXIT-LIFECYCLE",
+        "BLK-OVERLAY-DEVICE-FEEL",
+        "BLK-SYNC-TOAST-GLASS-EXCEPTION"
+      ],
+      "claim": "Small overlay motion may clarify entry and exit only when focus, lifecycle, compositing, and reduced-motion gates are closed.",
+      "decision": "hold",
+      "designPromotion": "none",
+      "evidence": {
+        "adjacent_role_evidence": [
+          "SRC-SKILL-APPLE-DERIVED",
+          "SRC-EMIL10-CORPUS"
+        ],
+        "direct_evidence": [
+          "SRC-APPLE-HIG-MOTION"
+        ],
+        "product_device_evidence": [],
+        "softie_house_evidence": [
+          "OBS-HOME-MEMO-GLASS-OVERLAY-HOLD",
+          "OBS-SCHEDULER-SYNC-TOAST-GLASS-EXCEPTION"
+        ]
+      },
+      "frontierId": "FRONTIER-SMALL-OVERLAY-MOTION",
+      "surfaces": [
+        "Home Softie Memo modal sheet",
+        "Scheduler sync status toast as an adjacent glass exception"
+      ]
+    },
+    {
+      "blockers": [
+        "BLK-REDUCED-MOTION-LEGACY-COVERAGE"
+      ],
+      "claim": "Reduced motion removes movement, scale, depth, parallax, and animated blur while preserving feedback and state meaning through non-movement signals.",
+      "decision": "adopt",
+      "designPromotion": "semantic contract promoted; no universal replacement duration",
+      "evidence": {
+        "adjacent_role_evidence": [
+          "SRC-SKILL-APPLE-DERIVED",
+          "SRC-EMIL10-CORPUS"
+        ],
+        "direct_evidence": [
+          "SRC-APPLE-REDUCED-MOTION"
+        ],
+        "product_device_evidence": [],
+        "softie_house_evidence": [
+          "SRC-SOFTIE-DESIGN",
+          "OBS-REDUCED-MOTION-FEEDBACK-PRESERVATION"
+        ]
+      },
+      "frontierId": "FRONTIER-REDUCED-MOTION",
+      "surfaces": [
+        "Atmospheric theme baseline",
+        "Home service cards",
+        "Scheduler event actions",
+        "Rehearsal modal"
+      ]
+    },
+    {
+      "blockers": [
+        "BLK-TOKEN-LEGACY-MIXED-VALUES"
+      ],
+      "claim": "Motion tokens are role-scoped; equal numbers across press, overlay, async enter, and route roles do not imply one universal token.",
+      "decision": "adopt",
+      "designPromotion": "role separation promoted; no broad legacy value rewrite",
+      "evidence": {
+        "adjacent_role_evidence": [
+          "SRC-EMIL10-CORPUS"
+        ],
+        "direct_evidence": [],
+        "product_device_evidence": [],
+        "softie_house_evidence": [
+          "SRC-SOFTIE-DESIGN",
+          "OBS-ROLE-SCOPED-TOKENS"
+        ]
+      },
+      "frontierId": "FRONTIER-MOTION-TOKEN-COHERENCE",
+      "surfaces": [
+        "DESIGN.md motion contract and shared CSS tokens"
+      ]
+    },
+    {
+      "blockers": [],
+      "claim": "Animating opacity/transform ancestors of backdrop-filter or glass surfaces, or animating blur to materialize them, is outside this low-risk batch.",
+      "decision": "reject",
+      "designPromotion": "none; work-order safety boundary prevails over external recipe",
+      "evidence": {
+        "adjacent_role_evidence": [
+          "SRC-SKILL-APPLE-DERIVED"
+        ],
+        "direct_evidence": [],
+        "product_device_evidence": [],
+        "softie_house_evidence": [
+          "SRC-SOFTIE-DESIGN",
+          "OBS-HOME-MEMO-GLASS-OVERLAY-HOLD"
+        ]
+      },
+      "frontierId": "FRONTIER-ANIMATED-GLASS-MATERIAL",
+      "surfaces": [
+        "Home Memo and Scheduler glass overlays"
+      ]
+    }
+  ],
+  "schemaVersion": "softie-interaction-frontier-decision-ledger-v1"
+}

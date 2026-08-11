@@ -96,7 +96,18 @@ export function fileByteSha256AtGitCommit(root, commit, path) {
   return sha256(execFileSync('git', ['-c', 'core.fsmonitor=false', 'show', `${commit}:${path}`], { cwd: root, stdio: ['ignore', 'pipe', 'ignore'] }))
 }
 
-export function inspectFileByteIdentity(root, path, expectedSha256, { generationBaseHead } = {}) {
+function matchingDescendantCommit(root, generationBaseHead, descendantHead, path, expectedSha256) {
+  if (!generationBaseHead || !descendantHead || !gitSucceeds(root, ['merge-base', '--is-ancestor', generationBaseHead, descendantHead])) return null
+  const commits = gitText(root, ['rev-list', '--ancestry-path', `${generationBaseHead}..${descendantHead}`, '--', path])?.split('\n').filter(Boolean) || []
+  for (const commit of commits) {
+    try {
+      if (fileByteSha256AtGitCommit(root, commit, path) === expectedSha256) return commit
+    } catch {}
+  }
+  return null
+}
+
+export function inspectFileByteIdentity(root, path, expectedSha256, { generationBaseHead, descendantHead } = {}) {
   let currentSha256 = null
   let historicalSha256 = null
   try { currentSha256 = fileByteIdentity(root, path).byteSha256 } catch {}
@@ -105,6 +116,9 @@ export function inspectFileByteIdentity(root, path, expectedSha256, { generation
   }
   const currentMatches = currentSha256 === expectedSha256
   const historicalMatches = historicalSha256 === expectedSha256
+  const descendantCommit = !currentMatches && !historicalMatches
+    ? matchingDescendantCommit(root, generationBaseHead, descendantHead, path, expectedSha256)
+    : null
   return {
     path,
     expectedSha256,
@@ -112,7 +126,15 @@ export function inspectFileByteIdentity(root, path, expectedSha256, { generation
     historicalSha256,
     currentMatches,
     historicalMatches,
-    status: currentMatches ? 'current_bytes_match' : historicalMatches ? 'historical_basis_bytes_match' : 'protected_bytes_unverified',
+    descendantCommit,
+    descendantMatches: Boolean(descendantCommit),
+    status: currentMatches
+      ? 'current_bytes_match'
+      : historicalMatches
+        ? 'historical_basis_bytes_match'
+        : descendantCommit
+          ? 'historical_descendant_bytes_match'
+          : 'protected_bytes_unverified',
   }
 }
 
@@ -153,7 +175,7 @@ export function attachArtifactIdentity(payload, identity) {
   return artifact
 }
 
-export function checkArtifactIdentity(artifact, { root, artifactId, materializerPath, materializerVersion, allowCurrentHeadDifference = true, allowGenerationBaseInput = false, allowVerifierInputDrift = false } = {}) {
+export function checkArtifactIdentity(artifact, { root, artifactId, materializerPath, materializerVersion, allowCurrentHeadDifference = true, allowGenerationBaseInput = false, allowDescendantInput = false, allowVerifierInputDrift = false } = {}) {
   const errors = []
   const identity = artifact?.artifactIdentity
   if (!identity || identity.contractVersion !== ARTIFACT_IDENTITY_CONTRACT_VERSION) errors.push('identity contract version mismatch')
@@ -169,9 +191,10 @@ export function checkArtifactIdentity(artifact, { root, artifactId, materializer
   for (const input of identity?.inputs || []) {
     const inputIdentity = inspectFileByteIdentity(root, input.path, input.byteSha256, {
       generationBaseHead: allowGenerationBaseInput ? identity?.generation?.baseHead : undefined,
+      descendantHead: allowDescendantInput ? gitText(root, ['rev-parse', 'HEAD']) : undefined,
     })
     const verifierInput = input.path === materializerPath || input.path === 'src/artifactIdentity.js'
-    const matches = inputIdentity.currentMatches || Boolean(allowGenerationBaseInput && inputIdentity.historicalMatches) || Boolean(allowVerifierInputDrift && verifierInput)
+    const matches = inputIdentity.currentMatches || Boolean(allowGenerationBaseInput && inputIdentity.historicalMatches) || Boolean(allowDescendantInput && inputIdentity.descendantMatches) || Boolean(allowVerifierInputDrift && verifierInput)
     if (!matches) errors.push(`input byte identity mismatch:${input.path}`)
   }
   if (!identity?.inputs?.length) errors.push('input provenance missing')

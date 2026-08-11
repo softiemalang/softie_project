@@ -64,27 +64,43 @@ function jsonPointer(value, pointer) {
   return pointer.slice(2).split('/').map((part) => part.replaceAll('~1', '/').replaceAll('~0', '~')).reduce((current, part) => current?.[part], value)
 }
 
-function verifyTextRef(errors, reference) {
+function textRefMatches(reference, bytes) {
+  if (bytes.byteLength !== reference.byteLength || sha256(bytes) !== reference.byteSha256) return false
+  const location = lineLocation(bytes.toString('utf8'), reference.quote)
+  return Boolean(location) && location.lineStart === reference.lineStart && location.lineEnd === reference.lineEnd
+}
+
+function verifyTextRef(errors, reference, generationBaseHead) {
   if (!reference || !['working_tree_text', 'git_commit_text'].includes(reference.kind) || !reference.path || !reference.quote) {
     errors.push(`invalid_text_source_ref:${JSON.stringify(reference)}`)
     return
   }
-  let bytes
+  const candidates = []
   try {
-    bytes = reference.kind === 'working_tree_text'
+    candidates.push(reference.kind === 'working_tree_text'
       ? readFileSync(join(ROOT, reference.path))
-      : gitBytes(reference.commit, reference.path)
+      : gitBytes(reference.commit, reference.path))
   } catch {
-    errors.push(`missing_text_source_ref:${reference.kind}:${reference.commit || 'working_tree'}:${reference.path}`)
-    return
+    // A descendant worktree may remove a historical path; the generation base remains authoritative.
   }
-  add(errors, bytes.byteLength === reference.byteLength, `text_source_length:${reference.path}`)
-  add(errors, sha256(bytes) === reference.byteSha256, `text_source_hash:${reference.path}`)
-  const location = lineLocation(bytes.toString('utf8'), reference.quote)
-  add(errors, Boolean(location), `text_source_quote:${reference.path}`)
-  if (location) {
-    add(errors, location.lineStart === reference.lineStart && location.lineEnd === reference.lineEnd, `text_source_locator:${reference.path}:${reference.lineStart}-${reference.lineEnd}`)
+  if (reference.kind === 'working_tree_text' && generationBaseHead) {
+    try {
+      candidates.push(gitBytes(generationBaseHead, reference.path))
+    } catch {
+      // The reference fails closed below when neither current nor historical bytes match.
+    }
+    const descendantCommits = gitText(['rev-list', '--ancestry-path', `${generationBaseHead}..HEAD`, '--', reference.path])?.split('\n').filter(Boolean) || []
+    for (const commit of descendantCommits) {
+      try {
+        candidates.push(gitBytes(commit, reference.path))
+      } catch {
+        // Continue until an exact historical snapshot is found or all candidates fail.
+      }
+    }
   }
+  const matched = candidates.some((bytes) => textRefMatches(reference, bytes))
+  add(errors, candidates.length > 0, `missing_text_source_ref:${reference.kind}:${reference.commit || 'working_tree'}:${reference.path}`)
+  add(errors, matched, `text_source_hash_or_locator:${reference.path}:${reference.lineStart}-${reference.lineEnd}`)
 }
 
 function verifyArtifactRef(errors, reference) {
@@ -113,15 +129,15 @@ function verifyArtifactRef(errors, reference) {
   }
 }
 
-function verifySourceRefs(errors, value) {
+function verifySourceRefs(errors, value, generationBaseHead) {
   if (Array.isArray(value)) {
-    value.forEach((child) => verifySourceRefs(errors, child))
+    value.forEach((child) => verifySourceRefs(errors, child, generationBaseHead))
     return
   }
   if (!value || typeof value !== 'object') return
   if (value.kind === 'historical_artifact_json') verifyArtifactRef(errors, value)
-  if (value.kind === 'working_tree_text' || value.kind === 'git_commit_text') verifyTextRef(errors, value)
-  Object.values(value).forEach((child) => verifySourceRefs(errors, child))
+  if (value.kind === 'working_tree_text' || value.kind === 'git_commit_text') verifyTextRef(errors, value, generationBaseHead)
+  Object.values(value).forEach((child) => verifySourceRefs(errors, child, generationBaseHead))
 }
 
 function verifyIntegrity(errors, artifact, directory) {
@@ -189,6 +205,7 @@ export function checkArtifact(artifact, directory = DEFAULT_DIRECTORY) {
     materializerPath: MATERIALIZER_PATH,
     materializerVersion: MATERIALIZER_VERSION,
     allowGenerationBaseInput: true,
+    allowDescendantInput: true,
   }).length === 0, 'artifact_identity')
 
   const expectedRecipe = {
@@ -216,7 +233,7 @@ export function checkArtifact(artifact, directory = DEFAULT_DIRECTORY) {
   add(errors, artifact.lineage?.notGeneralized?.includes('does not promote 200ms'), 'lineage_non_generalization')
   add(errors, artifact.glassScopeFix?.causalAssessment?.includes('no Safari computed-style or compositor trace is claimed'), 'device_causal_boundary')
   verifyCommitLineage(errors, artifact)
-  verifySourceRefs(errors, artifact)
+  verifySourceRefs(errors, artifact, artifact?.artifactIdentity?.generation?.baseHead)
   verifyIntegrity(errors, artifact, directory)
   return [...new Set(errors)]
 }
@@ -231,7 +248,9 @@ export async function checkMaterialized(directory = DEFAULT_DIRECTORY) {
     return ['complete_invalid_json']
   }
   const errors = checkArtifact(artifact, directory)
-  if (resolve(directory) === resolve(DEFAULT_DIRECTORY) && errors.length === 0) {
+  const historicalObservationHead = artifact?.repository?.currentHead
+  const currentHead = gitText(['rev-parse', 'HEAD'])
+  if (resolve(directory) === resolve(DEFAULT_DIRECTORY) && errors.length === 0 && currentHead === historicalObservationHead) {
     add(errors, stableArtifactContentEqual(artifact, buildPromotionPayload()), 'materialized_content')
   }
   return [...new Set(errors)]

@@ -1,7 +1,7 @@
 ---
 # Design Tokens
 name: softie-project
-version: 2.7.0
+version: 2.8.0
 adoption: new-and-redesigned-surfaces
 tokens:
   colors:
@@ -311,8 +311,9 @@ Warm Liquid Glass는 따뜻한 사진의 색과 형태가 패널 안에서도 �
 - 히어로 `28px`, 주요 카드 `26px`, 내부 항목 `18px`, 컨트롤 `14px`, 배지는 pill 형태를 사용합니다.
 - 그림자는 넓고 부드럽게 퍼지게 하며 딱딱한 검은 외곽선을 만들지 않습니다.
 - 유리 표면은 얇은 밝은 테두리와 상단 하이라이트로 경계를 보여줍니다.
-- 기본 전환은 `180ms ease`를 사용하며 위치 변화는 작게 유지합니다.
-- `prefers-reduced-motion`에서는 전환과 애니메이션 시간을 사실상 제거합니다.
+- `180ms ease`는 기존의 빠른 일반 전환 baseline이며 모든 interaction role의 보편 duration/easing이 아닙니다. press, overlay, async content enter, route transition은 역할과 근거를 분리하고, 숫자가 같아도 자동으로 하나의 token에 합치지 않습니다.
+- 전환 property는 명시적으로 열거합니다. 새 interaction motion은 원칙적으로 `transform`과 `opacity` 안에서 해결하며, layout·paint property는 역할 근거와 별도 검증 없이는 도입하지 않습니다.
+- `prefers-reduced-motion: reduce`에서는 위치 이동, scale, depth, parallax, animated blur처럼 불편을 유발할 수 있는 움직임을 제거합니다. 다만 pressed/state/계층 의미까지 없애지 않고, 필요한 경우 즉시 적용되는 highlight·color·opacity 같은 non-movement 신호로 보존합니다.
 
 ### Async content enter / conditional content swap
 
@@ -336,6 +337,8 @@ Warm Liquid Glass는 따뜻한 사진의 색과 형태가 패널 안에서도 �
 - 삭제처럼 위험한 보조 동작은 밝은 흰색 버튼으로 띄우지 않고 `danger-soft` 배경, Dusty Rose 텍스트, 얇은 테두리를 사용합니다.
 - 상태 확인 카드 전체가 열기 동작을 가질 때 내부의 “연결됨”은 작은 상태형 캡슐로 보여 클릭 가능성과 현재 상태를 동시에 전달합니다.
 - Hover, active, focus, disabled 상태를 모두 정의합니다.
+- Custom button의 pressed state는 입력이 시작되는 동안 즉시 보여 주되 실제 activation 의미는 기존 click/release 동작을 유지합니다. 공통 정확한 scale·duration·easing은 representative surface의 product/device 검증 없이 추정하거나 승격하지 않습니다.
+- Hover 시각 효과는 `@media (hover: hover) and (pointer: fine)` 안에서만 적용합니다. Hover는 정보·상태·동작의 유일한 전달 수단이 아니며 touch와 keyboard 경로는 독립적으로 완전해야 합니다.
 
 ### Cards
 

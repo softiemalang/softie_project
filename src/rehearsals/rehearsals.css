@@ -199,6 +199,14 @@
   to { transform: translate(-50%, -50%); opacity: 1; }
 }
 
+@media (prefers-reduced-motion: reduce) {
+  .rehearsal-modal {
+    animation: none;
+    transform: translate(-50%, -50%);
+    opacity: 1;
+  }
+}
+
 .rehearsal-sheet-header {
   padding: 1.1rem 1.25rem;
   display: flex;

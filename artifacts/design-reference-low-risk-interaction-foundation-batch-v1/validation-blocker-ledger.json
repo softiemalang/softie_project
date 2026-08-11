@@ -1,0 +1,82 @@
+{
+  "blockers": [
+    {
+      "blockerId": "BLK-PRESS-DEVICE-FEEL",
+      "boundary": "Exact press recipe remains a pilot until product/device feel is observed.",
+      "status": "open"
+    },
+    {
+      "blockerId": "BLK-OVERLAY-GLASS-COMPOSITING",
+      "boundary": "Representative overlays are glass/backdrop-filter surfaces and may not be wrapped in ancestor opacity/transform motion.",
+      "status": "open"
+    },
+    {
+      "blockerId": "BLK-OVERLAY-EXIT-LIFECYCLE",
+      "boundary": "Conditional unmount has no verified exit lifecycle; adding one would expand JS behavior.",
+      "status": "open"
+    },
+    {
+      "blockerId": "BLK-OVERLAY-DEVICE-FEEL",
+      "boundary": "Overlay timing/origin feel is device-only and no product observation exists.",
+      "status": "open"
+    },
+    {
+      "blockerId": "BLK-SYNC-TOAST-GLASS-EXCEPTION",
+      "boundary": "Scheduler sync toast currently animates its own backdrop-filter surface; it is not adopted and needs separate lifecycle/product validation before remediation.",
+      "status": "open"
+    },
+    {
+      "blockerId": "BLK-REDUCED-MOTION-LEGACY-COVERAGE",
+      "boundary": "Adoption covers the common Atmospheric contract and representative pilots, not every legacy route.",
+      "status": "open"
+    },
+    {
+      "blockerId": "BLK-TOKEN-LEGACY-MIXED-VALUES",
+      "boundary": "Legacy raw values remain; broad cleanup was not authorized by role evidence.",
+      "status": "open"
+    }
+  ],
+  "schemaVersion": "softie-interaction-validation-blocker-ledger-v1",
+  "validations": [
+    {
+      "id": "VAL-BASELINE-DESIGN-CHECKERS",
+      "result": "3/3 predecessor checkers passed before edits",
+      "status": "pass"
+    },
+    {
+      "id": "VAL-BASELINE-FOCUSED",
+      "result": "25/25 predecessor and Scheduler focused tests passed before edits",
+      "status": "pass"
+    },
+    {
+      "id": "VAL-BATCH-FOCUSED",
+      "result": "9/9 batch behavior, deterministic materialization, lineage, and per-companion tamper tests passed.",
+      "status": "pass"
+    },
+    {
+      "id": "VAL-REGRESSION-FOCUSED",
+      "result": "41/41 combined artifact-identity, predecessor audit, Scheduler async enter, Scheduler route/View Transition, router, and batch tests passed.",
+      "status": "pass"
+    },
+    {
+      "id": "VAL-FULL-TEST",
+      "result": "628 tests: 592 pass, 35 fail, 1 skip. All 35 failures require the absent nanbei_quanbao_219p or nanyangtang_quanbao_528p PDF source; new non-PDF failures: 0.",
+      "status": "fail_external_pdf_environment"
+    },
+    {
+      "id": "VAL-BUILD",
+      "result": "Vite production build passed; 158 modules transformed.",
+      "status": "pass"
+    },
+    {
+      "id": "VAL-DIFF-CHECK",
+      "result": "git diff --check produced no errors.",
+      "status": "pass"
+    },
+    {
+      "id": "VAL-DEVICE-FEEL",
+      "result": "No new physical-device feel validation in this batch.",
+      "status": "unverified"
+    }
+  ]
+}

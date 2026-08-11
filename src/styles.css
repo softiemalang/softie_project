@@ -195,19 +195,21 @@
   box-shadow: var(--ag-shadow-control), inset 0 1px 0 rgba(255, 255, 255, 0.62);
 }
 
-.ag-primary-action:hover {
-  background: var(--ag-brand-hover);
-}
-
 .ag-secondary-action {
   color: var(--ag-text-muted);
   background: transparent;
   border: 1px solid var(--ag-line);
 }
 
-.ag-secondary-action:hover {
-  color: var(--ag-text);
-  border-color: var(--ag-line-strong);
+@media (hover: hover) and (pointer: fine) {
+  .ag-primary-action:hover {
+    background: var(--ag-brand-hover);
+  }
+
+  .ag-secondary-action:hover {
+    color: var(--ag-text);
+    border-color: var(--ag-line-strong);
+  }
 }
 
 .ag-segmented {
@@ -3172,15 +3174,6 @@ textarea {
   -webkit-backdrop-filter: blur(10px) saturate(106%) !important;
 }
 
-.home-shell.ag-shell .service-card:hover {
-  background: rgba(72, 65, 53, 0.42) !important;
-  border-color: rgba(255, 246, 228, 0.26) !important;
-  transform: translateY(-1px);
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.12),
-    0 6px 18px rgba(18, 16, 12, 0.1) !important;
-}
-
 .home-hero-topline,
 .home-section-heading {
   display: flex;
@@ -3293,10 +3286,21 @@ textarea {
     background-color var(--ag-duration-fast) ease;
 }
 
-.service-card:hover {
-  transform: translateY(-3px);
-  border-color: var(--ag-line-strong);
-  background: var(--ag-surface-glass-strong);
+@media (hover: hover) and (pointer: fine) {
+  .home-shell.ag-shell .service-card:hover {
+    background: rgba(72, 65, 53, 0.42) !important;
+    border-color: rgba(255, 246, 228, 0.26) !important;
+    transform: translateY(-1px);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.12),
+      0 6px 18px rgba(18, 16, 12, 0.1) !important;
+  }
+
+  .service-card:hover {
+    transform: translateY(-3px);
+    border-color: var(--ag-line-strong);
+    background: var(--ag-surface-glass-strong);
+  }
 }
 
 .service-card:active {
@@ -5861,6 +5865,20 @@ textarea {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .home-shell.ag-shell .service-card:active {
+    transform: none;
+    background: rgba(72, 65, 53, 0.42) !important;
+    border-color: rgba(255, 246, 228, 0.26) !important;
+  }
+
+  .scheduler-theme-shell .scheduler-action-button:active:not(:disabled) {
+    transform: none;
+  }
+
+  .scheduler-theme-shell .scheduler-action-button:active:not(:disabled) .scheduler-action-button-visual {
+    opacity: 0.86;
+  }
+
   .scheduler-theme-shell .scheduler-sync-toast {
     animation: none;
   }

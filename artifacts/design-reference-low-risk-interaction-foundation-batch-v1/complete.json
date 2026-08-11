@@ -1,0 +1,764 @@
+{
+  "artifactIdentity": {
+    "artifactId": "design-reference-low-risk-interaction-foundation-batch-v1",
+    "artifactPayloadSha256": "878ee05340e4b77c3f28393d2c082760be9094812adfc40f715b646147a21e9f",
+    "contractVersion": "artifact-identity-v1",
+    "generation": {
+      "baseHead": "52df5f9ac7d3309140b076711de0fc008ae4db82",
+      "baseHeadSource": "git rev-parse HEAD at materialization",
+      "includedCommit": null,
+      "includedCommitSource": "unknown_at_generation; artifact may be included by a later commit"
+    },
+    "inputs": [
+      {
+        "byteSha256": "21ff63d84391db8d96ecdf9170095f55a42c836ccc36fd3269c4772bab031ba2",
+        "path": ".agents/skills/animate/RECIPES.md"
+      },
+      {
+        "byteSha256": "2a99870e61971553c0af3185a194c0e557f33aaa81e0422ca2fcec52195a4341",
+        "path": ".agents/skills/animate/SKILL.md"
+      },
+      {
+        "byteSha256": "d718b48fe3c7898804d588f050a2e266d82c9f5ef51da256c8cb8b5951527757",
+        "path": ".agents/skills/animation-vocabulary/SKILL.md"
+      },
+      {
+        "byteSha256": "11840b24a11d7f94f39c6aaab074750ae4e4de4ef54ee4b1dd97e16ebd485e61",
+        "path": ".agents/skills/apple-design/SKILL.md"
+      },
+      {
+        "byteSha256": "e71de849347050c2c573c1cf24d742d5a13459557ecffa6e562f08006f46b5b7",
+        "path": ".agents/skills/emil-design-eng/SKILL.md"
+      },
+      {
+        "byteSha256": "91c1243164057fbf824088d12faea937878a757a7ac653e8288b775e8b27b882",
+        "path": ".agents/skills/find-animation-opportunities/SKILL.md"
+      },
+      {
+        "byteSha256": "551c8473e20e5f4774680bc24d45e1c68e50992582720905c6b077756b7b5a55",
+        "path": ".agents/skills/improve-animations/AUDIT.md"
+      },
+      {
+        "byteSha256": "68f17bbc4671593d2f43dba26a679243e2153ba5f26965fb7d59df52842534ff",
+        "path": ".agents/skills/improve-animations/SKILL.md"
+      },
+      {
+        "byteSha256": "61cf8ac0c4c8e1f63385298c546b16c65ca9aec34abddcd04e821c16712d671d",
+        "path": ".agents/skills/review-animations/SKILL.md"
+      },
+      {
+        "byteSha256": "e7d3605034acda54ca13e43aec9e64d65b53de20f75b11b8d694e373012fbe07",
+        "path": ".agents/skills/review-animations/STANDARDS.md"
+      },
+      {
+        "byteSha256": "f1dd85901c74c49ca5e1c81d3db57a9b7aba41b2bd49eb5c2c84114035bdb55d",
+        "path": "AGENTS.md"
+      },
+      {
+        "byteSha256": "c0ca42509ca526c8aff6f76749926485f6e56ebda4b399b8f193c05ade78399c",
+        "path": "artifacts/design-reference-async-content-enter-200ms-promotion/complete.json"
+      },
+      {
+        "byteSha256": "038baa672c2d61b7ce84b09da4a09128742e5dfc681d9564ba2634d27444f583",
+        "path": "artifacts/design-reference-async-content-enter-200ms-promotion/complete.json.integrity.json"
+      },
+      {
+        "byteSha256": "d81ae9e4aace68a7373fb8cee9d1548363b961835a2945ad4c0df1e05bb965c0",
+        "path": "artifacts/design-reference-audit-v1-emil10-incremental/complete.json"
+      },
+      {
+        "byteSha256": "230dc2dde176ff16f96821307adde750b0c7d763337e9e2b8416c0970ce98b51",
+        "path": "artifacts/design-reference-audit-v1-emil10-incremental/complete.json.integrity.json"
+      },
+      {
+        "byteSha256": "b8848d01cf663ae1c432612f3852175a0cde4e589d0914d408bbdfc26373f527",
+        "path": "artifacts/design-reference-audit-v1/complete.json"
+      },
+      {
+        "byteSha256": "c792aa219edb394b56c695d2e367c0aa63ff244cf3cd1027abd993ecbc48872c",
+        "path": "artifacts/design-reference-audit-v1/complete.json.integrity.json"
+      },
+      {
+        "byteSha256": "6363d87019412896cd6e2a6194667532a8bbd9bf9fad82766e6b576bd0f734d5",
+        "path": "DESIGN.md"
+      },
+      {
+        "byteSha256": "a88419bec304da774928e617f2dd4df97afed02f2e422992b0e1069a537c8d40",
+        "path": "docs/design-reference-async-content-enter-200ms-promotion.md"
+      },
+      {
+        "byteSha256": "b75bedcf2dbfa206dfcb9aca951e888bbc709c3718dbd523de4baf67acb42174",
+        "path": "docs/design-reference-audit-v1-emil10-incremental.md"
+      },
+      {
+        "byteSha256": "0a287d0bfbb7e2233f029920dbdcaff975a349a7dfdf331789daa53ac15a0b32",
+        "path": "docs/design-reference-audit-v1.md"
+      },
+      {
+        "byteSha256": "0e96a30dcb580ba8bb378ea540ebd78557294374392afb14bdcaa46754d4c4b6",
+        "path": "scripts/materialize-design-reference-low-risk-interaction-foundation-batch-v1.mjs"
+      },
+      {
+        "byteSha256": "e2edb232b500cfc47a0c03723c2ca3271f1589e45bda53585924f13740a324f4",
+        "path": "src/artifactIdentity.js"
+      },
+      {
+        "byteSha256": "bbd4be43c90c29b48ffc8475e8e8d77743e74e37ba744397788e7b842ddf5053",
+        "path": "src/lib/router.js"
+      },
+      {
+        "byteSha256": "0410635ab2060f60b7e70a668dd1f74d3385c70da40cd16c6c5600055a78410d",
+        "path": "src/pages/HomePage.jsx"
+      },
+      {
+        "byteSha256": "a494c92401ba9a7ccad4ae416a0976c29c0a6b84dc45fe524faa7a8963ef1d09",
+        "path": "src/rehearsals/rehearsals.css"
+      },
+      {
+        "byteSha256": "0d31f73caf0547c84f2494604a3e7caa1322a7344556581441ab3b55433e495f",
+        "path": "src/scheduler/SchedulerEventCard.jsx"
+      },
+      {
+        "byteSha256": "9842a212d4f9c04d4930f0d286b0857a1df5e5844c300f205d4c96226e2b8250",
+        "path": "src/styles.css"
+      },
+      {
+        "byteSha256": "8f0af11e381d738bcf451cca6ce0fb93af9aac481d73cce28e3b21dcaa757b21",
+        "path": "THIRD_PARTY_NOTICES.md"
+      }
+    ],
+    "materializer": {
+      "path": "scripts/materialize-design-reference-low-risk-interaction-foundation-batch-v1.mjs",
+      "version": "design-reference-low-risk-interaction-foundation-batch-v1-materializer-1"
+    }
+  },
+  "frontierDecisionLedger": {
+    "allowedDecisions": [
+      "adopt",
+      "pilot",
+      "hold",
+      "reject",
+      "not_applicable"
+    ],
+    "frontiers": [
+      {
+        "blockers": [
+          "BLK-PRESS-DEVICE-FEEL"
+        ],
+        "claim": "High-frequency custom buttons need immediate pressed-state feedback without changing release/click activation semantics.",
+        "decision": "pilot",
+        "designPromotion": "purpose_and_semantic_boundary_only; exact 160ms/scale(0.97)/curve not promoted",
+        "evidence": {
+          "adjacent_role_evidence": [
+            "SRC-SKILL-APPLE-DERIVED",
+            "SRC-EMIL10-CORPUS"
+          ],
+          "direct_evidence": [
+            "SRC-APPLE-HIG-BUTTONS",
+            "SRC-APPLE-WWDC18-FLUID"
+          ],
+          "product_device_evidence": [],
+          "softie_house_evidence": [
+            "SRC-SOFTIE-DESIGN",
+            "OBS-PRESS-SCHEDULER-ACTION-PILOT"
+          ]
+        },
+        "frontierId": "FRONTIER-PRESS-FEEDBACK",
+        "surfaces": [
+          "Scheduler event completion/edit action family"
+        ]
+      },
+      {
+        "blockers": [],
+        "claim": "Hover-only visual effects are gated to a primary hover-capable fine pointer and never carry unique information.",
+        "decision": "adopt",
+        "designPromotion": "role contract promoted; existing visual values unchanged",
+        "evidence": {
+          "adjacent_role_evidence": [
+            "SRC-APPLE-HIG-MOTION",
+            "SRC-EMIL10-CORPUS"
+          ],
+          "direct_evidence": [
+            "SRC-W3C-MEDIA-QUERIES-4"
+          ],
+          "product_device_evidence": [],
+          "softie_house_evidence": [
+            "SRC-SOFTIE-DESIGN",
+            "OBS-HOVER-CAPABILITY-ADOPTION"
+          ]
+        },
+        "frontierId": "FRONTIER-HOVER-POINTER-GATING",
+        "surfaces": [
+          "Atmospheric common actions",
+          "Home service cards"
+        ]
+      },
+      {
+        "blockers": [
+          "BLK-OVERLAY-GLASS-COMPOSITING",
+          "BLK-OVERLAY-EXIT-LIFECYCLE",
+          "BLK-OVERLAY-DEVICE-FEEL",
+          "BLK-SYNC-TOAST-GLASS-EXCEPTION"
+        ],
+        "claim": "Small overlay motion may clarify entry and exit only when focus, lifecycle, compositing, and reduced-motion gates are closed.",
+        "decision": "hold",
+        "designPromotion": "none",
+        "evidence": {
+          "adjacent_role_evidence": [
+            "SRC-SKILL-APPLE-DERIVED",
+            "SRC-EMIL10-CORPUS"
+          ],
+          "direct_evidence": [
+            "SRC-APPLE-HIG-MOTION"
+          ],
+          "product_device_evidence": [],
+          "softie_house_evidence": [
+            "OBS-HOME-MEMO-GLASS-OVERLAY-HOLD",
+            "OBS-SCHEDULER-SYNC-TOAST-GLASS-EXCEPTION"
+          ]
+        },
+        "frontierId": "FRONTIER-SMALL-OVERLAY-MOTION",
+        "surfaces": [
+          "Home Softie Memo modal sheet",
+          "Scheduler sync status toast as an adjacent glass exception"
+        ]
+      },
+      {
+        "blockers": [
+          "BLK-REDUCED-MOTION-LEGACY-COVERAGE"
+        ],
+        "claim": "Reduced motion removes movement, scale, depth, parallax, and animated blur while preserving feedback and state meaning through non-movement signals.",
+        "decision": "adopt",
+        "designPromotion": "semantic contract promoted; no universal replacement duration",
+        "evidence": {
+          "adjacent_role_evidence": [
+            "SRC-SKILL-APPLE-DERIVED",
+            "SRC-EMIL10-CORPUS"
+          ],
+          "direct_evidence": [
+            "SRC-APPLE-REDUCED-MOTION"
+          ],
+          "product_device_evidence": [],
+          "softie_house_evidence": [
+            "SRC-SOFTIE-DESIGN",
+            "OBS-REDUCED-MOTION-FEEDBACK-PRESERVATION"
+          ]
+        },
+        "frontierId": "FRONTIER-REDUCED-MOTION",
+        "surfaces": [
+          "Atmospheric theme baseline",
+          "Home service cards",
+          "Scheduler event actions",
+          "Rehearsal modal"
+        ]
+      },
+      {
+        "blockers": [
+          "BLK-TOKEN-LEGACY-MIXED-VALUES"
+        ],
+        "claim": "Motion tokens are role-scoped; equal numbers across press, overlay, async enter, and route roles do not imply one universal token.",
+        "decision": "adopt",
+        "designPromotion": "role separation promoted; no broad legacy value rewrite",
+        "evidence": {
+          "adjacent_role_evidence": [
+            "SRC-EMIL10-CORPUS"
+          ],
+          "direct_evidence": [],
+          "product_device_evidence": [],
+          "softie_house_evidence": [
+            "SRC-SOFTIE-DESIGN",
+            "OBS-ROLE-SCOPED-TOKENS"
+          ]
+        },
+        "frontierId": "FRONTIER-MOTION-TOKEN-COHERENCE",
+        "surfaces": [
+          "DESIGN.md motion contract and shared CSS tokens"
+        ]
+      },
+      {
+        "blockers": [],
+        "claim": "Animating opacity/transform ancestors of backdrop-filter or glass surfaces, or animating blur to materialize them, is outside this low-risk batch.",
+        "decision": "reject",
+        "designPromotion": "none; work-order safety boundary prevails over external recipe",
+        "evidence": {
+          "adjacent_role_evidence": [
+            "SRC-SKILL-APPLE-DERIVED"
+          ],
+          "direct_evidence": [],
+          "product_device_evidence": [],
+          "softie_house_evidence": [
+            "SRC-SOFTIE-DESIGN",
+            "OBS-HOME-MEMO-GLASS-OVERLAY-HOLD"
+          ]
+        },
+        "frontierId": "FRONTIER-ANIMATED-GLASS-MATERIAL",
+        "surfaces": [
+          "Home Memo and Scheduler glass overlays"
+        ]
+      }
+    ],
+    "schemaVersion": "softie-interaction-frontier-decision-ledger-v1"
+  },
+  "implementationObservationLedger": {
+    "baselineHead": "52df5f9ac7d3309140b076711de0fc008ae4db82",
+    "observations": [
+      {
+        "mutationInThisBatch": false,
+        "observationId": "OBS-PRESS-SCHEDULER-ACTION-PILOT",
+        "sourceRefs": [
+          {
+            "byteLength": 137956,
+            "byteSha256": "9842a212d4f9c04d4930f0d286b0857a1df5e5844c300f205d4c96226e2b8250",
+            "kind": "working_tree_text",
+            "lineEnd": 5755,
+            "lineStart": 5753,
+            "path": "src/styles.css",
+            "quote": "transition:\n    transform 160ms cubic-bezier(0.23, 1, 0.32, 1),\n    opacity var(--ag-duration-fast) ease;"
+          },
+          {
+            "byteLength": 137956,
+            "byteSha256": "9842a212d4f9c04d4930f0d286b0857a1df5e5844c300f205d4c96226e2b8250",
+            "kind": "working_tree_text",
+            "lineEnd": 5759,
+            "lineStart": 5758,
+            "path": "src/styles.css",
+            "quote": ".scheduler-theme-shell .scheduler-action-button:active:not(:disabled) {\n  transform: scale(0.97);"
+          },
+          {
+            "byteLength": 2900,
+            "byteSha256": "0d31f73caf0547c84f2494604a3e7caa1322a7344556581441ab3b55433e495f",
+            "kind": "working_tree_text",
+            "lineEnd": 52,
+            "lineStart": 52,
+            "path": "src/scheduler/SchedulerEventCard.jsx",
+            "quote": "className={isDone ? 'scheduler-action-button secondary' : 'scheduler-action-button'}"
+          }
+        ],
+        "surface": "Scheduler event action family"
+      },
+      {
+        "mutationInThisBatch": true,
+        "observationId": "OBS-HOVER-CAPABILITY-ADOPTION",
+        "sourceRefs": [
+          {
+            "byteLength": 137956,
+            "byteSha256": "9842a212d4f9c04d4930f0d286b0857a1df5e5844c300f205d4c96226e2b8250",
+            "kind": "working_tree_text",
+            "lineEnd": 205,
+            "lineStart": 204,
+            "path": "src/styles.css",
+            "quote": "@media (hover: hover) and (pointer: fine) {\n  .ag-primary-action:hover"
+          },
+          {
+            "byteLength": 137956,
+            "byteSha256": "9842a212d4f9c04d4930f0d286b0857a1df5e5844c300f205d4c96226e2b8250",
+            "kind": "working_tree_text",
+            "lineEnd": 3290,
+            "lineStart": 3289,
+            "path": "src/styles.css",
+            "quote": "@media (hover: hover) and (pointer: fine) {\n  .home-shell.ag-shell .service-card:hover"
+          }
+        ],
+        "surface": "Atmospheric primary/secondary actions and Home service cards"
+      },
+      {
+        "mutationInThisBatch": true,
+        "observationId": "OBS-REDUCED-MOTION-FEEDBACK-PRESERVATION",
+        "sourceRefs": [
+          {
+            "byteLength": 137956,
+            "byteSha256": "9842a212d4f9c04d4930f0d286b0857a1df5e5844c300f205d4c96226e2b8250",
+            "kind": "working_tree_text",
+            "lineEnd": 5869,
+            "lineStart": 5868,
+            "path": "src/styles.css",
+            "quote": ".home-shell.ag-shell .service-card:active {\n    transform: none;"
+          },
+          {
+            "byteLength": 137956,
+            "byteSha256": "9842a212d4f9c04d4930f0d286b0857a1df5e5844c300f205d4c96226e2b8250",
+            "kind": "working_tree_text",
+            "lineEnd": 5879,
+            "lineStart": 5878,
+            "path": "src/styles.css",
+            "quote": ".scheduler-theme-shell .scheduler-action-button:active:not(:disabled) .scheduler-action-button-visual {\n    opacity: 0.86;"
+          },
+          {
+            "byteLength": 16592,
+            "byteSha256": "a494c92401ba9a7ccad4ae416a0976c29c0a6b84dc45fe524faa7a8963ef1d09",
+            "kind": "working_tree_text",
+            "lineEnd": 206,
+            "lineStart": 202,
+            "path": "src/rehearsals/rehearsals.css",
+            "quote": "@media (prefers-reduced-motion: reduce) {\n  .rehearsal-modal {\n    animation: none;\n    transform: translate(-50%, -50%);\n    opacity: 1;"
+          }
+        ],
+        "surface": "Home service card, Scheduler event action, and Rehearsal modal representative families"
+      },
+      {
+        "mutationInThisBatch": false,
+        "observationId": "OBS-HOME-MEMO-GLASS-OVERLAY-HOLD",
+        "sourceRefs": [
+          {
+            "byteLength": 137956,
+            "byteSha256": "9842a212d4f9c04d4930f0d286b0857a1df5e5844c300f205d4c96226e2b8250",
+            "kind": "working_tree_text",
+            "lineEnd": 3339,
+            "lineStart": 3339,
+            "path": "src/styles.css",
+            "quote": ".home-memo-backdrop {"
+          },
+          {
+            "byteLength": 137956,
+            "byteSha256": "9842a212d4f9c04d4930f0d286b0857a1df5e5844c300f205d4c96226e2b8250",
+            "kind": "working_tree_text",
+            "lineEnd": 3391,
+            "lineStart": 3388,
+            "path": "src/styles.css",
+            "quote": ".home-memo-sheet.ios27-selective-sheet {\n  padding: 1rem;\n  border-radius: var(--ios27-selective-sheet-radius);\n  transform: none;"
+          },
+          {
+            "byteLength": 12079,
+            "byteSha256": "0410635ab2060f60b7e70a668dd1f74d3385c70da40cd16c6c5600055a78410d",
+            "kind": "working_tree_text",
+            "lineEnd": 286,
+            "lineStart": 286,
+            "path": "src/pages/HomePage.jsx",
+            "quote": "className=\"home-memo-sheet ios27-selective-sheet softie-liquid-glass\""
+          }
+        ],
+        "surface": "Home Softie Memo modal sheet"
+      },
+      {
+        "boundary": "Current self-animated glass exception is recorded, not adopted as an overlay recipe or generalized token; changing its lifecycle requires a separate work order.",
+        "mutationInThisBatch": false,
+        "observationId": "OBS-SCHEDULER-SYNC-TOAST-GLASS-EXCEPTION",
+        "sourceRefs": [
+          {
+            "byteLength": 137956,
+            "byteSha256": "9842a212d4f9c04d4930f0d286b0857a1df5e5844c300f205d4c96226e2b8250",
+            "kind": "working_tree_text",
+            "lineEnd": 5853,
+            "lineStart": 5850,
+            "path": "src/styles.css",
+            "quote": "backdrop-filter: blur(12px) saturate(108%) brightness(0.96);\n  -webkit-backdrop-filter: blur(12px) saturate(108%) brightness(0.96);\n  pointer-events: none;\n  animation: scheduler-sync-toast-in 180ms ease-out both;"
+          },
+          {
+            "byteLength": 137956,
+            "byteSha256": "9842a212d4f9c04d4930f0d286b0857a1df5e5844c300f205d4c96226e2b8250",
+            "kind": "working_tree_text",
+            "lineEnd": 5868,
+            "lineStart": 5867,
+            "path": "src/styles.css",
+            "quote": "@media (prefers-reduced-motion: reduce) {\n  .home-shell.ag-shell .service-card:active"
+          }
+        ],
+        "surface": "Scheduler sync status toast"
+      },
+      {
+        "mutationInThisBatch": true,
+        "observationId": "OBS-ROLE-SCOPED-TOKENS",
+        "sourceRefs": [
+          {
+            "byteLength": 33249,
+            "byteSha256": "6363d87019412896cd6e2a6194667532a8bbd9bf9fad82766e6b576bd0f734d5",
+            "kind": "working_tree_text",
+            "lineEnd": 314,
+            "lineStart": 314,
+            "path": "DESIGN.md",
+            "quote": "`180ms ease`는 기존의 빠른 일반 전환 baseline이며 모든 interaction role의 보편 duration/easing이 아닙니다."
+          },
+          {
+            "byteLength": 33249,
+            "byteSha256": "6363d87019412896cd6e2a6194667532a8bbd9bf9fad82766e6b576bd0f734d5",
+            "kind": "working_tree_text",
+            "lineEnd": 326,
+            "lineStart": 326,
+            "path": "DESIGN.md",
+            "quote": "이 `200ms`는 `async content enter / conditional content swap` 역할에 한정된 Softie house rule이며 다른 interaction 유형의 전역 duration 기본값이 아닙니다."
+          }
+        ],
+        "surface": "Shared motion tokens and preserved roles"
+      }
+    ],
+    "schemaVersion": "softie-interaction-implementation-observation-ledger-v1"
+  },
+  "nonGeneralization": {
+    "async200ms": "The promoted 200ms async-content-enter rule remains isolated and is not reused as a press, hover, overlay, modal, or route default.",
+    "roleValues": "Exact duration, easing, scale, or property is not inferred solely from repeated external Skill examples."
+  },
+  "provenanceLineage": {
+    "authorityPriority": [
+      "AGENTS.md / DESIGN.md",
+      "current_work_order",
+      "repository_evidence",
+      "external_skill"
+    ],
+    "emilCorpus": {
+      "duplicateValuePolicy": "Repeated values or claims across the ten installed Skills count once, not as independent corroboration.",
+      "independentAuthorityCount": 1,
+      "installationIsAdoption": false,
+      "installedSkillCount": 10,
+      "lineageGroup": "LG-EMIL10-78761e1b57f9",
+      "revision": "78761e1b57f97dce65b983d640c70a68f39e8163"
+    },
+    "evidenceClasses": [
+      "direct_evidence",
+      "adjacent_role_evidence",
+      "softie_house_evidence",
+      "product_device_evidence"
+    ],
+    "frozenPredecessors": [
+      {
+        "assertions": [
+          {
+            "equals": "complete_softie_design_reference_audit_v1_uncommitted",
+            "path": "#/verdict"
+          }
+        ],
+        "byteLength": 4638226,
+        "byteSha256": "b8848d01cf663ae1c432612f3852175a0cde4e589d0914d408bbdfc26373f527",
+        "kind": "historical_artifact_json",
+        "path": "artifacts/design-reference-audit-v1/complete.json"
+      },
+      {
+        "assertions": [
+          {
+            "equals": 1,
+            "path": "#/provenanceLineage/lineageGroups/0/independentAuthorityCount"
+          }
+        ],
+        "byteLength": 91248,
+        "byteSha256": "d81ae9e4aace68a7373fb8cee9d1548363b961835a2945ad4c0df1e05bb965c0",
+        "kind": "historical_artifact_json",
+        "path": "artifacts/design-reference-audit-v1-emil10-incremental/complete.json"
+      },
+      {
+        "assertions": [
+          {
+            "equals": "complete_softie_async_content_enter_200ms_house_rule_promoted_uncommitted",
+            "path": "#/verdict"
+          },
+          {
+            "contains": "not a universal 200ms rule",
+            "path": "#/recipe/generalizationBoundary"
+          }
+        ],
+        "byteLength": 25292,
+        "byteSha256": "c0ca42509ca526c8aff6f76749926485f6e56ebda4b399b8f193c05ade78399c",
+        "kind": "historical_artifact_json",
+        "path": "artifacts/design-reference-async-content-enter-200ms-promotion/complete.json"
+      }
+    ],
+    "historicalBytesPreserved": true,
+    "schemaVersion": "softie-interaction-provenance-lineage-v1"
+  },
+  "repository": {
+    "baselineHead": "52df5f9ac7d3309140b076711de0fc008ae4db82",
+    "branch": "main"
+  },
+  "schemaVersion": "design-reference-low-risk-interaction-foundation-batch-v1",
+  "scope": {
+    "businessDataAuthApiMutation": false,
+    "dependencyMutation": false,
+    "designRuleMutation": true,
+    "frozenArtifactRewrite": false,
+    "preExistingChangeBoundary": "Preserve ?? -.jpg exactly.",
+    "stagingCommitPushDeployRemoteMutation": false,
+    "uiMutation": true
+  },
+  "sourceReferenceLedger": {
+    "schemaVersion": "softie-interaction-source-reference-ledger-v1",
+    "sources": [
+      {
+        "authority": "repository_authority",
+        "lineageGroup": "LG-SOFTIE-REPOSITORY",
+        "sourceId": "SRC-SOFTIE-AGENTS",
+        "sourceRef": {
+          "byteLength": 12039,
+          "byteSha256": "f1dd85901c74c49ca5e1c81d3db57a9b7aba41b2bd49eb5c2c84114035bdb55d",
+          "kind": "working_tree_text",
+          "lineEnd": 16,
+          "lineStart": 16,
+          "path": "AGENTS.md",
+          "quote": "- Before editing, identify the smallest relevant file set. Edit only requested files and files required to implement or verify the requested change."
+        }
+      },
+      {
+        "authority": "softie_house_rule",
+        "lineageGroup": "LG-SOFTIE-REPOSITORY",
+        "sourceId": "SRC-SOFTIE-DESIGN",
+        "sourceRef": {
+          "byteLength": 33249,
+          "byteSha256": "6363d87019412896cd6e2a6194667532a8bbd9bf9fad82766e6b576bd0f734d5",
+          "kind": "working_tree_text",
+          "lineEnd": 309,
+          "lineStart": 309,
+          "path": "DESIGN.md",
+          "quote": "## 7. Shape, depth, and motion"
+        }
+      },
+      {
+        "authority": "observed_implementation_not_automatically_normative",
+        "lineageGroup": "LG-SOFTIE-REPOSITORY",
+        "sourceId": "SRC-SOFTIE-CODE",
+        "sourceRef": {
+          "byteLength": 137956,
+          "byteSha256": "9842a212d4f9c04d4930f0d286b0857a1df5e5844c300f205d4c96226e2b8250",
+          "kind": "working_tree_text",
+          "lineEnd": 205,
+          "lineStart": 204,
+          "path": "src/styles.css",
+          "quote": "@media (hover: hover) and (pointer: fine) {\n  .ag-primary-action:hover"
+        }
+      },
+      {
+        "authority": "apple_official_primary_guidance",
+        "claimBoundary": "Requires a press state for custom buttons and a sufficiently large hit region; supplies no Softie CSS duration, easing, or scale value.",
+        "lineageGroup": "LG-APPLE-OFFICIAL",
+        "sourceId": "SRC-APPLE-HIG-BUTTONS",
+        "url": "https://developer.apple.com/design/human-interface-guidelines/buttons"
+      },
+      {
+        "authority": "apple_official_primary_guidance",
+        "claimBoundary": "Supports purposeful, optional, input-aware, expectation-consistent feedback; supplies no exact Softie web timing token.",
+        "lineageGroup": "LG-APPLE-OFFICIAL",
+        "sourceId": "SRC-APPLE-HIG-MOTION",
+        "url": "https://developer.apple.com/design/human-interface-guidelines/motion"
+      },
+      {
+        "authority": "apple_official_primary_guidance",
+        "claimBoundary": "Evaluate animations individually; replace meaningful problematic motion with dissolve, highlight fade, or color shift instead of removing meaning.",
+        "lineageGroup": "LG-APPLE-OFFICIAL",
+        "sourceId": "SRC-APPLE-REDUCED-MOTION",
+        "url": "https://developer.apple.com/help/app-store-connect/manage-app-accessibility/reduced-motion-evaluation-criteria"
+      },
+      {
+        "authority": "apple_official_primary_guidance",
+        "claimBoundary": "Button highlight begins on touch-down and commit remains on touch-up; no Softie web CSS timing token.",
+        "lineageGroup": "LG-APPLE-OFFICIAL",
+        "sourceId": "SRC-APPLE-WWDC18-FLUID",
+        "url": "https://developer.apple.com/videos/play/wwdc2018/803/"
+      },
+      {
+        "authority": "web_standard_primary",
+        "claimBoundary": "hover and pointer describe primary pointing capability; layouts and information must not depend on hover availability.",
+        "lineageGroup": "LG-W3C-MQ4",
+        "sourceId": "SRC-W3C-MEDIA-QUERIES-4",
+        "url": "https://www.w3.org/TR/mediaqueries-4/"
+      },
+      {
+        "authority": "apple_derived_external_skill",
+        "lineageGroup": "LG-EMIL10-78761e1b57f9",
+        "sourceId": "SRC-SKILL-APPLE-DERIVED",
+        "sourceRef": {
+          "byteLength": 22715,
+          "byteSha256": "11840b24a11d7f94f39c6aaab074750ae4e4de4ef54ee4b1dd97e16ebd485e61",
+          "kind": "working_tree_text",
+          "lineEnd": 24,
+          "lineStart": 24,
+          "path": ".agents/skills/apple-design/SKILL.md",
+          "quote": "- **Respond on pointer-down, not on release.** Highlight a button the instant it's pressed."
+        }
+      },
+      {
+        "authority": "external_design_engineering_guidance",
+        "independentAuthorityCount": 1,
+        "lineageGroup": "LG-EMIL10-78761e1b57f9",
+        "sourceId": "SRC-EMIL10-CORPUS",
+        "sourceRef": {
+          "byteLength": 9614,
+          "byteSha256": "b75bedcf2dbfa206dfcb9aca951e888bbc709c3718dbd523de4baf67acb42174",
+          "kind": "working_tree_text",
+          "lineEnd": 18,
+          "lineStart": 18,
+          "path": "docs/design-reference-audit-v1-emil10-incremental.md",
+          "quote": "- Upstream ref/revision: `refs/heads/main` / `78761e1b57f97dce65b983d640c70a68f39e8163`"
+        }
+      }
+    ]
+  },
+  "validationBlockerLedger": {
+    "blockers": [
+      {
+        "blockerId": "BLK-PRESS-DEVICE-FEEL",
+        "boundary": "Exact press recipe remains a pilot until product/device feel is observed.",
+        "status": "open"
+      },
+      {
+        "blockerId": "BLK-OVERLAY-GLASS-COMPOSITING",
+        "boundary": "Representative overlays are glass/backdrop-filter surfaces and may not be wrapped in ancestor opacity/transform motion.",
+        "status": "open"
+      },
+      {
+        "blockerId": "BLK-OVERLAY-EXIT-LIFECYCLE",
+        "boundary": "Conditional unmount has no verified exit lifecycle; adding one would expand JS behavior.",
+        "status": "open"
+      },
+      {
+        "blockerId": "BLK-OVERLAY-DEVICE-FEEL",
+        "boundary": "Overlay timing/origin feel is device-only and no product observation exists.",
+        "status": "open"
+      },
+      {
+        "blockerId": "BLK-SYNC-TOAST-GLASS-EXCEPTION",
+        "boundary": "Scheduler sync toast currently animates its own backdrop-filter surface; it is not adopted and needs separate lifecycle/product validation before remediation.",
+        "status": "open"
+      },
+      {
+        "blockerId": "BLK-REDUCED-MOTION-LEGACY-COVERAGE",
+        "boundary": "Adoption covers the common Atmospheric contract and representative pilots, not every legacy route.",
+        "status": "open"
+      },
+      {
+        "blockerId": "BLK-TOKEN-LEGACY-MIXED-VALUES",
+        "boundary": "Legacy raw values remain; broad cleanup was not authorized by role evidence.",
+        "status": "open"
+      }
+    ],
+    "schemaVersion": "softie-interaction-validation-blocker-ledger-v1",
+    "validations": [
+      {
+        "id": "VAL-BASELINE-DESIGN-CHECKERS",
+        "result": "3/3 predecessor checkers passed before edits",
+        "status": "pass"
+      },
+      {
+        "id": "VAL-BASELINE-FOCUSED",
+        "result": "25/25 predecessor and Scheduler focused tests passed before edits",
+        "status": "pass"
+      },
+      {
+        "id": "VAL-BATCH-FOCUSED",
+        "result": "9/9 batch behavior, deterministic materialization, lineage, and per-companion tamper tests passed.",
+        "status": "pass"
+      },
+      {
+        "id": "VAL-REGRESSION-FOCUSED",
+        "result": "41/41 combined artifact-identity, predecessor audit, Scheduler async enter, Scheduler route/View Transition, router, and batch tests passed.",
+        "status": "pass"
+      },
+      {
+        "id": "VAL-FULL-TEST",
+        "result": "628 tests: 592 pass, 35 fail, 1 skip. All 35 failures require the absent nanbei_quanbao_219p or nanyangtang_quanbao_528p PDF source; new non-PDF failures: 0.",
+        "status": "fail_external_pdf_environment"
+      },
+      {
+        "id": "VAL-BUILD",
+        "result": "Vite production build passed; 158 modules transformed.",
+        "status": "pass"
+      },
+      {
+        "id": "VAL-DIFF-CHECK",
+        "result": "git diff --check produced no errors.",
+        "status": "pass"
+      },
+      {
+        "id": "VAL-DEVICE-FEEL",
+        "result": "No new physical-device feel validation in this batch.",
+        "status": "unverified"
+      }
+    ]
+  },
+  "verdict": "complete_softie_low_risk_interaction_foundation_batch_v1_uncommitted"
+}

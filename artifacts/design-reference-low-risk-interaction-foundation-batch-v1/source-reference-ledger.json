@@ -1,0 +1,111 @@
+{
+  "schemaVersion": "softie-interaction-source-reference-ledger-v1",
+  "sources": [
+    {
+      "authority": "repository_authority",
+      "lineageGroup": "LG-SOFTIE-REPOSITORY",
+      "sourceId": "SRC-SOFTIE-AGENTS",
+      "sourceRef": {
+        "byteLength": 12039,
+        "byteSha256": "f1dd85901c74c49ca5e1c81d3db57a9b7aba41b2bd49eb5c2c84114035bdb55d",
+        "kind": "working_tree_text",
+        "lineEnd": 16,
+        "lineStart": 16,
+        "path": "AGENTS.md",
+        "quote": "- Before editing, identify the smallest relevant file set. Edit only requested files and files required to implement or verify the requested change."
+      }
+    },
+    {
+      "authority": "softie_house_rule",
+      "lineageGroup": "LG-SOFTIE-REPOSITORY",
+      "sourceId": "SRC-SOFTIE-DESIGN",
+      "sourceRef": {
+        "byteLength": 33249,
+        "byteSha256": "6363d87019412896cd6e2a6194667532a8bbd9bf9fad82766e6b576bd0f734d5",
+        "kind": "working_tree_text",
+        "lineEnd": 309,
+        "lineStart": 309,
+        "path": "DESIGN.md",
+        "quote": "## 7. Shape, depth, and motion"
+      }
+    },
+    {
+      "authority": "observed_implementation_not_automatically_normative",
+      "lineageGroup": "LG-SOFTIE-REPOSITORY",
+      "sourceId": "SRC-SOFTIE-CODE",
+      "sourceRef": {
+        "byteLength": 137956,
+        "byteSha256": "9842a212d4f9c04d4930f0d286b0857a1df5e5844c300f205d4c96226e2b8250",
+        "kind": "working_tree_text",
+        "lineEnd": 205,
+        "lineStart": 204,
+        "path": "src/styles.css",
+        "quote": "@media (hover: hover) and (pointer: fine) {\n  .ag-primary-action:hover"
+      }
+    },
+    {
+      "authority": "apple_official_primary_guidance",
+      "claimBoundary": "Requires a press state for custom buttons and a sufficiently large hit region; supplies no Softie CSS duration, easing, or scale value.",
+      "lineageGroup": "LG-APPLE-OFFICIAL",
+      "sourceId": "SRC-APPLE-HIG-BUTTONS",
+      "url": "https://developer.apple.com/design/human-interface-guidelines/buttons"
+    },
+    {
+      "authority": "apple_official_primary_guidance",
+      "claimBoundary": "Supports purposeful, optional, input-aware, expectation-consistent feedback; supplies no exact Softie web timing token.",
+      "lineageGroup": "LG-APPLE-OFFICIAL",
+      "sourceId": "SRC-APPLE-HIG-MOTION",
+      "url": "https://developer.apple.com/design/human-interface-guidelines/motion"
+    },
+    {
+      "authority": "apple_official_primary_guidance",
+      "claimBoundary": "Evaluate animations individually; replace meaningful problematic motion with dissolve, highlight fade, or color shift instead of removing meaning.",
+      "lineageGroup": "LG-APPLE-OFFICIAL",
+      "sourceId": "SRC-APPLE-REDUCED-MOTION",
+      "url": "https://developer.apple.com/help/app-store-connect/manage-app-accessibility/reduced-motion-evaluation-criteria"
+    },
+    {
+      "authority": "apple_official_primary_guidance",
+      "claimBoundary": "Button highlight begins on touch-down and commit remains on touch-up; no Softie web CSS timing token.",
+      "lineageGroup": "LG-APPLE-OFFICIAL",
+      "sourceId": "SRC-APPLE-WWDC18-FLUID",
+      "url": "https://developer.apple.com/videos/play/wwdc2018/803/"
+    },
+    {
+      "authority": "web_standard_primary",
+      "claimBoundary": "hover and pointer describe primary pointing capability; layouts and information must not depend on hover availability.",
+      "lineageGroup": "LG-W3C-MQ4",
+      "sourceId": "SRC-W3C-MEDIA-QUERIES-4",
+      "url": "https://www.w3.org/TR/mediaqueries-4/"
+    },
+    {
+      "authority": "apple_derived_external_skill",
+      "lineageGroup": "LG-EMIL10-78761e1b57f9",
+      "sourceId": "SRC-SKILL-APPLE-DERIVED",
+      "sourceRef": {
+        "byteLength": 22715,
+        "byteSha256": "11840b24a11d7f94f39c6aaab074750ae4e4de4ef54ee4b1dd97e16ebd485e61",
+        "kind": "working_tree_text",
+        "lineEnd": 24,
+        "lineStart": 24,
+        "path": ".agents/skills/apple-design/SKILL.md",
+        "quote": "- **Respond on pointer-down, not on release.** Highlight a button the instant it's pressed."
+      }
+    },
+    {
+      "authority": "external_design_engineering_guidance",
+      "independentAuthorityCount": 1,
+      "lineageGroup": "LG-EMIL10-78761e1b57f9",
+      "sourceId": "SRC-EMIL10-CORPUS",
+      "sourceRef": {
+        "byteLength": 9614,
+        "byteSha256": "b75bedcf2dbfa206dfcb9aca951e888bbc709c3718dbd523de4baf67acb42174",
+        "kind": "working_tree_text",
+        "lineEnd": 18,
+        "lineStart": 18,
+        "path": "docs/design-reference-audit-v1-emil10-incremental.md",
+        "quote": "- Upstream ref/revision: `refs/heads/main` / `78761e1b57f97dce65b983d640c70a68f39e8163`"
+      }
+    }
+  ]
+}

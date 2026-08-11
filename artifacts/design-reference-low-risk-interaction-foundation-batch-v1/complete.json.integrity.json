@@ -1,0 +1,37 @@
+{
+  "artifactId": "design-reference-low-risk-interaction-foundation-batch-v1",
+  "completeArtifactPath": "artifacts/design-reference-low-risk-interaction-foundation-batch-v1/complete.json",
+  "files": {
+    "artifacts/design-reference-low-risk-interaction-foundation-batch-v1/complete.json": {
+      "byteLength": 30769,
+      "byteSha256": "40e3752c83ca674ee9e6fe43f54c4d4206d69d15fdfbc5280202c967e8c87d49",
+      "hashScope": "exact UTF-8 file bytes including final LF"
+    },
+    "artifacts/design-reference-low-risk-interaction-foundation-batch-v1/frontier-decision-ledger.json": {
+      "byteLength": 5361,
+      "byteSha256": "8595142ee2adacdc77ff72c84a5b5b5b6a03aa42257497b7a8846d72690fc1fb",
+      "hashScope": "exact UTF-8 file bytes including final LF"
+    },
+    "artifacts/design-reference-low-risk-interaction-foundation-batch-v1/implementation-observation-ledger.json": {
+      "byteLength": 7662,
+      "byteSha256": "69aa9f1ebf1ad688bd2b8425a8ae33a05ffc41ee2e0ea26302d0f4691f138ebc",
+      "hashScope": "exact UTF-8 file bytes including final LF"
+    },
+    "artifacts/design-reference-low-risk-interaction-foundation-batch-v1/provenance-lineage.json": {
+      "byteLength": 2145,
+      "byteSha256": "b900e079e3e438b43b4b0985343bac72bb39a29195df3b1a379e1c37ffa7b47b",
+      "hashScope": "exact UTF-8 file bytes including final LF"
+    },
+    "artifacts/design-reference-low-risk-interaction-foundation-batch-v1/source-reference-ledger.json": {
+      "byteLength": 4732,
+      "byteSha256": "94acae09e0ffcedf4c92518c19e39e3777b8ec0614d19c5f606323a1c9091f07",
+      "hashScope": "exact UTF-8 file bytes including final LF"
+    },
+    "artifacts/design-reference-low-risk-interaction-foundation-batch-v1/validation-blocker-ledger.json": {
+      "byteLength": 2955,
+      "byteSha256": "e967a814f2ecb2e4e82155e07c6f1da3669b92af2778319eec5225130662a750",
+      "hashScope": "exact UTF-8 file bytes including final LF"
+    }
+  },
+  "schemaVersion": "design-reference-audit-integrity-v1"
+}

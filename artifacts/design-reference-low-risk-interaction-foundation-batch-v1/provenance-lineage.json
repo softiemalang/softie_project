@@ -1,0 +1,66 @@
+{
+  "authorityPriority": [
+    "AGENTS.md / DESIGN.md",
+    "current_work_order",
+    "repository_evidence",
+    "external_skill"
+  ],
+  "emilCorpus": {
+    "duplicateValuePolicy": "Repeated values or claims across the ten installed Skills count once, not as independent corroboration.",
+    "independentAuthorityCount": 1,
+    "installationIsAdoption": false,
+    "installedSkillCount": 10,
+    "lineageGroup": "LG-EMIL10-78761e1b57f9",
+    "revision": "78761e1b57f97dce65b983d640c70a68f39e8163"
+  },
+  "evidenceClasses": [
+    "direct_evidence",
+    "adjacent_role_evidence",
+    "softie_house_evidence",
+    "product_device_evidence"
+  ],
+  "frozenPredecessors": [
+    {
+      "assertions": [
+        {
+          "equals": "complete_softie_design_reference_audit_v1_uncommitted",
+          "path": "#/verdict"
+        }
+      ],
+      "byteLength": 4638226,
+      "byteSha256": "b8848d01cf663ae1c432612f3852175a0cde4e589d0914d408bbdfc26373f527",
+      "kind": "historical_artifact_json",
+      "path": "artifacts/design-reference-audit-v1/complete.json"
+    },
+    {
+      "assertions": [
+        {
+          "equals": 1,
+          "path": "#/provenanceLineage/lineageGroups/0/independentAuthorityCount"
+        }
+      ],
+      "byteLength": 91248,
+      "byteSha256": "d81ae9e4aace68a7373fb8cee9d1548363b961835a2945ad4c0df1e05bb965c0",
+      "kind": "historical_artifact_json",
+      "path": "artifacts/design-reference-audit-v1-emil10-incremental/complete.json"
+    },
+    {
+      "assertions": [
+        {
+          "equals": "complete_softie_async_content_enter_200ms_house_rule_promoted_uncommitted",
+          "path": "#/verdict"
+        },
+        {
+          "contains": "not a universal 200ms rule",
+          "path": "#/recipe/generalizationBoundary"
+        }
+      ],
+      "byteLength": 25292,
+      "byteSha256": "c0ca42509ca526c8aff6f76749926485f6e56ebda4b399b8f193c05ade78399c",
+      "kind": "historical_artifact_json",
+      "path": "artifacts/design-reference-async-content-enter-200ms-promotion/complete.json"
+    }
+  ],
+  "historicalBytesPreserved": true,
+  "schemaVersion": "softie-interaction-provenance-lineage-v1"
+}
