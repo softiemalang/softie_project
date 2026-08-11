@@ -877,6 +877,13 @@ textarea {
   --scheduler-shell-width: 860px;
   --scheduler-card-pad: 0.9rem;
   --scheduler-content-inset: 0.34rem;
+  --scheduler-event-card-border-left-width: 5px;
+  --scheduler-event-card-pad-x: 0.5rem;
+  --scheduler-event-card-content-start: calc(
+    var(--scheduler-event-card-border-left-width) +
+    var(--scheduler-event-card-pad-x) +
+    var(--scheduler-content-inset)
+  );
   --scheduler-gap-2xs: 0.18rem;
   --scheduler-gap-xs: 0.28rem;
   --scheduler-gap-sm: 0.42rem;
@@ -2042,14 +2049,14 @@ textarea {
   gap: 0.18rem;
   border-radius: var(--scheduler-radius-lg);
   border: 1px solid #eadfce;
-  border-left: 5px solid #d6c8b6;
+  border-left: var(--scheduler-event-card-border-left-width) solid #d6c8b6;
   background: #fffdf9;
-  padding: 0.28rem 0.5rem 0.48rem;
+  padding: 0.28rem var(--scheduler-event-card-pad-x) 0.48rem;
 }
 
 .scheduler-event-card.has-note {
   gap: 0.14rem;
-  padding: 0.24rem 0.5rem 0.42rem;
+  padding: 0.24rem var(--scheduler-event-card-pad-x) 0.42rem;
 }
 
 .scheduler-event-card.event-checkin {
@@ -4843,6 +4850,7 @@ textarea {
 .scheduler-theme-shell .scheduler-shell {
   --scheduler-card-pad: 1rem;
   --scheduler-content-inset: 0.42rem;
+  --scheduler-event-card-pad-x: 0.75rem;
   --scheduler-gap-2xs: 0.25rem;
   --scheduler-gap-xs: 0.4rem;
   --scheduler-gap-sm: 0.6rem;
@@ -5096,10 +5104,16 @@ textarea {
 .scheduler-theme-shell .scheduler-today-page .scheduler-loading-floor-note {
   position: absolute;
   inset: 0;
-  display: grid;
-  place-items: start;
+  display: block;
   margin: 0;
-  padding: var(--scheduler-content-inset);
+  padding-top: calc(var(--scheduler-initial-event-card-floor-height) / 3);
+  padding-right: 0;
+  padding-bottom: 0;
+  padding-left: var(--scheduler-event-card-content-start);
+  color: var(--ag-text-tertiary);
+  font-size: var(--scheduler-type-body-size);
+  font-weight: var(--scheduler-type-body-weight);
+  line-height: 1.25;
   text-align: left;
   white-space: nowrap;
 }
@@ -6104,6 +6118,7 @@ textarea {
   }
 
   .scheduler-theme-shell .scheduler-shell {
+    --scheduler-event-card-pad-x: 0.68rem;
     padding:
       max(1rem, calc(env(safe-area-inset-top) + 0.75rem))
       1.1rem
@@ -6117,12 +6132,12 @@ textarea {
 
   .scheduler-theme-shell .scheduler-event-card {
     gap: 0.2rem;
-    padding: 0.42rem 0.68rem calc(0.42rem - 3px);
+    padding: 0.42rem var(--scheduler-event-card-pad-x) calc(0.42rem - 3px);
   }
 
   .scheduler-theme-shell .scheduler-event-card.has-note {
     gap: 0.22rem;
-    padding: 0.45rem 0.68rem calc(0.45rem - 3px);
+    padding: 0.45rem var(--scheduler-event-card-pad-x) calc(0.45rem - 3px);
   }
 
   .scheduler-theme-shell .scheduler-event-actions {

@@ -111,12 +111,25 @@ test('Today reserves a four-card floor only for the first empty loading request'
   assert.ok(loadingNoteRule, 'loading copy should have a Scheduler-scoped alignment rule')
   assert.match(loadingNoteRule, /position:\s*absolute/)
   assert.match(loadingNoteRule, /inset:\s*0/)
-  assert.match(loadingNoteRule, /place-items:\s*start/)
-  assert.match(loadingNoteRule, /padding:\s*var\(--scheduler-content-inset\)/)
+  assert.match(loadingNoteRule, /display:\s*block/)
+  assert.match(loadingNoteRule, /padding-top:\s*calc\(var\(--scheduler-initial-event-card-floor-height\)\s*\/\s*3\)/)
+  assert.match(loadingNoteRule, /padding-left:\s*var\(--scheduler-event-card-content-start\)/)
+  assert.match(loadingNoteRule, /font-size:\s*var\(--scheduler-type-body-size\)/)
+  assert.match(loadingNoteRule, /font-weight:\s*var\(--scheduler-type-body-weight\)/)
+  assert.match(loadingNoteRule, /color:\s*var\(--ag-text-tertiary\)/)
+  assert.match(loadingNoteRule, /line-height:\s*1\.25/)
   assert.match(loadingNoteRule, /text-align:\s*left/)
-  assert.doesNotMatch(loadingNoteRule, /place-items:\s*center|text-align:\s*center/)
+  assert.doesNotMatch(loadingNoteRule, /place-items|text-align:\s*center/)
   assert.match(loadingNoteRule, /white-space:\s*nowrap/)
-  assert.doesNotMatch(loadingNoteRule, /animation|transform|height|min-height|delay/)
+  assert.doesNotMatch(loadingNoteRule, /animation|transition|transform|delay/)
+  assert.doesNotMatch(loadingNoteRule, /(?:^|\n)\s*(?:height|min-height)\s*:/)
+  assert.match(
+    styles,
+    /--scheduler-event-card-content-start:\s*calc\([\s\S]*?var\(--scheduler-event-card-border-left-width\)[\s\S]*?var\(--scheduler-event-card-pad-x\)[\s\S]*?var\(--scheduler-content-inset\)[\s\S]*?\);/,
+  )
+  assert.match(styles, /border-left:\s*var\(--scheduler-event-card-border-left-width\)\s+solid/)
+  assert.match(styles, /padding:\s*0\.28rem\s+var\(--scheduler-event-card-pad-x\)\s+0\.48rem/)
+  assert.match(styles, /--scheduler-event-card-pad-x:\s*0\.68rem/)
 })
 
 test('event lists stay stable while the glass section shell remains outside the animation target', () => {
