@@ -1,0 +1,110 @@
+{
+  "duration": {
+    "decision": "insufficient_to_prefer",
+    "decisionClasses": {
+      "directly_supported": [],
+      "insufficient_to_prefer": true,
+      "range_supported_candidate": [
+        "under-300ms"
+      ],
+      "softie_empirical_candidate": [
+        "180ms"
+      ]
+    },
+    "directLoadingValue": false,
+    "matrix": "artifacts/design-reference-audit-v1-emil10-incremental/duration-easing-candidate-matrix.json",
+    "observedCandidates": [
+      "150ms",
+      "160ms",
+      "180ms",
+      "200ms",
+      "250ms",
+      "4000ms_toast_lifetime"
+    ],
+    "pilotPair": [
+      "180ms",
+      "200ms"
+    ],
+    "pilotPairBoundary": "At most two controlled comparison candidates; neither is externally direct-supported for loading reveal."
+  },
+  "easing": {
+    "doNotInherit": "Softie 180ms ease as a loading-specific external recommendation",
+    "normal": "cubic-bezier(0.23, 1, 0.32, 1)",
+    "role": "ease-out_for_entering_content",
+    "status": "direct_role_match_for_easing_not_for_duration"
+  },
+  "noImplementationInThisWorkUnit": true,
+  "properties": {
+    "blur": "only_if_an_actual_crossfade_double_exposes_and_a_feel_check shows it helps; not a default",
+    "corpusBoundary": [
+      "transform",
+      "opacity"
+    ],
+    "implementationTool": "plain CSS transition or @starting-style; no new motion library for a simple fade",
+    "layoutProperties": "do_not_animate",
+    "schedulerPilot": [
+      "opacity"
+    ],
+    "stagger": "do_not_use",
+    "transformDecision": "avoid_for_this_dense_reading_surface as a contextual inference; corpus does not ban transform for all normal loading entrances"
+  },
+  "purpose": [
+    "state_indication",
+    "preventing_a_jarring_change"
+  ],
+  "recommendationClass": "insufficient_to_prefer",
+  "reducedMotion": {
+    "adoptionBoundary": "This does not amend DESIGN.md or claim repository-wide reduced-motion adoption.",
+    "alternative": "static state or short opacity/color-only dissolve; no transform, stagger, or overshoot",
+    "normalMovement": "remove",
+    "preserve": [
+      "loading_vs_empty_state_information",
+      "opacity_or_color_comprehension"
+    ],
+    "status": "required_pilot_gate"
+  },
+  "schemaVersion": "design-reference-loading-reveal-recommendation-emil10-v1",
+  "staleRefetchBoundary": "No animation while old events remain visible during refetch; only the first empty-state successful fetch is in scope.",
+  "status": "candidate_for_pilot",
+  "type": {
+    "canonical": "state_triggered_content_enter_after_async_fetch",
+    "directRoleEvidence": "teleporting_state_conditional_content_swap",
+    "vocabulary": [
+      {
+        "classification": "direct_role_match",
+        "term": "Enter / Exit",
+        "use": "primary name for loaded content being mounted"
+      },
+      {
+        "classification": "adjacent_role_guidance",
+        "term": "Fade in / Fade out",
+        "use": "safest visual mechanism for a dense list pilot"
+      },
+      {
+        "classification": "adjacent_role_guidance",
+        "term": "Crossfade",
+        "use": "only if loading and loaded states visibly overlap in the same spot"
+      },
+      {
+        "classification": "adjacent_role_guidance",
+        "term": "Reveal",
+        "use": "only when a clip-path or mask actually uncovers content"
+      },
+      {
+        "classification": "not_applicable",
+        "term": "Scroll reveal",
+        "use": "no scroll trigger in the Today fetch"
+      },
+      {
+        "classification": "not_applicable",
+        "term": "Page transition / View transition",
+        "use": "not route navigation"
+      },
+      {
+        "classification": "not_applicable",
+        "term": "Skeleton / Shimmer",
+        "use": "not the current textual loading contract and no new placeholder is admitted"
+      }
+    ]
+  }
+}

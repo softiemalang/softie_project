@@ -1,0 +1,2331 @@
+{
+  "artifactIdentity": {
+    "artifactId": "design-reference-audit-v1-emil10-incremental",
+    "artifactPayloadSha256": "25befd37769e6dc9a13d030ab017025fe6d3243848b2ad7691452714bb6535aa",
+    "contractVersion": "artifact-identity-v1",
+    "generation": {
+      "baseHead": "e5ce1a426c627a070b80c662edb032792d84a82f",
+      "baseHeadSource": "git rev-parse HEAD at materialization",
+      "includedCommit": null,
+      "includedCommitSource": "unknown_at_generation; artifact may be included by a later commit"
+    },
+    "inputs": [
+      {
+        "byteSha256": "21ff63d84391db8d96ecdf9170095f55a42c836ccc36fd3269c4772bab031ba2",
+        "path": ".agents/skills/animate/RECIPES.md"
+      },
+      {
+        "byteSha256": "2a99870e61971553c0af3185a194c0e557f33aaa81e0422ca2fcec52195a4341",
+        "path": ".agents/skills/animate/SKILL.md"
+      },
+      {
+        "byteSha256": "d718b48fe3c7898804d588f050a2e266d82c9f5ef51da256c8cb8b5951527757",
+        "path": ".agents/skills/animation-vocabulary/SKILL.md"
+      },
+      {
+        "byteSha256": "11840b24a11d7f94f39c6aaab074750ae4e4de4ef54ee4b1dd97e16ebd485e61",
+        "path": ".agents/skills/apple-design/SKILL.md"
+      },
+      {
+        "byteSha256": "4bb06f482c5757529e3d7a672a30fbeed42d24919a63e2571384a9ce1549aa7f",
+        "path": ".agents/skills/ask-sonner/API.md"
+      },
+      {
+        "byteSha256": "be1b04511aadb4d7d81aa8cd2b55c260a626aae534983bc8ae3fbe26bbf48632",
+        "path": ".agents/skills/ask-sonner/SKILL.md"
+      },
+      {
+        "byteSha256": "e71de849347050c2c573c1cf24d742d5a13459557ecffa6e562f08006f46b5b7",
+        "path": ".agents/skills/emil-design-eng/SKILL.md"
+      },
+      {
+        "byteSha256": "91c1243164057fbf824088d12faea937878a757a7ac653e8288b775e8b27b882",
+        "path": ".agents/skills/find-animation-opportunities/SKILL.md"
+      },
+      {
+        "byteSha256": "551c8473e20e5f4774680bc24d45e1c68e50992582720905c6b077756b7b5a55",
+        "path": ".agents/skills/improve-animations/AUDIT.md"
+      },
+      {
+        "byteSha256": "0a08ac8e23fd2082d7ffb86aeed7b789de77328c3cf874b16f1a755f2ef0a6ad",
+        "path": ".agents/skills/improve-animations/PLAN-TEMPLATE.md"
+      },
+      {
+        "byteSha256": "68f17bbc4671593d2f43dba26a679243e2153ba5f26965fb7d59df52842534ff",
+        "path": ".agents/skills/improve-animations/SKILL.md"
+      },
+      {
+        "byteSha256": "4b889bd6c08358499ac4a7202b8af71ffbd3485d2468f7b09d0613bbe7b24bf4",
+        "path": ".agents/skills/pick-ui-library/SKILL.md"
+      },
+      {
+        "byteSha256": "31a55eec94715cc79942e91e172e539e3031dcd5e2e5ee7c1446cf2caee960a6",
+        "path": ".agents/skills/prototype/PICKER.md"
+      },
+      {
+        "byteSha256": "2ad8401c4deaddb54947fb65247f790e7b3d8784e35312bcbedbfb1d59cd89ce",
+        "path": ".agents/skills/prototype/SKILL.md"
+      },
+      {
+        "byteSha256": "61cf8ac0c4c8e1f63385298c546b16c65ca9aec34abddcd04e821c16712d671d",
+        "path": ".agents/skills/review-animations/SKILL.md"
+      },
+      {
+        "byteSha256": "e7d3605034acda54ca13e43aec9e64d65b53de20f75b11b8d694e373012fbe07",
+        "path": ".agents/skills/review-animations/STANDARDS.md"
+      },
+      {
+        "byteSha256": "f1dd85901c74c49ca5e1c81d3db57a9b7aba41b2bd49eb5c2c84114035bdb55d",
+        "path": "AGENTS.md"
+      },
+      {
+        "byteSha256": "b8848d01cf663ae1c432612f3852175a0cde4e589d0914d408bbdfc26373f527",
+        "path": "artifacts/design-reference-audit-v1/complete.json"
+      },
+      {
+        "byteSha256": "1c99c871e53a700a0d0dfab01c68e0c7729df91daf7101aef2b61f5c2cb2c57b",
+        "path": "artifacts/design-reference-audit-v1/conflict-compatibility-matrix.json"
+      },
+      {
+        "byteSha256": "26eda8128697eeb4d0207141001fdb0f98e57c233cb34b63b26ca58c3ec8f1e4",
+        "path": "artifacts/design-reference-audit-v1/observation-value-ledger.json"
+      },
+      {
+        "byteSha256": "7febb78d8903b69f18246abeb8522a58088cfdbe6bb5ad8e7f3ce92387e674cc",
+        "path": "artifacts/design-reference-audit-v1/pilot-candidate-shortlist.json"
+      },
+      {
+        "byteSha256": "76ef1dedf067855bc39ce6ad0d0ab0e4c64ee7673b0ed8e67237d452822d1884",
+        "path": "artifacts/design-reference-audit-v1/provenance-lineage.json"
+      },
+      {
+        "byteSha256": "7887d6d0641a41f2a69834a3ad9ec809312d2cad4a02f605e8ce87b427fca80a",
+        "path": "artifacts/design-reference-audit-v1/source-reference-ledger.json"
+      },
+      {
+        "byteSha256": "15da2799083244bce17635b942a86824ce2d5b52056bf0f90775fe03f9b26610",
+        "path": "DESIGN.md"
+      },
+      {
+        "byteSha256": "0a287d0bfbb7e2233f029920dbdcaff975a349a7dfdf331789daa53ac15a0b32",
+        "path": "docs/design-reference-audit-v1.md"
+      },
+      {
+        "byteSha256": "ed70e89b048214ec9ec6356d358b0a16c4393ea4260a1a7868381555e46bf266",
+        "path": "scripts/materialize-design-reference-audit-v1-emil10-incremental.mjs"
+      },
+      {
+        "byteSha256": "b0f28ec15daf7056afb246adabd59f28e99bf4f8ad96431d7f11e00f754fee95",
+        "path": "skills-lock.json"
+      },
+      {
+        "byteSha256": "45d47c02b33ef924331a3064b579b68402e52c5393322c1de6071421a6085fc7",
+        "path": "src/artifactIdentity.js"
+      },
+      {
+        "byteSha256": "bbd4be43c90c29b48ffc8475e8e8d77743e74e37ba744397788e7b842ddf5053",
+        "path": "src/lib/router.js"
+      },
+      {
+        "byteSha256": "306811825b7f3c25e3d41d51e1ea2fd5c29ecb38f20309356435f9d885118577",
+        "path": "src/scheduler/SchedulerApp.jsx"
+      },
+      {
+        "byteSha256": "0d31f73caf0547c84f2494604a3e7caa1322a7344556581441ab3b55433e495f",
+        "path": "src/scheduler/SchedulerEventCard.jsx"
+      },
+      {
+        "byteSha256": "3861472c680e8c8f9e9f3ce5bfa52583f245b221bf1d20a91a5e703f4bffef74",
+        "path": "src/scheduler/SchedulerEventSection.jsx"
+      },
+      {
+        "byteSha256": "4a92300b825ac4d6385439212aff29b28e28b392dc2e4884d3cce8ccb4d4a368",
+        "path": "src/scheduler/TodaySchedulerPage.jsx"
+      },
+      {
+        "byteSha256": "b41649dbe652136a252466f97b95199ba45e904fde2becde68cfd2732f2fc6c5",
+        "path": "src/styles.css"
+      },
+      {
+        "byteSha256": "8f0af11e381d738bcf451cca6ce0fb93af9aac481d73cce28e3b21dcaa757b21",
+        "path": "THIRD_PARTY_NOTICES.md"
+      }
+    ],
+    "materializer": {
+      "path": "scripts/materialize-design-reference-audit-v1-emil10-incremental.mjs",
+      "version": "design-reference-audit-v1-emil10-incremental-materializer-1"
+    }
+  },
+  "auditDate": "2026-08-11",
+  "authorityTiers": [
+    {
+      "boundary": "Direct local observation only; originality and reuse rights remain separate.",
+      "code": "apple_official_artifact",
+      "id": "T1",
+      "name": "Apple official artifact"
+    },
+    {
+      "boundary": "A translation layer, never Apple primary authority.",
+      "code": "apple_derived_guidance",
+      "id": "T2",
+      "name": "Apple-derived guidance"
+    },
+    {
+      "boundary": "Emil-style web practice; all files in this corpus share one upstream author/repository lineage.",
+      "code": "independent_design_engineering_guidance",
+      "id": "T3",
+      "name": "Independent design-engineering guidance"
+    },
+    {
+      "boundary": "Current DESIGN.md or deliberately observed implementation value.",
+      "code": "softie_house_rule",
+      "id": "T4",
+      "name": "Softie house rule"
+    },
+    {
+      "boundary": "Pilot hypothesis only; never an adopted rule.",
+      "code": "proposed_candidate",
+      "id": "T5",
+      "name": "Proposed candidate"
+    }
+  ],
+  "blockers": [
+    {
+      "detail": "The pinned corpus provides role ranges and adjacent exact values but no duration explicitly assigned to async loaded-content entry.",
+      "id": "BLK-EMIL10-NO-LOADING-DURATION",
+      "mitigation": "Keep recommendationClass insufficient_to_prefer; use no value as an adopted rule.",
+      "status": "open",
+      "subject": "loading_role_duration_missing"
+    },
+    {
+      "detail": "DESIGN.md and v1 identify 180ms as a T4 Softie value, but do not identify its original selection rationale.",
+      "id": "BLK-EMIL10-180-ORIGIN",
+      "mitigation": "Do not attribute 180ms to Apple or Emil; retain it as house/applied code evidence only.",
+      "status": "open",
+      "subject": "180ms_original_selection_provenance"
+    },
+    {
+      "detail": "The current main worktree contains route CSS and structural tests but no physical-device feel log proving that 180ms passed device validation.",
+      "id": "BLK-EMIL10-ROUTE-DEVICE-EVIDENCE",
+      "mitigation": "Describe route 180ms as applied/observed code, not a verified empirical pass; require device evidence before promotion.",
+      "status": "open",
+      "subject": "route_180ms_physical_device_validation"
+    },
+    {
+      "detail": "No browser or physical-device feel check was performed for a loaded-content reveal.",
+      "id": "BLK-EMIL10-LOADING-FEEL",
+      "mitigation": "If a pilot is authorized, compare only the bounded pair with easing/properties fixed and inspect dense-list scanning.",
+      "status": "open",
+      "subject": "loading_reveal_runtime_feel"
+    },
+    {
+      "detail": "The corpus says reduced motion is fewer/gentler rather than zero, while DESIGN.md and current CSS often collapse durations to near-zero.",
+      "id": "BLK-EMIL10-REDUCED-MOTION-CONFLICT",
+      "mitigation": "Keep this as an adoption decision and pilot gate; do not change DESIGN.md or global CSS in this audit.",
+      "status": "open",
+      "subject": "house_rule_vs_corpus_reduced_motion"
+    },
+    {
+      "detail": "All ten installed skills and companions are pinned to one emilkowalski/skills revision and are counted as one independent T3 lineage.",
+      "id": "BLK-EMIL10-LINEAGE-DUPLICATION",
+      "mitigation": "Use provenance-lineage.json relations and independentEvidenceCount=1 for every corpus-derived conclusion.",
+      "status": "resolved_by_artifact_contract",
+      "subject": "same_author_lineage_double_counting"
+    }
+  ],
+  "claimRelations": {
+    "predecessor": {
+      "artifact": "artifacts/design-reference-audit-v1/complete.json",
+      "artifactId": "design-reference-audit-v1",
+      "document": "docs/design-reference-audit-v1.md",
+      "preserved": true
+    },
+    "relations": [
+      {
+        "effect": "The pilot seam is confirmed as a conditional content-enter/prevent-jarring-change opportunity; candidate status remains candidate_for_pilot.",
+        "id": "REL-EMIL10-001",
+        "independentEvidenceCount": 1,
+        "independentLineageGroups": [
+          "LG-EMIL10-78761e1b57f9"
+        ],
+        "newEvidenceIds": [
+          "OBS-EMIL10-TELEPORTING-STATE",
+          "OBS-EMIL10-VOCAB-ENTER-EXIT"
+        ],
+        "target": {
+          "area": "async_loading_loaded_reveal",
+          "v1MatrixId": "MAT-03",
+          "v1PilotId": "PILOT-01"
+        },
+        "type": "confirm"
+      },
+      {
+        "effect": "Name the motion precisely as state-triggered content enter after async fetch; scroll reveal, page transition, skeleton/shimmer, and generic crossfade are not automatic classifications.",
+        "id": "REL-EMIL10-002",
+        "independentEvidenceCount": 1,
+        "independentLineageGroups": [
+          "LG-EMIL10-78761e1b57f9"
+        ],
+        "newEvidenceIds": [
+          "OBS-EMIL10-TELEPORTING-STATE",
+          "OBS-EMIL10-STARTING-STYLE",
+          "OBS-EMIL10-DENSE-READING"
+        ],
+        "target": {
+          "area": "async_loading_loaded_reveal",
+          "v1MatrixId": "MAT-03",
+          "v1PilotId": "PILOT-01"
+        },
+        "type": "amend"
+      },
+      {
+        "effect": "The seven-Skill increment adds no loading-specific duration. 150/160/180/200ms remain adjacent-role or Softie-applied values; duration preference stays insufficient_to_prefer.",
+        "id": "REL-EMIL10-003",
+        "independentEvidenceCount": 1,
+        "independentLineageGroups": [
+          "LG-EMIL10-78761e1b57f9"
+        ],
+        "newEvidenceIds": [
+          "OBS-EMIL10-DURATION-ROLE-RANGES",
+          "OBS-EMIL10-SELECT-180",
+          "OBS-EMIL10-PRESS-160",
+          "OBS-EMIL10-ADJACENT-200"
+        ],
+        "target": {
+          "area": "duration_easing_roles",
+          "v1MatrixId": "MAT-11"
+        },
+        "type": "amend"
+      },
+      {
+        "effect": "Transform/opacity remains the external performance boundary, while Scheduler-specific opacity-only is recorded as a contextual pilot inference; no global retrofit is authorized.",
+        "id": "REL-EMIL10-004",
+        "independentEvidenceCount": 1,
+        "independentLineageGroups": [
+          "LG-EMIL10-78761e1b57f9"
+        ],
+        "newEvidenceIds": [
+          "OBS-EMIL10-PROPERTIES",
+          "OBS-EMIL10-DENSE-READING"
+        ],
+        "target": {
+          "area": "opacity_transform",
+          "v1MatrixId": "MAT-07",
+          "v1PilotId": "PILOT-01"
+        },
+        "type": "confirm"
+      },
+      {
+        "effect": "Reduced motion should preserve status comprehension with static or opacity/color-only feedback and remove movement; the v1 audit gate remains.",
+        "id": "REL-EMIL10-005",
+        "independentEvidenceCount": 1,
+        "independentLineageGroups": [
+          "LG-EMIL10-78761e1b57f9"
+        ],
+        "newEvidenceIds": [
+          "OBS-EMIL10-REDUCED-MOTION"
+        ],
+        "target": {
+          "area": "reduced_motion",
+          "v1MatrixId": "MAT-06",
+          "v1PilotId": "PILOT-01"
+        },
+        "type": "confirm"
+      },
+      {
+        "effect": "No stagger and no stale-refetch animation remain correct for the dense operational Today list.",
+        "id": "REL-EMIL10-006",
+        "independentEvidenceCount": 1,
+        "independentLineageGroups": [
+          "LG-EMIL10-78761e1b57f9"
+        ],
+        "newEvidenceIds": [
+          "OBS-EMIL10-NO-STAGGER",
+          "OBS-EMIL10-DENSE-READING"
+        ],
+        "target": {
+          "area": "async_loading_loaded_reveal",
+          "v1MatrixId": "MAT-03",
+          "v1PilotId": "PILOT-01"
+        },
+        "type": "confirm"
+      },
+      {
+        "effect": "180ms remains a T4 Softie house/applied code value. The new select example is adjacent only. Current main contains no evidence that Scheduler route 180ms passed a physical-device feel validation; that claim remains unverified. Loading reveal has separate validation status.",
+        "id": "REL-EMIL10-007",
+        "independentEvidenceCount": 1,
+        "independentLineageGroups": [
+          "LG-EMIL10-78761e1b57f9"
+        ],
+        "newEvidenceIds": [
+          "OBS-EMIL10-SELECT-180"
+        ],
+        "target": {
+          "area": "180ms_status",
+          "v1MatrixId": "MAT-02",
+          "v1ObservationId": "OBS-SOFTIE-DURATION-FAST"
+        },
+        "type": "amend"
+      },
+      {
+        "effect": "No new spinner, shimmer, toast, or loading-indicator contract is admitted for Scheduler Today.",
+        "id": "REL-EMIL10-008",
+        "independentEvidenceCount": 1,
+        "independentLineageGroups": [
+          "LG-EMIL10-78761e1b57f9"
+        ],
+        "newEvidenceIds": [
+          "OBS-EMIL10-SKELETON-NAME",
+          "OBS-EMIL10-SONNER-LOADING"
+        ],
+        "target": {
+          "area": "progress_loading_indicators",
+          "v1MatrixId": "MAT-08"
+        },
+        "type": "confirm"
+      },
+      {
+        "effect": "Correct the v1 wording: hideEmptyText suppresses post-load empty labels, but the SchedulerEventSection condition explicitly still renders the loading text for the first two sections. No content-entry reveal exists yet.",
+        "id": "REL-EMIL10-009",
+        "independentEvidenceCount": 1,
+        "independentLineageGroups": [
+          "LG-EMIL10-78761e1b57f9"
+        ],
+        "newEvidenceIds": [
+          "OBS-EMIL10-TELEPORTING-STATE"
+        ],
+        "supportingCodeObservationIds": [
+          "CODE-LOAD-002"
+        ],
+        "target": {
+          "area": "loading_text_visibility",
+          "v1MatrixId": "MAT-03",
+          "v1PilotId": "PILOT-01"
+        },
+        "type": "amend"
+      }
+    ],
+    "schemaVersion": "design-reference-claim-relations-emil10-incremental-v1",
+    "summary": {
+      "amendCount": 4,
+      "confirmCount": 5,
+      "supersedeCount": 0,
+      "supersededClaims": []
+    }
+  },
+  "documentContract": {
+    "derivedFrom": [
+      "upstreamCorpus",
+      "sourceReferenceLedger",
+      "newSkillObservationLedger",
+      "provenanceLineage",
+      "claimRelations",
+      "durationEasingCandidateMatrix",
+      "loadingRevealRecommendation",
+      "schedulerApplicability",
+      "blockers"
+    ],
+    "deterministic": true,
+    "path": "docs/design-reference-audit-v1-emil10-incremental.md",
+    "predecessorPreserved": "docs/design-reference-audit-v1.md and artifacts/design-reference-audit-v1/*",
+    "sourceOfTruth": "complete.json"
+  },
+  "durationEasingCandidateMatrix": {
+    "decisionClasses": {
+      "directly_supported": {
+        "reason": "No Skill assigns a duration to async loaded-content entry.",
+        "status": "none",
+        "values": []
+      },
+      "insufficient_to_prefer": {
+        "reason": "Role mismatch or missing loading-specific validation prevents preferring a number.",
+        "selected": true
+      },
+      "range_supported_candidate": {
+        "evidenceIds": [
+          "OBS-EMIL10-DURATION-ROLE-RANGES"
+        ],
+        "reason": "General UI budget only; it does not select a point value or loading role.",
+        "status": "broad_only",
+        "values": [
+          "under-300ms"
+        ]
+      },
+      "softie_empirical_candidate": {
+        "evidenceIds": [
+          "OBS-SOFTIE-DURATION-FAST",
+          "OBS-EMIL10-SELECT-180"
+        ],
+        "reason": "Existing Softie/applied value and adjacent select example; no current-main physical-device pass evidence.",
+        "status": "applied_baseline_device_pass_unverified",
+        "values": [
+          "180ms"
+        ]
+      }
+    },
+    "directLoadingDurationEvidence": false,
+    "fixedVariablesForPilot": {
+      "layoutProperties": "none",
+      "normalEasing": "cubic-bezier(0.23, 1, 0.32, 1)",
+      "properties": [
+        "opacity"
+      ],
+      "reducedMotion": "static_or_opacity_color_only_equivalent",
+      "refetches": "no_animation",
+      "stagger": "none",
+      "transform": "none_for_the_Scheduler_Today_pilot_due_to_dense_reading_context"
+    },
+    "pilotCandidates": [
+      {
+        "class": "softie_empirical_candidate",
+        "duration": "180ms",
+        "roleStatus": "loading_reveal_separate_validation_required",
+        "whyIncluded": "Preserves the currently applied Softie baseline as the control condition."
+      },
+      {
+        "class": "adjacent_role_guidance",
+        "duration": "200ms",
+        "roleStatus": "loading_reveal_separate_validation_required",
+        "whyIncluded": "Provides one existing exact adjacent-role value without inventing a number."
+      }
+    ],
+    "recommendationClass": "insufficient_to_prefer",
+    "rows": [
+      {
+        "candidate": "150ms",
+        "directRoleMatch": false,
+        "disposition": "not_preferred_for_loading",
+        "evidenceIds": [
+          "OBS-EMIL10-DURATION-ROLE-RANGES"
+        ],
+        "exactStandaloneValue": false,
+        "observedRole": "dropdown/select range lower bound (150-250ms)",
+        "provenance": "T3",
+        "reason": "A range endpoint for dropdown/select is not a loading-reveal recommendation.",
+        "supportClass": "adjacent_role_guidance"
+      },
+      {
+        "candidate": "160ms",
+        "directRoleMatch": false,
+        "disposition": "not_preferred_for_loading",
+        "evidenceIds": [
+          "OBS-EMIL10-PRESS-160"
+        ],
+        "exactStandaloneValue": true,
+        "observedRole": "button press feedback",
+        "provenance": "T3",
+        "reason": "Exact value, wrong interaction role.",
+        "supportClass": "adjacent_role_guidance"
+      },
+      {
+        "candidate": "180ms",
+        "directRoleMatch": false,
+        "disposition": "bounded_pilot_candidate_only",
+        "evidenceIds": [
+          "OBS-EMIL10-SELECT-180"
+        ],
+        "exactStandaloneValue": true,
+        "observedRole": "Softie duration-fast and Scheduler route application; adjacent corpus select example",
+        "provenance": "T4_plus_T3_adjacent",
+        "reason": "Existing applied baseline, but no loading-specific validation and no current-main evidence of physical-device pass.",
+        "supportClass": "softie_empirical_candidate"
+      },
+      {
+        "candidate": "200ms",
+        "directRoleMatch": false,
+        "disposition": "bounded_pilot_candidate_only",
+        "evidenceIds": [
+          "OBS-EMIL10-ADJACENT-200"
+        ],
+        "exactStandaloneValue": true,
+        "observedRole": "button-content/crossfade or clip-path/release recipe",
+        "provenance": "T3",
+        "reason": "Existing exact corpus value in adjacent roles; it is not a loading-specific preference.",
+        "supportClass": "adjacent_role_guidance"
+      },
+      {
+        "candidate": "250ms",
+        "directRoleMatch": false,
+        "disposition": "not_applicable_for_loading",
+        "evidenceIds": [
+          "OBS-EMIL10-PICKER-HIGHLIGHT-250"
+        ],
+        "exactStandaloneValue": true,
+        "observedRole": "prototype picker highlight spatial feedback",
+        "provenance": "T3",
+        "reason": "Picker chrome feedback with an explicit width exception; not loaded-content entry.",
+        "supportClass": "adjacent_role_guidance"
+      },
+      {
+        "candidate": "4000ms",
+        "directRoleMatch": false,
+        "disposition": "not_applicable_for_loading",
+        "evidenceIds": [
+          "OBS-EMIL10-TOAST-LIFETIME-4000"
+        ],
+        "exactStandaloneValue": true,
+        "observedRole": "Sonner toast auto-close lifetime",
+        "provenance": "T3",
+        "reason": "Lifecycle duration for a toast, not an animation duration.",
+        "supportClass": "not_applicable"
+      }
+    ],
+    "schemaVersion": "design-reference-duration-easing-candidate-matrix-emil10-v1",
+    "targetRole": "state-triggered loaded-content enter after async fetch",
+    "warning": "The pair is a controlled comparison proposal, not evidence that either duration is directly supported for loading reveal. If no feel test is authorized, do not select either value."
+  },
+  "loadingRevealRecommendation": {
+    "duration": {
+      "decision": "insufficient_to_prefer",
+      "decisionClasses": {
+        "directly_supported": [],
+        "insufficient_to_prefer": true,
+        "range_supported_candidate": [
+          "under-300ms"
+        ],
+        "softie_empirical_candidate": [
+          "180ms"
+        ]
+      },
+      "directLoadingValue": false,
+      "matrix": "artifacts/design-reference-audit-v1-emil10-incremental/duration-easing-candidate-matrix.json",
+      "observedCandidates": [
+        "150ms",
+        "160ms",
+        "180ms",
+        "200ms",
+        "250ms",
+        "4000ms_toast_lifetime"
+      ],
+      "pilotPair": [
+        "180ms",
+        "200ms"
+      ],
+      "pilotPairBoundary": "At most two controlled comparison candidates; neither is externally direct-supported for loading reveal."
+    },
+    "easing": {
+      "doNotInherit": "Softie 180ms ease as a loading-specific external recommendation",
+      "normal": "cubic-bezier(0.23, 1, 0.32, 1)",
+      "role": "ease-out_for_entering_content",
+      "status": "direct_role_match_for_easing_not_for_duration"
+    },
+    "noImplementationInThisWorkUnit": true,
+    "properties": {
+      "blur": "only_if_an_actual_crossfade_double_exposes_and_a_feel_check shows it helps; not a default",
+      "corpusBoundary": [
+        "transform",
+        "opacity"
+      ],
+      "implementationTool": "plain CSS transition or @starting-style; no new motion library for a simple fade",
+      "layoutProperties": "do_not_animate",
+      "schedulerPilot": [
+        "opacity"
+      ],
+      "stagger": "do_not_use",
+      "transformDecision": "avoid_for_this_dense_reading_surface as a contextual inference; corpus does not ban transform for all normal loading entrances"
+    },
+    "purpose": [
+      "state_indication",
+      "preventing_a_jarring_change"
+    ],
+    "recommendationClass": "insufficient_to_prefer",
+    "reducedMotion": {
+      "adoptionBoundary": "This does not amend DESIGN.md or claim repository-wide reduced-motion adoption.",
+      "alternative": "static state or short opacity/color-only dissolve; no transform, stagger, or overshoot",
+      "normalMovement": "remove",
+      "preserve": [
+        "loading_vs_empty_state_information",
+        "opacity_or_color_comprehension"
+      ],
+      "status": "required_pilot_gate"
+    },
+    "schemaVersion": "design-reference-loading-reveal-recommendation-emil10-v1",
+    "staleRefetchBoundary": "No animation while old events remain visible during refetch; only the first empty-state successful fetch is in scope.",
+    "status": "candidate_for_pilot",
+    "type": {
+      "canonical": "state_triggered_content_enter_after_async_fetch",
+      "directRoleEvidence": "teleporting_state_conditional_content_swap",
+      "vocabulary": [
+        {
+          "classification": "direct_role_match",
+          "term": "Enter / Exit",
+          "use": "primary name for loaded content being mounted"
+        },
+        {
+          "classification": "adjacent_role_guidance",
+          "term": "Fade in / Fade out",
+          "use": "safest visual mechanism for a dense list pilot"
+        },
+        {
+          "classification": "adjacent_role_guidance",
+          "term": "Crossfade",
+          "use": "only if loading and loaded states visibly overlap in the same spot"
+        },
+        {
+          "classification": "adjacent_role_guidance",
+          "term": "Reveal",
+          "use": "only when a clip-path or mask actually uncovers content"
+        },
+        {
+          "classification": "not_applicable",
+          "term": "Scroll reveal",
+          "use": "no scroll trigger in the Today fetch"
+        },
+        {
+          "classification": "not_applicable",
+          "term": "Page transition / View transition",
+          "use": "not route navigation"
+        },
+        {
+          "classification": "not_applicable",
+          "term": "Skeleton / Shimmer",
+          "use": "not the current textual loading contract and no new placeholder is admitted"
+        }
+      ]
+    }
+  },
+  "newSkillObservationLedger": {
+    "observations": [
+      {
+        "classification": "direct_role_match",
+        "id": "OBS-EMIL10-TELEPORTING-STATE",
+        "interpretation": "Directly matches the conditional loaded-content seam, but supplies no loading-specific duration.",
+        "lineageGroup": "LG-EMIL10-78761e1b57f9",
+        "skill": "find-animation-opportunities",
+        "sourceId": "SRC-EMIL10-FIND_ANIMATION_OPPORTUNITIES",
+        "sourceRefs": [
+          {
+            "kind": "text",
+            "lineEnd": 78,
+            "lineStart": 77,
+            "path": ".agents/skills/find-animation-opportunities/SKILL.md",
+            "quote": "Content that swaps, appears, or vanishes instantly"
+          },
+          {
+            "kind": "text",
+            "lineEnd": 78,
+            "lineStart": 78,
+            "path": ".agents/skills/find-animation-opportunities/SKILL.md",
+            "quote": "scale(0.95–0.97)"
+          }
+        ],
+        "status": "reference",
+        "subject": "Loading placeholder to loaded content as a teleporting conditional state seam",
+        "tier": "independent_design_engineering_guidance",
+        "value": {
+          "easing": "ease-out",
+          "initialOpacity": 0,
+          "initialScale": "0.95-0.97",
+          "loadingSpecificDuration": false,
+          "mechanism": "fade_or_scale_entrance",
+          "purpose": "preventing_a_jarring_change"
+        }
+      },
+      {
+        "classification": "adjacent_role_guidance",
+        "id": "OBS-EMIL10-VOCAB-ENTER-EXIT",
+        "interpretation": "Naming/glossary evidence, not a loading implementation prescription.",
+        "lineageGroup": "LG-EMIL10-78761e1b57f9",
+        "skill": "animation-vocabulary",
+        "sourceId": "SRC-EMIL10-ANIMATION_VOCABULARY",
+        "sourceRefs": [
+          {
+            "kind": "text",
+            "lineEnd": 61,
+            "lineStart": 61,
+            "path": ".agents/skills/animation-vocabulary/SKILL.md",
+            "quote": "Fade in / Fade out"
+          },
+          {
+            "kind": "text",
+            "lineEnd": 66,
+            "lineStart": 65,
+            "path": ".agents/skills/animation-vocabulary/SKILL.md",
+            "quote": "Reveal"
+          },
+          {
+            "kind": "text",
+            "lineEnd": 89,
+            "lineStart": 89,
+            "path": ".agents/skills/animation-vocabulary/SKILL.md",
+            "quote": "Crossfade"
+          },
+          {
+            "kind": "text",
+            "lineEnd": 102,
+            "lineStart": 101,
+            "path": ".agents/skills/animation-vocabulary/SKILL.md",
+            "quote": "Page transition"
+          }
+        ],
+        "status": "reference",
+        "subject": "Vocabulary for loaded content entering after a state change",
+        "tier": "independent_design_engineering_guidance",
+        "value": {
+          "conditionalTerm": "Crossfade only when old and new states overlap in the same spot",
+          "opacityTerm": "Fade in / Fade out",
+          "primaryTerm": "Enter / Exit",
+          "revealTerm": "Reveal only when content is uncovered by a clip-path or mask"
+        }
+      },
+      {
+        "classification": "direct_role_match",
+        "id": "OBS-EMIL10-ENTER-EASE-OUT",
+        "interpretation": "Direct role-matched easing evidence; it does not select a duration.",
+        "lineageGroup": "LG-EMIL10-78761e1b57f9",
+        "skill": "emil-design-eng",
+        "sourceId": "SRC-EMIL10-EMIL_DESIGN_ENG",
+        "sourceRefs": [
+          {
+            "kind": "text",
+            "lineEnd": 106,
+            "lineStart": 97,
+            "path": ".agents/skills/emil-design-eng/SKILL.md",
+            "quote": "ease-out (starts fast, feels responsive)"
+          },
+          {
+            "kind": "text",
+            "lineEnd": 112,
+            "lineStart": 112,
+            "path": ".agents/skills/emil-design-eng/SKILL.md",
+            "quote": "cubic-bezier(0.23, 1, 0.32, 1)"
+          }
+        ],
+        "status": "reference",
+        "subject": "Easing role for an entering or exiting element",
+        "tier": "independent_design_engineering_guidance",
+        "value": {
+          "avoid": "ease-in",
+          "customCurve": "cubic-bezier(0.23, 1, 0.32, 1)",
+          "enteringOrExiting": "ease-out"
+        }
+      },
+      {
+        "classification": "adjacent_role_guidance",
+        "id": "OBS-EMIL10-DURATION-ROLE-RANGES",
+        "interpretation": "The corpus has role ranges but no async loaded-content role.",
+        "lineageGroup": "LG-EMIL10-78761e1b57f9",
+        "skill": "emil-design-eng",
+        "sourceId": "SRC-EMIL10-EMIL_DESIGN_ENG",
+        "sourceRefs": [
+          {
+            "kind": "text",
+            "lineEnd": 132,
+            "lineStart": 129,
+            "path": ".agents/skills/emil-design-eng/SKILL.md",
+            "quote": "Button press feedback"
+          },
+          {
+            "kind": "text",
+            "lineEnd": 135,
+            "lineStart": 135,
+            "path": ".agents/skills/emil-design-eng/SKILL.md",
+            "quote": "UI animations should stay under 300ms"
+          }
+        ],
+        "status": "reference",
+        "subject": "Role-specific duration ranges",
+        "tier": "independent_design_engineering_guidance",
+        "value": {
+          "dropdownSelect": "150-250ms",
+          "generalUi": "under 300ms",
+          "modalDrawer": "200-500ms",
+          "press": "100-160ms",
+          "tooltipPopover": "125-200ms"
+        }
+      },
+      {
+        "classification": "adjacent_role_guidance",
+        "id": "OBS-EMIL10-SELECT-180",
+        "interpretation": "A select value cannot be promoted to loading reveal evidence.",
+        "lineageGroup": "LG-EMIL10-78761e1b57f9",
+        "skill": "emil-design-eng",
+        "sourceId": "SRC-EMIL10-EMIL_DESIGN_ENG",
+        "sourceRefs": [
+          {
+            "kind": "text",
+            "lineEnd": 142,
+            "lineStart": 142,
+            "path": ".agents/skills/emil-design-eng/SKILL.md",
+            "quote": "A **180ms select** animation feels more responsive"
+          }
+        ],
+        "status": "reference",
+        "subject": "Exact 180ms example in a select interaction",
+        "tier": "independent_design_engineering_guidance",
+        "value": {
+          "comparison": "400ms",
+          "duration": "180ms",
+          "role": "select"
+        }
+      },
+      {
+        "classification": "adjacent_role_guidance",
+        "id": "OBS-EMIL10-PRESS-160",
+        "interpretation": "Button press context only; it is not a loading reveal candidate by direct role match.",
+        "lineageGroup": "LG-EMIL10-78761e1b57f9",
+        "skill": "emil-design-eng",
+        "sourceId": "SRC-EMIL10-EMIL_DESIGN_ENG",
+        "sourceRefs": [
+          {
+            "kind": "text",
+            "lineEnd": 205,
+            "lineStart": 205,
+            "path": ".agents/skills/emil-design-eng/SKILL.md",
+            "quote": "transition: transform 160ms ease-out;"
+          }
+        ],
+        "status": "reference",
+        "subject": "Exact 160ms example in button press feedback",
+        "tier": "independent_design_engineering_guidance",
+        "value": {
+          "duration": "160ms",
+          "easing": "ease-out",
+          "property": "transform",
+          "role": "button_press"
+        }
+      },
+      {
+        "classification": "adjacent_role_guidance",
+        "id": "OBS-EMIL10-ADJACENT-200",
+        "interpretation": "200ms is present in adjacent component recipes, not directly for async content arrival.",
+        "lineageGroup": "LG-EMIL10-78761e1b57f9",
+        "skill": "emil-design-eng",
+        "sourceId": "SRC-EMIL10-EMIL_DESIGN_ENG",
+        "sourceRefs": [
+          {
+            "kind": "text",
+            "lineEnd": 308,
+            "lineStart": 308,
+            "path": ".agents/skills/emil-design-eng/SKILL.md",
+            "quote": "transition: filter 200ms ease, opacity 200ms ease;"
+          },
+          {
+            "kind": "text",
+            "lineEnd": 415,
+            "lineStart": 415,
+            "path": ".agents/skills/emil-design-eng/SKILL.md",
+            "quote": "transition: clip-path 200ms ease-out;"
+          }
+        ],
+        "status": "reference",
+        "subject": "Exact 200ms examples outside the loading role",
+        "tier": "independent_design_engineering_guidance",
+        "value": {
+          "contexts": [
+            "button-content blur/opacity transition",
+            "clip-path overlay reveal",
+            "release snap-back"
+          ],
+          "duration": "200ms"
+        }
+      },
+      {
+        "classification": "adjacent_role_guidance",
+        "id": "OBS-EMIL10-PICKER-HIGHLIGHT-250",
+        "interpretation": "Picker spatial feedback only; the deliberate width exception and initial-load no-animation rule do not transfer to Scheduler loading reveal.",
+        "lineageGroup": "LG-EMIL10-78761e1b57f9",
+        "skill": "prototype",
+        "sourceId": "SRC-EMIL10-PROTOTYPE",
+        "sourceRefs": [
+          {
+            "kind": "text",
+            "lineEnd": 67,
+            "lineStart": 63,
+            "path": ".agents/skills/prototype/PICKER.md",
+            "quote": "transition:"
+          },
+          {
+            "kind": "text",
+            "lineEnd": 127,
+            "lineStart": 127,
+            "path": ".agents/skills/prototype/PICKER.md",
+            "quote": "The highlight slides; the variant swap stays instant."
+          }
+        ],
+        "status": "reference",
+        "subject": "Exact 250ms picker highlight transition",
+        "tier": "independent_design_engineering_guidance",
+        "value": {
+          "duration": "250ms",
+          "loadingReveal": false,
+          "properties": [
+            "transform",
+            "width"
+          ],
+          "role": "picker_highlight"
+        }
+      },
+      {
+        "classification": "not_applicable",
+        "id": "OBS-EMIL10-TOAST-LIFETIME-4000",
+        "interpretation": "A toast lifetime is not a loading-to-loaded content animation duration and is not applicable to the inline Today list.",
+        "lineageGroup": "LG-EMIL10-78761e1b57f9",
+        "skill": "ask-sonner",
+        "sourceId": "SRC-EMIL10-ASK_SONNER",
+        "sourceRefs": [
+          {
+            "kind": "text",
+            "lineEnd": 35,
+            "lineStart": 35,
+            "path": ".agents/skills/ask-sonner/API.md",
+            "quote": "Milliseconds before auto-close"
+          }
+        ],
+        "status": "reference",
+        "subject": "Toast auto-close lifetime",
+        "tier": "independent_design_engineering_guidance",
+        "value": {
+          "animationDuration": false,
+          "duration": "4000ms",
+          "role": "toast_auto_close"
+        }
+      },
+      {
+        "classification": "general_guidance",
+        "id": "OBS-EMIL10-PROPERTIES",
+        "interpretation": "Supports a compositor-friendly constraint, but does not require both transform and opacity for every content reveal.",
+        "lineageGroup": "LG-EMIL10-78761e1b57f9",
+        "skill": "improve-animations",
+        "sourceId": "SRC-EMIL10-IMPROVE_ANIMATIONS",
+        "sourceRefs": [
+          {
+            "kind": "text",
+            "lineEnd": 74,
+            "lineStart": 73,
+            "path": ".agents/skills/improve-animations/AUDIT.md",
+            "quote": "Animate `transform` and `opacity` only"
+          },
+          {
+            "kind": "text",
+            "lineEnd": 50,
+            "lineStart": 50,
+            "path": ".agents/skills/improve-animations/AUDIT.md",
+            "quote": "Never `scale(0)`"
+          }
+        ],
+        "status": "reference",
+        "subject": "Performance property constraint",
+        "tier": "independent_design_engineering_guidance",
+        "value": {
+          "clipPath": "sanctioned_exception_in_animate_recipe",
+          "layoutProperties": "avoid",
+          "preferredProperties": [
+            "transform",
+            "opacity"
+          ]
+        }
+      },
+      {
+        "classification": "general_guidance",
+        "id": "OBS-EMIL10-DENSE-READING",
+        "interpretation": "Combined with the Scheduler context, this supports an opacity-only pilot choice as a bounded product inference, not an external loading rule.",
+        "lineageGroup": "LG-EMIL10-78761e1b57f9",
+        "skill": "find-animation-opportunities",
+        "sourceId": "SRC-EMIL10-FIND_ANIMATION_OPPORTUNITIES",
+        "sourceRefs": [
+          {
+            "kind": "text",
+            "lineEnd": 67,
+            "lineStart": 65,
+            "path": ".agents/skills/find-animation-opportunities/SKILL.md",
+            "quote": "Data the user is trying to *read* or *act on* should not move for style."
+          }
+        ],
+        "status": "reference",
+        "subject": "Function gate for information-dense content",
+        "tier": "independent_design_engineering_guidance",
+        "value": {
+          "rule": "data users read or act on should not move for style"
+        }
+      },
+      {
+        "classification": "general_guidance",
+        "id": "OBS-EMIL10-REDUCED-MOTION",
+        "interpretation": "Confirms the v1 audit gate; it does not override the current Softie rule because corpus installation is not adoption.",
+        "lineageGroup": "LG-EMIL10-78761e1b57f9",
+        "skill": "emil-design-eng",
+        "sourceId": "SRC-EMIL10-EMIL_DESIGN_ENG",
+        "sourceRefs": [
+          {
+            "kind": "text",
+            "lineEnd": 529,
+            "lineStart": 527,
+            "path": ".agents/skills/emil-design-eng/SKILL.md",
+            "quote": "Reduced motion means fewer and gentler animations, not zero."
+          }
+        ],
+        "status": "reference",
+        "subject": "Reduced-motion substitution",
+        "tier": "independent_design_engineering_guidance",
+        "value": {
+          "preserve": [
+            "opacity",
+            "color"
+          ],
+          "principle": "fewer_and_gentler_not_zero",
+          "remove": [
+            "movement",
+            "position"
+          ]
+        }
+      },
+      {
+        "classification": "general_guidance",
+        "id": "OBS-EMIL10-NO-STAGGER",
+        "interpretation": "The corpus permits stagger for occasional list entrances, but this does not authorize a Scheduler Today data-list stagger.",
+        "lineageGroup": "LG-EMIL10-78761e1b57f9",
+        "skill": "find-animation-opportunities",
+        "sourceId": "SRC-EMIL10-FIND_ANIMATION_OPPORTUNITIES",
+        "sourceRefs": [
+          {
+            "kind": "text",
+            "lineEnd": 88,
+            "lineStart": 86,
+            "path": ".agents/skills/find-animation-opportunities/SKILL.md",
+            "quote": "30–80ms stagger; decorative, must never block interaction"
+          }
+        ],
+        "status": "reference",
+        "subject": "Stagger boundary for list entrances",
+        "tier": "independent_design_engineering_guidance",
+        "value": {
+          "decorative": true,
+          "delayRange": "30-80ms",
+          "loadingRevealDefault": false,
+          "mustNotBlockInteraction": true
+        }
+      },
+      {
+        "classification": "adjacent_role_guidance",
+        "id": "OBS-EMIL10-STARTING-STYLE",
+        "interpretation": "A technical entry mechanism is relevant to mounted loaded content, but browser support and product implementation remain unverified.",
+        "lineageGroup": "LG-EMIL10-78761e1b57f9",
+        "skill": "emil-design-eng",
+        "sourceId": "SRC-EMIL10-EMIL_DESIGN_ENG",
+        "sourceRefs": [
+          {
+            "kind": "text",
+            "lineEnd": 321,
+            "lineStart": 319,
+            "path": ".agents/skills/emil-design-eng/SKILL.md",
+            "quote": "Animate enter states with @starting-style"
+          },
+          {
+            "kind": "text",
+            "lineEnd": 336,
+            "lineStart": 336,
+            "path": ".agents/skills/emil-design-eng/SKILL.md",
+            "quote": "Use `@starting-style` when browser support allows"
+          }
+        ],
+        "status": "reference",
+        "subject": "CSS entry mechanism for mounted content",
+        "tier": "independent_design_engineering_guidance",
+        "value": {
+          "fallback": "data-mounted attribute",
+          "mechanism": "@starting-style"
+        }
+      },
+      {
+        "classification": "not_applicable",
+        "id": "OBS-EMIL10-SKELETON-NAME",
+        "interpretation": "Names a different placeholder pattern; it does not supply a loaded-content reveal duration or authorize adding one.",
+        "lineageGroup": "LG-EMIL10-78761e1b57f9",
+        "skill": "animation-vocabulary",
+        "sourceId": "SRC-EMIL10-ANIMATION_VOCABULARY",
+        "sourceRefs": [
+          {
+            "kind": "text",
+            "lineEnd": 151,
+            "lineStart": 151,
+            "path": ".agents/skills/animation-vocabulary/SKILL.md",
+            "quote": "placeholder with a moving sheen shown while content loads"
+          }
+        ],
+        "status": "reference",
+        "subject": "Skeleton/shimmer loading vocabulary",
+        "tier": "independent_design_engineering_guidance",
+        "value": {
+          "currentSchedulerUsesIt": false,
+          "loadingDuration": null,
+          "term": "Skeleton / Shimmer"
+        }
+      },
+      {
+        "classification": "not_applicable",
+        "id": "OBS-EMIL10-SONNER-LOADING",
+        "interpretation": "The Scheduler Today surface is an inline data list, not a Sonner toast; no loading-reveal motion value is provided.",
+        "lineageGroup": "LG-EMIL10-78761e1b57f9",
+        "skill": "ask-sonner",
+        "sourceId": "SRC-EMIL10-ASK_SONNER",
+        "sourceRefs": [
+          {
+            "kind": "text",
+            "lineEnd": 29,
+            "lineStart": 28,
+            "path": ".agents/skills/ask-sonner/SKILL.md",
+            "quote": "toast.promise(promise"
+          }
+        ],
+        "status": "reference",
+        "subject": "Toast loading-to-success state semantics",
+        "tier": "independent_design_engineering_guidance",
+        "value": {
+          "durationForReveal": null,
+          "loadingToast": true,
+          "promiseToast": true,
+          "role": "toast"
+        }
+      },
+      {
+        "classification": "general_guidance",
+        "id": "OBS-EMIL10-CSS-TOOL",
+        "interpretation": "Supports a no-new-dependency implementation boundary only; it supplies no duration or loading-role authority.",
+        "lineageGroup": "LG-EMIL10-78761e1b57f9",
+        "skill": "pick-ui-library",
+        "sourceId": "SRC-EMIL10-PICK_UI_LIBRARY",
+        "sourceRefs": [
+          {
+            "kind": "text",
+            "lineEnd": 41,
+            "lineStart": 41,
+            "path": ".agents/skills/pick-ui-library/SKILL.md",
+            "quote": "A simple hover or fade doesn't need it"
+          }
+        ],
+        "status": "reference",
+        "subject": "Tool selection for a simple fade",
+        "tier": "independent_design_engineering_guidance",
+        "value": {
+          "motionLibrary": "not needed",
+          "simpleFade": "plain CSS transitions"
+        }
+      },
+      {
+        "classification": "not_applicable",
+        "id": "OBS-EMIL10-PROTOTYPE-INSTANT-SWAP",
+        "interpretation": "This is picker chrome behavior, not a product loading-to-loaded recommendation.",
+        "lineageGroup": "LG-EMIL10-78761e1b57f9",
+        "skill": "prototype",
+        "sourceId": "SRC-EMIL10-PROTOTYPE",
+        "sourceRefs": [
+          {
+            "kind": "text",
+            "lineEnd": 57,
+            "lineStart": 57,
+            "path": ".agents/skills/prototype/SKILL.md",
+            "quote": "variant swap gets no animation"
+          }
+        ],
+        "status": "reference",
+        "subject": "Prototype picker variant switching",
+        "tier": "independent_design_engineering_guidance",
+        "value": {
+          "loadingReveal": false,
+          "reason": "100+ per session picker action",
+          "variantSwap": "instant"
+        }
+      },
+      {
+        "classification": "general_guidance",
+        "id": "OBS-EMIL10-LINEAGE-DECLARATION",
+        "interpretation": "Repeated values across these files are derivation/repetition inside one lineage, not independent quorum.",
+        "lineageGroup": "LG-EMIL10-78761e1b57f9",
+        "skill": "improve-animations",
+        "sourceId": "SRC-EMIL10-IMPROVE_ANIMATIONS",
+        "sourceRefs": [
+          {
+            "kind": "text",
+            "lineEnd": 16,
+            "lineStart": 16,
+            "path": ".agents/skills/improve-animations/SKILL.md",
+            "quote": "The bar comes from Emil Kowalski's animation philosophy"
+          },
+          {
+            "kind": "text",
+            "lineEnd": 71,
+            "lineStart": 71,
+            "path": ".agents/skills/improve-animations/PLAN-TEMPLATE.md",
+            "quote": "Pull every value from [AUDIT.md](AUDIT.md)"
+          }
+        ],
+        "status": "reference",
+        "subject": "Corpus lineage declaration",
+        "tier": "independent_design_engineering_guidance",
+        "value": {
+          "authorLineage": "Emil Kowalski",
+          "independentAuthorityGroups": 1
+        }
+      }
+    ],
+    "schemaVersion": "design-reference-new-skill-observation-ledger-emil10-v1"
+  },
+  "provenanceLineage": {
+    "crossSkillRelations": [
+      {
+        "evidenceIds": [
+          "OBS-EMIL10-DURATION-ROLE-RANGES",
+          "OBS-EMIL10-PROPERTIES"
+        ],
+        "id": "XREL-EMIL10-001",
+        "independent": false,
+        "note": "The existing three Skill files and the new audit files repeat or derive the same Emil role ranges and transform/opacity rules; they are not four authorities.",
+        "relation": "same_lineage_role_range_and_property_repetition",
+        "skills": [
+          "animate",
+          "emil-design-eng",
+          "improve-animations",
+          "review-animations"
+        ]
+      },
+      {
+        "evidenceIds": [
+          "OBS-EMIL10-REDUCED-MOTION"
+        ],
+        "id": "XREL-EMIL10-002",
+        "independent": false,
+        "note": "Reduced-motion direction overlaps across the installed corpus, but repetition does not create an independent Emil quorum or Softie adoption.",
+        "relation": "same_lineage_reduced_motion_overlap",
+        "skills": [
+          "animate",
+          "apple-design",
+          "emil-design-eng",
+          "review-animations"
+        ]
+      },
+      {
+        "evidenceIds": [
+          "OBS-EMIL10-PICKER-HIGHLIGHT-250",
+          "OBS-EMIL10-NO-STAGGER"
+        ],
+        "id": "XREL-EMIL10-003",
+        "independent": false,
+        "note": "Picker and recipe values remain role-scoped; the existing Skill recipes reinforce, rather than independently authorize, the loading boundary.",
+        "relation": "role_specific_recipe_boundary",
+        "skills": [
+          "animate",
+          "prototype",
+          "review-animations"
+        ]
+      }
+    ],
+    "lineageGroups": [
+      {
+        "id": "LG-EMIL10-78761e1b57f9",
+        "independenceBoundary": "All ten installed skills and companions are one upstream repository revision and one author lineage; repeated prose or values are not independent votes.",
+        "independentAuthorityCount": 1,
+        "members": [
+          "SRC-EMIL10-ANIMATE",
+          "SRC-EMIL10-ANIMATION_VOCABULARY",
+          "OBS-EMIL10-VOCAB-ENTER-EXIT",
+          "OBS-EMIL10-SKELETON-NAME",
+          "SRC-EMIL10-APPLE_DESIGN",
+          "SRC-EMIL10-ASK_SONNER",
+          "OBS-EMIL10-TOAST-LIFETIME-4000",
+          "OBS-EMIL10-SONNER-LOADING",
+          "SRC-EMIL10-EMIL_DESIGN_ENG",
+          "OBS-EMIL10-ENTER-EASE-OUT",
+          "OBS-EMIL10-DURATION-ROLE-RANGES",
+          "OBS-EMIL10-SELECT-180",
+          "OBS-EMIL10-PRESS-160",
+          "OBS-EMIL10-ADJACENT-200",
+          "OBS-EMIL10-REDUCED-MOTION",
+          "OBS-EMIL10-STARTING-STYLE",
+          "SRC-EMIL10-FIND_ANIMATION_OPPORTUNITIES",
+          "OBS-EMIL10-TELEPORTING-STATE",
+          "OBS-EMIL10-DENSE-READING",
+          "OBS-EMIL10-NO-STAGGER",
+          "SRC-EMIL10-IMPROVE_ANIMATIONS",
+          "OBS-EMIL10-PROPERTIES",
+          "OBS-EMIL10-LINEAGE-DECLARATION",
+          "SRC-EMIL10-PICK_UI_LIBRARY",
+          "OBS-EMIL10-CSS-TOOL",
+          "SRC-EMIL10-PROTOTYPE",
+          "OBS-EMIL10-PICKER-HIGHLIGHT-250",
+          "OBS-EMIL10-PROTOTYPE-INSTANT-SWAP",
+          "SRC-EMIL10-REVIEW_ANIMATIONS"
+        ],
+        "sourceRef": "refs/heads/main",
+        "sourceRepository": "emilkowalski/skills",
+        "sourceRevision": "78761e1b57f97dce65b983d640c70a68f39e8163"
+      }
+    ],
+    "nonRules": [
+      "A skill installation does not change DESIGN.md or adopt any external value as a Softie rule.",
+      "Numeric repetition across Emil files is relation/derivation, not independent authority.",
+      "A button, tooltip, dropdown, modal, toast, picker, or scroll-reveal value is not promoted to loading reveal without a role match."
+    ],
+    "rules": [
+      {
+        "from": [
+          "OBS-EMIL10-DURATION-ROLE-RANGES",
+          "OBS-EMIL10-SELECT-180",
+          "OBS-EMIL10-PRESS-160",
+          "OBS-EMIL10-ADJACENT-200"
+        ],
+        "id": "LIN-EMIL10-001",
+        "independent": false,
+        "note": "Role ranges and exact values remain role-scoped; they do not form independent loading evidence.",
+        "relation": "same_lineage_repetition_or_derivation",
+        "to": [
+          "loading_reveal_duration_preference"
+        ]
+      },
+      {
+        "from": [
+          "OBS-EMIL10-TELEPORTING-STATE",
+          "OBS-EMIL10-ENTER-EASE-OUT"
+        ],
+        "id": "LIN-EMIL10-002",
+        "independent": false,
+        "note": "The type/intent evidence is coherent within one corpus, not an independent multi-source consensus.",
+        "relation": "same_lineage_role_match",
+        "to": [
+          "loading_reveal_type"
+        ]
+      },
+      {
+        "from": [
+          "OBS-EMIL10-REDUCED-MOTION",
+          "OBS-EMIL10-PROPERTIES",
+          "OBS-EMIL10-NO-STAGGER"
+        ],
+        "id": "LIN-EMIL10-003",
+        "independent": false,
+        "note": "Accessibility, property, and stagger guidance is one lineage cluster.",
+        "relation": "same_lineage_constraint_cluster",
+        "to": [
+          "loading_reveal_pilot_constraints"
+        ]
+      }
+    ],
+    "schemaVersion": "design-reference-provenance-lineage-emil10-incremental-v1"
+  },
+  "purpose": "Deterministically add only the evidence, relations, candidate matrix, loading recommendation, and blockers introduced by the pinned Emil corpus without rewriting v1.",
+  "repository": {
+    "baseHead": "e5ce1a426c627a070b80c662edb032792d84a82f",
+    "branch": "main",
+    "originMainHead": "e5ce1a426c627a070b80c662edb032792d84a82f",
+    "preExistingChangeBoundary": "The pre-existing untracked -.jpg is outside this artifact input scope and is preserved.",
+    "productCodeChangeAssertion": "No UI/CSS/application behavior/DESIGN.md source change is part of this artifact.",
+    "sourceOfTruth": "current_local_worktree"
+  },
+  "schedulerApplicability": {
+    "codeObservations": [
+      {
+        "claim": "Initial fetch is real and stateful",
+        "id": "CODE-LOAD-001",
+        "observed": "loadEvents sets isLoading, awaits listTodayWorkEvents, then commits events and clears loading for the latest request.",
+        "sourceRefs": [
+          {
+            "kind": "text",
+            "lineEnd": 281,
+            "lineStart": 265,
+            "path": "src/scheduler/TodaySchedulerPage.jsx",
+            "quote": "setIsLoading(true)"
+          },
+          {
+            "kind": "text",
+            "lineEnd": 297,
+            "lineStart": 295,
+            "path": "src/scheduler/TodaySchedulerPage.jsx",
+            "quote": "loadEvents()"
+          }
+        ]
+      },
+      {
+        "claim": "Loading and post-load empty labels use separate conditional behavior",
+        "id": "CODE-LOAD-002",
+        "observed": "The first two sections pass hideEmptyText, which suppresses their post-load empty labels; while loading, SchedulerEventSection explicitly renders 불러오는 중... regardless of hideEmptyText. The Today 전체 section also renders the loading message and then an empty message.",
+        "sourceRefs": [
+          {
+            "kind": "text",
+            "lineEnd": 938,
+            "lineStart": 914,
+            "path": "src/scheduler/TodaySchedulerPage.jsx",
+            "quote": "emptyText={isLoading ? '불러오는 중...' : '없음'}"
+          },
+          {
+            "kind": "text",
+            "lineEnd": 39,
+            "lineStart": 36,
+            "path": "src/scheduler/SchedulerEventSection.jsx",
+            "quote": "normalizedEmptyText === '불러오는 중...' || !hideEmptyText"
+          }
+        ]
+      },
+      {
+        "claim": "Refetch retains old events",
+        "id": "CODE-LOAD-003",
+        "observed": "The request starts loading without clearing events; non-empty sections therefore keep rendering old cards while refetch is pending.",
+        "sourceRefs": [
+          {
+            "kind": "text",
+            "lineEnd": 273,
+            "lineStart": 268,
+            "path": "src/scheduler/TodaySchedulerPage.jsx",
+            "quote": "setEvents(rows)"
+          }
+        ]
+      },
+      {
+        "claim": "No content-entry motion contract exists",
+        "id": "CODE-LOAD-004",
+        "observed": "Loaded cards are conditionally rendered with no admitted entry/reveal state in the inspected JSX.",
+        "sourceRefs": [
+          {
+            "kind": "text",
+            "lineEnd": 49,
+            "lineStart": 40,
+            "path": "src/scheduler/SchedulerEventSection.jsx",
+            "quote": "<div className=\"scheduler-event-list\">"
+          },
+          {
+            "kind": "text",
+            "lineEnd": 28,
+            "lineStart": 26,
+            "path": "src/scheduler/SchedulerEventCard.jsx",
+            "quote": "<article className={cardClassName} aria-busy={isSaving}>"
+          }
+        ]
+      }
+    ],
+    "opportunityGate": {
+      "frequency": "initial Today fetch or date change, not a 100-plus-times-per-day keyboard action",
+      "function": "Eligible only for a minimal cue/reveal because the list is dense operational data users read and act on.",
+      "implementationPrecondition": "The current code has no firstFetch/hasLoaded flag; any future pilot must add or otherwise prove this scope without animating stale refetches.",
+      "passBoundary": "The opportunity is the first empty-state successful fetch only; stale refetches remain excluded.",
+      "passesOpportunityCondition": true,
+      "purpose": [
+        "state_indication",
+        "preventing_a_jarring_change"
+      ],
+      "speed": "Under-300ms corpus budget is broad guidance; no loading-specific duration exists."
+    },
+    "runtimeLimitations": [
+      "Static source inspection only; no browser animation feel check was run in this artifact work.",
+      "No physical-device validation evidence exists in the current main worktree for the route 180ms value.",
+      "Actual empty/loading semantics and layout stability must be checked before implementation."
+    ],
+    "schemaVersion": "design-reference-scheduler-loading-applicability-emil10-v1",
+    "surface": "Scheduler Today event list"
+  },
+  "schemaVersion": "design-reference-audit-v1-emil10-incremental",
+  "scope": {
+    "applicationBehaviorMutation": false,
+    "artifactOnly": true,
+    "cssMutation": false,
+    "deployOrRemoteDbMutation": false,
+    "designMdMutation": false,
+    "externalAcquisition": false,
+    "repositoryOnly": true,
+    "skillSourceMutation": false,
+    "stagingCommitPush": false,
+    "uiMutation": false,
+    "v1Mutation": false
+  },
+  "sourceReferenceLedger": {
+    "externalResearchBoundary": {
+      "installedCorpusOnly": true,
+      "noNetworkRefreshDuringMaterialization": true,
+      "originalSourceRightsDecision": "not_reopened; no source asset reuse is involved",
+      "skillInstallationIsNotSoftieAdoption": true,
+      "upstreamRevisionTakenFrom": "THIRD_PARTY_NOTICES.md:60-86 and skills-lock.json:1-64"
+    },
+    "provenanceTiers": [
+      {
+        "boundary": "Direct local observation only; originality and reuse rights remain separate.",
+        "code": "apple_official_artifact",
+        "id": "T1",
+        "name": "Apple official artifact"
+      },
+      {
+        "boundary": "A translation layer, never Apple primary authority.",
+        "code": "apple_derived_guidance",
+        "id": "T2",
+        "name": "Apple-derived guidance"
+      },
+      {
+        "boundary": "Emil-style web practice; all files in this corpus share one upstream author/repository lineage.",
+        "code": "independent_design_engineering_guidance",
+        "id": "T3",
+        "name": "Independent design-engineering guidance"
+      },
+      {
+        "boundary": "Current DESIGN.md or deliberately observed implementation value.",
+        "code": "softie_house_rule",
+        "id": "T4",
+        "name": "Softie house rule"
+      },
+      {
+        "boundary": "Pilot hypothesis only; never an adopted rule.",
+        "code": "proposed_candidate",
+        "id": "T5",
+        "name": "Proposed candidate"
+      }
+    ],
+    "repositoryInputIdentities": [
+      {
+        "byteLength": 12039,
+        "byteSha256": "f1dd85901c74c49ca5e1c81d3db57a9b7aba41b2bd49eb5c2c84114035bdb55d",
+        "id": "AGENTS.md",
+        "path": "AGENTS.md"
+      },
+      {
+        "byteLength": 30445,
+        "byteSha256": "15da2799083244bce17635b942a86824ce2d5b52056bf0f90775fe03f9b26610",
+        "id": "DESIGN.md",
+        "path": "DESIGN.md"
+      },
+      {
+        "byteLength": 6051,
+        "byteSha256": "8f0af11e381d738bcf451cca6ce0fb93af9aac481d73cce28e3b21dcaa757b21",
+        "id": "THIRD_PARTY_NOTICES.md",
+        "path": "THIRD_PARTY_NOTICES.md"
+      },
+      {
+        "byteLength": 2479,
+        "byteSha256": "b0f28ec15daf7056afb246adabd59f28e99bf4f8ad96431d7f11e00f754fee95",
+        "id": "skills-lock.json",
+        "path": "skills-lock.json"
+      },
+      {
+        "byteLength": 19045,
+        "byteSha256": "0a287d0bfbb7e2233f029920dbdcaff975a349a7dfdf331789daa53ac15a0b32",
+        "id": "docs/design-reference-audit-v1.md",
+        "path": "docs/design-reference-audit-v1.md"
+      },
+      {
+        "byteLength": 4638226,
+        "byteSha256": "b8848d01cf663ae1c432612f3852175a0cde4e589d0914d408bbdfc26373f527",
+        "id": "artifacts/design-reference-audit-v1/complete.json",
+        "path": "artifacts/design-reference-audit-v1/complete.json"
+      },
+      {
+        "byteLength": 11582,
+        "byteSha256": "7887d6d0641a41f2a69834a3ad9ec809312d2cad4a02f605e8ce87b427fca80a",
+        "id": "artifacts/design-reference-audit-v1/source-reference-ledger.json",
+        "path": "artifacts/design-reference-audit-v1/source-reference-ledger.json"
+      },
+      {
+        "byteLength": 196488,
+        "byteSha256": "26eda8128697eeb4d0207141001fdb0f98e57c233cb34b63b26ca58c3ec8f1e4",
+        "id": "artifacts/design-reference-audit-v1/observation-value-ledger.json",
+        "path": "artifacts/design-reference-audit-v1/observation-value-ledger.json"
+      },
+      {
+        "byteLength": 3179,
+        "byteSha256": "76ef1dedf067855bc39ce6ad0d0ab0e4c64ee7673b0ed8e67237d452822d1884",
+        "id": "artifacts/design-reference-audit-v1/provenance-lineage.json",
+        "path": "artifacts/design-reference-audit-v1/provenance-lineage.json"
+      },
+      {
+        "byteLength": 9106,
+        "byteSha256": "1c99c871e53a700a0d0dfab01c68e0c7729df91daf7101aef2b61f5c2cb2c57b",
+        "id": "artifacts/design-reference-audit-v1/conflict-compatibility-matrix.json",
+        "path": "artifacts/design-reference-audit-v1/conflict-compatibility-matrix.json"
+      },
+      {
+        "byteLength": 4007,
+        "byteSha256": "7febb78d8903b69f18246abeb8522a58088cfdbe6bb5ad8e7f3ce92387e674cc",
+        "id": "artifacts/design-reference-audit-v1/pilot-candidate-shortlist.json",
+        "path": "artifacts/design-reference-audit-v1/pilot-candidate-shortlist.json"
+      },
+      {
+        "byteLength": 35038,
+        "byteSha256": "4a92300b825ac4d6385439212aff29b28e28b392dc2e4884d3cce8ccb4d4a368",
+        "id": "src/scheduler/TodaySchedulerPage.jsx",
+        "path": "src/scheduler/TodaySchedulerPage.jsx"
+      },
+      {
+        "byteLength": 1535,
+        "byteSha256": "3861472c680e8c8f9e9f3ce5bfa52583f245b221bf1d20a91a5e703f4bffef74",
+        "id": "src/scheduler/SchedulerEventSection.jsx",
+        "path": "src/scheduler/SchedulerEventSection.jsx"
+      },
+      {
+        "byteLength": 2900,
+        "byteSha256": "0d31f73caf0547c84f2494604a3e7caa1322a7344556581441ab3b55433e495f",
+        "id": "src/scheduler/SchedulerEventCard.jsx",
+        "path": "src/scheduler/SchedulerEventCard.jsx"
+      },
+      {
+        "byteLength": 4173,
+        "byteSha256": "306811825b7f3c25e3d41d51e1ea2fd5c29ecb38f20309356435f9d885118577",
+        "id": "src/scheduler/SchedulerApp.jsx",
+        "path": "src/scheduler/SchedulerApp.jsx"
+      },
+      {
+        "byteLength": 2469,
+        "byteSha256": "bbd4be43c90c29b48ffc8475e8e8d77743e74e37ba744397788e7b842ddf5053",
+        "id": "src/lib/router.js",
+        "path": "src/lib/router.js"
+      },
+      {
+        "byteLength": 136382,
+        "byteSha256": "b41649dbe652136a252466f97b95199ba45e904fde2becde68cfd2732f2fc6c5",
+        "id": "src/styles.css",
+        "path": "src/styles.css"
+      },
+      {
+        "byteLength": 8847,
+        "byteSha256": "45d47c02b33ef924331a3064b579b68402e52c5393322c1de6071421a6085fc7",
+        "id": "src/artifactIdentity.js",
+        "path": "src/artifactIdentity.js"
+      },
+      {
+        "byteLength": 63504,
+        "byteSha256": "ed70e89b048214ec9ec6356d358b0a16c4393ea4260a1a7868381555e46bf266",
+        "id": "scripts/materialize-design-reference-audit-v1-emil10-incremental.mjs",
+        "path": "scripts/materialize-design-reference-audit-v1-emil10-incremental.mjs"
+      },
+      {
+        "byteLength": 7957,
+        "byteSha256": "21ff63d84391db8d96ecdf9170095f55a42c836ccc36fd3269c4772bab031ba2",
+        "id": ".agents/skills/animate/RECIPES.md",
+        "path": ".agents/skills/animate/RECIPES.md"
+      },
+      {
+        "byteLength": 11527,
+        "byteSha256": "2a99870e61971553c0af3185a194c0e557f33aaa81e0422ca2fcec52195a4341",
+        "id": ".agents/skills/animate/SKILL.md",
+        "path": ".agents/skills/animate/SKILL.md"
+      },
+      {
+        "byteLength": 13128,
+        "byteSha256": "d718b48fe3c7898804d588f050a2e266d82c9f5ef51da256c8cb8b5951527757",
+        "id": ".agents/skills/animation-vocabulary/SKILL.md",
+        "path": ".agents/skills/animation-vocabulary/SKILL.md"
+      },
+      {
+        "byteLength": 22715,
+        "byteSha256": "11840b24a11d7f94f39c6aaab074750ae4e4de4ef54ee4b1dd97e16ebd485e61",
+        "id": ".agents/skills/apple-design/SKILL.md",
+        "path": ".agents/skills/apple-design/SKILL.md"
+      },
+      {
+        "byteLength": 4545,
+        "byteSha256": "4bb06f482c5757529e3d7a672a30fbeed42d24919a63e2571384a9ce1549aa7f",
+        "id": ".agents/skills/ask-sonner/API.md",
+        "path": ".agents/skills/ask-sonner/API.md"
+      },
+      {
+        "byteLength": 6944,
+        "byteSha256": "be1b04511aadb4d7d81aa8cd2b55c260a626aae534983bc8ae3fbe26bbf48632",
+        "id": ".agents/skills/ask-sonner/SKILL.md",
+        "path": ".agents/skills/ask-sonner/SKILL.md"
+      },
+      {
+        "byteLength": 27226,
+        "byteSha256": "e71de849347050c2c573c1cf24d742d5a13459557ecffa6e562f08006f46b5b7",
+        "id": ".agents/skills/emil-design-eng/SKILL.md",
+        "path": ".agents/skills/emil-design-eng/SKILL.md"
+      },
+      {
+        "byteLength": 9491,
+        "byteSha256": "91c1243164057fbf824088d12faea937878a757a7ac653e8288b775e8b27b882",
+        "id": ".agents/skills/find-animation-opportunities/SKILL.md",
+        "path": ".agents/skills/find-animation-opportunities/SKILL.md"
+      },
+      {
+        "byteLength": 7387,
+        "byteSha256": "551c8473e20e5f4774680bc24d45e1c68e50992582720905c6b077756b7b5a55",
+        "id": ".agents/skills/improve-animations/AUDIT.md",
+        "path": ".agents/skills/improve-animations/AUDIT.md"
+      },
+      {
+        "byteLength": 3100,
+        "byteSha256": "0a08ac8e23fd2082d7ffb86aeed7b789de77328c3cf874b16f1a755f2ef0a6ad",
+        "id": ".agents/skills/improve-animations/PLAN-TEMPLATE.md",
+        "path": ".agents/skills/improve-animations/PLAN-TEMPLATE.md"
+      },
+      {
+        "byteLength": 7915,
+        "byteSha256": "68f17bbc4671593d2f43dba26a679243e2153ba5f26965fb7d59df52842534ff",
+        "id": ".agents/skills/improve-animations/SKILL.md",
+        "path": ".agents/skills/improve-animations/SKILL.md"
+      },
+      {
+        "byteLength": 4514,
+        "byteSha256": "4b889bd6c08358499ac4a7202b8af71ffbd3485d2468f7b09d0613bbe7b24bf4",
+        "id": ".agents/skills/pick-ui-library/SKILL.md",
+        "path": ".agents/skills/pick-ui-library/SKILL.md"
+      },
+      {
+        "byteLength": 7548,
+        "byteSha256": "31a55eec94715cc79942e91e172e539e3031dcd5e2e5ee7c1446cf2caee960a6",
+        "id": ".agents/skills/prototype/PICKER.md",
+        "path": ".agents/skills/prototype/PICKER.md"
+      },
+      {
+        "byteLength": 7488,
+        "byteSha256": "2ad8401c4deaddb54947fb65247f790e7b3d8784e35312bcbedbfb1d59cd89ce",
+        "id": ".agents/skills/prototype/SKILL.md",
+        "path": ".agents/skills/prototype/SKILL.md"
+      },
+      {
+        "byteLength": 8108,
+        "byteSha256": "61cf8ac0c4c8e1f63385298c546b16c65ca9aec34abddcd04e821c16712d671d",
+        "id": ".agents/skills/review-animations/SKILL.md",
+        "path": ".agents/skills/review-animations/SKILL.md"
+      },
+      {
+        "byteLength": 9801,
+        "byteSha256": "e7d3605034acda54ca13e43aec9e64d65b53de20f75b11b8d694e373012fbe07",
+        "id": ".agents/skills/review-animations/STANDARDS.md",
+        "path": ".agents/skills/review-animations/STANDARDS.md"
+      }
+    ],
+    "schemaVersion": "design-reference-source-ledger-emil10-incremental-v1",
+    "sources": [
+      {
+        "accessMode": "local_repository_read",
+        "id": "SRC-EMIL10-CORPUS-PROVENANCE",
+        "lineageGroup": "LG-EMIL10-78761e1b57f9",
+        "path": "THIRD_PARTY_NOTICES.md",
+        "role": "Upstream revision and retained-file inventory; provenance only",
+        "tier": "independent_design_engineering_guidance",
+        "title": "Pinned emilkowalski/skills provenance record"
+      },
+      {
+        "accessMode": "local_repository_read",
+        "id": "SRC-EMIL10-LOCK",
+        "lineageGroup": "LG-EMIL10-78761e1b57f9",
+        "path": "skills-lock.json",
+        "role": "Computed hashes and source paths for the ten installed skills",
+        "tier": "independent_design_engineering_guidance",
+        "title": "Installed Skill lock file"
+      },
+      {
+        "accessMode": "local_repository_read",
+        "files": [
+          {
+            "byteLength": 7957,
+            "byteSha256": "21ff63d84391db8d96ecdf9170095f55a42c836ccc36fd3269c4772bab031ba2",
+            "path": ".agents/skills/animate/RECIPES.md",
+            "relativePath": "RECIPES.md"
+          },
+          {
+            "byteLength": 11527,
+            "byteSha256": "2a99870e61971553c0af3185a194c0e557f33aaa81e0422ca2fcec52195a4341",
+            "path": ".agents/skills/animate/SKILL.md",
+            "relativePath": "SKILL.md"
+          }
+        ],
+        "id": "SRC-EMIL10-ANIMATE",
+        "lineageGroup": "LG-EMIL10-78761e1b57f9",
+        "path": ".agents/skills/animate/",
+        "role": "Local upstream corpus file(s); reference guidance only, not Softie adoption",
+        "skill": "animate",
+        "tier": "independent_design_engineering_guidance",
+        "title": "Installed animate skill and companions"
+      },
+      {
+        "accessMode": "local_repository_read",
+        "files": [
+          {
+            "byteLength": 13128,
+            "byteSha256": "d718b48fe3c7898804d588f050a2e266d82c9f5ef51da256c8cb8b5951527757",
+            "path": ".agents/skills/animation-vocabulary/SKILL.md",
+            "relativePath": "SKILL.md"
+          }
+        ],
+        "id": "SRC-EMIL10-ANIMATION_VOCABULARY",
+        "lineageGroup": "LG-EMIL10-78761e1b57f9",
+        "path": ".agents/skills/animation-vocabulary/",
+        "role": "Local upstream corpus file(s); reference guidance only, not Softie adoption",
+        "skill": "animation-vocabulary",
+        "tier": "independent_design_engineering_guidance",
+        "title": "Installed animation-vocabulary skill and companions"
+      },
+      {
+        "accessMode": "local_repository_read",
+        "files": [
+          {
+            "byteLength": 22715,
+            "byteSha256": "11840b24a11d7f94f39c6aaab074750ae4e4de4ef54ee4b1dd97e16ebd485e61",
+            "path": ".agents/skills/apple-design/SKILL.md",
+            "relativePath": "SKILL.md"
+          }
+        ],
+        "id": "SRC-EMIL10-APPLE_DESIGN",
+        "lineageGroup": "LG-EMIL10-78761e1b57f9",
+        "path": ".agents/skills/apple-design/",
+        "role": "Local upstream corpus file(s); reference guidance only, not Softie adoption",
+        "skill": "apple-design",
+        "tier": "independent_design_engineering_guidance",
+        "title": "Installed apple-design skill and companions"
+      },
+      {
+        "accessMode": "local_repository_read",
+        "files": [
+          {
+            "byteLength": 4545,
+            "byteSha256": "4bb06f482c5757529e3d7a672a30fbeed42d24919a63e2571384a9ce1549aa7f",
+            "path": ".agents/skills/ask-sonner/API.md",
+            "relativePath": "API.md"
+          },
+          {
+            "byteLength": 6944,
+            "byteSha256": "be1b04511aadb4d7d81aa8cd2b55c260a626aae534983bc8ae3fbe26bbf48632",
+            "path": ".agents/skills/ask-sonner/SKILL.md",
+            "relativePath": "SKILL.md"
+          }
+        ],
+        "id": "SRC-EMIL10-ASK_SONNER",
+        "lineageGroup": "LG-EMIL10-78761e1b57f9",
+        "path": ".agents/skills/ask-sonner/",
+        "role": "Local upstream corpus file(s); reference guidance only, not Softie adoption",
+        "skill": "ask-sonner",
+        "tier": "independent_design_engineering_guidance",
+        "title": "Installed ask-sonner skill and companions"
+      },
+      {
+        "accessMode": "local_repository_read",
+        "files": [
+          {
+            "byteLength": 27226,
+            "byteSha256": "e71de849347050c2c573c1cf24d742d5a13459557ecffa6e562f08006f46b5b7",
+            "path": ".agents/skills/emil-design-eng/SKILL.md",
+            "relativePath": "SKILL.md"
+          }
+        ],
+        "id": "SRC-EMIL10-EMIL_DESIGN_ENG",
+        "lineageGroup": "LG-EMIL10-78761e1b57f9",
+        "path": ".agents/skills/emil-design-eng/",
+        "role": "Local upstream corpus file(s); reference guidance only, not Softie adoption",
+        "skill": "emil-design-eng",
+        "tier": "independent_design_engineering_guidance",
+        "title": "Installed emil-design-eng skill and companions"
+      },
+      {
+        "accessMode": "local_repository_read",
+        "files": [
+          {
+            "byteLength": 9491,
+            "byteSha256": "91c1243164057fbf824088d12faea937878a757a7ac653e8288b775e8b27b882",
+            "path": ".agents/skills/find-animation-opportunities/SKILL.md",
+            "relativePath": "SKILL.md"
+          }
+        ],
+        "id": "SRC-EMIL10-FIND_ANIMATION_OPPORTUNITIES",
+        "lineageGroup": "LG-EMIL10-78761e1b57f9",
+        "path": ".agents/skills/find-animation-opportunities/",
+        "role": "Local upstream corpus file(s); reference guidance only, not Softie adoption",
+        "skill": "find-animation-opportunities",
+        "tier": "independent_design_engineering_guidance",
+        "title": "Installed find-animation-opportunities skill and companions"
+      },
+      {
+        "accessMode": "local_repository_read",
+        "files": [
+          {
+            "byteLength": 7387,
+            "byteSha256": "551c8473e20e5f4774680bc24d45e1c68e50992582720905c6b077756b7b5a55",
+            "path": ".agents/skills/improve-animations/AUDIT.md",
+            "relativePath": "AUDIT.md"
+          },
+          {
+            "byteLength": 3100,
+            "byteSha256": "0a08ac8e23fd2082d7ffb86aeed7b789de77328c3cf874b16f1a755f2ef0a6ad",
+            "path": ".agents/skills/improve-animations/PLAN-TEMPLATE.md",
+            "relativePath": "PLAN-TEMPLATE.md"
+          },
+          {
+            "byteLength": 7915,
+            "byteSha256": "68f17bbc4671593d2f43dba26a679243e2153ba5f26965fb7d59df52842534ff",
+            "path": ".agents/skills/improve-animations/SKILL.md",
+            "relativePath": "SKILL.md"
+          }
+        ],
+        "id": "SRC-EMIL10-IMPROVE_ANIMATIONS",
+        "lineageGroup": "LG-EMIL10-78761e1b57f9",
+        "path": ".agents/skills/improve-animations/",
+        "role": "Local upstream corpus file(s); reference guidance only, not Softie adoption",
+        "skill": "improve-animations",
+        "tier": "independent_design_engineering_guidance",
+        "title": "Installed improve-animations skill and companions"
+      },
+      {
+        "accessMode": "local_repository_read",
+        "files": [
+          {
+            "byteLength": 4514,
+            "byteSha256": "4b889bd6c08358499ac4a7202b8af71ffbd3485d2468f7b09d0613bbe7b24bf4",
+            "path": ".agents/skills/pick-ui-library/SKILL.md",
+            "relativePath": "SKILL.md"
+          }
+        ],
+        "id": "SRC-EMIL10-PICK_UI_LIBRARY",
+        "lineageGroup": "LG-EMIL10-78761e1b57f9",
+        "path": ".agents/skills/pick-ui-library/",
+        "role": "Local upstream corpus file(s); reference guidance only, not Softie adoption",
+        "skill": "pick-ui-library",
+        "tier": "independent_design_engineering_guidance",
+        "title": "Installed pick-ui-library skill and companions"
+      },
+      {
+        "accessMode": "local_repository_read",
+        "files": [
+          {
+            "byteLength": 7548,
+            "byteSha256": "31a55eec94715cc79942e91e172e539e3031dcd5e2e5ee7c1446cf2caee960a6",
+            "path": ".agents/skills/prototype/PICKER.md",
+            "relativePath": "PICKER.md"
+          },
+          {
+            "byteLength": 7488,
+            "byteSha256": "2ad8401c4deaddb54947fb65247f790e7b3d8784e35312bcbedbfb1d59cd89ce",
+            "path": ".agents/skills/prototype/SKILL.md",
+            "relativePath": "SKILL.md"
+          }
+        ],
+        "id": "SRC-EMIL10-PROTOTYPE",
+        "lineageGroup": "LG-EMIL10-78761e1b57f9",
+        "path": ".agents/skills/prototype/",
+        "role": "Local upstream corpus file(s); reference guidance only, not Softie adoption",
+        "skill": "prototype",
+        "tier": "independent_design_engineering_guidance",
+        "title": "Installed prototype skill and companions"
+      },
+      {
+        "accessMode": "local_repository_read",
+        "files": [
+          {
+            "byteLength": 8108,
+            "byteSha256": "61cf8ac0c4c8e1f63385298c546b16c65ca9aec34abddcd04e821c16712d671d",
+            "path": ".agents/skills/review-animations/SKILL.md",
+            "relativePath": "SKILL.md"
+          },
+          {
+            "byteLength": 9801,
+            "byteSha256": "e7d3605034acda54ca13e43aec9e64d65b53de20f75b11b8d694e373012fbe07",
+            "path": ".agents/skills/review-animations/STANDARDS.md",
+            "relativePath": "STANDARDS.md"
+          }
+        ],
+        "id": "SRC-EMIL10-REVIEW_ANIMATIONS",
+        "lineageGroup": "LG-EMIL10-78761e1b57f9",
+        "path": ".agents/skills/review-animations/",
+        "role": "Local upstream corpus file(s); reference guidance only, not Softie adoption",
+        "skill": "review-animations",
+        "tier": "independent_design_engineering_guidance",
+        "title": "Installed review-animations skill and companions"
+      },
+      {
+        "accessMode": "local_repository_read",
+        "id": "SRC-V1-AUDIT",
+        "path": "docs/design-reference-audit-v1.md",
+        "role": "Frozen predecessor claims and pilot status; not rewritten by this artifact",
+        "tier": "predecessor_artifact",
+        "title": "Softie Design Reference Audit v1"
+      },
+      {
+        "accessMode": "local_repository_read",
+        "id": "SRC-SOFTIE-DESIGN",
+        "path": "DESIGN.md",
+        "role": "Repository source of truth; unchanged in this work unit",
+        "tier": "softie_house_rule",
+        "title": "Softie DESIGN.md"
+      },
+      {
+        "accessMode": "local_repository_read",
+        "id": "SRC-SOFTIE-SCHEDULER-CODE",
+        "path": "src/scheduler/TodaySchedulerPage.jsx",
+        "role": "Observed product code; not automatically normative",
+        "tier": "softie_house_rule_observed_code",
+        "title": "Scheduler Today and motion implementation"
+      }
+    ]
+  },
+  "title": "Softie Design Reference Audit v1 — Emil corpus 10/10 incremental audit",
+  "upstreamCorpus": {
+    "entries": [
+      {
+        "actualComputedHash": "5c7094be3a84f8083dc081d15467d0199836a7ca43891bc83f6ce22bcf23de08",
+        "computedHash": "5c7094be3a84f8083dc081d15467d0199836a7ca43891bc83f6ce22bcf23de08",
+        "files": [
+          {
+            "byteLength": 7957,
+            "byteSha256": "21ff63d84391db8d96ecdf9170095f55a42c836ccc36fd3269c4772bab031ba2",
+            "path": ".agents/skills/animate/RECIPES.md",
+            "relativePath": "RECIPES.md"
+          },
+          {
+            "byteLength": 11527,
+            "byteSha256": "2a99870e61971553c0af3185a194c0e557f33aaa81e0422ca2fcec52195a4341",
+            "path": ".agents/skills/animate/SKILL.md",
+            "relativePath": "SKILL.md"
+          }
+        ],
+        "localFiles": [
+          ".agents/skills/animate/RECIPES.md",
+          ".agents/skills/animate/SKILL.md"
+        ],
+        "lockHashMatchesLocalBytes": true,
+        "skill": "animate",
+        "skillPath": "skills/animate/SKILL.md",
+        "source": "emilkowalski/skills",
+        "sourceType": "github"
+      },
+      {
+        "actualComputedHash": "39319fc9a33c15be08666b3685f58666f042ff36bb902b7814c0834a5ba99df4",
+        "computedHash": "39319fc9a33c15be08666b3685f58666f042ff36bb902b7814c0834a5ba99df4",
+        "files": [
+          {
+            "byteLength": 13128,
+            "byteSha256": "d718b48fe3c7898804d588f050a2e266d82c9f5ef51da256c8cb8b5951527757",
+            "path": ".agents/skills/animation-vocabulary/SKILL.md",
+            "relativePath": "SKILL.md"
+          }
+        ],
+        "localFiles": [
+          ".agents/skills/animation-vocabulary/SKILL.md"
+        ],
+        "lockHashMatchesLocalBytes": true,
+        "skill": "animation-vocabulary",
+        "skillPath": "skills/animation-vocabulary/SKILL.md",
+        "source": "emilkowalski/skills",
+        "sourceType": "github"
+      },
+      {
+        "actualComputedHash": "8b94db67cb9edaad5f1501010804caa610131f1d2dfda0a27664b2e858deade3",
+        "computedHash": "8b94db67cb9edaad5f1501010804caa610131f1d2dfda0a27664b2e858deade3",
+        "files": [
+          {
+            "byteLength": 22715,
+            "byteSha256": "11840b24a11d7f94f39c6aaab074750ae4e4de4ef54ee4b1dd97e16ebd485e61",
+            "path": ".agents/skills/apple-design/SKILL.md",
+            "relativePath": "SKILL.md"
+          }
+        ],
+        "localFiles": [
+          ".agents/skills/apple-design/SKILL.md"
+        ],
+        "lockHashMatchesLocalBytes": true,
+        "skill": "apple-design",
+        "skillPath": "skills/apple-design/SKILL.md",
+        "source": "emilkowalski/skills",
+        "sourceType": "github"
+      },
+      {
+        "actualComputedHash": "23f724e97247b2003ccc479f3a9b3af8e4191a0e133b94ee6b73f8405349687f",
+        "computedHash": "23f724e97247b2003ccc479f3a9b3af8e4191a0e133b94ee6b73f8405349687f",
+        "files": [
+          {
+            "byteLength": 4545,
+            "byteSha256": "4bb06f482c5757529e3d7a672a30fbeed42d24919a63e2571384a9ce1549aa7f",
+            "path": ".agents/skills/ask-sonner/API.md",
+            "relativePath": "API.md"
+          },
+          {
+            "byteLength": 6944,
+            "byteSha256": "be1b04511aadb4d7d81aa8cd2b55c260a626aae534983bc8ae3fbe26bbf48632",
+            "path": ".agents/skills/ask-sonner/SKILL.md",
+            "relativePath": "SKILL.md"
+          }
+        ],
+        "localFiles": [
+          ".agents/skills/ask-sonner/API.md",
+          ".agents/skills/ask-sonner/SKILL.md"
+        ],
+        "lockHashMatchesLocalBytes": true,
+        "skill": "ask-sonner",
+        "skillPath": "skills/ask-sonner/SKILL.md",
+        "source": "emilkowalski/skills",
+        "sourceType": "github"
+      },
+      {
+        "actualComputedHash": "41b0a4dc1a27164fe297845a6c6850a39e9242c42c9be999967fcee9df2c5974",
+        "computedHash": "41b0a4dc1a27164fe297845a6c6850a39e9242c42c9be999967fcee9df2c5974",
+        "files": [
+          {
+            "byteLength": 27226,
+            "byteSha256": "e71de849347050c2c573c1cf24d742d5a13459557ecffa6e562f08006f46b5b7",
+            "path": ".agents/skills/emil-design-eng/SKILL.md",
+            "relativePath": "SKILL.md"
+          }
+        ],
+        "localFiles": [
+          ".agents/skills/emil-design-eng/SKILL.md"
+        ],
+        "lockHashMatchesLocalBytes": true,
+        "skill": "emil-design-eng",
+        "skillPath": "skills/emil-design-eng/SKILL.md",
+        "source": "emilkowalski/skills",
+        "sourceType": "github"
+      },
+      {
+        "actualComputedHash": "8fb8492eb8fbed1313cb430b5831d925d9b8964ca24f3c41a6244cbd1fd98732",
+        "computedHash": "8fb8492eb8fbed1313cb430b5831d925d9b8964ca24f3c41a6244cbd1fd98732",
+        "files": [
+          {
+            "byteLength": 9491,
+            "byteSha256": "91c1243164057fbf824088d12faea937878a757a7ac653e8288b775e8b27b882",
+            "path": ".agents/skills/find-animation-opportunities/SKILL.md",
+            "relativePath": "SKILL.md"
+          }
+        ],
+        "localFiles": [
+          ".agents/skills/find-animation-opportunities/SKILL.md"
+        ],
+        "lockHashMatchesLocalBytes": true,
+        "skill": "find-animation-opportunities",
+        "skillPath": "skills/find-animation-opportunities/SKILL.md",
+        "source": "emilkowalski/skills",
+        "sourceType": "github"
+      },
+      {
+        "actualComputedHash": "eeb219a407e325b687af88db25771cc3018e3148245604112f5ac6990b6fd79c",
+        "computedHash": "eeb219a407e325b687af88db25771cc3018e3148245604112f5ac6990b6fd79c",
+        "files": [
+          {
+            "byteLength": 7387,
+            "byteSha256": "551c8473e20e5f4774680bc24d45e1c68e50992582720905c6b077756b7b5a55",
+            "path": ".agents/skills/improve-animations/AUDIT.md",
+            "relativePath": "AUDIT.md"
+          },
+          {
+            "byteLength": 3100,
+            "byteSha256": "0a08ac8e23fd2082d7ffb86aeed7b789de77328c3cf874b16f1a755f2ef0a6ad",
+            "path": ".agents/skills/improve-animations/PLAN-TEMPLATE.md",
+            "relativePath": "PLAN-TEMPLATE.md"
+          },
+          {
+            "byteLength": 7915,
+            "byteSha256": "68f17bbc4671593d2f43dba26a679243e2153ba5f26965fb7d59df52842534ff",
+            "path": ".agents/skills/improve-animations/SKILL.md",
+            "relativePath": "SKILL.md"
+          }
+        ],
+        "localFiles": [
+          ".agents/skills/improve-animations/AUDIT.md",
+          ".agents/skills/improve-animations/PLAN-TEMPLATE.md",
+          ".agents/skills/improve-animations/SKILL.md"
+        ],
+        "lockHashMatchesLocalBytes": true,
+        "skill": "improve-animations",
+        "skillPath": "skills/improve-animations/SKILL.md",
+        "source": "emilkowalski/skills",
+        "sourceType": "github"
+      },
+      {
+        "actualComputedHash": "f8d4d2cf4677bf54b14f35f62a741add93541bfcb67863315a40164365161b49",
+        "computedHash": "f8d4d2cf4677bf54b14f35f62a741add93541bfcb67863315a40164365161b49",
+        "files": [
+          {
+            "byteLength": 4514,
+            "byteSha256": "4b889bd6c08358499ac4a7202b8af71ffbd3485d2468f7b09d0613bbe7b24bf4",
+            "path": ".agents/skills/pick-ui-library/SKILL.md",
+            "relativePath": "SKILL.md"
+          }
+        ],
+        "localFiles": [
+          ".agents/skills/pick-ui-library/SKILL.md"
+        ],
+        "lockHashMatchesLocalBytes": true,
+        "skill": "pick-ui-library",
+        "skillPath": "skills/pick-ui-library/SKILL.md",
+        "source": "emilkowalski/skills",
+        "sourceType": "github"
+      },
+      {
+        "actualComputedHash": "f246d1f47566481d9207e1aa574bdee5454257d862919a6591283e9af2f57eab",
+        "computedHash": "f246d1f47566481d9207e1aa574bdee5454257d862919a6591283e9af2f57eab",
+        "files": [
+          {
+            "byteLength": 7548,
+            "byteSha256": "31a55eec94715cc79942e91e172e539e3031dcd5e2e5ee7c1446cf2caee960a6",
+            "path": ".agents/skills/prototype/PICKER.md",
+            "relativePath": "PICKER.md"
+          },
+          {
+            "byteLength": 7488,
+            "byteSha256": "2ad8401c4deaddb54947fb65247f790e7b3d8784e35312bcbedbfb1d59cd89ce",
+            "path": ".agents/skills/prototype/SKILL.md",
+            "relativePath": "SKILL.md"
+          }
+        ],
+        "localFiles": [
+          ".agents/skills/prototype/PICKER.md",
+          ".agents/skills/prototype/SKILL.md"
+        ],
+        "lockHashMatchesLocalBytes": true,
+        "skill": "prototype",
+        "skillPath": "skills/prototype/SKILL.md",
+        "source": "emilkowalski/skills",
+        "sourceType": "github"
+      },
+      {
+        "actualComputedHash": "b9f669af5ae280c19a592a94611520335a81de25c88f225bf60ae4b2d66c8c7c",
+        "computedHash": "b9f669af5ae280c19a592a94611520335a81de25c88f225bf60ae4b2d66c8c7c",
+        "files": [
+          {
+            "byteLength": 8108,
+            "byteSha256": "61cf8ac0c4c8e1f63385298c546b16c65ca9aec34abddcd04e821c16712d671d",
+            "path": ".agents/skills/review-animations/SKILL.md",
+            "relativePath": "SKILL.md"
+          },
+          {
+            "byteLength": 9801,
+            "byteSha256": "e7d3605034acda54ca13e43aec9e64d65b53de20f75b11b8d694e373012fbe07",
+            "path": ".agents/skills/review-animations/STANDARDS.md",
+            "relativePath": "STANDARDS.md"
+          }
+        ],
+        "localFiles": [
+          ".agents/skills/review-animations/SKILL.md",
+          ".agents/skills/review-animations/STANDARDS.md"
+        ],
+        "lockHashMatchesLocalBytes": true,
+        "skill": "review-animations",
+        "skillPath": "skills/review-animations/SKILL.md",
+        "source": "emilkowalski/skills",
+        "sourceType": "github"
+      }
+    ],
+    "exactlyTenSkills": true,
+    "localRoot": ".agents/skills/",
+    "lockFile": "skills-lock.json",
+    "lockHashRule": "For each skill, sort all regular files by relative path, concatenate each relative path UTF-8 byte sequence immediately followed by that file raw bytes, then compute SHA-256.",
+    "provenanceRefs": [
+      {
+        "kind": "text",
+        "lineEnd": 71,
+        "lineStart": 60,
+        "path": "THIRD_PARTY_NOTICES.md",
+        "quote": "sourceRevision"
+      },
+      {
+        "kind": "text",
+        "lineEnd": 86,
+        "lineStart": 73,
+        "path": "THIRD_PARTY_NOTICES.md",
+        "quote": "The installed corpus contains exactly these upstream directories and companion files"
+      },
+      {
+        "kind": "text",
+        "lineEnd": 8,
+        "lineStart": 1,
+        "path": "skills-lock.json",
+        "quote": "computedHash"
+      }
+    ],
+    "repository": "emilkowalski/skills",
+    "sourceCommitSubject": "Update README.md",
+    "sourceObservedAt": "2026-08-10T23:18:45Z",
+    "sourceRef": "refs/heads/main",
+    "sourceRevision": "78761e1b57f97dce65b983d640c70a68f39e8163"
+  },
+  "validationContract": {
+    "buildTestBoundary": "Build/npm test are not required for artifact-only source work; focused checker/test and git diff --check are required.",
+    "companionIntegrity": "complete.json.integrity.json hashes complete.json and every companion independently.",
+    "lineage": "All Emil corpus observations count as one independent upstream lineage.",
+    "lockProvenance": "Every lock computedHash is recomputed from the actual installed companion-file bytes.",
+    "noProductChange": "The checker confirms protected source inputs and this artifact does not authorize source mutation.",
+    "repeatMaterialization": "Canonical UTF-8 JSON and companion files are byte-identical on repeat materialization.",
+    "sourceRefs": "Every quoted Skill observation is checked against the exact installed file lines."
+  },
+  "verdict": "complete_softie_design_reference_incremental_emil10_audit_uncommitted"
+}

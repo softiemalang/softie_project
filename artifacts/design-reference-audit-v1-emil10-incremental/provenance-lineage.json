@@ -1,0 +1,141 @@
+{
+  "crossSkillRelations": [
+    {
+      "evidenceIds": [
+        "OBS-EMIL10-DURATION-ROLE-RANGES",
+        "OBS-EMIL10-PROPERTIES"
+      ],
+      "id": "XREL-EMIL10-001",
+      "independent": false,
+      "note": "The existing three Skill files and the new audit files repeat or derive the same Emil role ranges and transform/opacity rules; they are not four authorities.",
+      "relation": "same_lineage_role_range_and_property_repetition",
+      "skills": [
+        "animate",
+        "emil-design-eng",
+        "improve-animations",
+        "review-animations"
+      ]
+    },
+    {
+      "evidenceIds": [
+        "OBS-EMIL10-REDUCED-MOTION"
+      ],
+      "id": "XREL-EMIL10-002",
+      "independent": false,
+      "note": "Reduced-motion direction overlaps across the installed corpus, but repetition does not create an independent Emil quorum or Softie adoption.",
+      "relation": "same_lineage_reduced_motion_overlap",
+      "skills": [
+        "animate",
+        "apple-design",
+        "emil-design-eng",
+        "review-animations"
+      ]
+    },
+    {
+      "evidenceIds": [
+        "OBS-EMIL10-PICKER-HIGHLIGHT-250",
+        "OBS-EMIL10-NO-STAGGER"
+      ],
+      "id": "XREL-EMIL10-003",
+      "independent": false,
+      "note": "Picker and recipe values remain role-scoped; the existing Skill recipes reinforce, rather than independently authorize, the loading boundary.",
+      "relation": "role_specific_recipe_boundary",
+      "skills": [
+        "animate",
+        "prototype",
+        "review-animations"
+      ]
+    }
+  ],
+  "lineageGroups": [
+    {
+      "id": "LG-EMIL10-78761e1b57f9",
+      "independenceBoundary": "All ten installed skills and companions are one upstream repository revision and one author lineage; repeated prose or values are not independent votes.",
+      "independentAuthorityCount": 1,
+      "members": [
+        "SRC-EMIL10-ANIMATE",
+        "SRC-EMIL10-ANIMATION_VOCABULARY",
+        "OBS-EMIL10-VOCAB-ENTER-EXIT",
+        "OBS-EMIL10-SKELETON-NAME",
+        "SRC-EMIL10-APPLE_DESIGN",
+        "SRC-EMIL10-ASK_SONNER",
+        "OBS-EMIL10-TOAST-LIFETIME-4000",
+        "OBS-EMIL10-SONNER-LOADING",
+        "SRC-EMIL10-EMIL_DESIGN_ENG",
+        "OBS-EMIL10-ENTER-EASE-OUT",
+        "OBS-EMIL10-DURATION-ROLE-RANGES",
+        "OBS-EMIL10-SELECT-180",
+        "OBS-EMIL10-PRESS-160",
+        "OBS-EMIL10-ADJACENT-200",
+        "OBS-EMIL10-REDUCED-MOTION",
+        "OBS-EMIL10-STARTING-STYLE",
+        "SRC-EMIL10-FIND_ANIMATION_OPPORTUNITIES",
+        "OBS-EMIL10-TELEPORTING-STATE",
+        "OBS-EMIL10-DENSE-READING",
+        "OBS-EMIL10-NO-STAGGER",
+        "SRC-EMIL10-IMPROVE_ANIMATIONS",
+        "OBS-EMIL10-PROPERTIES",
+        "OBS-EMIL10-LINEAGE-DECLARATION",
+        "SRC-EMIL10-PICK_UI_LIBRARY",
+        "OBS-EMIL10-CSS-TOOL",
+        "SRC-EMIL10-PROTOTYPE",
+        "OBS-EMIL10-PICKER-HIGHLIGHT-250",
+        "OBS-EMIL10-PROTOTYPE-INSTANT-SWAP",
+        "SRC-EMIL10-REVIEW_ANIMATIONS"
+      ],
+      "sourceRef": "refs/heads/main",
+      "sourceRepository": "emilkowalski/skills",
+      "sourceRevision": "78761e1b57f97dce65b983d640c70a68f39e8163"
+    }
+  ],
+  "nonRules": [
+    "A skill installation does not change DESIGN.md or adopt any external value as a Softie rule.",
+    "Numeric repetition across Emil files is relation/derivation, not independent authority.",
+    "A button, tooltip, dropdown, modal, toast, picker, or scroll-reveal value is not promoted to loading reveal without a role match."
+  ],
+  "rules": [
+    {
+      "from": [
+        "OBS-EMIL10-DURATION-ROLE-RANGES",
+        "OBS-EMIL10-SELECT-180",
+        "OBS-EMIL10-PRESS-160",
+        "OBS-EMIL10-ADJACENT-200"
+      ],
+      "id": "LIN-EMIL10-001",
+      "independent": false,
+      "note": "Role ranges and exact values remain role-scoped; they do not form independent loading evidence.",
+      "relation": "same_lineage_repetition_or_derivation",
+      "to": [
+        "loading_reveal_duration_preference"
+      ]
+    },
+    {
+      "from": [
+        "OBS-EMIL10-TELEPORTING-STATE",
+        "OBS-EMIL10-ENTER-EASE-OUT"
+      ],
+      "id": "LIN-EMIL10-002",
+      "independent": false,
+      "note": "The type/intent evidence is coherent within one corpus, not an independent multi-source consensus.",
+      "relation": "same_lineage_role_match",
+      "to": [
+        "loading_reveal_type"
+      ]
+    },
+    {
+      "from": [
+        "OBS-EMIL10-REDUCED-MOTION",
+        "OBS-EMIL10-PROPERTIES",
+        "OBS-EMIL10-NO-STAGGER"
+      ],
+      "id": "LIN-EMIL10-003",
+      "independent": false,
+      "note": "Accessibility, property, and stagger guidance is one lineage cluster.",
+      "relation": "same_lineage_constraint_cluster",
+      "to": [
+        "loading_reveal_pilot_constraints"
+      ]
+    }
+  ],
+  "schemaVersion": "design-reference-provenance-lineage-emil10-incremental-v1"
+}

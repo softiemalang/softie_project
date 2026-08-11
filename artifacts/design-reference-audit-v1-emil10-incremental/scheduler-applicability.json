@@ -1,0 +1,100 @@
+{
+  "codeObservations": [
+    {
+      "claim": "Initial fetch is real and stateful",
+      "id": "CODE-LOAD-001",
+      "observed": "loadEvents sets isLoading, awaits listTodayWorkEvents, then commits events and clears loading for the latest request.",
+      "sourceRefs": [
+        {
+          "kind": "text",
+          "lineEnd": 281,
+          "lineStart": 265,
+          "path": "src/scheduler/TodaySchedulerPage.jsx",
+          "quote": "setIsLoading(true)"
+        },
+        {
+          "kind": "text",
+          "lineEnd": 297,
+          "lineStart": 295,
+          "path": "src/scheduler/TodaySchedulerPage.jsx",
+          "quote": "loadEvents()"
+        }
+      ]
+    },
+    {
+      "claim": "Loading and post-load empty labels use separate conditional behavior",
+      "id": "CODE-LOAD-002",
+      "observed": "The first two sections pass hideEmptyText, which suppresses their post-load empty labels; while loading, SchedulerEventSection explicitly renders 불러오는 중... regardless of hideEmptyText. The Today 전체 section also renders the loading message and then an empty message.",
+      "sourceRefs": [
+        {
+          "kind": "text",
+          "lineEnd": 938,
+          "lineStart": 914,
+          "path": "src/scheduler/TodaySchedulerPage.jsx",
+          "quote": "emptyText={isLoading ? '불러오는 중...' : '없음'}"
+        },
+        {
+          "kind": "text",
+          "lineEnd": 39,
+          "lineStart": 36,
+          "path": "src/scheduler/SchedulerEventSection.jsx",
+          "quote": "normalizedEmptyText === '불러오는 중...' || !hideEmptyText"
+        }
+      ]
+    },
+    {
+      "claim": "Refetch retains old events",
+      "id": "CODE-LOAD-003",
+      "observed": "The request starts loading without clearing events; non-empty sections therefore keep rendering old cards while refetch is pending.",
+      "sourceRefs": [
+        {
+          "kind": "text",
+          "lineEnd": 273,
+          "lineStart": 268,
+          "path": "src/scheduler/TodaySchedulerPage.jsx",
+          "quote": "setEvents(rows)"
+        }
+      ]
+    },
+    {
+      "claim": "No content-entry motion contract exists",
+      "id": "CODE-LOAD-004",
+      "observed": "Loaded cards are conditionally rendered with no admitted entry/reveal state in the inspected JSX.",
+      "sourceRefs": [
+        {
+          "kind": "text",
+          "lineEnd": 49,
+          "lineStart": 40,
+          "path": "src/scheduler/SchedulerEventSection.jsx",
+          "quote": "<div className=\"scheduler-event-list\">"
+        },
+        {
+          "kind": "text",
+          "lineEnd": 28,
+          "lineStart": 26,
+          "path": "src/scheduler/SchedulerEventCard.jsx",
+          "quote": "<article className={cardClassName} aria-busy={isSaving}>"
+        }
+      ]
+    }
+  ],
+  "opportunityGate": {
+    "frequency": "initial Today fetch or date change, not a 100-plus-times-per-day keyboard action",
+    "function": "Eligible only for a minimal cue/reveal because the list is dense operational data users read and act on.",
+    "implementationPrecondition": "The current code has no firstFetch/hasLoaded flag; any future pilot must add or otherwise prove this scope without animating stale refetches.",
+    "passBoundary": "The opportunity is the first empty-state successful fetch only; stale refetches remain excluded.",
+    "passesOpportunityCondition": true,
+    "purpose": [
+      "state_indication",
+      "preventing_a_jarring_change"
+    ],
+    "speed": "Under-300ms corpus budget is broad guidance; no loading-specific duration exists."
+  },
+  "runtimeLimitations": [
+    "Static source inspection only; no browser animation feel check was run in this artifact work.",
+    "No physical-device validation evidence exists in the current main worktree for the route 180ms value.",
+    "Actual empty/loading semantics and layout stability must be checked before implementation."
+  ],
+  "schemaVersion": "design-reference-scheduler-loading-applicability-emil10-v1",
+  "surface": "Scheduler Today event list"
+}

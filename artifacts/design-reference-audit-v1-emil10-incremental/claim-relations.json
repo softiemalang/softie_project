@@ -1,0 +1,180 @@
+{
+  "predecessor": {
+    "artifact": "artifacts/design-reference-audit-v1/complete.json",
+    "artifactId": "design-reference-audit-v1",
+    "document": "docs/design-reference-audit-v1.md",
+    "preserved": true
+  },
+  "relations": [
+    {
+      "effect": "The pilot seam is confirmed as a conditional content-enter/prevent-jarring-change opportunity; candidate status remains candidate_for_pilot.",
+      "id": "REL-EMIL10-001",
+      "independentEvidenceCount": 1,
+      "independentLineageGroups": [
+        "LG-EMIL10-78761e1b57f9"
+      ],
+      "newEvidenceIds": [
+        "OBS-EMIL10-TELEPORTING-STATE",
+        "OBS-EMIL10-VOCAB-ENTER-EXIT"
+      ],
+      "target": {
+        "area": "async_loading_loaded_reveal",
+        "v1MatrixId": "MAT-03",
+        "v1PilotId": "PILOT-01"
+      },
+      "type": "confirm"
+    },
+    {
+      "effect": "Name the motion precisely as state-triggered content enter after async fetch; scroll reveal, page transition, skeleton/shimmer, and generic crossfade are not automatic classifications.",
+      "id": "REL-EMIL10-002",
+      "independentEvidenceCount": 1,
+      "independentLineageGroups": [
+        "LG-EMIL10-78761e1b57f9"
+      ],
+      "newEvidenceIds": [
+        "OBS-EMIL10-TELEPORTING-STATE",
+        "OBS-EMIL10-STARTING-STYLE",
+        "OBS-EMIL10-DENSE-READING"
+      ],
+      "target": {
+        "area": "async_loading_loaded_reveal",
+        "v1MatrixId": "MAT-03",
+        "v1PilotId": "PILOT-01"
+      },
+      "type": "amend"
+    },
+    {
+      "effect": "The seven-Skill increment adds no loading-specific duration. 150/160/180/200ms remain adjacent-role or Softie-applied values; duration preference stays insufficient_to_prefer.",
+      "id": "REL-EMIL10-003",
+      "independentEvidenceCount": 1,
+      "independentLineageGroups": [
+        "LG-EMIL10-78761e1b57f9"
+      ],
+      "newEvidenceIds": [
+        "OBS-EMIL10-DURATION-ROLE-RANGES",
+        "OBS-EMIL10-SELECT-180",
+        "OBS-EMIL10-PRESS-160",
+        "OBS-EMIL10-ADJACENT-200"
+      ],
+      "target": {
+        "area": "duration_easing_roles",
+        "v1MatrixId": "MAT-11"
+      },
+      "type": "amend"
+    },
+    {
+      "effect": "Transform/opacity remains the external performance boundary, while Scheduler-specific opacity-only is recorded as a contextual pilot inference; no global retrofit is authorized.",
+      "id": "REL-EMIL10-004",
+      "independentEvidenceCount": 1,
+      "independentLineageGroups": [
+        "LG-EMIL10-78761e1b57f9"
+      ],
+      "newEvidenceIds": [
+        "OBS-EMIL10-PROPERTIES",
+        "OBS-EMIL10-DENSE-READING"
+      ],
+      "target": {
+        "area": "opacity_transform",
+        "v1MatrixId": "MAT-07",
+        "v1PilotId": "PILOT-01"
+      },
+      "type": "confirm"
+    },
+    {
+      "effect": "Reduced motion should preserve status comprehension with static or opacity/color-only feedback and remove movement; the v1 audit gate remains.",
+      "id": "REL-EMIL10-005",
+      "independentEvidenceCount": 1,
+      "independentLineageGroups": [
+        "LG-EMIL10-78761e1b57f9"
+      ],
+      "newEvidenceIds": [
+        "OBS-EMIL10-REDUCED-MOTION"
+      ],
+      "target": {
+        "area": "reduced_motion",
+        "v1MatrixId": "MAT-06",
+        "v1PilotId": "PILOT-01"
+      },
+      "type": "confirm"
+    },
+    {
+      "effect": "No stagger and no stale-refetch animation remain correct for the dense operational Today list.",
+      "id": "REL-EMIL10-006",
+      "independentEvidenceCount": 1,
+      "independentLineageGroups": [
+        "LG-EMIL10-78761e1b57f9"
+      ],
+      "newEvidenceIds": [
+        "OBS-EMIL10-NO-STAGGER",
+        "OBS-EMIL10-DENSE-READING"
+      ],
+      "target": {
+        "area": "async_loading_loaded_reveal",
+        "v1MatrixId": "MAT-03",
+        "v1PilotId": "PILOT-01"
+      },
+      "type": "confirm"
+    },
+    {
+      "effect": "180ms remains a T4 Softie house/applied code value. The new select example is adjacent only. Current main contains no evidence that Scheduler route 180ms passed a physical-device feel validation; that claim remains unverified. Loading reveal has separate validation status.",
+      "id": "REL-EMIL10-007",
+      "independentEvidenceCount": 1,
+      "independentLineageGroups": [
+        "LG-EMIL10-78761e1b57f9"
+      ],
+      "newEvidenceIds": [
+        "OBS-EMIL10-SELECT-180"
+      ],
+      "target": {
+        "area": "180ms_status",
+        "v1MatrixId": "MAT-02",
+        "v1ObservationId": "OBS-SOFTIE-DURATION-FAST"
+      },
+      "type": "amend"
+    },
+    {
+      "effect": "No new spinner, shimmer, toast, or loading-indicator contract is admitted for Scheduler Today.",
+      "id": "REL-EMIL10-008",
+      "independentEvidenceCount": 1,
+      "independentLineageGroups": [
+        "LG-EMIL10-78761e1b57f9"
+      ],
+      "newEvidenceIds": [
+        "OBS-EMIL10-SKELETON-NAME",
+        "OBS-EMIL10-SONNER-LOADING"
+      ],
+      "target": {
+        "area": "progress_loading_indicators",
+        "v1MatrixId": "MAT-08"
+      },
+      "type": "confirm"
+    },
+    {
+      "effect": "Correct the v1 wording: hideEmptyText suppresses post-load empty labels, but the SchedulerEventSection condition explicitly still renders the loading text for the first two sections. No content-entry reveal exists yet.",
+      "id": "REL-EMIL10-009",
+      "independentEvidenceCount": 1,
+      "independentLineageGroups": [
+        "LG-EMIL10-78761e1b57f9"
+      ],
+      "newEvidenceIds": [
+        "OBS-EMIL10-TELEPORTING-STATE"
+      ],
+      "supportingCodeObservationIds": [
+        "CODE-LOAD-002"
+      ],
+      "target": {
+        "area": "loading_text_visibility",
+        "v1MatrixId": "MAT-03",
+        "v1PilotId": "PILOT-01"
+      },
+      "type": "amend"
+    }
+  ],
+  "schemaVersion": "design-reference-claim-relations-emil10-incremental-v1",
+  "summary": {
+    "amendCount": 4,
+    "confirmCount": 5,
+    "supersedeCount": 0,
+    "supersededClaims": []
+  }
+}

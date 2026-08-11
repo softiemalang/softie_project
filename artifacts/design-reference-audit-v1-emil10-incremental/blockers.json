@@ -1,0 +1,44 @@
+[
+  {
+    "detail": "The pinned corpus provides role ranges and adjacent exact values but no duration explicitly assigned to async loaded-content entry.",
+    "id": "BLK-EMIL10-NO-LOADING-DURATION",
+    "mitigation": "Keep recommendationClass insufficient_to_prefer; use no value as an adopted rule.",
+    "status": "open",
+    "subject": "loading_role_duration_missing"
+  },
+  {
+    "detail": "DESIGN.md and v1 identify 180ms as a T4 Softie value, but do not identify its original selection rationale.",
+    "id": "BLK-EMIL10-180-ORIGIN",
+    "mitigation": "Do not attribute 180ms to Apple or Emil; retain it as house/applied code evidence only.",
+    "status": "open",
+    "subject": "180ms_original_selection_provenance"
+  },
+  {
+    "detail": "The current main worktree contains route CSS and structural tests but no physical-device feel log proving that 180ms passed device validation.",
+    "id": "BLK-EMIL10-ROUTE-DEVICE-EVIDENCE",
+    "mitigation": "Describe route 180ms as applied/observed code, not a verified empirical pass; require device evidence before promotion.",
+    "status": "open",
+    "subject": "route_180ms_physical_device_validation"
+  },
+  {
+    "detail": "No browser or physical-device feel check was performed for a loaded-content reveal.",
+    "id": "BLK-EMIL10-LOADING-FEEL",
+    "mitigation": "If a pilot is authorized, compare only the bounded pair with easing/properties fixed and inspect dense-list scanning.",
+    "status": "open",
+    "subject": "loading_reveal_runtime_feel"
+  },
+  {
+    "detail": "The corpus says reduced motion is fewer/gentler rather than zero, while DESIGN.md and current CSS often collapse durations to near-zero.",
+    "id": "BLK-EMIL10-REDUCED-MOTION-CONFLICT",
+    "mitigation": "Keep this as an adoption decision and pilot gate; do not change DESIGN.md or global CSS in this audit.",
+    "status": "open",
+    "subject": "house_rule_vs_corpus_reduced_motion"
+  },
+  {
+    "detail": "All ten installed skills and companions are pinned to one emilkowalski/skills revision and are counted as one independent T3 lineage.",
+    "id": "BLK-EMIL10-LINEAGE-DUPLICATION",
+    "mitigation": "Use provenance-lineage.json relations and independentEvidenceCount=1 for every corpus-derived conclusion.",
+    "status": "resolved_by_artifact_contract",
+    "subject": "same_author_lineage_double_counting"
+  }
+]

@@ -1,0 +1,52 @@
+{
+  "artifactId": "design-reference-audit-v1-emil10-incremental",
+  "completeArtifactPath": "artifacts/design-reference-audit-v1-emil10-incremental/complete.json",
+  "files": {
+    "artifacts/design-reference-audit-v1-emil10-incremental/blockers.json": {
+      "byteLength": 2358,
+      "byteSha256": "94ca9382626dcc18733fe584d6d2f968d614319fd61699a944b555e644f593f7",
+      "hashScope": "exact UTF-8 file bytes including final LF"
+    },
+    "artifacts/design-reference-audit-v1-emil10-incremental/claim-relations.json": {
+      "byteLength": 5924,
+      "byteSha256": "6b6a973f7a9a48a74380c41820e418c8ed2b4adef8abe2e3488879ffdf25ec56",
+      "hashScope": "exact UTF-8 file bytes including final LF"
+    },
+    "artifacts/design-reference-audit-v1-emil10-incremental/complete.json": {
+      "byteLength": 91248,
+      "byteSha256": "d81ae9e4aace68a7373fb8cee9d1548363b961835a2945ad4c0df1e05bb965c0",
+      "hashScope": "exact UTF-8 file bytes including final LF"
+    },
+    "artifacts/design-reference-audit-v1-emil10-incremental/duration-easing-candidate-matrix.json": {
+      "byteLength": 5194,
+      "byteSha256": "7dda7cde4e8abbae429d18adc8b7f648ceaeb9b90b7d206c4fa277398eaefa06",
+      "hashScope": "exact UTF-8 file bytes including final LF"
+    },
+    "artifacts/design-reference-audit-v1-emil10-incremental/loading-reveal-recommendation.json": {
+      "byteLength": 3809,
+      "byteSha256": "c31394148b5fa222e39dcb2729084860a841ef53b091fd22d45b990d00556e7f",
+      "hashScope": "exact UTF-8 file bytes including final LF"
+    },
+    "artifacts/design-reference-audit-v1-emil10-incremental/new-skill-observation-ledger.json": {
+      "byteLength": 20137,
+      "byteSha256": "83d6ea90aae5788c03ba56a899881e54c498f285e84ead8f0515b276c0b46ca0",
+      "hashScope": "exact UTF-8 file bytes including final LF"
+    },
+    "artifacts/design-reference-audit-v1-emil10-incremental/provenance-lineage.json": {
+      "byteLength": 4836,
+      "byteSha256": "d63ff04d738dbcf57045b4ce164d7e6c6124dcb943a4e152b4b2893c2f544ae8",
+      "hashScope": "exact UTF-8 file bytes including final LF"
+    },
+    "artifacts/design-reference-audit-v1-emil10-incremental/scheduler-applicability.json": {
+      "byteLength": 4034,
+      "byteSha256": "c95c53dbb1e9e91e7bd156b50a0ec6baf0849dbbf55be25a7ed1b8d6478878ba",
+      "hashScope": "exact UTF-8 file bytes including final LF"
+    },
+    "artifacts/design-reference-audit-v1-emil10-incremental/source-reference-ledger.json": {
+      "byteLength": 20064,
+      "byteSha256": "7cc5e7514f31260d42c58801e9d512bd78386990ad4375613163550fba7c5ab9",
+      "hashScope": "exact UTF-8 file bytes including final LF"
+    }
+  },
+  "schemaVersion": "design-reference-audit-integrity-v1"
+}

@@ -1,0 +1,144 @@
+{
+  "decisionClasses": {
+    "directly_supported": {
+      "reason": "No Skill assigns a duration to async loaded-content entry.",
+      "status": "none",
+      "values": []
+    },
+    "insufficient_to_prefer": {
+      "reason": "Role mismatch or missing loading-specific validation prevents preferring a number.",
+      "selected": true
+    },
+    "range_supported_candidate": {
+      "evidenceIds": [
+        "OBS-EMIL10-DURATION-ROLE-RANGES"
+      ],
+      "reason": "General UI budget only; it does not select a point value or loading role.",
+      "status": "broad_only",
+      "values": [
+        "under-300ms"
+      ]
+    },
+    "softie_empirical_candidate": {
+      "evidenceIds": [
+        "OBS-SOFTIE-DURATION-FAST",
+        "OBS-EMIL10-SELECT-180"
+      ],
+      "reason": "Existing Softie/applied value and adjacent select example; no current-main physical-device pass evidence.",
+      "status": "applied_baseline_device_pass_unverified",
+      "values": [
+        "180ms"
+      ]
+    }
+  },
+  "directLoadingDurationEvidence": false,
+  "fixedVariablesForPilot": {
+    "layoutProperties": "none",
+    "normalEasing": "cubic-bezier(0.23, 1, 0.32, 1)",
+    "properties": [
+      "opacity"
+    ],
+    "reducedMotion": "static_or_opacity_color_only_equivalent",
+    "refetches": "no_animation",
+    "stagger": "none",
+    "transform": "none_for_the_Scheduler_Today_pilot_due_to_dense_reading_context"
+  },
+  "pilotCandidates": [
+    {
+      "class": "softie_empirical_candidate",
+      "duration": "180ms",
+      "roleStatus": "loading_reveal_separate_validation_required",
+      "whyIncluded": "Preserves the currently applied Softie baseline as the control condition."
+    },
+    {
+      "class": "adjacent_role_guidance",
+      "duration": "200ms",
+      "roleStatus": "loading_reveal_separate_validation_required",
+      "whyIncluded": "Provides one existing exact adjacent-role value without inventing a number."
+    }
+  ],
+  "recommendationClass": "insufficient_to_prefer",
+  "rows": [
+    {
+      "candidate": "150ms",
+      "directRoleMatch": false,
+      "disposition": "not_preferred_for_loading",
+      "evidenceIds": [
+        "OBS-EMIL10-DURATION-ROLE-RANGES"
+      ],
+      "exactStandaloneValue": false,
+      "observedRole": "dropdown/select range lower bound (150-250ms)",
+      "provenance": "T3",
+      "reason": "A range endpoint for dropdown/select is not a loading-reveal recommendation.",
+      "supportClass": "adjacent_role_guidance"
+    },
+    {
+      "candidate": "160ms",
+      "directRoleMatch": false,
+      "disposition": "not_preferred_for_loading",
+      "evidenceIds": [
+        "OBS-EMIL10-PRESS-160"
+      ],
+      "exactStandaloneValue": true,
+      "observedRole": "button press feedback",
+      "provenance": "T3",
+      "reason": "Exact value, wrong interaction role.",
+      "supportClass": "adjacent_role_guidance"
+    },
+    {
+      "candidate": "180ms",
+      "directRoleMatch": false,
+      "disposition": "bounded_pilot_candidate_only",
+      "evidenceIds": [
+        "OBS-EMIL10-SELECT-180"
+      ],
+      "exactStandaloneValue": true,
+      "observedRole": "Softie duration-fast and Scheduler route application; adjacent corpus select example",
+      "provenance": "T4_plus_T3_adjacent",
+      "reason": "Existing applied baseline, but no loading-specific validation and no current-main evidence of physical-device pass.",
+      "supportClass": "softie_empirical_candidate"
+    },
+    {
+      "candidate": "200ms",
+      "directRoleMatch": false,
+      "disposition": "bounded_pilot_candidate_only",
+      "evidenceIds": [
+        "OBS-EMIL10-ADJACENT-200"
+      ],
+      "exactStandaloneValue": true,
+      "observedRole": "button-content/crossfade or clip-path/release recipe",
+      "provenance": "T3",
+      "reason": "Existing exact corpus value in adjacent roles; it is not a loading-specific preference.",
+      "supportClass": "adjacent_role_guidance"
+    },
+    {
+      "candidate": "250ms",
+      "directRoleMatch": false,
+      "disposition": "not_applicable_for_loading",
+      "evidenceIds": [
+        "OBS-EMIL10-PICKER-HIGHLIGHT-250"
+      ],
+      "exactStandaloneValue": true,
+      "observedRole": "prototype picker highlight spatial feedback",
+      "provenance": "T3",
+      "reason": "Picker chrome feedback with an explicit width exception; not loaded-content entry.",
+      "supportClass": "adjacent_role_guidance"
+    },
+    {
+      "candidate": "4000ms",
+      "directRoleMatch": false,
+      "disposition": "not_applicable_for_loading",
+      "evidenceIds": [
+        "OBS-EMIL10-TOAST-LIFETIME-4000"
+      ],
+      "exactStandaloneValue": true,
+      "observedRole": "Sonner toast auto-close lifetime",
+      "provenance": "T3",
+      "reason": "Lifecycle duration for a toast, not an animation duration.",
+      "supportClass": "not_applicable"
+    }
+  ],
+  "schemaVersion": "design-reference-duration-easing-candidate-matrix-emil10-v1",
+  "targetRole": "state-triggered loaded-content enter after async fetch",
+  "warning": "The pair is a controlled comparison proposal, not evidence that either duration is directly supported for loading reveal. If no feel test is authorized, do not select either value."
+}

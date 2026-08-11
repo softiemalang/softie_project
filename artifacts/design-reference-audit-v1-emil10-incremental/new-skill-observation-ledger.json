@@ -1,0 +1,577 @@
+{
+  "observations": [
+    {
+      "classification": "direct_role_match",
+      "id": "OBS-EMIL10-TELEPORTING-STATE",
+      "interpretation": "Directly matches the conditional loaded-content seam, but supplies no loading-specific duration.",
+      "lineageGroup": "LG-EMIL10-78761e1b57f9",
+      "skill": "find-animation-opportunities",
+      "sourceId": "SRC-EMIL10-FIND_ANIMATION_OPPORTUNITIES",
+      "sourceRefs": [
+        {
+          "kind": "text",
+          "lineEnd": 78,
+          "lineStart": 77,
+          "path": ".agents/skills/find-animation-opportunities/SKILL.md",
+          "quote": "Content that swaps, appears, or vanishes instantly"
+        },
+        {
+          "kind": "text",
+          "lineEnd": 78,
+          "lineStart": 78,
+          "path": ".agents/skills/find-animation-opportunities/SKILL.md",
+          "quote": "scale(0.95–0.97)"
+        }
+      ],
+      "status": "reference",
+      "subject": "Loading placeholder to loaded content as a teleporting conditional state seam",
+      "tier": "independent_design_engineering_guidance",
+      "value": {
+        "easing": "ease-out",
+        "initialOpacity": 0,
+        "initialScale": "0.95-0.97",
+        "loadingSpecificDuration": false,
+        "mechanism": "fade_or_scale_entrance",
+        "purpose": "preventing_a_jarring_change"
+      }
+    },
+    {
+      "classification": "adjacent_role_guidance",
+      "id": "OBS-EMIL10-VOCAB-ENTER-EXIT",
+      "interpretation": "Naming/glossary evidence, not a loading implementation prescription.",
+      "lineageGroup": "LG-EMIL10-78761e1b57f9",
+      "skill": "animation-vocabulary",
+      "sourceId": "SRC-EMIL10-ANIMATION_VOCABULARY",
+      "sourceRefs": [
+        {
+          "kind": "text",
+          "lineEnd": 61,
+          "lineStart": 61,
+          "path": ".agents/skills/animation-vocabulary/SKILL.md",
+          "quote": "Fade in / Fade out"
+        },
+        {
+          "kind": "text",
+          "lineEnd": 66,
+          "lineStart": 65,
+          "path": ".agents/skills/animation-vocabulary/SKILL.md",
+          "quote": "Reveal"
+        },
+        {
+          "kind": "text",
+          "lineEnd": 89,
+          "lineStart": 89,
+          "path": ".agents/skills/animation-vocabulary/SKILL.md",
+          "quote": "Crossfade"
+        },
+        {
+          "kind": "text",
+          "lineEnd": 102,
+          "lineStart": 101,
+          "path": ".agents/skills/animation-vocabulary/SKILL.md",
+          "quote": "Page transition"
+        }
+      ],
+      "status": "reference",
+      "subject": "Vocabulary for loaded content entering after a state change",
+      "tier": "independent_design_engineering_guidance",
+      "value": {
+        "conditionalTerm": "Crossfade only when old and new states overlap in the same spot",
+        "opacityTerm": "Fade in / Fade out",
+        "primaryTerm": "Enter / Exit",
+        "revealTerm": "Reveal only when content is uncovered by a clip-path or mask"
+      }
+    },
+    {
+      "classification": "direct_role_match",
+      "id": "OBS-EMIL10-ENTER-EASE-OUT",
+      "interpretation": "Direct role-matched easing evidence; it does not select a duration.",
+      "lineageGroup": "LG-EMIL10-78761e1b57f9",
+      "skill": "emil-design-eng",
+      "sourceId": "SRC-EMIL10-EMIL_DESIGN_ENG",
+      "sourceRefs": [
+        {
+          "kind": "text",
+          "lineEnd": 106,
+          "lineStart": 97,
+          "path": ".agents/skills/emil-design-eng/SKILL.md",
+          "quote": "ease-out (starts fast, feels responsive)"
+        },
+        {
+          "kind": "text",
+          "lineEnd": 112,
+          "lineStart": 112,
+          "path": ".agents/skills/emil-design-eng/SKILL.md",
+          "quote": "cubic-bezier(0.23, 1, 0.32, 1)"
+        }
+      ],
+      "status": "reference",
+      "subject": "Easing role for an entering or exiting element",
+      "tier": "independent_design_engineering_guidance",
+      "value": {
+        "avoid": "ease-in",
+        "customCurve": "cubic-bezier(0.23, 1, 0.32, 1)",
+        "enteringOrExiting": "ease-out"
+      }
+    },
+    {
+      "classification": "adjacent_role_guidance",
+      "id": "OBS-EMIL10-DURATION-ROLE-RANGES",
+      "interpretation": "The corpus has role ranges but no async loaded-content role.",
+      "lineageGroup": "LG-EMIL10-78761e1b57f9",
+      "skill": "emil-design-eng",
+      "sourceId": "SRC-EMIL10-EMIL_DESIGN_ENG",
+      "sourceRefs": [
+        {
+          "kind": "text",
+          "lineEnd": 132,
+          "lineStart": 129,
+          "path": ".agents/skills/emil-design-eng/SKILL.md",
+          "quote": "Button press feedback"
+        },
+        {
+          "kind": "text",
+          "lineEnd": 135,
+          "lineStart": 135,
+          "path": ".agents/skills/emil-design-eng/SKILL.md",
+          "quote": "UI animations should stay under 300ms"
+        }
+      ],
+      "status": "reference",
+      "subject": "Role-specific duration ranges",
+      "tier": "independent_design_engineering_guidance",
+      "value": {
+        "dropdownSelect": "150-250ms",
+        "generalUi": "under 300ms",
+        "modalDrawer": "200-500ms",
+        "press": "100-160ms",
+        "tooltipPopover": "125-200ms"
+      }
+    },
+    {
+      "classification": "adjacent_role_guidance",
+      "id": "OBS-EMIL10-SELECT-180",
+      "interpretation": "A select value cannot be promoted to loading reveal evidence.",
+      "lineageGroup": "LG-EMIL10-78761e1b57f9",
+      "skill": "emil-design-eng",
+      "sourceId": "SRC-EMIL10-EMIL_DESIGN_ENG",
+      "sourceRefs": [
+        {
+          "kind": "text",
+          "lineEnd": 142,
+          "lineStart": 142,
+          "path": ".agents/skills/emil-design-eng/SKILL.md",
+          "quote": "A **180ms select** animation feels more responsive"
+        }
+      ],
+      "status": "reference",
+      "subject": "Exact 180ms example in a select interaction",
+      "tier": "independent_design_engineering_guidance",
+      "value": {
+        "comparison": "400ms",
+        "duration": "180ms",
+        "role": "select"
+      }
+    },
+    {
+      "classification": "adjacent_role_guidance",
+      "id": "OBS-EMIL10-PRESS-160",
+      "interpretation": "Button press context only; it is not a loading reveal candidate by direct role match.",
+      "lineageGroup": "LG-EMIL10-78761e1b57f9",
+      "skill": "emil-design-eng",
+      "sourceId": "SRC-EMIL10-EMIL_DESIGN_ENG",
+      "sourceRefs": [
+        {
+          "kind": "text",
+          "lineEnd": 205,
+          "lineStart": 205,
+          "path": ".agents/skills/emil-design-eng/SKILL.md",
+          "quote": "transition: transform 160ms ease-out;"
+        }
+      ],
+      "status": "reference",
+      "subject": "Exact 160ms example in button press feedback",
+      "tier": "independent_design_engineering_guidance",
+      "value": {
+        "duration": "160ms",
+        "easing": "ease-out",
+        "property": "transform",
+        "role": "button_press"
+      }
+    },
+    {
+      "classification": "adjacent_role_guidance",
+      "id": "OBS-EMIL10-ADJACENT-200",
+      "interpretation": "200ms is present in adjacent component recipes, not directly for async content arrival.",
+      "lineageGroup": "LG-EMIL10-78761e1b57f9",
+      "skill": "emil-design-eng",
+      "sourceId": "SRC-EMIL10-EMIL_DESIGN_ENG",
+      "sourceRefs": [
+        {
+          "kind": "text",
+          "lineEnd": 308,
+          "lineStart": 308,
+          "path": ".agents/skills/emil-design-eng/SKILL.md",
+          "quote": "transition: filter 200ms ease, opacity 200ms ease;"
+        },
+        {
+          "kind": "text",
+          "lineEnd": 415,
+          "lineStart": 415,
+          "path": ".agents/skills/emil-design-eng/SKILL.md",
+          "quote": "transition: clip-path 200ms ease-out;"
+        }
+      ],
+      "status": "reference",
+      "subject": "Exact 200ms examples outside the loading role",
+      "tier": "independent_design_engineering_guidance",
+      "value": {
+        "contexts": [
+          "button-content blur/opacity transition",
+          "clip-path overlay reveal",
+          "release snap-back"
+        ],
+        "duration": "200ms"
+      }
+    },
+    {
+      "classification": "adjacent_role_guidance",
+      "id": "OBS-EMIL10-PICKER-HIGHLIGHT-250",
+      "interpretation": "Picker spatial feedback only; the deliberate width exception and initial-load no-animation rule do not transfer to Scheduler loading reveal.",
+      "lineageGroup": "LG-EMIL10-78761e1b57f9",
+      "skill": "prototype",
+      "sourceId": "SRC-EMIL10-PROTOTYPE",
+      "sourceRefs": [
+        {
+          "kind": "text",
+          "lineEnd": 67,
+          "lineStart": 63,
+          "path": ".agents/skills/prototype/PICKER.md",
+          "quote": "transition:"
+        },
+        {
+          "kind": "text",
+          "lineEnd": 127,
+          "lineStart": 127,
+          "path": ".agents/skills/prototype/PICKER.md",
+          "quote": "The highlight slides; the variant swap stays instant."
+        }
+      ],
+      "status": "reference",
+      "subject": "Exact 250ms picker highlight transition",
+      "tier": "independent_design_engineering_guidance",
+      "value": {
+        "duration": "250ms",
+        "loadingReveal": false,
+        "properties": [
+          "transform",
+          "width"
+        ],
+        "role": "picker_highlight"
+      }
+    },
+    {
+      "classification": "not_applicable",
+      "id": "OBS-EMIL10-TOAST-LIFETIME-4000",
+      "interpretation": "A toast lifetime is not a loading-to-loaded content animation duration and is not applicable to the inline Today list.",
+      "lineageGroup": "LG-EMIL10-78761e1b57f9",
+      "skill": "ask-sonner",
+      "sourceId": "SRC-EMIL10-ASK_SONNER",
+      "sourceRefs": [
+        {
+          "kind": "text",
+          "lineEnd": 35,
+          "lineStart": 35,
+          "path": ".agents/skills/ask-sonner/API.md",
+          "quote": "Milliseconds before auto-close"
+        }
+      ],
+      "status": "reference",
+      "subject": "Toast auto-close lifetime",
+      "tier": "independent_design_engineering_guidance",
+      "value": {
+        "animationDuration": false,
+        "duration": "4000ms",
+        "role": "toast_auto_close"
+      }
+    },
+    {
+      "classification": "general_guidance",
+      "id": "OBS-EMIL10-PROPERTIES",
+      "interpretation": "Supports a compositor-friendly constraint, but does not require both transform and opacity for every content reveal.",
+      "lineageGroup": "LG-EMIL10-78761e1b57f9",
+      "skill": "improve-animations",
+      "sourceId": "SRC-EMIL10-IMPROVE_ANIMATIONS",
+      "sourceRefs": [
+        {
+          "kind": "text",
+          "lineEnd": 74,
+          "lineStart": 73,
+          "path": ".agents/skills/improve-animations/AUDIT.md",
+          "quote": "Animate `transform` and `opacity` only"
+        },
+        {
+          "kind": "text",
+          "lineEnd": 50,
+          "lineStart": 50,
+          "path": ".agents/skills/improve-animations/AUDIT.md",
+          "quote": "Never `scale(0)`"
+        }
+      ],
+      "status": "reference",
+      "subject": "Performance property constraint",
+      "tier": "independent_design_engineering_guidance",
+      "value": {
+        "clipPath": "sanctioned_exception_in_animate_recipe",
+        "layoutProperties": "avoid",
+        "preferredProperties": [
+          "transform",
+          "opacity"
+        ]
+      }
+    },
+    {
+      "classification": "general_guidance",
+      "id": "OBS-EMIL10-DENSE-READING",
+      "interpretation": "Combined with the Scheduler context, this supports an opacity-only pilot choice as a bounded product inference, not an external loading rule.",
+      "lineageGroup": "LG-EMIL10-78761e1b57f9",
+      "skill": "find-animation-opportunities",
+      "sourceId": "SRC-EMIL10-FIND_ANIMATION_OPPORTUNITIES",
+      "sourceRefs": [
+        {
+          "kind": "text",
+          "lineEnd": 67,
+          "lineStart": 65,
+          "path": ".agents/skills/find-animation-opportunities/SKILL.md",
+          "quote": "Data the user is trying to *read* or *act on* should not move for style."
+        }
+      ],
+      "status": "reference",
+      "subject": "Function gate for information-dense content",
+      "tier": "independent_design_engineering_guidance",
+      "value": {
+        "rule": "data users read or act on should not move for style"
+      }
+    },
+    {
+      "classification": "general_guidance",
+      "id": "OBS-EMIL10-REDUCED-MOTION",
+      "interpretation": "Confirms the v1 audit gate; it does not override the current Softie rule because corpus installation is not adoption.",
+      "lineageGroup": "LG-EMIL10-78761e1b57f9",
+      "skill": "emil-design-eng",
+      "sourceId": "SRC-EMIL10-EMIL_DESIGN_ENG",
+      "sourceRefs": [
+        {
+          "kind": "text",
+          "lineEnd": 529,
+          "lineStart": 527,
+          "path": ".agents/skills/emil-design-eng/SKILL.md",
+          "quote": "Reduced motion means fewer and gentler animations, not zero."
+        }
+      ],
+      "status": "reference",
+      "subject": "Reduced-motion substitution",
+      "tier": "independent_design_engineering_guidance",
+      "value": {
+        "preserve": [
+          "opacity",
+          "color"
+        ],
+        "principle": "fewer_and_gentler_not_zero",
+        "remove": [
+          "movement",
+          "position"
+        ]
+      }
+    },
+    {
+      "classification": "general_guidance",
+      "id": "OBS-EMIL10-NO-STAGGER",
+      "interpretation": "The corpus permits stagger for occasional list entrances, but this does not authorize a Scheduler Today data-list stagger.",
+      "lineageGroup": "LG-EMIL10-78761e1b57f9",
+      "skill": "find-animation-opportunities",
+      "sourceId": "SRC-EMIL10-FIND_ANIMATION_OPPORTUNITIES",
+      "sourceRefs": [
+        {
+          "kind": "text",
+          "lineEnd": 88,
+          "lineStart": 86,
+          "path": ".agents/skills/find-animation-opportunities/SKILL.md",
+          "quote": "30–80ms stagger; decorative, must never block interaction"
+        }
+      ],
+      "status": "reference",
+      "subject": "Stagger boundary for list entrances",
+      "tier": "independent_design_engineering_guidance",
+      "value": {
+        "decorative": true,
+        "delayRange": "30-80ms",
+        "loadingRevealDefault": false,
+        "mustNotBlockInteraction": true
+      }
+    },
+    {
+      "classification": "adjacent_role_guidance",
+      "id": "OBS-EMIL10-STARTING-STYLE",
+      "interpretation": "A technical entry mechanism is relevant to mounted loaded content, but browser support and product implementation remain unverified.",
+      "lineageGroup": "LG-EMIL10-78761e1b57f9",
+      "skill": "emil-design-eng",
+      "sourceId": "SRC-EMIL10-EMIL_DESIGN_ENG",
+      "sourceRefs": [
+        {
+          "kind": "text",
+          "lineEnd": 321,
+          "lineStart": 319,
+          "path": ".agents/skills/emil-design-eng/SKILL.md",
+          "quote": "Animate enter states with @starting-style"
+        },
+        {
+          "kind": "text",
+          "lineEnd": 336,
+          "lineStart": 336,
+          "path": ".agents/skills/emil-design-eng/SKILL.md",
+          "quote": "Use `@starting-style` when browser support allows"
+        }
+      ],
+      "status": "reference",
+      "subject": "CSS entry mechanism for mounted content",
+      "tier": "independent_design_engineering_guidance",
+      "value": {
+        "fallback": "data-mounted attribute",
+        "mechanism": "@starting-style"
+      }
+    },
+    {
+      "classification": "not_applicable",
+      "id": "OBS-EMIL10-SKELETON-NAME",
+      "interpretation": "Names a different placeholder pattern; it does not supply a loaded-content reveal duration or authorize adding one.",
+      "lineageGroup": "LG-EMIL10-78761e1b57f9",
+      "skill": "animation-vocabulary",
+      "sourceId": "SRC-EMIL10-ANIMATION_VOCABULARY",
+      "sourceRefs": [
+        {
+          "kind": "text",
+          "lineEnd": 151,
+          "lineStart": 151,
+          "path": ".agents/skills/animation-vocabulary/SKILL.md",
+          "quote": "placeholder with a moving sheen shown while content loads"
+        }
+      ],
+      "status": "reference",
+      "subject": "Skeleton/shimmer loading vocabulary",
+      "tier": "independent_design_engineering_guidance",
+      "value": {
+        "currentSchedulerUsesIt": false,
+        "loadingDuration": null,
+        "term": "Skeleton / Shimmer"
+      }
+    },
+    {
+      "classification": "not_applicable",
+      "id": "OBS-EMIL10-SONNER-LOADING",
+      "interpretation": "The Scheduler Today surface is an inline data list, not a Sonner toast; no loading-reveal motion value is provided.",
+      "lineageGroup": "LG-EMIL10-78761e1b57f9",
+      "skill": "ask-sonner",
+      "sourceId": "SRC-EMIL10-ASK_SONNER",
+      "sourceRefs": [
+        {
+          "kind": "text",
+          "lineEnd": 29,
+          "lineStart": 28,
+          "path": ".agents/skills/ask-sonner/SKILL.md",
+          "quote": "toast.promise(promise"
+        }
+      ],
+      "status": "reference",
+      "subject": "Toast loading-to-success state semantics",
+      "tier": "independent_design_engineering_guidance",
+      "value": {
+        "durationForReveal": null,
+        "loadingToast": true,
+        "promiseToast": true,
+        "role": "toast"
+      }
+    },
+    {
+      "classification": "general_guidance",
+      "id": "OBS-EMIL10-CSS-TOOL",
+      "interpretation": "Supports a no-new-dependency implementation boundary only; it supplies no duration or loading-role authority.",
+      "lineageGroup": "LG-EMIL10-78761e1b57f9",
+      "skill": "pick-ui-library",
+      "sourceId": "SRC-EMIL10-PICK_UI_LIBRARY",
+      "sourceRefs": [
+        {
+          "kind": "text",
+          "lineEnd": 41,
+          "lineStart": 41,
+          "path": ".agents/skills/pick-ui-library/SKILL.md",
+          "quote": "A simple hover or fade doesn't need it"
+        }
+      ],
+      "status": "reference",
+      "subject": "Tool selection for a simple fade",
+      "tier": "independent_design_engineering_guidance",
+      "value": {
+        "motionLibrary": "not needed",
+        "simpleFade": "plain CSS transitions"
+      }
+    },
+    {
+      "classification": "not_applicable",
+      "id": "OBS-EMIL10-PROTOTYPE-INSTANT-SWAP",
+      "interpretation": "This is picker chrome behavior, not a product loading-to-loaded recommendation.",
+      "lineageGroup": "LG-EMIL10-78761e1b57f9",
+      "skill": "prototype",
+      "sourceId": "SRC-EMIL10-PROTOTYPE",
+      "sourceRefs": [
+        {
+          "kind": "text",
+          "lineEnd": 57,
+          "lineStart": 57,
+          "path": ".agents/skills/prototype/SKILL.md",
+          "quote": "variant swap gets no animation"
+        }
+      ],
+      "status": "reference",
+      "subject": "Prototype picker variant switching",
+      "tier": "independent_design_engineering_guidance",
+      "value": {
+        "loadingReveal": false,
+        "reason": "100+ per session picker action",
+        "variantSwap": "instant"
+      }
+    },
+    {
+      "classification": "general_guidance",
+      "id": "OBS-EMIL10-LINEAGE-DECLARATION",
+      "interpretation": "Repeated values across these files are derivation/repetition inside one lineage, not independent quorum.",
+      "lineageGroup": "LG-EMIL10-78761e1b57f9",
+      "skill": "improve-animations",
+      "sourceId": "SRC-EMIL10-IMPROVE_ANIMATIONS",
+      "sourceRefs": [
+        {
+          "kind": "text",
+          "lineEnd": 16,
+          "lineStart": 16,
+          "path": ".agents/skills/improve-animations/SKILL.md",
+          "quote": "The bar comes from Emil Kowalski's animation philosophy"
+        },
+        {
+          "kind": "text",
+          "lineEnd": 71,
+          "lineStart": 71,
+          "path": ".agents/skills/improve-animations/PLAN-TEMPLATE.md",
+          "quote": "Pull every value from [AUDIT.md](AUDIT.md)"
+        }
+      ],
+      "status": "reference",
+      "subject": "Corpus lineage declaration",
+      "tier": "independent_design_engineering_guidance",
+      "value": {
+        "authorLineage": "Emil Kowalski",
+        "independentAuthorityGroups": 1
+      }
+    }
+  ],
+  "schemaVersion": "design-reference-new-skill-observation-ledger-emil10-v1"
+}

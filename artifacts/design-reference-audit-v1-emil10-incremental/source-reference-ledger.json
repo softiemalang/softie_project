@@ -1,0 +1,514 @@
+{
+  "externalResearchBoundary": {
+    "installedCorpusOnly": true,
+    "noNetworkRefreshDuringMaterialization": true,
+    "originalSourceRightsDecision": "not_reopened; no source asset reuse is involved",
+    "skillInstallationIsNotSoftieAdoption": true,
+    "upstreamRevisionTakenFrom": "THIRD_PARTY_NOTICES.md:60-86 and skills-lock.json:1-64"
+  },
+  "provenanceTiers": [
+    {
+      "boundary": "Direct local observation only; originality and reuse rights remain separate.",
+      "code": "apple_official_artifact",
+      "id": "T1",
+      "name": "Apple official artifact"
+    },
+    {
+      "boundary": "A translation layer, never Apple primary authority.",
+      "code": "apple_derived_guidance",
+      "id": "T2",
+      "name": "Apple-derived guidance"
+    },
+    {
+      "boundary": "Emil-style web practice; all files in this corpus share one upstream author/repository lineage.",
+      "code": "independent_design_engineering_guidance",
+      "id": "T3",
+      "name": "Independent design-engineering guidance"
+    },
+    {
+      "boundary": "Current DESIGN.md or deliberately observed implementation value.",
+      "code": "softie_house_rule",
+      "id": "T4",
+      "name": "Softie house rule"
+    },
+    {
+      "boundary": "Pilot hypothesis only; never an adopted rule.",
+      "code": "proposed_candidate",
+      "id": "T5",
+      "name": "Proposed candidate"
+    }
+  ],
+  "repositoryInputIdentities": [
+    {
+      "byteLength": 12039,
+      "byteSha256": "f1dd85901c74c49ca5e1c81d3db57a9b7aba41b2bd49eb5c2c84114035bdb55d",
+      "id": "AGENTS.md",
+      "path": "AGENTS.md"
+    },
+    {
+      "byteLength": 30445,
+      "byteSha256": "15da2799083244bce17635b942a86824ce2d5b52056bf0f90775fe03f9b26610",
+      "id": "DESIGN.md",
+      "path": "DESIGN.md"
+    },
+    {
+      "byteLength": 6051,
+      "byteSha256": "8f0af11e381d738bcf451cca6ce0fb93af9aac481d73cce28e3b21dcaa757b21",
+      "id": "THIRD_PARTY_NOTICES.md",
+      "path": "THIRD_PARTY_NOTICES.md"
+    },
+    {
+      "byteLength": 2479,
+      "byteSha256": "b0f28ec15daf7056afb246adabd59f28e99bf4f8ad96431d7f11e00f754fee95",
+      "id": "skills-lock.json",
+      "path": "skills-lock.json"
+    },
+    {
+      "byteLength": 19045,
+      "byteSha256": "0a287d0bfbb7e2233f029920dbdcaff975a349a7dfdf331789daa53ac15a0b32",
+      "id": "docs/design-reference-audit-v1.md",
+      "path": "docs/design-reference-audit-v1.md"
+    },
+    {
+      "byteLength": 4638226,
+      "byteSha256": "b8848d01cf663ae1c432612f3852175a0cde4e589d0914d408bbdfc26373f527",
+      "id": "artifacts/design-reference-audit-v1/complete.json",
+      "path": "artifacts/design-reference-audit-v1/complete.json"
+    },
+    {
+      "byteLength": 11582,
+      "byteSha256": "7887d6d0641a41f2a69834a3ad9ec809312d2cad4a02f605e8ce87b427fca80a",
+      "id": "artifacts/design-reference-audit-v1/source-reference-ledger.json",
+      "path": "artifacts/design-reference-audit-v1/source-reference-ledger.json"
+    },
+    {
+      "byteLength": 196488,
+      "byteSha256": "26eda8128697eeb4d0207141001fdb0f98e57c233cb34b63b26ca58c3ec8f1e4",
+      "id": "artifacts/design-reference-audit-v1/observation-value-ledger.json",
+      "path": "artifacts/design-reference-audit-v1/observation-value-ledger.json"
+    },
+    {
+      "byteLength": 3179,
+      "byteSha256": "76ef1dedf067855bc39ce6ad0d0ab0e4c64ee7673b0ed8e67237d452822d1884",
+      "id": "artifacts/design-reference-audit-v1/provenance-lineage.json",
+      "path": "artifacts/design-reference-audit-v1/provenance-lineage.json"
+    },
+    {
+      "byteLength": 9106,
+      "byteSha256": "1c99c871e53a700a0d0dfab01c68e0c7729df91daf7101aef2b61f5c2cb2c57b",
+      "id": "artifacts/design-reference-audit-v1/conflict-compatibility-matrix.json",
+      "path": "artifacts/design-reference-audit-v1/conflict-compatibility-matrix.json"
+    },
+    {
+      "byteLength": 4007,
+      "byteSha256": "7febb78d8903b69f18246abeb8522a58088cfdbe6bb5ad8e7f3ce92387e674cc",
+      "id": "artifacts/design-reference-audit-v1/pilot-candidate-shortlist.json",
+      "path": "artifacts/design-reference-audit-v1/pilot-candidate-shortlist.json"
+    },
+    {
+      "byteLength": 35038,
+      "byteSha256": "4a92300b825ac4d6385439212aff29b28e28b392dc2e4884d3cce8ccb4d4a368",
+      "id": "src/scheduler/TodaySchedulerPage.jsx",
+      "path": "src/scheduler/TodaySchedulerPage.jsx"
+    },
+    {
+      "byteLength": 1535,
+      "byteSha256": "3861472c680e8c8f9e9f3ce5bfa52583f245b221bf1d20a91a5e703f4bffef74",
+      "id": "src/scheduler/SchedulerEventSection.jsx",
+      "path": "src/scheduler/SchedulerEventSection.jsx"
+    },
+    {
+      "byteLength": 2900,
+      "byteSha256": "0d31f73caf0547c84f2494604a3e7caa1322a7344556581441ab3b55433e495f",
+      "id": "src/scheduler/SchedulerEventCard.jsx",
+      "path": "src/scheduler/SchedulerEventCard.jsx"
+    },
+    {
+      "byteLength": 4173,
+      "byteSha256": "306811825b7f3c25e3d41d51e1ea2fd5c29ecb38f20309356435f9d885118577",
+      "id": "src/scheduler/SchedulerApp.jsx",
+      "path": "src/scheduler/SchedulerApp.jsx"
+    },
+    {
+      "byteLength": 2469,
+      "byteSha256": "bbd4be43c90c29b48ffc8475e8e8d77743e74e37ba744397788e7b842ddf5053",
+      "id": "src/lib/router.js",
+      "path": "src/lib/router.js"
+    },
+    {
+      "byteLength": 136382,
+      "byteSha256": "b41649dbe652136a252466f97b95199ba45e904fde2becde68cfd2732f2fc6c5",
+      "id": "src/styles.css",
+      "path": "src/styles.css"
+    },
+    {
+      "byteLength": 8847,
+      "byteSha256": "45d47c02b33ef924331a3064b579b68402e52c5393322c1de6071421a6085fc7",
+      "id": "src/artifactIdentity.js",
+      "path": "src/artifactIdentity.js"
+    },
+    {
+      "byteLength": 63504,
+      "byteSha256": "ed70e89b048214ec9ec6356d358b0a16c4393ea4260a1a7868381555e46bf266",
+      "id": "scripts/materialize-design-reference-audit-v1-emil10-incremental.mjs",
+      "path": "scripts/materialize-design-reference-audit-v1-emil10-incremental.mjs"
+    },
+    {
+      "byteLength": 7957,
+      "byteSha256": "21ff63d84391db8d96ecdf9170095f55a42c836ccc36fd3269c4772bab031ba2",
+      "id": ".agents/skills/animate/RECIPES.md",
+      "path": ".agents/skills/animate/RECIPES.md"
+    },
+    {
+      "byteLength": 11527,
+      "byteSha256": "2a99870e61971553c0af3185a194c0e557f33aaa81e0422ca2fcec52195a4341",
+      "id": ".agents/skills/animate/SKILL.md",
+      "path": ".agents/skills/animate/SKILL.md"
+    },
+    {
+      "byteLength": 13128,
+      "byteSha256": "d718b48fe3c7898804d588f050a2e266d82c9f5ef51da256c8cb8b5951527757",
+      "id": ".agents/skills/animation-vocabulary/SKILL.md",
+      "path": ".agents/skills/animation-vocabulary/SKILL.md"
+    },
+    {
+      "byteLength": 22715,
+      "byteSha256": "11840b24a11d7f94f39c6aaab074750ae4e4de4ef54ee4b1dd97e16ebd485e61",
+      "id": ".agents/skills/apple-design/SKILL.md",
+      "path": ".agents/skills/apple-design/SKILL.md"
+    },
+    {
+      "byteLength": 4545,
+      "byteSha256": "4bb06f482c5757529e3d7a672a30fbeed42d24919a63e2571384a9ce1549aa7f",
+      "id": ".agents/skills/ask-sonner/API.md",
+      "path": ".agents/skills/ask-sonner/API.md"
+    },
+    {
+      "byteLength": 6944,
+      "byteSha256": "be1b04511aadb4d7d81aa8cd2b55c260a626aae534983bc8ae3fbe26bbf48632",
+      "id": ".agents/skills/ask-sonner/SKILL.md",
+      "path": ".agents/skills/ask-sonner/SKILL.md"
+    },
+    {
+      "byteLength": 27226,
+      "byteSha256": "e71de849347050c2c573c1cf24d742d5a13459557ecffa6e562f08006f46b5b7",
+      "id": ".agents/skills/emil-design-eng/SKILL.md",
+      "path": ".agents/skills/emil-design-eng/SKILL.md"
+    },
+    {
+      "byteLength": 9491,
+      "byteSha256": "91c1243164057fbf824088d12faea937878a757a7ac653e8288b775e8b27b882",
+      "id": ".agents/skills/find-animation-opportunities/SKILL.md",
+      "path": ".agents/skills/find-animation-opportunities/SKILL.md"
+    },
+    {
+      "byteLength": 7387,
+      "byteSha256": "551c8473e20e5f4774680bc24d45e1c68e50992582720905c6b077756b7b5a55",
+      "id": ".agents/skills/improve-animations/AUDIT.md",
+      "path": ".agents/skills/improve-animations/AUDIT.md"
+    },
+    {
+      "byteLength": 3100,
+      "byteSha256": "0a08ac8e23fd2082d7ffb86aeed7b789de77328c3cf874b16f1a755f2ef0a6ad",
+      "id": ".agents/skills/improve-animations/PLAN-TEMPLATE.md",
+      "path": ".agents/skills/improve-animations/PLAN-TEMPLATE.md"
+    },
+    {
+      "byteLength": 7915,
+      "byteSha256": "68f17bbc4671593d2f43dba26a679243e2153ba5f26965fb7d59df52842534ff",
+      "id": ".agents/skills/improve-animations/SKILL.md",
+      "path": ".agents/skills/improve-animations/SKILL.md"
+    },
+    {
+      "byteLength": 4514,
+      "byteSha256": "4b889bd6c08358499ac4a7202b8af71ffbd3485d2468f7b09d0613bbe7b24bf4",
+      "id": ".agents/skills/pick-ui-library/SKILL.md",
+      "path": ".agents/skills/pick-ui-library/SKILL.md"
+    },
+    {
+      "byteLength": 7548,
+      "byteSha256": "31a55eec94715cc79942e91e172e539e3031dcd5e2e5ee7c1446cf2caee960a6",
+      "id": ".agents/skills/prototype/PICKER.md",
+      "path": ".agents/skills/prototype/PICKER.md"
+    },
+    {
+      "byteLength": 7488,
+      "byteSha256": "2ad8401c4deaddb54947fb65247f790e7b3d8784e35312bcbedbfb1d59cd89ce",
+      "id": ".agents/skills/prototype/SKILL.md",
+      "path": ".agents/skills/prototype/SKILL.md"
+    },
+    {
+      "byteLength": 8108,
+      "byteSha256": "61cf8ac0c4c8e1f63385298c546b16c65ca9aec34abddcd04e821c16712d671d",
+      "id": ".agents/skills/review-animations/SKILL.md",
+      "path": ".agents/skills/review-animations/SKILL.md"
+    },
+    {
+      "byteLength": 9801,
+      "byteSha256": "e7d3605034acda54ca13e43aec9e64d65b53de20f75b11b8d694e373012fbe07",
+      "id": ".agents/skills/review-animations/STANDARDS.md",
+      "path": ".agents/skills/review-animations/STANDARDS.md"
+    }
+  ],
+  "schemaVersion": "design-reference-source-ledger-emil10-incremental-v1",
+  "sources": [
+    {
+      "accessMode": "local_repository_read",
+      "id": "SRC-EMIL10-CORPUS-PROVENANCE",
+      "lineageGroup": "LG-EMIL10-78761e1b57f9",
+      "path": "THIRD_PARTY_NOTICES.md",
+      "role": "Upstream revision and retained-file inventory; provenance only",
+      "tier": "independent_design_engineering_guidance",
+      "title": "Pinned emilkowalski/skills provenance record"
+    },
+    {
+      "accessMode": "local_repository_read",
+      "id": "SRC-EMIL10-LOCK",
+      "lineageGroup": "LG-EMIL10-78761e1b57f9",
+      "path": "skills-lock.json",
+      "role": "Computed hashes and source paths for the ten installed skills",
+      "tier": "independent_design_engineering_guidance",
+      "title": "Installed Skill lock file"
+    },
+    {
+      "accessMode": "local_repository_read",
+      "files": [
+        {
+          "byteLength": 7957,
+          "byteSha256": "21ff63d84391db8d96ecdf9170095f55a42c836ccc36fd3269c4772bab031ba2",
+          "path": ".agents/skills/animate/RECIPES.md",
+          "relativePath": "RECIPES.md"
+        },
+        {
+          "byteLength": 11527,
+          "byteSha256": "2a99870e61971553c0af3185a194c0e557f33aaa81e0422ca2fcec52195a4341",
+          "path": ".agents/skills/animate/SKILL.md",
+          "relativePath": "SKILL.md"
+        }
+      ],
+      "id": "SRC-EMIL10-ANIMATE",
+      "lineageGroup": "LG-EMIL10-78761e1b57f9",
+      "path": ".agents/skills/animate/",
+      "role": "Local upstream corpus file(s); reference guidance only, not Softie adoption",
+      "skill": "animate",
+      "tier": "independent_design_engineering_guidance",
+      "title": "Installed animate skill and companions"
+    },
+    {
+      "accessMode": "local_repository_read",
+      "files": [
+        {
+          "byteLength": 13128,
+          "byteSha256": "d718b48fe3c7898804d588f050a2e266d82c9f5ef51da256c8cb8b5951527757",
+          "path": ".agents/skills/animation-vocabulary/SKILL.md",
+          "relativePath": "SKILL.md"
+        }
+      ],
+      "id": "SRC-EMIL10-ANIMATION_VOCABULARY",
+      "lineageGroup": "LG-EMIL10-78761e1b57f9",
+      "path": ".agents/skills/animation-vocabulary/",
+      "role": "Local upstream corpus file(s); reference guidance only, not Softie adoption",
+      "skill": "animation-vocabulary",
+      "tier": "independent_design_engineering_guidance",
+      "title": "Installed animation-vocabulary skill and companions"
+    },
+    {
+      "accessMode": "local_repository_read",
+      "files": [
+        {
+          "byteLength": 22715,
+          "byteSha256": "11840b24a11d7f94f39c6aaab074750ae4e4de4ef54ee4b1dd97e16ebd485e61",
+          "path": ".agents/skills/apple-design/SKILL.md",
+          "relativePath": "SKILL.md"
+        }
+      ],
+      "id": "SRC-EMIL10-APPLE_DESIGN",
+      "lineageGroup": "LG-EMIL10-78761e1b57f9",
+      "path": ".agents/skills/apple-design/",
+      "role": "Local upstream corpus file(s); reference guidance only, not Softie adoption",
+      "skill": "apple-design",
+      "tier": "independent_design_engineering_guidance",
+      "title": "Installed apple-design skill and companions"
+    },
+    {
+      "accessMode": "local_repository_read",
+      "files": [
+        {
+          "byteLength": 4545,
+          "byteSha256": "4bb06f482c5757529e3d7a672a30fbeed42d24919a63e2571384a9ce1549aa7f",
+          "path": ".agents/skills/ask-sonner/API.md",
+          "relativePath": "API.md"
+        },
+        {
+          "byteLength": 6944,
+          "byteSha256": "be1b04511aadb4d7d81aa8cd2b55c260a626aae534983bc8ae3fbe26bbf48632",
+          "path": ".agents/skills/ask-sonner/SKILL.md",
+          "relativePath": "SKILL.md"
+        }
+      ],
+      "id": "SRC-EMIL10-ASK_SONNER",
+      "lineageGroup": "LG-EMIL10-78761e1b57f9",
+      "path": ".agents/skills/ask-sonner/",
+      "role": "Local upstream corpus file(s); reference guidance only, not Softie adoption",
+      "skill": "ask-sonner",
+      "tier": "independent_design_engineering_guidance",
+      "title": "Installed ask-sonner skill and companions"
+    },
+    {
+      "accessMode": "local_repository_read",
+      "files": [
+        {
+          "byteLength": 27226,
+          "byteSha256": "e71de849347050c2c573c1cf24d742d5a13459557ecffa6e562f08006f46b5b7",
+          "path": ".agents/skills/emil-design-eng/SKILL.md",
+          "relativePath": "SKILL.md"
+        }
+      ],
+      "id": "SRC-EMIL10-EMIL_DESIGN_ENG",
+      "lineageGroup": "LG-EMIL10-78761e1b57f9",
+      "path": ".agents/skills/emil-design-eng/",
+      "role": "Local upstream corpus file(s); reference guidance only, not Softie adoption",
+      "skill": "emil-design-eng",
+      "tier": "independent_design_engineering_guidance",
+      "title": "Installed emil-design-eng skill and companions"
+    },
+    {
+      "accessMode": "local_repository_read",
+      "files": [
+        {
+          "byteLength": 9491,
+          "byteSha256": "91c1243164057fbf824088d12faea937878a757a7ac653e8288b775e8b27b882",
+          "path": ".agents/skills/find-animation-opportunities/SKILL.md",
+          "relativePath": "SKILL.md"
+        }
+      ],
+      "id": "SRC-EMIL10-FIND_ANIMATION_OPPORTUNITIES",
+      "lineageGroup": "LG-EMIL10-78761e1b57f9",
+      "path": ".agents/skills/find-animation-opportunities/",
+      "role": "Local upstream corpus file(s); reference guidance only, not Softie adoption",
+      "skill": "find-animation-opportunities",
+      "tier": "independent_design_engineering_guidance",
+      "title": "Installed find-animation-opportunities skill and companions"
+    },
+    {
+      "accessMode": "local_repository_read",
+      "files": [
+        {
+          "byteLength": 7387,
+          "byteSha256": "551c8473e20e5f4774680bc24d45e1c68e50992582720905c6b077756b7b5a55",
+          "path": ".agents/skills/improve-animations/AUDIT.md",
+          "relativePath": "AUDIT.md"
+        },
+        {
+          "byteLength": 3100,
+          "byteSha256": "0a08ac8e23fd2082d7ffb86aeed7b789de77328c3cf874b16f1a755f2ef0a6ad",
+          "path": ".agents/skills/improve-animations/PLAN-TEMPLATE.md",
+          "relativePath": "PLAN-TEMPLATE.md"
+        },
+        {
+          "byteLength": 7915,
+          "byteSha256": "68f17bbc4671593d2f43dba26a679243e2153ba5f26965fb7d59df52842534ff",
+          "path": ".agents/skills/improve-animations/SKILL.md",
+          "relativePath": "SKILL.md"
+        }
+      ],
+      "id": "SRC-EMIL10-IMPROVE_ANIMATIONS",
+      "lineageGroup": "LG-EMIL10-78761e1b57f9",
+      "path": ".agents/skills/improve-animations/",
+      "role": "Local upstream corpus file(s); reference guidance only, not Softie adoption",
+      "skill": "improve-animations",
+      "tier": "independent_design_engineering_guidance",
+      "title": "Installed improve-animations skill and companions"
+    },
+    {
+      "accessMode": "local_repository_read",
+      "files": [
+        {
+          "byteLength": 4514,
+          "byteSha256": "4b889bd6c08358499ac4a7202b8af71ffbd3485d2468f7b09d0613bbe7b24bf4",
+          "path": ".agents/skills/pick-ui-library/SKILL.md",
+          "relativePath": "SKILL.md"
+        }
+      ],
+      "id": "SRC-EMIL10-PICK_UI_LIBRARY",
+      "lineageGroup": "LG-EMIL10-78761e1b57f9",
+      "path": ".agents/skills/pick-ui-library/",
+      "role": "Local upstream corpus file(s); reference guidance only, not Softie adoption",
+      "skill": "pick-ui-library",
+      "tier": "independent_design_engineering_guidance",
+      "title": "Installed pick-ui-library skill and companions"
+    },
+    {
+      "accessMode": "local_repository_read",
+      "files": [
+        {
+          "byteLength": 7548,
+          "byteSha256": "31a55eec94715cc79942e91e172e539e3031dcd5e2e5ee7c1446cf2caee960a6",
+          "path": ".agents/skills/prototype/PICKER.md",
+          "relativePath": "PICKER.md"
+        },
+        {
+          "byteLength": 7488,
+          "byteSha256": "2ad8401c4deaddb54947fb65247f790e7b3d8784e35312bcbedbfb1d59cd89ce",
+          "path": ".agents/skills/prototype/SKILL.md",
+          "relativePath": "SKILL.md"
+        }
+      ],
+      "id": "SRC-EMIL10-PROTOTYPE",
+      "lineageGroup": "LG-EMIL10-78761e1b57f9",
+      "path": ".agents/skills/prototype/",
+      "role": "Local upstream corpus file(s); reference guidance only, not Softie adoption",
+      "skill": "prototype",
+      "tier": "independent_design_engineering_guidance",
+      "title": "Installed prototype skill and companions"
+    },
+    {
+      "accessMode": "local_repository_read",
+      "files": [
+        {
+          "byteLength": 8108,
+          "byteSha256": "61cf8ac0c4c8e1f63385298c546b16c65ca9aec34abddcd04e821c16712d671d",
+          "path": ".agents/skills/review-animations/SKILL.md",
+          "relativePath": "SKILL.md"
+        },
+        {
+          "byteLength": 9801,
+          "byteSha256": "e7d3605034acda54ca13e43aec9e64d65b53de20f75b11b8d694e373012fbe07",
+          "path": ".agents/skills/review-animations/STANDARDS.md",
+          "relativePath": "STANDARDS.md"
+        }
+      ],
+      "id": "SRC-EMIL10-REVIEW_ANIMATIONS",
+      "lineageGroup": "LG-EMIL10-78761e1b57f9",
+      "path": ".agents/skills/review-animations/",
+      "role": "Local upstream corpus file(s); reference guidance only, not Softie adoption",
+      "skill": "review-animations",
+      "tier": "independent_design_engineering_guidance",
+      "title": "Installed review-animations skill and companions"
+    },
+    {
+      "accessMode": "local_repository_read",
+      "id": "SRC-V1-AUDIT",
+      "path": "docs/design-reference-audit-v1.md",
+      "role": "Frozen predecessor claims and pilot status; not rewritten by this artifact",
+      "tier": "predecessor_artifact",
+      "title": "Softie Design Reference Audit v1"
+    },
+    {
+      "accessMode": "local_repository_read",
+      "id": "SRC-SOFTIE-DESIGN",
+      "path": "DESIGN.md",
+      "role": "Repository source of truth; unchanged in this work unit",
+      "tier": "softie_house_rule",
+      "title": "Softie DESIGN.md"
+    },
+    {
+      "accessMode": "local_repository_read",
+      "id": "SRC-SOFTIE-SCHEDULER-CODE",
+      "path": "src/scheduler/TodaySchedulerPage.jsx",
+      "role": "Observed product code; not automatically normative",
+      "tier": "softie_house_rule_observed_code",
+      "title": "Scheduler Today and motion implementation"
+    }
+  ]
+}
