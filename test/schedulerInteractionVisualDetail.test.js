@@ -10,12 +10,16 @@ const card = read('src/scheduler/SchedulerEventCard.jsx')
 const editor = read('src/scheduler/ReservationEditorPage.jsx')
 const workLogDetail = read('src/scheduler/WorkLogDetailView.jsx')
 
-test('Today refetch exposes one stable busy cue while preserving settled empty and error meanings', () => {
+test('Today initial loading stays visually quiet while preserving busy, empty, and error meanings', () => {
   assert.match(today, /setStatus\(''\)\s*\n\s*setIsLoading\(true\)/)
-  assert.match(today, /role="status" aria-live="polite" aria-atomic="true"[\s\S]*?일정 불러오는 중/)
+  assert.match(today, /setEvents\(rows\)\s*\n\s*setStatus\(''\)\s*\n\s*settleInitialAsyncContentEnter\(rows\)/)
+  assert.match(today, /setEvents\(\[\]\)\s*\n\s*setStatus\(error instanceof Error \? error\.message : '오늘 일정을 불러오지 못했어요\. 잠시 후 다시 시도해 주세요\.'\)/)
+  assert.match(today, /\{status \? <p className="status scheduler-load-status" role="alert">\{status\}<\/p> : null\}/)
+  assert.match(today, /role="status" aria-live="polite" aria-atomic="true"\s*>\s*\{filterSummary\}/)
+  assert.doesNotMatch(today, /일정 불러오는 중/)
   assert.match(today, /className=\{`scheduler-async-content[\s\S]*?aria-busy=\{isLoading\}/)
   assert.match(today, /title="오늘 전체"[\s\S]*?hideEmptyText=\{isLoading \|\| Boolean\(status\)\}/)
-  assert.match(today, /현재 조건에 맞는 일정이 없어요[\s\S]*?오늘 일정이 없어요/)
+  assert.match(today, /const eventEmptyText = events\.length > 0 && filteredEvents\.length === 0\s*\n\s*\? '현재 조건에 맞는 일정이 없어요\.'\s*\n\s*: '오늘 일정이 없어요\.'/)
   assert.doesNotMatch(today, /일정을 표시할 수 없어요/)
 })
 

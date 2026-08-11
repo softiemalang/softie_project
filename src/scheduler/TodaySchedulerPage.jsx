@@ -879,7 +879,7 @@ export function TodaySchedulerPage({
               {normalizedFilters.workTimeEnabled ? '근무 중' : `${TODAY_HOURS.start}:00 - ${TODAY_HOURS.end}:00`}
             </strong>
             <p className="subtle" role="status" aria-live="polite" aria-atomic="true">
-              {isLoading ? `${filterSummary} · 일정 불러오는 중` : filterSummary}
+              {filterSummary}
             </p>
           </div>
           <div className="scheduler-summary-actions">
