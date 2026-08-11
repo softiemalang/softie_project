@@ -840,7 +840,7 @@ textarea {
   font-size: 0.88rem;
   font-weight: 600;
   box-shadow: 0 8px 24px rgba(31, 111, 95, 0.2);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition: transform 0.2s ease;
   border: none;
   cursor: pointer;
 }
@@ -1202,12 +1202,14 @@ textarea {
   color: #c9c0b5;
   cursor: pointer;
   transform: translateY(1px);
-  transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transition: background-color 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), color 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-.music-save-button:hover:not(:disabled) {
-  background: rgba(222, 213, 201, 0.35);
-  color: #8c7b68;
+@media (hover: hover) and (pointer: fine) {
+  .music-save-button:hover:not(:disabled) {
+    background: rgba(222, 213, 201, 0.35);
+    color: #8c7b68;
+  }
 }
 
 .music-save-button.is-saved {
@@ -1297,7 +1299,7 @@ textarea {
   font-size: 0.94rem;
   line-height: 1.2;
   font-weight: 700;
-  transition: color 0.2s, font-size 0.2s;
+  transition: color 0.2s;
 }
 
 .music-meta-card strong.is-muted {
@@ -1379,11 +1381,13 @@ textarea {
   font-weight: 600;
   border: none;
   cursor: pointer;
-  transition: all 0.2s;
+  transition: background-color 0.2s;
 }
 
-.music-reset-button:hover {
-  background: #e5dbcd;
+@media (hover: hover) and (pointer: fine) {
+  .music-reset-button:hover {
+    background: #e5dbcd;
+  }
 }
 
 .music-ready-card {
@@ -1440,8 +1444,10 @@ textarea {
   cursor: default;
 }
 
-.music-ready-card .music-playlist-trigger:hover:not(:disabled) {
-  opacity: 0.7;
+@media (hover: hover) and (pointer: fine) {
+  .music-ready-card .music-playlist-trigger:hover:not(:disabled) {
+    opacity: 0.7;
+  }
 }
 
 .scheduler-modal.music-playlist-modal {
@@ -1534,9 +1540,11 @@ textarea {
   flex-shrink: 0;
 }
 
-.music-playlist-play-button:hover:not(:disabled) {
-  opacity: 0.9;
-  transform: translateY(-1px);
+@media (hover: hover) and (pointer: fine) {
+  .music-playlist-play-button:hover:not(:disabled) {
+    opacity: 0.9;
+    transform: translateY(-1px);
+  }
 }
 
 .music-playlist-play-button:disabled {
@@ -1552,18 +1560,20 @@ textarea {
   padding: 0.55rem 1.2rem;
   background: #efe7db;
   border-radius: 12px;
-  transition: all 0.2s;
+  transition: background-color 0.2s;
   display: inline-flex;
   align-items: center;
   justify-content: center;
 }
 
-.music-playlist-app-link:hover {
-  background: #e5dbcd;
-}
+@media (hover: hover) and (pointer: fine) {
+  .music-playlist-app-link:hover {
+    background: #e5dbcd;
+  }
 
-.music-app-link:hover {
-  opacity: 0.8;
+  .music-app-link:hover {
+    opacity: 0.8;
+  }
 }
 
 .music-ready-pill {
@@ -1711,7 +1721,7 @@ textarea {
   font-size: 1.4rem;
   font-weight: 500;
   cursor: pointer;
-  transition: all 0.15s;
+  transition: background-color 0.15s, opacity 0.15s, transform 0.15s;
 }
 
 .music-volume-step-btn:active:not(:disabled) {
@@ -1877,7 +1887,7 @@ textarea {
   color: #6b6258;
   font-size: 0.86rem;
   font-weight: 600;
-  transition: all 0.2s ease;
+  transition: background-color 0.2s ease, color 0.2s ease;
 }
 
 .scheduler-nav-button.active {
@@ -4398,9 +4408,14 @@ textarea {
   transition: opacity 0.2s ease;
 }
 
-.lead-sheet-focus-controls:hover,
 .lead-sheet-focus-controls:active {
   opacity: 0.9;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .lead-sheet-focus-controls:hover {
+    opacity: 0.9;
+  }
 }
 
 .lead-sheet-compact-indicator {
@@ -4770,8 +4785,10 @@ textarea {
   color: #ffffff;
 }
 
-.lead-sheet-undo-btn:hover {
-  background-color: #b45309;
+@media (hover: hover) and (pointer: fine) {
+  .lead-sheet-undo-btn:hover {
+    background-color: #b45309;
+  }
 }
 
 /* Shared Warm Nostalgic atmosphere for the redesigned reference screens. */
@@ -5850,18 +5867,6 @@ textarea {
   backdrop-filter: blur(12px) saturate(108%) brightness(0.96);
   -webkit-backdrop-filter: blur(12px) saturate(108%) brightness(0.96);
   pointer-events: none;
-  animation: scheduler-sync-toast-in 180ms ease-out both;
-}
-
-@keyframes scheduler-sync-toast-in {
-  from {
-    opacity: 0;
-    transform: translate(-50%, -6px);
-  }
-  to {
-    opacity: 1;
-    transform: translate(-50%, 0);
-  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -5879,9 +5884,22 @@ textarea {
     opacity: 0.86;
   }
 
-  .scheduler-theme-shell .scheduler-sync-toast {
-    animation: none;
+  .scheduler-fab-button:active,
+  .scheduler-setting-card:active,
+  .scheduler-theme-shell .scheduler-status-item:active,
+  .scheduler-theme-shell .scheduler-editor-page .scheduler-back-button:active:not(:disabled),
+  .scheduler-theme-shell .scheduler-editor-page .scheduler-chip:active:not(:disabled),
+  .scheduler-theme-shell .scheduler-editor-page .scheduler-room-option:active:not(:disabled),
+  .scheduler-theme-shell .scheduler-editor-page .scheduler-form-actions > button:active:not(:disabled),
+  .music-playlist-play-button,
+  .music-volume-step-btn:active:not(:disabled) {
+    transform: none !important;
   }
+
+  .music-progress-fill {
+    transition: none;
+  }
+
 }
 
 .scheduler-theme-shell .scheduler-sheet,

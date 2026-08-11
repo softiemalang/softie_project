@@ -319,8 +319,10 @@
   padding: 0;
 }
 
-.band-week-nav-button:hover {
-  background: rgba(0, 0, 0, 0.04);
+@media (hover: hover) and (pointer: fine) {
+  .band-week-nav-button:hover {
+    background: rgba(0, 0, 0, 0.04);
+  }
 }
 
 .band-week-range {

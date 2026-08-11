@@ -1,0 +1,55 @@
+{
+  "baselineHead": "fe39120e5c3c703038c6d957a376dc64cd62a5fd",
+  "observations": [
+    {
+      "after": {
+        "byteLength": 138957,
+        "byteSha256": "28ab56f817adf677746bb33e8c411b3fb9564d24b721490e627bba0429ec202b",
+        "kind": "working_tree_text",
+        "lineEnd": 5872,
+        "lineStart": 5869,
+        "path": "src/styles.css",
+        "quote": "pointer-events: none;\n}\n\n@media (prefers-reduced-motion: reduce) {"
+      },
+      "before": {
+        "byteLength": 137956,
+        "byteSha256": "9842a212d4f9c04d4930f0d286b0857a1df5e5844c300f205d4c96226e2b8250",
+        "commit": "fe39120e5c3c703038c6d957a376dc64cd62a5fd",
+        "kind": "git_commit_text",
+        "lineEnd": 5856,
+        "lineStart": 5856,
+        "path": "src/styles.css",
+        "quote": "@keyframes scheduler-sync-toast-in {"
+      },
+      "lifecycleMutation": false,
+      "observationId": "OBS-SYNC-TOAST-BEFORE-AFTER"
+    },
+    {
+      "generalized": false,
+      "observationId": "OBS-ASYNC-200-PRESERVED",
+      "sourceRef": {
+        "byteLength": 138957,
+        "byteSha256": "28ab56f817adf677746bb33e8c411b3fb9564d24b721490e627bba0429ec202b",
+        "kind": "working_tree_text",
+        "lineEnd": 5083,
+        "lineStart": 5080,
+        "path": "src/styles.css",
+        "quote": "animation: scheduler-async-content-enter\n    var(--ag-scheduler-async-content-enter-duration)\n    var(--ag-scheduler-async-content-enter-easing)\n    both;"
+      }
+    },
+    {
+      "observationId": "OBS-PRESS-PILOT-PRESERVED",
+      "promoted": false,
+      "sourceRef": {
+        "byteLength": 138957,
+        "byteSha256": "28ab56f817adf677746bb33e8c411b3fb9564d24b721490e627bba0429ec202b",
+        "kind": "working_tree_text",
+        "lineEnd": 5771,
+        "lineStart": 5771,
+        "path": "src/styles.css",
+        "quote": "transform 160ms cubic-bezier(0.23, 1, 0.32, 1),"
+      }
+    }
+  ],
+  "schemaVersion": "softie-accessibility-legacy-implementation-observation-ledger-v1"
+}

@@ -69,6 +69,11 @@
   border-radius: 999px;
 }
 
+.rehearsal-month-nav .rehearsal-month-label {
+  border-radius: 10px;
+  font-size: 1.1rem;
+}
+
 .rehearsal-month-nav button:active {
   background: rgba(231, 221, 208, 0.45);
 }
@@ -79,6 +84,12 @@
   font-size: 1.1rem;
   font-weight: 700;
   color: #313b46;
+}
+
+.rehearsal-month-nav button:focus-visible,
+.rehearsal-day:focus-visible {
+  outline: 3px solid rgba(31, 111, 95, 0.62);
+  outline-offset: 2px;
 }
 
 .rehearsal-calendar-grid {
@@ -100,6 +111,11 @@
 }
 
 .rehearsal-day {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 100%;
+  color: inherit;
+  font: inherit;
   background: #ffffff;
   border-radius: 8px;
   min-height: 58px;
@@ -109,7 +125,7 @@
   align-items: center;
   cursor: pointer;
   border: 1px solid transparent;
-  transition: all 0.15s ease;
+  transition: background-color 0.15s ease, border-color 0.15s ease;
 }
 
 .rehearsal-day.empty {
@@ -148,6 +164,7 @@
 }
 
 .rehearsal-pill {
+  display: block;
   width: 100%;
   min-width: 0;
   box-sizing: border-box;
@@ -163,6 +180,7 @@
 }
 
 .rehearsal-more-pill {
+  display: block;
   font-size: 0.65rem;
   color: #8c7e6c;
   font-weight: 600;
@@ -220,7 +238,7 @@
 }
 
 .rehearsal-sheet-header .scheduler-modal-close {
-  min-height: 34px;
+  min-height: 44px;
   padding: 0.35rem 0.75rem;
   border-radius: 999px;
   background: rgba(239, 230, 216, 0.45);
@@ -350,13 +368,13 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-height: 32px;
+  min-height: 44px;
   padding: 0.35rem 0.85rem;
   border-radius: 12px;
   font-size: 0.8rem;
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease, opacity 0.2s ease;
   border: 1px solid transparent;
 }
 
@@ -435,7 +453,7 @@
   color: #5a534b;
   box-sizing: border-box;
   display: block;
-  transition: all 0.2s ease;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
 }
 
 .rehearsal-form textarea {
@@ -537,6 +555,11 @@ button.rehearsal-picker-field {
 .rehearsal-native-picker-shell {
   position: relative;
   width: 100%;
+}
+
+.rehearsal-native-picker-shell:focus-within .rehearsal-picker-field {
+  border-color: transparent;
+  box-shadow: inset 0 0 0 1.5px rgba(31, 111, 95, 0.35);
 }
 
 /* 
@@ -679,14 +702,16 @@ button.rehearsal-picker-field {
   -webkit-tap-highlight-color: transparent;
 }
 
-.rehearsal-time-period-toggle button:focus,
-.rehearsal-time-period-toggle button:focus-visible,
 .rehearsal-time-period-toggle button:active,
-.rehearsal-time-hour-grid button:focus,
-.rehearsal-time-hour-grid button:focus-visible,
 .rehearsal-time-hour-grid button:active {
   outline: none;
   box-shadow: none;
+}
+
+.rehearsal-time-period-toggle button:focus-visible,
+.rehearsal-time-hour-grid button:focus-visible {
+  outline: 3px solid rgba(31, 111, 95, 0.62);
+  outline-offset: 2px;
 }
 
 .rehearsal-time-period-toggle button.is-selected,
@@ -762,7 +787,7 @@ button.rehearsal-picker-field {
 .soft-button.small {
   padding: 0 0.72rem;
   font-size: 0.76rem;
-  min-height: 32px;
+  min-height: 44px;
   border-radius: 999px;
 }
 
@@ -800,7 +825,7 @@ button.rehearsal-picker-field {
   }
 
   .soft-button.small {
-    min-height: 34px;
+    min-height: 44px;
     padding-inline: 0.65rem;
     white-space: nowrap;
   }

@@ -866,6 +866,7 @@ export default function BandGooglePage() {
                     className={`slot-button ${availabilityMap[key] ? 'active' : ''} ${dayIndex >= 5 ? 'weekend-slot' : 'weekday-slot'}`}
                     onClick={() => toggleSlot(dayIndex, slotIndex)}
                     aria-label={`${DAYS[dayIndex]} ${slot}`}
+                    aria-pressed={Boolean(availabilityMap[key])}
                   >
                     {availabilityMap[key] ? '✓' : ''}
                   </button>

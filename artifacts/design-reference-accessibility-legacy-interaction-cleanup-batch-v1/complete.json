@@ -1,0 +1,667 @@
+{
+  "artifactIdentity": {
+    "artifactId": "design-reference-accessibility-legacy-interaction-cleanup-batch-v1",
+    "artifactPayloadSha256": "ad5819c5e10abd1eefa1103245fb332d4b22a23f97d8259def1426742b0db89a",
+    "contractVersion": "artifact-identity-v1",
+    "generation": {
+      "baseHead": "fe39120e5c3c703038c6d957a376dc64cd62a5fd",
+      "baseHeadSource": "git rev-parse HEAD at materialization",
+      "includedCommit": null,
+      "includedCommitSource": "unknown_at_generation; artifact may be included by a later commit"
+    },
+    "inputs": [
+      {
+        "byteSha256": "11840b24a11d7f94f39c6aaab074750ae4e4de4ef54ee4b1dd97e16ebd485e61",
+        "path": ".agents/skills/apple-design/SKILL.md"
+      },
+      {
+        "byteSha256": "e71de849347050c2c573c1cf24d742d5a13459557ecffa6e562f08006f46b5b7",
+        "path": ".agents/skills/emil-design-eng/SKILL.md"
+      },
+      {
+        "byteSha256": "551c8473e20e5f4774680bc24d45e1c68e50992582720905c6b077756b7b5a55",
+        "path": ".agents/skills/improve-animations/AUDIT.md"
+      },
+      {
+        "byteSha256": "68f17bbc4671593d2f43dba26a679243e2153ba5f26965fb7d59df52842534ff",
+        "path": ".agents/skills/improve-animations/SKILL.md"
+      },
+      {
+        "byteSha256": "61cf8ac0c4c8e1f63385298c546b16c65ca9aec34abddcd04e821c16712d671d",
+        "path": ".agents/skills/review-animations/SKILL.md"
+      },
+      {
+        "byteSha256": "e7d3605034acda54ca13e43aec9e64d65b53de20f75b11b8d694e373012fbe07",
+        "path": ".agents/skills/review-animations/STANDARDS.md"
+      },
+      {
+        "byteSha256": "f1dd85901c74c49ca5e1c81d3db57a9b7aba41b2bd49eb5c2c84114035bdb55d",
+        "path": "AGENTS.md"
+      },
+      {
+        "byteSha256": "40e3752c83ca674ee9e6fe43f54c4d4206d69d15fdfbc5280202c967e8c87d49",
+        "path": "artifacts/design-reference-low-risk-interaction-foundation-batch-v1/complete.json"
+      },
+      {
+        "byteSha256": "f04a70371fdd70bf1d037cb07792f5a5298edb9a2ff08e4a598a633b4aed701e",
+        "path": "artifacts/design-reference-low-risk-interaction-foundation-batch-v1/complete.json.integrity.json"
+      },
+      {
+        "byteSha256": "4ce784c815d547c68c8e72009453a619d794e6e73024ae772e62a197fa018548",
+        "path": "DESIGN.md"
+      },
+      {
+        "byteSha256": "71c0c457349e0e5b1bc9f9057dd704e2ef3d50221ac646d239b46ce2be81ae2a",
+        "path": "docs/design-reference-accessibility-legacy-interaction-cleanup-batch-v1.md"
+      },
+      {
+        "byteSha256": "397cb2eaadf82a508bc67e1030c98cddb8095a300c7aba2188acdbeedca54c79",
+        "path": "docs/design-reference-low-risk-interaction-foundation-batch-v1.md"
+      },
+      {
+        "byteSha256": "1848be871366a049f3a1b0b87fbfcb9205da10089824f356e43f505de1d82051",
+        "path": "public/band-hub-account-actions.css"
+      },
+      {
+        "byteSha256": "3ab86ad301a5d142058d3819550f9fff677cac6c0f8c4b7fb51c4fa7b97f7e89",
+        "path": "public/band-polish.css"
+      },
+      {
+        "byteSha256": "d3f055ba5ce0947fdb8c481a1fbd5de24d3089883e3864629e45dba1c28dd456",
+        "path": "scripts/check-design-reference-low-risk-interaction-foundation-batch-v1.mjs"
+      },
+      {
+        "byteSha256": "6d163aae925d0be5d4c05e94dff6963cfa60be1cf18e2cdc7fbb642181f71537",
+        "path": "scripts/materialize-design-reference-accessibility-legacy-interaction-cleanup-batch-v1.mjs"
+      },
+      {
+        "byteSha256": "e2edb232b500cfc47a0c03723c2ca3271f1589e45bda53585924f13740a324f4",
+        "path": "src/artifactIdentity.js"
+      },
+      {
+        "byteSha256": "db8f253728129aeeed32eaec933b2c45987a952ac9ace029d457338f9ac26dd6",
+        "path": "src/interpretationPrep/interpretationPrep.css"
+      },
+      {
+        "byteSha256": "814c31552f41ad3ec90a22eb3a2ba87791423525527b9fabab012f11be02b6a7",
+        "path": "src/interpretationPrep/InterpretationPrepPage.jsx"
+      },
+      {
+        "byteSha256": "7aecd032de6faaedf0af430296f6794df4a78cbd855247ab3f1c52b6ebcc3da4",
+        "path": "src/pages/BandGoogleCompactPage.jsx"
+      },
+      {
+        "byteSha256": "ff3dcc54da8ac129699226fb1095c823fc45a6b6f23b123496a718dbea59174c",
+        "path": "src/pages/BandGooglePage.jsx"
+      },
+      {
+        "byteSha256": "53236d86e83dd17ce33f1428e7c741115dc0a8f70c8ce8f8e5dc7446a2f2fe78",
+        "path": "src/pages/LeadSheetPage.jsx"
+      },
+      {
+        "byteSha256": "2769766851d53f31b29a0b254e65255080277b815e9079890106f9fb508b8a49",
+        "path": "src/pages/RehearsalCalendarPage.jsx"
+      },
+      {
+        "byteSha256": "0a333ba2166370c39cd05c4f74237189df8a08afd1bf76e90a355788463e17ac",
+        "path": "src/rehearsals/rehearsals.css"
+      },
+      {
+        "byteSha256": "8bc22a6cf97ddb8e3231f9a18ca240ade8713a2d5ed10eb7b00135ce9a46d438",
+        "path": "src/saju/fortune.css"
+      },
+      {
+        "byteSha256": "0ff36b4e4a165a96057b1614c1e403b8ca479f1a329201b65e200cecca5dd9fa",
+        "path": "src/scheduler/TodaySchedulerPage.jsx"
+      },
+      {
+        "byteSha256": "28ab56f817adf677746bb33e8c411b3fb9564d24b721490e627bba0429ec202b",
+        "path": "src/styles.css"
+      },
+      {
+        "byteSha256": "e530520998c613fead16fc474d14a33ec1e5960be5f244e8156303ec20e24ba6",
+        "path": "test/accessibilityLegacyInteractionCleanup.test.js"
+      },
+      {
+        "byteSha256": "acb4798474e67d7f0d45529bed9b4332477ead9203500a45d44cad009304ad86",
+        "path": "test/designReferenceAccessibilityLegacyInteractionCleanupBatch.test.js"
+      },
+      {
+        "byteSha256": "ad7fa9cdca42492f46ccd808997c2af6cf8fd643dd77348385cc9aadde479b1b",
+        "path": "test/lowRiskInteractionFoundation.test.js"
+      }
+    ],
+    "materializer": {
+      "path": "scripts/materialize-design-reference-accessibility-legacy-interaction-cleanup-batch-v1.mjs",
+      "version": "design-reference-accessibility-legacy-interaction-cleanup-batch-v1-materializer-1"
+    }
+  },
+  "frontierDecisionLedger": {
+    "frontiers": [
+      {
+        "decision": "fix",
+        "evidence": {
+          "adjacent_role_evidence": [],
+          "direct_evidence": [
+            "native controls now provide focus and Enter/Space activation"
+          ],
+          "product_device_evidence": [],
+          "softie_house_evidence": [
+            "DESIGN Buttons"
+          ]
+        },
+        "frontierId": "FRONTIER-NONSEMANTIC-ACTIONS",
+        "sourceRefs": [
+          {
+            "byteLength": 29203,
+            "byteSha256": "2769766851d53f31b29a0b254e65255080277b815e9079890106f9fb508b8a49",
+            "kind": "working_tree_text",
+            "lineEnd": 372,
+            "lineStart": 372,
+            "path": "src/pages/RehearsalCalendarPage.jsx",
+            "quote": "aria-label={`${currentDate.getFullYear()}년 ${currentDate.getMonth() + 1}월, 오늘 날짜로 이동`}"
+          },
+          {
+            "byteLength": 29203,
+            "byteSha256": "2769766851d53f31b29a0b254e65255080277b815e9079890106f9fb508b8a49",
+            "kind": "working_tree_text",
+            "lineEnd": 399,
+            "lineStart": 399,
+            "path": "src/pages/RehearsalCalendarPage.jsx",
+            "quote": "aria-current={isToday ? 'date' : undefined}"
+          }
+        ],
+        "surfaces": [
+          "Rehearsal month reset action",
+          "Rehearsal date cells"
+        ]
+      },
+      {
+        "blocker": null,
+        "decision": "fix",
+        "frontierId": "FRONTIER-FOCUS-VISIBLE",
+        "sourceRefs": [
+          {
+            "byteLength": 17261,
+            "byteSha256": "0a333ba2166370c39cd05c4f74237189df8a08afd1bf76e90a355788463e17ac",
+            "kind": "working_tree_text",
+            "lineEnd": 712,
+            "lineStart": 711,
+            "path": "src/rehearsals/rehearsals.css",
+            "quote": ".rehearsal-time-period-toggle button:focus-visible,\n.rehearsal-time-hour-grid button:focus-visible {"
+          },
+          {
+            "byteLength": 17261,
+            "byteSha256": "0a333ba2166370c39cd05c4f74237189df8a08afd1bf76e90a355788463e17ac",
+            "kind": "working_tree_text",
+            "lineEnd": 560,
+            "lineStart": 560,
+            "path": "src/rehearsals/rehearsals.css",
+            "quote": ".rehearsal-native-picker-shell:focus-within .rehearsal-picker-field {"
+          }
+        ],
+        "surfaces": [
+          "Rehearsal date/month controls",
+          "Rehearsal time picker",
+          "Rehearsal native date/time picker shell"
+        ]
+      },
+      {
+        "boundary": "Movement and interpolation stop; existing color, background, opacity, and state text remain.",
+        "decision": "fix",
+        "frontierId": "FRONTIER-LEGACY-REDUCED-MOTION",
+        "sourceRefs": [
+          {
+            "byteLength": 138957,
+            "byteSha256": "28ab56f817adf677746bb33e8c411b3fb9564d24b721490e627bba0429ec202b",
+            "kind": "working_tree_text",
+            "lineEnd": 5888,
+            "lineStart": 5887,
+            "path": "src/styles.css",
+            "quote": ".scheduler-fab-button:active,\n  .scheduler-setting-card:active,"
+          },
+          {
+            "byteLength": 52756,
+            "byteSha256": "db8f253728129aeeed32eaec933b2c45987a952ac9ace029d457338f9ac26dd6",
+            "kind": "working_tree_text",
+            "lineEnd": 1664,
+            "lineStart": 1662,
+            "path": "src/interpretationPrep/interpretationPrep.css",
+            "quote": ".strength-meter-fill,\n  .prep-strength-bar {\n    transition: none !important;"
+          }
+        ],
+        "surfaces": [
+          "Scheduler legacy press families",
+          "Spotify controls and progress",
+          "Interpretation Prep press/lift and strength meters"
+        ]
+      },
+      {
+        "boundary": "Incomplete tab/radio semantics were removed instead of adding missing composite-widget keyboard behavior.",
+        "decision": "fix",
+        "frontierId": "FRONTIER-TOUCH-KEYBOARD-STATE-SEMANTICS",
+        "sourceRefs": [
+          {
+            "byteLength": 32342,
+            "byteSha256": "ff3dcc54da8ac129699226fb1095c823fc45a6b6f23b123496a718dbea59174c",
+            "kind": "working_tree_text",
+            "lineEnd": 869,
+            "lineStart": 869,
+            "path": "src/pages/BandGooglePage.jsx",
+            "quote": "aria-pressed={Boolean(availabilityMap[key])}"
+          },
+          {
+            "byteLength": 44955,
+            "byteSha256": "7aecd032de6faaedf0af430296f6794df4a78cbd855247ab3f1c52b6ebcc3da4",
+            "kind": "working_tree_text",
+            "lineEnd": 1207,
+            "lineStart": 1207,
+            "path": "src/pages/BandGoogleCompactPage.jsx",
+            "quote": "<div className=\"band-tabbar\" role=\"group\" aria-label=\"방 메뉴\">"
+          },
+          {
+            "byteLength": 44613,
+            "byteSha256": "814c31552f41ad3ec90a22eb3a2ba87791423525527b9fabab012f11be02b6a7",
+            "kind": "working_tree_text",
+            "lineEnd": 870,
+            "lineStart": 870,
+            "path": "src/interpretationPrep/InterpretationPrepPage.jsx",
+            "quote": "<div className=\"prep-gender-control\" role=\"group\" aria-labelledby=\"prep-gender-label\">"
+          }
+        ],
+        "surfaces": [
+          "Rehearsal controls",
+          "Band availability and compact groups",
+          "Interpretation Prep gender selection"
+        ]
+      },
+      {
+        "boundary": "Removed transition:all and undefined token names without forcing role-specific raw durations into one universal token. Width-to-transform rewrites remain out of scope.",
+        "decision": "fix",
+        "frontierId": "FRONTIER-TRANSITION-PROPERTY-COHERENCE",
+        "sourceRefs": [
+          {
+            "byteLength": 17261,
+            "byteSha256": "0a333ba2166370c39cd05c4f74237189df8a08afd1bf76e90a355788463e17ac",
+            "kind": "working_tree_text",
+            "lineEnd": 128,
+            "lineStart": 128,
+            "path": "src/rehearsals/rehearsals.css",
+            "quote": "transition: background-color 0.15s ease, border-color 0.15s ease;"
+          },
+          {
+            "byteLength": 52756,
+            "byteSha256": "db8f253728129aeeed32eaec933b2c45987a952ac9ace029d457338f9ac26dd6",
+            "kind": "working_tree_text",
+            "lineEnd": 1733,
+            "lineStart": 1733,
+            "path": "src/interpretationPrep/interpretationPrep.css",
+            "quote": "transition: border-color var(--ag-duration-fast) ease;"
+          }
+        ],
+        "surfaces": [
+          "audited legacy CSS declarations across shared, Prep, Rehearsal, and Fortune styles"
+        ]
+      },
+      {
+        "boundary": "The glass stays static. The 1800ms mount timer is status lifecycle, not a motion token, and is unchanged.",
+        "decision": "fix",
+        "frontierId": "FRONTIER-SCHEDULER-SYNC-TOAST-GLASS",
+        "sourceRefs": [
+          {
+            "byteLength": 137956,
+            "byteSha256": "9842a212d4f9c04d4930f0d286b0857a1df5e5844c300f205d4c96226e2b8250",
+            "commit": "fe39120e5c3c703038c6d957a376dc64cd62a5fd",
+            "kind": "git_commit_text",
+            "lineEnd": 5853,
+            "lineStart": 5853,
+            "path": "src/styles.css",
+            "quote": "animation: scheduler-sync-toast-in 180ms ease-out both;"
+          },
+          {
+            "byteLength": 138957,
+            "byteSha256": "28ab56f817adf677746bb33e8c411b3fb9564d24b721490e627bba0429ec202b",
+            "kind": "working_tree_text",
+            "lineEnd": 5845,
+            "lineStart": 5845,
+            "path": "src/styles.css",
+            "quote": ".scheduler-theme-shell .scheduler-sync-toast {"
+          },
+          {
+            "byteLength": 36181,
+            "byteSha256": "0ff36b4e4a165a96057b1614c1e403b8ca479f1a329201b65e200cecca5dd9fa",
+            "kind": "working_tree_text",
+            "lineEnd": 679,
+            "lineStart": 679,
+            "path": "src/scheduler/TodaySchedulerPage.jsx",
+            "quote": "<div className=\"scheduler-sync-toast\" role=\"status\" aria-live=\"polite\">"
+          }
+        ],
+        "surfaces": [
+          "Scheduler sync status toast"
+        ]
+      },
+      {
+        "boundary": "Active, focus, and semantic state paths remain independent; no information becomes hover-only.",
+        "decision": "fix",
+        "frontierId": "FRONTIER-LEGACY-HOVER-GATING",
+        "sourceRefs": [
+          {
+            "byteLength": 138957,
+            "byteSha256": "28ab56f817adf677746bb33e8c411b3fb9564d24b721490e627bba0429ec202b",
+            "kind": "working_tree_text",
+            "lineEnd": 1209,
+            "lineStart": 1208,
+            "path": "src/styles.css",
+            "quote": "@media (hover: hover) and (pointer: fine) {\n  .music-save-button:hover:not(:disabled) {"
+          },
+          {
+            "byteLength": 52756,
+            "byteSha256": "db8f253728129aeeed32eaec933b2c45987a952ac9ace029d457338f9ac26dd6",
+            "kind": "working_tree_text",
+            "lineEnd": 1259,
+            "lineStart": 1258,
+            "path": "src/interpretationPrep/interpretationPrep.css",
+            "quote": "@media (hover: hover) and (pointer: fine) {\n  .prep-shell input:hover,"
+          }
+        ],
+        "surfaces": [
+          "Spotify",
+          "Interpretation Prep",
+          "Lead Sheet",
+          "Band compact navigation",
+          "Fortune history"
+        ]
+      },
+      {
+        "blocker": "Changing focus order or target geometry in the performance-use surface requires separate layout and physical-device validation.",
+        "decision": "hold",
+        "frontierId": "FRONTIER-LEAD-SHEET-DENSE-OVERLAYS",
+        "sourceRefs": [
+          {
+            "byteLength": 55442,
+            "byteSha256": "53236d86e83dd17ce33f1428e7c741115dc0a8f70c8ce8f8e5dc7446a2f2fe78",
+            "kind": "working_tree_text",
+            "lineEnd": 1157,
+            "lineStart": 1157,
+            "path": "src/pages/LeadSheetPage.jsx",
+            "quote": "className=\"lead-sheet-touch-zone\""
+          },
+          {
+            "byteLength": 55442,
+            "byteSha256": "53236d86e83dd17ce33f1428e7c741115dc0a8f70c8ce8f8e5dc7446a2f2fe78",
+            "kind": "working_tree_text",
+            "lineEnd": 1309,
+            "lineStart": 1309,
+            "path": "src/pages/LeadSheetPage.jsx",
+            "quote": "className=\"lead-sheet-backup-badge\""
+          }
+        ],
+        "surfaces": [
+          "Lead Sheet full-screen page touch zones",
+          "backup badge",
+          "dense performance controls"
+        ]
+      }
+    ],
+    "schemaVersion": "softie-accessibility-legacy-frontier-decision-ledger-v1"
+  },
+  "implementationObservationLedger": {
+    "baselineHead": "fe39120e5c3c703038c6d957a376dc64cd62a5fd",
+    "observations": [
+      {
+        "after": {
+          "byteLength": 138957,
+          "byteSha256": "28ab56f817adf677746bb33e8c411b3fb9564d24b721490e627bba0429ec202b",
+          "kind": "working_tree_text",
+          "lineEnd": 5872,
+          "lineStart": 5869,
+          "path": "src/styles.css",
+          "quote": "pointer-events: none;\n}\n\n@media (prefers-reduced-motion: reduce) {"
+        },
+        "before": {
+          "byteLength": 137956,
+          "byteSha256": "9842a212d4f9c04d4930f0d286b0857a1df5e5844c300f205d4c96226e2b8250",
+          "commit": "fe39120e5c3c703038c6d957a376dc64cd62a5fd",
+          "kind": "git_commit_text",
+          "lineEnd": 5856,
+          "lineStart": 5856,
+          "path": "src/styles.css",
+          "quote": "@keyframes scheduler-sync-toast-in {"
+        },
+        "lifecycleMutation": false,
+        "observationId": "OBS-SYNC-TOAST-BEFORE-AFTER"
+      },
+      {
+        "generalized": false,
+        "observationId": "OBS-ASYNC-200-PRESERVED",
+        "sourceRef": {
+          "byteLength": 138957,
+          "byteSha256": "28ab56f817adf677746bb33e8c411b3fb9564d24b721490e627bba0429ec202b",
+          "kind": "working_tree_text",
+          "lineEnd": 5083,
+          "lineStart": 5080,
+          "path": "src/styles.css",
+          "quote": "animation: scheduler-async-content-enter\n    var(--ag-scheduler-async-content-enter-duration)\n    var(--ag-scheduler-async-content-enter-easing)\n    both;"
+        }
+      },
+      {
+        "observationId": "OBS-PRESS-PILOT-PRESERVED",
+        "promoted": false,
+        "sourceRef": {
+          "byteLength": 138957,
+          "byteSha256": "28ab56f817adf677746bb33e8c411b3fb9564d24b721490e627bba0429ec202b",
+          "kind": "working_tree_text",
+          "lineEnd": 5771,
+          "lineStart": 5771,
+          "path": "src/styles.css",
+          "quote": "transform 160ms cubic-bezier(0.23, 1, 0.32, 1),"
+        }
+      }
+    ],
+    "schemaVersion": "softie-accessibility-legacy-implementation-observation-ledger-v1"
+  },
+  "nonGeneralization": {
+    "async200ms": "The Scheduler async content enter 200ms role is preserved and not reused for these interactions.",
+    "pressPilot": "The 160ms Scheduler press recipe remains pilot-scoped and is not promoted here.",
+    "roleValues": "Existing raw durations are not inferred to be equivalent merely because values repeat.",
+    "syncToastLifecycle": "The unchanged 1800ms status lifetime is not a motion duration or token."
+  },
+  "provenanceLineage": {
+    "authorityPriority": [
+      "AGENTS.md / DESIGN.md",
+      "current_work_order",
+      "repository_evidence",
+      "external_skill"
+    ],
+    "emilCorpus": {
+      "independentAuthorityCount": 1,
+      "installationIsAdoption": false,
+      "installedSkillCount": 10,
+      "repeatedClaimsCountOnce": true,
+      "revision": "78761e1b57f97dce65b983d640c70a68f39e8163"
+    },
+    "evidenceClasses": [
+      "direct_evidence",
+      "adjacent_role_evidence",
+      "softie_house_evidence",
+      "product_device_evidence"
+    ],
+    "historicalBytesPreserved": true,
+    "predecessor": {
+      "assertions": [],
+      "byteLength": 2000,
+      "byteSha256": "f04a70371fdd70bf1d037cb07792f5a5298edb9a2ff08e4a598a633b4aed701e",
+      "kind": "historical_artifact_json",
+      "path": "artifacts/design-reference-low-risk-interaction-foundation-batch-v1/complete.json.integrity.json"
+    },
+    "schemaVersion": "softie-accessibility-legacy-provenance-lineage-v1"
+  },
+  "repository": {
+    "baselineHead": "fe39120e5c3c703038c6d957a376dc64cd62a5fd",
+    "branch": "main"
+  },
+  "schemaVersion": "design-reference-accessibility-legacy-interaction-cleanup-batch-v1",
+  "scope": {
+    "businessDataAuthApiMutation": false,
+    "dependencyMutation": false,
+    "frozenArtifactRewrite": false,
+    "preExistingChangeBoundary": "Preserve untracked ?? -.jpg byte-for-byte and outside staging.",
+    "stagingCommitPushDeployRemoteMutation": false
+  },
+  "sourceReferenceLedger": {
+    "schemaVersion": "softie-accessibility-legacy-source-reference-ledger-v1",
+    "sources": [
+      {
+        "authority": "repository_authority",
+        "lineageGroup": "LG-SOFTIE-REPOSITORY",
+        "sourceId": "SRC-SOFTIE-AGENTS",
+        "sourceRef": {
+          "byteLength": 12039,
+          "byteSha256": "f1dd85901c74c49ca5e1c81d3db57a9b7aba41b2bd49eb5c2c84114035bdb55d",
+          "kind": "working_tree_text",
+          "lineEnd": 81,
+          "lineStart": 81,
+          "path": "AGENTS.md",
+          "quote": "- Prefer practical, mobile-friendly UI. This app is used in short sessions and should stay easy to use on a phone."
+        }
+      },
+      {
+        "authority": "softie_house_rule",
+        "lineageGroup": "LG-SOFTIE-REPOSITORY",
+        "sourceId": "SRC-SOFTIE-DESIGN",
+        "sourceRef": {
+          "byteLength": 33803,
+          "byteSha256": "4ce784c815d547c68c8e72009453a619d794e6e73024ae772e62a197fa018548",
+          "kind": "working_tree_text",
+          "lineEnd": 340,
+          "lineStart": 340,
+          "path": "DESIGN.md",
+          "quote": "- 동작을 실행하는 target은 가능한 한 native `button`을 사용합니다."
+        }
+      },
+      {
+        "authority": "web_standard_primary",
+        "claimBoundary": "Functionality must be operable through a keyboard interface; it does not prescribe Softie CSS values.",
+        "lineageGroup": "LG-W3C-WCAG22",
+        "sourceId": "SRC-W3C-WCAG-KEYBOARD",
+        "url": "https://www.w3.org/WAI/WCAG22/Understanding/keyboard.html"
+      },
+      {
+        "authority": "web_standard_primary",
+        "claimBoundary": "Keyboard-operable controls require a visible focus indicator; it does not prescribe the local ring recipe.",
+        "lineageGroup": "LG-W3C-WCAG22",
+        "sourceId": "SRC-W3C-WCAG-FOCUS-VISIBLE",
+        "url": "https://www.w3.org/WAI/WCAG22/Understanding/focus-visible.html"
+      },
+      {
+        "authority": "web_standard_primary",
+        "claimBoundary": "Provides a standards floor; Softie keeps its stricter 44px house target where layout permits.",
+        "lineageGroup": "LG-W3C-WCAG22",
+        "sourceId": "SRC-W3C-WCAG-TARGET-SIZE",
+        "url": "https://www.w3.org/WAI/WCAG22/Understanding/target-size-minimum.html"
+      },
+      {
+        "authority": "web_standard_primary",
+        "claimBoundary": "Supports native button keyboard semantics and pressed state; APG examples do not override HTML-native preference.",
+        "lineageGroup": "LG-W3C-ARIA-APG",
+        "sourceId": "SRC-W3C-ARIA-BUTTON",
+        "url": "https://www.w3.org/WAI/ARIA/apg/patterns/button/"
+      },
+      {
+        "authority": "apple_official_primary_guidance",
+        "claimBoundary": "Supports understandable, operable controls and reduced motion without supplying Softie web timing values.",
+        "lineageGroup": "LG-APPLE-OFFICIAL",
+        "sourceId": "SRC-APPLE-ACCESSIBILITY",
+        "url": "https://developer.apple.com/design/human-interface-guidelines/accessibility"
+      },
+      {
+        "authority": "external_design_engineering_guidance",
+        "independentAuthorityCount": 1,
+        "lineageGroup": "LG-EMIL10-78761e1b57f9",
+        "sourceId": "SRC-EMIL-CORPUS",
+        "sourceRef": {
+          "byteLength": 27226,
+          "byteSha256": "e71de849347050c2c573c1cf24d742d5a13459557ecffa6e562f08006f46b5b7",
+          "kind": "working_tree_text",
+          "lineEnd": 525,
+          "lineStart": 525,
+          "path": ".agents/skills/emil-design-eng/SKILL.md",
+          "quote": "## Accessibility"
+        }
+      },
+      {
+        "authority": "historical_softie_evidence",
+        "lineageGroup": "LG-SOFTIE-INTERACTION-EVIDENCE",
+        "sourceId": "SRC-PREDECESSOR-FOUNDATION",
+        "sourceRef": {
+          "assertions": [
+            {
+              "equals": "complete_softie_low_risk_interaction_foundation_batch_v1_uncommitted",
+              "path": "#/verdict"
+            },
+            {
+              "equals": "reject",
+              "path": "#/frontierDecisionLedger/frontiers/5/decision"
+            }
+          ],
+          "byteLength": 30769,
+          "byteSha256": "40e3752c83ca674ee9e6fe43f54c4d4206d69d15fdfbc5280202c967e8c87d49",
+          "kind": "historical_artifact_json",
+          "path": "artifacts/design-reference-low-risk-interaction-foundation-batch-v1/complete.json"
+        }
+      }
+    ]
+  },
+  "validationBlockerLedger": {
+    "blockers": [
+      {
+        "blockerId": "BLK-LEAD-SHEET-DEVICE-LAYOUT",
+        "frontierId": "FRONTIER-LEAD-SHEET-DENSE-OVERLAYS",
+        "status": "open"
+      }
+    ],
+    "schemaVersion": "softie-accessibility-legacy-validation-blocker-ledger-v1",
+    "validations": [
+      {
+        "id": "VAL-FOCUSED-INTERACTION",
+        "status": "pass"
+      },
+      {
+        "id": "VAL-PREDECESSOR-CHECKERS",
+        "status": "pass"
+      },
+      {
+        "id": "VAL-DETERMINISTIC-MATERIALIZATION",
+        "status": "pass"
+      },
+      {
+        "id": "VAL-TAMPER-REJECTION",
+        "status": "pass"
+      },
+      {
+        "id": "VAL-SCHEDULER-REGRESSION",
+        "status": "pass"
+      },
+      {
+        "id": "VAL-BUILD",
+        "status": "pass"
+      },
+      {
+        "id": "VAL-DIFF-CHECK",
+        "status": "pass"
+      },
+      {
+        "failureCount": 0,
+        "id": "VAL-FULL-NON-PDF",
+        "status": "pass"
+      },
+      {
+        "expectedFailureCount": 35,
+        "id": "VAL-FULL-PDF-SOURCE",
+        "status": "blocked_pre_existing"
+      }
+    ]
+  },
+  "verdict": "complete_softie_accessibility_legacy_interaction_cleanup_batch_v1_uncommitted"
+}

@@ -867,11 +867,10 @@ export default function InterpretationPrepPage() {
             </LabeledField>
             <div className="prep-field">
               <span id="prep-gender-label">성별</span>
-              <div className="prep-gender-control" role="radiogroup" aria-labelledby="prep-gender-label">
+              <div className="prep-gender-control" role="group" aria-labelledby="prep-gender-label">
                 <button
                   type="button"
-                  role="radio"
-                  aria-checked={input.gender === 'male'}
+                  aria-pressed={input.gender === 'male'}
                   className={`prep-gender-option ${input.gender === 'male' ? 'is-active' : ''}`}
                   onClick={() => updateInput('gender', 'male')}
                 >
@@ -879,8 +878,7 @@ export default function InterpretationPrepPage() {
                 </button>
                 <button
                   type="button"
-                  role="radio"
-                  aria-checked={input.gender === 'female'}
+                  aria-pressed={input.gender === 'female'}
                   className={`prep-gender-option ${input.gender === 'female' ? 'is-active' : ''}`}
                   onClick={() => updateInput('gender', 'female')}
                 >

@@ -338,7 +338,13 @@ export default function RehearsalCalendarPage() {
           {isKakaoConnected ? '카카오 연결됨' : '카카오 다시 연결'}
         </button>
         <div className="rehearsal-actions">
-          <button type="button" className="soft-button small" onClick={handleBackup} disabled={isBackingUp || !effectiveOwnerKey}>
+          <button
+            type="button"
+            className="soft-button small"
+            onClick={handleBackup}
+            disabled={isBackingUp || !effectiveOwnerKey}
+            aria-busy={isBackingUp}
+          >
             {isBackingUp ? '백업 중...' : '이번 달 Drive 백업'}
           </button>
           {!isGoogleReady && (
@@ -358,11 +364,16 @@ export default function RehearsalCalendarPage() {
       </header>
 
       <div className="rehearsal-month-nav">
-        <button onClick={handlePrevMonth}>‹</button>
-        <span className="rehearsal-month-label" onClick={handleToday} style={{ cursor: 'pointer' }}>
+        <button type="button" onClick={handlePrevMonth} aria-label="이전 달">‹</button>
+        <button
+          type="button"
+          className="rehearsal-month-label"
+          onClick={handleToday}
+          aria-label={`${currentDate.getFullYear()}년 ${currentDate.getMonth() + 1}월, 오늘 날짜로 이동`}
+        >
           {currentDate.getFullYear()}년 {currentDate.getMonth() + 1}월
-        </span>
-        <button onClick={handleNextMonth}>›</button>
+        </button>
+        <button type="button" onClick={handleNextMonth} aria-label="다음 달">›</button>
       </div>
 
       <div className="rehearsal-calendar-grid">
@@ -378,31 +389,36 @@ export default function RehearsalCalendarPage() {
           const isSelected = selectedDate?.toDateString() === date.toDateString()
 
           return (
-            <div 
+            <button
+              type="button"
               key={dateStr} 
               className={`rehearsal-day ${isToday ? 'today' : ''} ${isSelected ? 'selected' : ''}`}
               onClick={() => setSelectedDate(date)}
+              aria-label={`${date.getMonth() + 1}월 ${date.getDate()}일 일정 보기`}
+              aria-pressed={isSelected}
+              aria-current={isToday ? 'date' : undefined}
             >
-              <div className="rehearsal-date-num">{date.getDate()}</div>
+              <span className="rehearsal-date-num">{date.getDate()}</span>
               {dayEvents.slice(0, 2).map((ev, idx) => {
                 const displayTitle = ev.title || ev.team_name || '합주'
                 const color = getColorForText(displayTitle)
                 return (
-                  <div key={idx} className="rehearsal-pill" style={{ backgroundColor: color.bg, color: color.text }}>
+                  <span key={idx} className="rehearsal-pill" style={{ backgroundColor: color.bg, color: color.text }}>
                     {displayTitle}
-                  </div>
+                  </span>
                 )
               })}
               {dayEvents.length > 2 && (
-                <div className="rehearsal-more-pill">+{dayEvents.length - 2}</div>
+                <span className="rehearsal-more-pill">+{dayEvents.length - 2}</span>
               )}
-            </div>
+            </button>
           )
         })}
       </div>
 
       <div style={{ marginTop: '1.5rem', textAlign: 'center' }}>
-        <button 
+        <button
+          type="button"
           className="soft-button rehearsal-add-button" 
           onClick={() => {
             setEditingEvent(null)
@@ -535,15 +551,17 @@ function RehearsalCard({ event, isAddingKakao, onAddKakaoCalendar, onEdit, onDel
       <div className="rehearsal-card-actions">
         {!isKakaoSynced && (
           <button
+            type="button"
             className="rehearsal-action-btn kakao"
             onClick={onAddKakaoCalendar}
             disabled={isAddingKakao}
+            aria-busy={isAddingKakao}
           >
             {isAddingKakao ? '추가 중...' : '톡캘린더 추가'}
           </button>
         )}
-        <button className="rehearsal-action-btn edit" onClick={onEdit}>편집</button>
-        <button className="rehearsal-action-btn delete" onClick={onDelete}>삭제</button>
+        <button type="button" className="rehearsal-action-btn edit" onClick={onEdit}>편집</button>
+        <button type="button" className="rehearsal-action-btn delete" onClick={onDelete}>삭제</button>
       </div>
     </div>
   )
@@ -738,7 +756,7 @@ function AddRehearsalModal({ ownerKey, initialEvent, onClose, onKakaoConnected, 
               />
             </div>
 
-            <button type="submit" className="rehearsal-submit-btn" disabled={isSubmitting}>
+            <button type="submit" className="rehearsal-submit-btn" disabled={isSubmitting} aria-busy={isSubmitting}>
               {isSubmitting ? '저장 중...' : (isEditing ? '수정 완료' : '일정 추가하기')}
             </button>
           </form>

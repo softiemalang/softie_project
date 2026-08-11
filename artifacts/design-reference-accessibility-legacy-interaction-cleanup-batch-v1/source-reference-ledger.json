@@ -1,0 +1,104 @@
+{
+  "schemaVersion": "softie-accessibility-legacy-source-reference-ledger-v1",
+  "sources": [
+    {
+      "authority": "repository_authority",
+      "lineageGroup": "LG-SOFTIE-REPOSITORY",
+      "sourceId": "SRC-SOFTIE-AGENTS",
+      "sourceRef": {
+        "byteLength": 12039,
+        "byteSha256": "f1dd85901c74c49ca5e1c81d3db57a9b7aba41b2bd49eb5c2c84114035bdb55d",
+        "kind": "working_tree_text",
+        "lineEnd": 81,
+        "lineStart": 81,
+        "path": "AGENTS.md",
+        "quote": "- Prefer practical, mobile-friendly UI. This app is used in short sessions and should stay easy to use on a phone."
+      }
+    },
+    {
+      "authority": "softie_house_rule",
+      "lineageGroup": "LG-SOFTIE-REPOSITORY",
+      "sourceId": "SRC-SOFTIE-DESIGN",
+      "sourceRef": {
+        "byteLength": 33803,
+        "byteSha256": "4ce784c815d547c68c8e72009453a619d794e6e73024ae772e62a197fa018548",
+        "kind": "working_tree_text",
+        "lineEnd": 340,
+        "lineStart": 340,
+        "path": "DESIGN.md",
+        "quote": "- 동작을 실행하는 target은 가능한 한 native `button`을 사용합니다."
+      }
+    },
+    {
+      "authority": "web_standard_primary",
+      "claimBoundary": "Functionality must be operable through a keyboard interface; it does not prescribe Softie CSS values.",
+      "lineageGroup": "LG-W3C-WCAG22",
+      "sourceId": "SRC-W3C-WCAG-KEYBOARD",
+      "url": "https://www.w3.org/WAI/WCAG22/Understanding/keyboard.html"
+    },
+    {
+      "authority": "web_standard_primary",
+      "claimBoundary": "Keyboard-operable controls require a visible focus indicator; it does not prescribe the local ring recipe.",
+      "lineageGroup": "LG-W3C-WCAG22",
+      "sourceId": "SRC-W3C-WCAG-FOCUS-VISIBLE",
+      "url": "https://www.w3.org/WAI/WCAG22/Understanding/focus-visible.html"
+    },
+    {
+      "authority": "web_standard_primary",
+      "claimBoundary": "Provides a standards floor; Softie keeps its stricter 44px house target where layout permits.",
+      "lineageGroup": "LG-W3C-WCAG22",
+      "sourceId": "SRC-W3C-WCAG-TARGET-SIZE",
+      "url": "https://www.w3.org/WAI/WCAG22/Understanding/target-size-minimum.html"
+    },
+    {
+      "authority": "web_standard_primary",
+      "claimBoundary": "Supports native button keyboard semantics and pressed state; APG examples do not override HTML-native preference.",
+      "lineageGroup": "LG-W3C-ARIA-APG",
+      "sourceId": "SRC-W3C-ARIA-BUTTON",
+      "url": "https://www.w3.org/WAI/ARIA/apg/patterns/button/"
+    },
+    {
+      "authority": "apple_official_primary_guidance",
+      "claimBoundary": "Supports understandable, operable controls and reduced motion without supplying Softie web timing values.",
+      "lineageGroup": "LG-APPLE-OFFICIAL",
+      "sourceId": "SRC-APPLE-ACCESSIBILITY",
+      "url": "https://developer.apple.com/design/human-interface-guidelines/accessibility"
+    },
+    {
+      "authority": "external_design_engineering_guidance",
+      "independentAuthorityCount": 1,
+      "lineageGroup": "LG-EMIL10-78761e1b57f9",
+      "sourceId": "SRC-EMIL-CORPUS",
+      "sourceRef": {
+        "byteLength": 27226,
+        "byteSha256": "e71de849347050c2c573c1cf24d742d5a13459557ecffa6e562f08006f46b5b7",
+        "kind": "working_tree_text",
+        "lineEnd": 525,
+        "lineStart": 525,
+        "path": ".agents/skills/emil-design-eng/SKILL.md",
+        "quote": "## Accessibility"
+      }
+    },
+    {
+      "authority": "historical_softie_evidence",
+      "lineageGroup": "LG-SOFTIE-INTERACTION-EVIDENCE",
+      "sourceId": "SRC-PREDECESSOR-FOUNDATION",
+      "sourceRef": {
+        "assertions": [
+          {
+            "equals": "complete_softie_low_risk_interaction_foundation_batch_v1_uncommitted",
+            "path": "#/verdict"
+          },
+          {
+            "equals": "reject",
+            "path": "#/frontierDecisionLedger/frontiers/5/decision"
+          }
+        ],
+        "byteLength": 30769,
+        "byteSha256": "40e3752c83ca674ee9e6fe43f54c4d4206d69d15fdfbc5280202c967e8c87d49",
+        "kind": "historical_artifact_json",
+        "path": "artifacts/design-reference-low-risk-interaction-foundation-batch-v1/complete.json"
+      }
+    }
+  ]
+}

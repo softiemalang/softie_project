@@ -1,0 +1,31 @@
+{
+  "artifactId": "design-reference-accessibility-legacy-interaction-cleanup-batch-v1",
+  "completeArtifactPath": "artifacts/design-reference-accessibility-legacy-interaction-cleanup-batch-v1/complete.json",
+  "files": {
+    "artifacts/design-reference-accessibility-legacy-interaction-cleanup-batch-v1/complete.json": {
+      "byteLength": 26346,
+      "byteSha256": "2edd0dac5f7dff00b2cdda7964dae0375c8141deef0a5c21e0fc2a26f489cf4b"
+    },
+    "artifacts/design-reference-accessibility-legacy-interaction-cleanup-batch-v1/frontier-decision-ledger.json": {
+      "byteLength": 10183,
+      "byteSha256": "19aa51e6166777418bb37dbe535dd3b1d0e0e44fe196db7fd9579fa6c1688e0f"
+    },
+    "artifacts/design-reference-accessibility-legacy-interaction-cleanup-batch-v1/implementation-observation-ledger.json": {
+      "byteLength": 1989,
+      "byteSha256": "65d59b4e33c21daa822a90356dc9d78541091e6261ab57d38b4fee6472ab8534"
+    },
+    "artifacts/design-reference-accessibility-legacy-interaction-cleanup-batch-v1/provenance-lineage.json": {
+      "byteLength": 914,
+      "byteSha256": "720ebe20c70925d43f5b257dd385d79be14aba7ad1ae91b9a77b9e9ce0469e28"
+    },
+    "artifacts/design-reference-accessibility-legacy-interaction-cleanup-batch-v1/source-reference-ledger.json": {
+      "byteLength": 4193,
+      "byteSha256": "beea89ca56e8bd71907f21e91c48822226c73346f38ea1f2c0f5afd93c289fe9"
+    },
+    "artifacts/design-reference-accessibility-legacy-interaction-cleanup-batch-v1/validation-blocker-ledger.json": {
+      "byteLength": 995,
+      "byteSha256": "90370f225c757e55d6a574bbee45386c004506082b63d3e9a5ed929a8fb7e8b9"
+    }
+  },
+  "schemaVersion": "softie-artifact-integrity-v1"
+}

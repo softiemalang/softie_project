@@ -248,7 +248,7 @@ function ModalSheet({ title, kicker, children, onClose }) {
 
 function TabButton({ active, children, onClick }) {
   return (
-    <button type="button" className={`band-tab-button ${active ? 'active' : ''}`} onClick={onClick}>
+    <button type="button" className={`band-tab-button ${active ? 'active' : ''}`} onClick={onClick} aria-pressed={active}>
       {children}
     </button>
   )
@@ -898,7 +898,7 @@ export default function BandGoogleCompactPage() {
                     ))}
                   </select>
                 </div>
-                <div className="band-day-group-switch" role="tablist" aria-label="시간표 그룹 선택">
+                <div className="band-day-group-switch" role="group" aria-label="시간표 그룹 선택">
                   {DAY_GROUPS.map((group) => (
                     <button
                       type="button"
@@ -968,6 +968,7 @@ export default function BandGoogleCompactPage() {
                           className={`slot-button ${availabilityMap[key] ? 'active' : ''} ${dayIndex >= 5 ? 'weekend-slot' : 'weekday-slot'}`}
                           onClick={() => toggleSlot(dayIndex, slotIndex)}
                           aria-label={`${DAYS[dayIndex]} ${SLOTS[slotIndex]}`}
+                          aria-pressed={Boolean(availabilityMap[key])}
                         >
                           {availabilityMap[key] ? '✓' : ''}
                         </button>
@@ -1203,7 +1204,7 @@ export default function BandGoogleCompactPage() {
 
       {status && <p className="status">{status}</p>}
 
-      <div className="band-tabbar" role="tablist" aria-label="방 메뉴">
+      <div className="band-tabbar" role="group" aria-label="방 메뉴">
         <TabButton active={activePanel === 'availability'} onClick={() => setActivePanel('availability')}>내 시간</TabButton>
         <TabButton active={activePanel === 'recommend'} onClick={() => setActivePanel('recommend')}>추천</TabButton>
         <TabButton active={activePanel === 'members'} onClick={() => setActivePanel('members')}>멤버</TabButton>

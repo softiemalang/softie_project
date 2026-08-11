@@ -5,6 +5,8 @@ import { join } from 'node:path'
 import { tmpdir } from 'node:os'
 import test from 'node:test'
 
+import { canonicalIdentityJson } from '../src/artifactIdentity.js'
+
 import {
   checkMaterialized,
 } from '../scripts/check-design-reference-low-risk-interaction-foundation-batch-v1.mjs'
@@ -91,6 +93,21 @@ test('checker rejects lineage inflation, unsupported promotion, device overclaim
     assert.ok(failures.includes('press_device_boundary'))
     assert.ok(failures.includes('async_200_non_generalization'))
     assert.ok(failures.includes('integrity_hash:complete.json'))
+  } finally {
+    await rm(directory, { recursive: true, force: true })
+  }
+})
+
+test('historical source refs require an exact current, base, or ancestry snapshot', async () => {
+  const directory = await mkdtemp(join(tmpdir(), 'softie-interaction-foundation-source-ref-'))
+  try {
+    await cp(DEFAULT_DIRECTORY, directory, { recursive: true })
+    const path = join(directory, 'complete.json')
+    const artifact = JSON.parse(await readFile(path, 'utf8'))
+    artifact.sourceReferenceLedger.sources.find((item) => item.sourceRef?.kind === 'working_tree_text').sourceRef.byteSha256 = '0'.repeat(64)
+    await writeFile(path, canonicalIdentityJson(artifact))
+    const failures = await checkMaterialized(directory)
+    assert.ok(failures.some((failure) => failure.startsWith('text_snapshot_unverified:')))
   } finally {
     await rm(directory, { recursive: true, force: true })
   }

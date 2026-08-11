@@ -19,44 +19,23 @@ import {
   MATERIALIZER_VERSION,
   ROOT,
   VERDICT,
-  buildFoundationPayload,
-} from './materialize-design-reference-low-risk-interaction-foundation-batch-v1.mjs'
+  buildCleanupPayload,
+} from './materialize-design-reference-accessibility-legacy-interaction-cleanup-batch-v1.mjs'
 
-function sha256(bytes) {
-  return createHash('sha256').update(bytes).digest('hex')
-}
-
-function add(errors, condition, message) {
-  if (!condition) errors.push(message)
-}
-
-function readJson(path) {
-  return JSON.parse(readFileSync(path, 'utf8'))
-}
+const sha256 = (bytes) => createHash('sha256').update(bytes).digest('hex')
+const add = (errors, condition, message) => { if (!condition) errors.push(message) }
+const readJson = (path) => JSON.parse(readFileSync(path, 'utf8'))
 
 function gitText(args) {
   try {
-    return execFileSync('git', ['-c', 'core.fsmonitor=false', ...args], {
-      cwd: ROOT,
-      encoding: 'utf8',
-      stdio: ['ignore', 'pipe', 'ignore'],
-    }).trim()
+    return execFileSync('git', ['-c', 'core.fsmonitor=false', ...args], { cwd: ROOT, encoding: 'utf8', stdio: ['ignore', 'pipe', 'ignore'] }).trim()
   } catch {
     return null
   }
 }
 
 function gitBytes(commit, path) {
-  return execFileSync('git', ['-c', 'core.fsmonitor=false', 'show', `${commit}:${path}`], {
-    cwd: ROOT,
-    stdio: ['ignore', 'pipe', 'ignore'],
-  })
-}
-
-function jsonPointer(value, pointer) {
-  if (!pointer.startsWith('#/')) return undefined
-  return pointer.slice(2).split('/').map((part) => part.replaceAll('~1', '/').replaceAll('~0', '~'))
-    .reduce((current, part) => current?.[part], value)
+  return execFileSync('git', ['-c', 'core.fsmonitor=false', 'show', `${commit}:${path}`], { cwd: ROOT, stdio: ['ignore', 'pipe', 'ignore'] })
 }
 
 function lineLocation(text, quote) {
@@ -73,32 +52,29 @@ function textRefMatches(reference, bytes) {
 }
 
 function verifyTextRef(errors, reference, generationBaseHead) {
-  if (reference.kind !== 'working_tree_text' || !reference.path || !reference.quote) {
-    errors.push(`invalid_text_ref:${reference.path || 'missing'}`)
+  if (!reference?.path || !reference?.quote || !['working_tree_text', 'git_commit_text'].includes(reference.kind)) {
+    errors.push(`invalid_text_ref:${reference?.path || 'missing'}`)
     return
   }
   const candidates = []
-  try {
-    candidates.push(readFileSync(join(ROOT, reference.path)))
-  } catch {
-    // Descendant worktrees may remove a historical path; exact committed bytes remain eligible below.
-  }
-  if (generationBaseHead) {
-    try {
-      candidates.push(gitBytes(generationBaseHead, reference.path))
-    } catch {
-      // Fail closed after every eligible snapshot has been checked.
-    }
-    const commits = gitText(['rev-list', '--ancestry-path', `${generationBaseHead}..HEAD`, '--', reference.path])?.split('\n').filter(Boolean) || []
-    for (const commit of commits) {
-      try {
-        candidates.push(gitBytes(commit, reference.path))
-      } catch {
-        // Continue until an exact byte/hash/locator match is found or candidates are exhausted.
+  if (reference.kind === 'git_commit_text') {
+    try { candidates.push(gitBytes(reference.commit, reference.path)) } catch {}
+  } else {
+    try { candidates.push(readFileSync(join(ROOT, reference.path))) } catch {}
+    if (generationBaseHead) {
+      try { candidates.push(gitBytes(generationBaseHead, reference.path)) } catch {}
+      const commits = gitText(['rev-list', '--ancestry-path', `${generationBaseHead}..HEAD`, '--', reference.path])?.split('\n').filter(Boolean) || []
+      for (const commit of commits) {
+        try { candidates.push(gitBytes(commit, reference.path)) } catch {}
       }
     }
   }
   add(errors, candidates.some((bytes) => textRefMatches(reference, bytes)), `text_snapshot_unverified:${reference.path}`)
+}
+
+function jsonPointer(value, pointer) {
+  if (!pointer.startsWith('#/')) return undefined
+  return pointer.slice(2).split('/').map((part) => part.replaceAll('~1', '/').replaceAll('~0', '~')).reduce((current, part) => current?.[part], value)
 }
 
 function verifyHistoricalRef(errors, reference) {
@@ -111,29 +87,22 @@ function verifyHistoricalRef(errors, reference) {
   add(errors, bytes.byteLength === reference.byteLength, `historical_length:${reference.path}`)
   add(errors, sha256(bytes) === reference.byteSha256, `historical_hash:${reference.path}`)
   let value
-  try {
-    value = JSON.parse(bytes.toString('utf8'))
-  } catch {
-    errors.push(`historical_json:${reference.path}`)
-    return
-  }
+  try { value = JSON.parse(bytes.toString('utf8')) } catch { errors.push(`historical_json:${reference.path}`); return }
   for (const assertion of reference.assertions || []) {
-    const actual = jsonPointer(value, assertion.path)
-    if ('equals' in assertion) add(errors, JSON.stringify(actual) === JSON.stringify(assertion.equals), `historical_assertion:${reference.path}:${assertion.path}`)
-    if ('contains' in assertion) add(errors, typeof actual === 'string' && actual.includes(assertion.contains), `historical_contains:${reference.path}:${assertion.path}`)
+    add(errors, JSON.stringify(jsonPointer(value, assertion.path)) === JSON.stringify(assertion.equals), `historical_assertion:${reference.path}:${assertion.path}`)
   }
 }
 
 function verifyRefs(errors, value, generationBaseHead) {
   if (Array.isArray(value)) return value.forEach((child) => verifyRefs(errors, child, generationBaseHead))
   if (!value || typeof value !== 'object') return
-  if (value.kind === 'working_tree_text') verifyTextRef(errors, value, generationBaseHead)
+  if (value.kind === 'working_tree_text' || value.kind === 'git_commit_text') verifyTextRef(errors, value, generationBaseHead)
   if (value.kind === 'historical_artifact_json') verifyHistoricalRef(errors, value)
   Object.values(value).forEach((child) => verifyRefs(errors, child, generationBaseHead))
 }
 
 function verifyCompanions(errors, artifact, directory) {
-  const mapping = {
+  const map = {
     'source-reference-ledger.json': artifact.sourceReferenceLedger,
     'provenance-lineage.json': artifact.provenanceLineage,
     'frontier-decision-ledger.json': artifact.frontierDecisionLedger,
@@ -142,48 +111,33 @@ function verifyCompanions(errors, artifact, directory) {
   }
   for (const name of COMPANIONS) {
     const path = join(directory, name)
-    if (!existsSync(path)) {
-      errors.push(`missing_companion:${name}`)
-      continue
-    }
-    const bytes = readFileSync(path, 'utf8')
-    add(errors, bytes === canonicalIdentityJson(mapping[name]), `companion_mismatch:${name}`)
+    if (!existsSync(path)) { errors.push(`missing_companion:${name}`); continue }
+    add(errors, readFileSync(path, 'utf8') === canonicalIdentityJson(map[name]), `companion_mismatch:${name}`)
   }
 }
 
 function verifyIntegrity(errors, directory) {
-  const integrityPath = join(directory, 'complete.json.integrity.json')
-  if (!existsSync(integrityPath)) {
-    errors.push('missing_integrity')
-    return
-  }
+  const path = join(directory, 'complete.json.integrity.json')
+  if (!existsSync(path)) { errors.push('missing_integrity'); return }
   let integrity
-  try {
-    integrity = readJson(integrityPath)
-  } catch {
-    errors.push('invalid_integrity')
-    return
-  }
+  try { integrity = readJson(path) } catch { errors.push('invalid_integrity'); return }
   add(errors, integrity.artifactId === ARTIFACT_ID, 'integrity_artifact_id')
   add(errors, integrity.completeArtifactPath === `artifacts/${ARTIFACT_ID}/complete.json`, 'integrity_complete_path')
   const expectedNames = ['complete.json', ...COMPANIONS]
+  add(errors, Object.keys(integrity.files || {}).length === expectedNames.length, 'integrity_file_set')
   for (const name of expectedNames) {
-    const path = join(directory, name)
+    const filePath = join(directory, name)
     const key = `artifacts/${ARTIFACT_ID}/${name}`
-    if (!existsSync(path)) {
-      errors.push(`integrity_missing_file:${name}`)
-      continue
-    }
-    const bytes = readFileSync(path)
+    if (!existsSync(filePath)) { errors.push(`integrity_missing:${name}`); continue }
+    const bytes = readFileSync(filePath)
     add(errors, integrity.files?.[key]?.byteLength === bytes.byteLength, `integrity_length:${name}`)
     add(errors, integrity.files?.[key]?.byteSha256 === sha256(bytes), `integrity_hash:${name}`)
   }
-  add(errors, Object.keys(integrity.files || {}).length === expectedNames.length, 'integrity_file_set')
 }
 
 export function checkArtifact(artifact, directory = DEFAULT_DIRECTORY) {
   const errors = []
-  add(errors, artifact?.schemaVersion === 'design-reference-low-risk-interaction-foundation-batch-v1', 'schema')
+  add(errors, artifact?.schemaVersion === ARTIFACT_ID, 'schema')
   add(errors, artifact?.verdict === VERDICT, 'verdict')
   add(errors, artifact?.repository?.branch === 'main', 'branch')
   add(errors, artifact?.repository?.baselineHead === BASELINE_HEAD, 'baseline_head')
@@ -206,28 +160,31 @@ export function checkArtifact(artifact, directory = DEFAULT_DIRECTORY) {
 
   const corpus = artifact?.provenanceLineage?.emilCorpus
   add(errors, corpus?.revision === EMIL_REVISION, 'emil_revision')
-  add(errors, corpus?.installedSkillCount === 10, 'emil_skill_count')
   add(errors, corpus?.independentAuthorityCount === 1, 'emil_independent_count')
   add(errors, corpus?.installationIsAdoption === false, 'emil_installation_boundary')
   add(errors, artifact?.provenanceLineage?.historicalBytesPreserved === true, 'historical_bytes_preserved')
 
-  const allowed = new Set(['adopt', 'pilot', 'hold', 'reject', 'not_applicable'])
+  const expectedDecisions = {
+    'FRONTIER-NONSEMANTIC-ACTIONS': 'fix',
+    'FRONTIER-FOCUS-VISIBLE': 'fix',
+    'FRONTIER-LEGACY-REDUCED-MOTION': 'fix',
+    'FRONTIER-TOUCH-KEYBOARD-STATE-SEMANTICS': 'fix',
+    'FRONTIER-TRANSITION-PROPERTY-COHERENCE': 'fix',
+    'FRONTIER-SCHEDULER-SYNC-TOAST-GLASS': 'fix',
+    'FRONTIER-LEGACY-HOVER-GATING': 'fix',
+    'FRONTIER-LEAD-SHEET-DENSE-OVERLAYS': 'hold',
+  }
   const frontiers = artifact?.frontierDecisionLedger?.frontiers || []
-  add(errors, frontiers.length === 6, 'frontier_count')
-  add(errors, frontiers.every((frontier) => allowed.has(frontier.decision)), 'frontier_decisions')
-  const decision = Object.fromEntries(frontiers.map((frontier) => [frontier.frontierId, frontier]))
-  add(errors, decision['FRONTIER-PRESS-FEEDBACK']?.decision === 'pilot', 'press_decision')
-  add(errors, decision['FRONTIER-PRESS-FEEDBACK']?.evidence?.product_device_evidence?.length === 0, 'press_device_boundary')
-  add(errors, decision['FRONTIER-HOVER-POINTER-GATING']?.decision === 'adopt', 'hover_decision')
-  add(errors, decision['FRONTIER-SMALL-OVERLAY-MOTION']?.decision === 'hold', 'overlay_decision')
-  add(errors, decision['FRONTIER-REDUCED-MOTION']?.decision === 'adopt', 'reduced_decision')
-  add(errors, decision['FRONTIER-MOTION-TOKEN-COHERENCE']?.decision === 'adopt', 'token_decision')
-  add(errors, decision['FRONTIER-ANIMATED-GLASS-MATERIAL']?.decision === 'reject', 'glass_decision')
-  add(errors, decision['FRONTIER-ANIMATED-GLASS-MATERIAL']?.designPromotion?.includes('work-order safety boundary'), 'glass_authority_boundary')
+  add(errors, frontiers.length === Object.keys(expectedDecisions).length, 'frontier_count')
+  const actualDecisions = Object.fromEntries(frontiers.map((frontier) => [frontier.frontierId, frontier.decision]))
+  add(errors, JSON.stringify(actualDecisions) === JSON.stringify(expectedDecisions), 'frontier_decisions')
+  add(errors, frontiers.every((frontier) => (frontier.evidence?.product_device_evidence || []).length === 0), 'device_evidence_inflation')
 
-  add(errors, artifact?.nonGeneralization?.async200ms?.includes('not reused'), 'async_200_non_generalization')
-  add(errors, artifact?.nonGeneralization?.roleValues?.includes('not inferred'), 'role_value_non_generalization')
-  add(errors, artifact?.validationBlockerLedger?.validations?.find((item) => item.id === 'VAL-DEVICE-FEEL')?.status === 'unverified', 'device_unverified')
+  add(errors, artifact?.nonGeneralization?.async200ms?.includes('not reused'), 'async_200_boundary')
+  add(errors, artifact?.nonGeneralization?.pressPilot?.includes('not promoted'), 'press_pilot_boundary')
+  add(errors, artifact?.nonGeneralization?.syncToastLifecycle?.includes('not a motion duration'), 'toast_lifecycle_boundary')
+  add(errors, artifact?.validationBlockerLedger?.validations?.find((item) => item.id === 'VAL-FULL-NON-PDF')?.failureCount === 0, 'non_pdf_failure_count')
+  add(errors, artifact?.validationBlockerLedger?.blockers?.find((item) => item.blockerId === 'BLK-LEAD-SHEET-DEVICE-LAYOUT')?.status === 'open', 'lead_sheet_hold_boundary')
 
   verifyRefs(errors, artifact, artifact?.artifactIdentity?.generation?.baseHead)
   verifyCompanions(errors, artifact, directory)
@@ -241,19 +198,11 @@ export async function checkMaterialized(directory = DEFAULT_DIRECTORY) {
   const completePath = join(directory, 'complete.json')
   if (!existsSync(completePath)) return ['complete_missing']
   let artifact
-  try {
-    artifact = readJson(completePath)
-  } catch {
-    return ['complete_invalid_json']
-  }
+  try { artifact = readJson(completePath) } catch { return ['complete_invalid_json'] }
   const errors = checkArtifact(artifact, directory)
-  const currentHead = execFileSync('git', ['-c', 'core.fsmonitor=false', 'rev-parse', 'HEAD'], {
-    cwd: ROOT,
-    encoding: 'utf8',
-    stdio: ['ignore', 'pipe', 'ignore'],
-  }).trim()
-  if (resolve(directory) === resolve(DEFAULT_DIRECTORY) && errors.length === 0 && currentHead === artifact?.repository?.baselineHead) {
-    add(errors, stableArtifactContentEqual(artifact, buildFoundationPayload()), 'materialized_content')
+  const currentHead = gitText(['rev-parse', 'HEAD'])
+  if (resolve(directory) === resolve(DEFAULT_DIRECTORY) && errors.length === 0 && currentHead === BASELINE_HEAD) {
+    add(errors, stableArtifactContentEqual(artifact, buildCleanupPayload()), 'materialized_content')
   }
   return [...new Set(errors)]
 }

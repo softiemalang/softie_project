@@ -1,7 +1,7 @@
 ---
 # Design Tokens
 name: softie-project
-version: 2.8.0
+version: 2.9.0
 adoption: new-and-redesigned-surfaces
 tokens:
   colors:
@@ -337,6 +337,8 @@ Warm Liquid Glass는 따뜻한 사진의 색과 형태가 패널 안에서도 �
 - 삭제처럼 위험한 보조 동작은 밝은 흰색 버튼으로 띄우지 않고 `danger-soft` 배경, Dusty Rose 텍스트, 얇은 테두리를 사용합니다.
 - 상태 확인 카드 전체가 열기 동작을 가질 때 내부의 “연결됨”은 작은 상태형 캡슐로 보여 클릭 가능성과 현재 상태를 동시에 전달합니다.
 - Hover, active, focus, disabled 상태를 모두 정의합니다.
+- 동작을 실행하는 target은 가능한 한 native `button`을 사용합니다. 클릭 가능한 `div`/`span`으로 keyboard activation을 다시 구현하지 않으며, native control의 `focus-visible` 표시를 제거하지 않습니다.
+- 비동기 동작 중인 control은 disabled 동작과 상태 텍스트를 보존하고, 같은 control이 작업 주체일 때 `aria-busy`로 진행 상태를 함께 노출할 수 있습니다. 정확한 focus ring 색·두께는 단일 legacy 수정에서 전역 token으로 일반화하지 않습니다.
 - Custom button의 pressed state는 입력이 시작되는 동안 즉시 보여 주되 실제 activation 의미는 기존 click/release 동작을 유지합니다. 공통 정확한 scale·duration·easing은 representative surface의 product/device 검증 없이 추정하거나 승격하지 않습니다.
 - Hover 시각 효과는 `@media (hover: hover) and (pointer: fine)` 안에서만 적용합니다. Hover는 정보·상태·동작의 유일한 전달 수단이 아니며 touch와 keyboard 경로는 독립적으로 완전해야 합니다.
 

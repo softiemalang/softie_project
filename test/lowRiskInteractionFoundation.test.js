@@ -49,11 +49,23 @@ test('Scheduler press pilot retains exact scoped ingredients and reduced motion 
   const reduced = sliceBetween(
     styles,
     '@media (prefers-reduced-motion: reduce) {\n  .home-shell.ag-shell .service-card:active',
-    '\n  .scheduler-theme-shell .scheduler-sync-toast',
+    '\n}\n\n.scheduler-theme-shell .scheduler-sheet,',
   )
   assert.match(reduced, /\.service-card:active[\s\S]*?transform:\s*none/)
   assert.match(reduced, /\.scheduler-action-button:active:not\(:disabled\)[\s\S]*?transform:\s*none/)
   assert.match(reduced, /\.scheduler-action-button-visual[\s\S]*?opacity:\s*0\.86/)
+})
+
+test('Scheduler sync status keeps its glass surface static', () => {
+  const toastRule = sliceBetween(
+    styles,
+    '.scheduler-theme-shell .scheduler-sync-toast {',
+    '\n@media (prefers-reduced-motion: reduce) {\n  .home-shell.ag-shell .service-card:active',
+  )
+  assert.match(toastRule, /backdrop-filter:/)
+  assert.match(toastRule, /transform:\s*translateX\(-50%\)/)
+  assert.doesNotMatch(toastRule, /animation:|transition:|@keyframes/)
+  assert.doesNotMatch(styles, /@keyframes scheduler-sync-toast-in/)
 })
 
 test('Rehearsal modal reduced-motion state is visible and centered with its transform animation stopped', () => {
@@ -83,10 +95,12 @@ test('Home Memo glass surfaces remain static and overlay motion stays on hold', 
 })
 
 test('DESIGN promotes role separation without generalizing async 200ms or exact press values', () => {
-  assert.match(design, /version:\s*2\.8\.0/)
+  assert.match(design, /version:\s*2\.9\.0/)
   assert.match(design, /모든 interaction role의 보편 duration\/easing이 아닙니다/)
   assert.match(design, /숫자가 같아도 자동으로 하나의 token에 합치지 않습니다/)
   assert.match(design, /product\/device 검증 없이 추정하거나 승격하지 않습니다/)
   assert.match(design, /@media \(hover: hover\) and \(pointer: fine\)/)
   assert.match(design, /다른 interaction 유형의 전역 duration 기본값이 아닙니다/)
+  assert.match(design, /native `button`/)
+  assert.match(design, /focus-visible/)
 })

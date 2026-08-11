@@ -1,0 +1,50 @@
+{
+  "blockers": [
+    {
+      "blockerId": "BLK-LEAD-SHEET-DEVICE-LAYOUT",
+      "frontierId": "FRONTIER-LEAD-SHEET-DENSE-OVERLAYS",
+      "status": "open"
+    }
+  ],
+  "schemaVersion": "softie-accessibility-legacy-validation-blocker-ledger-v1",
+  "validations": [
+    {
+      "id": "VAL-FOCUSED-INTERACTION",
+      "status": "pass"
+    },
+    {
+      "id": "VAL-PREDECESSOR-CHECKERS",
+      "status": "pass"
+    },
+    {
+      "id": "VAL-DETERMINISTIC-MATERIALIZATION",
+      "status": "pass"
+    },
+    {
+      "id": "VAL-TAMPER-REJECTION",
+      "status": "pass"
+    },
+    {
+      "id": "VAL-SCHEDULER-REGRESSION",
+      "status": "pass"
+    },
+    {
+      "id": "VAL-BUILD",
+      "status": "pass"
+    },
+    {
+      "id": "VAL-DIFF-CHECK",
+      "status": "pass"
+    },
+    {
+      "failureCount": 0,
+      "id": "VAL-FULL-NON-PDF",
+      "status": "pass"
+    },
+    {
+      "expectedFailureCount": 35,
+      "id": "VAL-FULL-PDF-SOURCE",
+      "status": "blocked_pre_existing"
+    }
+  ]
+}

@@ -237,12 +237,14 @@
   font-size: 0.8rem;
   font-weight: 550;
   cursor: pointer;
-  transition: all var(--ag-duration-fast) ease;
+  transition: background-color var(--ag-duration-fast) ease, border-color var(--ag-duration-fast) ease, color var(--ag-duration-fast) ease;
 }
 
-.prep-time-unknown-toggle:hover {
-  background: rgba(243, 236, 226, 0.85);
-  color: #5c4c39;
+@media (hover: hover) and (pointer: fine) {
+  .prep-time-unknown-toggle:hover {
+    background: rgba(243, 236, 226, 0.85);
+    color: #5c4c39;
+  }
 }
 
 .prep-time-unknown-toggle.is-active {
@@ -1253,14 +1255,16 @@
   color: var(--prep-text-tertiary);
 }
 
-.prep-shell input:hover,
-.prep-shell select:hover,
-.prep-shell textarea:hover,
-.prep-gender-option:hover,
-.prep-time-unknown:hover,
-.prep-ghost-button:hover,
-.prep-secondary-button:hover {
-  border-color: var(--prep-border-strong);
+@media (hover: hover) and (pointer: fine) {
+  .prep-shell input:hover,
+  .prep-shell select:hover,
+  .prep-shell textarea:hover,
+  .prep-gender-option:hover,
+  .prep-time-unknown:hover,
+  .prep-ghost-button:hover,
+  .prep-secondary-button:hover {
+    border-color: var(--prep-border-strong);
+  }
 }
 
 .prep-shell button,
@@ -1324,10 +1328,12 @@
   font-weight: 650;
 }
 
-.prep-time-unknown-toggle:hover {
-  color: var(--text);
-  background: var(--prep-surface-2);
-  border-color: var(--prep-border-strong);
+@media (hover: hover) and (pointer: fine) {
+  .prep-time-unknown-toggle:hover {
+    color: var(--text);
+    background: var(--prep-surface-2);
+    border-color: var(--prep-border-strong);
+  }
 }
 
 .prep-time-unknown-toggle.is-active {
@@ -1353,12 +1359,14 @@
   background: var(--prep-bg-subtle);
   border: 1px solid var(--prep-border-default);
   cursor: pointer;
-  transition: border-color 180ms ease, background-color 180ms ease, box-shadow 180ms ease;
+  transition: border-color 180ms ease, background-color 180ms ease;
 }
 
-.prep-save-toggle:hover {
-  background: var(--prep-surface-2);
-  border-color: var(--prep-border-strong);
+@media (hover: hover) and (pointer: fine) {
+  .prep-save-toggle:hover {
+    background: var(--prep-surface-2);
+    border-color: var(--prep-border-strong);
+  }
 }
 
 .prep-save-toggle:has(input:checked) {
@@ -1644,6 +1652,17 @@
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
   }
+
+  .prep-copy-actions button:active,
+  .shinsal-chip,
+  .prep-handoff-generate-btn {
+    transform: none;
+  }
+
+  .strength-meter-fill,
+  .prep-strength-bar {
+    transition: none !important;
+  }
 }
 
 @media (forced-colors: active) {
@@ -1711,11 +1730,13 @@
   border-radius: var(--radius-item);
   background: var(--prep-surface-2);
   border: 1px solid var(--line);
-  transition: border-color var(--ag-transition-duration-fast) var(--ag-transition-easing-standard);
+  transition: border-color var(--ag-duration-fast) ease;
 }
 
-.profile-section-item.profile-box:hover {
-  border-color: var(--line-strong);
+@media (hover: hover) and (pointer: fine) {
+  .profile-section-item.profile-box:hover {
+    border-color: var(--line-strong);
+  }
 }
 
 .profile-section-item.profile-box h5 {
@@ -1830,12 +1851,14 @@
   border-radius: var(--radius-control);
   background: var(--prep-surface-2);
   border: 1px solid var(--line);
-  transition: all var(--ag-transition-duration-fast) var(--ag-transition-easing-standard);
+  transition: border-color var(--ag-duration-fast) ease, transform var(--ag-duration-fast) ease;
 }
 
-.shinsal-chip:hover {
-  border-color: var(--line-strong);
-  transform: translateY(-1px);
+@media (hover: hover) and (pointer: fine) {
+  .shinsal-chip:hover {
+    border-color: var(--line-strong);
+    transform: translateY(-1px);
+  }
 }
 
 .shinsal-name {
@@ -2085,8 +2108,10 @@
   transition: color 0.18s ease;
 }
 
-.epistemic-summary:hover {
-  color: var(--brand-hover);
+@media (hover: hover) and (pointer: fine) {
+  .epistemic-summary:hover {
+    color: var(--brand-hover);
+  }
 }
 
 .epistemic-content {
@@ -2231,14 +2256,16 @@
   font-size: 0.78rem;
   font-weight: 550;
   text-align: left;
-  transition: all 180ms ease;
+  transition: background-color 180ms ease, border-color 180ms ease, color 180ms ease;
   cursor: pointer;
 }
 
-.prep-handoff-preset-btn:hover {
-  background: rgba(219, 204, 175, 0.12);
-  color: var(--text, #f4eee4);
-  border-color: var(--line-strong, rgba(238, 229, 210, 0.31));
+@media (hover: hover) and (pointer: fine) {
+  .prep-handoff-preset-btn:hover {
+    background: rgba(219, 204, 175, 0.12);
+    color: var(--text, #f4eee4);
+    border-color: var(--line-strong, rgba(238, 229, 210, 0.31));
+  }
 }
 
 .prep-handoff-preset-btn.is-active {
@@ -2288,13 +2315,15 @@
   font-weight: 700;
   border: none;
   cursor: pointer;
-  transition: all 180ms ease;
+  transition: background-color 180ms ease, transform 180ms ease;
   box-shadow: var(--shadow-control, 0 8px 24px rgba(18, 16, 12, 0.16));
 }
 
-.prep-handoff-generate-btn:hover {
-  background: var(--brand-hover, #e3d7c0);
-  transform: translateY(-1px);
+@media (hover: hover) and (pointer: fine) {
+  .prep-handoff-generate-btn:hover {
+    background: var(--brand-hover, #e3d7c0);
+    transform: translateY(-1px);
+  }
 }
 
 .prep-handoff-actions-wrap {
@@ -2355,16 +2384,18 @@
   background: rgba(17, 17, 14, 0.45);
   color: var(--text-muted, #d0c7b9);
   cursor: pointer;
-  transition: all 180ms ease;
+  transition: background-color 180ms ease, border-color 180ms ease, color 180ms ease;
   display: inline-flex;
   align-items: center;
   gap: 0.4rem;
   white-space: nowrap;
 }
 
-.prep-copy-mode-btn:hover {
-  border-color: var(--line-strong, rgba(238, 229, 210, 0.31));
-  color: var(--text, #f4eee4);
+@media (hover: hover) and (pointer: fine) {
+  .prep-copy-mode-btn:hover {
+    border-color: var(--line-strong, rgba(238, 229, 210, 0.31));
+    color: var(--text, #f4eee4);
+  }
 }
 
 .prep-copy-mode-btn.is-active {

@@ -1,0 +1,270 @@
+{
+  "frontiers": [
+    {
+      "decision": "fix",
+      "evidence": {
+        "adjacent_role_evidence": [],
+        "direct_evidence": [
+          "native controls now provide focus and Enter/Space activation"
+        ],
+        "product_device_evidence": [],
+        "softie_house_evidence": [
+          "DESIGN Buttons"
+        ]
+      },
+      "frontierId": "FRONTIER-NONSEMANTIC-ACTIONS",
+      "sourceRefs": [
+        {
+          "byteLength": 29203,
+          "byteSha256": "2769766851d53f31b29a0b254e65255080277b815e9079890106f9fb508b8a49",
+          "kind": "working_tree_text",
+          "lineEnd": 372,
+          "lineStart": 372,
+          "path": "src/pages/RehearsalCalendarPage.jsx",
+          "quote": "aria-label={`${currentDate.getFullYear()}년 ${currentDate.getMonth() + 1}월, 오늘 날짜로 이동`}"
+        },
+        {
+          "byteLength": 29203,
+          "byteSha256": "2769766851d53f31b29a0b254e65255080277b815e9079890106f9fb508b8a49",
+          "kind": "working_tree_text",
+          "lineEnd": 399,
+          "lineStart": 399,
+          "path": "src/pages/RehearsalCalendarPage.jsx",
+          "quote": "aria-current={isToday ? 'date' : undefined}"
+        }
+      ],
+      "surfaces": [
+        "Rehearsal month reset action",
+        "Rehearsal date cells"
+      ]
+    },
+    {
+      "blocker": null,
+      "decision": "fix",
+      "frontierId": "FRONTIER-FOCUS-VISIBLE",
+      "sourceRefs": [
+        {
+          "byteLength": 17261,
+          "byteSha256": "0a333ba2166370c39cd05c4f74237189df8a08afd1bf76e90a355788463e17ac",
+          "kind": "working_tree_text",
+          "lineEnd": 712,
+          "lineStart": 711,
+          "path": "src/rehearsals/rehearsals.css",
+          "quote": ".rehearsal-time-period-toggle button:focus-visible,\n.rehearsal-time-hour-grid button:focus-visible {"
+        },
+        {
+          "byteLength": 17261,
+          "byteSha256": "0a333ba2166370c39cd05c4f74237189df8a08afd1bf76e90a355788463e17ac",
+          "kind": "working_tree_text",
+          "lineEnd": 560,
+          "lineStart": 560,
+          "path": "src/rehearsals/rehearsals.css",
+          "quote": ".rehearsal-native-picker-shell:focus-within .rehearsal-picker-field {"
+        }
+      ],
+      "surfaces": [
+        "Rehearsal date/month controls",
+        "Rehearsal time picker",
+        "Rehearsal native date/time picker shell"
+      ]
+    },
+    {
+      "boundary": "Movement and interpolation stop; existing color, background, opacity, and state text remain.",
+      "decision": "fix",
+      "frontierId": "FRONTIER-LEGACY-REDUCED-MOTION",
+      "sourceRefs": [
+        {
+          "byteLength": 138957,
+          "byteSha256": "28ab56f817adf677746bb33e8c411b3fb9564d24b721490e627bba0429ec202b",
+          "kind": "working_tree_text",
+          "lineEnd": 5888,
+          "lineStart": 5887,
+          "path": "src/styles.css",
+          "quote": ".scheduler-fab-button:active,\n  .scheduler-setting-card:active,"
+        },
+        {
+          "byteLength": 52756,
+          "byteSha256": "db8f253728129aeeed32eaec933b2c45987a952ac9ace029d457338f9ac26dd6",
+          "kind": "working_tree_text",
+          "lineEnd": 1664,
+          "lineStart": 1662,
+          "path": "src/interpretationPrep/interpretationPrep.css",
+          "quote": ".strength-meter-fill,\n  .prep-strength-bar {\n    transition: none !important;"
+        }
+      ],
+      "surfaces": [
+        "Scheduler legacy press families",
+        "Spotify controls and progress",
+        "Interpretation Prep press/lift and strength meters"
+      ]
+    },
+    {
+      "boundary": "Incomplete tab/radio semantics were removed instead of adding missing composite-widget keyboard behavior.",
+      "decision": "fix",
+      "frontierId": "FRONTIER-TOUCH-KEYBOARD-STATE-SEMANTICS",
+      "sourceRefs": [
+        {
+          "byteLength": 32342,
+          "byteSha256": "ff3dcc54da8ac129699226fb1095c823fc45a6b6f23b123496a718dbea59174c",
+          "kind": "working_tree_text",
+          "lineEnd": 869,
+          "lineStart": 869,
+          "path": "src/pages/BandGooglePage.jsx",
+          "quote": "aria-pressed={Boolean(availabilityMap[key])}"
+        },
+        {
+          "byteLength": 44955,
+          "byteSha256": "7aecd032de6faaedf0af430296f6794df4a78cbd855247ab3f1c52b6ebcc3da4",
+          "kind": "working_tree_text",
+          "lineEnd": 1207,
+          "lineStart": 1207,
+          "path": "src/pages/BandGoogleCompactPage.jsx",
+          "quote": "<div className=\"band-tabbar\" role=\"group\" aria-label=\"방 메뉴\">"
+        },
+        {
+          "byteLength": 44613,
+          "byteSha256": "814c31552f41ad3ec90a22eb3a2ba87791423525527b9fabab012f11be02b6a7",
+          "kind": "working_tree_text",
+          "lineEnd": 870,
+          "lineStart": 870,
+          "path": "src/interpretationPrep/InterpretationPrepPage.jsx",
+          "quote": "<div className=\"prep-gender-control\" role=\"group\" aria-labelledby=\"prep-gender-label\">"
+        }
+      ],
+      "surfaces": [
+        "Rehearsal controls",
+        "Band availability and compact groups",
+        "Interpretation Prep gender selection"
+      ]
+    },
+    {
+      "boundary": "Removed transition:all and undefined token names without forcing role-specific raw durations into one universal token. Width-to-transform rewrites remain out of scope.",
+      "decision": "fix",
+      "frontierId": "FRONTIER-TRANSITION-PROPERTY-COHERENCE",
+      "sourceRefs": [
+        {
+          "byteLength": 17261,
+          "byteSha256": "0a333ba2166370c39cd05c4f74237189df8a08afd1bf76e90a355788463e17ac",
+          "kind": "working_tree_text",
+          "lineEnd": 128,
+          "lineStart": 128,
+          "path": "src/rehearsals/rehearsals.css",
+          "quote": "transition: background-color 0.15s ease, border-color 0.15s ease;"
+        },
+        {
+          "byteLength": 52756,
+          "byteSha256": "db8f253728129aeeed32eaec933b2c45987a952ac9ace029d457338f9ac26dd6",
+          "kind": "working_tree_text",
+          "lineEnd": 1733,
+          "lineStart": 1733,
+          "path": "src/interpretationPrep/interpretationPrep.css",
+          "quote": "transition: border-color var(--ag-duration-fast) ease;"
+        }
+      ],
+      "surfaces": [
+        "audited legacy CSS declarations across shared, Prep, Rehearsal, and Fortune styles"
+      ]
+    },
+    {
+      "boundary": "The glass stays static. The 1800ms mount timer is status lifecycle, not a motion token, and is unchanged.",
+      "decision": "fix",
+      "frontierId": "FRONTIER-SCHEDULER-SYNC-TOAST-GLASS",
+      "sourceRefs": [
+        {
+          "byteLength": 137956,
+          "byteSha256": "9842a212d4f9c04d4930f0d286b0857a1df5e5844c300f205d4c96226e2b8250",
+          "commit": "fe39120e5c3c703038c6d957a376dc64cd62a5fd",
+          "kind": "git_commit_text",
+          "lineEnd": 5853,
+          "lineStart": 5853,
+          "path": "src/styles.css",
+          "quote": "animation: scheduler-sync-toast-in 180ms ease-out both;"
+        },
+        {
+          "byteLength": 138957,
+          "byteSha256": "28ab56f817adf677746bb33e8c411b3fb9564d24b721490e627bba0429ec202b",
+          "kind": "working_tree_text",
+          "lineEnd": 5845,
+          "lineStart": 5845,
+          "path": "src/styles.css",
+          "quote": ".scheduler-theme-shell .scheduler-sync-toast {"
+        },
+        {
+          "byteLength": 36181,
+          "byteSha256": "0ff36b4e4a165a96057b1614c1e403b8ca479f1a329201b65e200cecca5dd9fa",
+          "kind": "working_tree_text",
+          "lineEnd": 679,
+          "lineStart": 679,
+          "path": "src/scheduler/TodaySchedulerPage.jsx",
+          "quote": "<div className=\"scheduler-sync-toast\" role=\"status\" aria-live=\"polite\">"
+        }
+      ],
+      "surfaces": [
+        "Scheduler sync status toast"
+      ]
+    },
+    {
+      "boundary": "Active, focus, and semantic state paths remain independent; no information becomes hover-only.",
+      "decision": "fix",
+      "frontierId": "FRONTIER-LEGACY-HOVER-GATING",
+      "sourceRefs": [
+        {
+          "byteLength": 138957,
+          "byteSha256": "28ab56f817adf677746bb33e8c411b3fb9564d24b721490e627bba0429ec202b",
+          "kind": "working_tree_text",
+          "lineEnd": 1209,
+          "lineStart": 1208,
+          "path": "src/styles.css",
+          "quote": "@media (hover: hover) and (pointer: fine) {\n  .music-save-button:hover:not(:disabled) {"
+        },
+        {
+          "byteLength": 52756,
+          "byteSha256": "db8f253728129aeeed32eaec933b2c45987a952ac9ace029d457338f9ac26dd6",
+          "kind": "working_tree_text",
+          "lineEnd": 1259,
+          "lineStart": 1258,
+          "path": "src/interpretationPrep/interpretationPrep.css",
+          "quote": "@media (hover: hover) and (pointer: fine) {\n  .prep-shell input:hover,"
+        }
+      ],
+      "surfaces": [
+        "Spotify",
+        "Interpretation Prep",
+        "Lead Sheet",
+        "Band compact navigation",
+        "Fortune history"
+      ]
+    },
+    {
+      "blocker": "Changing focus order or target geometry in the performance-use surface requires separate layout and physical-device validation.",
+      "decision": "hold",
+      "frontierId": "FRONTIER-LEAD-SHEET-DENSE-OVERLAYS",
+      "sourceRefs": [
+        {
+          "byteLength": 55442,
+          "byteSha256": "53236d86e83dd17ce33f1428e7c741115dc0a8f70c8ce8f8e5dc7446a2f2fe78",
+          "kind": "working_tree_text",
+          "lineEnd": 1157,
+          "lineStart": 1157,
+          "path": "src/pages/LeadSheetPage.jsx",
+          "quote": "className=\"lead-sheet-touch-zone\""
+        },
+        {
+          "byteLength": 55442,
+          "byteSha256": "53236d86e83dd17ce33f1428e7c741115dc0a8f70c8ce8f8e5dc7446a2f2fe78",
+          "kind": "working_tree_text",
+          "lineEnd": 1309,
+          "lineStart": 1309,
+          "path": "src/pages/LeadSheetPage.jsx",
+          "quote": "className=\"lead-sheet-backup-badge\""
+        }
+      ],
+      "surfaces": [
+        "Lead Sheet full-screen page touch zones",
+        "backup badge",
+        "dense performance controls"
+      ]
+    }
+  ],
+  "schemaVersion": "softie-accessibility-legacy-frontier-decision-ledger-v1"
+}
