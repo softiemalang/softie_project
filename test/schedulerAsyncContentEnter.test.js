@@ -9,6 +9,7 @@ import {
 const todayPage = readFileSync(new URL('../src/scheduler/TodaySchedulerPage.jsx', import.meta.url), 'utf8')
 const eventSection = readFileSync(new URL('../src/scheduler/SchedulerEventSection.jsx', import.meta.url), 'utf8')
 const styles = readFileSync(new URL('../src/styles.css', import.meta.url), 'utf8')
+const design = readFileSync(new URL('../DESIGN.md', import.meta.url), 'utf8')
 
 test('initial successful content settles once and refetches do not re-arm the guard', () => {
   const initial = createSchedulerAsyncContentEnterState()
@@ -56,10 +57,12 @@ test('loading and error outcomes are no-ops and the guard is idempotent for Stri
 })
 
 test('Today page arms the UI-local guard only after the latest successful fetch commits data', () => {
-  assert.match(todayPage, /eventsRequestSequenceRef\.current !== requestSequence\) return[\s\S]*?setEvents\(rows\)[\s\S]*?settleSchedulerAsyncContentEnter\(/)
+  assert.match(todayPage, /eventsRequestSequenceRef\.current !== requestSequence\) return[\s\S]*?setEvents\(rows\)\s*pendingInitialSuccessRef\.current = true\s*setStatus\(''\)/)
   assert.match(todayPage, /initialAsyncContentEnterStateRef = useRef\(createSchedulerAsyncContentEnterState\(\)\)/)
-  assert.match(todayPage, /scheduler-async-content--initial-enter/)
-  assert.doesNotMatch(todayPage, /setShouldAnimateInitialContent\([^)]*\)\s*;[\s\S]*?loadEvents\(\)/)
+  assert.match(todayPage, /useLayoutEffect\(\(\) => \{[\s\S]*?pendingInitialSuccessRef\.current = false[\s\S]*?settleInitialAsyncContentEnter\(grouped\.allToday\.length > 0\)/)
+  assert.doesNotMatch(todayPage, /scheduler-async-content--initial-enter/)
+  assert.match(todayPage, /title="오늘 전체"[\s\S]*?initialArrival=\{shouldAnimateInitialContent\}[\s\S]*?onInitialArrivalAnimationEnd=\{handleInitialCardArrivalAnimationEnd\}/)
+  assert.match(todayPage, /function handleInitialCardArrivalAnimationEnd\(event\)[\s\S]*?scheduler-card-arrival-settle[\s\S]*?setShouldAnimateInitialContent\(false\)/)
 })
 
 test('Today reserves a four-card floor only for the first empty loading request', () => {
@@ -93,7 +96,7 @@ test('Today reserves a four-card floor only for the first empty loading request'
     /initialLoadingLayout && items\.length === 0 && initialLoadingMessage \?\s*\(\s*<p className="subtle scheduler-loading-floor-note">\{initialLoadingMessage\}<\/p>\s*\)\s*: null/,
   )
   assert.doesNotMatch(eventSection, /scheduler-loading-floor-note[\s\S]*?aria-live|scheduler-loading-floor-note[\s\S]*?role="status"/)
-  assert.match(eventSection, /<div className="scheduler-event-list">[\s\S]*?items\.map/)
+  assert.match(eventSection, /className=\{eventListClassName\}[\s\S]*?items\.map/)
 
   const floorRecipe = styles.match(
     /\/\* First Today fetch only: reserve four compact event-card slots without rendering placeholders\. \*\/[\s\S]*?\.scheduler-theme-shell \.scheduler-today-page \.scheduler-event-section > \.scheduler-event-content--initial-loading\s*\{[\s\S]*?\n\}/,
@@ -134,32 +137,48 @@ test('Today reserves a four-card floor only for the first empty loading request'
 })
 
 test('event lists stay stable while the glass section shell remains outside the animation target', () => {
-  assert.match(eventSection, /<section className=\{sectionClassName\}>[\s\S]*?<div className=\{sectionContentClassName\}>[\s\S]*?<div className="scheduler-event-list">[\s\S]*?items\.map/)
+  assert.match(eventSection, /<section className=\{sectionClassName\}>[\s\S]*?<div className=\{sectionContentClassName\}>[\s\S]*?className=\{eventListClassName\}[\s\S]*?items\.map/)
   const animationRule = styles.match(
     /\.scheduler-theme-shell \.scheduler-async-content--initial-enter \.scheduler-event-list\s*\{[\s\S]*?\n\}/,
   )?.[0]
+  const localAnimationRule = styles.slice(
+    styles.indexOf('/* Scheduler Today local validated pilot'),
+    styles.indexOf('.scheduler-theme-shell .scheduler-event-section.is-primary'),
+  )
   const sectionGlassRule = styles.match(
     /\.scheduler-theme-shell \.scheduler-event-section\s*\{[\s\S]*?\n\}/,
   )?.[0]
 
   assert.ok(animationRule, 'animation should target the stable event list node')
+  assert.ok(localAnimationRule, 'Scheduler-local arrival recipe should remain explicit')
   assert.ok(sectionGlassRule, 'event section glass rule should remain explicit')
   assert.match(sectionGlassRule, /backdrop-filter/)
   assert.doesNotMatch(sectionGlassRule, /animation/)
   assert.doesNotMatch(styles, /\.scheduler-theme-shell \.scheduler-async-content--initial-enter\s*\{\s*animation:/)
   assert.doesNotMatch(animationRule, /backdrop-filter|-webkit-backdrop-filter|transform|filter/)
+  assert.match(localAnimationRule, /scheduler-event-list--initial-arrival \.scheduler-event-card/)
+  assert.match(localAnimationRule, /240ms/)
+  assert.match(localAnimationRule, /isolation:\s*isolate/)
+  assert.match(localAnimationRule, /will-change:\s*transform, opacity/)
+  assert.doesNotMatch(localAnimationRule, /backdrop-filter|-webkit-backdrop-filter|filter|width|height|margin|padding|top|left|stagger|delay/)
 })
 
-test('async enter recipe is a single 200ms opacity-only rule with an explicit reduced-motion stop', () => {
+test('global async enter remains a 200ms opacity-only default while Today uses the scoped 240ms Settle pilot', () => {
   assert.match(styles, /--ag-scheduler-async-content-enter-duration:\s*200ms;/)
   assert.match(styles, /--ag-scheduler-async-content-enter-easing:\s*cubic-bezier\(0\.23, 1, 0\.32, 1\);/)
-  const recipe = styles.match(
-    /\/\* First successful Today event fetch only; section shells stay static and event content uses opacity only\. \*\/[\s\S]*?@media \(prefers-reduced-motion: reduce\) \{[\s\S]*?\n\}/,
-  )?.[0]
+  assert.doesNotMatch(styles, /--ag-scheduler-async-content-enter-duration:\s*240ms/)
+  const recipe = styles.slice(
+    styles.indexOf('/* Global conditional content enter baseline'),
+    styles.indexOf('/* Scheduler Today local validated pilot'),
+  )
 
-  assert.ok(recipe, 'async content enter recipe should remain a contiguous audited block')
+  assert.ok(recipe, 'global async content enter recipe should remain a contiguous audited block')
   assert.match(recipe, /animation:\s*scheduler-async-content-enter[\s\S]*?var\(--ag-scheduler-async-content-enter-duration\)[\s\S]*?var\(--ag-scheduler-async-content-enter-easing\)/)
   assert.match(recipe, /from\s*\{\s*opacity:\s*0;\s*\}[\s\S]*?to\s*\{\s*opacity:\s*1;\s*\}/)
   assert.doesNotMatch(recipe, /transform|translate|scale|blur|clip-path|width|height|margin|padding|top|left|stagger|delay/)
   assert.match(recipe, /@media \(prefers-reduced-motion: reduce\)[\s\S]*?\.scheduler-theme-shell \.scheduler-async-content--initial-enter \.scheduler-event-list[\s\S]*?animation:\s*none;/)
+  assert.match(styles, /@keyframes scheduler-card-arrival-settle[\s\S]*?translateY\(6px\) scale\(0\.97\)[\s\S]*?translateY\(0\) scale\(1\)/)
+  assert.match(styles, /@keyframes scheduler-card-arrival-reduced[\s\S]*?transform:\s*none[\s\S]*?opacity:\s*1/)
+  assert.match(styles, /scheduler-event-list--initial-arrival \.scheduler-event-card[\s\S]*?animation:\s*scheduler-card-arrival-reduced[\s\S]*?var\(--ag-duration-fast\)/)
+  assert.match(design, /Scheduler-local validated pilot[\s\S]*?240ms` Settle[\s\S]*?전역 `200ms` opacity-only 기본값/)
 })

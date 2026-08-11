@@ -154,13 +154,13 @@ function recipe() {
 
 function currentImplementationRefs() {
   return [
-    workingTreeTextRef('src/scheduler/TodaySchedulerPage.jsx', "setEvents(rows)\n      setStatus('')\n      settleInitialAsyncContentEnter(rows)"),
+    workingTreeTextRef('src/scheduler/TodaySchedulerPage.jsx', "setEvents(rows)\n      pendingInitialSuccessRef.current = true\n      setStatus('')"),
     workingTreeTextRef('src/scheduler/TodaySchedulerPage.jsx', 'const initialAsyncContentEnterStateRef = useRef(createSchedulerAsyncContentEnterState())'),
-    workingTreeTextRef('src/scheduler/TodaySchedulerPage.jsx', 'className={`scheduler-async-content${shouldAnimateInitialContent ? \' scheduler-async-content--initial-enter\' : \'\'}`}' ),
+    workingTreeTextRef('src/scheduler/TodaySchedulerPage.jsx', 'className="scheduler-async-content"'),
     workingTreeTextRef('src/scheduler/schedulerAsyncContentEnter.js', 'export function settleSchedulerAsyncContentEnter(state, result) {\n  if (state.hasSuccessfullySettled || result.status !== \'success\') return state'),
-    workingTreeTextRef('src/scheduler/SchedulerEventSection.jsx', '<div className={sectionContentClassName}>\n        {shouldRenderEmptyText() ? <p className="subtle scheduler-empty-note">{normalizedEmptyText}</p> : null}\n        <div className="scheduler-event-list">'),
+    workingTreeTextRef('src/scheduler/SchedulerEventSection.jsx', "initialArrival ? 'scheduler-event-list--initial-arrival' : ''"),
     workingTreeTextRef('src/styles.css', '/* Async content enter house rule; role-scoped to conditional content arrival. */\n  --ag-scheduler-async-content-enter-duration: 200ms;\n  --ag-scheduler-async-content-enter-easing: cubic-bezier(0.23, 1, 0.32, 1);'),
-    workingTreeTextRef('src/styles.css', '/* First successful Today event fetch only; section shells stay static and event content uses opacity only. */\n.scheduler-theme-shell .scheduler-async-content--initial-enter .scheduler-event-list {\n  animation: scheduler-async-content-enter'),
+    workingTreeTextRef('src/styles.css', '/* Global conditional content enter baseline; glass section shells stay static and content uses opacity only. */\n.scheduler-theme-shell .scheduler-async-content--initial-enter .scheduler-event-list {\n  animation: scheduler-async-content-enter'),
     workingTreeTextRef('src/styles.css', '@media (prefers-reduced-motion: reduce) {\n  .scheduler-theme-shell .scheduler-async-content--initial-enter .scheduler-event-list {\n    animation: none;'),
     workingTreeTextRef('DESIGN.md', '### Async content enter / conditional content swap'),
     workingTreeTextRef('DESIGN.md', '- 승인된 역할 레시피는 `opacity` only, `200ms`, `cubic-bezier(0.23, 1, 0.32, 1)`입니다.'),

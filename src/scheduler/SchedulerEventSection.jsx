@@ -10,6 +10,8 @@ export function SchedulerEventSection({
   hideEmptyText = false,
   initialLoadingLayout = false,
   initialLoadingMessage = null,
+  initialArrival = false,
+  onInitialArrivalAnimationEnd,
 }) {
   const normalizedEmptyText = (() => {
     if (emptyText === '불러오는 중...') return emptyText
@@ -32,6 +34,12 @@ export function SchedulerEventSection({
   ]
     .filter(Boolean)
     .join(' ')
+  const eventListClassName = [
+    'scheduler-event-list',
+    initialArrival ? 'scheduler-event-list--initial-arrival' : '',
+  ]
+    .filter(Boolean)
+    .join(' ')
 
 
   function shouldRenderEmptyText() {
@@ -49,7 +57,10 @@ export function SchedulerEventSection({
       </div>
       <div className={sectionContentClassName}>
         {shouldRenderEmptyText() ? <p className="subtle scheduler-empty-note">{normalizedEmptyText}</p> : null}
-        <div className="scheduler-event-list">
+        <div
+          className={eventListClassName}
+          onAnimationEnd={initialArrival ? onInitialArrivalAnimationEnd : undefined}
+        >
           {items.map((item) => (
             <SchedulerEventCard
               key={item.id}

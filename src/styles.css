@@ -5139,7 +5139,7 @@ textarea {
   margin-top: 0;
 }
 
-/* First successful Today event fetch only; section shells stay static and event content uses opacity only. */
+/* Global conditional content enter baseline; glass section shells stay static and content uses opacity only. */
 .scheduler-theme-shell .scheduler-async-content--initial-enter .scheduler-event-list {
   animation: scheduler-async-content-enter
     var(--ag-scheduler-async-content-enter-duration)
@@ -5160,6 +5160,51 @@ textarea {
 @media (prefers-reduced-motion: reduce) {
   .scheduler-theme-shell .scheduler-async-content--initial-enter .scheduler-event-list {
     animation: none;
+  }
+}
+
+/* Scheduler Today local validated pilot: first successful non-empty cards only. */
+.scheduler-theme-shell .scheduler-event-list--initial-arrival .scheduler-event-card {
+  isolation: isolate;
+  transform-origin: 50% 0;
+  animation: scheduler-card-arrival-settle
+    240ms
+    var(--ag-scheduler-async-content-enter-easing)
+    both;
+  will-change: transform, opacity;
+}
+
+@keyframes scheduler-card-arrival-settle {
+  from {
+    opacity: 0;
+    transform: translateY(6px) scale(0.97);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes scheduler-card-arrival-reduced {
+  from {
+    opacity: 0;
+    transform: none;
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scheduler-theme-shell .scheduler-event-list--initial-arrival .scheduler-event-card {
+    animation: scheduler-card-arrival-reduced
+      var(--ag-duration-fast)
+      var(--ag-scheduler-async-content-enter-easing)
+      both;
+    will-change: opacity;
   }
 }
 

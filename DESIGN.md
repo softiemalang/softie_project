@@ -324,6 +324,7 @@ Warm Liquid Glass는 따뜻한 사진의 색과 형태가 패널 안에서도 �
 - 애니메이션 대상은 실제 entering content로 한정하며 glass/backdrop-filter surface와 그 ancestor에는 적용하지 않습니다. section shell, 배경, border, shadow, blur/saturation은 정적으로 유지합니다.
 - `prefers-reduced-motion: reduce`에서는 movement를 추가하지 않고 static/non-movement 상태로 표시합니다.
 - 이 `200ms`는 `async content enter / conditional content swap` 역할에 한정된 Softie house rule이며 다른 interaction 유형의 전역 duration 기본값이 아닙니다. provenance와 승격 근거는 `docs/design-reference-async-content-enter-200ms-promotion.md` 및 `artifacts/design-reference-async-content-enter-200ms-promotion/complete.json`에 보존합니다.
+- Scheduler Today의 최초 non-empty `오늘 전체` 카드 arrival은 실기기 prototype duration 비교 후 선택한 `Scheduler-local validated pilot`입니다. 기존 strong ease-out을 재사용한 `translateY(6px)`, `scale(.97)`, `opacity` 기반 `240ms` Settle만 이 화면에 한정해 적용하며, 전역 `200ms` opacity-only 기본값이나 다른 화면의 duration/token/default를 변경하지 않습니다.
 
 ## 8. Component defaults
 

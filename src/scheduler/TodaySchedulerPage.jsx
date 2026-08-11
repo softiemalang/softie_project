@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from 'react'
+import { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react'
 import { shareKakaoText } from '../lib/kakaoShare'
 import {
   deleteSchedulerWorkLogs,
@@ -114,6 +114,7 @@ export function TodaySchedulerPage({
   const [isWorkLogSyncBusy, setIsWorkLogSyncBusy] = useState(false)
   const eventsRequestSequenceRef = useRef(0)
   const initialEventsLoadFinishedRef = useRef(false)
+  const pendingInitialSuccessRef = useRef(false)
   const pendingStatusIdsRef = useRef(new Set())
   const syncToastTimerRef = useRef(null)
   const workLogSyncLockRef = useRef(false)
@@ -304,8 +305,8 @@ export function TodaySchedulerPage({
       const rows = await listTodayWorkEvents(selectedDate, effectiveOwnerKey)
       if (eventsRequestSequenceRef.current !== requestSequence) return
       setEvents(rows)
+      pendingInitialSuccessRef.current = true
       setStatus('')
-      settleInitialAsyncContentEnter(rows)
     } catch (error) {
       if (eventsRequestSequenceRef.current !== requestSequence) return
       setEvents([])
@@ -334,15 +335,17 @@ export function TodaySchedulerPage({
 
   const initialAsyncContentEnterStateRef = useRef(createSchedulerAsyncContentEnterState())
   const [shouldAnimateInitialContent, setShouldAnimateInitialContent] = useState(false)
+  const initialArrivalAnimationEndCountRef = useRef(0)
 
-  function settleInitialAsyncContentEnter(rows) {
+  function settleInitialAsyncContentEnter(hasContent) {
     // An empty success still settles the initial fetch; it only has no content to enter.
     const nextInitialAsyncContentEnterState = settleSchedulerAsyncContentEnter(
       initialAsyncContentEnterStateRef.current,
-      { status: 'success', hasContent: rows.length > 0 },
+      { status: 'success', hasContent },
     )
     if (nextInitialAsyncContentEnterState !== initialAsyncContentEnterStateRef.current) {
       initialAsyncContentEnterStateRef.current = nextInitialAsyncContentEnterState
+      initialArrivalAnimationEndCountRef.current = 0
       setShouldAnimateInitialContent(nextInitialAsyncContentEnterState.shouldAnimateInitialContent)
     }
   }
@@ -435,6 +438,22 @@ export function TodaySchedulerPage({
     !status &&
     !initialEventsLoadFinishedRef.current &&
     eventsRequestSequenceRef.current === 1
+
+  useLayoutEffect(() => {
+    if (!pendingInitialSuccessRef.current) return
+
+    pendingInitialSuccessRef.current = false
+    settleInitialAsyncContentEnter(grouped.allToday.length > 0)
+  }, [events, grouped.allToday.length])
+
+  function handleInitialCardArrivalAnimationEnd(event) {
+    if (!['scheduler-card-arrival-settle', 'scheduler-card-arrival-reduced'].includes(event.animationName)) return
+
+    initialArrivalAnimationEndCountRef.current += 1
+    if (initialArrivalAnimationEndCountRef.current >= grouped.allToday.length) {
+      setShouldAnimateInitialContent(false)
+    }
+  }
 
   async function handleToggleDone(eventRow) {
     if (pendingStatusIdsRef.current.has(eventRow.id)) return
@@ -1059,7 +1078,7 @@ export function TodaySchedulerPage({
       {status ? <p className="status scheduler-load-status" role="alert">{status}</p> : null}
 
       <div
-        className={`scheduler-async-content${shouldAnimateInitialContent ? ' scheduler-async-content--initial-enter' : ''}`}
+        className="scheduler-async-content"
         aria-busy={isLoading}
       >
         <SchedulerEventSection
@@ -1089,6 +1108,8 @@ export function TodaySchedulerPage({
           initialLoadingMessage={shouldReserveInitialLoadingFloor ? '일정 준비 중…' : null}
           pendingStatusIds={pendingStatusIds}
           onToggleDone={handleToggleDone}
+          initialArrival={shouldAnimateInitialContent}
+          onInitialArrivalAnimationEnd={handleInitialCardArrivalAnimationEnd}
         />
       </div>
 
