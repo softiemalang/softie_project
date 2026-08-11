@@ -87,6 +87,16 @@ function add(errors, condition, message) {
   if (!condition) errors.push(message)
 }
 
+function replayComparable(value) {
+  const comparable = structuredClone(value)
+  delete comparable.artifactIdentity
+  if (comparable.repository) {
+    delete comparable.repository.baseHead
+    delete comparable.repository.originMainHead
+  }
+  return canonicalIdentityJson(comparable)
+}
+
 function verifyTextRef(errors, reference) {
   if (!reference || reference.kind !== 'text' || !reference.path || !reference.lineStart || !reference.lineEnd || !reference.quote) {
     errors.push(`invalid_text_ref:${JSON.stringify(reference)}`)
@@ -271,7 +281,7 @@ export async function checkMaterialized(directory = DEFAULT_DIRECTORY) {
   const errors = checkArtifact(artifact, directory)
   if (resolve(directory) === resolve(DEFAULT_DIRECTORY) && errors.length === 0) {
     const expected = buildAuditPayload()
-    add(errors, canonicalIdentityJson(artifact) === canonicalIdentityJson(expected), 'materialized_content')
+    add(errors, replayComparable(artifact) === replayComparable(expected), 'materialized_content')
   }
   return [...new Set(errors)]
 }
