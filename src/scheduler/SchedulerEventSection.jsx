@@ -9,6 +9,7 @@ export function SchedulerEventSection({
   pendingStatusIds,
   hideEmptyText = false,
   initialLoadingLayout = false,
+  initialLoadingMessage = null,
 }) {
   const normalizedEmptyText = (() => {
     if (emptyText === '불러오는 중...') return emptyText
@@ -58,6 +59,9 @@ export function SchedulerEventSection({
             />
           ))}
         </div>
+        {initialLoadingLayout && items.length === 0 && initialLoadingMessage ? (
+          <p className="subtle scheduler-loading-floor-note">{initialLoadingMessage}</p>
+        ) : null}
       </div>
     </section>
   )

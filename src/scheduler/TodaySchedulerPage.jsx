@@ -1086,6 +1086,7 @@ export function TodaySchedulerPage({
           emptyText={eventEmptyText}
           hideEmptyText={isLoading || Boolean(status)}
           initialLoadingLayout={shouldReserveInitialLoadingFloor}
+          initialLoadingMessage={shouldReserveInitialLoadingFloor ? '차곡차곡 일정 채우는 중…' : null}
           pendingStatusIds={pendingStatusIds}
           onToggleDone={handleToggleDone}
         />

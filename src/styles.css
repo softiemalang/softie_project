@@ -5093,6 +5093,21 @@ textarea {
   );
 }
 
+.scheduler-theme-shell .scheduler-today-page .scheduler-event-content--initial-loading {
+  position: relative;
+}
+
+.scheduler-theme-shell .scheduler-today-page .scheduler-loading-floor-note {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  margin: 0;
+  padding-inline: var(--scheduler-content-inset);
+  text-align: center;
+  white-space: nowrap;
+}
+
 @media (max-width: 700px) {
   .scheduler-theme-shell .scheduler-today-page {
     --scheduler-initial-event-card-floor-height: calc(

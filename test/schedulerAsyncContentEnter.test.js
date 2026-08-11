@@ -78,9 +78,20 @@ test('Today reserves a four-card floor only for the first empty loading request'
   assert.doesNotMatch(eventSections[0], /initialLoadingLayout/)
   assert.doesNotMatch(eventSections[1], /initialLoadingLayout/)
   assert.match(eventSections[2], /title="오늘 전체"[\s\S]*?initialLoadingLayout=\{shouldReserveInitialLoadingFloor\}/)
+  assert.match(
+    eventSections[2],
+    /initialLoadingMessage=\{shouldReserveInitialLoadingFloor \? '차곡차곡 일정 채우는 중…' : null\}/,
+  )
+  assert.doesNotMatch(eventSections[0], /차곡차곡 일정 채우는 중…/)
+  assert.doesNotMatch(eventSections[1], /차곡차곡 일정 채우는 중…/)
 
   assert.match(eventSection, /initialLoadingLayout = false/)
   assert.match(eventSection, /initialLoadingLayout && items\.length === 0 \? 'scheduler-event-content--initial-loading' : ''/)
+  assert.match(
+    eventSection,
+    /initialLoadingLayout && items\.length === 0 && initialLoadingMessage \?\s*\(\s*<p className="subtle scheduler-loading-floor-note">\{initialLoadingMessage\}<\/p>\s*\)\s*: null/,
+  )
+  assert.doesNotMatch(eventSection, /scheduler-loading-floor-note[\s\S]*?aria-live|scheduler-loading-floor-note[\s\S]*?role="status"/)
   assert.match(eventSection, /<div className="scheduler-event-list">[\s\S]*?items\.map/)
 
   const floorRecipe = styles.match(
@@ -94,6 +105,15 @@ test('Today reserves a four-card floor only for the first empty loading request'
   assert.doesNotMatch(floorRecipe, /animation|background|backdrop-filter|transform|scale|skeleton|shimmer|spinner/)
   assert.match(styles, /--scheduler-initial-event-card-floor-height:\s*calc\([\s\S]*?0\.2rem[\s\S]*?0\.42rem[\s\S]*?-\s*3px[\s\S]*?\);/)
   assert.match(styles, /--scheduler-initial-event-list-floor-gap:\s*var\(--scheduler-gap-sm\);/)
+  const loadingNoteRule = styles.match(
+    /\.scheduler-theme-shell \.scheduler-today-page \.scheduler-loading-floor-note\s*\{[\s\S]*?\n\}/,
+  )?.[0]
+  assert.ok(loadingNoteRule, 'loading copy should have a Scheduler-scoped alignment rule')
+  assert.match(loadingNoteRule, /position:\s*absolute/)
+  assert.match(loadingNoteRule, /inset:\s*0/)
+  assert.match(loadingNoteRule, /text-align:\s*center/)
+  assert.match(loadingNoteRule, /white-space:\s*nowrap/)
+  assert.doesNotMatch(loadingNoteRule, /animation|transform|height|min-height|delay/)
 })
 
 test('event lists stay stable while the glass section shell remains outside the animation target', () => {
