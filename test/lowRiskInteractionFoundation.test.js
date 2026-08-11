@@ -95,7 +95,7 @@ test('Home Memo glass surfaces remain static and overlay motion stays on hold', 
 })
 
 test('DESIGN promotes role separation without generalizing async 200ms or exact press values', () => {
-  assert.match(design, /version:\s*2\.9\.0/)
+  assert.match(design, /version:\s*2\.10\.0/)
   assert.match(design, /모든 interaction role의 보편 duration\/easing이 아닙니다/)
   assert.match(design, /숫자가 같아도 자동으로 하나의 token에 합치지 않습니다/)
   assert.match(design, /product\/device 검증 없이 추정하거나 승격하지 않습니다/)

@@ -1,4 +1,4 @@
-export function SyncConfirmationModal({ confirmation, onCancel, onConfirm }) {
+export function SyncConfirmationModal({ confirmation, onCancel, onConfirm, isBusy = false }) {
   const { candidate, overlapping } = confirmation
 
   return (
@@ -8,6 +8,7 @@ export function SyncConfirmationModal({ confirmation, onCancel, onConfirm }) {
         role="dialog"
         aria-modal="true"
         aria-label="근무 기록 변경 확인"
+        aria-busy={isBusy}
         onClick={(event) => event.stopPropagation()}
       >
         <div className="scheduler-section-head">
@@ -32,8 +33,10 @@ export function SyncConfirmationModal({ confirmation, onCancel, onConfirm }) {
         <p className="subtle scheduler-modal-hint">진행하면 기존 기록이 변경된 시간으로 적용됩니다.</p>
 
         <div className="scheduler-form-actions">
-          <button type="button" className="soft-button" onClick={onCancel}>취소</button>
-          <button type="button" className="primary" onClick={onConfirm}>진행</button>
+          <button type="button" className="soft-button" onClick={onCancel} disabled={isBusy}>취소</button>
+          <button type="button" className="primary" onClick={onConfirm} disabled={isBusy} aria-busy={isBusy}>
+            {isBusy ? '적용 중...' : '진행'}
+          </button>
         </div>
       </div>
     </div>

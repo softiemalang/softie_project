@@ -223,7 +223,7 @@
   border-radius: 999px;
   border: 1px solid transparent;
   transition: background-color 0.2s ease;
-  min-height: 30px;
+  min-height: 44px;
   cursor: pointer;
 }
 
@@ -271,7 +271,7 @@
 }
 
 .fortune-backup-action .soft-button {
-  min-height: 38px;
+  min-height: 44px;
   padding-inline: 1.15rem;
   font-size: 0.84rem;
 }

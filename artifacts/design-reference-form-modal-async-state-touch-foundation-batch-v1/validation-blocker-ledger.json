@@ -1,0 +1,84 @@
+{
+  "blockers": [
+    {
+      "blockerId": "BLK-MODAL-FOCUS-LIFECYCLE",
+      "frontierId": "FRONTIER-MODAL-FOCUS-LIFECYCLE",
+      "status": "open"
+    },
+    {
+      "blockerId": "BLK-LEAD-SHEET-DESTRUCTIVE-ASYNC",
+      "frontierId": "FRONTIER-LEAD-SHEET-DESTRUCTIVE-ASYNC",
+      "status": "open"
+    },
+    {
+      "blockerId": "BLK-LAZY-ROUTE-ERROR-BOUNDARY",
+      "frontierId": "FRONTIER-LAZY-ROUTE-ERROR-BOUNDARY",
+      "status": "open"
+    },
+    {
+      "blockerId": "BLK-PDF-SOURCE-FILES",
+      "status": "environment_blocked",
+      "validationId": "VAL-FULL-PDF-SOURCE"
+    },
+    {
+      "blockerId": "BLK-RUNTIME-A11Y-PILOT",
+      "status": "unverified",
+      "validationId": "VAL-BROWSER-KEYBOARD-SCREENREADER"
+    }
+  ],
+  "schemaVersion": "softie-form-modal-async-state-touch-validation-blocker-ledger-v1",
+  "validations": [
+    {
+      "failureCount": 0,
+      "id": "VAL-FOCUSED-MOTION-REGRESSION",
+      "passCount": 23,
+      "status": "pass"
+    },
+    {
+      "failureCount": 0,
+      "id": "VAL-FOCUSED-FOUNDATION",
+      "passCount": 7,
+      "status": "pass"
+    },
+    {
+      "failureCount": 0,
+      "id": "VAL-HISTORICAL-DESCENDANT-CHECKER",
+      "status": "pass"
+    },
+    {
+      "id": "VAL-BUILD",
+      "status": "pass"
+    },
+    {
+      "id": "VAL-DIFF-CHECK",
+      "status": "pass"
+    },
+    {
+      "failureCount": 35,
+      "id": "VAL-FULL-SUITE-OBSERVED",
+      "passCount": 614,
+      "skippedCount": 2,
+      "status": "environment_blocked",
+      "tests": 651
+    },
+    {
+      "failureCount": 0,
+      "id": "VAL-FULL-NON-PDF-AFTER-REMEDIATION",
+      "note": "The final full default suite had zero non-PDF failures; every observed failure was a PDF source blocker.",
+      "status": "pass"
+    },
+    {
+      "expectedFailureCount": 35,
+      "id": "VAL-FULL-PDF-SOURCE",
+      "requiredInputs": [
+        "PDF_SOURCE_NANBEI_PATH",
+        "PDF_SOURCE_NANYANGTANG_PATH"
+      ],
+      "status": "blocked_pre_existing"
+    },
+    {
+      "id": "VAL-BROWSER-KEYBOARD-SCREENREADER",
+      "status": "unverified"
+    }
+  ]
+}

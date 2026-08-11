@@ -1186,9 +1186,9 @@ textarea {
 
 .music-save-button {
   flex: 0 0 auto;
-  width: 28px;
-  height: 28px;
-  min-height: 28px;
+  width: 44px;
+  height: 44px;
+  min-height: 44px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -1343,7 +1343,7 @@ textarea {
 }
 
 .music-control-button {
-  min-height: 38px;
+  min-height: 44px;
   padding: 0.42rem 0.5rem;
   border-radius: 12px;
   background: #efe7db;
@@ -1432,7 +1432,7 @@ textarea {
   text-align: left;
   width: auto;
   flex: 0 1 auto;
-  min-height: auto;
+  min-height: 44px;
   border-radius: 0;
   box-shadow: none;
   line-height: 1;
@@ -1524,7 +1524,7 @@ textarea {
 }
 
 .music-playlist-play-button {
-  height: 32px;
+  min-height: 44px;
   padding: 0 0.8rem;
   border-radius: 12px;
   background: var(--brand);
@@ -1564,6 +1564,7 @@ textarea {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  min-height: 44px;
 }
 
 @media (hover: hover) and (pointer: fine) {
@@ -1675,7 +1676,7 @@ textarea {
 }
 
 .music-device-button {
-  min-height: 30px;
+  min-height: 44px;
   min-width: 50px;
   padding: 0.25rem 0.6rem;
   white-space: nowrap;
@@ -3218,8 +3219,8 @@ textarea {
 }
 
 .home-auth-button {
-  min-height: 36px;
-  height: 36px;
+  min-height: 44px;
+  height: 44px;
   padding: 0.32rem 0.68rem;
   border-radius: var(--ag-radius-pill);
   font-size: 0.7rem;
@@ -3684,8 +3685,8 @@ textarea {
   }
 
   .home-auth-button {
-    min-height: 36px;
-    height: 36px;
+    min-height: 44px;
+    height: 44px;
     padding: 0.32rem 0.58rem;
     font-size: 0.68rem;
   }

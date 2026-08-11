@@ -120,7 +120,7 @@ export default function HomePage() {
 
   async function handleSendMemo() {
     const text = memoText.trim()
-    if (!text || isSendingMemo) return
+    if (!text || isSendingMemoRef.current) return
 
     if (!session) {
       setMemoStatus('')
@@ -128,6 +128,7 @@ export default function HomePage() {
       return
     }
 
+    isSendingMemoRef.current = true
     setIsSendingMemo(true)
     setMemoStatus('')
     setMemoError('')
@@ -176,6 +177,7 @@ export default function HomePage() {
       console.error('[HomePage] Failed to send softie memo.', error)
       setMemoError('카카오톡 전송에 실패했어요. 메모를 복사해 둘 수 있어요.')
     } finally {
+      isSendingMemoRef.current = false
       setIsSendingMemo(false)
     }
   }
@@ -287,6 +289,7 @@ export default function HomePage() {
             role="dialog"
             aria-modal="true"
             aria-labelledby="home-memo-title"
+            aria-busy={isSendingMemo}
             onClick={(event) => event.stopPropagation()}
           >
             <div className="home-memo-header">
@@ -296,11 +299,14 @@ export default function HomePage() {
                   {isKakaoMemoReady ? '카카오 연결됨' : '카카오 재연결 필요'}
                 </span>
               </div>
-              <button type="button" className="home-memo-close ios27-selective-touch-target" onClick={closeMemoModal}>닫기</button>
+              <button type="button" className="home-memo-close ios27-selective-touch-target" onClick={closeMemoModal} disabled={isSendingMemo}>닫기</button>
             </div>
+            <label className="visually-hidden" htmlFor="home-memo-text">메모 내용</label>
             <textarea
+              id="home-memo-text"
               ref={memoTextareaRef}
               className="home-memo-textarea"
+              aria-describedby={memoError ? 'home-memo-error' : memoStatus ? 'home-memo-status' : undefined}
               value={memoText}
               onChange={(event) => {
                 setMemoText(event.target.value)
@@ -310,10 +316,10 @@ export default function HomePage() {
               placeholder="잊기 전에 남길 메모를 적어줘"
               rows={5}
             />
-            {memoStatus && <p className="home-memo-status success">{memoStatus}</p>}
+            {memoStatus && <p id="home-memo-status" className="home-memo-status success" role="status" aria-live="polite">{memoStatus}</p>}
             {memoError && (
               <div className="home-memo-error-row">
-                <p className="home-memo-status error">{memoError}</p>
+                <p id="home-memo-error" className="home-memo-status error" role="alert">{memoError}</p>
                 {memoText.trim() && (
                   <button type="button" className="home-memo-secondary home-memo-copy ios27-selective-touch-target" onClick={handleCopyMemo}>
                     복사

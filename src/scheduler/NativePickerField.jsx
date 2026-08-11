@@ -10,6 +10,9 @@ export function NativePickerField({
   onInput,
   formatter,
   hideLabel = false,
+  invalid = false,
+  describedBy,
+  validationField,
 }) {
   const labelId = useId()
   const displayValue = formatter(value) || placeholder
@@ -26,6 +29,9 @@ export function NativePickerField({
         <input
           className="scheduler-native-picker-input"
           aria-labelledby={labelId}
+          aria-describedby={describedBy}
+          aria-invalid={invalid || undefined}
+          data-validation-field={validationField}
           type={type}
           value={value}
           onInput={onInput}

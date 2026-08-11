@@ -13,9 +13,9 @@ import { SCHEDULER_BRANCHES, SCHEDULER_TAGS } from './constants'
 import {
   buildReservationPayload,
   createReservationDraft,
+  getReservationValidationIssue,
   getRoomsForBranch,
   mapReservationToFormValues,
-  validateReservationForm,
 } from './helpers'
 import {
   normalizeRegularPhoneLast4,
@@ -44,6 +44,7 @@ export function ReservationEditorPage({
   const [formValues, setFormValues] = useState(() => createReservationDraft(initialReservationDate))
   const [status, setStatus] = useState('')
   const [statusTone, setStatusTone] = useState('info')
+  const [invalidField, setInvalidField] = useState('')
   const [isLoading, setIsLoading] = useState(mode === 'edit')
   const [busyAction, setBusyAction] = useState(null)
   const [loadedReservation, setLoadedReservation] = useState(null)
@@ -57,6 +58,7 @@ export function ReservationEditorPage({
   const manualRegularOverrideRef = useRef(false)
   const rebookingLookupGenerationRef = useRef(0)
   const actionLockRef = useRef(null)
+  const formRef = useRef(null)
 
   const isBusy = busyAction !== null
 
@@ -204,6 +206,10 @@ export function ReservationEditorPage({
   }, [effectiveOwnerKey, mode, reservationId])
 
   function updateField(field, value) {
+    if (invalidField === field) {
+      setInvalidField('')
+      if (statusTone === 'error') setEditorStatus('')
+    }
     setFormValues((current) => {
       if (field === 'branch') {
         const nextRooms = getRoomsForBranch(value)
@@ -273,13 +279,20 @@ export function ReservationEditorPage({
 
   async function handleSubmit(event) {
     event.preventDefault()
-    const validationMessage = validateReservationForm(formValues)
-    if (validationMessage) {
-      setEditorStatus(validationMessage, 'error')
+    const validationIssue = getReservationValidationIssue(formValues)
+    if (validationIssue) {
+      setInvalidField(validationIssue.field)
+      setEditorStatus(validationIssue.message, 'error')
+      window.requestAnimationFrame(() => {
+        formRef.current
+          ?.querySelector(`[data-validation-field="${validationIssue.field}"]`)
+          ?.focus()
+      })
       return
     }
 
     if (!beginAction('saving')) return
+    setInvalidField('')
     setEditorStatus('')
     try {
       const payload = buildReservationPayload(formValues)
@@ -411,6 +424,7 @@ export function ReservationEditorPage({
 
         {status && (
           <p
+            id="scheduler-editor-status"
             className={`status scheduler-editor-status is-${statusTone}`}
             role={statusTone === 'error' ? 'alert' : 'status'}
             aria-live={statusTone === 'error' ? 'assertive' : 'polite'}
@@ -429,7 +443,7 @@ export function ReservationEditorPage({
         {isLoading ? (
           <p className="subtle scheduler-editor-loading" role="status" aria-live="polite">예약 불러오는 중...</p>
         ) : (
-          <form className="scheduler-form" onSubmit={handleSubmit} aria-busy={isBusy}>
+          <form ref={formRef} className="scheduler-form" onSubmit={handleSubmit} aria-busy={isBusy} noValidate>
             <fieldset className="scheduler-editor-fieldset" disabled={isBusy}>
               <NativePickerField
                 label="예약 날짜"
@@ -438,12 +452,21 @@ export function ReservationEditorPage({
                 placeholder="날짜 선택"
                 formatter={formatSchedulerDate}
                 onChange={(event) => updateField('reservationDate', event.target.value)}
+                invalid={invalidField === 'reservationDate'}
+                describedBy={invalidField === 'reservationDate' ? 'scheduler-editor-status' : undefined}
+                validationField="reservationDate"
               />
 
             <div className="scheduler-two-up scheduler-primary-field-row">
               <div className="scheduler-primary-field">
                 <span className="scheduler-parent-label">지점</span>
-                <div className="scheduler-branch-option-row" role="group" aria-label="지점 선택">
+                <div
+                  className="scheduler-branch-option-row"
+                  role="group"
+                  aria-label="지점 선택"
+                  aria-invalid={invalidField === 'branch' || undefined}
+                  aria-describedby={invalidField === 'branch' ? 'scheduler-editor-status' : undefined}
+                >
                   {SCHEDULER_BRANCHES.map((branch) => {
                     const isActive = formValues.branch === branch
                     return (
@@ -453,6 +476,7 @@ export function ReservationEditorPage({
                         className={`scheduler-chip ${isActive ? 'active' : ''}`}
                         onClick={() => updateField('branch', branch)}
                         aria-pressed={isActive}
+                        data-validation-field="branch"
                         data-text={branch}
                       >
                         {branch}
@@ -468,7 +492,13 @@ export function ReservationEditorPage({
                   {!formValues.branch ? (
                     <div className="scheduler-room-picker-empty">지점을 먼저 선택</div>
                   ) : (
-                    <div className="scheduler-room-option-row" role="group" aria-label="룸 선택">
+                    <div
+                      className="scheduler-room-option-row"
+                      role="group"
+                      aria-label="룸 선택"
+                      aria-invalid={invalidField === 'room' || undefined}
+                      aria-describedby={invalidField === 'room' ? 'scheduler-editor-status' : undefined}
+                    >
                       {availableRooms.map((room) => {
                         const isActive = formValues.room === room
                         return (
@@ -478,6 +508,7 @@ export function ReservationEditorPage({
                             className={`scheduler-room-option ${isActive ? 'active' : ''}`}
                             onClick={() => updateField('room', room)}
                             aria-pressed={isActive}
+                            data-validation-field="room"
                             data-text={room}
                           >
                             {room}
@@ -494,6 +525,9 @@ export function ReservationEditorPage({
               <span className="scheduler-parent-label">예약자 이름</span>
               <input
                 value={formValues.customerName}
+                aria-invalid={invalidField === 'customerName' || undefined}
+                aria-describedby={invalidField === 'customerName' ? 'scheduler-editor-status' : undefined}
+                data-validation-field="customerName"
                 onChange={(event) => updateField('customerName', event.target.value)}
                 placeholder="예약자 또는 팀명"
                 enterKeyHint="next"
@@ -507,6 +541,9 @@ export function ReservationEditorPage({
                 inputMode="numeric"
                 maxLength={4}
                 value={formValues.phoneLast4}
+                aria-invalid={invalidField === 'phoneLast4' || undefined}
+                aria-describedby={invalidField === 'phoneLast4' ? 'scheduler-editor-status' : undefined}
+                data-validation-field="phoneLast4"
                 onChange={(event) => updateField('phoneLast4', event.target.value)}
                 placeholder="뒤 4자리"
                 enterKeyHint="next"
@@ -521,6 +558,9 @@ export function ReservationEditorPage({
                 placeholder="시간 선택"
                 formatter={formatSchedulerTime}
                 onChange={(event) => updateField('startTime', event.target.value)}
+                invalid={invalidField === 'startTime'}
+                describedBy={invalidField === 'startTime' ? 'scheduler-editor-status' : undefined}
+                validationField="startTime"
               />
 
               <div className="scheduler-duration-field">
@@ -533,6 +573,9 @@ export function ReservationEditorPage({
                     step="1"
                     inputMode="numeric"
                     value={formValues.durationHours}
+                    aria-invalid={invalidField === 'durationHours' || undefined}
+                    aria-describedby={invalidField === 'durationHours' ? 'scheduler-editor-status' : undefined}
+                    data-validation-field="durationHours"
                     onChange={(event) => updateField('durationHours', event.target.value)}
                     enterKeyHint="next"
                   />
@@ -560,7 +603,13 @@ export function ReservationEditorPage({
 
             <div className="scheduler-warning-offset-field scheduler-form-section">
               <span className="scheduler-parent-label">퇴실등 시점</span>
-              <div className="scheduler-warning-offset-row" role="group" aria-label="퇴실등 시점 선택">
+              <div
+                className="scheduler-warning-offset-row"
+                role="group"
+                aria-label="퇴실등 시점 선택"
+                aria-invalid={invalidField === 'warningOffsetMinutes' || undefined}
+                aria-describedby={invalidField === 'warningOffsetMinutes' ? 'scheduler-editor-status' : undefined}
+              >
                 {[
                   ['10', '10분 전'],
                   ['15', '15분 전'],
@@ -573,6 +622,7 @@ export function ReservationEditorPage({
                       className={`scheduler-chip ${isActive ? 'active' : ''}`}
                       onClick={() => updateField('warningOffsetMinutes', value)}
                       aria-pressed={isActive}
+                      data-validation-field="warningOffsetMinutes"
                       data-text={label}
                     >
                       {label}

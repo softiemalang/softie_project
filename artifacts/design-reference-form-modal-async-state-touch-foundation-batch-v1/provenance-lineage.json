@@ -1,0 +1,30 @@
+{
+  "authorityPriority": [
+    "AGENTS.md / DESIGN.md",
+    "current_work_order",
+    "current_repository_evidence",
+    "official_external_guidance",
+    "external_skill_guidance"
+  ],
+  "emilSiblingCorpus": {
+    "independentAuthorityCount": 1,
+    "installationIsAdoption": false,
+    "lineageGroup": "LG-EMIL-INSTALLED-SIBLINGS",
+    "repeatedClaimsCountOnce": true
+  },
+  "evidenceClasses": [
+    "direct_repository_observation",
+    "official_guidance",
+    "softie_house_rule",
+    "runtime_or_device_evidence"
+  ],
+  "historicalBytesPreserved": true,
+  "predecessor": {
+    "assertions": [],
+    "byteLength": 1680,
+    "byteSha256": "4ec44e0a0ee54aebc0b079c752599b4ad11a5ce5105d253e2e4517cb9e4d446d",
+    "kind": "historical_artifact_json",
+    "path": "artifacts/design-reference-accessibility-legacy-interaction-cleanup-batch-v1/complete.json.integrity.json"
+  },
+  "schemaVersion": "softie-form-modal-async-state-touch-provenance-lineage-v1"
+}

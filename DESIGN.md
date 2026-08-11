@@ -1,7 +1,7 @@
 ---
 # Design Tokens
 name: softie-project
-version: 2.9.0
+version: 2.10.0
 adoption: new-and-redesigned-surfaces
 tokens:
   colors:
@@ -354,7 +354,16 @@ Warm Liquid Glass는 따뜻한 사진의 색과 형태가 패널 안에서도 �
 - Input/Select/Textarea는 최소 높이 `44px`, radius `14px`를 사용합니다.
 - 입력 표면은 배경 사진보다 충분히 어둡고 안정적이어야 합니다.
 - 라벨은 placeholder로 대체하지 않습니다.
+- native `date`, `time`, `select`, `button`을 우선하며, native control의 이름·필수 여부·disabled 동작·focus-visible을 보존합니다.
+- 제출 검증은 기존 업무 규칙과 문구 순서를 바꾸지 않습니다. 오류 상태는 `aria-invalid`와 `aria-describedby`로 해당 control 또는 선택 group에 연결하고, 제출 시 첫 오류 control로 포커스를 이동합니다.
 - 선택 상태는 배경, 테두리, 텍스트 중 최소 두 가지 신호로 표시합니다.
+
+### Dialogs and sheets
+
+- 시각적으로 떠 있는 패널은 최소한 `role="dialog"`와 안정적인 accessible name을 가집니다.
+- `aria-modal="true"`는 배경 interaction이 실제로 비활성화되고, 진입 포커스·Tab containment·Escape 닫기·trigger 포커스 복귀가 함께 구현된 경우에만 사용합니다. 역할 선언만으로 실제 modality를 대신하지 않습니다.
+- 보이는 닫기 control은 유지하며 최소 `44×44px` 터치 영역과 keyboard focus를 제공합니다.
+- 중첩 sheet와 imperative legacy overlay의 포커스 수명주기는 별도 검증 없이 부분 패치하지 않습니다.
 
 ### Tabs and segmented controls
 
@@ -370,6 +379,9 @@ Warm Liquid Glass는 따뜻한 사진의 색과 형태가 패널 안에서도 �
 - 시간 초과처럼 주의가 필요하지만 파괴적이지 않은 상태를 Danger로 과장하지 않습니다.
 - 상태색이 없는 일반 값은 Warm Ivory보다 Linen Beige를 우선해 화면 전체의 밝기를 낮춥니다.
 - 오류 메시지는 문제와 다음 행동을 함께 설명합니다.
+- loading, empty success, filter no-result, error는 서로 다른 상태입니다. 요청 실패 뒤 stale content나 empty copy를 성공 상태처럼 표시하지 않습니다.
+- non-blocking 완료 안내는 `role="status"`와 polite live semantics를, 즉시 알려야 하는 오류는 `role="alert"`를 사용합니다. 같은 메시지를 중복 live region으로 읽히게 하지 않습니다.
+- mutation은 React render보다 먼저 동기 lock을 획득하고, 작업 동안 관련 control을 disabled 처리하며 진행 문구와 필요 시 `aria-busy`를 노출합니다. 완료·실패·취소 모든 경로에서 lock을 해제합니다.
 
 ## 9. Accessibility baseline
 

@@ -1,0 +1,107 @@
+{
+  "schemaVersion": "softie-form-modal-async-state-touch-source-reference-ledger-v1",
+  "sources": [
+    {
+      "authority": "repository_authority",
+      "lineageGroup": "LG-SOFTIE-REPOSITORY",
+      "sourceId": "SRC-SOFTIE-AGENTS",
+      "sourceRef": {
+        "byteLength": 12039,
+        "byteSha256": "f1dd85901c74c49ca5e1c81d3db57a9b7aba41b2bd49eb5c2c84114035bdb55d",
+        "kind": "working_tree_text",
+        "lineEnd": 81,
+        "lineStart": 81,
+        "path": "AGENTS.md",
+        "quote": "- Prefer practical, mobile-friendly UI. This app is used in short sessions and should stay easy to use on a phone."
+      }
+    },
+    {
+      "authority": "softie_house_rule",
+      "lineageGroup": "LG-SOFTIE-REPOSITORY",
+      "sourceId": "SRC-SOFTIE-DESIGN",
+      "sourceRef": {
+        "byteLength": 35517,
+        "byteSha256": "61a124fff78b1dbd16f548d72ebe50165f151e1d1b287d18730930b95faf90b1",
+        "kind": "working_tree_text",
+        "lineEnd": 382,
+        "lineStart": 382,
+        "path": "DESIGN.md",
+        "quote": "- loading, empty success, filter no-result, error는 서로 다른 상태입니다."
+      }
+    },
+    {
+      "authority": "web_standard_primary",
+      "claimBoundary": "Supports programmatic labels; it does not prescribe Softie visual styling.",
+      "lineageGroup": "LG-W3C-WAI",
+      "sourceId": "SRC-W3C-FORMS-LABELS",
+      "url": "https://www.w3.org/WAI/tutorials/forms/labels/"
+    },
+    {
+      "authority": "web_standard_primary",
+      "claimBoundary": "Supports identifying and describing errors without changing business validation rules.",
+      "lineageGroup": "LG-W3C-WAI",
+      "sourceId": "SRC-W3C-FORMS-VALIDATION",
+      "url": "https://www.w3.org/WAI/tutorials/forms/validation/"
+    },
+    {
+      "authority": "web_standard_primary",
+      "claimBoundary": "Defines modal focus and background interaction expectations; a dialog role alone is not proof of modality.",
+      "lineageGroup": "LG-W3C-WAI",
+      "sourceId": "SRC-W3C-DIALOG-APG",
+      "url": "https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/"
+    },
+    {
+      "authority": "web_standard_primary",
+      "claimBoundary": "Supports programmatic status notification without focus movement.",
+      "lineageGroup": "LG-W3C-WAI",
+      "sourceId": "SRC-W3C-STATUS-MESSAGES",
+      "url": "https://www.w3.org/WAI/WCAG22/Understanding/status-messages.html"
+    },
+    {
+      "authority": "web_standard_primary",
+      "claimBoundary": "Provides the standards floor; Softie retains its stricter 44px house target.",
+      "lineageGroup": "LG-W3C-WCAG22",
+      "sourceId": "SRC-W3C-TARGET-SIZE",
+      "url": "https://www.w3.org/WAI/WCAG22/Understanding/target-size-minimum"
+    },
+    {
+      "authority": "apple_official_primary_guidance",
+      "claimBoundary": "Supports operable and understandable controls without supplying Softie web motion values.",
+      "lineageGroup": "LG-APPLE-OFFICIAL",
+      "sourceId": "SRC-APPLE-ACCESSIBILITY",
+      "url": "https://developer.apple.com/design/human-interface-guidelines/accessibility"
+    },
+    {
+      "authority": "external_design_engineering_guidance",
+      "independentAuthorityCount": 1,
+      "lineageGroup": "LG-EMIL-INSTALLED-SIBLINGS",
+      "sourceId": "SRC-EMIL-SIBLING-CORPUS",
+      "sourceRef": {
+        "byteLength": 27226,
+        "byteSha256": "e71de849347050c2c573c1cf24d742d5a13459557ecffa6e562f08006f46b5b7",
+        "kind": "working_tree_text",
+        "lineEnd": 525,
+        "lineStart": 525,
+        "path": ".agents/skills/emil-design-eng/SKILL.md",
+        "quote": "## Accessibility"
+      }
+    },
+    {
+      "authority": "historical_softie_evidence",
+      "lineageGroup": "LG-SOFTIE-INTERACTION-EVIDENCE",
+      "sourceId": "SRC-PREDECESSOR-ACCESSIBILITY",
+      "sourceRef": {
+        "assertions": [
+          {
+            "equals": "complete_softie_accessibility_legacy_interaction_cleanup_batch_v1_uncommitted",
+            "path": "#/verdict"
+          }
+        ],
+        "byteLength": 26346,
+        "byteSha256": "2edd0dac5f7dff00b2cdda7964dae0375c8141deef0a5c21e0fc2a26f489cf4b",
+        "kind": "historical_artifact_json",
+        "path": "artifacts/design-reference-accessibility-legacy-interaction-cleanup-batch-v1/complete.json"
+      }
+    }
+  ]
+}

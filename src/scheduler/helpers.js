@@ -94,25 +94,29 @@ export function buildOwnedReservationPayload(payload, ownerKey) {
   return { ...payload, owner_key: ownerKey }
 }
 
-export function validateReservationForm(formValues) {
-  if (!formValues.reservationDate) return '예약 날짜를 입력해 주세요.'
-  if (!formValues.branch.trim()) return '지점을 입력해 주세요.'
-  if (!formValues.room.trim()) return '룸 이름을 입력해 주세요.'
-  if (!getRoomsForBranch(formValues.branch).includes(formValues.room)) return '선택한 지점에 맞는 룸을 선택해 주세요.'
-  if (!formValues.customerName.trim()) return '예약자 이름을 입력해 주세요.'
-  if (!formValues.startTime) return '시작 시간을 입력해 주세요.'
+export function getReservationValidationIssue(formValues) {
+  if (!formValues.reservationDate) return { field: 'reservationDate', message: '예약 날짜를 입력해 주세요.' }
+  if (!formValues.branch.trim()) return { field: 'branch', message: '지점을 입력해 주세요.' }
+  if (!formValues.room.trim()) return { field: 'room', message: '룸 이름을 입력해 주세요.' }
+  if (!getRoomsForBranch(formValues.branch).includes(formValues.room)) return { field: 'room', message: '선택한 지점에 맞는 룸을 선택해 주세요.' }
+  if (!formValues.customerName.trim()) return { field: 'customerName', message: '예약자 이름을 입력해 주세요.' }
+  if (!formValues.startTime) return { field: 'startTime', message: '시작 시간을 입력해 주세요.' }
 
-  if (!isValidRegularPhoneLast4(formValues.phoneLast4 || '')) return '번호는 숫자 4자리로 입력해 주세요.'
+  if (!isValidRegularPhoneLast4(formValues.phoneLast4 || '')) return { field: 'phoneLast4', message: '번호는 숫자 4자리로 입력해 주세요.' }
 
   const durationHours = Number(formValues.durationHours)
-  if (!durationHours || durationHours < 1) return '이용 시간은 1시간 이상으로 입력해 주세요.'
+  if (!durationHours || durationHours < 1) return { field: 'durationHours', message: '이용 시간은 1시간 이상으로 입력해 주세요.' }
 
   const durationMinutes = durationHours * 60
   const warningOffsetMinutes = Number(formValues.warningOffsetMinutes)
-  if (![10, 15].includes(warningOffsetMinutes)) return '퇴실등 시간은 10분 전 또는 15분 전만 선택할 수 있어요.'
-  if (warningOffsetMinutes > durationMinutes) return '퇴실등 시간은 이용 시간보다 길 수 없어요.'
+  if (![10, 15].includes(warningOffsetMinutes)) return { field: 'warningOffsetMinutes', message: '퇴실등 시간은 10분 전 또는 15분 전만 선택할 수 있어요.' }
+  if (warningOffsetMinutes > durationMinutes) return { field: 'warningOffsetMinutes', message: '퇴실등 시간은 이용 시간보다 길 수 없어요.' }
 
-  return ''
+  return null
+}
+
+export function validateReservationForm(formValues) {
+  return getReservationValidationIssue(formValues)?.message || ''
 }
 
 export function sortEventsByTime(items) {

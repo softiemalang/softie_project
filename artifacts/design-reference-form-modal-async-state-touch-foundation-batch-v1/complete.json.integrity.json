@@ -1,0 +1,31 @@
+{
+  "artifactId": "design-reference-form-modal-async-state-touch-foundation-batch-v1",
+  "completeArtifactPath": "artifacts/design-reference-form-modal-async-state-touch-foundation-batch-v1/complete.json",
+  "files": {
+    "artifacts/design-reference-form-modal-async-state-touch-foundation-batch-v1/complete.json": {
+      "byteLength": 25106,
+      "byteSha256": "18055016a7bdbc59f8b87eadc0d07b7e1bf5b75ec8cee5c5ac39f2b8a6da27fe"
+    },
+    "artifacts/design-reference-form-modal-async-state-touch-foundation-batch-v1/frontier-decision-ledger.json": {
+      "byteLength": 7408,
+      "byteSha256": "b107ad920dde4772a7463ff3b6f05354696ad4d45346e8a87a69dc728cd46525"
+    },
+    "artifacts/design-reference-form-modal-async-state-touch-foundation-batch-v1/implementation-observation-ledger.json": {
+      "byteLength": 1578,
+      "byteSha256": "dea01df0a7c52b7f719854b5a6b684505b73536223056a77b778f7ca780929db"
+    },
+    "artifacts/design-reference-form-modal-async-state-touch-foundation-batch-v1/provenance-lineage.json": {
+      "byteLength": 956,
+      "byteSha256": "5d73fd0ee83076fbacd29dea34732676e1024a821cabc1a4554baf5ab956813c"
+    },
+    "artifacts/design-reference-form-modal-async-state-touch-foundation-batch-v1/source-reference-ledger.json": {
+      "byteLength": 4288,
+      "byteSha256": "26e829803c92a49698b36027253a71057d31291762ac63d374209819ebf63b31"
+    },
+    "artifacts/design-reference-form-modal-async-state-touch-foundation-batch-v1/validation-blocker-ledger.json": {
+      "byteLength": 2078,
+      "byteSha256": "d1eb9b1e4574e4f975a603ee2895c82391f2f4f190acead9483d3cac756964db"
+    }
+  },
+  "schemaVersion": "softie-artifact-integrity-v1"
+}

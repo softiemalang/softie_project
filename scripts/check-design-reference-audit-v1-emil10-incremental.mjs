@@ -84,6 +84,18 @@ function gitText(args) {
   }
 }
 
+function gitBlobText(revision, path) {
+  try {
+    return execFileSync('git', ['-c', 'core.fsmonitor=false', 'show', `${revision}:${path}`], {
+      cwd: ROOT,
+      encoding: 'utf8',
+      stdio: ['ignore', 'pipe', 'ignore'],
+    })
+  } catch {
+    return null
+  }
+}
+
 function add(errors, condition, message) {
   if (!condition) errors.push(message)
 }
@@ -103,19 +115,30 @@ function replayComparable(value) {
   return canonicalIdentityJson(comparable)
 }
 
-function verifyTextRef(errors, reference) {
+function textRefMatches(reference, text) {
+  const lines = text.split(/\r?\n/)
+  return lines.slice(reference.lineStart - 1, reference.lineEnd).join('\n').includes(reference.quote)
+}
+
+function verifyTextRef(errors, reference, generationBaseHead) {
   if (!reference || reference.kind !== 'text' || !reference.path || !reference.lineStart || !reference.lineEnd || !reference.quote) {
     errors.push(`invalid_text_ref:${JSON.stringify(reference)}`)
     return
   }
   const path = join(ROOT, reference.path)
-  if (!existsSync(path)) {
+  const candidates = []
+  if (existsSync(path)) candidates.push(readFileSync(path, 'utf8'))
+  if (generationBaseHead) {
+    const baseText = gitBlobText(generationBaseHead, reference.path)
+    if (baseText !== null) candidates.push(baseText)
+  }
+  if (candidates.length === 0) {
     errors.push(`missing_source_ref:${reference.path}`)
     return
   }
-  const lines = readFileSync(path, 'utf8').split(/\r?\n/)
-  const excerpt = lines.slice(reference.lineStart - 1, reference.lineEnd).join('\n')
-  if (!excerpt.includes(reference.quote)) errors.push(`source_quote_mismatch:${reference.path}:${reference.lineStart}-${reference.lineEnd}`)
+  if (!candidates.some((text) => textRefMatches(reference, text))) {
+    errors.push(`source_quote_mismatch:${reference.path}:${reference.lineStart}-${reference.lineEnd}`)
+  }
 }
 
 function verifyCorpusLock(errors, artifact) {
@@ -197,6 +220,7 @@ function verifyRelations(errors, artifact) {
 
 export function checkArtifact(artifact, directory = DEFAULT_DIRECTORY) {
   const errors = []
+  const generationBaseHead = artifact?.artifactIdentity?.generation?.baseHead
   add(errors, artifact?.schemaVersion === 'design-reference-audit-v1-emil10-incremental', 'schema')
   add(errors, artifact?.verdict === VERDICT, 'verdict')
   add(errors, artifact?.scope?.artifactOnly === true, 'artifact_only_scope')
@@ -218,7 +242,7 @@ export function checkArtifact(artifact, directory = DEFAULT_DIRECTORY) {
     add(errors, classificationSet.has(observation.classification), `observation_classification:${observation.id}`)
     add(errors, observation.tier === 'independent_design_engineering_guidance', `observation_tier:${observation.id}`)
     add(errors, Array.isArray(observation.sourceRefs) && observation.sourceRefs.length > 0, `observation_source_refs:${observation.id}`)
-    for (const reference of observation.sourceRefs || []) verifyTextRef(errors, reference)
+    for (const reference of observation.sourceRefs || []) verifyTextRef(errors, reference, generationBaseHead)
   }
 
   const lineageGroups = artifact.provenanceLineage?.lineageGroups || []
@@ -257,7 +281,7 @@ export function checkArtifact(artifact, directory = DEFAULT_DIRECTORY) {
   add(errors, scheduler?.opportunityGate?.passesOpportunityCondition === true, 'scheduler_opportunity_gate')
   add(errors, scheduler?.opportunityGate?.implementationPrecondition?.includes('no firstFetch/hasLoaded flag'), 'scheduler_first_fetch_precondition')
   add(errors, scheduler?.codeObservations?.some((observation) => observation.id === 'CODE-LOAD-002' && observation.observed.includes('regardless of hideEmptyText')), 'scheduler_loading_text_semantics')
-  for (const observation of scheduler?.codeObservations || []) for (const reference of observation.sourceRefs || []) verifyTextRef(errors, reference)
+  for (const observation of scheduler?.codeObservations || []) for (const reference of observation.sourceRefs || []) verifyTextRef(errors, reference, generationBaseHead)
   add(errors, scheduler?.runtimeLimitations?.some((limitation) => limitation.includes('physical-device')), 'scheduler_device_limitation')
 
   add(errors, checkArtifactIdentity(artifact, {

@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { navigate } from '../lib/router'
 import { supabase } from '../lib/supabase'
 
@@ -259,6 +259,7 @@ export default function BandGoogleCompactPage() {
   const [isAuthLoading, setIsAuthLoading] = useState(true)
   const [myRooms, setMyRooms] = useState([])
   const [isLoadingRooms, setIsLoadingRooms] = useState(false)
+  const [roomLoadError, setRoomLoadError] = useState('')
   const [roomName, setRoomName] = useState('')
   const [joinCode, setJoinCode] = useState('')
   const [displayName, setDisplayName] = useState('')
@@ -280,6 +281,7 @@ export default function BandGoogleCompactPage() {
   const [activeDayGroup, setActiveDayGroup] = useState('weekday')
   const [weekStartDate, setWeekStartDate] = useState(() => getMondayStart(new Date()))
   const [isRecommendationExpanded, setIsRecommendationExpanded] = useState(false)
+  const actionLockRef = useRef(false)
 
   const user = session?.user || null
   const isOwner = Boolean(user?.id && room?.owner_user_id === user.id)
@@ -419,6 +421,7 @@ export default function BandGoogleCompactPage() {
   async function loadMyRooms(userId) {
     if (!supabase || !userId) return
     setIsLoadingRooms(true)
+    setRoomLoadError('')
 
     try {
       const { data: memberRows, error: memberError } = await supabase
@@ -453,7 +456,9 @@ export default function BandGoogleCompactPage() {
 
       setMyRooms(nextRooms)
     } catch (error) {
-      setStatus(error.message)
+      const message = error instanceof Error ? error.message : '방 목록을 불러오지 못했어요.'
+      setRoomLoadError(message)
+      if (room && member) setStatus(message)
     } finally {
       setIsLoadingRooms(false)
     }
@@ -542,18 +547,25 @@ export default function BandGoogleCompactPage() {
   }
 
   async function enterRoom(roomId, memberId = null) {
+    if (actionLockRef.current) return
+    actionLockRef.current = true
     setIsBusy(true)
     setStatus('')
-    const loaded = await loadRoomState({ roomId, memberId, preserveDraft: false, silent: true })
-    setIsBusy(false)
-    if (loaded) {
-      setActivePanel('availability')
-      setStatus(`${loaded.roomRow.name} 방에 들어왔어요.`)
+    try {
+      const loaded = await loadRoomState({ roomId, memberId, preserveDraft: false, silent: true })
+      if (loaded) {
+        setActivePanel('availability')
+        setStatus(`${loaded.roomRow.name} 방에 들어왔어요.`)
+      }
+    } finally {
+      actionLockRef.current = false
+      setIsBusy(false)
     }
   }
 
   async function createRoom() {
     if (!supabase || !user?.id) return
+    if (actionLockRef.current) return
     if (!roomName.trim()) {
       setStatus('방 이름을 입력해 주세요.')
       return
@@ -563,6 +575,7 @@ export default function BandGoogleCompactPage() {
       return
     }
 
+    actionLockRef.current = true
     setIsBusy(true)
     setStatus('')
 
@@ -602,12 +615,14 @@ export default function BandGoogleCompactPage() {
     } catch (error) {
       setStatus(error.message)
     } finally {
+      actionLockRef.current = false
       setIsBusy(false)
     }
   }
 
   async function joinRoomByCode() {
     if (!supabase || !user?.id) return
+    if (actionLockRef.current) return
     if (!joinCode.trim()) {
       setStatus('방 코드를 입력해 주세요.')
       return
@@ -617,6 +632,7 @@ export default function BandGoogleCompactPage() {
       return
     }
 
+    actionLockRef.current = true
     setIsBusy(true)
     setStatus('')
 
@@ -664,17 +680,20 @@ export default function BandGoogleCompactPage() {
     } catch (error) {
       setStatus(error.message)
     } finally {
+      actionLockRef.current = false
       setIsBusy(false)
     }
   }
 
   async function saveAvailability() {
     if (!supabase || !room?.id || !member?.id) return
+    if (actionLockRef.current) return
     if (!hasUnsavedChanges) {
       setStatus('이미 최신 가능 시간으로 저장되어 있어요.')
       return
     }
 
+    actionLockRef.current = true
     setIsBusy(true)
     setStatus('')
 
@@ -688,32 +707,37 @@ export default function BandGoogleCompactPage() {
       })),
     )
 
-    const { error: deleteError } = await supabase
-      .from('availabilities')
-      .delete()
-      .eq('room_id', room.id)
-      .eq('member_id', member.id)
+    try {
+      const { error: deleteError } = await supabase
+        .from('availabilities')
+        .delete()
+        .eq('room_id', room.id)
+        .eq('member_id', member.id)
 
-    if (deleteError) {
+      if (deleteError) {
+        setStatus('기존 가능 시간 정보를 업데이트하지 못했어요. 다시 시도해 주세요.')
+        return
+      }
+
+      const { error: insertError } = await supabase.from('availabilities').insert(rows)
+      if (insertError) {
+        setStatus('가능 시간을 저장하지 못했어요. 다시 시도해 주세요.')
+        return
+      }
+
+      const loaded = await loadRoomState({ roomId: room.id, memberId: member.id, preserveDraft: false, silent: true })
+      if (loaded) setStatus('이번 주 가능 시간을 저장했어요.')
+    } catch (error) {
+      setStatus(error instanceof Error ? error.message : '가능 시간을 저장하지 못했어요. 다시 시도해 주세요.')
+    } finally {
+      actionLockRef.current = false
       setIsBusy(false)
-      setStatus('기존 가능 시간 정보를 업데이트하지 못했어요. 다시 시도해 주세요.')
-      return
     }
-
-    const { error: insertError } = await supabase.from('availabilities').insert(rows)
-    if (insertError) {
-      setIsBusy(false)
-      setStatus('가능 시간을 저장하지 못했어요. 다시 시도해 주세요.')
-      return
-    }
-
-    const loaded = await loadRoomState({ roomId: room.id, memberId: member.id, preserveDraft: false, silent: true })
-    setIsBusy(false)
-    if (loaded) setStatus('이번 주 가능 시간을 저장했어요.')
   }
 
   async function updateRoomName() {
     if (!supabase || !room?.id || !isOwner) return
+    if (actionLockRef.current) return
     if (!editingRoomName.trim()) {
       setStatus('방 이름을 입력해 주세요.')
       return
@@ -723,29 +747,37 @@ export default function BandGoogleCompactPage() {
       return
     }
 
+    actionLockRef.current = true
     setIsBusy(true)
     setStatus('')
 
-    const { data, error } = await supabase
-      .from('rooms')
-      .update({ name: editingRoomName.trim() })
-      .eq('id', room.id)
-      .select('id, name, room_code, owner_user_id, created_at')
-      .single()
+    try {
+      const { data, error } = await supabase
+        .from('rooms')
+        .update({ name: editingRoomName.trim() })
+        .eq('id', room.id)
+        .select('id, name, room_code, owner_user_id, created_at')
+        .single()
 
-    setIsBusy(false)
-    if (error) {
-      setStatus('방 이름을 수정하지 못했어요. 다시 시도해 주세요.')
-      return
+      if (error) {
+        setStatus('방 이름을 수정하지 못했어요. 다시 시도해 주세요.')
+        return
+      }
+
+      setRoom(data)
+      await loadMyRooms(user.id)
+      setStatus('방 이름을 수정했어요.')
+    } catch (error) {
+      setStatus(error instanceof Error ? error.message : '방 이름을 수정하지 못했어요. 다시 시도해 주세요.')
+    } finally {
+      actionLockRef.current = false
+      setIsBusy(false)
     }
-
-    setRoom(data)
-    await loadMyRooms(user.id)
-    setStatus('방 이름을 수정했어요.')
   }
 
   async function updateMemberProfile() {
     if (!supabase || !room?.id || !member?.id) return
+    if (actionLockRef.current) return
     if (!memberDisplayName.trim()) {
       setStatus('표시 이름을 입력해 주세요.')
       return
@@ -755,67 +787,79 @@ export default function BandGoogleCompactPage() {
       return
     }
 
+    actionLockRef.current = true
     setIsBusy(true)
     setStatus('')
 
-    const { data, error } = await supabase
-      .from('members')
-      .update({ display_name: memberDisplayName.trim() })
-      .eq('id', member.id)
-      .eq('user_id', user.id)
-      .select('id, room_id, user_id, display_name, created_at')
-      .single()
+    try {
+      const { data, error } = await supabase
+        .from('members')
+        .update({ display_name: memberDisplayName.trim() })
+        .eq('id', member.id)
+        .eq('user_id', user.id)
+        .select('id, room_id, user_id, display_name, created_at')
+        .single()
 
-    setIsBusy(false)
-    if (error) {
-      setStatus('멤버 이름을 저장하지 못했어요. 다시 시도해 주세요.')
-      return
+      if (error) {
+        setStatus('멤버 이름을 저장하지 못했어요. 다시 시도해 주세요.')
+        return
+      }
+
+      setMember(makeMemberInfo(data))
+      await loadRoomState({ roomId: room.id, memberId: data.id, preserveDraft: true, silent: true })
+      await loadMyRooms(user.id)
+      setStatus('멤버 이름을 수정했어요.')
+    } catch (error) {
+      setStatus(error instanceof Error ? error.message : '멤버 이름을 저장하지 못했어요. 다시 시도해 주세요.')
+    } finally {
+      actionLockRef.current = false
+      setIsBusy(false)
     }
-
-    setMember(makeMemberInfo(data))
-    await loadRoomState({ roomId: room.id, memberId: data.id, preserveDraft: true, silent: true })
-    await loadMyRooms(user.id)
-    setStatus('멤버 이름을 수정했어요.')
   }
 
   async function deleteRoom() {
     if (!supabase || !room?.id || !isOwner) return
+    if (actionLockRef.current) return
     if (deleteRoomName !== room.name) {
       setStatus('방 이름을 정확히 입력해야 삭제할 수 있어요.')
       return
     }
 
+    actionLockRef.current = true
     setIsBusy(true)
     setStatus('')
 
-    const { error: availabilityError } = await supabase.from('availabilities').delete().eq('room_id', room.id)
-    if (availabilityError) {
+    try {
+      const { error: availabilityError } = await supabase.from('availabilities').delete().eq('room_id', room.id)
+      if (availabilityError) {
+        setStatus('방을 삭제하지 못했어요. 다시 시도해 주세요.')
+        return
+      }
+
+      const { error: memberError } = await supabase.from('members').delete().eq('room_id', room.id)
+      if (memberError) {
+        setStatus('방을 삭제하지 못했어요. 다시 시도해 주세요.')
+        return
+      }
+
+      const { error: roomError } = await supabase.from('rooms').delete().eq('id', room.id)
+      if (roomError) {
+        setStatus('방을 삭제하지 못했어요. 다시 시도해 주세요.')
+        return
+      }
+
+      setRoom(null)
+      setMember(null)
+      setDeleteRoomName('')
+      setActiveModal(null)
+      await loadMyRooms(user.id)
+      setStatus('방을 삭제했어요.')
+    } catch (error) {
+      setStatus(error instanceof Error ? error.message : '방을 삭제하지 못했어요. 다시 시도해 주세요.')
+    } finally {
+      actionLockRef.current = false
       setIsBusy(false)
-      setStatus('방을 삭제하지 못했어요. 다시 시도해 주세요.')
-      return
     }
-
-    const { error: memberError } = await supabase.from('members').delete().eq('room_id', room.id)
-    if (memberError) {
-      setIsBusy(false)
-      setStatus('방을 삭제하지 못했어요. 다시 시도해 주세요.')
-      return
-    }
-
-    const { error: roomError } = await supabase.from('rooms').delete().eq('id', room.id)
-    setIsBusy(false)
-
-    if (roomError) {
-      setStatus('방을 삭제하지 못했어요. 다시 시도해 주세요.')
-      return
-    }
-
-    setRoom(null)
-    setMember(null)
-    setDeleteRoomName('')
-    setActiveModal(null)
-    await loadMyRooms(user.id)
-    setStatus('방을 삭제했어요.')
   }
 
   function toggleSlot(dayIndex, slotIndex) {
@@ -863,7 +907,7 @@ export default function BandGoogleCompactPage() {
 
   function renderAvailabilityPanel() {
     return (
-      <section className="card band-panel-card">
+      <section className="card band-panel-card" aria-busy={isBusy}>
         <div className="section-head band-compact-section-head band-availability-toolbar">
           <div>
             <p className="section-kicker">내 가능 시간</p>
@@ -878,6 +922,8 @@ export default function BandGoogleCompactPage() {
               <div className="band-toolbar-row top-row">
                 <div className="band-week-selects" aria-label="년도와 월 선택">
                   <select
+                    aria-label="년도 선택"
+                    disabled={isBusy}
                     value={selectedYear}
                     onChange={(event) => updateWeekFromMonth(Number(event.target.value), selectedMonthIndex)}
                   >
@@ -888,6 +934,8 @@ export default function BandGoogleCompactPage() {
                     ))}
                   </select>
                   <select
+                    aria-label="월 선택"
+                    disabled={isBusy}
                     value={selectedMonthIndex}
                     onChange={(event) => updateWeekFromMonth(selectedYear, Number(event.target.value))}
                   >
@@ -904,6 +952,7 @@ export default function BandGoogleCompactPage() {
                       type="button"
                       key={group.key}
                       className={`band-day-group-button ${activeDayGroup === group.key ? 'active' : ''}`}
+                      disabled={isBusy}
                       onClick={() => setActiveDayGroup(group.key)}
                       aria-pressed={activeDayGroup === group.key}
                     >
@@ -915,17 +964,18 @@ export default function BandGoogleCompactPage() {
 
               <div className="band-toolbar-row bottom-row">
                 <div className="band-week-nav-pill" aria-label="주간 이동">
-                  <button type="button" className="band-week-nav-button" onClick={() => moveWeek(-1)} aria-label="이전 주">
+                  <button type="button" className="band-week-nav-button" onClick={() => moveWeek(-1)} aria-label="이전 주" disabled={isBusy}>
                     ‹
                   </button>
                   <span className="band-week-range">{weekRangeLabel}</span>
-                  <button type="button" className="band-week-nav-button" onClick={() => moveWeek(1)} aria-label="다음 주">
+                  <button type="button" className="band-week-nav-button" onClick={() => moveWeek(1)} aria-label="다음 주" disabled={isBusy}>
                     ›
                   </button>
                 </div>
                 <button
                   type="button"
                   className={`band-hours-toggle ${showAllHours ? 'active' : ''}`}
+                  disabled={isBusy}
                   onClick={() => setShowAllHours((current) => !current)}
                 >
                   {showAllHours ? '기본 시간보기' : '전체 시간보기'}
@@ -969,6 +1019,7 @@ export default function BandGoogleCompactPage() {
                           onClick={() => toggleSlot(dayIndex, slotIndex)}
                           aria-label={`${DAYS[dayIndex]} ${SLOTS[slotIndex]}`}
                           aria-pressed={Boolean(availabilityMap[key])}
+                          disabled={isBusy}
                         >
                           {availabilityMap[key] ? '✓' : ''}
                         </button>
@@ -985,7 +1036,7 @@ export default function BandGoogleCompactPage() {
           <button type="button" disabled={isBusy || !hasUnsavedChanges} onClick={saveAvailability}>
             {isBusy ? '저장 중...' : '가능 시간 저장'}
           </button>
-          <button type="button" className="soft-button" onClick={resetMyAvailability}>
+          <button type="button" className="soft-button" onClick={resetMyAvailability} disabled={isBusy}>
             초기화
           </button>
         </div>
@@ -997,10 +1048,10 @@ export default function BandGoogleCompactPage() {
               <div className={`day-action-card ${dayIndex >= 5 ? 'weekend' : ''}`} key={`action-${day}`}>
                 <strong>{day}</strong>
                 <div className="mini-actions">
-                  <button type="button" className="ghost-button" onClick={() => setDayAvailability(dayIndex, true)}>
+                  <button type="button" className="ghost-button" onClick={() => setDayAvailability(dayIndex, true)} disabled={isBusy}>
                     전체
                   </button>
-                  <button type="button" className="ghost-button" onClick={() => setDayAvailability(dayIndex, false)}>
+                  <button type="button" className="ghost-button" onClick={() => setDayAvailability(dayIndex, false)} disabled={isBusy}>
                     비우기
                   </button>
                 </div>
@@ -1088,7 +1139,7 @@ export default function BandGoogleCompactPage() {
             Google로 시작하기
           </button>
         </section>
-        {status && <p className="status">{status}</p>}
+        {status && <p className="status" role="status" aria-live="polite" aria-atomic="true">{status}</p>}
       </div>
     )
   }
@@ -1115,10 +1166,12 @@ export default function BandGoogleCompactPage() {
               <p className="section-kicker">참여 중인 방</p>
               <h2>방 목록</h2>
             </div>
-            {isLoadingRooms && <div className="save-state">불러오는 중...</div>}
+            {isLoadingRooms && <div className="save-state" role="status" aria-live="polite">불러오는 중...</div>}
           </div>
 
-          {myRooms.length === 0 ? (
+          {isLoadingRooms ? null : roomLoadError ? (
+            <p className="status" role="alert">방 목록을 불러오지 못했어요. 잠시 후 다시 시도해 주세요.</p>
+          ) : myRooms.length === 0 ? (
             <p className="subtle">아직 참여 중인 방이 없어요.</p>
           ) : (
             <div className="band-room-list">
@@ -1143,13 +1196,13 @@ export default function BandGoogleCompactPage() {
           <button type="button" className="soft-button" onClick={() => navigate('/')}>홈으로</button>
         </div>
 
-        {status && <p className="status">{status}</p>}
+        {status && <p className="status" role="status" aria-live="polite" aria-atomic="true">{status}</p>}
 
         {activeModal === 'create' && (
           <ModalSheet title="새 방 만들기" kicker="방 만들기" onClose={() => setActiveModal(null)}>
             <div className="stack-form">
-              <input value={roomName} onChange={(event) => setRoomName(event.target.value)} placeholder="방 이름" />
-              <input value={displayName} onChange={(event) => setDisplayName(event.target.value)} placeholder="내 표시 이름" />
+              <input aria-label="방 이름" value={roomName} onChange={(event) => setRoomName(event.target.value)} placeholder="방 이름" />
+              <input aria-label="내 표시 이름" value={displayName} onChange={(event) => setDisplayName(event.target.value)} placeholder="내 표시 이름" />
               <button type="button" disabled={isBusy} onClick={createRoom}>
                 {isBusy ? '처리 중...' : '새 방 만들기'}
               </button>
@@ -1160,8 +1213,8 @@ export default function BandGoogleCompactPage() {
         {activeModal === 'join' && (
           <ModalSheet title="방 코드로 참여하기" kicker="참여하기" onClose={() => setActiveModal(null)}>
             <div className="stack-form">
-              <input value={joinCode} onChange={(event) => setJoinCode(event.target.value.toUpperCase())} placeholder="방 코드" />
-              <input value={displayName} onChange={(event) => setDisplayName(event.target.value)} placeholder="내 표시 이름" />
+              <input aria-label="방 코드" value={joinCode} onChange={(event) => setJoinCode(event.target.value.toUpperCase())} placeholder="방 코드" />
+              <input aria-label="내 표시 이름" value={displayName} onChange={(event) => setDisplayName(event.target.value)} placeholder="내 표시 이름" />
               <button type="button" disabled={isBusy} onClick={joinRoomByCode}>
                 {isBusy ? '참여 중...' : '방 참여하기'}
               </button>
@@ -1202,7 +1255,7 @@ export default function BandGoogleCompactPage() {
         </div>
       </section>
 
-      {status && <p className="status">{status}</p>}
+      {status && <p className="status" role="status" aria-live="polite" aria-atomic="true">{status}</p>}
 
       <div className="band-tabbar" role="group" aria-label="방 메뉴">
         <TabButton active={activePanel === 'availability'} onClick={() => setActivePanel('availability')}>내 시간</TabButton>
@@ -1220,7 +1273,7 @@ export default function BandGoogleCompactPage() {
             <section className="band-modal-section">
               <p className="section-kicker">내 정보</p>
               <div className="stack-form">
-                <input value={memberDisplayName} onChange={(event) => setMemberDisplayName(event.target.value)} placeholder="내 표시 이름" />
+                <input aria-label="내 표시 이름" value={memberDisplayName} onChange={(event) => setMemberDisplayName(event.target.value)} placeholder="내 표시 이름" />
                 <button type="button" disabled={isBusy} onClick={updateMemberProfile}>이름 저장</button>
               </div>
             </section>
@@ -1229,7 +1282,7 @@ export default function BandGoogleCompactPage() {
               <section className="band-modal-section">
                 <p className="section-kicker">방 이름</p>
                 <div className="stack-form">
-                  <input value={editingRoomName} onChange={(event) => setEditingRoomName(event.target.value)} placeholder="방 이름" />
+                  <input aria-label="방 이름" value={editingRoomName} onChange={(event) => setEditingRoomName(event.target.value)} placeholder="방 이름" />
                   <button type="button" disabled={isBusy} onClick={updateRoomName}>방 이름 저장</button>
                 </div>
               </section>
@@ -1239,7 +1292,7 @@ export default function BandGoogleCompactPage() {
               <section className="band-modal-section danger-card compact-danger-block">
                 <p className="section-kicker">방 삭제</p>
                 <p className="subtle">방 이름을 정확히 입력하면 방과 멤버, 가능 시간이 모두 삭제돼요.</p>
-                <input value={deleteRoomName} onChange={(event) => setDeleteRoomName(event.target.value)} placeholder={room.name} />
+                <input aria-label="삭제할 방 이름 확인" value={deleteRoomName} onChange={(event) => setDeleteRoomName(event.target.value)} placeholder={room.name} />
                 <button type="button" className="danger-button" disabled={isBusy || deleteRoomName !== room.name} onClick={deleteRoom}>방 삭제</button>
               </section>
             )}

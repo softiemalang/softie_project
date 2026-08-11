@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import {
   getSoftieSajuProfile,
   getNatalSnapshot,
@@ -105,16 +105,20 @@ export default function SoftieFortunePage() {
   const [dailySnapshot, setDailySnapshot] = useState(null)
   const [report, setReport] = useState(null)
   const [isLoading, setIsLoading] = useState(true)
+  const [initialLoadError, setInitialLoadError] = useState('')
   const [status, setStatus] = useState('')
   const [isBackingUp, setIsBackingUp] = useState(false)
   const [isBackedUp, setIsBackedUp] = useState(false)
   const [isHistoryModalOpen, setIsHistoryModalOpen] = useState(false)
   const [historyList, setHistoryList] = useState([])
   const [isHistoryLoading, setIsHistoryLoading] = useState(false)
+  const [historyError, setHistoryError] = useState('')
   const [selectedHistoryReport, setSelectedHistoryReport] = useState(null)
   const [isHistoryDetailLoading, setIsHistoryDetailLoading] = useState(false)
   const [authUserId, setAuthUserId] = useState(null)
   const [isForceRefreshing, setIsForceRefreshing] = useState(false)
+  const reportRefreshLockRef = useRef(false)
+  const backupLockRef = useRef(false)
   const {
     googleConnected: isGoogleReady,
     markGoogleDisconnected,
@@ -178,6 +182,7 @@ export default function SoftieFortunePage() {
   async function loadInitialData() {
     setIsLoading(true)
     setStatus('')
+    setInitialLoadError('')
     try {
       const existingProfile = await getSoftieSajuProfile()
       if (existingProfile) {
@@ -189,6 +194,7 @@ export default function SoftieFortunePage() {
       }
     } catch (error) {
       console.error('Failed to load saju data:', error)
+      setInitialLoadError('전용 프로필을 불러오는 중 오류가 발생했어요. 잠시 후 다시 시도해 주세요.')
     } finally {
       setIsLoading(false)
     }
@@ -259,7 +265,7 @@ export default function SoftieFortunePage() {
   }
 
   async function handleRefreshTodayReport() {
-    if (!activeProfile || isLoading) return
+    if (!activeProfile || isLoading || reportRefreshLockRef.current) return
     const hasReport = Boolean(report?.id && reportData)
     const force = hasReport
     if (hasReport) {
@@ -270,6 +276,7 @@ export default function SoftieFortunePage() {
       if (!confirmed) return
     }
 
+    reportRefreshLockRef.current = true
     setIsForceRefreshing(true)
     setReport(null)
     setDailySnapshot(null)
@@ -279,12 +286,14 @@ export default function SoftieFortunePage() {
     try {
       await generateTodayReport(activeProfile, { force })
     } finally {
+      reportRefreshLockRef.current = false
       setIsForceRefreshing(false)
     }
   }
 
   async function handleBackupToSheets() {
-    if (!activeProfile || !dailySnapshot || !reportData || !report) return
+    if (!activeProfile || !dailySnapshot || !reportData || !report || backupLockRef.current || isBackedUp) return
+    backupLockRef.current = true
     setIsBackingUp(true)
     try {
       const session = await getCurrentSession()
@@ -326,6 +335,7 @@ export default function SoftieFortunePage() {
         setStatus('Google 시트 기록에 실패했습니다.')
       }
     } finally {
+      backupLockRef.current = false
       setIsBackingUp(false)
     }
   }
@@ -335,11 +345,13 @@ export default function SoftieFortunePage() {
     setSelectedHistoryReport(null)
     setIsHistoryModalOpen(true)
     setIsHistoryLoading(true)
+    setHistoryError('')
     try {
       const data = await getFortuneHistory(activeProfile.id, 30)
       setHistoryList(data)
     } catch (error) {
       console.error('Failed to load history:', error)
+      setHistoryError('과거 운세 기록을 불러오지 못했어요. 잠시 후 다시 시도해 주세요.')
     } finally {
       setIsHistoryLoading(false)
     }
@@ -408,6 +420,7 @@ export default function SoftieFortunePage() {
                 className="soft-button"
                 onClick={handleRefreshTodayReport}
                 disabled={isLoading || isForceRefreshing}
+                aria-busy={isForceRefreshing}
               >
                 {isForceRefreshing
                   ? (reportData ? '다시 작성 중...' : '작성 중...')
@@ -430,6 +443,16 @@ export default function SoftieFortunePage() {
             오늘의 흐름을 조용히 불러오고 있어요.
           </p>
         </section>
+      ) : initialLoadError ? (
+        <section className="card" role="alert">
+          <div className="card-header">
+            <div>
+              <p className="section-kicker">전용 프로필</p>
+              <h2>전용 프로필을 불러오지 못했어요.</h2>
+            </div>
+          </div>
+          <p className="subtle" style={{ margin: 0 }}>{initialLoadError}</p>
+        </section>
       ) : activeProfile ? (
         <section className="card fortune-profile-summary-card">
           <div className="fortune-profile-summary-content">
@@ -442,16 +465,16 @@ export default function SoftieFortunePage() {
           <div className="card-header">
             <div>
               <p className="section-kicker">전용 프로필</p>
-              <h2>전용 프로필을 불러오지 못했어요.</h2>
+              <h2>전용 프로필이 아직 없어요.</h2>
             </div>
           </div>
           <p className="subtle" style={{ margin: 0 }}>
-            잠시 후 다시 시도하거나 SOFTIE_SAJU_PROFILE_ID 설정을 확인해 주세요.
+            SOFTIE_SAJU_PROFILE_ID 설정을 확인해 주세요.
           </p>
         </section>
       )}
 
-      {status && <p className="status" style={{ textAlign: 'center', color: '#8b5e1a' }}>{status}</p>}
+      {status && <p className="status" role="status" aria-live="polite" aria-atomic="true" style={{ textAlign: 'center', color: '#8b5e1a' }}>{status}</p>}
 
       {activeProfile && !isLoading && !reportData && !status && (
         <section className="card">
@@ -528,6 +551,7 @@ export default function SoftieFortunePage() {
                 className="soft-button"
                 onClick={handleBackupToSheets}
                 disabled={isBackingUp || isBackedUp}
+                aria-busy={isBackingUp}
               >
                 {isBackingUp ? '기록 중...' : isBackedUp ? '기록 완료' : 'Google 시트에 기록하기'}
               </button>
@@ -551,7 +575,7 @@ export default function SoftieFortunePage() {
 
       {isHistoryModalOpen && (
         <div className="scheduler-sheet-backdrop scheduler-modal-backdrop" onClick={handleCloseHistoryModal}>
-          <div className="scheduler-modal" onClick={e => e.stopPropagation()}>
+          <div className="scheduler-modal" role="dialog" aria-label="운세 히스토리" aria-busy={isHistoryLoading || isHistoryDetailLoading} onClick={e => e.stopPropagation()}>
             {selectedHistoryReport ? (
               <div className="fortune-history-detail">
                 <div className="fortune-modal-head">
@@ -624,7 +648,9 @@ export default function SoftieFortunePage() {
 
                 <div className="fortune-history-list">
                   {isHistoryLoading || isHistoryDetailLoading ? (
-                    <p className="status" style={{ textAlign: 'center' }}>과거 기록을 불러오는 중입니다...</p>
+                    <p className="status" role="status" aria-live="polite" style={{ textAlign: 'center' }}>과거 기록을 불러오는 중입니다...</p>
+                  ) : historyError ? (
+                    <p className="status" role="alert" style={{ textAlign: 'center' }}>{historyError}</p>
                   ) : historyList.length === 0 ? (
                     <p className="status" style={{ textAlign: 'center' }}>저장된 운세 리포트가 없습니다.</p>
                   ) : (

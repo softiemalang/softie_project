@@ -109,8 +109,10 @@ export function TodaySchedulerPage({
   const [copyFeedback, setCopyFeedback] = useState('')
   const [syncConfirmation, setSyncConfirmation] = useState(null)
   const [syncToast, setSyncToast] = useState('')
+  const [isWorkLogSyncBusy, setIsWorkLogSyncBusy] = useState(false)
   const eventsRequestSequenceRef = useRef(0)
   const syncToastTimerRef = useRef(null)
+  const workLogSyncLockRef = useRef(false)
 
   useEffect(() => () => {
     if (syncToastTimerRef.current) {
@@ -157,7 +159,7 @@ export function TodaySchedulerPage({
   }, [effectiveOwnerKey])
 
   async function handleSyncWorkLog() {
-    if (!normalizedFilters.workTimeEnabled) return
+    if (!normalizedFilters.workTimeEnabled || workLogSyncLockRef.current) return
 
     const candidate = {
       id: `log-${Date.now()}-${Math.random().toString(36).slice(2, 9)}`,
@@ -186,6 +188,8 @@ export function TodaySchedulerPage({
       return
     }
 
+    workLogSyncLockRef.current = true
+    setIsWorkLogSyncBusy(true)
     try {
       const saved = await upsertSchedulerWorkLog(effectiveOwnerKey, candidate)
       setWorkLogs(prev => [...prev, saved])
@@ -195,13 +199,18 @@ export function TodaySchedulerPage({
     } catch (err) {
       setPushStatus('기록 저장 중 오류가 발생했습니다.')
       console.error(err)
+    } finally {
+      workLogSyncLockRef.current = false
+      setIsWorkLogSyncBusy(false)
     }
   }
 
   async function handleConfirmSync() {
-    if (!syncConfirmation) return
+    if (!syncConfirmation || workLogSyncLockRef.current) return
     const { candidate, overlapping } = syncConfirmation
 
+    workLogSyncLockRef.current = true
+    setIsWorkLogSyncBusy(true)
     try {
       const idsToRemove = overlapping.map(o => o.id)
       const saved = await replaceSchedulerWorkLogs(effectiveOwnerKey, idsToRemove, candidate)
@@ -218,6 +227,9 @@ export function TodaySchedulerPage({
     } catch (err) {
       setPushStatus('기록 변경 중 오류가 발생했습니다.')
       console.error(err)
+    } finally {
+      workLogSyncLockRef.current = false
+      setIsWorkLogSyncBusy(false)
     }
   }
 
@@ -273,7 +285,8 @@ export function TodaySchedulerPage({
       settleInitialAsyncContentEnter(rows)
     } catch (error) {
       if (eventsRequestSequenceRef.current !== requestSequence) return
-      setStatus(error.message)
+      setEvents([])
+      setStatus(error instanceof Error ? error.message : '오늘 일정을 불러오지 못했어요. 잠시 후 다시 시도해 주세요.')
     } finally {
       if (eventsRequestSequenceRef.current === requestSequence) {
         setIsLoading(false)
@@ -389,6 +402,13 @@ export function TodaySchedulerPage({
   })
 
   const grouped = groupTodayEvents(filteredEvents, new Date(), selectedDate)
+  const eventEmptyText = isLoading
+    ? '일정을 불러오는 중...'
+    : status
+      ? '일정을 표시할 수 없어요.'
+      : events.length > 0 && filteredEvents.length === 0
+        ? '현재 조건에 맞는 일정이 없어요.'
+        : '오늘 일정이 없어요.'
 
   async function handleToggleDone(eventRow) {
     const nextStatus = eventRow.status === 'done' ? 'pending' : 'done'
@@ -704,7 +724,7 @@ export function TodaySchedulerPage({
 
       {isWebPushModalOpen && (
         <div className="scheduler-sheet-backdrop scheduler-modal-backdrop" onClick={() => setIsWebPushModalOpen(false)}>
-          <div className="scheduler-modal" onClick={e => e.stopPropagation()}>
+          <div className="scheduler-modal" role="dialog" aria-label="웹 알림 설정" onClick={e => e.stopPropagation()}>
             <div className="scheduler-section-head" style={{ marginBottom: '0.65rem' }}>
               <div>
                 <p className="scheduler-section-label">
@@ -782,9 +802,10 @@ export function TodaySchedulerPage({
               type="button"
               className="soft-button scheduler-summary-button scheduler-compact-control"
               onClick={handleSyncWorkLog}
-              disabled={!normalizedFilters.workTimeEnabled}
+              disabled={!normalizedFilters.workTimeEnabled || isWorkLogSyncBusy}
+              aria-busy={isWorkLogSyncBusy}
             >
-              <span className="scheduler-compact-control-visual">동기화</span>
+              <span className="scheduler-compact-control-visual">{isWorkLogSyncBusy ? '동기화 중' : '동기화'}</span>
             </button>
             <button type="button" className="soft-button scheduler-summary-button scheduler-compact-control" onClick={openFilterSheet}>
               <span className="scheduler-compact-control-visual">변경</span>
@@ -920,16 +941,21 @@ export function TodaySchedulerPage({
       {syncConfirmation ? (
         <SyncConfirmationModal
           confirmation={syncConfirmation}
-          onCancel={() => setSyncConfirmation(null)}
+          onCancel={() => {
+            if (!workLogSyncLockRef.current) setSyncConfirmation(null)
+          }}
           onConfirm={handleConfirmSync}
+          isBusy={isWorkLogSyncBusy}
         />
       ) : null}
+
+      {status ? <p className="status scheduler-load-status" role="alert">{status}</p> : null}
 
       <div className={`scheduler-async-content${shouldAnimateInitialContent ? ' scheduler-async-content--initial-enter' : ''}`}>
         <SchedulerEventSection
           title="지금 처리할 일"
           items={grouped.actionNow}
-          emptyText={isLoading ? '불러오는 중...' : '없음'}
+          emptyText={eventEmptyText}
           hideEmptyText
           pendingStatusId={pendingStatusId}
           onToggleDone={handleToggleDone}
@@ -938,7 +964,7 @@ export function TodaySchedulerPage({
         <SchedulerEventSection
           title="곧 다가오는 일정"
           items={grouped.upcomingSoon}
-          emptyText={isLoading ? '불러오는 중...' : '없음'}
+          emptyText={eventEmptyText}
           hideEmptyText
           pendingStatusId={pendingStatusId}
           onToggleDone={handleToggleDone}
@@ -947,7 +973,7 @@ export function TodaySchedulerPage({
         <SchedulerEventSection
           title="오늘 전체"
           items={grouped.allToday}
-          emptyText={isLoading ? '불러오는 중...' : '없음'}
+          emptyText={eventEmptyText}
           pendingStatusId={pendingStatusId}
           onToggleDone={handleToggleDone}
         />

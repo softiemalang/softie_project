@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { navigate } from '../lib/router'
 import { getCurrentSession } from '../lib/auth'
 import { getOrCreatePushDeviceId } from '../lib/device'
@@ -151,6 +151,11 @@ export default function SpotifyMusicPage() {
   const [isLoadingPlaylists, setIsLoadingPlaylists] = useState(false)
   const [playlistError, setPlaylistError] = useState('')
   const [isStartingPlaylist, setIsStartingPlaylist] = useState(false)
+  const controlLockRef = useRef(false)
+  const trackSaveLockRef = useRef(false)
+  const volumeLockRef = useRef(false)
+  const playlistLoadLockRef = useRef(false)
+  const playlistStartLockRef = useRef(false)
 
   const track = playbackState?.item || currentlyPlaying?.item || null
   const trackId = track?.id || ''
@@ -308,8 +313,9 @@ export default function SpotifyMusicPage() {
   }
 
   async function handleToggleSave() {
-    if (!userId || !trackId || isSavingTrack || isCheckingSaved) return
+    if (!userId || !trackId || trackSaveLockRef.current || isCheckingSaved) return
 
+    trackSaveLockRef.current = true
     setIsSavingTrack(true)
     const originalState = isTrackSaved
     try {
@@ -332,16 +338,18 @@ export default function SpotifyMusicPage() {
       }
       setStatusMessage(getFriendlyError(error))
     } finally {
+      trackSaveLockRef.current = false
       setIsSavingTrack(false)
     }
   }
 
   async function handleVolumeStep(direction) {
-    if (!userId || !selectedVolumeDevice || isChangingVolume) return
+    if (!userId || !selectedVolumeDevice || volumeLockRef.current) return
 
     const step = direction === 'up' ? 10 : -10
     const nextVolume = Math.max(0, Math.min(100, volumeDraft + step))
     
+    volumeLockRef.current = true
     setVolumeDraft(nextVolume)
     setIsChangingVolume(true)
     setVolumeError('')
@@ -352,6 +360,7 @@ export default function SpotifyMusicPage() {
       console.error('[SpotifyMusicPage.handleVolumeStep]', error)
       setVolumeError('이 기기는 Spotify Web API 볼륨 조절을 지원하지 않아요.')
     } finally {
+      volumeLockRef.current = false
       setIsChangingVolume(false)
     }
   }
@@ -405,8 +414,9 @@ export default function SpotifyMusicPage() {
   }
 
   async function runControl(action, handler) {
-    if (!userId) return
+    if (!userId || controlLockRef.current) return
 
+    controlLockRef.current = true
     setIsControlling(true)
     setStatusMessage('')
 
@@ -421,6 +431,7 @@ export default function SpotifyMusicPage() {
       console.error(`[SpotifyMusicPage.${action}]`, error)
       setStatusMessage(getFriendlyError(error))
     } finally {
+      controlLockRef.current = false
       setIsControlling(false)
     }
   }
@@ -449,7 +460,8 @@ export default function SpotifyMusicPage() {
   }
 
   async function fetchPlaylists() {
-    if (!userId || !isConnected) return
+    if (!userId || !isConnected || playlistLoadLockRef.current) return
+    playlistLoadLockRef.current = true
     setIsLoadingPlaylists(true)
     setPlaylistError('')
     try {
@@ -461,12 +473,14 @@ export default function SpotifyMusicPage() {
       console.error('[SpotifyMusicPage.fetchPlaylists]', error)
       setPlaylistError('플레이리스트를 불러오지 못했습니다.')
     } finally {
+      playlistLoadLockRef.current = false
       setIsLoadingPlaylists(false)
     }
   }
 
   async function handlePlayPlaylist(uri) {
-    if (!userId || isStartingPlaylist) return
+    if (!userId || playlistStartLockRef.current) return
+    playlistStartLockRef.current = true
     setIsStartingPlaylist(true)
     setPlaylistError('')
     try {
@@ -477,6 +491,7 @@ export default function SpotifyMusicPage() {
       console.error('[SpotifyMusicPage.handlePlayPlaylist]', error)
       setPlaylistError(getFriendlyError(error))
     } finally {
+      playlistStartLockRef.current = false
       setIsStartingPlaylist(false)
     }
   }
@@ -537,7 +552,7 @@ export default function SpotifyMusicPage() {
         </section>
       ) : null}
 
-      {statusMessage ? <p className="status">{statusMessage}</p> : null}
+      {statusMessage ? <p className="status" role="status" aria-live="polite" aria-atomic="true">{statusMessage}</p> : null}
 
       <section className="card music-now-card">
         <header className="card-header music-now-header">
@@ -642,7 +657,9 @@ export default function SpotifyMusicPage() {
           <span className="section-kicker">Devices</span>
         </header>
 
-        {deviceCards.length ? (
+        {isRefreshing && deviceCards.length === 0 ? (
+          <p className="subtle" role="status" aria-live="polite" style={{ marginTop: '0.8rem' }}>Spotify Connect 기기를 불러오는 중...</p>
+        ) : deviceCards.length ? (
           <div className="music-device-list" style={{ marginTop: '0.65rem' }}>
             {deviceCards.map((item) => (
               <article key={item.id} className={`music-device-card ${item.is_active ? 'active' : ''}`}>
@@ -690,7 +707,7 @@ export default function SpotifyMusicPage() {
 
       {isVolumeModalOpen && selectedVolumeDevice && (
         <div className="scheduler-sheet-backdrop scheduler-modal-backdrop" onClick={() => setIsVolumeModalOpen(false)}>
-          <div className="scheduler-modal music-volume-modal" onClick={e => e.stopPropagation()}>
+          <div className="scheduler-modal music-volume-modal" role="dialog" aria-label="Spotify 기기 볼륨 조절" onClick={e => e.stopPropagation()}>
             <div className="scheduler-section-head" style={{ marginBottom: '0.65rem' }}>
               <div>
                 <p className="scheduler-section-label">볼륨 조절</p>
@@ -723,7 +740,7 @@ export default function SpotifyMusicPage() {
                 </button>
               </div>
 
-              {volumeError && <p className="music-volume-error">{volumeError}</p>}
+              {volumeError && <p className="music-volume-error" role="alert">{volumeError}</p>}
             </div>
 
             <div className="scheduler-modal-actions" style={{ marginTop: '1.2rem' }}>
@@ -737,7 +754,7 @@ export default function SpotifyMusicPage() {
 
       {isPlaylistModalOpen && (
         <div className="scheduler-sheet-backdrop scheduler-modal-backdrop" onClick={() => setIsPlaylistModalOpen(false)}>
-          <div className="scheduler-modal music-playlist-modal" onClick={e => e.stopPropagation()}>
+          <div className="scheduler-modal music-playlist-modal" role="dialog" aria-label="Spotify 플레이리스트 선택" aria-busy={isLoadingPlaylists || isStartingPlaylist} onClick={e => e.stopPropagation()}>
             <div className="scheduler-section-head">
               <div>
                 <p className="scheduler-section-label">Playlist</p>
@@ -747,9 +764,9 @@ export default function SpotifyMusicPage() {
 
             <div className="music-playlist-content">
               {isLoadingPlaylists ? (
-                <p className="subtle" style={{ textAlign: 'center', padding: '2rem 0' }}>플레이리스트를 불러오는 중...</p>
+                <p className="subtle" role="status" aria-live="polite" style={{ textAlign: 'center', padding: '2rem 0' }}>플레이리스트를 불러오는 중...</p>
               ) : playlistError ? (
-                <p className="status" style={{ margin: '1rem 0' }}>{playlistError}</p>
+                <p className="status" role="alert" style={{ margin: '1rem 0' }}>{playlistError}</p>
               ) : playlists.length > 0 ? (
                 <div className="music-playlist-list">
                   {playlists.map((pl) => (

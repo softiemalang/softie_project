@@ -1,0 +1,43 @@
+{
+  "baselineHead": "59bcc1eee06147b3b486d7c3a1599c66fce42c59",
+  "observations": [
+    {
+      "observationId": "OBS-VALIDATION-MESSAGE-PARITY",
+      "sourceRef": {
+        "byteLength": 8363,
+        "byteSha256": "5af3c9330d49864171f59b40531d6ef133d2ea027c5490b2a2f5f2a1c9984256",
+        "kind": "working_tree_text",
+        "lineEnd": 47,
+        "lineStart": 47,
+        "path": "test/formModalAsyncStateTouchFoundation.test.js",
+        "quote": "test('reservation validation keeps its messages while exposing the first invalid field'"
+      }
+    },
+    {
+      "newMotion": false,
+      "observationId": "OBS-MOTION-BOUNDARY-PRESERVED",
+      "sourceRef": {
+        "byteLength": 35517,
+        "byteSha256": "61a124fff78b1dbd16f548d72ebe50165f151e1d1b287d18730930b95faf90b1",
+        "kind": "working_tree_text",
+        "lineEnd": 326,
+        "lineStart": 326,
+        "path": "DESIGN.md",
+        "quote": "- 이 `200ms`는 `async content enter / conditional content swap` 역할에 한정된 Softie house rule이며 다른 interaction 유형의 전역 duration 기본값이 아닙니다."
+      }
+    },
+    {
+      "observationId": "OBS-DESIGN-CONTRACT-2-10",
+      "sourceRef": {
+        "byteLength": 35517,
+        "byteSha256": "61a124fff78b1dbd16f548d72ebe50165f151e1d1b287d18730930b95faf90b1",
+        "kind": "working_tree_text",
+        "lineEnd": 4,
+        "lineStart": 4,
+        "path": "DESIGN.md",
+        "quote": "version: 2.10.0"
+      }
+    }
+  ],
+  "schemaVersion": "softie-form-modal-async-state-touch-implementation-observation-ledger-v1"
+}

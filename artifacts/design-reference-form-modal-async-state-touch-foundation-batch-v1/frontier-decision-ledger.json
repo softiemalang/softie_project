@@ -1,0 +1,198 @@
+{
+  "frontiers": [
+    {
+      "decision": "fix",
+      "frontierId": "FRONTIER-FORM-NATIVE-LABELS",
+      "sourceRefs": [
+        {
+          "byteLength": 31820,
+          "byteSha256": "ae4fa0b51fb84eb30ae25fdb307502b63f6b304f3128d32e1dfbecf2a78facbe",
+          "kind": "working_tree_text",
+          "lineEnd": 726,
+          "lineStart": 726,
+          "path": "src/pages/RehearsalCalendarPage.jsx",
+          "quote": "<label htmlFor=\"rehearsal-title\">합주명 *</label>"
+        },
+        {
+          "byteLength": 12554,
+          "byteSha256": "7033eb9a0f2177409b6e8bd06a74d3341650fcea9c5b604384be4120700df8bc",
+          "kind": "working_tree_text",
+          "lineEnd": 304,
+          "lineStart": 304,
+          "path": "src/pages/HomePage.jsx",
+          "quote": "<label className=\"visually-hidden\" htmlFor=\"home-memo-text\">메모 내용</label>"
+        }
+      ]
+    },
+    {
+      "decision": "fix",
+      "frontierId": "FRONTIER-MODAL-DIALOG-NAMES",
+      "sourceRefs": [
+        {
+          "byteLength": 29221,
+          "byteSha256": "da028cb50fcf48cbc6fe948fca18f11767c58fdfd61ad962bbea52c26f0fc345",
+          "kind": "working_tree_text",
+          "lineEnd": 710,
+          "lineStart": 710,
+          "path": "src/pages/SpotifyMusicPage.jsx",
+          "quote": "role=\"dialog\" aria-label=\"Spotify 기기 볼륨 조절\""
+        },
+        {
+          "byteLength": 26827,
+          "byteSha256": "210985b3f927f1211cdc1158d00e74d2df5a74fca361490fe893142d545b923d",
+          "kind": "working_tree_text",
+          "lineEnd": 578,
+          "lineStart": 578,
+          "path": "src/saju/SoftieFortunePage.jsx",
+          "quote": "role=\"dialog\" aria-label=\"운세 히스토리\""
+        }
+      ]
+    },
+    {
+      "blocker": "Repository overlays do not share a proven focus-containment and background-inert lifecycle; aria-modal expansion is rejected until that lifecycle is implemented and browser-tested.",
+      "decision": "hold",
+      "frontierId": "FRONTIER-MODAL-FOCUS-LIFECYCLE"
+    },
+    {
+      "decision": "fix",
+      "frontierId": "FRONTIER-BUSY-DUPLICATE-ACTIONS",
+      "sourceRefs": [
+        {
+          "byteLength": 12554,
+          "byteSha256": "7033eb9a0f2177409b6e8bd06a74d3341650fcea9c5b604384be4120700df8bc",
+          "kind": "working_tree_text",
+          "lineEnd": 123,
+          "lineStart": 123,
+          "path": "src/pages/HomePage.jsx",
+          "quote": "if (!text || isSendingMemoRef.current) return"
+        },
+        {
+          "byteLength": 26827,
+          "byteSha256": "210985b3f927f1211cdc1158d00e74d2df5a74fca361490fe893142d545b923d",
+          "kind": "working_tree_text",
+          "lineEnd": 268,
+          "lineStart": 268,
+          "path": "src/saju/SoftieFortunePage.jsx",
+          "quote": "if (!activeProfile || isLoading || reportRefreshLockRef.current) return"
+        },
+        {
+          "byteLength": 37342,
+          "byteSha256": "d8aa389ec282179fbca7d8ea3a8add135c9af61987b2d49b2f33567f2e6c644e",
+          "kind": "working_tree_text",
+          "lineEnd": 209,
+          "lineStart": 209,
+          "path": "src/scheduler/TodaySchedulerPage.jsx",
+          "quote": "if (!syncConfirmation || workLogSyncLockRef.current) return"
+        }
+      ]
+    },
+    {
+      "decision": "fix",
+      "frontierId": "FRONTIER-ASYNC-STATE-SEPARATION",
+      "sourceRefs": [
+        {
+          "byteLength": 47782,
+          "byteSha256": "b2cc22f06d93a3e1b81268bb9f749ef13d57def38a0f74916b90a0463cbe24e3",
+          "kind": "working_tree_text",
+          "lineEnd": 1172,
+          "lineStart": 1172,
+          "path": "src/pages/BandGoogleCompactPage.jsx",
+          "quote": "isLoadingRooms ? null : roomLoadError ? ("
+        },
+        {
+          "byteLength": 37342,
+          "byteSha256": "d8aa389ec282179fbca7d8ea3a8add135c9af61987b2d49b2f33567f2e6c644e",
+          "kind": "working_tree_text",
+          "lineEnd": 410,
+          "lineStart": 410,
+          "path": "src/scheduler/TodaySchedulerPage.jsx",
+          "quote": "? '현재 조건에 맞는 일정이 없어요.'"
+        }
+      ]
+    },
+    {
+      "decision": "fix",
+      "frontierId": "FRONTIER-TOUCH-44",
+      "sourceRefs": [
+        {
+          "byteLength": 16071,
+          "byteSha256": "1bba77a25f6ae30d84e66732c4a159e742a5975c1c74210b9779a9a0cd736c1c",
+          "kind": "working_tree_text",
+          "lineEnd": 308,
+          "lineStart": 307,
+          "path": "public/band-polish.css",
+          "quote": ".band-week-nav-button {\n  display: flex;"
+        },
+        {
+          "byteLength": 138981,
+          "byteSha256": "1af07e192bf1893c763be141171eb2654092aa0f13b30d02779be76e1faf7b65",
+          "kind": "working_tree_text",
+          "lineEnd": 1187,
+          "lineStart": 1187,
+          "path": "src/styles.css",
+          "quote": ".music-save-button {"
+        }
+      ]
+    },
+    {
+      "decision": "fix",
+      "frontierId": "FRONTIER-VALIDATION-ASSOCIATION",
+      "sourceRefs": [
+        {
+          "byteLength": 9154,
+          "byteSha256": "cda3c636465035d28c3cd29d8e6a1e6ae06d371e0b14491dd383b70da0a18666",
+          "kind": "working_tree_text",
+          "lineEnd": 97,
+          "lineStart": 97,
+          "path": "src/scheduler/helpers.js",
+          "quote": "export function getReservationValidationIssue(formValues) {"
+        },
+        {
+          "byteLength": 26804,
+          "byteSha256": "dfebdbbe955da859991a894923db21d90fe86d9dab47aa36188e050d437376cf",
+          "kind": "working_tree_text",
+          "lineEnd": 288,
+          "lineStart": 288,
+          "path": "src/scheduler/ReservationEditorPage.jsx",
+          "quote": "?.querySelector(`[data-validation-field=\"${validationIssue.field}\"]`)"
+        }
+      ]
+    },
+    {
+      "decision": "fix",
+      "frontierId": "FRONTIER-HISTORICAL-SOURCE-REF-DESCENDANT",
+      "sourceRefs": [
+        {
+          "byteLength": 17848,
+          "byteSha256": "10b28f1d4f8342acd6e7dbe66cf116714d5f38ac1ffd7e2e17b6844870a83bb6",
+          "kind": "working_tree_text",
+          "lineEnd": 123,
+          "lineStart": 123,
+          "path": "scripts/check-design-reference-audit-v1-emil10-incremental.mjs",
+          "quote": "function verifyTextRef(errors, reference, generationBaseHead) {"
+        }
+      ]
+    },
+    {
+      "boundary": "No new animation, duration, easing, stagger, or glass motion was introduced. Existing 180ms route, 200ms async-enter, 160ms press, hover gating, and reduced-motion boundaries remain separate.",
+      "decision": "reject",
+      "frontierId": "FRONTIER-NEW-MOTION"
+    },
+    {
+      "blocker": "Cloud backup/restore can overwrite data and requires a separately authorized, recovery-preserving workflow change and authenticated runtime verification.",
+      "decision": "hold",
+      "frontierId": "FRONTIER-LEAD-SHEET-DESTRUCTIVE-ASYNC"
+    },
+    {
+      "boundary": "The disabled /fortune entry and inactive FortunePage.jsx were observed but not edited.",
+      "decision": "not_applicable",
+      "frontierId": "FRONTIER-INACTIVE-FORTUNE-ROUTE"
+    },
+    {
+      "blocker": "A route-level retry boundary changes shared application architecture and is not required for this focused active-surface batch.",
+      "decision": "hold",
+      "frontierId": "FRONTIER-LAZY-ROUTE-ERROR-BOUNDARY"
+    }
+  ],
+  "schemaVersion": "softie-form-modal-async-state-touch-frontier-decision-ledger-v1"
+}

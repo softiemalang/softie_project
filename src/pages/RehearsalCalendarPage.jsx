@@ -123,16 +123,20 @@ export default function RehearsalCalendarPage() {
   const [currentDate, setCurrentDate] = useState(new Date())
   const [events, setEvents] = useState([])
   const [isLoading, setIsLoading] = useState(true)
+  const [loadError, setLoadError] = useState('')
   const [selectedDate, setSelectedDate] = useState(null)
   const [isAddModalOpen, setIsAddModalOpen] = useState(false)
   const [editingEvent, setEditingEvent] = useState(null)
   const [isBackingUp, setIsBackingUp] = useState(false)
   const [isKakaoConnected, setIsKakaoConnected] = useState(() => isKakaoCalendarConnected())
   const [pendingKakaoEventId, setPendingKakaoEventId] = useState('')
+  const [pendingDeleteEventId, setPendingDeleteEventId] = useState('')
   const [effectiveOwnerKey, setEffectiveOwnerKey] = useState(null)
   const [authUserId, setAuthUserId] = useState(null)
   const localOwnerKeyRef = useRef(null)
   const ownerChangeSeqRef = useRef(0)
+  const backupLockRef = useRef(false)
+  const deleteLockRef = useRef(false)
   const {
     googleConnected: isGoogleReady,
     markGoogleDisconnected,
@@ -188,11 +192,14 @@ export default function RehearsalCalendarPage() {
   async function loadEvents() {
     if (!effectiveOwnerKey) return
     setIsLoading(true)
+    setLoadError('')
     try {
       const data = await getRehearsalEvents(effectiveOwnerKey)
       setEvents(data || [])
     } catch (e) {
       console.error(e)
+      setEvents([])
+      setLoadError('합주 일정을 불러오지 못했어요. 잠시 후 다시 시도해 주세요.')
     } finally {
       setIsLoading(false)
     }
@@ -225,7 +232,7 @@ export default function RehearsalCalendarPage() {
   }
 
   async function handleBackup() {
-    if (!effectiveOwnerKey) return
+    if (!effectiveOwnerKey || backupLockRef.current) return
 
     const shouldBackup = window.confirm('이번 달 합주 일정을 Google Drive에 백업할까요?')
     if (!shouldBackup) return
@@ -241,6 +248,7 @@ export default function RehearsalCalendarPage() {
       return
     }
     
+    backupLockRef.current = true
     setIsBackingUp(true)
     try {
       const session = await getCurrentSession()
@@ -269,6 +277,7 @@ export default function RehearsalCalendarPage() {
         alert(`백업 실패: ${msg}`)
       }
     } finally {
+      backupLockRef.current = false
       setIsBackingUp(false)
     }
   }
@@ -376,7 +385,10 @@ export default function RehearsalCalendarPage() {
         <button type="button" onClick={handleNextMonth} aria-label="다음 달">›</button>
       </div>
 
-      <div className="rehearsal-calendar-grid">
+      {isLoading ? <p className="status" role="status" aria-live="polite">합주 일정을 불러오는 중...</p> : null}
+      {loadError ? <p className="status" role="alert">{loadError}</p> : null}
+
+      <div className="rehearsal-calendar-grid" aria-busy={isLoading}>
         {['일', '월', '화', '수', '목', '금', '토'].map(d => (
           <div key={d} className="rehearsal-weekday">{d}</div>
         ))}
@@ -432,9 +444,9 @@ export default function RehearsalCalendarPage() {
       {selectedDate && (
         <>
           <div className="scheduler-sheet-backdrop" onClick={() => setSelectedDate(null)} />
-          <div className="rehearsal-modal">
+          <div className="rehearsal-modal" role="dialog" aria-labelledby="rehearsal-selected-date-title">
             <div className="rehearsal-sheet-header">
-              <h3 className="rehearsal-sheet-title">
+              <h3 id="rehearsal-selected-date-title" className="rehearsal-sheet-title">
                 {selectedDate.getMonth() + 1}월 {selectedDate.getDate()}일 일정
               </h3>
               <button className="scheduler-modal-close" onClick={() => setSelectedDate(null)}>닫기</button>
@@ -448,13 +460,17 @@ export default function RehearsalCalendarPage() {
                     key={ev.id} 
                     event={ev} 
                     isAddingKakao={pendingKakaoEventId === ev.id}
+                    isDeleting={pendingDeleteEventId === ev.id}
                     onAddKakaoCalendar={() => handleAddKakaoCalendarEvent(ev)}
                     onEdit={() => {
                       setEditingEvent(ev)
                       setIsAddModalOpen(true)
                     }}
                     onDelete={async () => {
-                      if (confirm('이 일정을 삭제하시겠습니까?')) {
+                      if (deleteLockRef.current || !confirm('이 일정을 삭제하시겠습니까?')) return
+                      deleteLockRef.current = true
+                      setPendingDeleteEventId(ev.id)
+                      try {
                         let kakaoDeleteFailed = false
                         if (ev.kakao_calendar_event_id) {
                           try {
@@ -477,6 +493,12 @@ export default function RehearsalCalendarPage() {
                         if (selectedEvents.length === 1) {
                           setSelectedDate(null)
                         }
+                      } catch (error) {
+                        console.error('Failed to delete rehearsal event', error)
+                        alert('일정을 삭제하지 못했어요. 잠시 후 다시 시도해 주세요.')
+                      } finally {
+                        deleteLockRef.current = false
+                        setPendingDeleteEventId('')
                       }
                     }} 
                   />
@@ -507,7 +529,7 @@ export default function RehearsalCalendarPage() {
   )
 }
 
-function RehearsalCard({ event, isAddingKakao, onAddKakaoCalendar, onEdit, onDelete }) {
+function RehearsalCard({ event, isAddingKakao, isDeleting, onAddKakaoCalendar, onEdit, onDelete }) {
   const displayTitle = event.title || event.team_name || '합주'
   const start = event.start_time.slice(0, 5)
   const end = event.end_time.slice(0, 5)
@@ -560,8 +582,10 @@ function RehearsalCard({ event, isAddingKakao, onAddKakaoCalendar, onEdit, onDel
             {isAddingKakao ? '추가 중...' : '톡캘린더 추가'}
           </button>
         )}
-        <button type="button" className="rehearsal-action-btn edit" onClick={onEdit}>편집</button>
-        <button type="button" className="rehearsal-action-btn delete" onClick={onDelete}>삭제</button>
+        <button type="button" className="rehearsal-action-btn edit" onClick={onEdit} disabled={isDeleting}>편집</button>
+        <button type="button" className="rehearsal-action-btn delete" onClick={onDelete} disabled={isDeleting} aria-busy={isDeleting}>
+          {isDeleting ? '삭제 중...' : '삭제'}
+        </button>
       </div>
     </div>
   )
@@ -580,6 +604,7 @@ function AddRehearsalModal({ ownerKey, initialEvent, onClose, onKakaoConnected, 
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [timePicker, setTimePicker] = useState(null)
+  const submitLockRef = useRef(false)
 
   function openTimePicker(field) {
     const parsed = parseTimePickerValue(form[field])
@@ -605,12 +630,14 @@ function AddRehearsalModal({ ownerKey, initialEvent, onClose, onKakaoConnected, 
 
   async function handleSubmit(e) {
     e.preventDefault()
+    if (submitLockRef.current) return
 
     if (!form.event_date || !form.start_time || !form.end_time || !form.title) {
       alert('필수 정보를 모두 입력해 주세요.')
       return
     }
 
+    submitLockRef.current = true
     setIsSubmitting(true)
     try {
       const payload = {
@@ -678,33 +705,37 @@ function AddRehearsalModal({ ownerKey, initialEvent, onClose, onKakaoConnected, 
       console.error(error)
       alert('저장 실패: ' + error.message)
     } finally {
+      submitLockRef.current = false
       setIsSubmitting(false)
     }
   }
 
   return (
     <>
-      <div className="scheduler-sheet-backdrop" onClick={onClose} />
-      <div className="rehearsal-modal rehearsal-add-modal-sheet">
+      <div className="scheduler-sheet-backdrop" onClick={() => {
+        if (!submitLockRef.current) onClose()
+      }} />
+      <div className="rehearsal-modal rehearsal-add-modal-sheet" role="dialog" aria-labelledby="rehearsal-editor-title" aria-busy={isSubmitting}>
         <div className="rehearsal-sheet-header">
-          <h3 className="rehearsal-sheet-title">{isEditing ? '일정 수정' : '새 일정 추가'}</h3>
-          <button className="scheduler-modal-close" onClick={onClose}>닫기</button>
+          <h3 id="rehearsal-editor-title" className="rehearsal-sheet-title">{isEditing ? '일정 수정' : '새 일정 추가'}</h3>
+          <button className="scheduler-modal-close" onClick={onClose} disabled={isSubmitting}>닫기</button>
         </div>
         <div className="rehearsal-sheet-content">
-          <form className="rehearsal-form" onSubmit={handleSubmit}>
+          <form className="rehearsal-form" onSubmit={handleSubmit} aria-busy={isSubmitting}>
             <div>
-              <label>합주명 *</label>
-              <input type="text" required placeholder="예: LFO 5월 공연" value={form.title} onChange={e => setForm({...form, title: e.target.value})} />
+              <label htmlFor="rehearsal-title">합주명 *</label>
+              <input id="rehearsal-title" type="text" required placeholder="예: LFO 5월 공연" value={form.title} onChange={e => setForm({...form, title: e.target.value})} />
             </div>
             
             <div>
-              <label>날짜 *</label>
+              <label htmlFor="rehearsal-date">날짜 *</label>
               <div className="rehearsal-native-picker-shell">
                 <div className={`rehearsal-picker-field ${!form.event_date ? 'is-empty' : ''}`}>
                   {formatDateDisplay(form.event_date)}
                 </div>
                 <input
                   className="rehearsal-native-picker-input"
+                  id="rehearsal-date"
                   type="date"
                   required
                   value={form.event_date}
@@ -715,20 +746,22 @@ function AddRehearsalModal({ ownerKey, initialEvent, onClose, onKakaoConnected, 
 
             <div className="rehearsal-form-row">
               <div>
-                <label>시작 시간 *</label>
+                <span id="rehearsal-start-time-label" className="rehearsal-field-label">시작 시간 *</span>
                 <button
                   type="button"
                   className={`rehearsal-picker-field ${!form.start_time ? 'is-empty' : ''}`}
+                  aria-labelledby="rehearsal-start-time-label"
                   onClick={() => openTimePicker('start_time')}
                 >
                   {formatTimeDisplay(form.start_time)}
                 </button>
               </div>
               <div>
-                <label>종료 시간 *</label>
+                <span id="rehearsal-end-time-label" className="rehearsal-field-label">종료 시간 *</span>
                 <button
                   type="button"
                   className={`rehearsal-picker-field ${!form.end_time ? 'is-empty' : ''}`}
+                  aria-labelledby="rehearsal-end-time-label"
                   onClick={() => openTimePicker('end_time')}
                 >
                   {formatTimeDisplay(form.end_time)}
@@ -737,18 +770,19 @@ function AddRehearsalModal({ ownerKey, initialEvent, onClose, onKakaoConnected, 
             </div>
 
             <div>
-              <label>장소 (선택)</label>
-              <input type="text" placeholder="예: 이수 문화주실" value={form.studio_name} onChange={e => setForm({...form, studio_name: e.target.value})} />
+              <label htmlFor="rehearsal-studio">장소 (선택)</label>
+              <input id="rehearsal-studio" type="text" placeholder="예: 이수 문화주실" value={form.studio_name} onChange={e => setForm({...form, studio_name: e.target.value})} />
             </div>
 
             <div>
-              <label>이동 시간 (분)</label>
-              <input type="number" placeholder="예: 40" value={form.travel_minutes} onChange={e => setForm({...form, travel_minutes: e.target.value})} />
+              <label htmlFor="rehearsal-travel-minutes">이동 시간 (분)</label>
+              <input id="rehearsal-travel-minutes" type="number" placeholder="예: 40" value={form.travel_minutes} onChange={e => setForm({...form, travel_minutes: e.target.value})} />
             </div>
 
             <div>
-              <label>설명 (선택)</label>
+              <label htmlFor="rehearsal-description">설명 (선택)</label>
               <textarea
+                id="rehearsal-description"
                 rows={3}
                 placeholder="예: 공연 전 최종 리허설 / 드럼 세팅 먼저"
                 value={form.description}
@@ -780,9 +814,9 @@ function AddRehearsalModal({ ownerKey, initialEvent, onClose, onKakaoConnected, 
 function TimePickerSheet({ title, period, hour, onChange, onApply, onClose }) {
   return (
     <div className="rehearsal-time-picker-backdrop" onClick={onClose}>
-      <div className="rehearsal-time-picker-sheet" onClick={event => event.stopPropagation()}>
+      <div className="rehearsal-time-picker-sheet" role="dialog" aria-labelledby="rehearsal-time-picker-title" onClick={event => event.stopPropagation()}>
         <div className="rehearsal-sheet-header">
-          <h3 className="rehearsal-sheet-title">{title}</h3>
+          <h3 id="rehearsal-time-picker-title" className="rehearsal-sheet-title">{title}</h3>
           <button type="button" className="scheduler-modal-close" onClick={onClose}>닫기</button>
         </div>
 
@@ -790,6 +824,7 @@ function TimePickerSheet({ title, period, hour, onChange, onApply, onClose }) {
           <button
             type="button"
             className={period === 'am' ? 'is-selected' : ''}
+            aria-pressed={period === 'am'}
             onClick={() => onChange({ period: 'am' })}
           >
             오전
@@ -797,6 +832,7 @@ function TimePickerSheet({ title, period, hour, onChange, onApply, onClose }) {
           <button
             type="button"
             className={period === 'pm' ? 'is-selected' : ''}
+            aria-pressed={period === 'pm'}
             onClick={() => onChange({ period: 'pm' })}
           >
             오후
@@ -809,6 +845,7 @@ function TimePickerSheet({ title, period, hour, onChange, onApply, onClose }) {
               key={option}
               type="button"
               className={hour === option ? 'is-selected' : ''}
+              aria-pressed={hour === option}
               onClick={() => onChange({ hour: option })}
             >
               {option}시
