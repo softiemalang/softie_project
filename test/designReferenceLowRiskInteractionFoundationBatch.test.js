@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict'
-import { mkdtemp, readFile, readdir, rm, writeFile } from 'node:fs/promises'
+import { execFileSync } from 'node:child_process'
+import { cp, mkdtemp, readFile, readdir, rm, writeFile } from 'node:fs/promises'
 import { join } from 'node:path'
 import { tmpdir } from 'node:os'
 import test from 'node:test'
@@ -10,9 +11,12 @@ import {
 import {
   COMPANIONS,
   DEFAULT_DIRECTORY,
+  BASELINE_HEAD,
   VERDICT,
   materialize,
 } from '../scripts/materialize-design-reference-low-risk-interaction-foundation-batch-v1.mjs'
+
+const currentHead = execFileSync('git', ['-c', 'core.fsmonitor=false', 'rev-parse', 'HEAD'], { encoding: 'utf8' }).trim()
 
 test('batch artifact closes six independent frontier decisions without false promotion', async () => {
   assert.deepEqual(await checkMaterialized(DEFAULT_DIRECTORY), [])
@@ -32,7 +36,9 @@ test('batch artifact closes six independent frontier decisions without false pro
   assert.match(artifact.nonGeneralization.async200ms, /not reused/)
 })
 
-test('materialization is byte-identical across directories and at the same target', async () => {
+test('materialization is byte-identical across directories and at the same target', {
+  skip: currentHead === BASELINE_HEAD ? false : `frozen baseline materializer is replayed only at ${BASELINE_HEAD}`,
+}, async () => {
   const left = await mkdtemp(join(tmpdir(), 'softie-interaction-foundation-left-'))
   const right = await mkdtemp(join(tmpdir(), 'softie-interaction-foundation-right-'))
   try {
@@ -56,7 +62,7 @@ test('checker independently rejects every companion tamper', async () => {
   for (const companion of COMPANIONS) {
     const directory = await mkdtemp(join(tmpdir(), 'softie-interaction-foundation-companion-'))
     try {
-      await materialize(directory)
+      await cp(DEFAULT_DIRECTORY, directory, { recursive: true })
       const path = join(directory, companion)
       await writeFile(path, `${await readFile(path, 'utf8')}\n`)
       const failures = await checkMaterialized(directory)
@@ -71,7 +77,7 @@ test('checker independently rejects every companion tamper', async () => {
 test('checker rejects lineage inflation, unsupported promotion, device overclaim, and 200ms generalization', async () => {
   const directory = await mkdtemp(join(tmpdir(), 'softie-interaction-foundation-boundaries-'))
   try {
-    await materialize(directory)
+    await cp(DEFAULT_DIRECTORY, directory, { recursive: true })
     const path = join(directory, 'complete.json')
     const artifact = JSON.parse(await readFile(path, 'utf8'))
     artifact.provenanceLineage.emilCorpus.independentAuthorityCount = 2

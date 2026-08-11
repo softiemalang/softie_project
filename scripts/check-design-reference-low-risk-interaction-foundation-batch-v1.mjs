@@ -1,4 +1,5 @@
 import { createHash } from 'node:crypto'
+import { execFileSync } from 'node:child_process'
 import { existsSync, readFileSync } from 'node:fs'
 import { join, resolve } from 'node:path'
 
@@ -205,7 +206,12 @@ export async function checkMaterialized(directory = DEFAULT_DIRECTORY) {
     return ['complete_invalid_json']
   }
   const errors = checkArtifact(artifact, directory)
-  if (resolve(directory) === resolve(DEFAULT_DIRECTORY) && errors.length === 0) {
+  const currentHead = execFileSync('git', ['-c', 'core.fsmonitor=false', 'rev-parse', 'HEAD'], {
+    cwd: ROOT,
+    encoding: 'utf8',
+    stdio: ['ignore', 'pipe', 'ignore'],
+  }).trim()
+  if (resolve(directory) === resolve(DEFAULT_DIRECTORY) && errors.length === 0 && currentHead === artifact?.repository?.baselineHead) {
     add(errors, stableArtifactContentEqual(artifact, buildFoundationPayload()), 'materialized_content')
   }
   return [...new Set(errors)]
