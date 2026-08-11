@@ -840,7 +840,6 @@ textarea {
   font-size: 0.88rem;
   font-weight: 600;
   box-shadow: 0 8px 24px rgba(31, 111, 95, 0.2);
-  transition: transform 0.2s ease;
   border: none;
   cursor: pointer;
 }
@@ -850,7 +849,6 @@ textarea {
 }
 
 .scheduler-fab-button:active {
-  transform: scale(0.96);
   box-shadow: 0 4px 12px rgba(31, 111, 95, 0.16);
 }
 
@@ -935,7 +933,7 @@ textarea {
   width: 100%;
   text-align: left;
   cursor: pointer;
-  transition: transform 0.1s, background-color 0.2s;
+  transition: background-color 0.2s;
   font-family: inherit;
   padding: 0.85rem 1rem;
   background: rgba(255, 252, 248, 0.65);
@@ -3808,11 +3806,10 @@ textarea {
   width: 100%;
   text-align: left;
   cursor: pointer;
-  transition: transform 0.1s, background-color 0.2s;
+  transition: background-color 0.2s;
   font-family: inherit;
 }
 .scheduler-setting-card:active {
-  transform: scale(0.98);
   background-color: rgba(255, 252, 248, 0.98);
 }
 .scheduler-setting-subtitle {
@@ -4941,7 +4938,6 @@ textarea {
 
 .scheduler-theme-shell .scheduler-status-item:active {
   background: var(--ag-surface-selected);
-  transform: scale(0.985);
 }
 
 .scheduler-theme-shell .scheduler-status-item-label,
@@ -5437,6 +5433,14 @@ textarea {
   color: var(--ag-text-muted);
 }
 
+.scheduler-theme-shell .scheduler-push-status-note.is-error {
+  color: var(--ag-danger);
+}
+
+.scheduler-theme-shell .scheduler-push-status-note.is-success {
+  color: var(--ag-success);
+}
+
 .scheduler-theme-shell .scheduler-filter-summary-copy strong,
 .scheduler-theme-shell .scheduler-primary-info-card .scheduler-filter-summary-copy strong,
 .scheduler-theme-shell .scheduler-controls strong,
@@ -5885,9 +5889,6 @@ textarea {
     opacity: 0.86;
   }
 
-  .scheduler-fab-button:active,
-  .scheduler-setting-card:active,
-  .scheduler-theme-shell .scheduler-status-item:active,
   .scheduler-theme-shell .scheduler-editor-page .scheduler-back-button:active:not(:disabled),
   .scheduler-theme-shell .scheduler-editor-page .scheduler-chip:active:not(:disabled),
   .scheduler-theme-shell .scheduler-editor-page .scheduler-room-option:active:not(:disabled),

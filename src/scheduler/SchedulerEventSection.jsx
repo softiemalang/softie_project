@@ -6,7 +6,7 @@ export function SchedulerEventSection({
   items,
   emptyText,
   onToggleDone,
-  pendingStatusId,
+  pendingStatusIds,
   hideEmptyText = false,
 }) {
   const normalizedEmptyText = (() => {
@@ -18,7 +18,7 @@ export function SchedulerEventSection({
   const sectionClassName = [
     'scheduler-panel',
     'scheduler-event-section',
-    title === '오늘 전체' ? 'is-primary' : '',
+    title === '지금 처리할 일' ? 'is-primary' : '',
     items.length === 0 ? 'scheduler-panel-empty' : '',
   ]
     .filter(Boolean)
@@ -51,7 +51,7 @@ export function SchedulerEventSection({
             <SchedulerEventCard
               key={item.id}
               item={item}
-              isSaving={pendingStatusId === item.id}
+              isSaving={pendingStatusIds.has(item.id)}
               onToggleDone={onToggleDone}
             />
           ))}

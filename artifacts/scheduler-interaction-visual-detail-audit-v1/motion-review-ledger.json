@@ -1,0 +1,101 @@
+{
+  "reviews": [
+    {
+      "after": {
+        "byteLength": 138900,
+        "byteSha256": "10bf108a491a9688b9731d79090bef361f8c9d0366c344fed775c4d3adc2584b",
+        "kind": "working_tree_text",
+        "lineEnd": 852,
+        "lineStart": 851,
+        "path": "src/styles.css",
+        "quote": ".scheduler-fab-button:active {\n  box-shadow:"
+      },
+      "before": {
+        "byteLength": 138981,
+        "byteSha256": "1af07e192bf1893c763be141171eb2654092aa0f13b30d02779be76e1faf7b65",
+        "commit": "2922ccca1bd566ff7312470bc34e67b24f4bae6c",
+        "kind": "git_commit_text",
+        "lineEnd": 843,
+        "lineStart": 843,
+        "path": "src/styles.css",
+        "quote": "transition: transform 0.2s ease;"
+      },
+      "decision": "remove_raw_press_transform",
+      "id": "MOTION-FAB"
+    },
+    {
+      "after": {
+        "byteLength": 138900,
+        "byteSha256": "10bf108a491a9688b9731d79090bef361f8c9d0366c344fed775c4d3adc2584b",
+        "kind": "working_tree_text",
+        "lineEnd": 3813,
+        "lineStart": 3812,
+        "path": "src/styles.css",
+        "quote": ".scheduler-setting-card:active {\n  background-color:"
+      },
+      "before": {
+        "byteLength": 138981,
+        "byteSha256": "1af07e192bf1893c763be141171eb2654092aa0f13b30d02779be76e1faf7b65",
+        "commit": "2922ccca1bd566ff7312470bc34e67b24f4bae6c",
+        "kind": "git_commit_text",
+        "lineEnd": 3815,
+        "lineStart": 3815,
+        "path": "src/styles.css",
+        "quote": "transform: scale(0.98);"
+      },
+      "decision": "keep_glass_static",
+      "id": "MOTION-SETTING-GLASS"
+    },
+    {
+      "after": {
+        "byteLength": 138900,
+        "byteSha256": "10bf108a491a9688b9731d79090bef361f8c9d0366c344fed775c4d3adc2584b",
+        "kind": "working_tree_text",
+        "lineEnd": 5776,
+        "lineStart": 5776,
+        "path": "src/styles.css",
+        "quote": "transform 160ms cubic-bezier(0.23, 1, 0.32, 1),"
+      },
+      "decision": "preserve_scoped_pilot",
+      "id": "MOTION-EVENT-PRESS-PILOT"
+    },
+    {
+      "after": {
+        "byteLength": 35517,
+        "byteSha256": "61a124fff78b1dbd16f548d72ebe50165f151e1d1b287d18730930b95faf90b1",
+        "kind": "working_tree_text",
+        "lineEnd": 314,
+        "lineStart": 314,
+        "path": "DESIGN.md",
+        "quote": "`180ms ease`는 기존의 빠른 일반 전환 baseline이며 모든 interaction role의 보편 duration/easing이 아닙니다."
+      },
+      "decision": "preserve_180ms_role",
+      "id": "MOTION-ROUTE-CROSSFADE"
+    },
+    {
+      "after": {
+        "byteLength": 26844,
+        "byteSha256": "208bdc396fde2373cd6e610de5c9add251e1dab2396de722056017e980b73dc0",
+        "kind": "working_tree_text",
+        "lineEnd": 90,
+        "lineStart": 90,
+        "path": "src/scheduler/ReservationEditorPage.jsx",
+        "quote": "window.scrollTo({ top: 0, left: 0, behavior: 'auto' })"
+      },
+      "before": {
+        "byteLength": 26804,
+        "byteSha256": "dfebdbbe955da859991a894923db21d90fe86d9dab47aa36188e050d437376cf",
+        "commit": "2922ccca1bd566ff7312470bc34e67b24f4bae6c",
+        "kind": "git_commit_text",
+        "lineEnd": 360,
+        "lineStart": 360,
+        "path": "src/scheduler/ReservationEditorPage.jsx",
+        "quote": "window.scrollTo({ top: 0, behavior: 'smooth' })"
+      },
+      "decision": "remove_unbounded_scroll_motion",
+      "id": "MOTION-CREATE-SCROLL"
+    }
+  ],
+  "schemaVersion": "scheduler-interaction-visual-motion-review-ledger-v1",
+  "verdict": "approve_bounded_removals_and_role_separation"
+}

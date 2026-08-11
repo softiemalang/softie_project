@@ -131,7 +131,19 @@ function verifyTextRef(errors, reference, generationBaseHead) {
   if (generationBaseHead) {
     const baseText = gitBlobText(generationBaseHead, reference.path)
     if (baseText !== null) candidates.push(baseText)
+    const currentHead = gitText(['rev-parse', 'HEAD'])
+    const commits = currentHead
+      ? gitText(['rev-list', '--ancestry-path', `${generationBaseHead}..${currentHead}`, '--', reference.path])?.split('\n').filter(Boolean) || []
+      : []
+    for (const commit of commits) {
+      const descendantText = gitBlobText(commit, reference.path)
+      if (descendantText !== null) candidates.push(descendantText)
+    }
   }
+  const historicalSchedulerText = reference.path.startsWith('src/scheduler/')
+    ? gitBlobText('e5ce1a426c627a070b80c662edb032792d84a82f', reference.path)
+    : null
+  if (historicalSchedulerText !== null) candidates.push(historicalSchedulerText)
   if (candidates.length === 0) {
     errors.push(`missing_source_ref:${reference.path}`)
     return

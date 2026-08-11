@@ -1,0 +1,19 @@
+{
+  "checks": [
+    "44x44 targets and safe-area FAB",
+    "double-tap mutation exclusion",
+    "VoiceOver toggle name/state",
+    "hardware keyboard focus order",
+    "native date/time picker values",
+    "modal focus/inert/Escape/restore",
+    "push status in installed PWA",
+    "work-log confirm/busy/recovery"
+  ],
+  "evidenceStatus": "unverified",
+  "schemaVersion": "scheduler-interaction-visual-device-validation-ledger-v1",
+  "targets": [
+    "iPhone 375x667 Safari",
+    "iPhone 393x852 Safari",
+    "installed iOS PWA"
+  ]
+}

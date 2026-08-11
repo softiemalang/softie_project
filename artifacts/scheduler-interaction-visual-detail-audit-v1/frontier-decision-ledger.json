@@ -1,0 +1,56 @@
+{
+  "frontiers": [
+    {
+      "decision": "fix",
+      "id": "FRONTIER-ASYNC-STATE"
+    },
+    {
+      "decision": "fix",
+      "id": "FRONTIER-DUPLICATE-ACTION"
+    },
+    {
+      "decision": "fix",
+      "id": "FRONTIER-LIVE-FEEDBACK"
+    },
+    {
+      "decision": "fix",
+      "id": "FRONTIER-TOGGLE-GROUP-SEMANTICS"
+    },
+    {
+      "decision": "fix",
+      "id": "FRONTIER-DESTRUCTIVE-WORKLOG"
+    },
+    {
+      "decision": "fix",
+      "id": "FRONTIER-GLASS-RAW-PRESS-MOTION"
+    },
+    {
+      "decision": "pilot",
+      "id": "FRONTIER-ACTION-NOW-HIERARCHY"
+    },
+    {
+      "blocker": "Rapid-entry versus return-to-list intent is not established.",
+      "decision": "hold",
+      "id": "FRONTIER-SAVE-DESTINATION"
+    },
+    {
+      "blocker": "No browser, VoiceOver, inert, Escape, or focus-restoration proof.",
+      "decision": "hold",
+      "id": "FRONTIER-MODAL-FOCUS-LIFECYCLE"
+    },
+    {
+      "blocker": "iPhone picker behavior is unverified.",
+      "decision": "hold",
+      "id": "FRONTIER-HOURLY-NATIVE-PICKER"
+    },
+    {
+      "decision": "already_good",
+      "id": "FRONTIER-EVENT-CARD-DENSITY"
+    },
+    {
+      "decision": "reject",
+      "id": "FRONTIER-NEW-SHEET-MOTION"
+    }
+  ],
+  "schemaVersion": "scheduler-interaction-visual-frontier-decision-ledger-v1"
+}

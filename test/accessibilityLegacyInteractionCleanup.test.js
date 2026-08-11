@@ -83,16 +83,38 @@ test('legacy selection controls expose native pressed button state without incom
   assert.doesNotMatch(prepPage, /role="radiogroup"|role="radio"|aria-checked=/)
 })
 
-test('legacy reduced-motion removes audited transforms and width interpolation while preserving states', () => {
+test('Scheduler glass controls and FAB avoid raw press transforms while reduced motion removes remaining movement', () => {
+  const fabRule = sliceBetween(
+    styles,
+    '.scheduler-fab-button {',
+    '\n.scheduler-fab-icon {',
+  )
+  assert.doesNotMatch(fabRule, /transition:[^;]*transform|transform:/)
+  assert.doesNotMatch(styles, /\.scheduler-fab-button:active\s*\{[^}]*transform:/)
+
+  const settingRule = sliceBetween(
+    styles,
+    '.scheduler-theme-shell .scheduler-setting-card {',
+    '\n.scheduler-theme-shell .scheduler-auth-card {',
+  )
+  assert.match(settingRule, /backdrop-filter:/)
+  assert.doesNotMatch(settingRule, /transition:[^;]*transform|:active\s*\{[^}]*transform:/)
+
+  const statusRule = sliceBetween(
+    styles,
+    '.scheduler-theme-shell .scheduler-status-item {',
+    '\n.scheduler-theme-shell .scheduler-status-item-label,',
+  )
+  assert.match(statusRule, /backdrop-filter:/)
+  assert.doesNotMatch(statusRule, /:active\s*\{[^}]*transform:/)
+
   const globalReduced = sliceBetween(
     styles,
     '@media (prefers-reduced-motion: reduce) {\n  .home-shell.ag-shell .service-card:active',
     '\n}\n\n.scheduler-theme-shell .scheduler-sheet,',
   )
   for (const selector of [
-    '.scheduler-fab-button:active',
-    '.scheduler-setting-card:active',
-    '.scheduler-theme-shell .scheduler-status-item:active',
+    '.scheduler-theme-shell .scheduler-editor-page .scheduler-back-button:active:not(:disabled)',
     '.music-volume-step-btn:active:not(:disabled)',
   ]) assert.ok(globalReduced.includes(selector), selector)
   assert.match(globalReduced, /transform:\s*none !important/)

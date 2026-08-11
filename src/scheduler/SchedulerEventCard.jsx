@@ -51,8 +51,9 @@ export function SchedulerEventCard({ item, onToggleDone, isSaving }) {
             type="button"
             className={isDone ? 'scheduler-action-button secondary' : 'scheduler-action-button'}
             disabled={isSaving}
-            aria-label={isSaving ? `${statusActionLabel} 처리 중` : statusActionLabel}
+            aria-label="완료"
             aria-pressed={isDone}
+            aria-busy={isSaving}
             onClick={() => onToggleDone(item)}
           >
             <span className="scheduler-action-button-visual">

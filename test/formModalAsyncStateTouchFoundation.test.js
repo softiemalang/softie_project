@@ -23,6 +23,7 @@ const fortune = read('src/saju/SoftieFortunePage.jsx')
 const editor = read('src/scheduler/ReservationEditorPage.jsx')
 const today = read('src/scheduler/TodaySchedulerPage.jsx')
 const syncModal = read('src/scheduler/SyncConfirmationModal.jsx')
+const workLogDetail = read('src/scheduler/WorkLogDetailView.jsx')
 const styles = read('src/styles.css')
 const bandPolish = read('public/band-polish.css')
 const bandAccount = read('public/band-hub-account-actions.css')
@@ -83,6 +84,10 @@ test('active mutation surfaces acquire synchronous locks and expose busy feedbac
   assert.match(fortune, /if \(!activeProfile \|\| isLoading \|\| reportRefreshLockRef\.current\) return/)
   assert.match(fortune, /backupLockRef\.current \|\| isBackedUp/)
   assert.match(today, /workLogSyncLockRef\.current = true[\s\S]*setIsWorkLogSyncBusy\(true\)/)
+  assert.match(today, /pushActionLockRef\.current = true[\s\S]*setIsPushBusy\(true\)/)
+  assert.match(today, /pushPreferencesLockRef\.current = true[\s\S]*setIsPushPreferencesBusy\(true\)/)
+  assert.match(today, /pendingWorkLogDeleteIdsRef\.current\.has\(log\.id\)[\s\S]*pendingWorkLogDeleteIdsRef\.current = nextPendingIds/)
+  assert.match(workLogDetail, /disabled=\{isDeleting\}[\s\S]*aria-busy=\{isDeleting\}/)
   assert.match(syncModal, /disabled=\{isBusy\}[\s\S]*aria-busy=\{isBusy\}/)
 })
 
@@ -98,6 +103,9 @@ test('audited synchronous locks release from finally paths', () => {
   assert.match(fortune, /finally\s*\{\s*reportRefreshLockRef\.current = false/)
   assert.match(fortune, /finally\s*\{\s*backupLockRef\.current = false/)
   assert.equal((today.match(/finally\s*\{\s*workLogSyncLockRef\.current = false/g) || []).length, 2)
+  assert.equal((today.match(/finally\s*\{\s*pushActionLockRef\.current = false/g) || []).length, 2)
+  assert.match(today, /finally\s*\{\s*pushPreferencesLockRef\.current = false/)
+  assert.match(today, /finally\s*\{[\s\S]*?pendingWorkLogDeleteIdsRef\.current = remainingPendingIds/)
 })
 
 test('loading, empty, filter-no-result, and error states stay distinct', () => {

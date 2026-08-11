@@ -1,0 +1,35 @@
+{
+  "artifactId": "scheduler-interaction-visual-detail-audit-v1",
+  "completeArtifactPath": "artifacts/scheduler-interaction-visual-detail-audit-v1/complete.json",
+  "files": {
+    "artifacts/scheduler-interaction-visual-detail-audit-v1/complete.json": {
+      "byteLength": 21642,
+      "byteSha256": "e80add48c6ad6d4946ff89e0ff7cde671c64ae5a64cd6beda276fa4365f4e40b"
+    },
+    "artifacts/scheduler-interaction-visual-detail-audit-v1/device-validation-ledger.json": {
+      "byteLength": 536,
+      "byteSha256": "06949a04435370cd677056dba4832a50bd41f4e503e0f9179d9617ef38d9abad"
+    },
+    "artifacts/scheduler-interaction-visual-detail-audit-v1/flow-audit-ledger.json": {
+      "byteLength": 5031,
+      "byteSha256": "6ddd6037bb606c14583fc7f33e1001a91874dcff9607d455121b88bcbc645e38"
+    },
+    "artifacts/scheduler-interaction-visual-detail-audit-v1/frontier-decision-ledger.json": {
+      "byteLength": 1303,
+      "byteSha256": "abe76563a613705c3299f1b2db5a798edf1f02188d05cd7e51b7ccfdfcd344eb"
+    },
+    "artifacts/scheduler-interaction-visual-detail-audit-v1/motion-review-ledger.json": {
+      "byteLength": 3571,
+      "byteSha256": "08740d3e46add6531f138f063ad73fdc480560efe8318a5a6bcd9d67f860f5a5"
+    },
+    "artifacts/scheduler-interaction-visual-detail-audit-v1/source-reference-ledger.json": {
+      "byteLength": 3019,
+      "byteSha256": "e76e86fbaea16584c7c2ad1e87588a9aec359b7ed06a1967d21edb4e2e1c21d0"
+    },
+    "artifacts/scheduler-interaction-visual-detail-audit-v1/validation-blocker-ledger.json": {
+      "byteLength": 1263,
+      "byteSha256": "f43c11c4d63bb8be9456df211b47097cce8f7c8ac8f3243aadad5a61ed4f4775"
+    }
+  },
+  "schemaVersion": "softie-artifact-integrity-v1"
+}

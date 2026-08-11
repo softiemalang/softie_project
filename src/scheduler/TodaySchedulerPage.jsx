@@ -85,7 +85,7 @@ export function TodaySchedulerPage({
   const [isFilterSheetOpen, setIsFilterSheetOpen] = useState(false)
   const [status, setStatus] = useState('')
   const [isLoading, setIsLoading] = useState(true)
-  const [pendingStatusId, setPendingStatusId] = useState('')
+  const [pendingStatusIds, setPendingStatusIds] = useState(() => new Set())
   const [pushState, setPushState] = useState({
     supported: false,
     platform: '',
@@ -104,6 +104,8 @@ export function TodaySchedulerPage({
   const normalizedFilters = normalizeWorkTimeFilter(filters)
   const normalizedDraftWorkTime = normalizeWorkTimeFilter(draftFilters)
   const [workLogs, setWorkLogs] = useState([])
+  const [workLogStatus, setWorkLogStatus] = useState(null)
+  const [pendingWorkLogDeleteIds, setPendingWorkLogDeleteIds] = useState(() => new Set())
   const [isWorkLogOpen, setIsWorkLogOpen] = useState(false)
   const [viewingWeekStart, setViewingWeekStart] = useState(() => getWeekStartDate(initialSelectedDate))
   const [copyFeedback, setCopyFeedback] = useState('')
@@ -111,8 +113,12 @@ export function TodaySchedulerPage({
   const [syncToast, setSyncToast] = useState('')
   const [isWorkLogSyncBusy, setIsWorkLogSyncBusy] = useState(false)
   const eventsRequestSequenceRef = useRef(0)
+  const pendingStatusIdsRef = useRef(new Set())
   const syncToastTimerRef = useRef(null)
   const workLogSyncLockRef = useRef(false)
+  const pendingWorkLogDeleteIdsRef = useRef(new Set())
+  const pushActionLockRef = useRef(false)
+  const pushPreferencesLockRef = useRef(false)
 
   useEffect(() => () => {
     if (syncToastTimerRef.current) {
@@ -190,14 +196,14 @@ export function TodaySchedulerPage({
 
     workLogSyncLockRef.current = true
     setIsWorkLogSyncBusy(true)
+    setWorkLogStatus(null)
     try {
       const saved = await upsertSchedulerWorkLog(effectiveOwnerKey, candidate)
       setWorkLogs(prev => [...prev, saved])
-      setPushStatus('근무 기록을 동기화했어요.')
-      setTimeout(() => setPushStatus(''), 2000)
+      setWorkLogStatus({ tone: 'success', text: '근무 기록을 동기화했어요.' })
       showSyncToast()
     } catch (err) {
-      setPushStatus('기록 저장 중 오류가 발생했습니다.')
+      setWorkLogStatus({ tone: 'error', text: '기록 저장 중 오류가 발생했습니다.' })
       console.error(err)
     } finally {
       workLogSyncLockRef.current = false
@@ -211,6 +217,7 @@ export function TodaySchedulerPage({
 
     workLogSyncLockRef.current = true
     setIsWorkLogSyncBusy(true)
+    setWorkLogStatus(null)
     try {
       const idsToRemove = overlapping.map(o => o.id)
       const saved = await replaceSchedulerWorkLogs(effectiveOwnerKey, idsToRemove, candidate)
@@ -221,11 +228,10 @@ export function TodaySchedulerPage({
       ])
 
       setSyncConfirmation(null)
-      setPushStatus('근무 기록을 변경 적용했어요.')
-      setTimeout(() => setPushStatus(''), 2000)
+      setWorkLogStatus({ tone: 'success', text: '근무 기록을 변경 적용했어요.' })
       showSyncToast()
     } catch (err) {
-      setPushStatus('기록 변경 중 오류가 발생했습니다.')
+      setWorkLogStatus({ tone: 'error', text: '기록 변경 중 오류가 발생했습니다.' })
       console.error(err)
     } finally {
       workLogSyncLockRef.current = false
@@ -233,13 +239,28 @@ export function TodaySchedulerPage({
     }
   }
 
-  async function handleDeleteWorkLogEntry(id) {
+  async function handleDeleteWorkLogEntry(log) {
+    if (!log?.id || pendingWorkLogDeleteIdsRef.current.has(log.id)) return
+    const shouldDelete = window.confirm(`${log.date} ${log.startTime}-${log.endTime} 근무 기록을 삭제할까요?`)
+    if (!shouldDelete) return
+
+    const nextPendingIds = new Set(pendingWorkLogDeleteIdsRef.current)
+    nextPendingIds.add(log.id)
+    pendingWorkLogDeleteIdsRef.current = nextPendingIds
+    setPendingWorkLogDeleteIds(nextPendingIds)
+    setWorkLogStatus(null)
     try {
-      await deleteSchedulerWorkLogs(effectiveOwnerKey, [id])
-      setWorkLogs(prev => prev.filter(log => log.id !== id))
+      await deleteSchedulerWorkLogs(effectiveOwnerKey, [log.id])
+      setWorkLogs(prev => prev.filter(item => item.id !== log.id))
+      setWorkLogStatus({ tone: 'success', text: '근무 기록을 삭제했어요.' })
     } catch (err) {
       console.error('[scheduler] Failed to delete work log:', err)
-      alert('기록 삭제 중 오류가 발생했습니다.')
+      setWorkLogStatus({ tone: 'error', text: '기록 삭제 중 오류가 발생했습니다.' })
+    } finally {
+      const remainingPendingIds = new Set(pendingWorkLogDeleteIdsRef.current)
+      remainingPendingIds.delete(log.id)
+      pendingWorkLogDeleteIdsRef.current = remainingPendingIds
+      setPendingWorkLogDeleteIds(remainingPendingIds)
     }
   }
 
@@ -276,6 +297,7 @@ export function TodaySchedulerPage({
   async function loadEvents() {
     const requestSequence = eventsRequestSequenceRef.current + 1
     eventsRequestSequenceRef.current = requestSequence
+    setStatus('')
     setIsLoading(true)
     try {
       const rows = await listTodayWorkEvents(selectedDate, effectiveOwnerKey)
@@ -402,17 +424,19 @@ export function TodaySchedulerPage({
   })
 
   const grouped = groupTodayEvents(filteredEvents, new Date(), selectedDate)
-  const eventEmptyText = isLoading
-    ? '일정을 불러오는 중...'
-    : status
-      ? '일정을 표시할 수 없어요.'
-      : events.length > 0 && filteredEvents.length === 0
-        ? '현재 조건에 맞는 일정이 없어요.'
-        : '오늘 일정이 없어요.'
+  const eventEmptyText = events.length > 0 && filteredEvents.length === 0
+    ? '현재 조건에 맞는 일정이 없어요.'
+    : '오늘 일정이 없어요.'
 
   async function handleToggleDone(eventRow) {
+    if (pendingStatusIdsRef.current.has(eventRow.id)) return
+
     const nextStatus = eventRow.status === 'done' ? 'pending' : 'done'
-    setPendingStatusId(eventRow.id)
+    const nextPendingStatusIds = new Set(pendingStatusIdsRef.current)
+    nextPendingStatusIds.add(eventRow.id)
+    pendingStatusIdsRef.current = nextPendingStatusIds
+    setPendingStatusIds(nextPendingStatusIds)
+    setStatus('')
     try {
       await updateWorkEventStatus(eventRow.id, nextStatus, effectiveOwnerKey)
       setEvents((current) =>
@@ -421,11 +445,15 @@ export function TodaySchedulerPage({
     } catch (error) {
       setStatus(error.message)
     } finally {
-      setPendingStatusId('')
+      const remainingPendingStatusIds = new Set(pendingStatusIdsRef.current)
+      remainingPendingStatusIds.delete(eventRow.id)
+      pendingStatusIdsRef.current = remainingPendingStatusIds
+      setPendingStatusIds(remainingPendingStatusIds)
     }
   }
 
   function openFilterSheet() {
+    setWorkLogStatus(null)
     setDraftFilters({
       date: selectedDate,
       branch: filters.branch,
@@ -612,7 +640,10 @@ export function TodaySchedulerPage({
   })()
 
   async function handleEnablePush(options = {}) {
+    if (pushActionLockRef.current || pushPreferencesLockRef.current) return
+
     const { forceRefresh = false } = options
+    pushActionLockRef.current = true
     setIsPushBusy(true)
     setPushStatus(forceRefresh ? '브라우저 알림을 다시 연결하는 중...' : '알림 연결 중...')
 
@@ -643,12 +674,16 @@ export function TodaySchedulerPage({
       console.error('[push] handleEnablePush failed:', error)
       setPushStatus(msg)
     } finally {
+      pushActionLockRef.current = false
       setIsPushBusy(false)
     }
   }
 
   async function handleUpdatePushPreferences(nextPreferences, options = {}) {
+    if (pushPreferencesLockRef.current || pushActionLockRef.current) return false
+
     const { silent = false, deviceId = null } = options
+    pushPreferencesLockRef.current = true
     setIsPushPreferencesBusy(true)
     if (!silent) {
       setPushStatus('')
@@ -674,12 +709,17 @@ export function TodaySchedulerPage({
       }
       return false
     } finally {
+      pushPreferencesLockRef.current = false
       setIsPushPreferencesBusy(false)
     }
   }
 
   async function handleSendTestPush() {
+    if (pushActionLockRef.current || pushPreferencesLockRef.current) return
+
+    pushActionLockRef.current = true
     setIsPushBusy(true)
+    setPushStatus('테스트 알림을 보내는 중...')
     try {
       const deviceId = getOrCreatePushDeviceId()
       await sendSchedulerTestPush(deviceId)
@@ -688,8 +728,26 @@ export function TodaySchedulerPage({
     } catch (error) {
       setPushStatus(error instanceof Error ? error.message : '테스트 알림 전송에 실패했어요.')
     } finally {
+      pushActionLockRef.current = false
       setIsPushBusy(false)
     }
+  }
+
+  function openWebPushModal() {
+    setPushStatus('')
+    setIsWebPushModalOpen(true)
+  }
+
+  function closeWebPushModal() {
+    if (pushActionLockRef.current || pushPreferencesLockRef.current) return
+    setIsWebPushModalOpen(false)
+    setPushStatus('')
+  }
+
+  function closeWorkLog() {
+    if (pendingWorkLogDeleteIdsRef.current.size > 0) return
+    setIsWorkLogOpen(false)
+    setWorkLogStatus(null)
   }
 
   return (
@@ -714,8 +772,9 @@ export function TodaySchedulerPage({
         <button
           type="button"
           className={`scheduler-status-item ${isPushConnected ? 'is-ready' : 'needs-attention'}`}
-          onClick={() => setIsWebPushModalOpen(true)}
+          onClick={openWebPushModal}
           aria-label={`알림 ${pushStatusLabel}. 세부 설정 열기`}
+          aria-busy={isPushBusy || isPushPreferencesBusy}
         >
           <span className="scheduler-status-item-label">알림</span>
           <span className="scheduler-status-item-value">{pushStatusLabel}</span>
@@ -723,7 +782,7 @@ export function TodaySchedulerPage({
       </section>
 
       {isWebPushModalOpen && (
-        <div className="scheduler-sheet-backdrop scheduler-modal-backdrop" onClick={() => setIsWebPushModalOpen(false)}>
+        <div className="scheduler-sheet-backdrop scheduler-modal-backdrop" onClick={closeWebPushModal}>
           <div className="scheduler-modal" role="dialog" aria-label="웹 알림 설정" onClick={e => e.stopPropagation()}>
             <div className="scheduler-section-head" style={{ marginBottom: '0.65rem' }}>
               <div>
@@ -731,7 +790,14 @@ export function TodaySchedulerPage({
                   {normalizedFilters.workTimeEnabled ? '알림 On' : '알림 Off'}
                 </p>
               </div>
-              <button type="button" className="scheduler-modal-close" onClick={() => setIsWebPushModalOpen(false)}>닫기</button>
+              <button
+                type="button"
+                className="scheduler-modal-close"
+                onClick={closeWebPushModal}
+                disabled={isPushBusy || isPushPreferencesBusy}
+              >
+                닫기
+              </button>
             </div>
 
             <p className="subtle scheduler-modal-description" style={{ marginTop: 0, marginBottom: '1.25rem' }}>
@@ -742,13 +808,27 @@ export function TodaySchedulerPage({
                   : '현재 브라우저 알림이 꺼져 있어요. 알림을 받으려면 연결을 확인해 주세요.'}
             </p>
 
+            <p className="scheduler-push-summary">{pushSummary}</p>
+
+            {pushStatusMeta ? (
+              <p
+                className={`scheduler-push-status-note is-${pushStatusMeta.tone}`}
+                role={pushStatusMeta.tone === 'error' ? 'alert' : 'status'}
+                aria-live={pushStatusMeta.tone === 'error' ? 'assertive' : 'polite'}
+                aria-atomic="true"
+              >
+                {pushStatusMeta.text}
+              </p>
+            ) : null}
+
             {isPushConnected ? (
               <div className="scheduler-modal-actions stack" aria-label="웹 알림 설정">
                 <button
                   type="button"
                   className="scheduler-modal-btn secondary"
                   onClick={handleSendTestPush}
-                  disabled={isPushBusy || !pushState.subscribed}
+                  disabled={isPushBusy || isPushPreferencesBusy || !pushState.subscribed}
+                  aria-busy={isPushBusy || isPushPreferencesBusy}
                 >
                   테스트 알림 보내기
                 </button>
@@ -756,7 +836,8 @@ export function TodaySchedulerPage({
                   type="button"
                   className="scheduler-modal-btn"
                   onClick={() => handleEnablePush({ forceRefresh: true })}
-                  disabled={isPushBusy}
+                  disabled={isPushBusy || isPushPreferencesBusy}
+                  aria-busy={isPushBusy || isPushPreferencesBusy}
                 >
                   {normalizedFilters.workTimeEnabled ? '브라우저 다시 연결' : '브라우저 연결 확인'}
                 </button>
@@ -767,7 +848,8 @@ export function TodaySchedulerPage({
                   type="button"
                   className="scheduler-modal-btn"
                   onClick={() => handleEnablePush()}
-                  disabled={isPushBusy || !pushState.supported || pushState.permission === 'denied'}
+                  disabled={isPushBusy || isPushPreferencesBusy || !pushState.supported || pushState.permission === 'denied'}
+                  aria-busy={isPushBusy || isPushPreferencesBusy}
                 >
                   알림 연결
                 </button>
@@ -775,7 +857,8 @@ export function TodaySchedulerPage({
                   type="button"
                   className="scheduler-modal-btn secondary"
                   onClick={handleSendTestPush}
-                  disabled={isPushBusy || !pushState.subscribed}
+                  disabled={isPushBusy || isPushPreferencesBusy || !pushState.subscribed}
+                  aria-busy={isPushBusy || isPushPreferencesBusy}
                 >
                   테스트 알림 보내기
                 </button>
@@ -795,7 +878,9 @@ export function TodaySchedulerPage({
             <strong className={normalizedFilters.workTimeEnabled ? 'scheduler-work-status-title' : undefined}>
               {normalizedFilters.workTimeEnabled ? '근무 중' : `${TODAY_HOURS.start}:00 - ${TODAY_HOURS.end}:00`}
             </strong>
-            <p className="subtle">{filterSummary}</p>
+            <p className="subtle" role="status" aria-live="polite" aria-atomic="true">
+              {isLoading ? `${filterSummary} · 일정 불러오는 중` : filterSummary}
+            </p>
           </div>
           <div className="scheduler-summary-actions">
             <button
@@ -814,9 +899,21 @@ export function TodaySchedulerPage({
         </div>
       </section>
 
+      {!isWorkLogOpen && workLogStatus ? (
+        <p
+          className={`scheduler-push-status-note is-${workLogStatus.tone}`}
+          role={workLogStatus.tone === 'error' ? 'alert' : 'status'}
+          aria-live={workLogStatus.tone === 'error' ? 'assertive' : 'polite'}
+          aria-atomic="true"
+        >
+          {workLogStatus.text}
+        </p>
+      ) : null}
+
       <WorkLogSummaryCard
         currentWeekStart={getWeekStartDate(selectedDate)}
         onOpen={() => {
+          setWorkLogStatus(null)
           setViewingWeekStart(getWeekStartDate(selectedDate))
           setIsWorkLogOpen(true)
         }}
@@ -857,7 +954,7 @@ export function TodaySchedulerPage({
               />
 
               <div className="scheduler-filter-field">
-                <div className="scheduler-chip-row scheduler-filter-mode-row" aria-label="보기 설정">
+                <div className="scheduler-chip-row scheduler-filter-mode-row" role="group" aria-label="보기 설정">
                   <button
                     type="button"
                     className={`scheduler-chip ${!draftFilters.workTimeEnabled ? 'active' : ''}`}
@@ -930,11 +1027,13 @@ export function TodaySchedulerPage({
         <WorkLogDetailView
           viewingWeekStart={viewingWeekStart}
           logs={workLogs}
-          onClose={() => setIsWorkLogOpen(false)}
+          onClose={closeWorkLog}
           onNavigate={handleNavigateWeek}
           onCopy={handleCopyWeekLog}
           onDelete={handleDeleteWorkLogEntry}
           copyFeedback={copyFeedback}
+          pendingDeleteIds={pendingWorkLogDeleteIds}
+          status={workLogStatus}
         />
       ) : null}
 
@@ -951,13 +1050,16 @@ export function TodaySchedulerPage({
 
       {status ? <p className="status scheduler-load-status" role="alert">{status}</p> : null}
 
-      <div className={`scheduler-async-content${shouldAnimateInitialContent ? ' scheduler-async-content--initial-enter' : ''}`}>
+      <div
+        className={`scheduler-async-content${shouldAnimateInitialContent ? ' scheduler-async-content--initial-enter' : ''}`}
+        aria-busy={isLoading}
+      >
         <SchedulerEventSection
           title="지금 처리할 일"
           items={grouped.actionNow}
           emptyText={eventEmptyText}
           hideEmptyText
-          pendingStatusId={pendingStatusId}
+          pendingStatusIds={pendingStatusIds}
           onToggleDone={handleToggleDone}
         />
 
@@ -966,7 +1068,7 @@ export function TodaySchedulerPage({
           items={grouped.upcomingSoon}
           emptyText={eventEmptyText}
           hideEmptyText
-          pendingStatusId={pendingStatusId}
+          pendingStatusIds={pendingStatusIds}
           onToggleDone={handleToggleDone}
         />
 
@@ -974,7 +1076,8 @@ export function TodaySchedulerPage({
           title="오늘 전체"
           items={grouped.allToday}
           emptyText={eventEmptyText}
-          pendingStatusId={pendingStatusId}
+          hideEmptyText={isLoading || Boolean(status)}
+          pendingStatusIds={pendingStatusIds}
           onToggleDone={handleToggleDone}
         />
       </div>

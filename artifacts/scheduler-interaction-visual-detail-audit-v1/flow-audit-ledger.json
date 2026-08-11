@@ -1,0 +1,144 @@
+{
+  "flows": [
+    {
+      "flowId": "FLOW-1-TODAY-LOAD",
+      "outcome": "fix",
+      "result": "loading/error/empty meanings separated; stale error cleared",
+      "sourceRefs": [
+        {
+          "byteLength": 41716,
+          "byteSha256": "dac508ad77ca5133e908cdcbc187e3749b285f78e267feeb0facc03cfa9b280a",
+          "kind": "working_tree_text",
+          "lineEnd": 1055,
+          "lineStart": 1055,
+          "path": "src/scheduler/TodaySchedulerPage.jsx",
+          "quote": "aria-busy={isLoading}"
+        }
+      ]
+    },
+    {
+      "flowId": "FLOW-2-PUSH-STATUS",
+      "outcome": "fix",
+      "result": "synchronous lock plus modal-scoped busy and live success/error status",
+      "sourceRefs": [
+        {
+          "byteLength": 41716,
+          "byteSha256": "dac508ad77ca5133e908cdcbc187e3749b285f78e267feeb0facc03cfa9b280a",
+          "kind": "working_tree_text",
+          "lineEnd": 643,
+          "lineStart": 643,
+          "path": "src/scheduler/TodaySchedulerPage.jsx",
+          "quote": "if (pushActionLockRef.current || pushPreferencesLockRef.current) return"
+        },
+        {
+          "byteLength": 41716,
+          "byteSha256": "dac508ad77ca5133e908cdcbc187e3749b285f78e267feeb0facc03cfa9b280a",
+          "kind": "working_tree_text",
+          "lineEnd": 815,
+          "lineStart": 815,
+          "path": "src/scheduler/TodaySchedulerPage.jsx",
+          "quote": "className={`scheduler-push-status-note is-${pushStatusMeta.tone}`}"
+        }
+      ]
+    },
+    {
+      "flowId": "FLOW-3-EVENT-ACTIONS",
+      "outcome": "fix",
+      "result": "per-row synchronous exclusion and stable toggle semantics",
+      "sourceRefs": [
+        {
+          "byteLength": 41716,
+          "byteSha256": "dac508ad77ca5133e908cdcbc187e3749b285f78e267feeb0facc03cfa9b280a",
+          "kind": "working_tree_text",
+          "lineEnd": 432,
+          "lineStart": 432,
+          "path": "src/scheduler/TodaySchedulerPage.jsx",
+          "quote": "if (pendingStatusIdsRef.current.has(eventRow.id)) return"
+        },
+        {
+          "byteLength": 2875,
+          "byteSha256": "a18481811603c8827a3b1a817467fe03dae2985e07047755bb80813836f2be04",
+          "kind": "working_tree_text",
+          "lineEnd": 54,
+          "lineStart": 54,
+          "path": "src/scheduler/SchedulerEventCard.jsx",
+          "quote": "aria-label=\"완료\""
+        }
+      ]
+    },
+    {
+      "flowId": "FLOW-4-RESERVATION-CREATE",
+      "outcome": "fix_and_hold",
+      "result": "immediate result scroll; destination intent held",
+      "sourceRefs": [
+        {
+          "byteLength": 26844,
+          "byteSha256": "208bdc396fde2373cd6e610de5c9add251e1dab2396de722056017e980b73dc0",
+          "kind": "working_tree_text",
+          "lineEnd": 90,
+          "lineStart": 90,
+          "path": "src/scheduler/ReservationEditorPage.jsx",
+          "quote": "window.scrollTo({ top: 0, left: 0, behavior: 'auto' })"
+        }
+      ]
+    },
+    {
+      "flowId": "FLOW-5-RESERVATION-EDIT-DELETE",
+      "outcome": "fix_and_hold",
+      "result": "delete uses preserved transition return; save destination held",
+      "sourceRefs": [
+        {
+          "byteLength": 26844,
+          "byteSha256": "208bdc396fde2373cd6e610de5c9add251e1dab2396de722056017e980b73dc0",
+          "kind": "working_tree_text",
+          "lineEnd": 84,
+          "lineStart": 84,
+          "path": "src/scheduler/ReservationEditorPage.jsx",
+          "quote": "navigate(backPath, { viewTransition: true })"
+        }
+      ]
+    },
+    {
+      "flowId": "FLOW-6-FILTER-WORK-TIME",
+      "outcome": "fix_and_hold",
+      "result": "named group fixed; picker semantics and modal lifecycle held",
+      "sourceRefs": [
+        {
+          "byteLength": 41716,
+          "byteSha256": "dac508ad77ca5133e908cdcbc187e3749b285f78e267feeb0facc03cfa9b280a",
+          "kind": "working_tree_text",
+          "lineEnd": 957,
+          "lineStart": 957,
+          "path": "src/scheduler/TodaySchedulerPage.jsx",
+          "quote": "role=\"group\" aria-label=\"보기 설정\""
+        }
+      ]
+    },
+    {
+      "flowId": "FLOW-7-WORK-LOG",
+      "outcome": "fix",
+      "result": "exact confirmation, per-row lock, busy state, recoverable live result",
+      "sourceRefs": [
+        {
+          "byteLength": 41716,
+          "byteSha256": "dac508ad77ca5133e908cdcbc187e3749b285f78e267feeb0facc03cfa9b280a",
+          "kind": "working_tree_text",
+          "lineEnd": 244,
+          "lineStart": 244,
+          "path": "src/scheduler/TodaySchedulerPage.jsx",
+          "quote": "근무 기록을 삭제할까요?"
+        },
+        {
+          "byteLength": 4108,
+          "byteSha256": "19f583dbfa42b348209e9c6501faf7029006daee83224650b1fa5209ea286e5c",
+          "kind": "working_tree_text",
+          "lineEnd": 64,
+          "lineStart": 64,
+          "path": "src/scheduler/WorkLogDetailView.jsx",
+          "quote": "aria-busy={isDeleting}"
+        }
+      ]
+    }
+  ],
+  "schemaVersion": "scheduler-interaction-visual-flow-audit-ledger-v1"
+}

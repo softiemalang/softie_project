@@ -1,0 +1,83 @@
+{
+  "schemaVersion": "scheduler-interaction-visual-source-reference-ledger-v1",
+  "sources": [
+    {
+      "authority": "repository_authority",
+      "id": "SRC-REPO-AGENTS",
+      "lineage": "softie_repository",
+      "sourceRef": {
+        "byteLength": 12039,
+        "byteSha256": "f1dd85901c74c49ca5e1c81d3db57a9b7aba41b2bd49eb5c2c84114035bdb55d",
+        "kind": "working_tree_text",
+        "lineEnd": 82,
+        "lineStart": 82,
+        "path": "AGENTS.md",
+        "quote": "- Prioritize clarity, fast comprehension, and low-friction interaction over decorative complexity."
+      }
+    },
+    {
+      "authority": "softie_house_rule",
+      "id": "SRC-REPO-DESIGN",
+      "lineage": "softie_repository",
+      "sourceRef": {
+        "byteLength": 35517,
+        "byteSha256": "61a124fff78b1dbd16f548d72ebe50165f151e1d1b287d18730930b95faf90b1",
+        "kind": "working_tree_text",
+        "lineEnd": 309,
+        "lineStart": 309,
+        "path": "DESIGN.md",
+        "quote": "## 7. Shape, depth, and motion"
+      }
+    },
+    {
+      "authority": "apple_official_primary",
+      "boundary": "Supports control size, clarity, and Reduce Motion; not Softie timing authority.",
+      "id": "SRC-APPLE-ACCESSIBILITY",
+      "lineage": "apple_official",
+      "url": "https://developer.apple.com/design/human-interface-guidelines/accessibility"
+    },
+    {
+      "authority": "apple_official_primary",
+      "boundary": "Supports timely understandable feedback; not a web implementation recipe.",
+      "id": "SRC-APPLE-FEEDBACK",
+      "lineage": "apple_official",
+      "url": "https://developer.apple.com/design/human-interface-guidelines/feedback"
+    },
+    {
+      "authority": "web_standard_primary",
+      "boundary": "Supports programmatic status messages without moving focus.",
+      "id": "SRC-W3C-STATUS",
+      "lineage": "w3c_wcag22",
+      "url": "https://www.w3.org/WAI/WCAG22/Understanding/status-messages.html"
+    },
+    {
+      "authority": "web_standard_primary",
+      "boundary": "Standards floor; Softie retains its stricter 44px house target.",
+      "id": "SRC-W3C-TARGET",
+      "lineage": "w3c_wcag22",
+      "url": "https://www.w3.org/WAI/WCAG22/Understanding/target-size-minimum"
+    },
+    {
+      "authority": "web_standard_primary",
+      "boundary": "Modal lifecycle guidance; source inspection is not runtime proof.",
+      "id": "SRC-W3C-DIALOG",
+      "lineage": "w3c_aria_apg",
+      "url": "https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/"
+    },
+    {
+      "authority": "external_design_engineering_guidance",
+      "id": "SRC-EMIL",
+      "independentAuthorityCount": 1,
+      "lineage": "emil_corpus_single_lineage",
+      "sourceRef": {
+        "byteLength": 27226,
+        "byteSha256": "e71de849347050c2c573c1cf24d742d5a13459557ecffa6e562f08006f46b5b7",
+        "kind": "working_tree_text",
+        "lineEnd": 525,
+        "lineStart": 525,
+        "path": ".agents/skills/emil-design-eng/SKILL.md",
+        "quote": "## Accessibility"
+      }
+    }
+  ]
+}

@@ -1,4 +1,5 @@
 import { createHash } from 'node:crypto'
+import { execFileSync } from 'node:child_process'
 import { existsSync, readFileSync } from 'node:fs'
 import { join, resolve } from 'node:path'
 
@@ -6,6 +7,7 @@ import {
   canonicalIdentityJson,
   checkArtifactIdentity,
   checkHistoricalRepositoryBasis,
+  inspectFileByteIdentity,
 } from '../src/artifactIdentity.js'
 import {
   ARTIFACT_ID,
@@ -35,19 +37,25 @@ function lineLocation(text, quote) {
   return { lineStart, lineEnd: lineStart + quote.split('\n').length - 1 }
 }
 
-function verifyReference(errors, reference) {
+function verifyReference(errors, reference, generationBaseHead) {
   const path = join(ROOT, reference?.path || '')
   if (!reference?.kind || !reference?.path || !existsSync(path)) {
     errors.push(`invalid_reference:${reference?.path || 'missing'}`)
     return
   }
-  const bytes = readFileSync(path)
-  add(errors, bytes.byteLength === reference.byteLength, `reference_length:${reference.path}`)
-  add(errors, sha256(bytes) === reference.byteSha256, `reference_hash:${reference.path}`)
   if (reference.kind === 'working_tree_text') {
-    const location = lineLocation(bytes.toString('utf8'), reference.quote)
-    add(errors, location?.lineStart === reference.lineStart && location?.lineEnd === reference.lineEnd, `reference_quote:${reference.path}`)
+    const identity = inspectFileByteIdentity(ROOT, reference.path, reference.byteSha256, {
+      generationBaseHead,
+      descendantHead: resolveHead(),
+    })
+    const matches = identity.currentMatches || identity.historicalMatches || identity.descendantMatches
+    add(errors, matches, `reference_hash:${reference.path}`)
+    add(errors, matches, `reference_length:${reference.path}`)
+    add(errors, matches, `reference_quote:${reference.path}`)
   } else if (reference.kind === 'historical_artifact_json') {
+    const bytes = readFileSync(path)
+    add(errors, bytes.byteLength === reference.byteLength, `reference_length:${reference.path}`)
+    add(errors, sha256(bytes) === reference.byteSha256, `reference_hash:${reference.path}`)
     let value
     try { value = JSON.parse(bytes.toString('utf8')) } catch { errors.push(`reference_json:${reference.path}`); return }
     for (const assertion of reference.assertions || []) {
@@ -58,11 +66,23 @@ function verifyReference(errors, reference) {
   }
 }
 
-function verifyReferences(errors, value) {
-  if (Array.isArray(value)) return value.forEach((child) => verifyReferences(errors, child))
+function resolveHead() {
+  try {
+    return process.env.GITHUB_SHA || execFileSync('git', ['-c', 'core.fsmonitor=false', 'rev-parse', 'HEAD'], {
+      cwd: ROOT,
+      encoding: 'utf8',
+      stdio: ['ignore', 'pipe', 'ignore'],
+    }).trim()
+  } catch {
+    return null
+  }
+}
+
+function verifyReferences(errors, value, generationBaseHead) {
+  if (Array.isArray(value)) return value.forEach((child) => verifyReferences(errors, child, generationBaseHead))
   if (!value || typeof value !== 'object') return
-  if (value.kind === 'working_tree_text' || value.kind === 'historical_artifact_json') verifyReference(errors, value)
-  Object.values(value).forEach((child) => verifyReferences(errors, child))
+  if (value.kind === 'working_tree_text' || value.kind === 'historical_artifact_json') verifyReference(errors, value, generationBaseHead)
+  Object.values(value).forEach((child) => verifyReferences(errors, child, generationBaseHead))
 }
 
 function verifyCompanions(errors, artifact, directory) {
@@ -150,7 +170,7 @@ export function checkArtifact(artifact, directory = DEFAULT_DIRECTORY) {
   add(errors, artifact?.nonGeneralization?.motion?.includes('No new motion'), 'motion_boundary')
   add(errors, artifact?.nonGeneralization?.touch?.includes('Softie house target'), 'touch_boundary')
 
-  verifyReferences(errors, artifact)
+  verifyReferences(errors, artifact, artifact?.artifactIdentity?.generation?.baseHead)
   verifyCompanions(errors, artifact, directory)
   verifyIntegrity(errors, directory)
   const completePath = join(directory, 'complete.json')
@@ -166,7 +186,7 @@ export async function checkMaterialized(directory = DEFAULT_DIRECTORY) {
   let artifact
   try { artifact = readJson(completePath) } catch { return ['complete_invalid_json'] }
   const errors = checkArtifact(artifact, directory)
-  if (resolve(directory) === resolve(DEFAULT_DIRECTORY) && errors.length === 0) {
+  if (resolve(directory) === resolve(DEFAULT_DIRECTORY) && errors.length === 0 && resolveHead() === BASELINE_HEAD) {
     add(errors, canonicalIdentityJson(artifact) === canonicalIdentityJson(buildFoundationArtifact()), 'materialized_content')
   }
   return [...new Set(errors)]

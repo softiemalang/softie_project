@@ -226,7 +226,7 @@ function frontierDecisionLedger() {
         decision: 'fix',
         surfaces: ['Scheduler legacy press families', 'Spotify controls and progress', 'Interpretation Prep press/lift and strength meters'],
         sourceRefs: [
-          workingTextRef('src/styles.css', '.scheduler-fab-button:active,\n  .scheduler-setting-card:active,'),
+          gitTextRef('59bcc1eee06147b3b486d7c3a1599c66fce42c59', 'src/styles.css', '.scheduler-fab-button:active,\n  .scheduler-setting-card:active,'),
           workingTextRef('src/interpretationPrep/interpretationPrep.css', '.strength-meter-fill,\n  .prep-strength-bar {\n    transition: none !important;'),
         ],
         boundary: 'Movement and interpolation stop; existing color, background, opacity, and state text remain.',

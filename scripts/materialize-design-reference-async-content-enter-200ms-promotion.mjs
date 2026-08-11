@@ -156,7 +156,7 @@ function currentImplementationRefs() {
   return [
     workingTreeTextRef('src/scheduler/TodaySchedulerPage.jsx', "setEvents(rows)\n      setStatus('')\n      settleInitialAsyncContentEnter(rows)"),
     workingTreeTextRef('src/scheduler/TodaySchedulerPage.jsx', 'const initialAsyncContentEnterStateRef = useRef(createSchedulerAsyncContentEnterState())'),
-    workingTreeTextRef('src/scheduler/TodaySchedulerPage.jsx', '<div className={`scheduler-async-content${shouldAnimateInitialContent ? \' scheduler-async-content--initial-enter\' : \'\'}`}>' ),
+    workingTreeTextRef('src/scheduler/TodaySchedulerPage.jsx', 'className={`scheduler-async-content${shouldAnimateInitialContent ? \' scheduler-async-content--initial-enter\' : \'\'}`}' ),
     workingTreeTextRef('src/scheduler/schedulerAsyncContentEnter.js', 'export function settleSchedulerAsyncContentEnter(state, result) {\n  if (state.hasSuccessfullySettled || result.status !== \'success\') return state'),
     workingTreeTextRef('src/scheduler/SchedulerEventSection.jsx', '<div className={sectionContentClassName}>\n        {shouldRenderEmptyText() ? <p className="subtle scheduler-empty-note">{normalizedEmptyText}</p> : null}\n        <div className="scheduler-event-list">'),
     workingTreeTextRef('src/styles.css', '/* Async content enter house rule; role-scoped to conditional content arrival. */\n  --ag-scheduler-async-content-enter-duration: 200ms;\n  --ag-scheduler-async-content-enter-easing: cubic-bezier(0.23, 1, 0.32, 1);'),

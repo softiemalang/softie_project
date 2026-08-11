@@ -1,0 +1,587 @@
+{
+  "artifactIdentity": {
+    "artifactId": "scheduler-interaction-visual-detail-audit-v1",
+    "artifactPayloadSha256": "ae935d42c0cc45b86cff6e042e2441183ae62b957337950de71c3ede7ee3185f",
+    "contractVersion": "artifact-identity-v1",
+    "generation": {
+      "baseHead": "2922ccca1bd566ff7312470bc34e67b24f4bae6c",
+      "baseHeadSource": "git rev-parse HEAD at materialization",
+      "includedCommit": null,
+      "includedCommitSource": "unknown_at_generation; artifact may be included by a later commit"
+    },
+    "inputs": [
+      {
+        "byteSha256": "11840b24a11d7f94f39c6aaab074750ae4e4de4ef54ee4b1dd97e16ebd485e61",
+        "path": ".agents/skills/apple-design/SKILL.md"
+      },
+      {
+        "byteSha256": "e71de849347050c2c573c1cf24d742d5a13459557ecffa6e562f08006f46b5b7",
+        "path": ".agents/skills/emil-design-eng/SKILL.md"
+      },
+      {
+        "byteSha256": "61cf8ac0c4c8e1f63385298c546b16c65ca9aec34abddcd04e821c16712d671d",
+        "path": ".agents/skills/review-animations/SKILL.md"
+      },
+      {
+        "byteSha256": "e7d3605034acda54ca13e43aec9e64d65b53de20f75b11b8d694e373012fbe07",
+        "path": ".agents/skills/review-animations/STANDARDS.md"
+      },
+      {
+        "byteSha256": "f1dd85901c74c49ca5e1c81d3db57a9b7aba41b2bd49eb5c2c84114035bdb55d",
+        "path": "AGENTS.md"
+      },
+      {
+        "byteSha256": "61a124fff78b1dbd16f548d72ebe50165f151e1d1b287d18730930b95faf90b1",
+        "path": "DESIGN.md"
+      },
+      {
+        "byteSha256": "768b18cf86ff1c7674c30ee10b19f9f15425e02249f98d1a3e7c695a87aada11",
+        "path": "docs/scheduler-interaction-visual-detail-audit-v1.md"
+      },
+      {
+        "byteSha256": "4deb85ca5546a13ccf73189cf8f398bfcb37593bc451d49c35fe8f62dba8c14b",
+        "path": "scripts/check-design-reference-audit-v1-emil10-incremental.mjs"
+      },
+      {
+        "byteSha256": "6aee4d9f95f9b32442d8b7764316a5fa159d609556f3260616692d5f67c0abf5",
+        "path": "scripts/check-design-reference-form-modal-async-state-touch-foundation-batch-v1.mjs"
+      },
+      {
+        "byteSha256": "47a51bc55b4e9ae0ff7ae3fdae8d1c170c5705a4d2e26120ac0d859ef23d94d5",
+        "path": "scripts/check-scheduler-interaction-visual-detail-audit-v1.mjs"
+      },
+      {
+        "byteSha256": "b49dc309f871d5b19fd655294f60a1139f9ca901943729904db8fc145c32ab74",
+        "path": "scripts/materialize-design-reference-accessibility-legacy-interaction-cleanup-batch-v1.mjs"
+      },
+      {
+        "byteSha256": "5e7d7f8d1655a6a1c55f5530ab2f9988b8e505ef126e4420e0f0f09593f103d8",
+        "path": "scripts/materialize-design-reference-async-content-enter-200ms-promotion.mjs"
+      },
+      {
+        "byteSha256": "e4124f8ba53b54c15209d098a858684b4503b1ee75b84ea94396680efc323572",
+        "path": "scripts/materialize-scheduler-interaction-visual-detail-audit-v1.mjs"
+      },
+      {
+        "byteSha256": "e2edb232b500cfc47a0c03723c2ca3271f1589e45bda53585924f13740a324f4",
+        "path": "src/artifactIdentity.js"
+      },
+      {
+        "byteSha256": "208bdc396fde2373cd6e610de5c9add251e1dab2396de722056017e980b73dc0",
+        "path": "src/scheduler/ReservationEditorPage.jsx"
+      },
+      {
+        "byteSha256": "a18481811603c8827a3b1a817467fe03dae2985e07047755bb80813836f2be04",
+        "path": "src/scheduler/SchedulerEventCard.jsx"
+      },
+      {
+        "byteSha256": "72124d0be960c31288c6390329626ae432b270e097babfafd61d3f909d8b6484",
+        "path": "src/scheduler/SchedulerEventSection.jsx"
+      },
+      {
+        "byteSha256": "dac508ad77ca5133e908cdcbc187e3749b285f78e267feeb0facc03cfa9b280a",
+        "path": "src/scheduler/TodaySchedulerPage.jsx"
+      },
+      {
+        "byteSha256": "19f583dbfa42b348209e9c6501faf7029006daee83224650b1fa5209ea286e5c",
+        "path": "src/scheduler/WorkLogDetailView.jsx"
+      },
+      {
+        "byteSha256": "10bf108a491a9688b9731d79090bef361f8c9d0366c344fed775c4d3adc2584b",
+        "path": "src/styles.css"
+      },
+      {
+        "byteSha256": "59e3d55c0aefda3dc6cbe2533d1ebd56c64e2702e0349595876f7b7b61275acb",
+        "path": "test/accessibilityLegacyInteractionCleanup.test.js"
+      },
+      {
+        "byteSha256": "6988024bb6b45cb5a441f990859ee84fa16dacb9342a83aa31248c64e98d3722",
+        "path": "test/formModalAsyncStateTouchFoundation.test.js"
+      },
+      {
+        "byteSha256": "9c25a9ff009c5e05561d422c453d46508758b0fbf890f828f86a4b7ffe77054d",
+        "path": "test/schedulerInteractionVisualDetail.test.js"
+      },
+      {
+        "byteSha256": "80e35f39805b37c5302c37c06d947421d7f3a3897edd8734f32cbe0ca64f631f",
+        "path": "test/schedulerInteractionVisualDetailAudit.test.js"
+      }
+    ],
+    "materializer": {
+      "path": "scripts/materialize-scheduler-interaction-visual-detail-audit-v1.mjs",
+      "version": "scheduler-interaction-visual-detail-audit-v1-materializer-1"
+    }
+  },
+  "deviceValidationLedger": {
+    "checks": [
+      "44x44 targets and safe-area FAB",
+      "double-tap mutation exclusion",
+      "VoiceOver toggle name/state",
+      "hardware keyboard focus order",
+      "native date/time picker values",
+      "modal focus/inert/Escape/restore",
+      "push status in installed PWA",
+      "work-log confirm/busy/recovery"
+    ],
+    "evidenceStatus": "unverified",
+    "schemaVersion": "scheduler-interaction-visual-device-validation-ledger-v1",
+    "targets": [
+      "iPhone 375x667 Safari",
+      "iPhone 393x852 Safari",
+      "installed iOS PWA"
+    ]
+  },
+  "flowAuditLedger": {
+    "flows": [
+      {
+        "flowId": "FLOW-1-TODAY-LOAD",
+        "outcome": "fix",
+        "result": "loading/error/empty meanings separated; stale error cleared",
+        "sourceRefs": [
+          {
+            "byteLength": 41716,
+            "byteSha256": "dac508ad77ca5133e908cdcbc187e3749b285f78e267feeb0facc03cfa9b280a",
+            "kind": "working_tree_text",
+            "lineEnd": 1055,
+            "lineStart": 1055,
+            "path": "src/scheduler/TodaySchedulerPage.jsx",
+            "quote": "aria-busy={isLoading}"
+          }
+        ]
+      },
+      {
+        "flowId": "FLOW-2-PUSH-STATUS",
+        "outcome": "fix",
+        "result": "synchronous lock plus modal-scoped busy and live success/error status",
+        "sourceRefs": [
+          {
+            "byteLength": 41716,
+            "byteSha256": "dac508ad77ca5133e908cdcbc187e3749b285f78e267feeb0facc03cfa9b280a",
+            "kind": "working_tree_text",
+            "lineEnd": 643,
+            "lineStart": 643,
+            "path": "src/scheduler/TodaySchedulerPage.jsx",
+            "quote": "if (pushActionLockRef.current || pushPreferencesLockRef.current) return"
+          },
+          {
+            "byteLength": 41716,
+            "byteSha256": "dac508ad77ca5133e908cdcbc187e3749b285f78e267feeb0facc03cfa9b280a",
+            "kind": "working_tree_text",
+            "lineEnd": 815,
+            "lineStart": 815,
+            "path": "src/scheduler/TodaySchedulerPage.jsx",
+            "quote": "className={`scheduler-push-status-note is-${pushStatusMeta.tone}`}"
+          }
+        ]
+      },
+      {
+        "flowId": "FLOW-3-EVENT-ACTIONS",
+        "outcome": "fix",
+        "result": "per-row synchronous exclusion and stable toggle semantics",
+        "sourceRefs": [
+          {
+            "byteLength": 41716,
+            "byteSha256": "dac508ad77ca5133e908cdcbc187e3749b285f78e267feeb0facc03cfa9b280a",
+            "kind": "working_tree_text",
+            "lineEnd": 432,
+            "lineStart": 432,
+            "path": "src/scheduler/TodaySchedulerPage.jsx",
+            "quote": "if (pendingStatusIdsRef.current.has(eventRow.id)) return"
+          },
+          {
+            "byteLength": 2875,
+            "byteSha256": "a18481811603c8827a3b1a817467fe03dae2985e07047755bb80813836f2be04",
+            "kind": "working_tree_text",
+            "lineEnd": 54,
+            "lineStart": 54,
+            "path": "src/scheduler/SchedulerEventCard.jsx",
+            "quote": "aria-label=\"완료\""
+          }
+        ]
+      },
+      {
+        "flowId": "FLOW-4-RESERVATION-CREATE",
+        "outcome": "fix_and_hold",
+        "result": "immediate result scroll; destination intent held",
+        "sourceRefs": [
+          {
+            "byteLength": 26844,
+            "byteSha256": "208bdc396fde2373cd6e610de5c9add251e1dab2396de722056017e980b73dc0",
+            "kind": "working_tree_text",
+            "lineEnd": 90,
+            "lineStart": 90,
+            "path": "src/scheduler/ReservationEditorPage.jsx",
+            "quote": "window.scrollTo({ top: 0, left: 0, behavior: 'auto' })"
+          }
+        ]
+      },
+      {
+        "flowId": "FLOW-5-RESERVATION-EDIT-DELETE",
+        "outcome": "fix_and_hold",
+        "result": "delete uses preserved transition return; save destination held",
+        "sourceRefs": [
+          {
+            "byteLength": 26844,
+            "byteSha256": "208bdc396fde2373cd6e610de5c9add251e1dab2396de722056017e980b73dc0",
+            "kind": "working_tree_text",
+            "lineEnd": 84,
+            "lineStart": 84,
+            "path": "src/scheduler/ReservationEditorPage.jsx",
+            "quote": "navigate(backPath, { viewTransition: true })"
+          }
+        ]
+      },
+      {
+        "flowId": "FLOW-6-FILTER-WORK-TIME",
+        "outcome": "fix_and_hold",
+        "result": "named group fixed; picker semantics and modal lifecycle held",
+        "sourceRefs": [
+          {
+            "byteLength": 41716,
+            "byteSha256": "dac508ad77ca5133e908cdcbc187e3749b285f78e267feeb0facc03cfa9b280a",
+            "kind": "working_tree_text",
+            "lineEnd": 957,
+            "lineStart": 957,
+            "path": "src/scheduler/TodaySchedulerPage.jsx",
+            "quote": "role=\"group\" aria-label=\"보기 설정\""
+          }
+        ]
+      },
+      {
+        "flowId": "FLOW-7-WORK-LOG",
+        "outcome": "fix",
+        "result": "exact confirmation, per-row lock, busy state, recoverable live result",
+        "sourceRefs": [
+          {
+            "byteLength": 41716,
+            "byteSha256": "dac508ad77ca5133e908cdcbc187e3749b285f78e267feeb0facc03cfa9b280a",
+            "kind": "working_tree_text",
+            "lineEnd": 244,
+            "lineStart": 244,
+            "path": "src/scheduler/TodaySchedulerPage.jsx",
+            "quote": "근무 기록을 삭제할까요?"
+          },
+          {
+            "byteLength": 4108,
+            "byteSha256": "19f583dbfa42b348209e9c6501faf7029006daee83224650b1fa5209ea286e5c",
+            "kind": "working_tree_text",
+            "lineEnd": 64,
+            "lineStart": 64,
+            "path": "src/scheduler/WorkLogDetailView.jsx",
+            "quote": "aria-busy={isDeleting}"
+          }
+        ]
+      }
+    ],
+    "schemaVersion": "scheduler-interaction-visual-flow-audit-ledger-v1"
+  },
+  "frontierDecisionLedger": {
+    "frontiers": [
+      {
+        "decision": "fix",
+        "id": "FRONTIER-ASYNC-STATE"
+      },
+      {
+        "decision": "fix",
+        "id": "FRONTIER-DUPLICATE-ACTION"
+      },
+      {
+        "decision": "fix",
+        "id": "FRONTIER-LIVE-FEEDBACK"
+      },
+      {
+        "decision": "fix",
+        "id": "FRONTIER-TOGGLE-GROUP-SEMANTICS"
+      },
+      {
+        "decision": "fix",
+        "id": "FRONTIER-DESTRUCTIVE-WORKLOG"
+      },
+      {
+        "decision": "fix",
+        "id": "FRONTIER-GLASS-RAW-PRESS-MOTION"
+      },
+      {
+        "decision": "pilot",
+        "id": "FRONTIER-ACTION-NOW-HIERARCHY"
+      },
+      {
+        "blocker": "Rapid-entry versus return-to-list intent is not established.",
+        "decision": "hold",
+        "id": "FRONTIER-SAVE-DESTINATION"
+      },
+      {
+        "blocker": "No browser, VoiceOver, inert, Escape, or focus-restoration proof.",
+        "decision": "hold",
+        "id": "FRONTIER-MODAL-FOCUS-LIFECYCLE"
+      },
+      {
+        "blocker": "iPhone picker behavior is unverified.",
+        "decision": "hold",
+        "id": "FRONTIER-HOURLY-NATIVE-PICKER"
+      },
+      {
+        "decision": "already_good",
+        "id": "FRONTIER-EVENT-CARD-DENSITY"
+      },
+      {
+        "decision": "reject",
+        "id": "FRONTIER-NEW-SHEET-MOTION"
+      }
+    ],
+    "schemaVersion": "scheduler-interaction-visual-frontier-decision-ledger-v1"
+  },
+  "motionReviewLedger": {
+    "reviews": [
+      {
+        "after": {
+          "byteLength": 138900,
+          "byteSha256": "10bf108a491a9688b9731d79090bef361f8c9d0366c344fed775c4d3adc2584b",
+          "kind": "working_tree_text",
+          "lineEnd": 852,
+          "lineStart": 851,
+          "path": "src/styles.css",
+          "quote": ".scheduler-fab-button:active {\n  box-shadow:"
+        },
+        "before": {
+          "byteLength": 138981,
+          "byteSha256": "1af07e192bf1893c763be141171eb2654092aa0f13b30d02779be76e1faf7b65",
+          "commit": "2922ccca1bd566ff7312470bc34e67b24f4bae6c",
+          "kind": "git_commit_text",
+          "lineEnd": 843,
+          "lineStart": 843,
+          "path": "src/styles.css",
+          "quote": "transition: transform 0.2s ease;"
+        },
+        "decision": "remove_raw_press_transform",
+        "id": "MOTION-FAB"
+      },
+      {
+        "after": {
+          "byteLength": 138900,
+          "byteSha256": "10bf108a491a9688b9731d79090bef361f8c9d0366c344fed775c4d3adc2584b",
+          "kind": "working_tree_text",
+          "lineEnd": 3813,
+          "lineStart": 3812,
+          "path": "src/styles.css",
+          "quote": ".scheduler-setting-card:active {\n  background-color:"
+        },
+        "before": {
+          "byteLength": 138981,
+          "byteSha256": "1af07e192bf1893c763be141171eb2654092aa0f13b30d02779be76e1faf7b65",
+          "commit": "2922ccca1bd566ff7312470bc34e67b24f4bae6c",
+          "kind": "git_commit_text",
+          "lineEnd": 3815,
+          "lineStart": 3815,
+          "path": "src/styles.css",
+          "quote": "transform: scale(0.98);"
+        },
+        "decision": "keep_glass_static",
+        "id": "MOTION-SETTING-GLASS"
+      },
+      {
+        "after": {
+          "byteLength": 138900,
+          "byteSha256": "10bf108a491a9688b9731d79090bef361f8c9d0366c344fed775c4d3adc2584b",
+          "kind": "working_tree_text",
+          "lineEnd": 5776,
+          "lineStart": 5776,
+          "path": "src/styles.css",
+          "quote": "transform 160ms cubic-bezier(0.23, 1, 0.32, 1),"
+        },
+        "decision": "preserve_scoped_pilot",
+        "id": "MOTION-EVENT-PRESS-PILOT"
+      },
+      {
+        "after": {
+          "byteLength": 35517,
+          "byteSha256": "61a124fff78b1dbd16f548d72ebe50165f151e1d1b287d18730930b95faf90b1",
+          "kind": "working_tree_text",
+          "lineEnd": 314,
+          "lineStart": 314,
+          "path": "DESIGN.md",
+          "quote": "`180ms ease`는 기존의 빠른 일반 전환 baseline이며 모든 interaction role의 보편 duration/easing이 아닙니다."
+        },
+        "decision": "preserve_180ms_role",
+        "id": "MOTION-ROUTE-CROSSFADE"
+      },
+      {
+        "after": {
+          "byteLength": 26844,
+          "byteSha256": "208bdc396fde2373cd6e610de5c9add251e1dab2396de722056017e980b73dc0",
+          "kind": "working_tree_text",
+          "lineEnd": 90,
+          "lineStart": 90,
+          "path": "src/scheduler/ReservationEditorPage.jsx",
+          "quote": "window.scrollTo({ top: 0, left: 0, behavior: 'auto' })"
+        },
+        "before": {
+          "byteLength": 26804,
+          "byteSha256": "dfebdbbe955da859991a894923db21d90fe86d9dab47aa36188e050d437376cf",
+          "commit": "2922ccca1bd566ff7312470bc34e67b24f4bae6c",
+          "kind": "git_commit_text",
+          "lineEnd": 360,
+          "lineStart": 360,
+          "path": "src/scheduler/ReservationEditorPage.jsx",
+          "quote": "window.scrollTo({ top: 0, behavior: 'smooth' })"
+        },
+        "decision": "remove_unbounded_scroll_motion",
+        "id": "MOTION-CREATE-SCROLL"
+      }
+    ],
+    "schemaVersion": "scheduler-interaction-visual-motion-review-ledger-v1",
+    "verdict": "approve_bounded_removals_and_role_separation"
+  },
+  "nonGeneralization": {
+    "async": "200ms opacity-only enter remains first-success content-only.",
+    "glass": "Backdrop-filter owners stay static.",
+    "installation": "Skill installation and repeated corpus claims are not adoption.",
+    "press": "160ms transform-only event-action feedback remains a pilot.",
+    "route": "180ms browser-default route crossfade remains route-only."
+  },
+  "repository": {
+    "baselineHead": "2922ccca1bd566ff7312470bc34e67b24f4bae6c",
+    "branch": "main",
+    "sourceOfTruth": "local_working_tree"
+  },
+  "schemaVersion": "scheduler-interaction-visual-detail-audit-v1",
+  "scope": {
+    "businessDataAuthApiMutation": false,
+    "dependencyMutation": false,
+    "designMdMutation": false,
+    "frozenArtifactRewrite": false,
+    "preExistingChangeBoundary": "Preserve untracked ?? -.jpg outside the work order.",
+    "schedulerOnly": true,
+    "stagingCommitPushDeployRemoteMutation": false
+  },
+  "sourceReferenceLedger": {
+    "schemaVersion": "scheduler-interaction-visual-source-reference-ledger-v1",
+    "sources": [
+      {
+        "authority": "repository_authority",
+        "id": "SRC-REPO-AGENTS",
+        "lineage": "softie_repository",
+        "sourceRef": {
+          "byteLength": 12039,
+          "byteSha256": "f1dd85901c74c49ca5e1c81d3db57a9b7aba41b2bd49eb5c2c84114035bdb55d",
+          "kind": "working_tree_text",
+          "lineEnd": 82,
+          "lineStart": 82,
+          "path": "AGENTS.md",
+          "quote": "- Prioritize clarity, fast comprehension, and low-friction interaction over decorative complexity."
+        }
+      },
+      {
+        "authority": "softie_house_rule",
+        "id": "SRC-REPO-DESIGN",
+        "lineage": "softie_repository",
+        "sourceRef": {
+          "byteLength": 35517,
+          "byteSha256": "61a124fff78b1dbd16f548d72ebe50165f151e1d1b287d18730930b95faf90b1",
+          "kind": "working_tree_text",
+          "lineEnd": 309,
+          "lineStart": 309,
+          "path": "DESIGN.md",
+          "quote": "## 7. Shape, depth, and motion"
+        }
+      },
+      {
+        "authority": "apple_official_primary",
+        "boundary": "Supports control size, clarity, and Reduce Motion; not Softie timing authority.",
+        "id": "SRC-APPLE-ACCESSIBILITY",
+        "lineage": "apple_official",
+        "url": "https://developer.apple.com/design/human-interface-guidelines/accessibility"
+      },
+      {
+        "authority": "apple_official_primary",
+        "boundary": "Supports timely understandable feedback; not a web implementation recipe.",
+        "id": "SRC-APPLE-FEEDBACK",
+        "lineage": "apple_official",
+        "url": "https://developer.apple.com/design/human-interface-guidelines/feedback"
+      },
+      {
+        "authority": "web_standard_primary",
+        "boundary": "Supports programmatic status messages without moving focus.",
+        "id": "SRC-W3C-STATUS",
+        "lineage": "w3c_wcag22",
+        "url": "https://www.w3.org/WAI/WCAG22/Understanding/status-messages.html"
+      },
+      {
+        "authority": "web_standard_primary",
+        "boundary": "Standards floor; Softie retains its stricter 44px house target.",
+        "id": "SRC-W3C-TARGET",
+        "lineage": "w3c_wcag22",
+        "url": "https://www.w3.org/WAI/WCAG22/Understanding/target-size-minimum"
+      },
+      {
+        "authority": "web_standard_primary",
+        "boundary": "Modal lifecycle guidance; source inspection is not runtime proof.",
+        "id": "SRC-W3C-DIALOG",
+        "lineage": "w3c_aria_apg",
+        "url": "https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/"
+      },
+      {
+        "authority": "external_design_engineering_guidance",
+        "id": "SRC-EMIL",
+        "independentAuthorityCount": 1,
+        "lineage": "emil_corpus_single_lineage",
+        "sourceRef": {
+          "byteLength": 27226,
+          "byteSha256": "e71de849347050c2c573c1cf24d742d5a13459557ecffa6e562f08006f46b5b7",
+          "kind": "working_tree_text",
+          "lineEnd": 525,
+          "lineStart": 525,
+          "path": ".agents/skills/emil-design-eng/SKILL.md",
+          "quote": "## Accessibility"
+        }
+      }
+    ]
+  },
+  "validationBlockerLedger": {
+    "claimBoundary": "The final full-suite rerun recorded 626 pass, 35 fail, and 2 skip across 663 tests; all 35 failures match missing explicit Ziwei PDF source inputs, with zero new non-PDF failures.",
+    "schemaVersion": "scheduler-interaction-visual-validation-blocker-ledger-v1",
+    "validations": [
+      {
+        "id": "VAL-FOCUSED-SCHEDULER-MOTION-A11Y",
+        "status": "pass",
+        "testCount": 38
+      },
+      {
+        "id": "VAL-HISTORICAL-REPLAY-REMEDIATION",
+        "status": "pass",
+        "testCount": 13
+      },
+      {
+        "fail": 40,
+        "id": "VAL-FULL-SUITE-BEFORE-REMEDIATION",
+        "pass": 617,
+        "skip": 2,
+        "status": "fail"
+      },
+      {
+        "fail": 35,
+        "id": "VAL-FULL-SUITE-AFTER-REMEDIATION",
+        "newNonPdfFailureCount": 0,
+        "pass": 626,
+        "skip": 2,
+        "status": "blocked_environment",
+        "tests": 663
+      },
+      {
+        "codes": [
+          "MISSING_SOURCE_FILE",
+          "PDF_SOURCE_NANBEI_PATH_REQUIRED"
+        ],
+        "expectedFailureCount": 35,
+        "id": "VAL-FULL-PDF-SOURCE-RECONCILIATION",
+        "status": "blocked_environment"
+      },
+      {
+        "id": "VAL-BROWSER-RUNTIME",
+        "reason": "No browser executable or agent-browser verifier was available.",
+        "status": "unverified"
+      }
+    ]
+  },
+  "verdict": "complete_scheduler_interaction_visual_detail_audit_v1_uncommitted"
+}

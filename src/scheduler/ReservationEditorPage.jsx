@@ -357,7 +357,7 @@ export function ReservationEditorPage({
           identityChangedRef.current = false
           manualRegularOverrideRef.current = false
           setFormValues(createReservationDraft(formValues.reservationDate))
-          window.scrollTo({ top: 0, behavior: 'smooth' })
+          window.scrollTo({ top: 0, left: 0, behavior: 'auto' })
         }
         setEditorStatus('예약은 저장되었으나, Google 캘린더 동기화에 실패했습니다. Google 연결을 확인해 주세요.', 'warning')
       } else {
@@ -367,7 +367,7 @@ export function ReservationEditorPage({
           identityChangedRef.current = false
           manualRegularOverrideRef.current = false
           setFormValues(createReservationDraft(formValues.reservationDate))
-          window.scrollTo({ top: 0, behavior: 'smooth' })
+          window.scrollTo({ top: 0, left: 0, behavior: 'auto' })
         }
         setEditorStatus('저장했어요.', 'success')
       }
@@ -399,7 +399,7 @@ export function ReservationEditorPage({
       }
 
       await deleteReservation(reservationId, effectiveOwnerKey)
-      navigate(backPath)
+      navigate(backPath, { viewTransition: true })
     } catch (error) {
       console.error('[handleDelete] Delete flow failed:', error)
       setEditorStatus(error?.message || '예약을 삭제하지 못했어요. 다시 시도해 주세요.', 'error')

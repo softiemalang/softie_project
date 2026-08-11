@@ -1,6 +1,16 @@
 import { getWeekRangeLabel, getWeekTitle } from './time'
 
-export function WorkLogDetailView({ viewingWeekStart, logs, onClose, onNavigate, onCopy, onDelete, copyFeedback }) {
+export function WorkLogDetailView({
+  viewingWeekStart,
+  logs,
+  onClose,
+  onNavigate,
+  onCopy,
+  onDelete,
+  copyFeedback,
+  pendingDeleteIds,
+  status,
+}) {
   const weekLogs = logs.filter((log) => log.weekStartDate === viewingWeekStart)
   const sortedLogs = [...weekLogs].sort((a, b) => a.date.localeCompare(b.date))
   const totalMinutes = weekLogs.reduce((acc, log) => acc + log.durationMinutes, 0)
@@ -17,7 +27,7 @@ export function WorkLogDetailView({ viewingWeekStart, logs, onClose, onNavigate,
       >
         <div className="scheduler-section-head" style={{ marginBottom: '0.65rem' }}>
           <p className="scheduler-section-label">근무 일지</p>
-          <button type="button" className="scheduler-modal-close" onClick={onClose}>닫기</button>
+          <button type="button" className="scheduler-modal-close" onClick={onClose} disabled={pendingDeleteIds.size > 0}>닫기</button>
         </div>
 
         <div className="scheduler-work-log-nav">
@@ -38,6 +48,7 @@ export function WorkLogDetailView({ viewingWeekStart, logs, onClose, onNavigate,
             <div className="scheduler-work-log-list">
               {sortedLogs.map((log) => {
                 const date = new Date(log.date)
+                const isDeleting = pendingDeleteIds.has(log.id)
                 return (
                   <div key={log.id || log.syncKey} className="scheduler-work-log-item">
                     <div className="scheduler-work-log-item-info">
@@ -47,10 +58,12 @@ export function WorkLogDetailView({ viewingWeekStart, logs, onClose, onNavigate,
                     <button
                       type="button"
                       className="scheduler-log-delete-btn"
-                      onClick={() => onDelete(log.id)}
-                      aria-label="기록 삭제"
+                      onClick={() => onDelete(log)}
+                      disabled={isDeleting}
+                      aria-label={`${log.date} ${log.startTime}-${log.endTime} 기록 삭제`}
+                      aria-busy={isDeleting}
                     >
-                      삭제
+                      {isDeleting ? '삭제 중' : '삭제'}
                     </button>
                   </div>
                 )
@@ -62,6 +75,17 @@ export function WorkLogDetailView({ viewingWeekStart, logs, onClose, onNavigate,
             <span>주간 총계</span>
             <strong className={totalHours > 0 ? 'active' : 'empty'}>{totalHours}시간</strong>
           </div>
+
+          {status ? (
+            <p
+              className={`scheduler-push-status-note is-${status.tone}`}
+              role={status.tone === 'error' ? 'alert' : 'status'}
+              aria-live={status.tone === 'error' ? 'assertive' : 'polite'}
+              aria-atomic="true"
+            >
+              {status.text}
+            </p>
+          ) : null}
         </div>
 
         <div className="scheduler-modal-actions stack" style={{ marginTop: '1.2rem' }}>

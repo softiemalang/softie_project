@@ -1,0 +1,46 @@
+{
+  "claimBoundary": "The final full-suite rerun recorded 626 pass, 35 fail, and 2 skip across 663 tests; all 35 failures match missing explicit Ziwei PDF source inputs, with zero new non-PDF failures.",
+  "schemaVersion": "scheduler-interaction-visual-validation-blocker-ledger-v1",
+  "validations": [
+    {
+      "id": "VAL-FOCUSED-SCHEDULER-MOTION-A11Y",
+      "status": "pass",
+      "testCount": 38
+    },
+    {
+      "id": "VAL-HISTORICAL-REPLAY-REMEDIATION",
+      "status": "pass",
+      "testCount": 13
+    },
+    {
+      "fail": 40,
+      "id": "VAL-FULL-SUITE-BEFORE-REMEDIATION",
+      "pass": 617,
+      "skip": 2,
+      "status": "fail"
+    },
+    {
+      "fail": 35,
+      "id": "VAL-FULL-SUITE-AFTER-REMEDIATION",
+      "newNonPdfFailureCount": 0,
+      "pass": 626,
+      "skip": 2,
+      "status": "blocked_environment",
+      "tests": 663
+    },
+    {
+      "codes": [
+        "MISSING_SOURCE_FILE",
+        "PDF_SOURCE_NANBEI_PATH_REQUIRED"
+      ],
+      "expectedFailureCount": 35,
+      "id": "VAL-FULL-PDF-SOURCE-RECONCILIATION",
+      "status": "blocked_environment"
+    },
+    {
+      "id": "VAL-BROWSER-RUNTIME",
+      "reason": "No browser executable or agent-browser verifier was available.",
+      "status": "unverified"
+    }
+  ]
+}
