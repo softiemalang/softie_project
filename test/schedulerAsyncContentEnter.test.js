@@ -80,10 +80,11 @@ test('Today reserves a four-card floor only for the first empty loading request'
   assert.match(eventSections[2], /title="오늘 전체"[\s\S]*?initialLoadingLayout=\{shouldReserveInitialLoadingFloor\}/)
   assert.match(
     eventSections[2],
-    /initialLoadingMessage=\{shouldReserveInitialLoadingFloor \? '차곡차곡 일정 채우는 중…' : null\}/,
+    /initialLoadingMessage=\{shouldReserveInitialLoadingFloor \? '일정 준비 중…' : null\}/,
   )
-  assert.doesNotMatch(eventSections[0], /차곡차곡 일정 채우는 중…/)
-  assert.doesNotMatch(eventSections[1], /차곡차곡 일정 채우는 중…/)
+  assert.doesNotMatch(eventSections[0], /일정 준비 중…/)
+  assert.doesNotMatch(eventSections[1], /일정 준비 중…/)
+  assert.doesNotMatch(todayPage, /차곡차곡 일정 채우는 중…/)
 
   assert.match(eventSection, /initialLoadingLayout = false/)
   assert.match(eventSection, /initialLoadingLayout && items\.length === 0 \? 'scheduler-event-content--initial-loading' : ''/)
@@ -112,7 +113,7 @@ test('Today reserves a four-card floor only for the first empty loading request'
   assert.match(loadingNoteRule, /position:\s*absolute/)
   assert.match(loadingNoteRule, /inset:\s*0/)
   assert.match(loadingNoteRule, /display:\s*block/)
-  assert.match(loadingNoteRule, /padding-top:\s*calc\(var\(--scheduler-initial-event-card-floor-height\)\s*\/\s*3\)/)
+  assert.match(loadingNoteRule, /padding-top:\s*var\(--scheduler-gap-sm\)/)
   assert.match(loadingNoteRule, /padding-left:\s*var\(--scheduler-event-card-content-start\)/)
   assert.match(loadingNoteRule, /font-size:\s*var\(--scheduler-type-body-size\)/)
   assert.match(loadingNoteRule, /font-weight:\s*var\(--scheduler-type-body-weight\)/)

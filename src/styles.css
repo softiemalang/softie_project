@@ -5106,7 +5106,7 @@ textarea {
   inset: 0;
   display: block;
   margin: 0;
-  padding-top: calc(var(--scheduler-initial-event-card-floor-height) / 3);
+  padding-top: var(--scheduler-gap-sm);
   padding-right: 0;
   padding-bottom: 0;
   padding-left: var(--scheduler-event-card-content-start);
