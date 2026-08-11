@@ -72,6 +72,9 @@
   --ag-content-wide: 1180px;
   --ag-duration-fast: 180ms;
   --ag-scheduler-route-transition-easing: cubic-bezier(0.23, 1, 0.32, 1);
+  /* Scheduler async content enter pilot; not a promoted house rule. */
+  --ag-scheduler-async-content-enter-duration: 200ms;
+  --ag-scheduler-async-content-enter-easing: cubic-bezier(0.23, 1, 0.32, 1);
 
   /* Selective iOS 27 interaction primitives; the warm visual language remains primary. */
   --ios27-selective-touch-target: 44px;
@@ -5044,6 +5047,30 @@ textarea {
 
 .scheduler-theme-shell .scheduler-event-section .scheduler-event-list {
   gap: 0.65rem;
+}
+
+/* First successful Today event fetch only; data is rendered immediately and opacity is the only animated property. */
+.scheduler-theme-shell .scheduler-async-content--initial-enter {
+  animation: scheduler-async-content-enter
+    var(--ag-scheduler-async-content-enter-duration)
+    var(--ag-scheduler-async-content-enter-easing)
+    both;
+}
+
+@keyframes scheduler-async-content-enter {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scheduler-theme-shell .scheduler-async-content--initial-enter {
+    animation: none;
+  }
 }
 
 .scheduler-theme-shell .scheduler-event-section.is-primary {

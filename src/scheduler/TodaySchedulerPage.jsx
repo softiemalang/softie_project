@@ -28,6 +28,7 @@ import {
   normalizeWorkTimeFilter,
 } from './rules'
 import { SchedulerEventSection } from './SchedulerEventSection'
+import { createSchedulerAsyncContentEnterState, settleSchedulerAsyncContentEnter } from './schedulerAsyncContentEnter'
 import {
   buildWeekWorkLogShareText,
   buildWeekWorkLogText,
@@ -102,7 +103,6 @@ export function TodaySchedulerPage({
   const draftRooms = draftFilters.branch === 'all' ? [] : getRoomsForBranch(draftFilters.branch)
   const normalizedFilters = normalizeWorkTimeFilter(filters)
   const normalizedDraftWorkTime = normalizeWorkTimeFilter(draftFilters)
-
   const [workLogs, setWorkLogs] = useState([])
   const [isWorkLogOpen, setIsWorkLogOpen] = useState(false)
   const [viewingWeekStart, setViewingWeekStart] = useState(() => getWeekStartDate(initialSelectedDate))
@@ -261,7 +261,6 @@ export function TodaySchedulerPage({
       return getWeekStartDate(date)
     })
   }
-
   async function loadEvents() {
     const requestSequence = eventsRequestSequenceRef.current + 1
     eventsRequestSequenceRef.current = requestSequence
@@ -271,6 +270,7 @@ export function TodaySchedulerPage({
       if (eventsRequestSequenceRef.current !== requestSequence) return
       setEvents(rows)
       setStatus('')
+      settleInitialAsyncContentEnter(rows)
     } catch (error) {
       if (eventsRequestSequenceRef.current !== requestSequence) return
       setStatus(error.message)
@@ -291,10 +291,24 @@ export function TodaySchedulerPage({
       return pushState
     }
   }
-
   useEffect(() => {
     loadEvents()
   }, [selectedDate, effectiveOwnerKey])
+
+  const initialAsyncContentEnterStateRef = useRef(createSchedulerAsyncContentEnterState())
+  const [shouldAnimateInitialContent, setShouldAnimateInitialContent] = useState(false)
+
+  function settleInitialAsyncContentEnter(rows) {
+    // An empty success still settles the initial fetch; it only has no content to enter.
+    const nextInitialAsyncContentEnterState = settleSchedulerAsyncContentEnter(
+      initialAsyncContentEnterStateRef.current,
+      { status: 'success', hasContent: rows.length > 0 },
+    )
+    if (nextInitialAsyncContentEnterState !== initialAsyncContentEnterStateRef.current) {
+      initialAsyncContentEnterStateRef.current = nextInitialAsyncContentEnterState
+      setShouldAnimateInitialContent(nextInitialAsyncContentEnterState.shouldAnimateInitialContent)
+    }
+  }
 
   useEffect(() => {
     onViewStateChange?.({ date: selectedDate, filters })
@@ -911,31 +925,33 @@ export function TodaySchedulerPage({
         />
       ) : null}
 
-      <SchedulerEventSection
-        title="지금 처리할 일"
-        items={grouped.actionNow}
-        emptyText={isLoading ? '불러오는 중...' : '없음'}
-        hideEmptyText
-        pendingStatusId={pendingStatusId}
-        onToggleDone={handleToggleDone}
-      />
+      <div className={`scheduler-async-content${shouldAnimateInitialContent ? ' scheduler-async-content--initial-enter' : ''}`}>
+        <SchedulerEventSection
+          title="지금 처리할 일"
+          items={grouped.actionNow}
+          emptyText={isLoading ? '불러오는 중...' : '없음'}
+          hideEmptyText
+          pendingStatusId={pendingStatusId}
+          onToggleDone={handleToggleDone}
+        />
 
-      <SchedulerEventSection
-        title="곧 다가오는 일정"
-        items={grouped.upcomingSoon}
-        emptyText={isLoading ? '불러오는 중...' : '없음'}
-        hideEmptyText
-        pendingStatusId={pendingStatusId}
-        onToggleDone={handleToggleDone}
-      />
+        <SchedulerEventSection
+          title="곧 다가오는 일정"
+          items={grouped.upcomingSoon}
+          emptyText={isLoading ? '불러오는 중...' : '없음'}
+          hideEmptyText
+          pendingStatusId={pendingStatusId}
+          onToggleDone={handleToggleDone}
+        />
 
-      <SchedulerEventSection
-        title="오늘 전체"
-        items={grouped.allToday}
-        emptyText={isLoading ? '불러오는 중...' : '없음'}
-        pendingStatusId={pendingStatusId}
-        onToggleDone={handleToggleDone}
-      />
+        <SchedulerEventSection
+          title="오늘 전체"
+          items={grouped.allToday}
+          emptyText={isLoading ? '불러오는 중...' : '없음'}
+          pendingStatusId={pendingStatusId}
+          onToggleDone={handleToggleDone}
+        />
+      </div>
 
       <footer className="home-footer scheduler-footer">
         <div className="home-footer-heading">
