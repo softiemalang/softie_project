@@ -113,6 +113,7 @@ export function TodaySchedulerPage({
   const [syncToast, setSyncToast] = useState('')
   const [isWorkLogSyncBusy, setIsWorkLogSyncBusy] = useState(false)
   const eventsRequestSequenceRef = useRef(0)
+  const initialEventsLoadFinishedRef = useRef(false)
   const pendingStatusIdsRef = useRef(new Set())
   const syncToastTimerRef = useRef(null)
   const workLogSyncLockRef = useRef(false)
@@ -311,6 +312,7 @@ export function TodaySchedulerPage({
       setStatus(error instanceof Error ? error.message : '오늘 일정을 불러오지 못했어요. 잠시 후 다시 시도해 주세요.')
     } finally {
       if (eventsRequestSequenceRef.current === requestSequence) {
+        initialEventsLoadFinishedRef.current = true
         setIsLoading(false)
       }
     }
@@ -427,6 +429,12 @@ export function TodaySchedulerPage({
   const eventEmptyText = events.length > 0 && filteredEvents.length === 0
     ? '현재 조건에 맞는 일정이 없어요.'
     : '오늘 일정이 없어요.'
+  const shouldReserveInitialLoadingFloor =
+    isLoading &&
+    events.length === 0 &&
+    !status &&
+    !initialEventsLoadFinishedRef.current &&
+    eventsRequestSequenceRef.current === 1
 
   async function handleToggleDone(eventRow) {
     if (pendingStatusIdsRef.current.has(eventRow.id)) return
@@ -1077,6 +1085,7 @@ export function TodaySchedulerPage({
           items={grouped.allToday}
           emptyText={eventEmptyText}
           hideEmptyText={isLoading || Boolean(status)}
+          initialLoadingLayout={shouldReserveInitialLoadingFloor}
           pendingStatusIds={pendingStatusIds}
           onToggleDone={handleToggleDone}
         />

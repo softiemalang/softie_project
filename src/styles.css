@@ -5067,6 +5067,48 @@ textarea {
   gap: 0.65rem;
 }
 
+/* First Today fetch only: reserve four compact event-card slots without rendering placeholders. */
+.scheduler-theme-shell .scheduler-today-page {
+  --scheduler-initial-event-card-floor-height: calc(
+    24px +
+    var(--scheduler-control-min-h) +
+    0.3rem +
+    0.55rem +
+    0.55rem +
+    1px +
+    1px
+  );
+  --scheduler-initial-event-list-floor-gap: 0.65rem;
+}
+
+.scheduler-theme-shell .scheduler-today-page .scheduler-event-section > .scheduler-event-content--initial-loading {
+  min-height: calc(
+    var(--scheduler-initial-event-card-floor-height) +
+    var(--scheduler-initial-event-card-floor-height) +
+    var(--scheduler-initial-event-card-floor-height) +
+    var(--scheduler-initial-event-card-floor-height) +
+    var(--scheduler-initial-event-list-floor-gap) +
+    var(--scheduler-initial-event-list-floor-gap) +
+    var(--scheduler-initial-event-list-floor-gap)
+  );
+}
+
+@media (max-width: 700px) {
+  .scheduler-theme-shell .scheduler-today-page {
+    --scheduler-initial-event-card-floor-height: calc(
+      24px +
+      var(--scheduler-control-min-h) +
+      0.2rem +
+      0.42rem +
+      0.42rem -
+      3px +
+      1px +
+      1px
+    );
+    --scheduler-initial-event-list-floor-gap: var(--scheduler-gap-sm);
+  }
+}
+
 /* Empty sections without a visible loading/empty message keep the original panel spacing. */
 .scheduler-theme-shell .scheduler-event-section > .scheduler-event-content--empty {
   margin-top: 0;

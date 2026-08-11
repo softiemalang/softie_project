@@ -18,9 +18,15 @@ test('Today initial loading stays visually quiet while preserving busy, empty, a
   assert.match(today, /role="status" aria-live="polite" aria-atomic="true"\s*>\s*\{filterSummary\}/)
   assert.doesNotMatch(today, /일정 불러오는 중/)
   assert.match(today, /className=\{`scheduler-async-content[\s\S]*?aria-busy=\{isLoading\}/)
+  assert.match(today, /initialEventsLoadFinishedRef = useRef\(false\)/)
+  assert.match(today, /shouldReserveInitialLoadingFloor =\s*isLoading[\s\S]*?eventsRequestSequenceRef\.current === 1/)
   assert.match(today, /title="오늘 전체"[\s\S]*?hideEmptyText=\{isLoading \|\| Boolean\(status\)\}/)
+  assert.match(today, /title="오늘 전체"[\s\S]*?initialLoadingLayout=\{shouldReserveInitialLoadingFloor\}/)
   assert.match(today, /const eventEmptyText = events\.length > 0 && filteredEvents\.length === 0\s*\n\s*\? '현재 조건에 맞는 일정이 없어요\.'\s*\n\s*: '오늘 일정이 없어요\.'/)
   assert.doesNotMatch(today, /일정을 표시할 수 없어요/)
+  assert.match(section, /initialLoadingLayout = false/)
+  assert.match(section, /scheduler-event-content--initial-loading/)
+  assert.doesNotMatch(section, /skeleton|shimmer|spinner/)
 })
 
 test('status actions synchronously exclude duplicate row mutations and release their lock', () => {

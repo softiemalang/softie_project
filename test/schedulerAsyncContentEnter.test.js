@@ -62,6 +62,40 @@ test('Today page arms the UI-local guard only after the latest successful fetch 
   assert.doesNotMatch(todayPage, /setShouldAnimateInitialContent\([^)]*\)\s*;[\s\S]*?loadEvents\(\)/)
 })
 
+test('Today reserves a four-card floor only for the first empty loading request', () => {
+  assert.match(todayPage, /const initialEventsLoadFinishedRef = useRef\(false\)/)
+  assert.match(
+    todayPage,
+    /if \(eventsRequestSequenceRef\.current === requestSequence\) \{\s*initialEventsLoadFinishedRef\.current = true\s*setIsLoading\(false\)/,
+  )
+  assert.match(
+    todayPage,
+    /const shouldReserveInitialLoadingFloor =\s*isLoading &&\s*events\.length === 0 &&\s*!status &&\s*!initialEventsLoadFinishedRef\.current &&\s*eventsRequestSequenceRef\.current === 1/,
+  )
+
+  const eventSections = [...todayPage.matchAll(/<SchedulerEventSection[\s\S]*?\/>/g)].map(([match]) => match)
+  assert.equal(eventSections.length, 3)
+  assert.doesNotMatch(eventSections[0], /initialLoadingLayout/)
+  assert.doesNotMatch(eventSections[1], /initialLoadingLayout/)
+  assert.match(eventSections[2], /title="오늘 전체"[\s\S]*?initialLoadingLayout=\{shouldReserveInitialLoadingFloor\}/)
+
+  assert.match(eventSection, /initialLoadingLayout = false/)
+  assert.match(eventSection, /initialLoadingLayout && items\.length === 0 \? 'scheduler-event-content--initial-loading' : ''/)
+  assert.match(eventSection, /<div className="scheduler-event-list">[\s\S]*?items\.map/)
+
+  const floorRecipe = styles.match(
+    /\/\* First Today fetch only: reserve four compact event-card slots without rendering placeholders\. \*\/[\s\S]*?\.scheduler-theme-shell \.scheduler-today-page \.scheduler-event-section > \.scheduler-event-content--initial-loading\s*\{[\s\S]*?\n\}/,
+  )?.[0]
+  assert.ok(floorRecipe, 'initial loading floor should remain an explicit CSS recipe')
+  assert.equal((floorRecipe.match(/var\(--scheduler-initial-event-card-floor-height\)/g) || []).length, 4)
+  assert.equal((floorRecipe.match(/var\(--scheduler-initial-event-list-floor-gap\)/g) || []).length, 3)
+  assert.match(floorRecipe, /min-height:\s*calc\(/)
+  assert.match(floorRecipe, /24px[\s\S]*?var\(--scheduler-control-min-h\)[\s\S]*?0\.3rem[\s\S]*?0\.55rem/)
+  assert.doesNotMatch(floorRecipe, /animation|background|backdrop-filter|transform|scale|skeleton|shimmer|spinner/)
+  assert.match(styles, /--scheduler-initial-event-card-floor-height:\s*calc\([\s\S]*?0\.2rem[\s\S]*?0\.42rem[\s\S]*?-\s*3px[\s\S]*?\);/)
+  assert.match(styles, /--scheduler-initial-event-list-floor-gap:\s*var\(--scheduler-gap-sm\);/)
+})
+
 test('event lists stay stable while the glass section shell remains outside the animation target', () => {
   assert.match(eventSection, /<section className=\{sectionClassName\}>[\s\S]*?<div className=\{sectionContentClassName\}>[\s\S]*?<div className="scheduler-event-list">[\s\S]*?items\.map/)
   const animationRule = styles.match(

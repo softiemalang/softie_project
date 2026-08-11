@@ -8,6 +8,7 @@ export function SchedulerEventSection({
   onToggleDone,
   pendingStatusIds,
   hideEmptyText = false,
+  initialLoadingLayout = false,
 }) {
   const normalizedEmptyText = (() => {
     if (emptyText === '불러오는 중...') return emptyText
@@ -26,6 +27,7 @@ export function SchedulerEventSection({
   const sectionContentClassName = [
     'scheduler-event-content',
     items.length === 0 && !shouldRenderEmptyText() ? 'scheduler-event-content--empty' : '',
+    initialLoadingLayout && items.length === 0 ? 'scheduler-event-content--initial-loading' : '',
   ]
     .filter(Boolean)
     .join(' ')
