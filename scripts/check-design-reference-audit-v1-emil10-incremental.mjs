@@ -7,6 +7,7 @@ import { join, resolve } from 'node:path'
 import {
   canonicalIdentityJson,
   checkArtifactIdentity,
+  checkHistoricalRepositoryBasis,
 } from '../src/artifactIdentity.js'
 import {
   buildAuditPayload,
@@ -94,6 +95,11 @@ function replayComparable(value) {
     delete comparable.repository.baseHead
     delete comparable.repository.originMainHead
   }
+  // repositoryInputIdentities are historical source observations. The
+  // artifact identity below still verifies each protected input against the
+  // generation-base Git bytes, so a descendant checkout must not be treated
+  // as byte-identical while its historical evidence remains protected.
+  comparable.sourceReferenceLedger?.repositoryInputIdentities && delete comparable.sourceReferenceLedger.repositoryInputIdentities
   return canonicalIdentityJson(comparable)
 }
 
@@ -201,6 +207,7 @@ export function checkArtifact(artifact, directory = DEFAULT_DIRECTORY) {
   add(errors, artifact?.repository?.baseHead === artifact?.repository?.originMainHead, 'origin_main_parity_at_materialization')
   add(errors, artifact?.repository?.preExistingChangeBoundary?.includes('-.jpg'), 'preexisting_jpg_boundary')
   add(errors, artifact?.repository?.productCodeChangeAssertion?.includes('No UI/CSS/application behavior'), 'product_change_assertion')
+  add(errors, checkHistoricalRepositoryBasis(ROOT, artifact?.artifactIdentity?.generation?.baseHead).errors.length === 0, 'historical_repository_basis')
   verifyCorpusLock(errors, artifact)
 
   const observations = artifact.newSkillObservationLedger?.observations || []

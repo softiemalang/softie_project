@@ -1,0 +1,12 @@
+{
+  "artifactId": "design-reference-async-content-enter-200ms-promotion",
+  "completeArtifactPath": "artifacts/design-reference-async-content-enter-200ms-promotion/complete.json",
+  "files": {
+    "artifacts/design-reference-async-content-enter-200ms-promotion/complete.json": {
+      "byteLength": 25292,
+      "byteSha256": "c0ca42509ca526c8aff6f76749926485f6e56ebda4b399b8f193c05ade78399c",
+      "hashScope": "exact UTF-8 file bytes including final LF"
+    }
+  },
+  "schemaVersion": "design-reference-audit-integrity-v1"
+}

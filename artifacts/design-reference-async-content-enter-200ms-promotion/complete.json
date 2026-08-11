@@ -1,0 +1,556 @@
+{
+  "artifactIdentity": {
+    "artifactId": "design-reference-async-content-enter-200ms-promotion",
+    "artifactPayloadSha256": "b767084f424e8bd4266c2f1f4e61abef034ebfdfe7e03537ddce331bb7df7045",
+    "contractVersion": "artifact-identity-v1",
+    "generation": {
+      "baseHead": "0a267d071fd44901471cfd8dfcaeb7937d37c22a",
+      "baseHeadSource": "git rev-parse HEAD at materialization",
+      "includedCommit": null,
+      "includedCommitSource": "unknown_at_generation; artifact may be included by a later commit"
+    },
+    "inputs": [
+      {
+        "byteSha256": "d81ae9e4aace68a7373fb8cee9d1548363b961835a2945ad4c0df1e05bb965c0",
+        "path": "artifacts/design-reference-audit-v1-emil10-incremental/complete.json"
+      },
+      {
+        "byteSha256": "230dc2dde176ff16f96821307adde750b0c7d763337e9e2b8416c0970ce98b51",
+        "path": "artifacts/design-reference-audit-v1-emil10-incremental/complete.json.integrity.json"
+      },
+      {
+        "byteSha256": "b8848d01cf663ae1c432612f3852175a0cde4e589d0914d408bbdfc26373f527",
+        "path": "artifacts/design-reference-audit-v1/complete.json"
+      },
+      {
+        "byteSha256": "c792aa219edb394b56c695d2e367c0aa63ff244cf3cd1027abd993ecbc48872c",
+        "path": "artifacts/design-reference-audit-v1/complete.json.integrity.json"
+      },
+      {
+        "byteSha256": "6ad6a959c981978d1fc54682c4a87f548a1acdeabed863c90c6496a23dfbd766",
+        "path": "DESIGN.md"
+      },
+      {
+        "byteSha256": "b75bedcf2dbfa206dfcb9aca951e888bbc709c3718dbd523de4baf67acb42174",
+        "path": "docs/design-reference-audit-v1-emil10-incremental.md"
+      },
+      {
+        "byteSha256": "0a287d0bfbb7e2233f029920dbdcaff975a349a7dfdf331789daa53ac15a0b32",
+        "path": "docs/design-reference-audit-v1.md"
+      },
+      {
+        "byteSha256": "3159984d3c30228d1c6226aa00cd22fbbee6c4ae91be2a963f62c868edbe02b7",
+        "path": "scripts/materialize-design-reference-async-content-enter-200ms-promotion.mjs"
+      },
+      {
+        "byteSha256": "45d47c02b33ef924331a3064b579b68402e52c5393322c1de6071421a6085fc7",
+        "path": "src/artifactIdentity.js"
+      },
+      {
+        "byteSha256": "7825d42b5a03d0495afd4e873aeff023b9dc1bab95d65282f8907a7afb90c673",
+        "path": "src/scheduler/schedulerAsyncContentEnter.js"
+      },
+      {
+        "byteSha256": "eeee023dfb8fb611b1107aaed10532600b6500db0d51d65c56ce6bacbfc1fb08",
+        "path": "src/scheduler/SchedulerEventSection.jsx"
+      },
+      {
+        "byteSha256": "0ff36b4e4a165a96057b1614c1e403b8ca479f1a329201b65e200cecca5dd9fa",
+        "path": "src/scheduler/TodaySchedulerPage.jsx"
+      },
+      {
+        "byteSha256": "197ddd82a320da1a95a17c6c1c36b682534151d8834a2fbed4e59bb39b1cd7d8",
+        "path": "src/styles.css"
+      },
+      {
+        "byteSha256": "6c54f2215a18b1bf74a4452550ef836993639530ee35d24a4afe976e10d7c176",
+        "path": "test/schedulerAsyncContentEnter.test.js"
+      }
+    ],
+    "materializer": {
+      "path": "scripts/materialize-design-reference-async-content-enter-200ms-promotion.mjs",
+      "version": "design-reference-async-content-enter-200ms-promotion-materializer-1"
+    }
+  },
+  "auditDate": "2026-08-11",
+  "auditDecision": {
+    "boundedCandidate": "200ms",
+    "candidateBoundary": "Emil10 incremental audit recorded 200ms as an adjacent-role candidate only; it did not select it for loading.",
+    "incrementalVerdict": "insufficient_to_prefer",
+    "preservedArtifactId": "design-reference-audit-v1-emil10-incremental"
+  },
+  "deviceObservations": [
+    {
+      "authorityBoundary": "Human product observation, not an external objective oracle or independent timing authority.",
+      "evidenceClass": "device_observed",
+      "id": "OBS-DEVICE-SCHEDULER-200MS-PILOT-FEEL",
+      "observation": "The 200ms content enter felt smoother and more stable than the previous immediate appearance, without feeling slow or delayed.",
+      "observer": "user_report",
+      "phase": "pilot",
+      "surface": "Scheduler Today on iPhone",
+      "validationClass": "product_context_validation"
+    },
+    {
+      "authorityBoundary": "A device observation that identified a product regression; it does not by itself prove a browser compositor mechanism.",
+      "evidenceClass": "device_observed",
+      "id": "OBS-DEVICE-SCHEDULER-GLASS-REGRESSION",
+      "observation": "During initial loading, the glass blur of the event sections appeared to drop and then recover after loading completed.",
+      "observer": "user_report",
+      "phase": "pilot_regression",
+      "surface": "Scheduler Today glass sections on iPhone",
+      "validationClass": "compositing_regression_observation"
+    },
+    {
+      "authorityBoundary": "Human acceptance evidence for this product context and recipe; not a general device matrix or universal motion oracle.",
+      "evidenceClass": "device_observed",
+      "id": "OBS-DEVICE-SCHEDULER-GLASS-FIX-REVALIDATION",
+      "observation": "After the glass-scope fix, the experience was acceptable: the 200ms smoothness remained, and the animation did not feel like a delay.",
+      "observer": "user_report",
+      "phase": "post_scope_fix_revalidation",
+      "surface": "Scheduler Today on iPhone after content-only scope fix",
+      "validationClass": "product_context_validation"
+    }
+  ],
+  "externalEvidence": {
+    "corpus": "emilkowalski/skills",
+    "durationEvidence": {
+      "classification": "adjacent_role_guidance",
+      "directLoadingDurationProvenance": false,
+      "sourceObservationId": "OBS-EMIL10-ADJACENT-200",
+      "value": "200ms"
+    },
+    "easingEvidence": {
+      "classification": "direct_role_match_for_easing_not_for_duration",
+      "sourceObservationId": "OBS-EMIL10-ENTER-EASE-OUT",
+      "value": "cubic-bezier(0.23, 1, 0.32, 1)"
+    },
+    "independentAuthorityCount": 1,
+    "lineageId": "LG-EMIL10-78761e1b57f9",
+    "revision": "78761e1b57f97dce65b983d640c70a68f39e8163"
+  },
+  "frozenPredecessors": {
+    "emil10Incremental": {
+      "byteLength": 91248,
+      "byteSha256": "d81ae9e4aace68a7373fb8cee9d1548363b961835a2945ad4c0df1e05bb965c0",
+      "jsonAssertions": [
+        {
+          "equals": "complete_softie_design_reference_incremental_emil10_audit_uncommitted",
+          "path": "#/verdict"
+        },
+        {
+          "equals": "insufficient_to_prefer",
+          "path": "#/durationEasingCandidateMatrix/recommendationClass"
+        },
+        {
+          "equals": false,
+          "path": "#/durationEasingCandidateMatrix/directLoadingDurationEvidence"
+        },
+        {
+          "equals": "200ms",
+          "path": "#/durationEasingCandidateMatrix/rows/3/candidate"
+        },
+        {
+          "equals": false,
+          "path": "#/durationEasingCandidateMatrix/rows/3/directRoleMatch"
+        },
+        {
+          "equals": "OBS-EMIL10-ADJACENT-200",
+          "path": "#/newSkillObservationLedger/observations/6/id"
+        },
+        {
+          "equals": "200ms",
+          "path": "#/newSkillObservationLedger/observations/6/value/duration"
+        },
+        {
+          "equals": "OBS-EMIL10-ENTER-EASE-OUT",
+          "path": "#/newSkillObservationLedger/observations/2/id"
+        },
+        {
+          "equals": "cubic-bezier(0.23, 1, 0.32, 1)",
+          "path": "#/newSkillObservationLedger/observations/2/value/customCurve"
+        },
+        {
+          "equals": "200ms",
+          "path": "#/loadingRevealRecommendation/duration/pilotPair/1"
+        },
+        {
+          "equals": "e5ce1a426c627a070b80c662edb032792d84a82f",
+          "path": "#/artifactIdentity/generation/baseHead"
+        }
+      ],
+      "kind": "historical_artifact_json",
+      "path": "artifacts/design-reference-audit-v1-emil10-incremental/complete.json"
+    },
+    "historicalBytesPreserved": true,
+    "historicalMismatchResolution": "The Emil checker compares stable semantic payload while separately verifying generation-base Git bytes for protected inputs; descendant source hashes are not rewritten into the frozen artifact.",
+    "v1": {
+      "byteLength": 4638226,
+      "byteSha256": "b8848d01cf663ae1c432612f3852175a0cde4e589d0914d408bbdfc26373f527",
+      "jsonAssertions": [
+        {
+          "equals": "complete_softie_design_reference_audit_v1_uncommitted",
+          "path": "#/verdict"
+        },
+        {
+          "equals": "async_loading_loaded_reveal",
+          "path": "#/conflictCompatibilityMatrix/rows/2/area"
+        },
+        {
+          "equals": "candidate_for_pilot",
+          "path": "#/conflictCompatibilityMatrix/rows/2/recommendedStatus"
+        },
+        {
+          "equals": "cf4042f5827639029b15997e07f191614d19e2c4",
+          "path": "#/artifactIdentity/generation/baseHead"
+        }
+      ],
+      "kind": "historical_artifact_json",
+      "path": "artifacts/design-reference-audit-v1/complete.json"
+    }
+  },
+  "glassScopeFix": {
+    "causalAssessment": "The pilot code animated an ancestor wrapper around backdrop-filter section shells; this supports an ancestor-compositing cause, but no Safari computed-style or compositor trace is claimed.",
+    "correction": "Keep the wrapper as a state marker and animate only the stable .scheduler-event-list content node; keep the section shell and glass surface static.",
+    "implementationCommit": {
+      "commit": "0a267d071fd44901471cfd8dfcaeb7937d37c22a",
+      "parents": [
+        "a49a626bf64d37c81be0b6f2f10cb52cd577f03e"
+      ],
+      "role": "glass-scope compositing fix and focused contract test",
+      "sourceRefs": [
+        {
+          "byteLength": 1836,
+          "byteSha256": "eeee023dfb8fb611b1107aaed10532600b6500db0d51d65c56ce6bacbfc1fb08",
+          "commit": "0a267d071fd44901471cfd8dfcaeb7937d37c22a",
+          "kind": "git_commit_text",
+          "lineEnd": 49,
+          "lineStart": 47,
+          "path": "src/scheduler/SchedulerEventSection.jsx",
+          "quote": "<div className={sectionContentClassName}>\n        {shouldRenderEmptyText() ? <p className=\"subtle scheduler-empty-note\">{normalizedEmptyText}</p> : null}\n        <div className=\"scheduler-event-list\">"
+        },
+        {
+          "byteLength": 137403,
+          "byteSha256": "78ff37864cb5c504f6f25ba26076c1dd162da22297de838eb5781d24bf8d94ca",
+          "commit": "0a267d071fd44901471cfd8dfcaeb7937d37c22a",
+          "kind": "git_commit_text",
+          "lineEnd": 5058,
+          "lineStart": 5057,
+          "path": "src/styles.css",
+          "quote": "/* First successful Today event fetch only; section shells stay static and event content uses opacity only. */\n.scheduler-theme-shell .scheduler-async-content--initial-enter .scheduler-event-list {"
+        },
+        {
+          "byteLength": 5736,
+          "byteSha256": "6c54f2215a18b1bf74a4452550ef836993639530ee35d24a4afe976e10d7c176",
+          "commit": "0a267d071fd44901471cfd8dfcaeb7937d37c22a",
+          "kind": "git_commit_text",
+          "lineEnd": 65,
+          "lineStart": 65,
+          "path": "test/schedulerAsyncContentEnter.test.js",
+          "quote": "test('event lists stay stable while the glass section shell remains outside the animation target', () => {"
+        }
+      ]
+    },
+    "observedFailure": "On iPhone, the glass blur of the event sections appeared to drop during initial loading and recover after loading completed.",
+    "sourceRefs": [
+      {
+        "byteLength": 1836,
+        "byteSha256": "eeee023dfb8fb611b1107aaed10532600b6500db0d51d65c56ce6bacbfc1fb08",
+        "commit": "0a267d071fd44901471cfd8dfcaeb7937d37c22a",
+        "kind": "git_commit_text",
+        "lineEnd": 49,
+        "lineStart": 47,
+        "path": "src/scheduler/SchedulerEventSection.jsx",
+        "quote": "<div className={sectionContentClassName}>\n        {shouldRenderEmptyText() ? <p className=\"subtle scheduler-empty-note\">{normalizedEmptyText}</p> : null}\n        <div className=\"scheduler-event-list\">"
+      },
+      {
+        "byteLength": 137403,
+        "byteSha256": "78ff37864cb5c504f6f25ba26076c1dd162da22297de838eb5781d24bf8d94ca",
+        "commit": "0a267d071fd44901471cfd8dfcaeb7937d37c22a",
+        "kind": "git_commit_text",
+        "lineEnd": 5058,
+        "lineStart": 5057,
+        "path": "src/styles.css",
+        "quote": "/* First successful Today event fetch only; section shells stay static and event content uses opacity only. */\n.scheduler-theme-shell .scheduler-async-content--initial-enter .scheduler-event-list {"
+      },
+      {
+        "byteLength": 5736,
+        "byteSha256": "6c54f2215a18b1bf74a4452550ef836993639530ee35d24a4afe976e10d7c176",
+        "commit": "0a267d071fd44901471cfd8dfcaeb7937d37c22a",
+        "kind": "git_commit_text",
+        "lineEnd": 65,
+        "lineStart": 65,
+        "path": "test/schedulerAsyncContentEnter.test.js",
+        "quote": "test('event lists stay stable while the glass section shell remains outside the animation target', () => {"
+      }
+    ]
+  },
+  "lineage": {
+    "notGeneralized": "This lineage authorizes only the named async content enter / conditional content swap role; it does not promote 200ms for route transitions, press feedback, modals, gestures, or unrelated surfaces.",
+    "relations": [
+      {
+        "from": "design-reference-audit-v1",
+        "relation": "incremental_predecessor_preserved",
+        "to": "design-reference-audit-v1-emil10-incremental"
+      },
+      {
+        "from": "design-reference-audit-v1-emil10-incremental",
+        "relation": "bounded_candidate_implemented_as_pilot",
+        "to": "a49a626bf64d37c81be0b6f2f10cb52cd577f03e"
+      },
+      {
+        "from": "a49a626bf64d37c81be0b6f2f10cb52cd577f03e",
+        "relation": "compositing_regression_fixed_with_narrower_content_scope",
+        "to": "0a267d071fd44901471cfd8dfcaeb7937d37c22a"
+      },
+      {
+        "from": "0a267d071fd44901471cfd8dfcaeb7937d37c22a",
+        "relation": "post_fix_device_revalidation",
+        "to": "OBS-DEVICE-SCHEDULER-GLASS-FIX-REVALIDATION"
+      },
+      {
+        "from": "OBS-DEVICE-SCHEDULER-GLASS-FIX-REVALIDATION",
+        "relation": "product_context_validated_house_rule_promotion",
+        "to": "motion.async-content-enter.conditional-content-swap.200ms"
+      }
+    ],
+    "schemaVersion": "softie-motion-provenance-lineage-v1"
+  },
+  "pilot": {
+    "implementationCommit": {
+      "commit": "a49a626bf64d37c81be0b6f2f10cb52cd577f03e",
+      "parents": [
+        "71e568495e246e8e84f2d30cf134356ce56b9e51"
+      ],
+      "role": "Scheduler async content enter pilot implementation",
+      "sourceRefs": [
+        {
+          "byteLength": 36181,
+          "byteSha256": "0ff36b4e4a165a96057b1614c1e403b8ca479f1a329201b65e200cecca5dd9fa",
+          "commit": "a49a626bf64d37c81be0b6f2f10cb52cd577f03e",
+          "kind": "git_commit_text",
+          "lineEnd": 273,
+          "lineStart": 271,
+          "path": "src/scheduler/TodaySchedulerPage.jsx",
+          "quote": "setEvents(rows)\n      setStatus('')\n      settleInitialAsyncContentEnter(rows)"
+        },
+        {
+          "byteLength": 410,
+          "byteSha256": "7825d42b5a03d0495afd4e873aeff023b9dc1bab95d65282f8907a7afb90c673",
+          "commit": "a49a626bf64d37c81be0b6f2f10cb52cd577f03e",
+          "kind": "git_commit_text",
+          "lineEnd": 9,
+          "lineStart": 8,
+          "path": "src/scheduler/schedulerAsyncContentEnter.js",
+          "quote": "export function settleSchedulerAsyncContentEnter(state, result) {\n  if (state.hasSuccessfullySettled || result.status !== 'success') return state"
+        },
+        {
+          "byteLength": 137169,
+          "byteSha256": "22460253708a6a82fdcfe093681970edfbdddabcdd94d4533e73f090940fafb4",
+          "commit": "a49a626bf64d37c81be0b6f2f10cb52cd577f03e",
+          "kind": "git_commit_text",
+          "lineEnd": 5053,
+          "lineStart": 5052,
+          "path": "src/styles.css",
+          "quote": "/* First successful Today event fetch only; data is rendered immediately and opacity is the only animated property. */\n.scheduler-theme-shell .scheduler-async-content--initial-enter {"
+        }
+      ]
+    },
+    "implementationSourceRefs": [
+      {
+        "byteLength": 36181,
+        "byteSha256": "0ff36b4e4a165a96057b1614c1e403b8ca479f1a329201b65e200cecca5dd9fa",
+        "kind": "working_tree_text",
+        "lineEnd": 273,
+        "lineStart": 271,
+        "path": "src/scheduler/TodaySchedulerPage.jsx",
+        "quote": "setEvents(rows)\n      setStatus('')\n      settleInitialAsyncContentEnter(rows)"
+      },
+      {
+        "byteLength": 36181,
+        "byteSha256": "0ff36b4e4a165a96057b1614c1e403b8ca479f1a329201b65e200cecca5dd9fa",
+        "kind": "working_tree_text",
+        "lineEnd": 298,
+        "lineStart": 298,
+        "path": "src/scheduler/TodaySchedulerPage.jsx",
+        "quote": "const initialAsyncContentEnterStateRef = useRef(createSchedulerAsyncContentEnterState())"
+      },
+      {
+        "byteLength": 36181,
+        "byteSha256": "0ff36b4e4a165a96057b1614c1e403b8ca479f1a329201b65e200cecca5dd9fa",
+        "kind": "working_tree_text",
+        "lineEnd": 928,
+        "lineStart": 928,
+        "path": "src/scheduler/TodaySchedulerPage.jsx",
+        "quote": "<div className={`scheduler-async-content${shouldAnimateInitialContent ? ' scheduler-async-content--initial-enter' : ''}`}>"
+      },
+      {
+        "byteLength": 410,
+        "byteSha256": "7825d42b5a03d0495afd4e873aeff023b9dc1bab95d65282f8907a7afb90c673",
+        "kind": "working_tree_text",
+        "lineEnd": 9,
+        "lineStart": 8,
+        "path": "src/scheduler/schedulerAsyncContentEnter.js",
+        "quote": "export function settleSchedulerAsyncContentEnter(state, result) {\n  if (state.hasSuccessfullySettled || result.status !== 'success') return state"
+      },
+      {
+        "byteLength": 1836,
+        "byteSha256": "eeee023dfb8fb611b1107aaed10532600b6500db0d51d65c56ce6bacbfc1fb08",
+        "kind": "working_tree_text",
+        "lineEnd": 49,
+        "lineStart": 47,
+        "path": "src/scheduler/SchedulerEventSection.jsx",
+        "quote": "<div className={sectionContentClassName}>\n        {shouldRenderEmptyText() ? <p className=\"subtle scheduler-empty-note\">{normalizedEmptyText}</p> : null}\n        <div className=\"scheduler-event-list\">"
+      },
+      {
+        "byteLength": 137415,
+        "byteSha256": "197ddd82a320da1a95a17c6c1c36b682534151d8834a2fbed4e59bb39b1cd7d8",
+        "kind": "working_tree_text",
+        "lineEnd": 77,
+        "lineStart": 75,
+        "path": "src/styles.css",
+        "quote": "/* Async content enter house rule; role-scoped to conditional content arrival. */\n  --ag-scheduler-async-content-enter-duration: 200ms;\n  --ag-scheduler-async-content-enter-easing: cubic-bezier(0.23, 1, 0.32, 1);"
+      },
+      {
+        "byteLength": 137415,
+        "byteSha256": "197ddd82a320da1a95a17c6c1c36b682534151d8834a2fbed4e59bb39b1cd7d8",
+        "kind": "working_tree_text",
+        "lineEnd": 5059,
+        "lineStart": 5057,
+        "path": "src/styles.css",
+        "quote": "/* First successful Today event fetch only; section shells stay static and event content uses opacity only. */\n.scheduler-theme-shell .scheduler-async-content--initial-enter .scheduler-event-list {\n  animation: scheduler-async-content-enter"
+      },
+      {
+        "byteLength": 137415,
+        "byteSha256": "197ddd82a320da1a95a17c6c1c36b682534151d8834a2fbed4e59bb39b1cd7d8",
+        "kind": "working_tree_text",
+        "lineEnd": 5077,
+        "lineStart": 5075,
+        "path": "src/styles.css",
+        "quote": "@media (prefers-reduced-motion: reduce) {\n  .scheduler-theme-shell .scheduler-async-content--initial-enter .scheduler-event-list {\n    animation: none;"
+      },
+      {
+        "byteLength": 32023,
+        "byteSha256": "6ad6a959c981978d1fc54682c4a87f548a1acdeabed863c90c6496a23dfbd766",
+        "kind": "working_tree_text",
+        "lineEnd": 317,
+        "lineStart": 317,
+        "path": "DESIGN.md",
+        "quote": "### Async content enter / conditional content swap"
+      },
+      {
+        "byteLength": 32023,
+        "byteSha256": "6ad6a959c981978d1fc54682c4a87f548a1acdeabed863c90c6496a23dfbd766",
+        "kind": "working_tree_text",
+        "lineEnd": 320,
+        "lineStart": 320,
+        "path": "DESIGN.md",
+        "quote": "- 승인된 역할 레시피는 `opacity` only, `200ms`, `cubic-bezier(0.23, 1, 0.32, 1)`입니다."
+      }
+    ],
+    "role": "async content enter / conditional content swap",
+    "runtimeContract": "First successful non-empty content arrival enters once; empty success settles without reveal; error leaves first retry eligible; subsequent updates do not replay.",
+    "targetSurface": "Scheduler Today event list"
+  },
+  "promotionDecision": {
+    "decisionClass": "product_context_validated_house_rule",
+    "gates": [
+      {
+        "id": "external_role_evidence",
+        "result": "Emil provides adjacent-role 200ms evidence, not loading-specific direct support.",
+        "status": "pass_with_boundary"
+      },
+      {
+        "id": "incremental_duration_verdict",
+        "result": "The frozen incremental audit remains insufficient_to_prefer; 200ms was a bounded candidate.",
+        "status": "preserved"
+      },
+      {
+        "id": "runtime_semantic_contract",
+        "result": "First successful non-empty settle only; refetches do not replay; empty and error boundaries remain explicit.",
+        "status": "pass"
+      },
+      {
+        "id": "glass_compositing_scope",
+        "result": "The animated node is the stable event list; section glass shells and their backdrop-filter surfaces remain outside animation.",
+        "status": "pass"
+      },
+      {
+        "id": "reduced_motion",
+        "result": "The scoped rule disables animation under prefers-reduced-motion: reduce.",
+        "status": "pass"
+      },
+      {
+        "id": "device_observation",
+        "result": "The user accepted the post-fix feel on iPhone without delay perception.",
+        "status": "pass_as_product_context_validation"
+      },
+      {
+        "id": "generalization_boundary",
+        "result": "The rule is limited to this motion role and does not authorize other interaction types.",
+        "status": "pass"
+      }
+    ],
+    "rationale": "Promote the bounded role recipe after preserving the external candidate boundary, passing runtime semantic and compositing contracts, and receiving post-fix iPhone acceptance.",
+    "ruleId": "motion.async-content-enter.conditional-content-swap.200ms",
+    "sourceRefs": [
+      "OBS-DEVICE-SCHEDULER-200MS-PILOT-FEEL",
+      "OBS-DEVICE-SCHEDULER-GLASS-REGRESSION",
+      "OBS-DEVICE-SCHEDULER-GLASS-FIX-REVALIDATION"
+    ],
+    "status": "promoted"
+  },
+  "recipe": {
+    "artificialDelay": false,
+    "duration": "200ms",
+    "durationMs": 200,
+    "easing": "cubic-bezier(0.23, 1, 0.32, 1)",
+    "emptyBoundary": "successful empty results settle without a reveal because no content enters",
+    "errorBoundary": "error does not settle; the first successful retry remains eligible",
+    "generalizationBoundary": "role-scoped; not a universal 200ms rule for other interaction types",
+    "prohibitedProperties": [
+      "transform",
+      "translate",
+      "scale",
+      "blur",
+      "filter",
+      "clip-path",
+      "layout",
+      "stagger"
+    ],
+    "properties": [
+      "opacity"
+    ],
+    "reducedMotion": "static/non-movement; no animation",
+    "repeatBoundary": "no replay for refetch, date/filter change, background refresh, mutation update, or later same-surface update",
+    "role": "async content enter / conditional content swap",
+    "targetBoundary": "actual entering content only; never a glass/backdrop-filter surface or its ancestor",
+    "trigger": "first successful arrival of actual new async content after a loading state"
+  },
+  "repository": {
+    "anchorCommit": "0a267d071fd44901471cfd8dfcaeb7937d37c22a",
+    "branch": "main",
+    "currentHead": "0a267d071fd44901471cfd8dfcaeb7937d37c22a",
+    "originMainHead": "0a267d071fd44901471cfd8dfcaeb7937d37c22a",
+    "preExistingChangeBoundary": "The user-owned untracked -.jpg remains outside this evidence scope and is preserved."
+  },
+  "schemaVersion": "design-reference-async-content-enter-200ms-promotion-v1",
+  "scope": {
+    "auditArtifactRewrite": false,
+    "businessDataFlowMutation": false,
+    "databaseMutation": false,
+    "deployment": false,
+    "promotionOnly": true,
+    "skillSourceMutation": false,
+    "stagingCommitPush": false,
+    "uiMutation": false
+  },
+  "title": "Softie async content enter 200ms post-pilot promotion evidence",
+  "validationContract": {
+    "commitLineage": "Pilot and glass-scope-fix commits must exist and pilot must be an ancestor of the fix.",
+    "deterministicMaterialization": "Complete evidence bytes and generated document are stable on repeat materialization at the same repository state.",
+    "frozenArtifacts": "Historical predecessor artifact bytes and JSON assertions are checked without rewriting them.",
+    "sourceRefs": "Every working-tree and git-commit text reference is checked against exact bytes, line location, and quoted text.",
+    "tamperRejection": "Companion, complete payload, source reference, and protected input tampering must fail closed."
+  },
+  "verdict": "complete_softie_async_content_enter_200ms_house_rule_promoted_uncommitted"
+}

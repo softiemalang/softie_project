@@ -39,6 +39,7 @@ test('incremental artifact preserves the evidence boundaries', async () => {
   assert.equal(artifact.provenanceLineage.lineageGroups[0].independentAuthorityCount, 1)
   assert.equal(artifact.durationEasingCandidateMatrix.recommendationClass, 'insufficient_to_prefer')
   assert.deepEqual(artifact.loadingRevealRecommendation.duration.pilotPair, ['180ms', '200ms'])
+  assert.equal(artifact.artifactIdentity.generation.baseHead, 'e5ce1a426c627a070b80c662edb032792d84a82f')
   assert.equal(artifact.schedulerApplicability.opportunityGate.passesOpportunityCondition, true)
   assert.match(artifact.schedulerApplicability.opportunityGate.implementationPrecondition, /no firstFetch\/hasLoaded flag/)
   assert.ok(artifact.claimRelations.relations.some((relation) => relation.id === 'REL-EMIL10-009' && relation.type === 'amend'))

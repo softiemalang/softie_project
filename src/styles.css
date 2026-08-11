@@ -72,7 +72,7 @@
   --ag-content-wide: 1180px;
   --ag-duration-fast: 180ms;
   --ag-scheduler-route-transition-easing: cubic-bezier(0.23, 1, 0.32, 1);
-  /* Scheduler async content enter pilot; not a promoted house rule. */
+  /* Async content enter house rule; role-scoped to conditional content arrival. */
   --ag-scheduler-async-content-enter-duration: 200ms;
   --ag-scheduler-async-content-enter-easing: cubic-bezier(0.23, 1, 0.32, 1);
 

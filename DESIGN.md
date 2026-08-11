@@ -314,6 +314,16 @@ Warm Liquid Glass는 따뜻한 사진의 색과 형태가 패널 안에서도 �
 - 기본 전환은 `180ms ease`를 사용하며 위치 변화는 작게 유지합니다.
 - `prefers-reduced-motion`에서는 전환과 애니메이션 시간을 사실상 제거합니다.
 
+### Async content enter / conditional content swap
+
+- 비동기 성공으로 실제 새 콘텐츠가 처음 들어오며 상태가 갑자기 바뀌는 경우에만, 읽기 흐름을 끊지 않는 짧은 enter를 사용합니다.
+- 승인된 역할 레시피는 `opacity` only, `200ms`, `cubic-bezier(0.23, 1, 0.32, 1)`입니다. 콘텐츠는 준비되는 즉시 렌더하고 artificial delay를 추가하지 않습니다.
+- `transform`, `scale`, `blur`, `clip-path`, layout property, stagger, intentional crossfade choreography는 이 역할에 사용하지 않습니다.
+- 반복 refetch, 날짜·필터 변경, background refresh, mutation 후 update에는 재실행하지 않습니다. empty success는 settle하되 새 콘텐츠가 없으면 reveal하지 않고, error는 successful retry 전까지 settle로 취급하지 않습니다.
+- 애니메이션 대상은 실제 entering content로 한정하며 glass/backdrop-filter surface와 그 ancestor에는 적용하지 않습니다. section shell, 배경, border, shadow, blur/saturation은 정적으로 유지합니다.
+- `prefers-reduced-motion: reduce`에서는 movement를 추가하지 않고 static/non-movement 상태로 표시합니다.
+- 이 `200ms`는 `async content enter / conditional content swap` 역할에 한정된 Softie house rule이며 다른 interaction 유형의 전역 duration 기본값이 아닙니다. provenance와 승격 근거는 `docs/design-reference-async-content-enter-200ms-promotion.md` 및 `artifacts/design-reference-async-content-enter-200ms-promotion/complete.json`에 보존합니다.
+
 ## 8. Component defaults
 
 ### Buttons
