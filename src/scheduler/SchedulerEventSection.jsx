@@ -23,7 +23,19 @@ export function SchedulerEventSection({
   ]
     .filter(Boolean)
     .join(' ')
+  const sectionContentClassName = [
+    'scheduler-event-content',
+    items.length === 0 && !shouldRenderEmptyText() ? 'scheduler-event-content--empty' : '',
+  ]
+    .filter(Boolean)
+    .join(' ')
 
+
+  function shouldRenderEmptyText() {
+    return items.length === 0 && (
+      normalizedEmptyText === '불러오는 중...' || !hideEmptyText
+    )
+  }
   return (
     <section className={sectionClassName}>
       <div className="scheduler-section-head">
@@ -32,12 +44,8 @@ export function SchedulerEventSection({
         </div>
         <div className="scheduler-count-pill">{items.length}건</div>
       </div>
-
-      {items.length === 0 ? (
-        normalizedEmptyText === '불러오는 중...' || !hideEmptyText ? (
-          <p className="subtle scheduler-empty-note">{normalizedEmptyText}</p>
-        ) : null
-      ) : (
+      <div className={sectionContentClassName}>
+        {shouldRenderEmptyText() ? <p className="subtle scheduler-empty-note">{normalizedEmptyText}</p> : null}
         <div className="scheduler-event-list">
           {items.map((item) => (
             <SchedulerEventCard
@@ -48,7 +56,7 @@ export function SchedulerEventSection({
             />
           ))}
         </div>
-      )}
+      </div>
     </section>
   )
 }

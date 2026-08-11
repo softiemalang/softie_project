@@ -5049,8 +5049,13 @@ textarea {
   gap: 0.65rem;
 }
 
-/* First successful Today event fetch only; data is rendered immediately and opacity is the only animated property. */
-.scheduler-theme-shell .scheduler-async-content--initial-enter {
+/* Empty sections without a visible loading/empty message keep the original panel spacing. */
+.scheduler-theme-shell .scheduler-event-section > .scheduler-event-content--empty {
+  margin-top: 0;
+}
+
+/* First successful Today event fetch only; section shells stay static and event content uses opacity only. */
+.scheduler-theme-shell .scheduler-async-content--initial-enter .scheduler-event-list {
   animation: scheduler-async-content-enter
     var(--ag-scheduler-async-content-enter-duration)
     var(--ag-scheduler-async-content-enter-easing)
@@ -5068,7 +5073,7 @@ textarea {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .scheduler-theme-shell .scheduler-async-content--initial-enter {
+  .scheduler-theme-shell .scheduler-async-content--initial-enter .scheduler-event-list {
     animation: none;
   }
 }
