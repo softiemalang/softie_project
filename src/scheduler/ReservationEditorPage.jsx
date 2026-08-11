@@ -79,9 +79,12 @@ export function ReservationEditorPage({
     setBusyAction(null)
   }
 
+  // Editor and Today have materially different root geometry, so editor exits
+  // intentionally use the existing immediate route update instead of a full
+  // Scheduler snapshot transition.
   function handleBack() {
     if (actionLockRef.current) return
-    navigate(backPath, { viewTransition: true })
+    navigate(backPath)
   }
 
   useEffect(() => {
@@ -399,7 +402,7 @@ export function ReservationEditorPage({
       }
 
       await deleteReservation(reservationId, effectiveOwnerKey)
-      navigate(backPath, { viewTransition: true })
+      navigate(backPath)
     } catch (error) {
       console.error('[handleDelete] Delete flow failed:', error)
       setEditorStatus(error?.message || '예약을 삭제하지 못했어요. 다시 시도해 주세요.', 'error')

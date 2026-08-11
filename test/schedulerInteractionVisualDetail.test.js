@@ -66,6 +66,7 @@ test('reservation create result scroll is immediate and does not add unbounded m
   assert.doesNotMatch(editor, /behavior: 'smooth'/)
 })
 
-test('reservation delete returns through the preserved view-transition path', () => {
-  assert.match(editor, /await deleteReservation\(reservationId, effectiveOwnerKey\)\s*navigate\(backPath, \{ viewTransition: true \}\)/)
+test('reservation delete returns through the preserved immediate backPath route', () => {
+  assert.match(editor, /await deleteReservation\(reservationId, effectiveOwnerKey\)\s*navigate\(backPath\)/)
+  assert.doesNotMatch(editor, /await deleteReservation\(reservationId, effectiveOwnerKey\)\s*navigate\(backPath, \{ viewTransition: true \}\)/)
 })
