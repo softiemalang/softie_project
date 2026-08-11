@@ -107,6 +107,7 @@ test('Scheduler glass controls and FAB avoid raw press transforms while reduced 
   )
   assert.match(statusRule, /backdrop-filter:/)
   assert.doesNotMatch(statusRule, /:active\s*\{[^}]*transform:/)
+  assert.doesNotMatch(styles, /\.scheduler-theme-shell \.scheduler-status-item:active\s*\{/)
 
   const globalReduced = sliceBetween(
     styles,

@@ -4936,10 +4936,6 @@ textarea {
   -webkit-backdrop-filter: blur(14px) saturate(108%);
 }
 
-.scheduler-theme-shell .scheduler-status-item:active {
-  background: var(--ag-surface-selected);
-}
-
 .scheduler-theme-shell .scheduler-status-item-label,
 .scheduler-theme-shell .scheduler-status-item-value {
   overflow: hidden;
