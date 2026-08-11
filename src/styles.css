@@ -5101,10 +5101,10 @@ textarea {
   position: absolute;
   inset: 0;
   display: grid;
-  place-items: center;
+  place-items: start;
   margin: 0;
-  padding-inline: var(--scheduler-content-inset);
-  text-align: center;
+  padding: var(--scheduler-content-inset);
+  text-align: left;
   white-space: nowrap;
 }
 
