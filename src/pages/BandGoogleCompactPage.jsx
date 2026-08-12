@@ -638,38 +638,26 @@ export default function BandGoogleCompactPage() {
 
     try {
       const normalizedCode = joinCode.trim().toUpperCase()
-      const { data: roomRow, error: roomError } = await supabase
-        .from('rooms')
-        .select('id, name, room_code, owner_user_id, created_at')
-        .eq('room_code', normalizedCode)
-        .maybeSingle()
+      const { data: joinedRow, error: joinError } = await supabase.rpc('join_band_room_by_code', {
+        p_room_code: normalizedCode,
+        p_display_name: displayName.trim(),
+      }).single()
 
-      if (roomError || !roomRow) throw new Error('해당 코드의 방을 찾지 못했어요.')
+      if (joinError || !joinedRow) throw new Error('해당 코드의 방을 찾지 못했어요.')
 
-      const { data: existingMember, error: existingError } = await supabase
-        .from('members')
-        .select('id, room_id, user_id, display_name, created_at')
-        .eq('room_id', roomRow.id)
-        .eq('user_id', user.id)
-        .maybeSingle()
-
-      if (existingError) throw new Error(getFriendlyError(existingError.message))
-
-      let memberRow = existingMember
-      if (!memberRow) {
-        const { data: createdMember, error: createMemberError } = await supabase
-          .from('members')
-          .insert({
-            room_id: roomRow.id,
-            user_id: user.id,
-            display_name: displayName.trim(),
-            pin_hash: `auth:${user.id}`,
-          })
-          .select('id, room_id, user_id, display_name, created_at')
-          .single()
-
-        if (createMemberError) throw new Error(getFriendlyError(createMemberError.message))
-        memberRow = createdMember
+      const roomRow = {
+        id: joinedRow.room_id,
+        name: joinedRow.room_name,
+        room_code: joinedRow.room_code,
+        owner_user_id: joinedRow.owner_user_id,
+        created_at: joinedRow.room_created_at,
+      }
+      const memberRow = {
+        id: joinedRow.member_id,
+        room_id: joinedRow.room_id,
+        user_id: joinedRow.user_id,
+        display_name: joinedRow.display_name,
+        created_at: joinedRow.member_created_at,
       }
 
       setActiveModal(null)

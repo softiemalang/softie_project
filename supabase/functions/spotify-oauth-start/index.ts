@@ -36,7 +36,7 @@ serve(async (req) => {
     const normalizedReturnPath = normalizeSpotifyReturnPath(returnPath)
     const clientId = Deno.env.get('SPOTIFY_CLIENT_ID')
     const redirectUri = Deno.env.get('SPOTIFY_REDIRECT_URI')
-    const supabaseUrl = Deno.env.get('SUPABASE_URL')!
+    const supabaseUrl = Deno.env.get('SUPABASE_URL')
     const serviceRoleKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!
     const anonKey = Deno.env.get('SUPABASE_ANON_KEY')
 
@@ -44,27 +44,33 @@ serve(async (req) => {
       throw new Error('Spotify OAuth is not configured')
     }
 
+    if (!supabaseUrl || !anonKey || !serviceRoleKey) {
+      throw new Error('Supabase authentication is not configured')
+    }
+
     const authHeader = req.headers.get('Authorization')
-    const bearerToken = authHeader?.replace(/^Bearer\s+/i, '').trim()
+    const bearerToken = authHeader?.match(/^Bearer\s+(.+)$/i)?.[1]?.trim() || ''
 
-    if (bearerToken && anonKey && bearerToken !== anonKey) {
-      const authClient = createClient(supabaseUrl, anonKey, {
-        global: {
-          headers: { Authorization: `Bearer ${bearerToken}` },
-        },
-      })
-      const {
-        data: { user },
-        error: authError,
-      } = await authClient.auth.getUser()
+    if (!bearerToken || bearerToken === anonKey) {
+      throw new Error('Authentication required for Spotify OAuth')
+    }
 
-      if (authError || !user) {
-        throw new Error('Invalid auth session for Spotify OAuth')
-      }
+    const authClient = createClient(supabaseUrl, anonKey, {
+      global: {
+        headers: { Authorization: `Bearer ${bearerToken}` },
+      },
+    })
+    const {
+      data: { user },
+      error: authError,
+    } = await authClient.auth.getUser()
 
-      if (user.id !== normalizedUserId) {
-        throw new Error('Authenticated user does not match Spotify OAuth target')
-      }
+    if (authError || !user) {
+      throw new Error('Invalid auth session for Spotify OAuth')
+    }
+
+    if (user.id !== normalizedUserId) {
+      throw new Error('Authenticated user does not match Spotify OAuth target')
     }
 
     const supabase = createClient(supabaseUrl, serviceRoleKey)
@@ -96,8 +102,9 @@ serve(async (req) => {
     })
   } catch (error) {
     console.error('[spotify-oauth-start]', error)
-    return new Response(JSON.stringify({ error: error.message || 'Failed to start Spotify OAuth' }), {
-      status: 400,
+    const message = error.message || 'Failed to start Spotify OAuth'
+    return new Response(JSON.stringify({ error: message }), {
+      status: message.includes('Authentication') || message.includes('auth session') ? 401 : 400,
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },
     })
   }

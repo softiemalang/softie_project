@@ -3,19 +3,81 @@ import { createClient } from 'https://esm.sh/@supabase/supabase-js@2'
 
 const supabaseUrl = Deno.env.get('SUPABASE_URL') ?? '';
 const supabaseServiceRoleKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY') ?? '';
+const supabaseAnonKey = Deno.env.get('SUPABASE_ANON_KEY') ?? '';
 const supabaseAdmin = supabaseUrl && supabaseServiceRoleKey
   ? createClient(supabaseUrl, supabaseServiceRoleKey)
   : null;
 
+const MAX_REQUEST_BODY_BYTES = 256 * 1024;
+const PUBLIC_LOCK_TTL_MS = 5 * 60 * 1000;
+
+class FortuneRequestError extends Error {
+  status: number;
+
+  constructor(status: number, message: string) {
+    super(message);
+    this.name = 'FortuneRequestError';
+    this.status = status;
+  }
+}
+
 /*
- * NOTE: 이 함수는 public/local_key 기반 운세 페이지에서 호출되므로 
- * Supabase Auth 도입 전까지 verify_jwt=false를 유지합니다. 
- * OPENAI_API_KEY는 Edge Function Secret으로 안전하게 관리됩니다.
+ * NOTE: verify_jwt=false is retained because the configured public Softie
+ * report is intentionally reachable without a user session. The handler
+ * authenticates every non-public profile itself and keeps provider secrets in
+ * Edge Function secrets.
  */
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
   'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
   'Access-Control-Allow-Methods': 'POST, OPTIONS',
+}
+
+function jsonResponse(body: Record<string, unknown>, status = 200) {
+  return new Response(JSON.stringify(body), {
+    status,
+    headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+  });
+}
+
+function getBearerToken(request: Request) {
+  return request.headers.get('Authorization')?.match(/^Bearer\s+(.+)$/i)?.[1]?.trim() || '';
+}
+
+async function getAuthenticatedUser(request: Request) {
+  const token = getBearerToken(request);
+  if (!token || !supabaseUrl || !supabaseAnonKey || token === supabaseAnonKey) return null;
+
+  const authClient = createClient(supabaseUrl, supabaseAnonKey);
+  const { data, error } = await authClient.auth.getUser(token);
+  if (error || !data.user?.id) {
+    throw new FortuneRequestError(401, 'Invalid authorization token');
+  }
+  return data.user;
+}
+
+function getKstDateString() {
+  return new Intl.DateTimeFormat('en-CA', {
+    timeZone: 'Asia/Seoul',
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+  }).format(new Date());
+}
+
+function stripPublicDebug(content: unknown) {
+  if (!content || typeof content !== 'object' || Array.isArray(content)) return content;
+  const publicContent = { ...(content as Record<string, unknown>) };
+  delete publicContent.debug;
+  return publicContent;
+}
+
+function buildPublicReportResponse(report: { model_name?: string | null; report_content?: unknown }, isCached = true) {
+  return {
+    model: report.model_name || 'cached-report',
+    content: stripPublicDebug(report.report_content),
+    is_cached: isCached,
+  };
 }
 
 
@@ -672,40 +734,157 @@ Deno.serve(async (req) => {
     return new Response('ok', { headers: corsHeaders })
   }
 
+  if (req.method !== 'POST') {
+    return jsonResponse({ error: 'Method not allowed' }, 405)
+  }
+
   const startTime = Date.now();
   let profileId = 'unknown';
+  let publicGenerationLockHeld = false;
+  let publicGenerationSaved = false;
+  let publicGenerationDate: string | null = null;
   try {
-    const { computedData, targetDate, profileId: requestProfileId, softiePersonalRag, snapshotId, forceGenerate } = await req.json()
+    const rawBody = await req.text();
+    if (new TextEncoder().encode(rawBody).byteLength > MAX_REQUEST_BODY_BYTES) {
+      throw new FortuneRequestError(413, 'Request body is too large');
+    }
+
+    let body: Record<string, any>;
+    try {
+      body = JSON.parse(rawBody);
+    } catch {
+      throw new FortuneRequestError(400, 'Invalid JSON body');
+    }
+
+    let computedData = body?.computedData || null;
+    const targetDate = body?.targetDate;
+    const requestProfileId = body?.profileId;
+    const softiePersonalRag = body?.softiePersonalRag;
+    const requestSnapshotId = body?.snapshotId;
+    const forceGenerate = body?.forceGenerate === true;
     profileId = requestProfileId || computedData?.profileId || 'unknown'
     const softieProfileId = Deno.env.get('SOFTIE_SAJU_PROFILE_ID') || '';
-    const isSoftiePublic = softieProfileId && profileId === softieProfileId;
+    const isSoftiePublic = Boolean(softieProfileId && profileId === softieProfileId);
     const effectiveTargetDate = targetDate ?? computedData?.targetDate ?? computedData?.target_date ?? null;
     const reportVersion = '1.3';
+    if (isSoftiePublic && typeof effectiveTargetDate === 'string') {
+      publicGenerationDate = effectiveTargetDate;
+    }
 
-    // 0. 중복 보호: 공용 사주 프로필이고 강제 생성이 아닐 때 이미 같은 날짜의 리포트가 있는지 확인
-    if (isSoftiePublic && supabaseAdmin && effectiveTargetDate && !forceGenerate) {
-      const { data: existingReport, error: lookupError } = await supabaseAdmin
-        .from('saju_fortune_reports')
-        .select('*')
-        .eq('profile_id', profileId)
-        .eq('report_date', effectiveTargetDate)
-        .eq('report_version', reportVersion)
-        .maybeSingle()
+    if (!profileId || profileId === 'unknown') {
+      throw new FortuneRequestError(400, 'profileId is required');
+    }
+    if (typeof effectiveTargetDate !== 'string' || !/^\d{4}-\d{2}-\d{2}$/.test(effectiveTargetDate)) {
+      throw new FortuneRequestError(400, 'targetDate must be YYYY-MM-DD');
+    }
+    if (!requestSnapshotId || typeof requestSnapshotId !== 'string') {
+      throw new FortuneRequestError(400, 'snapshotId is required');
+    }
 
-      if (!lookupError && existingReport) {
-        console.log(`[Duplicate Protection] Found existing report for profileId: ${profileId}, date: ${effectiveTargetDate}. Skipping LLM call.`);
-        const cachedResponse = {
-          model: existingReport.model_name,
-          content: existingReport.report_content,
-          savedRecord: existingReport,
-          is_cached: true
-        };
-        return new Response(JSON.stringify(cachedResponse), {
-          headers: { ...corsHeaders, 'Content-Type': 'application/json' },
-        });
+    if (isSoftiePublic) {
+      if (!supabaseAdmin) {
+        throw new FortuneRequestError(503, 'Public report storage is not configured');
+      }
+      if (effectiveTargetDate !== getKstDateString()) {
+        throw new FortuneRequestError(400, 'Public reports are limited to today');
+      }
+      if (forceGenerate) {
+        throw new FortuneRequestError(403, 'Public report regeneration is not available');
+      }
+    } else {
+      const authenticatedUser = await getAuthenticatedUser(req);
+      if (!authenticatedUser) {
+        throw new FortuneRequestError(401, 'Authentication required for private report generation');
+      }
+      if (!supabaseAdmin) {
+        throw new FortuneRequestError(503, 'Report storage is not configured');
+      }
+
+      const { data: ownedProfile, error: profileError } = await supabaseAdmin
+        .from('saju_profiles')
+        .select('id, user_id')
+        .eq('id', profileId)
+        .maybeSingle();
+      if (profileError) throw profileError;
+      if (!ownedProfile || String(ownedProfile.user_id) !== authenticatedUser.id) {
+        throw new FortuneRequestError(403, 'Profile ownership mismatch');
       }
     }
 
+    // Use the stored snapshot for the selected profile/date. The caller may
+    // identify the snapshot, but cannot replace the provider prompt with an
+    // arbitrary computedData payload.
+    const { data: authoritativeSnapshot, error: snapshotError } = await supabaseAdmin!
+      .from('saju_daily_snapshots')
+      .select('id, profile_id, target_date, computed_data')
+      .eq('id', requestSnapshotId)
+      .eq('profile_id', profileId)
+      .eq('target_date', effectiveTargetDate)
+      .maybeSingle();
+    if (snapshotError) throw snapshotError;
+    if (!authoritativeSnapshot) {
+      throw new FortuneRequestError(404, 'Daily snapshot was not found for this profile');
+    }
+    computedData = authoritativeSnapshot.computed_data;
+
+    if (isSoftiePublic) {
+      const { data: existingReport, error: lookupError } = await supabaseAdmin!
+        .from('saju_fortune_reports')
+        .select('model_name, report_content')
+        .eq('profile_id', profileId)
+        .eq('report_date', effectiveTargetDate)
+        .eq('report_version', reportVersion)
+        .maybeSingle();
+      if (lookupError) throw lookupError;
+      if (existingReport) {
+        console.log(`[Duplicate Protection] Found existing public report for ${profileId}/${effectiveTargetDate}`);
+        return jsonResponse(buildPublicReportResponse(existingReport, true));
+      }
+
+      const lockExpiresAt = new Date(Date.now() + PUBLIC_LOCK_TTL_MS).toISOString();
+      const { error: lockError } = await supabaseAdmin!
+        .from('saju_fortune_generation_locks')
+        .insert({
+          profile_id: profileId,
+          report_date: effectiveTargetDate,
+          report_version: reportVersion,
+          expires_at: lockExpiresAt,
+        });
+
+      if (lockError?.code === '23505') {
+        const { data: completedReport, error: completedLookupError } = await supabaseAdmin!
+          .from('saju_fortune_reports')
+          .select('model_name, report_content')
+          .eq('profile_id', profileId)
+          .eq('report_date', effectiveTargetDate)
+          .eq('report_version', reportVersion)
+          .maybeSingle();
+        if (completedLookupError) throw completedLookupError;
+        if (completedReport) return jsonResponse(buildPublicReportResponse(completedReport, true));
+
+        const { data: expiredLock } = await supabaseAdmin!
+          .from('saju_fortune_generation_locks')
+          .select('profile_id')
+          .eq('profile_id', profileId)
+          .eq('report_date', effectiveTargetDate)
+          .eq('report_version', reportVersion)
+          .lt('expires_at', new Date().toISOString())
+          .maybeSingle();
+        if (expiredLock) {
+          await supabaseAdmin!
+            .from('saju_fortune_generation_locks')
+            .delete()
+            .eq('profile_id', profileId)
+            .eq('report_date', effectiveTargetDate)
+            .eq('report_version', reportVersion)
+            .lt('expires_at', new Date().toISOString());
+          throw new FortuneRequestError(429, 'A public report is being generated; please retry shortly');
+        }
+        throw new FortuneRequestError(429, 'A public report is being generated; please retry shortly');
+      }
+      if (lockError) throw lockError;
+      publicGenerationLockHeld = true;
+    }
 
     // 0. Saju Knowledge RAG 초안 생성 (활성화 시)
     const ragEnabled = Deno.env.get("SAJU_KNOWLEDGE_RAG_ENABLED") === "true";
@@ -739,7 +918,7 @@ Deno.serve(async (req) => {
           mode: "draft",
           section: section as any,
           profileId,
-          targetDate: targetDate ?? computedData?.targetDate ?? computedData?.target_date ?? null,
+          targetDate: effectiveTargetDate,
           computedData,
           tags: [],
           question: `오늘 ${section} 섹션 초안을 작성해줘`
@@ -792,14 +971,14 @@ Deno.serve(async (req) => {
 
     const softiePersonalRagDraft = await createSoftiePersonalReferenceDraft({
       computedData,
-      targetDate: targetDate ?? computedData?.targetDate ?? computedData?.target_date ?? null,
+      targetDate: effectiveTargetDate,
       softiePersonalRag,
     })
 
     // 1. 프롬프트 구성 (콤팩트한 JSON 데이터 활용)
     const compactPayload = compactComputedData({
       ...computedData,
-      targetDate: targetDate ?? computedData?.targetDate ?? computedData?.target_date ?? null,
+      targetDate: effectiveTargetDate,
     })
 
     const ragGuidanceSections: string[] = [];
@@ -1088,57 +1267,70 @@ ${ragGuidanceText}
         repeatAxisSummary,
       };
 
-      if (finalResponse?.content && typeof finalResponse.content === 'object') {
+      if (finalResponse?.content && typeof finalResponse.content === 'object' && !isSoftiePublic) {
         finalResponse.content.debug = debug;
       }
     } catch (observabilityError) {
       console.warn(`[Observability] Failed: ${shortenErrorMessage(observabilityError)}`);
     }
 
-    // 만약 공용 프로필이고 supabaseAdmin이 초기화되어 있다면 DB에 직접 저장
-    if (isSoftiePublic && supabaseAdmin && finalResponse?.content) {
-      try {
-        const reportToSave = {
-          profile_id: profileId,
-          daily_snapshot_id: snapshotId || computedData?.id || null,
-          report_date: effectiveTargetDate,
-          report_version: reportVersion,
-          model_name: finalResponse.model,
-          headline: finalResponse.content.headline,
-          summary: finalResponse.content.summary,
-          report_content: finalResponse.content,
-          generated_at: new Date().toISOString()
-        }
-
-        const { data: savedReport, error: saveError } = await supabaseAdmin
-          .from('saju_fortune_reports')
-          .upsert(reportToSave, { onConflict: 'profile_id,report_date,report_version' })
-          .select()
-          .single()
-
-        if (saveError) {
-          console.error('[Database Save Error] Failed to save generated report in Edge Function:', saveError);
-        } else if (savedReport) {
-          console.log('[Database Save Success] Saved generated report in Edge Function:', savedReport.id);
-          finalResponse.savedRecord = savedReport;
-          finalResponse.is_cached = false;
-        }
-      } catch (saveException) {
-        console.error('[Database Save Exception] Exception while saving report in Edge Function:', saveException);
+    // Public generation is cache-first and must commit the bounded result
+    // before the lock is considered successful. Do not return the full row or
+    // any internal debug/RAG material to the public caller.
+    if (isSoftiePublic) {
+      if (!finalResponse?.content || typeof finalResponse.content !== 'object') {
+        throw new FortuneRequestError(503, 'Generated report content is unavailable');
       }
+
+      const publicContent = stripPublicDebug(finalResponse.content) as Record<string, unknown>;
+      const reportToSave = {
+        profile_id: profileId,
+        daily_snapshot_id: requestSnapshotId,
+        report_date: effectiveTargetDate,
+        report_version: reportVersion,
+        model_name: finalResponse.model,
+        headline: publicContent.headline,
+        summary: publicContent.summary,
+        report_content: publicContent,
+        generated_at: new Date().toISOString()
+      }
+
+      const { data: savedReport, error: saveError } = await supabaseAdmin!
+        .from('saju_fortune_reports')
+        .upsert(reportToSave, { onConflict: 'profile_id,report_date,report_version' })
+        .select('id, model_name, report_content')
+        .single()
+
+      if (saveError || !savedReport) {
+        console.error('[Database Save Error] Failed to save public generated report:', saveError);
+        throw new FortuneRequestError(503, 'Generated report could not be stored');
+      }
+
+      console.log('[Database Save Success] Saved generated public report:', savedReport.id);
+      publicGenerationSaved = true;
+      return jsonResponse({
+        model: savedReport.model_name || finalResponse.model,
+        content: stripPublicDebug(savedReport.report_content),
+        is_cached: false,
+      });
     }
 
-    return new Response(JSON.stringify(finalResponse), {
-      headers: { ...corsHeaders, 'Content-Type': 'application/json' },
-    })
+    return jsonResponse(finalResponse);
 
 
   } catch (error) {
     console.error(`[Error] Execution failed. profileId: ${profileId || 'unknown'}, Time: ${Date.now() - startTime}ms. Error:`, error.message);
-    return new Response(JSON.stringify({ error: error.message }), {
-      headers: { ...corsHeaders, 'Content-Type': 'application/json' },
-      status: 400,
-    })
+    if (publicGenerationLockHeld && !publicGenerationSaved) {
+      // Keep the lock until its short TTL expires. Deleting it on provider or
+      // storage failure would let an unauthenticated caller retry paid work
+      // without a bound during an outage.
+      console.warn('[Public Generation Lock] Retaining the lock until expiry after a failed generation', {
+        profileId,
+        reportDate: publicGenerationDate,
+      });
+    }
+    const status = error instanceof FortuneRequestError ? error.status : 500;
+    return jsonResponse({ error: error instanceof Error ? error.message : 'Fortune report generation failed' }, status);
   } finally {
     console.log(`[Total] Fortune report generation finished. Time: ${Date.now() - startTime}ms`);
   }

@@ -24,7 +24,7 @@ serve(async (req) => {
 
     const { data, error } = await supabaseAdmin
       .from('saju_profiles')
-      .select('*')
+      .select('id, name, birth_date, birth_time, gender')
       .eq('id', profileId)
       .maybeSingle()
 

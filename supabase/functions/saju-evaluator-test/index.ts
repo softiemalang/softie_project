@@ -1,11 +1,15 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
 import { corsHeaders } from "../_shared/cors.ts";
+import { requireInternalFunctionSecret } from "../_shared/internalAuth.ts";
 import { searchEvaluatorSnippets, evaluateReportWithGPT } from "../_shared/saju-evaluator-logic.ts";
 
 serve(async (req) => {
   if (req.method === 'OPTIONS') {
     return new Response('ok', { headers: corsHeaders });
   }
+
+  const authError = requireInternalFunctionSecret(req, 'SAJU_INTERNAL_TEST_SECRET');
+  if (authError) return authError;
 
   const runId = crypto.randomUUID();
   console.log(`[SajuEvaluator] Started runId=${runId}`);

@@ -13,14 +13,20 @@ serve(async (req) => {
   try {
     try {
       const cronSecret = Deno.env.get('BACKUP_CRON_SECRET')
-      if (cronSecret) {
-        const authHeader = req.headers.get('Authorization')
-        if (!authHeader || authHeader !== `Bearer ${cronSecret}`) {
-          return new Response(JSON.stringify({ error: 'Unauthorized: Invalid cron secret' }), {
-            status: 401,
-            headers: { ...corsHeaders, 'Content-Type': 'application/json' },
-          })
-        }
+      if (!cronSecret) {
+        console.error('[google-drive-scheduled-backup] BACKUP_CRON_SECRET is not configured')
+        return new Response(JSON.stringify({ error: 'Server configuration error' }), {
+          status: 503,
+          headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+        })
+      }
+
+      const authHeader = req.headers.get('Authorization')
+      if (!authHeader || authHeader !== `Bearer ${cronSecret}`) {
+        return new Response(JSON.stringify({ error: 'Unauthorized: Invalid cron secret' }), {
+          status: 401,
+          headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+        })
       }
 
       const userId = Deno.env.get('GOOGLE_BACKUP_USER_ID')

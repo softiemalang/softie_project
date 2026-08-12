@@ -164,13 +164,17 @@ function getSpotifyClientAuthHeader() {
 }
 
 async function validateBearerSession(req: Request, normalizedUserId: string) {
-  const supabaseUrl = Deno.env.get('SUPABASE_URL')!
+  const supabaseUrl = Deno.env.get('SUPABASE_URL')
   const anonKey = Deno.env.get('SUPABASE_ANON_KEY')
   const authHeader = req.headers.get('Authorization')
-  const bearerToken = authHeader?.replace(/^Bearer\s+/i, '').trim()
+  const bearerToken = authHeader?.match(/^Bearer\s+(.+)$/i)?.[1]?.trim() || ''
 
-  if (!bearerToken || !anonKey || bearerToken === anonKey) {
-    return
+  if (!supabaseUrl || !anonKey) {
+    throw new Error('Supabase authentication is not configured')
+  }
+
+  if (!bearerToken || bearerToken === anonKey) {
+    throw new Error('Authentication required for Spotify control')
   }
 
   const authClient = createClient(supabaseUrl, anonKey, {
@@ -514,9 +518,15 @@ serve(async (req) => {
 
     await validateBearerSession(req, userId)
 
+    const supabaseUrl = Deno.env.get('SUPABASE_URL')
+    const serviceRoleKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')
+    if (!supabaseUrl || !serviceRoleKey) {
+      throw new Error('Spotify control storage is not configured')
+    }
+
     const supabase = createClient(
-      Deno.env.get('SUPABASE_URL')!,
-      Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!
+      supabaseUrl,
+      serviceRoleKey
     )
 
     const tokenRow = await getSpotifyTokenRow(supabase, userId)

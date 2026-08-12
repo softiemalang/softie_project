@@ -1,15 +1,11 @@
 import { useEffect, useRef, useState } from 'react'
 import {
   getSoftieSajuProfile,
-  getNatalSnapshot,
-  createNatalSnapshot,
-  getDailySnapshot,
-  createDailySnapshot,
-  getFortuneReport,
-  getFortuneHistory,
-  getFortuneReportById
+  getPublicDailySnapshot,
+  getPublicFortuneReport,
+  getPublicFortuneHistory,
+  getPublicFortuneReportById
 } from './api'
-import { generateNatalSnapshot, generateDailySnapshot } from './interpreter/preprocessor'
 import { SAJU_ENGINE_VERSION } from './engine/fourPillars'
 import { getOrGenerateReport } from './interpreter/reportGenerator'
 import { getKstDateString } from './utils'
@@ -204,8 +200,8 @@ export default function SoftieFortunePage() {
     const currentTodayStr = getKstDateString()
     try {
       const [snapshot, existingReport] = await Promise.all([
-        getDailySnapshot(targetProfile.id, currentTodayStr),
-        getFortuneReport(targetProfile.id, currentTodayStr, FORTUNE_REPORT_VERSION)
+        getPublicDailySnapshot(targetProfile.id, currentTodayStr),
+        getPublicFortuneReport(targetProfile.id, currentTodayStr, FORTUNE_REPORT_VERSION)
       ])
 
       setDailySnapshot(snapshot || null)
@@ -226,7 +222,7 @@ export default function SoftieFortunePage() {
       let snapshot = null
 
       if (!force) {
-        snapshot = await getDailySnapshot(targetProfile.id, currentTodayStr)
+        snapshot = await getPublicDailySnapshot(targetProfile.id, currentTodayStr)
 
         if (snapshot && !isValidDailySnapshot(snapshot)) {
           snapshot = null
@@ -234,19 +230,8 @@ export default function SoftieFortunePage() {
       }
 
       if (!snapshot) {
-        setStatus(force ? '오늘의 기운을 다시 작성하는 중입니다...' : '오늘의 기운을 분석 중입니다...')
-        let natal = await getNatalSnapshot(targetProfile.id)
-        if (natal && natal.natal_data?.engine_version !== SAJU_ENGINE_VERSION) {
-          natal = null
-        }
-
-        if (!natal) {
-          const newNatal = generateNatalSnapshot(targetProfile)
-          natal = await createNatalSnapshot({ ...newNatal, profile_id: targetProfile.id })
-        }
-
-        const newDaily = generateDailySnapshot(natal, currentTodayStr)
-        snapshot = await createDailySnapshot({ ...newDaily, profile_id: targetProfile.id })
+        setStatus('오늘의 운세 스냅샷이 아직 준비되지 않았어요. 잠시 후 다시 시도해 주세요.')
+        return
       }
 
       setDailySnapshot(snapshot)
@@ -267,14 +252,15 @@ export default function SoftieFortunePage() {
   async function handleRefreshTodayReport() {
     if (!activeProfile || isLoading || reportRefreshLockRef.current) return
     const hasReport = Boolean(report?.id && reportData)
-    const force = hasReport
+
     if (hasReport) {
-      const confirmed = window.confirm('오늘 리포트를 최신 기준으로 다시 작성할까요?')
-      if (!confirmed) return
-    } else {
-      const confirmed = window.confirm('오늘의 리포트를 작성할까요?')
-      if (!confirmed) return
+      setStatus('오늘 리포트는 이미 준비되어 있어요. 공개 페이지에서 다시 생성할 수는 없어요.')
+      return
     }
+
+    const force = false
+    const confirmed = window.confirm('오늘의 리포트를 작성할까요?')
+    if (!confirmed) return
 
     reportRefreshLockRef.current = true
     setIsForceRefreshing(true)
@@ -347,7 +333,7 @@ export default function SoftieFortunePage() {
     setIsHistoryLoading(true)
     setHistoryError('')
     try {
-      const data = await getFortuneHistory(activeProfile.id, 30)
+      const data = await getPublicFortuneHistory(activeProfile.id, 30)
       setHistoryList(data)
     } catch (error) {
       console.error('Failed to load history:', error)
@@ -361,7 +347,7 @@ export default function SoftieFortunePage() {
     if (!reportId || !activeProfile?.id) return
     setIsHistoryDetailLoading(true)
     try {
-      const data = await getFortuneReportById(reportId, activeProfile.id)
+      const data = await getPublicFortuneReportById(reportId, activeProfile.id)
       setSelectedHistoryReport(data)
     } catch (error) {
       console.error('Failed to load history report detail:', error)
@@ -419,12 +405,12 @@ export default function SoftieFortunePage() {
                 type="button"
                 className="soft-button"
                 onClick={handleRefreshTodayReport}
-                disabled={isLoading || isForceRefreshing}
+                disabled={isLoading || isForceRefreshing || Boolean(reportData)}
                 aria-busy={isForceRefreshing}
               >
                 {isForceRefreshing
                   ? (reportData ? '다시 작성 중...' : '작성 중...')
-                  : (reportData ? '오늘 리포트 다시 작성' : '오늘 리포트 작성')}
+                  : (reportData ? '오늘 리포트 준비됨' : '오늘 리포트 작성')}
               </button>
             </>
           )}

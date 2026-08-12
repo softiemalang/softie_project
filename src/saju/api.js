@@ -194,7 +194,7 @@ export async function upsertSajuProfile(profileData, { userId, localKey }) {
 export async function getNatalSnapshot(profileId) {
   const { data, error } = await supabase
     .from('saju_natal_snapshots')
-    .select('*')
+    .select('id, profile_id, year_stem, year_branch, month_stem, month_branch, day_stem, day_branch, hour_stem, hour_branch, day_master, natal_data, created_at, updated_at')
     .eq('profile_id', profileId)
     .maybeSingle()
 
@@ -222,9 +222,23 @@ export async function createNatalSnapshot(snapshot) {
 export async function getDailySnapshot(profileId, targetDate) {
   const { data, error } = await supabase
     .from('saju_daily_snapshots')
-    .select('*')
+    .select('id, profile_id, target_date, daily_stem, daily_branch, computed_data, created_at, updated_at')
     .eq('profile_id', profileId)
     .eq('target_date', targetDate)
+    .maybeSingle()
+
+  if (error) throw error
+  return data
+}
+
+export async function getPublicDailySnapshot(profileId, targetDate) {
+  if (!supabase || !profileId || !targetDate) return null
+
+  const { data, error } = await supabase
+    .rpc('get_public_saju_daily_snapshot', {
+      p_profile_id: profileId,
+      p_target_date: targetDate,
+    })
     .maybeSingle()
 
   if (error) throw error
@@ -255,6 +269,47 @@ export async function getFortuneReport(profileId, targetDate, version = '1.0') {
     .eq('profile_id', profileId)
     .eq('report_date', targetDate)
     .eq('report_version', version)
+    .maybeSingle()
+
+  if (error) throw error
+  return data
+}
+
+export async function getPublicFortuneReport(profileId, targetDate, version = '1.3') {
+  if (!supabase || !profileId || !targetDate) return null
+
+  const { data, error } = await supabase
+    .rpc('get_public_saju_fortune_report', {
+      p_profile_id: profileId,
+      p_report_date: targetDate,
+      p_report_version: version,
+    })
+    .maybeSingle()
+
+  if (error) throw error
+  return data
+}
+
+export async function getPublicFortuneHistory(profileId, limit = 30) {
+  if (!supabase || !profileId) return []
+
+  const { data, error } = await supabase.rpc('get_public_saju_fortune_history', {
+    p_profile_id: profileId,
+    p_limit: limit,
+  })
+
+  if (error) throw error
+  return data || []
+}
+
+export async function getPublicFortuneReportById(reportId, profileId) {
+  if (!supabase || !reportId || !profileId) return null
+
+  const { data, error } = await supabase
+    .rpc('get_public_saju_fortune_report_by_id', {
+      p_profile_id: profileId,
+      p_report_id: reportId,
+    })
     .maybeSingle()
 
   if (error) throw error
@@ -345,8 +400,10 @@ export async function requestLlmReport(dailySnapshot, options = {}) {
   try {
     const body = {
       snapshotId: dailySnapshot.id,
+      profileId: dailySnapshot.profile_id || dailySnapshot.computed_data?.profileId || null,
       computedData: dailySnapshot.computed_data,
-      targetDate: dailySnapshot.target_date
+      targetDate: dailySnapshot.target_date,
+      forceGenerate: options.force === true,
     }
 
     if (options.softiePersonalRag === true) {

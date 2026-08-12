@@ -28,7 +28,8 @@ export async function getOrGenerateReport(profileId, dailySnapshot, options = {}
   let llmResult
   try {
     llmResult = await requestLlmReport(dailySnapshot, {
-      softiePersonalRag: options.softiePersonalRag === true
+      softiePersonalRag: options.softiePersonalRag === true,
+      force: force,
     })
   } catch (error) {
     console.error('LLM Report generation failed, falling back to local analysis:', error)

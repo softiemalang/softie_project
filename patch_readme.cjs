@@ -11,7 +11,7 @@ content = content.replace(
   '- `GOOGLE_SHEETS_LOG_SPREADSHEET_ID`: (Optional) If omitted, the app auto-creates/reuses a `softie_project_logs` spreadsheet.',
   `- \`GOOGLE_SHEETS_LOG_SPREADSHEET_ID\`: (Optional) If omitted, the app auto-creates/reuses a \`softie_project_logs\` spreadsheet.
 - \`GOOGLE_BACKUP_USER_ID\`: The \`user_id\` (or \`deviceId\`) corresponding to the dedicated Google account in \`google_calendar_tokens\`. Used by the scheduled backup function to identify which token to use.
-- \`BACKUP_CRON_SECRET\`: (Optional but recommended) A secret key to protect the \`google-drive-scheduled-backup\` endpoint from unauthorized external invocation.`
+- \`BACKUP_CRON_SECRET\`: Required. The \`google-drive-scheduled-backup\` endpoint fails closed when it is missing and rejects requests without the matching bearer token.`
 );
 
 content = content.replace(
@@ -35,7 +35,7 @@ The automated backup uses the \`google-drive-scheduled-backup\` Edge Function. T
 Check the \`google_calendar_tokens\` table in your Supabase Dashboard. Find the row for your dedicated Softie Gmail account and copy its \`user_id\`.
 \`supabase secrets set GOOGLE_BACKUP_USER_ID="<that-user-id>"\`
 
-**2. Set a CRON Secret (Optional but Recommended):**
+**2. Set the Required CRON Secret:**
 \`supabase secrets set BACKUP_CRON_SECRET="your-secure-random-string"\`
 
 **3. Schedule via pg_cron (Supabase Native):**

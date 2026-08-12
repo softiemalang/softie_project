@@ -20,14 +20,22 @@ function encodeState(payload) {
 }
 
 function decodeState(value) {
-  if (!value) return {}
+  if (!value) return null
 
   try {
-    return JSON.parse(decodeURIComponent(value))
+    const parsed = JSON.parse(decodeURIComponent(value))
+    return parsed && typeof parsed === 'object' ? parsed : null
   } catch (error) {
     console.warn('[kakaoMessage] Failed to parse OAuth state.', error)
-    return {}
+    return null
   }
+}
+
+function normalizeKakaoReturnPath(value) {
+  if (typeof value !== 'string' || !value.startsWith('/') || value.startsWith('//')) {
+    return '/scheduler'
+  }
+  return value
 }
 
 function readPendingMemo() {
@@ -127,7 +135,9 @@ export function startKakaoMemoLogin({ returnPath = '/scheduler', pendingMemo = n
     return { ok: false, reason: 'sdk_not_ready' }
   }
 
-  const nonce = `${Date.now()}-${Math.random().toString(36).slice(2, 10)}`
+  const nonce = typeof globalThis.crypto?.randomUUID === 'function'
+    ? globalThis.crypto.randomUUID()
+    : `${Date.now()}-${Math.random().toString(36).slice(2, 10)}`
   const statePayload = {
     nonce,
     returnPath,
@@ -159,7 +169,18 @@ export async function completeKakaoMemoLoginFromCallback() {
   const code = params.get('code')
   const state = decodeState(params.get('state'))
   const storedNonce = window.sessionStorage.getItem(KAKAO_LOGIN_STATE_STORAGE_KEY)
-  const returnPath = typeof state.returnPath === 'string' ? state.returnPath : '/scheduler'
+  const returnPath = normalizeKakaoReturnPath(state?.returnPath)
+
+  if (
+    !state ||
+    typeof state.nonce !== 'string' ||
+    !state.nonce ||
+    !storedNonce ||
+    state.nonce !== storedNonce ||
+    state.reason !== 'memo'
+  ) {
+    return { ok: false, reason: 'invalid_state', returnPath }
+  }
 
   if (error) {
     return {
@@ -172,10 +193,6 @@ export async function completeKakaoMemoLoginFromCallback() {
 
   if (!code) {
     return { ok: false, reason: 'missing_code', returnPath }
-  }
-
-  if (state.nonce && storedNonce && state.nonce !== storedNonce) {
-    return { ok: false, reason: 'invalid_state', returnPath }
   }
 
   const redirectUri = getKakaoRedirectUri()

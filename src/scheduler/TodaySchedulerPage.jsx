@@ -4,7 +4,6 @@ import {
   deleteSchedulerWorkLogs,
   listSchedulerWorkLogs,
   listTodayWorkEvents,
-  migrateLocalWorkLogsToSupabase,
   replaceSchedulerWorkLogs,
   updateWorkEventStatus,
   upsertSchedulerWorkLog,
@@ -33,7 +32,6 @@ import {
   buildWeekWorkLogShareText,
   buildWeekWorkLogText,
   loadStoredWorkTimeFilter,
-  loadWorkLogs,
   persistSchedulerViewState,
   persistWorkTimeFilter,
   replaceSchedulerViewUrl,
@@ -144,23 +142,13 @@ export function TodaySchedulerPage({
 
     async function loadLogs() {
       try {
+        // Legacy scheduler:work-logs has no authenticated owner binding. Keep
+        // it untouched for recovery, but never upload it automatically to a
+        // newly signed-in account.
         const logs = await listSchedulerWorkLogs(effectiveOwnerKey)
         setWorkLogs(logs)
-
-        // One-time migration from localStorage
-        const MIGRATION_KEY = `scheduler:migration-work-logs:${effectiveOwnerKey}`
-        if (!window.localStorage.getItem(MIGRATION_KEY)) {
-          const localLogs = loadWorkLogs()
-          if (localLogs.length > 0) {
-            console.log(`[scheduler] Migrating ${localLogs.length} work logs to Supabase...`)
-            await migrateLocalWorkLogsToSupabase(effectiveOwnerKey, localLogs)
-            const syncedLogs = await listSchedulerWorkLogs(effectiveOwnerKey)
-            setWorkLogs(syncedLogs)
-          }
-          window.localStorage.setItem(MIGRATION_KEY, 'done')
-        }
       } catch (err) {
-        console.error('[scheduler] Failed to load or migrate work logs:', err)
+        console.error('[scheduler] Failed to load work logs:', err)
       }
     }
     loadLogs()

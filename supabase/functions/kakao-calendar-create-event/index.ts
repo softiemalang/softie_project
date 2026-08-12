@@ -148,7 +148,11 @@ Deno.serve(async (req: Request) => {
     }
 
     const rehearsalId = normalizeText(payload.rehearsalId)
-    const ownerKey = normalizeText(payload.ownerKey) || user.id
+    const requestedOwnerKey = normalizeText(payload.ownerKey)
+    if (requestedOwnerKey && requestedOwnerKey !== user.id) {
+      return jsonResponse({ error: 'owner_mismatch' }, 403)
+    }
+
     const serviceClient = createServiceClient()
 
     if (rehearsalId) {
@@ -160,7 +164,7 @@ Deno.serve(async (req: Request) => {
 
       if (existingError) throw existingError
       if (!existing) return jsonResponse({ error: 'rehearsal_not_found' }, 404)
-      if (existing.owner_key !== ownerKey && existing.owner_key !== user.id) {
+      if (existing.owner_key !== user.id) {
         return jsonResponse({ error: 'rehearsal_owner_mismatch' }, 403)
       }
       if (existing.kakao_calendar_event_id) {
@@ -203,6 +207,7 @@ Deno.serve(async (req: Request) => {
           kakao_calendar_synced_at: new Date().toISOString(),
         })
         .eq('id', rehearsalId)
+        .eq('owner_key', user.id)
 
       if (updateError) throw updateError
     }

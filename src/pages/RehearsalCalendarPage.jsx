@@ -13,8 +13,7 @@ import {
   triggerRehearsalDriveBackup,
   createKakaoCalendarEvent,
   updateKakaoCalendarEvent,
-  deleteKakaoCalendarEvent,
-  linkLocalRehearsalEventsToUser
+  deleteKakaoCalendarEvent
 } from '../rehearsals/api'
 import '../rehearsals/rehearsals.css'
 
@@ -160,7 +159,6 @@ export default function RehearsalCalendarPage() {
       const userId = session?.user?.id
       
       if (userId) {
-        await linkLocalRehearsalEventsToUser(localOwnerKey, userId)
         if (!mounted || ownerChangeSeqRef.current !== seq) return
         setAuthUserId(userId)
         setEffectiveOwnerKey(userId)
@@ -484,7 +482,7 @@ export default function RehearsalCalendarPage() {
                             kakaoDeleteFailed = true
                           }
                         }
-                        await deleteRehearsalEvent(ev.id)
+                        await deleteRehearsalEvent(ev.id, effectiveOwnerKey)
                         if (kakaoDeleteFailed) {
                           alert('리허설 일정은 삭제됐지만 톡캘린더 일정 삭제에 실패했을 수 있어요.')
                         }

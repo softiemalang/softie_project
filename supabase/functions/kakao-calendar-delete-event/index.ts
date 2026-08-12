@@ -91,7 +91,11 @@ Deno.serve(async (req: Request) => {
     const rehearsalId = normalizeText(payload.rehearsalId)
     if (!rehearsalId) return jsonResponse({ error: 'missing_rehearsal_id' }, 400)
 
-    const ownerKey = normalizeText(payload.ownerKey) || user.id
+    const requestedOwnerKey = normalizeText(payload.ownerKey)
+    if (requestedOwnerKey && requestedOwnerKey !== user.id) {
+      return jsonResponse({ error: 'owner_mismatch' }, 403)
+    }
+
     const serviceClient = createServiceClient()
     const { data: existing, error: existingError } = await serviceClient
       .from('rehearsal_events')
@@ -101,7 +105,7 @@ Deno.serve(async (req: Request) => {
 
     if (existingError) throw existingError
     if (!existing) return jsonResponse({ error: 'rehearsal_not_found' }, 404)
-    if (existing.owner_key !== ownerKey && existing.owner_key !== user.id) {
+    if (existing.owner_key !== user.id) {
       return jsonResponse({ error: 'rehearsal_owner_mismatch' }, 403)
     }
 

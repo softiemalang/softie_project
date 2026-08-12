@@ -1,6 +1,7 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2.45.1";
 import { corsHeaders } from "../_shared/cors.ts";
+import { requireInternalFunctionSecret } from "../_shared/internalAuth.ts";
 import { createSajuKnowledgeDraft } from "../_shared/saju-knowledge-logic.ts";
 
 const supabaseAdmin = createClient(
@@ -12,6 +13,9 @@ serve(async (req) => {
   if (req.method === 'OPTIONS') {
     return new Response('ok', { headers: corsHeaders });
   }
+
+  const authError = requireInternalFunctionSecret(req, 'SAJU_INTERNAL_TEST_SECRET');
+  if (authError) return authError;
 
   try {
     const body = await req.json();

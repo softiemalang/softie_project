@@ -1,7 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { navigate } from '../lib/router'
-import { getCurrentSession } from '../lib/auth'
-import { getOrCreatePushDeviceId } from '../lib/device'
+import { getCurrentSession, signInWithGoogle } from '../lib/auth'
 import {
   connectSpotify,
   disconnectSpotify,
@@ -173,12 +172,11 @@ export default function SpotifyMusicPage() {
       setIsLoading(true)
       try {
         const nextSession = await getCurrentSession()
-        const fallbackDeviceId = getOrCreatePushDeviceId()
         if (!mounted) return
 
         setSession(nextSession)
-        setUserId(nextSession?.user?.id || fallbackDeviceId)
-        setIsConnected(isSpotifyConnected())
+        setUserId(nextSession?.user?.id || '')
+        setIsConnected(Boolean(nextSession?.user?.id) && isSpotifyConnected())
         const params = new URLSearchParams(window.location.search)
         const spotifyError = params.get('spotify_error')
         if (spotifyError) {
@@ -402,13 +400,26 @@ export default function SpotifyMusicPage() {
   }, [isPlaying, durationMs])
 
   async function handleConnect() {
-    if (!userId) return
+    if (!session?.user?.id) {
+      setStatusMessage('Spotify 연결은 먼저 Google 로그인이 필요해요.')
+      return
+    }
 
     try {
       setStatusMessage('')
       await connectSpotify(userId, { returnPath: '/music' })
     } catch (error) {
       console.error('[SpotifyMusicPage.handleConnect]', error)
+      setStatusMessage(getFriendlyError(error))
+    }
+  }
+
+  async function handleSignIn() {
+    try {
+      setStatusMessage('Google 로그인 화면으로 이동할게요.')
+      await signInWithGoogle(window.location.href)
+    } catch (error) {
+      console.error('[SpotifyMusicPage.handleSignIn]', error)
       setStatusMessage(getFriendlyError(error))
     }
   }
@@ -511,7 +522,11 @@ export default function SpotifyMusicPage() {
       <section className="card music-status-card">
         <header className="music-status-header">
           <span className="section-kicker">SPOTIFY</span>
-          {isConnected ? (
+          {!session ? (
+            <button type="button" className="soft-button music-connect-button" onClick={handleSignIn}>
+              Google 로그인
+            </button>
+          ) : isConnected ? (
             needsReconnect ? (
               <button type="button" className="soft-button music-reset-button" onClick={handleConnect}>
                 재설정
@@ -537,7 +552,7 @@ export default function SpotifyMusicPage() {
         )}
         {!session && !isConnected && (
           <p className="subtle music-login-hint">
-            개인용 토큰 관리를 위해 로그인 상태에서 쓰는 편이 더 안정적이에요.
+            개인용 Spotify 토큰과 재생 제어는 로그인한 계정에만 연결돼요.
           </p>
         )}
       </section>

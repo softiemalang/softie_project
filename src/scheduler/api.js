@@ -303,27 +303,3 @@ export async function deleteSchedulerWorkLogs(ownerKey, ids) {
 
   if (error) throw new Error(error.message)
 }
-
-export async function migrateLocalWorkLogsToSupabase(ownerKey, localLogs) {
-  ensureSupabase()
-  if (!ownerKey || !localLogs || localLogs.length === 0) return
-
-  const payloads = localLogs.map(log => ({
-    id: log.id,
-    owner_key: ownerKey,
-    week_start_date: log.weekStartDate || log.week_start_date,
-    date: log.date,
-    start_time: log.startTime || log.start_time,
-    end_time: log.endTime || log.end_time,
-    duration_minutes: log.durationMinutes || log.duration_minutes,
-    branch: log.branch,
-    room: log.room,
-    synced_at: new Date().toISOString()
-  }))
-
-  const { error } = await supabase
-    .from('scheduler_work_logs')
-    .upsert(payloads)
-
-  if (error) throw new Error(error.message)
-}
