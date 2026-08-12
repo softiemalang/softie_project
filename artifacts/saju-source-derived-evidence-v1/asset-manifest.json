@@ -1,0 +1,104 @@
+{
+  "asset": {
+    "actual": {
+      "byteLength": 214374,
+      "path": "artifacts/saju-source-derived-evidence-v1/assets/ziping-zhenquan-pdf-page-002-rendered-evidence.jpg",
+      "sha256": "26896bdc877cd977a5e2e88abc1d7409d021a0ee1ffaacd708ad1dd3f987843f"
+    },
+    "assetId": "saju-source-derived-evidence.ziping-zhenquan.pdf-page-002",
+    "byteLength": 214374,
+    "format": "JPEG",
+    "kind": "source_derived_rendered_evidence",
+    "mimeType": "image/jpeg",
+    "path": "artifacts/saju-source-derived-evidence-v1/assets/ziping-zhenquan-pdf-page-002-rendered-evidence.jpg",
+    "pixelHeight": 1400,
+    "pixelWidth": 990,
+    "repositoryPath": "artifacts/saju-source-derived-evidence-v1/assets/ziping-zhenquan-pdf-page-002-rendered-evidence.jpg",
+    "sha256": "26896bdc877cd977a5e2e88abc1d7409d021a0ee1ffaacd708ad1dd3f987843f",
+    "sourceId": "saju-source-ziping-zhenquan",
+    "sourceIsDerivative": true,
+    "sourcePdfPage": 2,
+    "storage": "canonical_repository_source_derived_asset"
+  },
+  "boundaries": {
+    "externalAcquisitionPerformed": false,
+    "networkUsedDuringMaterialization": false,
+    "productionChanged": false,
+    "readinessChanged": false,
+    "rightsDecision": "not_adjudicated; derived asset is retained for internal provenance and evidence review only",
+    "semanticAuthorityPromoted": false,
+    "sourceAuthorityPromoted": false,
+    "sourcePdfCopied": false,
+    "sourcePdfModified": false
+  },
+  "derivation": {
+    "pdfPage": 2,
+    "pixelDimensions": {
+      "height": 1400,
+      "width": 990
+    },
+    "relation": "rendered_derivative_of_source_pdf_page",
+    "render": {
+      "byteIdentitySensitivity": "JPEG bytes are pinned to Poppler 26.05.0; any other renderer/version requires fresh byte-identity verification.",
+      "command": [
+        "pdftoppm",
+        "-f",
+        "2",
+        "-l",
+        "2",
+        "-scale-to",
+        "1400",
+        "-jpeg",
+        "-singlefile",
+        "<source-pdf>",
+        "<output-prefix>"
+      ],
+      "commandTemplate": "pdftoppm -f 2 -l 2 -scale-to 1400 -jpeg -singlefile <source-pdf> <output-prefix>",
+      "outputFileName": "ziping-zhenquan-pdf-page-002-rendered-evidence.jpg",
+      "outputFormat": "jpeg",
+      "pdfPage": 2,
+      "renderer": "pdftoppm",
+      "rendererVersion": "26.05.0",
+      "scaleTo": 1400,
+      "verification": {
+        "byteIdentical": true,
+        "renderedByteLength": 214374,
+        "renderedSha256": "26896bdc877cd977a5e2e88abc1d7409d021a0ee1ffaacd708ad1dd3f987843f",
+        "rendererVersion": "26.05.0"
+      }
+    }
+  },
+  "migration": {
+    "activeDependencyRule": "filesystem reads resolve the canonical asset path; the legacy root path is not an active dependency.",
+    "canonicalByteSha256": "26896bdc877cd977a5e2e88abc1d7409d021a0ee1ffaacd708ad1dd3f987843f",
+    "canonicalPath": "artifacts/saju-source-derived-evidence-v1/assets/ziping-zhenquan-pdf-page-002-rendered-evidence.jpg",
+    "historicalArtifacts": "pre-migration artifacts and audit documents retain the old root path as historical evidence; they are not rewritten by this successor.",
+    "legacyByteSha256": "26896bdc877cd977a5e2e88abc1d7409d021a0ee1ffaacd708ad1dd3f987843f",
+    "legacyRootPath": "-.jpg",
+    "legacyRootPathStatus": "removed_from_worktree_after_byte_preserving_migration"
+  },
+  "schemaVersion": "saju-source-derived-evidence-v1-asset-manifest-v1",
+  "source": {
+    "attribution": "沈孝瞻原著（local PDF metadata/title surface; edition identity remains unresolved）",
+    "authorityStatus": "local_file_bytes_verified_but_edition_identity_and_independent_authority_unresolved",
+    "pdf": {
+      "actual": {
+        "byteLength": 580320,
+        "fileName": "子平真诠-沈孝瞻原著.pdf",
+        "pageCount": 27,
+        "path": "/Users/softie/Documents/malang_lab/documents/子平真诠-沈孝瞻原著.pdf",
+        "sha256": "449336b5e35aa6811b0462093d0175c45a0add44065bf2d3845cff75981db692"
+      },
+      "byteLength": 580320,
+      "fileName": "子平真诠-沈孝瞻原著.pdf",
+      "pageCount": 27,
+      "path": "/Users/softie/Documents/malang_lab/documents/子平真诠-沈孝瞻原著.pdf",
+      "repositoryStorage": "external_canonical_source; not copied into repository",
+      "sha256": "449336b5e35aa6811b0462093d0175c45a0add44065bf2d3845cff75981db692"
+    },
+    "sourceId": "saju-source-ziping-zhenquan",
+    "sourcePdfStoredInRepository": false,
+    "work": "子平真诠"
+  },
+  "version": "1.0.0"
+}

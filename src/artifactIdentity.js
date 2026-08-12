@@ -175,7 +175,7 @@ export function attachArtifactIdentity(payload, identity) {
   return artifact
 }
 
-export function checkArtifactIdentity(artifact, { root, artifactId, materializerPath, materializerVersion, allowCurrentHeadDifference = true, allowGenerationBaseInput = false, allowDescendantInput = false, allowVerifierInputDrift = false } = {}) {
+export function checkArtifactIdentity(artifact, { root, artifactId, materializerPath, materializerVersion, allowCurrentHeadDifference = true, allowGenerationBaseInput = false, allowDescendantInput = false, allowVerifierInputDrift = false, verifierInputPaths = [], inputPathResolver = path => path } = {}) {
   const errors = []
   const identity = artifact?.artifactIdentity
   if (!identity || identity.contractVersion !== ARTIFACT_IDENTITY_CONTRACT_VERSION) errors.push('identity contract version mismatch')
@@ -189,11 +189,12 @@ export function checkArtifactIdentity(artifact, { root, artifactId, materializer
   if (identity?.generation?.includedCommit !== null || identity?.generation?.includedCommitSource !== 'unknown_at_generation; artifact may be included by a later commit') errors.push('included commit must remain unknown at generation')
   if (identity?.artifactPayloadSha256 !== artifactPayloadSha256(artifact)) errors.push('artifact payload identity mismatch')
   for (const input of identity?.inputs || []) {
-    const inputIdentity = inspectFileByteIdentity(root, input.path, input.byteSha256, {
+    const inputPath = inputPathResolver(input.path)
+    const inputIdentity = inspectFileByteIdentity(root, inputPath, input.byteSha256, {
       generationBaseHead: allowGenerationBaseInput ? identity?.generation?.baseHead : undefined,
       descendantHead: allowDescendantInput ? gitText(root, ['rev-parse', 'HEAD']) : undefined,
     })
-    const verifierInput = input.path === materializerPath || input.path === 'src/artifactIdentity.js'
+    const verifierInput = input.path === materializerPath || input.path === 'src/artifactIdentity.js' || verifierInputPaths.includes(input.path)
     const matches = inputIdentity.currentMatches || Boolean(allowGenerationBaseInput && inputIdentity.historicalMatches) || Boolean(allowDescendantInput && inputIdentity.descendantMatches) || Boolean(allowVerifierInputDrift && verifierInput)
     if (!matches) errors.push(`input byte identity mismatch:${input.path}`)
   }

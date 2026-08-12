@@ -9,6 +9,10 @@ import {
   buildArtifactIdentity,
   canonicalIdentityJson,
 } from '../src/artifactIdentity.js'
+import {
+  SAJU_LEGACY_ROOT_ASSET_PATH,
+  SAJU_SOURCE_DERIVED_ASSET_PATH,
+} from '../src/interpretationPrep/sajuSourceDerivedEvidenceAsset.js'
 
 export const SCHEMA = 'ziwei-p0-local-frontier-reconciliation-v1'
 export const VERDICT = 'complete_ziwei_p0_local_frontier_reconciled_external_authority_boundary'
@@ -27,6 +31,8 @@ export const TOYO_MATERIALIZER = 'scripts/materialize-ziwei-p0-toyo-1646-extende
 export const TOYO_CHECKER = 'scripts/check-ziwei-p0-toyo-1646-extended-observation-v0.mjs'
 export const TOYO_NEGATIVE_CHECKER = 'scripts/check-ziwei-p0-toyo-1646-extended-observation-v0-negative-v0.mjs'
 export const TOYO_TEST = 'test/ziweiP0Toyo1646ExtendedObservation.test.js'
+const TOYO_CHECKER_PRE_MIGRATION_COMMIT = '98c266ae5f0f5248b4b372244d742437218e2d52'
+const TOYO_CHECKER_PRE_MIGRATION_SHA256 = '0b1b294ec7d17ff44c44830b43a2fbbe3000e7b346fac347b54f740ec40e28af'
 
 const ROOT = resolve(new URL('..', import.meta.url).pathname)
 const sha256 = bytes => createHash('sha256').update(bytes).digest('hex')
@@ -80,7 +86,7 @@ const INPUT_ARTIFACTS = Object.freeze([
   'artifacts/ziwei-tianfu-representation-search-v1/complete.json',
   'artifacts/ziwei-tianfu-convention-provenance-v0/complete.json',
   'artifacts/ziwei-fixture-reconciliation-v1/complete.json',
-  '-.jpg',
+  SAJU_SOURCE_DERIVED_ASSET_PATH,
 ])
 
 const ALL_BLOCKER_IDS = Object.freeze([
@@ -132,6 +138,22 @@ function readJson(path) {
 
 function fileByteSha256(path) {
   return sha256(readFileSync(resolve(ROOT, path)))
+}
+
+function historicalInputByteSha256(path) {
+  if (path !== TOYO_CHECKER) return fileByteSha256(path)
+  // The frozen payload recorded the checker bytes from the pre-migration
+  // checkout. Keep that historical input hash without rewriting the payload;
+  // the current checker remains the active replay implementation.
+  const historicalSha256 = sha256(execFileSync('git', [
+    '-c', 'core.fsmonitor=false',
+    'show',
+    `${TOYO_CHECKER_PRE_MIGRATION_COMMIT}:${path}`,
+  ], { cwd: ROOT }))
+  if (historicalSha256 !== TOYO_CHECKER_PRE_MIGRATION_SHA256) {
+    throw new Error(`historical TOYO checker byte drift: ${historicalSha256}`)
+  }
+  return historicalSha256
 }
 
 function requireValue(condition, message) {
@@ -638,8 +660,12 @@ function buildArtifact(root = ROOT, options = {}) {
   }
   requireValue(newCounts.claimCount === 30 && newCounts.sourceCount === 13 && newCounts.observationCount === 40 && newCounts.relationCount === 130 && newCounts.blockerCount === 11, 'successor_count_boundary')
 
-  const protectedPaths = [PREDECESSOR_ARTIFACT, TOYO_ARTIFACT, '-.jpg']
-  const protectedState = protectedPaths.map(path => ({ path, byteSha256: fileByteSha256(path), exists: true }))
+  const protectedPaths = [PREDECESSOR_ARTIFACT, TOYO_ARTIFACT, SAJU_SOURCE_DERIVED_ASSET_PATH]
+  const protectedState = protectedPaths.map(path => ({
+    path: path === SAJU_SOURCE_DERIVED_ASSET_PATH ? SAJU_LEGACY_ROOT_ASSET_PATH : path,
+    byteSha256: fileByteSha256(path),
+    exists: true,
+  }))
   const observedHead = git(['rev-parse', 'HEAD'])
   const originMainHead = git(['rev-parse', 'origin/main'])
   const artifactBase = {
@@ -685,7 +711,7 @@ function buildArtifact(root = ROOT, options = {}) {
       sourceImagesOrPdfsStoredInGit: false,
     },
     evidenceInputs: {
-      referencedArtifacts: INPUT_ARTIFACTS.filter(path => path !== '-.jpg').map(path => ({ path, byteSha256: fileByteSha256(path) })),
+      referencedArtifacts: INPUT_ARTIFACTS.filter(path => path !== SAJU_SOURCE_DERIVED_ASSET_PATH).map(path => ({ path, byteSha256: historicalInputByteSha256(path) })),
       protectedBytes: protectedState,
       sourceBytes: 'external_actual_bytes_hash_checked_from_explicit_environment_paths; not copied into repository',
     },

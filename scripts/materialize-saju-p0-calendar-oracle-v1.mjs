@@ -7,6 +7,10 @@ import { solar2lunar, lunar2solar } from '../src/interpretationPrep/lunarConvert
 import { assessHistoricalSeoulTime } from '../src/interpretationPrep/sajuAdapter.js'
 import { calculateFourPillars, DEFAULT_SAJU_OPTIONS, SAJU_CALCULATION_PROFILE } from '../src/saju/engine/fourPillars.js'
 import { getAdjacentBaziMonthBoundary } from '../src/saju/engine/solarTerms.js'
+import {
+  SAJU_LEGACY_ROOT_ASSET_PATH,
+  SAJU_SOURCE_DERIVED_ASSET_PATH,
+} from '../src/interpretationPrep/sajuSourceDerivedEvidenceAsset.js'
 
 export const SCHEMA = 'saju-p0-calendar-oracle-v1'
 export const VERDICT = 'complete_saju_p0_calendar_oracle_frontier_exhausted_uncommitted'
@@ -28,7 +32,7 @@ const SOURCE_FILES = [
   'src/saju/engine/externalValidationFixtures.js',
 ]
 const PROTECTED_PATHS = [
-  '-.jpg',
+  SAJU_SOURCE_DERIVED_ASSET_PATH,
   'artifacts/saju-claim-provenance-v0.json',
   'artifacts/saju-readiness-grounding-v0.json',
   'artifacts/saju-v1-local-frontier-v0/complete.json',
@@ -258,7 +262,9 @@ export async function buildArtifact({ root = ROOT } = {}) {
   const corpus = corpusInput.value
   const currentHead = git(root, ['rev-parse', 'HEAD'])
   const originMainHead = git(root, ['rev-parse', 'origin/main'])
-  const currentProtected = await hashPaths(root, PROTECTED_PATHS)
+  const currentProtected = (await hashPaths(root, PROTECTED_PATHS)).map(row => row.path === SAJU_SOURCE_DERIVED_ASSET_PATH
+    ? { ...row, path: SAJU_LEGACY_ROOT_ASSET_PATH }
+    : row)
   const declaredProtected = inventory.protectedBaseline || []
   const protectedMismatches = currentProtected.filter(row => {
     const declared = declaredProtected.find(item => item.path === row.path)

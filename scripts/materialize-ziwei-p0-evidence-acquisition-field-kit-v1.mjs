@@ -8,6 +8,9 @@ import {
   attachArtifactIdentity,
   buildArtifactIdentity,
 } from '../src/artifactIdentity.js'
+import {
+  SAJU_SOURCE_DERIVED_ASSET_PATH,
+} from '../src/interpretationPrep/sajuSourceDerivedEvidenceAsset.js'
 
 export const SCHEMA = 'ziwei-p0-evidence-acquisition-field-kit-v1'
 export const VERDICT = 'complete_ziwei_p0_evidence_acquisition_field_kit_uncommitted'
@@ -60,7 +63,7 @@ const INPUT_PATHS = [
   'docs/ziwei-p0-palace-semantic-witness-acquisition-route-v1.md',
   'docs/ziwei-palace-source-acquisition-field-kit-v0.md',
   'src/artifactIdentity.js',
-  '-.jpg',
+  SAJU_SOURCE_DERIVED_ASSET_PATH,
 ]
 
 const BLOCKER_PRIORITY = Object.freeze({
@@ -854,7 +857,7 @@ function buildArtifact(root = ROOT) {
       networkUsedDuringMaterialization: false,
       predecessorArtifactsRewritten: false,
       existingAcquisitionKitRewritten: false,
-      protectedDashJpg: { path: '-.jpg', exists: true, byteSha256: fileSha256(root, '-.jpg') },
+      protectedDashJpg: { path: '-.jpg', exists: true, byteSha256: fileSha256(root, SAJU_SOURCE_DERIVED_ASSET_PATH) },
       commitPerformed: false,
       pushPerformed: false,
       deployPerformed: false,

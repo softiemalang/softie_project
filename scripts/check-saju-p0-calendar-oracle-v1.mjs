@@ -17,6 +17,10 @@ import {
   canonicalJson,
 } from './materialize-saju-p0-calendar-oracle-v1.mjs'
 import { checkHistoricalRepositoryBasis, inspectFileByteIdentity, stableArtifactContentEqual } from '../src/artifactIdentity.js'
+import {
+  SAJU_LEGACY_ROOT_ASSET_PATH,
+  SAJU_SOURCE_DERIVED_ASSET_PATH,
+} from '../src/interpretationPrep/sajuSourceDerivedEvidenceAsset.js'
 
 const ROOT = resolve(fileURLToPath(new URL('..', import.meta.url)))
 const SOURCE_IDS = [
@@ -31,7 +35,7 @@ const SOURCE_IDS = [
 const CATEGORY_KEYS = ['exact_match', 'within_defined_tolerance', 'semantic_mismatch', 'oracle_scope_insufficient', 'authority_unresolved']
 const REQUIRED_SOURCE_FIELDS = ['id', 'institution', 'title', 'role', 'urls', 'meaning', 'timeBasis', 'calendarDefinition', 'coverage', 'license', 'independence', 'semanticEquivalence']
 const PROTECTED_PATHS = [
-  '-.jpg',
+  SAJU_SOURCE_DERIVED_ASSET_PATH,
   'artifacts/saju-claim-provenance-v0.json',
   'artifacts/saju-readiness-grounding-v0.json',
   'artifacts/saju-v1-local-frontier-v0/complete.json',
@@ -90,8 +94,9 @@ function validateSourceInventory(inventory, corpus, failures) {
     'iana-tzdb-2026c-asia-seoul': 1,
   }), 'capture_source_counts', captureCounts)
   requireValue(failures, inventory?.rawRetentionPolicy?.includes('raw HTML/XML/API response bodies are not copied'), 'raw_retention_policy', inventory?.rawRetentionPolicy)
+  const historicalProtectedPaths = PROTECTED_PATHS.map(path => path === SAJU_SOURCE_DERIVED_ASSET_PATH ? SAJU_LEGACY_ROOT_ASSET_PATH : path)
   requireValue(failures, Array.isArray(inventory?.protectedBaseline) && inventory.protectedBaseline.length === PROTECTED_PATHS.length, 'protected_baseline_count', inventory?.protectedBaseline?.length)
-  requireValue(failures, equalJson(inventory?.protectedBaseline?.map(row => row.path), PROTECTED_PATHS), 'protected_baseline_paths', inventory?.protectedBaseline?.map(row => row.path))
+  requireValue(failures, equalJson(inventory?.protectedBaseline?.map(row => row.path), historicalProtectedPaths), 'protected_baseline_paths', inventory?.protectedBaseline?.map(row => row.path))
 
   requireValue(failures, corpus?.schemaVersion === 'saju-p0-calendar-oracle-corpus-v1', 'corpus_schema', corpus?.schemaVersion)
   requireValue(failures, equalJson(corpus?.contract?.categories, CATEGORY_KEYS), 'category_contract', corpus?.contract?.categories)

@@ -3,6 +3,10 @@ import { mkdir, readFile, writeFile } from 'node:fs/promises'
 import { existsSync } from 'node:fs'
 import { resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
+import {
+  SAJU_LEGACY_ROOT_ASSET_PATH,
+  SAJU_SOURCE_DERIVED_ASSET_PATH,
+} from '../src/interpretationPrep/sajuSourceDerivedEvidenceAsset.js'
 
 const ROOT = resolve(fileURLToPath(new URL('..', import.meta.url)))
 const DEFAULT_OUTPUT = resolve(ROOT, 'artifacts/saju-p0-calendar-oracle-v1')
@@ -301,7 +305,7 @@ async function buildInputs({ capturedAt, outputDir }) {
   captures.push({ sourceId: 'kasi-astronomical-almanac-2026', request: { method: 'GET', url: 'https://www.kasi.re.kr/file/1762136558729_1.pdf' }, response: { byteLength: almanac.byteLength, sha256: almanac.sha256, mimeType: 'application/pdf', pageCount: 232, rawRetained: false, visualObservation: 'cover and PDF metadata inspected; no text-layer rows admitted' } })
 
   const baselinePaths = [
-    '-.jpg',
+    SAJU_SOURCE_DERIVED_ASSET_PATH,
     'artifacts/saju-claim-provenance-v0.json',
     'artifacts/saju-readiness-grounding-v0.json',
     'artifacts/saju-v1-local-frontier-v0/complete.json',
@@ -314,7 +318,11 @@ async function buildInputs({ capturedAt, outputDir }) {
   const baselineHashes = []
   for (const path of baselinePaths) {
     const bytes = await readFile(resolve(ROOT, path))
-    baselineHashes.push({ path, byteLength: bytes.length, sha256: sha256(bytes) })
+    baselineHashes.push({
+      path: path === SAJU_SOURCE_DERIVED_ASSET_PATH ? SAJU_LEGACY_ROOT_ASSET_PATH : path,
+      byteLength: bytes.length,
+      sha256: sha256(bytes),
+    })
   }
 
   const sourceInventory = {

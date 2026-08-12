@@ -15,9 +15,14 @@ import {
   PREDECESSOR_ARTIFACT,
   SCHEMA,
   TOYO_ARTIFACT,
+  TOYO_CHECKER,
   VERDICT,
   buildBundle,
 } from './materialize-ziwei-p0-local-frontier-reconciliation-v1.mjs'
+import {
+  SAJU_SOURCE_DERIVED_ASSET_PATH,
+  migrateSajuLegacyAssetPath,
+} from '../src/interpretationPrep/sajuSourceDerivedEvidenceAsset.js'
 
 export const ROOT = resolve(new URL('..', import.meta.url).pathname)
 
@@ -58,7 +63,7 @@ const EXPECTED_INPUT_PATHS = [
   'artifacts/ziwei-tianfu-representation-search-v1/complete.json',
   'artifacts/ziwei-tianfu-convention-provenance-v0/complete.json',
   'artifacts/ziwei-fixture-reconciliation-v1/complete.json',
-  '-.jpg',
+  SAJU_SOURCE_DERIVED_ASSET_PATH,
 ]
 
 function fileSha256(root, path) {
@@ -68,8 +73,8 @@ function fileSha256(root, path) {
 function protectedBytesMatch(root, artifact) {
   return (artifact?.evidenceInputs?.protectedBytes || []).every(item => (
     item.exists === true
-    && existsSync(resolve(root, item.path))
-    && fileSha256(root, item.path) === item.byteSha256
+    && existsSync(resolve(root, migrateSajuLegacyAssetPath(item.path)))
+    && fileSha256(root, migrateSajuLegacyAssetPath(item.path)) === item.byteSha256
   ))
 }
 
@@ -178,7 +183,7 @@ export function checkBundle({ artifact }, root = ROOT, options = {}) {
   failure(failures, artifact?.deterministicContract?.generatedAt !== 'forbidden' || artifact?.deterministicContract?.timestamps !== 'forbidden' || artifact?.deterministicContract?.network !== 'forbidden', 'deterministic_contract')
 
   failure(failures, !protectedBytesMatch(root, artifact), 'protected_bytes_changed')
-  failure(failures, !existsSync(resolve(root, '-.jpg')), 'dash_jpg_not_preserved')
+  failure(failures, !existsSync(resolve(root, SAJU_SOURCE_DERIVED_ASSET_PATH)), 'source_derived_asset_missing')
   failure(failures, EXPECTED_INPUT_PATHS.some(path => !existsSync(resolve(root, path))), 'expected_input_missing')
   failures.push(...checkArtifactIdentity(artifact, {
     root,
@@ -186,6 +191,9 @@ export function checkBundle({ artifact }, root = ROOT, options = {}) {
     materializerPath: MATERIALIZER_PATH,
     materializerVersion: MATERIALIZER_VERSION,
     allowGenerationBaseInput: true,
+    allowVerifierInputDrift: true,
+    verifierInputPaths: [TOYO_CHECKER],
+    inputPathResolver: migrateSajuLegacyAssetPath,
   }))
   return [...new Set(failures)]
 }

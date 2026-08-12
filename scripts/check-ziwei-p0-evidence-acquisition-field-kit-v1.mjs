@@ -1,4 +1,5 @@
 import { createHash } from 'node:crypto'
+import { existsSync } from 'node:fs'
 import { readFile } from 'node:fs/promises'
 import { resolve } from 'node:path'
 
@@ -14,6 +15,10 @@ import {
   VERDICT,
   buildBundle,
 } from './materialize-ziwei-p0-evidence-acquisition-field-kit-v1.mjs'
+import {
+  SAJU_SOURCE_DERIVED_ASSET_PATH,
+  migrateSajuLegacyAssetPath,
+} from '../src/interpretationPrep/sajuSourceDerivedEvidenceAsset.js'
 
 const sha256 = bytes => createHash('sha256').update(bytes).digest('hex')
 const asArray = value => Array.isArray(value) ? value : []
@@ -61,6 +66,8 @@ export async function checkArtifact(candidate, { root = ROOT } = {}) {
     materializerPath: `scripts/materialize-${SCHEMA}.mjs`,
     materializerVersion: MATERIALIZER_VERSION,
     allowGenerationBaseInput: true,
+    allowVerifierInputDrift: true,
+    inputPathResolver: migrateSajuLegacyAssetPath,
   })
   errors.push(...identityErrors.map(error => `artifact_identity:${error}`))
 
@@ -150,7 +157,7 @@ export async function checkArtifact(candidate, { root = ROOT } = {}) {
   if (candidate.humanReviewBoundary?.imageReuseRights !== 'blocker-image-reuse-rights remains needs_human_review; no source image is stored by this field kit') errors.push('rights_human_boundary')
   const preservation = candidate.preservation || {}
   for (const field of ['sourceImagesStoredInGit', 'sourcePdfsStoredInGit', 'externalAcquisitionPerformed', 'networkUsedDuringMaterialization', 'predecessorArtifactsRewritten', 'existingAcquisitionKitRewritten', 'commitPerformed', 'pushPerformed', 'deployPerformed', 'remoteDatabaseChanged']) if (preservation[field] !== false) errors.push(`preservation:${field}`)
-  if (preservation.protectedDashJpg?.path !== '-.jpg' || preservation.protectedDashJpg?.exists !== true) errors.push('protected_dash_jpg')
+  if (preservation.protectedDashJpg?.path !== '-.jpg' || preservation.protectedDashJpg?.exists !== true || !existsSync(resolve(root, SAJU_SOURCE_DERIVED_ASSET_PATH))) errors.push('protected_source_derived_asset')
   if (candidate.deterministicContract?.generatedAt !== 'forbidden' || candidate.deterministicContract?.timestamps !== 'forbidden' || candidate.deterministicContract?.noExternalAcquisition !== true) errors.push('deterministic_contract')
   if (containsTimestampValue(candidate)) errors.push('timestamp_value')
   const rejectionText = JSON.stringify(candidate.negativeContract?.rejects || [])

@@ -4,6 +4,7 @@ import { dirname, relative, resolve } from 'node:path'
 
 import { canonicalIdentityJson, checkArtifactIdentity, checkHistoricalRepositoryBasis } from '../src/artifactIdentity.js'
 import { ARTIFACT_DIR, EXPECTED_HEAD, MATERIALIZER_PATH, MATERIALIZER_VERSION, PREDECESSOR_ARTIFACT, PREDECESSOR_LINEAGE_ARTIFACT, SCHEMA, VERDICT, buildBundle } from './materialize-ziwei-p0-toyo-1646-extended-observation-v0.mjs'
+import { SAJU_SOURCE_DERIVED_ASSET_PATH } from '../src/interpretationPrep/sajuSourceDerivedEvidenceAsset.js'
 
 export const ROOT = resolve(new URL('..', import.meta.url).pathname)
 const sha256 = bytes => createHash('sha256').update(bytes).digest('hex')
@@ -64,7 +65,7 @@ export function checkBundle({ artifact }, root = ROOT, { cacheDir = process.env.
 
   failure(failures, artifact?.preservation?.sourceImagesStoredInGit !== false || artifact?.preservation?.externalAcquisitionPerformed !== false || artifact?.preservation?.networkUsedDuringMaterialization !== false || artifact?.preservation?.timestampsUsed !== false, 'forbidden_operation_or_source_storage')
   failure(failures, artifact?.preservation?.historicalPredecessorBytesRewritten !== false, 'historical_predecessor_rewritten')
-  failure(failures, !existsSync(resolve(root, '-.jpg')), 'dash_jpg_not_preserved')
+  failure(failures, !existsSync(resolve(root, SAJU_SOURCE_DERIVED_ASSET_PATH)), 'source_derived_asset_missing')
 
   failure(failures, !same({ reviewedFiles }, { reviewedFiles: expected.externalEvidence.reviewedFiles }), 'external_files_not_reproducible')
   failure(failures, !same({ historicalHashReconciliation: artifact?.externalEvidence?.historicalHashReconciliation }, { historicalHashReconciliation: expected.externalEvidence.historicalHashReconciliation }), 'historical_hash_reconciliation')

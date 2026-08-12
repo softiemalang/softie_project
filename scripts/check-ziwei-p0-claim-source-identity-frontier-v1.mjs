@@ -4,6 +4,7 @@ import { resolve, dirname, relative } from 'node:path'
 
 import { canonicalIdentityJson, checkArtifactIdentity, checkHistoricalRepositoryBasis } from '../src/artifactIdentity.js'
 import { ARTIFACT_DIR, EXPECTED_HEAD, MATERIALIZER_PATH, MATERIALIZER_VERSION, SCHEMA, VERDICT, buildBundle } from './materialize-ziwei-p0-claim-source-identity-frontier-v1.mjs'
+import { SAJU_SOURCE_DERIVED_ASSET_PATH } from '../src/interpretationPrep/sajuSourceDerivedEvidenceAsset.js'
 
 export const ROOT = resolve(new URL('..', import.meta.url).pathname)
 
@@ -51,7 +52,7 @@ export function checkBundle({ artifact, files }, root = ROOT) {
   failure(failures, artifact?.readinessImpact?.existingReadinessArtifactsModified !== false && 'existing_readiness_modified')
   failure(failures, artifact?.readinessImpact?.existingProductionArtifactsModified !== false && 'existing_production_modified')
   failure(failures, artifact?.protectedChanges?.sourcePdfOrImageStoredInGit !== false && 'source_image_stored')
-  failure(failures, !Array.isArray(artifact?.protectedChanges?.preservedUntracked) || !artifact.protectedChanges.preservedUntracked.includes('-.jpg') && 'dash_jpg_not_preserved')
+  failure(failures, (!Array.isArray(artifact?.protectedChanges?.preservedUntracked) || !artifact.protectedChanges.preservedUntracked.includes('-.jpg') || !existsSync(resolve(root, SAJU_SOURCE_DERIVED_ASSET_PATH))) && 'source_derived_asset_not_preserved')
 
   const completeClaimRows = artifact?.claimSourceMatrix || []
   const claimRows = files?.['claim-source-matrix.json'] || []
@@ -98,7 +99,7 @@ export function checkBundle({ artifact, files }, root = ROOT) {
   failure(failures, artifact?.sourceFrontier?.noRepositorySourceAcquisition !== true && 'repository_source_acquisition')
   failure(failures, artifact?.historicalContract?.preexistingArtifactsAreInputsNotRewritten !== true && 'historical_input_contract')
   failure(failures, artifact?.protectedChanges?.commitPerformed !== false || artifact?.protectedChanges?.pushPerformed !== false || artifact?.protectedChanges?.deploymentPerformed !== false || artifact?.protectedChanges?.remoteDatabaseChanged !== false ? 'forbidden_external_mutation' : '')
-  failure(failures, !existsSync(resolve(root, '-.jpg')) && 'preserved_dash_jpg_missing')
+  failure(failures, !existsSync(resolve(root, SAJU_SOURCE_DERIVED_ASSET_PATH)) && 'source_derived_asset_missing')
 
   failures.push(...checkArtifactIdentity(artifact, { root, artifactId: SCHEMA, materializerPath: MATERIALIZER_PATH, materializerVersion: MATERIALIZER_VERSION, allowGenerationBaseInput: true }))
   return [...new Set(failures)]

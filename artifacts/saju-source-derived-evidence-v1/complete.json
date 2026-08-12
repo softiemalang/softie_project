@@ -1,0 +1,116 @@
+{
+  "artifactIdentity": {
+    "artifactId": "saju-source-derived-evidence-v1",
+    "artifactPayloadSha256": "26dd714ebe606159b982bf6fb983695a9d581443825ee47131732f971d483939",
+    "contractVersion": "artifact-identity-v1",
+    "generation": {
+      "baseHead": "7ebf563d4ee41da558b7a2e35ddc0f482a80c1ef",
+      "baseHeadSource": "git rev-parse HEAD at materialization",
+      "includedCommit": null,
+      "includedCommitSource": "unknown_at_generation; artifact may be included by a later commit"
+    },
+    "inputs": [
+      {
+        "byteSha256": "26896bdc877cd977a5e2e88abc1d7409d021a0ee1ffaacd708ad1dd3f987843f",
+        "path": "artifacts/saju-source-derived-evidence-v1/assets/ziping-zhenquan-pdf-page-002-rendered-evidence.jpg"
+      },
+      {
+        "byteSha256": "f5a60bc2eebba1301faa3afb221c492f8cbdbde050daef0b0d9bfb358ebf8b26",
+        "path": "scripts/materialize-saju-source-derived-evidence-v1.mjs"
+      },
+      {
+        "byteSha256": "792c252925895efd99a8544543c9ab1c57c6f5e376053b05c4d105c947062632",
+        "path": "src/interpretationPrep/sajuSourceDerivedEvidenceAsset.js"
+      }
+    ],
+    "materializer": {
+      "path": "scripts/materialize-saju-source-derived-evidence-v1.mjs",
+      "version": "1.0.0"
+    }
+  },
+  "assetManifest": {
+    "byteLength": 4471,
+    "path": "artifacts/saju-source-derived-evidence-v1/asset-manifest.json",
+    "sha256": "8e10266c6e8002b5d913b669ca0773aea3ac5ef48d504a8465286026e1620994"
+  },
+  "basis": {
+    "branch": "main",
+    "currentHead": "7ebf563d4ee41da558b7a2e35ddc0f482a80c1ef",
+    "historicalArtifactsReadOnly": true,
+    "originMainHead": "7ebf563d4ee41da558b7a2e35ddc0f482a80c1ef",
+    "sourcePdf": "/Users/softie/Documents/malang_lab/documents/子平真诠-沈孝瞻原著.pdf",
+    "sourcePdfSha256": "449336b5e35aa6811b0462093d0175c45a0add44065bf2d3845cff75981db692"
+  },
+  "checker": "scripts/check-saju-source-derived-evidence-v1.mjs",
+  "historicalContract": {
+    "legacyRootByteIdentityPreserved": true,
+    "oldPathIsHistoricalOnly": true,
+    "predecessorArtifactPathsRemainHistorical": true,
+    "predecessorArtifactsRewritten": false
+  },
+  "materializer": "scripts/materialize-saju-source-derived-evidence-v1.mjs",
+  "migration": {
+    "activeDependencyRule": "filesystem reads resolve the canonical asset path; the legacy root path is not an active dependency.",
+    "canonicalByteSha256": "26896bdc877cd977a5e2e88abc1d7409d021a0ee1ffaacd708ad1dd3f987843f",
+    "canonicalPath": "artifacts/saju-source-derived-evidence-v1/assets/ziping-zhenquan-pdf-page-002-rendered-evidence.jpg",
+    "historicalArtifacts": "pre-migration artifacts and audit documents retain the old root path as historical evidence; they are not rewritten by this successor.",
+    "legacyByteSha256": "26896bdc877cd977a5e2e88abc1d7409d021a0ee1ffaacd708ad1dd3f987843f",
+    "legacyRootPath": "-.jpg",
+    "legacyRootPathStatus": "removed_from_worktree_after_byte_preserving_migration"
+  },
+  "negativeChecker": "scripts/check-saju-source-derived-evidence-v1-negative-v0.mjs",
+  "provenance": {
+    "renderCommand": "pdftoppm -f 2 -l 2 -scale-to 1400 -jpeg -singlefile <source-pdf> <output-prefix>",
+    "rendererVersion": "26.05.0",
+    "rerenderByteIdentity": true,
+    "sourceId": "saju-source-ziping-zhenquan",
+    "sourcePdfPage": 2,
+    "sourcePdfToAsset": "source PDF page 2 rendered with the pinned Poppler command; no image re-encoding or content edit was performed",
+    "sourceWork": "子平真诠"
+  },
+  "readinessBoundary": {
+    "availableForInterpretation": false,
+    "note": "Asset provenance normalization does not establish classical source authority or change Saju readiness.",
+    "productionActivation": "blocked",
+    "stableClaimCount": 0,
+    "status": "blocked_unchanged"
+  },
+  "schemaVersion": "saju-source-derived-evidence-v1",
+  "scope": {
+    "calculationModified": false,
+    "commitPerformed": false,
+    "deploymentPerformed": false,
+    "externalAcquisitionPerformed": false,
+    "networkUsedDuringMaterialization": false,
+    "productionChanged": false,
+    "pushPerformed": false,
+    "readinessChanged": false,
+    "remoteDatabaseChanged": false,
+    "semanticAuthorityPromoted": false,
+    "sourcePdfCopied": false,
+    "sourcePdfModified": false
+  },
+  "sourceDerivedAsset": {
+    "actual": {
+      "byteLength": 214374,
+      "path": "artifacts/saju-source-derived-evidence-v1/assets/ziping-zhenquan-pdf-page-002-rendered-evidence.jpg",
+      "sha256": "26896bdc877cd977a5e2e88abc1d7409d021a0ee1ffaacd708ad1dd3f987843f"
+    },
+    "assetId": "saju-source-derived-evidence.ziping-zhenquan.pdf-page-002",
+    "byteLength": 214374,
+    "format": "JPEG",
+    "kind": "source_derived_rendered_evidence",
+    "mimeType": "image/jpeg",
+    "path": "artifacts/saju-source-derived-evidence-v1/assets/ziping-zhenquan-pdf-page-002-rendered-evidence.jpg",
+    "pixelHeight": 1400,
+    "pixelWidth": 990,
+    "repositoryPath": "artifacts/saju-source-derived-evidence-v1/assets/ziping-zhenquan-pdf-page-002-rendered-evidence.jpg",
+    "sha256": "26896bdc877cd977a5e2e88abc1d7409d021a0ee1ffaacd708ad1dd3f987843f",
+    "sourceId": "saju-source-ziping-zhenquan",
+    "sourceIsDerivative": true,
+    "sourcePdfPage": 2,
+    "storage": "canonical_repository_source_derived_asset"
+  },
+  "verdictToken": "complete_saju_source_derived_evidence_asset_migrated_uncommitted",
+  "version": "1.0.0"
+}

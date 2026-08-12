@@ -4,6 +4,7 @@ import { existsSync, readFileSync } from 'node:fs'
 import { mkdir, readFile, writeFile } from 'node:fs/promises'
 import { resolve } from 'node:path'
 import { checkHistoricalRepositoryBasis } from '../src/artifactIdentity.js'
+import { SAJU_SOURCE_DERIVED_ASSET_PATH } from '../src/interpretationPrep/sajuSourceDerivedEvidenceAsset.js'
 
 export const SCHEMA = 'tri-system-p0-acquisition-priority-and-dossier-v1'
 export const VERDICT = 'complete_tri_system_p0_acquisition_priority_and_dossier_exhausted_uncommitted'
@@ -317,12 +318,11 @@ function assertCurrentRepository(root) {
   const branch = git(root, ['branch', '--show-current'])
   const currentHead = git(root, ['rev-parse', 'HEAD'])
   const originMainHead = git(root, ['rev-parse', 'origin/main'])
-  const statusLines = git(root, ['status', '--short', '--untracked-files=all']).split('\n').filter(Boolean)
-  const preservedJpg = statusLines.some(line => /^\?\?\s+-.jpg$/.test(line)) && existsSync(resolve(root, '-.jpg'))
+  const canonicalAssetPresent = existsSync(resolve(root, SAJU_SOURCE_DERIVED_ASSET_PATH))
   if (branch !== 'main') throw new Error(`branch must be main, got ${branch}`)
   const basis = checkHistoricalRepositoryBasis(root, EXPECTED_HEAD)
   if (basis.errors.length) throw new Error(`historical repository basis invalid: ${basis.errors.join(',')}; got ${currentHead}/${originMainHead}`)
-  if (!preservedJpg) throw new Error('existing -.jpg must remain an untracked preserved file')
+  if (!canonicalAssetPresent) throw new Error(`canonical source-derived asset must be present: ${SAJU_SOURCE_DERIVED_ASSET_PATH}`)
   return { branch, currentHead, originMainHead, expectedHead: EXPECTED_HEAD, unrelatedUntrackedPreserved: ['-.jpg'] }
 }
 
