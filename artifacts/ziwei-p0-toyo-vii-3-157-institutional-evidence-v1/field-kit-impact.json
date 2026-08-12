@@ -1,0 +1,119 @@
+{
+  "closureBoundary": {
+    "imageReuseTarget": "human_policy_review",
+    "palaceSemanticTarget": "action_required",
+    "sourceIdentityTarget": "action_required",
+    "tianfuTarget": "action_required"
+  },
+  "evidenceObservationIds": [
+    "obs-toyo-vii-3-157-staff-physical-item-count",
+    "obs-toyo-vii-3-157-staff-editorial-inscription",
+    "obs-toyo-vii-3-157-staff-viewing-copy-route",
+    "obs-toyo-vii-3-157-staff-semantic-limit"
+  ],
+  "existingFieldKitBytesRewritten": false,
+  "heldEvidenceUpdate": "The institutional reply is now held evidence; do not reacquire the duplicate-row question. Future field work still needs the original leaf/page packet and human review.",
+  "predecessorByteSha256": "46e0faed297f9ca227f89d3ade08cb1049c613e9d1ef13e9da848a4879fb87cb",
+  "predecessorFieldKit": "artifacts/ziwei-p0-evidence-acquisition-field-kit-v1/complete.json",
+  "schemaVersion": "ziwei-p0-toyo-vii-3-157-institutional-evidence-v1-field-kit-v0",
+  "targetReassessment": [
+    {
+      "closure": "not_closed",
+      "evidenceRefs": [
+        "artifacts/ziwei-p0-toyo-vii-3-157-institutional-evidence-v1/evidence.json"
+      ],
+      "newEvidenceRole": "held_institution_report_narrows_physical_item_count_gap_but_does_not_satisfy_identity_packet",
+      "statusAfter": "action_required",
+      "statusBefore": "action_required",
+      "statusChanged": false,
+      "targetId": "acq-distinct-witness-identity-lineage"
+    },
+    {
+      "closure": "not_closed",
+      "evidenceRefs": [
+        "artifacts/ziwei-p0-toyo-vii-3-157-institutional-evidence-v1/evidence.json"
+      ],
+      "newEvidenceRole": "report_explicitly_preserves_missing_page_level_semantic_observation",
+      "statusAfter": "action_required",
+      "statusBefore": "action_required",
+      "statusChanged": false,
+      "targetId": "acq-palace-semantic-map-and-coordinate-witness"
+    },
+    {
+      "closure": "not_closed",
+      "evidenceRefs": [
+        "artifacts/ziwei-p0-toyo-vii-3-157-institutional-evidence-v1/evidence.json"
+      ],
+      "newEvidenceRole": "report_explicitly_preserves_missing_page_level_semantic_observation",
+      "statusAfter": "action_required",
+      "statusBefore": "action_required",
+      "statusChanged": false,
+      "targetId": "acq-tianfu-anchor-direction-adjudicator"
+    },
+    {
+      "closure": "not_closed",
+      "evidenceRefs": [],
+      "newEvidenceRole": "not_affected",
+      "statusAfter": "action_required",
+      "statusBefore": "action_required",
+      "statusChanged": false,
+      "targetId": "acq-complete-14-major-star-placement-witness"
+    },
+    {
+      "closure": "not_closed",
+      "evidenceRefs": [],
+      "newEvidenceRole": "not_affected",
+      "statusAfter": "action_required",
+      "statusBefore": "action_required",
+      "statusChanged": false,
+      "targetId": "acq-complete-auxiliary-star-rule-witness"
+    },
+    {
+      "closure": "not_closed",
+      "evidenceRefs": [],
+      "newEvidenceRole": "not_affected",
+      "statusAfter": "action_required",
+      "statusBefore": "action_required",
+      "statusChanged": false,
+      "targetId": "acq-independent-complete-four-transform-table"
+    },
+    {
+      "closure": "not_closed",
+      "evidenceRefs": [],
+      "newEvidenceRole": "not_affected",
+      "statusAfter": "action_required",
+      "statusBefore": "action_required",
+      "statusChanged": false,
+      "targetId": "acq-shen-zhu-compound-surface"
+    },
+    {
+      "closure": "not_closed",
+      "evidenceRefs": [],
+      "newEvidenceRole": "not_affected",
+      "statusAfter": "action_required",
+      "statusBefore": "action_required",
+      "statusChanged": false,
+      "targetId": "acq-independent-ziwei-oracle"
+    },
+    {
+      "closure": "not_closed",
+      "evidenceRefs": [],
+      "newEvidenceRole": "not_affected",
+      "statusAfter": "action_required",
+      "statusBefore": "action_required",
+      "statusChanged": false,
+      "targetId": "acq-calendar-time-input-authority"
+    },
+    {
+      "closure": "not_closed",
+      "evidenceRefs": [
+        "artifacts/ziwei-p0-toyo-vii-3-157-institutional-evidence-v1/evidence.json"
+      ],
+      "newEvidenceRole": "institutional_copy_route_is_available_as_a_future_path_but_no_reuse_permission_is_granted",
+      "statusAfter": "human_policy_review",
+      "statusBefore": "human_policy_review",
+      "statusChanged": false,
+      "targetId": "review-image-level-reuse-permission"
+    }
+  ]
+}

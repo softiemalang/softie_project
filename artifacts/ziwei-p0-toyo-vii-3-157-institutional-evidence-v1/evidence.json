@@ -1,0 +1,318 @@
+{
+  "catalogReconciliation": {
+    "callNumber": "VII-3-157",
+    "catalogRowRefs": [
+      "src-toyo-80941-catalog",
+      "src-toyo-80943-catalog"
+    ],
+    "catalogRowsRemainMetadata": true,
+    "duplicateDatabaseRowsReconciled": true,
+    "physicalWitnessSourceId": "src-toyo-1646",
+    "reconciliationStatus": "bounded_institutional_report; one physical item, not two witnesses",
+    "reportedPhysicalItemCount": 1,
+    "title": "新刊希夷陳先生紫微斗數全集",
+    "topLevelSourceIdentityBlockerClosed": false,
+    "unresolved": [
+      "edition/date/manuscript-or-printed status",
+      "colophon and exact leaf/folio identity",
+      "textual transmission lineage against NARA/Nanyang/Nanbei/TOYO materials",
+      "source authority and semantic authority"
+    ]
+  },
+  "evidenceSource": {
+    "access": "incoming institutional email reply; raw Gmail bytes are not stored",
+    "authority": "institution_staff_direct_inspection_report_for_bounded_item_identity_and_inscription_presence; edition_and_semantic_authority_not_established",
+    "catalogIdentity": "staff report identifies the existing Toyo Bunko call number VII-3-157 and title; it is not a catalog row",
+    "catalogRowRefs": [
+      "src-toyo-80941-catalog",
+      "src-toyo-80943-catalog"
+    ],
+    "directInspection": "staff directly checked the material and reported bounded findings; researcher direct page/leaf observation is absent",
+    "independence": "not_a_physical_witness; does_not_add_an_independent_physical_lineage",
+    "lineage": "institutional_report_attached_to_src-toyo-1646; it does not establish textual transmission lineage",
+    "physicalTargetSourceId": "src-toyo-1646",
+    "physicalWitnessStatus": "report_about_existing_physical_witness; not_a_new_physical_witness",
+    "reportProvenanceRef": "evidence-toyo-vii-3-157-institutional-reply-20260812",
+    "reuseRights": "viewing/copy procedure is reported; no image-level repository redistribution or reuse permission is granted",
+    "sourceId": "src-toyo-vii-3-157-institutional-reply-20260812",
+    "sourceKind": "institution_staff_direct_report",
+    "storedInGit": false
+  },
+  "observations": [
+    {
+      "affectedClaimIds": [
+        "claim-palace-name-branch-ordinal",
+        "claim-ming-shen-coordinate-frame",
+        "claim-12-palace-diagram-semantics",
+        "claim-major-star-placement-ziwei",
+        "claim-major-star-placement-tianji",
+        "claim-major-star-placement-taiyang",
+        "claim-major-star-placement-wugu",
+        "claim-major-star-placement-tiandong",
+        "claim-major-star-placement-lianzhen",
+        "claim-major-star-placement-tianfu",
+        "claim-major-star-placement-taiyin",
+        "claim-major-star-placement-tanlang",
+        "claim-major-star-placement-jumen",
+        "claim-major-star-placement-tianxiang",
+        "claim-major-star-placement-tianliang",
+        "claim-major-star-placement-qisha",
+        "claim-major-star-placement-pojun",
+        "claim-tianfu-anchor-direction",
+        "claim-tianfu-placement",
+        "claim-tianfu-rotation06-semantic",
+        "claim-auxiliary-star-placement-six-lucky",
+        "claim-auxiliary-star-placement-core",
+        "claim-four-transformations-10x4",
+        "claim-four-transform-lu",
+        "claim-four-transform-quan",
+        "claim-four-transform-ke",
+        "claim-four-transform-ji",
+        "claim-life-body-palace-ruler",
+        "claim-life-body-ruler-24-ambiguous-rows"
+      ],
+      "authorityStatus": "bounded_report_only; semantic_authority_not_established",
+      "blockerIds": [
+        "blocker-source-identity-unresolved"
+      ],
+      "detail": "The institution reports that the 鈔本 and 寫本 records were duplicated data and that the actual holding is one physical item.",
+      "directObservationStatus": "institution_staff_direct_inspection_report",
+      "doesNotEstablish": [
+        "VII-3-157_is_the_original_edition_or_original_printing_of_金陵益軒唐謙梓",
+        "the_item_is_not_a_later_鈔本_or_寫本",
+        "independent_physical_lineage_from_Nanyang_Nanbei_NARA_or_existing_TOYO_material",
+        "complete_twelve_palace_semantic_map",
+        "Tianfu_coordinate_or_direction_semantic_authority",
+        "Four_Transformations_or_命主_身主_rule_surface",
+        "production_readiness_semantic_authority_or_activation"
+      ],
+      "evidenceSourceId": "src-toyo-vii-3-157-institutional-reply-20260812",
+      "independenceStatus": "report_is_not_a_physical_witness",
+      "lineageStatus": "not_observed_and_not_inferred",
+      "locator": "Toyo Bunko VII-3-157; DB 鈔本 / 寫本 duplicate entries",
+      "observationId": "obs-toyo-vii-3-157-staff-physical-item-count",
+      "observationKind": "institutional_catalog_duplicate_reconciliation",
+      "observationMode": "staff_report; no page image or leaf supplied; catalog rows remain metadata",
+      "physicalWitnessSourceId": "src-toyo-1646",
+      "rawQuote": "データが重複していたためで、実際は1点です。",
+      "researcherDirectObservation": false,
+      "sourceIds": [
+        "src-toyo-vii-3-157-institutional-reply-20260812"
+      ],
+      "surface": "physical item count and duplicate database records",
+      "transcriptionRole": "locator_only",
+      "whatItEstablishes": [
+        "one actual physical item for VII-3-157 in the staff report",
+        "the two cited database rows should not be counted as two physical witnesses"
+      ]
+    },
+    {
+      "affectedClaimIds": [
+        "claim-palace-name-branch-ordinal",
+        "claim-ming-shen-coordinate-frame",
+        "claim-12-palace-diagram-semantics",
+        "claim-major-star-placement-ziwei",
+        "claim-major-star-placement-tianji",
+        "claim-major-star-placement-taiyang",
+        "claim-major-star-placement-wugu",
+        "claim-major-star-placement-tiandong",
+        "claim-major-star-placement-lianzhen",
+        "claim-major-star-placement-tianfu",
+        "claim-major-star-placement-taiyin",
+        "claim-major-star-placement-tanlang",
+        "claim-major-star-placement-jumen",
+        "claim-major-star-placement-tianxiang",
+        "claim-major-star-placement-tianliang",
+        "claim-major-star-placement-qisha",
+        "claim-major-star-placement-pojun",
+        "claim-tianfu-anchor-direction",
+        "claim-tianfu-placement",
+        "claim-tianfu-rotation06-semantic",
+        "claim-auxiliary-star-placement-six-lucky",
+        "claim-auxiliary-star-placement-core",
+        "claim-four-transformations-10x4",
+        "claim-four-transform-lu",
+        "claim-four-transform-quan",
+        "claim-four-transform-ke",
+        "claim-four-transform-ji",
+        "claim-life-body-palace-ruler",
+        "claim-life-body-ruler-24-ambiguous-rows"
+      ],
+      "authorityStatus": "bounded_report_only; semantic_authority_not_established",
+      "blockerIds": [
+        "blocker-source-identity-unresolved"
+      ],
+      "detail": "The staff member reports that, on a limited look, the editor/author statement following the opening title area contains 金陵益軒唐謙梓. This is an institutional report of presence, not a researcher-reviewed page image or a conclusion about original edition status.",
+      "directObservationStatus": "institution_staff_direct_inspection_report",
+      "doesNotEstablish": [
+        "VII-3-157_is_the_original_edition_or_original_printing_of_金陵益軒唐謙梓",
+        "the_item_is_not_a_later_鈔本_or_寫本",
+        "independent_physical_lineage_from_Nanyang_Nanbei_NARA_or_existing_TOYO_material",
+        "complete_twelve_palace_semantic_map",
+        "Tianfu_coordinate_or_direction_semantic_authority",
+        "Four_Transformations_or_命主_身主_rule_surface",
+        "production_readiness_semantic_authority_or_activation"
+      ],
+      "evidenceSourceId": "src-toyo-vii-3-157-institutional-reply-20260812",
+      "independenceStatus": "report_is_not_a_physical_witness",
+      "lineageStatus": "not_observed_and_not_inferred",
+      "locator": "巻頭に続く編著者事項; exact 丁/folio not supplied",
+      "observationId": "obs-toyo-vii-3-157-staff-editorial-inscription",
+      "observationKind": "institution_staff_reported_textual_inscription",
+      "observationMode": "staff limited inspection report; exact page/folio and image are absent",
+      "physicalWitnessSourceId": "src-toyo-1646",
+      "qualification": "一見したところ",
+      "rawQuote": "一見したところ、巻頭に続く編著者事項に「金陵益軒唐謙梓」とございます。",
+      "reportedInscription": "金陵益軒唐謙梓",
+      "researcherDirectObservation": false,
+      "sourceIds": [
+        "src-toyo-vii-3-157-institutional-reply-20260812"
+      ],
+      "surface": "preface-adjacent editor/author statement",
+      "transcriptionRole": "locator_only",
+      "whatItEstablishes": [
+        "bounded reported presence of the exact inscription in the stated context"
+      ]
+    },
+    {
+      "affectedClaimIds": [],
+      "authorityStatus": "bounded_report_only; semantic_authority_not_established",
+      "blockerIds": [
+        "blocker-source-identity-unresolved",
+        "blocker-image-reuse-rights"
+      ],
+      "detail": "The reported procedure is that the original should in principle be viewed first, the relevant 丁 identified, and then a copy requested; copy-page limits apply and paper output is the default.",
+      "directObservationStatus": "institutional_procedure_report; not_a_page_observation",
+      "doesNotEstablish": [
+        "VII-3-157_is_the_original_edition_or_original_printing_of_金陵益軒唐謙梓",
+        "the_item_is_not_a_later_鈔本_or_寫本",
+        "independent_physical_lineage_from_Nanyang_Nanbei_NARA_or_existing_TOYO_material",
+        "complete_twelve_palace_semantic_map",
+        "Tianfu_coordinate_or_direction_semantic_authority",
+        "Four_Transformations_or_命主_身主_rule_surface",
+        "production_readiness_semantic_authority_or_activation"
+      ],
+      "evidenceSourceId": "src-toyo-vii-3-157-institutional-reply-20260812",
+      "independenceStatus": "report_is_not_a_physical_witness",
+      "lineageStatus": "not_observed_and_not_inferred",
+      "locator": "institutional reply; requested 丁 must be identified after original inspection",
+      "observationId": "obs-toyo-vii-3-157-staff-viewing-copy-route",
+      "observationKind": "institutional_access_and_copy_procedure_report",
+      "observationMode": "staff reply about original viewing and copy application",
+      "physicalWitnessSourceId": "src-toyo-1646",
+      "rawQuote": null,
+      "researcherDirectObservation": false,
+      "sourceIds": [
+        "src-toyo-vii-3-157-institutional-reply-20260812"
+      ],
+      "surface": "original-viewing, copy-request, page-limit, and output procedure",
+      "transcriptionRole": "locator_only",
+      "whatItEstablishes": [
+        "a concrete institutional route for future leaf-level acquisition and human review"
+      ]
+    },
+    {
+      "affectedClaimIds": [
+        "claim-palace-name-branch-ordinal",
+        "claim-ming-shen-coordinate-frame",
+        "claim-12-palace-diagram-semantics",
+        "claim-major-star-placement-ziwei",
+        "claim-major-star-placement-tianji",
+        "claim-major-star-placement-taiyang",
+        "claim-major-star-placement-wugu",
+        "claim-major-star-placement-tiandong",
+        "claim-major-star-placement-lianzhen",
+        "claim-major-star-placement-tianfu",
+        "claim-major-star-placement-taiyin",
+        "claim-major-star-placement-tanlang",
+        "claim-major-star-placement-jumen",
+        "claim-major-star-placement-tianxiang",
+        "claim-major-star-placement-tianliang",
+        "claim-major-star-placement-qisha",
+        "claim-major-star-placement-pojun",
+        "claim-tianfu-anchor-direction",
+        "claim-tianfu-placement",
+        "claim-tianfu-rotation06-semantic",
+        "claim-auxiliary-star-placement-six-lucky",
+        "claim-auxiliary-star-placement-core",
+        "claim-four-transformations-10x4",
+        "claim-four-transform-lu",
+        "claim-four-transform-quan",
+        "claim-four-transform-ke",
+        "claim-four-transform-ji",
+        "claim-life-body-palace-ruler",
+        "claim-life-body-ruler-24-ambiguous-rows"
+      ],
+      "authorityStatus": "bounded_report_only; semantic_authority_not_established",
+      "blockerIds": [
+        "blocker-palace-semantic-identity",
+        "blocker-direct-rule-absent",
+        "blocker-tianfu-raw-formula-contradiction",
+        "blocker-tianfu-rotation06-semantic-authority",
+        "blocker-four-transform-source-witness",
+        "blocker-life-body-ruler-source-legibility"
+      ],
+      "detail": "The staff member could not readily identify the 十二宮, 安天府, 四化, or 命主·身主 positions in the reply and directed the researcher to inspect the original. Therefore no direct observation of those surfaces is admitted here.",
+      "directObservationStatus": "institution_staff_reported_not_specific_on_the_spot",
+      "doesNotEstablish": [
+        "VII-3-157_is_the_original_edition_or_original_printing_of_金陵益軒唐謙梓",
+        "the_item_is_not_a_later_鈔本_or_寫本",
+        "independent_physical_lineage_from_Nanyang_Nanbei_NARA_or_existing_TOYO_material",
+        "complete_twelve_palace_semantic_map",
+        "Tianfu_coordinate_or_direction_semantic_authority",
+        "Four_Transformations_or_命主_身主_rule_surface",
+        "production_readiness_semantic_authority_or_activation"
+      ],
+      "evidenceSourceId": "src-toyo-vii-3-157-institutional-reply-20260812",
+      "independenceStatus": "report_is_not_a_physical_witness",
+      "lineageStatus": "not_observed_and_not_inferred",
+      "locator": "十二宮 / 安天府 / 四化 / 命主·身主 requested surfaces; no exact 丁 supplied",
+      "observationId": "obs-toyo-vii-3-157-staff-semantic-limit",
+      "observationKind": "institution_reported_semantic_observation_limit",
+      "observationMode": "negative capability boundary in staff reply; no semantic page observation supplied",
+      "physicalWitnessSourceId": "src-toyo-1646",
+      "rawQuote": null,
+      "researcherDirectObservation": false,
+      "sourceIds": [
+        "src-toyo-vii-3-157-institutional-reply-20260812"
+      ],
+      "surface": "semantic-surface non-observation boundary",
+      "transcriptionRole": "locator_only",
+      "whatItEstablishes": [
+        "the reply does not contain a page-level semantic observation for the requested rule surfaces"
+      ]
+    }
+  ],
+  "report": {
+    "evidenceBoundary": "institution_staff_direct_inspection_report; exact supplied metadata and excerpts are preserved; researcher did not receive a page image or inspect the original in this packet",
+    "evidenceId": "evidence-toyo-vii-3-157-institutional-reply-20260812",
+    "messageId": "19ff4725ca62e800",
+    "provenanceKind": "user_supplied_gmail_provenance",
+    "rawMessageBytes": "not_provided_to_repository",
+    "receivedDate": "2026-08-12",
+    "sender": {
+      "email": "n-shimizu@toyo-bunko.or.jp",
+      "institution": "公益財団法人 東洋文庫",
+      "name": "清水信子 / Nobuko Shimizu",
+      "title": "図書部資料整理課兼閲覧複写課長・主幹研究員"
+    },
+    "subject": "Re: 所蔵資料 VII-3-157『新刊希夷陳先生紫微斗數全集』の書誌・閲覧についてのお問い合わせ",
+    "target": {
+      "callNumber": "VII-3-157",
+      "institution": "公益財団法人 東洋文庫",
+      "title": "新刊希夷陳先生紫微斗數全集"
+    },
+    "threadId": "19feb2ee1dcf009c"
+  },
+  "reportedNonObservations": [
+    "No exact 丁/folio was supplied for the reported inscription.",
+    "No source image, PDF, or raw email byte payload was supplied to the repository.",
+    "No direct researcher observation of 十二宮, 安天府, 四化, or 命主·身主 was acquired."
+  ],
+  "schemaVersion": "ziwei-p0-toyo-vii-3-157-institutional-evidence-v1-evidence-v0",
+  "target": {
+    "callNumber": "VII-3-157",
+    "institution": "公益財団法人 東洋文庫",
+    "title": "新刊希夷陳先生紫微斗數全集"
+  }
+}
