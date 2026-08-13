@@ -126,6 +126,15 @@
 - Do not copy canonical artifact payloads into the envelope; pass only the allowed artifact identity and integrity references. Do not treat the structural validator as a truth, source-authority, readiness, or activation validator.
 - This is an instruction-level operating rule. Do not add Luna runtime, wrapper, registry, JSONL, daemon, dependency, or schema changes to apply it.
 
+## /goal bounded continuation gate v0
+- After a work unit, the parent may use `evaluateBoundedContinuation` from `src/boundedContinuationGate.js` to choose exactly one of `continue`, `stop_complete`, `stop_blocked`, or `recheck_required`.
+- Before using a child result, the parent must run the existing subagent contract validator. A valid child envelope is still execution provenance only; the parent must perform the required risk-based recheck and keep that decision in a separate verification overlay.
+- Count progress only when parent-verified evidence, artifact identity, validated fact, blocker reduction, or a new authorized/checkable frontier is explicitly referenced. Repeated prose, scans, token/time use, and test size are not progress.
+- Pass the previous attempt checkpoint explicitly. The helper suppresses an unchanged deterministic failure only when action, relevant inputs, effective basis/scoped worktree state, dependency/environment identity, and normalized failure signature have the same fingerprint. It never performs an automatic retry.
+- The first deterministic, transient, flaky, aggregate, or unknown failure requires a parent checkpoint. A repeated deterministic failure becomes a blocker; unresolved external/ambiguous failure remains a blocker only after the bounded checkpoint and is not reclassified as deterministic.
+- `budget.checkpointDue` prompts re-evaluation only. It cannot by itself produce completion, blocking, readiness, or activation.
+- Preserve `gate decision != domain readiness`, `gate decision != production activation`, and `child PASS != parent goal PASS`. Do not add runtime, registry, JSONL, daemon, scheduler, retry, dependency, artifact/readiness schema, or production changes to apply this rule.
+
 ## Required final report
 - Changed files: list the exact paths actually changed.
 - Preserved scope: mention intentionally unchanged files or pre-existing changes when relevant.
