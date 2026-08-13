@@ -4,6 +4,13 @@ import { execFileSync } from 'node:child_process'
 
 export const ARTIFACT_IDENTITY_CONTRACT_VERSION = 'artifact-identity-v1'
 
+export const HISTORICAL_BASIS_VALIDITY = Object.freeze({
+  HISTORICAL_VALID: 'historical_valid',
+  CURRENT_COMPATIBLE: 'current_compatible',
+  REPLAY_REQUIRED: 'replay_required',
+  INVALID: 'invalid',
+})
+
 const VOLATILE_REPOSITORY_OBSERVATION_KEYS = new Set(['observedHead', 'currentHead', 'originMainHead', 'currentCheckoutHead'])
 
 const sha256 = (bytes) => createHash('sha256').update(bytes).digest('hex')
@@ -200,4 +207,131 @@ export function checkArtifactIdentity(artifact, { root, artifactId, materializer
   }
   if (!identity?.inputs?.length) errors.push('input provenance missing')
   return errors
+}
+
+function verificationStatus(value) {
+  if (value === true || value === 'verified') return 'verified'
+  if (value === false || value === 'failed' || value === 'mismatch') return 'failed'
+  if (value && typeof value === 'object') {
+    if (value.status === 'verified' || value.verified === true) return 'verified'
+    if (value.status === 'failed' || value.status === 'mismatch' || value.verified === false || value.errors?.length) return 'failed'
+  }
+  return 'unknown'
+}
+
+function inspectCheckerIdentity(root, checkerIdentity) {
+  if (checkerIdentity?.path && checkerIdentity?.byteSha256) {
+    let current
+    try { current = fileByteIdentity(root, checkerIdentity.path).byteSha256 } catch { current = null }
+    return {
+      status: current === checkerIdentity.byteSha256 ? 'verified' : 'failed',
+      path: checkerIdentity.path,
+      expectedSha256: checkerIdentity.byteSha256,
+      currentSha256: current,
+    }
+  }
+  const status = verificationStatus(checkerIdentity)
+  return { status, path: checkerIdentity?.path || null, expectedSha256: checkerIdentity?.byteSha256 || null, currentSha256: null }
+}
+
+/**
+ * Classify a frozen artifact against its declared historical generation basis.
+ *
+ * This is deliberately a provenance/compatibility classifier. It does not
+ * recalculate domain truth, readiness, semantic authority, or activation.
+ * `historicalReplay` is an explicit parent-verified replay result; it is not
+ * inferred from ancestry or from the current checker merely returning no
+ * errors.
+ */
+export function classifyHistoricalBasisValidity(artifact, {
+  root,
+  artifactId,
+  materializerPath,
+  materializerVersion,
+  expectedBranch = 'main',
+  integrity = null,
+  historicalReplay = null,
+  checkerIdentity = null,
+  inputPathResolver = path => path,
+} = {}) {
+  const errors = []
+  const reasons = []
+  const identity = artifact?.artifactIdentity
+  const basisHead = identity?.generation?.baseHead || null
+  const basis = checkHistoricalRepositoryBasis(root, basisHead, { expectedBranch })
+  if (basis.errors.length) {
+    const basisIssues = basis.errors.map(error => `historical_basis:${error}`)
+    errors.push(...basisIssues)
+    reasons.push(...basisIssues)
+  }
+
+  const identityErrors = checkArtifactIdentity(artifact, {
+    root,
+    artifactId,
+    materializerPath,
+    materializerVersion,
+    allowGenerationBaseInput: true,
+    allowVerifierInputDrift: false,
+    inputPathResolver,
+  })
+  const inputIdentityErrors = identityErrors.filter(error => error.startsWith('input byte identity mismatch:'))
+  const structuralIdentityErrors = identityErrors.filter(error => !error.startsWith('input byte identity mismatch:'))
+  const structuralIssues = structuralIdentityErrors.map(error => `artifact_identity:${error}`)
+  errors.push(...structuralIssues)
+  reasons.push(...structuralIssues)
+
+  const integrityStatus = verificationStatus(integrity)
+  if (integrityStatus === 'failed') {
+    errors.push('integrity:failed')
+    reasons.push('integrity:failed')
+  }
+
+  const inputStates = (identity?.inputs || []).map(input => {
+    const inspected = inspectFileByteIdentity(root, inputPathResolver(input.path), input.byteSha256, {
+      generationBaseHead: basisHead,
+    })
+    return {
+      path: input.path,
+      status: inspected.status,
+      currentMatches: inspected.currentMatches,
+      historicalMatches: inspected.historicalMatches,
+    }
+  })
+  const allInputsCurrent = inputStates.length > 0 && inputStates.every(input => input.currentMatches)
+  const allInputsHistoricallyTraceable = inputStates.length > 0 && inputStates.every(input => input.currentMatches || input.historicalMatches)
+  const unverifiedInputs = inputStates.filter(input => !input.currentMatches && !input.historicalMatches).map(input => input.path)
+  const replayStatus = verificationStatus(historicalReplay)
+  const checker = inspectCheckerIdentity(root, checkerIdentity)
+
+  const invalid = basis.errors.length > 0 || structuralIdentityErrors.length > 0 || integrityStatus === 'failed'
+  let status
+  if (invalid) status = HISTORICAL_BASIS_VALIDITY.INVALID
+  else if (allInputsCurrent && integrityStatus === 'verified' && checker.status === 'verified') status = HISTORICAL_BASIS_VALIDITY.CURRENT_COMPATIBLE
+  else if (allInputsHistoricallyTraceable && integrityStatus === 'verified' && replayStatus === 'verified') status = HISTORICAL_BASIS_VALIDITY.HISTORICAL_VALID
+  else status = HISTORICAL_BASIS_VALIDITY.REPLAY_REQUIRED
+
+  if (inputIdentityErrors.length || unverifiedInputs.length) reasons.push(...new Set([
+    ...inputIdentityErrors.map(error => `input_identity:${error.slice('input byte identity mismatch:'.length)}`),
+    ...unverifiedInputs.map(path => `input_identity:unverified:${path}`),
+  ]))
+  if (integrityStatus === 'unknown') reasons.push('integrity:verification_required')
+  if (checker.status !== 'verified') reasons.push(`checker_identity:${checker.status === 'failed' ? 'mismatch' : 'verification_required'}`)
+  if (replayStatus !== 'verified' && status === HISTORICAL_BASIS_VALIDITY.REPLAY_REQUIRED) reasons.push('historical_replay:verification_required')
+
+  return {
+    status,
+    errors: [...new Set(errors)],
+    reasons: [...new Set(reasons)],
+    basis,
+    integrityStatus,
+    historicalReplayStatus: replayStatus,
+    checkerIdentity: checker,
+    allInputsCurrent,
+    allInputsHistoricallyTraceable,
+    inputStates,
+    promotesCurrentArtifact: false,
+    promotesReadiness: false,
+    promotesSemanticAuthority: false,
+    promotesActivation: false,
+  }
 }
