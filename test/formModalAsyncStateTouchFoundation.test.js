@@ -141,6 +141,19 @@ test('audited active touch targets use the 44px house minimum', () => {
   assert.match(fortuneStyles, /\.fortune-shell \.soft-button\s*\{[\s\S]*?min-height:\s*44px;/)
 })
 
+test('sync confirmation modal keeps the warning, comparison, and action hierarchy scoped to its modal', () => {
+  assert.match(syncModal, /scheduler-modal scheduler-sync-confirmation-modal/)
+  assert.match(syncModal, /변경하면 기존 근무 기록이 새 시간으로 적용됩니다\./)
+  assert.match(syncModal, /className="soft-button scheduler-sync-cancel"/)
+  assert.match(syncModal, /className="primary scheduler-sync-primary"/)
+  assert.match(syncModal, /isBusy \? '변경 중\.\.\.' : '변경하기'/)
+  assert.match(styles, /\.scheduler-theme-shell \.scheduler-sync-confirmation-modal \.scheduler-modal-text[\s\S]*?color: var\(--ag-text-muted\);/)
+  assert.match(styles, /\.scheduler-theme-shell \.scheduler-sync-confirmation-modal \.scheduler-sync-diff[\s\S]*?background: var\(--ag-surface-selected\);/)
+  assert.match(styles, /\.scheduler-theme-shell \.scheduler-sync-confirmation-modal \.scheduler-form-actions > \.scheduler-sync-cancel[\s\S]*?background: var\(--ag-surface-operational\);/)
+  assert.match(styles, /\.scheduler-theme-shell \.scheduler-sync-confirmation-modal \.scheduler-form-actions > \.scheduler-sync-primary[\s\S]*?background: var\(--ag-brand\);/)
+  assert.match(styles, /\.scheduler-theme-shell \.scheduler-sync-confirmation-modal \.scheduler-form-actions > button[\s\S]*?min-height: 44px;/)
+})
+
 test('historical source refs replay generation-base lines and reject mismatched quotes', () => {
   const artifact = JSON.parse(read('artifacts/design-reference-audit-v1-emil10-incremental/complete.json'))
   const references = [
