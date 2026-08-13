@@ -305,21 +305,26 @@
 
 /* Scheduler route continuity pilot: only explicit router opt-ins use this. */
 @supports (view-transition-name: none) {
-  .scheduler-route-content {
+  /* Keep the atmospheric background and glass descendants in one named backdrop root. */
+  .scheduler-auth-gated {
     view-transition-name: scheduler-route;
   }
 
   ::view-transition-group(scheduler-route),
-  ::view-transition-image-pair(scheduler-route) {
+  ::view-transition-image-pair(scheduler-route),
+  ::view-transition-group(scheduler-fab),
+  ::view-transition-image-pair(scheduler-fab) {
     animation: none;
   }
 
-  ::view-transition-old(scheduler-route) {
+  ::view-transition-old(scheduler-route),
+  ::view-transition-old(scheduler-fab) {
     animation-duration: var(--ag-duration-fast);
     animation-timing-function: var(--ag-scheduler-route-transition-easing);
   }
 
-  ::view-transition-new(scheduler-route) {
+  ::view-transition-new(scheduler-route),
+  ::view-transition-new(scheduler-fab) {
     animation-duration: var(--ag-duration-fast);
     animation-timing-function: var(--ag-scheduler-route-transition-easing);
   }
@@ -329,7 +334,11 @@
   ::view-transition-group(scheduler-route),
   ::view-transition-image-pair(scheduler-route),
   ::view-transition-old(scheduler-route),
-  ::view-transition-new(scheduler-route) {
+  ::view-transition-new(scheduler-route),
+  ::view-transition-group(scheduler-fab),
+  ::view-transition-image-pair(scheduler-fab),
+  ::view-transition-old(scheduler-fab),
+  ::view-transition-new(scheduler-fab) {
     animation-duration: 0.01ms !important;
   }
 }
@@ -842,6 +851,8 @@ textarea {
   box-shadow: 0 8px 24px rgba(31, 111, 95, 0.2);
   border: none;
   cursor: pointer;
+  /* Keep the fixed control out of the shell capture when the route transition runs. */
+  view-transition-name: scheduler-fab;
 }
 
 .scheduler-fab-icon {

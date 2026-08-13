@@ -19,12 +19,14 @@ test('Scheduler entry routes explicitly opt into View Transition', () => {
   )
 })
 
-test('Scheduler View Transition boundary contains route content but not the fixed entry FAB', () => {
+test('Scheduler View Transition keeps the atmospheric shell boundary and splits the fixed entry FAB', () => {
   assert.match(
     schedulerApp,
-    /<div className="scheduler-route-content">\s*\{renderContent\(\)\}\s*<\/div>\s*\{showFab && \(/,
-    'the named snapshot boundary should exclude the fixed FAB from route content',
+    /<>\s*\{renderContent\(\)\}\s*\{showFab && \(/,
+    'route content should remain a direct child of the atmospheric shell',
   )
+  assert.doesNotMatch(schedulerApp, /scheduler-route-content/)
+  assert.match(schedulerApp, /className="scheduler-fab-button"/)
 })
 
 test('Scheduler editor exits return to Today without the full-root View Transition', () => {
