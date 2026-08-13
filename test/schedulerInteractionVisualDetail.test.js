@@ -66,6 +66,19 @@ test('work-log deletion confirms exact context, locks per row, and announces its
   assert.match(workLogDetail, /role=\{status\.tone === 'error' \? 'alert' : 'status'\}/)
 })
 
+test('work-log sync reports success once through the toast and preserves failure feedback', () => {
+  assert.match(today, /function showSyncToast\(message = '근무 기록을 동기화했어요'\)/)
+  assert.equal((today.match(/showSyncToast\(\)/g) || []).length, 2)
+  assert.match(today, /if \(!normalizedFilters\.workTimeEnabled \|\| workLogSyncLockRef\.current\) return/)
+  assert.match(today, /if \(!syncConfirmation \|\| workLogSyncLockRef\.current\) return/)
+  assert.match(today, /const saved = await upsertSchedulerWorkLog\(effectiveOwnerKey, candidate\)[\s\S]*?setWorkLogs\(prev => \[\.\.\.prev, saved\]\)[\s\S]*?showSyncToast\(\)/)
+  assert.match(today, /const saved = await replaceSchedulerWorkLogs\(effectiveOwnerKey, idsToRemove, candidate\)[\s\S]*?setSyncConfirmation\(null\)[\s\S]*?showSyncToast\(\)/)
+  assert.doesNotMatch(today, /setWorkLogStatus\(\{ tone: 'success', text: '근무 기록을 동기화했어요\.' \}\)/)
+  assert.doesNotMatch(today, /setWorkLogStatus\(\{ tone: 'success', text: '근무 기록을 변경 적용했어요\.' \}\)/)
+  assert.match(today, /setWorkLogStatus\(\{ tone: 'error', text: '기록 저장 중 오류가 발생했습니다\.' \}\)/)
+  assert.match(today, /setWorkLogStatus\(\{ tone: 'error', text: '기록 변경 중 오류가 발생했습니다\.' \}\)/)
+})
+
 test('representative hierarchy pilot emphasizes action-now instead of the duplicated all-day aggregate', () => {
   assert.match(section, /title === '지금 처리할 일' \? 'is-primary' : ''/)
   assert.doesNotMatch(section, /title === '오늘 전체' \? 'is-primary' : ''/)

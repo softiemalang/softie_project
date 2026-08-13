@@ -126,7 +126,7 @@ export function TodaySchedulerPage({
     }
   }, [])
 
-  function showSyncToast(message = '동기화가 완료되었습니다') {
+  function showSyncToast(message = '근무 기록을 동기화했어요') {
     setSyncToast(message)
     if (syncToastTimerRef.current) {
       window.clearTimeout(syncToastTimerRef.current)
@@ -190,7 +190,6 @@ export function TodaySchedulerPage({
     try {
       const saved = await upsertSchedulerWorkLog(effectiveOwnerKey, candidate)
       setWorkLogs(prev => [...prev, saved])
-      setWorkLogStatus({ tone: 'success', text: '근무 기록을 동기화했어요.' })
       showSyncToast()
     } catch (err) {
       setWorkLogStatus({ tone: 'error', text: '기록 저장 중 오류가 발생했습니다.' })
@@ -218,7 +217,6 @@ export function TodaySchedulerPage({
       ])
 
       setSyncConfirmation(null)
-      setWorkLogStatus({ tone: 'success', text: '근무 기록을 변경 적용했어요.' })
       showSyncToast()
     } catch (err) {
       setWorkLogStatus({ tone: 'error', text: '기록 변경 중 오류가 발생했습니다.' })
