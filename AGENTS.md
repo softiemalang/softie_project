@@ -115,6 +115,17 @@
 - If unsure, inspect first rather than guessing.
 - Never claim deployment is complete just because `git push` succeeded.
 
+## /goal subagent evidence contract
+- Use a subagent for independent investigation, analysis, or verification only when the coordination cost is justified; keep simple, local tasks in the parent.
+- For delegated work, the task scope must name the assigned question, allowed actions, forbidden actions, and any out-of-scope observation or proposal. Include the relevant checkout basis and reference boundaries.
+- The child result must be a `subagent-evidence-contract-v0` envelope. Before using it, the parent must parse the exact envelope and run `checkSubagentEvidenceContract` or `assertSubagentEvidenceContract` from `src/subagentEvidenceContract.js`.
+- An orchestration lifecycle result such as `worker_done` or `outcome: succeeded` is not the contract status and is not parent-goal PASS. Keep lifecycle metadata separate from the envelope, and preserve `child PASS != parent goal PASS`.
+- Reject or directly recheck envelopes that fail structural validation, contain unsafe or mismatched references, incomplete passed validations, copied canonical payloads, or readiness, activation, semantic-authority, or parent-verification promotion.
+- Keep observations, non-authoritative inferences, validations, unknowns, and blockers separate. Treat `completed_with_unknowns`, `failed`, and `cancelled` as partial results until parent verification is complete.
+- Parent verification is risk-based: confirm low-risk structural observations by reference, recheck canonical artifact hash/integrity, and directly reread the exact locator and rerun the critical check for calculation, claim/source relation, semantic authority, readiness, or activation impact.
+- Do not copy canonical artifact payloads into the envelope; pass only the allowed artifact identity and integrity references. Do not treat the structural validator as a truth, source-authority, readiness, or activation validator.
+- This is an instruction-level operating rule. Do not add Luna runtime, wrapper, registry, JSONL, daemon, dependency, or schema changes to apply it.
+
 ## Required final report
 - Changed files: list the exact paths actually changed.
 - Preserved scope: mention intentionally unchanged files or pre-existing changes when relevant.
