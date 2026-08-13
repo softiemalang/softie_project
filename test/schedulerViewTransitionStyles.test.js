@@ -13,7 +13,12 @@ test('scheduler View Transition uses the common 180ms baseline and initial pilot
   assert.match(styles, /--ag-scheduler-route-transition-easing:\s*cubic-bezier\(0\.23, 1, 0\.32, 1\);/)
   assert.doesNotMatch(styles, /--ag-scheduler-route-transition-(duration|old-duration|new-duration):/)
   assert.doesNotMatch(styles, /Soft Page Handoff v0|scheduler-route-(old|new)-handoff/)
-  assert.match(baselineBlock, /\.scheduler-auth-gated\s*\{[\s\S]*?view-transition-name:\s*scheduler-route;/)
+  assert.match(baselineBlock, /\.scheduler-route-content\s*\{[\s\S]*?view-transition-name:\s*scheduler-route;/)
+  assert.doesNotMatch(
+    baselineBlock,
+    /\.scheduler-auth-gated\s*\{[\s\S]*?view-transition-name:\s*scheduler-route;/,
+    'the authenticated shell must stay outside the route snapshot boundary',
+  )
   assert.match(
     baselineBlock,
     /::view-transition-old\(scheduler-route\)[\s\S]*?animation-duration:\s*var\(--ag-duration-fast\);[\s\S]*?animation-timing-function:\s*var\(--ag-scheduler-route-transition-easing\);/,

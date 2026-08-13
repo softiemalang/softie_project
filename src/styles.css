@@ -305,7 +305,7 @@
 
 /* Scheduler route continuity pilot: only explicit router opt-ins use this. */
 @supports (view-transition-name: none) {
-  .scheduler-auth-gated {
+  .scheduler-route-content {
     view-transition-name: scheduler-route;
   }
 

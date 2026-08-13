@@ -101,7 +101,9 @@ export function SchedulerApp({
 
   return (
     <>
-      {renderContent()}
+      <div className="scheduler-route-content">
+        {renderContent()}
+      </div>
       {showFab && (
         <button
           type="button"
