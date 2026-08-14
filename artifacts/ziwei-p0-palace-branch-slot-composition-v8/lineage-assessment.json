@@ -1,0 +1,1374 @@
+{
+  "branchPerimeterWitness": {
+    "completeBranchRing": true,
+    "direct": true,
+    "locator": "PDF p7",
+    "sourceId": "src-nanbei-pdf"
+  },
+  "candidateReview": {
+    "candidates": [
+      {
+        "bytes": 3721202,
+        "candidateId": "candidate-cadal-01032231-title-collision",
+        "commonsSha1": "ff8be2ded9d645d82f4993180afa1d0ceeab4e1e",
+        "decision": "rejected_same_title_not_yuyue_youyi_lu",
+        "doesNotEnterGraph": true,
+        "identity": "遊藝錄 by 李佃, 醉月山房, 清光緒二十年（1894）, 81 pages, CADAL 01032231",
+        "url": "https://commons.wikimedia.org/wiki/File:CADAL01032231_%E9%81%8A%E8%97%9D%E9%8C%84.djvu"
+      },
+      {
+        "bytes": 3668550,
+        "candidateId": "candidate-nlc416-feixing-ziwei-original-intended",
+        "decision": "not_admitted_to_this_youyi_lu_composition",
+        "doesNotEnterGraph": true,
+        "identity": "華山陳希夷先生飛星紫微斗數原旨, NLC416-12jh004539-48693, separate work",
+        "pages": 116,
+        "sourcePdfSha256": "d7111b8a43babc6141759d61f4d5d5c013b960ca35ae588cb3458a66e0941797"
+      },
+      {
+        "candidateId": "candidate-cini-1968-youyi-lu-reprint-catalog",
+        "catalogId": "BN14977393 / CRID 1971149384876944315",
+        "decision": "catalog_only_1871_reprint_acquisition_lead",
+        "directScanObtained": false,
+        "doesNotEnterGraph": true,
+        "identity": "中國文獻出版社, 1968.9, 春在堂全書第8冊; catalog note says 同治10年(1871)刊の影印 and includes 游藝録",
+        "url": "https://cir.nii.ac.jp/crid/1971149384876944315"
+      },
+      {
+        "bytes": 75687209,
+        "candidateId": "candidate-cnts-00047996572-anonymous-manuscript",
+        "commonsSha1": "0ecf0cdc7ae9a2e0d427501bb0fdef901a851a0a",
+        "decision": "held_separate_anonymous_handwritten_work_no_complete_four_field_binding_surfaced_in_reviewed_pages",
+        "directPdfUrl": "https://upload.wikimedia.org/wikipedia/commons/9/98/CNTS-00047996572_%E7%B4%AB%E5%BE%AE%E6%96%97%E6%95%B8%E6%96%B9%E6%9B%B8.pdf",
+        "directVisualReview": true,
+        "doesNotEnterGraph": true,
+        "identity": "紫微斗數方書, 編者未詳, 筆寫本, National Digital Library of Korea record CNTS-00047996572",
+        "pages": 153,
+        "reviewedScanPages": "pp1-28, with selected direct visual review at pp6-16",
+        "sourcePdfSha256": "b21bbf3e2c7cdada4153f847ff9f359dbb29e71998e1f931417d108b571b23c3",
+        "url": "https://commons.wikimedia.org/wiki/File:CNTS-00047996572_%E7%B4%AB%E5%BE%AE%E6%96%97%E6%95%B8%E6%96%B9%E6%9B%B8.pdf"
+      }
+    ],
+    "reviewedOutsideGraph": true
+  },
+  "directPalaceWitnesses": [
+    {
+      "completeRelativeOrder": true,
+      "direct": true,
+      "independentHistoricalWitnessAdmitted": false,
+      "locator": {
+        "commonsPageId": 129857505,
+        "commonsUrl": "https://commons.wikimedia.org/wiki/File:NLC892-GBZX0301010898-252714_%E6%98%A5%E5%9C%A8%E5%A0%82%E5%85%A8%E6%9B%B8_%E4%B8%89%E4%B8%89%E4%BA%8C%E5%8D%B7_%E7%AC%AC97%E5%86%8A.pdf",
+        "renderDpi": 300,
+        "renderedDimensions": "1920x1767",
+        "renderedFileSha256": "0711bc5ed6f10eccb824acf54ea8e8a2eafa18aa381c995007e581cba7dcdb8",
+        "scanPage": 66,
+        "sourcePdfSha256": "6dcefdb465f63ae74fbb0d5587a3e90f9f1337160244b4ecaaf9490dd5e1cb45",
+        "url": "https://upload.wikimedia.org/wikipedia/commons/5/57/NLC892-GBZX0301010898-252714_%E6%98%A5%E5%9C%A8%E5%A0%82%E5%85%A8%E6%9B%B8_%E4%B8%89%E4%B8%89%E4%BA%8C%E5%8D%B7_%E7%AC%AC97%E5%86%8A.pdf",
+        "volume": "春在堂全書 三三二卷 第97冊"
+      },
+      "physicalSlotBinding": false,
+      "productionOrdinalBinding": false,
+      "sourceId": "src-youyi-lu-nlc-332-97-1883"
+    },
+    {
+      "completeRelativeOrder": true,
+      "direct": true,
+      "independentHistoricalWitnessAdmitted": false,
+      "locator": {
+        "commonsPageId": 148541003,
+        "commonsUrl": "https://commons.wikimedia.org/wiki/File:ZJLib-62b555343157d263ee6a4462-25_%E6%98%A5%E5%9C%A8%E5%A0%82%E5%85%A8%E6%9B%B8%E4%B8%89%E5%8D%81%E5%85%AD%E7%A8%AE_%E7%AC%AC25%E5%86%8A.pdf",
+        "renderDpi": 240,
+        "renderedFileSha256ByPage": {
+          "131": "a32f07e596085665e8810e3df787c81531b9f290507492446a56f38edbc6be59",
+          "132": "09a73db0c5dd14d737695fba2c6e63c0c400a9eb125f488a8ef2370ada11baa5"
+        },
+        "scanPages": [
+          131,
+          132
+        ],
+        "section": "游藝錄五·紫微斗數篇",
+        "sourcePdfSha256": "f5ef36a28462e8260d435940dbff5f0e22f614ca458e23a8f764e96209056a4d",
+        "url": "https://upload.wikimedia.org/wikipedia/commons/b/bc/ZJLib-62b555343157d263ee6a4462-25_%E6%98%A5%E5%9C%A8%E5%A0%82%E5%85%A8%E6%9B%B8%E4%B8%89%E5%8D%81%E5%85%AD%E7%A8%AE_%E7%AC%AC25%E5%86%8A.pdf",
+        "volume": "春在堂全書三十六種 第25冊"
+      },
+      "physicalSlotBinding": false,
+      "productionOrdinalBinding": false,
+      "sourceId": "src-youyi-lu-zjlib-36-25-late-reprint"
+    }
+  ],
+  "earlierEdition1871": {
+    "alternateCatalogHoldingReviewed": true,
+    "byteComparisonPerformed": false,
+    "catalogDate": "同治10 [1871]",
+    "catalogFormatComparisonBlockLineageClosed": false,
+    "catalogFormatComparisonDirectBytes": false,
+    "catalogFormatComparisonDirectText": false,
+    "catalogFormatComparisonPerformed": true,
+    "catalogFormatComparisonStatus": "partial_format_match_and_difference_catalog_only",
+    "catalogIdentityReconfirmed": true,
+    "comparisonStatus": "catalog_format_metadata_compared_text_byte_block_lineage_open",
+    "directTextComparisonPerformed": false,
+    "nagoyaCatalogRecordReviewed": true,
+    "nagoyaImageAvailable": false,
+    "nagoyaPublicationDateResolved": false,
+    "pageImagesLocated": false,
+    "sourceId": "src-youyi-lu-cinii-1871-catalog",
+    "textualLineageClosed": false,
+    "thirdCatalogRouteReviewed": true,
+    "url": "https://ci.nii.ac.jp/ncid/BD19656670"
+  },
+  "figureOnlyLineageBoundary": {
+    "candidateId": "candidate-nlc-jamise-collection-kol200200680-figure-only",
+    "figureBytes": {
+      "acquired": true,
+      "byteLength": 351470,
+      "sha256": "e56d1cc148c8166cc4c9507ca3cdab616f6c451bedf15db07753b6c43451115"
+    },
+    "fullSourceBytesAcquired": false,
+    "independentWitnessAdmitted": false,
+    "physicalSlotAndOrdinal": "not_observed",
+    "semanticAuthority": "not_established",
+    "sourceIdentityStatus": "official collection record; author/year unknown and head reported missing_or_damaged",
+    "textualLineageClosed": false
+  },
+  "independentWitnessStatus": "not_admitted",
+  "joinKey": "earthly_branch_token",
+  "joinStatus": "inferred_not_directly_asserted_by_either_source",
+  "lateReprintComparison": {
+    "blockOrColophonIdentityClosed": false,
+    "independentLineageAdmitted": false,
+    "namedPalaceOrderAgreement": true,
+    "sourceIds": [
+      "src-youyi-lu-cadal-01025514-1883",
+      "src-youyi-lu-zjlib-36-25-late-reprint"
+    ],
+    "status": "catalog_labelled_late_compiled_reprint_directly_reviewed"
+  },
+  "namedPalaceWitness": {
+    "completeRelativeOrder": true,
+    "direct": true,
+    "locator": "scan p130",
+    "sourceId": "src-youyi-lu-cadal-01025514-1883"
+  },
+  "naraBoundary": {
+    "artifact": "artifacts/ziwei-nara-iiif-leafmap-semantic-witness-v1/semantic-observations.json",
+    "completeBindingCount": 0,
+    "independentWitness": false,
+    "status": "blocked_semantic_identity_insufficient"
+  },
+  "physicalWitnessCandidatesAdded": [
+    "src-youyi-lu-nlc-332-97-1883",
+    "src-youyi-lu-zjlib-36-25-late-reprint"
+  ],
+  "productionBoundary": {
+    "directScanPhysicalSlotToProductionOrdinal": "not_established",
+    "physicalSlotToProductionOrdinal": "not_established",
+    "productionModified": false,
+    "rotation06": "representation_only"
+  },
+  "researchFrontier": {
+    "acquisitionLeads": [
+      {
+        "doesNotEnterGraph": true,
+        "leadId": "lead-kobe-1871-public-record-only",
+        "result": "Kobe record and viewing instruction located; no public page-image, IIIF, or downloadable scan route located.",
+        "sourceId": "candidate-youyi-lu-cinii-bd19656670-1871-catalog-only",
+        "url": "https://op.lib.kobe-u.ac.jp/opac/opac_link/bibid/2002371593"
+      },
+      {
+        "attemptedIiifManifestUrl": "https://dl.ndl.go.jp/api/iiif/2610509/manifest.json",
+        "doesNotEnterGraph": true,
+        "leadId": "lead-ndl-chunzaitang-descendant-route",
+        "pidUrl": "https://dl.ndl.go.jp/pid/2610509",
+        "recordUrl": "https://ndlsearch.ndl.go.jp/books/R100000002-I000007637157",
+        "result": "Later 春在堂全書 catalog and PID route located; attempted manifest returned no usable manifest in this session, so no descendant scan bytes were admitted."
+      },
+      {
+        "accessBoundary": "NDL catalog indicates online viewing is restricted to NDL premises or permitted transmission routes.",
+        "attemptedIiifManifestUrl": "https://dl.ndl.go.jp/api/iiif/2606209/manifest.json",
+        "attemptedManifestResult": "404_json_checkResult_NG",
+        "catalogIdentity": "春在堂全書稿本; contents identify 游藝録6卷 including the 紫微斗數篇 section",
+        "doesNotEnterGraph": true,
+        "leadId": "lead-ndl-youyi-lu-manuscript-2606209",
+        "pageBytesAcquired": false,
+        "pidUrl": "https://dl.ndl.go.jp/pid/2606209",
+        "recordUrl": "https://ndlsearch.ndl.go.jp/books/R100000039-I2606209",
+        "result": "Specific manuscript PID route located, but no public page bytes or usable IIIF manifest were acquired in this session."
+      },
+      {
+        "accessBoundary": "NDL catalog indicates online viewing is restricted to NDL premises or permitted transmission routes.",
+        "attemptedIiifManifestUrl": "https://dl.ndl.go.jp/api/iiif/2610509/manifest.json",
+        "attemptedManifestResult": "404_json_checkResult_NG",
+        "catalogIdentity": "春在堂全書 第73-145册; contents identify 游藝録6卷",
+        "doesNotEnterGraph": true,
+        "leadId": "lead-ndl-youyi-lu-compiled-2610509",
+        "pageBytesAcquired": false,
+        "pidUrl": "https://dl.ndl.go.jp/pid/2610509",
+        "recordUrl": "https://ndlsearch.ndl.go.jp/books/R100000002-I000007637157",
+        "result": "Compiled-volume PID route located, but no public page bytes or usable IIIF manifest were acquired in this session."
+      },
+      {
+        "doesNotEnterGraph": true,
+        "imageAvailable": false,
+        "leadId": "lead-nagoya-youyi-lu-ba87134054-catalog-no-image",
+        "pageBytesAcquired": false,
+        "publicationDateResolved": false,
+        "recordId": "n004-20230901-07327",
+        "result": "Separate Nagoya University catalog record located; the record explicitly reports Image: None, so no page image or source bytes were acquired and the publication date remains unresolved.",
+        "sourceId": "candidate-youyi-lu-nagoya-ba87134054-catalog-no-image",
+        "url": "https://da.adm.thers.ac.jp/en/item/n004-20230901-07327"
+      },
+      {
+        "doesNotEnterGraph": true,
+        "handleUrl": "https://hdl.handle.net/2324/1001354396",
+        "imageAvailable": false,
+        "leadId": "lead-cinii-youyi-lu-1902-kyushu-catalog-only",
+        "opacUrl": "https://catalog.lib.kyushu-u.ac.jp/opac_openurl/?ncid=BA85312898",
+        "pageImagesLocated": false,
+        "result": "Kyushu University catalog and CiNii identify a 1902 游藝録 6巻 copy with a semi-rare shelf location; no public page-image or downloadable scan route was located.",
+        "sourceBytesAcquired": false,
+        "sourceId": "candidate-youyi-lu-cinii-ba85312898-1902-catalog-only",
+        "url": "https://ci.nii.ac.jp/ncid/BA85312898"
+      },
+      {
+        "doesNotEnterGraph": true,
+        "imageAvailable": false,
+        "leadId": "lead-cinii-youyi-lu-1897-bukkyo-catalog-only",
+        "pageImagesLocated": false,
+        "result": "CiNii identifies a 1897 composed 春在堂全書 volume containing 游藝録 6卷 at Bukkyo University; no public page-image or downloadable scan route was located.",
+        "sourceBytesAcquired": false,
+        "sourceId": "candidate-youyi-lu-cinii-ba90448039-1897-catalog-only",
+        "url": "https://ci.nii.ac.jp/ncid/BA90448039"
+      },
+      {
+        "doesNotEnterGraph": true,
+        "imageAvailable": false,
+        "leadId": "lead-ndl-chunzaitang-1882-catalog-no-pid",
+        "pageImagesLocated": false,
+        "pidRouteLocated": false,
+        "result": "NDL catalog identifies an 1882 光緒8重定刊 春在堂全書 record and a 同治十年秋八月曾國藩署檢 catalog note, but exposes no PID, IIIF manifest, or page-image route for this record.",
+        "sourceBytesAcquired": false,
+        "sourceId": "candidate-chunzaitang-ndl-1882-catalog-only",
+        "url": "https://ndlsearch.ndl.go.jp/books/R100000002-I000007637258"
+      },
+      {
+        "directPageReview": false,
+        "doesNotEnterGraph": true,
+        "doesNotEstablish": [
+          "original 1870 page text or diagram",
+          "direct source lineage or independent witness",
+          "palace-name to physical-slot mapping",
+          "production ordinal or semantic authority"
+        ],
+        "extent": "6卷6冊",
+        "imageAvailable": false,
+        "institutionalRecordType": "secondary_AKS_Sillokwiki_entry",
+        "leadId": "lead-shiba-feixing-1870-hanyang-secondary-record-only",
+        "namedHolding": "Hanyang University Library",
+        "pageImagesLocated": false,
+        "printing": "woodblock",
+        "publicationDate": "1870",
+        "result": "AKS secondary bibliography identifies a 1870 six-volume woodblock record and names Hanyang University Library, but no original page image or downloadable source bytes were located in the current session.",
+        "sourceBytesAcquired": false,
+        "sourceId": "bibliographic-lead-shiba-feixing-1870-hanyang",
+        "sourceRole": "secondary_institutional_bibliographic_acquisition_lead",
+        "title": "新刻合倂十八飛星策天紫微斗數全集",
+        "url": "https://dh.aks.ac.kr/sillokwiki/index.php/%EC%9E%90%EB%AF%B8%EC%88%98%28紫微數%29"
+      }
+    ],
+    "admissionBoundary": "The NLC figure-only observation, the 1870 secondary bibliographic lead, and the earlier catalog routes remain provenance-separated. A visible circular diagram is not a readable palace-name/branch/slot/ordinal map; secondary institutional bibliography is not an original page witness. No frontier item enters the semantic graph or promotes source authority, semantic authority, readiness, or activation.",
+    "candidates": [
+      {
+        "candidateId": "candidate-sancai-fa-mi-harvard-drs-52822721-v9-adjacent-star-ming",
+        "decision": "held_outside_graph_adjacent_work_no_ziwei_four_field_binding",
+        "directObservationStatus": "direct_visual_historical_scan_review",
+        "directReading": [
+          "The reviewed scan surfaces include chart-like 格之圖 grids, branch/star marks, and related star-ming or 七政 material.",
+          "The reviewed pages do not visibly supply a complete Ziwei palace-name perimeter joined to branch tokens, physical chart slots, and a production ordinal.",
+          "This is a related star-ming work in a different textual framework; its diagrams cannot be silently treated as a Ziwei semantic witness."
+        ],
+        "directVisualReview": true,
+        "doesNotEnterGraph": true,
+        "doesNotEstablish": [
+          "俞樾游藝錄 source identity",
+          "Ziwei palace semantic authority",
+          "shared cross-framework coordinate frame",
+          "production ordinal or direction",
+          "single_source_four_field_binding"
+        ],
+        "locators": {
+          "commonsUrl": "https://commons.wikimedia.org/wiki/File:Harvard_drs_52822721_%E4%B8%89%E6%89%8D%E7%99%BC%E7%A7%98%E5%A4%A9%E9%83%A8%E4%BA%8C%E5%8D%B7_v.9.pdf",
+          "directPdfUrl": "https://upload.wikimedia.org/wikipedia/commons/2/2a/Harvard_drs_52822721_%E4%B8%89%E6%89%8D%E7%99%BC%E7%A7%98%E5%A4%A9%E9%83%A8%E4%BA%8C%E5%8D%B7_v.9.pdf",
+          "iiifManifestUrl": "https://iiif.lib.harvard.edu/manifests/view/drs:52822721",
+          "renderedFileSha256ByPage": {
+            "15": "29a3e29e6302cc3a0cf6e9d57edd19cf6bf8ec589b75fa5d72cf031dcb36ae57",
+            "16": "d5db63eaaf51b312602175360309e3d24030717d15c0091ce22ee3d4d714286f",
+            "20": "e7bbc09f5f323851d683459d9120719a7380da7b31f022a6224ac1b436679d39",
+            "24": "70f145f15002bceda85c10d44e93648e6130fc03277e79ac13c2fc79ba3265f6"
+          },
+          "reviewedScanPages": [
+            15,
+            16,
+            20,
+            24
+          ]
+        },
+        "sourceIdentity": {
+          "author": "陳雯",
+          "catalogDescription": "[China: s.n., 1697?]",
+          "holdingCredit": "Harvard-Yenching Library / Harvard Digital Collections",
+          "sourcePdfBytes": 45558383,
+          "sourcePdfKind": "Wikimedia Commons PDF derivative of Harvard IIIF scan",
+          "sourcePdfPages": 55,
+          "sourcePdfSha256": "56cdd76a95ffb2bd4e51fea12f79b4c737bb9926f8be022324dff18f0425a22a",
+          "title": "三才發秘 天部二卷, 地部三卷, 人部四卷"
+        },
+        "sourceKind": "direct_harvard_scan_adjacent_star_ming_work_not_ziwei_authority"
+      },
+      {
+        "candidateId": "candidate-ziwei-jielan-googlebooks-2016-facsimile-preview-derivative",
+        "decision": "held_outside_graph_derivative_preview_no_independent_source_identity",
+        "directObservationStatus": "direct_visual_signed_preview_image_review",
+        "directReading": [
+          "The reviewed preview pages visibly contain old-page tables or grids with branch and star tokens inside the publisher preview frame.",
+          "No reviewed preview page visibly binds all palace names, branch perimeter, physical slot, ordinal, start point, and direction on one source surface.",
+          "The page images are derivative signed previews; they do not establish the original scan bytes, exact leaf lineage, or independent edition identity."
+        ],
+        "directVisualReview": true,
+        "doesNotEnterGraph": true,
+        "doesNotEstablish": [
+          "original scan byte identity",
+          "independent edition lineage",
+          "production ordinal or direction",
+          "single_source_four_field_binding"
+        ],
+        "locators": {
+          "previewImageSha256ByPageId": {
+            "PT16": "1a3b87967de36eda4059551a858b3c42607e25f97a3d2e5abeee72839d537700",
+            "PT27": "e372baccaca21cc1666e12057aa7a6af6a990903e0c91b10850c0a006b4ae1d6",
+            "PT32": "12282b6561d54e2673f41f116763d84e4c57713fab5c830107fadc6c1619f76c",
+            "PT33": "15ee0c12fe2198ce98dec774a9915e65fcf7e55327f4344924a98b86b31bef93"
+          },
+          "previewImageWidth": 1280,
+          "previewPageIds": [
+            "PT16",
+            "PT27",
+            "PT32",
+            "PT33"
+          ],
+          "publisherPageUrl": "https://play.google.com/store/books/details/%E7%B4%AB%E5%BE%AE%E6%96%97%E6%95%B8%E6%8D%B7%E8%A6%BD_%E6%98%8E%E5%88%8A%E5%AD%A4%E6%9C%AC_%E5%8E%9F_%E5%BD%A9%E8%89%B2%E6%9C%AC_%E9%99%84_%E9%BB%9E%E6%A0%A1%E6%9C%AC_%E4%BA%8C%E5%86%8A%E4%B8%8D%E5%88%86%E5%94%AE?gl=US&hl=en_IE&id=rZRcCwAAQBAJ",
+          "stableVolumeUrl": "https://books.google.com/books?id=rZRcCwAAQBAJ"
+        },
+        "sourceIdentity": {
+          "googleBooksVolumeId": "rZRcCwAAQBAJ",
+          "isPublicDomain": false,
+          "previewPagesClaimed": 462,
+          "publicationYear": 2016,
+          "publisherClaimedEdition": "明萬曆九年金陵書坊王氏洛川刊本",
+          "publisherEditionClaimStatus": "publisher_description_not_independently_verified",
+          "title": "紫微斗數捷覽：明刊孤本原彩色本附點校本（二冊不分售）"
+        },
+        "sourceKind": "publisher_facsimile_preview_derivative_not_original_scan_bytes"
+      },
+      {
+        "candidateId": "candidate-youyi-lu-cinii-bd19656670-1871-catalog-only",
+        "comparisonTo1883": {
+          "byteComparisonPerformed": false,
+          "directTextComparisonPerformed": false,
+          "sources1883": [
+            null,
+            "src-youyi-lu-nlc-332-97-1883"
+          ],
+          "status": "not_performed_catalog_only_1871",
+          "textualLineageClosed": false
+        },
+        "decision": "catalog_identity_confirmed_acquisition_target_no_direct_witness",
+        "directObservationStatus": "catalog_record_review_only",
+        "directReading": [],
+        "directVisualReview": false,
+        "doesNotEnterGraph": true,
+        "doesNotEstablish": [
+          "1871 page-level text",
+          "1871 colophon visual confirmation",
+          "1871 to 1883 textual or block lineage",
+          "palace_name_to_physical_chart_slot",
+          "production ordinal"
+        ],
+        "locators": {
+          "ciniiUrl": "https://ci.nii.ac.jp/ncid/BD19656670",
+          "kobeOpacUrl": "https://op.lib.kobe-u.ac.jp/opac/opac_link/bibid/2002371593",
+          "pageImagesLocated": false,
+          "sourceBytesAcquired": false
+        },
+        "sourceIdentity": {
+          "author": "(清)兪樾 [撰]",
+          "binding": "one bound volume",
+          "catalogNotes": [
+            "版心の書名: 藝",
+            "封面に「外書三/游藝録/徳清兪氏書廿二」とあり",
+            "封面裏に「同治辛未冬十月江清驥著檢」とあり",
+            "左右双辺有界10行21字注文双行, 内匡廓: 16.0×10.9cm, 白口単黒魚尾",
+            "印記: 「山野氏蔵書章」"
+          ],
+          "holding": "Kobe University Library Humanities Science Library",
+          "holdingCount": 1,
+          "publicationDate": "同治10 [1871]",
+          "title": "游藝録 6卷"
+        },
+        "sourceKind": "catalog_identity_confirmed_direct_pages_unavailable"
+      },
+      {
+        "candidateId": "candidate-nara-4468520-4469314-chart-example-frontier",
+        "decision": "held_outside_graph_same_record_chart_example_partial_no_four_field_binding",
+        "directObservationStatus": "direct_visual_original_scan_image_review",
+        "directReading": [
+          "Volume 1 leaves 84-86 show explanatory chart or rule surfaces; leaves 87-88 visibly include 安天府圖 and branch/star or four-transformation tables; leaves 89-92 continue rule and worked-example surfaces.",
+          "Volume 2 leaves 64-80 contain repeated worked natal-chart examples with sex/bureau labels, star entries, and branch tokens, but no complete twelve-palace-name perimeter with physical coordinates and a production ordinal.",
+          "The reviewed leaves join chart-example vocabulary and branch or ordinal-like table surfaces in one same-record scan pair, but they do not visibly bind palace name, branch token, physical slot, and ordinal in one semantic frame."
+        ],
+        "directVisualReview": true,
+        "doesNotEnterGraph": true,
+        "doesNotEstablish": [
+          "single_source_four_field_binding",
+          "palace_name_to_physical_chart_slot",
+          "production ordinal or production direction",
+          "independent historical witness",
+          "semantic authority"
+        ],
+        "locators": {
+          "itemUrls": [
+            "https://www.digital.archives.go.jp/item/4468520",
+            "https://www.digital.archives.go.jp/item/4469314"
+          ],
+          "manifestUrls": [
+            "https://www.digital.archives.go.jp/api/iiif/4468520/manifest.json",
+            "https://www.digital.archives.go.jp/api/iiif/4469314/manifest.json"
+          ],
+          "originalRepositoryBytesStoredInCheckout": false,
+          "recordUrl": "https://www.digital.archives.go.jp/das/meta/F1000000000000101426.html",
+          "reviewedImages": [
+            {
+              "byteScope": "retrieved JPEG response bytes for the fixed IIIF max image URL",
+              "byteSha256": "366f656fd2a51520746543e1cc96d77a8a2e5dc920281684d4543926166de613",
+              "bytes": 838573,
+              "canvasId": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812186700",
+              "canvasLabel": "C102812186700",
+              "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812186700/iiif/M2019050811103249305_0084.jp2/full/max/0/native.jpg",
+              "leaf": 84,
+              "retrievedVariant": "full/max/0/native.jpg"
+            },
+            {
+              "byteScope": "retrieved JPEG response bytes for the fixed IIIF max image URL",
+              "byteSha256": "e1dc1926a62cc534dee0055cb7f5da4bf6dab5cc55084c7591078cc0ac8dabb9",
+              "bytes": 811543,
+              "canvasId": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812186800",
+              "canvasLabel": "C102812186800",
+              "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812186800/iiif/M2019050811103249305_0085.jp2/full/max/0/native.jpg",
+              "leaf": 85,
+              "retrievedVariant": "full/max/0/native.jpg"
+            },
+            {
+              "byteScope": "retrieved JPEG response bytes for the fixed IIIF max image URL",
+              "byteSha256": "a44ac810cbf5c2a6d4053983677621e2574c0540e0323fdbd6c27ead3303f884",
+              "bytes": 849984,
+              "canvasId": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812186900",
+              "canvasLabel": "C102812186900",
+              "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812186900/iiif/M2019050811103249305_0086.jp2/full/max/0/native.jpg",
+              "leaf": 86,
+              "retrievedVariant": "full/max/0/native.jpg"
+            },
+            {
+              "byteScope": "retrieved JPEG response bytes for the fixed IIIF max image URL",
+              "byteSha256": "6e8c584cb01dce720c3ef862a23a127af11d987e14ef0df40d841492576d00a9",
+              "bytes": 842468,
+              "canvasId": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812187000",
+              "canvasLabel": "C102812187000",
+              "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812187000/iiif/M2019050811103249305_0087.jp2/full/max/0/native.jpg",
+              "leaf": 87,
+              "retrievedVariant": "full/max/0/native.jpg"
+            },
+            {
+              "byteScope": "retrieved JPEG response bytes for the fixed IIIF max image URL",
+              "byteSha256": "01aa70087388237313da09a6038e923e676acda36cfe1e58b3026e817a8eb619",
+              "bytes": 825635,
+              "canvasId": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812187100",
+              "canvasLabel": "C102812187100",
+              "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812187100/iiif/M2019050811103249305_0088.jp2/full/max/0/native.jpg",
+              "leaf": 88,
+              "retrievedVariant": "full/max/0/native.jpg"
+            },
+            {
+              "byteScope": "retrieved JPEG response bytes for the fixed IIIF max image URL",
+              "byteSha256": "34e5178b021178cccf3ef61a6513652405db45ed989b2e1393361ba306d101e6",
+              "bytes": 859799,
+              "canvasId": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812187200",
+              "canvasLabel": "C102812187200",
+              "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812187200/iiif/M2019050811103249305_0089.jp2/full/max/0/native.jpg",
+              "leaf": 89,
+              "retrievedVariant": "full/max/0/native.jpg"
+            },
+            {
+              "byteScope": "retrieved JPEG response bytes for the fixed IIIF max image URL",
+              "byteSha256": "8094e540ce8caa08c04dbad2ef686e41c27c1db04617631dfed21d7ba32f4e30",
+              "bytes": 863098,
+              "canvasId": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812187300",
+              "canvasLabel": "C102812187300",
+              "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812187300/iiif/M2019050811103249305_0090.jp2/full/max/0/native.jpg",
+              "leaf": 90,
+              "retrievedVariant": "full/max/0/native.jpg"
+            },
+            {
+              "byteScope": "retrieved JPEG response bytes for the fixed IIIF max image URL",
+              "byteSha256": "5cebb77840c828a75bf43cdc780847465d86f75b31ba03baa1727cff40b81d18",
+              "bytes": 882520,
+              "canvasId": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812187400",
+              "canvasLabel": "C102812187400",
+              "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812187400/iiif/M2019050811103249305_0091.jp2/full/max/0/native.jpg",
+              "leaf": 91,
+              "retrievedVariant": "full/max/0/native.jpg"
+            },
+            {
+              "byteScope": "retrieved JPEG response bytes for the fixed IIIF max image URL",
+              "byteSha256": "28189642c4c155dd80e5f859aa4cfe89a85964517d7520675dbce2542d6e3973",
+              "bytes": 875659,
+              "canvasId": "https://www.digital.archives.go.jp/api/iiif/4468520/canvas/C102812187500",
+              "canvasLabel": "C102812187500",
+              "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812187500/iiif/M2019050811103249305_0092.jp2/full/max/0/native.jpg",
+              "leaf": 92,
+              "retrievedVariant": "full/max/0/native.jpg"
+            },
+            {
+              "byteScope": "retrieved JPEG response bytes for the fixed IIIF max image URL",
+              "byteSha256": "901dcc10e4fb8863703e0da2c85f883b6e930fd438c05ba1f22a48e44989770a",
+              "bytes": 832936,
+              "canvasId": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812197600",
+              "canvasLabel": "C102812197600",
+              "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812197600/iiif/M2019050811103949308_0064.jp2/full/max/0/native.jpg",
+              "leaf": 64,
+              "retrievedVariant": "full/max/0/native.jpg"
+            },
+            {
+              "byteScope": "retrieved JPEG response bytes for the fixed IIIF max image URL",
+              "byteSha256": "2303a045af3c9f6c80650625f1801971e14682397fef0abb1d1044131e93d1d4",
+              "bytes": 847895,
+              "canvasId": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812197700",
+              "canvasLabel": "C102812197700",
+              "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812197700/iiif/M2019050811103949308_0065.jp2/full/max/0/native.jpg",
+              "leaf": 65,
+              "retrievedVariant": "full/max/0/native.jpg"
+            },
+            {
+              "byteScope": "retrieved JPEG response bytes for the fixed IIIF max image URL",
+              "byteSha256": "435ba853a0b745b21d24e41625ed33a501cb3fdb523646caf3aec15ed0c5f328",
+              "bytes": 854398,
+              "canvasId": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812197800",
+              "canvasLabel": "C102812197800",
+              "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812197800/iiif/M2019050811103949308_0066.jp2/full/max/0/native.jpg",
+              "leaf": 66,
+              "retrievedVariant": "full/max/0/native.jpg"
+            },
+            {
+              "byteScope": "retrieved JPEG response bytes for the fixed IIIF max image URL",
+              "byteSha256": "145fd716108ce99a76e1a31509738d46de74b9ca6c9c77a631b0194705c4e287",
+              "bytes": 871865,
+              "canvasId": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812197900",
+              "canvasLabel": "C102812197900",
+              "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812197900/iiif/M2019050811103949308_0067.jp2/full/max/0/native.jpg",
+              "leaf": 67,
+              "retrievedVariant": "full/max/0/native.jpg"
+            },
+            {
+              "byteScope": "retrieved JPEG response bytes for the fixed IIIF max image URL",
+              "byteSha256": "3657754941c9d31679745d916f418241d0c5a527c84772f2a3c79592ae08f8a4",
+              "bytes": 857292,
+              "canvasId": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812198000",
+              "canvasLabel": "C102812198000",
+              "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812198000/iiif/M2019050811103949308_0068.jp2/full/max/0/native.jpg",
+              "leaf": 68,
+              "retrievedVariant": "full/max/0/native.jpg"
+            },
+            {
+              "byteScope": "retrieved JPEG response bytes for the fixed IIIF max image URL",
+              "byteSha256": "892c9c3fcddee893f2d9354e643192f0f903fb70db726a71ef4aea30b3d0b766",
+              "bytes": 859712,
+              "canvasId": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812198100",
+              "canvasLabel": "C102812198100",
+              "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812198100/iiif/M2019050811103949308_0069.jp2/full/max/0/native.jpg",
+              "leaf": 69,
+              "retrievedVariant": "full/max/0/native.jpg"
+            },
+            {
+              "byteScope": "retrieved JPEG response bytes for the fixed IIIF max image URL",
+              "byteSha256": "793040ac274581e41c6313c90e568a3b0de280939537fabb03bd6cdcd52f293d",
+              "bytes": 859644,
+              "canvasId": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812198200",
+              "canvasLabel": "C102812198200",
+              "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812198200/iiif/M2019050811103949308_0070.jp2/full/max/0/native.jpg",
+              "leaf": 70,
+              "retrievedVariant": "full/max/0/native.jpg"
+            },
+            {
+              "byteScope": "retrieved JPEG response bytes for the fixed IIIF max image URL",
+              "byteSha256": "f8351e91ecd78f2291435145fba89e9626022f478e8a0aee28efbcfa46a2cf33",
+              "bytes": 861523,
+              "canvasId": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812198300",
+              "canvasLabel": "C102812198300",
+              "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812198300/iiif/M2019050811103949308_0071.jp2/full/max/0/native.jpg",
+              "leaf": 71,
+              "retrievedVariant": "full/max/0/native.jpg"
+            },
+            {
+              "byteScope": "retrieved JPEG response bytes for the fixed IIIF max image URL",
+              "byteSha256": "91b47bc25949067a196e9ac55a16a505cf2fbe7f7c78a39524e5896ebda78d6a",
+              "bytes": 864054,
+              "canvasId": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812198400",
+              "canvasLabel": "C102812198400",
+              "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812198400/iiif/M2019050811103949308_0072.jp2/full/max/0/native.jpg",
+              "leaf": 72,
+              "retrievedVariant": "full/max/0/native.jpg"
+            },
+            {
+              "byteScope": "retrieved JPEG response bytes for the fixed IIIF max image URL",
+              "byteSha256": "d8da540f12e891b179a1be2129dd5cef84602629a7915eb9e3164a53282d113f",
+              "bytes": 855751,
+              "canvasId": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812198500",
+              "canvasLabel": "C102812198500",
+              "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812198500/iiif/M2019050811103949308_0073.jp2/full/max/0/native.jpg",
+              "leaf": 73,
+              "retrievedVariant": "full/max/0/native.jpg"
+            },
+            {
+              "byteScope": "retrieved JPEG response bytes for the fixed IIIF max image URL",
+              "byteSha256": "4e4a59ee811c880ee9f480c4bf32e2f9d9ec5661234cb4c71b9c34631695ee7b",
+              "bytes": 848356,
+              "canvasId": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812198600",
+              "canvasLabel": "C102812198600",
+              "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812198600/iiif/M2019050811103949308_0074.jp2/full/max/0/native.jpg",
+              "leaf": 74,
+              "retrievedVariant": "full/max/0/native.jpg"
+            },
+            {
+              "byteScope": "retrieved JPEG response bytes for the fixed IIIF max image URL",
+              "byteSha256": "bbf4823b2e4da81db468bed7e45787308d05bd293b8eef9d15a5da41ca9a2e0b",
+              "bytes": 864238,
+              "canvasId": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812198700",
+              "canvasLabel": "C102812198700",
+              "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812198700/iiif/M2019050811103949308_0075.jp2/full/max/0/native.jpg",
+              "leaf": 75,
+              "retrievedVariant": "full/max/0/native.jpg"
+            },
+            {
+              "byteScope": "retrieved JPEG response bytes for the fixed IIIF max image URL",
+              "byteSha256": "ef71d8f2d619b20bed8f4142c346f75997c71f55d1089fd733d13655da706553",
+              "bytes": 883934,
+              "canvasId": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812198800",
+              "canvasLabel": "C102812198800",
+              "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812198800/iiif/M2019050811103949308_0076.jp2/full/max/0/native.jpg",
+              "leaf": 76,
+              "retrievedVariant": "full/max/0/native.jpg"
+            },
+            {
+              "byteScope": "retrieved JPEG response bytes for the fixed IIIF max image URL",
+              "byteSha256": "091ee758c92d4ddb240ba84b570c0fb22b631c8bc5d97b56b87e69d34f40b781",
+              "bytes": 875876,
+              "canvasId": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812198900",
+              "canvasLabel": "C102812198900",
+              "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812198900/iiif/M2019050811103949308_0077.jp2/full/max/0/native.jpg",
+              "leaf": 77,
+              "retrievedVariant": "full/max/0/native.jpg"
+            },
+            {
+              "byteScope": "retrieved JPEG response bytes for the fixed IIIF max image URL",
+              "byteSha256": "75589369d8f1648933c33ba00c11285b065ee6bbde6a284d6ff962f4a6fc72514",
+              "bytes": 860879,
+              "canvasId": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812199000",
+              "canvasLabel": "C102812199000",
+              "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812199000/iiif/M2019050811103949308_0078.jp2/full/max/0/native.jpg",
+              "leaf": 78,
+              "retrievedVariant": "full/max/0/native.jpg"
+            },
+            {
+              "byteScope": "retrieved JPEG response bytes for the fixed IIIF max image URL",
+              "byteSha256": "6a2b287fded657f4e958f644076d1bd0c4c9ea327da0f31a7d613d6c3ad39a77",
+              "bytes": 875661,
+              "canvasId": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812199100",
+              "canvasLabel": "C102812199100",
+              "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812199100/iiif/M2019050811103949308_0079.jp2/full/max/0/native.jpg",
+              "leaf": 79,
+              "retrievedVariant": "full/max/0/native.jpg"
+            },
+            {
+              "byteScope": "retrieved JPEG response bytes for the fixed IIIF max image URL",
+              "byteSha256": "352cb081830eed051dadcf3b3ae884286572c41a5ffa13dc8fd855ed3660557a",
+              "bytes": 843934,
+              "canvasId": "https://www.digital.archives.go.jp/api/iiif/4469314/canvas/C102812199200",
+              "canvasLabel": "C102812199200",
+              "imageUrl": "https://www.digital.archives.go.jp/api/content/item/da12/C102812199200/iiif/M2019050811103949308_0080.jp2/full/max/0/native.jpg",
+              "leaf": 80,
+              "retrievedVariant": "full/max/0/native.jpg"
+            }
+          ],
+          "reviewedLeafRanges": [
+            {
+              "itemId": "4468520",
+              "leaves": [
+                84,
+                92
+              ],
+              "role": "安天府圖 and branch/rule table run"
+            },
+            {
+              "itemId": "4469314",
+              "leaves": [
+                64,
+                80
+              ],
+              "role": "worked natal chart example run"
+            }
+          ]
+        },
+        "negativeBoundary": {
+          "branchAndStarTokensObserved": true,
+          "chartExamplesObserved": true,
+          "fullPalaceNamePerimeterObserved": false,
+          "independentWitness": false,
+          "physicalSlotCoordinateObserved": false,
+          "productionOrdinalObserved": false,
+          "semanticAuthority": "not_established",
+          "singleSourceFourFieldBinding": false
+        },
+        "sourceIdentity": {
+          "attribution": "National Archives of JAPAN",
+          "independentHistoricalWitness": false,
+          "itemIds": [
+            "src-nara-4468520",
+            "src-nara-4469314"
+          ],
+          "manifests": {
+            "4468520": {
+              "canvasCount": 129,
+              "itemUrl": "https://www.digital.archives.go.jp/item/4468520",
+              "label": "新鋟希夷陳先生紫微斗数全書１",
+              "manifestByteSha256": "732991ca47aefc323e2095a93202fd301421ad8b92994c63caae2a94acf75af",
+              "manifestBytes": 117876,
+              "manifestUrl": "https://www.digital.archives.go.jp/api/iiif/4468520/manifest.json",
+              "reference": "子０６０－０００１-0001"
+            },
+            "4469314": {
+              "canvasCount": 137,
+              "itemUrl": "https://www.digital.archives.go.jp/item/4469314",
+              "label": "新鋟希夷陳先生紫微斗数全書２",
+              "manifestByteSha256": "3f167e1280527e1c672a72d7ef060c299ce9dffad1f362ddba04575da3df1560",
+              "manifestBytes": 125132,
+              "manifestUrl": "https://www.digital.archives.go.jp/api/iiif/4469314/manifest.json",
+              "reference": "子０６０－０００１-0002"
+            }
+          },
+          "recordUrl": "https://www.digital.archives.go.jp/das/meta/F1000000000000101426.html",
+          "sameRecordEditionPair": true
+        },
+        "sourceKind": "direct_nara_iiif_scan_chart_example_frontier_same_record_pair"
+      },
+      {
+        "candidateId": "candidate-youyi-lu-ritsumeikan-bn08364312-1871-catalog-only",
+        "comparisonTo1883": {
+          "directByteComparisonPerformed": false,
+          "directTextComparisonPerformed": false,
+          "status": "not_performed_catalog_only_1871",
+          "textualLineageClosed": false
+        },
+        "decision": "catalog_identity_confirmed_alternate_holding_no_direct_witness",
+        "directObservationStatus": "catalog_record_review_only",
+        "directReading": [],
+        "directVisualReview": false,
+        "doesNotEnterGraph": true,
+        "doesNotEstablish": [
+          "1871 page-level text or colophon",
+          "1871 to 1883 textual or block lineage",
+          "independent historical witness",
+          "palace_name_to_physical_chart_slot",
+          "production ordinal"
+        ],
+        "locators": {
+          "ciniiJsonUrl": "https://ci.nii.ac.jp/ncid/BN08364312.json",
+          "ciniiUrl": "https://ci.nii.ac.jp/ncid/BN08364312",
+          "detailAccessResult": "403_in_this_session",
+          "detailBibId": "TT40358003",
+          "opacOpenUrl": "http://runners.ritsumei.ac.jp/opac/opac_openurl/?ncid=BN08364312",
+          "pageImagesLocated": false,
+          "sourceBytesAcquired": false
+        },
+        "sourceIdentity": {
+          "author": "(清)兪樾 [撰]",
+          "binding": "和装 袋綴 帙入り",
+          "ciniiNcid": "BN08364312",
+          "holding": "立命館大学 図書館",
+          "identifier": "6111433313",
+          "independentHistoricalWitness": false,
+          "publicationDate": "同治10(1871)",
+          "same1871BibliographicObjectAs": "candidate-youyi-lu-cinii-bd19656670-1871-catalog-only",
+          "title": "袖中書, 2巻 ; 游藝録, 6巻"
+        },
+        "sourceKind": "alternate_1871_catalog_holding_direct_pages_unavailable"
+      },
+      {
+        "candidateId": "candidate-youyi-lu-nagoya-ba87134054-catalog-no-image",
+        "catalogObservation": {
+          "observedFields": [
+            "Title: 游藝錄六卷",
+            "Author: 清 兪樾 撰",
+            "Appearance: 刊6卷1冊",
+            "NCID: BA87134054",
+            "Material ID: 10149888",
+            "Original Owner: Nagoya University Library",
+            "Remarks: 春在堂全書96冊",
+            "Image: None"
+          ],
+          "recordUrl": "https://da.adm.thers.ac.jp/en/item/n004-20230901-07327",
+          "role": "direct_catalog_metadata_observation_not_page_semantics"
+        },
+        "comparisonTo1883": {
+          "directByteComparisonPerformed": false,
+          "directTextComparisonPerformed": false,
+          "status": "not_performed_catalog_only_date_unresolved",
+          "textualLineageClosed": false
+        },
+        "decision": "catalog_record_identity_only_no_image_no_1871_date_no_direct_witness",
+        "directObservationStatus": "catalog_record_review_only_no_image",
+        "directReading": [],
+        "directVisualReview": false,
+        "doesNotEnterGraph": true,
+        "doesNotEstablish": [
+          "publication year 1871",
+          "page-level text or colophon",
+          "1871 to 1883 textual or block lineage",
+          "independent historical witness",
+          "palace_name_to_physical_chart_slot",
+          "production ordinal"
+        ],
+        "locators": {
+          "catalogUrl": "https://da.adm.thers.ac.jp/en/item/n004-20230901-07327",
+          "imageAvailable": false,
+          "imageField": "None",
+          "metadataRights": "CC0",
+          "pageImagesLocated": false,
+          "recordId": "n004-20230901-07327",
+          "sourceBytesAcquired": false
+        },
+        "sourceIdentity": {
+          "appearance": "刊6卷1冊",
+          "author": "清 兪樾 撰",
+          "catalogCollection": "Kotenseki Descriptive Database",
+          "holding": "Nagoya University Library",
+          "independentHistoricalWitness": false,
+          "materialId": "10149888",
+          "ncid": "BA87134054",
+          "publicationDate": "unresolved",
+          "remarks": "春在堂全書96冊",
+          "title": "游藝錄六卷"
+        },
+        "sourceKind": "institutional_catalog_record_no_image"
+      },
+      {
+        "candidateId": "candidate-youyi-lu-cinii-ba85312898-1902-catalog-only",
+        "catalogObservation": {
+          "handleUrl": "https://hdl.handle.net/2324/1001354396",
+          "observedFields": [
+            "Title: 游藝録 6巻",
+            "Author: (清)兪樾撰",
+            "Publication: [光緒28年 (1902)]",
+            "NCID: BA85312898",
+            "Holding: 九州大学 中央図書館",
+            "Extent: 1冊",
+            "Size: 24.2×15.3cm",
+            "OPAC: catalog record with semi-rare shelf location; no page-image link located"
+          ],
+          "opacUrl": "https://catalog.lib.kyushu-u.ac.jp/opac_openurl/?ncid=BA85312898",
+          "recordUrl": "https://ci.nii.ac.jp/ncid/BA85312898",
+          "role": "direct_catalog_metadata_observation_not_page_semantics"
+        },
+        "comparisonTo1883": {
+          "directByteComparisonPerformed": false,
+          "directTextComparisonPerformed": false,
+          "status": "catalog_metadata_only_not_page_text_or_block_comparison",
+          "textualLineageClosed": false
+        },
+        "decision": "catalog_record_only_no_page_bytes_no_graph_admission",
+        "directObservationStatus": "catalog_record_review_only_no_page_image",
+        "directReading": [],
+        "directVisualReview": false,
+        "doesNotEnterGraph": true,
+        "doesNotEstablish": [
+          "1902 page-level text or colophon",
+          "1871 to 1883 textual or block lineage",
+          "independent historical witness",
+          "palace_name_to_physical_chart_slot",
+          "production ordinal"
+        ],
+        "locators": {
+          "catalogUrl": "https://ci.nii.ac.jp/ncid/BA85312898",
+          "handleUrl": "https://hdl.handle.net/2324/1001354396",
+          "imageAvailable": false,
+          "opacUrl": "https://catalog.lib.kyushu-u.ac.jp/opac_openurl/?ncid=BA85312898",
+          "pageImagesLocated": false,
+          "sourceBytesAcquired": false
+        },
+        "sourceIdentity": {
+          "author": "(清)兪樾撰",
+          "catalogNotes": [
+            "和漢古書につき記述対象資料毎に書誌データ作成",
+            "刻本",
+            "春在堂全書154[書根による]",
+            "左右双辺有界,半葉10行21字,内匡廓(15.7×11.1cm),白口単黒魚尾",
+            "線装本,帙入り",
+            "印記: 靜修廬藏書記"
+          ],
+          "catalogRecordOnly": true,
+          "extent": "1冊",
+          "holding": "Kyushu University Central Library",
+          "independentHistoricalWitness": false,
+          "ncid": "BA85312898",
+          "parentBibliography": "春在堂全書",
+          "publicationDate": "[光緒28年 (1902)]",
+          "size": "24.2×15.3cm",
+          "title": "游藝録 6巻"
+        },
+        "sourceKind": "institutional_catalog_record_no_page_image"
+      },
+      {
+        "candidateId": "candidate-youyi-lu-cinii-ba90448039-1897-catalog-only",
+        "catalogObservation": {
+          "observedFields": [
+            "Title includes 游藝録 6卷",
+            "Author: (清)兪樾 [撰]",
+            "Publication: 光緒23 [1897] 刊",
+            "NCID: BA90448039",
+            "Holding: 佛教大学 附属図書館",
+            "Extent: 1冊",
+            "Size: 20cm",
+            "Note: 四針眼線装",
+            "No page-image or downloadable scan route located"
+          ],
+          "recordUrl": "https://ci.nii.ac.jp/ncid/BA90448039",
+          "role": "direct_catalog_metadata_observation_not_page_semantics"
+        },
+        "comparisonTo1883": {
+          "directByteComparisonPerformed": false,
+          "directTextComparisonPerformed": false,
+          "status": "catalog_metadata_only_not_page_text_or_block_comparison",
+          "textualLineageClosed": false
+        },
+        "decision": "catalog_record_only_no_page_bytes_no_graph_admission",
+        "directObservationStatus": "catalog_record_review_only_no_page_image",
+        "directReading": [],
+        "directVisualReview": false,
+        "doesNotEnterGraph": true,
+        "doesNotEstablish": [
+          "1897 page-level text or colophon",
+          "1871 to 1883 textual or block lineage",
+          "independent historical witness",
+          "palace_name_to_physical_chart_slot",
+          "production ordinal"
+        ],
+        "locators": {
+          "catalogUrl": "https://ci.nii.ac.jp/ncid/BA90448039",
+          "imageAvailable": false,
+          "pageImagesLocated": false,
+          "sourceBytesAcquired": false
+        },
+        "sourceIdentity": {
+          "author": "(清)兪樾 [撰]",
+          "catalogNotes": [
+            "個別書誌作成(漢籍)",
+            "四針眼線装"
+          ],
+          "catalogRecordOnly": true,
+          "extent": "1冊",
+          "holding": "Bukkyo University Library",
+          "independentHistoricalWitness": false,
+          "ncid": "BA90448039",
+          "parentBibliography": "春在堂全書",
+          "publicationDate": "光緒23 [1897] 刊",
+          "size": "20cm",
+          "title": "金剛般若波羅蜜經 2卷 ; 太上感應篇纉義 2卷 ; 游藝録 6卷 ; 小蓬莱謠 ; 袖中書"
+        },
+        "sourceKind": "institutional_catalog_record_no_page_image"
+      },
+      {
+        "candidateId": "candidate-chunzaitang-ndl-1882-catalog-only",
+        "catalogObservation": {
+          "observedFields": [
+            "Title: 春在堂全書",
+            "Publication: 光緒8重定刊",
+            "Extent: 64册 (合32册)",
+            "Cover note: 徳清兪蔭甫所箸書",
+            "Colophon note: 同治十年秋八月曾國藩署檢",
+            "No PID, IIIF manifest, or page-image route exposed on this record"
+          ],
+          "recordUrl": "https://ndlsearch.ndl.go.jp/books/R100000002-I000007637258",
+          "role": "direct_catalog_metadata_observation_not_page_semantics"
+        },
+        "comparisonTo1883": {
+          "directByteComparisonPerformed": false,
+          "directTextComparisonPerformed": false,
+          "status": "catalog_colophon_locator_only_no_page_or_block_comparison",
+          "textualLineageClosed": false
+        },
+        "decision": "catalog_record_only_no_pid_no_page_bytes_no_graph_admission",
+        "directObservationStatus": "catalog_record_review_only_no_pid_or_page_image",
+        "directReading": [],
+        "directVisualReview": false,
+        "doesNotEnterGraph": true,
+        "doesNotEstablish": [
+          "1882 page-level colophon visual confirmation",
+          "1871 to 1883 textual or block lineage",
+          "independent historical witness",
+          "palace_name_to_physical_chart_slot",
+          "production ordinal"
+        ],
+        "locators": {
+          "catalogUrl": "https://ndlsearch.ndl.go.jp/books/R100000002-I000007637258",
+          "imageAvailable": false,
+          "pageImagesLocated": false,
+          "pidRouteLocated": false,
+          "sourceBytesAcquired": false
+        },
+        "sourceIdentity": {
+          "author": "清兪〓撰",
+          "catalogNotes": [
+            "封面書名: 徳清兪蔭甫所箸書",
+            "封面裏に「同治十年秋八月曾國藩署檢」とあり"
+          ],
+          "catalogRecordOnly": true,
+          "extent": "64册 (合32册)",
+          "independentHistoricalWitness": false,
+          "publicationDate": "光緒8重定刊 (1882)",
+          "recordId": "000007637258",
+          "recordUrl": "https://ndlsearch.ndl.go.jp/books/R100000002-I000007637258",
+          "title": "春在堂全書"
+        },
+        "sourceKind": "national_catalog_record_no_pid_or_page_image"
+      },
+      {
+        "bindingBoundary": {
+          "branchToken": {
+            "directlyBound": false,
+            "status": "glyphs_visible_but_exact_branch_token_not_promoted"
+          },
+          "fullFourFieldBinding": false,
+          "ordinalDirection": {
+            "directlyBound": false,
+            "status": "not_visible_or_established"
+          },
+          "palaceName": {
+            "directlyBound": false,
+            "status": "not_legible_in_supplied_figure"
+          },
+          "physicalSlot": {
+            "directlyBound": false,
+            "status": "circular_sector_geometry_only_no_named_slot_mapping"
+          },
+          "tianfuAnchor": {
+            "directlyBound": false,
+            "status": "not_observed"
+          }
+        },
+        "candidateId": "candidate-nlc-jamise-collection-kol200200680-figure-only",
+        "catalogObservation": {
+          "curatorTextIsNotOriginalPageTranscription": true,
+          "observedFields": [
+            "Collection label: [조선의 천문학] 자미수(紫微數)",
+            "Author and year: unknown",
+            "Head: missing or damaged",
+            "Sequence includes 木局, 水局, 土局, 起天數, 起地數, 定十二宮, 起例總說, and 星辰吉凶",
+            "Figure 1 is presented as a partial image"
+          ],
+          "recordUrl": "https://www.nl.go.kr/NL/contents/N20103000000.do?schIdSub=CO20211102161426612100&schM=contView",
+          "role": "official_collection_page_metadata_and_curator_description_not_full_original_transcription"
+        },
+        "comparisonToExistingGraph": {
+          "branchTokenToPhysicalSlot": "not_performed",
+          "palaceNameToBranchToken": "not_performed",
+          "physicalSlotToOrdinal": "not_performed",
+          "sameSystemAsYouyiOrNanbei": "not_established",
+          "tianfuRelation": "not_observed"
+        },
+        "decision": "figure_only_direct_geometry_no_palace_name_no_branch_slot_ordinal_binding_no_graph_admission",
+        "directObservationStatus": "figure_only_direct_visual_review_no_full_source",
+        "directReading": [
+          "The supplied 491×741 JPEG visibly contains a circular diagram divided by radial lines into sectors.",
+          "A central vertically arranged worked-example text block is visibly present.",
+          "Outer sectors contain visible glyph labels, but the exact branch tokens are not promoted from this resolution.",
+          "No complete named-palace perimeter was visually legible in the supplied figure."
+        ],
+        "directVisualReview": true,
+        "doesNotEnterGraph": true,
+        "doesNotEstablish": [
+          "complete source identity or full-scan lineage",
+          "the exact branch tokens in each sector",
+          "palace-name to physical-slot identity",
+          "physical slot to ordinal or production direction",
+          "a Tianfu anchor or source-rule equivalence with Youyi/Nanbei",
+          "independent historical witness or semantic authority"
+        ],
+        "locators": {
+          "collectionUrl": "https://www.nl.go.kr/NL/contents/N20103000000.do?schIdSub=CO20211102161426612100&schM=contView",
+          "controlNo": "KOL200200680",
+          "figureByteLength": 351470,
+          "figureByteSha256": "e56d1cc148c8166cc4c9507ca3cdab616f6c451bedf15db07753b6c43451115",
+          "figureBytesAcquired": true,
+          "figureDimensions": {
+            "height": 741,
+            "width": 491
+          },
+          "figureLocator": "official collection page figure 1 / rm.nl.go.kr JPEG",
+          "figureUrl": "https://rm.nl.go.kr/imgs/images/000026/2021_dc_astro_math_28_i01.jpg",
+          "fullScanAccess": "not_obtained_in_current_external_session",
+          "fullSourceBytesAcquired": false,
+          "imageAvailable": true,
+          "pageImagesLocated": "single_curator_figure_only",
+          "sourceBytesAcquired": false,
+          "sourceBytesScope": "figure_only_not_full_source",
+          "viewerProbeStatus": "viewer_route_returned_404_or_timeout_in_current_session",
+          "viewerUrl": "https://viewer.nl.go.kr/main.wviewer?cno=KOL200200680&sysid=homepage"
+        },
+        "rawVisibleText": [
+          {
+            "canonicalOriginalPageTranscription": false,
+            "locator": "official collection page title",
+            "provenance": "official curator-page text",
+            "text": "[조선의 천문학] 자미수(紫微數)"
+          },
+          {
+            "canonicalOriginalPageTranscription": false,
+            "locator": "official collection page content sequence",
+            "provenance": "official curator-page description",
+            "text": "定十二宮"
+          },
+          {
+            "canonicalOriginalPageTranscription": false,
+            "locator": "figure 1 JPEG, center block",
+            "provenance": "direct visual boundary",
+            "text": "[central figure text not safely transcribed]"
+          }
+        ],
+        "sourceIdentity": {
+          "author": "unknown",
+          "collectionLabel": "[조선의 천문학] 자미수(紫微數)",
+          "controlNo": "KOL200200680",
+          "fullScanIdentity": "not_resolved; only one curator figure was acquired",
+          "headCondition": "missing_or_damaged_as_reported_by_collection_page",
+          "holding": "National Library of Korea digital collection",
+          "independentHistoricalWitness": false,
+          "publicationDate": "unknown",
+          "recordUrl": "https://www.nl.go.kr/NL/contents/N20103000000.do?schIdSub=CO20211102161426612100&schM=contView",
+          "title": "紫微數"
+        },
+        "sourceKind": "official_collection_figure_only_not_full_scan"
+      }
+    ],
+    "catalogFormatComparison": {
+      "blockLineageClosed": false,
+      "catalogLevelDifferences": [
+        "The recorded outer size differs: 1871 23.6x15.0cm versus 1883 23.4×15.1cm.",
+        "The recorded inner frame differs: 1871 16.0×10.9cm versus 1883 15.9×11.1cm.",
+        "The 1871 record says 白口単黒魚尾; the 1883 record says 単魚尾 and does not repeat 白口.",
+        "The 1871 record is one bound volume; the 1883 record reports 13, 27, 18, 6, 18, 6丁 for the six parts."
+      ],
+      "catalogLevelMatches": [
+        "Both records describe 左右双辺有界10行21字注文双行.",
+        "Both records describe a 游藝録 6卷/6巻 witness attributed to 清兪樾."
+      ],
+      "directByteComparisonPerformed": false,
+      "directColophonComparisonPerformed": false,
+      "directObservationStatus": "catalog_metadata_comparison_only",
+      "directTextComparisonPerformed": false,
+      "independentWitnessAdmitted": false,
+      "inferenceBoundary": "Shared catalog-described format is a bounded bibliographic comparison only. It does not establish identical blocks, textual continuity, same physical chart, source authority, or semantic authority.",
+      "source1871": {
+        "extent": "1冊",
+        "notes": [
+          "左右双辺有界10行21字注文双行",
+          "内匡廓: 16.0×10.9cm",
+          "白口単黒魚尾"
+        ],
+        "publicationDate": "同治10 [1871]",
+        "size": "23.6x15.0cm",
+        "title": "游藝録 6卷",
+        "url": "https://ci.nii.ac.jp/ncid/BD19656670"
+      },
+      "source1883": {
+        "extent": "13, 27, 18, 6, 18, 6丁",
+        "notes": [
+          "左右双辺有界10行21字注文双行",
+          "内匡郭: 15.9×11.1cm",
+          "単魚尾",
+          "和装, 帙入"
+        ],
+        "publicationDate": "[光緒9 (1883)]",
+        "size": "23.4×15.1cm",
+        "title": "游藝録 6卷",
+        "url": "https://ci.nii.ac.jp/ncid/BB19945538"
+      },
+      "status": "catalog_metadata_partial_comparison_text_byte_block_lineage_open"
+    },
+    "comparison1871To1883": {
+      "alternateCatalogSources": [
+        "candidate-youyi-lu-ritsumeikan-bn08364312-1871-catalog-only",
+        "candidate-youyi-lu-nagoya-ba87134054-catalog-no-image"
+      ],
+      "catalogFormatComparison": {
+        "blockLineageClosed": false,
+        "catalogLevelDifferences": [
+          "The recorded outer size differs: 1871 23.6x15.0cm versus 1883 23.4×15.1cm.",
+          "The recorded inner frame differs: 1871 16.0×10.9cm versus 1883 15.9×11.1cm.",
+          "The 1871 record says 白口単黒魚尾; the 1883 record says 単魚尾 and does not repeat 白口.",
+          "The 1871 record is one bound volume; the 1883 record reports 13, 27, 18, 6, 18, 6丁 for the six parts."
+        ],
+        "catalogLevelMatches": [
+          "Both records describe 左右双辺有界10行21字注文双行.",
+          "Both records describe a 游藝録 6卷/6巻 witness attributed to 清兪樾."
+        ],
+        "directByteComparisonPerformed": false,
+        "directColophonComparisonPerformed": false,
+        "directObservationStatus": "catalog_metadata_comparison_only",
+        "directTextComparisonPerformed": false,
+        "independentWitnessAdmitted": false,
+        "inferenceBoundary": "Shared catalog-described format is a bounded bibliographic comparison only. It does not establish identical blocks, textual continuity, same physical chart, source authority, or semantic authority.",
+        "source1871": {
+          "extent": "1冊",
+          "notes": [
+            "左右双辺有界10行21字注文双行",
+            "内匡廓: 16.0×10.9cm",
+            "白口単黒魚尾"
+          ],
+          "publicationDate": "同治10 [1871]",
+          "size": "23.6x15.0cm",
+          "title": "游藝録 6卷",
+          "url": "https://ci.nii.ac.jp/ncid/BD19656670"
+        },
+        "source1883": {
+          "extent": "13, 27, 18, 6, 18, 6丁",
+          "notes": [
+            "左右双辺有界10行21字注文双行",
+            "内匡郭: 15.9×11.1cm",
+            "単魚尾",
+            "和装, 帙入"
+          ],
+          "publicationDate": "[光緒9 (1883)]",
+          "size": "23.4×15.1cm",
+          "title": "游藝録 6卷",
+          "url": "https://ci.nii.ac.jp/ncid/BB19945538"
+        },
+        "status": "catalog_metadata_partial_comparison_text_byte_block_lineage_open"
+      },
+      "catalogFormatComparisonPerformed": true,
+      "catalogSource1871": "candidate-youyi-lu-cinii-bd19656670-1871-catalog-only",
+      "conclusion": "The 1871 and 1883 catalog comparison remains catalog-only. The NLC 紫微數 figure adds a direct circular-diagram observation without a readable palace-name perimeter, and the 1870 十八飛星 route remains a secondary acquisition lead; neither supplies direct 1871 page bytes or a four-field binding witness.",
+      "directByteComparisonPerformed": false,
+      "directFigureToYouyiSlotComparisonPerformed": false,
+      "directSources1883": [
+        null,
+        "src-youyi-lu-nlc-332-97-1883"
+      ],
+      "directTextComparisonPerformed": false,
+      "figureOnlySourceFullScanAcquired": false,
+      "figureOnlySourceReviewed": true,
+      "independentLineageAdmitted": false,
+      "ndlCatalogLeads": [
+        "https://ndlsearch.ndl.go.jp/books/R100000039-I2606209",
+        "https://ndlsearch.ndl.go.jp/books/R100000002-I000007637157"
+      ],
+      "status": "catalog_metadata_partial_comparison_text_byte_block_lineage_open",
+      "textualLineageClosed": false
+    },
+    "frontierOnlyObservations": [
+      {
+        "candidateId": "candidate-nlc-jamise-collection-kol200200680-figure-only",
+        "directVisualFindings": [
+          "circular diagram geometry with radial sectors is directly visible",
+          "central worked-example text block is directly visible",
+          "sector glyph labels are directly visible but not safely transcribed as branch tokens",
+          "complete palace-name perimeter is not directly legible"
+        ],
+        "fourFieldBinding": {
+          "branchToken": "not_bound",
+          "fullBindingObserved": false,
+          "ordinalDirection": "not_bound",
+          "palaceName": "not_bound",
+          "physicalSlot": "not_bound"
+        },
+        "graphAdmission": false,
+        "locator": {
+          "collectionUrl": "https://www.nl.go.kr/NL/contents/N20103000000.do?schIdSub=CO20211102161426612100&schM=contView",
+          "controlNo": "KOL200200680",
+          "figureByteLength": 351470,
+          "figureByteSha256": "e56d1cc148c8166cc4c9507ca3cdab616f6c451bedf15db07753b6c43451115",
+          "figureDimensions": {
+            "height": 741,
+            "width": 491
+          },
+          "figureUrl": "https://rm.nl.go.kr/imgs/images/000026/2021_dc_astro_math_28_i01.jpg"
+        },
+        "observationId": "frontier-obs-nlc-jamise-figure-only-circular-diagram",
+        "rawVisibleText": [
+          "Official collection page title: [조선의 천문학] 자미수(紫微數)",
+          "Official collection page sequence label: 定十二宮",
+          "Figure center: text block present; no full raw transcription promoted"
+        ],
+        "readinessImpact": "none; existing readiness remains not_safe_to_start",
+        "semanticAuthority": false,
+        "sourceAdmission": false,
+        "sourceRole": "official_collection_figure_only_direct_visual_observation_held_outside_graph"
+      }
+    ],
+    "frontierOnlySources": [
+      "candidate-nlc-jamise-collection-kol200200680-figure-only"
+    ],
+    "graphImpact": {
+      "blockersClosed": [],
+      "claimsAdded": 0,
+      "independentPhysicalWitnessesAdmitted": 0,
+      "observationsAdded": [],
+      "relationsAdded": [],
+      "sourcesAdded": []
+    },
+    "readinessImpact": {
+      "activation": "experimental_only",
+      "grounding": "blocked",
+      "readiness": "not_safe_to_start",
+      "rotation06": "representation_only"
+    },
+    "researchSessionDate": "2026-08-13",
+    "schemaVersion": "ziwei-p0-palace-branch-slot-composition-v8-research-frontier-v0",
+    "status": "direct_figure_and_1870_acquisition_lead_no_graph_admission"
+  },
+  "sameEditionComparison": {
+    "byteIdentityClaimed": false,
+    "edition": "清光緒九年（1883）重刻本 100冊",
+    "independentLineageAdmitted": false,
+    "namedPalaceOrderAgreement": true,
+    "sourceIds": [
+      "src-youyi-lu-cadal-01025514-1883",
+      "src-youyi-lu-nlc-332-97-1883"
+    ],
+    "status": "same_edition_distinct_physical_scan"
+  },
+  "schemaVersion": "ziwei-p0-palace-branch-slot-composition-v8-lineage-v0",
+  "secondary1870AcquisitionLead": {
+    "directLineageAssessed": false,
+    "independentWitnessAdmitted": false,
+    "leadId": "lead-shiba-feixing-1870-hanyang-secondary-record-only",
+    "originalPageBytesAcquired": false,
+    "semanticAuthority": "not_established"
+  },
+  "secondaryClarification": {
+    "exactAnchor": "命宮=寅",
+    "independentHistoricalAuthority": false,
+    "normalizedMatchCount": 12,
+    "sourceId": "src-pchome-ziwei-palm-rule-2009",
+    "url": "https://mypaper.pchome.com.tw/twmin2589/post/1312687151"
+  },
+  "status": "derived_not_authoritative"
+}

@@ -1,0 +1,176 @@
+{
+  "closureBoundary": {
+    "imageReuseTarget": "human_policy_review",
+    "palaceSemanticTarget": "action_required",
+    "productionOrdinalTarget": "not_established",
+    "researchFrontierAdmission": "held_outside_graph_anonymous_target_scan_retained_section_reviews_and_ndl_false_positive",
+    "sourceIdentityTarget": "action_required"
+  },
+  "evidenceObservationIds": [
+    "obs-youyi-1871-catalog-only-boundary",
+    "obs-composed-palace-branch-slot-anchor-ming-yin",
+    "obs-pchome-secondary-anchor-clarification",
+    "obs-youyi-nlc-p66-direct-palace-order",
+    "obs-youyi-zjlib-p131-p132-direct-palace-order",
+    "obs-youyi-zjlib-p85-p86-direct-lithographic-palace-order",
+    "obs-cnts-00047996572-p6-palace-sequence-direct",
+    "obs-cnts-00047996572-p13-branch-grid-direct",
+    "frontier-obs-nara-1078787-same-record-followup",
+    "frontier-obs-jsg-lib169174-ruled-manuscript-scan",
+    "frontier-obs-ia-20260506-nanyang-page-samples",
+    "frontier-obs-ssid-12392926-youyi-lu-textual-surface",
+    "frontier-obs-tianyige-0017417-retained-section-no-target",
+    "frontier-obs-zjslib-fl-db-2452-retained-section-no-target",
+    "frontier-obs-ndl-2545984-2545987-false-positive-review"
+  ],
+  "existingFieldKitBytesRewritten": false,
+  "heldEvidenceUpdate": "v12 records one anonymous target scan and three rejected scan routes. The target scan remains source/lineage unresolved and lacks a four-field frame; the two retained sections omit the target chapter; the NDL group is a direct false positive. No source identity, palace-to-slot, ordinal, semantic authority, readiness, or activation gate closes.",
+  "predecessorByteSha256": "5777880891a591beee82e039c39793c3450b16f719c8a0363453a1e4fb874d12",
+  "predecessorPath": "artifacts/ziwei-p0-youyi-lu-cadal-01025514-semantic-witness-v1/complete.json",
+  "researchFrontier": {
+    "acquisitionLeadsRemainOpen": 9,
+    "admittedCandidateCount": 0,
+    "evidenceRefs": [
+      "artifacts/ziwei-p0-palace-branch-slot-composition-v8/evidence.json",
+      "artifacts/ziwei-p0-palace-branch-slot-composition-v10/evidence.json",
+      "artifacts/ziwei-p0-palace-branch-slot-composition-v11/evidence.json",
+      "artifacts/ziwei-p0-palace-branch-slot-composition-v12/evidence.json"
+    ],
+    "figureOnlyCandidateCount": 1,
+    "graphAdmittedFrontierCandidateCount": 1,
+    "graphAdmittedFrontierObservationIds": [
+      "obs-cnts-00047996572-p6-palace-sequence-direct",
+      "obs-cnts-00047996572-p13-branch-grid-direct"
+    ],
+    "graphAdmittedFrontierSourceIds": [
+      "src-cnts-00047996572-ziwei-doushu-fangshu-manuscript"
+    ],
+    "heldOutDirectScanCandidateCount": 6,
+    "reviewedCandidateCount": 16,
+    "sameRecordFollowupCount": 1,
+    "secondaryAcquisitionLeadCount": 1,
+    "status": "anonymous_target_scan_and_false_positive_scans_no_new_graph_admission"
+  },
+  "rightsTargetStillHumanPolicyReview": true,
+  "schemaVersion": "ziwei-p0-palace-branch-slot-composition-v12-field-kit-v0",
+  "semanticTargetStillOpen": true,
+  "sourceIdentityTargetStillActionRequired": true,
+  "targetReassessment": [
+    {
+      "closure": "not_closed",
+      "evidenceRefs": [
+        "artifacts/ziwei-p0-toyo-vii-3-157-institutional-evidence-v1/evidence.json",
+        "artifacts/ziwei-p0-youyi-lu-cadal-01025514-semantic-witness-v1/evidence.json",
+        "artifacts/ziwei-p0-palace-branch-slot-composition-v2/evidence.json",
+        "artifacts/ziwei-p0-palace-branch-slot-composition-v3/evidence.json",
+        "artifacts/ziwei-p0-palace-branch-slot-composition-v9/evidence.json",
+        "artifacts/ziwei-p0-palace-branch-slot-composition-v10/evidence.json",
+        "artifacts/ziwei-p0-palace-branch-slot-composition-v11/evidence.json",
+        "artifacts/ziwei-p0-palace-branch-slot-composition-v12/evidence.json"
+      ],
+      "newEvidenceRole": "v12 directly reviews an anonymous SSID target scan, two retained-section scans without the target chapter, and NDL false-positive manuscript parts; no distinct target-witness identity or lineage is closed",
+      "statusAfter": "action_required",
+      "statusBefore": "action_required",
+      "statusChanged": false,
+      "targetId": "acq-distinct-witness-identity-lineage"
+    },
+    {
+      "closure": "not_closed",
+      "evidenceRefs": [
+        "artifacts/ziwei-p0-toyo-vii-3-157-institutional-evidence-v1/evidence.json",
+        "artifacts/ziwei-p0-youyi-lu-cadal-01025514-semantic-witness-v1/evidence.json",
+        "artifacts/ziwei-p0-palace-branch-slot-composition-v2/evidence.json",
+        "artifacts/ziwei-p0-palace-branch-slot-composition-v3/evidence.json",
+        "artifacts/ziwei-p0-palace-branch-slot-composition-v9/evidence.json",
+        "artifacts/ziwei-p0-palace-branch-slot-composition-v10/evidence.json",
+        "artifacts/ziwei-p0-palace-branch-slot-composition-v11/evidence.json",
+        "artifacts/ziwei-p0-palace-branch-slot-composition-v12/evidence.json"
+      ],
+      "newEvidenceRole": "SSID adds direct named-palace/rule/table text but no physical slot or ordinal; Tianyige/Zhuji omit the target and NDL parts are false positives, so the complete coordinate witness remains action_required",
+      "statusAfter": "action_required",
+      "statusBefore": "action_required",
+      "statusChanged": false,
+      "targetId": "acq-palace-semantic-map-and-coordinate-witness"
+    },
+    {
+      "closure": "not_closed",
+      "evidenceRefs": [
+        "artifacts/ziwei-p0-toyo-vii-3-157-institutional-evidence-v1/evidence.json",
+        "artifacts/ziwei-p0-youyi-lu-cadal-01025514-semantic-witness-v1/evidence.json",
+        "artifacts/ziwei-p0-palace-branch-slot-composition-v11/evidence.json",
+        "artifacts/ziwei-p0-palace-branch-slot-composition-v12/evidence.json"
+      ],
+      "newEvidenceRole": "SSID includes direct target Tianfu-related text/table surfaces, but no single frame adjudicates physical slot, production ordinal, or semantic authority",
+      "statusAfter": "action_required",
+      "statusBefore": "action_required",
+      "statusChanged": false,
+      "targetId": "acq-tianfu-anchor-direction-adjudicator"
+    },
+    {
+      "closure": "not_closed",
+      "evidenceRefs": [],
+      "newEvidenceRole": "not_affected",
+      "statusAfter": "action_required",
+      "statusBefore": "action_required",
+      "statusChanged": false,
+      "targetId": "acq-complete-14-major-star-placement-witness"
+    },
+    {
+      "closure": "not_closed",
+      "evidenceRefs": [],
+      "newEvidenceRole": "not_affected",
+      "statusAfter": "action_required",
+      "statusBefore": "action_required",
+      "statusChanged": false,
+      "targetId": "acq-complete-auxiliary-star-rule-witness"
+    },
+    {
+      "closure": "not_closed",
+      "evidenceRefs": [],
+      "newEvidenceRole": "not_affected",
+      "statusAfter": "action_required",
+      "statusBefore": "action_required",
+      "statusChanged": false,
+      "targetId": "acq-independent-complete-four-transform-table"
+    },
+    {
+      "closure": "not_closed",
+      "evidenceRefs": [],
+      "newEvidenceRole": "not_affected",
+      "statusAfter": "action_required",
+      "statusBefore": "action_required",
+      "statusChanged": false,
+      "targetId": "acq-shen-zhu-compound-surface"
+    },
+    {
+      "closure": "not_closed",
+      "evidenceRefs": [],
+      "newEvidenceRole": "not_affected",
+      "statusAfter": "action_required",
+      "statusBefore": "action_required",
+      "statusChanged": false,
+      "targetId": "acq-independent-ziwei-oracle"
+    },
+    {
+      "closure": "not_closed",
+      "evidenceRefs": [],
+      "newEvidenceRole": "not_affected",
+      "statusAfter": "action_required",
+      "statusBefore": "action_required",
+      "statusChanged": false,
+      "targetId": "acq-calendar-time-input-authority"
+    },
+    {
+      "closure": "not_closed",
+      "evidenceRefs": [
+        "artifacts/ziwei-p0-toyo-vii-3-157-institutional-evidence-v1/evidence.json",
+        "artifacts/ziwei-p0-youyi-lu-cadal-01025514-semantic-witness-v1/evidence.json"
+      ],
+      "newEvidenceRole": "Commons public-domain mark is recorded, but image reuse remains human_policy_review",
+      "statusAfter": "human_policy_review",
+      "statusBefore": "human_policy_review",
+      "statusChanged": false,
+      "targetId": "review-image-level-reuse-permission"
+    }
+  ]
+}

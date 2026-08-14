@@ -1,0 +1,204 @@
+{
+  "authorityBoundary": "The only complete four-field matrix in this artifact is a composition; no single historical source page directly witnesses all four fields.",
+  "negativeBoundaryReuse": {
+    "completeBindingCount": 0,
+    "directNegativeObservationIds": [
+      "local-nanyang-chart-anchors",
+      "nara-v1-c84-c86-bureau-charts",
+      "nara-v1-c87-c88-tianfu-branch-tables",
+      "nara-v1-c89-c92-rule-examples",
+      "nara-v2-c64-c80-chart-run"
+    ],
+    "predecessorArtifact": "artifacts/ziwei-nara-iiif-leafmap-semantic-witness-v1/semantic-observations.json",
+    "sameRecordVolumePairIsNotIndependent": true,
+    "status": "blocked_semantic_identity_insufficient"
+  },
+  "observations": [
+    {
+      "authorityStatus": "catalog_identity_only; source_authority_and_semantic_authority_not_established",
+      "blockerIds": [
+        "blocker-source-identity-unresolved"
+      ],
+      "directObservationStatus": "catalog_record_review_only",
+      "doesNotEstablish": [
+        "textual continuity with the 1883 scan",
+        "independent semantic witness admission",
+        "edition authority",
+        "palace coordinate identity"
+      ],
+      "facts": [
+        "The CiNii record identifies 游藝錄 6卷 by (清)兪樾 with 同治10 [1871].",
+        "The record reports one bound volume and bibliographic measurements, but no public page-image route was located in this research unit.",
+        "No direct text, leaf, colophon, or byte comparison with the 1883 CADAL scan was performed."
+      ],
+      "lineageStatus": "earlier-edition-catalog-candidate; direct text and image comparison absent",
+      "locator": {
+        "institution": "Kobe University Library for Humanities",
+        "recordId": "BD19656670",
+        "url": "https://ci.nii.ac.jp/ncid/BD19656670"
+      },
+      "observationId": "obs-youyi-1871-catalog-only-boundary",
+      "observationKind": "earlier_edition_catalog_only_lineage_boundary",
+      "researcherDirectObservation": false,
+      "sourceIds": [
+        "src-youyi-lu-cinii-1871-catalog"
+      ]
+    },
+    {
+      "affectedClaimIds": [
+        "claim-palace-name-branch-ordinal",
+        "claim-12-palace-diagram-semantics"
+      ],
+      "anchorMingBranch": "寅",
+      "authorityStatus": "derived_not_authoritative; source_authority_and_semantic_authority_not_established",
+      "basisObservationRefs": [
+        "reuse-youyi-p130-named-palace-order",
+        "reuse-nanbei-p7-branch-perimeter",
+        "reuse-nanbei-p8-reverse-traversal"
+      ],
+      "blockerIds": [
+        "blocker-palace-semantic-identity"
+      ],
+      "compositionRule": "palace ordinal j maps to traditional branch index (mingIndex - j) mod 12; branch token maps to Nanbei p7 clockwise physical slot",
+      "derivedCoverage": 12,
+      "directObservationStatus": "deterministic_composition_of_prior_direct_observations",
+      "directSingleWitnessFullBinding": false,
+      "doesNotEstablish": [
+        "single-source complete semantic map",
+        "production enum identity",
+        "semantic authority",
+        "readiness or activation"
+      ],
+      "facts": [
+        "For anchor 命宮=寅, the composed rows reproduce the 12 relative palace names, branch tokens, and Nanbei perimeter slots.",
+        "The physical counterclockwise label is a consequence of joining Youyi/Nanbei reverse traversal with the Nanbei recorded clockwise sequence; it is not printed as a complete named-palace diagram on either reviewed page."
+      ],
+      "observationId": "obs-composed-palace-branch-slot-anchor-ming-yin",
+      "observationKind": "derived_palace_branch_physical_slot_matrix",
+      "productionOrdinal": "not_established",
+      "researcherDirectObservation": false,
+      "sourceIds": [
+        "src-youyi-lu-cadal-01025514-1883",
+        "src-nanbei-pdf"
+      ]
+    },
+    {
+      "authorityStatus": "secondary_clarification_only; source_authority_and_semantic_authority_not_established",
+      "blockerIds": [
+        "blocker-palace-semantic-identity"
+      ],
+      "canonicalForClaims": false,
+      "comparisonMatchCount": 12,
+      "directObservationStatus": "secondary_web_text_surface_review",
+      "doesNotEstablish": [
+        "historical originality",
+        "independent source lineage",
+        "production ordinal authority",
+        "rights for image or text reuse"
+      ],
+      "facts": [
+        "The modern article explicitly prints palace names with branch tokens for a 命宮=寅 example.",
+        "After source-name alias normalization, all 12 branch/name rows match the derived matrix."
+      ],
+      "historicalOriginality": false,
+      "independentHistoricalWitness": false,
+      "locator": {
+        "lines": "16-28 and 30-78",
+        "publicationDate": "2009-04-26",
+        "role": "secondary_clarification_only",
+        "url": "https://mypaper.pchome.com.tw/twmin2589/post/1312687151"
+      },
+      "observationId": "obs-pchome-secondary-anchor-clarification",
+      "observationKind": "modern_secondary_worked_diagram_clarification",
+      "researcherDirectObservation": false,
+      "sourceIds": [
+        "src-pchome-ziwei-palm-rule-2009"
+      ],
+      "visibleText": "由命宮起，逆時針方向分別為：命宮、兄弟宮、夫妻宮、子女宮、財帛宮、疾厄宮、遷移宮、交友宮、事業宮、田宅宮、福德宮、父母宮。假設命宮在寅。"
+    }
+  ],
+  "reportedNonObservations": [
+    "No 1871 page image or text comparison was located; the 1871 record remains catalog-only.",
+    "Nanbei p7 has no palace-name labels; Youyi p130 has no physical chart perimeter.",
+    "The branch-token join is an explicit inference and does not establish that the two source surfaces share one historical coordinate frame.",
+    "No production ordinal, source authority, independent witness admission, readiness, grounding, activation, deployment, or remote mutation was performed."
+  ],
+  "reusedDirectWitnesses": [
+    {
+      "doesNotEstablish": [
+        "physical chart slot",
+        "production ordinal",
+        "semantic authority"
+      ],
+      "establishes": [
+        "12 named-palace relative order",
+        "reverse traversal wording",
+        "relative palace ordinal from 命宮"
+      ],
+      "evidenceId": "reuse-youyi-p130-named-palace-order",
+      "locator": {
+        "cadalDigitalPage": 130,
+        "commonsDjvuPage": 130,
+        "commonsRenderUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/CADAL01025514_%E6%98%A5%E5%9C%A8%E5%A0%82%E5%85%A8%E6%9B%B8%C2%B7%E6%B8%B8%E8%97%9D%E9%8C%84.djvu/page130-3840px-CADAL01025514_%E6%98%A5%E5%9C%A8%E5%A0%82%E5%85%A8%E6%9B%B8%C2%B7%E6%B8%B8%E8%97%9D%E9%8C%84.djvu.jpg",
+        "ctextLocator": {
+          "canonicalText": false,
+          "chapterTitle": "春在堂全書·游藝錄v5紫微斗數篇",
+          "libraryFile": "192852",
+          "page": 130,
+          "provider": "Chinese Text Project",
+          "role": "locator_only",
+          "url": "https://ctext.org/wiki.pl?chapter=299125&if=gb"
+        },
+        "printedFolio": null,
+        "printedFolioStatus": "not_asserted; scan folio was not used as an invented locator",
+        "reviewedRenderSha256": "a0a7a185b795225a3b206ac828cc761e046b6028939093b2139835eae9311206",
+        "scanPage": 130
+      },
+      "observationKind": "reused_direct_scan_surface",
+      "predecessorArtifact": "artifacts/ziwei-p0-youyi-lu-cadal-01025514-semantic-witness-v1/evidence.json",
+      "predecessorObservationId": "obs-youyi-p130-ming-shen-palace-order",
+      "sourceId": "src-youyi-lu-cadal-01025514-1883"
+    },
+    {
+      "doesNotSupport": [
+        "palace_name_to_branch_mapping",
+        "shared_source_production_coordinate_frame"
+      ],
+      "evidenceId": "reuse-nanbei-p7-branch-perimeter",
+      "locator": {
+        "pdfPage": 7,
+        "renderedFileSha256": "ebbdcf1a35d21e0fcf4339182af2df3ad290c279b8627bab9dc7f80156083bac",
+        "role": "direct_diagram_witness"
+      },
+      "observationKind": "reused_direct_diagram_surface",
+      "predecessorArtifact": "artifacts/ziwei-palace-coordinate-semantic-identity-v0/sourceWitnessIndex.json",
+      "predecessorSourceRef": "source-p7-shi-er-gong-guan-gai",
+      "reading": "12-cell perimeter diagram visibly labels 巳午未申 / 酉戌 / 亥子丑寅 / 卯辰; clockwise physical sequence is recorded without assigning palace names.",
+      "sourceId": "src-nanbei-pdf",
+      "supports": [
+        "twelve_cell_branch_slot_observation"
+      ]
+    },
+    {
+      "doesNotSupport": [
+        "12_palace_name_semantics",
+        "shared_diagram_to_production_ordinal_mapping"
+      ],
+      "evidenceId": "reuse-nanbei-p8-reverse-traversal",
+      "locator": {
+        "pdfPage": 8,
+        "renderedFileSha256": "d740c6ed5191e516f40ee61bda7f95ff2081954b21b091c22bee9c0249e8acea",
+        "role": "direct_traversal_witness"
+      },
+      "observationKind": "reused_direct_traversal_surface",
+      "predecessorArtifact": "artifacts/ziwei-palace-coordinate-semantic-identity-v0/sourceWitnessIndex.json",
+      "predecessorSourceRef": "source-p8-ming-shen-rule",
+      "reading": "命宮逆數 and 身宮順數 are legible from 寅起月 wording; branch traversal vocabulary is retained.",
+      "sourceId": "src-nanbei-pdf",
+      "supports": [
+        "ming_shen_branch_traversal_rule"
+      ]
+    }
+  ],
+  "schemaVersion": "ziwei-p0-palace-branch-slot-composition-v2-evidence-v0"
+}

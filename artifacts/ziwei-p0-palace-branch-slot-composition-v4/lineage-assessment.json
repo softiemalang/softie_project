@@ -1,0 +1,356 @@
+{
+  "branchPerimeterWitness": {
+    "completeBranchRing": true,
+    "direct": true,
+    "locator": "PDF p7",
+    "sourceId": "src-nanbei-pdf"
+  },
+  "candidateReview": {
+    "candidates": [
+      {
+        "bytes": 3721202,
+        "candidateId": "candidate-cadal-01032231-title-collision",
+        "commonsSha1": "ff8be2ded9d645d82f4993180afa1d0ceeab4e1e",
+        "decision": "rejected_same_title_not_yuyue_youyi_lu",
+        "doesNotEnterGraph": true,
+        "identity": "遊藝錄 by 李佃, 醉月山房, 清光緒二十年（1894）, 81 pages, CADAL 01032231",
+        "url": "https://commons.wikimedia.org/wiki/File:CADAL01032231_%E9%81%8A%E8%97%9D%E9%8C%84.djvu"
+      },
+      {
+        "bytes": 3668550,
+        "candidateId": "candidate-nlc416-feixing-ziwei-original-intended",
+        "decision": "not_admitted_to_this_youyi_lu_composition",
+        "doesNotEnterGraph": true,
+        "identity": "華山陳希夷先生飛星紫微斗數原旨, NLC416-12jh004539-48693, separate work",
+        "pages": 116,
+        "sourcePdfSha256": "d7111b8a43babc6141759d61f4d5d5c013b960ca35ae588cb3458a66e0941797"
+      },
+      {
+        "candidateId": "candidate-cini-1968-youyi-lu-reprint-catalog",
+        "catalogId": "BN14977393 / CRID 1971149384876944315",
+        "decision": "catalog_only_1871_reprint_acquisition_lead",
+        "directScanObtained": false,
+        "doesNotEnterGraph": true,
+        "identity": "中國文獻出版社, 1968.9, 春在堂全書第8冊; catalog note says 同治10年(1871)刊の影印 and includes 游藝録",
+        "url": "https://cir.nii.ac.jp/crid/1971149384876944315"
+      },
+      {
+        "bytes": 75687209,
+        "candidateId": "candidate-cnts-00047996572-anonymous-manuscript",
+        "commonsSha1": "0ecf0cdc7ae9a2e0d427501bb0fdef901a851a0a",
+        "decision": "held_separate_anonymous_handwritten_work_no_complete_four_field_binding_surfaced_in_reviewed_pages",
+        "directPdfUrl": "https://upload.wikimedia.org/wikipedia/commons/9/98/CNTS-00047996572_%E7%B4%AB%E5%BE%AE%E6%96%97%E6%95%B8%E6%96%B9%E6%9B%B8.pdf",
+        "directVisualReview": true,
+        "doesNotEnterGraph": true,
+        "identity": "紫微斗數方書, 編者未詳, 筆寫本, National Digital Library of Korea record CNTS-00047996572",
+        "pages": 153,
+        "reviewedScanPages": "pp1-28, with selected direct visual review at pp6-16",
+        "sourcePdfSha256": "b21bbf3e2c7cdada4153f847ff9f359dbb29e71998e1f931417d108b571b23c3",
+        "url": "https://commons.wikimedia.org/wiki/File:CNTS-00047996572_%E7%B4%AB%E5%BE%AE%E6%96%97%E6%95%B8%E6%96%B9%E6%9B%B8.pdf"
+      }
+    ],
+    "reviewedOutsideGraph": true
+  },
+  "directPalaceWitnesses": [
+    {
+      "completeRelativeOrder": true,
+      "direct": true,
+      "independentHistoricalWitnessAdmitted": false,
+      "locator": {
+        "commonsPageId": 129857505,
+        "commonsUrl": "https://commons.wikimedia.org/wiki/File:NLC892-GBZX0301010898-252714_%E6%98%A5%E5%9C%A8%E5%A0%82%E5%85%A8%E6%9B%B8_%E4%B8%89%E4%B8%89%E4%BA%8C%E5%8D%B7_%E7%AC%AC97%E5%86%8A.pdf",
+        "renderDpi": 300,
+        "renderedDimensions": "1920x1767",
+        "renderedFileSha256": "0711bc5ed6f10eccb824acf54ea8e8a2eafa18aa381c995007e581cba7dcdb8",
+        "scanPage": 66,
+        "sourcePdfSha256": "6dcefdb465f63ae74fbb0d5587a3e90f9f1337160244b4ecaaf9490dd5e1cb45",
+        "url": "https://upload.wikimedia.org/wikipedia/commons/5/57/NLC892-GBZX0301010898-252714_%E6%98%A5%E5%9C%A8%E5%A0%82%E5%85%A8%E6%9B%B8_%E4%B8%89%E4%B8%89%E4%BA%8C%E5%8D%B7_%E7%AC%AC97%E5%86%8A.pdf",
+        "volume": "春在堂全書 三三二卷 第97冊"
+      },
+      "physicalSlotBinding": false,
+      "productionOrdinalBinding": false,
+      "sourceId": "src-youyi-lu-nlc-332-97-1883"
+    },
+    {
+      "completeRelativeOrder": true,
+      "direct": true,
+      "independentHistoricalWitnessAdmitted": false,
+      "locator": {
+        "commonsPageId": 148541003,
+        "commonsUrl": "https://commons.wikimedia.org/wiki/File:ZJLib-62b555343157d263ee6a4462-25_%E6%98%A5%E5%9C%A8%E5%A0%82%E5%85%A8%E6%9B%B8%E4%B8%89%E5%8D%81%E5%85%AD%E7%A8%AE_%E7%AC%AC25%E5%86%8A.pdf",
+        "renderDpi": 240,
+        "renderedFileSha256ByPage": {
+          "131": "a32f07e596085665e8810e3df787c81531b9f290507492446a56f38edbc6be59",
+          "132": "09a73db0c5dd14d737695fba2c6e63c0c400a9eb125f488a8ef2370ada11baa5"
+        },
+        "scanPages": [
+          131,
+          132
+        ],
+        "section": "游藝錄五·紫微斗數篇",
+        "sourcePdfSha256": "f5ef36a28462e8260d435940dbff5f0e22f614ca458e23a8f764e96209056a4d",
+        "url": "https://upload.wikimedia.org/wikipedia/commons/b/bc/ZJLib-62b555343157d263ee6a4462-25_%E6%98%A5%E5%9C%A8%E5%A0%82%E5%85%A8%E6%9B%B8%E4%B8%89%E5%8D%81%E5%85%AD%E7%A8%AE_%E7%AC%AC25%E5%86%8A.pdf",
+        "volume": "春在堂全書三十六種 第25冊"
+      },
+      "physicalSlotBinding": false,
+      "productionOrdinalBinding": false,
+      "sourceId": "src-youyi-lu-zjlib-36-25-late-reprint"
+    }
+  ],
+  "earlierEdition1871": {
+    "byteComparisonPerformed": false,
+    "catalogDate": "同治10 [1871]",
+    "catalogIdentityReconfirmed": true,
+    "comparisonStatus": "catalog_identity_only_1871_vs_1883_not_performed",
+    "directTextComparisonPerformed": false,
+    "pageImagesLocated": false,
+    "sourceId": "src-youyi-lu-cinii-1871-catalog",
+    "textualLineageClosed": false,
+    "url": "https://ci.nii.ac.jp/ncid/BD19656670"
+  },
+  "independentWitnessStatus": "not_admitted",
+  "joinKey": "earthly_branch_token",
+  "joinStatus": "inferred_not_directly_asserted_by_either_source",
+  "lateReprintComparison": {
+    "blockOrColophonIdentityClosed": false,
+    "independentLineageAdmitted": false,
+    "namedPalaceOrderAgreement": true,
+    "sourceIds": [
+      "src-youyi-lu-cadal-01025514-1883",
+      "src-youyi-lu-zjlib-36-25-late-reprint"
+    ],
+    "status": "catalog_labelled_late_compiled_reprint_directly_reviewed"
+  },
+  "namedPalaceWitness": {
+    "completeRelativeOrder": true,
+    "direct": true,
+    "locator": "scan p130",
+    "sourceId": "src-youyi-lu-cadal-01025514-1883"
+  },
+  "naraBoundary": {
+    "artifact": "artifacts/ziwei-nara-iiif-leafmap-semantic-witness-v1/semantic-observations.json",
+    "completeBindingCount": 0,
+    "independentWitness": false,
+    "status": "blocked_semantic_identity_insufficient"
+  },
+  "physicalWitnessCandidatesAdded": [
+    "src-youyi-lu-nlc-332-97-1883",
+    "src-youyi-lu-zjlib-36-25-late-reprint"
+  ],
+  "productionBoundary": {
+    "directScanPhysicalSlotToProductionOrdinal": "not_established",
+    "physicalSlotToProductionOrdinal": "not_established",
+    "productionModified": false,
+    "rotation06": "representation_only"
+  },
+  "researchFrontier": {
+    "acquisitionLeads": [
+      {
+        "doesNotEnterGraph": true,
+        "leadId": "lead-kobe-1871-public-record-only",
+        "result": "Kobe record and viewing instruction located; no public page-image, IIIF, or downloadable scan route located.",
+        "sourceId": "candidate-youyi-lu-cinii-bd19656670-1871-catalog-only",
+        "url": "https://op.lib.kobe-u.ac.jp/opac/opac_link/bibid/2002371593"
+      },
+      {
+        "attemptedIiifManifestUrl": "https://dl.ndl.go.jp/api/iiif/2610509/manifest.json",
+        "doesNotEnterGraph": true,
+        "leadId": "lead-ndl-chunzaitang-descendant-route",
+        "pidUrl": "https://dl.ndl.go.jp/pid/2610509",
+        "recordUrl": "https://ndlsearch.ndl.go.jp/books/R100000002-I000007637157",
+        "result": "Later 春在堂全書 catalog and PID route located; attempted manifest returned no usable manifest in this session, so no descendant scan bytes were admitted."
+      }
+    ],
+    "admissionBoundary": "The reviewed leads remain provenance-separated. Direct visual review, catalog identity, publisher claims, source lineage, semantic authority, physical slot, production ordinal, readiness, and activation are not interchangeable gates.",
+    "candidates": [
+      {
+        "candidateId": "candidate-sancai-fa-mi-harvard-drs-52822721-v9-adjacent-star-ming",
+        "decision": "held_outside_graph_adjacent_work_no_ziwei_four_field_binding",
+        "directObservationStatus": "direct_visual_historical_scan_review",
+        "directReading": [
+          "The reviewed scan surfaces include chart-like 格之圖 grids, branch/star marks, and related star-ming or 七政 material.",
+          "The reviewed pages do not visibly supply a complete Ziwei palace-name perimeter joined to branch tokens, physical chart slots, and a production ordinal.",
+          "This is a related star-ming work in a different textual framework; its diagrams cannot be silently treated as a Ziwei semantic witness."
+        ],
+        "directVisualReview": true,
+        "doesNotEnterGraph": true,
+        "doesNotEstablish": [
+          "俞樾游藝錄 source identity",
+          "Ziwei palace semantic authority",
+          "shared cross-framework coordinate frame",
+          "production ordinal or direction",
+          "single_source_four_field_binding"
+        ],
+        "locators": {
+          "commonsUrl": "https://commons.wikimedia.org/wiki/File:Harvard_drs_52822721_%E4%B8%89%E6%89%8D%E7%99%BC%E7%A7%98%E5%A4%A9%E9%83%A8%E4%BA%8C%E5%8D%B7_v.9.pdf",
+          "directPdfUrl": "https://upload.wikimedia.org/wikipedia/commons/2/2a/Harvard_drs_52822721_%E4%B8%89%E6%89%8D%E7%99%BC%E7%A7%98%E5%A4%A9%E9%83%A8%E4%BA%8C%E5%8D%B7_v.9.pdf",
+          "iiifManifestUrl": "https://iiif.lib.harvard.edu/manifests/view/drs:52822721",
+          "renderedFileSha256ByPage": {
+            "15": "29a3e29e6302cc3a0cf6e9d57edd19cf6bf8ec589b75fa5d72cf031dcb36ae57",
+            "16": "d5db63eaaf51b312602175360309e3d24030717d15c0091ce22ee3d4d714286f",
+            "20": "e7bbc09f5f323851d683459d9120719a7380da7b31f022a6224ac1b436679d39",
+            "24": "70f145f15002bceda85c10d44e93648e6130fc03277e79ac13c2fc79ba3265f6"
+          },
+          "reviewedScanPages": [
+            15,
+            16,
+            20,
+            24
+          ]
+        },
+        "sourceIdentity": {
+          "author": "陳雯",
+          "catalogDescription": "[China: s.n., 1697?]",
+          "holdingCredit": "Harvard-Yenching Library / Harvard Digital Collections",
+          "sourcePdfBytes": 45558383,
+          "sourcePdfKind": "Wikimedia Commons PDF derivative of Harvard IIIF scan",
+          "sourcePdfPages": 55,
+          "sourcePdfSha256": "56cdd76a95ffb2bd4e51fea12f79b4c737bb9926f8be022324dff18f0425a22a",
+          "title": "三才發秘 天部二卷, 地部三卷, 人部四卷"
+        },
+        "sourceKind": "direct_harvard_scan_adjacent_star_ming_work_not_ziwei_authority"
+      },
+      {
+        "candidateId": "candidate-ziwei-jielan-googlebooks-2016-facsimile-preview-derivative",
+        "decision": "held_outside_graph_derivative_preview_no_independent_source_identity",
+        "directObservationStatus": "direct_visual_signed_preview_image_review",
+        "directReading": [
+          "The reviewed preview pages visibly contain old-page tables or grids with branch and star tokens inside the publisher preview frame.",
+          "No reviewed preview page visibly binds all palace names, branch perimeter, physical slot, ordinal, start point, and direction on one source surface.",
+          "The page images are derivative signed previews; they do not establish the original scan bytes, exact leaf lineage, or independent edition identity."
+        ],
+        "directVisualReview": true,
+        "doesNotEnterGraph": true,
+        "doesNotEstablish": [
+          "original scan byte identity",
+          "independent edition lineage",
+          "production ordinal or direction",
+          "single_source_four_field_binding"
+        ],
+        "locators": {
+          "previewImageSha256ByPageId": {
+            "PT16": "1a3b87967de36eda4059551a858b3c42607e25f97a3d2e5abeee72839d537700",
+            "PT27": "e372baccaca21cc1666e12057aa7a6af6a990903e0c91b10850c0a006b4ae1d6",
+            "PT32": "12282b6561d54e2673f41f116763d84e4c57713fab5c830107fadc6c1619f76c",
+            "PT33": "15ee0c12fe2198ce98dec774a9915e65fcf7e55327f4344924a98b86b31bef93"
+          },
+          "previewImageWidth": 1280,
+          "previewPageIds": [
+            "PT16",
+            "PT27",
+            "PT32",
+            "PT33"
+          ],
+          "publisherPageUrl": "https://play.google.com/store/books/details/%E7%B4%AB%E5%BE%AE%E6%96%97%E6%95%B8%E6%8D%B7%E8%A6%BD_%E6%98%8E%E5%88%8A%E5%AD%A4%E6%9C%AC_%E5%8E%9F_%E5%BD%A9%E8%89%B2%E6%9C%AC_%E9%99%84_%E9%BB%9E%E6%A0%A1%E6%9C%AC_%E4%BA%8C%E5%86%8A%E4%B8%8D%E5%88%86%E5%94%AE?gl=US&hl=en_IE&id=rZRcCwAAQBAJ",
+          "stableVolumeUrl": "https://books.google.com/books?id=rZRcCwAAQBAJ"
+        },
+        "sourceIdentity": {
+          "googleBooksVolumeId": "rZRcCwAAQBAJ",
+          "isPublicDomain": false,
+          "previewPagesClaimed": 462,
+          "publicationYear": 2016,
+          "publisherClaimedEdition": "明萬曆九年金陵書坊王氏洛川刊本",
+          "publisherEditionClaimStatus": "publisher_description_not_independently_verified",
+          "title": "紫微斗數捷覽：明刊孤本原彩色本附點校本（二冊不分售）"
+        },
+        "sourceKind": "publisher_facsimile_preview_derivative_not_original_scan_bytes"
+      },
+      {
+        "candidateId": "candidate-youyi-lu-cinii-bd19656670-1871-catalog-only",
+        "comparisonTo1883": {
+          "byteComparisonPerformed": false,
+          "directTextComparisonPerformed": false,
+          "sources1883": [
+            null,
+            "src-youyi-lu-nlc-332-97-1883"
+          ],
+          "status": "not_performed_catalog_only_1871",
+          "textualLineageClosed": false
+        },
+        "decision": "catalog_identity_confirmed_acquisition_target_no_direct_witness",
+        "directObservationStatus": "catalog_record_review_only",
+        "directReading": [],
+        "directVisualReview": false,
+        "doesNotEnterGraph": true,
+        "doesNotEstablish": [
+          "1871 page-level text",
+          "1871 colophon visual confirmation",
+          "1871 to 1883 textual or block lineage",
+          "palace_name_to_physical_chart_slot",
+          "production ordinal"
+        ],
+        "locators": {
+          "ciniiUrl": "https://ci.nii.ac.jp/ncid/BD19656670",
+          "kobeOpacUrl": "https://op.lib.kobe-u.ac.jp/opac/opac_link/bibid/2002371593",
+          "pageImagesLocated": false,
+          "sourceBytesAcquired": false
+        },
+        "sourceIdentity": {
+          "author": "(清)兪樾 [撰]",
+          "binding": "one bound volume",
+          "catalogNotes": [
+            "版心の書名: 藝",
+            "封面に「外書三/游藝録/徳清兪氏書廿二」とあり",
+            "封面裏に「同治辛未冬十月江清驥著檢」とあり",
+            "左右双辺有界10行21字注文双行, 内匡廓: 16.0×10.9cm, 白口単黒魚尾",
+            "印記: 「山野氏蔵書章」"
+          ],
+          "holding": "Kobe University Library Humanities Science Library",
+          "holdingCount": 1,
+          "publicationDate": "同治10 [1871]",
+          "title": "游藝録 6卷"
+        },
+        "sourceKind": "catalog_identity_confirmed_direct_pages_unavailable"
+      }
+    ],
+    "comparison1871To1883": {
+      "catalogSource1871": "candidate-youyi-lu-cinii-bd19656670-1871-catalog-only",
+      "conclusion": "The 1871 record is identity-useful but page-inaccessible in this research session; therefore no direct textual, colophon, byte, or block comparison with the 1883 scans was performed.",
+      "directByteComparisonPerformed": false,
+      "directSources1883": [
+        null,
+        "src-youyi-lu-nlc-332-97-1883"
+      ],
+      "directTextComparisonPerformed": false,
+      "independentLineageAdmitted": false,
+      "status": "open"
+    },
+    "graphImpact": {
+      "blockersClosed": [],
+      "claimsAdded": 0,
+      "independentPhysicalWitnessesAdmitted": 0,
+      "observationsAdded": [],
+      "relationsAdded": [],
+      "sourcesAdded": []
+    },
+    "readinessImpact": {
+      "activation": "experimental_only",
+      "grounding": "blocked",
+      "readiness": "not_safe_to_start",
+      "rotation06": "representation_only"
+    },
+    "researchSessionDate": "2026-08-12",
+    "schemaVersion": "ziwei-p0-palace-branch-slot-composition-v4-research-frontier-v0",
+    "status": "expanded_negative_frontier_no_new_graph_admission"
+  },
+  "sameEditionComparison": {
+    "byteIdentityClaimed": false,
+    "edition": "清光緒九年（1883）重刻本 100冊",
+    "independentLineageAdmitted": false,
+    "namedPalaceOrderAgreement": true,
+    "sourceIds": [
+      "src-youyi-lu-cadal-01025514-1883",
+      "src-youyi-lu-nlc-332-97-1883"
+    ],
+    "status": "same_edition_distinct_physical_scan"
+  },
+  "schemaVersion": "ziwei-p0-palace-branch-slot-composition-v4-lineage-v0",
+  "secondaryClarification": {
+    "exactAnchor": "命宮=寅",
+    "independentHistoricalAuthority": false,
+    "normalizedMatchCount": 12,
+    "sourceId": "src-pchome-ziwei-palm-rule-2009",
+    "url": "https://mypaper.pchome.com.tw/twmin2589/post/1312687151"
+  },
+  "status": "derived_not_authoritative"
+}

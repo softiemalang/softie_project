@@ -1,0 +1,390 @@
+{
+  "authorityBoundary": "The complete four-field matrix remains a composition; the added scans directly corroborate named-palace order and worked examples but no reviewed page directly witnesses all four fields.",
+  "candidateReview": {
+    "candidates": [
+      {
+        "bytes": 3721202,
+        "candidateId": "candidate-cadal-01032231-title-collision",
+        "commonsSha1": "ff8be2ded9d645d82f4993180afa1d0ceeab4e1e",
+        "decision": "rejected_same_title_not_yuyue_youyi_lu",
+        "doesNotEnterGraph": true,
+        "identity": "遊藝錄 by 李佃, 醉月山房, 清光緒二十年（1894）, 81 pages, CADAL 01032231",
+        "url": "https://commons.wikimedia.org/wiki/File:CADAL01032231_%E9%81%8A%E8%97%9D%E9%8C%84.djvu"
+      },
+      {
+        "bytes": 3668550,
+        "candidateId": "candidate-nlc416-feixing-ziwei-original-intended",
+        "decision": "not_admitted_to_this_youyi_lu_composition",
+        "doesNotEnterGraph": true,
+        "identity": "華山陳希夷先生飛星紫微斗數原旨, NLC416-12jh004539-48693, separate work",
+        "pages": 116,
+        "sourcePdfSha256": "d7111b8a43babc6141759d61f4d5d5c013b960ca35ae588cb3458a66e0941797"
+      },
+      {
+        "candidateId": "candidate-cini-1968-youyi-lu-reprint-catalog",
+        "catalogId": "BN14977393 / CRID 1971149384876944315",
+        "decision": "catalog_only_1871_reprint_acquisition_lead",
+        "directScanObtained": false,
+        "doesNotEnterGraph": true,
+        "identity": "中國文獻出版社, 1968.9, 春在堂全書第8冊; catalog note says 同治10年(1871)刊の影印 and includes 游藝録",
+        "url": "https://cir.nii.ac.jp/crid/1971149384876944315"
+      },
+      {
+        "bytes": 75687209,
+        "candidateId": "candidate-cnts-00047996572-anonymous-manuscript",
+        "commonsSha1": "0ecf0cdc7ae9a2e0d427501bb0fdef901a851a0a",
+        "decision": "held_separate_anonymous_handwritten_work_no_complete_four_field_binding_surfaced_in_reviewed_pages",
+        "directPdfUrl": "https://upload.wikimedia.org/wikipedia/commons/9/98/CNTS-00047996572_%E7%B4%AB%E5%BE%AE%E6%96%97%E6%95%B8%E6%96%B9%E6%9B%B8.pdf",
+        "directVisualReview": true,
+        "doesNotEnterGraph": true,
+        "identity": "紫微斗數方書, 編者未詳, 筆寫本, National Digital Library of Korea record CNTS-00047996572",
+        "pages": 153,
+        "reviewedScanPages": "pp1-28, with selected direct visual review at pp6-16",
+        "sourcePdfSha256": "b21bbf3e2c7cdada4153f847ff9f359dbb29e71998e1f931417d108b571b23c3",
+        "url": "https://commons.wikimedia.org/wiki/File:CNTS-00047996572_%E7%B4%AB%E5%BE%AE%E6%96%97%E6%95%B8%E6%96%B9%E6%9B%B8.pdf"
+      }
+    ],
+    "reviewedOutsideGraph": true
+  },
+  "directScanCorroboration": {
+    "doesNotEstablish": [
+      "shared physical chart coordinate frame",
+      "production ordinal",
+      "1871 textual continuity",
+      "semantic authority"
+    ],
+    "independentHistoricalWitnessesAdmitted": 0,
+    "physicalWitnessCandidates": [
+      "src-youyi-lu-nlc-332-97-1883",
+      "src-youyi-lu-zjlib-36-25-late-reprint"
+    ],
+    "sourceIds": [
+      "src-youyi-lu-cadal-01025514-1883",
+      "src-youyi-lu-nlc-332-97-1883",
+      "src-youyi-lu-zjlib-36-25-late-reprint"
+    ],
+    "status": "two_added_direct_scan_surfaces_agree_with_CADAL_named_palace_order_and_worked_examples"
+  },
+  "negativeBoundaryReuse": {
+    "completeBindingCount": 0,
+    "directNegativeObservationIds": [
+      "local-nanyang-chart-anchors",
+      "nara-v1-c84-c86-bureau-charts",
+      "nara-v1-c87-c88-tianfu-branch-tables",
+      "nara-v1-c89-c92-rule-examples",
+      "nara-v2-c64-c80-chart-run"
+    ],
+    "predecessorArtifact": "artifacts/ziwei-nara-iiif-leafmap-semantic-witness-v1/semantic-observations.json",
+    "sameRecordVolumePairIsNotIndependent": true,
+    "status": "blocked_semantic_identity_insufficient"
+  },
+  "observations": [
+    {
+      "authorityStatus": "catalog_identity_only; source_authority_and_semantic_authority_not_established",
+      "blockerIds": [
+        "blocker-source-identity-unresolved"
+      ],
+      "directObservationStatus": "catalog_record_review_only",
+      "doesNotEstablish": [
+        "textual continuity with the 1883 scan",
+        "independent semantic witness admission",
+        "edition authority",
+        "palace coordinate identity"
+      ],
+      "facts": [
+        "The CiNii record identifies 游藝錄 6卷 by (清)兪樾 with 同治10 [1871].",
+        "The record reports one bound volume and bibliographic measurements, but no public page-image route was located in this research unit.",
+        "No direct text, leaf, colophon, or byte comparison with the 1883 CADAL scan was performed."
+      ],
+      "lineageStatus": "earlier-edition-catalog-candidate; direct text and image comparison absent",
+      "locator": {
+        "institution": "Kobe University Library for Humanities",
+        "recordId": "BD19656670",
+        "url": "https://ci.nii.ac.jp/ncid/BD19656670"
+      },
+      "observationId": "obs-youyi-1871-catalog-only-boundary",
+      "observationKind": "earlier_edition_catalog_only_lineage_boundary",
+      "researcherDirectObservation": false,
+      "sourceIds": [
+        "src-youyi-lu-cinii-1871-catalog"
+      ]
+    },
+    {
+      "affectedClaimIds": [
+        "claim-palace-name-branch-ordinal",
+        "claim-12-palace-diagram-semantics"
+      ],
+      "anchorMingBranch": "寅",
+      "authorityStatus": "derived_not_authoritative; source_authority_and_semantic_authority_not_established",
+      "basisObservationRefs": [
+        "reuse-youyi-p130-named-palace-order",
+        "reuse-nanbei-p7-branch-perimeter",
+        "reuse-nanbei-p8-reverse-traversal"
+      ],
+      "blockerIds": [
+        "blocker-palace-semantic-identity"
+      ],
+      "compositionRule": "palace ordinal j maps to traditional branch index (mingIndex - j) mod 12; branch token maps to Nanbei p7 clockwise physical slot",
+      "derivedCoverage": 12,
+      "directObservationStatus": "deterministic_composition_of_prior_direct_observations",
+      "directSingleWitnessFullBinding": false,
+      "doesNotEstablish": [
+        "single-source complete semantic map",
+        "production enum identity",
+        "semantic authority",
+        "readiness or activation"
+      ],
+      "facts": [
+        "For anchor 命宮=寅, the composed rows reproduce the 12 relative palace names, branch tokens, and Nanbei perimeter slots.",
+        "The physical counterclockwise label is a consequence of joining Youyi/Nanbei reverse traversal with the Nanbei recorded clockwise sequence; it is not printed as a complete named-palace diagram on either reviewed page."
+      ],
+      "observationId": "obs-composed-palace-branch-slot-anchor-ming-yin",
+      "observationKind": "derived_palace_branch_physical_slot_matrix",
+      "productionOrdinal": "not_established",
+      "researcherDirectObservation": false,
+      "sourceIds": [
+        "src-youyi-lu-cadal-01025514-1883",
+        "src-nanbei-pdf"
+      ]
+    },
+    {
+      "authorityStatus": "secondary_clarification_only; source_authority_and_semantic_authority_not_established",
+      "blockerIds": [
+        "blocker-palace-semantic-identity"
+      ],
+      "canonicalForClaims": false,
+      "comparisonMatchCount": 12,
+      "directObservationStatus": "secondary_web_text_surface_review",
+      "doesNotEstablish": [
+        "historical originality",
+        "independent source lineage",
+        "production ordinal authority",
+        "rights for image or text reuse"
+      ],
+      "facts": [
+        "The modern article explicitly prints palace names with branch tokens for a 命宮=寅 example.",
+        "After source-name alias normalization, all 12 branch/name rows match the derived matrix."
+      ],
+      "historicalOriginality": false,
+      "independentHistoricalWitness": false,
+      "locator": {
+        "lines": "16-28 and 30-78",
+        "publicationDate": "2009-04-26",
+        "role": "secondary_clarification_only",
+        "url": "https://mypaper.pchome.com.tw/twmin2589/post/1312687151"
+      },
+      "observationId": "obs-pchome-secondary-anchor-clarification",
+      "observationKind": "modern_secondary_worked_diagram_clarification",
+      "researcherDirectObservation": false,
+      "sourceIds": [
+        "src-pchome-ziwei-palm-rule-2009"
+      ],
+      "visibleText": "由命宮起，逆時針方向分別為：命宮、兄弟宮、夫妻宮、子女宮、財帛宮、疾厄宮、遷移宮、交友宮、事業宮、田宅宮、福德宮、父母宮。假設命宮在寅。"
+    },
+    {
+      "affectedClaimIds": [
+        "claim-palace-name-branch-ordinal",
+        "claim-12-palace-diagram-semantics"
+      ],
+      "authorityStatus": "direct_scan_witness; source_authority_and_semantic_authority_not_established",
+      "blockerIds": [
+        "blocker-palace-semantic-identity"
+      ],
+      "directObservationStatus": "direct_visual_original_scan_review",
+      "directReading": [
+        "The scan visibly identifies 紫微斗數篇 and 游藝錄五.",
+        "The page visibly states 乃逆行而布十二宮.",
+        "The page visibly lists 十二宮者 in order: 命宮, 兄弟宮, 夫妻宮, 子息宮, 財帛宮, 疾厄宮, 遷移宮, 奴僕宮, 官祿宮, 田宅宮, 福德宮, 父母宮.",
+        "The page visibly gives worked examples 命立子宮則亥為兄弟宮 and 命立丑宮則子為兄弟宮."
+      ],
+      "doesNotEstablish": [
+        "palace_name_to_physical_chart_slot",
+        "production_ordinal",
+        "1871_textual_lineage",
+        "semantic_authority",
+        "single_source_four_field_binding"
+      ],
+      "locator": {
+        "commonsPageId": 129857505,
+        "commonsUrl": "https://commons.wikimedia.org/wiki/File:NLC892-GBZX0301010898-252714_%E6%98%A5%E5%9C%A8%E5%A0%82%E5%85%A8%E6%9B%B8_%E4%B8%89%E4%B8%89%E4%BA%8C%E5%8D%B7_%E7%AC%AC97%E5%86%8A.pdf",
+        "renderDpi": 300,
+        "renderedDimensions": "1920x1767",
+        "renderedFileSha256": "0711bc5ed6f10eccb824acf54ea8e8a2eafa18aa381c995007e581cba7dcdb8",
+        "scanPage": 66,
+        "sourcePdfSha256": "6dcefdb465f63ae74fbb0d5587a3e90f9f1337160244b4ecaaf9490dd5e1cb45",
+        "url": "https://upload.wikimedia.org/wikipedia/commons/5/57/NLC892-GBZX0301010898-252714_%E6%98%A5%E5%9C%A8%E5%A0%82%E5%85%A8%E6%9B%B8_%E4%B8%89%E4%B8%89%E4%BA%8C%E5%8D%B7_%E7%AC%AC97%E5%86%8A.pdf",
+        "volume": "春在堂全書 三三二卷 第97冊"
+      },
+      "observationId": "obs-youyi-nlc-p66-direct-palace-order",
+      "observationKind": "direct_historical_scan_named_palace_order_and_worked_examples",
+      "researcherDirectObservation": true,
+      "sourceIdentity": {
+        "author": "〔清〕俞樾撰",
+        "commonsSha1": "8d70866096b7a19021c6164ce996d3703dec6c96",
+        "edition": "清光緒九年（1883）重刻本 100冊",
+        "holdingCredit": "Tianjin Library / National Library of China",
+        "pdfBytes": 59303996,
+        "pdfPages": 90
+      },
+      "sourceIds": [
+        "src-youyi-lu-nlc-332-97-1883"
+      ],
+      "supports": [
+        "direct_named_palace_relative_order",
+        "direct_reverse_traversal_wording",
+        "direct_worked_branch_examples",
+        "separate_physical_scan_of_1883_edition"
+      ]
+    },
+    {
+      "affectedClaimIds": [
+        "claim-palace-name-branch-ordinal",
+        "claim-12-palace-diagram-semantics"
+      ],
+      "authorityStatus": "direct_late_reprint_scan witness; source_authority_and_semantic_authority_not_established",
+      "blockerIds": [
+        "blocker-palace-semantic-identity"
+      ],
+      "directObservationStatus": "direct_visual_original_scan_review",
+      "directReading": [
+        "The scan identifies 游藝錄五 and 紫微斗數篇 across pages 131-132.",
+        "The pages visibly state 乃逆行而布十二宮.",
+        "The pages visibly list the twelve palace names in the same relative order, with the late-reprint variants 夫妻宮 and 子息宮 retained.",
+        "The pages visibly give the 命立子宮 and 命立丑宮 worked examples."
+      ],
+      "doesNotEstablish": [
+        "palace_name_to_physical_chart_slot",
+        "production_ordinal",
+        "1871_textual_lineage",
+        "block_identity_with_1883_reprint",
+        "semantic_authority",
+        "single_source_four_field_binding"
+      ],
+      "locator": {
+        "commonsPageId": 148541003,
+        "commonsUrl": "https://commons.wikimedia.org/wiki/File:ZJLib-62b555343157d263ee6a4462-25_%E6%98%A5%E5%9C%A8%E5%A0%82%E5%85%A8%E6%9B%B8%E4%B8%89%E5%8D%81%E5%85%AD%E7%A8%AE_%E7%AC%AC25%E5%86%8A.pdf",
+        "renderDpi": 240,
+        "renderedFileSha256ByPage": {
+          "131": "a32f07e596085665e8810e3df787c81531b9f290507492446a56f38edbc6be59",
+          "132": "09a73db0c5dd14d737695fba2c6e63c0c400a9eb125f488a8ef2370ada11baa5"
+        },
+        "scanPages": [
+          131,
+          132
+        ],
+        "section": "游藝錄五·紫微斗數篇",
+        "sourcePdfSha256": "f5ef36a28462e8260d435940dbff5f0e22f614ca458e23a8f764e96209056a4d",
+        "url": "https://upload.wikimedia.org/wikipedia/commons/b/bc/ZJLib-62b555343157d263ee6a4462-25_%E6%98%A5%E5%9C%A8%E5%A0%82%E5%85%A8%E6%9B%B8%E4%B8%89%E5%8D%81%E5%85%AD%E7%A8%AE_%E7%AC%AC25%E5%86%8A.pdf",
+        "volume": "春在堂全書三十六種 第25冊"
+      },
+      "observationId": "obs-youyi-zjlib-p131-p132-direct-palace-order",
+      "observationKind": "direct_late_reprint_scan_named_palace_order_and_worked_examples",
+      "researcherDirectObservation": true,
+      "sourceIdentity": {
+        "author": "（清）俞樾撰",
+        "commonsSha1": "ef0f36e9c7f1fc285aaba4ca56dca9ea2e508a83",
+        "edition": "清同治至光緒刻光緒末彙印本",
+        "holdingCredit": "Zhejiang Library",
+        "pdfBytes": 88846033,
+        "pdfPages": 180
+      },
+      "sourceIds": [
+        "src-youyi-lu-zjlib-36-25-late-reprint"
+      ],
+      "supports": [
+        "direct_named_palace_relative_order",
+        "direct_reverse_traversal_wording",
+        "direct_worked_branch_examples",
+        "separate_late_reprint_physical_scan"
+      ]
+    }
+  ],
+  "reportedNonObservations": [
+    "No 1871 page image or text comparison was located; the 1871 record remains catalog-only.",
+    "Nanbei p7 has no palace-name labels; Youyi p130 has no physical chart perimeter.",
+    "The branch-token join is an explicit inference and does not establish that the two source surfaces share one historical coordinate frame.",
+    "No production ordinal, source authority, independent witness admission, readiness, grounding, activation, deployment, or remote mutation was performed.",
+    "NLC p66 and Zhejiang Library pp131-132 contain text and worked examples but no complete palace-name physical chart perimeter.",
+    "NLC is a distinct physical scan of the 1883 Guangxu 9 reprint; it is not an independent edition lineage from CADAL.",
+    "The Zhejiang Library catalog labels a late compiled/reprinted edition, but block identity, colophon continuity, and relation to the 1871 impression were not closed.",
+    "The two added direct scans do not convert a named-palace witness into a branch-to-physical-slot or production-ordinal witness."
+  ],
+  "reusedDirectWitnesses": [
+    {
+      "doesNotEstablish": [
+        "physical chart slot",
+        "production ordinal",
+        "semantic authority"
+      ],
+      "establishes": [
+        "12 named-palace relative order",
+        "reverse traversal wording",
+        "relative palace ordinal from 命宮"
+      ],
+      "evidenceId": "reuse-youyi-p130-named-palace-order",
+      "locator": {
+        "cadalDigitalPage": 130,
+        "commonsDjvuPage": 130,
+        "commonsRenderUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/CADAL01025514_%E6%98%A5%E5%9C%A8%E5%A0%82%E5%85%A8%E6%9B%B8%C2%B7%E6%B8%B8%E8%97%9D%E9%8C%84.djvu/page130-3840px-CADAL01025514_%E6%98%A5%E5%9C%A8%E5%A0%82%E5%85%A8%E6%9B%B8%C2%B7%E6%B8%B8%E8%97%9D%E9%8C%84.djvu.jpg",
+        "ctextLocator": {
+          "canonicalText": false,
+          "chapterTitle": "春在堂全書·游藝錄v5紫微斗數篇",
+          "libraryFile": "192852",
+          "page": 130,
+          "provider": "Chinese Text Project",
+          "role": "locator_only",
+          "url": "https://ctext.org/wiki.pl?chapter=299125&if=gb"
+        },
+        "printedFolio": null,
+        "printedFolioStatus": "not_asserted; scan folio was not used as an invented locator",
+        "reviewedRenderSha256": "a0a7a185b795225a3b206ac828cc761e046b6028939093b2139835eae9311206",
+        "scanPage": 130
+      },
+      "observationKind": "reused_direct_scan_surface",
+      "predecessorArtifact": "artifacts/ziwei-p0-youyi-lu-cadal-01025514-semantic-witness-v1/evidence.json",
+      "predecessorObservationId": "obs-youyi-p130-ming-shen-palace-order",
+      "sourceId": "src-youyi-lu-cadal-01025514-1883"
+    },
+    {
+      "doesNotSupport": [
+        "palace_name_to_branch_mapping",
+        "shared_source_production_coordinate_frame"
+      ],
+      "evidenceId": "reuse-nanbei-p7-branch-perimeter",
+      "locator": {
+        "pdfPage": 7,
+        "renderedFileSha256": "ebbdcf1a35d21e0fcf4339182af2df3ad290c279b8627bab9dc7f80156083bac",
+        "role": "direct_diagram_witness"
+      },
+      "observationKind": "reused_direct_diagram_surface",
+      "predecessorArtifact": "artifacts/ziwei-palace-coordinate-semantic-identity-v0/sourceWitnessIndex.json",
+      "predecessorSourceRef": "source-p7-shi-er-gong-guan-gai",
+      "reading": "12-cell perimeter diagram visibly labels 巳午未申 / 酉戌 / 亥子丑寅 / 卯辰; clockwise physical sequence is recorded without assigning palace names.",
+      "sourceId": "src-nanbei-pdf",
+      "supports": [
+        "twelve_cell_branch_slot_observation"
+      ]
+    },
+    {
+      "doesNotSupport": [
+        "12_palace_name_semantics",
+        "shared_diagram_to_production_ordinal_mapping"
+      ],
+      "evidenceId": "reuse-nanbei-p8-reverse-traversal",
+      "locator": {
+        "pdfPage": 8,
+        "renderedFileSha256": "d740c6ed5191e516f40ee61bda7f95ff2081954b21b091c22bee9c0249e8acea",
+        "role": "direct_traversal_witness"
+      },
+      "observationKind": "reused_direct_traversal_surface",
+      "predecessorArtifact": "artifacts/ziwei-palace-coordinate-semantic-identity-v0/sourceWitnessIndex.json",
+      "predecessorSourceRef": "source-p8-ming-shen-rule",
+      "reading": "命宮逆數 and 身宮順數 are legible from 寅起月 wording; branch traversal vocabulary is retained.",
+      "sourceId": "src-nanbei-pdf",
+      "supports": [
+        "ming_shen_branch_traversal_rule"
+      ]
+    }
+  ],
+  "schemaVersion": "ziwei-p0-palace-branch-slot-composition-v3-evidence-v0"
+}

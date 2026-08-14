@@ -1,0 +1,44 @@
+{
+  "branchPerimeterWitness": {
+    "completeBranchRing": true,
+    "direct": true,
+    "locator": "PDF p7",
+    "sourceId": "src-nanbei-pdf"
+  },
+  "earlierEdition1871": {
+    "catalogDate": "同治10 [1871]",
+    "directTextComparisonPerformed": false,
+    "pageImagesLocated": false,
+    "sourceId": "src-youyi-lu-cinii-1871-catalog",
+    "textualLineageClosed": false,
+    "url": "https://ci.nii.ac.jp/ncid/BD19656670"
+  },
+  "independentWitnessStatus": "not_admitted",
+  "joinKey": "earthly_branch_token",
+  "joinStatus": "inferred_not_directly_asserted_by_either_source",
+  "namedPalaceWitness": {
+    "completeRelativeOrder": true,
+    "direct": true,
+    "locator": "scan p130",
+    "sourceId": "src-youyi-lu-cadal-01025514-1883"
+  },
+  "naraBoundary": {
+    "artifact": "artifacts/ziwei-nara-iiif-leafmap-semantic-witness-v1/semantic-observations.json",
+    "completeBindingCount": 0,
+    "independentWitness": false,
+    "status": "blocked_semantic_identity_insufficient"
+  },
+  "productionBoundary": {
+    "physicalSlotToProductionOrdinal": "not_established",
+    "productionModified": false,
+    "rotation06": "representation_only"
+  },
+  "secondaryClarification": {
+    "exactAnchor": "命宮=寅",
+    "independentHistoricalAuthority": false,
+    "normalizedMatchCount": 12,
+    "sourceId": "src-pchome-ziwei-palm-rule-2009",
+    "url": "https://mypaper.pchome.com.tw/twmin2589/post/1312687151"
+  },
+  "status": "derived_not_authoritative"
+}

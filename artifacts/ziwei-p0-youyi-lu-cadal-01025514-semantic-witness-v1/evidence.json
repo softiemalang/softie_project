@@ -1,0 +1,1628 @@
+{
+  "evidenceSource": {
+    "authority": "direct visual scan observations support bounded text surfaces; source authority and semantic authority remain unestablished",
+    "edition": {
+      "catalogDate": "清光緒九年(1883)",
+      "catalogDateSource": "CADAL/Tsinghua metadata and CiNii 1883 record",
+      "colophonPresent": false,
+      "colophonReviewed": true,
+      "identityStatus": "digital_resource_identity_confirmed; printed_copy_identity_and_transmission_lineage_not_fully_closed",
+      "physicalCopyTitlePagePresent": false,
+      "physicalCopyTitlePageReviewed": true,
+      "printedFolioBindingClosed": false,
+      "publisher": "not stated in the inspected CADAL metadata beyond the source record"
+    },
+    "independence": "repository/file identity is distinct from existing P0 sources, but 1883-to-1871 and cross-corpus transmission independence is unresolved",
+    "lineage": "1883 catalog/scan identity is bounded; no inference from 1871 catalog record to exact textual continuity",
+    "locatorPolicy": {
+      "exactLocator": "Commons DjVu page index + CADAL digital page + CText library file/page",
+      "printedFolio": "not asserted; no physical folio was invented",
+      "semanticPageRendersReviewed": [
+        130,
+        131,
+        136,
+        139,
+        140
+      ]
+    },
+    "ocrPolicy": {
+      "canonicalForClaims": false,
+      "observedLocatorCorrections": [
+        "日 versus OCR 曰",
+        "宮 versus OCR 官",
+        "戌 versus OCR 戊",
+        "寅 versus OCR 開",
+        "酉 versus OCR 西"
+      ],
+      "provider": "Chinese Text Project OCR/text layer",
+      "role": "locator_only",
+      "scanVisualReviewRequired": true
+    },
+    "physicalWitnessStatus": "distinct historical-work scan candidate; independent physical/textual lineage not admitted",
+    "repositories": {
+      "cADAL": {
+        "identifier": "01025514",
+        "institution": "清華大學",
+        "metadataObserved": [
+          "title",
+          "creator",
+          "date",
+          "contributor",
+          "178-page count",
+          "chapter start pages"
+        ],
+        "url": "https://cadal.edu.cn/cardpage/bookCardPage?ssno=01025514"
+      },
+      "cinii1883": {
+        "physicalBibliography": "23.4×15.1cm; 13,27,18,6,18,6丁; 10 lines/21 characters",
+        "record": "游藝録 6卷; (清)兪樾 [撰]; [光緒9 (1883)]",
+        "url": "https://ci.nii.ac.jp/ncid/BB19945538"
+      },
+      "commons": {
+        "derivativeRole": "Commons-hosted copy of the CADAL/Tsinghua DjVu resource",
+        "filePageMetadataObserved": [
+          "author",
+          "title",
+          "1883 date",
+          "178 pages",
+          "dimensions",
+          "public-domain mark"
+        ],
+        "hostedFileUrl": "https://upload.wikimedia.org/wikipedia/commons/3/3f/CADAL01025514_%E6%98%A5%E5%9C%A8%E5%A0%82%E5%85%A8%E6%9B%B8%C2%B7%E6%B8%B8%E8%97%9D%E9%8C%84.djvu"
+      },
+      "earlierEditionCandidate": {
+        "lineageStatus": "unresolved; not merged and not admitted as independent corroboration",
+        "record": "游藝録 6卷; 同治10 [1871]",
+        "relationship": "same-work earlier-edition candidate; direct text/leaf comparison not performed",
+        "url": "https://ci.nii.ac.jp/ncid/BD19656670"
+      }
+    },
+    "rights": {
+      "commonsFilePageMark": "Public Domain Mark reported on the Commons file page",
+      "sourceImageReuse": "not automatically granted by catalog access or public-domain label; human/policy review remains required",
+      "sourceImagesStoredInGit": false
+    },
+    "role": "new semantic-witness candidate; bounded direct scan surface",
+    "scanBoundaryReview": {
+      "colophonObserved": false,
+      "conclusion": "The available 178-page digital scan was checked at its front and back boundary; a title page and colophon were not observed. This does not prove that the bound physical copy never contained either leaf.",
+      "renderWidth": 1920,
+      "reviewedPages": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        177,
+        178
+      ],
+      "surfaces": [
+        {
+          "commonsRenderSha256": "7f6332ae04d3569e205f51efcef52d3a659552b6aa4665ae22531eaf4b0f69f3",
+          "observation": "blank scan leaf; no title-page text or imprint visible",
+          "scanPage": 1
+        },
+        {
+          "commonsRenderSha256": "514e9b1e8dbf514f98d3eb148a6f2920d2a90b660c00524d8760e72ccdc43e77",
+          "observation": "printed text begins; no title-page or imprint surface visible",
+          "scanPage": 2
+        },
+        {
+          "commonsRenderSha256": "c5cc4d329d0f0dd99757e246668a0b78d9ff4763859b49c259cbbb9a64253fac",
+          "observation": "printed text and end seal; no colophon or imprint surface visible",
+          "scanPage": 177
+        },
+        {
+          "commonsRenderSha256": "7f6332ae04d3569e205f51efcef52d3a659552b6aa4665ae22531eaf4b0f69f3",
+          "observation": "blank scan leaf; no colophon text visible",
+          "scanPage": 178
+        }
+      ],
+      "titlePageObserved": false
+    },
+    "sourceFile": {
+      "acquiredOutsideMaterializer": true,
+      "byteIdentity": "directly hashed from the downloaded source DjVu bytes outside the repository",
+      "byteLength": 7368126,
+      "dimensions": "3196×5594",
+      "fileName": "CADAL01025514_春在堂全書·游藝錄.djvu",
+      "format": "DjVu multiple page document",
+      "materializerNetworkUsed": false,
+      "pageCount": 178,
+      "sha1": "0ccb501b8fa86358ec1cae34dca4d56df6a1fbd2",
+      "sha256": "761a9827a1fe0df8f1aa1e15317b1eb18c528892750fa618f7ed97a5897535ba",
+      "storedInGit": false
+    },
+    "sourceId": "src-youyi-lu-cadal-01025514-1883",
+    "sourceKind": "external_public_digital_scan_of_historical_printed_work",
+    "storedInGit": false,
+    "work": {
+      "author": "(清)俞樾",
+      "chapterPageRange": "digital scan pages 130-165; catalog chapter boundary",
+      "chapterPageStart": 130,
+      "nextChapterPageStart": 166,
+      "section": "游藝錄五·紫微斗數篇",
+      "title": "春在堂全書·游藝錄"
+    }
+  },
+  "observations": [
+    {
+      "affectedClaimIds": [],
+      "authorityStatus": "bounded_direct_scan_surface; source_authority_and_semantic_authority_not_established",
+      "blockerIds": [
+        "blocker-source-identity-unresolved",
+        "blocker-image-reuse-rights"
+      ],
+      "directObservationStatus": "source-file-byte-hash_and_catalog-metadata_review",
+      "doesNotEstablish": [
+        "the 1883 scan is the original printing or the earliest edition of 游藝錄",
+        "textual transmission independence from Nanbei, Nanyang, NARA, or the existing Toyo candidate",
+        "a complete source-authoritative palace name to branch to physical-slot/ordinal binding",
+        "a production-safe Tianfu convention or semantic identity for rotation-06",
+        "a complete calendar/time oracle, Four Transformations table, or 命主/身主 source rule",
+        "image-level repository reuse permission from a public-domain label alone",
+        "Ziwei P0 readiness, interpretation grounding, activation, or production behavior"
+      ],
+      "evidenceSourceId": "src-youyi-lu-cadal-01025514-1883",
+      "facts": [
+        "The inspected digital resource identifies 春在堂全書·游藝錄 by (清)俞樾 and has 178 pages.",
+        "CADAL metadata places 游藝錄五 at digital page 130 and 游藝錄六 at digital page 166.",
+        "The exact downloaded DjVu bytes hash to the recorded SHA-1 and SHA-256; the bytes are not stored in Git.",
+        "Commons renders for scan pages 1-10 and 177-178 were visually checked at the scan boundary: page 1 and page 178 are blank leaves, page 2 begins printed text, and page 177 ends with printed text and a seal; no title page or colophon was observed.",
+        "The 1871 CiNii record is retained as an earlier-edition lineage candidate, not silently merged or treated as an independent semantic witness."
+      ],
+      "independenceStatus": "distinct_scan_candidate; textual_transmission_independence_unresolved",
+      "lineageStatus": "digital_scan_identity_bounded; historical textual lineage not observed",
+      "locator": {
+        "cadalUrl": "https://cadal.edu.cn/cardpage/bookCardPage?ssno=01025514",
+        "cinii1883Url": "https://ci.nii.ac.jp/ncid/BB19945538",
+        "commonsFileUrl": "https://upload.wikimedia.org/wikipedia/commons/3/3f/CADAL01025514_%E6%98%A5%E5%9C%A8%E5%A0%82%E5%85%A8%E6%9B%B8%C2%B7%E6%B8%B8%E8%97%9D%E9%8C%84.djvu",
+        "sourceIdentifier": "01025514"
+      },
+      "observationId": "obs-youyi-cadal-01025514-source-file-identity",
+      "observationKind": "external_scan_file_and_catalog_identity",
+      "physicalWitnessSourceId": "src-youyi-lu-cadal-01025514-1883",
+      "researcherDirectObservation": false,
+      "source": {
+        "authority": "direct visual scan observations support bounded text surfaces; source authority and semantic authority remain unestablished",
+        "edition": {
+          "catalogDate": "清光緒九年(1883)",
+          "catalogDateSource": "CADAL/Tsinghua metadata and CiNii 1883 record",
+          "colophonPresent": false,
+          "colophonReviewed": true,
+          "identityStatus": "digital_resource_identity_confirmed; printed_copy_identity_and_transmission_lineage_not_fully_closed",
+          "physicalCopyTitlePagePresent": false,
+          "physicalCopyTitlePageReviewed": true,
+          "printedFolioBindingClosed": false,
+          "publisher": "not stated in the inspected CADAL metadata beyond the source record"
+        },
+        "independence": "repository/file identity is distinct from existing P0 sources, but 1883-to-1871 and cross-corpus transmission independence is unresolved",
+        "lineage": "1883 catalog/scan identity is bounded; no inference from 1871 catalog record to exact textual continuity",
+        "locatorPolicy": {
+          "exactLocator": "Commons DjVu page index + CADAL digital page + CText library file/page",
+          "printedFolio": "not asserted; no physical folio was invented",
+          "semanticPageRendersReviewed": [
+            130,
+            131,
+            136,
+            139,
+            140
+          ]
+        },
+        "ocrPolicy": {
+          "canonicalForClaims": false,
+          "observedLocatorCorrections": [
+            "日 versus OCR 曰",
+            "宮 versus OCR 官",
+            "戌 versus OCR 戊",
+            "寅 versus OCR 開",
+            "酉 versus OCR 西"
+          ],
+          "provider": "Chinese Text Project OCR/text layer",
+          "role": "locator_only",
+          "scanVisualReviewRequired": true
+        },
+        "physicalWitnessStatus": "distinct historical-work scan candidate; independent physical/textual lineage not admitted",
+        "repositories": {
+          "cADAL": {
+            "identifier": "01025514",
+            "institution": "清華大學",
+            "metadataObserved": [
+              "title",
+              "creator",
+              "date",
+              "contributor",
+              "178-page count",
+              "chapter start pages"
+            ],
+            "url": "https://cadal.edu.cn/cardpage/bookCardPage?ssno=01025514"
+          },
+          "cinii1883": {
+            "physicalBibliography": "23.4×15.1cm; 13,27,18,6,18,6丁; 10 lines/21 characters",
+            "record": "游藝録 6卷; (清)兪樾 [撰]; [光緒9 (1883)]",
+            "url": "https://ci.nii.ac.jp/ncid/BB19945538"
+          },
+          "commons": {
+            "derivativeRole": "Commons-hosted copy of the CADAL/Tsinghua DjVu resource",
+            "filePageMetadataObserved": [
+              "author",
+              "title",
+              "1883 date",
+              "178 pages",
+              "dimensions",
+              "public-domain mark"
+            ],
+            "hostedFileUrl": "https://upload.wikimedia.org/wikipedia/commons/3/3f/CADAL01025514_%E6%98%A5%E5%9C%A8%E5%A0%82%E5%85%A8%E6%9B%B8%C2%B7%E6%B8%B8%E8%97%9D%E9%8C%84.djvu"
+          },
+          "earlierEditionCandidate": {
+            "lineageStatus": "unresolved; not merged and not admitted as independent corroboration",
+            "record": "游藝録 6卷; 同治10 [1871]",
+            "relationship": "same-work earlier-edition candidate; direct text/leaf comparison not performed",
+            "url": "https://ci.nii.ac.jp/ncid/BD19656670"
+          }
+        },
+        "rights": {
+          "commonsFilePageMark": "Public Domain Mark reported on the Commons file page",
+          "sourceImageReuse": "not automatically granted by catalog access or public-domain label; human/policy review remains required",
+          "sourceImagesStoredInGit": false
+        },
+        "role": "new semantic-witness candidate; bounded direct scan surface",
+        "scanBoundaryReview": {
+          "colophonObserved": false,
+          "conclusion": "The available 178-page digital scan was checked at its front and back boundary; a title page and colophon were not observed. This does not prove that the bound physical copy never contained either leaf.",
+          "renderWidth": 1920,
+          "reviewedPages": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            177,
+            178
+          ],
+          "surfaces": [
+            {
+              "commonsRenderSha256": "7f6332ae04d3569e205f51efcef52d3a659552b6aa4665ae22531eaf4b0f69f3",
+              "observation": "blank scan leaf; no title-page text or imprint visible",
+              "scanPage": 1
+            },
+            {
+              "commonsRenderSha256": "514e9b1e8dbf514f98d3eb148a6f2920d2a90b660c00524d8760e72ccdc43e77",
+              "observation": "printed text begins; no title-page or imprint surface visible",
+              "scanPage": 2
+            },
+            {
+              "commonsRenderSha256": "c5cc4d329d0f0dd99757e246668a0b78d9ff4763859b49c259cbbb9a64253fac",
+              "observation": "printed text and end seal; no colophon or imprint surface visible",
+              "scanPage": 177
+            },
+            {
+              "commonsRenderSha256": "7f6332ae04d3569e205f51efcef52d3a659552b6aa4665ae22531eaf4b0f69f3",
+              "observation": "blank scan leaf; no colophon text visible",
+              "scanPage": 178
+            }
+          ],
+          "titlePageObserved": false
+        },
+        "sourceFile": {
+          "acquiredOutsideMaterializer": true,
+          "byteIdentity": "directly hashed from the downloaded source DjVu bytes outside the repository",
+          "byteLength": 7368126,
+          "dimensions": "3196×5594",
+          "fileName": "CADAL01025514_春在堂全書·游藝錄.djvu",
+          "format": "DjVu multiple page document",
+          "materializerNetworkUsed": false,
+          "pageCount": 178,
+          "sha1": "0ccb501b8fa86358ec1cae34dca4d56df6a1fbd2",
+          "sha256": "761a9827a1fe0df8f1aa1e15317b1eb18c528892750fa618f7ed97a5897535ba",
+          "storedInGit": false
+        },
+        "sourceId": "src-youyi-lu-cadal-01025514-1883",
+        "sourceKind": "external_public_digital_scan_of_historical_printed_work",
+        "storedInGit": false,
+        "work": {
+          "author": "(清)俞樾",
+          "chapterPageRange": "digital scan pages 130-165; catalog chapter boundary",
+          "chapterPageStart": 130,
+          "nextChapterPageStart": 166,
+          "section": "游藝錄五·紫微斗數篇",
+          "title": "春在堂全書·游藝錄"
+        }
+      },
+      "sourceIds": [
+        "src-youyi-lu-cadal-01025514-1883"
+      ],
+      "surface": "title/author/date/repository identity, source DjVu bytes, 178-page structure, and v5 chapter boundary",
+      "transcriptionRole": "direct_scan_visual_review; CText OCR locator only",
+      "whatItEstablishes": [
+        "bounded identity of the external digital scan resource",
+        "a reproducible page locator for the five visually reviewed pages",
+        "a distinct physical-witness candidate record without independent admission"
+      ]
+    },
+    {
+      "affectedClaimIds": [
+        "claim-palace-name-branch-ordinal",
+        "claim-ming-shen-coordinate-frame",
+        "claim-12-palace-diagram-semantics"
+      ],
+      "authorityStatus": "bounded_direct_scan_surface; source_authority_and_semantic_authority_not_established",
+      "blockerIds": [
+        "blocker-palace-semantic-identity",
+        "blocker-direct-rule-absent"
+      ],
+      "deterministicRelation": {
+        "evaluatorPath": "src/ziwei/mingShenCleanRuleSeedPilot.js",
+        "input": {
+          "hourBranch": "辰",
+          "lunarMonth": 2
+        },
+        "relationClass": "same-source-derived_evaluator_matches_bounded_scan_example; not an independent oracle",
+        "sourceEvaluatorResult": {
+          "hourBranch": "辰",
+          "lunarMonth": 2,
+          "mingGong": {
+            "branch": "亥",
+            "branchIndex": 11,
+            "engineId": "life",
+            "traditionalName": "命宮"
+          },
+          "monthStartBranch": "卯",
+          "shenGong": {
+            "branch": "未",
+            "branchIndex": 7,
+            "engineId": "shen",
+            "traditionalName": "身宮"
+          }
+        }
+      },
+      "directObservationStatus": "bounded_direct_visual_review_of_temporary_scan_render",
+      "doesNotEstablish": [
+        "the 1883 scan is the original printing or the earliest edition of 游藝錄",
+        "textual transmission independence from Nanbei, Nanyang, NARA, or the existing Toyo candidate",
+        "a complete source-authoritative palace name to branch to physical-slot/ordinal binding",
+        "a production-safe Tianfu convention or semantic identity for rotation-06",
+        "a complete calendar/time oracle, Four Transformations table, or 命主/身主 source rule",
+        "image-level repository reuse permission from a public-domain label alone",
+        "Ziwei P0 readiness, interpretation grounding, activation, or production behavior"
+      ],
+      "evidenceSourceId": "src-youyi-lu-cadal-01025514-1883",
+      "facts": [
+        "For 二月辰時, the text starts from the 卯 month-building palace, counts 子時, places 命宮 at 亥 and 身宮 at 未.",
+        "The named palace sequence is 命宮, 兄弟宮, 夫妻宮, 子息宮, 財帛宮, 疾厄宮, 遷移宮, 奴僕宮, 官祿宮, 田宅宮, 福德宮, 父母宮.",
+        "After 命宮 is placed, the text says 乃逆行而布十二宮; 命立子宮 gives 兄弟宮 at 亥 and 夫妻宮 at 戌, while 命立丑宮 gives 兄弟宮 at 子 and 夫妻宮 at 亥."
+      ],
+      "independenceStatus": "distinct_scan_candidate; textual_transmission_independence_unresolved",
+      "lineageStatus": "digital_scan_identity_bounded; historical textual lineage not observed",
+      "locator": {
+        "cadalDigitalPage": 130,
+        "commonsDjvuPage": 130,
+        "commonsRenderUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/CADAL01025514_%E6%98%A5%E5%9C%A8%E5%A0%82%E5%85%A8%E6%9B%B8%C2%B7%E6%B8%B8%E8%97%9D%E9%8C%84.djvu/page130-3840px-CADAL01025514_%E6%98%A5%E5%9C%A8%E5%A0%82%E5%85%A8%E6%9B%B8%C2%B7%E6%B8%B8%E8%97%9D%E9%8C%84.djvu.jpg",
+        "ctextLocator": {
+          "canonicalText": false,
+          "chapterTitle": "春在堂全書·游藝錄v5紫微斗數篇",
+          "libraryFile": "192852",
+          "page": 130,
+          "provider": "Chinese Text Project",
+          "role": "locator_only",
+          "url": "https://ctext.org/wiki.pl?chapter=299125&if=gb"
+        },
+        "printedFolio": null,
+        "printedFolioStatus": "not_asserted; scan folio was not used as an invented locator",
+        "reviewedRenderSha256": "a0a7a185b795225a3b206ac828cc761e046b6028939093b2139835eae9311206",
+        "scanPage": 130
+      },
+      "normalizedTranscription": "凡以紫微斗數推人年命，先安命宮，次安身宮。假如二月辰時生人，二月建卯，即於卯宮起子時，逆數至辰時在亥宮，為命宮，順數至辰時在未宮，為身宮。乃逆行而布十二宮；命立子宮，則亥為兄弟宮、戌為夫妻宮；命立丑宮，則子為兄弟宮、亥為夫妻宮。",
+      "observationId": "obs-youyi-p130-ming-shen-palace-order",
+      "observationKind": "direct_scan_ming_shen_traversal_and_named_palace_order",
+      "physicalWitnessSourceId": "src-youyi-lu-cadal-01025514-1883",
+      "rawVisibleText": "凡以紫微斗數推人年命先安命宮次安身宮假如二月辰時生人二月建卯即於卯宮起子時逆數至辰時在亥宮為命宮順數至辰時在未宮為身宮有身命同一宮者如子時生人從月建起子時身命同宮又如午時生人從月建順逆數至午時皆在一宮亦身命同宮乃逆行而布十二宮十二宮者一命宮二兄弟宮三夫妻宮四子息宮五財帛宮六疾厄宮七遷移宮八奴僕宮九官祿宮十田宅宮十一福德宮十二父母宮視命宮所在而逆布之如命立子宮則亥為兄弟宮戌為夫妻宮命立丑宮則子為兄弟宮亥為夫妻宮餘視此",
+      "researcherDirectObservation": true,
+      "source": {
+        "authority": "direct visual scan observations support bounded text surfaces; source authority and semantic authority remain unestablished",
+        "edition": {
+          "catalogDate": "清光緒九年(1883)",
+          "catalogDateSource": "CADAL/Tsinghua metadata and CiNii 1883 record",
+          "colophonPresent": false,
+          "colophonReviewed": true,
+          "identityStatus": "digital_resource_identity_confirmed; printed_copy_identity_and_transmission_lineage_not_fully_closed",
+          "physicalCopyTitlePagePresent": false,
+          "physicalCopyTitlePageReviewed": true,
+          "printedFolioBindingClosed": false,
+          "publisher": "not stated in the inspected CADAL metadata beyond the source record"
+        },
+        "independence": "repository/file identity is distinct from existing P0 sources, but 1883-to-1871 and cross-corpus transmission independence is unresolved",
+        "lineage": "1883 catalog/scan identity is bounded; no inference from 1871 catalog record to exact textual continuity",
+        "locatorPolicy": {
+          "exactLocator": "Commons DjVu page index + CADAL digital page + CText library file/page",
+          "printedFolio": "not asserted; no physical folio was invented",
+          "semanticPageRendersReviewed": [
+            130,
+            131,
+            136,
+            139,
+            140
+          ]
+        },
+        "ocrPolicy": {
+          "canonicalForClaims": false,
+          "observedLocatorCorrections": [
+            "日 versus OCR 曰",
+            "宮 versus OCR 官",
+            "戌 versus OCR 戊",
+            "寅 versus OCR 開",
+            "酉 versus OCR 西"
+          ],
+          "provider": "Chinese Text Project OCR/text layer",
+          "role": "locator_only",
+          "scanVisualReviewRequired": true
+        },
+        "physicalWitnessStatus": "distinct historical-work scan candidate; independent physical/textual lineage not admitted",
+        "repositories": {
+          "cADAL": {
+            "identifier": "01025514",
+            "institution": "清華大學",
+            "metadataObserved": [
+              "title",
+              "creator",
+              "date",
+              "contributor",
+              "178-page count",
+              "chapter start pages"
+            ],
+            "url": "https://cadal.edu.cn/cardpage/bookCardPage?ssno=01025514"
+          },
+          "cinii1883": {
+            "physicalBibliography": "23.4×15.1cm; 13,27,18,6,18,6丁; 10 lines/21 characters",
+            "record": "游藝録 6卷; (清)兪樾 [撰]; [光緒9 (1883)]",
+            "url": "https://ci.nii.ac.jp/ncid/BB19945538"
+          },
+          "commons": {
+            "derivativeRole": "Commons-hosted copy of the CADAL/Tsinghua DjVu resource",
+            "filePageMetadataObserved": [
+              "author",
+              "title",
+              "1883 date",
+              "178 pages",
+              "dimensions",
+              "public-domain mark"
+            ],
+            "hostedFileUrl": "https://upload.wikimedia.org/wikipedia/commons/3/3f/CADAL01025514_%E6%98%A5%E5%9C%A8%E5%A0%82%E5%85%A8%E6%9B%B8%C2%B7%E6%B8%B8%E8%97%9D%E9%8C%84.djvu"
+          },
+          "earlierEditionCandidate": {
+            "lineageStatus": "unresolved; not merged and not admitted as independent corroboration",
+            "record": "游藝録 6卷; 同治10 [1871]",
+            "relationship": "same-work earlier-edition candidate; direct text/leaf comparison not performed",
+            "url": "https://ci.nii.ac.jp/ncid/BD19656670"
+          }
+        },
+        "rights": {
+          "commonsFilePageMark": "Public Domain Mark reported on the Commons file page",
+          "sourceImageReuse": "not automatically granted by catalog access or public-domain label; human/policy review remains required",
+          "sourceImagesStoredInGit": false
+        },
+        "role": "new semantic-witness candidate; bounded direct scan surface",
+        "scanBoundaryReview": {
+          "colophonObserved": false,
+          "conclusion": "The available 178-page digital scan was checked at its front and back boundary; a title page and colophon were not observed. This does not prove that the bound physical copy never contained either leaf.",
+          "renderWidth": 1920,
+          "reviewedPages": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            177,
+            178
+          ],
+          "surfaces": [
+            {
+              "commonsRenderSha256": "7f6332ae04d3569e205f51efcef52d3a659552b6aa4665ae22531eaf4b0f69f3",
+              "observation": "blank scan leaf; no title-page text or imprint visible",
+              "scanPage": 1
+            },
+            {
+              "commonsRenderSha256": "514e9b1e8dbf514f98d3eb148a6f2920d2a90b660c00524d8760e72ccdc43e77",
+              "observation": "printed text begins; no title-page or imprint surface visible",
+              "scanPage": 2
+            },
+            {
+              "commonsRenderSha256": "c5cc4d329d0f0dd99757e246668a0b78d9ff4763859b49c259cbbb9a64253fac",
+              "observation": "printed text and end seal; no colophon or imprint surface visible",
+              "scanPage": 177
+            },
+            {
+              "commonsRenderSha256": "7f6332ae04d3569e205f51efcef52d3a659552b6aa4665ae22531eaf4b0f69f3",
+              "observation": "blank scan leaf; no colophon text visible",
+              "scanPage": 178
+            }
+          ],
+          "titlePageObserved": false
+        },
+        "sourceFile": {
+          "acquiredOutsideMaterializer": true,
+          "byteIdentity": "directly hashed from the downloaded source DjVu bytes outside the repository",
+          "byteLength": 7368126,
+          "dimensions": "3196×5594",
+          "fileName": "CADAL01025514_春在堂全書·游藝錄.djvu",
+          "format": "DjVu multiple page document",
+          "materializerNetworkUsed": false,
+          "pageCount": 178,
+          "sha1": "0ccb501b8fa86358ec1cae34dca4d56df6a1fbd2",
+          "sha256": "761a9827a1fe0df8f1aa1e15317b1eb18c528892750fa618f7ed97a5897535ba",
+          "storedInGit": false
+        },
+        "sourceId": "src-youyi-lu-cadal-01025514-1883",
+        "sourceKind": "external_public_digital_scan_of_historical_printed_work",
+        "storedInGit": false,
+        "work": {
+          "author": "(清)俞樾",
+          "chapterPageRange": "digital scan pages 130-165; catalog chapter boundary",
+          "chapterPageStart": 130,
+          "nextChapterPageStart": 166,
+          "section": "游藝錄五·紫微斗數篇",
+          "title": "春在堂全書·游藝錄"
+        }
+      },
+      "sourceIds": [
+        "src-youyi-lu-cadal-01025514-1883"
+      ],
+      "surface": "命宮/身宮 example, 12 named palaces, and reverse named-palace allocation",
+      "transcriptionRole": "direct_scan_visual_review; CText OCR locator only",
+      "whatItEstablishes": [
+        "bounded direct observation of the named-palace order and reverse traversal wording",
+        "one explicit 命宮/身宮 worked example"
+      ]
+    },
+    {
+      "affectedClaimIds": [
+        "claim-palace-name-branch-ordinal",
+        "claim-12-palace-diagram-semantics"
+      ],
+      "authorityStatus": "bounded_direct_scan_surface; source_authority_and_semantic_authority_not_established",
+      "blockerIds": [
+        "blocker-palace-semantic-identity"
+      ],
+      "deterministicRelation": {
+        "branchOrder": [
+          "子",
+          "丑",
+          "寅",
+          "卯",
+          "辰",
+          "巳",
+          "午",
+          "未",
+          "申",
+          "酉",
+          "戌",
+          "亥"
+        ],
+        "relationClass": "direct_branch_token_relation; physical-slot and ordinal identity remain open"
+      },
+      "directObservationStatus": "bounded_direct_visual_review_of_temporary_scan_render",
+      "doesNotEstablish": [
+        "the 1883 scan is the original printing or the earliest edition of 游藝錄",
+        "textual transmission independence from Nanbei, Nanyang, NARA, or the existing Toyo candidate",
+        "a complete source-authoritative palace name to branch to physical-slot/ordinal binding",
+        "a production-safe Tianfu convention or semantic identity for rotation-06",
+        "a complete calendar/time oracle, Four Transformations table, or 命主/身主 source rule",
+        "image-level repository reuse permission from a public-domain label alone",
+        "Ziwei P0 readiness, interpretation grounding, activation, or production behavior"
+      ],
+      "evidenceSourceId": "src-youyi-lu-cadal-01025514-1883",
+      "facts": [
+        "The text explicitly lists opposites as 子午, 丑未, 寅申, 卯酉, 辰戌, 巳亥.",
+        "The text explicitly lists triple groups as 寅午戌, 巳酉丑, 申子辰, 亥卯未.",
+        "Worked examples state that 命立子宮 has 午 as 對 and 申、辰 as 合; 命立午宮 has 子 as 對 and 寅、戌 as 合."
+      ],
+      "independenceStatus": "distinct_scan_candidate; textual_transmission_independence_unresolved",
+      "lineageStatus": "digital_scan_identity_bounded; historical textual lineage not observed",
+      "locator": {
+        "cadalDigitalPage": 131,
+        "commonsDjvuPage": 131,
+        "commonsRenderUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/CADAL01025514_%E6%98%A5%E5%9C%A8%E5%A0%82%E5%85%A8%E6%9B%B8%C2%B7%E6%B8%B8%E8%97%9D%E9%8C%84.djvu/page131-3840px-CADAL01025514_%E6%98%A5%E5%9C%A8%E5%A0%82%E5%85%A8%E6%9B%B8%C2%B7%E6%B8%B8%E8%97%9D%E9%8C%84.djvu.jpg",
+        "ctextLocator": {
+          "canonicalText": false,
+          "chapterTitle": "春在堂全書·游藝錄v5紫微斗數篇",
+          "libraryFile": "192852",
+          "page": 131,
+          "provider": "Chinese Text Project",
+          "role": "locator_only",
+          "url": "https://ctext.org/wiki.pl?chapter=299125&if=gb"
+        },
+        "printedFolio": null,
+        "printedFolioStatus": "not_asserted; scan folio was not used as an invented locator",
+        "reviewedRenderSha256": "05e4d55ad718229036a636ac36da898605a48fd4f40073a8d9c2293845df517f",
+        "scanPage": 131
+      },
+      "normalizedTranscription": "有對衝之宮，有合照之宮。十二宮對衝：子午、丑未、寅申、卯酉、辰戌、巳亥。十二宮三合：寅午戌、巳酉丑、申子辰、亥卯未；命立子宮，則午為對、申辰為合；命立午宮，則子為對、寅戌為合。",
+      "observationId": "obs-youyi-p131-branch-relations",
+      "observationKind": "direct_scan_opposition_and_triple_branch_relations",
+      "physicalWitnessSourceId": "src-youyi-lu-cadal-01025514-1883",
+      "rawVisibleText": "有對衝之宮有合照之宮十二宮對衝子午丑未寅申卯酉辰戌巳亥十二宮三合寅午戌巳酉丑申子辰亥卯未如命立子宮則午為對申辰為合如命立午宮則子為對寅戌為合餘視此",
+      "researcherDirectObservation": true,
+      "source": {
+        "authority": "direct visual scan observations support bounded text surfaces; source authority and semantic authority remain unestablished",
+        "edition": {
+          "catalogDate": "清光緒九年(1883)",
+          "catalogDateSource": "CADAL/Tsinghua metadata and CiNii 1883 record",
+          "colophonPresent": false,
+          "colophonReviewed": true,
+          "identityStatus": "digital_resource_identity_confirmed; printed_copy_identity_and_transmission_lineage_not_fully_closed",
+          "physicalCopyTitlePagePresent": false,
+          "physicalCopyTitlePageReviewed": true,
+          "printedFolioBindingClosed": false,
+          "publisher": "not stated in the inspected CADAL metadata beyond the source record"
+        },
+        "independence": "repository/file identity is distinct from existing P0 sources, but 1883-to-1871 and cross-corpus transmission independence is unresolved",
+        "lineage": "1883 catalog/scan identity is bounded; no inference from 1871 catalog record to exact textual continuity",
+        "locatorPolicy": {
+          "exactLocator": "Commons DjVu page index + CADAL digital page + CText library file/page",
+          "printedFolio": "not asserted; no physical folio was invented",
+          "semanticPageRendersReviewed": [
+            130,
+            131,
+            136,
+            139,
+            140
+          ]
+        },
+        "ocrPolicy": {
+          "canonicalForClaims": false,
+          "observedLocatorCorrections": [
+            "日 versus OCR 曰",
+            "宮 versus OCR 官",
+            "戌 versus OCR 戊",
+            "寅 versus OCR 開",
+            "酉 versus OCR 西"
+          ],
+          "provider": "Chinese Text Project OCR/text layer",
+          "role": "locator_only",
+          "scanVisualReviewRequired": true
+        },
+        "physicalWitnessStatus": "distinct historical-work scan candidate; independent physical/textual lineage not admitted",
+        "repositories": {
+          "cADAL": {
+            "identifier": "01025514",
+            "institution": "清華大學",
+            "metadataObserved": [
+              "title",
+              "creator",
+              "date",
+              "contributor",
+              "178-page count",
+              "chapter start pages"
+            ],
+            "url": "https://cadal.edu.cn/cardpage/bookCardPage?ssno=01025514"
+          },
+          "cinii1883": {
+            "physicalBibliography": "23.4×15.1cm; 13,27,18,6,18,6丁; 10 lines/21 characters",
+            "record": "游藝録 6卷; (清)兪樾 [撰]; [光緒9 (1883)]",
+            "url": "https://ci.nii.ac.jp/ncid/BB19945538"
+          },
+          "commons": {
+            "derivativeRole": "Commons-hosted copy of the CADAL/Tsinghua DjVu resource",
+            "filePageMetadataObserved": [
+              "author",
+              "title",
+              "1883 date",
+              "178 pages",
+              "dimensions",
+              "public-domain mark"
+            ],
+            "hostedFileUrl": "https://upload.wikimedia.org/wikipedia/commons/3/3f/CADAL01025514_%E6%98%A5%E5%9C%A8%E5%A0%82%E5%85%A8%E6%9B%B8%C2%B7%E6%B8%B8%E8%97%9D%E9%8C%84.djvu"
+          },
+          "earlierEditionCandidate": {
+            "lineageStatus": "unresolved; not merged and not admitted as independent corroboration",
+            "record": "游藝録 6卷; 同治10 [1871]",
+            "relationship": "same-work earlier-edition candidate; direct text/leaf comparison not performed",
+            "url": "https://ci.nii.ac.jp/ncid/BD19656670"
+          }
+        },
+        "rights": {
+          "commonsFilePageMark": "Public Domain Mark reported on the Commons file page",
+          "sourceImageReuse": "not automatically granted by catalog access or public-domain label; human/policy review remains required",
+          "sourceImagesStoredInGit": false
+        },
+        "role": "new semantic-witness candidate; bounded direct scan surface",
+        "scanBoundaryReview": {
+          "colophonObserved": false,
+          "conclusion": "The available 178-page digital scan was checked at its front and back boundary; a title page and colophon were not observed. This does not prove that the bound physical copy never contained either leaf.",
+          "renderWidth": 1920,
+          "reviewedPages": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            177,
+            178
+          ],
+          "surfaces": [
+            {
+              "commonsRenderSha256": "7f6332ae04d3569e205f51efcef52d3a659552b6aa4665ae22531eaf4b0f69f3",
+              "observation": "blank scan leaf; no title-page text or imprint visible",
+              "scanPage": 1
+            },
+            {
+              "commonsRenderSha256": "514e9b1e8dbf514f98d3eb148a6f2920d2a90b660c00524d8760e72ccdc43e77",
+              "observation": "printed text begins; no title-page or imprint surface visible",
+              "scanPage": 2
+            },
+            {
+              "commonsRenderSha256": "c5cc4d329d0f0dd99757e246668a0b78d9ff4763859b49c259cbbb9a64253fac",
+              "observation": "printed text and end seal; no colophon or imprint surface visible",
+              "scanPage": 177
+            },
+            {
+              "commonsRenderSha256": "7f6332ae04d3569e205f51efcef52d3a659552b6aa4665ae22531eaf4b0f69f3",
+              "observation": "blank scan leaf; no colophon text visible",
+              "scanPage": 178
+            }
+          ],
+          "titlePageObserved": false
+        },
+        "sourceFile": {
+          "acquiredOutsideMaterializer": true,
+          "byteIdentity": "directly hashed from the downloaded source DjVu bytes outside the repository",
+          "byteLength": 7368126,
+          "dimensions": "3196×5594",
+          "fileName": "CADAL01025514_春在堂全書·游藝錄.djvu",
+          "format": "DjVu multiple page document",
+          "materializerNetworkUsed": false,
+          "pageCount": 178,
+          "sha1": "0ccb501b8fa86358ec1cae34dca4d56df6a1fbd2",
+          "sha256": "761a9827a1fe0df8f1aa1e15317b1eb18c528892750fa618f7ed97a5897535ba",
+          "storedInGit": false
+        },
+        "sourceId": "src-youyi-lu-cadal-01025514-1883",
+        "sourceKind": "external_public_digital_scan_of_historical_printed_work",
+        "storedInGit": false,
+        "work": {
+          "author": "(清)俞樾",
+          "chapterPageRange": "digital scan pages 130-165; catalog chapter boundary",
+          "chapterPageStart": 130,
+          "nextChapterPageStart": 166,
+          "section": "游藝錄五·紫微斗數篇",
+          "title": "春在堂全書·游藝錄"
+        }
+      },
+      "sourceIds": [
+        "src-youyi-lu-cadal-01025514-1883"
+      ],
+      "surface": "十二宮對衝 and 十二宮三合 branch sets",
+      "transcriptionRole": "direct_scan_visual_review; CText OCR locator only",
+      "whatItEstablishes": [
+        "bounded direct branch-token relations used by the source surface"
+      ]
+    },
+    {
+      "affectedClaimIds": [
+        "claim-tianfu-anchor-direction",
+        "claim-tianfu-placement",
+        "claim-major-star-placement-tianfu",
+        "claim-tianfu-rotation06-semantic"
+      ],
+      "authorityStatus": "bounded_direct_scan_surface; source_authority_and_semantic_authority_not_established",
+      "blockerIds": [
+        "blocker-tianfu-raw-formula-contradiction",
+        "blocker-tianfu-rotation06-semantic-authority",
+        "blocker-direct-rule-absent"
+      ],
+      "directObservationStatus": "bounded_direct_visual_review_of_temporary_scan_render",
+      "doesNotEstablish": [
+        "the 1883 scan is the original printing or the earliest edition of 游藝錄",
+        "textual transmission independence from Nanbei, Nanyang, NARA, or the existing Toyo candidate",
+        "a complete source-authoritative palace name to branch to physical-slot/ordinal binding",
+        "a production-safe Tianfu convention or semantic identity for rotation-06",
+        "a complete calendar/time oracle, Four Transformations table, or 命主/身主 source rule",
+        "image-level repository reuse permission from a public-domain label alone",
+        "Ziwei P0 readiness, interpretation grounding, activation, or production behavior"
+      ],
+      "evidenceSourceId": "src-youyi-lu-cadal-01025514-1883",
+      "facts": [
+        "The source says to find the palace of the birth day in the five bureaus, place 紫微 there, and place 天府 at its 斜對之宮.",
+        "The word 斜對 is a source relation token; no modulo formula or production enum is printed in this observation."
+      ],
+      "independenceStatus": "distinct_scan_candidate; textual_transmission_independence_unresolved",
+      "lineageStatus": "digital_scan_identity_bounded; historical textual lineage not observed",
+      "locator": {
+        "cadalDigitalPage": 136,
+        "commonsDjvuPage": 136,
+        "commonsRenderUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/CADAL01025514_%E6%98%A5%E5%9C%A8%E5%A0%82%E5%85%A8%E6%9B%B8%C2%B7%E6%B8%B8%E8%97%9D%E9%8C%84.djvu/page136-3840px-CADAL01025514_%E6%98%A5%E5%9C%A8%E5%A0%82%E5%85%A8%E6%9B%B8%C2%B7%E6%B8%B8%E8%97%9D%E9%8C%84.djvu.jpg",
+        "ctextLocator": {
+          "canonicalText": false,
+          "chapterTitle": "春在堂全書·游藝錄v5紫微斗數篇",
+          "libraryFile": "192852",
+          "page": 136,
+          "provider": "Chinese Text Project",
+          "role": "locator_only",
+          "url": "https://ctext.org/wiki.pl?chapter=299125&if=gb"
+        },
+        "printedFolio": null,
+        "printedFolioStatus": "not_asserted; scan folio was not used as an invented locator",
+        "reviewedRenderSha256": "4f20ac6bbf906e1ecfcc2e08e78b4f9f3e5710617eef3d49714dffd153b2b64b",
+        "scanPage": 136
+      },
+      "normalizedTranscription": "而於五局中求所生之日，日在何宮，即於是宮安紫微星，於其斜對之宮安天府星。",
+      "observationId": "obs-youyi-p136-tianfu-diagonal-anchor",
+      "observationKind": "direct_scan_tianfu_diagonal_anchor_statement",
+      "physicalWitnessSourceId": "src-youyi-lu-cadal-01025514-1883",
+      "rawVisibleText": "而於五局中求所生之日日在何宮即於是宮安紫微星於其斜對之宮安天府星",
+      "researcherDirectObservation": true,
+      "source": {
+        "authority": "direct visual scan observations support bounded text surfaces; source authority and semantic authority remain unestablished",
+        "edition": {
+          "catalogDate": "清光緒九年(1883)",
+          "catalogDateSource": "CADAL/Tsinghua metadata and CiNii 1883 record",
+          "colophonPresent": false,
+          "colophonReviewed": true,
+          "identityStatus": "digital_resource_identity_confirmed; printed_copy_identity_and_transmission_lineage_not_fully_closed",
+          "physicalCopyTitlePagePresent": false,
+          "physicalCopyTitlePageReviewed": true,
+          "printedFolioBindingClosed": false,
+          "publisher": "not stated in the inspected CADAL metadata beyond the source record"
+        },
+        "independence": "repository/file identity is distinct from existing P0 sources, but 1883-to-1871 and cross-corpus transmission independence is unresolved",
+        "lineage": "1883 catalog/scan identity is bounded; no inference from 1871 catalog record to exact textual continuity",
+        "locatorPolicy": {
+          "exactLocator": "Commons DjVu page index + CADAL digital page + CText library file/page",
+          "printedFolio": "not asserted; no physical folio was invented",
+          "semanticPageRendersReviewed": [
+            130,
+            131,
+            136,
+            139,
+            140
+          ]
+        },
+        "ocrPolicy": {
+          "canonicalForClaims": false,
+          "observedLocatorCorrections": [
+            "日 versus OCR 曰",
+            "宮 versus OCR 官",
+            "戌 versus OCR 戊",
+            "寅 versus OCR 開",
+            "酉 versus OCR 西"
+          ],
+          "provider": "Chinese Text Project OCR/text layer",
+          "role": "locator_only",
+          "scanVisualReviewRequired": true
+        },
+        "physicalWitnessStatus": "distinct historical-work scan candidate; independent physical/textual lineage not admitted",
+        "repositories": {
+          "cADAL": {
+            "identifier": "01025514",
+            "institution": "清華大學",
+            "metadataObserved": [
+              "title",
+              "creator",
+              "date",
+              "contributor",
+              "178-page count",
+              "chapter start pages"
+            ],
+            "url": "https://cadal.edu.cn/cardpage/bookCardPage?ssno=01025514"
+          },
+          "cinii1883": {
+            "physicalBibliography": "23.4×15.1cm; 13,27,18,6,18,6丁; 10 lines/21 characters",
+            "record": "游藝録 6卷; (清)兪樾 [撰]; [光緒9 (1883)]",
+            "url": "https://ci.nii.ac.jp/ncid/BB19945538"
+          },
+          "commons": {
+            "derivativeRole": "Commons-hosted copy of the CADAL/Tsinghua DjVu resource",
+            "filePageMetadataObserved": [
+              "author",
+              "title",
+              "1883 date",
+              "178 pages",
+              "dimensions",
+              "public-domain mark"
+            ],
+            "hostedFileUrl": "https://upload.wikimedia.org/wikipedia/commons/3/3f/CADAL01025514_%E6%98%A5%E5%9C%A8%E5%A0%82%E5%85%A8%E6%9B%B8%C2%B7%E6%B8%B8%E8%97%9D%E9%8C%84.djvu"
+          },
+          "earlierEditionCandidate": {
+            "lineageStatus": "unresolved; not merged and not admitted as independent corroboration",
+            "record": "游藝録 6卷; 同治10 [1871]",
+            "relationship": "same-work earlier-edition candidate; direct text/leaf comparison not performed",
+            "url": "https://ci.nii.ac.jp/ncid/BD19656670"
+          }
+        },
+        "rights": {
+          "commonsFilePageMark": "Public Domain Mark reported on the Commons file page",
+          "sourceImageReuse": "not automatically granted by catalog access or public-domain label; human/policy review remains required",
+          "sourceImagesStoredInGit": false
+        },
+        "role": "new semantic-witness candidate; bounded direct scan surface",
+        "scanBoundaryReview": {
+          "colophonObserved": false,
+          "conclusion": "The available 178-page digital scan was checked at its front and back boundary; a title page and colophon were not observed. This does not prove that the bound physical copy never contained either leaf.",
+          "renderWidth": 1920,
+          "reviewedPages": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            177,
+            178
+          ],
+          "surfaces": [
+            {
+              "commonsRenderSha256": "7f6332ae04d3569e205f51efcef52d3a659552b6aa4665ae22531eaf4b0f69f3",
+              "observation": "blank scan leaf; no title-page text or imprint visible",
+              "scanPage": 1
+            },
+            {
+              "commonsRenderSha256": "514e9b1e8dbf514f98d3eb148a6f2920d2a90b660c00524d8760e72ccdc43e77",
+              "observation": "printed text begins; no title-page or imprint surface visible",
+              "scanPage": 2
+            },
+            {
+              "commonsRenderSha256": "c5cc4d329d0f0dd99757e246668a0b78d9ff4763859b49c259cbbb9a64253fac",
+              "observation": "printed text and end seal; no colophon or imprint surface visible",
+              "scanPage": 177
+            },
+            {
+              "commonsRenderSha256": "7f6332ae04d3569e205f51efcef52d3a659552b6aa4665ae22531eaf4b0f69f3",
+              "observation": "blank scan leaf; no colophon text visible",
+              "scanPage": 178
+            }
+          ],
+          "titlePageObserved": false
+        },
+        "sourceFile": {
+          "acquiredOutsideMaterializer": true,
+          "byteIdentity": "directly hashed from the downloaded source DjVu bytes outside the repository",
+          "byteLength": 7368126,
+          "dimensions": "3196×5594",
+          "fileName": "CADAL01025514_春在堂全書·游藝錄.djvu",
+          "format": "DjVu multiple page document",
+          "materializerNetworkUsed": false,
+          "pageCount": 178,
+          "sha1": "0ccb501b8fa86358ec1cae34dca4d56df6a1fbd2",
+          "sha256": "761a9827a1fe0df8f1aa1e15317b1eb18c528892750fa618f7ed97a5897535ba",
+          "storedInGit": false
+        },
+        "sourceId": "src-youyi-lu-cadal-01025514-1883",
+        "sourceKind": "external_public_digital_scan_of_historical_printed_work",
+        "storedInGit": false,
+        "work": {
+          "author": "(清)俞樾",
+          "chapterPageRange": "digital scan pages 130-165; catalog chapter boundary",
+          "chapterPageStart": 130,
+          "nextChapterPageStart": 166,
+          "section": "游藝錄五·紫微斗數篇",
+          "title": "春在堂全書·游藝錄"
+        }
+      },
+      "sourceIds": [
+        "src-youyi-lu-cadal-01025514-1883"
+      ],
+      "surface": "紫微/天府 placement relation wording",
+      "transcriptionRole": "direct_scan_visual_review; CText OCR locator only",
+      "whatItEstablishes": [
+        "bounded direct source wording for a diagonal/opposite Tianfu relation"
+      ]
+    },
+    {
+      "affectedClaimIds": [
+        "claim-major-star-placement-ziwei",
+        "claim-tianfu-anchor-direction",
+        "claim-tianfu-placement",
+        "claim-major-star-placement-tianfu",
+        "claim-tianfu-rotation06-semantic"
+      ],
+      "authorityStatus": "bounded_direct_scan_surface; source_authority_and_semantic_authority_not_established",
+      "blockerIds": [
+        "blocker-tianfu-raw-formula-contradiction",
+        "blocker-tianfu-rotation06-semantic-authority",
+        "blocker-direct-rule-absent"
+      ],
+      "deterministicRelation": {
+        "legacyConvention": {
+          "mode": "legacy",
+          "tianfuFormula": "(10-Z)%12",
+          "tianfuMethod": "opposite_yin_shen_axis"
+        },
+        "legacyFormulaMatchCount": 0,
+        "relationClass": "source_surface_map_matches_source_aligned_numeric_adapter; semantic identity and authority remain blocked",
+        "sourceAlignedConvention": {
+          "mode": "source_aligned",
+          "tianfuFormula": "(4-Z)%12",
+          "tianfuMethod": "opposite_chen_xu_axis"
+        },
+        "sourceAlignedFormulaMatchesAllRecordedRows": true
+      },
+      "directObservationStatus": "bounded_direct_visual_review_of_temporary_scan_render",
+      "doesNotEstablish": [
+        "the 1883 scan is the original printing or the earliest edition of 游藝錄",
+        "textual transmission independence from Nanbei, Nanyang, NARA, or the existing Toyo candidate",
+        "a complete source-authoritative palace name to branch to physical-slot/ordinal binding",
+        "a production-safe Tianfu convention or semantic identity for rotation-06",
+        "a complete calendar/time oracle, Four Transformations table, or 命主/身主 source rule",
+        "image-level repository reuse permission from a public-domain label alone",
+        "Ziwei P0 readiness, interpretation grounding, activation, or production behavior"
+      ],
+      "evidenceSourceId": "src-youyi-lu-cadal-01025514-1883",
+      "facts": [
+        "The source gives 紫微丑 -> 天府卯 and 紫微卯 -> 天府丑 as worked examples.",
+        "It continues with 子與辰對, 亥與巳對, 戌與午對, 酉與未對, and says the same relation applies; it states that 寅 and 申 are same-palace exceptions.",
+        "The resulting 12-row surface map is recorded as source text normalization, not as a production formula."
+      ],
+      "independenceStatus": "distinct_scan_candidate; textual_transmission_independence_unresolved",
+      "lineageStatus": "digital_scan_identity_bounded; historical textual lineage not observed",
+      "locator": {
+        "cadalDigitalPage": 139,
+        "commonsDjvuPage": 139,
+        "commonsRenderUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/CADAL01025514_%E6%98%A5%E5%9C%A8%E5%A0%82%E5%85%A8%E6%9B%B8%C2%B7%E6%B8%B8%E8%97%9D%E9%8C%84.djvu/page139-3840px-CADAL01025514_%E6%98%A5%E5%9C%A8%E5%A0%82%E5%85%A8%E6%9B%B8%C2%B7%E6%B8%B8%E8%97%9D%E9%8C%84.djvu.jpg",
+        "ctextLocator": {
+          "canonicalText": false,
+          "chapterTitle": "春在堂全書·游藝錄v5紫微斗數篇",
+          "libraryFile": "192852",
+          "page": 139,
+          "provider": "Chinese Text Project",
+          "role": "locator_only",
+          "url": "https://ctext.org/wiki.pl?chapter=299125&if=gb"
+        },
+        "printedFolio": null,
+        "printedFolioStatus": "not_asserted; scan folio was not used as an invented locator",
+        "reviewedRenderSha256": "22ad4198302e8ffbbdb913ee813f5f6bbb0efb9da41591617719cb764fa9621a",
+        "scanPage": 139
+      },
+      "normalizedTranscription": "假如正月初三日生人，命屬金局，例三日金局在丑宮，即於丑宮安紫微星，其斜對卯宮安天府星。又如初六日生人，命屬木局，例六日木局在卯宮，即於卯宮安紫微星，其斜對丑宮安天府星。推之，子與辰對，亥與巳對，戌與午對，酉與未對，亦如之；惟生日在寅、申二宮，則紫微、天府同宮。",
+      "observationId": "obs-youyi-p139-tianfu-pair-map",
+      "observationKind": "direct_scan_tianfu_worked_pairs_and_branch_map",
+      "physicalWitnessSourceId": "src-youyi-lu-cadal-01025514-1883",
+      "rawVisibleText": "假如正月初三日生人命屬金局例三日金局在丑宮即於丑宮安紫微星其斜對卯宮安天府星又如初六日生人命屬木局例六日木局在卯宮即於卯宮安紫微星其斜對丑宮安天府星推之子與辰對亥與巳對戌與午對酉與未對亦如之惟生日在寅申二宮則紫微天府同宮",
+      "researcherDirectObservation": true,
+      "source": {
+        "authority": "direct visual scan observations support bounded text surfaces; source authority and semantic authority remain unestablished",
+        "edition": {
+          "catalogDate": "清光緒九年(1883)",
+          "catalogDateSource": "CADAL/Tsinghua metadata and CiNii 1883 record",
+          "colophonPresent": false,
+          "colophonReviewed": true,
+          "identityStatus": "digital_resource_identity_confirmed; printed_copy_identity_and_transmission_lineage_not_fully_closed",
+          "physicalCopyTitlePagePresent": false,
+          "physicalCopyTitlePageReviewed": true,
+          "printedFolioBindingClosed": false,
+          "publisher": "not stated in the inspected CADAL metadata beyond the source record"
+        },
+        "independence": "repository/file identity is distinct from existing P0 sources, but 1883-to-1871 and cross-corpus transmission independence is unresolved",
+        "lineage": "1883 catalog/scan identity is bounded; no inference from 1871 catalog record to exact textual continuity",
+        "locatorPolicy": {
+          "exactLocator": "Commons DjVu page index + CADAL digital page + CText library file/page",
+          "printedFolio": "not asserted; no physical folio was invented",
+          "semanticPageRendersReviewed": [
+            130,
+            131,
+            136,
+            139,
+            140
+          ]
+        },
+        "ocrPolicy": {
+          "canonicalForClaims": false,
+          "observedLocatorCorrections": [
+            "日 versus OCR 曰",
+            "宮 versus OCR 官",
+            "戌 versus OCR 戊",
+            "寅 versus OCR 開",
+            "酉 versus OCR 西"
+          ],
+          "provider": "Chinese Text Project OCR/text layer",
+          "role": "locator_only",
+          "scanVisualReviewRequired": true
+        },
+        "physicalWitnessStatus": "distinct historical-work scan candidate; independent physical/textual lineage not admitted",
+        "repositories": {
+          "cADAL": {
+            "identifier": "01025514",
+            "institution": "清華大學",
+            "metadataObserved": [
+              "title",
+              "creator",
+              "date",
+              "contributor",
+              "178-page count",
+              "chapter start pages"
+            ],
+            "url": "https://cadal.edu.cn/cardpage/bookCardPage?ssno=01025514"
+          },
+          "cinii1883": {
+            "physicalBibliography": "23.4×15.1cm; 13,27,18,6,18,6丁; 10 lines/21 characters",
+            "record": "游藝録 6卷; (清)兪樾 [撰]; [光緒9 (1883)]",
+            "url": "https://ci.nii.ac.jp/ncid/BB19945538"
+          },
+          "commons": {
+            "derivativeRole": "Commons-hosted copy of the CADAL/Tsinghua DjVu resource",
+            "filePageMetadataObserved": [
+              "author",
+              "title",
+              "1883 date",
+              "178 pages",
+              "dimensions",
+              "public-domain mark"
+            ],
+            "hostedFileUrl": "https://upload.wikimedia.org/wikipedia/commons/3/3f/CADAL01025514_%E6%98%A5%E5%9C%A8%E5%A0%82%E5%85%A8%E6%9B%B8%C2%B7%E6%B8%B8%E8%97%9D%E9%8C%84.djvu"
+          },
+          "earlierEditionCandidate": {
+            "lineageStatus": "unresolved; not merged and not admitted as independent corroboration",
+            "record": "游藝録 6卷; 同治10 [1871]",
+            "relationship": "same-work earlier-edition candidate; direct text/leaf comparison not performed",
+            "url": "https://ci.nii.ac.jp/ncid/BD19656670"
+          }
+        },
+        "rights": {
+          "commonsFilePageMark": "Public Domain Mark reported on the Commons file page",
+          "sourceImageReuse": "not automatically granted by catalog access or public-domain label; human/policy review remains required",
+          "sourceImagesStoredInGit": false
+        },
+        "role": "new semantic-witness candidate; bounded direct scan surface",
+        "scanBoundaryReview": {
+          "colophonObserved": false,
+          "conclusion": "The available 178-page digital scan was checked at its front and back boundary; a title page and colophon were not observed. This does not prove that the bound physical copy never contained either leaf.",
+          "renderWidth": 1920,
+          "reviewedPages": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            177,
+            178
+          ],
+          "surfaces": [
+            {
+              "commonsRenderSha256": "7f6332ae04d3569e205f51efcef52d3a659552b6aa4665ae22531eaf4b0f69f3",
+              "observation": "blank scan leaf; no title-page text or imprint visible",
+              "scanPage": 1
+            },
+            {
+              "commonsRenderSha256": "514e9b1e8dbf514f98d3eb148a6f2920d2a90b660c00524d8760e72ccdc43e77",
+              "observation": "printed text begins; no title-page or imprint surface visible",
+              "scanPage": 2
+            },
+            {
+              "commonsRenderSha256": "c5cc4d329d0f0dd99757e246668a0b78d9ff4763859b49c259cbbb9a64253fac",
+              "observation": "printed text and end seal; no colophon or imprint surface visible",
+              "scanPage": 177
+            },
+            {
+              "commonsRenderSha256": "7f6332ae04d3569e205f51efcef52d3a659552b6aa4665ae22531eaf4b0f69f3",
+              "observation": "blank scan leaf; no colophon text visible",
+              "scanPage": 178
+            }
+          ],
+          "titlePageObserved": false
+        },
+        "sourceFile": {
+          "acquiredOutsideMaterializer": true,
+          "byteIdentity": "directly hashed from the downloaded source DjVu bytes outside the repository",
+          "byteLength": 7368126,
+          "dimensions": "3196×5594",
+          "fileName": "CADAL01025514_春在堂全書·游藝錄.djvu",
+          "format": "DjVu multiple page document",
+          "materializerNetworkUsed": false,
+          "pageCount": 178,
+          "sha1": "0ccb501b8fa86358ec1cae34dca4d56df6a1fbd2",
+          "sha256": "761a9827a1fe0df8f1aa1e15317b1eb18c528892750fa618f7ed97a5897535ba",
+          "storedInGit": false
+        },
+        "sourceId": "src-youyi-lu-cadal-01025514-1883",
+        "sourceKind": "external_public_digital_scan_of_historical_printed_work",
+        "storedInGit": false,
+        "work": {
+          "author": "(清)俞樾",
+          "chapterPageRange": "digital scan pages 130-165; catalog chapter boundary",
+          "chapterPageStart": 130,
+          "nextChapterPageStart": 166,
+          "section": "游藝錄五·紫微斗數篇",
+          "title": "春在堂全書·游藝錄"
+        }
+      },
+      "sourceIds": [
+        "src-youyi-lu-cadal-01025514-1883"
+      ],
+      "sourceSurfaceMap": [
+        {
+          "basis": "推之; 子與辰對",
+          "tianfu": "辰",
+          "ziwei": "子"
+        },
+        {
+          "basis": "page139 worked example; 其斜對卯宮",
+          "tianfu": "卯",
+          "ziwei": "丑"
+        },
+        {
+          "basis": "推之; 寅申二宮則紫微天府同宮",
+          "tianfu": "寅",
+          "ziwei": "寅"
+        },
+        {
+          "basis": "page139 worked example; 其斜對丑宮",
+          "tianfu": "丑",
+          "ziwei": "卯"
+        },
+        {
+          "basis": "推之; 子與辰對",
+          "tianfu": "子",
+          "ziwei": "辰"
+        },
+        {
+          "basis": "推之; 亥與巳對",
+          "tianfu": "亥",
+          "ziwei": "巳"
+        },
+        {
+          "basis": "推之; 戌與午對",
+          "tianfu": "戌",
+          "ziwei": "午"
+        },
+        {
+          "basis": "推之; 酉與未對",
+          "tianfu": "酉",
+          "ziwei": "未"
+        },
+        {
+          "basis": "推之; 寅申二宮則紫微天府同宮",
+          "tianfu": "申",
+          "ziwei": "申"
+        },
+        {
+          "basis": "推之; 酉與未對",
+          "tianfu": "未",
+          "ziwei": "酉"
+        },
+        {
+          "basis": "推之; 戌與午對",
+          "tianfu": "午",
+          "ziwei": "戌"
+        },
+        {
+          "basis": "推之; 亥與巳對",
+          "tianfu": "巳",
+          "ziwei": "亥"
+        }
+      ],
+      "surface": "紫微/天府 worked examples, branch-pair continuation, and same-palace exceptions",
+      "transcriptionRole": "direct_scan_visual_review; CText OCR locator only",
+      "whatItEstablishes": [
+        "bounded direct source map for the listed branch-token relation",
+        "the source surface uses 斜對 and same-palace wording rather than a modulo formula"
+      ]
+    },
+    {
+      "affectedClaimIds": [
+        "claim-major-star-placement-ziwei",
+        "claim-major-star-placement-tianfu"
+      ],
+      "authorityStatus": "bounded_direct_scan_surface; source_authority_and_semantic_authority_not_established",
+      "blockerIds": [
+        "blocker-direct-rule-absent"
+      ],
+      "deterministicRelation": {
+        "baseBranch": "寅",
+        "currentRuleSurfaceMatchesWorkedExample": true,
+        "relationClass": "bounded worked-example_to_current_offset-surface comparison; not source-authority promotion",
+        "tianfuSeriesOffsets": [
+          {
+            "id": "tianfu",
+            "name": "천부",
+            "offset": 0
+          },
+          {
+            "id": "taiyin",
+            "name": "태음",
+            "offset": 1
+          },
+          {
+            "id": "tanlang",
+            "name": "탐랑",
+            "offset": 2
+          },
+          {
+            "id": "jumen",
+            "name": "거문",
+            "offset": 3
+          },
+          {
+            "id": "tianxiang",
+            "name": "천상",
+            "offset": 4
+          },
+          {
+            "id": "tianliang",
+            "name": "천량",
+            "offset": 5
+          },
+          {
+            "id": "qisai",
+            "name": "칠살",
+            "offset": 6
+          },
+          {
+            "id": "pojun",
+            "name": "파군",
+            "offset": 10
+          }
+        ],
+        "ziweiSeriesOffsets": [
+          {
+            "id": "ziwei",
+            "name": "자미",
+            "offset": 0
+          },
+          {
+            "id": "tianji",
+            "name": "천기",
+            "offset": -1
+          },
+          {
+            "id": "taiyang",
+            "name": "태양",
+            "offset": -3
+          },
+          {
+            "id": "wugu",
+            "name": "무곡",
+            "offset": -4
+          },
+          {
+            "id": "tiandong",
+            "name": "천동",
+            "offset": -5
+          },
+          {
+            "id": "lianzhen",
+            "name": "염정",
+            "offset": -8
+          }
+        ]
+      },
+      "directObservationStatus": "bounded_direct_visual_review_of_temporary_scan_render",
+      "doesNotEstablish": [
+        "the 1883 scan is the original printing or the earliest edition of 游藝錄",
+        "textual transmission independence from Nanbei, Nanyang, NARA, or the existing Toyo candidate",
+        "a complete source-authoritative palace name to branch to physical-slot/ordinal binding",
+        "a production-safe Tianfu convention or semantic identity for rotation-06",
+        "a complete calendar/time oracle, Four Transformations table, or 命主/身主 source rule",
+        "image-level repository reuse permission from a public-domain label alone",
+        "Ziwei P0 readiness, interpretation grounding, activation, or production behavior"
+      ],
+      "evidenceSourceId": "src-youyi-lu-cadal-01025514-1883",
+      "facts": [
+        "The source says the 南斗北斗 stars are laid out from 紫微 and 天府.",
+        "With 紫微 at 寅, the listed 紫微 series moves in reverse: 天機丑, 太陽亥, 武曲戌, 天同酉, 廉貞午.",
+        "With 天府 at 寅, the listed 天府 series moves forward: 太陰卯, 貪狼辰, 巨門巳, 天相午, 天梁未, 七殺申, 破軍子."
+      ],
+      "independenceStatus": "distinct_scan_candidate; textual_transmission_independence_unresolved",
+      "lineageStatus": "digital_scan_identity_bounded; historical textual lineage not observed",
+      "locator": {
+        "cadalDigitalPage": 140,
+        "commonsDjvuPage": 140,
+        "commonsRenderUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/CADAL01025514_%E6%98%A5%E5%9C%A8%E5%A0%82%E5%85%A8%E6%9B%B8%C2%B7%E6%B8%B8%E8%97%9D%E9%8C%84.djvu/page140-3840px-CADAL01025514_%E6%98%A5%E5%9C%A8%E5%A0%82%E5%85%A8%E6%9B%B8%C2%B7%E6%B8%B8%E8%97%9D%E9%8C%84.djvu.jpg",
+        "ctextLocator": {
+          "canonicalText": false,
+          "chapterTitle": "春在堂全書·游藝錄v5紫微斗數篇",
+          "libraryFile": "192852",
+          "page": 140,
+          "provider": "Chinese Text Project",
+          "role": "locator_only",
+          "url": "https://ctext.org/wiki.pl?chapter=299125&if=gb"
+        },
+        "printedFolio": null,
+        "printedFolioStatus": "not_asserted; scan folio was not used as an invented locator",
+        "reviewedRenderSha256": "556a53e005ad6debb19fef94d939c263349e6b46678df482e91d70a536f295a6",
+        "scanPage": 140
+      },
+      "normalizedTranscription": "乃依紫微天府而布南斗北斗之星。如紫微在寅宮，則逆行：丑宮安天機、亥宮安太陽、戌宮安武曲、酉宮安天同、至午宮安廉貞。如天府在寅宮，則順行：卯宮安太陰、辰宮安貪狼、巳宮安巨門、午宮安天相、未宮安天梁、申宮安七殺、至子宮安破軍。",
+      "observationId": "obs-youyi-p140-major-star-series",
+      "observationKind": "direct_scan_ziwei_and_tianfu_series_direction_example",
+      "physicalWitnessSourceId": "src-youyi-lu-cadal-01025514-1883",
+      "rawVisibleText": "乃依紫微天府而布南斗北斗之星如紫微在寅宮則逆行丑宮安天機隔子宮一位亥宮安太陽戌宮安武曲酉宮安天同又隔申未二位至午宮安廉貞如天府在寅宮則順行卯宮安太陰辰宮安貪狼巳宮安巨門午宮安天相未宮安天梁申宮安七殺隔酉戌亥三位至子宮安破軍",
+      "researcherDirectObservation": true,
+      "source": {
+        "authority": "direct visual scan observations support bounded text surfaces; source authority and semantic authority remain unestablished",
+        "edition": {
+          "catalogDate": "清光緒九年(1883)",
+          "catalogDateSource": "CADAL/Tsinghua metadata and CiNii 1883 record",
+          "colophonPresent": false,
+          "colophonReviewed": true,
+          "identityStatus": "digital_resource_identity_confirmed; printed_copy_identity_and_transmission_lineage_not_fully_closed",
+          "physicalCopyTitlePagePresent": false,
+          "physicalCopyTitlePageReviewed": true,
+          "printedFolioBindingClosed": false,
+          "publisher": "not stated in the inspected CADAL metadata beyond the source record"
+        },
+        "independence": "repository/file identity is distinct from existing P0 sources, but 1883-to-1871 and cross-corpus transmission independence is unresolved",
+        "lineage": "1883 catalog/scan identity is bounded; no inference from 1871 catalog record to exact textual continuity",
+        "locatorPolicy": {
+          "exactLocator": "Commons DjVu page index + CADAL digital page + CText library file/page",
+          "printedFolio": "not asserted; no physical folio was invented",
+          "semanticPageRendersReviewed": [
+            130,
+            131,
+            136,
+            139,
+            140
+          ]
+        },
+        "ocrPolicy": {
+          "canonicalForClaims": false,
+          "observedLocatorCorrections": [
+            "日 versus OCR 曰",
+            "宮 versus OCR 官",
+            "戌 versus OCR 戊",
+            "寅 versus OCR 開",
+            "酉 versus OCR 西"
+          ],
+          "provider": "Chinese Text Project OCR/text layer",
+          "role": "locator_only",
+          "scanVisualReviewRequired": true
+        },
+        "physicalWitnessStatus": "distinct historical-work scan candidate; independent physical/textual lineage not admitted",
+        "repositories": {
+          "cADAL": {
+            "identifier": "01025514",
+            "institution": "清華大學",
+            "metadataObserved": [
+              "title",
+              "creator",
+              "date",
+              "contributor",
+              "178-page count",
+              "chapter start pages"
+            ],
+            "url": "https://cadal.edu.cn/cardpage/bookCardPage?ssno=01025514"
+          },
+          "cinii1883": {
+            "physicalBibliography": "23.4×15.1cm; 13,27,18,6,18,6丁; 10 lines/21 characters",
+            "record": "游藝録 6卷; (清)兪樾 [撰]; [光緒9 (1883)]",
+            "url": "https://ci.nii.ac.jp/ncid/BB19945538"
+          },
+          "commons": {
+            "derivativeRole": "Commons-hosted copy of the CADAL/Tsinghua DjVu resource",
+            "filePageMetadataObserved": [
+              "author",
+              "title",
+              "1883 date",
+              "178 pages",
+              "dimensions",
+              "public-domain mark"
+            ],
+            "hostedFileUrl": "https://upload.wikimedia.org/wikipedia/commons/3/3f/CADAL01025514_%E6%98%A5%E5%9C%A8%E5%A0%82%E5%85%A8%E6%9B%B8%C2%B7%E6%B8%B8%E8%97%9D%E9%8C%84.djvu"
+          },
+          "earlierEditionCandidate": {
+            "lineageStatus": "unresolved; not merged and not admitted as independent corroboration",
+            "record": "游藝録 6卷; 同治10 [1871]",
+            "relationship": "same-work earlier-edition candidate; direct text/leaf comparison not performed",
+            "url": "https://ci.nii.ac.jp/ncid/BD19656670"
+          }
+        },
+        "rights": {
+          "commonsFilePageMark": "Public Domain Mark reported on the Commons file page",
+          "sourceImageReuse": "not automatically granted by catalog access or public-domain label; human/policy review remains required",
+          "sourceImagesStoredInGit": false
+        },
+        "role": "new semantic-witness candidate; bounded direct scan surface",
+        "scanBoundaryReview": {
+          "colophonObserved": false,
+          "conclusion": "The available 178-page digital scan was checked at its front and back boundary; a title page and colophon were not observed. This does not prove that the bound physical copy never contained either leaf.",
+          "renderWidth": 1920,
+          "reviewedPages": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            177,
+            178
+          ],
+          "surfaces": [
+            {
+              "commonsRenderSha256": "7f6332ae04d3569e205f51efcef52d3a659552b6aa4665ae22531eaf4b0f69f3",
+              "observation": "blank scan leaf; no title-page text or imprint visible",
+              "scanPage": 1
+            },
+            {
+              "commonsRenderSha256": "514e9b1e8dbf514f98d3eb148a6f2920d2a90b660c00524d8760e72ccdc43e77",
+              "observation": "printed text begins; no title-page or imprint surface visible",
+              "scanPage": 2
+            },
+            {
+              "commonsRenderSha256": "c5cc4d329d0f0dd99757e246668a0b78d9ff4763859b49c259cbbb9a64253fac",
+              "observation": "printed text and end seal; no colophon or imprint surface visible",
+              "scanPage": 177
+            },
+            {
+              "commonsRenderSha256": "7f6332ae04d3569e205f51efcef52d3a659552b6aa4665ae22531eaf4b0f69f3",
+              "observation": "blank scan leaf; no colophon text visible",
+              "scanPage": 178
+            }
+          ],
+          "titlePageObserved": false
+        },
+        "sourceFile": {
+          "acquiredOutsideMaterializer": true,
+          "byteIdentity": "directly hashed from the downloaded source DjVu bytes outside the repository",
+          "byteLength": 7368126,
+          "dimensions": "3196×5594",
+          "fileName": "CADAL01025514_春在堂全書·游藝錄.djvu",
+          "format": "DjVu multiple page document",
+          "materializerNetworkUsed": false,
+          "pageCount": 178,
+          "sha1": "0ccb501b8fa86358ec1cae34dca4d56df6a1fbd2",
+          "sha256": "761a9827a1fe0df8f1aa1e15317b1eb18c528892750fa618f7ed97a5897535ba",
+          "storedInGit": false
+        },
+        "sourceId": "src-youyi-lu-cadal-01025514-1883",
+        "sourceKind": "external_public_digital_scan_of_historical_printed_work",
+        "storedInGit": false,
+        "work": {
+          "author": "(清)俞樾",
+          "chapterPageRange": "digital scan pages 130-165; catalog chapter boundary",
+          "chapterPageStart": 130,
+          "nextChapterPageStart": 166,
+          "section": "游藝錄五·紫微斗數篇",
+          "title": "春在堂全書·游藝錄"
+        }
+      },
+      "sourceIds": [
+        "src-youyi-lu-cadal-01025514-1883"
+      ],
+      "surface": "南斗北斗 star-series directions and worked branch placements",
+      "transcriptionRole": "direct_scan_visual_review; CText OCR locator only",
+      "whatItEstablishes": [
+        "direct observation of reverse versus forward series direction in this worked example",
+        "bounded branch placements for the listed stars"
+      ]
+    }
+  ],
+  "reportedNonObservations": [
+    "No printed folio/丁 was asserted; all locators use digital scan page indices and crosswalks.",
+    "The scan front/back boundary was directly reviewed; no title page or colophon was observed in the available 178-page sequence. This is not proof of physical nonexistence.",
+    "No direct comparison with the 1871 edition was performed.",
+    "No OCR text was treated as canonical; CText was locator-only.",
+    "No source-authority, independent-lineage, production, readiness, or activation promotion was performed."
+  ],
+  "schemaVersion": "ziwei-p0-youyi-lu-cadal-01025514-semantic-witness-v1-evidence-v0"
+}

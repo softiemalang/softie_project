@@ -1,0 +1,127 @@
+{
+  "closureBoundary": {
+    "imageReuseTarget": "human_policy_review",
+    "palaceSemanticTarget": "action_required",
+    "productionOrdinalTarget": "not_established",
+    "sourceIdentityTarget": "action_required"
+  },
+  "evidenceObservationIds": [
+    "obs-youyi-1871-catalog-only-boundary",
+    "obs-composed-palace-branch-slot-anchor-ming-yin",
+    "obs-pchome-secondary-anchor-clarification"
+  ],
+  "existingFieldKitBytesRewritten": false,
+  "heldEvidenceUpdate": "The branch-token composition narrows the palace frontier but remains derived and non-authoritative; the 1871 record remains catalog-only and no production ordinal is admitted.",
+  "predecessorByteSha256": "5777880891a591beee82e039c39793c3450b16f719c8a0363453a1e4fb874d12",
+  "predecessorPath": "artifacts/ziwei-p0-youyi-lu-cadal-01025514-semantic-witness-v1/complete.json",
+  "rightsTargetStillHumanPolicyReview": true,
+  "schemaVersion": "ziwei-p0-palace-branch-slot-composition-v2-field-kit-v0",
+  "semanticTargetStillOpen": true,
+  "sourceIdentityTargetStillActionRequired": true,
+  "targetReassessment": [
+    {
+      "closure": "not_closed",
+      "evidenceRefs": [
+        "artifacts/ziwei-p0-toyo-vii-3-157-institutional-evidence-v1/evidence.json",
+        "artifacts/ziwei-p0-youyi-lu-cadal-01025514-semantic-witness-v1/evidence.json",
+        "artifacts/ziwei-p0-palace-branch-slot-composition-v2/evidence.json"
+      ],
+      "newEvidenceRole": "1871 CiNii catalog identity is bounded as catalog-only; direct copy, text comparison, and lineage remain action_required",
+      "statusAfter": "action_required",
+      "statusBefore": "action_required",
+      "statusChanged": false,
+      "targetId": "acq-distinct-witness-identity-lineage"
+    },
+    {
+      "closure": "not_closed",
+      "evidenceRefs": [
+        "artifacts/ziwei-p0-toyo-vii-3-157-institutional-evidence-v1/evidence.json",
+        "artifacts/ziwei-p0-youyi-lu-cadal-01025514-semantic-witness-v1/evidence.json",
+        "artifacts/ziwei-p0-palace-branch-slot-composition-v2/evidence.json"
+      ],
+      "newEvidenceRole": "Youyi named-palace order plus Nanbei branch ring produce a 12-row derived matrix; single-source witness and production ordinal remain action_required",
+      "statusAfter": "action_required",
+      "statusBefore": "action_required",
+      "statusChanged": false,
+      "targetId": "acq-palace-semantic-map-and-coordinate-witness"
+    },
+    {
+      "closure": "not_closed",
+      "evidenceRefs": [
+        "artifacts/ziwei-p0-toyo-vii-3-157-institutional-evidence-v1/evidence.json",
+        "artifacts/ziwei-p0-youyi-lu-cadal-01025514-semantic-witness-v1/evidence.json"
+      ],
+      "newEvidenceRole": "pages 136 and 139 add direct 斜對 and branch-pair surfaces; adjudication remains action_required",
+      "statusAfter": "action_required",
+      "statusBefore": "action_required",
+      "statusChanged": false,
+      "targetId": "acq-tianfu-anchor-direction-adjudicator"
+    },
+    {
+      "closure": "not_closed",
+      "evidenceRefs": [],
+      "newEvidenceRole": "not_affected",
+      "statusAfter": "action_required",
+      "statusBefore": "action_required",
+      "statusChanged": false,
+      "targetId": "acq-complete-14-major-star-placement-witness"
+    },
+    {
+      "closure": "not_closed",
+      "evidenceRefs": [],
+      "newEvidenceRole": "not_affected",
+      "statusAfter": "action_required",
+      "statusBefore": "action_required",
+      "statusChanged": false,
+      "targetId": "acq-complete-auxiliary-star-rule-witness"
+    },
+    {
+      "closure": "not_closed",
+      "evidenceRefs": [],
+      "newEvidenceRole": "not_affected",
+      "statusAfter": "action_required",
+      "statusBefore": "action_required",
+      "statusChanged": false,
+      "targetId": "acq-independent-complete-four-transform-table"
+    },
+    {
+      "closure": "not_closed",
+      "evidenceRefs": [],
+      "newEvidenceRole": "not_affected",
+      "statusAfter": "action_required",
+      "statusBefore": "action_required",
+      "statusChanged": false,
+      "targetId": "acq-shen-zhu-compound-surface"
+    },
+    {
+      "closure": "not_closed",
+      "evidenceRefs": [],
+      "newEvidenceRole": "not_affected",
+      "statusAfter": "action_required",
+      "statusBefore": "action_required",
+      "statusChanged": false,
+      "targetId": "acq-independent-ziwei-oracle"
+    },
+    {
+      "closure": "not_closed",
+      "evidenceRefs": [],
+      "newEvidenceRole": "not_affected",
+      "statusAfter": "action_required",
+      "statusBefore": "action_required",
+      "statusChanged": false,
+      "targetId": "acq-calendar-time-input-authority"
+    },
+    {
+      "closure": "not_closed",
+      "evidenceRefs": [
+        "artifacts/ziwei-p0-toyo-vii-3-157-institutional-evidence-v1/evidence.json",
+        "artifacts/ziwei-p0-youyi-lu-cadal-01025514-semantic-witness-v1/evidence.json"
+      ],
+      "newEvidenceRole": "Commons public-domain mark is recorded, but image reuse remains human_policy_review",
+      "statusAfter": "human_policy_review",
+      "statusBefore": "human_policy_review",
+      "statusChanged": false,
+      "targetId": "review-image-level-reuse-permission"
+    }
+  ]
+}

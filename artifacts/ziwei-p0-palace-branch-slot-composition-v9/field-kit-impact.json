@@ -1,0 +1,146 @@
+{
+  "closureBoundary": {
+    "imageReuseTarget": "human_policy_review",
+    "palaceSemanticTarget": "action_required",
+    "productionOrdinalTarget": "not_established",
+    "researchFrontierAdmission": "not_admitted",
+    "sourceIdentityTarget": "action_required"
+  },
+  "evidenceObservationIds": [
+    "obs-youyi-1871-catalog-only-boundary",
+    "obs-composed-palace-branch-slot-anchor-ming-yin",
+    "obs-pchome-secondary-anchor-clarification",
+    "obs-youyi-nlc-p66-direct-palace-order",
+    "obs-youyi-zjlib-p131-p132-direct-palace-order",
+    "obs-youyi-zjlib-p85-p86-direct-lithographic-palace-order"
+  ],
+  "existingFieldKitBytesRewritten": false,
+  "heldEvidenceUpdate": "v9 adds a directly reviewed Zhejiang Library 第3冊 lithographic-variant scan. Its pages 85-86 corroborate named-palace order and reverse traversal, but no physical palace-slot diagram or production ordinal is admitted; 1871 lineage, source authority, semantic authority, readiness, and activation remain open.",
+  "predecessorByteSha256": "5777880891a591beee82e039c39793c3450b16f719c8a0363453a1e4fb874d12",
+  "predecessorPath": "artifacts/ziwei-p0-youyi-lu-cadal-01025514-semantic-witness-v1/complete.json",
+  "researchFrontier": {
+    "acquisitionLeadsRemainOpen": 9,
+    "admittedCandidateCount": 0,
+    "evidenceRefs": [
+      "artifacts/ziwei-p0-palace-branch-slot-composition-v8/evidence.json"
+    ],
+    "figureOnlyCandidateCount": 1,
+    "reviewedCandidateCount": 10,
+    "secondaryAcquisitionLeadCount": 1,
+    "status": "direct_figure_and_1870_acquisition_lead_no_graph_admission"
+  },
+  "rightsTargetStillHumanPolicyReview": true,
+  "schemaVersion": "ziwei-p0-palace-branch-slot-composition-v9-field-kit-v0",
+  "semanticTargetStillOpen": true,
+  "sourceIdentityTargetStillActionRequired": true,
+  "targetReassessment": [
+    {
+      "closure": "not_closed",
+      "evidenceRefs": [
+        "artifacts/ziwei-p0-toyo-vii-3-157-institutional-evidence-v1/evidence.json",
+        "artifacts/ziwei-p0-youyi-lu-cadal-01025514-semantic-witness-v1/evidence.json",
+        "artifacts/ziwei-p0-palace-branch-slot-composition-v2/evidence.json",
+        "artifacts/ziwei-p0-palace-branch-slot-composition-v3/evidence.json",
+        "artifacts/ziwei-p0-palace-branch-slot-composition-v9/evidence.json"
+      ],
+      "newEvidenceRole": "Zhejiang 第3冊 is a directly reviewed lithographic-variant scan with bounded bytes and format metadata; exact 1871 page/text/colophon lineage remains action_required",
+      "statusAfter": "action_required",
+      "statusBefore": "action_required",
+      "statusChanged": false,
+      "targetId": "acq-distinct-witness-identity-lineage"
+    },
+    {
+      "closure": "not_closed",
+      "evidenceRefs": [
+        "artifacts/ziwei-p0-toyo-vii-3-157-institutional-evidence-v1/evidence.json",
+        "artifacts/ziwei-p0-youyi-lu-cadal-01025514-semantic-witness-v1/evidence.json",
+        "artifacts/ziwei-p0-palace-branch-slot-composition-v2/evidence.json",
+        "artifacts/ziwei-p0-palace-branch-slot-composition-v3/evidence.json",
+        "artifacts/ziwei-p0-palace-branch-slot-composition-v9/evidence.json"
+      ],
+      "newEvidenceRole": "Zhejiang 第3冊 pages 85-86 add a direct lithographic-variant named-palace/reverse-traversal surface; physical diagram slot and production ordinal remain action_required",
+      "statusAfter": "action_required",
+      "statusBefore": "action_required",
+      "statusChanged": false,
+      "targetId": "acq-palace-semantic-map-and-coordinate-witness"
+    },
+    {
+      "closure": "not_closed",
+      "evidenceRefs": [
+        "artifacts/ziwei-p0-toyo-vii-3-157-institutional-evidence-v1/evidence.json",
+        "artifacts/ziwei-p0-youyi-lu-cadal-01025514-semantic-witness-v1/evidence.json"
+      ],
+      "newEvidenceRole": "pages 136 and 139 add direct 斜對 and branch-pair surfaces; adjudication remains action_required",
+      "statusAfter": "action_required",
+      "statusBefore": "action_required",
+      "statusChanged": false,
+      "targetId": "acq-tianfu-anchor-direction-adjudicator"
+    },
+    {
+      "closure": "not_closed",
+      "evidenceRefs": [],
+      "newEvidenceRole": "not_affected",
+      "statusAfter": "action_required",
+      "statusBefore": "action_required",
+      "statusChanged": false,
+      "targetId": "acq-complete-14-major-star-placement-witness"
+    },
+    {
+      "closure": "not_closed",
+      "evidenceRefs": [],
+      "newEvidenceRole": "not_affected",
+      "statusAfter": "action_required",
+      "statusBefore": "action_required",
+      "statusChanged": false,
+      "targetId": "acq-complete-auxiliary-star-rule-witness"
+    },
+    {
+      "closure": "not_closed",
+      "evidenceRefs": [],
+      "newEvidenceRole": "not_affected",
+      "statusAfter": "action_required",
+      "statusBefore": "action_required",
+      "statusChanged": false,
+      "targetId": "acq-independent-complete-four-transform-table"
+    },
+    {
+      "closure": "not_closed",
+      "evidenceRefs": [],
+      "newEvidenceRole": "not_affected",
+      "statusAfter": "action_required",
+      "statusBefore": "action_required",
+      "statusChanged": false,
+      "targetId": "acq-shen-zhu-compound-surface"
+    },
+    {
+      "closure": "not_closed",
+      "evidenceRefs": [],
+      "newEvidenceRole": "not_affected",
+      "statusAfter": "action_required",
+      "statusBefore": "action_required",
+      "statusChanged": false,
+      "targetId": "acq-independent-ziwei-oracle"
+    },
+    {
+      "closure": "not_closed",
+      "evidenceRefs": [],
+      "newEvidenceRole": "not_affected",
+      "statusAfter": "action_required",
+      "statusBefore": "action_required",
+      "statusChanged": false,
+      "targetId": "acq-calendar-time-input-authority"
+    },
+    {
+      "closure": "not_closed",
+      "evidenceRefs": [
+        "artifacts/ziwei-p0-toyo-vii-3-157-institutional-evidence-v1/evidence.json",
+        "artifacts/ziwei-p0-youyi-lu-cadal-01025514-semantic-witness-v1/evidence.json"
+      ],
+      "newEvidenceRole": "Commons public-domain mark is recorded, but image reuse remains human_policy_review",
+      "statusAfter": "human_policy_review",
+      "statusBefore": "human_policy_review",
+      "statusChanged": false,
+      "targetId": "review-image-level-reuse-permission"
+    }
+  ]
+}
