@@ -55,3 +55,25 @@ project-generated and is checked for third-party source text and provenance.
 Official download bytes must still be available and match the fixed identities;
 the verified local copy cannot substitute for a failed official acquisition.
 No upload or workflow dispatch is performed by local validation.
+
+## Default-test intentional skip checkpoint
+
+`test/de405OfficialInputs.test.js` contains one intentionally conditional test:
+
+- `official NAIF archive and SPK are hash-verified and source-only extracted`
+- execution condition: both `DE405_OFFICIAL_CSPICE_ARCHIVE` and
+  `DE405_OFFICIAL_SPK` must be set; if either variable is absent, Node marks
+  this test as skipped
+- a skip means that the external official-input verification did not run; it
+  is not a successful source hash verification and it is not a fallback to a
+  repository fixture
+- when both paths are supplied, the test uses the real local inputs and checks
+  the fixed CSPICE and DE405 SHA-256 values, the 2,547-file source manifest,
+  and source-only extraction
+
+This conditional skip is an intentional source-environment boundary, not an
+obsolete exception. The adjacent workflow/provenance contract test remains in
+the default suite. The official-input execution itself may be run in an
+explicit source/official environment with the two real paths; missing inputs
+must remain visible as an unavailable source environment rather than being
+silently substituted.

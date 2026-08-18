@@ -30,6 +30,25 @@
 - No glass/backdrop-filter surface or ancestor received opacity/transform motion.
 - No business, data, auth, API, dependency, layout, text-meaning, remote, Git publication, or deployment change was made.
 
+## Default-test intentional historical replay skip
+
+`test/designReferenceLowRiskInteractionFoundationBatch.test.js` contains one
+intentional frozen-replay condition:
+
+- `materialization is byte-identical across directories and at the same target`
+- execution condition: the checkout `HEAD` must equal the artifact's pinned
+  `BASELINE_HEAD` (`52df5f9ac7d3309140b076711de0fc008ae4db82`)
+- if the checkout is any other commit, the test is skipped with the explicit
+  reason `frozen baseline materializer is replayed only at` that baseline
+- a skip means exact historical materializer replay was not attempted; it does
+  not invalidate the stored artifact and it does not authorize regenerating or
+  overwriting it from the current HEAD
+
+At the 2026-08-19 checkpoint the checkout HEAD is
+`063d5a7e79efc5db6a358c424777ce6187ecba8e`, so this replay test is
+intentionally skipped. The sibling checker, stored-artifact, integrity, and
+tamper-boundary tests remain active in the default suite.
+
 ## Evidence independence
 
 - Emil 10 Skills are one repository/revision/author lineage at `78761e1b57f97dce65b983d640c70a68f39e8163`; repeated values count once.
