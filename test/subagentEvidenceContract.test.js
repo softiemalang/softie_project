@@ -4,6 +4,7 @@ import {
   SUBAGENT_AUTHORITY_BOUNDARY,
   SUBAGENT_EVIDENCE_SCHEMA,
   SUBAGENT_EVIDENCE_VERSION,
+  SUBAGENT_FORBIDDEN_ACTIONS,
   canonicalSubagentEvidenceJson,
   checkSubagentEvidenceContract,
   isSafeSubagentReference,
@@ -148,6 +149,18 @@ test('completed, completed_with_unknowns, failed, and cancelled envelopes pass',
   assert.deepEqual(checkSubagentEvidenceContract(cancelled), [])
 })
 
+test('manual review can pass without a process exit code', () => {
+  const manualReview = envelope({
+    validations: [{
+      ...envelope().validations[0],
+      kind: 'manual_review',
+      command: 'Parent directly reviewed the exact declared locator.',
+      exitCode: null,
+    }],
+  })
+  assert.deepEqual(checkSubagentEvidenceContract(manualReview), [])
+})
+
 test('canonical serialization is deterministic and uses a final LF', () => {
   assert.equal(canonicalSubagentEvidenceJson({ b: 2, a: 1 }), '{"a":1,"b":2}\n')
   assert.match(subagentEvidenceContentSha256(envelope()), /^[a-f0-9]{64}$/)
@@ -166,6 +179,14 @@ test('child cannot complete parent verification or promote authority', () => {
     const candidate = structuredClone(envelope())
     mutate(candidate)
     assertRejected(candidate, label)
+  }
+})
+
+test('every forbidden action category remains explicit in the child scope', () => {
+  for (const action of SUBAGENT_FORBIDDEN_ACTIONS) {
+    const candidate = structuredClone(envelope())
+    candidate.scope.forbiddenActions = candidate.scope.forbiddenActions.filter(value => value !== action)
+    assertRejected(candidate, `missing forbidden action ${action}`)
   }
 })
 

@@ -24,13 +24,13 @@ The child submission has these required top-level fields:
 |---|---|
 | `schemaVersion`, `contractVersion` | Fixed schema and `0.1.0` contract version. Unknown fields are rejected. |
 | `identity` | `childId`, `taskId`, `parentGoalId`, `researchUnitId`. |
-| `scope` | Assigned question, enumerated allowed/forbidden actions, and out-of-scope observations or proposals. The baseline mutation, remote, readiness, activation, and installation actions are forbidden. |
+| `scope` | Assigned question, enumerated allowed/forbidden actions, and out-of-scope observations or proposals. The baseline mutation, remote, readiness, activation, and installation actions are forbidden; every member of the forbidden-action vocabulary must be listed. |
 | `basis` | `branch`, independent `basisHead`, independent `observedHead`, and `worktreeState` (`clean`, `dirty`, or `unknown`). |
 | `inputRefs`, `inspectedRefs` | Reference ID, repository-relative path or HTTP(S) URI, locator, access mode, and optional actual byte SHA-256. `bytes` access requires a SHA-256. |
 | `artifactRefs` | Path, artifact ID, schema version, byte SHA-256, integrity-sidecar reference, and role. Canonical artifacts are referenced, never copied. |
 | `observations` | Direct child-reported statements with evidence reference IDs. They have no inference or authority fields. |
 | `inferences` | Separate non-authoritative statements based only on observation IDs. |
-| `validations` | Check kind, command, scope, result, exit code, and evidence references. A passed check requires a command, scope, exit code `0`, and evidence. |
+| `validations` | Check kind, command, scope, result, exit code, and evidence references. A passed command/test/checker requires exit code `0`; a passed `manual_review` uses `exitCode: null`; both require scope and evidence. |
 | `unknowns`, `blockers` | Explicit unresolved items, parent impact, next check, status, and references. |
 | `status` | One of `completed`, `completed_with_unknowns`, `failed`, `cancelled`. |
 | `error`, `cancellation` | Status-specific detail. Failed results require `error`; cancelled results require `cancellation`. |
@@ -80,8 +80,10 @@ domain artifact identity contract.
   error or cancellation detail.
 - `failed` requires an error and cannot carry cancellation detail.
 - `cancelled` requires a cancellation reason and cannot carry error detail.
-- A passed validation must have a command, scope, result, exit code `0`, and
-  at least one evidence reference.
+- A passed command, test, or checker validation must have a command, scope,
+  result, exit code `0`, and at least one evidence reference. A passed
+  `manual_review` must have the review scope and evidence, but uses
+  `exitCode: null` because no process was executed.
 
 `assigned` and `running` are dispatch/runtime states, not final v0 envelope
 statuses. `verified_by_parent` and `rejected_by_parent` are parent-owned
@@ -96,7 +98,9 @@ decisions and cannot be submitted by a child.
    rules with the existing checker.
 3. A result affecting calculation, claim/source relation, semantic authority,
    readiness, or activation requires parent re-reading of the exact locator and
-   re-running the critical checker or command.
+   re-running the critical checker or command from the parent basis. A child
+   summary, child PASS, or reuse of the same unverified output is not
+   independent evidence.
 4. A passed validation without command/scope/evidence, a hash mismatch, an
    invalid basis, mixed observation/inference fields, or unsafe path is
    rejected or directly rechecked.
@@ -106,6 +110,23 @@ decisions and cannot be submitted by a child.
 
 The parent may create a separate verification overlay after these checks. The
 child envelope itself remains a pending submission.
+
+## Context and write-surface boundary
+
+Context is acquired progressively. The parent and child begin with the assigned
+question, target references, and applicable contract, then retrieve only the
+dependency, boundary, or checker context needed by a declared check. Each
+additional reference is recorded in `inputRefs` or `inspectedRefs` with its
+locator and access mode; unrelated full-repository context is not a
+prerequisite.
+
+`materialize_temp` is the only allowed child action that may write. It requires
+an explicitly isolated temporary surface named in the assignment. The parent
+must serialize work with a shared or unknown surface, and may parallelize only
+read-only work or work whose temporary surfaces are explicitly disjoint.
+Canonical artifact paths, tracked files, and publication remain parent-owned.
+The v0 envelope records references and boundaries but does not schedule child
+work or prove sibling-surface disjointness; that is a parent decision.
 
 ## Default `/goal` subagent operation
 

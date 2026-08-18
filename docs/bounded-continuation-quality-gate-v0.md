@@ -143,6 +143,20 @@ gate decision != production activation
 The helper does not accept or produce readiness, semantic-authority,
 activation, or canonical artifact payload fields.
 
+## Context and sibling write-surface boundary
+
+The gate consumes the context needed for one declared work unit; it is not a
+reason to preload unrelated domain knowledge. Additional source, dependency,
+or checker context should be retrieved only when the next check declares that
+need and should be represented in the work-unit evidence or references.
+
+The gate is not a scheduler and does not certify that sibling work is safe to
+run concurrently. The parent may parallelize only read-only work or work with
+explicitly disjoint temporary surfaces. Shared or unknown surfaces, tracked or
+canonical artifact writes, and publication are serialized and parent-owned.
+`continue` therefore means a safe next frontier for this work unit, not
+permission to overlap another work unit's write surface.
+
 ## Budget
 
 `budget.checkpointDue` adds an audit reason and prompts parent state

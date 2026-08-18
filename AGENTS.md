@@ -117,12 +117,15 @@
 
 ## /goal subagent evidence contract
 - Use a subagent for independent investigation, analysis, or verification only when the coordination cost is justified; keep simple, local tasks in the parent.
+- Retrieve context progressively: start with the assigned question, target references, and applicable contract, then add only the dependency, boundary, or checker context required by a declared check. Record added references; do not make unrelated full-repository context a prerequisite.
 - For delegated work, the task scope must name the assigned question, allowed actions, forbidden actions, and any out-of-scope observation or proposal. Include the relevant checkout basis and reference boundaries.
 - The child result must be a `subagent-evidence-contract-v0` envelope. Before using it, the parent must parse the exact envelope and run `checkSubagentEvidenceContract` or `assertSubagentEvidenceContract` from `src/subagentEvidenceContract.js`.
 - An orchestration lifecycle result such as `worker_done` or `outcome: succeeded` is not the contract status and is not parent-goal PASS. Keep lifecycle metadata separate from the envelope, and preserve `child PASS != parent goal PASS`.
 - Reject or directly recheck envelopes that fail structural validation, contain unsafe or mismatched references, incomplete passed validations, copied canonical payloads, or readiness, activation, semantic-authority, or parent-verification promotion.
 - Keep observations, non-authoritative inferences, validations, unknowns, and blockers separate. Treat `completed_with_unknowns`, `failed`, and `cancelled` as partial results until parent verification is complete.
 - Parent verification is risk-based: confirm low-risk structural observations by reference, recheck canonical artifact hash/integrity, and directly reread the exact locator and rerun the critical check for calculation, claim/source relation, semantic authority, readiness, or activation impact.
+- Independent parent verification must use the parent basis and an exact locator or critical check; a child summary, child PASS, or reuse of the same unverified output is not independent evidence.
+- Parallel child work is allowed only for read-only scopes or explicitly disjoint temporary write surfaces. Shared or unknown surfaces, canonical artifact paths, and publication remain serialized and parent-owned; `materialize_temp` does not authorize tracked or canonical writes.
 - Do not copy canonical artifact payloads into the envelope; pass only the allowed artifact identity and integrity references. Do not treat the structural validator as a truth, source-authority, readiness, or activation validator.
 - This is an instruction-level operating rule. Do not add Luna runtime, wrapper, registry, JSONL, daemon, dependency, or schema changes to apply it.
 

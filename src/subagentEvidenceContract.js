@@ -31,14 +31,7 @@ export const SUBAGENT_FORBIDDEN_ACTIONS = Object.freeze([
   'production',
 ])
 
-export const SUBAGENT_REQUIRED_FORBIDDEN_ACTIONS = Object.freeze([
-  'edit',
-  'install',
-  'remote',
-  'destructive',
-  'readiness_promotion',
-  'activation',
-])
+export const SUBAGENT_REQUIRED_FORBIDDEN_ACTIONS = Object.freeze([...SUBAGENT_FORBIDDEN_ACTIONS])
 
 export const SUBAGENT_REF_ACCESS = Object.freeze([
   'bytes',
@@ -331,7 +324,9 @@ function validateValidations(validations, errors, evidenceIds, validationIds) {
     arrayField(item.evidenceRefs, `${path}.evidenceRefs`, errors)
     if (item.result === 'passed') {
       if (item.evidenceRefs?.length === 0) add(errors, `passed_validation_evidence_missing:${path}`)
-      if (item.exitCode !== 0) add(errors, `passed_validation_exit_code_invalid:${path}`)
+      if (item.kind === 'manual_review') {
+        if (item.exitCode !== null) add(errors, `manual_review_exit_code_forbidden:${path}`)
+      } else if (item.exitCode !== 0) add(errors, `passed_validation_exit_code_invalid:${path}`)
     }
     if ((item.kind === 'command' || item.kind === 'test' || item.kind === 'checker') && (item.result === 'passed' || item.result === 'failed') && !Number.isInteger(item.exitCode)) add(errors, `validation_exit_code_missing:${path}`)
     if (item.kind === 'manual_review' && item.exitCode !== null) add(errors, `manual_review_exit_code_forbidden:${path}`)
