@@ -1,0 +1,7 @@
+{
+  "artifactByteSha256": "25b4c2ecac56caa5dfad13e090b0844f0088240205da43a2beaa59c5a79bbb81",
+  "artifactPath": "artifacts/saju-five-classics-typed-readiness-contract-v0/complete.json",
+  "byteLength": 208331,
+  "hashScope": "exact UTF-8 bytes of complete.json including final LF",
+  "schemaVersion": "saju-five-classics-typed-readiness-contract-v0-integrity-v0"
+}
