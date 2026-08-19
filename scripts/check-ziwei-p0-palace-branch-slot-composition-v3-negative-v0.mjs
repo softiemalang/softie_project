@@ -1,8 +1,3 @@
-import { createHash } from 'node:crypto'
-import { mkdtemp, readFile, rm, writeFile } from 'node:fs/promises'
-import { relative, resolve } from 'node:path'
-import { tmpdir } from 'node:os'
-
 import {
   canonicalJson,
   materializeBundle,
@@ -10,29 +5,7 @@ import {
   SCHEMA,
 } from './materialize-ziwei-p0-palace-branch-slot-composition-v3.mjs'
 import { checkArtifact } from './check-ziwei-p0-palace-branch-slot-composition-v3.mjs'
-
-const sha256 = bytes => createHash('sha256').update(bytes).digest('hex')
-
-async function mutateAndCheck(mutation) {
-  const directory = await mkdtemp(resolve(tmpdir(), 'ziwei-palace-composition-v3-negative-'))
-  const completePath = resolve(directory, 'complete.json')
-  try {
-    await materializeBundle(completePath, { mode: 'historical_reference' })
-    const value = JSON.parse(await readFile(completePath, 'utf8'))
-    mutation(value)
-    const body = Buffer.from(canonicalJson(value))
-    await writeFile(completePath, body)
-    await writeFile(completePath + '.integrity.json', canonicalJson({
-      schemaVersion: SCHEMA + '-integrity-v0',
-      path: relative(ROOT, completePath),
-      byteSha256: sha256(body),
-      byteScope: 'UTF-8 JSON bytes including final LF',
-    }))
-    return { rejected: checkArtifact(ROOT, completePath).length > 0, errors: checkArtifact(ROOT, completePath) }
-  } finally {
-    await rm(directory, { recursive: true, force: true })
-  }
-}
+import { runZiweiP0NegativeMutations } from './lib/run-ziwei-p0-negative-mutations.mjs'
 
 const mutations = [
   { id: 'promote_nlc_independence', mutate: value => { value.lineageAssessment.sameEditionComparison.independentLineageAdmitted = true } },
@@ -49,8 +22,15 @@ const mutations = [
   { id: 'add_generated_timestamp', mutate: value => { value.deterministicContract.generatedAt = new Date().toISOString() } },
 ]
 
-const results = []
-for (const mutation of mutations) results.push({ id: mutation.id, ...(await mutateAndCheck(mutation.mutate)) })
+const results = await runZiweiP0NegativeMutations({
+  canonicalJson,
+  checkArtifact,
+  materializeBundle,
+  mutations,
+  root: ROOT,
+  schema: SCHEMA,
+  tempPrefix: 'ziwei-palace-composition-v3-negative',
+})
 const failed = results.filter(item => !item.rejected)
 console.log(JSON.stringify({
   schemaVersion: SCHEMA,
