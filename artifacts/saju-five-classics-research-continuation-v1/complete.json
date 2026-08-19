@@ -1,0 +1,3294 @@
+{
+  "adjudicationSummary": {
+    "adjudicationStatusCounts": {
+      "edition_variant": 0,
+      "independence_unresolved": 10,
+      "insufficient_evidence": 1,
+      "lineage_specific": 0,
+      "local_lineage_unresolved": 1,
+      "semantic_conflict": 1,
+      "stable_candidate": 0
+    },
+    "claimCount": 13,
+    "promotionReadyClaimIds": [],
+    "readinessTrueCounts": {
+      "edition_collated": 12,
+      "historical_witness_observed": 13,
+      "independence_resolved": 0,
+      "local_lineage_resolved": 0,
+      "promotion_ready": 0,
+      "semantic_equivalence_checked": 11
+    }
+  },
+  "artifactIdentity": {
+    "artifactId": "saju-five-classics-research-continuation-v1",
+    "artifactPayloadSha256": "7fe35fe30e6656e88f6466c1565953561858ee9bace654c6ae92e3d1d700c577",
+    "contractVersion": "artifact-identity-v1",
+    "generation": {
+      "baseHead": "99e6cc624a1510487ad8bcf65347b3ee5f4e524e",
+      "baseHeadSource": "git rev-parse HEAD at materialization",
+      "includedCommit": null,
+      "includedCommitSource": "unknown_at_generation; artifact may be included by a later commit"
+    },
+    "inputs": [
+      {
+        "byteSha256": "6506c425b8339ea89db681f727978746149acd898205a9826ea1790ffb16fd66",
+        "path": "artifacts/saju-five-classics-claim-adjudication-v0/complete.json"
+      },
+      {
+        "byteSha256": "7c9bfec3cd2ed082d009c521c03658c8905b475f2f165d3cbcbdc78c0b3fd126",
+        "path": "artifacts/saju-five-classics-source-identity-frontier-v0/complete.json"
+      },
+      {
+        "byteSha256": "0f8f092f818eeeb5eb10c7fc2abd1223c6dc6815b3c95e2061c4d0f579d873a7",
+        "path": "artifacts/saju-timing-authority-frontier-v0/complete.json"
+      },
+      {
+        "byteSha256": "b4c7fb6ec592051a814a50deab25775c281fcdbc043d52857acc17fde076193e",
+        "path": "scripts/materialize-saju-five-classics-research-continuation-v1.mjs"
+      },
+      {
+        "byteSha256": "5745991fbc31ea4747570844017c06facc4c6c15e205f3145bb357afb9f51712",
+        "path": "src/artifactIdentity.js"
+      },
+      {
+        "byteSha256": "cc74f3ff3a0799f1314d6d954945b1ee293219d2327d5b3bf685f2c872b41b77",
+        "path": "src/boundedContinuationGate.js"
+      },
+      {
+        "byteSha256": "80b4d411f823267bf423912966b5436bac5bf8f58b90845b3be1fb9f14d7fc7d",
+        "path": "src/interpretationPrep/sajuFiveClassicsResearchContinuation.js"
+      }
+    ],
+    "materializer": {
+      "path": "scripts/materialize-saju-five-classics-research-continuation-v1.mjs",
+      "version": "1.0.0"
+    }
+  },
+  "basisHead": "99e6cc624a1510487ad8bcf65347b3ee5f4e524e",
+  "blockers": [
+    {
+      "blockerId": "blocker.continuation.anu-juan-6-12",
+      "blocking": true,
+      "description": "ANU record describes a 12-juan work, while the directly verified public set exposes only V1–V5; 卷6–12 and physical completeness remain unverified.",
+      "nextCheckableQuestion": "Can ANU staff or the record expose canonical bitstreams/scans for 卷6–12 and a completeness/colophon record?",
+      "status": "open"
+    },
+    {
+      "blockerId": "blocker.continuation.anu-printed-folio-crosswalk",
+      "blocking": true,
+      "description": "ANU V2 scan numbering is directly verified, but printed folio, plate, edition, and the dossier note 雍正乙卯花朝 are not resolved from the bitstream alone.",
+      "nextCheckableQuestion": "Can the institution supply printed-folio/plate metadata or a title-page/colophon crosswalk for V2?",
+      "status": "open"
+    },
+    {
+      "blockerId": "blocker.continuation.dayun-exact-first-start-time",
+      "blocking": true,
+      "description": "The split 大運 claims now separate direction, 節 selection, distance, conversion, age example, first start time, and later progression, but exact start-time arithmetic, rounding, and calendar clamping remain unproved.",
+      "nextCheckableQuestion": "Find a directly readable historical witness or worked example that supplies birth instant, 節 instant, unit conversion, rounding, and resulting first timestamp together.",
+      "status": "open"
+    },
+    {
+      "blockerId": "blocker.continuation.local-timing-lineage",
+      "blocking": true,
+      "description": "The ANU V2 witness does not close the local 三命通會 or local classical-PDF lineage to a physical item or printed edition.",
+      "nextCheckableQuestion": "Obtain a byte/scan/page/plate bridge between the local export and an institutionally identified item.",
+      "status": "open"
+    },
+    {
+      "blockerId": "blocker.continuation.yuanhai-cross-edition-collation",
+      "blocking": true,
+      "description": "淵海子平 responsibility, seasonal, and start-age observations remain bounded page collations; exact local-to-item lineage and independent edition transmission are not closed.",
+      "nextCheckableQuestion": "Directly collate the local pages against an institutionally identified scan with printed folios and a transmission/edition record.",
+      "status": "open"
+    },
+    {
+      "blockerId": "blocker.continuation.xiangshen-variant-cause",
+      "blocking": true,
+      "description": "相神 locator mismatch is ruled out and the historical 1926 pair agrees, but local omission/addition/order differences cannot yet be assigned uniquely to edition variation, modern rewriting, or commentary/editorial layering.",
+      "nextCheckableQuestion": "Inspect a further dated physical witness or editorial apparatus that distinguishes the local text layer from the historical base text.",
+      "status": "open"
+    },
+    {
+      "blockerId": "blocker.continuation.qiongtong-transmission",
+      "blocking": true,
+      "description": "窮通寶鑑 spring Jia wood is boundedly stable across Waseda/NLC 1926/NLC 1937 observations, but local lineage, transmission independence, and authorship remain separate unresolved edges.",
+      "nextCheckableQuestion": "Obtain dated title/colophon and page-level lineage evidence for Waseda, NLC 1926, and NLC 1937, plus a local-to-witness bridge.",
+      "status": "open"
+    }
+  ],
+  "claimDecomposition": {
+    "disposition": "retained_in_predecessor_only_not_active_in_v1",
+    "predecessorArtifactPath": "artifacts/saju-five-classics-claim-adjudication-v0/complete.json",
+    "previousClaimId": "claim.yuanhai-dayun-start-age",
+    "reason": "The prior bundled timing locator did not separate direction, 節 selection, distance, conversion, age, exact first start time, and later progression.",
+    "replacementClaimIds": [
+      "claim.sanming-dayun-year-stem-gender-direction",
+      "claim.sanming-dayun-term-selection",
+      "claim.sanming-dayun-term-distance",
+      "claim.sanming-dayun-distance-conversion",
+      "claim.sanming-dayun-start-age",
+      "claim.sanming-dayun-first-start-time",
+      "claim.sanming-dayun-progression"
+    ]
+  },
+  "claimRelations": [
+    {
+      "claimIds": [
+        "claim.sanming-dayun-year-stem-gender-direction"
+      ],
+      "conclusion": "ANU scan 59 and the predecessor 三命通會 timing observation expose the same direction family; this is a bounded textual comparison, not proof of independent transmission or a universal rule.",
+      "independenceStatus": "unresolved",
+      "observationIds": [
+        "obs.anu.sanming-tonghui.v2-scan-58-dayun",
+        "obs.anu.sanming-tonghui.v2-scan-59-direction-conversion",
+        "obs.sanming.dayun-forward-direction",
+        "obs.sanming.dayun-backward-direction",
+        "obs.sanming.dayun-distance-conversion",
+        "obs.sanming.dayun-start-example",
+        "obs.yuanhai.dayun-month-progression"
+      ],
+      "relationId": "relation.continuation.sanming-dayun-direction",
+      "relationType": "bounded_semantic_collation",
+      "sourceIds": [
+        "source.anu.sanming-tonghui.e0d2d017.v2",
+        "source.sanming-tonghui.web-witness",
+        "source.yuanhai-zi-ping.web-witness"
+      ]
+    },
+    {
+      "claimIds": [
+        "claim.sanming-dayun-term-selection"
+      ],
+      "conclusion": "The ANU continuation exposes future/past 節 selection language matching the predecessor timing observation family; exact 節 class and lineage remain open.",
+      "independenceStatus": "unresolved",
+      "observationIds": [
+        "obs.anu.sanming-tonghui.v2-scan-58-dayun",
+        "obs.anu.sanming-tonghui.v2-scan-59-direction-conversion",
+        "obs.sanming.dayun-forward-direction",
+        "obs.sanming.dayun-backward-direction",
+        "obs.sanming.dayun-distance-conversion",
+        "obs.sanming.dayun-start-example",
+        "obs.yuanhai.dayun-month-progression"
+      ],
+      "relationId": "relation.continuation.sanming-dayun-term-selection",
+      "relationType": "bounded_semantic_collation",
+      "sourceIds": [
+        "source.anu.sanming-tonghui.e0d2d017.v2",
+        "source.sanming-tonghui.web-witness",
+        "source.yuanhai-zi-ping.web-witness"
+      ]
+    },
+    {
+      "claimIds": [
+        "claim.sanming-dayun-term-distance"
+      ],
+      "conclusion": "The ANU scan visibly counts time to a preceding or next 節; granularity, rounding, and calendar conversion are not closed.",
+      "independenceStatus": "unresolved",
+      "observationIds": [
+        "obs.anu.sanming-tonghui.v2-scan-58-dayun",
+        "obs.anu.sanming-tonghui.v2-scan-59-direction-conversion",
+        "obs.sanming.dayun-forward-direction",
+        "obs.sanming.dayun-backward-direction",
+        "obs.sanming.dayun-distance-conversion",
+        "obs.sanming.dayun-start-example",
+        "obs.yuanhai.dayun-month-progression"
+      ],
+      "relationId": "relation.continuation.sanming-dayun-term-distance",
+      "relationType": "bounded_semantic_collation",
+      "sourceIds": [
+        "source.anu.sanming-tonghui.e0d2d017.v2",
+        "source.sanming-tonghui.web-witness",
+        "source.yuanhai-zi-ping.web-witness"
+      ]
+    },
+    {
+      "claimIds": [
+        "claim.sanming-dayun-distance-conversion"
+      ],
+      "conclusion": "The ANU scan visibly carries the 三日一歲 / 一日四月 conversion family and a worked example; this does not establish the implementation rounding order.",
+      "independenceStatus": "unresolved",
+      "observationIds": [
+        "obs.anu.sanming-tonghui.v2-scan-58-dayun",
+        "obs.anu.sanming-tonghui.v2-scan-59-direction-conversion",
+        "obs.sanming.dayun-forward-direction",
+        "obs.sanming.dayun-backward-direction",
+        "obs.sanming.dayun-distance-conversion",
+        "obs.sanming.dayun-start-example",
+        "obs.yuanhai.dayun-month-progression"
+      ],
+      "relationId": "relation.continuation.sanming-dayun-conversion",
+      "relationType": "bounded_semantic_collation",
+      "sourceIds": [
+        "source.anu.sanming-tonghui.e0d2d017.v2",
+        "source.sanming-tonghui.web-witness",
+        "source.yuanhai-zi-ping.web-witness"
+      ]
+    },
+    {
+      "claimIds": [
+        "claim.sanming-dayun-start-age"
+      ],
+      "conclusion": "A 起運 age example is directly observed in the ANU spread and can be separated from the conversion rule; exact local start-age equivalence remains unresolved.",
+      "independenceStatus": "unresolved",
+      "observationIds": [
+        "obs.anu.sanming-tonghui.v2-scan-58-dayun",
+        "obs.anu.sanming-tonghui.v2-scan-59-direction-conversion",
+        "obs.sanming.dayun-forward-direction",
+        "obs.sanming.dayun-backward-direction",
+        "obs.sanming.dayun-distance-conversion",
+        "obs.sanming.dayun-start-example",
+        "obs.yuanhai.dayun-month-progression"
+      ],
+      "relationId": "relation.continuation.sanming-dayun-start-age",
+      "relationType": "bounded_semantic_collation",
+      "sourceIds": [
+        "source.anu.sanming-tonghui.e0d2d017.v2",
+        "source.sanming-tonghui.web-witness",
+        "source.yuanhai-zi-ping.web-witness"
+      ]
+    },
+    {
+      "claimIds": [
+        "claim.sanming-dayun-first-start-time"
+      ],
+      "conclusion": "The ANU example identifies a textual start-age example but does not provide enough birth-calendar and conversion-policy data to establish an exact first start timestamp.",
+      "independenceStatus": "not_applicable",
+      "observationIds": [
+        "obs.anu.sanming-tonghui.v2-scan-59-direction-conversion"
+      ],
+      "relationId": "relation.continuation.sanming-dayun-first-start-time-gap",
+      "relationType": "scope_gap",
+      "sourceIds": [
+        "source.anu.sanming-tonghui.e0d2d017.v2"
+      ]
+    },
+    {
+      "claimIds": [
+        "claim.sanming-dayun-progression"
+      ],
+      "conclusion": "The surrounding 大運 discussion is sufficient for a bounded progression-family observation; it does not establish a complete later-cycle algorithm or independent lineage.",
+      "independenceStatus": "unresolved",
+      "observationIds": [
+        "obs.anu.sanming-tonghui.v2-scan-58-dayun",
+        "obs.anu.sanming-tonghui.v2-scan-59-direction-conversion",
+        "obs.sanming.dayun-forward-direction",
+        "obs.sanming.dayun-backward-direction",
+        "obs.sanming.dayun-distance-conversion",
+        "obs.sanming.dayun-start-example",
+        "obs.yuanhai.dayun-month-progression"
+      ],
+      "relationId": "relation.continuation.sanming-dayun-progression",
+      "relationType": "bounded_semantic_collation",
+      "sourceIds": [
+        "source.anu.sanming-tonghui.e0d2d017.v2",
+        "source.sanming-tonghui.web-witness",
+        "source.yuanhai-zi-ping.web-witness"
+      ]
+    },
+    {
+      "claimIds": [
+        "claim.sanming-dayun-year-stem-gender-direction",
+        "claim.sanming-dayun-term-selection",
+        "claim.sanming-dayun-term-distance",
+        "claim.sanming-dayun-distance-conversion",
+        "claim.sanming-dayun-start-age",
+        "claim.sanming-dayun-first-start-time",
+        "claim.sanming-dayun-progression"
+      ],
+      "conclusion": "The ANU canonical bitstream and the predecessor web witness can be compared at a bounded wording-family level, but the web witness is not treated as an independent physical/textual witness.",
+      "independenceStatus": "not_resolved_not_counted_as_independent",
+      "observationIds": [
+        "obs.anu.sanming-tonghui.v2-scan-58-dayun",
+        "obs.anu.sanming-tonghui.v2-scan-59-direction-conversion",
+        "obs.sanming.dayun-forward-direction",
+        "obs.sanming.dayun-backward-direction",
+        "obs.sanming.dayun-distance-conversion",
+        "obs.sanming.dayun-start-example",
+        "obs.yuanhai.dayun-month-progression"
+      ],
+      "relationId": "relation.continuation.anu-to-sanming-web-witness",
+      "relationType": "same_work_cross_representation_candidate",
+      "sourceIds": [
+        "source.sanming-tonghui.web-witness",
+        "source.anu.sanming-tonghui.e0d2d017.v2"
+      ]
+    },
+    {
+      "claimIds": [
+        "claim.sanming-dayun-year-stem-gender-direction",
+        "claim.sanming-dayun-term-selection",
+        "claim.sanming-dayun-term-distance",
+        "claim.sanming-dayun-distance-conversion",
+        "claim.sanming-dayun-start-age",
+        "claim.sanming-dayun-first-start-time",
+        "claim.sanming-dayun-progression"
+      ],
+      "conclusion": "The local 三命通會 PDF and the ANU V2 bitstream are both available representations, but no byte-level, plate-level, or item-level relation has been established between them.",
+      "independenceStatus": "unresolved",
+      "observationIds": [
+        "obs.anu.sanming-tonghui.v2-bitstream",
+        "obs.anu.sanming-tonghui.v2-scan-58-dayun",
+        "obs.anu.sanming-tonghui.v2-scan-59-direction-conversion"
+      ],
+      "relationId": "relation.continuation.anu-to-local-sanming-lineage",
+      "relationType": "local_to_institutional_lineage_check",
+      "sourceIds": [
+        "source.local.sanming-tonghui-pdf",
+        "source.anu.sanming-tonghui.e0d2d017.v2"
+      ]
+    },
+    {
+      "claimIds": [
+        "claim.ziping-yongshin",
+        "claim.ziping-xingyun",
+        "claim.ziping-xiangshen"
+      ],
+      "conclusion": "NLC 1926 and NTL 1926 v2 remain a same-lineage candidate on wording, order, and printed-folio correspondences; they are not counted as two independent witnesses.",
+      "independenceStatus": "resolved_as_not_independent_for_current_claims",
+      "observationIds": [
+        "page.nlc.ziping.v2.leaf-23-yongshin",
+        "page.nlc.ziping.v2.leaf-32-xiangshen",
+        "page.nlc.ziping.v2.leaf-43-xingyun",
+        "page.ntl.ziping.v2.leaf-111-yongshin",
+        "page.ntl.ziping.v2.leaf-120-xiangshen",
+        "page.ntl.ziping.v2.leaf-131-xingyun"
+      ],
+      "relationId": "relation.continuation.nlc-ntl-ziping-1926-same-lineage",
+      "relationType": "same_lineage_candidate",
+      "sourceIds": [
+        "source.nlc.ziping-zhenquan.1926.v2",
+        "source.ntl.ziping-zhenquan.1926.v2"
+      ]
+    },
+    {
+      "claimIds": [
+        "claim.qiongtong-spring-jia-wood"
+      ],
+      "conclusion": "The spring Jia wood passage and the adjacent Waseda monthly-heading run are directly observed for a bounded four-witness comparison, while Waseda/NLC 1926/NLC 1937 transmission and local lineage remain unresolved; author attribution is a separate unresolved question.",
+      "independenceStatus": "unresolved",
+      "observationIds": [
+        "page.waseda.qiongtong.undated.scan-f0111.leaf-8",
+        "page.waseda.qiongtong.undated.scan-f0111.leaf-9-zhengyue-jia-mu",
+        "page.waseda.qiongtong.undated.scan-f0111.leaf-10-eryue-jia-mu",
+        "page.waseda.qiongtong.undated.scan-f0111.leaf-11-sanyue-jia-mu",
+        "page.nlc.qiongtong.v2.leaf-5-spring-jia-wood",
+        "page.nlc.qiongtong.1937.scan-48608.leaf-14-spring-jia-wood"
+      ],
+      "relationId": "relation.continuation.qiongtong-three-witness-stability",
+      "relationType": "bounded_three_witness_collation",
+      "sourceIds": [
+        "source.waseda.qiongtong-baojian.undated.scan-f0111",
+        "source.nlc.qiongtong-baojian.1926.v2",
+        "source.nlc.qiongtong-baojian.1937.scan-48608"
+      ]
+    },
+    {
+      "claimIds": [
+        "claim.ziping-xiangshen"
+      ],
+      "conclusion": "Locator mismatch is ruled out by matching section/folio sequence; NLC and NTL 1926 historical pair agree within the checked bounded passage, while the local witness omits 我用神 relative to that pair, records a 財旺生官/order difference, and changes surrounding order. NLC 35296 p.39 separately confirms 輔我用神者是也 and 財旺生官, but its full role clause is not safely transcribed. The remaining cause is unresolved between true edition variant, modern transcription/rewriting, and editorial/commentary layer.",
+      "independenceStatus": "historical-pair-not_independent; local-cause-unresolved",
+      "observationIds": [
+        "page.local.ziping.p10-xiangshen",
+        "page.local.ziping.p11-xiangshen-continuation",
+        "page.nlc.ziping.v2.leaf-32-xiangshen",
+        "page.nlc.ziping.v2.leaf-33-xiangshen-continuation",
+        "page.ntl.ziping.v2.leaf-120-xiangshen",
+        "page.ntl.ziping.v2.leaf-121-xiangshen-continuation",
+        "page.commons.nlc.ziping.35296.page-39-xiangshen",
+        "page.commons.nlc.ziping.35296.page-40-xiangshen-continuation",
+        "page.commons.nlc.ziping.35296.page-45-next-heading"
+      ],
+      "relationId": "relation.continuation.xiangshen-conflict-cause",
+      "relationType": "semantic_conflict_adjudication",
+      "sourceIds": [
+        "source.local.ziping-zhenquan-pdf",
+        "source.nlc.ziping-zhenquan.1926.v2",
+        "source.ntl.ziping-zhenquan.1926.v2",
+        "source.nlc.ziping-zhenquan.unknown-republican.scan-35296"
+      ]
+    }
+  ],
+  "claims": [
+    {
+      "adjudicationStatus": "local_lineage_unresolved",
+      "claimFamily": "editorial-responsibility",
+      "claimId": "claim.yuanhai-editorial-responsibility",
+      "collation": {
+        "editorialLayer": "responsibility display and catalog metadata, not semantic text",
+        "observedComparison": "The exact SSID-13003376 and Tianyi Pavilion scan leaf 3 observations both record the 徐升編 / 楊淙增校 / 福建余氏鐫梓 responsibility display, while the local export exposes only a narrower 楊淙 attribution; this is a bounded two-scan display collation, not proof of a shared item or plate.",
+        "omissionsAdditions": [
+          "The local S03 label does not expose the full scan responsibility display.",
+          "The two scan observations do not close printed-folio, plate, physical-item, or transmission identity."
+        ],
+        "orderingDifferences": [],
+        "rawSequence": [
+          "徐升編",
+          "楊淙增校",
+          "福建余氏鐫梓"
+        ],
+        "scope": "bounded_page_display",
+        "semanticEquivalenceResult": "not_applicable_to_text_meaning; identity-layer observation only",
+        "wordingVariants": [
+          "楊淙校 / 楊淙増校",
+          "鐫梓 / publisher or carving responsibility wording"
+        ]
+      },
+      "externalRecordIds": [
+        "record.cinii.yuanhai-bb08850892",
+        "record.aks.yuanhai-yanhaiziping"
+      ],
+      "proposition": "The exact SSID-13003376 and Tianyi Pavilion Ming Chongzhen scan leaf 3 observations both record 徐升編, 楊淙增校, and 福建余氏鐫梓 beside 新刊合併官板音義評註淵海子平卷之一; the local S03 label 楊淙 alone must not be normalized into sole authorship or direct local lineage.",
+      "readiness": {
+        "edition_collated": true,
+        "historical_witness_observed": true,
+        "independence_resolved": false,
+        "local_lineage_resolved": false,
+        "promotion_ready": false,
+        "readinessEvidence": {
+          "edition_collated": {
+            "evidenceRefs": [
+              "page.tianyige.yuanhai.ming-chongzhen.scan-5007.leaf-3",
+              "page.commons.yuanhai.ssid-13003376.leaf-3-responsibility"
+            ],
+            "missingEdges": [],
+            "note": "Two exact scan leaves were visually compared for the bounded responsibility display; full printed-folio, plate, and edition identity remain unresolved.",
+            "status": "proven"
+          },
+          "historical_witness_observed": {
+            "evidenceRefs": [
+              "page.commons.yuanhai.ssid-13003376.leaf-3-responsibility"
+            ],
+            "missingEdges": [],
+            "note": "Exact scan bytes and page 3 were visually reviewed.",
+            "status": "proven"
+          },
+          "independence_resolved": {
+            "evidenceRefs": [
+              "record.cinii.yuanhai-bb08850892",
+              "record.aks.yuanhai-yanhaiziping"
+            ],
+            "missingEdges": [
+              "physical-item identity and transmission relation among scan and records"
+            ],
+            "note": "External records are corroboration only, not independent textual witnesses.",
+            "status": "missing"
+          },
+          "local_lineage_resolved": {
+            "evidenceRefs": [
+              "blocker.local-to-physical-item",
+              "blocker.yuanhai-ziping-lineage"
+            ],
+            "missingEdges": [
+              "local S03 export -> exact historical physical item",
+              "SSID scan -> cataloged institutional item"
+            ],
+            "note": "The role display does not connect the local bytes to the scan or catalog item.",
+            "status": "missing"
+          },
+          "promotion_ready": {
+            "evidenceRefs": [
+              "blocker.yuanhai-ziping-lineage"
+            ],
+            "missingEdges": [
+              "all preceding readiness gates"
+            ],
+            "note": "Promotion is fail-closed.",
+            "status": "missing"
+          },
+          "semantic_equivalence_checked": {
+            "evidenceRefs": [],
+            "missingEdges": [
+              "a semantic text claim distinct from the identity observation"
+            ],
+            "note": "No semantic proposition is being promoted from this page.",
+            "status": "missing"
+          }
+        },
+        "semantic_equivalence_checked": false
+      },
+      "scope": "page-level responsibility display and bibliographic identity only",
+      "semanticAuthorityStatus": "not_established",
+      "sourceFrontierEvidence": {
+        "blockerIds": [
+          "blocker.local-to-physical-item",
+          "blocker.yuanhai-ziping-lineage"
+        ],
+        "claimRelationIds": [],
+        "pageObservationIds": [
+          "page.tianyige.yuanhai.ming-chongzhen.scan-5007.leaf-3",
+          "page.commons.yuanhai.ssid-13003376.leaf-3-responsibility",
+          "page.commons.yuanhai.ssid-13003376.leaf-3-title"
+        ],
+        "sourceIds": [
+          "source.tianyige.yuanhai-zi-ping.ming-chongzhen.scan-5007",
+          "source.commons.yuanhai-ziping.sao-ye-shan-fang.ssid-13003376",
+          "source.local.yuanhai-ziping-pdf"
+        ]
+      },
+      "witnesses": [
+        {
+          "exactByteLength": 18023468,
+          "exactByteSha256": "c6b261c3dccdb8209809110fc656f326d15b4b9cbc4a627cc657a0ab58fbc2f1",
+          "pageObservationIds": [
+            "page.commons.yuanhai.ssid-13003376.leaf-3-responsibility"
+          ],
+          "role": "historical_scan",
+          "scope": "PDF page/scan leaf 3; title and responsibility columns",
+          "sourceId": "source.commons.yuanhai-ziping.sao-ye-shan-fang.ssid-13003376",
+          "witnessId": "witness.ssid-13003376-leaf-3"
+        },
+        {
+          "exactByteLength": 133016361,
+          "exactByteSha256": "93a4fe97798eb7c3c35122f307447ce5e931a9a4012e558520fe9052c16a295f",
+          "pageObservationIds": [
+            "page.tianyige.yuanhai.ming-chongzhen.scan-5007.leaf-3"
+          ],
+          "role": "historical_scan",
+          "scope": "scan leaf 3; title and responsibility display",
+          "sourceId": "source.tianyige.yuanhai-zi-ping.ming-chongzhen.scan-5007",
+          "witnessId": "witness.tianyige-5007-leaf-3"
+        },
+        {
+          "exactByteLength": 2710282,
+          "exactByteSha256": "c6225b78d9d49282c5699b63315018a1e17ebf091c50ce4feb3dab465ec25a12",
+          "pageObservationIds": [
+            "page.local.yuanhai.title"
+          ],
+          "role": "local_text",
+          "scope": "local export title/attribution locator; physical item not observed",
+          "sourceId": "source.local.yuanhai-ziping-pdf",
+          "witnessId": "witness.local-yuanhai-export"
+        }
+      ],
+      "workIds": [
+        "yuanhai-zi-ping"
+      ]
+    },
+    {
+      "adjudicationStatus": "independence_unresolved",
+      "claimFamily": "lichun-month-command-jie-boundary",
+      "claimId": "claim.yuanhai-seasonal-lichun-clause",
+      "collation": {
+        "editorialLayer": "seasonal song / page layout",
+        "observedComparison": "Local p.4 and NLC leaves 52–53 visibly share the seasonal clause family; Tianyi leaf 19 independently exposes the same clause family in a different vertical plate/layout.",
+        "omissionsAdditions": [
+          "The local page compresses/retains a different layout; full surrounding seasonal text is not normalized here."
+        ],
+        "orderingDifferences": [],
+        "rawSequence": [
+          "立春念三丙火用",
+          "餘日甲木旺提綱",
+          "小暑十日丁火旺",
+          "後來三日乙木芳"
+        ],
+        "scope": "bounded_three_witness_raw_text",
+        "semanticEquivalenceResult": "bounded_text_family_correspondence_only; general 立春/節 boundary meaning remains unchecked",
+        "wordingVariants": [
+          "local modern punctuation/composition vs traditional scan punctuation",
+          "local page layout differs from the institutional vertical plates"
+        ]
+      },
+      "externalRecordIds": [],
+      "proposition": "A bounded local p.4 / NLC-99036 printed p.34–35 / Tianyi leaf 19 correspondence exists for the seasonal clause family 立春念三丙火用 / 餘日甲木旺提綱 and 小暑十日丁火旺 / 後來三日乙木芳.",
+      "readiness": {
+        "edition_collated": true,
+        "historical_witness_observed": true,
+        "independence_resolved": false,
+        "local_lineage_resolved": false,
+        "promotion_ready": false,
+        "readinessEvidence": {
+          "edition_collated": {
+            "evidenceRefs": [
+              "relation.lichun-month-command-jie-boundary",
+              "page.nlc.yuanhai.99036.leaf-52-seasonal-song",
+              "page.nlc.yuanhai.99036.leaf-53-seasonal-qi-song"
+            ],
+            "missingEdges": [],
+            "note": "The bounded page/printed-folio correspondence was recorded.",
+            "status": "proven"
+          },
+          "historical_witness_observed": {
+            "evidenceRefs": [
+              "page.nlc.yuanhai.99036.leaf-52-seasonal-song",
+              "page.tianyige.yuanhai.ming-chongzhen.scan-5007.leaf-19"
+            ],
+            "missingEdges": [],
+            "note": "Two exact scan witnesses were visually reviewed.",
+            "status": "proven"
+          },
+          "independence_resolved": {
+            "evidenceRefs": [
+              "lineage.commons-yuanhai-trusted-to-tianyige",
+              "blocker.cross-edition-collation"
+            ],
+            "missingEdges": [
+              "textual transmission and physical independence of NLC-99036, Tianyi, and local export"
+            ],
+            "note": "Different witnesses are not automatically independent.",
+            "status": "missing"
+          },
+          "local_lineage_resolved": {
+            "evidenceRefs": [
+              "blocker.local-to-physical-item",
+              "blocker.timing-page-locators"
+            ],
+            "missingEdges": [
+              "local p.4 -> exact historical physical item and printed plate"
+            ],
+            "note": "A local-to-item crosswalk remains open.",
+            "status": "missing"
+          },
+          "promotion_ready": {
+            "evidenceRefs": [
+              "blocker.cross-edition-collation",
+              "blocker.local-to-physical-item"
+            ],
+            "missingEdges": [
+              "local lineage, independence, and authority gates"
+            ],
+            "note": "Promotion is fail-closed.",
+            "status": "missing"
+          },
+          "semantic_equivalence_checked": {
+            "evidenceRefs": [
+              "relation.lichun-month-command-jie-boundary"
+            ],
+            "missingEdges": [],
+            "note": "Only bounded raw sequence comparison was checked; no semantic authority is inferred.",
+            "status": "proven"
+          }
+        },
+        "semantic_equivalence_checked": true
+      },
+      "scope": "bounded raw seasonal-clause correspondence; not a general 立春 or 節 boundary rule",
+      "semanticAuthorityStatus": "not_established",
+      "sourceFrontierEvidence": {
+        "blockerIds": [
+          "blocker.timing-page-locators",
+          "blocker.cross-edition-collation",
+          "blocker.local-to-physical-item"
+        ],
+        "claimRelationIds": [
+          "relation.lichun-month-command-jie-boundary"
+        ],
+        "pageObservationIds": [
+          "page.local.yuanhai.p4-seasonal-calendar",
+          "page.nlc.yuanhai.99036.leaf-52-seasonal-song",
+          "page.nlc.yuanhai.99036.leaf-53-seasonal-qi-song",
+          "page.tianyige.yuanhai.ming-chongzhen.scan-5007.leaf-19"
+        ],
+        "sourceIds": [
+          "source.local.yuanhai-ziping-pdf",
+          "source.nlc.yuanhai-ziping.unknown-date.scan-99036",
+          "source.tianyige.yuanhai-zi-ping.ming-chongzhen.scan-5007"
+        ]
+      },
+      "witnesses": [
+        {
+          "exactByteLength": 2710282,
+          "exactByteSha256": "c6225b78d9d49282c5699b63315018a1e17ebf091c50ce4feb3dab465ec25a12",
+          "pageObservationIds": [
+            "page.local.yuanhai.p4-seasonal-calendar"
+          ],
+          "role": "local_text",
+          "scope": "local PDF page 4",
+          "sourceId": "source.local.yuanhai-ziping-pdf",
+          "witnessId": "witness.local-yuanhai-p4"
+        },
+        {
+          "exactByteLength": 6429274,
+          "exactByteSha256": "fca66e109aae987a5a04dc623e5168680d227542e13b56cdd7c39b62e55b605f",
+          "pageObservationIds": [
+            "page.nlc.yuanhai.99036.leaf-52-seasonal-song",
+            "page.nlc.yuanhai.99036.leaf-53-seasonal-qi-song"
+          ],
+          "role": "historical_scan_a",
+          "scope": "scan leaves 52–53; printed pages 三四–三五",
+          "sourceId": "source.nlc.yuanhai-ziping.unknown-date.scan-99036",
+          "witnessId": "witness.nlc-99036-seasonal"
+        },
+        {
+          "exactByteLength": 133016361,
+          "exactByteSha256": "93a4fe97798eb7c3c35122f307447ce5e931a9a4012e558520fe9052c16a295f",
+          "pageObservationIds": [
+            "page.tianyige.yuanhai.ming-chongzhen.scan-5007.leaf-19"
+          ],
+          "role": "historical_scan_b",
+          "scope": "scan leaf 19; printed folio not exposed",
+          "sourceId": "source.tianyige.yuanhai-zi-ping.ming-chongzhen.scan-5007",
+          "witnessId": "witness.tianyige-yuanhai-leaf-19"
+        }
+      ],
+      "workIds": [
+        "yuanhai-zi-ping"
+      ]
+    },
+    {
+      "adjudicationStatus": "independence_unresolved",
+      "claimFamily": "day-master-month-command",
+      "claimId": "claim.ziping-yongshin",
+      "collation": {
+        "editorialLayer": "modern local export versus 1926 institutional scans and a compound NLC scan",
+        "observedComparison": "The local incipit and immediate continuation were visually compared with NLC 1926, NTL 1926, and NLC 35296 page sequences.",
+        "omissionsAdditions": [
+          "Full edition-level surrounding-text and plate comparison is not retained.",
+          "NLC 35296 is a compound scan whose official 126-page extent is not mapped to the observed 287-page segment."
+        ],
+        "orderingDifferences": [
+          "The four witnesses expose the same bounded section sequence at different scan/printed-page positions; no broader table-of-contents equivalence is asserted."
+        ],
+        "rawSequence": [
+          "八字用神",
+          "專求月令",
+          "以日干配月令地支",
+          "而生克不同",
+          "格局分焉"
+        ],
+        "scope": "bounded_four_witness_raw_text",
+        "semanticEquivalenceResult": "bounded_same_clause_sequence_with_simplified_traditional_punctuation_variants; semantic authority not established",
+        "wordingVariants": [
+          "local simplified: 八字用神，专求月令，以日干配月令地支，而生克不同，格局分焉",
+          "historical traditional: 八字用神。專求月令。以日干配月令地支。而生克不同。格局分焉"
+        ]
+      },
+      "externalRecordIds": [],
+      "proposition": "Local 子平真詮 p.6–p.7, NLC 1926 leaves 23–24, NTL 1926 pages 111–112, and the NLC 35296 pages 26–27 provide a bounded 論用神 / 八字用神 page-sequence correspondence with simplified/traditional and punctuation variants.",
+      "readiness": {
+        "edition_collated": true,
+        "historical_witness_observed": true,
+        "independence_resolved": false,
+        "local_lineage_resolved": false,
+        "promotion_ready": false,
+        "readinessEvidence": {
+          "edition_collated": {
+            "evidenceRefs": [
+              "relation.day-master-month-command",
+              "page.nlc.ziping.v2.leaf-24-yongshin-continuation",
+              "page.ntl.ziping.v2.leaf-112-yongshin-continuation"
+            ],
+            "missingEdges": [],
+            "note": "The bounded clause and immediate continuation were compared across witness pages.",
+            "status": "proven"
+          },
+          "historical_witness_observed": {
+            "evidenceRefs": [
+              "page.nlc.ziping.v2.leaf-23-yongshin",
+              "page.ntl.ziping.v2.leaf-111-yongshin",
+              "page.commons.nlc.ziping.35296.page-26-yongshin"
+            ],
+            "missingEdges": [],
+            "note": "Exact historical scan bytes and page images were visually reviewed.",
+            "status": "proven"
+          },
+          "independence_resolved": {
+            "evidenceRefs": [
+              "blocker.yuanhai-ziping-lineage",
+              "blocker.cross-edition-collation"
+            ],
+            "missingEdges": [
+              "independent witness status of NLC/NTL 1926 pair",
+              "NLC 35296 physical item, edition, and compound-scan segment"
+            ],
+            "note": "The NLC and NTL 1926 candidates are not counted as independent textual witnesses here.",
+            "status": "missing"
+          },
+          "local_lineage_resolved": {
+            "evidenceRefs": [
+              "blocker.local-to-physical-item",
+              "lineage.local-ziping-to-nlc-35296"
+            ],
+            "missingEdges": [
+              "local PDF -> historical physical item/plate",
+              "local export -> 1926 or later NLC/NTL witness"
+            ],
+            "note": "Digital equality or phrase equality does not close historical lineage.",
+            "status": "missing"
+          },
+          "promotion_ready": {
+            "evidenceRefs": [
+              "blocker.local-to-physical-item",
+              "blocker.cross-edition-collation"
+            ],
+            "missingEdges": [
+              "local lineage, independence, and semantic-authority gates"
+            ],
+            "note": "Promotion is fail-closed.",
+            "status": "missing"
+          },
+          "semantic_equivalence_checked": {
+            "evidenceRefs": [
+              "relation.day-master-month-command"
+            ],
+            "missingEdges": [],
+            "note": "Character, simplified/traditional, punctuation, and page-sequence variants were checked within a bounded scope.",
+            "status": "proven"
+          }
+        },
+        "semantic_equivalence_checked": true
+      },
+      "scope": "bounded raw text-family and page-sequence collation; not semantic authority",
+      "semanticAuthorityStatus": "not_established",
+      "sourceFrontierEvidence": {
+        "blockerIds": [
+          "blocker.local-to-physical-item",
+          "blocker.yuanhai-ziping-lineage",
+          "blocker.cross-edition-collation"
+        ],
+        "claimRelationIds": [
+          "relation.day-master-month-command"
+        ],
+        "pageObservationIds": [
+          "page.local.ziping.p6-yongshin",
+          "page.local.ziping.p7-yongshin-continuation",
+          "page.nlc.ziping.v2.leaf-23-yongshin",
+          "page.nlc.ziping.v2.leaf-24-yongshin-continuation",
+          "page.ntl.ziping.v2.leaf-111-yongshin",
+          "page.ntl.ziping.v2.leaf-112-yongshin-continuation",
+          "page.commons.nlc.ziping.35296.page-26-yongshin",
+          "page.commons.nlc.ziping.35296.page-27-yongshin-continuation"
+        ],
+        "sourceIds": [
+          "source.local.ziping-zhenquan-pdf",
+          "source.nlc.ziping-zhenquan.1926.v2",
+          "source.ntl.ziping-zhenquan.1926.v2",
+          "source.nlc.ziping-zhenquan.unknown-republican.scan-35296"
+        ]
+      },
+      "witnesses": [
+        {
+          "exactByteLength": 580320,
+          "exactByteSha256": "449336b5e35aa6811b0462093d0175c45a0add44065bf2d3845cff75981db692",
+          "pageObservationIds": [
+            "page.local.ziping.p6-yongshin",
+            "page.local.ziping.p7-yongshin-continuation"
+          ],
+          "role": "local_text",
+          "scope": "local PDF pages 6–7",
+          "sourceId": "source.local.ziping-zhenquan-pdf",
+          "witnessId": "witness.local-ziping-yongshin"
+        },
+        {
+          "exactByteLength": 2088007,
+          "exactByteSha256": "b1ac0a7dd4dc260647b65bd9338ad815fc0855d78e0ea01ed428237b28eb61c8",
+          "pageObservationIds": [
+            "page.nlc.ziping.v2.leaf-23-yongshin",
+            "page.nlc.ziping.v2.leaf-24-yongshin-continuation"
+          ],
+          "role": "historical_scan_a",
+          "scope": "scan leaves 23–24; printed pages 一○ and continuation",
+          "sourceId": "source.nlc.ziping-zhenquan.1926.v2",
+          "witnessId": "witness.nlc-ziping-1926-yongshin"
+        },
+        {
+          "exactByteLength": 68883628,
+          "exactByteSha256": "02f8771f69b6d5650ca3a20e629b9351a1f0f71c24f36f3eb11631495505f483",
+          "pageObservationIds": [
+            "page.ntl.ziping.v2.leaf-111-yongshin",
+            "page.ntl.ziping.v2.leaf-112-yongshin-continuation"
+          ],
+          "role": "historical_scan_b",
+          "scope": "scan pages 111–112; printed folios 一○–一一",
+          "sourceId": "source.ntl.ziping-zhenquan.1926.v2",
+          "witnessId": "witness.ntl-ziping-1926-yongshin"
+        },
+        {
+          "exactByteLength": 7126096,
+          "exactByteSha256": "71402a780b0351b54edf121a51bc4a4a4ce5896496c35b954563ee06f1a6f620",
+          "pageObservationIds": [
+            "page.commons.nlc.ziping.35296.page-26-yongshin",
+            "page.commons.nlc.ziping.35296.page-27-yongshin-continuation"
+          ],
+          "role": "historical_scan_c",
+          "scope": "PDF pages 26–27; printed pages 十七–十八",
+          "sourceId": "source.nlc.ziping-zhenquan.unknown-republican.scan-35296",
+          "witnessId": "witness.nlc-35296-ziping-yongshin"
+        }
+      ],
+      "workIds": [
+        "ziping-zhenquan"
+      ]
+    },
+    {
+      "adjudicationStatus": "independence_unresolved",
+      "claimFamily": "dayun-progression",
+      "claimId": "claim.ziping-xingyun",
+      "collation": {
+        "editorialLayer": "modern local typeset export versus NLC 35296 direct scan plus NLC/NTL 1926 combined-print candidates",
+        "observedComparison": "Direct visual comparison of local PDF p.15, exact NLC 35296 PDF p.56 / printed folio 四十七, exact NLC 1926 pages 43–44 / printed folios 三○–三一, and exact NTL v.2 pages 131–132 / printed folios 三○–三一 shows the corresponding 論行運 section and the shared progression sequence 故運中每行一字／即必以此一字配命中八字而統觀之／為喜為忌吉凶判然矣. The NLC 1926 and NTL page pairs agree on the bounded section opening and continuation, while NLC 35296 supplies a separate historical page-56 locator; this closes the minimum local↔historical-A↔historical-B observation frontier without closing lineage or semantic authority.",
+        "omissionsAdditions": [
+          "The local p.15 opening is not visible on the bounded NLC 35296 p.56 image; the NLC 1926 and NTL p.131 images supply a separate historical opening/continuation pair.",
+          "The local and historical passages use simplified/traditional character and punctuation variants; no full paragraph normalization or edition-level equivalence is admitted."
+        ],
+        "orderingDifferences": [],
+        "rawSequence": [
+          "論行運",
+          "故運中每運行一字",
+          "即必以此一字",
+          "配命中八字而統觀之",
+          "為喜為忌吉凶判然矣",
+          "如官用印以制傷而運助印",
+          "財生官而身輕而運助身",
+          "印帶財以為忌而運剋財",
+          "食帶煞以成格"
+        ],
+        "scope": "bounded_local_to_three_historical_witness_raw_collation",
+        "semanticEquivalenceResult": "bounded_same_clause_sequence_with_historical_pair_agreement_and_simplified_traditional_and_page_boundary_variants; semantic authority not established",
+        "wordingVariants": [
+          "local p.15 simplified heading 二十五、论行运 and opening 论运与命无二法也",
+          "NLC 35296 p.56 traditional heading 論行運 and visible sequence 又以動之干支配八字之喜忌／故運中每運行一字",
+          "NLC 1926 p.43 and NTL v.2 p.131 both show the traditional 論行運 heading and the same bounded progression sequence across printed folio 三○"
+        ]
+      },
+      "externalRecordIds": [],
+      "proposition": "Direct visual review of the exact local PDF p.15, NLC 35296 PDF p.56 / printed folio 四十七, NLC 1926 leaves 43–44 / printed folios 三○–三一, and NTL v2 PDF p.131–p.132 / printed folios 三○–三一 establishes a bounded 論行運 sequence with historical-pair agreement; local lineage, physical independence, and semantic authority remain open.",
+      "readiness": {
+        "edition_collated": true,
+        "historical_witness_observed": true,
+        "independence_resolved": false,
+        "local_lineage_resolved": false,
+        "promotion_ready": false,
+        "readinessEvidence": {
+          "edition_collated": {
+            "evidenceRefs": [
+              "page.local.ziping.p15-xingyun",
+              "page.commons.nlc.ziping.35296.page-56-dayun",
+              "page.nlc.ziping.v2.leaf-43-xingyun",
+              "page.nlc.ziping.v2.leaf-44-xingyun-continuation",
+              "page.ntl.ziping.v2.leaf-131-xingyun",
+              "page.ntl.ziping.v2.leaf-132-xingyun-continuation"
+            ],
+            "missingEdges": [],
+            "note": "The local page and three historical witness sets were directly compared within a bounded section and surrounding-page scope; edition identity and full paragraph mapping remain open.",
+            "status": "proven"
+          },
+          "historical_witness_observed": {
+            "evidenceRefs": [
+              "page.commons.nlc.ziping.35296.page-56-dayun",
+              "page.nlc.ziping.v2.leaf-43-xingyun",
+              "page.nlc.ziping.v2.leaf-44-xingyun-continuation",
+              "page.ntl.ziping.v2.leaf-131-xingyun",
+              "page.ntl.ziping.v2.leaf-132-xingyun-continuation"
+            ],
+            "missingEdges": [],
+            "note": "The exact NLC 35296 page, NLC 1926 page pair, and NTL 1926 page pair were visually reviewed.",
+            "status": "proven"
+          },
+          "independence_resolved": {
+            "evidenceRefs": [
+              "blocker.cross-edition-collation"
+            ],
+            "missingEdges": [
+              "physical and textual independence of NLC 35296 versus the NLC/NTL 1926 candidates"
+            ],
+            "note": "The NLC/NTL 1926 scans are same-lineage candidates and NLC 35296 has unresolved date/edition relation; no independence conclusion is admitted.",
+            "status": "missing"
+          },
+          "local_lineage_resolved": {
+            "evidenceRefs": [
+              "blocker.local-to-physical-item"
+            ],
+            "missingEdges": [
+              "local 子平真詮 source chain to the historical witness set"
+            ],
+            "note": "The bounded page correspondence does not close local source lineage.",
+            "status": "missing"
+          },
+          "promotion_ready": {
+            "evidenceRefs": [
+              "blocker.cross-edition-collation"
+            ],
+            "missingEdges": [
+              "all preceding readiness gates"
+            ],
+            "note": "Promotion is fail-closed.",
+            "status": "missing"
+          },
+          "semantic_equivalence_checked": {
+            "evidenceRefs": [
+              "page.local.ziping.p15-xingyun",
+              "page.commons.nlc.ziping.35296.page-56-dayun",
+              "page.nlc.ziping.v2.leaf-43-xingyun",
+              "page.nlc.ziping.v2.leaf-44-xingyun-continuation",
+              "page.ntl.ziping.v2.leaf-131-xingyun",
+              "page.ntl.ziping.v2.leaf-132-xingyun-continuation"
+            ],
+            "missingEdges": [],
+            "note": "The bounded text comparison was performed and retained as a raw sequence; the NLC and NTL 1926 pairs agree within the checked scope, but character, punctuation, page-boundary, lineage, and semantic-authority gates remain separate.",
+            "status": "proven"
+          }
+        },
+        "semantic_equivalence_checked": true
+      },
+      "scope": "bounded local-to-three-historical-witness raw collation; page-boundary, lineage, independence, and semantic authority unresolved",
+      "semanticAuthorityStatus": "not_established",
+      "sourceFrontierEvidence": {
+        "blockerIds": [
+          "blocker.cross-edition-collation",
+          "blocker.local-to-physical-item"
+        ],
+        "claimRelationIds": [
+          "relation.dayun-progression"
+        ],
+        "pageObservationIds": [
+          "page.local.ziping.p15-xingyun",
+          "page.commons.nlc.ziping.35296.page-56-dayun",
+          "page.nlc.ziping.v2.leaf-43-xingyun",
+          "page.nlc.ziping.v2.leaf-44-xingyun-continuation",
+          "page.ntl.ziping.v2.leaf-131-xingyun",
+          "page.ntl.ziping.v2.leaf-132-xingyun-continuation"
+        ],
+        "sourceIds": [
+          "source.local.ziping-zhenquan-pdf",
+          "source.nlc.ziping-zhenquan.unknown-republican.scan-35296",
+          "source.nlc.ziping-zhenquan.1926.v2",
+          "source.ntl.ziping-zhenquan.1926.v2"
+        ]
+      },
+      "witnesses": [
+        {
+          "exactByteLength": 580320,
+          "exactByteSha256": "449336b5e35aa6811b0462093d0175c45a0add44065bf2d3845cff75981db692",
+          "pageObservationIds": [
+            "page.local.ziping.p15-xingyun"
+          ],
+          "role": "local_text",
+          "scope": "local PDF page 15 / 二十五、论行运",
+          "sourceId": "source.local.ziping-zhenquan-pdf",
+          "witnessId": "witness.local-ziping-xingyun"
+        },
+        {
+          "exactByteLength": 7126096,
+          "exactByteSha256": "71402a780b0351b54edf121a51bc4a4a4ce5896496c35b954563ee06f1a6f620",
+          "pageObservationIds": [
+            "page.commons.nlc.ziping.35296.page-56-dayun"
+          ],
+          "role": "historical_scan",
+          "scope": "PDF page 56; printed page 四十七",
+          "sourceId": "source.nlc.ziping-zhenquan.unknown-republican.scan-35296",
+          "witnessId": "witness.nlc-35296-xingyun"
+        },
+        {
+          "exactByteLength": 2088007,
+          "exactByteSha256": "b1ac0a7dd4dc260647b65bd9338ad815fc0855d78e0ea01ed428237b28eb61c8",
+          "pageObservationIds": [
+            "page.nlc.ziping.v2.leaf-43-xingyun",
+            "page.nlc.ziping.v2.leaf-44-xingyun-continuation"
+          ],
+          "role": "historical_scan",
+          "scope": "PDF/scan pages 43–44; printed folios 三○–三一",
+          "sourceId": "source.nlc.ziping-zhenquan.1926.v2",
+          "witnessId": "witness.nlc-1926-xingyun"
+        },
+        {
+          "exactByteLength": 68883628,
+          "exactByteSha256": "02f8771f69b6d5650ca3a20e629b9351a1f0f71c24f36f3eb11631495505f483",
+          "pageObservationIds": [
+            "page.ntl.ziping.v2.leaf-131-xingyun",
+            "page.ntl.ziping.v2.leaf-132-xingyun-continuation"
+          ],
+          "role": "historical_scan",
+          "scope": "PDF/scan pages 131–132; printed folios 三○–三一",
+          "sourceId": "source.ntl.ziping-zhenquan.1926.v2",
+          "witnessId": "witness.ntl-1926-xingyun"
+        }
+      ],
+      "workIds": [
+        "ziping-zhenquan"
+      ]
+    },
+    {
+      "adjudicationStatus": "semantic_conflict",
+      "claimFamily": "foundational-xiangshen",
+      "claimId": "claim.ziping-xiangshen",
+      "collation": {
+        "editorialLayer": "modern local typeset export versus NLC and NTL 1926 direct scans; NLC 35296 is an additional unresolved-date direct scan, not a resolved edition layer",
+        "observedComparison": "Direct visual comparison of local PDF p.10–p.11, exact NLC 1926 leaves 32–33, exact NTL v2 PDF pages 120–121, and exact NLC 35296 PDF pages 39–40/45 shows the corresponding 論相神 locator set. NLC and NTL agree across the checked continuation, while the local text differs in omission/addition and surrounding transition/order. NLC 35296 independently confirms phrase-level presence of 輔我用神者是也 and 財旺生官, but the full role clause after 財旺生官 was not safely transcribed.",
+        "omissionsAdditions": [
+          "The local bounded sentence omits the visible 我用神 wording present on both NLC/NTL 1926 pages.",
+          "Relative to the NLC/NTL 1926 bounded pair, the local bounded passage includes 财旺生官，则财为用，官为相 and a different surrounding order; this is not a claim that 財旺生官 is absent from every historical scan, because NLC 35296 p.39 directly shows the phrase.",
+          "NLC p.33 and NTL p.121 continue with 氣不甚靈／神之緊要也 and then 論雜氣如何取用; local p.10–p.11 instead exposes expanded examples and a different local section boundary.",
+          "NLC 35296 p.39 phrase presence is direct, but the complete role clause after 財旺生官 remains not transcribed and cannot resolve the conflict cause."
+        ],
+        "orderingDifferences": [
+          "Historical p.32→33 and p.120→121 page pairs share the same continuation order; the local p.10→11 surrounding order diverges after the 論相神 examples."
+        ],
+        "rawSequence": [
+          "論相神緊要",
+          "月令既得用神",
+          "則別位亦必有相",
+          "若君之有相輔我用神者是也",
+          "如官逢財生",
+          "則官為用",
+          "財為相",
+          "煞為用",
+          "食為相",
+          "傷用神甚於傷身",
+          "氣不甚靈",
+          "神之緊要也",
+          "論雜氣如何取用"
+        ],
+        "scope": "bounded_local_to_historical_raw_collation",
+        "semanticEquivalenceResult": "bounded_edition_variant_with_historical_pair_agreement_local_omission_addition_and_surrounding_order_variant_plus_nlc35296_phrase_presence; full_role_clause_and_conflict_cause_unresolved; semantic equivalence not established",
+        "witnessScopedObservations": {
+          "nlc35296": {
+            "observedPhrases": [
+              "輔我用神者是也",
+              "財旺生官"
+            ],
+            "pageObservationIds": [
+              "page.commons.nlc.ziping.35296.page-39-xiangshen",
+              "page.commons.nlc.ziping.35296.page-40-xiangshen-continuation",
+              "page.commons.nlc.ziping.35296.page-45-next-heading"
+            ],
+            "roleClauseAfterCaiWangShengGuan": {
+              "status": "not_transcribed",
+              "text": null
+            },
+            "sourceId": "source.nlc.ziping-zhenquan.unknown-republican.scan-35296"
+          }
+        },
+        "wordingVariants": [
+          "local p.10 simplified heading 十五、论相神紧要 and sentence 辅者是也",
+          "local p.10 visibly includes 财旺生官，则财为用，官为相 before 煞逢食制",
+          "NLC leaf 32 and NTL p.120 both show traditional heading 論相神緊要 and sentence 若君之有相輔我用神者是也",
+          "NLC 35296 p.39 visibly shows 論相神緊要, 輔我用神者是也, and 財旺生官; its untranscribed role clause is not normalized into the NLC/NTL sequence"
+        ]
+      },
+      "externalRecordIds": [],
+      "proposition": "Direct visual review of the exact local PDF p.10–p.11, NLC 1926 leaves 32–33 / printed folios 一九–二○, NTL v2 PDF p.120–p.121 / printed folios 一九–二○, and the NLC 35296 scan p.39–p.40 / printed pages 三十–三十一 plus p.45 / printed page 三十六 establishes a bounded 論相神緊要 locator set. The NLC/NTL 1926 pair agrees against the local omission/addition and surrounding-order variant; NLC 35296 separately shows 輔我用神者是也 and 財旺生官, while its full role clause, date, and lineage remain unresolved.",
+      "readiness": {
+        "edition_collated": true,
+        "historical_witness_observed": true,
+        "independence_resolved": false,
+        "local_lineage_resolved": false,
+        "promotion_ready": false,
+        "readinessEvidence": {
+          "edition_collated": {
+            "evidenceRefs": [
+              "page.local.ziping.p10-xiangshen",
+              "page.local.ziping.p11-xiangshen-continuation",
+              "page.nlc.ziping.v2.leaf-32-xiangshen",
+              "page.nlc.ziping.v2.leaf-33-xiangshen-continuation",
+              "page.ntl.ziping.v2.leaf-120-xiangshen",
+              "page.ntl.ziping.v2.leaf-121-xiangshen-continuation",
+              "page.commons.nlc.ziping.35296.page-39-xiangshen",
+              "page.commons.nlc.ziping.35296.page-40-xiangshen-continuation",
+              "page.commons.nlc.ziping.35296.page-45-next-heading"
+            ],
+            "missingEdges": [],
+            "note": "The local p.10–p.11, both 1926 historical page pairs, and the NLC 35296 phrase/boundary pages were reviewed within a bounded raw-collation scope; NLC 35296 full role context remains untranscribed.",
+            "status": "proven"
+          },
+          "historical_witness_observed": {
+            "evidenceRefs": [
+              "page.nlc.ziping.v2.leaf-32-xiangshen",
+              "page.nlc.ziping.v2.leaf-33-xiangshen-continuation",
+              "page.ntl.ziping.v2.leaf-120-xiangshen",
+              "page.ntl.ziping.v2.leaf-121-xiangshen-continuation",
+              "page.commons.nlc.ziping.35296.page-39-xiangshen",
+              "page.commons.nlc.ziping.35296.page-40-xiangshen-continuation",
+              "page.commons.nlc.ziping.35296.page-45-next-heading"
+            ],
+            "missingEdges": [],
+            "note": "Exact NLC and NTL page pairs / printed folios 一九–二○ were visually reviewed, and NLC 35296 pages 39–40/45 add phrase-level and boundary observations. NLC 35296 remains unresolved as to exact date and textual lineage.",
+            "status": "proven"
+          },
+          "independence_resolved": {
+            "evidenceRefs": [
+              "blocker.cross-edition-collation"
+            ],
+            "missingEdges": [
+              "independent textual witness and physical-item relation"
+            ],
+            "note": "One local export and one NTL scan do not establish independence.",
+            "status": "missing"
+          },
+          "local_lineage_resolved": {
+            "evidenceRefs": [
+              "blocker.local-to-physical-item"
+            ],
+            "missingEdges": [
+              "local PDF -> NTL physical item/edition/plate",
+              "source chain for the local typeset export"
+            ],
+            "note": "The page-level correspondence does not close local historical lineage.",
+            "status": "missing"
+          },
+          "promotion_ready": {
+            "evidenceRefs": [],
+            "missingEdges": [
+              "all preceding readiness gates"
+            ],
+            "note": "Promotion is fail-closed.",
+            "status": "missing"
+          },
+          "semantic_equivalence_checked": {
+            "evidenceRefs": [
+              "page.local.ziping.p10-xiangshen",
+              "page.local.ziping.p11-xiangshen-continuation",
+              "page.nlc.ziping.v2.leaf-32-xiangshen",
+              "page.nlc.ziping.v2.leaf-33-xiangshen-continuation",
+              "page.ntl.ziping.v2.leaf-120-xiangshen",
+              "page.ntl.ziping.v2.leaf-121-xiangshen-continuation",
+              "page.commons.nlc.ziping.35296.page-39-xiangshen",
+              "page.commons.nlc.ziping.35296.page-40-xiangshen-continuation",
+              "page.commons.nlc.ziping.35296.page-45-next-heading"
+            ],
+            "missingEdges": [],
+            "note": "The bounded comparison records the 1926-pair conflict and NLC 35296 phrase presence; the NLC 35296 role clause and conflict cause remain unresolved, so this gate records the check, not a positive equivalence result.",
+            "status": "proven"
+          }
+        },
+        "semantic_equivalence_checked": true
+      },
+      "researchDossierBoundary": {
+        "canonicalEvidenceImported": false,
+        "catalogCandidate": {
+          "exactDateStatus": "unresolved_below_清",
+          "observationId": "page.ncl.ziping.gengcun-06599.catalog-record",
+          "sourceId": "source.ncl.ziping.gengcun-06599.catalog-rarecatx0441810",
+          "status": "physical_item_catalog_identity_only",
+          "targetSections": "not_observed",
+          "textualWitness": "unresolved"
+        },
+        "dossierPaths": [
+          "/Users/softie/Downloads/명리 고전 PDF 5종의 판본·디지털 계통 독립 검증 연구보고서.md",
+          "/Users/softie/Downloads/문헌 관계 분석 메모.md",
+          "/Users/softie/Downloads/외부 자료 조사 기록.md",
+          "/Users/softie/Downloads/직접 관찰 기록.md",
+          "/Users/softie/Downloads/p3_responsibility_crop.png"
+        ],
+        "note": "The dossier p.120 statement triggered the check, but the admitted evidence is the independently revalidated exact local p.10–p.11, NLC leaves 32–33, NTL pages 120–121, and NLC 35296 pages 39–40/45 observations, not a dossier conclusion or independence label. The 耕寸集 record is retained as catalog identity only and is not admitted into this claim witness set.",
+        "use": "candidate_map_only"
+      },
+      "scope": "bounded local/1926-pair/NLC-35296 raw collation; NLC 35296 phrase presence is admitted, but its full role clause, local cause, surrounding order, lineage, independence, and semantic authority remain unresolved",
+      "semanticAuthorityStatus": "not_established",
+      "sourceFrontierEvidence": {
+        "blockerIds": [
+          "blocker.local-to-physical-item",
+          "blocker.cross-edition-collation"
+        ],
+        "claimRelationIds": [],
+        "pageObservationIds": [
+          "page.local.ziping.p10-xiangshen",
+          "page.local.ziping.p11-xiangshen-continuation",
+          "page.nlc.ziping.v2.leaf-32-xiangshen",
+          "page.nlc.ziping.v2.leaf-33-xiangshen-continuation",
+          "page.ntl.ziping.v2.leaf-120-xiangshen",
+          "page.ntl.ziping.v2.leaf-121-xiangshen-continuation",
+          "page.commons.nlc.ziping.35296.page-39-xiangshen",
+          "page.commons.nlc.ziping.35296.page-40-xiangshen-continuation",
+          "page.commons.nlc.ziping.35296.page-45-next-heading"
+        ],
+        "sourceIds": [
+          "source.local.ziping-zhenquan-pdf",
+          "source.nlc.ziping-zhenquan.1926.v2",
+          "source.ntl.ziping-zhenquan.1926.v2",
+          "source.nlc.ziping-zhenquan.unknown-republican.scan-35296"
+        ]
+      },
+      "witnesses": [
+        {
+          "exactByteLength": 580320,
+          "exactByteSha256": "449336b5e35aa6811b0462093d0175c45a0add44065bf2d3845cff75981db692",
+          "pageObservationIds": [
+            "page.local.ziping.p10-xiangshen",
+            "page.local.ziping.p11-xiangshen-continuation"
+          ],
+          "role": "local_text",
+          "scope": "local PDF page 10 / 十五、论相神紧要",
+          "sourceId": "source.local.ziping-zhenquan-pdf",
+          "witnessId": "witness.local-ziping-xiangshen"
+        },
+        {
+          "exactByteLength": 2088007,
+          "exactByteSha256": "b1ac0a7dd4dc260647b65bd9338ad815fc0855d78e0ea01ed428237b28eb61c8",
+          "pageObservationIds": [
+            "page.nlc.ziping.v2.leaf-32-xiangshen",
+            "page.nlc.ziping.v2.leaf-33-xiangshen-continuation"
+          ],
+          "role": "historical_scan_a",
+          "scope": "scan leaves/PDF pages 32–33 / printed folios 一九–二○ / 論相神 and continuation",
+          "sourceId": "source.nlc.ziping-zhenquan.1926.v2",
+          "witnessId": "witness.nlc-ziping-xiangshen"
+        },
+        {
+          "exactByteLength": 68883628,
+          "exactByteSha256": "02f8771f69b6d5650ca3a20e629b9351a1f0f71c24f36f3eb11631495505f483",
+          "pageObservationIds": [
+            "page.ntl.ziping.v2.leaf-120-xiangshen",
+            "page.ntl.ziping.v2.leaf-121-xiangshen-continuation"
+          ],
+          "role": "historical_scan_b",
+          "scope": "PDF/scan pages 120–121 / printed folios 一九–二○ / 論相神 and continuation",
+          "sourceId": "source.ntl.ziping-zhenquan.1926.v2",
+          "witnessId": "witness.ntl-ziping-xiangshen"
+        },
+        {
+          "exactByteLength": 7126096,
+          "exactByteSha256": "71402a780b0351b54edf121a51bc4a4a4ce5896496c35b954563ee06f1a6f620",
+          "pageObservationIds": [
+            "page.commons.nlc.ziping.35296.page-39-xiangshen",
+            "page.commons.nlc.ziping.35296.page-40-xiangshen-continuation",
+            "page.commons.nlc.ziping.35296.page-45-next-heading"
+          ],
+          "role": "historical_scan_c_unresolved_date",
+          "scope": "NLC 35296 PDF pages 39–40 / printed pages 三十–三十一 plus PDF page 45 / printed page 三十六; direct phrase/heading locators only, with date and textual lineage unresolved",
+          "sourceId": "source.nlc.ziping-zhenquan.unknown-republican.scan-35296",
+          "witnessId": "witness.nlc-35296-xiangshen"
+        }
+      ],
+      "workIds": [
+        "ziping-zhenquan"
+      ]
+    },
+    {
+      "adjudicationStatus": "independence_unresolved",
+      "claimFamily": "foundational-seasonal-strength",
+      "claimId": "claim.qiongtong-spring-jia-wood",
+      "collation": {
+        "editorialLayer": "modern local rendering versus undated/1926/1937 institutional scans",
+        "observedComparison": "The local clause and surrounding page order were visually compared with the NLC 1926, NLC 1937, and Waseda scan runs; Waseda leaves 9–11 were additionally reviewed for the consecutive monthly 甲木 headings.",
+        "omissionsAdditions": [
+          "Full surrounding variants, plate genealogy, and author/editorial history are not resolved."
+        ],
+        "orderingDifferences": [
+          "The witness runs expose different leaf/page offsets; only bounded local sequence, adjacent-page order, and Waseda leaves 9–11 monthly-heading sequence are recorded."
+        ],
+        "rawSequence": [
+          "春月之木",
+          "漸有生長之象",
+          "初春猶有餘寒",
+          "當以火溫暖",
+          "則木無盤屈之變"
+        ],
+        "scope": "bounded_four_witness_raw_text",
+        "semanticEquivalenceResult": "bounded_same_clause_sequence; no authoritative semantic equivalence or edition selection",
+        "wordingVariants": [
+          "local simplified forms versus traditional institutional forms",
+          "annotation, punctuation, and vertical-layout differences remain witness-specific"
+        ]
+      },
+      "externalRecordIds": [],
+      "proposition": "Local 窮通寶鑑 p.3–p.5, NLC 1926 leaves 4–6, NLC 1937 leaves 13–15, and Waseda leaves 7–11 share a bounded seasonal page sequence; the Waseda run additionally exposes 正月甲木 / 二月甲木 / 三月甲木 headings on leaves 9–11.",
+      "readiness": {
+        "edition_collated": true,
+        "historical_witness_observed": true,
+        "independence_resolved": false,
+        "local_lineage_resolved": false,
+        "promotion_ready": false,
+        "readinessEvidence": {
+          "edition_collated": {
+            "evidenceRefs": [
+              "relation.qiongtong-jia-wood-season",
+              "page.nlc.qiongtong.v2.leaf-4-surrounding",
+              "page.nlc.qiongtong.1937.scan-48608.leaf-15-surrounding",
+              "page.waseda.qiongtong.undated.scan-f0111.leaf-9-surrounding",
+              "page.waseda.qiongtong.undated.scan-f0111.leaf-9-zhengyue-jia-mu",
+              "page.waseda.qiongtong.undated.scan-f0111.leaf-10-eryue-jia-mu",
+              "page.waseda.qiongtong.undated.scan-f0111.leaf-11-sanyue-jia-mu"
+            ],
+            "missingEdges": [],
+            "note": "Bounded page order, clause sequence, and Waseda monthly-heading sequence were compared.",
+            "status": "proven"
+          },
+          "historical_witness_observed": {
+            "evidenceRefs": [
+              "page.nlc.qiongtong.v2.leaf-5-spring-jia-wood",
+              "page.nlc.qiongtong.1937.scan-48608.leaf-14-spring-jia-wood",
+              "page.waseda.qiongtong.undated.scan-f0111.leaf-8",
+              "page.waseda.qiongtong.undated.scan-f0111.leaf-9-zhengyue-jia-mu",
+              "page.waseda.qiongtong.undated.scan-f0111.leaf-10-eryue-jia-mu",
+              "page.waseda.qiongtong.undated.scan-f0111.leaf-11-sanyue-jia-mu"
+            ],
+            "missingEdges": [],
+            "note": "Three historical scan sets were directly observed; the Waseda seasonal-heading run was extended through scan leaf 11.",
+            "status": "proven"
+          },
+          "independence_resolved": {
+            "evidenceRefs": [
+              "blocker.ditian-qiongtong-later-edited-print",
+              "blocker.cross-edition-collation"
+            ],
+            "missingEdges": [
+              "textual independence and edition relation across Waseda/NLC 1926/NLC 1937"
+            ],
+            "note": "Multiple scans may share a later edited transmission.",
+            "status": "missing"
+          },
+          "local_lineage_resolved": {
+            "evidenceRefs": [
+              "blocker.local-to-physical-item",
+              "lineage.waseda-qiongtong-undated-to-nlc-1926"
+            ],
+            "missingEdges": [
+              "local PDF -> any identified historical item",
+              "local export -> witness-set transmission path"
+            ],
+            "note": "Local lineage remains open.",
+            "status": "missing"
+          },
+          "promotion_ready": {
+            "evidenceRefs": [
+              "blocker.ditian-qiongtong-later-edited-print",
+              "blocker.cross-edition-collation"
+            ],
+            "missingEdges": [
+              "local lineage, independence, and authority gates"
+            ],
+            "note": "Promotion is fail-closed.",
+            "status": "missing"
+          },
+          "semantic_equivalence_checked": {
+            "evidenceRefs": [
+              "relation.qiongtong-jia-wood-season"
+            ],
+            "missingEdges": [],
+            "note": "Only a bounded raw clause comparison was checked.",
+            "status": "proven"
+          }
+        },
+        "semantic_equivalence_checked": true
+      },
+      "scope": "bounded raw clause and page-sequence correspondence across four witness sets; not authoritative edition or semantic rule",
+      "semanticAuthorityStatus": "not_established",
+      "sourceFrontierEvidence": {
+        "blockerIds": [
+          "blocker.ditian-qiongtong-later-edited-print",
+          "blocker.cross-edition-collation",
+          "blocker.local-to-physical-item"
+        ],
+        "claimRelationIds": [
+          "relation.qiongtong-jia-wood-season"
+        ],
+        "pageObservationIds": [
+          "page.local.qiongtong.p3-wood-section",
+          "page.local.qiongtong.p4-spring-jia-wood",
+          "page.local.qiongtong.p5-spring-jia-wood-continuation",
+          "page.nlc.qiongtong.v2.leaf-4-surrounding",
+          "page.nlc.qiongtong.v2.leaf-5-spring-jia-wood",
+          "page.nlc.qiongtong.v2.leaf-6-surrounding",
+          "page.nlc.qiongtong.1937.scan-48608.leaf-13-surrounding",
+          "page.nlc.qiongtong.1937.scan-48608.leaf-14-spring-jia-wood",
+          "page.nlc.qiongtong.1937.scan-48608.leaf-15-surrounding",
+          "page.waseda.qiongtong.undated.scan-f0111.leaf-7-surrounding",
+          "page.waseda.qiongtong.undated.scan-f0111.leaf-8",
+          "page.waseda.qiongtong.undated.scan-f0111.leaf-9-surrounding",
+          "page.waseda.qiongtong.undated.scan-f0111.leaf-9-zhengyue-jia-mu",
+          "page.waseda.qiongtong.undated.scan-f0111.leaf-10-eryue-jia-mu",
+          "page.waseda.qiongtong.undated.scan-f0111.leaf-11-sanyue-jia-mu"
+        ],
+        "sourceIds": [
+          "source.local.qiongtong-baojian-pdf",
+          "source.nlc.qiongtong-baojian.1926.v2",
+          "source.nlc.qiongtong-baojian.1937.scan-48608",
+          "source.waseda.qiongtong-baojian.undated.scan-f0111"
+        ]
+      },
+      "witnesses": [
+        {
+          "exactByteLength": 1547911,
+          "exactByteSha256": "36d54cdc995d203fdceafcb52b2a0d4f57093ab1765c532db5418b46a96c4b19",
+          "pageObservationIds": [
+            "page.local.qiongtong.p3-wood-section",
+            "page.local.qiongtong.p4-spring-jia-wood",
+            "page.local.qiongtong.p5-spring-jia-wood-continuation"
+          ],
+          "role": "local_text",
+          "scope": "local PDF pages 3–5",
+          "sourceId": "source.local.qiongtong-baojian-pdf",
+          "witnessId": "witness.local-qiongtong-spring-jia"
+        },
+        {
+          "exactByteLength": 4121030,
+          "exactByteSha256": "a64fa0d6ec4bfea80fafbcaa230bc65f476bf1efabca232934992bac4eb3f7f2",
+          "pageObservationIds": [
+            "page.nlc.qiongtong.v2.leaf-4-surrounding",
+            "page.nlc.qiongtong.v2.leaf-5-spring-jia-wood",
+            "page.nlc.qiongtong.v2.leaf-6-surrounding"
+          ],
+          "role": "historical_scan_a",
+          "scope": "scan leaves 4–6; printed folios 三–五",
+          "sourceId": "source.nlc.qiongtong-baojian.1926.v2",
+          "witnessId": "witness.nlc-qiongtong-1926"
+        },
+        {
+          "exactByteLength": 7487682,
+          "exactByteSha256": "b7f17fc7fcb7d8faa991efa74d0db391c5066a3793b3fc6787d2612bc6b350a8",
+          "pageObservationIds": [
+            "page.nlc.qiongtong.1937.scan-48608.leaf-13-surrounding",
+            "page.nlc.qiongtong.1937.scan-48608.leaf-14-spring-jia-wood",
+            "page.nlc.qiongtong.1937.scan-48608.leaf-15-surrounding"
+          ],
+          "role": "historical_scan_b",
+          "scope": "scan leaves 13–15; printed pages 5–6 where exposed",
+          "sourceId": "source.nlc.qiongtong-baojian.1937.scan-48608",
+          "witnessId": "witness.nlc-qiongtong-1937"
+        },
+        {
+          "exactByteLength": 82323986,
+          "exactByteSha256": "123ce84b44bd20ecfdd6538bffc413a5e3948598315cd99f857a5c985c7257ae",
+          "pageObservationIds": [
+            "page.waseda.qiongtong.undated.scan-f0111.leaf-7-surrounding",
+            "page.waseda.qiongtong.undated.scan-f0111.leaf-8",
+            "page.waseda.qiongtong.undated.scan-f0111.leaf-9-surrounding",
+            "page.waseda.qiongtong.undated.scan-f0111.leaf-9-zhengyue-jia-mu",
+            "page.waseda.qiongtong.undated.scan-f0111.leaf-10-eryue-jia-mu",
+            "page.waseda.qiongtong.undated.scan-f0111.leaf-11-sanyue-jia-mu"
+          ],
+          "role": "historical_scan_c",
+          "scope": "scan leaves 7–9; undated institutional scan",
+          "sourceId": "source.waseda.qiongtong-baojian.undated.scan-f0111",
+          "witnessId": "witness.waseda-qiongtong"
+        }
+      ],
+      "workIds": [
+        "qiongtong-baojian"
+      ]
+    },
+    {
+      "adjudicationStatus": "independence_unresolved",
+      "claimFamily": "year-stem-yin-yang-gender-direction",
+      "claimId": "claim.sanming-dayun-year-stem-gender-direction",
+      "collation": {
+        "editorialLayer": "classical timing passage; semantic authority not established",
+        "observedComparison": "ANU V2 scan 59 and the predecessor 三命通會 observation show the same direction family at the bounded wording level.",
+        "omissionsAdditions": [
+          "The direct scan does not supply the full local implementation policy for exact timestamp arithmetic."
+        ],
+        "orderingDifferences": [],
+        "rawSequence": [
+          "陽男陰女順而行之",
+          "陰男陽女逆而行之",
+          "三日一歲",
+          "一日四月"
+        ],
+        "scope": "bounded_ANU_V2_to_predecessor_timing_observation",
+        "semanticEquivalenceResult": "bounded_comparison_only",
+        "wordingVariants": [
+          "ANU scan is visually read; predecessor web observation is OCR/raw locator only"
+        ]
+      },
+      "externalRecordIds": [],
+      "proposition": "The ANU V2 大運 passage observes the direction family 陽男陰女順而行之 / 陰男陽女逆而行之.",
+      "readiness": {
+        "edition_collated": true,
+        "historical_witness_observed": true,
+        "independence_resolved": false,
+        "local_lineage_resolved": false,
+        "promotion_ready": false,
+        "readinessEvidence": {
+          "edition_collated": {
+            "evidenceRefs": [
+              "obs.anu.sanming-tonghui.v2-scan-59-direction-conversion",
+              "obs.sanming.dayun-forward-direction",
+              "obs.sanming.dayun-backward-direction"
+            ],
+            "missingEdges": [],
+            "note": "Bounded ANU-to-predecessor timing wording comparison; edition identity and independence remain open.",
+            "status": "proven"
+          },
+          "historical_witness_observed": {
+            "evidenceRefs": [
+              "obs.anu.sanming-tonghui.v2-scan-59-direction-conversion"
+            ],
+            "missingEdges": [],
+            "note": "Direct visual review of the canonical ANU V2 scan 59.",
+            "status": "proven"
+          },
+          "independence_resolved": {
+            "evidenceRefs": [
+              "relation.continuation.anu-to-sanming-web-witness"
+            ],
+            "missingEdges": [
+              "independent historical transmission"
+            ],
+            "note": "The predecessor web witness is not counted as an independent physical witness.",
+            "status": "missing"
+          },
+          "local_lineage_resolved": {
+            "evidenceRefs": [
+              "blocker.continuation.local-timing-lineage"
+            ],
+            "missingEdges": [
+              "ANU V2 -> local PDF/item lineage"
+            ],
+            "note": "No local-to-institutional bridge is established.",
+            "status": "missing"
+          },
+          "promotion_ready": {
+            "evidenceRefs": [
+              "blocker.continuation.local-timing-lineage",
+              "blocker.continuation.dayun-exact-first-start-time"
+            ],
+            "missingEdges": [
+              "all preceding readiness gates and scoped authority"
+            ],
+            "note": "Promotion remains fail-closed.",
+            "status": "missing"
+          },
+          "semantic_equivalence_checked": {
+            "evidenceRefs": [
+              "relation.continuation.sanming-dayun-direction"
+            ],
+            "missingEdges": [],
+            "note": "Bounded direction-family comparison only; no authority is inferred.",
+            "status": "proven"
+          }
+        },
+        "semantic_equivalence_checked": true
+      },
+      "scope": "bounded direction wording in ANU V2 scan 59; not a universal production rule",
+      "semanticAuthorityStatus": "not_established",
+      "sourceFrontierEvidence": {
+        "blockerIds": [
+          "blocker.continuation.local-timing-lineage",
+          "blocker.continuation.dayun-exact-first-start-time"
+        ],
+        "claimRelationIds": [
+          "relation.continuation.sanming-dayun-direction"
+        ],
+        "pageObservationIds": [
+          "obs.anu.sanming-tonghui.v2-scan-58-dayun",
+          "obs.anu.sanming-tonghui.v2-scan-59-direction-conversion",
+          "obs.sanming.dayun-forward-direction",
+          "obs.sanming.dayun-backward-direction",
+          "obs.sanming.dayun-distance-conversion",
+          "obs.sanming.dayun-start-example",
+          "obs.yuanhai.dayun-month-progression"
+        ],
+        "sourceIds": [
+          "source.anu.sanming-tonghui.e0d2d017.v2",
+          "source.sanming-tonghui.web-witness",
+          "source.yuanhai-zi-ping.web-witness"
+        ]
+      },
+      "witnesses": [
+        {
+          "exactByteLength": 116179488,
+          "exactByteSha256": "e757a79c45a6e8a6701ba991ef4a3f2d3a6ce038ed0ab8727a21b319698d1dc8",
+          "pageObservationIds": [
+            "obs.anu.sanming-tonghui.v2-scan-58-dayun",
+            "obs.anu.sanming-tonghui.v2-scan-59-direction-conversion"
+          ],
+          "role": "historical_scan",
+          "scope": "ANU V2 scan 58–59; printed folio unresolved",
+          "sourceId": "source.anu.sanming-tonghui.e0d2d017.v2",
+          "witnessId": "witness.anu-v2-sanming-dayun-year-stem-gender-direction"
+        }
+      ],
+      "workIds": [
+        "sanming-tonghui"
+      ]
+    },
+    {
+      "adjudicationStatus": "independence_unresolved",
+      "claimFamily": "preceding-next-jie-selection",
+      "claimId": "claim.sanming-dayun-term-selection",
+      "collation": {
+        "editorialLayer": "classical timing passage; semantic authority not established",
+        "observedComparison": "The ANU continuation visibly carries prior/next 節 time-counting language that matches the predecessor timing locator family.",
+        "omissionsAdditions": [
+          "The direct scan does not supply the full local implementation policy for exact timestamp arithmetic."
+        ],
+        "orderingDifferences": [],
+        "rawSequence": [
+          "陽男陰女順而行之",
+          "陰男陽女逆而行之",
+          "三日一歲",
+          "一日四月"
+        ],
+        "scope": "bounded_ANU_V2_to_predecessor_timing_observation",
+        "semanticEquivalenceResult": "bounded_comparison_only",
+        "wordingVariants": [
+          "ANU scan is visually read; predecessor web observation is OCR/raw locator only"
+        ]
+      },
+      "externalRecordIds": [],
+      "proposition": "The ANU V2 大運 passage selects a future or preceding 節 according to the direction path described in the surrounding text.",
+      "readiness": {
+        "edition_collated": true,
+        "historical_witness_observed": true,
+        "independence_resolved": false,
+        "local_lineage_resolved": false,
+        "promotion_ready": false,
+        "readinessEvidence": {
+          "edition_collated": {
+            "evidenceRefs": [
+              "obs.anu.sanming-tonghui.v2-scan-59-direction-conversion",
+              "obs.sanming.dayun-forward-direction",
+              "obs.sanming.dayun-backward-direction"
+            ],
+            "missingEdges": [],
+            "note": "Bounded future/past 節 selection comparison.",
+            "status": "proven"
+          },
+          "historical_witness_observed": {
+            "evidenceRefs": [
+              "obs.anu.sanming-tonghui.v2-scan-59-direction-conversion"
+            ],
+            "missingEdges": [],
+            "note": "Direct visual review of the canonical ANU V2 scan 59.",
+            "status": "proven"
+          },
+          "independence_resolved": {
+            "evidenceRefs": [
+              "relation.continuation.anu-to-sanming-web-witness"
+            ],
+            "missingEdges": [
+              "independent historical transmission"
+            ],
+            "note": "Same-work/cross-representation relation remains unresolved.",
+            "status": "missing"
+          },
+          "local_lineage_resolved": {
+            "evidenceRefs": [
+              "blocker.continuation.local-timing-lineage"
+            ],
+            "missingEdges": [
+              "ANU V2 -> local PDF/item lineage"
+            ],
+            "note": "No local-to-institutional bridge is established.",
+            "status": "missing"
+          },
+          "promotion_ready": {
+            "evidenceRefs": [
+              "blocker.continuation.local-timing-lineage",
+              "blocker.continuation.dayun-exact-first-start-time"
+            ],
+            "missingEdges": [
+              "all preceding readiness gates"
+            ],
+            "note": "Promotion remains fail-closed.",
+            "status": "missing"
+          },
+          "semantic_equivalence_checked": {
+            "evidenceRefs": [
+              "relation.continuation.sanming-dayun-term-selection"
+            ],
+            "missingEdges": [],
+            "note": "The comparison is limited to selection wording, not an implementation interpretation.",
+            "status": "proven"
+          }
+        },
+        "semantic_equivalence_checked": true
+      },
+      "scope": "bounded preceding/next 節 selection language; exact 節 class remains unresolved",
+      "semanticAuthorityStatus": "not_established",
+      "sourceFrontierEvidence": {
+        "blockerIds": [
+          "blocker.continuation.local-timing-lineage",
+          "blocker.continuation.dayun-exact-first-start-time"
+        ],
+        "claimRelationIds": [
+          "relation.continuation.sanming-dayun-term-selection"
+        ],
+        "pageObservationIds": [
+          "obs.anu.sanming-tonghui.v2-scan-58-dayun",
+          "obs.anu.sanming-tonghui.v2-scan-59-direction-conversion",
+          "obs.sanming.dayun-forward-direction",
+          "obs.sanming.dayun-backward-direction",
+          "obs.sanming.dayun-distance-conversion",
+          "obs.sanming.dayun-start-example",
+          "obs.yuanhai.dayun-month-progression"
+        ],
+        "sourceIds": [
+          "source.anu.sanming-tonghui.e0d2d017.v2",
+          "source.sanming-tonghui.web-witness",
+          "source.yuanhai-zi-ping.web-witness"
+        ]
+      },
+      "witnesses": [
+        {
+          "exactByteLength": 116179488,
+          "exactByteSha256": "e757a79c45a6e8a6701ba991ef4a3f2d3a6ce038ed0ab8727a21b319698d1dc8",
+          "pageObservationIds": [
+            "obs.anu.sanming-tonghui.v2-scan-58-dayun",
+            "obs.anu.sanming-tonghui.v2-scan-59-direction-conversion"
+          ],
+          "role": "historical_scan",
+          "scope": "ANU V2 scan 58–59; printed folio unresolved",
+          "sourceId": "source.anu.sanming-tonghui.e0d2d017.v2",
+          "witnessId": "witness.anu-v2-sanming-dayun-term-selection"
+        }
+      ],
+      "workIds": [
+        "sanming-tonghui"
+      ]
+    },
+    {
+      "adjudicationStatus": "independence_unresolved",
+      "claimFamily": "jie-time-distance",
+      "claimId": "claim.sanming-dayun-term-distance",
+      "collation": {
+        "editorialLayer": "classical timing passage; semantic authority not established",
+        "observedComparison": "The ANU scan visibly contains preceding/next 節 date/time counting; it does not close granularity or rounding.",
+        "omissionsAdditions": [
+          "The direct scan does not supply the full local implementation policy for exact timestamp arithmetic."
+        ],
+        "orderingDifferences": [],
+        "rawSequence": [
+          "陽男陰女順而行之",
+          "陰男陽女逆而行之",
+          "三日一歲",
+          "一日四月"
+        ],
+        "scope": "bounded_ANU_V2_to_predecessor_timing_observation",
+        "semanticEquivalenceResult": "bounded_comparison_only",
+        "wordingVariants": [
+          "ANU scan is visually read; predecessor web observation is OCR/raw locator only"
+        ]
+      },
+      "externalRecordIds": [],
+      "proposition": "The ANU V2 passage counts the time distance from birth to the selected preceding or next 節 as an input to 大運 calculation.",
+      "readiness": {
+        "edition_collated": true,
+        "historical_witness_observed": true,
+        "independence_resolved": false,
+        "local_lineage_resolved": false,
+        "promotion_ready": false,
+        "readinessEvidence": {
+          "edition_collated": {
+            "evidenceRefs": [
+              "obs.anu.sanming-tonghui.v2-scan-59-direction-conversion",
+              "obs.sanming.dayun-distance-conversion"
+            ],
+            "missingEdges": [],
+            "note": "Bounded distance-operation comparison.",
+            "status": "proven"
+          },
+          "historical_witness_observed": {
+            "evidenceRefs": [
+              "obs.anu.sanming-tonghui.v2-scan-59-direction-conversion"
+            ],
+            "missingEdges": [],
+            "note": "Direct visual review of the canonical ANU V2 scan 59.",
+            "status": "proven"
+          },
+          "independence_resolved": {
+            "evidenceRefs": [
+              "relation.continuation.anu-to-sanming-web-witness"
+            ],
+            "missingEdges": [
+              "independent historical transmission"
+            ],
+            "note": "Independent transmission is not established.",
+            "status": "missing"
+          },
+          "local_lineage_resolved": {
+            "evidenceRefs": [
+              "blocker.continuation.local-timing-lineage"
+            ],
+            "missingEdges": [
+              "ANU V2 -> local PDF/item lineage"
+            ],
+            "note": "No local-to-institutional bridge is established.",
+            "status": "missing"
+          },
+          "promotion_ready": {
+            "evidenceRefs": [
+              "blocker.continuation.local-timing-lineage",
+              "blocker.continuation.dayun-exact-first-start-time"
+            ],
+            "missingEdges": [
+              "exact procedure and all preceding readiness gates"
+            ],
+            "note": "Promotion remains fail-closed.",
+            "status": "missing"
+          },
+          "semantic_equivalence_checked": {
+            "evidenceRefs": [
+              "relation.continuation.sanming-dayun-term-distance"
+            ],
+            "missingEdges": [],
+            "note": "Only the existence and direction of time counting are compared.",
+            "status": "proven"
+          }
+        },
+        "semantic_equivalence_checked": true
+      },
+      "scope": "bounded time-distance operation; hour granularity and rounding order unresolved",
+      "semanticAuthorityStatus": "not_established",
+      "sourceFrontierEvidence": {
+        "blockerIds": [
+          "blocker.continuation.local-timing-lineage",
+          "blocker.continuation.dayun-exact-first-start-time"
+        ],
+        "claimRelationIds": [
+          "relation.continuation.sanming-dayun-term-distance"
+        ],
+        "pageObservationIds": [
+          "obs.anu.sanming-tonghui.v2-scan-58-dayun",
+          "obs.anu.sanming-tonghui.v2-scan-59-direction-conversion",
+          "obs.sanming.dayun-forward-direction",
+          "obs.sanming.dayun-backward-direction",
+          "obs.sanming.dayun-distance-conversion",
+          "obs.sanming.dayun-start-example",
+          "obs.yuanhai.dayun-month-progression"
+        ],
+        "sourceIds": [
+          "source.anu.sanming-tonghui.e0d2d017.v2",
+          "source.sanming-tonghui.web-witness",
+          "source.yuanhai-zi-ping.web-witness"
+        ]
+      },
+      "witnesses": [
+        {
+          "exactByteLength": 116179488,
+          "exactByteSha256": "e757a79c45a6e8a6701ba991ef4a3f2d3a6ce038ed0ab8727a21b319698d1dc8",
+          "pageObservationIds": [
+            "obs.anu.sanming-tonghui.v2-scan-58-dayun",
+            "obs.anu.sanming-tonghui.v2-scan-59-direction-conversion"
+          ],
+          "role": "historical_scan",
+          "scope": "ANU V2 scan 58–59; printed folio unresolved",
+          "sourceId": "source.anu.sanming-tonghui.e0d2d017.v2",
+          "witnessId": "witness.anu-v2-sanming-dayun-term-distance"
+        }
+      ],
+      "workIds": [
+        "sanming-tonghui"
+      ]
+    },
+    {
+      "adjudicationStatus": "independence_unresolved",
+      "claimFamily": "three-days-one-year-conversion",
+      "claimId": "claim.sanming-dayun-distance-conversion",
+      "collation": {
+        "editorialLayer": "classical timing passage; semantic authority not established",
+        "observedComparison": "The direct scan shows the conversion family and a worked example; no production arithmetic is changed.",
+        "omissionsAdditions": [
+          "The direct scan does not supply the full local implementation policy for exact timestamp arithmetic."
+        ],
+        "orderingDifferences": [],
+        "rawSequence": [
+          "陽男陰女順而行之",
+          "陰男陽女逆而行之",
+          "三日一歲",
+          "一日四月"
+        ],
+        "scope": "bounded_ANU_V2_to_predecessor_timing_observation",
+        "semanticEquivalenceResult": "bounded_comparison_only",
+        "wordingVariants": [
+          "ANU scan is visually read; predecessor web observation is OCR/raw locator only"
+        ]
+      },
+      "externalRecordIds": [],
+      "proposition": "The ANU V2 passage observes the 三日一歲 / 一日四月 conversion family for converting 節-distance into 起運 age.",
+      "readiness": {
+        "edition_collated": true,
+        "historical_witness_observed": true,
+        "independence_resolved": false,
+        "local_lineage_resolved": false,
+        "promotion_ready": false,
+        "readinessEvidence": {
+          "edition_collated": {
+            "evidenceRefs": [
+              "obs.anu.sanming-tonghui.v2-scan-59-direction-conversion",
+              "obs.sanming.dayun-distance-conversion",
+              "obs.sanming.dayun-start-example"
+            ],
+            "missingEdges": [],
+            "note": "Bounded conversion-family comparison.",
+            "status": "proven"
+          },
+          "historical_witness_observed": {
+            "evidenceRefs": [
+              "obs.anu.sanming-tonghui.v2-scan-59-direction-conversion"
+            ],
+            "missingEdges": [],
+            "note": "Direct visual review of the canonical ANU V2 scan 59.",
+            "status": "proven"
+          },
+          "independence_resolved": {
+            "evidenceRefs": [
+              "relation.continuation.anu-to-sanming-web-witness"
+            ],
+            "missingEdges": [
+              "independent historical transmission"
+            ],
+            "note": "Same-work/cross-representation relation remains unresolved.",
+            "status": "missing"
+          },
+          "local_lineage_resolved": {
+            "evidenceRefs": [
+              "blocker.continuation.local-timing-lineage"
+            ],
+            "missingEdges": [
+              "ANU V2 -> local PDF/item lineage"
+            ],
+            "note": "No local-to-institutional bridge is established.",
+            "status": "missing"
+          },
+          "promotion_ready": {
+            "evidenceRefs": [
+              "blocker.continuation.local-timing-lineage",
+              "blocker.continuation.dayun-exact-first-start-time"
+            ],
+            "missingEdges": [
+              "rounding and all preceding readiness gates"
+            ],
+            "note": "Promotion remains fail-closed.",
+            "status": "missing"
+          },
+          "semantic_equivalence_checked": {
+            "evidenceRefs": [
+              "relation.continuation.sanming-dayun-conversion"
+            ],
+            "missingEdges": [],
+            "note": "The result is a bounded textual equivalence check, not an arithmetic authorization.",
+            "status": "proven"
+          }
+        },
+        "semantic_equivalence_checked": true
+      },
+      "scope": "bounded conversion wording and example; implementation rounding policy unresolved",
+      "semanticAuthorityStatus": "not_established",
+      "sourceFrontierEvidence": {
+        "blockerIds": [
+          "blocker.continuation.local-timing-lineage",
+          "blocker.continuation.dayun-exact-first-start-time"
+        ],
+        "claimRelationIds": [
+          "relation.continuation.sanming-dayun-conversion"
+        ],
+        "pageObservationIds": [
+          "obs.anu.sanming-tonghui.v2-scan-58-dayun",
+          "obs.anu.sanming-tonghui.v2-scan-59-direction-conversion",
+          "obs.sanming.dayun-forward-direction",
+          "obs.sanming.dayun-backward-direction",
+          "obs.sanming.dayun-distance-conversion",
+          "obs.sanming.dayun-start-example",
+          "obs.yuanhai.dayun-month-progression"
+        ],
+        "sourceIds": [
+          "source.anu.sanming-tonghui.e0d2d017.v2",
+          "source.sanming-tonghui.web-witness",
+          "source.yuanhai-zi-ping.web-witness"
+        ]
+      },
+      "witnesses": [
+        {
+          "exactByteLength": 116179488,
+          "exactByteSha256": "e757a79c45a6e8a6701ba991ef4a3f2d3a6ce038ed0ab8727a21b319698d1dc8",
+          "pageObservationIds": [
+            "obs.anu.sanming-tonghui.v2-scan-58-dayun",
+            "obs.anu.sanming-tonghui.v2-scan-59-direction-conversion"
+          ],
+          "role": "historical_scan",
+          "scope": "ANU V2 scan 58–59; printed folio unresolved",
+          "sourceId": "source.anu.sanming-tonghui.e0d2d017.v2",
+          "witnessId": "witness.anu-v2-sanming-dayun-distance-conversion"
+        }
+      ],
+      "workIds": [
+        "sanming-tonghui"
+      ]
+    },
+    {
+      "adjudicationStatus": "independence_unresolved",
+      "claimFamily": "qiyun-age",
+      "claimId": "claim.sanming-dayun-start-age",
+      "collation": {
+        "editorialLayer": "classical timing passage; semantic authority not established",
+        "observedComparison": "The textual age example is directly seen and separated from the broader conversion claim; its exact modern mapping remains open.",
+        "omissionsAdditions": [
+          "The direct scan does not supply the full local implementation policy for exact timestamp arithmetic."
+        ],
+        "orderingDifferences": [],
+        "rawSequence": [
+          "陽男陰女順而行之",
+          "陰男陽女逆而行之",
+          "三日一歲",
+          "一日四月"
+        ],
+        "scope": "bounded_ANU_V2_to_predecessor_timing_observation",
+        "semanticEquivalenceResult": "bounded_comparison_only",
+        "wordingVariants": [
+          "ANU scan is visually read; predecessor web observation is OCR/raw locator only"
+        ]
+      },
+      "externalRecordIds": [],
+      "proposition": "The ANU V2 passage contains a 起運 age example derived from the preceding/next 節 distance and conversion family.",
+      "readiness": {
+        "edition_collated": true,
+        "historical_witness_observed": true,
+        "independence_resolved": false,
+        "local_lineage_resolved": false,
+        "promotion_ready": false,
+        "readinessEvidence": {
+          "edition_collated": {
+            "evidenceRefs": [
+              "obs.anu.sanming-tonghui.v2-scan-59-direction-conversion",
+              "obs.sanming.dayun-start-example"
+            ],
+            "missingEdges": [],
+            "note": "Bounded age-example comparison.",
+            "status": "proven"
+          },
+          "historical_witness_observed": {
+            "evidenceRefs": [
+              "obs.anu.sanming-tonghui.v2-scan-59-direction-conversion"
+            ],
+            "missingEdges": [],
+            "note": "Direct visual review of the canonical ANU V2 scan 59.",
+            "status": "proven"
+          },
+          "independence_resolved": {
+            "evidenceRefs": [
+              "relation.continuation.anu-to-sanming-web-witness"
+            ],
+            "missingEdges": [
+              "independent historical transmission"
+            ],
+            "note": "Independent transmission remains unresolved.",
+            "status": "missing"
+          },
+          "local_lineage_resolved": {
+            "evidenceRefs": [
+              "blocker.continuation.local-timing-lineage"
+            ],
+            "missingEdges": [
+              "ANU V2 -> local PDF/item lineage"
+            ],
+            "note": "No local-to-institutional bridge is established.",
+            "status": "missing"
+          },
+          "promotion_ready": {
+            "evidenceRefs": [
+              "blocker.continuation.local-timing-lineage",
+              "blocker.continuation.dayun-exact-first-start-time"
+            ],
+            "missingEdges": [
+              "exact local equivalence and all preceding readiness gates"
+            ],
+            "note": "Promotion remains fail-closed.",
+            "status": "missing"
+          },
+          "semantic_equivalence_checked": {
+            "evidenceRefs": [
+              "relation.continuation.sanming-dayun-start-age"
+            ],
+            "missingEdges": [],
+            "note": "The example is compared as an observed text operation, not as an implementation result.",
+            "status": "proven"
+          }
+        },
+        "semantic_equivalence_checked": true
+      },
+      "scope": "textual 起運 age example only; not an exact local calculation or generalized age rule",
+      "semanticAuthorityStatus": "not_established",
+      "sourceFrontierEvidence": {
+        "blockerIds": [
+          "blocker.continuation.local-timing-lineage",
+          "blocker.continuation.dayun-exact-first-start-time"
+        ],
+        "claimRelationIds": [
+          "relation.continuation.sanming-dayun-start-age"
+        ],
+        "pageObservationIds": [
+          "obs.anu.sanming-tonghui.v2-scan-58-dayun",
+          "obs.anu.sanming-tonghui.v2-scan-59-direction-conversion",
+          "obs.sanming.dayun-forward-direction",
+          "obs.sanming.dayun-backward-direction",
+          "obs.sanming.dayun-distance-conversion",
+          "obs.sanming.dayun-start-example",
+          "obs.yuanhai.dayun-month-progression"
+        ],
+        "sourceIds": [
+          "source.anu.sanming-tonghui.e0d2d017.v2",
+          "source.sanming-tonghui.web-witness",
+          "source.yuanhai-zi-ping.web-witness"
+        ]
+      },
+      "witnesses": [
+        {
+          "exactByteLength": 116179488,
+          "exactByteSha256": "e757a79c45a6e8a6701ba991ef4a3f2d3a6ce038ed0ab8727a21b319698d1dc8",
+          "pageObservationIds": [
+            "obs.anu.sanming-tonghui.v2-scan-58-dayun",
+            "obs.anu.sanming-tonghui.v2-scan-59-direction-conversion"
+          ],
+          "role": "historical_scan",
+          "scope": "ANU V2 scan 58–59; printed folio unresolved",
+          "sourceId": "source.anu.sanming-tonghui.e0d2d017.v2",
+          "witnessId": "witness.anu-v2-sanming-dayun-start-age"
+        }
+      ],
+      "workIds": [
+        "sanming-tonghui"
+      ]
+    },
+    {
+      "adjudicationStatus": "insufficient_evidence",
+      "claimFamily": "first-dayun-start-time",
+      "claimId": "claim.sanming-dayun-first-start-time",
+      "collation": {
+        "editorialLayer": "classical timing passage; semantic authority not established",
+        "observedComparison": "The direct witness narrows the question to exact start-time arithmetic but does not answer it.",
+        "omissionsAdditions": [
+          "The direct scan does not supply the full local implementation policy for exact timestamp arithmetic."
+        ],
+        "orderingDifferences": [],
+        "rawSequence": [
+          "陽男陰女順而行之",
+          "陰男陽女逆而行之",
+          "三日一歲",
+          "一日四月"
+        ],
+        "scope": "bounded_ANU_V2_to_predecessor_timing_observation",
+        "semanticEquivalenceResult": "not_checked",
+        "wordingVariants": [
+          "ANU scan is visually read; predecessor web observation is OCR/raw locator only"
+        ]
+      },
+      "externalRecordIds": [],
+      "proposition": "The ANU V2 passage provides a textual worked start-age example but does not by itself establish the exact first 大運 start timestamp for a modern birth instant.",
+      "readiness": {
+        "edition_collated": false,
+        "historical_witness_observed": true,
+        "independence_resolved": false,
+        "local_lineage_resolved": false,
+        "promotion_ready": false,
+        "readinessEvidence": {
+          "edition_collated": {
+            "evidenceRefs": [
+              "blocker.continuation.dayun-exact-first-start-time"
+            ],
+            "missingEdges": [
+              "a second directly readable witness with the same complete birth-to-first-start mapping"
+            ],
+            "note": "One canonical scan establishes an observed example, not cross-edition equivalence.",
+            "status": "missing"
+          },
+          "historical_witness_observed": {
+            "evidenceRefs": [
+              "obs.anu.sanming-tonghui.v2-scan-59-direction-conversion"
+            ],
+            "missingEdges": [],
+            "note": "The worked example is directly visible in ANU V2 scan 59.",
+            "status": "proven"
+          },
+          "independence_resolved": {
+            "evidenceRefs": [
+              "relation.continuation.anu-to-sanming-web-witness"
+            ],
+            "missingEdges": [
+              "independent historical transmission"
+            ],
+            "note": "No independent witness is admitted.",
+            "status": "missing"
+          },
+          "local_lineage_resolved": {
+            "evidenceRefs": [
+              "blocker.continuation.local-timing-lineage"
+            ],
+            "missingEdges": [
+              "ANU V2 -> local PDF/item lineage"
+            ],
+            "note": "No local-to-institutional bridge is established.",
+            "status": "missing"
+          },
+          "promotion_ready": {
+            "evidenceRefs": [
+              "blocker.continuation.dayun-exact-first-start-time",
+              "blocker.continuation.local-timing-lineage"
+            ],
+            "missingEdges": [
+              "complete exact-start evidence and all preceding readiness gates"
+            ],
+            "note": "Promotion remains fail-closed.",
+            "status": "missing"
+          },
+          "semantic_equivalence_checked": {
+            "evidenceRefs": [
+              "relation.continuation.sanming-dayun-first-start-time-gap"
+            ],
+            "missingEdges": [
+              "exact modern timestamp semantics"
+            ],
+            "note": "The evidence intentionally stops at the insufficiency boundary.",
+            "status": "missing"
+          }
+        },
+        "semantic_equivalence_checked": false
+      },
+      "scope": "negative evidence boundary for exact first-start timestamp; no semantic promotion",
+      "semanticAuthorityStatus": "not_established",
+      "sourceFrontierEvidence": {
+        "blockerIds": [
+          "blocker.continuation.dayun-exact-first-start-time",
+          "blocker.continuation.local-timing-lineage"
+        ],
+        "claimRelationIds": [
+          "relation.continuation.sanming-dayun-first-start-time-gap"
+        ],
+        "pageObservationIds": [
+          "obs.anu.sanming-tonghui.v2-scan-58-dayun",
+          "obs.anu.sanming-tonghui.v2-scan-59-direction-conversion",
+          "obs.sanming.dayun-forward-direction",
+          "obs.sanming.dayun-backward-direction",
+          "obs.sanming.dayun-distance-conversion",
+          "obs.sanming.dayun-start-example",
+          "obs.yuanhai.dayun-month-progression"
+        ],
+        "sourceIds": [
+          "source.anu.sanming-tonghui.e0d2d017.v2",
+          "source.sanming-tonghui.web-witness",
+          "source.yuanhai-zi-ping.web-witness"
+        ]
+      },
+      "witnesses": [
+        {
+          "exactByteLength": 116179488,
+          "exactByteSha256": "e757a79c45a6e8a6701ba991ef4a3f2d3a6ce038ed0ab8727a21b319698d1dc8",
+          "pageObservationIds": [
+            "obs.anu.sanming-tonghui.v2-scan-58-dayun",
+            "obs.anu.sanming-tonghui.v2-scan-59-direction-conversion"
+          ],
+          "role": "historical_scan",
+          "scope": "ANU V2 scan 58–59; printed folio unresolved",
+          "sourceId": "source.anu.sanming-tonghui.e0d2d017.v2",
+          "witnessId": "witness.anu-v2-sanming-dayun-first-start-time"
+        }
+      ],
+      "workIds": [
+        "sanming-tonghui"
+      ]
+    },
+    {
+      "adjudicationStatus": "independence_unresolved",
+      "claimFamily": "later-dayun-progression",
+      "claimId": "claim.sanming-dayun-progression",
+      "collation": {
+        "editorialLayer": "classical timing passage; semantic authority not established",
+        "observedComparison": "The surrounding section supports a bounded progression-family observation, not a complete later-cycle implementation rule.",
+        "omissionsAdditions": [
+          "The direct scan does not supply the full local implementation policy for exact timestamp arithmetic."
+        ],
+        "orderingDifferences": [],
+        "rawSequence": [
+          "陽男陰女順而行之",
+          "陰男陽女逆而行之",
+          "三日一歲",
+          "一日四月"
+        ],
+        "scope": "bounded_ANU_V2_to_predecessor_timing_observation",
+        "semanticEquivalenceResult": "bounded_comparison_only",
+        "wordingVariants": [
+          "ANU scan is visually read; predecessor web observation is OCR/raw locator only"
+        ]
+      },
+      "externalRecordIds": [],
+      "proposition": "The surrounding ANU V2 大運 discussion observes progression through later fortune periods as a textual topic, without closing a complete production progression algorithm.",
+      "readiness": {
+        "edition_collated": true,
+        "historical_witness_observed": true,
+        "independence_resolved": false,
+        "local_lineage_resolved": false,
+        "promotion_ready": false,
+        "readinessEvidence": {
+          "edition_collated": {
+            "evidenceRefs": [
+              "obs.anu.sanming-tonghui.v2-scan-58-dayun",
+              "obs.anu.sanming-tonghui.v2-scan-59-direction-conversion",
+              "obs.yuanhai.dayun-month-progression"
+            ],
+            "missingEdges": [],
+            "note": "Bounded surrounding-text comparison only.",
+            "status": "proven"
+          },
+          "historical_witness_observed": {
+            "evidenceRefs": [
+              "obs.anu.sanming-tonghui.v2-scan-58-dayun",
+              "obs.anu.sanming-tonghui.v2-scan-59-direction-conversion"
+            ],
+            "missingEdges": [],
+            "note": "Direct visual review of the surrounding ANU V2 大運 spread.",
+            "status": "proven"
+          },
+          "independence_resolved": {
+            "evidenceRefs": [
+              "relation.continuation.anu-to-sanming-web-witness"
+            ],
+            "missingEdges": [
+              "independent historical transmission"
+            ],
+            "note": "Independent transmission remains unresolved.",
+            "status": "missing"
+          },
+          "local_lineage_resolved": {
+            "evidenceRefs": [
+              "blocker.continuation.local-timing-lineage"
+            ],
+            "missingEdges": [
+              "ANU V2 -> local PDF/item lineage"
+            ],
+            "note": "No local-to-institutional bridge is established.",
+            "status": "missing"
+          },
+          "promotion_ready": {
+            "evidenceRefs": [
+              "blocker.continuation.local-timing-lineage",
+              "blocker.continuation.dayun-exact-first-start-time"
+            ],
+            "missingEdges": [
+              "complete progression semantics and all preceding readiness gates"
+            ],
+            "note": "Promotion remains fail-closed.",
+            "status": "missing"
+          },
+          "semantic_equivalence_checked": {
+            "evidenceRefs": [
+              "relation.continuation.sanming-dayun-progression"
+            ],
+            "missingEdges": [],
+            "note": "The scope is limited to progression as a textual topic, not a production algorithm.",
+            "status": "proven"
+          }
+        },
+        "semantic_equivalence_checked": true
+      },
+      "scope": "bounded surrounding-text progression observation; not a general cycle algorithm",
+      "semanticAuthorityStatus": "not_established",
+      "sourceFrontierEvidence": {
+        "blockerIds": [
+          "blocker.continuation.local-timing-lineage",
+          "blocker.continuation.dayun-exact-first-start-time"
+        ],
+        "claimRelationIds": [
+          "relation.continuation.sanming-dayun-progression"
+        ],
+        "pageObservationIds": [
+          "obs.anu.sanming-tonghui.v2-scan-58-dayun",
+          "obs.anu.sanming-tonghui.v2-scan-59-direction-conversion",
+          "obs.sanming.dayun-forward-direction",
+          "obs.sanming.dayun-backward-direction",
+          "obs.sanming.dayun-distance-conversion",
+          "obs.sanming.dayun-start-example",
+          "obs.yuanhai.dayun-month-progression"
+        ],
+        "sourceIds": [
+          "source.anu.sanming-tonghui.e0d2d017.v2",
+          "source.sanming-tonghui.web-witness",
+          "source.yuanhai-zi-ping.web-witness"
+        ]
+      },
+      "witnesses": [
+        {
+          "exactByteLength": 116179488,
+          "exactByteSha256": "e757a79c45a6e8a6701ba991ef4a3f2d3a6ce038ed0ab8727a21b319698d1dc8",
+          "pageObservationIds": [
+            "obs.anu.sanming-tonghui.v2-scan-58-dayun",
+            "obs.anu.sanming-tonghui.v2-scan-59-direction-conversion"
+          ],
+          "role": "historical_scan",
+          "scope": "ANU V2 scan 58–59; printed folio unresolved",
+          "sourceId": "source.anu.sanming-tonghui.e0d2d017.v2",
+          "witnessId": "witness.anu-v2-sanming-dayun-progression"
+        }
+      ],
+      "workIds": [
+        "sanming-tonghui"
+      ]
+    }
+  ],
+  "contentSha256": "b5b81453e6a85eb9fa561ec92c63f262b987d920004543b67d98d36e61863a7d",
+  "continuationDecisions": [
+    {
+      "decision": "recheck_required",
+      "interpretation": "continue: direct ANU evidence opened a checkable Unit 2–5 frontier",
+      "result": {
+        "attemptFingerprint": null,
+        "attemptIdentityChanged": false,
+        "authorityBoundary": {
+          "childPassIsParentGoalPass": false,
+          "domainReadiness": "not_evaluated",
+          "gateRole": "workflow_continuation_only",
+          "productionActivation": false,
+          "semanticAuthority": "not_established"
+        },
+        "checkpoint": {
+          "automaticRetry": false,
+          "checkpointDue": false,
+          "recheckCount": 0
+        },
+        "decision": "recheck_required",
+        "errors": [
+          "invalid_resolution:attempt.inputs[0].resolution",
+          "invalid_resolution:attempt.inputs[1].resolution",
+          "invalid_resolution:attempt.inputs[2].resolution"
+        ],
+        "gateVersion": "bounded-continuation-gate-v0",
+        "previousAttemptFingerprint": null,
+        "progress": null,
+        "reasonCodes": [
+          "gate_input_invalid"
+        ],
+        "sameAttempt": false,
+        "stateFingerprint": null
+      },
+      "unitId": "research-unit-1"
+    },
+    {
+      "decision": "recheck_required",
+      "interpretation": "stop_blocked: remaining edges require external institutional/physical evidence; no safe local frontier remains",
+      "result": {
+        "attemptFingerprint": null,
+        "attemptIdentityChanged": false,
+        "authorityBoundary": {
+          "childPassIsParentGoalPass": false,
+          "domainReadiness": "not_evaluated",
+          "gateRole": "workflow_continuation_only",
+          "productionActivation": false,
+          "semanticAuthority": "not_established"
+        },
+        "checkpoint": {
+          "automaticRetry": false,
+          "checkpointDue": false,
+          "recheckCount": 0
+        },
+        "decision": "recheck_required",
+        "errors": [
+          "invalid_resolution:attempt.inputs[0].resolution",
+          "invalid_resolution:attempt.inputs[1].resolution",
+          "invalid_resolution:attempt.inputs[2].resolution"
+        ],
+        "gateVersion": "bounded-continuation-gate-v0",
+        "previousAttemptFingerprint": null,
+        "progress": null,
+        "reasonCodes": [
+          "gate_input_invalid"
+        ],
+        "sameAttempt": false,
+        "stateFingerprint": null
+      },
+      "unitId": "research-unit-2-5"
+    }
+  ],
+  "inventory": {
+    "activeClaimIds": [
+      "claim.qiongtong-spring-jia-wood",
+      "claim.sanming-dayun-distance-conversion",
+      "claim.sanming-dayun-first-start-time",
+      "claim.sanming-dayun-progression",
+      "claim.sanming-dayun-start-age",
+      "claim.sanming-dayun-term-distance",
+      "claim.sanming-dayun-term-selection",
+      "claim.sanming-dayun-year-stem-gender-direction",
+      "claim.yuanhai-editorial-responsibility",
+      "claim.yuanhai-seasonal-lichun-clause",
+      "claim.ziping-xiangshen",
+      "claim.ziping-xingyun",
+      "claim.ziping-yongshin"
+    ],
+    "counts": {
+      "activeClaims": 13,
+      "blockers": 7,
+      "claimRelations": 12,
+      "lineageRelations": 4,
+      "observations": 4,
+      "predecessorClaims": 7,
+      "semanticConflictFindings": 1,
+      "sources": 1,
+      "splitClaims": 7,
+      "unitFindings": 5
+    },
+    "incrementReferenceIds": [
+      "blocker.continuation.anu-juan-6-12",
+      "blocker.continuation.anu-printed-folio-crosswalk",
+      "blocker.continuation.dayun-exact-first-start-time",
+      "blocker.continuation.local-timing-lineage",
+      "blocker.continuation.qiongtong-transmission",
+      "blocker.continuation.xiangshen-variant-cause",
+      "blocker.continuation.yuanhai-cross-edition-collation",
+      "claim.sanming-dayun-distance-conversion",
+      "claim.sanming-dayun-first-start-time",
+      "claim.sanming-dayun-progression",
+      "claim.sanming-dayun-start-age",
+      "claim.sanming-dayun-term-distance",
+      "claim.sanming-dayun-term-selection",
+      "claim.sanming-dayun-year-stem-gender-direction",
+      "finding.xiangshen-cause-v1",
+      "lineage.continuation.anu-v2-to-local-sanming",
+      "lineage.continuation.anu-v2-to-yuanhai-web-witness",
+      "lineage.continuation.nlc-ntl-ziping-1926",
+      "lineage.continuation.waseda-nlc1937-qiongtong",
+      "obs.anu.sanming-tonghui.record-v2",
+      "obs.anu.sanming-tonghui.v2-bitstream",
+      "obs.anu.sanming-tonghui.v2-scan-58-dayun",
+      "obs.anu.sanming-tonghui.v2-scan-59-direction-conversion",
+      "relation.continuation.anu-to-local-sanming-lineage",
+      "relation.continuation.anu-to-sanming-web-witness",
+      "relation.continuation.nlc-ntl-ziping-1926-same-lineage",
+      "relation.continuation.qiongtong-three-witness-stability",
+      "relation.continuation.sanming-dayun-conversion",
+      "relation.continuation.sanming-dayun-direction",
+      "relation.continuation.sanming-dayun-first-start-time-gap",
+      "relation.continuation.sanming-dayun-progression",
+      "relation.continuation.sanming-dayun-start-age",
+      "relation.continuation.sanming-dayun-term-distance",
+      "relation.continuation.sanming-dayun-term-selection",
+      "relation.continuation.xiangshen-conflict-cause",
+      "source.anu.sanming-tonghui.e0d2d017.v2"
+    ],
+    "predecessorReferenceIds": [
+      "blocker.classical-edition-identity",
+      "blocker.classical-explicit-day-rollover",
+      "blocker.classical-explicit-year-boundary",
+      "blocker.cross-edition-collation",
+      "blocker.dayun-exact-procedure",
+      "blocker.ditian-qiongtong-later-edited-print",
+      "blocker.historical-civil-time",
+      "blocker.independent-calendar-corpus",
+      "blocker.local-to-physical-item",
+      "blocker.ocr-and-page-crosswalk",
+      "blocker.saju-solar-time-authority",
+      "blocker.sanming-1578-page-access",
+      "blocker.timing-page-locators",
+      "blocker.yuanhai-ziping-lineage",
+      "blocker.zi-lineage-conflict",
+      "ditian-sui",
+      "lineage.commons-mirror-nlc-yuanhai",
+      "lineage.commons-mirror-nlc-ziping",
+      "lineage.commons-yuanhai-trusted-to-tianyige",
+      "lineage.local-ditian-to-ncl-06619",
+      "lineage.local-ditian-to-nlc-1926",
+      "lineage.local-exports-to-institutional-scans",
+      "lineage.local-qiongtong-to-nlc-1926",
+      "lineage.local-sanming-to-ncl-nlc",
+      "lineage.local-yuanhai-to-nlc-99036",
+      "lineage.local-yuanhai-to-trusted-scan",
+      "lineage.local-ziping-to-nlc-1926",
+      "lineage.local-ziping-to-nlc-35296",
+      "lineage.local-ziping-to-shaogn-web-copy",
+      "lineage.ncl-1578-catalog-06589-to-scan-06589",
+      "lineage.ncl-1578-catalog-06590-union-to-imaging-record",
+      "lineage.ncl-1578-scan-06589-to-catalog-06590",
+      "lineage.ncl-1578-scan-06589-to-nlc-1926-sanming",
+      "lineage.ncl-1578-to-ctext-siku-sanming",
+      "lineage.ncl-bl-yuanhai-catalog-15257c2-to-tianyige",
+      "lineage.ncl-gengcun-06599-to-nlc-35296",
+      "lineage.ncl-ming-end-ditian-to-nlc-1926",
+      "lineage.nlc-1578-to-nlc-1926-sanming",
+      "lineage.nlc-1926-sanming-42998-to-94145",
+      "lineage.nlc-99036-yuanhai-to-nlc-1926",
+      "lineage.nlc-ntl-yuanhai-1926",
+      "lineage.nlc-ntl-ziping-1926",
+      "lineage.nlc-qiongtong-1937-to-1926",
+      "lineage.nlc-toyo-ditian-qiongtong-1926",
+      "lineage.nlc-ziping-unknown-35296-to-1926",
+      "lineage.tianyige-yuanhai-ming-chongzhen-to-nlc-1926",
+      "lineage.tianyige-yuanhai-ming-chongzhen-to-nlc-99036",
+      "lineage.waseda-qiongtong-undated-to-nlc-1926",
+      "obs.cma.ipchun-year-convention",
+      "obs.ditian.early-night-zi",
+      "obs.gujin.five-tiger-formula",
+      "obs.iana.historical-civil-time-scope",
+      "obs.lelue.zi-first-second-quarter",
+      "obs.local.frontier-preserves-timing-gap",
+      "obs.nlc.yuanhai.qilu-conversion-1926",
+      "obs.noaa.true-solar-time-formula",
+      "obs.sanming.dayun-backward-direction",
+      "obs.sanming.dayun-distance-conversion",
+      "obs.sanming.dayun-forward-direction",
+      "obs.sanming.dayun-start-example",
+      "obs.sanming.month-stem-five-tiger",
+      "obs.tianjing.zi-midpoint-day-start",
+      "obs.usno.equation-of-time-definition",
+      "obs.usno.local-apparent-solar-time",
+      "obs.xintang.zi-half-calendar",
+      "obs.yuanhai.dayun-month-progression",
+      "obs.yuanhai.month-from-year",
+      "obs.yuanhai.seasonal-month-command",
+      "page.commons.ncl-06619.leaf-1-title",
+      "page.commons.ncl-06619.leaf-3-preface",
+      "page.commons.ncl-06619.leaf-4-volume-one",
+      "page.commons.ncl-06619.leaf-9-jia-wood",
+      "page.commons.nlc.ziping.35296.page-1-title",
+      "page.commons.nlc.ziping.35296.page-10-body-start",
+      "page.commons.nlc.ziping.35296.page-119-printed-110",
+      "page.commons.nlc.ziping.35296.page-120-printed-111",
+      "page.commons.nlc.ziping.35296.page-121-ziping-boundary",
+      "page.commons.nlc.ziping.35296.page-122-next-title",
+      "page.commons.nlc.ziping.35296.page-123-next-title-body",
+      "page.commons.nlc.ziping.35296.page-124-next-title-page-2",
+      "page.commons.nlc.ziping.35296.page-128-next-title-page-6",
+      "page.commons.nlc.ziping.35296.page-26-yongshin",
+      "page.commons.nlc.ziping.35296.page-27-yongshin-continuation",
+      "page.commons.nlc.ziping.35296.page-39-xiangshen",
+      "page.commons.nlc.ziping.35296.page-40-xiangshen-continuation",
+      "page.commons.nlc.ziping.35296.page-45-next-heading",
+      "page.commons.nlc.ziping.35296.page-56-dayun",
+      "page.commons.nlc.ziping.35296.page-9-front-matter-end",
+      "page.commons.yuanhai.ssid-13003376.leaf-24-qiyun",
+      "page.commons.yuanhai.ssid-13003376.leaf-3-responsibility",
+      "page.commons.yuanhai.ssid-13003376.leaf-3-title",
+      "page.local.ditian.cover",
+      "page.local.ditian.p4-jia-wood",
+      "page.local.ditian.title",
+      "page.local.qiongtong.cover",
+      "page.local.qiongtong.p3-wood-section",
+      "page.local.qiongtong.p4-spring-jia-wood",
+      "page.local.qiongtong.p5-spring-jia-wood-continuation",
+      "page.local.sanming.cover",
+      "page.local.sanming.p65-human-element-and-month-command",
+      "page.local.sanming.p66-seasonal-hidden-stem-service",
+      "page.local.sanming.p69-month-hour-method",
+      "page.local.sanming.p70-year-month-day-hour",
+      "page.local.yuanhai.cover",
+      "page.local.yuanhai.p4-seasonal-calendar",
+      "page.local.yuanhai.p5-hidden-stem-song",
+      "page.local.yuanhai.p7-month-command",
+      "page.local.yuanhai.p9-dayun-section",
+      "page.local.yuanhai.title",
+      "page.local.ziping.cover",
+      "page.local.ziping.introduction",
+      "page.local.ziping.p10-xiangshen",
+      "page.local.ziping.p11-xiangshen-continuation",
+      "page.local.ziping.p15-xingyun",
+      "page.local.ziping.p5-branch-relations",
+      "page.local.ziping.p6-yongshin",
+      "page.local.ziping.p7-yongshin-continuation",
+      "page.ncl.ditian.06619.leaf-7-official-thumbnail-bridge",
+      "page.ncl.sanming.1578.catalog-06589.official-thumbnail",
+      "page.ncl.sanming.1578.catalog-06589.record",
+      "page.ncl.sanming.1578.catalog-06590-rarecatx0136468.record",
+      "page.ncl.sanming.1578.catalog-06590.record",
+      "page.ncl.sanming.1578.scan-06589-part-2.page-1",
+      "page.ncl.sanming.1578.scan-06589-part-2.page-100",
+      "page.ncl.sanming.1578.scan-06589-part-2.page-186",
+      "page.ncl.sanming.1578.scan-06589-part-2.page-187",
+      "page.ncl.sanming.1578.scan-06589-part-2.page-2",
+      "page.ncl.sanming.1578.scan-06589-part-2.page-20",
+      "page.ncl.sanming.1578.scan-06589.leaf-101",
+      "page.ncl.sanming.1578.scan-06589.leaf-143",
+      "page.ncl.sanming.1578.scan-06589.leaf-144",
+      "page.ncl.sanming.1578.scan-06589.leaf-150",
+      "page.ncl.sanming.1578.scan-06589.leaf-151",
+      "page.ncl.sanming.1578.scan-06589.leaf-2-item-label",
+      "page.ncl.sanming.1578.scan-06589.leaf-9-official-thumbnail-bridge",
+      "page.ncl.yuanhai.catalog-15257c2.record",
+      "page.ncl.ziping.gengcun-06599.catalog-record",
+      "page.nlc.ditian.1926.catalog-07jh011206.record",
+      "page.nlc.ditian.v1.leaf-5-title",
+      "page.nlc.ditian.v1.leaf-7-jia-wood",
+      "page.nlc.qiongtong.1937.catalog-48608.record",
+      "page.nlc.qiongtong.1937.scan-48608.leaf-1-official-thumbnail-bridge",
+      "page.nlc.qiongtong.1937.scan-48608.leaf-1-title",
+      "page.nlc.qiongtong.1937.scan-48608.leaf-13-surrounding",
+      "page.nlc.qiongtong.1937.scan-48608.leaf-14-spring-jia-wood",
+      "page.nlc.qiongtong.1937.scan-48608.leaf-15-surrounding",
+      "page.nlc.qiongtong.1937.scan-48608.leaf-2-item-barcode",
+      "page.nlc.qiongtong.1937.scan-48608.leaf-7-five-phases",
+      "page.nlc.qiongtong.v2.leaf-2-title-five-phase",
+      "page.nlc.qiongtong.v2.leaf-3-wood",
+      "page.nlc.qiongtong.v2.leaf-4-surrounding",
+      "page.nlc.qiongtong.v2.leaf-5-spring-jia-wood",
+      "page.nlc.qiongtong.v2.leaf-6-surrounding",
+      "page.nlc.sanming.1926.catalog-42998.record",
+      "page.nlc.sanming.1926.catalog-94145.record",
+      "page.nlc.sanming.1926.leaf-2",
+      "page.nlc.sanming.1926.scan-42998.leaf-1-official-thumbnail-bridge",
+      "page.nlc.sanming.1926.scan-94145.leaf-1-official-thumbnail-bridge",
+      "page.nlc.sanming.1926.scan-94145.leaf-109",
+      "page.nlc.sanming.1926.scan-94145.leaf-110",
+      "page.nlc.sanming.1926.scan-94145.leaf-114",
+      "page.nlc.sanming.1926.scan-94145.leaf-116",
+      "page.nlc.yuanhai.99036.catalog-15jh007754.record",
+      "page.nlc.yuanhai.99036.leaf-1-title",
+      "page.nlc.yuanhai.99036.leaf-3-item-context",
+      "page.nlc.yuanhai.99036.leaf-38-year-month-stem",
+      "page.nlc.yuanhai.99036.leaf-5-contents",
+      "page.nlc.yuanhai.99036.leaf-50-start-fortune",
+      "page.nlc.yuanhai.99036.leaf-51-small-fortune",
+      "page.nlc.yuanhai.99036.leaf-52-seasonal-song",
+      "page.nlc.yuanhai.99036.leaf-53-seasonal-qi-song",
+      "page.nlc.yuanhai.99036.leaf-54-seasonal-sections",
+      "page.nlc.yuanhai.99036.leaf-55-yearly-qi-time",
+      "page.nlc.yuanhai.v1.leaf-2-title",
+      "page.nlc.yuanhai.v1.leaf-79-qilu-conversion",
+      "page.nlc.yuanhai.v1.leaf-80-qilu-continuation",
+      "page.nlc.ziping.35296.catalog-11jh010455.record",
+      "page.nlc.ziping.35296.catalog-endpoint-35296",
+      "page.nlc.ziping.v2.catalog-endpoint-46443",
+      "page.nlc.ziping.v2.leaf-14-title",
+      "page.nlc.ziping.v2.leaf-20-branch-relations",
+      "page.nlc.ziping.v2.leaf-23-yongshin",
+      "page.nlc.ziping.v2.leaf-24-yongshin-continuation",
+      "page.nlc.ziping.v2.leaf-32-xiangshen",
+      "page.nlc.ziping.v2.leaf-33-xiangshen-continuation",
+      "page.nlc.ziping.v2.leaf-43-xingyun",
+      "page.nlc.ziping.v2.leaf-44-xingyun-continuation",
+      "page.ntl.yuanhai.catalog-9900014379.record",
+      "page.ntl.yuanhai.v1.leaf-2-title",
+      "page.ntl.yuanhai.v1.leaf-3-item-barcode",
+      "page.ntl.ziping.catalog-9900014380.record",
+      "page.ntl.ziping.v2.leaf-111-yongshin",
+      "page.ntl.ziping.v2.leaf-112-yongshin-continuation",
+      "page.ntl.ziping.v2.leaf-120-xiangshen",
+      "page.ntl.ziping.v2.leaf-121-xiangshen-continuation",
+      "page.ntl.ziping.v2.leaf-131-xingyun",
+      "page.ntl.ziping.v2.leaf-132-xingyun-continuation",
+      "page.ntl.ziping.v2.leaf-2-title",
+      "page.ntl.ziping.v2.leaf-3-volume-four",
+      "page.tianyige.yuanhai.ming-chongzhen.scan-5007.leaf-1",
+      "page.tianyige.yuanhai.ming-chongzhen.scan-5007.leaf-18",
+      "page.tianyige.yuanhai.ming-chongzhen.scan-5007.leaf-19",
+      "page.tianyige.yuanhai.ming-chongzhen.scan-5007.leaf-3",
+      "page.waseda.qiongtong.undated.scan-f0111.leaf-1",
+      "page.waseda.qiongtong.undated.scan-f0111.leaf-10-eryue-jia-mu",
+      "page.waseda.qiongtong.undated.scan-f0111.leaf-11-sanyue-jia-mu",
+      "page.waseda.qiongtong.undated.scan-f0111.leaf-2",
+      "page.waseda.qiongtong.undated.scan-f0111.leaf-4",
+      "page.waseda.qiongtong.undated.scan-f0111.leaf-7-surrounding",
+      "page.waseda.qiongtong.undated.scan-f0111.leaf-8",
+      "page.waseda.qiongtong.undated.scan-f0111.leaf-9-surrounding",
+      "page.waseda.qiongtong.undated.scan-f0111.leaf-9-zhengyue-jia-mu",
+      "qiongtong-baojian",
+      "rel.astronomy-not-saju-authority",
+      "rel.cma-supports-modern-ipchun",
+      "rel.dayun-example-conversion",
+      "rel.dayun-month-seed",
+      "rel.dayun-source-backward",
+      "rel.dayun-source-conversion",
+      "rel.dayun-source-distance-backward",
+      "rel.dayun-source-distance-forward",
+      "rel.dayun-source-example",
+      "rel.dayun-source-forward",
+      "rel.iana-historical-limit",
+      "rel.local-artifact-preserves-gaps",
+      "rel.month-stem-two-witnesses",
+      "rel.nlc-yuanhai-conversion-scope",
+      "rel.noaa-equation",
+      "rel.noaa-implementation",
+      "rel.noaa-longitude",
+      "rel.usno-equation",
+      "rel.usno-longitude",
+      "rel.usno-noaa-astronomy",
+      "rel.yuanhai-seasonal-limits-year-rollover",
+      "rel.zi-authority-blocked",
+      "rel.zi-calendar-conflict",
+      "rel.zi-later-split",
+      "rel.zi-night-lineage",
+      "relation.day-master-month-command",
+      "relation.dayun-direction",
+      "relation.dayun-progression",
+      "relation.ditian-jia-wood-season",
+      "relation.hidden-stems-ten-gods",
+      "relation.lichun-month-command-jie-boundary",
+      "relation.qiongtong-jia-wood-season",
+      "relation.sanming-four-pillars-and-fortune",
+      "relation.three-days-one-year-start-age",
+      "relation.wu-hu-dun-month-stem",
+      "relation.ziping-branch-relations",
+      "sanming-tonghui",
+      "source.cma-ganzhi-calendar-explainer",
+      "source.commons.yuanhai-ziping.sao-ye-shan-fang.ssid-13003376",
+      "source.ctext.sanming-tonghui.siku-cadal-6109",
+      "source.ditian-sui-chanwei.web-witness",
+      "source.gujin-tushu-wuhu-web-witness",
+      "source.iana-tz-theory",
+      "source.lelue-biaowei.web-witness",
+      "source.local-saju-classics-grounding-artifact",
+      "source.local.ditian-sui-pdf",
+      "source.local.qiongtong-baojian-pdf",
+      "source.local.sanming-tonghui-pdf",
+      "source.local.yuanhai-ziping-pdf",
+      "source.local.ziping-zhenquan-pdf",
+      "source.ncl.ditian-sui.ming-end-changgeng.image-06619",
+      "source.ncl.sanming-tonghui.1578.catalog-06589-rarecatx0136467",
+      "source.ncl.sanming-tonghui.1578.catalog-06590",
+      "source.ncl.sanming-tonghui.1578.catalog-06590-rarecatx0136468",
+      "source.ncl.sanming-tonghui.1578.scan-06589",
+      "source.ncl.sanming-tonghui.1578.scan-06589-part-2",
+      "source.ncl.yuanhai-zi-ping.unknown.catalog-15257c2",
+      "source.ncl.ziping.gengcun-06599.catalog-rarecatx0441810",
+      "source.nlc.ditian-sui.1926.v1",
+      "source.nlc.qiongtong-baojian.1926.v2",
+      "source.nlc.qiongtong-baojian.1937.scan-48608",
+      "source.nlc.sanming-tonghui.1926.scan-42998",
+      "source.nlc.sanming-tonghui.1926.scan-94145",
+      "source.nlc.yuanhai-ziping.1926.v1",
+      "source.nlc.yuanhai-ziping.unknown-date.scan-99036",
+      "source.nlc.ziping-zhenquan.1926.v2",
+      "source.nlc.ziping-zhenquan.unknown-republican.scan-35296",
+      "source.noaa-solar-equations",
+      "source.ntl.yuanhai-ziping.1926.v1",
+      "source.ntl.ziping-zhenquan.1926.v2",
+      "source.sanming-tonghui.web-witness",
+      "source.tianjing-huowen.web-witness",
+      "source.tianyige.yuanhai-zi-ping.ming-chongzhen.scan-5007",
+      "source.toyo.ditian-qiongtong.1926.catalog",
+      "source.usno-equation-of-time",
+      "source.waseda.qiongtong-baojian.undated.scan-f0111",
+      "source.web.shaogn.ziping-zhenquan.pdf",
+      "source.xintangshu-calendar.web-witness",
+      "source.yuanhai-zi-ping.web-witness",
+      "yuanhai-zi-ping",
+      "ziping-zhenquan"
+    ],
+    "promotionReadyClaimIds": []
+  },
+  "lineageRelations": [
+    {
+      "conclusion": "Same-work identity is plausible at the locator level; textual transmission and physical witness independence are not established.",
+      "confidence": "bounded",
+      "independence": "not_resolved_not_counted_as_independent",
+      "lineageId": "lineage.continuation.anu-v2-to-yuanhai-web-witness",
+      "relationId": "relation.continuation.anu-to-sanming-web-witness",
+      "sourceIds": [
+        "source.sanming-tonghui.web-witness",
+        "source.anu.sanming-tonghui.e0d2d017.v2"
+      ],
+      "status": "same_work_cross_representation_candidate"
+    },
+    {
+      "conclusion": "The local PDF cannot be promoted to an ANU-derived or edition-identical witness from the available evidence.",
+      "confidence": "low",
+      "independence": "unresolved",
+      "lineageId": "lineage.continuation.anu-v2-to-local-sanming",
+      "relationId": "relation.continuation.anu-to-local-sanming-lineage",
+      "sourceIds": [
+        "source.local.sanming-tonghui-pdf",
+        "source.anu.sanming-tonghui.e0d2d017.v2"
+      ],
+      "status": "unresolved"
+    },
+    {
+      "conclusion": "NLC and NTL 1926 v2 are retained as one current textual lineage candidate, not two corroborating witnesses.",
+      "confidence": "high_bounded",
+      "independence": "resolved_as_not_independent_for_current_claims",
+      "lineageId": "lineage.continuation.nlc-ntl-ziping-1926",
+      "relationId": "relation.continuation.nlc-ntl-ziping-1926-same-lineage",
+      "sourceIds": [
+        "source.nlc.ziping-zhenquan.1926.v2",
+        "source.ntl.ziping-zhenquan.1926.v2"
+      ],
+      "status": "same_lineage_candidate"
+    },
+    {
+      "conclusion": "Distinct catalog/scan identities and bounded wording stability do not by themselves prove independent transmission.",
+      "confidence": "bounded_text_only",
+      "independence": "unresolved",
+      "lineageId": "lineage.continuation.waseda-nlc1937-qiongtong",
+      "relationId": "relation.continuation.qiongtong-three-witness-stability",
+      "sourceIds": [
+        "source.waseda.qiongtong-baojian.undated.scan-f0111",
+        "source.nlc.qiongtong-baojian.1926.v2",
+        "source.nlc.qiongtong-baojian.1937.scan-48608"
+      ],
+      "status": "independence_unresolved"
+    }
+  ],
+  "observations": [
+    {
+      "directVerification": "record URL and V2 bitstream target were used to retrieve the canonical public file; dossier conclusions were not imported as fact.",
+      "kind": "institutional_record",
+      "locator": {
+        "kind": "ANU_item_record",
+        "value": "item e0d2d017-f99d-4818-af29-d18754f7e5cd; handle 1885/206524"
+      },
+      "observationId": "obs.anu.sanming-tonghui.record-v2",
+      "observed": "The ANU item record names 三命通會 as a 12-juan work by 育吾山人 and exposes five public PDF bitstreams; this observation is identity-layer only.",
+      "scopeBoundary": "No physical copy, colophon, printed folio, or 12-juan completeness is inferred from the record alone.",
+      "sourceId": "source.anu.sanming-tonghui.e0d2d017.v2"
+    },
+    {
+      "directVerification": "curl download, byte count, SHA-256, and pdfinfo page count were executed by the parent.",
+      "kind": "canonical_bitstream_identity",
+      "locator": {
+        "kind": "PDF_file",
+        "value": "b22343921_v.2.pdf; 105 pages"
+      },
+      "observationId": "obs.anu.sanming-tonghui.v2-bitstream",
+      "observed": "The directly retrieved V2 byte stream is 116179488 bytes with SHA-256 e757a79c45a6e8a6701ba991ef4a3f2d3a6ce038ed0ab8727a21b319698d1dc8.",
+      "scopeBoundary": "The byte identity authenticates the public bitstream, not a printed edition or an independent textual tradition.",
+      "sourceId": "source.anu.sanming-tonghui.e0d2d017.v2"
+    },
+    {
+      "directVerification": "Parent inspected the rendered scan image; OCR/extracted text is not used as canonical evidence.",
+      "kind": "direct_visual_scan_observation",
+      "locator": {
+        "kind": "ANU_V2_scan",
+        "value": "scan 58; rendered directly from V2 PDF"
+      },
+      "observationId": "obs.anu.sanming-tonghui.v2-scan-58-dayun",
+      "observed": "The rendered traditional vertical spread visibly carries 論大運 and its surrounding 大運 discussion.",
+      "scopeBoundary": "Printed folio and exact edition/plate identity remain unresolved.",
+      "sourceId": "source.anu.sanming-tonghui.e0d2d017.v2"
+    },
+    {
+      "directVerification": "Parent inspected the rendered scan image; wording is retained only at the bounded visible-sequence level.",
+      "kind": "direct_visual_scan_observation",
+      "locator": {
+        "kind": "ANU_V2_scan",
+        "value": "scan 59; rendered directly from V2 PDF"
+      },
+      "observationId": "obs.anu.sanming-tonghui.v2-scan-59-direction-conversion",
+      "observed": "The continuation visibly contains the 陽男陰女順而行之 / 陰男陽女逆而行之 direction family, prior/next 節 time-counting language, and the 三日一歲 / 一日四月 conversion family with a worked start-age example.",
+      "scopeBoundary": "The scan does not by itself settle a modern exact first-start timestamp, rounding order, calendar clamping, or independent transmission.",
+      "sourceId": "source.anu.sanming-tonghui.e0d2d017.v2"
+    }
+  ],
+  "predecessors": {
+    "claimAdjudication": {
+      "artifactPath": "artifacts/saju-five-classics-claim-adjudication-v0/complete.json",
+      "artifactPayloadSha256": "c0dc20da4568adaedd34c7f14e6fc44250b065275a37391ca5ae79214d50a061",
+      "basisHead": "99e6cc624a1510487ad8bcf65347b3ee5f4e524e",
+      "contentSha256": "b3360d39aecf12f27932c72cfe0a9c529114aa90eceae191ad6ba4234b23d8ff",
+      "counts": {
+        "claims": 7,
+        "externalRecordObservations": 2,
+        "sourceFrontierEvidenceObservationIds": 49
+      },
+      "schemaVersion": "saju-five-classics-claim-adjudication-v0",
+      "version": "0.1.0"
+    },
+    "sourceFrontier": {
+      "artifactPath": "artifacts/saju-five-classics-source-identity-frontier-v0/complete.json",
+      "artifactPayloadSha256": "0bfea06f16e0279d8cfb24dfb33aa023cf5469b9d146d699a343edd315d58d92",
+      "basisHead": "99e6cc624a1510487ad8bcf65347b3ee5f4e524e",
+      "contentSha256": "a8792a7ae2bd69df00456931f22ea6ffa2ba84a259e10424ef91ce0d4018a921",
+      "counts": {
+        "blockers": 7,
+        "claimRelations": 11,
+        "lineageRelations": 33,
+        "localTextWitnesses": 5,
+        "pageObservations": 144,
+        "sources": 30,
+        "works": 5
+      },
+      "schemaVersion": "saju-five-classics-source-identity-frontier-v0",
+      "version": "0.1.0"
+    },
+    "timingAuthority": {
+      "artifactPath": "artifacts/saju-timing-authority-frontier-v0/complete.json",
+      "artifactPayloadSha256": "0c62d007f4089d6aecdc89918e594caf3552434839745de9c34baced42c703bc",
+      "basisHead": "99e6cc624a1510487ad8bcf65347b3ee5f4e524e",
+      "contentSha256": "94dc2a49d4fd1444333effcd2484f87fdadd1ed23815e05cc81181f00a35c976",
+      "counts": {
+        "blockers": 8,
+        "claims": 15,
+        "observations": 20,
+        "relations": 25,
+        "sources": 13
+      },
+      "schemaVersion": "saju-timing-authority-frontier-v0",
+      "version": null
+    }
+  },
+  "readiness": {
+    "availableForInterpretation": false,
+    "productionActivation": "blocked",
+    "promotionReadyClaimIds": [],
+    "reason": "The continuation closes bounded observations and narrows blockers, but local lineage, independent transmission, exact edition identity, semantic conflict cause, and/or exact timing procedure remain unresolved.",
+    "semanticAuthority": "not_established",
+    "stableClaimPromotionCount": 0,
+    "status": "blocked"
+  },
+  "researchDossierBoundary": {
+    "authorityImport": false,
+    "canonicalImport": false,
+    "independenceImport": false,
+    "note": "Attached dossiers and crosswalks are not canonical facts. Only parent-reverified institutional record, canonical bitstream bytes, and direct rendered scan observations enter this continuation ledger.",
+    "paths": [
+      "/Users/softie/Downloads/ANU 《三命通會》 5-volume 공개 자료_ Acquisition Dossier.md",
+      "/Users/softie/Downloads/anu_sanming_volume_juan_crosswalk.csv",
+      "/Users/softie/Downloads/anu_sanming_volume_juan_crosswalk.json",
+      "/Users/softie/Downloads/명리 고전 PDF 5종의 판본·디지털 계통 독립 검증 연구보고서.md",
+      "/Users/softie/Downloads/외부 자료 조사 기록.md"
+    ],
+    "usedAs": "prior_research_and_locator_dossier_only"
+  },
+  "schemaVersion": "saju-five-classics-research-continuation-v1",
+  "semanticConflictFindings": [
+    {
+      "additionalHistoricalObservation": {
+        "observedPhrases": [
+          "輔我用神者是也",
+          "財旺生官"
+        ],
+        "pageObservationIds": [
+          "page.commons.nlc.ziping.35296.page-39-xiangshen",
+          "page.commons.nlc.ziping.35296.page-40-xiangshen-continuation",
+          "page.commons.nlc.ziping.35296.page-45-next-heading"
+        ],
+        "roleClauseAfterCaiWangShengGuan": {
+          "status": "not_transcribed",
+          "text": null
+        },
+        "sourceId": "source.nlc.ziping-zhenquan.unknown-republican.scan-35296",
+        "status": "phrase_and_boundary_only_unresolved_date_lineage"
+      },
+      "adjudication": "cause_unresolved; preserve semantic_conflict and do not normalize the local wording into the historical pair",
+      "claimId": "claim.ziping-xiangshen",
+      "classification": "semantic_conflict",
+      "evidenceRefs": [
+        "relation.continuation.xiangshen-conflict-cause",
+        "blocker.continuation.xiangshen-variant-cause"
+      ],
+      "findingId": "finding.xiangshen-cause-v1",
+      "historicalPair": {
+        "independence": "not_counted_as_independent",
+        "sources": [
+          "source.nlc.ziping-zhenquan.1926.v2",
+          "source.ntl.ziping-zhenquan.1926.v2"
+        ],
+        "status": "same_lineage_agreement_candidate"
+      },
+      "locatorMismatch": {
+        "basis": [
+          "page.local.ziping.p10-xiangshen",
+          "page.nlc.ziping.v2.leaf-32-xiangshen",
+          "page.ntl.ziping.v2.leaf-120-xiangshen",
+          "page.commons.nlc.ziping.35296.page-39-xiangshen",
+          "page.commons.nlc.ziping.35296.page-40-xiangshen-continuation",
+          "page.commons.nlc.ziping.35296.page-45-next-heading"
+        ],
+        "status": "ruled_out"
+      },
+      "observedDifferences": {
+        "localOmission": "local witness does not visibly retain 我用神 in 若君之有相輔我用神者是也",
+        "localVsNlcNtl1926Difference": "Against the NLC/NTL 1926 bounded pair, the local witness visibly adds 財旺生官，則財為用，官為相 and changes the surrounding order; this is not generalized to all historical scans.",
+        "nlc35296PhrasePresence": "NLC 35296 PDF page 39 / printed page 三十 directly shows 輔我用神者是也 and 財旺生官.",
+        "nlc35296RoleClause": {
+          "reason": "The complete role clause after 財旺生官 was not safely isolated; no role wording is admitted.",
+          "status": "not_transcribed",
+          "text": null
+        },
+        "surroundingOrder": "historical pair continues 氣不甚靈 / 神之緊要也 / 論雜氣如何取用 while the local sequence is ordered differently"
+      },
+      "remainingCauseCandidates": [
+        "edition_variant",
+        "modern_transcription_or_rewriting",
+        "editorial_or_commentary_layer"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "access": "open_access_public_bitstream",
+      "bitstream": {
+        "bitstreamUrl": "https://openresearch-repository.anu.edu.au/bitstreams/9cfcfcec-1cac-4336-97f7-c5abd7c982c1/download",
+        "byteLength": 116179488,
+        "byteSha256": "e757a79c45a6e8a6701ba991ef4a3f2d3a6ce038ed0ab8727a21b319698d1dc8",
+        "fileName": "b22343921_v.2.pdf",
+        "handle": "http://hdl.handle.net/1885/206524",
+        "pageCount": 105,
+        "publicVolumeSet": "V1–V5 only in the verified public record view",
+        "recordUrl": "https://openresearch-repository.anu.edu.au/items/e0d2d017-f99d-4818-af29-d18754f7e5cd",
+        "scanScope": "ANU public V2 PDF; scan images 58–59; printed folio crosswalk unresolved",
+        "volumeNumber": 2
+      },
+      "canonicalUse": "parent_verified_historical_witness_and_locator",
+      "handle": "http://hdl.handle.net/1885/206524",
+      "identityBoundary": "The ANU record and V2 bytes are directly identified; printed edition, colophon, physical completeness, and local-PDF lineage are not established.",
+      "independenceRole": "same-work cross-witness candidate; independence not resolved",
+      "institution": "Australian National University Open Research Repository",
+      "publisher": "China : s.n.",
+      "recordAuthors": [
+        "Wan, Minying 萬民英"
+      ],
+      "recordTitle": "San ming tong hui : 12 juan / Yuwushanren zhu 三命通會 : 十二卷 / 育吾山人著",
+      "recordUrl": "https://openresearch-repository.anu.edu.au/items/e0d2d017-f99d-4818-af29-d18754f7e5cd",
+      "sourceId": "source.anu.sanming-tonghui.e0d2d017.v2",
+      "sourceType": "institutional_record_canonical_bitstream_scan",
+      "workId": "sanming-tonghui"
+    }
+  ],
+  "unitFindings": [
+    {
+      "claimIds": [
+        "claim.sanming-dayun-year-stem-gender-direction",
+        "claim.sanming-dayun-term-selection",
+        "claim.sanming-dayun-term-distance",
+        "claim.sanming-dayun-distance-conversion",
+        "claim.sanming-dayun-start-age",
+        "claim.sanming-dayun-first-start-time",
+        "claim.sanming-dayun-progression"
+      ],
+      "evidenceIds": [
+        "obs.anu.sanming-tonghui.record-v2",
+        "obs.anu.sanming-tonghui.v2-bitstream",
+        "obs.anu.sanming-tonghui.v2-scan-58-dayun",
+        "obs.anu.sanming-tonghui.v2-scan-59-direction-conversion"
+      ],
+      "remainingEdges": [
+        "blocker.continuation.anu-juan-6-12",
+        "blocker.continuation.anu-printed-folio-crosswalk",
+        "blocker.continuation.dayun-exact-first-start-time",
+        "blocker.continuation.local-timing-lineage"
+      ],
+      "result": "ANU V2 scan 58–59 is a directly verified canonical bitstream/page witness. 大運 is decomposed into seven claims; no aggregate timing claim is used for promotion.",
+      "status": "closed_bounded_frontier",
+      "unitId": "research-unit-1-dayun-cross-witness",
+      "verificationMode": "parent_direct_record_bitstream_hash_and_rendered_scan_review"
+    },
+    {
+      "evidenceIds": [
+        "relation.continuation.nlc-ntl-ziping-1926-same-lineage",
+        "page.local.ziping.p6-yongshin",
+        "page.local.ziping.p15-xingyun",
+        "page.nlc.ziping.v2.leaf-23-yongshin",
+        "page.ntl.ziping.v2.leaf-111-yongshin"
+      ],
+      "remainingEdges": [
+        "blocker.yuanhai-ziping-lineage",
+        "blocker.local-to-physical-item",
+        "blocker.cross-edition-collation"
+      ],
+      "result": "Local 27p, NLC 35296, NLC 1926, and NTL 1926 v2 remain a bounded wording/order/folio comparison. NLC and NTL 1926 are a same-lineage candidate and are not two independent witnesses; local derivation/lineage remains unresolved.",
+      "status": "closed_bounded_blocker_narrowed",
+      "unitId": "research-unit-2-ziping-lineage",
+      "verificationMode": "parent_recheck_of_predecessor_exact_page_folio_observations_and_checker"
+    },
+    {
+      "evidenceIds": [
+        "finding.xiangshen-cause-v1",
+        "relation.continuation.xiangshen-conflict-cause"
+      ],
+      "remainingEdges": [
+        "blocker.continuation.xiangshen-variant-cause"
+      ],
+      "result": "Locator mismatch is ruled out; historical NLC/NTL pair agrees; local omission/addition/order differences remain a semantic conflict with cause unresolved.",
+      "status": "closed_bounded_conflict_preserved",
+      "unitId": "research-unit-3-xiangshen-conflict",
+      "verificationMode": "parent_recheck_of_exact_local_and_historical_pair_locators"
+    },
+    {
+      "evidenceIds": [
+        "claim.yuanhai-editorial-responsibility",
+        "claim.yuanhai-seasonal-lichun-clause",
+        "relation.continuation.anu-to-sanming-web-witness",
+        "page.nlc.yuanhai.v1.leaf-79-qilu-conversion",
+        "page.nlc.yuanhai.v1.leaf-80-qilu-continuation",
+        "obs.nlc.yuanhai.qilu-conversion-1926"
+      ],
+      "remainingEdges": [
+        "blocker.continuation.yuanhai-cross-edition-collation",
+        "blocker.continuation.local-timing-lineage"
+      ],
+      "result": "徐升編 / 楊淙增校 remains an identity-layer responsibility display; the seasonal/立春 clause is bounded text correspondence; NLC 46442 PDF pages 79–80 add only a clause-level 珞琚子消息賦 observation for 播四時以為年 / 一辰十載 / 三日為年; the prior bundled timing claim is replaced by seven narrower claims. No local lineage, independent edition relation, exact 起運 procedure, or semantic authority is promoted.",
+      "status": "closed_bounded_no_promotion",
+      "unitId": "research-unit-4-yuanhai-promotion-near",
+      "verificationMode": "parent_recheck_of_predecessor_responsibility_seasonal_and_timing_observations_plus_anu_timing_scope"
+    },
+    {
+      "evidenceIds": [
+        "relation.continuation.qiongtong-three-witness-stability",
+        "claim.qiongtong-spring-jia-wood"
+      ],
+      "remainingEdges": [
+        "blocker.continuation.qiongtong-transmission"
+      ],
+      "result": "Waseda leaves 7–11, NLC 1926, and NLC 1937 retain a bounded spring Jia wood comparison, with Waseda leaves 9–11 directly exposing the consecutive 正月甲木 / 二月甲木 / 三月甲木 headings. Independence/transmission and local lineage remain unresolved; authorship is not conflated with semantic stability.",
+      "status": "closed_bounded_no_promotion",
+      "unitId": "research-unit-5-qiongtong",
+      "verificationMode": "parent_recheck_of_predecessor_three-witness_page_observations_and_lineage_relations"
+    }
+  ],
+  "version": "1.0.0"
+}

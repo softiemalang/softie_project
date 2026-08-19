@@ -22,6 +22,7 @@ export const ZIWEI_P0_HISTORICAL_TEST_FILES = Object.freeze([
 export const SAJU_HISTORICAL_TEST_FILES = Object.freeze([
   'sajuFiveClassicsClaimAdjudicationHistorical.test.js',
   'sajuFiveClassicsClaimProvenanceClosureHistorical.test.js',
+  'sajuFiveClassicsResearchContinuationHistorical.test.js',
   'sajuFiveClassicsSourceIdentityFrontierHistorical.test.js',
   'sajuTimingAuthorityFrontierHistorical.test.js',
 ])

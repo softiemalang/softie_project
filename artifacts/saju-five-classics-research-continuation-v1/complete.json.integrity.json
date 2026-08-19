@@ -1,0 +1,7 @@
+{
+  "artifactByteSha256": "c89f538f4857bb0622d7d08d5a41daf52970ccd54e3f6d852d319b9e68125ae1",
+  "artifactPath": "artifacts/saju-five-classics-research-continuation-v1/complete.json",
+  "byteLength": 151070,
+  "hashScope": "exact UTF-8 bytes of complete.json including final LF",
+  "schemaVersion": "saju-five-classics-research-continuation-v1-integrity-v0"
+}
