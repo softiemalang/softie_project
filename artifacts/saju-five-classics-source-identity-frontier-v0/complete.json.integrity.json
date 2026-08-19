@@ -1,0 +1,7 @@
+{
+  "artifactByteSha256": "7c9bfec3cd2ed082d009c521c03658c8905b475f2f165d3cbcbdc78c0b3fd126",
+  "artifactPath": "artifacts/saju-five-classics-source-identity-frontier-v0/complete.json",
+  "byteLength": 409376,
+  "hashScope": "exact UTF-8 bytes of complete.json including final LF",
+  "schemaVersion": "saju-five-classics-source-identity-frontier-v0-integrity-v0"
+}

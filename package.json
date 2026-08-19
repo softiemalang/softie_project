@@ -7,6 +7,8 @@
     "dev": "vite",
     "build": "vite build",
     "test": "node scripts/run-default-tests.mjs",
+    "test:source": "node scripts/run-default-tests.mjs source",
+    "test:historical": "node scripts/run-default-tests.mjs historical",
     "test:properties": "node --test test/astrologyAngleProperties.test.js",
     "check:de405:artifacts": "node scripts/check-de405-artifacts.mjs",
     "check:de405:classification-summary": "node scripts/check-de405-classification-summary-freshness.mjs",
