@@ -6266,13 +6266,26 @@ textarea {
   }
 
   .scheduler-theme-shell .scheduler-event-card.has-note {
-    gap: 0.22rem;
+    gap: 0.18rem;
     padding: 0.45rem var(--scheduler-event-card-pad-x) calc(0.45rem - 3px);
+  }
+
+  .scheduler-theme-shell .scheduler-event-card.has-note .scheduler-event-note {
+    margin-top: -0.14rem;
+    margin-bottom: 0.2rem;
   }
 
   .scheduler-theme-shell .scheduler-event-actions {
     align-items: center;
     gap: 0.55rem;
+  }
+
+  .scheduler-theme-shell .scheduler-event-card.has-note .scheduler-event-actions {
+    margin-top: 0.04rem;
+  }
+
+  .scheduler-theme-shell .scheduler-event-card.has-note .scheduler-event-actions .scheduler-event-meta {
+    transform: none;
   }
 
   .scheduler-theme-shell .scheduler-event-action-buttons {
