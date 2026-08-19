@@ -1,0 +1,7 @@
+{
+  "artifactByteSha256": "0f8f092f818eeeb5eb10c7fc2abd1223c6dc6815b3c95e2061c4d0f579d873a7",
+  "artifactPath": "artifacts/saju-timing-authority-frontier-v0/complete.json",
+  "byteLength": 115059,
+  "hashScope": "exact UTF-8 bytes of complete.json including final LF",
+  "schemaVersion": "saju-timing-authority-frontier-v0-integrity-v0"
+}

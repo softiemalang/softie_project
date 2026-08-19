@@ -1,0 +1,2494 @@
+{
+  "artifactIdentity": {
+    "artifactId": "saju-timing-authority-frontier-v0",
+    "artifactPayloadSha256": "0c62d007f4089d6aecdc89918e594caf3552434839745de9c34baced42c703bc",
+    "contractVersion": "artifact-identity-v1",
+    "generation": {
+      "baseHead": "99e6cc624a1510487ad8bcf65347b3ee5f4e524e",
+      "baseHeadSource": "git rev-parse HEAD at materialization",
+      "includedCommit": null,
+      "includedCommitSource": "unknown_at_generation; artifact may be included by a later commit"
+    },
+    "inputs": [
+      {
+        "byteSha256": "aaee0710bc855f00c459767c2ea07bd8e8d25ef9052c4f145ffb513c78426138",
+        "path": "artifacts/saju-five-classics-grounding-v0/complete.json"
+      },
+      {
+        "byteSha256": "e48f8b1086a4cf555fddff5287231033071df2bf885b42866543eb27e14f52e8",
+        "path": "scripts/materialize-saju-timing-authority-frontier-v0.mjs"
+      },
+      {
+        "byteSha256": "6d8de4820a01a69ed2feaf50f5213d92128d8a21b72134a05f5c22fbe30aa061",
+        "path": "src/interpretationPrep/sajuAdapter.js"
+      },
+      {
+        "byteSha256": "0a3a3bfdd484e708210e6ec0a13f339d22603fc6c389b8a4cca28415c9c4d7b0",
+        "path": "src/interpretationPrep/sajuTimingAuthorityFrontier.js"
+      },
+      {
+        "byteSha256": "2b7b6a40430f2a4f2ebdb7a26722a0a4461f287aa1267877714debd0b9e4a8ec",
+        "path": "src/interpretationPrep/sajuTimingRules.js"
+      },
+      {
+        "byteSha256": "27f71a0bbad8476895766c29c42bec1f95ddeb0b5fec3171c56e19265e936cc7",
+        "path": "src/saju/engine/fourPillars.js"
+      },
+      {
+        "byteSha256": "5dcab28d38a3b51182fb984abbd1461934a348213b5d53cee9828e0f04b02f56",
+        "path": "src/saju/engine/solarTerms.js"
+      },
+      {
+        "byteSha256": "bc298c71ff70f33e16bf6cbfa5d49b8d66499307cd27672de3dba9fc79e0c651",
+        "path": "src/saju/engine/solarTime.js"
+      }
+    ],
+    "materializer": {
+      "path": "scripts/materialize-saju-timing-authority-frontier-v0.mjs",
+      "version": "0.1.0"
+    }
+  },
+  "authoritySummary": {
+    "closedAuthorityClaimIds": [],
+    "conflictingAuthorityClaimIds": [
+      "claim.day-boundary-zi-variants"
+    ],
+    "insufficientEvidenceClaimIds": [
+      "claim.day-boundary-saju-authority",
+      "claim.month-branch-節-boundary",
+      "claim.saju-requires-true-solar-time"
+    ],
+    "lineageSpecificClaimIds": [
+      "claim.dayun-cycle-progression",
+      "claim.dayun-direction",
+      "claim.dayun-first-start-date",
+      "claim.dayun-start-age-conversion",
+      "claim.dayun-start-boundary-distance",
+      "claim.month-stem-五虎遁"
+    ],
+    "modernPolicyClaimIds": [
+      "claim.equation-of-time",
+      "claim.historical-timezone-location",
+      "claim.local-apparent-solar-time",
+      "claim.longitude-correction",
+      "claim.year-rollover-立春"
+    ],
+    "unsupportedClaimIds": []
+  },
+  "basisHead": "99e6cc624a1510487ad8bcf65347b3ee5f4e524e",
+  "blockers": [
+    {
+      "blockerId": "blocker.classical-edition-identity",
+      "blocking": true,
+      "description": "Web witnesses and local PDF artifacts do not yet establish a byte-identified, edition-stable classical transmission for each timing rule.",
+      "impact": "source authority and semantic promotion remain blocked",
+      "status": "open"
+    },
+    {
+      "blockerId": "blocker.classical-explicit-year-boundary",
+      "blocking": true,
+      "description": "The observed classical locators do not explicitly bind the Saju year pillar to the exact 立春 instant; the strongest direct statement is a modern official convention.",
+      "impact": "year-rollover authority remains scoped, not classical-verified",
+      "status": "open"
+    },
+    {
+      "blockerId": "blocker.independent-calendar-corpus",
+      "blocking": true,
+      "description": "The current admitted corpus does not independently adjudicate every instant-sensitive year/month boundary across the intended historical range.",
+      "impact": "boundary correctness cannot be generalized from scoped matches",
+      "status": "open"
+    },
+    {
+      "blockerId": "blocker.zi-lineage-conflict",
+      "blocking": true,
+      "description": "子半, 子初, 子正, and early/night 子時 evidence comes from different calendar, astronomical, and later interpretive scopes without a declared authoritative Saju lineage.",
+      "impact": "day-pillar rollover and 早子/夜子 policy remain unresolved",
+      "status": "open"
+    },
+    {
+      "blockerId": "blocker.classical-explicit-day-rollover",
+      "blocking": true,
+      "description": "The observed 子時 passages describe time subdivisions but do not establish one source-authorized Saju day-pillar rollover rule.",
+      "impact": "default implementation boundary cannot be promoted",
+      "status": "open"
+    },
+    {
+      "blockerId": "blocker.saju-solar-time-authority",
+      "blocking": true,
+      "description": "USNO/NOAA establish astronomical conversion, but an admitted classical or authoritative Saju source requiring longitude plus equation-of-time correction was not located.",
+      "impact": "true-solar correction remains an implementation policy",
+      "status": "open"
+    },
+    {
+      "blockerId": "blocker.historical-civil-time",
+      "blocking": true,
+      "description": "Historical civil-time and timezone data are location-specific and incomplete before modern standardization; current runtime is Asia/Seoul-only with a pre-1961 verification boundary.",
+      "impact": "historical birth instants can remain unverified",
+      "status": "open"
+    },
+    {
+      "blockerId": "blocker.dayun-exact-procedure",
+      "blocking": true,
+      "description": "The observed 大運 text does not settle every implementation detail: exact 節 class, hour counting granularity, rounding order, fractional-age arithmetic, and calendar clamping.",
+      "impact": "direction/source family is scoped, but exact start date equivalence is not proven",
+      "status": "open"
+    }
+  ],
+  "claims": [
+    {
+      "authorityStatus": "modern_policy",
+      "claimId": "claim.year-rollover-立春",
+      "competingPolicies": [
+        "lunar_new_year_rollover",
+        "date_only_立春_rollover",
+        "historical_lineage_not_yet_identified"
+      ],
+      "confidence": {
+        "basis": "the exact 立春 convention is directly observed in the modern official source, while classical semantic authority remains unresolved",
+        "level": "scoped"
+      },
+      "evidence": [
+        {
+          "locator": {
+            "kind": "article_paragraphs",
+            "value": "article body; paragraphs defining 干支历 and 立春"
+          },
+          "normalizedMeaning": "Modern official convention: year rollover is the exact 立春 instant rather than lunar New Year.",
+          "observationId": "obs.cma.ipchun-year-convention",
+          "rawEvidence": {
+            "consumption": "raw_text_not_verified_fact_or_interpretation",
+            "isVerifiedFact": false,
+            "text": "干支历严格地以立春作为一年的开始"
+          },
+          "scopeBoundary": "modern official calendar explanation; it does not establish classical 子平 semantic authority or settle every historical lineage",
+          "source": {
+            "path": null,
+            "sourceId": "source.cma-ganzhi-calendar-explainer",
+            "title": "立春是属相的分界线吗？",
+            "url": "https://www.cma.gov.cn/kppd/kppdsytj/201602/t20160205-303710.html"
+          }
+        },
+        {
+          "locator": {
+            "kind": "html_lines",
+            "value": "246-272"
+          },
+          "normalizedMeaning": "Solar-term timing is relevant to month-command/seasonal scope; this locator does not by itself state the year-pillar rollover instant.",
+          "observationId": "obs.yuanhai.seasonal-month-command",
+          "rawEvidence": {
+            "consumption": "raw_text_not_verified_fact_or_interpretation",
+            "isVerifiedFact": false,
+            "text": "立春念三丙火用，馀日甲木旺提纲。"
+          },
+          "scopeBoundary": "seasonal/month-command text witness only; edition identity and exact Saju year-boundary authority unresolved",
+          "source": {
+            "path": null,
+            "sourceId": "source.yuanhai-zi-ping.web-witness",
+            "title": "渊海子平",
+            "url": "https://zh.wikisource.org/zh-hans/淵海子平大全"
+          }
+        }
+      ],
+      "frontierId": "year-month-boundary",
+      "implementationRefIds": [
+        "impl.solar-terms.boundaries",
+        "impl.four-pillars.month-stem"
+      ],
+      "independence": {
+        "basis": "modern official calendar witness plus classical seasonal witness; no edition-stable classical Saju year-boundary witness",
+        "status": "partial"
+      },
+      "normalizedRule": "Use the solar longitude 315-degree boundary as the year transition, with a date/time boundary rather than a date-only approximation.",
+      "proposition": "Year pillar rollover is assigned at the exact 立春 instant rather than lunar New Year.",
+      "sourceObservationIds": [
+        "obs.cma.ipchun-year-convention",
+        "obs.yuanhai.seasonal-month-command"
+      ],
+      "status": "scoped_modern_convention",
+      "unresolvedBlockerIds": [
+        "blocker.classical-edition-identity",
+        "blocker.classical-explicit-year-boundary"
+      ]
+    },
+    {
+      "authorityStatus": "insufficient_evidence",
+      "claimId": "claim.month-branch-節-boundary",
+      "competingPolicies": [
+        "lunar_month_boundary",
+        "date_only_solar_term_boundary",
+        "中氣_or_non-節_month_policy"
+      ],
+      "confidence": {
+        "basis": "seasonal/month-command language and modern convention are observed, but an explicit Saju month-rollover prescription is not admitted",
+        "level": "unresolved"
+      },
+      "evidence": [
+        {
+          "locator": {
+            "kind": "html_lines",
+            "value": "246-272"
+          },
+          "normalizedMeaning": "Solar-term timing is relevant to month-command/seasonal scope; this locator does not by itself state the year-pillar rollover instant.",
+          "observationId": "obs.yuanhai.seasonal-month-command",
+          "rawEvidence": {
+            "consumption": "raw_text_not_verified_fact_or_interpretation",
+            "isVerifiedFact": false,
+            "text": "立春念三丙火用，馀日甲木旺提纲。"
+          },
+          "scopeBoundary": "seasonal/month-command text witness only; edition identity and exact Saju year-boundary authority unresolved",
+          "source": {
+            "path": null,
+            "sourceId": "source.yuanhai-zi-ping.web-witness",
+            "title": "渊海子平",
+            "url": "https://zh.wikisource.org/zh-hans/淵海子平大全"
+          }
+        },
+        {
+          "locator": {
+            "kind": "article_paragraphs",
+            "value": "article body; paragraphs defining 干支历 and 立春"
+          },
+          "normalizedMeaning": "Modern official convention: year rollover is the exact 立春 instant rather than lunar New Year.",
+          "observationId": "obs.cma.ipchun-year-convention",
+          "rawEvidence": {
+            "consumption": "raw_text_not_verified_fact_or_interpretation",
+            "isVerifiedFact": false,
+            "text": "干支历严格地以立春作为一年的开始"
+          },
+          "scopeBoundary": "modern official calendar explanation; it does not establish classical 子平 semantic authority or settle every historical lineage",
+          "source": {
+            "path": null,
+            "sourceId": "source.cma-ganzhi-calendar-explainer",
+            "title": "立春是属相的分界线吗？",
+            "url": "https://www.cma.gov.cn/kppd/kppdsytj/201602/t20160205-303710.html"
+          }
+        }
+      ],
+      "frontierId": "year-month-boundary",
+      "implementationRefIds": [
+        "impl.solar-terms.boundaries"
+      ],
+      "independence": {
+        "basis": "seasonal classical witness and modern solar-calendar witness are distinct scopes, but edition independence and Saju semantic authority are unresolved",
+        "status": "partial"
+      },
+      "normalizedRule": "Partition the solar year at the twelve month-entry solar longitudes beginning with 315 degrees; the exact boundary instant controls the month branch.",
+      "proposition": "Month branch changes at the solar-term 節 boundary, using the twelve 30-degree month-entry points.",
+      "sourceObservationIds": [
+        "obs.yuanhai.seasonal-month-command",
+        "obs.cma.ipchun-year-convention"
+      ],
+      "status": "implementation_policy_source_unresolved",
+      "unresolvedBlockerIds": [
+        "blocker.classical-edition-identity",
+        "blocker.independent-calendar-corpus"
+      ]
+    },
+    {
+      "authorityStatus": "lineage_specific",
+      "claimId": "claim.month-stem-五虎遁",
+      "competingPolicies": [
+        "alternate_month-stem_transmission",
+        "source-edition-specific_variant"
+      ],
+      "confidence": {
+        "basis": "the 五虎遁 relation is textually observed, but edition identity and implementation equivalence remain unresolved",
+        "level": "scoped"
+      },
+      "evidence": [
+        {
+          "locator": {
+            "kind": "html_lines",
+            "value": "266-276"
+          },
+          "normalizedMeaning": "Month stem/branch progression is keyed to the year stem through the 五虎遁 relation and then proceeds through the months.",
+          "observationId": "obs.sanming.month-stem-five-tiger",
+          "rawEvidence": {
+            "consumption": "raw_text_not_verified_fact_or_interpretation",
+            "isVerifiedFact": false,
+            "text": "甲己之年，正月起丙寅。"
+          },
+          "scopeBoundary": "transmitted rule witness; exact edition lineage and whether the modern implementation scope is equivalent remain unresolved",
+          "source": {
+            "path": null,
+            "sourceId": "source.sanming-tonghui.web-witness",
+            "title": "三命通會 卷二",
+            "url": "https://zh.wikisource.org/wiki/三命通會/卷二"
+          }
+        },
+        {
+          "locator": {
+            "kind": "scan_page_html_lines",
+            "value": "page 97; lines 115,176-188"
+          },
+          "normalizedMeaning": "The formula corroborates a year-stem-to-month-stem mapping as a later transmission, but cannot close source authority.",
+          "observationId": "obs.gujin.five-tiger-formula",
+          "rawEvidence": {
+            "consumption": "raw_text_not_verified_fact_or_interpretation",
+            "isVerifiedFact": false,
+            "text": "甲己之年丙作首"
+          },
+          "scopeBoundary": "later compendium and unproofed scan; corroboration only, not independent semantic authority",
+          "source": {
+            "path": null,
+            "sourceId": "source.gujin-tushu-wuhu-web-witness",
+            "title": "欽定古今圖書集成 歲功典 干支部",
+            "url": "https://zh.wikisource.org/wiki/Page:Gujin_Tushu_Jicheng,_Volume_476_(1700-1725).djvu/97"
+          }
+        }
+      ],
+      "frontierId": "year-month-boundary",
+      "implementationRefIds": [
+        "impl.four-pillars.month-stem"
+      ],
+      "independence": {
+        "basis": "三命通会 witness and a later unproofed compendium witness record the same formula family; transmission independence is not established",
+        "status": "partial"
+      },
+      "normalizedRule": "Apply the year-stem keyed month-stem start and advance the stem with the month index; do not infer the mapping from output coincidence alone.",
+      "proposition": "Month stem is derived from the year stem by the 五虎遁 rule and then advanced with the month branch.",
+      "sourceObservationIds": [
+        "obs.sanming.month-stem-five-tiger",
+        "obs.gujin.five-tiger-formula"
+      ],
+      "status": "scoped_transmitted_rule",
+      "unresolvedBlockerIds": [
+        "blocker.classical-edition-identity"
+      ]
+    },
+    {
+      "authorityStatus": "conflicting_authority",
+      "claimId": "claim.day-boundary-zi-variants",
+      "competingPolicies": [
+        "civil_midnight_or_子正",
+        "子初_at_23_00",
+        "子半",
+        "早子_夜子_split"
+      ],
+      "confidence": {
+        "basis": "the source landscape is observed, but it does not adjudicate one day-pillar rollover convention",
+        "level": "unresolved"
+      },
+      "evidence": [
+        {
+          "locator": {
+            "kind": "html_lines",
+            "value": "118-129"
+          },
+          "normalizedMeaning": "Historical calendar systems include a 子半/子初 distinction; this is evidence about calendar timekeeping, not a direct Saju day-pillar rule.",
+          "observationId": "obs.xintang.zi-half-calendar",
+          "rawEvidence": {
+            "consumption": "raw_text_not_verified_fact_or_interpretation",
+            "isVerifiedFact": false,
+            "text": "命辰起子半；古历分日，起于子半。"
+          },
+          "scopeBoundary": "historical calendar authority only; no direct 四柱 day-pillar rollover prescription",
+          "source": {
+            "path": null,
+            "sourceId": "source.xintangshu-calendar.web-witness",
+            "title": "新唐書 卷二十五 志第十五 歷一",
+            "url": "https://zh.wikisource.org/zh-hans/新唐書/卷025"
+          }
+        },
+        {
+          "locator": {
+            "kind": "html_lines",
+            "value": "146-148"
+          },
+          "normalizedMeaning": "A 子正 split can assign the first half of 子時 to the preceding day and the second half to the following day.",
+          "observationId": "obs.lelue.zi-first-second-quarter",
+          "rawEvidence": {
+            "consumption": "raw_text_not_verified_fact_or_interpretation",
+            "isVerifiedFact": false,
+            "text": "子时初四刻属前一日 正四刻属后日"
+          },
+          "scopeBoundary": "later music-theory transmission; not a direct identified Saju day-pillar prescription",
+          "source": {
+            "path": null,
+            "sourceId": "source.lelue-biaowei.web-witness",
+            "title": "樂律表微 四庫全書本 卷三",
+            "url": "https://zh.wikisource.org/wiki/樂律表微_(四庫全書本)/卷3"
+          }
+        },
+        {
+          "locator": {
+            "kind": "html_lines",
+            "value": "176-177"
+          },
+          "normalizedMeaning": "A civil-midnight/子正 day boundary is one attested later timekeeping convention, while the late 子時 remains attached to the prior day.",
+          "observationId": "obs.tianjing.zi-midpoint-day-start",
+          "rawEvidence": {
+            "consumption": "raw_text_not_verified_fact_or_interpretation",
+            "isVerifiedFact": false,
+            "text": "子对中正初之刻为本日始时"
+          },
+          "scopeBoundary": "later astronomical timekeeping witness; it does not identify the authoritative Saju lineage for day-pillars",
+          "source": {
+            "path": null,
+            "sourceId": "source.tianjing-huowen.web-witness",
+            "title": "天經或問 四庫全書本 卷三",
+            "url": "https://zh.wikisource.org/wiki/天經或問_(四庫全書本)/卷3"
+          }
+        },
+        {
+          "locator": {
+            "kind": "html_lines",
+            "value": "2555-2562"
+          },
+          "normalizedMeaning": "Early/late 子時 is a lineage-specific intra-hour subperiod convention, not proof that the day pillar must roll at 23:00 or 00:00.",
+          "observationId": "obs.ditian.early-night-zi",
+          "rawEvidence": {
+            "consumption": "raw_text_not_verified_fact_or_interpretation",
+            "isVerifiedFact": false,
+            "text": "子时前三刻，三分壬水用事；后四亥，七分癸水用事。"
+          },
+          "scopeBoundary": "late interpretive commentary; exact day-pillar rollover and location correction remain unstated",
+          "source": {
+            "path": null,
+            "sourceId": "source.ditian-sui-chanwei.web-witness",
+            "title": "滴天髓闡微",
+            "url": "https://zh.wikisource.org/zh-hans/滴天髓闡微"
+          }
+        }
+      ],
+      "frontierId": "zi-day-boundary",
+      "implementationRefIds": [
+        "impl.four-pillars.zi-day"
+      ],
+      "independence": {
+        "basis": "the witnesses span historical calendar, later music theory, later astronomy, and later commentary rather than one independently verified Saju lineage",
+        "status": "not_established"
+      },
+      "normalizedRule": "Keep civil midnight/子正, 子初/23:00, 子半, and early/night split as separate candidate policies until a declared Saju lineage resolves them.",
+      "proposition": "The day boundary in 子時 has multiple attested variants: 子半, 子初, 子正, and split early/night 子時.",
+      "sourceObservationIds": [
+        "obs.xintang.zi-half-calendar",
+        "obs.lelue.zi-first-second-quarter",
+        "obs.tianjing.zi-midpoint-day-start",
+        "obs.ditian.early-night-zi"
+      ],
+      "status": "conflicting_lineage_unresolved",
+      "unresolvedBlockerIds": [
+        "blocker.zi-lineage-conflict",
+        "blocker.classical-edition-identity"
+      ]
+    },
+    {
+      "authorityStatus": "insufficient_evidence",
+      "claimId": "claim.day-boundary-saju-authority",
+      "competingPolicies": [
+        "repository_default_solar_midnight_split",
+        "legacy_zi_start_option",
+        "source_lineage_to_be_selected"
+      ],
+      "confidence": {
+        "basis": "the implementation default is a policy choice, not a source-verified conclusion",
+        "level": "unresolved"
+      },
+      "evidence": [
+        {
+          "locator": {
+            "kind": "html_lines",
+            "value": "118-129"
+          },
+          "normalizedMeaning": "Historical calendar systems include a 子半/子初 distinction; this is evidence about calendar timekeeping, not a direct Saju day-pillar rule.",
+          "observationId": "obs.xintang.zi-half-calendar",
+          "rawEvidence": {
+            "consumption": "raw_text_not_verified_fact_or_interpretation",
+            "isVerifiedFact": false,
+            "text": "命辰起子半；古历分日，起于子半。"
+          },
+          "scopeBoundary": "historical calendar authority only; no direct 四柱 day-pillar rollover prescription",
+          "source": {
+            "path": null,
+            "sourceId": "source.xintangshu-calendar.web-witness",
+            "title": "新唐書 卷二十五 志第十五 歷一",
+            "url": "https://zh.wikisource.org/zh-hans/新唐書/卷025"
+          }
+        },
+        {
+          "locator": {
+            "kind": "html_lines",
+            "value": "146-148"
+          },
+          "normalizedMeaning": "A 子正 split can assign the first half of 子時 to the preceding day and the second half to the following day.",
+          "observationId": "obs.lelue.zi-first-second-quarter",
+          "rawEvidence": {
+            "consumption": "raw_text_not_verified_fact_or_interpretation",
+            "isVerifiedFact": false,
+            "text": "子时初四刻属前一日 正四刻属后日"
+          },
+          "scopeBoundary": "later music-theory transmission; not a direct identified Saju day-pillar prescription",
+          "source": {
+            "path": null,
+            "sourceId": "source.lelue-biaowei.web-witness",
+            "title": "樂律表微 四庫全書本 卷三",
+            "url": "https://zh.wikisource.org/wiki/樂律表微_(四庫全書本)/卷3"
+          }
+        },
+        {
+          "locator": {
+            "kind": "html_lines",
+            "value": "2555-2562"
+          },
+          "normalizedMeaning": "Early/late 子時 is a lineage-specific intra-hour subperiod convention, not proof that the day pillar must roll at 23:00 or 00:00.",
+          "observationId": "obs.ditian.early-night-zi",
+          "rawEvidence": {
+            "consumption": "raw_text_not_verified_fact_or_interpretation",
+            "isVerifiedFact": false,
+            "text": "子时前三刻，三分壬水用事；后四亥，七分癸水用事。"
+          },
+          "scopeBoundary": "late interpretive commentary; exact day-pillar rollover and location correction remain unstated",
+          "source": {
+            "path": null,
+            "sourceId": "source.ditian-sui-chanwei.web-witness",
+            "title": "滴天髓闡微",
+            "url": "https://zh.wikisource.org/zh-hans/滴天髓闡微"
+          }
+        },
+        {
+          "locator": {
+            "kind": "artifact_refs",
+            "value": "saju-five-classics-grounding-v0 source observations and admission boundary"
+          },
+          "normalizedMeaning": "Local PDF observations can preserve a research frontier but cannot promote the four timing policies without an identified, independently checked source lineage.",
+          "observationId": "obs.local.frontier-preserves-timing-gap",
+          "rawEvidence": {
+            "consumption": "raw_text_not_verified_fact_or_interpretation",
+            "isVerifiedFact": false,
+            "text": "external source identity and claim-level semantic authority remain unresolved"
+          },
+          "scopeBoundary": "repository provenance boundary; this is not an independent classical authority",
+          "source": {
+            "path": "artifacts/saju-five-classics-grounding-v0/complete.json",
+            "sourceId": "source.local-saju-classics-grounding-artifact",
+            "title": "Local Saju five-classics grounding artifact",
+            "url": null
+          }
+        }
+      ],
+      "frontierId": "zi-day-boundary",
+      "implementationRefIds": [
+        "impl.four-pillars.zi-day"
+      ],
+      "independence": {
+        "basis": "the admitted source set contains no direct, edition-stable Saju day-pillar rollover prescription",
+        "status": "not_established"
+      },
+      "normalizedRule": "Do not promote the repository default or the alternative option to classical authority; preserve the selected boundary as implementation policy.",
+      "proposition": "The observed source set does not yet establish which 子時 boundary an authoritative Saju lineage requires for the day pillar.",
+      "sourceObservationIds": [
+        "obs.xintang.zi-half-calendar",
+        "obs.lelue.zi-first-second-quarter",
+        "obs.ditian.early-night-zi",
+        "obs.local.frontier-preserves-timing-gap"
+      ],
+      "status": "implementation_policy_source_unresolved",
+      "unresolvedBlockerIds": [
+        "blocker.zi-lineage-conflict",
+        "blocker.classical-explicit-day-rollover"
+      ]
+    },
+    {
+      "authorityStatus": "modern_policy",
+      "claimId": "claim.longitude-correction",
+      "competingPolicies": [
+        "civil_time_only",
+        "zone_meridian_only",
+        "longitude_corrected_solar_time"
+      ],
+      "confidence": {
+        "basis": "the longitude method is explicit and deterministic, while its Saju policy requirement is separate and unresolved",
+        "level": "scoped"
+      },
+      "evidence": [
+        {
+          "locator": {
+            "kind": "html_lines",
+            "value": "49-71,74-92"
+          },
+          "normalizedMeaning": "Astronomical local apparent solar time requires observer longitude plus the date-dependent equation of time; civil time is only an approximation at the zone meridian without daylight time.",
+          "observationId": "obs.usno.local-apparent-solar-time",
+          "rawEvidence": {
+            "consumption": "raw_text_not_verified_fact_or_interpretation",
+            "isVerifiedFact": false,
+            "text": "apparent solar time is different for every longitude"
+          },
+          "scopeBoundary": "astronomy definition and method only; no Saju authority claim",
+          "source": {
+            "path": null,
+            "sourceId": "source.usno-equation-of-time",
+            "title": "The Equation of Time",
+            "url": "https://aa.usno.navy.mil/faq/eqtime"
+          }
+        },
+        {
+          "locator": {
+            "kind": "pdf_lines",
+            "value": "page 0; lines 15-21"
+          },
+          "normalizedMeaning": "The implementation can calculate an apparent-solar correction from equation of time, longitude, and civil timezone offset.",
+          "observationId": "obs.noaa.true-solar-time-formula",
+          "rawEvidence": {
+            "consumption": "raw_text_not_verified_fact_or_interpretation",
+            "isVerifiedFact": false,
+            "text": "time_offset = eqtime + 4*longitude – 60*timezone"
+          },
+          "scopeBoundary": "formula authority only; the policy that Saju must use this correction is unresolved",
+          "source": {
+            "path": null,
+            "sourceId": "source.noaa-solar-equations",
+            "title": "General Solar Position Calculations",
+            "url": "https://gml.noaa.gov/grad/solcalc/solareqns.PDF"
+          }
+        }
+      ],
+      "frontierId": "true-solar-location",
+      "implementationRefIds": [
+        "impl.four-pillars.solar-correction"
+      ],
+      "independence": {
+        "basis": "USNO definitions and NOAA formula are independent astronomy authorities, not Saju semantic witnesses",
+        "status": "method_only"
+      },
+      "normalizedRule": "Apply the longitude difference from the civil zone meridian as a solar-time correction after resolving the civil-time instant.",
+      "proposition": "Local apparent solar time changes with observer longitude relative to the civil-time zone meridian.",
+      "sourceObservationIds": [
+        "obs.usno.local-apparent-solar-time",
+        "obs.noaa.true-solar-time-formula"
+      ],
+      "status": "astronomy_method_only",
+      "unresolvedBlockerIds": [
+        "blocker.saju-solar-time-authority"
+      ]
+    },
+    {
+      "authorityStatus": "modern_policy",
+      "claimId": "claim.equation-of-time",
+      "competingPolicies": [
+        "no_equation_of_time",
+        "mean_solar_only",
+        "apparent_solar_with_equation_of_time"
+      ],
+      "confidence": {
+        "basis": "the astronomical calculation is directly specified, but Saju adoption is not source-authorized",
+        "level": "scoped"
+      },
+      "evidence": [
+        {
+          "locator": {
+            "kind": "html_lines",
+            "value": "49-51"
+          },
+          "normalizedMeaning": "Equation of time is a date-dependent astronomical term distinct from the longitude correction and civil timezone offset.",
+          "observationId": "obs.usno.equation-of-time-definition",
+          "rawEvidence": {
+            "consumption": "raw_text_not_verified_fact_or_interpretation",
+            "isVerifiedFact": false,
+            "text": "apparent solar time minus mean solar time"
+          },
+          "scopeBoundary": "astronomy definition and method only; no Saju authority claim",
+          "source": {
+            "path": null,
+            "sourceId": "source.usno-equation-of-time",
+            "title": "The Equation of Time",
+            "url": "https://aa.usno.navy.mil/faq/eqtime"
+          }
+        },
+        {
+          "locator": {
+            "kind": "pdf_lines",
+            "value": "page 0; lines 15-21"
+          },
+          "normalizedMeaning": "The implementation can calculate an apparent-solar correction from equation of time, longitude, and civil timezone offset.",
+          "observationId": "obs.noaa.true-solar-time-formula",
+          "rawEvidence": {
+            "consumption": "raw_text_not_verified_fact_or_interpretation",
+            "isVerifiedFact": false,
+            "text": "time_offset = eqtime + 4*longitude – 60*timezone"
+          },
+          "scopeBoundary": "formula authority only; the policy that Saju must use this correction is unresolved",
+          "source": {
+            "path": null,
+            "sourceId": "source.noaa-solar-equations",
+            "title": "General Solar Position Calculations",
+            "url": "https://gml.noaa.gov/grad/solcalc/solareqns.PDF"
+          }
+        }
+      ],
+      "frontierId": "true-solar-location",
+      "implementationRefIds": [
+        "impl.four-pillars.solar-correction",
+        "impl.solar-time.equation"
+      ],
+      "independence": {
+        "basis": "USNO defines the apparent/mean distinction and NOAA gives the deterministic equation term; neither is Saju semantic authority",
+        "status": "method_only"
+      },
+      "normalizedRule": "Apply the date-dependent equation-of-time term as a separate correction from longitude and timezone offset.",
+      "proposition": "The equation of time is a date-dependent difference between apparent solar time and mean/civil clock time.",
+      "sourceObservationIds": [
+        "obs.usno.equation-of-time-definition",
+        "obs.noaa.true-solar-time-formula"
+      ],
+      "status": "astronomy_method_only",
+      "unresolvedBlockerIds": [
+        "blocker.saju-solar-time-authority"
+      ]
+    },
+    {
+      "authorityStatus": "modern_policy",
+      "claimId": "claim.local-apparent-solar-time",
+      "competingPolicies": [
+        "civil_time_only",
+        "mean_solar_time_only",
+        "local_apparent_solar_time"
+      ],
+      "confidence": {
+        "basis": "the composition is astronomically deterministic, while whether Saju requires it remains unresolved",
+        "level": "scoped"
+      },
+      "evidence": [
+        {
+          "locator": {
+            "kind": "html_lines",
+            "value": "49-71,74-92"
+          },
+          "normalizedMeaning": "Astronomical local apparent solar time requires observer longitude plus the date-dependent equation of time; civil time is only an approximation at the zone meridian without daylight time.",
+          "observationId": "obs.usno.local-apparent-solar-time",
+          "rawEvidence": {
+            "consumption": "raw_text_not_verified_fact_or_interpretation",
+            "isVerifiedFact": false,
+            "text": "apparent solar time is different for every longitude"
+          },
+          "scopeBoundary": "astronomy definition and method only; no Saju authority claim",
+          "source": {
+            "path": null,
+            "sourceId": "source.usno-equation-of-time",
+            "title": "The Equation of Time",
+            "url": "https://aa.usno.navy.mil/faq/eqtime"
+          }
+        },
+        {
+          "locator": {
+            "kind": "html_lines",
+            "value": "49-51"
+          },
+          "normalizedMeaning": "Equation of time is a date-dependent astronomical term distinct from the longitude correction and civil timezone offset.",
+          "observationId": "obs.usno.equation-of-time-definition",
+          "rawEvidence": {
+            "consumption": "raw_text_not_verified_fact_or_interpretation",
+            "isVerifiedFact": false,
+            "text": "apparent solar time minus mean solar time"
+          },
+          "scopeBoundary": "astronomy definition and method only; no Saju authority claim",
+          "source": {
+            "path": null,
+            "sourceId": "source.usno-equation-of-time",
+            "title": "The Equation of Time",
+            "url": "https://aa.usno.navy.mil/faq/eqtime"
+          }
+        },
+        {
+          "locator": {
+            "kind": "pdf_lines",
+            "value": "page 0; lines 15-21"
+          },
+          "normalizedMeaning": "The implementation can calculate an apparent-solar correction from equation of time, longitude, and civil timezone offset.",
+          "observationId": "obs.noaa.true-solar-time-formula",
+          "rawEvidence": {
+            "consumption": "raw_text_not_verified_fact_or_interpretation",
+            "isVerifiedFact": false,
+            "text": "time_offset = eqtime + 4*longitude – 60*timezone"
+          },
+          "scopeBoundary": "formula authority only; the policy that Saju must use this correction is unresolved",
+          "source": {
+            "path": null,
+            "sourceId": "source.noaa-solar-equations",
+            "title": "General Solar Position Calculations",
+            "url": "https://gml.noaa.gov/grad/solcalc/solareqns.PDF"
+          }
+        }
+      ],
+      "frontierId": "true-solar-location",
+      "implementationRefIds": [
+        "impl.four-pillars.solar-correction",
+        "impl.solar-time.equation"
+      ],
+      "independence": {
+        "basis": "USNO and NOAA provide independent astronomy definitions/methods, not a Saju semantic requirement",
+        "status": "method_only"
+      },
+      "normalizedRule": "Compose the resolved historical civil instant, longitude correction, and equation-of-time term before applying any Saju hour/day boundary policy.",
+      "proposition": "Local apparent solar time is distinct from civil time and is the composed result of location, equation of time, and civil-time resolution.",
+      "sourceObservationIds": [
+        "obs.usno.local-apparent-solar-time",
+        "obs.usno.equation-of-time-definition",
+        "obs.noaa.true-solar-time-formula"
+      ],
+      "status": "astronomy_method_only",
+      "unresolvedBlockerIds": [
+        "blocker.saju-solar-time-authority"
+      ]
+    },
+    {
+      "authorityStatus": "insufficient_evidence",
+      "claimId": "claim.saju-requires-true-solar-time",
+      "competingPolicies": [
+        "source_required_true_solar_time",
+        "source_required_mean_solar_time",
+        "civil_time_policy"
+      ],
+      "confidence": {
+        "basis": "negative source finding is bounded to the admitted corpus and cannot prove universal absence",
+        "level": "unresolved"
+      },
+      "evidence": [
+        {
+          "locator": {
+            "kind": "html_lines",
+            "value": "49-71,74-92"
+          },
+          "normalizedMeaning": "Astronomical local apparent solar time requires observer longitude plus the date-dependent equation of time; civil time is only an approximation at the zone meridian without daylight time.",
+          "observationId": "obs.usno.local-apparent-solar-time",
+          "rawEvidence": {
+            "consumption": "raw_text_not_verified_fact_or_interpretation",
+            "isVerifiedFact": false,
+            "text": "apparent solar time is different for every longitude"
+          },
+          "scopeBoundary": "astronomy definition and method only; no Saju authority claim",
+          "source": {
+            "path": null,
+            "sourceId": "source.usno-equation-of-time",
+            "title": "The Equation of Time",
+            "url": "https://aa.usno.navy.mil/faq/eqtime"
+          }
+        },
+        {
+          "locator": {
+            "kind": "html_lines",
+            "value": "49-51"
+          },
+          "normalizedMeaning": "Equation of time is a date-dependent astronomical term distinct from the longitude correction and civil timezone offset.",
+          "observationId": "obs.usno.equation-of-time-definition",
+          "rawEvidence": {
+            "consumption": "raw_text_not_verified_fact_or_interpretation",
+            "isVerifiedFact": false,
+            "text": "apparent solar time minus mean solar time"
+          },
+          "scopeBoundary": "astronomy definition and method only; no Saju authority claim",
+          "source": {
+            "path": null,
+            "sourceId": "source.usno-equation-of-time",
+            "title": "The Equation of Time",
+            "url": "https://aa.usno.navy.mil/faq/eqtime"
+          }
+        },
+        {
+          "locator": {
+            "kind": "pdf_lines",
+            "value": "page 0; lines 15-21"
+          },
+          "normalizedMeaning": "The implementation can calculate an apparent-solar correction from equation of time, longitude, and civil timezone offset.",
+          "observationId": "obs.noaa.true-solar-time-formula",
+          "rawEvidence": {
+            "consumption": "raw_text_not_verified_fact_or_interpretation",
+            "isVerifiedFact": false,
+            "text": "time_offset = eqtime + 4*longitude – 60*timezone"
+          },
+          "scopeBoundary": "formula authority only; the policy that Saju must use this correction is unresolved",
+          "source": {
+            "path": null,
+            "sourceId": "source.noaa-solar-equations",
+            "title": "General Solar Position Calculations",
+            "url": "https://gml.noaa.gov/grad/solcalc/solareqns.PDF"
+          }
+        },
+        {
+          "locator": {
+            "kind": "artifact_refs",
+            "value": "saju-five-classics-grounding-v0 source observations and admission boundary"
+          },
+          "normalizedMeaning": "Local PDF observations can preserve a research frontier but cannot promote the four timing policies without an identified, independently checked source lineage.",
+          "observationId": "obs.local.frontier-preserves-timing-gap",
+          "rawEvidence": {
+            "consumption": "raw_text_not_verified_fact_or_interpretation",
+            "isVerifiedFact": false,
+            "text": "external source identity and claim-level semantic authority remain unresolved"
+          },
+          "scopeBoundary": "repository provenance boundary; this is not an independent classical authority",
+          "source": {
+            "path": "artifacts/saju-five-classics-grounding-v0/complete.json",
+            "sourceId": "source.local-saju-classics-grounding-artifact",
+            "title": "Local Saju five-classics grounding artifact",
+            "url": null
+          }
+        }
+      ],
+      "frontierId": "true-solar-location",
+      "implementationRefIds": [
+        "impl.four-pillars.solar-correction",
+        "impl.solar-time.equation"
+      ],
+      "independence": {
+        "basis": "no admitted classical or authoritative Saju witness requiring longitude plus equation-of-time correction was located",
+        "status": "not_established"
+      },
+      "normalizedRule": "Treat true-solar correction as a repository/astronomy-backed policy, not as a source-authorized Saju requirement.",
+      "proposition": "An explicit authoritative Saju source requiring longitude plus equation-of-time correction has not been located in the admitted source set.",
+      "sourceObservationIds": [
+        "obs.usno.local-apparent-solar-time",
+        "obs.usno.equation-of-time-definition",
+        "obs.noaa.true-solar-time-formula",
+        "obs.local.frontier-preserves-timing-gap"
+      ],
+      "status": "implementation_policy_source_unresolved",
+      "unresolvedBlockerIds": [
+        "blocker.saju-solar-time-authority",
+        "blocker.classical-edition-identity"
+      ]
+    },
+    {
+      "authorityStatus": "modern_policy",
+      "claimId": "claim.historical-timezone-location",
+      "competingPolicies": [
+        "fixed_Asia_Seoul_KST",
+        "historical_location_specific_civil_time",
+        "user_supplied_offset_without_history"
+      ],
+      "confidence": {
+        "basis": "the input and historical-time requirements are methodically supported, while the Saju-specific requirement remains unresolved",
+        "level": "scoped"
+      },
+      "evidence": [
+        {
+          "locator": {
+            "kind": "html_lines",
+            "value": "49-71,74-92"
+          },
+          "normalizedMeaning": "Astronomical local apparent solar time requires observer longitude plus the date-dependent equation of time; civil time is only an approximation at the zone meridian without daylight time.",
+          "observationId": "obs.usno.local-apparent-solar-time",
+          "rawEvidence": {
+            "consumption": "raw_text_not_verified_fact_or_interpretation",
+            "isVerifiedFact": false,
+            "text": "apparent solar time is different for every longitude"
+          },
+          "scopeBoundary": "astronomy definition and method only; no Saju authority claim",
+          "source": {
+            "path": null,
+            "sourceId": "source.usno-equation-of-time",
+            "title": "The Equation of Time",
+            "url": "https://aa.usno.navy.mil/faq/eqtime"
+          }
+        },
+        {
+          "locator": {
+            "kind": "html_sections",
+            "value": "Scope of the tz database; Accuracy of the tz database"
+          },
+          "normalizedMeaning": "Historical birth-time conversion needs a location-specific civil-time rule and must expose pre-standard-time uncertainty rather than silently treating a modern offset as historical truth.",
+          "observationId": "obs.iana.historical-civil-time-scope",
+          "rawEvidence": {
+            "consumption": "raw_text_not_verified_fact_or_interpretation",
+            "isVerifiedFact": false,
+            "text": "attempts to record the history and predicted future of civil time scales"
+          },
+          "scopeBoundary": "civil-time data boundary; no Saju semantic authority",
+          "source": {
+            "path": null,
+            "sourceId": "source.iana-tz-theory",
+            "title": "Theory and pragmatics of the tz code and data",
+            "url": "https://www.iana.org/time-zones/theory"
+          }
+        },
+        {
+          "locator": {
+            "kind": "artifact_refs",
+            "value": "saju-five-classics-grounding-v0 source observations and admission boundary"
+          },
+          "normalizedMeaning": "Local PDF observations can preserve a research frontier but cannot promote the four timing policies without an identified, independently checked source lineage.",
+          "observationId": "obs.local.frontier-preserves-timing-gap",
+          "rawEvidence": {
+            "consumption": "raw_text_not_verified_fact_or_interpretation",
+            "isVerifiedFact": false,
+            "text": "external source identity and claim-level semantic authority remain unresolved"
+          },
+          "scopeBoundary": "repository provenance boundary; this is not an independent classical authority",
+          "source": {
+            "path": "artifacts/saju-five-classics-grounding-v0/complete.json",
+            "sourceId": "source.local-saju-classics-grounding-artifact",
+            "title": "Local Saju five-classics grounding artifact",
+            "url": null
+          }
+        }
+      ],
+      "frontierId": "true-solar-location",
+      "implementationRefIds": [
+        "impl.adapter.location-history",
+        "impl.adapter.location-probe",
+        "impl.four-pillars.solar-correction"
+      ],
+      "independence": {
+        "basis": "USNO local-solar definitions and IANA civil-time scope are distinct authorities, but neither supplies Saju semantic policy",
+        "status": "method_only"
+      },
+      "normalizedRule": "Resolve historical civil time and location before applying solar correction; expose unresolved pre-standard-time history rather than silently using modern KST.",
+      "proposition": "Historical civil timezone, birth location/longitude, and local-time uncertainty are separate input and verification requirements.",
+      "sourceObservationIds": [
+        "obs.usno.local-apparent-solar-time",
+        "obs.iana.historical-civil-time-scope",
+        "obs.local.frontier-preserves-timing-gap"
+      ],
+      "status": "astronomy_method_only",
+      "unresolvedBlockerIds": [
+        "blocker.historical-civil-time",
+        "blocker.saju-solar-time-authority"
+      ]
+    },
+    {
+      "authorityStatus": "lineage_specific",
+      "claimId": "claim.dayun-direction",
+      "competingPolicies": [
+        "day_polarity_direction",
+        "year_pillar_polarity_direction",
+        "gender_independent_direction"
+      ],
+      "confidence": {
+        "basis": "the rule is directly observed in the witness but not promoted beyond its lineage scope",
+        "level": "scoped"
+      },
+      "evidence": [
+        {
+          "locator": {
+            "kind": "html_lines",
+            "value": "300-305"
+          },
+          "normalizedMeaning": "For a forward case, use the next relevant 節 and move the 大運 sequence forward.",
+          "observationId": "obs.sanming.dayun-forward-direction",
+          "rawEvidence": {
+            "consumption": "raw_text_not_verified_fact_or_interpretation",
+            "isVerifiedFact": false,
+            "text": "阳男阴女，大运以生日后未来节气日时为数，顺而行之；"
+          },
+          "scopeBoundary": "transmitted 大運 rule witness; exact edition and implementation equivalence remain unresolved",
+          "source": {
+            "path": null,
+            "sourceId": "source.sanming-tonghui.web-witness",
+            "title": "三命通會 卷二",
+            "url": "https://zh.wikisource.org/wiki/三命通會/卷二"
+          }
+        },
+        {
+          "locator": {
+            "kind": "html_lines",
+            "value": "300-305"
+          },
+          "normalizedMeaning": "For a backward case, use the previous relevant 節 and move the 大運 sequence backward.",
+          "observationId": "obs.sanming.dayun-backward-direction",
+          "rawEvidence": {
+            "consumption": "raw_text_not_verified_fact_or_interpretation",
+            "isVerifiedFact": false,
+            "text": "阴男阳女，以生日前过去节气日时为数，逆而行之。"
+          },
+          "scopeBoundary": "transmitted 大運 rule witness; exact edition and implementation equivalence remain unresolved",
+          "source": {
+            "path": null,
+            "sourceId": "source.sanming-tonghui.web-witness",
+            "title": "三命通會 卷二",
+            "url": "https://zh.wikisource.org/wiki/三命通會/卷二"
+          }
+        }
+      ],
+      "frontierId": "dayun-direction-start-age",
+      "implementationRefIds": [
+        "impl.timing.dayun",
+        "impl.timing.boundary-solver"
+      ],
+      "independence": {
+        "basis": "one transmitted classical web witness explicitly states the direction rule; edition-stable independent confirmation is absent",
+        "status": "partial"
+      },
+      "normalizedRule": "Select next or previous 節 using year-stem yin/yang and gender, then step the month-pillar sequence in that direction.",
+      "proposition": "大運 direction is forward for yang-year male or yin-year female and backward for yin-year male or yang-year female in the observed transmission.",
+      "sourceObservationIds": [
+        "obs.sanming.dayun-forward-direction",
+        "obs.sanming.dayun-backward-direction"
+      ],
+      "status": "scoped_transmitted_rule",
+      "unresolvedBlockerIds": [
+        "blocker.classical-edition-identity",
+        "blocker.dayun-exact-procedure"
+      ]
+    },
+    {
+      "authorityStatus": "lineage_specific",
+      "claimId": "claim.dayun-start-boundary-distance",
+      "competingPolicies": [
+        "next_previous_節",
+        "next_previous_中氣",
+        "day_only_distance",
+        "day_and_time_distance"
+      ],
+      "confidence": {
+        "basis": "the next/previous term and date/time counting rule are directly observed, while exact 節 class and arithmetic remain unresolved",
+        "level": "scoped"
+      },
+      "evidence": [
+        {
+          "locator": {
+            "kind": "html_lines",
+            "value": "300-305"
+          },
+          "normalizedMeaning": "For a forward case, use the next relevant 節 and move the 大運 sequence forward.",
+          "observationId": "obs.sanming.dayun-forward-direction",
+          "rawEvidence": {
+            "consumption": "raw_text_not_verified_fact_or_interpretation",
+            "isVerifiedFact": false,
+            "text": "阳男阴女，大运以生日后未来节气日时为数，顺而行之；"
+          },
+          "scopeBoundary": "transmitted 大運 rule witness; exact edition and implementation equivalence remain unresolved",
+          "source": {
+            "path": null,
+            "sourceId": "source.sanming-tonghui.web-witness",
+            "title": "三命通會 卷二",
+            "url": "https://zh.wikisource.org/wiki/三命通會/卷二"
+          }
+        },
+        {
+          "locator": {
+            "kind": "html_lines",
+            "value": "300-305"
+          },
+          "normalizedMeaning": "For a backward case, use the previous relevant 節 and move the 大運 sequence backward.",
+          "observationId": "obs.sanming.dayun-backward-direction",
+          "rawEvidence": {
+            "consumption": "raw_text_not_verified_fact_or_interpretation",
+            "isVerifiedFact": false,
+            "text": "阴男阳女，以生日前过去节气日时为数，逆而行之。"
+          },
+          "scopeBoundary": "transmitted 大運 rule witness; exact edition and implementation equivalence remain unresolved",
+          "source": {
+            "path": null,
+            "sourceId": "source.sanming-tonghui.web-witness",
+            "title": "三命通會 卷二",
+            "url": "https://zh.wikisource.org/wiki/三命通會/卷二"
+          }
+        }
+      ],
+      "frontierId": "dayun-direction-start-age",
+      "implementationRefIds": [
+        "impl.timing.dayun",
+        "impl.timing.boundary-solver"
+      ],
+      "independence": {
+        "basis": "the direction witnesses explicitly select future/past solar-term date/time, but edition-stable independent confirmation is absent",
+        "status": "partial"
+      },
+      "normalizedRule": "For forward cases count from birth to the next relevant 節; for backward cases count from birth to the prior relevant 節, preserving date and time rather than date-only distance.",
+      "proposition": "大運 direction counts the birth-to-next/previous solar-term day/time distance selected by the gender/year-polarity rule.",
+      "sourceObservationIds": [
+        "obs.sanming.dayun-forward-direction",
+        "obs.sanming.dayun-backward-direction"
+      ],
+      "status": "scoped_transmitted_rule",
+      "unresolvedBlockerIds": [
+        "blocker.classical-edition-identity",
+        "blocker.dayun-exact-procedure"
+      ]
+    },
+    {
+      "authorityStatus": "lineage_specific",
+      "claimId": "claim.dayun-start-age-conversion",
+      "competingPolicies": [
+        "three_days_one_year",
+        "day_only_fractional_year",
+        "round_before_conversion",
+        "fractional_calendar_age"
+      ],
+      "confidence": {
+        "basis": "the three-days-to-one-year relation is explicit, while rounding order and fractional calendar arithmetic remain unresolved",
+        "level": "scoped"
+      },
+      "evidence": [
+        {
+          "locator": {
+            "kind": "html_lines",
+            "value": "300-305"
+          },
+          "normalizedMeaning": "Use the three-days-to-one-year conversion family, while keeping time granularity, rounding, and calendar arithmetic as separate unresolved policy details.",
+          "observationId": "obs.sanming.dayun-distance-conversion",
+          "rawEvidence": {
+            "consumption": "raw_text_not_verified_fact_or_interpretation",
+            "isVerifiedFact": false,
+            "text": "古人以大运则一辰十岁，折除以三日为年者何？"
+          },
+          "scopeBoundary": "transmitted conversion explanation; exact arithmetic equivalence to the repository implementation remains unresolved",
+          "source": {
+            "path": null,
+            "sourceId": "source.sanming-tonghui.web-witness",
+            "title": "三命通會 卷二",
+            "url": "https://zh.wikisource.org/wiki/三命通會/卷二"
+          }
+        },
+        {
+          "locator": {
+            "kind": "attached_pdf_scan",
+            "sourceByteLength": 2690379,
+            "sourceByteSha256": "96bc14ccb8fd6f90fb5ec33784846a9067f2cad45ab9730f12bdf9846ea7c265",
+            "value": "NLC416-13jh002326-46442 PDF pages 79–80 / printed folios 三三–三四"
+          },
+          "normalizedMeaning": "The passage is clause-level corroboration for a three-days-to-one-year conversion family; it does not specify the repository exact first-start age/date, rounding order, fractional-age decomposition, or calendar clamping.",
+          "observationId": "obs.nlc.yuanhai.qilu-conversion-1926",
+          "rawEvidence": {
+            "consumption": "raw_text_not_verified_fact_or_interpretation",
+            "isVerifiedFact": false,
+            "text": "播四時以為年；運行則一辰十載；折除乃三日為年。"
+          },
+          "scopeBoundary": "clause-level corroboration only; no exact first-start age/date/rounding/clamping or semantic authority",
+          "source": {
+            "path": null,
+            "sourceId": "source.nlc.yuanhai-ziping.1926.v1",
+            "title": "淵海子平 子平真詮 第1卷",
+            "url": "https://commons.wikimedia.org/wiki/File:NLC416-13jh002326-46442_%E6%B7%B5%E6%B5%B7%E5%AD%90%E5%B9%B3_%E5%AD%90%E5%B9%B3%E7%9C%9F%E8%A9%AE_%E7%AC%AC1%E5%8D%B7.pdf"
+          }
+        }
+      ],
+      "frontierId": "dayun-direction-start-age",
+      "implementationRefIds": [
+        "impl.timing.dayun"
+      ],
+      "independence": {
+        "basis": "the conversion explanation is directly observed in one transmitted witness; exact arithmetic and edition-stable independent confirmation are absent",
+        "status": "partial"
+      },
+      "normalizedRule": "Use the three-days-to-one-year conversion family and retain the repository’s 1 day = 4 months and 2 hours = 10 days decomposition as implementation detail pending exact source-equivalence verification.",
+      "proposition": "The transmitted 大運 conversion maps the counted interval into symbolic years/months/days.",
+      "sourceObservationIds": [
+        "obs.sanming.dayun-distance-conversion",
+        "obs.nlc.yuanhai.qilu-conversion-1926"
+      ],
+      "status": "scoped_transmitted_rule",
+      "unresolvedBlockerIds": [
+        "blocker.classical-edition-identity",
+        "blocker.dayun-exact-procedure"
+      ]
+    },
+    {
+      "authorityStatus": "lineage_specific",
+      "claimId": "claim.dayun-first-start-date",
+      "competingPolicies": [
+        "add_converted_age_to_birth_date",
+        "calendar_reconstruction_from_example",
+        "fractional_start_date"
+      ],
+      "confidence": {
+        "basis": "the example is textually observed, but the repository’s exact first calendar date has not been proven equivalent",
+        "level": "scoped"
+      },
+      "evidence": [
+        {
+          "locator": {
+            "kind": "html_lines",
+            "value": "300-305"
+          },
+          "normalizedMeaning": "Use the three-days-to-one-year conversion family, while keeping time granularity, rounding, and calendar arithmetic as separate unresolved policy details.",
+          "observationId": "obs.sanming.dayun-distance-conversion",
+          "rawEvidence": {
+            "consumption": "raw_text_not_verified_fact_or_interpretation",
+            "isVerifiedFact": false,
+            "text": "古人以大运则一辰十岁，折除以三日为年者何？"
+          },
+          "scopeBoundary": "transmitted conversion explanation; exact arithmetic equivalence to the repository implementation remains unresolved",
+          "source": {
+            "path": null,
+            "sourceId": "source.sanming-tonghui.web-witness",
+            "title": "三命通會 卷二",
+            "url": "https://zh.wikisource.org/wiki/三命通會/卷二"
+          }
+        },
+        {
+          "locator": {
+            "kind": "html_lines",
+            "value": "300-305"
+          },
+          "normalizedMeaning": "A first 大運 start date/pillar is derived from the birth-to-term interval and the month-pillar sequence, but the exact calendar-date reconstruction remains unresolved.",
+          "observationId": "obs.sanming.dayun-start-example",
+          "rawEvidence": {
+            "consumption": "raw_text_not_verified_fact_or_interpretation",
+            "isVerifiedFact": false,
+            "text": "计六百三十日，乃一岁奇九月之大运；起于丁丑。"
+          },
+          "scopeBoundary": "worked example within a transmitted 大運 witness; not an edition-stable universal arithmetic contract",
+          "source": {
+            "path": null,
+            "sourceId": "source.sanming-tonghui.web-witness",
+            "title": "三命通會 卷二",
+            "url": "https://zh.wikisource.org/wiki/三命通會/卷二"
+          }
+        }
+      ],
+      "frontierId": "dayun-direction-start-age",
+      "implementationRefIds": [
+        "impl.timing.dayun",
+        "impl.timing.boundary-solver"
+      ],
+      "independence": {
+        "basis": "one transmitted worked example links counted interval, converted age, and first pillar; universal arithmetic equivalence is not independently established",
+        "status": "partial"
+      },
+      "normalizedRule": "Apply the selected conversion to the exact interval, add the resulting age to the birth instant/date, and seed the first period from the month-pillar progression; the worked example names 丁丑 as the first pillar.",
+      "proposition": "The first 大運 start age/date and first period pillar are derived from the counted birth-to-term interval.",
+      "sourceObservationIds": [
+        "obs.sanming.dayun-distance-conversion",
+        "obs.sanming.dayun-start-example"
+      ],
+      "status": "scoped_transmitted_rule",
+      "unresolvedBlockerIds": [
+        "blocker.classical-edition-identity",
+        "blocker.dayun-exact-procedure"
+      ]
+    },
+    {
+      "authorityStatus": "lineage_specific",
+      "claimId": "claim.dayun-cycle-progression",
+      "competingPolicies": [
+        "month_pillar_seed",
+        "year_pillar_seed",
+        "source-specific_cycle_step"
+      ],
+      "confidence": {
+        "basis": "month-pillar seeding and progression are observed within the cited textual scopes, not as a universally verified calculation contract",
+        "level": "scoped"
+      },
+      "evidence": [
+        {
+          "locator": {
+            "kind": "html_lines",
+            "value": "348-364"
+          },
+          "normalizedMeaning": "The first 大運 pillar is stepped from the natal month pillar in the selected direction, then advances by one pillar per ten-year period.",
+          "observationId": "obs.yuanhai.dayun-month-progression",
+          "rawEvidence": {
+            "consumption": "raw_text_not_verified_fact_or_interpretation",
+            "isVerifiedFact": false,
+            "text": "今运就月上起"
+          },
+          "scopeBoundary": "classical text witness for month-based progression; exact first-start-date arithmetic is not supplied here",
+          "source": {
+            "path": null,
+            "sourceId": "source.yuanhai-zi-ping.web-witness",
+            "title": "渊海子平",
+            "url": "https://zh.wikisource.org/zh-hans/淵海子平大全"
+          }
+        },
+        {
+          "locator": {
+            "kind": "html_lines",
+            "value": "300-305"
+          },
+          "normalizedMeaning": "For a forward case, use the next relevant 節 and move the 大運 sequence forward.",
+          "observationId": "obs.sanming.dayun-forward-direction",
+          "rawEvidence": {
+            "consumption": "raw_text_not_verified_fact_or_interpretation",
+            "isVerifiedFact": false,
+            "text": "阳男阴女，大运以生日后未来节气日时为数，顺而行之；"
+          },
+          "scopeBoundary": "transmitted 大運 rule witness; exact edition and implementation equivalence remain unresolved",
+          "source": {
+            "path": null,
+            "sourceId": "source.sanming-tonghui.web-witness",
+            "title": "三命通會 卷二",
+            "url": "https://zh.wikisource.org/wiki/三命通會/卷二"
+          }
+        },
+        {
+          "locator": {
+            "kind": "html_lines",
+            "value": "300-305"
+          },
+          "normalizedMeaning": "For a backward case, use the previous relevant 節 and move the 大運 sequence backward.",
+          "observationId": "obs.sanming.dayun-backward-direction",
+          "rawEvidence": {
+            "consumption": "raw_text_not_verified_fact_or_interpretation",
+            "isVerifiedFact": false,
+            "text": "阴男阳女，以生日前过去节气日时为数，逆而行之。"
+          },
+          "scopeBoundary": "transmitted 大運 rule witness; exact edition and implementation equivalence remain unresolved",
+          "source": {
+            "path": null,
+            "sourceId": "source.sanming-tonghui.web-witness",
+            "title": "三命通會 卷二",
+            "url": "https://zh.wikisource.org/wiki/三命通會/卷二"
+          }
+        }
+      ],
+      "frontierId": "dayun-direction-start-age",
+      "implementationRefIds": [
+        "impl.timing.dayun"
+      ],
+      "independence": {
+        "basis": "渊海子平 and 三命通会 witnesses support month-based direction/progression, but transmission independence and exact procedure are unresolved",
+        "status": "partial"
+      },
+      "normalizedRule": "Use the month pillar as the sequence seed, step ±1 per cycle, and calculate each ten-year interval from the first start date.",
+      "proposition": "After the first start date, 大運 progresses from the natal month pillar by one sexagenary pillar per ten-year period.",
+      "sourceObservationIds": [
+        "obs.yuanhai.dayun-month-progression",
+        "obs.sanming.dayun-forward-direction",
+        "obs.sanming.dayun-backward-direction"
+      ],
+      "status": "scoped_transmitted_rule",
+      "unresolvedBlockerIds": [
+        "blocker.classical-edition-identity",
+        "blocker.dayun-exact-procedure"
+      ]
+    }
+  ],
+  "contentSha256": "94dc2a49d4fd1444333effcd2484f87fdadd1ed23815e05cc81181f00a35c976",
+  "frontierConclusion": {
+    "activationAllowed": false,
+    "claimLevelVerificationComplete": false,
+    "nextAuthorizedFrontier": "edition-stable primary source acquisition and independent boundary corpus before any rule promotion",
+    "readinessComplete": false,
+    "semanticAuthorityComplete": false,
+    "sourceAuthorityComplete": false,
+    "sourceObservationsAreCompleteForThisPass": true,
+    "unresolvedBlockerIds": [
+      "blocker.classical-edition-identity",
+      "blocker.classical-explicit-year-boundary",
+      "blocker.independent-calendar-corpus",
+      "blocker.zi-lineage-conflict",
+      "blocker.classical-explicit-day-rollover",
+      "blocker.saju-solar-time-authority",
+      "blocker.historical-civil-time",
+      "blocker.dayun-exact-procedure"
+    ]
+  },
+  "frontierVersion": "0.1.0",
+  "frontiers": [
+    {
+      "claimIds": [
+        "claim.year-rollover-立春",
+        "claim.month-branch-節-boundary",
+        "claim.month-stem-五虎遁"
+      ],
+      "frontierId": "year-month-boundary",
+      "observationIds": [
+        "obs.yuanhai.seasonal-month-command",
+        "obs.yuanhai.month-from-year",
+        "obs.sanming.month-stem-five-tiger",
+        "obs.gujin.five-tiger-formula",
+        "obs.cma.ipchun-year-convention"
+      ],
+      "requiredDecision": "year rollover, 節 month rollover, and month-stem lineage",
+      "status": "blocked_source_authority_unresolved"
+    },
+    {
+      "claimIds": [
+        "claim.day-boundary-zi-variants",
+        "claim.day-boundary-saju-authority"
+      ],
+      "frontierId": "zi-day-boundary",
+      "observationIds": [
+        "obs.xintang.zi-half-calendar",
+        "obs.lelue.zi-first-second-quarter",
+        "obs.tianjing.zi-midpoint-day-start",
+        "obs.ditian.early-night-zi"
+      ],
+      "requiredDecision": "day rollover and early/night 子時 lineage",
+      "status": "blocked_source_authority_unresolved"
+    },
+    {
+      "claimIds": [
+        "claim.longitude-correction",
+        "claim.equation-of-time",
+        "claim.local-apparent-solar-time",
+        "claim.saju-requires-true-solar-time",
+        "claim.historical-timezone-location"
+      ],
+      "frontierId": "true-solar-location",
+      "observationIds": [
+        "obs.usno.local-apparent-solar-time",
+        "obs.usno.equation-of-time-definition",
+        "obs.noaa.true-solar-time-formula",
+        "obs.iana.historical-civil-time-scope",
+        "obs.local.frontier-preserves-timing-gap"
+      ],
+      "requiredDecision": "Saju-specific true-solar requirement and historical location/time policy",
+      "status": "blocked_source_authority_unresolved"
+    },
+    {
+      "claimIds": [
+        "claim.dayun-direction",
+        "claim.dayun-start-boundary-distance",
+        "claim.dayun-start-age-conversion",
+        "claim.dayun-first-start-date",
+        "claim.dayun-cycle-progression"
+      ],
+      "frontierId": "dayun-direction-start-age",
+      "observationIds": [
+        "obs.sanming.dayun-forward-direction",
+        "obs.sanming.dayun-backward-direction",
+        "obs.sanming.dayun-distance-conversion",
+        "obs.sanming.dayun-start-example",
+        "obs.nlc.yuanhai.qilu-conversion-1926",
+        "obs.yuanhai.dayun-month-progression"
+      ],
+      "requiredDecision": "direction, exact distance conversion, first start date, and period progression",
+      "status": "blocked_source_authority_unresolved"
+    }
+  ],
+  "implementation": {
+    "mappingStatus": "observed_implementation_only_source_semantic_authority_unresolved",
+    "noRuntimeChangesInThisFrontier": true,
+    "references": [
+      {
+        "lineEnd": 115,
+        "lineStart": 4,
+        "observedPolicy": "Meeus/NOAA apparent solar longitude; 12 30-degree month boundaries; 315-degree 立春 year rollover; KST-only conversion; 20-minute uncertainty flag",
+        "path": "src/saju/engine/solarTerms.js",
+        "refId": "impl.solar-terms.boundaries"
+      },
+      {
+        "lineEnd": 92,
+        "lineStart": 77,
+        "observedPolicy": "year pillar from baziYear; month branch from monthIndex; month stem from year-stem offset",
+        "path": "src/saju/engine/fourPillars.js",
+        "refId": "impl.four-pillars.month-stem"
+      },
+      {
+        "lineEnd": 134,
+        "lineStart": 99,
+        "observedPolicy": "solar-midnight-split-zi default; optional zi-start/rollDayAtZiHour branch; corrected solar date shifts day index",
+        "path": "src/saju/engine/fourPillars.js",
+        "refId": "impl.four-pillars.zi-day"
+      },
+      {
+        "lineEnd": 27,
+        "lineStart": 7,
+        "observedPolicy": "Asia/Seoul, standard meridian 135 degrees, default longitude fallback and apparent-solar profile",
+        "path": "src/saju/engine/fourPillars.js",
+        "refId": "impl.four-pillars.solar-correction"
+      },
+      {
+        "lineEnd": 33,
+        "lineStart": 1,
+        "observedPolicy": "NOAA fractional-year equation of time",
+        "path": "src/saju/engine/solarTime.js",
+        "refId": "impl.solar-time.equation"
+      },
+      {
+        "lineEnd": 72,
+        "lineStart": 30,
+        "observedPolicy": "domestic location candidates and pre-1961-08-10 historical timezone verification boundary",
+        "path": "src/interpretationPrep/sajuAdapter.js",
+        "refId": "impl.adapter.location-history"
+      },
+      {
+        "lineEnd": 695,
+        "lineStart": 671,
+        "observedPolicy": "Korean reference-city longitude candidates can change core pillars and require verification",
+        "path": "src/interpretationPrep/sajuAdapter.js",
+        "refId": "impl.adapter.location-probe"
+      },
+      {
+        "lineEnd": 190,
+        "lineStart": 137,
+        "observedPolicy": "distanceMinutes/12 symbolic days; round; 360-day year and 30-day month decomposition; year-stem polarity/gender direction; adjacent boundary; month-pillar stepping",
+        "path": "src/interpretationPrep/sajuTimingRules.js",
+        "refId": "impl.timing.dayun"
+      },
+      {
+        "lineEnd": 149,
+        "lineStart": 118,
+        "observedPolicy": "numerical adjacent Bazi month-boundary solver for forward/backward 大運 distance",
+        "path": "src/saju/engine/solarTerms.js",
+        "refId": "impl.timing.boundary-solver"
+      }
+    ]
+  },
+  "inventory": {
+    "blockerCount": 8,
+    "claimCount": 15,
+    "claimIds": [
+      "claim.day-boundary-saju-authority",
+      "claim.day-boundary-zi-variants",
+      "claim.dayun-cycle-progression",
+      "claim.dayun-direction",
+      "claim.dayun-first-start-date",
+      "claim.dayun-start-age-conversion",
+      "claim.dayun-start-boundary-distance",
+      "claim.equation-of-time",
+      "claim.historical-timezone-location",
+      "claim.local-apparent-solar-time",
+      "claim.longitude-correction",
+      "claim.month-branch-節-boundary",
+      "claim.month-stem-五虎遁",
+      "claim.saju-requires-true-solar-time",
+      "claim.year-rollover-立春"
+    ],
+    "implementationReferenceCount": 9,
+    "observationCount": 20,
+    "observationIds": [
+      "obs.cma.ipchun-year-convention",
+      "obs.ditian.early-night-zi",
+      "obs.gujin.five-tiger-formula",
+      "obs.iana.historical-civil-time-scope",
+      "obs.lelue.zi-first-second-quarter",
+      "obs.local.frontier-preserves-timing-gap",
+      "obs.nlc.yuanhai.qilu-conversion-1926",
+      "obs.noaa.true-solar-time-formula",
+      "obs.sanming.dayun-backward-direction",
+      "obs.sanming.dayun-distance-conversion",
+      "obs.sanming.dayun-forward-direction",
+      "obs.sanming.dayun-start-example",
+      "obs.sanming.month-stem-five-tiger",
+      "obs.tianjing.zi-midpoint-day-start",
+      "obs.usno.equation-of-time-definition",
+      "obs.usno.local-apparent-solar-time",
+      "obs.xintang.zi-half-calendar",
+      "obs.yuanhai.dayun-month-progression",
+      "obs.yuanhai.month-from-year",
+      "obs.yuanhai.seasonal-month-command"
+    ],
+    "relationCount": 25,
+    "sourceCount": 13,
+    "sourceIds": [
+      "source.cma-ganzhi-calendar-explainer",
+      "source.ditian-sui-chanwei.web-witness",
+      "source.gujin-tushu-wuhu-web-witness",
+      "source.iana-tz-theory",
+      "source.lelue-biaowei.web-witness",
+      "source.local-saju-classics-grounding-artifact",
+      "source.nlc.yuanhai-ziping.1926.v1",
+      "source.noaa-solar-equations",
+      "source.sanming-tonghui.web-witness",
+      "source.tianjing-huowen.web-witness",
+      "source.usno-equation-of-time",
+      "source.xintangshu-calendar.web-witness",
+      "source.yuanhai-zi-ping.web-witness"
+    ]
+  },
+  "observations": [
+    {
+      "admission": {
+        "claimVerification": "not_promoted",
+        "semanticAuthority": "not_established",
+        "sourceIdentity": "identified_web_witness_edition_unresolved"
+      },
+      "frontierId": "year-month-boundary",
+      "locator": {
+        "kind": "html_lines",
+        "value": "246-272"
+      },
+      "normalizedRule": "Solar-term timing is relevant to month-command/seasonal scope; this locator does not by itself state the year-pillar rollover instant.",
+      "observationId": "obs.yuanhai.seasonal-month-command",
+      "observedFact": "The web witness lists 立春 and subsequent solar-term day ranges in a seasonal/month-command song.",
+      "rawText": {
+        "consumption": "raw_text_not_verified_fact_or_interpretation",
+        "isVerifiedFact": false,
+        "text": "立春念三丙火用，馀日甲木旺提纲。"
+      },
+      "scopeBoundary": "seasonal/month-command text witness only; edition identity and exact Saju year-boundary authority unresolved",
+      "sourceId": "source.yuanhai-zi-ping.web-witness"
+    },
+    {
+      "admission": {
+        "claimVerification": "not_promoted",
+        "semanticAuthority": "not_established",
+        "sourceIdentity": "identified_web_witness_edition_unresolved"
+      },
+      "frontierId": "year-month-boundary",
+      "locator": {
+        "kind": "html_lines",
+        "value": "296-304"
+      },
+      "normalizedRule": "Year/month positions have distinct roles; this is not an exact prescription for 立春, 節, or month-stem calculation.",
+      "observationId": "obs.yuanhai.month-from-year",
+      "observedFact": "The witness distinguishes year as root and month as the governing outline in its four-pillar framing.",
+      "rawText": {
+        "consumption": "raw_text_not_verified_fact_or_interpretation",
+        "isVerifiedFact": false,
+        "text": "以日为主，年为本，月为提纲。"
+      },
+      "scopeBoundary": "structural framing only; no exact boundary or stem-transition authority promoted",
+      "sourceId": "source.yuanhai-zi-ping.web-witness"
+    },
+    {
+      "admission": {
+        "claimVerification": "not_promoted",
+        "semanticAuthority": "not_established",
+        "sourceIdentity": "identified_web_witness_edition_unresolved"
+      },
+      "frontierId": "year-month-boundary",
+      "locator": {
+        "kind": "html_lines",
+        "value": "266-276"
+      },
+      "normalizedRule": "Month stem/branch progression is keyed to the year stem through the 五虎遁 relation and then proceeds through the months.",
+      "observationId": "obs.sanming.month-stem-five-tiger",
+      "observedFact": "The witness states that month is derived from year and gives the 五虎遁 sequence, including 甲己 years starting 丙寅.",
+      "rawText": {
+        "consumption": "raw_text_not_verified_fact_or_interpretation",
+        "isVerifiedFact": false,
+        "text": "甲己之年，正月起丙寅。"
+      },
+      "scopeBoundary": "transmitted rule witness; exact edition lineage and whether the modern implementation scope is equivalent remain unresolved",
+      "sourceId": "source.sanming-tonghui.web-witness"
+    },
+    {
+      "admission": {
+        "claimVerification": "not_promoted",
+        "semanticAuthority": "not_established",
+        "sourceIdentity": "identified_page_unproofed"
+      },
+      "frontierId": "year-month-boundary",
+      "locator": {
+        "kind": "scan_page_html_lines",
+        "value": "page 97; lines 115,176-188"
+      },
+      "normalizedRule": "The formula corroborates a year-stem-to-month-stem mapping as a later transmission, but cannot close source authority.",
+      "observationId": "obs.gujin.five-tiger-formula",
+      "observedFact": "An unproofed compendium page records the compact 五虎遁 formula and explicitly labels the page as not proofread.",
+      "rawText": {
+        "consumption": "raw_text_not_verified_fact_or_interpretation",
+        "isVerifiedFact": false,
+        "text": "甲己之年丙作首"
+      },
+      "scopeBoundary": "later compendium and unproofed scan; corroboration only, not independent semantic authority",
+      "sourceId": "source.gujin-tushu-wuhu-web-witness"
+    },
+    {
+      "admission": {
+        "claimVerification": "scoped_only",
+        "semanticAuthority": "modern_convention_not_classical_authority",
+        "sourceIdentity": "identified_official_web_witness"
+      },
+      "frontierId": "year-month-boundary",
+      "locator": {
+        "kind": "article_paragraphs",
+        "value": "article body; paragraphs defining 干支历 and 立春"
+      },
+      "normalizedRule": "Modern official convention: year rollover is the exact 立春 instant rather than lunar New Year.",
+      "observationId": "obs.cma.ipchun-year-convention",
+      "observedFact": "The modern official explainer says the 干支历 uses the solar position, identifies 315° for 立春, and treats the exact 立春 moment as the year boundary.",
+      "rawText": {
+        "consumption": "raw_text_not_verified_fact_or_interpretation",
+        "isVerifiedFact": false,
+        "text": "干支历严格地以立春作为一年的开始"
+      },
+      "scopeBoundary": "modern official calendar explanation; it does not establish classical 子平 semantic authority or settle every historical lineage",
+      "sourceId": "source.cma-ganzhi-calendar-explainer"
+    },
+    {
+      "admission": {
+        "claimVerification": "scoped_only",
+        "semanticAuthority": "calendar_scope_not_saju_authority",
+        "sourceIdentity": "identified_web_witness_edition_unresolved"
+      },
+      "frontierId": "zi-day-boundary",
+      "locator": {
+        "kind": "html_lines",
+        "value": "118-129"
+      },
+      "normalizedRule": "Historical calendar systems include a 子半/子初 distinction; this is evidence about calendar timekeeping, not a direct Saju day-pillar rule.",
+      "observationId": "obs.xintang.zi-half-calendar",
+      "observedFact": "The historical calendar discussion records a 子半 convention and contrasts 子初 with 子半 in a calendar dispute.",
+      "rawText": {
+        "consumption": "raw_text_not_verified_fact_or_interpretation",
+        "isVerifiedFact": false,
+        "text": "命辰起子半；古历分日，起于子半。"
+      },
+      "scopeBoundary": "historical calendar authority only; no direct 四柱 day-pillar rollover prescription",
+      "sourceId": "source.xintangshu-calendar.web-witness"
+    },
+    {
+      "admission": {
+        "claimVerification": "scoped_only",
+        "semanticAuthority": "not_established",
+        "sourceIdentity": "identified_web_witness_edition_unresolved"
+      },
+      "frontierId": "zi-day-boundary",
+      "locator": {
+        "kind": "html_lines",
+        "value": "146-148"
+      },
+      "normalizedRule": "A 子正 split can assign the first half of 子時 to the preceding day and the second half to the following day.",
+      "observationId": "obs.lelue.zi-first-second-quarter",
+      "observedFact": "A later Siku text, while discussing musical律 and citing Zhu Xi, describes the first/final quarters of 子時 as belonging to adjacent days.",
+      "rawText": {
+        "consumption": "raw_text_not_verified_fact_or_interpretation",
+        "isVerifiedFact": false,
+        "text": "子时初四刻属前一日 正四刻属后日"
+      },
+      "scopeBoundary": "later music-theory transmission; not a direct identified Saju day-pillar prescription",
+      "sourceId": "source.lelue-biaowei.web-witness"
+    },
+    {
+      "admission": {
+        "claimVerification": "scoped_only",
+        "semanticAuthority": "not_established",
+        "sourceIdentity": "identified_web_witness_edition_unresolved"
+      },
+      "frontierId": "zi-day-boundary",
+      "locator": {
+        "kind": "html_lines",
+        "value": "176-177"
+      },
+      "normalizedRule": "A civil-midnight/子正 day boundary is one attested later timekeeping convention, while the late 子時 remains attached to the prior day.",
+      "observationId": "obs.tianjing.zi-midpoint-day-start",
+      "observedFact": "The astronomical text locates the beginning of the day at the first quarter of 子正 and the end at late 子時.",
+      "rawText": {
+        "consumption": "raw_text_not_verified_fact_or_interpretation",
+        "isVerifiedFact": false,
+        "text": "子对中正初之刻为本日始时"
+      },
+      "scopeBoundary": "later astronomical timekeeping witness; it does not identify the authoritative Saju lineage for day-pillars",
+      "sourceId": "source.tianjing-huowen.web-witness"
+    },
+    {
+      "admission": {
+        "claimVerification": "scoped_only",
+        "semanticAuthority": "not_established",
+        "sourceIdentity": "identified_web_witness_edition_unresolved"
+      },
+      "frontierId": "zi-day-boundary",
+      "locator": {
+        "kind": "html_lines",
+        "value": "2555-2562"
+      },
+      "normalizedRule": "Early/late 子時 is a lineage-specific intra-hour subperiod convention, not proof that the day pillar must roll at 23:00 or 00:00.",
+      "observationId": "obs.ditian.early-night-zi",
+      "observedFact": "The commentary divides 子時 into earlier/later intra-hour use and explicitly names the earlier portion 夜子时; it also mentions locality differences.",
+      "rawText": {
+        "consumption": "raw_text_not_verified_fact_or_interpretation",
+        "isVerifiedFact": false,
+        "text": "子时前三刻，三分壬水用事；后四亥，七分癸水用事。"
+      },
+      "scopeBoundary": "late interpretive commentary; exact day-pillar rollover and location correction remain unstated",
+      "sourceId": "source.ditian-sui-chanwei.web-witness"
+    },
+    {
+      "admission": {
+        "claimVerification": "scoped_only",
+        "semanticAuthority": "astronomy_authority_not_saju_authority",
+        "sourceIdentity": "identified_official_web_witness"
+      },
+      "frontierId": "true-solar-location",
+      "locator": {
+        "kind": "html_lines",
+        "value": "49-71,74-92"
+      },
+      "normalizedRule": "Astronomical local apparent solar time requires observer longitude plus the date-dependent equation of time; civil time is only an approximation at the zone meridian without daylight time.",
+      "observationId": "obs.usno.local-apparent-solar-time",
+      "observedFact": "USNO distinguishes apparent and mean solar time, states that local apparent solar time depends on longitude, and separates civil time from local solar time.",
+      "rawText": {
+        "consumption": "raw_text_not_verified_fact_or_interpretation",
+        "isVerifiedFact": false,
+        "text": "apparent solar time is different for every longitude"
+      },
+      "scopeBoundary": "astronomy definition and method only; no Saju authority claim",
+      "sourceId": "source.usno-equation-of-time"
+    },
+    {
+      "admission": {
+        "claimVerification": "scoped_only",
+        "semanticAuthority": "astronomy_authority_not_saju_authority",
+        "sourceIdentity": "identified_official_web_witness"
+      },
+      "frontierId": "true-solar-location",
+      "locator": {
+        "kind": "html_lines",
+        "value": "49-51"
+      },
+      "normalizedRule": "Equation of time is a date-dependent astronomical term distinct from the longitude correction and civil timezone offset.",
+      "observationId": "obs.usno.equation-of-time-definition",
+      "observedFact": "USNO defines the equation of time as the difference between apparent solar time and mean solar time.",
+      "rawText": {
+        "consumption": "raw_text_not_verified_fact_or_interpretation",
+        "isVerifiedFact": false,
+        "text": "apparent solar time minus mean solar time"
+      },
+      "scopeBoundary": "astronomy definition and method only; no Saju authority claim",
+      "sourceId": "source.usno-equation-of-time"
+    },
+    {
+      "admission": {
+        "claimVerification": "scoped_only",
+        "semanticAuthority": "astronomy_authority_not_saju_authority",
+        "sourceIdentity": "identified_official_web_witness"
+      },
+      "frontierId": "true-solar-location",
+      "locator": {
+        "kind": "pdf_lines",
+        "value": "page 0; lines 15-21"
+      },
+      "normalizedRule": "The implementation can calculate an apparent-solar correction from equation of time, longitude, and civil timezone offset.",
+      "observationId": "obs.noaa.true-solar-time-formula",
+      "observedFact": "NOAA provides the equation-of-time, longitude, timezone, and true-solar-time formula used for an astronomical clock correction.",
+      "rawText": {
+        "consumption": "raw_text_not_verified_fact_or_interpretation",
+        "isVerifiedFact": false,
+        "text": "time_offset = eqtime + 4*longitude – 60*timezone"
+      },
+      "scopeBoundary": "formula authority only; the policy that Saju must use this correction is unresolved",
+      "sourceId": "source.noaa-solar-equations"
+    },
+    {
+      "admission": {
+        "claimVerification": "scoped_only",
+        "semanticAuthority": "civil_time_authority_not_saju_authority",
+        "sourceIdentity": "identified_official_web_witness"
+      },
+      "frontierId": "true-solar-location",
+      "locator": {
+        "kind": "html_sections",
+        "value": "Scope of the tz database; Accuracy of the tz database"
+      },
+      "normalizedRule": "Historical birth-time conversion needs a location-specific civil-time rule and must expose pre-standard-time uncertainty rather than silently treating a modern offset as historical truth.",
+      "observationId": "obs.iana.historical-civil-time-scope",
+      "observedFact": "IANA describes timezone data as a record of civil-time history but warns that pre-1970 coverage is incomplete and not authoritative for all past times.",
+      "rawText": {
+        "consumption": "raw_text_not_verified_fact_or_interpretation",
+        "isVerifiedFact": false,
+        "text": "attempts to record the history and predicted future of civil time scales"
+      },
+      "scopeBoundary": "civil-time data boundary; no Saju semantic authority",
+      "sourceId": "source.iana-tz-theory"
+    },
+    {
+      "admission": {
+        "claimVerification": "not_promoted",
+        "semanticAuthority": "not_established",
+        "sourceIdentity": "artifact_identity_preserved_semantic_authority_unresolved"
+      },
+      "frontierId": "true-solar-location",
+      "locator": {
+        "kind": "artifact_refs",
+        "value": "saju-five-classics-grounding-v0 source observations and admission boundary"
+      },
+      "normalizedRule": "Local PDF observations can preserve a research frontier but cannot promote the four timing policies without an identified, independently checked source lineage.",
+      "observationId": "obs.local.frontier-preserves-timing-gap",
+      "observedFact": "The existing local provenance artifact preserves byte-hashed PDF identities and explicitly keeps source identity, claim verification, and semantic authority separate.",
+      "rawText": {
+        "consumption": "raw_text_not_verified_fact_or_interpretation",
+        "isVerifiedFact": false,
+        "text": "external source identity and claim-level semantic authority remain unresolved"
+      },
+      "scopeBoundary": "repository provenance boundary; this is not an independent classical authority",
+      "sourceId": "source.local-saju-classics-grounding-artifact"
+    },
+    {
+      "admission": {
+        "claimVerification": "scoped_only",
+        "semanticAuthority": "not_established",
+        "sourceIdentity": "identified_web_witness_edition_unresolved"
+      },
+      "frontierId": "dayun-direction-start-age",
+      "locator": {
+        "kind": "html_lines",
+        "value": "300-305"
+      },
+      "normalizedRule": "For a forward case, use the next relevant 節 and move the 大運 sequence forward.",
+      "observationId": "obs.sanming.dayun-forward-direction",
+      "observedFact": "The witness assigns forward 大運 movement to yang-year males and yin-year females and counts from the future solar-term date/time.",
+      "rawText": {
+        "consumption": "raw_text_not_verified_fact_or_interpretation",
+        "isVerifiedFact": false,
+        "text": "阳男阴女，大运以生日后未来节气日时为数，顺而行之；"
+      },
+      "scopeBoundary": "transmitted 大運 rule witness; exact edition and implementation equivalence remain unresolved",
+      "sourceId": "source.sanming-tonghui.web-witness"
+    },
+    {
+      "admission": {
+        "claimVerification": "scoped_only",
+        "semanticAuthority": "not_established",
+        "sourceIdentity": "identified_web_witness_edition_unresolved"
+      },
+      "frontierId": "dayun-direction-start-age",
+      "locator": {
+        "kind": "html_lines",
+        "value": "300-305"
+      },
+      "normalizedRule": "For a backward case, use the previous relevant 節 and move the 大運 sequence backward.",
+      "observationId": "obs.sanming.dayun-backward-direction",
+      "observedFact": "The witness assigns backward 大運 movement to yin-year males and yang-year females and counts from the past solar-term date/time.",
+      "rawText": {
+        "consumption": "raw_text_not_verified_fact_or_interpretation",
+        "isVerifiedFact": false,
+        "text": "阴男阳女，以生日前过去节气日时为数，逆而行之。"
+      },
+      "scopeBoundary": "transmitted 大運 rule witness; exact edition and implementation equivalence remain unresolved",
+      "sourceId": "source.sanming-tonghui.web-witness"
+    },
+    {
+      "admission": {
+        "claimVerification": "scoped_only",
+        "semanticAuthority": "not_established",
+        "sourceIdentity": "identified_web_witness_edition_unresolved"
+      },
+      "frontierId": "dayun-direction-start-age",
+      "locator": {
+        "kind": "html_lines",
+        "value": "300-305"
+      },
+      "normalizedRule": "Use the three-days-to-one-year conversion family, while keeping time granularity, rounding, and calendar arithmetic as separate unresolved policy details.",
+      "observationId": "obs.sanming.dayun-distance-conversion",
+      "observedFact": "The witness explains the traditional symbolic conversion as one 辰/ten years and three elapsed days/one year.",
+      "rawText": {
+        "consumption": "raw_text_not_verified_fact_or_interpretation",
+        "isVerifiedFact": false,
+        "text": "古人以大运则一辰十岁，折除以三日为年者何？"
+      },
+      "scopeBoundary": "transmitted conversion explanation; exact arithmetic equivalence to the repository implementation remains unresolved",
+      "sourceId": "source.sanming-tonghui.web-witness"
+    },
+    {
+      "admission": {
+        "claimVerification": "scoped_only",
+        "semanticAuthority": "not_established",
+        "sourceIdentity": "identified_web_witness_edition_unresolved"
+      },
+      "frontierId": "dayun-direction-start-age",
+      "locator": {
+        "kind": "html_lines",
+        "value": "300-305"
+      },
+      "normalizedRule": "A first 大運 start date/pillar is derived from the birth-to-term interval and the month-pillar sequence, but the exact calendar-date reconstruction remains unresolved.",
+      "observationId": "obs.sanming.dayun-start-example",
+      "observedFact": "The worked example converts the counted interval into a first 大運 age and names the first period pillar as 丁丑.",
+      "rawText": {
+        "consumption": "raw_text_not_verified_fact_or_interpretation",
+        "isVerifiedFact": false,
+        "text": "计六百三十日，乃一岁奇九月之大运；起于丁丑。"
+      },
+      "scopeBoundary": "worked example within a transmitted 大運 witness; not an edition-stable universal arithmetic contract",
+      "sourceId": "source.sanming-tonghui.web-witness"
+    },
+    {
+      "admission": {
+        "claimVerification": "scoped_only",
+        "semanticAuthority": "not_established",
+        "sourceIdentity": "identified_1926_scan_item_candidate"
+      },
+      "frontierId": "dayun-direction-start-age",
+      "locator": {
+        "kind": "attached_pdf_scan",
+        "sourceByteLength": 2690379,
+        "sourceByteSha256": "96bc14ccb8fd6f90fb5ec33784846a9067f2cad45ab9730f12bdf9846ea7c265",
+        "value": "NLC416-13jh002326-46442 PDF pages 79–80 / printed folios 三三–三四"
+      },
+      "normalizedRule": "The passage is clause-level corroboration for a three-days-to-one-year conversion family; it does not specify the repository exact first-start age/date, rounding order, fractional-age decomposition, or calendar clamping.",
+      "observationId": "obs.nlc.yuanhai.qilu-conversion-1926",
+      "observedFact": "Direct visual review of the attached NLC 1926 scan records a 珞琚子消息賦 passage on printed folios 三三–三四 containing the three-days/one-year and one-辰/ten-years clause family.",
+      "rawText": {
+        "consumption": "raw_text_not_verified_fact_or_interpretation",
+        "isVerifiedFact": false,
+        "text": "播四時以為年；運行則一辰十載；折除乃三日為年。"
+      },
+      "scopeBoundary": "clause-level corroboration only; no exact first-start age/date/rounding/clamping or semantic authority",
+      "sourceId": "source.nlc.yuanhai-ziping.1926.v1"
+    },
+    {
+      "admission": {
+        "claimVerification": "scoped_only",
+        "semanticAuthority": "not_established",
+        "sourceIdentity": "identified_web_witness_edition_unresolved"
+      },
+      "frontierId": "dayun-direction-start-age",
+      "locator": {
+        "kind": "html_lines",
+        "value": "348-364"
+      },
+      "normalizedRule": "The first 大運 pillar is stepped from the natal month pillar in the selected direction, then advances by one pillar per ten-year period.",
+      "observationId": "obs.yuanhai.dayun-month-progression",
+      "observedFact": "The text says 大運 is started from the month position and illustrates successive period-pillar transitions, while warning that examples are not to be applied mechanically.",
+      "rawText": {
+        "consumption": "raw_text_not_verified_fact_or_interpretation",
+        "isVerifiedFact": false,
+        "text": "今运就月上起"
+      },
+      "scopeBoundary": "classical text witness for month-based progression; exact first-start-date arithmetic is not supplied here",
+      "sourceId": "source.yuanhai-zi-ping.web-witness"
+    }
+  ],
+  "readiness": {
+    "activation": "blocked",
+    "availableForInterpretation": false,
+    "reason": "timing frontiers are source-observed and implementation-mapped but not claim-level or semantic-authority verified",
+    "semanticAuthority": "not_established",
+    "status": "blocked"
+  },
+  "relations": [
+    {
+      "basis": "modern official convention matches the repository 315-degree boundary but is not classical Saju authority",
+      "fromId": "obs.cma.ipchun-year-convention",
+      "relationId": "rel.cma-supports-modern-ipchun",
+      "relationType": "scoped_support",
+      "toId": "claim.year-rollover-立春"
+    },
+    {
+      "basis": "the observed seasonal song does not state the exact year-pillar rollover policy",
+      "fromId": "obs.yuanhai.seasonal-month-command",
+      "relationId": "rel.yuanhai-seasonal-limits-year-rollover",
+      "relationType": "scope_limit",
+      "toId": "claim.year-rollover-立春"
+    },
+    {
+      "basis": "the later compendium records the same family of year-stem keyed formula, but its page is unproofed",
+      "fromId": "obs.sanming.month-stem-five-tiger",
+      "relationId": "rel.month-stem-two-witnesses",
+      "relationType": "corroboration",
+      "toId": "claim.month-stem-五虎遁"
+    },
+    {
+      "basis": "子半/子初 historical calendar discussion does not uniquely select a Saju day-pillar boundary",
+      "fromId": "obs.xintang.zi-half-calendar",
+      "relationId": "rel.zi-calendar-conflict",
+      "relationType": "conflict",
+      "toId": "claim.day-boundary-zi-variants"
+    },
+    {
+      "basis": "later text records a first/final-quarter split across adjacent days",
+      "fromId": "obs.lelue.zi-first-second-quarter",
+      "relationId": "rel.zi-later-split",
+      "relationType": "scoped_support",
+      "toId": "claim.day-boundary-zi-variants"
+    },
+    {
+      "basis": "later commentary names 夜子时 but does not prescribe day-pillar rollover",
+      "fromId": "obs.ditian.early-night-zi",
+      "relationId": "rel.zi-night-lineage",
+      "relationType": "scoped_support",
+      "toId": "claim.day-boundary-zi-variants"
+    },
+    {
+      "basis": "multiple source scopes are observed without a single admitted Saju lineage",
+      "fromId": "claim.day-boundary-zi-variants",
+      "relationId": "rel.zi-authority-blocked",
+      "relationType": "blocks_promotion",
+      "toId": "claim.day-boundary-saju-authority"
+    },
+    {
+      "basis": "USNO states that apparent solar time varies with longitude",
+      "fromId": "obs.usno.local-apparent-solar-time",
+      "relationId": "rel.usno-longitude",
+      "relationType": "method_support",
+      "toId": "claim.longitude-correction"
+    },
+    {
+      "basis": "NOAA includes the longitude term in the deterministic time-offset formula",
+      "fromId": "obs.noaa.true-solar-time-formula",
+      "relationId": "rel.noaa-longitude",
+      "relationType": "implementation_mapping",
+      "toId": "claim.longitude-correction"
+    },
+    {
+      "basis": "USNO defines equation of time as apparent solar time minus mean solar time",
+      "fromId": "obs.usno.equation-of-time-definition",
+      "relationId": "rel.usno-equation",
+      "relationType": "method_support",
+      "toId": "claim.equation-of-time"
+    },
+    {
+      "basis": "NOAA includes eqtime as a separate term in the true-solar-time formula",
+      "fromId": "obs.noaa.true-solar-time-formula",
+      "relationId": "rel.noaa-equation",
+      "relationType": "implementation_mapping",
+      "toId": "claim.equation-of-time"
+    },
+    {
+      "basis": "USNO defines the concepts; NOAA supplies a deterministic calculation formula",
+      "fromId": "obs.usno.local-apparent-solar-time",
+      "relationId": "rel.usno-noaa-astronomy",
+      "relationType": "method_support",
+      "toId": "claim.local-apparent-solar-time"
+    },
+    {
+      "basis": "the formula composes equation-of-time, longitude, timezone, and civil clock fields",
+      "fromId": "obs.noaa.true-solar-time-formula",
+      "relationId": "rel.noaa-implementation",
+      "relationType": "implementation_mapping",
+      "toId": "claim.local-apparent-solar-time"
+    },
+    {
+      "basis": "astronomy method validity does not prove a Saju semantic requirement",
+      "fromId": "claim.local-apparent-solar-time",
+      "relationId": "rel.astronomy-not-saju-authority",
+      "relationType": "scope_limit",
+      "toId": "claim.saju-requires-true-solar-time"
+    },
+    {
+      "basis": "historical civil-time data has explicit coverage and authority limitations",
+      "fromId": "obs.iana.historical-civil-time-scope",
+      "relationId": "rel.iana-historical-limit",
+      "relationType": "scope_support",
+      "toId": "claim.historical-timezone-location"
+    },
+    {
+      "basis": "the observed text explicitly couples yang-year male/yin-year female with future-term counting and forward movement",
+      "fromId": "obs.sanming.dayun-forward-direction",
+      "relationId": "rel.dayun-source-forward",
+      "relationType": "scoped_support",
+      "toId": "claim.dayun-direction"
+    },
+    {
+      "basis": "the observed text explicitly couples yin-year male/yang-year female with past-term counting and backward movement",
+      "fromId": "obs.sanming.dayun-backward-direction",
+      "relationId": "rel.dayun-source-backward",
+      "relationType": "scoped_support",
+      "toId": "claim.dayun-direction"
+    },
+    {
+      "basis": "forward cases count the birth-to-future solar-term date/time interval",
+      "fromId": "obs.sanming.dayun-forward-direction",
+      "relationId": "rel.dayun-source-distance-forward",
+      "relationType": "scoped_support",
+      "toId": "claim.dayun-start-boundary-distance"
+    },
+    {
+      "basis": "backward cases count the birth-to-past solar-term date/time interval",
+      "fromId": "obs.sanming.dayun-backward-direction",
+      "relationId": "rel.dayun-source-distance-backward",
+      "relationType": "scoped_support",
+      "toId": "claim.dayun-start-boundary-distance"
+    },
+    {
+      "basis": "the observed text states the one-辰/ten-year and three-days/one-year conversion family",
+      "fromId": "obs.sanming.dayun-distance-conversion",
+      "relationId": "rel.dayun-source-conversion",
+      "relationType": "scoped_support",
+      "toId": "claim.dayun-start-age-conversion"
+    },
+    {
+      "basis": "NLC 46442 PDF pages 79–80 directly expose the same clause family, but the observation remains clause-level and does not close exact first-start arithmetic",
+      "fromId": "obs.nlc.yuanhai.qilu-conversion-1926",
+      "relationId": "rel.nlc-yuanhai-conversion-scope",
+      "relationType": "scope_support",
+      "toId": "claim.dayun-start-age-conversion"
+    },
+    {
+      "basis": "the worked example names the converted first period and its 丁丑 seed",
+      "fromId": "obs.sanming.dayun-start-example",
+      "relationId": "rel.dayun-source-example",
+      "relationType": "scoped_support",
+      "toId": "claim.dayun-first-start-date"
+    },
+    {
+      "basis": "the first-start example depends on the preceding symbolic conversion",
+      "fromId": "obs.sanming.dayun-distance-conversion",
+      "relationId": "rel.dayun-example-conversion",
+      "relationType": "implementation_mapping",
+      "toId": "claim.dayun-first-start-date"
+    },
+    {
+      "basis": "the observed text says the 大運 sequence starts from the month position",
+      "fromId": "obs.yuanhai.dayun-month-progression",
+      "relationId": "rel.dayun-month-seed",
+      "relationType": "scoped_support",
+      "toId": "claim.dayun-cycle-progression"
+    },
+    {
+      "basis": "the existing repository frontier preserves unresolved source identity and semantic authority",
+      "fromId": "obs.local.frontier-preserves-timing-gap",
+      "relationId": "rel.local-artifact-preserves-gaps",
+      "relationType": "scope_limit",
+      "toId": "claim.saju-requires-true-solar-time"
+    }
+  ],
+  "schemaVersion": "saju-timing-authority-frontier-v0",
+  "scope": {
+    "activationMutation": false,
+    "claimPromotion": false,
+    "externalSourceByteHashesObserved": false,
+    "externalWebWitnessesRecorded": true,
+    "historicalArtifactRewrite": false,
+    "implementationTuning": false,
+    "interpretationGeneration": false,
+    "localArtifactByteIdentitiesReused": true,
+    "readinessMutation": false,
+    "runtimeMutation": false,
+    "sourceFirst": true
+  },
+  "sourcePolicy": {
+    "calculationFactSource": "repository_implementation_refs_only",
+    "classicalSemanticAuthority": "not_established",
+    "externalWebWitnessesAre": "locators_and_short_raw_snippets_only",
+    "rawTextConsumption": "raw_text_not_verified_fact_or_interpretation",
+    "rawTextIsVerifiedFact": false,
+    "sourceLineageAndSemanticAuthorityAreSeparate": true
+  },
+  "sources": [
+    {
+      "authorityScope": "classical 子平 text witness for seasonal/month-command language and day-master framing",
+      "editionIdentity": "unresolved_web_transmission",
+      "externalByteHashStatus": "not_observed",
+      "locatorPolicy": "HTML line numbers from the retrieved page",
+      "publisher": "Wikisource",
+      "retrievedOn": "2026-08-14",
+      "sourceClass": "classical_text_web_witness",
+      "sourceId": "source.yuanhai-zi-ping.web-witness",
+      "sourceIdentityStatus": "identified_web_witness_edition_unresolved",
+      "title": "渊海子平",
+      "url": "https://zh.wikisource.org/zh-hans/淵海子平大全"
+    },
+    {
+      "authorityScope": "classical/late transmitted witness for month-stem derivation and 大運 direction/start-age text",
+      "editionIdentity": "unresolved_web_transmission",
+      "externalByteHashStatus": "not_observed",
+      "locatorPolicy": "HTML line numbers from the retrieved page",
+      "publisher": "Wikisource",
+      "retrievedOn": "2026-08-14",
+      "sourceClass": "classical_text_web_witness",
+      "sourceId": "source.sanming-tonghui.web-witness",
+      "sourceIdentityStatus": "identified_web_witness_edition_unresolved",
+      "title": "三命通會 卷二",
+      "url": "https://zh.wikisource.org/wiki/三命通會/卷二"
+    },
+    {
+      "authorityScope": "later compendium witness for the 五虎遁 formula; page is explicitly unproofed",
+      "editionIdentity": "unresolved_scan_transmission",
+      "externalByteHashStatus": "not_observed",
+      "locatorPolicy": "scan page and HTML line numbers",
+      "publisher": "Wikisource",
+      "retrievedOn": "2026-08-14",
+      "sourceClass": "later_compendium_web_witness",
+      "sourceId": "source.gujin-tushu-wuhu-web-witness",
+      "sourceIdentityStatus": "identified_page_unproofed",
+      "title": "欽定古今圖書集成 歲功典 干支部",
+      "url": "https://zh.wikisource.org/wiki/Page:Gujin_Tushu_Jicheng,_Volume_476_(1700-1725).djvu/97"
+    },
+    {
+      "authorityScope": "historical calendar-system evidence for 子半/子初/子正 discussion; not a Saju prescription",
+      "editionIdentity": "identified_work_web_witness",
+      "externalByteHashStatus": "not_observed",
+      "locatorPolicy": "HTML line numbers from the retrieved page",
+      "publisher": "Wikisource",
+      "retrievedOn": "2026-08-14",
+      "sourceClass": "historical_calendar_primary_witness",
+      "sourceId": "source.xintangshu-calendar.web-witness",
+      "sourceIdentityStatus": "identified_web_witness_edition_unresolved",
+      "title": "新唐書 卷二十五 志第十五 歷一",
+      "url": "https://zh.wikisource.org/zh-hans/新唐書/卷025"
+    },
+    {
+      "authorityScope": "later music-theory text quoting a 子初/子正 split; not an identified Saju rule source",
+      "editionIdentity": "identified_siku_web_witness",
+      "externalByteHashStatus": "not_observed",
+      "locatorPolicy": "HTML line numbers from the retrieved page",
+      "publisher": "Wikisource",
+      "retrievedOn": "2026-08-14",
+      "sourceClass": "later_literary_time_boundary_witness",
+      "sourceId": "source.lelue-biaowei.web-witness",
+      "sourceIdentityStatus": "identified_web_witness_edition_unresolved",
+      "title": "樂律表微 四庫全書本 卷三",
+      "url": "https://zh.wikisource.org/wiki/樂律表微_(四庫全書本)/卷3"
+    },
+    {
+      "authorityScope": "later astronomical text describing the start/end inside 子時; not an identified Saju rule source",
+      "editionIdentity": "identified_siku_web_witness",
+      "externalByteHashStatus": "not_observed",
+      "locatorPolicy": "HTML line numbers from the retrieved page",
+      "publisher": "Wikisource",
+      "retrievedOn": "2026-08-14",
+      "sourceClass": "later_astronomical_time_witness",
+      "sourceId": "source.tianjing-huowen.web-witness",
+      "sourceIdentityStatus": "identified_web_witness_edition_unresolved",
+      "title": "天經或問 四庫全書本 卷三",
+      "url": "https://zh.wikisource.org/wiki/天經或問_(四庫全書本)/卷3"
+    },
+    {
+      "authorityScope": "late interpretive witness for intra-hour seasonal use and locality language; it does not prescribe a day-pillar rollover",
+      "editionIdentity": "unresolved_commentary_transmission",
+      "externalByteHashStatus": "not_observed",
+      "locatorPolicy": "HTML line numbers from the retrieved page",
+      "publisher": "Wikisource",
+      "retrievedOn": "2026-08-14",
+      "sourceClass": "later_interpretive_classical_witness",
+      "sourceId": "source.ditian-sui-chanwei.web-witness",
+      "sourceIdentityStatus": "identified_web_witness_edition_unresolved",
+      "title": "滴天髓闡微",
+      "url": "https://zh.wikisource.org/zh-hans/滴天髓闡微"
+    },
+    {
+      "authorityScope": "modern official explanation of the 干支历/立春 convention; not classical Saju semantic authority",
+      "editionIdentity": "identified_official_web_article",
+      "externalByteHashStatus": "not_observed",
+      "locatorPolicy": "article text and paragraph position",
+      "publisher": "中国气象局 / 中国气象报",
+      "retrievedOn": "2026-08-14",
+      "sourceClass": "modern_official_calendar_explainer",
+      "sourceId": "source.cma-ganzhi-calendar-explainer",
+      "sourceIdentityStatus": "identified_official_web_witness",
+      "title": "立春是属相的分界线吗？",
+      "url": "https://www.cma.gov.cn/kppd/kppdsytj/201602/t20160205-303710.html"
+    },
+    {
+      "authorityScope": "astronomical definitions of apparent/mean solar time, longitude, civil time, and equation of time",
+      "editionIdentity": "identified_official_web_page",
+      "externalByteHashStatus": "not_observed",
+      "locatorPolicy": "HTML line numbers from the retrieved page",
+      "publisher": "U.S. Naval Observatory",
+      "retrievedOn": "2026-08-14",
+      "sourceClass": "astronomy_authority",
+      "sourceId": "source.usno-equation-of-time",
+      "sourceIdentityStatus": "identified_official_web_witness",
+      "title": "The Equation of Time",
+      "url": "https://aa.usno.navy.mil/faq/eqtime"
+    },
+    {
+      "authorityScope": "equation-of-time and true-solar-time calculation formula; not a Saju policy source",
+      "editionIdentity": "identified_official_web_pdf",
+      "externalByteHashStatus": "not_observed",
+      "locatorPolicy": "PDF page and line labels from the retrieved document",
+      "publisher": "NOAA Global Monitoring Division",
+      "retrievedOn": "2026-08-14",
+      "sourceClass": "astronomy_method_authority",
+      "sourceId": "source.noaa-solar-equations",
+      "sourceIdentityStatus": "identified_official_web_witness",
+      "title": "General Solar Position Calculations",
+      "url": "https://gml.noaa.gov/grad/solcalc/solareqns.PDF"
+    },
+    {
+      "authorityScope": "historical civil-time and timezone-data scope/limitations; not a Saju policy source",
+      "editionIdentity": "identified_official_web_page",
+      "externalByteHashStatus": "not_observed",
+      "locatorPolicy": "HTML section and paragraph position",
+      "publisher": "IANA",
+      "retrievedOn": "2026-08-14",
+      "sourceClass": "civil_time_database_authority",
+      "sourceId": "source.iana-tz-theory",
+      "sourceIdentityStatus": "identified_official_web_witness",
+      "title": "Theory and pragmatics of the tz code and data",
+      "url": "https://www.iana.org/time-zones/theory"
+    },
+    {
+      "authorityScope": "local PDF byte identities and locator observations; no claim promotion or semantic authority",
+      "editionIdentity": "unresolved_local_pdf_editions",
+      "externalByteHashStatus": "artifact_byte_hash_recorded_by_existing_checker",
+      "locatorPolicy": "artifact researchUnit/observation references",
+      "path": "artifacts/saju-five-classics-grounding-v0/complete.json",
+      "retrievedOn": "2026-08-14",
+      "sourceClass": "repository_provenance_artifact",
+      "sourceId": "source.local-saju-classics-grounding-artifact",
+      "sourceIdentityStatus": "artifact_identity_preserved_semantic_authority_unresolved",
+      "title": "Local Saju five-classics grounding artifact"
+    },
+    {
+      "authorityScope": "institutionally identified 1926 scan witness for a clause-level 大運 conversion passage; no exact first-start algorithm is admitted",
+      "editionIdentity": "民國十五年[1926]文明書局印行; 秦慎安校勘; combined-title scan",
+      "externalByteHashStatus": "scratch_sha256_observed_not_retained",
+      "locatorPolicy": "PDF page and printed folio from a direct rendered scan review",
+      "publisher": "National Library of China (NLC)",
+      "retrievedOn": "2026-08-16",
+      "sourceClass": "institutional_direct_scan_mirror",
+      "sourceId": "source.nlc.yuanhai-ziping.1926.v1",
+      "sourceIdentityStatus": "identified_1926_scan_item_candidate",
+      "title": "淵海子平 子平真詮 第1卷",
+      "url": "https://commons.wikimedia.org/wiki/File:NLC416-13jh002326-46442_%E6%B7%B5%E6%B5%B7%E5%AD%90%E5%B9%B3_%E5%AD%90%E5%B9%B3%E7%9C%9F%E8%A9%AE_%E7%AC%AC1%E5%8D%B7.pdf"
+    }
+  ],
+  "system": "saju",
+  "verdictToken": "partial_saju_timing_authority_frontier_advanced_uncommitted"
+}
