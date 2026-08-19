@@ -1,0 +1,7 @@
+{
+  "artifactByteSha256": "03f5b216faf3667b5c67376984d87e43e1e18c07692bf89e951b4cf3b8187f31",
+  "artifactPath": "artifacts/saju-five-classics-claim-provenance-closure-v0/complete.json",
+  "byteLength": 15652,
+  "hashScope": "exact UTF-8 bytes of complete.json including final LF",
+  "schemaVersion": "saju-five-classics-claim-provenance-closure-v0-integrity-v0"
+}

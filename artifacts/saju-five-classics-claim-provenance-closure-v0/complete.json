@@ -1,0 +1,325 @@
+{
+  "artifactIdentity": {
+    "artifactId": "saju-five-classics-claim-provenance-closure-v0",
+    "artifactPayloadSha256": "d2bc2b7d73538c1c3cb3887e56383ab25a363d3c20e1e9bb22fe0201b369f906",
+    "contractVersion": "artifact-identity-v1",
+    "generation": {
+      "baseHead": "3a369aff17edf8acd6206ae3000d34d34b487042",
+      "baseHeadSource": "git rev-parse HEAD at materialization",
+      "includedCommit": null,
+      "includedCommitSource": "unknown_at_generation; artifact may be included by a later commit"
+    },
+    "inputs": [
+      {
+        "byteSha256": "6506c425b8339ea89db681f727978746149acd898205a9826ea1790ffb16fd66",
+        "path": "artifacts/saju-five-classics-claim-adjudication-v0/complete.json"
+      },
+      {
+        "byteSha256": "d3ba6c8f7496e212aa215f3c1c13d2bcf0d695ee37f8593d15c0aa8a40dd24c4",
+        "path": "artifacts/saju-five-classics-claim-adjudication-v0/complete.json.integrity.json"
+      },
+      {
+        "byteSha256": "7c9bfec3cd2ed082d009c521c03658c8905b475f2f165d3cbcbdc78c0b3fd126",
+        "path": "artifacts/saju-five-classics-source-identity-frontier-v0/complete.json"
+      },
+      {
+        "byteSha256": "b4530551f6b509792e3588da63778f0d97aeb1de1d6ed913b6b67a9ea17a5c3d",
+        "path": "artifacts/saju-five-classics-source-identity-frontier-v0/complete.json.integrity.json"
+      },
+      {
+        "byteSha256": "0f8f092f818eeeb5eb10c7fc2abd1223c6dc6815b3c95e2061c4d0f579d873a7",
+        "path": "artifacts/saju-timing-authority-frontier-v0/complete.json"
+      },
+      {
+        "byteSha256": "df7be6dab05f2bbc27a9fb5889373682160bc751b5de59164e0b2ffcfdc0c2c4",
+        "path": "artifacts/saju-timing-authority-frontier-v0/complete.json.integrity.json"
+      },
+      {
+        "byteSha256": "f2f341045ce4cfe716e33c5838e1d999a499b5af54175c3ed81a5d3b0e1b61c6",
+        "path": "scripts/check-saju-five-classics-claim-adjudication-v0.mjs"
+      },
+      {
+        "byteSha256": "bd19e0aa8adb7935723e3af86d8361a1e8ca33f6e934970d0ac7a3ef67d1b919",
+        "path": "scripts/check-saju-five-classics-claim-provenance-closure-v0.mjs"
+      },
+      {
+        "byteSha256": "8d664c798c408f3912aff332bccefb2fc68ce703d04cc96c2ab1aa658252050b",
+        "path": "scripts/check-saju-five-classics-source-identity-frontier-v0.mjs"
+      },
+      {
+        "byteSha256": "ffe336818dd427fb5ed0f719f4b4a4f4024540296373ff6ac29b49f7c955f2e8",
+        "path": "scripts/check-saju-timing-authority-frontier-v0.mjs"
+      },
+      {
+        "byteSha256": "a4f86ae226e6efbcfaebcb38c5049cfdb6164c1382fd7d976ae3b96b5011fb06",
+        "path": "scripts/materialize-saju-five-classics-claim-adjudication-v0.mjs"
+      },
+      {
+        "byteSha256": "8491c0af1b73c81d896b2d628b727b3ff3c926b4baef7155faeb366dbdc220c5",
+        "path": "scripts/materialize-saju-five-classics-claim-provenance-closure-v0.mjs"
+      },
+      {
+        "byteSha256": "90ec878730891889e171c3177bdd167c84e92df913b22dce9890a41673642897",
+        "path": "scripts/materialize-saju-five-classics-source-identity-frontier-v0.mjs"
+      },
+      {
+        "byteSha256": "e48f8b1086a4cf555fddff5287231033071df2bf885b42866543eb27e14f52e8",
+        "path": "scripts/materialize-saju-timing-authority-frontier-v0.mjs"
+      },
+      {
+        "byteSha256": "5745991fbc31ea4747570844017c06facc4c6c15e205f3145bb357afb9f51712",
+        "path": "src/artifactIdentity.js"
+      },
+      {
+        "byteSha256": "95e90bd30d58dfdde81ffed30c1df54ac1a5630814110ef9321ab573e35848df",
+        "path": "src/interpretationPrep/sajuFiveClassicsClaimAdjudication.js"
+      },
+      {
+        "byteSha256": "438a5a94f4571ba4211f86fdf5a74c12d211dde941bbd929872433077c532980",
+        "path": "src/interpretationPrep/sajuFiveClassicsClaimProvenanceClosure.js"
+      },
+      {
+        "byteSha256": "6c8b5864ddf1cc9bbf57ab8f2fd61374fe0800cb4197ceabbe6f50f2ba406658",
+        "path": "src/interpretationPrep/sajuFiveClassicsSourceIdentityFrontier.js"
+      },
+      {
+        "byteSha256": "0a3a3bfdd484e708210e6ec0a13f339d22603fc6c389b8a4cca28415c9c4d7b0",
+        "path": "src/interpretationPrep/sajuTimingAuthorityFrontier.js"
+      }
+    ],
+    "materializer": {
+      "path": "scripts/materialize-saju-five-classics-claim-provenance-closure-v0.mjs",
+      "version": "0.1.0"
+    }
+  },
+  "basisHead": "3a369aff17edf8acd6206ae3000d34d34b487042",
+  "claimAdjudication": {
+    "artifactByteLength": 71633,
+    "artifactByteSha256": "6506c425b8339ea89db681f727978746149acd898205a9826ea1790ffb16fd66",
+    "artifactIdentity": {
+      "artifactId": "saju-five-classics-claim-adjudication-v0",
+      "artifactPayloadSha256": "c0dc20da4568adaedd34c7f14e6fc44250b065275a37391ca5ae79214d50a061",
+      "contractVersion": "artifact-identity-v1",
+      "generation": {
+        "baseHead": "99e6cc624a1510487ad8bcf65347b3ee5f4e524e",
+        "baseHeadSource": "git rev-parse HEAD at materialization",
+        "includedCommit": null,
+        "includedCommitSource": "unknown_at_generation; artifact may be included by a later commit"
+      },
+      "inputs": [
+        {
+          "byteSha256": "a4f86ae226e6efbcfaebcb38c5049cfdb6164c1382fd7d976ae3b96b5011fb06",
+          "path": "scripts/materialize-saju-five-classics-claim-adjudication-v0.mjs"
+        },
+        {
+          "byteSha256": "90ec878730891889e171c3177bdd167c84e92df913b22dce9890a41673642897",
+          "path": "scripts/materialize-saju-five-classics-source-identity-frontier-v0.mjs"
+        },
+        {
+          "byteSha256": "5745991fbc31ea4747570844017c06facc4c6c15e205f3145bb357afb9f51712",
+          "path": "src/artifactIdentity.js"
+        },
+        {
+          "byteSha256": "95e90bd30d58dfdde81ffed30c1df54ac1a5630814110ef9321ab573e35848df",
+          "path": "src/interpretationPrep/sajuFiveClassicsClaimAdjudication.js"
+        },
+        {
+          "byteSha256": "6c8b5864ddf1cc9bbf57ab8f2fd61374fe0800cb4197ceabbe6f50f2ba406658",
+          "path": "src/interpretationPrep/sajuFiveClassicsSourceIdentityFrontier.js"
+        },
+        {
+          "byteSha256": "3375b3cff9f88dd8fc6b22cab9a8025136cdf6089ae650e50690793635b215cd",
+          "path": "src/interpretationPrep/sajuLocalSourceCorpusEvidence.js"
+        }
+      ],
+      "materializer": {
+        "path": "scripts/materialize-saju-five-classics-claim-adjudication-v0.mjs",
+        "version": "0.1.0"
+      }
+    },
+    "artifactPath": "artifacts/saju-five-classics-claim-adjudication-v0/complete.json",
+    "basisHead": "99e6cc624a1510487ad8bcf65347b3ee5f4e524e",
+    "contentSha256": "b3360d39aecf12f27932c72cfe0a9c529114aa90eceae191ad6ba4234b23d8ff",
+    "integrity": {
+      "artifactByteSha256": "6506c425b8339ea89db681f727978746149acd898205a9826ea1790ffb16fd66",
+      "artifactPath": "artifacts/saju-five-classics-claim-adjudication-v0/complete.json",
+      "byteLength": 71633,
+      "hashScope": "exact UTF-8 bytes of complete.json including final LF",
+      "schemaVersion": "saju-five-classics-claim-adjudication-v0-integrity-v0"
+    },
+    "integrityPath": "artifacts/saju-five-classics-claim-adjudication-v0/complete.json.integrity.json",
+    "schemaVersion": "saju-five-classics-claim-adjudication-v0",
+    "sidecarByteLength": 352,
+    "sidecarByteSha256": "d3ba6c8f7496e212aa215f3c1c13d2bcf0d695ee37f8593d15c0aa8a40dd24c4",
+    "version": "0.1.0"
+  },
+  "contentSha256": "314de18fb8de1ee53224459e84dce6149150af21a2c1c29a8b5dae6551e36d35",
+  "publication": {
+    "existingV0ArtifactBytesPreserved": true,
+    "historicalReplayProfile": "historical",
+    "kind": "immutable_historical_identity_closure",
+    "promotionChanged": false,
+    "readinessChanged": false,
+    "semanticPayloadChanged": false,
+    "sourceRevalidationProfile": "source"
+  },
+  "readiness": {
+    "availableForInterpretation": false,
+    "productionActivation": "blocked",
+    "promotionReadyClaimIds": [],
+    "reason": "This closure records immutable provenance only; the claim payload remains historical, bounded, and unpromoted.",
+    "semanticAuthority": "not_established",
+    "stableClaimPromotionCount": 0,
+    "status": "blocked"
+  },
+  "schemaVersion": "saju-five-classics-claim-provenance-closure-v0",
+  "sourceFrontierPredecessor": {
+    "artifactByteLength": 409376,
+    "artifactByteSha256": "7c9bfec3cd2ed082d009c521c03658c8905b475f2f165d3cbcbdc78c0b3fd126",
+    "artifactIdentity": {
+      "artifactId": "saju-five-classics-source-identity-frontier-v0",
+      "artifactPayloadSha256": "0bfea06f16e0279d8cfb24dfb33aa023cf5469b9d146d699a343edd315d58d92",
+      "contractVersion": "artifact-identity-v1",
+      "generation": {
+        "baseHead": "99e6cc624a1510487ad8bcf65347b3ee5f4e524e",
+        "baseHeadSource": "git rev-parse HEAD at materialization",
+        "includedCommit": null,
+        "includedCommitSource": "unknown_at_generation; artifact may be included by a later commit"
+      },
+      "inputs": [
+        {
+          "byteSha256": "aaee0710bc855f00c459767c2ea07bd8e8d25ef9052c4f145ffb513c78426138",
+          "path": "artifacts/saju-five-classics-grounding-v0/complete.json"
+        },
+        {
+          "byteSha256": "d44bc228515da7bc492472b31e0faf53d7a54721f26c0e9643312d9182f6c5e3",
+          "path": "artifacts/saju-local-source-corpus-observation-v1/complete.json"
+        },
+        {
+          "byteSha256": "90ec878730891889e171c3177bdd167c84e92df913b22dce9890a41673642897",
+          "path": "scripts/materialize-saju-five-classics-source-identity-frontier-v0.mjs"
+        },
+        {
+          "byteSha256": "6c8b5864ddf1cc9bbf57ab8f2fd61374fe0800cb4197ceabbe6f50f2ba406658",
+          "path": "src/interpretationPrep/sajuFiveClassicsSourceIdentityFrontier.js"
+        },
+        {
+          "byteSha256": "3375b3cff9f88dd8fc6b22cab9a8025136cdf6089ae650e50690793635b215cd",
+          "path": "src/interpretationPrep/sajuLocalSourceCorpusEvidence.js"
+        }
+      ],
+      "materializer": {
+        "path": "scripts/materialize-saju-five-classics-source-identity-frontier-v0.mjs",
+        "version": "0.1.0"
+      }
+    },
+    "artifactPath": "artifacts/saju-five-classics-source-identity-frontier-v0/complete.json",
+    "basisHead": "99e6cc624a1510487ad8bcf65347b3ee5f4e524e",
+    "contentSha256": "a8792a7ae2bd69df00456931f22ea6ffa2ba84a259e10424ef91ce0d4018a921",
+    "integrity": {
+      "artifactByteSha256": "7c9bfec3cd2ed082d009c521c03658c8905b475f2f165d3cbcbdc78c0b3fd126",
+      "artifactPath": "artifacts/saju-five-classics-source-identity-frontier-v0/complete.json",
+      "byteLength": 409376,
+      "hashScope": "exact UTF-8 bytes of complete.json including final LF",
+      "schemaVersion": "saju-five-classics-source-identity-frontier-v0-integrity-v0"
+    },
+    "integrityPath": "artifacts/saju-five-classics-source-identity-frontier-v0/complete.json.integrity.json",
+    "schemaVersion": "saju-five-classics-source-identity-frontier-v0",
+    "sidecarByteLength": 365,
+    "sidecarByteSha256": "b4530551f6b509792e3588da63778f0d97aeb1de1d6ed913b6b67a9ea17a5c3d",
+    "version": "0.1.0"
+  },
+  "timingAuthorityRelation": {
+    "adjacentTimingAuthority": {
+      "artifactByteLength": 115059,
+      "artifactByteSha256": "0f8f092f818eeeb5eb10c7fc2abd1223c6dc6815b3c95e2061c4d0f579d873a7",
+      "artifactIdentity": {
+        "artifactId": "saju-timing-authority-frontier-v0",
+        "artifactPayloadSha256": "0c62d007f4089d6aecdc89918e594caf3552434839745de9c34baced42c703bc",
+        "contractVersion": "artifact-identity-v1",
+        "generation": {
+          "baseHead": "99e6cc624a1510487ad8bcf65347b3ee5f4e524e",
+          "baseHeadSource": "git rev-parse HEAD at materialization",
+          "includedCommit": null,
+          "includedCommitSource": "unknown_at_generation; artifact may be included by a later commit"
+        },
+        "inputs": [
+          {
+            "byteSha256": "aaee0710bc855f00c459767c2ea07bd8e8d25ef9052c4f145ffb513c78426138",
+            "path": "artifacts/saju-five-classics-grounding-v0/complete.json"
+          },
+          {
+            "byteSha256": "e48f8b1086a4cf555fddff5287231033071df2bf885b42866543eb27e14f52e8",
+            "path": "scripts/materialize-saju-timing-authority-frontier-v0.mjs"
+          },
+          {
+            "byteSha256": "6d8de4820a01a69ed2feaf50f5213d92128d8a21b72134a05f5c22fbe30aa061",
+            "path": "src/interpretationPrep/sajuAdapter.js"
+          },
+          {
+            "byteSha256": "0a3a3bfdd484e708210e6ec0a13f339d22603fc6c389b8a4cca28415c9c4d7b0",
+            "path": "src/interpretationPrep/sajuTimingAuthorityFrontier.js"
+          },
+          {
+            "byteSha256": "2b7b6a40430f2a4f2ebdb7a26722a0a4461f287aa1267877714debd0b9e4a8ec",
+            "path": "src/interpretationPrep/sajuTimingRules.js"
+          },
+          {
+            "byteSha256": "27f71a0bbad8476895766c29c42bec1f95ddeb0b5fec3171c56e19265e936cc7",
+            "path": "src/saju/engine/fourPillars.js"
+          },
+          {
+            "byteSha256": "5dcab28d38a3b51182fb984abbd1461934a348213b5d53cee9828e0f04b02f56",
+            "path": "src/saju/engine/solarTerms.js"
+          },
+          {
+            "byteSha256": "bc298c71ff70f33e16bf6cbfa5d49b8d66499307cd27672de3dba9fc79e0c651",
+            "path": "src/saju/engine/solarTime.js"
+          }
+        ],
+        "materializer": {
+          "path": "scripts/materialize-saju-timing-authority-frontier-v0.mjs",
+          "version": "0.1.0"
+        }
+      },
+      "artifactPath": "artifacts/saju-timing-authority-frontier-v0/complete.json",
+      "basisHead": "99e6cc624a1510487ad8bcf65347b3ee5f4e524e",
+      "contentSha256": "94dc2a49d4fd1444333effcd2484f87fdadd1ed23815e05cc81181f00a35c976",
+      "integrity": {
+        "artifactByteSha256": "0f8f092f818eeeb5eb10c7fc2abd1223c6dc6815b3c95e2061c4d0f579d873a7",
+        "artifactPath": "artifacts/saju-timing-authority-frontier-v0/complete.json",
+        "byteLength": 115059,
+        "hashScope": "exact UTF-8 bytes of complete.json including final LF",
+        "schemaVersion": "saju-timing-authority-frontier-v0-integrity-v0"
+      },
+      "integrityPath": "artifacts/saju-timing-authority-frontier-v0/complete.json.integrity.json",
+      "schemaVersion": "saju-timing-authority-frontier-v0",
+      "sidecarByteLength": 339,
+      "sidecarByteSha256": "df7be6dab05f2bbc27a9fb5889373682160bc751b5de59164e0b2ffcfdc0c2c4",
+      "version": null
+    },
+    "claimMaterializerInputPaths": [
+      "scripts/materialize-saju-five-classics-claim-adjudication-v0.mjs",
+      "scripts/materialize-saju-five-classics-source-identity-frontier-v0.mjs",
+      "src/artifactIdentity.js",
+      "src/interpretationPrep/sajuFiveClassicsClaimAdjudication.js",
+      "src/interpretationPrep/sajuFiveClassicsSourceIdentityFrontier.js",
+      "src/interpretationPrep/sajuLocalSourceCorpusEvidence.js"
+    ],
+    "claimMaterializerPath": "scripts/materialize-saju-five-classics-claim-adjudication-v0.mjs",
+    "claimModulePath": "src/interpretationPrep/sajuFiveClassicsClaimAdjudication.js",
+    "evidence": {
+      "claimMaterializerDeclaresTimingAuthorityInput": false,
+      "claimMaterializerOrModuleReferencesTimingAuthority": false,
+      "claimScope": "section and timing-conversion locator only",
+      "reason": "The claim materializer calls the source frontier materializer, and both claim/source code paths contain no timing-authority artifact or module reference; timing authority is an adjacent implementation-mapped frontier, not a claim-generation input.",
+      "sourceFrontierMaterializerOrModuleReferencesTimingAuthority": false
+    },
+    "generationDependency": false,
+    "relation": "not_a_generation_dependency",
+    "scopedClaimIds": [
+      "claim.yuanhai-dayun-start-age"
+    ]
+  },
+  "version": "0.1.0"
+}

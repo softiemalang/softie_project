@@ -20,6 +20,8 @@ export const ZIWEI_P0_HISTORICAL_TEST_FILES = Object.freeze([
 ])
 
 export const SAJU_HISTORICAL_TEST_FILES = Object.freeze([
+  'sajuFiveClassicsClaimAdjudicationHistorical.test.js',
+  'sajuFiveClassicsClaimProvenanceClosureHistorical.test.js',
   'sajuFiveClassicsSourceIdentityFrontierHistorical.test.js',
   'sajuTimingAuthorityFrontierHistorical.test.js',
 ])
@@ -30,6 +32,7 @@ export const HISTORICAL_TEST_FILES = Object.freeze([
 ])
 
 export const SOURCE_TEST_FILES = Object.freeze([
+  'sajuFiveClassicsClaimProvenanceClosure.test.js',
   'sajuFiveClassicsSourceIdentityFrontier.test.js',
   'sajuLocalSourceCorpusObservation.test.js',
   'ziweiArchiveScanSourceWitnessAdmission.test.js',

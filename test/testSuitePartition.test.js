@@ -40,6 +40,7 @@ test('artifact discovery includes only artifact tests', async () => {
 test('source discovery includes the explicit source-bound test set', async () => {
   const sourceFiles = await discoverSourceTestFiles()
   assert.deepEqual(sourceFiles, SOURCE_TEST_FILES.slice().sort((a, b) => a.localeCompare(b)))
+  assert.equal(sourceFiles.includes('sajuFiveClassicsClaimProvenanceClosure.test.js'), true)
 })
 
 test('repository suites are sorted, disjoint, and complete', async () => {
@@ -65,6 +66,9 @@ test('repository suites are sorted, disjoint, and complete', async () => {
   assert.equal(defaultFiles.includes('sajuFiveClassicsSourceIdentityFrontier.test.js'), false)
   assert.equal(defaultFiles.includes('sajuLocalSourceCorpusObservation.test.js'), false)
   assert.equal(defaultFiles.includes('sajuFiveClassicsSourceIdentityFrontierHistorical.test.js'), false)
+  assert.equal(defaultFiles.includes('sajuFiveClassicsClaimProvenanceClosure.test.js'), false)
+  assert.equal(defaultFiles.includes('sajuFiveClassicsClaimProvenanceClosureHistorical.test.js'), false)
+  assert.equal(historicalFiles.includes('sajuFiveClassicsClaimProvenanceClosureHistorical.test.js'), true)
   assert.equal(defaultFiles.includes('pdfSourceResolver.test.js'), true)
   assert.equal(new Set(allFiles).size, allFiles.length)
   assert.deepEqual(allFiles, [...defaultFiles, ...sourceFiles, ...historicalFiles, ...artifactFiles].sort((a, b) => a.localeCompare(b)))

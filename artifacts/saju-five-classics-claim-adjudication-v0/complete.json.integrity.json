@@ -1,0 +1,7 @@
+{
+  "artifactByteSha256": "6506c425b8339ea89db681f727978746149acd898205a9826ea1790ffb16fd66",
+  "artifactPath": "artifacts/saju-five-classics-claim-adjudication-v0/complete.json",
+  "byteLength": 71633,
+  "hashScope": "exact UTF-8 bytes of complete.json including final LF",
+  "schemaVersion": "saju-five-classics-claim-adjudication-v0-integrity-v0"
+}

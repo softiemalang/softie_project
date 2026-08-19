@@ -1,0 +1,1514 @@
+{
+  "adjudicationSummary": {
+    "adjudicationStatusCounts": {
+      "edition_variant": 0,
+      "independence_unresolved": 4,
+      "insufficient_evidence": 1,
+      "lineage_specific": 0,
+      "local_lineage_unresolved": 1,
+      "semantic_conflict": 1,
+      "stable_candidate": 0
+    },
+    "claimCount": 7,
+    "promotionReadyClaimIds": [],
+    "readinessTrueCounts": {
+      "edition_collated": 6,
+      "historical_witness_observed": 7,
+      "independence_resolved": 0,
+      "local_lineage_resolved": 0,
+      "promotion_ready": 0,
+      "semantic_equivalence_checked": 5
+    }
+  },
+  "artifactIdentity": {
+    "artifactId": "saju-five-classics-claim-adjudication-v0",
+    "artifactPayloadSha256": "c0dc20da4568adaedd34c7f14e6fc44250b065275a37391ca5ae79214d50a061",
+    "contractVersion": "artifact-identity-v1",
+    "generation": {
+      "baseHead": "99e6cc624a1510487ad8bcf65347b3ee5f4e524e",
+      "baseHeadSource": "git rev-parse HEAD at materialization",
+      "includedCommit": null,
+      "includedCommitSource": "unknown_at_generation; artifact may be included by a later commit"
+    },
+    "inputs": [
+      {
+        "byteSha256": "a4f86ae226e6efbcfaebcb38c5049cfdb6164c1382fd7d976ae3b96b5011fb06",
+        "path": "scripts/materialize-saju-five-classics-claim-adjudication-v0.mjs"
+      },
+      {
+        "byteSha256": "90ec878730891889e171c3177bdd167c84e92df913b22dce9890a41673642897",
+        "path": "scripts/materialize-saju-five-classics-source-identity-frontier-v0.mjs"
+      },
+      {
+        "byteSha256": "5745991fbc31ea4747570844017c06facc4c6c15e205f3145bb357afb9f51712",
+        "path": "src/artifactIdentity.js"
+      },
+      {
+        "byteSha256": "95e90bd30d58dfdde81ffed30c1df54ac1a5630814110ef9321ab573e35848df",
+        "path": "src/interpretationPrep/sajuFiveClassicsClaimAdjudication.js"
+      },
+      {
+        "byteSha256": "6c8b5864ddf1cc9bbf57ab8f2fd61374fe0800cb4197ceabbe6f50f2ba406658",
+        "path": "src/interpretationPrep/sajuFiveClassicsSourceIdentityFrontier.js"
+      },
+      {
+        "byteSha256": "3375b3cff9f88dd8fc6b22cab9a8025136cdf6089ae650e50690793635b215cd",
+        "path": "src/interpretationPrep/sajuLocalSourceCorpusEvidence.js"
+      }
+    ],
+    "materializer": {
+      "path": "scripts/materialize-saju-five-classics-claim-adjudication-v0.mjs",
+      "version": "0.1.0"
+    }
+  },
+  "basisHead": "99e6cc624a1510487ad8bcf65347b3ee5f4e524e",
+  "claims": [
+    {
+      "adjudicationStatus": "local_lineage_unresolved",
+      "claimFamily": "editorial-responsibility",
+      "claimId": "claim.yuanhai-editorial-responsibility",
+      "collation": {
+        "editorialLayer": "responsibility display and catalog metadata, not semantic text",
+        "observedComparison": "The exact SSID-13003376 and Tianyi Pavilion scan leaf 3 observations both record the 徐升編 / 楊淙增校 / 福建余氏鐫梓 responsibility display, while the local export exposes only a narrower 楊淙 attribution; this is a bounded two-scan display collation, not proof of a shared item or plate.",
+        "omissionsAdditions": [
+          "The local S03 label does not expose the full scan responsibility display.",
+          "The two scan observations do not close printed-folio, plate, physical-item, or transmission identity."
+        ],
+        "orderingDifferences": [],
+        "rawSequence": [
+          "徐升編",
+          "楊淙增校",
+          "福建余氏鐫梓"
+        ],
+        "scope": "bounded_page_display",
+        "semanticEquivalenceResult": "not_applicable_to_text_meaning; identity-layer observation only",
+        "wordingVariants": [
+          "楊淙校 / 楊淙増校",
+          "鐫梓 / publisher or carving responsibility wording"
+        ]
+      },
+      "externalRecordIds": [
+        "record.cinii.yuanhai-bb08850892",
+        "record.aks.yuanhai-yanhaiziping"
+      ],
+      "proposition": "The exact SSID-13003376 and Tianyi Pavilion Ming Chongzhen scan leaf 3 observations both record 徐升編, 楊淙增校, and 福建余氏鐫梓 beside 新刊合併官板音義評註淵海子平卷之一; the local S03 label 楊淙 alone must not be normalized into sole authorship or direct local lineage.",
+      "readiness": {
+        "edition_collated": true,
+        "historical_witness_observed": true,
+        "independence_resolved": false,
+        "local_lineage_resolved": false,
+        "promotion_ready": false,
+        "readinessEvidence": {
+          "edition_collated": {
+            "evidenceRefs": [
+              "page.tianyige.yuanhai.ming-chongzhen.scan-5007.leaf-3",
+              "page.commons.yuanhai.ssid-13003376.leaf-3-responsibility"
+            ],
+            "missingEdges": [],
+            "note": "Two exact scan leaves were visually compared for the bounded responsibility display; full printed-folio, plate, and edition identity remain unresolved.",
+            "status": "proven"
+          },
+          "historical_witness_observed": {
+            "evidenceRefs": [
+              "page.commons.yuanhai.ssid-13003376.leaf-3-responsibility"
+            ],
+            "missingEdges": [],
+            "note": "Exact scan bytes and page 3 were visually reviewed.",
+            "status": "proven"
+          },
+          "independence_resolved": {
+            "evidenceRefs": [
+              "record.cinii.yuanhai-bb08850892",
+              "record.aks.yuanhai-yanhaiziping"
+            ],
+            "missingEdges": [
+              "physical-item identity and transmission relation among scan and records"
+            ],
+            "note": "External records are corroboration only, not independent textual witnesses.",
+            "status": "missing"
+          },
+          "local_lineage_resolved": {
+            "evidenceRefs": [
+              "blocker.local-to-physical-item",
+              "blocker.yuanhai-ziping-lineage"
+            ],
+            "missingEdges": [
+              "local S03 export -> exact historical physical item",
+              "SSID scan -> cataloged institutional item"
+            ],
+            "note": "The role display does not connect the local bytes to the scan or catalog item.",
+            "status": "missing"
+          },
+          "promotion_ready": {
+            "evidenceRefs": [
+              "blocker.yuanhai-ziping-lineage"
+            ],
+            "missingEdges": [
+              "all preceding readiness gates"
+            ],
+            "note": "Promotion is fail-closed.",
+            "status": "missing"
+          },
+          "semantic_equivalence_checked": {
+            "evidenceRefs": [],
+            "missingEdges": [
+              "a semantic text claim distinct from the identity observation"
+            ],
+            "note": "No semantic proposition is being promoted from this page.",
+            "status": "missing"
+          }
+        },
+        "semantic_equivalence_checked": false
+      },
+      "scope": "page-level responsibility display and bibliographic identity only",
+      "semanticAuthorityStatus": "not_established",
+      "sourceFrontierEvidence": {
+        "blockerIds": [
+          "blocker.local-to-physical-item",
+          "blocker.yuanhai-ziping-lineage"
+        ],
+        "claimRelationIds": [],
+        "pageObservationIds": [
+          "page.tianyige.yuanhai.ming-chongzhen.scan-5007.leaf-3",
+          "page.commons.yuanhai.ssid-13003376.leaf-3-responsibility",
+          "page.commons.yuanhai.ssid-13003376.leaf-3-title"
+        ],
+        "sourceIds": [
+          "source.tianyige.yuanhai-zi-ping.ming-chongzhen.scan-5007",
+          "source.commons.yuanhai-ziping.sao-ye-shan-fang.ssid-13003376",
+          "source.local.yuanhai-ziping-pdf"
+        ]
+      },
+      "witnesses": [
+        {
+          "exactByteLength": 18023468,
+          "exactByteSha256": "c6b261c3dccdb8209809110fc656f326d15b4b9cbc4a627cc657a0ab58fbc2f1",
+          "pageObservationIds": [
+            "page.commons.yuanhai.ssid-13003376.leaf-3-responsibility"
+          ],
+          "role": "historical_scan",
+          "scope": "PDF page/scan leaf 3; title and responsibility columns",
+          "sourceId": "source.commons.yuanhai-ziping.sao-ye-shan-fang.ssid-13003376",
+          "witnessId": "witness.ssid-13003376-leaf-3"
+        },
+        {
+          "exactByteLength": 133016361,
+          "exactByteSha256": "93a4fe97798eb7c3c35122f307447ce5e931a9a4012e558520fe9052c16a295f",
+          "pageObservationIds": [
+            "page.tianyige.yuanhai.ming-chongzhen.scan-5007.leaf-3"
+          ],
+          "role": "historical_scan",
+          "scope": "scan leaf 3; title and responsibility display",
+          "sourceId": "source.tianyige.yuanhai-zi-ping.ming-chongzhen.scan-5007",
+          "witnessId": "witness.tianyige-5007-leaf-3"
+        },
+        {
+          "exactByteLength": 2710282,
+          "exactByteSha256": "c6225b78d9d49282c5699b63315018a1e17ebf091c50ce4feb3dab465ec25a12",
+          "pageObservationIds": [
+            "page.local.yuanhai.title"
+          ],
+          "role": "local_text",
+          "scope": "local export title/attribution locator; physical item not observed",
+          "sourceId": "source.local.yuanhai-ziping-pdf",
+          "witnessId": "witness.local-yuanhai-export"
+        }
+      ],
+      "workIds": [
+        "yuanhai-zi-ping"
+      ]
+    },
+    {
+      "adjudicationStatus": "independence_unresolved",
+      "claimFamily": "lichun-month-command-jie-boundary",
+      "claimId": "claim.yuanhai-seasonal-lichun-clause",
+      "collation": {
+        "editorialLayer": "seasonal song / page layout",
+        "observedComparison": "Local p.4 and NLC leaves 52–53 visibly share the seasonal clause family; Tianyi leaf 19 independently exposes the same clause family in a different vertical plate/layout.",
+        "omissionsAdditions": [
+          "The local page compresses/retains a different layout; full surrounding seasonal text is not normalized here."
+        ],
+        "orderingDifferences": [],
+        "rawSequence": [
+          "立春念三丙火用",
+          "餘日甲木旺提綱",
+          "小暑十日丁火旺",
+          "後來三日乙木芳"
+        ],
+        "scope": "bounded_three_witness_raw_text",
+        "semanticEquivalenceResult": "bounded_text_family_correspondence_only; general 立春/節 boundary meaning remains unchecked",
+        "wordingVariants": [
+          "local modern punctuation/composition vs traditional scan punctuation",
+          "local page layout differs from the institutional vertical plates"
+        ]
+      },
+      "externalRecordIds": [],
+      "proposition": "A bounded local p.4 / NLC-99036 printed p.34–35 / Tianyi leaf 19 correspondence exists for the seasonal clause family 立春念三丙火用 / 餘日甲木旺提綱 and 小暑十日丁火旺 / 後來三日乙木芳.",
+      "readiness": {
+        "edition_collated": true,
+        "historical_witness_observed": true,
+        "independence_resolved": false,
+        "local_lineage_resolved": false,
+        "promotion_ready": false,
+        "readinessEvidence": {
+          "edition_collated": {
+            "evidenceRefs": [
+              "relation.lichun-month-command-jie-boundary",
+              "page.nlc.yuanhai.99036.leaf-52-seasonal-song",
+              "page.nlc.yuanhai.99036.leaf-53-seasonal-qi-song"
+            ],
+            "missingEdges": [],
+            "note": "The bounded page/printed-folio correspondence was recorded.",
+            "status": "proven"
+          },
+          "historical_witness_observed": {
+            "evidenceRefs": [
+              "page.nlc.yuanhai.99036.leaf-52-seasonal-song",
+              "page.tianyige.yuanhai.ming-chongzhen.scan-5007.leaf-19"
+            ],
+            "missingEdges": [],
+            "note": "Two exact scan witnesses were visually reviewed.",
+            "status": "proven"
+          },
+          "independence_resolved": {
+            "evidenceRefs": [
+              "lineage.commons-yuanhai-trusted-to-tianyige",
+              "blocker.cross-edition-collation"
+            ],
+            "missingEdges": [
+              "textual transmission and physical independence of NLC-99036, Tianyi, and local export"
+            ],
+            "note": "Different witnesses are not automatically independent.",
+            "status": "missing"
+          },
+          "local_lineage_resolved": {
+            "evidenceRefs": [
+              "blocker.local-to-physical-item",
+              "blocker.timing-page-locators"
+            ],
+            "missingEdges": [
+              "local p.4 -> exact historical physical item and printed plate"
+            ],
+            "note": "A local-to-item crosswalk remains open.",
+            "status": "missing"
+          },
+          "promotion_ready": {
+            "evidenceRefs": [
+              "blocker.cross-edition-collation",
+              "blocker.local-to-physical-item"
+            ],
+            "missingEdges": [
+              "local lineage, independence, and authority gates"
+            ],
+            "note": "Promotion is fail-closed.",
+            "status": "missing"
+          },
+          "semantic_equivalence_checked": {
+            "evidenceRefs": [
+              "relation.lichun-month-command-jie-boundary"
+            ],
+            "missingEdges": [],
+            "note": "Only bounded raw sequence comparison was checked; no semantic authority is inferred.",
+            "status": "proven"
+          }
+        },
+        "semantic_equivalence_checked": true
+      },
+      "scope": "bounded raw seasonal-clause correspondence; not a general 立春 or 節 boundary rule",
+      "semanticAuthorityStatus": "not_established",
+      "sourceFrontierEvidence": {
+        "blockerIds": [
+          "blocker.timing-page-locators",
+          "blocker.cross-edition-collation",
+          "blocker.local-to-physical-item"
+        ],
+        "claimRelationIds": [
+          "relation.lichun-month-command-jie-boundary"
+        ],
+        "pageObservationIds": [
+          "page.local.yuanhai.p4-seasonal-calendar",
+          "page.nlc.yuanhai.99036.leaf-52-seasonal-song",
+          "page.nlc.yuanhai.99036.leaf-53-seasonal-qi-song",
+          "page.tianyige.yuanhai.ming-chongzhen.scan-5007.leaf-19"
+        ],
+        "sourceIds": [
+          "source.local.yuanhai-ziping-pdf",
+          "source.nlc.yuanhai-ziping.unknown-date.scan-99036",
+          "source.tianyige.yuanhai-zi-ping.ming-chongzhen.scan-5007"
+        ]
+      },
+      "witnesses": [
+        {
+          "exactByteLength": 2710282,
+          "exactByteSha256": "c6225b78d9d49282c5699b63315018a1e17ebf091c50ce4feb3dab465ec25a12",
+          "pageObservationIds": [
+            "page.local.yuanhai.p4-seasonal-calendar"
+          ],
+          "role": "local_text",
+          "scope": "local PDF page 4",
+          "sourceId": "source.local.yuanhai-ziping-pdf",
+          "witnessId": "witness.local-yuanhai-p4"
+        },
+        {
+          "exactByteLength": 6429274,
+          "exactByteSha256": "fca66e109aae987a5a04dc623e5168680d227542e13b56cdd7c39b62e55b605f",
+          "pageObservationIds": [
+            "page.nlc.yuanhai.99036.leaf-52-seasonal-song",
+            "page.nlc.yuanhai.99036.leaf-53-seasonal-qi-song"
+          ],
+          "role": "historical_scan_a",
+          "scope": "scan leaves 52–53; printed pages 三四–三五",
+          "sourceId": "source.nlc.yuanhai-ziping.unknown-date.scan-99036",
+          "witnessId": "witness.nlc-99036-seasonal"
+        },
+        {
+          "exactByteLength": 133016361,
+          "exactByteSha256": "93a4fe97798eb7c3c35122f307447ce5e931a9a4012e558520fe9052c16a295f",
+          "pageObservationIds": [
+            "page.tianyige.yuanhai.ming-chongzhen.scan-5007.leaf-19"
+          ],
+          "role": "historical_scan_b",
+          "scope": "scan leaf 19; printed folio not exposed",
+          "sourceId": "source.tianyige.yuanhai-zi-ping.ming-chongzhen.scan-5007",
+          "witnessId": "witness.tianyige-yuanhai-leaf-19"
+        }
+      ],
+      "workIds": [
+        "yuanhai-zi-ping"
+      ]
+    },
+    {
+      "adjudicationStatus": "insufficient_evidence",
+      "claimFamily": "three-days-one-year-start-age",
+      "claimId": "claim.yuanhai-dayun-start-age",
+      "collation": {
+        "editorialLayer": "timing section locator",
+        "observedComparison": "The same broad topic and conversion phrase family is located across witnesses, but no exact local p.9 to printed-folio surrounding-text collation is retained.",
+        "omissionsAdditions": [
+          "Exact local/historical paragraph boundaries and all adjacent examples remain untranscribed."
+        ],
+        "orderingDifferences": [],
+        "rawSequence": [
+          "論起大運",
+          "凡起大運俱從所生之日",
+          "過去節俱折除三日以為一歲"
+        ],
+        "scope": "bounded_section_locator",
+        "semanticEquivalenceResult": "not_checked_beyond_locator_level",
+        "wordingVariants": [
+          "section headings and surrounding examples differ by witness/layout"
+        ]
+      },
+      "externalRecordIds": [],
+      "proposition": "The local p.9, Tianyi leaf 18, SSID leaf 24, and NLC-99036 leaf 50 locate 起運 / 論大運 / 折除三日以為一歲 material, but the current local start-age calculation is not yet collation-ready.",
+      "readiness": {
+        "edition_collated": false,
+        "historical_witness_observed": true,
+        "independence_resolved": false,
+        "local_lineage_resolved": false,
+        "promotion_ready": false,
+        "readinessEvidence": {
+          "edition_collated": {
+            "evidenceRefs": [
+              "relation.three-days-one-year-start-age"
+            ],
+            "missingEdges": [
+              "local p.9 -> exact printed folios and surrounding text",
+              "edition-specific variant record"
+            ],
+            "note": "The current evidence is a locator set, not a full collation.",
+            "status": "missing"
+          },
+          "historical_witness_observed": {
+            "evidenceRefs": [
+              "page.nlc.yuanhai.99036.leaf-50-start-fortune",
+              "page.tianyige.yuanhai.ming-chongzhen.scan-5007.leaf-18"
+            ],
+            "missingEdges": [],
+            "note": "Historical section locators were directly observed.",
+            "status": "proven"
+          },
+          "independence_resolved": {
+            "evidenceRefs": [
+              "blocker.cross-edition-collation"
+            ],
+            "missingEdges": [
+              "textual and physical independence across timing witnesses"
+            ],
+            "note": "Witness multiplicity is not independence.",
+            "status": "missing"
+          },
+          "local_lineage_resolved": {
+            "evidenceRefs": [
+              "blocker.local-to-physical-item"
+            ],
+            "missingEdges": [
+              "local p.9 source chain to a historical item"
+            ],
+            "note": "Local PDF lineage remains unresolved.",
+            "status": "missing"
+          },
+          "promotion_ready": {
+            "evidenceRefs": [
+              "blocker.timing-page-locators",
+              "blocker.cross-edition-collation"
+            ],
+            "missingEdges": [
+              "all preceding readiness gates"
+            ],
+            "note": "Promotion is fail-closed.",
+            "status": "missing"
+          },
+          "semantic_equivalence_checked": {
+            "evidenceRefs": [
+              "blocker.cross-edition-collation"
+            ],
+            "missingEdges": [
+              "bounded paragraph-level comparison and normalized meaning check"
+            ],
+            "note": "Section names do not establish semantic equivalence.",
+            "status": "missing"
+          }
+        },
+        "semantic_equivalence_checked": false
+      },
+      "scope": "section and timing-conversion locator only",
+      "semanticAuthorityStatus": "not_established",
+      "sourceFrontierEvidence": {
+        "blockerIds": [
+          "blocker.timing-page-locators",
+          "blocker.cross-edition-collation",
+          "blocker.local-to-physical-item"
+        ],
+        "claimRelationIds": [
+          "relation.three-days-one-year-start-age",
+          "relation.dayun-direction",
+          "relation.dayun-progression"
+        ],
+        "pageObservationIds": [
+          "page.local.yuanhai.p9-dayun-section",
+          "page.tianyige.yuanhai.ming-chongzhen.scan-5007.leaf-18",
+          "page.commons.yuanhai.ssid-13003376.leaf-24-qiyun",
+          "page.nlc.yuanhai.99036.leaf-50-start-fortune"
+        ],
+        "sourceIds": [
+          "source.local.yuanhai-ziping-pdf",
+          "source.tianyige.yuanhai-zi-ping.ming-chongzhen.scan-5007",
+          "source.commons.yuanhai-ziping.sao-ye-shan-fang.ssid-13003376",
+          "source.nlc.yuanhai-ziping.unknown-date.scan-99036"
+        ]
+      },
+      "witnesses": [
+        {
+          "exactByteLength": 2710282,
+          "exactByteSha256": "c6225b78d9d49282c5699b63315018a1e17ebf091c50ce4feb3dab465ec25a12",
+          "pageObservationIds": [
+            "page.local.yuanhai.p9-dayun-section"
+          ],
+          "role": "local_text",
+          "scope": "local PDF page 9",
+          "sourceId": "source.local.yuanhai-ziping-pdf",
+          "witnessId": "witness.local-yuanhai-p9"
+        },
+        {
+          "exactByteLength": 6429274,
+          "exactByteSha256": "fca66e109aae987a5a04dc623e5168680d227542e13b56cdd7c39b62e55b605f",
+          "pageObservationIds": [
+            "page.nlc.yuanhai.99036.leaf-50-start-fortune"
+          ],
+          "role": "historical_scan_a",
+          "scope": "scan leaf 50; printed page 三二",
+          "sourceId": "source.nlc.yuanhai-ziping.unknown-date.scan-99036",
+          "witnessId": "witness.nlc-99036-dayun"
+        },
+        {
+          "exactByteLength": 133016361,
+          "exactByteSha256": "93a4fe97798eb7c3c35122f307447ce5e931a9a4012e558520fe9052c16a295f",
+          "pageObservationIds": [
+            "page.tianyige.yuanhai.ming-chongzhen.scan-5007.leaf-18"
+          ],
+          "role": "historical_scan_b",
+          "scope": "scan leaf 18; printed folio not exposed",
+          "sourceId": "source.tianyige.yuanhai-zi-ping.ming-chongzhen.scan-5007",
+          "witnessId": "witness.tianyige-yuanhai-leaf-18"
+        }
+      ],
+      "workIds": [
+        "yuanhai-zi-ping"
+      ]
+    },
+    {
+      "adjudicationStatus": "independence_unresolved",
+      "claimFamily": "day-master-month-command",
+      "claimId": "claim.ziping-yongshin",
+      "collation": {
+        "editorialLayer": "modern local export versus 1926 institutional scans and a compound NLC scan",
+        "observedComparison": "The local incipit and immediate continuation were visually compared with NLC 1926, NTL 1926, and NLC 35296 page sequences.",
+        "omissionsAdditions": [
+          "Full edition-level surrounding-text and plate comparison is not retained.",
+          "NLC 35296 is a compound scan whose official 126-page extent is not mapped to the observed 287-page segment."
+        ],
+        "orderingDifferences": [
+          "The four witnesses expose the same bounded section sequence at different scan/printed-page positions; no broader table-of-contents equivalence is asserted."
+        ],
+        "rawSequence": [
+          "八字用神",
+          "專求月令",
+          "以日干配月令地支",
+          "而生克不同",
+          "格局分焉"
+        ],
+        "scope": "bounded_four_witness_raw_text",
+        "semanticEquivalenceResult": "bounded_same_clause_sequence_with_simplified_traditional_punctuation_variants; semantic authority not established",
+        "wordingVariants": [
+          "local simplified: 八字用神，专求月令，以日干配月令地支，而生克不同，格局分焉",
+          "historical traditional: 八字用神。專求月令。以日干配月令地支。而生克不同。格局分焉"
+        ]
+      },
+      "externalRecordIds": [],
+      "proposition": "Local 子平真詮 p.6–p.7, NLC 1926 leaves 23–24, NTL 1926 pages 111–112, and the NLC 35296 pages 26–27 provide a bounded 論用神 / 八字用神 page-sequence correspondence with simplified/traditional and punctuation variants.",
+      "readiness": {
+        "edition_collated": true,
+        "historical_witness_observed": true,
+        "independence_resolved": false,
+        "local_lineage_resolved": false,
+        "promotion_ready": false,
+        "readinessEvidence": {
+          "edition_collated": {
+            "evidenceRefs": [
+              "relation.day-master-month-command",
+              "page.nlc.ziping.v2.leaf-24-yongshin-continuation",
+              "page.ntl.ziping.v2.leaf-112-yongshin-continuation"
+            ],
+            "missingEdges": [],
+            "note": "The bounded clause and immediate continuation were compared across witness pages.",
+            "status": "proven"
+          },
+          "historical_witness_observed": {
+            "evidenceRefs": [
+              "page.nlc.ziping.v2.leaf-23-yongshin",
+              "page.ntl.ziping.v2.leaf-111-yongshin",
+              "page.commons.nlc.ziping.35296.page-26-yongshin"
+            ],
+            "missingEdges": [],
+            "note": "Exact historical scan bytes and page images were visually reviewed.",
+            "status": "proven"
+          },
+          "independence_resolved": {
+            "evidenceRefs": [
+              "blocker.yuanhai-ziping-lineage",
+              "blocker.cross-edition-collation"
+            ],
+            "missingEdges": [
+              "independent witness status of NLC/NTL 1926 pair",
+              "NLC 35296 physical item, edition, and compound-scan segment"
+            ],
+            "note": "The NLC and NTL 1926 candidates are not counted as independent textual witnesses here.",
+            "status": "missing"
+          },
+          "local_lineage_resolved": {
+            "evidenceRefs": [
+              "blocker.local-to-physical-item",
+              "lineage.local-ziping-to-nlc-35296"
+            ],
+            "missingEdges": [
+              "local PDF -> historical physical item/plate",
+              "local export -> 1926 or later NLC/NTL witness"
+            ],
+            "note": "Digital equality or phrase equality does not close historical lineage.",
+            "status": "missing"
+          },
+          "promotion_ready": {
+            "evidenceRefs": [
+              "blocker.local-to-physical-item",
+              "blocker.cross-edition-collation"
+            ],
+            "missingEdges": [
+              "local lineage, independence, and semantic-authority gates"
+            ],
+            "note": "Promotion is fail-closed.",
+            "status": "missing"
+          },
+          "semantic_equivalence_checked": {
+            "evidenceRefs": [
+              "relation.day-master-month-command"
+            ],
+            "missingEdges": [],
+            "note": "Character, simplified/traditional, punctuation, and page-sequence variants were checked within a bounded scope.",
+            "status": "proven"
+          }
+        },
+        "semantic_equivalence_checked": true
+      },
+      "scope": "bounded raw text-family and page-sequence collation; not semantic authority",
+      "semanticAuthorityStatus": "not_established",
+      "sourceFrontierEvidence": {
+        "blockerIds": [
+          "blocker.local-to-physical-item",
+          "blocker.yuanhai-ziping-lineage",
+          "blocker.cross-edition-collation"
+        ],
+        "claimRelationIds": [
+          "relation.day-master-month-command"
+        ],
+        "pageObservationIds": [
+          "page.local.ziping.p6-yongshin",
+          "page.local.ziping.p7-yongshin-continuation",
+          "page.nlc.ziping.v2.leaf-23-yongshin",
+          "page.nlc.ziping.v2.leaf-24-yongshin-continuation",
+          "page.ntl.ziping.v2.leaf-111-yongshin",
+          "page.ntl.ziping.v2.leaf-112-yongshin-continuation",
+          "page.commons.nlc.ziping.35296.page-26-yongshin",
+          "page.commons.nlc.ziping.35296.page-27-yongshin-continuation"
+        ],
+        "sourceIds": [
+          "source.local.ziping-zhenquan-pdf",
+          "source.nlc.ziping-zhenquan.1926.v2",
+          "source.ntl.ziping-zhenquan.1926.v2",
+          "source.nlc.ziping-zhenquan.unknown-republican.scan-35296"
+        ]
+      },
+      "witnesses": [
+        {
+          "exactByteLength": 580320,
+          "exactByteSha256": "449336b5e35aa6811b0462093d0175c45a0add44065bf2d3845cff75981db692",
+          "pageObservationIds": [
+            "page.local.ziping.p6-yongshin",
+            "page.local.ziping.p7-yongshin-continuation"
+          ],
+          "role": "local_text",
+          "scope": "local PDF pages 6–7",
+          "sourceId": "source.local.ziping-zhenquan-pdf",
+          "witnessId": "witness.local-ziping-yongshin"
+        },
+        {
+          "exactByteLength": 2088007,
+          "exactByteSha256": "b1ac0a7dd4dc260647b65bd9338ad815fc0855d78e0ea01ed428237b28eb61c8",
+          "pageObservationIds": [
+            "page.nlc.ziping.v2.leaf-23-yongshin",
+            "page.nlc.ziping.v2.leaf-24-yongshin-continuation"
+          ],
+          "role": "historical_scan_a",
+          "scope": "scan leaves 23–24; printed pages 一○ and continuation",
+          "sourceId": "source.nlc.ziping-zhenquan.1926.v2",
+          "witnessId": "witness.nlc-ziping-1926-yongshin"
+        },
+        {
+          "exactByteLength": 68883628,
+          "exactByteSha256": "02f8771f69b6d5650ca3a20e629b9351a1f0f71c24f36f3eb11631495505f483",
+          "pageObservationIds": [
+            "page.ntl.ziping.v2.leaf-111-yongshin",
+            "page.ntl.ziping.v2.leaf-112-yongshin-continuation"
+          ],
+          "role": "historical_scan_b",
+          "scope": "scan pages 111–112; printed folios 一○–一一",
+          "sourceId": "source.ntl.ziping-zhenquan.1926.v2",
+          "witnessId": "witness.ntl-ziping-1926-yongshin"
+        },
+        {
+          "exactByteLength": 7126096,
+          "exactByteSha256": "71402a780b0351b54edf121a51bc4a4a4ce5896496c35b954563ee06f1a6f620",
+          "pageObservationIds": [
+            "page.commons.nlc.ziping.35296.page-26-yongshin",
+            "page.commons.nlc.ziping.35296.page-27-yongshin-continuation"
+          ],
+          "role": "historical_scan_c",
+          "scope": "PDF pages 26–27; printed pages 十七–十八",
+          "sourceId": "source.nlc.ziping-zhenquan.unknown-republican.scan-35296",
+          "witnessId": "witness.nlc-35296-ziping-yongshin"
+        }
+      ],
+      "workIds": [
+        "ziping-zhenquan"
+      ]
+    },
+    {
+      "adjudicationStatus": "independence_unresolved",
+      "claimFamily": "dayun-progression",
+      "claimId": "claim.ziping-xingyun",
+      "collation": {
+        "editorialLayer": "modern local typeset export versus NLC 35296 direct scan plus NLC/NTL 1926 combined-print candidates",
+        "observedComparison": "Direct visual comparison of local PDF p.15, exact NLC 35296 PDF p.56 / printed folio 四十七, exact NLC 1926 pages 43–44 / printed folios 三○–三一, and exact NTL v.2 pages 131–132 / printed folios 三○–三一 shows the corresponding 論行運 section and the shared progression sequence 故運中每行一字／即必以此一字配命中八字而統觀之／為喜為忌吉凶判然矣. The NLC 1926 and NTL page pairs agree on the bounded section opening and continuation, while NLC 35296 supplies a separate historical page-56 locator; this closes the minimum local↔historical-A↔historical-B observation frontier without closing lineage or semantic authority.",
+        "omissionsAdditions": [
+          "The local p.15 opening is not visible on the bounded NLC 35296 p.56 image; the NLC 1926 and NTL p.131 images supply a separate historical opening/continuation pair.",
+          "The local and historical passages use simplified/traditional character and punctuation variants; no full paragraph normalization or edition-level equivalence is admitted."
+        ],
+        "orderingDifferences": [],
+        "rawSequence": [
+          "論行運",
+          "故運中每運行一字",
+          "即必以此一字",
+          "配命中八字而統觀之",
+          "為喜為忌吉凶判然矣",
+          "如官用印以制傷而運助印",
+          "財生官而身輕而運助身",
+          "印帶財以為忌而運剋財",
+          "食帶煞以成格"
+        ],
+        "scope": "bounded_local_to_three_historical_witness_raw_collation",
+        "semanticEquivalenceResult": "bounded_same_clause_sequence_with_historical_pair_agreement_and_simplified_traditional_and_page_boundary_variants; semantic authority not established",
+        "wordingVariants": [
+          "local p.15 simplified heading 二十五、论行运 and opening 论运与命无二法也",
+          "NLC 35296 p.56 traditional heading 論行運 and visible sequence 又以動之干支配八字之喜忌／故運中每運行一字",
+          "NLC 1926 p.43 and NTL v.2 p.131 both show the traditional 論行運 heading and the same bounded progression sequence across printed folio 三○"
+        ]
+      },
+      "externalRecordIds": [],
+      "proposition": "Direct visual review of the exact local PDF p.15, NLC 35296 PDF p.56 / printed folio 四十七, NLC 1926 leaves 43–44 / printed folios 三○–三一, and NTL v2 PDF p.131–p.132 / printed folios 三○–三一 establishes a bounded 論行運 sequence with historical-pair agreement; local lineage, physical independence, and semantic authority remain open.",
+      "readiness": {
+        "edition_collated": true,
+        "historical_witness_observed": true,
+        "independence_resolved": false,
+        "local_lineage_resolved": false,
+        "promotion_ready": false,
+        "readinessEvidence": {
+          "edition_collated": {
+            "evidenceRefs": [
+              "page.local.ziping.p15-xingyun",
+              "page.commons.nlc.ziping.35296.page-56-dayun",
+              "page.nlc.ziping.v2.leaf-43-xingyun",
+              "page.nlc.ziping.v2.leaf-44-xingyun-continuation",
+              "page.ntl.ziping.v2.leaf-131-xingyun",
+              "page.ntl.ziping.v2.leaf-132-xingyun-continuation"
+            ],
+            "missingEdges": [],
+            "note": "The local page and three historical witness sets were directly compared within a bounded section and surrounding-page scope; edition identity and full paragraph mapping remain open.",
+            "status": "proven"
+          },
+          "historical_witness_observed": {
+            "evidenceRefs": [
+              "page.commons.nlc.ziping.35296.page-56-dayun",
+              "page.nlc.ziping.v2.leaf-43-xingyun",
+              "page.nlc.ziping.v2.leaf-44-xingyun-continuation",
+              "page.ntl.ziping.v2.leaf-131-xingyun",
+              "page.ntl.ziping.v2.leaf-132-xingyun-continuation"
+            ],
+            "missingEdges": [],
+            "note": "The exact NLC 35296 page, NLC 1926 page pair, and NTL 1926 page pair were visually reviewed.",
+            "status": "proven"
+          },
+          "independence_resolved": {
+            "evidenceRefs": [
+              "blocker.cross-edition-collation"
+            ],
+            "missingEdges": [
+              "physical and textual independence of NLC 35296 versus the NLC/NTL 1926 candidates"
+            ],
+            "note": "The NLC/NTL 1926 scans are same-lineage candidates and NLC 35296 has unresolved date/edition relation; no independence conclusion is admitted.",
+            "status": "missing"
+          },
+          "local_lineage_resolved": {
+            "evidenceRefs": [
+              "blocker.local-to-physical-item"
+            ],
+            "missingEdges": [
+              "local 子平真詮 source chain to the historical witness set"
+            ],
+            "note": "The bounded page correspondence does not close local source lineage.",
+            "status": "missing"
+          },
+          "promotion_ready": {
+            "evidenceRefs": [
+              "blocker.cross-edition-collation"
+            ],
+            "missingEdges": [
+              "all preceding readiness gates"
+            ],
+            "note": "Promotion is fail-closed.",
+            "status": "missing"
+          },
+          "semantic_equivalence_checked": {
+            "evidenceRefs": [
+              "page.local.ziping.p15-xingyun",
+              "page.commons.nlc.ziping.35296.page-56-dayun",
+              "page.nlc.ziping.v2.leaf-43-xingyun",
+              "page.nlc.ziping.v2.leaf-44-xingyun-continuation",
+              "page.ntl.ziping.v2.leaf-131-xingyun",
+              "page.ntl.ziping.v2.leaf-132-xingyun-continuation"
+            ],
+            "missingEdges": [],
+            "note": "The bounded text comparison was performed and retained as a raw sequence; the NLC and NTL 1926 pairs agree within the checked scope, but character, punctuation, page-boundary, lineage, and semantic-authority gates remain separate.",
+            "status": "proven"
+          }
+        },
+        "semantic_equivalence_checked": true
+      },
+      "scope": "bounded local-to-three-historical-witness raw collation; page-boundary, lineage, independence, and semantic authority unresolved",
+      "semanticAuthorityStatus": "not_established",
+      "sourceFrontierEvidence": {
+        "blockerIds": [
+          "blocker.cross-edition-collation",
+          "blocker.local-to-physical-item"
+        ],
+        "claimRelationIds": [
+          "relation.dayun-progression"
+        ],
+        "pageObservationIds": [
+          "page.local.ziping.p15-xingyun",
+          "page.commons.nlc.ziping.35296.page-56-dayun",
+          "page.nlc.ziping.v2.leaf-43-xingyun",
+          "page.nlc.ziping.v2.leaf-44-xingyun-continuation",
+          "page.ntl.ziping.v2.leaf-131-xingyun",
+          "page.ntl.ziping.v2.leaf-132-xingyun-continuation"
+        ],
+        "sourceIds": [
+          "source.local.ziping-zhenquan-pdf",
+          "source.nlc.ziping-zhenquan.unknown-republican.scan-35296",
+          "source.nlc.ziping-zhenquan.1926.v2",
+          "source.ntl.ziping-zhenquan.1926.v2"
+        ]
+      },
+      "witnesses": [
+        {
+          "exactByteLength": 580320,
+          "exactByteSha256": "449336b5e35aa6811b0462093d0175c45a0add44065bf2d3845cff75981db692",
+          "pageObservationIds": [
+            "page.local.ziping.p15-xingyun"
+          ],
+          "role": "local_text",
+          "scope": "local PDF page 15 / 二十五、论行运",
+          "sourceId": "source.local.ziping-zhenquan-pdf",
+          "witnessId": "witness.local-ziping-xingyun"
+        },
+        {
+          "exactByteLength": 7126096,
+          "exactByteSha256": "71402a780b0351b54edf121a51bc4a4a4ce5896496c35b954563ee06f1a6f620",
+          "pageObservationIds": [
+            "page.commons.nlc.ziping.35296.page-56-dayun"
+          ],
+          "role": "historical_scan",
+          "scope": "PDF page 56; printed page 四十七",
+          "sourceId": "source.nlc.ziping-zhenquan.unknown-republican.scan-35296",
+          "witnessId": "witness.nlc-35296-xingyun"
+        },
+        {
+          "exactByteLength": 2088007,
+          "exactByteSha256": "b1ac0a7dd4dc260647b65bd9338ad815fc0855d78e0ea01ed428237b28eb61c8",
+          "pageObservationIds": [
+            "page.nlc.ziping.v2.leaf-43-xingyun",
+            "page.nlc.ziping.v2.leaf-44-xingyun-continuation"
+          ],
+          "role": "historical_scan",
+          "scope": "PDF/scan pages 43–44; printed folios 三○–三一",
+          "sourceId": "source.nlc.ziping-zhenquan.1926.v2",
+          "witnessId": "witness.nlc-1926-xingyun"
+        },
+        {
+          "exactByteLength": 68883628,
+          "exactByteSha256": "02f8771f69b6d5650ca3a20e629b9351a1f0f71c24f36f3eb11631495505f483",
+          "pageObservationIds": [
+            "page.ntl.ziping.v2.leaf-131-xingyun",
+            "page.ntl.ziping.v2.leaf-132-xingyun-continuation"
+          ],
+          "role": "historical_scan",
+          "scope": "PDF/scan pages 131–132; printed folios 三○–三一",
+          "sourceId": "source.ntl.ziping-zhenquan.1926.v2",
+          "witnessId": "witness.ntl-1926-xingyun"
+        }
+      ],
+      "workIds": [
+        "ziping-zhenquan"
+      ]
+    },
+    {
+      "adjudicationStatus": "semantic_conflict",
+      "claimFamily": "foundational-xiangshen",
+      "claimId": "claim.ziping-xiangshen",
+      "collation": {
+        "editorialLayer": "modern local typeset export versus NLC and NTL 1926 direct scans; NLC 35296 is an additional unresolved-date direct scan, not a resolved edition layer",
+        "observedComparison": "Direct visual comparison of local PDF p.10–p.11, exact NLC 1926 leaves 32–33, exact NTL v2 PDF pages 120–121, and exact NLC 35296 PDF pages 39–40/45 shows the corresponding 論相神 locator set. NLC and NTL agree across the checked continuation, while the local text differs in omission/addition and surrounding transition/order. NLC 35296 independently confirms phrase-level presence of 輔我用神者是也 and 財旺生官, but the full role clause after 財旺生官 was not safely transcribed.",
+        "omissionsAdditions": [
+          "The local bounded sentence omits the visible 我用神 wording present on both NLC/NTL 1926 pages.",
+          "Relative to the NLC/NTL 1926 bounded pair, the local bounded passage includes 财旺生官，则财为用，官为相 and a different surrounding order; this is not a claim that 財旺生官 is absent from every historical scan, because NLC 35296 p.39 directly shows the phrase.",
+          "NLC p.33 and NTL p.121 continue with 氣不甚靈／神之緊要也 and then 論雜氣如何取用; local p.10–p.11 instead exposes expanded examples and a different local section boundary.",
+          "NLC 35296 p.39 phrase presence is direct, but the complete role clause after 財旺生官 remains not transcribed and cannot resolve the conflict cause."
+        ],
+        "orderingDifferences": [
+          "Historical p.32→33 and p.120→121 page pairs share the same continuation order; the local p.10→11 surrounding order diverges after the 論相神 examples."
+        ],
+        "rawSequence": [
+          "論相神緊要",
+          "月令既得用神",
+          "則別位亦必有相",
+          "若君之有相輔我用神者是也",
+          "如官逢財生",
+          "則官為用",
+          "財為相",
+          "煞為用",
+          "食為相",
+          "傷用神甚於傷身",
+          "氣不甚靈",
+          "神之緊要也",
+          "論雜氣如何取用"
+        ],
+        "scope": "bounded_local_to_historical_raw_collation",
+        "semanticEquivalenceResult": "bounded_edition_variant_with_historical_pair_agreement_local_omission_addition_and_surrounding_order_variant_plus_nlc35296_phrase_presence; full_role_clause_and_conflict_cause_unresolved; semantic equivalence not established",
+        "witnessScopedObservations": {
+          "nlc35296": {
+            "observedPhrases": [
+              "輔我用神者是也",
+              "財旺生官"
+            ],
+            "pageObservationIds": [
+              "page.commons.nlc.ziping.35296.page-39-xiangshen",
+              "page.commons.nlc.ziping.35296.page-40-xiangshen-continuation",
+              "page.commons.nlc.ziping.35296.page-45-next-heading"
+            ],
+            "roleClauseAfterCaiWangShengGuan": {
+              "status": "not_transcribed",
+              "text": null
+            },
+            "sourceId": "source.nlc.ziping-zhenquan.unknown-republican.scan-35296"
+          }
+        },
+        "wordingVariants": [
+          "local p.10 simplified heading 十五、论相神紧要 and sentence 辅者是也",
+          "local p.10 visibly includes 财旺生官，则财为用，官为相 before 煞逢食制",
+          "NLC leaf 32 and NTL p.120 both show traditional heading 論相神緊要 and sentence 若君之有相輔我用神者是也",
+          "NLC 35296 p.39 visibly shows 論相神緊要, 輔我用神者是也, and 財旺生官; its untranscribed role clause is not normalized into the NLC/NTL sequence"
+        ]
+      },
+      "externalRecordIds": [],
+      "proposition": "Direct visual review of the exact local PDF p.10–p.11, NLC 1926 leaves 32–33 / printed folios 一九–二○, NTL v2 PDF p.120–p.121 / printed folios 一九–二○, and the NLC 35296 scan p.39–p.40 / printed pages 三十–三十一 plus p.45 / printed page 三十六 establishes a bounded 論相神緊要 locator set. The NLC/NTL 1926 pair agrees against the local omission/addition and surrounding-order variant; NLC 35296 separately shows 輔我用神者是也 and 財旺生官, while its full role clause, date, and lineage remain unresolved.",
+      "readiness": {
+        "edition_collated": true,
+        "historical_witness_observed": true,
+        "independence_resolved": false,
+        "local_lineage_resolved": false,
+        "promotion_ready": false,
+        "readinessEvidence": {
+          "edition_collated": {
+            "evidenceRefs": [
+              "page.local.ziping.p10-xiangshen",
+              "page.local.ziping.p11-xiangshen-continuation",
+              "page.nlc.ziping.v2.leaf-32-xiangshen",
+              "page.nlc.ziping.v2.leaf-33-xiangshen-continuation",
+              "page.ntl.ziping.v2.leaf-120-xiangshen",
+              "page.ntl.ziping.v2.leaf-121-xiangshen-continuation",
+              "page.commons.nlc.ziping.35296.page-39-xiangshen",
+              "page.commons.nlc.ziping.35296.page-40-xiangshen-continuation",
+              "page.commons.nlc.ziping.35296.page-45-next-heading"
+            ],
+            "missingEdges": [],
+            "note": "The local p.10–p.11, both 1926 historical page pairs, and the NLC 35296 phrase/boundary pages were reviewed within a bounded raw-collation scope; NLC 35296 full role context remains untranscribed.",
+            "status": "proven"
+          },
+          "historical_witness_observed": {
+            "evidenceRefs": [
+              "page.nlc.ziping.v2.leaf-32-xiangshen",
+              "page.nlc.ziping.v2.leaf-33-xiangshen-continuation",
+              "page.ntl.ziping.v2.leaf-120-xiangshen",
+              "page.ntl.ziping.v2.leaf-121-xiangshen-continuation",
+              "page.commons.nlc.ziping.35296.page-39-xiangshen",
+              "page.commons.nlc.ziping.35296.page-40-xiangshen-continuation",
+              "page.commons.nlc.ziping.35296.page-45-next-heading"
+            ],
+            "missingEdges": [],
+            "note": "Exact NLC and NTL page pairs / printed folios 一九–二○ were visually reviewed, and NLC 35296 pages 39–40/45 add phrase-level and boundary observations. NLC 35296 remains unresolved as to exact date and textual lineage.",
+            "status": "proven"
+          },
+          "independence_resolved": {
+            "evidenceRefs": [
+              "blocker.cross-edition-collation"
+            ],
+            "missingEdges": [
+              "independent textual witness and physical-item relation"
+            ],
+            "note": "One local export and one NTL scan do not establish independence.",
+            "status": "missing"
+          },
+          "local_lineage_resolved": {
+            "evidenceRefs": [
+              "blocker.local-to-physical-item"
+            ],
+            "missingEdges": [
+              "local PDF -> NTL physical item/edition/plate",
+              "source chain for the local typeset export"
+            ],
+            "note": "The page-level correspondence does not close local historical lineage.",
+            "status": "missing"
+          },
+          "promotion_ready": {
+            "evidenceRefs": [],
+            "missingEdges": [
+              "all preceding readiness gates"
+            ],
+            "note": "Promotion is fail-closed.",
+            "status": "missing"
+          },
+          "semantic_equivalence_checked": {
+            "evidenceRefs": [
+              "page.local.ziping.p10-xiangshen",
+              "page.local.ziping.p11-xiangshen-continuation",
+              "page.nlc.ziping.v2.leaf-32-xiangshen",
+              "page.nlc.ziping.v2.leaf-33-xiangshen-continuation",
+              "page.ntl.ziping.v2.leaf-120-xiangshen",
+              "page.ntl.ziping.v2.leaf-121-xiangshen-continuation",
+              "page.commons.nlc.ziping.35296.page-39-xiangshen",
+              "page.commons.nlc.ziping.35296.page-40-xiangshen-continuation",
+              "page.commons.nlc.ziping.35296.page-45-next-heading"
+            ],
+            "missingEdges": [],
+            "note": "The bounded comparison records the 1926-pair conflict and NLC 35296 phrase presence; the NLC 35296 role clause and conflict cause remain unresolved, so this gate records the check, not a positive equivalence result.",
+            "status": "proven"
+          }
+        },
+        "semantic_equivalence_checked": true
+      },
+      "researchDossierBoundary": {
+        "canonicalEvidenceImported": false,
+        "catalogCandidate": {
+          "exactDateStatus": "unresolved_below_清",
+          "observationId": "page.ncl.ziping.gengcun-06599.catalog-record",
+          "sourceId": "source.ncl.ziping.gengcun-06599.catalog-rarecatx0441810",
+          "status": "physical_item_catalog_identity_only",
+          "targetSections": "not_observed",
+          "textualWitness": "unresolved"
+        },
+        "dossierPaths": [
+          "/Users/softie/Downloads/명리 고전 PDF 5종의 판본·디지털 계통 독립 검증 연구보고서.md",
+          "/Users/softie/Downloads/문헌 관계 분석 메모.md",
+          "/Users/softie/Downloads/외부 자료 조사 기록.md",
+          "/Users/softie/Downloads/직접 관찰 기록.md",
+          "/Users/softie/Downloads/p3_responsibility_crop.png"
+        ],
+        "note": "The dossier p.120 statement triggered the check, but the admitted evidence is the independently revalidated exact local p.10–p.11, NLC leaves 32–33, NTL pages 120–121, and NLC 35296 pages 39–40/45 observations, not a dossier conclusion or independence label. The 耕寸集 record is retained as catalog identity only and is not admitted into this claim witness set.",
+        "use": "candidate_map_only"
+      },
+      "scope": "bounded local/1926-pair/NLC-35296 raw collation; NLC 35296 phrase presence is admitted, but its full role clause, local cause, surrounding order, lineage, independence, and semantic authority remain unresolved",
+      "semanticAuthorityStatus": "not_established",
+      "sourceFrontierEvidence": {
+        "blockerIds": [
+          "blocker.local-to-physical-item",
+          "blocker.cross-edition-collation"
+        ],
+        "claimRelationIds": [],
+        "pageObservationIds": [
+          "page.local.ziping.p10-xiangshen",
+          "page.local.ziping.p11-xiangshen-continuation",
+          "page.nlc.ziping.v2.leaf-32-xiangshen",
+          "page.nlc.ziping.v2.leaf-33-xiangshen-continuation",
+          "page.ntl.ziping.v2.leaf-120-xiangshen",
+          "page.ntl.ziping.v2.leaf-121-xiangshen-continuation",
+          "page.commons.nlc.ziping.35296.page-39-xiangshen",
+          "page.commons.nlc.ziping.35296.page-40-xiangshen-continuation",
+          "page.commons.nlc.ziping.35296.page-45-next-heading"
+        ],
+        "sourceIds": [
+          "source.local.ziping-zhenquan-pdf",
+          "source.nlc.ziping-zhenquan.1926.v2",
+          "source.ntl.ziping-zhenquan.1926.v2",
+          "source.nlc.ziping-zhenquan.unknown-republican.scan-35296"
+        ]
+      },
+      "witnesses": [
+        {
+          "exactByteLength": 580320,
+          "exactByteSha256": "449336b5e35aa6811b0462093d0175c45a0add44065bf2d3845cff75981db692",
+          "pageObservationIds": [
+            "page.local.ziping.p10-xiangshen",
+            "page.local.ziping.p11-xiangshen-continuation"
+          ],
+          "role": "local_text",
+          "scope": "local PDF page 10 / 十五、论相神紧要",
+          "sourceId": "source.local.ziping-zhenquan-pdf",
+          "witnessId": "witness.local-ziping-xiangshen"
+        },
+        {
+          "exactByteLength": 2088007,
+          "exactByteSha256": "b1ac0a7dd4dc260647b65bd9338ad815fc0855d78e0ea01ed428237b28eb61c8",
+          "pageObservationIds": [
+            "page.nlc.ziping.v2.leaf-32-xiangshen",
+            "page.nlc.ziping.v2.leaf-33-xiangshen-continuation"
+          ],
+          "role": "historical_scan_a",
+          "scope": "scan leaves/PDF pages 32–33 / printed folios 一九–二○ / 論相神 and continuation",
+          "sourceId": "source.nlc.ziping-zhenquan.1926.v2",
+          "witnessId": "witness.nlc-ziping-xiangshen"
+        },
+        {
+          "exactByteLength": 68883628,
+          "exactByteSha256": "02f8771f69b6d5650ca3a20e629b9351a1f0f71c24f36f3eb11631495505f483",
+          "pageObservationIds": [
+            "page.ntl.ziping.v2.leaf-120-xiangshen",
+            "page.ntl.ziping.v2.leaf-121-xiangshen-continuation"
+          ],
+          "role": "historical_scan_b",
+          "scope": "PDF/scan pages 120–121 / printed folios 一九–二○ / 論相神 and continuation",
+          "sourceId": "source.ntl.ziping-zhenquan.1926.v2",
+          "witnessId": "witness.ntl-ziping-xiangshen"
+        },
+        {
+          "exactByteLength": 7126096,
+          "exactByteSha256": "71402a780b0351b54edf121a51bc4a4a4ce5896496c35b954563ee06f1a6f620",
+          "pageObservationIds": [
+            "page.commons.nlc.ziping.35296.page-39-xiangshen",
+            "page.commons.nlc.ziping.35296.page-40-xiangshen-continuation",
+            "page.commons.nlc.ziping.35296.page-45-next-heading"
+          ],
+          "role": "historical_scan_c_unresolved_date",
+          "scope": "NLC 35296 PDF pages 39–40 / printed pages 三十–三十一 plus PDF page 45 / printed page 三十六; direct phrase/heading locators only, with date and textual lineage unresolved",
+          "sourceId": "source.nlc.ziping-zhenquan.unknown-republican.scan-35296",
+          "witnessId": "witness.nlc-35296-xiangshen"
+        }
+      ],
+      "workIds": [
+        "ziping-zhenquan"
+      ]
+    },
+    {
+      "adjudicationStatus": "independence_unresolved",
+      "claimFamily": "foundational-seasonal-strength",
+      "claimId": "claim.qiongtong-spring-jia-wood",
+      "collation": {
+        "editorialLayer": "modern local rendering versus undated/1926/1937 institutional scans",
+        "observedComparison": "The local clause and surrounding page order were visually compared with the NLC 1926, NLC 1937, and Waseda scan runs; Waseda leaves 9–11 were additionally reviewed for the consecutive monthly 甲木 headings.",
+        "omissionsAdditions": [
+          "Full surrounding variants, plate genealogy, and author/editorial history are not resolved."
+        ],
+        "orderingDifferences": [
+          "The witness runs expose different leaf/page offsets; only bounded local sequence, adjacent-page order, and Waseda leaves 9–11 monthly-heading sequence are recorded."
+        ],
+        "rawSequence": [
+          "春月之木",
+          "漸有生長之象",
+          "初春猶有餘寒",
+          "當以火溫暖",
+          "則木無盤屈之變"
+        ],
+        "scope": "bounded_four_witness_raw_text",
+        "semanticEquivalenceResult": "bounded_same_clause_sequence; no authoritative semantic equivalence or edition selection",
+        "wordingVariants": [
+          "local simplified forms versus traditional institutional forms",
+          "annotation, punctuation, and vertical-layout differences remain witness-specific"
+        ]
+      },
+      "externalRecordIds": [],
+      "proposition": "Local 窮通寶鑑 p.3–p.5, NLC 1926 leaves 4–6, NLC 1937 leaves 13–15, and Waseda leaves 7–11 share a bounded seasonal page sequence; the Waseda run additionally exposes 正月甲木 / 二月甲木 / 三月甲木 headings on leaves 9–11.",
+      "readiness": {
+        "edition_collated": true,
+        "historical_witness_observed": true,
+        "independence_resolved": false,
+        "local_lineage_resolved": false,
+        "promotion_ready": false,
+        "readinessEvidence": {
+          "edition_collated": {
+            "evidenceRefs": [
+              "relation.qiongtong-jia-wood-season",
+              "page.nlc.qiongtong.v2.leaf-4-surrounding",
+              "page.nlc.qiongtong.1937.scan-48608.leaf-15-surrounding",
+              "page.waseda.qiongtong.undated.scan-f0111.leaf-9-surrounding",
+              "page.waseda.qiongtong.undated.scan-f0111.leaf-9-zhengyue-jia-mu",
+              "page.waseda.qiongtong.undated.scan-f0111.leaf-10-eryue-jia-mu",
+              "page.waseda.qiongtong.undated.scan-f0111.leaf-11-sanyue-jia-mu"
+            ],
+            "missingEdges": [],
+            "note": "Bounded page order, clause sequence, and Waseda monthly-heading sequence were compared.",
+            "status": "proven"
+          },
+          "historical_witness_observed": {
+            "evidenceRefs": [
+              "page.nlc.qiongtong.v2.leaf-5-spring-jia-wood",
+              "page.nlc.qiongtong.1937.scan-48608.leaf-14-spring-jia-wood",
+              "page.waseda.qiongtong.undated.scan-f0111.leaf-8",
+              "page.waseda.qiongtong.undated.scan-f0111.leaf-9-zhengyue-jia-mu",
+              "page.waseda.qiongtong.undated.scan-f0111.leaf-10-eryue-jia-mu",
+              "page.waseda.qiongtong.undated.scan-f0111.leaf-11-sanyue-jia-mu"
+            ],
+            "missingEdges": [],
+            "note": "Three historical scan sets were directly observed; the Waseda seasonal-heading run was extended through scan leaf 11.",
+            "status": "proven"
+          },
+          "independence_resolved": {
+            "evidenceRefs": [
+              "blocker.ditian-qiongtong-later-edited-print",
+              "blocker.cross-edition-collation"
+            ],
+            "missingEdges": [
+              "textual independence and edition relation across Waseda/NLC 1926/NLC 1937"
+            ],
+            "note": "Multiple scans may share a later edited transmission.",
+            "status": "missing"
+          },
+          "local_lineage_resolved": {
+            "evidenceRefs": [
+              "blocker.local-to-physical-item",
+              "lineage.waseda-qiongtong-undated-to-nlc-1926"
+            ],
+            "missingEdges": [
+              "local PDF -> any identified historical item",
+              "local export -> witness-set transmission path"
+            ],
+            "note": "Local lineage remains open.",
+            "status": "missing"
+          },
+          "promotion_ready": {
+            "evidenceRefs": [
+              "blocker.ditian-qiongtong-later-edited-print",
+              "blocker.cross-edition-collation"
+            ],
+            "missingEdges": [
+              "local lineage, independence, and authority gates"
+            ],
+            "note": "Promotion is fail-closed.",
+            "status": "missing"
+          },
+          "semantic_equivalence_checked": {
+            "evidenceRefs": [
+              "relation.qiongtong-jia-wood-season"
+            ],
+            "missingEdges": [],
+            "note": "Only a bounded raw clause comparison was checked.",
+            "status": "proven"
+          }
+        },
+        "semantic_equivalence_checked": true
+      },
+      "scope": "bounded raw clause and page-sequence correspondence across four witness sets; not authoritative edition or semantic rule",
+      "semanticAuthorityStatus": "not_established",
+      "sourceFrontierEvidence": {
+        "blockerIds": [
+          "blocker.ditian-qiongtong-later-edited-print",
+          "blocker.cross-edition-collation",
+          "blocker.local-to-physical-item"
+        ],
+        "claimRelationIds": [
+          "relation.qiongtong-jia-wood-season"
+        ],
+        "pageObservationIds": [
+          "page.local.qiongtong.p3-wood-section",
+          "page.local.qiongtong.p4-spring-jia-wood",
+          "page.local.qiongtong.p5-spring-jia-wood-continuation",
+          "page.nlc.qiongtong.v2.leaf-4-surrounding",
+          "page.nlc.qiongtong.v2.leaf-5-spring-jia-wood",
+          "page.nlc.qiongtong.v2.leaf-6-surrounding",
+          "page.nlc.qiongtong.1937.scan-48608.leaf-13-surrounding",
+          "page.nlc.qiongtong.1937.scan-48608.leaf-14-spring-jia-wood",
+          "page.nlc.qiongtong.1937.scan-48608.leaf-15-surrounding",
+          "page.waseda.qiongtong.undated.scan-f0111.leaf-7-surrounding",
+          "page.waseda.qiongtong.undated.scan-f0111.leaf-8",
+          "page.waseda.qiongtong.undated.scan-f0111.leaf-9-surrounding",
+          "page.waseda.qiongtong.undated.scan-f0111.leaf-9-zhengyue-jia-mu",
+          "page.waseda.qiongtong.undated.scan-f0111.leaf-10-eryue-jia-mu",
+          "page.waseda.qiongtong.undated.scan-f0111.leaf-11-sanyue-jia-mu"
+        ],
+        "sourceIds": [
+          "source.local.qiongtong-baojian-pdf",
+          "source.nlc.qiongtong-baojian.1926.v2",
+          "source.nlc.qiongtong-baojian.1937.scan-48608",
+          "source.waseda.qiongtong-baojian.undated.scan-f0111"
+        ]
+      },
+      "witnesses": [
+        {
+          "exactByteLength": 1547911,
+          "exactByteSha256": "36d54cdc995d203fdceafcb52b2a0d4f57093ab1765c532db5418b46a96c4b19",
+          "pageObservationIds": [
+            "page.local.qiongtong.p3-wood-section",
+            "page.local.qiongtong.p4-spring-jia-wood",
+            "page.local.qiongtong.p5-spring-jia-wood-continuation"
+          ],
+          "role": "local_text",
+          "scope": "local PDF pages 3–5",
+          "sourceId": "source.local.qiongtong-baojian-pdf",
+          "witnessId": "witness.local-qiongtong-spring-jia"
+        },
+        {
+          "exactByteLength": 4121030,
+          "exactByteSha256": "a64fa0d6ec4bfea80fafbcaa230bc65f476bf1efabca232934992bac4eb3f7f2",
+          "pageObservationIds": [
+            "page.nlc.qiongtong.v2.leaf-4-surrounding",
+            "page.nlc.qiongtong.v2.leaf-5-spring-jia-wood",
+            "page.nlc.qiongtong.v2.leaf-6-surrounding"
+          ],
+          "role": "historical_scan_a",
+          "scope": "scan leaves 4–6; printed folios 三–五",
+          "sourceId": "source.nlc.qiongtong-baojian.1926.v2",
+          "witnessId": "witness.nlc-qiongtong-1926"
+        },
+        {
+          "exactByteLength": 7487682,
+          "exactByteSha256": "b7f17fc7fcb7d8faa991efa74d0db391c5066a3793b3fc6787d2612bc6b350a8",
+          "pageObservationIds": [
+            "page.nlc.qiongtong.1937.scan-48608.leaf-13-surrounding",
+            "page.nlc.qiongtong.1937.scan-48608.leaf-14-spring-jia-wood",
+            "page.nlc.qiongtong.1937.scan-48608.leaf-15-surrounding"
+          ],
+          "role": "historical_scan_b",
+          "scope": "scan leaves 13–15; printed pages 5–6 where exposed",
+          "sourceId": "source.nlc.qiongtong-baojian.1937.scan-48608",
+          "witnessId": "witness.nlc-qiongtong-1937"
+        },
+        {
+          "exactByteLength": 82323986,
+          "exactByteSha256": "123ce84b44bd20ecfdd6538bffc413a5e3948598315cd99f857a5c985c7257ae",
+          "pageObservationIds": [
+            "page.waseda.qiongtong.undated.scan-f0111.leaf-7-surrounding",
+            "page.waseda.qiongtong.undated.scan-f0111.leaf-8",
+            "page.waseda.qiongtong.undated.scan-f0111.leaf-9-surrounding",
+            "page.waseda.qiongtong.undated.scan-f0111.leaf-9-zhengyue-jia-mu",
+            "page.waseda.qiongtong.undated.scan-f0111.leaf-10-eryue-jia-mu",
+            "page.waseda.qiongtong.undated.scan-f0111.leaf-11-sanyue-jia-mu"
+          ],
+          "role": "historical_scan_c",
+          "scope": "scan leaves 7–9; undated institutional scan",
+          "sourceId": "source.waseda.qiongtong-baojian.undated.scan-f0111",
+          "witnessId": "witness.waseda-qiongtong"
+        }
+      ],
+      "workIds": [
+        "qiongtong-baojian"
+      ]
+    }
+  ],
+  "contentSha256": "b3360d39aecf12f27932c72cfe0a9c529114aa90eceae191ad6ba4234b23d8ff",
+  "externalRecordObservations": [
+    {
+      "boundary": "This record corroborates a responsibility display and bibliographic identity; it does not identify the local PDF as the same physical item or establish textual independence.",
+      "canonicality": "direct_external_record_revalidation",
+      "independenceRole": "bibliographic_corroboration_only",
+      "institution": "CiNii Books",
+      "observedFields": [
+        "新刋合併官板音義評註淵海子平 5卷",
+        "（宋）徐升編 ; （明）楊淙校",
+        "崇禎七年孟冬吉日重梓",
+        "卷之1巻頭: 宋錢塘 東齋 徐升編 / 明清江 竹亭 楊淙増校 / 福建 余氏 鐫梓"
+      ],
+      "recordId": "record.cinii.yuanhai-bb08850892",
+      "recordType": "bibliographic_record",
+      "retrievedOn": "2026-08-15",
+      "semanticAuthority": "identity_record_only",
+      "url": "https://ci.nii.ac.jp/ncid/BB08850892?l=en"
+    },
+    {
+      "boundary": "This record is an external bibliographic identity layer; it does not prove that the local export, the SSID scan, and the cataloged institutional item share a physical or textual lineage.",
+      "canonicality": "direct_external_record_revalidation",
+      "independenceRole": "bibliographic_corroboration_only",
+      "institution": "Academy of Korean Studies Sillokwiki",
+      "observedFields": [
+        "저편자 서승(徐升) 편, 양종(楊淙) 증교(增校)",
+        "간행년일 1634년(명 숭정 7)",
+        "권책수 5권 2책",
+        "표제 신간합병관판음의평주연해자평",
+        "소장처 국립중앙도서관"
+      ],
+      "recordId": "record.aks.yuanhai-yanhaiziping",
+      "recordType": "institutional_bibliographic_record",
+      "retrievedOn": "2026-08-15",
+      "semanticAuthority": "identity_record_only",
+      "url": "https://dh.aks.ac.kr/sillokwiki/index.php/%EC%97%B0%ED%95%B4%EC%9E%90%ED%8F%89(%E6%B7%B5%E6%B5%B7%E5%AD%90%E5%B9%B3)"
+    }
+  ],
+  "inventory": {
+    "claimIds": [
+      "claim.qiongtong-spring-jia-wood",
+      "claim.yuanhai-dayun-start-age",
+      "claim.yuanhai-editorial-responsibility",
+      "claim.yuanhai-seasonal-lichun-clause",
+      "claim.ziping-xiangshen",
+      "claim.ziping-xingyun",
+      "claim.ziping-yongshin"
+    ],
+    "counts": {
+      "claims": 7,
+      "externalRecordObservations": 2,
+      "sourceFrontierEvidenceObservationIds": 49
+    },
+    "externalRecordIds": [
+      "record.aks.yuanhai-yanhaiziping",
+      "record.cinii.yuanhai-bb08850892"
+    ],
+    "sourceFrontierEvidenceObservationIds": [
+      "page.commons.nlc.ziping.35296.page-26-yongshin",
+      "page.commons.nlc.ziping.35296.page-27-yongshin-continuation",
+      "page.commons.nlc.ziping.35296.page-39-xiangshen",
+      "page.commons.nlc.ziping.35296.page-40-xiangshen-continuation",
+      "page.commons.nlc.ziping.35296.page-45-next-heading",
+      "page.commons.nlc.ziping.35296.page-56-dayun",
+      "page.commons.yuanhai.ssid-13003376.leaf-24-qiyun",
+      "page.commons.yuanhai.ssid-13003376.leaf-3-responsibility",
+      "page.commons.yuanhai.ssid-13003376.leaf-3-title",
+      "page.local.qiongtong.p3-wood-section",
+      "page.local.qiongtong.p4-spring-jia-wood",
+      "page.local.qiongtong.p5-spring-jia-wood-continuation",
+      "page.local.yuanhai.p4-seasonal-calendar",
+      "page.local.yuanhai.p9-dayun-section",
+      "page.local.ziping.p10-xiangshen",
+      "page.local.ziping.p11-xiangshen-continuation",
+      "page.local.ziping.p15-xingyun",
+      "page.local.ziping.p6-yongshin",
+      "page.local.ziping.p7-yongshin-continuation",
+      "page.nlc.qiongtong.1937.scan-48608.leaf-13-surrounding",
+      "page.nlc.qiongtong.1937.scan-48608.leaf-14-spring-jia-wood",
+      "page.nlc.qiongtong.1937.scan-48608.leaf-15-surrounding",
+      "page.nlc.qiongtong.v2.leaf-4-surrounding",
+      "page.nlc.qiongtong.v2.leaf-5-spring-jia-wood",
+      "page.nlc.qiongtong.v2.leaf-6-surrounding",
+      "page.nlc.yuanhai.99036.leaf-50-start-fortune",
+      "page.nlc.yuanhai.99036.leaf-52-seasonal-song",
+      "page.nlc.yuanhai.99036.leaf-53-seasonal-qi-song",
+      "page.nlc.ziping.v2.leaf-23-yongshin",
+      "page.nlc.ziping.v2.leaf-24-yongshin-continuation",
+      "page.nlc.ziping.v2.leaf-32-xiangshen",
+      "page.nlc.ziping.v2.leaf-33-xiangshen-continuation",
+      "page.nlc.ziping.v2.leaf-43-xingyun",
+      "page.nlc.ziping.v2.leaf-44-xingyun-continuation",
+      "page.ntl.ziping.v2.leaf-111-yongshin",
+      "page.ntl.ziping.v2.leaf-112-yongshin-continuation",
+      "page.ntl.ziping.v2.leaf-120-xiangshen",
+      "page.ntl.ziping.v2.leaf-121-xiangshen-continuation",
+      "page.ntl.ziping.v2.leaf-131-xingyun",
+      "page.ntl.ziping.v2.leaf-132-xingyun-continuation",
+      "page.tianyige.yuanhai.ming-chongzhen.scan-5007.leaf-18",
+      "page.tianyige.yuanhai.ming-chongzhen.scan-5007.leaf-19",
+      "page.tianyige.yuanhai.ming-chongzhen.scan-5007.leaf-3",
+      "page.waseda.qiongtong.undated.scan-f0111.leaf-10-eryue-jia-mu",
+      "page.waseda.qiongtong.undated.scan-f0111.leaf-11-sanyue-jia-mu",
+      "page.waseda.qiongtong.undated.scan-f0111.leaf-7-surrounding",
+      "page.waseda.qiongtong.undated.scan-f0111.leaf-8",
+      "page.waseda.qiongtong.undated.scan-f0111.leaf-9-surrounding",
+      "page.waseda.qiongtong.undated.scan-f0111.leaf-9-zhengyue-jia-mu"
+    ]
+  },
+  "readiness": {
+    "availableForInterpretation": false,
+    "productionActivation": "blocked",
+    "reason": "Claim-level page collations narrow the frontier but local lineage, edition identity, independence, and/or semantic authority remain unresolved for every candidate.",
+    "semanticAuthority": "not_established",
+    "stableClaimPromotionCount": 0,
+    "status": "blocked"
+  },
+  "researchDossierBoundary": {
+    "authorityImport": false,
+    "canonicalImport": false,
+    "independenceImport": false,
+    "note": "Attached Manus dossier documents and crop are research inputs only. Their conclusions, independence labels, and authority/readiness claims are not imported as canonical evidence.",
+    "paths": [
+      "/Users/softie/Downloads/명리 고전 PDF 5종의 판본·디지털 계통 독립 검증 연구보고서.md",
+      "/Users/softie/Downloads/문헌 관계 분석 메모.md",
+      "/Users/softie/Downloads/외부 자료 조사 기록.md",
+      "/Users/softie/Downloads/직접 관찰 기록.md",
+      "/Users/softie/Downloads/p3_responsibility_crop.png"
+    ],
+    "usedAs": "candidate_map_only"
+  },
+  "schemaVersion": "saju-five-classics-claim-adjudication-v0",
+  "sourceFrontier": {
+    "artifactPath": "artifacts/saju-five-classics-source-identity-frontier-v0/complete.json",
+    "artifactPayloadSha256": "0bfea06f16e0279d8cfb24dfb33aa023cf5469b9d146d699a343edd315d58d92",
+    "basisHead": "99e6cc624a1510487ad8bcf65347b3ee5f4e524e",
+    "contentSha256": "a8792a7ae2bd69df00456931f22ea6ffa2ba84a259e10424ef91ce0d4018a921",
+    "counts": {
+      "blockers": 7,
+      "claimRelations": 11,
+      "lineageRelations": 33,
+      "localTextWitnesses": 5,
+      "pageObservations": 144,
+      "sources": 30,
+      "works": 5
+    },
+    "schemaVersion": "saju-five-classics-source-identity-frontier-v0",
+    "version": "0.1.0"
+  },
+  "version": "0.1.0"
+}
