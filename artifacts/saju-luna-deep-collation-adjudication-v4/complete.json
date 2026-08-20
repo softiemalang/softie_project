@@ -1,0 +1,2952 @@
+{
+  "artifactIdentity": {
+    "artifactId": "saju-luna-deep-collation-adjudication-v4",
+    "artifactPayloadSha256": "245588a0e4daf6466cf72123fc150e596734060afaca2f404796669ae84930dd",
+    "contractVersion": "artifact-identity-v1",
+    "generation": {
+      "baseHead": "99e6cc624a1510487ad8bcf65347b3ee5f4e524e",
+      "baseHeadSource": "git rev-parse HEAD at materialization",
+      "includedCommit": null,
+      "includedCommitSource": "unknown_at_generation; artifact may be included by a later commit"
+    },
+    "inputs": [
+      {
+        "byteSha256": "7c9bfec3cd2ed082d009c521c03658c8905b475f2f165d3cbcbdc78c0b3fd126",
+        "path": "artifacts/saju-five-classics-source-identity-frontier-v0/complete.json"
+      },
+      {
+        "byteSha256": "25b4c2ecac56caa5dfad13e090b0844f0088240205da43a2beaa59c5a79bbb81",
+        "path": "artifacts/saju-five-classics-typed-readiness-contract-v0/complete.json"
+      },
+      {
+        "byteSha256": "ac5d9f08ee125b88a5ed24fdd06a82fad379ccf7964b86ecc0de3ffc95e8f910",
+        "path": "artifacts/saju-gemini-witness-dossier-adjudication-v1/complete.json"
+      },
+      {
+        "byteSha256": "3847c5f695bd7ca36c16b87401bf8e32d3fef350feef6ce5061190d466d50792",
+        "path": "artifacts/saju-gemini-witness-dossier-adjudication-v2/complete.json"
+      },
+      {
+        "byteSha256": "c2924ab1b53df096cfe222a134161029921838cc8ed96aefa750156f9449359f",
+        "path": "artifacts/saju-gemini-witness-dossier-adjudication-v3/complete.json"
+      },
+      {
+        "byteSha256": "0f8f092f818eeeb5eb10c7fc2abd1223c6dc6815b3c95e2061c4d0f579d873a7",
+        "path": "artifacts/saju-timing-authority-frontier-v0/complete.json"
+      },
+      {
+        "byteSha256": "87ed07016e58ac38a0eea3e3e5cb2d72ff2498db90d86db27f0710fc70888a96",
+        "path": "scripts/materialize-saju-luna-deep-collation-adjudication-v4.mjs"
+      },
+      {
+        "byteSha256": "5745991fbc31ea4747570844017c06facc4c6c15e205f3145bb357afb9f51712",
+        "path": "src/artifactIdentity.js"
+      },
+      {
+        "byteSha256": "6c8b5864ddf1cc9bbf57ab8f2fd61374fe0800cb4197ceabbe6f50f2ba406658",
+        "path": "src/interpretationPrep/sajuFiveClassicsSourceIdentityFrontier.js"
+      },
+      {
+        "byteSha256": "0f35889e692205c471bbf1336436d29f2e298abb056aa5657cb1873816fa2dd9",
+        "path": "src/interpretationPrep/sajuFiveClassicsTypedReadinessContract.js"
+      },
+      {
+        "byteSha256": "14a87824afb41efc21ea83ffb949d2464617a4e21a2fbb146da0c31386f8ab20",
+        "path": "src/interpretationPrep/sajuGeminiWitnessDossierAdjudication.js"
+      },
+      {
+        "byteSha256": "70d9d90184d54eb7d019db500789439ae4d55a428a10f1ad4842845efb70a59a",
+        "path": "src/interpretationPrep/sajuGeminiWitnessDossierAdjudicationV2.js"
+      },
+      {
+        "byteSha256": "b1d403a1abe852221f5326e50bdaf97c76dc47b570a96069b157ded3612b8a97",
+        "path": "src/interpretationPrep/sajuGeminiWitnessDossierAdjudicationV3.js"
+      },
+      {
+        "byteSha256": "5a5fecf044708ea052bdc9f73d0e70e7cb1a6c5e4f58be9a1b2b0d7ff6b2866f",
+        "path": "src/interpretationPrep/sajuLunaDeepCollationAdjudicationV4.js"
+      },
+      {
+        "byteSha256": "0a3a3bfdd484e708210e6ec0a13f339d22603fc6c389b8a4cca28415c9c4d7b0",
+        "path": "src/interpretationPrep/sajuTimingAuthorityFrontier.js"
+      }
+    ],
+    "materializer": {
+      "path": "scripts/materialize-saju-luna-deep-collation-adjudication-v4.mjs",
+      "version": "4.0.0"
+    }
+  },
+  "basisHead": "99e6cc624a1510487ad8bcf65347b3ee5f4e524e",
+  "blockerLedger": {
+    "falseBlockers": [
+      {
+        "blockerId": "false.v4-candidate-packet-as-adjudication",
+        "note": "Candidate dossier is untrusted input.",
+        "status": "not_evidence"
+      },
+      {
+        "blockerId": "false.k3-preface-date-as-copy-date",
+        "note": "Preface date does not date the current K3-437 copy.",
+        "status": "not_evidence"
+      },
+      {
+        "blockerId": "false.nlc-catalog-window-as-exact-date",
+        "note": "清[1644-1911] is a broad catalog field.",
+        "status": "not_evidence"
+      }
+    ],
+    "realBlockers": [
+      {
+        "blockerId": "blocker.A.edition-textual-lineage",
+        "edge": "L/I/P",
+        "reason": "K3-437 and NLC 06857 have actual item/digital identities, but no dated copy/edition/transmission relation or colophon closes textual lineage."
+      },
+      {
+        "blockerId": "blocker.D.third-witness-target-page",
+        "edge": "H/E/L/S/I/P",
+        "reason": "Wonkwang has no parent-verified first-party item record or 卷33 page; Sonkeikaku access is temporarily blocked and no item/page was verified."
+      }
+    ]
+  },
+  "candidatePacket": {
+    "actualModelRuntimeVerified": false,
+    "campaign": "LUNA-DEEP-COLLATION-CAMPAIGN-V4",
+    "executionRole": "Gemini 3.7 Flash High (Acquisition Agent)",
+    "importedAsCanonicalEvidence": false,
+    "importedConclusionFields": [],
+    "modelClaimedByUser": "Gemini 3.7 Flash High v4",
+    "packetFiles": [
+      {
+        "byteLength": 10386,
+        "byteSha256": "49f1408be79509ea5d1f598eafd3e63d9fe74ea290ddd156aa63e36170ecfc16",
+        "path": "/Users/softie/.gemini/antigravity-cli/brain/ebb37c1a-b791-4d55-92c3-0d4022511694/luna-deep-collation-packet-v4.md",
+        "role": "packet"
+      },
+      {
+        "byteLength": 7669,
+        "byteSha256": "046e2e824fdc4011227e5b7b982802707591caecf903ef9c045906cc9f365f37",
+        "path": "/Users/softie/.gemini/antigravity-cli/brain/ebb37c1a-b791-4d55-92c3-0d4022511694/luna-deep-collation-matrix-v4.json",
+        "role": "matrix"
+      },
+      {
+        "byteLength": 180,
+        "byteSha256": "b69e5c0572e29822ec9d5c5e16e4eb7fcde720b4064c99d2916fd99d8385972c",
+        "path": "/Users/softie/.gemini/antigravity-cli/brain/ebb37c1a-b791-4d55-92c3-0d4022511694/luna-deep-collation-packet-v4.md.metadata.json",
+        "role": "packet_metadata"
+      },
+      {
+        "byteLength": 180,
+        "byteSha256": "6d4d3ae365534b3850194ed9af10ab5a4fe183b6209ff4f9bf070d676a0e9893",
+        "path": "/Users/softie/.gemini/antigravity-cli/brain/ebb37c1a-b791-4d55-92c3-0d4022511694/luna-deep-collation-matrix-v4.json.metadata.json",
+        "role": "matrix_metadata"
+      }
+    ],
+    "packetSchemaVersion": "4.0.0",
+    "selfDeclaredAdjudicationBoundary": "non_adjudicative",
+    "sourceTextAndVerdictsImported": false,
+    "trustBoundary": "untrusted_candidate_only"
+  },
+  "claims": [
+    {
+      "blockerAssessment": {
+        "falseBlockers": [
+          {
+            "blockerId": "false.v4-candidate-conclusion-as-proof",
+            "edge": "all-gates",
+            "reason": "Gemini v4 is untrusted candidate input; candidate transcription, metadata, and conclusions are not parent verification."
+          },
+          {
+            "blockerId": "false.digital-object-equals-physical-witness",
+            "edge": "I.digital-derivation",
+            "reason": "A different digital file does not create another physical item."
+          },
+          {
+            "blockerId": "false.same-passage-equals-independent-lineage",
+            "edge": "I.edition/textual-lineage",
+            "reason": "Textual similarity or a textual variant does not establish independent edition or transmission lineage."
+          }
+        ],
+        "realBlockers": [
+          {
+            "blockerId": "blocker.A.edition-textual-lineage",
+            "edge": "L/I/P",
+            "reason": "K3-437 and NLC 06857 have actual item/digital identities, but no dated copy/edition/transmission relation or colophon closes textual lineage."
+          }
+        ]
+      },
+      "candidateAssertion": "The Gemini v4 variant map is parent-verified as a bounded K3-437↔NLC 114503.0 crosswalk only.",
+      "candidateEvidenceAccepted": false,
+      "claimId": "claim.A.k3-nlc-variant-crosswalk",
+      "gates": {
+        "E": "satisfied",
+        "H": "satisfied",
+        "I": "unresolved",
+        "L": "unresolved",
+        "P": "unresolved",
+        "S": "satisfied"
+      },
+      "independence": {
+        "digital-derivation": {
+          "countedAsIndependent": false,
+          "evidenceRefs": [
+            "ev.A.k3-official-scan",
+            "ev.A.nlc-derivative-scan"
+          ],
+          "missingEdges": [
+            "official NLC source-bitstream equality"
+          ],
+          "note": "Distinct digital objects are observed; digital distinction is not physical independence.",
+          "state": "satisfied"
+        },
+        "edition/textual-lineage": {
+          "countedAsIndependent": false,
+          "evidenceRefs": [
+            "ev.A.k3-official-record",
+            "ev.A.nlc-official-record"
+          ],
+          "missingEdges": [
+            "dated transmission/edition relation"
+          ],
+          "note": "Unresolved.",
+          "state": "unresolved"
+        },
+        "physical-item": {
+          "countedAsIndependent": false,
+          "evidenceRefs": [
+            "ev.A.k3-official-record",
+            "ev.A.nlc-official-record"
+          ],
+          "missingEdges": [],
+          "note": "Two item identities are observed, not counted as independent textual witnesses.",
+          "state": "satisfied"
+        },
+        "semantic-corroboration": {
+          "countedAsIndependent": false,
+          "evidenceRefs": [
+            "obs.A.k3-p72-worked-example",
+            "obs.A.nlc-p106-worked-example"
+          ],
+          "missingEdges": [
+            "independent textual lineage"
+          ],
+          "note": "Bounded correspondence is recorded separately.",
+          "state": "unresolved"
+        }
+      },
+      "parentVerifiedEvidenceRefs": [
+        "ev.A.k3-official-scan",
+        "ev.A.nlc-derivative-scan",
+        "obs.A.k3-p72-worked-example",
+        "obs.A.nlc-p105-formula",
+        "obs.A.nlc-p106-worked-example"
+      ],
+      "promotion": {
+        "ready": false,
+        "reason": "Bounded parent-verified evidence is additive only; no semantic authority, interpretation readiness, implementation grounding, or production activation is granted.",
+        "status": "blocked",
+        "target": "historical_observation_stability"
+      },
+      "scopeCorrection": "VAR-01 is a verified actual difference. VAR-02–VAR-06 correct or reject candidate-side alternatives after direct reading; no normalization or OCR reading is promoted.",
+      "status": "partially_supported",
+      "unit": "A"
+    },
+    {
+      "blockerAssessment": {
+        "falseBlockers": [
+          {
+            "blockerId": "false.v4-candidate-conclusion-as-proof",
+            "edge": "all-gates",
+            "reason": "Gemini v4 is untrusted candidate input; candidate transcription, metadata, and conclusions are not parent verification."
+          },
+          {
+            "blockerId": "false.digital-object-equals-physical-witness",
+            "edge": "I.digital-derivation",
+            "reason": "A different digital file does not create another physical item."
+          },
+          {
+            "blockerId": "false.same-passage-equals-independent-lineage",
+            "edge": "I.edition/textual-lineage",
+            "reason": "Textual similarity or a textual variant does not establish independent edition or transmission lineage."
+          }
+        ],
+        "realBlockers": [
+          {
+            "blockerId": "blocker.A.edition-textual-lineage",
+            "edge": "L/I/P",
+            "reason": "K3-437 and NLC 06857 have actual item/digital identities, but no dated copy/edition/transmission relation or colophon closes textual lineage."
+          }
+        ]
+      },
+      "candidateAssertion": "K3-437 is an institutionally identified 34-volume/6-book woodblock item with an undated publication field and direct target scan.",
+      "candidateEvidenceAccepted": false,
+      "claimId": "claim.B.k3-437-identity-and-copy-boundary",
+      "gates": {
+        "E": "satisfied",
+        "H": "satisfied",
+        "I": "unresolved",
+        "L": "unresolved",
+        "P": "unresolved",
+        "S": "not_applicable"
+      },
+      "independence": {
+        "digital-derivation": {
+          "countedAsIndependent": false,
+          "evidenceRefs": [
+            "ev.A.k3-official-scan"
+          ],
+          "missingEdges": [],
+          "note": "Official-hosted PDF identity.",
+          "state": "satisfied"
+        },
+        "edition/textual-lineage": {
+          "countedAsIndependent": false,
+          "evidenceRefs": [],
+          "missingEdges": [
+            "edition/textual-lineage evidence"
+          ],
+          "note": "No independence promotion.",
+          "state": "unresolved"
+        },
+        "physical-item": {
+          "countedAsIndependent": false,
+          "evidenceRefs": [
+            "ev.A.k3-official-record"
+          ],
+          "missingEdges": [],
+          "note": "Official item identity.",
+          "state": "satisfied"
+        },
+        "semantic-corroboration": {
+          "countedAsIndependent": false,
+          "evidenceRefs": [],
+          "missingEdges": [
+            "semantic-corroboration evidence"
+          ],
+          "note": "No independence promotion.",
+          "state": "unresolved"
+        }
+      },
+      "parentVerifiedEvidenceRefs": [
+        "ev.A.k3-official-record",
+        "ev.A.k3-official-scan",
+        "ev.B.k3-preface-provenance-boundary"
+      ],
+      "promotion": {
+        "ready": false,
+        "reason": "Bounded parent-verified evidence is additive only; no semantic authority, interpretation readiness, implementation grounding, or production activation is granted.",
+        "status": "blocked",
+        "target": "historical_observation_stability"
+      },
+      "scopeCorrection": "四周雙邊 is the parent-verified first-party layout field; the v4 四周單邊 candidate field is corrected. Preface dates, seals, and author labels do not date the current copy.",
+      "status": "supported",
+      "unit": "B"
+    },
+    {
+      "blockerAssessment": {
+        "falseBlockers": [
+          {
+            "blockerId": "false.v4-candidate-conclusion-as-proof",
+            "edge": "all-gates",
+            "reason": "Gemini v4 is untrusted candidate input; candidate transcription, metadata, and conclusions are not parent verification."
+          },
+          {
+            "blockerId": "false.digital-object-equals-physical-witness",
+            "edge": "I.digital-derivation",
+            "reason": "A different digital file does not create another physical item."
+          },
+          {
+            "blockerId": "false.same-passage-equals-independent-lineage",
+            "edge": "I.edition/textual-lineage",
+            "reason": "Textual similarity or a textual variant does not establish independent edition or transmission lineage."
+          }
+        ],
+        "realBlockers": [
+          {
+            "blockerId": "blocker.A.edition-textual-lineage",
+            "edge": "L/I/P",
+            "reason": "K3-437 and NLC 06857 have actual item/digital identities, but no dated copy/edition/transmission relation or colophon closes textual lineage."
+          }
+        ]
+      },
+      "candidateAssertion": "NLC 06857 / fid 411999013122 / volume object 114503.0 is an institutionally identified manuscript-copy record with a parent-verified public derivative target scan.",
+      "candidateEvidenceAccepted": false,
+      "claimId": "claim.B.nlc-06857-identity-and-derivative-boundary",
+      "gates": {
+        "E": "satisfied",
+        "H": "satisfied",
+        "I": "unresolved",
+        "L": "unresolved",
+        "P": "unresolved",
+        "S": "not_applicable"
+      },
+      "independence": {
+        "digital-derivation": {
+          "countedAsIndependent": false,
+          "evidenceRefs": [
+            "ev.A.nlc-reader-object",
+            "ev.A.nlc-derivative-scan"
+          ],
+          "missingEdges": [
+            "original NLC bitstream equality"
+          ],
+          "note": "Reader object and public derivative are tracked separately.",
+          "state": "satisfied"
+        },
+        "edition/textual-lineage": {
+          "countedAsIndependent": false,
+          "evidenceRefs": [],
+          "missingEdges": [
+            "edition/textual-lineage evidence"
+          ],
+          "note": "No independence promotion.",
+          "state": "unresolved"
+        },
+        "physical-item": {
+          "countedAsIndependent": false,
+          "evidenceRefs": [
+            "ev.A.nlc-official-record"
+          ],
+          "missingEdges": [],
+          "note": "Official record identity.",
+          "state": "satisfied"
+        },
+        "semantic-corroboration": {
+          "countedAsIndependent": false,
+          "evidenceRefs": [],
+          "missingEdges": [
+            "semantic-corroboration evidence"
+          ],
+          "note": "No independence promotion.",
+          "state": "unresolved"
+        }
+      },
+      "parentVerifiedEvidenceRefs": [
+        "ev.A.nlc-official-record",
+        "ev.A.nlc-reader-object",
+        "ev.A.nlc-derivative-scan",
+        "ev.B.nlc-provenance-lineage-boundary"
+      ],
+      "promotion": {
+        "ready": false,
+        "reason": "Bounded parent-verified evidence is additive only; no semantic authority, interpretation readiness, implementation grounding, or production activation is granted.",
+        "status": "blocked",
+        "target": "historical_observation_stability"
+      },
+      "scopeCorrection": "The NLC catalog range 清[1644-1911] and 海虞瞿氏恬裕齋 field remain catalogue/reader metadata; no exact copy date or lineage is asserted.",
+      "status": "partially_supported",
+      "unit": "B"
+    },
+    {
+      "blockerAssessment": {
+        "falseBlockers": [
+          {
+            "blockerId": "false.v4-candidate-conclusion-as-proof",
+            "edge": "all-gates",
+            "reason": "Gemini v4 is untrusted candidate input; candidate transcription, metadata, and conclusions are not parent verification."
+          },
+          {
+            "blockerId": "false.digital-object-equals-physical-witness",
+            "edge": "I.digital-derivation",
+            "reason": "A different digital file does not create another physical item."
+          },
+          {
+            "blockerId": "false.same-passage-equals-independent-lineage",
+            "edge": "I.edition/textual-lineage",
+            "reason": "Textual similarity or a textual variant does not establish independent edition or transmission lineage."
+          }
+        ],
+        "realBlockers": [
+          {
+            "blockerId": "blocker.A.edition-textual-lineage",
+            "edge": "L/I/P",
+            "reason": "K3-437 and NLC 06857 have actual item/digital identities, but no dated copy/edition/transmission relation or colophon closes textual lineage."
+          }
+        ]
+      },
+      "candidateAssertion": "K3-437 and NLC 06857 can be assigned independent edition/textual lineages from their item metadata and observed variants.",
+      "candidateEvidenceAccepted": false,
+      "claimId": "claim.C.edition-textual-lineage-remains-unresolved",
+      "gates": {
+        "E": "satisfied",
+        "H": "satisfied",
+        "I": "unresolved",
+        "L": "unresolved",
+        "P": "unresolved",
+        "S": "unresolved"
+      },
+      "independence": {
+        "digital-derivation": {
+          "countedAsIndependent": false,
+          "evidenceRefs": [
+            "ev.A.k3-official-scan",
+            "ev.A.nlc-derivative-scan"
+          ],
+          "missingEdges": [
+            "official source-bitstream equality"
+          ],
+          "note": "Distinct digital paths.",
+          "state": "satisfied"
+        },
+        "edition/textual-lineage": {
+          "countedAsIndependent": false,
+          "evidenceRefs": [
+            "ev.B.k3-preface-provenance-boundary",
+            "ev.B.nlc-provenance-lineage-boundary"
+          ],
+          "missingEdges": [
+            "dated copy relation",
+            "colophon/transmission evidence"
+          ],
+          "note": "Unresolved.",
+          "state": "unresolved"
+        },
+        "physical-item": {
+          "countedAsIndependent": false,
+          "evidenceRefs": [
+            "ev.A.k3-official-record",
+            "ev.A.nlc-official-record"
+          ],
+          "missingEdges": [],
+          "note": "Distinct holdings.",
+          "state": "satisfied"
+        },
+        "semantic-corroboration": {
+          "countedAsIndependent": false,
+          "evidenceRefs": [
+            "obs.A.k3-p72-worked-example",
+            "obs.A.nlc-p106-worked-example"
+          ],
+          "missingEdges": [
+            "independent lineage"
+          ],
+          "note": "Unresolved.",
+          "state": "unresolved"
+        }
+      },
+      "parentVerifiedEvidenceRefs": [
+        "ev.A.k3-official-record",
+        "ev.A.nlc-official-record",
+        "ev.B.k3-preface-provenance-boundary",
+        "ev.B.nlc-provenance-lineage-boundary",
+        "claim.A.k3-nlc-variant-crosswalk"
+      ],
+      "promotion": {
+        "ready": false,
+        "reason": "Bounded parent-verified evidence is additive only; no semantic authority, interpretation readiness, implementation grounding, or production activation is granted.",
+        "status": "blocked",
+        "target": "lineage_specific_stability"
+      },
+      "scopeCorrection": "Different institutions, formats, and the verified 申時 omission are evidence to narrow the relation, not proof of independent lineage. No Song print, ancient manuscript, Joseon official/academy lineage, or canonical edition is declared.",
+      "status": "unresolved",
+      "unit": "C"
+    },
+    {
+      "blockerAssessment": {
+        "falseBlockers": [
+          {
+            "blockerId": "false.v4-candidate-conclusion-as-proof",
+            "edge": "all-gates",
+            "reason": "Gemini v4 is untrusted candidate input; candidate transcription, metadata, and conclusions are not parent verification."
+          },
+          {
+            "blockerId": "false.digital-object-equals-physical-witness",
+            "edge": "I.digital-derivation",
+            "reason": "A different digital file does not create another physical item."
+          },
+          {
+            "blockerId": "false.same-passage-equals-independent-lineage",
+            "edge": "I.edition/textual-lineage",
+            "reason": "Textual similarity or a textual variant does not establish independent edition or transmission lineage."
+          }
+        ],
+        "realBlockers": [
+          {
+            "blockerId": "blocker.A.edition-textual-lineage",
+            "edge": "L/I/P",
+            "reason": "K3-437 and NLC 06857 have actual item/digital identities, but no dated copy/edition/transmission relation or colophon closes textual lineage."
+          }
+        ]
+      },
+      "candidateAssertion": "Within the bounded 卷33 / 甲子陽男 scope, the two directly read pages preserve the same ordered worked-example calculation and expanded 約法 critique, subject to the verified first-clause 申時 omission.",
+      "candidateEvidenceAccepted": false,
+      "claimId": "claim.C.bounded-worked-example-correspondence",
+      "gates": {
+        "E": "satisfied",
+        "H": "satisfied",
+        "I": "unresolved",
+        "L": "unresolved",
+        "P": "unresolved",
+        "S": "satisfied"
+      },
+      "independence": {
+        "digital-derivation": {
+          "countedAsIndependent": false,
+          "evidenceRefs": [
+            "ev.A.k3-official-scan",
+            "ev.A.nlc-derivative-scan"
+          ],
+          "missingEdges": [
+            "official NLC source-bitstream equality"
+          ],
+          "note": "Two digital objects observed.",
+          "state": "satisfied"
+        },
+        "edition/textual-lineage": {
+          "countedAsIndependent": false,
+          "evidenceRefs": [
+            "ev.B.k3-preface-provenance-boundary",
+            "ev.B.nlc-provenance-lineage-boundary"
+          ],
+          "missingEdges": [
+            "independent lineage"
+          ],
+          "note": "Unresolved.",
+          "state": "unresolved"
+        },
+        "physical-item": {
+          "countedAsIndependent": false,
+          "evidenceRefs": [
+            "ev.A.k3-official-record",
+            "ev.A.nlc-official-record"
+          ],
+          "missingEdges": [],
+          "note": "Two actual holdings observed.",
+          "state": "satisfied"
+        },
+        "semantic-corroboration": {
+          "countedAsIndependent": false,
+          "evidenceRefs": [
+            "obs.A.k3-p72-worked-example",
+            "obs.A.nlc-p106-worked-example"
+          ],
+          "missingEdges": [
+            "independent lineage/semantic authority"
+          ],
+          "note": "The bounded correspondence does not satisfy this independence axis.",
+          "state": "unresolved"
+        }
+      },
+      "parentVerifiedEvidenceRefs": [
+        "obs.A.k3-p72-worked-example",
+        "obs.A.nlc-p106-worked-example",
+        "VAR-01",
+        "VAR-06"
+      ],
+      "promotion": {
+        "ready": false,
+        "reason": "Bounded parent-verified evidence is additive only; no semantic authority, interpretation readiness, implementation grounding, or production activation is granted.",
+        "status": "blocked",
+        "target": "historical_observation_stability"
+      },
+      "scopeCorrection": "This is the only bounded semantic/correspondence admission. It is not implementation authority and is not a production-safe rule.",
+      "status": "supported",
+      "unit": "C"
+    },
+    {
+      "blockerAssessment": {
+        "falseBlockers": [
+          {
+            "blockerId": "false.v4-candidate-conclusion-as-proof",
+            "edge": "all-gates",
+            "reason": "Gemini v4 is untrusted candidate input; candidate transcription, metadata, and conclusions are not parent verification."
+          },
+          {
+            "blockerId": "false.digital-object-equals-physical-witness",
+            "edge": "I.digital-derivation",
+            "reason": "A different digital file does not create another physical item."
+          },
+          {
+            "blockerId": "false.same-passage-equals-independent-lineage",
+            "edge": "I.edition/textual-lineage",
+            "reason": "Textual similarity or a textual variant does not establish independent edition or transmission lineage."
+          }
+        ],
+        "realBlockers": [
+          {
+            "blockerId": "blocker.D.third-witness-target-page",
+            "edge": "H/E/L/S/I/P",
+            "reason": "Wonkwang has no parent-verified first-party item record or 卷33 page; Sonkeikaku access is temporarily blocked and no item/page was verified."
+          }
+        ]
+      },
+      "candidateAssertion": "Wonkwang first-party records verify a 34-volume 五行精紀 item, 乙亥字本(1455), and an actual 卷33 scan.",
+      "candidateEvidenceAccepted": false,
+      "claimId": "claim.D.wonkwang-third-witness-reality",
+      "gates": {
+        "E": "unresolved",
+        "H": "unresolved",
+        "I": "unresolved",
+        "L": "unresolved",
+        "P": "unresolved",
+        "S": "unresolved"
+      },
+      "independence": {
+        "digital-derivation": {
+          "countedAsIndependent": false,
+          "evidenceRefs": [],
+          "missingEdges": [
+            "digital-derivation evidence"
+          ],
+          "note": "No independence promotion.",
+          "state": "unresolved"
+        },
+        "edition/textual-lineage": {
+          "countedAsIndependent": false,
+          "evidenceRefs": [],
+          "missingEdges": [
+            "edition/textual-lineage evidence"
+          ],
+          "note": "No independence promotion.",
+          "state": "unresolved"
+        },
+        "physical-item": {
+          "countedAsIndependent": false,
+          "evidenceRefs": [],
+          "missingEdges": [
+            "physical-item evidence"
+          ],
+          "note": "No independence promotion.",
+          "state": "unresolved"
+        },
+        "semantic-corroboration": {
+          "countedAsIndependent": false,
+          "evidenceRefs": [],
+          "missingEdges": [
+            "semantic-corroboration evidence"
+          ],
+          "note": "No independence promotion.",
+          "state": "unresolved"
+        }
+      },
+      "parentVerifiedEvidenceRefs": [
+        "ev.D.wonkwang-bounded-search"
+      ],
+      "promotion": {
+        "ready": false,
+        "reason": "Bounded parent-verified evidence is additive only; no semantic authority, interpretation readiness, implementation grounding, or production activation is granted.",
+        "status": "blocked",
+        "target": "lineage_specific_stability"
+      },
+      "scopeCorrection": "Keep as INSTITUTIONAL_METADATA/PHYSICAL_ITEM_CANDIDATE only. No Wonkwang item ID, first-party edition/date record, 卷33 inclusion record, or page bytes were found in the bounded search. 1455 is rejected as unverified.",
+      "status": "unresolved",
+      "unit": "D"
+    },
+    {
+      "blockerAssessment": {
+        "falseBlockers": [
+          {
+            "blockerId": "false.v4-candidate-conclusion-as-proof",
+            "edge": "all-gates",
+            "reason": "Gemini v4 is untrusted candidate input; candidate transcription, metadata, and conclusions are not parent verification."
+          },
+          {
+            "blockerId": "false.digital-object-equals-physical-witness",
+            "edge": "I.digital-derivation",
+            "reason": "A different digital file does not create another physical item."
+          },
+          {
+            "blockerId": "false.same-passage-equals-independent-lineage",
+            "edge": "I.edition/textual-lineage",
+            "reason": "Textual similarity or a textual variant does not establish independent edition or transmission lineage."
+          }
+        ],
+        "realBlockers": [
+          {
+            "blockerId": "blocker.D.third-witness-target-page",
+            "edge": "H/E/L/S/I/P",
+            "reason": "Wonkwang has no parent-verified first-party item record or 卷33 page; Sonkeikaku access is temporarily blocked and no item/page was verified."
+          }
+        ]
+      },
+      "candidateAssertion": "Sonkeikaku first-party records verify a complete 34-volume old-book/宋版/古鈔本 五行精紀 with accessible 卷33 reproduction.",
+      "candidateEvidenceAccepted": false,
+      "claimId": "claim.D.sonkeikaku-third-witness-reality",
+      "gates": {
+        "E": "unresolved",
+        "H": "unresolved",
+        "I": "unresolved",
+        "L": "unresolved",
+        "P": "unresolved",
+        "S": "unresolved"
+      },
+      "independence": {
+        "digital-derivation": {
+          "countedAsIndependent": false,
+          "evidenceRefs": [],
+          "missingEdges": [
+            "digital-derivation evidence"
+          ],
+          "note": "No independence promotion.",
+          "state": "unresolved"
+        },
+        "edition/textual-lineage": {
+          "countedAsIndependent": false,
+          "evidenceRefs": [],
+          "missingEdges": [
+            "edition/textual-lineage evidence"
+          ],
+          "note": "No independence promotion.",
+          "state": "unresolved"
+        },
+        "physical-item": {
+          "countedAsIndependent": false,
+          "evidenceRefs": [],
+          "missingEdges": [
+            "physical-item evidence"
+          ],
+          "note": "No independence promotion.",
+          "state": "unresolved"
+        },
+        "semantic-corroboration": {
+          "countedAsIndependent": false,
+          "evidenceRefs": [],
+          "missingEdges": [
+            "semantic-corroboration evidence"
+          ],
+          "note": "No independence promotion.",
+          "state": "unresolved"
+        }
+      },
+      "parentVerifiedEvidenceRefs": [
+        "ev.D.sonkeikaku-access-block"
+      ],
+      "promotion": {
+        "ready": false,
+        "reason": "Bounded parent-verified evidence is additive only; no semantic authority, interpretation readiness, implementation grounding, or production activation is granted.",
+        "status": "blocked",
+        "target": "lineage_specific_stability"
+      },
+      "scopeCorrection": "The official access route was unavailable during the bounded check. Retain the Gemini report as a physical-item candidate only; no item identity, edition/date, 卷33 page, or corroboration is admitted.",
+      "status": "unresolved",
+      "unit": "D"
+    },
+    {
+      "blockerAssessment": {
+        "falseBlockers": [
+          {
+            "blockerId": "false.v4-candidate-conclusion-as-proof",
+            "edge": "all-gates",
+            "reason": "Gemini v4 is untrusted candidate input; candidate transcription, metadata, and conclusions are not parent verification."
+          },
+          {
+            "blockerId": "false.digital-object-equals-physical-witness",
+            "edge": "I.digital-derivation",
+            "reason": "A different digital file does not create another physical item."
+          },
+          {
+            "blockerId": "false.same-passage-equals-independent-lineage",
+            "edge": "I.edition/textual-lineage",
+            "reason": "Textual similarity or a textual variant does not establish independent edition or transmission lineage."
+          }
+        ],
+        "realBlockers": [
+          {
+            "blockerId": "blocker.A.edition-textual-lineage",
+            "edge": "L/I/P",
+            "reason": "K3-437 and NLC 06857 have actual item/digital identities, but no dated copy/edition/transmission relation or colophon closes textual lineage."
+          },
+          {
+            "blockerId": "blocker.D.third-witness-target-page",
+            "edge": "H/E/L/S/I/P",
+            "reason": "Wonkwang has no parent-verified first-party item record or 卷33 page; Sonkeikaku access is temporarily blocked and no item/page was verified."
+          }
+        ]
+      },
+      "candidateAssertion": "Gemini v4 resolves Units A–E and promotes the witnesses for interpretation/implementation.",
+      "candidateEvidenceAccepted": false,
+      "claimId": "claim.E.v4-all-units-resolved",
+      "gates": {
+        "E": "unresolved",
+        "H": "unresolved",
+        "I": "unresolved",
+        "L": "unresolved",
+        "P": "unresolved",
+        "S": "unresolved"
+      },
+      "independence": {
+        "digital-derivation": {
+          "countedAsIndependent": false,
+          "evidenceRefs": [],
+          "missingEdges": [
+            "digital-derivation evidence"
+          ],
+          "note": "No independence promotion.",
+          "state": "unresolved"
+        },
+        "edition/textual-lineage": {
+          "countedAsIndependent": false,
+          "evidenceRefs": [],
+          "missingEdges": [
+            "edition/textual-lineage evidence"
+          ],
+          "note": "No independence promotion.",
+          "state": "unresolved"
+        },
+        "physical-item": {
+          "countedAsIndependent": false,
+          "evidenceRefs": [],
+          "missingEdges": [
+            "physical-item evidence"
+          ],
+          "note": "No independence promotion.",
+          "state": "unresolved"
+        },
+        "semantic-corroboration": {
+          "countedAsIndependent": false,
+          "evidenceRefs": [],
+          "missingEdges": [
+            "semantic-corroboration evidence"
+          ],
+          "note": "No independence promotion.",
+          "state": "unresolved"
+        }
+      },
+      "parentVerifiedEvidenceRefs": [
+        "ev.packet.v4-file-identity",
+        "claim.A.k3-nlc-variant-crosswalk",
+        "claim.C.edition-textual-lineage-remains-unresolved",
+        "claim.D.wonkwang-third-witness-reality",
+        "claim.D.sonkeikaku-third-witness-reality"
+      ],
+      "promotion": {
+        "ready": false,
+        "reason": "Bounded parent-verified evidence is additive only; no semantic authority, interpretation readiness, implementation grounding, or production activation is granted.",
+        "status": "blocked",
+        "target": "implementation_safe_grounding"
+      },
+      "scopeCorrection": "The candidate is retained as acquisition input only. No availableForInterpretation, semantic authority, implementation-safe grounding, canonical edition, or activation transition is allowed.",
+      "status": "unsupported",
+      "unit": "E"
+    }
+  ],
+  "crosswalk": [
+    {
+      "directObservationIds": [
+        "obs.A.k3-p71-heading",
+        "obs.A.nlc-p105-formula"
+      ],
+      "k3PdfPages": [
+        71
+      ],
+      "k3PrintedFolio": null,
+      "nlcPdfPages": [
+        105
+      ],
+      "nlcPrintedFolios": [
+        "一"
+      ],
+      "relation": "same 卷33 section; title display differs as 論大運 versus 大運",
+      "scopeId": "卷33-heading"
+    },
+    {
+      "directObservationIds": [
+        "obs.A.k3-p72-worked-example",
+        "obs.A.nlc-p105-formula"
+      ],
+      "k3PdfPages": [
+        72
+      ],
+      "k3PrintedFolio": null,
+      "nlcPdfPages": [
+        105
+      ],
+      "nlcPrintedFolios": [
+        "一"
+      ],
+      "relation": "same bounded conversion formula; direct readings agree at 四箇月 and 得十日之數",
+      "scopeId": "conversion-formula"
+    },
+    {
+      "directObservationIds": [
+        "obs.A.k3-p72-worked-example",
+        "obs.A.nlc-p106-worked-example"
+      ],
+      "k3PdfPages": [
+        72
+      ],
+      "k3PrintedFolio": null,
+      "nlcPdfPages": [
+        106
+      ],
+      "nlcPrintedFolios": [
+        "二"
+      ],
+      "relation": "same ordered worked-example calculation with one verified first-clause omission; not an independent-lineage finding",
+      "scopeId": "甲子陽男-worked-example"
+    },
+    {
+      "directObservationIds": [
+        "obs.A.k3-p72-worked-example",
+        "obs.A.nlc-p106-worked-example"
+      ],
+      "k3PdfPages": [
+        72
+      ],
+      "k3PrintedFolio": null,
+      "nlcPdfPages": [
+        106
+      ],
+      "nlcPrintedFolios": [
+        "二"
+      ],
+      "relation": "same expanded critique directly observed in both; candidate shortening rejected",
+      "scopeId": "約法-critique"
+    }
+  ],
+  "externalEvidence": [
+    {
+      "canonicalTextAdmitted": false,
+      "canonicalTextObserved": false,
+      "evidenceId": "ev.packet.v4-file-identity",
+      "packetFiles": [
+        {
+          "byteLength": 10386,
+          "byteSha256": "49f1408be79509ea5d1f598eafd3e63d9fe74ea290ddd156aa63e36170ecfc16",
+          "path": "/Users/softie/.gemini/antigravity-cli/brain/ebb37c1a-b791-4d55-92c3-0d4022511694/luna-deep-collation-packet-v4.md",
+          "role": "packet"
+        },
+        {
+          "byteLength": 7669,
+          "byteSha256": "046e2e824fdc4011227e5b7b982802707591caecf903ef9c045906cc9f365f37",
+          "path": "/Users/softie/.gemini/antigravity-cli/brain/ebb37c1a-b791-4d55-92c3-0d4022511694/luna-deep-collation-matrix-v4.json",
+          "role": "matrix"
+        },
+        {
+          "byteLength": 180,
+          "byteSha256": "b69e5c0572e29822ec9d5c5e16e4eb7fcde720b4064c99d2916fd99d8385972c",
+          "path": "/Users/softie/.gemini/antigravity-cli/brain/ebb37c1a-b791-4d55-92c3-0d4022511694/luna-deep-collation-packet-v4.md.metadata.json",
+          "role": "packet_metadata"
+        },
+        {
+          "byteLength": 180,
+          "byteSha256": "6d4d3ae365534b3850194ed9af10ab5a4fe183b6209ff4f9bf070d676a0e9893",
+          "path": "/Users/softie/.gemini/antigravity-cli/brain/ebb37c1a-b791-4d55-92c3-0d4022511694/luna-deep-collation-matrix-v4.json.metadata.json",
+          "role": "matrix_metadata"
+        }
+      ],
+      "scopeBoundary": "The Gemini v4 packet and matrix are byte-identified candidate input only. Their transcription, metadata, variant labels, and conclusions are not imported without parent verification.",
+      "sourceCategory": "UNRESOLVED",
+      "status": "parent_verified_byte_identity_only",
+      "unit": "E"
+    },
+    {
+      "canonicalTextAdmitted": false,
+      "canonicalTextObserved": false,
+      "eLibraryRecordUrl": "https://jsg.aks.ac.kr/dir/view?dataId=LIB_116678",
+      "evidenceId": "ev.A.k3-official-record",
+      "itemId": "K3-437",
+      "observedFields": {
+        "editionType": "木版",
+        "layout": "四周雙邊, 半郭 21.5×14.8cm, 有界, 半葉10行20字, 註雙行, 內向三葉花紋魚尾",
+        "microfilmId": "MF35-143~4",
+        "physicalDescription": "線裝34卷6冊",
+        "publicationDate": "[刊年未詳]",
+        "size": "28.3×19.3cm",
+        "title": "五行精紀"
+      },
+      "scopeCorrection": "The official record supports item identity, woodblock classification, undated publication field, volume structure, and catalogued layout. It does not date the current copy or prove an edition lineage.",
+      "sourceCategory": "INSTITUTIONAL_METADATA",
+      "status": "parent_verified_first_party_record",
+      "unit": "B",
+      "url": "https://jsg.aks.ac.kr/dir/view?dataId=JSG_K3-437"
+    },
+    {
+      "canonicalTextAdmitted": false,
+      "canonicalTextObserved": false,
+      "evidenceId": "ev.A.k3-official-scan",
+      "pdf": {
+        "byteLength": 14116437,
+        "byteSha256": "335a1c03c7af246969e00667d6a4d9756b19c19d93539223bb871c47001a24cd",
+        "eLibraryRecordUrl": "https://jsg.aks.ac.kr/dir/view?dataId=LIB_116678",
+        "inspectedRenderedPages": [
+          71,
+          72
+        ],
+        "institution": "한국학중앙연구원 장서각",
+        "itemId": "K3-437",
+        "microfilmId": "MF35-143~4",
+        "pageCount": 134,
+        "recordUrl": "https://jsg.aks.ac.kr/dir/view?dataId=JSG_K3-437",
+        "renderedPageImages": {
+          "71": {
+            "byteSha256": "8a6d2876a333c26881a3b3407bf190099eb2abb58c7f90fab870e19973ce1d88",
+            "renderDpi": 140
+          },
+          "72": {
+            "byteSha256": "05c8db420995ff0845a80d21406aa40e146d58e0c0bf6b4ade229f93795365e8",
+            "renderDpi": 140
+          }
+        },
+        "sourceId": "src.k3-437.pdf-006",
+        "url": "https://jsg.aks.ac.kr/data/serviceFiles/pdf/K3-437_006.pdf"
+      },
+      "scopeBoundary": "The official-hosted K3-437_006.pdf bytes and rendered pp.71–72 were directly inspected. Printed folio was not established from the scan; PDF page numbers are retained as the locator.",
+      "sourceCategory": "DIRECT_OFFICIAL_SCAN",
+      "status": "parent_verified_pdf_bytes_and_visual_pages",
+      "unit": "A"
+    },
+    {
+      "canonicalTextAdmitted": false,
+      "canonicalTextObserved": false,
+      "evidenceId": "ev.A.nlc-official-record",
+      "observedFields": {
+        "authorField": "(宋)廖中撰",
+        "holdings": "存33卷：1～33",
+        "identifier": "411999013122",
+        "physicalDescription": "10行24字，黑口，左右雙邊",
+        "publicationField": "清[1644-1911]",
+        "rareBookId": "06857",
+        "title": "五行精紀",
+        "versionField": "抄本",
+        "volumeMap": [
+          "114408.0=第1卷",
+          "114407.0=第2卷",
+          "114453.0=第3卷",
+          "114503.0=第4卷"
+        ]
+      },
+      "readerUrl": "http://read.nlc.cn/OutOpenBook/OpenObjectBook?aid=892&bid=114503.0",
+      "scopeCorrection": "The official record proves the record/volume mapping and catalogued copy description. The Qing date range is a catalog field, not an exact copy date or a proof of textual lineage.",
+      "sourceCategory": "INSTITUTIONAL_METADATA",
+      "status": "parent_verified_first_party_record",
+      "unit": "B",
+      "url": "http://read.nlc.cn/allSearch/searchDetail?searchType=24&showType=1&indexName=data_892&fid=411999013122"
+    },
+    {
+      "canonicalTextAdmitted": false,
+      "canonicalTextObserved": false,
+      "evidenceId": "ev.A.nlc-reader-object",
+      "observedFields": {
+        "aid": "892",
+        "bid": "114503.0",
+        "identifier": "411999013122",
+        "indexName": "data_892",
+        "officialReaderPdfPathPresent": true,
+        "pressName": "海虞瞿氏恬裕齋"
+      },
+      "scopeCorrection": "Reader-route fields identify the NLC digital object and imprint/press field. The original NLC PDF bitstream was not independently retrieved in this pass.",
+      "sourceCategory": "INSTITUTIONAL_METADATA",
+      "status": "parent_verified_reader_route",
+      "unit": "B",
+      "url": "http://read.nlc.cn/OutOpenBook/OpenObjectBook?aid=892&bid=114503.0"
+    },
+    {
+      "canonicalTextAdmitted": false,
+      "canonicalTextObserved": false,
+      "evidenceId": "ev.A.nlc-derivative-scan",
+      "pdf": {
+        "byteLength": 38628523,
+        "byteSha256": "6519fbdc0fa25272bf6aae0fdac8c73107c0f6b852a1b0beebc655344ec2812d",
+        "derivativePageUrl": "https://commons.wikimedia.org/wiki/File:NLC892-411999013122-114503_%E4%BA%94%E8%A1%8C%E7%B2%BE%E7%B4%80_%E7%AC%AC4%E5%86%8A.pdf",
+        "identifier": "411999013122",
+        "inspectedRenderedPages": [
+          105,
+          106
+        ],
+        "institution": "中国国家图书馆",
+        "originalNlcBitstreamDownloaded": false,
+        "pageCount": 114,
+        "rareBookId": "06857",
+        "readerUrl": "http://read.nlc.cn/OutOpenBook/OpenObjectBook?aid=892&bid=114503.0",
+        "recordUrl": "http://read.nlc.cn/allSearch/searchDetail?searchType=24&showType=1&indexName=data_892&fid=411999013122",
+        "renderedPageImages": {
+          "105": {
+            "byteSha256": "09155dbc6440c33b1350017fc6460fef6559582abb84281aba366ac63f641cfc",
+            "printedFolio": "一",
+            "renderDpi": 140
+          },
+          "106": {
+            "byteSha256": "d99345ce146957488b1d1ddde973cdcc7ba713c200803aee0dab2e793f34399f",
+            "printedFolio": "二",
+            "renderDpi": 140
+          }
+        },
+        "sourceId": "src.nlc-06857-114503-derivative.pdf",
+        "url": "https://upload.wikimedia.org/wikipedia/commons/a/a0/NLC892-411999013122-114503_%E4%BA%94%E8%A1%8C%E7%B2%BE%E7%B4%80_%E7%AC%AC4%E5%86%8A.pdf",
+        "volumeLabel": "第4冊",
+        "volumeObjectId": "114503.0"
+      },
+      "scopeBoundary": "The public derivative is a distinct, byte-identified digital object attributed to NLC 114503.0. It is not treated as official-byte equality or as a second physical witness.",
+      "sourceCategory": "DIRECT_DERIVATIVE_SCAN",
+      "status": "parent_verified_derivative_bytes_and_visual_pages",
+      "unit": "A"
+    },
+    {
+      "canonicalTextAdmitted": false,
+      "canonicalTextObserved": false,
+      "evidenceId": "ev.B.k3-preface-provenance-boundary",
+      "observedFields": {
+        "prefatoryMatter": [
+          "周必大序, 1196",
+          "岳珂序, 1228",
+          "廖中自序/總目錄 (catalogued)"
+        ],
+        "provenanceMarks": [
+          "密城世家",
+          "朴吉璟",
+          "李王家圖書之章"
+        ]
+      },
+      "scopeCorrection": "These are first-party catalog/解題 fields. No physical colophon, postscript, copy date, or complete ownership chain was directly located in the target-page inspection; the dates of the prefaces do not date K3-437.",
+      "sourceCategory": "INSTITUTIONAL_METADATA",
+      "status": "parent_verified_catalogue_description_only",
+      "unit": "B",
+      "url": "https://jsg.aks.ac.kr/dir/view?dataId=JSG_K3-437"
+    },
+    {
+      "canonicalTextAdmitted": false,
+      "canonicalTextObserved": false,
+      "evidenceId": "ev.B.nlc-provenance-lineage-boundary",
+      "observedFields": [
+        "清[1644-1911]",
+        "抄本",
+        "海虞瞿氏恬裕齋",
+        "存33卷"
+      ],
+      "scopeCorrection": "The fields support a catalogued manuscript-copy candidate and provenance/imprint lead. They do not establish exact date, colophon, copying relation to K3-437, or independent textual lineage.",
+      "sourceCategory": "INSTITUTIONAL_METADATA",
+      "status": "parent_verified_catalogue_and_reader_fields_only",
+      "unit": "B",
+      "url": "http://read.nlc.cn/allSearch/searchDetail?searchType=24&showType=1&indexName=data_892&fid=411999013122"
+    },
+    {
+      "canonicalTextAdmitted": false,
+      "canonicalTextObserved": false,
+      "evidenceId": "ev.D.kyujanggak-negative-control",
+      "itemId": "奎中1822-v.1-5",
+      "observedFields": [
+        "木板本",
+        "28卷5冊(零本)",
+        "卷29-34(1冊)缺",
+        "[刊年未詳]"
+      ],
+      "scopeCorrection": "The official record is a bounded negative control: this item cannot supply an actual 卷33 target page. It is not counted as a third witness.",
+      "sourceCategory": "INSTITUTIONAL_METADATA",
+      "status": "parent_verified_incomplete_holding",
+      "unit": "D",
+      "url": "https://kyudb.snu.ac.kr/book/view.do?book_cd=GC01822_00"
+    },
+    {
+      "canonicalTextAdmitted": false,
+      "canonicalTextObserved": false,
+      "evidenceId": "ev.D.wonkwang-bounded-search",
+      "missingFields": [
+        "Wonkwang item/catalog ID",
+        "first-party edition/date record",
+        "卷33 inclusion record",
+        "actual scan/reproduction"
+      ],
+      "observedFields": [
+        "An AKS secondary institutional entry reports a Wonkwang holding and 34-volume/6-book metal-type or woodblock description."
+      ],
+      "officialSearchBoundary": "https://www.wku.ac.kr/",
+      "scopeCorrection": "The report remains a candidate/metadata lead only. No direct Wonkwang record supports 乙亥字本(1455); the exact date is rejected as unverified.",
+      "secondaryLead": "https://dh.aks.ac.kr/sillokwiki/index.php/%EC%98%A4%ED%96%89%EC%A0%95%EA%B8%B0%28%E4%BA%94%E8%A1%8C%E7%B2%BE%E7%B4%80%29",
+      "sourceCategory": "INSTITUTIONAL_METADATA",
+      "status": "bounded_no_item_record",
+      "unit": "D"
+    },
+    {
+      "canonicalTextAdmitted": false,
+      "canonicalTextObserved": false,
+      "evidenceId": "ev.D.sonkeikaku-access-block",
+      "missingFields": [
+        "item/catalog ID",
+        "edition/date",
+        "卷33 holding",
+        "actual reproduction"
+      ],
+      "nextAccessRoute": "Reopen the official service after 2026-08-18 10:00 KST; search 五行精紀/五行精紀卷33, then request official reproduction or contact east@skku.edu.",
+      "observedFields": [
+        "尊經閣 catalog/search service outage reported for 2026-08-15 through 2026-08-18 10:00 KST",
+        "contact east@skku.edu"
+      ],
+      "scopeCorrection": "The service outage proves an access blocker, not that the candidate item does or does not exist. No inaccessible witness is used for corroboration.",
+      "sourceCategory": "UNRESOLVED",
+      "status": "first_party_service_temporarily_unavailable",
+      "unit": "D",
+      "url": "https://east.skku.edu/"
+    },
+    {
+      "artifactPath": "artifacts/saju-five-classics-typed-readiness-contract-v0/complete.json",
+      "canonicalTextAdmitted": false,
+      "canonicalTextObserved": false,
+      "evidenceId": "ev.E.typed-readiness-baseline",
+      "scopeCorrection": "The typed-readiness artifact is a baseline contract and graph, not an oracle. v4 adds bounded evidence without altering implementation or activation.",
+      "sourceCategory": "INFERENCE",
+      "status": "parent_verified_baseline_reference",
+      "unit": "E"
+    }
+  ],
+  "independenceAdjudication": {
+    "after": {
+      "digital-derivation": {
+        "countedAsIndependent": false,
+        "evidenceRefs": [
+          "ev.A.k3-official-scan",
+          "ev.A.nlc-derivative-scan",
+          "ev.A.nlc-reader-object"
+        ],
+        "missingEdges": [
+          "official NLC source-bitstream equality"
+        ],
+        "note": "The K3 official PDF and NLC-attributed public derivative are distinct digital objects; the derivative is not treated as an independent physical witness.",
+        "state": "satisfied"
+      },
+      "edition/textual-lineage": {
+        "countedAsIndependent": false,
+        "evidenceRefs": [
+          "ev.A.k3-official-record",
+          "ev.A.nlc-official-record",
+          "ev.B.k3-preface-provenance-boundary",
+          "ev.B.nlc-provenance-lineage-boundary"
+        ],
+        "missingEdges": [
+          "copy/edition relation",
+          "colophon or dated transmission edge",
+          "recension/lineage comparison"
+        ],
+        "note": "Different catalogued formats and a real wording difference narrow the relation but do not close it.",
+        "state": "unresolved"
+      },
+      "overall": "unresolved",
+      "physical-item": {
+        "countedAsIndependent": false,
+        "evidenceRefs": [
+          "ev.A.k3-official-record",
+          "ev.A.nlc-official-record"
+        ],
+        "missingEdges": [],
+        "note": "K3-437 and NLC 06857/114503.0 are distinct institutionally identified holdings. This is not a textual-lineage assertion.",
+        "state": "satisfied"
+      },
+      "scopeLimitedCorrespondence": {
+        "boundary": "This is bounded semantic/textual correspondence only. It does not satisfy the semantic-corroboration independence axis and cannot promote implementation authority.",
+        "evidenceRefs": [
+          "obs.A.k3-p72-worked-example",
+          "obs.A.nlc-p106-worked-example"
+        ],
+        "scope": "五行精紀 卷33 論大運 / 甲子陽男 worked-example ordered calculation and expanded 約法 critique",
+        "state": "satisfied"
+      },
+      "semantic-corroboration": {
+        "countedAsIndependent": false,
+        "evidenceRefs": [
+          "ev.A.k3-official-scan",
+          "ev.A.nlc-derivative-scan"
+        ],
+        "missingEdges": [
+          "independent textual lineage",
+          "independent semantic authority"
+        ],
+        "note": "The same bounded worked example is directly observed, but agreement across two actual witnesses is not independent semantic corroboration until the lineage edge is established.",
+        "state": "unresolved"
+      }
+    },
+    "before": {
+      "digital-derivation": "satisfied",
+      "edition/textual-lineage": "unresolved",
+      "overall": "unresolved",
+      "physical-item": "satisfied",
+      "semantic-corroboration": "unresolved",
+      "source": "saju-gemini-witness-dossier-adjudication-v3"
+    }
+  },
+  "negativeChecks": {
+    "catalogDetailExactDateOrEdition": {
+      "result": "Catalog windows/preface dates/author labels are not promoted to current-copy date or canonical edition.",
+      "status": "pass"
+    },
+    "digitalObjectImpliesPhysicalWitness": {
+      "result": "K3 official PDF and NLC derivative are tracked as digital objects; derivative is not counted as a second physical witness.",
+      "status": "pass"
+    },
+    "geminiVariantImport": {
+      "result": "Candidate alternatives not directly observed were rejected/corrected; candidate file identity alone was admitted.",
+      "status": "pass"
+    },
+    "inaccessibleWitnessCorroborates": {
+      "result": "Wonkwang and Sonkeikaku are not included in semantic corroboration without first-party item/page evidence.",
+      "status": "pass"
+    },
+    "institutionDifferenceImpliesIndependence": {
+      "result": "Different institutions satisfy physical-item identity only; edition/textual-lineage remains unresolved.",
+      "status": "pass"
+    },
+    "ocrOrPunctuationAsVariant": {
+      "result": "OCR/modern punctuation/normalization are excluded from variant status.",
+      "status": "pass"
+    },
+    "textualVariantClosesIndependence": {
+      "result": "Verified 申時 omission is recorded as a variant and does not close I.",
+      "status": "pass"
+    },
+    "workedExampleImpliesImplementationAuthority": {
+      "result": "Bounded correspondence is not a production or implementation rule.",
+      "status": "pass"
+    }
+  },
+  "pageObservations": [
+    {
+      "canonicalTextAdmitted": false,
+      "canonicalTextObserved": false,
+      "directObservation": "The official K3-437 scan visibly shows the 卷33 heading and 論大運 section on rendered PDF page 71.",
+      "evidenceId": "ev.A.k3-official-scan",
+      "exactObservedFragments": [
+        "五行精紀卷第三十三",
+        "論大運"
+      ],
+      "heading": "五行精紀卷第三十三 / 論大運",
+      "locator": {
+        "pdfPage": 71,
+        "pdfUrl": "https://jsg.aks.ac.kr/data/serviceFiles/pdf/K3-437_006.pdf",
+        "printedFolio": null
+      },
+      "observationId": "obs.A.k3-p71-heading",
+      "observationMode": "direct_visual_review_of_rendered_page",
+      "renderedImageSha256": "8a6d2876a333c26881a3b3407bf190099eb2abb58c7f90fab870e19973ce1d88",
+      "scopeBoundary": "A bounded record or page observation is admitted only at its stated locator and source category; it is not canonical text, semantic authority, interpretation readiness, implementation grounding, or activation.",
+      "sourceCategory": "DIRECT_OFFICIAL_SCAN",
+      "unit": "A",
+      "unreadable": false,
+      "visibleFragments": [
+        "五行精紀卷第三十三",
+        "論大運"
+      ]
+    },
+    {
+      "canonicalTextAdmitted": false,
+      "canonicalTextObserved": false,
+      "directObservation": "The target worked-example and the following approximation critique are directly legible on rendered PDF page 72. The scan does not provide a printed-folio number that was confidently established in this pass.",
+      "evidenceId": "ev.A.k3-official-scan",
+      "exactObservedFragments": [
+        "譬如甲子陽男",
+        "是月二十九日申時立春",
+        "至二十九日申時止",
+        "乃是一歲奇九月之大運",
+        "今人行運多用約法"
+      ],
+      "heading": "甲子陽男 worked example and 約法 critique",
+      "locator": {
+        "pdfPage": 72,
+        "pdfUrl": "https://jsg.aks.ac.kr/data/serviceFiles/pdf/K3-437_006.pdf",
+        "printedFolio": null
+      },
+      "observationId": "obs.A.k3-p72-worked-example",
+      "observationMode": "direct_visual_review_of_rendered_page",
+      "renderedImageSha256": "05c8db420995ff0845a80d21406aa40e146d58e0c0bf6b4ade229f93795365e8",
+      "scopeBoundary": "A bounded record or page observation is admitted only at its stated locator and source category; it is not canonical text, semantic authority, interpretation readiness, implementation grounding, or activation.",
+      "sourceCategory": "DIRECT_OFFICIAL_SCAN",
+      "unit": "A",
+      "unreadable": false,
+      "visibleFragments": [
+        "譬如甲子陽男",
+        "二十九日申時立春",
+        "六十三時",
+        "六百三十日",
+        "一歲奇九月",
+        "今人行運多用約法"
+      ]
+    },
+    {
+      "canonicalTextAdmitted": false,
+      "canonicalTextObserved": false,
+      "directObservation": "The public derivative page 105 visibly contains the 卷33 / 大運 heading and the target conversion formula. The printed folio mark 一 is retained as a locator.",
+      "evidenceId": "ev.A.nlc-derivative-scan",
+      "exactObservedFragments": [
+        "一日十二時得一百二十日為四箇月之數",
+        "一時辰得十日之數"
+      ],
+      "heading": "五行精紀卷第三十三 / 大運",
+      "locator": {
+        "pdfPage": 105,
+        "pdfUrl": "https://upload.wikimedia.org/wikipedia/commons/a/a0/NLC892-411999013122-114503_%E4%BA%94%E8%A1%8C%E7%B2%BE%E7%B4%80_%E7%AC%AC4%E5%86%8A.pdf",
+        "printedFolio": "一"
+      },
+      "observationId": "obs.A.nlc-p105-formula",
+      "observationMode": "direct_visual_review_of_rendered_page",
+      "renderedImageSha256": "09155dbc6440c33b1350017fc6460fef6559582abb84281aba366ac63f641cfc",
+      "scopeBoundary": "A bounded record or page observation is admitted only at its stated locator and source category; it is not canonical text, semantic authority, interpretation readiness, implementation grounding, or activation.",
+      "sourceCategory": "DIRECT_DERIVATIVE_SCAN",
+      "unit": "A",
+      "unreadable": false,
+      "visibleFragments": [
+        "五行精紀卷第三十三",
+        "大運",
+        "一日十二時得一百二十日為四箇月之數",
+        "一時辰得十日之數"
+      ]
+    },
+    {
+      "canonicalTextAdmitted": false,
+      "canonicalTextObserved": false,
+      "directObservation": "The public derivative page 106 visibly omits 申時 in the first 立春 clause but retains it in the later stopping clause. It also visibly continues with the full 約法 critique, not the shortened candidate wording. The printed folio mark 二 is retained as a locator.",
+      "evidenceId": "ev.A.nlc-derivative-scan",
+      "exactObservedFragments": [
+        "譬如甲子陽男",
+        "是月二十九日立春",
+        "至二十九日申時止",
+        "乃是一歲奇九月之大運",
+        "今人行運多用約法",
+        "殊不明折除實歷之數也"
+      ],
+      "heading": "甲子陽男 worked example and 約法 critique",
+      "locator": {
+        "pdfPage": 106,
+        "pdfUrl": "https://upload.wikimedia.org/wikipedia/commons/a/a0/NLC892-411999013122-114503_%E4%BA%94%E8%A1%8C%E7%B2%BE%E7%B4%80_%E7%AC%AC4%E5%86%8A.pdf",
+        "printedFolio": "二"
+      },
+      "observationId": "obs.A.nlc-p106-worked-example",
+      "observationMode": "direct_visual_review_of_rendered_page",
+      "renderedImageSha256": "d99345ce146957488b1d1ddde973cdcc7ba713c200803aee0dab2e793f34399f",
+      "scopeBoundary": "A bounded record or page observation is admitted only at its stated locator and source category; it is not canonical text, semantic authority, interpretation readiness, implementation grounding, or activation.",
+      "sourceCategory": "DIRECT_DERIVATIVE_SCAN",
+      "unit": "A",
+      "unreadable": false,
+      "visibleFragments": [
+        "譬如甲子陽男",
+        "是月二十九日立春",
+        "至二十九日申時止",
+        "六十三時",
+        "六百三十日",
+        "一歲奇九月",
+        "今人行運多用約法"
+      ]
+    }
+  ],
+  "predecessorReferences": {
+    "artifacts/saju-five-classics-source-identity-frontier-v0/complete.json": {
+      "artifactPath": "artifacts/saju-five-classics-source-identity-frontier-v0/complete.json",
+      "artifactPayloadSha256": "0bfea06f16e0279d8cfb24dfb33aa023cf5469b9d146d699a343edd315d58d92",
+      "basisHead": "99e6cc624a1510487ad8bcf65347b3ee5f4e524e",
+      "contentSha256": "a8792a7ae2bd69df00456931f22ea6ffa2ba84a259e10424ef91ce0d4018a921",
+      "readiness": {
+        "availableForInterpretation": false,
+        "productionActivation": "blocked",
+        "reason": "Institutional identity and page observations improve provenance but do not close local-file lineage, edition-level collation, semantic equivalence, or timing-rule authority.",
+        "semanticAuthority": "not_established",
+        "stableClaimPromotionCount": 0,
+        "status": "blocked"
+      },
+      "schemaVersion": "saju-five-classics-source-identity-frontier-v0",
+      "version": "0.1.0"
+    },
+    "artifacts/saju-five-classics-typed-readiness-contract-v0/complete.json": {
+      "artifactPath": "artifacts/saju-five-classics-typed-readiness-contract-v0/complete.json",
+      "artifactPayloadSha256": "ced7b81e48d84456287970eb2fc40d60a9f9703ea3137bcaca3c9d1480de1aa2",
+      "basisHead": "99e6cc624a1510487ad8bcf65347b3ee5f4e524e",
+      "contentSha256": "40f5b5e21330631a566200ae9c2a15c06e24437d1337178fc62a342070beeb41",
+      "readiness": {
+        "availableForInterpretation": false,
+        "productionActivation": "blocked",
+        "promotionReadyClaimIds": [],
+        "reason": "Typed dry-run only; no claim is promoted and no production rule is changed.",
+        "semanticAuthority": "not_established",
+        "stableClaimPromotionCount": 0
+      },
+      "schemaVersion": "saju-five-classics-typed-readiness-contract-v0",
+      "version": "0.1.0"
+    },
+    "artifacts/saju-gemini-witness-dossier-adjudication-v1/complete.json": {
+      "artifactPath": "artifacts/saju-gemini-witness-dossier-adjudication-v1/complete.json",
+      "artifactPayloadSha256": "363206925e41da55ee3d78cef1ef8a1d93b346ad787dfc67b570e05152968de8",
+      "basisHead": "99e6cc624a1510487ad8bcf65347b3ee5f4e524e",
+      "contentSha256": null,
+      "readiness": {
+        "availableForInterpretation": false,
+        "comparablePopulation": "23 adjudicated candidate assertions; counts are not numerically comparable to the candidate’s 13-claim baseline.",
+        "gateStateCounts": {
+          "E": {
+            "conflicted": 0,
+            "not_applicable": 0,
+            "satisfied": 4,
+            "unresolved": 19
+          },
+          "H": {
+            "conflicted": 0,
+            "not_applicable": 0,
+            "satisfied": 7,
+            "unresolved": 16
+          },
+          "I": {
+            "conflicted": 0,
+            "not_applicable": 0,
+            "satisfied": 0,
+            "unresolved": 23
+          },
+          "L": {
+            "conflicted": 0,
+            "not_applicable": 0,
+            "satisfied": 0,
+            "unresolved": 23
+          },
+          "P": {
+            "conflicted": 0,
+            "not_applicable": 0,
+            "satisfied": 0,
+            "unresolved": 23
+          },
+          "S": {
+            "conflicted": 0,
+            "not_applicable": 9,
+            "satisfied": 0,
+            "unresolved": 14
+          }
+        },
+        "implementationSafeGrounding": "not_established",
+        "parentVerifiedClaimIds": [
+          "claim.unit-a.ncl-record-identity",
+          "claim.unit-c.nlc-official-record",
+          "claim.unit-c.public-scan-vol33-identity",
+          "claim.unit-f.waseda-record-identity",
+          "claim.unit-f.seasonal-headings"
+        ],
+        "productionActivation": "blocked",
+        "promotionReadyClaimIds": [],
+        "semanticAuthority": "not_established"
+      },
+      "schemaVersion": "saju-gemini-witness-dossier-adjudication-v1",
+      "version": "1.0.0"
+    },
+    "artifacts/saju-gemini-witness-dossier-adjudication-v2/complete.json": {
+      "artifactPath": "artifacts/saju-gemini-witness-dossier-adjudication-v2/complete.json",
+      "artifactPayloadSha256": "16b202deaaab6964bf98ad77976a7c6cdb7b0ce66f582fe2a6fb21a5e5898902",
+      "basisHead": "99e6cc624a1510487ad8bcf65347b3ee5f4e524e",
+      "contentSha256": null,
+      "readiness": {
+        "availableForInterpretation": false,
+        "comparablePopulation": "17 parent-adjudicated assertions; candidate baseline counts are not numerically comparable.",
+        "gateStateCounts": {
+          "E": {
+            "conflicted": 0,
+            "not_applicable": 1,
+            "satisfied": 8,
+            "unresolved": 8
+          },
+          "H": {
+            "conflicted": 0,
+            "not_applicable": 1,
+            "satisfied": 11,
+            "unresolved": 5
+          },
+          "I": {
+            "conflicted": 0,
+            "not_applicable": 1,
+            "satisfied": 0,
+            "unresolved": 16
+          },
+          "L": {
+            "conflicted": 0,
+            "not_applicable": 5,
+            "satisfied": 0,
+            "unresolved": 12
+          },
+          "P": {
+            "conflicted": 0,
+            "not_applicable": 1,
+            "satisfied": 0,
+            "unresolved": 16
+          },
+          "S": {
+            "conflicted": 0,
+            "not_applicable": 7,
+            "satisfied": 0,
+            "unresolved": 10
+          }
+        },
+        "implementationSafeGrounding": "not_established",
+        "parentVerifiedClaimIds": [
+          "claim.A.nlc-vol4-route-correction",
+          "claim.B.qin-enfu-room-name-attribution",
+          "claim.C.1895-bibliographic-witness-only",
+          "claim.C.1923-bibliographic-witness-only",
+          "claim.D.waseda-seasonal-headings",
+          "claim.E.source-categories-and-gates-typed"
+        ],
+        "productionActivation": "blocked",
+        "promotionReadyClaimIds": [],
+        "semanticAuthority": "not_established",
+        "stableClaimPromotionCount": 0
+      },
+      "schemaVersion": "saju-gemini-witness-dossier-adjudication-v2",
+      "version": "2.0.0"
+    },
+    "artifacts/saju-gemini-witness-dossier-adjudication-v3/complete.json": {
+      "artifactPath": "artifacts/saju-gemini-witness-dossier-adjudication-v3/complete.json",
+      "artifactPayloadSha256": "4f3671ac7e324db1cc283397ff59f187cd538be8eb14d983e227b2a3ab2208f3",
+      "basisHead": "99e6cc624a1510487ad8bcf65347b3ee5f4e524e",
+      "contentSha256": null,
+      "readiness": {
+        "availableForInterpretation": false,
+        "comparablePopulation": "21 parent-adjudicated assertions; candidate baseline counts are not numerically comparable.",
+        "gateStateCounts": {
+          "E": {
+            "conflicted": 0,
+            "not_applicable": 1,
+            "satisfied": 9,
+            "unresolved": 11
+          },
+          "H": {
+            "conflicted": 0,
+            "not_applicable": 1,
+            "satisfied": 12,
+            "unresolved": 8
+          },
+          "I": {
+            "conflicted": 0,
+            "not_applicable": 1,
+            "satisfied": 0,
+            "unresolved": 20
+          },
+          "L": {
+            "conflicted": 0,
+            "not_applicable": 6,
+            "satisfied": 0,
+            "unresolved": 15
+          },
+          "P": {
+            "conflicted": 0,
+            "not_applicable": 1,
+            "satisfied": 0,
+            "unresolved": 20
+          },
+          "S": {
+            "conflicted": 0,
+            "not_applicable": 8,
+            "satisfied": 0,
+            "unresolved": 13
+          }
+        },
+        "implementationSafeGrounding": "not_established",
+        "parentVerifiedClaimIds": [
+          "claim.A.nlc-vol4-route-correction",
+          "claim.B.qin-enfu-room-name-attribution",
+          "claim.C.1895-bibliographic-witness-only",
+          "claim.C.1923-bibliographic-witness-only",
+          "claim.D.waseda-seasonal-headings",
+          "claim.E.source-categories-and-gates-typed"
+        ],
+        "productionActivation": "blocked",
+        "promotionReadyClaimIds": [],
+        "semanticAuthority": "not_established",
+        "stableClaimPromotionCount": 0
+      },
+      "schemaVersion": "saju-gemini-witness-dossier-adjudication-v3",
+      "version": "3.0.0"
+    },
+    "artifacts/saju-timing-authority-frontier-v0/complete.json": {
+      "artifactPath": "artifacts/saju-timing-authority-frontier-v0/complete.json",
+      "artifactPayloadSha256": "0c62d007f4089d6aecdc89918e594caf3552434839745de9c34baced42c703bc",
+      "basisHead": "99e6cc624a1510487ad8bcf65347b3ee5f4e524e",
+      "contentSha256": "94dc2a49d4fd1444333effcd2484f87fdadd1ed23815e05cc81181f00a35c976",
+      "readiness": {
+        "activation": "blocked",
+        "availableForInterpretation": false,
+        "reason": "timing frontiers are source-observed and implementation-mapped but not claim-level or semantic-authority verified",
+        "semanticAuthority": "not_established",
+        "status": "blocked"
+      },
+      "schemaVersion": "saju-timing-authority-frontier-v0",
+      "version": null
+    }
+  },
+  "promotion": {
+    "canonicalEditionDeclared": false,
+    "interpretationAvailable": false,
+    "productionChanged": false,
+    "promotionReadyClaimIds": [],
+    "ready": false,
+    "semanticAuthorityChanged": false,
+    "stableClaimPromotionCount": 0,
+    "status": "blocked"
+  },
+  "readinessOverlay": {
+    "parentVerified": {
+      "availableForInterpretation": false,
+      "comparablePopulation": "8 v4 parent-adjudicated assertions; not numerically comparable to the typed-readiness 13-claim population.",
+      "gateStateCounts": {
+        "E": {
+          "conflicted": 0,
+          "not_applicable": 0,
+          "satisfied": 5,
+          "unresolved": 3
+        },
+        "H": {
+          "conflicted": 0,
+          "not_applicable": 0,
+          "satisfied": 5,
+          "unresolved": 3
+        },
+        "I": {
+          "conflicted": 0,
+          "not_applicable": 0,
+          "satisfied": 0,
+          "unresolved": 8
+        },
+        "L": {
+          "conflicted": 0,
+          "not_applicable": 0,
+          "satisfied": 0,
+          "unresolved": 8
+        },
+        "P": {
+          "conflicted": 0,
+          "not_applicable": 0,
+          "satisfied": 0,
+          "unresolved": 8
+        },
+        "S": {
+          "conflicted": 0,
+          "not_applicable": 2,
+          "satisfied": 2,
+          "unresolved": 4
+        }
+      },
+      "implementationSafeGrounding": "not_established",
+      "parentVerifiedClaimIds": [
+        "claim.B.k3-437-identity-and-copy-boundary",
+        "claim.C.bounded-worked-example-correspondence"
+      ],
+      "productionActivation": "blocked",
+      "promotionReadyClaimIds": [],
+      "semanticAuthority": "not_established",
+      "stableClaimPromotionCount": 0
+    },
+    "reportedByCandidate": {
+      "allUnitsResolved": "not_admitted",
+      "trust": "untrusted_candidate_only"
+    }
+  },
+  "schemaVersion": "saju-luna-deep-collation-adjudication-v4",
+  "scope": {
+    "candidateBoundary": "The Gemini v4 packet and matrix are byte-identified candidate input only. Their transcription, metadata, variant labels, and conclusions are not imported without parent verification.",
+    "forbiddenPromotion": [
+      "availableForInterpretation",
+      "semanticAuthority",
+      "implementationSafeGrounding",
+      "productionActivation",
+      "canonicalEdition",
+      "implementationSafeRule"
+    ],
+    "gateKeys": [
+      "H",
+      "E",
+      "L",
+      "S",
+      "I",
+      "P"
+    ],
+    "gateStates": [
+      "satisfied",
+      "unresolved",
+      "conflicted",
+      "not_applicable"
+    ],
+    "independenceAxes": [
+      "physical-item",
+      "digital-derivation",
+      "edition/textual-lineage",
+      "semantic-corroboration"
+    ],
+    "ocrPolicy": "OCR and modern punctuation are locator aids only. No OCR output was used as a textual variant or canonical reading.",
+    "provenancePolicy": "Calculation fact, source evidence, relation, semantic correspondence, independence, readiness, and activation remain separate.",
+    "purpose": "Parent-direct v4 re-audit of K3-437↔NLC 06857 variants, witness identity/lineage, independence sub-axes, third-witness reality, and additive typed-readiness reconciliation.",
+    "sourceCategories": [
+      "DIRECT_OFFICIAL_SCAN",
+      "DIRECT_DERIVATIVE_SCAN",
+      "INSTITUTIONAL_METADATA",
+      "PHYSICAL_ITEM_CANDIDATE",
+      "INFERENCE",
+      "UNRESOLVED"
+    ],
+    "sourceOfTruth": "Parent-observed first-party records, byte-identified official/derivative PDFs, direct visual target-page observations, and explicitly scoped candidate-file identity.",
+    "textPolicy": "Direct readings are bounded visual observations at named PDF pages; no normalized or canonical text is emitted.",
+    "units": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E"
+    ],
+    "variantStatuses": [
+      "verified",
+      "corrected",
+      "rejected",
+      "unresolved"
+    ]
+  },
+  "summary": {
+    "claimCount": 8,
+    "correctedVariantCount": 5,
+    "parentVerifiedClaimCount": 2,
+    "predecessorDelta": {
+      "changes": [
+        "Gemini v4 packet and matrix are byte-identified and remain untrusted_candidate_only.",
+        "K3-437 and NLC 114503.0 target pages were directly reread at PDF pp.71–72 and 105–106.",
+        "The first 申時 omission is verified; the candidate NLC 九個月, 四個月, 為十日, and condensed 約法 alternatives are rejected/corrected after direct reading.",
+        "K3 official layout is corrected from candidate 四周單邊 to the first-party catalogued 四周雙邊 field.",
+        "Witness identity and digital derivation are separated from unresolved edition/textual lineage and semantic-corroboration independence.",
+        "Wonkwang remains metadata/candidate-only and 乙亥字本(1455) is not approved; Sonkeikaku remains access-blocked without corroboration.",
+        "Typed readiness is reconciled additively with promotion 0 and no activation transition."
+      ],
+      "directEvidenceBoundaryChanged": true,
+      "predecessorSchema": "saju-gemini-witness-dossier-adjudication-v3"
+    },
+    "promotionReadyClaimCount": 0,
+    "rejectedVariantCount": 0,
+    "statusCounts": {
+      "partially_supported": 2,
+      "supported": 2,
+      "unresolved": 3,
+      "unsupported": 1
+    },
+    "supportedScope": [
+      "K3-437 and NLC 114503.0 target-page identity and bounded direct observations",
+      "six-locus variant adjudication",
+      "physical-item and digital-derivation sub-axis satisfaction without lineage promotion",
+      "bounded worked-example correspondence"
+    ],
+    "unresolvedScope": [
+      "K3-437↔NLC edition/textual-lineage relation",
+      "independent semantic-corroboration axis",
+      "Wonkwang first-party item/page reality",
+      "Sonkeikaku item/page reality while official access is blocked",
+      "interpretation readiness, implementation grounding, canonical edition, and activation"
+    ],
+    "unresolvedVariantCount": 0,
+    "variantCount": 6,
+    "verifiedVariantCount": 1
+  },
+  "typedReadinessReconciliation": {
+    "after": {
+      "additiveScope": {
+        "boundedSemanticCorroboration": {
+          "boundary": "Correspondence scope only; semantic-corroboration independence axis remains unresolved.",
+          "refs": [
+            "obs.A.k3-p72-worked-example",
+            "obs.A.nlc-p106-worked-example"
+          ],
+          "scope": "五行精紀 卷33 論大運 / 甲子陽男 worked-example ordered calculation and expanded 約法 critique",
+          "state": "satisfied"
+        },
+        "historicalObservationStability": {
+          "refs": [
+            "obs.A.k3-p71-heading",
+            "obs.A.k3-p72-worked-example",
+            "obs.A.nlc-p105-formula",
+            "obs.A.nlc-p106-worked-example"
+          ],
+          "scope": "K3-437/NLC 114503.0 bounded visual observations and six target loci",
+          "state": "satisfied"
+        },
+        "lineageSpecificStability": {
+          "refs": [
+            "ev.B.k3-preface-provenance-boundary",
+            "ev.B.nlc-provenance-lineage-boundary"
+          ],
+          "scope": "K3-437↔NLC edition/textual-lineage relation",
+          "state": "unresolved"
+        }
+      },
+      "availableForInterpretation": false,
+      "dayunClaims": [
+        {
+          "additiveDecision": "No typed gate transition and no implementation promotion; direct observation/correspondence is appended only.",
+          "additiveEvidenceRefs": [
+            "obs.A.k3-p72-worked-example",
+            "obs.A.nlc-p105-formula",
+            "obs.A.nlc-p106-worked-example",
+            "claim.C.bounded-worked-example-correspondence"
+          ],
+          "claimId": "claim.sanming-dayun-year-stem-gender-direction",
+          "gates": {
+            "E": "satisfied",
+            "H": "satisfied",
+            "I": "unresolved",
+            "L": "unresolved",
+            "P": "unresolved",
+            "S": "satisfied"
+          },
+          "promotion": {
+            "blockingEdges": [
+              "L:unresolved",
+              "I:unresolved",
+              "I.physical-item:unresolved",
+              "I.digital-derivation:unresolved",
+              "I.edition/textual-lineage:unresolved",
+              "I.semantic-corroboration:unresolved"
+            ],
+            "ready": false,
+            "reason": "required_or_conditional_gate_unresolved",
+            "scopeConflict": false,
+            "status": "blocked",
+            "target": "implementation_safe_grounding"
+          },
+          "stability": "historical_observation_stability"
+        },
+        {
+          "additiveDecision": "No typed gate transition and no implementation promotion; direct observation/correspondence is appended only.",
+          "additiveEvidenceRefs": [
+            "obs.A.k3-p72-worked-example",
+            "obs.A.nlc-p105-formula",
+            "obs.A.nlc-p106-worked-example",
+            "claim.C.bounded-worked-example-correspondence"
+          ],
+          "claimId": "claim.sanming-dayun-term-selection",
+          "gates": {
+            "E": "satisfied",
+            "H": "satisfied",
+            "I": "unresolved",
+            "L": "unresolved",
+            "P": "unresolved",
+            "S": "satisfied"
+          },
+          "promotion": {
+            "blockingEdges": [
+              "L:unresolved",
+              "I:unresolved",
+              "I.physical-item:unresolved",
+              "I.digital-derivation:unresolved",
+              "I.edition/textual-lineage:unresolved",
+              "I.semantic-corroboration:unresolved"
+            ],
+            "ready": false,
+            "reason": "required_or_conditional_gate_unresolved",
+            "scopeConflict": false,
+            "status": "blocked",
+            "target": "implementation_safe_grounding"
+          },
+          "stability": "historical_observation_stability"
+        },
+        {
+          "additiveDecision": "No typed gate transition and no implementation promotion; direct observation/correspondence is appended only.",
+          "additiveEvidenceRefs": [
+            "obs.A.k3-p72-worked-example",
+            "obs.A.nlc-p105-formula",
+            "obs.A.nlc-p106-worked-example",
+            "claim.C.bounded-worked-example-correspondence"
+          ],
+          "claimId": "claim.sanming-dayun-term-distance",
+          "gates": {
+            "E": "satisfied",
+            "H": "satisfied",
+            "I": "unresolved",
+            "L": "unresolved",
+            "P": "unresolved",
+            "S": "satisfied"
+          },
+          "promotion": {
+            "blockingEdges": [
+              "L:unresolved",
+              "I:unresolved",
+              "I.physical-item:unresolved",
+              "I.digital-derivation:unresolved",
+              "I.edition/textual-lineage:unresolved",
+              "I.semantic-corroboration:unresolved"
+            ],
+            "ready": false,
+            "reason": "required_or_conditional_gate_unresolved",
+            "scopeConflict": false,
+            "status": "blocked",
+            "target": "implementation_safe_grounding"
+          },
+          "stability": "historical_observation_stability"
+        },
+        {
+          "additiveDecision": "No typed gate transition and no implementation promotion; direct observation/correspondence is appended only.",
+          "additiveEvidenceRefs": [
+            "obs.A.k3-p72-worked-example",
+            "obs.A.nlc-p105-formula",
+            "obs.A.nlc-p106-worked-example",
+            "claim.C.bounded-worked-example-correspondence"
+          ],
+          "claimId": "claim.sanming-dayun-distance-conversion",
+          "gates": {
+            "E": "satisfied",
+            "H": "satisfied",
+            "I": "unresolved",
+            "L": "unresolved",
+            "P": "unresolved",
+            "S": "satisfied"
+          },
+          "promotion": {
+            "blockingEdges": [
+              "L:unresolved",
+              "I:unresolved",
+              "I.physical-item:unresolved",
+              "I.digital-derivation:unresolved",
+              "I.edition/textual-lineage:unresolved",
+              "I.semantic-corroboration:unresolved"
+            ],
+            "ready": false,
+            "reason": "required_or_conditional_gate_unresolved",
+            "scopeConflict": false,
+            "status": "blocked",
+            "target": "implementation_safe_grounding"
+          },
+          "stability": "historical_observation_stability"
+        },
+        {
+          "additiveDecision": "No typed gate transition and no implementation promotion; direct observation/correspondence is appended only.",
+          "additiveEvidenceRefs": [
+            "obs.A.k3-p72-worked-example",
+            "obs.A.nlc-p105-formula",
+            "obs.A.nlc-p106-worked-example",
+            "claim.C.bounded-worked-example-correspondence"
+          ],
+          "claimId": "claim.sanming-dayun-start-age",
+          "gates": {
+            "E": "satisfied",
+            "H": "satisfied",
+            "I": "unresolved",
+            "L": "unresolved",
+            "P": "unresolved",
+            "S": "satisfied"
+          },
+          "promotion": {
+            "blockingEdges": [
+              "L:unresolved",
+              "I:unresolved",
+              "I.physical-item:unresolved",
+              "I.digital-derivation:unresolved",
+              "I.edition/textual-lineage:unresolved",
+              "I.semantic-corroboration:unresolved"
+            ],
+            "ready": false,
+            "reason": "required_or_conditional_gate_unresolved",
+            "scopeConflict": false,
+            "status": "blocked",
+            "target": "implementation_safe_grounding"
+          },
+          "stability": "historical_observation_stability"
+        },
+        {
+          "additiveDecision": "No typed gate transition and no implementation promotion; direct observation/correspondence is appended only.",
+          "additiveEvidenceRefs": [
+            "obs.A.k3-p72-worked-example",
+            "obs.A.nlc-p105-formula",
+            "obs.A.nlc-p106-worked-example",
+            "claim.C.bounded-worked-example-correspondence"
+          ],
+          "claimId": "claim.sanming-dayun-first-start-time",
+          "gates": {
+            "E": "unresolved",
+            "H": "satisfied",
+            "I": "unresolved",
+            "L": "unresolved",
+            "P": "unresolved",
+            "S": "unresolved"
+          },
+          "promotion": {
+            "blockingEdges": [
+              "E:unresolved",
+              "L:unresolved",
+              "S:unresolved",
+              "I:unresolved",
+              "I.physical-item:unresolved",
+              "I.digital-derivation:unresolved",
+              "I.edition/textual-lineage:unresolved",
+              "I.semantic-corroboration:unresolved"
+            ],
+            "ready": false,
+            "reason": "required_or_conditional_gate_unresolved",
+            "scopeConflict": false,
+            "status": "blocked",
+            "target": "implementation_safe_grounding"
+          },
+          "stability": "historical_observation_stability"
+        },
+        {
+          "additiveDecision": "No typed gate transition and no implementation promotion; direct observation/correspondence is appended only.",
+          "additiveEvidenceRefs": [
+            "obs.A.k3-p72-worked-example",
+            "obs.A.nlc-p105-formula",
+            "obs.A.nlc-p106-worked-example",
+            "claim.C.bounded-worked-example-correspondence"
+          ],
+          "claimId": "claim.sanming-dayun-progression",
+          "gates": {
+            "E": "satisfied",
+            "H": "satisfied",
+            "I": "unresolved",
+            "L": "unresolved",
+            "P": "unresolved",
+            "S": "satisfied"
+          },
+          "promotion": {
+            "blockingEdges": [
+              "L:unresolved",
+              "I:unresolved",
+              "I.physical-item:unresolved",
+              "I.digital-derivation:unresolved",
+              "I.edition/textual-lineage:unresolved",
+              "I.semantic-corroboration:unresolved"
+            ],
+            "ready": false,
+            "reason": "required_or_conditional_gate_unresolved",
+            "scopeConflict": false,
+            "status": "blocked",
+            "target": "implementation_safe_grounding"
+          },
+          "stability": "historical_observation_stability"
+        }
+      ],
+      "gateStateCounts": {
+        "E": {
+          "conflicted": 0,
+          "satisfied": 12,
+          "unresolved": 1
+        },
+        "H": {
+          "conflicted": 0,
+          "satisfied": 13,
+          "unresolved": 0
+        },
+        "I": {
+          "conflicted": 0,
+          "satisfied": 0,
+          "unresolved": 13
+        },
+        "L": {
+          "conflicted": 0,
+          "satisfied": 1,
+          "unresolved": 12
+        },
+        "P": {
+          "conflicted": 1,
+          "satisfied": 0,
+          "unresolved": 12
+        },
+        "S": {
+          "conflicted": 1,
+          "satisfied": 11,
+          "unresolved": 1
+        }
+      },
+      "gateTransitions": {
+        "E": {
+          "after": {
+            "conflicted": 0,
+            "satisfied": 12,
+            "unresolved": 1
+          },
+          "before": {
+            "conflicted": 0,
+            "satisfied": 12,
+            "unresolved": 1
+          },
+          "transition": "unchanged"
+        },
+        "H": {
+          "after": {
+            "conflicted": 0,
+            "satisfied": 13,
+            "unresolved": 0
+          },
+          "before": {
+            "conflicted": 0,
+            "satisfied": 13,
+            "unresolved": 0
+          },
+          "transition": "unchanged"
+        },
+        "I": {
+          "after": {
+            "conflicted": 0,
+            "satisfied": 0,
+            "unresolved": 13
+          },
+          "before": {
+            "conflicted": 0,
+            "satisfied": 0,
+            "unresolved": 13
+          },
+          "transition": "unchanged"
+        },
+        "L": {
+          "after": {
+            "conflicted": 0,
+            "satisfied": 1,
+            "unresolved": 12
+          },
+          "before": {
+            "conflicted": 0,
+            "satisfied": 1,
+            "unresolved": 12
+          },
+          "transition": "unchanged"
+        },
+        "P": {
+          "after": {
+            "conflicted": 1,
+            "satisfied": 0,
+            "unresolved": 12
+          },
+          "before": {
+            "conflicted": 1,
+            "satisfied": 0,
+            "unresolved": 12
+          },
+          "transition": "unchanged"
+        },
+        "S": {
+          "after": {
+            "conflicted": 1,
+            "satisfied": 11,
+            "unresolved": 1
+          },
+          "before": {
+            "conflicted": 1,
+            "satisfied": 11,
+            "unresolved": 1
+          },
+          "transition": "unchanged"
+        }
+      },
+      "implementationSafeGrounding": "not_established",
+      "productionActivation": "blocked",
+      "promotionReadyClaimIds": [],
+      "semanticAuthority": "not_established",
+      "stableClaimPromotionCount": 0
+    },
+    "before": {
+      "activeClaimCount": 13,
+      "artifactPath": "artifacts/saju-five-classics-typed-readiness-contract-v0/complete.json",
+      "contentSha256": "40f5b5e21330631a566200ae9c2a15c06e24437d1337178fc62a342070beeb41",
+      "dayunClaims": [
+        {
+          "claimId": "claim.sanming-dayun-year-stem-gender-direction",
+          "gates": {
+            "E": "satisfied",
+            "H": "satisfied",
+            "I": "unresolved",
+            "L": "unresolved",
+            "P": "unresolved",
+            "S": "satisfied"
+          },
+          "promotion": {
+            "blockingEdges": [
+              "L:unresolved",
+              "I:unresolved",
+              "I.physical-item:unresolved",
+              "I.digital-derivation:unresolved",
+              "I.edition/textual-lineage:unresolved",
+              "I.semantic-corroboration:unresolved"
+            ],
+            "ready": false,
+            "reason": "required_or_conditional_gate_unresolved",
+            "scopeConflict": false,
+            "status": "blocked",
+            "target": "implementation_safe_grounding"
+          },
+          "stability": "historical_observation_stability"
+        },
+        {
+          "claimId": "claim.sanming-dayun-term-selection",
+          "gates": {
+            "E": "satisfied",
+            "H": "satisfied",
+            "I": "unresolved",
+            "L": "unresolved",
+            "P": "unresolved",
+            "S": "satisfied"
+          },
+          "promotion": {
+            "blockingEdges": [
+              "L:unresolved",
+              "I:unresolved",
+              "I.physical-item:unresolved",
+              "I.digital-derivation:unresolved",
+              "I.edition/textual-lineage:unresolved",
+              "I.semantic-corroboration:unresolved"
+            ],
+            "ready": false,
+            "reason": "required_or_conditional_gate_unresolved",
+            "scopeConflict": false,
+            "status": "blocked",
+            "target": "implementation_safe_grounding"
+          },
+          "stability": "historical_observation_stability"
+        },
+        {
+          "claimId": "claim.sanming-dayun-term-distance",
+          "gates": {
+            "E": "satisfied",
+            "H": "satisfied",
+            "I": "unresolved",
+            "L": "unresolved",
+            "P": "unresolved",
+            "S": "satisfied"
+          },
+          "promotion": {
+            "blockingEdges": [
+              "L:unresolved",
+              "I:unresolved",
+              "I.physical-item:unresolved",
+              "I.digital-derivation:unresolved",
+              "I.edition/textual-lineage:unresolved",
+              "I.semantic-corroboration:unresolved"
+            ],
+            "ready": false,
+            "reason": "required_or_conditional_gate_unresolved",
+            "scopeConflict": false,
+            "status": "blocked",
+            "target": "implementation_safe_grounding"
+          },
+          "stability": "historical_observation_stability"
+        },
+        {
+          "claimId": "claim.sanming-dayun-distance-conversion",
+          "gates": {
+            "E": "satisfied",
+            "H": "satisfied",
+            "I": "unresolved",
+            "L": "unresolved",
+            "P": "unresolved",
+            "S": "satisfied"
+          },
+          "promotion": {
+            "blockingEdges": [
+              "L:unresolved",
+              "I:unresolved",
+              "I.physical-item:unresolved",
+              "I.digital-derivation:unresolved",
+              "I.edition/textual-lineage:unresolved",
+              "I.semantic-corroboration:unresolved"
+            ],
+            "ready": false,
+            "reason": "required_or_conditional_gate_unresolved",
+            "scopeConflict": false,
+            "status": "blocked",
+            "target": "implementation_safe_grounding"
+          },
+          "stability": "historical_observation_stability"
+        },
+        {
+          "claimId": "claim.sanming-dayun-start-age",
+          "gates": {
+            "E": "satisfied",
+            "H": "satisfied",
+            "I": "unresolved",
+            "L": "unresolved",
+            "P": "unresolved",
+            "S": "satisfied"
+          },
+          "promotion": {
+            "blockingEdges": [
+              "L:unresolved",
+              "I:unresolved",
+              "I.physical-item:unresolved",
+              "I.digital-derivation:unresolved",
+              "I.edition/textual-lineage:unresolved",
+              "I.semantic-corroboration:unresolved"
+            ],
+            "ready": false,
+            "reason": "required_or_conditional_gate_unresolved",
+            "scopeConflict": false,
+            "status": "blocked",
+            "target": "implementation_safe_grounding"
+          },
+          "stability": "historical_observation_stability"
+        },
+        {
+          "claimId": "claim.sanming-dayun-first-start-time",
+          "gates": {
+            "E": "unresolved",
+            "H": "satisfied",
+            "I": "unresolved",
+            "L": "unresolved",
+            "P": "unresolved",
+            "S": "unresolved"
+          },
+          "promotion": {
+            "blockingEdges": [
+              "E:unresolved",
+              "L:unresolved",
+              "S:unresolved",
+              "I:unresolved",
+              "I.physical-item:unresolved",
+              "I.digital-derivation:unresolved",
+              "I.edition/textual-lineage:unresolved",
+              "I.semantic-corroboration:unresolved"
+            ],
+            "ready": false,
+            "reason": "required_or_conditional_gate_unresolved",
+            "scopeConflict": false,
+            "status": "blocked",
+            "target": "implementation_safe_grounding"
+          },
+          "stability": "historical_observation_stability"
+        },
+        {
+          "claimId": "claim.sanming-dayun-progression",
+          "gates": {
+            "E": "satisfied",
+            "H": "satisfied",
+            "I": "unresolved",
+            "L": "unresolved",
+            "P": "unresolved",
+            "S": "satisfied"
+          },
+          "promotion": {
+            "blockingEdges": [
+              "L:unresolved",
+              "I:unresolved",
+              "I.physical-item:unresolved",
+              "I.digital-derivation:unresolved",
+              "I.edition/textual-lineage:unresolved",
+              "I.semantic-corroboration:unresolved"
+            ],
+            "ready": false,
+            "reason": "required_or_conditional_gate_unresolved",
+            "scopeConflict": false,
+            "status": "blocked",
+            "target": "implementation_safe_grounding"
+          },
+          "stability": "historical_observation_stability"
+        }
+      ],
+      "gateStateCounts": {
+        "E": {
+          "conflicted": 0,
+          "satisfied": 12,
+          "unresolved": 1
+        },
+        "H": {
+          "conflicted": 0,
+          "satisfied": 13,
+          "unresolved": 0
+        },
+        "I": {
+          "conflicted": 0,
+          "satisfied": 0,
+          "unresolved": 13
+        },
+        "L": {
+          "conflicted": 0,
+          "satisfied": 1,
+          "unresolved": 12
+        },
+        "P": {
+          "conflicted": 1,
+          "satisfied": 0,
+          "unresolved": 12
+        },
+        "S": {
+          "conflicted": 1,
+          "satisfied": 11,
+          "unresolved": 1
+        }
+      },
+      "readiness": {
+        "availableForInterpretation": false,
+        "productionActivation": "blocked",
+        "promotionReadyClaimIds": [],
+        "reason": "Typed dry-run only; no claim is promoted and no production rule is changed.",
+        "semanticAuthority": "not_established",
+        "stableClaimPromotionCount": 0
+      },
+      "schemaVersion": "saju-five-classics-typed-readiness-contract-v0",
+      "version": "0.1.0"
+    },
+    "promotionDecision": "promotion_0_normal",
+    "rationale": "The direct page observations stabilize bounded historical observation and worked-example correspondence only. The unresolved edition/textual-lineage and independence edges keep typed readiness and activation closed."
+  },
+  "variantAdjudication": [
+    {
+      "actualDifference": "K3-437 has 申時 in the first clause; NLC 114503.0 derivative omits it. NLC later retains 至二十九日申時止.",
+      "candidateAssessment": {
+        "candidateNlcReading": "是月二十九日立春",
+        "correction": "The candidate correctly exposed a real lead-in difference, but its inference that the omission confirms an underlying source reading is not promoted to lineage evidence.",
+        "verdict": "verified"
+      },
+      "directReading": {
+        "k3": "是月二十九日申時立春",
+        "nlc": "是月二十九日立春"
+      },
+      "excludedAsVariant": [
+        "modern punctuation",
+        "OCR segmentation",
+        "Unicode/orthographic normalization without a glyph difference"
+      ],
+      "locators": {
+        "k3": {
+          "observationId": "obs.A.k3-p72-worked-example",
+          "pdf": "K3-437_006.pdf",
+          "pdfPage": 72,
+          "printedFolio": null
+        },
+        "nlc": {
+          "observationId": "obs.A.nlc-p106-worked-example",
+          "pdf": "NLC 114503.0 derivative",
+          "pdfPage": 106,
+          "printedFolio": "二"
+        }
+      },
+      "locus": "first 立春 clause / 申時 presence",
+      "scopeBoundary": "A bounded record or page observation is admitted only at its stated locator and source category; it is not canonical text, semantic authority, interpretation readiness, implementation grounding, or activation.",
+      "status": "verified",
+      "surroundingText": {
+        "k3": "譬如甲子陽男十二月二十四日巳時生是月二十九日申時立春陽男數未來之日自二十四日巳時至二十五日巳",
+        "nlc": "譬如甲子陽男十二月二十四日巳時生是月二十九日立春陽男數未來之日自二十四日巳時至二十五日"
+      },
+      "unreadable": false,
+      "variantId": "VAR-01"
+    },
+    {
+      "actualDifference": "No difference was directly observed between the two target pages. 假令 is not present in the inspected NLC target page.",
+      "candidateAssessment": {
+        "candidateNlcReading": "譬如甲子陽男 (일부 傳本: 假令甲子陽男)",
+        "correction": "The alternate 假令 reading is an unsupported candidate-side addition in this two-page crosswalk; no third witness was supplied for it.",
+        "verdict": "rejected"
+      },
+      "directReading": {
+        "k3": "譬如甲子陽男",
+        "nlc": "譬如甲子陽男"
+      },
+      "excludedAsVariant": [
+        "modern punctuation",
+        "OCR segmentation",
+        "Unicode/orthographic normalization without a glyph difference"
+      ],
+      "locators": {
+        "k3": {
+          "observationId": "obs.A.k3-p72-worked-example",
+          "pdf": "K3-437_006.pdf",
+          "pdfPage": 72,
+          "printedFolio": null
+        },
+        "nlc": {
+          "observationId": "obs.A.nlc-p106-worked-example",
+          "pdf": "NLC 114503.0 derivative",
+          "pdfPage": 106,
+          "printedFolio": "二"
+        }
+      },
+      "locus": "worked-example opening word",
+      "scopeBoundary": "A bounded record or page observation is admitted only at its stated locator and source category; it is not canonical text, semantic authority, interpretation readiness, implementation grounding, or activation.",
+      "status": "corrected",
+      "surroundingText": {
+        "k3": "譬如甲子陽男十二月二",
+        "nlc": "譬如甲子陽男十二月二"
+      },
+      "unreadable": false,
+      "variantId": "VAR-02"
+    },
+    {
+      "actualDifference": "The direct target pages both show 奇九月. The candidate alternative 一歲九個月 was not observed.",
+      "candidateAssessment": {
+        "candidateNlcReading": "乃是一歲九個月之大運 / 一歲奇九月",
+        "correction": "Retain only the directly observed 一歲奇九月 for this crosswalk; do not import the 九個月 alternative.",
+        "verdict": "rejected"
+      },
+      "directReading": {
+        "k3": "乃是一歲奇九月之大運",
+        "nlc": "乃是一歲奇九月之大運"
+      },
+      "excludedAsVariant": [
+        "modern punctuation",
+        "OCR segmentation",
+        "Unicode/orthographic normalization without a glyph difference"
+      ],
+      "locators": {
+        "k3": {
+          "observationId": "obs.A.k3-p72-worked-example",
+          "pdf": "K3-437_006.pdf",
+          "pdfPage": 72,
+          "printedFolio": null
+        },
+        "nlc": {
+          "observationId": "obs.A.nlc-p106-worked-example",
+          "pdf": "NLC 114503.0 derivative",
+          "pdfPage": 106,
+          "printedFolio": "二"
+        }
+      },
+      "locus": "worked-example remainder expression",
+      "scopeBoundary": "A bounded record or page observation is admitted only at its stated locator and source category; it is not canonical text, semantic authority, interpretation readiness, implementation grounding, or activation.",
+      "status": "corrected",
+      "surroundingText": {
+        "k3": "折除計六百三十日乃是一歲奇九月之大運起於丁丑",
+        "nlc": "折除計六百三十日乃是一歲奇九月之大運起於丁丑"
+      },
+      "unreadable": false,
+      "variantId": "VAR-03"
+    },
+    {
+      "actualDifference": "Both directly observed glyph sequences use 箇. No 四個月 glyph was observed.",
+      "candidateAssessment": {
+        "candidateNlcReading": "為四個月之數 / 四箇月",
+        "correction": "The NLC reading is corrected to the directly visible traditional 箇; a modernized 个/個 form is not a textual variant admitted from these scans.",
+        "verdict": "rejected"
+      },
+      "directReading": {
+        "k3": "為四箇月之數",
+        "nlc": "為四箇月之數"
+      },
+      "excludedAsVariant": [
+        "modern punctuation",
+        "OCR segmentation",
+        "Unicode/orthographic normalization without a glyph difference"
+      ],
+      "locators": {
+        "k3": {
+          "observationId": "obs.A.k3-p72-worked-example",
+          "pdf": "K3-437_006.pdf",
+          "pdfPage": 72,
+          "printedFolio": null
+        },
+        "nlc": {
+          "observationId": "obs.A.nlc-p105-formula",
+          "pdf": "NLC 114503.0 derivative",
+          "pdfPage": 105,
+          "printedFolio": "一"
+        }
+      },
+      "locus": "month classifier orthography",
+      "scopeBoundary": "A bounded record or page observation is admitted only at its stated locator and source category; it is not canonical text, semantic authority, interpretation readiness, implementation grounding, or activation.",
+      "status": "corrected",
+      "surroundingText": {
+        "k3": "一日十二時得一百二十日為四箇月之數一時辰得十日之數",
+        "nlc": "一日十二時得一百二十日為四箇月之數一時辰得十日之數"
+      },
+      "unreadable": false,
+      "variantId": "VAR-04"
+    },
+    {
+      "actualDifference": "Both directly observed sequences use 得. 為十日 was not observed in the NLC target page.",
+      "candidateAssessment": {
+        "candidateNlcReading": "一時辰為十日 / 得十日之數",
+        "correction": "Retain 得十日之數 only for this two-witness crosswalk; the candidate 為十日 alternative is not parent-verified.",
+        "verdict": "rejected"
+      },
+      "directReading": {
+        "k3": "一時辰得十日之數",
+        "nlc": "一時辰得十日之數"
+      },
+      "excludedAsVariant": [
+        "modern punctuation",
+        "OCR segmentation",
+        "Unicode/orthographic normalization without a glyph difference"
+      ],
+      "locators": {
+        "k3": {
+          "observationId": "obs.A.k3-p72-worked-example",
+          "pdf": "K3-437_006.pdf",
+          "pdfPage": 72,
+          "printedFolio": null
+        },
+        "nlc": {
+          "observationId": "obs.A.nlc-p105-formula",
+          "pdf": "NLC 114503.0 derivative",
+          "pdfPage": 105,
+          "printedFolio": "一"
+        }
+      },
+      "locus": "hour-to-day conversion predicate",
+      "scopeBoundary": "A bounded record or page observation is admitted only at its stated locator and source category; it is not canonical text, semantic authority, interpretation readiness, implementation grounding, or activation.",
+      "status": "corrected",
+      "surroundingText": {
+        "k3": "為四箇月之數一時辰得十日之數",
+        "nlc": "為四箇月之數一時辰得十日之數"
+      },
+      "unreadable": false,
+      "variantId": "VAR-05"
+    },
+    {
+      "actualDifference": "No shortening was directly observed: both target pages contain the expanded critique, including 便以二歲九月過矣 and 殊不明折除實歷之數也.",
+      "candidateAssessment": {
+        "candidateNlcReading": "今人多用約法以一歲八箇月起運不知折除實歷之細也",
+        "correction": "The candidate NLC condensed wording is rejected for 114503.0 target pages; do not treat the alleged compression as an actual K3↔NLC variant.",
+        "verdict": "rejected"
+      },
+      "directReading": {
+        "k3": "今人行運多用約法以一歲奇八月起運便以二歲九月過矣殊不明折除實歷之數也",
+        "nlc": "今人行運多用約法以一歲奇八月起運便以二歲九月過矣殊不明折除實歷之數也"
+      },
+      "excludedAsVariant": [
+        "modern punctuation",
+        "OCR segmentation",
+        "Unicode/orthographic normalization without a glyph difference"
+      ],
+      "locators": {
+        "k3": {
+          "observationId": "obs.A.k3-p72-worked-example",
+          "pdf": "K3-437_006.pdf",
+          "pdfPage": 72,
+          "printedFolio": null
+        },
+        "nlc": {
+          "observationId": "obs.A.nlc-p106-worked-example",
+          "pdf": "NLC 114503.0 derivative",
+          "pdfPage": 106,
+          "printedFolio": "二"
+        }
+      },
+      "locus": "full 約法 critique",
+      "scopeBoundary": "A bounded record or page observation is admitted only at its stated locator and source category; it is not canonical text, semantic authority, interpretation readiness, implementation grounding, or activation.",
+      "status": "corrected",
+      "surroundingText": {
+        "k3": "方是甲子十二月生行一歲奇九月之大運也今人行運多用約法以一歲奇八月起運便以二歲九月過矣殊不明折除實歷之數也",
+        "nlc": "方是甲子十二月生行一歲奇九月之大運也今人行運多用約法以一歲奇八月起運便以二歲九月過矣殊不明折除實歷之數也"
+      },
+      "unreadable": false,
+      "variantId": "VAR-06"
+    }
+  ],
+  "version": "4.0.0",
+  "witnessIdentityAudit": {
+    "K3_437": {
+      "digitalObject": {
+        "byteLength": 14116437,
+        "byteSha256": "335a1c03c7af246969e00667d6a4d9756b19c19d93539223bb871c47001a24cd",
+        "derivation": "official-hosted PDF from Jangseogak record",
+        "objectId": "K3-437_006.pdf",
+        "refs": [
+          "ev.A.k3-official-scan"
+        ],
+        "state": "satisfied"
+      },
+      "editionCopyMetadata": {
+        "authorCatalogueField": "(明)廖中著",
+        "copyDate": "unresolved",
+        "editionType": "木版",
+        "publicationDate": "[刊年未詳]",
+        "refs": [
+          "ev.A.k3-official-record"
+        ],
+        "state": "partially_supported",
+        "volumes": "34권6책 완본"
+      },
+      "layout": {
+        "candidateCorrection": "Gemini v4 stated 四周單邊; the first-party record observed by parent states 四周雙邊. The candidate field is corrected, not imported.",
+        "description": "四周雙邊, 有界, 半葉10行20字, 註雙行, 內向三葉花紋魚尾",
+        "refs": [
+          "ev.A.k3-official-record"
+        ],
+        "state": "satisfied_as_catalogue_field"
+      },
+      "physicalItem": {
+        "institution": "한국학중앙연구원 장서각",
+        "itemId": "K3-437",
+        "microfilmId": "MF35-143~4",
+        "officialRecordRefs": [
+          "ev.A.k3-official-record"
+        ],
+        "relationToNlc": "distinct institutionally identified holding; this alone does not establish independent textual lineage",
+        "state": "satisfied"
+      },
+      "prefatoryPostscriptColophon": {
+        "catalogueDescription": [
+          "周必大序 1196",
+          "岳珂序 1228",
+          "廖中自序/總目錄"
+        ],
+        "physicalColophonDirectlyObserved": false,
+        "postscriptDirectlyObserved": false,
+        "refs": [
+          "ev.B.k3-preface-provenance-boundary"
+        ],
+        "state": "unresolved_for_current_copy"
+      },
+      "printingOrTranscriptionTime": {
+        "recordField": "[刊年未詳]",
+        "refs": [
+          "ev.A.k3-official-record",
+          "ev.B.k3-preface-provenance-boundary"
+        ],
+        "state": "unresolved",
+        "warning": "Preface dates and author dates are not current-copy dates."
+      },
+      "provenance": {
+        "completeOwnershipChain": "unresolved",
+        "observedMarks": [
+          "密城世家",
+          "朴吉璟",
+          "李王家圖書之章"
+        ],
+        "refs": [
+          "ev.B.k3-preface-provenance-boundary"
+        ],
+        "state": "partially_supported"
+      },
+      "witnessId": "WIT-A1"
+    },
+    "NLC_06857": {
+      "digitalObject": {
+        "byteLength": 38628523,
+        "byteSha256": "6519fbdc0fa25272bf6aae0fdac8c73107c0f6b852a1b0beebc655344ec2812d",
+        "officialReaderObject": "aid=892, bid=114503.0",
+        "originalNlcBitstreamDownloaded": false,
+        "publicDerivative": "Wikimedia Commons derivative attributed to NLC object",
+        "refs": [
+          "ev.A.nlc-reader-object",
+          "ev.A.nlc-derivative-scan"
+        ],
+        "state": "satisfied_for_distinct_derivative_object"
+      },
+      "editionCopyMetadata": {
+        "authorCatalogueField": "(宋)廖中撰",
+        "copyDate": "unresolved",
+        "editionType": "抄本 (official record field)",
+        "publicationDate": "清[1644-1911] (catalogue range only)",
+        "refs": [
+          "ev.A.nlc-official-record",
+          "ev.B.nlc-provenance-lineage-boundary"
+        ],
+        "state": "partially_supported",
+        "volumes": "存33卷：1～33"
+      },
+      "layout": {
+        "description": "10行24字, 黑口, 左右雙邊",
+        "refs": [
+          "ev.A.nlc-official-record"
+        ],
+        "state": "satisfied_as_catalogue_field"
+      },
+      "physicalItem": {
+        "identifier": "411999013122",
+        "institution": "中国国家图书馆",
+        "officialRecordRefs": [
+          "ev.A.nlc-official-record",
+          "ev.A.nlc-reader-object"
+        ],
+        "rareBookId": "06857",
+        "relationToK3": "distinct institutionally identified holding; this alone does not establish independent textual lineage",
+        "state": "satisfied_as_institutional_record",
+        "volumeObjectId": "114503.0"
+      },
+      "prefatoryPostscriptColophon": {
+        "colophonLocated": false,
+        "directlyObservedInTargetPages": false,
+        "postscriptLocated": false,
+        "refs": [
+          "ev.B.nlc-provenance-lineage-boundary"
+        ],
+        "state": "unresolved_for_current_copy"
+      },
+      "printingOrTranscriptionTime": {
+        "recordField": "清[1644-1911]",
+        "refs": [
+          "ev.A.nlc-official-record",
+          "ev.B.nlc-provenance-lineage-boundary"
+        ],
+        "state": "unresolved",
+        "warning": "The field is a broad catalog window; it does not establish an exact copy date or relation to K3-437."
+      },
+      "provenance": {
+        "completeOwnershipChain": "unresolved",
+        "recordOrReaderFields": [
+          "海虞瞿氏恬裕齋",
+          "清[1644-1911]"
+        ],
+        "refs": [
+          "ev.A.nlc-reader-object",
+          "ev.B.nlc-provenance-lineage-boundary"
+        ],
+        "state": "partially_supported"
+      },
+      "witnessId": "WIT-A2"
+    }
+  }
+}

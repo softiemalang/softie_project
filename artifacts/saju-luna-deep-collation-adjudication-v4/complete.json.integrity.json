@@ -1,0 +1,7 @@
+{
+  "artifactByteSha256": "d2034c677681de2a484a1fae767df749f2795fd7923cec8112adb03edb4351bc",
+  "artifactPath": "artifacts/saju-luna-deep-collation-adjudication-v4/complete.json",
+  "byteLength": 114233,
+  "hashScope": "exact UTF-8 bytes of complete.json including final LF",
+  "schemaVersion": "saju-luna-deep-collation-adjudication-v4-integrity-v0"
+}
