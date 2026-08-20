@@ -1,0 +1,1692 @@
+{
+  "artifactIdentity": {
+    "artifactId": "saju-anu-v6-v12-direct-inspection-v0",
+    "artifactPayloadSha256": "7bff332db0a80456352d523ab69d7683c855915e3d88174c3fdad9adc39363a5",
+    "contractVersion": "artifact-identity-v1",
+    "generation": {
+      "baseHead": "99e6cc624a1510487ad8bcf65347b3ee5f4e524e",
+      "baseHeadSource": "git rev-parse HEAD at materialization",
+      "includedCommit": null,
+      "includedCommitSource": "unknown_at_generation; artifact may be included by a later commit"
+    },
+    "inputs": [
+      {
+        "byteSha256": "25b4c2ecac56caa5dfad13e090b0844f0088240205da43a2beaa59c5a79bbb81",
+        "path": "artifacts/saju-five-classics-typed-readiness-contract-v0/complete.json"
+      },
+      {
+        "byteSha256": "76add867e33c35286788a5e899a3ee66f626959f657ef6fe11ab0f4dc61e8d0d",
+        "path": "artifacts/saju-gemini-v7-parent-adjudication/complete.json"
+      },
+      {
+        "byteSha256": "1bc65200ea4e5b05c136ea06bba4673ca8f5651cf7bfe6984bda9a33fa08d0d5",
+        "path": "scripts/materialize-saju-anu-v6-v12-direct-inspection-v0.mjs"
+      },
+      {
+        "byteSha256": "5745991fbc31ea4747570844017c06facc4c6c15e205f3145bb357afb9f51712",
+        "path": "src/artifactIdentity.js"
+      },
+      {
+        "byteSha256": "64feab180165a09723caf41c56ad850586cb10bc081f175e9955d5e12eaba468",
+        "path": "src/interpretationPrep/sajuAnuV6V12DirectInspection.js"
+      }
+    ],
+    "materializer": {
+      "path": "scripts/materialize-saju-anu-v6-v12-direct-inspection-v0.mjs",
+      "version": "0.1.0"
+    }
+  },
+  "basisHead": "99e6cc624a1510487ad8bcf65347b3ee5f4e524e",
+  "bitstreamInventory": [
+    {
+      "apiHttpStatus": 200,
+      "bitstreamUuid": "fb2aba7f-7631-40c6-ac51-e1d2c7d4f8cf",
+      "contentUrl": "https://openresearch-repository.anu.edu.au/server/api/core/bitstreams/fb2aba7f-7631-40c6-ac51-e1d2c7d4f8cf/content",
+      "description": "Volume 6",
+      "downloadedPath": "/private/tmp/anu-b22343921-v6.pdf",
+      "fileName": "b22343921_v.6.pdf",
+      "md5": "ef4bdabe46a18d7585b60c7a75f74e3c",
+      "pdfPageCount": 106,
+      "sha256": "97d57717dfbeab787af8c8f7e9edcbec4b2522a26821c75cb38cc7c0f156de2b",
+      "sizeBytes": 116512109,
+      "volume": 6
+    },
+    {
+      "apiHttpStatus": 200,
+      "bitstreamUuid": "5b0a6e1b-3db4-46ee-aa12-a42b14e322b4",
+      "contentUrl": "https://openresearch-repository.anu.edu.au/server/api/core/bitstreams/5b0a6e1b-3db4-46ee-aa12-a42b14e322b4/content",
+      "description": "Volume 7",
+      "downloadedPath": "/private/tmp/anu-b22343921-v7.pdf",
+      "fileName": "b22343921_v.7.pdf",
+      "md5": "0568f1c263e6e941232a5af977c5d7a7",
+      "pdfPageCount": 89,
+      "sha256": "6edc5391d91d409620b2e1174e629bb1a2653870b3f3aca4ce2d9deb3d0a863f",
+      "sizeBytes": 98529810,
+      "volume": 7
+    },
+    {
+      "apiHttpStatus": 200,
+      "bitstreamUuid": "a8fa6594-8fdc-4c11-8368-842289357e52",
+      "contentUrl": "https://openresearch-repository.anu.edu.au/server/api/core/bitstreams/a8fa6594-8fdc-4c11-8368-842289357e52/content",
+      "description": "Volume 8",
+      "downloadedPath": "/private/tmp/anu-b22343921-v8.pdf",
+      "fileName": "b22343921_v.8.pdf",
+      "md5": "94bc9f49cc19ca5310b690fc2107d8b8",
+      "pdfPageCount": 126,
+      "sha256": "82bf2f1814b04f849a8a2abbcb16c49b0c9feb02b1d19531a26a694d628fc6eb",
+      "sizeBytes": 132491390,
+      "volume": 8
+    },
+    {
+      "apiHttpStatus": 200,
+      "bitstreamUuid": "18bf8d2e-c443-41da-852a-b3404a6195ca",
+      "contentUrl": "https://openresearch-repository.anu.edu.au/server/api/core/bitstreams/18bf8d2e-c443-41da-852a-b3404a6195ca/content",
+      "description": "Volume 9",
+      "downloadedPath": "/private/tmp/anu-b22343921-v9.pdf",
+      "fileName": "b22343921_v.9.pdf",
+      "md5": "7e6d9af2a6aed73978c0c48674be4f35",
+      "pdfPageCount": 124,
+      "sha256": "17446c7571c11c85a0b60f04074f968c0b708078c4f646930d25a959f73a24c1",
+      "sizeBytes": 132300104,
+      "volume": 9
+    },
+    {
+      "apiHttpStatus": 200,
+      "bitstreamUuid": "97ec8e41-d427-4f7d-b9b0-336898fea3db",
+      "contentUrl": "https://openresearch-repository.anu.edu.au/server/api/core/bitstreams/97ec8e41-d427-4f7d-b9b0-336898fea3db/content",
+      "description": "Volume 10",
+      "downloadedPath": "/private/tmp/anu-b22343921-v10.pdf",
+      "fileName": "b22343921_v.10.pdf",
+      "md5": "359120cee2db78319fa435b987de2b30",
+      "pdfPageCount": 77,
+      "sha256": "abf528e8dfa821b0c947b3031ec1879f17d8028dbf81624e7d81db38368cc249",
+      "sizeBytes": 66903696,
+      "volume": 10
+    },
+    {
+      "apiHttpStatus": 200,
+      "bitstreamUuid": "335e822c-7893-4ab9-ad7f-cd3bcb565759",
+      "contentUrl": "https://openresearch-repository.anu.edu.au/server/api/core/bitstreams/335e822c-7893-4ab9-ad7f-cd3bcb565759/content",
+      "description": "Volume 11",
+      "downloadedPath": "/private/tmp/anu-b22343921-v11.pdf",
+      "fileName": "b22343921_v.11.pdf",
+      "md5": "864bf38d466674436bb643372cb01244",
+      "pdfPageCount": 91,
+      "sha256": "ffba874a4d5cf73e59f203872149246090b9f7bce52905f2977fcfeb645f07e3",
+      "sizeBytes": 102605436,
+      "volume": 11
+    },
+    {
+      "apiHttpStatus": 200,
+      "bitstreamUuid": "fc1a5a22-84e8-4760-899f-c3d3e1add118",
+      "contentUrl": "https://openresearch-repository.anu.edu.au/server/api/core/bitstreams/fc1a5a22-84e8-4760-899f-c3d3e1add118/content",
+      "description": "Volume 12",
+      "downloadedPath": "/private/tmp/anu-b22343921-v12.pdf",
+      "fileName": "b22343921_v.12.pdf",
+      "md5": "1fe2ec34a48cdc2463a75eda9a80e92e",
+      "pdfPageCount": 81,
+      "sha256": "b7958e1fc5dd8a61aab33bbcaf06651a6c7b7d30059364295af417632b88847a",
+      "sizeBytes": 88419498,
+      "volume": 12
+    }
+  ],
+  "candidatePacket": {
+    "importedAsCanonicalEvidence": false,
+    "importedConclusionFields": [],
+    "packetFiles": [],
+    "source": "Gemini v7 wide acquisition packet",
+    "sourceTextAndVerdictsImported": false,
+    "staleParentRejectedClaimsReintroduced": false,
+    "trustBoundary": "untrusted_candidate_only"
+  },
+  "contentSha256": "9813418f6d76286abc3f7d687e2c73cf9e0320f7e083fab21b8e3270a80b034e",
+  "digitalPhysicalRelationshipAudit": {
+    "axes": [
+      {
+        "axis": "physical-item",
+        "countedAsIndependent": false,
+        "missingEdges": [
+          "physical holding/leaf-level identity and independent witness relation"
+        ],
+        "observation": "Seven PDF files are not seven independently verified physical witnesses.",
+        "state": "unresolved"
+      },
+      {
+        "axis": "digital-derivation",
+        "countedAsIndependent": false,
+        "missingEdges": [
+          "independent capture/derivation relation"
+        ],
+        "observation": "v6–v12 are seven official bitstreams in one ORIGINAL bundle.",
+        "state": "unresolved"
+      },
+      {
+        "axis": "edition/textual-lineage",
+        "countedAsIndependent": false,
+        "missingEdges": [
+          "edition/date/lineage crosswalk"
+        ],
+        "observation": "Printed title pages identify 卷 labels only.",
+        "state": "unresolved"
+      },
+      {
+        "axis": "semantic-corroboration",
+        "countedAsIndependent": false,
+        "missingEdges": [
+          "independent semantic oracle and authority relation"
+        ],
+        "observation": "v11 p.7/p.24 is same-item text; it is not independent semantic corroboration.",
+        "state": "unresolved"
+      }
+    ],
+    "canonicalTransmissionEdges": [],
+    "overallState": "unresolved",
+    "relationTypes": [
+      "physical-item",
+      "digital-derivation",
+      "edition/textual-lineage",
+      "semantic-corroboration"
+    ],
+    "rule": "The seven ANU PDF bitstreams are digital representations in one first-party ORIGINAL bundle. They are not independent physical witnesses or independent textual lineages.",
+    "separated": true
+  },
+  "evidencePolicy": {
+    "directPolicy": "A direct scan or first-party content endpoint observation is admitted only at its stated source and PDF locator; it is not canonical text, semantic authority, interpretation readiness, or a production procedure.",
+    "ocr": "locator_only",
+    "pdfPageNumbering": "1-based PDF scan page; not a printed folio",
+    "printedFolioPolicy": "null/unresolved unless a printed folio is directly and reliably legible on the inspected image",
+    "sameLineagePolicy": "The seven ANU PDF bitstreams are digital representations in one first-party ORIGINAL bundle. They are not independent physical witnesses or independent textual lineages."
+  },
+  "externalEvidence": [
+    {
+      "apiUrl": "https://openresearch-repository.anu.edu.au/server/api/core/items/e0d2d017-f99d-4818-af29-d18754f7e5cd",
+      "bundleApiUrl": "https://openresearch-repository.anu.edu.au/server/api/core/bundles/c11f2f3d-396b-43b1-b5b1-d2ce29a3f047/bitstreams?size=100",
+      "evidenceId": "ev.anu.current-item-and-bundle",
+      "institution": "Australian National University Open Research Repository",
+      "observed": [
+        "item UUID, Handle 1885/206524, identifier b22343921, ORIGINAL bundle UUID, 12-v metadata, Xu Dishan relation, Chinese Rare Books collection"
+      ],
+      "recordUrl": "https://openresearch-repository.anu.edu.au/items/e0d2d017-f99d-4818-af29-d18754f7e5cd",
+      "scopeBoundary": "Item and bundle metadata are first-party identity evidence only. They do not establish printed-volume completeness, edition date, or textual genealogy.",
+      "sourceCategory": "FIRST_PARTY_API_RECORD",
+      "sourceId": "source.anu.sanming-tonghui.e0d2d017",
+      "status": "direct_first_party_record"
+    },
+    {
+      "bitstreams": [
+        {
+          "apiHttpStatus": 200,
+          "bitstreamUuid": "fb2aba7f-7631-40c6-ac51-e1d2c7d4f8cf",
+          "bytesMatchedApiSizeAndMd5": true,
+          "contentUrl": "https://openresearch-repository.anu.edu.au/server/api/core/bitstreams/fb2aba7f-7631-40c6-ac51-e1d2c7d4f8cf/content",
+          "fileName": "b22343921_v.6.pdf",
+          "md5": "ef4bdabe46a18d7585b60c7a75f74e3c",
+          "pdfPageCount": 106,
+          "sha256": "97d57717dfbeab787af8c8f7e9edcbec4b2522a26821c75cb38cc7c0f156de2b",
+          "sizeBytes": 116512109,
+          "volume": 6
+        },
+        {
+          "apiHttpStatus": 200,
+          "bitstreamUuid": "5b0a6e1b-3db4-46ee-aa12-a42b14e322b4",
+          "bytesMatchedApiSizeAndMd5": true,
+          "contentUrl": "https://openresearch-repository.anu.edu.au/server/api/core/bitstreams/5b0a6e1b-3db4-46ee-aa12-a42b14e322b4/content",
+          "fileName": "b22343921_v.7.pdf",
+          "md5": "0568f1c263e6e941232a5af977c5d7a7",
+          "pdfPageCount": 89,
+          "sha256": "6edc5391d91d409620b2e1174e629bb1a2653870b3f3aca4ce2d9deb3d0a863f",
+          "sizeBytes": 98529810,
+          "volume": 7
+        },
+        {
+          "apiHttpStatus": 200,
+          "bitstreamUuid": "a8fa6594-8fdc-4c11-8368-842289357e52",
+          "bytesMatchedApiSizeAndMd5": true,
+          "contentUrl": "https://openresearch-repository.anu.edu.au/server/api/core/bitstreams/a8fa6594-8fdc-4c11-8368-842289357e52/content",
+          "fileName": "b22343921_v.8.pdf",
+          "md5": "94bc9f49cc19ca5310b690fc2107d8b8",
+          "pdfPageCount": 126,
+          "sha256": "82bf2f1814b04f849a8a2abbcb16c49b0c9feb02b1d19531a26a694d628fc6eb",
+          "sizeBytes": 132491390,
+          "volume": 8
+        },
+        {
+          "apiHttpStatus": 200,
+          "bitstreamUuid": "18bf8d2e-c443-41da-852a-b3404a6195ca",
+          "bytesMatchedApiSizeAndMd5": true,
+          "contentUrl": "https://openresearch-repository.anu.edu.au/server/api/core/bitstreams/18bf8d2e-c443-41da-852a-b3404a6195ca/content",
+          "fileName": "b22343921_v.9.pdf",
+          "md5": "7e6d9af2a6aed73978c0c48674be4f35",
+          "pdfPageCount": 124,
+          "sha256": "17446c7571c11c85a0b60f04074f968c0b708078c4f646930d25a959f73a24c1",
+          "sizeBytes": 132300104,
+          "volume": 9
+        },
+        {
+          "apiHttpStatus": 200,
+          "bitstreamUuid": "97ec8e41-d427-4f7d-b9b0-336898fea3db",
+          "bytesMatchedApiSizeAndMd5": true,
+          "contentUrl": "https://openresearch-repository.anu.edu.au/server/api/core/bitstreams/97ec8e41-d427-4f7d-b9b0-336898fea3db/content",
+          "fileName": "b22343921_v.10.pdf",
+          "md5": "359120cee2db78319fa435b987de2b30",
+          "pdfPageCount": 77,
+          "sha256": "abf528e8dfa821b0c947b3031ec1879f17d8028dbf81624e7d81db38368cc249",
+          "sizeBytes": 66903696,
+          "volume": 10
+        },
+        {
+          "apiHttpStatus": 200,
+          "bitstreamUuid": "335e822c-7893-4ab9-ad7f-cd3bcb565759",
+          "bytesMatchedApiSizeAndMd5": true,
+          "contentUrl": "https://openresearch-repository.anu.edu.au/server/api/core/bitstreams/335e822c-7893-4ab9-ad7f-cd3bcb565759/content",
+          "fileName": "b22343921_v.11.pdf",
+          "md5": "864bf38d466674436bb643372cb01244",
+          "pdfPageCount": 91,
+          "sha256": "ffba874a4d5cf73e59f203872149246090b9f7bce52905f2977fcfeb645f07e3",
+          "sizeBytes": 102605436,
+          "volume": 11
+        },
+        {
+          "apiHttpStatus": 200,
+          "bitstreamUuid": "fc1a5a22-84e8-4760-899f-c3d3e1add118",
+          "bytesMatchedApiSizeAndMd5": true,
+          "contentUrl": "https://openresearch-repository.anu.edu.au/server/api/core/bitstreams/fc1a5a22-84e8-4760-899f-c3d3e1add118/content",
+          "fileName": "b22343921_v.12.pdf",
+          "md5": "1fe2ec34a48cdc2463a75eda9a80e92e",
+          "pdfPageCount": 81,
+          "sha256": "b7958e1fc5dd8a61aab33bbcaf06651a6c7b7d30059364295af417632b88847a",
+          "sizeBytes": 88419498,
+          "volume": 12
+        }
+      ],
+      "bundleUuid": "c11f2f3d-396b-43b1-b5b1-d2ce29a3f047",
+      "evidenceId": "ev.anu.v6-v12-content-byte-identity",
+      "scopeBoundary": "The byte identities prove the retrieved digital objects and their PDF page counts. They do not turn digital files into independent physical witnesses.",
+      "sourceCategory": "DIRECT_OFFICIAL_CONTENT",
+      "sourceId": "source.anu.sanming-tonghui.e0d2d017",
+      "status": "direct_content_bytes_verified"
+    },
+    {
+      "evidenceId": "ev.anu.v6-v12-title-pages",
+      "observations": [
+        {
+          "handwrittenCollectionMarkOnFacingBlankLeaf": "6657",
+          "pdfPage": 3,
+          "printedFolio": null,
+          "printedFolioStatus": "unresolved_not_reliably_visible_in_inspected_render",
+          "printedVolumeTitle": "三命通會卷之六",
+          "volume": 6
+        },
+        {
+          "handwrittenCollectionMarkOnFacingBlankLeaf": "6668",
+          "pdfPage": 3,
+          "printedFolio": null,
+          "printedFolioStatus": "unresolved_not_reliably_visible_in_inspected_render",
+          "printedVolumeTitle": "三命通會卷之七",
+          "volume": 7
+        },
+        {
+          "handwrittenCollectionMarkOnFacingBlankLeaf": "6669",
+          "pdfPage": 3,
+          "printedFolio": null,
+          "printedFolioStatus": "unresolved_not_reliably_visible_in_inspected_render",
+          "printedVolumeTitle": "三命通會卷之八",
+          "volume": 8
+        },
+        {
+          "handwrittenCollectionMarkOnFacingBlankLeaf": "6670",
+          "pdfPage": 3,
+          "printedFolio": null,
+          "printedFolioStatus": "unresolved_not_reliably_visible_in_inspected_render",
+          "printedVolumeTitle": "三命通會卷之九",
+          "volume": 9
+        },
+        {
+          "handwrittenCollectionMarkOnFacingBlankLeaf": "6671",
+          "pdfPage": 3,
+          "printedFolio": null,
+          "printedFolioStatus": "unresolved_not_reliably_visible_in_inspected_render",
+          "printedVolumeTitle": "三命通會卷之十",
+          "volume": 10
+        },
+        {
+          "handwrittenCollectionMarkOnFacingBlankLeaf": "6672",
+          "pdfPage": 3,
+          "printedFolio": null,
+          "printedFolioStatus": "unresolved_not_reliably_visible_in_inspected_render",
+          "printedVolumeTitle": "三命通會卷之十一",
+          "volume": 11
+        },
+        {
+          "handwrittenCollectionMarkOnFacingBlankLeaf": "6673",
+          "pdfPage": 3,
+          "printedFolio": null,
+          "printedFolioStatus": "unresolved_not_reliably_visible_in_inspected_render",
+          "printedVolumeTitle": "三命通會卷之十二",
+          "volume": 12
+        }
+      ],
+      "scopeBoundary": "The title line directly identifies the printed 卷 label at the stated PDF page. The handwritten facing-leaf mark is not a printed folio, and neither observation establishes edition date or lineage.",
+      "sourceCategory": "DIRECT_OFFICIAL_SCAN",
+      "sourceId": "source.anu.sanming-tonghui.e0d2d017",
+      "status": "direct_title_page_crosswalk"
+    },
+    {
+      "evidenceId": "ev.anu.v11-p7-p24-dayun",
+      "observed": [
+        "v11 PDF p.7 has the large vertical heading 大運折除成歲小運逆順由時。",
+        "v11 PDF p.24 visibly contains 陽男陰女從生月順行 and 陰男陽女從生月逆行.",
+        "v11 PDF p.24 visibly contains 運行則一辰十歲、折除乃三日為年、精休旺以為妙.",
+        "v11 PDF p.23 and p.25 were checked as surrounding pages; no separate worked start-age example was closed at this locator."
+      ],
+      "scan": {
+        "fileName": "b22343921_v.11.pdf",
+        "pdfPages": [
+          6,
+          7,
+          8,
+          23,
+          24,
+          25
+        ],
+        "printedFolio": null,
+        "printedFolioStatus": "unresolved"
+      },
+      "scopeBoundary": "These are literal, page-bounded observations from the same ANU item/bundle. 一辰十歲 is not normalized to 一時辰十日; 三日為年 is retained as a literal variant and is not silently equated with the parent 三日為一歲 observation.",
+      "sourceCategory": "DIRECT_OFFICIAL_SCAN",
+      "sourceId": "source.anu.sanming-tonghui.e0d2d017.v11",
+      "status": "direct_bounded_timing_observation"
+    },
+    {
+      "evidenceId": "ev.anu.parent-v2-baseline",
+      "observationId": "obs.A.anu-p58-p59-rule-and-example",
+      "observed": [
+        "Parent v1–v6 adjudication remains authoritative for ANU V2 p.58–59 direction/節/worked-example scope and its literal/derived separation."
+      ],
+      "scopeBoundary": "The new v6–v12 pages are an additive same-item overlay. They do not rewrite or supersede parent bytes, claim verdicts, or typed readiness.",
+      "sourceArtifactPath": "artifacts/saju-gemini-v7-parent-adjudication/complete.json",
+      "sourceCategory": "PARENT_BASELINE_REFERENCE",
+      "status": "parent_adjudication_preserved"
+    }
+  ],
+  "lineageGraph": {
+    "canonicalEdges": [],
+    "decontaminationPreserved": true,
+    "edgeStatusCounts": {
+      "BIBLIOGRAPHIC_CLAIM_ONLY": 3,
+      "HYPOTHESIS": 3,
+      "UNSUPPORTED": 1
+    },
+    "edges": [
+      {
+        "canonicalGraphIncluded": false,
+        "edgeId": "edge欄江網-to-造化元鑰",
+        "evidenceRefs": [
+          "ev.D.waseda-record-f0111"
+        ],
+        "from": "欄江網",
+        "rationale": "The Waseda title/metadata does not directly show transmission to 造化元鑰; the relation survives only as a bibliographic/secondary genealogy lead.",
+        "status": "BIBLIOGRAPHIC_CLAIM_ONLY",
+        "to": "造化元鑰"
+      },
+      {
+        "canonicalGraphIncluded": false,
+        "edgeId": "edge欄江網-to-耕寸集",
+        "evidenceRefs": [
+          "ev.C.gengcun-ncl-catalog",
+          "ev.D.waseda-record-f0111"
+        ],
+        "from": "欄江網",
+        "rationale": "No direct source/title citation or item-level transmission record connects the two works.",
+        "status": "UNSUPPORTED",
+        "to": "耕寸集"
+      },
+      {
+        "canonicalGraphIncluded": false,
+        "edgeId": "edge耕寸集-to-子平真詮",
+        "evidenceRefs": [
+          "ev.C.gengcun-ncl-catalog",
+          "ev.F.ziping-1895-1923-search"
+        ],
+        "from": "耕寸集",
+        "rationale": "Content/title association is a hypothesis only; no direct citation, copy relation, or dated transmission witness is admitted.",
+        "status": "HYPOTHESIS",
+        "to": "子平真詮"
+      },
+      {
+        "canonicalGraphIncluded": false,
+        "edgeId": "edge1776-manuscript-to-1895-edition",
+        "evidenceRefs": [
+          "ev.F.hukun-1776-secondary",
+          "ev.F.ziping-1895-1923-search"
+        ],
+        "from": "1776 manuscript/prelude candidate",
+        "rationale": "A secondary preface reading and an unresolved edition lead do not establish a physical or textual transmission edge.",
+        "status": "HYPOTHESIS",
+        "to": "1895 報暉草堂 edition candidate"
+      },
+      {
+        "canonicalGraphIncluded": false,
+        "edgeId": "edge1776-manuscript-to-1923-edition",
+        "evidenceRefs": [
+          "ev.F.hukun-1776-secondary",
+          "ev.F.ziping-1895-1923-search"
+        ],
+        "from": "1776 manuscript/prelude candidate",
+        "rationale": "A secondary preface reading and an unresolved edition lead do not establish a physical or textual transmission edge.",
+        "status": "HYPOTHESIS",
+        "to": "1923 育新書局 edition candidate"
+      },
+      {
+        "canonicalGraphIncluded": false,
+        "edgeId": "edge造化元鑰-to-窮通寶鑑",
+        "evidenceRefs": [
+          "ev.D.waseda-record-f0111"
+        ],
+        "from": "造化元鑰",
+        "rationale": "Later/editorial genealogy is not a direct transmission page or colophon; Waseda metadata alone does not close it.",
+        "status": "BIBLIOGRAPHIC_CLAIM_ONLY",
+        "to": "窮通寶鑑"
+      },
+      {
+        "canonicalGraphIncluded": false,
+        "edgeId": "edge窮通寶鑑-to-徐樂吾系",
+        "evidenceRefs": [
+          "ev.D.waseda-record-f0111",
+          "ev.D.waseda-pages-f0111"
+        ],
+        "from": "窮通寶鑑",
+        "rationale": "A later attribution/genealogy statement is not a direct copy, edition, or editorial transmission proof.",
+        "status": "BIBLIOGRAPHIC_CLAIM_ONLY",
+        "to": "徐樂吾系"
+      }
+    ],
+    "inheritedFromParent": "artifacts/saju-gemini-v7-parent-adjudication/complete.json",
+    "newlyAddedEdges": [],
+    "policy": "Unverified arrows remain outside the canonical graph. This successor adds no transmission edge."
+  },
+  "metadataRegressionAudit": {
+    "baseline": {
+      "handle": "http://hdl.handle.net/1885/206524",
+      "itemUuid": "e0d2d017-f99d-4818-af29-d18754f7e5cd",
+      "parentConfirmedPublicPdfNames": [
+        "b22343921_v.1.pdf",
+        "b22343921_v.2.pdf",
+        "b22343921_v.3.pdf",
+        "b22343921_v.4.pdf",
+        "b22343921_v.5.pdf"
+      ],
+      "parentScope": "Parent direct byte/page confirmation covered V1–V5; the catalog extent 12 juan did not prove public digital volume content or printed folio mapping."
+    },
+    "currentFirstParty": {
+      "currentApiPdfCount": 12,
+      "currentApiTifCount": 12,
+      "handle": "http://hdl.handle.net/1885/206524",
+      "itemUuid": "e0d2d017-f99d-4818-af29-d18754f7e5cd",
+      "originalBundleUuid": "c11f2f3d-396b-43b1-b5b1-d2ce29a3f047",
+      "v6ToV12ActualPdfPageCounts": {
+        "b22343921_v.10.pdf": 77,
+        "b22343921_v.11.pdf": 91,
+        "b22343921_v.12.pdf": 81,
+        "b22343921_v.6.pdf": 106,
+        "b22343921_v.7.pdf": 89,
+        "b22343921_v.8.pdf": 126,
+        "b22343921_v.9.pdf": 124
+      },
+      "v6ToV12ByteIdentityVerified": true,
+      "v6ToV12ContentEndpointStatus": {
+        "b22343921_v.10.pdf": 200,
+        "b22343921_v.11.pdf": 200,
+        "b22343921_v.12.pdf": 200,
+        "b22343921_v.6.pdf": 200,
+        "b22343921_v.7.pdf": 200,
+        "b22343921_v.8.pdf": 200,
+        "b22343921_v.9.pdf": 200
+      }
+    },
+    "disposition": {
+      "currentPublicV1_V12BitstreamEnumeration": "kept_first_party_api_observation",
+      "currentPublicV6_V12ContentBytes": "kept_direct_content_identity",
+      "currentV6_V12PrintedVolumeTitlePages": "kept_direct_scan_observation",
+      "editionDate": "unresolved",
+      "physicalCompleteness": "unresolved",
+      "printedFolioCrosswalk": "unresolved",
+      "publicDigitalVolumeCountFromCatalogAlone": "rejected_inference",
+      "rareBooks1885_42211": "rejected_current_item_identity",
+      "textualLineage": "unresolved",
+      "twelveJuanCatalogExtent": "kept_metadata_only",
+      "xuDishanRelation": "kept_metadata_only"
+    },
+    "historicalBaselineMutated": false
+  },
+  "negativeChecks": {
+    "allMustReject": true,
+    "ids": [
+      "metadata-volume-to-printed-folio",
+      "digital-files-to-independent-physical-witnesses",
+      "literal-to-time-unit-normalization",
+      "literal-variant-to-semantic-equivalence",
+      "title-page-to-edition-date",
+      "handwritten-mark-to-printed-folio",
+      "same-item-observation-to-production-authority",
+      "hypothesis-edge-to-canonical-graph",
+      "absence-from-locator-to-whole-volume-negative",
+      "parent-status-to-successor-promotion"
+    ],
+    "scope": "The checker must reject metadata/file-name shortcuts, independence inflation, glyph normalization, title/date transfer, graph insertion, whole-volume negative inference, and readiness promotion."
+  },
+  "pageObservations": [
+    {
+      "canonicalTextObserved": false,
+      "directObservation": true,
+      "evidenceId": "ev.anu.v6-v12-title-pages",
+      "handwrittenCollectionMarkOnFacingBlankLeaf": "6657",
+      "handwrittenMarkIsPrintedFolio": false,
+      "observationId": "obs.anu.v6.title-p3",
+      "observed": [
+        "三命通會卷之六"
+      ],
+      "pdfPage": 3,
+      "printedFolio": null,
+      "printedFolioStatus": "unresolved_not_reliably_visible_in_inspected_render",
+      "scopeBoundary": "The printed 卷 title is a direct scan observation at this PDF page. No printed folio, edition date, physical completeness, or genealogy is inferred.",
+      "semanticAuthority": "not_established",
+      "sourceId": "source.anu.sanming-tonghui.e0d2d017.v6",
+      "volume": 6
+    },
+    {
+      "canonicalTextObserved": false,
+      "directObservation": true,
+      "evidenceId": "ev.anu.v6-v12-title-pages",
+      "handwrittenCollectionMarkOnFacingBlankLeaf": "6668",
+      "handwrittenMarkIsPrintedFolio": false,
+      "observationId": "obs.anu.v7.title-p3",
+      "observed": [
+        "三命通會卷之七"
+      ],
+      "pdfPage": 3,
+      "printedFolio": null,
+      "printedFolioStatus": "unresolved_not_reliably_visible_in_inspected_render",
+      "scopeBoundary": "The printed 卷 title is a direct scan observation at this PDF page. No printed folio, edition date, physical completeness, or genealogy is inferred.",
+      "semanticAuthority": "not_established",
+      "sourceId": "source.anu.sanming-tonghui.e0d2d017.v7",
+      "volume": 7
+    },
+    {
+      "canonicalTextObserved": false,
+      "directObservation": true,
+      "evidenceId": "ev.anu.v6-v12-title-pages",
+      "handwrittenCollectionMarkOnFacingBlankLeaf": "6669",
+      "handwrittenMarkIsPrintedFolio": false,
+      "observationId": "obs.anu.v8.title-p3",
+      "observed": [
+        "三命通會卷之八"
+      ],
+      "pdfPage": 3,
+      "printedFolio": null,
+      "printedFolioStatus": "unresolved_not_reliably_visible_in_inspected_render",
+      "scopeBoundary": "The printed 卷 title is a direct scan observation at this PDF page. No printed folio, edition date, physical completeness, or genealogy is inferred.",
+      "semanticAuthority": "not_established",
+      "sourceId": "source.anu.sanming-tonghui.e0d2d017.v8",
+      "volume": 8
+    },
+    {
+      "canonicalTextObserved": false,
+      "directObservation": true,
+      "evidenceId": "ev.anu.v6-v12-title-pages",
+      "handwrittenCollectionMarkOnFacingBlankLeaf": "6670",
+      "handwrittenMarkIsPrintedFolio": false,
+      "observationId": "obs.anu.v9.title-p3",
+      "observed": [
+        "三命通會卷之九"
+      ],
+      "pdfPage": 3,
+      "printedFolio": null,
+      "printedFolioStatus": "unresolved_not_reliably_visible_in_inspected_render",
+      "scopeBoundary": "The printed 卷 title is a direct scan observation at this PDF page. No printed folio, edition date, physical completeness, or genealogy is inferred.",
+      "semanticAuthority": "not_established",
+      "sourceId": "source.anu.sanming-tonghui.e0d2d017.v9",
+      "volume": 9
+    },
+    {
+      "canonicalTextObserved": false,
+      "directObservation": true,
+      "evidenceId": "ev.anu.v6-v12-title-pages",
+      "handwrittenCollectionMarkOnFacingBlankLeaf": "6671",
+      "handwrittenMarkIsPrintedFolio": false,
+      "observationId": "obs.anu.v10.title-p3",
+      "observed": [
+        "三命通會卷之十"
+      ],
+      "pdfPage": 3,
+      "printedFolio": null,
+      "printedFolioStatus": "unresolved_not_reliably_visible_in_inspected_render",
+      "scopeBoundary": "The printed 卷 title is a direct scan observation at this PDF page. No printed folio, edition date, physical completeness, or genealogy is inferred.",
+      "semanticAuthority": "not_established",
+      "sourceId": "source.anu.sanming-tonghui.e0d2d017.v10",
+      "volume": 10
+    },
+    {
+      "canonicalTextObserved": false,
+      "directObservation": true,
+      "evidenceId": "ev.anu.v6-v12-title-pages",
+      "handwrittenCollectionMarkOnFacingBlankLeaf": "6672",
+      "handwrittenMarkIsPrintedFolio": false,
+      "observationId": "obs.anu.v11.title-p3",
+      "observed": [
+        "三命通會卷之十一"
+      ],
+      "pdfPage": 3,
+      "printedFolio": null,
+      "printedFolioStatus": "unresolved_not_reliably_visible_in_inspected_render",
+      "scopeBoundary": "The printed 卷 title is a direct scan observation at this PDF page. No printed folio, edition date, physical completeness, or genealogy is inferred.",
+      "semanticAuthority": "not_established",
+      "sourceId": "source.anu.sanming-tonghui.e0d2d017.v11",
+      "volume": 11
+    },
+    {
+      "canonicalTextObserved": false,
+      "directObservation": true,
+      "evidenceId": "ev.anu.v6-v12-title-pages",
+      "handwrittenCollectionMarkOnFacingBlankLeaf": "6673",
+      "handwrittenMarkIsPrintedFolio": false,
+      "observationId": "obs.anu.v12.title-p3",
+      "observed": [
+        "三命通會卷之十二"
+      ],
+      "pdfPage": 3,
+      "printedFolio": null,
+      "printedFolioStatus": "unresolved_not_reliably_visible_in_inspected_render",
+      "scopeBoundary": "The printed 卷 title is a direct scan observation at this PDF page. No printed folio, edition date, physical completeness, or genealogy is inferred.",
+      "semanticAuthority": "not_established",
+      "sourceId": "source.anu.sanming-tonghui.e0d2d017.v12",
+      "volume": 12
+    },
+    {
+      "adjacentPdfPagesInspected": [
+        6,
+        7,
+        8
+      ],
+      "canonicalTextObserved": false,
+      "evidenceId": "ev.anu.v11-p7-p24-dayun",
+      "jieSelection": "not_observed_at_locator",
+      "literalAudit": {
+        "daYunBreakToYears": "direct_literal_heading",
+        "oneChenTenYears": "not_observed_at_locator",
+        "oneDayFourMonths": "not_observed_at_locator",
+        "oneTimeUnitTenDays": "not_observed_at_locator",
+        "smallYunDirectionByTime": "direct_literal_heading",
+        "threeDaysOneYear": "not_observed_at_locator"
+      },
+      "observationId": "obs.anu.v11.p7-dayun-heading",
+      "observationKind": "large_vertical_heading_or_section_label",
+      "observed": [
+        "大運折除成歲小運逆順由時"
+      ],
+      "pdfPage": 7,
+      "printedFolio": null,
+      "printedFolioStatus": "unresolved_not_reliably_visible_in_inspected_render",
+      "promotionStatus": "blocked_unpromoted_overlay",
+      "scopeBoundary": "The heading is a direct occurrence only. It does not supply the parent worked example, named 節 selection, or a production-ready conversion procedure.",
+      "semanticAuthority": "not_established",
+      "sourceId": "source.anu.sanming-tonghui.e0d2d017.v11",
+      "volume": 11,
+      "workedExample": "not_observed_at_locator"
+    },
+    {
+      "adjacentPdfPagesInspected": [
+        23,
+        24,
+        25
+      ],
+      "canonicalTextObserved": false,
+      "evidenceId": "ev.anu.v11-p7-p24-dayun",
+      "jieSelection": "not_observed_at_p23_p24_p25",
+      "literalAudit": {
+        "direction": "direct_literal",
+        "oneChenTenYears": "direct_literal",
+        "oneDayFourMonths": "not_observed",
+        "oneTimeUnitTenDays": "not_observed",
+        "threeDaysOneYear": "direct_literal_variant"
+      },
+      "observationId": "obs.anu.v11.p24-dayun-literal-variant",
+      "observed": [
+        "陽男陰女從生月順行",
+        "陰男陽女從生月逆行",
+        "運行則一辰十歲",
+        "折除乃三日為年",
+        "精休旺以為妙",
+        "窮通變以為玄"
+      ],
+      "pdfPage": 24,
+      "printedFolio": null,
+      "printedFolioStatus": "unresolved_not_reliably_visible_in_inspected_render",
+      "promotionStatus": "blocked_unpromoted_overlay",
+      "scopeBoundary": "The exact visible strings are preserved as a same-item variant observation. No arithmetic normalization, semantic equivalence, independent corroboration, implementation rule, or production authority is admitted.",
+      "semanticAuthority": "not_established",
+      "semanticRelation": {
+        "normalizationPerformed": false,
+        "parentV2OneTimeUnitTenDays": "not supported; the literal here is 一辰十歲, not 一時辰十日",
+        "parentV2ThreeDaysOneYear": "same relation family candidate; semantic equivalence unresolved"
+      },
+      "sourceId": "source.anu.sanming-tonghui.e0d2d017.v11",
+      "volume": 11,
+      "workedExample": "not_observed_at_p23_p24_p25"
+    }
+  ],
+  "promotion": {
+    "blockingEdges": [
+      "physical-item:unresolved",
+      "digital-derivation:unresolved",
+      "edition/textual-lineage:unresolved",
+      "semantic-corroboration:unresolved",
+      "printed-folio:unresolved",
+      "edition/date:unresolved"
+    ],
+    "interpretationAvailable": false,
+    "productionChanged": false,
+    "promotionReadyClaimIds": [],
+    "ready": false,
+    "scope": "No claim, source, procedure, or production activation is promoted by this artifact.",
+    "semanticAuthorityChanged": false,
+    "stableClaimPromotionCount": 0,
+    "status": "blocked"
+  },
+  "readiness": {
+    "availableForInterpretation": false,
+    "implementationSafeGrounding": "not_established",
+    "productionActivation": "blocked",
+    "promotionReadyClaimIds": [],
+    "reason": "The new observations are bounded same-item digital evidence. Unresolved independence, printed-folio/edition identity, lineage, semantic binding, and implementation grounding keep readiness closed.",
+    "semanticAuthority": "not_established",
+    "stableClaimPromotionCount": 0,
+    "status": "blocked"
+  },
+  "schemaVersion": "saju-anu-v6-v12-direct-inspection-v0",
+  "scope": {
+    "candidateBoundary": "Gemini v7 remains untrusted_candidate_only. No v7 wholesale import or candidate conclusion is promoted.",
+    "directInspectionCompleted": [
+      "v6",
+      "v7",
+      "v8",
+      "v9",
+      "v10",
+      "v11",
+      "v12"
+    ],
+    "directPageScope": "Title-page volume mapping for v6–v12; bounded v11 p.7 and p.24 timing inspection with p.6/p.8 and p.23/p.25 context.",
+    "parentBaseline": "Existing Luna v1–v6 and Gemini v7 parent adjudication remains authoritative; this artifact is an additive successor and does not rewrite predecessor bytes.",
+    "prohibited": [
+      "printed folio from metadata/file name",
+      "semantic equivalence from glyph similarity",
+      "independent witness inflation",
+      "edition/date/genealogy promotion",
+      "availableForInterpretation=true",
+      "production activation",
+      "remote mutation"
+    ],
+    "sourceOfTruth": "Direct GET of ANU first-party v6–v12 PDF content endpoints, actual PDF byte identity/page count, and direct rendered scan-image inspection at the stated pages."
+  },
+  "sourceClaimReconciliation": {
+    "candidateClaimsNotImported": true,
+    "claims": [
+      {
+        "addedEvidenceRefs": [],
+        "claimId": "claim.A.yuanhai-乙丑男-chain",
+        "preserved": true,
+        "scopeDelta": "No status or gate mutation; parent adjudication is preserved byte-for-byte.",
+        "statusAfter": "kept",
+        "statusBefore": "kept"
+      },
+      {
+        "addedEvidenceRefs": [],
+        "claimId": "claim.A.yuanhai-甲子女-chain",
+        "preserved": true,
+        "scopeDelta": "No status or gate mutation; parent adjudication is preserved byte-for-byte.",
+        "statusAfter": "kept",
+        "statusBefore": "kept"
+      },
+      {
+        "addedEvidenceRefs": [],
+        "claimId": "claim.A.shenfeng-page-order-and-wording",
+        "preserved": true,
+        "scopeDelta": "No status or gate mutation; parent adjudication is preserved byte-for-byte.",
+        "statusAfter": "kept",
+        "statusBefore": "kept"
+      },
+      {
+        "addedEvidenceRefs": [],
+        "claimId": "claim.A.shenfeng-standard-fixture",
+        "preserved": true,
+        "scopeDelta": "No status or gate mutation; parent adjudication is preserved byte-for-byte.",
+        "statusAfter": "rejected",
+        "statusBefore": "rejected"
+      },
+      {
+        "addedEvidenceRefs": [],
+        "claimId": "claim.A.same-worked-example-independent-corroboration",
+        "preserved": true,
+        "scopeDelta": "No status or gate mutation; parent adjudication is preserved byte-for-byte.",
+        "statusAfter": "rejected",
+        "statusBefore": "rejected"
+      },
+      {
+        "addedEvidenceRefs": [
+          "ev.anu.v6-v12-content-byte-identity",
+          "ev.anu.v6-v12-title-pages"
+        ],
+        "claimId": "claim.A.sanming-rule-family",
+        "preserved": true,
+        "scopeDelta": "Parent corrected status preserved. v11 p.7/p.24 add literal same-item observations only; parent V2 p.58–59 direction/節/worked-example scope remains authoritative.",
+        "statusAfter": "corrected",
+        "statusBefore": "corrected"
+      },
+      {
+        "addedEvidenceRefs": [
+          "ev.anu.v6-v12-content-byte-identity",
+          "ev.anu.v6-v12-title-pages"
+        ],
+        "claimId": "claim.A.sanming-literal-one-day-four-month",
+        "preserved": true,
+        "scopeDelta": "Parent corrected status preserved. No 一日四月 literal is admitted from v11; no derived relation is promoted.",
+        "statusAfter": "corrected",
+        "statusBefore": "corrected"
+      },
+      {
+        "addedEvidenceRefs": [
+          "ev.anu.v6-v12-content-byte-identity",
+          "ev.anu.v6-v12-title-pages"
+        ],
+        "claimId": "claim.A.sanming-literal-time-unit-ten-day",
+        "preserved": true,
+        "scopeDelta": "Parent unresolved status preserved. v11 p.24 records 一辰十歲, which is not the candidate literal 一時辰十日.",
+        "statusAfter": "unresolved",
+        "statusBefore": "unresolved"
+      },
+      {
+        "addedEvidenceRefs": [],
+        "claimId": "claim.A.wuxingjingji-same-procedure-auto-merge",
+        "preserved": true,
+        "scopeDelta": "No status or gate mutation; parent adjudication is preserved byte-for-byte.",
+        "statusAfter": "rejected",
+        "statusBefore": "rejected"
+      },
+      {
+        "addedEvidenceRefs": [],
+        "claimId": "claim.B.anu-42211-item-identity",
+        "preserved": true,
+        "scopeDelta": "No status or gate mutation; parent adjudication is preserved byte-for-byte.",
+        "statusAfter": "rejected",
+        "statusBefore": "rejected"
+      },
+      {
+        "addedEvidenceRefs": [],
+        "claimId": "claim.B.anu-206524-item-identity",
+        "preserved": true,
+        "scopeDelta": "No status or gate mutation; parent adjudication is preserved byte-for-byte.",
+        "statusAfter": "kept",
+        "statusBefore": "kept"
+      },
+      {
+        "addedEvidenceRefs": [
+          "ev.anu.v6-v12-content-byte-identity",
+          "ev.anu.v6-v12-title-pages"
+        ],
+        "claimId": "claim.B.anu-12juan-metadata",
+        "preserved": true,
+        "scopeDelta": "Parent kept metadata-only status preserved. Direct v6–v12 title pages do not turn catalog extent into an edition/completeness claim.",
+        "statusAfter": "kept",
+        "statusBefore": "kept"
+      },
+      {
+        "addedEvidenceRefs": [
+          "ev.anu.v6-v12-content-byte-identity",
+          "ev.anu.v6-v12-title-pages"
+        ],
+        "claimId": "claim.B.anu-current-original-v1-v12",
+        "preserved": true,
+        "scopeDelta": "Parent kept file-list status preserved and narrowed positively: v6–v12 content endpoints, byte identities, PDF page counts, and printed 卷 title pages were directly inspected.",
+        "statusAfter": "kept",
+        "statusBefore": "kept"
+      },
+      {
+        "addedEvidenceRefs": [
+          "ev.anu.v6-v12-content-byte-identity",
+          "ev.anu.v6-v12-title-pages"
+        ],
+        "claimId": "claim.B.anu-catalog-extent-to-public-count",
+        "preserved": true,
+        "scopeDelta": "Parent rejected inference preserved. Current bitstream enumeration is a separate first-party observation; catalog 12 juan is not used as its proof.",
+        "statusAfter": "rejected",
+        "statusBefore": "rejected"
+      },
+      {
+        "addedEvidenceRefs": [
+          "ev.anu.v6-v12-content-byte-identity",
+          "ev.anu.v6-v12-title-pages"
+        ],
+        "claimId": "claim.B.anu-xudishan-collection-relation",
+        "preserved": true,
+        "scopeDelta": "Parent kept metadata-only status preserved; no physical provenance chronology or textual genealogy is inferred.",
+        "statusAfter": "kept",
+        "statusBefore": "kept"
+      },
+      {
+        "addedEvidenceRefs": [],
+        "claimId": "claim.C.gengcun-seal-provenance-candidate",
+        "preserved": true,
+        "scopeDelta": "No status or gate mutation; parent adjudication is preserved byte-for-byte.",
+        "statusAfter": "kept",
+        "statusBefore": "kept"
+      },
+      {
+        "addedEvidenceRefs": [],
+        "claimId": "claim.C.gengcun-seal-owner-equals-dating",
+        "preserved": true,
+        "scopeDelta": "No status or gate mutation; parent adjudication is preserved byte-for-byte.",
+        "statusAfter": "corrected",
+        "statusBefore": "corrected"
+      },
+      {
+        "addedEvidenceRefs": [],
+        "claimId": "claim.C.gengcun-TAQ-1843",
+        "preserved": true,
+        "scopeDelta": "No status or gate mutation; parent adjudication is preserved byte-for-byte.",
+        "statusAfter": "rejected",
+        "statusBefore": "rejected"
+      },
+      {
+        "addedEvidenceRefs": [],
+        "claimId": "claim.C.gengcun-TPQ-1578",
+        "preserved": true,
+        "scopeDelta": "No status or gate mutation; parent adjudication is preserved byte-for-byte.",
+        "statusAfter": "rejected",
+        "statusBefore": "rejected"
+      },
+      {
+        "addedEvidenceRefs": [],
+        "claimId": "claim.C.gengcun-qin-enfu-dating",
+        "preserved": true,
+        "scopeDelta": "No status or gate mutation; parent adjudication is preserved byte-for-byte.",
+        "statusAfter": "rejected",
+        "statusBefore": "rejected"
+      },
+      {
+        "addedEvidenceRefs": [],
+        "claimId": "claim.C.gengcun-content-parallel-dating",
+        "preserved": true,
+        "scopeDelta": "No status or gate mutation; parent adjudication is preserved byte-for-byte.",
+        "statusAfter": "rejected",
+        "statusBefore": "rejected"
+      },
+      {
+        "addedEvidenceRefs": [],
+        "claimId": "claim.C.gengcun-dating-gate",
+        "preserved": true,
+        "scopeDelta": "No status or gate mutation; parent adjudication is preserved byte-for-byte.",
+        "statusAfter": "unresolved",
+        "statusBefore": "unresolved"
+      },
+      {
+        "addedEvidenceRefs": [],
+        "claimId": "claim.D.waseda-direct-record",
+        "preserved": true,
+        "scopeDelta": "No status or gate mutation; parent adjudication is preserved byte-for-byte.",
+        "statusAfter": "kept",
+        "statusBefore": "kept"
+      },
+      {
+        "addedEvidenceRefs": [],
+        "claimId": "claim.D.waseda-seasonal-pages",
+        "preserved": true,
+        "scopeDelta": "No status or gate mutation; parent adjudication is preserved byte-for-byte.",
+        "statusAfter": "kept",
+        "statusBefore": "kept"
+      },
+      {
+        "addedEvidenceRefs": [],
+        "claimId": "claim.D.waseda-cover-to-physical-date",
+        "preserved": true,
+        "scopeDelta": "No status or gate mutation; parent adjudication is preserved byte-for-byte.",
+        "statusAfter": "rejected",
+        "statusBefore": "rejected"
+      },
+      {
+        "addedEvidenceRefs": [],
+        "claimId": "claim.D.digital-physical-map-as-transmission",
+        "preserved": true,
+        "scopeDelta": "No status or gate mutation; parent adjudication is preserved byte-for-byte.",
+        "statusAfter": "rejected",
+        "statusBefore": "rejected"
+      },
+      {
+        "addedEvidenceRefs": [],
+        "claimId": "claim.D.full-genealogy-directly-supported",
+        "preserved": true,
+        "scopeDelta": "No status or gate mutation; parent adjudication is preserved byte-for-byte.",
+        "statusAfter": "corrected",
+        "statusBefore": "corrected"
+      },
+      {
+        "addedEvidenceRefs": [],
+        "claimId": "claim.E.gengcun-seasonal-block",
+        "preserved": true,
+        "scopeDelta": "No status or gate mutation; parent adjudication is preserved byte-for-byte.",
+        "statusAfter": "rejected",
+        "statusBefore": "rejected"
+      },
+      {
+        "addedEvidenceRefs": [],
+        "claimId": "claim.E.ctext-e-text-as-historical-witness",
+        "preserved": true,
+        "scopeDelta": "No status or gate mutation; parent adjudication is preserved byte-for-byte.",
+        "statusAfter": "rejected",
+        "statusBefore": "rejected"
+      },
+      {
+        "addedEvidenceRefs": [],
+        "claimId": "claim.E.preface-cover-as-physical-edition-date",
+        "preserved": true,
+        "scopeDelta": "No status or gate mutation; parent adjudication is preserved byte-for-byte.",
+        "statusAfter": "rejected",
+        "statusBefore": "rejected"
+      },
+      {
+        "addedEvidenceRefs": [],
+        "claimId": "claim.E.mingli-yueyan-direct-observation",
+        "preserved": true,
+        "scopeDelta": "No status or gate mutation; parent adjudication is preserved byte-for-byte.",
+        "statusAfter": "unresolved",
+        "statusBefore": "unresolved"
+      },
+      {
+        "addedEvidenceRefs": [],
+        "claimId": "claim.F.1895-baohui-first-party-item",
+        "preserved": true,
+        "scopeDelta": "No status or gate mutation; parent adjudication is preserved byte-for-byte.",
+        "statusAfter": "unresolved",
+        "statusBefore": "unresolved"
+      },
+      {
+        "addedEvidenceRefs": [],
+        "claimId": "claim.F.1923-yuxin-first-party-item",
+        "preserved": true,
+        "scopeDelta": "No status or gate mutation; parent adjudication is preserved byte-for-byte.",
+        "statusAfter": "unresolved",
+        "statusBefore": "unresolved"
+      },
+      {
+        "addedEvidenceRefs": [],
+        "claimId": "claim.F.hukun-1773",
+        "preserved": true,
+        "scopeDelta": "No status or gate mutation; parent adjudication is preserved byte-for-byte.",
+        "statusAfter": "rejected",
+        "statusBefore": "rejected"
+      },
+      {
+        "addedEvidenceRefs": [],
+        "claimId": "claim.F.hukun-1776-first-party",
+        "preserved": true,
+        "scopeDelta": "No status or gate mutation; parent adjudication is preserved byte-for-byte.",
+        "statusAfter": "unresolved",
+        "statusBefore": "unresolved"
+      },
+      {
+        "addedEvidenceRefs": [],
+        "claimId": "claim.F.hukun-1776-secondary-reading",
+        "preserved": true,
+        "scopeDelta": "No status or gate mutation; parent adjudication is preserved byte-for-byte.",
+        "statusAfter": "corrected",
+        "statusBefore": "corrected"
+      },
+      {
+        "addedEvidenceRefs": [],
+        "claimId": "claim.F.actual-target-pages",
+        "preserved": true,
+        "scopeDelta": "No status or gate mutation; parent adjudication is preserved byte-for-byte.",
+        "statusAfter": "unresolved",
+        "statusBefore": "unresolved"
+      },
+      {
+        "addedEvidenceRefs": [],
+        "claimId": "claim.F.gemini-v7-wholesale-resolution",
+        "preserved": true,
+        "scopeDelta": "No status or gate mutation; parent adjudication is preserved byte-for-byte.",
+        "statusAfter": "rejected",
+        "statusBefore": "rejected"
+      }
+    ],
+    "corrected": [
+      "claim.A.sanming-rule-family",
+      "claim.A.sanming-literal-one-day-four-month",
+      "claim.C.gengcun-seal-owner-equals-dating",
+      "claim.D.full-genealogy-directly-supported",
+      "claim.F.hukun-1776-secondary-reading"
+    ],
+    "kept": [
+      "claim.A.yuanhai-乙丑男-chain",
+      "claim.A.yuanhai-甲子女-chain",
+      "claim.A.shenfeng-page-order-and-wording",
+      "claim.B.anu-206524-item-identity",
+      "claim.B.anu-12juan-metadata",
+      "claim.B.anu-current-original-v1-v12",
+      "claim.B.anu-xudishan-collection-relation",
+      "claim.C.gengcun-seal-provenance-candidate",
+      "claim.D.waseda-direct-record",
+      "claim.D.waseda-seasonal-pages"
+    ],
+    "newBoundedObservations": [
+      "obs.anu.v6.title-p3",
+      "obs.anu.v7.title-p3",
+      "obs.anu.v8.title-p3",
+      "obs.anu.v9.title-p3",
+      "obs.anu.v10.title-p3",
+      "obs.anu.v11.title-p3",
+      "obs.anu.v12.title-p3",
+      "obs.anu.v11.p7-dayun-heading",
+      "obs.anu.v11.p24-dayun-literal-variant"
+    ],
+    "parentArtifact": {
+      "artifactPath": "artifacts/saju-gemini-v7-parent-adjudication/complete.json",
+      "artifactPayloadSha256": "719f23c4883ecedcb1e113a4a257c455ee5a158c5f28c289a1e647c003bd275a",
+      "basisHead": "99e6cc624a1510487ad8bcf65347b3ee5f4e524e",
+      "claimCount": 38,
+      "contentSha256": "ebda9a06733a3bcd80565324df98f282e34fcb3323d0f32ebbdbb9aff738a761",
+      "schemaVersion": "saju-gemini-v7-parent-adjudication",
+      "statusCounts": {
+        "corrected": 5,
+        "kept": 10,
+        "rejected": 16,
+        "unresolved": 7
+      },
+      "unchanged": true,
+      "version": "7.0.0"
+    },
+    "rejected": [
+      "claim.A.shenfeng-standard-fixture",
+      "claim.A.same-worked-example-independent-corroboration",
+      "claim.A.wuxingjingji-same-procedure-auto-merge",
+      "claim.B.anu-42211-item-identity",
+      "claim.B.anu-catalog-extent-to-public-count",
+      "claim.C.gengcun-TAQ-1843",
+      "claim.C.gengcun-TPQ-1578",
+      "claim.C.gengcun-qin-enfu-dating",
+      "claim.C.gengcun-content-parallel-dating",
+      "claim.D.waseda-cover-to-physical-date",
+      "claim.D.digital-physical-map-as-transmission",
+      "claim.E.gengcun-seasonal-block",
+      "claim.E.ctext-e-text-as-historical-witness",
+      "claim.E.preface-cover-as-physical-edition-date",
+      "claim.F.hukun-1773",
+      "claim.F.gemini-v7-wholesale-resolution"
+    ],
+    "statusMutation": false,
+    "unresolved": [
+      "claim.A.sanming-literal-time-unit-ten-day",
+      "claim.C.gengcun-dating-gate",
+      "claim.E.mingli-yueyan-direct-observation",
+      "claim.F.1895-baohui-first-party-item",
+      "claim.F.1923-yuxin-first-party-item",
+      "claim.F.hukun-1776-first-party",
+      "claim.F.actual-target-pages"
+    ]
+  },
+  "summary": {
+    "canonicalTransmissionEdgeCount": 0,
+    "directTimingObservationCount": 2,
+    "directTitlePageObservationCount": 7,
+    "directVolumeCount": 7,
+    "newP0BoundedObservationCount": 2,
+    "parentClaimStatusCountsAfter": {
+      "corrected": 5,
+      "kept": 10,
+      "rejected": 16,
+      "unresolved": 7
+    },
+    "parentClaimStatusCountsBefore": {
+      "corrected": 5,
+      "kept": 10,
+      "rejected": 16,
+      "unresolved": 7
+    },
+    "printedFolioClosedCount": 0,
+    "promotionCount": 0,
+    "typedReadinessAfter": {
+      "E": {
+        "conflicted": 0,
+        "not_applicable": 0,
+        "satisfied": 12,
+        "unresolved": 1
+      },
+      "H": {
+        "conflicted": 0,
+        "not_applicable": 0,
+        "satisfied": 13,
+        "unresolved": 0
+      },
+      "I": {
+        "conflicted": 0,
+        "not_applicable": 0,
+        "satisfied": 0,
+        "unresolved": 13
+      },
+      "L": {
+        "conflicted": 0,
+        "not_applicable": 0,
+        "satisfied": 1,
+        "unresolved": 12
+      },
+      "P": {
+        "conflicted": 1,
+        "not_applicable": 0,
+        "satisfied": 0,
+        "unresolved": 12
+      },
+      "S": {
+        "conflicted": 1,
+        "not_applicable": 0,
+        "satisfied": 11,
+        "unresolved": 1
+      }
+    },
+    "typedReadinessBefore": {
+      "E": {
+        "conflicted": 0,
+        "not_applicable": 0,
+        "satisfied": 12,
+        "unresolved": 1
+      },
+      "H": {
+        "conflicted": 0,
+        "not_applicable": 0,
+        "satisfied": 13,
+        "unresolved": 0
+      },
+      "I": {
+        "conflicted": 0,
+        "not_applicable": 0,
+        "satisfied": 0,
+        "unresolved": 13
+      },
+      "L": {
+        "conflicted": 0,
+        "not_applicable": 0,
+        "satisfied": 1,
+        "unresolved": 12
+      },
+      "P": {
+        "conflicted": 1,
+        "not_applicable": 0,
+        "satisfied": 0,
+        "unresolved": 12
+      },
+      "S": {
+        "conflicted": 1,
+        "not_applicable": 0,
+        "satisfied": 11,
+        "unresolved": 1
+      }
+    }
+  },
+  "timingReconciliation": {
+    "implementationBoundary": "No rounding, interpolation, calendar conversion, first-start timestamp, current Saju calculation, or production timing authority is promoted.",
+    "newDirectObservations": [
+      {
+        "literal": "大運折除成歲小運逆順由時",
+        "locator": "ANU V11 PDF p.7",
+        "observationId": "obs.anu.v11.p7-dayun-heading",
+        "printedFolio": null,
+        "relation": "heading/section observation only"
+      },
+      {
+        "literal": [
+          "陽男陰女從生月順行",
+          "陰男陽女從生月逆行",
+          "運行則一辰十歲",
+          "折除乃三日為年",
+          "精休旺以為妙"
+        ],
+        "locator": "ANU V11 PDF p.24",
+        "observationId": "obs.anu.v11.p24-dayun-literal-variant",
+        "printedFolio": null,
+        "relation": "same-item literal variant observation"
+      }
+    ],
+    "parentObservationPreserved": {
+      "derivedOnly": [
+        "一日四月"
+      ],
+      "direct": [
+        "direction family",
+        "preceding/next 節 selection language",
+        "三日為一歲 relation family",
+        "worked example presence"
+      ],
+      "locator": "ANU V2 scan p.58–59 with p.57/p.60 context",
+      "notAdmitted": [
+        "一時辰十日 as exact literal"
+      ],
+      "sourceId": "source.anu.sanming-tonghui.e0d2d017.v2"
+    },
+    "status": "bounded_same_item_variant_observations_not_authoritative",
+    "variantBoundary": {
+      "jieSelection": "not_observed_at_v11_p7_p24",
+      "oneChenTenYears": "direct_literal_at_v11_p24",
+      "oneDayFourMonths": "not_observed_at_v11_p7_p24",
+      "oneTimeUnitTenDays": "not_observed_and_not_derived",
+      "parentBoundary": "Parent V2 節 and worked-example observations remain separate.",
+      "threeDaysOneYear": "direct_literal_variant_at_v11_p24; semantic equivalence to parent 三日為一歲 unresolved",
+      "workedExample": "not_observed_at_v11_p7_p24"
+    }
+  },
+  "timingSearchAudit": {
+    "boundary": "No volume is declared free of the target passage merely because the OCR locator did not find it.",
+    "byVolume": [
+      {
+        "directP0Observation": false,
+        "locatorResult": "No exact 大運 hit closed; generic 節/三日 OCR hits were not admitted as a timing rule.",
+        "volume": 6,
+        "wholeVolumeNegativeClaim": false
+      },
+      {
+        "directP0Observation": false,
+        "locatorResult": "No exact 大運 hit closed; directly inspected candidate pages were general 論壽天 prose, not a timing procedure.",
+        "volume": 7,
+        "wholeVolumeNegativeClaim": false
+      },
+      {
+        "directP0Observation": false,
+        "locatorResult": "Generic 節 locator only; no target timing page was closed.",
+        "volume": 8,
+        "wholeVolumeNegativeClaim": false
+      },
+      {
+        "directP0Observation": false,
+        "locatorResult": "Generic 節 locator only; no target timing page was closed.",
+        "volume": 9,
+        "wholeVolumeNegativeClaim": false
+      },
+      {
+        "directP0Observation": false,
+        "locatorResult": "PDF p.5 candidate directly inspected; generic 財官/運 prose, not a dedicated timing procedure.",
+        "volume": 10,
+        "wholeVolumeNegativeClaim": false
+      },
+      {
+        "directP0Observation": true,
+        "locatorResult": "PDF p.7 heading and p.24 literal timing paragraph directly inspected with adjacent pages.",
+        "volume": 11,
+        "wholeVolumeNegativeClaim": false
+      },
+      {
+        "directP0Observation": false,
+        "locatorResult": "Generic 節/運 locator only; no target timing page was closed.",
+        "volume": 12,
+        "wholeVolumeNegativeClaim": false
+      }
+    ],
+    "method": "ANU embedded OCR was used only as a locator; direct image inspection controls admission."
+  },
+  "typedReadinessRecalculation": {
+    "after": {
+      "E": {
+        "conflicted": 0,
+        "not_applicable": 0,
+        "satisfied": 12,
+        "unresolved": 1
+      },
+      "H": {
+        "conflicted": 0,
+        "not_applicable": 0,
+        "satisfied": 13,
+        "unresolved": 0
+      },
+      "I": {
+        "conflicted": 0,
+        "not_applicable": 0,
+        "satisfied": 0,
+        "unresolved": 13
+      },
+      "L": {
+        "conflicted": 0,
+        "not_applicable": 0,
+        "satisfied": 1,
+        "unresolved": 12
+      },
+      "P": {
+        "conflicted": 1,
+        "not_applicable": 0,
+        "satisfied": 0,
+        "unresolved": 12
+      },
+      "S": {
+        "conflicted": 1,
+        "not_applicable": 0,
+        "satisfied": 11,
+        "unresolved": 1
+      }
+    },
+    "availableForInterpretation": false,
+    "baselineClaimCount": 13,
+    "baselinePromotionReadyClaimIds": [],
+    "before": {
+      "E": {
+        "conflicted": 0,
+        "not_applicable": 0,
+        "satisfied": 12,
+        "unresolved": 1
+      },
+      "H": {
+        "conflicted": 0,
+        "not_applicable": 0,
+        "satisfied": 13,
+        "unresolved": 0
+      },
+      "I": {
+        "conflicted": 0,
+        "not_applicable": 0,
+        "satisfied": 0,
+        "unresolved": 13
+      },
+      "L": {
+        "conflicted": 0,
+        "not_applicable": 0,
+        "satisfied": 1,
+        "unresolved": 12
+      },
+      "P": {
+        "conflicted": 1,
+        "not_applicable": 0,
+        "satisfied": 0,
+        "unresolved": 12
+      },
+      "S": {
+        "conflicted": 1,
+        "not_applicable": 0,
+        "satisfied": 11,
+        "unresolved": 1
+      }
+    },
+    "changedGateStates": [],
+    "implementationSafeGrounding": "not_established",
+    "method": "Recomputed from the authoritative typed-readiness claim gates. The ANU v6–v12 overlay adds page observations only and changes no canonical claim gate.",
+    "productionActivation": "blocked",
+    "promotionReadyClaimIds": [],
+    "reason": "Direct same-item observations do not close physical-item independence, edition/textual lineage, semantic authority, or implementation grounding.",
+    "semanticAuthority": "not_established",
+    "sourceArtifact": "artifacts/saju-five-classics-typed-readiness-contract-v0/complete.json",
+    "stableClaimPromotionCount": 0
+  },
+  "version": "0.1.0",
+  "volumeCrosswalk": [
+    {
+      "bitstreamUuid": "fb2aba7f-7631-40c6-ac51-e1d2c7d4f8cf",
+      "fileName": "b22343921_v.6.pdf",
+      "folioCrosswalk": {
+        "directPdfPage": 3,
+        "printedFolio": null,
+        "reason": "The title-page/facing-leaf render exposes a handwritten collection mark but no reliably legible printed folio was closed. The PDF page number is retained as a digital locator only.",
+        "status": "unresolved"
+      },
+      "pdfPageCount": 106,
+      "sourceId": "source.anu.sanming-tonghui.e0d2d017.v6",
+      "titlePage": {
+        "handwrittenCollectionMarkOnFacingBlankLeaf": "6657",
+        "handwrittenMarkStatus": "directly_visible_but_not_a_printed_folio",
+        "locatorType": "ANU_PDF_page_1_based",
+        "pdfPage": 3,
+        "printedFolio": null,
+        "printedFolioStatus": "unresolved_not_reliably_visible_in_inspected_render",
+        "printedTitleDirectlyVisible": true,
+        "printedVolumeTitle": "三命通會卷之六",
+        "titleToFolioRelation": "not_inferred"
+      },
+      "volume": 6
+    },
+    {
+      "bitstreamUuid": "5b0a6e1b-3db4-46ee-aa12-a42b14e322b4",
+      "fileName": "b22343921_v.7.pdf",
+      "folioCrosswalk": {
+        "directPdfPage": 3,
+        "printedFolio": null,
+        "reason": "The title-page/facing-leaf render exposes a handwritten collection mark but no reliably legible printed folio was closed. The PDF page number is retained as a digital locator only.",
+        "status": "unresolved"
+      },
+      "pdfPageCount": 89,
+      "sourceId": "source.anu.sanming-tonghui.e0d2d017.v7",
+      "titlePage": {
+        "handwrittenCollectionMarkOnFacingBlankLeaf": "6668",
+        "handwrittenMarkStatus": "directly_visible_but_not_a_printed_folio",
+        "locatorType": "ANU_PDF_page_1_based",
+        "pdfPage": 3,
+        "printedFolio": null,
+        "printedFolioStatus": "unresolved_not_reliably_visible_in_inspected_render",
+        "printedTitleDirectlyVisible": true,
+        "printedVolumeTitle": "三命通會卷之七",
+        "titleToFolioRelation": "not_inferred"
+      },
+      "volume": 7
+    },
+    {
+      "bitstreamUuid": "a8fa6594-8fdc-4c11-8368-842289357e52",
+      "fileName": "b22343921_v.8.pdf",
+      "folioCrosswalk": {
+        "directPdfPage": 3,
+        "printedFolio": null,
+        "reason": "The title-page/facing-leaf render exposes a handwritten collection mark but no reliably legible printed folio was closed. The PDF page number is retained as a digital locator only.",
+        "status": "unresolved"
+      },
+      "pdfPageCount": 126,
+      "sourceId": "source.anu.sanming-tonghui.e0d2d017.v8",
+      "titlePage": {
+        "handwrittenCollectionMarkOnFacingBlankLeaf": "6669",
+        "handwrittenMarkStatus": "directly_visible_but_not_a_printed_folio",
+        "locatorType": "ANU_PDF_page_1_based",
+        "pdfPage": 3,
+        "printedFolio": null,
+        "printedFolioStatus": "unresolved_not_reliably_visible_in_inspected_render",
+        "printedTitleDirectlyVisible": true,
+        "printedVolumeTitle": "三命通會卷之八",
+        "titleToFolioRelation": "not_inferred"
+      },
+      "volume": 8
+    },
+    {
+      "bitstreamUuid": "18bf8d2e-c443-41da-852a-b3404a6195ca",
+      "fileName": "b22343921_v.9.pdf",
+      "folioCrosswalk": {
+        "directPdfPage": 3,
+        "printedFolio": null,
+        "reason": "The title-page/facing-leaf render exposes a handwritten collection mark but no reliably legible printed folio was closed. The PDF page number is retained as a digital locator only.",
+        "status": "unresolved"
+      },
+      "pdfPageCount": 124,
+      "sourceId": "source.anu.sanming-tonghui.e0d2d017.v9",
+      "titlePage": {
+        "handwrittenCollectionMarkOnFacingBlankLeaf": "6670",
+        "handwrittenMarkStatus": "directly_visible_but_not_a_printed_folio",
+        "locatorType": "ANU_PDF_page_1_based",
+        "pdfPage": 3,
+        "printedFolio": null,
+        "printedFolioStatus": "unresolved_not_reliably_visible_in_inspected_render",
+        "printedTitleDirectlyVisible": true,
+        "printedVolumeTitle": "三命通會卷之九",
+        "titleToFolioRelation": "not_inferred"
+      },
+      "volume": 9
+    },
+    {
+      "bitstreamUuid": "97ec8e41-d427-4f7d-b9b0-336898fea3db",
+      "fileName": "b22343921_v.10.pdf",
+      "folioCrosswalk": {
+        "directPdfPage": 3,
+        "printedFolio": null,
+        "reason": "The title-page/facing-leaf render exposes a handwritten collection mark but no reliably legible printed folio was closed. The PDF page number is retained as a digital locator only.",
+        "status": "unresolved"
+      },
+      "pdfPageCount": 77,
+      "sourceId": "source.anu.sanming-tonghui.e0d2d017.v10",
+      "titlePage": {
+        "handwrittenCollectionMarkOnFacingBlankLeaf": "6671",
+        "handwrittenMarkStatus": "directly_visible_but_not_a_printed_folio",
+        "locatorType": "ANU_PDF_page_1_based",
+        "pdfPage": 3,
+        "printedFolio": null,
+        "printedFolioStatus": "unresolved_not_reliably_visible_in_inspected_render",
+        "printedTitleDirectlyVisible": true,
+        "printedVolumeTitle": "三命通會卷之十",
+        "titleToFolioRelation": "not_inferred"
+      },
+      "volume": 10
+    },
+    {
+      "bitstreamUuid": "335e822c-7893-4ab9-ad7f-cd3bcb565759",
+      "fileName": "b22343921_v.11.pdf",
+      "folioCrosswalk": {
+        "directPdfPage": 3,
+        "printedFolio": null,
+        "reason": "The title-page/facing-leaf render exposes a handwritten collection mark but no reliably legible printed folio was closed. The PDF page number is retained as a digital locator only.",
+        "status": "unresolved"
+      },
+      "pdfPageCount": 91,
+      "sourceId": "source.anu.sanming-tonghui.e0d2d017.v11",
+      "titlePage": {
+        "handwrittenCollectionMarkOnFacingBlankLeaf": "6672",
+        "handwrittenMarkStatus": "directly_visible_but_not_a_printed_folio",
+        "locatorType": "ANU_PDF_page_1_based",
+        "pdfPage": 3,
+        "printedFolio": null,
+        "printedFolioStatus": "unresolved_not_reliably_visible_in_inspected_render",
+        "printedTitleDirectlyVisible": true,
+        "printedVolumeTitle": "三命通會卷之十一",
+        "titleToFolioRelation": "not_inferred"
+      },
+      "volume": 11
+    },
+    {
+      "bitstreamUuid": "fc1a5a22-84e8-4760-899f-c3d3e1add118",
+      "fileName": "b22343921_v.12.pdf",
+      "folioCrosswalk": {
+        "directPdfPage": 3,
+        "printedFolio": null,
+        "reason": "The title-page/facing-leaf render exposes a handwritten collection mark but no reliably legible printed folio was closed. The PDF page number is retained as a digital locator only.",
+        "status": "unresolved"
+      },
+      "pdfPageCount": 81,
+      "sourceId": "source.anu.sanming-tonghui.e0d2d017.v12",
+      "titlePage": {
+        "handwrittenCollectionMarkOnFacingBlankLeaf": "6673",
+        "handwrittenMarkStatus": "directly_visible_but_not_a_printed_folio",
+        "locatorType": "ANU_PDF_page_1_based",
+        "pdfPage": 3,
+        "printedFolio": null,
+        "printedFolioStatus": "unresolved_not_reliably_visible_in_inspected_render",
+        "printedTitleDirectlyVisible": true,
+        "printedVolumeTitle": "三命通會卷之十二",
+        "titleToFolioRelation": "not_inferred"
+      },
+      "volume": 12
+    }
+  ]
+}

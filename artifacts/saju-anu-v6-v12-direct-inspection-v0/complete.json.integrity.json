@@ -1,0 +1,7 @@
+{
+  "artifactByteSha256": "77de507bfd7b9671e0da379b9fca7a9b15cb266829859272633bbf82c032aa98",
+  "artifactPath": "artifacts/saju-anu-v6-v12-direct-inspection-v0/complete.json",
+  "byteLength": 67342,
+  "hashScope": "exact UTF-8 bytes of complete.json including final LF",
+  "schemaVersion": "saju-anu-v6-v12-direct-inspection-v0-integrity-v0"
+}
