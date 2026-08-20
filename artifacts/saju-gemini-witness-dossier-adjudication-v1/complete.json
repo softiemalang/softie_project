@@ -1,0 +1,2153 @@
+{
+  "artifactIdentity": {
+    "artifactId": "saju-gemini-witness-dossier-adjudication-v1",
+    "artifactPayloadSha256": "363206925e41da55ee3d78cef1ef8a1d93b346ad787dfc67b570e05152968de8",
+    "contractVersion": "artifact-identity-v1",
+    "generation": {
+      "baseHead": "99e6cc624a1510487ad8bcf65347b3ee5f4e524e",
+      "baseHeadSource": "git rev-parse HEAD at materialization",
+      "includedCommit": null,
+      "includedCommitSource": "unknown_at_generation; artifact may be included by a later commit"
+    },
+    "inputs": [
+      {
+        "byteSha256": "25b4c2ecac56caa5dfad13e090b0844f0088240205da43a2beaa59c5a79bbb81",
+        "path": "artifacts/saju-five-classics-typed-readiness-contract-v0/complete.json"
+      },
+      {
+        "byteSha256": "72cc2d20faccb5c7496f9682885cfd87d97ed2f3249f66f791886eb80827b09b",
+        "path": "scripts/materialize-saju-gemini-witness-dossier-adjudication-v1.mjs"
+      },
+      {
+        "byteSha256": "5745991fbc31ea4747570844017c06facc4c6c15e205f3145bb357afb9f51712",
+        "path": "src/artifactIdentity.js"
+      },
+      {
+        "byteSha256": "14a87824afb41efc21ea83ffb949d2464617a4e21a2fbb146da0c31386f8ab20",
+        "path": "src/interpretationPrep/sajuGeminiWitnessDossierAdjudication.js"
+      }
+    ],
+    "materializer": {
+      "path": "scripts/materialize-saju-gemini-witness-dossier-adjudication-v1.mjs",
+      "version": "1.0.0"
+    }
+  },
+  "basisHead": "99e6cc624a1510487ad8bcf65347b3ee5f4e524e",
+  "blockerLedger": {
+    "falseBlockers": [
+      {
+        "blockerId": "false.semantic-authority-for-bounded-observation",
+        "note": "Semantic authority is not needed to record an official record or visible heading.",
+        "status": "not_a_blocker_for_raw_observation"
+      },
+      {
+        "blockerId": "false.modern-arithmetic-substitution",
+        "note": "Arithmetic cannot replace direct historical page observation.",
+        "status": "not_a_resolution_route"
+      },
+      {
+        "blockerId": "false.candidate-baseline-as-proof",
+        "note": "The dossier’s H/E/S/L/I/P counts are candidate assertions only.",
+        "status": "not_evidence"
+      }
+    ],
+    "realBlockers": [
+      {
+        "blockerId": "blocker.ncl.gengcun.target-folio-bytes",
+        "edge": "H/E",
+        "reason": "Authorized access to the target folios and a date/colophon observation is required before the manuscript can support the claimed passages or age."
+      },
+      {
+        "blockerId": "blocker.ziping.pre-1926.first-party-records",
+        "edge": "H/E/I",
+        "reason": "First-party catalog identifiers and page-level title/imprint/target-section scans for both dated witnesses are missing."
+      },
+      {
+        "blockerId": "blocker.wuxing.vol33.target-passage-page",
+        "edge": "H/E/S/I",
+        "reason": "The public mirror identifies and shows 卷33, but the candidate worked example and exact section wording were not directly observed; the official route applies permission checks."
+      },
+      {
+        "blockerId": "blocker.waseda.preface-date-and-colophon",
+        "edge": "E/I",
+        "reason": "The official Waseda record has unknown imprint and the inspected scan pages do not establish the claimed 1886 date for the current copy."
+      },
+      {
+        "blockerId": "blocker.princeton.first-party-catalog",
+        "edge": "H/E",
+        "reason": "Princeton candidate metadata was not directly verified."
+      }
+    ]
+  },
+  "candidatePacket": {
+    "byteLength": 23686,
+    "byteSha256": "08386bd853691b209c8a82a2977f1e7bc9bd01215de14aa3a58cb98f86e05092",
+    "importedAsCanonicalEvidence": false,
+    "importedConclusionFields": [],
+    "path": "/Users/softie/.gemini/antigravity-cli/brain/ebb37c1a-b791-4d55-92c3-0d4022511694/luna-witness-evidence-packet-v1.md",
+    "trustBoundary": "untrusted_candidate_only"
+  },
+  "claims": [
+    {
+      "blockerAssessment": {
+        "falseBlockers": [
+          {
+            "blockerId": "false.semantic-authority-for-bounded-observation",
+            "edge": "semantic_authority",
+            "reason": "Semantic authority is not required to report a bounded catalog or page observation, but it is also not granted by that observation."
+          }
+        ],
+        "realBlockers": [
+          {
+            "blockerId": "blocker.ncl.gengcun.target-folio-bytes",
+            "edge": "H/E",
+            "reason": "Authorized access to the target folios and a date/colophon observation is required before the manuscript can support the claimed passages or age."
+          }
+        ]
+      },
+      "candidateAssertion": "NCL 06599 / rarecatx0441810 identifies 耕寸集不分卷.",
+      "candidateEvidenceAccepted": false,
+      "claimId": "claim.unit-a.ncl-record-identity",
+      "gates": {
+        "E": "satisfied",
+        "H": "satisfied",
+        "I": "unresolved",
+        "L": "unresolved",
+        "P": "unresolved",
+        "S": "not_applicable"
+      },
+      "independence": {
+        "digital-derivation": {
+          "countedAsIndependent": false,
+          "missingEdges": [
+            "digital-derivation independence evidence"
+          ],
+          "sameLineageCandidate": false,
+          "state": "unresolved"
+        },
+        "edition/textual-lineage": {
+          "countedAsIndependent": false,
+          "missingEdges": [
+            "edition/textual-lineage independence evidence"
+          ],
+          "sameLineageCandidate": false,
+          "state": "unresolved"
+        },
+        "physical-item": {
+          "countedAsIndependent": false,
+          "missingEdges": [],
+          "sameLineageCandidate": false,
+          "state": "satisfied"
+        },
+        "semantic-corroboration": {
+          "countedAsIndependent": false,
+          "missingEdges": [
+            "semantic-corroboration independence evidence"
+          ],
+          "sameLineageCandidate": false,
+          "state": "unresolved"
+        }
+      },
+      "parentVerifiedEvidenceRefs": [
+        "ev.ncl.gengcun.catalog-record",
+        "obs.ncl.gengcun.catalog-identity"
+      ],
+      "promotion": {
+        "ready": false,
+        "reason": "This adjudication is an evidence/readiness overlay only; no semantic authority or production activation follows.",
+        "status": "blocked",
+        "target": "none"
+      },
+      "scopeCorrection": "Promote only the catalog-level identity; do not promote page content, exact date, or textual-witness status.",
+      "status": "supported",
+      "unit": "A"
+    },
+    {
+      "blockerAssessment": {
+        "falseBlockers": [
+          {
+            "blockerId": "false.semantic-authority-for-bounded-observation",
+            "edge": "semantic_authority",
+            "reason": "Semantic authority is not required to report a bounded catalog or page observation, but it is also not granted by that observation."
+          }
+        ],
+        "realBlockers": [
+          {
+            "blockerId": "blocker.ncl.gengcun.target-folio-bytes",
+            "edge": "H/E",
+            "reason": "Authorized access to the target folios and a date/colophon observation is required before the manuscript can support the claimed passages or age."
+          }
+        ]
+      },
+      "candidateAssertion": "The dossier’s full physical description, seals, dimensions, and page layout were directly verified.",
+      "candidateEvidenceAccepted": false,
+      "claimId": "claim.unit-a.ncl-physical-description",
+      "gates": {
+        "E": "unresolved",
+        "H": "satisfied",
+        "I": "unresolved",
+        "L": "unresolved",
+        "P": "unresolved",
+        "S": "not_applicable"
+      },
+      "independence": {
+        "digital-derivation": {
+          "countedAsIndependent": false,
+          "missingEdges": [
+            "digital-derivation independence evidence"
+          ],
+          "sameLineageCandidate": false,
+          "state": "unresolved"
+        },
+        "edition/textual-lineage": {
+          "countedAsIndependent": false,
+          "missingEdges": [
+            "edition/textual-lineage independence evidence"
+          ],
+          "sameLineageCandidate": false,
+          "state": "unresolved"
+        },
+        "physical-item": {
+          "countedAsIndependent": false,
+          "missingEdges": [],
+          "sameLineageCandidate": false,
+          "state": "satisfied"
+        },
+        "semantic-corroboration": {
+          "countedAsIndependent": false,
+          "missingEdges": [
+            "semantic-corroboration independence evidence"
+          ],
+          "sameLineageCandidate": false,
+          "state": "unresolved"
+        }
+      },
+      "parentVerifiedEvidenceRefs": [
+        "ev.ncl.gengcun.catalog-record"
+      ],
+      "promotion": {
+        "ready": false,
+        "reason": "This adjudication is an evidence/readiness overlay only; no semantic authority or production activation follows.",
+        "status": "blocked",
+        "target": "none"
+      },
+      "scopeCorrection": "Only title/call/accession/registration/owner fields are parent-observed here; the dossier’s dimensions, folio layout, and seals remain unverified in this pass.",
+      "status": "partially_supported",
+      "unit": "A"
+    },
+    {
+      "blockerAssessment": {
+        "falseBlockers": [
+          {
+            "blockerId": "false.semantic-authority-for-bounded-observation",
+            "edge": "semantic_authority",
+            "reason": "Semantic authority is not required to report a bounded catalog or page observation, but it is also not granted by that observation."
+          }
+        ],
+        "realBlockers": [
+          {
+            "blockerId": "blocker.ncl.gengcun.target-folio-bytes",
+            "edge": "H/E",
+            "reason": "Authorized access to the target folios and a date/colophon observation is required before the manuscript can support the claimed passages or age."
+          }
+        ]
+      },
+      "candidateAssertion": "Folios 1–2, 12–13, and 18–20 contain the cited 子平真詮 / 用神 / 相神 / 行運 passages.",
+      "candidateEvidenceAccepted": false,
+      "claimId": "claim.unit-a.ncl-target-folios-and-passages",
+      "gates": {
+        "E": "unresolved",
+        "H": "unresolved",
+        "I": "unresolved",
+        "L": "unresolved",
+        "P": "unresolved",
+        "S": "unresolved"
+      },
+      "independence": {
+        "digital-derivation": {
+          "countedAsIndependent": false,
+          "missingEdges": [
+            "digital-derivation independence evidence"
+          ],
+          "sameLineageCandidate": false,
+          "state": "unresolved"
+        },
+        "edition/textual-lineage": {
+          "countedAsIndependent": false,
+          "missingEdges": [
+            "edition/textual-lineage independence evidence"
+          ],
+          "sameLineageCandidate": false,
+          "state": "unresolved"
+        },
+        "physical-item": {
+          "countedAsIndependent": false,
+          "missingEdges": [],
+          "sameLineageCandidate": false,
+          "state": "satisfied"
+        },
+        "semantic-corroboration": {
+          "countedAsIndependent": false,
+          "missingEdges": [
+            "semantic-corroboration independence evidence"
+          ],
+          "sameLineageCandidate": false,
+          "state": "unresolved"
+        }
+      },
+      "parentVerifiedEvidenceRefs": [
+        "ev.ncl.gengcun.page-access-boundary",
+        "obs.ncl.gengcun.target-folio-blocked"
+      ],
+      "promotion": {
+        "ready": false,
+        "reason": "This adjudication is an evidence/readiness overlay only; no semantic authority or production activation follows.",
+        "status": "blocked",
+        "target": "none"
+      },
+      "scopeCorrection": "Candidate transcriptions are not accepted as page observations until authorized page bytes or a first-party image route is available.",
+      "status": "unresolved",
+      "unit": "A"
+    },
+    {
+      "blockerAssessment": {
+        "falseBlockers": [
+          {
+            "blockerId": "false.semantic-authority-for-bounded-observation",
+            "edge": "semantic_authority",
+            "reason": "Semantic authority is not required to report a bounded catalog or page observation, but it is also not granted by that observation."
+          }
+        ],
+        "realBlockers": [
+          {
+            "blockerId": "blocker.ncl.gengcun.target-folio-bytes",
+            "edge": "H/E",
+            "reason": "Authorized access to the target folios and a date/colophon observation is required before the manuscript can support the claimed passages or age."
+          }
+        ]
+      },
+      "candidateAssertion": "The NCL item is pre-1776 or otherwise an early direct witness of the later 子平真詮 text.",
+      "candidateEvidenceAccepted": false,
+      "claimId": "claim.unit-a.pre-1776-early-witness",
+      "gates": {
+        "E": "unresolved",
+        "H": "unresolved",
+        "I": "unresolved",
+        "L": "unresolved",
+        "P": "unresolved",
+        "S": "unresolved"
+      },
+      "independence": {
+        "digital-derivation": {
+          "countedAsIndependent": false,
+          "missingEdges": [
+            "digital-derivation independence evidence"
+          ],
+          "sameLineageCandidate": false,
+          "state": "unresolved"
+        },
+        "edition/textual-lineage": {
+          "countedAsIndependent": false,
+          "missingEdges": [
+            "edition/textual-lineage independence evidence"
+          ],
+          "sameLineageCandidate": false,
+          "state": "unresolved"
+        },
+        "physical-item": {
+          "countedAsIndependent": false,
+          "missingEdges": [],
+          "sameLineageCandidate": false,
+          "state": "satisfied"
+        },
+        "semantic-corroboration": {
+          "countedAsIndependent": false,
+          "missingEdges": [
+            "semantic-corroboration independence evidence"
+          ],
+          "sameLineageCandidate": false,
+          "state": "unresolved"
+        }
+      },
+      "parentVerifiedEvidenceRefs": [
+        "ev.ncl.gengcun.catalog-record"
+      ],
+      "promotion": {
+        "ready": false,
+        "reason": "This adjudication is an evidence/readiness overlay only; no semantic authority or production activation follows.",
+        "status": "blocked",
+        "target": "lineage_specific_stability"
+      },
+      "scopeCorrection": "The official record exposes a 清 category, not an exact year; no pre-1776 or early-witness claim is admitted.",
+      "status": "unsupported",
+      "unit": "A"
+    },
+    {
+      "blockerAssessment": {
+        "falseBlockers": [
+          {
+            "blockerId": "false.semantic-authority-for-bounded-observation",
+            "edge": "semantic_authority",
+            "reason": "Semantic authority is not required to report a bounded catalog or page observation, but it is also not granted by that observation."
+          }
+        ],
+        "realBlockers": [
+          {
+            "blockerId": "blocker.ziping.pre-1926.first-party-records",
+            "edge": "H/E/I",
+            "reason": "First-party catalog identifiers and page-level title/imprint/target-section scans for both dated witnesses are missing."
+          }
+        ]
+      },
+      "candidateAssertion": "An 1895 報暉草堂 physical witness is institutionally catalog-anchored with the stated target sections.",
+      "candidateEvidenceAccepted": false,
+      "claimId": "claim.unit-b.1895-baohuicaotang-witness",
+      "gates": {
+        "E": "unresolved",
+        "H": "unresolved",
+        "I": "unresolved",
+        "L": "unresolved",
+        "P": "unresolved",
+        "S": "unresolved"
+      },
+      "independence": {
+        "digital-derivation": {
+          "countedAsIndependent": false,
+          "missingEdges": [
+            "digital-derivation independence evidence"
+          ],
+          "sameLineageCandidate": false,
+          "state": "unresolved"
+        },
+        "edition/textual-lineage": {
+          "countedAsIndependent": false,
+          "missingEdges": [
+            "edition/textual-lineage independence evidence"
+          ],
+          "sameLineageCandidate": false,
+          "state": "unresolved"
+        },
+        "physical-item": {
+          "countedAsIndependent": false,
+          "missingEdges": [
+            "physical-item independence evidence"
+          ],
+          "sameLineageCandidate": false,
+          "state": "unresolved"
+        },
+        "semantic-corroboration": {
+          "countedAsIndependent": false,
+          "missingEdges": [
+            "semantic-corroboration independence evidence"
+          ],
+          "sameLineageCandidate": false,
+          "state": "unresolved"
+        }
+      },
+      "parentVerifiedEvidenceRefs": [],
+      "promotion": {
+        "ready": false,
+        "reason": "This adjudication is an evidence/readiness overlay only; no semantic authority or production activation follows.",
+        "status": "blocked",
+        "target": "lineage_specific_stability"
+      },
+      "scopeCorrection": "Non-institutional web locators are retained as leads only; no dated holding or page text was parent-verified.",
+      "status": "unresolved",
+      "unit": "B"
+    },
+    {
+      "blockerAssessment": {
+        "falseBlockers": [
+          {
+            "blockerId": "false.semantic-authority-for-bounded-observation",
+            "edge": "semantic_authority",
+            "reason": "Semantic authority is not required to report a bounded catalog or page observation, but it is also not granted by that observation."
+          }
+        ],
+        "realBlockers": [
+          {
+            "blockerId": "blocker.ziping.pre-1926.first-party-records",
+            "edge": "H/E/I",
+            "reason": "First-party catalog identifiers and page-level title/imprint/target-section scans for both dated witnesses are missing."
+          }
+        ]
+      },
+      "candidateAssertion": "A 1923 紹興育新書局 witness is institutionally catalog-anchored with the stated target sections.",
+      "candidateEvidenceAccepted": false,
+      "claimId": "claim.unit-b.1923-yuxin-witness",
+      "gates": {
+        "E": "unresolved",
+        "H": "unresolved",
+        "I": "unresolved",
+        "L": "unresolved",
+        "P": "unresolved",
+        "S": "unresolved"
+      },
+      "independence": {
+        "digital-derivation": {
+          "countedAsIndependent": false,
+          "missingEdges": [
+            "digital-derivation independence evidence"
+          ],
+          "sameLineageCandidate": false,
+          "state": "unresolved"
+        },
+        "edition/textual-lineage": {
+          "countedAsIndependent": false,
+          "missingEdges": [
+            "edition/textual-lineage independence evidence"
+          ],
+          "sameLineageCandidate": false,
+          "state": "unresolved"
+        },
+        "physical-item": {
+          "countedAsIndependent": false,
+          "missingEdges": [
+            "physical-item independence evidence"
+          ],
+          "sameLineageCandidate": false,
+          "state": "unresolved"
+        },
+        "semantic-corroboration": {
+          "countedAsIndependent": false,
+          "missingEdges": [
+            "semantic-corroboration independence evidence"
+          ],
+          "sameLineageCandidate": false,
+          "state": "unresolved"
+        }
+      },
+      "parentVerifiedEvidenceRefs": [],
+      "promotion": {
+        "ready": false,
+        "reason": "This adjudication is an evidence/readiness overlay only; no semantic authority or production activation follows.",
+        "status": "blocked",
+        "target": "lineage_specific_stability"
+      },
+      "scopeCorrection": "The 1923 date and institutional holdings remain candidate metadata until an original library record or scan is captured.",
+      "status": "unresolved",
+      "unit": "B"
+    },
+    {
+      "blockerAssessment": {
+        "falseBlockers": [
+          {
+            "blockerId": "false.semantic-authority-for-bounded-observation",
+            "edge": "semantic_authority",
+            "reason": "Semantic authority is not required to report a bounded catalog or page observation, but it is also not granted by that observation."
+          }
+        ],
+        "realBlockers": [
+          {
+            "blockerId": "blocker.ziping.pre-1926.first-party-records",
+            "edge": "H/E/I",
+            "reason": "First-party catalog identifiers and page-level title/imprint/target-section scans for both dated witnesses are missing."
+          }
+        ]
+      },
+      "candidateAssertion": "The 1895 and 1923 items establish two independent physical/edition lineages before 1926.",
+      "candidateEvidenceAccepted": false,
+      "claimId": "claim.unit-b.two-independent-pre-1926-witnesses",
+      "gates": {
+        "E": "unresolved",
+        "H": "unresolved",
+        "I": "unresolved",
+        "L": "unresolved",
+        "P": "unresolved",
+        "S": "unresolved"
+      },
+      "independence": {
+        "digital-derivation": {
+          "countedAsIndependent": false,
+          "missingEdges": [
+            "digital-derivation independence evidence"
+          ],
+          "sameLineageCandidate": false,
+          "state": "unresolved"
+        },
+        "edition/textual-lineage": {
+          "countedAsIndependent": false,
+          "missingEdges": [
+            "edition/textual-lineage independence evidence"
+          ],
+          "sameLineageCandidate": false,
+          "state": "unresolved"
+        },
+        "physical-item": {
+          "countedAsIndependent": false,
+          "missingEdges": [
+            "physical-item independence evidence"
+          ],
+          "sameLineageCandidate": false,
+          "state": "unresolved"
+        },
+        "semantic-corroboration": {
+          "countedAsIndependent": false,
+          "missingEdges": [
+            "semantic-corroboration independence evidence"
+          ],
+          "sameLineageCandidate": false,
+          "state": "unresolved"
+        }
+      },
+      "parentVerifiedEvidenceRefs": [],
+      "promotion": {
+        "ready": false,
+        "reason": "This adjudication is an evidence/readiness overlay only; no semantic authority or production activation follows.",
+        "status": "blocked",
+        "target": "cross_lineage_stability"
+      },
+      "scopeCorrection": "Date labels alone do not establish physical-item independence, digital independence, or textual-lineage independence.",
+      "status": "unsupported",
+      "unit": "B"
+    },
+    {
+      "blockerAssessment": {
+        "falseBlockers": [
+          {
+            "blockerId": "false.semantic-authority-for-bounded-observation",
+            "edge": "semantic_authority",
+            "reason": "Semantic authority is not required to report a bounded catalog or page observation, but it is also not granted by that observation."
+          }
+        ],
+        "realBlockers": [
+          {
+            "blockerId": "blocker.ziping.pre-1926.first-party-records",
+            "edge": "H/E/I",
+            "reason": "First-party catalog identifiers and page-level title/imprint/target-section scans for both dated witnesses are missing."
+          }
+        ]
+      },
+      "candidateAssertion": "The cited 用神 / 相神 / 行運 sections were directly observed in both dated witnesses.",
+      "candidateEvidenceAccepted": false,
+      "claimId": "claim.unit-b.target-sections-directly-observed",
+      "gates": {
+        "E": "unresolved",
+        "H": "unresolved",
+        "I": "unresolved",
+        "L": "unresolved",
+        "P": "unresolved",
+        "S": "unresolved"
+      },
+      "independence": {
+        "digital-derivation": {
+          "countedAsIndependent": false,
+          "missingEdges": [
+            "digital-derivation independence evidence"
+          ],
+          "sameLineageCandidate": false,
+          "state": "unresolved"
+        },
+        "edition/textual-lineage": {
+          "countedAsIndependent": false,
+          "missingEdges": [
+            "edition/textual-lineage independence evidence"
+          ],
+          "sameLineageCandidate": false,
+          "state": "unresolved"
+        },
+        "physical-item": {
+          "countedAsIndependent": false,
+          "missingEdges": [
+            "physical-item independence evidence"
+          ],
+          "sameLineageCandidate": false,
+          "state": "unresolved"
+        },
+        "semantic-corroboration": {
+          "countedAsIndependent": false,
+          "missingEdges": [
+            "semantic-corroboration independence evidence"
+          ],
+          "sameLineageCandidate": false,
+          "state": "unresolved"
+        }
+      },
+      "parentVerifiedEvidenceRefs": [],
+      "promotion": {
+        "ready": false,
+        "reason": "This adjudication is an evidence/readiness overlay only; no semantic authority or production activation follows.",
+        "status": "blocked",
+        "target": "historical_observation_stability"
+      },
+      "scopeCorrection": "No target page or scan byte was verified for either item in this pass.",
+      "status": "unresolved",
+      "unit": "B"
+    },
+    {
+      "blockerAssessment": {
+        "falseBlockers": [
+          {
+            "blockerId": "false.semantic-authority-for-bounded-observation",
+            "edge": "semantic_authority",
+            "reason": "Semantic authority is not required to report a bounded catalog or page observation, but it is also not granted by that observation."
+          }
+        ],
+        "realBlockers": [
+          {
+            "blockerId": "blocker.wuxing.vol33.target-passage-page",
+            "edge": "H/E/S/I",
+            "reason": "The public mirror identifies and shows 卷33, but the candidate worked example and exact section wording were not directly observed; the official route applies permission checks."
+          }
+        ]
+      },
+      "candidateAssertion": "NLC 06857 / fid 411999013122 identifies a 清抄本 五行精紀 with 卷1–33 and third-volume route 114453.0.",
+      "candidateEvidenceAccepted": false,
+      "claimId": "claim.unit-c.nlc-official-record",
+      "gates": {
+        "E": "satisfied",
+        "H": "satisfied",
+        "I": "unresolved",
+        "L": "unresolved",
+        "P": "unresolved",
+        "S": "not_applicable"
+      },
+      "independence": {
+        "digital-derivation": {
+          "countedAsIndependent": false,
+          "missingEdges": [
+            "digital-derivation independence evidence"
+          ],
+          "sameLineageCandidate": false,
+          "state": "unresolved"
+        },
+        "edition/textual-lineage": {
+          "countedAsIndependent": false,
+          "missingEdges": [
+            "edition/textual-lineage independence evidence"
+          ],
+          "sameLineageCandidate": false,
+          "state": "unresolved"
+        },
+        "physical-item": {
+          "countedAsIndependent": false,
+          "missingEdges": [],
+          "sameLineageCandidate": false,
+          "state": "satisfied"
+        },
+        "semantic-corroboration": {
+          "countedAsIndependent": false,
+          "missingEdges": [
+            "semantic-corroboration independence evidence"
+          ],
+          "sameLineageCandidate": false,
+          "state": "unresolved"
+        }
+      },
+      "parentVerifiedEvidenceRefs": [
+        "ev.nlc.wuxing.official-record",
+        "obs.nlc.wuxing.official-record"
+      ],
+      "promotion": {
+        "ready": false,
+        "reason": "This adjudication is an evidence/readiness overlay only; no semantic authority or production activation follows.",
+        "status": "blocked",
+        "target": "none"
+      },
+      "scopeCorrection": "Promote the official bibliographic identity only; do not promote the dossier’s passage or procedure from the record.",
+      "status": "supported",
+      "unit": "C"
+    },
+    {
+      "blockerAssessment": {
+        "falseBlockers": [
+          {
+            "blockerId": "false.semantic-authority-for-bounded-observation",
+            "edge": "semantic_authority",
+            "reason": "Semantic authority is not required to report a bounded catalog or page observation, but it is also not granted by that observation."
+          }
+        ],
+        "realBlockers": [
+          {
+            "blockerId": "blocker.wuxing.vol33.target-passage-page",
+            "edge": "H/E/S/I",
+            "reason": "The public mirror identifies and shows 卷33, but the candidate worked example and exact section wording were not directly observed; the official route applies permission checks."
+          }
+        ]
+      },
+      "candidateAssertion": "The Commons PDF is a directly inspectable digital representation of the NLC third volume and contains 卷33.",
+      "candidateEvidenceAccepted": false,
+      "claimId": "claim.unit-c.public-scan-vol33-identity",
+      "gates": {
+        "E": "satisfied",
+        "H": "satisfied",
+        "I": "unresolved",
+        "L": "unresolved",
+        "P": "unresolved",
+        "S": "not_applicable"
+      },
+      "independence": {
+        "digital-derivation": {
+          "countedAsIndependent": false,
+          "missingEdges": [],
+          "sameLineageCandidate": true,
+          "state": "satisfied"
+        },
+        "edition/textual-lineage": {
+          "countedAsIndependent": false,
+          "missingEdges": [
+            "edition/textual-lineage independence evidence"
+          ],
+          "sameLineageCandidate": false,
+          "state": "unresolved"
+        },
+        "physical-item": {
+          "countedAsIndependent": false,
+          "missingEdges": [],
+          "sameLineageCandidate": true,
+          "state": "satisfied"
+        },
+        "semantic-corroboration": {
+          "countedAsIndependent": false,
+          "missingEdges": [
+            "semantic-corroboration independence evidence"
+          ],
+          "sameLineageCandidate": false,
+          "state": "unresolved"
+        }
+      },
+      "parentVerifiedEvidenceRefs": [
+        "ev.nlc.wuxing.commons-scan",
+        "obs.nlc.wuxing.vol33-heading"
+      ],
+      "promotion": {
+        "ready": false,
+        "reason": "This adjudication is an evidence/readiness overlay only; no semantic authority or production activation follows.",
+        "status": "blocked",
+        "target": "none"
+      },
+      "scopeCorrection": "The mirror is not a second physical or textual witness; it is a traceable public digital derivation of the NLC item.",
+      "status": "supported",
+      "unit": "C"
+    },
+    {
+      "blockerAssessment": {
+        "falseBlockers": [
+          {
+            "blockerId": "false.semantic-authority-for-bounded-observation",
+            "edge": "semantic_authority",
+            "reason": "Semantic authority is not required to report a bounded catalog or page observation, but it is also not granted by that observation."
+          }
+        ],
+        "realBlockers": [
+          {
+            "blockerId": "blocker.wuxing.vol33.target-passage-page",
+            "edge": "H/E/S/I",
+            "reason": "The public mirror identifies and shows 卷33, but the candidate worked example and exact section wording were not directly observed; the official route applies permission checks."
+          }
+        ]
+      },
+      "candidateAssertion": "卷33 directly displays a 論大運 section and the full 3日=1歲 / 1日=4月 / 1時=10日 rule family.",
+      "candidateEvidenceAccepted": false,
+      "claimId": "claim.unit-c.vol33-dayun-heading-and-rules",
+      "gates": {
+        "E": "unresolved",
+        "H": "unresolved",
+        "I": "unresolved",
+        "L": "unresolved",
+        "P": "unresolved",
+        "S": "unresolved"
+      },
+      "independence": {
+        "digital-derivation": {
+          "countedAsIndependent": false,
+          "missingEdges": [],
+          "sameLineageCandidate": true,
+          "state": "satisfied"
+        },
+        "edition/textual-lineage": {
+          "countedAsIndependent": false,
+          "missingEdges": [
+            "edition/textual-lineage independence evidence"
+          ],
+          "sameLineageCandidate": false,
+          "state": "unresolved"
+        },
+        "physical-item": {
+          "countedAsIndependent": false,
+          "missingEdges": [],
+          "sameLineageCandidate": true,
+          "state": "satisfied"
+        },
+        "semantic-corroboration": {
+          "countedAsIndependent": false,
+          "missingEdges": [
+            "semantic-corroboration independence evidence"
+          ],
+          "sameLineageCandidate": false,
+          "state": "unresolved"
+        }
+      },
+      "parentVerifiedEvidenceRefs": [
+        "obs.nlc.wuxing.vol33-heading",
+        "obs.nlc.wuxing.vol33-worked-example-not-observed",
+        "ev.ctext.wuxing.dayun-locator"
+      ],
+      "promotion": {
+        "ready": false,
+        "reason": "This adjudication is an evidence/readiness overlay only; no semantic authority or production activation follows.",
+        "status": "blocked",
+        "target": "historical_observation_stability"
+      },
+      "scopeCorrection": "The heading at page 86 establishes 卷33 identity, not the exact section wording; Ctext remains a locator-only corroboration.",
+      "status": "unresolved",
+      "unit": "C"
+    },
+    {
+      "blockerAssessment": {
+        "falseBlockers": [
+          {
+            "blockerId": "false.semantic-authority-for-bounded-observation",
+            "edge": "semantic_authority",
+            "reason": "Semantic authority is not required to report a bounded catalog or page observation, but it is also not granted by that observation."
+          }
+        ],
+        "realBlockers": [
+          {
+            "blockerId": "blocker.wuxing.vol33.target-passage-page",
+            "edge": "H/E/S/I",
+            "reason": "The public mirror identifies and shows 卷33, but the candidate worked example and exact section wording were not directly observed; the official route applies permission checks."
+          }
+        ]
+      },
+      "candidateAssertion": "The NLC witness directly shows the 甲子／12月24日巳時／12月29日申時／63時／630日／1歲9個月／丁丑 worked example.",
+      "candidateEvidenceAccepted": false,
+      "claimId": "claim.unit-c.complete-worked-example",
+      "gates": {
+        "E": "unresolved",
+        "H": "unresolved",
+        "I": "unresolved",
+        "L": "unresolved",
+        "P": "unresolved",
+        "S": "unresolved"
+      },
+      "independence": {
+        "digital-derivation": {
+          "countedAsIndependent": false,
+          "missingEdges": [],
+          "sameLineageCandidate": true,
+          "state": "satisfied"
+        },
+        "edition/textual-lineage": {
+          "countedAsIndependent": false,
+          "missingEdges": [
+            "edition/textual-lineage independence evidence"
+          ],
+          "sameLineageCandidate": false,
+          "state": "unresolved"
+        },
+        "physical-item": {
+          "countedAsIndependent": false,
+          "missingEdges": [],
+          "sameLineageCandidate": true,
+          "state": "satisfied"
+        },
+        "semantic-corroboration": {
+          "countedAsIndependent": false,
+          "missingEdges": [
+            "semantic-corroboration independence evidence"
+          ],
+          "sameLineageCandidate": false,
+          "state": "unresolved"
+        }
+      },
+      "parentVerifiedEvidenceRefs": [
+        "obs.nlc.wuxing.vol33-worked-example-not-observed",
+        "ev.ctext.wuxing.dayun-locator"
+      ],
+      "promotion": {
+        "ready": false,
+        "reason": "This adjudication is an evidence/readiness overlay only; no semantic authority or production activation follows.",
+        "status": "blocked",
+        "target": "historical_observation_stability"
+      },
+      "scopeCorrection": "The candidate wording is not copied into canonical evidence. It remains a locator target pending exact page observation from an authorized or primary scan.",
+      "status": "unresolved",
+      "unit": "C"
+    },
+    {
+      "blockerAssessment": {
+        "falseBlockers": [
+          {
+            "blockerId": "false.modern-arithmetic-substitution",
+            "edge": "calculation",
+            "reason": "Modern arithmetic may test a transcription after the historical passage is observed, but cannot substitute for that observation."
+          }
+        ],
+        "realBlockers": [
+          {
+            "blockerId": "blocker.wuxing.vol33.target-passage-page",
+            "edge": "H/E/S/I",
+            "reason": "The public mirror identifies and shows 卷33, but the candidate worked example and exact section wording were not directly observed; the official route applies permission checks."
+          }
+        ]
+      },
+      "candidateAssertion": "The complete six-stage historical 大運 procedure is resolved from the worked example.",
+      "candidateEvidenceAccepted": false,
+      "claimId": "claim.unit-d.six-stage-dayun-procedure",
+      "gates": {
+        "E": "unresolved",
+        "H": "unresolved",
+        "I": "unresolved",
+        "L": "unresolved",
+        "P": "unresolved",
+        "S": "unresolved"
+      },
+      "independence": {
+        "digital-derivation": {
+          "countedAsIndependent": false,
+          "missingEdges": [
+            "digital-derivation independence evidence"
+          ],
+          "sameLineageCandidate": false,
+          "state": "unresolved"
+        },
+        "edition/textual-lineage": {
+          "countedAsIndependent": false,
+          "missingEdges": [
+            "edition/textual-lineage independence evidence"
+          ],
+          "sameLineageCandidate": false,
+          "state": "unresolved"
+        },
+        "physical-item": {
+          "countedAsIndependent": false,
+          "missingEdges": [
+            "physical-item independence evidence"
+          ],
+          "sameLineageCandidate": false,
+          "state": "unresolved"
+        },
+        "semantic-corroboration": {
+          "countedAsIndependent": false,
+          "missingEdges": [
+            "semantic-corroboration independence evidence"
+          ],
+          "sameLineageCandidate": false,
+          "state": "unresolved"
+        }
+      },
+      "parentVerifiedEvidenceRefs": [
+        "claim.unit-c.complete-worked-example",
+        "ev.ctext.wuxing.dayun-locator"
+      ],
+      "promotion": {
+        "ready": false,
+        "reason": "This adjudication is an evidence/readiness overlay only; no semantic authority or production activation follows.",
+        "status": "blocked",
+        "target": "implementation_safe_grounding"
+      },
+      "scopeCorrection": "Do not mix a modern recomputation with historical source observation; first capture the exact passage and its section/folio.",
+      "status": "unresolved",
+      "unit": "D"
+    },
+    {
+      "blockerAssessment": {
+        "falseBlockers": [
+          {
+            "blockerId": "false.implementation-promotion-from-one-example",
+            "edge": "implementation_grounding",
+            "reason": "A single candidate example cannot by itself establish a production algorithm, calendar policy, rounding order, or implementation authority."
+          }
+        ],
+        "realBlockers": [
+          {
+            "blockerId": "blocker.wuxing.vol33.target-passage-page",
+            "edge": "H/E/S/I",
+            "reason": "The public mirror identifies and shows 卷33, but the candidate worked example and exact section wording were not directly observed; the official route applies permission checks."
+          }
+        ]
+      },
+      "candidateAssertion": "The worked example proves exact double-hour arithmetic and historical implementation adherence.",
+      "candidateEvidenceAccepted": false,
+      "claimId": "claim.unit-d.implementation-safe-conversion",
+      "gates": {
+        "E": "unresolved",
+        "H": "unresolved",
+        "I": "unresolved",
+        "L": "unresolved",
+        "P": "unresolved",
+        "S": "unresolved"
+      },
+      "independence": {
+        "digital-derivation": {
+          "countedAsIndependent": false,
+          "missingEdges": [
+            "digital-derivation independence evidence"
+          ],
+          "sameLineageCandidate": false,
+          "state": "unresolved"
+        },
+        "edition/textual-lineage": {
+          "countedAsIndependent": false,
+          "missingEdges": [
+            "edition/textual-lineage independence evidence"
+          ],
+          "sameLineageCandidate": false,
+          "state": "unresolved"
+        },
+        "physical-item": {
+          "countedAsIndependent": false,
+          "missingEdges": [
+            "physical-item independence evidence"
+          ],
+          "sameLineageCandidate": false,
+          "state": "unresolved"
+        },
+        "semantic-corroboration": {
+          "countedAsIndependent": false,
+          "missingEdges": [
+            "semantic-corroboration independence evidence"
+          ],
+          "sameLineageCandidate": false,
+          "state": "unresolved"
+        }
+      },
+      "parentVerifiedEvidenceRefs": [
+        "claim.unit-c.complete-worked-example"
+      ],
+      "promotion": {
+        "ready": false,
+        "reason": "This adjudication is an evidence/readiness overlay only; no semantic authority or production activation follows.",
+        "status": "blocked",
+        "target": "implementation_safe_grounding"
+      },
+      "scopeCorrection": "Even a later verified historical example would remain a bounded source observation until independent semantic collation and implementation review are complete.",
+      "status": "unsupported",
+      "unit": "D"
+    },
+    {
+      "blockerAssessment": {
+        "falseBlockers": [
+          {
+            "blockerId": "false.semantic-authority-for-bounded-observation",
+            "edge": "semantic_authority",
+            "reason": "Semantic authority is not required to report a bounded catalog or page observation, but it is also not granted by that observation."
+          }
+        ],
+        "realBlockers": [
+          {
+            "blockerId": "blocker.princeton.first-party-catalog",
+            "edge": "H/E",
+            "reason": "A direct Princeton/SCSB catalog record and, if required, scan or request metadata were not verified in this pass."
+          }
+        ]
+      },
+      "candidateAssertion": "Princeton/ReCAP SCSB-4603974 / CU51356996 is a verified 1937 286-page physical copy.",
+      "candidateEvidenceAccepted": false,
+      "claimId": "claim.unit-e.princeton-catalog-copy",
+      "gates": {
+        "E": "unresolved",
+        "H": "unresolved",
+        "I": "unresolved",
+        "L": "unresolved",
+        "P": "unresolved",
+        "S": "not_applicable"
+      },
+      "independence": {
+        "digital-derivation": {
+          "countedAsIndependent": false,
+          "missingEdges": [
+            "digital-derivation independence evidence"
+          ],
+          "sameLineageCandidate": false,
+          "state": "unresolved"
+        },
+        "edition/textual-lineage": {
+          "countedAsIndependent": false,
+          "missingEdges": [
+            "edition/textual-lineage independence evidence"
+          ],
+          "sameLineageCandidate": false,
+          "state": "unresolved"
+        },
+        "physical-item": {
+          "countedAsIndependent": false,
+          "missingEdges": [
+            "physical-item independence evidence"
+          ],
+          "sameLineageCandidate": false,
+          "state": "unresolved"
+        },
+        "semantic-corroboration": {
+          "countedAsIndependent": false,
+          "missingEdges": [
+            "semantic-corroboration independence evidence"
+          ],
+          "sameLineageCandidate": false,
+          "state": "unresolved"
+        }
+      },
+      "parentVerifiedEvidenceRefs": [
+        "ev.princeton.scsb-4603974.candidate"
+      ],
+      "promotion": {
+        "ready": false,
+        "reason": "This adjudication is an evidence/readiness overlay only; no semantic authority or production activation follows.",
+        "status": "blocked",
+        "target": "none"
+      },
+      "scopeCorrection": "Keep the identifier as an acquisition lead only; do not treat candidate catalog prose as verified physical metadata.",
+      "status": "unresolved",
+      "unit": "E"
+    },
+    {
+      "blockerAssessment": {
+        "falseBlockers": [
+          {
+            "blockerId": "false.semantic-authority-for-bounded-observation",
+            "edge": "semantic_authority",
+            "reason": "Semantic authority is not required to report a bounded catalog or page observation, but it is also not granted by that observation."
+          }
+        ],
+        "realBlockers": [
+          {
+            "blockerId": "blocker.princeton.edition-lineage",
+            "edge": "E/I",
+            "reason": "The publication statement, physical pages, and relation to the alleged Ming recension require first-party record/page evidence."
+          }
+        ]
+      },
+      "candidateAssertion": "The Princeton item is a modern commercial reprint of a Ming Yang Cong recension and is not an independent pre-modern witness.",
+      "candidateEvidenceAccepted": false,
+      "claimId": "claim.unit-e.princeton-reprint-lineage",
+      "gates": {
+        "E": "unresolved",
+        "H": "unresolved",
+        "I": "unresolved",
+        "L": "unresolved",
+        "P": "unresolved",
+        "S": "unresolved"
+      },
+      "independence": {
+        "digital-derivation": {
+          "countedAsIndependent": false,
+          "missingEdges": [
+            "digital-derivation independence evidence"
+          ],
+          "sameLineageCandidate": false,
+          "state": "unresolved"
+        },
+        "edition/textual-lineage": {
+          "countedAsIndependent": false,
+          "missingEdges": [
+            "edition/textual-lineage independence evidence"
+          ],
+          "sameLineageCandidate": false,
+          "state": "unresolved"
+        },
+        "physical-item": {
+          "countedAsIndependent": false,
+          "missingEdges": [
+            "physical-item independence evidence"
+          ],
+          "sameLineageCandidate": false,
+          "state": "unresolved"
+        },
+        "semantic-corroboration": {
+          "countedAsIndependent": false,
+          "missingEdges": [
+            "semantic-corroboration independence evidence"
+          ],
+          "sameLineageCandidate": false,
+          "state": "unresolved"
+        }
+      },
+      "parentVerifiedEvidenceRefs": [
+        "ev.princeton.scsb-4603974.candidate"
+      ],
+      "promotion": {
+        "ready": false,
+        "reason": "This adjudication is an evidence/readiness overlay only; no semantic authority or production activation follows.",
+        "status": "blocked",
+        "target": "lineage_specific_stability"
+      },
+      "scopeCorrection": "No independence or reprint classification is admitted without the item-level record and relevant pages.",
+      "status": "unresolved",
+      "unit": "E"
+    },
+    {
+      "blockerAssessment": {
+        "falseBlockers": [
+          {
+            "blockerId": "false.public-scan-as-readiness-gate",
+            "edge": "digital-access",
+            "reason": "A public scan is not required for a metadata-only classification if an official record is actually verified."
+          }
+        ],
+        "realBlockers": [
+          {
+            "blockerId": "blocker.princeton.first-party-catalog",
+            "edge": "H/E/I",
+            "reason": "The official item record and physical/edition lineage evidence remain open."
+          }
+        ]
+      },
+      "candidateAssertion": "The absence of a public Princeton scan and candidate reprint description closes the independence question.",
+      "candidateEvidenceAccepted": false,
+      "claimId": "claim.unit-e.princeton-negative-independence-conclusion",
+      "gates": {
+        "E": "unresolved",
+        "H": "unresolved",
+        "I": "unresolved",
+        "L": "unresolved",
+        "P": "unresolved",
+        "S": "unresolved"
+      },
+      "independence": {
+        "digital-derivation": {
+          "countedAsIndependent": false,
+          "missingEdges": [
+            "digital-derivation independence evidence"
+          ],
+          "sameLineageCandidate": false,
+          "state": "unresolved"
+        },
+        "edition/textual-lineage": {
+          "countedAsIndependent": false,
+          "missingEdges": [
+            "edition/textual-lineage independence evidence"
+          ],
+          "sameLineageCandidate": false,
+          "state": "unresolved"
+        },
+        "physical-item": {
+          "countedAsIndependent": false,
+          "missingEdges": [
+            "physical-item independence evidence"
+          ],
+          "sameLineageCandidate": false,
+          "state": "unresolved"
+        },
+        "semantic-corroboration": {
+          "countedAsIndependent": false,
+          "missingEdges": [
+            "semantic-corroboration independence evidence"
+          ],
+          "sameLineageCandidate": false,
+          "state": "unresolved"
+        }
+      },
+      "parentVerifiedEvidenceRefs": [
+        "ev.princeton.scsb-4603974.candidate"
+      ],
+      "promotion": {
+        "ready": false,
+        "reason": "This adjudication is an evidence/readiness overlay only; no semantic authority or production activation follows.",
+        "status": "blocked",
+        "target": "none"
+      },
+      "scopeCorrection": "Unknown access is not evidence of non-independence.",
+      "status": "unsupported",
+      "unit": "E"
+    },
+    {
+      "blockerAssessment": {
+        "falseBlockers": [
+          {
+            "blockerId": "false.semantic-authority-for-bounded-observation",
+            "edge": "semantic_authority",
+            "reason": "Semantic authority is not required to report a bounded catalog or page observation, but it is also not granted by that observation."
+          }
+        ],
+        "realBlockers": [
+          {
+            "blockerId": "blocker.waseda.preface-date-and-colophon",
+            "edge": "E/I",
+            "reason": "The official Waseda record has unknown imprint and the inspected scan pages do not establish the claimed 1886 date for the current copy."
+          }
+        ]
+      },
+      "candidateAssertion": "Waseda bunko19_f0111 identifies the stated Qiong tong bao jian record and Qing editorial attributions.",
+      "candidateEvidenceAccepted": false,
+      "claimId": "claim.unit-f.waseda-record-identity",
+      "gates": {
+        "E": "satisfied",
+        "H": "satisfied",
+        "I": "unresolved",
+        "L": "unresolved",
+        "P": "unresolved",
+        "S": "not_applicable"
+      },
+      "independence": {
+        "digital-derivation": {
+          "countedAsIndependent": false,
+          "missingEdges": [
+            "digital-derivation independence evidence"
+          ],
+          "sameLineageCandidate": false,
+          "state": "unresolved"
+        },
+        "edition/textual-lineage": {
+          "countedAsIndependent": false,
+          "missingEdges": [
+            "edition/textual-lineage independence evidence"
+          ],
+          "sameLineageCandidate": false,
+          "state": "unresolved"
+        },
+        "physical-item": {
+          "countedAsIndependent": false,
+          "missingEdges": [],
+          "sameLineageCandidate": false,
+          "state": "satisfied"
+        },
+        "semantic-corroboration": {
+          "countedAsIndependent": false,
+          "missingEdges": [
+            "semantic-corroboration independence evidence"
+          ],
+          "sameLineageCandidate": false,
+          "state": "unresolved"
+        }
+      },
+      "parentVerifiedEvidenceRefs": [
+        "ev.waseda.bunko19-f0111.record"
+      ],
+      "promotion": {
+        "ready": false,
+        "reason": "This adjudication is an evidence/readiness overlay only; no semantic authority or production activation follows.",
+        "status": "blocked",
+        "target": "none"
+      },
+      "scopeCorrection": "Promote official record identity, attribution display, and unknown imprint only.",
+      "status": "supported",
+      "unit": "F"
+    },
+    {
+      "blockerAssessment": {
+        "falseBlockers": [
+          {
+            "blockerId": "false.semantic-authority-for-bounded-observation",
+            "edge": "semantic_authority",
+            "reason": "Semantic authority is not required to report a bounded catalog or page observation, but it is also not granted by that observation."
+          }
+        ],
+        "realBlockers": [
+          {
+            "blockerId": "blocker.waseda.preface-date-and-colophon",
+            "edge": "E/I",
+            "reason": "The official Waseda record has unknown imprint and the inspected scan pages do not establish the claimed 1886 date for the current copy."
+          }
+        ]
+      },
+      "candidateAssertion": "The institution-hosted scan visibly contains 正月甲木, 二月甲木, and 三月甲木 at pages 9–11.",
+      "candidateEvidenceAccepted": false,
+      "claimId": "claim.unit-f.seasonal-headings",
+      "gates": {
+        "E": "unresolved",
+        "H": "satisfied",
+        "I": "unresolved",
+        "L": "unresolved",
+        "P": "unresolved",
+        "S": "not_applicable"
+      },
+      "independence": {
+        "digital-derivation": {
+          "countedAsIndependent": false,
+          "missingEdges": [],
+          "sameLineageCandidate": false,
+          "state": "satisfied"
+        },
+        "edition/textual-lineage": {
+          "countedAsIndependent": false,
+          "missingEdges": [
+            "edition/textual-lineage independence evidence"
+          ],
+          "sameLineageCandidate": false,
+          "state": "unresolved"
+        },
+        "physical-item": {
+          "countedAsIndependent": false,
+          "missingEdges": [],
+          "sameLineageCandidate": false,
+          "state": "satisfied"
+        },
+        "semantic-corroboration": {
+          "countedAsIndependent": false,
+          "missingEdges": [
+            "semantic-corroboration independence evidence"
+          ],
+          "sameLineageCandidate": false,
+          "state": "unresolved"
+        }
+      },
+      "parentVerifiedEvidenceRefs": [
+        "ev.waseda.bunko19-f0111.pdf",
+        "obs.waseda.seasonal-headings"
+      ],
+      "promotion": {
+        "ready": false,
+        "reason": "This adjudication is an evidence/readiness overlay only; no semantic authority or production activation follows.",
+        "status": "blocked",
+        "target": "historical_observation_stability"
+      },
+      "scopeCorrection": "This is a bounded page-heading observation, not a semantic equivalence or dated-edition claim.",
+      "status": "supported",
+      "unit": "F"
+    },
+    {
+      "blockerAssessment": {
+        "falseBlockers": [
+          {
+            "blockerId": "false.semantic-authority-for-bounded-observation",
+            "edge": "semantic_authority",
+            "reason": "Semantic authority is not required to report a bounded catalog or page observation, but it is also not granted by that observation."
+          }
+        ],
+        "realBlockers": [
+          {
+            "blockerId": "blocker.waseda.preface-date-and-colophon",
+            "edge": "E/I",
+            "reason": "The official Waseda record has unknown imprint and the inspected scan pages do not establish the claimed 1886 date for the current copy."
+          }
+        ]
+      },
+      "candidateAssertion": "The scan contains a 余春台序 dated 光緒十二年丙戌 (1886).",
+      "candidateEvidenceAccepted": false,
+      "claimId": "claim.unit-f.preface-date",
+      "gates": {
+        "E": "unresolved",
+        "H": "unresolved",
+        "I": "unresolved",
+        "L": "unresolved",
+        "P": "unresolved",
+        "S": "not_applicable"
+      },
+      "independence": {
+        "digital-derivation": {
+          "countedAsIndependent": false,
+          "missingEdges": [
+            "digital-derivation independence evidence"
+          ],
+          "sameLineageCandidate": false,
+          "state": "unresolved"
+        },
+        "edition/textual-lineage": {
+          "countedAsIndependent": false,
+          "missingEdges": [
+            "edition/textual-lineage independence evidence"
+          ],
+          "sameLineageCandidate": false,
+          "state": "unresolved"
+        },
+        "physical-item": {
+          "countedAsIndependent": false,
+          "missingEdges": [],
+          "sameLineageCandidate": false,
+          "state": "satisfied"
+        },
+        "semantic-corroboration": {
+          "countedAsIndependent": false,
+          "missingEdges": [
+            "semantic-corroboration independence evidence"
+          ],
+          "sameLineageCandidate": false,
+          "state": "unresolved"
+        }
+      },
+      "parentVerifiedEvidenceRefs": [
+        "ev.waseda.bunko19-f0111.record",
+        "obs.waseda.preface-date-unresolved"
+      ],
+      "promotion": {
+        "ready": false,
+        "reason": "This adjudication is an evidence/readiness overlay only; no semantic authority or production activation follows.",
+        "status": "blocked",
+        "target": "edition/textual-lineage"
+      },
+      "scopeCorrection": "A visible 序 page and Qing editorial attribution do not establish the candidate date; date-bearing folio/colophon remains required.",
+      "status": "unresolved",
+      "unit": "F"
+    },
+    {
+      "blockerAssessment": {
+        "falseBlockers": [
+          {
+            "blockerId": "false.semantic-authority-for-bounded-observation",
+            "edge": "semantic_authority",
+            "reason": "Semantic authority is not required to report a bounded catalog or page observation, but it is also not granted by that observation."
+          }
+        ],
+        "realBlockers": [
+          {
+            "blockerId": "blocker.waseda.preface-date-and-colophon",
+            "edge": "E/I",
+            "reason": "The official Waseda record has unknown imprint and the inspected scan pages do not establish the claimed 1886 date for the current copy."
+          }
+        ]
+      },
+      "candidateAssertion": "The current Waseda copy/edition was printed in the late Qing or in 1886.",
+      "candidateEvidenceAccepted": false,
+      "claimId": "claim.unit-f.current-copy-date",
+      "gates": {
+        "E": "unresolved",
+        "H": "unresolved",
+        "I": "unresolved",
+        "L": "unresolved",
+        "P": "unresolved",
+        "S": "not_applicable"
+      },
+      "independence": {
+        "digital-derivation": {
+          "countedAsIndependent": false,
+          "missingEdges": [
+            "digital-derivation independence evidence"
+          ],
+          "sameLineageCandidate": false,
+          "state": "unresolved"
+        },
+        "edition/textual-lineage": {
+          "countedAsIndependent": false,
+          "missingEdges": [
+            "edition/textual-lineage independence evidence"
+          ],
+          "sameLineageCandidate": false,
+          "state": "unresolved"
+        },
+        "physical-item": {
+          "countedAsIndependent": false,
+          "missingEdges": [],
+          "sameLineageCandidate": false,
+          "state": "satisfied"
+        },
+        "semantic-corroboration": {
+          "countedAsIndependent": false,
+          "missingEdges": [
+            "semantic-corroboration independence evidence"
+          ],
+          "sameLineageCandidate": false,
+          "state": "unresolved"
+        }
+      },
+      "parentVerifiedEvidenceRefs": [
+        "ev.waseda.bunko19-f0111.record"
+      ],
+      "promotion": {
+        "ready": false,
+        "reason": "This adjudication is an evidence/readiness overlay only; no semantic authority or production activation follows.",
+        "status": "blocked",
+        "target": "edition/textual-lineage"
+      },
+      "scopeCorrection": "The official imprint is [出版地不明 : 出版者不明]; preface date, compiler attribution, and current-copy date must remain separate.",
+      "status": "unsupported",
+      "unit": "F"
+    },
+    {
+      "blockerAssessment": {
+        "falseBlockers": [
+          {
+            "blockerId": "false.semantic-authority-for-bounded-observation",
+            "edge": "semantic_authority",
+            "reason": "Semantic authority is not required to report a bounded catalog or page observation, but it is also not granted by that observation."
+          }
+        ],
+        "realBlockers": [
+          {
+            "blockerId": "blocker.waseda.preface-date-and-colophon",
+            "edge": "E/I",
+            "reason": "The official Waseda record has unknown imprint and the inspected scan pages do not establish the claimed 1886 date for the current copy."
+          },
+          {
+            "blockerId": "blocker.waseda.cross-edition-page-collation",
+            "edge": "S/I",
+            "reason": "The comparator pages and edition lineage for the 1926/1937 recensions were not directly collated in this pass."
+          }
+        ]
+      },
+      "candidateAssertion": "The Waseda seasonal clauses match the 1926/1937 NLC recensions word-for-word and establish high textual stability.",
+      "candidateEvidenceAccepted": false,
+      "claimId": "claim.unit-f.word-for-word-seasonal-stability",
+      "gates": {
+        "E": "unresolved",
+        "H": "satisfied",
+        "I": "unresolved",
+        "L": "unresolved",
+        "P": "unresolved",
+        "S": "unresolved"
+      },
+      "independence": {
+        "digital-derivation": {
+          "countedAsIndependent": false,
+          "missingEdges": [],
+          "sameLineageCandidate": false,
+          "state": "satisfied"
+        },
+        "edition/textual-lineage": {
+          "countedAsIndependent": false,
+          "missingEdges": [
+            "edition/textual-lineage independence evidence"
+          ],
+          "sameLineageCandidate": false,
+          "state": "unresolved"
+        },
+        "physical-item": {
+          "countedAsIndependent": false,
+          "missingEdges": [],
+          "sameLineageCandidate": false,
+          "state": "satisfied"
+        },
+        "semantic-corroboration": {
+          "countedAsIndependent": false,
+          "missingEdges": [
+            "semantic-corroboration independence evidence"
+          ],
+          "sameLineageCandidate": false,
+          "state": "unresolved"
+        }
+      },
+      "parentVerifiedEvidenceRefs": [
+        "obs.waseda.seasonal-headings",
+        "ev.waseda.bunko19-f0111.pdf"
+      ],
+      "promotion": {
+        "ready": false,
+        "reason": "This adjudication is an evidence/readiness overlay only; no semantic authority or production activation follows.",
+        "status": "blocked",
+        "target": "cross_lineage_stability"
+      },
+      "scopeCorrection": "Headings are supported; word-for-word stability, semantic corroboration, and independent lineage are not.",
+      "status": "unresolved",
+      "unit": "F"
+    },
+    {
+      "blockerAssessment": {
+        "falseBlockers": [
+          {
+            "blockerId": "false.candidate-baseline-as-proof",
+            "edge": "all-gates",
+            "reason": "A candidate packet’s baseline counts are not parent verification and cannot promote readiness."
+          }
+        ],
+        "realBlockers": [
+          {
+            "blockerId": "blocker.ncl.gengcun.target-folio-bytes",
+            "edge": "H/E",
+            "reason": "Authorized access to the target folios and a date/colophon observation is required before the manuscript can support the claimed passages or age."
+          },
+          {
+            "blockerId": "blocker.ziping.pre-1926.first-party-records",
+            "edge": "H/E/I",
+            "reason": "First-party catalog identifiers and page-level title/imprint/target-section scans for both dated witnesses are missing."
+          },
+          {
+            "blockerId": "blocker.wuxing.vol33.target-passage-page",
+            "edge": "H/E/S/I",
+            "reason": "The public mirror identifies and shows 卷33, but the candidate worked example and exact section wording were not directly observed; the official route applies permission checks."
+          },
+          {
+            "blockerId": "blocker.waseda.preface-date-and-colophon",
+            "edge": "E/I",
+            "reason": "The official Waseda record has unknown imprint and the inspected scan pages do not establish the claimed 1886 date for the current copy."
+          }
+        ]
+      },
+      "candidateAssertion": "The candidate packet’s ALL UNITS RESOLVED conclusion and L/I/P promotion claims are established.",
+      "candidateEvidenceAccepted": false,
+      "claimId": "claim.overall.dossier-all-units-resolved",
+      "gates": {
+        "E": "unresolved",
+        "H": "unresolved",
+        "I": "unresolved",
+        "L": "unresolved",
+        "P": "unresolved",
+        "S": "unresolved"
+      },
+      "independence": {
+        "digital-derivation": {
+          "countedAsIndependent": false,
+          "missingEdges": [
+            "digital-derivation independence evidence"
+          ],
+          "sameLineageCandidate": false,
+          "state": "unresolved"
+        },
+        "edition/textual-lineage": {
+          "countedAsIndependent": false,
+          "missingEdges": [
+            "edition/textual-lineage independence evidence"
+          ],
+          "sameLineageCandidate": false,
+          "state": "unresolved"
+        },
+        "physical-item": {
+          "countedAsIndependent": false,
+          "missingEdges": [
+            "physical-item independence evidence"
+          ],
+          "sameLineageCandidate": false,
+          "state": "unresolved"
+        },
+        "semantic-corroboration": {
+          "countedAsIndependent": false,
+          "missingEdges": [
+            "semantic-corroboration independence evidence"
+          ],
+          "sameLineageCandidate": false,
+          "state": "unresolved"
+        }
+      },
+      "parentVerifiedEvidenceRefs": [
+        "ev.ncl.gengcun.page-access-boundary",
+        "ev.princeton.scsb-4603974.candidate",
+        "obs.nlc.wuxing.vol33-worked-example-not-observed",
+        "obs.waseda.preface-date-unresolved"
+      ],
+      "promotion": {
+        "ready": false,
+        "reason": "This adjudication is an evidence/readiness overlay only; no semantic authority or production activation follows.",
+        "status": "blocked",
+        "target": "implementation_safe_grounding"
+      },
+      "scopeCorrection": "Parent overlay remains fail-closed: promotionReadyClaimIds=[], availableForInterpretation=false, semanticAuthority=not_established, productionActivation=blocked.",
+      "status": "unsupported",
+      "unit": "E"
+    }
+  ],
+  "externalEvidence": [
+    {
+      "downloadedByteLength": 28675,
+      "downloadedByteSha256": "0c8d778b4ba8a2960b46430a12096aa8a5b82d7a7a19179b88b2e691c5772eff",
+      "evidenceId": "ev.ncl.gengcun.catalog-record",
+      "evidenceKind": "first_party_institutional_catalog_html",
+      "observedFields": [
+        "耕寸集不分卷",
+        "306.5 06599",
+        "06599",
+        "rarecatx0441810",
+        "國家圖書館中文古籍聯合目錄",
+        "國家圖書館"
+      ],
+      "scopeBoundary": "Catalog identity only; the target page bytes are not admitted.",
+      "sourceId": "source.ncl.ziping.gengcun-06599.catalog-rarecatx0441810",
+      "status": "parent_verified",
+      "url": "https://rbook.ncl.edu.tw/NCLSearch/Search/SearchDetail?item=00ccfe6380184da28912a57393deb2d7fDI2NTQ0NQ2.PBlfBdELN3au83ZWddAblOP5Y3FBX8h5SLzXyf79aB4_&image=1&page=1030&SourceID=1&HasImage="
+    },
+    {
+      "accessStatus": "catalog_record_only_viewer_puzzle_captcha_gated",
+      "evidenceId": "ev.ncl.gengcun.page-access-boundary",
+      "evidenceKind": "first_party_viewer_access_boundary",
+      "observed": "The official page exposes a puzzle CAPTCHA before the viewer route; no CAPTCHA or access-control bypass was attempted.",
+      "scopeBoundary": "No folio, banxin, seal, dimensions, date, or target passage is promoted from this page.",
+      "sourceId": "source.ncl.ziping.gengcun-06599.catalog-rarecatx0441810",
+      "status": "parent_verified_blocker",
+      "url": "https://rbook.ncl.edu.tw/NCLSearch/Search/SearchDetail?item=00ccfe6380184da28912a57393deb2d7fDI2NTQ0NQ2.PBlfBdELN3au83ZWddAblOP5Y3FBX8h5SLzXyf79aB4_&image=1&page=1030&SourceID=1&HasImage="
+    },
+    {
+      "downloadedByteLength": 27414,
+      "downloadedByteSha256": "880b5ad0d1bea5ff092a7a4855e6a45f5dcc5e26adc90ee46e8f1934788debcc",
+      "evidenceId": "ev.nlc.wuxing.official-record",
+      "evidenceKind": "first_party_institutional_catalog_html",
+      "observedFields": [
+        "五行精紀",
+        "(宋)廖中撰",
+        "清[1644-1911]",
+        "06857",
+        "抄本",
+        "10行24字，黑口，左右雙邊。",
+        "存33卷：1～33。",
+        "114453.0"
+      ],
+      "scopeBoundary": "The official record identifies the holding and volume route; it does not by itself prove the candidate passage.",
+      "sourceId": "source.nlc.wuxing-jingji.06857.fid-411999013122",
+      "status": "parent_verified",
+      "url": "http://read.nlc.cn/allSearch/searchDetail?searchType=24&showType=1&indexName=data_892&fid=411999013122"
+    },
+    {
+      "bid": "114453.0",
+      "evidenceId": "ev.nlc.wuxing.official-viewer-route",
+      "evidenceKind": "first_party_viewer_route",
+      "officialPdfPath": "data09/sbgj_shanbenguji/20151221_01szsb4171/duixiang/SBGJ04096_00003/SBGJ04096/00003/SBGJ04096_00003.pdf",
+      "scopeBoundary": "The official viewer route applies permission checks; the directly inspected page images below are from the separately identified Commons mirror.",
+      "sourceId": "source.nlc.wuxing-jingji.06857.fid-411999013122",
+      "status": "parent_verified_access_boundary",
+      "url": "http://read.nlc.cn/OutOpenBook/OpenObjectBook?aid=892&bid=114453.0"
+    },
+    {
+      "apiUrl": "https://commons.wikimedia.org/w/api.php?action=query&format=json&prop=imageinfo&iiprop=url|size|sha1|mime|extmetadata&titles=File:NLC892-411999013122-114453_%E4%BA%94%E8%A1%8C%E7%B2%BE%E7%B4%80_%E7%AC%AC3%E5%86%8A.pdf",
+      "byteLength": 37007952,
+      "byteSha256": "e88387495032048b71d11196ee59861ad1bfeee4c7ca5ee80fd9686eb9d37d04",
+      "evidenceId": "ev.nlc.wuxing.commons-scan",
+      "evidenceKind": "public_mirror_of_institutional_scan",
+      "nlcData": "892,411999013122,114453",
+      "pageCount": 110,
+      "scopeBoundary": "Actual page images were inspected from this public mirror; it is not itself the physical item and is not counted as an independent textual lineage.",
+      "sourceId": "source.nlc.wuxing-jingji.06857.vol3.public-scan",
+      "sourceSha1": "8a70c35c5a20a9fb68108615f0421e354ea145d4",
+      "status": "parent_verified_digital_derivation",
+      "url": "https://commons.wikimedia.org/wiki/File:NLC892-411999013122-114453_%E4%BA%94%E8%A1%8C%E7%B2%BE%E7%B4%80_%E7%AC%AC3%E5%86%8A.pdf"
+    },
+    {
+      "evidenceId": "ev.ctext.wuxing.dayun-locator",
+      "evidenceKind": "transmitted_web_text_locator",
+      "scopeBoundary": "The displayed wording can locate a candidate passage but cannot substitute for an institutional scan or establish edition lineage.",
+      "sourceId": "source.ctext.wuxing-jingji.vol33.transmitted-locator",
+      "status": "locator_only_not_canonical",
+      "url": "https://ctext.org/wiki.pl?chapter=181298&if=gb"
+    },
+    {
+      "attributions": [
+        "[清]・余星堂監定",
+        "清・余春台輯",
+        "清・曾寄廛校閲"
+      ],
+      "callNumber": "文庫19 F0111",
+      "description": "合1冊 ; 唐小",
+      "downloadedByteLength": 5638,
+      "downloadedByteSha256": "76aaa4cee42bae06dde7ae417565c31696739061a7fb03f96346ff1c776462e4",
+      "evidenceId": "ev.waseda.bunko19-f0111.record",
+      "evidenceKind": "first_party_institutional_catalog_html",
+      "imprint": "[出版地不明 : 出版者不明]",
+      "notes": "封面記:新鐫命理秘訣 巻第二板心下記:集賢堂",
+      "scopeBoundary": "Official record identity and unknown imprint are promoted; an 1886 current-copy date is not inferred.",
+      "sourceId": "source.waseda.bunko19-f0111",
+      "status": "parent_verified",
+      "title": "窮通宝鑑欄江綱 : 二巻首一巻坿増補月談",
+      "url": "https://www.wul.waseda.ac.jp/kotenseki/html/bunko19/bunko19_f0111/index.html"
+    },
+    {
+      "byteLength": 82323986,
+      "byteSha256": "123ce84b44bd20ecfdd6538bffc413a5e3948598315cd99f857a5c985c7257ae",
+      "evidenceId": "ev.waseda.bunko19-f0111.pdf",
+      "evidenceKind": "first_party_institution_hosted_pdf",
+      "pageCount": 108,
+      "scopeBoundary": "The PDF creation metadata is a scan/production timestamp, not an edition date.",
+      "sourceId": "source.waseda.bunko19-f0111",
+      "status": "parent_verified_byte_identity",
+      "url": "https://archive.wul.waseda.ac.jp/kosho/bunko19/bunko19_f0111/bunko19_f0111.pdf"
+    },
+    {
+      "candidateIdentifier": "SCSB-4603974 / CU51356996",
+      "evidenceId": "ev.princeton.scsb-4603974.candidate",
+      "evidenceKind": "candidate_catalog_reference",
+      "scopeBoundary": "The dossier supplied this identifier, but no direct Princeton record or page was verified in this pass.",
+      "sourceId": "source.princeton.scsb-4603974",
+      "status": "not_parent_verified"
+    }
+  ],
+  "pageObservations": [
+    {
+      "canonicalTextObserved": false,
+      "directObservation": "The NCL HTML hidden fields identify 耕寸集不分卷, call number 306.5 06599, book number 06599, registration rarecatx0441810, source database, and rights owner.",
+      "evidenceId": "ev.ncl.gengcun.catalog-record",
+      "observationId": "obs.ncl.gengcun.catalog-identity",
+      "observationKind": "institutional_record_identity",
+      "pageBytesObserved": false
+    },
+    {
+      "canonicalTextObserved": false,
+      "directObservation": "The catalog page exposes a puzzle CAPTCHA before the viewer; target folios 1–2, 12–13, and 18–20 were not directly observed.",
+      "evidenceId": "ev.ncl.gengcun.page-access-boundary",
+      "observationId": "obs.ncl.gengcun.target-folio-blocked",
+      "observationKind": "access_boundary",
+      "pageBytesObserved": false
+    },
+    {
+      "canonicalTextObserved": false,
+      "directObservation": "The NLC record identifies 五行精紀, 06857, 清抄本, 存33卷：1～33, and the third-volume bid 114453.0.",
+      "evidenceId": "ev.nlc.wuxing.official-record",
+      "observationId": "obs.nlc.wuxing.official-record",
+      "observationKind": "institutional_record_identity",
+      "pageBytesObserved": false
+    },
+    {
+      "canonicalTextObserved": false,
+      "directObservation": "The rendered page visibly carries 五行精紀卷第三十三 and printed folio 一.",
+      "evidenceId": "ev.nlc.wuxing.commons-scan",
+      "locator": {
+        "printedFolio": "一",
+        "renderedPdfPage": 86
+      },
+      "observationId": "obs.nlc.wuxing.vol33-heading",
+      "observationKind": "direct_visual_scan_observation",
+      "pageBytesObserved": true,
+      "pageImageByteSha256": "9a4a61b6aab767c0f98de20b77b821f97654d99a2f60c3229f1c89aa5eb4e838",
+      "pageImageUrl": "https://upload.wikimedia.org/wikipedia/commons/f/f0/NLC892-411999013122-114453_%E4%BA%94%E8%A1%8C%E7%B2%BE%E7%B4%80_%E7%AC%AC3%E5%86%8A.pdf"
+    },
+    {
+      "canonicalTextObserved": false,
+      "directObservation": "The dossier’s candidate 甲子／十二月二十四日巳時／六十三時／六百三十日／丁丑 sequence was not directly observed during visual inspection of the available 卷33 renderings. This is not a claim that the wording is absent from every representation.",
+      "evidenceId": "ev.nlc.wuxing.commons-scan",
+      "locator": {
+        "printedVolume": "卷第三十三",
+        "renderedPdfPagesInspected": "86–110"
+      },
+      "observationId": "obs.nlc.wuxing.vol33-worked-example-not-observed",
+      "observationKind": "bounded_negative_observation",
+      "pageBytesObserved": true
+    },
+    {
+      "canonicalTextObserved": false,
+      "directObservation": "The three seasonal headings are visible in the institution-hosted scan.",
+      "evidenceId": "ev.waseda.bunko19-f0111.pdf",
+      "locators": [
+        {
+          "imageByteSha256": "7f152ad95d282cf782cee51d75878d1c867212b59a4723e49ac553646349bc21",
+          "imageUrl": "https://archive.wul.waseda.ac.jp/kosho/bunko19/bunko19_f0111/bunko19_f0111_p0009.jpg",
+          "printedSection": "正月甲木",
+          "renderedPdfPage": 9
+        },
+        {
+          "imageByteSha256": "d80e93fe6e23c1cc2045c1a3b9848e5e061c3688021444b417881b0bc6b38d7c",
+          "imageUrl": "https://archive.wul.waseda.ac.jp/kosho/bunko19/bunko19_f0111/bunko19_f0111_p0010.jpg",
+          "printedSection": "二月甲木",
+          "renderedPdfPage": 10
+        },
+        {
+          "imageByteSha256": "d5087c81e2a6133992f5009a53e4c15694db099ec38c19548c61a7f8a2a438d6",
+          "imageUrl": "https://archive.wul.waseda.ac.jp/kosho/bunko19/bunko19_f0111/bunko19_f0111_p0011.jpg",
+          "printedSection": "三月甲木",
+          "renderedPdfPage": 11
+        }
+      ],
+      "observationId": "obs.waseda.seasonal-headings",
+      "observationKind": "direct_visual_scan_observation",
+      "pageBytesObserved": true
+    },
+    {
+      "canonicalTextObserved": false,
+      "directObservation": "A 序 page and the editorially attributed work are visible, but 光緒十二年丙戌 and a dated 余春台序 were not observed in the inspected pages; the official imprint is unknown.",
+      "evidenceId": "ev.waseda.bunko19-f0111.pdf",
+      "locators": [
+        {
+          "imageByteSha256": "7bb296744d28274def29bb0a3f224d21693f84c924514c5403d14d2aeb5c58da",
+          "renderedPdfPage": 2
+        },
+        {
+          "imageByteSha256": "e0ed84a943196b49334db457e1fefd148b03bfab2768731c914367bc3799a0bf",
+          "renderedPdfPage": 3
+        }
+      ],
+      "observationId": "obs.waseda.preface-date-unresolved",
+      "observationKind": "bounded_negative_observation",
+      "pageBytesObserved": true
+    }
+  ],
+  "predecessorReadinessReference": {
+    "artifactPath": "artifacts/saju-five-classics-typed-readiness-contract-v0/complete.json",
+    "artifactPayloadSha256": "ced7b81e48d84456287970eb2fc40d60a9f9703ea3137bcaca3c9d1480de1aa2",
+    "basisHead": "99e6cc624a1510487ad8bcf65347b3ee5f4e524e",
+    "contentSha256": "40f5b5e21330631a566200ae9c2a15c06e24437d1337178fc62a342070beeb41",
+    "readiness": {
+      "availableForInterpretation": false,
+      "productionActivation": "blocked",
+      "promotionReadyClaimIds": [],
+      "reason": "Typed dry-run only; no claim is promoted and no production rule is changed.",
+      "semanticAuthority": "not_established",
+      "stableClaimPromotionCount": 0
+    },
+    "schemaVersion": "saju-five-classics-typed-readiness-contract-v0",
+    "version": "0.1.0"
+  },
+  "promotion": {
+    "interpretationAvailable": false,
+    "productionChanged": false,
+    "promotionReadyClaimIds": [],
+    "ready": false,
+    "semanticAuthorityChanged": false,
+    "status": "blocked"
+  },
+  "readinessOverlay": {
+    "parentVerified": {
+      "availableForInterpretation": false,
+      "comparablePopulation": "23 adjudicated candidate assertions; counts are not numerically comparable to the candidate’s 13-claim baseline.",
+      "gateStateCounts": {
+        "E": {
+          "conflicted": 0,
+          "not_applicable": 0,
+          "satisfied": 4,
+          "unresolved": 19
+        },
+        "H": {
+          "conflicted": 0,
+          "not_applicable": 0,
+          "satisfied": 7,
+          "unresolved": 16
+        },
+        "I": {
+          "conflicted": 0,
+          "not_applicable": 0,
+          "satisfied": 0,
+          "unresolved": 23
+        },
+        "L": {
+          "conflicted": 0,
+          "not_applicable": 0,
+          "satisfied": 0,
+          "unresolved": 23
+        },
+        "P": {
+          "conflicted": 0,
+          "not_applicable": 0,
+          "satisfied": 0,
+          "unresolved": 23
+        },
+        "S": {
+          "conflicted": 0,
+          "not_applicable": 9,
+          "satisfied": 0,
+          "unresolved": 14
+        }
+      },
+      "implementationSafeGrounding": "not_established",
+      "parentVerifiedClaimIds": [
+        "claim.unit-a.ncl-record-identity",
+        "claim.unit-c.nlc-official-record",
+        "claim.unit-c.public-scan-vol33-identity",
+        "claim.unit-f.waseda-record-identity",
+        "claim.unit-f.seasonal-headings"
+      ],
+      "productionActivation": "blocked",
+      "promotionReadyClaimIds": [],
+      "semanticAuthority": "not_established"
+    },
+    "reportedByCandidate": {
+      "E": 12,
+      "H": 13,
+      "I": 0,
+      "L": 0,
+      "P": 0,
+      "S": 11,
+      "trust": "untrusted_candidate_baseline"
+    }
+  },
+  "schemaVersion": "saju-gemini-witness-dossier-adjudication-v1",
+  "scope": {
+    "forbiddenPromotion": [
+      "canonical_text",
+      "semantic_authority",
+      "availableForInterpretation",
+      "production_activation",
+      "implementation_rule"
+    ],
+    "modernArithmeticPolicy": "Modern recomputation is not used to upgrade historical source status.",
+    "ocrPolicy": "OCR or transmitted web text may locate a page only; no OCR/text-web locator is canonical evidence.",
+    "purpose": "Parent verification overlay for an untrusted candidate historical-evidence packet.",
+    "sourceOfTruth": "Parent-observed institutional records, byte-identified scans, and bounded visual page observations."
+  },
+  "summary": {
+    "claimCount": 23,
+    "parentVerifiedClaimCount": 5,
+    "promotionReadyClaimCount": 0,
+    "realBlockerCount": 5,
+    "statusCounts": {
+      "partially_supported": 1,
+      "supported": 5,
+      "unresolved": 11,
+      "unsupported": 6
+    },
+    "supportedScope": [
+      "NCL 06599 catalog identity only",
+      "NLC 06857 official record and public vol3/卷33 identity",
+      "Waseda bunko19_f0111 official record and pages 9–11 seasonal headings"
+    ],
+    "unresolvedScope": [
+      "NCL target folios and early date",
+      "1895/1923 first-party dated witnesses",
+      "NLC exact 論大運 passage and worked example",
+      "Princeton candidate record and lineage",
+      "Waseda 1886 date and cross-edition word-for-word stability"
+    ]
+  },
+  "version": "1.0.0"
+}
