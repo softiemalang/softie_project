@@ -25,6 +25,7 @@ export const SAJU_HISTORICAL_TEST_FILES = Object.freeze([
   'sajuFiveClassicsResearchContinuationHistorical.test.js',
   'sajuFiveClassicsTypedReadinessContractHistorical.test.js',
   'sajuGeminiWitnessDossierAdjudicationHistorical.test.js',
+  'sajuLunaP0EvidenceAcquisitionV2Historical.test.js',
   'sajuFiveClassicsSourceIdentityFrontierHistorical.test.js',
   'sajuTimingAuthorityFrontierHistorical.test.js',
 ])

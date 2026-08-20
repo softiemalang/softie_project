@@ -1,0 +1,7 @@
+{
+  "artifactByteSha256": "beb69dc0edbb1e8c16b16b399378285dad8657ac13a44d36730fbd9d31a2f354",
+  "artifactPath": "artifacts/saju-luna-p0-evidence-acquisition-adjudication-v2/complete.json",
+  "byteLength": 120757,
+  "hashScope": "exact UTF-8 bytes of complete.json including final LF",
+  "schemaVersion": "saju-luna-p0-evidence-acquisition-adjudication-v2-integrity-v0"
+}
