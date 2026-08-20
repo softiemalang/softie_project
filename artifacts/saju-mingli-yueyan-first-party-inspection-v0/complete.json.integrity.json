@@ -1,0 +1,7 @@
+{
+  "artifactByteSha256": "4ca9ab5207c5df9da187f19ad353548f9b9666365293e3eb83614c8b7ef6aced",
+  "artifactPath": "artifacts/saju-mingli-yueyan-first-party-inspection-v0/complete.json",
+  "byteLength": 46980,
+  "hashScope": "exact UTF-8 bytes of complete.json including final LF",
+  "schemaVersion": "saju-mingli-yueyan-first-party-inspection-v0-integrity-v0"
+}
