@@ -1,0 +1,7 @@
+{
+  "artifactByteSha256": "76add867e33c35286788a5e899a3ee66f626959f657ef6fe11ab0f4dc61e8d0d",
+  "artifactPath": "artifacts/saju-gemini-v7-parent-adjudication/complete.json",
+  "byteLength": 371860,
+  "hashScope": "exact UTF-8 bytes of complete.json including final LF",
+  "schemaVersion": "saju-gemini-v7-parent-adjudication-integrity-v0"
+}
