@@ -1,0 +1,7 @@
+{
+  "artifactByteSha256": "c2924ab1b53df096cfe222a134161029921838cc8ed96aefa750156f9449359f",
+  "artifactPath": "artifacts/saju-gemini-witness-dossier-adjudication-v3/complete.json",
+  "byteLength": 116255,
+  "hashScope": "exact UTF-8 bytes of complete.json including final LF",
+  "schemaVersion": "saju-gemini-witness-dossier-adjudication-v3-integrity-v0"
+}
