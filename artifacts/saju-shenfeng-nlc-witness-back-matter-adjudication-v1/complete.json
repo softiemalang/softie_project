@@ -1,0 +1,239 @@
+{
+  "artifactIdentity": {
+    "artifactId": "saju-shenfeng-nlc-witness-back-matter-adjudication-v1",
+    "artifactPayloadSha256": "30d56bd745afff3d967e5ae74de7d931fbe9501198f0602eee38c1f59dd27e32",
+    "contractVersion": "artifact-identity-v1",
+    "generation": {
+      "baseHead": "8273e895996719d7c1c2ad481e6354a632434622",
+      "baseHeadSource": "git rev-parse HEAD at materialization",
+      "includedCommit": null,
+      "includedCommitSource": "unknown_at_generation; artifact may be included by a later commit"
+    },
+    "inputs": [
+      {
+        "byteSha256": "4c33926a27f5fa96b5ceb37c73c1d4e02469db91ba8009cdef25272868eba94a",
+        "path": "artifacts/saju-shenfeng-nlc-witness-adjudication-v0/complete.json"
+      },
+      {
+        "byteSha256": "13d181314fc65cead4d5192ce9e64047c2dc42e9a029b9490c2781c9ce3fd822",
+        "path": "artifacts/saju-shenfeng-nlc-witness-adjudication-v0/complete.json.integrity.json"
+      },
+      {
+        "byteSha256": "321fa9c67681e7bec19b8fce609b76e70d40c0c112c39e6963954b2a460b4683",
+        "path": "scripts/materialize-saju-shenfeng-nlc-witness-back-matter-adjudication-v1.mjs"
+      },
+      {
+        "byteSha256": "5745991fbc31ea4747570844017c06facc4c6c15e205f3145bb357afb9f51712",
+        "path": "src/artifactIdentity.js"
+      },
+      {
+        "byteSha256": "9a88f3150185559a64bfdd11847796480f69bbaf0fd09f3fd63b3bbeaa8dfdf2",
+        "path": "src/interpretationPrep/sajuShenfengNlcWitnessBackMatterAdjudicationV1.js"
+      }
+    ],
+    "materializer": {
+      "path": "scripts/materialize-saju-shenfeng-nlc-witness-back-matter-adjudication-v1.mjs",
+      "version": "0.1.0"
+    }
+  },
+  "basisHead": "8273e895996719d7c1c2ad481e6354a632434622",
+  "blockerReassessment": [
+    {
+      "blocker": "physical_copy_or_catalogue_call_number_not_obtained_for_each_NLC_record",
+      "currentStatus": "unresolved",
+      "evidenceRefs": [
+        "obs.shenfeng-1929-backmatter-p167-edition-notice"
+      ],
+      "previousStatus": "unresolved",
+      "progress": "partial_copy_mark_only",
+      "reason": "A Shanghai Library mark is visible on one scanned page, but no NLC call number or copy-level identity for each target record is established."
+    },
+    {
+      "blocker": "original_title_page_colophon_and_imprint_not_page-inspected_for_the_target_copies",
+      "currentStatus": "unresolved",
+      "evidenceRefs": [
+        "obs.shenfeng-1926-backmatter-p166-publication-notice",
+        "obs.shenfeng-1929-backmatter-p167-edition-notice"
+      ],
+      "previousStatus": "unresolved",
+      "progress": "back_matter_notice_only",
+      "reason": "The inspected pages carry publisher notices but do not establish each target copy's original title page, colophon, or complete imprint."
+    },
+    {
+      "blocker": "NLC_reader_or_reproduction_permission_for_copy-level_collation_not_closed",
+      "currentStatus": "unresolved",
+      "evidenceRefs": [],
+      "previousStatus": "unresolved",
+      "progress": "unchanged",
+      "reason": "Successful official PDF access does not establish reproduction permission or authorized copy-level collation."
+    },
+    {
+      "blocker": "edition_and_textual_lineage_between_1926_and_1929_not_established",
+      "currentStatus": "unresolved",
+      "evidenceRefs": [
+        "obs.shenfeng-1929-backmatter-p167-edition-notice"
+      ],
+      "previousStatus": "unresolved",
+      "progress": "publisher_reprint_lead_only",
+      "reason": "The 1929 page records a fifteen-year first edition and eighteen-year reprint notice, but this does not prove the two target objects share textual lineage or a single physical edition."
+    }
+  ],
+  "blockers": [
+    "physical_copy_or_catalogue_call_number_not_obtained_for_each_NLC_record",
+    "original_title_page_colophon_and_imprint_not_page-inspected_for_the_target_copies",
+    "NLC_reader_or_reproduction_permission_for_copy-level_collation_not_closed",
+    "edition_and_textual_lineage_between_1926_and_1929_not_established"
+  ],
+  "contentSha256": "e06dfd91a2f00f3d28f8ae34cb733208c84000c81aa550e31cf629abcec04428",
+  "evidencePolicy": {
+    "lineage": "A publication notice, reprint statement, library mark, shared title, or shared layout does not establish physical-copy equivalence, textual transmission, or independent lineage.",
+    "observation": "Official NLC PDF bytes were hash-verified and the stated back-matter pages were visually inspected. OCR/text extraction, advertisement copy, library marks, and publication notices remain bounded observations, not copy identity or lineage authority.",
+    "readiness": "This successor records a bounded back-matter frontier only; it does not change calculation, semantic, readiness, or production authority."
+  },
+  "lineageGraph": {
+    "canonicalEdges": [],
+    "edges": [],
+    "policy": "No edition, transmission, or independent-lineage edge is admitted from back-matter notices or library marks.",
+    "status": "unresolved"
+  },
+  "negativeChecks": {
+    "allMustReject": true,
+    "ids": [
+      "promote-backmatter-to-copy-identity",
+      "close-edition-lineage-from-reprint-notice",
+      "promote-library-mark-to-nlc-call-number",
+      "add-canonical-lineage-edge",
+      "open-readiness-or-production",
+      "mutate-v0-predecessor"
+    ]
+  },
+  "newEvidence": {
+    "canonicalTransmissionEdges": [],
+    "directObservationCount": 2,
+    "observations": [
+      {
+        "directVisualObservation": true,
+        "observationId": "obs.shenfeng-1926-backmatter-p166-publication-notice",
+        "observedMarks": [],
+        "observedText": [
+          "神峰通考（全二冊）",
+          "中華民國十五年一月出版",
+          "此書有著作權翻印必究"
+        ],
+        "officialPdf": {
+          "pdfByteLength": 4337116,
+          "pdfByteSha256": "47b28d1034e372e52a4289c63607a8e8a11e8e80111dcdcfeeca72ea9d6c6c6d",
+          "pdfPage": 166,
+          "pdfPageCount": 167,
+          "pdfUrl": "http://read.nlc.cn/doc2/data13/mgts_minguotushu/mgts20140421_01/duixiang/12jh004266/12jh004266/001/12jh004266_001.pdf"
+        },
+        "pageKind": "publisher_advertisement_or_back_matter_notice",
+        "printedFolio": null,
+        "scopeBoundary": "The page visibly carries a publisher publication/copyright notice in the scanned object. It is not admitted as the target copy's original title page, colophon, or complete copy-level imprint.",
+        "sourceCategory": "OFFICIAL_NLC_PDF_IMAGE_PAGE",
+        "witnessId": "nlc-1926-12jh004266"
+      },
+      {
+        "directVisualObservation": true,
+        "observationId": "obs.shenfeng-1929-backmatter-p167-edition-notice",
+        "observedMarks": [
+          "上海图书馆藏书"
+        ],
+        "observedText": [
+          "神峰通考（全二冊）",
+          "中華民國十五年一月初版",
+          "中華民國十八年十月再版",
+          "此書有著作權翻印必究"
+        ],
+        "officialPdf": {
+          "pdfByteLength": 6708084,
+          "pdfByteSha256": "ccb21cf1215a1e487fe79497839f9343534af42a2e3af6c1e7dd04f3faea9289",
+          "pdfPage": 167,
+          "pdfPageCount": 168,
+          "pdfUrl": "http://read.nlc.cn/doc2/data13/zjmgwx_zhengjiminguowenxian/20140527_01zjmgwx/duixiang/027032013020556/002/027032013020556_002.pdf"
+        },
+        "pageKind": "publisher_advertisement_or_back_matter_notice",
+        "printedFolio": null,
+        "scopeBoundary": "The page visibly carries a publisher edition notice and a Shanghai Library collection mark in this scanned object. Neither mark proves NLC call-number identity, copy equivalence with 1926, or textual lineage.",
+        "sourceCategory": "OFFICIAL_NLC_PDF_IMAGE_PAGE",
+        "witnessId": "nlc-1929-027032013020556-v2"
+      }
+    ],
+    "rawPdfByteIdentityVerified": true,
+    "scopeBoundary": "The new pages narrow the observable publication/back-matter frontier only. They do not close a full copy lineage or grant semantic authority."
+  },
+  "predecessor": {
+    "artifactByteSha256": "4c33926a27f5fa96b5ceb37c73c1d4e02469db91ba8009cdef25272868eba94a",
+    "artifactPath": "artifacts/saju-shenfeng-nlc-witness-adjudication-v0/complete.json",
+    "artifactPayloadSha256": "8e47bca1247702be3e44d0b374995b7a5cad160f74c5cd0d51e5bdbe6d519f71",
+    "basisHead": "8273e895996719d7c1c2ad481e6354a632434622",
+    "contentSha256": "2a5c09929b08e96d4959cd5ef850d88f9b421fa3cd0e85c79efd72bc42d43a3d",
+    "mutation": "none",
+    "preserved": true,
+    "schemaVersion": "saju-shenfeng-nlc-witness-adjudication-v0",
+    "version": "0.1.0"
+  },
+  "preservedV0Frontier": {
+    "canonicalShenfengMaleFirstDaYunLiteral": "五歲運逆行",
+    "canonicalShenfengMaleFollowingBranch": null,
+    "targetPageCount": 2,
+    "targetWitnessCount": 2,
+    "v0CanonicalTransmissionEdgeCount": 0,
+    "v0PromotionCount": 0,
+    "v0Readiness": "blocked"
+  },
+  "promotion": {
+    "interpretationAvailable": false,
+    "productionChanged": false,
+    "promotionReadyClaimIds": [],
+    "ready": false,
+    "scope": "No calculation, semantic, readiness, or production promotion.",
+    "semanticAuthorityChanged": false,
+    "stableClaimPromotionCount": 0,
+    "status": "blocked"
+  },
+  "readiness": {
+    "availableForInterpretation": false,
+    "implementationSafeGrounding": "not_established",
+    "productionActivation": "blocked",
+    "promotionReadyClaimIds": [],
+    "reason": "The new back-matter pages add bounded publication and scan-mark observations but do not close copy identity, colophon, textual lineage, semantic authority, or production grounding.",
+    "semanticAuthority": "not_established",
+    "stableClaimPromotionCount": 0,
+    "status": "blocked"
+  },
+  "schemaVersion": "saju-shenfeng-nlc-witness-back-matter-adjudication-v1",
+  "scope": {
+    "directVerificationCompleted": [
+      "v0 predecessor byte/integrity identity",
+      "1926 official PDF p.166",
+      "1929 official PDF p.167"
+    ],
+    "objective": "Re-evaluate the halted Shenfeng frontier after Mingli v1 and record only newly verified official-NLC back-matter observations.",
+    "prohibited": [
+      "publisher-notice-to-copy-identity inference",
+      "library-mark-to-NLC-call-number inference",
+      "1929 reprint-notice-to-textual-lineage promotion",
+      "same-layout independence",
+      "semantic authority",
+      "interpretation readiness",
+      "production activation",
+      "v0 predecessor mutation"
+    ],
+    "sourceOfTruth": "The preserved Shenfeng v0 artifact plus the exact official NLC PDF bytes and visually inspected back-matter pages listed in newEvidence.observations."
+  },
+  "summary": {
+    "blockerCount": 4,
+    "blockerReductionCount": 0,
+    "canonicalShenfengMaleFirstDaYunLiteral": "五歲運逆行",
+    "newDirectBackMatterObservationCount": 2,
+    "physicalCopyMarkObservationCount": 1,
+    "predecessorPreserved": true,
+    "promotionCount": 0,
+    "publicationNoticeObservationCount": 2,
+    "rawPdfIdentityVerifiedCount": 2,
+    "readiness": "blocked",
+    "targetWitnessCount": 2
+  },
+  "version": "0.1.0"
+}

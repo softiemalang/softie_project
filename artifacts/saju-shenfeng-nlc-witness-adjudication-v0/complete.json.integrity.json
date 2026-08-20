@@ -1,0 +1,7 @@
+{
+  "artifactByteSha256": "4c33926a27f5fa96b5ceb37c73c1d4e02469db91ba8009cdef25272868eba94a",
+  "artifactPath": "artifacts/saju-shenfeng-nlc-witness-adjudication-v0/complete.json",
+  "byteLength": 24601,
+  "hashScope": "exact UTF-8 bytes of complete.json including final LF",
+  "schemaVersion": "saju-shenfeng-nlc-witness-adjudication-v0-integrity-v0"
+}
