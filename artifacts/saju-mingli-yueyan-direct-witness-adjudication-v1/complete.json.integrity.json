@@ -1,0 +1,7 @@
+{
+  "artifactByteSha256": "acd57cfd0c2aa898507598b37c90f2605f0e45bdd801192065eb99589134ba7d",
+  "artifactPath": "artifacts/saju-mingli-yueyan-direct-witness-adjudication-v1/complete.json",
+  "byteLength": 60256,
+  "hashScope": "exact UTF-8 bytes of complete.json including final LF",
+  "schemaVersion": "saju-mingli-yueyan-direct-witness-adjudication-v1-integrity-v1"
+}

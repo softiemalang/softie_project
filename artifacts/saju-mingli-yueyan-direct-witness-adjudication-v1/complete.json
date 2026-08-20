@@ -1,0 +1,1564 @@
+{
+  "artifactIdentity": {
+    "artifactId": "saju-mingli-yueyan-direct-witness-adjudication-v1",
+    "artifactPayloadSha256": "33f4d80671d7992198ae94e701a39752cf1160c428f36349aa72f33dd6524103",
+    "contractVersion": "artifact-identity-v1",
+    "generation": {
+      "baseHead": "98e13b106563f1e8aa752406e0d969b6b844a18f",
+      "baseHeadSource": "git rev-parse HEAD at materialization",
+      "includedCommit": null,
+      "includedCommitSource": "unknown_at_generation; artifact may be included by a later commit"
+    },
+    "inputs": [
+      {
+        "byteSha256": "25b4c2ecac56caa5dfad13e090b0844f0088240205da43a2beaa59c5a79bbb81",
+        "path": "artifacts/saju-five-classics-typed-readiness-contract-v0/complete.json"
+      },
+      {
+        "byteSha256": "76add867e33c35286788a5e899a3ee66f626959f657ef6fe11ab0f4dc61e8d0d",
+        "path": "artifacts/saju-gemini-v7-parent-adjudication/complete.json"
+      },
+      {
+        "byteSha256": "4ca9ab5207c5df9da187f19ad353548f9b9666365293e3eb83614c8b7ef6aced",
+        "path": "artifacts/saju-mingli-yueyan-first-party-inspection-v0/complete.json"
+      },
+      {
+        "byteSha256": "04287047c32b9fac7fc9022d1f441192129b11a78c013f9e424eb42a30efdc02",
+        "path": "scripts/materialize-saju-mingli-yueyan-direct-witness-adjudication-v1.mjs"
+      },
+      {
+        "byteSha256": "5745991fbc31ea4747570844017c06facc4c6c15e205f3145bb357afb9f51712",
+        "path": "src/artifactIdentity.js"
+      },
+      {
+        "byteSha256": "abfcba33e8becc7f57cacc49407abb5908030f936452988a021563eea824b290",
+        "path": "src/interpretationPrep/sajuMingliYueyanDirectWitnessAdjudicationV1.js"
+      },
+      {
+        "byteSha256": "380fba46320c489966c082ba95206a1574e5cc5553b694fdb6e4f1c41c1b1042",
+        "path": "src/interpretationPrep/sajuMingliYueyanFirstPartyInspection.js"
+      }
+    ],
+    "materializer": {
+      "path": "scripts/materialize-saju-mingli-yueyan-direct-witness-adjudication-v1.mjs",
+      "version": "1.0.0"
+    }
+  },
+  "basisHead": "98e13b106563f1e8aa752406e0d969b6b844a18f",
+  "blockers": [
+    "raw_official_target_page_bytes_not_obtained",
+    "physical_copy_or_call_number_not_established",
+    "edition_and_textual_lineage_not_closed",
+    "complete_seven_field_procedure_not_closed",
+    "independent_semantic_corroboration_not_established"
+  ],
+  "candidatePacket": {
+    "importedAsCanonicalEvidence": false,
+    "importedConclusionFields": [],
+    "staleParentRejectedClaimsReintroduced": false,
+    "trustBoundary": "untrusted_candidate_only"
+  },
+  "contentSha256": "73655fdc655a93ade32a87df932da3f6ed98418e833a8c9c70dbd8f3996434ee",
+  "digitalPhysicalRelationshipAudit": {
+    "axes": [
+      {
+        "axis": "physical-item",
+        "countedAsIndependent": false,
+        "missingEdges": [
+          "physical copy or call number",
+          "raw target leaf/page identity"
+        ],
+        "observation": "The NLC record and reader page captures bind p.85–87 to the identified NLC item, but no physical copy, call number, or original leaf byte identity was established.",
+        "state": "bounded_observation"
+      },
+      {
+        "axis": "digital-derivation",
+        "countedAsIndependent": false,
+        "missingEdges": [
+          "official page-image/PDF bytes",
+          "authorized derivation proof"
+        ],
+        "observation": "The supplied images are screenshots of the official reader surface, not the underlying NLC page-image/PDF bytes or an authorized derivation manifest.",
+        "state": "unresolved"
+      },
+      {
+        "axis": "edition/textual-lineage",
+        "countedAsIndependent": false,
+        "missingEdges": [
+          "title-page/colophon/imprint inspection",
+          "edition and textual-lineage record"
+        ],
+        "observation": "The NLC record supplies a 1935 recorded date, publisher, title, and responsible person, but the captured spread does not close imprint/colophon or relation to another 命理約言 witness.",
+        "state": "unresolved"
+      },
+      {
+        "axis": "semantic-corroboration",
+        "countedAsIndependent": false,
+        "missingEdges": [
+          "independent semantic corroboration",
+          "complete rule reconciliation"
+        ],
+        "observation": "The captures directly show source-specific wording, but no independent semantic oracle or complete procedure binds those literals to production interpretation.",
+        "state": "unresolved"
+      }
+    ],
+    "canonicalTransmissionEdges": [],
+    "overallState": "unresolved",
+    "relationTypes": [
+      "physical-item",
+      "digital-derivation",
+      "edition/textual-lineage",
+      "semantic-corroboration"
+    ],
+    "rule": "Direct visual observation is not independently counted until physical-item, digital-derivation, edition/textual-lineage, and semantic-corroboration edges are separately closed.",
+    "separated": true
+  },
+  "evidencePolicy": {
+    "completeP0Rule": "required_for_field closure and implementation",
+    "directCapturePolicy": "The supplied images are visual captures of the NLC record and official reader surface. They admit only what is visibly tied to the stated NLC item and reader page; they are not the underlying official page-image or PDF bytes.",
+    "mirrorPolicy": "The Commons derivative remains a locator-only mirror and is not promoted by the new official-reader captures.",
+    "noWholeVolumeNegative": true,
+    "ocr": "locator_only",
+    "rawPagePolicy": "A screenshot can establish a bounded direct visual observation, but not raw page-byte identity, physical-copy collation, edition lineage, independent semantic corroboration, or production authority.",
+    "readerCapture": "direct_visual_observation_bounded",
+    "underlyingPageBytes": "required_for_byte_level_witness_identity"
+  },
+  "externalEvidence": [
+    {
+      "byteLength": 310082,
+      "directVisualObservation": true,
+      "evidenceId": "ev.mingli-yueyan.nlc-record-screenshot-2026-08-20",
+      "observed": {
+        "breadcrumb": "首页 > 民国时期文献 > 民国图书 > 资源详情",
+        "carrier": "1册",
+        "publicationDate": "民国二十四年[1935]",
+        "publisher": "韦氏命苑[发行者]",
+        "responsible": "(清)陈素庵原著",
+        "subject": "命书",
+        "titleCatalog": "精选命理约言",
+        "titleCover": "精選命理約言"
+      },
+      "pixelHeight": 1314,
+      "pixelWidth": 2420,
+      "scopeBoundary": "This closes the visible NLC item-record identity and recorded bibliographic fields only. It does not prove physical production date, textual lineage, or timing semantics.",
+      "screenshotPath": "/Users/softie/Desktop/스크린샷 2026-08-20 오후 5.35.46.png",
+      "sha256": "c32a7b513ea1a38875b525c0f28dbf18d02117a07901b0f14c20f9ac23c2de65",
+      "sourceCategory": "USER_SUPPLIED_CAPTURE_OF_FIRST_PARTY_NLC_RECORD",
+      "sourceId": "source.nlc.mingli-yueyan.data-416.17jh002578",
+      "underlyingOfficialPageBytesObtained": false
+    },
+    {
+      "byteLength": 720617,
+      "directVisualObservation": true,
+      "evidenceId": "ev.mingli-yueyan.nlc-reader-page-85",
+      "observedTextFragments": [],
+      "pageHeading": "精選命理約言 卷二 賦",
+      "pixelHeight": 1738,
+      "pixelWidth": 2472,
+      "printedFolio": "二",
+      "readerBookmark": "3 行运赋",
+      "readerPage": 85,
+      "scopeBoundary": "Surrounding-page context for the captured 行運賦 spread. No P0 literal is admitted from this capture alone.",
+      "screenshotPath": "/Users/softie/Desktop/스크린샷 2026-08-20 오후 5.32.12.png",
+      "sha256": "098b93b39aff7dd7109532e4cb968b69be33180c06fc2a507501c1a8e2dcd386",
+      "sourceCategory": "USER_SUPPLIED_CAPTURE_OF_FIRST_PARTY_NLC_READER",
+      "sourceId": "source.nlc.mingli-yueyan.data-416.17jh002578",
+      "totalReaderPages": 185,
+      "underlyingOfficialPageBytesObtained": false
+    },
+    {
+      "byteLength": 696282,
+      "directVisualObservation": true,
+      "evidenceId": "ev.mingli-yueyan.nlc-reader-page-86",
+      "observedTextFragments": [
+        "遞行前月後月之建。",
+        "以男女為別。乃分順行逆行之端。",
+        "男生陽年。女生陰年。則從已往詳觀。",
+        "計生辰之離節。凡有幾日。",
+        "一日則為四月。",
+        "三日則為一歲。"
+      ],
+      "pageHeading": "精選命理約言 卷二 賦",
+      "pixelHeight": 1692,
+      "pixelWidth": 2630,
+      "printedFolio": "三",
+      "readerBookmark": "3 行运赋",
+      "readerPage": 86,
+      "scopeBoundary": "These are page-specific visual readings. They establish bounded fragments/literals, not a complete procedure or semantic/production authority.",
+      "screenshotPath": "/Users/softie/Desktop/스크린샷 2026-08-20 오후 5.33.36.png",
+      "sha256": "8a4829fcf965688349cd405b719eb5a17efff2ce0892c3597090f9f8ccd5ef7d",
+      "sourceCategory": "USER_SUPPLIED_CAPTURE_OF_FIRST_PARTY_NLC_READER",
+      "sourceId": "source.nlc.mingli-yueyan.data-416.17jh002578",
+      "totalReaderPages": 185,
+      "underlyingOfficialPageBytesObtained": false
+    },
+    {
+      "byteLength": 774299,
+      "directVisualObservation": true,
+      "evidenceId": "ev.mingli-yueyan.nlc-reader-page-87",
+      "observedTextFragments": [
+        "一運管十年。"
+      ],
+      "pageHeading": "精選命理約言 卷二 賦",
+      "pixelHeight": 1734,
+      "pixelWidth": 2590,
+      "printedFolio": "四",
+      "readerBookmark": "3 行运赋",
+      "readerPage": 87,
+      "scopeBoundary": "This confirms a bounded surrounding 行運賦 literal only. It does not add a requested P0 field or close the complete start-rule procedure.",
+      "screenshotPath": "/Users/softie/Desktop/스크린샷 2026-08-20 오후 5.35.09.png",
+      "sha256": "c2b033458986e84c3802618dbb2fe43244551923391a035477dec575fe147b1b",
+      "sourceCategory": "USER_SUPPLIED_CAPTURE_OF_FIRST_PARTY_NLC_READER",
+      "sourceId": "source.nlc.mingli-yueyan.data-416.17jh002578",
+      "totalReaderPages": 185,
+      "underlyingOfficialPageBytesObtained": false
+    },
+    {
+      "directObservation": false,
+      "evidenceId": "ev.mingli-yueyan.mirror-preserved-locator-only",
+      "mirror": {
+        "byteLength": 4471099,
+        "candidateTargetPages": [
+          {
+            "heading": "看運法一",
+            "mirrorPdfPage": 34,
+            "observedCandidateLiterals": [
+              "順行者行未來之月建",
+              "逆行者行已往之月建"
+            ],
+            "printedFolio": "一七",
+            "status": "mirror_locator_only"
+          },
+          {
+            "heading": "看運法二",
+            "mirrorPdfPage": 35,
+            "observedCandidateLiterals": [
+              "初運管少年",
+              "中運管中年",
+              "末運管晚年"
+            ],
+            "printedFolio": "一八",
+            "status": "mirror_locator_only"
+          }
+        ],
+        "claimedPublicationDate": "民國二十四年[1935]",
+        "claimedSource": "NLC data_416 / 17jh002578 / 109774",
+        "fileSha256": "bb3952e09cb4aac8cd0778291f29c0100529e8e9e8cd0c4ee27118fbbc0922d5",
+        "independentWitnessCount": 0,
+        "originalFileUrl": "https://upload.wikimedia.org/wikipedia/commons/0/0c/NLC416-17jh002578-109774_%E7%B2%BE%E9%81%B8%E5%91%BD%E7%90%86%E7%B4%84%E8%A8%80.pdf",
+        "pdfPageCount": 185,
+        "physicalWitnessAdmitted": false,
+        "scopeBoundary": "A mirror or derivative scan may supply a locator lead only. It is not admitted as the NLC physical witness, direct first-party page evidence, independent corroboration, or production authority.",
+        "sourceCategory": "MIRROR_DERIVED_LOCATOR_ONLY",
+        "url": "https://commons.wikimedia.org/wiki/File:NLC416-17jh002578-109774_%E7%B2%BE%E9%81%B8%E5%91%BD%E7%90%86%E7%B4%84%E8%A8%80.pdf"
+      },
+      "scopeBoundary": "The Commons derivative remains a locator-only mirror and is not promoted by the new official-reader captures.",
+      "sourceCategory": "MIRROR_DERIVED_LOCATOR_ONLY",
+      "sourceId": "source.nlc.mingli-yueyan.data-416.17jh002578"
+    }
+  ],
+  "firstPartyItem": {
+    "bibliographicDateStatus": "first_party_recorded_value_only",
+    "coverUrl": "http://read.nlc.cn/img2/img416/20210319095443/17jh002578_001.jpg",
+    "dataId": "109774.0",
+    "extentRecorded": "1册",
+    "identifier": "17jh002578",
+    "identityStatus": "confirmed_item_and_reader_binding",
+    "indexName": "data_416",
+    "institution": "中国国家图书馆 / National Library of China",
+    "pageFoliosObserved": [
+      "二",
+      "三",
+      "四"
+    ],
+    "physicalProductionDateStatus": "unresolved",
+    "publicationDateRecorded": "民国二十四年[1935]",
+    "publisherRecorded": "韦氏命苑[发行者]",
+    "readerObservationStatus": "direct_visual_capture_of_official_reader",
+    "readerPagesObserved": [
+      85,
+      86,
+      87
+    ],
+    "readerTotalPages": 185,
+    "readerUrl": "http://read.nlc.cn/OutOpenBook/OpenObjectBook?aid=416&bid=109774.0",
+    "recordUrl": "http://read.nlc.cn/allSearch/searchDetail?searchType=24&showType=1&indexName=data_416&fid=17jh002578",
+    "responsible": "(清)陈素庵原著",
+    "screenshotEvidenceIds": [
+      "ev.mingli-yueyan.nlc-record-screenshot-2026-08-20",
+      "ev.mingli-yueyan.nlc-reader-page-85",
+      "ev.mingli-yueyan.nlc-reader-page-86",
+      "ev.mingli-yueyan.nlc-reader-page-87"
+    ],
+    "serviceId": "4",
+    "sourceId": "source.nlc.mingli-yueyan.data-416.17jh002578",
+    "sourcePdfPathRecordedByReader": "data06/2020mgts/duixiang/pdf/17jh002578/001/17jh002578_001.pdf",
+    "subjectRecorded": "命书",
+    "titleCatalog": "精选命理约言",
+    "titleCover": "精選命理約言",
+    "underlyingOfficialPageBytesObtained": false,
+    "witnessStatus": "bounded_direct_reader_observation_not_full_physical_textual_witness"
+  },
+  "lineageGraph": {
+    "canonicalEdges": [],
+    "decontaminationPreserved": true,
+    "edges": [
+      {
+        "canonicalGraphIncluded": false,
+        "edgeId": "edge欄江網-to-造化元鑰",
+        "evidenceRefs": [
+          "ev.D.waseda-record-f0111"
+        ],
+        "from": "欄江網",
+        "rationale": "The Waseda title/metadata does not directly show transmission to 造化元鑰; the relation survives only as a bibliographic/secondary genealogy lead.",
+        "status": "BIBLIOGRAPHIC_CLAIM_ONLY",
+        "to": "造化元鑰"
+      },
+      {
+        "canonicalGraphIncluded": false,
+        "edgeId": "edge欄江網-to-耕寸集",
+        "evidenceRefs": [
+          "ev.C.gengcun-ncl-catalog",
+          "ev.D.waseda-record-f0111"
+        ],
+        "from": "欄江網",
+        "rationale": "No direct source/title citation or item-level transmission record connects the two works.",
+        "status": "UNSUPPORTED",
+        "to": "耕寸集"
+      },
+      {
+        "canonicalGraphIncluded": false,
+        "edgeId": "edge耕寸集-to-子平真詮",
+        "evidenceRefs": [
+          "ev.C.gengcun-ncl-catalog",
+          "ev.F.ziping-1895-1923-search"
+        ],
+        "from": "耕寸集",
+        "rationale": "Content/title association is a hypothesis only; no direct citation, copy relation, or dated transmission witness is admitted.",
+        "status": "HYPOTHESIS",
+        "to": "子平真詮"
+      },
+      {
+        "canonicalGraphIncluded": false,
+        "edgeId": "edge1776-manuscript-to-1895-edition",
+        "evidenceRefs": [
+          "ev.F.hukun-1776-secondary",
+          "ev.F.ziping-1895-1923-search"
+        ],
+        "from": "1776 manuscript/prelude candidate",
+        "rationale": "A secondary preface reading and an unresolved edition lead do not establish a physical or textual transmission edge.",
+        "status": "HYPOTHESIS",
+        "to": "1895 報暉草堂 edition candidate"
+      },
+      {
+        "canonicalGraphIncluded": false,
+        "edgeId": "edge1776-manuscript-to-1923-edition",
+        "evidenceRefs": [
+          "ev.F.hukun-1776-secondary",
+          "ev.F.ziping-1895-1923-search"
+        ],
+        "from": "1776 manuscript/prelude candidate",
+        "rationale": "A secondary preface reading and an unresolved edition lead do not establish a physical or textual transmission edge.",
+        "status": "HYPOTHESIS",
+        "to": "1923 育新書局 edition candidate"
+      },
+      {
+        "canonicalGraphIncluded": false,
+        "edgeId": "edge造化元鑰-to-窮通寶鑑",
+        "evidenceRefs": [
+          "ev.D.waseda-record-f0111"
+        ],
+        "from": "造化元鑰",
+        "rationale": "Later/editorial genealogy is not a direct transmission page or colophon; Waseda metadata alone does not close it.",
+        "status": "BIBLIOGRAPHIC_CLAIM_ONLY",
+        "to": "窮通寶鑑"
+      },
+      {
+        "canonicalGraphIncluded": false,
+        "edgeId": "edge窮通寶鑑-to-徐樂吾系",
+        "evidenceRefs": [
+          "ev.D.waseda-record-f0111",
+          "ev.D.waseda-pages-f0111"
+        ],
+        "from": "窮通寶鑑",
+        "rationale": "A later attribution/genealogy statement is not a direct copy, edition, or editorial transmission proof.",
+        "status": "BIBLIOGRAPHIC_CLAIM_ONLY",
+        "to": "徐樂吾系"
+      }
+    ],
+    "inheritedFromParent": "artifacts/saju-gemini-v7-parent-adjudication/complete.json",
+    "newlyAddedEdges": [],
+    "policy": "The parent graph and v0 blocker remain preserved. No screenshot-derived transmission edge is canonical."
+  },
+  "mirrorLocator": {
+    "byteLength": 4471099,
+    "candidateTargetPages": [
+      {
+        "heading": "看運法一",
+        "mirrorPdfPage": 34,
+        "observedCandidateLiterals": [
+          "順行者行未來之月建",
+          "逆行者行已往之月建"
+        ],
+        "printedFolio": "一七",
+        "status": "mirror_locator_only"
+      },
+      {
+        "heading": "看運法二",
+        "mirrorPdfPage": 35,
+        "observedCandidateLiterals": [
+          "初運管少年",
+          "中運管中年",
+          "末運管晚年"
+        ],
+        "printedFolio": "一八",
+        "status": "mirror_locator_only"
+      }
+    ],
+    "claimedPublicationDate": "民國二十四年[1935]",
+    "claimedSource": "NLC data_416 / 17jh002578 / 109774",
+    "fileSha256": "bb3952e09cb4aac8cd0778291f29c0100529e8e9e8cd0c4ee27118fbbc0922d5",
+    "independentWitnessCount": 0,
+    "originalFileUrl": "https://upload.wikimedia.org/wikipedia/commons/0/0c/NLC416-17jh002578-109774_%E7%B2%BE%E9%81%B8%E5%91%BD%E7%90%86%E7%B4%84%E8%A8%80.pdf",
+    "pdfPageCount": 185,
+    "physicalWitnessAdmitted": false,
+    "scopeBoundary": "The Commons derivative remains a locator-only mirror and is not promoted by the new official-reader captures.",
+    "sourceCategory": "MIRROR_DERIVED_LOCATOR_ONLY",
+    "url": "https://commons.wikimedia.org/wiki/File:NLC416-17jh002578-109774_%E7%B2%BE%E9%81%B8%E5%91%BD%E7%90%86%E7%B4%84%E8%A8%80.pdf"
+  },
+  "negativeChecks": {
+    "allMustReject": true,
+    "ids": [
+      "reader-capture-to-raw-page-bytes",
+      "recorded-date-to-physical-production-date",
+      "bounded-direction-fragment-to-complete-rule",
+      "numeric-literal-to-production-procedure",
+      "unobserved-time-unit-to-observation",
+      "unobserved-worked-example-to-observation",
+      "reader-capture-to-independent-lineage",
+      "direct-observation-to-semantic-authority",
+      "direct-observation-to-promotion"
+    ],
+    "scope": "The checker rejects promoting a capture, metadata, bounded fragment, literal, or page-limited absence beyond its stated evidence boundary."
+  },
+  "predecessor": {
+    "artifactPath": "artifacts/saju-mingli-yueyan-first-party-inspection-v0/complete.json",
+    "artifactPayloadSha256": "a52c28f57b1b575d0460542bbb16f8a573d4a0730ce62282b3222895b6b3abe7",
+    "basisHead": "99e6cc624a1510487ad8bcf65347b3ee5f4e524e",
+    "contentSha256": "4c7390bba8fec7b705e39e8ec0ef4e5b798e4597839af94c5fa9cc36edeae816",
+    "preserved": true,
+    "priorTargetPageStatus": "blocked",
+    "priorUnresolvedP0FieldCount": 7,
+    "schemaVersion": "saju-mingli-yueyan-first-party-inspection-v0",
+    "version": "0.1.0"
+  },
+  "promotion": {
+    "blockingEdges": [
+      "raw-official-target-page-bytes:unresolved",
+      "physical-copy-or-call-number:unresolved",
+      "edition/textual-lineage:unresolved",
+      "complete-seven-field-procedure:unresolved",
+      "semantic-corroboration:unresolved"
+    ],
+    "interpretationAvailable": false,
+    "productionChanged": false,
+    "promotionReadyClaimIds": [],
+    "ready": false,
+    "scope": "Directly observed literals are retained as bounded source evidence only. No P0 field, transmission edge, claim, procedure, or production activation is promoted.",
+    "semanticAuthorityChanged": false,
+    "stableClaimPromotionCount": 0,
+    "status": "blocked"
+  },
+  "readiness": {
+    "availableForInterpretation": false,
+    "implementationSafeGrounding": "not_established",
+    "productionActivation": "blocked",
+    "promotionReadyClaimIds": [],
+    "reason": "The NLC reader captures close only a bounded direct-visual observation frontier. They do not close complete P0 procedure, raw page-byte identity, edition lineage, semantic authority, or production readiness.",
+    "semanticAuthority": "not_established",
+    "stableClaimPromotionCount": 0,
+    "status": "blocked"
+  },
+  "schemaVersion": "saju-mingli-yueyan-direct-witness-adjudication-v1",
+  "scope": {
+    "candidateBoundary": "The Commons PDF and all prior candidate text remain locator or comparison material only. No mirror, OCR, e-text, or semantic reconstruction is imported as canonical evidence.",
+    "directInspectionCompleted": [
+      "NLC item/detail record capture",
+      "NLC official reader p.85 capture",
+      "NLC official reader p.86 capture",
+      "NLC official reader p.87 capture"
+    ],
+    "directPageScope": "The captures bind the visible 行運賦 spread to NLC data_416 / 17jh002578 / 109774.0 and expose bounded page-specific literals. They do not provide the underlying official page-image/PDF bytes or a complete seven-field procedure.",
+    "prohibited": [
+      "screenshot-to-raw-page-byte identity",
+      "recorded date-to-physical-production-date inference",
+      "bounded fragment-to-complete-rule inference",
+      "single literal-to-production procedure promotion",
+      "absence from p.85–87-to-whole-volume negative",
+      "reader capture-to-independent-lineage promotion",
+      "semantic-authority promotion",
+      "production activation"
+    ],
+    "sourceOfTruth": "The NLC institutional record screenshot and the supplied captures of the official NLC reader for p.85–87 are admitted as direct visual observations at their stated page boundaries. The v0 inspection and Gemini v7 parent remain preserved baselines."
+  },
+  "sourceClaimReconciliation": {
+    "candidateClaimsNotImported": true,
+    "claims": [
+      {
+        "addedEvidenceRefs": [],
+        "claimId": "claim.A.yuanhai-乙丑男-chain",
+        "preserved": true,
+        "scopeDelta": "No status or gate mutation; parent adjudication is preserved byte-for-byte.",
+        "statusAfter": "kept",
+        "statusBefore": "kept"
+      },
+      {
+        "addedEvidenceRefs": [],
+        "claimId": "claim.A.yuanhai-甲子女-chain",
+        "preserved": true,
+        "scopeDelta": "No status or gate mutation; parent adjudication is preserved byte-for-byte.",
+        "statusAfter": "kept",
+        "statusBefore": "kept"
+      },
+      {
+        "addedEvidenceRefs": [],
+        "claimId": "claim.A.shenfeng-page-order-and-wording",
+        "preserved": true,
+        "scopeDelta": "No status or gate mutation; parent adjudication is preserved byte-for-byte.",
+        "statusAfter": "kept",
+        "statusBefore": "kept"
+      },
+      {
+        "addedEvidenceRefs": [],
+        "claimId": "claim.A.shenfeng-standard-fixture",
+        "preserved": true,
+        "scopeDelta": "No status or gate mutation; parent adjudication is preserved byte-for-byte.",
+        "statusAfter": "rejected",
+        "statusBefore": "rejected"
+      },
+      {
+        "addedEvidenceRefs": [],
+        "claimId": "claim.A.same-worked-example-independent-corroboration",
+        "preserved": true,
+        "scopeDelta": "No status or gate mutation; parent adjudication is preserved byte-for-byte.",
+        "statusAfter": "rejected",
+        "statusBefore": "rejected"
+      },
+      {
+        "addedEvidenceRefs": [],
+        "claimId": "claim.A.sanming-rule-family",
+        "preserved": true,
+        "scopeDelta": "No status or gate mutation; parent adjudication is preserved byte-for-byte.",
+        "statusAfter": "corrected",
+        "statusBefore": "corrected"
+      },
+      {
+        "addedEvidenceRefs": [],
+        "claimId": "claim.A.sanming-literal-one-day-four-month",
+        "preserved": true,
+        "scopeDelta": "No status or gate mutation; parent adjudication is preserved byte-for-byte.",
+        "statusAfter": "corrected",
+        "statusBefore": "corrected"
+      },
+      {
+        "addedEvidenceRefs": [],
+        "claimId": "claim.A.sanming-literal-time-unit-ten-day",
+        "preserved": true,
+        "scopeDelta": "No status or gate mutation; parent adjudication is preserved byte-for-byte.",
+        "statusAfter": "unresolved",
+        "statusBefore": "unresolved"
+      },
+      {
+        "addedEvidenceRefs": [],
+        "claimId": "claim.A.wuxingjingji-same-procedure-auto-merge",
+        "preserved": true,
+        "scopeDelta": "No status or gate mutation; parent adjudication is preserved byte-for-byte.",
+        "statusAfter": "rejected",
+        "statusBefore": "rejected"
+      },
+      {
+        "addedEvidenceRefs": [],
+        "claimId": "claim.B.anu-42211-item-identity",
+        "preserved": true,
+        "scopeDelta": "No status or gate mutation; parent adjudication is preserved byte-for-byte.",
+        "statusAfter": "rejected",
+        "statusBefore": "rejected"
+      },
+      {
+        "addedEvidenceRefs": [],
+        "claimId": "claim.B.anu-206524-item-identity",
+        "preserved": true,
+        "scopeDelta": "No status or gate mutation; parent adjudication is preserved byte-for-byte.",
+        "statusAfter": "kept",
+        "statusBefore": "kept"
+      },
+      {
+        "addedEvidenceRefs": [],
+        "claimId": "claim.B.anu-12juan-metadata",
+        "preserved": true,
+        "scopeDelta": "No status or gate mutation; parent adjudication is preserved byte-for-byte.",
+        "statusAfter": "kept",
+        "statusBefore": "kept"
+      },
+      {
+        "addedEvidenceRefs": [],
+        "claimId": "claim.B.anu-current-original-v1-v12",
+        "preserved": true,
+        "scopeDelta": "No status or gate mutation; parent adjudication is preserved byte-for-byte.",
+        "statusAfter": "kept",
+        "statusBefore": "kept"
+      },
+      {
+        "addedEvidenceRefs": [],
+        "claimId": "claim.B.anu-catalog-extent-to-public-count",
+        "preserved": true,
+        "scopeDelta": "No status or gate mutation; parent adjudication is preserved byte-for-byte.",
+        "statusAfter": "rejected",
+        "statusBefore": "rejected"
+      },
+      {
+        "addedEvidenceRefs": [],
+        "claimId": "claim.B.anu-xudishan-collection-relation",
+        "preserved": true,
+        "scopeDelta": "No status or gate mutation; parent adjudication is preserved byte-for-byte.",
+        "statusAfter": "kept",
+        "statusBefore": "kept"
+      },
+      {
+        "addedEvidenceRefs": [],
+        "claimId": "claim.C.gengcun-seal-provenance-candidate",
+        "preserved": true,
+        "scopeDelta": "No status or gate mutation; parent adjudication is preserved byte-for-byte.",
+        "statusAfter": "kept",
+        "statusBefore": "kept"
+      },
+      {
+        "addedEvidenceRefs": [],
+        "claimId": "claim.C.gengcun-seal-owner-equals-dating",
+        "preserved": true,
+        "scopeDelta": "No status or gate mutation; parent adjudication is preserved byte-for-byte.",
+        "statusAfter": "corrected",
+        "statusBefore": "corrected"
+      },
+      {
+        "addedEvidenceRefs": [],
+        "claimId": "claim.C.gengcun-TAQ-1843",
+        "preserved": true,
+        "scopeDelta": "No status or gate mutation; parent adjudication is preserved byte-for-byte.",
+        "statusAfter": "rejected",
+        "statusBefore": "rejected"
+      },
+      {
+        "addedEvidenceRefs": [],
+        "claimId": "claim.C.gengcun-TPQ-1578",
+        "preserved": true,
+        "scopeDelta": "No status or gate mutation; parent adjudication is preserved byte-for-byte.",
+        "statusAfter": "rejected",
+        "statusBefore": "rejected"
+      },
+      {
+        "addedEvidenceRefs": [],
+        "claimId": "claim.C.gengcun-qin-enfu-dating",
+        "preserved": true,
+        "scopeDelta": "No status or gate mutation; parent adjudication is preserved byte-for-byte.",
+        "statusAfter": "rejected",
+        "statusBefore": "rejected"
+      },
+      {
+        "addedEvidenceRefs": [],
+        "claimId": "claim.C.gengcun-content-parallel-dating",
+        "preserved": true,
+        "scopeDelta": "No status or gate mutation; parent adjudication is preserved byte-for-byte.",
+        "statusAfter": "rejected",
+        "statusBefore": "rejected"
+      },
+      {
+        "addedEvidenceRefs": [],
+        "claimId": "claim.C.gengcun-dating-gate",
+        "preserved": true,
+        "scopeDelta": "No status or gate mutation; parent adjudication is preserved byte-for-byte.",
+        "statusAfter": "unresolved",
+        "statusBefore": "unresolved"
+      },
+      {
+        "addedEvidenceRefs": [],
+        "claimId": "claim.D.waseda-direct-record",
+        "preserved": true,
+        "scopeDelta": "No status or gate mutation; parent adjudication is preserved byte-for-byte.",
+        "statusAfter": "kept",
+        "statusBefore": "kept"
+      },
+      {
+        "addedEvidenceRefs": [],
+        "claimId": "claim.D.waseda-seasonal-pages",
+        "preserved": true,
+        "scopeDelta": "No status or gate mutation; parent adjudication is preserved byte-for-byte.",
+        "statusAfter": "kept",
+        "statusBefore": "kept"
+      },
+      {
+        "addedEvidenceRefs": [],
+        "claimId": "claim.D.waseda-cover-to-physical-date",
+        "preserved": true,
+        "scopeDelta": "No status or gate mutation; parent adjudication is preserved byte-for-byte.",
+        "statusAfter": "rejected",
+        "statusBefore": "rejected"
+      },
+      {
+        "addedEvidenceRefs": [],
+        "claimId": "claim.D.digital-physical-map-as-transmission",
+        "preserved": true,
+        "scopeDelta": "No status or gate mutation; parent adjudication is preserved byte-for-byte.",
+        "statusAfter": "rejected",
+        "statusBefore": "rejected"
+      },
+      {
+        "addedEvidenceRefs": [],
+        "claimId": "claim.D.full-genealogy-directly-supported",
+        "preserved": true,
+        "scopeDelta": "No status or gate mutation; parent adjudication is preserved byte-for-byte.",
+        "statusAfter": "corrected",
+        "statusBefore": "corrected"
+      },
+      {
+        "addedEvidenceRefs": [],
+        "claimId": "claim.E.gengcun-seasonal-block",
+        "preserved": true,
+        "scopeDelta": "No status or gate mutation; parent adjudication is preserved byte-for-byte.",
+        "statusAfter": "rejected",
+        "statusBefore": "rejected"
+      },
+      {
+        "addedEvidenceRefs": [],
+        "claimId": "claim.E.ctext-e-text-as-historical-witness",
+        "preserved": true,
+        "scopeDelta": "No status or gate mutation; parent adjudication is preserved byte-for-byte.",
+        "statusAfter": "rejected",
+        "statusBefore": "rejected"
+      },
+      {
+        "addedEvidenceRefs": [],
+        "claimId": "claim.E.preface-cover-as-physical-edition-date",
+        "preserved": true,
+        "scopeDelta": "No status or gate mutation; parent adjudication is preserved byte-for-byte.",
+        "statusAfter": "rejected",
+        "statusBefore": "rejected"
+      },
+      {
+        "addedEvidenceRefs": [
+          "ev.mingli-yueyan.nlc-record-screenshot-2026-08-20",
+          "ev.mingli-yueyan.nlc-reader-page-85",
+          "ev.mingli-yueyan.nlc-reader-page-86",
+          "ev.mingli-yueyan.nlc-reader-page-87"
+        ],
+        "claimId": "claim.E.mingli-yueyan-direct-observation",
+        "preserved": true,
+        "scopeDelta": "The official reader captures add bounded direct observations for 順逆, 節 fragments, 三日則為一歲, and 一日則為四月. The parent claim remains unresolved because 起運法 as a complete procedure, 一時辰十日, workedExample, raw page bytes, edition lineage, and semantic authority are not closed.",
+        "statusAfter": "unresolved",
+        "statusBefore": "unresolved"
+      },
+      {
+        "addedEvidenceRefs": [],
+        "claimId": "claim.F.1895-baohui-first-party-item",
+        "preserved": true,
+        "scopeDelta": "No status or gate mutation; parent adjudication is preserved byte-for-byte.",
+        "statusAfter": "unresolved",
+        "statusBefore": "unresolved"
+      },
+      {
+        "addedEvidenceRefs": [],
+        "claimId": "claim.F.1923-yuxin-first-party-item",
+        "preserved": true,
+        "scopeDelta": "No status or gate mutation; parent adjudication is preserved byte-for-byte.",
+        "statusAfter": "unresolved",
+        "statusBefore": "unresolved"
+      },
+      {
+        "addedEvidenceRefs": [],
+        "claimId": "claim.F.hukun-1773",
+        "preserved": true,
+        "scopeDelta": "No status or gate mutation; parent adjudication is preserved byte-for-byte.",
+        "statusAfter": "rejected",
+        "statusBefore": "rejected"
+      },
+      {
+        "addedEvidenceRefs": [],
+        "claimId": "claim.F.hukun-1776-first-party",
+        "preserved": true,
+        "scopeDelta": "No status or gate mutation; parent adjudication is preserved byte-for-byte.",
+        "statusAfter": "unresolved",
+        "statusBefore": "unresolved"
+      },
+      {
+        "addedEvidenceRefs": [],
+        "claimId": "claim.F.hukun-1776-secondary-reading",
+        "preserved": true,
+        "scopeDelta": "No status or gate mutation; parent adjudication is preserved byte-for-byte.",
+        "statusAfter": "corrected",
+        "statusBefore": "corrected"
+      },
+      {
+        "addedEvidenceRefs": [],
+        "claimId": "claim.F.actual-target-pages",
+        "preserved": true,
+        "scopeDelta": "No status or gate mutation; parent adjudication is preserved byte-for-byte.",
+        "statusAfter": "unresolved",
+        "statusBefore": "unresolved"
+      },
+      {
+        "addedEvidenceRefs": [],
+        "claimId": "claim.F.gemini-v7-wholesale-resolution",
+        "preserved": true,
+        "scopeDelta": "No status or gate mutation; parent adjudication is preserved byte-for-byte.",
+        "statusAfter": "rejected",
+        "statusBefore": "rejected"
+      }
+    ],
+    "corrected": [
+      "claim.A.sanming-rule-family",
+      "claim.A.sanming-literal-one-day-four-month",
+      "claim.C.gengcun-seal-owner-equals-dating",
+      "claim.D.full-genealogy-directly-supported",
+      "claim.F.hukun-1776-secondary-reading"
+    ],
+    "kept": [
+      "claim.A.yuanhai-乙丑男-chain",
+      "claim.A.yuanhai-甲子女-chain",
+      "claim.A.shenfeng-page-order-and-wording",
+      "claim.B.anu-206524-item-identity",
+      "claim.B.anu-12juan-metadata",
+      "claim.B.anu-current-original-v1-v12",
+      "claim.B.anu-xudishan-collection-relation",
+      "claim.C.gengcun-seal-provenance-candidate",
+      "claim.D.waseda-direct-record",
+      "claim.D.waseda-seasonal-pages"
+    ],
+    "newBoundedObservations": [
+      "obs.mingli-yueyan.nlc-reader-page-85-context",
+      "obs.mingli-yueyan.nlc-reader-page-86-direction-and-timing-literals",
+      "obs.mingli-yueyan.nlc-reader-page-87-ten-year-context"
+    ],
+    "parentArtifact": {
+      "artifactPath": "artifacts/saju-gemini-v7-parent-adjudication/complete.json",
+      "artifactPayloadSha256": "719f23c4883ecedcb1e113a4a257c455ee5a158c5f28c289a1e647c003bd275a",
+      "basisHead": "99e6cc624a1510487ad8bcf65347b3ee5f4e524e",
+      "claimCount": 38,
+      "contentSha256": "ebda9a06733a3bcd80565324df98f282e34fcb3323d0f32ebbdbb9aff738a761",
+      "schemaVersion": "saju-gemini-v7-parent-adjudication",
+      "statusCounts": {
+        "corrected": 5,
+        "kept": 10,
+        "rejected": 16,
+        "unresolved": 7
+      },
+      "unchanged": true,
+      "version": "7.0.0"
+    },
+    "rejected": [
+      "claim.A.shenfeng-standard-fixture",
+      "claim.A.same-worked-example-independent-corroboration",
+      "claim.A.wuxingjingji-same-procedure-auto-merge",
+      "claim.B.anu-42211-item-identity",
+      "claim.B.anu-catalog-extent-to-public-count",
+      "claim.C.gengcun-TAQ-1843",
+      "claim.C.gengcun-TPQ-1578",
+      "claim.C.gengcun-qin-enfu-dating",
+      "claim.C.gengcun-content-parallel-dating",
+      "claim.D.waseda-cover-to-physical-date",
+      "claim.D.digital-physical-map-as-transmission",
+      "claim.E.gengcun-seasonal-block",
+      "claim.E.ctext-e-text-as-historical-witness",
+      "claim.E.preface-cover-as-physical-edition-date",
+      "claim.F.hukun-1773",
+      "claim.F.gemini-v7-wholesale-resolution"
+    ],
+    "statusMutation": false,
+    "unresolved": [
+      "claim.A.sanming-literal-time-unit-ten-day",
+      "claim.C.gengcun-dating-gate",
+      "claim.E.mingli-yueyan-direct-observation",
+      "claim.F.1895-baohui-first-party-item",
+      "claim.F.1923-yuxin-first-party-item",
+      "claim.F.hukun-1776-first-party",
+      "claim.F.actual-target-pages"
+    ]
+  },
+  "summary": {
+    "blockerCount": 5,
+    "canonicalTransmissionEdgeCount": 0,
+    "completeP0FieldClosureCount": 0,
+    "directTargetPageObservationCount": 3,
+    "directTimingObservationCount": 4,
+    "directlyObservedP0FieldCount": 4,
+    "firstPartyItemIdentityConfirmed": true,
+    "firstPartyReaderPagesObserved": true,
+    "firstPartyTargetPageObtained": false,
+    "parentClaimStatusCountsAfter": {
+      "corrected": 5,
+      "kept": 10,
+      "rejected": 16,
+      "unresolved": 7
+    },
+    "parentClaimStatusCountsBefore": {
+      "corrected": 5,
+      "kept": 10,
+      "rejected": 16,
+      "unresolved": 7
+    },
+    "promotionCount": 0,
+    "requestedP0FieldCount": 7,
+    "typedReadinessAfter": {
+      "E": {
+        "conflicted": 0,
+        "not_applicable": 0,
+        "satisfied": 12,
+        "unresolved": 1
+      },
+      "H": {
+        "conflicted": 0,
+        "not_applicable": 0,
+        "satisfied": 13,
+        "unresolved": 0
+      },
+      "I": {
+        "conflicted": 0,
+        "not_applicable": 0,
+        "satisfied": 0,
+        "unresolved": 13
+      },
+      "L": {
+        "conflicted": 0,
+        "not_applicable": 0,
+        "satisfied": 1,
+        "unresolved": 12
+      },
+      "P": {
+        "conflicted": 1,
+        "not_applicable": 0,
+        "satisfied": 0,
+        "unresolved": 12
+      },
+      "S": {
+        "conflicted": 1,
+        "not_applicable": 0,
+        "satisfied": 11,
+        "unresolved": 1
+      }
+    },
+    "typedReadinessBefore": {
+      "E": {
+        "conflicted": 0,
+        "not_applicable": 0,
+        "satisfied": 12,
+        "unresolved": 1
+      },
+      "H": {
+        "conflicted": 0,
+        "not_applicable": 0,
+        "satisfied": 13,
+        "unresolved": 0
+      },
+      "I": {
+        "conflicted": 0,
+        "not_applicable": 0,
+        "satisfied": 0,
+        "unresolved": 13
+      },
+      "L": {
+        "conflicted": 0,
+        "not_applicable": 0,
+        "satisfied": 1,
+        "unresolved": 12
+      },
+      "P": {
+        "conflicted": 1,
+        "not_applicable": 0,
+        "satisfied": 0,
+        "unresolved": 12
+      },
+      "S": {
+        "conflicted": 1,
+        "not_applicable": 0,
+        "satisfied": 11,
+        "unresolved": 1
+      }
+    },
+    "underlyingOfficialPageBytesObtained": false,
+    "unresolvedP0FieldCount": 7
+  },
+  "targetPageReconciliation": {
+    "completeP0FieldClosureCount": 0,
+    "directTargetPageObservationCount": 3,
+    "directTimingObservationCount": 4,
+    "directlyObservedP0FieldCount": 4,
+    "fields": [
+      {
+        "completeRule": false,
+        "directObservation": false,
+        "evidenceRefs": [
+          "ev.mingli-yueyan.nlc-reader-page-85",
+          "ev.mingli-yueyan.nlc-reader-page-86",
+          "ev.mingli-yueyan.nlc-reader-page-87"
+        ],
+        "field": "起運法",
+        "literal": null,
+        "locator": {
+          "directFieldPage": null,
+          "directFieldPrintedFolio": null,
+          "readerPages": [
+            85,
+            86,
+            87
+          ],
+          "readerUrl": "http://read.nlc.cn/OutOpenBook/OpenObjectBook?aid=416&bid=109774.0",
+          "totalReaderPages": 185
+        },
+        "observedFragments": [],
+        "productionAuthority": false,
+        "scope": "The captured spread is direct 行運賦 context, but it does not visibly supply a complete start-age/start-date procedure under the 起運法 field.",
+        "semanticAuthority": "not_established",
+        "source": "source.nlc.mingli-yueyan.data-416.17jh002578",
+        "status": "unresolved_no_complete_start_procedure",
+        "wholeVolumeNegative": false
+      },
+      {
+        "completeRule": false,
+        "directObservation": true,
+        "evidenceRefs": [
+          "ev.mingli-yueyan.nlc-reader-page-86"
+        ],
+        "field": "順逆",
+        "literal": null,
+        "locator": {
+          "directFieldPage": 86,
+          "directFieldPrintedFolio": "三",
+          "readerPages": [
+            85,
+            86,
+            87
+          ],
+          "readerUrl": "http://read.nlc.cn/OutOpenBook/OpenObjectBook?aid=416&bid=109774.0",
+          "totalReaderPages": 185
+        },
+        "observedFragments": [
+          "以男女為別。乃分順行逆行之端。",
+          "男生陽年。女生陰年。則從已往詳觀。"
+        ],
+        "productionAuthority": false,
+        "scope": "The page directly shows a sex/year direction fragment. It does not establish an unqualified complete direction matrix beyond the visible wording.",
+        "semanticAuthority": "not_established",
+        "source": "source.nlc.mingli-yueyan.data-416.17jh002578",
+        "status": "bounded_direct_fragment_not_promoted",
+        "wholeVolumeNegative": false
+      },
+      {
+        "completeRule": false,
+        "directObservation": true,
+        "evidenceRefs": [
+          "ev.mingli-yueyan.nlc-reader-page-86"
+        ],
+        "field": "節選択",
+        "literal": null,
+        "locator": {
+          "directFieldPage": 86,
+          "directFieldPrintedFolio": "三",
+          "readerPages": [
+            85,
+            86,
+            87
+          ],
+          "readerUrl": "http://read.nlc.cn/OutOpenBook/OpenObjectBook?aid=416&bid=109774.0",
+          "totalReaderPages": 185
+        },
+        "observedFragments": [
+          "遞行前月後月之建。",
+          "計生辰之離節。凡有幾日。"
+        ],
+        "productionAuthority": false,
+        "scope": "The page directly mentions preceding/next month construction and distance from the 節. It does not visibly specify the complete named-jie selection algorithm or all boundary cases.",
+        "semanticAuthority": "not_established",
+        "source": "source.nlc.mingli-yueyan.data-416.17jh002578",
+        "status": "partial_direct_fragments_not_promoted",
+        "wholeVolumeNegative": false
+      },
+      {
+        "completeRule": false,
+        "directObservation": true,
+        "evidenceRefs": [
+          "ev.mingli-yueyan.nlc-reader-page-86"
+        ],
+        "field": "三日一歲",
+        "literal": "三日則為一歲。",
+        "locator": {
+          "directFieldPage": 86,
+          "directFieldPrintedFolio": "三",
+          "readerPages": [
+            85,
+            86,
+            87
+          ],
+          "readerUrl": "http://read.nlc.cn/OutOpenBook/OpenObjectBook?aid=416&bid=109774.0",
+          "totalReaderPages": 185
+        },
+        "observedFragments": [
+          "三日則為一歲。"
+        ],
+        "productionAuthority": false,
+        "scope": "The exact literal is directly visible on the stated NLC reader page. It is not promoted to a general calculation procedure or production rule.",
+        "semanticAuthority": "not_established",
+        "source": "source.nlc.mingli-yueyan.data-416.17jh002578",
+        "status": "bounded_direct_literal_not_promoted",
+        "wholeVolumeNegative": false
+      },
+      {
+        "completeRule": false,
+        "directObservation": true,
+        "evidenceRefs": [
+          "ev.mingli-yueyan.nlc-reader-page-86"
+        ],
+        "field": "一日四月",
+        "literal": "一日則為四月。",
+        "locator": {
+          "directFieldPage": 86,
+          "directFieldPrintedFolio": "三",
+          "readerPages": [
+            85,
+            86,
+            87
+          ],
+          "readerUrl": "http://read.nlc.cn/OutOpenBook/OpenObjectBook?aid=416&bid=109774.0",
+          "totalReaderPages": 185
+        },
+        "observedFragments": [
+          "一日則為四月。"
+        ],
+        "productionAuthority": false,
+        "scope": "The exact literal is directly visible on the stated NLC reader page. It is not promoted to a general calculation procedure or production rule.",
+        "semanticAuthority": "not_established",
+        "source": "source.nlc.mingli-yueyan.data-416.17jh002578",
+        "status": "bounded_direct_literal_not_promoted",
+        "wholeVolumeNegative": false
+      },
+      {
+        "completeRule": false,
+        "directObservation": false,
+        "evidenceRefs": [
+          "ev.mingli-yueyan.nlc-reader-page-85",
+          "ev.mingli-yueyan.nlc-reader-page-86",
+          "ev.mingli-yueyan.nlc-reader-page-87"
+        ],
+        "field": "一時辰十日",
+        "literal": null,
+        "locator": {
+          "directFieldPage": null,
+          "directFieldPrintedFolio": null,
+          "readerPages": [
+            85,
+            86,
+            87
+          ],
+          "readerUrl": "http://read.nlc.cn/OutOpenBook/OpenObjectBook?aid=416&bid=109774.0",
+          "totalReaderPages": 185
+        },
+        "observedFragments": [],
+        "productionAuthority": false,
+        "scope": "The exact 一時辰十日 literal is not visible in the supplied p.85–87 captures. This is not a whole-volume negative.",
+        "semanticAuthority": "not_established",
+        "source": "source.nlc.mingli-yueyan.data-416.17jh002578",
+        "status": "unresolved_not_observed_in_captured_spread",
+        "wholeVolumeNegative": false
+      },
+      {
+        "completeRule": false,
+        "directObservation": false,
+        "evidenceRefs": [
+          "ev.mingli-yueyan.nlc-reader-page-85",
+          "ev.mingli-yueyan.nlc-reader-page-86",
+          "ev.mingli-yueyan.nlc-reader-page-87"
+        ],
+        "field": "workedExample",
+        "literal": null,
+        "locator": {
+          "directFieldPage": null,
+          "directFieldPrintedFolio": null,
+          "readerPages": [
+            85,
+            86,
+            87
+          ],
+          "readerUrl": "http://read.nlc.cn/OutOpenBook/OpenObjectBook?aid=416&bid=109774.0",
+          "totalReaderPages": 185
+        },
+        "observedFragments": [],
+        "productionAuthority": false,
+        "scope": "No worked example is visible in the supplied p.85–87 captures. This is not a whole-volume negative.",
+        "semanticAuthority": "not_established",
+        "source": "source.nlc.mingli-yueyan.data-416.17jh002578",
+        "status": "unresolved_not_observed_in_captured_spread",
+        "wholeVolumeNegative": false
+      }
+    ],
+    "firstPartyTargetPageStatus": "direct_visual_observation_bounded",
+    "noWholeVolumeNegative": true,
+    "officialTargetPageBytesObtained": false,
+    "officialTargetPageLocator": {
+      "printedFolios": [
+        "二",
+        "三",
+        "四"
+      ],
+      "readerPages": [
+        85,
+        86,
+        87
+      ],
+      "readerUrl": "http://read.nlc.cn/OutOpenBook/OpenObjectBook?aid=416&bid=109774.0",
+      "totalReaderPages": 185
+    },
+    "reason": "The official reader captures reduce the target-page access blocker to a bounded visual observation, but raw page bytes, complete rule scope, worked example, and independent provenance/semantic gates remain open.",
+    "requestedHeading": "行運賦 / 起運 timing fields",
+    "unresolvedP0FieldCount": 7,
+    "userSuppliedCaptureBytesObtained": true,
+    "workedExampleStatus": "unresolved_not_observed_in_captured_spread"
+  },
+  "timingReconciliation": {
+    "fields": [
+      {
+        "completeRule": false,
+        "directObservation": false,
+        "evidenceRefs": [
+          "ev.mingli-yueyan.nlc-reader-page-85",
+          "ev.mingli-yueyan.nlc-reader-page-86",
+          "ev.mingli-yueyan.nlc-reader-page-87"
+        ],
+        "field": "起運法",
+        "literal": null,
+        "locator": {
+          "directFieldPage": null,
+          "directFieldPrintedFolio": null,
+          "readerPages": [
+            85,
+            86,
+            87
+          ],
+          "readerUrl": "http://read.nlc.cn/OutOpenBook/OpenObjectBook?aid=416&bid=109774.0",
+          "totalReaderPages": 185
+        },
+        "observedFragments": [],
+        "productionAuthority": false,
+        "scope": "The captured spread is direct 行運賦 context, but it does not visibly supply a complete start-age/start-date procedure under the 起運法 field.",
+        "semanticAuthority": "not_established",
+        "source": "source.nlc.mingli-yueyan.data-416.17jh002578",
+        "status": "unresolved_no_complete_start_procedure",
+        "wholeVolumeNegative": false
+      },
+      {
+        "completeRule": false,
+        "directObservation": true,
+        "evidenceRefs": [
+          "ev.mingli-yueyan.nlc-reader-page-86"
+        ],
+        "field": "順逆",
+        "literal": null,
+        "locator": {
+          "directFieldPage": 86,
+          "directFieldPrintedFolio": "三",
+          "readerPages": [
+            85,
+            86,
+            87
+          ],
+          "readerUrl": "http://read.nlc.cn/OutOpenBook/OpenObjectBook?aid=416&bid=109774.0",
+          "totalReaderPages": 185
+        },
+        "observedFragments": [
+          "以男女為別。乃分順行逆行之端。",
+          "男生陽年。女生陰年。則從已往詳觀。"
+        ],
+        "productionAuthority": false,
+        "scope": "The page directly shows a sex/year direction fragment. It does not establish an unqualified complete direction matrix beyond the visible wording.",
+        "semanticAuthority": "not_established",
+        "source": "source.nlc.mingli-yueyan.data-416.17jh002578",
+        "status": "bounded_direct_fragment_not_promoted",
+        "wholeVolumeNegative": false
+      },
+      {
+        "completeRule": false,
+        "directObservation": true,
+        "evidenceRefs": [
+          "ev.mingli-yueyan.nlc-reader-page-86"
+        ],
+        "field": "節選択",
+        "literal": null,
+        "locator": {
+          "directFieldPage": 86,
+          "directFieldPrintedFolio": "三",
+          "readerPages": [
+            85,
+            86,
+            87
+          ],
+          "readerUrl": "http://read.nlc.cn/OutOpenBook/OpenObjectBook?aid=416&bid=109774.0",
+          "totalReaderPages": 185
+        },
+        "observedFragments": [
+          "遞行前月後月之建。",
+          "計生辰之離節。凡有幾日。"
+        ],
+        "productionAuthority": false,
+        "scope": "The page directly mentions preceding/next month construction and distance from the 節. It does not visibly specify the complete named-jie selection algorithm or all boundary cases.",
+        "semanticAuthority": "not_established",
+        "source": "source.nlc.mingli-yueyan.data-416.17jh002578",
+        "status": "partial_direct_fragments_not_promoted",
+        "wholeVolumeNegative": false
+      },
+      {
+        "completeRule": false,
+        "directObservation": true,
+        "evidenceRefs": [
+          "ev.mingli-yueyan.nlc-reader-page-86"
+        ],
+        "field": "三日一歲",
+        "literal": "三日則為一歲。",
+        "locator": {
+          "directFieldPage": 86,
+          "directFieldPrintedFolio": "三",
+          "readerPages": [
+            85,
+            86,
+            87
+          ],
+          "readerUrl": "http://read.nlc.cn/OutOpenBook/OpenObjectBook?aid=416&bid=109774.0",
+          "totalReaderPages": 185
+        },
+        "observedFragments": [
+          "三日則為一歲。"
+        ],
+        "productionAuthority": false,
+        "scope": "The exact literal is directly visible on the stated NLC reader page. It is not promoted to a general calculation procedure or production rule.",
+        "semanticAuthority": "not_established",
+        "source": "source.nlc.mingli-yueyan.data-416.17jh002578",
+        "status": "bounded_direct_literal_not_promoted",
+        "wholeVolumeNegative": false
+      },
+      {
+        "completeRule": false,
+        "directObservation": true,
+        "evidenceRefs": [
+          "ev.mingli-yueyan.nlc-reader-page-86"
+        ],
+        "field": "一日四月",
+        "literal": "一日則為四月。",
+        "locator": {
+          "directFieldPage": 86,
+          "directFieldPrintedFolio": "三",
+          "readerPages": [
+            85,
+            86,
+            87
+          ],
+          "readerUrl": "http://read.nlc.cn/OutOpenBook/OpenObjectBook?aid=416&bid=109774.0",
+          "totalReaderPages": 185
+        },
+        "observedFragments": [
+          "一日則為四月。"
+        ],
+        "productionAuthority": false,
+        "scope": "The exact literal is directly visible on the stated NLC reader page. It is not promoted to a general calculation procedure or production rule.",
+        "semanticAuthority": "not_established",
+        "source": "source.nlc.mingli-yueyan.data-416.17jh002578",
+        "status": "bounded_direct_literal_not_promoted",
+        "wholeVolumeNegative": false
+      },
+      {
+        "completeRule": false,
+        "directObservation": false,
+        "evidenceRefs": [
+          "ev.mingli-yueyan.nlc-reader-page-85",
+          "ev.mingli-yueyan.nlc-reader-page-86",
+          "ev.mingli-yueyan.nlc-reader-page-87"
+        ],
+        "field": "一時辰十日",
+        "literal": null,
+        "locator": {
+          "directFieldPage": null,
+          "directFieldPrintedFolio": null,
+          "readerPages": [
+            85,
+            86,
+            87
+          ],
+          "readerUrl": "http://read.nlc.cn/OutOpenBook/OpenObjectBook?aid=416&bid=109774.0",
+          "totalReaderPages": 185
+        },
+        "observedFragments": [],
+        "productionAuthority": false,
+        "scope": "The exact 一時辰十日 literal is not visible in the supplied p.85–87 captures. This is not a whole-volume negative.",
+        "semanticAuthority": "not_established",
+        "source": "source.nlc.mingli-yueyan.data-416.17jh002578",
+        "status": "unresolved_not_observed_in_captured_spread",
+        "wholeVolumeNegative": false
+      },
+      {
+        "completeRule": false,
+        "directObservation": false,
+        "evidenceRefs": [
+          "ev.mingli-yueyan.nlc-reader-page-85",
+          "ev.mingli-yueyan.nlc-reader-page-86",
+          "ev.mingli-yueyan.nlc-reader-page-87"
+        ],
+        "field": "workedExample",
+        "literal": null,
+        "locator": {
+          "directFieldPage": null,
+          "directFieldPrintedFolio": null,
+          "readerPages": [
+            85,
+            86,
+            87
+          ],
+          "readerUrl": "http://read.nlc.cn/OutOpenBook/OpenObjectBook?aid=416&bid=109774.0",
+          "totalReaderPages": 185
+        },
+        "observedFragments": [],
+        "productionAuthority": false,
+        "scope": "No worked example is visible in the supplied p.85–87 captures. This is not a whole-volume negative.",
+        "semanticAuthority": "not_established",
+        "source": "source.nlc.mingli-yueyan.data-416.17jh002578",
+        "status": "unresolved_not_observed_in_captured_spread",
+        "wholeVolumeNegative": false
+      }
+    ],
+    "implementationBoundary": "No direct literal is converted into a generalized calculator, semantic authority, or production rule by this artifact.",
+    "notPromoted": [
+      "起運法 as a complete start procedure",
+      "節選択 as a complete named-jie selection algorithm",
+      "一時辰十日",
+      "workedExample",
+      "any rounding or calendar conversion",
+      "any production timing implementation"
+    ],
+    "observedFragments": [
+      {
+        "evidenceRef": "ev.mingli-yueyan.nlc-reader-page-86",
+        "field": "順逆",
+        "fragments": [
+          "以男女為別。乃分順行逆行之端。",
+          "男生陽年。女生陰年。則從已往詳觀。"
+        ]
+      },
+      {
+        "evidenceRef": "ev.mingli-yueyan.nlc-reader-page-86",
+        "field": "節選択",
+        "fragments": [
+          "遞行前月後月之建。",
+          "計生辰之離節。凡有幾日。"
+        ]
+      }
+    ],
+    "observedLiterals": [
+      {
+        "evidenceRef": "ev.mingli-yueyan.nlc-reader-page-86",
+        "field": "一日四月",
+        "literal": "一日則為四月。"
+      },
+      {
+        "evidenceRef": "ev.mingli-yueyan.nlc-reader-page-86",
+        "field": "三日一歲",
+        "literal": "三日則為一歲。"
+      }
+    ],
+    "status": "bounded_direct_observations_without_complete_rule_or_authority"
+  },
+  "typedReadinessRecalculation": {
+    "after": {
+      "E": {
+        "conflicted": 0,
+        "not_applicable": 0,
+        "satisfied": 12,
+        "unresolved": 1
+      },
+      "H": {
+        "conflicted": 0,
+        "not_applicable": 0,
+        "satisfied": 13,
+        "unresolved": 0
+      },
+      "I": {
+        "conflicted": 0,
+        "not_applicable": 0,
+        "satisfied": 0,
+        "unresolved": 13
+      },
+      "L": {
+        "conflicted": 0,
+        "not_applicable": 0,
+        "satisfied": 1,
+        "unresolved": 12
+      },
+      "P": {
+        "conflicted": 1,
+        "not_applicable": 0,
+        "satisfied": 0,
+        "unresolved": 12
+      },
+      "S": {
+        "conflicted": 1,
+        "not_applicable": 0,
+        "satisfied": 11,
+        "unresolved": 1
+      }
+    },
+    "availableForInterpretation": false,
+    "baselineClaimCount": 13,
+    "baselinePromotionReadyClaimIds": [],
+    "before": {
+      "E": {
+        "conflicted": 0,
+        "not_applicable": 0,
+        "satisfied": 12,
+        "unresolved": 1
+      },
+      "H": {
+        "conflicted": 0,
+        "not_applicable": 0,
+        "satisfied": 13,
+        "unresolved": 0
+      },
+      "I": {
+        "conflicted": 0,
+        "not_applicable": 0,
+        "satisfied": 0,
+        "unresolved": 13
+      },
+      "L": {
+        "conflicted": 0,
+        "not_applicable": 0,
+        "satisfied": 1,
+        "unresolved": 12
+      },
+      "P": {
+        "conflicted": 1,
+        "not_applicable": 0,
+        "satisfied": 0,
+        "unresolved": 12
+      },
+      "S": {
+        "conflicted": 1,
+        "not_applicable": 0,
+        "satisfied": 11,
+        "unresolved": 1
+      }
+    },
+    "changedGateStates": [],
+    "implementationSafeGrounding": "not_established",
+    "method": "Official reader literals are retained as source-specific observations; no typed H/E/L/S/I/P gate is changed without complete procedure, lineage, and semantic authority.",
+    "productionActivation": "blocked",
+    "promotionReadyClaimIds": [],
+    "reason": "Direct page literals narrow the observation boundary but do not close the complete seven-field procedure or the separate provenance/semantic gates.",
+    "semanticAuthority": "not_established",
+    "sourceArtifact": "artifacts/saju-five-classics-typed-readiness-contract-v0/complete.json",
+    "stableClaimPromotionCount": 0
+  },
+  "version": "1.0.0"
+}
