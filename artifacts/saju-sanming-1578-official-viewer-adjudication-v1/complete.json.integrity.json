@@ -1,0 +1,7 @@
+{
+  "artifactByteSha256": "82f7f5d545122222bb10e75cdd93245013a540f9804ce96625de13e5adafd5bc",
+  "artifactPath": "artifacts/saju-sanming-1578-official-viewer-adjudication-v1/complete.json",
+  "byteLength": 61594,
+  "hashScope": "exact UTF-8 bytes of complete.json including final LF",
+  "schemaVersion": "saju-sanming-1578-official-viewer-adjudication-v1-integrity-v1"
+}

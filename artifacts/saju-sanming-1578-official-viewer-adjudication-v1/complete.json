@@ -1,0 +1,1171 @@
+{
+  "artifactIdentity": {
+    "artifactId": "saju-sanming-1578-official-viewer-adjudication-v1",
+    "artifactPayloadSha256": "9be521003f69ff3964e71195b64508c0c47c2d86cd7088a461f07c9364555da2",
+    "contractVersion": "artifact-identity-v1",
+    "generation": {
+      "baseHead": "cb2e461f90c11553ab3f0e7a4fb0b9821222144b",
+      "baseHeadSource": "git rev-parse HEAD at materialization",
+      "includedCommit": null,
+      "includedCommitSource": "unknown_at_generation; artifact may be included by a later commit"
+    },
+    "inputs": [
+      {
+        "byteSha256": "7c9bfec3cd2ed082d009c521c03658c8905b475f2f165d3cbcbdc78c0b3fd126",
+        "path": "artifacts/saju-five-classics-source-identity-frontier-v0/complete.json"
+      },
+      {
+        "byteSha256": "bc382fd320ad3d84ec18b40d0a1c77eea1cb9e2cf3440bd520c92d4326cc7546",
+        "path": "scripts/materialize-saju-sanming-1578-official-viewer-adjudication-v1.mjs"
+      },
+      {
+        "byteSha256": "5745991fbc31ea4747570844017c06facc4c6c15e205f3145bb357afb9f51712",
+        "path": "src/artifactIdentity.js"
+      },
+      {
+        "byteSha256": "ce0e2f465586ca73a2817d2017b74114eb2e53d95b4c5090caf4498cc580e4f0",
+        "path": "src/interpretationPrep/sajuSanming1578OfficialViewerAdjudicationV1.js"
+      }
+    ],
+    "materializer": {
+      "path": "scripts/materialize-saju-sanming-1578-official-viewer-adjudication-v1.mjs",
+      "version": "1.0.0"
+    }
+  },
+  "basisHead": "cb2e461f90c11553ab3f0e7a4fb0b9821222144b",
+  "blockerReassessment": {
+    "delta": [
+      {
+        "after": "bounded user-supplied captures directly show the official viewer p.150/1187 and p.151/1187 target surfaces",
+        "before": "v0 recorded the public viewer as CAPTCHA-gated with no first-party target page observation",
+        "gate": "first_party_viewer_target_capture",
+        "promoted": false
+      },
+      {
+        "after": "official viewer p.2 now visibly places internal label 007583 under the 06589 / 306.5 06589 record panel",
+        "before": "v0 retained 007583 only as a mirror leaf-2 observation and did not have an official viewer capture",
+        "gate": "viewer_record_to_internal_scan_label_pairing",
+        "promoted": false
+      },
+      {
+        "after": "official viewer captures bound 第2卷 from viewer p.101 through the visible p.187 end marker, with p.188 post-boundary context; target p.150–151 are ordinally inside that range",
+        "before": "v0 had no supplied official viewer sequence boundary around target p.150–151",
+        "gate": "first_party_viewer_volume_sequence",
+        "promoted": false
+      },
+      {
+        "after": "unresolved_screenshot_only",
+        "before": "unresolved",
+        "gate": "official_target_page_bytes",
+        "promoted": false
+      },
+      {
+        "after": "unresolved_not_legible_after_direct_magnification",
+        "before": "unresolved",
+        "gate": "printed_folio",
+        "promoted": false
+      },
+      {
+        "after": "direct_版心_魚尾_inspection_but_葉次_unreadable",
+        "before": "not_recorded",
+        "gate": "printed_folio_readability_inspection",
+        "promoted": false
+      },
+      {
+        "after": "unresolved",
+        "before": "unresolved",
+        "gate": "copy_level_lineage",
+        "promoted": false
+      },
+      {
+        "after": "unresolved_identifier_conflict",
+        "before": "unresolved_identifier_conflict",
+        "gate": "06589_to_06590_relation",
+        "promoted": false
+      }
+    ],
+    "predecessorBlockerId": "blocker.sanming-1578-page-access",
+    "predecessorStatus": "open",
+    "remainingBlockers": [
+      "raw_official_target_page_bytes_not_obtained",
+      "printed_folio_not_observed_or_legible",
+      "copy_level_lineage_not_closed",
+      "internal_label_to_catalog_mapping_unresolved",
+      "06589_06590_relation_unresolved",
+      "local_to_physical_item_unresolved",
+      "cross_edition_collation_unresolved"
+    ],
+    "remainingStatement": "The official viewer captures reduce only the access-observation part of the blocker and add a bounded 007583-to-06589 viewer-context pairing plus a bounded 第2卷 ordinal sequence around target p.150–151. Direct 版心/魚尾 inspection was attempted, but 葉次 remains unreadable. Raw page bytes, printed folio, copy-level lineage, 007583 catalog mapping, 06589/06590 relation, local-to-physical relation, edition collation, and semantic authority remain blocking.",
+    "statusAfter": "open_narrowed"
+  },
+  "blockers": [
+    {
+      "blockerId": "blocker.sanming-1578-page-access",
+      "blocking": true,
+      "nextCheckableFrontier": "Obtain authorized official page-image/PDF bytes or a first-party derivation/folio bridge; do not bypass CAPTCHA.",
+      "scope": "三命通會",
+      "statement": "Official NCL 06589 viewer p.150–151 is directly observed, and the supplied viewer sequence bounds those indices within the visible 第2卷 start/end context. The captures still do not provide original page bytes, printed folio, or copy-level lineage. The existing 06589 mirror and 06590 records remain unresolved candidates.",
+      "status": "open_narrowed"
+    },
+    {
+      "blockerId": "blocker.sanming-1578-printed-folio",
+      "blocking": true,
+      "nextCheckableFrontier": "Obtain first-party printed-folio metadata/crosswalk or an authorized higher-resolution/raw page representation that makes 葉次 directly legible.",
+      "scope": "NCL 06589 p.150–151",
+      "statement": "Viewer indices 150/1187 and 151/1187 are digital viewer positions. The supplied captures directly inspect the 版心/魚尾 and page-edge regions around p.149–151, but 葉次 remains unreadable and no institutional printed-folio crosswalk is supplied.",
+      "status": "open"
+    },
+    {
+      "blockerId": "blocker.sanming-1578-copy-lineage",
+      "blocking": true,
+      "nextCheckableFrontier": "Obtain first-party accession/copy evidence or an authorized scan manifest that maps 007583 to 06589.",
+      "scope": "NCL 06589",
+      "statement": "The official viewer p.2 now pairs the visible internal label 007583 with the 06589 record panel, but the screenshot does not prove that 007583 is the catalog accession, nor close the physical copy, scan derivation, or copy-specific provenance.",
+      "status": "open"
+    },
+    {
+      "blockerId": "blocker.sanming-1578-06589-06590-relation",
+      "blocking": true,
+      "nextCheckableFrontier": "Obtain accession/folio evidence or direct page/colophon collation for both records.",
+      "scope": "NCL 06589 / 06590",
+      "statement": "The 06589 record and the distinct 06590 record remain separate catalog identities. Shared 1578 bibliographic fields and viewer screenshots do not prove they are the same physical item or edition-level transmission.",
+      "status": "open"
+    },
+    {
+      "blockerId": "blocker.sanming-1578-local-lineage",
+      "blocking": true,
+      "nextCheckableFrontier": "Perform direct page and printed-folio collation after the 06589 item/scan chain is closed.",
+      "scope": "local 三命通會 PDF",
+      "statement": "The official viewer pages do not establish a local-PDF-to-06589 physical or textual transmission path.",
+      "status": "open"
+    },
+    {
+      "blockerId": "blocker.sanming-1578-semantic-authority",
+      "blocking": true,
+      "nextCheckableFrontier": "Close copy/edition/folio gates and independently reconcile the complete timing rule before any promotion.",
+      "scope": "論大運 timing claims",
+      "statement": "The pages are direct source-specific locators only. They do not establish semantic equivalence, a complete calculation rule, or production authority.",
+      "status": "open"
+    }
+  ],
+  "candidateBoundary": {
+    "candidateTranscriptionImported": false,
+    "claimPromotion": false,
+    "existingMirrorPromoted": false,
+    "importedAsCanonicalEvidence": false
+  },
+  "contentSha256": "8ef037212a3d04ea0ca8fd6697892f8c64e496ef2eecbeb1f8a939a89e3114c9",
+  "evidence": [
+    {
+      "byteLength": 1767819,
+      "directObservation": "The official NCL record visibly reports 三命通會十二卷, (明)萬民英(撰), 明萬曆戊寅(六年, 1578)刊本, 12冊, 線裝, 匡21.4 x 14.7公分, 書號 06589, 索書號 306.5 06589, and 登錄號 rarecatx0136467, with 國家圖書館 as holder.",
+      "directVisualObservation": true,
+      "evidenceId": "ev.sanming-1578.ncl-06589-record-screenshot-2026-08-20",
+      "observedFragments": [
+        "三命通會十二卷",
+        "明萬曆戊寅(六年, 1578)刊本",
+        "06589",
+        "306.5 06589",
+        "rarecatx0136467",
+        "12冊",
+        "線裝"
+      ],
+      "pixelHeight": 2076,
+      "pixelWidth": 2408,
+      "printedFolio": null,
+      "role": "item_identity_record",
+      "scopeBoundary": "The capture admits only the visible NCL record or viewer surface. It does not establish raw official page bytes, printed folio, copy-level lineage, edition relation, or semantic authority.",
+      "screenshotPath": "/Users/softie/Desktop/스크린샷 2026-08-20 오후 7.46.35.png",
+      "sha256": "a95e4dfa617ff1d4953317aa1ad3e86d24146806979375a330feb93df0eacd0a",
+      "sourceCategory": "USER_SUPPLIED_CAPTURE_OF_FIRST_PARTY_NCL_RECORD",
+      "sourceId": "source.ncl.sanming-tonghui.1578.catalog-06589-rarecatx0136467",
+      "underlyingOfficialPageBytesObtained": false,
+      "viewerPageIndex": null,
+      "viewerPageTotal": null
+    },
+    {
+      "byteLength": 2653902,
+      "directObservation": "The official viewer surface visibly reports page 2/1187, keeps the 06589 title/edition/call-number/holder metadata in the left panel, and shows the NCL-watermarked scan surface with an internal handwritten label 007583. This is a bounded intra-viewer pairing; it does not identify 007583 as the 06589 accession or close copy lineage.",
+      "directVisualObservation": true,
+      "evidenceId": "ev.sanming-1578.ncl-06589-viewer-page-2-item-label",
+      "observedFragments": [
+        "2/1187",
+        "三命通會十二卷",
+        "明萬曆戊寅(六年, 1578)刊本",
+        "06589",
+        "306.5 06589",
+        "國家圖書館",
+        "007583"
+      ],
+      "pixelHeight": 1344,
+      "pixelWidth": 2426,
+      "printedFolio": null,
+      "role": "item_label_and_record_binding",
+      "scopeBoundary": "The capture admits only the visible NCL record or viewer surface. It does not establish raw official page bytes, printed folio, copy-level lineage, edition relation, or semantic authority.",
+      "screenshotPath": "/Users/softie/Desktop/스크린샷 2026-08-20 오후 8.01.01.png",
+      "sha256": "23701e17a30240ccc2920a3df730e44c974eb90a76679fc4138caa7e7eb6ca36",
+      "sourceCategory": "USER_SUPPLIED_CAPTURE_OF_FIRST_PARTY_NCL_VIEWER",
+      "sourceId": "source.ncl.sanming-tonghui.1578.catalog-06589-rarecatx0136467",
+      "underlyingOfficialPageBytesObtained": false,
+      "viewerPageIndex": 2,
+      "viewerPageTotal": 1187
+    },
+    {
+      "byteLength": 3511338,
+      "directObservation": "The official viewer surface visibly reports page 146/1187 and shows the same NCL-watermarked bound-volume image sequence used as context for the target spread.",
+      "directVisualObservation": true,
+      "evidenceId": "ev.sanming-1578.ncl-06589-viewer-page-146",
+      "observedFragments": [],
+      "pixelHeight": 1678,
+      "pixelWidth": 2526,
+      "printedFolio": null,
+      "role": "adjacent_viewer_sequence_context",
+      "scopeBoundary": "The capture admits only the visible NCL record or viewer surface. It does not establish raw official page bytes, printed folio, copy-level lineage, edition relation, or semantic authority.",
+      "screenshotPath": "/Users/softie/Desktop/스크린샷 2026-08-20 오후 7.43.17.png",
+      "sha256": "ab56c6c20325eb7ffc625151ddea0d1a76204f2de7d1556ab32c6683ac3df68f",
+      "sourceCategory": "USER_SUPPLIED_CAPTURE_OF_FIRST_PARTY_NCL_VIEWER",
+      "sourceId": "source.ncl.sanming-tonghui.1578.catalog-06589-rarecatx0136467",
+      "underlyingOfficialPageBytesObtained": false,
+      "viewerPageIndex": 146,
+      "viewerPageTotal": 1187
+    },
+    {
+      "byteLength": 3469079,
+      "directObservation": "The official viewer surface visibly reports page 147/1187 and supplies adjacent bound-spread context; no printed folio is visible.",
+      "directVisualObservation": true,
+      "evidenceId": "ev.sanming-1578.ncl-06589-viewer-page-147",
+      "observedFragments": [],
+      "pixelHeight": 1678,
+      "pixelWidth": 2410,
+      "printedFolio": null,
+      "role": "adjacent_viewer_sequence_context",
+      "scopeBoundary": "The capture admits only the visible NCL record or viewer surface. It does not establish raw official page bytes, printed folio, copy-level lineage, edition relation, or semantic authority.",
+      "screenshotPath": "/Users/softie/Desktop/스크린샷 2026-08-20 오후 7.43.02.png",
+      "sha256": "af821ab630a963f9cb76d348aa050ee8d76b40a77d7404d23a819418badde23a",
+      "sourceCategory": "USER_SUPPLIED_CAPTURE_OF_FIRST_PARTY_NCL_VIEWER",
+      "sourceId": "source.ncl.sanming-tonghui.1578.catalog-06589-rarecatx0136467",
+      "underlyingOfficialPageBytesObtained": false,
+      "viewerPageIndex": 147,
+      "viewerPageTotal": 1187
+    },
+    {
+      "byteLength": 3486452,
+      "directObservation": "The official viewer surface visibly reports page 148/1187 and supplies the immediately preceding bound-spread context; no printed folio is visible.",
+      "directVisualObservation": true,
+      "evidenceId": "ev.sanming-1578.ncl-06589-viewer-page-148",
+      "observedFragments": [],
+      "pixelHeight": 1696,
+      "pixelWidth": 2478,
+      "printedFolio": null,
+      "role": "adjacent_viewer_sequence_context",
+      "scopeBoundary": "The capture admits only the visible NCL record or viewer surface. It does not establish raw official page bytes, printed folio, copy-level lineage, edition relation, or semantic authority.",
+      "screenshotPath": "/Users/softie/Desktop/스크린샷 2026-08-20 오후 7.42.53.png",
+      "sha256": "1837664a1323aae6243f0bc6e1d6382905856713a7e576fa00b3e8cf1209fb8c",
+      "sourceCategory": "USER_SUPPLIED_CAPTURE_OF_FIRST_PARTY_NCL_VIEWER",
+      "sourceId": "source.ncl.sanming-tonghui.1578.catalog-06589-rarecatx0136467",
+      "underlyingOfficialPageBytesObtained": false,
+      "viewerPageIndex": 148,
+      "viewerPageTotal": 1187
+    },
+    {
+      "byteLength": 3512023,
+      "directObservation": "The official viewer surface visibly reports page 149/1187 and supplies the immediately preceding bound-spread context; no printed folio is visible.",
+      "directVisualObservation": true,
+      "evidenceId": "ev.sanming-1578.ncl-06589-viewer-page-149",
+      "observedFragments": [],
+      "pixelHeight": 1710,
+      "pixelWidth": 2512,
+      "printedFolio": null,
+      "role": "adjacent_viewer_sequence_context",
+      "scopeBoundary": "The capture admits only the visible NCL record or viewer surface. It does not establish raw official page bytes, printed folio, copy-level lineage, edition relation, or semantic authority.",
+      "screenshotPath": "/Users/softie/Desktop/스크린샷 2026-08-20 오후 7.42.39.png",
+      "sha256": "8d5f1958df9782c1294e95c01efcef1ac82b97a0fc909e3d44107001ee30bbc6",
+      "sourceCategory": "USER_SUPPLIED_CAPTURE_OF_FIRST_PARTY_NCL_VIEWER",
+      "sourceId": "source.ncl.sanming-tonghui.1578.catalog-06589-rarecatx0136467",
+      "underlyingOfficialPageBytesObtained": false,
+      "viewerPageIndex": 149,
+      "viewerPageTotal": 1187
+    },
+    {
+      "byteLength": 3332139,
+      "directObservation": "The official viewer surface visibly reports page 150/1187. The bound spread visibly carries 論大運 material, including the 折除以三日為年 timing discussion, direction passages, and 立春 example context.",
+      "directVisualObservation": true,
+      "evidenceId": "ev.sanming-1578.ncl-06589-viewer-page-150",
+      "observedFragments": [
+        "論大運",
+        "折除以三日為年",
+        "陽男陰女",
+        "陰男陽女",
+        "立春"
+      ],
+      "pixelHeight": 1420,
+      "pixelWidth": 2512,
+      "printedFolio": null,
+      "role": "target_viewer_page",
+      "scopeBoundary": "The capture admits only the visible NCL record or viewer surface. It does not establish raw official page bytes, printed folio, copy-level lineage, edition relation, or semantic authority.",
+      "screenshotPath": "/Users/softie/Desktop/스크린샷 2026-08-20 오후 7.40.23.png",
+      "sha256": "3dc930670c79b839752d8b1e8814a84bd0665752d1eade12c651f3c1d7864158",
+      "sourceCategory": "USER_SUPPLIED_CAPTURE_OF_FIRST_PARTY_NCL_VIEWER",
+      "sourceId": "source.ncl.sanming-tonghui.1578.catalog-06589-rarecatx0136467",
+      "underlyingOfficialPageBytesObtained": false,
+      "viewerPageIndex": 150,
+      "viewerPageTotal": 1187
+    },
+    {
+      "byteLength": 3433598,
+      "directObservation": "The official viewer surface visibly reports page 151/1187 and continues the 論大運 timing discussion, including the 三日而成一歲-style conversion/progression passage.",
+      "directVisualObservation": true,
+      "evidenceId": "ev.sanming-1578.ncl-06589-viewer-page-151",
+      "observedFragments": [
+        "論大運",
+        "三日而成一歲"
+      ],
+      "pixelHeight": 1658,
+      "pixelWidth": 2418,
+      "printedFolio": null,
+      "role": "target_viewer_page",
+      "scopeBoundary": "The capture admits only the visible NCL record or viewer surface. It does not establish raw official page bytes, printed folio, copy-level lineage, edition relation, or semantic authority.",
+      "screenshotPath": "/Users/softie/Desktop/스크린샷 2026-08-20 오후 7.43.29.png",
+      "sha256": "ce78bff6bb2355189df641331d08f7a906c363135e445e94faf09697dc1894c3",
+      "sourceCategory": "USER_SUPPLIED_CAPTURE_OF_FIRST_PARTY_NCL_VIEWER",
+      "sourceId": "source.ncl.sanming-tonghui.1578.catalog-06589-rarecatx0136467",
+      "underlyingOfficialPageBytesObtained": false,
+      "viewerPageIndex": 151,
+      "viewerPageTotal": 1187
+    },
+    {
+      "byteLength": 2995043,
+      "directObservation": "The official viewer surface visibly reports page 3/1187 and repeats the 06589 title, author, recorded edition, call number, and holder in the left record panel. The scan surface is NCL-watermarked; no printed folio or copy-lineage statement is visible.",
+      "directVisualObservation": true,
+      "evidenceId": "ev.sanming-1578.ncl-06589-viewer-page-3-item-context",
+      "observedFragments": [
+        "3/1187",
+        "三命通會十二卷",
+        "明萬曆戊寅(六年, 1578)刊本",
+        "06589",
+        "306.5 06589",
+        "國家圖書館"
+      ],
+      "pixelHeight": 1228,
+      "pixelWidth": 2344,
+      "printedFolio": null,
+      "role": "item_identity_viewer_context",
+      "scopeBoundary": "The capture admits only the visible NCL record or viewer surface. It does not establish raw official page bytes, printed folio, copy-level lineage, edition relation, or semantic authority.",
+      "screenshotPath": "/Users/softie/Desktop/스크린샷 2026-08-20 오후 8.06.19.png",
+      "sha256": "6425eee6f27ce4435793634e378a234f806a748c5264f548225cf89bdba1b1aa",
+      "sourceCategory": "USER_SUPPLIED_CAPTURE_OF_FIRST_PARTY_NCL_VIEWER",
+      "sourceId": "source.ncl.sanming-tonghui.1578.catalog-06589-rarecatx0136467",
+      "underlyingOfficialPageBytesObtained": false,
+      "viewerPageIndex": 3,
+      "viewerPageTotal": 1187
+    },
+    {
+      "byteLength": 3100674,
+      "directObservation": "The official viewer surface visibly reports page 7/1187. Its outline shows 卷首 pages followed by 第1卷 through 第12卷, while the scan surface shows the bound volume front-matter/chart context. This establishes only viewer outline context, not printed folio or copy lineage.",
+      "directVisualObservation": true,
+      "evidenceId": "ev.sanming-1578.ncl-06589-viewer-page-7-front-matter-sequence",
+      "observedFragments": [
+        "7/1187",
+        "卷首",
+        "第1卷",
+        "第2卷",
+        "第12卷",
+        "三命通會"
+      ],
+      "pixelHeight": 1200,
+      "pixelWidth": 2350,
+      "printedFolio": null,
+      "role": "front_matter_volume_sequence_context",
+      "scopeBoundary": "The capture admits only the visible NCL record or viewer surface. It does not establish raw official page bytes, printed folio, copy-level lineage, edition relation, or semantic authority.",
+      "screenshotPath": "/Users/softie/Desktop/스크린샷 2026-08-20 오후 8.07.04.png",
+      "sha256": "37e7af5b0a8b254cbc2cddfd9f9950bd80741535b2a714abfb42852c0ab618e5",
+      "sourceCategory": "USER_SUPPLIED_CAPTURE_OF_FIRST_PARTY_NCL_VIEWER",
+      "sourceId": "source.ncl.sanming-tonghui.1578.catalog-06589-rarecatx0136467",
+      "underlyingOfficialPageBytesObtained": false,
+      "viewerPageIndex": 7,
+      "viewerPageTotal": 1187
+    },
+    {
+      "byteLength": 2039210,
+      "directObservation": "The official viewer surface visibly reports page 99/1187 and shows the 第2卷 outline context immediately after the preceding volume tree. The scan surface is a dark bound-cover/cover-leaf image; no printed folio is visible.",
+      "directVisualObservation": true,
+      "evidenceId": "ev.sanming-1578.ncl-06589-viewer-page-99-volume-2-cover",
+      "observedFragments": [
+        "99/1187",
+        "第1卷",
+        "第2卷"
+      ],
+      "pixelHeight": 1304,
+      "pixelWidth": 2504,
+      "printedFolio": null,
+      "role": "volume_2_pre_sequence_context",
+      "scopeBoundary": "The capture admits only the visible NCL record or viewer surface. It does not establish raw official page bytes, printed folio, copy-level lineage, edition relation, or semantic authority.",
+      "screenshotPath": "/Users/softie/Desktop/스크린샷 2026-08-20 오후 8.10.07.png",
+      "sha256": "59051548f2cec9ac818992d96ed94df0bf2417fe250f18b9245d9503babb6f2c",
+      "sourceCategory": "USER_SUPPLIED_CAPTURE_OF_FIRST_PARTY_NCL_VIEWER",
+      "sourceId": "source.ncl.sanming-tonghui.1578.catalog-06589-rarecatx0136467",
+      "underlyingOfficialPageBytesObtained": false,
+      "viewerPageIndex": 99,
+      "viewerPageTotal": 1187
+    },
+    {
+      "byteLength": 2826366,
+      "directObservation": "The official viewer surface visibly reports page 100/1187 and shows 第2卷 pages in the outline. The scan surface is an unprinted/blank opening image with the NCL watermark; it does not expose a printed folio.",
+      "directVisualObservation": true,
+      "evidenceId": "ev.sanming-1578.ncl-06589-viewer-page-100-volume-2-opening",
+      "observedFragments": [
+        "100/1187",
+        "第2卷",
+        "第1頁"
+      ],
+      "pixelHeight": 1306,
+      "pixelWidth": 2368,
+      "printedFolio": null,
+      "role": "volume_2_opening_sequence_context",
+      "scopeBoundary": "The capture admits only the visible NCL record or viewer surface. It does not establish raw official page bytes, printed folio, copy-level lineage, edition relation, or semantic authority.",
+      "screenshotPath": "/Users/softie/Desktop/스크린샷 2026-08-20 오후 8.10.32.png",
+      "sha256": "f93461419f5f734c6849e87bbc3122eeb5ad8f7e137a14e45c1a7794c836d0e8",
+      "sourceCategory": "USER_SUPPLIED_CAPTURE_OF_FIRST_PARTY_NCL_VIEWER",
+      "sourceId": "source.ncl.sanming-tonghui.1578.catalog-06589-rarecatx0136467",
+      "underlyingOfficialPageBytesObtained": false,
+      "viewerPageIndex": 100,
+      "viewerPageTotal": 1187
+    },
+    {
+      "byteLength": 2473644,
+      "directObservation": "A second official viewer capture of page 100/1187 visibly exposes the expanded 卷首, 第1卷, and 第2卷 outline around the same blank opening surface. It is retained as corroborating viewer UI context only, not as a second physical witness.",
+      "directVisualObservation": true,
+      "evidenceId": "ev.sanming-1578.ncl-06589-viewer-page-100-volume-tree",
+      "observedFragments": [
+        "100/1187",
+        "卷首",
+        "第1卷",
+        "第2卷"
+      ],
+      "pixelHeight": 1310,
+      "pixelWidth": 2506,
+      "printedFolio": null,
+      "role": "volume_2_outline_context",
+      "scopeBoundary": "The capture admits only the visible NCL record or viewer surface. It does not establish raw official page bytes, printed folio, copy-level lineage, edition relation, or semantic authority.",
+      "screenshotPath": "/Users/softie/Desktop/스크린샷 2026-08-20 오후 8.11.00.png",
+      "sha256": "654502b1c6afbc61574089a7093440f1e07a5a55e78cc705b39b317c1c084418",
+      "sourceCategory": "USER_SUPPLIED_CAPTURE_OF_FIRST_PARTY_NCL_VIEWER",
+      "sourceId": "source.ncl.sanming-tonghui.1578.catalog-06589-rarecatx0136467",
+      "underlyingOfficialPageBytesObtained": false,
+      "viewerPageIndex": 100,
+      "viewerPageTotal": 1187
+    },
+    {
+      "byteLength": 3105934,
+      "directObservation": "The official viewer surface visibly reports page 101/1187, with 第2卷 / 第1頁 in the outline and the visible printed title 三命通會卷之二 on the scan surface. This is a bounded viewer-volume start observation; the visible title is not a printed folio number and does not identify a physical copy lineage.",
+      "directVisualObservation": true,
+      "evidenceId": "ev.sanming-1578.ncl-06589-viewer-page-101-volume-2-start",
+      "observedFragments": [
+        "101/1187",
+        "第2卷",
+        "第1頁",
+        "三命通會卷之二"
+      ],
+      "pixelHeight": 1326,
+      "pixelWidth": 2548,
+      "printedFolio": null,
+      "role": "volume_2_start_boundary_context",
+      "scopeBoundary": "The capture admits only the visible NCL record or viewer surface. It does not establish raw official page bytes, printed folio, copy-level lineage, edition relation, or semantic authority.",
+      "screenshotPath": "/Users/softie/Desktop/스크린샷 2026-08-20 오후 8.08.05.png",
+      "sha256": "bae8469729b18cb05d55fda41983d2ffd11ef3ba9559373fac596ff06204c8f8",
+      "sourceCategory": "USER_SUPPLIED_CAPTURE_OF_FIRST_PARTY_NCL_VIEWER",
+      "sourceId": "source.ncl.sanming-tonghui.1578.catalog-06589-rarecatx0136467",
+      "underlyingOfficialPageBytesObtained": false,
+      "viewerPageIndex": 101,
+      "viewerPageTotal": 1187
+    },
+    {
+      "byteLength": 3211472,
+      "directObservation": "The official viewer surface visibly reports page 187/1187, shows 第2卷 pages 76–92 followed by 第3卷 in the outline, and visibly carries the printed end marker 三命通會卷之二終. This bounds the viewer sequence only; it does not expose a printed folio number for p.150–151 or close copy lineage.",
+      "directVisualObservation": true,
+      "evidenceId": "ev.sanming-1578.ncl-06589-viewer-page-187-volume-2-end",
+      "observedFragments": [
+        "187/1187",
+        "第2卷",
+        "第92頁",
+        "第3卷",
+        "三命通會卷之二終"
+      ],
+      "pixelHeight": 1338,
+      "pixelWidth": 2412,
+      "printedFolio": null,
+      "role": "volume_2_end_boundary_context",
+      "scopeBoundary": "The capture admits only the visible NCL record or viewer surface. It does not establish raw official page bytes, printed folio, copy-level lineage, edition relation, or semantic authority.",
+      "screenshotPath": "/Users/softie/Desktop/스크린샷 2026-08-20 오후 8.08.52.png",
+      "sha256": "f1b9dd6d96e750d24cc739a7c979151de9d7c4f42251024cc03cd8bc6b3f2280",
+      "sourceCategory": "USER_SUPPLIED_CAPTURE_OF_FIRST_PARTY_NCL_VIEWER",
+      "sourceId": "source.ncl.sanming-tonghui.1578.catalog-06589-rarecatx0136467",
+      "underlyingOfficialPageBytesObtained": false,
+      "viewerPageIndex": 187,
+      "viewerPageTotal": 1187
+    },
+    {
+      "byteLength": 2929434,
+      "directObservation": "The official viewer surface visibly reports page 188/1187 immediately after the p.187 volume-end context; the scan surface is a blank/watermarked leaf and the outline advances beyond the 第2卷 page list. It supplies ordinal continuation context only.",
+      "directVisualObservation": true,
+      "evidenceId": "ev.sanming-1578.ncl-06589-viewer-page-188-post-volume-2",
+      "observedFragments": [
+        "188/1187",
+        "第2卷",
+        "第3卷"
+      ],
+      "pixelHeight": 1368,
+      "pixelWidth": 2384,
+      "printedFolio": null,
+      "role": "post_volume_2_sequence_context",
+      "scopeBoundary": "The capture admits only the visible NCL record or viewer surface. It does not establish raw official page bytes, printed folio, copy-level lineage, edition relation, or semantic authority.",
+      "screenshotPath": "/Users/softie/Desktop/스크린샷 2026-08-20 오후 8.09.01.png",
+      "sha256": "a29b83e5871fbc54d0e77ea508e48986d7026b7af9e3ee8743dce07a7ee82906",
+      "sourceCategory": "USER_SUPPLIED_CAPTURE_OF_FIRST_PARTY_NCL_VIEWER",
+      "sourceId": "source.ncl.sanming-tonghui.1578.catalog-06589-rarecatx0136467",
+      "underlyingOfficialPageBytesObtained": false,
+      "viewerPageIndex": 188,
+      "viewerPageTotal": 1187
+    },
+    {
+      "byteLength": 3278552,
+      "directObservation": "The official viewer surface visibly reports page 1184/1187 and shows a late page range in the outline with an NCL-watermarked text leaf. This unrelated late-volume capture is retained only to document the supplied viewer navigation context; it does not bear on the p.150–151 folio or lineage gates.",
+      "directVisualObservation": true,
+      "evidenceId": "ev.sanming-1578.ncl-06589-viewer-page-1184-late-volume-context",
+      "observedFragments": [
+        "1184/1187"
+      ],
+      "pixelHeight": 1276,
+      "pixelWidth": 2390,
+      "printedFolio": null,
+      "role": "late_volume_navigation_context",
+      "scopeBoundary": "The capture admits only the visible NCL record or viewer surface. It does not establish raw official page bytes, printed folio, copy-level lineage, edition relation, or semantic authority.",
+      "screenshotPath": "/Users/softie/Desktop/스크린샷 2026-08-20 오후 8.11.37.png",
+      "sha256": "9dc70392002d72930bc3e8bfd7ae39ff0673b0c1f3277efd3f6423bd20c08030",
+      "sourceCategory": "USER_SUPPLIED_CAPTURE_OF_FIRST_PARTY_NCL_VIEWER",
+      "sourceId": "source.ncl.sanming-tonghui.1578.catalog-06589-rarecatx0136467",
+      "underlyingOfficialPageBytesObtained": false,
+      "viewerPageIndex": 1184,
+      "viewerPageTotal": 1187
+    },
+    {
+      "byteLength": 2958369,
+      "directObservation": "The official viewer surface visibly reports page 1185/1187 and shows the same late page-range navigation with an NCL-watermarked ruled/blank leaf. It is unrelated to the target section and cannot close any target folio or copy-lineage gate.",
+      "directVisualObservation": true,
+      "evidenceId": "ev.sanming-1578.ncl-06589-viewer-page-1185-late-volume-context",
+      "observedFragments": [
+        "1185/1187"
+      ],
+      "pixelHeight": 1248,
+      "pixelWidth": 2520,
+      "printedFolio": null,
+      "role": "late_volume_end_context",
+      "scopeBoundary": "The capture admits only the visible NCL record or viewer surface. It does not establish raw official page bytes, printed folio, copy-level lineage, edition relation, or semantic authority.",
+      "screenshotPath": "/Users/softie/Desktop/스크린샷 2026-08-20 오후 8.11.28.png",
+      "sha256": "fc831b06db3264a639ad743e2e75c027cc64d3fcf79c9cc4343438d3448859c2",
+      "sourceCategory": "USER_SUPPLIED_CAPTURE_OF_FIRST_PARTY_NCL_VIEWER",
+      "sourceId": "source.ncl.sanming-tonghui.1578.catalog-06589-rarecatx0136467",
+      "underlyingOfficialPageBytesObtained": false,
+      "viewerPageIndex": 1185,
+      "viewerPageTotal": 1187
+    },
+    {
+      "byteLength": 3294991,
+      "directObservation": "The official viewer surface visibly reports page 150/1187 and supplies a wider direct view of the target spread. No printed 葉次 is readable in this context capture; it is not a printed-folio proof.",
+      "directVisualObservation": true,
+      "evidenceId": "ev.sanming-1578.ncl-06589-viewer-page-150-folio-context-2026-08-20",
+      "observedFragments": [
+        "150/1187",
+        "論大運",
+        "葉次不可判讀"
+      ],
+      "pixelHeight": 1326,
+      "pixelWidth": 2364,
+      "printedFolio": null,
+      "role": "printed_folio_readability_context",
+      "scopeBoundary": "The capture admits only the visible NCL record or viewer surface. It does not establish raw official page bytes, printed folio, copy-level lineage, edition relation, or semantic authority.",
+      "screenshotPath": "/Users/softie/Desktop/스크린샷 2026-08-20 오후 8.20.01.png",
+      "sha256": "ba1e2aa538f5778c00698e51380442620c1110deccb5f480703fb8897bfc7a15",
+      "sourceCategory": "USER_SUPPLIED_CAPTURE_OF_FIRST_PARTY_NCL_VIEWER",
+      "sourceId": "source.ncl.sanming-tonghui.1578.catalog-06589-rarecatx0136467",
+      "underlyingOfficialPageBytesObtained": false,
+      "viewerPageIndex": 150,
+      "viewerPageTotal": 1187
+    },
+    {
+      "byteLength": 3165221,
+      "directObservation": "The official viewer surface visibly reports page 149/1187 and directly magnifies the page edge/版心/魚尾 region. 葉次 remains unreadable.",
+      "directVisualObservation": true,
+      "evidenceId": "ev.sanming-1578.ncl-06589-viewer-page-149-folio-detail-2026-08-20-1",
+      "observedFragments": [
+        "149/1187",
+        "版心",
+        "魚尾",
+        "葉次不可判讀"
+      ],
+      "pixelHeight": 1222,
+      "pixelWidth": 2358,
+      "printedFolio": null,
+      "role": "printed_folio_readability_detail",
+      "scopeBoundary": "The capture admits only the visible NCL record or viewer surface. It does not establish raw official page bytes, printed folio, copy-level lineage, edition relation, or semantic authority.",
+      "screenshotPath": "/Users/softie/Desktop/스크린샷 2026-08-20 오후 8.24.39.png",
+      "sha256": "94a34de9e0291ee4b6dfa1da17793d4ec0ef534c20cedacfbaa3e521f6679cf1",
+      "sourceCategory": "USER_SUPPLIED_CAPTURE_OF_FIRST_PARTY_NCL_VIEWER",
+      "sourceId": "source.ncl.sanming-tonghui.1578.catalog-06589-rarecatx0136467",
+      "underlyingOfficialPageBytesObtained": false,
+      "viewerPageIndex": 149,
+      "viewerPageTotal": 1187
+    },
+    {
+      "byteLength": 3010589,
+      "directObservation": "The official viewer surface visibly reports page 149/1187 and directly magnifies the page edge/版心/魚尾 region. 葉次 remains unreadable.",
+      "directVisualObservation": true,
+      "evidenceId": "ev.sanming-1578.ncl-06589-viewer-page-149-folio-detail-2026-08-20-2",
+      "observedFragments": [
+        "149/1187",
+        "版心",
+        "魚尾",
+        "葉次不可判讀"
+      ],
+      "pixelHeight": 1210,
+      "pixelWidth": 2322,
+      "printedFolio": null,
+      "role": "printed_folio_readability_detail",
+      "scopeBoundary": "The capture admits only the visible NCL record or viewer surface. It does not establish raw official page bytes, printed folio, copy-level lineage, edition relation, or semantic authority.",
+      "screenshotPath": "/Users/softie/Desktop/스크린샷 2026-08-20 오후 8.24.31.png",
+      "sha256": "5812d24f72a8a5efe64bcd71528e6709efbd3e7963715c5a0b495243dbb4c91f",
+      "sourceCategory": "USER_SUPPLIED_CAPTURE_OF_FIRST_PARTY_NCL_VIEWER",
+      "sourceId": "source.ncl.sanming-tonghui.1578.catalog-06589-rarecatx0136467",
+      "underlyingOfficialPageBytesObtained": false,
+      "viewerPageIndex": 149,
+      "viewerPageTotal": 1187
+    },
+    {
+      "byteLength": 3052750,
+      "directObservation": "The official viewer surface visibly reports page 149/1187 and directly magnifies the lower page edge/版心/魚尾 region. 葉次 remains unreadable.",
+      "directVisualObservation": true,
+      "evidenceId": "ev.sanming-1578.ncl-06589-viewer-page-149-folio-detail-2026-08-20-3",
+      "observedFragments": [
+        "149/1187",
+        "版心",
+        "魚尾",
+        "葉次不可判讀"
+      ],
+      "pixelHeight": 1228,
+      "pixelWidth": 2386,
+      "printedFolio": null,
+      "role": "printed_folio_readability_detail",
+      "scopeBoundary": "The capture admits only the visible NCL record or viewer surface. It does not establish raw official page bytes, printed folio, copy-level lineage, edition relation, or semantic authority.",
+      "screenshotPath": "/Users/softie/Desktop/스크린샷 2026-08-20 오후 8.24.22.png",
+      "sha256": "dc328af52d67019d2247fc2378c0926fa8f905c1f149a3596047704d2fa1ea4d",
+      "sourceCategory": "USER_SUPPLIED_CAPTURE_OF_FIRST_PARTY_NCL_VIEWER",
+      "sourceId": "source.ncl.sanming-tonghui.1578.catalog-06589-rarecatx0136467",
+      "underlyingOfficialPageBytesObtained": false,
+      "viewerPageIndex": 149,
+      "viewerPageTotal": 1187
+    },
+    {
+      "byteLength": 3194224,
+      "directObservation": "The official viewer surface visibly reports page 149/1187 and directly magnifies the 版心/魚尾 region beside the page text. 葉次 remains unreadable.",
+      "directVisualObservation": true,
+      "evidenceId": "ev.sanming-1578.ncl-06589-viewer-page-149-folio-detail-2026-08-20-4",
+      "observedFragments": [
+        "149/1187",
+        "版心",
+        "魚尾",
+        "葉次不可判讀"
+      ],
+      "pixelHeight": 1278,
+      "pixelWidth": 2306,
+      "printedFolio": null,
+      "role": "printed_folio_readability_detail",
+      "scopeBoundary": "The capture admits only the visible NCL record or viewer surface. It does not establish raw official page bytes, printed folio, copy-level lineage, edition relation, or semantic authority.",
+      "screenshotPath": "/Users/softie/Desktop/스크린샷 2026-08-20 오후 8.24.17.png",
+      "sha256": "8f6a257c77bb41f03c926ace0b54cde21db05352fcb0fb29262c92c9e86eb374",
+      "sourceCategory": "USER_SUPPLIED_CAPTURE_OF_FIRST_PARTY_NCL_VIEWER",
+      "sourceId": "source.ncl.sanming-tonghui.1578.catalog-06589-rarecatx0136467",
+      "underlyingOfficialPageBytesObtained": false,
+      "viewerPageIndex": 149,
+      "viewerPageTotal": 1187
+    },
+    {
+      "byteLength": 448908,
+      "directObservation": "This direct crop of the official viewer p.149/1187 版心/魚尾 and page-edge region remains insufficient to read 葉次.",
+      "directVisualObservation": true,
+      "evidenceId": "ev.sanming-1578.ncl-06589-viewer-page-149-folio-detail-2026-08-20-5",
+      "observedFragments": [
+        "149/1187",
+        "版心",
+        "魚尾",
+        "葉次不可判讀"
+      ],
+      "pixelHeight": 898,
+      "pixelWidth": 258,
+      "printedFolio": null,
+      "role": "printed_folio_readability_detail",
+      "scopeBoundary": "The capture admits only the visible NCL record or viewer surface. It does not establish raw official page bytes, printed folio, copy-level lineage, edition relation, or semantic authority.",
+      "screenshotPath": "/Users/softie/Desktop/스크린샷 2026-08-20 오후 8.19.54.png",
+      "sha256": "6372ef707c3a8db31834f3ff0a572b22e530e83a6056bdc7084b27423d8c82cd",
+      "sourceCategory": "USER_SUPPLIED_CAPTURE_OF_FIRST_PARTY_NCL_VIEWER",
+      "sourceId": "source.ncl.sanming-tonghui.1578.catalog-06589-rarecatx0136467",
+      "underlyingOfficialPageBytesObtained": false,
+      "viewerPageIndex": 149,
+      "viewerPageTotal": 1187
+    },
+    {
+      "byteLength": 425433,
+      "directObservation": "This direct crop of the official viewer p.149/1187 版心/魚尾 and page-edge region remains insufficient to read 葉次.",
+      "directVisualObservation": true,
+      "evidenceId": "ev.sanming-1578.ncl-06589-viewer-page-149-folio-detail-2026-08-20-6",
+      "observedFragments": [
+        "149/1187",
+        "版心",
+        "魚尾",
+        "葉次不可判讀"
+      ],
+      "pixelHeight": 874,
+      "pixelWidth": 268,
+      "printedFolio": null,
+      "role": "printed_folio_readability_detail",
+      "scopeBoundary": "The capture admits only the visible NCL record or viewer surface. It does not establish raw official page bytes, printed folio, copy-level lineage, edition relation, or semantic authority.",
+      "screenshotPath": "/Users/softie/Desktop/스크린샷 2026-08-20 오후 8.19.41.png",
+      "sha256": "a3661250be1239658b1e04428ae1f353da65f49af1f1e3d7970014cc7cce0b8c",
+      "sourceCategory": "USER_SUPPLIED_CAPTURE_OF_FIRST_PARTY_NCL_VIEWER",
+      "sourceId": "source.ncl.sanming-tonghui.1578.catalog-06589-rarecatx0136467",
+      "underlyingOfficialPageBytesObtained": false,
+      "viewerPageIndex": 149,
+      "viewerPageTotal": 1187
+    },
+    {
+      "byteLength": 3275295,
+      "directObservation": "The official viewer surface visibly reports page 151/1187 and directly magnifies the page edge/版心/魚尾 region. 葉次 remains unreadable.",
+      "directVisualObservation": true,
+      "evidenceId": "ev.sanming-1578.ncl-06589-viewer-page-151-folio-detail-2026-08-20-1",
+      "observedFragments": [
+        "151/1187",
+        "版心",
+        "魚尾",
+        "葉次不可判讀"
+      ],
+      "pixelHeight": 1288,
+      "pixelWidth": 2400,
+      "printedFolio": null,
+      "role": "printed_folio_readability_detail",
+      "scopeBoundary": "The capture admits only the visible NCL record or viewer surface. It does not establish raw official page bytes, printed folio, copy-level lineage, edition relation, or semantic authority.",
+      "screenshotPath": "/Users/softie/Desktop/스크린샷 2026-08-20 오후 8.24.53.png",
+      "sha256": "6b661f5e321be327315ff374df2a51c182fce1571c5411e6044d613f5bba66b1",
+      "sourceCategory": "USER_SUPPLIED_CAPTURE_OF_FIRST_PARTY_NCL_VIEWER",
+      "sourceId": "source.ncl.sanming-tonghui.1578.catalog-06589-rarecatx0136467",
+      "underlyingOfficialPageBytesObtained": false,
+      "viewerPageIndex": 151,
+      "viewerPageTotal": 1187
+    },
+    {
+      "byteLength": 3219893,
+      "directObservation": "The official viewer surface visibly reports page 151/1187 and directly magnifies the page edge/版心/魚尾 region. 葉次 remains unreadable.",
+      "directVisualObservation": true,
+      "evidenceId": "ev.sanming-1578.ncl-06589-viewer-page-151-folio-detail-2026-08-20-2",
+      "observedFragments": [
+        "151/1187",
+        "版心",
+        "魚尾",
+        "葉次不可判讀"
+      ],
+      "pixelHeight": 1288,
+      "pixelWidth": 2446,
+      "printedFolio": null,
+      "role": "printed_folio_readability_detail",
+      "scopeBoundary": "The capture admits only the visible NCL record or viewer surface. It does not establish raw official page bytes, printed folio, copy-level lineage, edition relation, or semantic authority.",
+      "screenshotPath": "/Users/softie/Desktop/스크린샷 2026-08-20 오후 8.25.00.png",
+      "sha256": "3d88de2530007dc5fb4c14302561ea5cf623809be766f47b82617087674d9eb9",
+      "sourceCategory": "USER_SUPPLIED_CAPTURE_OF_FIRST_PARTY_NCL_VIEWER",
+      "sourceId": "source.ncl.sanming-tonghui.1578.catalog-06589-rarecatx0136467",
+      "underlyingOfficialPageBytesObtained": false,
+      "viewerPageIndex": 151,
+      "viewerPageTotal": 1187
+    }
+  ],
+  "evidencePolicy": {
+    "copyLineage": "requires first-party accession/copy evidence or page-level physical collation",
+    "directCapture": "bounded_direct_visual_observation",
+    "mirror": "existing Commons scan remains a locator and comparison object; no new independent witness is counted",
+    "noWholeVolumeNegative": true,
+    "ocr": "locator_only",
+    "printedFolio": "must be visibly printed or institutionally crosswalked; viewer UI index is not a printed folio",
+    "underlyingOfficialPageBytes": "required_for_byte_level_witness_identity"
+  },
+  "firstPartyItem": {
+    "catalogFields": {
+      "author": "(明)萬民英(撰)",
+      "binding": "線裝",
+      "bookNumber": "06589",
+      "callNumber": "306.5 06589",
+      "carrier": "12冊",
+      "catalogRegistrationLabel": "登錄號",
+      "catalogRegistrationValue": "rarecatx0136467",
+      "dimensions": "匡21.4 x 14.7公分",
+      "holder": "國家圖書館",
+      "recordedEdition": "明萬曆戊寅(六年, 1578)刊本",
+      "title": "三命通會十二卷"
+    },
+    "copyLevelLineageStatus": "unresolved",
+    "internalScanLabel": "007583",
+    "internalScanLabelStatus": "directly_observed_under_06589_viewer_record",
+    "internalScanLabelToCatalogMapping": "unresolved",
+    "itemLabelScreenshotEvidenceId": "ev.sanming-1578.ncl-06589-viewer-page-2-item-label",
+    "physicalCopyIdentityStatus": "unresolved",
+    "recordIdentityStatus": "first_party_catalog_identity_observed",
+    "recordUrl": "https://rbook.ncl.edu.tw/NCLSearch/Search/SearchDetail?HasImage=&SourceID=1&item=26447d6c7bce4f449022760431185858fDU3MDkwMg2.stq2HEhfWJC_eUYaQeBiD_PNb2MtZqMpJAZgsDYhhYk_&page=&sourceWhereString=&whereString=IChDcmVhdGVyX05hbWUgbGlrZSAnJeiQrOawkeiLsSUnIG9yIERvY3VtZW50X1dyaXRlciBsaWtlICAnJeiQrOawkeiLsSUnICkg0.kCozK1ger_VDKjWLmYeI3_nb0xMenmNBgvJUAAV7WaE_",
+    "recordedDateIsPhysicalProductionDate": false,
+    "screenshotEvidenceId": "ev.sanming-1578.ncl-06589-record-screenshot-2026-08-20",
+    "sourceId": "source.ncl.sanming-tonghui.1578.catalog-06589-rarecatx0136467",
+    "viewerUrl": "https://rbook.ncl.edu.tw/NCLSearch/Search/SearchDetail?item=26447d6c7bce4f449022760431185858fDU3MDkwMg2.stq2HEhfWJC_eUYaQeBiD_PNb2MtZqMpJAZgsDYhhYk_&image=1&page=&SourceID=1&HasImage="
+  },
+  "lineageGraph": {
+    "copyLineageClosed": false,
+    "inheritedFromPredecessor": "artifacts/saju-five-classics-source-identity-frontier-v0/complete.json",
+    "newCanonicalEdges": [],
+    "newIndependentWitnesses": [],
+    "physicalIndependenceClosed": false,
+    "policy": "The viewer capture is not counted as a second physical or textual witness. The mirror candidate and 06590 records remain separate and unresolved.",
+    "printedFolioCrosswalkClosed": false,
+    "textualIndependenceClosed": false
+  },
+  "predecessor": {
+    "artifactByteSha256": "7c9bfec3cd2ed082d009c521c03658c8905b475f2f165d3cbcbdc78c0b3fd126",
+    "artifactPath": "artifacts/saju-five-classics-source-identity-frontier-v0/complete.json",
+    "artifactPayloadSha256": "0bfea06f16e0279d8cfb24dfb33aa023cf5469b9d146d699a343edd315d58d92",
+    "basisHead": "99e6cc624a1510487ad8bcf65347b3ee5f4e524e",
+    "blockerStatusBefore": "open",
+    "contentSha256": "a8792a7ae2bd69df00456931f22ea6ffa2ba84a259e10424ef91ce0d4018a921",
+    "preserved": true,
+    "schemaVersion": "saju-five-classics-source-identity-frontier-v0",
+    "version": "0.1.0"
+  },
+  "promotion": {
+    "blockingEdges": [
+      "official-page-bytes",
+      "printed-folio",
+      "copy-lineage",
+      "06589-06590-relation",
+      "local-to-physical",
+      "edition-collation",
+      "semantic-authority"
+    ],
+    "copyLineagePromoted": false,
+    "editionRelationPromoted": false,
+    "independencePromoted": false,
+    "printedFolioPromoted": false,
+    "productionChanged": false,
+    "promotionReadyClaimIds": [],
+    "ready": false,
+    "semanticAuthorityChanged": false,
+    "stableClaimPromotionCount": 0,
+    "status": "blocked"
+  },
+  "readiness": {
+    "availableForInterpretation": false,
+    "implementationSafeGrounding": "not_established",
+    "productionActivation": "blocked",
+    "promotionReadyClaimIds": [],
+    "reason": "Only a bounded official-viewer screenshot frontier was added; printed folio, raw bytes, copy lineage, edition relation, semantic authority, and local transmission remain unresolved.",
+    "semanticAuthority": "not_established",
+    "stableClaimPromotionCount": 0,
+    "status": "blocked"
+  },
+  "schemaVersion": "saju-sanming-1578-official-viewer-adjudication-v1",
+  "scope": {
+    "comparisonCompleted": [
+      "official viewer p.150–151 versus existing NCL-06589 mirror leaf 150–151 locator observations",
+      "official viewer total page index versus existing mirror PDF page count",
+      "official viewer p.101–187 第2卷 ordinal boundary versus target p.150–151",
+      "official viewer p.149–151 high-magnification 版心/魚尾 inspection versus the printed-folio gate"
+    ],
+    "directInspectionCompleted": [
+      "NCL 06589 record capture",
+      "official viewer p.2–3 item-label and record context",
+      "official viewer p.7 front-matter volume outline",
+      "official viewer p.99–101 第2卷 opening sequence",
+      "official viewer p.146–149 sequence context",
+      "official viewer p.150 target page",
+      "official viewer p.151 target page",
+      "official viewer p.149–151 direct 版心/魚尾 inspection for 葉次",
+      "official viewer p.187–188 第2卷 end sequence",
+      "official viewer p.1184–1185 late navigation context"
+    ],
+    "objective": "Reassess the Sanming 1578 provenance blocker using the first-party NCL 06589 item record capture and official viewer captures for p.150–151, while preserving the v0 source frontier and all unresolved copy/folio/lineage gates.",
+    "prohibited": [
+      "screenshot-to-official-page-byte identity",
+      "viewer page index to printed folio inference",
+      "viewer capture to copy-level lineage promotion",
+      "06589 to 06590 collapse",
+      "same section or phrase to same plate or transmission",
+      "direct page observation to semantic authority",
+      "direct page observation to production activation"
+    ],
+    "sourceOfTruth": "The supplied NCL record and viewer screenshots are admitted as bounded visual observations at their visible record and viewer-page boundaries. The v0 source-identity artifact remains the historical baseline for prior mirror scans, catalog records, and blocker state."
+  },
+  "sourceClaimReconciliation": {
+    "canonicalTransmissionEdgeCountAfter": 0,
+    "canonicalTransmissionEdgeCountBefore": 0,
+    "claims": [
+      {
+        "addedEvidenceRefs": [
+          "ev.sanming-1578.ncl-06589-record-screenshot-2026-08-20",
+          "ev.sanming-1578.ncl-06589-viewer-page-150",
+          "ev.sanming-1578.ncl-06589-viewer-page-151"
+        ],
+        "editionRelationAfter": "unresolved",
+        "editionRelationBefore": "unresolved",
+        "promotion": {
+          "ready": false,
+          "status": "blocked"
+        },
+        "relationId": "relation.dayun-direction",
+        "scopeDelta": "The official viewer captures add a bounded first-party viewer observation for the 06589 record and p.150–151. They do not change the relation status, edition relation, semantic equivalence, or implementation authority.",
+        "semanticEquivalenceAfter": "not_established",
+        "semanticEquivalenceBefore": "not_established",
+        "statusAfter": "direct_primary_page_locator_unpromoted",
+        "statusBefore": "direct_primary_page_locator_unpromoted"
+      },
+      {
+        "addedEvidenceRefs": [
+          "ev.sanming-1578.ncl-06589-record-screenshot-2026-08-20",
+          "ev.sanming-1578.ncl-06589-viewer-page-150",
+          "ev.sanming-1578.ncl-06589-viewer-page-151"
+        ],
+        "editionRelationAfter": "unresolved",
+        "editionRelationBefore": "unresolved",
+        "promotion": {
+          "ready": false,
+          "status": "blocked"
+        },
+        "relationId": "relation.three-days-one-year-start-age",
+        "scopeDelta": "The official viewer captures add a bounded first-party viewer observation for the 06589 record and p.150–151. They do not change the relation status, edition relation, semantic equivalence, or implementation authority.",
+        "semanticEquivalenceAfter": "not_established",
+        "semanticEquivalenceBefore": "not_established",
+        "statusAfter": "direct_primary_page_locator_unpromoted",
+        "statusBefore": "direct_primary_page_locator_unpromoted"
+      },
+      {
+        "addedEvidenceRefs": [
+          "ev.sanming-1578.ncl-06589-record-screenshot-2026-08-20",
+          "ev.sanming-1578.ncl-06589-viewer-page-150",
+          "ev.sanming-1578.ncl-06589-viewer-page-151"
+        ],
+        "editionRelationAfter": "unresolved",
+        "editionRelationBefore": "unresolved",
+        "promotion": {
+          "ready": false,
+          "status": "blocked"
+        },
+        "relationId": "relation.dayun-progression",
+        "scopeDelta": "The official viewer captures add a bounded first-party viewer observation for the 06589 record and p.150–151. They do not change the relation status, edition relation, semantic equivalence, or implementation authority.",
+        "semanticEquivalenceAfter": "not_established",
+        "semanticEquivalenceBefore": "not_established",
+        "statusAfter": "direct_primary_page_locator_unpromoted",
+        "statusBefore": "direct_primary_page_locator_unpromoted"
+      }
+    ],
+    "note": "The direct viewer pages add evidence references to existing timing locators but do not promote or rewrite any v0 claim relation.",
+    "semanticEquivalenceMutation": false,
+    "statusMutation": false
+  },
+  "summary": {
+    "blockerStatus": "open_narrowed",
+    "boundedViewerVolumeSequenceObserved": true,
+    "canonicalTransmissionEdgeCount": 0,
+    "copyLineageClosed": false,
+    "existingMirrorPageCount": 1000,
+    "firstPartyRecordIdentityObserved": true,
+    "firstPartyViewerTargetObserved": true,
+    "folioReadabilityCaptureCount": 9,
+    "folioReadabilityResult": "unresolved_not_legible_after_direct_magnification",
+    "folioReadabilityViewerPages": [
+      149,
+      150,
+      151
+    ],
+    "identityContextPageCount": 2,
+    "internalScanLabelObserved": true,
+    "leafSequenceReadable": false,
+    "officialPageBytesObtained": false,
+    "officialViewerPageTotal": 1187,
+    "printedFolioClosed": false,
+    "promotionCount": 0,
+    "screenshotEvidenceCount": 27,
+    "sequenceContextPageCount": 4,
+    "targetPageCount": 2,
+    "viewerRecordInternalLabelPairing": "bounded_intra_viewer_pairing",
+    "volumeSequenceContextCaptureCount": 9
+  },
+  "targetPageReconciliation": {
+    "adjacentViewerPages": [
+      146,
+      147,
+      148,
+      149
+    ],
+    "copyLineageClosed": false,
+    "firstPartyViewerTargetObserved": true,
+    "folioReadabilityAssessment": {
+      "directInspectionCompleted": true,
+      "evidenceIds": [
+        "ev.sanming-1578.ncl-06589-viewer-page-150-folio-context-2026-08-20",
+        "ev.sanming-1578.ncl-06589-viewer-page-149-folio-detail-2026-08-20-1",
+        "ev.sanming-1578.ncl-06589-viewer-page-149-folio-detail-2026-08-20-2",
+        "ev.sanming-1578.ncl-06589-viewer-page-149-folio-detail-2026-08-20-3",
+        "ev.sanming-1578.ncl-06589-viewer-page-149-folio-detail-2026-08-20-4",
+        "ev.sanming-1578.ncl-06589-viewer-page-149-folio-detail-2026-08-20-5",
+        "ev.sanming-1578.ncl-06589-viewer-page-149-folio-detail-2026-08-20-6",
+        "ev.sanming-1578.ncl-06589-viewer-page-151-folio-detail-2026-08-20-1",
+        "ev.sanming-1578.ncl-06589-viewer-page-151-folio-detail-2026-08-20-2"
+      ],
+      "inspectedFeatures": [
+        "版心",
+        "魚尾"
+      ],
+      "inspectedViewerPageIndices": [
+        149,
+        150,
+        151
+      ],
+      "leafSequenceReadable": false,
+      "printedFolioClosed": false,
+      "statement": "The supplied captures directly magnify the 版心/魚尾 and page-edge regions around viewer p.149–151, but 葉次 remains unreadable. The viewer indices remain digital locators only.",
+      "status": "unresolved_not_legible_after_direct_magnification",
+      "targetField": "葉次"
+    },
+    "folioReadabilityCaptureCount": 9,
+    "folioReadabilityViewerPages": [
+      149,
+      150,
+      151
+    ],
+    "identityContextPageCount": 2,
+    "identityContextViewerPages": [
+      2,
+      3
+    ],
+    "noWholeVolumeNegative": true,
+    "officialPageBytesObtained": false,
+    "officialViewerPageTotal": 1187,
+    "pageIndexComparison": {
+      "byteIdentityClosed": false,
+      "candidateMirrorLeaves": [
+        150,
+        151
+      ],
+      "existingCommonsMirrorPageCount": 1000,
+      "independentWitnessCountDelta": 0,
+      "officialViewerPageTotal": 1187,
+      "reason": "Different page totals and absent original viewer bytes/derivation metadata prevent a byte-level or leaf-level identity claim.",
+      "status": "section_and_phrase_correspondence_only"
+    },
+    "printedFolioClosed": false,
+    "productionAuthority": false,
+    "screenshotBytesObserved": true,
+    "semanticAuthority": "not_established",
+    "sequenceContextPageCount": 4,
+    "status": "bounded_first_party_viewer_capture_not_raw_witness_bytes",
+    "targetPageCount": 2,
+    "targetPages": [
+      {
+        "directObservation": "The official viewer capture directly shows the target section and timing/direction context at viewer index 150/1187.",
+        "evidenceId": "ev.sanming-1578.ncl-06589-viewer-page-150",
+        "existingMirrorCandidate": {
+          "byteIdentityClosed": false,
+          "comparisonStatus": "section_and_phrase_correspondence_only",
+          "reason": "The official viewer reports 1187 pages while the existing Commons mirror object has 1000 pages; no official page bytes or derivation manifest ties the two indices byte-for-byte.",
+          "scanLeaf": 150,
+          "sourceId": "source.ncl.sanming-tonghui.1578.scan-06589"
+        },
+        "heading": "三命通會卷之二 / 論大運",
+        "observedFragments": [
+          "論大運",
+          "折除以三日為年",
+          "陽男陰女",
+          "陰男陽女",
+          "立春"
+        ],
+        "officialPageBytesObtained": false,
+        "printedFolio": null,
+        "printedFolioStatus": "unresolved_not_visible_in_capture",
+        "productionAuthority": false,
+        "screenshotBytesObserved": true,
+        "semanticAuthority": "identity_and_locator_only",
+        "sourceId": "source.ncl.sanming-tonghui.1578.catalog-06589-rarecatx0136467",
+        "viewerPageIndex": 150,
+        "viewerPageTotal": 1187,
+        "viewerToPhysicalCopyBinding": "bounded_record_and_viewer_capture_context_only"
+      },
+      {
+        "directObservation": "The official viewer capture directly shows the continuation of the target section at viewer index 151/1187.",
+        "evidenceId": "ev.sanming-1578.ncl-06589-viewer-page-151",
+        "existingMirrorCandidate": {
+          "byteIdentityClosed": false,
+          "comparisonStatus": "section_and_phrase_correspondence_only",
+          "reason": "The official viewer reports 1187 pages while the existing Commons mirror object has 1000 pages; no official page bytes or derivation manifest ties the two indices byte-for-byte.",
+          "scanLeaf": 151,
+          "sourceId": "source.ncl.sanming-tonghui.1578.scan-06589"
+        },
+        "heading": "三命通會卷之二 / 論大運 (continuation)",
+        "observedFragments": [
+          "論大運",
+          "三日而成一歲"
+        ],
+        "officialPageBytesObtained": false,
+        "printedFolio": null,
+        "printedFolioStatus": "unresolved_not_visible_in_capture",
+        "productionAuthority": false,
+        "screenshotBytesObserved": true,
+        "semanticAuthority": "identity_and_locator_only",
+        "sourceId": "source.ncl.sanming-tonghui.1578.catalog-06589-rarecatx0136467",
+        "viewerPageIndex": 151,
+        "viewerPageTotal": 1187,
+        "viewerToPhysicalCopyBinding": "bounded_record_and_viewer_capture_context_only"
+      }
+    ],
+    "viewerRecordInternalLabelPairing": {
+      "catalogMappingClosed": false,
+      "copyLineageClosed": false,
+      "label": "007583",
+      "recordBookNumber": "06589",
+      "recordCallNumber": "306.5 06589",
+      "status": "bounded_intra_viewer_pairing",
+      "viewerPageIndex": 2
+    },
+    "viewerUrl": "https://rbook.ncl.edu.tw/NCLSearch/Search/SearchDetail?item=26447d6c7bce4f449022760431185858fDU3MDkwMg2.stq2HEhfWJC_eUYaQeBiD_PNb2MtZqMpJAZgsDYhhYk_&image=1&page=&SourceID=1&HasImage=",
+    "viewerVolumeContext": {
+      "copyLineageClosed": false,
+      "endEvidenceId": "ev.sanming-1578.ncl-06589-viewer-page-187-volume-2-end",
+      "endViewerPageIndex": 187,
+      "physicalVolumeIdentityClosed": false,
+      "postEndEvidenceId": "ev.sanming-1578.ncl-06589-viewer-page-188-post-volume-2",
+      "postEndViewerPageIndex": 188,
+      "printedFolioClosed": false,
+      "startEvidenceId": "ev.sanming-1578.ncl-06589-viewer-page-101-volume-2-start",
+      "startViewerPageIndex": 101,
+      "statement": "The supplied viewer captures show 第2卷 beginning at viewer index 101, an explicit 第2卷終 marker at viewer index 187, and post-boundary context at 188; target viewer indices 150–151 fall within that ordinal range. This does not supply printed folio numbers or a physical-copy/scan-lineage bridge.",
+      "status": "bounded_viewer_sequence_only",
+      "targetViewerPageIndices": [
+        150,
+        151
+      ],
+      "targetWithinViewerOrdinalRange": true,
+      "volumeLabel": "第2卷"
+    },
+    "volumeSequenceContextCaptureCount": 9,
+    "volumeSequenceContextViewerPages": [
+      7,
+      99,
+      100,
+      101,
+      187,
+      188,
+      1184,
+      1185
+    ]
+  },
+  "version": "1.0.0"
+}
