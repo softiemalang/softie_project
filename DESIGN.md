@@ -481,3 +481,14 @@ Warm Liquid Glass는 따뜻한 사진의 색과 형태가 패널 안에서도 �
 - reference implementation이 바뀌거나 더 대표적인 화면이 생길 때.
 - 실제 구현 과정에서 이 문서가 모호하거나 서로 충돌한다고 확인될 때.
 - 새로운 사진 무드보드가 현재 기본 팔레트보다 프로젝트의 정서를 더 잘 대표하고, 실제 화면 검증까지 통과했을 때.
+
+## 13. AI-friendly reuse workflow
+
+새 UI 작업은 `docs/ui-workflow.md`의 짧은 작업 메모와 `docs/ui-system.json`의 machine-readable index를 먼저 읽습니다. 이 구조는 SEED의 Foundations → Components → Patterns 라우팅과 read-only Doctor 패턴에서 작업 방식만 차용한 것이며, Softie의 토큰 값이나 외형을 SEED 값으로 바꾸지 않습니다.
+
+- **Foundations:** 실제 runtime source는 `src/styles.css`입니다. `--ag-*` token을 먼저 찾고, 인덱스는 값이 아닌 역할·selector·source 위치만 제공합니다.
+- **Components:** 현재 시각 공용 계층은 `.ag-shell`, `.ag-layout`, `.ag-glass`, `.ag-liquid-glass`, `.ag-operational-surface`, `.ag-primary-action`, `.ag-secondary-action`, `.ag-segmented`, `.ag-kicker`, `.ag-status` 중심의 CSS API입니다. React 컴포넌트는 동작·데이터 경계가 실제로 공유될 때만 승격합니다.
+- **Patterns:** `/`는 editorial index, `/interpretation-prep`는 복합 form/result, `/scheduler`는 dense operational workflow의 reference implementation입니다. 새 화면은 가장 가까운 reference를 조합하고, 한 번만 필요한 것은 feature-local로 둡니다.
+- **Preservation:** 기존 `warm-classic` 화면과 `.app-shell`, `.card`, `.soft-button`, `.status`, `.subtle`, `.section-kicker`는 자동 변환하지 않습니다. 현재 작업 중인 변경과 legacy 시각 상태를 보존합니다.
+- **Promotion:** 새 pattern은 두 번째 실제 사용과 검증이 생긴 뒤에만 shared CSS API 승격을 검토하며, 승격 시 이 문서와 `docs/ui-system.json`을 함께 갱신합니다.
+- **Doctor:** `npm run check:ui-system`은 source를 수정하지 않고 인덱스의 source 연결·selector/token 존재·변경된 UI 줄의 raw literal/inline style drift를 진단합니다. 실패를 기존 값 일괄 변경으로 숨기지 않습니다.

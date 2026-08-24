@@ -97,6 +97,7 @@
     "audit:security": "node scripts/run-osv-security-audit.mjs",
     "audit:dependencies": "depcruise --config .dependency-cruiser.cjs --output-type err-long -- src scripts tools test",
     "audit:unused": "knip --config knip.jsonc --no-exit-code --no-progress",
+    "check:ui-system": "node scripts/check-ui-system.mjs",
     "preview": "vite preview",
     "de405:v2:build-runner": "node tools/de405-cspice-runner/build.mjs",
     "de405:v2:generate": "node scripts/generate-de405-canonical-v2.mjs",

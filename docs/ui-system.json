@@ -1,0 +1,203 @@
+{
+  "schemaVersion": "softie-ui-system-v1",
+  "name": "softie-project",
+  "description": "Machine-readable index for the existing Softie visual system. It points to source files; it does not duplicate token values.",
+  "authority": {
+    "designLanguage": "DESIGN.md",
+    "runtimeTokensAndSharedCssApi": "src/styles.css",
+    "workflow": "docs/ui-workflow.md",
+    "registry": "docs/ui-system.json",
+    "precedence": [
+      "existing route implementation and runtime CSS",
+      "DESIGN.md",
+      "docs/ui-system.json",
+      "external references such as SEED"
+    ],
+    "registryRole": "navigation-and-contract-only; token values stay in the runtime source"
+  },
+  "adoption": {
+    "newAndRedesignedSurfacesOnly": true,
+    "legacyAutoRestyle": false,
+    "batchTokenRewrite": false,
+    "promotionRule": "Keep a new solution feature-local until a second verified use justifies promotion to the shared CSS API.",
+    "visualSharedLayer": "shared-css-api",
+    "reactComponentLayer": "feature-local-unless-a-stable-cross-route-contract-is-proven"
+  },
+  "references": [
+    {
+      "id": "home-editorial-index",
+      "route": "/",
+      "implementation": "src/pages/HomePage.jsx",
+      "style": "src/styles.css",
+      "role": "editorial service index",
+      "preferredShell": ".ag-shell",
+      "preferredLayout": ".ag-layout",
+      "preferredSurface": ".ag-glass"
+    },
+    {
+      "id": "interpretation-prep-utility",
+      "route": "/interpretation-prep",
+      "implementation": "src/interpretationPrep/InterpretationPrepPage.jsx",
+      "style": "src/interpretationPrep/interpretationPrep.css",
+      "role": "complex utility and form",
+      "preferredShell": ".ag-shell",
+      "preferredLayout": ".app-shell",
+      "preferredSurface": ".ag-glass"
+    },
+    {
+      "id": "scheduler-operational",
+      "route": "/scheduler",
+      "implementation": "src/scheduler/SchedulerAuthGate.jsx",
+      "style": "src/styles.css",
+      "role": "dense operational workflow",
+      "preferredShell": ".ag-shell",
+      "preferredSurface": ".ag-operational-surface",
+      "preferredAction": ".ag-primary-action"
+    }
+  ],
+  "tokens": [
+    { "id": "atmosphere-fallback", "cssVar": "--ag-atmosphere-fallback", "role": "background fallback" },
+    { "id": "canvas", "cssVar": "--ag-canvas", "role": "atmospheric canvas" },
+    { "id": "atmosphere-overlay", "cssVar": "--ag-atmosphere-overlay", "role": "background contrast overlay" },
+    { "id": "surface-glass", "cssVar": "--ag-surface-glass", "role": "primary glass surface" },
+    { "id": "surface-glass-strong", "cssVar": "--ag-surface-glass-strong", "role": "strong glass surface" },
+    { "id": "surface-operational", "cssVar": "--ag-surface-operational", "role": "stable input and data surface" },
+    { "id": "surface-selected", "cssVar": "--ag-surface-selected", "role": "selected state surface" },
+    { "id": "surface-liquid", "cssVar": "--ag-surface-liquid", "role": "selective liquid glass surface" },
+    { "id": "surface-liquid-strong", "cssVar": "--ag-surface-liquid-strong", "role": "focused liquid glass surface" },
+    { "id": "surface-scheduler-default", "cssVar": "--ag-surface-scheduler-default", "role": "dense workflow default surface" },
+    { "id": "surface-scheduler-selected", "cssVar": "--ag-surface-scheduler-selected", "role": "dense workflow selected surface" },
+    { "id": "text", "cssVar": "--ag-text", "role": "primary text" },
+    { "id": "text-muted", "cssVar": "--ag-text-muted", "role": "secondary text" },
+    { "id": "text-tertiary", "cssVar": "--ag-text-tertiary", "role": "tertiary text" },
+    { "id": "brand", "cssVar": "--ag-brand", "role": "primary action" },
+    { "id": "brand-hover", "cssVar": "--ag-brand-hover", "role": "primary action hover" },
+    { "id": "accent", "cssVar": "--ag-accent", "role": "kicker and accent" },
+    { "id": "line", "cssVar": "--ag-line", "role": "quiet boundary" },
+    { "id": "line-strong", "cssVar": "--ag-line-strong", "role": "selected or focused boundary" },
+    { "id": "line-liquid", "cssVar": "--ag-line-liquid", "role": "liquid glass boundary" },
+    { "id": "line-soft", "cssVar": "--ag-line-soft", "role": "repeated dense boundary" },
+    { "id": "line-scheduler-selected", "cssVar": "--ag-line-scheduler-selected", "role": "dense workflow selected boundary" },
+    { "id": "focus", "cssVar": "--ag-focus", "role": "keyboard focus" },
+    { "id": "success", "cssVar": "--ag-success", "role": "success state" },
+    { "id": "success-soft", "cssVar": "--ag-success-soft", "role": "success state surface" },
+    { "id": "warning", "cssVar": "--ag-warning", "role": "warning state" },
+    { "id": "warning-soft", "cssVar": "--ag-warning-soft", "role": "warning state surface" },
+    { "id": "danger", "cssVar": "--ag-danger", "role": "danger state" },
+    { "id": "danger-soft", "cssVar": "--ag-danger-soft", "role": "danger state surface" },
+    { "id": "radius-card", "cssVar": "--ag-radius-card", "role": "primary card shape" },
+    { "id": "radius-item", "cssVar": "--ag-radius-item", "role": "nested item shape" },
+    { "id": "radius-control", "cssVar": "--ag-radius-control", "role": "control shape" },
+    { "id": "radius-pill", "cssVar": "--ag-radius-pill", "role": "status and compact action shape" },
+    { "id": "shadow-glass", "cssVar": "--ag-shadow-glass", "role": "primary glass depth" },
+    { "id": "shadow-control", "cssVar": "--ag-shadow-control", "role": "action depth" },
+    { "id": "shadow-liquid", "cssVar": "--ag-shadow-liquid", "role": "liquid glass depth" },
+    { "id": "glass-blur", "cssVar": "--ag-glass-blur", "role": "primary glass blur" },
+    { "id": "liquid-blur", "cssVar": "--ag-liquid-blur", "role": "liquid glass blur" },
+    { "id": "content-wide", "cssVar": "--ag-content-wide", "role": "wide layout limit" },
+    { "id": "duration-fast", "cssVar": "--ag-duration-fast", "role": "fast interaction baseline" },
+    { "id": "async-content-enter-duration", "cssVar": "--ag-scheduler-async-content-enter-duration", "role": "role-scoped async content enter" },
+    { "id": "touch-target", "cssVar": "--ios27-selective-touch-target", "role": "minimum interaction target" }
+  ],
+  "patterns": [
+    {
+      "id": "atmospheric-shell",
+      "kind": "layout",
+      "source": "src/styles.css",
+      "selectors": [".ag-shell", ".ag-shell::before", "[data-design-theme='atmospheric']"],
+      "use": "Use for a new or explicitly redesigned atmospheric route; keep the existing shell when preserving a legacy screen."
+    },
+    {
+      "id": "content-layout",
+      "kind": "layout",
+      "source": "src/styles.css",
+      "selectors": [".ag-layout"],
+      "use": "Use the shared width, safe-area, and page padding before adding route-local layout values."
+    },
+    {
+      "id": "glass-surface",
+      "kind": "surface",
+      "source": "src/styles.css",
+      "selectors": [".ag-glass", ".ag-glass-strong"],
+      "use": "Use for hero and primary section surfaces; do not nest repeated glass surfaces without a clear hierarchy."
+    },
+    {
+      "id": "liquid-glass-surface",
+      "kind": "surface",
+      "source": "src/styles.css",
+      "selectors": [".ag-liquid-glass"],
+      "use": "Use selectively for a low-density focal surface such as a hero, account card, or confirmation sheet."
+    },
+    {
+      "id": "operational-surface",
+      "kind": "surface",
+      "source": "src/styles.css",
+      "selectors": [".ag-operational-surface"],
+      "use": "Use for inputs, dense data, repeated rows, and long content where stable contrast matters."
+    },
+    {
+      "id": "actions",
+      "kind": "control",
+      "source": "src/styles.css",
+      "selectors": [".ag-primary-action", ".ag-secondary-action"],
+      "use": "Prefer native buttons composed with these shared action classes; preserve 44px minimum interaction height."
+    },
+    {
+      "id": "segmented-selection",
+      "kind": "selection",
+      "source": "src/styles.css",
+      "selectors": [".ag-segmented", ".ag-segmented > button", ".ag-segmented > button.is-active"],
+      "use": "Use for tabs or compact mutually exclusive choices; selected state needs more than color alone."
+    },
+    {
+      "id": "kicker",
+      "kind": "type",
+      "source": "src/styles.css",
+      "selectors": [".ag-kicker"],
+      "use": "Use for short section or product labels, not body copy."
+    },
+    {
+      "id": "status",
+      "kind": "feedback",
+      "source": "src/styles.css",
+      "selectors": [".ag-status", ".ag-status.is-success", ".ag-status.is-warning", ".ag-status.is-danger"],
+      "use": "Use text-backed semantic status with an explicit state class; do not communicate state with color alone."
+    },
+    {
+      "id": "native-controls",
+      "kind": "control",
+      "source": "src/styles.css",
+      "selectors": ["button", "input", "select", "textarea"],
+      "use": "Prefer native controls and preserve labels, focus-visible, disabled, and accessible state behavior."
+    }
+  ],
+  "legacyPreserveOnly": [
+    { "selector": ".app-shell", "source": "src/styles.css", "policy": "Preserve existing screens; it may remain as a compatibility wrapper around an atmospheric shell." },
+    { "selector": ".hero", "source": "src/styles.css", "policy": "Preserve existing warm-classic screens; do not batch-restyle." },
+    { "selector": ".card", "source": "src/styles.css", "policy": "Preserve existing screens and feature-local extensions; use ag-* surfaces for new canonical work." },
+    { "selector": ".soft-button", "source": "src/styles.css", "policy": "Preserve existing behavior and local scheduler/legacy variants; do not create a second global action vocabulary." },
+    { "selector": ".status", "source": "src/styles.css", "policy": "Preserve existing status semantics; use ag-status only when adopting the atmospheric API in a scoped task." },
+    { "selector": ".subtle", "source": "src/styles.css", "policy": "Preserve existing copy hierarchy; do not replace it across routes as cleanup." },
+    { "selector": ".section-kicker", "source": "src/styles.css", "policy": "Preserve existing screens; ag-kicker is the new atmospheric pattern." }
+  ],
+  "antiPatterns": [
+    "Do not add a new raw color, radius, shadow, or shared spacing value when an existing token or pattern fits.",
+    "Do not add inline visual styles for new UI; use a feature class and existing CSS variables.",
+    "Do not copy SEED values, palette names, component APIs, or package dependencies into Softie.",
+    "Do not promote a feature-local class to shared CSS after one use or without a verified second use.",
+    "Do not batch-replace legacy classes or restyle screens that are outside the requested route.",
+    "Do not introduce a React wrapper merely to rename an existing CSS primitive; promote a component only when behavior and accessibility are shared too."
+  ],
+  "check": {
+    "readOnly": true,
+    "baselineCommand": "npm run check:ui-system",
+    "changedUiCommand": "npm run check:ui-system -- --changed --files <changed-ui-file>...",
+    "requiredValidation": ["registry source references", "new UI raw literal scan", "git diff --check", "relevant tests", "npm run build"],
+    "findingStates": ["pass", "fail", "not-applicable", "not-verified"]
+  },
+  "externalProcessReferences": [
+    "https://seed-design.io/llms.txt",
+    "https://seed-design.io/ai-integration/skill",
+    "https://seed-design.io/ai-integration/skill/doctor"
+  ]
+}
