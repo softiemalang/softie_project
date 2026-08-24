@@ -33,6 +33,8 @@ export const SAJU_HISTORICAL_TEST_FILES = Object.freeze([
   'sajuGeminiV6ParentAdjudicationHistorical.test.js',
   'sajuGeminiV7ParentAdjudicationHistorical.test.js',
   'sajuFiveClassicsSourceIdentityFrontierHistorical.test.js',
+  'sajuMingliYueyanFirstPartyInspectionHistorical.test.js',
+  'sajuMingliYueyanDirectWitnessAdjudicationV1Historical.test.js',
   'sajuTimingAuthorityFrontierHistorical.test.js',
 ])
 
@@ -42,6 +44,7 @@ export const HISTORICAL_TEST_FILES = Object.freeze([
 ])
 
 export const SOURCE_TEST_FILES = Object.freeze([
+  'pdfSourceResolverSourceProfile.test.js',
   'sajuFiveClassicsClaimProvenanceClosure.test.js',
   'sajuFiveClassicsSourceIdentityFrontier.test.js',
   'sajuLocalSourceCorpusObservation.test.js',
