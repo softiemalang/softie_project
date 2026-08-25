@@ -20,7 +20,7 @@
 - The handler requires `SUPABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY`, `SOFTIE_SAJU_PROFILE_ID`, and `GOOGLE_BACKUP_USER_ID`; values are not recorded in this repository.
 - The profile’s `user_id` must exactly match `GOOGLE_BACKUP_USER_ID`; missing or mismatched identities fail closed before report export.
 - The target date is the previous calendar date in `Asia/Seoul`. If no matching report exists for that date and profile, the handler returns a skipped result without a Drive write.
-- The handler currently reads `saju_profiles` and `saju_fortune_reports` with `select('*')`. The generic Google backup field manifest does not automatically govern this dedicated handler, so this document does not claim a field-minimized Saju archive.
+- The handler reads `saju_profiles` and `saju_fortune_reports` through the explicit fields in [`googleBackupFieldManifest.js`](../supabase/functions/_shared/googleBackupFieldManifest.js). New columns are not exported unless they are explicitly added to that manifest. The existing declared profile/report fields remain in scope; field removal or minimization is a separate policy decision.
 - When a report exists, the handler creates or updates `softie_project/saju/daily-reports/<year>/<target-date>.json` in Google Drive. The payload contains the selected profile and report rows plus archive metadata.
 - Google access-token retrieval/refresh and service-role database access remain backend-only.
 

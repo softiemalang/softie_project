@@ -3,6 +3,7 @@ import { createClient } from 'https://esm.sh/@supabase/supabase-js@2'
 import { corsHeaders } from '../_shared/cors.ts'
 import { getOrRefreshToken } from '../_shared/googleToken.ts'
 import { getOrCreateFolder, uploadFile, updateFile } from '../_shared/googleBackup.ts'
+import { getGoogleBackupSelectFields } from '../_shared/googleBackupFieldManifest.js'
 import { assertSajuBackupOwnerBinding } from '../_shared/sajuBackupOwnership.js'
 
 /**
@@ -62,7 +63,7 @@ serve(async (req) => {
     // 5. Query profile data and bind the backup owner before reading report data
     const { data: profile, error: profileError } = await supabase
       .from('saju_profiles')
-      .select('*')
+      .select(getGoogleBackupSelectFields('saju_profiles'))
       .eq('id', softieProfileId)
       .maybeSingle()
 
@@ -75,7 +76,7 @@ serve(async (req) => {
     // 6. Query latest report for target date
     const { data: report, error: reportError } = await supabase
       .from('saju_fortune_reports')
-      .select('*')
+      .select(getGoogleBackupSelectFields('saju_fortune_reports'))
       .eq('report_date', targetDate)
       .eq('profile_id', softieProfileId)
       .order('created_at', { ascending: false })

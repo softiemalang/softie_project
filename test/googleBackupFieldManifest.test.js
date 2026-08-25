@@ -80,3 +80,11 @@ test('Google backup materializer selects only the explicit manifest fields', () 
     /Missing Google backup field manifest/,
   )
 })
+
+test('dedicated Saju daily backup uses the explicit profile and report manifests', () => {
+  const source = read('supabase/functions/google-drive-saju-daily-report-backup/index.ts')
+
+  assert.match(source, /\.from\('saju_profiles'\)[\s\S]*?\.select\(getGoogleBackupSelectFields\('saju_profiles'\)\)/)
+  assert.match(source, /\.from\('saju_fortune_reports'\)[\s\S]*?\.select\(getGoogleBackupSelectFields\('saju_fortune_reports'\)\)/)
+  assert.doesNotMatch(source, /\.select\(\s*['"`]\*['"`]\s*\)/)
+})
