@@ -1,4 +1,9 @@
 // Google Drive API helper
+import {
+  getGoogleBackupSelectFields,
+  GOOGLE_BACKUP_TABLES,
+} from './googleBackupFieldManifest.js'
+
 export async function getOrCreateFolder(accessToken: string, folderName: string, parentId?: string) {
   let query = `mimeType='application/vnd.google-apps.folder' and name='${folderName}' and trashed=false`
   if (parentId) {
@@ -113,7 +118,7 @@ export async function gatherBackupData(
 
   async function safeFetch(tableName: string, applyFilter: (query: any) => any = (query) => query) {
     try {
-      const query = supabase.from(tableName).select('*')
+      const query = supabase.from(tableName).select(getGoogleBackupSelectFields(tableName))
       const { data, error } = await applyFilter(query)
       if (error) {
         console.warn(`Failed to fetch ${tableName}:`, error.message)
@@ -161,13 +166,7 @@ export async function gatherBackupData(
       storeTable(table, data)
     }
   } else {
-    const expectedTables = [
-      'reservations', 'work_events', 'scheduler_work_logs',
-      'saju_profiles', 'saju_natal_snapshots', 'saju_daily_snapshots', 'saju_fortune_reports',
-      'push_subscriptions',
-    ]
-
-    for (const table of expectedTables) {
+    for (const table of GOOGLE_BACKUP_TABLES) {
       storeTable(table, await safeFetch(table))
     }
   }

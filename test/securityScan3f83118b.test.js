@@ -155,6 +155,7 @@ test('Google integration documentation follows executable auth and backup bounda
 
 test('Google backup and token access boundaries remain explicit', () => {
   const backup = read('supabase/functions/_shared/googleBackup.ts')
+  const backupManifest = read('supabase/functions/_shared/googleBackupFieldManifest.js')
   const token = read('supabase/functions/_shared/googleToken.ts')
   const manualBackup = read('supabase/functions/google-drive-backup/index.ts')
   const schedulerBackup = read('supabase/functions/google-drive-scheduler-scheduled-backup/index.ts')
@@ -171,7 +172,7 @@ test('Google backup and token access boundaries remain explicit', () => {
 
   assert.match(backup, /eq\('owner_key', scope\.ownerKey\)/)
   assert.match(backup, /eq\('user_id', scope\.ownerKey\)/)
-  assert.match(backup, /'push_subscriptions'/)
+  assert.match(backupManifest, /push_subscriptions/)
   assert.doesNotMatch(backup, /google_calendar_tokens|google_oauth_states/)
   assert.match(manualBackup, /gatherBackupData\(supabase, 'manual', backupType, \{ ownerKey: userId \}\)/)
   assert.match(schedulerBackup, /gatherBackupData\([\s\S]*\{\s*ownerKey\s*\}/)
