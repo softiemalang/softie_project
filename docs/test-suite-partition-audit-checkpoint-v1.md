@@ -1,23 +1,29 @@
-# Test-suite separation audit checkpoint v1
+# Test-suite separation audit checkpoint v1 (historical, non-canonical)
 
 - Checkpoint date: `2026-08-19`
 - Observed checkout HEAD: `063d5a7e79efc5db6a358c424777ce6187ecba8e`
 - Branch: `main`
 - Scope: test discovery partition, Ziwei P0 negative-runner isolation, and
   source-bound/historical-source separation
-- Change class: documentation checkpoint only
+- Change class: documentation checkpoint only; historical record
 
-This checkpoint records the observable contracts in the current working tree.
-It does not change test meaning, profile membership, skip expressions,
-materializers, canonical artifacts, fixture bytes, or execution concurrency.
+This document records the observable state of the checkout at the ref above.
+It is a historical, non-canonical record and must not be read as the current
+partition contract. The live source of truth for current test discovery and
+profile membership is `scripts/lib/test-suite-discovery.mjs`; the execution
+path is `scripts/run-default-tests.mjs`, with command aliases in `package.json`.
+Use those files and their executable output for current counts, membership,
+skip behavior, and concurrency. This checkpoint does not change test meaning,
+profile membership, skip expressions, materializers, canonical artifacts,
+fixture bytes, or execution concurrency.
 Pre-existing tracked and untracked work outside this checkpoint is excluded.
 
 ## 1. Intentional default skips
 
-These are the two skips observed by the default suite. A skipped test is not
-counted as an external verification pass.
+These are the two skips observed by the default suite at this checkpoint. A
+skipped test is not counted as an external verification pass.
 
-| Test | Condition | Meaning when skipped | Current profile |
+| Test | Condition | Meaning when skipped | Profile at checkpoint |
 | --- | --- | --- | --- |
 | `test/de405OfficialInputs.test.js` — official NAIF archive and SPK | Either `DE405_OFFICIAL_CSPICE_ARCHIVE` or `DE405_OFFICIAL_SPK` is absent | Official CSPICE/SPK bytes were not supplied; no source hash or extraction check ran | `default`, `all` |
 | `test/designReferenceLowRiskInteractionFoundationBatch.test.js` — exact materialization replay | `git rev-parse HEAD` differs from pinned `BASELINE_HEAD=52df5f9ac7d3309140b076711de0fc008ae4db82` | Frozen historical replay was not attempted from a different checkout; stored artifact validity is unchanged | `default`, `all` |
@@ -25,18 +31,20 @@ counted as an external verification pass.
 The first condition is intentional because official NAIF inputs are acquired per
 job and are not repository fixtures. When both paths are supplied, the test
 checks the fixed CSPICE and DE405 hashes, the 2,547-file source manifest, and
-source-only extraction. The adjacent workflow/provenance contract test remains
-default.
+source-only extraction. The adjacent workflow/provenance contract test remained
+in the default profile at the checkpoint.
 
 The second condition is intentional because the materializer rejects a
 non-baseline HEAD. The stored artifact, integrity sidecar, source references,
-and tamper-boundary tests remain current default checks; only exact replay is
-conditional. Neither skip is an obsolete exception or a license to regenerate
-an artifact from the current HEAD.
+and tamper-boundary tests were default checks at the checkpoint; only exact
+replay was conditional. Neither skip was an obsolete exception or a license to
+regenerate an artifact from the checkpoint's current HEAD.
 
 ## 2. Discovery and profile partition
 
-The source of truth is `scripts/lib/test-suite-discovery.mjs`:
+The live source of truth remains `scripts/lib/test-suite-discovery.mjs`, with
+`scripts/run-default-tests.mjs` as the runner. The following membership and
+counts are historical observations from this checkpoint, not current values:
 
 - `default`: complement of explicit source, historical, and artifact sets
 - `source`: 24 explicitly source-bound test files
@@ -54,11 +62,11 @@ Observed file counts at this checkpoint:
 | artifact | 13 |
 | all | 230 |
 
-`discoverTestSuites()` rejects duplicate or unassigned files. The partition
-test also verifies sorted output, exact source/historical lists, default
-exclusion, and the `{ file, profile }` assignment ledger. The runner keeps the
-existing sequential Node test invocation (`--test-concurrency=1`); this
-checkpoint does not change concurrency.
+At this checkpoint, `discoverTestSuites()` rejected duplicate or unassigned
+files. The partition test also verified sorted output, exact
+source/historical lists, default exclusion, and the `{ file, profile }`
+assignment ledger. The runner used the sequential Node test invocation
+(`--test-concurrency=1`); this checkpoint did not change concurrency.
 
 The command mapping is:
 
@@ -146,9 +154,11 @@ rewrite during this checkpoint:
 
 ## 6. Validation record
 
-The following checks were run against the observed checkout. The source
-profile result is an expected fail-closed environment boundary, not a default
-suite regression: the required real PDF/image inputs were not supplied.
+The following checks were run against the observed checkout ref above. These
+results are historical evidence, not a claim about the current checkout. The
+source profile result is an expected fail-closed environment boundary, not a
+default suite regression: the required real PDF/image inputs were not
+supplied.
 
 | Check | Result | Evidence |
 | --- | --- | --- |
