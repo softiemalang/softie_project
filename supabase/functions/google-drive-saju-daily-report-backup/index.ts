@@ -3,6 +3,7 @@ import { createClient } from 'https://esm.sh/@supabase/supabase-js@2'
 import { corsHeaders } from '../_shared/cors.ts'
 import { getOrRefreshToken } from '../_shared/googleToken.ts'
 import { getOrCreateFolder, uploadFile, updateFile } from '../_shared/googleBackup.ts'
+import { assertSajuBackupOwnerBinding } from '../_shared/sajuBackupOwnership.js'
 
 /**
  * Computes the previous date in Asia/Seoul (KST) as YYYY-MM-DD.
@@ -58,7 +59,20 @@ serve(async (req) => {
       throw new Error('SOFTIE_SAJU_PROFILE_ID is not configured')
     }
 
-    // 5. Query latest report for target date
+    // 5. Query profile data and bind the backup owner before reading report data
+    const { data: profile, error: profileError } = await supabase
+      .from('saju_profiles')
+      .select('*')
+      .eq('id', softieProfileId)
+      .maybeSingle()
+
+    if (profileError) throw new Error(`Database error (profile): ${profileError.message}`)
+
+    const googleBackupUserId = Deno.env.get('GOOGLE_BACKUP_USER_ID')
+    if (!googleBackupUserId) throw new Error('GOOGLE_BACKUP_USER_ID is not configured')
+    assertSajuBackupOwnerBinding(profile, googleBackupUserId)
+
+    // 6. Query latest report for target date
     const { data: report, error: reportError } = await supabase
       .from('saju_fortune_reports')
       .select('*')
@@ -76,15 +90,6 @@ serve(async (req) => {
       })
     }
 
-    // 6. Query profile data
-    const { data: profile, error: profileError } = await supabase
-      .from('saju_profiles')
-      .select('*')
-      .eq('id', softieProfileId)
-      .maybeSingle()
-
-    if (profileError) throw new Error(`Database error (profile): ${profileError.message}`)
-
     // 7. Prepare JSON content
     const finalJson = {
       metadata: {
@@ -100,10 +105,7 @@ serve(async (req) => {
     }
 
     // 8. Google Drive Upload/Update
-    const userId = Deno.env.get('GOOGLE_BACKUP_USER_ID')
-    if (!userId) throw new Error('GOOGLE_BACKUP_USER_ID is not configured')
-    
-    const accessToken = await getOrRefreshToken(supabase, userId)
+    const accessToken = await getOrRefreshToken(supabase, googleBackupUserId)
     
     const rootId = await getOrCreateFolder(accessToken, 'softie_project')
     const sajuId = await getOrCreateFolder(accessToken, 'saju', rootId)

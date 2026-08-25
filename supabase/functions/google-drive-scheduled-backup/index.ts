@@ -4,6 +4,7 @@ import { corsHeaders } from '../_shared/cors.ts'
 import { getOrRefreshToken } from '../_shared/googleToken.ts'
 import { gatherBackupData, uploadToDriveIfNew } from '../_shared/googleBackup.ts'
 import { findOrCreateSpreadsheet, updateBackupDashboardAndSnapshots } from '../_shared/googleSheets.ts'
+import { buildScheduledBackupOutcome } from '../_shared/scheduledBackupResult.js'
 
 serve(async (req) => {
   if (req.method === 'OPTIONS') {
@@ -43,6 +44,7 @@ serve(async (req) => {
 
       const backupData = await gatherBackupData(supabase, 'scheduled', 'full')
       const backupResult = await uploadToDriveIfNew(accessToken, backupData.finalJson, backupData.fileName, backupData.subFolder, backupData.year, true)
+      const backupOutcome = buildScheduledBackupOutcome({ backupData, backupResult })
 
       let spreadsheetId = Deno.env.get('GOOGLE_SHEETS_LOG_SPREADSHEET_ID')
       if (!spreadsheetId) {
@@ -50,18 +52,16 @@ serve(async (req) => {
       }
 
       try {
-        await updateBackupDashboardAndSnapshots(accessToken, spreadsheetId, backupData.finalJson, backupResult)
+        await updateBackupDashboardAndSnapshots(accessToken, spreadsheetId, backupData.finalJson, {
+          ...backupResult,
+          partial: backupOutcome.body.partial,
+        })
       } catch (sheetsError) {
         console.error('[google-drive-scheduled-backup] Sheets Error:', sheetsError)
       }
 
-      return new Response(JSON.stringify({ 
-        success: true, 
-        skipped: backupResult.skipped,
-        fileId: backupResult.fileId, 
-        fileName: backupData.fileName, 
-        metadata: backupData.finalJson.metadata 
-      }), {
+      return new Response(JSON.stringify(backupOutcome.body), {
+        status: backupOutcome.httpStatus,
         headers: { ...corsHeaders, 'Content-Type': 'application/json' },
       })
     } catch (innerError) {

@@ -115,6 +115,9 @@ export async function updateBackupDashboardAndSnapshots(accessToken: string, spr
   // 1. Dashboard
   const md = finalJson.metadata
   const counts = md.row_counts || {}
+  const backupStatus = backupResult.partial === true
+    ? 'partial'
+    : backupResult.skipped ? 'skipped_existing_backup' : 'success'
   
   const now = new Date()
   const kstOffset = 9 * 60 * 60 * 1000
@@ -136,7 +139,7 @@ export async function updateBackupDashboardAndSnapshots(accessToken: string, spr
     ['last_backup_at', md.created_at],
     ['last_backup_date', md.backup_date],
     ['last_backup_file', backupResult.fileName],
-    ['last_backup_status', backupResult.skipped ? 'skipped_existing_backup' : 'success'],
+    ['last_backup_status', backupStatus],
     ['last_backup_mode', md.backup_mode],
     ['latest_drive_path', md.drive_path],
     ['total_reservations', counts.reservations || 0],
@@ -154,7 +157,7 @@ export async function updateBackupDashboardAndSnapshots(accessToken: string, spr
     backupResult.fileName,
     md.drive_path,
     backupResult.fileId || '',
-    backupResult.skipped ? 'skipped_existing_backup' : 'success',
+    backupStatus,
     md.backup_mode,
     md.created_at,
     JSON.stringify(md.row_counts || {}),

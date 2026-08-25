@@ -152,3 +152,65 @@ test('Google integration documentation follows executable auth and backup bounda
   assert.doesNotMatch(docs, /supabase (?:db push|secrets set|functions deploy)/i)
   assert.equal(existsSync(resolve(root, 'patch_readme.cjs')), false)
 })
+
+test('Google backup and token access boundaries remain explicit', () => {
+  const backup = read('supabase/functions/_shared/googleBackup.ts')
+  const token = read('supabase/functions/_shared/googleToken.ts')
+  const manualBackup = read('supabase/functions/google-drive-backup/index.ts')
+  const schedulerBackup = read('supabase/functions/google-drive-scheduler-scheduled-backup/index.ts')
+  const rehearsalBackup = read('supabase/functions/_shared/rehearsalBackup.ts')
+  const rehearsalScheduledBackup = read('supabase/functions/google-drive-rehearsal-scheduled-backup/index.ts')
+  const sajuDailyBackup = read('supabase/functions/google-drive-saju-daily-report-backup/index.ts')
+  const sajuBackupOwnership = read('supabase/functions/_shared/sajuBackupOwnership.js')
+  const scheduledBackup = read('supabase/functions/google-drive-scheduled-backup/index.ts')
+  const scheduledBackupResult = read('supabase/functions/_shared/scheduledBackupResult.js')
+  const googleSheets = read('supabase/functions/_shared/googleSheets.ts')
+  const tokenMigration = read('supabase/migrations/20260428_add_google_calendar_tokens.sql')
+  const stateMigration = read('supabase/migrations/20260501123000_harden_google_oauth_state.sql')
+  const privilegeMigration = read('supabase/migrations/20260720163643_harden_scheduler_table_privileges.sql')
+
+  assert.match(backup, /eq\('owner_key', scope\.ownerKey\)/)
+  assert.match(backup, /eq\('user_id', scope\.ownerKey\)/)
+  assert.match(backup, /'push_subscriptions'/)
+  assert.doesNotMatch(backup, /google_calendar_tokens|google_oauth_states/)
+  assert.match(manualBackup, /gatherBackupData\(supabase, 'manual', backupType, \{ ownerKey: userId \}\)/)
+  assert.match(schedulerBackup, /gatherBackupData\([\s\S]*\{\s*ownerKey\s*\}/)
+  assert.match(rehearsalBackup, /eq\('owner_key', userId\)/)
+  assert.match(rehearsalScheduledBackup, /backupUserRehearsalEvents\(supabase, ownerKey, yearMonth\)/)
+  assert.match(sajuBackupOwnership, /profileOwnerId !== googleBackupUserId/)
+  assert.match(sajuDailyBackup, /assertSajuBackupOwnerBinding\(profile, googleBackupUserId\)/)
+  const sajuOwnerBindingOffset = sajuDailyBackup.indexOf('assertSajuBackupOwnerBinding(profile, googleBackupUserId)')
+  const sajuReportQueryOffset = sajuDailyBackup.indexOf(".from('saju_fortune_reports')")
+  const sajuTokenLookupOffset = sajuDailyBackup.indexOf('getOrRefreshToken(supabase, googleBackupUserId)')
+  assert.ok(sajuOwnerBindingOffset >= 0)
+  assert.ok(sajuReportQueryOffset > sajuOwnerBindingOffset)
+  assert.ok(sajuTokenLookupOffset > sajuOwnerBindingOffset)
+  assert.match(scheduledBackup, /buildScheduledBackupOutcome\(\{ backupData, backupResult \}\)/)
+  assert.match(scheduledBackup, /JSON\.stringify\(backupOutcome\.body\)/)
+  assert.match(scheduledBackup, /status: backupOutcome\.httpStatus/)
+  assert.match(scheduledBackupResult, /Array\.isArray\(skippedTables\)/)
+  assert.match(scheduledBackupResult, /success: !partial/)
+  assert.match(scheduledBackupResult, /httpStatus: partial \? 500 : 200/)
+  assert.match(googleSheets, /backupResult\.partial === true[\s\S]*'partial'/)
+
+  assert.match(token, /\.from\('google_calendar_tokens'\)/)
+  assert.match(token, /\.eq\('user_id', userId\)/)
+  assert.match(token, /refresh_token: tokens\.refresh_token \|\| data\.refresh_token/)
+  assert.match(tokenMigration, /alter table public\.google_calendar_tokens enable row level security/)
+  assert.match(stateMigration, /revoke all on table public\.google_calendar_tokens from anon, authenticated/)
+  assert.match(stateMigration, /grant all on table public\.google_calendar_tokens to service_role/)
+  assert.match(privilegeMigration, /revoke all privileges on table public\.google_calendar_tokens[\s\S]*from public, anon, authenticated, service_role/)
+  assert.match(privilegeMigration, /grant select, insert, update, delete on table public\.google_calendar_tokens[\s\S]*to service_role/)
+
+  for (const functionPath of [
+    'supabase/functions/google-connection-status/index.ts',
+    'supabase/functions/google-calendar-create-event/index.ts',
+    'supabase/functions/google-calendar-update-event/index.ts',
+    'supabase/functions/google-calendar-delete-event/index.ts',
+    'supabase/functions/google-drive-backup/index.ts',
+    'supabase/functions/google-drive-rehearsal-backup/index.ts',
+    'supabase/functions/google-sheets-append-log/index.ts',
+  ]) {
+    assert.match(read(functionPath), /requireGoogleManualUser\(req,/)
+  }
+})
