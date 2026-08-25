@@ -1,60 +1,29 @@
-# Rehearsal Backup Cron Setup
+# Rehearsal scheduled backup — local contract and verification boundary
 
-이 문서는 수동으로 등록된 리허설 백업 크론 작업에 대한 정보를 담고 있습니다. 
-마이그레이션 파일(`20260504100000_add_rehearsal_backup_cron.sql`)에 포함되어 있던 내용을 백업 및 가이드 용도로 보관합니다.
+> Historical/reference note: this document does not define a cron schedule,
+> provide executable SQL, or assert the state of a deployed Supabase project.
+> The exact local checkout, executable function code, and local configuration
+> are authoritative for the contract below. Remote state requires a separate,
+> authorized verification.
 
-## SQL reference (Manual Setup)
+## Local source of truth
 
-```sql
--- Enable pg_cron and pg_net if not already enabled
-create extension if not exists pg_cron;
-create extension if not exists pg_net;
+- Handler: [`supabase/functions/google-drive-rehearsal-scheduled-backup/index.ts`](../supabase/functions/google-drive-rehearsal-scheduled-backup/index.ts)
+- Backup materializer: [`supabase/functions/_shared/rehearsalBackup.ts`](../supabase/functions/_shared/rehearsalBackup.ts)
+- Function gateway setting: [`supabase/config.toml`](../supabase/config.toml), section `[functions.google-drive-rehearsal-scheduled-backup]`
+- Broader Google integration index: [`GOOGLE_INTEGRATION.md`](../GOOGLE_INTEGRATION.md)
 
--- Create a helper function to invoke the backup via HTTP
--- This avoids hardcoding the URL in the cron schedule directly.
-create or replace function public.invoke_rehearsal_scheduled_backup()
-returns void
-language plpgsql
-security definer
-as $$
-declare
-  project_url text;
-  cron_secret text;
-begin
-  -- NOTE: You must set BACKUP_CRON_SECRET in Supabase Secrets.
-  -- The function 'google-drive-rehearsal-scheduled-backup' validates this secret.
-  
-  -- Attempt to get project URL from settings (works in many Supabase environments)
-  -- If this doesn't work, replace with your actual https://PROJECT_REF.supabase.co
-  project_url := (select value from postgrest.settings where name = 'db-uri');
-  
-  -- Since we cannot easily access Edge Function secrets from SQL directly for security reasons,
-  -- you should provide the secret here manually once or store it in a private vault.
-  -- For this migration, we assume you will trigger it via a shell command or set it manually.
-  
-  -- Example: select net.http_post(url := '...', headers := '{"Authorization": "Bearer ..."}'::jsonb);
-end;
-$$;
+## Observed local contract
 
--- Manual setup recommended for the Cron Job URL and Secret
--- to avoid committing sensitive info to the repository.
+- The gateway has `verify_jwt = false`; the handler requires `BACKUP_CRON_SECRET` and an exact `Authorization: Bearer <secret>` value.
+- The handler also requires `REHEARSAL_BACKUP_OWNER_KEY`; configuration values are not recorded in this repository.
+- The handler computes the current `Asia/Seoul` month and passes it with the owner key to `backupUserRehearsalEvents`.
+- The materializer reads the owner’s `rehearsal_events` for that month, creates or updates `Softie Backups/rehearsals/rehearsal-events-YYYY-MM.json` in Google Drive, and attempts to write the observed backup metadata back to the selected rows. The current helper logs a row-update error without converting the upload result into a failed response.
+- The exported JSON is built from an explicit event-field mapping in `rehearsalBackup.ts`; Google tokens and service-role credentials remain backend-only.
 
-/*
--- To manually enable this, run the following in SQL Editor:
+## What this checkout does not establish
 
-select cron.schedule(
-  'rehearsal-daily-backup',
-  '30 15 * * *', -- 00:30 Asia/Seoul
-  $$
-  select net.http_post(
-      url:='https://YOUR_PROJECT_REF.supabase.co/functions/v1/google-drive-rehearsal-scheduled-backup',
-      headers:='{"Content-Type": "application/json", "Authorization": "Bearer YOUR_BACKUP_CRON_SECRET"}'::jsonb
-  );
-  $$
-);
-*/
-```
+- No local migration in this checkout registers a rehearsal backup schedule or invokes this Edge Function. The local database scheduling code found in migrations is for scheduler reminder dispatch, not rehearsal backup.
+- Therefore this repository does not prove a cron registration, schedule time, last run, deployed function revision, Supabase secret value, Google token state, or Drive folder state.
 
-## Status
-- `rehearsal-daily-backup` 크론 작업은 Supabase SQL Editor에서 수동으로 등록되어 활성 상태입니다.
-- 마이그레이션 파일을 통한 자동 적용은 제외되었습니다.
+Do not execute a setup SQL copied from this document or treat a prior “active” status as current evidence. Any cron setup or verification is a separate operational action that must use the current deployment/configuration contract and explicit external-state authorization.
