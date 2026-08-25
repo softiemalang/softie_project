@@ -6,6 +6,8 @@
 
 이 문서는 2026-08-01 온라인 OSV.dev 데이터베이스 snapshot에 대한 npm lockfile 감사 기록이다. 취약점 발견은 감사 결과이며 실행 실패가 아니다. 이번 파일럿에서는 의존성이나 lockfile을 수정하지 않았다.
 
+> **Historical record — not a current dependency or vulnerability status.** 기준은 2026-08-01의 온라인 OSV snapshot과 당시 루트 `package-lock.json`뿐이며, 이 파일럿에는 정확한 source `HEAD`가 기록되어 있지 않다. 아래 package 수·버전·finding 수·advisory 결과는 해당 snapshot의 관찰값이다. 현재 dependency 상태와 취약점 판정은 현재 `package.json`, `package-lock.json`, 실행 가능한 wrapper, 그리고 새 advisory scan을 기준으로 다시 확인해야 한다.
+
 ## 도구 정보
 
 - 도구: OSV-Scanner V2

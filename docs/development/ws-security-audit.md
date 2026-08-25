@@ -2,6 +2,8 @@
 
 감사일: 2026-08-01 (Asia/Seoul)
 
+> **Historical record — not a current dependency or advisory verdict.** 기준 source `HEAD`는 `f0af1cf23f8df84305228252341cce7f47d9eaa7`이며, 당시 `ws@8.20.0` lockfile과 registry/API DNS 제한 아래의 후보 검증 결과를 보존한다. `ws@8.21.1` 후보는 이후 `fae15f6`에서 lockfile에 반영되었으므로 candidate/incomplete 문구는 당시 상태의 기록이다. 현재 dependency·advisory·runtime 도달성은 현재 코드와 `package-lock.json` 및 새 검증으로 판단해야 한다.
+
 ## 결론
 
 - `ws`는 root 직접 dependency가 아니다.

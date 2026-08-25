@@ -1,5 +1,7 @@
 # Codex Security scan 3f83118b audit
 
+> **Historical record — not current production status.** This document records scan `3f83118b-a35c-414a-9d7e-08599ddb184d` against the exact target revision and linked-service state stated below. Its finding classifications, deployment observations, secrets/configuration observations, and `current disposition` labels are as-of that audit only. Current local code/configuration must be checked at the exact inspected ref; current database, Edge Function, Vercel, and secret state requires a fresh authorized external verification.
+
 ## Scope and verdict
 
 - Scan: `3f83118b-a35c-414a-9d7e-08599ddb184d`

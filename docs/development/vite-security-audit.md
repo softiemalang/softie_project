@@ -6,6 +6,8 @@
 
 이 문서는 2026-08-01 KST에 source HEAD `c4b3578e0946c454b78fdcb59d499cdd971eeae0`에서 수행한 읽기 중심 감사 결과다. root 의존성은 변경하지 않았고, 후보 설치는 `/tmp/softie-vite-audit.BVS8P9`의 git-tracked snapshot에서만 수행했다.
 
+> **Historical record — candidate-era upgrade analysis.** 이 문서의 baseline은 위 source `HEAD`의 Vite 5 상태이고, 후보 설치·advisory·build/smoke 결과도 2026-08-01 당시 snapshot에 한정된다. Vite `6.4.3` 권고는 이후 `f0af1cf`에서 적용되었으므로 아래 “minimum safe path”와 baseline 버전은 현재 작업 지시나 현재 dependency 상태가 아니다. 현재 Rollup fallback/postinstall 동작과 lockfile은 현재 코드·`package-lock.json`을 source of truth로 다시 확인해야 한다.
+
 ## 기준점과 현재 구조
 
 - branch: `main`; `origin/main...main`: `0 0`
