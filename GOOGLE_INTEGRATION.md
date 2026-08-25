@@ -1,150 +1,94 @@
-# Google Ecosystem Integration MVP
+# Google integrations
 
-This document outlines the current state of the Google Ecosystem integrations within the `softie_project`.
+이 문서는 현재 checkout의 Google 연동 경계를 가리키는 최소 통합 문서다. 실행 가능한 source of truth는 다음 파일이다.
 
-## 1. Overview of Completed MVP Features
+- Frontend 호출: [`src/scheduler/googleApi.js`](src/scheduler/googleApi.js), [`src/lib/googleApi.js`](src/lib/googleApi.js)
+- Supabase 함수 설정: [`supabase/config.toml`](supabase/config.toml)
+- OAuth 인증·state: [`supabase/functions/_shared/googleManualAuth.ts`](supabase/functions/_shared/googleManualAuth.ts), [`supabase/functions/_shared/googleOAuth.ts`](supabase/functions/_shared/googleOAuth.ts), `supabase/functions/google-oauth-*/`
+- Token/Google API 처리: `supabase/functions/_shared/googleToken.ts`, `supabase/functions/_shared/googleBackup.ts`, `supabase/functions/_shared/googleSheets.ts`
+- Database schema와 권한: `supabase/migrations/`
 
-- **Google Calendar (One-Way Creation):** Automatically creates a Google Calendar event when a reservation is saved or updated.
-- **Google Drive (Manual Backup):** Exports important application data as a JSON file and uploads it to `softie_project/backups/manual/YYYY/` in the user's Google Drive.
-- **Google Drive (Scheduled Backup):** An automated Edge Function that runs daily to create a snapshot at `softie_project/backups/daily/YYYY/YYYY-MM-DD.json`. Skips if already exists.
-- **Google Sheets (Append Logging):** Best-effort logging of reservation events and backup completions to a designated Google Spreadsheet.
+이 문서는 원격 배포 상태, Supabase secrets, Vercel 환경변수, Google Cloud Console 설정, pg_cron 등록 상태를 증명하지 않는다.
 
-## 2. Architecture & Security
+## Current authentication boundary
 
-- **Frontend Role:** The frontend only triggers actions via Supabase Edge Function invocations and displays the result status.
-- **Backend Role:** All Google API calls are securely performed within Supabase Edge Functions.
-- **Token Management:** The `_shared/googleToken.ts` helper handles loading and refreshing Google access tokens.
-- **Security:** Google access tokens, refresh tokens, client secrets, and service role keys are **never** exposed to the frontend code.
-- **Authentication & JWT Bypass:** 
-  - The application currently authenticates users via `deviceId` / `localKey` rather than full Supabase Auth sessions. 
-  - Therefore, the Google Edge Functions (`google-oauth-callback`, `google-calendar-create-event`, `google-drive-backup`, `google-sheets-append-log`) are deployed with `verify_jwt = false` in `supabase/config.toml`.
-  - `google-oauth-callback` MUST bypass JWT because it receives external redirects from Google that do not contain a Supabase Authorization header.
-  - **Safety Requirement:** Because JWT verification is disabled, each public Google function strictly validates the `userId`/`deviceId` parameter internally before performing any action.
-- **OAuth Flow:** 
-  - Frontend redirect starts at `https://accounts.google.com/o/oauth2/v2/auth?redirect_uri=...`
-  - The `redirect_uri` MUST be the URL of the deployed `google-oauth-callback` Edge Function.
-  - The Edge Function exchanges the code for a token, stores it, and redirects back to the `FRONTEND_URL`.
-  - The frontend tracks its Google connection status using a separate `googleStatus` UI state, preventing conflicts with Web Push notification states.
+- Google 수동 연동은 `deviceId`/`localKey`를 인증 수단으로 사용하지 않는다. Frontend가 Supabase session의 bearer token과 `userId`를 보내고, Edge Function이 `auth.getUser()`로 token을 검증한 뒤 body의 `userId`와 일치하는지 확인한다.
+- `google-oauth-callback`만 Google의 외부 redirect를 받기 때문에 gateway JWT 검증이 꺼져 있다. 정확한 함수별 `verify_jwt` 값은 [`supabase/config.toml`](supabase/config.toml)을 기준으로 한다.
+- Callback은 `google_oauth_states`의 만료·일회성 사용·허용된 return origin을 확인한 뒤 token을 교환하고 저장한다.
+- Google access/refresh token과 service-role key는 frontend에 전달하지 않는다. Token은 Edge Function의 service-role 경로에서만 읽고 갱신한다.
 
-## 3. Required Environment Variables & Secrets
+## OAuth contract
 
-**Frontend (Vercel / Vite env):**
-- `VITE_GOOGLE_CLIENT_ID`: Google OAuth Client ID.
-- `VITE_GOOGLE_REDIRECT_URI`: The exact URL to the deployed `google-oauth-callback` Edge Function.
+`src/scheduler/googleApi.js`가 `google-oauth-start`를 호출하고, 함수가 Google authorization URL을 생성한다. Google은 `google-oauth-callback`으로 redirect하며, callback의 `GOOGLE_REDIRECT_URI`와 state가 token 교환·저장에 사용된다.
 
-**Backend (Supabase Edge Functions):**
-- `GOOGLE_CLIENT_ID`: Google OAuth Client ID.
-- `GOOGLE_CLIENT_SECRET`: Google OAuth Client Secret.
-- `GOOGLE_REDIRECT_URI`: The exact URL to the deployed `google-oauth-callback` Edge Function (Must match the one provided by frontend).
-- `FRONTEND_URL`: The URL of the deployed frontend (e.g., `https://softie-project.vercel.app`). Used by the Edge Function to redirect back after success.
-- `SUPABASE_URL` / `SUPABASE_SERVICE_ROLE_KEY`: Supabase API keys.
-- `GOOGLE_SHEETS_LOG_SPREADSHEET_ID`: (Optional) If omitted, the app auto-creates/reuses a `softie_project_logs` spreadsheet.
-- `GOOGLE_BACKUP_USER_ID`: The `user_id` (or `deviceId`) corresponding to the dedicated Google account in `google_calendar_tokens`. Used by the scheduled backup function to identify which token to use.
-- `BACKUP_CRON_SECRET`: Required. The scheduled backup endpoint fails closed when this secret is missing and rejects requests without the matching bearer token.
+현재 요청 scope는 다음과 같다.
 
-## 4. Required OAuth Scopes
+- `https://www.googleapis.com/auth/calendar.events`
+- `https://www.googleapis.com/auth/drive.file`
+- `https://www.googleapis.com/auth/spreadsheets`
 
-Users must consent to the following scopes during the OAuth flow:
+OAuth state와 redirect origin의 허용 목록은 [`supabase/functions/_shared/googleOAuth.ts`](supabase/functions/_shared/googleOAuth.ts)의 실행 코드를 따른다. `FRONTEND_URL`/`SITE_URL`은 오래된 state 또는 허용 origin이 없는 경우의 callback fallback이다.
 
-- `https://www.googleapis.com/auth/calendar.events` (Calendar event creation)
-- `https://www.googleapis.com/auth/drive.file` (Drive file access for app-created files)
-- `https://www.googleapis.com/auth/spreadsheets` (Sheets append access)
+## Edge Functions
 
-## 5. Edge Functions
+현재 Google 함수 표면은 `supabase/functions/`와 `supabase/config.toml`을 함께 확인한다.
 
-- `google-oauth-callback`: Handles the OAuth redirect, exchanges the code for tokens, and redirects back to `FRONTEND_URL`.
-- `google-calendar-create-event`: Creates calendar events and prevents duplicates.
-- `google-drive-backup`: Generates manual JSON backups and uploads them to Google Drive.
-- `google-drive-scheduled-backup`: Generates automated daily JSON backups and updates the Sheets dashboard/snapshots.
-- `google-sheets-append-log`: Appends rows to specific tabs. Auto-creates `softie_project_logs` if `GOOGLE_SHEETS_LOG_SPREADSHEET_ID` is missing.
+- OAuth: `google-oauth-start`, `google-oauth-callback`, `google-connection-status`
+- Calendar: `google-calendar-create-event`, `google-calendar-update-event`, `google-calendar-delete-event`
+- Manual Drive: `google-drive-backup`, `google-drive-rehearsal-backup`
+- Sheets: `google-sheets-append-log`
+- Scheduled Drive: `google-drive-scheduled-backup`, `google-drive-scheduler-scheduled-backup`, `google-drive-rehearsal-scheduled-backup`, `google-drive-saju-daily-report-backup`
 
-## 6. Database Changes
+수동 함수는 handler-level bearer/user binding을 유지해야 한다. Scheduled 함수는 Supabase Auth 대신 `BACKUP_CRON_SECRET`을 확인하고 각 함수가 요구하는 owner/profile secret을 사용한다.
 
-- `reservations.google_event_id`: Added to track the linked Google Calendar event and prevent duplicate creations.
-- `google_calendar_tokens`: Stores user OAuth tokens. **This table is explicitly excluded from Drive backups for security.**
+## Environment names
 
-## 7. Manual Deployment Checklist
+값 자체는 이 문서나 repository에 기록하지 않는다.
 
-1. Push database changes: `supabase db push`
-2. Set all required secrets in Supabase:
-   ```bash
-   supabase secrets set GOOGLE_CLIENT_ID="..." GOOGLE_CLIENT_SECRET="..." GOOGLE_REDIRECT_URI="https://YOUR_PROJECT_REF.supabase.co/functions/v1/google-oauth-callback" FRONTEND_URL="https://softie-project.vercel.app"
-   ```
-3. Set Vercel Env Vars:
-   - `VITE_GOOGLE_CLIENT_ID`
-   - `VITE_GOOGLE_REDIRECT_URI` (Must match Supabase `GOOGLE_REDIRECT_URI`)
-4. Deploy Edge Functions:
-   - `supabase functions deploy google-oauth-callback`
-   - `supabase functions deploy google-calendar-create-event`
-   - `supabase functions deploy google-drive-backup`
-   - `supabase functions deploy google-sheets-append-log`
-   - `supabase functions deploy google-drive-scheduled-backup`
-5. Reconnect the Google account in the app.
-6. Test Calendar, Drive, and Sheets features.
+Frontend에서 설정 존재 여부를 확인하는 값:
 
-## 8. Manual Test Checklist
+- `VITE_GOOGLE_CLIENT_ID`
+- `VITE_GOOGLE_REDIRECT_URI`
 
-- [ ] Create a reservation in the app.
-- [ ] Verify the event appears in Google Calendar.
-- [ ] Verify `reservations.google_event_id` is populated in the database.
-- [ ] Run a manual Drive backup from the app settings.
-- [ ] Verify the JSON backup file is created in Google Drive.
-- [ ] Verify new rows are appended to the `scheduler_logs` and `backup_logs` tabs in the configured Google Sheet.
+Edge Function runtime에서 사용하는 값:
 
-## 9. Troubleshooting Google OAuth (redirect_uri & bad_oauth_state)
+- `GOOGLE_CLIENT_ID`, `GOOGLE_CLIENT_SECRET`, `GOOGLE_REDIRECT_URI`
+- `SUPABASE_URL`, `SUPABASE_ANON_KEY`, `SUPABASE_SERVICE_ROLE_KEY`
+- `FRONTEND_URL` 또는 callback fallback용 `SITE_URL`
+- `GOOGLE_SHEETS_LOG_SPREADSHEET_ID` 및 Saju 전용 `GOOGLE_SAJU_SHEETS_LOG_SPREADSHEET_ID`
+- `GOOGLE_BACKUP_USER_ID`, `BACKUP_CRON_SECRET`
+- Scheduled 특화 값: `SCHEDULER_BACKUP_OWNER_KEY`, `REHEARSAL_BACKUP_OWNER_KEY`, `SOFTIE_SAJU_PROFILE_ID`
 
-- **UNAUTHORIZED_NO_AUTH_HEADER:**
-  If an Edge Function returns a "Missing authorization header" error, it means `verify_jwt = false` is missing in `supabase/config.toml`, or the function was deployed without the `--no-verify-jwt` flag. OAuth callbacks must allow unauthenticated redirects from Google, and the current app design requires other Google functions to accept deviceId instead of Supabase Auth.
-- **Could not find the table 'public.google_calendar_tokens' in the schema cache:**
-  If the OAuth callback fails with this error, it means the database migrations have not been pushed to the production Supabase database. Run `supabase db push` to apply the migrations.
-- **Drive Backup returns HTML ("<!DOCTYPE") / "Function response is not JSON":**
-  If the Drive backup fails with a JSON parsing error on the frontend, check the Google Drive upload endpoint in the Edge Function.
-  - ✅ **Correct endpoint:** `https://www.googleapis.com/upload/drive/v3/files?uploadType=multipart`
-  - ❌ **Incorrect endpoint:** `https://upload.googleapis.com/upload/drive/v3/files` (returns a 404 HTML page)
-- **Safari cannot connect to localhost / Redirects to localhost in production:** 
-  If you see the app attempting to redirect to `http://localhost:5173/scheduler` in production, it means the `FRONTEND_URL` secret is missing from Supabase Edge Functions. Set it using `supabase secrets set FRONTEND_URL="https://your-app.vercel.app"`.
-- **error=invalid_request & error_code=bad_oauth_state:** 
-  This happens when the `redirect_uri` doesn't match what's configured in Google Cloud Console. Ensure `VITE_GOOGLE_REDIRECT_URI` (Frontend) and `GOOGLE_REDIRECT_URI` (Backend) are exactly identical and point to the `google-oauth-callback` Edge Function URL. Both must be added to the Google Cloud Console "Authorized redirect URIs".
+`VITE_GOOGLE_*` 값은 현재 client-side 설정 존재 여부 확인에 사용되고, 실제 authorization URL의 client ID·redirect URI source는 backend `GOOGLE_*` 값이다.
 
-## 10. Known Limitations
+## Data and backup boundary
 
-- Calendar sync is one-way (creation only); updates and deletions are not synced to Google Calendar.
-- Drive restore functionality is not yet implemented.
-- Sheets logging is best-effort (fire-and-forget); failures will not block core application flows.
-- Fortune report logging is currently skipped due to identifier differences (uses `localKey` instead of `deviceId`).
+- `google_calendar_tokens`에는 Google token이 저장되고, `google_oauth_states`에는 일회성 OAuth state가 저장된다. 이 두 테이블의 접근권한은 migration과 현재 DB 권한 정의를 기준으로 한다.
+- `reservations.google_event_id`와 `rehearsal_events.google_calendar_event_id`가 Google Calendar 연결을 보존한다. rehearsal 쪽에는 별도 sync/Drive backup 상태 필드가 있다.
+- `google-drive-backup`은 인증된 사용자 범위의 manual backup을 수행한다. `google-drive-scheduled-backup`은 전역 scheduled backup이며, 다른 scheduled 함수들은 scheduler·rehearsal·Saju 범위를 별도로 처리한다.
+- 현재 generic backup materializer는 `google_calendar_tokens`를 export 목록에서 제외하지만, 전역 경로의 export 목록에는 `push_subscriptions`가 포함될 수 있다. 백업 데이터의 민감도·보존·복구 정책은 별도 보안 검토 대상이며 이 문서는 안전성을 보증하지 않는다.
 
-## 11. Recommended Next Phases
+## Current behavior and limits
 
-- Implement a secure connection status check endpoint (to replace the current `localStorage` heuristic).
-- Add sync status fields (e.g., `google_sync_status`, `google_sync_error`) to relevant tables.
-- Implement a preview-only MVP for Drive restore (allowing users to see what will be restored before applying).
+- 동기화 방향은 앱에서 Google로만 향한다. Calendar는 create/update/delete를 지원하며 Google에서 앱으로 역동기화하지 않는다.
+- Drive restore는 구현되어 있지 않다.
+- Sheets logging은 호출 경로에 따라 await 여부와 오류 표시가 다르므로, 모든 logging 실패가 동일하게 core flow를 차단한다고 가정하지 않는다.
+- 연결 표시의 local cache는 편의 상태일 뿐 권위 있는 인증 근거가 아니다. 현재 scheduler 경로는 `google-connection-status`로 서버 확인을 수행한다.
 
-## 12. Automated Backup Scheduling
+## External-state boundary
 
-The automated backup uses the `google-drive-scheduled-backup` Edge Function. To set it up to run at 00:05 KST daily (which is 15:05 UTC):
+다음은 repository source만으로 현재 값을 확정할 수 없는 별도 후속 항목이다.
 
-**1. Find your GOOGLE_BACKUP_USER_ID:**
-Check the `google_calendar_tokens` table in your Supabase Dashboard. Find the row for your dedicated Softie Gmail account and copy its `user_id`.
-`supabase secrets set GOOGLE_BACKUP_USER_ID="<that-user-id>"`
+- 배포된 Edge Function의 실제 `verify_jwt`와 코드 revision
+- Supabase secrets와 remote migration history
+- Vercel environment variables 및 실제 frontend origin
+- Google Cloud Console의 OAuth client/redirect URI 등록
+- Supabase pg_cron 또는 외부 scheduler의 실제 등록·실행 상태
 
-**2. Set the Required CRON Secret:**
-`supabase secrets set BACKUP_CRON_SECRET="your-secure-random-string"`
+## Separate follow-ups
 
-**3. Schedule via pg_cron (Supabase Native):**
-Run the following SQL in your Supabase SQL Editor to schedule the backup using the `pg_net` extension:
+다음 항목은 이 문서 정리에서 해결하거나 결론내리지 않는다.
 
-```sql
--- Schedule to run at 15:05 UTC (00:05 KST) every day
-select cron.schedule(
-  'daily-softie-backup',
-  '5 15 * * *',
-  $$
-  select net.http_post(
-      url:='https://YOUR_PROJECT_REF.supabase.co/functions/v1/google-drive-scheduled-backup',
-      headers:='{"Content-Type": "application/json", "Authorization": "Bearer your-secure-random-string"}'::jsonb
-  );
-  $$
-);
-```
-
-Alternatively, you can trigger the Edge Function URL via an external service like GitHub Actions or cron-job.org, passing the `Authorization: Bearer your-secure-random-string` header.
+- `push_subscriptions` payload를 Google Drive backup에 포함할지와 보존·접근 정책
+- `google_calendar_tokens`의 저장·rotation·remote encryption 정책
+- 배포된 함수와 local `supabase/config.toml`·migration의 parity

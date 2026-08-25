@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict'
-import { readFileSync } from 'node:fs'
+import { existsSync, readFileSync } from 'node:fs'
 import { dirname, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import test from 'node:test'
@@ -108,13 +108,47 @@ test('legacy local storage is not silently uploaded across signed-in identities'
   assert.match(schedulerPage, /legacy scheduler:work-logs has no authenticated owner binding/i)
 })
 
-test('scheduled privileged backup fails closed when its secret is absent', () => {
+test('Google integration documentation follows executable auth and backup boundaries', () => {
   const source = read('supabase/functions/google-drive-scheduled-backup/index.ts')
+  const config = read('supabase/config.toml')
+  const manualAuth = read('supabase/functions/_shared/googleManualAuth.ts')
+  const oauthStart = read('supabase/functions/google-oauth-start/index.ts')
+  const oauthCallback = read('supabase/functions/google-oauth-callback/index.ts')
   const docs = read('GOOGLE_INTEGRATION.md')
-  const generator = read('patch_readme.cjs')
 
   assert.match(source, /if \(!cronSecret\)[\s\S]*status: 503/)
   assert.match(source, /authHeader !== `Bearer \$\{cronSecret\}`/)
-  assert.match(docs, /BACKUP_CRON_SECRET`: Required/i)
-  assert.match(generator, /BACKUP_CRON_SECRET\\`\: Required/i)
+  assert.match(config, /\[functions\.google-oauth-callback\][\s\S]*verify_jwt = false/)
+  assert.match(config, /\[functions\.google-oauth-start\][\s\S]*verify_jwt = true/)
+  assert.match(config, /\[functions\.google-drive-backup\][\s\S]*verify_jwt = true/)
+  assert.match(manualAuth, /authClient\.auth\.getUser\(token\)/)
+  assert.match(oauthStart, /requireGoogleManualUser\(req, userId\.trim\(\)\)/)
+  assert.match(oauthCallback, /google_oauth_states/)
+
+  for (const functionName of [
+    'google-oauth-start',
+    'google-oauth-callback',
+    'google-connection-status',
+    'google-calendar-create-event',
+    'google-calendar-update-event',
+    'google-calendar-delete-event',
+    'google-drive-backup',
+    'google-drive-rehearsal-backup',
+    'google-sheets-append-log',
+    'google-drive-scheduled-backup',
+    'google-drive-scheduler-scheduled-backup',
+    'google-drive-rehearsal-scheduled-backup',
+    'google-drive-saju-daily-report-backup',
+  ]) {
+    assert.match(docs, new RegExp(functionName.replaceAll('-', '\\-')))
+  }
+
+  assert.match(docs, /BACKUP_CRON_SECRET/)
+  assert.match(docs, /remote migration history|remote.*not.*asserted/i)
+  assert.doesNotMatch(docs, /deviceId.*localKey.*rather than full Supabase Auth/i)
+  assert.doesNotMatch(docs, /deviceId instead of Supabase Auth/i)
+  assert.doesNotMatch(docs, /google-drive-backup[\s\S]{0,120}verify_jwt\s*=\s*false/i)
+  assert.doesNotMatch(docs, /Calendar sync is one-way \(creation only\)/i)
+  assert.doesNotMatch(docs, /supabase (?:db push|secrets set|functions deploy)/i)
+  assert.equal(existsSync(resolve(root, 'patch_readme.cjs')), false)
 })
