@@ -6,6 +6,8 @@
 
 이 문서는 기존 [계절 범위 selector successor](./saju-dayun-jie-selector-seasonal-range-successor-v1.md)의 `大雪` 관찰과, 그에 앞선 `小寒` 관찰을 덮어쓰지 않고 additive하게 정리한다. 이번 advance의 근거는 검색 결과나 OCR이 아니라, 서로 다른 문헌 제목의 page image에서 반복 확인한 규칙 문장이다. 원면이 없는 곳의 metadata·OCR·전사는 locator 또는 secondary corroboration으로만 둔다.
 
+2026-08-25 재검증 메모: NLC `NLC416-94145-sanming-tonghui.pdf` p.114–115와 NCL `NCL-000002203-xinmingli-tanyuan.pdf` p.62를 다시 육안 대조했다. 전자는 `未來節日時·過去節日時`와 `三日為年`은 직접 보이지만 이 page window에서 `皆遇節而止`는 다시 확인되지 않았다. 후자 p.62는 월건(月建) 배열면으로 확인되어, 이 문서에서는 해당 면을 `立春節·小寒節` worked-example의 직접 locator로 더 이상 사용하지 않는다. 기존 conclusion은 이보다 좁은 직접 관찰 범위로 정정한다.
+
 ## 1. Bounded conclusion
 
 두 개의 서로 다른 고전 문헌에서 起運의 target을 `節`로 두고 `中氣`를 제외한다고 직접 읽었다.
@@ -40,8 +42,8 @@
 | --- | --- | --- | --- | --- |
 | 《子平命術要訣》 | NLC 식별자를 가진 공개 Commons scan; 기관 raw bytes 자체로 취급하지 않음 | PDF p.18, printed `十四` | `皆遇節即止。中氣不論`; worked target `交大雪節` | explicit rule + `大雪` target의 direct corroboration |
 | 《三才發秘》 | Harvard 공식 IIIF manifest; Harvard-Yenching Library, HOLLIS `008088435` | manifest `seq.547`, canvas DRS `52823058`; printed folio는 주장하지 않음 | `起大運訣` 아래 `其法止論節不論中氣` | 별도 문헌에서 반복된 explicit rule |
-| 《命理探源》 | NLC 공개 scan derivative | PDF p.62, printed `二一` | worked examples의 `立春節` 및 `小寒節` | named `節` target direct corroboration; `中氣` exclusion은 직접 명시하지 않음 |
-| 《三命通會》 | NLC 공개 scan derivative | PDF p.114, `論大運` | `數至未來節`, `數已過去節`, `皆遇節而止`, `三日為一歲` | `節` stop direct corroboration; `不論中氣`는 없음 |
+| 《命理探源》 | NLC 공개 scan derivative | PDF p.62, printed `二一` | 재검증 면은 `月建` 배열이며 `立春節·小寒節` worked-example reading을 직접 닫지 못함 | 이 page는 direct target evidence로 사용하지 않음 |
+| 《三命通會》 | NLC 공개 scan derivative | PDF p.114–115, `論大運` | `生日後未來節日時`·`生日前過去節日時`, `一辰十歲折除以三日為年`, `立春` example | target/time-count direct corroboration; 이 window의 `節止`·`不論中氣`는 없음 |
 | 《命理集成》 | NLC 공개 scan derivative | PDF p.67, `推大運法` | `數至未來節`, `數已過去節`, `皆遇節而止` | `節` stop direct corroboration; `不論中氣`는 없음 |
 
 ### 2.1 NLC 《子平命術要訣》
@@ -70,9 +72,9 @@ seq.547의 오른쪽 leaf에 `起大運訣` 제목과 `其法止論節不論中�
 | claim | status | direct basis | 남은 경계 |
 | --- | --- | --- | --- |
 | `大雪`이 worked target으로 실제 적힘 | `direct, source-local` | 《子平命術要訣》 p.18의 `交大雪節` | 모든 문헌·모든 월령의 target 규칙으로 일반화하지 않음 |
-| `小寒`이 worked target으로 실제 적힘 | `direct, source-local` | 《命理探源》 p.62의 `小寒節` example | 해당 문헌의 example; 전 corpus selector로 일반화하지 않음 |
-| `立春`도 named `節` target으로 실제 적힘 | `direct, source-local` | 《命理探源》 p.62의 `立春節` example | `中氣` exclusion을 그 page가 직접 말한다고 읽지 않음 |
-| `節`까지 세고 멈춘다는 문장이 반복됨 | `direct, bounded repeated` | 《子平命術要訣》·《三才發秘》 explicit rule; 《三命通會》·《命理集成》의 `皆遇節而止` | 문헌 간 계보·독립성은 별도 미확정 |
+| `小寒`이 worked target으로 실제 적힘 | `unresolved at the prior locator` | 《命理探源》 p.62 재검증은 월건 배열면 | prior observation을 폐기하지 않고, 이 문서의 direct basis로는 사용하지 않음 |
+| `立春`도 named `節` target으로 실제 적힘 | `unresolved at the prior locator` | 《命理探源》 p.62 재검증은 target example을 직접 닫지 못함 | 다른 문헌의 직접 `立春` 사례로 대체하지 않음 |
+| `節`까지 세고 멈춘다는 문장이 반복됨 | `direct, bounded repeated` | 《子平命術要訣》·《三才發秘》 explicit rule; 《命理集成》의 `皆遇節而止` | 《三命通會》 p.114–115는 stop 문장이 아니라 `節日時`·환산 문맥으로 분리 |
 | `中氣`를 제외한다는 명시 문장이 반복됨 | `direct, bounded repeated` | 《子平命術要訣》 `中氣不論`; 《三才發秘》 `不論中氣` | 《五行精紀》 전체 witness에 대한 adoption은 미확정 |
 | inspected rule의 target 후보를 `12節-side`로 좁힘 | `bounded frontier advance` | `節`와 `中氣`를 대립시키는 두 distinct-title direct rule | universal `12節-only` policy가 아님 |
 | 모든 12節을 포함하고 모든 中氣를 제외 | `unresolved` | 직접 본 named target은 일부뿐 | 미관찰 월령·문헌의 direct rule 필요 |
