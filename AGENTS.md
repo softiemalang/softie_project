@@ -1,148 +1,42 @@
-# softie_project Codex Working Rules
+# softie_project repository contract
 
 ## Scope and source of truth
+
 - These rules apply to this repository and its local checkout.
-- For local execution, the current local working tree is the source of truth.
-- For GitHub-only inspection, use the exact repository ref being inspected as the source of truth.
-- Do not assume that the local working tree and `origin/main` are synchronized without verification; if synchronization was not checked, do not describe them as equal.
-- The only supported working references are the existing local `main` branch and remote `origin/main`. Do not create, rename, switch, or propose feature branches or temporary PR branches for this repository.
-- If the checkout is not on `main`, stop and report instead of switching branches.
-- If its relationship to `origin/main` has not been verified, report that limitation and do not claim synchronization. Stop only when the task depends on confirmed remote parity.
-- Prefer local CLI inspection and file reads before making assumptions. Live repository, service, and deployment state takes precedence over historical notes.
-- Use `git status --short --branch` before and after any work. Inspect the relevant existing files and current diff before editing.
+- The current working tree and the exact ref being inspected are the source of truth. Do not claim parity with `origin/main` without checking it.
+- Preserve existing tracked and untracked work. Do not overwrite, discard, misattribute, or silently fold unrelated changes into the task.
+- Repository guidance cannot override higher-level platform safety rules or a more specific user request.
 
-## Work-order boundaries
-- Keep one user work order to one coherent task scope. Do not combine unrelated fixes, cleanup, refactors, or design changes in the same task.
-- Before editing, identify the smallest relevant file set. Edit only requested files and files required to implement or verify the requested change.
-- A work order may narrow the allowed scope but does not implicitly authorize adjacent changes. Record discovered adjacent issues in the final risks or follow-up items instead of fixing them.
-- Within the authorized scope, follow the more specific instruction.
-- When safety constraints differ, follow the stricter constraint.
-- Repository guidance cannot override higher-level platform or tool safety requirements.
-- Preserve pre-existing tracked and untracked changes.
-- Do not overwrite, discard, or misattribute pre-existing changes.
-- If an in-scope file already contains changes, modify only the requested portion and preserve unrelated edits.
-- Do not delete, restore, reset, discard, overwrite, stash, stage, or format pre-existing changes unless the user explicitly authorizes the exact action. In particular, do not use `git restore`, `git checkout --`, `git reset`, `git clean`, or `git stash` without explicit approval for that exact action.
-- Do not automatically format files outside the requested scope, report pre-existing changes as this task's results, or guess when current changes cannot be separated from the task; report the ambiguity instead.
-- Do not infer approval for adjacent improvements. Record unresolved choices as `open_decision` or `needs_verification` rather than guessing.
+## Change and external-impact boundaries
 
-## Project overview
-- This is a React 18 + Vite app with shared global styling in `src/styles.css`.
-- Supabase is used directly from the frontend via `@supabase/supabase-js` and `VITE_SUPABASE_URL` / `VITE_SUPABASE_ANON_KEY` from `.env.local`.
-- The product is a lightweight, mobile-friendly set of internal tools for band scheduling and performance workflows.
-- Deployment assumptions should stay compatible with GitHub-driven Vercel deploys.
+- Keep a change within the requested behavior and the smallest necessary file surface. Do not make adjacent cleanup, refactors, or design changes without authorization.
+- Local staging and commits are allowed when useful, but include only intentional task changes; a local commit does not authorize any remote action.
+- Do not discard work with destructive Git operations or delete user data, migrations, or localStorage migration logic without explicit approval.
+- Push, merge, force-push, deployment, remote database or migration changes, production configuration, secrets, credentials, and tokens require explicit user approval for that action.
+- Do not expose service-role or other backend secrets to frontend code. Treat current Supabase configuration and handler-level authentication/ownership checks as the security source of truth.
 
-## Default safety rules
-- Do not create a branch or switch away from `main`.
-- Do not run `git add`, `git commit`, or `git push` without explicit user approval for that exact step. Treat staging, committing, pushing, deploying, and remote database changes as separate approval steps: approval for one does not imply approval for any later step.
-- Stage and commit only the explicitly approved files and changes. Never include unrelated or pre-existing worktree changes.
-- For an explicitly approved `git add`, `git commit`, or `git push`, request elevated execution before the first attempt when the command is expected to write Git metadata or use restricted network access. Do not probe with a normal sandbox attempt first.
-- When the current task requires `git fetch`, request elevated execution before the first attempt if it is expected to write `.git/FETCH_HEAD` or update remote-tracking refs.
-- Keep read-only Git commands in the normal sandbox unless a separate permission failure is observed.
-- Staging, committing, and pushing remain separate exact approvals and must use explicit path allowlists.
-- After a known sandbox permission failure, do not repeat the same command unchanged. Retry with elevation at most once for that command, then stop and report the failure.
-- Do not interpret ambiguous requests such as “반영해줘” (“apply it”) as approval for the entire commit-and-push sequence.
-- Do not run `vercel`, `vercel deploy`, or production deployment commands unless the user explicitly asks.
-- Do not run `supabase db push`, `supabase functions deploy`, or any remote database-changing command unless the user explicitly asks.
-- Do not edit `.env`, `.env.local`, secrets, tokens, credentials, or production configuration unless the user explicitly asks.
-- Do not run `npm install` or add new dependencies unless the user explicitly asks.
-- Do not delete user data, database data, migrations, or localStorage migration logic unless the user explicitly asks.
-- Do not make broad refactors when the user asks for a small targeted fix.
+## Product and data invariants
 
-## Preferred workflow
-1. Read the request, applicable instructions, relevant files, and current Git state.
-2. State the single task scope and planned file allowlist before editing.
-3. Keep changes focused and minimal; preserve existing behavior outside the requested scope.
-4. Re-check the diff and changed-file list before validation. Confirm unrelated changes remain untouched.
-5. Run only checks appropriate to the change. For application changes, normally use `npm test`, `npm run build`, and `git diff --check`; for documentation-only changes, code tests and build may be skipped when their contracts are unaffected.
-6. Report each validation command and its actual result. Distinguish code failures, environment/tool failures, skipped checks, and unverified claims.
-7. Stop before staging, commit, push, deploy, or DB changes unless that exact action is explicitly approved.
+- `/lead-sheet` is performance-use data. Preserve its localStorage keys and migration paths.
+- Cloud backup/restore must not silently overwrite local data. Keep confirmation and a recovery path; do not add automatic sync unless explicitly requested.
+- Keep the Vite frontend compatible with the existing `import.meta.env` and Supabase client setup. Keep schema changes small and feature-scoped.
+- UI tokens, patterns, legacy-screen preservation, and promotion rules come from [`DESIGN.md`](DESIGN.md), [`src/styles.css`](src/styles.css), and [`docs/ui-workflow.md`](docs/ui-workflow.md); do not replace them with external design values.
 
-## Model selection
-- When recommending or assigning an execution model, use the lowest-capability model sufficient for the task's complexity and risk.
-- Do not recommend a higher model tier without a concrete need for additional reasoning, context handling, or risk control.
-- The execution agent must not imply that it can change its own model when the runtime does not support model switching.
-- Model selection must not broaden the task scope or weaken verification requirements.
+## Evidence and readiness boundaries
 
-## Code organization expectations
-- Reuse existing patterns before introducing new abstractions.
-- Keep new internal tools isolated by route, folder structure, naming, and data flow.
-- Prefer feature-scoped folders under `src/` with route/page components, feature logic, Supabase query helpers, and feature-specific types separated enough to stay maintainable.
-- Do not let `src/App.jsx` become an unbounded dumping ground as new tools are added.
-- Keep page/rendering concerns separate from data loading and transformation logic when adding non-trivial features.
-- Keep imports tidy and local. Prefer small local helpers over broad shared abstractions too early.
+- Keep calculation facts, source evidence, deterministic relations, interpretation, readiness, and activation separate.
+- A candidate, catalog record, metadata entry, OCR result, mirror scan, locator, or title/heading similarity is not by itself a physical witness, edition lineage, semantic authority, readiness, or activation proof.
+- Do not replace a missing fixture, oracle, raw evidence file, or toolchain with a nearby or synthetic substitute. Preserve unresolved or conflicted states instead of tuning evidence or expectations to force a pass.
+- A historical or source-derived claim is not promoted without the required exact locator, lineage, authority, and independent verification gates for that contract.
 
-## Supabase / Vercel expectations
-- Reuse the existing Supabase environment variable names and client setup pattern unless there is a clear repo-wide reason to centralize it.
-- If a shared Supabase client module is introduced, migrate toward it deliberately and avoid leaving duplicate initialization patterns behind.
-- Keep schema changes minimal and easy to understand. Prefer small, targeted migrations with clear names over bundled structural rewrites.
-- Keep Vercel-safe assumptions: frontend code should rely on `import.meta.env`, avoid server-only assumptions, and avoid adding infrastructure requirements casually.
+## Delegated work and bounded continuation
 
-## Product and data safety notes
-- Prefer practical, mobile-friendly UI. This app is used in short sessions and should stay easy to use on a phone.
-- Prioritize clarity, fast comprehension, and low-friction interaction over decorative complexity.
-- Be especially careful with scheduler, auth, Supabase, Vercel, Google login-related features, and lead sheet data.
-- `/lead-sheet` is a performance-use tool, so data loss prevention is more important than convenience.
-- For `/lead-sheet`, preserve localStorage data and migration paths.
-- Cloud backup/restore must never silently overwrite local data.
-- Automatic sync should not be added unless the user explicitly asks.
-- Manual backup/restore should always include confirmation and a recovery path.
+- Delegated investigation or verification uses the existing `subagent-evidence-contract-v0` contract in [`docs/subagent-evidence-contract-v0.md`](docs/subagent-evidence-contract-v0.md) and [`src/subagentEvidenceContract.js`](src/subagentEvidenceContract.js); validate the exact envelope before using it.
+- A child result is execution provenance only: `child PASS != parent goal PASS`. Keep observations, inferences, validations, unknowns, blockers, parent verification, readiness, and activation separate.
+- Parent verification must use the parent basis and directly reread the relevant locator or rerun the critical check for calculation, source relation, authority, readiness, or activation impact. Do not copy canonical payloads into a child envelope or let a child promote authority.
+- Shared, tracked, canonical, and publication surfaces remain parent-owned; child writes require an explicitly isolated temporary surface.
+- The bounded gate in [`docs/bounded-continuation-quality-gate-v0.md`](docs/bounded-continuation-quality-gate-v0.md) and [`src/boundedContinuationGate.js`](src/boundedContinuationGate.js) is a workflow decision only. Its decisions do not establish domain readiness or production activation, and it does not authorize automatic retries.
 
-## Supabase Edge Functions / Security
-- Scheduler-related functions such as `update-push-preferences` and `dispatch-scheduler-reminders` may have `verify_jwt = false` in `supabase/config.toml`.
-- This is intentional when the PWA flow does not use Supabase Auth, requiring unauthenticated access for client-side preference sync.
-- `dispatch-scheduler-reminders` may also be triggered by an external scheduler/cron without a Supabase Auth JWT, so JWT verification can cause 401 errors.
-- Client-facing functions should rely on `deviceId` and active subscription status validation.
-- Internal dispatch logic may use the Service Role client for DB access.
-- If stronger security is needed later, implement custom request validation such as custom headers within the function code.
+## Verification boundary
 
-## Commands / verification
-- Useful local commands: `git status --short --branch`, `npm run build`, `rg "<query>"`, `fd <name>`, `tree -L 2 -I node_modules`.
-- Install dependencies only when explicitly asked: `npm install`.
-- Start local dev server when needed: `npm run dev`.
-- Preview production build locally when needed: `npm run preview`.
-- Deploy Supabase functions only when explicitly asked: `supabase functions deploy <name>`.
-- Confirm available validation scripts from `package.json` before using or reporting them.
-- Current primary validation commands include `npm test` (`node --test`) and `npm run build`; use the relevant scripts rather than inventing validation commands.
-- Run `git diff --check` for text or code changes unless the command is unavailable; report any omission and its reason.
-- Distinguish structure or command-existence checks from executed tests and their results. A passing test or build proves only that check's contract; it does not prove UI behavior, production deployment, external-source provenance, or data correctness unless those were independently checked.
-- Report skipped checks with the reason, and never describe a failed, skipped, unavailable, partial, or merely structural check as successful.
-- When a command fails, report its exit status and the core cause. If pre-existing working-tree changes may affect the result, report the validation as conditional or partial rather than guessing.
-- Do not replace a missing fixture, oracle, raw evidence file, or toolchain with a nearby or synthetic substitute without explicit approval.
-
-## Communication style
-- Be concise.
-- If a command is risky, explain why and ask for explicit approval.
-- If unsure, inspect first rather than guessing.
-- Never claim deployment is complete just because `git push` succeeded.
-
-## /goal subagent evidence contract
-- Use a subagent for independent investigation, analysis, or verification only when the coordination cost is justified; keep simple, local tasks in the parent.
-- Retrieve context progressively: start with the assigned question, target references, and applicable contract, then add only the dependency, boundary, or checker context required by a declared check. Record added references; do not make unrelated full-repository context a prerequisite.
-- For delegated work, the task scope must name the assigned question, allowed actions, forbidden actions, and any out-of-scope observation or proposal. Include the relevant checkout basis and reference boundaries.
-- The child result must be a `subagent-evidence-contract-v0` envelope. Before using it, the parent must parse the exact envelope and run `checkSubagentEvidenceContract` or `assertSubagentEvidenceContract` from `src/subagentEvidenceContract.js`.
-- An orchestration lifecycle result such as `worker_done` or `outcome: succeeded` is not the contract status and is not parent-goal PASS. Keep lifecycle metadata separate from the envelope, and preserve `child PASS != parent goal PASS`.
-- Reject or directly recheck envelopes that fail structural validation, contain unsafe or mismatched references, incomplete passed validations, copied canonical payloads, or readiness, activation, semantic-authority, or parent-verification promotion.
-- Keep observations, non-authoritative inferences, validations, unknowns, and blockers separate. Treat `completed_with_unknowns`, `failed`, and `cancelled` as partial results until parent verification is complete.
-- Parent verification is risk-based: confirm low-risk structural observations by reference, recheck canonical artifact hash/integrity, and directly reread the exact locator and rerun the critical check for calculation, claim/source relation, semantic authority, readiness, or activation impact.
-- Independent parent verification must use the parent basis and an exact locator or critical check; a child summary, child PASS, or reuse of the same unverified output is not independent evidence.
-- Parallel child work is allowed only for read-only scopes or explicitly disjoint temporary write surfaces. Shared or unknown surfaces, canonical artifact paths, and publication remain serialized and parent-owned; `materialize_temp` does not authorize tracked or canonical writes.
-- Do not copy canonical artifact payloads into the envelope; pass only the allowed artifact identity and integrity references. Do not treat the structural validator as a truth, source-authority, readiness, or activation validator.
-- This is an instruction-level operating rule. Do not add Luna runtime, wrapper, registry, JSONL, daemon, dependency, or schema changes to apply it.
-
-## /goal bounded continuation gate v0
-- After a work unit, the parent may use `evaluateBoundedContinuation` from `src/boundedContinuationGate.js` to choose exactly one of `continue`, `stop_complete`, `stop_blocked`, or `recheck_required`.
-- Before using a child result, the parent must run the existing subagent contract validator. A valid child envelope is still execution provenance only; the parent must perform the required risk-based recheck and keep that decision in a separate verification overlay.
-- Count progress only when parent-verified evidence, artifact identity, validated fact, blocker reduction, or a new authorized/checkable frontier is explicitly referenced. Repeated prose, scans, token/time use, and test size are not progress.
-- Pass the previous attempt checkpoint explicitly. The helper suppresses an unchanged deterministic failure only when action, relevant inputs, effective basis/scoped worktree state, dependency/environment identity, and normalized failure signature have the same fingerprint. It never performs an automatic retry.
-- The first deterministic, transient, flaky, aggregate, or unknown failure requires a parent checkpoint. A repeated deterministic failure becomes a blocker; unresolved external/ambiguous failure remains a blocker only after the bounded checkpoint and is not reclassified as deterministic.
-- `budget.checkpointDue` prompts re-evaluation only. It cannot by itself produce completion, blocking, readiness, or activation.
-- Preserve `gate decision != domain readiness`, `gate decision != production activation`, and `child PASS != parent goal PASS`. Do not add runtime, registry, JSONL, daemon, scheduler, retry, dependency, artifact/readiness schema, or production changes to apply this rule.
-
-## Required final report
-- Changed files: list the exact paths actually changed.
-- Preserved scope: mention intentionally unchanged files or pre-existing changes when relevant.
-- Summary: state what changed and what was deliberately preserved.
-- Diff summary and notable hunks.
-- Validation: list every command run with pass/fail/skipped status and concise evidence.
-- Remaining checks or risks: identify unverified behavior, external dependencies, environment failures, and `open_decision` items.
-- Git/deployment actions: state explicitly that staging, commit, push, deploy, and remote DB changes were not performed unless separately authorized and actually completed.
+- Select checks that cover the changed contract and report their actual result. A local test, build, checker, or structural inspection proves only its own scope; it does not prove UI behavior, external-source authority, deployment, or production state.
