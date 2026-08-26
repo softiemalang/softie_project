@@ -21,7 +21,7 @@ NLC-attributed 공개 scan 《子平命術要訣》 PDF p.18(인쇄면 `十四`)
   → 四柱：丙申年、己亥月、己卯日、壬申時
   → 五歲上庚子運
   → 十五歲上辛丑運
-  → 二十五歲壬寅（同面列式）
+  → 二十五壬寅（同面列式의 source age label）
 ```
 
 이것은 다음을 **source-local direct/bounded relation**으로 전진시킨다.
@@ -120,7 +120,7 @@ worked block의 직접 판독 범위는 다음과 같다.
 |---|---|
 | `五歲` → `庚子` | first 大運이 해당 source age marker와 함께 인쇄됨 |
 | `十五歲` → `辛丑` | second row가 같은 순행 example에 인쇄됨 |
-| `二十五` → `壬寅` | 같은 page의 列式에서 third row가 이어짐 |
+| `二十五` → `壬寅` | 같은 page의 列式에서 third row가 이어짐; 반복된 `歲`는 보충하지 않음 |
 | `庚子→辛丑→壬寅` | 이 page에 인쇄된 순행 후속열의 literal progression |
 
 `壬寅` row가 식의 배치상 prose와 떨어져 보이더라도, `丙申·己亥·己卯·壬申` 四柱 row와 같은 page의 해당 `式一`/列式 안에서 확인한 것이다. 이를 다른 example의 `戊戌→丁酉→丙申` 역행열과 섞어 하나의 birth case로 만들지 않는다.
