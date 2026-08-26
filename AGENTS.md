@@ -26,6 +26,7 @@
 ## Evidence and readiness boundaries
 
 - Keep calculation facts, source evidence, deterministic relations, interpretation, readiness, and activation separate.
+- In synthesis, do not downgrade a stronger previously verified frontier without evidence.
 - A candidate, catalog record, metadata entry, OCR result, mirror scan, locator, or title/heading similarity is not by itself a physical witness, edition lineage, semantic authority, readiness, or activation proof.
 - Do not replace a missing fixture, oracle, raw evidence file, or toolchain with a nearby or synthetic substitute. Preserve unresolved or conflicted states instead of tuning evidence or expectations to force a pass.
 - A historical or source-derived claim is not promoted without the required exact locator, lineage, authority, and independent verification gates for that contract.
