@@ -101,10 +101,10 @@ p.61과 p.62는 같은 《命理探原》 scan surface 안의 인접 page이므�
 
 ### 3.2 기존 `己卯` literal과의 분리
 
-기존 successor에서 보존한 NLC 《淵海子平》·《神峰通考》의 `丙寅 → 己卯`는 이번 네 열과 섞지 않는다. `己卯`를 `丁卯`로 교정하거나, 이번의 `庚子→辛丑→壬寅`·`辛卯→壬辰→癸巳`를 근거로 과거 literal을 소급 보정하지 않는다. 다음을 그대로 유지한다.
+기존 successor의 NLC 《淵海子平》·《神峰通考》 `丙寅 → 己卯` binding은 [first-pillar correction](./saju-dayun-first-pillar-directional-progression-successor-v1.md#0-correction-provenance)에서 교정되었다. 해당 원면의 현재 pair는 `丙寅→丁卯`와 별도 `戊寅→己卯`이며, 이번 네 후속열과 섞지 않는다. 이번의 `庚子→辛丑→壬寅`·`辛卯→壬辰→癸巳`를 근거로 다른 source literal을 소급 보정하지 않는다.
 
 ```text
-printed `己卯` = source-local conflicting/unresolved literal
+printed `己卯` = source-local direct literal for the separate `戊寅` example
 subsequent four examples = bounded adjacent progression corroboration
 ```
 
@@ -143,14 +143,14 @@ first_dayun = next_or_previous_month_pillar(month_pillar, direction)
 next_dayun  = sexagenary_step(first_dayun, direction)
 ```
 
-특히 기존 `己卯` anomaly, source 간 판식·연대·copy binding, `月柱` 산출 단계가 닫히지 않았으므로 위 pseudo-rule은 production 계산식이 아니다.
+특히 교정된 first-pillar pair의 다른 witness binding, source 간 판식·연대·copy binding, `月柱` 산출 단계가 닫히지 않았으므로 위 pseudo-rule은 production 계산식이 아니다.
 
 ## 6. 남은 blocker와 보존 경계
 
 - 두 public PDF가 NLC 식별자를 보존한 scan surface라는 점과 institutional raw-page bytes 사이의 간극.
 - exact machine binding, 원본 파일의 기관 delivery identity, physical copy-level collation.
 - 《子平命術要訣》와 《命理探原》의 textual independence, 공통조상, 직접 전승, 판본 선후.
-- `己卯`를 포함한 기존 first-pillar literal의 오자·shared error·별도 규칙 여부.
+- 교정된 `丙寅→丁卯`·`戊寅→己卯`가 다른 copy/판본에서도 유지되는지와 그 textual lineage.
 - `月柱`에서 first pillar를 만드는 source-local 세부 문장과 예외.
 - 모든 운수에 대한 60-cycle generator, 날짜·시각 endpoint, 1운의 연령 표기, 현대식 계산 규격.
 - semantic authority, interpretation readiness, production activation.
@@ -195,7 +195,7 @@ first-pillar direction                  direct, source-local
 second/third subsequent Gan-Zhi rows    direct repeated, bounded
 forward/backward adjacency              deterministic relation, bounded
 universal 60-cycle generator            unresolved
-己卯 conflict / generic month derivation unresolved
+月建→first-pillar universal derivation  unresolved
 textual lineage / independence          unresolved
 semantic authority / readiness          blocked
 production activation                   blocked

@@ -138,7 +138,7 @@ every later pillar = production 60-cycle generator
 | 후속 干支가 같은 사례에서 방향에 맞게 진행 | `direct repeated` | 순행 `庚子→辛丑→壬寅`, `辛卯→壬辰→癸巳`; 역행 `戊戌→丁酉→丙申`, `辛丑→庚子→己亥` | universal 60-cycle generator |
 | 시작 residual과 coarse age locator의 대응 | `direct, source-local` | `十歲欠三十天→初十`, `一歲欠三百一十天→初一` | 절삭·반올림·endpoint 포함/제외 규칙 |
 | `一運管十年`을 각 사례에 적용한 해석 | `partial` | 별도 문헌의 direct wording과 사례의 +10 labels가 함께 존재 | 문헌 간 semantic transfer, 보편 duration semantics |
-| 月柱에서 first pillar 산출 | `unresolved/partial` | `從生月...始行` 문장과 output만 기록 | 자동 월주 규칙, 예외, `己卯` 충돌 |
+| 月柱에서 first pillar 산출 | `unresolved/partial` | `從生月...始行` 문장과 output만 기록 | 자동 월주 규칙, 예외, 교정 pair의 다른 witness binding |
 | textual lineage / copy independence | `unresolved` | 두 scan surface의 bounded corroboration | 공통 저본·판본 선후·정본성 |
 | semantic authority / interpretation readiness | `blocked` | evidence/replay locator만 | semantic authority 전체·production activation |
 
@@ -168,7 +168,7 @@ age[n+1] = age[n] + 10 years
 pillar[n+1] = sexagenary_step(pillar[n], direction)
 ```
 
-원면은 위 네 줄의 현대적 함수·endpoint·rounding·timezone·API 계약을 직접 말하지 않는다. `欠`과 `初十/初一` 관계도 source-local observation으로만 둔다. 기존 `己卯` literal conflict, raw-byte/machine binding, physical copy provenance, lineage, semantic authority, readiness는 그대로 blocked/unresolved다.
+원면은 위 네 줄의 현대적 함수·endpoint·rounding·timezone·API 계약을 직접 말하지 않는다. `欠`과 `初十/初一` 관계도 source-local observation으로만 둔다. `丙寅→丁卯`와 별도 `戊寅→己卯` binding correction은 [first-pillar correction](./saju-dayun-first-pillar-directional-progression-successor-v1.md#0-correction-provenance)에 기록되어 있지만, 이 문서의 joined worked examples를 소급 교정하지 않는다. raw-byte/machine binding, physical copy provenance, lineage, semantic authority, readiness는 그대로 blocked/unresolved다.
 
 ## 6. 재현·검증·Git 경계
 
