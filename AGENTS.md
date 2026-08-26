@@ -30,6 +30,13 @@
 - Do not replace a missing fixture, oracle, raw evidence file, or toolchain with a nearby or synthetic substitute. Preserve unresolved or conflicted states instead of tuning evidence or expectations to force a pass.
 - A historical or source-derived claim is not promoted without the required exact locator, lineage, authority, and independent verification gates for that contract.
 
+## Question-driven research execution
+
+- When the user provides a clear research question, the agent may autonomously design a bounded investigation, find relevant materials, perform proportional verification, classify direct/partial/unresolved evidence and blockers, judge whether the frontier advanced, and decide whether the question is complete, blocked, or should end without a frontier change.
+- The agent may create the smallest necessary research record when that record is within the stated task scope. Commit and push remain subject to the explicit authorization and file-scoping rules above; a clear question alone does not authorize unrelated publication or remote changes.
+- Do not fill an evidence gap with inference merely to complete the flow. If direct evidence, identity, locator, lineage, or semantic support does not close, preserve the unresolved state, stop that promotion branch, and report the remaining blocker.
+- Preserve unrelated dirty work, untracked research, protected artifacts, and large source files throughout the autonomous investigation; inspect and alter only the allowlisted task surface.
+
 ## Delegated work and bounded continuation
 
 - Delegated investigation or verification uses the existing `subagent-evidence-contract-v0` contract in [`docs/subagent-evidence-contract-v0.md`](docs/subagent-evidence-contract-v0.md) and [`src/subagentEvidenceContract.js`](src/subagentEvidenceContract.js); validate the exact envelope before using it.
