@@ -1,0 +1,110 @@
+{
+  "schemaVersion": "saju-year-pillar-li-chun-boundary-frontier-v1",
+  "artifactId": "saju-year-pillar-li-chun-boundary-frontier-successor-v1",
+  "basisHead": "4a69820171d3a39cdff7f267a7b3db35246c6873",
+  "successor": {
+    "kind": "additive",
+    "frontierDelta": [
+      "Exact operational 年柱–立春 rule is directly observed in a 1915 catalog-dated scan surface.",
+      "The exact pre-1915 operational rule remains unconfirmed in the inspected page windows.",
+      "Pre-1915 立春/節 selector evidence is retained as non-equivalent context rather than promoted to 年柱 switching."
+    ],
+    "preservedPredecessors": [
+      "docs/saju-dayun-jie-middle-qi-pre1697-earliest-confirmed-successor-v1.md",
+      "docs/saju-dayun-jie-middle-qi-1600-explicit-family-successor-v1.md",
+      "artifacts/saju-sanming-1578-official-viewer-adjudication-v1/complete.json"
+    ]
+  },
+  "frontier": {
+    "exactOperationalYearGanzhiSwitch": {
+      "status": "earliest_confirmed_in_checked_corpus",
+      "cataloguedYear": 1915,
+      "sourceId": "ncl-000002203-xin-mingli-tanyuan",
+      "officialRecordUrl": "https://taiwanebook.ncl.edu.tw/en/book/NCL-000002203",
+      "publicDerivativeUrl": "https://upload.wikimedia.org/wikipedia/commons/4/4a/NCL-000002203_%E6%96%B0%E5%91%BD%E7%90%86%E6%8E%A2%E5%8E%9F.pdf",
+      "digitalPage": 70,
+      "printedLocator": "三八",
+      "section": "推年法",
+      "observedLiteralScope": [
+        "推年之法",
+        "視人所值生年之幹枝為主",
+        "而以立春節為綱",
+        "正月立春後生者即以本年之幹枝為主",
+        "正月立春前生者即以上一年之幹枝為主",
+        "十二月立春後生者即以下一年幹枝為主"
+      ],
+      "directObservation": true,
+      "sourceLocalOnly": true,
+      "notAbsoluteFirstness": true
+    },
+    "pre1915ExactOperationalRule": {
+      "status": "not_confirmed_in_inspected_corpus",
+      "scope": "checked page windows, not whole-volume absence",
+      "wholeCorpusAbsenceClaim": false
+    },
+    "pre1915NonEquivalentContext": [
+      {
+        "sourceId": "ncl-06589-sanming-tonghui-1578",
+        "status": "direct_non_equivalent",
+        "locator": "official viewer p.150-151",
+        "observed": ["論大運", "折除以三日為年", "future/past 節氣", "立春 context"],
+        "notObservedForThisClaim": ["以立春節為綱", "birth-before/after-Li-Chun 年干枝 reassignment"]
+      },
+      {
+        "sourceId": "ncl-06593-yuanhai-wanli-scan",
+        "status": "direct_non_equivalent",
+        "locator": "public scan PDF p.4",
+        "observed": ["論起大運法", "其法論節不論氣"],
+        "scope": "起運 selector, not 年柱 assignment",
+        "notPromoted": ["不論氣 = 不論中氣", "annual ganzhi switch"]
+      },
+      {
+        "sourceId": "yuanhai-received-text-li-chun-lead",
+        "status": "textual_lead_only",
+        "locator": "論四季大節訣 transcription",
+        "observed": ["年年以立春為主，餘皆例此"],
+        "institutionalDatedPage": false,
+        "notPromoted": ["exact operational 年柱 rule", "pre-1915 dated page witness"]
+      }
+    ]
+  },
+  "reviewedDerivative": {
+    "localPath": "/private/tmp/ncl-000002203-new-mingli-tanyuan.pdf",
+    "pageCount": 486,
+    "byteLength": 58287949,
+    "sha256": "3dfee4ef4636d48c2d2e749f90408a825e0eacee99b8c73b9748a03deb73dcfd",
+    "institutionalRecordPageCount": 487,
+    "extentDiscrepancyPreserved": true,
+    "rawInstitutionalBytesObtained": false,
+    "exactMachineBinding": "unresolved"
+  },
+  "gates": {
+    "directPageObservation": "satisfied_for_1915_surface",
+    "datedInstitutionalRecord": "satisfied_at_catalog_level",
+    "pre1915ExactRule": "unresolved",
+    "printedLocatorInPublicDerivative": "observed",
+    "institutionalRawByteBinding": "unresolved",
+    "editionLineage": "unresolved",
+    "directGenealogy": "blocked",
+    "commonAncestor": "blocked",
+    "semanticAuthority": "blocked",
+    "interpretationReadiness": "blocked",
+    "productionActivation": "blocked"
+  },
+  "preservation": {
+    "largeSourcePdfTracked": false,
+    "unrelatedDirtyWorkTouched": false,
+    "existingResearchArtifactsRewritten": false,
+    "modernTimezoneApiRoundingRulesPromoted": false,
+    "absoluteFirstnessClaim": false,
+    "wholeVolumeNegativeClaim": false
+  },
+  "sourceUrls": [
+    "https://taiwanebook.ncl.edu.tw/en/book/NCL-000002203",
+    "https://upload.wikimedia.org/wikipedia/commons/4/4a/NCL-000002203_%E6%96%B0%E5%91%BD%E7%90%86%E6%8E%A2%E5%8E%9F.pdf",
+    "https://commons.wikimedia.org/wiki/File%3ANCL-06589_1_%E4%B8%89%E5%91%BD%E9%80%9A%E6%9C%83.pdf",
+    "https://commons.wikimedia.org/wiki/File:NCL-06593_%E5%88%BB%E4%BA%AC%E8%87%BA%E5%A2%9E%E8%A3%9C%E6%B7%B5%E6%B5%B7%E5%AD%90%E5%B9%B3%E5%A4%A7%E5%85%A8.pdf",
+    "https://sajumania.com/ebook/to01-06/to01-06-01-62.htm",
+    "https://deltoi.com/zh/twenty-four-histories/hanshu/chapter-26"
+  ]
+}
