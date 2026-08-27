@@ -11,6 +11,19 @@
 
 SEED에서 차용한 것은 `Foundations → Components → Patterns`로 질문을 좁히는 구조, 원문을 복사하지 않는 문서 인덱스, 그리고 코드를 수정하지 않는 Doctor형 진단이다. Softie의 색·간격·곡률·모션·기존 컴포넌트 값은 SEED 값으로 대체하지 않는다.
 
+## Apple HIG 품질 검토 게이트
+
+Apple의 [Human Interface Guidelines](https://developer.apple.com/design/human-interface-guidelines/)는 외형, 색, 토큰, 플랫폼 자산을 복제하는 기준이 아니라 UI 품질을 점검하는 외부 참고 기준으로만 사용한다. 현재 route 구현과 runtime CSS, `DESIGN.md`, `docs/ui-system.json`, 이 문서의 우선순위를 바꾸지 않으며, HIG의 pt·폰트·재질·모션 값을 Softie 토큰으로 옮기지 않는다. 아래 게이트는 새 화면과 명시적 리뉴얼에서 `pass / gap / n/a`로 기록한다.
+
+- **`target / spacing`:** 주요 조작 요소는 기존 Softie `44px` 터치 영역과 인접 요소 사이의 비중첩·충분한 간격을 확인한다. 보이는 캡슐을 작게 유지하는 기존 compact pattern을 유지하며, Apple의 `pt` 값을 웹 `px`로 변환하거나 새 전역 토큰을 만들지 않는다.
+- **`semantic state / no-color-only`:** `default / hover / focus / selected / disabled / loading / empty / error`를 확인한다. 상태·선택·오류는 텍스트, 테두리, 아이콘, 위치 또는 native semantics 중 두 번째 신호를 가지며 색상만으로 전달하지 않는다. hover가 touch·keyboard 경로의 유일한 피드백이 되지 않게 한다.
+- **`200% 확대 / 긴 한글 / 390px 폭`:** 프로젝트 검증 기준으로 200% 브라우저 확대와 긴 한글 문구에서 핵심 정보·라벨·오류·주요 액션이 잘리지 않고 재배치되는지 확인한다. `390px`에서 가로 overflow와 화면 밖 조작이 없어야 하며, 실패 시 전체 타입·간격 토큰을 키우지 않고 해당 route의 원인을 feature-local로 좁힌다.
+- **`reduced motion / transparency / forced colors`:** reduced motion에서는 이동·scale·depth·parallax·animated blur를 제거하고 상태 의미를 정적 highlight·color·opacity 등으로 보존한다. reduced transparency에서는 glass를 더 불투명한 표면과 선명한 경계로 대체할 수 있어야 하며, forced colors에서도 focus·그룹·상태 경계가 남는지 확인한다.
+- **`modal focus lifecycle`:** 시각적으로 떠 있는 패널의 `role="dialog"`와 accessible name을 확인하고, `aria-modal="true"`는 실제 배경 비활성화, 진입 포커스, Tab containment, Escape 닫기, trigger 포커스 복귀가 모두 있을 때만 사용한다. 닫기·취소·완료의 의미를 분명히 하고 모달을 중첩하지 않는다. 일부 수명주기만 있는 경우 `gap`으로 남긴다.
+- **`content surface / functional glass`:** 입력·데이터 행·반복 목록·긴 결과는 기존 Operational Surface를 우선하고, glass는 명령·내비게이션·저밀도 핵심 표면에만 제한한다. glass를 반복 중첩하지 않으며, `Warm Liquid Glass`는 Apple 외형이 아닌 Softie 고유의 선택적 표면으로 취급한다.
+
+원문을 확인할 때는 [접근성](https://developer.apple.com/design/human-interface-guidelines/accessibility), [레이아웃](https://developer.apple.com/design/human-interface-guidelines/layout), [재질](https://developer.apple.com/design/human-interface-guidelines/materials), [모달](https://developer.apple.com/design/human-interface-guidelines/modality), [모션](https://developer.apple.com/design/human-interface-guidelines/motion)만 해당 게이트의 근거로 연결한다. Apple UI Kit, SF Symbols, Apple 폰트, 새 디자인·아이콘 의존성은 이 문서의 채택 대상이 아니다.
+
 ## 작업 전 5분
 
 1. `git status --short --branch`로 기존 변경을 확인하고, 그 변경을 이번 UI 작업의 결과로 섞지 않는다.
@@ -27,6 +40,7 @@ UI work packet
 - reused tokens:
 - reused patterns/selectors:
 - states: default / hover / focus / selected / disabled / loading / empty / error
+- Apple HIG gates: pass | gap | n/a; 근거/후속:
 - mobile check: 390px
 - allowed files:
 - known exception or blocker:
