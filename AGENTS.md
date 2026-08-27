@@ -34,7 +34,7 @@
 ## Question-driven research execution
 
 - When the user provides a clear research question, the agent may autonomously design a bounded investigation, find relevant materials, perform proportional verification, classify direct/partial/unresolved evidence and blockers, judge whether the frontier advanced, and decide whether the question is complete, blocked, or should end without a frontier change.
-- The agent may create the smallest necessary research record when that record is within the stated task scope. Commit and push remain subject to the explicit authorization and file-scoping rules above; a clear question alone does not authorize unrelated publication or remote changes.
+- The agent may create the smallest necessary research record when that record is within the stated task scope. When a meaningful research frontier is closed or materially advanced, the agent should autonomously record the related bounded evidence and complete one atomic local commit limited to that evidence. Push remains subject to explicit authorization; existing evidence, safety, dirty-work, and file-scoping boundaries remain in force, and a clear question alone does not authorize unrelated publication or remote changes.
 - Do not fill an evidence gap with inference merely to complete the flow. If direct evidence, identity, locator, lineage, or semantic support does not close, preserve the unresolved state, stop that promotion branch, and report the remaining blocker.
 - Preserve unrelated dirty work, untracked research, protected artifacts, and large source files throughout the autonomous investigation; inspect and alter only the allowlisted task surface.
 
