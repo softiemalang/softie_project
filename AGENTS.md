@@ -15,6 +15,11 @@
 - Push, merge, force-push, deployment, remote database or migration changes, production configuration, secrets, credentials, and tokens require explicit user approval for that action.
 - Do not expose service-role or other backend secrets to frontend code. Treat current Supabase configuration and handler-level authentication/ownership checks as the security source of truth.
 
+## Mac mini operational boundary
+
+- During an active Codex task, do not directly stop or restart the Router; leave its lifecycle to `launchd`.
+- Perform unavoidable recovery work only after establishing an independent remote access path that will remain available if the Router is disrupted.
+
 ## Product and data invariants
 
 - `/lead-sheet` is performance-use data. Preserve its localStorage keys and migration paths.
