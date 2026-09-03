@@ -34,3 +34,6 @@ scratch/actualLlmResponseReport.json
 # CHI-KNOW-PO fine-tuning per-run logs/checkpoints are local evidence inputs;
 # the canonical trial contract is the tracked trial.json.
 /artifacts/historical-ocr-chi-know-po-medium-rec-finetune-trial/runs/
+
+# Preflight child logs/checkpoints are local disposable evidence; preflight.json is canonical.
+/artifacts/historical-ocr-chi-know-po-medium-rec-preflight/runs/

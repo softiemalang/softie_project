@@ -1,0 +1,123 @@
+{
+  "schema": "chi-know-po-ppocrv6-medium-rec-hf-disposable-training-design-v1",
+  "status": "DESIGN_ONLY",
+  "submitted": false,
+  "activation": false,
+  "route": {
+    "BLOCK_OCR_ROUTE": true,
+    "OCRProvider": {
+      "enabled": false
+    }
+  },
+  "baseModel": {
+    "modelId": "PaddlePaddle/PP-OCRv6_medium_rec_safetensors",
+    "revision": "024cad6a831de75c2c3c26e711ba8c4a82ccd24b",
+    "weightsSha256": "5f43c16f2a684b1d2284662178bdb604febd3d6bfdb5ca73828d08d0f7c0c3e9"
+  },
+  "corpus": {
+    "corpusId": "CHI-KNOW-PO",
+    "datasetId": "calfa-ai/chiknowpo",
+    "revision": "be857420a96e49b009ef0d3b74fbd6d1b28d5c87",
+    "trainDocumentIds": [
+      "A-1",
+      "A-3",
+      "A-4",
+      "S-2",
+      "S-3",
+      "S-4",
+      "S-6",
+      "S-7",
+      "T-1",
+      "T-3"
+    ],
+    "trainParquetSha256": "97f6fcc531cb79c4e0f2f63a042f52317b9299ed2f13785663c8523c7c0bc25b",
+    "sourceUpload": false,
+    "heldOutInTrainJob": false,
+    "frozenGoldInAnyPhase": false,
+    "rawTextOrImagesInResults": false
+  },
+  "preflight": {
+    "requiredBeforeFullFineTuning": true,
+    "artifact": "artifacts/historical-ocr-chi-know-po-medium-rec-preflight/preflight.json",
+    "zeroStepCheckpointRoundTrip": true,
+    "tinyOverfitMaxRecords": 4,
+    "tinyOverfitMaxSteps": 16,
+    "causeConfirmationRequired": true
+  },
+  "jobSubmission": {
+    "api": "hf_jobs('uv')",
+    "scriptTransport": "inline_bundle_or_reviewed_url",
+    "localFilesystemPathArgument": false,
+    "python": "3.11",
+    "flavorDefault": "cpu-upgrade",
+    "timeout": "2h",
+    "scheduled": false,
+    "retryPolicy": "none_until_operator_review",
+    "networkMode": "pinned_hub_read_and_private_result_write_only",
+    "publicResultPush": false
+  },
+  "phases": [
+    {
+      "id": "train-only-preflight",
+      "inputPartition": "train",
+      "heldOutPathArgument": false,
+      "fullFineTuning": false,
+      "mustPass": true
+    },
+    {
+      "id": "future-train",
+      "inputPartition": "train",
+      "heldOutPathArgument": false,
+      "fullFineTuning": true,
+      "requires": [
+        "cause_confirmed",
+        "preflight_functional_pass",
+        "operator_gate_open"
+      ],
+      "checkpointFrozenBeforeHeldOut": true
+    },
+    {
+      "id": "separate-held-out-evaluation",
+      "inputPartition": "untouched-held-out",
+      "separateJob": true,
+      "afterCheckpointFreeze": true,
+      "notVisibleToTrainProcess": true,
+      "frozenGold": false
+    }
+  ],
+  "persistence": {
+    "required": true,
+    "target": "operator-selected private Hub results repository",
+    "tokenBinding": "HF_TOKEN encrypted secret only when private persistence is authorized",
+    "checkpointAndMetrics": "persist only after job completes or at explicit checkpoint",
+    "logs": "hashes_metrics_resource_telemetry_only",
+    "sourceCorpusRepublished": false
+  },
+  "resourceGate": {
+    "localObservedTrainPeakRssMiB": 4440.234,
+    "localBoundedPeakRssMiB": 4096.0,
+    "localSwapProbe": "system_wide_macos_vm.swapusage",
+    "localDecision": "blocked_by_rss_and_swap_in_prior_full_trial",
+    "remoteMustProvide": [
+      "peak_rss_telemetry",
+      "wall_time_telemetry",
+      "deterministic_runtime_descriptor",
+      "result_persistence_receipt"
+    ],
+    "missingTelemetry": "gate_failure_or_unknown",
+    "hardwareEscalationOrder": [
+      "cpu-upgrade",
+      "t4-small",
+      "operator-selected_gpu_after_cost_review"
+    ]
+  },
+  "prohibitions": {
+    "search": false,
+    "historicalSourceJudgment": false,
+    "semanticCorrection": false,
+    "silentFallback": false,
+    "activation": false,
+    "detectionExtension": "DEFERRED",
+    "fullFineTuningBeforeCauseConfirmation": "FORBIDDEN"
+  }
+}
