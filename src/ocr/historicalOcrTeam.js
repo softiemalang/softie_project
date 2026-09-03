@@ -496,6 +496,9 @@ export const PP_OCRV6_WORKER_SPECS = Object.freeze([
     entrypoint: 'local_adapter_required',
     runner: Object.freeze({ kind: 'external_local_adapter', command: null, modelRef: null }),
     localExecution: Object.freeze({ execution: 'local', os: 'darwin', architecture: 'arm64', machine: 'apple-m1', networkAccess: false }),
+    lifecycle: 'archived_candidate',
+    availability: 'archived',
+    archiveReason: 'no_unique_text_answer_established_from_frozen_line_exact_outcomes_only',
     licenseStatus: 'not_verified',
     dataBoundaryStatus: 'not_verified',
     activation: Object.freeze({ enabled: false, active: false, availableForInterpretation: false, productionActivation: false, decision: 'separate_activation_decision_required' }),
@@ -517,6 +520,9 @@ export const PP_OCRV6_REC_WORKER_SPECS = Object.freeze([
     modelId: 'PaddlePaddle/PP-OCRv6_small_rec_safetensors',
     modelRevision: 'fe049fb103f57443fe8840c54ed06b702f3c1de5',
     role: 'first_worker_candidate_variant',
+    lifecycle: 'archived_candidate',
+    availability: 'archived',
+    archiveReason: 'no_unique_text_answer_established_from_frozen_line_exact_outcomes_only',
     replaceable: true,
     selectionPolicy: 'explicit_worker_id_only',
     fallbackPolicy: 'none',
@@ -537,6 +543,9 @@ export const PP_OCRV6_REC_WORKER_SPECS = Object.freeze([
     modelId: 'PaddlePaddle/PP-OCRv6_medium_rec_safetensors',
     modelRevision: '024cad6a831de75c2c3c26e711ba8c4a82ccd24b',
     role: 'first_worker_candidate_variant',
+    lifecycle: 'archived_candidate',
+    availability: 'archived',
+    archiveReason: 'no_unique_text_answer_established_from_frozen_line_exact_outcomes_only',
     replaceable: true,
     selectionPolicy: 'explicit_worker_id_only',
     fallbackPolicy: 'none',
@@ -1244,6 +1253,7 @@ export function selectHistoricalOcrWorker({ team, component, workerId } = {}) {
   if (!COMPONENT_SET.has(component) || !hasText(workerId)) return { status: 'UNKNOWN', worker: null, reasonCodes: ['explicit_worker_id_required'] }
   const worker = workers.find(item => item.component === component && item.workerId === workerId)
   if (!worker) return { status: 'UNKNOWN', worker: null, reasonCodes: ['worker_not_registered'] }
+  if (worker.availability === 'archived' || worker.lifecycle === 'archived_candidate') return { status: 'UNKNOWN', worker: null, reasonCodes: ['worker_archived'] }
   if (worker.fallbackPolicy !== 'none' || worker.selectionPolicy !== 'explicit_worker_id_only') return { status: 'BLOCKED', worker: null, reasonCodes: ['worker_selection_policy_invalid'] }
   return { status: 'VERIFIED', worker: clone(worker), reasonCodes: [] }
 }

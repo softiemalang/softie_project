@@ -55,6 +55,12 @@ explicit local model directory and the existing frozen four-line gold; it
 retains hashes and measurements, not raw prediction text or pixels. Its
 license/data claims are evidence fields and remain independent of activation.
 
+After the frozen-line exact-only adjudication, the recognition base slot and
+the measured small/medium recognition descriptors are marked
+`archived_candidate`/`archived` and are unavailable for worker selection. The
+original run records remain recoverable; this archive is not deletion and does
+not select Qwen as a fallback.
+
 ## Independent promotion gate
 
 Each component is evaluated separately. Each component must have exactly one

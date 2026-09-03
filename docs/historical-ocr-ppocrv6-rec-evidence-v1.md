@@ -64,14 +64,21 @@ as a fallback to Qwen.
 
 The result does not justify proceeding to detection measurement or
 CHI-KNOW-PO expansion in this branch. The existing det slot remains a
-candidate, activation remains a separate decision, and the route remains
-closed:
+candidate, the measured PP-OCRv6 recognition variants are now recoverably
+archived for reference and are unavailable for worker selection, activation
+remains a separate decision, and the route remains closed:
 
 ```text
 BLOCK_OCR_ROUTE = true
 OCRProvider.enabled = false
 fallbackPolicy = none
 ```
+
+The exact-only adjudication and archive manifest are
+[`exact-outcome-adjudication.json`](../artifacts/historical-ocr-ppocrv6-rec/exact-outcome-adjudication.json)
+and [`archive-manifest.json`](../artifacts/historical-ocr-ppocrv6-rec/archive-manifest.json).
+The adjudicator consumed only the two-repeat exact booleans per frozen line;
+it did not inspect prediction text, prediction hashes, CER, or confidence.
 
 The existing bounded team continues to preserve the caller-provided
 `OCR_REQUIRED` handoff and promoted geometry/table-grid through its API and

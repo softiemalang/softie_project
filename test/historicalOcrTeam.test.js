@@ -137,6 +137,7 @@ test('PP-OCRv6 is registered as two replaceable candidate slots without activati
     ['det', 'det', 'pp-ocrv6-det'],
     ['rec', 'rec', 'pp-ocrv6-rec'],
   ])
+  assert.equal(PP_OCRV6_WORKERS.find(worker => worker.component === 'rec').availability, 'archived')
   assert.ok(PP_OCRV6_WORKERS.every(worker => worker.replaceable && worker.fallbackPolicy === 'none' && worker.activation.enabled === false))
 
   const team = buildHistoricalOcrTeam({ handoff, promotedGeometry, promotedTableGrid })
@@ -154,12 +155,18 @@ test('PP-OCRv6 recognition variants are explicit replaceable slots without fallb
     ['rec-small', 'pp-ocrv6-small-rec', 'small'],
     ['rec-medium', 'pp-ocrv6-medium-rec', 'medium'],
   ])
+  assert.ok(PP_OCRV6_REC_WORKERS.every(worker => worker.lifecycle === 'archived_candidate' && worker.availability === 'archived'))
   const slots = buildPpOcrV6RecognitionWorkerSlots()
   assert.deepEqual(slots.map(worker => [worker.slotId, worker.workerId]), [
     ['rec-medium', 'pp-ocrv6-medium-rec'],
     ['rec-small', 'pp-ocrv6-small-rec'],
   ])
   assert.ok(slots.every(worker => worker.component === 'rec' && worker.replaceable && worker.fallbackPolicy === 'none' && worker.activation.active === false))
+  assert.deepEqual(selectHistoricalOcrWorker({ team: { workers: slots }, component: 'rec', workerId: 'pp-ocrv6-small-rec' }), {
+    status: 'UNKNOWN',
+    worker: null,
+    reasonCodes: ['worker_archived'],
+  })
 })
 
 test('each component is independently promoted only after CHI-KNOW-PO and frozen-gold gates pass', () => {
