@@ -1,0 +1,1 @@
+{"splits":[{"dataset":"calfa-ai/chiknowpo","config":"default","split":"train"},{"dataset":"calfa-ai/chiknowpo","config":"default","split":"validation"},{"dataset":"calfa-ai/chiknowpo","config":"default","split":"test"}],"pending":[],"failed":[]}

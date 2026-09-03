@@ -1,14 +1,14 @@
 # CHI-KNOW-PO historical-recognition specialization path
 
-Date: 2026-09-03. This is a leakage-control design, not a corpus import,
-fine-tuning run, model promotion, or activation decision.
+Date: 2026-09-03. This document records the original leakage-control design.
+The pinned read-only corpus materialization and its evidence are recorded in
+[`historical-ocr-chi-know-po-corpus-materialization-v1.md`](historical-ocr-chi-know-po-corpus-materialization-v1.md).
 
-The current local scope contains no supplied CHI-KNOW-PO corpus bytes or
-manifest. The design therefore does not reuse the frozen gold, held-out gold,
-or any other nearby fixture as a substitute. The current plan is
+The design checkpoint did not invent a corpus or reuse frozen gold, held-out
+gold, or any other nearby fixture as a substitute. Its original plan remains
 [`plan.json`](../artifacts/historical-ocr-chi-know-po-specialization/plan.json)
-with status `DESIGN_ONLY`, `splitMaterialized=false`,
-`fineTuningGate=NOT_RUN`, and `activationGate=BLOCKED`.
+with status `DESIGN_ONLY`; the later materialized plan is a separate evidence
+record and still has `fineTuningGate=NOT_RUN` and `activationGate=BLOCKED`.
 
 ## Split unit and identity
 

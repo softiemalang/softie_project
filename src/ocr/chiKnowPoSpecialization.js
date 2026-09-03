@@ -8,6 +8,7 @@ import {
 
 export const CHI_KNOW_PO_SPECIALIZATION_SCHEMA = 'chi-know-po-historical-recognition-specialization-v1'
 export const CHI_KNOW_PO_DOCUMENT_SPLIT_SCHEMA = 'chi-know-po-document-split-plan-v1'
+export const CHI_KNOW_PO_CORPUS_SAFETY_SCHEMA = 'chi-know-po-corpus-safety-gate-v1'
 export const CHI_KNOW_PO_SPLITS = Object.freeze(['train', 'untouched-held-out'])
 
 const HASH = /^[a-f0-9]{64}$/i
@@ -58,7 +59,7 @@ function normalizeDocument(document, index) {
   }
 }
 
-function partitionSpec(split, documentIds) {
+function partitionSpec(split, documentIds, materialization = null) {
   const isHeldOut = split === 'untouched-held-out'
   return {
     split,
@@ -79,6 +80,7 @@ function partitionSpec(split, documentIds) {
       manualCorrection: !isHeldOut,
       feedbackToTraining: !isHeldOut,
     },
+    materialization: clone(materialization),
   }
 }
 
@@ -97,11 +99,17 @@ export function buildChiKnowPoSpecializationPlan({
   const bytesAvailable = source?.bytesAvailable === true
   const manifestSha256 = source?.manifestSha256 ?? null
   if (manifestSha256 !== null && !isHash(manifestSha256)) throw new Error('source.manifestSha256_invalid')
+  const materializedValidated = source?.materializedValidated === true
+  const safety = isObject(source?.safety) ? source.safety : {}
+  const corpusSafetyStatus = safety.status || (materializedValidated ? 'PASSED' : 'NOT_RUN')
+  const partitionMetadata = isObject(source?.partitions) ? source.partitions : {}
 
   return withContentSha256({
     schema: CHI_KNOW_PO_SPECIALIZATION_SCHEMA,
     splitSchema: CHI_KNOW_PO_DOCUMENT_SPLIT_SCHEMA,
-    status: catalogSupplied ? 'DRAFT_WITH_DECLARED_DOCUMENT_GROUPS' : 'DESIGN_ONLY',
+    status: materializedValidated
+      ? 'MATERIALIZED_AND_VALIDATED'
+      : catalogSupplied ? 'DRAFT_WITH_DECLARED_DOCUMENT_GROUPS' : 'DESIGN_ONLY',
     corpus: {
       corpusId: CHI_KNOW_PO_CORPUS_ID,
       unit: 'document',
@@ -109,6 +117,16 @@ export function buildChiKnowPoSpecializationPlan({
       manifestSupplied: manifestSha256 !== null,
       manifestPath: source?.manifestPath ?? null,
       manifestSha256,
+      sourceRevision: source?.revision ?? null,
+      splitManifestPath: source?.splitManifestPath ?? null,
+      splitManifestSha256: source?.splitManifestSha256 ?? null,
+      readOnlyAcquisition: source?.readOnlyAcquisition === true,
+      integrityValidated: materializedValidated,
+      licenseSpdx: source?.licenseSpdx ?? null,
+      sourceFileCount: Number.isInteger(source?.sourceFileCount) ? source.sourceFileCount : null,
+      sourceParquetBytes: Number.isInteger(source?.sourceParquetBytes) ? source.sourceParquetBytes : null,
+      sourceRowCount: Number.isInteger(source?.sourceRowCount) ? source.sourceRowCount : null,
+      documentCount: Number.isInteger(source?.documentCount) ? source.documentCount : normalizedDocuments.length,
       documentCatalogSupplied: catalogSupplied,
       splitMaterialized,
       reason: catalogSupplied
@@ -132,8 +150,8 @@ export function buildChiKnowPoSpecializationPlan({
     },
     documentCatalog: normalizedDocuments,
     partitions: {
-      train: partitionSpec('train', trainIds),
-      'untouched-held-out': partitionSpec('untouched-held-out', heldOutIds),
+      train: partitionSpec('train', trainIds, partitionMetadata.train),
+      'untouched-held-out': partitionSpec('untouched-held-out', heldOutIds, partitionMetadata['untouched-held-out']),
     },
     leakageControls: {
       noPageOrLineRandomSplit: true,
@@ -147,6 +165,22 @@ export function buildChiKnowPoSpecializationPlan({
       heldOutExcludedFromPreprocessingFit: true,
       heldOutExcludedFromModelSelection: true,
       heldOutEvaluationAfterCheckpointFreeze: true,
+    },
+    corpusSafetyGate: {
+      schema: CHI_KNOW_PO_CORPUS_SAFETY_SCHEMA,
+      status: corpusSafetyStatus,
+      decision: safety.decision ?? (materializedValidated ? 'SAFE_TO_HAND_OFF_TO_SEPARATE_FINE_TUNING_GATE' : 'NOT_RUN'),
+      sourceIntegrity: safety.sourceIntegrity ?? (materializedValidated ? 'PASSED' : 'NOT_RUN'),
+      documentIdentity: safety.documentIdentity ?? (materializedValidated ? 'PASSED' : 'NOT_RUN'),
+      leakage: safety.leakage ?? (materializedValidated ? 'PASSED' : 'NOT_RUN'),
+      safeToStartTrainingDataPreparation: safety.safeToStartTrainingDataPreparation ?? materializedValidated,
+      safeToHandOffToFineTuningGate: safety.safeToHandOffToFineTuningGate ?? materializedValidated,
+      fineTuningAuthorization: 'NOT_GRANTED',
+      fineTuningExecuted: false,
+      frozenDomainGoldAccessed: false,
+      activationDecision: 'SEPARATE_GATE_REQUIRED',
+      evidenceRefs: Array.isArray(safety.evidenceRefs) ? sortedUnique(safety.evidenceRefs) : [],
+      failurePolicy: 'preserve_UNKNOWN_or_BLOCKED; no_silent_fallback',
     },
     recognitionBoundary: {
       task: 'historical_recognition_only',
@@ -237,10 +271,16 @@ export function checkChiKnowPoSpecializationPlan(plan) {
   if (!isObject(plan)) return ['plan_not_object']
   if (plan.schema !== CHI_KNOW_PO_SPECIALIZATION_SCHEMA) add(errors, 'schema_mismatch')
   if (plan.splitSchema !== CHI_KNOW_PO_DOCUMENT_SPLIT_SCHEMA) add(errors, 'split_schema_mismatch')
-  if (!['DESIGN_ONLY', 'DRAFT_WITH_DECLARED_DOCUMENT_GROUPS'].includes(plan.status)) add(errors, 'status_invalid')
+  if (!['DESIGN_ONLY', 'DRAFT_WITH_DECLARED_DOCUMENT_GROUPS', 'MATERIALIZED_AND_VALIDATED'].includes(plan.status)) add(errors, 'status_invalid')
   if (plan.corpus?.corpusId !== CHI_KNOW_PO_CORPUS_ID) add(errors, 'corpus_id_mismatch')
   if (plan.corpus?.unit !== 'document') add(errors, 'corpus_unit_invalid')
   if (plan.corpus?.bytesAvailable === true && !isHash(plan.corpus?.manifestSha256)) add(errors, 'available_corpus_manifest_missing')
+  if (plan.status === 'MATERIALIZED_AND_VALIDATED') {
+    if (plan.corpus?.bytesAvailable !== true || plan.corpus?.readOnlyAcquisition !== true || plan.corpus?.integrityValidated !== true) add(errors, 'materialized_source_integrity_not_verified')
+    if (!isHash(plan.corpus?.splitManifestSha256)) add(errors, 'materialized_split_manifest_missing')
+    if (typeof plan.corpus?.sourceRevision !== 'string' || plan.corpus.sourceRevision.length < 7) add(errors, 'materialized_source_revision_missing')
+    if (plan.corpus?.licenseSpdx !== 'Apache-2.0') add(errors, 'materialized_license_boundary_missing')
+  }
   if (plan.splitPolicy?.method !== 'explicit_document_group_manifest_v1') add(errors, 'split_method_invalid')
   if (plan.splitPolicy?.assignment !== 'manifest_only') add(errors, 'split_assignment_invalid')
   if (plan.splitPolicy?.unit !== 'document' || plan.splitPolicy?.groupKey !== 'documentId') add(errors, 'document_group_key_invalid')
@@ -266,6 +306,17 @@ export function checkChiKnowPoSpecializationPlan(plan) {
   if (plan.recognitionBoundary?.historicalSourceJudgment !== false) add(errors, 'historical_source_judgment_enabled')
   if (plan.recognitionBoundary?.search !== false) add(errors, 'search_enabled')
   if (plan.recognitionBoundary?.silentFallback !== false) add(errors, 'silent_fallback_enabled')
+  if (plan.corpusSafetyGate?.schema !== CHI_KNOW_PO_CORPUS_SAFETY_SCHEMA) add(errors, 'corpus_safety_schema_mismatch')
+  if (!['NOT_RUN', 'PASSED', 'UNKNOWN'].includes(plan.corpusSafetyGate?.status)) add(errors, 'corpus_safety_status_invalid')
+  if (plan.corpusSafetyGate?.fineTuningAuthorization !== 'NOT_GRANTED') add(errors, 'fine_tuning_authorization_granted')
+  if (plan.corpusSafetyGate?.fineTuningExecuted !== false) add(errors, 'corpus_safety_fine_tuning_executed')
+  if (plan.corpusSafetyGate?.frozenDomainGoldAccessed !== false) add(errors, 'frozen_domain_gold_accessed')
+  if (plan.corpusSafetyGate?.activationDecision !== 'SEPARATE_GATE_REQUIRED') add(errors, 'corpus_safety_activation_boundary_changed')
+  if (plan.corpusSafetyGate?.status === 'PASSED') {
+    for (const key of ['sourceIntegrity', 'documentIdentity', 'leakage']) if (plan.corpusSafetyGate?.[key] !== 'PASSED') add(errors, `corpus_safety_subgate_failed:${key}`)
+    if (plan.corpusSafetyGate?.safeToStartTrainingDataPreparation !== true) add(errors, 'corpus_safety_training_preparation_not_safe')
+    if (plan.corpusSafetyGate?.safeToHandOffToFineTuningGate !== true) add(errors, 'corpus_safety_fine_tuning_handoff_not_safe')
+  }
   if (plan.activationGate?.status !== 'BLOCKED' || plan.activationGate?.enabled !== false || plan.activationGate?.active !== false) add(errors, 'activation_gate_open')
   if (plan.activationGate?.automaticPromotion !== false || plan.activationGate?.requiresExplicitOperatorDecision !== true) add(errors, 'activation_policy_invalid')
   if (plan.fineTuningGate?.status !== 'NOT_RUN' || plan.fineTuningGate?.executed !== false) add(errors, 'fine_tuning_executed_or_gate_open')
@@ -332,6 +383,7 @@ export function checkChiKnowPoSpecializationPlan(plan) {
     if (heldOutUse[key] !== false) add(errors, `held_out_use_boundary_invalid:${key}`)
   }
   if (plan.status === 'DESIGN_ONLY' && (plan.corpus?.splitMaterialized !== false || plan.documentCatalog?.length !== 0)) add(errors, 'design_only_contains_materialized_data')
+  if (plan.status === 'MATERIALIZED_AND_VALIDATED' && (plan.corpus?.splitMaterialized !== true || plan.documentCatalog?.length === 0 || plan.corpusSafetyGate?.status !== 'PASSED')) add(errors, 'materialized_plan_safety_state_invalid')
   return sortedUnique(errors)
 }
 

@@ -19,6 +19,11 @@ scratch/actualLlmResponseReport.json
 /JPLEPH
 /test/fixtures/astrology/de405/canonical-v2/de405.bsp
 
+# CHI-KNOW-PO local corpus snapshots are large read-only inputs; keep their
+# hash manifests and validators trackable without accidentally staging bytes.
+/artifacts/historical-ocr-chi-know-po-corpus-v1/source/data/*.parquet
+/artifacts/historical-ocr-chi-know-po-corpus-v1/materialized/*/corpus.parquet
+
 # DE405 research outputs are retained locally and reproducible only with the
 # external DE405/CSPICE inputs; tracked artifact contracts remain trackable.
 /artifacts/de405-*.json

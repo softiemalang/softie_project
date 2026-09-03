@@ -74,3 +74,41 @@ test('document split validator blocks source-object leakage across partitions', 
   const errors = checkChiKnowPoSpecializationPlan(plan)
   assert.ok(errors.some(error => error.startsWith('cross_partition_source_object_hash:')))
 })
+
+test('validated corpus safety gate permits only a separate fine-tuning handoff', () => {
+  const plan = buildChiKnowPoSpecializationPlan({
+    source: {
+      bytesAvailable: true,
+      manifestPath: 'artifacts/chi/corpus-manifest.json',
+      manifestSha256: hash('a'),
+      revision: 'be857420a96e49b009ef0d3b74fbd6d1b28d5c87',
+      splitManifestPath: 'artifacts/chi/document-split.json',
+      splitManifestSha256: hash('b'),
+      readOnlyAcquisition: true,
+      materializedValidated: true,
+      licenseSpdx: 'Apache-2.0',
+      safety: {
+        status: 'PASSED',
+        sourceIntegrity: 'PASSED',
+        documentIdentity: 'PASSED',
+        leakage: 'PASSED',
+        safeToStartTrainingDataPreparation: true,
+        safeToHandOffToFineTuningGate: true,
+      },
+    },
+    documents: [
+      { documentId: 'doc-train', documentFingerprint: hash('c'), duplicateFamilyId: 'family-train', sourceObjectHashes: [hash('d')], memberRecordIds: ['train-1'] },
+      { documentId: 'doc-heldout', documentFingerprint: hash('e'), duplicateFamilyId: 'family-heldout', sourceObjectHashes: [hash('f')], memberRecordIds: ['heldout-1'] },
+    ],
+    trainDocumentIds: ['doc-train'],
+    heldOutDocumentIds: ['doc-heldout'],
+  })
+  assert.deepEqual(checkChiKnowPoSpecializationPlan(plan), [])
+  assert.equal(plan.status, 'MATERIALIZED_AND_VALIDATED')
+  assert.equal(plan.corpusSafetyGate.status, 'PASSED')
+  assert.equal(plan.corpusSafetyGate.fineTuningAuthorization, 'NOT_GRANTED')
+  assert.equal(plan.corpusSafetyGate.fineTuningExecuted, false)
+  assert.equal(plan.corpusSafetyGate.frozenDomainGoldAccessed, false)
+  assert.equal(plan.fineTuningGate.status, 'NOT_RUN')
+  assert.equal(plan.activationGate.status, 'BLOCKED')
+})
