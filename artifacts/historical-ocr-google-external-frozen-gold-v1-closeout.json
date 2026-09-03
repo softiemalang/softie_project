@@ -1,0 +1,42 @@
+{
+  "schema": "historical-ocr-google-external-frozen-gold-closeout-v1",
+  "observedOn": "2026-09-04",
+  "status": "INCOMPLETE_NO_RESULT",
+  "result": {
+    "complete": false,
+    "localResultPresent": false,
+    "localConsoleLogPresent": false,
+    "validator": "NOT_RUN_NO_COMPLETE_RESULT"
+  },
+  "remoteRecovery": {
+    "existingCloudShellSessionAvailable": false,
+    "localGcloudAvailable": false,
+    "processor": {
+      "resource": "projects/888064596054/locations/asia-southeast1/processors/dcd3c8ca85ec70d2",
+      "location": "asia-southeast1",
+      "lastObservedCreationState": "ENABLED",
+      "currentState": "UNKNOWN_UNVERIFIED",
+      "deletionAttempted": false
+    }
+  },
+  "preparedInput": {
+    "transferArchive": "/private/tmp/google-external-ocr-transfer.USWgUI.tgz",
+    "transferArchiveSha256": "313049a4777693ee8ffe163278444b385826f80df68df2f541dac77f7176dea0",
+    "manifest": "/private/tmp/google-external-ocr-transfer.USWgUI/manifest.json",
+    "manifestSha256": "33e656dfcc479ce9a48e9638c96258b48e8cf1dd7fa29187753798ce34ff5315",
+    "members": [
+      "4 frozen line crops",
+      "manifest.json",
+      "google_external_ocr_frozen_gold_runner.py"
+    ],
+    "deleted": false
+  },
+  "boundary": {
+    "newProcessingRequest": false,
+    "rerun": false,
+    "ocrActivation": false,
+    "BLOCK_OCR_ROUTE": true,
+    "OCRProviderEnabled": false,
+    "automaticActivation": false
+  }
+}
