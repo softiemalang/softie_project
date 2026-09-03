@@ -8,6 +8,13 @@ import {
   checkChiKnowPoMediumRecHFJobSpec,
   validateChiKnowPoMediumRecRecipeArtifacts,
 } from '../src/ocr/chiKnowPoMediumRecRecipe.js'
+import {
+  checkChiKnowPoMediumRecRecipeSubmission,
+  validateChiKnowPoMediumRecRecipeSubmission,
+} from '../src/ocr/chiKnowPoMediumRecRecipeSubmission.js'
+import {
+  checkChiKnowPoMediumRecRecipeRun,
+} from '../src/ocr/chiKnowPoMediumRecRecipeRun.js'
 
 const root = 'artifacts/historical-ocr-chi-know-po-medium-rec-recipe-v1'
 const read = name => JSON.parse(fs.readFileSync(`${root}/${name}`, 'utf8'))
@@ -44,4 +51,25 @@ test('recipe and HF design stay conservative, disposable, and inactive', () => {
   assert.equal(hfJobSpec.submitted, false)
   assert.equal(hfJobSpec.route.BLOCK_OCR_ROUTE, true)
   assert.equal(hfJobSpec.route.OCRProvider.enabled, false)
+})
+
+test('blocked HF submission is explicit and cannot be mistaken for a recipe result', () => {
+  const receipt = read('hf-job-submission-receipt.json')
+  assert.deepEqual(checkChiKnowPoMediumRecRecipeSubmission(receipt), [])
+  assert.deepEqual(validateChiKnowPoMediumRecRecipeSubmission(receipt), {
+    pass: true,
+    errors: [],
+    decision: 'RECIPE_NOT_PROVEN',
+    baseRetainedExplicitly: true,
+  })
+  assert.equal(receipt.request.flavor, 't4-small')
+  assert.equal(receipt.response.httpStatus, 402)
+  assert.equal(receipt.checkpointEvidenceAvailable, false)
+  assert.equal(receipt.baseRetainedExplicitly, true)
+})
+
+test('checkpoint validator fails closed when no remote run result exists', () => {
+  const errors = checkChiKnowPoMediumRecRecipeRun({})
+  assert.ok(errors.includes('run_schema_mismatch'))
+  assert.ok(errors.includes('resource_telemetry_gate_not_passed'))
 })

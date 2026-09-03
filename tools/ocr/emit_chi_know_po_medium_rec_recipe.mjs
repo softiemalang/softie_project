@@ -255,11 +255,12 @@ function buildHFJobSpec(split, recipe) {
       status: 'DESIGN_ONLY',
       entrypoint: 'ppocrv6_medium_rec_recipe_runner.py',
       dependencies: [
-        'paddlepaddle==3.3.1',
+        'paddlepaddle-gpu==3.3.1',
         'paddlex==3.7.2',
         'pyarrow==21.0.0',
         'Pillow==11.3.0',
         'numpy==2.0.2',
+        'huggingface-hub==0.36.2',
       ],
       inputContract: [
         'model_id_and_revision',
