@@ -1,0 +1,319 @@
+{
+  "schema": "historical-ocr-qwen-document-ai-exact-outcome-v1",
+  "version": "1.0.0",
+  "status": "CLOSED_RECORD",
+  "recordedOn": "2026-09-04",
+  "comparisonMode": "frozen_gold_exact_boolean_outcomes_only",
+  "source": {
+    "frozenGoldSetSha256": "f08b4a006d5cc48ce6969ba8389bb7b4b3f5018a0228bca05ff867e15d13d02b",
+    "inputManifestSha256": "33e656dfcc479ce9a48e9638c96258b48e8cf1dd7fa29187753798ce34ff5315",
+    "qwenExactAdjudicationPath": "artifacts/historical-ocr-ppocrv6-rec/exact-outcome-adjudication.json",
+    "qwenExactAdjudicationContentSha256": "24d11d1fcf083afea1acc398eb3316e5efef722a9e0d8744f19e2e1e014026c7",
+    "qwenRunRecordPath": "/Users/hangyukim/Documents/malang_lab/documents/Web Research Broker Lab/benchmark/historical-ocr-recognition-qwen-groq-v1/result-2026-09-03.json",
+    "qwenRunRecordSha256": "3fc4d6959dfea7216ecf5bbf1e240ee380d12dcfa1470e3c9be871d9a94df4c4",
+    "documentAiBasePath": "/home/haantube421/google-vision-smoke-20260904/document-ai-8run.json",
+    "documentAiBaseSha256": "7153095ad8cb2c75327154fe501f44e11eba05675603b3b44102f354b458f5a0",
+    "documentAiOptimizedPath": "/home/haantube421/google-vision-smoke-20260904/document-ai-minimal-mask-imageless-8run-20260904-v1.json",
+    "documentAiOptimizedSha256": "b3fec8714c957cb80d2a5a87fe298b9e0e33ebfd4bb3517bb26e1b8c851fd671",
+    "optimizedRequestGate": "OPTIMIZED_REQUEST_SHAPE_CANDIDATE"
+  },
+  "inputs": {
+    "frozenGoldSetSha256": "f08b4a006d5cc48ce6969ba8389bb7b4b3f5018a0228bca05ff867e15d13d02b",
+    "inputManifestSha256": "33e656dfcc479ce9a48e9638c96258b48e8cf1dd7fa29187753798ce34ff5315",
+    "frozenLineIds": [
+      "saju-main-title-line",
+      "saju-folio-line",
+      "ziwei-title-line",
+      "astrology-title-line"
+    ],
+    "repeatsPerLine": 2,
+    "candidateWorkerIds": [
+      "qwen/qwen3.8-27b",
+      "document-ai-enterprise-document-ocr-optimized-request-v1"
+    ],
+    "rawTextInspected": false,
+    "predictionHashesInspected": false,
+    "cerInspected": false,
+    "confidenceInspected": false,
+    "geometryInspected": false,
+    "qwenExactByLine": {
+      "saju-main-title-line": [
+        true,
+        true
+      ],
+      "saju-folio-line": [
+        false,
+        false
+      ],
+      "ziwei-title-line": [
+        true,
+        true
+      ],
+      "astrology-title-line": [
+        true,
+        true
+      ]
+    },
+    "documentAiExactByLine": {
+      "saju-main-title-line": [
+        true,
+        true
+      ],
+      "saju-folio-line": [
+        true,
+        true
+      ],
+      "ziwei-title-line": [
+        true,
+        true
+      ],
+      "astrology-title-line": [
+        false,
+        false
+      ]
+    }
+  },
+  "candidates": [
+    {
+      "workerId": "qwen/qwen3.8-27b",
+      "exactByLine": {
+        "saju-main-title-line": [
+          true,
+          true
+        ],
+        "saju-folio-line": [
+          false,
+          false
+        ],
+        "ziwei-title-line": [
+          true,
+          true
+        ],
+        "astrology-title-line": [
+          true,
+          true
+        ]
+      },
+      "rawPredictionTextRetained": false
+    },
+    {
+      "workerId": "document-ai-enterprise-document-ocr-optimized-request-v1",
+      "exactByLine": {
+        "saju-main-title-line": [
+          true,
+          true
+        ],
+        "saju-folio-line": [
+          true,
+          true
+        ],
+        "ziwei-title-line": [
+          true,
+          true
+        ],
+        "astrology-title-line": [
+          false,
+          false
+        ]
+      },
+      "rawPredictionTextRetained": false
+    }
+  ],
+  "lineResults": [
+    {
+      "lineId": "saju-main-title-line",
+      "qwen": {
+        "workerId": "qwen/qwen3.8-27b",
+        "exactFlags": [
+          true,
+          true
+        ],
+        "repeatStable": true,
+        "exactOutcome": true
+      },
+      "documentAi": {
+        "workerId": "document-ai-enterprise-document-ocr-optimized-request-v1",
+        "exactFlags": [
+          true,
+          true
+        ],
+        "repeatStable": true,
+        "exactOutcome": true
+      },
+      "relation": "AGREEMENT_BOTH_EXACT",
+      "evidenceMode": "frozen_gold_exact_boolean_outcomes_only",
+      "escalation": "NO_AUTO_ACTION"
+    },
+    {
+      "lineId": "saju-folio-line",
+      "qwen": {
+        "workerId": "qwen/qwen3.8-27b",
+        "exactFlags": [
+          false,
+          false
+        ],
+        "repeatStable": true,
+        "exactOutcome": false
+      },
+      "documentAi": {
+        "workerId": "document-ai-enterprise-document-ocr-optimized-request-v1",
+        "exactFlags": [
+          true,
+          true
+        ],
+        "repeatStable": true,
+        "exactOutcome": true
+      },
+      "relation": "CONFLICT_DOCUMENT_AI_EXACT_QWEN_NONEXACT",
+      "evidenceMode": "frozen_gold_exact_boolean_outcomes_only",
+      "escalation": "ESCALATE_REQUIRED"
+    },
+    {
+      "lineId": "ziwei-title-line",
+      "qwen": {
+        "workerId": "qwen/qwen3.8-27b",
+        "exactFlags": [
+          true,
+          true
+        ],
+        "repeatStable": true,
+        "exactOutcome": true
+      },
+      "documentAi": {
+        "workerId": "document-ai-enterprise-document-ocr-optimized-request-v1",
+        "exactFlags": [
+          true,
+          true
+        ],
+        "repeatStable": true,
+        "exactOutcome": true
+      },
+      "relation": "AGREEMENT_BOTH_EXACT",
+      "evidenceMode": "frozen_gold_exact_boolean_outcomes_only",
+      "escalation": "NO_AUTO_ACTION"
+    },
+    {
+      "lineId": "astrology-title-line",
+      "qwen": {
+        "workerId": "qwen/qwen3.8-27b",
+        "exactFlags": [
+          true,
+          true
+        ],
+        "repeatStable": true,
+        "exactOutcome": true
+      },
+      "documentAi": {
+        "workerId": "document-ai-enterprise-document-ocr-optimized-request-v1",
+        "exactFlags": [
+          false,
+          false
+        ],
+        "repeatStable": true,
+        "exactOutcome": false
+      },
+      "relation": "CONFLICT_QWEN_EXACT_DOCUMENT_AI_NONEXACT",
+      "evidenceMode": "frozen_gold_exact_boolean_outcomes_only",
+      "escalation": "ESCALATE_REQUIRED"
+    }
+  ],
+  "relations": {
+    "status": "COMPLEMENTARY_EXACT_COVERAGE_WITH_CONFLICT",
+    "agreement": {
+      "lineIds": [
+        "saju-main-title-line",
+        "ziwei-title-line"
+      ],
+      "recordCount": 4,
+      "meaning": "same frozen-gold exact boolean outcome only; not text agreement"
+    },
+    "conflict": {
+      "lineIds": [
+        "saju-folio-line",
+        "astrology-title-line"
+      ],
+      "recordCount": 4,
+      "meaning": "different frozen-gold exact boolean outcome; not reconstructed text conflict"
+    },
+    "complementarity": {
+      "status": "OBSERVED",
+      "qwenOnlyExactLineIds": [
+        "astrology-title-line"
+      ],
+      "documentAiOnlyExactLineIds": [
+        "saju-folio-line"
+      ],
+      "overlappingExactLineIds": [
+        "saju-main-title-line",
+        "ziwei-title-line"
+      ],
+      "unionExactLineIds": [
+        "saju-main-title-line",
+        "saju-folio-line",
+        "ziwei-title-line",
+        "astrology-title-line"
+      ]
+    }
+  },
+  "metrics": {
+    "lineCount": 4,
+    "recordCount": 8,
+    "qwenExactRuns": 6,
+    "documentAiExactRuns": 6,
+    "qwenExactRate": 0.75,
+    "documentAiExactRate": 0.75,
+    "qwenCer": "UNKNOWN",
+    "qwenCerReason": "Qwen raw prediction text was not retained",
+    "documentAiCer": "NOT_COMPARED_IN_THIS_EXACT_ONLY_PACKET"
+  },
+  "escalationPolicy": {
+    "schema": "historical-ocr-bounded-escalation-v1",
+    "currentDisposition": "ESCALATE_REQUIRED",
+    "trigger": "line_scoped_conflict_or_unknown_repeat_outcome",
+    "maxRounds": 1,
+    "maxAdditionalWorkersPerRound": 1,
+    "maxAdditionalRequestsPerRound": 8,
+    "allowedNextStep": "one explicitly named third recognition worker or independently retained raw-text review on the same frozen gold; design only, not executed",
+    "actions": [
+      "preserve both candidate packets and line-scoped relation",
+      "emit ESCALATE_REQUIRED for conflict/unknown lines",
+      "recompute this packet after the bounded evidence arrives"
+    ],
+    "prohibited": [
+      "automatic winner selection",
+      "confidence-based selection or cross-provider calibration",
+      "per-line text stitching or union-as-output",
+      "semantic correction",
+      "silent fallback",
+      "OCR activation"
+    ],
+    "execution": "NOT_RUN_READ_ONLY_SCOPE"
+  },
+  "selection": {
+    "selectedWorkerId": null,
+    "winner": "NONE",
+    "automaticWinnerSelection": false,
+    "reason": "agreement/conflict/complementarity are evidence relations, not routing authority"
+  },
+  "routeBoundary": {
+    "BLOCK_OCR_ROUTE": true,
+    "OCRProvider": {
+      "enabled": false
+    },
+    "activation": false,
+    "fallbackPolicy": "none",
+    "detectionSlotTouched": false,
+    "semanticCorrection": false,
+    "silentFallback": false,
+    "search": false,
+    "historicalSourceJudgment": false
+  },
+  "retention": {
+    "exactBooleanOutcomesOnly": true,
+    "rawPredictionTextRetained": false,
+    "rawModelOutputRetained": false,
+    "textAgreementClaimed": false,
+    "winnerClaimed": false
+  },
+  "contentSha256": "3884fa5a42c2823f6fa282d773eeb5ee837cb8e8aa6de9dc2f5df984e53d09cc"
+}
