@@ -1,0 +1,210 @@
+{
+  "schema": "historical-ocr-groq-qwen-data-uri-blocker-v1",
+  "version": "1.0.0",
+  "status": "CLOSED_PROVIDER_SIDE_BLOCKER",
+  "recordedOn": "2026-09-04",
+  "decision": {
+    "route": "groq-qwen-vision-data-uri",
+    "availability": "TEMPORARILY_UNAVAILABLE",
+    "classification": "PROVIDER_SIDE_DATA_URI_TRANSPORT_BLOCKER",
+    "scope": "qwen/qwen3.6-27b_and_qwen/qwen3.8-27b",
+    "modelSpecific38Regression": "NOT_SUPPORTED",
+    "dataUriCommonFailure": "SUPPORTED_BY_CROSS_MODEL_SAME_FIXTURE",
+    "mimeSpecificFailure": "UNRESOLVED",
+    "workerQualificationChanged": false,
+    "automaticActivation": false
+  },
+  "preservedEvidence": {
+    "qwenRecognition": {
+      "workerId": "qwen/qwen3.8-27b",
+      "status": "CANDIDATE_EVIDENCE_PRESERVED",
+      "recordPath": "/Users/hangyukim/Documents/malang_lab/documents/Web Research Broker Lab/benchmark/historical-ocr-recognition-qwen-groq-v1/result-2026-09-03.json",
+      "recordSha256": "3fc4d6959dfea7216ecf5bbf1e240ee380d12dcfa1470e3c9be871d9a94df4c4",
+      "exactMatchRuns": 6,
+      "runs": 8,
+      "repeatTextStableLines": 4,
+      "rawPredictionTextRetained": false,
+      "workerSelectionStillExplicitOnly": true
+    },
+    "operationalShadow": {
+      "artifactPath": "artifacts/historical-ocr-bounded-ocr-operational-shadow-v1.json",
+      "artifactSha256": "94ff77d2e2f5fc92283a3c37baee2f4e1b56969eac0427f5c0408b4a859ff1e9",
+      "status": "CANDIDATE_ONLY",
+      "activationGate": "DO_NOT_OPEN"
+    }
+  },
+  "syntheticFixture": {
+    "source": "in_memory_synthetic_not_ocr",
+    "dimensions": [2, 2],
+    "mimeType": "image/jpeg",
+    "byteLength": 631,
+    "sha256": "bd9715495e7b02200961933e63bc2f48372a538659115f4cd8ccfa3a9e5fea9d",
+    "rawBytesRetained": false
+  },
+  "transportComparison": {
+    "successfulHistoricalTransport": {
+      "kind": "curl",
+      "binary": "/usr/bin/curl",
+      "ambientCurlrcDisabled": true,
+      "userAgentOverride": false,
+      "observedDefaultUserAgent": "curl/8.7.1"
+    },
+    "blockedRunnerTransport": {
+      "kind": "urllib.request.urlopen",
+      "defaultUserAgent": "Python-urllib/3.14",
+      "automaticConnectionHeader": "Connection: close"
+    },
+    "requestShape": {
+      "endpoint": "https://api.groq.com/openai/v1/chat/completions",
+      "contentShape": ["text", "image_url"],
+      "imageUrlObjectKeys": ["url"],
+      "deterministicFields": [
+        "temperature",
+        "seed",
+        "max_completion_tokens",
+        "reasoning_effort",
+        "include_reasoning",
+        "stream",
+        "tool_choice"
+      ]
+    }
+  },
+  "evidenceProbes": [
+    {
+      "id": "qwen38_public_jpeg_url_comparator",
+      "model": "qwen/qwen3.8-27b",
+      "imageRepresentation": "public_jpeg_url",
+      "newCallInThisCloseout": false,
+      "transport": "curl",
+      "httpStatus": 200,
+      "responseContentType": "application/json",
+      "responseServer": "cloudflare",
+      "latencyMs": 1852.826,
+      "responseBodyBytes": 562,
+      "responseBodySha256": "1fcba70d78ded9eb38f25f40438a5891f5b6528fabf184aa72237422cb89b39f",
+      "responseShape": "json_success_choices_1",
+      "retryCount": 0,
+      "fallbackUsed": false,
+      "rawResponseRetained": false,
+      "role": "historical_representation_comparator_only"
+    },
+    {
+      "id": "qwen38_local_jpeg_base64",
+      "model": "qwen/qwen3.8-27b",
+      "imageRepresentation": "data:image/jpeg;base64",
+      "newCallInThisCloseout": false,
+      "transport": "curl",
+      "httpStatus": 503,
+      "responseContentType": "application/json",
+      "responseServer": "cloudflare",
+      "errorType": "internal_server_error",
+      "errorMessageBytes": 157,
+      "errorMessageSha256": "4b219ee0bbf48ff623a8c603e33d174689fc218e6759bd3e86db92d2cf7b81d9",
+      "latencyMs": 30223.081,
+      "responseBodyBytes": 213,
+      "responseBodySha256": "d19f75167dab4112caad4f99fd752110bef0aa3e44a32ef28c0a4ea4f7980e04",
+      "retryCount": 0,
+      "fallbackUsed": false,
+      "rawResponseRetained": false
+    },
+    {
+      "id": "qwen38_png_data_uri",
+      "model": "qwen/qwen3.8-27b",
+      "imageRepresentation": "data:image/png;base64",
+      "newCallInThisCloseout": false,
+      "transport": "curl",
+      "httpStatus": 503,
+      "responseContentType": "application/json",
+      "responseServer": "cloudflare",
+      "errorType": "internal_server_error",
+      "errorMessageBytes": 157,
+      "errorMessageSha256": "4b219ee0bbf48ff623a8c603e33d174689fc218e6759bd3e86db92d2cf7b81d9",
+      "latencyMs": 30168.274,
+      "responseBodyBytes": 213,
+      "responseBodySha256": "d19f75167dab4112caad4f99fd752110bef0aa3e44a32ef28c0a4ea4f7980e04",
+      "retryCount": 0,
+      "fallbackUsed": false,
+      "rawResponseRetained": false
+    },
+    {
+      "id": "qwen36_same_local_jpeg_base64",
+      "model": "qwen/qwen3.6-27b",
+      "imageRepresentation": "data:image/jpeg;base64",
+      "newCallInThisCloseout": false,
+      "transport": "curl",
+      "httpStatus": 503,
+      "responseContentType": "application/json",
+      "responseServer": "cloudflare",
+      "errorType": "internal_server_error",
+      "errorMessageBytes": 157,
+      "errorMessageSha256": "9b24c9a7c39ac2e75337d7470faf01bee2060ca9b849de51626b274b7d70df4a",
+      "latencyMs": 30318.991,
+      "responseBodyBytes": 213,
+      "responseBodySha256": "2bbbd4aea3e69dad7f473791a1c4d1c78cfbcbb79743289f37ae7f8081495a4e",
+      "retryCount": 0,
+      "fallbackUsed": false,
+      "rawResponseRetained": false
+    }
+  ],
+  "callAccounting": {
+    "providerCallsInEvidence": 4,
+    "newProviderCallsInThisCloseout": 0,
+    "newRemoteUrlWorkaroundCalls": 0,
+    "newOcrCropCalls": 0,
+    "documentAiCalls": 0,
+    "officialGroqSdkCalls": 0,
+    "retryCount": 0,
+    "fallbackCount": 0
+  },
+  "officialSdkBranch": {
+    "status": "NOT_RUN",
+    "reason": "The qwen/qwen3.6-27b control did not return HTTP 200; the conditional SDK check was therefore not entered."
+  },
+  "resumeGate": {
+    "status": "BLOCKED",
+    "automaticResume": false,
+    "conflictShadowGateMayResumeOnlyAfter": [
+      "one separately approved synthetic probe using qwen/qwen3.8-27b",
+      "the same 631-byte JPEG fixture SHA-256 bd9715495e7b02200961933e63bc2f48372a538659115f4cd8ccfa3a9e5fea9d",
+      "the same data:image/jpeg;base64 request shape and proven curl transport",
+      "HTTP 200 JSON response with at least one choice and no provider error",
+      "retryCount=0 and fallbackUsed=false",
+      "raw response, image bytes, prompt, and credential value not retained"
+    ],
+    "doesNotQualify": [
+      "public URL success alone",
+      "model catalog success alone",
+      "HTTP 403, HTTP 503, timeout, non-JSON, or missing choices",
+      "remote-URL substitution or another workaround",
+      "automatic conflict resolution or activation"
+    ],
+    "afterProof": "separate explicit review is required before any conflict shadow rerun"
+  },
+  "routeBoundary": {
+    "BLOCK_OCR_ROUTE": true,
+    "OCRProvider": {
+      "enabled": false
+    },
+    "activation": false,
+    "semanticCorrection": false,
+    "silentFallback": false,
+    "automaticWinnerSelection": false,
+    "actualOcrCropAccessed": false,
+    "documentAiAccessed": false,
+    "remoteUrlWorkaround": false
+  },
+  "retention": {
+    "rawResponseBodies": false,
+    "rawErrorMessages": false,
+    "rawImageBytes": false,
+    "rawPrompts": false,
+    "credentialValue": false
+  },
+  "validation": {
+    "status": "PASSED",
+    "basis": "read-only structural and source-hash checks",
+    "existingQwenEvidenceModified": false,
+    "routeBoundaryPreserved": true,
+    "providerCallsAfterBlockerCloseout": 0
+  }
+}
