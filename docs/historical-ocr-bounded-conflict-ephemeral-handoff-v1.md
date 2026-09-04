@@ -60,6 +60,21 @@ returned `FAILED` for the incomplete scope. This is recorded as
 
 No reviewer label, conflict resolution, or activation evidence was produced.
 
+## Second authorized rerun on 2026-09-04
+
+A second bounded rerun was attempted after the read-only Groq catalog probe
+recovered. Qwen again returned HTTP 403 for both conflict lines; pinned
+Document AI returned HTTP 200 for both. Since neither Qwen candidate existed,
+the contract correctly sent zero reviewer handoffs. The run therefore made
+four provider requests rather than six, with no retry or fallback, and its
+packet failed the independent validator for incomplete scope. The raw response
+bodies were not retained. The packet and fail-closed record are
+`artifacts/historical-ocr-bounded-conflict-ephemeral-handoff-rerun-20260904-v2.json`
+and
+`artifacts/historical-ocr-bounded-conflict-ephemeral-handoff-rerun-v2-attempt-20260904.json`.
+
+No reviewer label, conflict resolution, or activation evidence was produced.
+
 ## Gate and boundaries
 
 `activationGate.status=DO_NOT_OPEN` and `limitedActivationEligible=false`.

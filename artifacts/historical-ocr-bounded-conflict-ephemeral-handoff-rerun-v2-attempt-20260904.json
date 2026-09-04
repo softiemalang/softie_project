@@ -1,0 +1,92 @@
+{
+  "schema": "historical-ocr-bounded-conflict-ephemeral-handoff-rerun-v2-attempt-v1",
+  "version": "1.0.0",
+  "status": "INCOMPLETE_NO_RESULT",
+  "decision": "FAIL_CLOSED_VALIDATOR_REJECTED",
+  "recordedOn": "2026-09-04",
+  "source": {
+    "frozenGoldSetSha256": "f08b4a006d5cc48ce6969ba8389bb7b4b3f5018a0228bca05ff867e15d13d02b",
+    "inputManifestSha256": "33e656dfcc479ce9a48e9638c96258b48e8cf1dd7fa29187753798ce34ff5315",
+    "targetConflictLineIds": [
+      "saju-folio-line",
+      "astrology-title-line"
+    ],
+    "sameFrozenGold": true,
+    "partialPacketPath": "artifacts/historical-ocr-bounded-conflict-ephemeral-handoff-rerun-20260904-v2.json",
+    "partialPacketContentSha256": "7c36dfa17e245c3972272e383e178db7aee264ac0cc161a447bd6f2921005e56"
+  },
+  "scope": {
+    "boundedRound": 1,
+    "conflictLinesOnly": true,
+    "expectedRequests": {
+      "qwen": 2,
+      "documentAi": 2,
+      "reviewer": 2,
+      "total": 6
+    },
+    "attemptedRequests": {
+      "qwen": 2,
+      "documentAi": 2,
+      "reviewer": 0,
+      "total": 4
+    },
+    "successfulResponses": {
+      "qwen": 0,
+      "documentAi": 2,
+      "reviewer": 0
+    },
+    "httpStatuses": {
+      "qwen": [403, 403],
+      "documentAi": [200, 200],
+      "reviewer": []
+    },
+    "retryCount": 0,
+    "fallbackUsed": false,
+    "additionalWorkerRuns": 0
+  },
+  "packet": {
+    "status": "UNRESOLVED",
+    "reviewLabels": [null, null],
+    "resolvedLineIds": [],
+    "unresolvedLineIds": [
+      "saju-folio-line",
+      "astrology-title-line"
+    ]
+  },
+  "validator": {
+    "status": "FAILED",
+    "errors": [
+      "bounded_scope_invalid",
+      "handoff_boundary_invalid:astrology-title-line",
+      "handoff_boundary_invalid:saju-folio-line",
+      "qwen_line_invalid:astrology-title-line",
+      "qwen_line_invalid:saju-folio-line",
+      "resolution_boundary_invalid",
+      "review_invalid:astrology-title-line",
+      "review_invalid:saju-folio-line"
+    ],
+    "failClosedOnIncompleteHandoff": true
+  },
+  "disposal": {
+    "rawCandidateStringsRetained": false,
+    "rawCropBytesRetained": false,
+    "rawProviderResponsesRetained": false,
+    "rawReviewerPayloadSent": false,
+    "rawReviewerResponseRetained": false
+  },
+  "routeBoundary": {
+    "BLOCK_OCR_ROUTE": true,
+    "OCRProvider": {
+      "enabled": false
+    },
+    "activation": false,
+    "automaticWinnerSelection": false,
+    "majorityVote": false,
+    "semanticCorrection": false,
+    "silentFallback": false,
+    "fallbackPolicy": "none",
+    "detectionSlotTouched": false,
+    "processorMutation": false
+  },
+  "nextAction": "stop; no retry or fallback; reviewer evidence is absent"
+}
