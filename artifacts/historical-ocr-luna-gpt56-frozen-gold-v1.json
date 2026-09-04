@@ -1,0 +1,525 @@
+{
+  "schema": "hermes-historical-ocr-luna-gpt56-frozen-gold-v1",
+  "status": "closed_record",
+  "recorded_on": "2026-09-04",
+  "candidate": {
+    "provider": "OpenAI Codex native",
+    "model": "gpt-5.6-luna",
+    "transport": "codex exec --ephemeral",
+    "router_used": false,
+    "codex_cli_path": "/Applications/ChatGPT.app/Contents/Resources/codex"
+  },
+  "source": {
+    "suite_path": "/Users/hangyukim/Documents/malang_lab/documents/Web Research Broker Lab/benchmark/historical-ocr-recognition-gemini-3-8-flash-v1/suite.json",
+    "suite_sha256": "fa60d4f74a07c76c8488cb2906a56b902f8ba57489e00cda84ceae4972c4a2f9",
+    "gold_set": "historical-ocr-gold-v1",
+    "gold_set_sha256": "f08b4a006d5cc48ce6969ba8389bb7b4b3f5018a0228bca05ff867e15d13d02b",
+    "line_count": 4,
+    "repeats_per_line": 2
+  },
+  "conditions": {
+    "input": "frozen_gold_line_crop_as_attached_image",
+    "image_only_source": true,
+    "strict_transcription_only": true,
+    "output_schema": {
+      "exact_keys": [
+        "transcription"
+      ]
+    },
+    "gold_text_sent": false,
+    "qwen_output_sent": false,
+    "document_ai_output_sent": false,
+    "semantic_correction": false,
+    "fallback_used": false,
+    "retry_count": 0,
+    "ephemeral_session": true,
+    "read_only_workspace": true,
+    "temporary_crop_directory_deleted": true,
+    "temporary_codex_home_deleted": true,
+    "credential_copied": false,
+    "requested_dispatches": 8,
+    "dispatch_count": 8,
+    "stopped_without_retry": true
+  },
+  "lines": [
+    {
+      "case_id": "saju-ndl-13588381-canvas-2",
+      "domain": "saju",
+      "case_file_sha256": "e1097e799d4646c10668e386bd320fc4c1f1b1adcdfe10d295803c9899f70712",
+      "line_id": "saju-main-title-line",
+      "gold_text_sha256": "02dc52389a03e1da1663c4aca33b29e7f75f8584e33ce4d83df6eca483644817",
+      "gold_text_length": 7,
+      "bbox_xyxy": [
+        240,
+        100,
+        430,
+        635
+      ],
+      "reading_order_index": 0,
+      "fixture_sha256": "ab8e47cea8f78bddab747fd82b28378677fbc5f12ed2c827876c6b8a3fd2e092",
+      "fixture_actual_sha256": "ab8e47cea8f78bddab747fd82b28378677fbc5f12ed2c827876c6b8a3fd2e092",
+      "fixture_dimensions": [
+        1600,
+        1122
+      ],
+      "crop_pixel_sha256": "34b2dfbc969401188882536aba19b04283c6cb31dbbfbca366943ce39a9f433f",
+      "crop_png_sha256": "ceefb23563ed1adb64fb803f2ca5f997e242b2fd3fbcb6f49da31f34999c5c22",
+      "crop_dimensions": [
+        190,
+        535
+      ],
+      "runs": [
+        {
+          "transport": "native_codex_cli",
+          "model": "gpt-5.6-luna",
+          "router_used": false,
+          "http_status": null,
+          "process_exit_code": 0,
+          "timed_out": false,
+          "wall_time_ms": 6008.021,
+          "stdout_sha256": "8a15cffad1dd022e3768d10f861baa7852aaf5cdaa4f42bc5cf3248a21fbc9a5",
+          "stderr_sha256": "1aa26269eb1cc57f86b235a03cda53c004edb5b1e9fc99d4da4f00843293d721",
+          "final_output_sha256": "1d30d133bc32388e2b2eb7e293eb4925c36a168c1cb45cc069fdc894783d0371",
+          "event_count": 4,
+          "usage": {
+            "input_tokens": 12349,
+            "output_tokens": 72,
+            "total_tokens": null
+          },
+          "provider_response_retained": false,
+          "stderr_retained": false,
+          "final_message_retained": false,
+          "json_valid": true,
+          "strict_format": true,
+          "exact_match": true,
+          "prediction_text_sha256": "02dc52389a03e1da1663c4aca33b29e7f75f8584e33ce4d83df6eca483644817",
+          "prediction_text_retained": false,
+          "cer": 0.0,
+          "repeat": 1,
+          "request_count": 1,
+          "retry_count": 0,
+          "fallback_used": false,
+          "provider_input": {
+            "image_only_source": true,
+            "gold_text_sent": false,
+            "qwen_output_sent": false,
+            "document_ai_output_sent": false,
+            "semantic_correction": false
+          }
+        },
+        {
+          "transport": "native_codex_cli",
+          "model": "gpt-5.6-luna",
+          "router_used": false,
+          "http_status": null,
+          "process_exit_code": 0,
+          "timed_out": false,
+          "wall_time_ms": 5404.107,
+          "stdout_sha256": "714d7835bddd927b253b288c3941a2b1c6982549182e3d4973c99a07b6189326",
+          "stderr_sha256": "1aa26269eb1cc57f86b235a03cda53c004edb5b1e9fc99d4da4f00843293d721",
+          "final_output_sha256": "1d30d133bc32388e2b2eb7e293eb4925c36a168c1cb45cc069fdc894783d0371",
+          "event_count": 4,
+          "usage": {
+            "input_tokens": 12349,
+            "output_tokens": 85,
+            "total_tokens": null
+          },
+          "provider_response_retained": false,
+          "stderr_retained": false,
+          "final_message_retained": false,
+          "json_valid": true,
+          "strict_format": true,
+          "exact_match": true,
+          "prediction_text_sha256": "02dc52389a03e1da1663c4aca33b29e7f75f8584e33ce4d83df6eca483644817",
+          "prediction_text_retained": false,
+          "cer": 0.0,
+          "repeat": 2,
+          "request_count": 1,
+          "retry_count": 0,
+          "fallback_used": false,
+          "provider_input": {
+            "image_only_source": true,
+            "gold_text_sent": false,
+            "qwen_output_sent": false,
+            "document_ai_output_sent": false,
+            "semantic_correction": false
+          }
+        }
+      ],
+      "repeat_text_stable": true,
+      "repeat_strict_stable": true,
+      "repeat_exact_stable": true
+    },
+    {
+      "case_id": "saju-ndl-13588381-canvas-2",
+      "domain": "saju",
+      "case_file_sha256": "e1097e799d4646c10668e386bd320fc4c1f1b1adcdfe10d295803c9899f70712",
+      "line_id": "saju-folio-line",
+      "gold_text_sha256": "61979933067dd56ff6795e570f551111009feb785f7ed069e4df4aa2866f1275",
+      "gold_text_length": 3,
+      "bbox_xyxy": [
+        285,
+        635,
+        430,
+        770
+      ],
+      "reading_order_index": 1,
+      "fixture_sha256": "ab8e47cea8f78bddab747fd82b28378677fbc5f12ed2c827876c6b8a3fd2e092",
+      "fixture_actual_sha256": "ab8e47cea8f78bddab747fd82b28378677fbc5f12ed2c827876c6b8a3fd2e092",
+      "fixture_dimensions": [
+        1600,
+        1122
+      ],
+      "crop_pixel_sha256": "fa66225f173ae3eadaca9c9b9eedc1cf50c630d252912cc5d769728edb0bef55",
+      "crop_png_sha256": "42c0f503deaf3d6cb3379aeb73123c06044bb774486d5770c175edfd60b4259a",
+      "crop_dimensions": [
+        145,
+        135
+      ],
+      "runs": [
+        {
+          "transport": "native_codex_cli",
+          "model": "gpt-5.6-luna",
+          "router_used": false,
+          "http_status": null,
+          "process_exit_code": 0,
+          "timed_out": false,
+          "wall_time_ms": 19680.137,
+          "stdout_sha256": "82bbc476f5d964337d32754adfd0e4c991de087d189d6dc1a8d766d1c85b2a6c",
+          "stderr_sha256": "1870cd32c3c14adc56bbcdb14d3121692fe3b76216656ea4d761e58d759238ee",
+          "final_output_sha256": "8d136973968bef6f4b4106c34b702666faa9f4749b3c309cb21c0c0d8f9c9f6b",
+          "event_count": 4,
+          "usage": {
+            "input_tokens": 24816,
+            "output_tokens": 576,
+            "total_tokens": null
+          },
+          "provider_response_retained": false,
+          "stderr_retained": false,
+          "final_message_retained": false,
+          "json_valid": true,
+          "strict_format": true,
+          "exact_match": true,
+          "prediction_text_sha256": "61979933067dd56ff6795e570f551111009feb785f7ed069e4df4aa2866f1275",
+          "prediction_text_retained": false,
+          "cer": 0.0,
+          "repeat": 1,
+          "request_count": 1,
+          "retry_count": 0,
+          "fallback_used": false,
+          "provider_input": {
+            "image_only_source": true,
+            "gold_text_sent": false,
+            "qwen_output_sent": false,
+            "document_ai_output_sent": false,
+            "semantic_correction": false
+          }
+        },
+        {
+          "transport": "native_codex_cli",
+          "model": "gpt-5.6-luna",
+          "router_used": false,
+          "http_status": null,
+          "process_exit_code": 0,
+          "timed_out": false,
+          "wall_time_ms": 17944.41,
+          "stdout_sha256": "2edcdaf5367deee65016602cd040662c6c761db1b7cad683c154a8d6aab2ddb0",
+          "stderr_sha256": "4dc18f7108081e1767e588737d91a358a94a66af06fc8077345931a5b6da28c1",
+          "final_output_sha256": "d2c777c7787bd322e2698ae13cfc0c0320746e4398b11b0dba1e480e1caaa2a9",
+          "event_count": 4,
+          "usage": {
+            "input_tokens": 24842,
+            "output_tokens": 607,
+            "total_tokens": null
+          },
+          "provider_response_retained": false,
+          "stderr_retained": false,
+          "final_message_retained": false,
+          "json_valid": true,
+          "strict_format": true,
+          "exact_match": false,
+          "prediction_text_sha256": "0159dc5769489f614508a87f93cf8cc754c4edbc04de1c597be5e0ad321ed625",
+          "prediction_text_retained": false,
+          "cer": 0.333333333,
+          "repeat": 2,
+          "request_count": 1,
+          "retry_count": 0,
+          "fallback_used": false,
+          "provider_input": {
+            "image_only_source": true,
+            "gold_text_sent": false,
+            "qwen_output_sent": false,
+            "document_ai_output_sent": false,
+            "semantic_correction": false
+          }
+        }
+      ],
+      "repeat_text_stable": false,
+      "repeat_strict_stable": true,
+      "repeat_exact_stable": false
+    },
+    {
+      "case_id": "ziwei-wikimedia-cn-ts-00047996572-page-1",
+      "domain": "ziwei",
+      "case_file_sha256": "6e7a3659df6397e1e8a92f9d7aaa27a35ea0456b62a95db2da9f4884135bd427",
+      "line_id": "ziwei-title-line",
+      "gold_text_sha256": "b642817e31061bc97bb8907cbce526fd88b5ddc60055277baebc0ce7e22c11dc",
+      "gold_text_length": 4,
+      "bbox_xyxy": [
+        210,
+        300,
+        600,
+        1100
+      ],
+      "reading_order_index": 0,
+      "fixture_sha256": "65f7b7cdaf2542d5a9dfc7b555cb8b6302b998239493e0d6cd1c35b9fc07b41a",
+      "fixture_actual_sha256": "65f7b7cdaf2542d5a9dfc7b555cb8b6302b998239493e0d6cd1c35b9fc07b41a",
+      "fixture_dimensions": [
+        1000,
+        1571
+      ],
+      "crop_pixel_sha256": "d34e6424cbc7bf178cff966226693fcae4ce35fec1610937d28e6a9141174c0a",
+      "crop_png_sha256": "6e6eda70d371d49206e83ae5fe27b88d45ef616ce6554e5c58216f7fe846d5c4",
+      "crop_dimensions": [
+        390,
+        800
+      ],
+      "runs": [
+        {
+          "transport": "native_codex_cli",
+          "model": "gpt-5.6-luna",
+          "router_used": false,
+          "http_status": null,
+          "process_exit_code": 0,
+          "timed_out": false,
+          "wall_time_ms": 24429.752,
+          "stdout_sha256": "221891e113620c2cb2e6b5a4a8343f5010d96758e3a794eb7097fd37e36848b1",
+          "stderr_sha256": "1aa26269eb1cc57f86b235a03cda53c004edb5b1e9fc99d4da4f00843293d721",
+          "final_output_sha256": "fd235b28514176349de016d0186547d52a97692cf9e52f86bace5c01c88d9fde",
+          "event_count": 4,
+          "usage": {
+            "input_tokens": 12652,
+            "output_tokens": 1104,
+            "total_tokens": null
+          },
+          "provider_response_retained": false,
+          "stderr_retained": false,
+          "final_message_retained": false,
+          "json_valid": true,
+          "strict_format": true,
+          "exact_match": false,
+          "prediction_text_sha256": "2bd12431fe9c8c73d67252553912085f197b0c62436d753ba3a1b106d672af53",
+          "prediction_text_retained": false,
+          "cer": 0.5,
+          "repeat": 1,
+          "request_count": 1,
+          "retry_count": 0,
+          "fallback_used": false,
+          "provider_input": {
+            "image_only_source": true,
+            "gold_text_sent": false,
+            "qwen_output_sent": false,
+            "document_ai_output_sent": false,
+            "semantic_correction": false
+          }
+        },
+        {
+          "transport": "native_codex_cli",
+          "model": "gpt-5.6-luna",
+          "router_used": false,
+          "http_status": null,
+          "process_exit_code": 0,
+          "timed_out": false,
+          "wall_time_ms": 12174.79,
+          "stdout_sha256": "dd849e445d50f36c9a436206c0fdd6a3b9032ab95525d16eb9d9a531cb3ae6a6",
+          "stderr_sha256": "1aa26269eb1cc57f86b235a03cda53c004edb5b1e9fc99d4da4f00843293d721",
+          "final_output_sha256": "1fd15ba1aa67c849a390ab5bf7a409b03bf61743be9a7cbccfff879fed382e35",
+          "event_count": 4,
+          "usage": {
+            "input_tokens": 12652,
+            "output_tokens": 429,
+            "total_tokens": null
+          },
+          "provider_response_retained": false,
+          "stderr_retained": false,
+          "final_message_retained": false,
+          "json_valid": true,
+          "strict_format": true,
+          "exact_match": false,
+          "prediction_text_sha256": "e72a5120567d8e78582eafd295d8e7f425c9ad06f6ac134cf51008cd06bc37d7",
+          "prediction_text_retained": false,
+          "cer": 1.0,
+          "repeat": 2,
+          "request_count": 1,
+          "retry_count": 0,
+          "fallback_used": false,
+          "provider_input": {
+            "image_only_source": true,
+            "gold_text_sent": false,
+            "qwen_output_sent": false,
+            "document_ai_output_sent": false,
+            "semantic_correction": false
+          }
+        }
+      ],
+      "repeat_text_stable": false,
+      "repeat_strict_stable": true,
+      "repeat_exact_stable": true
+    },
+    {
+      "case_id": "astrology-tohoku-10020000011651-canvas-p1",
+      "domain": "astrology",
+      "case_file_sha256": "18bd5e2c14cadf9fa1400cb31899a843fc13fbb5b135940d82f88911f0fea280",
+      "line_id": "astrology-title-line",
+      "gold_text_sha256": "091b59595f54a37648842663ce67ae3b8f11cde6cfa199fe3a85638f21d3a28b",
+      "gold_text_length": 7,
+      "bbox_xyxy": [
+        280,
+        95,
+        640,
+        1100
+      ],
+      "reading_order_index": 0,
+      "fixture_sha256": "95133c048aeb977113f2510932c5ada27bd39d58e781c285714d80d13a959bbc",
+      "fixture_actual_sha256": "95133c048aeb977113f2510932c5ada27bd39d58e781c285714d80d13a959bbc",
+      "fixture_dimensions": [
+        2342,
+        1660
+      ],
+      "crop_pixel_sha256": "dbc8df5fe844a57143882af3a5c09a6ea86448a0ca5ba630bcece33b90fc25b2",
+      "crop_png_sha256": "3be366765a350dd4f332c38874786a5b0d136ad7b95536cfad1cdbab44c72cb8",
+      "crop_dimensions": [
+        360,
+        1005
+      ],
+      "runs": [
+        {
+          "transport": "native_codex_cli",
+          "model": "gpt-5.6-luna",
+          "router_used": false,
+          "http_status": null,
+          "process_exit_code": 0,
+          "timed_out": false,
+          "wall_time_ms": 44512.46,
+          "stdout_sha256": "a1aded460938dd4677961555a5324afd0e1af15486ca45177e8903d8156bd2b4",
+          "stderr_sha256": "21d776d3d3eecc7d64d5081f7a87be0e0df39ea024087b58e310c5cce58dad3f",
+          "final_output_sha256": "1ba3e54229363dc6aadd53186d61871efc4ca763be7826c973f19cc4d6598095",
+          "event_count": 5,
+          "usage": {
+            "input_tokens": 39681,
+            "output_tokens": 1853,
+            "total_tokens": null
+          },
+          "provider_response_retained": false,
+          "stderr_retained": false,
+          "final_message_retained": false,
+          "json_valid": true,
+          "strict_format": true,
+          "exact_match": false,
+          "prediction_text_sha256": "aa92cca1f9fbed864e195d5e6e0fc7994dc1a207995710843703b5090ef92137",
+          "prediction_text_retained": false,
+          "cer": 1.142857143,
+          "repeat": 1,
+          "request_count": 1,
+          "retry_count": 0,
+          "fallback_used": false,
+          "provider_input": {
+            "image_only_source": true,
+            "gold_text_sent": false,
+            "qwen_output_sent": false,
+            "document_ai_output_sent": false,
+            "semantic_correction": false
+          }
+        },
+        {
+          "transport": "native_codex_cli",
+          "model": "gpt-5.6-luna",
+          "router_used": false,
+          "http_status": null,
+          "process_exit_code": 0,
+          "timed_out": false,
+          "wall_time_ms": 87607.858,
+          "stdout_sha256": "74ed3c133442b14e6454812ab4fc02c868e8eb2ddc47b40e2e891bba64280607",
+          "stderr_sha256": "16fd9df577f96808650fe58760e2ce6818b3dfc0aebd30be8596622759ca5ca0",
+          "final_output_sha256": "73a0c0c5fbbed77fc56dd85765ce5570c58d42398f501a16514ef34ce554a716",
+          "event_count": 4,
+          "usage": {
+            "input_tokens": 90150,
+            "output_tokens": 3851,
+            "total_tokens": null
+          },
+          "provider_response_retained": false,
+          "stderr_retained": false,
+          "final_message_retained": false,
+          "json_valid": true,
+          "strict_format": true,
+          "exact_match": false,
+          "prediction_text_sha256": "751d4e583bc0fe0cc2efe9619d851178e0ab159006175cf2f2f7e425196907ce",
+          "prediction_text_retained": false,
+          "cer": 1.0,
+          "repeat": 2,
+          "request_count": 1,
+          "retry_count": 0,
+          "fallback_used": false,
+          "provider_input": {
+            "image_only_source": true,
+            "gold_text_sent": false,
+            "qwen_output_sent": false,
+            "document_ai_output_sent": false,
+            "semantic_correction": false
+          }
+        }
+      ],
+      "repeat_text_stable": false,
+      "repeat_strict_stable": true,
+      "repeat_exact_stable": true
+    }
+  ],
+  "aggregate": {
+    "lines_attempted": 4,
+    "runs_attempted": 8,
+    "json_valid_runs": 8,
+    "strict_format_runs": 8,
+    "exact_match_runs": 3,
+    "strict_rate": 1.0,
+    "exact_rate": 0.375,
+    "cer_mean": 0.49702381,
+    "cer_observed_runs": 8,
+    "repeat_text_stable_lines": 1,
+    "repeat_strict_stable_lines": 4,
+    "repeat_exact_stable_lines": 3,
+    "latency_mean_ms": 27220.192,
+    "latency_min_ms": 5404.107,
+    "latency_max_ms": 87607.858,
+    "input_tokens_total": 229491,
+    "output_tokens_total": 8577,
+    "total_tokens_total": null,
+    "cost_basis": "OpenAI Codex subscription route; per-request monetary billing not exposed in this record"
+  },
+  "decision": {
+    "recognition_candidate": "observed_but_below_pass_floor",
+    "hire": false,
+    "operational_ocr_candidate": false,
+    "stop_reason": null,
+    "route": "BLOCK_OCR_ROUTE",
+    "ocr_provider_enabled": false,
+    "activation": false
+  },
+  "retention": {
+    "gold_text_retained": false,
+    "prediction_text_retained": false,
+    "raw_provider_response_retained": false,
+    "raw_prompt_retained": false,
+    "raw_pixels_retained": false,
+    "credential_retained": false,
+    "qwen_or_document_ai_payload_retained": false
+  },
+  "non_changes": {
+    "BLOCK_OCR_ROUTE": true,
+    "OCRProvider.enabled": false,
+    "semantic_correction": false,
+    "silent_fallback": false,
+    "activation": false,
+    "detection_changed": false
+  }
+}

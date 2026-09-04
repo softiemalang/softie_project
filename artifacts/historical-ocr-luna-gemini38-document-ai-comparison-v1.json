@@ -1,0 +1,462 @@
+{
+  "schema": "hermes-historical-ocr-luna-gemini38-document-ai-comparison-v1",
+  "status": "CANDIDATE_EVIDENCE_ONLY",
+  "recorded_on": "2026-09-04",
+  "source_records": {
+    "luna": {
+      "path": "/Users/hangyukim/Documents/softie_project/artifacts/historical-ocr-luna-gpt56-frozen-gold-v1.json",
+      "sha256": "354c8a26212920c5fbdf7f32409ccfdb0a7ea88bdaed284b9888ba0b8a417e37"
+    },
+    "gemini_3_8": {
+      "path": "/Users/hangyukim/Documents/malang_lab/documents/Web Research Broker Lab/benchmark/historical-ocr-recognition-gemini-3-8-flash-v1/result-2026-09-03.json",
+      "sha256": "303344be4429e09a59b0d14640d50c1ef078364d8428076f1c16733e4d0144c7"
+    },
+    "document_ai": {
+      "path": "/Users/hangyukim/Documents/softie_project/artifacts/historical-ocr-bounded-ocr-operational-shadow-v1.json",
+      "sha256": "94ff77d2e2f5fc92283a3c37baee2f4e1b56969eac0427f5c0408b4a859ff1e9"
+    }
+  },
+  "frozen_input": {
+    "gold_set": "historical-ocr-gold-v1",
+    "gold_set_sha256": "f08b4a006d5cc48ce6969ba8389bb7b4b3f5018a0228bca05ff867e15d13d02b",
+    "suite_sha256": "fa60d4f74a07c76c8488cb2906a56b902f8ba57489e00cda84ceae4972c4a2f9",
+    "line_ids": [
+      "saju-main-title-line",
+      "saju-folio-line",
+      "ziwei-title-line",
+      "astrology-title-line"
+    ],
+    "repeats_per_line": 2,
+    "provider_input_contract": {
+      "image_only": true,
+      "gold_text_sent": false,
+      "qwen_output_sent": false,
+      "document_ai_output_sent": false,
+      "strict_transcription_only": true
+    }
+  },
+  "workers": {
+    "luna": {
+      "worker_id": "openai/gpt-5.6-luna-native-ephemeral-v1",
+      "role": "independent_image_only_recognition_candidate",
+      "line_outcomes": [
+        {
+          "line_id": "saju-main-title-line",
+          "exact_flags": [
+            true,
+            true
+          ],
+          "strict_flags": [
+            true,
+            true
+          ],
+          "repeat_text_stable": true,
+          "repeat_exact_stable": true
+        },
+        {
+          "line_id": "saju-folio-line",
+          "exact_flags": [
+            true,
+            false
+          ],
+          "strict_flags": [
+            true,
+            true
+          ],
+          "repeat_text_stable": false,
+          "repeat_exact_stable": false
+        },
+        {
+          "line_id": "ziwei-title-line",
+          "exact_flags": [
+            false,
+            false
+          ],
+          "strict_flags": [
+            true,
+            true
+          ],
+          "repeat_text_stable": false,
+          "repeat_exact_stable": true
+        },
+        {
+          "line_id": "astrology-title-line",
+          "exact_flags": [
+            false,
+            false
+          ],
+          "strict_flags": [
+            true,
+            true
+          ],
+          "repeat_text_stable": false,
+          "repeat_exact_stable": true
+        }
+      ]
+    },
+    "gemini_3_8": {
+      "worker_id": "google/gemini-3.8-flash-existing-frozen-record-v1",
+      "role": "independent_image_only_recognition_candidate",
+      "line_outcomes": [
+        {
+          "line_id": "saju-main-title-line",
+          "exact_flags": [
+            true,
+            true
+          ],
+          "strict_flags": [
+            true,
+            true
+          ],
+          "repeat_text_stable": true,
+          "repeat_exact_stable": true
+        },
+        {
+          "line_id": "saju-folio-line",
+          "exact_flags": [
+            true,
+            true
+          ],
+          "strict_flags": [
+            true,
+            true
+          ],
+          "repeat_text_stable": true,
+          "repeat_exact_stable": true
+        },
+        {
+          "line_id": "ziwei-title-line",
+          "exact_flags": [
+            true,
+            true
+          ],
+          "strict_flags": [
+            true,
+            true
+          ],
+          "repeat_text_stable": true,
+          "repeat_exact_stable": true
+        },
+        {
+          "line_id": "astrology-title-line",
+          "exact_flags": [
+            false,
+            false
+          ],
+          "strict_flags": [
+            true,
+            false
+          ],
+          "repeat_text_stable": false,
+          "repeat_exact_stable": true
+        }
+      ]
+    },
+    "document_ai": {
+      "worker_id": "document-ai-enterprise-document-ocr-optimized-request-v2.1.1-adc",
+      "role": "existing_promoted_candidate_evidence_only",
+      "line_outcomes": [
+        {
+          "line_id": "saju-main-title-line",
+          "exact_flags": [
+            true,
+            true
+          ],
+          "repeat_text_stable": true,
+          "repeat_exact_stable": true
+        },
+        {
+          "line_id": "saju-folio-line",
+          "exact_flags": [
+            true,
+            true
+          ],
+          "repeat_text_stable": true,
+          "repeat_exact_stable": true
+        },
+        {
+          "line_id": "ziwei-title-line",
+          "exact_flags": [
+            true,
+            true
+          ],
+          "repeat_text_stable": true,
+          "repeat_exact_stable": true
+        },
+        {
+          "line_id": "astrology-title-line",
+          "exact_flags": [
+            false,
+            false
+          ],
+          "repeat_text_stable": true,
+          "repeat_exact_stable": true
+        }
+      ]
+    }
+  },
+  "metrics": {
+    "luna": {
+      "model": "gpt-5.6-luna",
+      "provider": "OpenAI Codex native",
+      "exact_runs": 3,
+      "exact_rate": 0.375,
+      "cer": 0.49702381,
+      "cer_status": "MEASURED_MACRO_MEAN",
+      "latency_mean_ms": 27220.192,
+      "latency_min_ms": 5404.107,
+      "latency_max_ms": 87607.858,
+      "repeat_text_stable_lines": 1,
+      "repeat_exact_stable_lines": 3,
+      "strict_format_runs": 8,
+      "input_tokens_total": 229491,
+      "output_tokens_total": 8577,
+      "cost": {
+        "attempted_units": 8,
+        "unit": "ephemeral_codex_call",
+        "monetary_amount": null,
+        "actual_invoice_checked": false,
+        "basis": "OpenAI Codex subscription route; per-request monetary billing not exposed in this record"
+      }
+    },
+    "gemini_3_8": {
+      "model": "gemini-3.8-flash",
+      "provider": "Google Gemini",
+      "exact_runs": 6,
+      "exact_rate": 0.75,
+      "cer": null,
+      "cer_status": "UNKNOWN_RAW_TEXT_NOT_RETAINED",
+      "latency_mean_ms": 2043.957,
+      "latency_min_ms": 1416.288,
+      "latency_max_ms": 2777.423,
+      "repeat_text_stable_lines": 3,
+      "repeat_exact_stable_lines": 4,
+      "strict_format_runs": 7,
+      "input_tokens_total": 9732,
+      "output_tokens_total": 202,
+      "cost": {
+        "attempted_units": 8,
+        "unit": "recognition_request",
+        "monetary_amount": null,
+        "actual_invoice_checked": false,
+        "basis": "Gemini Paid Tier 1 existing route; exact billing not asserted in this recognition record"
+      }
+    },
+    "document_ai": {
+      "model": "Enterprise Document OCR",
+      "provider": "Google Document AI",
+      "processor_version": "pretrained-ocr-v2.1.1-2025-01-31",
+      "exact_runs": 6,
+      "exact_rate": 0.75,
+      "cer": 0.047619047619047616,
+      "cer_status": "MEASURED",
+      "latency_mean_ms": 1405.7095,
+      "latency_min_ms": 814.299,
+      "latency_max_ms": 2048.08,
+      "repeat_text_stable_lines": 4,
+      "repeat_exact_stable_lines": null,
+      "geometry_stable_lines": 4,
+      "confidence_stable_lines": 4,
+      "confidence_mean": 0.749808565,
+      "cost": {
+        "attemptedUnits": 8,
+        "unit": "page",
+        "basis": "synchronous inline Enterprise Document OCR; actual invoice not checked",
+        "actualInvoiceChecked": false,
+        "monetaryAmount": null
+      }
+    }
+  },
+  "comparisons": {
+    "luna_vs_document_ai": {
+      "line_relations": [
+        {
+          "line_id": "saju-main-title-line",
+          "candidate_exact_flags": [
+            true,
+            true
+          ],
+          "document_ai_exact_flags": [
+            true,
+            true
+          ],
+          "paired_record_agreement": 2,
+          "paired_record_count": 2,
+          "relation": "AGREEMENT_SAME_EXACT_FLAGS"
+        },
+        {
+          "line_id": "saju-folio-line",
+          "candidate_exact_flags": [
+            true,
+            false
+          ],
+          "document_ai_exact_flags": [
+            true,
+            true
+          ],
+          "paired_record_agreement": 1,
+          "paired_record_count": 2,
+          "relation": "CONFLICT_DOCUMENT_AI_STABLE_EXACT_CANDIDATE_REPEAT_VARIANCE"
+        },
+        {
+          "line_id": "ziwei-title-line",
+          "candidate_exact_flags": [
+            false,
+            false
+          ],
+          "document_ai_exact_flags": [
+            true,
+            true
+          ],
+          "paired_record_agreement": 0,
+          "paired_record_count": 2,
+          "relation": "COMPLEMENT_DOCUMENT_AI_ONLY_STABLE_EXACT"
+        },
+        {
+          "line_id": "astrology-title-line",
+          "candidate_exact_flags": [
+            false,
+            false
+          ],
+          "document_ai_exact_flags": [
+            false,
+            false
+          ],
+          "paired_record_agreement": 2,
+          "paired_record_count": 2,
+          "relation": "AGREEMENT_SAME_EXACT_FLAGS"
+        }
+      ],
+      "line_agreement_count": 2,
+      "line_conflict_count": 2,
+      "paired_record_agreement": 5,
+      "paired_record_conflict": 3,
+      "paired_record_count": 8,
+      "complementarity": {
+        "document_ai_only_stable_exact_line_ids": [
+          "ziwei-title-line"
+        ],
+        "candidate_only_stable_exact_line_ids": [],
+        "candidate_repeat_variance_against_document_ai_line_ids": [
+          "saju-folio-line"
+        ],
+        "raw_text_complementarity": "NOT_ASSESSABLE_RAW_TEXT_NOT_RETAINED"
+      }
+    },
+    "gemini_3_8_vs_document_ai": {
+      "line_relations": [
+        {
+          "line_id": "saju-main-title-line",
+          "candidate_exact_flags": [
+            true,
+            true
+          ],
+          "document_ai_exact_flags": [
+            true,
+            true
+          ],
+          "paired_record_agreement": 2,
+          "paired_record_count": 2,
+          "relation": "AGREEMENT_SAME_EXACT_FLAGS"
+        },
+        {
+          "line_id": "saju-folio-line",
+          "candidate_exact_flags": [
+            true,
+            true
+          ],
+          "document_ai_exact_flags": [
+            true,
+            true
+          ],
+          "paired_record_agreement": 2,
+          "paired_record_count": 2,
+          "relation": "AGREEMENT_SAME_EXACT_FLAGS"
+        },
+        {
+          "line_id": "ziwei-title-line",
+          "candidate_exact_flags": [
+            true,
+            true
+          ],
+          "document_ai_exact_flags": [
+            true,
+            true
+          ],
+          "paired_record_agreement": 2,
+          "paired_record_count": 2,
+          "relation": "AGREEMENT_SAME_EXACT_FLAGS"
+        },
+        {
+          "line_id": "astrology-title-line",
+          "candidate_exact_flags": [
+            false,
+            false
+          ],
+          "document_ai_exact_flags": [
+            false,
+            false
+          ],
+          "paired_record_agreement": 2,
+          "paired_record_count": 2,
+          "relation": "AGREEMENT_SAME_EXACT_FLAGS"
+        }
+      ],
+      "line_agreement_count": 4,
+      "line_conflict_count": 0,
+      "paired_record_agreement": 8,
+      "paired_record_conflict": 0,
+      "paired_record_count": 8,
+      "complementarity": {
+        "document_ai_only_stable_exact_line_ids": [],
+        "candidate_only_stable_exact_line_ids": [],
+        "candidate_repeat_variance_against_document_ai_line_ids": [],
+        "raw_text_complementarity": "NOT_ASSESSABLE_RAW_TEXT_NOT_RETAINED"
+      }
+    }
+  },
+  "interpretation_boundary": {
+    "raw_text_equality": "NOT_CLAIMED_RAW_TEXT_NOT_RETAINED",
+    "semantic_correction": false,
+    "fallback": false,
+    "automatic_winner_selection": false,
+    "geometry_complementarity": "NOT_ASSESSABLE_LUNA_AND_GEMINI_HAVE_NO_GEOMETRY_IN_THIS_PACKET"
+  },
+  "cost_and_privacy_boundary": {
+    "luna": "OpenAI Codex subscription route; per-request monetary billing not exposed",
+    "gemini_3_8": "Google Gemini Paid Tier 1 route; exact billing not asserted in source record",
+    "document_ai": "Existing GCP processor/page-unit evidence; invoice not checked",
+    "input_classes": [
+      "public",
+      "synthetic_benchmark",
+      "deidentified"
+    ],
+    "credential_values_retained": false,
+    "raw_api_responses_retained": false,
+    "raw_prediction_text_retained": false,
+    "raw_pixels_retained": false
+  },
+  "decision": {
+    "winner": null,
+    "recognition_candidate_promotion": "DO_NOT_PROMOTE",
+    "activation_gate": "DO_NOT_OPEN",
+    "reason_codes": [
+      "luna_exact_rate_below_existing_candidate_floor",
+      "luna_repeat_text_instability",
+      "gemini_existing_record_below_strict_format_floor",
+      "raw_text_complementarity_unassessable",
+      "automatic_winner_selection_forbidden"
+    ]
+  },
+  "route_boundary": {
+    "BLOCK_OCR_ROUTE": true,
+    "OCRProvider.enabled": false,
+    "activation": false,
+    "semantic_correction": false,
+    "silent_fallback": false,
+    "detection_slot_touched": false,
+    "processor_mutation": false,
+    "search": false
+  },
+  "packet_sha256": "0761317b863778f447e7effd572dfafa297fa15e8d0ff9ef0d28552cf8977ab0"
+}
