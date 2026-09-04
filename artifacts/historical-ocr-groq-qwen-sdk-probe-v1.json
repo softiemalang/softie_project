@@ -1,0 +1,245 @@
+{
+  "schema": "historical-ocr-groq-qwen-sdk-probe-v1",
+  "version": "1.0.0",
+  "recordedOn": "2026-09-04",
+  "scope": {
+    "worker": "qwen/qwen3.8-27b",
+    "inputClasses": ["synthetic", "public_url"],
+    "ocrCropAccessed": false,
+    "documentAiAccessed": false,
+    "frozenGoldAccessed": false
+  },
+  "decision": {
+    "adapterIntroduced": "YES",
+    "qwenStandardTransport": "NOT_PROMOTED",
+    "stability": "NOT_PROVEN",
+    "reason": "synthetic_base64_jpeg_http_503",
+    "promotionRequires": [
+      "the full text-only, public-URL, and synthetic-base64 sequence succeeds",
+      "the deterministic success shape and content digest remain stable in a separately approved repeat",
+      "retryCount=0 and fallback=false",
+      "GPT-OSS, credential, routing, and activation boundaries remain unchanged"
+    ],
+    "activation": "BLOCKED"
+  },
+  "officialSdk": {
+    "package": "groq",
+    "version": "1.7.0",
+    "dependencySpec": "tools/ocr/requirements-groq-qwen-sdk.txt",
+    "official": true,
+    "isolatedEnvironment": true,
+    "python": "3.14.7",
+    "httpx": "0.28.1",
+    "pydantic": "2.13.5",
+    "source": "https://github.com/groq/groq-python"
+  },
+  "adapter": "groq_qwen_sdk_v1",
+  "model": "qwen/qwen3.8-27b",
+  "credential": {
+    "source": "/Users/hangyukim/Groq Lab/state/credentials.env",
+    "mode": "0600",
+    "valueRetained": false,
+    "changed": false
+  },
+  "transport": {
+    "client": "Groq",
+    "httpBackend": "httpx",
+    "method": "POST",
+    "endpoint": "https://api.groq.com/openai/v1/chat/completions",
+    "baseUrlSource": "official_sdk_default",
+    "requestPath": "/openai/v1/chat/completions",
+    "baseUrlOverridden": false,
+    "customHeaders": false,
+    "userAgentOverride": false,
+    "maxRetries": 0,
+    "timeoutSeconds": 45.0,
+    "clientReusedAcrossProbes": true,
+    "rawHeadersRetained": false,
+    "headerNamesObservedAtConstruction": [
+      "accept",
+      "authorization",
+      "content-type",
+      "user-agent",
+      "x-stainless-arch",
+      "x-stainless-async",
+      "x-stainless-lang",
+      "x-stainless-os",
+      "x-stainless-package-version",
+      "x-stainless-runtime",
+      "x-stainless-runtime-version"
+    ]
+  },
+  "requestContract": {
+    "promptSha256": "1948c4077be953a69fa35117ca2ac8896ed8cd9e02f6b4898d117c9dec053c50",
+    "parameters": {
+      "temperature": 0,
+      "seed": 7,
+      "max_completion_tokens": 256,
+      "reasoning_effort": "none",
+      "include_reasoning": false,
+      "stream": false,
+      "tool_choice": "none"
+    },
+    "textContentShape": "messages[0].content=string",
+    "visionContentShape": "messages[0].content=[text,image_url]",
+    "imageUrlShape": "image_url.url",
+    "syntheticFixture": {
+      "dimensions": [2, 2],
+      "mimeType": "image/jpeg",
+      "bytes": 631,
+      "sha256": "bd9715495e7b02200961933e63bc2f48372a538659115f4cd8ccfa3a9e5fea9d",
+      "rawBytesRetained": false
+    }
+  },
+  "preservedEvidence": {
+    "qwenRecognition": {
+      "recordPath": "/Users/hangyukim/Documents/malang_lab/documents/Web Research Broker Lab/benchmark/historical-ocr-recognition-qwen-groq-v1/result-2026-09-03.json",
+      "recordSha256": "3fc4d6959dfea7216ecf5bbf1e240ee380d12dcfa1470e3c9be871d9a94df4c4",
+      "exactMatchRuns": 6,
+      "runs": 8,
+      "repeatTextStableLines": 4,
+      "status": "PRESERVED_CANDIDATE_EVIDENCE"
+    },
+    "priorDataUriBlocker": {
+      "artifactPath": "artifacts/historical-ocr-groq-qwen-data-uri-blocker-v1.json",
+      "artifactSha256": "8ee7f37cf53ea7cf76614cd0acc152026ac6a4e5d44658ce0f274536a538e4cc",
+      "status": "PRESERVED_PROVIDER_SIDE_BLOCKER"
+    }
+  },
+  "historicalDirectComparator": {
+    "source": "prior proven direct-curl synthetic probe; no direct request was repeated",
+    "endpoint": "https://api.groq.com/openai/v1/chat/completions",
+    "publicJpegUrl": {
+      "httpStatus": 200,
+      "responseShape": "json_success_choices_1",
+      "contentSha256": "565339bc4d33d72817b583024112eb7f5cdf3e5eef0252d6ec1b9c9a94e12bb3"
+    },
+    "syntheticJpegBase64": {
+      "httpStatus": 503,
+      "errorType": "internal_server_error",
+      "responseBodySha256": "d19f75167dab4112caad4f99fd752110bef0aa3e44a32ef28c0a4ea4f7980e04"
+    }
+  },
+  "probes": [
+    {
+      "label": "text_only",
+      "input": "text_only",
+      "status": "OK",
+      "httpStatus": 200,
+      "bodyFormat": "ChatCompletion",
+      "choices": 1,
+      "finishReason": "stop",
+      "model": "qwen/qwen3.8-27b",
+      "contentType": "str",
+      "contentBytes": 2,
+      "contentSha256": "565339bc4d33d72817b583024112eb7f5cdf3e5eef0252d6ec1b9c9a94e12bb3",
+      "latencyMs": 299.555,
+      "preflight": {
+        "decision": "ALLOW",
+        "classification": ["synthetic_benchmark"],
+        "secret_patterns": []
+      }
+    },
+    {
+      "label": "public_jpeg_url",
+      "input": "https://httpbin.org/image/jpeg",
+      "status": "OK",
+      "httpStatus": 200,
+      "bodyFormat": "ChatCompletion",
+      "choices": 1,
+      "finishReason": "stop",
+      "model": "qwen/qwen3.8-27b",
+      "contentType": "str",
+      "contentBytes": 2,
+      "contentSha256": "565339bc4d33d72817b583024112eb7f5cdf3e5eef0252d6ec1b9c9a94e12bb3",
+      "latencyMs": 847.394,
+      "preflight": {
+        "decision": "ALLOW",
+        "classification": ["synthetic_benchmark"],
+        "secret_patterns": []
+      }
+    },
+    {
+      "label": "synthetic_base64_jpeg",
+      "input": "same_frozen_synthetic_jpeg_as_prior_probe",
+      "status": "ERROR",
+      "httpStatus": 503,
+      "bodyFormat": "sdk_error",
+      "exceptionType": "InternalServerError",
+      "responseContentType": "application/json",
+      "responseBodyBytes": 213,
+      "responseBodySha256": "d19f75167dab4112caad4f99fd752110bef0aa3e44a32ef28c0a4ea4f7980e04",
+      "latencyMs": 30153.727,
+      "preflight": {
+        "decision": "ALLOW",
+        "classification": ["synthetic_benchmark"],
+        "secret_patterns": []
+      }
+    }
+  ],
+  "callBudget": {
+    "maximum": 3,
+    "probeSlotsUsed": 3,
+    "providerCalls": 3,
+    "retries": 0
+  },
+  "parity": {
+    "status": "PASS_FOR_OBSERVED_FIELDS",
+    "transport": {
+      "endpointAndPathEqual": true,
+      "methodEqual": true,
+      "visionShapeEqual": true,
+      "retryPolicyEqual": true,
+      "directHistoricalTransport": "curl",
+      "sdkTransport": "official_groq_sdk_over_httpx",
+      "directCurlHeaderNames": ["accept", "authorization", "content-type", "user-agent"],
+      "sdkAddsStainlessHeaderNames": true,
+      "headerIdentity": "NOT_CLAIMED",
+      "rawHeadersRetained": false
+    },
+    "output": {
+      "successContentDigestEqual": true,
+      "successContentDigest": "565339bc4d33d72817b583024112eb7f5cdf3e5eef0252d6ec1b9c9a94e12bb3",
+      "successShapeEqual": true,
+      "base64ErrorDigestEqual": true,
+      "base64ErrorDigest": "d19f75167dab4112caad4f99fd752110bef0aa3e44a32ef28c0a4ea4f7980e04"
+    }
+  },
+  "reproducibility": {
+    "deterministicParameters": true,
+    "clientReuseWithinSequence": true,
+    "secondSdkSequence": "NOT_RUN",
+    "stableFullVisionRoute": false,
+    "reason": "base64_probe_returned_503"
+  },
+  "boundaries": {
+    "BLOCK_OCR_ROUTE": true,
+    "OCRProvider.enabled": false,
+    "activation": false,
+    "activationChanged": false,
+    "ocrCropAccess": false,
+    "documentAiAccess": false,
+    "frozenGoldAccess": false,
+    "gptOssPathChanged": false,
+    "credentialChanged": false,
+    "billingChanged": false,
+    "routingChanged": false,
+    "fallback": false,
+    "semanticCorrection": false,
+    "publicUrlWasProbeNotWorkaround": true
+  },
+  "retention": {
+    "rawResponses": false,
+    "rawPrompts": false,
+    "rawImageBytes": false,
+    "rawHeaders": false,
+    "credentialValue": false
+  },
+  "validation": {
+    "offlineValidator": "tools/ocr/validate_groq_qwen_sdk_probe.py",
+    "status": "PASS",
+    "newOcrCalls": 0,
+    "newDocumentAiCalls": 0,
+    "activation": "BLOCKED"
+  }
+}
