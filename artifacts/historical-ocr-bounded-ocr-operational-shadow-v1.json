@@ -1,0 +1,353 @@
+{
+  "schema": "historical-ocr-bounded-ocr-operational-shadow-v1",
+  "version": "1.0.0",
+  "status": "CLOSED_RECORD",
+  "recordedOn": "2026-09-04",
+  "decision": "OPERATIONAL_SHADOW_EVIDENCE_ONLY",
+  "source": {
+    "frozenGoldSetSha256": "f08b4a006d5cc48ce6969ba8389bb7b4b3f5018a0228bca05ff867e15d13d02b",
+    "inputManifestSha256": "33e656dfcc479ce9a48e9638c96258b48e8cf1dd7fa29187753798ce34ff5315",
+    "qwenShadowEvidenceSha256": "e8d3a5f5b7890496341f678d3933b987cab43874774fbc71023f243fe624a075",
+    "documentAiShadowEvidenceSha256": "b1503b84aa7163b66f777b3c57bff3f277bc8acf4a379cc7e552ead5bcba2b78",
+    "priorExactPacketSha256": "63186a1faadb31f338f446a00fecf03af6f2ed8004ccd8f014870181608dbb49",
+    "priorExactPacketValidation": "PASSED",
+    "sameFrozenLineSet": true
+  },
+  "inputs": {
+    "frozenLineIds": [
+      "saju-main-title-line",
+      "saju-folio-line",
+      "ziwei-title-line",
+      "astrology-title-line"
+    ],
+    "repeatsPerLine": 2,
+    "candidateWorkerIds": [
+      "qwen/qwen3.8-27b",
+      "document-ai-enterprise-document-ocr-optimized-request-v2.1.1-adc"
+    ],
+    "rawTextInspected": false,
+    "rawPredictionTextRetained": false,
+    "rawApiResponseRetained": false
+  },
+  "workers": [
+    {
+      "workerId": "qwen/qwen3.8-27b",
+      "component": "rec",
+      "provider": "Groq",
+      "model": "qwen/qwen3.8-27b",
+      "authentication": {
+        "credentialValueRetained": false,
+        "serviceAccountKeyUsed": false
+      },
+      "outcomes": {
+        "exactRuns": 6,
+        "exactRate": 0.75,
+        "cer": null,
+        "cerStatus": "UNKNOWN_RAW_TEXT_NOT_RETAINED"
+      },
+      "latencyMs": {
+        "mean": 785.579,
+        "min": 612.305,
+        "max": 1131.141
+      },
+      "cost": {
+        "attemptedUnits": 8,
+        "unit": "request",
+        "basis": "Groq free route; actual charge not asserted",
+        "actualInvoiceChecked": false,
+        "monetaryAmount": null
+      },
+      "reproducibility": {
+        "http200Runs": 8,
+        "strictFormatRuns": 8,
+        "repeatTextStableLines": 4,
+        "repeatExactStableLines": 4,
+        "geometryStatus": "NOT_AVAILABLE_IN_SOURCE_EVIDENCE",
+        "confidenceStatus": "PRESENCE_ONLY_NOT_NUMERIC"
+      }
+    },
+    {
+      "workerId": "document-ai-enterprise-document-ocr-optimized-request-v2.1.1-adc",
+      "component": "rec",
+      "provider": "Google Document AI",
+      "processorVersion": "pretrained-ocr-v2.1.1-2025-01-31",
+      "authentication": {
+        "method": "local_adc",
+        "credentialValueRetained": false,
+        "serviceAccountKeyUsed": false
+      },
+      "outcomes": {
+        "exactRuns": 6,
+        "exactRate": 0.75,
+        "cer": 0.047619047619047616,
+        "cerStatus": "MEASURED"
+      },
+      "latencyMs": {
+        "mean": 1405.7095,
+        "min": 814.299,
+        "max": 2048.08
+      },
+      "cost": {
+        "attemptedUnits": 8,
+        "unit": "page",
+        "basis": "synchronous inline Enterprise Document OCR; actual invoice not checked",
+        "actualInvoiceChecked": false,
+        "monetaryAmount": null
+      },
+      "reproducibility": {
+        "successfulRuns": 8,
+        "repeatTextStableLines": 4,
+        "repeatGeometryStableLines": 4,
+        "repeatConfidenceStableLines": 4,
+        "confidencePresentRuns": 8,
+        "confidencePresentRate": 1,
+        "confidenceMean": 0.749808565,
+        "confidenceMin": 0.6612834,
+        "confidenceMax": 0.91992956
+      },
+      "request": {
+        "targetSelection": "explicit_processor_version",
+        "defaultVersionUsed": false,
+        "fieldMask": "text,pages.pageNumber,pages.dimension,pages.lines,pages.tokens",
+        "imagelessMode": true,
+        "processOptionsIncluded": false,
+        "retryCount": 0,
+        "fallbackUsed": false
+      }
+    }
+  ],
+  "agreementConflict": {
+    "status": "COMPLEMENTARY_EXACT_COVERAGE_WITH_CONFLICT",
+    "lineResults": [
+      {
+        "lineId": "saju-main-title-line",
+        "qwen": {
+          "workerId": "qwen/qwen3.8-27b",
+          "exactFlags": [
+            true,
+            true
+          ],
+          "exactOutcome": true,
+          "repeatStable": true
+        },
+        "documentAi": {
+          "workerId": "document-ai-enterprise-document-ocr-optimized-request-v2.1.1-adc",
+          "exactFlags": [
+            true,
+            true
+          ],
+          "exactOutcome": true,
+          "repeatStable": true
+        },
+        "relation": "AGREEMENT_BOTH_EXACT",
+        "escalation": "NO_AUTO_ACTION",
+        "evidenceMode": "frozen_gold_exact_boolean_outcomes_plus_operational_metrics"
+      },
+      {
+        "lineId": "saju-folio-line",
+        "qwen": {
+          "workerId": "qwen/qwen3.8-27b",
+          "exactFlags": [
+            false,
+            false
+          ],
+          "exactOutcome": false,
+          "repeatStable": true
+        },
+        "documentAi": {
+          "workerId": "document-ai-enterprise-document-ocr-optimized-request-v2.1.1-adc",
+          "exactFlags": [
+            true,
+            true
+          ],
+          "exactOutcome": true,
+          "repeatStable": true
+        },
+        "relation": "CONFLICT_DOCUMENT_AI_EXACT_QWEN_NONEXACT",
+        "escalation": "ESCALATE_REQUIRED",
+        "evidenceMode": "frozen_gold_exact_boolean_outcomes_plus_operational_metrics"
+      },
+      {
+        "lineId": "ziwei-title-line",
+        "qwen": {
+          "workerId": "qwen/qwen3.8-27b",
+          "exactFlags": [
+            true,
+            true
+          ],
+          "exactOutcome": true,
+          "repeatStable": true
+        },
+        "documentAi": {
+          "workerId": "document-ai-enterprise-document-ocr-optimized-request-v2.1.1-adc",
+          "exactFlags": [
+            true,
+            true
+          ],
+          "exactOutcome": true,
+          "repeatStable": true
+        },
+        "relation": "AGREEMENT_BOTH_EXACT",
+        "escalation": "NO_AUTO_ACTION",
+        "evidenceMode": "frozen_gold_exact_boolean_outcomes_plus_operational_metrics"
+      },
+      {
+        "lineId": "astrology-title-line",
+        "qwen": {
+          "workerId": "qwen/qwen3.8-27b",
+          "exactFlags": [
+            true,
+            true
+          ],
+          "exactOutcome": true,
+          "repeatStable": true
+        },
+        "documentAi": {
+          "workerId": "document-ai-enterprise-document-ocr-optimized-request-v2.1.1-adc",
+          "exactFlags": [
+            false,
+            false
+          ],
+          "exactOutcome": false,
+          "repeatStable": true
+        },
+        "relation": "CONFLICT_QWEN_EXACT_DOCUMENT_AI_NONEXACT",
+        "escalation": "ESCALATE_REQUIRED",
+        "evidenceMode": "frozen_gold_exact_boolean_outcomes_plus_operational_metrics"
+      }
+    ],
+    "agreement": {
+      "lineIds": [
+        "saju-main-title-line",
+        "ziwei-title-line"
+      ],
+      "recordCount": 4,
+      "meaning": "same frozen-gold exact boolean outcome; not raw-text equality"
+    },
+    "conflict": {
+      "lineIds": [
+        "saju-folio-line",
+        "astrology-title-line"
+      ],
+      "recordCount": 4,
+      "meaning": "different frozen-gold exact boolean outcome; no automatic winner"
+    },
+    "complementarity": {
+      "status": "OBSERVED",
+      "qwenOnlyExactLineIds": [
+        "astrology-title-line"
+      ],
+      "documentAiOnlyExactLineIds": [
+        "saju-folio-line"
+      ],
+      "overlappingExactLineIds": [
+        "saju-main-title-line",
+        "ziwei-title-line"
+      ],
+      "unionExactLineIds": [
+        "saju-main-title-line",
+        "saju-folio-line",
+        "ziwei-title-line",
+        "astrology-title-line"
+      ]
+    }
+  },
+  "operationalComparison": {
+    "latency": {
+      "fasterWorker": "qwen/qwen3.8-27b",
+      "qwenMeanMs": 785.579,
+      "documentAiMeanMs": 1405.7095,
+      "qwenMaxMs": 1131.141,
+      "documentAiMaxMs": 2048.08,
+      "winnerSelectionUsed": false
+    },
+    "cost": {
+      "qwen": {
+        "attemptedUnits": 8,
+        "actualInvoiceChecked": false,
+        "monetaryAmount": null
+      },
+      "documentAi": {
+        "attemptedUnits": 8,
+        "actualInvoiceChecked": false,
+        "monetaryAmount": null
+      },
+      "crossProviderMonetaryWinner": null
+    },
+    "reproducibility": {
+      "qwenRepeatTextStableLines": 4,
+      "documentAiRepeatTextStableLines": 4,
+      "documentAiRepeatGeometryStableLines": 4,
+      "documentAiRepeatConfidenceStableLines": 4,
+      "repeatInstabilityPresent": false
+    },
+    "packetValidity": {
+      "qwenSourceChecks": "PASSED",
+      "documentAiSourceChecks": "PASSED",
+      "priorExactPacket": "PASSED",
+      "rawOrSecretRetention": "NOT_PRESENT"
+    }
+  },
+  "escalationPolicy": {
+    "schema": "historical-ocr-bounded-escalation-v1",
+    "currentDisposition": "ESCALATE_REQUIRED",
+    "trigger": "line_scoped_conflict_or_unknown_repeat_outcome",
+    "maxRounds": 1,
+    "maxAdditionalWorkersPerRound": 1,
+    "maxAdditionalRequestsPerRound": 8,
+    "execution": "NOT_RUN_IN_THIS_PACKET",
+    "prohibited": [
+      "automatic winner selection",
+      "confidence-based selection",
+      "semantic correction",
+      "silent fallback",
+      "OCR activation"
+    ]
+  },
+  "selection": {
+    "winner": "NONE",
+    "selectedWorkerId": null,
+    "automaticWinnerSelection": false,
+    "rationale": "two line-scoped conflicts and complementary exact coverage; no consensus winner"
+  },
+  "activationGateProposal": {
+    "status": "DO_NOT_OPEN",
+    "limitedActivationEligible": false,
+    "reasonCodes": [
+      "line_scoped_conflict_present",
+      "complementary_exact_coverage_without_consensus",
+      "no_automatic_winner_allowed"
+    ],
+    "nextReview": "bounded line-scoped escalation or separately retained text review; no activation in this packet"
+  },
+  "routeBoundary": {
+    "BLOCK_OCR_ROUTE": true,
+    "OCRProvider": {
+      "enabled": false
+    },
+    "activation": false,
+    "automaticWinnerSelection": false,
+    "fallbackPolicy": "none",
+    "semanticCorrection": false,
+    "silentFallback": false,
+    "detectionSlotTouched": false,
+    "search": false,
+    "historicalSourceJudgment": false,
+    "processorMutation": false
+  },
+  "retention": {
+    "rawPixelsRetained": false,
+    "rawPromptsRetained": false,
+    "rawPredictionTextRetained": false,
+    "rawApiResponsesRetained": false,
+    "credentialValuesRetained": false,
+    "textAgreementClaimed": false,
+    "winnerClaimed": false
+  },
+  "validator": {
+    "id": "bounded-ocr-operational-shadow-validator-v1",
+    "status": "PASSED",
+    "failClosedOnMissingOrConflictingEvidence": true
+  },
+  "packetContentSha256": "1bbeb4e125a791e60b3ff93a3cec11fccf2c1b4b34e801c8e5d86b3272f45756"
+}
