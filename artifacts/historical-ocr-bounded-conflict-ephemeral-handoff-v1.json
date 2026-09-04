@@ -1,0 +1,379 @@
+{
+  "activationGate": {
+    "limitedActivationEligible": false,
+    "reason": "Reviewer labels are shadow evidence only; activation requires a separate decision and remains blocked.",
+    "separateReviewEvidenceComplete": false,
+    "status": "DO_NOT_OPEN"
+  },
+  "contentSha256": "d33855af2635da8610001db674021d3e440d25c07672dc950a470d8369f6d819",
+  "decision": "BOUNDED_ESCALATION_SHADOW_ONLY",
+  "lineResults": [
+    {
+      "caseId": "saju-ndl-13588381-canvas-2",
+      "disposal": {
+        "candidateStringsDiscardedAfterReview": true,
+        "cropDiscardedAfterReview": true,
+        "disposalAttemptedImmediately": true,
+        "rawProviderResponsesDiscarded": true
+      },
+      "documentAi": {
+        "call": {
+          "endpoint": "https://asia-southeast1-documentai.googleapis.com/v1/projects/888064596054/locations/asia-southeast1/processors/dcd3c8ca85ec70d2/processorVersions/pretrained-ocr-v2.1.1-2025-01-31:process",
+          "errorCode": null,
+          "fallbackUsed": false,
+          "httpStatus": 200,
+          "latencyMs": 875.788,
+          "requestCount": 1,
+          "requestPayloadSha256": "6b5a9fefb0477148f2a19b4899d0ac0393d0d108dc591e1f74637cf30779b0f8",
+          "responseSha256": "d20b90008a0219f88206bb3e50c9cdf37dd5961a50684f547e4b1fbafcaeeb43",
+          "retryCount": 0,
+          "transportError": null
+        },
+        "candidate": {
+          "exactMatchAgainstFrozenGold": true,
+          "length": 4,
+          "normalizedSha256": "61979933067dd56ff6795e570f551111009feb785f7ed069e4df4aa2866f1275",
+          "present": true,
+          "sha256": "c3e00d9cee2d05b6616356d518a7c59048fe8de2b5ab20d5191b94b62842155f"
+        },
+        "processorVersion": "pretrained-ocr-v2.1.1-2025-01-31",
+        "provider": "Google Document AI",
+        "request": {
+          "defaultVersionUsed": false,
+          "fallbackUsed": false,
+          "fieldMask": "text,pages.pageNumber,pages.dimension,pages.lines,pages.tokens",
+          "imagelessMode": true,
+          "processOptionsIncluded": false,
+          "retryCount": 0,
+          "targetResource": "projects/888064596054/locations/asia-southeast1/processors/dcd3c8ca85ec70d2/processorVersions/pretrained-ocr-v2.1.1-2025-01-31",
+          "targetSelection": "explicit_processor_version"
+        },
+        "workerId": "document-ai-enterprise-document-ocr-optimized-request-v2.1.1-adc"
+      },
+      "domain": "saju",
+      "input": {
+        "cropBytesRetained": false,
+        "cropDimensions": [
+          145,
+          135
+        ],
+        "cropSha256": "d7c64dbc98f79797139c83d6a2e62e9a45f138b17a40d3df7dfdac8ff38650dd"
+      },
+      "lineId": "saju-folio-line",
+      "qwen": {
+        "call": {
+          "endpoint": "https://api.groq.com/openai/v1/chat/completions",
+          "errorCode": "HTTP_403",
+          "fallbackUsed": false,
+          "httpStatus": 403,
+          "latencyMs": 40.275,
+          "requestCount": 1,
+          "requestPayloadSha256": "793f681b0b99ce1e015ccf66cb7ae7d98bc2906052d7069835e25538717d59e2",
+          "responseSha256": "c010cfb550b2b9e52a61da05827efe715ccc69fd52376de85792201d9d7b0d74",
+          "retryCount": 0,
+          "transportError": null
+        },
+        "candidate": {
+          "exactMatchAgainstFrozenGold": null,
+          "length": null,
+          "normalizedSha256": null,
+          "present": false,
+          "sha256": null
+        },
+        "parse": {
+          "confidencePresent": false,
+          "jsonValid": false,
+          "strictFormat": false
+        },
+        "provider": "Groq",
+        "workerId": "qwen/qwen3.8-27b"
+      },
+      "resolution": {
+        "automaticWinnerSelection": false,
+        "fallbackUsed": false,
+        "majorityVote": false,
+        "reviewerLabel": null,
+        "selectedWorkerId": null,
+        "semanticCorrection": false,
+        "status": "UNRESOLVED"
+      },
+      "review": {
+        "call": null,
+        "handoff": {
+          "candidateStringsForwarded": false,
+          "candidateTextRetainedAfterCall": false,
+          "cropRetainedAfterCall": false,
+          "goldForwarded": false,
+          "immediateDisposalAttempted": true,
+          "originalCropForwarded": false,
+          "reviewerResponseRetained": false,
+          "semanticContextForwarded": false
+        },
+        "response": {
+          "allowedLabels": [
+            "A",
+            "B",
+            "NEITHER",
+            "UNCERTAIN"
+          ],
+          "label": null,
+          "parse": {
+            "responseFormat": "not_run",
+            "responseSha256": null
+          },
+          "status": "NOT_RUN_MISSING_CANDIDATE"
+        },
+        "reviewer": {
+          "independentNoHistory": true,
+          "model": "gemini-3.7-flash",
+          "provider": "Google Gemini",
+          "workerId": "gemini-3.7-flash-independent-conflict-reviewer"
+        }
+      }
+    },
+    {
+      "caseId": "astrology-tohoku-10020000011651-canvas-p1",
+      "disposal": {
+        "candidateStringsDiscardedAfterReview": true,
+        "cropDiscardedAfterReview": true,
+        "disposalAttemptedImmediately": true,
+        "rawProviderResponsesDiscarded": true
+      },
+      "documentAi": {
+        "call": {
+          "endpoint": "https://asia-southeast1-documentai.googleapis.com/v1/projects/888064596054/locations/asia-southeast1/processors/dcd3c8ca85ec70d2/processorVersions/pretrained-ocr-v2.1.1-2025-01-31:process",
+          "errorCode": null,
+          "fallbackUsed": false,
+          "httpStatus": 200,
+          "latencyMs": 1696.455,
+          "requestCount": 1,
+          "requestPayloadSha256": "9a6fa2758a4240070819e2cd1d74d968af7e0846684db89331b93c631f32392f",
+          "responseSha256": "3e584b29386d63be47612d446e017a576bbadd122aaef9310628953e1f5628ef",
+          "retryCount": 0,
+          "transportError": null
+        },
+        "candidate": {
+          "exactMatchAgainstFrozenGold": false,
+          "length": 8,
+          "normalizedSha256": "b14216cddd37ba7d87fca414c9806b8a1524b06cf2e13ef5a6fe541152dcde22",
+          "present": true,
+          "sha256": "bb8f7e3a3aadd9158c0df57f10139c9d7ba3bcd6ce6578f11866bb5c944b34b8"
+        },
+        "processorVersion": "pretrained-ocr-v2.1.1-2025-01-31",
+        "provider": "Google Document AI",
+        "request": {
+          "defaultVersionUsed": false,
+          "fallbackUsed": false,
+          "fieldMask": "text,pages.pageNumber,pages.dimension,pages.lines,pages.tokens",
+          "imagelessMode": true,
+          "processOptionsIncluded": false,
+          "retryCount": 0,
+          "targetResource": "projects/888064596054/locations/asia-southeast1/processors/dcd3c8ca85ec70d2/processorVersions/pretrained-ocr-v2.1.1-2025-01-31",
+          "targetSelection": "explicit_processor_version"
+        },
+        "workerId": "document-ai-enterprise-document-ocr-optimized-request-v2.1.1-adc"
+      },
+      "domain": "astrology",
+      "input": {
+        "cropBytesRetained": false,
+        "cropDimensions": [
+          360,
+          1005
+        ],
+        "cropSha256": "8b2deb184f46c4ad74022be9f0447fd4c2c56eb744544aff767d9a18bf59d629"
+      },
+      "lineId": "astrology-title-line",
+      "qwen": {
+        "call": {
+          "endpoint": "https://api.groq.com/openai/v1/chat/completions",
+          "errorCode": "HTTP_403",
+          "fallbackUsed": false,
+          "httpStatus": 403,
+          "latencyMs": 28.513,
+          "requestCount": 1,
+          "requestPayloadSha256": "0fd18417328930e24b5b5063f1d7c3e597900900c40ff79acc155f216e93e394",
+          "responseSha256": "ed7391f008a22fcea97f43b7042a189e6b9af188d2309ac2a348c550e55a2eb5",
+          "retryCount": 0,
+          "transportError": null
+        },
+        "candidate": {
+          "exactMatchAgainstFrozenGold": null,
+          "length": null,
+          "normalizedSha256": null,
+          "present": false,
+          "sha256": null
+        },
+        "parse": {
+          "confidencePresent": false,
+          "jsonValid": false,
+          "strictFormat": false
+        },
+        "provider": "Groq",
+        "workerId": "qwen/qwen3.8-27b"
+      },
+      "resolution": {
+        "automaticWinnerSelection": false,
+        "fallbackUsed": false,
+        "majorityVote": false,
+        "reviewerLabel": null,
+        "selectedWorkerId": null,
+        "semanticCorrection": false,
+        "status": "UNRESOLVED"
+      },
+      "review": {
+        "call": null,
+        "handoff": {
+          "candidateStringsForwarded": false,
+          "candidateTextRetainedAfterCall": false,
+          "cropRetainedAfterCall": false,
+          "goldForwarded": false,
+          "immediateDisposalAttempted": true,
+          "originalCropForwarded": false,
+          "reviewerResponseRetained": false,
+          "semanticContextForwarded": false
+        },
+        "response": {
+          "allowedLabels": [
+            "A",
+            "B",
+            "NEITHER",
+            "UNCERTAIN"
+          ],
+          "label": null,
+          "parse": {
+            "responseFormat": "not_run",
+            "responseSha256": null
+          },
+          "status": "NOT_RUN_MISSING_CANDIDATE"
+        },
+        "reviewer": {
+          "independentNoHistory": true,
+          "model": "gemini-3.7-flash",
+          "provider": "Google Gemini",
+          "workerId": "gemini-3.7-flash-independent-conflict-reviewer"
+        }
+      }
+    }
+  ],
+  "nonChanges": {
+    "detectionExpansion": false,
+    "fallback": false,
+    "ocrActivation": false,
+    "processorMutation": false,
+    "routeConfigurationChanged": false,
+    "semanticCorrection": false
+  },
+  "operational": {
+    "costComparison": "not monetarily asserted; invoice evidence not collected",
+    "documentAiLatencyMs": [
+      875.788,
+      1696.455
+    ],
+    "qwenLatencyMs": [
+      40.275,
+      28.513
+    ],
+    "reproducibility": "single bounded recall per worker per conflict line; no repeat or retry",
+    "reviewerLatencyMs": []
+  },
+  "recordedOn": "2026-09-04",
+  "resolution": {
+    "automaticWinnerSelection": false,
+    "fallbackUsed": false,
+    "majorityVote": false,
+    "resolvedLineIds": [],
+    "selectedWorkerId": null,
+    "semanticCorrection": false,
+    "status": "UNRESOLVED",
+    "unresolvedLineIds": [
+      "saju-folio-line",
+      "astrology-title-line"
+    ],
+    "winner": "NONE"
+  },
+  "retention": {
+    "candidateTextHashOnly": true,
+    "credentials": false,
+    "rawCandidateStrings": false,
+    "rawCropBytes": false,
+    "rawPrompts": false,
+    "rawProviderResponses": false,
+    "rawReviewerResponse": false
+  },
+  "routeBoundary": {
+    "BLOCK_OCR_ROUTE": true,
+    "OCRProvider": {
+      "enabled": false
+    },
+    "activation": false,
+    "automaticWinnerSelection": false,
+    "detectionSlotTouched": false,
+    "fallbackPolicy": "none",
+    "historicalSourceJudgment": false,
+    "majorityVote": false,
+    "processorMutation": false,
+    "search": false,
+    "semanticCorrection": false,
+    "silentFallback": false
+  },
+  "schema": "historical-ocr-bounded-conflict-ephemeral-handoff-v1",
+  "scope": {
+    "additionalFallbackCalls": 0,
+    "additionalWorkerRuns": 0,
+    "boundedRound": 1,
+    "conflictLinesOnly": true,
+    "documentAiCallsAttempted": 2,
+    "expectedDocumentAiCalls": 2,
+    "expectedQwenCalls": 2,
+    "expectedReviewHandoffs": 2,
+    "lineCount": 2,
+    "qwenCallsAttempted": 2,
+    "reviewHandoffsAttempted": 0,
+    "reviewerCallsAttempted": 0
+  },
+  "source": {
+    "frozenGoldSetSha256": "f08b4a006d5cc48ce6969ba8389bb7b4b3f5018a0228bca05ff867e15d13d02b",
+    "inputManifestSha256": "33e656dfcc479ce9a48e9638c96258b48e8cf1dd7fa29187753798ce34ff5315",
+    "operationalShadowPacketContentSha256": "1bbeb4e125a791e60b3ff93a3cec11fccf2c1b4b34e801c8e5d86b3272f45756",
+    "priorRawReviewPacketContentSha256": "625d2abb76b3cf0cdc2f048e9d32e03888f3b81fb0435707241c921308f25084",
+    "sameFrozenGold": true,
+    "targetConflictLineIds": [
+      "saju-folio-line",
+      "astrology-title-line"
+    ]
+  },
+  "status": "UNRESOLVED",
+  "version": "1.0.0",
+  "workers": {
+    "documentAi": {
+      "accessTokenRetained": false,
+      "authentication": "local_adc",
+      "candidateTextRetained": false,
+      "credentialValueRetained": false,
+      "processorVersion": "pretrained-ocr-v2.1.1-2025-01-31",
+      "provider": "Google Document AI",
+      "workerId": "document-ai-enterprise-document-ocr-optimized-request-v2.1.1-adc"
+    },
+    "qwen": {
+      "candidateTextRetained": false,
+      "credentialMode": 384,
+      "credentialValueRetained": false,
+      "provider": "Groq",
+      "workerId": "qwen/qwen3.8-27b"
+    },
+    "reviewer": {
+      "allowedOutputs": [
+        "A",
+        "B",
+        "NEITHER",
+        "UNCERTAIN"
+      ],
+      "credentialMode": 384,
+      "credentialValueRetained": false,
+      "model": "gemini-3.7-flash",
+      "noConversationHistory": true,
+      "provider": "Google Gemini",
+      "workerId": "gemini-3.7-flash-independent-conflict-reviewer"
+    }
+  }
+}

@@ -46,6 +46,20 @@ The attempt is recorded as `INCOMPLETE_NO_RESULT`; it is not treated as a
 candidate result or a conflict resolution. The corrected runner and independent
 validator are ready for a separately authorized clean attempt.
 
+## Authorized rerun on 2026-09-04
+
+The separately authorized six-request rerun attempted Qwen once per conflict
+line and the pinned Document AI worker once per conflict line. Both Qwen calls
+returned HTTP 403, while both Document AI calls returned HTTP 200. Because no
+Qwen candidate was available, the runner did not send either reviewer handoff;
+the total was four provider requests, with no retry or fallback. The partial
+packet is retained as hashes/metrics only and the deterministic validator
+returned `FAILED` for the incomplete scope. This is recorded as
+`INCOMPLETE_NO_RESULT` in
+`artifacts/historical-ocr-bounded-conflict-ephemeral-handoff-rerun-attempt-20260904.json`.
+
+No reviewer label, conflict resolution, or activation evidence was produced.
+
 ## Gate and boundaries
 
 `activationGate.status=DO_NOT_OPEN` and `limitedActivationEligible=false`.
