@@ -11,6 +11,8 @@ export const INPUT_MANIFEST_SHA256 = '33e656dfcc479ce9a48e9638c96258b48e8cf1dd7f
 export const DOCUMENT_AI_VERSION = 'pretrained-ocr-v2.1.1-2025-01-31'
 export const CONFLICT_LINE_IDS = Object.freeze(['saju-folio-line', 'astrology-title-line'])
 export const ALLOWED_REVIEW_LABELS = Object.freeze(['A', 'B', 'NEITHER', 'UNCERTAIN'])
+export const RESOLVING_REVIEW_LABELS = Object.freeze(['A', 'B'])
+export const NON_RESOLVING_REVIEW_LABELS = Object.freeze(['NEITHER', 'UNCERTAIN'])
 
 const HASH = /^[a-f0-9]{64}$/i
 const FORBIDDEN_KEYS = new Set([
@@ -92,16 +94,18 @@ export const validatePacket = packet => {
     const handoff = review.handoff || {}
     if (review.reviewer?.workerId !== 'gemini-3.7-flash-independent-conflict-reviewer' || review.reviewer?.model !== 'gemini-3.7-flash' || review.reviewer?.independentNoHistory !== true || !callIsOneSuccessfulNoRetry(review.call) || review.response?.status !== 'ACCEPTED' || !ALLOWED_REVIEW_LABELS.includes(review.response?.label) || JSON.stringify(review.response?.allowedLabels) !== JSON.stringify(ALLOWED_REVIEW_LABELS)) add(errors, `review_invalid:${line.lineId}`)
     if (handoff.candidateStringsForwarded !== true || handoff.originalCropForwarded !== true || handoff.goldForwarded !== false || handoff.semanticContextForwarded !== false || handoff.candidateTextRetainedAfterCall !== false || handoff.cropRetainedAfterCall !== false || handoff.reviewerResponseRetained !== false || handoff.immediateDisposalAttempted !== true) add(errors, `handoff_boundary_invalid:${line.lineId}`)
-    const resolved = ['A', 'B'].includes(review.response?.label)
+    const resolved = RESOLVING_REVIEW_LABELS.includes(review.response?.label)
+    const nonResolving = NON_RESOLVING_REVIEW_LABELS.includes(review.response?.label)
+    if (nonResolving && review.response?.status !== 'ACCEPTED') add(errors, `non_resolving_label_not_accepted:${line.lineId}`)
     if (line.resolution?.status !== (resolved ? 'RESOLVED_BY_INDEPENDENT_REVIEW' : 'UNRESOLVED') || line.resolution?.reviewerLabel !== review.response?.label || line.resolution?.selectedWorkerId !== null || line.resolution?.automaticWinnerSelection !== false || line.resolution?.majorityVote !== false || line.resolution?.semanticCorrection !== false || line.resolution?.fallbackUsed !== false) add(errors, `line_resolution_invalid:${line.lineId}`)
     if (line.disposal?.candidateStringsDiscardedAfterReview !== true || line.disposal?.cropDiscardedAfterReview !== true || line.disposal?.rawProviderResponsesDiscarded !== true || line.disposal?.disposalAttemptedImmediately !== true) add(errors, `disposal_invalid:${line.lineId}`)
   }
 
   const labels = lines.map(line => line.review?.response?.label)
-  const allResolved = labels.length === 2 && labels.every(label => ['A', 'B'].includes(label))
+  const allResolved = labels.length === 2 && labels.every(label => RESOLVING_REVIEW_LABELS.includes(label))
   if (packet.status !== (allResolved ? 'RESOLVED_SHADOW_ONLY' : 'UNRESOLVED')) add(errors, 'status_not_derived')
-  const expectedResolved = lines.filter(line => ['A', 'B'].includes(line.review?.response?.label)).map(line => line.lineId)
-  const expectedUnresolved = lines.filter(line => !['A', 'B'].includes(line.review?.response?.label)).map(line => line.lineId)
+  const expectedResolved = lines.filter(line => RESOLVING_REVIEW_LABELS.includes(line.review?.response?.label)).map(line => line.lineId)
+  const expectedUnresolved = lines.filter(line => NON_RESOLVING_REVIEW_LABELS.includes(line.review?.response?.label)).map(line => line.lineId)
   if (JSON.stringify(packet.resolution?.resolvedLineIds) !== JSON.stringify(expectedResolved) || JSON.stringify(packet.resolution?.unresolvedLineIds) !== JSON.stringify(expectedUnresolved) || packet.resolution?.status !== packet.status || packet.resolution?.selectedWorkerId !== null || packet.resolution?.winner !== 'NONE' || packet.resolution?.automaticWinnerSelection !== false || packet.resolution?.majorityVote !== false || packet.resolution?.semanticCorrection !== false || packet.resolution?.fallbackUsed !== false) add(errors, 'resolution_boundary_invalid')
   if (packet.activationGate?.status !== 'DO_NOT_OPEN' || packet.activationGate?.limitedActivationEligible !== false || packet.activationGate?.separateReviewEvidenceComplete !== allResolved) add(errors, 'activation_gate_invalid')
   const boundary = packet.routeBoundary || {}
