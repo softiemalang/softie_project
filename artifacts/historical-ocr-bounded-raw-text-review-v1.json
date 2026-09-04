@@ -1,0 +1,128 @@
+{
+  "schema": "historical-ocr-bounded-raw-text-review-v1",
+  "version": "1.0.0",
+  "status": "UNRESOLVED",
+  "recordedOn": "2026-09-04",
+  "decision": "BOUNDED_ESCALATION_ATTEMPTED_FAIL_CLOSED",
+  "source": {
+    "operationalShadowPacketSha256": "94ff77d2e2f5fc92283a3c37baee2f4e1b56969eac0427f5c0408b4a859ff1e9",
+    "operationalShadowPacketContentSha256": "1bbeb4e125a791e60b3ff93a3cec11fccf2c1b4b34e801c8e5d86b3272f45756",
+    "sameFrozenGold": true,
+    "targetConflictLineIds": [
+      "saju-folio-line",
+      "astrology-title-line"
+    ]
+  },
+  "scope": {
+    "boundedRound": 1,
+    "requestedReviewCount": 1,
+    "reviewMode": "independent_raw_text_review",
+    "lineScopedOnly": true,
+    "additionalWorkerRuns": 0,
+    "additionalApiCalls": 0
+  },
+  "evidenceAvailability": {
+    "qwen": {
+      "rawPredictionTextPresent": false,
+      "rawResponseBodyPresent": false,
+      "retainedEvidence": "prediction_text_digest_and_exact_flags_only"
+    },
+    "documentAi": {
+      "rawPredictionTextPresent": false,
+      "rawResponseBodyPresent": false,
+      "retainedEvidence": "prediction_text_digest_length_geometry_and_exact_flags_only"
+    },
+    "requiredTextEvidencePresent": false,
+    "reason": "Neither retained candidate artifact contains the raw prediction text required for an independent textual review; digests and lengths cannot be decoded into text."
+  },
+  "execution": {
+    "attemptCount": 1,
+    "completedReviewCount": 0,
+    "reviewPerformedOnText": false,
+    "status": "UNRESOLVED_NO_RAW_TEXT_EVIDENCE",
+    "noAdditionalWorkerRun": true,
+    "noApiCallOrRerun": true
+  },
+  "lineResults": [
+    {
+      "lineId": "saju-folio-line",
+      "originalRelation": "CONFLICT_DOCUMENT_AI_EXACT_QWEN_NONEXACT",
+      "originalExactOutcomes": {
+        "qwen": false,
+        "documentAi": true
+      },
+      "reviewStatus": "UNRESOLVED",
+      "textCompared": false,
+      "reasonCode": "RAW_TEXT_EVIDENCE_UNAVAILABLE",
+      "disposition": "PRESERVE_CONFLICT_NO_SELECTION"
+    },
+    {
+      "lineId": "astrology-title-line",
+      "originalRelation": "CONFLICT_QWEN_EXACT_DOCUMENT_AI_NONEXACT",
+      "originalExactOutcomes": {
+        "qwen": true,
+        "documentAi": false
+      },
+      "reviewStatus": "UNRESOLVED",
+      "textCompared": false,
+      "reasonCode": "RAW_TEXT_EVIDENCE_UNAVAILABLE",
+      "disposition": "PRESERVE_CONFLICT_NO_SELECTION"
+    }
+  ],
+  "resolution": {
+    "status": "UNRESOLVED",
+    "unresolvedLineIds": [
+      "saju-folio-line",
+      "astrology-title-line"
+    ],
+    "winner": "NONE",
+    "selectedWorkerId": null,
+    "automaticWinnerSelection": false,
+    "majorityVote": false,
+    "semanticCorrection": false,
+    "fallbackUsed": false,
+    "rationale": "The single bounded review attempt cannot inspect absent raw text; both original conflicts are preserved without adjudication."
+  },
+  "activationGateReevaluation": {
+    "status": "NOT_REVIEWABLE_THIS_ROUND",
+    "limitedActivationEligible": false,
+    "reasonCodes": [
+      "unresolved_conflict_lines",
+      "raw_text_evidence_missing",
+      "no_automatic_selection"
+    ],
+    "nextCondition": "A separately authorized review requires lawfully retained raw prediction text for both workers; this packet does not request or perform that collection."
+  },
+  "routeBoundary": {
+    "BLOCK_OCR_ROUTE": true,
+    "OCRProvider": {
+      "enabled": false
+    },
+    "activation": false,
+    "automaticWinnerSelection": false,
+    "majorityVote": false,
+    "semanticCorrection": false,
+    "silentFallback": false,
+    "fallbackPolicy": "none",
+    "detectionSlotTouched": false,
+    "search": false,
+    "historicalSourceJudgment": false,
+    "processorMutation": false
+  },
+  "retention": {
+    "rawPredictionTextRetained": false,
+    "rawApiResponsesRetained": false,
+    "rawPromptsRetained": false,
+    "credentialValuesRetained": false,
+    "textCompared": false,
+    "textResolutionClaimed": false,
+    "winnerClaimed": false
+  },
+  "validator": {
+    "id": "bounded-raw-text-review-validator-v1",
+    "status": "PASSED",
+    "failClosedOnMissingRawText": true,
+    "failClosedOnConflict": true
+  },
+  "packetContentSha256": "625d2abb76b3cf0cdc2f048e9d32e03888f3b81fb0435707241c921308f25084"
+}
