@@ -1,0 +1,73 @@
+{
+  "schema": "historical-ocr-bounded-conflict-ephemeral-handoff-attempt-v1",
+  "version": "1.0.0",
+  "status": "INCOMPLETE_NO_RESULT",
+  "decision": "FAIL_CLOSED_NO_RESULT",
+  "recordedOn": "2026-09-04",
+  "source": {
+    "frozenGoldSetSha256": "f08b4a006d5cc48ce6969ba8389bb7b4b3f5018a0228bca05ff867e15d13d02b",
+    "inputManifestSha256": "33e656dfcc479ce9a48e9638c96258b48e8cf1dd7fa29187753798ce34ff5315",
+    "operationalShadowPacketContentSha256": "1bbeb4e125a791e60b3ff93a3cec11fccf2c1b4b34e801c8e5d86b3272f45756",
+    "targetConflictLineIds": [
+      "saju-folio-line",
+      "astrology-title-line"
+    ],
+    "sameFrozenGold": true
+  },
+  "scope": {
+    "boundedRound": 1,
+    "conflictLinesOnly": true,
+    "expectedQwenCalls": 2,
+    "expectedDocumentAiCalls": 2,
+    "expectedReviewHandoffs": 2,
+    "qwenCallsAttempted": 1,
+    "qwenResultsCaptured": 0,
+    "documentAiCallsAttempted": 0,
+    "reviewHandoffsAttempted": 0,
+    "additionalWorkerRuns": 0,
+    "retryCount": 0,
+    "fallbackUsed": false
+  },
+  "failure": {
+    "phase": "qwen_candidate_call_recording",
+    "lineId": "saju-folio-line",
+    "requestAttempted": true,
+    "resultCaptured": false,
+    "errorClass": "TypeError",
+    "errorCode": "call_record_missing_endpoint_argument",
+    "rawResponseRetained": false,
+    "nextAction": "stop_and_require_separate_authorization_for_a_clean_one-call-per-line_attempt"
+  },
+  "disposal": {
+    "candidateStringsRetained": false,
+    "cropBytesRetained": false,
+    "providerResponseRetained": false,
+    "reviewerPayloadSent": false,
+    "reviewerResponseRetained": false
+  },
+  "activationGate": {
+    "status": "DO_NOT_OPEN",
+    "limitedActivationEligible": false
+  },
+  "routeBoundary": {
+    "BLOCK_OCR_ROUTE": true,
+    "OCRProvider": {
+      "enabled": false
+    },
+    "activation": false,
+    "automaticWinnerSelection": false,
+    "majorityVote": false,
+    "semanticCorrection": false,
+    "silentFallback": false,
+    "fallbackPolicy": "none",
+    "detectionSlotTouched": false,
+    "processorMutation": false
+  },
+  "nonChanges": {
+    "documentAiProcessorChanged": false,
+    "detectionExpanded": false,
+    "activationChanged": false,
+    "fallbackAdded": false,
+    "semanticCorrectionAdded": false
+  }
+}
