@@ -117,7 +117,7 @@ function sourceReferenceLedger() {
         sourceId: 'SRC-SOFTIE-AGENTS',
         authority: 'repository_authority',
         lineageGroup: 'LG-SOFTIE-REPOSITORY',
-        sourceRef: workingTextRef('AGENTS.md', '- Prefer practical, mobile-friendly UI. This app is used in short sessions and should stay easy to use on a phone.'),
+        sourceRef: workingTextRef('AGENTS.md', '- Keep a change within the requested behavior and the smallest necessary file surface. Do not make adjacent cleanup, refactors, or design changes without authorization.'),
       },
       {
         sourceId: 'SRC-SOFTIE-DESIGN',

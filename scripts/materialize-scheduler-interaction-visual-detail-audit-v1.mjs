@@ -78,7 +78,7 @@ function sourceReferenceLedger() {
   return {
     schemaVersion: 'scheduler-interaction-visual-source-reference-ledger-v1',
     sources: [
-      { id: 'SRC-REPO-AGENTS', authority: 'repository_authority', lineage: 'softie_repository', sourceRef: workingRef('AGENTS.md', '- Prioritize clarity, fast comprehension, and low-friction interaction over decorative complexity.') },
+      { id: 'SRC-REPO-AGENTS', authority: 'repository_authority', lineage: 'softie_repository', sourceRef: workingRef('AGENTS.md', '- UI tokens, patterns, legacy-screen preservation, and promotion rules come from [`DESIGN.md`](DESIGN.md), [`src/styles.css`](src/styles.css), and [`docs/ui-workflow.md`](docs/ui-workflow.md); do not replace them with external design values.') },
       { id: 'SRC-REPO-DESIGN', authority: 'softie_house_rule', lineage: 'softie_repository', sourceRef: workingRef('DESIGN.md', '## 7. Shape, depth, and motion') },
       { id: 'SRC-APPLE-ACCESSIBILITY', authority: 'apple_official_primary', lineage: 'apple_official', url: 'https://developer.apple.com/design/human-interface-guidelines/accessibility', boundary: 'Supports control size, clarity, and Reduce Motion; not Softie timing authority.' },
       { id: 'SRC-APPLE-FEEDBACK', authority: 'apple_official_primary', lineage: 'apple_official', url: 'https://developer.apple.com/design/human-interface-guidelines/feedback', boundary: 'Supports timely understandable feedback; not a web implementation recipe.' },
