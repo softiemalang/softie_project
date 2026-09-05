@@ -47,6 +47,9 @@
 
 ## Delegated work and bounded continuation
 
+- Actively use Native subagents for bounded investigation, implementation, or verification when delegation or parallel work is useful; the parent retains scope, judgment, and final integration.
+- Use Antigravity's Gemini 3.8 Flash for external research, multimodal, and OCR tasks, and its GPT-OSS 120B for bounded structured and bulk tasks, within existing permissions and evidence boundaries.
+- Use the registered `historical-document-evidence` portable Skill for historical-source identity, OCR evidence, layout/grid, and component evaluation. These role guidelines prescribe no call order, call count, or detailed orchestration and introduce no duplicate workflow infrastructure or new routing layer.
 - Delegated investigation or verification uses the existing `subagent-evidence-contract-v0` contract in [`docs/subagent-evidence-contract-v0.md`](docs/subagent-evidence-contract-v0.md) and [`src/subagentEvidenceContract.js`](src/subagentEvidenceContract.js); validate the exact envelope before using it.
 - A child result is execution provenance only: `child PASS != parent goal PASS`. Keep observations, inferences, validations, unknowns, blockers, parent verification, readiness, and activation separate.
 - Parent verification must use the parent basis and directly reread the relevant locator or rerun the critical check for calculation, source relation, authority, readiness, or activation impact. Do not copy canonical payloads into a child envelope or let a child promote authority.
