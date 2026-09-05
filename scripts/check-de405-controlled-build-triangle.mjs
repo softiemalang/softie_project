@@ -1,6 +1,7 @@
 import { createHash } from 'node:crypto'
 import { createReadStream } from 'node:fs'
 import { readFile } from 'node:fs/promises'
+import { homedir } from 'node:os'
 import { resolve } from 'node:path'
 
 const root = resolve(import.meta.dirname, '..')
@@ -19,7 +20,8 @@ if (evidence.environments.macosArm64.status !== 'executed' || evidence.environme
 if (evidence.environments.macosArm64.variants.length !== 4 || evidence.commonInput.corpusRowCount !== 150671 || evidence.commonInput.stateComponentCount !== 6) fail('Apple matrix completeness failure')
 if (evidence.pairs.linuxArm64VsLinuxX8664.status !== 'blocked' || evidence.pairs.macosArm64VsLinuxArm64.status !== 'blocked' || evidence.pairs.macosArm64VsExistingLinuxX8664.status !== 'observed_but_mixed') fail('pairwise classification failure')
 if (!evidence.environments.linuxArm64.availability || Object.values(evidence.environments.linuxArm64.availability).some(Boolean)) fail('Linux arm64 availability evidence is not blocked')
-const sourcePaths = { integration: 'tools/de405-type2-strategy-c-integration/src/de405_type2_strategy_c_integration.c', candidate: 'tools/de405-type2-experimental-shadow/src/de405_type2_candidate.c', corpus: 'artifacts/de405-jpl-cspice-residual-sweep.samples.jsonl', kernel: '/Users/softie/.local/share/softie-de405/kernels/spk/de405.bsp', cspiceArchive: '/Users/softie/.local/share/softie-de405/cspice/N0067/lib/cspice.a', csupportArchive: '/Users/softie/.local/share/softie-de405/cspice/N0067/lib/csupport.a' }
+const cspiceDir = process.env.CSPICE_DIR || resolve(homedir(), '.local/share/softie-de405/cspice/N0067')
+const sourcePaths = { integration: 'tools/de405-type2-strategy-c-integration/src/de405_type2_strategy_c_integration.c', candidate: 'tools/de405-type2-experimental-shadow/src/de405_type2_candidate.c', corpus: 'artifacts/de405-jpl-cspice-residual-sweep.samples.jsonl', kernel: process.env.DE405_SPK || resolve(homedir(), '.local/share/softie-de405/kernels/spk/de405.bsp'), cspiceArchive: resolve(cspiceDir, 'lib/cspice.a'), csupportArchive: resolve(cspiceDir, 'lib/csupport.a') }
 for (const [key, relative] of Object.entries(sourcePaths)) {
   const path = relative.startsWith('/') ? relative : resolve(root, relative)
   if (await hashFile(path) !== evidence.commonInput.sourceIdentities[key].sha256) fail(`source hash mismatch: ${key}`)

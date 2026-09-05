@@ -2,11 +2,11 @@ import test from 'node:test'
 import assert from 'node:assert/strict'
 import { createHash } from 'node:crypto'
 import { mkdtemp, readFile, rm, stat } from 'node:fs/promises'
-import { tmpdir } from 'node:os'
+import { homedir, tmpdir } from 'node:os'
 import { resolve } from 'node:path'
 import { instrument, SOURCE_HASHES } from '../tools/de405-type2-evaluator-trace-probe/scripts/instrument-spke02.mjs'
 
-const cspice = '/Users/softie/.local/share/softie-de405/cspice/N0067'
+const cspice = process.env.CSPICE_DIR || resolve(homedir(), '.local/share/softie-de405/cspice/N0067')
 const sha = async path => createHash('sha256').update(await readFile(path)).digest('hex')
 
 test('instrumentation guards official source identity and preserves originals', async () => {

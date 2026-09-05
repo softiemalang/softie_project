@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict'
 import { cp, mkdtemp, readFile, rm, writeFile } from 'node:fs/promises'
-import { tmpdir } from 'node:os'
+import { homedir, tmpdir } from 'node:os'
 import { join, resolve } from 'node:path'
 import { test } from 'node:test'
 import { spawnSync } from 'node:child_process'
@@ -58,7 +58,8 @@ test('selection trace is opt-in for representative JPL and CSPICE batch output',
     const first = (await readFile('artifacts/de405-jpl-cspice-residual-sweep.manifest.jsonl', 'utf8')).split('\n')[0]
     await writeFile(input, `${first}\n`)
     const runJpl = selectionTrace => spawnSync(process.execPath, ['tools/de405-jpl-reader/run.mjs', '--evaluate-et-batch', ...(selectionTrace ? ['--selection-trace'] : []), '--binary', 'tools/de405-jpl-reader/fixtures/lnxp1600p2200.405', '--input-jsonl', input, '--output-jsonl', join(temp, selectionTrace ? 'jpl-trace.jsonl' : 'jpl-base.jsonl')], { encoding: 'utf8' })
-    const runCspice = selectionTrace => spawnSync('tools/de405-cspice-runner/build/de405-canonical-v2-runner', ['--evaluate-spk-type2-batch', ...(selectionTrace ? ['--selection-trace'] : []), '--spk', '/Users/softie/.local/share/softie-de405/kernels/spk/de405.bsp', '--input-jsonl', input, '--output-jsonl', join(temp, selectionTrace ? 'cspice-trace.jsonl' : 'cspice-base.jsonl')], { encoding: 'utf8' })
+    const spk = process.env.DE405_SPK || resolve(homedir(), '.local/share/softie-de405/kernels/spk/de405.bsp')
+    const runCspice = selectionTrace => spawnSync('tools/de405-cspice-runner/build/de405-canonical-v2-runner', ['--evaluate-spk-type2-batch', ...(selectionTrace ? ['--selection-trace'] : []), '--spk', spk, '--input-jsonl', input, '--output-jsonl', join(temp, selectionTrace ? 'cspice-trace.jsonl' : 'cspice-base.jsonl')], { encoding: 'utf8' })
     assert.equal(runJpl(false).status, 0)
     assert.equal(runJpl(true).status, 0)
     assert.equal(runCspice(false).status, 0)

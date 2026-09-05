@@ -2,7 +2,7 @@ import { createHash } from 'node:crypto'
 import { spawn } from 'node:child_process'
 import { createReadStream } from 'node:fs'
 import { mkdtemp, readFile, rm, stat, writeFile } from 'node:fs/promises'
-import { tmpdir } from 'node:os'
+import { homedir, tmpdir } from 'node:os'
 import { dirname, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { createInterface } from 'node:readline'
@@ -29,7 +29,7 @@ export const DEFAULT_TRACE_INPUTS = Object.freeze({
   jplRunnerBinary: 'tools/de405-jpl-reader/build/de405-jpl-canonical-v2-runner',
   cspiceRunnerBinary: 'tools/de405-cspice-runner/build/de405-canonical-v2-runner',
   jplBinary: 'tools/de405-jpl-reader/fixtures/lnxp1600p2200.405',
-  spk: '/Users/softie/.local/share/softie-de405/kernels/spk/de405.bsp'
+  spk: process.env.DE405_SPK || resolve(homedir(), '.local/share/softie-de405/kernels/spk/de405.bsp')
 })
 
 export function parseCliOptions(args) {
