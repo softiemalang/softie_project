@@ -48,7 +48,8 @@
 ## Delegated work and bounded continuation
 
 - Actively use Native subagents for bounded investigation, implementation, or verification when delegation or parallel work is useful; the parent retains scope, judgment, and final integration.
-- Use Antigravity's Gemini 3.8 Flash for external research, multimodal, and OCR tasks, and its GPT-OSS 120B for bounded structured and bulk tasks, within existing permissions and evidence boundaries.
+- When Antigravity is available, use its official `agy` headless CLI directly for bounded external work: Gemini 3.8 Flash for research, multimodal, and OCR tasks; GPT-OSS 120B for structured and bulk tasks.
+- Use explicit model selection, bounded context and timeout, and parent-side result validation. Fail closed on authentication, permission, availability, timeout, or incomplete-result failures: no automatic retry, fallback, permission bypass, adapter, or routing layer.
 - Use the registered `historical-document-evidence` portable Skill for historical-source identity, OCR evidence, layout/grid, and component evaluation. These role guidelines prescribe no call order, call count, or detailed orchestration and introduce no duplicate workflow infrastructure or new routing layer.
 - Delegated investigation or verification uses the existing `subagent-evidence-contract-v0` contract in [`docs/subagent-evidence-contract-v0.md`](docs/subagent-evidence-contract-v0.md) and [`src/subagentEvidenceContract.js`](src/subagentEvidenceContract.js); validate the exact envelope before using it.
 - A child result is execution provenance only: `child PASS != parent goal PASS`. Keep observations, inferences, validations, unknowns, blockers, parent verification, readiness, and activation separate.
