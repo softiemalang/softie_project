@@ -12,8 +12,9 @@ export const MATERIALIZER_VERSION = '1.0.0'
 export const BASIS_HEAD = '87550964aaf303325c647c21066272a776f515f3'
 
 const ROOT = resolve(new URL('..', import.meta.url).pathname)
-const PDFINFO = '/Users/softie/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/override/pdfinfo'
+const PDFINFO = process.env.PDFINFO_BIN || 'pdfinfo'
 const NANYANG_SOURCE_ID = 'nanyangtang_quanbao_528p'
+const CANONICAL_LOCAL_PDF_PATH = '/Users/softie/Documents/malang_lab/documents/新锓希夷陈先生紫微斗数全书.七卷.宋.陈抟撰.明.潘希尹补.明代南阳堂刊本.黑白版.pdf'
 const RECORD_URL = 'https://www.digital.archives.go.jp/das/meta/F1000000000000101426.html'
 const FILE_URL = 'https://www.digital.archives.go.jp/file/1078787'
 const VOLUMES = Object.freeze([
@@ -139,7 +140,7 @@ function inspectLocalPdf() {
   if (sha256(bytes) !== source.expectedSha256) throw new Error('nanyang_pdf_sha256_mismatch')
   if (pages !== source.pageCount) throw new Error(`nanyang_pdf_page_count_mismatch:${pages}`)
   if (encrypted !== 'no') throw new Error(`nanyang_pdf_encryption_mismatch:${encrypted}`)
-  return { sourceId: source.sourceId, envVar: source.envVar, path, byteLength: bytes.length, sha256: source.expectedSha256, pageCount: pages, encrypted, pdfInfo: pdfInfo.split('\n').filter(Boolean) }
+  return { sourceId: source.sourceId, envVar: source.envVar, path: CANONICAL_LOCAL_PDF_PATH, byteLength: bytes.length, sha256: source.expectedSha256, pageCount: pages, encrypted, pdfInfo: pdfInfo.split('\n').filter(Boolean) }
 }
 
 function nativeReviewEvidence() {
