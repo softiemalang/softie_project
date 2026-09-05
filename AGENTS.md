@@ -10,6 +10,8 @@
 ## Change and external-impact boundaries
 
 - Keep a change within the requested behavior and the smallest necessary file surface. Do not make adjacent cleanup, refactors, or design changes without authorization.
+- Native Codex is the default task owner/executor: it owns completion criteria and final integration, and may use a registered portable Skill only in a bounded scope when needed; Skill results remain advisory.
+- Using a portable Skill does not change or bypass existing permission, routing, or independent-review requirements.
 - Local staging and commits are allowed when useful, but include only intentional task changes; a local commit does not authorize any remote action.
 - Do not discard work with destructive Git operations or delete user data, migrations, or localStorage migration logic without explicit approval.
 - Push, merge, force-push, deployment, remote database or migration changes, production configuration, secrets, credentials, and tokens require explicit user approval for that action.
