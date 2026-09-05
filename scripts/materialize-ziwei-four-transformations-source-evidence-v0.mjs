@@ -39,7 +39,7 @@ export const PDF_SOURCES = Object.freeze({
 })
 
 const ROOT = resolve(new URL('..', import.meta.url).pathname)
-const PDFINFO = '/Users/softie/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/override/pdfinfo'
+const PDFINFO = process.env.PDFINFO_BIN || 'pdfinfo'
 const sha256 = bytes => createHash('sha256').update(bytes).digest('hex')
 const same = (a, b) => JSON.stringify(a) === JSON.stringify(b)
 

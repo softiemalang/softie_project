@@ -11,7 +11,7 @@ export const VERDICT = 'partial_ziwei_palace_source_authority_with_semantic_iden
 export const MATERIALIZER_VERSION = '1.0.0'
 export const BASIS_HEAD = '45ceb1d27143ed4d61487e2dce0dfc35ef872d1b'
 
-const PDFINFO = '/Users/softie/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/override/pdfinfo'
+const PDFINFO = process.env.PDFINFO_BIN || 'pdfinfo'
 const NANBEI = Object.freeze({
   editionId: 'nanbei', sourceId: 'nanbei_quanbao_219p',
   label: '命-南北山人_紫微斗数全书.pdf',

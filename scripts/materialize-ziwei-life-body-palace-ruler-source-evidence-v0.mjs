@@ -18,7 +18,7 @@ export const MING_PDF_SHA256 = '04e184c4a52cb042dc885c6ccc9135d94ab25de620075061
 export const NANBEI_PDF = resolvePdfSourcePathSync('nanbei_quanbao_219p')
 export const NANBEI_PDF_METADATA = getPdfSourceMetadata('nanbei_quanbao_219p').historicalMetadataPath
 export const NANBEI_PDF_SHA256 = '4786a94ab454acdabf9716d7c0db4756dbcbde99a88bc45fda254863c1961023'
-export const PDFINFO = '/Users/softie/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/override/pdfinfo'
+export const PDFINFO = process.env.PDFINFO_BIN || 'pdfinfo'
 export const FULL_PAGE_SCREENING = Object.freeze({
   tool: 'bundled pdftoppm',
   dpi: 32,

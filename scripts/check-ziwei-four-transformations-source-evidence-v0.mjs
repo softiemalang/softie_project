@@ -8,7 +8,7 @@ import { ARTIFACT_DIR, BASIS_HEAD, MATERIALIZER_PATH, MATERIALIZER_VERSION, PDF_
 import { resolvePdfSourcePathSync } from './lib/pdf-source-resolver.mjs'
 
 const ROOT = resolve(new URL('..', import.meta.url).pathname)
-const PDFINFO = '/Users/softie/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/override/pdfinfo'
+const PDFINFO = process.env.PDFINFO_BIN || 'pdfinfo'
 const STEMS = ['甲', '乙', '丙', '丁', '戊', '己', '庚', '辛', '壬', '癸']
 const TYPES = ['hua_lu', 'hua_quan', 'hua_ke', 'hua_ji']
 const sha256 = bytes => createHash('sha256').update(bytes).digest('hex')

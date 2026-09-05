@@ -36,7 +36,7 @@ export const STEMS = Object.freeze(['甲', '乙', '丙', '丁', '戊', '己', '�
 export const YEAR_BRANCHES = Object.freeze(['子', '丑', '寅', '卯', '辰', '巳', '午', '未', '申', '酉', '戌', '亥'])
 
 const ROOT = resolve(new URL('..', import.meta.url).pathname)
-const POPPLER_PDFINFO = '/Users/softie/.cache/codex-runtimes/codex-primary-runtime/dependencies/native/poppler/poppler/bin/pdfinfo'
+const POPPLER_PDFINFO = process.env.PDFINFO_BIN || 'pdfinfo'
 const sha256 = (bytes) => createHash('sha256').update(bytes).digest('hex')
 const mod = (value) => ((value % 12) + 12) % 12
 const branchIndex = (branch) => BRANCHES.indexOf(branch)

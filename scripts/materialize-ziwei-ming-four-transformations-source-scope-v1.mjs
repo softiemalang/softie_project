@@ -19,8 +19,8 @@ export const ARTIFACT_DIR = `artifacts/${SCHEMA}`
 export const MATERIALIZER_PATH = `scripts/materialize-${SCHEMA}.mjs`
 
 const ROOT = resolve(new URL('..', import.meta.url).pathname)
-const PDFINFO = '/Users/softie/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/override/pdfinfo'
-const PDFTOPPM = '/Users/softie/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/override/pdftoppm'
+const PDFINFO = process.env.PDFINFO_BIN || 'pdfinfo'
+const PDFTOPPM = process.env.PDFTOPPM_BIN || 'pdftoppm'
 const sha256 = bytes => createHash('sha256').update(bytes).digest('hex')
 const STEMS = Object.freeze(['甲', '乙', '丙', '丁', '戊', '己', '庚', '辛', '壬', '癸'])
 const TYPES = Object.freeze([
