@@ -12,6 +12,7 @@ import { calculateNatalBranchRelations, calculateNatalStemRelations } from './sa
 import { calculateSajuTiming } from './sajuTimingRules.js'
 import { getHourCandidatesForUnknown, getHourCandidatesForRange } from './sajuHourUtils.js'
 import { analyzeCandidateSet } from './candidateAnalysis.js'
+import { resolveSajuPolicyContract } from '../saju/engine/sajuPolicyContract.js'
 import {
   calculateStrengthScore,
   determineGyeokguk,
@@ -36,13 +37,13 @@ const SEOUL_DST_PERIODS = {
 }
 
 const SAJU_SUPPORT_SCOPE = {
-  summary: '원국의 핵심 계산은 고정된 규칙 버전으로 재현하고, 강약·격국·용신·신살은 별도의 Experimental 파생 판정으로 분리해 제공합니다.',
+  summary: '원국의 핵심 계산은 명시적 implementation policy contract로 재현하며, 선택값은 역사적 사실·권위를 의미하지 않습니다. 강약·격국·용신·신살은 별도의 Experimental 파생 판정으로 분리해 제공합니다.',
   supported: [
-    { item: '사주 네 기둥', basis: '입춘·절기월·진태양시 자정의 야자·조자 분리를 고정한 연·월·일·시주' },
+    { item: '사주 네 기둥', basis: 'implementation policy: 입춘·절기월·진태양시 자정의 야자·조자 분리를 선택한 연·월·일·시주' },
     { item: '원국 기초 구조', basis: '일간·오행 분포·십성·지장간·계절 가중치' },
     { item: '원국 천간/지지 관계', basis: '천간합화 및 충, 지지 육합·충·형·파·해, 방합 및 반합의 왕지 정합성 여부와 상세 오행 변환(Transmutation) 개연성 연산' },
-    { item: '국내 주요 도시 진태양시', basis: '선택 도시 경도 보정과 NOAA 날짜별 균시차를 합산하고 전체 도시 후보 비교' },
-    { item: '대운', basis: '연간 음양·성별 순역과 절입 간격 3일당 1년 기산, 경계 후보·원국 관계를 포함한 10개 주기' },
+    { item: '국내 주요 도시 진태양시', basis: 'implementation policy: 선택 도시 경도 보정과 NOAA 날짜별 균시차를 합산하고 전체 도시 후보 비교' },
+    { item: '대운', basis: 'implementation policy: 연간 음양·성별 순역과 절입 간격 3일당 1년 기산, 경계 후보·원국 관계를 포함한 10개 주기' },
     { item: '세운·월운·일진', basis: '선택 기준일의 절기 간지·본기 십성·원국 및 기간 간 지지 관계 조회' },
     { item: '12운성', basis: '일간 기준 양간 순행·음간 역행 고정표' },
   ],
@@ -518,6 +519,7 @@ function buildCandidatePipeline({ input, primaryPillars, primaryRawPillars, prim
       utcDateTime: source.utcDateTime || null,
       timezoneRuleVersion: source.timezoneRuleVersion || null,
       input: source.input,
+      policyContract: calculationOptions?.policyContract || null,
       pillars: rawPillars,
       dayMaster: analysis.dayMaster,
       timing: {
@@ -695,7 +697,7 @@ function assessDomesticLocationRange(input, birthTimeUnknown, pillars) {
   }
 }
 
-export function calculateSajuSystem(input, profile) {
+export function calculateSajuSystem(input, profile, requestedPolicyContract = null) {
   if (input.calendar !== 'solar' && input.calendar !== 'lunar') {
     throw new Error('현재 사주 어댑터는 양력 및 음력 입력만 지원합니다.')
   }
@@ -704,11 +706,16 @@ export function calculateSajuSystem(input, profile) {
   }
 
   const referenceCity = getKoreaReferenceCity(input.referenceCity)
-  const calculationOptions = {
+  const calculationOptionsBase = {
     ...DEFAULT_SAJU_OPTIONS,
     longitudeDegrees: referenceCity.longitude,
     solarTimeOffsetMinutes: referenceCity.correctionMinutes,
   }
+  const policyOptions = requestedPolicyContract == null
+    ? calculationOptionsBase
+    : { ...calculationOptionsBase, policyContract: requestedPolicyContract }
+  const policyContract = resolveSajuPolicyContract(policyOptions)
+  const calculationOptions = { ...calculationOptionsBase, policyContract }
   const birthTimeUnknown = input.timeAccuracy === 'unknown'
   const birthTimeRange = input.timeAccuracy === 'range'
 
@@ -769,7 +776,7 @@ export function calculateSajuSystem(input, profile) {
           const direction = (pillars._meta.boundaryTimeDiffMinutes || 0) >= 0 ? 'forward' : 'backward'
           const [bYear, bMonth, bDay] = input.birthDate.split('-').map(Number)
           const [bHour, bMin] = (input.birthTime || '12:00').split(':').map(Number)
-          const boundaryInfo = getAdjacentBaziMonthBoundary(bYear, bMonth, bDay, bHour, bMin, direction)
+          const boundaryInfo = getAdjacentBaziMonthBoundary(bYear, bMonth, bDay, bHour, bMin, direction, policyContract)
           termExactUtc = boundaryInfo.utcIso
         } catch (e) {
           termExactUtc = null
@@ -1054,6 +1061,7 @@ export function calculateSajuSystem(input, profile) {
   })
 
   const raw = {
+    policyContract,
     birthTimeUnknown,
     calculationBasis: birthTimeUnknown ? '정오 기준 연·월·일 분석, 시주 제외, 하루 경계 후보 별도 저장' : '입력 시각 기준',
     timeBoundary: {
@@ -1160,16 +1168,16 @@ export function calculateSajuSystem(input, profile) {
     timing,
     calculationTrace: (() => {
       const trace = [
-        `연주·월주: ${pillars._meta.solarLongitudeMethod} 태양 황경으로 입춘 및 절기 월 경계를 판정`,
-        '일주: 1970-01-01 신사일 기준 60갑자 일수 차 계산',
+        `연주·월주 [implementation policy]: ${pillars._meta.solarLongitudeMethod} 태양 황경으로 입춘 및 절기 월 경계를 판정`,
+        '일주 [implementation policy]: 1970-01-01 신사일 기준 60갑자 일수 차 계산',
         birthTimeUnknown
           ? '시주: 출생시각 미상으로 계산 제외, 00:00·12:00·23:59 후보를 비교해 시간 민감도 기록'
-          : `시주·일주: ${referenceCity.label} 경도 보정과 NOAA 균시차를 합산한 진태양시로 국내 주요 도시 후보 비교, 진태양시 자정 전 야자·자정 후 조자 분리`,
+          : `시주·일주 [implementation policy]: ${referenceCity.label} 경도 보정과 NOAA 균시차를 합산한 진태양시로 국내 주요 도시 후보 비교, 진태양시 자정 전 야자·자정 후 조자 분리`,
         '오행·십성: 천간·지지와 지장간 규칙표를 이용해 별도 집계',
         '일간 강약: 표면 생조 및 득령·득지 기반 단순 득점 산식 (지장간 통근 미산입 간이 휴리스틱 0~100점 점수)',
         `천간 관계: ${stemRelations.ruleVersion} 쌍 조회 및 합화 성립 분석`,
         `지지 관계: ${branchRelations.ruleVersion} 쌍·완성·반합 그룹 및 합화·오행 변환 조건 정밀 연산`,
-        `운 흐름: ${timing.ruleVersion} 대운 순역·기산점과 ${timing.targetDate} 세운·월운·일진·12운성 계산`,
+        `운 흐름 [implementation policy]: ${timing.ruleVersion} 대운 순역·기산점과 ${timing.targetDate} 세운·월운·일진·12운성 계산`,
       ]
       if (input.originalCalendar === 'lunar') {
         trace.unshift(`음력 변환: 음력 ${input.originalBirthDate} (${input.originalIsLeapMonth ? '윤달' : '평달'}) -> 양력 ${input.birthDate} 변환`)
@@ -1179,8 +1187,8 @@ export function calculateSajuSystem(input, profile) {
   }
 
   const warnings = [
-    '절기 계산은 의존성 없는 NOAA·Meeus 근사식을 사용합니다. 홍콩천문대 2013~2016 공개 절입 시각 48건 대조에서 최대 오차가 15분 이내였으며, 현재 엔진은 ±20분을 경계 불확실성 구간으로 취급합니다.',
-    `기준 도시 ${referenceCity.label} 경도 보정에 NOAA 날짜별 균시차를 합산한 진태양시를 적용하고 국내 주요 도시 후보를 비교합니다.`,
+    '[implementation policy] 절기 계산은 의존성 없는 NOAA·Meeus 근사식을 사용합니다. 홍콩천문대 2013~2016 공개 절입 시각 48건 대조에서 최대 오차가 15분 이내였으며, 현재 엔진은 ±20분을 경계 불확실성 구간으로 취급합니다.',
+    `[implementation policy] 기준 도시 ${referenceCity.label} 경도 보정에 NOAA 날짜별 균시차를 합산한 진태양시를 적용하고 국내 주요 도시 후보를 비교합니다.`,
   ]
   if (input.originalCalendar === 'lunar') {
     warnings.push(`음력 날짜(${input.originalBirthDate})를 기준으로 변환된 양력 날짜(${input.birthDate})로 계산된 사주입니다.`)
@@ -1230,6 +1238,7 @@ export function calculateSajuSystem(input, profile) {
   const outputResult = {
     system: 'saju',
     status: systemStatus,
+    policyContract,
     stateContract,
     engine: {
       adapter: SAJU_ADAPTER_VERSION,

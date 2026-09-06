@@ -1,8 +1,9 @@
 import { analyzeNatalStructure, analyzePeriodPillar, getBranchMainStem, getTenGod } from '../saju/engine/core.js'
 import { BRANCHES, ELEMENTS, STEMS, STEM_YIN_YANG } from '../saju/engine/constants.js'
-import { calculateFourPillars } from '../saju/engine/fourPillars.js'
+import { calculateFourPillars, DEFAULT_SAJU_OPTIONS } from '../saju/engine/fourPillars.js'
 import { getAdjacentBaziMonthBoundary } from '../saju/engine/solarTerms.js'
 import { calculateBranchGroupRelations, calculateBranchPairRelations, calculatePeriodBranchRelations } from './sajuRelationRules.js'
+import { getSajuPolicy, resolveSajuPolicyContract } from '../saju/engine/sajuPolicyContract.js'
 
 export const SAJU_TIMING_RULE_VERSION = 'softie-saju-standard-v1.3'
 
@@ -134,19 +135,25 @@ function mergePeriodCandidates(label, periodPillars, natalCandidates) {
   }
 }
 
-export function calculateStartAge(distanceMinutes) {
-  const symbolicDays = distanceMinutes / 12
+export function calculateStartAge(distanceMinutes, calculationOptions = DEFAULT_SAJU_OPTIONS) {
+  const policyContract = resolveSajuPolicyContract(calculationOptions)
+  const policy = getSajuPolicy(policyContract, 'qiyunConversionPolicy')
+  const { minutesPerSymbolicDay, rounding, daysPerYear, daysPerMonth } = policy.parameters
+  if (rounding !== 'nearest_integer') {
+    throw new Error('SAJU_POLICY_UNKNOWN: qiyunConversionPolicy rounding is unsupported.')
+  }
+  const symbolicDays = distanceMinutes / minutesPerSymbolicDay
   const roundedDays = Math.round(symbolicDays)
-  const years = Math.floor(roundedDays / 360)
-  const remainderAfterYears = roundedDays % 360
-  const months = Math.floor(remainderAfterYears / 30)
-  const days = remainderAfterYears % 30
+  const years = Math.floor(roundedDays / daysPerYear)
+  const remainderAfterYears = roundedDays % daysPerYear
+  const months = Math.floor(remainderAfterYears / daysPerMonth)
+  const days = remainderAfterYears % daysPerMonth
   return {
     years,
     months,
     days,
-    decimalYears: Number((symbolicDays / 360).toFixed(4)),
-    conversion: '3일=1년 · 1일=4개월 · 2시간=10일',
+    decimalYears: Number((symbolicDays / daysPerYear).toFixed(4)),
+    conversion: policy.parameters.displayConversion,
   }
 }
 
@@ -157,8 +164,8 @@ function calculateDaYunSingle(input, pillars, natalAnalysis, calculationOptions,
   const direction = forward ? 'forward' : 'backward'
   const [year, month, day] = input.birthDate.split('-').map(Number)
   const [hour, minute] = input.birthTime.split(':').map(Number)
-  const boundary = getAdjacentBaziMonthBoundary(year, month, day, hour, minute, direction)
-  const startAge = calculateStartAge(boundary.distanceMinutes)
+  const boundary = getAdjacentBaziMonthBoundary(year, month, day, hour, minute, direction, calculationOptions.policyContract)
+  const startAge = calculateStartAge(boundary.distanceMinutes, calculationOptions)
   const firstStartDate = addCalendarAge(input.birthDate, startAge)
   const step = forward ? 1 : -1
   const cycles = Array.from({ length: 10 }, (_, index) => {
@@ -322,10 +329,12 @@ export function calculateSajuTiming({
   input,
   pillars,
   natalAnalysis,
-  calculationOptions,
+  calculationOptions = DEFAULT_SAJU_OPTIONS,
   natalCandidatePillars = [],
   daYunCandidateSources = [],
 }) {
+  const policyContract = resolveSajuPolicyContract(calculationOptions)
+  const effectiveCalculationOptions = { ...calculationOptions, policyContract }
   const targetDate = input?.targetDate ? String(input.targetDate).trim() : null
   const birthTimeUnknown = input.timeAccuracy === 'unknown'
   const natalCandidates = buildNatalCandidates(pillars, natalAnalysis, natalCandidatePillars, birthTimeUnknown)
@@ -343,7 +352,7 @@ export function calculateSajuTiming({
   if (targetDate) {
     targetSamples = ['00:00', '12:00', '23:59'].map((birthTime) => ({
       sourceLabel: `${targetDate} ${birthTime}`,
-      pillars: calculateFourPillars({ birthDate: targetDate, birthTime }, calculationOptions),
+      pillars: calculateFourPillars({ birthDate: targetDate, birthTime }, effectiveCalculationOptions),
     }))
     const targetNoon = targetSamples[1].pillars
     const targetYearPillars = uniqueBy(targetSamples.map((sample) => ({ sourceLabel: sample.sourceLabel, pillar: sample.pillars.year })), (sample) => formatPillar(sample.pillar))
@@ -371,12 +380,13 @@ export function calculateSajuTiming({
       analysis: source.analysis || analyzeNatalStructure(source.pillars),
     })),
   ], (source) => `${source.input.birthDate}|${source.input.birthTime}|${formatPillarSet(source.pillars)}`)
-  const daYun = mergeDaYunCandidates(input, daYunSources, calculationOptions, targetDate)
+  const daYun = mergeDaYunCandidates(input, daYunSources, effectiveCalculationOptions, targetDate)
   const natalTwelveStages = buildNatalTwelveStages(natalCandidates)
   const crossPeriodRelations = buildCrossPeriodRelations(daYun, periods)
 
   return {
     ruleVersion: SAJU_TIMING_RULE_VERSION,
+    policyContract,
     targetDate,
     targetDateBoundary,
     daYun,

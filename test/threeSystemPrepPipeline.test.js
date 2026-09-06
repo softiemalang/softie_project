@@ -24,6 +24,13 @@ test('three-system pipeline builds real saju CalculationContext and keeps detail
   const saju = prepared.systems.saju
 
   assert.equal(saju.availableForChat, true)
+  assert.equal(saju.policyContract.historicalAuthority, 'insufficient_evidence')
+  assert.equal(saju.policyContract.historicalFact, false)
+  assert.equal(saju.policyContract.implementationPolicy, true)
+  assert.equal(saju.policyContract.readinessStatus, 'blocked')
+  assert.equal(prepared.unifiedContext.systems.saju.policyContract.historicalAuthority, 'insufficient_evidence')
+  assert.equal(prepared.unifiedContext.systems.saju.policyContract.historicalFact, false)
+  assert.equal(prepared.unifiedContext.systems.saju.policyContract.readinessStatus, 'blocked')
   assert.equal(saju.calculationResult.raw.pillars.day.value, '계사')
   assert.equal(saju.interpretationContext.candidateSetConsensus.factual.dayMaster, '계')
   assert.ok(saju.calculationResult.raw.elements)

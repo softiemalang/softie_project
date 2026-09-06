@@ -1,4 +1,22 @@
 import { requestLlmReport, saveFortuneReport, getFortuneReport, upsertFortuneReport } from '../api'
+import { normalizeSajuPolicyContractForConsumer } from '../engine/sajuPolicyContract.js'
+
+function attachPolicyBoundary(report, fallbackContract = null, fallbackNatalContract = null) {
+  if (!report || typeof report !== 'object') return report
+  const content = report.report_content && typeof report.report_content === 'object' && !Array.isArray(report.report_content)
+    ? report.report_content
+    : {}
+  const sourceContract = content.policyContract ?? fallbackContract
+  const sourceNatalContract = content.natalPolicyContract ?? fallbackNatalContract
+  return {
+    ...report,
+    report_content: {
+      ...content,
+      policyContract: normalizeSajuPolicyContractForConsumer(sourceContract),
+      natalPolicyContract: normalizeSajuPolicyContractForConsumer(sourceNatalContract),
+    },
+  }
+}
 
 /**
  * 오늘의 운세 리포트를 가져오거나 새로 생성합니다.
@@ -16,7 +34,7 @@ export async function getOrGenerateReport(profileId, dailySnapshot, options = {}
         const sections = existingReport.report_content?.sections || {};
         const hasAllSections = ['work', 'money', 'relationships', 'love', 'health', 'mind'].every(k => sections[k]);
         if (hasAllSections) {
-          return { ...existingReport, is_cached: true }
+          return attachPolicyBoundary({ ...existingReport, is_cached: true })
         }
       }
     } catch (error) {
@@ -38,6 +56,12 @@ export async function getOrGenerateReport(profileId, dailySnapshot, options = {}
   }
   
   // 3. 생성된 리포트 저장
+  const policyContract = normalizeSajuPolicyContractForConsumer(
+    llmResult.content?.policyContract ?? dailySnapshot.computed_data?.policyContract,
+  )
+  const natalPolicyContract = normalizeSajuPolicyContractForConsumer(
+    llmResult.content?.natalPolicyContract ?? dailySnapshot.computed_data?.natalPolicyContract,
+  )
   const reportToSave = {
     profile_id: profileId,
     daily_snapshot_id: dailySnapshot.id,
@@ -46,7 +70,7 @@ export async function getOrGenerateReport(profileId, dailySnapshot, options = {}
     model_name: llmResult.model,
     headline: llmResult.content.headline,
     summary: llmResult.content.summary,
-    report_content: { ...llmResult.content },
+    report_content: { ...llmResult.content, policyContract, natalPolicyContract },
     generated_at: new Date().toISOString()
   }
 
@@ -59,14 +83,18 @@ export async function getOrGenerateReport(profileId, dailySnapshot, options = {}
   // 클라이언트 직접 쓰기를 전면 생략하고 해당 데이터를 즉시 반환하여 캐싱합니다.
   if (llmResult?.savedRecord) {
     console.log('[reportGenerator] Report was already saved in DB by Edge Function:', llmResult.savedRecord.id)
-    return { ...llmResult.savedRecord, is_cached: llmResult.is_cached === true }
+    return attachPolicyBoundary(
+      { ...llmResult.savedRecord, is_cached: llmResult.is_cached === true },
+      dailySnapshot.computed_data?.policyContract,
+      dailySnapshot.computed_data?.natalPolicyContract,
+    )
   }
 
   try {
     const savedReport = force
       ? await upsertFortuneReport(reportToSave)
       : await saveFortuneReport(reportToSave)
-    return { ...savedReport, is_cached: false }
+    return attachPolicyBoundary({ ...savedReport, is_cached: false }, policyContract, natalPolicyContract)
   } catch (error) {
     console.error('Failed to save generated report:', error)
     // 저장에 실패하더라도 사용자에게는 생성된 결과를 보여줌

@@ -14,6 +14,8 @@ import {
   formatTopicEvidence,
   formatZiweiFull,
 } from './handoffFormatters.js'
+import { normalizeSajuPolicyContractForConsumer } from '../saju/engine/sajuPolicyContract.js'
+import { formatSajuPolicyBoundary } from '../saju/policyDisplay.js'
 
 const SYSTEM_LABELS = {
   saju: '사주',
@@ -105,6 +107,12 @@ function sajuQuickFacts(unifiedContext, result) {
   const calculationResult = system.calculationResult || result?.systems?.saju || {}
   const context = system.context || unifiedContext.sajuContext || {}
   const raw = calculationResult.raw || {}
+  const policyContract = normalizeSajuPolicyContractForConsumer(
+    system.policyContract
+      ?? calculationResult.policyContract
+      ?? raw.policyContract
+      ?? context.policyContract,
+  )
   const isCandidate = system.verificationStatus === 'candidate_required' || system.interpretationStatus === 'candidate_only'
   const pillarsText = isCandidate
     ? '후보 확인 필요 (단일 확정 명식 없음)'
@@ -117,6 +125,7 @@ function sajuQuickFacts(unifiedContext, result) {
     `- 사주: ${pillarsText}`,
     `- 일간: ${dayMaster}`,
     `- 신뢰도/상태: ${system.confidence || unifiedContext.unifiedConfidence?.sajuConfidence || '미상'} / ${system.status || 'available'}${calculationResult.status === 'experimental' ? ' · Experimental 판정 포함' : ''}`,
+    `- 계산 정책 경계: ${formatSajuPolicyBoundary(policyContract)}`,
   ].join('\n')
 }
 

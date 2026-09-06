@@ -48,6 +48,10 @@ test('full handoff preserves detailed saju and experimental ziwei evidence while
   assert.match(full, /세운 병오/)
   assert.match(full, /월운 을미/)
   assert.match(full, /일진 신축/)
+  assert.match(full, /historicalAuthority=insufficient_evidence/)
+  assert.match(full, /historicalFact=false/)
+  assert.match(full, /implementationPolicy=true/)
+  assert.match(full, /readiness=blocked/)
   assert.match(full, /\[Experimental · low\] 강약/)
   assert.match(full, /자미두수 · 고정 RuleSet 기반 실험적 계산/)
   assert.match(full, /14주성/)
@@ -57,6 +61,16 @@ test('full handoff preserves detailed saju and experimental ziwei evidence while
   assert.doesNotMatch(full, /Sun in /)
   assert.doesNotMatch(full, /meeus_approx_v1/)
   assert.doesNotMatch(full, /arcminute_level/)
+
+  assert.match(pkg.copies.topicFocused, /historicalAuthority=insufficient_evidence/)
+  assert.match(pkg.copies.topicFocused, /historicalFact=false/)
+  assert.match(pkg.copies.topicFocused, /readiness=blocked/)
+  for (const copyName of ['quick', 'privacyMinimal']) {
+    assert.match(pkg.copies[copyName], /historicalAuthority=insufficient_evidence/)
+    assert.match(pkg.copies[copyName], /historicalFact=false/)
+    assert.match(pkg.copies[copyName], /implementationPolicy=true/)
+    assert.match(pkg.copies[copyName], /readiness=blocked/)
+  }
 })
 test('topic focused copy changes the actual selected evidence for all four topics', () => {
   const personality = build('personality').pkg.copies.topicFocused

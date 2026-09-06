@@ -18,6 +18,7 @@ import { getOrCreatePushDeviceId } from '../lib/device'
 import { appendGoogleSheetsLog } from '../lib/googleApi'
 import { connectGoogleCalendar, isGoogleConnected } from '../scheduler/googleApi'
 import { getCurrentSession } from '../lib/auth'
+import { formatSajuPolicyBoundary, getSajuPolicyBoundaries } from './policyDisplay'
 
 const EMPTY_PROFILE = {
   name: '',
@@ -427,7 +428,12 @@ export default function FortunePage() {
   }
 
   const reportData = report?.report_content
+  const { policyContract, natalPolicyContract } = getSajuPolicyBoundaries(dailySnapshot, report)
   const historyReportData = selectedHistoryReport?.report_content || {}
+  const {
+    policyContract: historyPolicyContract,
+    natalPolicyContract: historyNatalPolicyContract,
+  } = getSajuPolicyBoundaries(null, selectedHistoryReport)
   const historySections = historyReportData.sections || {}
   const historyCautions = Array.isArray(historyReportData.cautions) ? historyReportData.cautions : []
   const profileSummary = activeProfile
@@ -530,6 +536,14 @@ export default function FortunePage() {
 
       {dailySnapshot && reportData && (
         <div className="fortune-result-container">
+          <section className="card">
+            <div className="card-header">
+              <p className="section-kicker">계산 정책 경계</p>
+            </div>
+            <p className="subtle" style={{ margin: 0, lineHeight: 1.5 }}>
+              {formatSajuPolicyBoundary(policyContract, natalPolicyContract)}. 선택값은 역사적 권위가 아닌 implementation policy이며, UNKNOWN 값은 추정하지 않습니다.
+            </p>
+          </section>
           <section className="card primary-home-card">
             <div className="card-header">
               <div>
@@ -627,6 +641,12 @@ export default function FortunePage() {
                 </div>
 
                 <div className="fortune-history-detail-scroll">
+                  <section className="fortune-history-detail-card">
+                    <p className="section-kicker">계산 정책 경계</p>
+                    <p className="subtle" style={{ margin: 0, lineHeight: 1.5 }}>
+                      {formatSajuPolicyBoundary(historyPolicyContract, historyNatalPolicyContract)}. 선택값은 역사적 권위가 아닌 implementation policy이며, UNKNOWN 값은 추정하지 않습니다.
+                    </p>
+                  </section>
                   <section className="fortune-history-detail-card">
                     <p className="section-kicker">오늘의 총평</p>
                     {historyReportData.headline && (

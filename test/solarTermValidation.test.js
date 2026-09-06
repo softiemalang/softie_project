@@ -1,7 +1,10 @@
 import test from 'node:test'
 import assert from 'node:assert/strict'
 import { SOLAR_TERM_REFERENCE_FIXTURES } from './fixtures/solarTerm/solarTermReference.js'
-import { getBaziYearAndMonth, getAdjacentBaziMonthBoundary } from '../src/saju/engine/solarTerms.js'
+import { getAdjacentBaziMonthBoundary } from '../src/saju/engine/solarTerms.js'
+import { createSajuPolicyContract, SAJU_POLICY_DEFAULT_SELECTIONS } from '../src/saju/engine/sajuPolicyContract.js'
+
+const SOLAR_TERM_POLICY_CONTRACT = createSajuPolicyContract(SAJU_POLICY_DEFAULT_SELECTIONS)
 
 test('solar term validation: measures error statistics including maxErrorMinutes and per-term distribution', () => {
   const verifiedFixtures = SOLAR_TERM_REFERENCE_FIXTURES.filter((f) => f.status === 'verified')
@@ -14,8 +17,8 @@ test('solar term validation: measures error statistics including maxErrorMinutes
 
   verifiedFixtures.forEach((fixture) => {
     const { year, month, day, hour, min } = fixture.input
-    const bForward = getAdjacentBaziMonthBoundary(year, month, day, hour, min, 'forward')
-    const bBackward = getAdjacentBaziMonthBoundary(year, month, day, hour, min, 'backward')
+    const bForward = getAdjacentBaziMonthBoundary(year, month, day, hour, min, 'forward', SOLAR_TERM_POLICY_CONTRACT)
+    const bBackward = getAdjacentBaziMonthBoundary(year, month, day, hour, min, 'backward', SOLAR_TERM_POLICY_CONTRACT)
 
     const expectedMs = new Date(fixture.expectedUtcIso).getTime()
     const diffForwardMs = Math.abs(new Date(bForward.utcIso).getTime() - expectedMs)

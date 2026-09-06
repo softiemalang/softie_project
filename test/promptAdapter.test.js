@@ -29,6 +29,25 @@ test('promptAdapter: exact birth time generates clean prompt package with system
   assert.equal(promptPkg.interpretationTask.goal, '직업적 강점 및 적성 분석')
   assert.ok(Array.isArray(promptPkg.interpretationTask.avoid))
   assert.ok(promptPkg.userQuestionPrompt.includes('제 직업적 경향성이 궁금합니다.'))
+  assert.equal(promptPkg.contextPayload.policyContract.status, 'SELECTED')
+  assert.equal(promptPkg.contextPayload.policyContract.historicalFact, false)
+  assert.equal(promptPkg.contextPayload.policyContract.readinessStatus, 'blocked')
+  assert.match(promptPkg.systemInstruction, /historicalAuthority=insufficient_evidence/)
+  assert.match(promptPkg.userQuestionPrompt, /implementationPolicy=true/)
+})
+
+test('promptAdapter: missing context confidence is fail-closed instead of verified', () => {
+  const promptPkg = buildInterpretationPrompt({
+    candidateSetConsensus: { factual: {} },
+    candidateFacts: [],
+    uncertainFactors: [],
+    interpretationWarnings: [],
+  })
+
+  assert.equal(promptPkg.contextPayload.policyContract.status, 'UNKNOWN')
+  assert.equal(promptPkg.contextPayload.calculationConfidence.stateContract.confidence, null)
+  assert.equal(promptPkg.contextPayload.calculationConfidence.stateContract.verificationStatus, 'unknown')
+  assert.doesNotMatch(promptPkg.systemInstruction, /confidence\).*verified/)
 })
 
 test('promptAdapter: unknown birth time adds low confidence guardrails to SYSTEM instruction', () => {

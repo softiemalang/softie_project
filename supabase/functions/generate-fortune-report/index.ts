@@ -72,10 +72,112 @@ function stripPublicDebug(content: unknown) {
   return publicContent;
 }
 
+const SAJU_POLICY_KEYS = [
+  'yearBoundaryPolicy',
+  'monthBoundaryPolicy',
+  'dayBoundaryPolicy',
+  'hourTimeBasisPolicy',
+  'qiyunConversionPolicy',
+] as const;
+
+const SAJU_POLICY_VALUES = {
+  yearBoundaryPolicy: ['li-chun-apparent-solar-315'],
+  monthBoundaryPolicy: ['jie-solar-longitude-30-degree'],
+  dayBoundaryPolicy: ['solar-midnight-split-zi', 'zi-start'],
+  hourTimeBasisPolicy: ['local-apparent-solar-kst', 'local-mean-solar-kst', 'civil-kst'],
+  qiyunConversionPolicy: ['source-ratio-rounded-360-30-calendar'],
+} as const;
+
+function createUnknownSajuPolicyContract() {
+  const policyFields = Object.fromEntries(SAJU_POLICY_KEYS.map((key) => [key, {
+    key,
+    value: null,
+    status: 'UNKNOWN',
+    resolution: 'missing',
+    historicalAuthority: 'insufficient_evidence',
+    historicalFact: false,
+    implementationPolicy: true,
+    parameters: null,
+    requestedValue: null,
+  }]))
+
+  return {
+    schemaVersion: 'saju-policy-contract-v1',
+    status: 'UNKNOWN',
+    historicalAuthority: 'insufficient_evidence',
+    historicalFact: false,
+    implementationPolicy: true,
+    readinessStatus: 'blocked',
+    activationStatus: 'not_activated',
+    policies: policyFields,
+    unknowns: SAJU_POLICY_KEYS.map((policyKey) => ({
+      policyKey,
+      status: 'UNKNOWN',
+      reason: 'missing',
+      requestedValue: null,
+    })),
+  };
+}
+
+function isConsumerPolicyContract(value: unknown): value is Record<string, any> {
+  if (!value || typeof value !== 'object' || Array.isArray(value)) return false;
+  const contract = value as Record<string, any>;
+  if (
+    contract.schemaVersion !== 'saju-policy-contract-v1'
+    || !['SELECTED', 'UNKNOWN'].includes(contract.status)
+    || contract.historicalAuthority !== 'insufficient_evidence'
+    || contract.historicalFact !== false
+    || contract.implementationPolicy !== true
+    || contract.readinessStatus !== 'blocked'
+    || contract.activationStatus !== 'not_activated'
+    || !contract.policies
+    || typeof contract.policies !== 'object'
+    || Array.isArray(contract.policies)
+  ) return false;
+
+  const policiesValid = SAJU_POLICY_KEYS.every((key) => {
+    const policy = contract.policies[key];
+    return policy
+      && typeof policy === 'object'
+      && policy.key === key
+      && ['SELECTED', 'UNKNOWN'].includes(policy.status)
+      && (policy.status === 'UNKNOWN'
+        ? policy.value === null
+        : SAJU_POLICY_VALUES[key].includes(policy.value))
+      && policy.historicalAuthority === 'insufficient_evidence'
+      && policy.historicalFact === false
+      && policy.implementationPolicy === true
+      && (policy.status === 'UNKNOWN'
+        ? policy.parameters === null
+        : policy.parameters && typeof policy.parameters === 'object' && !Array.isArray(policy.parameters));
+  });
+  if (!policiesValid) return false;
+
+  const unknownKeys = SAJU_POLICY_KEYS.filter((key) => contract.policies[key].status === 'UNKNOWN');
+  return contract.status === (unknownKeys.length > 0 ? 'UNKNOWN' : 'SELECTED')
+    && Array.isArray(contract.unknowns)
+    && contract.unknowns.length === unknownKeys.length
+    && contract.unknowns.every((item: any) => item?.status === 'UNKNOWN' && unknownKeys.includes(item.policyKey));
+}
+
+function getSajuPolicyBoundary(value: unknown) {
+  return isConsumerPolicyContract(value) ? value : createUnknownSajuPolicyContract();
+}
+
 function buildPublicReportResponse(report: { model_name?: string | null; report_content?: unknown }, isCached = true) {
+  const content = stripPublicDebug(report.report_content);
   return {
     model: report.model_name || 'cached-report',
-    content: stripPublicDebug(report.report_content),
+    content: content && typeof content === 'object' && !Array.isArray(content)
+      ? {
+          ...(content as Record<string, unknown>),
+          policyContract: getSajuPolicyBoundary((content as Record<string, unknown>).policyContract),
+          natalPolicyContract: getSajuPolicyBoundary((content as Record<string, unknown>).natalPolicyContract),
+        }
+      : {
+          policyContract: getSajuPolicyBoundary(null),
+          natalPolicyContract: getSajuPolicyBoundary(null),
+        },
     is_cached: isCached,
   };
 }
@@ -254,6 +356,8 @@ function compactComputedData(computedData: any = {}) {
   )
 
   return {
+    policyContract: getSajuPolicyBoundary(computedData?.policyContract),
+    natalPolicyContract: getSajuPolicyBoundary(computedData?.natalPolicyContract),
     targetDate: computedData?.targetDate ?? null,
     summary_hint: computedData?.summary_hint ?? null,
     dailyPillar: computedData?.dailyPillar
@@ -1014,6 +1118,9 @@ Deno.serve(async (req) => {
 7. branchRelations
 8. love.summary_hint
 입력 힌트가 있으면 일반적인 위로나 건강 앱 문장으로 흐리지 마세요.
+
+[정책 경계]
+policyContract와 natalPolicyContract는 선택된 implementation policy를 설명하는 메타데이터입니다. historicalAuthority=insufficient_evidence, historicalFact=false, readiness=blocked, activation=not_activated을 유지하고, 이를 역사적 권위나 확정된 역사 사실로 표현하지 마세요. status=UNKNOWN이면 선택값을 추정하거나 다른 용어·관행으로 보완하지 마세요.
 ${ragGuidanceText}
 
 [출력 규칙]
@@ -1225,6 +1332,14 @@ ${ragGuidanceText}
       finalResponse = getFallback('missing-key');
     }
 
+    if (finalResponse?.content && typeof finalResponse.content === 'object' && !Array.isArray(finalResponse.content)) {
+      finalResponse.content = {
+        ...(finalResponse.content as Record<string, unknown>),
+        policyContract: getSajuPolicyBoundary(computedData?.policyContract),
+        natalPolicyContract: getSajuPolicyBoundary(computedData?.natalPolicyContract),
+      };
+    }
+
     try {
       const repeatAxisSummary = analyzeRepeatAxes(finalResponse?.content?.sections);
       if (Object.keys(repeatAxisSummary).length > 0) {
@@ -1308,11 +1423,7 @@ ${ragGuidanceText}
 
       console.log('[Database Save Success] Saved generated public report:', savedReport.id);
       publicGenerationSaved = true;
-      return jsonResponse({
-        model: savedReport.model_name || finalResponse.model,
-        content: stripPublicDebug(savedReport.report_content),
-        is_cached: false,
-      });
+      return jsonResponse(buildPublicReportResponse(savedReport, false));
     }
 
     return jsonResponse(finalResponse);

@@ -18,6 +18,7 @@ import {
   createZiweiCalculationContext,
   createZiweiInterpretationContext,
 } from '../ziwei/ziweiContract.js'
+import { normalizeSajuPolicyContractForConsumer } from '../saju/engine/sajuPolicyContract.js'
 
 const STEM_TO_HAN = Object.freeze({
   갑: '甲',
@@ -56,6 +57,11 @@ const ASTROLOGY_ADAPTER_WARNING =
 function buildSajuSystem(baseResult) {
   const calculationResult = baseResult.systems.saju
   const interpretationContext = baseResult.interpretationContext
+  const policyContract = normalizeSajuPolicyContractForConsumer(
+    calculationResult?.policyContract
+      ?? calculationResult?.raw?.policyContract
+      ?? interpretationContext?.policyContract,
+  )
 
   const verificationStatus =
     interpretationContext?.calculationConfidence?.stateContract?.verificationStatus
@@ -87,6 +93,7 @@ function buildSajuSystem(baseResult) {
     verificationStatus,
     interpretationStatus,
     confidence,
+    policyContract,
     availableForChat: Boolean(calculationResult?.raw && interpretationContext),
     calculationResult,
     interpretationContext,

@@ -28,6 +28,12 @@ test('interpretationContext: builds structured context without mutating calculat
   assert.equal(context.generatedAt, '2026-07-25T12:00:00.000Z')
   assert.ok(context.candidateSetConsensus.factual.yearPillar)
   assert.ok(context.calculationConfidence.stateContract)
+  assert.equal(context.policyContract.status, 'SELECTED')
+  assert.equal(context.policyContract.historicalAuthority, 'insufficient_evidence')
+  assert.equal(context.policyContract.historicalFact, false)
+  assert.equal(context.policyContract.implementationPolicy, true)
+  assert.equal(context.policyContract.readinessStatus, 'blocked')
+  assert.equal(context.calculationConfidence.policyContract, context.policyContract)
   assert.ok(Array.isArray(context.interpretationWarnings))
 
   // Ensure pure transformation without mutating raw

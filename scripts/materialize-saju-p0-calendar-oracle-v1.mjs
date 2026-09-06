@@ -7,6 +7,7 @@ import { solar2lunar, lunar2solar } from '../src/interpretationPrep/lunarConvert
 import { assessHistoricalSeoulTime } from '../src/interpretationPrep/sajuAdapter.js'
 import { calculateFourPillars, DEFAULT_SAJU_OPTIONS, SAJU_CALCULATION_PROFILE } from '../src/saju/engine/fourPillars.js'
 import { getAdjacentBaziMonthBoundary } from '../src/saju/engine/solarTerms.js'
+import { resolveSajuPolicyContract } from '../src/saju/engine/sajuPolicyContract.js'
 import {
   SAJU_LEGACY_ROOT_ASSET_PATH,
   SAJU_SOURCE_DERIVED_ASSET_PATH,
@@ -24,6 +25,7 @@ export const EXCEPTIONS_PATH = `${ARTIFACT_DIR}/exceptions.json`
 export const COMPLETE_PATH = `${ARTIFACT_DIR}/complete.json`
 
 const ROOT = resolve(fileURLToPath(new URL('..', import.meta.url)))
+const SOLAR_TERM_POLICY_CONTRACT = resolveSajuPolicyContract(DEFAULT_SAJU_OPTIONS)
 const SOURCE_FILES = [
   'src/saju/engine/fourPillars.js',
   'src/saju/engine/solarTerms.js',
@@ -77,7 +79,7 @@ function baziBoundaryObservation(row) {
   const expectedMs = Date.parse(row.utcIso)
   const kst = new Date(expectedMs + 60 * 60000)
   const args = [kst.getUTCFullYear(), kst.getUTCMonth() + 1, kst.getUTCDate(), kst.getUTCHours(), kst.getUTCMinutes()]
-  const candidates = ['forward', 'backward'].map(direction => getAdjacentBaziMonthBoundary(...args, direction))
+  const candidates = ['forward', 'backward'].map(direction => getAdjacentBaziMonthBoundary(...args, direction, SOLAR_TERM_POLICY_CONTRACT))
   const chosen = candidates.reduce((best, current) => Math.abs(Date.parse(best.utcIso) - expectedMs) <= Math.abs(Date.parse(current.utcIso) - expectedMs) ? best : current)
   const engineMs = Date.parse(chosen.utcIso)
   const differenceMinutes = (engineMs - expectedMs) / 60000

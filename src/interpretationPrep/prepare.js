@@ -11,6 +11,7 @@ import { calculateSajuSystem } from './sajuAdapter.js'
 import { lunar2solar, leapMonth, leapDays, monthDays } from './lunarConverter.js'
 import { buildInterpretationContext } from './interpretationContext.js'
 import { buildInterpretationPrompt } from './promptAdapter.js'
+import { normalizeSajuPolicyContractForConsumer } from '../saju/engine/sajuPolicyContract.js'
 
 const REQUIRED_INPUTS = ['birthDate', 'targetDate', 'timezone', 'referenceCity']
 
@@ -151,8 +152,24 @@ function buildModelInstruction(result) {
   const unavailableText = unavailableSystems.length > 0
     ? ` 계산 자료가 없는 체계(${unavailableSystems.join(', ')})는 추정하거나 새로 만들어내지 마라.`
     : ''
+  const policyContract = normalizeSajuPolicyContractForConsumer(result.systems.saju.raw?.policyContract)
 
-  return `위 자료는 페이지에서 계산 및 구조화된 결과다. 제공된 계산값을 임의로 변경하지 말고 이를 근거로 해석하라. 현재 실제 계산된 체계는 ${availableText}다.${unavailableText} 후보 또는 검증 필요 상태는 하나로 확정하지 말고 가능성과 차이를 분리해 설명하라. 사용자의 실제 상황과 질문을 반영해 현실적으로 설명하라.`
+  return `위 자료는 페이지에서 계산 및 구조화된 결과다. 제공된 계산값을 임의로 변경하지 말고 이를 근거로 해석하라. 현재 실제 계산된 체계는 ${availableText}다.${unavailableText} 사주 정책 경계는 ${formatSajuPolicyBoundary(policyContract)}이다. 이 정책 선택은 역사적 권위가 아니며, historicalFact=false·readiness=blocked·activation=not_activated을 유지하라. 후보 또는 검증 필요 상태는 하나로 확정하지 말고 가능성과 차이를 분리해 설명하라. 사용자의 실제 상황과 질문을 반영해 현실적으로 설명하라.`
+}
+
+const SAJU_POLICY_DISPLAY_LABELS = {
+  yearBoundaryPolicy: 'Year boundary',
+  monthBoundaryPolicy: 'Month boundary',
+  dayBoundaryPolicy: 'Day/子時 boundary',
+  hourTimeBasisPolicy: 'Hour time basis',
+  qiyunConversionPolicy: '起運 conversion',
+}
+
+function formatSajuPolicyBoundary(contract) {
+  const selections = Object.entries(contract.policies)
+    .map(([key, policy]) => `${SAJU_POLICY_DISPLAY_LABELS[key] || key}=${policy.status === 'SELECTED' ? policy.value : 'UNKNOWN'}`)
+    .join(', ')
+  return `status=${contract.status}; historicalAuthority=${contract.historicalAuthority}; historicalFact=${contract.historicalFact}; implementationPolicy=${contract.implementationPolicy}; readiness=${contract.readinessStatus}; activation=${contract.activationStatus}; selections=[${selections}]`
 }
 
 export function prepareInterpretationData(input, profiles = DEFAULT_PROFILES) {
@@ -257,6 +274,10 @@ export function selectTopicFeatures(result, topicId) {
 
 export function buildExportPayload(result, { type, topicId, question, generatedAt }) {
   const topic = TOPICS.find((item) => item.id === topicId) || TOPICS[0]
+  const sajuSystem = result.systems?.saju || {}
+  const sajuPolicyContract = normalizeSajuPolicyContractForConsumer(
+    sajuSystem.raw?.policyContract ?? sajuSystem.policyContract,
+  )
   const base = {
     exportVersion: '1.5.0',
     exportType: type,
@@ -269,13 +290,22 @@ export function buildExportPayload(result, { type, topicId, question, generatedA
       ...base,
       input: result.input,
       calculationProfiles: result.calculationProfiles,
-      systems: result.systems,
+      systems: {
+        ...result.systems,
+        saju: {
+          ...sajuSystem,
+          policyContract: sajuPolicyContract,
+          ...(sajuSystem.raw
+            ? { raw: { ...sajuSystem.raw, policyContract: sajuPolicyContract } }
+            : {}),
+        },
+      },
       synthesis: result.synthesis,
     }
   }
 
   const selectedFeatures = selectTopicFeatures(result, topic.id)
-  const sajuExperimental = result.systems.saju.raw.experimental
+  const sajuExperimental = sajuSystem.raw.experimental
 
   return {
     ...base,
@@ -292,6 +322,7 @@ export function buildExportPayload(result, { type, topicId, question, generatedA
     ),
     calculationSummary: {
       saju: {
+        policyContract: sajuPolicyContract,
         pillars: result.systems.saju.raw.pillars,
         dayMaster: result.systems.saju.raw.dayMaster,
         timeBoundary: result.systems.saju.raw.timeBoundary,
@@ -370,6 +401,8 @@ export function exportPayloadToMarkdown(payload) {
       : timing.daYun.reason
 
   const saju = payload.calculationSummary.saju
+  const policyContract = normalizeSajuPolicyContractForConsumer(saju.policyContract)
+  const policyBoundaryText = formatSajuPolicyBoundary(policyContract)
   const experimentalCandidateRequired = saju.experimentalStatus === 'candidate_required'
     || saju.systemStatus === 'needs_verification'
   let gyeokgukText = experimentalCandidateRequired
@@ -495,6 +528,11 @@ export function exportPayloadToMarkdown(payload) {
     `- 기준 도시: ${payload.birthSummary.referenceCityLabel} (${payload.birthSummary.latitude}, ${payload.birthSummary.longitude})`,
     '',
     candidatesMarkdownSection,
+    '## Saju 계산 정책 경계',
+    '',
+    `- ${policyBoundaryText}`,
+    '- 위 선택값은 historical FACT/authority가 아니라 implementation policy이며, readiness=blocked·activation=not_activated 상태입니다. UNKNOWN인 선택값은 추정하지 않습니다.',
+    '',
     '## 계산 요약',
     '',
     `- ${sajuPillars}`,

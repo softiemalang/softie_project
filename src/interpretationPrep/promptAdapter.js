@@ -8,6 +8,8 @@
  *   도메인별 Prompt Profile(personality, career, relationship, timing)에 맞춰 고품질 상담 대화를 이끌도록 프롬프트를 구성합니다.
  */
 
+import { normalizeSajuPolicyContractForConsumer } from '../saju/engine/sajuPolicyContract.js'
+
 export const INTERPRETATION_PROTOCOLS = [
   '1단계 [공통 바탕(Consensus) 설명]: 현재 생성된 후보 범위 안에서 안정적으로 확인되는 공통 명식 바탕과 기본 성향을 먼저 안내합니다.',
   '2단계 [후보/변동(Variances) 비교 대조]: 시주/절기/DST 등으로 인한 분기 항목이 있을 경우, "A라면 X 경향, B라면 Y 경향" 형태로 조건별 차이를 객관적으로 대조 설명합니다.',
@@ -84,6 +86,9 @@ export function buildInterpretationPrompt(interpretationContext, options = {}) {
     calculationConfidence,
     interpretationWarnings,
   } = interpretationContext
+  const policyContract = normalizeSajuPolicyContractForConsumer(
+    interpretationContext.policyContract || calculationConfidence?.policyContract,
+  )
 
   const topicId = options.topicId || 'general'
   const profile = TOPIC_PROFILES[topicId] || TOPIC_PROFILES.general
@@ -93,6 +98,7 @@ export function buildInterpretationPrompt(interpretationContext, options = {}) {
   // 1. SYSTEM Instruction & Constraints
   const systemInstruction = buildSystemInstruction({
     calculationConfidence,
+    policyContract,
     interpretationWarnings,
     profile,
   })
@@ -120,9 +126,13 @@ export function buildInterpretationPrompt(interpretationContext, options = {}) {
     candidateSetConsensus: candidateSetConsensus || {},
     candidateFacts: Array.isArray(candidateFacts) ? candidateFacts : [],
     uncertainFactors: Array.isArray(uncertainFactors) ? uncertainFactors : [],
-    calculationConfidence: calculationConfidence || {
-      stateContract: { confidence: 'high', verificationStatus: 'verified' },
-    },
+    calculationConfidence: calculationConfidence
+      ? { ...calculationConfidence, policyContract }
+      : {
+          policyContract,
+          stateContract: { confidence: null, verificationStatus: 'unknown' },
+        },
+    policyContract,
     interpretationConstraints: Array.isArray(interpretationWarnings) ? interpretationWarnings : [],
   }
 
@@ -131,6 +141,7 @@ export function buildInterpretationPrompt(interpretationContext, options = {}) {
     userQuestion,
     candidateSetConsensus,
     uncertainFactors,
+    policyContract,
     interpretationConstraints: contextPayload.interpretationConstraints,
     profile,
   })
@@ -149,9 +160,10 @@ export function buildInterpretationPrompt(interpretationContext, options = {}) {
   }
 }
 
-function buildSystemInstruction({ calculationConfidence, interpretationWarnings, profile }) {
+function buildSystemInstruction({ calculationConfidence, policyContract, interpretationWarnings, profile }) {
   const isLowConfidence = calculationConfidence?.stateContract?.confidence === 'low'
   const needsVerification = calculationConfidence?.stateContract?.verificationStatus === 'needs_verification'
+  const policyLine = `status=${policyContract.status}; historicalAuthority=${policyContract.historicalAuthority}; historicalFact=${policyContract.historicalFact}; implementationPolicy=${policyContract.implementationPolicy}; readiness=${policyContract.readinessStatus}; activation=${policyContract.activationStatus}`
 
   return [
     `너는 사주명리학적 바탕과 불확실성을 객관적으로 설명하고, 사용자의 자기 성찰을 돕는 정교한 AI 해석 보조자이다. (상담 도메인: ${profile.label})`,
@@ -163,13 +175,14 @@ function buildSystemInstruction({ calculationConfidence, interpretationWarnings,
     '4. [interpretationConstraints] 제약 목록의 지침을 최우선 안전 가이드라인으로 엄수한다.',
     '5. 사용자 질문에 포함된 전제나 가정(예: "입춘이라 바뀐다" 등)을 검증 없이 무조건 사실로 받아들이지 말고, 제공된 [contextPayload]의 실제 데이터와 제약 조건을 우선 기준으로 활용한다.',
     '6. 공통 바탕(Consensus)은 확실한 삶의 지향점으로 설명하되, 변동 요소(Uncertainty)는 "조건별 가정적 가능성 및 대비되는 경향"을 함께 제시하여 포괄적 이해를 돕는다.',
-    profile.specialConstraints ? `7. [도메인 제약 - ${profile.label}]: ${profile.specialConstraints.join(' ')}` : '',
-    isLowConfidence ? '8. [HIGH PRIORITY] 본 입력은 신뢰도(Confidence)가 낮거나(Low) 후보 분기가 존재하므로 모든 해석에서 확정적 표현을 절대 금하며, 후보 간 비교와 가능성 제시 위주로 서술한다.' : '',
-    needsVerification ? '9. [HIGH PRIORITY] 표준시/지역보정/역사적 검증이 필요한 구간(needs_verification)이므로 산출 결과의 가변성을 분명히 안내한다.' : '',
+    `7. [정책 경계] ${policyLine}. 선택값은 구현 정책일 뿐 역사적 권위가 아니며, UNKNOWN이면 선택값을 추정하거나 역사적 사실로 보완하지 않는다.`,
+    profile.specialConstraints ? `8. [도메인 제약 - ${profile.label}]: ${profile.specialConstraints.join(' ')}` : '',
+    isLowConfidence ? '9. [HIGH PRIORITY] 본 입력은 신뢰도(Confidence)가 낮거나(Low) 후보 분기가 존재하므로 모든 해석에서 확정적 표현을 절대 금하며, 후보 간 비교와 가능성 제시 위주로 서술한다.' : '',
+    needsVerification ? '10. [HIGH PRIORITY] 표준시/지역보정/역사적 검증이 필요한 구간(needs_verification)이므로 산출 결과의 가변성을 분명히 안내한다.' : '',
   ].filter(Boolean).join('\n')
 }
 
-function buildUserPrompt({ userQuestion, candidateSetConsensus, uncertainFactors, interpretationConstraints, profile }) {
+function buildUserPrompt({ userQuestion, candidateSetConsensus, uncertainFactors, policyContract, interpretationConstraints, profile }) {
   const factualPillars = candidateSetConsensus?.factual || {}
   const pillarsSummary = [
     factualPillars.yearPillar && `연주:${factualPillars.yearPillar}`,
@@ -186,10 +199,10 @@ function buildUserPrompt({ userQuestion, candidateSetConsensus, uncertainFactors
   return [
     `[상담 주제]: ${profile.label}`,
     `[사용자 질문]: ${userQuestion}`,
+    `[계산 정책 경계]: status=${policyContract.status}; historicalAuthority=${policyContract.historicalAuthority}; historicalFact=${policyContract.historicalFact}; implementationPolicy=${policyContract.implementationPolicy}; readiness=${policyContract.readinessStatus}; activation=${policyContract.activationStatus}`,
     `[공통 바탕 명식 요약]: ${pillarsSummary} (일간: ${factualPillars.dayMaster || '미상'})`,
     hasUncertainty ? `[주요 변동 요소]: ${uncertainFactors.map((u) => u.field).join(', ')} (상세 내역은 data 참조)` : '[주요 변동 요소]: 없음 (단일 기준 계산)',
     constraintsText,
     '\n위 4단계 해석 프로토콜(공통 바탕 -> 변동 비교 -> 성찰 질문 -> 현실 조언)과 제약 조건을 바탕으로 차분하고 객관적인 상담 어조로 질문에 답변해 주세요.',
   ].filter(Boolean).join('\n')
 }
-

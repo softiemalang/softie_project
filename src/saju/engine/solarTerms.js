@@ -1,3 +1,5 @@
+import { requireSajuPolicyContract } from './sajuPolicyContract.js'
+
 const DEG_TO_RAD = Math.PI / 180
 const MINUTES_PER_SOLAR_DEGREE = 1440 / 0.98564736
 
@@ -73,7 +75,8 @@ function getNearestMonthBoundary(solarLongitude) {
   }, null)
 }
 
-export function getBaziYearAndMonth(year, month, day, hour, min) {
+export function getBaziYearAndMonth(year, month, day, hour, min, policyContract) {
+  requireSajuPolicyContract(policyContract)
   // This engine currently accepts Korea Standard Time only (UTC+9).
   const kstMs = Date.UTC(year, month - 1, day, hour - 9, min)
   const jd = (kstMs / 86400000) + 2440587.5
@@ -115,7 +118,8 @@ export function getBaziYearAndMonth(year, month, day, hour, min) {
   }
 }
 
-export function getAdjacentBaziMonthBoundary(year, month, day, hour, min, direction) {
+export function getAdjacentBaziMonthBoundary(year, month, day, hour, min, direction, policyContract) {
+  requireSajuPolicyContract(policyContract)
   if (!['forward', 'backward'].includes(direction)) {
     throw new Error('direction must be forward or backward.')
   }

@@ -1,4 +1,48 @@
 import { supabase } from '../lib/supabase'
+import { normalizeSajuPolicyContractForConsumer } from './engine/sajuPolicyContract.js'
+
+const isRecord = value => Boolean(value) && typeof value === 'object' && !Array.isArray(value)
+
+// Read boundaries add explicit UNKNOWN metadata for legacy rows without
+// rewriting or recalculating the stored snapshot/report.
+function normalizeSajuSnapshotForConsumer(snapshot) {
+  if (!isRecord(snapshot)) return snapshot
+  if (Object.prototype.hasOwnProperty.call(snapshot, 'natal_data')) {
+    const natalData = isRecord(snapshot.natal_data) ? snapshot.natal_data : {}
+    return {
+      ...snapshot,
+      natal_data: {
+        ...natalData,
+        policyContract: normalizeSajuPolicyContractForConsumer(natalData.policyContract),
+      },
+    }
+  }
+  if (Object.prototype.hasOwnProperty.call(snapshot, 'computed_data')) {
+    const computedData = isRecord(snapshot.computed_data) ? snapshot.computed_data : {}
+    return {
+      ...snapshot,
+      computed_data: {
+        ...computedData,
+        policyContract: normalizeSajuPolicyContractForConsumer(computedData.policyContract),
+        natalPolicyContract: normalizeSajuPolicyContractForConsumer(computedData.natalPolicyContract),
+      },
+    }
+  }
+  return snapshot
+}
+
+function normalizeSajuReportForConsumer(report) {
+  if (!isRecord(report)) return report
+  const reportContent = isRecord(report.report_content) ? report.report_content : {}
+  return {
+    ...report,
+    report_content: {
+      ...reportContent,
+      policyContract: normalizeSajuPolicyContractForConsumer(reportContent.policyContract),
+      natalPolicyContract: normalizeSajuPolicyContractForConsumer(reportContent.natalPolicyContract),
+    },
+  }
+}
 
 /**
  * 사용자 사주 프로필 조회 (userId 우선, local_key 백업)
@@ -199,7 +243,7 @@ export async function getNatalSnapshot(profileId) {
     .maybeSingle()
 
   if (error) throw error
-  return data
+  return normalizeSajuSnapshotForConsumer(data)
 }
 
 /**
@@ -213,7 +257,7 @@ export async function createNatalSnapshot(snapshot) {
     .single()
 
   if (error) throw error
-  return data
+  return normalizeSajuSnapshotForConsumer(data)
 }
 
 /**
@@ -228,7 +272,7 @@ export async function getDailySnapshot(profileId, targetDate) {
     .maybeSingle()
 
   if (error) throw error
-  return data
+  return normalizeSajuSnapshotForConsumer(data)
 }
 
 export async function getPublicDailySnapshot(profileId, targetDate) {
@@ -242,7 +286,7 @@ export async function getPublicDailySnapshot(profileId, targetDate) {
     .maybeSingle()
 
   if (error) throw error
-  return data
+  return normalizeSajuSnapshotForConsumer(data)
 }
 
 /**
@@ -256,7 +300,7 @@ export async function createDailySnapshot(snapshot) {
     .single()
 
   if (error) throw error
-  return data
+  return normalizeSajuSnapshotForConsumer(data)
 }
 
 /**
@@ -272,7 +316,7 @@ export async function getFortuneReport(profileId, targetDate, version = '1.0') {
     .maybeSingle()
 
   if (error) throw error
-  return data
+  return normalizeSajuReportForConsumer(data)
 }
 
 export async function getPublicFortuneReport(profileId, targetDate, version = '1.3') {
@@ -287,7 +331,7 @@ export async function getPublicFortuneReport(profileId, targetDate, version = '1
     .maybeSingle()
 
   if (error) throw error
-  return data
+  return normalizeSajuReportForConsumer(data)
 }
 
 export async function getPublicFortuneHistory(profileId, limit = 30) {
@@ -313,7 +357,7 @@ export async function getPublicFortuneReportById(reportId, profileId) {
     .maybeSingle()
 
   if (error) throw error
-  return data
+  return normalizeSajuReportForConsumer(data)
 }
 
 /**
@@ -327,7 +371,7 @@ export async function saveFortuneReport(reportData) {
     .single()
 
   if (error) throw error
-  return data
+  return normalizeSajuReportForConsumer(data)
 }
 
 /**
@@ -341,7 +385,7 @@ export async function upsertFortuneReport(reportData) {
     .single()
 
   if (error) throw error
-  return data
+  return normalizeSajuReportForConsumer(data)
 }
 
 /**
@@ -372,7 +416,7 @@ export async function getFortuneReportById(reportId, profileId) {
     .maybeSingle()
 
   if (error) throw error
-  return data
+  return normalizeSajuReportForConsumer(data)
 }
 
 /**
@@ -423,7 +467,10 @@ export async function requestLlmReport(dailySnapshot, options = {}) {
       throw new Error('Invalid response shape from Edge Function');
     }
     
-    return data
+    return {
+      ...data,
+      content: normalizeSajuReportForConsumer({ report_content: data.content }).report_content,
+    }
   } catch (err) {
     console.error('Failed to request LLM report:', err)
     throw err

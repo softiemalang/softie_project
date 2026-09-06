@@ -1,12 +1,19 @@
 import { ELEMENTS, RELATIONSHIPS, STEM_YIN_YANG, STEMS, BRANCHES, HIDDEN_STEMS, SEASONAL_ELEMENT_WEIGHTS, TRINE_GROUPS, BRANCH_RELATION_PAIRS } from './constants.js'
-import { calculateFourPillars } from './fourPillars.js'
+import { calculateFourPillars, DEFAULT_SAJU_OPTIONS } from './fourPillars.js'
+import { resolveSajuPolicyContract } from './sajuPolicyContract.js'
 
 /**
- * 명시된 KST 절기·태양시·자시 규칙으로 사주 8자 기둥을 도출합니다.
- * 계산 정밀도와 학파 차이는 calculateFourPillars의 메타데이터와 옵션에 남깁니다.
+ * Legacy preprocessor compatibility boundary. Preserve its existing output
+ * while materializing the explicit implementation policy contract before the
+ * calculation is delegated to the canonical engine.
  */
-export function derivePillars(birthDate, birthTime) {
-  return calculateFourPillars({ birthDate, birthTime }, { timezone: 'Asia/Seoul' })
+export function derivePillars(birthDate, birthTime, options = DEFAULT_SAJU_OPTIONS) {
+  const calculationOptions = { ...DEFAULT_SAJU_OPTIONS, ...(options || {}) }
+  const policyContract = resolveSajuPolicyContract(calculationOptions)
+  return calculateFourPillars(
+    { birthDate, birthTime },
+    { ...calculationOptions, policyContract },
+  )
 }
 
 /**

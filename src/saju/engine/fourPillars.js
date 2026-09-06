@@ -1,6 +1,7 @@
 import { getBaziYearAndMonth } from './solarTerms.js'
 import { STEMS, BRANCHES } from './constants.js'
 import { calculateEquationOfTimeMinutes, SOLAR_TIME_METHOD } from './solarTime.js'
+import { resolveSajuPolicyContract, SAJU_POLICY_DEFAULT_SELECTIONS } from './sajuPolicyContract.js'
 
 export const SAJU_ENGINE_VERSION = '2.5'
 
@@ -22,6 +23,11 @@ export const DEFAULT_SAJU_OPTIONS = {
   standardMeridianDegrees: SAJU_CALCULATION_PROFILE.standardMeridianDegrees,
   solarTimeOffsetMinutes: 30,
   dayBoundaryRule: SAJU_CALCULATION_PROFILE.dayBoundaryRule,
+  yearBoundaryPolicy: SAJU_POLICY_DEFAULT_SELECTIONS.yearBoundaryPolicy,
+  monthBoundaryPolicy: SAJU_POLICY_DEFAULT_SELECTIONS.monthBoundaryPolicy,
+  dayBoundaryPolicy: SAJU_POLICY_DEFAULT_SELECTIONS.dayBoundaryPolicy,
+  hourTimeBasisPolicy: SAJU_POLICY_DEFAULT_SELECTIONS.hourTimeBasisPolicy,
+  qiyunConversionPolicy: SAJU_POLICY_DEFAULT_SELECTIONS.qiyunConversionPolicy,
   ziHourStart: SAJU_CALCULATION_PROFILE.ziHourStart,
   rollDayAtZiHour: false,
 }
@@ -53,9 +59,67 @@ function parseCivilDate(value) {
   return { year, month, day }
 }
 
+const HOUR_TIME_BASIS_OPTIONS = Object.freeze({
+  'local-apparent-solar-kst': Object.freeze({ useSolarTimeCorrection: true, useEquationOfTimeCorrection: true }),
+  'local-mean-solar-kst': Object.freeze({ useSolarTimeCorrection: true, useEquationOfTimeCorrection: false }),
+  'civil-kst': Object.freeze({ useSolarTimeCorrection: false, useEquationOfTimeCorrection: false }),
+})
+
+const hasOwnOption = (value, key) => Object.prototype.hasOwnProperty.call(value || {}, key)
+
+function inferHourTimeBasisPolicyFromOptions(options) {
+  if (options.useSolarTimeCorrection === false) return 'civil-kst'
+  if (options.useEquationOfTimeCorrection === false) return 'local-mean-solar-kst'
+  return SAJU_POLICY_DEFAULT_SELECTIONS.hourTimeBasisPolicy
+}
+
+function resolveCalculationOptions(options) {
+  const rawOptions = options || {}
+  const mergedOptions = { ...DEFAULT_SAJU_OPTIONS, ...rawOptions }
+  const rawDayRule = rawOptions.dayBoundaryRule
+  const rawDayPolicy = rawOptions.dayBoundaryPolicy
+  const legacyDayOverride = hasOwnOption(rawOptions, 'dayBoundaryRule')
+    && rawDayRule !== SAJU_POLICY_DEFAULT_SELECTIONS.dayBoundaryPolicy
+  const explicitDayOverride = hasOwnOption(rawOptions, 'dayBoundaryPolicy')
+    && rawDayPolicy !== SAJU_POLICY_DEFAULT_SELECTIONS.dayBoundaryPolicy
+  if (legacyDayOverride && explicitDayOverride && rawDayRule !== rawDayPolicy) {
+    throw new Error('SAJU_POLICY_MISMATCH: dayBoundaryPolicy')
+  }
+  const dayBoundaryRule = legacyDayOverride
+    ? rawDayRule
+    : explicitDayOverride ? rawDayPolicy : mergedOptions.dayBoundaryRule
+
+  const rawHourPolicy = rawOptions.hourTimeBasisPolicy
+  const legacyHourOverride = (hasOwnOption(rawOptions, 'useSolarTimeCorrection')
+    && rawOptions.useSolarTimeCorrection !== DEFAULT_SAJU_OPTIONS.useSolarTimeCorrection)
+    || (hasOwnOption(rawOptions, 'useEquationOfTimeCorrection')
+      && rawOptions.useEquationOfTimeCorrection !== DEFAULT_SAJU_OPTIONS.useEquationOfTimeCorrection)
+  const explicitHourOverride = hasOwnOption(rawOptions, 'hourTimeBasisPolicy')
+    && rawHourPolicy !== SAJU_POLICY_DEFAULT_SELECTIONS.hourTimeBasisPolicy
+  const inferredHourPolicy = inferHourTimeBasisPolicyFromOptions(mergedOptions)
+  if (legacyHourOverride && explicitHourOverride && rawHourPolicy !== inferredHourPolicy) {
+    throw new Error('SAJU_POLICY_MISMATCH: hourTimeBasisPolicy')
+  }
+  const hourTimeBasisPolicy = legacyHourOverride
+    ? inferredHourPolicy
+    : explicitHourOverride ? rawHourPolicy : mergedOptions.hourTimeBasisPolicy
+  const hourOptions = HOUR_TIME_BASIS_OPTIONS[hourTimeBasisPolicy]
+
+  return {
+    ...mergedOptions,
+    dayBoundaryRule,
+    dayBoundaryPolicy: dayBoundaryRule,
+    ...(hourOptions ? {
+      hourTimeBasisPolicy,
+      useSolarTimeCorrection: hourOptions.useSolarTimeCorrection,
+      useEquationOfTimeCorrection: hourOptions.useEquationOfTimeCorrection,
+    } : { hourTimeBasisPolicy }),
+  }
+}
+
 export function calculateFourPillars(params, options = DEFAULT_SAJU_OPTIONS) {
   const { birthDate, birthTime } = params
-  const opts = { ...DEFAULT_SAJU_OPTIONS, ...options }
+  const opts = resolveCalculationOptions(options)
   if (opts.timezone !== 'Asia/Seoul') {
     throw new Error('The four-pillars engine currently supports Asia/Seoul only.')
   }
@@ -73,8 +137,10 @@ export function calculateFourPillars(params, options = DEFAULT_SAJU_OPTIONS) {
   const totalClockMinutes = parseClockMinutes(timeValue, 'birthTime')
   const hour = Math.floor(totalClockMinutes / 60)
   const min = totalClockMinutes % 60
+  const ziStartMins = parseClockMinutes(opts.ziHourStart, 'ziHourStart')
+  const policyContract = resolveSajuPolicyContract(opts)
 
-  const solarTerm = getBaziYearAndMonth(year, month, day, hour, min)
+  const solarTerm = getBaziYearAndMonth(year, month, day, hour, min, policyContract)
   const { baziYear, monthIndex } = solarTerm
 
   // 1. Year Pillar: 1984 is Gap-Ja (甲子), index 0 in the 60-cycle.
@@ -97,11 +163,9 @@ export function calculateFourPillars(params, options = DEFAULT_SAJU_OPTIONS) {
   if (dayIndex < 0) dayIndex += 60
 
   const totalMins = hour * 60 + min
-  const ziStartMins = parseClockMinutes(opts.ziHourStart, 'ziHourStart')
   if (!['solar-midnight-split-zi', 'zi-start'].includes(opts.dayBoundaryRule)) {
     throw new Error('dayBoundaryRule must be solar-midnight-split-zi or zi-start.')
   }
-
   const longitudeOffsetMinutes = opts.longitudeDegrees == null
     ? opts.solarTimeOffsetMinutes
     : (opts.standardMeridianDegrees - opts.longitudeDegrees) * 4
@@ -153,6 +217,7 @@ export function calculateFourPillars(params, options = DEFAULT_SAJU_OPTIONS) {
     hour: { stem: hourStem, branch: hourBranch },
     _meta: {
       engineVersion: SAJU_ENGINE_VERSION,
+      policyContract,
       isRolledOverDay,
       dayBoundaryRule: opts.dayBoundaryRule,
       calculationProfile: opts.calculationProfile || SAJU_CALCULATION_PROFILE.id,

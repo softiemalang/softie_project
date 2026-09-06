@@ -1,6 +1,7 @@
 import { derivePillars, analyzeNatalStructure, analyzeDailyInteraction, analyzePeriodPillar, buildDayType, buildSectionPriority, buildLongerCycleContext, buildDailyBalance } from '../engine/core.js'
 import { SAJU_ENGINE_VERSION } from '../engine/fourPillars.js'
 import { buildInterpretationProfile } from './interpretationRules.js'
+import { normalizeSajuPolicyContractForConsumer } from '../engine/sajuPolicyContract.js'
 
 function addDaysToDateString(dateString, offset) {
   const [year, month, day] = String(dateString).split('-').map(Number)
@@ -15,6 +16,7 @@ function addDaysToDateString(dateString, offset) {
 export function generateNatalSnapshot(profile) {
   const pillars = derivePillars(profile.birth_date, profile.birth_time)
   const analysis = analyzeNatalStructure(pillars)
+  const policyContract = pillars._meta.policyContract
 
   return {
     year_stem: pillars.year.stem,
@@ -26,7 +28,7 @@ export function generateNatalSnapshot(profile) {
     hour_stem: pillars.hour.stem,
     hour_branch: pillars.hour.branch,
     day_master: analysis.dayMaster,
-    natal_data: { ...analysis, gender: profile.gender, engine_version: SAJU_ENGINE_VERSION }
+    natal_data: { ...analysis, gender: profile.gender, engine_version: SAJU_ENGINE_VERSION, policyContract }
   }
 }
 
@@ -37,6 +39,8 @@ export function generateDailySnapshot(natalSnapshot, targetDate) {
   // targetDate에 대한 실제 일진(Daily Pillar) 도출
   // 하루 전체를 대표하는 일진을 구하기 위해 정오(12:00)를 기준으로 계산합니다.
   const targetPillars = derivePillars(targetDate, '12:00')
+  const policyContract = targetPillars._meta.policyContract
+  const natalPolicyContract = normalizeSajuPolicyContractForConsumer(natalSnapshot.natal_data?.policyContract)
   const periodPillars = {
     year: { stem: targetPillars.year.stem, branch: targetPillars.year.branch },
     month: { stem: targetPillars.month.stem, branch: targetPillars.month.branch },
@@ -253,7 +257,9 @@ export function generateDailySnapshot(natalSnapshot, targetDate) {
       longerCycleContext,
       dailyBalance,
       summary_hint: `${natalAnalysis.dayMaster}일간에게 올해/이번 달/오늘의 흐름이 겹쳐 들어오는 날`,
-      engine_version: SAJU_ENGINE_VERSION
+      engine_version: SAJU_ENGINE_VERSION,
+      policyContract,
+      natalPolicyContract,
     }
   }
 }

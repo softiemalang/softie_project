@@ -8,6 +8,7 @@
  */
 
 import { INTERPRETATION_PREP_SCHEMA_VERSION, SAJU_ADAPTER_VERSION } from './schema.js'
+import { normalizeSajuPolicyContractForConsumer } from '../saju/engine/sajuPolicyContract.js'
 
 export function buildInterpretationContext(rawResult, options = {}) {
   if (!rawResult || typeof rawResult !== 'object' || !rawResult.raw) {
@@ -17,6 +18,7 @@ export function buildInterpretationContext(rawResult, options = {}) {
   const { raw, stateContract, engine } = rawResult
   const candidateAnalysis = raw.candidateAnalysis || {}
   const validationMetadata = raw.validationMetadata || {}
+  const policyContract = normalizeSajuPolicyContractForConsumer(raw.policyContract || rawResult.policyContract)
 
   // 1. Versioning & Metadata
   const contextHeader = {
@@ -51,6 +53,7 @@ export function buildInterpretationContext(rawResult, options = {}) {
         candidateOrigin: cand.candidateOrigin || 'unknown',
         ruleAssumption: cand.ruleAssumption || null,
         affectedFields: cand.affectedFields || [],
+        policyContract: normalizeSajuPolicyContractForConsumer(cand.policyContract || policyContract),
         pillars: cand.pillars || {},
         experimentalInterpretation: {
           strength: cand.experimentalInterpretation?.strength?.value || cand.experimental?.strength?.level || null,
@@ -85,6 +88,7 @@ export function buildInterpretationContext(rawResult, options = {}) {
   // || 'verified' / || 'high' 같은 fallback이 needs_verification·candidate_required 상태를
   // 암묵적으로 상향 승격하는 경로를 차단합니다.
   const calculationConfidence = {
+    policyContract,
     stateContract: {
       inputStatus: stateContract?.inputStatus ?? null,
       calculationStatus: stateContract?.calculationStatus ?? null,
@@ -101,6 +105,7 @@ export function buildInterpretationContext(rawResult, options = {}) {
 
   // 6. Interpretation Warnings (AI 프롬프트용 지침 안전장치)
   const interpretationWarnings = buildInterpretationWarnings({
+    policyContract,
     stateContract,
     candidateAnalysis,
     validationMetadata,
@@ -110,6 +115,7 @@ export function buildInterpretationContext(rawResult, options = {}) {
   return {
     ...contextHeader,
     subjectName: options.subjectName || rawResult.subjectName || '내담자',
+    policyContract,
     candidateSetConsensus,
     candidateFacts,
     uncertainFactors,
@@ -118,7 +124,7 @@ export function buildInterpretationContext(rawResult, options = {}) {
   }
 }
 
-function buildInterpretationWarnings({ stateContract, candidateAnalysis, validationMetadata, rawCandidates }) {
+function buildInterpretationWarnings({ policyContract, stateContract, candidateAnalysis, validationMetadata, rawCandidates }) {
   const warnings = []
   const candidates = candidateAnalysis.candidates || rawCandidates || []
   const hasCandidates = candidates.length > 1 || Boolean(candidateAnalysis.hasCandidates) || (candidateAnalysis.candidateCount > 1)
@@ -153,6 +159,10 @@ function buildInterpretationWarnings({ stateContract, candidateAnalysis, validat
   if (warnings.length === 0) {
     warnings.push('본 계산 결과는 단일 확정 명식 기준이나 실험적 해석 항목에 대해서는 경향성 중심 안내를 권장합니다.')
   }
+
+  warnings.push(policyContract.status === 'SELECTED'
+    ? '사주 정책 경계: 선택된 값은 implementation policy이며 historicalAuthority=insufficient_evidence, historicalFact=false, readiness=blocked, activation=not_activated이다. 이를 역사적 권위로 표현하지 마십시오.'
+    : '사주 정책 경계: implementation policy 선택값이 없거나 불완전하여 UNKNOWN이다. historicalAuthority=insufficient_evidence, historicalFact=false, readiness=blocked, activation=not_activated으로 취급하고 선택값을 추정하지 마십시오.')
 
   return warnings
 }

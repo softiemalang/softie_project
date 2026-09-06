@@ -7,6 +7,7 @@
  */
 
 import { createEvidenceBoundary } from './evidenceBoundary.js'
+import { normalizeSajuPolicyContractForConsumer } from '../saju/engine/sajuPolicyContract.js'
 
 const SYSTEM_IDS = ['saju', 'ziwei', 'astrology']
 const CONFIDENCE_RANK = { low: 1, medium: 2, high: 3 }
@@ -115,6 +116,14 @@ function normalizeSystem(system, value = {}) {
   const supplied = value || {}
   if (isDescriptor(supplied)) {
     const context = supplied.interpretationContext || supplied.context || null
+    const policyContract = system === 'saju'
+      ? normalizeSajuPolicyContractForConsumer(
+        supplied.policyContract
+          ?? supplied.calculationResult?.policyContract
+          ?? supplied.calculationResult?.raw?.policyContract
+          ?? context?.policyContract,
+      )
+      : null
     const confidence = supplied.confidence
       || context?.calculationConfidence?.stateContract?.confidence
       || defaultSystemConfidence(system, supplied.availableForChat)
@@ -134,6 +143,7 @@ function normalizeSystem(system, value = {}) {
       availableForChat: supplied.availableForChat === true && Boolean(context),
       context: supplied.availableForChat === true ? context : null,
       calculationResult: supplied.calculationResult || null,
+      ...(system === 'saju' ? { policyContract } : {}),
       warnings: Array.isArray(supplied.warnings) ? supplied.warnings : [],
       sourceDerivation: supplied.sourceDerivation || null,
       adapterContract: supplied.adapterContract || null,
@@ -155,6 +165,10 @@ function normalizeSystem(system, value = {}) {
     ? supplied.calculationConfidence?.stateContract?.interpretationStatus || defaultInterpretationStatus(system, availableForChat)
     : 'candidate_only'
 
+  const policyContract = system === 'saju'
+    ? normalizeSajuPolicyContractForConsumer(supplied.policyContract || supplied.raw?.policyContract)
+    : null
+
   return {
     system,
     status: inferLegacyStatus(system, supplied, availableForChat),
@@ -164,6 +178,7 @@ function normalizeSystem(system, value = {}) {
     availableForChat,
     context: availableForChat ? supplied : null,
     calculationResult: supplied.raw || null,
+    ...(system === 'saju' ? { policyContract } : {}),
     warnings: [
       ...(supplied.interpretationWarnings || []),
       ...(supplied.warnings || []),

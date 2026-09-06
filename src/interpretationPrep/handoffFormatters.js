@@ -1,3 +1,6 @@
+import { normalizeSajuPolicyContractForConsumer } from '../saju/engine/sajuPolicyContract.js'
+import { formatSajuPolicyBoundary } from '../saju/policyDisplay.js'
+
 const POSITION_LABELS = {
   year: '연주',
   month: '월주',
@@ -200,12 +203,19 @@ export function formatSajuFull(system = {}) {
   const calculationResult = system.calculationResult || {}
   const raw = calculationResult.raw || {}
   const context = system.context || system.interpretationContext || {}
+  const policyContract = normalizeSajuPolicyContractForConsumer(
+    system.policyContract
+      ?? calculationResult.policyContract
+      ?? raw.policyContract
+      ?? context.policyContract,
+  )
   const isCandidate = system.verificationStatus === 'candidate_required' || system.interpretationStatus === 'candidate_only'
 
   if (isCandidate) {
     return [
       '### 사주 · 복수 명식 후보 존재 (단일 확정 불가)',
       `- 상태: ${system.status || 'candidate_required'} / 검증 ${system.verificationStatus || 'candidate_required'} / 신뢰도 ${system.confidence || 'low'}`,
+      `- 계산 정책 경계: ${formatSajuPolicyBoundary(policyContract)}`,
       `- RuleSet/엔진: ${calculationResult.engine?.profile?.profileVersion || calculationResult.engine?.sourceEngine || '현재 사주 엔진 프로필'}`,
       '- 원국: 후보 확인 필요 (단일 확정 명식 없음 - 아래 후보 목록 참조)',
       '- 일간: 후보 확인 필요 (단일 확정 일간 없음 - 아래 후보 목록 참조)',
@@ -235,6 +245,7 @@ export function formatSajuFull(system = {}) {
   return [
     '### 사주 · 실제 계산 근거',
     `- 상태: ${system.status || 'available'} / 검증 ${system.verificationStatus || '미상'} / 신뢰도 ${system.confidence || '미상'}`,
+    `- 계산 정책 경계: ${formatSajuPolicyBoundary(policyContract)}`,
     `- RuleSet/엔진: ${calculationResult.engine?.profile?.profileVersion || calculationResult.engine?.sourceEngine || '현재 사주 엔진 프로필'} / 운 흐름 ${raw.timing?.ruleVersion || '버전 미상'}`,
     formatEvidenceBoundary(system.evidenceBoundary),
     `- 원국: ${formatSajuPillars(raw, context)}`,
@@ -352,6 +363,12 @@ export function formatTopicEvidence({ result, unifiedContext, topic = 'general' 
   const ziweiSystem = unifiedContext.systems?.ziwei || {}
   const sajuResult = sajuSystem.calculationResult || result?.systems?.saju || {}
   const raw = sajuResult.raw || {}
+  const policyContract = normalizeSajuPolicyContractForConsumer(
+    sajuSystem.policyContract
+      ?? sajuResult.policyContract
+      ?? raw.policyContract
+      ?? sajuSystem.interpretationContext?.policyContract,
+  )
   const isCandidateSaju = sajuSystem.verificationStatus === 'candidate_required' || sajuSystem.interpretationStatus === 'candidate_only'
   const features = isCandidateSaju ? [] : selectSajuTopicFeatures(sajuResult, topic)
   const sajuFeatureText = isCandidateSaju
@@ -360,6 +377,7 @@ export function formatTopicEvidence({ result, unifiedContext, topic = 'general' 
 
   const sections = [
     `### 사주 · ${TOPIC_LABELS[topic] || TOPIC_LABELS.general} Feature`,
+    `- 계산 정책 경계: ${formatSajuPolicyBoundary(policyContract)}`,
     formatEvidenceBoundarySummary(sajuSystem.evidenceBoundary),
     sajuFeatureText,
   ]
