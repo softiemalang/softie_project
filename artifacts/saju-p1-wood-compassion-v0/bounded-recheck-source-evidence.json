@@ -1,0 +1,189 @@
+{
+  "schema_version": "historical-document-evidence-v1",
+  "mode": "source-analysis",
+  "question": "In one bounded recheck, can the 木旺相 disposition candidate be connected directly to current Saju result fields?",
+  "scope": {
+    "included_item_ids": [
+      "sanming-local-export",
+      "siku-vol07-transcription",
+      "harvard-53262215-locator"
+    ],
+    "excluded": [
+      "Further witness acquisition after access failure",
+      "Other works or chapters beyond the named definition/temperament units",
+      "New temperament candidates in this turn",
+      "User claims, reflection, cross-lens comparison",
+      "Authority/readiness/activation changes"
+    ]
+  },
+  "sources": [
+    {
+      "id": "local-bounded-pages",
+      "item_id": "sanming-local-export",
+      "kind": "derived_record",
+      "uri_or_path": "/Users/hangyukim/Documents/malang_lab/documents/三命通會.pdf",
+      "locator": "PDF/display pp67-69 (論五行旺相休囚死并寄生十二宫 only) and pp242-244 (論性情相貌 only)",
+      "byte_sha256": "f09bce7c6dbe1e222746ad8c97f49d132ed4e8da6d3c1d0399b0824b3794593f",
+      "directly_inspected": true,
+      "identity": {
+        "institution": null,
+        "catalog_id": null,
+        "shelfmark": null,
+        "title": "三命通會",
+        "creator": null,
+        "edition": "Modern Wikisource PDF export; historical edition unresolved",
+        "date": "2026年8月4日"
+      },
+      "lineage_status": "UNRESOLVED",
+      "independence_status": "UNRESOLVED"
+    },
+    {
+      "id": "siku-transcription",
+      "item_id": "siku-vol07-transcription",
+      "kind": "transcription",
+      "uri_or_path": "https://zh.wikisource.org/w/index.php?title=三命通會_(四庫全書本)/卷07&oldid=2082208",
+      "locator": "論性情相貌; Eastern wood paragraph, general qualifications and following 又曰; page identifies oldid 2082208",
+      "byte_sha256": null,
+      "directly_inspected": true,
+      "identity": {
+        "institution": null,
+        "catalog_id": null,
+        "shelfmark": null,
+        "title": "三命通會 (四庫全書本)/卷07",
+        "creator": "明 萬民英 撰 (transcription label)",
+        "edition": "四庫全書本 (site label only; scan lineage not established)",
+        "date": null
+      },
+      "lineage_status": "UNRESOLVED",
+      "independence_status": "UNRESOLVED"
+    },
+    {
+      "id": "harvard-mirror-record",
+      "item_id": "harvard-53262215-locator",
+      "kind": "catalog_record",
+      "uri_or_path": "https://commons.wikimedia.org/wiki/File:Harvard_drs_53262215_三命通會_v.7卷之七.pdf",
+      "locator": "Summary and source fields; official manifest drs:53262215 and catalog 990079334100203941 links",
+      "byte_sha256": null,
+      "directly_inspected": true,
+      "identity": {
+        "institution": "Harvard-Yenching Library (mirror metadata; not independently refreshed)",
+        "catalog_id": "990079334100203941 (linked locator)",
+        "shelfmark": null,
+        "title": "三命通會 : 十二卷",
+        "creator": "育吾山人著 (mirror metadata)",
+        "edition": "補刋本 (mirror metadata)",
+        "date": "清雍正13? i.e. 1735? (mirror metadata; uncertainty retained)"
+      },
+      "lineage_status": "UNRESOLVED",
+      "independence_status": "UNRESOLVED"
+    }
+  ],
+  "findings": [
+    {
+      "id": "general-definition",
+      "classification": "FACT",
+      "statement": "PDF p67 explicitly defines 盛德乘时曰旺 and gives 春木旺; p68 gives 冬水旺，水生木则木相. Thus a general seasonal 旺/相 definition is observed, superseding only the earlier missing-definition gap, not closing the temperament mapping.",
+      "source_ids": [
+        "local-bounded-pages"
+      ]
+    },
+    {
+      "id": "definition-limit",
+      "classification": "FACT",
+      "statement": "PDF pp68-69 separately enumerate twelve growth stages including 帝旺 and warn 生旺者未必便作吉论 and 休囚死绝未必便作凶言. The source does not identify current implementation scores or twelve-stage 帝旺 with a universally sufficient temperament antecedent.",
+      "source_ids": [
+        "local-bounded-pages"
+      ]
+    },
+    {
+      "id": "base-condition",
+      "classification": "FACT",
+      "statement": "PDF p242 introduces 东方震位木 and conditions the quoted disposition on 旺相; it does not explicitly label this wood as the day stem or as the largest total count.",
+      "source_ids": [
+        "local-bounded-pages"
+      ]
+    },
+    {
+      "id": "branch-wording",
+      "classification": "FACT",
+      "statement": "PDF p243 has 参以命中所遇吉凶神煞, conditional 若有煞临 ... 又从煞上断 and 若有克 ... 从所克之五行断, then 日时/纳音. The following 又曰 begins a distinct account using 本五行、不论纳音 and 入格/生旺 conditions.",
+      "source_ids": [
+        "local-bounded-pages"
+      ]
+    },
+    {
+      "id": "branch-classification",
+      "classification": "INFERENCE",
+      "statement": "Based on base-condition and branch-wording: 旺相 is the base paragraph condition; 神煞 is a contextual assessment instruction; 煞临 and 有克 introduce redirection branches; 日时/纳音 is an aggregate assessment basis. 又曰 is not safely a conjunctive premise of the first clause. This is source-local grammatical classification, not an executable rule or proof of contradiction.",
+      "source_ids": [
+        "local-bounded-pages",
+        "siku-transcription"
+      ]
+    },
+    {
+      "id": "witness-limit",
+      "classification": "UNKNOWN",
+      "statement": "A Harvard vol7 witness locator is identifiable through the mirror, but official viewer/catalog requests returned 429 and manifest retrieval returned 403. No primary page was inspected and no mirror-derived copy lineage or physical folio was admitted. The existing NCL 06589 record remains untouched and supplies no newly verified vol7 target page in this pass.",
+      "source_ids": [
+        "harvard-mirror-record"
+      ]
+    }
+  ],
+  "claims": [
+    {
+      "id": "general-seasonal-definition",
+      "statement": "The inspected text supplies a general seasonal account of wood 旺 and 相.",
+      "support": "PARTIAL",
+      "finding_ids": [
+        "general-definition",
+        "definition-limit"
+      ]
+    },
+    {
+      "id": "direct-temperament-connection",
+      "statement": "This exact temperament clause has a closed referent, operational predicate and exception route in current Saju outputs.",
+      "support": "UNRESOLVED",
+      "finding_ids": [
+        "base-condition",
+        "branch-classification",
+        "witness-limit"
+      ]
+    }
+  ],
+  "ocr": null,
+  "unknowns": [
+    {
+      "id": "referent-open",
+      "statement": "The exact chart referent and relation of aggregate 日时/纳音 to the initial wood paragraph are not closed.",
+      "blocks_claim_ids": [
+        "direct-temperament-connection"
+      ],
+      "next_check": "None in this candidate branch: closed by the parent after this bounded pass."
+    },
+    {
+      "id": "predicate-route-open",
+      "statement": "The general seasonal definition does not establish passage-specific choice between seasonal/other states, nor exact 神煞/克 routing to existing fields.",
+      "blocks_claim_ids": [
+        "direct-temperament-connection"
+      ],
+      "next_check": "None in this candidate branch; next P1 candidate may be explored separately."
+    },
+    {
+      "id": "witness-open",
+      "statement": "Physical witness page, edition lineage and independent passage collation remain unresolved.",
+      "blocks_claim_ids": [
+        "direct-temperament-connection"
+      ],
+      "next_check": "No further acquisition in this bounded pass."
+    }
+  ],
+  "boundary": {
+    "ocr_is_canonical_text": false,
+    "source_authority_promoted": false,
+    "semantic_authority_established": false,
+    "readiness_decided": false,
+    "policy_or_permission_decided": false,
+    "activation_decided": false,
+    "automatic_fallback_used": false
+  }
+}

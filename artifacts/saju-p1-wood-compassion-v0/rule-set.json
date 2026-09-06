@@ -1,6 +1,6 @@
 {
   "schemaVersion": "saju-p1-source-rule-research-v0",
-  "status": "P1_STARTED_RULE_ADMISSION_UNRESOLVED",
+  "status": "P1_CANDIDATE_CLOSED_NOT_APPLICABLE",
   "basisHead": "b6426c707b1604158e38abae2ebe4688dfc743bf",
   "lens": "saju",
   "domain": "temperament",
@@ -24,7 +24,7 @@
         },
         {
           "id": "wood-wangxiang",
-          "requirement": "Establish 木旺相 with a source-defined criterion for that same referent.",
+          "requirement": "General seasonal 旺/相 definition located at export pp67-69; application to the same wood referent and this temperament clause remains unresolved.",
           "status": "unresolved",
           "locator": "p242 旺相 clause"
         },
@@ -54,8 +54,9 @@
       ],
       "sourceLayerIssue": "p243 纳音 and the adjacent 又曰 不论纳音 are kept separate. Neither dominance nor equivalence is inferred.",
       "interpretationScope": "Source-local terminology only. No personality diagnosis, moral worth, physiognomy, fate, user hypothesis or instruction.",
-      "admission": "unresolved",
-      "executablePredicate": null
+      "admission": "not_applicable_fixed_current_P1",
+      "executablePredicate": null,
+      "sourceEpistemicStatus": "unresolved"
     }
   ],
   "calculationProbe": {
@@ -405,5 +406,64 @@
     "readinessChanged": false,
     "activationChanged": false
   },
-  "nextDiscriminatingCheck": "Obtain a source-identified definition of the relevant wood referent and 旺相 plus the 日时/纳音 layer relation. Do not expand to another topic to manufacture an admitted rule."
+  "nextDiscriminatingCheck": "This candidate is closed for current P1. Do not expand or automatically reopen it. A separate next temperament candidate search is permitted but was not started.",
+  "finalAdjudication": {
+    "basisHead": "00bf8a50d560af71e8013aa129c5bed617db8627",
+    "predecessorRuleSetByteSha256": "46d95c31f71889771f70a5aea9339b9be2616b7c7258a94465203cd4b9461348",
+    "boundedRechecks": 1,
+    "decision": "NOT_APPLICABLE_FIXED_CURRENT_P1",
+    "meaning": "Local application exclusion for this candidate under the inspected basis; not proof that the historical statement is universally false.",
+    "sourceEvidence": {
+      "path": "artifacts/saju-p1-wood-compassion-v0/bounded-recheck-source-evidence.json",
+      "byteSha256": "6154d1cea89e74ef5634ec75f09dba2af988163d283b97f5d7b1887e628cfe4c"
+    },
+    "definitionProgress": "General seasonal definition found: 春木旺 and 冬水旺/水生木則木相. Do not retain a claim that no definition exists.",
+    "conditionClassification": [
+      {
+        "term": "木",
+        "role": "five_phase_subject",
+        "closure": "chart_referent_unresolved"
+      },
+      {
+        "term": "旺相",
+        "role": "base_clause_condition",
+        "closure": "general_definition_observed_application_unresolved"
+      },
+      {
+        "term": "神煞",
+        "role": "contextual_assessment",
+        "closure": "source_specific_evaluator_missing"
+      },
+      {
+        "term": "若有煞臨",
+        "role": "conditional_redirection",
+        "closure": "branch_not_implemented_for_this_source"
+      },
+      {
+        "term": "若有克",
+        "role": "conditional_redirection_to_controlled_element",
+        "closure": "target_and_precedence_unresolved"
+      },
+      {
+        "term": "日時・納音",
+        "role": "aggregate_assessment_basis",
+        "closure": "not_a_closed_conjunctive_predicate"
+      },
+      {
+        "term": "又曰・不論納音",
+        "role": "separate_account",
+        "closure": "not_merged_with_first_clause"
+      }
+    ],
+    "calculationDecision": "Available season/count/strength/pillar/experimental-shinsal/relation fields were reread and the existing fixture rerun. No direct semantic mapping closes; no new predicate is implemented.",
+    "expansionAllowed": false,
+    "automaticReopen": false,
+    "nextP1CandidateSearch": {
+      "status": "PERMITTED_NOT_STARTED",
+      "excludedCandidateIds": [
+        "sanming-vol7-wood-wangxiang-compassion"
+      ],
+      "meaning": "Workflow handoff only; not interpretation readiness or activation. Next candidate must independently meet the grounding contract."
+    }
+  }
 }
